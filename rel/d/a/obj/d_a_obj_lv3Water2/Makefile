@@ -3,19 +3,20 @@
 #
 
 M519_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Water2.plf
+M519_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Water2.lcf
+M519_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Water2.map
 
 M519_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv3Water2/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv3Water2/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv3Water2/d_a_obj_lv3Water2.cpp \
 
 M519_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Water2/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Water2/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Water2/d_a_obj_lv3Water2.o \
 
 M519_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Water2/libRuntime.PPCEABI.H.a \
 
 M519_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M519_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M519_LDSCRIPT) \
+	-unused -map $(M519_MAP) \
+	-w off \
 
 $(M519_TARGET): $(M519_O_FILES) $(M519_LIBS)
+	@echo [519] creating $(M519_TARGET)
 	@echo $(M519_LIBS) $(M519_O_FILES) > build/M519_ofiles
-	$(LD) -partial $(M519_LDFLAGS) -o $(M519_TARGET) @build/M519_ofiles
+	@python3 tools/lcf.py rel 519 --output $(M519_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M519_LDFLAGS) -o $(M519_TARGET) @build/M519_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Water2/%.o: rel/d/a/obj/d_a_obj_lv3Water2/%.cpp
+	@echo [519] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M519_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M519_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv3Water2/libs/Runtime.PPCEABI.H/Makefile
 

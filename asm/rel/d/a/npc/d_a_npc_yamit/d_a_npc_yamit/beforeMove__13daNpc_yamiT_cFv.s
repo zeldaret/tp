@@ -9,7 +9,7 @@ lbl_80B4AE38:
 /* 80B4AE54  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 80B4AE58  28 00 00 00 */	cmplwi r0, 0
 /* 80B4AE5C  40 82 00 1C */	bne lbl_80B4AE78
-/* 80B4AE60  4B 4E 4B F4 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80B4AE60  4B 4E 4B F5 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80B4AE64  2C 03 00 00 */	cmpwi r3, 0
 /* 80B4AE68  40 82 00 14 */	bne lbl_80B4AE7C
 /* 80B4AE6C  88 1E 0A 89 */	lbz r0, 0xa89(r30)

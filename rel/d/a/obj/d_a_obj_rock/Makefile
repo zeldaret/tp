@@ -3,17 +3,15 @@
 #
 
 M604_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rock.plf
+M604_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rock.lcf
+M604_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rock.map
 
 M604_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_rock/executor.cpp \
-	rel/d/a/obj/d_a_obj_rock/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_rock/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_rock/d_a_obj_rock.cpp \
 
 M604_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rock/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rock/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rock/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rock/d_a_obj_rock.o \
 
 M604_LIBS := \
@@ -29,14 +27,21 @@ M604_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M604_LDSCRIPT) \
+	-unused -map $(M604_MAP) \
+	-w off \
 
 $(M604_TARGET): $(M604_O_FILES) $(M604_LIBS)
+	@echo [604] creating $(M604_TARGET)
 	@echo $(M604_LIBS) $(M604_O_FILES) > build/M604_ofiles
-	$(LD) -partial $(M604_LDFLAGS) -o $(M604_TARGET) @build/M604_ofiles
+	@python3 tools/lcf.py rel 604 --output $(M604_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M604_LDFLAGS) -o $(M604_TARGET) @build/M604_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rock/%.o: rel/d/a/obj/d_a_obj_rock/%.cpp
+	@echo [604] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M604_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M604_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

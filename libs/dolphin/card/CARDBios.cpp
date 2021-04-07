@@ -15,7 +15,7 @@ extern "C" void __CARDDefaultApiCallback();
 extern "C" void __CARDSyncCallback();
 extern "C" void __CARDExtHandler();
 extern "C" void __CARDExiHandler();
-extern "C" static void __CARDTxHandler();
+extern "C" void __CARDTxHandler();
 extern "C" void __CARDUnlockedHandler();
 extern "C" void __CARDEnableInterrupt();
 extern "C" void __CARDReadStatus();
@@ -24,21 +24,19 @@ extern "C" void __CARDClearStatus();
 extern "C" static void TimeoutHandler();
 extern "C" static void Retry();
 extern "C" static void UnlockedCallback();
-extern "C" static void __CARDStart();
+extern "C" void __CARDStart();
 extern "C" void __CARDReadSegment();
 extern "C" void __CARDWritePage();
 extern "C" void __CARDEraseSector();
 extern "C" void CARDInit();
 extern "C" void __CARDGetFontEncode();
-extern "C" static void __CARDSetDiskID();
+extern "C" void __CARDSetDiskID();
 extern "C" void __CARDGetControlBlock();
 extern "C" void __CARDPutControlBlock();
 extern "C" void CARDFreeBlocks();
 extern "C" void __CARDSync();
 extern "C" static void OnReset();
 extern "C" void CARDGetFastMode();
-extern "C" extern u8 __CARDBlock[544];
-extern "C" extern u8 __CARDDiskNone[32];
 
 //
 // External References:
@@ -75,177 +73,178 @@ extern "C" void CARDUnmount();
 // Declarations:
 //
 
-/* 80352A30-80352A34 0004+00 s=0 e=5 z=0  None .text      __CARDDefaultApiCallback */
-extern "C" void __CARDDefaultApiCallback() {
+/* 80352A30-80352A34 34D370 0004+00 0/0 5/5 0/0 .text            __CARDDefaultApiCallback */
+void __CARDDefaultApiCallback() {
     /* empty function */
 }
 
 /* ############################################################################################## */
-/* 8044CBC0-8044CDE0 0220+00 s=16 e=27 z=0  None .bss       __CARDBlock */
+/* 8044CBC0-8044CDE0 0798E0 0220+00 16/16 27/27 0/0 .bss             __CARDBlock */
+extern u8 __CARDBlock[544];
 u8 __CARDBlock[544];
 
-/* 80352A34-80352A68 0034+00 s=0 e=7 z=0  None .text      __CARDSyncCallback */
+/* 80352A34-80352A68 34D374 0034+00 0/0 7/7 0/0 .text            __CARDSyncCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDSyncCallback() {
+asm void __CARDSyncCallback() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/__CARDSyncCallback.s"
 }
 #pragma pop
 
-/* 80352A68-80352B40 00D8+00 s=0 e=1 z=0  None .text      __CARDExtHandler */
+/* 80352A68-80352B40 34D3A8 00D8+00 0/0 1/1 0/0 .text            __CARDExtHandler */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDExtHandler() {
+asm void __CARDExtHandler() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/__CARDExtHandler.s"
 }
 #pragma pop
 
-/* 80352B40-80352C58 0118+00 s=0 e=1 z=0  None .text      __CARDExiHandler */
+/* 80352B40-80352C58 34D480 0118+00 0/0 1/1 0/0 .text            __CARDExiHandler */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDExiHandler() {
+asm void __CARDExiHandler() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/__CARDExiHandler.s"
 }
 #pragma pop
 
-/* 80352C58-80352D00 00A8+00 s=3 e=0 z=0  None .text      __CARDTxHandler */
+/* 80352C58-80352D00 34D598 00A8+00 3/3 0/0 0/0 .text            __CARDTxHandler */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void __CARDTxHandler() {
+asm void __CARDTxHandler() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/__CARDTxHandler.s"
 }
 #pragma pop
 
-/* 80352D00-80352D84 0084+00 s=2 e=2 z=0  None .text      __CARDUnlockedHandler */
+/* 80352D00-80352D84 34D640 0084+00 2/2 2/2 0/0 .text            __CARDUnlockedHandler */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDUnlockedHandler() {
+asm void __CARDUnlockedHandler() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/__CARDUnlockedHandler.s"
 }
 #pragma pop
 
-/* 80352D84-80352E44 00C0+00 s=0 e=1 z=0  None .text      __CARDEnableInterrupt */
+/* 80352D84-80352E44 34D6C4 00C0+00 0/0 1/1 0/0 .text            __CARDEnableInterrupt */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDEnableInterrupt() {
+asm void __CARDEnableInterrupt() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/__CARDEnableInterrupt.s"
 }
 #pragma pop
 
-/* 80352E44-80352F34 00F0+00 s=1 e=2 z=0  None .text      __CARDReadStatus */
+/* 80352E44-80352F34 34D784 00F0+00 1/1 2/2 0/0 .text            __CARDReadStatus */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDReadStatus() {
+asm void __CARDReadStatus() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/__CARDReadStatus.s"
 }
 #pragma pop
 
-/* 80352F34-80353024 00F0+00 s=0 e=1 z=0  None .text      __CARDReadVendorID */
+/* 80352F34-80353024 34D874 00F0+00 0/0 1/1 0/0 .text            __CARDReadVendorID */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDReadVendorID() {
+asm void __CARDReadVendorID() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/__CARDReadVendorID.s"
 }
 #pragma pop
 
-/* 80353024-803530D0 00AC+00 s=1 e=1 z=0  None .text      __CARDClearStatus */
+/* 80353024-803530D0 34D964 00AC+00 1/1 1/1 0/0 .text            __CARDClearStatus */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDClearStatus() {
+asm void __CARDClearStatus() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/__CARDClearStatus.s"
 }
 #pragma pop
 
-/* 803530D0-80353174 00A4+00 s=2 e=0 z=0  None .text      TimeoutHandler */
+/* 803530D0-80353174 34DA10 00A4+00 2/2 0/0 0/0 .text            TimeoutHandler */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void TimeoutHandler() {
+static asm void TimeoutHandler() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/TimeoutHandler.s"
 }
 #pragma pop
 
-/* 80353174-80353414 02A0+00 s=2 e=0 z=0  None .text      Retry */
+/* 80353174-80353414 34DAB4 02A0+00 2/2 0/0 0/0 .text            Retry */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void Retry() {
+static asm void Retry() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/Retry.s"
 }
 #pragma pop
 
-/* 80353414-80353524 0110+00 s=1 e=0 z=0  None .text      UnlockedCallback */
+/* 80353414-80353524 34DD54 0110+00 1/1 0/0 0/0 .text            UnlockedCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void UnlockedCallback() {
+static asm void UnlockedCallback() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/UnlockedCallback.s"
 }
 #pragma pop
 
-/* 80353524-80353748 0224+00 s=3 e=0 z=0  None .text      __CARDStart */
+/* 80353524-80353748 34DE64 0224+00 3/3 0/0 0/0 .text            __CARDStart */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void __CARDStart() {
+asm void __CARDStart() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/__CARDStart.s"
 }
 #pragma pop
 
-/* 80353748-8035387C 0134+00 s=0 e=2 z=0  None .text      __CARDReadSegment */
+/* 80353748-8035387C 34E088 0134+00 0/0 2/2 0/0 .text            __CARDReadSegment */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDReadSegment() {
+asm void __CARDReadSegment() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/__CARDReadSegment.s"
 }
 #pragma pop
 
-/* 8035387C-803539B8 013C+00 s=0 e=2 z=0  None .text      __CARDWritePage */
+/* 8035387C-803539B8 34E1BC 013C+00 0/0 2/2 0/0 .text            __CARDWritePage */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDWritePage() {
+asm void __CARDWritePage() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/__CARDWritePage.s"
 }
 #pragma pop
 
-/* 803539B8-80353AC8 0110+00 s=0 e=6 z=0  None .text      __CARDEraseSector */
+/* 803539B8-80353AC8 34E2F8 0110+00 0/0 6/6 0/0 .text            __CARDEraseSector */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDEraseSector() {
+asm void __CARDEraseSector() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/__CARDEraseSector.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803D1E38-803D1E80 0046+02 s=1 e=0 z=0  None .data      @1 */
+/* 803D1E38-803D1E80 02EF58 0046+02 1/0 0/0 0/0 .data            @1 */
 SECTION_DATA static u8 lit_1[70 + 2 /* padding */] = {
     0x3C,
     0x3C,
@@ -322,7 +321,7 @@ SECTION_DATA static u8 lit_1[70 + 2 /* padding */] = {
     0x00,
 };
 
-/* 803D1E80-803D1EA0 0010+10 s=1 e=0 z=0  None .data      ResetFunctionInfo */
+/* 803D1E80-803D1EA0 -00001 0010+10 1/1 0/0 0/0 .data            ResetFunctionInfo */
 SECTION_DATA static void* ResetFunctionInfo[4 + 4 /* padding */] = {
     (void*)OnReset,
     (void*)0x0000007F,
@@ -335,105 +334,108 @@ SECTION_DATA static void* ResetFunctionInfo[4 + 4 /* padding */] = {
     NULL,
 };
 
-/* 80450A60-80450A68 0004+04 s=1 e=0 z=0  None .sdata     __CARDVersion */
+/* 80450A60-80450A68 -00001 0004+04 1/1 0/0 0/0 .sdata           __CARDVersion */
 SECTION_SDATA static void* __CARDVersion[1 + 1 /* padding */] = {
     (void*)&lit_1,
     /* padding */
     NULL,
 };
 
-/* 80451918-80451920 0004+04 s=3 e=0 z=0  None .sbss      None */
+/* 80451918-80451920 -00001 0004+04 3/3 0/0 0/0 .sbss            None */
+/* 80451918 0002+00 data_80451918 __CARDEncode */
+/* 8045191A 0002+00 data_8045191A __CARDFastMode */
 static u8 struct_80451918[4 + 4 /* padding */];
 
-/* 80353AC8-80353B74 00AC+00 s=0 e=1 z=0  None .text      CARDInit */
+/* 80353AC8-80353B74 34E408 00AC+00 0/0 1/1 0/0 .text            CARDInit */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void CARDInit() {
+asm void CARDInit() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/CARDInit.s"
 }
 #pragma pop
 
-/* 80353B74-80353B7C 0008+00 s=0 e=2 z=0  None .text      __CARDGetFontEncode */
+/* 80353B74-80353B7C 34E4B4 0008+00 0/0 2/2 0/0 .text            __CARDGetFontEncode */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDGetFontEncode() {
+asm void __CARDGetFontEncode() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/__CARDGetFontEncode.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8044CDE0-8044CE00 0020+00 s=1 e=3 z=0  None .bss       __CARDDiskNone */
+/* 8044CDE0-8044CE00 079B00 0020+00 0/1 3/3 0/0 .bss             __CARDDiskNone */
+extern u8 __CARDDiskNone[32];
 u8 __CARDDiskNone[32];
 
-/* 80353B7C-80353BB4 0038+00 s=1 e=0 z=0  None .text      __CARDSetDiskID */
+/* 80353B7C-80353BB4 34E4BC 0038+00 1/1 0/0 0/0 .text            __CARDSetDiskID */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void __CARDSetDiskID() {
+asm void __CARDSetDiskID() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/__CARDSetDiskID.s"
 }
 #pragma pop
 
-/* 80353BB4-80353C6C 00B8+00 s=1 e=10 z=0  None .text      __CARDGetControlBlock */
+/* 80353BB4-80353C6C 34E4F4 00B8+00 1/1 10/10 0/0 .text            __CARDGetControlBlock */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDGetControlBlock() {
+asm void __CARDGetControlBlock() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/__CARDGetControlBlock.s"
 }
 #pragma pop
 
-/* 80353C6C-80353CD0 0064+00 s=0 e=24 z=0  None .text      __CARDPutControlBlock */
+/* 80353C6C-80353CD0 34E5AC 0064+00 0/0 24/24 0/0 .text            __CARDPutControlBlock */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDPutControlBlock() {
+asm void __CARDPutControlBlock() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/__CARDPutControlBlock.s"
 }
 #pragma pop
 
-/* 80353CD0-80353E20 0150+00 s=0 e=1 z=0  None .text      CARDFreeBlocks */
+/* 80353CD0-80353E20 34E610 0150+00 0/0 1/1 0/0 .text            CARDFreeBlocks */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void CARDFreeBlocks() {
+asm void CARDFreeBlocks() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/CARDFreeBlocks.s"
 }
 #pragma pop
 
-/* 80353E20-80353EB8 0098+00 s=0 e=7 z=0  None .text      __CARDSync */
+/* 80353E20-80353EB8 34E760 0098+00 0/0 7/7 0/0 .text            __CARDSync */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDSync() {
+asm void __CARDSync() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/__CARDSync.s"
 }
 #pragma pop
 
-/* 80353EB8-80353F08 0050+00 s=1 e=0 z=0  None .text      OnReset */
+/* 80353EB8-80353F08 34E7F8 0050+00 1/0 0/0 0/0 .text            OnReset */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void OnReset() {
+static asm void OnReset() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/OnReset.s"
 }
 #pragma pop
 
-/* 80353F08-80353F24 001C+00 s=0 e=1 z=0  None .text      CARDGetFastMode */
+/* 80353F08-80353F24 34E848 001C+00 0/0 1/1 0/0 .text            CARDGetFastMode */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void CARDGetFastMode() {
+asm void CARDGetFastMode() {
     nofralloc
 #include "asm/dolphin/card/CARDBios/CARDGetFastMode.s"
 }

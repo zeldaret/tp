@@ -8,8 +8,8 @@ lbl_802C5234:
 /* 802C524C  7C 9F 23 78 */	mr r31, r4
 /* 802C5250  38 80 00 00 */	li r4, 0
 /* 802C5254  4B FE 59 41 */	bl __ct__14Z2SoundStarterFb
-/* 802C5258  3C 60 80 3D */	lis r3, __vt__18Z2RideSoundStarter@ha
-/* 802C525C  38 03 B9 10 */	addi r0, r3, __vt__18Z2RideSoundStarter@l
+/* 802C5258  3C 60 80 3D */	lis r3, __vt__18Z2RideSoundStarter@ha /* 0x803CB910@ha */
+/* 802C525C  38 03 B9 10 */	addi r0, r3, __vt__18Z2RideSoundStarter@l /* 0x803CB910@l */
 /* 802C5260  90 1E 00 00 */	stw r0, 0(r30)
 /* 802C5264  93 FE 00 04 */	stw r31, 4(r30)
 /* 802C5268  7F C3 F3 78 */	mr r3, r30

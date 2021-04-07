@@ -7,8 +7,8 @@ lbl_802DD208:
 /* 802DD21C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802DD220  7C 9F 23 78 */	mr r31, r4
 /* 802DD224  41 82 00 5C */	beq lbl_802DD280
-/* 802DD228  3C 80 80 3D */	lis r4, __vt__12JUTCacheFont@ha
-/* 802DD22C  38 04 C5 40 */	addi r0, r4, __vt__12JUTCacheFont@l
+/* 802DD228  3C 80 80 3D */	lis r4, __vt__12JUTCacheFont@ha /* 0x803CC540@ha */
+/* 802DD22C  38 04 C5 40 */	addi r0, r4, __vt__12JUTCacheFont@l /* 0x803CC540@l */
 /* 802DD230  90 1E 00 00 */	stw r0, 0(r30)
 /* 802DD234  88 1E 00 04 */	lbz r0, 4(r30)
 /* 802DD238  28 00 00 00 */	cmplwi r0, 0

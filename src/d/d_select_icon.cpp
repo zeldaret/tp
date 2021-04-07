@@ -47,8 +47,6 @@ extern "C" void __sinit_d_select_icon_cpp();
 // External References:
 //
 
-void operator delete(void*);
-
 extern "C" void paneScale__8CPaneMgrFff();
 extern "C" void __dl__FPv();
 extern "C" void animation__9J2DScreenFv();
@@ -59,16 +57,16 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
-/* 803BB7B8-803BB7C8 000C+04 s=2 e=0 z=0  None .data      __vt__9dSi_HIO_c */
-SECTION_DATA static void* __vt__9dSi_HIO_c[3 + 1 /* padding */] = {
-    (void*)NULL,
+/* 803BB7B8-803BB7C8 0188D8 000C+04 2/2 0/0 0/0 .data            __vt__9dSi_HIO_c */
+SECTION_DATA extern void* __vt__9dSi_HIO_c[3 + 1 /* padding */] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__9dSi_HIO_cFv,
     /* padding */
     NULL,
 };
 
-/* 80195A2C-80195A3C 0010+00 s=1 e=0 z=0  None .text      __ct__9dSi_HIO_cFv */
+/* 80195A2C-80195A3C 19036C 0010+00 1/1 0/0 0/0 .text            __ct__9dSi_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -79,17 +77,17 @@ asm dSi_HIO_c::dSi_HIO_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80453A70-80453A78 0004+04 s=1 e=0 z=0  None .sdata2    @3740 */
+/* 80453A70-80453A78 002070 0004+04 1/1 0/0 0/0 .sdata2          @3740 */
 SECTION_SDATA2 static f32 lit_3740[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 80453A78-80453A80 0008+00 s=1 e=0 z=0  None .sdata2    @3773 */
+/* 80453A78-80453A80 002078 0008+00 1/1 0/0 0/0 .sdata2          @3773 */
 SECTION_SDATA2 static f64 lit_3773 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 80195A3C-80195B40 0104+00 s=0 e=1 z=0  None .text      animation__14dSelect_icon_cFv */
+/* 80195A3C-80195B40 19037C 0104+00 0/0 1/1 0/0 .text            animation__14dSelect_icon_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -99,7 +97,7 @@ asm void dSelect_icon_c::animation() {
 }
 #pragma pop
 
-/* 80195B40-80195B70 0030+00 s=0 e=1 z=0  None .text      setAlpha__14dSelect_icon_cFUc */
+/* 80195B40-80195B70 190480 0030+00 0/0 1/1 0/0 .text            setAlpha__14dSelect_icon_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -110,14 +108,14 @@ asm void dSelect_icon_c::setAlpha(u8 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80453A80-80453A88 0004+04 s=1 e=0 z=0  None .sdata2    @3814 */
+/* 80453A80-80453A88 002080 0004+04 1/1 0/0 0/0 .sdata2          @3814 */
 SECTION_SDATA2 static f32 lit_3814[1 + 1 /* padding */] = {
     100.0f,
     /* padding */
     0.0f,
 };
 
-/* 80195B70-80195C1C 00AC+00 s=0 e=1 z=0  None .text      setPos__14dSelect_icon_cFP7J2DPaneff */
+/* 80195B70-80195C1C 1904B0 00AC+00 0/0 1/1 0/0 .text setPos__14dSelect_icon_cFP7J2DPaneff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -127,7 +125,7 @@ asm void dSelect_icon_c::setPos(J2DPane* param_0, f32 param_1, f32 param_2) {
 }
 #pragma pop
 
-/* 80195C1C-80195C64 0048+00 s=2 e=0 z=0  None .text      __dt__9dSi_HIO_cFv */
+/* 80195C1C-80195C64 19055C 0048+00 2/1 0/0 0/0 .text            __dt__9dSi_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -138,18 +136,23 @@ asm dSi_HIO_c::~dSi_HIO_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 8042CA10-8042CA20 000C+04 s=1 e=0 z=0  None .bss       @3648 */
+/* 8042CA10-8042CA20 059730 000C+04 1/1 0/0 0/0 .bss             @3648 */
 static u8 lit_3648[12 + 4 /* padding */];
 
-/* 80451050-80451058 0008+00 s=1 e=0 z=0  None .sbss      g_siHIO */
+/* 80451050-80451058 000550 0008+00 1/1 0/0 0/0 .sbss            g_siHIO */
 static u8 g_siHIO[8];
 
-/* 80195C64-80195C9C 0038+00 s=0 e=1 z=0  None .text      __sinit_d_select_icon_cpp */
+/* 80195C64-80195C9C 1905A4 0038+00 0/0 1/0 0/0 .text            __sinit_d_select_icon_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_select_icon_cpp() {
+asm void __sinit_d_select_icon_cpp() {
     nofralloc
 #include "asm/d/d_select_icon/__sinit_d_select_icon_cpp.s"
 }
+#pragma pop
+
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_80195C64 = (void*)__sinit_d_select_icon_cpp;
 #pragma pop

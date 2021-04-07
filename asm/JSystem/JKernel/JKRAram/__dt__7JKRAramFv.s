@@ -7,8 +7,8 @@ lbl_802D214C:
 /* 802D2160  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802D2164  7C 9F 23 78 */	mr r31, r4
 /* 802D2168  41 82 00 58 */	beq lbl_802D21C0
-/* 802D216C  3C 60 80 3D */	lis r3, __vt__7JKRAram@ha
-/* 802D2170  38 03 C1 58 */	addi r0, r3, __vt__7JKRAram@l
+/* 802D216C  3C 60 80 3D */	lis r3, __vt__7JKRAram@ha /* 0x803CC158@ha */
+/* 802D2170  38 03 C1 58 */	addi r0, r3, __vt__7JKRAram@l /* 0x803CC158@l */
 /* 802D2174  90 1E 00 00 */	stw r0, 0(r30)
 /* 802D2178  38 00 00 00 */	li r0, 0
 /* 802D217C  90 0D 8E 48 */	stw r0, sAramObject__7JKRAram(r13)

@@ -20,7 +20,7 @@ lbl_805D3D50:
 /* 805D3D54  39 1F 04 E4 */	addi r8, r31, 0x4e4
 /* 805D3D58  39 20 00 00 */	li r9, 0
 /* 805D3D5C  39 40 FF FF */	li r10, -1
-/* 805D3D60  4B A4 61 90 */	b fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
+/* 805D3D60  4B A4 61 91 */	bl fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
 /* 805D3D64  38 00 00 00 */	li r0, 0
 /* 805D3D68  98 1F 08 5A */	stb r0, 0x85a(r31)
 /* 805D3D6C  83 E1 00 1C */	lwz r31, 0x1c(r1)

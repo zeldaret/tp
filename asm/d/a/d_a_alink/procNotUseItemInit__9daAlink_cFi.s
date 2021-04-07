@@ -6,8 +6,8 @@ lbl_8011E448:
 /* 8011E458  48 24 3D 85 */	bl _savegpr_29
 /* 8011E45C  7C 7F 1B 78 */	mr r31, r3
 /* 8011E460  7C 9D 23 78 */	mr r29, r4
-/* 8011E464  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011E468  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011E464  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011E468  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011E46C  38 63 4E C8 */	addi r3, r3, 0x4ec8
 /* 8011E470  7F E4 FB 78 */	mr r4, r31
 /* 8011E474  38 A0 00 00 */	li r5, 0
@@ -46,8 +46,8 @@ lbl_8011E4F0:
 /* 8011E4F0  48 06 31 51 */	bl dCam_getBody__Fv
 /* 8011E4F4  38 80 00 12 */	li r4, 0x12
 /* 8011E4F8  7F C5 F3 78 */	mr r5, r30
-/* 8011E4FC  3C C0 80 39 */	lis r6, d_a_d_a_alink__stringBase0@ha
-/* 8011E500  38 C6 20 94 */	addi r6, r6, d_a_d_a_alink__stringBase0@l
+/* 8011E4FC  3C C0 80 39 */	lis r6, d_a_d_a_alink__stringBase0@ha /* 0x80392094@ha */
+/* 8011E500  38 C6 20 94 */	addi r6, r6, d_a_d_a_alink__stringBase0@l /* 0x80392094@l */
 /* 8011E504  38 C6 00 43 */	addi r6, r6, 0x43
 /* 8011E508  38 E0 00 01 */	li r7, 1
 /* 8011E50C  39 1F 31 94 */	addi r8, r31, 0x3194
@@ -56,8 +56,8 @@ lbl_8011E4F0:
 /* 8011E518  4B F6 A5 65 */	bl StartEventCamera__9dCamera_cFiie
 /* 8011E51C  7F E3 FB 78 */	mr r3, r31
 /* 8011E520  4B FA 13 35 */	bl keepItemData__9daAlink_cFv
-/* 8011E524  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011E528  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011E524  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011E528  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011E52C  80 03 5F 1C */	lwz r0, 0x5f1c(r3)
 /* 8011E530  64 00 04 00 */	oris r0, r0, 0x400
 /* 8011E534  60 00 08 00 */	ori r0, r0, 0x800

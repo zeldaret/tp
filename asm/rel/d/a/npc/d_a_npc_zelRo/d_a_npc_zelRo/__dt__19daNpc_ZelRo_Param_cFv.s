@@ -5,12 +5,12 @@ lbl_80B74BF0:
 /* 80B74BFC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80B74C00  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80B74C04  41 82 00 1C */	beq lbl_80B74C20
-/* 80B74C08  3C A0 80 B7 */	lis r5, __vt__19daNpc_ZelRo_Param_c@ha
-/* 80B74C0C  38 05 50 18 */	addi r0, r5, __vt__19daNpc_ZelRo_Param_c@l
+/* 80B74C08  3C A0 80 B7 */	lis r5, __vt__19daNpc_ZelRo_Param_c@ha /* 0x80B75018@ha */
+/* 80B74C0C  38 05 50 18 */	addi r0, r5, __vt__19daNpc_ZelRo_Param_c@l /* 0x80B75018@l */
 /* 80B74C10  90 1F 00 00 */	stw r0, 0(r31)
 /* 80B74C14  7C 80 07 35 */	extsh. r0, r4
 /* 80B74C18  40 81 00 08 */	ble lbl_80B74C20
-/* 80B74C1C  4B 75 A1 20 */	b __dl__FPv
+/* 80B74C1C  4B 75 A1 21 */	bl __dl__FPv
 lbl_80B74C20:
 /* 80B74C20  7F E3 FB 78 */	mr r3, r31
 /* 80B74C24  83 E1 00 0C */	lwz r31, 0xc(r1)

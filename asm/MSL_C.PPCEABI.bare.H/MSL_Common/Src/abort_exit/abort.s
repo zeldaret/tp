@@ -9,8 +9,8 @@ lbl_80362ABC:
 /* 80362AD8  38 60 00 00 */	li r3, 0
 /* 80362ADC  90 0D 94 10 */	stw r0, __aborting(r13)
 /* 80362AE0  48 00 29 89 */	bl __begin_critical_region
-/* 80362AE4  3C 60 80 45 */	lis r3, __atexit_funcs@ha
-/* 80362AE8  3B E3 D4 40 */	addi r31, r3, __atexit_funcs@l
+/* 80362AE4  3C 60 80 45 */	lis r3, __atexit_funcs@ha /* 0x8044D440@ha */
+/* 80362AE8  3B E3 D4 40 */	addi r31, r3, __atexit_funcs@l /* 0x8044D440@l */
 /* 80362AEC  48 00 00 20 */	b lbl_80362B0C
 lbl_80362AF0:
 /* 80362AF0  80 6D 94 14 */	lwz r3, __atexit_curr_func(r13)

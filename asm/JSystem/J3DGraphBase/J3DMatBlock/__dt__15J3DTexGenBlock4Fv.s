@@ -5,16 +5,16 @@ lbl_80322E04:
 /* 80322E10  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80322E14  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80322E18  41 82 00 40 */	beq lbl_80322E58
-/* 80322E1C  3C 60 80 3D */	lis r3, __vt__15J3DTexGenBlock4@ha
-/* 80322E20  38 03 E5 A0 */	addi r0, r3, __vt__15J3DTexGenBlock4@l
+/* 80322E1C  3C 60 80 3D */	lis r3, __vt__15J3DTexGenBlock4@ha /* 0x803CE5A0@ha */
+/* 80322E20  38 03 E5 A0 */	addi r0, r3, __vt__15J3DTexGenBlock4@l /* 0x803CE5A0@l */
 /* 80322E24  90 1F 00 00 */	stw r0, 0(r31)
 /* 80322E28  41 82 00 20 */	beq lbl_80322E48
-/* 80322E2C  3C 60 80 3D */	lis r3, __vt__21J3DTexGenBlockPatched@ha
-/* 80322E30  38 03 E6 0C */	addi r0, r3, __vt__21J3DTexGenBlockPatched@l
+/* 80322E2C  3C 60 80 3D */	lis r3, __vt__21J3DTexGenBlockPatched@ha /* 0x803CE60C@ha */
+/* 80322E30  38 03 E6 0C */	addi r0, r3, __vt__21J3DTexGenBlockPatched@l /* 0x803CE60C@l */
 /* 80322E34  90 1F 00 00 */	stw r0, 0(r31)
 /* 80322E38  41 82 00 10 */	beq lbl_80322E48
-/* 80322E3C  3C 60 80 3D */	lis r3, __vt__14J3DTexGenBlock@ha
-/* 80322E40  38 03 DE 34 */	addi r0, r3, __vt__14J3DTexGenBlock@l
+/* 80322E3C  3C 60 80 3D */	lis r3, __vt__14J3DTexGenBlock@ha /* 0x803CDE34@ha */
+/* 80322E40  38 03 DE 34 */	addi r0, r3, __vt__14J3DTexGenBlock@l /* 0x803CDE34@l */
 /* 80322E44  90 1F 00 00 */	stw r0, 0(r31)
 lbl_80322E48:
 /* 80322E48  7C 80 07 35 */	extsh. r0, r4

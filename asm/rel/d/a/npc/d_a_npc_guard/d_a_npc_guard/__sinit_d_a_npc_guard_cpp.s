@@ -1,6 +1,6 @@
 lbl_809F2588:
-/* 809F2588  3C 60 80 9F */	lis r3, cNullVec__6Z2Calc@ha
-/* 809F258C  38 83 2D 50 */	addi r4, r3, cNullVec__6Z2Calc@l
+/* 809F2588  3C 60 80 9F */	lis r3, cNullVec__6Z2Calc@ha /* 0x809F2D50@ha */
+/* 809F258C  38 83 2D 50 */	addi r4, r3, cNullVec__6Z2Calc@l /* 0x809F2D50@l */
 /* 809F2590  80 64 00 20 */	lwz r3, 0x20(r4)
 /* 809F2594  80 04 00 24 */	lwz r0, 0x24(r4)
 /* 809F2598  90 64 00 C8 */	stw r3, 0xc8(r4)

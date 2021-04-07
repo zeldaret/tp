@@ -22,8 +22,8 @@ lbl_800FDCF8:
 /* 800FDD18  48 00 00 5C */	b lbl_800FDD74
 lbl_800FDD1C:
 /* 800FDD1C  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 800FDD20  3C 60 80 39 */	lis r3, m__20daAlinkHIO_ladder_c0@ha
-/* 800FDD24  38 63 EB 8C */	addi r3, r3, m__20daAlinkHIO_ladder_c0@l
+/* 800FDD20  3C 60 80 39 */	lis r3, m__20daAlinkHIO_ladder_c0@ha /* 0x8038EB8C@ha */
+/* 800FDD24  38 63 EB 8C */	addi r3, r3, m__20daAlinkHIO_ladder_c0@l /* 0x8038EB8C@l */
 /* 800FDD28  C0 03 00 54 */	lfs f0, 0x54(r3)
 /* 800FDD2C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800FDD30  40 81 00 18 */	ble lbl_800FDD48

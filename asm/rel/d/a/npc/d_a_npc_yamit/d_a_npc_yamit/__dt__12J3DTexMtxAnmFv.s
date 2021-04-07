@@ -7,7 +7,7 @@ lbl_80B4A380:
 /* 80B4A394  41 82 00 10 */	beq lbl_80B4A3A4
 /* 80B4A398  7C 80 07 35 */	extsh. r0, r4
 /* 80B4A39C  40 81 00 08 */	ble lbl_80B4A3A4
-/* 80B4A3A0  4B 78 49 9C */	b __dl__FPv
+/* 80B4A3A0  4B 78 49 9D */	bl __dl__FPv
 lbl_80B4A3A4:
 /* 80B4A3A4  7F E3 FB 78 */	mr r3, r31
 /* 80B4A3A8  83 E1 00 0C */	lwz r31, 0xc(r1)

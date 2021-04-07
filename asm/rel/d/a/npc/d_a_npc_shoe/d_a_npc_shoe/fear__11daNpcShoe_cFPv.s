@@ -5,8 +5,8 @@ lbl_80AE8E24:
 /* 80AE8E30  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80AE8E34  93 C1 00 08 */	stw r30, 8(r1)
 /* 80AE8E38  7C 7E 1B 78 */	mr r30, r3
-/* 80AE8E3C  3C 80 80 AF */	lis r4, m__17daNpcShoe_Param_c@ha
-/* 80AE8E40  3B E4 A3 B0 */	addi r31, r4, m__17daNpcShoe_Param_c@l
+/* 80AE8E3C  3C 80 80 AF */	lis r4, m__17daNpcShoe_Param_c@ha /* 0x80AEA3B0@ha */
+/* 80AE8E40  3B E4 A3 B0 */	addi r31, r4, m__17daNpcShoe_Param_c@l /* 0x80AEA3B0@l */
 /* 80AE8E44  A0 03 0E 18 */	lhz r0, 0xe18(r3)
 /* 80AE8E48  2C 00 00 02 */	cmpwi r0, 2
 /* 80AE8E4C  41 82 00 48 */	beq lbl_80AE8E94
@@ -32,12 +32,12 @@ lbl_80AE8E94:
 /* 80AE8E94  80 7E 05 68 */	lwz r3, 0x568(r30)
 /* 80AE8E98  38 63 00 0C */	addi r3, r3, 0xc
 /* 80AE8E9C  C0 3F 00 7C */	lfs f1, 0x7c(r31)
-/* 80AE8EA0  4B 83 F5 8C */	b checkPass__12J3DFrameCtrlFf
+/* 80AE8EA0  4B 83 F5 8D */	bl checkPass__12J3DFrameCtrlFf
 /* 80AE8EA4  2C 03 00 00 */	cmpwi r3, 0
 /* 80AE8EA8  41 82 00 10 */	beq lbl_80AE8EB8
 /* 80AE8EAC  38 7E 0B 50 */	addi r3, r30, 0xb50
 /* 80AE8EB0  38 80 00 02 */	li r4, 2
-/* 80AE8EB4  4B 7D 7F 64 */	b playVoice__17Z2CreatureCitizenFi
+/* 80AE8EB4  4B 7D 7F 65 */	bl playVoice__17Z2CreatureCitizenFi
 lbl_80AE8EB8:
 /* 80AE8EB8  38 60 00 01 */	li r3, 1
 /* 80AE8EBC  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -6,11 +6,11 @@ lbl_80486800:
 /* 80486810  7C 7F 1B 78 */	mr r31, r3
 /* 80486814  4B FF F7 E5 */	bl getSwNo__10daSwhit0_cFv
 /* 80486818  7C 64 1B 78 */	mr r4, r3
-/* 8048681C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80486820  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8048681C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80486820  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80486824  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 80486828  7C 05 07 74 */	extsb r5, r0
-/* 8048682C  4B BA E9 D4 */	b onSwitch__10dSv_info_cFii
+/* 8048682C  4B BA E9 D5 */	bl onSwitch__10dSv_info_cFii
 /* 80486830  A0 1F 07 54 */	lhz r0, 0x754(r31)
 /* 80486834  60 00 00 01 */	ori r0, r0, 1
 /* 80486838  B0 1F 07 54 */	sth r0, 0x754(r31)

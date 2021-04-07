@@ -2,8 +2,8 @@ lbl_8003FB70:
 /* 8003FB70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003FB74  7C 08 02 A6 */	mflr r0
 /* 8003FB78  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8003FB7C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8003FB80  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8003FB7C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8003FB80  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8003FB84  85 83 4E 20 */	lwzu r12, 0x4e20(r3)
 /* 8003FB88  81 8C 00 BC */	lwz r12, 0xbc(r12)
 /* 8003FB8C  7D 89 03 A6 */	mtctr r12
@@ -16,8 +16,8 @@ lbl_8003FB70:
 /* 8003FBA8  38 00 00 00 */	li r0, 0
 /* 8003FBAC  98 0D 89 08 */	stb r0, data_80450E88(r13)
 lbl_8003FBB0:
-/* 8003FBB0  3C 60 80 42 */	lis r3, m_texObjAgg__8dMpath_n@ha
-/* 8003FBB4  38 63 46 84 */	addi r3, r3, m_texObjAgg__8dMpath_n@l
+/* 8003FBB0  3C 60 80 42 */	lis r3, m_texObjAgg__8dMpath_n@ha /* 0x80424684@ha */
+/* 8003FBB4  38 63 46 84 */	addi r3, r3, m_texObjAgg__8dMpath_n@l /* 0x80424684@l */
 /* 8003FBB8  4B FF CC A5 */	bl create__Q28dMpath_n18dTexObjAggregate_cFv
 /* 8003FBBC  4B FF FB 79 */	bl create__10dMapInfo_cFv
 /* 8003FBC0  80 01 00 14 */	lwz r0, 0x14(r1)

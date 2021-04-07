@@ -3,17 +3,15 @@
 #
 
 M631_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ss_item.plf
+M631_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ss_item.lcf
+M631_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ss_item.map
 
 M631_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_ss_item/executor.cpp \
-	rel/d/a/obj/d_a_obj_ss_item/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_ss_item/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_ss_item/d_a_obj_ss_item.cpp \
 
 M631_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ss_item/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ss_item/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ss_item/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ss_item/d_a_obj_ss_item.o \
 
 M631_LIBS := \
@@ -29,14 +27,21 @@ M631_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M631_LDSCRIPT) \
+	-unused -map $(M631_MAP) \
+	-w off \
 
 $(M631_TARGET): $(M631_O_FILES) $(M631_LIBS)
+	@echo [631] creating $(M631_TARGET)
 	@echo $(M631_LIBS) $(M631_O_FILES) > build/M631_ofiles
-	$(LD) -partial $(M631_LDFLAGS) -o $(M631_TARGET) @build/M631_ofiles
+	@python3 tools/lcf.py rel 631 --output $(M631_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M631_LDFLAGS) -o $(M631_TARGET) @build/M631_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ss_item/%.o: rel/d/a/obj/d_a_obj_ss_item/%.cpp
+	@echo [631] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M631_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M631_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

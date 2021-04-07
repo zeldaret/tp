@@ -3,19 +3,20 @@
 #
 
 M210_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_mk.plf
+M210_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_mk.lcf
+M210_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_mk.map
 
 M210_CPP_FILES := \
-	rel/d/a/e/d_a_e_mk/executor.cpp \
-	rel/d/a/e/d_a_e_mk/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_mk/d_a_e_mk.cpp \
 
 M210_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_mk/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_mk/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_mk/d_a_e_mk.o \
 
 M210_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_mk/libRuntime.PPCEABI.H.a \
 
 M210_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M210_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M210_LDSCRIPT) \
+	-unused -map $(M210_MAP) \
+	-w off \
 
 $(M210_TARGET): $(M210_O_FILES) $(M210_LIBS)
+	@echo [210] creating $(M210_TARGET)
 	@echo $(M210_LIBS) $(M210_O_FILES) > build/M210_ofiles
-	$(LD) -partial $(M210_LDFLAGS) -o $(M210_TARGET) @build/M210_ofiles
+	@python3 tools/lcf.py rel 210 --output $(M210_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M210_LDFLAGS) -o $(M210_TARGET) @build/M210_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_mk/%.o: rel/d/a/e/d_a_e_mk/%.cpp
+	@echo [210] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M210_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M210_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_mk/libs/Runtime.PPCEABI.H/Makefile
 

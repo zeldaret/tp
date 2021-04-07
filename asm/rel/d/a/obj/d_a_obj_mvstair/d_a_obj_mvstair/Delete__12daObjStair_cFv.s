@@ -20,10 +20,10 @@ lbl_80C9D7F0:
 /* 80C9D7F8  38 7F 05 A0 */	addi r3, r31, 0x5a0
 /* 80C9D7FC  88 1F 06 69 */	lbz r0, 0x669(r31)
 /* 80C9D800  54 00 10 3A */	slwi r0, r0, 2
-/* 80C9D804  3C 80 80 CA */	lis r4, l_arcName@ha
-/* 80C9D808  38 84 E9 40 */	addi r4, r4, l_arcName@l
+/* 80C9D804  3C 80 80 CA */	lis r4, l_arcName@ha /* 0x80C9E940@ha */
+/* 80C9D808  38 84 E9 40 */	addi r4, r4, l_arcName@l /* 0x80C9E940@l */
 /* 80C9D80C  7C 84 00 2E */	lwzx r4, r4, r0
-/* 80C9D810  4B 38 F7 F8 */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 80C9D810  4B 38 F7 F9 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 80C9D814  38 60 00 01 */	li r3, 1
 /* 80C9D818  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80C9D81C  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -1,6 +1,6 @@
 lbl_8023B914:
-/* 8023B914  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 8023B918  38 A3 0C 00 */	addi r5, r3, cNullVec__6Z2Calc@l
+/* 8023B914  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803C0C00@ha */
+/* 8023B918  38 A3 0C 00 */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x803C0C00@l */
 /* 8023B91C  80 65 00 0C */	lwz r3, 0xc(r5)
 /* 8023B920  80 05 00 10 */	lwz r0, 0x10(r5)
 /* 8023B924  90 65 00 54 */	stw r3, 0x54(r5)

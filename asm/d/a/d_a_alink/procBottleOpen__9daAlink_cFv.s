@@ -56,8 +56,8 @@ lbl_8010F96C:
 lbl_8010F9B0:
 /* 8010F9B0  7F C3 F3 78 */	mr r3, r30
 /* 8010F9B4  38 80 01 05 */	li r4, 0x105
-/* 8010F9B8  3C A0 80 39 */	lis r5, m__20daAlinkHIO_bottle_c0@ha
-/* 8010F9BC  38 A5 E9 0C */	addi r5, r5, m__20daAlinkHIO_bottle_c0@l
+/* 8010F9B8  3C A0 80 39 */	lis r5, m__20daAlinkHIO_bottle_c0@ha /* 0x8038E90C@ha */
+/* 8010F9BC  38 A5 E9 0C */	addi r5, r5, m__20daAlinkHIO_bottle_c0@l /* 0x8038E90C@l */
 /* 8010F9C0  38 A5 00 3C */	addi r5, r5, 0x3c
 /* 8010F9C4  4B F9 D7 31 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 8010F9C8  A0 1E 2F DC */	lhz r0, 0x2fdc(r30)
@@ -93,8 +93,8 @@ lbl_8010F9FC:
 /* 8010FA38  40 82 01 E4 */	bne lbl_8010FC1C
 /* 8010FA3C  80 7E 07 08 */	lwz r3, 0x708(r30)
 /* 8010FA40  38 63 00 24 */	addi r3, r3, 0x24
-/* 8010FA44  3C 80 80 39 */	lis r4, bottleTop@ha
-/* 8010FA48  38 84 1A 14 */	addi r4, r4, bottleTop@l
+/* 8010FA44  3C 80 80 39 */	lis r4, bottleTop@ha /* 0x80391A14@ha */
+/* 8010FA48  38 84 1A 14 */	addi r4, r4, bottleTop@l /* 0x80391A14@l */
 /* 8010FA4C  38 A1 00 0C */	addi r5, r1, 0xc
 /* 8010FA50  48 23 73 1D */	bl PSMTXMultVec
 /* 8010FA54  7F C3 F3 78 */	mr r3, r30
@@ -146,8 +146,8 @@ lbl_8010FADC:
 /* 8010FB00  48 22 01 C5 */	bl entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey
 /* 8010FB04  38 00 00 02 */	li r0, 2
 /* 8010FB08  B0 1E 30 0C */	sth r0, 0x300c(r30)
-/* 8010FB0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8010FB10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8010FB0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8010FB10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8010FB14  38 63 00 9C */	addi r3, r3, 0x9c
 /* 8010FB18  88 9E 2F 9C */	lbz r4, 0x2f9c(r30)
 /* 8010FB1C  4B F2 3B A1 */	bl setEquipBottleItemEmpty__17dSv_player_item_cFUc
@@ -190,8 +190,8 @@ lbl_8010FB88:
 /* 8010FBA4  40 82 00 78 */	bne lbl_8010FC1C
 /* 8010FBA8  80 1E 32 CC */	lwz r0, 0x32cc(r30)
 /* 8010FBAC  90 01 00 08 */	stw r0, 8(r1)
-/* 8010FBB0  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 8010FBB4  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 8010FBB0  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 8010FBB4  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 8010FBB8  38 81 00 08 */	addi r4, r1, 8
 /* 8010FBBC  4B F0 9C 3D */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8010FBC0  7C 7F 1B 79 */	or. r31, r3, r3
@@ -202,8 +202,8 @@ lbl_8010FB88:
 /* 8010FBD4  B0 1E 30 08 */	sth r0, 0x3008(r30)
 /* 8010FBD8  80 7E 07 08 */	lwz r3, 0x708(r30)
 /* 8010FBDC  38 63 00 24 */	addi r3, r3, 0x24
-/* 8010FBE0  3C 80 80 39 */	lis r4, bottleTop@ha
-/* 8010FBE4  38 84 1A 14 */	addi r4, r4, bottleTop@l
+/* 8010FBE0  3C 80 80 39 */	lis r4, bottleTop@ha /* 0x80391A14@ha */
+/* 8010FBE4  38 84 1A 14 */	addi r4, r4, bottleTop@l /* 0x80391A14@l */
 /* 8010FBE8  38 BF 04 D0 */	addi r5, r31, 0x4d0
 /* 8010FBEC  48 23 71 81 */	bl PSMTXMultVec
 /* 8010FBF0  80 1F 04 9C */	lwz r0, 0x49c(r31)

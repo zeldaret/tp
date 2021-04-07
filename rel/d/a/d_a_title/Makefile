@@ -3,19 +3,20 @@
 #
 
 M756_TARGET := $(BUILD_DIR)/rel/d/a/d_a_title.plf
+M756_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_title.lcf
+M756_MAP := $(BUILD_DIR)/rel/d/a/d_a_title.map
 
 M756_CPP_FILES := \
-	rel/d/a/d_a_title/executor.cpp \
-	rel/d/a/d_a_title/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_title/d_a_title.cpp \
 
 M756_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_title/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_title/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_title/d_a_title.o \
 
 M756_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_title/libRuntime.PPCEABI.H.a \
 
 M756_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M756_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M756_LDSCRIPT) \
+	-unused -map $(M756_MAP) \
+	-w off \
 
 $(M756_TARGET): $(M756_O_FILES) $(M756_LIBS)
+	@echo [756] creating $(M756_TARGET)
 	@echo $(M756_LIBS) $(M756_O_FILES) > build/M756_ofiles
-	$(LD) -partial $(M756_LDFLAGS) -o $(M756_TARGET) @build/M756_ofiles
+	@python3 tools/lcf.py rel 756 --output $(M756_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M756_LDFLAGS) -o $(M756_TARGET) @build/M756_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_title/%.o: rel/d/a/d_a_title/%.cpp
+	@echo [756] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M756_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M756_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_title/libs/Runtime.PPCEABI.H/Makefile
 

@@ -5,8 +5,8 @@ lbl_802A7AF8:
 /* 802A7B04  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802A7B08  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802A7B0C  41 82 00 1C */	beq lbl_802A7B28
-/* 802A7B10  3C A0 80 3D */	lis r5, __vt__Q28JMessage10TReference@ha
-/* 802A7B14  38 05 9C 6C */	addi r0, r5, __vt__Q28JMessage10TReference@l
+/* 802A7B10  3C A0 80 3D */	lis r5, __vt__Q28JMessage10TReference@ha /* 0x803C9C6C@ha */
+/* 802A7B14  38 05 9C 6C */	addi r0, r5, __vt__Q28JMessage10TReference@l /* 0x803C9C6C@l */
 /* 802A7B18  90 1F 00 00 */	stw r0, 0(r31)
 /* 802A7B1C  7C 80 07 35 */	extsh. r0, r4
 /* 802A7B20  40 81 00 08 */	ble lbl_802A7B28

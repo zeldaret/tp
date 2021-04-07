@@ -3,10 +3,10 @@ lbl_80782CC8:
 /* 80782CCC  7C 08 02 A6 */	mflr r0
 /* 80782CD0  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80782CD4  39 61 00 20 */	addi r11, r1, 0x20
-/* 80782CD8  4B BD F5 04 */	b _savegpr_29
+/* 80782CD8  4B BD F5 05 */	bl _savegpr_29
 /* 80782CDC  7C 7F 1B 78 */	mr r31, r3
-/* 80782CE0  3C 80 80 78 */	lis r4, lit_3658@ha
-/* 80782CE4  3B A4 4D 68 */	addi r29, r4, lit_3658@l
+/* 80782CE0  3C 80 80 78 */	lis r4, lit_3658@ha /* 0x80784D68@ha */
+/* 80782CE4  3B A4 4D 68 */	addi r29, r4, lit_3658@l /* 0x80784D68@l */
 /* 80782CE8  80 03 05 BC */	lwz r0, 0x5bc(r3)
 /* 80782CEC  2C 00 00 01 */	cmpwi r0, 1
 /* 80782CF0  41 82 00 90 */	beq lbl_80782D80
@@ -36,8 +36,8 @@ lbl_80782D10:
 /* 80782D48  38 80 00 08 */	li r4, 8
 /* 80782D4C  38 A0 00 00 */	li r5, 0
 /* 80782D50  C0 3D 00 80 */	lfs f1, 0x80(r29)
-/* 80782D54  3C C0 80 78 */	lis r6, l_HIO@ha
-/* 80782D58  38 C6 4F 84 */	addi r6, r6, l_HIO@l
+/* 80782D54  3C C0 80 78 */	lis r6, l_HIO@ha /* 0x80784F84@ha */
+/* 80782D58  38 C6 4F 84 */	addi r6, r6, l_HIO@l /* 0x80784F84@l */
 /* 80782D5C  C0 46 00 28 */	lfs f2, 0x28(r6)
 /* 80782D60  4B FF EC ED */	bl SetAnm__8daE_SB_cFiiff
 /* 80782D64  38 00 00 01 */	li r0, 1
@@ -51,8 +51,8 @@ lbl_80782D80:
 /* 80782D80  38 80 00 09 */	li r4, 9
 /* 80782D84  38 A0 00 00 */	li r5, 0
 /* 80782D88  C0 3D 00 80 */	lfs f1, 0x80(r29)
-/* 80782D8C  3C C0 80 78 */	lis r6, l_HIO@ha
-/* 80782D90  3B C6 4F 84 */	addi r30, r6, l_HIO@l
+/* 80782D8C  3C C0 80 78 */	lis r6, l_HIO@ha /* 0x80784F84@ha */
+/* 80782D90  3B C6 4F 84 */	addi r30, r6, l_HIO@l /* 0x80784F84@l */
 /* 80782D94  C0 5E 00 28 */	lfs f2, 0x28(r30)
 /* 80782D98  4B FF EC B5 */	bl SetAnm__8daE_SB_cFiiff
 /* 80782D9C  7F E3 FB 78 */	mr r3, r31
@@ -115,7 +115,7 @@ lbl_80782E70:
 /* 80782E74  48 00 0C D9 */	bl Obj_Damage__8daE_SB_cFv
 lbl_80782E78:
 /* 80782E78  39 61 00 20 */	addi r11, r1, 0x20
-/* 80782E7C  4B BD F3 AC */	b _restgpr_29
+/* 80782E7C  4B BD F3 AD */	bl _restgpr_29
 /* 80782E80  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80782E84  7C 08 03 A6 */	mtlr r0
 /* 80782E88  38 21 00 20 */	addi r1, r1, 0x20

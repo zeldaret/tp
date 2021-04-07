@@ -48,8 +48,8 @@ lbl_80144D70:
 /* 80144E28  38 9F 06 7C */	addi r4, r31, 0x67c
 /* 80144E2C  38 A0 00 00 */	li r5, 0
 /* 80144E30  C0 62 99 A8 */	lfs f3, lit_3881(r2)
-/* 80144E34  3C C0 80 42 */	lis r6, mSimpleTexObj__21dDlst_shadowControl_c@ha
-/* 80144E38  38 C6 48 D0 */	addi r6, r6, mSimpleTexObj__21dDlst_shadowControl_c@l
+/* 80144E34  3C C0 80 42 */	lis r6, mSimpleTexObj__21dDlst_shadowControl_c@ha /* 0x804248D0@ha */
+/* 80144E38  38 C6 48 D0 */	addi r6, r6, mSimpleTexObj__21dDlst_shadowControl_c@l /* 0x804248D0@l */
 /* 80144E3C  4B EE 82 79 */	bl dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj
 /* 80144E40  48 00 00 80 */	b lbl_80144EC0
 lbl_80144E44:
@@ -81,8 +81,8 @@ lbl_80144E84:
 /* 80144EA4  39 1F 01 0C */	addi r8, r31, 0x10c
 /* 80144EA8  39 20 00 00 */	li r9, 0
 /* 80144EAC  C0 A2 99 A8 */	lfs f5, lit_3881(r2)
-/* 80144EB0  3D 40 80 42 */	lis r10, mSimpleTexObj__21dDlst_shadowControl_c@ha
-/* 80144EB4  39 4A 48 D0 */	addi r10, r10, mSimpleTexObj__21dDlst_shadowControl_c@l
+/* 80144EB0  3D 40 80 42 */	lis r10, mSimpleTexObj__21dDlst_shadowControl_c@ha /* 0x804248D0@ha */
+/* 80144EB4  39 4A 48 D0 */	addi r10, r10, mSimpleTexObj__21dDlst_shadowControl_c@l /* 0x804248D0@l */
 /* 80144EB8  4B EE 9A 59 */	bl dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj
 /* 80144EBC  90 7F 09 1C */	stw r3, 0x91c(r31)
 lbl_80144EC0:

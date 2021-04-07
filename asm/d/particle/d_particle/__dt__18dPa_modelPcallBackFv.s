@@ -7,8 +7,8 @@ lbl_80050038:
 /* 8005004C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80050050  7C 9F 23 78 */	mr r31, r4
 /* 80050054  41 82 00 28 */	beq lbl_8005007C
-/* 80050058  3C 80 80 3B */	lis r4, __vt__18dPa_modelPcallBack@ha
-/* 8005005C  38 04 84 AC */	addi r0, r4, __vt__18dPa_modelPcallBack@l
+/* 80050058  3C 80 80 3B */	lis r4, __vt__18dPa_modelPcallBack@ha /* 0x803A84AC@ha */
+/* 8005005C  38 04 84 AC */	addi r0, r4, __vt__18dPa_modelPcallBack@l /* 0x803A84AC@l */
 /* 80050060  90 1E 00 00 */	stw r0, 0(r30)
 /* 80050064  38 80 00 00 */	li r4, 0
 /* 80050068  48 22 EF 3D */	bl __dt__19JPAParticleCallBackFv

@@ -16,8 +16,8 @@ lbl_80041208:
 /* 80041240  48 31 B5 25 */	bl GXBegin
 /* 80041244  38 C0 00 00 */	li r6, 0
 /* 80041248  C0 5F 00 08 */	lfs f2, 8(r31)
-/* 8004124C  3C 60 80 38 */	lis r3, l_iconPosData@ha
-/* 80041250  38 83 9D 3C */	addi r4, r3, l_iconPosData@l
+/* 8004124C  3C 60 80 38 */	lis r3, l_iconPosData@ha /* 0x80379D3C@ha */
+/* 80041250  38 83 9D 3C */	addi r4, r3, l_iconPosData@l /* 0x80379D3C@l */
 /* 80041254  C0 3F 00 00 */	lfs f1, 0(r31)
 /* 80041258  3C 60 CC 01 */	lis r3, 0xcc01
 /* 8004125C  48 00 00 34 */	b lbl_80041290

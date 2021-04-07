@@ -3,17 +3,15 @@
 #
 
 M749_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_wara_howl.plf
+M749_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_wara_howl.lcf
+M749_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_wara_howl.map
 
 M749_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_wara_howl/executor.cpp \
-	rel/d/a/tag/d_a_tag_wara_howl/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_wara_howl/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_wara_howl/d_a_tag_wara_howl.cpp \
 
 M749_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_wara_howl/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_wara_howl/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_wara_howl/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_wara_howl/d_a_tag_wara_howl.o \
 
 M749_LIBS := \
@@ -29,14 +27,21 @@ M749_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M749_LDSCRIPT) \
+	-unused -map $(M749_MAP) \
+	-w off \
 
 $(M749_TARGET): $(M749_O_FILES) $(M749_LIBS)
+	@echo [749] creating $(M749_TARGET)
 	@echo $(M749_LIBS) $(M749_O_FILES) > build/M749_ofiles
-	$(LD) -partial $(M749_LDFLAGS) -o $(M749_TARGET) @build/M749_ofiles
+	@python3 tools/lcf.py rel 749 --output $(M749_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M749_LDFLAGS) -o $(M749_TARGET) @build/M749_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_wara_howl/%.o: rel/d/a/tag/d_a_tag_wara_howl/%.cpp
+	@echo [749] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M749_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M749_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

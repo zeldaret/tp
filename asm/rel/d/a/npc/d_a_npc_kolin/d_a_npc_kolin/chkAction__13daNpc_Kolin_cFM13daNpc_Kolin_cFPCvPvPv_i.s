@@ -3,7 +3,7 @@ lbl_80555F28:
 /* 80555F2C  7C 08 02 A6 */	mflr r0
 /* 80555F30  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80555F34  38 63 0F E4 */	addi r3, r3, 0xfe4
-/* 80555F38  4B E0 C1 10 */	b __ptmf_cmpr
+/* 80555F38  4B E0 C1 11 */	bl __ptmf_cmpr
 /* 80555F3C  7C 60 00 34 */	cntlzw r0, r3
 /* 80555F40  54 03 D9 7E */	srwi r3, r0, 5
 /* 80555F44  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -1,6 +1,6 @@
 lbl_80BDE8D0:
-/* 80BDE8D0  3C 80 80 BE */	lis r4, l_swOffset@ha
-/* 80BDE8D4  38 84 F8 70 */	addi r4, r4, l_swOffset@l
+/* 80BDE8D0  3C 80 80 BE */	lis r4, l_swOffset@ha /* 0x80BDF870@ha */
+/* 80BDE8D4  38 84 F8 70 */	addi r4, r4, l_swOffset@l /* 0x80BDF870@l */
 /* 80BDE8D8  C0 63 04 FC */	lfs f3, 0x4fc(r3)
 /* 80BDE8DC  C0 44 00 60 */	lfs f2, 0x60(r4)
 /* 80BDE8E0  C0 23 06 3C */	lfs f1, 0x63c(r3)

@@ -69,8 +69,8 @@ lbl_800EC6D0:
 /* 800EC6EC  98 1E 2F 93 */	stb r0, 0x2f93(r30)
 /* 800EC6F0  48 00 00 18 */	b lbl_800EC708
 lbl_800EC6F4:
-/* 800EC6F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800EC6F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800EC6F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800EC6F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800EC6FC  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 800EC700  80 9E 31 84 */	lwz r4, 0x3184(r30)
 /* 800EC704  4B F5 BA 79 */	bl cutEnd__16dEvent_manager_cFi

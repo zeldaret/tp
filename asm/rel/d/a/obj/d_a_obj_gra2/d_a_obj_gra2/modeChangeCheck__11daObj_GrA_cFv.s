@@ -3,10 +3,10 @@ lbl_80C0CDBC:
 /* 80C0CDC0  7C 08 02 A6 */	mflr r0
 /* 80C0CDC4  90 01 00 44 */	stw r0, 0x44(r1)
 /* 80C0CDC8  39 61 00 40 */	addi r11, r1, 0x40
-/* 80C0CDCC  4B 75 54 10 */	b _savegpr_29
+/* 80C0CDCC  4B 75 54 11 */	bl _savegpr_29
 /* 80C0CDD0  7C 7E 1B 78 */	mr r30, r3
-/* 80C0CDD4  3C 60 80 C1 */	lis r3, m__17daObj_GrA_Param_c@ha
-/* 80C0CDD8  3B E3 FA 7C */	addi r31, r3, m__17daObj_GrA_Param_c@l
+/* 80C0CDD4  3C 60 80 C1 */	lis r3, m__17daObj_GrA_Param_c@ha /* 0x80C0FA7C@ha */
+/* 80C0CDD8  3B E3 FA 7C */	addi r31, r3, m__17daObj_GrA_Param_c@l /* 0x80C0FA7C@l */
 /* 80C0CDDC  88 1E 20 30 */	lbz r0, 0x2030(r30)
 /* 80C0CDE0  28 00 00 00 */	cmplwi r0, 0
 /* 80C0CDE4  40 82 01 10 */	bne lbl_80C0CEF4
@@ -14,7 +14,7 @@ lbl_80C0CDBC:
 /* 80C0CDEC  98 1E 0A 7E */	stb r0, 0xa7e(r30)
 /* 80C0CDF0  38 7E 04 D0 */	addi r3, r30, 0x4d0
 /* 80C0CDF4  38 9E 04 A8 */	addi r4, r30, 0x4a8
-/* 80C0CDF8  4B 66 3E 0C */	b cLib_targetAngleY__FPC3VecPC3Vec
+/* 80C0CDF8  4B 66 3E 0D */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 80C0CDFC  B0 7E 04 B6 */	sth r3, 0x4b6(r30)
 /* 80C0CE00  C0 1E 04 D0 */	lfs f0, 0x4d0(r30)
 /* 80C0CE04  D0 1E 04 A8 */	stfs f0, 0x4a8(r30)
@@ -25,8 +25,8 @@ lbl_80C0CDBC:
 /* 80C0CE18  80 1E 0F 50 */	lwz r0, 0xf50(r30)
 /* 80C0CE1C  54 00 00 3C */	rlwinm r0, r0, 0, 0, 0x1e
 /* 80C0CE20  90 1E 0F 50 */	stw r0, 0xf50(r30)
-/* 80C0CE24  3C 60 80 C1 */	lis r3, lit_9472@ha
-/* 80C0CE28  38 83 03 74 */	addi r4, r3, lit_9472@l
+/* 80C0CE24  3C 60 80 C1 */	lis r3, lit_9472@ha /* 0x80C10374@ha */
+/* 80C0CE28  38 83 03 74 */	addi r4, r3, lit_9472@l /* 0x80C10374@l */
 /* 80C0CE2C  80 64 00 00 */	lwz r3, 0(r4)
 /* 80C0CE30  80 04 00 04 */	lwz r0, 4(r4)
 /* 80C0CE34  90 61 00 08 */	stw r3, 8(r1)
@@ -81,7 +81,7 @@ lbl_80C0CEF4:
 /* 80C0CEF4  38 60 00 00 */	li r3, 0
 lbl_80C0CEF8:
 /* 80C0CEF8  39 61 00 40 */	addi r11, r1, 0x40
-/* 80C0CEFC  4B 75 53 2C */	b _restgpr_29
+/* 80C0CEFC  4B 75 53 2D */	bl _restgpr_29
 /* 80C0CF00  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80C0CF04  7C 08 03 A6 */	mtlr r0
 /* 80C0CF08  38 21 00 40 */	addi r1, r1, 0x40

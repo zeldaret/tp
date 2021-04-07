@@ -52,8 +52,6 @@ struct CARDFileInfo {};
 // Forward References:
 //
 
-static void mDoMemCd_main(void*);
-
 extern "C" void __ct__15mDoMemCd_Ctrl_cFv();
 extern "C" void ThdInit__15mDoMemCd_Ctrl_cFv();
 extern "C" void main__15mDoMemCd_Ctrl_cFv();
@@ -78,15 +76,10 @@ extern "C" void setCardState__15mDoMemCd_Ctrl_cFl();
 extern "C" static void mDoMemCd_main__FPv();
 extern "C" void __sinit_m_Do_MemCard_cpp();
 extern "C" extern char const* const m_Do_m_Do_MemCard__stringBase0;
-extern "C" extern u8 g_mDoMemCd_control[8192];
 
 //
 // External References:
 //
-
-void mDoExt_getAssertHeap();
-void mDoMemCdRWm_Store(CARDFileInfo*, void*, u32);
-void mDoMemCdRWm_Restore(CARDFileInfo*, void*, u32);
 
 SECTION_INIT void memcpy();
 extern "C" void mDoExt_getAssertHeap__Fv();
@@ -127,19 +120,19 @@ extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 8001672C-80016730 0004+00 s=1 e=0 z=0  None .text      __ct__15mDoMemCd_Ctrl_cFv */
+/* 8001672C-80016730 01106C 0004+00 1/1 0/0 0/0 .text            __ct__15mDoMemCd_Ctrl_cFv */
 mDoMemCd_Ctrl_c::mDoMemCd_Ctrl_c() {
     /* empty function */
 }
 
 /* ############################################################################################## */
-/* 803DFC20-803E0C20 1000+00 s=1 e=0 z=0  None .bss       MemCardStack */
+/* 803DFC20-803E0C20 00C940 1000+00 1/1 0/0 0/0 .bss             MemCardStack */
 static u8 MemCardStack[4096];
 
-/* 803E0C20-803E0F40 0318+08 s=1 e=0 z=0  None .bss       MemCardThread */
+/* 803E0C20-803E0F40 00D940 0318+08 1/1 0/0 0/0 .bss             MemCardThread */
 static u8 MemCardThread[792 + 8 /* padding */];
 
-/* 80016730-800167D0 00A0+00 s=0 e=1 z=0  None .text      ThdInit__15mDoMemCd_Ctrl_cFv */
+/* 80016730-800167D0 011070 00A0+00 0/0 1/1 0/0 .text            ThdInit__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -149,7 +142,7 @@ asm void mDoMemCd_Ctrl_c::ThdInit() {
 }
 #pragma pop
 
-/* 800167D0-80016894 00C4+00 s=1 e=0 z=0  None .text      main__15mDoMemCd_Ctrl_cFv */
+/* 800167D0-80016894 011110 00C4+00 1/1 0/0 0/0 .text            main__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -159,7 +152,7 @@ asm void mDoMemCd_Ctrl_c::main() {
 }
 #pragma pop
 
-/* 80016894-800169B4 0120+00 s=0 e=1 z=0  None .text      update__15mDoMemCd_Ctrl_cFv */
+/* 80016894-800169B4 0111D4 0120+00 0/0 1/1 0/0 .text            update__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -169,7 +162,7 @@ asm void mDoMemCd_Ctrl_c::update() {
 }
 #pragma pop
 
-/* 800169B4-80016A0C 0058+00 s=0 e=2 z=0  None .text      load__15mDoMemCd_Ctrl_cFv */
+/* 800169B4-80016A0C 0112F4 0058+00 0/0 2/2 0/0 .text            load__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -179,17 +172,7 @@ asm void mDoMemCd_Ctrl_c::load() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 803743F8-80374408 0009+07 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_803743F8 = "gczelda2";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80374401 = "\0\0\0\0\0\0";
-#pragma pop
-
-/* 80016A0C-80016AB0 00A4+00 s=1 e=0 z=0  None .text      restore__15mDoMemCd_Ctrl_cFv */
+/* 80016A0C-80016AB0 01134C 00A4+00 1/1 0/0 0/0 .text            restore__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -199,7 +182,8 @@ asm void mDoMemCd_Ctrl_c::restore() {
 }
 #pragma pop
 
-/* 80016AB0-80016B58 00A8+00 s=0 e=2 z=0  None .text      LoadSync__15mDoMemCd_Ctrl_cFPvUlUl */
+/* 80016AB0-80016B58 0113F0 00A8+00 0/0 2/2 0/0 .text            LoadSync__15mDoMemCd_Ctrl_cFPvUlUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -209,7 +193,7 @@ asm void mDoMemCd_Ctrl_c::LoadSync(void* param_0, u32 param_1, u32 param_2) {
 }
 #pragma pop
 
-/* 80016B58-80016BD4 007C+00 s=0 e=2 z=0  None .text      save__15mDoMemCd_Ctrl_cFPvUlUl */
+/* 80016B58-80016BD4 011498 007C+00 0/0 2/2 0/0 .text            save__15mDoMemCd_Ctrl_cFPvUlUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -219,7 +203,7 @@ asm void mDoMemCd_Ctrl_c::save(void* param_0, u32 param_1, u32 param_2) {
 }
 #pragma pop
 
-/* 80016BD4-80016CE0 010C+00 s=1 e=0 z=0  None .text      store__15mDoMemCd_Ctrl_cFv */
+/* 80016BD4-80016CE0 011514 010C+00 1/1 0/0 0/0 .text            store__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -229,7 +213,7 @@ asm void mDoMemCd_Ctrl_c::store() {
 }
 #pragma pop
 
-/* 80016CE0-80016D74 0094+00 s=0 e=6 z=0  None .text      SaveSync__15mDoMemCd_Ctrl_cFv */
+/* 80016CE0-80016D74 011620 0094+00 0/0 6/6 0/0 .text            SaveSync__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -240,7 +224,7 @@ asm void mDoMemCd_Ctrl_c::SaveSync() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A34F8-803A3530 0038+00 s=1 e=0 z=0  None .data      @3770 */
+/* 803A34F8-803A3530 -00001 0038+00 1/1 0/0 0/0 .data            @3770 */
 SECTION_DATA static void* lit_3770[14] = {
     (void*)(((char*)getStatus__15mDoMemCd_Ctrl_cFUl) + 0x74),
     (void*)(((char*)getStatus__15mDoMemCd_Ctrl_cFUl) + 0x4C),
@@ -258,7 +242,7 @@ SECTION_DATA static void* lit_3770[14] = {
     (void*)(((char*)getStatus__15mDoMemCd_Ctrl_cFUl) + 0xB4),
 };
 
-/* 80016D74-80016E58 00E4+00 s=2 e=2 z=0  None .text      getStatus__15mDoMemCd_Ctrl_cFUl */
+/* 80016D74-80016E58 0116B4 00E4+00 2/1 2/2 0/0 .text            getStatus__15mDoMemCd_Ctrl_cFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -268,7 +252,8 @@ asm void mDoMemCd_Ctrl_c::getStatus(u32 param_0) {
 }
 #pragma pop
 
-/* 80016E58-80016EA8 0050+00 s=0 e=2 z=0  None .text      command_format__15mDoMemCd_Ctrl_cFv */
+/* 80016E58-80016EA8 011798 0050+00 0/0 2/2 0/0 .text            command_format__15mDoMemCd_Ctrl_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -278,7 +263,7 @@ asm void mDoMemCd_Ctrl_c::command_format() {
 }
 #pragma pop
 
-/* 80016EA8-80016F2C 0084+00 s=1 e=0 z=0  None .text      format__15mDoMemCd_Ctrl_cFv */
+/* 80016EA8-80016F2C 0117E8 0084+00 1/1 0/0 0/0 .text            format__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -288,7 +273,7 @@ asm void mDoMemCd_Ctrl_c::format() {
 }
 #pragma pop
 
-/* 80016F2C-80016FB8 008C+00 s=0 e=2 z=0  None .text      FormatSync__15mDoMemCd_Ctrl_cFv */
+/* 80016F2C-80016FB8 01186C 008C+00 0/0 2/2 0/0 .text            FormatSync__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -298,7 +283,7 @@ asm void mDoMemCd_Ctrl_c::FormatSync() {
 }
 #pragma pop
 
-/* 80016FB8-800170B8 0100+00 s=1 e=0 z=0  None .text      attach__15mDoMemCd_Ctrl_cFv */
+/* 80016FB8-800170B8 0118F8 0100+00 1/1 0/0 0/0 .text            attach__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -308,7 +293,8 @@ asm void mDoMemCd_Ctrl_c::attach() {
 }
 #pragma pop
 
-/* 800170B8-80017110 0058+00 s=0 e=1 z=0  None .text      command_attach__15mDoMemCd_Ctrl_cFv */
+/* 800170B8-80017110 0119F8 0058+00 0/0 1/1 0/0 .text            command_attach__15mDoMemCd_Ctrl_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -318,7 +304,7 @@ asm void mDoMemCd_Ctrl_c::command_attach() {
 }
 #pragma pop
 
-/* 80017110-80017148 0038+00 s=1 e=0 z=0  None .text      detach__15mDoMemCd_Ctrl_cFv */
+/* 80017110-80017148 011A50 0038+00 1/1 0/0 0/0 .text            detach__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -329,7 +315,7 @@ asm void mDoMemCd_Ctrl_c::detach() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A3530-803A3568 0038+00 s=1 e=0 z=0  None .data      @3850 */
+/* 803A3530-803A3568 -00001 0038+00 1/1 0/0 0/0 .data            @3850 */
 SECTION_DATA static void* lit_3850[14] = {
     (void*)(((char*)mount__15mDoMemCd_Ctrl_cFv) + 0xF4),
     (void*)(((char*)mount__15mDoMemCd_Ctrl_cFv) + 0x114),
@@ -347,10 +333,10 @@ SECTION_DATA static void* lit_3850[14] = {
     (void*)(((char*)mount__15mDoMemCd_Ctrl_cFv) + 0xBC),
 };
 
-/* 803E0F40-803EAF40 A000+00 s=1 e=0 z=0  None .bss       MemCardWorkArea0 */
+/* 803E0F40-803EAF40 00DC60 A000+00 1/1 0/0 0/0 .bss             MemCardWorkArea0 */
 static u8 MemCardWorkArea0[40960];
 
-/* 80017148-80017274 012C+00 s=2 e=0 z=0  None .text      mount__15mDoMemCd_Ctrl_cFv */
+/* 80017148-80017274 011A88 012C+00 2/1 0/0 0/0 .text            mount__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -360,7 +346,7 @@ asm void mDoMemCd_Ctrl_c::mount() {
 }
 #pragma pop
 
-/* 80017274-800172D4 0060+00 s=1 e=0 z=0  None .text      loadfile__15mDoMemCd_Ctrl_cFv */
+/* 80017274-800172D4 011BB4 0060+00 1/1 0/0 0/0 .text            loadfile__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -370,7 +356,7 @@ asm void mDoMemCd_Ctrl_c::loadfile() {
 }
 #pragma pop
 
-/* 800172D4-80017360 008C+00 s=1 e=0 z=0  None .text      checkspace__15mDoMemCd_Ctrl_cFv */
+/* 800172D4-80017360 011C14 008C+00 1/1 0/0 0/0 .text            checkspace__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -380,7 +366,8 @@ asm void mDoMemCd_Ctrl_c::checkspace() {
 }
 #pragma pop
 
-/* 80017360-8001741C 00BC+00 s=5 e=0 z=0  None .text      setCardState__15mDoMemCd_Ctrl_cFl */
+/* 80017360-8001741C 011CA0 00BC+00 5/5 0/0 0/0 .text            setCardState__15mDoMemCd_Ctrl_cFl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -391,25 +378,40 @@ asm void mDoMemCd_Ctrl_c::setCardState(s32 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803EAF40-803ECF40 2000+00 s=2 e=27 z=0  None .bss       g_mDoMemCd_control */
+/* 803EAF40-803ECF40 017C60 2000+00 2/2 27/27 0/0 .bss             g_mDoMemCd_control */
+extern u8 g_mDoMemCd_control[8192];
 u8 g_mDoMemCd_control[8192];
 
-/* 8001741C-80017470 0054+00 s=1 e=0 z=0  None .text      mDoMemCd_main__FPv */
+/* 8001741C-80017470 011D5C 0054+00 1/1 0/0 0/0 .text            mDoMemCd_main__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void mDoMemCd_main(void* param_0) {
+static asm void mDoMemCd_main(void* param_0) {
     nofralloc
 #include "asm/m_Do/m_Do_MemCard/mDoMemCd_main__FPv.s"
 }
 #pragma pop
 
-/* 80017470-80017498 0028+00 s=0 e=1 z=0  None .text      __sinit_m_Do_MemCard_cpp */
+/* 80017470-80017498 011DB0 0028+00 0/0 1/0 0/0 .text            __sinit_m_Do_MemCard_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_m_Do_MemCard_cpp() {
+asm void __sinit_m_Do_MemCard_cpp() {
     nofralloc
 #include "asm/m_Do/m_Do_MemCard/__sinit_m_Do_MemCard_cpp.s"
 }
+#pragma pop
+
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_80017470 = (void*)__sinit_m_Do_MemCard_cpp;
+#pragma pop
+
+/* 803743F8-80374408 000A58 0009+07 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_803743F8 = "gczelda2";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80374401 = "\0\0\0\0\0\0";
 #pragma pop

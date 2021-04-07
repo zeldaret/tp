@@ -32,21 +32,10 @@ struct JASTrackPort {
     /* 802935E8 */ void writeExport(u32, u16);
 };
 
-struct JASSoundParams {};
-
 struct JASOscillator {
     struct Point {};
 
     struct Data {};
-};
-
-struct JASDsp {
-    struct TChannel {
-        /* 8029E00C */ void setFilterMode(u16);
-        /* 8029E044 */ void setIIRFilterParam(s16*);
-        /* 8029E06C */ void setFIR8FilterParam(s16*);
-        /* 8029E094 */ void setDistFilter(s16);
-    };
 };
 
 struct JASChannel {
@@ -55,6 +44,17 @@ struct JASChannel {
     /* 8029AB98 */ void setMixConfig(u32, u16);
     /* 8029ACD4 */ void setKeySweepTarget(s32, u32);
     /* 8029BBFC */ void free();
+};
+
+struct JASSoundParams {};
+
+struct JASDsp {
+    struct TChannel {
+        /* 8029E00C */ void setFilterMode(u16);
+        /* 8029E044 */ void setIIRFilterParam(s16*);
+        /* 8029E06C */ void setFIR8FilterParam(s16*);
+        /* 8029E094 */ void setDistFilter(s16);
+    };
 };
 
 struct JASTrack {
@@ -150,12 +150,12 @@ template <typename A0>
 struct JASMemPool_MultiThreaded {};
 /* JASMemPool_MultiThreaded<JASTrack> */
 struct JASMemPool_MultiThreaded__template0 {
-    /* 802932E0 */ ~JASMemPool_MultiThreaded__template0();
+    /* 802932E0 */ void func_802932E0();
 };
 
 /* JASMemPool_MultiThreaded<JASTrack::TChannelMgr> */
 struct JASMemPool_MultiThreaded__template1 {
-    /* 80293334 */ ~JASMemPool_MultiThreaded__template1();
+    /* 80293334 */ void func_80293334();
 };
 
 struct JASGenericMemPool {
@@ -179,7 +179,7 @@ template <typename A0>
 struct JASBankTable {};
 /* JASBankTable<256> */
 struct JASBankTable__template0 {
-    /* 80293528 */ void getBank(u32) const;
+    /* 80293528 */ void func_80293528(u32) /* const */;
 };
 
 struct JASBank {
@@ -257,16 +257,11 @@ extern "C" void func_80293334();
 extern "C" void __sinit_JASTrack_cpp();
 extern "C" void __dt__Q28JASTrack5TListFv();
 extern "C" void __dt__19JASDefaultBankTableFv();
-extern "C" void func_80293528();
-extern "C" extern void* __vt__11JASBankList[3 + 1 /* padding */];
-extern "C" extern u8 data_80431AF4[16];
-extern "C" extern u8 data_80431B04[16 + 4 /* padding */];
+extern "C" void func_80293528(u32);
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 SECTION_INIT void memset();
 extern "C" void __ct__17JASGenericMemPoolFv();
@@ -328,7 +323,7 @@ extern "C" extern u8 struct_80451230[8];
 //
 
 /* ############################################################################################## */
-/* 804555A0-804555A4 0004+00 s=6 e=0 z=0  None .sdata2    @457 */
+/* 804555A0-804555A4 003BA0 0004+00 6/6 0/0 0/0 .sdata2          @457 */
 SECTION_SDATA2 static u8 lit_457[4] = {
     0x00,
     0x00,
@@ -336,7 +331,7 @@ SECTION_SDATA2 static u8 lit_457[4] = {
     0x00,
 };
 
-/* 80291228-8029131C 00F4+00 s=1 e=3 z=0  None .text      __ct__8JASTrackFv */
+/* 80291228-8029131C 28BB68 00F4+00 1/1 3/3 0/0 .text            __ct__8JASTrackFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -347,34 +342,39 @@ asm JASTrack::JASTrack() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804316A8-804316B4 000C+00 s=1 e=0 z=0  None .bss       @431 */
+/* 804316A8-804316B4 05E3C8 000C+00 1/1 0/0 0/0 .bss             @431 */
 static u8 lit_431[12];
 
-/* 804316B4-80431AC0 040C+00 s=2 e=0 z=0  None .bss       sDefaultBankTable__8JASTrack */
+/* 804316B4-80431AC0 05E3D4 040C+00 1/2 0/0 0/0 .bss             sDefaultBankTable__8JASTrack */
 static u8 sDefaultBankTable__8JASTrack[1036];
 
-/* 80431AC0-80431ACC 000C+00 s=1 e=0 z=0  None .bss       @433 */
+/* 80431AC0-80431ACC 05E7E0 000C+00 0/1 0/0 0/0 .bss             @433 */
+#pragma push
+#pragma force_active on
 static u8 lit_433[12];
+#pragma pop
 
-/* 80431ACC-80431ADC 0010+00 s=2 e=0 z=0  None .bss       sTrackList__8JASTrack */
+/* 80431ACC-80431ADC 05E7EC 0010+00 1/2 0/0 0/0 .bss             sTrackList__8JASTrack */
 static u8 sTrackList__8JASTrack[16];
 
-/* 80431ADC-80431AE8 000C+00 s=3 e=0 z=0  None .bss       @470 */
+/* 80431ADC-80431AE8 05E7FC 000C+00 3/3 0/0 0/0 .bss             @470 */
 static u8 lit_470[12];
 
-/* 80431AE8-80431AF4 000C+00 s=2 e=0 z=0  None .bss       @476 */
+/* 80431AE8-80431AF4 05E808 000C+00 2/2 0/0 0/0 .bss             @476 */
 static u8 lit_476[12];
 
-/* 80431AF4-80431B04 0010+00 s=3 e=1 z=0  None .bss
+/* 80431AF4-80431B04 05E814 0010+00 3/3 1/1 0/0 .bss
  * memPool_$localstatic3$getMemPool___58JASPoolAllocObject_MultiThreaded<Q28JASTrack11TChannelMgr>Fv
  */
+extern u8 data_80431AF4[16];
 u8 data_80431AF4[16];
 
-/* 80431B04-80431B18 0010+04 s=2 e=2 z=0  None .bss
+/* 80431B04-80431B18 05E824 0010+04 2/2 2/2 0/0 .bss
  * memPool_$localstatic3$getMemPool___43JASPoolAllocObject_MultiThreaded<8JASTrack>Fv */
+extern u8 data_80431B04[16 + 4 /* padding */];
 u8 data_80431B04[16 + 4 /* padding */];
 
-/* 8029131C-80291444 0128+00 s=4 e=4 z=0  None .text      __dt__8JASTrackFv */
+/* 8029131C-80291444 28BC5C 0128+00 4/4 4/4 0/0 .text            __dt__8JASTrackFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -384,7 +384,7 @@ asm JASTrack::~JASTrack() {
 }
 #pragma pop
 
-/* 80291444-802915D4 0190+00 s=1 e=3 z=0  None .text      setChannelMgrCount__8JASTrackFUl */
+/* 80291444-802915D4 28BD84 0190+00 1/1 3/3 0/0 .text            setChannelMgrCount__8JASTrackFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -395,28 +395,34 @@ asm void JASTrack::setChannelMgrCount(u32 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 8039AFD0-8039AFE8 0018+00 s=1 e=0 z=0  None .rodata    sAdsTable__8JASTrack */
+/* 8039AFD0-8039AFE8 027630 0018+00 1/1 0/0 0/0 .rodata          sAdsTable__8JASTrack */
 SECTION_RODATA static u8 const sAdsTable__8JASTrack[24] = {
     0x00, 0x00, 0x00, 0x00, 0x7F, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x7F, 0xFF,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(8039AFD0, &sAdsTable__8JASTrack);
 
-/* 8039AFE8-8039B000 0018+00 s=2 e=0 z=0  None .rodata    sEnvOsc__8JASTrack */
+/* 8039AFE8-8039B000 027648 0018+00 1/2 0/0 0/0 .rodata          sEnvOsc__8JASTrack */
 SECTION_RODATA static u8 const sEnvOsc__8JASTrack[24] = {
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(8039AFE8, &sEnvOsc__8JASTrack);
 
-/* 8039B000-8039B018 0018+00 s=1 e=0 z=0  None .rodata    sPitchEnvOsc__8JASTrack */
+/* 8039B000-8039B018 027660 0018+00 0/1 0/0 0/0 .rodata          sPitchEnvOsc__8JASTrack */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const sPitchEnvOsc__8JASTrack[24] = {
     0x00, 0x00, 0x00, 0x01, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(8039B000, &sPitchEnvOsc__8JASTrack);
+#pragma pop
 
-/* 804555A4-804555A8 0004+00 s=9 e=0 z=0  None .sdata2    @679 */
+/* 804555A4-804555A8 003BA4 0004+00 9/9 0/0 0/0 .sdata2          @679 */
 SECTION_SDATA2 static f32 lit_679 = 1.0f;
 
-/* 802915D4-802918FC 0328+00 s=2 e=1 z=0  None .text      init__8JASTrackFv */
+/* 802915D4-802918FC 28BF14 0328+00 2/2 1/1 0/0 .text            init__8JASTrackFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -427,10 +433,10 @@ asm void JASTrack::init() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804555A8-804555AC 0004+00 s=4 e=0 z=0  None .sdata2    @690 */
+/* 804555A8-804555AC 003BA8 0004+00 4/4 0/0 0/0 .sdata2          @690 */
 SECTION_SDATA2 static f32 lit_690 = 0.5f;
 
-/* 802918FC-8029194C 0050+00 s=1 e=0 z=0  None .text      initTimed__8JASTrackFv */
+/* 802918FC-8029194C 28C23C 0050+00 1/1 0/0 0/0 .text            initTimed__8JASTrackFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -440,7 +446,7 @@ asm void JASTrack::initTimed() {
 }
 #pragma pop
 
-/* 8029194C-802919F4 00A8+00 s=1 e=0 z=0  None .text      inherit__8JASTrackFRC8JASTrack */
+/* 8029194C-802919F4 28C28C 00A8+00 1/1 0/0 0/0 .text            inherit__8JASTrackFRC8JASTrack */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -450,7 +456,7 @@ asm void JASTrack::inherit(JASTrack const& param_0) {
 }
 #pragma pop
 
-/* 802919F4-80291A08 0014+00 s=0 e=5 z=0  None .text
+/* 802919F4-80291A08 28C334 0014+00 0/0 5/5 0/0 .text
  * assignExtBuffer__8JASTrackFUlP14JASSoundParams               */
 #pragma push
 #pragma optimization_level 0
@@ -461,7 +467,7 @@ asm void JASTrack::assignExtBuffer(u32 param_0, JASSoundParams* param_1) {
 }
 #pragma pop
 
-/* 80291A08-80291A28 0020+00 s=0 e=3 z=0  None .text      setSeqData__8JASTrackFPvUl */
+/* 80291A08-80291A28 28C348 0020+00 0/0 3/3 0/0 .text            setSeqData__8JASTrackFPvUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -471,7 +477,7 @@ asm void JASTrack::setSeqData(void* param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 80291A28-80291A78 0050+00 s=0 e=2 z=0  None .text      startSeq__8JASTrackFv */
+/* 80291A28-80291A78 28C368 0050+00 0/0 2/2 0/0 .text            startSeq__8JASTrackFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -481,7 +487,7 @@ asm void JASTrack::startSeq() {
 }
 #pragma pop
 
-/* 80291A78-80291ABC 0044+00 s=0 e=2 z=0  None .text      stopSeq__8JASTrackFv */
+/* 80291A78-80291ABC 28C3B8 0044+00 0/0 2/2 0/0 .text            stopSeq__8JASTrackFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -491,7 +497,7 @@ asm void JASTrack::stopSeq() {
 }
 #pragma pop
 
-/* 80291ABC-80291AC8 000C+00 s=0 e=1 z=0  None .text      start__8JASTrackFv */
+/* 80291ABC-80291AC8 28C3FC 000C+00 0/0 1/1 0/0 .text            start__8JASTrackFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -501,7 +507,7 @@ asm void JASTrack::start() {
 }
 #pragma pop
 
-/* 80291AC8-80291B8C 00C4+00 s=4 e=0 z=0  None .text      close__8JASTrackFv */
+/* 80291AC8-80291B8C 28C408 00C4+00 4/4 0/0 0/0 .text            close__8JASTrackFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -511,7 +517,7 @@ asm void JASTrack::close() {
 }
 #pragma pop
 
-/* 80291B8C-80291BB8 002C+00 s=1 e=1 z=0  None .text      connectChild__8JASTrackFUlP8JASTrack */
+/* 80291B8C-80291BB8 28C4CC 002C+00 1/1 1/1 0/0 .text connectChild__8JASTrackFUlP8JASTrack */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -521,7 +527,7 @@ asm void JASTrack::connectChild(u32 param_0, JASTrack* param_1) {
 }
 #pragma pop
 
-/* 80291BB8-80291C30 0078+00 s=0 e=1 z=0  None .text      closeChild__8JASTrackFUl */
+/* 80291BB8-80291C30 28C4F8 0078+00 0/0 1/1 0/0 .text            closeChild__8JASTrackFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -531,7 +537,7 @@ asm void JASTrack::closeChild(u32 param_0) {
 }
 #pragma pop
 
-/* 80291C30-80291DAC 017C+00 s=0 e=2 z=0  None .text      openChild__8JASTrackFUl */
+/* 80291C30-80291DAC 28C570 017C+00 0/0 2/2 0/0 .text            openChild__8JASTrackFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -541,7 +547,7 @@ asm void JASTrack::openChild(u32 param_0) {
 }
 #pragma pop
 
-/* 80291DAC-80291DBC 0010+00 s=0 e=1 z=0  None .text      connectBus__8JASTrackFii */
+/* 80291DAC-80291DBC 28C6EC 0010+00 0/0 1/1 0/0 .text            connectBus__8JASTrackFii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -551,7 +557,7 @@ asm void JASTrack::connectBus(int param_0, int param_1) {
 }
 #pragma pop
 
-/* 80291DBC-80291DF8 003C+00 s=0 e=1 z=0  None .text      setLatestKey__8JASTrackFUc */
+/* 80291DBC-80291DF8 28C6FC 003C+00 0/0 1/1 0/0 .text            setLatestKey__8JASTrackFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -561,7 +567,7 @@ asm void JASTrack::setLatestKey(u8 param_0) {
 }
 #pragma pop
 
-/* 80291DF8-80291F38 0140+00 s=2 e=0 z=0  None .text
+/* 80291DF8-80291F38 28C738 0140+00 2/2 0/0 0/0 .text
  * channelStart__8JASTrackFPQ28JASTrack11TChannelMgrUlUlUl      */
 #pragma push
 #pragma optimization_level 0
@@ -573,7 +579,7 @@ asm void JASTrack::channelStart(JASTrack::TChannelMgr* param_0, u32 param_1, u32
 }
 #pragma pop
 
-/* 80291F38-80292008 00D0+00 s=0 e=1 z=0  None .text      noteOn__8JASTrackFUlUlUl */
+/* 80291F38-80292008 28C878 00D0+00 0/0 1/1 0/0 .text            noteOn__8JASTrackFUlUlUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -584,13 +590,13 @@ asm void JASTrack::noteOn(u32 param_0, u32 param_1, u32 param_2) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804555AC-804555B0 0004+00 s=1 e=0 z=0  None .sdata2    @952 */
+/* 804555AC-804555B0 003BAC 0004+00 1/1 0/0 0/0 .sdata2          @952 */
 SECTION_SDATA2 static f32 lit_952 = 100.0f;
 
-/* 804555B0-804555B8 0008+00 s=4 e=0 z=0  None .sdata2    @954 */
+/* 804555B0-804555B8 003BB0 0008+00 4/4 0/0 0/0 .sdata2          @954 */
 SECTION_SDATA2 static f64 lit_954 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 80292008-80292198 0190+00 s=0 e=1 z=0  None .text      gateOn__8JASTrackFUlUlfUl */
+/* 80292008-80292198 28C948 0190+00 0/0 1/1 0/0 .text            gateOn__8JASTrackFUlUlfUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -600,7 +606,7 @@ asm void JASTrack::gateOn(u32 param_0, u32 param_1, f32 param_2, u32 param_3) {
 }
 #pragma pop
 
-/* 80292198-80292220 0088+00 s=1 e=1 z=0  None .text      noteOff__8JASTrackFUlUs */
+/* 80292198-80292220 28CAD8 0088+00 1/1 1/1 0/0 .text            noteOff__8JASTrackFUlUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -610,7 +616,7 @@ asm void JASTrack::noteOff(u32 param_0, u16 param_1) {
 }
 #pragma pop
 
-/* 80292220-8029226C 004C+00 s=0 e=1 z=0  None .text      checkNoteStop__8JASTrackCFUl */
+/* 80292220-8029226C 28CB60 004C+00 0/0 1/1 0/0 .text            checkNoteStop__8JASTrackCFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -620,7 +626,7 @@ asm void JASTrack::checkNoteStop(u32 param_0) const {
 }
 #pragma pop
 
-/* 8029226C-802922D8 006C+00 s=1 e=0 z=0  None .text      overwriteOsc__8JASTrackFP10JASChannel */
+/* 8029226C-802922D8 28CBAC 006C+00 1/1 0/0 0/0 .text overwriteOsc__8JASTrackFP10JASChannel */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -630,7 +636,7 @@ asm void JASTrack::overwriteOsc(JASChannel* param_0) {
 }
 #pragma pop
 
-/* 802922D8-80292348 0070+00 s=1 e=0 z=0  None .text      updateTimedParam__8JASTrackFv */
+/* 802922D8-80292348 28CC18 0070+00 1/1 0/0 0/0 .text            updateTimedParam__8JASTrackFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -641,10 +647,10 @@ asm void JASTrack::updateTimedParam() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804555B8-804555BC 0004+00 s=1 e=0 z=0  None .sdata2    @1032 */
+/* 804555B8-804555BC 003BB8 0004+00 1/1 0/0 0/0 .sdata2          @1032 */
 SECTION_SDATA2 static f32 lit_1032 = 1.0f / 3.0f;
 
-/* 80292348-802924E4 019C+00 s=1 e=0 z=0  None .text      updateTrack__8JASTrackFf */
+/* 80292348-802924E4 28CC88 019C+00 1/1 0/0 0/0 .text            updateTrack__8JASTrackFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -655,13 +661,13 @@ asm void JASTrack::updateTrack(f32 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804555BC-804555C0 0004+00 s=1 e=0 z=0  None .sdata2    @1042 */
+/* 804555BC-804555C0 003BBC 0004+00 1/1 0/0 0/0 .sdata2          @1042 */
 SECTION_SDATA2 static f32 lit_1042 = 4.0f / 3.0f;
 
-/* 804555C0-804555C8 0008+00 s=1 e=0 z=0  None .sdata2    @1044 */
+/* 804555C0-804555C8 003BC0 0008+00 1/1 0/0 0/0 .sdata2          @1044 */
 SECTION_SDATA2 static f64 lit_1044 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 802924E4-80292580 009C+00 s=5 e=0 z=0  None .text      updateTempo__8JASTrackFv */
+/* 802924E4-80292580 28CE24 009C+00 5/5 0/0 0/0 .text            updateTempo__8JASTrackFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -671,7 +677,7 @@ asm void JASTrack::updateTempo() {
 }
 #pragma pop
 
-/* 80292580-80292644 00C4+00 s=4 e=0 z=0  None .text      updateSeq__8JASTrackFbf */
+/* 80292580-80292644 28CEC0 00C4+00 4/4 0/0 0/0 .text            updateSeq__8JASTrackFbf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -682,13 +688,13 @@ asm void JASTrack::updateSeq(bool param_0, f32 param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804555C8-804555CC 0004+00 s=1 e=0 z=0  None .sdata2    @1069 */
+/* 804555C8-804555CC 003BC8 0004+00 1/1 0/0 0/0 .sdata2          @1069 */
 SECTION_SDATA2 static f32 lit_1069 = 120.0f;
 
-/* 804555CC-804555D0 0004+00 s=1 e=0 z=0  None .sdata2    @1070 */
+/* 804555CC-804555D0 003BCC 0004+00 1/1 0/0 0/0 .sdata2          @1070 */
 SECTION_SDATA2 static f32 lit_1070 = 10.0f;
 
-/* 80292644-802926E0 009C+00 s=1 e=0 z=0  None .text      seqTimeToDspTime__8JASTrackFf */
+/* 80292644-802926E0 28CF84 009C+00 1/1 0/0 0/0 .text            seqTimeToDspTime__8JASTrackFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -698,7 +704,7 @@ asm void JASTrack::seqTimeToDspTime(f32 param_0) {
 }
 #pragma pop
 
-/* 802926E0-80292708 0028+00 s=0 e=4 z=0  None .text      setParam__8JASTrackFUlfUl */
+/* 802926E0-80292708 28D020 0028+00 0/0 4/4 0/0 .text            setParam__8JASTrackFUlfUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -708,7 +714,7 @@ asm void JASTrack::setParam(u32 param_0, f32 param_1, u32 param_2) {
 }
 #pragma pop
 
-/* 80292708-802927A0 0098+00 s=1 e=0 z=0  None .text      noteOffAll__8JASTrackFUs */
+/* 80292708-802927A0 28D048 0098+00 1/1 0/0 0/0 .text            noteOffAll__8JASTrackFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -718,7 +724,7 @@ asm void JASTrack::noteOffAll(u16 param_0) {
 }
 #pragma pop
 
-/* 802927A0-802927D8 0038+00 s=0 e=2 z=0  None .text      mute__8JASTrackFb */
+/* 802927A0-802927D8 28D0E0 0038+00 0/0 2/2 0/0 .text            mute__8JASTrackFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -728,7 +734,7 @@ asm void JASTrack::mute(bool param_0) {
 }
 #pragma pop
 
-/* 802927D8-802927E8 0010+00 s=0 e=1 z=0  None .text      setOscScale__8JASTrackFUlf */
+/* 802927D8-802927E8 28D118 0010+00 0/0 1/1 0/0 .text            setOscScale__8JASTrackFUlf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -738,7 +744,7 @@ asm void JASTrack::setOscScale(u32 param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 802927E8-80292808 0020+00 s=0 e=1 z=0  None .text
+/* 802927E8-80292808 28D128 0020+00 0/0 1/1 0/0 .text
  * setOscTable__8JASTrackFUlPCQ213JASOscillator5Point           */
 #pragma push
 #pragma optimization_level 0
@@ -749,7 +755,7 @@ asm void JASTrack::setOscTable(u32 param_0, JASOscillator::Point const* param_1)
 }
 #pragma pop
 
-/* 80292808-8029285C 0054+00 s=0 e=1 z=0  None .text      setOscAdsr__8JASTrackFssssUs */
+/* 80292808-8029285C 28D148 0054+00 0/0 1/1 0/0 .text            setOscAdsr__8JASTrackFssssUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -760,10 +766,10 @@ asm void JASTrack::setOscAdsr(s16 param_0, s16 param_1, s16 param_2, s16 param_3
 #pragma pop
 
 /* ############################################################################################## */
-/* 804555D0-804555D4 0004+00 s=2 e=0 z=0  None .sdata2    FILTER_MODE_IIR__6JASDsp */
+/* 804555D0-804555D4 003BD0 0004+00 2/2 0/0 0/0 .sdata2          FILTER_MODE_IIR__6JASDsp */
 SECTION_SDATA2 static u32 FILTER_MODE_IIR__6JASDsp = 0x00000020;
 
-/* 8029285C-8029289C 0040+00 s=0 e=2 z=0  None .text      setFIR__8JASTrackFPCs */
+/* 8029285C-8029289C 28D19C 0040+00 0/0 2/2 0/0 .text            setFIR__8JASTrackFPCs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -773,7 +779,7 @@ asm void JASTrack::setFIR(s16 const* param_0) {
 }
 #pragma pop
 
-/* 8029289C-802928D0 0034+00 s=0 e=4 z=0  None .text      setIIR__8JASTrackFPCs */
+/* 8029289C-802928D0 28D1DC 0034+00 0/0 4/4 0/0 .text            setIIR__8JASTrackFPCs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -783,7 +789,7 @@ asm void JASTrack::setIIR(s16 const* param_0) {
 }
 #pragma pop
 
-/* 802928D0-802928F4 0024+00 s=0 e=1 z=0  None .text      readPortSelf__8JASTrackFUl */
+/* 802928D0-802928F4 28D210 0024+00 0/0 1/1 0/0 .text            readPortSelf__8JASTrackFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -793,7 +799,7 @@ asm void JASTrack::readPortSelf(u32 param_0) {
 }
 #pragma pop
 
-/* 802928F4-80292918 0024+00 s=0 e=1 z=0  None .text      writePortSelf__8JASTrackFUlUs */
+/* 802928F4-80292918 28D234 0024+00 0/0 1/1 0/0 .text            writePortSelf__8JASTrackFUlUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -803,7 +809,7 @@ asm void JASTrack::writePortSelf(u32 param_0, u16 param_1) {
 }
 #pragma pop
 
-/* 80292918-8029297C 0064+00 s=0 e=4 z=0  None .text      writePort__8JASTrackFUlUs */
+/* 80292918-8029297C 28D258 0064+00 0/0 4/4 0/0 .text            writePort__8JASTrackFUlUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -813,7 +819,7 @@ asm void JASTrack::writePort(u32 param_0, u16 param_1) {
 }
 #pragma pop
 
-/* 8029297C-802929A0 0024+00 s=0 e=3 z=0  None .text      readPort__8JASTrackFUl */
+/* 8029297C-802929A0 28D2BC 0024+00 0/0 3/3 0/0 .text            readPort__8JASTrackFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -823,7 +829,7 @@ asm void JASTrack::readPort(u32 param_0) {
 }
 #pragma pop
 
-/* 802929A0-80292A3C 009C+00 s=1 e=0 z=0  None .text      setChannelPauseFlag__8JASTrackFb */
+/* 802929A0-80292A3C 28D2E0 009C+00 1/1 0/0 0/0 .text            setChannelPauseFlag__8JASTrackFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -833,7 +839,7 @@ asm void JASTrack::setChannelPauseFlag(bool param_0) {
 }
 #pragma pop
 
-/* 80292A3C-80292AA4 0068+00 s=0 e=2 z=0  None .text      pause__8JASTrackFb */
+/* 80292A3C-80292AA4 28D37C 0068+00 0/0 2/2 0/0 .text            pause__8JASTrackFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -843,7 +849,7 @@ asm void JASTrack::pause(bool param_0) {
 }
 #pragma pop
 
-/* 80292AA4-80292AF4 0050+00 s=3 e=0 z=0  None .text      getTransposeTotal__8JASTrackCFv */
+/* 80292AA4-80292AF4 28D3E4 0050+00 3/3 0/0 0/0 .text            getTransposeTotal__8JASTrackCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -853,7 +859,7 @@ asm void JASTrack::getTransposeTotal() const {
 }
 #pragma pop
 
-/* 80292AF4-80292B58 0064+00 s=2 e=0 z=0  None .text      isMute__8JASTrackCFv */
+/* 80292AF4-80292B58 28D434 0064+00 2/2 0/0 0/0 .text            isMute__8JASTrackCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -863,7 +869,7 @@ asm void JASTrack::isMute() const {
 }
 #pragma pop
 
-/* 80292B58-80292B8C 0034+00 s=0 e=1 z=0  None .text      setTempo__8JASTrackFUs */
+/* 80292B58-80292B8C 28D498 0034+00 0/0 1/1 0/0 .text            setTempo__8JASTrackFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -873,7 +879,7 @@ asm void JASTrack::setTempo(u16 param_0) {
 }
 #pragma pop
 
-/* 80292B8C-80292BC0 0034+00 s=0 e=2 z=0  None .text      setTempoRate__8JASTrackFf */
+/* 80292B8C-80292BC0 28D4CC 0034+00 0/0 2/2 0/0 .text            setTempoRate__8JASTrackFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -883,7 +889,7 @@ asm void JASTrack::setTempoRate(f32 param_0) {
 }
 #pragma pop
 
-/* 80292BC0-80292BF4 0034+00 s=0 e=1 z=0  None .text      setTimebase__8JASTrackFUs */
+/* 80292BC0-80292BF4 28D500 0034+00 0/0 1/1 0/0 .text            setTimebase__8JASTrackFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -894,10 +900,10 @@ asm void JASTrack::setTimebase(u16 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804555D4-804555D8 0004+00 s=1 e=0 z=0  None .sdata2    @1246 */
+/* 804555D4-804555D8 003BD4 0004+00 1/1 0/0 0/0 .sdata2          @1246 */
 SECTION_SDATA2 static f32 lit_1246 = 32767.0f;
 
-/* 80292BF4-80292CA4 00B0+00 s=1 e=0 z=0  None .text
+/* 80292BF4-80292CA4 28D534 00B0+00 1/1 0/0 0/0 .text
  * updateChannel__8JASTrackFP10JASChannelPQ26JASDsp8TChannel    */
 #pragma push
 #pragma optimization_level 0
@@ -908,7 +914,7 @@ asm void JASTrack::updateChannel(JASChannel* param_0, JASDsp::TChannel* param_1)
 }
 #pragma pop
 
-/* 80292CA4-80292D88 00E4+00 s=1 e=0 z=0  None .text
+/* 80292CA4-80292D88 28D5E4 00E4+00 1/1 0/0 0/0 .text
  * channelUpdateCallback__8JASTrackFUlP10JASChannelPQ26JASDsp8TChannelPv */
 #pragma push
 #pragma optimization_level 0
@@ -920,7 +926,7 @@ asm void JASTrack::channelUpdateCallback(u32 param_0, JASChannel* param_1,
 }
 #pragma pop
 
-/* 80292D88-80292DA0 0018+00 s=3 e=0 z=0  None .text      getRootTrack__8JASTrackFv */
+/* 80292D88-80292DA0 28D6C8 0018+00 3/3 0/0 0/0 .text            getRootTrack__8JASTrackFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -930,7 +936,7 @@ asm void JASTrack::getRootTrack() {
 }
 #pragma pop
 
-/* 80292DA0-80292E9C 00FC+00 s=1 e=0 z=0  None .text      tickProc__8JASTrackFv */
+/* 80292DA0-80292E9C 28D6E0 00FC+00 1/1 0/0 0/0 .text            tickProc__8JASTrackFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -940,7 +946,7 @@ asm void JASTrack::tickProc() {
 }
 #pragma pop
 
-/* 80292E9C-80292F6C 00D0+00 s=1 e=0 z=0  None .text      seqMain__8JASTrackFv */
+/* 80292E9C-80292F6C 28D7DC 00D0+00 1/1 0/0 0/0 .text            seqMain__8JASTrackFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -950,7 +956,7 @@ asm void JASTrack::seqMain() {
 }
 #pragma pop
 
-/* 80292F6C-80292F90 0024+00 s=1 e=0 z=0  None .text      cbSeqMain__Q28JASTrack5TListFPv */
+/* 80292F6C-80292F90 28D8AC 0024+00 1/1 0/0 0/0 .text            cbSeqMain__Q28JASTrack5TListFPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -960,7 +966,7 @@ asm void JASTrack::TList::cbSeqMain(void* param_0) {
 }
 #pragma pop
 
-/* 80292F90-8029301C 008C+00 s=1 e=0 z=0  None .text      append__Q28JASTrack5TListFP8JASTrack */
+/* 80292F90-8029301C 28D8D0 008C+00 1/1 0/0 0/0 .text append__Q28JASTrack5TListFP8JASTrack */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -970,7 +976,7 @@ asm void JASTrack::TList::append(JASTrack* param_0) {
 }
 #pragma pop
 
-/* 8029301C-802930DC 00C0+00 s=1 e=0 z=0  None .text      seqMain__Q28JASTrack5TListFv */
+/* 8029301C-802930DC 28D95C 00C0+00 1/1 0/0 0/0 .text            seqMain__Q28JASTrack5TListFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -980,8 +986,7 @@ asm void JASTrack::TList::seqMain() {
 }
 #pragma pop
 
-/* 802930DC-80293148 006C+00 s=2 e=0 z=0  None .text      __ct__Q28JASTrack11TChannelMgrFP8JASTrack
- */
+/* 802930DC-80293148 28DA1C 006C+00 2/2 0/0 0/0 .text __ct__Q28JASTrack11TChannelMgrFP8JASTrack */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -991,7 +996,7 @@ asm JASTrack::TChannelMgr::TChannelMgr(JASTrack* param_0) {
 }
 #pragma pop
 
-/* 80293148-802931B0 0068+00 s=1 e=0 z=0  None .text      init__Q28JASTrack11TChannelMgrFv */
+/* 80293148-802931B0 28DA88 0068+00 1/1 0/0 0/0 .text            init__Q28JASTrack11TChannelMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1001,7 +1006,7 @@ asm void JASTrack::TChannelMgr::init() {
 }
 #pragma pop
 
-/* 802931B0-80293220 0070+00 s=1 e=0 z=0  None .text      releaseAll__Q28JASTrack11TChannelMgrFv */
+/* 802931B0-80293220 28DAF0 0070+00 1/1 0/0 0/0 .text releaseAll__Q28JASTrack11TChannelMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1011,7 +1016,7 @@ asm void JASTrack::TChannelMgr::releaseAll() {
 }
 #pragma pop
 
-/* 80293220-802932A0 0080+00 s=3 e=0 z=0  None .text      noteOff__Q28JASTrack11TChannelMgrFUlUs */
+/* 80293220-802932A0 28DB60 0080+00 3/3 0/0 0/0 .text noteOff__Q28JASTrack11TChannelMgrFUlUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1021,8 +1026,7 @@ asm void JASTrack::TChannelMgr::noteOff(u32 param_0, u16 param_1) {
 }
 #pragma pop
 
-/* 802932A0-802932C8 0028+00 s=1 e=0 z=0  None .text      setPauseFlag__Q28JASTrack11TChannelMgrFb
- */
+/* 802932A0-802932C8 28DBE0 0028+00 1/1 0/0 0/0 .text setPauseFlag__Q28JASTrack11TChannelMgrFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1032,7 +1036,7 @@ asm void JASTrack::TChannelMgr::setPauseFlag(bool param_0) {
 }
 #pragma pop
 
-/* 802932C8-802932E0 0018+00 s=1 e=0 z=0  None .text      __ct__Q28JASTrack10MoveParam_Fv */
+/* 802932C8-802932E0 28DC08 0018+00 1/1 0/0 0/0 .text            __ct__Q28JASTrack10MoveParam_Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1042,45 +1046,45 @@ asm JASTrack::MoveParam_::MoveParam_() {
 }
 #pragma pop
 
-/* 802932E0-80293334 0054+00 s=2 e=2 z=0  None .text __dt__35JASMemPool_MultiThreaded<8JASTrack>Fv
- */
+/* 802932E0-80293334 28DC20 0054+00 2/2 2/2 0/0 .text
+ * __dt__35JASMemPool_MultiThreaded<8JASTrack>Fv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JASMemPool_MultiThreaded__template0::~JASMemPool_MultiThreaded__template0() {
+extern "C" asm void func_802932E0() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASTrack/func_802932E0.s"
 }
 #pragma pop
 
-/* 80293334-80293388 0054+00 s=3 e=1 z=0  None .text
+/* 80293334-80293388 28DC74 0054+00 3/3 1/1 0/0 .text
  * __dt__50JASMemPool_MultiThreaded<Q28JASTrack11TChannelMgr>Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JASMemPool_MultiThreaded__template1::~JASMemPool_MultiThreaded__template1() {
+extern "C" asm void func_80293334() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASTrack/func_80293334.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C5B68-803C5B74 000C+00 s=2 e=0 z=0  None .data      __vt__19JASDefaultBankTable */
-SECTION_DATA static void* __vt__19JASDefaultBankTable[3] = {
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80293528,
-};
-
-/* 803C5B74-803C5B80 000C+00 s=1 e=0 z=0  None .data      __vt__17JASBankTable<256> */
-SECTION_DATA static void* data_803C5B74[3] = {
-    (void*)NULL,
+/* 803C5B68-803C5B74 022C88 000C+00 2/2 0/0 0/0 .data            __vt__19JASDefaultBankTable */
+SECTION_DATA extern void* __vt__19JASDefaultBankTable[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)func_80293528,
 };
 
-/* 803C5B80-803C5B90 000C+04 s=1 e=1 z=0  None .data      __vt__11JASBankList */
-SECTION_DATA void* __vt__11JASBankList[3 + 1 /* padding */] = {
+/* 803C5B74-803C5B80 022C94 000C+00 1/1 0/0 0/0 .data            __vt__17JASBankTable<256> */
+SECTION_DATA extern void* data_803C5B74[3] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)func_80293528,
+};
+
+/* 803C5B80-803C5B90 022CA0 000C+04 1/1 1/1 0/0 .data            __vt__11JASBankList */
+SECTION_DATA extern void* __vt__11JASBankList[3 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)NULL,
@@ -1088,17 +1092,22 @@ SECTION_DATA void* __vt__11JASBankList[3 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80293388-8029345C 00D4+00 s=0 e=1 z=0  None .text      __sinit_JASTrack_cpp */
+/* 80293388-8029345C 28DCC8 00D4+00 0/0 1/0 0/0 .text            __sinit_JASTrack_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_JASTrack_cpp() {
+asm void __sinit_JASTrack_cpp() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASTrack/__sinit_JASTrack_cpp.s"
 }
 #pragma pop
 
-/* 8029345C-802934B4 0058+00 s=1 e=0 z=0  None .text      __dt__Q28JASTrack5TListFv */
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_80293388 = (void*)__sinit_JASTrack_cpp;
+#pragma pop
+
+/* 8029345C-802934B4 28DD9C 0058+00 1/1 0/0 0/0 .text            __dt__Q28JASTrack5TListFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1108,7 +1117,7 @@ asm JASTrack::TList::~TList() {
 }
 #pragma pop
 
-/* 802934B4-80293528 0074+00 s=1 e=0 z=0  None .text      __dt__19JASDefaultBankTableFv */
+/* 802934B4-80293528 28DDF4 0074+00 1/1 0/0 0/0 .text            __dt__19JASDefaultBankTableFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1118,11 +1127,11 @@ asm JASDefaultBankTable::~JASDefaultBankTable() {
 }
 #pragma pop
 
-/* 80293528-8029354C 0024+00 s=2 e=0 z=0  None .text      getBank__17JASBankTable<256>CFUl */
+/* 80293528-8029354C 28DE68 0024+00 2/0 0/0 0/0 .text            getBank__17JASBankTable<256>CFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASBankTable__template0::getBank(u32 param_0) const {
+extern "C" asm void func_80293528(u32 param_0) /* const */ {
     nofralloc
 #include "asm/JSystem/JAudio2/JASTrack/func_80293528.s"
 }

@@ -13,19 +13,19 @@ lbl_8066DD48:
 /* 8066DD74  7F E4 FB 78 */	mr r4, r31
 /* 8066DD78  38 A0 00 00 */	li r5, 0
 /* 8066DD7C  38 C0 00 00 */	li r6, 0
-/* 8066DD80  4B BD C5 58 */	b doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
+/* 8066DD80  4B BD C5 59 */	bl doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
 /* 8066DD84  2C 03 00 00 */	cmpwi r3, 0
 /* 8066DD88  41 82 00 C8 */	beq lbl_8066DE50
-/* 8066DD8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8066DD90  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8066DD8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8066DD90  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8066DD94  38 63 4E C8 */	addi r3, r3, 0x4ec8
-/* 8066DD98  4B 9D 46 D0 */	b reset__14dEvt_control_cFv
+/* 8066DD98  4B 9D 46 D1 */	bl reset__14dEvt_control_cFv
 /* 8066DD9C  38 00 00 00 */	li r0, 0
 /* 8066DDA0  B0 1F 0C 06 */	sth r0, 0xc06(r31)
 /* 8066DDA4  48 00 00 AC */	b lbl_8066DE50
 lbl_8066DDA8:
-/* 8066DDA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8066DDAC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8066DDA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8066DDAC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8066DDB0  88 03 4F AD */	lbz r0, 0x4fad(r3)
 /* 8066DDB4  28 00 00 00 */	cmplwi r0, 0
 /* 8066DDB8  41 82 00 30 */	beq lbl_8066DDE8
@@ -37,7 +37,7 @@ lbl_8066DDA8:
 /* 8066DDD0  A8 BF 0C 08 */	lha r5, 0xc08(r31)
 /* 8066DDD4  38 C0 00 00 */	li r6, 0
 /* 8066DDD8  38 E0 00 00 */	li r7, 0
-/* 8066DDDC  4B BD C1 B4 */	b init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
+/* 8066DDDC  4B BD C1 B5 */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 /* 8066DDE0  38 00 00 01 */	li r0, 1
 /* 8066DDE4  B0 1F 0C 06 */	sth r0, 0xc06(r31)
 lbl_8066DDE8:
@@ -47,8 +47,8 @@ lbl_8066DDE8:
 /* 8066DDF4  A8 1F 0C 08 */	lha r0, 0xc08(r31)
 /* 8066DDF8  2C 00 FF FF */	cmpwi r0, -1
 /* 8066DDFC  41 82 00 38 */	beq lbl_8066DE34
-/* 8066DE00  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8066DE04  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8066DE00  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8066DE04  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8066DE08  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 8066DE0C  80 03 05 74 */	lwz r0, 0x574(r3)
 /* 8066DE10  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6

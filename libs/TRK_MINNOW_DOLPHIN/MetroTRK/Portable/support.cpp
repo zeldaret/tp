@@ -39,38 +39,38 @@ extern "C" void MWTRACE();
 // Declarations:
 //
 
-/* 8036ED84-8036EE94 0110+00 s=0 e=1 z=0  None .text      HandlePositionFileSupportRequest */
+/* 8036ED84-8036EE94 3696C4 0110+00 0/0 1/1 0/0 .text            HandlePositionFileSupportRequest */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void HandlePositionFileSupportRequest() {
+asm void HandlePositionFileSupportRequest() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/support/HandlePositionFileSupportRequest.s"
 }
 #pragma pop
 
-/* 8036EE94-8036EF7C 00E8+00 s=0 e=1 z=0  None .text      HandleCloseFileSupportRequest */
+/* 8036EE94-8036EF7C 3697D4 00E8+00 0/0 1/1 0/0 .text            HandleCloseFileSupportRequest */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void HandleCloseFileSupportRequest() {
+asm void HandleCloseFileSupportRequest() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/support/HandleCloseFileSupportRequest.s"
 }
 #pragma pop
 
-/* 8036EF7C-8036F098 011C+00 s=0 e=1 z=0  None .text      HandleOpenFileSupportRequest */
+/* 8036EF7C-8036F098 3698BC 011C+00 0/0 1/1 0/0 .text            HandleOpenFileSupportRequest */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void HandleOpenFileSupportRequest() {
+asm void HandleOpenFileSupportRequest() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/support/HandleOpenFileSupportRequest.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A2AB8-803A2AD0 0015+03 s=1 e=0 z=0  None .rodata    @274 */
+/* 803A2AB8-803A2AD0 02F118 0015+03 1/1 0/0 0/0 .rodata          @274 */
 SECTION_RODATA static u8 const lit_274[21 + 3 /* padding */] = {
     0x43,
     0x61,
@@ -98,21 +98,32 @@ SECTION_RODATA static u8 const lit_274[21 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(803A2AB8, &lit_274);
 
-/* 803A2AD0-803A2AF8 0028+00 s=1 e=0 z=0  None .rodata    @275 */
+/* 803A2AD0-803A2AF8 02F130 0028+00 0/1 0/0 0/0 .rodata          @275 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_275[40] = {
     0x6D, 0x73, 0x67, 0x5F, 0x63, 0x6F, 0x6D, 0x6D, 0x61, 0x6E, 0x64, 0x20, 0x3A, 0x20,
     0x30, 0x78, 0x25, 0x30, 0x32, 0x78, 0x20, 0x68, 0x64, 0x72, 0x2D, 0x3E, 0x63, 0x6D,
     0x64, 0x49, 0x44, 0x20, 0x30, 0x78, 0x25, 0x30, 0x32, 0x78, 0x0A, 0x00,
 };
+COMPILER_STRIP_GATE(803A2AD0, &lit_275);
+#pragma pop
 
-/* 803A2AF8-803A2B0C 0014+00 s=1 e=0 z=0  None .rodata    @276 */
+/* 803A2AF8-803A2B0C 02F158 0014+00 0/1 0/0 0/0 .rodata          @276 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_276[20] = {
     0x6D, 0x73, 0x67, 0x5F, 0x65, 0x72, 0x72, 0x6F, 0x72, 0x20,
     0x3A, 0x20, 0x30, 0x78, 0x25, 0x30, 0x32, 0x78, 0x0A, 0x00,
 };
+COMPILER_STRIP_GATE(803A2AF8, &lit_276);
+#pragma pop
 
-/* 803A2B0C-803A2B60 0051+03 s=1 e=0 z=0  None .rodata    @277 */
+/* 803A2B0C-803A2B60 02F16C 0051+03 0/1 0/0 0/0 .rodata          @277 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_277[81 + 3 /* padding */] = {
     0x52,
     0x65,
@@ -200,22 +211,24 @@ SECTION_RODATA static u8 const lit_277[81 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(803A2B0C, &lit_277);
+#pragma pop
 
-/* 8036F098-8036F278 01E0+00 s=4 e=1 z=0  None .text      TRKRequestSend */
+/* 8036F098-8036F278 3699D8 01E0+00 4/4 1/1 0/0 .text            TRKRequestSend */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKRequestSend() {
+asm void TRKRequestSend() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/support/TRKRequestSend.s"
 }
 #pragma pop
 
-/* 8036F278-8036F498 0220+00 s=0 e=1 z=0  None .text      TRKSuppAccessFile */
+/* 8036F278-8036F498 369BB8 0220+00 0/0 1/1 0/0 .text            TRKSuppAccessFile */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKSuppAccessFile() {
+asm void TRKSuppAccessFile() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/support/TRKSuppAccessFile.s"
 }

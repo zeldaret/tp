@@ -9,13 +9,13 @@ lbl_8024E9A0:
 /* 8024E9BC  7F E3 FB 78 */	mr r3, r31
 /* 8024E9C0  88 1F 02 AB */	lbz r0, 0x2ab(r31)
 /* 8024E9C4  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 8024E9C8  3C 80 80 3C */	lis r4, SelProc@ha
-/* 8024E9CC  38 04 26 E4 */	addi r0, r4, SelProc@l
+/* 8024E9C8  3C 80 80 3C */	lis r4, SelProc@ha /* 0x803C26E4@ha */
+/* 8024E9CC  38 04 26 E4 */	addi r0, r4, SelProc@l /* 0x803C26E4@l */
 /* 8024E9D0  7D 80 2A 14 */	add r12, r0, r5
 /* 8024E9D4  48 11 36 B1 */	bl __ptmf_scall
 /* 8024E9D8  60 00 00 00 */	nop 
-/* 8024E9DC  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 8024E9E0  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 8024E9DC  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 8024E9E0  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 8024E9E4  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 8024E9E8  54 60 07 BD */	rlwinm. r0, r3, 0, 0x1e, 0x1e
 /* 8024E9EC  41 82 00 64 */	beq lbl_8024EA50

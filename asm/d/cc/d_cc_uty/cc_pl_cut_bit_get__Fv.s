@@ -1,6 +1,6 @@
 lbl_800873D4:
-/* 800873D4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800873D8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800873D4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800873D8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800873DC  80 83 5D AC */	lwz r4, 0x5dac(r3)
 /* 800873E0  38 60 00 00 */	li r3, 0
 /* 800873E4  88 04 05 68 */	lbz r0, 0x568(r4)

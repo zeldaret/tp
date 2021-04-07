@@ -1,6 +1,6 @@
 lbl_80023098:
-/* 80023098  3C C0 80 3A */	lis r6, l_fpcNdRq_Queue@ha
-/* 8002309C  38 C6 3A 38 */	addi r6, r6, l_fpcNdRq_Queue@l
+/* 80023098  3C C0 80 3A */	lis r6, l_fpcNdRq_Queue@ha /* 0x803A3A38@ha */
+/* 8002309C  38 C6 3A 38 */	addi r6, r6, l_fpcNdRq_Queue@l /* 0x803A3A38@l */
 /* 800230A0  80 C6 00 00 */	lwz r6, 0(r6)
 /* 800230A4  48 00 00 5C */	b lbl_80023100
 lbl_800230A8:

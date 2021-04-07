@@ -10,8 +10,8 @@ lbl_80CD9E84:
 /* 80CD9EA4  54 80 03 DF */	rlwinm. r0, r4, 0, 0xf, 0xf
 /* 80CD9EA8  41 82 00 28 */	beq lbl_80CD9ED0
 lbl_80CD9EAC:
-/* 80CD9EAC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80CD9EB0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80CD9EAC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CD9EB0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CD9EB4  88 04 4F AD */	lbz r0, 0x4fad(r4)
 /* 80CD9EB8  28 00 00 00 */	cmplwi r0, 0
 /* 80CD9EBC  40 82 00 14 */	bne lbl_80CD9ED0

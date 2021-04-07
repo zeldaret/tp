@@ -205,9 +205,6 @@ struct cBgS {
 // Forward References:
 //
 
-static void dComIfGp_saveCameraPosition(int, cXyz*, cXyz*, f32, s16);
-void fopAcM_GetID(void const*);
-
 extern "C" static void func_800889F8();
 extern "C" void StartEventCamera__9dCamera_cFiie();
 extern "C" void EndEventCamera__9dCamera_cFi();
@@ -276,34 +273,18 @@ extern "C" void checkMidnaRide__9daPy_py_cCFv();
 extern "C" void fopAcM_GetID__FPCv();
 extern "C" void __as__4cXyzFRC4cXyz();
 extern "C" void __ct__4cXyzFRC4cXyz();
-extern "C" static void func_80097810();
-extern "C" static void func_8009784C();
+extern "C" void func_80097810();
+extern "C" void func_8009784C();
 extern "C" bool checkCanoeRide__9daPy_py_cCFv();
 extern "C" bool checkBoardRide__9daPy_py_cCFv();
 extern "C" bool checkSpinnerRide__9daPy_py_cCFv();
 extern "C" bool checkBoarRide__9daPy_py_cCFv();
 extern "C" void getShadowTalkAtnPos__9daAlink_cFv();
-extern "C" extern u8 const lit_5985[28];
-extern "C" extern u8 const lit_5986[28];
-extern "C" extern u8 const lit_5987[20];
-extern "C" extern u8 const lit_5988[20];
 extern "C" extern char const* const d_d_ev_camera__stringBase0;
 
 //
 // External References:
 //
-
-void mDoLib_project(Vec*, Vec*);
-void fopAcIt_Judge(void* (*)(void*, void*), void*);
-void fopAcM_searchFromName4Event(char const*, s16);
-void fopCamM_GetParam(camera_class*);
-void fpcSch_JudgeForPName(void*, void*);
-void fpcSch_JudgeByID(void*, void*);
-void cM_atan2s(f32, f32);
-void cM_rndFX(f32);
-void cM3d_Len3dSqPntAndSegLine(cM3dGLin const*, Vec const*, Vec*, f32*);
-void operator+(s16, cSAngle const&);
-void operator delete(void*);
 
 extern "C" void __dt__4cXyzFv();
 extern "C" void mDoLib_project__FP3VecP3Vec();
@@ -415,18 +396,19 @@ extern "C" extern u8 _90__7cSAngle[2 + 2 /* padding */];
 // Declarations:
 //
 
-/* 800889F8-80088A7C 0084+00 s=1 e=0 z=0  None .text isStageEvent__25@unnamed@d_ev_camera_cpp@Fi
+/* 800889F8-80088A7C 083338 0084+00 1/1 0/0 0/0 .text isStageEvent__25@unnamed@d_ev_camera_cpp@Fi
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_800889F8() {
+static asm void func_800889F8() {
     nofralloc
 #include "asm/d/d_ev_camera/func_800889F8.s"
 }
 #pragma pop
 
-/* 80088A7C-80088BBC 0140+00 s=0 e=15 z=2  None .text      StartEventCamera__9dCamera_cFiie */
+/* 80088A7C-80088BBC 0833BC 0140+00 0/0 15/15 2/2 .text            StartEventCamera__9dCamera_cFiie
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -436,7 +418,7 @@ asm void dCamera_c::StartEventCamera(int param_0, int param_1, ...) {
 }
 #pragma pop
 
-/* 80088BBC-80088C24 0068+00 s=0 e=3 z=4  None .text      EndEventCamera__9dCamera_cFi */
+/* 80088BBC-80088C24 0834FC 0068+00 0/0 3/3 4/4 .text            EndEventCamera__9dCamera_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -446,7 +428,8 @@ asm void dCamera_c::EndEventCamera(int param_0) {
 }
 #pragma pop
 
-/* 80088C24-80088CB0 008C+00 s=10 e=0 z=0  None .text      searchEventArgData__9dCamera_cFPc */
+/* 80088C24-80088CB0 083564 008C+00 10/10 0/0 0/0 .text            searchEventArgData__9dCamera_cFPc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -456,7 +439,7 @@ asm void dCamera_c::searchEventArgData(char* param_0) {
 }
 #pragma pop
 
-/* 80088CB0-80088D90 00E0+00 s=3 e=1 z=0  None .text      getEvIntData__9dCamera_cFPiPc */
+/* 80088CB0-80088D90 0835F0 00E0+00 3/3 1/1 0/0 .text            getEvIntData__9dCamera_cFPiPc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -466,7 +449,7 @@ asm void dCamera_c::getEvIntData(int* param_0, char* param_1) {
 }
 #pragma pop
 
-/* 80088D90-80088E58 00C8+00 s=0 e=1 z=0  None .text      getEvFloatData__9dCamera_cFPfPc */
+/* 80088D90-80088E58 0836D0 00C8+00 0/0 1/1 0/0 .text            getEvFloatData__9dCamera_cFPfPc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -476,7 +459,7 @@ asm void dCamera_c::getEvFloatData(f32* param_0, char* param_1) {
 }
 #pragma pop
 
-/* 80088E58-80088F1C 00C4+00 s=4 e=0 z=0  None .text      getEvFloatListData__9dCamera_cFPPfPc */
+/* 80088E58-80088F1C 083798 00C4+00 4/4 0/0 0/0 .text getEvFloatListData__9dCamera_cFPPfPc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -486,7 +469,7 @@ asm void dCamera_c::getEvFloatListData(f32** param_0, char* param_1) {
 }
 #pragma pop
 
-/* 80088F1C-80088FE0 00C4+00 s=1 e=0 z=0  None .text      getEvXyzListData__9dCamera_cFPP4cXyzPc */
+/* 80088F1C-80088FE0 08385C 00C4+00 1/1 0/0 0/0 .text getEvXyzListData__9dCamera_cFPP4cXyzPc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -496,7 +479,8 @@ asm void dCamera_c::getEvXyzListData(cXyz** param_0, char* param_1) {
 }
 #pragma pop
 
-/* 80088FE0-8008908C 00AC+00 s=1 e=0 z=0  None .text      getEvStringPntData__9dCamera_cFPc */
+/* 80088FE0-8008908C 083920 00AC+00 1/1 0/0 0/0 .text            getEvStringPntData__9dCamera_cFPc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -506,7 +490,7 @@ asm void dCamera_c::getEvStringPntData(char* param_0) {
 }
 #pragma pop
 
-/* 8008908C-80089154 00C8+00 s=20 e=5 z=0  None .text      getEvIntData__9dCamera_cFPiPci */
+/* 8008908C-80089154 0839CC 00C8+00 20/20 5/5 0/0 .text            getEvIntData__9dCamera_cFPiPci */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -516,7 +500,8 @@ asm void dCamera_c::getEvIntData(int* param_0, char* param_1, int param_2) {
 }
 #pragma pop
 
-/* 80089154-8008922C 00D8+00 s=11 e=1 z=0  None .text      getEvFloatData__9dCamera_cFPfPcf */
+/* 80089154-8008922C 083A94 00D8+00 11/11 1/1 0/0 .text            getEvFloatData__9dCamera_cFPfPcf
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -526,7 +511,7 @@ asm void dCamera_c::getEvFloatData(f32* param_0, char* param_1, f32 param_2) {
 }
 #pragma pop
 
-/* 8008922C-8008933C 0110+00 s=10 e=0 z=0  None .text      getEvXyzData__9dCamera_cFP4cXyzPc4cXyz */
+/* 8008922C-8008933C 083B6C 0110+00 10/10 0/0 0/0 .text getEvXyzData__9dCamera_cFP4cXyzPc4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -536,7 +521,8 @@ asm void dCamera_c::getEvXyzData(cXyz* param_0, char* param_1, cXyz param_2) {
 }
 #pragma pop
 
-/* 8008933C-8008941C 00E0+00 s=7 e=1 z=0  None .text      getEvStringData__9dCamera_cFPcPcPc */
+/* 8008933C-8008941C 083C7C 00E0+00 7/7 1/1 0/0 .text            getEvStringData__9dCamera_cFPcPcPc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -546,7 +532,8 @@ asm void dCamera_c::getEvStringData(char* param_0, char* param_1, char* param_2)
 }
 #pragma pop
 
-/* 8008941C-800894C4 00A8+00 s=1 e=0 z=0  None .text      getEvStringPntData__9dCamera_cFPcPc */
+/* 8008941C-800894C4 083D5C 00A8+00 1/1 0/0 0/0 .text            getEvStringPntData__9dCamera_cFPcPc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -556,7 +543,7 @@ asm void dCamera_c::getEvStringPntData(char* param_0, char* param_1) {
 }
 #pragma pop
 
-/* 800894C4-800895F4 0130+00 s=7 e=1 z=0  None .text      getEvActor__9dCamera_cFPc */
+/* 800894C4-800895F4 083E04 0130+00 7/7 1/1 0/0 .text            getEvActor__9dCamera_cFPc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -566,7 +553,7 @@ asm void dCamera_c::getEvActor(char* param_0) {
 }
 #pragma pop
 
-/* 800895F4-80089730 013C+00 s=8 e=1 z=0  None .text      getEvActor__9dCamera_cFPcPc */
+/* 800895F4-80089730 083F34 013C+00 8/8 1/1 0/0 .text            getEvActor__9dCamera_cFPcPc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -576,206 +563,7 @@ asm void dCamera_c::getEvActor(char* param_0, char* param_1) {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 8037A7F0-8037A7FC 000C+00 s=1 e=0 z=0  None .rodata    @3871 */
-SECTION_RODATA static u8 const lit_3871[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8037A7FC-8037A80C 0010+00 s=1 e=0 z=0  None .rodata    @5984 */
-SECTION_RODATA static u8 const lit_5984[16] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-};
-
-/* 8037A80C-8037A828 001C+00 s=0 e=0 z=0  None .rodata    @5985 */
-SECTION_RODATA u8 const lit_5985[28] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3E, 0xCC, 0xCC, 0xCD, 0x3F, 0x33,
-    0x33, 0x33, 0x3F, 0x66, 0x66, 0x66, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-};
-
-/* 8037A828-8037A844 001C+00 s=0 e=0 z=0  None .rodata    @5986 */
-SECTION_RODATA u8 const lit_5986[28] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3D, 0xCC, 0xCC, 0xCD, 0x3E, 0x99,
-    0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-};
-
-/* 8037A844-8037A858 0014+00 s=0 e=0 z=0  None .rodata    @5987 */
-SECTION_RODATA u8 const lit_5987[20] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8037A858-8037A86C 0014+00 s=0 e=0 z=0  None .rodata    @5988 */
-SECTION_RODATA u8 const lit_5988[20] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00,
-    0x00, 0x07, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8037A86C-8037A884 0018+00 s=1 e=0 z=0  None .rodata    @8236 */
-SECTION_RODATA static u8 const lit_8236[24] = {
-    0x3F, 0x40, 0x00, 0x00, 0x3E, 0xB3, 0x33, 0x33, 0x3F, 0x4C, 0xCC, 0xCD,
-    0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x4C, 0xCC, 0xCD,
-};
-
-/* 8037A884-8037A89C 0018+00 s=1 e=0 z=0  None .rodata    @8840 */
-SECTION_RODATA static u8 const lit_8840[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-    0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8037A89C-8037AA08 016C+00 s=1 e=0 z=0  None .rodata    @8969 */
-SECTION_RODATA static u8 const lit_8969[364] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x82, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x1E, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x82, 0x00, 0x00, 0x00, 0x00, 0x00, 0x28,
-    0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x42, 0x82, 0x00, 0x00, 0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x42, 0x82, 0x00, 0x00, 0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x82, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x49, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x8C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x2D,
-    0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x42, 0x70, 0x00, 0x00, 0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x00, 0x00,
-    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x42, 0x70, 0x00, 0x00, 0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x50, 0x00, 0x00, 0x00, 0x0A, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x82, 0x00, 0x00, 0x00, 0x00, 0x00, 0x28,
-    0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x42, 0x70, 0x00, 0x00, 0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x00, 0x00,
-    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x42, 0x70, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x3C, 0xFF, 0xFF, 0xFF, 0xFF,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x82, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF,
-};
-
-/* 8037AA08-8037AA40 0038+00 s=1 e=0 z=0  None .rodata    @9468 */
-SECTION_RODATA static u8 const lit_9468[56] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x82,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x07,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x41, 0xF0,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x50, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF,
-};
-
-/* 8037AA40-8037AAA4 0064+00 s=1 e=0 z=0  None .rodata    @9811 */
-SECTION_RODATA static u8 const lit_9811[100] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x0C, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0xFF, 0xFF, 0xFF, 0xFF,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x11, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8037AAA4-8037AABC 0018+00 s=1 e=0 z=0  None .rodata    @9812 */
-SECTION_RODATA static u8 const lit_9812[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3D, 0xCC, 0xCC, 0xCD,
-    0x3F, 0x33, 0x33, 0x33, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-};
-
-/* 8037AABC-8037AAE4 0028+00 s=1 e=0 z=0  None .rodata    @11087 */
-SECTION_RODATA static u8 const lit_11087[40] = {
-    0x42, 0x20, 0x00, 0x00, 0x42, 0x70, 0x00, 0x00, 0x41, 0xC8, 0x00, 0x00, 0x42, 0x48,
-    0x00, 0x00, 0x42, 0x96, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0x70, 0x00, 0x00,
-    0x42, 0xB4, 0x00, 0x00, 0x42, 0xDC, 0x00, 0x00, 0x43, 0x0C, 0x00, 0x00,
-};
-
-/* 8037AAE4-8037AAF4 0010+00 s=1 e=0 z=0  None .rodata    @11437 */
-SECTION_RODATA static u8 const lit_11437[16] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-};
-
-/* 8037AAF4-8037AD68 0273+01 s=23 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_8037AAF4 = "Timer";
-SECTION_DEAD char const* const stringBase_8037AAFA = "Stay";
-SECTION_DEAD char const* const stringBase_8037AAFF = "Eye";
-SECTION_DEAD char const* const stringBase_8037AB03 = "Center";
-SECTION_DEAD char const* const stringBase_8037AB0A = "BasePos";
-SECTION_DEAD char const* const stringBase_8037AB12 = "Fovy";
-SECTION_DEAD char const* const stringBase_8037AB17 = "Bank";
-SECTION_DEAD char const* const stringBase_8037AB1C = "RelUseMask";
-SECTION_DEAD char const* const stringBase_8037AB27 = "oo";
-SECTION_DEAD char const* const stringBase_8037AB2A = "RelActor";
-SECTION_DEAD char const* const stringBase_8037AB33 = "EyeGap";
-SECTION_DEAD char const* const stringBase_8037AB3A = "CtrGap";
-SECTION_DEAD char const* const stringBase_8037AB41 = "EyeCus";
-SECTION_DEAD char const* const stringBase_8037AB48 = "CtrCus";
-SECTION_DEAD char const* const stringBase_8037AB4F = "Stoker";
-SECTION_DEAD char const* const stringBase_8037AB56 = "@STARTER";
-SECTION_DEAD char const* const stringBase_8037AB5F = "Target";
-SECTION_DEAD char const* const stringBase_8037AB66 = "@PLAYER";
-SECTION_DEAD char const* const stringBase_8037AB6E = "TransType";
-SECTION_DEAD char const* const stringBase_8037AB78 = "Roll";
-SECTION_DEAD char const* const stringBase_8037AB7D = "RadiusAdd";
-SECTION_DEAD char const* const stringBase_8037AB87 = "Latitude";
-SECTION_DEAD char const* const stringBase_8037AB90 = "Radius";
-SECTION_DEAD char const* const stringBase_8037AB97 = "StartRadius";
-SECTION_DEAD char const* const stringBase_8037ABA3 = "o";
-SECTION_DEAD char const* const stringBase_8037ABA5 = "BSpCurve";
-SECTION_DEAD char const* const stringBase_8037ABAE = "BSpPoints";
-SECTION_DEAD char const* const stringBase_8037ABB8 = "EndSlot";
-SECTION_DEAD char const* const stringBase_8037ABC0 = "StartSlot";
-SECTION_DEAD char const* const stringBase_8037ABCA = "StartEye";
-SECTION_DEAD char const* const stringBase_8037ABD3 = "StartCenter";
-SECTION_DEAD char const* const stringBase_8037ABDF = "StartFovy";
-SECTION_DEAD char const* const stringBase_8037ABE9 = "StartBank";
-SECTION_DEAD char const* const stringBase_8037ABF3 = "--oo";
-SECTION_DEAD char const* const stringBase_8037ABF8 = "Cushion";
-SECTION_DEAD char const* const stringBase_8037AC00 = "NearDist";
-SECTION_DEAD char const* const stringBase_8037AC09 = "ZoomDist";
-SECTION_DEAD char const* const stringBase_8037AC12 = "ZoomVAngle";
-SECTION_DEAD char const* const stringBase_8037AC1D = "FarDist";
-SECTION_DEAD char const* const stringBase_8037AC25 = "NearTimer";
-SECTION_DEAD char const* const stringBase_8037AC2F = "FarTimer";
-SECTION_DEAD char const* const stringBase_8037AC38 = "FrontAngle";
-SECTION_DEAD char const* const stringBase_8037AC43 = "Blure";
-SECTION_DEAD char const* const stringBase_8037AC49 = "Dest";
-SECTION_DEAD char const* const stringBase_8037AC4E = "TargetType";
-SECTION_DEAD char const* const stringBase_8037AC59 = "ID";
-SECTION_DEAD char const* const stringBase_8037AC5C = "CameraID";
-SECTION_DEAD char const* const stringBase_8037AC65 = "Name";
-SECTION_DEAD char const* const stringBase_8037AC6A = "FN01";
-SECTION_DEAD char const* const stringBase_8037AC6F = "Type";
-SECTION_DEAD char const* const stringBase_8037AC74 = "Slot";
-SECTION_DEAD char const* const stringBase_8037AC79 = "CurvePoints";
-SECTION_DEAD char const* const stringBase_8037AC85 = "Longitude";
-SECTION_DEAD char const* const stringBase_8037AC8F = "Centers";
-SECTION_DEAD char const* const stringBase_8037AC97 = "Eyes";
-SECTION_DEAD char const* const stringBase_8037AC9C = "Fovys";
-SECTION_DEAD char const* const stringBase_8037ACA2 = "Choice";
-SECTION_DEAD char const* const stringBase_8037ACA9 = "Actor1";
-SECTION_DEAD char const* const stringBase_8037ACB0 = "Actor2";
-SECTION_DEAD char const* const stringBase_8037ACB7 = "CtrRatio";
-SECTION_DEAD char const* const stringBase_8037ACC0 = "RadiusMin";
-SECTION_DEAD char const* const stringBase_8037ACCA = "RadiusMax";
-SECTION_DEAD char const* const stringBase_8037ACD4 = "LatitudeMin";
-SECTION_DEAD char const* const stringBase_8037ACE0 = "LatitudeMax";
-SECTION_DEAD char const* const stringBase_8037ACEC = "LongitudeMin";
-SECTION_DEAD char const* const stringBase_8037ACF9 = "LongitudeMax";
-SECTION_DEAD char const* const stringBase_8037AD06 = "LongitudeType";
-SECTION_DEAD char const* const stringBase_8037AD14 = "R_SP01";
-SECTION_DEAD char const* const stringBase_8037AD1B = "Teacher";
-SECTION_DEAD char const* const stringBase_8037AD23 = "Midna";
-SECTION_DEAD char const* const stringBase_8037AD29 = "Student";
-SECTION_DEAD char const* const stringBase_8037AD31 = "CtrGapY";
-SECTION_DEAD char const* const stringBase_8037AD39 = "Base";
-SECTION_DEAD char const* const stringBase_8037AD3E = "xxxxxx";
-SECTION_DEAD char const* const stringBase_8037AD45 = "Set1";
-SECTION_DEAD char const* const stringBase_8037AD4A = "Use1";
-SECTION_DEAD char const* const stringBase_8037AD4F = "ooxxxx";
-SECTION_DEAD char const* const stringBase_8037AD56 = "Set2";
-SECTION_DEAD char const* const stringBase_8037AD5B = "Use2";
-SECTION_DEAD char const* const stringBase_8037AD60 = "xxooox";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037AD67 = "";
-#pragma pop
-
-/* 80089730-800897E8 00B8+00 s=0 e=3 z=0  None .text      pauseEvCamera__9dCamera_cFv */
+/* 80089730-800897E8 084070 00B8+00 0/0 3/0 0/0 .text            pauseEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -786,35 +574,35 @@ asm void dCamera_c::pauseEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804253A8-804253B4 000C+00 s=1 e=0 z=0  None .bss       @4202 */
+/* 804253A8-804253B4 0520C8 000C+00 1/1 0/0 0/0 .bss             @4202 */
 static u8 lit_4202[12];
 
-/* 804253B4-804253C0 000C+00 s=3 e=0 z=0  None .bss WolfAdditionVec__25@unnamed@d_ev_camera_cpp@
+/* 804253B4-804253C0 0520D4 000C+00 2/3 0/0 0/0 .bss WolfAdditionVec__25@unnamed@d_ev_camera_cpp@
  */
 static u8 data_804253B4[12];
 
-/* 804528B8-804528C0 0004+04 s=16 e=0 z=0  None .sdata2    @5141 */
+/* 804528B8-804528C0 000EB8 0004+04 16/16 0/0 0/0 .sdata2          @5141 */
 SECTION_SDATA2 static f32 lit_5141[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 804528C0-804528C8 0008+00 s=3 e=0 z=0  None .sdata2    @5142 */
+/* 804528C0-804528C8 000EC0 0008+00 3/3 0/0 0/0 .sdata2          @5142 */
 SECTION_SDATA2 static f64 lit_5142 = 0.5;
 
-/* 804528C8-804528D0 0008+00 s=3 e=0 z=0  None .sdata2    @5143 */
+/* 804528C8-804528D0 000EC8 0008+00 3/3 0/0 0/0 .sdata2          @5143 */
 SECTION_SDATA2 static f64 lit_5143 = 3.0;
 
-/* 804528D0-804528D8 0008+00 s=3 e=0 z=0  None .sdata2    @5144 */
+/* 804528D0-804528D8 000ED0 0008+00 3/3 0/0 0/0 .sdata2          @5144 */
 SECTION_SDATA2 static u8 lit_5144[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 804528D8-804528DC 0004+00 s=5 e=0 z=0  None .sdata2    @5145 */
+/* 804528D8-804528DC 000ED8 0004+00 5/5 0/0 0/0 .sdata2          @5145 */
 SECTION_SDATA2 static f32 lit_5145 = 182.04444885253906f;
 
-/* 800897E8-8008A510 0D28+00 s=0 e=1 z=0  None .text      fixedFrameEvCamera__9dCamera_cFv */
+/* 800897E8-8008A510 084128 0D28+00 0/0 1/0 0/0 .text            fixedFrameEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -825,10 +613,10 @@ asm void dCamera_c::fixedFrameEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804528DC-804528E0 0004+00 s=10 e=0 z=0  None .sdata2    @5346 */
+/* 804528DC-804528E0 000EDC 0004+00 10/10 0/0 0/0 .sdata2          @5346 */
 SECTION_SDATA2 static f32 lit_5346 = 1.0f;
 
-/* 8008A510-8008A974 0464+00 s=0 e=1 z=0  None .text      stokerEvCamera__9dCamera_cFv */
+/* 8008A510-8008A974 084E50 0464+00 0/0 1/0 0/0 .text            stokerEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -839,17 +627,17 @@ asm void dCamera_c::stokerEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804528E0-804528E8 0004+04 s=1 e=0 z=0  None .sdata2    @5844 */
+/* 804528E0-804528E8 000EE0 0004+04 1/1 0/0 0/0 .sdata2          @5844 */
 SECTION_SDATA2 static f32 lit_5844[1 + 1 /* padding */] = {
     2.0f,
     /* padding */
     0.0f,
 };
 
-/* 804528E8-804528F0 0008+00 s=7 e=0 z=0  None .sdata2    @5846 */
+/* 804528E8-804528F0 000EE8 0008+00 7/7 0/0 0/0 .sdata2          @5846 */
 SECTION_SDATA2 static f64 lit_5846 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 8008A974-8008B9B0 103C+00 s=0 e=1 z=0  None .text      rollingEvCamera__9dCamera_cFv */
+/* 8008A974-8008B9B0 0852B4 103C+00 0/0 1/0 0/0 .text            rollingEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -860,30 +648,34 @@ asm void dCamera_c::rollingEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804253C0-804253CC 000C+00 s=1 e=0 z=0  None .bss       @4203 */
+/* 804253C0-804253CC 0520E0 000C+00 0/1 0/0 0/0 .bss             @4203 */
+#pragma push
+#pragma force_active on
 static u8 lit_4203[12];
+#pragma pop
 
-/* 804253CC-804253D8 000C+00 s=2 e=0 z=0  None .bss MidnaAdditionVec__25@unnamed@d_ev_camera_cpp@
+/* 804253CC-804253D8 0520EC 000C+00 1/2 0/0 0/0 .bss MidnaAdditionVec__25@unnamed@d_ev_camera_cpp@
  */
 static u8 data_804253CC[12];
 
-/* 804253D8-804253E4 000C+00 s=1 e=0 z=0  None .bss       @5852 */
+/* 804253D8-804253E4 0520F8 000C+00 1/1 0/0 0/0 .bss             @5852 */
 static u8 lit_5852[12];
 
-/* 804253E4-804253F0 000C+00 s=1 e=0 z=0  None .bss       DefaultGap$5851 */
+/* 804253E4-804253F0 052104 000C+00 1/1 0/0 0/0 .bss             DefaultGap$5851 */
 static f32 DefaultGap_5851[3];
 
-/* 804528F0-804528F8 0004+04 s=1 e=0 z=0  None .sdata2    @5959 */
+/* 804528F0-804528F8 000EF0 0004+04 1/1 0/0 0/0 .sdata2          @5959 */
 SECTION_SDATA2 static f32 lit_5959[1 + 1 /* padding */] = {
     100000.0f,
     /* padding */
     0.0f,
 };
 
-/* 804528F8-80452900 0008+00 s=10 e=0 z=0  None .sdata2    @5962 */
+/* 804528F8-80452900 000EF8 0008+00 10/10 0/0 0/0 .sdata2          @5962 */
 SECTION_SDATA2 static f64 lit_5962 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 8008B9B0-8008BE2C 047C+00 s=0 e=1 z=0  None .text      fixedPositionEvCamera__9dCamera_cFv */
+/* 8008B9B0-8008BE2C 0862F0 047C+00 0/0 1/0 0/0 .text            fixedPositionEvCamera__9dCamera_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -893,7 +685,8 @@ asm void dCamera_c::fixedPositionEvCamera() {
 }
 #pragma pop
 
-/* 8008BE2C-8008BE50 0024+00 s=0 e=1 z=0  None .text      uniformTransEvCamera__9dCamera_cFv */
+/* 8008BE2C-8008BE50 08676C 0024+00 0/0 1/0 0/0 .text            uniformTransEvCamera__9dCamera_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -903,7 +696,8 @@ asm void dCamera_c::uniformTransEvCamera() {
 }
 #pragma pop
 
-/* 8008BE50-8008BE74 0024+00 s=0 e=1 z=0  None .text      uniformBrakeEvCamera__9dCamera_cFv */
+/* 8008BE50-8008BE74 086790 0024+00 0/0 1/0 0/0 .text            uniformBrakeEvCamera__9dCamera_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -913,7 +707,8 @@ asm void dCamera_c::uniformBrakeEvCamera() {
 }
 #pragma pop
 
-/* 8008BE74-8008BE98 0024+00 s=0 e=1 z=0  None .text      uniformAcceleEvCamera__9dCamera_cFv */
+/* 8008BE74-8008BE98 0867B4 0024+00 0/0 1/0 0/0 .text            uniformAcceleEvCamera__9dCamera_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -924,13 +719,28 @@ asm void dCamera_c::uniformAcceleEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80452900-80452904 0004+00 s=1 e=0 z=0  None .sdata2    @6682 */
+/* 8037A7F0-8037A7FC 006E50 000C+00 1/1 0/0 0/0 .rodata          @3871 */
+SECTION_RODATA static u8 const lit_3871[12] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(8037A7F0, &lit_3871);
+
+/* 8037A7FC-8037A80C 006E5C 0010+00 0/1 0/0 0/0 .rodata          @5984 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_5984[16] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(8037A7FC, &lit_5984);
+#pragma pop
+
+/* 80452900-80452904 000F00 0004+00 1/1 0/0 0/0 .sdata2          @6682 */
 SECTION_SDATA2 static f32 lit_6682 = 360.0f;
 
-/* 80452904-80452908 0004+00 s=1 e=0 z=0  None .sdata2    @6683 */
+/* 80452904-80452908 000F04 0004+00 1/1 0/0 0/0 .sdata2          @6683 */
 SECTION_SDATA2 static f32 lit_6683 = -360.0f;
 
-/* 8008BE98-8008E750 28B8+00 s=3 e=0 z=0  None .text      transEvCamera__9dCamera_cFi */
+/* 8008BE98-8008E750 0867D8 28B8+00 3/3 0/0 0/0 .text            transEvCamera__9dCamera_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -940,18 +750,17 @@ asm void dCamera_c::transEvCamera(int param_0) {
 }
 #pragma pop
 
-/* 8008E750-8008E774 0024+00 s=1 e=0 z=0  None .text      isRelChar__25@unnamed@d_ev_camera_cpp@Fc
- */
+/* 8008E750-8008E774 089090 0024+00 1/1 0/0 0/0 .text isRelChar__25@unnamed@d_ev_camera_cpp@Fc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_8008E750() {
+static asm void func_8008E750() {
     nofralloc
 #include "asm/d/d_ev_camera/func_8008E750.s"
 }
 #pragma pop
 
-/* 8008E774-8008E790 001C+00 s=3 e=6 z=0  None .text      __as__7cSGlobeFRC7cSGlobe */
+/* 8008E774-8008E790 0890B4 001C+00 3/3 6/6 0/0 .text            __as__7cSGlobeFRC7cSGlobe */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -961,7 +770,7 @@ asm void cSGlobe::operator=(cSGlobe const& param_0) {
 }
 #pragma pop
 
-/* 8008E790-8008E894 0104+00 s=1 e=7 z=0  None .text      abs__4cXyzCFv */
+/* 8008E790-8008E894 0890D0 0104+00 1/1 7/7 0/0 .text            abs__4cXyzCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -971,7 +780,7 @@ asm void cXyz::abs() const {
 }
 #pragma pop
 
-/* 8008E894-8008E8D0 003C+00 s=2 e=6 z=0  None .text      U__7cSGlobeFRC7cSAngle */
+/* 8008E894-8008E8D0 0891D4 003C+00 2/2 6/6 0/0 .text            U__7cSGlobeFRC7cSAngle */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -981,7 +790,7 @@ asm void cSGlobe::U(cSAngle const& param_0) {
 }
 #pragma pop
 
-/* 8008E8D0-8008E904 0034+00 s=1 e=1 z=0  None .text      __ami__4cXyzFRC3Vec */
+/* 8008E8D0-8008E904 089210 0034+00 1/1 1/1 0/0 .text            __ami__4cXyzFRC3Vec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -991,7 +800,7 @@ asm void cXyz::operator-=(Vec const& param_0) {
 }
 #pragma pop
 
-/* 8008E904-8008E938 0034+00 s=1 e=5 z=0  None .text      __apl__4cXyzFRC3Vec */
+/* 8008E904-8008E938 089244 0034+00 1/1 5/5 0/0 .text            __apl__4cXyzFRC3Vec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1002,55 +811,55 @@ asm void cXyz::operator+=(Vec const& param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804253F0-804253FC 000C+00 s=1 e=0 z=0  None .bss       @6756 */
+/* 804253F0-804253FC 052110 000C+00 1/1 0/0 0/0 .bss             @6756 */
 static u8 lit_6756[12];
 
-/* 804253FC-80425408 000C+00 s=1 e=0 z=0  None .bss       DefaultGap$6755 */
+/* 804253FC-80425408 05211C 000C+00 1/1 0/0 0/0 .bss             DefaultGap$6755 */
 static u8 DefaultGap_6755[12];
 
-/* 80452908-8045290C 0004+00 s=2 e=0 z=0  None .sdata2    @7334 */
+/* 80452908-8045290C 000F08 0004+00 2/2 0/0 0/0 .sdata2          @7334 */
 SECTION_SDATA2 static f32 lit_7334 = 750.0f;
 
-/* 8045290C-80452910 0004+00 s=1 e=0 z=0  None .sdata2    @7335 */
+/* 8045290C-80452910 000F0C 0004+00 1/1 0/0 0/0 .sdata2          @7335 */
 SECTION_SDATA2 static f32 lit_7335 = 400.0f;
 
-/* 80452910-80452914 0004+00 s=2 e=0 z=0  None .sdata2    @7336 */
+/* 80452910-80452914 000F10 0004+00 2/2 0/0 0/0 .sdata2          @7336 */
 SECTION_SDATA2 static f32 lit_7336 = 1500.0f;
 
-/* 80452914-80452918 0004+00 s=1 e=0 z=0  None .sdata2    @7337 */
+/* 80452914-80452918 000F14 0004+00 1/1 0/0 0/0 .sdata2          @7337 */
 SECTION_SDATA2 static f32 lit_7337 = 62.0f;
 
-/* 80452918-8045291C 0004+00 s=1 e=0 z=0  None .sdata2    @7338 */
+/* 80452918-8045291C 000F18 0004+00 1/1 0/0 0/0 .sdata2          @7338 */
 SECTION_SDATA2 static f32 lit_7338 = 179.0f;
 
-/* 8045291C-80452920 0004+00 s=6 e=0 z=0  None .sdata2    @7339 */
+/* 8045291C-80452920 000F1C 0004+00 6/6 0/0 0/0 .sdata2          @7339 */
 SECTION_SDATA2 static f32 lit_7339 = 10.0f;
 
-/* 80452920-80452924 0004+00 s=4 e=0 z=0  None .sdata2    @7340 */
+/* 80452920-80452924 000F20 0004+00 4/4 0/0 0/0 .sdata2          @7340 */
 SECTION_SDATA2 static f32 lit_7340 = 5.0f;
 
-/* 80452924-80452928 0004+00 s=4 e=0 z=0  None .sdata2    @7341 */
+/* 80452924-80452928 000F24 0004+00 4/4 0/0 0/0 .sdata2          @7341 */
 SECTION_SDATA2 static f32 lit_7341 = -5.0f;
 
-/* 80452928-8045292C 0004+00 s=5 e=0 z=0  None .sdata2    @7342 */
+/* 80452928-8045292C 000F28 0004+00 5/5 0/0 0/0 .sdata2          @7342 */
 SECTION_SDATA2 static f32 lit_7342 = 120.0f;
 
-/* 8045292C-80452930 0004+00 s=2 e=0 z=0  None .sdata2    @7343 */
+/* 8045292C-80452930 000F2C 0004+00 2/2 0/0 0/0 .sdata2          @7343 */
 SECTION_SDATA2 static f32 lit_7343 = -8.0f;
 
-/* 80452930-80452934 0004+00 s=2 e=0 z=0  None .sdata2    @7344 */
+/* 80452930-80452934 000F30 0004+00 2/2 0/0 0/0 .sdata2          @7344 */
 SECTION_SDATA2 static f32 lit_7344 = 8.0f;
 
-/* 80452934-80452938 0004+00 s=6 e=0 z=0  None .sdata2    @7345 */
+/* 80452934-80452938 000F34 0004+00 6/6 0/0 0/0 .sdata2          @7345 */
 SECTION_SDATA2 static f32 lit_7345 = 70.0f;
 
-/* 80452938-8045293C 0004+00 s=1 e=0 z=0  None .sdata2    @7346 */
+/* 80452938-8045293C 000F38 0004+00 1/1 0/0 0/0 .sdata2          @7346 */
 SECTION_SDATA2 static f32 lit_7346 = 1.0f / 10.0f;
 
-/* 8045293C-80452940 0004+00 s=6 e=0 z=0  None .sdata2    @7347 */
+/* 8045293C-80452940 000F3C 0004+00 6/6 0/0 0/0 .sdata2          @7347 */
 SECTION_SDATA2 static f32 lit_7347 = 30.0f;
 
-/* 8008E938-8008FA58 1120+00 s=0 e=1 z=0  None .text      watchActorEvCamera__9dCamera_cFv */
+/* 8008E938-8008FA58 089278 1120+00 0/0 1/0 0/0 .text            watchActorEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1060,7 +869,7 @@ asm void dCamera_c::watchActorEvCamera() {
 }
 #pragma pop
 
-/* 8008FA58-8008FA94 003C+00 s=2 e=7 z=0  None .text      V__7cSGlobeFRC7cSAngle */
+/* 8008FA58-8008FA94 08A398 003C+00 2/2 7/7 0/0 .text            V__7cSGlobeFRC7cSAngle */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1071,29 +880,29 @@ asm void cSGlobe::V(cSAngle const& param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80452940-80452944 0004+00 s=5 e=0 z=0  None .sdata2    @7357 */
+/* 80452940-80452944 000F40 0004+00 5/5 0/0 0/0 .sdata2          @7357 */
 SECTION_SDATA2 static f32 lit_7357 = 15.0f;
 
-/* 8008FA94-8008FAE8 0054+00 s=7 e=0 z=0  None .text
+/* 8008FA94-8008FAE8 08A3D4 0054+00 7/7 0/0 0/0 .text
  * lineCollisionCheck__25@unnamed@d_ev_camera_cpp@F4cXyz4cXyzP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_8008FA94() {
+static asm void func_8008FA94() {
     nofralloc
 #include "asm/d/d_ev_camera/func_8008FA94.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80425408-80425414 000C+00 s=1 e=0 z=0  None .bss       @7364 */
+/* 80425408-80425414 052128 000C+00 1/1 0/0 0/0 .bss             @7364 */
 static u8 lit_7364[12];
 
-/* 80425414-80425420 000C+00 s=1 e=0 z=0  None .bss       DefaultGap$7363 */
+/* 80425414-80425420 052134 000C+00 1/1 0/0 0/0 .bss             DefaultGap$7363 */
 static f32 DefaultGap_7363[3];
 
-/* 8008FAE8-80090174 068C+00 s=0 e=1 z=0  None .text      restorePosEvCamera__9dCamera_cFv */
+/* 8008FAE8-80090174 08A428 068C+00 0/0 1/0 0/0 .text            restorePosEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1103,7 +912,7 @@ asm void dCamera_c::restorePosEvCamera() {
 }
 #pragma pop
 
-/* 80090174-80090230 00BC+00 s=0 e=1 z=0  None .text      talktoEvCamera__9dCamera_cFv */
+/* 80090174-80090230 08AAB4 00BC+00 0/0 1/0 0/0 .text            talktoEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1113,7 +922,7 @@ asm void dCamera_c::talktoEvCamera() {
 }
 #pragma pop
 
-/* 80090230-80090478 0248+00 s=0 e=1 z=0  None .text      maptoolIdEvCamera__9dCamera_cFv */
+/* 80090230-80090478 08AB70 0248+00 0/0 1/0 0/0 .text            maptoolIdEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1123,7 +932,7 @@ asm void dCamera_c::maptoolIdEvCamera() {
 }
 #pragma pop
 
-/* 80090478-80090514 009C+00 s=0 e=1 z=0  None .text      styleEvCamera__9dCamera_cFv */
+/* 80090478-80090514 08ADB8 009C+00 0/0 1/0 0/0 .text            styleEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1134,154 +943,154 @@ asm void dCamera_c::styleEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80452944-80452948 0004+00 s=4 e=0 z=0  None .sdata2    @8178 */
+/* 80452944-80452948 000F44 0004+00 4/4 0/0 0/0 .sdata2          @8178 */
 SECTION_SDATA2 static f32 lit_8178 = -45.0f;
 
-/* 80452948-8045294C 0004+00 s=2 e=0 z=0  None .sdata2    @8179 */
+/* 80452948-8045294C 000F48 0004+00 2/2 0/0 0/0 .sdata2          @8179 */
 SECTION_SDATA2 static f32 lit_8179 = 85.0f;
 
-/* 8045294C-80452950 0004+00 s=4 e=0 z=0  None .sdata2    @8180 */
+/* 8045294C-80452950 000F4C 0004+00 4/4 0/0 0/0 .sdata2          @8180 */
 SECTION_SDATA2 static f32 lit_8180 = -50.0f;
 
-/* 80452950-80452954 0004+00 s=4 e=0 z=0  None .sdata2    @8181 */
+/* 80452950-80452954 000F50 0004+00 4/4 0/0 0/0 .sdata2          @8181 */
 SECTION_SDATA2 static f32 lit_8181 = 165.0f;
 
-/* 80452954-80452958 0004+00 s=1 e=0 z=0  None .sdata2    @8182 */
+/* 80452954-80452958 000F54 0004+00 1/1 0/0 0/0 .sdata2          @8182 */
 SECTION_SDATA2 static f32 lit_8182 = 72.0f;
 
-/* 80452958-8045295C 0004+00 s=1 e=0 z=0  None .sdata2    @8183 */
+/* 80452958-8045295C 000F58 0004+00 1/1 0/0 0/0 .sdata2          @8183 */
 SECTION_SDATA2 static f32 lit_8183 = -64.0f;
 
-/* 8045295C-80452960 0004+00 s=6 e=0 z=0  None .sdata2    @8184 */
+/* 8045295C-80452960 000F5C 0004+00 6/6 0/0 0/0 .sdata2          @8184 */
 SECTION_SDATA2 static f32 lit_8184 = 60.0f;
 
-/* 80452960-80452964 0004+00 s=4 e=0 z=0  None .sdata2    @8185 */
+/* 80452960-80452964 000F60 0004+00 4/4 0/0 0/0 .sdata2          @8185 */
 SECTION_SDATA2 static f32 lit_8185 = -20.0f;
 
-/* 80452964-80452968 0004+00 s=4 e=0 z=0  None .sdata2    @8186 */
+/* 80452964-80452968 000F64 0004+00 4/4 0/0 0/0 .sdata2          @8186 */
 SECTION_SDATA2 static f32 lit_8186 = 45.0f;
 
-/* 80452968-8045296C 0004+00 s=6 e=0 z=0  None .sdata2    @8187 */
+/* 80452968-8045296C 000F68 0004+00 6/6 0/0 0/0 .sdata2          @8187 */
 SECTION_SDATA2 static f32 lit_8187 = 40.0f;
 
-/* 8045296C-80452970 0004+00 s=6 e=0 z=0  None .sdata2    @8188 */
+/* 8045296C-80452970 000F6C 0004+00 6/6 0/0 0/0 .sdata2          @8188 */
 SECTION_SDATA2 static f32 lit_8188 = -70.0f;
 
-/* 80452970-80452974 0004+00 s=3 e=0 z=0  None .sdata2    @8189 */
+/* 80452970-80452974 000F70 0004+00 3/3 0/0 0/0 .sdata2          @8189 */
 SECTION_SDATA2 static f32 lit_8189 = 110.0f;
 
-/* 80452974-80452978 0004+00 s=4 e=0 z=0  None .sdata2    @8190 */
+/* 80452974-80452978 000F74 0004+00 4/4 0/0 0/0 .sdata2          @8190 */
 SECTION_SDATA2 static f32 lit_8190 = -10.0f;
 
-/* 80452978-8045297C 0004+00 s=2 e=0 z=0  None .sdata2    @8191 */
+/* 80452978-8045297C 000F78 0004+00 2/2 0/0 0/0 .sdata2          @8191 */
 SECTION_SDATA2 static f32 lit_8191 = -120.0f;
 
-/* 8045297C-80452980 0004+00 s=3 e=0 z=0  None .sdata2    @8192 */
+/* 8045297C-80452980 000F7C 0004+00 3/3 0/0 0/0 .sdata2          @8192 */
 SECTION_SDATA2 static f32 lit_8192 = 130.0f;
 
-/* 80452980-80452984 0004+00 s=2 e=0 z=0  None .sdata2    @8193 */
+/* 80452980-80452984 000F80 0004+00 2/2 0/0 0/0 .sdata2          @8193 */
 SECTION_SDATA2 static f32 lit_8193 = 35.0f;
 
-/* 80452984-80452988 0004+00 s=5 e=0 z=0  None .sdata2    @8194 */
+/* 80452984-80452988 000F84 0004+00 5/5 0/0 0/0 .sdata2          @8194 */
 SECTION_SDATA2 static f32 lit_8194 = 160.0f;
 
-/* 80452988-8045298C 0004+00 s=3 e=0 z=0  None .sdata2    @8195 */
+/* 80452988-8045298C 000F88 0004+00 3/3 0/0 0/0 .sdata2          @8195 */
 SECTION_SDATA2 static f32 lit_8195 = 105.0f;
 
-/* 8045298C-80452990 0004+00 s=2 e=0 z=0  None .sdata2    @8196 */
+/* 8045298C-80452990 000F8C 0004+00 2/2 0/0 0/0 .sdata2          @8196 */
 SECTION_SDATA2 static f32 lit_8196 = -65.0f;
 
-/* 80452990-80452994 0004+00 s=1 e=0 z=0  None .sdata2    @8197 */
+/* 80452990-80452994 000F90 0004+00 1/1 0/0 0/0 .sdata2          @8197 */
 SECTION_SDATA2 static f32 lit_8197 = 200.0f;
 
-/* 80452994-80452998 0004+00 s=3 e=0 z=0  None .sdata2    @8198 */
+/* 80452994-80452998 000F94 0004+00 3/3 0/0 0/0 .sdata2          @8198 */
 SECTION_SDATA2 static f32 lit_8198 = 100.0f;
 
-/* 80452998-8045299C 0004+00 s=4 e=0 z=0  None .sdata2    @8199 */
+/* 80452998-8045299C 000F98 0004+00 4/4 0/0 0/0 .sdata2          @8199 */
 SECTION_SDATA2 static f32 lit_8199 = -60.0f;
 
-/* 8045299C-804529A0 0004+00 s=3 e=0 z=0  None .sdata2    @8200 */
+/* 8045299C-804529A0 000F9C 0004+00 3/3 0/0 0/0 .sdata2          @8200 */
 SECTION_SDATA2 static f32 lit_8200 = -80.0f;
 
-/* 804529A0-804529A4 0004+00 s=2 e=0 z=0  None .sdata2    @8201 */
+/* 804529A0-804529A4 000FA0 0004+00 2/2 0/0 0/0 .sdata2          @8201 */
 SECTION_SDATA2 static f32 lit_8201 = 25.0f;
 
-/* 804529A4-804529A8 0004+00 s=1 e=0 z=0  None .sdata2    @8202 */
+/* 804529A4-804529A8 000FA4 0004+00 1/1 0/0 0/0 .sdata2          @8202 */
 SECTION_SDATA2 static f32 lit_8202 = 12.0f;
 
-/* 804529A8-804529AC 0004+00 s=1 e=0 z=0  None .sdata2    @8203 */
+/* 804529A8-804529AC 000FA8 0004+00 1/1 0/0 0/0 .sdata2          @8203 */
 SECTION_SDATA2 static f32 lit_8203 = -140.0f;
 
-/* 804529AC-804529B0 0004+00 s=2 e=0 z=0  None .sdata2    @8204 */
+/* 804529AC-804529B0 000FAC 0004+00 2/2 0/0 0/0 .sdata2          @8204 */
 SECTION_SDATA2 static f32 lit_8204 = 190.0f;
 
-/* 804529B0-804529B4 0004+00 s=2 e=0 z=0  None .sdata2    @8205 */
+/* 804529B0-804529B4 000FB0 0004+00 2/2 0/0 0/0 .sdata2          @8205 */
 SECTION_SDATA2 static f32 lit_8205 = -150.0f;
 
-/* 804529B4-804529B8 0004+00 s=5 e=0 z=0  None .sdata2    @8206 */
+/* 804529B4-804529B8 000FB4 0004+00 5/5 0/0 0/0 .sdata2          @8206 */
 SECTION_SDATA2 static f32 lit_8206 = 20.0f;
 
-/* 804529B8-804529BC 0004+00 s=2 e=0 z=0  None .sdata2    @8207 */
+/* 804529B8-804529BC 000FB8 0004+00 2/2 0/0 0/0 .sdata2          @8207 */
 SECTION_SDATA2 static f32 lit_8207 = -75.0f;
 
-/* 804529BC-804529C0 0004+00 s=3 e=0 z=0  None .sdata2    @8208 */
+/* 804529BC-804529C0 000FBC 0004+00 3/3 0/0 0/0 .sdata2          @8208 */
 SECTION_SDATA2 static f32 lit_8208 = 115.0f;
 
-/* 804529C0-804529C4 0004+00 s=3 e=0 z=0  None .sdata2    @8209 */
+/* 804529C0-804529C4 000FC0 0004+00 3/3 0/0 0/0 .sdata2          @8209 */
 SECTION_SDATA2 static f32 lit_8209 = -40.0f;
 
-/* 804529C4-804529C8 0004+00 s=1 e=0 z=0  None .sdata2    @8210 */
+/* 804529C4-804529C8 000FC4 0004+00 1/1 0/0 0/0 .sdata2          @8210 */
 SECTION_SDATA2 static f32 lit_8210 = 135.0f;
 
-/* 804529C8-804529CC 0004+00 s=3 e=0 z=0  None .sdata2    @8211 */
+/* 804529C8-804529CC 000FC8 0004+00 3/3 0/0 0/0 .sdata2          @8211 */
 SECTION_SDATA2 static f32 lit_8211 = 140.0f;
 
-/* 804529CC-804529D0 0004+00 s=3 e=0 z=0  None .sdata2    @8212 */
+/* 804529CC-804529D0 000FCC 0004+00 3/3 0/0 0/0 .sdata2          @8212 */
 SECTION_SDATA2 static f32 lit_8212 = -100.0f;
 
-/* 804529D0-804529D4 0004+00 s=1 e=0 z=0  None .sdata2    @8213 */
+/* 804529D0-804529D4 000FD0 0004+00 1/1 0/0 0/0 .sdata2          @8213 */
 SECTION_SDATA2 static f32 lit_8213 = 112.0f;
 
-/* 804529D4-804529D8 0004+00 s=3 e=0 z=0  None .sdata2    @8214 */
+/* 804529D4-804529D8 000FD4 0004+00 3/3 0/0 0/0 .sdata2          @8214 */
 SECTION_SDATA2 static f32 lit_8214 = 150.0f;
 
-/* 804529D8-804529DC 0004+00 s=3 e=0 z=0  None .sdata2    @8215 */
+/* 804529D8-804529DC 000FD8 0004+00 3/3 0/0 0/0 .sdata2          @8215 */
 SECTION_SDATA2 static f32 lit_8215 = 65.0f;
 
-/* 804529DC-804529E0 0004+00 s=2 e=0 z=0  None .sdata2    @8216 */
+/* 804529DC-804529E0 000FDC 0004+00 2/2 0/0 0/0 .sdata2          @8216 */
 SECTION_SDATA2 static f32 lit_8216 = 180.0f;
 
-/* 804529E0-804529E4 0004+00 s=2 e=0 z=0  None .sdata2    @8217 */
+/* 804529E0-804529E4 000FE0 0004+00 2/2 0/0 0/0 .sdata2          @8217 */
 SECTION_SDATA2 static f32 lit_8217 = -200.0f;
 
-/* 804529E4-804529E8 0004+00 s=7 e=0 z=0  None .sdata2    @8218 */
+/* 804529E4-804529E8 000FE4 0004+00 7/7 0/0 0/0 .sdata2          @8218 */
 SECTION_SDATA2 static f32 lit_8218 = 50.0f;
 
-/* 804529E8-804529EC 0004+00 s=1 e=0 z=0  None .sdata2    @8219 */
+/* 804529E8-804529EC 000FE8 0004+00 1/1 0/0 0/0 .sdata2          @8219 */
 SECTION_SDATA2 static f32 lit_8219 = 230.0f;
 
-/* 804529EC-804529F0 0004+00 s=1 e=0 z=0  None .sdata2    @8220 */
+/* 804529EC-804529F0 000FEC 0004+00 1/1 0/0 0/0 .sdata2          @8220 */
 SECTION_SDATA2 static f32 lit_8220 = 9.0f / 10.0f;
 
-/* 804529F0-804529F4 0004+00 s=2 e=0 z=0  None .sdata2    @8221 */
+/* 804529F0-804529F4 000FF0 0004+00 2/2 0/0 0/0 .sdata2          @8221 */
 SECTION_SDATA2 static f32 lit_8221 = 75.0f;
 
-/* 804529F4-804529F8 0004+00 s=1 e=0 z=0  None .sdata2    @8222 */
+/* 804529F4-804529F8 000FF4 0004+00 1/1 0/0 0/0 .sdata2          @8222 */
 SECTION_SDATA2 static f32 lit_8222 = 0.004999999888241291f;
 
-/* 804529F8-804529FC 0004+00 s=4 e=0 z=0  None .sdata2    @8223 */
+/* 804529F8-804529FC 000FF8 0004+00 4/4 0/0 0/0 .sdata2          @8223 */
 SECTION_SDATA2 static f32 lit_8223 = 55.0f;
 
-/* 804529FC-80452A00 0004+00 s=1 e=0 z=0  None .sdata2    @8224 */
+/* 804529FC-80452A00 000FFC 0004+00 1/1 0/0 0/0 .sdata2          @8224 */
 SECTION_SDATA2 static f32 lit_8224 = 1.0f / 50.0f;
 
-/* 80452A00-80452A04 0004+00 s=3 e=0 z=0  None .sdata2    @8225 */
+/* 80452A00-80452A04 001000 0004+00 3/3 0/0 0/0 .sdata2          @8225 */
 SECTION_SDATA2 static f32 lit_8225 = 350.0f;
 
-/* 80452A04-80452A08 0004+00 s=2 e=0 z=0  None .sdata2    @8226 */
+/* 80452A04-80452A08 001004 0004+00 2/2 0/0 0/0 .sdata2          @8226 */
 SECTION_SDATA2 static f32 lit_8226 = 49.0f / 50.0f;
 
-/* 80090514-80091468 0F54+00 s=0 e=1 z=0  None .text      gameOverEvCamera__9dCamera_cFv */
+/* 80090514-80091468 08AE54 0F54+00 0/0 1/0 0/0 .text            gameOverEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1292,7 +1101,54 @@ asm void dCamera_c::gameOverEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803AC528-803AC5A0 0078+00 s=1 e=0 z=0  None .data      @8754 */
+/* 8037A80C-8037A828 006E6C 001C+00 0/0 0/0 0/0 .rodata          @5985 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_5985[28] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3E, 0xCC, 0xCC, 0xCD, 0x3F, 0x33,
+    0x33, 0x33, 0x3F, 0x66, 0x66, 0x66, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(8037A80C, &lit_5985);
+#pragma pop
+
+/* 8037A828-8037A844 006E88 001C+00 0/0 0/0 0/0 .rodata          @5986 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_5986[28] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3D, 0xCC, 0xCC, 0xCD, 0x3E, 0x99,
+    0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(8037A828, &lit_5986);
+#pragma pop
+
+/* 8037A844-8037A858 006EA4 0014+00 0/0 0/0 0/0 .rodata          @5987 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_5987[20] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(8037A844, &lit_5987);
+#pragma pop
+
+/* 8037A858-8037A86C 006EB8 0014+00 0/0 0/0 0/0 .rodata          @5988 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_5988[20] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00,
+    0x00, 0x07, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(8037A858, &lit_5988);
+#pragma pop
+
+/* 8037A86C-8037A884 006ECC 0018+00 1/1 0/0 0/0 .rodata          @8236 */
+SECTION_RODATA static u8 const lit_8236[24] = {
+    0x3F, 0x40, 0x00, 0x00, 0x3E, 0xB3, 0x33, 0x33, 0x3F, 0x4C, 0xCC, 0xCD,
+    0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x4C, 0xCC, 0xCD,
+};
+COMPILER_STRIP_GATE(8037A86C, &lit_8236);
+
+/* 803AC528-803AC5A0 -00001 0078+00 1/1 0/0 0/0 .data            @8754 */
 SECTION_DATA static void* lit_8754[30] = {
     (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
     (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xC68),
@@ -1326,103 +1182,103 @@ SECTION_DATA static void* lit_8754[30] = {
     (void*)(((char*)tactEvCamera__9dCamera_cFv) + 0xE68),
 };
 
-/* 80452A08-80452A0C 0004+00 s=1 e=0 z=0  None .sdata2    @8722 */
+/* 80452A08-80452A0C 001008 0004+00 1/1 0/0 0/0 .sdata2          @8722 */
 SECTION_SDATA2 static f32 lit_8722 = 215.0f;
 
-/* 80452A0C-80452A10 0004+00 s=1 e=0 z=0  None .sdata2    @8723 */
+/* 80452A0C-80452A10 00100C 0004+00 1/1 0/0 0/0 .sdata2          @8723 */
 SECTION_SDATA2 static f32 lit_8723 = -26.0f;
 
-/* 80452A10-80452A14 0004+00 s=2 e=0 z=0  None .sdata2    @8724 */
+/* 80452A10-80452A14 001010 0004+00 2/2 0/0 0/0 .sdata2          @8724 */
 SECTION_SDATA2 static f32 lit_8724 = 80.0f;
 
-/* 80452A14-80452A18 0004+00 s=1 e=0 z=0  None .sdata2    @8725 */
+/* 80452A14-80452A18 001014 0004+00 1/1 0/0 0/0 .sdata2          @8725 */
 SECTION_SDATA2 static f32 lit_8725 = -4.0f;
 
-/* 80452A18-80452A1C 0004+00 s=1 e=0 z=0  None .sdata2    @8726 */
+/* 80452A18-80452A1C 001018 0004+00 1/1 0/0 0/0 .sdata2          @8726 */
 SECTION_SDATA2 static f32 lit_8726 = 28.0f;
 
-/* 80452A1C-80452A20 0004+00 s=1 e=0 z=0  None .sdata2    @8727 */
+/* 80452A1C-80452A20 00101C 0004+00 1/1 0/0 0/0 .sdata2          @8727 */
 SECTION_SDATA2 static f32 lit_8727 = 220.0f;
 
-/* 80452A20-80452A24 0004+00 s=2 e=0 z=0  None .sdata2    @8728 */
+/* 80452A20-80452A24 001020 0004+00 2/2 0/0 0/0 .sdata2          @8728 */
 SECTION_SDATA2 static f32 lit_8728 = -15.0f;
 
-/* 80452A24-80452A28 0004+00 s=2 e=0 z=0  None .sdata2    @8729 */
+/* 80452A24-80452A28 001024 0004+00 2/2 0/0 0/0 .sdata2          @8729 */
 SECTION_SDATA2 static f32 lit_8729 = 240.0f;
 
-/* 80452A28-80452A2C 0004+00 s=1 e=0 z=0  None .sdata2    @8730 */
+/* 80452A28-80452A2C 001028 0004+00 1/1 0/0 0/0 .sdata2          @8730 */
 SECTION_SDATA2 static f32 lit_8730 = 380.0f;
 
-/* 80452A2C-80452A30 0004+00 s=1 e=0 z=0  None .sdata2    @8731 */
+/* 80452A2C-80452A30 00102C 0004+00 1/1 0/0 0/0 .sdata2          @8731 */
 SECTION_SDATA2 static f32 lit_8731 = 450.0f;
 
-/* 80452A30-80452A34 0004+00 s=1 e=0 z=0  None .sdata2    @8732 */
+/* 80452A30-80452A34 001030 0004+00 1/1 0/0 0/0 .sdata2          @8732 */
 SECTION_SDATA2 static f32 lit_8732 = -235.0f;
 
-/* 80452A34-80452A38 0004+00 s=1 e=0 z=0  None .sdata2    @8733 */
+/* 80452A34-80452A38 001034 0004+00 1/1 0/0 0/0 .sdata2          @8733 */
 SECTION_SDATA2 static f32 lit_8733 = -142.0f;
 
-/* 80452A38-80452A3C 0004+00 s=1 e=0 z=0  None .sdata2    @8734 */
+/* 80452A38-80452A3C 001038 0004+00 1/1 0/0 0/0 .sdata2          @8734 */
 SECTION_SDATA2 static f32 lit_8734 = 470.0f;
 
-/* 80452A3C-80452A40 0004+00 s=3 e=0 z=0  None .sdata2    @8735 */
+/* 80452A3C-80452A40 00103C 0004+00 3/3 0/0 0/0 .sdata2          @8735 */
 SECTION_SDATA2 static f32 lit_8735 = -260.0f;
 
-/* 80452A40-80452A44 0004+00 s=1 e=0 z=0  None .sdata2    @8736 */
+/* 80452A40-80452A44 001040 0004+00 1/1 0/0 0/0 .sdata2          @8736 */
 SECTION_SDATA2 static f32 lit_8736 = -66.0f;
 
-/* 80452A44-80452A48 0004+00 s=1 e=0 z=0  None .sdata2    @8737 */
+/* 80452A44-80452A48 001044 0004+00 1/1 0/0 0/0 .sdata2          @8737 */
 SECTION_SDATA2 static f32 lit_8737 = 390.0f;
 
-/* 80452A48-80452A4C 0004+00 s=1 e=0 z=0  None .sdata2    @8738 */
+/* 80452A48-80452A4C 001048 0004+00 1/1 0/0 0/0 .sdata2          @8738 */
 SECTION_SDATA2 static f32 lit_8738 = 56.0f;
 
-/* 80452A4C-80452A50 0004+00 s=1 e=0 z=0  None .sdata2    @8739 */
+/* 80452A4C-80452A50 00104C 0004+00 1/1 0/0 0/0 .sdata2          @8739 */
 SECTION_SDATA2 static f32 lit_8739 = -16.0f;
 
-/* 80452A50-80452A54 0004+00 s=1 e=0 z=0  None .sdata2    @8740 */
+/* 80452A50-80452A54 001050 0004+00 1/1 0/0 0/0 .sdata2          @8740 */
 SECTION_SDATA2 static f32 lit_8740 = 14.0f;
 
-/* 80452A54-80452A58 0004+00 s=2 e=0 z=0  None .sdata2    @8741 */
+/* 80452A54-80452A58 001054 0004+00 2/2 0/0 0/0 .sdata2          @8741 */
 SECTION_SDATA2 static f32 lit_8741 = -18.0f;
 
-/* 80452A58-80452A5C 0004+00 s=3 e=0 z=0  None .sdata2    @8742 */
+/* 80452A58-80452A5C 001058 0004+00 3/3 0/0 0/0 .sdata2          @8742 */
 SECTION_SDATA2 static f32 lit_8742 = -12.0f;
 
-/* 80452A5C-80452A60 0004+00 s=1 e=0 z=0  None .sdata2    @8743 */
+/* 80452A5C-80452A60 00105C 0004+00 1/1 0/0 0/0 .sdata2          @8743 */
 SECTION_SDATA2 static f32 lit_8743 = -128.0f;
 
-/* 80452A60-80452A64 0004+00 s=2 e=0 z=0  None .sdata2    @8744 */
+/* 80452A60-80452A64 001060 0004+00 2/2 0/0 0/0 .sdata2          @8744 */
 SECTION_SDATA2 static f32 lit_8744 = -28.0f;
 
-/* 80452A64-80452A68 0004+00 s=1 e=0 z=0  None .sdata2    @8745 */
+/* 80452A64-80452A68 001064 0004+00 1/1 0/0 0/0 .sdata2          @8745 */
 SECTION_SDATA2 static f32 lit_8745 = 172.0f;
 
-/* 80452A68-80452A6C 0004+00 s=1 e=0 z=0  None .sdata2    @8746 */
+/* 80452A68-80452A6C 001068 0004+00 1/1 0/0 0/0 .sdata2          @8746 */
 SECTION_SDATA2 static f32 lit_8746 = 58.0f;
 
-/* 80452A6C-80452A70 0004+00 s=2 e=0 z=0  None .sdata2    @8747 */
+/* 80452A6C-80452A70 00106C 0004+00 2/2 0/0 0/0 .sdata2          @8747 */
 SECTION_SDATA2 static f32 lit_8747 = -25.0f;
 
-/* 80452A70-80452A74 0004+00 s=1 e=0 z=0  None .sdata2    @8748 */
+/* 80452A70-80452A74 001070 0004+00 1/1 0/0 0/0 .sdata2          @8748 */
 SECTION_SDATA2 static f32 lit_8748 = -56.0f;
 
-/* 80452A74-80452A78 0004+00 s=1 e=0 z=0  None .sdata2    @8749 */
+/* 80452A74-80452A78 001074 0004+00 1/1 0/0 0/0 .sdata2          @8749 */
 SECTION_SDATA2 static f32 lit_8749 = -54.0f;
 
-/* 80452A78-80452A7C 0004+00 s=2 e=0 z=0  None .sdata2    @8750 */
+/* 80452A78-80452A7C 001078 0004+00 2/2 0/0 0/0 .sdata2          @8750 */
 SECTION_SDATA2 static f32 lit_8750 = 108.0f;
 
-/* 80452A7C-80452A80 0004+00 s=1 e=0 z=0  None .sdata2    @8751 */
+/* 80452A7C-80452A80 00107C 0004+00 1/1 0/0 0/0 .sdata2          @8751 */
 SECTION_SDATA2 static f32 lit_8751 = -78.0f;
 
-/* 80452A80-80452A84 0004+00 s=3 e=0 z=0  None .sdata2    @8752 */
+/* 80452A80-80452A84 001080 0004+00 3/3 0/0 0/0 .sdata2          @8752 */
 SECTION_SDATA2 static f32 lit_8752 = -30.0f;
 
-/* 80452A84-80452A88 0004+00 s=1 e=0 z=0  None .sdata2    @8753 */
+/* 80452A84-80452A88 001084 0004+00 1/1 0/0 0/0 .sdata2          @8753 */
 SECTION_SDATA2 static f32 lit_8753 = -160.0f;
 
-/* 80091468-8009236C 0F04+00 s=1 e=1 z=0  None .text      tactEvCamera__9dCamera_cFv */
+/* 80091468-8009236C 08BDA8 0F04+00 1/0 1/0 0/0 .text            tactEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1432,24 +1288,25 @@ asm void dCamera_c::tactEvCamera() {
 }
 #pragma pop
 
-/* 8009236C-800923B8 004C+00 s=1 e=0 z=0  None .text dComIfGp_saveCameraPosition__FiP4cXyzP4cXyzfs
- */
+/* 8009236C-800923B8 08CCAC 004C+00 1/1 0/0 0/0 .text
+ * dComIfGp_saveCameraPosition__FiP4cXyzP4cXyzfs                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dComIfGp_saveCameraPosition(int param_0, cXyz* param_1, cXyz* param_2, f32 param_3,
+static asm void dComIfGp_saveCameraPosition(int param_0, cXyz* param_1, cXyz* param_2, f32 param_3,
                                             s16 param_4) {
     nofralloc
 #include "asm/d/d_ev_camera/dComIfGp_saveCameraPosition__FiP4cXyzP4cXyzfs.s"
 }
 #pragma pop
 
-/* 800923B8-800923C0 0008+00 s=0 e=1 z=0  None .text      turnToActorEvCamera__9dCamera_cFv */
+/* 800923B8-800923C0 08CCF8 0008+00 0/0 1/0 0/0 .text            turnToActorEvCamera__9dCamera_cFv
+ */
 bool dCamera_c::turnToActorEvCamera() {
     return true;
 }
 
-/* 800923C0-800924D0 0110+00 s=0 e=1 z=0  None .text      stbWaitEvCamera__9dCamera_cFv */
+/* 800923C0-800924D0 08CD00 0110+00 0/0 1/0 0/0 .text            stbWaitEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1459,7 +1316,7 @@ asm void dCamera_c::stbWaitEvCamera() {
 }
 #pragma pop
 
-/* 800924D0-8009258C 00BC+00 s=0 e=1 z=0  None .text      saveEvCamera__9dCamera_cFv */
+/* 800924D0-8009258C 08CE10 00BC+00 0/0 1/0 0/0 .text            saveEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1469,7 +1326,15 @@ asm void dCamera_c::saveEvCamera() {
 }
 #pragma pop
 
-/* 8009258C-800929AC 0420+00 s=0 e=1 z=0  None .text      loadEvCamera__9dCamera_cFv */
+/* ############################################################################################## */
+/* 8037A884-8037A89C 006EE4 0018+00 1/1 0/0 0/0 .rodata          @8840 */
+SECTION_RODATA static u8 const lit_8840[24] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
+    0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(8037A884, &lit_8840);
+
+/* 8009258C-800929AC 08CECC 0420+00 0/0 1/0 0/0 .text            loadEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1480,148 +1345,176 @@ asm void dCamera_c::loadEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80452A88-80452A8C 0004+00 s=1 e=0 z=0  None .sdata2    @9395 */
+/* 8037A89C-8037AA08 006EFC 016C+00 1/1 0/0 0/0 .rodata          @8969 */
+SECTION_RODATA static u8 const lit_8969[364] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x82, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x1E, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x82, 0x00, 0x00, 0x00, 0x00, 0x00, 0x28,
+    0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x42, 0x82, 0x00, 0x00, 0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x42, 0x82, 0x00, 0x00, 0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x82, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x49, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x8C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x2D,
+    0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x42, 0x70, 0x00, 0x00, 0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x00, 0x00,
+    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x42, 0x70, 0x00, 0x00, 0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x50, 0x00, 0x00, 0x00, 0x0A, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x82, 0x00, 0x00, 0x00, 0x00, 0x00, 0x28,
+    0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x42, 0x70, 0x00, 0x00, 0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x00, 0x00,
+    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x42, 0x70, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x3C, 0xFF, 0xFF, 0xFF, 0xFF,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x82, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF,
+};
+COMPILER_STRIP_GATE(8037A89C, &lit_8969);
+
+/* 80452A88-80452A8C 001088 0004+00 1/1 0/0 0/0 .sdata2          @9395 */
 SECTION_SDATA2 static f32 lit_9395 = 64.0f;
 
-/* 80452A8C-80452A90 0004+00 s=1 e=0 z=0  None .sdata2    @9396 */
+/* 80452A8C-80452A90 00108C 0004+00 1/1 0/0 0/0 .sdata2          @9396 */
 SECTION_SDATA2 static f32 lit_9396 = 118.0f;
 
-/* 80452A90-80452A94 0004+00 s=1 e=0 z=0  None .sdata2    @9397 */
+/* 80452A90-80452A94 001090 0004+00 1/1 0/0 0/0 .sdata2          @9397 */
 SECTION_SDATA2 static f32 lit_9397 = -32.0f;
 
-/* 80452A94-80452A98 0004+00 s=1 e=0 z=0  None .sdata2    @9398 */
+/* 80452A94-80452A98 001094 0004+00 1/1 0/0 0/0 .sdata2          @9398 */
 SECTION_SDATA2 static f32 lit_9398 = -52.0f;
 
-/* 80452A98-80452A9C 0004+00 s=1 e=0 z=0  None .sdata2    @9399 */
+/* 80452A98-80452A9C 001098 0004+00 1/1 0/0 0/0 .sdata2          @9399 */
 SECTION_SDATA2 static f32 lit_9399 = 34.0f;
 
-/* 80452A9C-80452AA0 0004+00 s=1 e=0 z=0  None .sdata2    @9400 */
+/* 80452A9C-80452AA0 00109C 0004+00 1/1 0/0 0/0 .sdata2          @9400 */
 SECTION_SDATA2 static f32 lit_9400 = 116.0f;
 
-/* 80452AA0-80452AA4 0004+00 s=1 e=0 z=0  None .sdata2    @9401 */
+/* 80452AA0-80452AA4 0010A0 0004+00 1/1 0/0 0/0 .sdata2          @9401 */
 SECTION_SDATA2 static f32 lit_9401 = 88.0f;
 
-/* 80452AA4-80452AA8 0004+00 s=1 e=0 z=0  None .sdata2    @9402 */
+/* 80452AA4-80452AA8 0010A4 0004+00 1/1 0/0 0/0 .sdata2          @9402 */
 SECTION_SDATA2 static f32 lit_9402 = -33.0f;
 
-/* 80452AA8-80452AAC 0004+00 s=1 e=0 z=0  None .sdata2    @9403 */
+/* 80452AA8-80452AAC 0010A8 0004+00 1/1 0/0 0/0 .sdata2          @9403 */
 SECTION_SDATA2 static f32 lit_9403 = -55.0f;
 
-/* 80452AAC-80452AB0 0004+00 s=1 e=0 z=0  None .sdata2    @9404 */
+/* 80452AAC-80452AB0 0010AC 0004+00 1/1 0/0 0/0 .sdata2          @9404 */
 SECTION_SDATA2 static f32 lit_9404 = 16.0f;
 
-/* 80452AB0-80452AB4 0004+00 s=1 e=0 z=0  None .sdata2    @9405 */
+/* 80452AB0-80452AB4 0010B0 0004+00 1/1 0/0 0/0 .sdata2          @9405 */
 SECTION_SDATA2 static f32 lit_9405 = 52.0f;
 
-/* 80452AB4-80452AB8 0004+00 s=3 e=0 z=0  None .sdata2    @9406 */
+/* 80452AB4-80452AB8 0010B4 0004+00 3/3 0/0 0/0 .sdata2          @9406 */
 SECTION_SDATA2 static f32 lit_9406 = -85.0f;
 
-/* 80452AB8-80452ABC 0004+00 s=1 e=0 z=0  None .sdata2    @9407 */
+/* 80452AB8-80452ABC 0010B8 0004+00 1/1 0/0 0/0 .sdata2          @9407 */
 SECTION_SDATA2 static f32 lit_9407 = -95.0f;
 
-/* 80452ABC-80452AC0 0004+00 s=1 e=0 z=0  None .sdata2    @9408 */
+/* 80452ABC-80452AC0 0010BC 0004+00 1/1 0/0 0/0 .sdata2          @9408 */
 SECTION_SDATA2 static f32 lit_9408 = 92.0f;
 
-/* 80452AC0-80452AC4 0004+00 s=1 e=0 z=0  None .sdata2    @9409 */
+/* 80452AC0-80452AC4 0010C0 0004+00 1/1 0/0 0/0 .sdata2          @9409 */
 SECTION_SDATA2 static f32 lit_9409 = 155.0f;
 
-/* 80452AC4-80452AC8 0004+00 s=2 e=0 z=0  None .sdata2    @9410 */
+/* 80452AC4-80452AC8 0010C4 0004+00 2/2 0/0 0/0 .sdata2          @9410 */
 SECTION_SDATA2 static f32 lit_9410 = -27.0f;
 
-/* 80452AC8-80452ACC 0004+00 s=1 e=0 z=0  None .sdata2    @9411 */
+/* 80452AC8-80452ACC 0010C8 0004+00 1/1 0/0 0/0 .sdata2          @9411 */
 SECTION_SDATA2 static f32 lit_9411 = -90.0f;
 
-/* 80452ACC-80452AD0 0004+00 s=1 e=0 z=0  None .sdata2    @9412 */
+/* 80452ACC-80452AD0 0010CC 0004+00 1/1 0/0 0/0 .sdata2          @9412 */
 SECTION_SDATA2 static f32 lit_9412 = -68.0f;
 
-/* 80452AD0-80452AD4 0004+00 s=1 e=0 z=0  None .sdata2    @9413 */
+/* 80452AD0-80452AD4 0010D0 0004+00 1/1 0/0 0/0 .sdata2          @9413 */
 SECTION_SDATA2 static f32 lit_9413 = 114.0f;
 
-/* 80452AD4-80452AD8 0004+00 s=1 e=0 z=0  None .sdata2    @9414 */
+/* 80452AD4-80452AD8 0010D4 0004+00 1/1 0/0 0/0 .sdata2          @9414 */
 SECTION_SDATA2 static f32 lit_9414 = -110.0f;
 
-/* 80452AD8-80452ADC 0004+00 s=1 e=0 z=0  None .sdata2    @9415 */
+/* 80452AD8-80452ADC 0010D8 0004+00 1/1 0/0 0/0 .sdata2          @9415 */
 SECTION_SDATA2 static f32 lit_9415 = 30.240999221801758f;
 
-/* 80452ADC-80452AE0 0004+00 s=1 e=0 z=0  None .sdata2    @9416 */
+/* 80452ADC-80452AE0 0010DC 0004+00 1/1 0/0 0/0 .sdata2          @9416 */
 SECTION_SDATA2 static f32 lit_9416 = 12.652999877929688f;
 
-/* 80452AE0-80452AE4 0004+00 s=1 e=0 z=0  None .sdata2    @9417 */
+/* 80452AE0-80452AE4 0010E0 0004+00 1/1 0/0 0/0 .sdata2          @9417 */
 SECTION_SDATA2 static f32 lit_9417 = 13.949999809265137f;
 
-/* 80452AE4-80452AE8 0004+00 s=1 e=0 z=0  None .sdata2    @9418 */
+/* 80452AE4-80452AE8 0010E4 0004+00 1/1 0/0 0/0 .sdata2          @9418 */
 SECTION_SDATA2 static f32 lit_9418 = 23.638999938964844f;
 
-/* 80452AE8-80452AEC 0004+00 s=1 e=0 z=0  None .sdata2    @9419 */
+/* 80452AE8-80452AEC 0010E8 0004+00 1/1 0/0 0/0 .sdata2          @9419 */
 SECTION_SDATA2 static f32 lit_9419 = 96.63600158691406f;
 
-/* 80452AEC-80452AF0 0004+00 s=1 e=0 z=0  None .sdata2    @9420 */
+/* 80452AEC-80452AF0 0010EC 0004+00 1/1 0/0 0/0 .sdata2          @9420 */
 SECTION_SDATA2 static f32 lit_9420 = 57.31800079345703f;
 
-/* 80452AF0-80452AF4 0004+00 s=1 e=0 z=0  None .sdata2    @9421 */
+/* 80452AF0-80452AF4 0010F0 0004+00 1/1 0/0 0/0 .sdata2          @9421 */
 SECTION_SDATA2 static f32 lit_9421 = -2.8489999771118164f;
 
-/* 80452AF4-80452AF8 0004+00 s=1 e=0 z=0  None .sdata2    @9422 */
+/* 80452AF4-80452AF8 0010F4 0004+00 1/1 0/0 0/0 .sdata2          @9422 */
 SECTION_SDATA2 static f32 lit_9422 = 96.63899993896484f;
 
-/* 80452AF8-80452AFC 0004+00 s=1 e=0 z=0  None .sdata2    @9423 */
+/* 80452AF8-80452AFC 0010F8 0004+00 1/1 0/0 0/0 .sdata2          @9423 */
 SECTION_SDATA2 static f32 lit_9423 = 42.75299835205078f;
 
-/* 80452AFC-80452B00 0004+00 s=2 e=0 z=0  None .sdata2    @9424 */
+/* 80452AFC-80452B00 0010FC 0004+00 2/2 0/0 0/0 .sdata2          @9424 */
 SECTION_SDATA2 static f32 lit_9424 = -130.0f;
 
-/* 80452B00-80452B04 0004+00 s=1 e=0 z=0  None .sdata2    @9425 */
+/* 80452B00-80452B04 001100 0004+00 1/1 0/0 0/0 .sdata2          @9425 */
 SECTION_SDATA2 static f32 lit_9425 = -420.0f;
 
-/* 80452B04-80452B08 0004+00 s=1 e=0 z=0  None .sdata2    @9426 */
+/* 80452B04-80452B08 001104 0004+00 1/1 0/0 0/0 .sdata2          @9426 */
 SECTION_SDATA2 static f32 lit_9426 = -400.0f;
 
-/* 80452B08-80452B0C 0004+00 s=1 e=0 z=0  None .sdata2    @9427 */
+/* 80452B08-80452B0C 001108 0004+00 1/1 0/0 0/0 .sdata2          @9427 */
 SECTION_SDATA2 static f32 lit_9427 = 95.0f;
 
-/* 80452B0C-80452B10 0004+00 s=1 e=0 z=0  None .sdata2    @9428 */
+/* 80452B0C-80452B10 00110C 0004+00 1/1 0/0 0/0 .sdata2          @9428 */
 SECTION_SDATA2 static f32 lit_9428 = -245.0f;
 
-/* 80452B10-80452B14 0004+00 s=1 e=0 z=0  None .sdata2    @9429 */
+/* 80452B10-80452B14 001110 0004+00 1/1 0/0 0/0 .sdata2          @9429 */
 SECTION_SDATA2 static f32 lit_9429 = -58.0f;
 
-/* 80452B14-80452B18 0004+00 s=1 e=0 z=0  None .sdata2    @9430 */
+/* 80452B14-80452B18 001114 0004+00 1/1 0/0 0/0 .sdata2          @9430 */
 SECTION_SDATA2 static f32 lit_9430 = -250.0f;
 
-/* 80452B18-80452B1C 0004+00 s=1 e=0 z=0  None .sdata2    @9431 */
+/* 80452B18-80452B1C 001118 0004+00 1/1 0/0 0/0 .sdata2          @9431 */
 SECTION_SDATA2 static f32 lit_9431 = -105.0f;
 
-/* 80452B1C-80452B20 0004+00 s=1 e=0 z=0  None .sdata2    @9432 */
+/* 80452B1C-80452B20 00111C 0004+00 1/1 0/0 0/0 .sdata2          @9432 */
 SECTION_SDATA2 static f32 lit_9432 = 1.5f;
 
-/* 80452B20-80452B24 0004+00 s=1 e=0 z=0  None .sdata2    @9433 */
+/* 80452B20-80452B24 001120 0004+00 1/1 0/0 0/0 .sdata2          @9433 */
 SECTION_SDATA2 static f32 lit_9433 = 47.0f;
 
-/* 80452B24-80452B28 0004+00 s=1 e=0 z=0  None .sdata2    @9434 */
+/* 80452B24-80452B28 001124 0004+00 1/1 0/0 0/0 .sdata2          @9434 */
 SECTION_SDATA2 static f32 lit_9434 = 113.0f;
 
-/* 80452B28-80452B2C 0004+00 s=1 e=0 z=0  None .sdata2    @9435 */
+/* 80452B28-80452B2C 001128 0004+00 1/1 0/0 0/0 .sdata2          @9435 */
 SECTION_SDATA2 static f32 lit_9435 = 96.0f;
 
-/* 80452B2C-80452B30 0004+00 s=1 e=0 z=0  None .sdata2    @9436 */
+/* 80452B2C-80452B30 00112C 0004+00 1/1 0/0 0/0 .sdata2          @9436 */
 SECTION_SDATA2 static f32 lit_9436 = 38.0f;
 
-/* 80452B30-80452B34 0004+00 s=1 e=0 z=0  None .sdata2    @9437 */
+/* 80452B30-80452B34 001130 0004+00 1/1 0/0 0/0 .sdata2          @9437 */
 SECTION_SDATA2 static f32 lit_9437 = 82.0f;
 
-/* 80452B34-80452B38 0004+00 s=1 e=0 z=0  None .sdata2    @9438 */
+/* 80452B34-80452B38 001134 0004+00 1/1 0/0 0/0 .sdata2          @9438 */
 SECTION_SDATA2 static f32 lit_9438 = 340.0f;
 
-/* 80452B38-80452B3C 0004+00 s=1 e=0 z=0  None .sdata2    @9439 */
+/* 80452B38-80452B3C 001138 0004+00 1/1 0/0 0/0 .sdata2          @9439 */
 SECTION_SDATA2 static f32 lit_9439 = -115.0f;
 
-/* 80452B3C-80452B40 0004+00 s=1 e=0 z=0  None .sdata2    @9440 */
+/* 80452B3C-80452B40 00113C 0004+00 1/1 0/0 0/0 .sdata2          @9440 */
 SECTION_SDATA2 static f32 lit_9440 = 270.0f;
 
-/* 80452B40-80452B44 0004+00 s=2 e=0 z=0  None .sdata2    @9441 */
+/* 80452B40-80452B44 001140 0004+00 2/2 0/0 0/0 .sdata2          @9441 */
 SECTION_SDATA2 static f32 lit_9441 = 300.0f;
 
-/* 800929AC-800937AC 0E00+00 s=0 e=1 z=0  None .text      useItem0EvCamera__9dCamera_cFv */
+/* 800929AC-800937AC 08D2EC 0E00+00 0/0 1/0 0/0 .text            useItem0EvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1632,19 +1525,28 @@ asm void dCamera_c::useItem0EvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80452B44-80452B48 0004+00 s=2 e=0 z=0  None .sdata2    @9798 */
+/* 8037AA08-8037AA40 007068 0038+00 1/1 0/0 0/0 .rodata          @9468 */
+SECTION_RODATA static u8 const lit_9468[56] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x82,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x07,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x41, 0xF0,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x50, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF,
+};
+COMPILER_STRIP_GATE(8037AA08, &lit_9468);
+
+/* 80452B44-80452B48 001144 0004+00 2/2 0/0 0/0 .sdata2          @9798 */
 SECTION_SDATA2 static f32 lit_9798 = 1.0f / 20.0f;
 
-/* 80452B48-80452B4C 0004+00 s=1 e=0 z=0  None .sdata2    @9799 */
+/* 80452B48-80452B4C 001148 0004+00 1/1 0/0 0/0 .sdata2          @9799 */
 SECTION_SDATA2 static f32 lit_9799 = 90.0f;
 
-/* 80452B4C-80452B50 0004+00 s=1 e=0 z=0  None .sdata2    @9800 */
+/* 80452B4C-80452B50 00114C 0004+00 1/1 0/0 0/0 .sdata2          @9800 */
 SECTION_SDATA2 static f32 lit_9800 = -180.0f;
 
-/* 80452B50-80452B54 0004+00 s=1 e=0 z=0  None .sdata2    @9801 */
+/* 80452B50-80452B54 001150 0004+00 1/1 0/0 0/0 .sdata2          @9801 */
 SECTION_SDATA2 static f32 lit_9801 = 170.0f;
 
-/* 800937AC-80094240 0A94+00 s=0 e=1 z=0  None .text      useItem1EvCamera__9dCamera_cFv */
+/* 800937AC-80094240 08E0EC 0A94+00 0/0 1/0 0/0 .text            useItem1EvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1655,34 +1557,53 @@ asm void dCamera_c::useItem1EvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80452B54-80452B58 0004+00 s=1 e=0 z=0  None .sdata2    @10118 */
+/* 8037AA40-8037AAA4 0070A0 0064+00 1/1 0/0 0/0 .rodata          @9811 */
+SECTION_RODATA static u8 const lit_9811[100] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x0C, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0xFF, 0xFF, 0xFF, 0xFF,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x11, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(8037AA40, &lit_9811);
+
+/* 8037AAA4-8037AABC 007104 0018+00 1/1 0/0 0/0 .rodata          @9812 */
+SECTION_RODATA static u8 const lit_9812[24] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3D, 0xCC, 0xCC, 0xCD,
+    0x3F, 0x33, 0x33, 0x33, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(8037AAA4, &lit_9812);
+
+/* 80452B54-80452B58 001154 0004+00 1/1 0/0 0/0 .sdata2          @10118 */
 SECTION_SDATA2 static f32 lit_10118 = 32.0f;
 
-/* 80452B58-80452B5C 0004+00 s=1 e=0 z=0  None .sdata2    @10119 */
+/* 80452B58-80452B5C 001158 0004+00 1/1 0/0 0/0 .sdata2          @10119 */
 SECTION_SDATA2 static f32 lit_10119 = 84.0f;
 
-/* 80452B5C-80452B60 0004+00 s=1 e=0 z=0  None .sdata2    @10120 */
+/* 80452B5C-80452B60 00115C 0004+00 1/1 0/0 0/0 .sdata2          @10120 */
 SECTION_SDATA2 static f32 lit_10120 = 134.0f;
 
-/* 80452B60-80452B64 0004+00 s=1 e=0 z=0  None .sdata2    @10121 */
+/* 80452B60-80452B64 001160 0004+00 1/1 0/0 0/0 .sdata2          @10121 */
 SECTION_SDATA2 static f32 lit_10121 = 17.0f;
 
-/* 80452B64-80452B68 0004+00 s=1 e=0 z=0  None .sdata2    @10122 */
+/* 80452B64-80452B68 001164 0004+00 1/1 0/0 0/0 .sdata2          @10122 */
 SECTION_SDATA2 static f32 lit_10122 = 128.0f;
 
-/* 80452B68-80452B6C 0004+00 s=1 e=0 z=0  None .sdata2    @10123 */
+/* 80452B68-80452B6C 001168 0004+00 1/1 0/0 0/0 .sdata2          @10123 */
 SECTION_SDATA2 static f32 lit_10123 = -62.0f;
 
-/* 80452B6C-80452B70 0004+00 s=1 e=0 z=0  None .sdata2    @10124 */
+/* 80452B6C-80452B70 00116C 0004+00 1/1 0/0 0/0 .sdata2          @10124 */
 SECTION_SDATA2 static f32 lit_10124 = -84.0f;
 
-/* 80452B70-80452B74 0004+00 s=1 e=0 z=0  None .sdata2    @10125 */
+/* 80452B70-80452B74 001170 0004+00 1/1 0/0 0/0 .sdata2          @10125 */
 SECTION_SDATA2 static f32 lit_10125 = -164.0f;
 
-/* 80452B74-80452B78 0004+00 s=1 e=0 z=0  None .sdata2    @10126 */
+/* 80452B74-80452B78 001174 0004+00 1/1 0/0 0/0 .sdata2          @10126 */
 SECTION_SDATA2 static f32 lit_10126 = -220.0f;
 
-/* 80094240-80094A70 0830+00 s=0 e=1 z=0  None .text      getItemEvCamera__9dCamera_cFv */
+/* 80094240-80094A70 08EB80 0830+00 0/0 1/0 0/0 .text            getItemEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1693,28 +1614,28 @@ asm void dCamera_c::getItemEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80452B78-80452B7C 0004+00 s=1 e=0 z=0  None .sdata2    @10278 */
+/* 80452B78-80452B7C 001178 0004+00 1/1 0/0 0/0 .sdata2          @10278 */
 SECTION_SDATA2 static f32 lit_10278 = 0.5f;
 
-/* 80452B7C-80452B80 0004+00 s=1 e=0 z=0  None .sdata2    @10279 */
+/* 80452B7C-80452B80 00117C 0004+00 1/1 0/0 0/0 .sdata2          @10279 */
 SECTION_SDATA2 static f32 lit_10279 = 99.0f / 100.0f;
 
-/* 80452B80-80452B84 0004+00 s=1 e=0 z=0  None .sdata2    @10280 */
+/* 80452B80-80452B84 001180 0004+00 1/1 0/0 0/0 .sdata2          @10280 */
 SECTION_SDATA2 static f32 lit_10280 = 63.0f / 100.0f;
 
-/* 80452B84-80452B88 0004+00 s=1 e=0 z=0  None .sdata2    @10281 */
+/* 80452B84-80452B88 001184 0004+00 1/1 0/0 0/0 .sdata2          @10281 */
 SECTION_SDATA2 static f32 lit_10281 = 7.0f / 10.0f;
 
-/* 80452B88-80452B8C 0004+00 s=1 e=0 z=0  None .sdata2    @10282 */
+/* 80452B88-80452B8C 001188 0004+00 1/1 0/0 0/0 .sdata2          @10282 */
 SECTION_SDATA2 static f32 lit_10282 = 11.0f / 10.0f;
 
-/* 80452B8C-80452B90 0004+00 s=1 e=0 z=0  None .sdata2    @10283 */
+/* 80452B8C-80452B90 00118C 0004+00 1/1 0/0 0/0 .sdata2          @10283 */
 SECTION_SDATA2 static f32 lit_10283 = 9.0f / 100.0f;
 
-/* 80452B90-80452B94 0004+00 s=1 e=0 z=0  None .sdata2    @10284 */
+/* 80452B90-80452B94 001190 0004+00 1/1 0/0 0/0 .sdata2          @10284 */
 SECTION_SDATA2 static f32 lit_10284 = 9.0f / 50.0f;
 
-/* 80094A70-80095010 05A0+00 s=0 e=1 z=0  None .text      possessedEvCamera__9dCamera_cFv */
+/* 80094A70-80095010 08F3B0 05A0+00 0/0 1/0 0/0 .text            possessedEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1725,10 +1646,11 @@ asm void dCamera_c::possessedEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80452B94-80452B98 0004+00 s=1 e=0 z=0  None .sdata2    @10437 */
+/* 80452B94-80452B98 001194 0004+00 1/1 0/0 0/0 .sdata2          @10437 */
 SECTION_SDATA2 static f32 lit_10437 = 1.0f / 100.0f;
 
-/* 80095010-8009544C 043C+00 s=0 e=1 z=0  None .text      fixedFramesEvCamera__9dCamera_cFv */
+/* 80095010-8009544C 08F950 043C+00 0/0 1/0 0/0 .text            fixedFramesEvCamera__9dCamera_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1738,7 +1660,7 @@ asm void dCamera_c::fixedFramesEvCamera() {
 }
 #pragma pop
 
-/* 8009544C-800956E4 0298+00 s=0 e=1 z=0  None .text      bSplineEvCamera__9dCamera_cFv */
+/* 8009544C-800956E4 08FD8C 0298+00 0/0 1/0 0/0 .text            bSplineEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1749,22 +1671,22 @@ asm void dCamera_c::bSplineEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80425420-8042542C 000C+00 s=1 e=0 z=0  None .bss       @10516 */
+/* 80425420-8042542C 052140 000C+00 1/1 0/0 0/0 .bss             @10516 */
 static u8 lit_10516[12];
 
-/* 8042542C-80425438 000C+00 s=1 e=0 z=0  None .bss       DefaultGap$10515 */
+/* 8042542C-80425438 05214C 000C+00 1/1 0/0 0/0 .bss             DefaultGap$10515 */
 static f32 DefaultGap_10515[3];
 
-/* 80452B98-80452B9C 0004+00 s=1 e=0 z=0  None .sdata2    @10780 */
+/* 80452B98-80452B9C 001198 0004+00 1/1 0/0 0/0 .sdata2          @10780 */
 SECTION_SDATA2 static f32 lit_10780 = -1.0f / 10.0f;
 
-/* 80452B9C-80452BA0 0004+00 s=1 e=0 z=0  None .sdata2    @10781 */
+/* 80452B9C-80452BA0 00119C 0004+00 1/1 0/0 0/0 .sdata2          @10781 */
 SECTION_SDATA2 static f32 lit_10781 = 10000.0f;
 
-/* 80452BA0-80452BA4 0004+00 s=1 e=0 z=0  None .sdata2    @10782 */
+/* 80452BA0-80452BA4 0011A0 0004+00 1/1 0/0 0/0 .sdata2          @10782 */
 SECTION_SDATA2 static f32 lit_10782 = 0.25f;
 
-/* 800956E4-80095E7C 0798+00 s=0 e=1 z=0  None .text      twoActor0EvCamera__9dCamera_cFv */
+/* 800956E4-80095E7C 090024 0798+00 0/0 1/0 0/0 .text            twoActor0EvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1774,7 +1696,7 @@ asm void dCamera_c::twoActor0EvCamera() {
 }
 #pragma pop
 
-/* 80095E7C-80095FD0 0154+00 s=0 e=1 z=0  None .text      peepHoleEvCamera__9dCamera_cFv */
+/* 80095E7C-80095FD0 0907BC 0154+00 0/0 1/0 0/0 .text            peepHoleEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1785,10 +1707,10 @@ asm void dCamera_c::peepHoleEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80452BA4-80452BA8 0004+00 s=1 e=0 z=0  None .sdata2    @11068 */
+/* 80452BA4-80452BA8 0011A4 0004+00 1/1 0/0 0/0 .sdata2          @11068 */
 SECTION_SDATA2 static f32 lit_11068 = 245.0f;
 
-/* 80095FD0-800965AC 05DC+00 s=0 e=1 z=0  None .text      digHoleEvCamera__9dCamera_cFv */
+/* 80095FD0-800965AC 090910 05DC+00 0/0 1/0 0/0 .text            digHoleEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1799,31 +1721,39 @@ asm void dCamera_c::digHoleEvCamera() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80452BA8-80452BAC 0004+00 s=1 e=0 z=0  None .sdata2    @11415 */
+/* 8037AABC-8037AAE4 00711C 0028+00 1/1 0/0 0/0 .rodata          @11087 */
+SECTION_RODATA static u8 const lit_11087[40] = {
+    0x42, 0x20, 0x00, 0x00, 0x42, 0x70, 0x00, 0x00, 0x41, 0xC8, 0x00, 0x00, 0x42, 0x48,
+    0x00, 0x00, 0x42, 0x96, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0x70, 0x00, 0x00,
+    0x42, 0xB4, 0x00, 0x00, 0x42, 0xDC, 0x00, 0x00, 0x43, 0x0C, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(8037AABC, &lit_11087);
+
+/* 80452BA8-80452BAC 0011A8 0004+00 1/1 0/0 0/0 .sdata2          @11415 */
 SECTION_SDATA2 static f32 lit_11415 = 280.0f;
 
-/* 80452BAC-80452BB0 0004+00 s=1 e=0 z=0  None .sdata2    @11416 */
+/* 80452BAC-80452BB0 0011AC 0004+00 1/1 0/0 0/0 .sdata2          @11416 */
 SECTION_SDATA2 static f32 lit_11416 = 4.0f / 5.0f;
 
-/* 80452BB0-80452BB4 0004+00 s=1 e=0 z=0  None .sdata2    @11417 */
+/* 80452BB0-80452BB4 0011B0 0004+00 1/1 0/0 0/0 .sdata2          @11417 */
 SECTION_SDATA2 static f32 lit_11417 = -1.0f;
 
-/* 80452BB4-80452BB8 0004+00 s=1 e=0 z=0  None .sdata2    @11418 */
+/* 80452BB4-80452BB8 0011B4 0004+00 1/1 0/0 0/0 .sdata2          @11418 */
 SECTION_SDATA2 static f32 lit_11418 = 1.0f / 5.0f;
 
-/* 80452BB8-80452BBC 0004+00 s=1 e=0 z=0  None .sdata2    @11419 */
+/* 80452BB8-80452BBC 0011B8 0004+00 1/1 0/0 0/0 .sdata2          @11419 */
 SECTION_SDATA2 static f32 lit_11419 = -2.5f;
 
-/* 80452BBC-80452BC0 0004+00 s=1 e=0 z=0  None .sdata2    @11420 */
+/* 80452BBC-80452BC0 0011BC 0004+00 1/1 0/0 0/0 .sdata2          @11420 */
 SECTION_SDATA2 static f32 lit_11420 = 4.5f;
 
-/* 80452BC0-80452BC4 0004+00 s=1 e=0 z=0  None .sdata2    @11421 */
+/* 80452BC0-80452BC4 0011C0 0004+00 1/1 0/0 0/0 .sdata2          @11421 */
 SECTION_SDATA2 static f32 lit_11421 = 0.75f;
 
-/* 80452BC4-80452BC8 0004+00 s=1 e=0 z=0  None .sdata2    @11422 */
+/* 80452BC4-80452BC8 0011C4 0004+00 1/1 0/0 0/0 .sdata2          @11422 */
 SECTION_SDATA2 static f32 lit_11422 = 2.0f / 5.0f;
 
-/* 800965AC-80096EDC 0930+00 s=0 e=1 z=0  None .text      hintTalkEvCamera__9dCamera_cFv */
+/* 800965AC-80096EDC 090EEC 0930+00 0/0 1/0 0/0 .text            hintTalkEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1833,7 +1763,14 @@ asm void dCamera_c::hintTalkEvCamera() {
 }
 #pragma pop
 
-/* 80096EDC-80097694 07B8+00 s=0 e=1 z=0  None .text      bspTransEvCamera__9dCamera_cFv */
+/* ############################################################################################## */
+/* 8037AAE4-8037AAF4 007144 0010+00 1/1 0/0 0/0 .rodata          @11437 */
+SECTION_RODATA static u8 const lit_11437[16] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(8037AAE4, &lit_11437);
+
+/* 80096EDC-80097694 09181C 07B8+00 0/0 1/0 0/0 .text            bspTransEvCamera__9dCamera_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1843,22 +1780,27 @@ asm void dCamera_c::bspTransEvCamera() {
 }
 #pragma pop
 
-/* 80097694-8009769C 0008+00 s=0 e=1 z=0  None .text      portalWarpEvCamera__9dCamera_cFv */
+/* 80097694-8009769C 091FD4 0008+00 0/0 1/0 0/0 .text            portalWarpEvCamera__9dCamera_cFv */
 bool dCamera_c::portalWarpEvCamera() {
     return true;
 }
 
-/* 8009769C-8009771C 0080+00 s=0 e=1 z=0  None .text      __sinit_d_ev_camera_cpp */
+/* 8009769C-8009771C 091FDC 0080+00 0/0 1/0 0/0 .text            __sinit_d_ev_camera_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_ev_camera_cpp() {
+asm void __sinit_d_ev_camera_cpp() {
     nofralloc
 #include "asm/d/d_ev_camera/__sinit_d_ev_camera_cpp.s"
 }
 #pragma pop
 
-/* 8009771C-80097738 001C+00 s=11 e=22 z=0  None .text      attentionPos__9dCamera_cFP10fopAc_ac_c
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_8009769C = (void*)__sinit_d_ev_camera_cpp;
+#pragma pop
+
+/* 8009771C-80097738 09205C 001C+00 11/11 22/22 0/0 .text attentionPos__9dCamera_cFP10fopAc_ac_c
  */
 #pragma push
 #pragma optimization_level 0
@@ -1869,7 +1811,7 @@ asm void dCamera_c::attentionPos(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 80097738-8009775C 0024+00 s=10 e=10 z=0  None .text      directionOf__9dCamera_cFP10fopAc_ac_c */
+/* 80097738-8009775C 092078 0024+00 10/10 10/10 0/0 .text directionOf__9dCamera_cFP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1879,7 +1821,7 @@ asm void dCamera_c::directionOf(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 8009775C-80097778 001C+00 s=9 e=20 z=0  None .text      positionOf__9dCamera_cFP10fopAc_ac_c */
+/* 8009775C-80097778 09209C 001C+00 9/9 20/20 0/0 .text positionOf__9dCamera_cFP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1889,7 +1831,7 @@ asm void dCamera_c::positionOf(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 80097778-8009778C 0014+00 s=1 e=4 z=0  None .text      setFlag__9dCamera_cFUl */
+/* 80097778-8009778C 0920B8 0014+00 1/1 4/4 0/0 .text            setFlag__9dCamera_cFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1899,7 +1841,7 @@ asm void dCamera_c::setFlag(u32 param_0) {
 }
 #pragma pop
 
-/* 8009778C-800977A8 001C+00 s=1 e=2 z=0  None .text      eyePos__9dCamera_cFP10fopAc_ac_c */
+/* 8009778C-800977A8 0920CC 001C+00 1/1 2/2 0/0 .text            eyePos__9dCamera_cFP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1909,7 +1851,7 @@ asm void dCamera_c::eyePos(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 800977A8-800977B4 000C+00 s=1 e=0 z=0  None .text      checkNoDraw__9daMidna_cCFv */
+/* 800977A8-800977B4 0920E8 000C+00 1/1 0/0 0/0 .text            checkNoDraw__9daMidna_cCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1919,7 +1861,7 @@ asm void daMidna_c::checkNoDraw() const {
 }
 #pragma pop
 
-/* 800977B4-800977C0 000C+00 s=1 e=1 z=0  None .text      checkMidnaRide__9daPy_py_cCFv */
+/* 800977B4-800977C0 0920F4 000C+00 1/1 1/1 0/0 .text            checkMidnaRide__9daPy_py_cCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1929,7 +1871,7 @@ asm void daPy_py_c::checkMidnaRide() const {
 }
 #pragma pop
 
-/* 800977C0-800977D8 0018+00 s=1 e=1 z=0  None .text      fopAcM_GetID__FPCv */
+/* 800977C0-800977D8 092100 0018+00 1/1 1/1 0/0 .text            fopAcM_GetID__FPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1939,7 +1881,7 @@ asm void fopAcM_GetID(void const* param_0) {
 }
 #pragma pop
 
-/* 800977D8-800977F4 001C+00 s=5 e=9 z=0  None .text      __as__4cXyzFRC4cXyz */
+/* 800977D8-800977F4 092118 001C+00 5/5 9/9 0/0 .text            __as__4cXyzFRC4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1949,7 +1891,7 @@ asm void cXyz::operator=(cXyz const& param_0) {
 }
 #pragma pop
 
-/* 800977F4-80097810 001C+00 s=5 e=9 z=0  None .text      __ct__4cXyzFRC4cXyz */
+/* 800977F4-80097810 092134 001C+00 5/5 9/9 0/0 .text            __ct__4cXyzFRC4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1959,44 +1901,45 @@ asm cXyz::cXyz(cXyz const& param_0) {
 }
 #pragma pop
 
-/* 80097810-8009784C 003C+00 s=1 e=0 z=0  None .text
+/* 80097810-8009784C 092150 003C+00 1/1 0/0 0/0 .text
  * __dt__Q29dCamera_c26@class$5983d_ev_camera_cppFv             */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80097810() {
+asm void func_80097810() {
     nofralloc
 #include "asm/d/d_ev_camera/func_80097810.s"
 }
 #pragma pop
 
-/* 8009784C-80097850 0004+00 s=1 e=0 z=0  None .text
+/* 8009784C-80097850 09218C 0004+00 1/1 0/0 0/0 .text
  * __ct__Q29dCamera_c26@class$5983d_ev_camera_cppFv             */
-extern "C" static void func_8009784C() {
+void func_8009784C() {
     /* empty function */
 }
 
-/* 80097850-80097858 0008+00 s=0 e=1 z=0  None .text      checkCanoeRide__9daPy_py_cCFv */
+/* 80097850-80097858 092190 0008+00 0/0 1/0 0/0 .text            checkCanoeRide__9daPy_py_cCFv */
 bool daPy_py_c::checkCanoeRide() const {
     return false;
 }
 
-/* 80097858-80097860 0008+00 s=0 e=1 z=0  None .text      checkBoardRide__9daPy_py_cCFv */
+/* 80097858-80097860 092198 0008+00 0/0 1/0 0/0 .text            checkBoardRide__9daPy_py_cCFv */
 bool daPy_py_c::checkBoardRide() const {
     return false;
 }
 
-/* 80097860-80097868 0008+00 s=0 e=1 z=0  None .text      checkSpinnerRide__9daPy_py_cCFv */
+/* 80097860-80097868 0921A0 0008+00 0/0 1/0 0/0 .text            checkSpinnerRide__9daPy_py_cCFv */
 bool daPy_py_c::checkSpinnerRide() const {
     return false;
 }
 
-/* 80097868-80097870 0008+00 s=0 e=1 z=0  None .text      checkBoarRide__9daPy_py_cCFv */
+/* 80097868-80097870 0921A8 0008+00 0/0 1/0 0/0 .text            checkBoarRide__9daPy_py_cCFv */
 bool daPy_py_c::checkBoarRide() const {
     return false;
 }
 
-/* 80097870-80097878 0008+00 s=0 e=1 z=0  None .text      getShadowTalkAtnPos__9daAlink_cFv */
+/* 80097870-80097878 0921B0 0008+00 0/0 1/0 0/0 .text            getShadowTalkAtnPos__9daAlink_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2004,4 +1947,92 @@ asm void daAlink_c::getShadowTalkAtnPos() {
     nofralloc
 #include "asm/d/d_ev_camera/getShadowTalkAtnPos__9daAlink_cFv.s"
 }
+#pragma pop
+
+/* 8037AAF4-8037AD68 007154 0273+01 23/23 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8037AAF4 = "Timer";
+SECTION_DEAD static char const* const stringBase_8037AAFA = "Stay";
+SECTION_DEAD static char const* const stringBase_8037AAFF = "Eye";
+SECTION_DEAD static char const* const stringBase_8037AB03 = "Center";
+SECTION_DEAD static char const* const stringBase_8037AB0A = "BasePos";
+SECTION_DEAD static char const* const stringBase_8037AB12 = "Fovy";
+SECTION_DEAD static char const* const stringBase_8037AB17 = "Bank";
+SECTION_DEAD static char const* const stringBase_8037AB1C = "RelUseMask";
+SECTION_DEAD static char const* const stringBase_8037AB27 = "oo";
+SECTION_DEAD static char const* const stringBase_8037AB2A = "RelActor";
+SECTION_DEAD static char const* const stringBase_8037AB33 = "EyeGap";
+SECTION_DEAD static char const* const stringBase_8037AB3A = "CtrGap";
+SECTION_DEAD static char const* const stringBase_8037AB41 = "EyeCus";
+SECTION_DEAD static char const* const stringBase_8037AB48 = "CtrCus";
+SECTION_DEAD static char const* const stringBase_8037AB4F = "Stoker";
+SECTION_DEAD static char const* const stringBase_8037AB56 = "@STARTER";
+SECTION_DEAD static char const* const stringBase_8037AB5F = "Target";
+SECTION_DEAD static char const* const stringBase_8037AB66 = "@PLAYER";
+SECTION_DEAD static char const* const stringBase_8037AB6E = "TransType";
+SECTION_DEAD static char const* const stringBase_8037AB78 = "Roll";
+SECTION_DEAD static char const* const stringBase_8037AB7D = "RadiusAdd";
+SECTION_DEAD static char const* const stringBase_8037AB87 = "Latitude";
+SECTION_DEAD static char const* const stringBase_8037AB90 = "Radius";
+SECTION_DEAD static char const* const stringBase_8037AB97 = "StartRadius";
+SECTION_DEAD static char const* const stringBase_8037ABA3 = "o";
+SECTION_DEAD static char const* const stringBase_8037ABA5 = "BSpCurve";
+SECTION_DEAD static char const* const stringBase_8037ABAE = "BSpPoints";
+SECTION_DEAD static char const* const stringBase_8037ABB8 = "EndSlot";
+SECTION_DEAD static char const* const stringBase_8037ABC0 = "StartSlot";
+SECTION_DEAD static char const* const stringBase_8037ABCA = "StartEye";
+SECTION_DEAD static char const* const stringBase_8037ABD3 = "StartCenter";
+SECTION_DEAD static char const* const stringBase_8037ABDF = "StartFovy";
+SECTION_DEAD static char const* const stringBase_8037ABE9 = "StartBank";
+SECTION_DEAD static char const* const stringBase_8037ABF3 = "--oo";
+SECTION_DEAD static char const* const stringBase_8037ABF8 = "Cushion";
+SECTION_DEAD static char const* const stringBase_8037AC00 = "NearDist";
+SECTION_DEAD static char const* const stringBase_8037AC09 = "ZoomDist";
+SECTION_DEAD static char const* const stringBase_8037AC12 = "ZoomVAngle";
+SECTION_DEAD static char const* const stringBase_8037AC1D = "FarDist";
+SECTION_DEAD static char const* const stringBase_8037AC25 = "NearTimer";
+SECTION_DEAD static char const* const stringBase_8037AC2F = "FarTimer";
+SECTION_DEAD static char const* const stringBase_8037AC38 = "FrontAngle";
+SECTION_DEAD static char const* const stringBase_8037AC43 = "Blure";
+SECTION_DEAD static char const* const stringBase_8037AC49 = "Dest";
+SECTION_DEAD static char const* const stringBase_8037AC4E = "TargetType";
+SECTION_DEAD static char const* const stringBase_8037AC59 = "ID";
+SECTION_DEAD static char const* const stringBase_8037AC5C = "CameraID";
+SECTION_DEAD static char const* const stringBase_8037AC65 = "Name";
+SECTION_DEAD static char const* const stringBase_8037AC6A = "FN01";
+SECTION_DEAD static char const* const stringBase_8037AC6F = "Type";
+SECTION_DEAD static char const* const stringBase_8037AC74 = "Slot";
+SECTION_DEAD static char const* const stringBase_8037AC79 = "CurvePoints";
+SECTION_DEAD static char const* const stringBase_8037AC85 = "Longitude";
+SECTION_DEAD static char const* const stringBase_8037AC8F = "Centers";
+SECTION_DEAD static char const* const stringBase_8037AC97 = "Eyes";
+SECTION_DEAD static char const* const stringBase_8037AC9C = "Fovys";
+SECTION_DEAD static char const* const stringBase_8037ACA2 = "Choice";
+SECTION_DEAD static char const* const stringBase_8037ACA9 = "Actor1";
+SECTION_DEAD static char const* const stringBase_8037ACB0 = "Actor2";
+SECTION_DEAD static char const* const stringBase_8037ACB7 = "CtrRatio";
+SECTION_DEAD static char const* const stringBase_8037ACC0 = "RadiusMin";
+SECTION_DEAD static char const* const stringBase_8037ACCA = "RadiusMax";
+SECTION_DEAD static char const* const stringBase_8037ACD4 = "LatitudeMin";
+SECTION_DEAD static char const* const stringBase_8037ACE0 = "LatitudeMax";
+SECTION_DEAD static char const* const stringBase_8037ACEC = "LongitudeMin";
+SECTION_DEAD static char const* const stringBase_8037ACF9 = "LongitudeMax";
+SECTION_DEAD static char const* const stringBase_8037AD06 = "LongitudeType";
+SECTION_DEAD static char const* const stringBase_8037AD14 = "R_SP01";
+SECTION_DEAD static char const* const stringBase_8037AD1B = "Teacher";
+SECTION_DEAD static char const* const stringBase_8037AD23 = "Midna";
+SECTION_DEAD static char const* const stringBase_8037AD29 = "Student";
+SECTION_DEAD static char const* const stringBase_8037AD31 = "CtrGapY";
+SECTION_DEAD static char const* const stringBase_8037AD39 = "Base";
+SECTION_DEAD static char const* const stringBase_8037AD3E = "xxxxxx";
+SECTION_DEAD static char const* const stringBase_8037AD45 = "Set1";
+SECTION_DEAD static char const* const stringBase_8037AD4A = "Use1";
+SECTION_DEAD static char const* const stringBase_8037AD4F = "ooxxxx";
+SECTION_DEAD static char const* const stringBase_8037AD56 = "Set2";
+SECTION_DEAD static char const* const stringBase_8037AD5B = "Use2";
+SECTION_DEAD static char const* const stringBase_8037AD60 = "xxooox";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8037AD67 = "";
 #pragma pop

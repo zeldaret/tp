@@ -7,8 +7,8 @@ lbl_80039468:
 /* 8003947C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80039480  7C 9F 23 78 */	mr r31, r4
 /* 80039484  41 82 00 28 */	beq lbl_800394AC
-/* 80039488  3C 80 80 3A */	lis r4, __vt__13dDemo_light_c@ha
-/* 8003948C  38 04 79 F0 */	addi r0, r4, __vt__13dDemo_light_c@l
+/* 80039488  3C 80 80 3A */	lis r4, __vt__13dDemo_light_c@ha /* 0x803A79F0@ha */
+/* 8003948C  38 04 79 F0 */	addi r0, r4, __vt__13dDemo_light_c@l /* 0x803A79F0@l */
 /* 80039490  90 1E 00 00 */	stw r0, 0(r30)
 /* 80039494  38 80 00 00 */	li r4, 0
 /* 80039498  48 24 78 91 */	bl __dt__Q26JStage6TLightFv

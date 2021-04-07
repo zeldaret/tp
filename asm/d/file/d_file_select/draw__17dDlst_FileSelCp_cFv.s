@@ -5,8 +5,8 @@ lbl_8018DFFC:
 /* 8018E008  39 61 00 50 */	addi r11, r1, 0x50
 /* 8018E00C  48 1D 41 D1 */	bl _savegpr_29
 /* 8018E010  7C 7D 1B 78 */	mr r29, r3
-/* 8018E014  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8018E018  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8018E014  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8018E018  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8018E01C  83 E3 5F 50 */	lwz r31, 0x5f50(r3)
 /* 8018E020  80 7D 00 0C */	lwz r3, 0xc(r29)
 /* 8018E024  38 03 00 80 */	addi r0, r3, 0x80

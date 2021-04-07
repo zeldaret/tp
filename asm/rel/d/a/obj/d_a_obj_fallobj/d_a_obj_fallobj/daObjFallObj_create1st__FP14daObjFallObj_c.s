@@ -11,12 +11,12 @@ lbl_80BE4990:
 /* 80BE49B4  7F E0 FB 79 */	or. r0, r31, r31
 /* 80BE49B8  41 82 00 20 */	beq lbl_80BE49D8
 /* 80BE49BC  7C 1E 03 78 */	mr r30, r0
-/* 80BE49C0  4B 49 3C 64 */	b __ct__16dBgS_MoveBgActorFv
-/* 80BE49C4  3C 60 80 BE */	lis r3, __vt__14daObjFallObj_c@ha
-/* 80BE49C8  38 03 4B 8C */	addi r0, r3, __vt__14daObjFallObj_c@l
+/* 80BE49C0  4B 49 3C 65 */	bl __ct__16dBgS_MoveBgActorFv
+/* 80BE49C4  3C 60 80 BE */	lis r3, __vt__14daObjFallObj_c@ha /* 0x80BE4B8C@ha */
+/* 80BE49C8  38 03 4B 8C */	addi r0, r3, __vt__14daObjFallObj_c@l /* 0x80BE4B8C@l */
 /* 80BE49CC  90 1E 05 9C */	stw r0, 0x59c(r30)
 /* 80BE49D0  38 7E 05 F4 */	addi r3, r30, 0x5f4
-/* 80BE49D4  4B 6D 9E 70 */	b __ct__16Z2SoundObjSimpleFv
+/* 80BE49D4  4B 6D 9E 71 */	bl __ct__16Z2SoundObjSimpleFv
 lbl_80BE49D8:
 /* 80BE49D8  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 80BE49DC  60 00 00 08 */	ori r0, r0, 8

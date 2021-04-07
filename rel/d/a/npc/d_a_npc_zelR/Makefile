@@ -3,19 +3,20 @@
 #
 
 M387_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelR.plf
+M387_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelR.lcf
+M387_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelR.map
 
 M387_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_zelR/executor.cpp \
-	rel/d/a/npc/d_a_npc_zelR/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_zelR/d_a_npc_zelR.cpp \
 
 M387_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelR/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelR/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelR/d_a_npc_zelR.o \
 
 M387_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelR/libRuntime.PPCEABI.H.a \
 
 M387_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M387_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M387_LDSCRIPT) \
+	-unused -map $(M387_MAP) \
+	-w off \
 
 $(M387_TARGET): $(M387_O_FILES) $(M387_LIBS)
+	@echo [387] creating $(M387_TARGET)
 	@echo $(M387_LIBS) $(M387_O_FILES) > build/M387_ofiles
-	$(LD) -partial $(M387_LDFLAGS) -o $(M387_TARGET) @build/M387_ofiles
+	@python3 tools/lcf.py rel 387 --output $(M387_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M387_LDFLAGS) -o $(M387_TARGET) @build/M387_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelR/%.o: rel/d/a/npc/d_a_npc_zelR/%.cpp
+	@echo [387] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M387_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M387_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_zelR/libs/Runtime.PPCEABI.H/Makefile
 

@@ -33,7 +33,7 @@ extern "C" void parseCharacter_UTF8__Q28JMessage6localeFPPCc();
 // Declarations:
 //
 
-/* 802A9528-802A958C 0064+00 s=0 e=1 z=0  None .text
+/* 802A9528-802A958C 2A3E68 0064+00 0/0 1/0 0/0 .text
  * parseCharacter_ShiftJIS__Q28JMessage6localeFPPCc             */
 #pragma push
 #pragma optimization_level 0
@@ -44,7 +44,7 @@ asm void JMessage::locale::parseCharacter_ShiftJIS(char const** param_0) {
 }
 #pragma pop
 
-/* 802A958C-802A968C 0100+00 s=0 e=1 z=0  None .text parseCharacter_UTF8__Q28JMessage6localeFPPCc
+/* 802A958C-802A968C 2A3ECC 0100+00 0/0 1/0 0/0 .text parseCharacter_UTF8__Q28JMessage6localeFPPCc
  */
 #pragma push
 #pragma optimization_level 0

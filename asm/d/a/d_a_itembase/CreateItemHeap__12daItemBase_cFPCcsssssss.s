@@ -13,8 +13,8 @@ lbl_8014475C:
 /* 80144788  AB 61 00 4A */	lha r27, 0x4a(r1)
 /* 8014478C  7F C3 F3 78 */	mr r3, r30
 /* 80144790  7C A4 07 34 */	extsh r4, r5
-/* 80144794  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80144798  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80144794  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80144798  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8014479C  3F 85 00 02 */	addis r28, r5, 2
 /* 801447A0  3B 9C C2 F8 */	addi r28, r28, -15624
 /* 801447A4  7F 85 E3 78 */	mr r5, r28
@@ -71,8 +71,8 @@ lbl_80144830:
 /* 8014485C  48 18 A3 F1 */	bl __nw__FUl
 /* 80144860  7C 77 1B 79 */	or. r23, r3, r3
 /* 80144864  41 82 00 20 */	beq lbl_80144884
-/* 80144868  3C 80 80 3A */	lis r4, __vt__12J3DFrameCtrl@ha
-/* 8014486C  38 04 33 54 */	addi r0, r4, __vt__12J3DFrameCtrl@l
+/* 80144868  3C 80 80 3A */	lis r4, __vt__12J3DFrameCtrl@ha /* 0x803A3354@ha */
+/* 8014486C  38 04 33 54 */	addi r0, r4, __vt__12J3DFrameCtrl@l /* 0x803A3354@l */
 /* 80144870  90 17 00 00 */	stw r0, 0(r23)
 /* 80144874  38 80 00 00 */	li r4, 0
 /* 80144878  48 1E 3B 85 */	bl init__12J3DFrameCtrlFs
@@ -111,8 +111,8 @@ lbl_801448C4:
 /* 801448F0  48 18 A3 5D */	bl __nw__FUl
 /* 801448F4  7C 77 1B 79 */	or. r23, r3, r3
 /* 801448F8  41 82 00 20 */	beq lbl_80144918
-/* 801448FC  3C 80 80 3A */	lis r4, __vt__12J3DFrameCtrl@ha
-/* 80144900  38 04 33 54 */	addi r0, r4, __vt__12J3DFrameCtrl@l
+/* 801448FC  3C 80 80 3A */	lis r4, __vt__12J3DFrameCtrl@ha /* 0x803A3354@ha */
+/* 80144900  38 04 33 54 */	addi r0, r4, __vt__12J3DFrameCtrl@l /* 0x803A3354@l */
 /* 80144904  90 17 00 00 */	stw r0, 0(r23)
 /* 80144908  38 80 00 00 */	li r4, 0
 /* 8014490C  48 1E 3A F1 */	bl init__12J3DFrameCtrlFs
@@ -151,8 +151,8 @@ lbl_80144958:
 /* 80144984  48 18 A2 C9 */	bl __nw__FUl
 /* 80144988  7C 77 1B 79 */	or. r23, r3, r3
 /* 8014498C  41 82 00 20 */	beq lbl_801449AC
-/* 80144990  3C 80 80 3A */	lis r4, __vt__12J3DFrameCtrl@ha
-/* 80144994  38 04 33 54 */	addi r0, r4, __vt__12J3DFrameCtrl@l
+/* 80144990  3C 80 80 3A */	lis r4, __vt__12J3DFrameCtrl@ha /* 0x803A3354@ha */
+/* 80144994  38 04 33 54 */	addi r0, r4, __vt__12J3DFrameCtrl@l /* 0x803A3354@l */
 /* 80144998  90 17 00 00 */	stw r0, 0(r23)
 /* 8014499C  38 80 00 00 */	li r4, 0
 /* 801449A0  48 1E 3A 5D */	bl init__12J3DFrameCtrlFs
@@ -202,8 +202,8 @@ lbl_80144A3C:
 /* 80144A40  48 18 A2 0D */	bl __nw__FUl
 /* 80144A44  7C 77 1B 79 */	or. r23, r3, r3
 /* 80144A48  41 82 00 20 */	beq lbl_80144A68
-/* 80144A4C  3C 80 80 3A */	lis r4, __vt__12J3DFrameCtrl@ha
-/* 80144A50  38 04 33 54 */	addi r0, r4, __vt__12J3DFrameCtrl@l
+/* 80144A4C  3C 80 80 3A */	lis r4, __vt__12J3DFrameCtrl@ha /* 0x803A3354@ha */
+/* 80144A50  38 04 33 54 */	addi r0, r4, __vt__12J3DFrameCtrl@l /* 0x803A3354@l */
 /* 80144A54  90 17 00 00 */	stw r0, 0(r23)
 /* 80144A58  38 80 00 00 */	li r4, 0
 /* 80144A5C  48 1E 39 A1 */	bl init__12J3DFrameCtrlFs
@@ -242,8 +242,8 @@ lbl_80144AA8:
 /* 80144AD4  48 18 A1 79 */	bl __nw__FUl
 /* 80144AD8  7C 77 1B 79 */	or. r23, r3, r3
 /* 80144ADC  41 82 00 20 */	beq lbl_80144AFC
-/* 80144AE0  3C 80 80 3A */	lis r4, __vt__12J3DFrameCtrl@ha
-/* 80144AE4  38 04 33 54 */	addi r0, r4, __vt__12J3DFrameCtrl@l
+/* 80144AE0  3C 80 80 3A */	lis r4, __vt__12J3DFrameCtrl@ha /* 0x803A3354@ha */
+/* 80144AE4  38 04 33 54 */	addi r0, r4, __vt__12J3DFrameCtrl@l /* 0x803A3354@l */
 /* 80144AE8  90 17 00 00 */	stw r0, 0(r23)
 /* 80144AEC  38 80 00 00 */	li r4, 0
 /* 80144AF0  48 1E 39 0D */	bl init__12J3DFrameCtrlFs

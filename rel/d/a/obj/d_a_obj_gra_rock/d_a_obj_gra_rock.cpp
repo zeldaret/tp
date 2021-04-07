@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTexPattern {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
@@ -51,9 +51,9 @@ struct dSv_info_c {
     /* 80035200 */ void onSwitch(int, int);
 };
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct cXyz {};
 
 struct J3DModelData {};
 
@@ -71,9 +71,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -180,9 +180,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -198,15 +198,6 @@ struct J3DFrameCtrl {
 //
 // Forward References:
 //
-
-static void daObjGraRock_Draw(daObjGraRock_c*);
-static void daObjGraRock_Execute(daObjGraRock_c*);
-static bool daObjGraRock_IsDelete(daObjGraRock_c*);
-static void daObjGraRock_Delete(daObjGraRock_c*);
-static void daObjGraRock_create(fopAc_ac_c*);
-static void cLib_calcTimer__template0(s16*);
-static void cLib_calcTimer__template1(u8*);
-static void cLib_getRndValue__template0(int, int);
 
 extern "C" void setAttnPos__14daObjGraRock_cFv();
 extern "C" void setBaseMtx__14daObjGraRock_cFv();
@@ -231,32 +222,16 @@ extern "C" static void daObjGraRock_Execute__FP14daObjGraRock_c();
 extern "C" static bool daObjGraRock_IsDelete__FP14daObjGraRock_c();
 extern "C" static void daObjGraRock_Delete__FP14daObjGraRock_c();
 extern "C" static void daObjGraRock_create__FP10fopAc_ac_c();
-extern "C" static void func_80C122F0();
-extern "C" static void func_80C1230C();
-extern "C" static void func_80C12328();
+extern "C" void func_80C122F0(s16*);
+extern "C" void func_80C1230C(u8*);
+extern "C" void func_80C12328(int, int);
 extern "C" static void func_80C123A4();
 extern "C" static void func_80C123AC();
-extern "C" extern void* g_profile_Obj_GraRock[12];
+extern "C" extern char const* const d_a_obj_gra_rock__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_ZXYrotS(f32 (*)[4], s16, s16, s16);
-void mDoMtx_ZXYrotM(f32 (*)[4], s16, s16, s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_create(s16, u32, cXyz const*, int, csXyz const*, cXyz const*, s8);
-void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
-void daNpcF_chkEvtBit(u32);
-void daNpcF_onEvtBit(u32);
-void daNpcF_getDistTableIdx(int, int);
-void cM_rndF(f32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_ZXYrotS__FPA4_fsss();
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
@@ -350,7 +325,7 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 80C123BC-80C12400 0044+00 s=3 e=0 z=0  None .rodata    mCcDCyl__14daObjGraRock_c */
+/* 80C123BC-80C12400 000000 0044+00 3/3 0/0 0/0 .rodata          mCcDCyl__14daObjGraRock_c */
 SECTION_RODATA static u8 const mCcDCyl__14daObjGraRock_c[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x20, 0x20, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00,
@@ -358,40 +333,60 @@ SECTION_RODATA static u8 const mCcDCyl__14daObjGraRock_c[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80C123BC, &mCcDCyl__14daObjGraRock_c);
 
-/* 80C12400-80C12404 0004+00 s=4 e=0 z=0  None .rodata    @3857 */
+/* 80C12400-80C12404 000044 0004+00 1/4 0/0 0/0 .rodata          @3857 */
 SECTION_RODATA static u8 const lit_3857[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80C12400, &lit_3857);
 
-/* 80C12404-80C12408 0004+00 s=2 e=0 z=0  None .rodata    @3858 */
-SECTION_RODATA static u32 const lit_3858 = 0x442A0000;
+/* 80C12404-80C12408 000048 0004+00 0/2 0/0 0/0 .rodata          @3858 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3858 = 680.0f;
+COMPILER_STRIP_GATE(80C12404, &lit_3858);
+#pragma pop
 
-/* 80C12408-80C1240C 0004+00 s=2 e=0 z=0  None .rodata    @3859 */
-SECTION_RODATA static u32 const lit_3859 = 0x43110000;
+/* 80C12408-80C1240C 00004C 0004+00 0/2 0/0 0/0 .rodata          @3859 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3859 = 145.0f;
+COMPILER_STRIP_GATE(80C12408, &lit_3859);
+#pragma pop
 
-/* 80C1240C-80C12410 0004+00 s=6 e=0 z=0  None .rodata    @3860 */
-SECTION_RODATA static u32 const lit_3860 = 0x3F800000;
+/* 80C1240C-80C12410 000050 0004+00 4/6 0/0 0/0 .rodata          @3860 */
+SECTION_RODATA static f32 const lit_3860 = 1.0f;
+COMPILER_STRIP_GATE(80C1240C, &lit_3860);
 
-/* 80C12410-80C12414 0004+00 s=2 e=0 z=0  None .rodata    @3861 */
-SECTION_RODATA static u32 const lit_3861 = 0xBF800000;
+/* 80C12410-80C12414 000054 0004+00 0/2 0/0 0/0 .rodata          @3861 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3861 = -1.0f;
+COMPILER_STRIP_GATE(80C12410, &lit_3861);
+#pragma pop
 
-/* 80C12414-80C1241C 0004+04 s=1 e=0 z=0  None .rodata    @3862 */
-SECTION_RODATA static u32 const lit_3862[1 + 1 /* padding */] = {
-    0x42B40000,
+/* 80C12414-80C1241C 000058 0004+04 0/1 0/0 0/0 .rodata          @3862 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3862[1 + 1 /* padding */] = {
+    90.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
+COMPILER_STRIP_GATE(80C12414, &lit_3862);
+#pragma pop
 
-/* 80C1241C-80C12424 0008+00 s=2 e=0 z=0  None .rodata    @3864 */
+/* 80C1241C-80C12424 000060 0008+00 1/2 0/0 0/0 .rodata          @3864 */
 SECTION_RODATA static u8 const lit_3864[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80C1241C, &lit_3864);
 
-/* 80C110F8-80C11444 034C+00 s=1 e=0 z=0  None .text      setAttnPos__14daObjGraRock_cFv */
+/* 80C110F8-80C11444 000078 034C+00 1/1 0/0 0/0 .text            setAttnPos__14daObjGraRock_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -401,7 +396,7 @@ asm void daObjGraRock_c::setAttnPos() {
 }
 #pragma pop
 
-/* 80C11444-80C114C0 007C+00 s=2 e=0 z=0  None .text      setBaseMtx__14daObjGraRock_cFv */
+/* 80C11444-80C114C0 0003C4 007C+00 2/2 0/0 0/0 .text            setBaseMtx__14daObjGraRock_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -412,15 +407,16 @@ asm void daObjGraRock_c::setBaseMtx() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C12424-80C12428 0004+00 s=1 e=0 z=0  None .rodata    l_prticles_id$3890 */
+/* 80C12424-80C12428 000068 0004+00 1/1 0/0 0/0 .rodata          l_prticles_id$3890 */
 SECTION_RODATA static u8 const l_prticles_id[4] = {
     0x87,
     0x5F,
     0x87,
     0x60,
 };
+COMPILER_STRIP_GATE(80C12424, &l_prticles_id);
 
-/* 80C114C0-80C1157C 00BC+00 s=1 e=0 z=0  None .text      setPrtcl__14daObjGraRock_cFv */
+/* 80C114C0-80C1157C 000440 00BC+00 1/1 0/0 0/0 .text            setPrtcl__14daObjGraRock_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -430,7 +426,8 @@ asm void daObjGraRock_c::setPrtcl() {
 }
 #pragma pop
 
-/* 80C1157C-80C11730 01B4+00 s=1 e=0 z=0  None .text      bombParticleSet__14daObjGraRock_cFv */
+/* 80C1157C-80C11730 0004FC 01B4+00 1/1 0/0 0/0 .text            bombParticleSet__14daObjGraRock_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -440,7 +437,8 @@ asm void daObjGraRock_c::bombParticleSet() {
 }
 #pragma pop
 
-/* 80C11730-80C1178C 005C+00 s=1 e=0 z=0  None .text      setEnvTevColor__14daObjGraRock_cFv */
+/* 80C11730-80C1178C 0006B0 005C+00 1/1 0/0 0/0 .text            setEnvTevColor__14daObjGraRock_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -450,7 +448,7 @@ asm void daObjGraRock_c::setEnvTevColor() {
 }
 #pragma pop
 
-/* 80C1178C-80C117D0 0044+00 s=1 e=0 z=0  None .text      setRoomNo__14daObjGraRock_cFv */
+/* 80C1178C-80C117D0 00070C 0044+00 1/1 0/0 0/0 .text            setRoomNo__14daObjGraRock_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -460,7 +458,7 @@ asm void daObjGraRock_c::setRoomNo() {
 }
 #pragma pop
 
-/* 80C117D0-80C11964 0194+00 s=1 e=0 z=0  None .text      col_set__14daObjGraRock_cFv */
+/* 80C117D0-80C11964 000750 0194+00 1/1 0/0 0/0 .text            col_set__14daObjGraRock_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -470,7 +468,7 @@ asm void daObjGraRock_c::col_set() {
 }
 #pragma pop
 
-/* 80C11964-80C11970 000C+00 s=1 e=0 z=0  None .text      checkHitAt__14daObjGraRock_cFP8cCcD_Obj */
+/* 80C11964-80C11970 0008E4 000C+00 1/1 0/0 0/0 .text checkHitAt__14daObjGraRock_cFP8cCcD_Obj */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -481,25 +479,49 @@ asm void daObjGraRock_c::checkHitAt(cCcD_Obj* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C12428-80C1242C 0004+00 s=1 e=0 z=0  None .rodata    @4024 */
+/* 80C12428-80C1242C 00006C 0004+00 0/1 0/0 0/0 .rodata          @4024 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u32 const lit_4024 = 0xC3A438D5;
+COMPILER_STRIP_GATE(80C12428, &lit_4024);
+#pragma pop
 
-/* 80C1242C-80C12430 0004+00 s=1 e=0 z=0  None .rodata    @4025 */
-SECTION_RODATA static u32 const lit_4025 = 0xC3160000;
+/* 80C1242C-80C12430 000070 0004+00 0/1 0/0 0/0 .rodata          @4025 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4025 = -150.0f;
+COMPILER_STRIP_GATE(80C1242C, &lit_4025);
+#pragma pop
 
-/* 80C12430-80C12434 0004+00 s=1 e=0 z=0  None .rodata    @4026 */
+/* 80C12430-80C12434 000074 0004+00 0/1 0/0 0/0 .rodata          @4026 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u32 const lit_4026 = 0xC3C01581;
+COMPILER_STRIP_GATE(80C12430, &lit_4026);
+#pragma pop
 
-/* 80C12434-80C12438 0004+00 s=1 e=0 z=0  None .rodata    @4027 */
+/* 80C12434-80C12438 000078 0004+00 0/1 0/0 0/0 .rodata          @4027 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u32 const lit_4027 = 0x43A1274C;
+COMPILER_STRIP_GATE(80C12434, &lit_4027);
+#pragma pop
 
-/* 80C12438-80C1243C 0004+00 s=1 e=0 z=0  None .rodata    @4028 */
+/* 80C12438-80C1243C 00007C 0004+00 0/1 0/0 0/0 .rodata          @4028 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u32 const lit_4028 = 0x4483F1C2;
+COMPILER_STRIP_GATE(80C12438, &lit_4028);
+#pragma pop
 
-/* 80C1243C-80C12440 0004+00 s=1 e=0 z=0  None .rodata    @4029 */
+/* 80C1243C-80C12440 000080 0004+00 0/1 0/0 0/0 .rodata          @4029 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u32 const lit_4029 = 0x43C89F9E;
+COMPILER_STRIP_GATE(80C1243C, &lit_4029);
+#pragma pop
 
-/* 80C11970-80C11B68 01F8+00 s=1 e=0 z=0  None .text      Create__14daObjGraRock_cFv */
+/* 80C11970-80C11B68 0008F0 01F8+00 1/0 0/0 0/0 .text            Create__14daObjGraRock_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -510,117 +532,16 @@ asm void daObjGraRock_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C12440-80C12450 0010+00 s=3 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const struct_80C12440[16] = {
-    /* 80C12440 0007 stringBase_80C12440 @stringBase0 */
-    0x4D,
-    0x5F,
-    0x56,
-    0x42,
-    0x6F,
-    0x6D,
-    0x00,
-    /* 80C12447 0009 data_80C12447 None */
-    0x67,
-    0x72,
-    0x41,
-    0x5F,
-    0x62,
-    0x61,
-    0x73,
-    0x65,
-    0x00,
-};
-
-/* 80C12450-80C12458 0008+00 s=1 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const data_80C12450[8] = {
-    0x67, 0x72, 0x41, 0x5F, 0x6D, 0x64, 0x6C, 0x00,
-};
-
-/* 80C12458-80C1249C 0044+00 s=1 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const struct_80C12458[68] = {
-    /* 80C12458 0009 data_80C12458 None */
-    0x67,
-    0x72,
-    0x41,
-    0x5F,
-    0x52,
-    0x6F,
-    0x63,
-    0x6B,
-    0x00,
-    /* 80C12461 003B data_80C12461 None */
-    0x67,
-    0x72,
-    0x41,
-    0x5F,
-    0x52,
-    0x6F,
-    0x63,
-    0x6B,
-    0x44,
-    0x00,
-    0x4D,
-    0x5F,
-    0x56,
-    0x42,
-    0x6F,
-    0x6D,
-    0x5F,
-    0x5A,
-    0x6F,
-    0x72,
-    0x61,
-    0x2E,
-    0x62,
-    0x6D,
-    0x64,
-    0x00,
-    0x4D,
-    0x5F,
-    0x56,
-    0x42,
-    0x6F,
-    0x6D,
-    0x5F,
-    0x5A,
-    0x6F,
-    0x72,
-    0x61,
-    0x2E,
-    0x62,
-    0x74,
-    0x70,
-    0x00,
-    0x4D,
-    0x5F,
-    0x56,
-    0x42,
-    0x6F,
-    0x6D,
-    0x5F,
-    0x5A,
-    0x6F,
-    0x72,
-    0x61,
-    0x2E,
-    0x64,
-    0x7A,
-    0x62,
-    0x00,
-    0x00,
-};
-
-/* 80C1249C-80C124B0 0014+00 s=3 e=0 z=0  None .data      l_arcName */
+/* 80C1249C-80C124B0 -00001 0014+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName[5] = {
-    (void*)(((char*)&struct_80C12440) + 0x0) /* @stringBase0 */,
-    (void*)(((char*)&struct_80C12440) + 0x7) /* None */,
-    (void*)&data_80C12450,
-    (void*)(((char*)&struct_80C12458) + 0x0) /* None */,
-    (void*)(((char*)&struct_80C12458) + 0x9) /* None */,
+    (void*)&d_a_obj_gra_rock__stringBase0,
+    (void*)(((char*)&d_a_obj_gra_rock__stringBase0) + 0x7),
+    (void*)(((char*)&d_a_obj_gra_rock__stringBase0) + 0x10),
+    (void*)(((char*)&d_a_obj_gra_rock__stringBase0) + 0x18),
+    (void*)(((char*)&d_a_obj_gra_rock__stringBase0) + 0x21),
 };
 
-/* 80C11B68-80C11C64 00FC+00 s=1 e=0 z=0  None .text      CreateHeap__14daObjGraRock_cFv */
+/* 80C11B68-80C11C64 000AE8 00FC+00 1/0 0/0 0/0 .text            CreateHeap__14daObjGraRock_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -631,7 +552,7 @@ asm void daObjGraRock_c::CreateHeap() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C124B0-80C124D0 0020+00 s=1 e=0 z=0  None .data      l_daObjGraRock_Method */
+/* 80C124B0-80C124D0 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjGraRock_Method */
 SECTION_DATA static void* l_daObjGraRock_Method[8] = {
     (void*)daObjGraRock_create__FP10fopAc_ac_c,
     (void*)daObjGraRock_Delete__FP14daObjGraRock_c,
@@ -643,8 +564,8 @@ SECTION_DATA static void* l_daObjGraRock_Method[8] = {
     (void*)NULL,
 };
 
-/* 80C124D0-80C12500 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_GraRock */
-SECTION_DATA void* g_profile_Obj_GraRock[12] = {
+/* 80C124D0-80C12500 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_GraRock */
+SECTION_DATA extern void* g_profile_Obj_GraRock[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00890000, (void*)&g_fpcLf_Method,
     (void*)0x000009CC, (void*)NULL,
@@ -653,37 +574,43 @@ SECTION_DATA void* g_profile_Obj_GraRock[12] = {
     (void*)0x00044100, (void*)0x000E0000,
 };
 
-/* 80C12500-80C1250C 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGCyl */
-SECTION_DATA static void* __vt__8cM3dGCyl[3] = {
-    (void*)NULL,
+/* 80C12500-80C1250C 000064 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGCyl */
+SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGCylFv,
 };
 
-/* 80C1250C-80C12518 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGAab */
-SECTION_DATA static void* __vt__8cM3dGAab[3] = {
-    (void*)NULL,
+/* 80C1250C-80C12518 000070 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGAab */
+SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGAabFv,
 };
 
-/* 80C12518-80C1253C 0024+00 s=2 e=0 z=0  None .data      __vt__12dBgS_ObjAcch */
-SECTION_DATA static void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL, (void*)NULL, (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL, (void*)NULL, (void*)func_80C123AC,
-    (void*)NULL, (void*)NULL, (void*)func_80C123A4,
+/* 80C12518-80C1253C 00007C 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
+SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)__dt__12dBgS_ObjAcchFv,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_80C123AC,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_80C123A4,
 };
 
-/* 80C1253C-80C12548 000C+00 s=2 e=0 z=0  None .data      __vt__12J3DFrameCtrl */
-SECTION_DATA static void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL,
+/* 80C1253C-80C12548 0000A0 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
+SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12J3DFrameCtrlFv,
 };
 
-/* 80C12548-80C12570 0028+00 s=1 e=0 z=0  None .data      __vt__14daObjGraRock_c */
-SECTION_DATA static void* __vt__14daObjGraRock_c[10] = {
-    (void*)NULL,
+/* 80C12548-80C12570 0000AC 0028+00 1/1 0/0 0/0 .data            __vt__14daObjGraRock_c */
+SECTION_DATA extern void* __vt__14daObjGraRock_c[10] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__14daObjGraRock_cFv,
     (void*)Create__14daObjGraRock_cFv,
@@ -695,7 +622,7 @@ SECTION_DATA static void* __vt__14daObjGraRock_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80C11C64-80C11EA8 0244+00 s=1 e=0 z=0  None .text      create__14daObjGraRock_cFv */
+/* 80C11C64-80C11EA8 000BE4 0244+00 1/1 0/0 0/0 .text            create__14daObjGraRock_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -705,7 +632,7 @@ asm void daObjGraRock_c::create() {
 }
 #pragma pop
 
-/* 80C11EA8-80C11EF0 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGCylFv */
+/* 80C11EA8-80C11EF0 000E28 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -715,7 +642,7 @@ asm cM3dGCyl::~cM3dGCyl() {
 }
 #pragma pop
 
-/* 80C11EF0-80C11F38 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGAabFv */
+/* 80C11EF0-80C11F38 000E70 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -725,7 +652,7 @@ asm cM3dGAab::~cM3dGAab() {
 }
 #pragma pop
 
-/* 80C11F38-80C11FA8 0070+00 s=3 e=0 z=0  None .text      __dt__12dBgS_ObjAcchFv */
+/* 80C11F38-80C11FA8 000EB8 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -735,7 +662,7 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 }
 #pragma pop
 
-/* 80C11FA8-80C11FF0 0048+00 s=1 e=0 z=0  None .text      __dt__12J3DFrameCtrlFv */
+/* 80C11FA8-80C11FF0 000F28 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -745,7 +672,8 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 }
 #pragma pop
 
-/* 80C11FF0-80C120FC 010C+00 s=1 e=0 z=0  None .text      Execute__14daObjGraRock_cFPPA3_A4_f */
+/* 80C11FF0-80C120FC 000F70 010C+00 1/0 0/0 0/0 .text            Execute__14daObjGraRock_cFPPA3_A4_f
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -755,7 +683,7 @@ asm void daObjGraRock_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 80C120FC-80C121C4 00C8+00 s=1 e=0 z=0  None .text      Draw__14daObjGraRock_cFv */
+/* 80C120FC-80C121C4 00107C 00C8+00 1/0 0/0 0/0 .text            Draw__14daObjGraRock_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -765,7 +693,7 @@ asm void daObjGraRock_c::Draw() {
 }
 #pragma pop
 
-/* 80C121C4-80C1225C 0098+00 s=1 e=0 z=0  None .text      Delete__14daObjGraRock_cFv */
+/* 80C121C4-80C1225C 001144 0098+00 1/0 0/0 0/0 .text            Delete__14daObjGraRock_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -775,99 +703,112 @@ asm void daObjGraRock_c::Delete() {
 }
 #pragma pop
 
-/* 80C1225C-80C12288 002C+00 s=1 e=0 z=0  None .text      daObjGraRock_Draw__FP14daObjGraRock_c */
+/* 80C1225C-80C12288 0011DC 002C+00 1/0 0/0 0/0 .text daObjGraRock_Draw__FP14daObjGraRock_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjGraRock_Draw(daObjGraRock_c* param_0) {
+static asm void daObjGraRock_Draw(daObjGraRock_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_gra_rock/d_a_obj_gra_rock/daObjGraRock_Draw__FP14daObjGraRock_c.s"
 }
 #pragma pop
 
-/* 80C12288-80C122A8 0020+00 s=1 e=0 z=0  None .text      daObjGraRock_Execute__FP14daObjGraRock_c
- */
+/* 80C12288-80C122A8 001208 0020+00 1/0 0/0 0/0 .text daObjGraRock_Execute__FP14daObjGraRock_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjGraRock_Execute(daObjGraRock_c* param_0) {
+static asm void daObjGraRock_Execute(daObjGraRock_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_gra_rock/d_a_obj_gra_rock/daObjGraRock_Execute__FP14daObjGraRock_c.s"
 }
 #pragma pop
 
-/* 80C122A8-80C122B0 0008+00 s=1 e=0 z=0  None .text      daObjGraRock_IsDelete__FP14daObjGraRock_c
- */
+/* 80C122A8-80C122B0 001228 0008+00 1/0 0/0 0/0 .text daObjGraRock_IsDelete__FP14daObjGraRock_c */
 static bool daObjGraRock_IsDelete(daObjGraRock_c* param_0) {
     return true;
 }
 
-/* 80C122B0-80C122D0 0020+00 s=1 e=0 z=0  None .text      daObjGraRock_Delete__FP14daObjGraRock_c */
+/* 80C122B0-80C122D0 001230 0020+00 1/0 0/0 0/0 .text daObjGraRock_Delete__FP14daObjGraRock_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjGraRock_Delete(daObjGraRock_c* param_0) {
+static asm void daObjGraRock_Delete(daObjGraRock_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_gra_rock/d_a_obj_gra_rock/daObjGraRock_Delete__FP14daObjGraRock_c.s"
 }
 #pragma pop
 
-/* 80C122D0-80C122F0 0020+00 s=1 e=0 z=0  None .text      daObjGraRock_create__FP10fopAc_ac_c */
+/* 80C122D0-80C122F0 001250 0020+00 1/0 0/0 0/0 .text            daObjGraRock_create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjGraRock_create(fopAc_ac_c* param_0) {
+static asm void daObjGraRock_create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_gra_rock/d_a_obj_gra_rock/daObjGraRock_create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80C122F0-80C1230C 001C+00 s=2 e=0 z=0  None .text      cLib_calcTimer<s>__FPs */
+/* 80C122F0-80C1230C 001270 001C+00 2/2 0/0 0/0 .text            cLib_calcTimer<s>__FPs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void cLib_calcTimer__template0(s16* param_0) {
+extern "C" asm void func_80C122F0(s16* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_gra_rock/d_a_obj_gra_rock/func_80C122F0.s"
 }
 #pragma pop
 
-/* 80C1230C-80C12328 001C+00 s=1 e=0 z=0  None .text      cLib_calcTimer<Uc>__FPUc */
+/* 80C1230C-80C12328 00128C 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<Uc>__FPUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void cLib_calcTimer__template1(u8* param_0) {
+extern "C" asm void func_80C1230C(u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_gra_rock/d_a_obj_gra_rock/func_80C1230C.s"
 }
 #pragma pop
 
-/* 80C12328-80C123A4 007C+00 s=3 e=0 z=0  None .text      cLib_getRndValue<i>__Fii */
+/* 80C12328-80C123A4 0012A8 007C+00 3/3 0/0 0/0 .text            cLib_getRndValue<i>__Fii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void cLib_getRndValue__template0(int param_0, int param_1) {
+extern "C" asm void func_80C12328(int param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_gra_rock/d_a_obj_gra_rock/func_80C12328.s"
 }
 #pragma pop
 
-/* 80C123A4-80C123AC 0008+00 s=1 e=0 z=0  None .text      @36@__dt__12dBgS_ObjAcchFv */
+/* 80C123A4-80C123AC 001324 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80C123A4() {
+static asm void func_80C123A4() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_gra_rock/d_a_obj_gra_rock/func_80C123A4.s"
 }
 #pragma pop
 
-/* 80C123AC-80C123B4 0008+00 s=1 e=0 z=0  None .text      @20@__dt__12dBgS_ObjAcchFv */
+/* 80C123AC-80C123B4 00132C 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80C123AC() {
+static asm void func_80C123AC() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_gra_rock/d_a_obj_gra_rock/func_80C123AC.s"
 }
+#pragma pop
+
+/* 80C12440-80C1249B 000084 005B+00 3/2 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80C12440 = "M_VBom";
+SECTION_DEAD static char const* const stringBase_80C12447 = "grA_base";
+SECTION_DEAD static char const* const stringBase_80C12450 = "grA_mdl";
+SECTION_DEAD static char const* const stringBase_80C12458 = "grA_Rock";
+SECTION_DEAD static char const* const stringBase_80C12461 = "grA_RockD";
+SECTION_DEAD static char const* const stringBase_80C1246B = "M_VBom_Zora.bmd";
+SECTION_DEAD static char const* const stringBase_80C1247B = "M_VBom_Zora.btp";
+SECTION_DEAD static char const* const stringBase_80C1248B = "M_VBom_Zora.dzb";
 #pragma pop

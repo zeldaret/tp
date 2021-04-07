@@ -7,8 +7,8 @@ lbl_8019CB0C:
 /* 8019CB20  4B FF F8 85 */	bl dKy_sense_pat_get__Fv
 /* 8019CB24  28 03 00 0F */	cmplwi r3, 0xf
 /* 8019CB28  41 81 01 A0 */	bgt lbl_8019CCC8
-/* 8019CB2C  3C 80 80 3C */	lis r4, lit_4322@ha
-/* 8019CB30  38 84 BE BC */	addi r4, r4, lit_4322@l
+/* 8019CB2C  3C 80 80 3C */	lis r4, lit_4322@ha /* 0x803BBEBC@ha */
+/* 8019CB30  38 84 BE BC */	addi r4, r4, lit_4322@l /* 0x803BBEBC@l */
 /* 8019CB34  54 60 10 3A */	slwi r0, r3, 2
 /* 8019CB38  7C 04 00 2E */	lwzx r0, r4, r0
 /* 8019CB3C  7C 09 03 A6 */	mtctr r0

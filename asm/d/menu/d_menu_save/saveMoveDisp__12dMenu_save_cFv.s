@@ -48,8 +48,8 @@ lbl_801F42FC:
 /* 801F43B4  40 82 00 2C */	bne lbl_801F43E0
 /* 801F43B8  28 04 00 01 */	cmplwi r4, 1
 /* 801F43BC  40 82 00 24 */	bne lbl_801F43E0
-/* 801F43C0  3C 60 80 43 */	lis r3, g_msHIO@ha
-/* 801F43C4  38 63 E8 4C */	addi r3, r3, g_msHIO@l
+/* 801F43C0  3C 60 80 43 */	lis r3, g_msHIO@ha /* 0x8042E84C@ha */
+/* 801F43C4  38 63 E8 4C */	addi r3, r3, g_msHIO@l /* 0x8042E84C@l */
 /* 801F43C8  88 03 00 06 */	lbz r0, 6(r3)
 /* 801F43CC  98 1F 01 BD */	stb r0, 0x1bd(r31)
 /* 801F43D0  7F E3 FB 78 */	mr r3, r31

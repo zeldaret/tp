@@ -9,13 +9,13 @@ lbl_8098E5C4:
 /* 8098E5E0  38 00 FF FF */	li r0, -1
 /* 8098E5E4  B0 03 0E 04 */	sth r0, 0xe04(r3)
 /* 8098E5E8  38 7E 0D B8 */	addi r3, r30, 0xdb8
-/* 8098E5EC  4B 9D 3A 2C */	b __ptmf_test
+/* 8098E5EC  4B 9D 3A 2D */	bl __ptmf_test
 /* 8098E5F0  2C 03 00 00 */	cmpwi r3, 0
 /* 8098E5F4  41 82 00 18 */	beq lbl_8098E60C
 /* 8098E5F8  7F C3 F3 78 */	mr r3, r30
 /* 8098E5FC  38 80 00 00 */	li r4, 0
 /* 8098E600  39 9E 0D B8 */	addi r12, r30, 0xdb8
-/* 8098E604  4B 9D 3A 80 */	b __ptmf_scall
+/* 8098E604  4B 9D 3A 81 */	bl __ptmf_scall
 /* 8098E608  60 00 00 00 */	nop 
 lbl_8098E60C:
 /* 8098E60C  38 00 00 00 */	li r0, 0
@@ -27,13 +27,13 @@ lbl_8098E60C:
 /* 8098E624  80 1F 00 08 */	lwz r0, 8(r31)
 /* 8098E628  90 1E 0D C0 */	stw r0, 0xdc0(r30)
 /* 8098E62C  38 7E 0D B8 */	addi r3, r30, 0xdb8
-/* 8098E630  4B 9D 39 E8 */	b __ptmf_test
+/* 8098E630  4B 9D 39 E9 */	bl __ptmf_test
 /* 8098E634  2C 03 00 00 */	cmpwi r3, 0
 /* 8098E638  41 82 00 18 */	beq lbl_8098E650
 /* 8098E63C  7F C3 F3 78 */	mr r3, r30
 /* 8098E640  38 80 00 00 */	li r4, 0
 /* 8098E644  39 9E 0D B8 */	addi r12, r30, 0xdb8
-/* 8098E648  4B 9D 3A 3C */	b __ptmf_scall
+/* 8098E648  4B 9D 3A 3D */	bl __ptmf_scall
 /* 8098E64C  60 00 00 00 */	nop 
 lbl_8098E650:
 /* 8098E650  38 60 00 01 */	li r3, 1

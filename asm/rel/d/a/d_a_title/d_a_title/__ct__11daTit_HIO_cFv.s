@@ -1,8 +1,8 @@
 lbl_80D66B0C:
-/* 80D66B0C  3C 80 80 D6 */	lis r4, lit_3772@ha
-/* 80D66B10  38 A4 7B D4 */	addi r5, r4, lit_3772@l
-/* 80D66B14  3C 80 80 D6 */	lis r4, __vt__11daTit_HIO_c@ha
-/* 80D66B18  38 04 7D 68 */	addi r0, r4, __vt__11daTit_HIO_c@l
+/* 80D66B0C  3C 80 80 D6 */	lis r4, lit_3772@ha /* 0x80D67BD4@ha */
+/* 80D66B10  38 A4 7B D4 */	addi r5, r4, lit_3772@l /* 0x80D67BD4@l */
+/* 80D66B14  3C 80 80 D6 */	lis r4, __vt__11daTit_HIO_c@ha /* 0x80D67D68@ha */
+/* 80D66B18  38 04 7D 68 */	addi r0, r4, __vt__11daTit_HIO_c@l /* 0x80D67D68@l */
 /* 80D66B1C  90 03 00 00 */	stw r0, 0(r3)
 /* 80D66B20  C0 05 00 14 */	lfs f0, 0x14(r5)
 /* 80D66B24  D0 03 00 08 */	stfs f0, 8(r3)

@@ -21,8 +21,8 @@ lbl_8029BD70:
 /* 8029BD88  D8 01 00 08 */	stfd f0, 8(r1)
 /* 8029BD8C  80 01 00 0C */	lwz r0, 0xc(r1)
 /* 8029BD90  54 00 1C 38 */	rlwinm r0, r0, 3, 0x10, 0x1c
-/* 8029BD94  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8029BD98  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8029BD94  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8029BD98  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8029BD9C  7C 03 04 2E */	lfsx f0, r3, r0
 /* 8029BDA0  FC 00 00 50 */	fneg f0, f0
 /* 8029BDA4  48 00 00 28 */	b lbl_8029BDCC
@@ -33,8 +33,8 @@ lbl_8029BDA8:
 /* 8029BDB4  D8 01 00 10 */	stfd f0, 0x10(r1)
 /* 8029BDB8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8029BDBC  54 00 1C 38 */	rlwinm r0, r0, 3, 0x10, 0x1c
-/* 8029BDC0  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8029BDC4  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8029BDC0  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8029BDC4  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8029BDC8  7C 03 04 2E */	lfsx f0, r3, r0
 lbl_8029BDCC:
 /* 8029BDCC  EC 23 00 32 */	fmuls f1, f3, f0

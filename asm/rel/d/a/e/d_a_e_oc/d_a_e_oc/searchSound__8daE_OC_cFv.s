@@ -17,14 +17,14 @@ lbl_8072D1DC:
 /* 8072D218  38 60 00 00 */	li r3, 0
 /* 8072D21C  48 00 00 B4 */	b lbl_8072D2D0
 lbl_8072D220:
-/* 8072D220  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8072D224  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 8072D220  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8072D224  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8072D228  80 9F 5D AC */	lwz r4, 0x5dac(r31)
 /* 8072D22C  88 04 05 68 */	lbz r0, 0x568(r4)
 /* 8072D230  28 00 00 00 */	cmplwi r0, 0
 /* 8072D234  41 82 00 4C */	beq lbl_8072D280
 /* 8072D238  7F C3 F3 78 */	mr r3, r30
-/* 8072D23C  4B 8E D5 A4 */	b fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 8072D23C  4B 8E D5 A5 */	bl fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 8072D240  C0 1E 06 94 */	lfs f0, 0x694(r30)
 /* 8072D244  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8072D248  40 80 00 38 */	bge lbl_8072D280
@@ -43,12 +43,12 @@ lbl_8072D220:
 /* 8072D27C  48 00 00 54 */	b lbl_8072D2D0
 lbl_8072D280:
 /* 8072D280  7F C3 F3 78 */	mr r3, r30
-/* 8072D284  3C 80 80 73 */	lis r4, lit_4030@ha
-/* 8072D288  C0 24 5B C0 */	lfs f1, lit_4030@l(r4)
-/* 8072D28C  4B 8E F9 D0 */	b fopAcM_otoCheck__FPC10fopAc_ac_cf
+/* 8072D284  3C 80 80 73 */	lis r4, lit_4030@ha /* 0x80735BC0@ha */
+/* 8072D288  C0 24 5B C0 */	lfs f1, lit_4030@l(r4)  /* 0x80735BC0@l */
+/* 8072D28C  4B 8E F9 D1 */	bl fopAcM_otoCheck__FPC10fopAc_ac_cf
 /* 8072D290  2C 03 00 00 */	cmpwi r3, 0
 /* 8072D294  41 82 00 38 */	beq lbl_8072D2CC
-/* 8072D298  4B A7 B1 DC */	b dKy_Sound_get__Fv
+/* 8072D298  4B A7 B1 DD */	bl dKy_Sound_get__Fv
 /* 8072D29C  C0 03 00 00 */	lfs f0, 0(r3)
 /* 8072D2A0  D0 1E 06 7C */	stfs f0, 0x67c(r30)
 /* 8072D2A4  C0 03 00 04 */	lfs f0, 4(r3)

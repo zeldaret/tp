@@ -18,9 +18,9 @@ struct JGeometry {
     struct TVec3__template0 {};
 };
 
-struct JAISoundID {};
-
 struct JAISoundHandle {};
+
+struct JAISoundID {};
 
 struct JAISoundStarter {
     /* 802A2F6C */ JAISoundStarter(bool);
@@ -40,8 +40,6 @@ extern "C" void func_802A2FEC();
 // External References:
 //
 
-void operator delete(void*);
-
 extern "C" void __dl__FPv();
 extern "C" extern u8 data_80450B78[4];
 
@@ -50,15 +48,15 @@ extern "C" extern u8 data_80450B78[4];
 //
 
 /* ############################################################################################## */
-/* 803C99C8-803C99D8 0010+00 s=2 e=0 z=0  None .data      __vt__15JAISoundStarter */
-SECTION_DATA static void* __vt__15JAISoundStarter[4] = {
-    (void*)NULL,
+/* 803C99C8-803C99D8 026AE8 0010+00 2/2 0/0 0/0 .data            __vt__15JAISoundStarter */
+SECTION_DATA extern void* __vt__15JAISoundStarter[4] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__15JAISoundStarterFv,
     (void*)NULL,
 };
 
-/* 802A2F6C-802A2F88 001C+00 s=0 e=1 z=0  None .text      __ct__15JAISoundStarterFb */
+/* 802A2F6C-802A2F88 29D8AC 001C+00 0/0 1/1 0/0 .text            __ct__15JAISoundStarterFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -68,7 +66,7 @@ asm JAISoundStarter::JAISoundStarter(bool param_0) {
 }
 #pragma pop
 
-/* 802A2F88-802A2FEC 0064+00 s=1 e=7 z=0  None .text      __dt__15JAISoundStarterFv */
+/* 802A2F88-802A2FEC 29D8C8 0064+00 1/0 7/7 0/0 .text            __dt__15JAISoundStarterFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -78,7 +76,7 @@ asm JAISoundStarter::~JAISoundStarter() {
 }
 #pragma pop
 
-/* 802A2FEC-802A30D4 00E8+00 s=0 e=4 z=0  None .text
+/* 802A2FEC-802A30D4 29D92C 00E8+00 0/0 4/4 0/0 .text
  * startLevelSound__15JAISoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f> */
 #pragma push
 #pragma optimization_level 0

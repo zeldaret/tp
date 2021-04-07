@@ -7,8 +7,8 @@ lbl_800BA914:
 /* 800BA928  39 61 00 30 */	addi r11, r1, 0x30
 /* 800BA92C  48 2A 78 B1 */	bl _savegpr_29
 /* 800BA930  7C 7D 1B 78 */	mr r29, r3
-/* 800BA934  3C 80 80 39 */	lis r4, lit_3757@ha
-/* 800BA938  3B E4 D6 58 */	addi r31, r4, lit_3757@l
+/* 800BA934  3C 80 80 39 */	lis r4, lit_3757@ha /* 0x8038D658@ha */
+/* 800BA938  3B E4 D6 58 */	addi r31, r4, lit_3757@l /* 0x8038D658@l */
 /* 800BA93C  A0 03 2F DC */	lhz r0, 0x2fdc(r3)
 /* 800BA940  28 00 00 42 */	cmplwi r0, 0x42
 /* 800BA944  40 82 00 08 */	bne lbl_800BA94C
@@ -28,8 +28,8 @@ lbl_800BA94C:
 /* 800BA978  38 03 0C 52 */	addi r0, r3, 0x0C52 /* 0x00070C52@l */
 /* 800BA97C  7C 80 00 39 */	and. r0, r4, r0
 /* 800BA980  40 82 00 C0 */	bne lbl_800BAA40
-/* 800BA984  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800BA988  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800BA984  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800BA988  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800BA98C  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 800BA990  38 9D 1A 60 */	addi r4, r29, 0x1a60
 /* 800BA994  4B FB 9C CD */	bl ChkPolySafe__4cBgSFRC13cBgS_PolyInfo

@@ -6,18 +6,18 @@ lbl_80D28A50:
 /* 80D28A60  7C 7F 1B 78 */	mr r31, r3
 /* 80D28A64  80 03 00 B0 */	lwz r0, 0xb0(r3)
 /* 80D28A68  54 00 1F 7A */	rlwinm r0, r0, 3, 0x1d, 0x1d
-/* 80D28A6C  3C 60 80 D3 */	lis r3, l_arcName@ha
-/* 80D28A70  38 63 97 30 */	addi r3, r3, l_arcName@l
+/* 80D28A6C  3C 60 80 D3 */	lis r3, l_arcName@ha /* 0x80D29730@ha */
+/* 80D28A70  38 63 97 30 */	addi r3, r3, l_arcName@l /* 0x80D29730@l */
 /* 80D28A74  7C 63 00 2E */	lwzx r3, r3, r0
-/* 80D28A78  3C 80 80 D3 */	lis r4, l_bck_idx@ha
-/* 80D28A7C  38 84 95 CC */	addi r4, r4, l_bck_idx@l
+/* 80D28A78  3C 80 80 D3 */	lis r4, l_bck_idx@ha /* 0x80D295CC@ha */
+/* 80D28A7C  38 84 95 CC */	addi r4, r4, l_bck_idx@l /* 0x80D295CC@l */
 /* 80D28A80  7C 84 00 2E */	lwzx r4, r4, r0
-/* 80D28A84  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80D28A88  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80D28A84  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D28A88  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D28A8C  3C A5 00 02 */	addis r5, r5, 2
 /* 80D28A90  38 C0 00 80 */	li r6, 0x80
 /* 80D28A94  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 80D28A98  4B 31 38 54 */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 80D28A98  4B 31 38 55 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80D28A9C  38 80 00 00 */	li r4, 0
 /* 80D28AA0  38 A1 00 08 */	addi r5, r1, 8
 /* 80D28AA4  81 83 00 00 */	lwz r12, 0(r3)

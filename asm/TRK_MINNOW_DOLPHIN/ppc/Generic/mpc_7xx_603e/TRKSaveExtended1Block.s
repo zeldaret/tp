@@ -1,6 +1,6 @@
 lbl_803711F0:
-/* 803711F0  3C 40 80 44 */	lis r2, gTRKCPUState@h
-/* 803711F4  60 42 F3 38 */	ori r2, r2, gTRKCPUState@l
+/* 803711F0  3C 40 80 44 */	lis r2, gTRKCPUState@h /* 0x8044F338@h */
+/* 803711F4  60 42 F3 38 */	ori r2, r2, gTRKCPUState@l /* 0x8044F338@l */
 /* 803711F8  7E 00 04 A6 */	mfsr r16, 0
 /* 803711FC  7E 21 04 A6 */	mfsr r17, 1
 /* 80371200  7E 42 04 A6 */	mfsr r18, 2

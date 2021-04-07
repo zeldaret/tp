@@ -25,7 +25,7 @@ lbl_809B4C40:
 /* 809B4C4C  7C 00 07 35 */	extsh. r0, r0
 /* 809B4C50  41 81 00 58 */	bgt lbl_809B4CA8
 /* 809B4C54  38 60 00 0B */	li r3, 0xb
-/* 809B4C58  4B 7F 3B 8C */	b dKy_change_colpat__FUc
+/* 809B4C58  4B 7F 3B 8D */	bl dKy_change_colpat__FUc
 /* 809B4C5C  3B E0 00 01 */	li r31, 1
 /* 809B4C60  48 00 00 48 */	b lbl_809B4CA8
 lbl_809B4C64:
@@ -41,7 +41,7 @@ lbl_809B4C80:
 /* 809B4C84  38 A0 00 00 */	li r5, 0
 /* 809B4C88  38 C0 00 00 */	li r6, 0
 /* 809B4C8C  38 E0 00 00 */	li r7, 0
-/* 809B4C90  4B 79 6F E8 */	b talkProc__8daNpcT_cFPiiPP10fopAc_ac_ci
+/* 809B4C90  4B 79 6F E9 */	bl talkProc__8daNpcT_cFPiiPP10fopAc_ac_ci
 /* 809B4C94  2C 03 00 00 */	cmpwi r3, 0
 /* 809B4C98  41 82 00 10 */	beq lbl_809B4CA8
 /* 809B4C9C  3B E0 00 01 */	li r31, 1

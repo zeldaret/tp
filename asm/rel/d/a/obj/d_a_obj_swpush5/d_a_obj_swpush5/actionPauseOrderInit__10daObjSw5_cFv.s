@@ -12,7 +12,7 @@ lbl_8059BE28:
 /* 8059BE50  38 80 00 02 */	li r4, 2
 /* 8059BE54  38 A0 00 00 */	li r5, 0
 /* 8059BE58  38 C0 00 00 */	li r6, 0
-/* 8059BE5C  4B A7 FA AC */	b fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs
+/* 8059BE5C  4B A7 FA AD */	bl fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs
 /* 8059BE60  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 8059BE64  60 00 00 02 */	ori r0, r0, 2
 /* 8059BE68  B0 1F 00 FA */	sth r0, 0xfa(r31)

@@ -53,21 +53,21 @@ struct J2DTextBoxVBinding {};
 
 struct J2DTextBoxHBinding {};
 
-struct J2DAnmTextureSRTKey {};
+struct J2DAnmBase {};
 
-struct J2DAnmColor {};
+struct J2DAnmTevRegKey {};
 
 struct J2DAnmVtxColor {};
+
+struct J2DAnmTransform {};
+
+struct J2DAnmTextureSRTKey {};
 
 struct J2DAnmVisibilityFull {};
 
 struct J2DAnmTexPattern {};
 
-struct J2DAnmTevRegKey {};
-
-struct J2DAnmTransform {};
-
-struct J2DAnmBase {};
+struct J2DAnmColor {};
 
 struct J2DPane {
     /* 80020158 */ void setAlpha(u8);
@@ -183,11 +183,6 @@ extern "C" extern char const* const J2DTextBox__stringBase0;
 // External References:
 //
 
-void* operator new(u32);
-void* operator new[](u32);
-void operator delete(void*);
-void operator delete[](void*);
-
 extern "C" void setAlpha__7J2DPaneFUc();
 extern "C" void calcMtx__7J2DPaneFv();
 extern "C" void makeMatrix__7J2DPaneFff();
@@ -271,9 +266,9 @@ extern "C" void strlen();
 //
 
 /* ############################################################################################## */
-/* 803CD328-803CD3E8 00BC+04 s=5 e=0 z=0  None .data      __vt__10J2DTextBox */
-SECTION_DATA static void* __vt__10J2DTextBox[47 + 1 /* padding */] = {
-    (void*)NULL,
+/* 803CD328-803CD3E8 02A448 00BC+04 5/5 0/0 0/0 .data            __vt__10J2DTextBox */
+SECTION_DATA extern void* __vt__10J2DTextBox[47 + 1 /* padding */] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__10J2DTextBoxFv,
     (void*)getTypeID__10J2DTextBoxCFv,
@@ -324,7 +319,7 @@ SECTION_DATA static void* __vt__10J2DTextBox[47 + 1 /* padding */] = {
     NULL,
 };
 
-/* 802FF660-802FF6D8 0078+00 s=0 e=1 z=0  None .text      __ct__10J2DTextBoxFv */
+/* 802FF660-802FF6D8 2F9FA0 0078+00 0/0 1/1 0/0 .text            __ct__10J2DTextBoxFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -334,7 +329,7 @@ asm J2DTextBox::J2DTextBox() {
 }
 #pragma pop
 
-/* 802FF6D8-802FF75C 0084+00 s=0 e=1 z=0  None .text
+/* 802FF6D8-802FF75C 2FA018 0084+00 0/0 1/1 0/0 .text
  * __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive */
 #pragma push
 #pragma optimization_level 0
@@ -346,20 +341,20 @@ asm J2DTextBox::J2DTextBox(J2DPane* param_0, JSURandomInputStream* param_1, JKRA
 #pragma pop
 
 /* ############################################################################################## */
-/* 80456280-80456288 0004+04 s=6 e=0 z=0  None .sdata2    @1660 */
+/* 80456280-80456288 004880 0004+04 6/6 0/0 0/0 .sdata2          @1660 */
 SECTION_SDATA2 static f32 lit_1660[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 80456288-80456290 0008+00 s=3 e=0 z=0  None .sdata2    @1662 */
+/* 80456288-80456290 004888 0008+00 3/3 0/0 0/0 .sdata2          @1662 */
 SECTION_SDATA2 static f64 lit_1662 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 80456290-80456298 0008+00 s=2 e=0 z=0  None .sdata2    @1665 */
+/* 80456290-80456298 004890 0008+00 2/2 0/0 0/0 .sdata2          @1665 */
 SECTION_SDATA2 static f64 lit_1665 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 802FF75C-802FFBC4 0468+00 s=0 e=1 z=0  None .text
+/* 802FF75C-802FFBC4 2FA09C 0468+00 0/0 1/1 0/0 .text
  * __ct__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial */
 #pragma push
 #pragma optimization_level 0
@@ -371,7 +366,7 @@ asm J2DTextBox::J2DTextBox(J2DPane* param_0, JSURandomInputStream* param_1, u32 
 }
 #pragma pop
 
-/* 802FFBC4-802FFC58 0094+00 s=0 e=1 z=0  None .text
+/* 802FFBC4-802FFC58 2FA504 0094+00 0/0 1/1 0/0 .text
  * __ct__10J2DTextBoxFUxRCQ29JGeometry8TBox2<f>PC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding
  */
 #pragma push
@@ -385,7 +380,7 @@ asm J2DTextBox::J2DTextBox(u64 param_0, JGeometry::TBox2<f32> const& param_1,
 }
 #pragma pop
 
-/* 802FFC58-802FFE88 0230+00 s=2 e=1 z=0  None .text
+/* 802FFC58-802FFE88 2FA598 0230+00 2/2 1/0 0/0 .text
  * initiate__10J2DTextBoxFPC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding */
 #pragma push
 #pragma optimization_level 0
@@ -397,7 +392,7 @@ asm void J2DTextBox::initiate(ResFONT const* param_0, char const* param_1, s16 p
 }
 #pragma pop
 
-/* 802FFE88-803001E0 0358+00 s=1 e=0 z=0  None .text
+/* 802FFE88-803001E0 2FA7C8 0358+00 1/1 0/0 0/0 .text
  * private_readStream__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive */
 #pragma push
 #pragma optimization_level 0
@@ -409,7 +404,7 @@ asm void J2DTextBox::private_readStream(J2DPane* param_0, JSURandomInputStream* 
 }
 #pragma pop
 
-/* 803001E0-80300278 0098+00 s=1 e=2 z=0  None .text      __dt__10J2DTextBoxFv */
+/* 803001E0-80300278 2FAB20 0098+00 1/0 2/2 0/0 .text            __dt__10J2DTextBoxFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -419,7 +414,7 @@ asm J2DTextBox::~J2DTextBox() {
 }
 #pragma pop
 
-/* 80300278-803002E8 0070+00 s=1 e=0 z=0  None .text      setFont__10J2DTextBoxFP7JUTFont */
+/* 80300278-803002E8 2FABB8 0070+00 1/0 0/0 0/0 .text            setFont__10J2DTextBoxFP7JUTFont */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -429,18 +424,7 @@ asm void J2DTextBox::setFont(JUTFont* param_0) {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 803A1C58-803A1C60 0004+04 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_803A1C58 = "%s";
-SECTION_DEAD char const* const stringBase_803A1C5B = "";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803A1C5C = "\0\0\0";
-#pragma pop
-
-/* 803002E8-80300490 01A8+00 s=1 e=0 z=0  None .text      draw__10J2DTextBoxFff */
+/* 803002E8-80300490 2FAC28 01A8+00 1/0 0/0 0/0 .text            draw__10J2DTextBoxFff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -450,7 +434,7 @@ asm void J2DTextBox::draw(f32 param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 80300490-80300658 01C8+00 s=1 e=1 z=0  None .text      draw__10J2DTextBoxFfff18J2DTextBoxHBinding
+/* 80300490-80300658 2FADD0 01C8+00 1/0 1/1 0/0 .text draw__10J2DTextBoxFfff18J2DTextBoxHBinding
  */
 #pragma push
 #pragma optimization_level 0
@@ -461,7 +445,7 @@ asm void J2DTextBox::draw(f32 param_0, f32 param_1, f32 param_2, J2DTextBoxHBind
 }
 #pragma pop
 
-/* 80300658-80300660 0008+00 s=0 e=62 z=2  None .text      getStringPtr__10J2DTextBoxCFv */
+/* 80300658-80300660 2FAF98 0008+00 0/0 62/62 2/2 .text            getStringPtr__10J2DTextBoxCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -471,7 +455,7 @@ asm void J2DTextBox::getStringPtr() const {
 }
 #pragma pop
 
-/* 80300660-8030074C 00EC+00 s=0 e=6 z=0  None .text      setString__10J2DTextBoxFPCce */
+/* 80300660-8030074C 2FAFA0 00EC+00 0/0 6/6 0/0 .text            setString__10J2DTextBoxFPCce */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -481,7 +465,7 @@ asm void J2DTextBox::setString(char const* param_0, ...) {
 }
 #pragma pop
 
-/* 8030074C-80300870 0124+00 s=0 e=41 z=2  None .text      setString__10J2DTextBoxFsPCce */
+/* 8030074C-80300870 2FB08C 0124+00 0/0 41/41 2/2 .text            setString__10J2DTextBoxFsPCce */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -491,7 +475,7 @@ asm void J2DTextBox::setString(s16 param_0, char const* param_1, ...) {
 }
 #pragma pop
 
-/* 80300870-803008E8 0078+00 s=1 e=1 z=0  None .text      setConnectParent__10J2DTextBoxFb */
+/* 80300870-803008E8 2FB1B0 0078+00 1/0 1/0 0/0 .text            setConnectParent__10J2DTextBoxFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -501,7 +485,7 @@ asm void J2DTextBox::setConnectParent(bool param_0) {
 }
 #pragma pop
 
-/* 803008E8-80300950 0068+00 s=1 e=1 z=0  None .text      drawSelf__10J2DTextBoxFff */
+/* 803008E8-80300950 2FB228 0068+00 1/0 1/0 0/0 .text            drawSelf__10J2DTextBoxFff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -512,14 +496,15 @@ asm void J2DTextBox::drawSelf(f32 param_0, f32 param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80456298-804562A0 0004+04 s=1 e=0 z=0  None .sdata2    @2049 */
+/* 80456298-804562A0 004898 0004+04 1/1 0/0 0/0 .sdata2          @2049 */
 SECTION_SDATA2 static f32 lit_2049[1 + 1 /* padding */] = {
     9.999999747378752e-05f,
     /* padding */
     0.0f,
 };
 
-/* 80300950-80300AF8 01A8+00 s=1 e=0 z=0  None .text      drawSelf__10J2DTextBoxFffPA3_A4_f */
+/* 80300950-80300AF8 2FB290 01A8+00 1/0 0/0 0/0 .text            drawSelf__10J2DTextBoxFffPA3_A4_f
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -529,7 +514,7 @@ asm void J2DTextBox::drawSelf(f32 param_0, f32 param_1, f32 (*param_2)[3][4]) {
 }
 #pragma pop
 
-/* 80300AF8-80300BFC 0104+00 s=1 e=1 z=0  None .text      resize__10J2DTextBoxFff */
+/* 80300AF8-80300BFC 2FB438 0104+00 1/0 1/0 0/0 .text            resize__10J2DTextBoxFff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -539,7 +524,7 @@ asm void J2DTextBox::resize(f32 param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 80300BFC-80300C68 006C+00 s=1 e=0 z=0  None .text      isUsed__10J2DTextBoxFPC7ResFONT */
+/* 80300BFC-80300C68 2FB53C 006C+00 1/0 0/0 0/0 .text            isUsed__10J2DTextBoxFPC7ResFONT */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -549,12 +534,12 @@ asm void J2DTextBox::isUsed(ResFONT const* param_0) {
 }
 #pragma pop
 
-/* 80300C68-80300C70 0008+00 s=1 e=1 z=0  None .text      getTypeID__10J2DTextBoxCFv */
+/* 80300C68-80300C70 2FB5A8 0008+00 1/0 1/0 0/0 .text            getTypeID__10J2DTextBoxCFv */
 s32 J2DTextBox::getTypeID() const {
     return 19;
 }
 
-/* 80300C70-80300C90 0020+00 s=1 e=0 z=0  None .text      isUsed__10J2DTextBoxFPC7ResTIMG */
+/* 80300C70-80300C90 2FB5B0 0020+00 1/0 0/0 0/0 .text            isUsed__10J2DTextBoxFPC7ResTIMG */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -564,7 +549,17 @@ asm void J2DTextBox::isUsed(ResTIMG const* param_0) {
 }
 #pragma pop
 
-/* 80300C90-80300C94 0004+00 s=1 e=0 z=0  None .text      rewriteAlpha__10J2DTextBoxFv */
+/* 80300C90-80300C94 2FB5D0 0004+00 1/0 0/0 0/0 .text            rewriteAlpha__10J2DTextBoxFv */
 void J2DTextBox::rewriteAlpha() {
     /* empty function */
 }
+
+/* 803A1C58-803A1C60 02E2B8 0004+04 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_803A1C58 = "%s";
+SECTION_DEAD static char const* const stringBase_803A1C5B = "";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803A1C5C = "\0\0\0";
+#pragma pop

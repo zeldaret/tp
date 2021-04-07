@@ -1,6 +1,6 @@
 lbl_804BC36C:
-/* 804BC36C  3C C0 80 45 */	lis r6, m_midnaActor__9daPy_py_c@ha
-/* 804BC370  38 C6 10 18 */	addi r6, r6, m_midnaActor__9daPy_py_c@l
+/* 804BC36C  3C C0 80 45 */	lis r6, m_midnaActor__9daPy_py_c@ha /* 0x80451018@ha */
+/* 804BC370  38 C6 10 18 */	addi r6, r6, m_midnaActor__9daPy_py_c@l /* 0x80451018@l */
 /* 804BC374  80 C6 00 00 */	lwz r6, 0(r6)
 /* 804BC378  80 06 08 90 */	lwz r0, 0x890(r6)
 /* 804BC37C  54 00 00 85 */	rlwinm. r0, r0, 0, 2, 2

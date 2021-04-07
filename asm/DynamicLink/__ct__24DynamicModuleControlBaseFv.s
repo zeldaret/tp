@@ -1,6 +1,6 @@
 lbl_80262284:
-/* 80262284  3C 80 80 3C */	lis r4, __vt__24DynamicModuleControlBase@ha
-/* 80262288  38 04 34 F4 */	addi r0, r4, __vt__24DynamicModuleControlBase@l
+/* 80262284  3C 80 80 3C */	lis r4, __vt__24DynamicModuleControlBase@ha /* 0x803C34F4@ha */
+/* 80262288  38 04 34 F4 */	addi r0, r4, __vt__24DynamicModuleControlBase@l /* 0x803C34F4@l */
 /* 8026228C  90 03 00 0C */	stw r0, 0xc(r3)
 /* 80262290  38 00 00 00 */	li r0, 0
 /* 80262294  B0 03 00 00 */	sth r0, 0(r3)

@@ -7,7 +7,7 @@ lbl_80522FCC:
 /* 80522FE0  41 82 00 10 */	beq lbl_80522FF0
 /* 80522FE4  7C 80 07 35 */	extsh. r0, r4
 /* 80522FE8  40 81 00 08 */	ble lbl_80522FF0
-/* 80522FEC  4B DA BD 50 */	b __dl__FPv
+/* 80522FEC  4B DA BD 51 */	bl __dl__FPv
 lbl_80522FF0:
 /* 80522FF0  7F E3 FB 78 */	mr r3, r31
 /* 80522FF4  83 E1 00 0C */	lwz r31, 0xc(r1)

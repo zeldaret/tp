@@ -3,19 +3,20 @@
 #
 
 M121_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_cstasw.plf
+M121_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_cstasw.lcf
+M121_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_cstasw.map
 
 M121_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_cstasw/executor.cpp \
-	rel/d/a/tag/d_a_tag_cstasw/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/tag/d_a_tag_cstasw/d_a_tag_CstaSw.cpp \
 
 M121_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_cstasw/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_cstasw/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_cstasw/d_a_tag_CstaSw.o \
 
 M121_LIBS := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_cstasw/libRuntime.PPCEABI.H.a \
 
 M121_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M121_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M121_LDSCRIPT) \
+	-unused -map $(M121_MAP) \
+	-w off \
 
 $(M121_TARGET): $(M121_O_FILES) $(M121_LIBS)
+	@echo [121] creating $(M121_TARGET)
 	@echo $(M121_LIBS) $(M121_O_FILES) > build/M121_ofiles
-	$(LD) -partial $(M121_LDFLAGS) -o $(M121_TARGET) @build/M121_ofiles
+	@python3 tools/lcf.py rel 121 --output $(M121_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M121_LDFLAGS) -o $(M121_TARGET) @build/M121_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_cstasw/%.o: rel/d/a/tag/d_a_tag_cstasw/%.cpp
+	@echo [121] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M121_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M121_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/tag/d_a_tag_cstasw/libs/Runtime.PPCEABI.H/Makefile
 

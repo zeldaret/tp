@@ -22,8 +22,8 @@ lbl_804915F8:
 /* 80491600  38 60 00 01 */	li r3, 1
 /* 80491604  4E 80 00 20 */	blr 
 lbl_80491608:
-/* 80491608  3C 60 80 3B */	lis r3, item_info__10dItem_data@ha
-/* 8049160C  38 63 ED 78 */	addi r3, r3, item_info__10dItem_data@l
+/* 80491608  3C 60 80 3B */	lis r3, item_info__10dItem_data@ha /* 0x803AED78@ha */
+/* 8049160C  38 63 ED 78 */	addi r3, r3, item_info__10dItem_data@l /* 0x803AED78@l */
 /* 80491610  54 00 15 BA */	rlwinm r0, r0, 2, 0x16, 0x1d
 /* 80491614  7C 63 02 14 */	add r3, r3, r0
 /* 80491618  88 03 00 03 */	lbz r0, 3(r3)

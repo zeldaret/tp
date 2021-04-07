@@ -7,8 +7,8 @@ lbl_80018C8C:
 /* 80018CA0  41 82 00 28 */	beq lbl_80018CC8
 /* 80018CA4  34 1F 00 F4 */	addic. r0, r31, 0xf4
 /* 80018CA8  41 82 00 10 */	beq lbl_80018CB8
-/* 80018CAC  3C 60 80 3A */	lis r3, __vt__11dEvt_info_c@ha
-/* 80018CB0  38 03 35 D0 */	addi r0, r3, __vt__11dEvt_info_c@l
+/* 80018CAC  3C 60 80 3A */	lis r3, __vt__11dEvt_info_c@ha /* 0x803A35D0@ha */
+/* 80018CB0  38 03 35 D0 */	addi r0, r3, __vt__11dEvt_info_c@l /* 0x803A35D0@l */
 /* 80018CB4  90 1F 00 F4 */	stw r0, 0xf4(r31)
 lbl_80018CB8:
 /* 80018CB8  7C 80 07 35 */	extsh. r0, r4

@@ -1,6 +1,6 @@
 lbl_804CA268:
-/* 804CA268  3C 80 80 4D */	lis r4, lit_5886@ha
-/* 804CA26C  38 A4 C5 60 */	addi r5, r4, lit_5886@l
+/* 804CA268  3C 80 80 4D */	lis r4, lit_5886@ha /* 0x804CC560@ha */
+/* 804CA26C  38 A4 C5 60 */	addi r5, r4, lit_5886@l /* 0x804CC560@l */
 /* 804CA270  80 85 00 00 */	lwz r4, 0(r5)
 /* 804CA274  80 05 00 04 */	lwz r0, 4(r5)
 /* 804CA278  90 83 0C 38 */	stw r4, 0xc38(r3)
@@ -16,8 +16,8 @@ lbl_804CA268:
 /* 804CA2A0  80 03 05 5C */	lwz r0, 0x55c(r3)
 /* 804CA2A4  54 00 07 34 */	rlwinm r0, r0, 0, 0x1c, 0x1a
 /* 804CA2A8  90 03 05 5C */	stw r0, 0x55c(r3)
-/* 804CA2AC  3C 80 80 4D */	lis r4, lit_5458@ha
-/* 804CA2B0  C0 04 C4 74 */	lfs f0, lit_5458@l(r4)
+/* 804CA2AC  3C 80 80 4D */	lis r4, lit_5458@ha /* 0x804CC474@ha */
+/* 804CA2B0  C0 04 C4 74 */	lfs f0, lit_5458@l(r4)  /* 0x804CC474@l */
 /* 804CA2B4  D0 03 04 EC */	stfs f0, 0x4ec(r3)
 /* 804CA2B8  D0 03 04 F0 */	stfs f0, 0x4f0(r3)
 /* 804CA2BC  D0 03 04 F4 */	stfs f0, 0x4f4(r3)

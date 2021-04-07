@@ -1,6 +1,6 @@
 lbl_80CEBE24:
-/* 80CEBE24  3C 80 80 CF */	lis r4, l_bmdIdx@ha
-/* 80CEBE28  38 A4 CA B4 */	addi r5, r4, l_bmdIdx@l
+/* 80CEBE24  3C 80 80 CF */	lis r4, l_bmdIdx@ha /* 0x80CECAB4@ha */
+/* 80CEBE28  38 A4 CA B4 */	addi r5, r4, l_bmdIdx@l /* 0x80CECAB4@l */
 /* 80CEBE2C  80 03 07 C8 */	lwz r0, 0x7c8(r3)
 /* 80CEBE30  54 00 00 3C */	rlwinm r0, r0, 0, 0, 0x1e
 /* 80CEBE34  90 03 07 C8 */	stw r0, 0x7c8(r3)

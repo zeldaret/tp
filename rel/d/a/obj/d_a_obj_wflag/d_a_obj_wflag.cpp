@@ -16,8 +16,6 @@ struct wf_tail_s {
     /* 80D377F0 */ wf_tail_s();
 };
 
-struct standard_create_request_class {};
-
 struct request_of_phase_process_class {};
 
 struct obj_wflag_class {};
@@ -26,9 +24,9 @@ struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
 };
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTexPattern {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
@@ -50,9 +48,9 @@ struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct J3DModelData {};
-
 struct J3DAnmTransform {};
+
+struct J3DModelData {};
 
 struct Vec {};
 
@@ -65,19 +63,17 @@ struct mDoExt_McaMorf {
     /* 800106AC */ void modelCalc();
 };
 
-struct layer_class {};
-
 struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
 };
+
+struct dKy_tevstr_c {};
 
 struct cXyz {
     /* 80266AE4 */ void operator+(Vec const&) const;
     /* 80D36F54 */ ~cXyz();
     /* 80D37880 */ cXyz();
 };
-
-struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -106,15 +102,6 @@ struct J3DFrameCtrl {
 // Forward References:
 //
 
-static void daObj_Wflag_Draw(obj_wflag_class*);
-static void tail_control(fopAc_ac_c*, wf_tail_s*);
-static void tail_mtxset(wf_tail_s*);
-static void daObj_Wflag_Execute(obj_wflag_class*);
-static bool daObj_Wflag_IsDelete(obj_wflag_class*);
-static void daObj_Wflag_Delete(obj_wflag_class*);
-static void useHeapInit(fopAc_ac_c*);
-static void daObj_Wflag_Create(fopAc_ac_c*);
-
 extern "C" static void daObj_Wflag_Draw__FP15obj_wflag_class();
 extern "C" static void tail_control__FP10fopAc_ac_cP9wf_tail_s();
 extern "C" void __dt__4cXyzFv();
@@ -130,33 +117,11 @@ extern "C" void __dt__5csXyzFv();
 extern "C" void __ct__9wf_tail_sFv();
 extern "C" void __ct__5csXyzFv();
 extern "C" void __ct__4cXyzFv();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_OBJ_WFLAG[12];
+extern "C" extern char const* const d_a_obj_wflag__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_XrotS(f32 (*)[4], s16);
-void mDoMtx_XrotM(f32 (*)[4], s16);
-void mDoMtx_YrotS(f32 (*)[4], s16);
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoMtx_ZrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcIt_Judge(void* (*)(void*, void*), void*);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fpcSch_JudgeByID(void*, void*);
-void fpcFCtRq_Request(layer_class*, s16, int (*)(void*, void*), void*, void*);
-void fpcSCtRq_phase_Load(standard_create_request_class*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void cM_atan2s(f32, f32);
-void cM_rndF(f32);
-void MtxTrans(f32, f32, f32, u8);
-void MtxPosition(cXyz*, cXyz*);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_XrotS__FPA4_fs();
 extern "C" void mDoMtx_XrotM__FPA4_fs();
@@ -180,8 +145,6 @@ extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
 extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
 extern "C" void fpcSch_JudgeByID__FPvPv();
-extern "C" void fpcFCtRq_Request__FP11layer_classsPFPvPv_iPvPv();
-extern "C" void fpcSCtRq_phase_Load__FP29standard_create_request_class();
 extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
 extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
 extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
@@ -221,41 +184,62 @@ extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 // Declarations:
 //
 
-/* 80D36B98-80D36CA0 0108+00 s=1 e=0 z=0  None .text      daObj_Wflag_Draw__FP15obj_wflag_class */
+/* 80D36B98-80D36CA0 000078 0108+00 1/0 0/0 0/0 .text daObj_Wflag_Draw__FP15obj_wflag_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Wflag_Draw(obj_wflag_class* param_0) {
+static asm void daObj_Wflag_Draw(obj_wflag_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wflag/d_a_obj_wflag/daObj_Wflag_Draw__FP15obj_wflag_class.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D3788C-80D37890 0004+00 s=2 e=0 z=0  None .rodata    @3883 */
+/* 80D3788C-80D37890 000000 0004+00 2/2 0/0 0/0 .rodata          @3883 */
 SECTION_RODATA static u8 const lit_3883[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80D3788C, &lit_3883);
 
-/* 80D37890-80D37894 0004+00 s=1 e=0 z=0  None .rodata    @3884 */
-SECTION_RODATA static u32 const lit_3884 = 0x41A00000;
+/* 80D37890-80D37894 000004 0004+00 0/1 0/0 0/0 .rodata          @3884 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3884 = 20.0f;
+COMPILER_STRIP_GATE(80D37890, &lit_3884);
+#pragma pop
 
-/* 80D37894-80D37898 0004+00 s=1 e=0 z=0  None .rodata    @3885 */
-SECTION_RODATA static u32 const lit_3885 = 0x41200000;
+/* 80D37894-80D37898 000008 0004+00 0/1 0/0 0/0 .rodata          @3885 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3885 = 10.0f;
+COMPILER_STRIP_GATE(80D37894, &lit_3885);
+#pragma pop
 
-/* 80D37898-80D3789C 0004+00 s=1 e=0 z=0  None .rodata    @3886 */
-SECTION_RODATA static u32 const lit_3886 = 0x40000000;
+/* 80D37898-80D3789C 00000C 0004+00 0/1 0/0 0/0 .rodata          @3886 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3886 = 2.0f;
+COMPILER_STRIP_GATE(80D37898, &lit_3886);
+#pragma pop
 
-/* 80D3789C-80D378A0 0004+00 s=1 e=0 z=0  None .rodata    @3887 */
-SECTION_RODATA static u32 const lit_3887 = 0x3E99999A;
+/* 80D3789C-80D378A0 000010 0004+00 0/1 0/0 0/0 .rodata          @3887 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3887 = 3.0f / 10.0f;
+COMPILER_STRIP_GATE(80D3789C, &lit_3887);
+#pragma pop
 
-/* 80D378A0-80D378A4 0004+00 s=1 e=0 z=0  None .rodata    @3888 */
-SECTION_RODATA static u32 const lit_3888 = 0xC1A00000;
+/* 80D378A0-80D378A4 000014 0004+00 0/1 0/0 0/0 .rodata          @3888 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3888 = -20.0f;
+COMPILER_STRIP_GATE(80D378A0, &lit_3888);
+#pragma pop
 
-/* 80D378CC-80D37918 004C+00 s=1 e=0 z=0  None .data      pd$3822 */
+/* 80D378CC-80D37918 000000 004C+00 1/1 0/0 0/0 .data            pd$3822 */
 SECTION_DATA static u8 pd[76] = {
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x66, 0x66, 0x66, 0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x33, 0x33, 0x33,
     0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x00, 0x00, 0x00, 0x3E, 0xCC, 0xCC, 0xCD, 0x3E, 0x99, 0x99, 0x9A,
@@ -264,17 +248,17 @@ SECTION_DATA static u8 pd[76] = {
     0x3E, 0x4C, 0xCC, 0xCD, 0x3E, 0x4C, 0xCC, 0xCD, 0x3E, 0x4C, 0xCC, 0xCD,
 };
 
-/* 80D36CA0-80D36F54 02B4+00 s=1 e=0 z=0  None .text      tail_control__FP10fopAc_ac_cP9wf_tail_s */
+/* 80D36CA0-80D36F54 000180 02B4+00 1/1 0/0 0/0 .text tail_control__FP10fopAc_ac_cP9wf_tail_s */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void tail_control(fopAc_ac_c* param_0, wf_tail_s* param_1) {
+static asm void tail_control(fopAc_ac_c* param_0, wf_tail_s* param_1) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wflag/d_a_obj_wflag/tail_control__FP10fopAc_ac_cP9wf_tail_s.s"
 }
 #pragma pop
 
-/* 80D36F54-80D36F90 003C+00 s=2 e=0 z=0  None .text      __dt__4cXyzFv */
+/* 80D36F54-80D36F90 000434 003C+00 2/2 0/0 0/0 .text            __dt__4cXyzFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -284,75 +268,83 @@ asm cXyz::~cXyz() {
 }
 #pragma pop
 
-/* 80D36F90-80D37058 00C8+00 s=1 e=0 z=0  None .text      tail_mtxset__FP9wf_tail_s */
+/* 80D36F90-80D37058 000470 00C8+00 1/1 0/0 0/0 .text            tail_mtxset__FP9wf_tail_s */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void tail_mtxset(wf_tail_s* param_0) {
+static asm void tail_mtxset(wf_tail_s* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wflag/d_a_obj_wflag/tail_mtxset__FP9wf_tail_s.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D378A4-80D378A8 0004+00 s=1 e=0 z=0  None .rodata    @3987 */
-SECTION_RODATA static u32 const lit_3987 = 0x40A00000;
+/* 80D378A4-80D378A8 000018 0004+00 0/1 0/0 0/0 .rodata          @3987 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3987 = 5.0f;
+COMPILER_STRIP_GATE(80D378A4, &lit_3987);
+#pragma pop
 
-/* 80D378A8-80D378AC 0004+00 s=1 e=0 z=0  None .rodata    @3988 */
-SECTION_RODATA static u32 const lit_3988 = 0x43050000;
+/* 80D378A8-80D378AC 00001C 0004+00 0/1 0/0 0/0 .rodata          @3988 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3988 = 133.0f;
+COMPILER_STRIP_GATE(80D378A8, &lit_3988);
+#pragma pop
 
-/* 80D378AC-80D378B0 0004+00 s=1 e=0 z=0  None .rodata    @3989 */
-SECTION_RODATA static u32 const lit_3989 = 0x43780000;
+/* 80D378AC-80D378B0 000020 0004+00 0/1 0/0 0/0 .rodata          @3989 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3989 = 248.0f;
+COMPILER_STRIP_GATE(80D378AC, &lit_3989);
+#pragma pop
 
-/* 80D378B0-80D378B4 0004+00 s=1 e=0 z=0  None .rodata    @3990 */
-SECTION_RODATA static u32 const lit_3990 = 0x430F0000;
+/* 80D378B0-80D378B4 000024 0004+00 0/1 0/0 0/0 .rodata          @3990 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3990 = 143.0f;
+COMPILER_STRIP_GATE(80D378B0, &lit_3990);
+#pragma pop
 
-/* 80D378B4-80D378B8 0004+00 s=1 e=0 z=0  None .rodata    @3991 */
-SECTION_RODATA static u32 const lit_3991 = 0x43D10000;
+/* 80D378B4-80D378B8 000028 0004+00 0/1 0/0 0/0 .rodata          @3991 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3991 = 418.0f;
+COMPILER_STRIP_GATE(80D378B4, &lit_3991);
+#pragma pop
 
-/* 80D37058-80D372D0 0278+00 s=2 e=0 z=0  None .text      daObj_Wflag_Execute__FP15obj_wflag_class
- */
+/* 80D37058-80D372D0 000538 0278+00 2/1 0/0 0/0 .text daObj_Wflag_Execute__FP15obj_wflag_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Wflag_Execute(obj_wflag_class* param_0) {
+static asm void daObj_Wflag_Execute(obj_wflag_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wflag/d_a_obj_wflag/daObj_Wflag_Execute__FP15obj_wflag_class.s"
 }
 #pragma pop
 
-/* 80D372D0-80D372D8 0008+00 s=1 e=0 z=0  None .text      daObj_Wflag_IsDelete__FP15obj_wflag_class
- */
+/* 80D372D0-80D372D8 0007B0 0008+00 1/0 0/0 0/0 .text daObj_Wflag_IsDelete__FP15obj_wflag_class */
 static bool daObj_Wflag_IsDelete(obj_wflag_class* param_0) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 80D378B8-80D378BC 0004+00 s=1 e=0 z=0  None .rodata    @4094 */
-SECTION_RODATA static u32 const lit_4094 = 0x3F800000;
-
-/* 80D378BC-80D378C0 0004+00 s=1 e=0 z=0  None .rodata    @4131 */
-SECTION_RODATA static u32 const lit_4131 = 0x47800000;
-
-/* 80D378C0-80D378CA 000A+00 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80D378C0 = "Obj_wflag";
-#pragma pop
-
-/* 80D372D8-80D37308 0030+00 s=1 e=0 z=0  None .text      daObj_Wflag_Delete__FP15obj_wflag_class */
+/* 80D372D8-80D37308 0007B8 0030+00 1/0 0/0 0/0 .text daObj_Wflag_Delete__FP15obj_wflag_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Wflag_Delete(obj_wflag_class* param_0) {
+static asm void daObj_Wflag_Delete(obj_wflag_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wflag/d_a_obj_wflag/daObj_Wflag_Delete__FP15obj_wflag_class.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D37918-80D37938 0020+00 s=1 e=0 z=0  None .data      l_daObj_Wflag_Method */
+/* 80D378B8-80D378BC 00002C 0004+00 1/1 0/0 0/0 .rodata          @4094 */
+SECTION_RODATA static f32 const lit_4094 = 1.0f;
+COMPILER_STRIP_GATE(80D378B8, &lit_4094);
+
+/* 80D37918-80D37938 -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Wflag_Method */
 SECTION_DATA static void* l_daObj_Wflag_Method[8] = {
     (void*)daObj_Wflag_Create__FP10fopAc_ac_c,
     (void*)daObj_Wflag_Delete__FP15obj_wflag_class,
@@ -364,8 +356,8 @@ SECTION_DATA static void* l_daObj_Wflag_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D37938-80D37968 0030+00 s=0 e=0 z=1  None .data      g_profile_OBJ_WFLAG */
-SECTION_DATA void* g_profile_OBJ_WFLAG[12] = {
+/* 80D37938-80D37968 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_WFLAG */
+SECTION_DATA extern void* g_profile_OBJ_WFLAG[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01190000, (void*)&g_fpcLf_Method,
     (void*)0x0000083C, (void*)NULL,
@@ -374,24 +366,24 @@ SECTION_DATA void* g_profile_OBJ_WFLAG[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80D37968-80D37974 000C+00 s=2 e=0 z=0  None .data      __vt__12J3DFrameCtrl */
-SECTION_DATA static void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL,
+/* 80D37968-80D37974 00009C 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
+SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12J3DFrameCtrlFv,
 };
 
-/* 80D37308-80D375EC 02E4+00 s=1 e=0 z=0  None .text      useHeapInit__FP10fopAc_ac_c */
+/* 80D37308-80D375EC 0007E8 02E4+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void useHeapInit(fopAc_ac_c* param_0) {
+static asm void useHeapInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wflag/d_a_obj_wflag/useHeapInit__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D375EC-80D37634 0048+00 s=1 e=0 z=0  None .text      __dt__12J3DFrameCtrlFv */
+/* 80D375EC-80D37634 000ACC 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -401,17 +393,23 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 }
 #pragma pop
 
-/* 80D37634-80D37720 00EC+00 s=1 e=0 z=0  None .text      daObj_Wflag_Create__FP10fopAc_ac_c */
+/* ############################################################################################## */
+/* 80D378BC-80D378C0 000030 0004+00 1/1 0/0 0/0 .rodata          @4131 */
+SECTION_RODATA static f32 const lit_4131 = 65536.0f;
+COMPILER_STRIP_GATE(80D378BC, &lit_4131);
+
+/* 80D37634-80D37720 000B14 00EC+00 1/0 0/0 0/0 .text            daObj_Wflag_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Wflag_Create(fopAc_ac_c* param_0) {
+static asm void daObj_Wflag_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wflag/d_a_obj_wflag/daObj_Wflag_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D37720-80D377B4 0094+00 s=1 e=0 z=0  None .text      __dt__9wf_tail_sFv */
+/* 80D37720-80D377B4 000C00 0094+00 1/1 0/0 0/0 .text            __dt__9wf_tail_sFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -421,7 +419,7 @@ asm wf_tail_s::~wf_tail_s() {
 }
 #pragma pop
 
-/* 80D377B4-80D377F0 003C+00 s=2 e=0 z=0  None .text      __dt__5csXyzFv */
+/* 80D377B4-80D377F0 000C94 003C+00 2/2 0/0 0/0 .text            __dt__5csXyzFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -431,7 +429,7 @@ asm csXyz::~csXyz() {
 }
 #pragma pop
 
-/* 80D377F0-80D3787C 008C+00 s=1 e=0 z=0  None .text      __ct__9wf_tail_sFv */
+/* 80D377F0-80D3787C 000CD0 008C+00 1/1 0/0 0/0 .text            __ct__9wf_tail_sFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -441,12 +439,19 @@ asm wf_tail_s::wf_tail_s() {
 }
 #pragma pop
 
-/* 80D3787C-80D37880 0004+00 s=1 e=0 z=0  None .text      __ct__5csXyzFv */
+/* 80D3787C-80D37880 000D5C 0004+00 1/1 0/0 0/0 .text            __ct__5csXyzFv */
 csXyz::csXyz() {
     /* empty function */
 }
 
-/* 80D37880-80D37884 0004+00 s=1 e=0 z=0  None .text      __ct__4cXyzFv */
+/* 80D37880-80D37884 000D60 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
 cXyz::cXyz() {
     /* empty function */
 }
+
+/* 80D378C0-80D378CA 000034 000A+00 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80D378C0 = "Obj_wflag";
+#pragma pop

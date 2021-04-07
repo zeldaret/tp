@@ -1,7 +1,7 @@
 lbl_80022BE4:
 /* 80022BE4  80 83 00 04 */	lwz r4, 4(r3)
-/* 80022BE8  3C 60 80 3A */	lis r3, l_fpcNdRq_Queue@ha
-/* 80022BEC  38 63 3A 38 */	addi r3, r3, l_fpcNdRq_Queue@l
+/* 80022BE8  3C 60 80 3A */	lis r3, l_fpcNdRq_Queue@ha /* 0x803A3A38@ha */
+/* 80022BEC  38 63 3A 38 */	addi r3, r3, l_fpcNdRq_Queue@l /* 0x803A3A38@l */
 /* 80022BF0  80 63 00 00 */	lwz r3, 0(r3)
 /* 80022BF4  48 00 00 4C */	b lbl_80022C40
 lbl_80022BF8:

@@ -11,7 +11,7 @@ lbl_80B677C8:
 /* 80B677EC  38 81 00 08 */	addi r4, r1, 8
 /* 80B677F0  80 C3 00 00 */	lwz r6, 0(r3)
 /* 80B677F4  A0 C6 00 00 */	lhz r6, 0(r6)
-/* 80B677F8  4B 5D E6 40 */	b getDstPos__13daNpcT_Path_cF4cXyzP4cXyzi
+/* 80B677F8  4B 5D E6 41 */	bl getDstPos__13daNpcT_Path_cF4cXyzP4cXyzi
 /* 80B677FC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80B67800  7C 08 03 A6 */	mtlr r0
 /* 80B67804  38 21 00 20 */	addi r1, r1, 0x20

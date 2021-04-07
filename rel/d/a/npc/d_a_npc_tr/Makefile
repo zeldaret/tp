@@ -3,19 +3,20 @@
 #
 
 M375_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tr.plf
+M375_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tr.lcf
+M375_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tr.map
 
 M375_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_tr/executor.cpp \
-	rel/d/a/npc/d_a_npc_tr/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_tr/d_a_npc_tr.cpp \
 
 M375_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_tr/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_tr/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_tr/d_a_npc_tr.o \
 
 M375_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_tr/libRuntime.PPCEABI.H.a \
 
 M375_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M375_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M375_LDSCRIPT) \
+	-unused -map $(M375_MAP) \
+	-w off \
 
 $(M375_TARGET): $(M375_O_FILES) $(M375_LIBS)
+	@echo [375] creating $(M375_TARGET)
 	@echo $(M375_LIBS) $(M375_O_FILES) > build/M375_ofiles
-	$(LD) -partial $(M375_LDFLAGS) -o $(M375_TARGET) @build/M375_ofiles
+	@python3 tools/lcf.py rel 375 --output $(M375_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M375_LDFLAGS) -o $(M375_TARGET) @build/M375_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tr/%.o: rel/d/a/npc/d_a_npc_tr/%.cpp
+	@echo [375] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M375_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M375_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_tr/libs/Runtime.PPCEABI.H/Makefile
 

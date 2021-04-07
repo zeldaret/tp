@@ -8,8 +8,8 @@ lbl_801B78C0:
 /* 801B78D8  7C 9D 23 78 */	mr r29, r4
 /* 801B78DC  7C BE 2B 78 */	mr r30, r5
 /* 801B78E0  7C DF 33 78 */	mr r31, r6
-/* 801B78E4  3C 60 80 3C */	lis r3, __vt__15dMenu_Collect_c@ha
-/* 801B78E8  38 03 C7 5C */	addi r0, r3, __vt__15dMenu_Collect_c@l
+/* 801B78E4  3C 60 80 3C */	lis r3, __vt__15dMenu_Collect_c@ha /* 0x803BC75C@ha */
+/* 801B78E8  38 03 C7 5C */	addi r0, r3, __vt__15dMenu_Collect_c@l /* 0x803BC75C@l */
 /* 801B78EC  90 1C 00 00 */	stw r0, 0(r28)
 /* 801B78F0  38 60 02 64 */	li r3, 0x264
 /* 801B78F4  48 11 73 59 */	bl __nw__FUl

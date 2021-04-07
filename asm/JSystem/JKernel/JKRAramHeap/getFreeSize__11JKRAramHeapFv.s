@@ -8,8 +8,8 @@ lbl_802D3134:
 /* 802D314C  3B E0 00 00 */	li r31, 0
 /* 802D3150  38 7E 00 18 */	addi r3, r30, 0x18
 /* 802D3154  48 06 BE ED */	bl OSLockMutex
-/* 802D3158  3C 60 80 43 */	lis r3, sAramList__11JKRAramHeap@ha
-/* 802D315C  38 63 43 0C */	addi r3, r3, sAramList__11JKRAramHeap@l
+/* 802D3158  3C 60 80 43 */	lis r3, sAramList__11JKRAramHeap@ha /* 0x8043430C@ha */
+/* 802D315C  38 63 43 0C */	addi r3, r3, sAramList__11JKRAramHeap@l /* 0x8043430C@l */
 /* 802D3160  80 63 00 00 */	lwz r3, 0(r3)
 /* 802D3164  48 00 00 1C */	b lbl_802D3180
 lbl_802D3168:

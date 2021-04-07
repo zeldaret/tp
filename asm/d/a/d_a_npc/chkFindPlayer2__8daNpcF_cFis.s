@@ -17,8 +17,8 @@ lbl_801549E0:
 /* 80154A1C  7C BD 2B 78 */	mr r29, r5
 /* 80154A20  38 61 00 20 */	addi r3, r1, 0x20
 /* 80154A24  7F 64 DB 78 */	mr r4, r27
-/* 80154A28  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80154A2C  3B E5 61 C0 */	addi r31, r5, g_dComIfG_gameInfo@l
+/* 80154A28  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80154A2C  3B E5 61 C0 */	addi r31, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80154A30  80 BF 5D AC */	lwz r5, 0x5dac(r31)
 /* 80154A34  4B FF FF 39 */	bl getAttentionPos__8daNpcF_cFP10fopAc_ac_c
 /* 80154A38  C0 01 00 20 */	lfs f0, 0x20(r1)

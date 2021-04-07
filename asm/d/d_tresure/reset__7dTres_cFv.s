@@ -6,8 +6,8 @@ lbl_8009BC6C:
 /* 8009BC7C  B0 AD 8A 1C */	sth r5, mNum__7dTres_c(r13)
 /* 8009BC80  98 AD 81 00 */	stb r5, data_80450680(r13)
 /* 8009BC84  7C A3 2B 78 */	mr r3, r5
-/* 8009BC88  3C 80 80 42 */	lis r4, mTypeGroupListAll__7dTres_c@ha
-/* 8009BC8C  38 84 54 38 */	addi r4, r4, mTypeGroupListAll__7dTres_c@l
+/* 8009BC88  3C 80 80 42 */	lis r4, mTypeGroupListAll__7dTres_c@ha /* 0x80425438@ha */
+/* 8009BC8C  38 84 54 38 */	addi r4, r4, mTypeGroupListAll__7dTres_c@l /* 0x80425438@l */
 /* 8009BC90  38 00 00 11 */	li r0, 0x11
 /* 8009BC94  7C 09 03 A6 */	mtctr r0
 lbl_8009BC98:

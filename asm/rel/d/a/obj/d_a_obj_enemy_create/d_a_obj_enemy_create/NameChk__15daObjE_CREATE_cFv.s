@@ -13,8 +13,8 @@ lbl_80BE3618:
 /* 80BE3644  B0 03 05 72 */	sth r0, 0x572(r3)
 /* 80BE3648  28 05 00 0C */	cmplwi r5, 0xc
 /* 80BE364C  4D 81 00 20 */	bgtlr 
-/* 80BE3650  3C 80 80 BE */	lis r4, lit_3838@ha
-/* 80BE3654  38 84 38 A0 */	addi r4, r4, lit_3838@l
+/* 80BE3650  3C 80 80 BE */	lis r4, lit_3838@ha /* 0x80BE38A0@ha */
+/* 80BE3654  38 84 38 A0 */	addi r4, r4, lit_3838@l /* 0x80BE38A0@l */
 /* 80BE3658  54 A0 10 3A */	slwi r0, r5, 2
 /* 80BE365C  7C 04 00 2E */	lwzx r0, r4, r0
 /* 80BE3660  7C 09 03 A6 */	mtctr r0

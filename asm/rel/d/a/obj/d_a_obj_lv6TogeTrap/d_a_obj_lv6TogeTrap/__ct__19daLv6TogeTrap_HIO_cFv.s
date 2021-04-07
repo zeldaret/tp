@@ -1,11 +1,11 @@
 lbl_80C79E4C:
-/* 80C79E4C  3C 80 80 C8 */	lis r4, lit_3631@ha
-/* 80C79E50  38 A4 C6 18 */	addi r5, r4, lit_3631@l
-/* 80C79E54  3C 80 80 C8 */	lis r4, __vt__14mDoHIO_entry_c@ha
-/* 80C79E58  38 04 CA 44 */	addi r0, r4, __vt__14mDoHIO_entry_c@l
+/* 80C79E4C  3C 80 80 C8 */	lis r4, lit_3631@ha /* 0x80C7C618@ha */
+/* 80C79E50  38 A4 C6 18 */	addi r5, r4, lit_3631@l /* 0x80C7C618@l */
+/* 80C79E54  3C 80 80 C8 */	lis r4, __vt__14mDoHIO_entry_c@ha /* 0x80C7CA44@ha */
+/* 80C79E58  38 04 CA 44 */	addi r0, r4, __vt__14mDoHIO_entry_c@l /* 0x80C7CA44@l */
 /* 80C79E5C  90 03 00 00 */	stw r0, 0(r3)
-/* 80C79E60  3C 80 80 C8 */	lis r4, __vt__19daLv6TogeTrap_HIO_c@ha
-/* 80C79E64  38 04 CA 38 */	addi r0, r4, __vt__19daLv6TogeTrap_HIO_c@l
+/* 80C79E60  3C 80 80 C8 */	lis r4, __vt__19daLv6TogeTrap_HIO_c@ha /* 0x80C7CA38@ha */
+/* 80C79E64  38 04 CA 38 */	addi r0, r4, __vt__19daLv6TogeTrap_HIO_c@l /* 0x80C7CA38@l */
 /* 80C79E68  90 03 00 00 */	stw r0, 0(r3)
 /* 80C79E6C  38 00 00 3C */	li r0, 0x3c
 /* 80C79E70  98 03 00 04 */	stb r0, 4(r3)

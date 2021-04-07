@@ -5,8 +5,8 @@ lbl_8000E680:
 /* 8000E68C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8000E690  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8000E694  41 82 00 1C */	beq lbl_8000E6B0
-/* 8000E698  3C A0 80 3D */	lis r5, __vt__9J3DPacket@ha
-/* 8000E69C  38 05 D9 7C */	addi r0, r5, __vt__9J3DPacket@l
+/* 8000E698  3C A0 80 3D */	lis r5, __vt__9J3DPacket@ha /* 0x803CD97C@ha */
+/* 8000E69C  38 05 D9 7C */	addi r0, r5, __vt__9J3DPacket@l /* 0x803CD97C@l */
 /* 8000E6A0  90 1F 00 00 */	stw r0, 0(r31)
 /* 8000E6A4  7C 80 07 35 */	extsh. r0, r4
 /* 8000E6A8  40 81 00 08 */	ble lbl_8000E6B0

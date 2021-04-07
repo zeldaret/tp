@@ -33,8 +33,8 @@ lbl_8028CCB0:
 /* 8028CD2C  4E 80 04 21 */	bctrl 
 /* 8028CD30  90 61 00 0C */	stw r3, 0xc(r1)
 /* 8028CD34  7F C3 F3 78 */	mr r3, r30
-/* 8028CD38  3C 80 80 3A */	lis r4, sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light@ha
-/* 8028CD3C  38 84 AA E8 */	addi r4, r4, sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light@l
+/* 8028CD38  3C 80 80 3A */	lis r4, sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light@ha /* 0x8039AAE8@ha */
+/* 8028CD3C  38 84 AA E8 */	addi r4, r4, sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light@l /* 0x8039AAE8@l */
 /* 8028CD40  38 A1 00 0C */	addi r5, r1, 0xc
 /* 8028CD44  4B FF 95 69 */	bl adaptor_setVariableValue_GXColor__Q27JStudio8TAdaptorFPCUlRC8_GXColor
 /* 8028CD48  7F E3 FB 78 */	mr r3, r31
@@ -67,8 +67,8 @@ lbl_8028CD90:
 /* 8028CDB0  3B E1 00 1C */	addi r31, r1, 0x1c
 lbl_8028CDB4:
 /* 8028CDB4  7F C3 F3 78 */	mr r3, r30
-/* 8028CDB8  3C 80 80 3A */	lis r4, sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light@ha
-/* 8028CDBC  38 84 AA F8 */	addi r4, r4, sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light@l
+/* 8028CDB8  3C 80 80 3A */	lis r4, sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light@ha /* 0x8039AAF8@ha */
+/* 8028CDBC  38 84 AA F8 */	addi r4, r4, sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light@l /* 0x8039AAF8@l */
 /* 8028CDC0  7F E5 FB 78 */	mr r5, r31
 /* 8028CDC4  4B FF 94 41 */	bl adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec
 /* 8028CDC8  C0 3F 00 0C */	lfs f1, 0xc(r31)
@@ -105,8 +105,8 @@ lbl_8028CE40:
 /* 8028CE40  C8 02 BB 00 */	lfd f0, lit_849(r2)
 /* 8028CE44  FC 1F 00 40 */	fcmpo cr0, f31, f0
 /* 8028CE48  40 80 00 10 */	bge lbl_8028CE58
-/* 8028CE4C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8028CE50  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)
+/* 8028CE4C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8028CE50  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8028CE54  48 00 00 70 */	b lbl_8028CEC4
 lbl_8028CE58:
 /* 8028CE58  D3 E1 00 08 */	stfs f31, 8(r1)
@@ -140,8 +140,8 @@ lbl_8028CEB0:
 lbl_8028CEB4:
 /* 8028CEB4  2C 00 00 01 */	cmpwi r0, 1
 /* 8028CEB8  40 82 00 0C */	bne lbl_8028CEC4
-/* 8028CEBC  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8028CEC0  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)
+/* 8028CEBC  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8028CEC0  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_8028CEC4:
 /* 8028CEC4  48 0D F8 5D */	bl atan2
 /* 8028CEC8  FF A0 08 18 */	frsp f29, f1
@@ -150,8 +150,8 @@ lbl_8028CEC4:
 /* 8028CED4  48 0D F8 4D */	bl atan2
 /* 8028CED8  FC 40 08 18 */	frsp f2, f1
 /* 8028CEDC  80 BE 00 08 */	lwz r5, 8(r30)
-/* 8028CEE0  3C 60 80 28 */	lis r3, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha
-/* 8028CEE4  38 83 5E B8 */	addi r4, r3, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l
+/* 8028CEE0  3C 60 80 28 */	lis r3, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha /* 0x80285EB8@ha */
+/* 8028CEE4  38 83 5E B8 */	addi r4, r3, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l /* 0x80285EB8@l */
 /* 8028CEE8  90 85 00 D0 */	stw r4, 0xd0(r5)
 /* 8028CEEC  38 00 00 00 */	li r0, 0
 /* 8028CEF0  90 05 00 CC */	stw r0, 0xcc(r5)
@@ -168,8 +168,8 @@ lbl_8028CEC4:
 /* 8028CF1C  38 A1 00 10 */	addi r5, r1, 0x10
 /* 8028CF20  48 0B A1 71 */	bl PSVECAdd
 /* 8028CF24  7F C3 F3 78 */	mr r3, r30
-/* 8028CF28  3C 80 80 3A */	lis r4, sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light@ha
-/* 8028CF2C  38 84 AB 04 */	addi r4, r4, sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light@l
+/* 8028CF28  3C 80 80 3A */	lis r4, sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light@ha /* 0x8039AB04@ha */
+/* 8028CF2C  38 84 AB 04 */	addi r4, r4, sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light@l /* 0x8039AB04@l */
 /* 8028CF30  38 A1 00 10 */	addi r5, r1, 0x10
 /* 8028CF34  4B FF 92 D1 */	bl adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec
 /* 8028CF38  E3 E1 00 88 */	psq_l f31, 136(r1), 0, 0 /* qr0 */

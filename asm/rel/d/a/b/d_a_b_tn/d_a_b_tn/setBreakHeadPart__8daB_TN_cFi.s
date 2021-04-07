@@ -5,8 +5,8 @@ lbl_8061F31C:
 lbl_8061F328:
 /* 8061F328  39 00 00 00 */	li r8, 0
 /* 8061F32C  38 A0 00 00 */	li r5, 0
-/* 8061F330  3C C0 80 63 */	lis r6, break_part_no2@ha
-/* 8061F334  38 E6 EC 5C */	addi r7, r6, break_part_no2@l
+/* 8061F330  3C C0 80 63 */	lis r6, break_part_no2@ha /* 0x8062EC5C@ha */
+/* 8061F334  38 E6 EC 5C */	addi r7, r6, break_part_no2@l /* 0x8062EC5C@l */
 /* 8061F338  38 00 00 0D */	li r0, 0xd
 /* 8061F33C  7C 09 03 A6 */	mtctr r0
 lbl_8061F340:
@@ -24,8 +24,8 @@ lbl_8061F35C:
 /* 8061F368  4D 82 00 20 */	beqlr 
 /* 8061F36C  38 80 00 00 */	li r4, 0
 /* 8061F370  38 C0 00 02 */	li r6, 2
-/* 8061F374  3C A0 80 63 */	lis r5, break_part_no2@ha
-/* 8061F378  38 E5 EC 5C */	addi r7, r5, break_part_no2@l
+/* 8061F374  3C A0 80 63 */	lis r5, break_part_no2@ha /* 0x8062EC5C@ha */
+/* 8061F378  38 E5 EC 5C */	addi r7, r5, break_part_no2@l /* 0x8062EC5C@l */
 /* 8061F37C  38 00 00 0D */	li r0, 0xd
 /* 8061F380  7C 09 03 A6 */	mtctr r0
 lbl_8061F384:

@@ -3,10 +3,10 @@ lbl_8060E820:
 /* 8060E824  7C 08 02 A6 */	mflr r0
 /* 8060E828  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8060E82C  39 61 00 30 */	addi r11, r1, 0x30
-/* 8060E830  4B D5 39 AC */	b _savegpr_29
+/* 8060E830  4B D5 39 AD */	bl _savegpr_29
 /* 8060E834  7C 7E 1B 78 */	mr r30, r3
-/* 8060E838  3C 60 80 61 */	lis r3, lit_3928@ha
-/* 8060E83C  3B E3 FD E0 */	addi r31, r3, lit_3928@l
+/* 8060E838  3C 60 80 61 */	lis r3, lit_3928@ha /* 0x8060FDE0@ha */
+/* 8060E83C  3B E3 FD E0 */	addi r31, r3, lit_3928@l /* 0x8060FDE0@l */
 /* 8060E840  80 7E 0A 9C */	lwz r3, 0xa9c(r30)
 /* 8060E844  2C 03 00 00 */	cmpwi r3, 0
 /* 8060E848  41 82 00 0C */	beq lbl_8060E854
@@ -72,8 +72,8 @@ lbl_8060E918:
 /* 8060E918  88 1E 0A FD */	lbz r0, 0xafd(r30)
 /* 8060E91C  28 00 00 00 */	cmplwi r0, 0
 /* 8060E920  40 82 00 54 */	bne lbl_8060E974
-/* 8060E924  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8060E928  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l
+/* 8060E924  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8060E928  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8060E92C  80 7D 5D AC */	lwz r3, 0x5dac(r29)
 /* 8060E930  7F C4 F3 78 */	mr r4, r30
 /* 8060E934  81 83 06 28 */	lwz r12, 0x628(r3)
@@ -103,15 +103,15 @@ lbl_8060E980:
 /* 8060E988  80 63 00 84 */	lwz r3, 0x84(r3)
 /* 8060E98C  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 8060E990  38 63 00 30 */	addi r3, r3, 0x30
-/* 8060E994  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha
-/* 8060E998  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l
-/* 8060E99C  4B D3 7B 14 */	b PSMTXCopy
+/* 8060E994  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8060E998  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 8060E99C  4B D3 7B 15 */	bl PSMTXCopy
 /* 8060E9A0  C0 3F 00 68 */	lfs f1, 0x68(r31)
 /* 8060E9A4  C0 5F 00 7C */	lfs f2, 0x7c(r31)
 /* 8060E9A8  C0 7F 00 04 */	lfs f3, 4(r31)
-/* 8060E9AC  4B 9F E3 F0 */	b transM__14mDoMtx_stack_cFfff
-/* 8060E9B0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8060E9B4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8060E9AC  4B 9F E3 F1 */	bl transM__14mDoMtx_stack_cFfff
+/* 8060E9B0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8060E9B4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8060E9B8  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 8060E9BC  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 8060E9C0  C0 03 00 1C */	lfs f0, 0x1c(r3)
@@ -129,7 +129,7 @@ lbl_8060E980:
 /* 8060E9F0  48 00 0F 75 */	bl setMidnaBindEffect__FP13fopEn_enemy_cP15Z2CreatureEnemyP4cXyzP4cXyz
 /* 8060E9F4  38 60 00 01 */	li r3, 1
 /* 8060E9F8  39 61 00 30 */	addi r11, r1, 0x30
-/* 8060E9FC  4B D5 38 2C */	b _restgpr_29
+/* 8060E9FC  4B D5 38 2D */	bl _restgpr_29
 /* 8060EA00  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 8060EA04  7C 08 03 A6 */	mtlr r0
 /* 8060EA08  38 21 00 30 */	addi r1, r1, 0x30

@@ -1,8 +1,8 @@
 lbl_80048BD8:
-/* 80048BD8  3C 60 80 3B */	lis r3, cNullVec__6Z2Calc@ha
-/* 80048BDC  38 A3 82 B8 */	addi r5, r3, cNullVec__6Z2Calc@l
-/* 80048BE0  3C 60 80 42 */	lis r3, l_startAction@ha
-/* 80048BE4  38 83 46 E0 */	addi r4, r3, l_startAction@l
+/* 80048BD8  3C 60 80 3B */	lis r3, cNullVec__6Z2Calc@ha /* 0x803A82B8@ha */
+/* 80048BDC  38 A3 82 B8 */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x803A82B8@l */
+/* 80048BE0  3C 60 80 42 */	lis r3, l_startAction@ha /* 0x804246E0@ha */
+/* 80048BE4  38 83 46 E0 */	addi r4, r3, l_startAction@l /* 0x804246E0@l */
 /* 80048BE8  80 65 00 0C */	lwz r3, 0xc(r5)
 /* 80048BEC  80 05 00 10 */	lwz r0, 0x10(r5)
 /* 80048BF0  90 64 00 00 */	stw r3, 0(r4)
@@ -15,8 +15,8 @@ lbl_80048BD8:
 /* 80048C0C  90 04 00 10 */	stw r0, 0x10(r4)
 /* 80048C10  80 05 00 20 */	lwz r0, 0x20(r5)
 /* 80048C14  90 04 00 14 */	stw r0, 0x14(r4)
-/* 80048C18  3C 60 80 42 */	lis r3, l_runAction@ha
-/* 80048C1C  38 83 46 F8 */	addi r4, r3, l_runAction@l
+/* 80048C18  3C 60 80 42 */	lis r3, l_runAction@ha /* 0x804246F8@ha */
+/* 80048C1C  38 83 46 F8 */	addi r4, r3, l_runAction@l /* 0x804246F8@l */
 /* 80048C20  80 65 00 24 */	lwz r3, 0x24(r5)
 /* 80048C24  80 05 00 28 */	lwz r0, 0x28(r5)
 /* 80048C28  90 64 00 00 */	stw r3, 0(r4)

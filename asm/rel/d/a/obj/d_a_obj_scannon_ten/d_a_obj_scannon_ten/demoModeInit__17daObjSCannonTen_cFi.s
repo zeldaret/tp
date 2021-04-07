@@ -12,16 +12,16 @@ lbl_80CCBE8C:
 /* 80CCBEB4  48 00 00 34 */	b lbl_80CCBEE8
 lbl_80CCBEB8:
 /* 80CCBEB8  1C 84 00 18 */	mulli r4, r4, 0x18
-/* 80CCBEBC  3C 60 80 CD */	lis r3, s_demoExeProc__17daObjSCannonTen_c@ha
-/* 80CCBEC0  38 03 CD EC */	addi r0, r3, s_demoExeProc__17daObjSCannonTen_c@l
+/* 80CCBEBC  3C 60 80 CD */	lis r3, s_demoExeProc__17daObjSCannonTen_c@ha /* 0x80CCCDEC@ha */
+/* 80CCBEC0  38 03 CD EC */	addi r0, r3, s_demoExeProc__17daObjSCannonTen_c@l /* 0x80CCCDEC@l */
 /* 80CCBEC4  7F E0 22 14 */	add r31, r0, r4
 /* 80CCBEC8  7F E3 FB 78 */	mr r3, r31
-/* 80CCBECC  4B 69 61 4C */	b __ptmf_test
+/* 80CCBECC  4B 69 61 4D */	bl __ptmf_test
 /* 80CCBED0  2C 03 00 00 */	cmpwi r3, 0
 /* 80CCBED4  41 82 00 14 */	beq lbl_80CCBEE8
 /* 80CCBED8  7F C3 F3 78 */	mr r3, r30
 /* 80CCBEDC  7F EC FB 78 */	mr r12, r31
-/* 80CCBEE0  4B 69 61 A4 */	b __ptmf_scall
+/* 80CCBEE0  4B 69 61 A5 */	bl __ptmf_scall
 /* 80CCBEE4  60 00 00 00 */	nop 
 lbl_80CCBEE8:
 /* 80CCBEE8  83 E1 00 0C */	lwz r31, 0xc(r1)

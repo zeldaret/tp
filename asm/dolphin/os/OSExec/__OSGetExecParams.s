@@ -3,7 +3,7 @@ lbl_8033CCBC:
 /* 8033CCC0  90 01 00 04 */	stw r0, 4(r1)
 /* 8033CCC4  94 21 FF F8 */	stwu r1, -8(r1)
 /* 8033CCC8  3C A0 80 00 */	lis r5, 0x8000 /* 0x800030F0@ha */
-/* 8033CCCC  80 85 30 F0 */	lwz r4, 0x30F0(r5)
+/* 8033CCCC  80 85 30 F0 */	lwz r4, 0x30F0(r5)  /* 0x800030F0@l */
 /* 8033CCD0  7C 05 20 40 */	cmplw r5, r4
 /* 8033CCD4  41 81 00 10 */	bgt lbl_8033CCE4
 /* 8033CCD8  38 A0 00 1C */	li r5, 0x1c

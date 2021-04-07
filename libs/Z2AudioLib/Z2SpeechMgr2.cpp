@@ -11,18 +11,18 @@
 // Types:
 //
 
-struct JAISoundID {};
-
-struct JAISoundHandle {
-    /* 802A2184 */ void releaseSound();
-};
-
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
 };
+
+struct JAISoundHandle {
+    /* 802A2184 */ void releaseSound();
+};
+
+struct JAISoundID {};
 
 struct Z2SpeechStarter {
     /* 802CBCEC */ ~Z2SpeechStarter();
@@ -99,14 +99,10 @@ extern "C" void playOneShotVoice__12Z2SpeechMgr2FUcUsP3VecSc();
 extern "C" void isMidnaSpeak__12Z2SpeechMgr2Fv();
 extern "C" void __ct__15Z2SpeechStarterFv();
 extern "C" void func_802CCFF8();
-extern "C" extern void* __vt__15Z2SpeechStarter[5];
 
 //
 // External References:
 //
-
-void dComIfGp_getReverb(int);
-void operator delete(void*);
 
 extern "C" void dComIfGp_getReverb__Fi();
 extern "C" void releaseSound__14JAISoundHandleFv();
@@ -143,7 +139,7 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 802CBC60-802CBCEC 008C+00 s=0 e=1 z=0  None .text      __ct__12Z2SpeechMgr2Fv */
+/* 802CBC60-802CBCEC 2C65A0 008C+00 0/0 1/1 0/0 .text            __ct__12Z2SpeechMgr2Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -154,7 +150,7 @@ asm Z2SpeechMgr2::Z2SpeechMgr2() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CBD08-803CBED0 01C8+00 s=1 e=0 z=0  None .data      @3729 */
+/* 803CBD08-803CBED0 -00001 01C8+00 1/1 0/0 0/0 .data            @3729 */
 SECTION_DATA static void* lit_3729[114] = {
     (void*)(((char*)setString__12Z2SpeechMgr2FPCUssUcUs) + 0xB4),
     (void*)(((char*)setString__12Z2SpeechMgr2FPCUssUcUs) + 0xB4),
@@ -272,7 +268,7 @@ SECTION_DATA static void* lit_3729[114] = {
     (void*)(((char*)setString__12Z2SpeechMgr2FPCUssUcUs) + 0xC0),
 };
 
-/* 803CBED0-803CBF24 0054+00 s=1 e=0 z=0  None .data      @3839 */
+/* 803CBED0-803CBF24 -00001 0054+00 1/1 0/0 0/0 .data            @3839 */
 SECTION_DATA static void* lit_3839[21] = {
     (void*)(((char*)setTextCount__12Z2SpeechMgr2Fs) + 0x13C),
     (void*)(((char*)setTextCount__12Z2SpeechMgr2Fs) + 0x14C),
@@ -297,13 +293,13 @@ SECTION_DATA static void* lit_3839[21] = {
     (void*)(((char*)setTextCount__12Z2SpeechMgr2Fs) + 0x1CC),
 };
 
-/* 803CBF24-803CBF38 0014+00 s=2 e=1 z=0  None .data      __vt__15Z2SpeechStarter */
-SECTION_DATA void* __vt__15Z2SpeechStarter[5] = {
-    (void*)NULL,          (void*)NULL,          (void*)__dt__15Z2SpeechStarterFv,
-    (void*)func_802AABF4, (void*)func_802CCFF8,
+/* 803CBF24-803CBF38 029044 0014+00 2/2 1/1 0/0 .data            __vt__15Z2SpeechStarter */
+SECTION_DATA extern void* __vt__15Z2SpeechStarter[5] = {
+    (void*)NULL /* RTTI */, (void*)NULL,          (void*)__dt__15Z2SpeechStarterFv,
+    (void*)func_802AABF4,   (void*)func_802CCFF8,
 };
 
-/* 802CBCEC-802CBD88 009C+00 s=1 e=0 z=0  None .text      __dt__15Z2SpeechStarterFv */
+/* 802CBCEC-802CBD88 2C662C 009C+00 1/0 0/0 0/0 .text            __dt__15Z2SpeechStarterFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -313,7 +309,8 @@ asm Z2SpeechStarter::~Z2SpeechStarter() {
 }
 #pragma pop
 
-/* 802CBD88-802CBF60 01D8+00 s=1 e=1 z=0  None .text      setString__12Z2SpeechMgr2FPCUssUcUs */
+/* 802CBD88-802CBF60 2C66C8 01D8+00 1/0 1/1 0/0 .text            setString__12Z2SpeechMgr2FPCUssUcUs
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -324,7 +321,7 @@ asm void Z2SpeechMgr2::setString(u16 const* param_0, s16 param_1, u8 param_2, u1
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455EE0-80455EE8 0006+02 s=1 e=0 z=0  None .sdata2    sBoringTail__8Z2MdnPrm */
+/* 80455EE0-80455EE8 0044E0 0006+02 1/0 0/0 0/0 .sdata2          sBoringTail__8Z2MdnPrm */
 SECTION_SDATA2 static u8 sBoringTail__8Z2MdnPrm[6 + 2 /* padding */] = {
     0x92,
     0x58,
@@ -337,7 +334,7 @@ SECTION_SDATA2 static u8 sBoringTail__8Z2MdnPrm[6 + 2 /* padding */] = {
     0x00,
 };
 
-/* 80455EE8-80455EF0 0006+02 s=1 e=0 z=0  None .sdata2    sOrderTail__8Z2MdnPrm */
+/* 80455EE8-80455EF0 0044E8 0006+02 1/0 0/0 0/0 .sdata2          sOrderTail__8Z2MdnPrm */
 SECTION_SDATA2 static u8 sOrderTail__8Z2MdnPrm[6 + 2 /* padding */] = {
     0x60,
     0xA8,
@@ -350,7 +347,7 @@ SECTION_SDATA2 static u8 sOrderTail__8Z2MdnPrm[6 + 2 /* padding */] = {
     0x00,
 };
 
-/* 80455EF0-80455EF8 0005+03 s=1 e=0 z=0  None .sdata2    sResentTail__8Z2MdnPrm */
+/* 80455EF0-80455EF8 0044F0 0005+03 1/0 0/0 0/0 .sdata2          sResentTail__8Z2MdnPrm */
 SECTION_SDATA2 static u8 sResentTail__8Z2MdnPrm[5 + 3 /* padding */] = {
     0x4A,
     0x98,
@@ -363,12 +360,12 @@ SECTION_SDATA2 static u8 sResentTail__8Z2MdnPrm[5 + 3 /* padding */] = {
     0x00,
 };
 
-/* 80455EF8-80455F00 0008+00 s=1 e=0 z=0  None .sdata2    sCheerfulTail__8Z2MdnPrm */
+/* 80455EF8-80455F00 0044F8 0008+00 1/0 0/0 0/0 .sdata2          sCheerfulTail__8Z2MdnPrm */
 SECTION_SDATA2 static u8 sCheerfulTail__8Z2MdnPrm[8] = {
     0x60, 0x6D, 0x4D, 0x44, 0x9C, 0x54, 0x70, 0x7B,
 };
 
-/* 80455F00-80455F08 0005+03 s=1 e=0 z=0  None .sdata2    sConfusedTail__8Z2MdnPrm */
+/* 80455F00-80455F08 004500 0005+03 1/0 0/0 0/0 .sdata2          sConfusedTail__8Z2MdnPrm */
 SECTION_SDATA2 static u8 sConfusedTail__8Z2MdnPrm[5 + 3 /* padding */] = {
     0x2C,
     0x42,
@@ -381,7 +378,7 @@ SECTION_SDATA2 static u8 sConfusedTail__8Z2MdnPrm[5 + 3 /* padding */] = {
     0x00,
 };
 
-/* 80455F08-80455F10 0007+01 s=1 e=0 z=0  None .sdata2    sHostilityTail__8Z2MdnPrm */
+/* 80455F08-80455F10 004508 0007+01 1/0 0/0 0/0 .sdata2          sHostilityTail__8Z2MdnPrm */
 SECTION_SDATA2 static u8 sHostilityTail__8Z2MdnPrm[7 + 1 /* padding */] = {
     0x97,
     0x67,
@@ -394,12 +391,12 @@ SECTION_SDATA2 static u8 sHostilityTail__8Z2MdnPrm[7 + 1 /* padding */] = {
     0x00,
 };
 
-/* 80455F10-80455F18 0008+00 s=1 e=0 z=0  None .sdata2    sTiredTail__8Z2MdnPrm */
+/* 80455F10-80455F18 004510 0008+00 1/0 0/0 0/0 .sdata2          sTiredTail__8Z2MdnPrm */
 SECTION_SDATA2 static u8 sTiredTail__8Z2MdnPrm[8] = {
     0x66, 0x6F, 0x3B, 0x7A, 0x49, 0x91, 0x5C, 0x6A,
 };
 
-/* 80455F18-80455F20 0007+01 s=1 e=0 z=0  None .sdata2    sSeriousTail__8Z2MdnPrm */
+/* 80455F18-80455F20 004518 0007+01 1/0 0/0 0/0 .sdata2          sSeriousTail__8Z2MdnPrm */
 SECTION_SDATA2 static u8 sSeriousTail__8Z2MdnPrm[7 + 1 /* padding */] = {
     0x7B,
     0x69,
@@ -412,7 +409,7 @@ SECTION_SDATA2 static u8 sSeriousTail__8Z2MdnPrm[7 + 1 /* padding */] = {
     0x00,
 };
 
-/* 80455F20-80455F28 0007+01 s=1 e=0 z=0  None .sdata2    sReplybTail__8Z2MdnPrm */
+/* 80455F20-80455F28 004520 0007+01 1/0 0/0 0/0 .sdata2          sReplybTail__8Z2MdnPrm */
 SECTION_SDATA2 static u8 sReplybTail__8Z2MdnPrm[7 + 1 /* padding */] = {
     0x4F,
     0x4A,
@@ -425,12 +422,12 @@ SECTION_SDATA2 static u8 sReplybTail__8Z2MdnPrm[7 + 1 /* padding */] = {
     0x00,
 };
 
-/* 80455F28-80455F30 0008+00 s=1 e=0 z=0  None .sdata2    sDesideTail__8Z2MdnPrm */
+/* 80455F28-80455F30 004528 0008+00 1/0 0/0 0/0 .sdata2          sDesideTail__8Z2MdnPrm */
 SECTION_SDATA2 static u8 sDesideTail__8Z2MdnPrm[8] = {
     0x64, 0x2E, 0x4A, 0x57, 0x80, 0x48, 0x7C, 0x5F,
 };
 
-/* 80455F30-80455F34 0004+00 s=2 e=0 z=0  None .sdata2    @3836 */
+/* 80455F30-80455F34 004530 0004+00 2/2 0/0 0/0 .sdata2          @3836 */
 SECTION_SDATA2 static u8 lit_3836[4] = {
     0x00,
     0x00,
@@ -438,13 +435,13 @@ SECTION_SDATA2 static u8 lit_3836[4] = {
     0x00,
 };
 
-/* 80455F34-80455F38 0004+00 s=6 e=0 z=0  None .sdata2    @3837 */
+/* 80455F34-80455F38 004534 0004+00 6/6 0/0 0/0 .sdata2          @3837 */
 SECTION_SDATA2 static f32 lit_3837 = 1.0f;
 
-/* 80455F38-80455F3C 0004+00 s=4 e=0 z=0  None .sdata2    @3838 */
+/* 80455F38-80455F3C 004538 0004+00 4/4 0/0 0/0 .sdata2          @3838 */
 SECTION_SDATA2 static f32 lit_3838 = -1.0f;
 
-/* 802CBF60-802CC190 0230+00 s=1 e=2 z=0  None .text      setTextCount__12Z2SpeechMgr2Fs */
+/* 802CBF60-802CC190 2C68A0 0230+00 1/0 2/2 0/0 .text            setTextCount__12Z2SpeechMgr2Fs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -455,13 +452,13 @@ asm void Z2SpeechMgr2::setTextCount(s16 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455F3C-80455F40 0004+00 s=2 e=0 z=0  None .sdata2    @3885 */
+/* 80455F3C-80455F40 00453C 0004+00 2/2 0/0 0/0 .sdata2          @3885 */
 SECTION_SDATA2 static f32 lit_3885 = 127.0f;
 
-/* 80455F40-80455F48 0008+00 s=2 e=0 z=0  None .sdata2    @3887 */
+/* 80455F40-80455F48 004540 0008+00 2/2 0/0 0/0 .sdata2          @3887 */
 SECTION_SDATA2 static f64 lit_3887 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 802CC190-802CC2FC 016C+00 s=1 e=1 z=0  None .text      speakOneWord__12Z2SpeechMgr2Fb */
+/* 802CC190-802CC2FC 2C6AD0 016C+00 1/1 1/1 0/0 .text            speakOneWord__12Z2SpeechMgr2Fb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -471,7 +468,7 @@ asm void Z2SpeechMgr2::speakOneWord(bool param_0) {
 }
 #pragma pop
 
-/* 802CC2FC-802CC4C0 01C4+00 s=2 e=0 z=0  None .text      isNonVerbal__12Z2SpeechMgr2Fv */
+/* 802CC2FC-802CC4C0 2C6C3C 01C4+00 2/2 0/0 0/0 .text            isNonVerbal__12Z2SpeechMgr2Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -482,37 +479,37 @@ asm void Z2SpeechMgr2::isNonVerbal() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455EE0-80455EE8 0006+02 s=1 e=0 z=0  None .sdata2    sBoringTail__8Z2MdnPrm */
+/* 80455EE0-80455EE8 0044E0 0006+02 1/0 0/0 0/0 .sdata2          sBoringTail__8Z2MdnPrm */
 extern "C" u8 sBoringTail__8Z2MdnPrm[6 + 2 /* padding */];
 
-/* 80455EE8-80455EF0 0006+02 s=1 e=0 z=0  None .sdata2    sOrderTail__8Z2MdnPrm */
+/* 80455EE8-80455EF0 0044E8 0006+02 1/0 0/0 0/0 .sdata2          sOrderTail__8Z2MdnPrm */
 extern "C" u8 sOrderTail__8Z2MdnPrm[6 + 2 /* padding */];
 
-/* 80455EF0-80455EF8 0005+03 s=1 e=0 z=0  None .sdata2    sResentTail__8Z2MdnPrm */
+/* 80455EF0-80455EF8 0044F0 0005+03 1/0 0/0 0/0 .sdata2          sResentTail__8Z2MdnPrm */
 extern "C" u8 sResentTail__8Z2MdnPrm[5 + 3 /* padding */];
 
-/* 80455EF8-80455F00 0008+00 s=1 e=0 z=0  None .sdata2    sCheerfulTail__8Z2MdnPrm */
+/* 80455EF8-80455F00 0044F8 0008+00 1/0 0/0 0/0 .sdata2          sCheerfulTail__8Z2MdnPrm */
 extern "C" u8 sCheerfulTail__8Z2MdnPrm[8];
 
-/* 80455F00-80455F08 0005+03 s=1 e=0 z=0  None .sdata2    sConfusedTail__8Z2MdnPrm */
+/* 80455F00-80455F08 004500 0005+03 1/0 0/0 0/0 .sdata2          sConfusedTail__8Z2MdnPrm */
 extern "C" u8 sConfusedTail__8Z2MdnPrm[5 + 3 /* padding */];
 
-/* 80455F08-80455F10 0007+01 s=1 e=0 z=0  None .sdata2    sHostilityTail__8Z2MdnPrm */
+/* 80455F08-80455F10 004508 0007+01 1/0 0/0 0/0 .sdata2          sHostilityTail__8Z2MdnPrm */
 extern "C" u8 sHostilityTail__8Z2MdnPrm[7 + 1 /* padding */];
 
-/* 80455F10-80455F18 0008+00 s=1 e=0 z=0  None .sdata2    sTiredTail__8Z2MdnPrm */
+/* 80455F10-80455F18 004510 0008+00 1/0 0/0 0/0 .sdata2          sTiredTail__8Z2MdnPrm */
 extern "C" u8 sTiredTail__8Z2MdnPrm[8];
 
-/* 80455F18-80455F20 0007+01 s=1 e=0 z=0  None .sdata2    sSeriousTail__8Z2MdnPrm */
+/* 80455F18-80455F20 004518 0007+01 1/0 0/0 0/0 .sdata2          sSeriousTail__8Z2MdnPrm */
 extern "C" u8 sSeriousTail__8Z2MdnPrm[7 + 1 /* padding */];
 
-/* 80455F20-80455F28 0007+01 s=1 e=0 z=0  None .sdata2    sReplybTail__8Z2MdnPrm */
+/* 80455F20-80455F28 004520 0007+01 1/0 0/0 0/0 .sdata2          sReplybTail__8Z2MdnPrm */
 extern "C" u8 sReplybTail__8Z2MdnPrm[7 + 1 /* padding */];
 
-/* 80455F28-80455F30 0008+00 s=1 e=0 z=0  None .sdata2    sDesideTail__8Z2MdnPrm */
+/* 80455F28-80455F30 004528 0008+00 1/0 0/0 0/0 .sdata2          sDesideTail__8Z2MdnPrm */
 extern "C" u8 sDesideTail__8Z2MdnPrm[8];
 
-/* 8039C260-8039C2C4 0064+00 s=1 e=0 z=0  None .rodata    sReply__8Z2MdnPrm */
+/* 8039C260-8039C2C4 0288C0 0064+00 1/0 0/0 0/0 .rodata          sReply__8Z2MdnPrm */
 SECTION_RODATA static u8 const sReply__8Z2MdnPrm[100] = {
     0x6A, 0x8A, 0x50, 0x5F, 0x53, 0x37, 0x37, 0x4F, 0x4F, 0x5E, 0xAA, 0x46, 0x52, 0x5A, 0x5A,
     0x4F, 0x4F, 0x45, 0x45, 0x56, 0x64, 0x79, 0x79, 0x79, 0x87, 0x95, 0x95, 0x89, 0x89, 0x4C,
@@ -522,8 +519,9 @@ SECTION_RODATA static u8 const sReply__8Z2MdnPrm[100] = {
     0x5D, 0x60, 0x63, 0x63, 0x54, 0x3E, 0x38, 0x38, 0x39, 0x35, 0x41, 0x41, 0x41, 0x41, 0x56,
     0x71, 0x85, 0x85, 0xA2, 0xA2, 0x52, 0x52, 0x5C, 0x5C, 0x75,
 };
+COMPILER_STRIP_GATE(8039C260, &sReply__8Z2MdnPrm);
 
-/* 8039C2C4-8039C2D0 000A+02 s=1 e=0 z=0  None .rodata    sReplyTail__8Z2MdnPrm */
+/* 8039C2C4-8039C2D0 028924 000A+02 1/0 0/0 0/0 .rodata          sReplyTail__8Z2MdnPrm */
 SECTION_RODATA static u8 const sReplyTail__8Z2MdnPrm[10 + 2 /* padding */] = {
     0x5E,
     0x7F,
@@ -539,8 +537,9 @@ SECTION_RODATA static u8 const sReplyTail__8Z2MdnPrm[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8039C2C4, &sReplyTail__8Z2MdnPrm);
 
-/* 8039C2D0-8039C334 0064+00 s=1 e=0 z=0  None .rodata    sJoke__8Z2MdnPrm */
+/* 8039C2D0-8039C334 028930 0064+00 1/0 0/0 0/0 .rodata          sJoke__8Z2MdnPrm */
 SECTION_RODATA static u8 const sJoke__8Z2MdnPrm[100] = {
     0x68, 0x57, 0x57, 0x55, 0x55, 0x51, 0x5B, 0x64, 0x6B, 0x7B, 0x7B, 0x5C, 0x77, 0x97, 0x8D,
     0x97, 0x97, 0x8D, 0x66, 0x69, 0xA2, 0x5C, 0x87, 0x4F, 0x69, 0x5F, 0x5F, 0x83, 0x83, 0x82,
@@ -550,8 +549,9 @@ SECTION_RODATA static u8 const sJoke__8Z2MdnPrm[100] = {
     0x64, 0x60, 0xB1, 0x6C, 0x6D, 0x6D, 0x7E, 0x7A, 0x97, 0x97, 0x99, 0xA5, 0x89, 0x90, 0xA4,
     0x45, 0x45, 0x29, 0x4C, 0x4B, 0x64, 0x64, 0x60, 0x5C, 0xB1,
 };
+COMPILER_STRIP_GATE(8039C2D0, &sJoke__8Z2MdnPrm);
 
-/* 8039C334-8039C340 000A+02 s=1 e=0 z=0  None .rodata    sJokeTail__8Z2MdnPrm */
+/* 8039C334-8039C340 028994 000A+02 1/0 0/0 0/0 .rodata          sJokeTail__8Z2MdnPrm */
 SECTION_RODATA static u8 const sJokeTail__8Z2MdnPrm[10 + 2 /* padding */] = {
     0x51,
     0x97,
@@ -567,8 +567,9 @@ SECTION_RODATA static u8 const sJokeTail__8Z2MdnPrm[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8039C334, &sJokeTail__8Z2MdnPrm);
 
-/* 8039C340-8039C3A4 0064+00 s=1 e=0 z=0  None .rodata    sSexy__8Z2MdnPrm */
+/* 8039C340-8039C3A4 0289A0 0064+00 1/0 0/0 0/0 .rodata          sSexy__8Z2MdnPrm */
 SECTION_RODATA static u8 const sSexy__8Z2MdnPrm[100] = {
     0x5E, 0x60, 0x5F, 0x63, 0x63, 0x72, 0x72, 0x78, 0x4D, 0x7A, 0x6E, 0x6E, 0x6E, 0x6E, 0x6E,
     0x59, 0x59, 0x7A, 0x7A, 0xA5, 0x90, 0x8D, 0x86, 0x62, 0x72, 0x79, 0x79, 0x86, 0x7F, 0x8B,
@@ -578,8 +579,9 @@ SECTION_RODATA static u8 const sSexy__8Z2MdnPrm[100] = {
     0x76, 0x79, 0x79, 0x5C, 0x6A, 0x90, 0xAB, 0x5C, 0x7D, 0x52, 0x49, 0x54, 0x57, 0x49, 0x55,
     0x79, 0x65, 0x65, 0x4A, 0x5C, 0x78, 0x78, 0x8B, 0x8D, 0x7C,
 };
+COMPILER_STRIP_GATE(8039C340, &sSexy__8Z2MdnPrm);
 
-/* 8039C3A4-8039C3B0 000A+02 s=1 e=0 z=0  None .rodata    sSexyTail__8Z2MdnPrm */
+/* 8039C3A4-8039C3B0 028A04 000A+02 1/0 0/0 0/0 .rodata          sSexyTail__8Z2MdnPrm */
 SECTION_RODATA static u8 const sSexyTail__8Z2MdnPrm[10 + 2 /* padding */] = {
     0x52,
     0x79,
@@ -595,8 +597,9 @@ SECTION_RODATA static u8 const sSexyTail__8Z2MdnPrm[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8039C3A4, &sSexyTail__8Z2MdnPrm);
 
-/* 8039C3B0-8039C414 0064+00 s=1 e=0 z=0  None .rodata    sRidicule__8Z2MdnPrm */
+/* 8039C3B0-8039C414 028A10 0064+00 1/0 0/0 0/0 .rodata          sRidicule__8Z2MdnPrm */
 SECTION_RODATA static u8 const sRidicule__8Z2MdnPrm[100] = {
     0xA7, 0x5A, 0x5A, 0x52, 0x52, 0x85, 0x85, 0x8C, 0x63, 0x73, 0x73, 0x90, 0x50, 0x46, 0x74,
     0x74, 0xA3, 0xA7, 0x41, 0x51, 0x58, 0x34, 0x34, 0x2A, 0x5A, 0x81, 0x5D, 0x42, 0x4B, 0x70,
@@ -606,8 +609,9 @@ SECTION_RODATA static u8 const sRidicule__8Z2MdnPrm[100] = {
     0x79, 0x79, 0x7C, 0x7C, 0x6C, 0x6C, 0x73, 0x73, 0x6E, 0x6E, 0x36, 0x3F, 0x3C, 0x56, 0x2D,
     0x2D, 0x2D, 0x2D, 0x8C, 0x8C, 0x8B, 0x8B, 0x93, 0x93, 0x6E,
 };
+COMPILER_STRIP_GATE(8039C3B0, &sRidicule__8Z2MdnPrm);
 
-/* 8039C414-8039C420 000A+02 s=1 e=0 z=0  None .rodata    sRidiculeTail__8Z2MdnPrm */
+/* 8039C414-8039C420 028A74 000A+02 1/0 0/0 0/0 .rodata          sRidiculeTail__8Z2MdnPrm */
 SECTION_RODATA static u8 const sRidiculeTail__8Z2MdnPrm[10 + 2 /* padding */] = {
     0x81,
     0x67,
@@ -623,8 +627,9 @@ SECTION_RODATA static u8 const sRidiculeTail__8Z2MdnPrm[10 + 2 /* padding */] = 
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8039C414, &sRidiculeTail__8Z2MdnPrm);
 
-/* 8039C420-8039C48C 006C+00 s=1 e=0 z=0  None .rodata    sBoring__8Z2MdnPrm */
+/* 8039C420-8039C48C 028A80 006C+00 1/0 0/0 0/0 .rodata          sBoring__8Z2MdnPrm */
 SECTION_RODATA static u8 const sBoring__8Z2MdnPrm[108] = {
     0x8E, 0x9C, 0x9C, 0x5A, 0x5A, 0x52, 0x52, 0x5B, 0x5C, 0x56, 0x5C, 0x52, 0x52, 0x2D, 0x2D, 0x5B,
     0x59, 0x56, 0x56, 0x56, 0x56, 0x6B, 0x6B, 0x58, 0x4C, 0x8E, 0x8E, 0x59, 0x61, 0x54, 0xA0, 0x4D,
@@ -634,8 +639,9 @@ SECTION_RODATA static u8 const sBoring__8Z2MdnPrm[108] = {
     0x89, 0x5A, 0x5A, 0x63, 0x66, 0x5E, 0x5E, 0x71, 0x62, 0x55, 0x55, 0x85, 0x85, 0x5B, 0x5B, 0x5B,
     0x5B, 0x5E, 0x70, 0x56, 0x56, 0x4C, 0x4C, 0x59, 0x59, 0x5B, 0x5B, 0x71,
 };
+COMPILER_STRIP_GATE(8039C420, &sBoring__8Z2MdnPrm);
 
-/* 8039C48C-8039C4EC 005E+02 s=1 e=0 z=0  None .rodata    sIrritated__8Z2MdnPrm */
+/* 8039C48C-8039C4EC 028AEC 005E+02 1/0 0/0 0/0 .rodata          sIrritated__8Z2MdnPrm */
 SECTION_RODATA static u8 const sIrritated__8Z2MdnPrm[94 + 2 /* padding */] = {
     0x6C,
     0x91,
@@ -735,8 +741,9 @@ SECTION_RODATA static u8 const sIrritated__8Z2MdnPrm[94 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8039C48C, &sIrritated__8Z2MdnPrm);
 
-/* 8039C4EC-8039C4F8 000A+02 s=1 e=0 z=0  None .rodata    sIrritatedTail__8Z2MdnPrm */
+/* 8039C4EC-8039C4F8 028B4C 000A+02 1/0 0/0 0/0 .rodata          sIrritatedTail__8Z2MdnPrm */
 SECTION_RODATA static u8 const sIrritatedTail__8Z2MdnPrm[10 + 2 /* padding */] = {
     0x64,
     0x61,
@@ -752,8 +759,9 @@ SECTION_RODATA static u8 const sIrritatedTail__8Z2MdnPrm[10 + 2 /* padding */] =
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8039C4EC, &sIrritatedTail__8Z2MdnPrm);
 
-/* 8039C4F8-8039C56C 0072+02 s=1 e=0 z=0  None .rodata    sOrder__8Z2MdnPrm */
+/* 8039C4F8-8039C56C 028B58 0072+02 1/0 0/0 0/0 .rodata          sOrder__8Z2MdnPrm */
 SECTION_RODATA static u8 const sOrder__8Z2MdnPrm[114 + 2 /* padding */] = {
     0x77,
     0x5F,
@@ -873,8 +881,9 @@ SECTION_RODATA static u8 const sOrder__8Z2MdnPrm[114 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8039C4F8, &sOrder__8Z2MdnPrm);
 
-/* 8039C56C-8039C5D8 006A+02 s=1 e=0 z=0  None .rodata    sResent__8Z2MdnPrm */
+/* 8039C56C-8039C5D8 028BCC 006A+02 1/0 0/0 0/0 .rodata          sResent__8Z2MdnPrm */
 SECTION_RODATA static u8 const sResent__8Z2MdnPrm[106 + 2 /* padding */] = {
     0x6F,
     0x5F,
@@ -986,8 +995,9 @@ SECTION_RODATA static u8 const sResent__8Z2MdnPrm[106 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8039C56C, &sResent__8Z2MdnPrm);
 
-/* 8039C5D8-8039C644 006A+02 s=1 e=0 z=0  None .rodata    sCheerful__8Z2MdnPrm */
+/* 8039C5D8-8039C644 028C38 006A+02 1/0 0/0 0/0 .rodata          sCheerful__8Z2MdnPrm */
 SECTION_RODATA static u8 const sCheerful__8Z2MdnPrm[106 + 2 /* padding */] = {
     0x64,
     0x6D,
@@ -1099,8 +1109,9 @@ SECTION_RODATA static u8 const sCheerful__8Z2MdnPrm[106 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8039C5D8, &sCheerful__8Z2MdnPrm);
 
-/* 8039C644-8039C6B0 006A+02 s=1 e=0 z=0  None .rodata    sConfused__8Z2MdnPrm */
+/* 8039C644-8039C6B0 028CA4 006A+02 1/0 0/0 0/0 .rodata          sConfused__8Z2MdnPrm */
 SECTION_RODATA static u8 const sConfused__8Z2MdnPrm[106 + 2 /* padding */] = {
     0x83,
     0x80,
@@ -1212,8 +1223,9 @@ SECTION_RODATA static u8 const sConfused__8Z2MdnPrm[106 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8039C644, &sConfused__8Z2MdnPrm);
 
-/* 8039C6B0-8039C718 0068+00 s=1 e=0 z=0  None .rodata    sHostility__8Z2MdnPrm */
+/* 8039C6B0-8039C718 028D10 0068+00 1/0 0/0 0/0 .rodata          sHostility__8Z2MdnPrm */
 SECTION_RODATA static u8 const sHostility__8Z2MdnPrm[104] = {
     0x85, 0x71, 0x71, 0x73, 0x73, 0x3B, 0x62, 0x84, 0x94, 0x94, 0x94, 0xAF, 0x98, 0xAD, 0xAD,
     0x5A, 0x5A, 0x63, 0x63, 0x97, 0x90, 0x90, 0x7B, 0x73, 0x73, 0x63, 0x63, 0x55, 0x55, 0x65,
@@ -1223,8 +1235,9 @@ SECTION_RODATA static u8 const sHostility__8Z2MdnPrm[104] = {
     0x65, 0x6B, 0x6E, 0x6E, 0x83, 0x83, 0x96, 0x3F, 0x56, 0x56, 0x56, 0x56, 0x4F, 0x5F, 0x57,
     0x62, 0x6A, 0x5F, 0x72, 0x72, 0x62, 0x62, 0x65, 0x5E, 0x69, 0x69, 0x63, 0x63, 0x7F,
 };
+COMPILER_STRIP_GATE(8039C6B0, &sHostility__8Z2MdnPrm);
 
-/* 8039C718-8039C784 006A+02 s=1 e=0 z=0  None .rodata    sTired__8Z2MdnPrm */
+/* 8039C718-8039C784 028D78 006A+02 1/0 0/0 0/0 .rodata          sTired__8Z2MdnPrm */
 SECTION_RODATA static u8 const sTired__8Z2MdnPrm[106 + 2 /* padding */] = {
     0x70,
     0x70,
@@ -1336,8 +1349,9 @@ SECTION_RODATA static u8 const sTired__8Z2MdnPrm[106 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8039C718, &sTired__8Z2MdnPrm);
 
-/* 8039C784-8039C7F0 006A+02 s=1 e=0 z=0  None .rodata    sSerious__8Z2MdnPrm */
+/* 8039C784-8039C7F0 028DE4 006A+02 1/0 0/0 0/0 .rodata          sSerious__8Z2MdnPrm */
 SECTION_RODATA static u8 const sSerious__8Z2MdnPrm[106 + 2 /* padding */] = {
     0x52,
     0x65,
@@ -1449,8 +1463,9 @@ SECTION_RODATA static u8 const sSerious__8Z2MdnPrm[106 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8039C784, &sSerious__8Z2MdnPrm);
 
-/* 8039C7F0-8039C844 0054+00 s=1 e=0 z=0  None .rodata    sReplyb__8Z2MdnPrm */
+/* 8039C7F0-8039C844 028E50 0054+00 1/0 0/0 0/0 .rodata          sReplyb__8Z2MdnPrm */
 SECTION_RODATA static u8 const sReplyb__8Z2MdnPrm[84] = {
     0x5C, 0x45, 0x45, 0x71, 0x9F, 0x57, 0xB4, 0xB4, 0x56, 0x62, 0x8E, 0x61, 0x61, 0xB0,
     0xB0, 0x3C, 0x59, 0x4A, 0x64, 0xA4, 0xA4, 0x5A, 0x5A, 0x5A, 0x5A, 0x72, 0x72, 0x4B,
@@ -1459,8 +1474,9 @@ SECTION_RODATA static u8 const sReplyb__8Z2MdnPrm[84] = {
     0x72, 0x8A, 0x2C, 0x1F, 0x1F, 0x95, 0x95, 0x69, 0x4C, 0x59, 0x59, 0x79, 0x5B, 0x44,
     0x44, 0x4F, 0x52, 0x58, 0x5A, 0x6F, 0x6E, 0x8A, 0x8E, 0x8E, 0x8E, 0x8C, 0x8C, 0x9B,
 };
+COMPILER_STRIP_GATE(8039C7F0, &sReplyb__8Z2MdnPrm);
 
-/* 8039C844-8039C8A8 0064+00 s=1 e=0 z=0  None .rodata    sApologize__8Z2MdnPrm */
+/* 8039C844-8039C8A8 028EA4 0064+00 1/0 0/0 0/0 .rodata          sApologize__8Z2MdnPrm */
 SECTION_RODATA static u8 const sApologize__8Z2MdnPrm[100] = {
     0x6A, 0x6A, 0x6A, 0x51, 0x51, 0x51, 0x51, 0x51, 0x51, 0x51, 0x57, 0x57, 0x57, 0x63, 0x61,
     0x54, 0x54, 0x54, 0x54, 0x58, 0x58, 0x58, 0x58, 0x45, 0x45, 0x56, 0x56, 0x5B, 0x5B, 0x37,
@@ -1470,8 +1486,9 @@ SECTION_RODATA static u8 const sApologize__8Z2MdnPrm[100] = {
     0x5B, 0x70, 0x72, 0x72, 0x72, 0x72, 0x6E, 0x76, 0x6B, 0x6B, 0x58, 0x69, 0x66, 0x66, 0x64,
     0x64, 0x60, 0x61, 0x63, 0x6A, 0x62, 0x62, 0x64, 0x65, 0x71,
 };
+COMPILER_STRIP_GATE(8039C844, &sApologize__8Z2MdnPrm);
 
-/* 8039C8A8-8039C8B4 0009+03 s=1 e=0 z=0  None .rodata    sApologizeTail__8Z2MdnPrm */
+/* 8039C8A8-8039C8B4 028F08 0009+03 1/0 0/0 0/0 .rodata          sApologizeTail__8Z2MdnPrm */
 SECTION_RODATA static u8 const sApologizeTail__8Z2MdnPrm[9 + 3 /* padding */] = {
     0x7C,
     0x6E,
@@ -1487,8 +1504,9 @@ SECTION_RODATA static u8 const sApologizeTail__8Z2MdnPrm[9 + 3 /* padding */] = 
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8039C8A8, &sApologizeTail__8Z2MdnPrm);
 
-/* 8039C8B4-8039C918 0064+00 s=1 e=0 z=0  None .rodata    sDeside__8Z2MdnPrm */
+/* 8039C8B4-8039C918 028F14 0064+00 1/0 0/0 0/0 .rodata          sDeside__8Z2MdnPrm */
 SECTION_RODATA static u8 const sDeside__8Z2MdnPrm[100] = {
     0x77, 0x77, 0x77, 0x58, 0x58, 0x6F, 0x78, 0x5F, 0x66, 0x5E, 0x6E, 0x62, 0x62, 0x2E, 0x5A,
     0x58, 0x54, 0x52, 0x52, 0x5C, 0x59, 0x56, 0x56, 0x4B, 0x4B, 0x63, 0x63, 0x4D, 0x4E, 0x4A,
@@ -1498,8 +1516,9 @@ SECTION_RODATA static u8 const sDeside__8Z2MdnPrm[100] = {
     0x62, 0x5D, 0x67, 0x5D, 0x5F, 0x62, 0x59, 0x5D, 0x55, 0x55, 0x48, 0x5F, 0x5F, 0x5F, 0x5D,
     0x75, 0x6A, 0x66, 0x76, 0x69, 0x69, 0x69, 0x60, 0x60, 0x5F,
 };
+COMPILER_STRIP_GATE(8039C8B4, &sDeside__8Z2MdnPrm);
 
-/* 8039C918-8039C980 0068+00 s=1 e=0 z=0  None .rodata    sAfford__8Z2MdnPrm */
+/* 8039C918-8039C980 028F78 0068+00 1/0 0/0 0/0 .rodata          sAfford__8Z2MdnPrm */
 SECTION_RODATA static u8 const sAfford__8Z2MdnPrm[104] = {
     0x4E, 0x45, 0x52, 0x5B, 0x56, 0x5B, 0x59, 0x52, 0x52, 0x57, 0x5C, 0x50, 0x50, 0x49, 0x80,
     0x6E, 0x6E, 0x5A, 0x5C, 0x60, 0x6A, 0x62, 0x62, 0x6A, 0x71, 0x48, 0x4C, 0x5B, 0x5A, 0x40,
@@ -1509,13 +1528,15 @@ SECTION_RODATA static u8 const sAfford__8Z2MdnPrm[104] = {
     0x7D, 0x6E, 0x56, 0x79, 0x79, 0x50, 0x4C, 0x50, 0x43, 0x52, 0x51, 0x66, 0x6C, 0x64, 0x63,
     0x63, 0x5D, 0x69, 0x70, 0x56, 0x50, 0x4B, 0x92, 0x86, 0x8F, 0x4B, 0x4F, 0x57, 0x56,
 };
+COMPILER_STRIP_GATE(8039C918, &sAfford__8Z2MdnPrm);
 
-/* 8039C980-8039C98C 000C+00 s=1 e=0 z=0  None .rodata    sAffordTail__8Z2MdnPrm */
+/* 8039C980-8039C98C 028FE0 000C+00 1/0 0/0 0/0 .rodata          sAffordTail__8Z2MdnPrm */
 SECTION_RODATA static u8 const sAffordTail__8Z2MdnPrm[12] = {
     0x63, 0x8E, 0x5B, 0x59, 0x4C, 0x3A, 0x69, 0x47, 0x41, 0x59, 0x50, 0x55,
 };
+COMPILER_STRIP_GATE(8039C980, &sAffordTail__8Z2MdnPrm);
 
-/* 8039C98C-8039CA58 00CC+00 s=2 e=0 z=0  None .rodata    sPrm__8Z2MdnPrm */
+/* 8039C98C-8039CA58 -00001 00CC+00 2/2 0/0 0/0 .rodata          sPrm__8Z2MdnPrm */
 SECTION_RODATA static void* const sPrm__8Z2MdnPrm[51] = {
     (void*)&sReply__8Z2MdnPrm,     (void*)&sReplyTail__8Z2MdnPrm,     (void*)0x32060400,
     (void*)&sJoke__8Z2MdnPrm,      (void*)&sJokeTail__8Z2MdnPrm,      (void*)0x32030700,
@@ -1535,14 +1556,15 @@ SECTION_RODATA static void* const sPrm__8Z2MdnPrm[51] = {
     (void*)&sDeside__8Z2MdnPrm,    (void*)&sDesideTail__8Z2MdnPrm,    (void*)0x32010700,
     (void*)&sAfford__8Z2MdnPrm,    (void*)&sAffordTail__8Z2MdnPrm,    (void*)0x34020A00,
 };
+COMPILER_STRIP_GATE(8039C98C, &sPrm__8Z2MdnPrm);
 
-/* 80455F48-80455F50 0008+00 s=3 e=0 z=0  None .sdata2    @4083 */
+/* 80455F48-80455F50 004548 0008+00 3/3 0/0 0/0 .sdata2          @4083 */
 SECTION_SDATA2 static f64 lit_4083 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 80456BA8-80456BAC 0002+02 s=1 e=0 z=0  None .sbss2     @4003 */
+/* 80456BA8-80456BAC 000048 0002+02 1/1 0/0 0/0 .sbss2           @4003 */
 SECTION_SBSS2 static u8 lit_4003[2 + 2 /* padding */];
 
-/* 802CC4C0-802CC738 0278+00 s=2 e=0 z=0  None .text      selectUnit__12Z2SpeechMgr2Fb */
+/* 802CC4C0-802CC738 2C6E00 0278+00 2/2 0/0 0/0 .text            selectUnit__12Z2SpeechMgr2Fb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1553,10 +1575,10 @@ asm void Z2SpeechMgr2::selectUnit(bool param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80456BAC-80456BB0 0002+02 s=1 e=0 z=0  None .sbss2     @4104 */
+/* 80456BAC-80456BB0 00004C 0002+02 1/1 0/0 0/0 .sbss2           @4104 */
 SECTION_SBSS2 static u8 lit_4104[2 + 2 /* padding */];
 
-/* 802CC738-802CC9D0 0298+00 s=1 e=0 z=0  None .text      selectTail__12Z2SpeechMgr2Fv */
+/* 802CC738-802CC9D0 2C7078 0298+00 1/1 0/0 0/0 .text            selectTail__12Z2SpeechMgr2Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1566,7 +1588,7 @@ asm void Z2SpeechMgr2::selectTail() {
 }
 #pragma pop
 
-/* 802CC9D0-802CCA18 0048+00 s=0 e=1 z=0  None .text      framework__12Z2SpeechMgr2Fv */
+/* 802CC9D0-802CCA18 2C7310 0048+00 0/0 1/1 0/0 .text            framework__12Z2SpeechMgr2Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1576,7 +1598,7 @@ asm void Z2SpeechMgr2::framework() {
 }
 #pragma pop
 
-/* 802CCA18-802CCF88 0570+00 s=0 e=2 z=0  None .text playOneShotVoice__12Z2SpeechMgr2FUcUsP3VecSc
+/* 802CCA18-802CCF88 2C7358 0570+00 0/0 2/2 0/0 .text playOneShotVoice__12Z2SpeechMgr2FUcUsP3VecSc
  */
 #pragma push
 #pragma optimization_level 0
@@ -1587,7 +1609,7 @@ asm void Z2SpeechMgr2::playOneShotVoice(u8 param_0, u16 param_1, Vec* param_2, s
 }
 #pragma pop
 
-/* 802CCF88-802CCFB8 0030+00 s=0 e=1 z=0  None .text      isMidnaSpeak__12Z2SpeechMgr2Fv */
+/* 802CCF88-802CCFB8 2C78C8 0030+00 0/0 1/1 0/0 .text            isMidnaSpeak__12Z2SpeechMgr2Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1597,7 +1619,7 @@ asm void Z2SpeechMgr2::isMidnaSpeak() {
 }
 #pragma pop
 
-/* 802CCFB8-802CCFF8 0040+00 s=1 e=0 z=0  None .text      __ct__15Z2SpeechStarterFv */
+/* 802CCFB8-802CCFF8 2C78F8 0040+00 1/1 0/0 0/0 .text            __ct__15Z2SpeechStarterFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1608,13 +1630,13 @@ asm Z2SpeechStarter::Z2SpeechStarter() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455F50-80455F54 0004+00 s=1 e=0 z=0  None .sdata2    @4571 */
+/* 80455F50-80455F54 004550 0004+00 1/1 0/0 0/0 .sdata2          @4571 */
 SECTION_SDATA2 static f32 lit_4571 = 7.0f / 100.0f;
 
-/* 80455F54-80455F58 0004+00 s=1 e=0 z=0  None .sdata2    @4572 */
+/* 80455F54-80455F58 004554 0004+00 1/1 0/0 0/0 .sdata2          @4572 */
 SECTION_SDATA2 static f32 lit_4572 = 0.5f;
 
-/* 802CCFF8-802CD248 0250+00 s=1 e=0 z=0  None .text
+/* 802CCFF8-802CD248 2C7938 0250+00 1/0 0/0 0/0 .text
  * startSound__15Z2SpeechStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f>UlfffffUl */
 #pragma push
 #pragma optimization_level 0

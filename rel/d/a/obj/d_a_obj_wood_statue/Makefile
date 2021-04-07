@@ -3,18 +3,16 @@
 #
 
 M691_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_statue.plf
+M691_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_statue.lcf
+M691_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_statue.map
 
 M691_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_wood_statue/executor.cpp \
-	rel/d/a/obj/d_a_obj_wood_statue/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_wood_statue/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_wood_statue/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_wood_statue/d_a_obj_wood_statue.cpp \
 
 M691_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_statue/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_statue/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_statue/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_statue/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_statue/d_a_obj_wood_statue.o \
 
@@ -31,14 +29,21 @@ M691_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M691_LDSCRIPT) \
+	-unused -map $(M691_MAP) \
+	-w off \
 
 $(M691_TARGET): $(M691_O_FILES) $(M691_LIBS)
+	@echo [691] creating $(M691_TARGET)
 	@echo $(M691_LIBS) $(M691_O_FILES) > build/M691_ofiles
-	$(LD) -partial $(M691_LDFLAGS) -o $(M691_TARGET) @build/M691_ofiles
+	@python3 tools/lcf.py rel 691 --output $(M691_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M691_LDFLAGS) -o $(M691_TARGET) @build/M691_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wood_statue/%.o: rel/d/a/obj/d_a_obj_wood_statue/%.cpp
+	@echo [691] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M691_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M691_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

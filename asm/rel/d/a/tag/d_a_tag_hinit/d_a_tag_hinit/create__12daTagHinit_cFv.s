@@ -9,7 +9,7 @@ lbl_805A3758:
 /* 805A3774  40 82 00 1C */	bne lbl_805A3790
 /* 805A3778  28 1F 00 00 */	cmplwi r31, 0
 /* 805A377C  41 82 00 08 */	beq lbl_805A3784
-/* 805A3780  4B A7 53 E4 */	b __ct__10fopAc_ac_cFv
+/* 805A3780  4B A7 53 E5 */	bl __ct__10fopAc_ac_cFv
 lbl_805A3784:
 /* 805A3784  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 805A3788  60 00 00 08 */	ori r0, r0, 8
@@ -20,11 +20,11 @@ lbl_805A3790:
 /* 805A3798  88 9F 05 69 */	lbz r4, 0x569(r31)
 /* 805A379C  28 04 00 FF */	cmplwi r4, 0xff
 /* 805A37A0  41 82 00 28 */	beq lbl_805A37C8
-/* 805A37A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805A37A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805A37A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805A37A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805A37AC  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 805A37B0  7C 05 07 74 */	extsb r5, r0
-/* 805A37B4  4B A9 1B AC */	b isSwitch__10dSv_info_cCFii
+/* 805A37B4  4B A9 1B AD */	bl isSwitch__10dSv_info_cCFii
 /* 805A37B8  2C 03 00 00 */	cmpwi r3, 0
 /* 805A37BC  41 82 00 0C */	beq lbl_805A37C8
 /* 805A37C0  38 60 00 05 */	li r3, 5

@@ -6,7 +6,7 @@ lbl_806B5C8C:
 /* 806B5C9C  7C 85 23 78 */	mr r5, r4
 /* 806B5CA0  38 85 00 54 */	addi r4, r5, 0x54
 /* 806B5CA4  38 A5 06 F8 */	addi r5, r5, 0x6f8
-/* 806B5CA8  4B BB B4 CC */	b __pl__7cSAngleCFRC7cSAngle
+/* 806B5CA8  4B BB B4 CD */	bl __pl__7cSAngleCFRC7cSAngle
 /* 806B5CAC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 806B5CB0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 806B5CB4  7C 08 03 A6 */	mtlr r0

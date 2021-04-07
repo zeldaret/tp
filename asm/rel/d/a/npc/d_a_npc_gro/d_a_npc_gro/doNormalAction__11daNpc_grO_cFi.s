@@ -9,7 +9,7 @@ lbl_809DCF44:
 /* 809DCF60  38 9F 0C 98 */	addi r4, r31, 0xc98
 /* 809DCF64  38 A0 00 01 */	li r5, 1
 /* 809DCF68  38 C0 00 00 */	li r6, 0
-/* 809DCF6C  4B 77 66 0C */	b hitChk2__8daNpcF_cFP8dCcD_Cylii
+/* 809DCF6C  4B 77 66 0D */	bl hitChk2__8daNpcF_cFP8dCcD_Cylii
 /* 809DCF70  2C 03 00 00 */	cmpwi r3, 0
 /* 809DCF74  41 82 00 44 */	beq lbl_809DCFB8
 /* 809DCF78  7F E3 FB 78 */	mr r3, r31
@@ -19,13 +19,13 @@ lbl_809DCF44:
 /* 809DCF88  38 80 00 14 */	li r4, 0x14
 /* 809DCF8C  48 00 00 10 */	b lbl_809DCF9C
 lbl_809DCF90:
-/* 809DCF90  3C 80 80 9E */	lis r4, m__17daNpc_grO_Param_c@ha
-/* 809DCF94  38 84 EF 7C */	addi r4, r4, m__17daNpc_grO_Param_c@l
+/* 809DCF90  3C 80 80 9E */	lis r4, m__17daNpc_grO_Param_c@ha /* 0x809DEF7C@ha */
+/* 809DCF94  38 84 EF 7C */	addi r4, r4, m__17daNpc_grO_Param_c@l /* 0x809DEF7C@l */
 /* 809DCF98  A8 84 00 62 */	lha r4, 0x62(r4)
 lbl_809DCF9C:
 /* 809DCF9C  38 A0 00 0C */	li r5, 0xc
 /* 809DCFA0  38 C0 00 00 */	li r6, 0
-/* 809DCFA4  4B 77 66 B4 */	b setDamage__8daNpcF_cFiii
+/* 809DCFA4  4B 77 66 B5 */	bl setDamage__8daNpcF_cFiii
 /* 809DCFA8  7F E3 FB 78 */	mr r3, r31
 /* 809DCFAC  38 80 00 01 */	li r4, 1
 /* 809DCFB0  48 00 04 29 */	bl setLookMode__11daNpc_grO_cFi
@@ -52,18 +52,18 @@ lbl_809DCFF4:
 /* 809DCFF8  B0 1F 09 E6 */	sth r0, 0x9e6(r31)
 lbl_809DCFFC:
 /* 809DCFFC  38 7F 0D D4 */	addi r3, r31, 0xdd4
-/* 809DD000  4B 98 50 18 */	b __ptmf_test
+/* 809DD000  4B 98 50 19 */	bl __ptmf_test
 /* 809DD004  2C 03 00 00 */	cmpwi r3, 0
 /* 809DD008  41 82 00 54 */	beq lbl_809DD05C
 /* 809DD00C  38 7F 0D E0 */	addi r3, r31, 0xde0
 /* 809DD010  38 9F 0D D4 */	addi r4, r31, 0xdd4
-/* 809DD014  4B 98 50 34 */	b __ptmf_cmpr
+/* 809DD014  4B 98 50 35 */	bl __ptmf_cmpr
 /* 809DD018  2C 03 00 00 */	cmpwi r3, 0
 /* 809DD01C  40 82 00 1C */	bne lbl_809DD038
 /* 809DD020  7F E3 FB 78 */	mr r3, r31
 /* 809DD024  38 80 00 00 */	li r4, 0
 /* 809DD028  39 9F 0D E0 */	addi r12, r31, 0xde0
-/* 809DD02C  4B 98 50 58 */	b __ptmf_scall
+/* 809DD02C  4B 98 50 59 */	bl __ptmf_scall
 /* 809DD030  60 00 00 00 */	nop 
 /* 809DD034  48 00 00 28 */	b lbl_809DD05C
 lbl_809DD038:

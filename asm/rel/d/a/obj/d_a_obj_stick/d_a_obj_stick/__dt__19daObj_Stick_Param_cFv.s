@@ -5,12 +5,12 @@ lbl_80599DD0:
 /* 80599DDC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80599DE0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80599DE4  41 82 00 1C */	beq lbl_80599E00
-/* 80599DE8  3C A0 80 5A */	lis r5, __vt__19daObj_Stick_Param_c@ha
-/* 80599DEC  38 05 9F 70 */	addi r0, r5, __vt__19daObj_Stick_Param_c@l
+/* 80599DE8  3C A0 80 5A */	lis r5, __vt__19daObj_Stick_Param_c@ha /* 0x80599F70@ha */
+/* 80599DEC  38 05 9F 70 */	addi r0, r5, __vt__19daObj_Stick_Param_c@l /* 0x80599F70@l */
 /* 80599DF0  90 1F 00 00 */	stw r0, 0(r31)
 /* 80599DF4  7C 80 07 35 */	extsh. r0, r4
 /* 80599DF8  40 81 00 08 */	ble lbl_80599E00
-/* 80599DFC  4B D3 4F 40 */	b __dl__FPv
+/* 80599DFC  4B D3 4F 41 */	bl __dl__FPv
 lbl_80599E00:
 /* 80599E00  7F E3 FB 78 */	mr r3, r31
 /* 80599E04  83 E1 00 0C */	lwz r31, 0xc(r1)

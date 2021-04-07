@@ -3,7 +3,7 @@ lbl_809E1F10:
 /* 809E1F14  7C 08 02 A6 */	mflr r0
 /* 809E1F18  90 01 00 14 */	stw r0, 0x14(r1)
 /* 809E1F1C  38 63 0D D4 */	addi r3, r3, 0xdd4
-/* 809E1F20  4B 98 01 28 */	b __ptmf_cmpr
+/* 809E1F20  4B 98 01 29 */	bl __ptmf_cmpr
 /* 809E1F24  7C 60 00 34 */	cntlzw r0, r3
 /* 809E1F28  54 03 D9 7E */	srwi r3, r0, 5
 /* 809E1F2C  80 01 00 14 */	lwz r0, 0x14(r1)

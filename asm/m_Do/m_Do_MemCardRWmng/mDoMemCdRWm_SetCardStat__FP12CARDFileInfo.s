@@ -5,8 +5,8 @@ lbl_800179E4:
 /* 800179F0  93 E1 00 7C */	stw r31, 0x7c(r1)
 /* 800179F4  93 C1 00 78 */	stw r30, 0x78(r1)
 /* 800179F8  7C 7E 1B 78 */	mr r30, r3
-/* 800179FC  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 80017A00  3B E3 AF 40 */	addi r31, r3, g_mDoMemCd_control@l
+/* 800179FC  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 80017A00  3B E3 AF 40 */	addi r31, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 80017A04  88 7F 1F BC */	lbz r3, 0x1fbc(r31)
 /* 80017A08  80 9E 00 04 */	lwz r4, 4(r30)
 /* 80017A0C  38 A1 00 08 */	addi r5, r1, 8

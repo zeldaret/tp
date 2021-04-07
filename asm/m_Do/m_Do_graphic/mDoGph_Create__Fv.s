@@ -9,8 +9,8 @@ lbl_8000B174:
 /* 8000B190  48 00 3E 2D */	bl mDoExt_createSolidHeapToCurrent__FUlP7JKRHeapUl
 /* 8000B194  7C 7F 1B 78 */	mr r31, r3
 /* 8000B198  4B FF CC AD */	bl create__13mDoGph_gInf_cFv
-/* 8000B19C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8000B1A0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8000B19C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8000B1A0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000B1A4  38 63 5F 64 */	addi r3, r3, 0x5f64
 /* 8000B1A8  48 04 B1 E9 */	bl init__12dDlst_list_cFv
 /* 8000B1AC  7F E3 FB 78 */	mr r3, r31

@@ -3,8 +3,8 @@ lbl_80537A74:
 /* 80537A78  54 00 06 3E */	clrlwi r0, r0, 0x18
 /* 80537A7C  28 00 00 11 */	cmplwi r0, 0x11
 /* 80537A80  41 81 00 AC */	bgt lbl_80537B2C
-/* 80537A84  3C 60 80 54 */	lis r3, lit_4621@ha
-/* 80537A88  38 63 F8 DC */	addi r3, r3, lit_4621@l
+/* 80537A84  3C 60 80 54 */	lis r3, lit_4621@ha /* 0x8053F8DC@ha */
+/* 80537A88  38 63 F8 DC */	addi r3, r3, lit_4621@l /* 0x8053F8DC@l */
 /* 80537A8C  54 00 10 3A */	slwi r0, r0, 2
 /* 80537A90  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80537A94  7C 09 03 A6 */	mtctr r0

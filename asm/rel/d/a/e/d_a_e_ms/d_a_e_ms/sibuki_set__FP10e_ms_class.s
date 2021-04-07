@@ -18,15 +18,15 @@ lbl_80725DEC:
 /* 80725E2C  C0 1F 06 90 */	lfs f0, 0x690(r31)
 /* 80725E30  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 80725E34  38 61 00 10 */	addi r3, r1, 0x10
-/* 80725E38  3C 80 80 73 */	lis r4, lit_3802@ha
-/* 80725E3C  C0 24 95 0C */	lfs f1, lit_3802@l(r4)
+/* 80725E38  3C 80 80 73 */	lis r4, lit_3802@ha /* 0x8072950C@ha */
+/* 80725E3C  C0 24 95 0C */	lfs f1, lit_3802@l(r4)  /* 0x8072950C@l */
 /* 80725E40  38 80 00 00 */	li r4, 0
-/* 80725E44  4B 8F 9A 38 */	b fopKyM_createWpillar__FPC4cXyzfi
+/* 80725E44  4B 8F 9A 39 */	bl fopKyM_createWpillar__FPC4cXyzfi
 /* 80725E48  C0 3F 06 90 */	lfs f1, 0x690(r31)
 /* 80725E4C  C0 1F 07 70 */	lfs f0, 0x770(r31)
 /* 80725E50  EC 21 00 28 */	fsubs f1, f1, f0
-/* 80725E54  3C 60 80 73 */	lis r3, lit_3907@ha
-/* 80725E58  C0 03 95 48 */	lfs f0, lit_3907@l(r3)
+/* 80725E54  3C 60 80 73 */	lis r3, lit_3907@ha /* 0x80729548@ha */
+/* 80725E58  C0 03 95 48 */	lfs f0, lit_3907@l(r3)  /* 0x80729548@l */
 /* 80725E5C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80725E60  40 81 00 34 */	ble lbl_80725E94
 /* 80725E64  3C 60 00 06 */	lis r3, 0x0006 /* 0x0006002E@ha */

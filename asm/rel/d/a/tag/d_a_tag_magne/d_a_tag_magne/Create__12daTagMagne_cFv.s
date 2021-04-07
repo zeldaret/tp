@@ -1,6 +1,6 @@
 lbl_805A5498:
-/* 805A5498  3C 80 80 45 */	lis r4, mTagMagne__12daTagMagne_c@ha
-/* 805A549C  84 04 0D BC */	lwzu r0, mTagMagne__12daTagMagne_c@l(r4)
+/* 805A5498  3C 80 80 45 */	lis r4, mTagMagne__12daTagMagne_c@ha /* 0x80450DBC@ha */
+/* 805A549C  84 04 0D BC */	lwzu r0, mTagMagne__12daTagMagne_c@l(r4)  /* 0x80450DBC@l */
 /* 805A54A0  28 00 00 00 */	cmplwi r0, 0
 /* 805A54A4  41 82 00 0C */	beq lbl_805A54B0
 /* 805A54A8  38 60 00 00 */	li r3, 0

@@ -10,7 +10,7 @@ lbl_80C185A4:
 /* 80C185C4  38 7E 05 D8 */	addi r3, r30, 0x5d8
 /* 80C185C8  80 9E 06 08 */	lwz r4, 0x608(r30)
 /* 80C185CC  38 84 00 24 */	addi r4, r4, 0x24
-/* 80C185D0  4B 72 DE E0 */	b PSMTXCopy
+/* 80C185D0  4B 72 DE E1 */	bl PSMTXCopy
 /* 80C185D4  38 1E 05 A8 */	addi r0, r30, 0x5a8
 /* 80C185D8  90 1F 00 00 */	stw r0, 0(r31)
 /* 80C185DC  7F C3 F3 78 */	mr r3, r30

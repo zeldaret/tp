@@ -5,8 +5,8 @@ lbl_8054BB54:
 /* 8054BB60  7C 60 1B 78 */	mr r0, r3
 /* 8054BB64  2C 04 00 00 */	cmpwi r4, 0
 /* 8054BB68  40 82 00 30 */	bne lbl_8054BB98
-/* 8054BB6C  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8054BB70  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8054BB6C  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8054BB70  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8054BB74  80 A3 00 38 */	lwz r5, 0x38(r3)
 /* 8054BB78  80 65 00 14 */	lwz r3, 0x14(r5)
 /* 8054BB7C  28 03 00 00 */	cmplwi r3, 0

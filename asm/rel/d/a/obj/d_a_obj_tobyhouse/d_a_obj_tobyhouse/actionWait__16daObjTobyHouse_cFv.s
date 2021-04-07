@@ -6,7 +6,7 @@ lbl_80D1661C:
 /* 80D1662C  7C 7F 1B 78 */	mr r31, r3
 /* 80D16630  38 60 00 05 */	li r3, 5
 /* 80D16634  38 80 FF FF */	li r4, -1
-/* 80D16638  4B 31 75 2C */	b dComIfGs_isOneZoneSwitch__Fii
+/* 80D16638  4B 31 75 2D */	bl dComIfGs_isOneZoneSwitch__Fii
 /* 80D1663C  2C 03 00 00 */	cmpwi r3, 0
 /* 80D16640  41 82 00 10 */	beq lbl_80D16650
 /* 80D16644  38 00 00 01 */	li r0, 1
@@ -15,7 +15,7 @@ lbl_80D1661C:
 lbl_80D16650:
 /* 80D16650  38 60 00 06 */	li r3, 6
 /* 80D16654  38 80 FF FF */	li r4, -1
-/* 80D16658  4B 31 75 0C */	b dComIfGs_isOneZoneSwitch__Fii
+/* 80D16658  4B 31 75 0D */	bl dComIfGs_isOneZoneSwitch__Fii
 /* 80D1665C  2C 03 00 00 */	cmpwi r3, 0
 /* 80D16660  41 82 00 10 */	beq lbl_80D16670
 /* 80D16664  38 00 00 02 */	li r0, 2
@@ -40,7 +40,7 @@ lbl_80D16678:
 /* 80D166A8  38 C6 FF FF */	addi r6, r6, 0xFFFF /* 0x0000FFFF@l */
 /* 80D166AC  38 E0 00 00 */	li r7, 0
 /* 80D166B0  39 00 00 01 */	li r8, 1
-/* 80D166B4  4B 30 4F C8 */	b fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
+/* 80D166B4  4B 30 4F C9 */	bl fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
 /* 80D166B8  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 80D166BC  60 00 00 02 */	ori r0, r0, 2
 /* 80D166C0  B0 1F 00 FA */	sth r0, 0xfa(r31)

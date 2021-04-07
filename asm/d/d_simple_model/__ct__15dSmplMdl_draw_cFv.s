@@ -5,12 +5,12 @@ lbl_80048CB4:
 /* 80048CC0  39 61 00 20 */	addi r11, r1, 0x20
 /* 80048CC4  48 31 95 19 */	bl _savegpr_29
 /* 80048CC8  7C 7D 1B 78 */	mr r29, r3
-/* 80048CCC  3C 60 80 3B */	lis r3, __vt__15dSmplMdl_draw_c@ha
-/* 80048CD0  38 03 82 F8 */	addi r0, r3, __vt__15dSmplMdl_draw_c@l
+/* 80048CCC  3C 60 80 3B */	lis r3, __vt__15dSmplMdl_draw_c@ha /* 0x803A82F8@ha */
+/* 80048CD0  38 03 82 F8 */	addi r0, r3, __vt__15dSmplMdl_draw_c@l /* 0x803A82F8@l */
 /* 80048CD4  90 1D 00 00 */	stw r0, 0(r29)
 /* 80048CD8  38 7D 00 04 */	addi r3, r29, 4
-/* 80048CDC  3C 80 80 05 */	lis r4, __ct__12diff_model_cFv@ha
-/* 80048CE0  38 84 8D 60 */	addi r4, r4, __ct__12diff_model_cFv@l
+/* 80048CDC  3C 80 80 05 */	lis r4, __ct__12diff_model_cFv@ha /* 0x80048D60@ha */
+/* 80048CE0  38 84 8D 60 */	addi r4, r4, __ct__12diff_model_cFv@l /* 0x80048D60@l */
 /* 80048CE4  38 A0 00 00 */	li r5, 0
 /* 80048CE8  38 C0 00 14 */	li r6, 0x14
 /* 80048CEC  38 E0 00 08 */	li r7, 8

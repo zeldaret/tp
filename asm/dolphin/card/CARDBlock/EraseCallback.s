@@ -4,18 +4,18 @@ lbl_803554F0:
 /* 803554F8  94 21 FF D8 */	stwu r1, -0x28(r1)
 /* 803554FC  93 E1 00 24 */	stw r31, 0x24(r1)
 /* 80355500  3B E3 00 00 */	addi r31, r3, 0
-/* 80355504  3C 60 80 45 */	lis r3, __CARDBlock@ha
+/* 80355504  3C 60 80 45 */	lis r3, __CARDBlock@ha /* 0x8044CBC0@ha */
 /* 80355508  93 C1 00 20 */	stw r30, 0x20(r1)
 /* 8035550C  1C BF 01 10 */	mulli r5, r31, 0x110
 /* 80355510  93 A1 00 1C */	stw r29, 0x1c(r1)
-/* 80355514  38 03 CB C0 */	addi r0, r3, __CARDBlock@l
+/* 80355514  38 03 CB C0 */	addi r0, r3, __CARDBlock@l /* 0x8044CBC0@l */
 /* 80355518  7C 9D 23 79 */	or. r29, r4, r4
 /* 8035551C  7F C0 2A 14 */	add r30, r0, r5
 /* 80355520  41 80 00 3C */	blt lbl_8035555C
 /* 80355524  80 BE 00 88 */	lwz r5, 0x88(r30)
-/* 80355528  3C 60 80 35 */	lis r3, WriteCallback@ha
+/* 80355528  3C 60 80 35 */	lis r3, WriteCallback@ha /* 0x8035541C@ha */
 /* 8035552C  80 1E 00 80 */	lwz r0, 0x80(r30)
-/* 80355530  38 E3 54 1C */	addi r7, r3, WriteCallback@l
+/* 80355530  38 E3 54 1C */	addi r7, r3, WriteCallback@l /* 0x8035541C@l */
 /* 80355534  80 7E 00 0C */	lwz r3, 0xc(r30)
 /* 80355538  7C 00 28 50 */	subf r0, r0, r5
 /* 8035553C  54 00 9B 7E */	srwi r0, r0, 0xd

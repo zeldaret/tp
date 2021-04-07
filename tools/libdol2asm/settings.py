@@ -1,11 +1,11 @@
 """
 
-Settings for the game that we are splitting.
+Game settings and hashes.
 
 """
 
 GAME_NAME = "The Legend of Zelda: Twilight Princess (GCN USA)"
-ENTRY_POINT = 0x80003154
+ENTRY_POINT = 0x80003154 # TODO get from dol?
 
 SHA1 = {
     'main.dol': "4997D93B9692620C40E90374A0F1DBF0E4889395",

@@ -8,7 +8,7 @@ lbl_8036CE8C:
 /* 8036CEA4  38 00 00 78 */	li r0, 0x78
 /* 8036CEA8  38 C0 00 01 */	li r6, 1
 /* 8036CEAC  98 A1 00 08 */	stb r5, 8(r1)
-/* 8036CEB0  3C A0 80 45 */	lis r5, gTRKBigEndian@ha
+/* 8036CEB0  3C A0 80 45 */	lis r5, gTRKBigEndian@ha /* 0x8044D8B8@ha */
 /* 8036CEB4  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8036CEB8  3B E0 00 00 */	li r31, 0
 /* 8036CEBC  93 C1 00 18 */	stw r30, 0x18(r1)
@@ -16,7 +16,7 @@ lbl_8036CE8C:
 /* 8036CEC4  98 61 00 0A */	stb r3, 0xa(r1)
 /* 8036CEC8  98 01 00 0B */	stb r0, 0xb(r1)
 /* 8036CECC  80 61 00 08 */	lwz r3, 8(r1)
-/* 8036CED0  94 C5 D8 B8 */	stwu r6, gTRKBigEndian@l(r5)
+/* 8036CED0  94 C5 D8 B8 */	stwu r6, gTRKBigEndian@l(r5)  /* 0x8044D8B8@l */
 /* 8036CED4  3C 03 ED CC */	addis r0, r3, 0xedcc
 /* 8036CED8  28 00 56 78 */	cmplwi r0, 0x5678
 /* 8036CEDC  40 82 00 0C */	bne lbl_8036CEE8
@@ -31,8 +31,8 @@ lbl_8036CEE8:
 lbl_8036CEFC:
 /* 8036CEFC  7C DF 33 78 */	mr r31, r6
 lbl_8036CF00:
-/* 8036CF00  3C 60 80 3A */	lis r3, lit_154@ha
-/* 8036CF04  38 83 26 A4 */	addi r4, r3, lit_154@l
+/* 8036CF00  3C 60 80 3A */	lis r3, lit_154@ha /* 0x803A26A4@ha */
+/* 8036CF04  38 83 26 A4 */	addi r4, r3, lit_154@l /* 0x803A26A4@l */
 /* 8036CF08  38 60 00 01 */	li r3, 1
 /* 8036CF0C  4C C6 31 82 */	crclr 6
 /* 8036CF10  48 00 5D 45 */	bl MWTRACE
@@ -68,16 +68,16 @@ lbl_8036CF64:
 lbl_8036CF74:
 /* 8036CF74  2C 1F 00 00 */	cmpwi r31, 0
 /* 8036CF78  40 82 00 44 */	bne lbl_8036CFBC
-/* 8036CF7C  3C 60 80 45 */	lis r3, gTRKInputPendingPtr@ha
+/* 8036CF7C  3C 60 80 45 */	lis r3, gTRKInputPendingPtr@ha /* 0x804519B8@ha */
 /* 8036CF80  3C A0 00 01 */	lis r5, 0x0001 /* 0x0000E100@ha */
-/* 8036CF84  38 C3 19 B8 */	addi r6, r3, gTRKInputPendingPtr@l
+/* 8036CF84  38 C3 19 B8 */	addi r6, r3, gTRKInputPendingPtr@l /* 0x804519B8@l */
 /* 8036CF88  38 80 00 01 */	li r4, 1
 /* 8036CF8C  38 65 E1 00 */	addi r3, r5, 0xE100 /* 0x0000E100@l */
 /* 8036CF90  38 A0 00 00 */	li r5, 0
 /* 8036CF94  48 00 4E C5 */	bl TRKInitializeIntDrivenUART
-/* 8036CF98  3C 80 80 45 */	lis r4, gTRKInputPendingPtr@ha
+/* 8036CF98  3C 80 80 45 */	lis r4, gTRKInputPendingPtr@ha /* 0x804519B8@ha */
 /* 8036CF9C  7C 60 1B 78 */	mr r0, r3
-/* 8036CFA0  38 64 19 B8 */	addi r3, r4, gTRKInputPendingPtr@l
+/* 8036CFA0  38 64 19 B8 */	addi r3, r4, gTRKInputPendingPtr@l /* 0x804519B8@l */
 /* 8036CFA4  80 63 00 00 */	lwz r3, 0(r3)
 /* 8036CFA8  7C 1E 03 78 */	mr r30, r0
 /* 8036CFAC  48 00 2B 2D */	bl TRKTargetSetInputPendingPtr

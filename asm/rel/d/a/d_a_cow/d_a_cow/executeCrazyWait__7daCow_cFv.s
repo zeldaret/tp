@@ -5,8 +5,8 @@ lbl_8065DE70:
 /* 8065DE7C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8065DE80  93 C1 00 08 */	stw r30, 8(r1)
 /* 8065DE84  7C 7E 1B 78 */	mr r30, r3
-/* 8065DE88  3C 60 80 66 */	lis r3, lit_3987@ha
-/* 8065DE8C  3B E3 2D B0 */	addi r31, r3, lit_3987@l
+/* 8065DE88  3C 60 80 66 */	lis r3, lit_3987@ha /* 0x80662DB0@ha */
+/* 8065DE8C  3B E3 2D B0 */	addi r31, r3, lit_3987@l /* 0x80662DB0@l */
 /* 8065DE90  A0 7E 05 68 */	lhz r3, 0x568(r30)
 /* 8065DE94  54 60 06 B5 */	rlwinm. r0, r3, 0, 0x1a, 0x1a
 /* 8065DE98  41 82 00 0C */	beq lbl_8065DEA4
@@ -41,7 +41,7 @@ lbl_8065DEC4:
 /* 8065DF04  38 7E 08 20 */	addi r3, r30, 0x820
 /* 8065DF08  C0 3F 00 3C */	lfs f1, 0x3c(r31)
 /* 8065DF0C  C0 5F 00 A4 */	lfs f2, 0xa4(r31)
-/* 8065DF10  4B A1 80 48 */	b SetWall__12dBgS_AcchCirFff
+/* 8065DF10  4B A1 80 49 */	bl SetWall__12dBgS_AcchCirFff
 /* 8065DF14  38 00 00 1E */	li r0, 0x1e
 /* 8065DF18  90 1E 0C 90 */	stw r0, 0xc90(r30)
 /* 8065DF1C  80 1E 04 9C */	lwz r0, 0x49c(r30)

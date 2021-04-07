@@ -9,7 +9,7 @@ lbl_80C44DD0:
 /* 80C44DEC  40 82 00 1C */	bne lbl_80C44E08
 /* 80C44DF0  28 1F 00 00 */	cmplwi r31, 0
 /* 80C44DF4  41 82 00 08 */	beq lbl_80C44DFC
-/* 80C44DF8  4B 3D 3D 6C */	b __ct__10fopAc_ac_cFv
+/* 80C44DF8  4B 3D 3D 6D */	bl __ct__10fopAc_ac_cFv
 lbl_80C44DFC:
 /* 80C44DFC  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 80C44E00  60 00 00 08 */	ori r0, r0, 8
@@ -17,8 +17,8 @@ lbl_80C44DFC:
 lbl_80C44E08:
 /* 80C44E08  7F E3 FB 78 */	mr r3, r31
 /* 80C44E0C  4B FF FF 6D */	bl setBaseMtx__9daKiPot_cFv
-/* 80C44E10  3C 60 80 C4 */	lis r3, l_cull_box@ha
-/* 80C44E14  38 83 51 A4 */	addi r4, r3, l_cull_box@l
+/* 80C44E10  3C 60 80 C4 */	lis r3, l_cull_box@ha /* 0x80C451A4@ha */
+/* 80C44E14  38 83 51 A4 */	addi r4, r3, l_cull_box@l /* 0x80C451A4@l */
 /* 80C44E18  C0 04 00 10 */	lfs f0, 0x10(r4)
 /* 80C44E1C  C0 5F 04 F0 */	lfs f2, 0x4f0(r31)
 /* 80C44E20  EC A0 00 B2 */	fmuls f5, f0, f2
@@ -33,7 +33,7 @@ lbl_80C44E08:
 /* 80C44E44  C0 04 00 0C */	lfs f0, 0xc(r4)
 /* 80C44E48  EC 80 01 32 */	fmuls f4, f0, f4
 /* 80C44E4C  FC C0 28 90 */	fmr f6, f5
-/* 80C44E50  4B 3D 56 F8 */	b fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff
+/* 80C44E50  4B 3D 56 F9 */	bl fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff
 /* 80C44E54  38 00 00 00 */	li r0, 0
 /* 80C44E58  98 1F 05 75 */	stb r0, 0x575(r31)
 /* 80C44E5C  7F E3 FB 78 */	mr r3, r31

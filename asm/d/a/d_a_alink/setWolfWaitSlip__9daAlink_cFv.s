@@ -6,11 +6,11 @@ lbl_8012C1F4:
 /* 8012C204  F3 E1 00 38 */	psq_st f31, 56(r1), 0, 0 /* qr0 */
 /* 8012C208  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 8012C20C  7C 7F 1B 78 */	mr r31, r3
-/* 8012C210  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 8012C214  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 8012C210  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 8012C214  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 8012C218  90 01 00 18 */	stw r0, 0x18(r1)
-/* 8012C21C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8012C220  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8012C21C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8012C220  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8012C224  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8012C228  38 9F 1A 60 */	addi r4, r31, 0x1a60
 /* 8012C22C  38 A1 00 08 */	addi r5, r1, 8
@@ -60,8 +60,8 @@ lbl_8012C298:
 /* 8012C2D0  D0 1F 37 C8 */	stfs f0, 0x37c8(r31)
 /* 8012C2D4  D0 5F 37 CC */	stfs f2, 0x37cc(r31)
 /* 8012C2D8  D0 7F 37 D0 */	stfs f3, 0x37d0(r31)
-/* 8012C2DC  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 8012C2E0  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 8012C2DC  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 8012C2E0  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 8012C2E4  90 01 00 18 */	stw r0, 0x18(r1)
 /* 8012C2E8  FC 20 F8 90 */	fmr f1, f31
 /* 8012C2EC  E3 E1 00 38 */	psq_l f31, 56(r1), 0, 0 /* qr0 */

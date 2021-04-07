@@ -7,12 +7,12 @@ lbl_80CE61E4:
 /* 80CE61F8  80 63 05 78 */	lwz r3, 0x578(r3)
 /* 80CE61FC  28 03 00 00 */	cmplwi r3, 0
 /* 80CE6200  41 82 00 08 */	beq lbl_80CE6208
-/* 80CE6204  4B 32 72 24 */	b play__14mDoExt_baseAnmFv
+/* 80CE6204  4B 32 72 25 */	bl play__14mDoExt_baseAnmFv
 lbl_80CE6208:
 /* 80CE6208  80 7F 05 7C */	lwz r3, 0x57c(r31)
 /* 80CE620C  28 03 00 00 */	cmplwi r3, 0
 /* 80CE6210  41 82 00 08 */	beq lbl_80CE6218
-/* 80CE6214  4B 32 72 14 */	b play__14mDoExt_baseAnmFv
+/* 80CE6214  4B 32 72 15 */	bl play__14mDoExt_baseAnmFv
 lbl_80CE6218:
 /* 80CE6218  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80CE621C  80 01 00 14 */	lwz r0, 0x14(r1)

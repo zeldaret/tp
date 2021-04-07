@@ -9,8 +9,8 @@ lbl_801FC0FC:
 /* 801FC118  38 60 00 02 */	li r3, 2
 /* 801FC11C  4B E3 1F C5 */	bl dComIfGp_setHeapLockFlag__FUc
 /* 801FC120  3B E0 00 00 */	li r31, 0
-/* 801FC124  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801FC128  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801FC124  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801FC128  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801FC12C  A0 83 00 AA */	lhz r4, 0xaa(r3)
 /* 801FC130  28 04 04 00 */	cmplwi r4, 0x400
 /* 801FC134  41 82 00 40 */	beq lbl_801FC174
@@ -71,11 +71,11 @@ lbl_801FC1E4:
 /* 801FC1F8  48 0D 2A 55 */	bl __nw__FUl
 /* 801FC1FC  28 03 00 00 */	cmplwi r3, 0
 /* 801FC200  41 82 00 30 */	beq lbl_801FC230
-/* 801FC204  3C 80 80 3A */	lis r4, __vt__12dDlst_base_c@ha
-/* 801FC208  38 04 6F 88 */	addi r0, r4, __vt__12dDlst_base_c@l
+/* 801FC204  3C 80 80 3A */	lis r4, __vt__12dDlst_base_c@ha /* 0x803A6F88@ha */
+/* 801FC208  38 04 6F 88 */	addi r0, r4, __vt__12dDlst_base_c@l /* 0x803A6F88@l */
 /* 801FC20C  90 03 00 00 */	stw r0, 0(r3)
-/* 801FC210  3C 80 80 3C */	lis r4, __vt__20dDlst_MENU_CAPTURE_c@ha
-/* 801FC214  38 04 F0 D4 */	addi r0, r4, __vt__20dDlst_MENU_CAPTURE_c@l
+/* 801FC210  3C 80 80 3C */	lis r4, __vt__20dDlst_MENU_CAPTURE_c@ha /* 0x803BF0D4@ha */
+/* 801FC214  38 04 F0 D4 */	addi r0, r4, __vt__20dDlst_MENU_CAPTURE_c@l /* 0x803BF0D4@l */
 /* 801FC218  90 03 00 00 */	stw r0, 0(r3)
 /* 801FC21C  38 80 00 00 */	li r4, 0
 /* 801FC220  98 83 00 04 */	stb r4, 4(r3)
@@ -88,8 +88,8 @@ lbl_801FC234:
 /* 801FC234  38 00 00 01 */	li r0, 1
 /* 801FC238  80 7E 01 0C */	lwz r3, 0x10c(r30)
 /* 801FC23C  98 03 00 04 */	stb r0, 4(r3)
-/* 801FC240  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801FC244  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801FC240  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801FC244  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801FC248  48 02 07 95 */	bl resetWarpStatus__13dMeter2Info_cFv
 /* 801FC24C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 801FC250  83 C1 00 08 */	lwz r30, 8(r1)

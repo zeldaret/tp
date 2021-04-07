@@ -58,12 +58,12 @@ lbl_800F1DEC:
 /* 800F1DF0  B0 1F 30 10 */	sth r0, 0x3010(r31)
 /* 800F1DF4  B0 1F 30 12 */	sth r0, 0x3012(r31)
 /* 800F1DF8  7F E3 FB 78 */	mr r3, r31
-/* 800F1DFC  3C 80 80 39 */	lis r4, anmIdx@ha
-/* 800F1E00  38 84 19 D8 */	addi r4, r4, anmIdx@l
+/* 800F1DFC  3C 80 80 39 */	lis r4, anmIdx@ha /* 0x803919D8@ha */
+/* 800F1E00  38 84 19 D8 */	addi r4, r4, anmIdx@l /* 0x803919D8@l */
 /* 800F1E04  A0 84 00 08 */	lhz r4, 8(r4)
 /* 800F1E08  38 A0 00 02 */	li r5, 2
-/* 800F1E0C  3C C0 80 39 */	lis r6, m__22daAlinkHIO_damHorse_c0@ha
-/* 800F1E10  38 C6 E4 28 */	addi r6, r6, m__22daAlinkHIO_damHorse_c0@l
+/* 800F1E0C  3C C0 80 39 */	lis r6, m__22daAlinkHIO_damHorse_c0@ha /* 0x8038E428@ha */
+/* 800F1E10  38 C6 E4 28 */	addi r6, r6, m__22daAlinkHIO_damHorse_c0@l /* 0x8038E428@l */
 /* 800F1E14  4B FB B8 DD */	bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 800F1E18  48 00 01 54 */	b lbl_800F1F6C
 lbl_800F1E1C:
@@ -72,8 +72,8 @@ lbl_800F1E1C:
 /* 800F1E24  4B FE 56 D1 */	bl getDamageVec__9daAlink_cFP12dCcD_GObjInf
 /* 800F1E28  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 800F1E2C  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 800F1E30  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha
-/* 800F1E34  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l
+/* 800F1E30  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800F1E34  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800F1E38  7C 64 04 2E */	lfsx f3, r4, r0
 /* 800F1E3C  7C 84 02 14 */	add r4, r4, r0
 /* 800F1E40  C0 84 00 04 */	lfs f4, 4(r4)
@@ -90,8 +90,8 @@ lbl_800F1E1C:
 /* 800F1E6C  D0 01 00 08 */	stfs f0, 8(r1)
 /* 800F1E70  D0 41 00 0C */	stfs f2, 0xc(r1)
 /* 800F1E74  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 800F1E78  3C 60 80 39 */	lis r3, m__22daAlinkHIO_damHorse_c0@ha
-/* 800F1E7C  38 63 E4 28 */	addi r3, r3, m__22daAlinkHIO_damHorse_c0@l
+/* 800F1E78  3C 60 80 39 */	lis r3, m__22daAlinkHIO_damHorse_c0@ha /* 0x8038E428@ha */
+/* 800F1E7C  38 63 E4 28 */	addi r3, r3, m__22daAlinkHIO_damHorse_c0@l /* 0x8038E428@l */
 /* 800F1E80  AB A3 00 28 */	lha r29, 0x28(r3)
 /* 800F1E84  7C 1D 00 D0 */	neg r0, r29
 /* 800F1E88  7C 1E 07 34 */	extsh r30, r0
@@ -109,8 +109,8 @@ lbl_800F1EB0:
 /* 800F1EB0  7C 7E 1B 78 */	mr r30, r3
 lbl_800F1EB4:
 /* 800F1EB4  B3 DF 30 10 */	sth r30, 0x3010(r31)
-/* 800F1EB8  3C 60 80 39 */	lis r3, m__22daAlinkHIO_damHorse_c0@ha
-/* 800F1EBC  38 63 E4 28 */	addi r3, r3, m__22daAlinkHIO_damHorse_c0@l
+/* 800F1EB8  3C 60 80 39 */	lis r3, m__22daAlinkHIO_damHorse_c0@ha /* 0x8038E428@ha */
+/* 800F1EBC  38 63 E4 28 */	addi r3, r3, m__22daAlinkHIO_damHorse_c0@l /* 0x8038E428@l */
 /* 800F1EC0  AB A3 00 2A */	lha r29, 0x2a(r3)
 /* 800F1EC4  7C 1D 00 D0 */	neg r0, r29
 /* 800F1EC8  7C 1E 07 34 */	extsh r30, r0
@@ -150,12 +150,12 @@ lbl_800F1F24:
 /* 800F1F40  7C 60 1B 78 */	mr r0, r3
 /* 800F1F44  7F E3 FB 78 */	mr r3, r31
 /* 800F1F48  54 00 08 3C */	slwi r0, r0, 1
-/* 800F1F4C  3C 80 80 39 */	lis r4, anmIdx@ha
-/* 800F1F50  38 84 19 D8 */	addi r4, r4, anmIdx@l
+/* 800F1F4C  3C 80 80 39 */	lis r4, anmIdx@ha /* 0x803919D8@ha */
+/* 800F1F50  38 84 19 D8 */	addi r4, r4, anmIdx@l /* 0x803919D8@l */
 /* 800F1F54  7C 84 02 2E */	lhzx r4, r4, r0
 /* 800F1F58  38 A0 00 02 */	li r5, 2
-/* 800F1F5C  3C C0 80 39 */	lis r6, m__22daAlinkHIO_damHorse_c0@ha
-/* 800F1F60  38 C6 E4 28 */	addi r6, r6, m__22daAlinkHIO_damHorse_c0@l
+/* 800F1F5C  3C C0 80 39 */	lis r6, m__22daAlinkHIO_damHorse_c0@ha /* 0x8038E428@ha */
+/* 800F1F60  38 C6 E4 28 */	addi r6, r6, m__22daAlinkHIO_damHorse_c0@l /* 0x8038E428@l */
 /* 800F1F64  38 C6 00 14 */	addi r6, r6, 0x14
 /* 800F1F68  4B FB B7 89 */	bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 lbl_800F1F6C:

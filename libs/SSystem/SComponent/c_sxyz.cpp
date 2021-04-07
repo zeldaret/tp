@@ -53,23 +53,29 @@ csXyz Zero__5csXyz = csXyz(0,0,0);
 #else
 
 /* ############################################################################################## */
-/* 80430DA8-80430DB8 000C+04 s=1 e=0 z=0  None .bss       @262 */
+/* 80430DA8-80430DB8 05DAC8 000C+04 1/1 0/0 0/0 .bss             @262 */
 static u8 lit_262[12 + 4 /* padding */];
 
-/* 80451160-80451164 0004+00 s=1 e=13 z=3  None .sbss      Zero__5csXyz */
+/* 80451160-80451164 000660 0004+00 1/1 13/13 3/3 .sbss            Zero__5csXyz */
+extern u8 Zero__5csXyz[4];
 u8 Zero__5csXyz[4];
 
-/* 80451164-80451168 0004+00 s=1 e=13 z=2  None .sbss      None */
+/* 80451164-80451168 000664 0004+00 1/1 6/13 0/2 .sbss            None */
+extern u8 data_80451164[4];
 u8 data_80451164[4];
 
-/* 8026758C-802675E4 0058+00 s=0 e=1 z=0  None .text      __sinit_c_sxyz_cpp */
+/* 8026758C-802675E4 261ECC 0058+00 0/0 1/0 0/0 .text            __sinit_c_sxyz_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_c_sxyz_cpp() {
+asm void __sinit_c_sxyz_cpp() {
     nofralloc
 #include "asm/SSystem/SComponent/c_sxyz/__sinit_c_sxyz_cpp.s"
 }
 #pragma pop
 
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_8026758C = (void*)__sinit_c_sxyz_cpp;
+#pragma pop
 #endif

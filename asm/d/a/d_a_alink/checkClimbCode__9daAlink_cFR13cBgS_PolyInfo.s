@@ -5,8 +5,8 @@ lbl_800FE058:
 /* 800FE064  39 61 00 20 */	addi r11, r1, 0x20
 /* 800FE068  48 26 41 69 */	bl _savegpr_26
 /* 800FE06C  7C 9A 23 78 */	mr r26, r4
-/* 800FE070  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800FE074  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800FE070  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800FE074  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800FE078  3B 63 0F 38 */	addi r27, r3, 0xf38
 /* 800FE07C  7F 63 DB 78 */	mr r3, r27
 /* 800FE080  4B F7 65 A9 */	bl GetBgWBasePointer__4cBgSCFRC13cBgS_PolyInfo

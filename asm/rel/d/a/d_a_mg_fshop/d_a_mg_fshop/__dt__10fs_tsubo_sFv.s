@@ -7,7 +7,7 @@ lbl_8086FE98:
 /* 8086FEAC  41 82 00 10 */	beq lbl_8086FEBC
 /* 8086FEB0  7C 80 07 35 */	extsh. r0, r4
 /* 8086FEB4  40 81 00 08 */	ble lbl_8086FEBC
-/* 8086FEB8  4B A5 EE 84 */	b __dl__FPv
+/* 8086FEB8  4B A5 EE 85 */	bl __dl__FPv
 lbl_8086FEBC:
 /* 8086FEBC  7F E3 FB 78 */	mr r3, r31
 /* 8086FEC0  83 E1 00 0C */	lwz r31, 0xc(r1)

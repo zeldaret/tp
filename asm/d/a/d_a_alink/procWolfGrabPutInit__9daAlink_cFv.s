@@ -21,28 +21,28 @@ lbl_8013D5B4:
 /* 8013D5D0  41 82 00 38 */	beq lbl_8013D608
 /* 8013D5D4  7F C3 F3 78 */	mr r3, r30
 /* 8013D5D8  38 80 00 47 */	li r4, 0x47
-/* 8013D5DC  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlGrab_c0@ha
-/* 8013D5E0  38 A5 F9 5C */	addi r5, r5, m__20daAlinkHIO_wlGrab_c0@l
+/* 8013D5DC  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlGrab_c0@ha /* 0x8038F95C@ha */
+/* 8013D5E0  38 A5 F9 5C */	addi r5, r5, m__20daAlinkHIO_wlGrab_c0@l /* 0x8038F95C@l */
 /* 8013D5E4  38 A5 00 14 */	addi r5, r5, 0x14
 /* 8013D5E8  4B FE C2 61 */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013D5EC  C0 02 93 30 */	lfs f0, lit_7625(r2)
 /* 8013D5F0  D0 1E 34 78 */	stfs f0, 0x3478(r30)
-/* 8013D5F4  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlGrab_c0@ha
-/* 8013D5F8  38 63 F9 5C */	addi r3, r3, m__20daAlinkHIO_wlGrab_c0@l
+/* 8013D5F4  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlGrab_c0@ha /* 0x8038F95C@ha */
+/* 8013D5F8  38 63 F9 5C */	addi r3, r3, m__20daAlinkHIO_wlGrab_c0@l /* 0x8038F95C@l */
 /* 8013D5FC  C0 03 00 24 */	lfs f0, 0x24(r3)
 /* 8013D600  D0 1E 34 7C */	stfs f0, 0x347c(r30)
 /* 8013D604  48 00 00 34 */	b lbl_8013D638
 lbl_8013D608:
 /* 8013D608  7F C3 F3 78 */	mr r3, r30
 /* 8013D60C  38 80 00 4E */	li r4, 0x4e
-/* 8013D610  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlGrab_c0@ha
-/* 8013D614  38 A5 F9 5C */	addi r5, r5, m__20daAlinkHIO_wlGrab_c0@l
+/* 8013D610  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlGrab_c0@ha /* 0x8038F95C@ha */
+/* 8013D614  38 A5 F9 5C */	addi r5, r5, m__20daAlinkHIO_wlGrab_c0@l /* 0x8038F95C@l */
 /* 8013D618  38 A5 00 3C */	addi r5, r5, 0x3c
 /* 8013D61C  4B FE C2 2D */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013D620  C0 02 93 74 */	lfs f0, lit_8502(r2)
 /* 8013D624  D0 1E 34 78 */	stfs f0, 0x3478(r30)
-/* 8013D628  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlGrab_c0@ha
-/* 8013D62C  38 63 F9 5C */	addi r3, r3, m__20daAlinkHIO_wlGrab_c0@l
+/* 8013D628  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlGrab_c0@ha /* 0x8038F95C@ha */
+/* 8013D62C  38 63 F9 5C */	addi r3, r3, m__20daAlinkHIO_wlGrab_c0@l /* 0x8038F95C@l */
 /* 8013D630  C0 03 00 4C */	lfs f0, 0x4c(r3)
 /* 8013D634  D0 1E 34 7C */	stfs f0, 0x347c(r30)
 lbl_8013D638:

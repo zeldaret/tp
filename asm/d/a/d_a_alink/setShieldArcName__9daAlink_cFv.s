@@ -1,6 +1,6 @@
 lbl_8013FF90:
-/* 8013FF90  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8013FF94  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8013FF90  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8013FF94  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8013FF98  88 04 00 15 */	lbz r0, 0x15(r4)
 /* 8013FF9C  28 00 00 2A */	cmplwi r0, 0x2a
 /* 8013FFA0  41 82 00 0C */	beq lbl_8013FFAC

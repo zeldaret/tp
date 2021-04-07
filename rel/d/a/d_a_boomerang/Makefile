@@ -3,17 +3,15 @@
 #
 
 M46_TARGET := $(BUILD_DIR)/rel/d/a/d_a_boomerang.plf
+M46_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_boomerang.lcf
+M46_MAP := $(BUILD_DIR)/rel/d/a/d_a_boomerang.map
 
 M46_CPP_FILES := \
-	rel/d/a/d_a_boomerang/executor.cpp \
-	rel/d/a/d_a_boomerang/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_boomerang/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_boomerang/d_a_boomerang.cpp \
 
 M46_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_boomerang/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_boomerang/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_boomerang/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_boomerang/d_a_boomerang.o \
 
 M46_LIBS := \
@@ -29,14 +27,21 @@ M46_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M46_LDSCRIPT) \
+	-unused -map $(M46_MAP) \
+	-w off \
 
 $(M46_TARGET): $(M46_O_FILES) $(M46_LIBS)
+	@echo [ 46] creating $(M46_TARGET)
 	@echo $(M46_LIBS) $(M46_O_FILES) > build/M46_ofiles
-	$(LD) -partial $(M46_LDFLAGS) -o $(M46_TARGET) @build/M46_ofiles
+	@python3 tools/lcf.py rel 46 --output $(M46_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M46_LDFLAGS) -o $(M46_TARGET) @build/M46_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_boomerang/%.o: rel/d/a/d_a_boomerang/%.cpp
+	@echo [ 46] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M46_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M46_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -1,15 +1,15 @@
 lbl_80C85CAC:
 /* 80C85CAC  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 80C85CB0  3C 80 80 C8 */	lis r4, lit_3650@ha
-/* 80C85CB4  38 A4 61 30 */	addi r5, r4, lit_3650@l
+/* 80C85CB0  3C 80 80 C8 */	lis r4, lit_3650@ha /* 0x80C86130@ha */
+/* 80C85CB4  38 A4 61 30 */	addi r5, r4, lit_3650@l /* 0x80C86130@l */
 /* 80C85CB8  88 03 05 B0 */	lbz r0, 0x5b0(r3)
 /* 80C85CBC  28 00 00 00 */	cmplwi r0, 0
 /* 80C85CC0  40 82 00 58 */	bne lbl_80C85D18
 /* 80C85CC4  C0 65 00 1C */	lfs f3, 0x1c(r5)
 /* 80C85CC8  C0 45 00 14 */	lfs f2, 0x14(r5)
 /* 80C85CCC  C0 25 00 18 */	lfs f1, 0x18(r5)
-/* 80C85CD0  3C 80 80 C8 */	lis r4, l_HIO@ha
-/* 80C85CD4  38 84 62 CC */	addi r4, r4, l_HIO@l
+/* 80C85CD0  3C 80 80 C8 */	lis r4, l_HIO@ha /* 0x80C862CC@ha */
+/* 80C85CD4  38 84 62 CC */	addi r4, r4, l_HIO@l /* 0x80C862CC@l */
 /* 80C85CD8  C0 04 00 14 */	lfs f0, 0x14(r4)
 /* 80C85CDC  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80C85CE0  EC 02 00 24 */	fdivs f0, f2, f0

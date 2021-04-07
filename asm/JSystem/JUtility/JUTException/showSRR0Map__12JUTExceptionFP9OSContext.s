@@ -9,8 +9,8 @@ lbl_802E2DAC:
 /* 802E2DC8  80 6D 8F 9C */	lwz r3, sConsole__12JUTException(r13)
 /* 802E2DCC  28 03 00 00 */	cmplwi r3, 0
 /* 802E2DD0  41 82 00 88 */	beq lbl_802E2E58
-/* 802E2DD4  3C 80 80 3A */	lis r4, JUTException__stringBase0@ha
-/* 802E2DD8  38 84 D4 90 */	addi r4, r4, JUTException__stringBase0@l
+/* 802E2DD4  3C 80 80 3A */	lis r4, JUTException__stringBase0@ha /* 0x8039D490@ha */
+/* 802E2DD8  38 84 D4 90 */	addi r4, r4, JUTException__stringBase0@l /* 0x8039D490@l */
 /* 802E2DDC  38 84 04 14 */	addi r4, r4, 0x414
 /* 802E2DE0  48 00 4E 59 */	bl print__10JUTConsoleFPCc
 /* 802E2DE4  83 FF 01 98 */	lwz r31, 0x198(r31)
@@ -22,8 +22,8 @@ lbl_802E2DAC:
 /* 802E2DFC  7C 1F 00 40 */	cmplw r31, r0
 /* 802E2E00  41 81 00 58 */	bgt lbl_802E2E58
 /* 802E2E04  80 6D 8F 9C */	lwz r3, sConsole__12JUTException(r13)
-/* 802E2E08  3C 80 80 3A */	lis r4, JUTException__stringBase0@ha
-/* 802E2E0C  38 84 D4 90 */	addi r4, r4, JUTException__stringBase0@l
+/* 802E2E08  3C 80 80 3A */	lis r4, JUTException__stringBase0@ha /* 0x8039D490@ha */
+/* 802E2E0C  38 84 D4 90 */	addi r4, r4, JUTException__stringBase0@l /* 0x8039D490@l */
 /* 802E2E10  38 84 04 3E */	addi r4, r4, 0x43e
 /* 802E2E14  7F E5 FB 78 */	mr r5, r31
 /* 802E2E18  4C C6 31 82 */	crclr 6
@@ -35,8 +35,8 @@ lbl_802E2DAC:
 /* 802E2E30  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802E2E34  40 82 00 18 */	bne lbl_802E2E4C
 /* 802E2E38  80 6D 8F 9C */	lwz r3, sConsole__12JUTException(r13)
-/* 802E2E3C  3C 80 80 3A */	lis r4, JUTException__stringBase0@ha
-/* 802E2E40  38 84 D4 90 */	addi r4, r4, JUTException__stringBase0@l
+/* 802E2E3C  3C 80 80 3A */	lis r4, JUTException__stringBase0@ha /* 0x8039D490@ha */
+/* 802E2E40  38 84 D4 90 */	addi r4, r4, JUTException__stringBase0@l /* 0x8039D490@l */
 /* 802E2E44  38 84 03 DC */	addi r4, r4, 0x3dc
 /* 802E2E48  48 00 4D F1 */	bl print__10JUTConsoleFPCc
 lbl_802E2E4C:

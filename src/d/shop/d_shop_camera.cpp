@@ -63,12 +63,6 @@ extern "C" void setMasterCamCtrPos__16ShopCam_action_cFP4cXyz();
 // External References:
 //
 
-void dCam_getBody();
-void cM_atan2s(f32, f32);
-void cLib_addCalc2(f32*, f32, f32, f32);
-void cLib_addCalcPos2(cXyz*, cXyz const&, f32, f32);
-void cLib_offsetPos(cXyz*, cXyz const*, s16, cXyz const*);
-
 extern "C" void Stay__9dCamera_cFv();
 extern "C" void SetTrimSize__9dCamera_cFl();
 extern "C" void EventRecoverNotime__9dCamera_cFv();
@@ -94,7 +88,7 @@ extern "C" extern u32 __float_nan;
 //
 
 /* ############################################################################################## */
-/* 803BB7C8-803BB800 0038+00 s=1 e=0 z=0  None .data      cam_seira_shop */
+/* 803BB7C8-803BB800 0188E8 0038+00 1/0 0/0 0/0 .data            cam_seira_shop */
 SECTION_DATA static u8 cam_seira_shop[56] = {
     0x00, 0x00, 0x00, 0x00, 0x42, 0xE6, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x42, 0xE6, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00,
@@ -102,7 +96,7 @@ SECTION_DATA static u8 cam_seira_shop[56] = {
     0x00, 0x00, 0x43, 0x1B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00,
 };
 
-/* 803BB800-803BB838 0038+00 s=1 e=0 z=0  None .data      cam_seira_evnt_before */
+/* 803BB800-803BB838 018920 0038+00 1/0 0/0 0/0 .data            cam_seira_evnt_before */
 SECTION_DATA static u8 cam_seira_evnt_before[56] = {
     0xC2, 0x48, 0x00, 0x00, 0x42, 0xE6, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC2, 0x48,
     0x00, 0x00, 0x42, 0xE6, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00,
@@ -110,7 +104,7 @@ SECTION_DATA static u8 cam_seira_evnt_before[56] = {
     0x00, 0x00, 0x43, 0x1B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00,
 };
 
-/* 803BB838-803BB870 0038+00 s=1 e=0 z=0  None .data      cam_seira_evnt_after */
+/* 803BB838-803BB870 018958 0038+00 1/0 0/0 0/0 .data            cam_seira_evnt_after */
 SECTION_DATA static u8 cam_seira_evnt_after[56] = {
     0x00, 0x00, 0x00, 0x00, 0x42, 0xE6, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x42, 0xE6, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00,
@@ -118,30 +112,30 @@ SECTION_DATA static u8 cam_seira_evnt_after[56] = {
     0x00, 0x00, 0x43, 0x1B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00,
 };
 
-/* 803BB870-803BB87C 000C+00 s=2 e=0 z=0  None .data      shop_cam_data_tbl */
+/* 803BB870-803BB87C -00001 000C+00 2/2 0/0 0/0 .data            shop_cam_data_tbl */
 SECTION_DATA static void* shop_cam_data_tbl[3] = {
     (void*)&cam_seira_shop,
     (void*)&cam_seira_evnt_before,
     (void*)&cam_seira_evnt_after,
 };
 
-/* 803BB87C-803BB888 000C+00 s=1 e=0 z=0  None .data      @3771 */
+/* 803BB87C-803BB888 -00001 000C+00 1/1 0/0 0/0 .data            @3771 */
 SECTION_DATA static void* lit_3771[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)shop_cam_action__16ShopCam_action_cFv,
 };
 
-/* 80453A88-80453A8C 0004+00 s=1 e=0 z=0  None .sdata2    @3796 */
+/* 80453A88-80453A8C 002088 0004+00 1/1 0/0 0/0 .sdata2          @3796 */
 SECTION_SDATA2 static f32 lit_3796 = 0.25f;
 
-/* 80453A8C-80453A90 0004+00 s=1 e=0 z=0  None .sdata2    @3797 */
+/* 80453A8C-80453A90 00208C 0004+00 1/1 0/0 0/0 .sdata2          @3797 */
 SECTION_SDATA2 static f32 lit_3797 = 20.0f;
 
-/* 80453A90-80453A94 0004+00 s=1 e=0 z=0  None .sdata2    @3798 */
+/* 80453A90-80453A94 002090 0004+00 1/1 0/0 0/0 .sdata2          @3798 */
 SECTION_SDATA2 static f32 lit_3798 = 5.0f;
 
-/* 80195C9C-80195E18 017C+00 s=0 e=0 z=9  None .text      shop_cam_action_init__16ShopCam_action_cFv
+/* 80195C9C-80195E18 1905DC 017C+00 0/0 0/0 9/9 .text shop_cam_action_init__16ShopCam_action_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -153,7 +147,7 @@ asm void ShopCam_action_c::shop_cam_action_init() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80453A94-80453A98 0004+00 s=2 e=0 z=0  None .sdata2    @3916 */
+/* 80453A94-80453A98 002094 0004+00 2/2 0/0 0/0 .sdata2          @3916 */
 SECTION_SDATA2 static u8 lit_3916[4] = {
     0x00,
     0x00,
@@ -161,21 +155,21 @@ SECTION_SDATA2 static u8 lit_3916[4] = {
     0x00,
 };
 
-/* 80453A98-80453AA0 0008+00 s=1 e=0 z=0  None .sdata2    @3917 */
+/* 80453A98-80453AA0 002098 0008+00 1/1 0/0 0/0 .sdata2          @3917 */
 SECTION_SDATA2 static f64 lit_3917 = 0.5;
 
-/* 80453AA0-80453AA8 0008+00 s=1 e=0 z=0  None .sdata2    @3918 */
+/* 80453AA0-80453AA8 0020A0 0008+00 1/1 0/0 0/0 .sdata2          @3918 */
 SECTION_SDATA2 static f64 lit_3918 = 3.0;
 
-/* 80453AA8-80453AB0 0008+00 s=1 e=0 z=0  None .sdata2    @3919 */
+/* 80453AA8-80453AB0 0020A8 0008+00 1/1 0/0 0/0 .sdata2          @3919 */
 SECTION_SDATA2 static u8 lit_3919[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80453AB0-80453AB4 0004+00 s=1 e=0 z=0  None .sdata2    @3920 */
+/* 80453AB0-80453AB4 0020B0 0004+00 1/1 0/0 0/0 .sdata2          @3920 */
 SECTION_SDATA2 static f32 lit_3920 = 1.0f;
 
-/* 80195E18-8019630C 04F4+00 s=1 e=0 z=0  None .text      shop_cam_action__16ShopCam_action_cFv */
+/* 80195E18-8019630C 190758 04F4+00 1/0 0/0 0/0 .text shop_cam_action__16ShopCam_action_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -185,7 +179,7 @@ asm void ShopCam_action_c::shop_cam_action() {
 }
 #pragma pop
 
-/* 8019630C-8019635C 0050+00 s=1 e=0 z=12  None .text      Save__16ShopCam_action_cFv */
+/* 8019630C-8019635C 190C4C 0050+00 1/1 0/0 12/12 .text            Save__16ShopCam_action_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -195,8 +189,7 @@ asm void ShopCam_action_c::Save() {
 }
 #pragma pop
 
-/* 8019635C-801963B4 0058+00 s=0 e=0 z=9  None .text      EventRecoverNotime__16ShopCam_action_cFv
- */
+/* 8019635C-801963B4 190C9C 0058+00 0/0 0/0 9/9 .text EventRecoverNotime__16ShopCam_action_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -206,7 +199,7 @@ asm void ShopCam_action_c::EventRecoverNotime() {
 }
 #pragma pop
 
-/* 801963B4-801964C8 0114+00 s=0 e=0 z=9  None .text      Reset__16ShopCam_action_cFv */
+/* 801963B4-801964C8 190CF4 0114+00 0/0 0/0 9/9 .text            Reset__16ShopCam_action_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -216,7 +209,7 @@ asm void ShopCam_action_c::Reset() {
 }
 #pragma pop
 
-/* 801964C8-80196544 007C+00 s=0 e=0 z=9  None .text      move__16ShopCam_action_cFv */
+/* 801964C8-80196544 190E08 007C+00 0/0 0/0 9/9 .text            move__16ShopCam_action_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -227,10 +220,10 @@ asm void ShopCam_action_c::move() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80453AB4-80453AB8 0004+00 s=2 e=0 z=0  None .sdata2    @3992 */
+/* 80453AB4-80453AB8 0020B4 0004+00 2/2 0/0 0/0 .sdata2          @3992 */
 SECTION_SDATA2 static f32 lit_3992 = 45.0f;
 
-/* 80196544-80196608 00C4+00 s=0 e=1 z=0  None .text
+/* 80196544-80196608 190E84 00C4+00 0/0 1/1 0/0 .text
  * setCamDataIdx__16ShopCam_action_cFP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP4cXyzP4cXyz
  */
 #pragma push
@@ -244,7 +237,7 @@ asm void ShopCam_action_c::setCamDataIdx(fopAc_ac_c* param_0, fopAc_ac_c* param_
 }
 #pragma pop
 
-/* 80196608-801966D4 00CC+00 s=0 e=1 z=0  None .text
+/* 80196608-801966D4 190F48 00CC+00 0/0 1/1 0/0 .text
  * setCamDataIdx2__16ShopCam_action_cFP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP10fopAc_ac_cP4cXyzP4cXyz
  */
 #pragma push
@@ -260,25 +253,25 @@ asm void ShopCam_action_c::setCamDataIdx2(fopAc_ac_c* param_0, fopAc_ac_c* param
 #pragma pop
 
 /* ############################################################################################## */
-/* 80453AB8-80453ABC 0004+00 s=1 e=0 z=0  None .sdata2    @4059 */
+/* 80453AB8-80453ABC 0020B8 0004+00 1/1 0/0 0/0 .sdata2          @4059 */
 SECTION_SDATA2 static f32 lit_4059 = 0.5f;
 
-/* 80453ABC-80453AC0 0004+00 s=1 e=0 z=0  None .sdata2    @4060 */
+/* 80453ABC-80453AC0 0020BC 0004+00 1/1 0/0 0/0 .sdata2          @4060 */
 SECTION_SDATA2 static f32 lit_4060 = 167.0f;
 
-/* 80453AC0-80453AC4 0004+00 s=1 e=0 z=0  None .sdata2    @4061 */
+/* 80453AC0-80453AC4 0020C0 0004+00 1/1 0/0 0/0 .sdata2          @4061 */
 SECTION_SDATA2 static f32 lit_4061 = 220.0f;
 
-/* 80453AC4-80453AC8 0004+00 s=1 e=0 z=0  None .sdata2    @4062 */
+/* 80453AC4-80453AC8 0020C4 0004+00 1/1 0/0 0/0 .sdata2          @4062 */
 SECTION_SDATA2 static f32 lit_4062 = 120.0f;
 
-/* 80453AC8-80453ACC 0004+00 s=1 e=0 z=0  None .sdata2    @4063 */
+/* 80453AC8-80453ACC 0020C8 0004+00 1/1 0/0 0/0 .sdata2          @4063 */
 SECTION_SDATA2 static f32 lit_4063 = -50.0f;
 
-/* 80453ACC-80453AD0 0004+00 s=1 e=0 z=0  None .sdata2    @4064 */
+/* 80453ACC-80453AD0 0020CC 0004+00 1/1 0/0 0/0 .sdata2          @4064 */
 SECTION_SDATA2 static f32 lit_4064 = 350.0f;
 
-/* 801966D4-801968B8 01E4+00 s=2 e=0 z=0  None .text      _debugSetCamera__16ShopCam_action_cFv */
+/* 801966D4-801968B8 191014 01E4+00 2/2 0/0 0/0 .text _debugSetCamera__16ShopCam_action_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -288,8 +281,8 @@ asm void ShopCam_action_c::_debugSetCamera() {
 }
 #pragma pop
 
-/* 801968B8-80196914 005C+00 s=0 e=1 z=3  None .text setMasterCamCtrPos__16ShopCam_action_cFP4cXyz
- */
+/* 801968B8-80196914 1911F8 005C+00 0/0 1/1 3/3 .text
+ * setMasterCamCtrPos__16ShopCam_action_cFP4cXyz                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

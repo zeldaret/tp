@@ -6,8 +6,8 @@ lbl_8003D818:
 /* 8003D828  7C 7F 1B 78 */	mr r31, r3
 /* 8003D82C  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 8003D830  80 83 00 08 */	lwz r4, 8(r3)
-/* 8003D834  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8003D838  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8003D834  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8003D838  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8003D83C  88 84 00 02 */	lbz r4, 2(r4)
 /* 8003D840  4B FF 78 69 */	bl getSave2__10dSv_save_cFi
 /* 8003D844  88 9F 00 10 */	lbz r4, 0x10(r31)

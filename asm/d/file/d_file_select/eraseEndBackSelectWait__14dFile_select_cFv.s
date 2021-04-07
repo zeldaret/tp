@@ -15,11 +15,11 @@ lbl_8018A3DC:
 /* 8018A3E0  40 82 00 50 */	bne lbl_8018A430
 /* 8018A3E4  88 1F 02 65 */	lbz r0, 0x265(r31)
 /* 8018A3E8  54 00 10 3A */	slwi r0, r0, 2
-/* 8018A3EC  3C 80 80 3C */	lis r4, SelOpenEndFrameTbl@ha
-/* 8018A3F0  38 84 A8 78 */	addi r4, r4, SelOpenEndFrameTbl@l
+/* 8018A3EC  3C 80 80 3C */	lis r4, SelOpenEndFrameTbl@ha /* 0x803BA878@ha */
+/* 8018A3F0  38 84 A8 78 */	addi r4, r4, SelOpenEndFrameTbl@l /* 0x803BA878@l */
 /* 8018A3F4  7C 84 00 2E */	lwzx r4, r4, r0
-/* 8018A3F8  3C A0 80 3C */	lis r5, SelOpenStartFrameTbl@ha
-/* 8018A3FC  38 A5 A8 6C */	addi r5, r5, SelOpenStartFrameTbl@l
+/* 8018A3F8  3C A0 80 3C */	lis r5, SelOpenStartFrameTbl@ha /* 0x803BA86C@ha */
+/* 8018A3FC  38 A5 A8 6C */	addi r5, r5, SelOpenStartFrameTbl@l /* 0x803BA86C@l */
 /* 8018A400  7C A5 00 2E */	lwzx r5, r5, r0
 /* 8018A404  4B FF B5 91 */	bl selectDataMoveAnmInitSet__14dFile_select_cFii
 /* 8018A408  7F E3 FB 78 */	mr r3, r31

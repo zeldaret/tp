@@ -5,8 +5,8 @@ lbl_80031434:
 /* 80031440  39 61 00 20 */	addi r11, r1, 0x20
 /* 80031444  48 33 0D 95 */	bl _savegpr_28
 /* 80031448  7C 9C 23 78 */	mr r28, r4
-/* 8003144C  3C 80 80 42 */	lis r4, mData__7daSus_c@ha
-/* 80031450  38 04 3F FC */	addi r0, r4, mData__7daSus_c@l
+/* 8003144C  3C 80 80 42 */	lis r4, mData__7daSus_c@ha /* 0x80423FFC@ha */
+/* 80031450  38 04 3F FC */	addi r0, r4, mData__7daSus_c@l /* 0x80423FFC@l */
 /* 80031454  7C 1E 03 78 */	mr r30, r0
 /* 80031458  3B A0 00 00 */	li r29, 0
 /* 8003145C  7C 7F 07 74 */	extsb r31, r3

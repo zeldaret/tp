@@ -1,6 +1,6 @@
 lbl_80BDE83C:
-/* 80BDE83C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80BDE840  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80BDE83C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BDE840  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BDE844  80 84 5D AC */	lwz r4, 0x5dac(r4)
 /* 80BDE848  80 04 05 8C */	lwz r0, 0x58c(r4)
 /* 80BDE84C  60 00 02 00 */	ori r0, r0, 0x200

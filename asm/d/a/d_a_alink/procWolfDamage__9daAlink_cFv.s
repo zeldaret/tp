@@ -8,8 +8,8 @@ lbl_80136508:
 /* 80136520  3B FE 1F D0 */	addi r31, r30, 0x1fd0
 /* 80136524  38 7E 33 98 */	addi r3, r30, 0x3398
 /* 80136528  C0 22 92 C0 */	lfs f1, lit_6108(r2)
-/* 8013652C  3C 80 80 39 */	lis r4, m__25daAlinkHIO_wlDamNormal_c0@ha
-/* 80136530  38 84 F2 3C */	addi r4, r4, m__25daAlinkHIO_wlDamNormal_c0@l
+/* 8013652C  3C 80 80 39 */	lis r4, m__25daAlinkHIO_wlDamNormal_c0@ha /* 0x8038F23C@ha */
+/* 80136530  38 84 F2 3C */	addi r4, r4, m__25daAlinkHIO_wlDamNormal_c0@l /* 0x8038F23C@l */
 /* 80136534  C0 44 00 58 */	lfs f2, 0x58(r4)
 /* 80136538  48 13 A2 09 */	bl cLib_chaseF__FPfff
 /* 8013653C  38 00 00 05 */	li r0, 5

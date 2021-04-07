@@ -67,8 +67,8 @@ lbl_8015BF9C:
 /* 8015BF9C  38 7F 09 04 */	addi r3, r31, 0x904
 /* 8015BFA0  38 9F 04 D0 */	addi r4, r31, 0x4d0
 /* 8015BFA4  48 11 32 39 */	bl SetC__8cM3dGCylFRC4cXyz
-/* 8015BFA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8015BFAC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8015BFA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015BFAC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8015BFB0  38 63 23 3C */	addi r3, r3, 0x233c
 /* 8015BFB4  38 9F 07 E0 */	addi r4, r31, 0x7e0
 /* 8015BFB8  48 10 8B F1 */	bl Set__4cCcSFP8cCcD_Obj

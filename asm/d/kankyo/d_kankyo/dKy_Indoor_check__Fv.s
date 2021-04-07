@@ -4,8 +4,8 @@ lbl_801AC28C:
 /* 801AC294  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801AC298  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801AC29C  3B E0 00 00 */	li r31, 0
-/* 801AC2A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801AC2A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801AC2A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801AC2A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801AC2A8  85 83 4E 20 */	lwzu r12, 0x4e20(r3)
 /* 801AC2AC  81 8C 00 BC */	lwz r12, 0xbc(r12)
 /* 801AC2B0  7D 89 03 A6 */	mtctr r12

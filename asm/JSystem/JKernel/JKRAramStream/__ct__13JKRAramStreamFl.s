@@ -8,8 +8,8 @@ lbl_802D3BB8:
 /* 802D3BD0  38 80 0C 00 */	li r4, 0xc00
 /* 802D3BD4  38 A0 00 10 */	li r5, 0x10
 /* 802D3BD8  4B FF D9 91 */	bl __ct__9JKRThreadFUlii
-/* 802D3BDC  3C 60 80 3D */	lis r3, __vt__13JKRAramStream@ha
-/* 802D3BE0  38 03 C1 B8 */	addi r0, r3, __vt__13JKRAramStream@l
+/* 802D3BDC  3C 60 80 3D */	lis r3, __vt__13JKRAramStream@ha /* 0x803CC1B8@ha */
+/* 802D3BE0  38 03 C1 B8 */	addi r0, r3, __vt__13JKRAramStream@l /* 0x803CC1B8@l */
 /* 802D3BE4  90 1F 00 00 */	stw r0, 0(r31)
 /* 802D3BE8  80 7F 00 2C */	lwz r3, 0x2c(r31)
 /* 802D3BEC  48 06 DB C9 */	bl OSResumeThread

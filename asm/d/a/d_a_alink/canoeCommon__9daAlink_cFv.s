@@ -54,8 +54,8 @@ lbl_800F488C:
 lbl_800F4894:
 /* 800F4894  FC 00 FA 10 */	fabs f0, f31
 /* 800F4898  C0 42 94 B8 */	lfs f2, lit_17592(r2)
-/* 800F489C  3C 60 80 39 */	lis r3, m__19daAlinkHIO_canoe_c0@ha
-/* 800F48A0  38 63 E6 10 */	addi r3, r3, m__19daAlinkHIO_canoe_c0@l
+/* 800F489C  3C 60 80 39 */	lis r3, m__19daAlinkHIO_canoe_c0@ha /* 0x8038E610@ha */
+/* 800F48A0  38 63 E6 10 */	addi r3, r3, m__19daAlinkHIO_canoe_c0@l /* 0x8038E610@l */
 /* 800F48A4  C0 63 00 18 */	lfs f3, 0x18(r3)
 /* 800F48A8  FC 00 00 18 */	frsp f0, f0
 /* 800F48AC  EC 20 18 28 */	fsubs f1, f0, f3

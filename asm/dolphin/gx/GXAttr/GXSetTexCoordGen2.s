@@ -7,8 +7,8 @@ lbl_8035BB7C:
 /* 8035BB90  94 21 FF F8 */	stwu r1, -8(r1)
 /* 8035BB94  39 60 00 05 */	li r11, 5
 /* 8035BB98  41 81 00 98 */	bgt lbl_8035BC30
-/* 8035BB9C  3D 20 80 3D */	lis r9, lit_739@ha
-/* 8035BBA0  39 29 23 F4 */	addi r9, r9, lit_739@l
+/* 8035BB9C  3D 20 80 3D */	lis r9, lit_739@ha /* 0x803D23F4@ha */
+/* 8035BBA0  39 29 23 F4 */	addi r9, r9, lit_739@l /* 0x803D23F4@l */
 /* 8035BBA4  54 A0 10 3A */	slwi r0, r5, 2
 /* 8035BBA8  7C 09 00 2E */	lwzx r0, r9, r0
 /* 8035BBAC  7C 09 03 A6 */	mtctr r0
@@ -103,7 +103,7 @@ lbl_8035BCE8:
 lbl_8035BCF0:
 /* 8035BCF0  39 20 00 10 */	li r9, 0x10
 /* 8035BCF4  3C A0 CC 01 */	lis r5, 0xCC01 /* 0xCC008000@ha */
-/* 8035BCF8  99 25 80 00 */	stb r9, 0x8000(r5)
+/* 8035BCF8  99 25 80 00 */	stb r9, 0x8000(r5)  /* 0xCC008000@l */
 /* 8035BCFC  38 83 10 40 */	addi r4, r3, 0x1040
 /* 8035BD00  38 08 FF C0 */	addi r0, r8, -64
 /* 8035BD04  90 85 80 00 */	stw r4, -0x8000(r5)
@@ -117,8 +117,8 @@ lbl_8035BCF0:
 /* 8035BD24  90 05 80 00 */	stw r0, -0x8000(r5)
 /* 8035BD28  91 05 80 00 */	stw r8, -0x8000(r5)
 /* 8035BD2C  41 81 00 A8 */	bgt lbl_8035BDD4
-/* 8035BD30  3C 80 80 3D */	lis r4, lit_740@ha
-/* 8035BD34  38 84 23 D8 */	addi r4, r4, lit_740@l
+/* 8035BD30  3C 80 80 3D */	lis r4, lit_740@ha /* 0x803D23D8@ha */
+/* 8035BD34  38 84 23 D8 */	addi r4, r4, lit_740@l /* 0x803D23D8@l */
 /* 8035BD38  54 60 10 3A */	slwi r0, r3, 2
 /* 8035BD3C  7C 04 00 2E */	lwzx r0, r4, r0
 /* 8035BD40  7C 09 03 A6 */	mtctr r0

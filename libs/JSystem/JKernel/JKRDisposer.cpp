@@ -41,8 +41,6 @@ extern "C" void __dt__11JKRDisposerFv();
 // External References:
 //
 
-void operator delete(void*);
-
 extern "C" void findFromRoot__7JKRHeapFPv();
 extern "C" void __dl__FPv();
 extern "C" void __ct__10JSUPtrLinkFPv();
@@ -55,16 +53,16 @@ extern "C" void remove__10JSUPtrListFP10JSUPtrLink();
 //
 
 /* ############################################################################################## */
-/* 803CC0F0-803CC100 000C+04 s=2 e=0 z=0  None .data      __vt__11JKRDisposer */
-SECTION_DATA static void* __vt__11JKRDisposer[3 + 1 /* padding */] = {
-    (void*)NULL,
+/* 803CC0F0-803CC100 029210 000C+04 2/2 0/0 0/0 .data            __vt__11JKRDisposer */
+SECTION_DATA extern void* __vt__11JKRDisposer[3 + 1 /* padding */] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__11JKRDisposerFv,
     /* padding */
     NULL,
 };
 
-/* 802D147C-802D14E4 0068+00 s=0 e=12 z=0  None .text      __ct__11JKRDisposerFv */
+/* 802D147C-802D14E4 2CBDBC 0068+00 0/0 12/12 0/0 .text            __ct__11JKRDisposerFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -74,7 +72,7 @@ asm JKRDisposer::JKRDisposer() {
 }
 #pragma pop
 
-/* 802D14E4-802D1568 0084+00 s=1 e=10 z=0  None .text      __dt__11JKRDisposerFv */
+/* 802D14E4-802D1568 2CBE24 0084+00 1/0 10/10 0/0 .text            __dt__11JKRDisposerFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

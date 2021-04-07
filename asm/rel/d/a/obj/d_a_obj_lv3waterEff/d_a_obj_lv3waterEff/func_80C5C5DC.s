@@ -11,15 +11,15 @@ lbl_80C5C5DC:
 /* 80C5C600  7F E0 FB 79 */	or. r0, r31, r31
 /* 80C5C604  41 82 00 2C */	beq lbl_80C5C630
 /* 80C5C608  7C 1E 03 78 */	mr r30, r0
-/* 80C5C60C  4B 3B C5 58 */	b __ct__10fopAc_ac_cFv
+/* 80C5C60C  4B 3B C5 59 */	bl __ct__10fopAc_ac_cFv
 /* 80C5C610  38 7E 05 68 */	addi r3, r30, 0x568
-/* 80C5C614  3C 80 80 C6 */	lis r4, __ct__4cXyzFv@ha
-/* 80C5C618  38 84 C6 AC */	addi r4, r4, __ct__4cXyzFv@l
-/* 80C5C61C  3C A0 80 C6 */	lis r5, __dt__4cXyzFv@ha
-/* 80C5C620  38 A5 C6 70 */	addi r5, r5, __dt__4cXyzFv@l
+/* 80C5C614  3C 80 80 C6 */	lis r4, __ct__4cXyzFv@ha /* 0x80C5C6AC@ha */
+/* 80C5C618  38 84 C6 AC */	addi r4, r4, __ct__4cXyzFv@l /* 0x80C5C6AC@l */
+/* 80C5C61C  3C A0 80 C6 */	lis r5, __dt__4cXyzFv@ha /* 0x80C5C670@ha */
+/* 80C5C620  38 A5 C6 70 */	addi r5, r5, __dt__4cXyzFv@l /* 0x80C5C670@l */
 /* 80C5C624  38 C0 00 0C */	li r6, 0xc
 /* 80C5C628  38 E0 00 02 */	li r7, 2
-/* 80C5C62C  4B 70 57 34 */	b __construct_array
+/* 80C5C62C  4B 70 57 35 */	bl __construct_array
 lbl_80C5C630:
 /* 80C5C630  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 80C5C634  60 00 00 08 */	ori r0, r0, 8

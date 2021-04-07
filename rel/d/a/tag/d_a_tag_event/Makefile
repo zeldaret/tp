@@ -3,17 +3,15 @@
 #
 
 M30_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_event.plf
+M30_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_event.lcf
+M30_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_event.map
 
 M30_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_event/executor.cpp \
-	rel/d/a/tag/d_a_tag_event/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_event/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_event/d_a_tag_event.cpp \
 
 M30_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_event/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_event/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_event/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_event/d_a_tag_event.o \
 
 M30_LIBS := \
@@ -29,14 +27,21 @@ M30_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M30_LDSCRIPT) \
+	-unused -map $(M30_MAP) \
+	-w off \
 
 $(M30_TARGET): $(M30_O_FILES) $(M30_LIBS)
+	@echo [ 30] creating $(M30_TARGET)
 	@echo $(M30_LIBS) $(M30_O_FILES) > build/M30_ofiles
-	$(LD) -partial $(M30_LDFLAGS) -o $(M30_TARGET) @build/M30_ofiles
+	@python3 tools/lcf.py rel 30 --output $(M30_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M30_LDFLAGS) -o $(M30_TARGET) @build/M30_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_event/%.o: rel/d/a/tag/d_a_tag_event/%.cpp
+	@echo [ 30] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M30_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M30_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

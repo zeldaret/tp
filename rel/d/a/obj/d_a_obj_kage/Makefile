@@ -3,17 +3,15 @@
 #
 
 M490_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kage.plf
+M490_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kage.lcf
+M490_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kage.map
 
 M490_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_kage/executor.cpp \
-	rel/d/a/obj/d_a_obj_kage/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_kage/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_kage/d_a_obj_kage.cpp \
 
 M490_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kage/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kage/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kage/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kage/d_a_obj_kage.o \
 
 M490_LIBS := \
@@ -29,14 +27,21 @@ M490_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M490_LDSCRIPT) \
+	-unused -map $(M490_MAP) \
+	-w off \
 
 $(M490_TARGET): $(M490_O_FILES) $(M490_LIBS)
+	@echo [490] creating $(M490_TARGET)
 	@echo $(M490_LIBS) $(M490_O_FILES) > build/M490_ofiles
-	$(LD) -partial $(M490_LDFLAGS) -o $(M490_TARGET) @build/M490_ofiles
+	@python3 tools/lcf.py rel 490 --output $(M490_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M490_LDFLAGS) -o $(M490_TARGET) @build/M490_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kage/%.o: rel/d/a/obj/d_a_obj_kage/%.cpp
+	@echo [490] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M490_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M490_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

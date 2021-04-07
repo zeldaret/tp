@@ -4,19 +4,19 @@ lbl_8019E874:
 /* 8019E87C  90 01 00 54 */	stw r0, 0x54(r1)
 /* 8019E880  39 61 00 50 */	addi r11, r1, 0x50
 /* 8019E884  48 1C 39 39 */	bl _savegpr_21
-/* 8019E888  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019E88C  3B A3 CA 54 */	addi r29, r3, g_env_light@l
+/* 8019E888  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019E88C  3B A3 CA 54 */	addi r29, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019E890  38 60 00 00 */	li r3, 0
 /* 8019E894  38 80 00 00 */	li r4, 0
 /* 8019E898  38 A0 00 00 */	li r5, 0
 /* 8019E89C  38 C0 00 00 */	li r6, 0
 /* 8019E8A0  38 E0 00 00 */	li r7, 0
-/* 8019E8A4  3D 00 80 3C */	lis r8, test_pos_tbl@ha
-/* 8019E8A8  3B C8 BF 58 */	addi r30, r8, test_pos_tbl@l
+/* 8019E8A4  3D 00 80 3C */	lis r8, test_pos_tbl@ha /* 0x803BBF58@ha */
+/* 8019E8A8  3B C8 BF 58 */	addi r30, r8, test_pos_tbl@l /* 0x803BBF58@l */
 /* 8019E8AC  C0 E2 A2 48 */	lfs f7, lit_4505(r2)
 /* 8019E8B0  C0 C2 A2 90 */	lfs f6, lit_5191(r2)
-/* 8019E8B4  3D 00 80 3C */	lis r8, test_color_tbl@ha
-/* 8019E8B8  3B E8 BF B8 */	addi r31, r8, test_color_tbl@l
+/* 8019E8B4  3D 00 80 3C */	lis r8, test_color_tbl@ha /* 0x803BBFB8@ha */
+/* 8019E8B8  3B E8 BF B8 */	addi r31, r8, test_color_tbl@l /* 0x803BBFB8@l */
 /* 8019E8BC  C0 A2 A2 94 */	lfs f5, lit_5192(r2)
 /* 8019E8C0  C0 82 A2 0C */	lfs f4, lit_4409(r2)
 /* 8019E8C4  C0 62 A2 2C */	lfs f3, lit_4442(r2)

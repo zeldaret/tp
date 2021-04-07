@@ -28,8 +28,8 @@ lbl_801CE188:
 /* 801CE1F0  EC 00 10 28 */	fsubs f0, f0, f2
 /* 801CE1F4  EC 01 00 32 */	fmuls f0, f1, f0
 /* 801CE1F8  D0 06 00 0C */	stfs f0, 0xc(r6)
-/* 801CE1FC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801CE200  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801CE1FC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801CE200  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801CE204  38 63 5F 64 */	addi r3, r3, 0x5f64
 /* 801CE208  38 83 00 64 */	addi r4, r3, 0x64
 /* 801CE20C  38 A3 00 68 */	addi r5, r3, 0x68

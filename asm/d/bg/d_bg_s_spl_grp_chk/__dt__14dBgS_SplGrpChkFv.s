@@ -7,8 +7,8 @@ lbl_80078C78:
 /* 80078C8C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80078C90  7C 9F 23 78 */	mr r31, r4
 /* 80078C94  41 82 00 5C */	beq lbl_80078CF0
-/* 80078C98  3C 60 80 3B */	lis r3, __vt__14dBgS_SplGrpChk@ha
-/* 80078C9C  38 63 BA 08 */	addi r3, r3, __vt__14dBgS_SplGrpChk@l
+/* 80078C98  3C 60 80 3B */	lis r3, __vt__14dBgS_SplGrpChk@ha /* 0x803ABA08@ha */
+/* 80078C9C  38 63 BA 08 */	addi r3, r3, __vt__14dBgS_SplGrpChk@l /* 0x803ABA08@l */
 /* 80078CA0  90 7E 00 0C */	stw r3, 0xc(r30)
 /* 80078CA4  38 03 00 0C */	addi r0, r3, 0xc
 /* 80078CA8  90 1E 00 20 */	stw r0, 0x20(r30)

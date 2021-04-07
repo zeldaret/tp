@@ -3,17 +3,15 @@
 #
 
 M717_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_chgrestart.plf
+M717_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_chgrestart.lcf
+M717_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_chgrestart.map
 
 M717_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_chgrestart/executor.cpp \
-	rel/d/a/tag/d_a_tag_chgrestart/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_chgrestart/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_chgrestart/d_a_tag_chgrestart.cpp \
 
 M717_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_chgrestart/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_chgrestart/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_chgrestart/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_chgrestart/d_a_tag_chgrestart.o \
 
 M717_LIBS := \
@@ -29,14 +27,21 @@ M717_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M717_LDSCRIPT) \
+	-unused -map $(M717_MAP) \
+	-w off \
 
 $(M717_TARGET): $(M717_O_FILES) $(M717_LIBS)
+	@echo [717] creating $(M717_TARGET)
 	@echo $(M717_LIBS) $(M717_O_FILES) > build/M717_ofiles
-	$(LD) -partial $(M717_LDFLAGS) -o $(M717_TARGET) @build/M717_ofiles
+	@python3 tools/lcf.py rel 717 --output $(M717_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M717_LDFLAGS) -o $(M717_TARGET) @build/M717_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_chgrestart/%.o: rel/d/a/tag/d_a_tag_chgrestart/%.cpp
+	@echo [717] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M717_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M717_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -21,10 +21,10 @@ lbl_8036C7D0:
 lbl_8036C7E8:
 /* 8036C7E8  2C 06 00 00 */	cmpwi r6, 0
 /* 8036C7EC  40 80 00 18 */	bge lbl_8036C804
-/* 8036C7F0  3C 60 80 45 */	lis r3, __float_nan@ha
+/* 8036C7F0  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
 /* 8036C7F4  38 00 00 21 */	li r0, 0x21
 /* 8036C7F8  90 0D 94 28 */	stw r0, errno(r13)
-/* 8036C7FC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8036C7FC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8036C800  48 00 01 BC */	b lbl_8036C9BC
 lbl_8036C804:
 /* 8036C804  7C C3 A6 71 */	srawi. r3, r6, 0x14

@@ -8,8 +8,8 @@ lbl_800A662C:
 /* 800A6644  A0 03 2F E8 */	lhz r0, 0x2fe8(r3)
 /* 800A6648  28 00 01 58 */	cmplwi r0, 0x158
 /* 800A664C  41 82 00 4C */	beq lbl_800A6698
-/* 800A6650  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800A6654  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800A6650  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800A6654  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800A6658  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 800A665C  38 9E 1A 60 */	addi r4, r30, 0x1a60
 /* 800A6660  4B FC EA A1 */	bl GetRoomId__4dBgSFRC13cBgS_PolyInfo
@@ -32,8 +32,8 @@ lbl_800A6698:
 /* 800A669C  7C 00 07 74 */	extsb r0, r0
 /* 800A66A0  7C 1F 03 78 */	mr r31, r0
 lbl_800A66A4:
-/* 800A66A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800A66A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800A66A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800A66A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800A66AC  3B A3 0F 38 */	addi r29, r3, 0xf38
 /* 800A66B0  7F A3 EB 78 */	mr r3, r29
 /* 800A66B4  38 9E 1A 60 */	addi r4, r30, 0x1a60

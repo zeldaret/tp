@@ -10,8 +10,8 @@ lbl_800270FC:
 /* 8002711C  7C 9D 23 78 */	mr r29, r4
 /* 80027120  7C BE 2B 78 */	mr r30, r5
 /* 80027124  7C DF 33 78 */	mr r31, r6
-/* 80027128  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002712C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80027128  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002712C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80027130  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80027134  7C 04 03 78 */	mr r4, r0
 /* 80027138  48 04 DA 61 */	bl GetExitId__4dBgSFRC13cBgS_PolyInfo

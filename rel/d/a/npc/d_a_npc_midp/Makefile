@@ -3,19 +3,20 @@
 #
 
 M335_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_midp.plf
+M335_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_midp.lcf
+M335_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_midp.map
 
 M335_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_midp/executor.cpp \
-	rel/d/a/npc/d_a_npc_midp/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_midp/d_a_npc_midp.cpp \
 
 M335_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_midp/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_midp/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_midp/d_a_npc_midp.o \
 
 M335_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_midp/libRuntime.PPCEABI.H.a \
 
 M335_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M335_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M335_LDSCRIPT) \
+	-unused -map $(M335_MAP) \
+	-w off \
 
 $(M335_TARGET): $(M335_O_FILES) $(M335_LIBS)
+	@echo [335] creating $(M335_TARGET)
 	@echo $(M335_LIBS) $(M335_O_FILES) > build/M335_ofiles
-	$(LD) -partial $(M335_LDFLAGS) -o $(M335_TARGET) @build/M335_ofiles
+	@python3 tools/lcf.py rel 335 --output $(M335_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M335_LDFLAGS) -o $(M335_TARGET) @build/M335_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_midp/%.o: rel/d/a/npc/d_a_npc_midp/%.cpp
+	@echo [335] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M335_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M335_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_midp/libs/Runtime.PPCEABI.H/Makefile
 

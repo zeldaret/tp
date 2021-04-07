@@ -12,7 +12,7 @@ lbl_8057A4F4:
 /* 8057A51C  38 C6 FF FF */	addi r6, r6, 0xFFFF /* 0x0000FFFF@l */
 /* 8057A520  38 E0 00 03 */	li r7, 3
 /* 8057A524  39 00 00 01 */	li r8, 1
-/* 8057A528  4B AA 11 54 */	b fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
+/* 8057A528  4B AA 11 55 */	bl fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
 /* 8057A52C  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 8057A530  60 00 00 02 */	ori r0, r0, 2
 /* 8057A534  B0 1F 00 FA */	sth r0, 0xfa(r31)

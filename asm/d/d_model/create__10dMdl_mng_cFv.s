@@ -7,10 +7,10 @@ lbl_8009C7AC:
 /* 8009C7C0  48 23 24 8D */	bl __nw__FUl
 /* 8009C7C4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8009C7C8  41 82 00 28 */	beq lbl_8009C7F0
-/* 8009C7CC  3C 80 80 0A */	lis r4, __ct__6dMdl_cFv@ha
-/* 8009C7D0  38 84 C9 30 */	addi r4, r4, __ct__6dMdl_cFv@l
-/* 8009C7D4  3C A0 80 0A */	lis r5, __dt__6dMdl_cFv@ha
-/* 8009C7D8  38 A5 C8 08 */	addi r5, r5, __dt__6dMdl_cFv@l
+/* 8009C7CC  3C 80 80 0A */	lis r4, __ct__6dMdl_cFv@ha /* 0x8009C930@ha */
+/* 8009C7D0  38 84 C9 30 */	addi r4, r4, __ct__6dMdl_cFv@l /* 0x8009C930@l */
+/* 8009C7D4  3C A0 80 0A */	lis r5, __dt__6dMdl_cFv@ha /* 0x8009C808@ha */
+/* 8009C7D8  38 A5 C8 08 */	addi r5, r5, __dt__6dMdl_cFv@l /* 0x8009C808@l */
 /* 8009C7DC  38 C0 00 20 */	li r6, 0x20
 /* 8009C7E0  38 E0 00 04 */	li r7, 4
 /* 8009C7E4  48 2C 55 7D */	bl __construct_array

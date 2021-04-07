@@ -84,8 +84,8 @@ lbl_80053E9C:
 /* 80053FE4  48 30 B6 41 */	bl GXSetAlphaCompare
 /* 80053FE8  38 60 00 00 */	li r3, 0
 /* 80053FEC  48 30 89 99 */	bl GXSetCullMode
-/* 80053FF0  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80053FF4  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80053FF0  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80053FF4  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80053FF8  38 80 00 00 */	li r4, 0
 /* 80053FFC  48 30 C2 51 */	bl GXLoadPosMtxImm
 /* 80054000  38 60 00 00 */	li r3, 0
@@ -110,10 +110,10 @@ lbl_80053E9C:
 /* 8005404C  D8 01 00 38 */	stfd f0, 0x38(r1)
 /* 80054050  83 E1 00 3C */	lwz r31, 0x3c(r1)
 /* 80054054  3B C0 00 00 */	li r30, 0
-/* 80054058  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8005405C  3B 23 61 C0 */	addi r25, r3, g_dComIfG_gameInfo@l
-/* 80054060  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80054064  3B 43 9A 20 */	addi r26, r3, sincosTable___5JMath@l
+/* 80054058  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8005405C  3B 23 61 C0 */	addi r25, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
+/* 80054060  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80054064  3B 43 9A 20 */	addi r26, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80054068  CB E2 86 18 */	lfd f31, lit_4076(r2)
 /* 8005406C  3F 60 43 30 */	lis r27, 0x4330
 /* 80054070  3F 80 CC 01 */	lis r28, 0xcc01

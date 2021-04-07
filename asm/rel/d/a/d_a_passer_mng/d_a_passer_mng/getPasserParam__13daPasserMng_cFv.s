@@ -3,7 +3,7 @@ lbl_80D4597C:
 /* 80D45980  7C 08 02 A6 */	mflr r0
 /* 80D45984  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80D45988  39 61 00 20 */	addi r11, r1, 0x20
-/* 80D4598C  4B 61 C8 50 */	b _savegpr_29
+/* 80D4598C  4B 61 C8 51 */	bl _savegpr_29
 /* 80D45990  7C 7E 1B 78 */	mr r30, r3
 /* 80D45994  80 03 00 B0 */	lwz r0, 0xb0(r3)
 /* 80D45998  54 1F 82 1E */	rlwinm r31, r0, 0x10, 8, 0xf
@@ -21,8 +21,8 @@ lbl_80D459BC:
 /* 80D459C4  7C 00 01 10 */	subfe r0, r0, r0
 /* 80D459C8  7C 60 00 38 */	and r0, r3, r0
 /* 80D459CC  54 00 10 3A */	slwi r0, r0, 2
-/* 80D459D0  3C 60 80 D4 */	lis r3, mGroupTbl__13daPasserMng_c@ha
-/* 80D459D4  38 63 6C B0 */	addi r3, r3, mGroupTbl__13daPasserMng_c@l
+/* 80D459D0  3C 60 80 D4 */	lis r3, mGroupTbl__13daPasserMng_c@ha /* 0x80D46CB0@ha */
+/* 80D459D4  38 63 6C B0 */	addi r3, r3, mGroupTbl__13daPasserMng_c@l /* 0x80D46CB0@l */
 /* 80D459D8  7F A3 00 2E */	lwzx r29, r3, r0
 lbl_80D459DC:
 /* 80D459DC  38 60 00 00 */	li r3, 0
@@ -93,8 +93,8 @@ lbl_80D45AB8:
 /* 80D45AC0  54 00 06 3E */	clrlwi r0, r0, 0x18
 /* 80D45AC4  28 00 00 1D */	cmplwi r0, 0x1d
 /* 80D45AC8  41 81 03 28 */	bgt lbl_80D45DF0
-/* 80D45ACC  3C 60 80 D4 */	lis r3, lit_4134@ha
-/* 80D45AD0  38 63 6C C0 */	addi r3, r3, lit_4134@l
+/* 80D45ACC  3C 60 80 D4 */	lis r3, lit_4134@ha /* 0x80D46CC0@ha */
+/* 80D45AD0  38 63 6C C0 */	addi r3, r3, lit_4134@l /* 0x80D46CC0@l */
 /* 80D45AD4  54 00 10 3A */	slwi r0, r0, 2
 /* 80D45AD8  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80D45ADC  7C 09 03 A6 */	mtctr r0
@@ -350,7 +350,7 @@ lbl_80D45DF4:
 /* 80D45DF4  7F FF 1B 78 */	or r31, r31, r3
 /* 80D45DF8  7F E3 FB 78 */	mr r3, r31
 /* 80D45DFC  39 61 00 20 */	addi r11, r1, 0x20
-/* 80D45E00  4B 61 C4 28 */	b _restgpr_29
+/* 80D45E00  4B 61 C4 29 */	bl _restgpr_29
 /* 80D45E04  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80D45E08  7C 08 03 A6 */	mtlr r0
 /* 80D45E0C  38 21 00 20 */	addi r1, r1, 0x20

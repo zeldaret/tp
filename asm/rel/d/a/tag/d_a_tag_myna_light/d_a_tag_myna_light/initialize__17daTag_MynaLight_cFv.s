@@ -5,15 +5,15 @@ lbl_80D5D160:
 /* 80D5D16C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80D5D170  93 C1 00 08 */	stw r30, 8(r1)
 /* 80D5D174  7C 7E 1B 78 */	mr r30, r3
-/* 80D5D178  3C 80 80 D6 */	lis r4, lit_3694@ha
-/* 80D5D17C  3B E4 D3 00 */	addi r31, r4, lit_3694@l
+/* 80D5D178  3C 80 80 D6 */	lis r4, lit_3694@ha /* 0x80D5D300@ha */
+/* 80D5D17C  3B E4 D3 00 */	addi r31, r4, lit_3694@l /* 0x80D5D300@l */
 /* 80D5D180  C0 3F 00 38 */	lfs f1, 0x38(r31)
 /* 80D5D184  C0 5F 00 3C */	lfs f2, 0x3c(r31)
 /* 80D5D188  FC 60 08 90 */	fmr f3, f1
 /* 80D5D18C  C0 9F 00 40 */	lfs f4, 0x40(r31)
 /* 80D5D190  C0 BF 00 44 */	lfs f5, 0x44(r31)
 /* 80D5D194  FC C0 20 90 */	fmr f6, f4
-/* 80D5D198  4B 2B D3 B0 */	b fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff
+/* 80D5D198  4B 2B D3 B1 */	bl fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff
 /* 80D5D19C  38 80 00 00 */	li r4, 0
 /* 80D5D1A0  90 9E 05 5C */	stw r4, 0x55c(r30)
 /* 80D5D1A4  A8 1E 04 B6 */	lha r0, 0x4b6(r30)

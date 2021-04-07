@@ -20,17 +20,17 @@ lbl_80AAE988:
 /* 80AAE98C  48 00 00 3C */	b lbl_80AAE9C8
 lbl_80AAE990:
 /* 80AAE990  38 60 01 CA */	li r3, 0x1ca
-/* 80AAE994  4B 69 E1 18 */	b daNpcT_chkEvtBit__FUl
+/* 80AAE994  4B 69 E1 19 */	bl daNpcT_chkEvtBit__FUl
 /* 80AAE998  48 00 00 30 */	b lbl_80AAE9C8
 lbl_80AAE99C:
 /* 80AAE99C  38 60 01 CA */	li r3, 0x1ca
-/* 80AAE9A0  4B 69 E1 0C */	b daNpcT_chkEvtBit__FUl
+/* 80AAE9A0  4B 69 E1 0D */	bl daNpcT_chkEvtBit__FUl
 /* 80AAE9A4  7C 60 00 34 */	cntlzw r0, r3
 /* 80AAE9A8  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 80AAE9AC  48 00 00 1C */	b lbl_80AAE9C8
 lbl_80AAE9B0:
 /* 80AAE9B0  38 60 01 CA */	li r3, 0x1ca
-/* 80AAE9B4  4B 69 E0 F8 */	b daNpcT_chkEvtBit__FUl
+/* 80AAE9B4  4B 69 E0 F9 */	bl daNpcT_chkEvtBit__FUl
 /* 80AAE9B8  48 00 00 10 */	b lbl_80AAE9C8
 lbl_80AAE9BC:
 /* 80AAE9BC  38 60 00 00 */	li r3, 0

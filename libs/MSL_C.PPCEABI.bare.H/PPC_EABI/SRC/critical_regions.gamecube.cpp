@@ -23,17 +23,17 @@ extern "C" void __kill_critical_regions();
 // Declarations:
 //
 
-/* 80365464-80365468 0004+00 s=0 e=12 z=0  None .text      __end_critical_region */
-extern "C" void __end_critical_region() {
+/* 80365464-80365468 35FDA4 0004+00 0/0 12/12 0/0 .text            __end_critical_region */
+void __end_critical_region() {
     /* empty function */
 }
 
-/* 80365468-8036546C 0004+00 s=0 e=12 z=0  None .text      __begin_critical_region */
-extern "C" void __begin_critical_region() {
+/* 80365468-8036546C 35FDA8 0004+00 0/0 12/12 0/0 .text            __begin_critical_region */
+void __begin_critical_region() {
     /* empty function */
 }
 
-/* 8036546C-80365470 0004+00 s=0 e=2 z=0  None .text      __kill_critical_regions */
-extern "C" void __kill_critical_regions() {
+/* 8036546C-80365470 35FDAC 0004+00 0/0 2/2 0/0 .text            __kill_critical_regions */
+void __kill_critical_regions() {
     /* empty function */
 }

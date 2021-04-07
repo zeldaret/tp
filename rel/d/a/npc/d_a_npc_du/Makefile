@@ -3,19 +3,20 @@
 #
 
 M301_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_du.plf
+M301_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_du.lcf
+M301_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_du.map
 
 M301_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_du/executor.cpp \
-	rel/d/a/npc/d_a_npc_du/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_du/d_a_npc_du.cpp \
 
 M301_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_du/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_du/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_du/d_a_npc_du.o \
 
 M301_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_du/libRuntime.PPCEABI.H.a \
 
 M301_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M301_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M301_LDSCRIPT) \
+	-unused -map $(M301_MAP) \
+	-w off \
 
 $(M301_TARGET): $(M301_O_FILES) $(M301_LIBS)
+	@echo [301] creating $(M301_TARGET)
 	@echo $(M301_LIBS) $(M301_O_FILES) > build/M301_ofiles
-	$(LD) -partial $(M301_LDFLAGS) -o $(M301_TARGET) @build/M301_ofiles
+	@python3 tools/lcf.py rel 301 --output $(M301_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M301_LDFLAGS) -o $(M301_TARGET) @build/M301_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_du/%.o: rel/d/a/npc/d_a_npc_du/%.cpp
+	@echo [301] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M301_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M301_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_du/libs/Runtime.PPCEABI.H/Makefile
 

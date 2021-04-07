@@ -21,8 +21,8 @@ lbl_807E416C:
 /* 807E41B8  38 81 00 14 */	addi r4, r1, 0x14
 /* 807E41BC  38 A1 00 08 */	addi r5, r1, 8
 /* 807E41C0  4B FF FD ED */	bl calcTargetDist__8daE_WS_cF4cXyz4cXyz
-/* 807E41C4  3C 60 80 7E */	lis r3, l_HIO@ha
-/* 807E41C8  38 63 75 C8 */	addi r3, r3, l_HIO@l
+/* 807E41C4  3C 60 80 7E */	lis r3, l_HIO@ha /* 0x807E75C8@ha */
+/* 807E41C8  38 63 75 C8 */	addi r3, r3, l_HIO@l /* 0x807E75C8@l */
 /* 807E41CC  C0 03 00 10 */	lfs f0, 0x10(r3)
 /* 807E41D0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 807E41D4  7C 00 00 26 */	mfcr r0

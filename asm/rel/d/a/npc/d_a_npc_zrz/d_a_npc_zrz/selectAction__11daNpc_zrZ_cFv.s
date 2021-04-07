@@ -1,16 +1,16 @@
 lbl_80B96814:
-/* 80B96814  3C 80 80 BA */	lis r4, cNullVec__6Z2Calc@ha
-/* 80B96818  38 C4 B2 84 */	addi r6, r4, cNullVec__6Z2Calc@l
-/* 80B9681C  3C 80 80 3A */	lis r4, __ptmf_null@ha
-/* 80B96820  38 A4 21 80 */	addi r5, r4, __ptmf_null@l
+/* 80B96814  3C 80 80 BA */	lis r4, cNullVec__6Z2Calc@ha /* 0x80B9B284@ha */
+/* 80B96818  38 C4 B2 84 */	addi r6, r4, cNullVec__6Z2Calc@l /* 0x80B9B284@l */
+/* 80B9681C  3C 80 80 3A */	lis r4, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80B96820  38 A4 21 80 */	addi r5, r4, __ptmf_null@l /* 0x803A2180@l */
 /* 80B96824  80 85 00 00 */	lwz r4, 0(r5)
 /* 80B96828  80 05 00 04 */	lwz r0, 4(r5)
 /* 80B9682C  90 83 14 00 */	stw r4, 0x1400(r3)
 /* 80B96830  90 03 14 04 */	stw r0, 0x1404(r3)
 /* 80B96834  80 05 00 08 */	lwz r0, 8(r5)
 /* 80B96838  90 03 14 08 */	stw r0, 0x1408(r3)
-/* 80B9683C  3C 80 80 BA */	lis r4, m__17daNpc_zrZ_Param_c@ha
-/* 80B96840  38 84 AF EC */	addi r4, r4, m__17daNpc_zrZ_Param_c@l
+/* 80B9683C  3C 80 80 BA */	lis r4, m__17daNpc_zrZ_Param_c@ha /* 0x80B9AFEC@ha */
+/* 80B96840  38 84 AF EC */	addi r4, r4, m__17daNpc_zrZ_Param_c@l /* 0x80B9AFEC@l */
 /* 80B96844  88 04 00 6A */	lbz r0, 0x6a(r4)
 /* 80B96848  28 00 00 00 */	cmplwi r0, 0
 /* 80B9684C  41 82 00 20 */	beq lbl_80B9686C

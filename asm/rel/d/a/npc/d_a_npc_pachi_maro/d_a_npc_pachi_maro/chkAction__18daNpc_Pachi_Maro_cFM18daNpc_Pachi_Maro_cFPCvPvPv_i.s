@@ -3,7 +3,7 @@ lbl_80A99530:
 /* 80A99534  7C 08 02 A6 */	mflr r0
 /* 80A99538  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80A9953C  38 63 0F BC */	addi r3, r3, 0xfbc
-/* 80A99540  4B 8C 8B 08 */	b __ptmf_cmpr
+/* 80A99540  4B 8C 8B 09 */	bl __ptmf_cmpr
 /* 80A99544  7C 60 00 34 */	cntlzw r0, r3
 /* 80A99548  54 03 D9 7E */	srwi r3, r0, 5
 /* 80A9954C  80 01 00 14 */	lwz r0, 0x14(r1)

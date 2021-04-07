@@ -9,8 +9,8 @@ lbl_80282D34:
 /* 80282D50  4B FF EF C9 */	bl __ct__Q27JStudio29TFunctionValueAttribute_rangeFv
 /* 80282D54  38 80 00 00 */	li r4, 0
 /* 80282D58  90 9F 00 40 */	stw r4, 0x40(r31)
-/* 80282D5C  3C 60 80 3C */	lis r3, __vt__Q27JStudio29TFunctionValue_list_parameter@ha
-/* 80282D60  38 03 49 00 */	addi r0, r3, __vt__Q27JStudio29TFunctionValue_list_parameter@l
+/* 80282D5C  3C 60 80 3C */	lis r3, __vt__Q27JStudio29TFunctionValue_list_parameter@ha /* 0x803C4900@ha */
+/* 80282D60  38 03 49 00 */	addi r0, r3, __vt__Q27JStudio29TFunctionValue_list_parameter@l /* 0x803C4900@l */
 /* 80282D64  90 1F 00 00 */	stw r0, 0(r31)
 /* 80282D68  90 9F 00 44 */	stw r4, 0x44(r31)
 /* 80282D6C  90 9F 00 48 */	stw r4, 0x48(r31)

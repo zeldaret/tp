@@ -7,28 +7,28 @@ lbl_807592F4:
 /* 80759308  88 03 07 D3 */	lbz r0, 0x7d3(r3)
 /* 8075930C  28 00 00 00 */	cmplwi r0, 0
 /* 80759310  40 82 00 A8 */	bne lbl_807593B8
-/* 80759314  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80759318  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80759314  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80759318  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 8075931C  80 63 00 00 */	lwz r3, 0(r3)
 /* 80759320  38 63 03 D0 */	addi r3, r3, 0x3d0
 /* 80759324  3C 80 01 00 */	lis r4, 0x0100 /* 0x01000085@ha */
 /* 80759328  38 84 00 85 */	addi r4, r4, 0x0085 /* 0x01000085@l */
-/* 8075932C  4B B5 61 70 */	b subBgmStart__8Z2SeqMgrFUl
+/* 8075932C  4B B5 61 71 */	bl subBgmStart__8Z2SeqMgrFUl
 /* 80759330  38 00 00 00 */	li r0, 0
 /* 80759334  98 1F 07 8A */	stb r0, 0x78a(r31)
-/* 80759338  3C 60 80 76 */	lis r3, s_PointSearch__FPvPv@ha
-/* 8075933C  38 63 92 3C */	addi r3, r3, s_PointSearch__FPvPv@l
+/* 80759338  3C 60 80 76 */	lis r3, s_PointSearch__FPvPv@ha /* 0x8075923C@ha */
+/* 8075933C  38 63 92 3C */	addi r3, r3, s_PointSearch__FPvPv@l /* 0x8075923C@l */
 /* 80759340  7F E4 FB 78 */	mr r4, r31
-/* 80759344  4B 8C 7F F4 */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80759344  4B 8C 7F F5 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 80759348  88 1F 07 8A */	lbz r0, 0x78a(r31)
-/* 8075934C  3C 60 80 76 */	lis r3, lit_4333@ha
-/* 80759350  C8 23 15 54 */	lfd f1, lit_4333@l(r3)
+/* 8075934C  3C 60 80 76 */	lis r3, lit_4333@ha /* 0x80761554@ha */
+/* 80759350  C8 23 15 54 */	lfd f1, lit_4333@l(r3)  /* 0x80761554@l */
 /* 80759354  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80759358  3C 00 43 30 */	lis r0, 0x4330
 /* 8075935C  90 01 00 08 */	stw r0, 8(r1)
 /* 80759360  C8 01 00 08 */	lfd f0, 8(r1)
 /* 80759364  EC 20 08 28 */	fsubs f1, f0, f1
-/* 80759368  4B B0 E5 EC */	b cM_rndF__Ff
+/* 80759368  4B B0 E5 ED */	bl cM_rndF__Ff
 /* 8075936C  FC 00 08 1E */	fctiwz f0, f1
 /* 80759370  D8 01 00 10 */	stfd f0, 0x10(r1)
 /* 80759374  80 01 00 14 */	lwz r0, 0x14(r1)

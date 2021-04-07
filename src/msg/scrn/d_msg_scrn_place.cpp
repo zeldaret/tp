@@ -85,12 +85,6 @@ extern "C" extern char const* const msg_scrn_d_msg_scrn_place__stringBase0;
 // External References:
 //
 
-void mDoExt_getRubyFont();
-void dCam_getBody();
-void dPaneClass_showNullPane(J2DScreen*);
-void* operator new(u32);
-void operator delete(void*);
-
 extern "C" void mDoExt_getRubyFont__Fv();
 extern "C" void dCam_getBody__Fv();
 extern "C" void setSelectRubyString__14dMsgScrnBase_cFPcPcPc();
@@ -134,17 +128,7 @@ extern "C" extern u8 g_MsgObject_HIO_c[1040];
 //
 
 /* ############################################################################################## */
-/* 80399B78-80399B98 001F+01 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80399B78 = "zelda_stage_title_foreign.blo";
-SECTION_DEAD char const* const stringBase_80399B96 = "";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80399B97 = "";
-#pragma pop
-
-/* 803C12B0-803C12E8 0038+00 s=1 e=0 z=0  None .data      t_tag$3877 */
+/* 803C12B0-803C12E8 01E3D0 0038+00 1/1 0/0 0/0 .data            t_tag$3877 */
 SECTION_DATA static u8 t_tag[56] = {
     0x00, 0x73, 0x66, 0x6F, 0x6E, 0x74, 0x62, 0x30, 0x00, 0x73, 0x66, 0x6F, 0x6E, 0x74,
     0x62, 0x31, 0x00, 0x73, 0x66, 0x6F, 0x6E, 0x74, 0x62, 0x32, 0x00, 0x73, 0x66, 0x6F,
@@ -152,9 +136,9 @@ SECTION_DATA static u8 t_tag[56] = {
     0x66, 0x6F, 0x6E, 0x74, 0x6C, 0x32, 0x00, 0x73, 0x66, 0x6F, 0x6E, 0x74, 0x30, 0x30,
 };
 
-/* 803C12E8-803C1340 0058+00 s=2 e=0 z=0  None .data      __vt__15dMsgScrnPlace_c */
-SECTION_DATA static void* __vt__15dMsgScrnPlace_c[22] = {
-    (void*)NULL,
+/* 803C12E8-803C1340 01E408 0058+00 2/2 0/0 0/0 .data            __vt__15dMsgScrnPlace_c */
+SECTION_DATA extern void* __vt__15dMsgScrnPlace_c[22] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__14dMsgScrnBase_cFv,
     (void*)__dt__15dMsgScrnPlace_cFv,
@@ -178,7 +162,7 @@ SECTION_DATA static void* __vt__15dMsgScrnPlace_c[22] = {
     (void*)fukiPosCalc__14dMsgScrnBase_cFUc,
 };
 
-/* 80454CE8-80454CEC 0004+00 s=2 e=0 z=0  None .sdata2    @3998 */
+/* 80454CE8-80454CEC 0032E8 0004+00 2/2 0/0 0/0 .sdata2          @3998 */
 SECTION_SDATA2 static u8 lit_3998[4] = {
     0x00,
     0x00,
@@ -186,17 +170,17 @@ SECTION_SDATA2 static u8 lit_3998[4] = {
     0x00,
 };
 
-/* 80454CEC-80454CF0 0004+00 s=3 e=0 z=0  None .sdata2    @3999 */
+/* 80454CEC-80454CF0 0032EC 0004+00 3/3 0/0 0/0 .sdata2          @3999 */
 SECTION_SDATA2 static f32 lit_3999 = 1.0f;
 
-/* 80454CF0-80454CF8 0004+04 s=1 e=0 z=0  None .sdata2    @4000 */
+/* 80454CF0-80454CF8 0032F0 0004+04 1/1 0/0 0/0 .sdata2          @4000 */
 SECTION_SDATA2 static f32 lit_4000[1 + 1 /* padding */] = {
     6.0f / 5.0f,
     /* padding */
     0.0f,
 };
 
-/* 802463CC-802467C4 03F8+00 s=0 e=1 z=0  None .text      __ct__15dMsgScrnPlace_cFv */
+/* 802463CC-802467C4 240D0C 03F8+00 0/0 1/1 0/0 .text            __ct__15dMsgScrnPlace_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -206,7 +190,7 @@ asm dMsgScrnPlace_c::dMsgScrnPlace_c() {
 }
 #pragma pop
 
-/* 802467C4-80246924 0160+00 s=1 e=0 z=0  None .text      __dt__15dMsgScrnPlace_cFv */
+/* 802467C4-80246924 241104 0160+00 1/0 0/0 0/0 .text            __dt__15dMsgScrnPlace_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -216,7 +200,7 @@ asm dMsgScrnPlace_c::~dMsgScrnPlace_c() {
 }
 #pragma pop
 
-/* 80246924-80246A44 0120+00 s=1 e=0 z=0  None .text      exec__15dMsgScrnPlace_cFv */
+/* 80246924-80246A44 241264 0120+00 1/0 0/0 0/0 .text            exec__15dMsgScrnPlace_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -226,7 +210,7 @@ asm void dMsgScrnPlace_c::exec() {
 }
 #pragma pop
 
-/* 80246A44-80246A9C 0058+00 s=1 e=0 z=0  None .text      drawSelf__15dMsgScrnPlace_cFv */
+/* 80246A44-80246A9C 241384 0058+00 1/0 0/0 0/0 .text            drawSelf__15dMsgScrnPlace_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -236,7 +220,7 @@ asm void dMsgScrnPlace_c::drawSelf() {
 }
 #pragma pop
 
-/* 80246A9C-80246B28 008C+00 s=1 e=0 z=0  None .text      fukiAlpha__15dMsgScrnPlace_cFf */
+/* 80246A9C-80246B28 2413DC 008C+00 1/0 0/0 0/0 .text            fukiAlpha__15dMsgScrnPlace_cFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -246,17 +230,27 @@ asm void dMsgScrnPlace_c::fukiAlpha(f32 param_0) {
 }
 #pragma pop
 
-/* 80246B28-80246B2C 0004+00 s=1 e=0 z=0  None .text      fukiScale__15dMsgScrnPlace_cFf */
+/* 80246B28-80246B2C 241468 0004+00 1/0 0/0 0/0 .text            fukiScale__15dMsgScrnPlace_cFf */
 void dMsgScrnPlace_c::fukiScale(f32 param_0) {
     /* empty function */
 }
 
-/* 80246B2C-80246B30 0004+00 s=1 e=0 z=0  None .text      fukiTrans__15dMsgScrnPlace_cFff */
+/* 80246B2C-80246B30 24146C 0004+00 1/0 0/0 0/0 .text            fukiTrans__15dMsgScrnPlace_cFff */
 void dMsgScrnPlace_c::fukiTrans(f32 param_0, f32 param_1) {
     /* empty function */
 }
 
-/* 80246B30-80246B34 0004+00 s=1 e=0 z=0  None .text      fontAlpha__15dMsgScrnPlace_cFf */
+/* 80246B30-80246B34 241470 0004+00 1/0 0/0 0/0 .text            fontAlpha__15dMsgScrnPlace_cFf */
 void dMsgScrnPlace_c::fontAlpha(f32 param_0) {
     /* empty function */
 }
+
+/* 80399B78-80399B98 0261D8 001F+01 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80399B78 = "zelda_stage_title_foreign.blo";
+SECTION_DEAD static char const* const stringBase_80399B96 = "";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80399B97 = "";
+#pragma pop

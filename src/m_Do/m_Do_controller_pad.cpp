@@ -43,16 +43,10 @@ extern "C" void read__8mDoCPd_cFv();
 extern "C" void convert__8mDoCPd_cFP27interface_of_controller_padP10JUTGamePad();
 extern "C" void LRlockCheck__8mDoCPd_cFP27interface_of_controller_pad();
 extern "C" void recalibrate__8mDoCPd_cFv();
-extern "C" extern u8 m_gamePad__8mDoCPd_c[16];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
 
 //
 // External References:
 //
-
-void mDoRst_resetCallBack(int, void*);
-void cLib_memSet(void*, int, u32);
-void* operator new(u32);
 
 extern "C" void mDoRst_resetCallBack__FiPv();
 extern "C" void cLib_memSet__FPviUl();
@@ -78,13 +72,15 @@ extern "C" extern u8 struct_80451500[4];
 //
 
 /* ############################################################################################## */
-/* 803DD2D8-803DD2E8 0010+00 s=2 e=6 z=0  None .bss       m_gamePad__8mDoCPd_c */
+/* 803DD2D8-803DD2E8 009FF8 0010+00 2/2 6/6 0/0 .bss             m_gamePad__8mDoCPd_c */
+extern u8 m_gamePad__8mDoCPd_c[16];
 u8 m_gamePad__8mDoCPd_c[16];
 
-/* 803DD2E8-803DD3E8 0100+00 s=2 e=84 z=37  None .bss       m_cpadInfo__8mDoCPd_c */
+/* 803DD2E8-803DD3E8 00A008 0100+00 2/2 84/84 37/37 .bss             m_cpadInfo__8mDoCPd_c */
+extern u8 m_cpadInfo__8mDoCPd_c[256];
 u8 m_cpadInfo__8mDoCPd_c[256];
 
-/* 80007954-80007A94 0140+00 s=0 e=1 z=0  None .text      create__8mDoCPd_cFv */
+/* 80007954-80007A94 002294 0140+00 0/0 1/1 0/0 .text            create__8mDoCPd_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -94,7 +90,7 @@ asm void mDoCPd_c::create() {
 }
 #pragma pop
 
-/* 80007A94-80007B7C 00E8+00 s=0 e=1 z=0  None .text      read__8mDoCPd_cFv */
+/* 80007A94-80007B7C 0023D4 00E8+00 0/0 1/1 0/0 .text            read__8mDoCPd_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -105,23 +101,23 @@ asm void mDoCPd_c::read() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451A20-80451A24 0004+00 s=1 e=0 z=0  None .sdata2    @3709 */
+/* 80451A20-80451A24 000020 0004+00 1/1 0/0 0/0 .sdata2          @3709 */
 SECTION_SDATA2 static f32 lit_3709 = 1.0f / 15.0f;
 
-/* 80451A24-80451A28 0004+00 s=1 e=0 z=0  None .sdata2    @3710 */
+/* 80451A24-80451A28 000024 0004+00 1/1 0/0 0/0 .sdata2          @3710 */
 SECTION_SDATA2 static f32 lit_3710 = 1.0f;
 
-/* 80451A28-80451A30 0004+04 s=1 e=0 z=0  None .sdata2    @3711 */
+/* 80451A28-80451A30 000028 0004+04 1/1 0/0 0/0 .sdata2          @3711 */
 SECTION_SDATA2 static f32 lit_3711[1 + 1 /* padding */] = {
     0.0071428571827709675f,
     /* padding */
     0.0f,
 };
 
-/* 80451A30-80451A38 0008+00 s=1 e=0 z=0  None .sdata2    @3713 */
+/* 80451A30-80451A38 000030 0008+00 1/1 0/0 0/0 .sdata2          @3713 */
 SECTION_SDATA2 static f64 lit_3713 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 80007B7C-80007CD0 0154+00 s=1 e=0 z=0  None .text
+/* 80007B7C-80007CD0 0024BC 0154+00 1/1 0/0 0/0 .text
  * convert__8mDoCPd_cFP27interface_of_controller_padP10JUTGamePad */
 #pragma push
 #pragma optimization_level 0
@@ -132,7 +128,7 @@ asm void mDoCPd_c::convert(interface_of_controller_pad* param_0, JUTGamePad* par
 }
 #pragma pop
 
-/* 80007CD0-80007D74 00A4+00 s=1 e=0 z=0  None .text
+/* 80007CD0-80007D74 002610 00A4+00 1/1 0/0 0/0 .text
  * LRlockCheck__8mDoCPd_cFP27interface_of_controller_pad        */
 #pragma push
 #pragma optimization_level 0
@@ -143,7 +139,7 @@ asm void mDoCPd_c::LRlockCheck(interface_of_controller_pad* param_0) {
 }
 #pragma pop
 
-/* 80007D74-80007D9C 0028+00 s=0 e=1 z=0  None .text      recalibrate__8mDoCPd_cFv */
+/* 80007D74-80007D9C 0026B4 0028+00 0/0 1/1 0/0 .text            recalibrate__8mDoCPd_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

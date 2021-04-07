@@ -5,8 +5,8 @@ lbl_802BEB94:
 /* 802BEBA0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802BEBA4  7C 7F 1B 78 */	mr r31, r3
 /* 802BEBA8  4B FF F3 49 */	bl __ct__14Z2SoundObjBaseFv
-/* 802BEBAC  3C 60 80 3D */	lis r3, __vt__15Z2SoundObjAnime@ha
-/* 802BEBB0  38 03 AC D0 */	addi r0, r3, __vt__15Z2SoundObjAnime@l
+/* 802BEBAC  3C 60 80 3D */	lis r3, __vt__15Z2SoundObjAnime@ha /* 0x803CACD0@ha */
+/* 802BEBB0  38 03 AC D0 */	addi r0, r3, __vt__15Z2SoundObjAnime@l /* 0x803CACD0@l */
 /* 802BEBB4  90 1F 00 10 */	stw r0, 0x10(r31)
 /* 802BEBB8  38 00 00 00 */	li r0, 0
 /* 802BEBBC  90 1F 00 20 */	stw r0, 0x20(r31)

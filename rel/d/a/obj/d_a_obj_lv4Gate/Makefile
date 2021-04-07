@@ -3,19 +3,20 @@
 #
 
 M526_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4Gate.plf
+M526_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4Gate.lcf
+M526_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4Gate.map
 
 M526_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv4Gate/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv4Gate/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv4Gate/d_a_obj_lv4Gate.cpp \
 
 M526_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4Gate/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4Gate/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4Gate/d_a_obj_lv4Gate.o \
 
 M526_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4Gate/libRuntime.PPCEABI.H.a \
 
 M526_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M526_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M526_LDSCRIPT) \
+	-unused -map $(M526_MAP) \
+	-w off \
 
 $(M526_TARGET): $(M526_O_FILES) $(M526_LIBS)
+	@echo [526] creating $(M526_TARGET)
 	@echo $(M526_LIBS) $(M526_O_FILES) > build/M526_ofiles
-	$(LD) -partial $(M526_LDFLAGS) -o $(M526_TARGET) @build/M526_ofiles
+	@python3 tools/lcf.py rel 526 --output $(M526_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M526_LDFLAGS) -o $(M526_TARGET) @build/M526_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4Gate/%.o: rel/d/a/obj/d_a_obj_lv4Gate/%.cpp
+	@echo [526] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M526_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M526_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv4Gate/libs/Runtime.PPCEABI.H/Makefile
 

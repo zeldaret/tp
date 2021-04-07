@@ -7,8 +7,8 @@ lbl_802CFDCC:
 /* 802CFDE0  7C 7E 1B 78 */	mr r30, r3
 /* 802CFDE4  7C 9F 23 79 */	or. r31, r4, r4
 /* 802CFDE8  40 82 00 24 */	bne lbl_802CFE0C
-/* 802CFDEC  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha
-/* 802CFDF0  38 C3 CA F0 */	addi r6, r3, JKRExpHeap__stringBase0@l
+/* 802CFDEC  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha /* 0x8039CAF0@ha */
+/* 802CFDF0  38 C3 CA F0 */	addi r6, r3, JKRExpHeap__stringBase0@l /* 0x8039CAF0@l */
 /* 802CFDF4  38 66 00 25 */	addi r3, r6, 0x25
 /* 802CFDF8  38 80 06 20 */	li r4, 0x620
 /* 802CFDFC  38 A6 00 34 */	addi r5, r6, 0x34

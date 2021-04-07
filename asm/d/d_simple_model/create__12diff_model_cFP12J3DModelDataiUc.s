@@ -40,8 +40,8 @@ lbl_80049170:
 /* 80049180  D0 03 00 18 */	stfs f0, 0x18(r3)
 /* 80049184  D0 03 00 1C */	stfs f0, 0x1c(r3)
 /* 80049188  D0 03 00 20 */	stfs f0, 0x20(r3)
-/* 8004918C  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha
-/* 80049190  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l
+/* 8004918C  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha /* 0x803A2FD8@ha */
+/* 80049190  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l /* 0x803A2FD8@l */
 /* 80049194  80 9C 00 04 */	lwz r4, 4(r28)
 /* 80049198  38 84 00 24 */	addi r4, r4, 0x24
 /* 8004919C  48 2F D3 15 */	bl PSMTXCopy

@@ -12,7 +12,7 @@ lbl_80D1825C:
 /* 80D18284  90 1F 00 00 */	stw r0, 0(r31)
 /* 80D18288  7F C3 F3 78 */	mr r3, r30
 /* 80D1828C  4B FF F9 E9 */	bl setBaseMtx__12daTogeTrap_cFv
-/* 80D18290  4B 31 77 C4 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80D18290  4B 31 77 C5 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80D18294  2C 03 00 00 */	cmpwi r3, 0
 /* 80D18298  40 82 00 0C */	bne lbl_80D182A4
 /* 80D1829C  38 00 00 00 */	li r0, 0

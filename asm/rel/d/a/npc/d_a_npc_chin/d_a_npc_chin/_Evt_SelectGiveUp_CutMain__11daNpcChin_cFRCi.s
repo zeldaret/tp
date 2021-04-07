@@ -20,12 +20,12 @@ lbl_8099075C:
 /* 8099075C  38 80 00 00 */	li r4, 0
 /* 80990760  38 A0 00 01 */	li r5, 1
 /* 80990764  38 C0 00 00 */	li r6, 0
-/* 80990768  4B 7C 36 1C */	b talkProc__8daNpcF_cFPiiPP10fopAc_ac_c
+/* 80990768  4B 7C 36 1D */	bl talkProc__8daNpcF_cFPiiPP10fopAc_ac_c
 /* 8099076C  2C 03 00 00 */	cmpwi r3, 0
 /* 80990770  41 82 00 18 */	beq lbl_80990788
 /* 80990774  38 00 00 00 */	li r0, 0
 /* 80990778  90 1E 09 6C */	stw r0, 0x96c(r30)
-/* 8099077C  4B 8D 0B 1C */	b dTimer_show__Fv
+/* 8099077C  4B 8D 0B 1D */	bl dTimer_show__Fv
 /* 80990780  3B E0 00 01 */	li r31, 1
 /* 80990784  48 00 00 0C */	b lbl_80990790
 lbl_80990788:

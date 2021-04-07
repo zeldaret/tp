@@ -15,8 +15,8 @@ lbl_8032EE50:
 /* 8032EE84  A8 9B 00 0E */	lha r4, 0xe(r27)
 /* 8032EE88  A8 BB 00 10 */	lha r5, 0x10(r27)
 /* 8032EE8C  C0 3B 00 14 */	lfs f1, 0x14(r27)
-/* 8032EE90  3C C0 80 43 */	lis r6, mCurrentS__6J3DSys@ha
-/* 8032EE94  3B C6 4C 14 */	addi r30, r6, mCurrentS__6J3DSys@l
+/* 8032EE90  3C C0 80 43 */	lis r6, mCurrentS__6J3DSys@ha /* 0x80434C14@ha */
+/* 8032EE94  3B C6 4C 14 */	addi r30, r6, mCurrentS__6J3DSys@l /* 0x80434C14@l */
 /* 8032EE98  C0 1E 00 00 */	lfs f0, 0(r30)
 /* 8032EE9C  EC 21 00 32 */	fmuls f1, f1, f0
 /* 8032EEA0  C0 5B 00 18 */	lfs f2, 0x18(r27)
@@ -27,13 +27,13 @@ lbl_8032EE50:
 /* 8032EEB4  EC 63 00 32 */	fmuls f3, f3, f0
 /* 8032EEB8  7F E6 FB 78 */	mr r6, r31
 /* 8032EEBC  4B FE 2B 69 */	bl J3DGetTranslateRotateMtx__FsssfffPA4_f
-/* 8032EEC0  3C 60 80 43 */	lis r3, mCurrentMtx__6J3DSys@ha
-/* 8032EEC4  38 63 4B E4 */	addi r3, r3, mCurrentMtx__6J3DSys@l
+/* 8032EEC0  3C 60 80 43 */	lis r3, mCurrentMtx__6J3DSys@ha /* 0x80434BE4@ha */
+/* 8032EEC4  38 63 4B E4 */	addi r3, r3, mCurrentMtx__6J3DSys@l /* 0x80434BE4@l */
 /* 8032EEC8  7F E4 FB 78 */	mr r4, r31
 /* 8032EECC  7C 65 1B 78 */	mr r5, r3
 /* 8032EED0  48 01 76 15 */	bl PSMTXConcat
-/* 8032EED4  3C 60 80 43 */	lis r3, mCurrentS__6J3DSys@ha
-/* 8032EED8  C4 23 4C 14 */	lfsu f1, mCurrentS__6J3DSys@l(r3)
+/* 8032EED4  3C 60 80 43 */	lis r3, mCurrentS__6J3DSys@ha /* 0x80434C14@ha */
+/* 8032EED8  C4 23 4C 14 */	lfsu f1, mCurrentS__6J3DSys@l(r3)  /* 0x80434C14@l */
 /* 8032EEDC  C0 1B 00 00 */	lfs f0, 0(r27)
 /* 8032EEE0  EC 61 00 32 */	fmuls f3, f1, f0
 /* 8032EEE4  D0 63 00 00 */	stfs f3, 0(r3)
@@ -62,16 +62,16 @@ lbl_8032EF30:
 /* 8032EF38  38 00 00 00 */	li r0, 0
 /* 8032EF3C  80 7C 00 04 */	lwz r3, 4(r28)
 /* 8032EF40  7C 03 E9 AE */	stbx r0, r3, r29
-/* 8032EF44  3C 60 80 43 */	lis r3, mCurrentMtx__6J3DSys@ha
-/* 8032EF48  38 63 4B E4 */	addi r3, r3, mCurrentMtx__6J3DSys@l
+/* 8032EF44  3C 60 80 43 */	lis r3, mCurrentMtx__6J3DSys@ha /* 0x80434BE4@ha */
+/* 8032EF48  38 63 4B E4 */	addi r3, r3, mCurrentMtx__6J3DSys@l /* 0x80434BE4@l */
 /* 8032EF4C  7F E4 FB 78 */	mr r4, r31
-/* 8032EF50  3C A0 80 43 */	lis r5, mCurrentS__6J3DSys@ha
-/* 8032EF54  C0 25 4C 14 */	lfs f1, mCurrentS__6J3DSys@l(r5)
+/* 8032EF50  3C A0 80 43 */	lis r5, mCurrentS__6J3DSys@ha /* 0x80434C14@ha */
+/* 8032EF54  C0 25 4C 14 */	lfs f1, mCurrentS__6J3DSys@l(r5)  /* 0x80434C14@l */
 /* 8032EF58  C0 5E 00 04 */	lfs f2, 4(r30)
 /* 8032EF5C  C0 7E 00 08 */	lfs f3, 8(r30)
 /* 8032EF60  48 00 AB 25 */	bl JMAMTXApplyScale__FPA4_CfPA4_ffff
-/* 8032EF64  3C 60 80 43 */	lis r3, mCurrentMtx__6J3DSys@ha
-/* 8032EF68  38 63 4B E4 */	addi r3, r3, mCurrentMtx__6J3DSys@l
+/* 8032EF64  3C 60 80 43 */	lis r3, mCurrentMtx__6J3DSys@ha /* 0x80434BE4@ha */
+/* 8032EF68  38 63 4B E4 */	addi r3, r3, mCurrentMtx__6J3DSys@l /* 0x80434BE4@l */
 /* 8032EF6C  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 8032EF70  D0 1F 00 0C */	stfs f0, 0xc(r31)
 /* 8032EF74  C0 03 00 1C */	lfs f0, 0x1c(r3)
@@ -83,8 +83,8 @@ lbl_8032EF88:
 /* 8032EF88  38 00 00 01 */	li r0, 1
 /* 8032EF8C  80 7C 00 04 */	lwz r3, 4(r28)
 /* 8032EF90  7C 03 E9 AE */	stbx r0, r3, r29
-/* 8032EF94  3C 60 80 43 */	lis r3, mCurrentMtx__6J3DSys@ha
-/* 8032EF98  38 63 4B E4 */	addi r3, r3, mCurrentMtx__6J3DSys@l
+/* 8032EF94  3C 60 80 43 */	lis r3, mCurrentMtx__6J3DSys@ha /* 0x80434BE4@ha */
+/* 8032EF98  38 63 4B E4 */	addi r3, r3, mCurrentMtx__6J3DSys@l /* 0x80434BE4@l */
 /* 8032EF9C  7F E4 FB 78 */	mr r4, r31
 /* 8032EFA0  48 01 75 11 */	bl PSMTXCopy
 lbl_8032EFA4:

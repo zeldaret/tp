@@ -7,12 +7,12 @@ lbl_801C04AC:
 /* 801C04C0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801C04C4  7C 9F 23 78 */	mr r31, r4
 /* 801C04C8  41 82 00 38 */	beq lbl_801C0500
-/* 801C04CC  3C 60 80 3C */	lis r3, __vt__15dMenu_DmapMap_c@ha
-/* 801C04D0  38 03 CA E0 */	addi r0, r3, __vt__15dMenu_DmapMap_c@l
+/* 801C04CC  3C 60 80 3C */	lis r3, __vt__15dMenu_DmapMap_c@ha /* 0x803BCAE0@ha */
+/* 801C04D0  38 03 CA E0 */	addi r0, r3, __vt__15dMenu_DmapMap_c@l /* 0x803BCAE0@l */
 /* 801C04D4  90 1E 00 00 */	stw r0, 0(r30)
 /* 801C04D8  38 7E 00 04 */	addi r3, r30, 4
-/* 801C04DC  3C 80 80 1C */	lis r4, __dt__15renderingDmap_cFv@ha
-/* 801C04E0  38 84 03 80 */	addi r4, r4, __dt__15renderingDmap_cFv@l
+/* 801C04DC  3C 80 80 1C */	lis r4, __dt__15renderingDmap_cFv@ha /* 0x801C0380@ha */
+/* 801C04E0  38 84 03 80 */	addi r4, r4, __dt__15renderingDmap_cFv@l /* 0x801C0380@l */
 /* 801C04E4  38 A0 00 38 */	li r5, 0x38
 /* 801C04E8  38 C0 00 02 */	li r6, 2
 /* 801C04EC  48 1A 17 FD */	bl __destroy_arr

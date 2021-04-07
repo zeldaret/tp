@@ -7,8 +7,8 @@ lbl_8012D050:
 /* 8012D064  80 03 05 74 */	lwz r0, 0x574(r3)
 /* 8012D068  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
 /* 8012D06C  40 82 00 24 */	bne lbl_8012D090
-/* 8012D070  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8012D074  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8012D070  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8012D074  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8012D078  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 8012D07C  80 9F 31 84 */	lwz r4, 0x3184(r31)
 /* 8012D080  4B F1 B0 FD */	bl cutEnd__16dEvent_manager_cFi

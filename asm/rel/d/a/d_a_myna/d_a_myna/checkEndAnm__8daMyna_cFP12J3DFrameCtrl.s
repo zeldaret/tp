@@ -16,8 +16,8 @@ lbl_80949A9C:
 /* 80949AA0  88 04 00 05 */	lbz r0, 5(r4)
 /* 80949AA4  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 80949AA8  40 82 00 1C */	bne lbl_80949AC4
-/* 80949AAC  3C 60 80 95 */	lis r3, lit_3926@ha
-/* 80949AB0  C0 23 B1 F0 */	lfs f1, lit_3926@l(r3)
+/* 80949AAC  3C 60 80 95 */	lis r3, lit_3926@ha /* 0x8094B1F0@ha */
+/* 80949AB0  C0 23 B1 F0 */	lfs f1, lit_3926@l(r3)  /* 0x8094B1F0@l */
 /* 80949AB4  C0 04 00 0C */	lfs f0, 0xc(r4)
 /* 80949AB8  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 80949ABC  41 82 00 08 */	beq lbl_80949AC4

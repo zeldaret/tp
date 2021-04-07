@@ -3,11 +3,11 @@ lbl_80C77078:
 /* 80C7707C  7C 08 02 A6 */	mflr r0
 /* 80C77080  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80C77084  39 61 00 20 */	addi r11, r1, 0x20
-/* 80C77088  4B 6E B1 54 */	b _savegpr_29
+/* 80C77088  4B 6E B1 55 */	bl _savegpr_29
 /* 80C7708C  7C 9D 23 78 */	mr r29, r4
 /* 80C77090  7C BE 2B 78 */	mr r30, r5
-/* 80C77094  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C77098  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C77094  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C77098  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C7709C  83 E3 5D B4 */	lwz r31, 0x5db4(r3)
 /* 80C770A0  A8 05 00 08 */	lha r0, 8(r5)
 /* 80C770A4  2C 00 00 F2 */	cmpwi r0, 0xf2
@@ -26,8 +26,8 @@ lbl_80C770D4:
 /* 80C770D4  A8 1E 00 08 */	lha r0, 8(r30)
 /* 80C770D8  2C 00 00 FD */	cmpwi r0, 0xfd
 /* 80C770DC  40 82 00 B8 */	bne lbl_80C77194
-/* 80C770E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C770E4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C770E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C770E4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C770E8  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 80C770EC  54 00 05 EF */	rlwinm. r0, r0, 0, 0x17, 0x17
 /* 80C770F0  40 82 00 A4 */	bne lbl_80C77194
@@ -56,10 +56,10 @@ lbl_80C7711C:
 /* 80C77148  7D 89 03 A6 */	mtctr r12
 /* 80C7714C  4E 80 04 21 */	bctrl 
 /* 80C77150  90 61 00 08 */	stw r3, 8(r1)
-/* 80C77154  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 80C77158  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 80C77154  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 80C77158  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 80C7715C  38 81 00 08 */	addi r4, r1, 8
-/* 80C77160  4B 3A 26 98 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 80C77160  4B 3A 26 99 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80C77164  A8 03 00 08 */	lha r0, 8(r3)
 /* 80C77168  2C 00 01 98 */	cmpwi r0, 0x198
 /* 80C7716C  40 82 00 28 */	bne lbl_80C77194
@@ -101,7 +101,7 @@ lbl_80C771D4:
 /* 80C771E4  B0 1D 05 B4 */	sth r0, 0x5b4(r29)
 lbl_80C771E8:
 /* 80C771E8  39 61 00 20 */	addi r11, r1, 0x20
-/* 80C771EC  4B 6E B0 3C */	b _restgpr_29
+/* 80C771EC  4B 6E B0 3D */	bl _restgpr_29
 /* 80C771F0  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80C771F4  7C 08 03 A6 */	mtlr r0
 /* 80C771F8  38 21 00 20 */	addi r1, r1, 0x20

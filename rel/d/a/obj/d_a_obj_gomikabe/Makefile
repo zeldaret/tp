@@ -3,19 +3,20 @@
 #
 
 M462_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gomikabe.plf
+M462_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gomikabe.lcf
+M462_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gomikabe.map
 
 M462_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_gomikabe/executor.cpp \
-	rel/d/a/obj/d_a_obj_gomikabe/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_gomikabe/d_a_obj_gomikabe.cpp \
 
 M462_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gomikabe/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gomikabe/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gomikabe/d_a_obj_gomikabe.o \
 
 M462_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gomikabe/libRuntime.PPCEABI.H.a \
 
 M462_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M462_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M462_LDSCRIPT) \
+	-unused -map $(M462_MAP) \
+	-w off \
 
 $(M462_TARGET): $(M462_O_FILES) $(M462_LIBS)
+	@echo [462] creating $(M462_TARGET)
 	@echo $(M462_LIBS) $(M462_O_FILES) > build/M462_ofiles
-	$(LD) -partial $(M462_LDFLAGS) -o $(M462_TARGET) @build/M462_ofiles
+	@python3 tools/lcf.py rel 462 --output $(M462_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M462_LDFLAGS) -o $(M462_TARGET) @build/M462_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gomikabe/%.o: rel/d/a/obj/d_a_obj_gomikabe/%.cpp
+	@echo [462] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M462_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M462_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_gomikabe/libs/Runtime.PPCEABI.H/Makefile
 

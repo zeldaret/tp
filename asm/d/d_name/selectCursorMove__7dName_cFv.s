@@ -10,8 +10,8 @@ lbl_8024F994:
 /* 8024F9B4  98 03 03 19 */	stb r0, 0x319(r3)
 /* 8024F9B8  38 00 00 01 */	li r0, 1
 /* 8024F9BC  98 03 03 1A */	stb r0, 0x31a(r3)
-/* 8024F9C0  3C 60 80 43 */	lis r3, g_nmHIO@ha
-/* 8024F9C4  38 63 07 34 */	addi r3, r3, g_nmHIO@l
+/* 8024F9C0  3C 60 80 43 */	lis r3, g_nmHIO@ha /* 0x80430734@ha */
+/* 8024F9C4  38 63 07 34 */	addi r3, r3, g_nmHIO@l /* 0x80430734@l */
 /* 8024F9C8  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 8024F9CC  88 7F 02 A7 */	lbz r3, 0x2a7(r31)
 /* 8024F9D0  88 1F 02 A5 */	lbz r0, 0x2a5(r31)

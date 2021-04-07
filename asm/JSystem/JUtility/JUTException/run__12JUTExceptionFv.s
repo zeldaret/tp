@@ -9,13 +9,13 @@ lbl_802E1EA8:
 /* 802E1EC4  38 00 F6 FF */	li r0, -2305
 /* 802E1EC8  7C 63 00 38 */	and r3, r3, r0
 /* 802E1ECC  48 05 7D FD */	bl PPCMtmsr
-/* 802E1ED0  3C 60 80 3D */	lis r3, sMessageQueue__12JUTException@ha
-/* 802E1ED4  38 63 C6 20 */	addi r3, r3, sMessageQueue__12JUTException@l
+/* 802E1ED0  3C 60 80 3D */	lis r3, sMessageQueue__12JUTException@ha /* 0x803CC620@ha */
+/* 802E1ED4  38 63 C6 20 */	addi r3, r3, sMessageQueue__12JUTException@l /* 0x803CC620@l */
 /* 802E1ED8  38 8D 83 70 */	la r4, sMessageBuffer__12JUTException(r13) /* 804508F0-_SDA_BASE_ */
 /* 802E1EDC  38 A0 00 01 */	li r5, 1
 /* 802E1EE0  48 05 CA B5 */	bl OSInitMessageQueue
-/* 802E1EE4  3C 60 80 3D */	lis r3, sMessageQueue__12JUTException@ha
-/* 802E1EE8  3B C3 C6 20 */	addi r30, r3, sMessageQueue__12JUTException@l
+/* 802E1EE4  3C 60 80 3D */	lis r3, sMessageQueue__12JUTException@ha /* 0x803CC620@ha */
+/* 802E1EE8  3B C3 C6 20 */	addi r30, r3, sMessageQueue__12JUTException@l /* 0x803CC620@l */
 lbl_802E1EEC:
 /* 802E1EEC  7F C3 F3 78 */	mr r3, r30
 /* 802E1EF0  38 81 00 08 */	addi r4, r1, 8

@@ -16,8 +16,8 @@ lbl_800839A0:
 /* 800839D8  98 1E 00 1E */	stb r0, 0x1e(r30)
 /* 800839DC  88 1F 00 02 */	lbz r0, 2(r31)
 /* 800839E0  98 1E 00 1F */	stb r0, 0x1f(r30)
-/* 800839E4  3C 60 80 43 */	lis r3, Zero__4cXyz@ha
-/* 800839E8  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)
+/* 800839E4  3C 60 80 43 */	lis r3, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 800839E8  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)  /* 0x80430CF4@l */
 /* 800839EC  D0 1E 00 38 */	stfs f0, 0x38(r30)
 /* 800839F0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800839F4  D0 1E 00 3C */	stfs f0, 0x3c(r30)

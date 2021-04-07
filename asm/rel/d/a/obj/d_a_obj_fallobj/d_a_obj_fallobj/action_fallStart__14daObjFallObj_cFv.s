@@ -5,8 +5,8 @@ lbl_80BE42C0:
 /* 80BE42CC  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80BE42D0  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80BE42D4  7C 7E 1B 78 */	mr r30, r3
-/* 80BE42D8  3C 60 80 BE */	lis r3, lit_3677@ha
-/* 80BE42DC  3B E3 4A B0 */	addi r31, r3, lit_3677@l
+/* 80BE42D8  3C 60 80 BE */	lis r3, lit_3677@ha /* 0x80BE4AB0@ha */
+/* 80BE42DC  3B E3 4A B0 */	addi r31, r3, lit_3677@l /* 0x80BE4AB0@l */
 /* 80BE42E0  38 7E 05 D9 */	addi r3, r30, 0x5d9
 /* 80BE42E4  48 00 07 A9 */	bl func_80BE4A8C
 /* 80BE42E8  88 1E 05 D9 */	lbz r0, 0x5d9(r30)
@@ -41,13 +41,13 @@ lbl_80BE4348:
 /* 80BE4358  C0 1F 00 48 */	lfs f0, 0x48(r31)
 /* 80BE435C  D0 01 00 1C */	stfs f0, 0x1c(r1)
 /* 80BE4360  D0 21 00 20 */	stfs f1, 0x20(r1)
-/* 80BE4364  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BE4368  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80BE4364  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BE4368  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BE436C  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 80BE4370  38 80 00 08 */	li r4, 8
 /* 80BE4374  38 A0 00 1F */	li r5, 0x1f
 /* 80BE4378  38 C1 00 18 */	addi r6, r1, 0x18
-/* 80BE437C  4B 48 B6 A8 */	b StartShock__12dVibration_cFii4cXyz
+/* 80BE437C  4B 48 B6 A9 */	bl StartShock__12dVibration_cFii4cXyz
 /* 80BE4380  48 00 00 48 */	b lbl_80BE43C8
 lbl_80BE4384:
 /* 80BE4384  28 00 00 00 */	cmplwi r0, 0
@@ -57,13 +57,13 @@ lbl_80BE4384:
 /* 80BE4394  C0 1F 00 48 */	lfs f0, 0x48(r31)
 /* 80BE4398  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80BE439C  D0 21 00 14 */	stfs f1, 0x14(r1)
-/* 80BE43A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BE43A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80BE43A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BE43A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BE43A8  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 80BE43AC  38 80 00 04 */	li r4, 4
 /* 80BE43B0  38 A0 00 1E */	li r5, 0x1e
 /* 80BE43B4  38 C1 00 0C */	addi r6, r1, 0xc
-/* 80BE43B8  4B 48 B7 58 */	b StartQuake__12dVibration_cFii4cXyz
+/* 80BE43B8  4B 48 B7 59 */	bl StartQuake__12dVibration_cFii4cXyz
 /* 80BE43BC  38 00 00 01 */	li r0, 1
 /* 80BE43C0  98 1E 05 F1 */	stb r0, 0x5f1(r30)
 /* 80BE43C4  98 1E 05 F0 */	stb r0, 0x5f0(r30)

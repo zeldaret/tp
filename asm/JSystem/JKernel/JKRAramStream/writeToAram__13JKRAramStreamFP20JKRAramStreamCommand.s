@@ -69,8 +69,8 @@ lbl_802D3DC4:
 /* 802D3DD0  7D 89 03 A6 */	mtctr r12
 /* 802D3DD4  4E 80 04 21 */	bctrl 
 lbl_802D3DD8:
-/* 802D3DD8  3C 60 80 3A */	lis r3, JKRAramStream__stringBase0@ha
-/* 802D3DDC  38 63 D1 20 */	addi r3, r3, JKRAramStream__stringBase0@l
+/* 802D3DD8  3C 60 80 3A */	lis r3, JKRAramStream__stringBase0@ha /* 0x8039D120@ha */
+/* 802D3DDC  38 63 D1 20 */	addi r3, r3, JKRAramStream__stringBase0@l /* 0x8039D120@l */
 /* 802D3DE0  38 80 00 AC */	li r4, 0xac
 /* 802D3DE4  38 A3 00 12 */	addi r5, r3, 0x12
 /* 802D3DE8  38 C3 00 15 */	addi r6, r3, 0x15

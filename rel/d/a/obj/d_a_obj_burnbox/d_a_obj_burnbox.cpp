@@ -49,9 +49,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -115,11 +115,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void daObjBurnBox_create1st(daObjBurnBox_c*);
-static void daObjBurnBox_MoveBGDelete(daObjBurnBox_c*);
-static void daObjBurnBox_MoveBGExecute(daObjBurnBox_c*);
-static void daObjBurnBox_MoveBGDraw(daObjBurnBox_c*);
-
 extern "C" void initBaseMtx__14daObjBurnBox_cFv();
 extern "C" void setBaseMtx__14daObjBurnBox_cFv();
 extern "C" void Create__14daObjBurnBox_cFv();
@@ -134,21 +129,11 @@ extern "C" void __dt__8cM3dGAabFv();
 extern "C" static void daObjBurnBox_MoveBGDelete__FP14daObjBurnBox_c();
 extern "C" static void daObjBurnBox_MoveBGExecute__FP14daObjBurnBox_c();
 extern "C" static void daObjBurnBox_MoveBGDraw__FP14daObjBurnBox_c();
-extern "C" extern void* g_profile_Obj_BurnBox[12];
+extern "C" extern char const* const d_a_obj_burnbox__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
@@ -200,7 +185,7 @@ extern "C" extern u8 j3dSys[284];
 // Declarations:
 //
 
-/* 8046E698-8046E6D4 003C+00 s=1 e=0 z=0  None .text      initBaseMtx__14daObjBurnBox_cFv */
+/* 8046E698-8046E6D4 000078 003C+00 1/1 0/0 0/0 .text            initBaseMtx__14daObjBurnBox_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -210,7 +195,7 @@ asm void daObjBurnBox_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 8046E6D4-8046E738 0064+00 s=2 e=0 z=0  None .text      setBaseMtx__14daObjBurnBox_cFv */
+/* 8046E6D4-8046E738 0000B4 0064+00 2/2 0/0 0/0 .text            setBaseMtx__14daObjBurnBox_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -221,17 +206,21 @@ asm void daObjBurnBox_c::setBaseMtx() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 8046EE48-8046EE54 000C+00 s=2 e=0 z=0  None .rodata    l_bmd */
+/* 8046EE48-8046EE54 000000 000C+00 2/2 0/0 0/0 .rodata          l_bmd */
 SECTION_RODATA static u8 const l_bmd[12] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x03,
 };
+COMPILER_STRIP_GATE(8046EE48, &l_bmd);
 
-/* 8046EE54-8046EE60 000C+00 s=1 e=0 z=0  None .rodata    l_heap_size */
+/* 8046EE54-8046EE60 00000C 000C+00 1/1 0/0 0/0 .rodata          l_heap_size */
 SECTION_RODATA static u8 const l_heap_size[12] = {
     0x00, 0x00, 0x08, 0x20, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x08, 0x20,
 };
+COMPILER_STRIP_GATE(8046EE54, &l_heap_size);
 
-/* 8046EE60-8046EEA4 0044+00 s=1 e=0 z=0  None .rodata    l_cyl_src */
+/* 8046EE60-8046EEA4 000018 0044+00 0/1 0/0 0/0 .rodata          l_cyl_src */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const l_cyl_src[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x1E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1E, 0x00, 0x00, 0x00, 0x79,
@@ -239,8 +228,12 @@ SECTION_RODATA static u8 const l_cyl_src[68] = {
     0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(8046EE60, &l_cyl_src);
+#pragma pop
 
-/* 8046EEA4-8046EEB0 000A+02 s=1 e=0 z=0  None .rodata    particle_id$3649 */
+/* 8046EEA4-8046EEB0 00005C 000A+02 0/1 0/0 0/0 .rodata          particle_id$3649 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const particle_id[10 + 2 /* padding */] = {
     0x85,
     0x26,
@@ -256,20 +249,38 @@ SECTION_RODATA static u8 const particle_id[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8046EEA4, &particle_id);
+#pragma pop
 
-/* 8046EEB0-8046EEB4 0004+00 s=1 e=0 z=0  None .rodata    @3684 */
-SECTION_RODATA static u32 const lit_3684 = 0x42160000;
+/* 8046EEB0-8046EEB4 000068 0004+00 0/1 0/0 0/0 .rodata          @3684 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3684 = 37.5f;
+COMPILER_STRIP_GATE(8046EEB0, &lit_3684);
+#pragma pop
 
-/* 8046EEB4-8046EEB8 0004+00 s=1 e=0 z=0  None .rodata    @3685 */
-SECTION_RODATA static u32 const lit_3685 = 0x3F000000;
+/* 8046EEB4-8046EEB8 00006C 0004+00 0/1 0/0 0/0 .rodata          @3685 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3685 = 0.5f;
+COMPILER_STRIP_GATE(8046EEB4, &lit_3685);
+#pragma pop
 
-/* 8046EEB8-8046EEBC 0004+00 s=1 e=0 z=0  None .rodata    @3686 */
-SECTION_RODATA static u32 const lit_3686 = 0x42960000;
+/* 8046EEB8-8046EEBC 000070 0004+00 0/1 0/0 0/0 .rodata          @3686 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3686 = 75.0f;
+COMPILER_STRIP_GATE(8046EEB8, &lit_3686);
+#pragma pop
 
-/* 8046EEBC-8046EEC0 0004+00 s=1 e=0 z=0  None .rodata    @3687 */
-SECTION_RODATA static u32 const lit_3687 = 0x3F800000;
+/* 8046EEBC-8046EEC0 000074 0004+00 0/1 0/0 0/0 .rodata          @3687 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3687 = 1.0f;
+COMPILER_STRIP_GATE(8046EEBC, &lit_3687);
+#pragma pop
 
-/* 8046E738-8046E8BC 0184+00 s=1 e=0 z=0  None .text      Create__14daObjBurnBox_cFv */
+/* 8046E738-8046E8BC 000118 0184+00 1/0 0/0 0/0 .text            Create__14daObjBurnBox_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -280,40 +291,14 @@ asm void daObjBurnBox_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 8046EEC0-8046EED4 0014+00 s=1 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const struct_8046EEC0[20] = {
-    /* 8046EEC0 0009 stringBase_8046EEC0 @stringBase0 */
-    0x4B,
-    0x6B,
-    0x69,
-    0x62,
-    0x61,
-    0x5F,
-    0x30,
-    0x30,
-    0x00,
-    /* 8046EEC9 000B data_8046EEC9 None */
-    0x4A,
-    0x5F,
-    0x74,
-    0x61,
-    0x72,
-    0x75,
-    0x30,
-    0x30,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 8046EED4-8046EEE0 000C+00 s=3 e=0 z=0  None .data      l_arcName */
+/* 8046EED4-8046EEE0 -00001 000C+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName[3] = {
-    (void*)(((char*)&struct_8046EEC0) + 0x0) /* @stringBase0 */,
-    (void*)(((char*)&struct_8046EEC0) + 0x0) /* @stringBase0 */,
-    (void*)(((char*)&struct_8046EEC0) + 0x9) /* None */,
+    (void*)&d_a_obj_burnbox__stringBase0,
+    (void*)&d_a_obj_burnbox__stringBase0,
+    (void*)(((char*)&d_a_obj_burnbox__stringBase0) + 0x9),
 };
 
-/* 8046E8BC-8046E93C 0080+00 s=1 e=0 z=0  None .text      CreateHeap__14daObjBurnBox_cFv */
+/* 8046E8BC-8046E93C 00029C 0080+00 1/0 0/0 0/0 .text            CreateHeap__14daObjBurnBox_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -323,7 +308,7 @@ asm void daObjBurnBox_c::CreateHeap() {
 }
 #pragma pop
 
-/* 8046E93C-8046E9EC 00B0+00 s=1 e=0 z=0  None .text      create1st__14daObjBurnBox_cFv */
+/* 8046E93C-8046E9EC 00031C 00B0+00 1/1 0/0 0/0 .text            create1st__14daObjBurnBox_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -333,7 +318,8 @@ asm void daObjBurnBox_c::create1st() {
 }
 #pragma pop
 
-/* 8046E9EC-8046EABC 00D0+00 s=1 e=0 z=0  None .text      Execute__14daObjBurnBox_cFPPA3_A4_f */
+/* 8046E9EC-8046EABC 0003CC 00D0+00 1/0 0/0 0/0 .text            Execute__14daObjBurnBox_cFPPA3_A4_f
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -343,7 +329,7 @@ asm void daObjBurnBox_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 8046EABC-8046EC10 0154+00 s=1 e=0 z=0  None .text      Draw__14daObjBurnBox_cFv */
+/* 8046EABC-8046EC10 00049C 0154+00 1/0 0/0 0/0 .text            Draw__14daObjBurnBox_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -353,7 +339,7 @@ asm void daObjBurnBox_c::Draw() {
 }
 #pragma pop
 
-/* 8046EC10-8046EC50 0040+00 s=1 e=0 z=0  None .text      Delete__14daObjBurnBox_cFv */
+/* 8046EC10-8046EC50 0005F0 0040+00 1/0 0/0 0/0 .text            Delete__14daObjBurnBox_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -364,7 +350,7 @@ asm void daObjBurnBox_c::Delete() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 8046EEE0-8046EF00 0020+00 s=1 e=0 z=0  None .data      daObjBurnBox_METHODS */
+/* 8046EEE0-8046EF00 -00001 0020+00 1/0 0/0 0/0 .data            daObjBurnBox_METHODS */
 SECTION_DATA static void* daObjBurnBox_METHODS[8] = {
     (void*)daObjBurnBox_create1st__FP14daObjBurnBox_c,
     (void*)daObjBurnBox_MoveBGDelete__FP14daObjBurnBox_c,
@@ -376,8 +362,8 @@ SECTION_DATA static void* daObjBurnBox_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 8046EF00-8046EF30 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_BurnBox */
-SECTION_DATA void* g_profile_Obj_BurnBox[12] = {
+/* 8046EF00-8046EF30 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_BurnBox */
+SECTION_DATA extern void* g_profile_Obj_BurnBox[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00DC0000, (void*)&g_fpcLf_Method,
     (void*)0x00000740, (void*)NULL,
@@ -386,23 +372,23 @@ SECTION_DATA void* g_profile_Obj_BurnBox[12] = {
     (void*)0x00040100, (void*)0x000E0000,
 };
 
-/* 8046EF30-8046EF3C 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGCyl */
-SECTION_DATA static void* __vt__8cM3dGCyl[3] = {
-    (void*)NULL,
+/* 8046EF30-8046EF3C 00005C 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGCyl */
+SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGCylFv,
 };
 
-/* 8046EF3C-8046EF48 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGAab */
-SECTION_DATA static void* __vt__8cM3dGAab[3] = {
-    (void*)NULL,
+/* 8046EF3C-8046EF48 000068 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGAab */
+SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGAabFv,
 };
 
-/* 8046EF48-8046EF70 0028+00 s=1 e=0 z=0  None .data      __vt__14daObjBurnBox_c */
-SECTION_DATA static void* __vt__14daObjBurnBox_c[10] = {
-    (void*)NULL,
+/* 8046EF48-8046EF70 000074 0028+00 1/1 0/0 0/0 .data            __vt__14daObjBurnBox_c */
+SECTION_DATA extern void* __vt__14daObjBurnBox_c[10] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__14daObjBurnBox_cFv,
     (void*)Create__14daObjBurnBox_cFv,
@@ -414,18 +400,18 @@ SECTION_DATA static void* __vt__14daObjBurnBox_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 8046EC50-8046ED44 00F4+00 s=1 e=0 z=0  None .text      daObjBurnBox_create1st__FP14daObjBurnBox_c
+/* 8046EC50-8046ED44 000630 00F4+00 1/0 0/0 0/0 .text daObjBurnBox_create1st__FP14daObjBurnBox_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjBurnBox_create1st(daObjBurnBox_c* param_0) {
+static asm void daObjBurnBox_create1st(daObjBurnBox_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_burnbox/d_a_obj_burnbox/daObjBurnBox_create1st__FP14daObjBurnBox_c.s"
 }
 #pragma pop
 
-/* 8046ED44-8046ED8C 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGCylFv */
+/* 8046ED44-8046ED8C 000724 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -435,7 +421,7 @@ asm cM3dGCyl::~cM3dGCyl() {
 }
 #pragma pop
 
-/* 8046ED8C-8046EDD4 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGAabFv */
+/* 8046ED8C-8046EDD4 00076C 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -445,35 +431,43 @@ asm cM3dGAab::~cM3dGAab() {
 }
 #pragma pop
 
-/* 8046EDD4-8046EDF4 0020+00 s=1 e=0 z=0  None .text daObjBurnBox_MoveBGDelete__FP14daObjBurnBox_c
- */
+/* 8046EDD4-8046EDF4 0007B4 0020+00 1/0 0/0 0/0 .text
+ * daObjBurnBox_MoveBGDelete__FP14daObjBurnBox_c                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjBurnBox_MoveBGDelete(daObjBurnBox_c* param_0) {
+static asm void daObjBurnBox_MoveBGDelete(daObjBurnBox_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_burnbox/d_a_obj_burnbox/daObjBurnBox_MoveBGDelete__FP14daObjBurnBox_c.s"
 }
 #pragma pop
 
-/* 8046EDF4-8046EE14 0020+00 s=1 e=0 z=0  None .text
+/* 8046EDF4-8046EE14 0007D4 0020+00 1/0 0/0 0/0 .text
  * daObjBurnBox_MoveBGExecute__FP14daObjBurnBox_c               */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjBurnBox_MoveBGExecute(daObjBurnBox_c* param_0) {
+static asm void daObjBurnBox_MoveBGExecute(daObjBurnBox_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_burnbox/d_a_obj_burnbox/daObjBurnBox_MoveBGExecute__FP14daObjBurnBox_c.s"
 }
 #pragma pop
 
-/* 8046EE14-8046EE40 002C+00 s=1 e=0 z=0  None .text daObjBurnBox_MoveBGDraw__FP14daObjBurnBox_c
+/* 8046EE14-8046EE40 0007F4 002C+00 1/0 0/0 0/0 .text daObjBurnBox_MoveBGDraw__FP14daObjBurnBox_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjBurnBox_MoveBGDraw(daObjBurnBox_c* param_0) {
+static asm void daObjBurnBox_MoveBGDraw(daObjBurnBox_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_burnbox/d_a_obj_burnbox/daObjBurnBox_MoveBGDraw__FP14daObjBurnBox_c.s"
 }
+#pragma pop
+
+/* 8046EEC0-8046EED2 000078 0012+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8046EEC0 = "Kkiba_00";
+SECTION_DEAD static char const* const stringBase_8046EEC9 = "J_taru00";
 #pragma pop

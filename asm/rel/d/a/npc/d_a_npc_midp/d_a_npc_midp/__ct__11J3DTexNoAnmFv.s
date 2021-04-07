@@ -1,6 +1,6 @@
 lbl_80A713F0:
-/* 80A713F0  3C 80 80 A7 */	lis r4, __vt__11J3DTexNoAnm@ha
-/* 80A713F4  38 04 3B DC */	addi r0, r4, __vt__11J3DTexNoAnm@l
+/* 80A713F0  3C 80 80 A7 */	lis r4, __vt__11J3DTexNoAnm@ha /* 0x80A73BDC@ha */
+/* 80A713F4  38 04 3B DC */	addi r0, r4, __vt__11J3DTexNoAnm@l /* 0x80A73BDC@l */
 /* 80A713F8  90 03 00 00 */	stw r0, 0(r3)
 /* 80A713FC  38 80 00 00 */	li r4, 0
 /* 80A71400  B0 83 00 04 */	sth r4, 4(r3)

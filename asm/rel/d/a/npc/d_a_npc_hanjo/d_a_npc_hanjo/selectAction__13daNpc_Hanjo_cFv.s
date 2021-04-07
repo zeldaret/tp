@@ -5,10 +5,10 @@ lbl_809FB59C:
 /* 809FB5A8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 809FB5AC  93 C1 00 08 */	stw r30, 8(r1)
 /* 809FB5B0  7C 7F 1B 78 */	mr r31, r3
-/* 809FB5B4  3C 60 80 A0 */	lis r3, cNullVec__6Z2Calc@ha
-/* 809FB5B8  3B C3 09 40 */	addi r30, r3, cNullVec__6Z2Calc@l
-/* 809FB5BC  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 809FB5C0  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 809FB5B4  3C 60 80 A0 */	lis r3, cNullVec__6Z2Calc@ha /* 0x80A00940@ha */
+/* 809FB5B8  3B C3 09 40 */	addi r30, r3, cNullVec__6Z2Calc@l /* 0x80A00940@l */
+/* 809FB5BC  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 809FB5C0  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 809FB5C4  80 64 00 00 */	lwz r3, 0(r4)
 /* 809FB5C8  80 04 00 04 */	lwz r0, 4(r4)
 /* 809FB5CC  90 7F 16 E0 */	stw r3, 0x16e0(r31)
@@ -30,23 +30,23 @@ lbl_809FB5F8:
 /* 809FB608  80 1E 07 40 */	lwz r0, 0x740(r30)
 /* 809FB60C  90 1F 16 E8 */	stw r0, 0x16e8(r31)
 /* 809FB610  38 60 00 AD */	li r3, 0xad
-/* 809FB614  4B 75 14 98 */	b daNpcT_chkEvtBit__FUl
+/* 809FB614  4B 75 14 99 */	bl daNpcT_chkEvtBit__FUl
 /* 809FB618  2C 03 00 00 */	cmpwi r3, 0
 /* 809FB61C  40 82 00 94 */	bne lbl_809FB6B0
 /* 809FB620  38 60 00 AB */	li r3, 0xab
-/* 809FB624  4B 75 14 88 */	b daNpcT_chkEvtBit__FUl
+/* 809FB624  4B 75 14 89 */	bl daNpcT_chkEvtBit__FUl
 /* 809FB628  2C 03 00 00 */	cmpwi r3, 0
 /* 809FB62C  40 82 00 84 */	bne lbl_809FB6B0
 /* 809FB630  38 60 00 B7 */	li r3, 0xb7
-/* 809FB634  4B 75 14 78 */	b daNpcT_chkEvtBit__FUl
+/* 809FB634  4B 75 14 79 */	bl daNpcT_chkEvtBit__FUl
 /* 809FB638  2C 03 00 00 */	cmpwi r3, 0
 /* 809FB63C  40 82 00 74 */	bne lbl_809FB6B0
 /* 809FB640  38 60 02 35 */	li r3, 0x235
-/* 809FB644  4B 75 14 68 */	b daNpcT_chkEvtBit__FUl
+/* 809FB644  4B 75 14 69 */	bl daNpcT_chkEvtBit__FUl
 /* 809FB648  2C 03 00 00 */	cmpwi r3, 0
 /* 809FB64C  40 82 00 14 */	bne lbl_809FB660
 /* 809FB650  38 60 00 18 */	li r3, 0x18
-/* 809FB654  4B 75 14 58 */	b daNpcT_chkEvtBit__FUl
+/* 809FB654  4B 75 14 59 */	bl daNpcT_chkEvtBit__FUl
 /* 809FB658  2C 03 00 00 */	cmpwi r3, 0
 /* 809FB65C  41 82 00 54 */	beq lbl_809FB6B0
 lbl_809FB660:

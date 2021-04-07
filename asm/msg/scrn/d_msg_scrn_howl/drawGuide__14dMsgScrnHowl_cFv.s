@@ -23,8 +23,8 @@ lbl_802427A8:
 /* 802427FC  39 61 01 20 */	addi r11, r1, 0x120
 /* 80242800  48 11 F9 D5 */	bl _savegpr_27
 /* 80242804  7C 7C 1B 78 */	mr r28, r3
-/* 80242808  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024280C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80242808  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024280C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80242810  83 63 5F 50 */	lwz r27, 0x5f50(r3)
 /* 80242814  80 7C 01 28 */	lwz r3, 0x128(r28)
 /* 80242818  80 1C 01 2C */	lwz r0, 0x12c(r28)
@@ -77,8 +77,8 @@ lbl_802427A8:
 /* 802428D4  FF C0 08 90 */	fmr f30, f1
 /* 802428D8  3B C0 00 00 */	li r30, 0
 /* 802428DC  3B A0 00 00 */	li r29, 0
-/* 802428E0  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha
-/* 802428E4  3B E3 02 8C */	addi r31, r3, g_MsgObject_HIO_c@l
+/* 802428E0  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 802428E4  3B E3 02 8C */	addi r31, r3, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 802428E8  C3 E2 B2 50 */	lfs f31, lit_4427(r2)
 lbl_802428EC:
 /* 802428EC  FF 20 F0 90 */	fmr f25, f30

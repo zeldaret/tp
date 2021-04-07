@@ -10,14 +10,14 @@ lbl_80AD9E04:
 /* 80AD9E24  54 83 06 3E */	clrlwi r3, r4, 0x18
 /* 80AD9E28  88 07 04 E2 */	lbz r0, 0x4e2(r7)
 /* 80AD9E2C  7C 04 07 74 */	extsb r4, r0
-/* 80AD9E30  4B 57 79 BC */	b dPath_GetRoomPath__Fii
+/* 80AD9E30  4B 57 79 BD */	bl dPath_GetRoomPath__Fii
 /* 80AD9E34  28 03 00 00 */	cmplwi r3, 0
 /* 80AD9E38  40 82 00 0C */	bne lbl_80AD9E44
 /* 80AD9E3C  38 60 00 00 */	li r3, 0
 /* 80AD9E40  48 00 00 38 */	b lbl_80AD9E78
 lbl_80AD9E44:
 /* 80AD9E44  7F C4 F3 78 */	mr r4, r30
-/* 80AD9E48  4B 57 79 68 */	b dPath_GetPnt__FPC5dPathi
+/* 80AD9E48  4B 57 79 69 */	bl dPath_GetPnt__FPC5dPathi
 /* 80AD9E4C  28 03 00 00 */	cmplwi r3, 0
 /* 80AD9E50  40 82 00 0C */	bne lbl_80AD9E5C
 /* 80AD9E54  38 60 00 00 */	li r3, 0

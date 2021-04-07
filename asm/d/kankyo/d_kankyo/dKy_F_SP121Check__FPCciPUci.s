@@ -17,8 +17,8 @@ lbl_801AC5BC:
 /* 801AC5F8  98 1C 00 00 */	stb r0, 0(r28)
 lbl_801AC5FC:
 /* 801AC5FC  7F 43 D3 78 */	mr r3, r26
-/* 801AC600  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha
-/* 801AC604  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l
+/* 801AC600  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha /* 0x80394C6C@ha */
+/* 801AC604  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l /* 0x80394C6C@l */
 /* 801AC608  38 84 01 92 */	addi r4, r4, 0x192
 /* 801AC60C  48 1B C3 89 */	bl strcmp
 /* 801AC610  2C 03 00 00 */	cmpwi r3, 0
@@ -57,16 +57,16 @@ lbl_801AC678:
 /* 801AC67C  48 00 00 40 */	b lbl_801AC6BC
 lbl_801AC680:
 /* 801AC680  7F 43 D3 78 */	mr r3, r26
-/* 801AC684  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha
-/* 801AC688  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l
+/* 801AC684  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha /* 0x80394C6C@ha */
+/* 801AC688  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l /* 0x80394C6C@l */
 /* 801AC68C  38 84 02 69 */	addi r4, r4, 0x269
 /* 801AC690  48 1B C3 05 */	bl strcmp
 /* 801AC694  2C 03 00 00 */	cmpwi r3, 0
 /* 801AC698  40 82 00 24 */	bne lbl_801AC6BC
 /* 801AC69C  2C 1B 00 01 */	cmpwi r27, 1
 /* 801AC6A0  40 82 00 1C */	bne lbl_801AC6BC
-/* 801AC6A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801AC6A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801AC6A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801AC6A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801AC6AC  88 03 4E 0B */	lbz r0, 0x4e0b(r3)
 /* 801AC6B0  2C 00 00 0D */	cmpwi r0, 0xd
 /* 801AC6B4  40 82 00 08 */	bne lbl_801AC6BC
@@ -77,8 +77,8 @@ lbl_801AC6BC:
 /* 801AC6C4  88 03 00 04 */	lbz r0, 4(r3)
 /* 801AC6C8  28 00 00 00 */	cmplwi r0, 0
 /* 801AC6CC  40 82 00 24 */	bne lbl_801AC6F0
-/* 801AC6D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801AC6D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801AC6D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801AC6D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801AC6D8  38 63 07 F0 */	addi r3, r3, 0x7f0
 /* 801AC6DC  38 80 45 10 */	li r4, 0x4510
 /* 801AC6E0  4B E8 82 DD */	bl isEventBit__11dSv_event_cCFUs

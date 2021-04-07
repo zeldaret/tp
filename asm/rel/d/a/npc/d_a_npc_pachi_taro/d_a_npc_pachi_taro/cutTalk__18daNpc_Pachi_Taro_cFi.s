@@ -3,26 +3,26 @@ lbl_80A9EFC0:
 /* 80A9EFC4  7C 08 02 A6 */	mflr r0
 /* 80A9EFC8  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80A9EFCC  39 61 00 30 */	addi r11, r1, 0x30
-/* 80A9EFD0  4B 8C 32 08 */	b _savegpr_28
+/* 80A9EFD0  4B 8C 32 09 */	bl _savegpr_28
 /* 80A9EFD4  7C 7C 1B 78 */	mr r28, r3
 /* 80A9EFD8  7C 9D 23 78 */	mr r29, r4
-/* 80A9EFDC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80A9EFE0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80A9EFDC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80A9EFE0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80A9EFE4  3B C3 4F F8 */	addi r30, r3, 0x4ff8
 /* 80A9EFE8  7F C3 F3 78 */	mr r3, r30
-/* 80A9EFEC  3C A0 80 AA */	lis r5, struct_80AA1814+0x0@ha
-/* 80A9EFF0  38 A5 18 14 */	addi r5, r5, struct_80AA1814+0x0@l
+/* 80A9EFEC  3C A0 80 AA */	lis r5, d_a_npc_pachi_taro__stringBase0@ha /* 0x80AA1814@ha */
+/* 80A9EFF0  38 A5 18 14 */	addi r5, r5, d_a_npc_pachi_taro__stringBase0@l /* 0x80AA1814@l */
 /* 80A9EFF4  38 A5 00 EF */	addi r5, r5, 0xef
 /* 80A9EFF8  38 C0 00 03 */	li r6, 3
-/* 80A9EFFC  4B 5A 90 F0 */	b getMySubstanceP__16dEvent_manager_cFiPCci
+/* 80A9EFFC  4B 5A 90 F1 */	bl getMySubstanceP__16dEvent_manager_cFiPCci
 /* 80A9F000  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80A9F004  40 82 00 0C */	bne lbl_80A9F010
 /* 80A9F008  38 60 00 01 */	li r3, 1
 /* 80A9F00C  48 00 00 B8 */	b lbl_80A9F0C4
 lbl_80A9F010:
 /* 80A9F010  38 A1 00 08 */	addi r5, r1, 8
-/* 80A9F014  3C 60 80 AA */	lis r3, lit_5615@ha
-/* 80A9F018  38 63 17 58 */	addi r3, r3, lit_5615@l
+/* 80A9F014  3C 60 80 AA */	lis r3, lit_5615@ha /* 0x80AA1758@ha */
+/* 80A9F018  38 63 17 58 */	addi r3, r3, lit_5615@l /* 0x80AA1758@l */
 /* 80A9F01C  38 83 FF FC */	addi r4, r3, -4
 /* 80A9F020  38 00 00 02 */	li r0, 2
 /* 80A9F024  7C 09 03 A6 */	mtctr r0
@@ -50,7 +50,7 @@ lbl_80A9F058:
 /* 80A9F074  38 A1 00 0C */	addi r5, r1, 0xc
 /* 80A9F078  7C A5 00 2E */	lwzx r5, r5, r0
 /* 80A9F07C  38 C0 00 03 */	li r6, 3
-/* 80A9F080  4B 5A 90 6C */	b getMySubstanceP__16dEvent_manager_cFiPCci
+/* 80A9F080  4B 5A 90 6D */	bl getMySubstanceP__16dEvent_manager_cFiPCci
 /* 80A9F084  28 03 00 00 */	cmplwi r3, 0
 /* 80A9F088  41 82 00 0C */	beq lbl_80A9F094
 /* 80A9F08C  80 03 00 00 */	lwz r0, 0(r3)
@@ -58,7 +58,7 @@ lbl_80A9F058:
 lbl_80A9F094:
 /* 80A9F094  7F C3 F3 78 */	mr r3, r30
 /* 80A9F098  7F A4 EB 78 */	mr r4, r29
-/* 80A9F09C  4B 5A 8C B0 */	b getIsAddvance__16dEvent_manager_cFi
+/* 80A9F09C  4B 5A 8C B1 */	bl getIsAddvance__16dEvent_manager_cFi
 /* 80A9F0A0  2C 03 00 00 */	cmpwi r3, 0
 /* 80A9F0A4  41 82 00 10 */	beq lbl_80A9F0B4
 /* 80A9F0A8  7F 83 E3 78 */	mr r3, r28
@@ -71,7 +71,7 @@ lbl_80A9F0B4:
 /* 80A9F0C0  48 00 00 C9 */	bl _cutTalk_Main__18daNpc_Pachi_Taro_cFRCiRCi
 lbl_80A9F0C4:
 /* 80A9F0C4  39 61 00 30 */	addi r11, r1, 0x30
-/* 80A9F0C8  4B 8C 31 5C */	b _restgpr_28
+/* 80A9F0C8  4B 8C 31 5D */	bl _restgpr_28
 /* 80A9F0CC  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80A9F0D0  7C 08 03 A6 */	mtlr r0
 /* 80A9F0D4  38 21 00 30 */	addi r1, r1, 0x30

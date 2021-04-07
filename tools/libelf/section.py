@@ -6,6 +6,7 @@ from . import elf
 from .util import *
 
 class Section:
+    id: int
     header: elf.SectionHeader
     name: Optional[str]
     data: bytearray

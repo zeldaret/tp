@@ -25,21 +25,21 @@ lbl_802AB310:
 /* 802AB328  88 0D 8D C8 */	lbz r0, data_80451348(r13)
 /* 802AB32C  7C 00 07 75 */	extsb. r0, r0
 /* 802AB330  40 82 00 34 */	bne lbl_802AB364
-/* 802AB334  3C 60 80 43 */	lis r3, data_804341C4@ha
-/* 802AB338  38 63 41 C4 */	addi r3, r3, data_804341C4@l
+/* 802AB334  3C 60 80 43 */	lis r3, data_804341C4@ha /* 0x804341C4@ha */
+/* 802AB338  38 63 41 C4 */	addi r3, r3, data_804341C4@l /* 0x804341C4@l */
 /* 802AB33C  4B FE 55 0D */	bl __ct__17JASGenericMemPoolFv
-/* 802AB340  3C 60 80 43 */	lis r3, data_804341C4@ha
-/* 802AB344  38 63 41 C4 */	addi r3, r3, data_804341C4@l
-/* 802AB348  3C 80 80 2B */	lis r4, func_802AB200@ha
-/* 802AB34C  38 84 B2 00 */	addi r4, r4, func_802AB200@l
-/* 802AB350  3C A0 80 43 */	lis r5, lit_632@ha
-/* 802AB354  38 A5 41 B8 */	addi r5, r5, lit_632@l
+/* 802AB340  3C 60 80 43 */	lis r3, data_804341C4@ha /* 0x804341C4@ha */
+/* 802AB344  38 63 41 C4 */	addi r3, r3, data_804341C4@l /* 0x804341C4@l */
+/* 802AB348  3C 80 80 2B */	lis r4, func_802AB200@ha /* 0x802AB200@ha */
+/* 802AB34C  38 84 B2 00 */	addi r4, r4, func_802AB200@l /* 0x802AB200@l */
+/* 802AB350  3C A0 80 43 */	lis r5, lit_632@ha /* 0x804341B8@ha */
+/* 802AB354  38 A5 41 B8 */	addi r5, r5, lit_632@l /* 0x804341B8@l */
 /* 802AB358  48 0B 68 CD */	bl __register_global_object
 /* 802AB35C  38 00 00 01 */	li r0, 1
 /* 802AB360  98 0D 8D C8 */	stb r0, data_80451348(r13)
 lbl_802AB364:
-/* 802AB364  3C 60 80 43 */	lis r3, data_804341C4@ha
-/* 802AB368  38 63 41 C4 */	addi r3, r3, data_804341C4@l
+/* 802AB364  3C 60 80 43 */	lis r3, data_804341C4@ha /* 0x804341C4@ha */
+/* 802AB368  38 63 41 C4 */	addi r3, r3, data_804341C4@l /* 0x804341C4@l */
 /* 802AB36C  38 80 00 14 */	li r4, 0x14
 /* 802AB370  4B FE 55 D9 */	bl alloc__17JASGenericMemPoolFUl
 /* 802AB374  7C 7E 1B 79 */	or. r30, r3, r3

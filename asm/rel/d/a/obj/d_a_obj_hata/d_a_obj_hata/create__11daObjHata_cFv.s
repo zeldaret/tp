@@ -21,18 +21,18 @@ lbl_80C18EAC:
 /* 80C18EB4  41 82 00 08 */	beq lbl_80C18EBC
 /* 80C18EB8  38 7F 05 68 */	addi r3, r31, 0x568
 lbl_80C18EBC:
-/* 80C18EBC  3C 80 80 C2 */	lis r4, l_arcName@ha
-/* 80C18EC0  38 84 94 C8 */	addi r4, r4, l_arcName@l
+/* 80C18EBC  3C 80 80 C2 */	lis r4, l_arcName@ha /* 0x80C194C8@ha */
+/* 80C18EC0  38 84 94 C8 */	addi r4, r4, l_arcName@l /* 0x80C194C8@l */
 /* 80C18EC4  80 84 00 00 */	lwz r4, 0(r4)
-/* 80C18EC8  4B 41 3F F4 */	b dComIfG_resLoad__FP30request_of_phase_process_classPCc
+/* 80C18EC8  4B 41 3F F5 */	bl dComIfG_resLoad__FP30request_of_phase_process_classPCc
 /* 80C18ECC  7C 7E 1B 78 */	mr r30, r3
 /* 80C18ED0  2C 1E 00 04 */	cmpwi r30, 4
 /* 80C18ED4  40 82 00 98 */	bne lbl_80C18F6C
 /* 80C18ED8  7F E3 FB 78 */	mr r3, r31
-/* 80C18EDC  3C 80 80 C2 */	lis r4, daObjHata_c_createHeap__FP10fopAc_ac_c@ha
-/* 80C18EE0  38 84 8B B8 */	addi r4, r4, daObjHata_c_createHeap__FP10fopAc_ac_c@l
+/* 80C18EDC  3C 80 80 C2 */	lis r4, daObjHata_c_createHeap__FP10fopAc_ac_c@ha /* 0x80C18BB8@ha */
+/* 80C18EE0  38 84 8B B8 */	addi r4, r4, daObjHata_c_createHeap__FP10fopAc_ac_c@l /* 0x80C18BB8@l */
 /* 80C18EE4  38 A0 08 70 */	li r5, 0x870
-/* 80C18EE8  4B 40 15 C8 */	b fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
+/* 80C18EE8  4B 40 15 C9 */	bl fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
 /* 80C18EEC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80C18EF0  40 82 00 0C */	bne lbl_80C18EFC
 /* 80C18EF4  38 60 00 05 */	li r3, 5
@@ -48,10 +48,10 @@ lbl_80C18EFC:
 /* 80C18F18  80 7F 05 88 */	lwz r3, 0x588(r31)
 /* 80C18F1C  80 83 00 04 */	lwz r4, 4(r3)
 /* 80C18F20  7F E3 FB 78 */	mr r3, r31
-/* 80C18F24  4B 40 16 54 */	b fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
+/* 80C18F24  4B 40 16 55 */	bl fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
 /* 80C18F28  38 A0 00 00 */	li r5, 0
-/* 80C18F2C  3C 60 80 C2 */	lis r3, nodeCallBack__FP8J3DJointi@ha
-/* 80C18F30  38 83 8B D8 */	addi r4, r3, nodeCallBack__FP8J3DJointi@l
+/* 80C18F2C  3C 60 80 C2 */	lis r3, nodeCallBack__FP8J3DJointi@ha /* 0x80C18BD8@ha */
+/* 80C18F30  38 83 8B D8 */	addi r4, r3, nodeCallBack__FP8J3DJointi@l /* 0x80C18BD8@l */
 /* 80C18F34  38 00 00 03 */	li r0, 3
 /* 80C18F38  7C 09 03 A6 */	mtctr r0
 lbl_80C18F3C:

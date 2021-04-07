@@ -3,17 +3,15 @@
 #
 
 M706_TARGET := $(BUILD_DIR)/rel/d/a/d_a_startAndGoal.plf
+M706_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_startAndGoal.lcf
+M706_MAP := $(BUILD_DIR)/rel/d/a/d_a_startAndGoal.map
 
 M706_CPP_FILES := \
-	rel/d/a/d_a_startAndGoal/executor.cpp \
-	rel/d/a/d_a_startAndGoal/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_startAndGoal/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_startAndGoal/d_a_startAndGoal.cpp \
 
 M706_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_startAndGoal/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_startAndGoal/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_startAndGoal/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_startAndGoal/d_a_startAndGoal.o \
 
 M706_LIBS := \
@@ -29,14 +27,21 @@ M706_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M706_LDSCRIPT) \
+	-unused -map $(M706_MAP) \
+	-w off \
 
 $(M706_TARGET): $(M706_O_FILES) $(M706_LIBS)
+	@echo [706] creating $(M706_TARGET)
 	@echo $(M706_LIBS) $(M706_O_FILES) > build/M706_ofiles
-	$(LD) -partial $(M706_LDFLAGS) -o $(M706_TARGET) @build/M706_ofiles
+	@python3 tools/lcf.py rel 706 --output $(M706_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M706_LDFLAGS) -o $(M706_TARGET) @build/M706_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_startAndGoal/%.o: rel/d/a/d_a_startAndGoal/%.cpp
+	@echo [706] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M706_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M706_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

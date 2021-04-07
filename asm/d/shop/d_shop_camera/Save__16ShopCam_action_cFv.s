@@ -1,6 +1,6 @@
 lbl_8019630C:
-/* 8019630C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80196310  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8019630C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80196310  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80196314  80 84 5D 74 */	lwz r4, 0x5d74(r4)
 /* 80196318  28 04 00 00 */	cmplwi r4, 0
 /* 8019631C  4D 82 00 20 */	beqlr 

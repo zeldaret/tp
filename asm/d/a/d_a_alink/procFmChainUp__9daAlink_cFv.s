@@ -21,8 +21,8 @@ lbl_800E7CC0:
 /* 800E7D0C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800E7D10  40 81 00 78 */	ble lbl_800E7D88
 /* 800E7D14  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 800E7D18  3C 60 80 39 */	lis r3, m__21daAlinkHIO_fmChain_c0@ha
-/* 800E7D1C  38 63 E7 CC */	addi r3, r3, m__21daAlinkHIO_fmChain_c0@l
+/* 800E7D18  3C 60 80 39 */	lis r3, m__21daAlinkHIO_fmChain_c0@ha /* 0x8038E7CC@ha */
+/* 800E7D1C  38 63 E7 CC */	addi r3, r3, m__21daAlinkHIO_fmChain_c0@l /* 0x8038E7CC@l */
 /* 800E7D20  C0 03 00 10 */	lfs f0, 0x10(r3)
 /* 800E7D24  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800E7D28  40 81 00 60 */	ble lbl_800E7D88

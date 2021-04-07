@@ -10,13 +10,13 @@ lbl_8012DDB4:
 /* 8012DDD4  80 1E 05 74 */	lwz r0, 0x574(r30)
 /* 8012DDD8  54 00 02 53 */	rlwinm. r0, r0, 0, 9, 9
 /* 8012DDDC  41 82 00 14 */	beq lbl_8012DDF0
-/* 8012DDE0  3C 80 80 39 */	lis r4, m__20daAlinkHIO_wlMove_c0@ha
-/* 8012DDE4  38 84 EE 28 */	addi r4, r4, m__20daAlinkHIO_wlMove_c0@l
+/* 8012DDE0  3C 80 80 39 */	lis r4, m__20daAlinkHIO_wlMove_c0@ha /* 0x8038EE28@ha */
+/* 8012DDE4  38 84 EE 28 */	addi r4, r4, m__20daAlinkHIO_wlMove_c0@l /* 0x8038EE28@l */
 /* 8012DDE8  C0 44 00 6C */	lfs f2, 0x6c(r4)
 /* 8012DDEC  48 00 00 10 */	b lbl_8012DDFC
 lbl_8012DDF0:
-/* 8012DDF0  3C 80 80 39 */	lis r4, m__23daAlinkHIO_wlMoveNoP_c0@ha
-/* 8012DDF4  38 84 EF 28 */	addi r4, r4, m__23daAlinkHIO_wlMoveNoP_c0@l
+/* 8012DDF0  3C 80 80 39 */	lis r4, m__23daAlinkHIO_wlMoveNoP_c0@ha /* 0x8038EF28@ha */
+/* 8012DDF4  38 84 EF 28 */	addi r4, r4, m__23daAlinkHIO_wlMoveNoP_c0@l /* 0x8038EF28@l */
 /* 8012DDF8  C0 44 00 10 */	lfs f2, 0x10(r4)
 lbl_8012DDFC:
 /* 8012DDFC  48 14 29 45 */	bl cLib_chaseF__FPfff
@@ -52,8 +52,8 @@ lbl_8012DE54:
 /* 8012DE6C  80 1E 06 14 */	lwz r0, 0x614(r30)
 /* 8012DE70  28 00 00 05 */	cmplwi r0, 5
 /* 8012DE74  40 82 00 1C */	bne lbl_8012DE90
-/* 8012DE78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8012DE7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8012DE78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8012DE7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8012DE80  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 8012DE84  80 9E 31 84 */	lwz r4, 0x3184(r30)
 /* 8012DE88  4B F1 A2 F5 */	bl cutEnd__16dEvent_manager_cFi

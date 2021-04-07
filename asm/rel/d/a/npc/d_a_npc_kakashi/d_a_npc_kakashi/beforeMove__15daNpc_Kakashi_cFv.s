@@ -9,7 +9,7 @@ lbl_8054C268:
 /* 8054C284  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 8054C288  28 00 00 00 */	cmplwi r0, 0
 /* 8054C28C  40 82 00 1C */	bne lbl_8054C2A8
-/* 8054C290  4B AE 37 C4 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 8054C290  4B AE 37 C5 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 8054C294  2C 03 00 00 */	cmpwi r3, 0
 /* 8054C298  40 82 00 14 */	bne lbl_8054C2AC
 /* 8054C29C  88 1E 0A 89 */	lbz r0, 0xa89(r30)

@@ -23,11 +23,11 @@ extern "C" void __ieee754_atan2();
 // Declarations:
 //
 
-/* 8036C720-8036C740 0020+00 s=0 e=6 z=0  None .text      atan2 */
+/* 8036C720-8036C740 367060 0020+00 0/0 6/6 0/0 .text            atan2 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void atan2() {
+asm void atan2() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/Math/Double_precision/w_atan2/atan2.s"
 }

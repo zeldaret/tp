@@ -7,8 +7,8 @@ lbl_8028B960:
 /* 8028B974  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8028B978  7C 9F 23 78 */	mr r31, r4
 /* 8028B97C  41 82 00 3C */	beq lbl_8028B9B8
-/* 8028B980  3C 80 80 3C */	lis r4, __vt__Q214JStudio_JStage15TAdaptor_camera@ha
-/* 8028B984  38 04 59 08 */	addi r0, r4, __vt__Q214JStudio_JStage15TAdaptor_camera@l
+/* 8028B980  3C 80 80 3C */	lis r4, __vt__Q214JStudio_JStage15TAdaptor_camera@ha /* 0x803C5908@ha */
+/* 8028B984  38 04 59 08 */	addi r0, r4, __vt__Q214JStudio_JStage15TAdaptor_camera@l /* 0x803C5908@l */
 /* 8028B988  90 1E 00 00 */	stw r0, 0(r30)
 /* 8028B98C  81 83 00 00 */	lwz r12, 0(r3)
 /* 8028B990  81 8C 00 14 */	lwz r12, 0x14(r12)

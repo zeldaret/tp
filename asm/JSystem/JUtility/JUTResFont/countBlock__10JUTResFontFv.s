@@ -52,8 +52,8 @@ lbl_802DF2F4:
 /* 802DF2FC  B0 1C 00 64 */	sth r0, 0x64(r28)
 /* 802DF300  48 00 00 10 */	b lbl_802DF310
 lbl_802DF304:
-/* 802DF304  3C 60 80 3A */	lis r3, JUTResFont__stringBase0@ha
-/* 802DF308  38 63 D4 5C */	addi r3, r3, JUTResFont__stringBase0@l
+/* 802DF304  3C 60 80 3A */	lis r3, JUTResFont__stringBase0@ha /* 0x8039D45C@ha */
+/* 802DF308  38 63 D4 5C */	addi r3, r3, JUTResFont__stringBase0@l /* 0x8039D45C@l */
 /* 802DF30C  48 00 93 3D */	bl JUTReportConsole
 lbl_802DF310:
 /* 802DF310  80 1E 00 04 */	lwz r0, 4(r30)

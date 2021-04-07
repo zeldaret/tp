@@ -16,26 +16,26 @@ lbl_802D05CC:
 /* 802D0604  3B A0 00 00 */	li r29, 0
 /* 802D0608  3B 80 00 00 */	li r28, 0
 /* 802D060C  3B 60 00 00 */	li r27, 0
-/* 802D0610  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha
-/* 802D0614  38 63 CA F0 */	addi r3, r3, JKRExpHeap__stringBase0@l
+/* 802D0610  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha /* 0x8039CAF0@ha */
+/* 802D0614  38 63 CA F0 */	addi r3, r3, JKRExpHeap__stringBase0@l /* 0x8039CAF0@l */
 /* 802D0618  38 63 01 9D */	addi r3, r3, 0x19d
 /* 802D061C  48 01 80 2D */	bl JUTReportConsole
-/* 802D0620  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha
-/* 802D0624  38 63 CA F0 */	addi r3, r3, JKRExpHeap__stringBase0@l
+/* 802D0620  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha /* 0x8039CAF0@ha */
+/* 802D0624  38 63 CA F0 */	addi r3, r3, JKRExpHeap__stringBase0@l /* 0x8039CAF0@l */
 /* 802D0628  38 63 01 D4 */	addi r3, r3, 0x1d4
 /* 802D062C  48 01 80 1D */	bl JUTReportConsole
 /* 802D0630  80 19 00 80 */	lwz r0, 0x80(r25)
 /* 802D0634  28 00 00 00 */	cmplwi r0, 0
 /* 802D0638  40 82 00 18 */	bne lbl_802D0650
-/* 802D063C  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha
-/* 802D0640  38 63 CA F0 */	addi r3, r3, JKRExpHeap__stringBase0@l
+/* 802D063C  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha /* 0x8039CAF0@ha */
+/* 802D0640  38 63 CA F0 */	addi r3, r3, JKRExpHeap__stringBase0@l /* 0x8039CAF0@l */
 /* 802D0644  38 63 01 E3 */	addi r3, r3, 0x1e3
 /* 802D0648  48 01 80 01 */	bl JUTReportConsole
 /* 802D064C  48 00 00 D0 */	b lbl_802D071C
 lbl_802D0650:
 /* 802D0650  38 80 00 00 */	li r4, 0
-/* 802D0654  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha
-/* 802D0658  3B E3 CA F0 */	addi r31, r3, JKRExpHeap__stringBase0@l
+/* 802D0654  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha /* 0x8039CAF0@ha */
+/* 802D0658  3B E3 CA F0 */	addi r31, r3, JKRExpHeap__stringBase0@l /* 0x8039CAF0@l */
 lbl_802D065C:
 /* 802D065C  3B 40 FF FF */	li r26, -1
 /* 802D0660  80 79 00 80 */	lwz r3, 0x80(r25)
@@ -57,8 +57,8 @@ lbl_802D0680:
 /* 802D0694  A0 1A 00 00 */	lhz r0, 0(r26)
 /* 802D0698  28 00 48 4D */	cmplwi r0, 0x484d
 /* 802D069C  41 82 00 1C */	beq lbl_802D06B8
-/* 802D06A0  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha
-/* 802D06A4  38 63 CA F0 */	addi r3, r3, JKRExpHeap__stringBase0@l
+/* 802D06A0  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha /* 0x8039CAF0@ha */
+/* 802D06A4  38 63 CA F0 */	addi r3, r3, JKRExpHeap__stringBase0@l /* 0x8039CAF0@l */
 /* 802D06A8  38 63 01 EA */	addi r3, r3, 0x1ea
 /* 802D06AC  4C C6 31 82 */	crclr 6
 /* 802D06B0  48 01 7F 19 */	bl JUTReportConsole_f
@@ -71,8 +71,8 @@ lbl_802D06B8:
 /* 802D06C8  54 00 06 31 */	rlwinm. r0, r0, 0, 0x18, 0x18
 /* 802D06CC  38 9F 02 4F */	addi r4, r31, 0x24f
 /* 802D06D0  41 82 00 10 */	beq lbl_802D06E0
-/* 802D06D4  3C 80 80 3A */	lis r4, JKRExpHeap__stringBase0@ha
-/* 802D06D8  38 84 CA F0 */	addi r4, r4, JKRExpHeap__stringBase0@l
+/* 802D06D4  3C 80 80 3A */	lis r4, JKRExpHeap__stringBase0@ha /* 0x8039CAF0@ha */
+/* 802D06D8  38 84 CA F0 */	addi r4, r4, JKRExpHeap__stringBase0@l /* 0x8039CAF0@l */
 /* 802D06DC  38 84 02 49 */	addi r4, r4, 0x249
 lbl_802D06E0:
 /* 802D06E0  80 DA 00 04 */	lwz r6, 4(r26)
@@ -91,21 +91,21 @@ lbl_802D06E0:
 /* 802D0714  3B 9C 00 01 */	addi r28, r28, 1
 /* 802D0718  4B FF FF 44 */	b lbl_802D065C
 lbl_802D071C:
-/* 802D071C  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha
-/* 802D0720  38 63 CA F0 */	addi r3, r3, JKRExpHeap__stringBase0@l
+/* 802D071C  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha /* 0x8039CAF0@ha */
+/* 802D0720  38 63 CA F0 */	addi r3, r3, JKRExpHeap__stringBase0@l /* 0x8039CAF0@l */
 /* 802D0724  38 63 02 55 */	addi r3, r3, 0x255
 /* 802D0728  48 01 7F 21 */	bl JUTReportConsole
 /* 802D072C  80 19 00 78 */	lwz r0, 0x78(r25)
 /* 802D0730  28 00 00 00 */	cmplwi r0, 0
 /* 802D0734  40 82 00 14 */	bne lbl_802D0748
-/* 802D0738  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha
-/* 802D073C  38 63 CA F0 */	addi r3, r3, JKRExpHeap__stringBase0@l
+/* 802D0738  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha /* 0x8039CAF0@ha */
+/* 802D073C  38 63 CA F0 */	addi r3, r3, JKRExpHeap__stringBase0@l /* 0x8039CAF0@l */
 /* 802D0740  38 63 01 E3 */	addi r3, r3, 0x1e3
 /* 802D0744  48 01 7F 05 */	bl JUTReportConsole
 lbl_802D0748:
 /* 802D0748  83 F9 00 78 */	lwz r31, 0x78(r25)
-/* 802D074C  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha
-/* 802D0750  3B 43 CA F0 */	addi r26, r3, JKRExpHeap__stringBase0@l
+/* 802D074C  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha /* 0x8039CAF0@ha */
+/* 802D0750  3B 43 CA F0 */	addi r26, r3, JKRExpHeap__stringBase0@l /* 0x8039CAF0@l */
 /* 802D0754  48 00 00 38 */	b lbl_802D078C
 lbl_802D0758:
 /* 802D0758  38 7A 02 24 */	addi r3, r26, 0x224
@@ -125,8 +125,8 @@ lbl_802D078C:
 /* 802D078C  28 1F 00 00 */	cmplwi r31, 0
 /* 802D0790  40 82 FF C8 */	bne lbl_802D0758
 /* 802D0794  80 B9 00 38 */	lwz r5, 0x38(r25)
-/* 802D0798  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha
-/* 802D079C  38 63 CA F0 */	addi r3, r3, JKRExpHeap__stringBase0@l
+/* 802D0798  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha /* 0x8039CAF0@ha */
+/* 802D079C  38 63 CA F0 */	addi r3, r3, JKRExpHeap__stringBase0@l /* 0x8039CAF0@l */
 /* 802D07A0  38 63 02 6A */	addi r3, r3, 0x26a
 /* 802D07A4  7F A4 EB 78 */	mr r4, r29
 /* 802D07A8  C0 62 C5 98 */	lfs f3, lit_1121(r2)

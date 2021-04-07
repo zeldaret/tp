@@ -3,7 +3,7 @@ lbl_80581210:
 /* 80581214  7C 08 02 A6 */	mflr r0
 /* 80581218  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8058121C  39 61 00 20 */	addi r11, r1, 0x20
-/* 80581220  4B DE 0F BC */	b _savegpr_29
+/* 80581220  4B DE 0F BD */	bl _savegpr_29
 /* 80581224  7C 7D 1B 78 */	mr r29, r3
 /* 80581228  7C 9E 23 78 */	mr r30, r4
 /* 8058122C  4B FF EF 85 */	bl Obj_Damage__13daObjHHASHI_cFv
@@ -42,7 +42,7 @@ lbl_8058128C:
 lbl_805812A0:
 /* 805812A0  38 60 00 01 */	li r3, 1
 /* 805812A4  39 61 00 20 */	addi r11, r1, 0x20
-/* 805812A8  4B DE 0F 80 */	b _restgpr_29
+/* 805812A8  4B DE 0F 81 */	bl _restgpr_29
 /* 805812AC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 805812B0  7C 08 03 A6 */	mtlr r0
 /* 805812B4  38 21 00 20 */	addi r1, r1, 0x20

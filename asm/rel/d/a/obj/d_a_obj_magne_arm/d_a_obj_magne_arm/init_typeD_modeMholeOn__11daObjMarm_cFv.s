@@ -6,10 +6,10 @@ lbl_805917B8:
 /* 805917C8  7C 7F 1B 78 */	mr r31, r3
 /* 805917CC  80 03 0A 18 */	lwz r0, 0xa18(r3)
 /* 805917D0  90 01 00 08 */	stw r0, 8(r1)
-/* 805917D4  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 805917D8  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 805917D4  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 805917D8  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 805917DC  38 81 00 08 */	addi r4, r1, 8
-/* 805917E0  4B A8 80 18 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 805917E0  4B A8 80 19 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 805917E4  28 03 00 00 */	cmplwi r3, 0
 /* 805917E8  41 82 00 0C */	beq lbl_805917F4
 /* 805917EC  38 00 00 01 */	li r0, 1

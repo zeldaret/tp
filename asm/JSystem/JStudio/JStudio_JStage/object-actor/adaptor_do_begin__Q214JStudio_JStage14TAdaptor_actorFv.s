@@ -22,11 +22,11 @@ lbl_8028A7B4:
 /* 8028A804  80 9E 00 04 */	lwz r4, 4(r30)
 /* 8028A808  80 84 00 14 */	lwz r4, 0x14(r4)
 /* 8028A80C  48 00 06 C1 */	bl getJSG_SRT___Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio8TControl
-/* 8028A810  3C 60 80 43 */	lis r3, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@ha
-/* 8028A814  38 03 11 A0 */	addi r0, r3, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@l
+/* 8028A810  3C 60 80 43 */	lis r3, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@ha /* 0x804311A0@ha */
+/* 8028A814  38 03 11 A0 */	addi r0, r3, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@l /* 0x804311A0@l */
 /* 8028A818  7C 1B 03 78 */	mr r27, r0
-/* 8028A81C  3C 60 80 28 */	lis r3, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha
-/* 8028A820  3B A3 5E B8 */	addi r29, r3, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l
+/* 8028A81C  3C 60 80 28 */	lis r3, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha /* 0x80285EB8@ha */
+/* 8028A820  3B A3 5E B8 */	addi r29, r3, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l /* 0x80285EB8@l */
 /* 8028A824  3B 80 00 00 */	li r28, 0
 /* 8028A828  48 00 00 34 */	b lbl_8028A85C
 lbl_8028A82C:
@@ -46,11 +46,11 @@ lbl_8028A85C:
 /* 8028A85C  80 1B 00 04 */	lwz r0, 4(r27)
 /* 8028A860  2C 00 FF FF */	cmpwi r0, -1
 /* 8028A864  40 82 FF C8 */	bne lbl_8028A82C
-/* 8028A868  3C 60 80 43 */	lis r3, saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@ha
-/* 8028A86C  38 03 12 04 */	addi r0, r3, saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@l
+/* 8028A868  3C 60 80 43 */	lis r3, saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@ha /* 0x80431204@ha */
+/* 8028A86C  38 03 12 04 */	addi r0, r3, saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@l /* 0x80431204@l */
 /* 8028A870  7C 1B 03 78 */	mr r27, r0
-/* 8028A874  3C 60 80 28 */	lis r3, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha
-/* 8028A878  3B 83 5E B8 */	addi r28, r3, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l
+/* 8028A874  3C 60 80 28 */	lis r3, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha /* 0x80285EB8@ha */
+/* 8028A878  3B 83 5E B8 */	addi r28, r3, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l /* 0x80285EB8@l */
 /* 8028A87C  3B A0 00 00 */	li r29, 0
 /* 8028A880  48 00 00 34 */	b lbl_8028A8B4
 lbl_8028A884:

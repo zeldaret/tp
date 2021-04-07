@@ -4,8 +4,8 @@ lbl_802D147C:
 /* 802D1484  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802D1488  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802D148C  7C 7F 1B 78 */	mr r31, r3
-/* 802D1490  3C 60 80 3D */	lis r3, __vt__11JKRDisposer@ha
-/* 802D1494  38 03 C0 F0 */	addi r0, r3, __vt__11JKRDisposer@l
+/* 802D1490  3C 60 80 3D */	lis r3, __vt__11JKRDisposer@ha /* 0x803CC0F0@ha */
+/* 802D1494  38 03 C0 F0 */	addi r0, r3, __vt__11JKRDisposer@l /* 0x803CC0F0@l */
 /* 802D1498  90 1F 00 00 */	stw r0, 0(r31)
 /* 802D149C  7F E4 FB 78 */	mr r4, r31
 /* 802D14A0  38 64 00 08 */	addi r3, r4, 8

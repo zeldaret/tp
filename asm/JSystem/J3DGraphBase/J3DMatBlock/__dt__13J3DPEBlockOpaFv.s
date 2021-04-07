@@ -5,12 +5,12 @@ lbl_80323334:
 /* 80323340  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80323344  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80323348  41 82 00 30 */	beq lbl_80323378
-/* 8032334C  3C 60 80 3D */	lis r3, __vt__13J3DPEBlockOpa@ha
-/* 80323350  38 03 E8 90 */	addi r0, r3, __vt__13J3DPEBlockOpa@l
+/* 8032334C  3C 60 80 3D */	lis r3, __vt__13J3DPEBlockOpa@ha /* 0x803CE890@ha */
+/* 80323350  38 03 E8 90 */	addi r0, r3, __vt__13J3DPEBlockOpa@l /* 0x803CE890@l */
 /* 80323354  90 1F 00 00 */	stw r0, 0(r31)
 /* 80323358  41 82 00 10 */	beq lbl_80323368
-/* 8032335C  3C 60 80 3D */	lis r3, __vt__10J3DPEBlock@ha
-/* 80323360  38 03 DD 20 */	addi r0, r3, __vt__10J3DPEBlock@l
+/* 8032335C  3C 60 80 3D */	lis r3, __vt__10J3DPEBlock@ha /* 0x803CDD20@ha */
+/* 80323360  38 03 DD 20 */	addi r0, r3, __vt__10J3DPEBlock@l /* 0x803CDD20@l */
 /* 80323364  90 1F 00 00 */	stw r0, 0(r31)
 lbl_80323368:
 /* 80323368  7C 80 07 35 */	extsh. r0, r4

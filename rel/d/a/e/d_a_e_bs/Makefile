@@ -3,19 +3,20 @@
 #
 
 M177_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_bs.plf
+M177_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_bs.lcf
+M177_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_bs.map
 
 M177_CPP_FILES := \
-	rel/d/a/e/d_a_e_bs/executor.cpp \
-	rel/d/a/e/d_a_e_bs/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_bs/d_a_e_bs.cpp \
 
 M177_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_bs/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_bs/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_bs/d_a_e_bs.o \
 
 M177_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_bs/libRuntime.PPCEABI.H.a \
 
 M177_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M177_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M177_LDSCRIPT) \
+	-unused -map $(M177_MAP) \
+	-w off \
 
 $(M177_TARGET): $(M177_O_FILES) $(M177_LIBS)
+	@echo [177] creating $(M177_TARGET)
 	@echo $(M177_LIBS) $(M177_O_FILES) > build/M177_ofiles
-	$(LD) -partial $(M177_LDFLAGS) -o $(M177_TARGET) @build/M177_ofiles
+	@python3 tools/lcf.py rel 177 --output $(M177_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M177_LDFLAGS) -o $(M177_TARGET) @build/M177_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_bs/%.o: rel/d/a/e/d_a_e_bs/%.cpp
+	@echo [177] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M177_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M177_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_bs/libs/Runtime.PPCEABI.H/Makefile
 

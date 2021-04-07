@@ -17,6 +17,7 @@ class Section:
     offset: int
     addr: int
     size: int
+    aligned_size: int
     type: str
     name: str
     data: bytearray = field(repr=False)
@@ -76,7 +77,7 @@ def read_section(index, offset, addr, size, buffer):
     if index >= 7:
         type = "data"
     name = NAMES_FOR_INDEX[index] if index in NAMES_FOR_INDEX else None
-    return Section(offset, addr, size, type, name, buffer[offset:][:size])
+    return Section(offset, addr, size, size, type, name, buffer[offset:][:size])
 
 
 def read(buffer):
@@ -126,19 +127,19 @@ def read(buffer):
     for section in sections:
         if temp_addr < section.addr:
             size = section.addr - temp_addr
-            sections += [Section(0, temp_addr, size, "bss", ".bss", None)]
+            sections += [Section(0, temp_addr, size, size, "bss", ".bss", None)]
             temp_addr = section.addr + section.size
             break
 
     for section in sections:
         if temp_addr < section.addr:
             size = section.addr - temp_addr
-            sections += [Section(0, temp_addr, size, "bss", ".sbss", None)]
+            sections += [Section(0, temp_addr, size, size, "bss", ".sbss", None)]
             temp_addr = section.addr + section.size
             break
 
-    sections += [Section(0, temp_addr, bss_size -
-                         (temp_addr - bss_address), "bss", ".sbss2", None)]
+    sbss2_size = bss_size - (temp_addr - bss_address)
+    sections += [Section(0, temp_addr, sbss2_size, sbss2_size, "bss", ".sbss2", None)]
     sections.sort(key=lambda x: x.addr)
 
     for section in sections:

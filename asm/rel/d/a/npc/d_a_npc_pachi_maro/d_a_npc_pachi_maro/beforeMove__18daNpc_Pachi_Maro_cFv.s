@@ -9,7 +9,7 @@ lbl_80A98DE8:
 /* 80A98E04  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 80A98E08  28 00 00 00 */	cmplwi r0, 0
 /* 80A98E0C  40 82 00 1C */	bne lbl_80A98E28
-/* 80A98E10  4B 59 6C 44 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80A98E10  4B 59 6C 45 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80A98E14  2C 03 00 00 */	cmpwi r3, 0
 /* 80A98E18  40 82 00 14 */	bne lbl_80A98E2C
 /* 80A98E1C  88 1E 0A 89 */	lbz r0, 0xa89(r30)

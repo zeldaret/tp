@@ -1,7 +1,7 @@
 lbl_8002FAE8:
 /* 8002FAE8  38 60 00 00 */	li r3, 0
-/* 8002FAEC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8002FAF0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8002FAEC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002FAF0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002FAF4  3C 84 00 02 */	addis r4, r4, 2
 /* 8002FAF8  88 A4 DE 09 */	lbz r5, -0x21f7(r4)
 /* 8002FAFC  28 05 00 FF */	cmplwi r5, 0xff

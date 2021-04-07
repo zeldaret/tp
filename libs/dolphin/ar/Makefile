@@ -22,7 +22,6 @@ $(BUILD_DIR)/libar.a: $(LIBAR_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libar.a
 	@echo $(LIBAR_A_O_FILES) > build/LIBAR_A_ofiles
 	@$(LD) -xm l $(LIBAR_A_LDFLAGS) -o $(BUILD_DIR)/libar.a @build/LIBAR_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libar.a
 
 $(BUILD_DIR)/libs/dolphin/ar/%.o: libs/dolphin/ar/%.cpp
 	@mkdir -p $(@D)

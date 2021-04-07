@@ -5,8 +5,8 @@ lbl_80314BB8:
 /* 80314BC4  39 61 00 30 */	addi r11, r1, 0x30
 /* 80314BC8  48 04 D6 0D */	bl _savegpr_27
 /* 80314BCC  7C 7F 1B 78 */	mr r31, r3
-/* 80314BD0  3C 60 80 3A */	lis r3, lit_697@ha
-/* 80314BD4  38 C3 1E 98 */	addi r6, r3, lit_697@l
+/* 80314BD0  3C 60 80 3A */	lis r3, lit_697@ha /* 0x803A1E98@ha */
+/* 80314BD4  38 C3 1E 98 */	addi r6, r3, lit_697@l /* 0x803A1E98@l */
 /* 80314BD8  80 66 00 00 */	lwz r3, 0(r6)
 /* 80314BDC  80 06 00 04 */	lwz r0, 4(r6)
 /* 80314BE0  90 61 00 08 */	stw r3, 8(r1)

@@ -37,8 +37,8 @@ lbl_8031C5B0:
 /* 8031C5DC  4B FF 2B 2D */	bl J3DGDSetTevOrder__F13_GXTevStageID13_GXTexCoordID11_GXTexMapID12_GXChannelID13_GXTexCoordID11_GXTexMapID12_GXChannelID
 /* 8031C5E0  88 1E 00 0D */	lbz r0, 0xd(r30)
 /* 8031C5E4  54 04 1E B8 */	rlwinm r4, r0, 3, 0x1a, 0x1c
-/* 8031C5E8  3C 60 80 43 */	lis r3, sTexCoordScaleTable__6J3DSys@ha
-/* 8031C5EC  38 03 4C 2C */	addi r0, r3, sTexCoordScaleTable__6J3DSys@l
+/* 8031C5E8  3C 60 80 43 */	lis r3, sTexCoordScaleTable__6J3DSys@ha /* 0x80434C2C@ha */
+/* 8031C5EC  38 03 4C 2C */	addi r0, r3, sTexCoordScaleTable__6J3DSys@l /* 0x80434C2C@l */
 /* 8031C5F0  7D 00 22 14 */	add r8, r0, r4
 /* 8031C5F4  88 7E 00 0C */	lbz r3, 0xc(r30)
 /* 8031C5F8  A0 88 00 00 */	lhz r4, 0(r8)
@@ -56,8 +56,8 @@ lbl_8031C5B0:
 /* 8031C628  4B FF 1C 0D */	bl J3DGDSetTexCoordScale2__F13_GXTexCoordIDUsUcUcUsUcUc
 /* 8031C62C  88 1E 00 11 */	lbz r0, 0x11(r30)
 /* 8031C630  54 04 1E B8 */	rlwinm r4, r0, 3, 0x1a, 0x1c
-/* 8031C634  3C 60 80 43 */	lis r3, sTexCoordScaleTable__6J3DSys@ha
-/* 8031C638  38 03 4C 2C */	addi r0, r3, sTexCoordScaleTable__6J3DSys@l
+/* 8031C634  3C 60 80 43 */	lis r3, sTexCoordScaleTable__6J3DSys@ha /* 0x80434C2C@ha */
+/* 8031C638  38 03 4C 2C */	addi r0, r3, sTexCoordScaleTable__6J3DSys@l /* 0x80434C2C@l */
 /* 8031C63C  7D 00 22 14 */	add r8, r0, r4
 /* 8031C640  88 1E 00 10 */	lbz r0, 0x10(r30)
 /* 8031C644  54 03 07 7E */	clrlwi r3, r0, 0x1d

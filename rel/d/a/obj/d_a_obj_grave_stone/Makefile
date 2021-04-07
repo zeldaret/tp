@@ -3,17 +3,15 @@
 #
 
 M466_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_grave_stone.plf
+M466_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_grave_stone.lcf
+M466_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_grave_stone.map
 
 M466_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_grave_stone/executor.cpp \
-	rel/d/a/obj/d_a_obj_grave_stone/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_grave_stone/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_grave_stone/d_a_obj_grave_stone.cpp \
 
 M466_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_grave_stone/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_grave_stone/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_grave_stone/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_grave_stone/d_a_obj_grave_stone.o \
 
 M466_LIBS := \
@@ -29,14 +27,21 @@ M466_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M466_LDSCRIPT) \
+	-unused -map $(M466_MAP) \
+	-w off \
 
 $(M466_TARGET): $(M466_O_FILES) $(M466_LIBS)
+	@echo [466] creating $(M466_TARGET)
 	@echo $(M466_LIBS) $(M466_O_FILES) > build/M466_ofiles
-	$(LD) -partial $(M466_LDFLAGS) -o $(M466_TARGET) @build/M466_ofiles
+	@python3 tools/lcf.py rel 466 --output $(M466_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M466_LDFLAGS) -o $(M466_TARGET) @build/M466_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_grave_stone/%.o: rel/d/a/obj/d_a_obj_grave_stone/%.cpp
+	@echo [466] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M466_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M466_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

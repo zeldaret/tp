@@ -12,7 +12,6 @@
 //
 
 extern "C" void TRK_main();
-SECTION_BSS u8 TRK_mainError[4 + 4 /* padding */];
 
 //
 // External References:
@@ -29,7 +28,7 @@ extern "C" void MWTRACE();
 //
 
 /* ############################################################################################## */
-/* 803A2BF8-803A2C08 000B+05 s=1 e=0 z=0  None .rodata    @80 */
+/* 803A2BF8-803A2C08 02F258 000B+05 1/1 0/0 0/0 .rodata          @80 */
 SECTION_RODATA static u8 const lit_80[11 + 5 /* padding */] = {
     0x54,
     0x52,
@@ -49,15 +48,16 @@ SECTION_RODATA static u8 const lit_80[11 + 5 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(803A2BF8, &lit_80);
 
-/* 8044F818-8044F820 0004+04 s=1 e=0 z=0  .bss .bss       TRK_mainError */
-static u8 TRK_mainError[4 + 4 /* padding */];
+/* 8044F818-8044F820 07C538 0004+04 1/1 0/0 0/0 .bss             TRK_mainError */
+SECTION_BSS static u8 TRK_mainError[4 + 4 /* padding */];
 
-/* 80371B9C-80371BF4 0058+00 s=0 e=2 z=0  None .text      TRK_main */
+/* 80371B9C-80371BF4 36C4DC 0058+00 0/0 2/2 0/0 .text            TRK_main */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRK_main() {
+asm void TRK_main() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/main_TRK/TRK_main.s"
 }

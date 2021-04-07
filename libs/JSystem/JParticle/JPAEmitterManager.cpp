@@ -28,15 +28,23 @@ template <typename A0>
 struct JSUList {};
 /* JSUList<JPABaseEmitter> */
 struct JSUList__template1 {
-    /* 8027E51C */ JSUList__template1();
-    /* 8027E598 */ ~JSUList__template1();
+    /* 8027E51C */ void func_8027E51C();
+    /* 8027E598 */ void func_8027E598();
 };
 
 struct JPAResourceManager {
     /* 80273E68 */ void getResource(u16) const;
 };
 
-struct JPAEmitterWorkData {};
+struct JPAResource;
+struct JPAParticleCallBack {};
+
+struct JPABaseEmitter;
+struct JKRHeap {};
+
+struct JPAEmitterCallBack {};
+
+struct JPADrawInfo {};
 
 struct JGeometry {
     template <typename A1>
@@ -45,15 +53,6 @@ struct JGeometry {
     struct TVec3__template0 {};
 };
 
-struct JKRHeap {};
-
-struct JPAEmitterCallBack {};
-
-struct JPADrawInfo {};
-
-struct JPAParticleCallBack {};
-
-struct JPABaseEmitter;
 struct JPAEmitterManager {
     /* 8027DCA0 */ JPAEmitterManager(u32, u32, JKRHeap*, u8, u8);
     /* 8027DEBC */ void createSimpleEmitterID(JGeometry::TVec3<f32> const&, u16, u8, u8,
@@ -68,13 +67,14 @@ struct JPAEmitterManager {
     /* 8027E3F4 */ void calcYBBCam();
 };
 
-struct JPAResource;
 struct JPABaseEmitter {
     /* 8027E5EC */ ~JPABaseEmitter();
     /* 8027E64C */ JPABaseEmitter();
     /* 8027E6EC */ void init(JPAEmitterManager*, JPAResource*);
     /* 8027EC60 */ void deleteAllParticle();
 };
+
+struct JPAEmitterWorkData {};
 
 struct JPAResource {
     /* 802755E8 */ void calc(JPAEmitterWorkData*, JPABaseEmitter*);
@@ -85,8 +85,8 @@ template <typename A0>
 struct JPANode {};
 /* JPANode<JPABaseParticle> */
 struct JPANode__template0 {
-    /* 8027E54C */ ~JPANode__template0();
-    /* 8027E588 */ JPANode__template0();
+    /* 8027E54C */ void func_8027E54C();
+    /* 8027E588 */ void func_8027E588();
 };
 
 //
@@ -113,10 +113,6 @@ extern "C" void __ct__14JPABaseEmitterFv();
 //
 // External References:
 //
-
-void* operator new(u32, JKRHeap*, int);
-void* operator new[](u32, JKRHeap*, int);
-void operator delete(void*);
 
 extern "C" void getResource__18JPAResourceManagerCFUs();
 extern "C" void calc__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter();
@@ -160,7 +156,7 @@ extern "C" extern u32 __float_epsilon;
 // Declarations:
 //
 
-/* 8027DCA0-8027DEBC 021C+00 s=0 e=1 z=0  None .text __ct__17JPAEmitterManagerFUlUlP7JKRHeapUcUc
+/* 8027DCA0-8027DEBC 2785E0 021C+00 0/0 1/1 0/0 .text __ct__17JPAEmitterManagerFUlUlP7JKRHeapUcUc
  */
 #pragma push
 #pragma optimization_level 0
@@ -172,7 +168,7 @@ asm JPAEmitterManager::JPAEmitterManager(u32 param_0, u32 param_1, JKRHeap* para
 }
 #pragma pop
 
-/* 8027DEBC-8027DFA0 00E4+00 s=0 e=3 z=0  None .text
+/* 8027DEBC-8027DFA0 2787FC 00E4+00 0/0 3/3 0/0 .text
  * createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3<f>UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack
  */
 #pragma push
@@ -187,7 +183,7 @@ asm void JPAEmitterManager::createSimpleEmitterID(JGeometry::TVec3<f32> const& p
 }
 #pragma pop
 
-/* 8027DFA0-8027E028 0088+00 s=0 e=3 z=0  None .text      calc__17JPAEmitterManagerFUc */
+/* 8027DFA0-8027E028 2788E0 0088+00 0/0 3/3 0/0 .text            calc__17JPAEmitterManagerFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -197,7 +193,7 @@ asm void JPAEmitterManager::calc(u8 param_0) {
 }
 #pragma pop
 
-/* 8027E028-8027E220 01F8+00 s=0 e=1 z=0  None .text draw__17JPAEmitterManagerFPC11JPADrawInfoUc
+/* 8027E028-8027E220 278968 01F8+00 0/0 1/1 0/0 .text draw__17JPAEmitterManagerFPC11JPADrawInfoUc
  */
 #pragma push
 #pragma optimization_level 0
@@ -208,7 +204,7 @@ asm void JPAEmitterManager::draw(JPADrawInfo const* param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 8027E220-8027E278 0058+00 s=0 e=1 z=0  None .text forceDeleteAllEmitter__17JPAEmitterManagerFv
+/* 8027E220-8027E278 278B60 0058+00 0/0 1/1 0/0 .text forceDeleteAllEmitter__17JPAEmitterManagerFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -219,7 +215,7 @@ asm void JPAEmitterManager::forceDeleteAllEmitter() {
 }
 #pragma pop
 
-/* 8027E278-8027E2D8 0060+00 s=1 e=0 z=0  None .text
+/* 8027E278-8027E2D8 278BB8 0060+00 1/1 0/0 0/0 .text
  * forceDeleteGroupEmitter__17JPAEmitterManagerFUc              */
 #pragma push
 #pragma optimization_level 0
@@ -230,7 +226,7 @@ asm void JPAEmitterManager::forceDeleteGroupEmitter(u8 param_0) {
 }
 #pragma pop
 
-/* 8027E2D8-8027E344 006C+00 s=3 e=1 z=0  None .text
+/* 8027E2D8-8027E344 278C18 006C+00 3/3 1/1 0/0 .text
  * forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter    */
 #pragma push
 #pragma optimization_level 0
@@ -241,7 +237,7 @@ asm void JPAEmitterManager::forceDeleteEmitter(JPABaseEmitter* param_0) {
 }
 #pragma pop
 
-/* 8027E344-8027E354 0010+00 s=0 e=2 z=0  None .text
+/* 8027E344-8027E354 278C84 0010+00 0/0 2/2 0/0 .text
  * entryResourceManager__17JPAEmitterManagerFP18JPAResourceManagerUc */
 #pragma push
 #pragma optimization_level 0
@@ -252,7 +248,7 @@ asm void JPAEmitterManager::entryResourceManager(JPAResourceManager* param_0, u8
 }
 #pragma pop
 
-/* 8027E354-8027E3F4 00A0+00 s=0 e=1 z=0  None .text clearResourceManager__17JPAEmitterManagerFUc
+/* 8027E354-8027E3F4 278C94 00A0+00 0/0 1/1 0/0 .text clearResourceManager__17JPAEmitterManagerFUc
  */
 #pragma push
 #pragma optimization_level 0
@@ -264,7 +260,7 @@ asm void JPAEmitterManager::clearResourceManager(u8 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455358-8045535C 0004+00 s=1 e=0 z=0  None .sdata2    @2632 */
+/* 80455358-8045535C 003958 0004+00 1/1 0/0 0/0 .sdata2          @2632 */
 SECTION_SDATA2 static u8 lit_2632[4] = {
     0x00,
     0x00,
@@ -272,23 +268,24 @@ SECTION_SDATA2 static u8 lit_2632[4] = {
     0x00,
 };
 
-/* 8045535C-80455360 0004+00 s=1 e=0 z=0  None .sdata2    @2633 */
+/* 8045535C-80455360 00395C 0004+00 1/1 0/0 0/0 .sdata2          @2633 */
 SECTION_SDATA2 static f32 lit_2633 = 32.0f;
 
-/* 80455360-80455364 0004+00 s=1 e=0 z=0  None .sdata2    @2634 */
+/* 80455360-80455364 003960 0004+00 1/1 0/0 0/0 .sdata2          @2634 */
 SECTION_SDATA2 static f32 lit_2634 = 0.5f;
 
-/* 80455364-80455368 0004+00 s=1 e=0 z=0  None .sdata2    @2635 */
+/* 80455364-80455368 003964 0004+00 1/1 0/0 0/0 .sdata2          @2635 */
 SECTION_SDATA2 static f32 lit_2635 = 3.0f;
 
-/* 80455368-80455370 0004+04 s=1 e=0 z=0  None .sdata2    @2636 */
+/* 80455368-80455370 003968 0004+04 1/1 0/0 0/0 .sdata2          @2636 */
 SECTION_SDATA2 static f32 lit_2636[1 + 1 /* padding */] = {
     1.0f,
     /* padding */
     0.0f,
 };
 
-/* 8027E3F4-8027E51C 0128+00 s=1 e=0 z=0  None .text      calcYBBCam__17JPAEmitterManagerFv */
+/* 8027E3F4-8027E51C 278D34 0128+00 1/1 0/0 0/0 .text            calcYBBCam__17JPAEmitterManagerFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -298,47 +295,49 @@ asm void JPAEmitterManager::calcYBBCam() {
 }
 #pragma pop
 
-/* 8027E51C-8027E54C 0030+00 s=1 e=0 z=0  None .text      __ct__25JSUList<14JPABaseEmitter>Fv */
+/* 8027E51C-8027E54C 278E5C 0030+00 1/1 0/0 0/0 .text            __ct__25JSUList<14JPABaseEmitter>Fv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JSUList__template1::JSUList__template1() {
+extern "C" asm void func_8027E51C() {
     nofralloc
 #include "asm/JSystem/JParticle/JPAEmitterManager/func_8027E51C.s"
 }
 #pragma pop
 
-/* 8027E54C-8027E588 003C+00 s=1 e=0 z=0  None .text      __dt__26JPANode<15JPABaseParticle>Fv */
+/* 8027E54C-8027E588 278E8C 003C+00 1/1 0/0 0/0 .text __dt__26JPANode<15JPABaseParticle>Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JPANode__template0::~JPANode__template0() {
+extern "C" asm void func_8027E54C() {
     nofralloc
 #include "asm/JSystem/JParticle/JPAEmitterManager/func_8027E54C.s"
 }
 #pragma pop
 
-/* 8027E588-8027E598 0010+00 s=1 e=0 z=0  None .text      __ct__26JPANode<15JPABaseParticle>Fv */
+/* 8027E588-8027E598 278EC8 0010+00 1/1 0/0 0/0 .text __ct__26JPANode<15JPABaseParticle>Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JPANode__template0::JPANode__template0() {
+extern "C" asm void func_8027E588() {
     nofralloc
 #include "asm/JSystem/JParticle/JPAEmitterManager/func_8027E588.s"
 }
 #pragma pop
 
-/* 8027E598-8027E5EC 0054+00 s=1 e=0 z=0  None .text      __dt__25JSUList<14JPABaseEmitter>Fv */
+/* 8027E598-8027E5EC 278ED8 0054+00 1/1 0/0 0/0 .text            __dt__25JSUList<14JPABaseEmitter>Fv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JSUList__template1::~JSUList__template1() {
+extern "C" asm void func_8027E598() {
     nofralloc
 #include "asm/JSystem/JParticle/JPAEmitterManager/func_8027E598.s"
 }
 #pragma pop
 
-/* 8027E5EC-8027E64C 0060+00 s=1 e=0 z=0  None .text      __dt__14JPABaseEmitterFv */
+/* 8027E5EC-8027E64C 278F2C 0060+00 1/1 0/0 0/0 .text            __dt__14JPABaseEmitterFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -348,7 +347,7 @@ asm JPABaseEmitter::~JPABaseEmitter() {
 }
 #pragma pop
 
-/* 8027E64C-8027E6A4 0058+00 s=1 e=0 z=0  None .text      __ct__14JPABaseEmitterFv */
+/* 8027E64C-8027E6A4 278F8C 0058+00 1/1 0/0 0/0 .text            __ct__14JPABaseEmitterFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

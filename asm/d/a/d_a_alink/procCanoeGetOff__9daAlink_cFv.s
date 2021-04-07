@@ -42,8 +42,8 @@ lbl_800F50CC:
 /* 800F50DC  40 80 00 20 */	bge lbl_800F50FC
 /* 800F50E0  7F E3 FB 78 */	mr r3, r31
 /* 800F50E4  38 80 00 02 */	li r4, 2
-/* 800F50E8  3C A0 80 39 */	lis r5, m__23daAlinkHIO_smallJump_c0@ha
-/* 800F50EC  38 A5 E1 1C */	addi r5, r5, m__23daAlinkHIO_smallJump_c0@l
+/* 800F50E8  3C A0 80 39 */	lis r5, m__23daAlinkHIO_smallJump_c0@ha /* 0x8038E11C@ha */
+/* 800F50EC  38 A5 E1 1C */	addi r5, r5, m__23daAlinkHIO_smallJump_c0@l /* 0x8038E11C@l */
 /* 800F50F0  C0 25 00 44 */	lfs f1, 0x44(r5)
 /* 800F50F4  4B FD 19 55 */	bl procFallInit__9daAlink_cFif
 /* 800F50F8  48 00 00 D4 */	b lbl_800F51CC
@@ -64,11 +64,11 @@ lbl_800F5108:
 /* 800F512C  B0 1F 30 0E */	sth r0, 0x300e(r31)
 /* 800F5130  7F E3 FB 78 */	mr r3, r31
 /* 800F5134  38 80 00 D7 */	li r4, 0xd7
-/* 800F5138  3C A0 80 39 */	lis r5, m__23daAlinkHIO_smallJump_c0@ha
-/* 800F513C  38 A5 E1 1C */	addi r5, r5, m__23daAlinkHIO_smallJump_c0@l
+/* 800F5138  3C A0 80 39 */	lis r5, m__23daAlinkHIO_smallJump_c0@ha /* 0x8038E11C@ha */
+/* 800F513C  38 A5 E1 1C */	addi r5, r5, m__23daAlinkHIO_smallJump_c0@l /* 0x8038E11C@l */
 /* 800F5140  4B FB 7F B5 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
-/* 800F5144  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 800F5148  38 63 55 14 */	addi r3, r3, l_waitBaseAnime@l
+/* 800F5144  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 800F5148  38 63 55 14 */	addi r3, r3, l_waitBaseAnime@l /* 0x80425514@l */
 /* 800F514C  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800F5150  D0 1F 33 B0 */	stfs f0, 0x33b0(r31)
 /* 800F5154  C0 03 00 00 */	lfs f0, 0(r3)
@@ -92,8 +92,8 @@ lbl_800F5170:
 /* 800F5198  7F E3 FB 78 */	mr r3, r31
 /* 800F519C  4B FB F7 35 */	bl setJumpMode__9daAlink_cFv
 /* 800F51A0  7F E3 FB 78 */	mr r3, r31
-/* 800F51A4  3C 80 80 39 */	lis r4, m__22daAlinkHIO_autoJump_c0@ha
-/* 800F51A8  38 84 E0 68 */	addi r4, r4, m__22daAlinkHIO_autoJump_c0@l
+/* 800F51A4  3C 80 80 39 */	lis r4, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 800F51A8  38 84 E0 68 */	addi r4, r4, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 800F51AC  C0 24 00 74 */	lfs f1, 0x74(r4)
 /* 800F51B0  C0 5F 05 34 */	lfs f2, 0x534(r31)
 /* 800F51B4  38 80 00 00 */	li r4, 0

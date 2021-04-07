@@ -8,14 +8,14 @@ lbl_8083B578:
 /* 8083B590  80 03 17 44 */	lwz r0, 0x1744(r3)
 /* 8083B594  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 8083B598  40 82 00 50 */	bne lbl_8083B5E8
-/* 8083B59C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8083B5A0  3B E4 61 C0 */	addi r31, r4, g_dComIfG_gameInfo@l
+/* 8083B59C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8083B5A0  3B E4 61 C0 */	addi r31, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8083B5A4  80 9F 5D B4 */	lwz r4, 0x5db4(r31)
 /* 8083B5A8  80 04 05 74 */	lwz r0, 0x574(r4)
 /* 8083B5AC  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
 /* 8083B5B0  40 82 00 38 */	bne lbl_8083B5E8
 /* 8083B5B4  80 9F 5D AC */	lwz r4, 0x5dac(r31)
-/* 8083B5B8  4B 7D F1 E4 */	b fopAcM_seenActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 8083B5B8  4B 7D F1 E5 */	bl fopAcM_seenActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 8083B5BC  2C 03 28 00 */	cmpwi r3, 0x2800
 /* 8083B5C0  40 81 00 28 */	ble lbl_8083B5E8
 /* 8083B5C4  80 9F 5D B4 */	lwz r4, 0x5db4(r31)

@@ -4,8 +4,8 @@ lbl_80246EE8:
 /* 80246EF0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80246EF4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80246EF8  7C 7F 1B 78 */	mr r31, r3
-/* 80246EFC  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha
-/* 80246F00  38 83 02 8C */	addi r4, r3, g_MsgObject_HIO_c@l
+/* 80246EFC  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 80246F00  38 83 02 8C */	addi r4, r3, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 80246F04  C0 24 00 BC */	lfs f1, 0xbc(r4)
 /* 80246F08  80 7F 00 08 */	lwz r3, 8(r31)
 /* 80246F0C  80 63 00 04 */	lwz r3, 4(r3)

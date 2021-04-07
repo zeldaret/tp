@@ -1,10 +1,10 @@
 lbl_8036EBE4:
 /* 8036EBE4  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8036EBE8  7C 08 02 A6 */	mflr r0
-/* 8036EBEC  3C 60 80 45 */	lis r3, IsTRKConnected@ha
+/* 8036EBEC  3C 60 80 45 */	lis r3, IsTRKConnected@ha /* 0x8044F288@ha */
 /* 8036EBF0  38 A0 00 40 */	li r5, 0x40
 /* 8036EBF4  90 01 00 64 */	stw r0, 0x64(r1)
-/* 8036EBF8  38 83 F2 88 */	addi r4, r3, IsTRKConnected@l
+/* 8036EBF8  38 83 F2 88 */	addi r4, r3, IsTRKConnected@l /* 0x8044F288@l */
 /* 8036EBFC  38 00 00 00 */	li r0, 0
 /* 8036EC00  38 61 00 14 */	addi r3, r1, 0x14
 /* 8036EC04  90 04 00 00 */	stw r0, 0(r4)

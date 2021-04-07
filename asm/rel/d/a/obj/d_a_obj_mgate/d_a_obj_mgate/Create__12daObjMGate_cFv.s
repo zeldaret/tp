@@ -11,7 +11,7 @@ lbl_80593760:
 /* 80593784  80 7F 05 B0 */	lwz r3, 0x5b0(r31)
 /* 80593788  80 83 00 04 */	lwz r4, 4(r3)
 /* 8059378C  7F E3 FB 78 */	mr r3, r31
-/* 80593790  4B A8 6D E8 */	b fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
+/* 80593790  4B A8 6D E9 */	bl fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
 /* 80593794  38 60 00 01 */	li r3, 1
 /* 80593798  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8059379C  80 01 00 14 */	lwz r0, 0x14(r1)

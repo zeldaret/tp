@@ -5,8 +5,8 @@ lbl_8026EED0:
 /* 8026EEDC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8026EEE0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8026EEE4  41 82 00 1C */	beq lbl_8026EF00
-/* 8026EEE8  3C A0 80 3C */	lis r5, __vt__8cM2dGCir@ha
-/* 8026EEEC  38 05 3F EC */	addi r0, r5, __vt__8cM2dGCir@l
+/* 8026EEE8  3C A0 80 3C */	lis r5, __vt__8cM2dGCir@ha /* 0x803C3FEC@ha */
+/* 8026EEEC  38 05 3F EC */	addi r0, r5, __vt__8cM2dGCir@l /* 0x803C3FEC@l */
 /* 8026EEF0  90 1F 00 0C */	stw r0, 0xc(r31)
 /* 8026EEF4  7C 80 07 35 */	extsh. r0, r4
 /* 8026EEF8  40 81 00 08 */	ble lbl_8026EF00

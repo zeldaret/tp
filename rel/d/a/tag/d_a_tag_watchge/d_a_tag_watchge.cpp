@@ -30,13 +30,6 @@ struct dSv_info_c {
 // Forward References:
 //
 
-static void daTagWatchGe_Draw(daTagWatchGe_c*);
-static void s_watchge(void*, void*);
-static void daTagWatchGe_Execute(daTagWatchGe_c*);
-static bool daTagWatchGe_IsDelete(daTagWatchGe_c*);
-static bool daTagWatchGe_Delete(daTagWatchGe_c*);
-static void daTagWatchGe_Create(daTagWatchGe_c*);
-
 extern "C" bool draw__14daTagWatchGe_cFv();
 extern "C" static void daTagWatchGe_Draw__FP14daTagWatchGe_c();
 extern "C" static void s_watchge__FPvPv();
@@ -52,9 +45,6 @@ extern "C" extern void* g_profile_Tag_WatchGe[12];
 // External References:
 //
 
-void fopAcIt_Judge(void* (*)(void*, void*), void*);
-void fopAcM_delete(fopAc_ac_c*);
-
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
 extern "C" void fopAcM_delete__FP10fopAc_ac_c();
@@ -68,36 +58,36 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 // Declarations:
 //
 
-/* 80D642D8-80D642E0 0008+00 s=1 e=0 z=0  None .text      draw__14daTagWatchGe_cFv */
+/* 80D642D8-80D642E0 000078 0008+00 1/1 0/0 0/0 .text            draw__14daTagWatchGe_cFv */
 bool daTagWatchGe_c::draw() {
     return true;
 }
 
-/* 80D642E0-80D64300 0020+00 s=1 e=0 z=0  None .text      daTagWatchGe_Draw__FP14daTagWatchGe_c */
+/* 80D642E0-80D64300 000080 0020+00 1/0 0/0 0/0 .text daTagWatchGe_Draw__FP14daTagWatchGe_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagWatchGe_Draw(daTagWatchGe_c* param_0) {
+static asm void daTagWatchGe_Draw(daTagWatchGe_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_watchge/d_a_tag_watchge/daTagWatchGe_Draw__FP14daTagWatchGe_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D64528-80D6452C 0004+00 s=2 e=0 z=0  None .bss       m_group_count */
+/* 80D64528-80D6452C 000000 0004+00 2/2 0/0 0/0 .bss             m_group_count */
 static u8 m_group_count[4];
 
-/* 80D64300-80D64338 0038+00 s=1 e=0 z=0  None .text      s_watchge__FPvPv */
+/* 80D64300-80D64338 0000A0 0038+00 1/1 0/0 0/0 .text            s_watchge__FPvPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void s_watchge(void* param_0, void* param_1) {
+static asm void s_watchge(void* param_0, void* param_1) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_watchge/d_a_tag_watchge/s_watchge__FPvPv.s"
 }
 #pragma pop
 
-/* 80D64338-80D643C8 0090+00 s=1 e=0 z=0  None .text      execute__14daTagWatchGe_cFv */
+/* 80D64338-80D643C8 0000D8 0090+00 1/1 0/0 0/0 .text            execute__14daTagWatchGe_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -107,29 +97,27 @@ asm void daTagWatchGe_c::execute() {
 }
 #pragma pop
 
-/* 80D643C8-80D643E8 0020+00 s=1 e=0 z=0  None .text      daTagWatchGe_Execute__FP14daTagWatchGe_c
- */
+/* 80D643C8-80D643E8 000168 0020+00 1/0 0/0 0/0 .text daTagWatchGe_Execute__FP14daTagWatchGe_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagWatchGe_Execute(daTagWatchGe_c* param_0) {
+static asm void daTagWatchGe_Execute(daTagWatchGe_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_watchge/d_a_tag_watchge/daTagWatchGe_Execute__FP14daTagWatchGe_c.s"
 }
 #pragma pop
 
-/* 80D643E8-80D643F0 0008+00 s=1 e=0 z=0  None .text      daTagWatchGe_IsDelete__FP14daTagWatchGe_c
- */
+/* 80D643E8-80D643F0 000188 0008+00 1/0 0/0 0/0 .text daTagWatchGe_IsDelete__FP14daTagWatchGe_c */
 static bool daTagWatchGe_IsDelete(daTagWatchGe_c* param_0) {
     return true;
 }
 
-/* 80D643F0-80D643F8 0008+00 s=1 e=0 z=0  None .text      daTagWatchGe_Delete__FP14daTagWatchGe_c */
+/* 80D643F0-80D643F8 000190 0008+00 1/0 0/0 0/0 .text daTagWatchGe_Delete__FP14daTagWatchGe_c */
 static bool daTagWatchGe_Delete(daTagWatchGe_c* param_0) {
     return true;
 }
 
-/* 80D643F8-80D644B0 00B8+00 s=1 e=0 z=0  None .text      create__14daTagWatchGe_cFv */
+/* 80D643F8-80D644B0 000198 00B8+00 1/1 0/0 0/0 .text            create__14daTagWatchGe_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -139,18 +127,18 @@ asm void daTagWatchGe_c::create() {
 }
 #pragma pop
 
-/* 80D644B0-80D644D0 0020+00 s=1 e=0 z=0  None .text      daTagWatchGe_Create__FP14daTagWatchGe_c */
+/* 80D644B0-80D644D0 000250 0020+00 1/0 0/0 0/0 .text daTagWatchGe_Create__FP14daTagWatchGe_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagWatchGe_Create(daTagWatchGe_c* param_0) {
+static asm void daTagWatchGe_Create(daTagWatchGe_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_watchge/d_a_tag_watchge/daTagWatchGe_Create__FP14daTagWatchGe_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D644D8-80D644F8 0020+00 s=1 e=0 z=0  None .data      l_daTagWatchGe_Method */
+/* 80D644D8-80D644F8 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagWatchGe_Method */
 SECTION_DATA static void* l_daTagWatchGe_Method[8] = {
     (void*)daTagWatchGe_Create__FP14daTagWatchGe_c,
     (void*)daTagWatchGe_Delete__FP14daTagWatchGe_c,
@@ -162,8 +150,8 @@ SECTION_DATA static void* l_daTagWatchGe_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D644F8-80D64528 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_WatchGe */
-SECTION_DATA void* g_profile_Tag_WatchGe[12] = {
+/* 80D644F8-80D64528 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_WatchGe */
+SECTION_DATA extern void* g_profile_Tag_WatchGe[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01F30000, (void*)&g_fpcLf_Method,
     (void*)0x0000056C, (void*)NULL,

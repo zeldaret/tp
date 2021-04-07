@@ -7,7 +7,7 @@ lbl_80B43934:
 /* 80B43948  7C 7E 1B 78 */	mr r30, r3
 /* 80B4394C  3B E0 FF FF */	li r31, -1
 /* 80B43950  38 60 02 3A */	li r3, 0x23a
-/* 80B43954  4B 60 91 58 */	b daNpcT_chkEvtBit__FUl
+/* 80B43954  4B 60 91 59 */	bl daNpcT_chkEvtBit__FUl
 /* 80B43958  2C 03 00 00 */	cmpwi r3, 0
 /* 80B4395C  41 82 00 0C */	beq lbl_80B43968
 /* 80B43960  3B E0 03 26 */	li r31, 0x326

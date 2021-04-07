@@ -29,11 +29,11 @@ lbl_80201404:
 /* 80201470  48 00 55 09 */	bl updateText__14dMeterButton_cFUl
 /* 80201474  38 00 00 00 */	li r0, 0
 /* 80201478  B0 0F 04 B0 */	sth r0, 0x4b0(r15)
-/* 8020147C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80201480  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8020147C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80201480  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80201484  38 63 0D D8 */	addi r3, r3, 0xdd8
-/* 80201488  3C 80 80 38 */	lis r4, tempBitLabels__20dSv_event_tmp_flag_c@ha
-/* 8020148C  38 84 90 C0 */	addi r4, r4, tempBitLabels__20dSv_event_tmp_flag_c@l
+/* 80201488  3C 80 80 38 */	lis r4, tempBitLabels__20dSv_event_tmp_flag_c@ha /* 0x803790C0@ha */
+/* 8020148C  38 84 90 C0 */	addi r4, r4, tempBitLabels__20dSv_event_tmp_flag_c@l /* 0x803790C0@l */
 /* 80201490  A0 84 00 62 */	lhz r4, 0x62(r4)
 /* 80201494  4B E3 35 29 */	bl isEventBit__11dSv_event_cCFUs
 /* 80201498  2C 03 00 00 */	cmpwi r3, 0
@@ -522,8 +522,8 @@ lbl_80201B54:
 /* 80201B54  88 01 00 08 */	lbz r0, 8(r1)
 /* 80201B58  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 80201B5C  41 82 03 20 */	beq lbl_80201E7C
-/* 80201B60  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80201B64  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80201B60  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80201B64  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80201B68  89 C3 5E 2D */	lbz r14, 0x5e2d(r3)
 /* 80201B6C  55 C0 07 FF */	clrlwi. r0, r14, 0x1f
 /* 80201B70  41 82 00 64 */	beq lbl_80201BD4
@@ -732,8 +732,8 @@ lbl_80201E7C:
 /* 80201E7C  88 01 00 09 */	lbz r0, 9(r1)
 /* 80201E80  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 80201E84  41 82 03 20 */	beq lbl_802021A4
-/* 80201E88  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80201E8C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80201E88  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80201E8C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80201E90  89 C3 5E 30 */	lbz r14, 0x5e30(r3)
 /* 80201E94  55 C0 07 FF */	clrlwi. r0, r14, 0x1f
 /* 80201E98  41 82 00 64 */	beq lbl_80201EFC

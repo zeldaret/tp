@@ -3,18 +3,16 @@
 #
 
 M644_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sword.plf
+M644_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sword.lcf
+M644_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sword.map
 
 M644_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_sword/executor.cpp \
-	rel/d/a/obj/d_a_obj_sword/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_sword/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_sword/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_sword/d_a_obj_sword.cpp \
 
 M644_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sword/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sword/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sword/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sword/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sword/d_a_obj_sword.o \
 
@@ -31,14 +29,21 @@ M644_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M644_LDSCRIPT) \
+	-unused -map $(M644_MAP) \
+	-w off \
 
 $(M644_TARGET): $(M644_O_FILES) $(M644_LIBS)
+	@echo [644] creating $(M644_TARGET)
 	@echo $(M644_LIBS) $(M644_O_FILES) > build/M644_ofiles
-	$(LD) -partial $(M644_LDFLAGS) -o $(M644_TARGET) @build/M644_ofiles
+	@python3 tools/lcf.py rel 644 --output $(M644_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M644_LDFLAGS) -o $(M644_TARGET) @build/M644_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sword/%.o: rel/d/a/obj/d_a_obj_sword/%.cpp
+	@echo [644] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M644_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M644_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

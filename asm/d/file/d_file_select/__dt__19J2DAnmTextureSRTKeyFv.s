@@ -5,25 +5,25 @@ lbl_80184274:
 /* 80184280  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80184284  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80184288  41 82 00 5C */	beq lbl_801842E4
-/* 8018428C  3C 60 80 3D */	lis r3, __vt__19J2DAnmTextureSRTKey@ha
-/* 80184290  38 03 D7 48 */	addi r0, r3, __vt__19J2DAnmTextureSRTKey@l
+/* 8018428C  3C 60 80 3D */	lis r3, __vt__19J2DAnmTextureSRTKey@ha /* 0x803CD748@ha */
+/* 80184290  38 03 D7 48 */	addi r0, r3, __vt__19J2DAnmTextureSRTKey@l /* 0x803CD748@l */
 /* 80184294  90 1F 00 00 */	stw r0, 0(r31)
 /* 80184298  34 1F 00 68 */	addic. r0, r31, 0x68
 /* 8018429C  41 82 00 10 */	beq lbl_801842AC
-/* 801842A0  3C 60 80 3C */	lis r3, __vt__10JUTNameTab@ha
-/* 801842A4  38 03 B3 DC */	addi r0, r3, __vt__10JUTNameTab@l
+/* 801842A0  3C 60 80 3C */	lis r3, __vt__10JUTNameTab@ha /* 0x803BB3DC@ha */
+/* 801842A4  38 03 B3 DC */	addi r0, r3, __vt__10JUTNameTab@l /* 0x803BB3DC@l */
 /* 801842A8  90 1F 00 68 */	stw r0, 0x68(r31)
 lbl_801842AC:
 /* 801842AC  34 1F 00 34 */	addic. r0, r31, 0x34
 /* 801842B0  41 82 00 10 */	beq lbl_801842C0
-/* 801842B4  3C 60 80 3C */	lis r3, __vt__10JUTNameTab@ha
-/* 801842B8  38 03 B3 DC */	addi r0, r3, __vt__10JUTNameTab@l
+/* 801842B4  3C 60 80 3C */	lis r3, __vt__10JUTNameTab@ha /* 0x803BB3DC@ha */
+/* 801842B8  38 03 B3 DC */	addi r0, r3, __vt__10JUTNameTab@l /* 0x803BB3DC@l */
 /* 801842BC  90 1F 00 34 */	stw r0, 0x34(r31)
 lbl_801842C0:
 /* 801842C0  28 1F 00 00 */	cmplwi r31, 0
 /* 801842C4  41 82 00 10 */	beq lbl_801842D4
-/* 801842C8  3C 60 80 3B */	lis r3, __vt__10J2DAnmBase@ha
-/* 801842CC  38 03 8E 04 */	addi r0, r3, __vt__10J2DAnmBase@l
+/* 801842C8  3C 60 80 3B */	lis r3, __vt__10J2DAnmBase@ha /* 0x803A8E04@ha */
+/* 801842CC  38 03 8E 04 */	addi r0, r3, __vt__10J2DAnmBase@l /* 0x803A8E04@l */
 /* 801842D0  90 1F 00 00 */	stw r0, 0(r31)
 lbl_801842D4:
 /* 801842D4  7C 80 07 35 */	extsh. r0, r4

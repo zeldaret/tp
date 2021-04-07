@@ -48,8 +48,8 @@ lbl_800DFF24:
 /* 800DFF74  41 82 00 18 */	beq lbl_800DFF8C
 /* 800DFF78  38 00 00 03 */	li r0, 3
 /* 800DFF7C  98 1F 2F 98 */	stb r0, 0x2f98(r31)
-/* 800DFF80  3C 60 80 39 */	lis r3, m__19daAlinkHIO_basic_c0@ha
-/* 800DFF84  38 63 D6 64 */	addi r3, r3, m__19daAlinkHIO_basic_c0@l
+/* 800DFF80  3C 60 80 39 */	lis r3, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 800DFF84  38 63 D6 64 */	addi r3, r3, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 800DFF88  C3 E3 00 18 */	lfs f31, 0x18(r3)
 lbl_800DFF8C:
 /* 800DFF8C  A8 7F 04 E6 */	lha r3, 0x4e6(r31)

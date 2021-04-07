@@ -3,17 +3,15 @@
 #
 
 M730_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_myna2.plf
+M730_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_myna2.lcf
+M730_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_myna2.map
 
 M730_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_myna2/executor.cpp \
-	rel/d/a/tag/d_a_tag_myna2/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_myna2/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_myna2/d_a_tag_myna2.cpp \
 
 M730_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_myna2/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_myna2/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_myna2/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_myna2/d_a_tag_myna2.o \
 
 M730_LIBS := \
@@ -29,14 +27,21 @@ M730_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M730_LDSCRIPT) \
+	-unused -map $(M730_MAP) \
+	-w off \
 
 $(M730_TARGET): $(M730_O_FILES) $(M730_LIBS)
+	@echo [730] creating $(M730_TARGET)
 	@echo $(M730_LIBS) $(M730_O_FILES) > build/M730_ofiles
-	$(LD) -partial $(M730_LDFLAGS) -o $(M730_TARGET) @build/M730_ofiles
+	@python3 tools/lcf.py rel 730 --output $(M730_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M730_LDFLAGS) -o $(M730_TARGET) @build/M730_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_myna2/%.o: rel/d/a/tag/d_a_tag_myna2/%.cpp
+	@echo [730] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M730_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M730_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -3,19 +3,20 @@
 #
 
 M328_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_knj.plf
+M328_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_knj.lcf
+M328_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_knj.map
 
 M328_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_knj/executor.cpp \
-	rel/d/a/npc/d_a_npc_knj/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_knj/d_a_npc_knj.cpp \
 
 M328_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_knj/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_knj/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_knj/d_a_npc_knj.o \
 
 M328_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_knj/libRuntime.PPCEABI.H.a \
 
 M328_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M328_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M328_LDSCRIPT) \
+	-unused -map $(M328_MAP) \
+	-w off \
 
 $(M328_TARGET): $(M328_O_FILES) $(M328_LIBS)
+	@echo [328] creating $(M328_TARGET)
 	@echo $(M328_LIBS) $(M328_O_FILES) > build/M328_ofiles
-	$(LD) -partial $(M328_LDFLAGS) -o $(M328_TARGET) @build/M328_ofiles
+	@python3 tools/lcf.py rel 328 --output $(M328_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M328_LDFLAGS) -o $(M328_TARGET) @build/M328_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_knj/%.o: rel/d/a/npc/d_a_npc_knj/%.cpp
+	@echo [328] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M328_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M328_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_knj/libs/Runtime.PPCEABI.H/Makefile
 

@@ -14,15 +14,15 @@ lbl_80356A74:
 /* 80356A78  48 00 01 3C */	b lbl_80356BB4
 lbl_80356A7C:
 /* 80356A7C  3C 60 80 00 */	lis r3, 0x8000 /* 0x800030E3@ha */
-/* 80356A80  88 03 30 E3 */	lbz r0, 0x30E3(r3)
+/* 80356A80  88 03 30 E3 */	lbz r0, 0x30E3(r3)  /* 0x800030E3@l */
 /* 80356A84  54 00 06 31 */	rlwinm. r0, r0, 0, 0x18, 0x18
 /* 80356A88  41 82 00 0C */	beq lbl_80356A94
 /* 80356A8C  38 60 FF FD */	li r3, -3
 /* 80356A90  48 00 01 24 */	b lbl_80356BB4
 lbl_80356A94:
 /* 80356A94  1C 9B 01 10 */	mulli r4, r27, 0x110
-/* 80356A98  3C 60 80 45 */	lis r3, __CARDBlock@ha
-/* 80356A9C  38 03 CB C0 */	addi r0, r3, __CARDBlock@l
+/* 80356A98  3C 60 80 45 */	lis r3, __CARDBlock@ha /* 0x8044CBC0@ha */
+/* 80356A9C  38 03 CB C0 */	addi r0, r3, __CARDBlock@l /* 0x8044CBC0@l */
 /* 80356AA0  7F C0 22 14 */	add r30, r0, r4
 /* 80356AA4  4B FE 6C 51 */	bl OSDisableInterrupts
 /* 80356AA8  3B A3 00 00 */	addi r29, r3, 0
@@ -89,8 +89,8 @@ lbl_80356B78:
 /* 80356B78  28 1F 00 00 */	cmplwi r31, 0
 /* 80356B7C  41 82 00 20 */	beq lbl_80356B9C
 /* 80356B80  80 81 00 14 */	lwz r4, 0x14(r1)
-/* 80356B84  3C 60 80 3D */	lis r3, SectorSizeTable@ha
-/* 80356B88  38 03 20 00 */	addi r0, r3, SectorSizeTable@l
+/* 80356B84  3C 60 80 3D */	lis r3, SectorSizeTable@ha /* 0x803D2000@ha */
+/* 80356B88  38 03 20 00 */	addi r0, r3, SectorSizeTable@l /* 0x803D2000@l */
 /* 80356B8C  54 83 BE FA */	rlwinm r3, r4, 0x17, 0x1b, 0x1d
 /* 80356B90  7C 60 1A 14 */	add r3, r0, r3
 /* 80356B94  80 03 00 00 */	lwz r0, 0(r3)

@@ -53,8 +53,8 @@ lbl_801883E8:
 /* 801883F4  7F E3 FB 78 */	mr r3, r31
 /* 801883F8  38 A0 00 FF */	li r5, 0xff
 /* 801883FC  38 C0 00 00 */	li r6, 0
-/* 80188400  3C E0 80 43 */	lis r7, g_fsHIO@ha
-/* 80188404  38 E7 C9 EC */	addi r7, r7, g_fsHIO@l
+/* 80188400  3C E0 80 43 */	lis r7, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 80188404  38 E7 C9 EC */	addi r7, r7, g_fsHIO@l /* 0x8042C9EC@l */
 /* 80188408  88 E7 00 08 */	lbz r7, 8(r7)
 /* 8018840C  48 00 04 29 */	bl copySelectWakuAlpahAnmInit__14dFile_select_cFUcUcUcUc
 /* 80188410  38 80 00 00 */	li r4, 0

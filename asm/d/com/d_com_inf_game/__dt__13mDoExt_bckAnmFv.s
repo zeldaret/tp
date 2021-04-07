@@ -7,8 +7,8 @@ lbl_800306A0:
 /* 800306B4  41 82 00 28 */	beq lbl_800306DC
 /* 800306B8  41 82 00 14 */	beq lbl_800306CC
 /* 800306BC  41 82 00 10 */	beq lbl_800306CC
-/* 800306C0  3C 60 80 3A */	lis r3, __vt__12J3DFrameCtrl@ha
-/* 800306C4  38 03 33 54 */	addi r0, r3, __vt__12J3DFrameCtrl@l
+/* 800306C0  3C 60 80 3A */	lis r3, __vt__12J3DFrameCtrl@ha /* 0x803A3354@ha */
+/* 800306C4  38 03 33 54 */	addi r0, r3, __vt__12J3DFrameCtrl@l /* 0x803A3354@l */
 /* 800306C8  90 1F 00 00 */	stw r0, 0(r31)
 lbl_800306CC:
 /* 800306CC  7C 80 07 35 */	extsh. r0, r4

@@ -9,8 +9,8 @@ lbl_8009CB88:
 /* 8009CBA4  39 61 05 30 */	addi r11, r1, 0x530
 /* 8009CBA8  48 2C 56 2D */	bl _savegpr_27
 /* 8009CBAC  7C 9D 23 78 */	mr r29, r4
-/* 8009CBB0  3C 80 80 38 */	lis r4, msg_data@ha
-/* 8009CBB4  38 84 B1 80 */	addi r4, r4, msg_data@l
+/* 8009CBB0  3C 80 80 38 */	lis r4, msg_data@ha /* 0x8037B180@ha */
+/* 8009CBB4  38 84 B1 80 */	addi r4, r4, msg_data@l /* 0x8037B180@l */
 /* 8009CBB8  38 A4 00 20 */	addi r5, r4, 0x20
 /* 8009CBBC  80 84 00 24 */	lwz r4, 0x24(r4)
 /* 8009CBC0  54 60 10 3A */	slwi r0, r3, 2
@@ -34,8 +34,8 @@ lbl_8009CB88:
 /* 8009CC08  38 C4 54 31 */	addi r6, r4, 0x5431 /* 0x45585431@l */
 /* 8009CC0C  38 A0 00 54 */	li r5, 0x54
 /* 8009CC10  38 E1 00 9C */	addi r7, r1, 0x9c
-/* 8009CC14  3C 80 80 38 */	lis r4, font_data@ha
-/* 8009CC18  39 04 B3 E0 */	addi r8, r4, font_data@l
+/* 8009CC14  3C 80 80 38 */	lis r4, font_data@ha /* 0x8037B3E0@ha */
+/* 8009CC18  39 04 B3 E0 */	addi r8, r4, font_data@l /* 0x8037B3E0@l */
 /* 8009CC1C  7F E9 FB 78 */	mr r9, r31
 /* 8009CC20  39 40 02 00 */	li r10, 0x200
 /* 8009CC24  48 26 2F A1 */	bl func_802FFBC4
@@ -54,8 +54,8 @@ lbl_8009CB88:
 /* 8009CC58  38 C4 54 32 */	addi r6, r4, 0x5432 /* 0x45585432@l */
 /* 8009CC5C  38 A0 00 54 */	li r5, 0x54
 /* 8009CC60  38 E1 00 8C */	addi r7, r1, 0x8c
-/* 8009CC64  3C 80 80 38 */	lis r4, font_data@ha
-/* 8009CC68  39 04 B3 E0 */	addi r8, r4, font_data@l
+/* 8009CC64  3C 80 80 38 */	lis r4, font_data@ha /* 0x8037B3E0@ha */
+/* 8009CC68  39 04 B3 E0 */	addi r8, r4, font_data@l /* 0x8037B3E0@l */
 /* 8009CC6C  7F E9 FB 78 */	mr r9, r31
 /* 8009CC70  39 40 02 00 */	li r10, 0x200
 /* 8009CC74  48 26 2F 51 */	bl func_802FFBC4
@@ -71,13 +71,13 @@ lbl_8009CB88:
 /* 8009CC9C  38 C4 54 31 */	addi r6, r4, 0x5431 /* 0x49435431@l */
 /* 8009CCA0  38 A0 00 50 */	li r5, 0x50
 /* 8009CCA4  38 E1 00 7C */	addi r7, r1, 0x7c
-/* 8009CCA8  3C 80 80 38 */	lis r4, black_tex@ha
-/* 8009CCAC  39 04 B1 40 */	addi r8, r4, black_tex@l
+/* 8009CCA8  3C 80 80 38 */	lis r4, black_tex@ha /* 0x8037B140@ha */
+/* 8009CCAC  39 04 B1 40 */	addi r8, r4, black_tex@l /* 0x8037B140@l */
 /* 8009CCB0  39 20 00 00 */	li r9, 0
 /* 8009CCB4  48 25 FB 4D */	bl func_802FC800
 /* 8009CCB8  38 61 00 D4 */	addi r3, r1, 0xd4
-/* 8009CCBC  3C 80 80 38 */	lis r4, font_data@ha
-/* 8009CCC0  38 84 B3 E0 */	addi r4, r4, font_data@l
+/* 8009CCBC  3C 80 80 38 */	lis r4, font_data@ha /* 0x8037B3E0@ha */
+/* 8009CCC0  38 84 B3 E0 */	addi r4, r4, font_data@l /* 0x8037B3E0@l */
 /* 8009CCC4  38 A0 00 00 */	li r5, 0
 /* 8009CCC8  48 24 22 CD */	bl __ct__10JUTResFontFPC7ResFONTP7JKRHeap
 /* 8009CCCC  3B C1 00 D4 */	addi r30, r1, 0xd4

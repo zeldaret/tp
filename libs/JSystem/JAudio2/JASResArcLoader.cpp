@@ -58,7 +58,7 @@ extern "C" void _restgpr_28();
 // Declarations:
 //
 
-/* 80290BD0-80290C04 0034+00 s=0 e=2 z=0  None .text
+/* 80290BD0-80290C04 28B510 0034+00 0/0 2/2 0/0 .text
  * getResSize__15JASResArcLoaderFPC10JKRArchiveUs               */
 #pragma push
 #pragma optimization_level 0
@@ -69,7 +69,7 @@ asm void JASResArcLoader::getResSize(JKRArchive const* param_0, u16 param_1) {
 }
 #pragma pop
 
-/* 80290C04-80290C7C 0078+00 s=0 e=1 z=0  None .text
+/* 80290C04-80290C7C 28B544 0078+00 0/0 1/1 0/0 .text
  * getResMaxSize__15JASResArcLoaderFPC10JKRArchive              */
 #pragma push
 #pragma optimization_level 0
@@ -80,7 +80,7 @@ asm void JASResArcLoader::getResMaxSize(JKRArchive const* param_0) {
 }
 #pragma pop
 
-/* 80290C7C-80290D18 009C+00 s=1 e=0 z=0  None .text      loadResourceCallback__15JASResArcLoaderFPv
+/* 80290C7C-80290D18 28B5BC 009C+00 1/1 0/0 0/0 .text loadResourceCallback__15JASResArcLoaderFPv
  */
 #pragma push
 #pragma optimization_level 0
@@ -91,7 +91,7 @@ asm void JASResArcLoader::loadResourceCallback(void* param_0) {
 }
 #pragma pop
 
-/* 80290D18-80290D74 005C+00 s=0 e=1 z=0  None .text
+/* 80290D18-80290D74 28B658 005C+00 0/0 1/1 0/0 .text
  * loadResourceAsync__15JASResArcLoaderFP10JKRArchiveUsPUcUlPFUlUl_vUl */
 #pragma push
 #pragma optimization_level 0

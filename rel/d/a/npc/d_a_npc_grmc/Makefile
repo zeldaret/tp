@@ -3,19 +3,20 @@
 #
 
 M309_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grmc.plf
+M309_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grmc.lcf
+M309_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grmc.map
 
 M309_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_grmc/executor.cpp \
-	rel/d/a/npc/d_a_npc_grmc/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_grmc/d_a_npc_grmc.cpp \
 
 M309_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_grmc/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_grmc/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_grmc/d_a_npc_grmc.o \
 
 M309_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_grmc/libRuntime.PPCEABI.H.a \
 
 M309_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M309_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M309_LDSCRIPT) \
+	-unused -map $(M309_MAP) \
+	-w off \
 
 $(M309_TARGET): $(M309_O_FILES) $(M309_LIBS)
+	@echo [309] creating $(M309_TARGET)
 	@echo $(M309_LIBS) $(M309_O_FILES) > build/M309_ofiles
-	$(LD) -partial $(M309_LDFLAGS) -o $(M309_TARGET) @build/M309_ofiles
+	@python3 tools/lcf.py rel 309 --output $(M309_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M309_LDFLAGS) -o $(M309_TARGET) @build/M309_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grmc/%.o: rel/d/a/npc/d_a_npc_grmc/%.cpp
+	@echo [309] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M309_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M309_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_grmc/libs/Runtime.PPCEABI.H/Makefile
 

@@ -4,13 +4,13 @@ lbl_80CFC04C:
 /* 80CFC054  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80CFC058  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CFC05C  7C 7F 1B 78 */	mr r31, r3
-/* 80CFC060  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CFC064  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80CFC060  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CFC064  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CFC068  80 A3 5D AC */	lwz r5, 0x5dac(r3)
 /* 80CFC06C  88 1F 07 30 */	lbz r0, 0x730(r31)
 /* 80CFC070  1C 80 00 0C */	mulli r4, r0, 0xc
-/* 80CFC074  3C 60 80 D0 */	lis r3, l_hang_offset@ha
-/* 80CFC078  38 03 D3 00 */	addi r0, r3, l_hang_offset@l
+/* 80CFC074  3C 60 80 D0 */	lis r3, l_hang_offset@ha /* 0x80CFD300@ha */
+/* 80CFC078  38 03 D3 00 */	addi r0, r3, l_hang_offset@l /* 0x80CFD300@l */
 /* 80CFC07C  7C 60 22 14 */	add r3, r0, r4
 /* 80CFC080  C0 03 00 00 */	lfs f0, 0(r3)
 /* 80CFC084  D0 1F 07 70 */	stfs f0, 0x770(r31)
@@ -35,16 +35,16 @@ lbl_80CFC04C:
 /* 80CFC0D0  D0 1F 07 78 */	stfs f0, 0x778(r31)
 lbl_80CFC0D4:
 /* 80CFC0D4  38 7F 04 D0 */	addi r3, r31, 0x4d0
-/* 80CFC0D8  4B 31 0C 8C */	b transS__14mDoMtx_stack_cFRC4cXyz
-/* 80CFC0DC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80CFC0E0  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80CFC0D8  4B 31 0C 8D */	bl transS__14mDoMtx_stack_cFRC4cXyz
+/* 80CFC0DC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80CFC0E0  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80CFC0E4  A8 9F 04 DE */	lha r4, 0x4de(r31)
-/* 80CFC0E8  4B 31 03 4C */	b mDoMtx_YrotM__FPA4_fs
-/* 80CFC0EC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80CFC0F0  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80CFC0E8  4B 31 03 4D */	bl mDoMtx_YrotM__FPA4_fs
+/* 80CFC0EC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80CFC0F0  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80CFC0F4  38 9F 07 70 */	addi r4, r31, 0x770
 /* 80CFC0F8  7C 85 23 78 */	mr r5, r4
-/* 80CFC0FC  4B 64 AC 70 */	b PSMTXMultVec
+/* 80CFC0FC  4B 64 AC 71 */	bl PSMTXMultVec
 /* 80CFC100  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80CFC104  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80CFC108  7C 08 03 A6 */	mtlr r0

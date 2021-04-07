@@ -3,17 +3,15 @@
 #
 
 M34_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_howl.plf
+M34_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_howl.lcf
+M34_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_howl.map
 
 M34_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_howl/executor.cpp \
-	rel/d/a/tag/d_a_tag_howl/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_howl/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_howl/d_a_tag_howl.cpp \
 
 M34_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_howl/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_howl/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_howl/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_howl/d_a_tag_howl.o \
 
 M34_LIBS := \
@@ -29,14 +27,21 @@ M34_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M34_LDSCRIPT) \
+	-unused -map $(M34_MAP) \
+	-w off \
 
 $(M34_TARGET): $(M34_O_FILES) $(M34_LIBS)
+	@echo [ 34] creating $(M34_TARGET)
 	@echo $(M34_LIBS) $(M34_O_FILES) > build/M34_ofiles
-	$(LD) -partial $(M34_LDFLAGS) -o $(M34_TARGET) @build/M34_ofiles
+	@python3 tools/lcf.py rel 34 --output $(M34_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M34_LDFLAGS) -o $(M34_TARGET) @build/M34_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_howl/%.o: rel/d/a/tag/d_a_tag_howl/%.cpp
+	@echo [ 34] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M34_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M34_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

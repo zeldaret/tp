@@ -13,8 +13,8 @@ lbl_801D3CDC:
 /* 801D3CE0  38 00 00 01 */	li r0, 1
 lbl_801D3CE4:
 /* 801D3CE4  1C A0 00 28 */	mulli r5, r0, 0x28
-/* 801D3CE8  3C 80 80 43 */	lis r4, g_fmapHIO@ha
-/* 801D3CEC  38 04 FC 60 */	addi r0, r4, g_fmapHIO@l
+/* 801D3CE8  3C 80 80 43 */	lis r4, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801D3CEC  38 04 FC 60 */	addi r0, r4, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801D3CF0  7C 80 2A 14 */	add r4, r0, r5
 /* 801D3CF4  88 C4 00 1C */	lbz r6, 0x1c(r4)
 /* 801D3CF8  C8 42 A7 F8 */	lfd f2, lit_4207(r2)

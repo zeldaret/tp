@@ -7,14 +7,14 @@ lbl_805CCEB4:
 /* 805CCEC8  88 83 08 57 */	lbz r4, 0x857(r3)
 /* 805CCECC  28 04 00 FF */	cmplwi r4, 0xff
 /* 805CCED0  41 82 00 18 */	beq lbl_805CCEE8
-/* 805CCED4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805CCED8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805CCED4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805CCED8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805CCEDC  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 805CCEE0  7C 05 07 74 */	extsb r5, r0
-/* 805CCEE4  4B A6 83 CC */	b offSwitch__10dSv_info_cFii
+/* 805CCEE4  4B A6 83 CD */	bl offSwitch__10dSv_info_cFii
 lbl_805CCEE8:
-/* 805CCEE8  3C 60 80 5E */	lis r3, lit_3933@ha
-/* 805CCEEC  C0 03 CA 58 */	lfs f0, lit_3933@l(r3)
+/* 805CCEE8  3C 60 80 5E */	lis r3, lit_3933@ha /* 0x805DCA58@ha */
+/* 805CCEEC  C0 03 CA 58 */	lfs f0, lit_3933@l(r3)  /* 0x805DCA58@l */
 /* 805CCEF0  D0 1F 07 EC */	stfs f0, 0x7ec(r31)
 /* 805CCEF4  38 60 00 00 */	li r3, 0
 /* 805CCEF8  B0 7F 04 E4 */	sth r3, 0x4e4(r31)
@@ -94,17 +94,17 @@ lbl_805CCFD8:
 /* 805CD01C  38 60 00 06 */	li r3, 6
 /* 805CD020  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 805CD024  7C 04 07 74 */	extsb r4, r0
-/* 805CD028  4B A6 09 24 */	b dComIfGs_onZoneSwitch__Fii
+/* 805CD028  4B A6 09 25 */	bl dComIfGs_onZoneSwitch__Fii
 /* 805CD02C  38 60 00 08 */	li r3, 8
 /* 805CD030  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 805CD034  7C 04 07 74 */	extsb r4, r0
-/* 805CD038  4B A6 09 14 */	b dComIfGs_onZoneSwitch__Fii
+/* 805CD038  4B A6 09 15 */	bl dComIfGs_onZoneSwitch__Fii
 /* 805CD03C  38 00 00 01 */	li r0, 1
 /* 805CD040  98 1F 08 53 */	stb r0, 0x853(r31)
 /* 805CD044  38 00 00 00 */	li r0, 0
 /* 805CD048  98 1F 08 4F */	stb r0, 0x84f(r31)
-/* 805CD04C  3C 60 80 5E */	lis r3, l_HIO@ha
-/* 805CD050  38 63 DA BC */	addi r3, r3, l_HIO@l
+/* 805CD04C  3C 60 80 5E */	lis r3, l_HIO@ha /* 0x805DDABC@ha */
+/* 805CD050  38 63 DA BC */	addi r3, r3, l_HIO@l /* 0x805DDABC@l */
 /* 805CD054  A8 03 00 4A */	lha r0, 0x4a(r3)
 /* 805CD058  B0 1F 05 62 */	sth r0, 0x562(r31)
 /* 805CD05C  B0 1F 05 60 */	sth r0, 0x560(r31)

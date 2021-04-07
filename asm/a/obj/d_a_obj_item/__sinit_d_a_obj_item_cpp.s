@@ -1,6 +1,6 @@
 lbl_8015DED0:
-/* 8015DED0  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 8015DED4  38 A3 9D A0 */	addi r5, r3, cNullVec__6Z2Calc@l
+/* 8015DED0  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803B9DA0@ha */
+/* 8015DED4  38 A3 9D A0 */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x803B9DA0@l */
 /* 8015DED8  80 65 00 8C */	lwz r3, 0x8c(r5)
 /* 8015DEDC  80 05 00 90 */	lwz r0, 0x90(r5)
 /* 8015DEE0  90 65 00 F8 */	stw r3, 0xf8(r5)
@@ -56,8 +56,8 @@ lbl_8015DED0:
 /* 8015DFA8  90 03 00 64 */	stw r0, 0x64(r3)
 /* 8015DFAC  80 05 00 F4 */	lwz r0, 0xf4(r5)
 /* 8015DFB0  90 03 00 68 */	stw r0, 0x68(r3)
-/* 8015DFB4  3C 80 80 3A */	lis r4, __ptmf_null@ha
-/* 8015DFB8  38 A4 21 80 */	addi r5, r4, __ptmf_null@l
+/* 8015DFB4  3C 80 80 3A */	lis r4, __ptmf_null@ha /* 0x803A2180@ha */
+/* 8015DFB8  38 A4 21 80 */	addi r5, r4, __ptmf_null@l /* 0x803A2180@l */
 /* 8015DFBC  80 85 00 00 */	lwz r4, 0(r5)
 /* 8015DFC0  80 05 00 04 */	lwz r0, 4(r5)
 /* 8015DFC4  90 83 00 6C */	stw r4, 0x6c(r3)

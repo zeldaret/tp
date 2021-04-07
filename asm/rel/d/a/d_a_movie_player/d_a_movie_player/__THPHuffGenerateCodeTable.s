@@ -1,12 +1,12 @@
 lbl_8087383C:
 /* 8087383C  39 00 00 00 */	li r8, 0
 /* 80873840  39 20 00 00 */	li r9, 0
-/* 80873844  3C 60 80 88 */	lis r3, __THPHuffmanSizeTab@ha
-/* 80873848  38 C3 9B 64 */	addi r6, r3, __THPHuffmanSizeTab@l
+/* 80873844  3C 60 80 88 */	lis r3, __THPHuffmanSizeTab@ha /* 0x80879B64@ha */
+/* 80873848  38 C3 9B 64 */	addi r6, r3, __THPHuffmanSizeTab@l /* 0x80879B64@l */
 /* 8087384C  80 66 00 00 */	lwz r3, 0(r6)
 /* 80873850  88 E3 00 00 */	lbz r7, 0(r3)
-/* 80873854  3C 60 80 88 */	lis r3, __THPHuffmanCodeTab@ha
-/* 80873858  38 A3 9B 68 */	addi r5, r3, __THPHuffmanCodeTab@l
+/* 80873854  3C 60 80 88 */	lis r3, __THPHuffmanCodeTab@ha /* 0x80879B68@ha */
+/* 80873858  38 A3 9B 68 */	addi r5, r3, __THPHuffmanCodeTab@l /* 0x80879B68@l */
 /* 8087385C  48 00 00 3C */	b lbl_80873898
 lbl_80873860:
 /* 80873860  54 E4 06 3E */	clrlwi r4, r7, 0x18

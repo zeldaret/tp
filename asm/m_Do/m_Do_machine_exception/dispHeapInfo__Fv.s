@@ -25,33 +25,33 @@ lbl_80017E30:
 /* 80017E8C  7F A3 EB 78 */	mr r3, r29
 /* 80017E90  48 2B 68 F5 */	bl getTotalFreeSize__7JKRHeapFv
 /* 80017E94  7C 7C 1B 78 */	mr r28, r3
-/* 80017E98  3C 60 80 37 */	lis r3, m_Do_m_Do_machine_exception__stringBase0@ha
-/* 80017E9C  38 63 44 60 */	addi r3, r3, m_Do_m_Do_machine_exception__stringBase0@l
+/* 80017E98  3C 60 80 37 */	lis r3, m_Do_m_Do_machine_exception__stringBase0@ha /* 0x80374460@ha */
+/* 80017E9C  38 63 44 60 */	addi r3, r3, m_Do_m_Do_machine_exception__stringBase0@l /* 0x80374460@l */
 /* 80017EA0  38 63 00 28 */	addi r3, r3, 0x28
 /* 80017EA4  4B FF FF 65 */	bl print__FPCc
-/* 80017EA8  3C 60 80 37 */	lis r3, m_Do_m_Do_machine_exception__stringBase0@ha
-/* 80017EAC  38 63 44 60 */	addi r3, r3, m_Do_m_Do_machine_exception__stringBase0@l
+/* 80017EA8  3C 60 80 37 */	lis r3, m_Do_m_Do_machine_exception__stringBase0@ha /* 0x80374460@ha */
+/* 80017EAC  38 63 44 60 */	addi r3, r3, m_Do_m_Do_machine_exception__stringBase0@l /* 0x80374460@l */
 /* 80017EB0  38 63 00 4A */	addi r3, r3, 0x4a
 /* 80017EB4  56 E4 B2 BE */	srwi r4, r23, 0xa
 /* 80017EB8  57 45 B2 BE */	srwi r5, r26, 0xa
 /* 80017EBC  4C C6 31 82 */	crclr 6
 /* 80017EC0  4B FF FE BD */	bl print_f__FPCce
-/* 80017EC4  3C 60 80 37 */	lis r3, m_Do_m_Do_machine_exception__stringBase0@ha
-/* 80017EC8  38 63 44 60 */	addi r3, r3, m_Do_m_Do_machine_exception__stringBase0@l
+/* 80017EC4  3C 60 80 37 */	lis r3, m_Do_m_Do_machine_exception__stringBase0@ha /* 0x80374460@ha */
+/* 80017EC8  38 63 44 60 */	addi r3, r3, m_Do_m_Do_machine_exception__stringBase0@l /* 0x80374460@l */
 /* 80017ECC  38 63 00 5D */	addi r3, r3, 0x5d
 /* 80017ED0  57 04 B2 BE */	srwi r4, r24, 0xa
 /* 80017ED4  57 65 B2 BE */	srwi r5, r27, 0xa
 /* 80017ED8  4C C6 31 82 */	crclr 6
 /* 80017EDC  4B FF FE A1 */	bl print_f__FPCce
-/* 80017EE0  3C 60 80 37 */	lis r3, m_Do_m_Do_machine_exception__stringBase0@ha
-/* 80017EE4  38 63 44 60 */	addi r3, r3, m_Do_m_Do_machine_exception__stringBase0@l
+/* 80017EE0  3C 60 80 37 */	lis r3, m_Do_m_Do_machine_exception__stringBase0@ha /* 0x80374460@ha */
+/* 80017EE4  38 63 44 60 */	addi r3, r3, m_Do_m_Do_machine_exception__stringBase0@l /* 0x80374460@l */
 /* 80017EE8  38 63 00 70 */	addi r3, r3, 0x70
 /* 80017EEC  57 24 B2 BE */	srwi r4, r25, 0xa
 /* 80017EF0  57 85 B2 BE */	srwi r5, r28, 0xa
 /* 80017EF4  4C C6 31 82 */	crclr 6
 /* 80017EF8  4B FF FE 85 */	bl print_f__FPCce
-/* 80017EFC  3C 60 80 37 */	lis r3, m_Do_m_Do_machine_exception__stringBase0@ha
-/* 80017F00  38 63 44 60 */	addi r3, r3, m_Do_m_Do_machine_exception__stringBase0@l
+/* 80017EFC  3C 60 80 37 */	lis r3, m_Do_m_Do_machine_exception__stringBase0@ha /* 0x80374460@ha */
+/* 80017F00  38 63 44 60 */	addi r3, r3, m_Do_m_Do_machine_exception__stringBase0@l /* 0x80374460@l */
 /* 80017F04  38 63 00 83 */	addi r3, r3, 0x83
 /* 80017F08  4B FF FF 01 */	bl print__FPCc
 /* 80017F0C  80 6D 8E 48 */	lwz r3, sAramObject__7JKRAram(r13)
@@ -61,8 +61,8 @@ lbl_80017E30:
 /* 80017F1C  48 2B B2 FD */	bl dump__11JKRAramHeapFv
 lbl_80017F20:
 /* 80017F20  48 24 A5 51 */	bl dump__24DynamicModuleControlBaseFv
-/* 80017F24  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80017F28  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80017F24  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80017F28  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80017F2C  3C 63 00 02 */	addis r3, r3, 2
 /* 80017F30  38 63 C2 F8 */	addi r3, r3, -15624
 /* 80017F34  48 02 47 05 */	bl dump__14dRes_control_cFv

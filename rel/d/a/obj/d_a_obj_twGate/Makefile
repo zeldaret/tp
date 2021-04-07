@@ -3,19 +3,20 @@
 #
 
 M671_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_twGate.plf
+M671_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_twGate.lcf
+M671_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_twGate.map
 
 M671_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_twGate/executor.cpp \
-	rel/d/a/obj/d_a_obj_twGate/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_twGate/d_a_obj_twGate.cpp \
 
 M671_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_twGate/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_twGate/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_twGate/d_a_obj_twGate.o \
 
 M671_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_twGate/libRuntime.PPCEABI.H.a \
 
 M671_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M671_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M671_LDSCRIPT) \
+	-unused -map $(M671_MAP) \
+	-w off \
 
 $(M671_TARGET): $(M671_O_FILES) $(M671_LIBS)
+	@echo [671] creating $(M671_TARGET)
 	@echo $(M671_LIBS) $(M671_O_FILES) > build/M671_ofiles
-	$(LD) -partial $(M671_LDFLAGS) -o $(M671_TARGET) @build/M671_ofiles
+	@python3 tools/lcf.py rel 671 --output $(M671_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M671_LDFLAGS) -o $(M671_TARGET) @build/M671_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_twGate/%.o: rel/d/a/obj/d_a_obj_twGate/%.cpp
+	@echo [671] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M671_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M671_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_twGate/libs/Runtime.PPCEABI.H/Makefile
 

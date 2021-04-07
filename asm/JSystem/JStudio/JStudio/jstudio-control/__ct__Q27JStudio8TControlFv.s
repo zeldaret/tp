@@ -5,8 +5,8 @@ lbl_80285114:
 /* 80285120  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80285124  7C 7F 1B 78 */	mr r31, r3
 /* 80285128  48 00 3F 8D */	bl __ct__Q37JStudio3stb8TControlFv
-/* 8028512C  3C 60 80 3C */	lis r3, __vt__Q27JStudio8TControl@ha
-/* 80285130  38 03 4A F4 */	addi r0, r3, __vt__Q27JStudio8TControl@l
+/* 8028512C  3C 60 80 3C */	lis r3, __vt__Q27JStudio8TControl@ha /* 0x803C4AF4@ha */
+/* 80285130  38 03 4A F4 */	addi r0, r3, __vt__Q27JStudio8TControl@l /* 0x803C4AF4@l */
 /* 80285134  90 1F 00 00 */	stw r0, 0(r31)
 /* 80285138  38 7F 00 60 */	addi r3, r31, 0x60
 /* 8028513C  4B FF F5 2D */	bl __ct__Q37JStudio3fvb8TControlFv
@@ -15,8 +15,8 @@ lbl_80285114:
 /* 80285148  38 00 00 00 */	li r0, 0
 /* 8028514C  98 1F 00 88 */	stb r0, 0x88(r31)
 /* 80285150  98 1F 00 89 */	stb r0, 0x89(r31)
-/* 80285154  3C 60 80 3A */	lis r3, lit_745@ha
-/* 80285158  38 83 AA 40 */	addi r4, r3, lit_745@l
+/* 80285154  3C 60 80 3A */	lis r3, lit_745@ha /* 0x8039AA40@ha */
+/* 80285158  38 83 AA 40 */	addi r4, r3, lit_745@l /* 0x8039AA40@l */
 /* 8028515C  80 64 00 00 */	lwz r3, 0(r4)
 /* 80285160  80 04 00 04 */	lwz r0, 4(r4)
 /* 80285164  90 61 00 08 */	stw r3, 8(r1)

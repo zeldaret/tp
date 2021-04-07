@@ -5,8 +5,8 @@ lbl_80339DD4:
 /* 80339DE0  7C 78 E2 A6 */	mfspr r3, 0x398
 /* 80339DE4  54 63 1F FF */	rlwinm. r3, r3, 3, 0x1f, 0x1f
 /* 80339DE8  41 82 00 8C */	beq lbl_80339E74
-/* 80339DEC  3C 60 80 45 */	lis r3, ZeroPS@ha
-/* 80339DF0  38 63 16 18 */	addi r3, r3, ZeroPS@l
+/* 80339DEC  3C 60 80 45 */	lis r3, ZeroPS@ha /* 0x80451618@ha */
+/* 80339DF0  38 63 16 18 */	addi r3, r3, ZeroPS@l /* 0x80451618@l */
 /* 80339DF4  E0 03 00 00 */	psq_l f0, 0(r3), 0, 0 /* qr0 */
 /* 80339DF8  10 20 00 90 */	ps_mr f1, f0
 /* 80339DFC  10 40 00 90 */	ps_mr f2, f0

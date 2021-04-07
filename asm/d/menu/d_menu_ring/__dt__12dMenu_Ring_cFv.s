@@ -7,14 +7,14 @@ lbl_801EA708:
 /* 801EA71C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 801EA720  7C 9E 23 78 */	mr r30, r4
 /* 801EA724  41 82 04 3C */	beq lbl_801EAB60
-/* 801EA728  3C 60 80 3C */	lis r3, __vt__12dMenu_Ring_c@ha
-/* 801EA72C  38 03 DF 5C */	addi r0, r3, __vt__12dMenu_Ring_c@l
+/* 801EA728  3C 60 80 3C */	lis r3, __vt__12dMenu_Ring_c@ha /* 0x803BDF5C@ha */
+/* 801EA72C  38 03 DF 5C */	addi r0, r3, __vt__12dMenu_Ring_c@l /* 0x803BDF5C@l */
 /* 801EA730  90 1F 00 00 */	stw r0, 0(r31)
 /* 801EA734  80 7F 00 04 */	lwz r3, 4(r31)
 /* 801EA738  48 0E 40 4D */	bl getTotalFreeSize__7JKRHeapFv
 /* 801EA73C  38 00 00 00 */	li r0, 0
-/* 801EA740  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801EA744  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801EA740  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801EA744  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801EA748  98 03 00 E8 */	stb r0, 0xe8(r3)
 /* 801EA74C  3A 60 00 00 */	li r19, 0
 /* 801EA750  3B 80 00 00 */	li r28, 0
@@ -296,8 +296,8 @@ lbl_801EAB04:
 lbl_801EAB2C:
 /* 801EAB2C  38 00 00 00 */	li r0, 0
 /* 801EAB30  90 1F 03 70 */	stw r0, 0x370(r31)
-/* 801EAB34  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801EAB38  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801EAB34  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801EAB38  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801EAB3C  80 63 5C E8 */	lwz r3, 0x5ce8(r3)
 /* 801EAB40  81 83 00 00 */	lwz r12, 0(r3)
 /* 801EAB44  81 8C 00 24 */	lwz r12, 0x24(r12)

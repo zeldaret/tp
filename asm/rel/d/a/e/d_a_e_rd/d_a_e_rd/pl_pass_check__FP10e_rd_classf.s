@@ -13,23 +13,23 @@ lbl_80505CD4:
 /* 80505D00  38 61 00 08 */	addi r3, r1, 8
 /* 80505D04  38 9E 04 D0 */	addi r4, r30, 0x4d0
 /* 80505D08  38 BF 04 D0 */	addi r5, r31, 0x4d0
-/* 80505D0C  4B D6 0E 28 */	b __mi__4cXyzCFRC3Vec
+/* 80505D0C  4B D6 0E 29 */	bl __mi__4cXyzCFRC3Vec
 /* 80505D10  C0 01 00 08 */	lfs f0, 8(r1)
 /* 80505D14  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 80505D18  C0 01 00 0C */	lfs f0, 0xc(r1)
 /* 80505D1C  D0 01 00 24 */	stfs f0, 0x24(r1)
 /* 80505D20  C0 01 00 10 */	lfs f0, 0x10(r1)
 /* 80505D24  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 80505D28  3C 60 80 45 */	lis r3, calc_mtx@ha
-/* 80505D2C  38 63 07 68 */	addi r3, r3, calc_mtx@l
+/* 80505D28  3C 60 80 45 */	lis r3, calc_mtx@ha /* 0x80450768@ha */
+/* 80505D2C  38 63 07 68 */	addi r3, r3, calc_mtx@l /* 0x80450768@l */
 /* 80505D30  80 63 00 00 */	lwz r3, 0(r3)
 /* 80505D34  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 80505D38  7C 00 00 D0 */	neg r0, r0
 /* 80505D3C  7C 04 07 34 */	extsh r4, r0
-/* 80505D40  4B B0 66 9C */	b mDoMtx_YrotS__FPA4_fs
+/* 80505D40  4B B0 66 9D */	bl mDoMtx_YrotS__FPA4_fs
 /* 80505D44  38 61 00 20 */	addi r3, r1, 0x20
 /* 80505D48  38 81 00 14 */	addi r4, r1, 0x14
-/* 80505D4C  4B D6 B1 A0 */	b MtxPosition__FP4cXyzP4cXyz
+/* 80505D4C  4B D6 B1 A1 */	bl MtxPosition__FP4cXyzP4cXyz
 /* 80505D50  C0 01 00 1C */	lfs f0, 0x1c(r1)
 /* 80505D54  FC 00 F8 40 */	fcmpo cr0, f0, f31
 /* 80505D58  7C 00 00 26 */	mfcr r0

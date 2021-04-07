@@ -15,12 +15,12 @@ lbl_8018F228:
 /* 8018F25C  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 8018F260  28 00 00 01 */	cmplwi r0, 1
 /* 8018F264  40 82 00 28 */	bne lbl_8018F28C
-/* 8018F268  3C 60 80 43 */	lis r3, g_fsHIO@ha
-/* 8018F26C  38 63 C9 EC */	addi r3, r3, g_fsHIO@l
+/* 8018F268  3C 60 80 43 */	lis r3, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 8018F26C  38 63 C9 EC */	addi r3, r3, g_fsHIO@l /* 0x8042C9EC@l */
 /* 8018F270  88 03 00 0C */	lbz r0, 0xc(r3)
 /* 8018F274  B0 1E 03 AC */	sth r0, 0x3ac(r30)
-/* 8018F278  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 8018F27C  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l
+/* 8018F278  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 8018F27C  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 8018F280  4B E8 7B D9 */	bl command_format__15mDoMemCd_Ctrl_cFv
 /* 8018F284  38 00 00 0A */	li r0, 0xa
 /* 8018F288  98 1E 02 71 */	stb r0, 0x271(r30)

@@ -1,7 +1,7 @@
 lbl_80022C50:
 /* 80022C50  80 A3 00 04 */	lwz r5, 4(r3)
-/* 80022C54  3C 60 80 3A */	lis r3, l_fpcNdRq_Queue@ha
-/* 80022C58  80 83 3A 38 */	lwz r4, l_fpcNdRq_Queue@l(r3)
+/* 80022C54  3C 60 80 3A */	lis r3, l_fpcNdRq_Queue@ha /* 0x803A3A38@ha */
+/* 80022C58  80 83 3A 38 */	lwz r4, l_fpcNdRq_Queue@l(r3)  /* 0x803A3A38@l */
 /* 80022C5C  48 00 00 30 */	b lbl_80022C8C
 lbl_80022C60:
 /* 80022C60  80 64 00 0C */	lwz r3, 0xc(r4)

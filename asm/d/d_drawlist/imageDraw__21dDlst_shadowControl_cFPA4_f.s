@@ -6,8 +6,8 @@ lbl_800557C8:
 /* 800557D8  48 30 C9 ED */	bl _savegpr_23
 /* 800557DC  7C 78 1B 78 */	mr r24, r3
 /* 800557E0  7C 99 23 78 */	mr r25, r4
-/* 800557E4  3C 60 80 3B */	lis r3, l_matDL@ha
-/* 800557E8  38 63 8D 00 */	addi r3, r3, l_matDL@l
+/* 800557E4  3C 60 80 3B */	lis r3, l_matDL@ha /* 0x803A8D00@ha */
+/* 800557E8  38 63 8D 00 */	addi r3, r3, l_matDL@l /* 0x803A8D00@l */
 /* 800557EC  38 80 00 60 */	li r4, 0x60
 /* 800557F0  48 30 A7 01 */	bl GXCallDisplayList
 /* 800557F4  38 60 00 00 */	li r3, 0
@@ -24,8 +24,8 @@ lbl_800557C8:
 /* 80055820  38 60 00 01 */	li r3, 1
 /* 80055824  48 30 AD AD */	bl GXSetClipMode
 /* 80055828  38 00 00 03 */	li r0, 3
-/* 8005582C  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80055830  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8005582C  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80055830  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80055834  90 03 00 50 */	stw r0, 0x50(r3)
 /* 80055838  3B E0 00 00 */	li r31, 0
 /* 8005583C  93 ED 90 50 */	stw r31, sOldVcdVatCmd__8J3DShape(r13)
@@ -68,8 +68,8 @@ lbl_80055854:
 /* 800558CC  48 30 AC 05 */	bl GXSetScissor
 lbl_800558D0:
 /* 800558D0  57 A0 10 3A */	slwi r0, r29, 2
-/* 800558D4  3C 60 80 3B */	lis r3, l_imageDrawColor@ha
-/* 800558D8  38 63 8D 7C */	addi r3, r3, l_imageDrawColor@l
+/* 800558D4  3C 60 80 3B */	lis r3, l_imageDrawColor@ha /* 0x803A8D7C@ha */
+/* 800558D8  38 63 8D 7C */	addi r3, r3, l_imageDrawColor@l /* 0x803A8D7C@l */
 /* 800558DC  7C 03 00 2E */	lwzx r0, r3, r0
 /* 800558E0  90 01 00 08 */	stw r0, 8(r1)
 /* 800558E4  38 60 00 01 */	li r3, 1

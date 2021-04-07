@@ -4,7 +4,7 @@ lbl_809DE084:
 /* 809DE08C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 809DE090  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 809DE094  7C 7F 1B 78 */	mr r31, r3
-/* 809DE098  4B 63 AC 48 */	b fopAc_IsActor__FPv
+/* 809DE098  4B 63 AC 49 */	bl fopAc_IsActor__FPv
 /* 809DE09C  2C 03 00 00 */	cmpwi r3, 0
 /* 809DE0A0  41 82 00 18 */	beq lbl_809DE0B8
 /* 809DE0A4  A8 1F 00 08 */	lha r0, 8(r31)

@@ -21,11 +21,11 @@ extern "C" void TRK_flush_cache();
 // Declarations:
 //
 
-/* 8036F548-8036F580 0038+00 s=0 e=5 z=0  None .text      TRK_flush_cache */
+/* 8036F548-8036F580 369E88 0038+00 0/0 5/5 0/0 .text            TRK_flush_cache */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRK_flush_cache() {
+asm void TRK_flush_cache() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/ppc/Generic/flush_cache/TRK_flush_cache.s"
 }

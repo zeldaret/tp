@@ -203,5 +203,8 @@ def from_group(section: Section, group: List[linker_map.Symbol]) -> Function:
     if first.size <= 0:
         return []
 
+    if first.name and first.name.startswith("__sinit_"):
+        return [SInitFunction.create(section, group)]
+
     # the function was not decompilable
     return [ASMFunction.create(section, group)]

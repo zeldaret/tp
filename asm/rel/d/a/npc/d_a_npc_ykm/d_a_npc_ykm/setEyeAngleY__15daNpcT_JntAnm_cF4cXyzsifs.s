@@ -5,7 +5,7 @@ lbl_80B5CF8C:
 /* 80B5CF98  DB E1 00 50 */	stfd f31, 0x50(r1)
 /* 80B5CF9C  F3 E1 00 58 */	psq_st f31, 88(r1), 0, 0 /* qr0 */
 /* 80B5CFA0  39 61 00 50 */	addi r11, r1, 0x50
-/* 80B5CFA4  4B 80 52 34 */	b _savegpr_28
+/* 80B5CFA4  4B 80 52 35 */	bl _savegpr_28
 /* 80B5CFA8  7C 7F 1B 78 */	mr r31, r3
 /* 80B5CFAC  7C 80 23 78 */	mr r0, r4
 /* 80B5CFB0  7C BC 2B 78 */	mr r28, r5
@@ -18,14 +18,14 @@ lbl_80B5CF8C:
 /* 80B5CFCC  41 82 00 44 */	beq lbl_80B5D010
 /* 80B5CFD0  38 61 00 08 */	addi r3, r1, 8
 /* 80B5CFD4  7C 05 03 78 */	mr r5, r0
-/* 80B5CFD8  4B 70 9B 5C */	b __mi__4cXyzCFRC3Vec
+/* 80B5CFD8  4B 70 9B 5D */	bl __mi__4cXyzCFRC3Vec
 /* 80B5CFDC  C0 21 00 08 */	lfs f1, 8(r1)
 /* 80B5CFE0  D0 21 00 14 */	stfs f1, 0x14(r1)
 /* 80B5CFE4  C0 01 00 0C */	lfs f0, 0xc(r1)
 /* 80B5CFE8  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80B5CFEC  C0 41 00 10 */	lfs f2, 0x10(r1)
 /* 80B5CFF0  D0 41 00 1C */	stfs f2, 0x1c(r1)
-/* 80B5CFF4  4B 70 A6 80 */	b cM_atan2s__Fff
+/* 80B5CFF4  4B 70 A6 81 */	bl cM_atan2s__Fff
 /* 80B5CFF8  7C BC 18 50 */	subf r5, r28, r3
 /* 80B5CFFC  A8 1F 01 52 */	lha r0, 0x152(r31)
 /* 80B5D000  7C 1C 00 50 */	subf r0, r28, r0
@@ -38,12 +38,12 @@ lbl_80B5D010:
 /* 80B5D018  7C 05 00 D0 */	neg r0, r5
 /* 80B5D01C  7C 05 07 34 */	extsh r5, r0
 lbl_80B5D020:
-/* 80B5D020  3C 60 80 B6 */	lis r3, lit_4613@ha
-/* 80B5D024  C0 63 D8 B0 */	lfs f3, lit_4613@l(r3)
+/* 80B5D020  3C 60 80 B6 */	lis r3, lit_4613@ha /* 0x80B5D8B0@ha */
+/* 80B5D024  C0 63 D8 B0 */	lfs f3, lit_4613@l(r3)  /* 0x80B5D8B0@l */
 /* 80B5D028  EC 83 F8 24 */	fdivs f4, f3, f31
 /* 80B5D02C  A8 1F 01 34 */	lha r0, 0x134(r31)
-/* 80B5D030  3C 60 80 B6 */	lis r3, lit_5517@ha
-/* 80B5D034  C8 43 D9 2C */	lfd f2, lit_5517@l(r3)
+/* 80B5D030  3C 60 80 B6 */	lis r3, lit_5517@ha /* 0x80B5D92C@ha */
+/* 80B5D034  C8 43 D9 2C */	lfd f2, lit_5517@l(r3)  /* 0x80B5D92C@l */
 /* 80B5D038  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 80B5D03C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80B5D040  3C 60 43 30 */	lis r3, 0x4330
@@ -67,7 +67,7 @@ lbl_80B5D020:
 /* 80B5D088  E3 E1 00 58 */	psq_l f31, 88(r1), 0, 0 /* qr0 */
 /* 80B5D08C  CB E1 00 50 */	lfd f31, 0x50(r1)
 /* 80B5D090  39 61 00 50 */	addi r11, r1, 0x50
-/* 80B5D094  4B 80 51 90 */	b _restgpr_28
+/* 80B5D094  4B 80 51 91 */	bl _restgpr_28
 /* 80B5D098  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 80B5D09C  7C 08 03 A6 */	mtlr r0
 /* 80B5D0A0  38 21 00 60 */	addi r1, r1, 0x60

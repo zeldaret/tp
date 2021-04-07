@@ -23,8 +23,8 @@ lbl_8011D698:
 /* 8011D698  A8 1F 30 0C */	lha r0, 0x300c(r31)
 /* 8011D69C  2C 00 00 00 */	cmpwi r0, 0
 /* 8011D6A0  41 82 00 18 */	beq lbl_8011D6B8
-/* 8011D6A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011D6A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011D6A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011D6A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011D6AC  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 8011D6B0  80 9F 31 84 */	lwz r4, 0x3184(r31)
 /* 8011D6B4  4B F2 AA C9 */	bl cutEnd__16dEvent_manager_cFi

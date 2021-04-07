@@ -29,8 +29,8 @@ lbl_8011DB30:
 /* 8011DB6C  B0 1F 30 10 */	sth r0, 0x3010(r31)
 /* 8011DB70  38 00 00 00 */	li r0, 0
 /* 8011DB74  B0 1F 30 12 */	sth r0, 0x3012(r31)
-/* 8011DB78  3C 60 80 42 */	lis r3, l_boarBaseAnime@ha
-/* 8011DB7C  38 03 55 A4 */	addi r0, r3, l_boarBaseAnime@l
+/* 8011DB78  3C 60 80 42 */	lis r3, l_boarBaseAnime@ha /* 0x804255A4@ha */
+/* 8011DB7C  38 03 55 A4 */	addi r0, r3, l_boarBaseAnime@l /* 0x804255A4@l */
 /* 8011DB80  90 1F 38 4C */	stw r0, 0x384c(r31)
 /* 8011DB84  38 60 00 01 */	li r3, 1
 lbl_8011DB88:

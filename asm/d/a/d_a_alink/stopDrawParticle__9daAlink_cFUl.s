@@ -2,8 +2,8 @@ lbl_80120778:
 /* 80120778  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8012077C  7C 08 02 A6 */	mflr r0
 /* 80120780  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80120784  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80120788  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80120784  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80120788  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8012078C  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 80120790  38 63 02 10 */	addi r3, r3, 0x210
 /* 80120794  4B F2 B1 85 */	bl getEmitter__Q213dPa_control_c7level_cFUl

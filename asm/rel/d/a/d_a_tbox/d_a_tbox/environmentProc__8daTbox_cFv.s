@@ -2,8 +2,8 @@ lbl_8049233C:
 /* 8049233C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80492340  7C 08 02 A6 */	mflr r0
 /* 80492344  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80492348  3C 80 80 49 */	lis r4, l_cull_size_box@ha
-/* 8049234C  38 84 61 D4 */	addi r4, r4, l_cull_size_box@l
+/* 80492348  3C 80 80 49 */	lis r4, l_cull_size_box@ha /* 0x804961D4@ha */
+/* 8049234C  38 84 61 D4 */	addi r4, r4, l_cull_size_box@l /* 0x804961D4@l */
 /* 80492350  A0 03 07 56 */	lhz r0, 0x756(r3)
 /* 80492354  28 00 00 8B */	cmplwi r0, 0x8b
 /* 80492358  40 81 00 20 */	ble lbl_80492378
@@ -12,7 +12,7 @@ lbl_8049233C:
 /* 80492364  C0 44 00 F0 */	lfs f2, 0xf0(r4)
 /* 80492368  C0 64 00 F4 */	lfs f3, 0xf4(r4)
 /* 8049236C  FC 80 10 90 */	fmr f4, f2
-/* 80492370  4B DD D6 0C */	b cLib_addCalc__FPfffff
+/* 80492370  4B DD D6 0D */	bl cLib_addCalc__FPfffff
 /* 80492374  48 00 00 14 */	b lbl_80492388
 lbl_80492378:
 /* 80492378  28 00 00 A9 */	cmplwi r0, 0xa9

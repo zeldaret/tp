@@ -30,8 +30,8 @@ lbl_8012FED0:
 /* 8012FEEC  B3 DF 04 DE */	sth r30, 0x4de(r31)
 /* 8012FEF0  7F E3 FB 78 */	mr r3, r31
 /* 8012FEF4  38 80 00 1E */	li r4, 0x1e
-/* 8012FEF8  3C A0 80 39 */	lis r5, m__21daAlinkHIO_wlSlide_c0@ha
-/* 8012FEFC  38 A5 F3 F0 */	addi r5, r5, m__21daAlinkHIO_wlSlide_c0@l
+/* 8012FEF8  3C A0 80 39 */	lis r5, m__21daAlinkHIO_wlSlide_c0@ha /* 0x8038F3F0@ha */
+/* 8012FEFC  38 A5 F3 F0 */	addi r5, r5, m__21daAlinkHIO_wlSlide_c0@l /* 0x8038F3F0@l */
 /* 8012FF00  3B C5 00 14 */	addi r30, r5, 0x14
 /* 8012FF04  7F C5 F3 78 */	mr r5, r30
 /* 8012FF08  4B FF 99 41 */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
@@ -53,8 +53,8 @@ lbl_8012FED0:
 /* 8012FF48  EC 00 08 28 */	fsubs f0, f0, f1
 /* 8012FF4C  D0 04 00 08 */	stfs f0, 8(r4)
 lbl_8012FF50:
-/* 8012FF50  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8012FF54  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8012FF50  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8012FF54  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8012FF58  80 03 5F 1C */	lwz r0, 0x5f1c(r3)
 /* 8012FF5C  60 00 02 00 */	ori r0, r0, 0x200
 /* 8012FF60  90 03 5F 1C */	stw r0, 0x5f1c(r3)
@@ -63,8 +63,8 @@ lbl_8012FF50:
 /* 8012FF6C  7F E3 FB 78 */	mr r3, r31
 /* 8012FF70  38 80 00 01 */	li r4, 1
 /* 8012FF74  4B FF 12 4D */	bl setFootEffectProcType__9daAlink_cFi
-/* 8012FF78  3C 60 80 39 */	lis r3, m__21daAlinkHIO_wlSlide_c0@ha
-/* 8012FF7C  38 63 F3 F0 */	addi r3, r3, m__21daAlinkHIO_wlSlide_c0@l
+/* 8012FF78  3C 60 80 39 */	lis r3, m__21daAlinkHIO_wlSlide_c0@ha /* 0x8038F3F0@ha */
+/* 8012FF7C  38 63 F3 F0 */	addi r3, r3, m__21daAlinkHIO_wlSlide_c0@l /* 0x8038F3F0@l */
 /* 8012FF80  C0 03 00 54 */	lfs f0, 0x54(r3)
 /* 8012FF84  D0 1F 05 94 */	stfs f0, 0x594(r31)
 /* 8012FF88  38 60 00 01 */	li r3, 1

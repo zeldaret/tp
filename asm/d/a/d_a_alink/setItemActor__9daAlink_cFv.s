@@ -137,8 +137,8 @@ lbl_800BFBC8:
 /* 800BFBE8  4E 80 04 21 */	bctrl 
 /* 800BFBEC  28 03 00 00 */	cmplwi r3, 0
 /* 800BFBF0  41 82 00 5C */	beq lbl_800BFC4C
-/* 800BFBF4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800BFBF8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800BFBF4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800BFBF8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800BFBFC  80 63 5D B8 */	lwz r3, 0x5db8(r3)
 /* 800BFC00  38 00 00 00 */	li r0, 0
 /* 800BFC04  88 63 16 B4 */	lbz r3, 0x16b4(r3)
@@ -224,8 +224,8 @@ lbl_800BFD04:
 /* 800BFD2C  C0 02 93 94 */	lfs f0, lit_8785(r2)
 /* 800BFD30  D0 1F 33 E4 */	stfs f0, 0x33e4(r31)
 /* 800BFD34  7F E3 FB 78 */	mr r3, r31
-/* 800BFD38  3C 80 80 39 */	lis r4, m__19daAlinkHIO_basic_c0@ha
-/* 800BFD3C  38 84 D6 64 */	addi r4, r4, m__19daAlinkHIO_basic_c0@l
+/* 800BFD38  3C 80 80 39 */	lis r4, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 800BFD3C  38 84 D6 64 */	addi r4, r4, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 800BFD40  C0 24 00 18 */	lfs f1, 0x18(r4)
 /* 800BFD44  48 02 40 79 */	bl setGrabUpperAnime__9daAlink_cFf
 lbl_800BFD48:

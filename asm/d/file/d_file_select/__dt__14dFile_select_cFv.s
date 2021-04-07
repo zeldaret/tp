@@ -7,8 +7,8 @@ lbl_8018375C:
 /* 80183770  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80183774  7C 9E 23 78 */	mr r30, r4
 /* 80183778  41 82 0A 58 */	beq lbl_801841D0
-/* 8018377C  3C 60 80 3C */	lis r3, __vt__14dFile_select_c@ha
-/* 80183780  38 03 B3 E8 */	addi r0, r3, __vt__14dFile_select_c@l
+/* 8018377C  3C 60 80 3C */	lis r3, __vt__14dFile_select_c@ha /* 0x803BB3E8@ha */
+/* 80183780  38 03 B3 E8 */	addi r0, r3, __vt__14dFile_select_c@l /* 0x803BB3E8@l */
 /* 80183784  90 1F 00 00 */	stw r0, 0(r31)
 /* 80183788  3B 60 00 00 */	li r27, 0
 /* 8018378C  3B A0 00 00 */	li r29, 0
@@ -653,15 +653,15 @@ lbl_80184058:
 /* 80184070  7D 89 03 A6 */	mtctr r12
 /* 80184074  4E 80 04 21 */	bctrl 
 lbl_80184078:
-/* 80184078  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8018407C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80184078  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8018407C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80184080  80 63 5D 30 */	lwz r3, 0x5d30(r3)
 /* 80184084  81 83 00 00 */	lwz r12, 0(r3)
 /* 80184088  81 8C 00 24 */	lwz r12, 0x24(r12)
 /* 8018408C  7D 89 03 A6 */	mtctr r12
 /* 80184090  4E 80 04 21 */	bctrl 
-/* 80184094  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80184098  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80184094  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80184098  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8018409C  80 63 5C B8 */	lwz r3, 0x5cb8(r3)
 /* 801840A0  81 83 00 00 */	lwz r12, 0(r3)
 /* 801840A4  81 8C 00 24 */	lwz r12, 0x24(r12)
@@ -669,8 +669,8 @@ lbl_80184078:
 /* 801840AC  4E 80 04 21 */	bctrl 
 /* 801840B0  34 1F 00 54 */	addic. r0, r31, 0x54
 /* 801840B4  41 82 00 30 */	beq lbl_801840E4
-/* 801840B8  3C 60 80 3C */	lis r3, __vt__17dDlst_FileSel3m_c@ha
-/* 801840BC  38 03 B3 68 */	addi r0, r3, __vt__17dDlst_FileSel3m_c@l
+/* 801840B8  3C 60 80 3C */	lis r3, __vt__17dDlst_FileSel3m_c@ha /* 0x803BB368@ha */
+/* 801840BC  38 03 B3 68 */	addi r0, r3, __vt__17dDlst_FileSel3m_c@l /* 0x803BB368@l */
 /* 801840C0  90 1F 00 54 */	stw r0, 0x54(r31)
 /* 801840C4  80 7F 00 58 */	lwz r3, 0x58(r31)
 /* 801840C8  28 03 00 00 */	cmplwi r3, 0
@@ -683,8 +683,8 @@ lbl_80184078:
 lbl_801840E4:
 /* 801840E4  34 1F 00 48 */	addic. r0, r31, 0x48
 /* 801840E8  41 82 00 30 */	beq lbl_80184118
-/* 801840EC  3C 60 80 3C */	lis r3, __vt__17dDlst_FileSelYn_c@ha
-/* 801840F0  38 03 B3 78 */	addi r0, r3, __vt__17dDlst_FileSelYn_c@l
+/* 801840EC  3C 60 80 3C */	lis r3, __vt__17dDlst_FileSelYn_c@ha /* 0x803BB378@ha */
+/* 801840F0  38 03 B3 78 */	addi r0, r3, __vt__17dDlst_FileSelYn_c@l /* 0x803BB378@l */
 /* 801840F4  90 1F 00 48 */	stw r0, 0x48(r31)
 /* 801840F8  80 7F 00 4C */	lwz r3, 0x4c(r31)
 /* 801840FC  28 03 00 00 */	cmplwi r3, 0
@@ -697,8 +697,8 @@ lbl_801840E4:
 lbl_80184118:
 /* 80184118  34 1F 00 34 */	addic. r0, r31, 0x34
 /* 8018411C  41 82 00 30 */	beq lbl_8018414C
-/* 80184120  3C 60 80 3C */	lis r3, __vt__17dDlst_FileSelCp_c@ha
-/* 80184124  38 03 B3 88 */	addi r0, r3, __vt__17dDlst_FileSelCp_c@l
+/* 80184120  3C 60 80 3C */	lis r3, __vt__17dDlst_FileSelCp_c@ha /* 0x803BB388@ha */
+/* 80184124  38 03 B3 88 */	addi r0, r3, __vt__17dDlst_FileSelCp_c@l /* 0x803BB388@l */
 /* 80184128  90 1F 00 34 */	stw r0, 0x34(r31)
 /* 8018412C  80 7F 00 38 */	lwz r3, 0x38(r31)
 /* 80184130  28 03 00 00 */	cmplwi r3, 0
@@ -711,8 +711,8 @@ lbl_80184118:
 lbl_8018414C:
 /* 8018414C  34 1F 00 24 */	addic. r0, r31, 0x24
 /* 80184150  41 82 00 30 */	beq lbl_80184180
-/* 80184154  3C 60 80 3C */	lis r3, __vt__17dDlst_FileSelDt_c@ha
-/* 80184158  38 03 B3 98 */	addi r0, r3, __vt__17dDlst_FileSelDt_c@l
+/* 80184154  3C 60 80 3C */	lis r3, __vt__17dDlst_FileSelDt_c@ha /* 0x803BB398@ha */
+/* 80184158  38 03 B3 98 */	addi r0, r3, __vt__17dDlst_FileSelDt_c@l /* 0x803BB398@l */
 /* 8018415C  90 1F 00 24 */	stw r0, 0x24(r31)
 /* 80184160  80 7F 00 28 */	lwz r3, 0x28(r31)
 /* 80184164  28 03 00 00 */	cmplwi r3, 0
@@ -725,8 +725,8 @@ lbl_8018414C:
 lbl_80184180:
 /* 80184180  34 1F 00 10 */	addic. r0, r31, 0x10
 /* 80184184  41 82 00 3C */	beq lbl_801841C0
-/* 80184188  3C 60 80 3C */	lis r3, __vt__15dDlst_FileSel_c@ha
-/* 8018418C  38 03 B3 A8 */	addi r0, r3, __vt__15dDlst_FileSel_c@l
+/* 80184188  3C 60 80 3C */	lis r3, __vt__15dDlst_FileSel_c@ha /* 0x803BB3A8@ha */
+/* 8018418C  38 03 B3 A8 */	addi r0, r3, __vt__15dDlst_FileSel_c@l /* 0x803BB3A8@l */
 /* 80184190  90 1F 00 10 */	stw r0, 0x10(r31)
 /* 80184194  80 7F 00 14 */	lwz r3, 0x14(r31)
 /* 80184198  28 03 00 00 */	cmplwi r3, 0

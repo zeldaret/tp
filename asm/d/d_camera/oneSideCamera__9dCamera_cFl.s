@@ -32,8 +32,8 @@ lbl_8017F25C:
 /* 8017F2D4  3C 60 4F 4E */	lis r3, 0x4F4E /* 0x4F4E4553@ha */
 /* 8017F2D8  38 03 45 53 */	addi r0, r3, 0x4553 /* 0x4F4E4553@l */
 /* 8017F2DC  90 1E 03 E8 */	stw r0, 0x3e8(r30)
-/* 8017F2E0  3C 60 80 43 */	lis r3, Zero__4cXyz@ha
-/* 8017F2E4  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)
+/* 8017F2E0  3C 60 80 43 */	lis r3, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 8017F2E4  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)  /* 0x80430CF4@l */
 /* 8017F2E8  D0 1E 04 04 */	stfs f0, 0x404(r30)
 /* 8017F2EC  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8017F2F0  D0 1E 04 08 */	stfs f0, 0x408(r30)

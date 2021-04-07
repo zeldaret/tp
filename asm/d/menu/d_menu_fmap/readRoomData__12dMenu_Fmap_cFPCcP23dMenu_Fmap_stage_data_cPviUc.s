@@ -13,8 +13,8 @@ lbl_801CBF04:
 /* 801CBF30  90 05 00 0C */	stw r0, 0xc(r5)
 /* 801CBF34  90 01 00 0C */	stw r0, 0xc(r1)
 /* 801CBF38  38 61 00 24 */	addi r3, r1, 0x24
-/* 801CBF3C  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap__stringBase0@ha
-/* 801CBF40  38 84 60 E8 */	addi r4, r4, d_menu_d_menu_fmap__stringBase0@l
+/* 801CBF3C  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap__stringBase0@ha /* 0x803960E8@ha */
+/* 801CBF40  38 84 60 E8 */	addi r4, r4, d_menu_d_menu_fmap__stringBase0@l /* 0x803960E8@l */
 /* 801CBF44  38 84 00 4B */	addi r4, r4, 0x4b
 /* 801CBF48  7F 65 DB 78 */	mr r5, r27
 /* 801CBF4C  4C C6 31 82 */	crclr 6
@@ -44,8 +44,8 @@ lbl_801CBF90:
 /* 801CBFA4  38 00 00 00 */	li r0, 0
 /* 801CBFA8  90 01 00 08 */	stw r0, 8(r1)
 /* 801CBFAC  38 61 00 10 */	addi r3, r1, 0x10
-/* 801CBFB0  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap__stringBase0@ha
-/* 801CBFB4  38 84 60 E8 */	addi r4, r4, d_menu_d_menu_fmap__stringBase0@l
+/* 801CBFB0  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap__stringBase0@ha /* 0x803960E8@ha */
+/* 801CBFB4  38 84 60 E8 */	addi r4, r4, d_menu_d_menu_fmap__stringBase0@l /* 0x803960E8@l */
 /* 801CBFB8  38 84 00 58 */	addi r4, r4, 0x58
 /* 801CBFBC  7F 65 DB 78 */	mr r5, r27
 /* 801CBFC0  88 D9 00 00 */	lbz r6, 0(r25)

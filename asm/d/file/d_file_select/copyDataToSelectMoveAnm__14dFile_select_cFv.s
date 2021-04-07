@@ -14,8 +14,8 @@ lbl_801884D0:
 /* 80188500  54 00 15 BA */	rlwinm r0, r0, 2, 0x16, 0x1d
 /* 80188504  7C 7A 02 14 */	add r3, r26, r0
 /* 80188508  80 63 02 D8 */	lwz r3, 0x2d8(r3)
-/* 8018850C  3C 80 80 43 */	lis r4, g_fsHIO@ha
-/* 80188510  38 84 C9 EC */	addi r4, r4, g_fsHIO@l
+/* 8018850C  3C 80 80 43 */	lis r4, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 80188510  38 84 C9 EC */	addi r4, r4, g_fsHIO@l /* 0x8042C9EC@l */
 /* 80188514  88 84 00 06 */	lbz r4, 6(r4)
 /* 80188518  38 A0 00 FF */	li r5, 0xff
 /* 8018851C  38 C0 00 00 */	li r6, 0
@@ -72,8 +72,8 @@ lbl_801885CC:
 /* 801885E0  54 00 15 BA */	rlwinm r0, r0, 2, 0x16, 0x1d
 /* 801885E4  7C 7A 02 14 */	add r3, r26, r0
 /* 801885E8  80 63 02 D8 */	lwz r3, 0x2d8(r3)
-/* 801885EC  3C 80 80 43 */	lis r4, g_fsHIO@ha
-/* 801885F0  38 84 C9 EC */	addi r4, r4, g_fsHIO@l
+/* 801885EC  3C 80 80 43 */	lis r4, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 801885F0  38 84 C9 EC */	addi r4, r4, g_fsHIO@l /* 0x8042C9EC@l */
 /* 801885F4  88 84 00 06 */	lbz r4, 6(r4)
 /* 801885F8  38 A0 00 00 */	li r5, 0
 /* 801885FC  38 C0 00 FF */	li r6, 0xff

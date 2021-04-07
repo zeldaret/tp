@@ -17,8 +17,8 @@ lbl_8084073C:
 /* 8084074C  48 00 00 50 */	b lbl_8084079C
 lbl_80840750:
 /* 80840750  C0 5F 05 2C */	lfs f2, 0x52c(r31)
-/* 80840754  3C 60 80 84 */	lis r3, lit_7218@ha
-/* 80840758  C0 23 56 D4 */	lfs f1, lit_7218@l(r3)
+/* 80840754  3C 60 80 84 */	lis r3, lit_7218@ha /* 0x808456D4@ha */
+/* 80840758  C0 23 56 D4 */	lfs f1, lit_7218@l(r3)  /* 0x808456D4@l */
 /* 8084075C  C0 1F 17 8C */	lfs f0, 0x178c(r31)
 /* 80840760  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80840764  FC 02 00 40 */	fcmpo cr0, f2, f0
@@ -27,10 +27,10 @@ lbl_80840750:
 /* 80840770  48 00 00 2C */	b lbl_8084079C
 lbl_80840774:
 /* 80840774  7C 83 23 78 */	mr r3, r4
-/* 80840778  4B A2 69 B0 */	b atan2sX_Z__4cXyzCFv
+/* 80840778  4B A2 69 B1 */	bl atan2sX_Z__4cXyzCFv
 /* 8084077C  7C 64 1B 78 */	mr r4, r3
 /* 80840780  A8 7F 04 E6 */	lha r3, 0x4e6(r31)
-/* 80840784  4B A3 06 A0 */	b cLib_distanceAngleS__Fss
+/* 80840784  4B A3 06 A1 */	bl cLib_distanceAngleS__Fss
 /* 80840788  38 00 60 00 */	li r0, 0x6000
 /* 8084078C  7C 05 FE 70 */	srawi r5, r0, 0x1f
 /* 80840790  54 64 0F FE */	srwi r4, r3, 0x1f

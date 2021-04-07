@@ -19,22 +19,22 @@ lbl_802D10FC:
 /* 802D1140  80 1E 00 34 */	lwz r0, 0x34(r30)
 /* 802D1144  7C 03 00 50 */	subf r0, r3, r0
 /* 802D1148  7F A5 02 14 */	add r29, r5, r0
-/* 802D114C  3C 60 80 3A */	lis r3, JKRSolidHeap__stringBase0@ha
-/* 802D1150  38 63 CE 50 */	addi r3, r3, JKRSolidHeap__stringBase0@l
+/* 802D114C  3C 60 80 3A */	lis r3, JKRSolidHeap__stringBase0@ha /* 0x8039CE50@ha */
+/* 802D1150  38 63 CE 50 */	addi r3, r3, JKRSolidHeap__stringBase0@l /* 0x8039CE50@l */
 /* 802D1154  38 63 01 17 */	addi r3, r3, 0x117
 /* 802D1158  4C C6 31 82 */	crclr 6
 /* 802D115C  48 01 74 6D */	bl JUTReportConsole_f
 /* 802D1160  80 9E 00 74 */	lwz r4, 0x74(r30)
-/* 802D1164  3C 60 80 3A */	lis r3, JKRSolidHeap__stringBase0@ha
-/* 802D1168  38 63 CE 50 */	addi r3, r3, JKRSolidHeap__stringBase0@l
+/* 802D1164  3C 60 80 3A */	lis r3, JKRSolidHeap__stringBase0@ha /* 0x8039CE50@ha */
+/* 802D1168  38 63 CE 50 */	addi r3, r3, JKRSolidHeap__stringBase0@l /* 0x8039CE50@l */
 /* 802D116C  38 63 01 28 */	addi r3, r3, 0x128
 /* 802D1170  80 1E 00 34 */	lwz r0, 0x34(r30)
 /* 802D1174  7C A4 00 50 */	subf r5, r4, r0
 /* 802D1178  4C C6 31 82 */	crclr 6
 /* 802D117C  48 01 74 4D */	bl JUTReportConsole_f
 /* 802D1180  80 BE 00 38 */	lwz r5, 0x38(r30)
-/* 802D1184  3C 60 80 3A */	lis r3, JKRSolidHeap__stringBase0@ha
-/* 802D1188  38 63 CE 50 */	addi r3, r3, JKRSolidHeap__stringBase0@l
+/* 802D1184  3C 60 80 3A */	lis r3, JKRSolidHeap__stringBase0@ha /* 0x8039CE50@ha */
+/* 802D1188  38 63 CE 50 */	addi r3, r3, JKRSolidHeap__stringBase0@l /* 0x8039CE50@l */
 /* 802D118C  38 63 01 39 */	addi r3, r3, 0x139
 /* 802D1190  7F A4 EB 78 */	mr r4, r29
 /* 802D1194  C0 62 C5 A8 */	lfs f3, lit_693(r2)

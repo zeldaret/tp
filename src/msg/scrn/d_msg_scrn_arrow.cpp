@@ -71,10 +71,6 @@ extern "C" extern char const* const msg_scrn_d_msg_scrn_arrow__stringBase0;
 // External References:
 //
 
-void dPaneClass_showNullPane(J2DScreen*);
-void* operator new(u32);
-void operator delete(void*);
-
 extern "C" void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap();
 extern "C" void dPaneClass_showNullPane__FP9J2DScreen();
 extern "C" void show__13CPaneMgrAlphaFv();
@@ -95,27 +91,16 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 //
 
 /* ############################################################################################## */
-/* 803998A0-803998F8 0051+07 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_803998A0 = "zelda_window_yajirushi.blo";
-SECTION_DEAD char const* const stringBase_803998BB = "zelda_window_yajirushi.bck";
-SECTION_DEAD char const* const stringBase_803998D6 = "zelda_window_yajirushi.bpk";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803998F1 = "\0\0\0\0\0\0";
-#pragma pop
-
-/* 803C0CF8-803C0D08 000C+04 s=2 e=0 z=0  None .data      __vt__15dMsgScrnArrow_c */
-SECTION_DATA static void* __vt__15dMsgScrnArrow_c[3 + 1 /* padding */] = {
-    (void*)NULL,
+/* 803C0CF8-803C0D08 01DE18 000C+04 2/2 0/0 0/0 .data            __vt__15dMsgScrnArrow_c */
+SECTION_DATA extern void* __vt__15dMsgScrnArrow_c[3 + 1 /* padding */] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__15dMsgScrnArrow_cFv,
     /* padding */
     NULL,
 };
 
-/* 80454B98-80454B9C 0004+00 s=4 e=0 z=0  None .sdata2    @3662 */
+/* 80454B98-80454B9C 003198 0004+00 4/4 0/0 0/0 .sdata2          @3662 */
 SECTION_SDATA2 static u8 lit_3662[4] = {
     0x00,
     0x00,
@@ -123,7 +108,7 @@ SECTION_SDATA2 static u8 lit_3662[4] = {
     0x00,
 };
 
-/* 8023B9B4-8023BC78 02C4+00 s=0 e=4 z=0  None .text      __ct__15dMsgScrnArrow_cFv */
+/* 8023B9B4-8023BC78 2362F4 02C4+00 0/0 4/4 0/0 .text            __ct__15dMsgScrnArrow_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -133,7 +118,7 @@ asm dMsgScrnArrow_c::dMsgScrnArrow_c() {
 }
 #pragma pop
 
-/* 8023BC78-8023BDC0 0148+00 s=1 e=0 z=0  None .text      __dt__15dMsgScrnArrow_cFv */
+/* 8023BC78-8023BDC0 2365B8 0148+00 1/0 0/0 0/0 .text            __dt__15dMsgScrnArrow_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -143,7 +128,7 @@ asm dMsgScrnArrow_c::~dMsgScrnArrow_c() {
 }
 #pragma pop
 
-/* 8023BDC0-8023BDF8 0038+00 s=0 e=5 z=0  None .text      draw__15dMsgScrnArrow_cFv */
+/* 8023BDC0-8023BDF8 236700 0038+00 0/0 5/5 0/0 .text            draw__15dMsgScrnArrow_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -153,7 +138,7 @@ asm void dMsgScrnArrow_c::draw() {
 }
 #pragma pop
 
-/* 8023BDF8-8023BE34 003C+00 s=0 e=5 z=0  None .text      setPos__15dMsgScrnArrow_cFff */
+/* 8023BDF8-8023BE34 236738 003C+00 0/0 5/5 0/0 .text            setPos__15dMsgScrnArrow_cFff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -163,7 +148,8 @@ asm void dMsgScrnArrow_c::setPos(f32 param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 8023BE34-8023BE90 005C+00 s=0 e=9 z=0  None .text      arwAnimeInit__15dMsgScrnArrow_cFv */
+/* 8023BE34-8023BE90 236774 005C+00 0/0 9/9 0/0 .text            arwAnimeInit__15dMsgScrnArrow_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -174,13 +160,14 @@ asm void dMsgScrnArrow_c::arwAnimeInit() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454B9C-80454BA0 0004+00 s=2 e=0 z=0  None .sdata2    @3761 */
+/* 80454B9C-80454BA0 00319C 0004+00 2/2 0/0 0/0 .sdata2          @3761 */
 SECTION_SDATA2 static f32 lit_3761 = 1.0f;
 
-/* 80454BA0-80454BA8 0008+00 s=2 e=0 z=0  None .sdata2    @3763 */
+/* 80454BA0-80454BA8 0031A0 0008+00 2/2 0/0 0/0 .sdata2          @3763 */
 SECTION_SDATA2 static f64 lit_3763 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 8023BE90-8023BFC4 0134+00 s=0 e=4 z=0  None .text      arwAnimeMove__15dMsgScrnArrow_cFv */
+/* 8023BE90-8023BFC4 2367D0 0134+00 0/0 4/4 0/0 .text            arwAnimeMove__15dMsgScrnArrow_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -190,7 +177,8 @@ asm void dMsgScrnArrow_c::arwAnimeMove() {
 }
 #pragma pop
 
-/* 8023BFC4-8023C010 004C+00 s=0 e=3 z=0  None .text      dotAnimeInit__15dMsgScrnArrow_cFv */
+/* 8023BFC4-8023C010 236904 004C+00 0/0 3/3 0/0 .text            dotAnimeInit__15dMsgScrnArrow_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -200,7 +188,8 @@ asm void dMsgScrnArrow_c::dotAnimeInit() {
 }
 #pragma pop
 
-/* 8023C010-8023C0DC 00CC+00 s=0 e=3 z=0  None .text      dotAnimeMove__15dMsgScrnArrow_cFv */
+/* 8023C010-8023C0DC 236950 00CC+00 0/0 3/3 0/0 .text            dotAnimeMove__15dMsgScrnArrow_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -208,4 +197,15 @@ asm void dMsgScrnArrow_c::dotAnimeMove() {
     nofralloc
 #include "asm/msg/scrn/d_msg_scrn_arrow/dotAnimeMove__15dMsgScrnArrow_cFv.s"
 }
+#pragma pop
+
+/* 803998A0-803998F8 025F00 0051+07 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_803998A0 = "zelda_window_yajirushi.blo";
+SECTION_DEAD static char const* const stringBase_803998BB = "zelda_window_yajirushi.bck";
+SECTION_DEAD static char const* const stringBase_803998D6 = "zelda_window_yajirushi.bpk";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803998F1 = "\0\0\0\0\0\0";
 #pragma pop

@@ -5,8 +5,8 @@ lbl_80191134:
 /* 80191140  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80191144  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80191148  41 82 00 1C */	beq lbl_80191164
-/* 8019114C  3C A0 80 3C */	lis r5, __vt__10JUTNameTab@ha
-/* 80191150  38 05 B3 DC */	addi r0, r5, __vt__10JUTNameTab@l
+/* 8019114C  3C A0 80 3C */	lis r5, __vt__10JUTNameTab@ha /* 0x803BB3DC@ha */
+/* 80191150  38 05 B3 DC */	addi r0, r5, __vt__10JUTNameTab@l /* 0x803BB3DC@l */
 /* 80191154  90 1F 00 00 */	stw r0, 0(r31)
 /* 80191158  7C 80 07 35 */	extsh. r0, r4
 /* 8019115C  40 81 00 08 */	ble lbl_80191164

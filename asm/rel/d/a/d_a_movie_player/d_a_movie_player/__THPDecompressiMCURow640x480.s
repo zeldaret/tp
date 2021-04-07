@@ -3,11 +3,11 @@ lbl_808748F4:
 /* 808748F8  7C 08 02 A6 */	mflr r0
 /* 808748FC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80874900  39 61 00 20 */	addi r11, r1, 0x20
-/* 80874904  4B AE D8 D0 */	b _savegpr_27
-/* 80874908  3C 60 80 88 */	lis r3, lit_1109@ha
-/* 8087490C  3B E3 95 A0 */	addi r31, r3, lit_1109@l
+/* 80874904  4B AE D8 D1 */	bl _savegpr_27
+/* 80874908  3C 60 80 88 */	lis r3, lit_1109@ha /* 0x808795A0@ha */
+/* 8087490C  3B E3 95 A0 */	addi r31, r3, lit_1109@l /* 0x808795A0@l */
 /* 80874910  38 60 00 03 */	li r3, 3
-/* 80874914  4B AC 6F D0 */	b LCQueueWait
+/* 80874914  4B AC 6F D1 */	bl LCQueueWait
 /* 80874918  3B 80 00 00 */	li r28, 0
 /* 8087491C  3B DF 06 0C */	addi r30, r31, 0x60c
 /* 80874920  3B BF 05 F4 */	addi r29, r31, 0x5f4
@@ -119,17 +119,17 @@ lbl_80874AA4:
 /* 80874AB8  80 63 06 B0 */	lwz r3, 0x6b0(r3)
 /* 80874ABC  80 9F 05 F4 */	lwz r4, 0x5f4(r31)
 /* 80874AC0  38 A0 28 00 */	li r5, 0x2800
-/* 80874AC4  4B AC 6D 74 */	b LCStoreData
+/* 80874AC4  4B AC 6D 75 */	bl LCStoreData
 /* 80874AC8  80 7F 06 24 */	lwz r3, 0x624(r31)
 /* 80874ACC  80 63 06 B4 */	lwz r3, 0x6b4(r3)
 /* 80874AD0  80 9D 00 04 */	lwz r4, 4(r29)
 /* 80874AD4  38 A0 0A 00 */	li r5, 0xa00
-/* 80874AD8  4B AC 6D 60 */	b LCStoreData
+/* 80874AD8  4B AC 6D 61 */	bl LCStoreData
 /* 80874ADC  80 7F 06 24 */	lwz r3, 0x624(r31)
 /* 80874AE0  80 63 06 B8 */	lwz r3, 0x6b8(r3)
 /* 80874AE4  80 9D 00 08 */	lwz r4, 8(r29)
 /* 80874AE8  38 A0 0A 00 */	li r5, 0xa00
-/* 80874AEC  4B AC 6D 4C */	b LCStoreData
+/* 80874AEC  4B AC 6D 4D */	bl LCStoreData
 /* 80874AF0  80 9F 06 24 */	lwz r4, 0x624(r31)
 /* 80874AF4  80 64 06 B0 */	lwz r3, 0x6b0(r4)
 /* 80874AF8  38 03 28 00 */	addi r0, r3, 0x2800
@@ -143,7 +143,7 @@ lbl_80874AA4:
 /* 80874B18  38 03 0A 00 */	addi r0, r3, 0xa00
 /* 80874B1C  90 04 06 B8 */	stw r0, 0x6b8(r4)
 /* 80874B20  39 61 00 20 */	addi r11, r1, 0x20
-/* 80874B24  4B AE D6 FC */	b _restgpr_27
+/* 80874B24  4B AE D6 FD */	bl _restgpr_27
 /* 80874B28  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80874B2C  7C 08 03 A6 */	mtlr r0
 /* 80874B30  38 21 00 20 */	addi r1, r1, 0x20

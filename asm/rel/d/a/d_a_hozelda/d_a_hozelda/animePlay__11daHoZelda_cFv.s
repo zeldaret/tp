@@ -5,12 +5,12 @@ lbl_80847430:
 /* 8084743C  DB E1 00 30 */	stfd f31, 0x30(r1)
 /* 80847440  F3 E1 00 38 */	psq_st f31, 56(r1), 0, 0 /* qr0 */
 /* 80847444  39 61 00 30 */	addi r11, r1, 0x30
-/* 80847448  4B B1 AD 84 */	b _savegpr_25
+/* 80847448  4B B1 AD 85 */	bl _savegpr_25
 /* 8084744C  7C 79 1B 78 */	mr r25, r3
-/* 80847450  3C 60 80 85 */	lis r3, l_arcName@ha
-/* 80847454  3B A3 8E 3C */	addi r29, r3, l_arcName@l
+/* 80847450  3C 60 80 85 */	lis r3, l_arcName@ha /* 0x80848E3C@ha */
+/* 80847454  3B A3 8E 3C */	addi r29, r3, l_arcName@l /* 0x80848E3C@l */
 /* 80847458  38 79 05 C8 */	addi r3, r25, 0x5c8
-/* 8084745C  4B 91 70 B4 */	b updateFrame__16daPy_frameCtrl_cFv
+/* 8084745C  4B 91 70 B5 */	bl updateFrame__16daPy_frameCtrl_cFv
 /* 80847460  C0 19 05 D8 */	lfs f0, 0x5d8(r25)
 /* 80847464  80 79 05 B0 */	lwz r3, 0x5b0(r25)
 /* 80847468  D0 03 00 08 */	stfs f0, 8(r3)
@@ -24,7 +24,7 @@ lbl_80847478:
 /* 80847484  41 82 00 1C */	beq lbl_808474A0
 /* 80847488  7F 99 FA 14 */	add r28, r25, r31
 /* 8084748C  38 7C 05 C8 */	addi r3, r28, 0x5c8
-/* 80847490  4B 91 70 80 */	b updateFrame__16daPy_frameCtrl_cFv
+/* 80847490  4B 91 70 81 */	bl updateFrame__16daPy_frameCtrl_cFv
 /* 80847494  C0 1C 05 D8 */	lfs f0, 0x5d8(r28)
 /* 80847498  7C 79 D8 2E */	lwzx r3, r25, r27
 /* 8084749C  D0 03 00 08 */	stfs f0, 8(r3)
@@ -35,7 +35,7 @@ lbl_808474A0:
 /* 808474AC  3B DE 00 08 */	addi r30, r30, 8
 /* 808474B0  41 80 FF C8 */	blt lbl_80847478
 /* 808474B4  38 79 05 90 */	addi r3, r25, 0x590
-/* 808474B8  4B 7C 5F 70 */	b play__14mDoExt_baseAnmFv
+/* 808474B8  4B 7C 5F 71 */	bl play__14mDoExt_baseAnmFv
 /* 808474BC  88 19 06 DA */	lbz r0, 0x6da(r25)
 /* 808474C0  28 00 00 00 */	cmplwi r0, 0
 /* 808474C4  40 82 00 80 */	bne lbl_80847544
@@ -63,7 +63,7 @@ lbl_808474A0:
 /* 8084751C  FF E0 10 90 */	fmr f31, f2
 /* 80847520  48 00 00 1C */	b lbl_8084753C
 lbl_80847524:
-/* 80847524  4B A2 03 48 */	b cM_rnd__Fv
+/* 80847524  4B A2 03 49 */	bl cM_rnd__Fv
 /* 80847528  C0 1D 00 30 */	lfs f0, 0x30(r29)
 /* 8084752C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80847530  40 80 00 0C */	bge lbl_8084753C
@@ -74,14 +74,14 @@ lbl_8084753C:
 /* 80847540  48 00 00 0C */	b lbl_8084754C
 lbl_80847544:
 /* 80847544  38 79 05 78 */	addi r3, r25, 0x578
-/* 80847548  4B 7C 5E E0 */	b play__14mDoExt_baseAnmFv
+/* 80847548  4B 7C 5E E1 */	bl play__14mDoExt_baseAnmFv
 lbl_8084754C:
 /* 8084754C  38 79 06 A8 */	addi r3, r25, 0x6a8
-/* 80847550  4B 7C 5E D8 */	b play__14mDoExt_baseAnmFv
+/* 80847550  4B 7C 5E D9 */	bl play__14mDoExt_baseAnmFv
 /* 80847554  E3 E1 00 38 */	psq_l f31, 56(r1), 0, 0 /* qr0 */
 /* 80847558  CB E1 00 30 */	lfd f31, 0x30(r1)
 /* 8084755C  39 61 00 30 */	addi r11, r1, 0x30
-/* 80847560  4B B1 AC B8 */	b _restgpr_25
+/* 80847560  4B B1 AC B9 */	bl _restgpr_25
 /* 80847564  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80847568  7C 08 03 A6 */	mtlr r0
 /* 8084756C  38 21 00 40 */	addi r1, r1, 0x40

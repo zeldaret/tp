@@ -55,8 +55,8 @@ lbl_80046ADC:
 /* 80046B24  4B FD 4D BD */	bl fopAcM_orderMapToolAutoNextEvent__FP10fopAc_ac_cUcsUsUsUs
 /* 80046B28  48 00 00 80 */	b lbl_80046BA8
 lbl_80046B2C:
-/* 80046B2C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80046B30  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80046B2C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80046B30  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80046B34  A8 04 4E 08 */	lha r0, 0x4e08(r4)
 /* 80046B38  2C 00 FF FE */	cmpwi r0, -2
 /* 80046B3C  41 82 00 10 */	beq lbl_80046B4C
@@ -64,14 +64,14 @@ lbl_80046B2C:
 /* 80046B44  2C 00 FF FD */	cmpwi r0, -3
 /* 80046B48  40 82 00 60 */	bne lbl_80046BA8
 lbl_80046B4C:
-/* 80046B4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80046B50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80046B4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80046B50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80046B54  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 80046B58  80 03 05 74 */	lwz r0, 0x574(r3)
 /* 80046B5C  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
 /* 80046B60  7F E3 FB 78 */	mr r3, r31
-/* 80046B64  3C 80 80 38 */	lis r4, d_event_d_event_manager__stringBase0@ha
-/* 80046B68  38 A4 9F 60 */	addi r5, r4, d_event_d_event_manager__stringBase0@l
+/* 80046B64  3C 80 80 38 */	lis r4, d_event_d_event_manager__stringBase0@ha /* 0x80379F60@ha */
+/* 80046B68  38 A4 9F 60 */	addi r5, r4, d_event_d_event_manager__stringBase0@l /* 0x80379F60@l */
 /* 80046B6C  38 85 01 3A */	addi r4, r5, 0x13a
 /* 80046B70  41 82 00 08 */	beq lbl_80046B78
 /* 80046B74  38 85 01 24 */	addi r4, r5, 0x124
@@ -92,8 +92,8 @@ lbl_80046BA8:
 /* 80046BA8  2C 03 00 00 */	cmpwi r3, 0
 /* 80046BAC  40 82 00 44 */	bne lbl_80046BF0
 /* 80046BB0  7F E3 FB 78 */	mr r3, r31
-/* 80046BB4  3C 80 80 38 */	lis r4, d_event_d_event_manager__stringBase0@ha
-/* 80046BB8  38 84 9F 60 */	addi r4, r4, d_event_d_event_manager__stringBase0@l
+/* 80046BB4  3C 80 80 38 */	lis r4, d_event_d_event_manager__stringBase0@ha /* 0x80379F60@ha */
+/* 80046BB8  38 84 9F 60 */	addi r4, r4, d_event_d_event_manager__stringBase0@l /* 0x80379F60@l */
 /* 80046BBC  38 84 00 10 */	addi r4, r4, 0x10
 /* 80046BC0  38 A0 00 FF */	li r5, 0xff
 /* 80046BC4  38 C0 FF FF */	li r6, -1

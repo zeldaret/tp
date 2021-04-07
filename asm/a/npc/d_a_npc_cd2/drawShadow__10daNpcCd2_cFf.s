@@ -22,8 +22,8 @@ lbl_80158FAC:
 /* 80158FB8  38 9F 07 28 */	addi r4, r31, 0x728
 /* 80158FBC  38 A0 00 00 */	li r5, 0
 /* 80158FC0  C0 62 9A E0 */	lfs f3, lit_4050(r2)
-/* 80158FC4  3C C0 80 42 */	lis r6, mSimpleTexObj__21dDlst_shadowControl_c@ha
-/* 80158FC8  38 C6 48 D0 */	addi r6, r6, mSimpleTexObj__21dDlst_shadowControl_c@l
+/* 80158FC4  3C C0 80 42 */	lis r6, mSimpleTexObj__21dDlst_shadowControl_c@ha /* 0x804248D0@ha */
+/* 80158FC8  38 C6 48 D0 */	addi r6, r6, mSimpleTexObj__21dDlst_shadowControl_c@l /* 0x804248D0@l */
 /* 80158FCC  4B ED 40 E9 */	bl dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj
 /* 80158FD0  38 60 00 01 */	li r3, 1
 lbl_80158FD4:

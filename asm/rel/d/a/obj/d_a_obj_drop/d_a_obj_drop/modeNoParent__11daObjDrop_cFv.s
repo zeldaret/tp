@@ -4,10 +4,10 @@ lbl_80BE0994:
 /* 80BE099C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80BE09A0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80BE09A4  7C 7F 1B 78 */	mr r31, r3
-/* 80BE09A8  3C 60 80 BE */	lis r3, searchParentSub__FPvPv@ha
-/* 80BE09AC  38 63 FC D8 */	addi r3, r3, searchParentSub__FPvPv@l
+/* 80BE09A8  3C 60 80 BE */	lis r3, searchParentSub__FPvPv@ha /* 0x80BDFCD8@ha */
+/* 80BE09AC  38 63 FC D8 */	addi r3, r3, searchParentSub__FPvPv@l /* 0x80BDFCD8@l */
 /* 80BE09B0  7F E4 FB 78 */	mr r4, r31
-/* 80BE09B4  4B 44 09 84 */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80BE09B4  4B 44 09 85 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 80BE09B8  28 03 00 00 */	cmplwi r3, 0
 /* 80BE09BC  41 82 00 20 */	beq lbl_80BE09DC
 /* 80BE09C0  41 82 00 0C */	beq lbl_80BE09CC

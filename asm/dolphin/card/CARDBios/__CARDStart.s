@@ -8,8 +8,8 @@ lbl_80353524:
 /* 8035353C  3B A5 00 00 */	addi r29, r5, 0
 /* 80353540  4B FE A1 B5 */	bl OSDisableInterrupts
 /* 80353544  1C BB 01 10 */	mulli r5, r27, 0x110
-/* 80353548  3C 80 80 45 */	lis r4, __CARDBlock@ha
-/* 8035354C  38 04 CB C0 */	addi r0, r4, __CARDBlock@l
+/* 80353548  3C 80 80 45 */	lis r4, __CARDBlock@ha /* 0x8044CBC0@ha */
+/* 8035354C  38 04 CB C0 */	addi r0, r4, __CARDBlock@l /* 0x8044CBC0@l */
 /* 80353550  7F E0 2A 14 */	add r31, r0, r5
 /* 80353554  80 1F 00 00 */	lwz r0, 0(r31)
 /* 80353558  3B C3 00 00 */	addi r30, r3, 0
@@ -26,11 +26,11 @@ lbl_80353578:
 /* 8035357C  41 82 00 08 */	beq lbl_80353584
 /* 80353580  93 BF 00 CC */	stw r29, 0xcc(r31)
 lbl_80353584:
-/* 80353584  3C 60 80 35 */	lis r3, UnlockedCallback@ha
-/* 80353588  38 03 34 14 */	addi r0, r3, UnlockedCallback@l
-/* 8035358C  3C 60 80 35 */	lis r3, __CARDUnlockedHandler@ha
+/* 80353584  3C 60 80 35 */	lis r3, UnlockedCallback@ha /* 0x80353414@ha */
+/* 80353588  38 03 34 14 */	addi r0, r3, UnlockedCallback@l /* 0x80353414@l */
+/* 8035358C  3C 60 80 35 */	lis r3, __CARDUnlockedHandler@ha /* 0x80352D00@ha */
 /* 80353590  90 1F 00 DC */	stw r0, 0xdc(r31)
-/* 80353594  38 A3 2D 00 */	addi r5, r3, __CARDUnlockedHandler@l
+/* 80353594  38 A3 2D 00 */	addi r5, r3, __CARDUnlockedHandler@l /* 0x80352D00@l */
 /* 80353598  38 7B 00 00 */	addi r3, r27, 0
 /* 8035359C  38 80 00 00 */	li r4, 0
 /* 803535A0  4B FF 0A 89 */	bl EXILock
@@ -68,15 +68,15 @@ lbl_8035360C:
 /* 80353614  48 00 00 3C */	b lbl_80353650
 lbl_80353618:
 /* 80353618  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000F8@ha */
-/* 8035361C  80 03 00 F8 */	lwz r0, 0x00F8(r3)
+/* 8035361C  80 03 00 F8 */	lwz r0, 0x00F8(r3)  /* 0x800000F8@l */
 /* 80353620  3C 80 10 62 */	lis r4, 0x1062 /* 0x10624DD3@ha */
-/* 80353624  3C 60 80 35 */	lis r3, TimeoutHandler@ha
+/* 80353624  3C 60 80 35 */	lis r3, TimeoutHandler@ha /* 0x803530D0@ha */
 /* 80353628  54 00 F0 BE */	srwi r0, r0, 2
 /* 8035362C  38 84 4D D3 */	addi r4, r4, 0x4DD3 /* 0x10624DD3@l */
 /* 80353630  7C 04 00 16 */	mulhwu r0, r4, r0
 /* 80353634  54 00 D1 BE */	srwi r0, r0, 6
 /* 80353638  1C C0 00 64 */	mulli r6, r0, 0x64
-/* 8035363C  38 E3 30 D0 */	addi r7, r3, TimeoutHandler@l
+/* 8035363C  38 E3 30 D0 */	addi r7, r3, TimeoutHandler@l /* 0x803530D0@l */
 /* 80353640  38 7F 00 E0 */	addi r3, r31, 0xe0
 /* 80353644  38 A0 00 00 */	li r5, 0
 /* 80353648  4B FE 75 11 */	bl OSSetAlarm
@@ -87,7 +87,7 @@ lbl_80353650:
 /* 80353658  40 81 00 68 */	ble lbl_803536C0
 /* 8035365C  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000F8@ha */
 /* 80353660  A0 9F 00 10 */	lhz r4, 0x10(r31)
-/* 80353664  80 63 00 F8 */	lwz r3, 0x00F8(r3)
+/* 80353664  80 63 00 F8 */	lwz r3, 0x00F8(r3)  /* 0x800000F8@l */
 /* 80353668  38 00 00 02 */	li r0, 2
 /* 8035366C  7C 89 36 70 */	srawi r9, r4, 6
 /* 80353670  54 63 F0 BE */	srwi r3, r3, 2
@@ -100,8 +100,8 @@ lbl_80353650:
 /* 8035368C  7C C3 E9 D6 */	mullw r6, r3, r29
 /* 80353690  7C 80 29 D6 */	mullw r4, r0, r5
 /* 80353694  7C 09 28 16 */	mulhwu r0, r9, r5
-/* 80353698  3C 60 80 35 */	lis r3, TimeoutHandler@ha
-/* 8035369C  38 E3 30 D0 */	addi r7, r3, TimeoutHandler@l
+/* 80353698  3C 60 80 35 */	lis r3, TimeoutHandler@ha /* 0x803530D0@ha */
+/* 8035369C  38 E3 30 D0 */	addi r7, r3, TimeoutHandler@l /* 0x803530D0@l */
 /* 803536A0  7C 68 32 14 */	add r3, r8, r6
 /* 803536A4  7C 84 02 14 */	add r4, r4, r0
 /* 803536A8  7C 09 19 D6 */	mullw r0, r9, r3
@@ -113,8 +113,8 @@ lbl_80353650:
 lbl_803536C0:
 /* 803536C0  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000F8@ha */
 /* 803536C4  80 9F 00 0C */	lwz r4, 0xc(r31)
-/* 803536C8  80 03 00 F8 */	lwz r0, 0x00F8(r3)
-/* 803536CC  3C 60 80 35 */	lis r3, TimeoutHandler@ha
+/* 803536C8  80 03 00 F8 */	lwz r0, 0x00F8(r3)  /* 0x800000F8@l */
+/* 803536CC  3C 60 80 35 */	lis r3, TimeoutHandler@ha /* 0x803530D0@ha */
 /* 803536D0  7C 89 6E 70 */	srawi r9, r4, 0xd
 /* 803536D4  54 07 F0 BE */	srwi r7, r0, 2
 /* 803536D8  38 00 00 02 */	li r0, 2
@@ -128,7 +128,7 @@ lbl_803536C0:
 /* 803536F8  7D 20 FE 70 */	srawi r0, r9, 0x1f
 /* 803536FC  7C 80 29 D6 */	mullw r4, r0, r5
 /* 80353700  7C 09 28 16 */	mulhwu r0, r9, r5
-/* 80353704  38 E3 30 D0 */	addi r7, r3, TimeoutHandler@l
+/* 80353704  38 E3 30 D0 */	addi r7, r3, TimeoutHandler@l /* 0x803530D0@l */
 /* 80353708  7C 68 32 14 */	add r3, r8, r6
 /* 8035370C  7C 84 02 14 */	add r4, r4, r0
 /* 80353710  7C 09 19 D6 */	mullw r0, r9, r3

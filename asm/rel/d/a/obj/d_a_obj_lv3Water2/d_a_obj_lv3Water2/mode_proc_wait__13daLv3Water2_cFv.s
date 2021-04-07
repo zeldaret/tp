@@ -13,7 +13,7 @@ lbl_80C5AC10:
 /* 80C5AC3C  38 63 05 A8 */	addi r3, r3, 0x5a8
 /* 80C5AC40  38 A0 00 FF */	li r5, 0xff
 /* 80C5AC44  38 C0 00 01 */	li r6, 1
-/* 80C5AC48  4B 3E DC F8 */	b orderEvent__17dEvLib_callback_cFiii
+/* 80C5AC48  4B 3E DC F9 */	bl orderEvent__17dEvLib_callback_cFiii
 /* 80C5AC4C  48 00 00 5C */	b lbl_80C5ACA8
 lbl_80C5AC50:
 /* 80C5AC50  81 83 05 9C */	lwz r12, 0x59c(r3)
@@ -33,7 +33,7 @@ lbl_80C5AC64:
 /* 80C5AC84  38 63 05 A8 */	addi r3, r3, 0x5a8
 /* 80C5AC88  38 A0 00 FF */	li r5, 0xff
 /* 80C5AC8C  38 C0 00 01 */	li r6, 1
-/* 80C5AC90  4B 3E DC B0 */	b orderEvent__17dEvLib_callback_cFiii
+/* 80C5AC90  4B 3E DC B1 */	bl orderEvent__17dEvLib_callback_cFiii
 /* 80C5AC94  48 00 00 14 */	b lbl_80C5ACA8
 lbl_80C5AC98:
 /* 80C5AC98  81 83 05 9C */	lwz r12, 0x59c(r3)

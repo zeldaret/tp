@@ -20,7 +20,6 @@ $(BUILD_DIR)/libbase.a: $(LIBBASE_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libbase.a
 	@echo $(LIBBASE_A_O_FILES) > build/LIBBASE_A_ofiles
 	@$(LD) -xm l $(LIBBASE_A_LDFLAGS) -o $(BUILD_DIR)/libbase.a @build/LIBBASE_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libbase.a
 
 $(BUILD_DIR)/libs/dolphin/base/%.o: libs/dolphin/base/%.cpp
 	@mkdir -p $(@D)

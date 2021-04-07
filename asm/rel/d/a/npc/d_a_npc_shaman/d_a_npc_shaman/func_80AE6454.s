@@ -4,17 +4,17 @@ lbl_80AE6454:
 /* 80AE645C  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80AE6460  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80AE6464  7C 7F 1B 78 */	mr r31, r3
-/* 80AE6468  3C 60 80 AE */	lis r3, lit_4716@ha
-/* 80AE646C  C8 23 6C A0 */	lfd f1, lit_4716@l(r3)
+/* 80AE6468  3C 60 80 AE */	lis r3, lit_4716@ha /* 0x80AE6CA0@ha */
+/* 80AE646C  C8 23 6C A0 */	lfd f1, lit_4716@l(r3)  /* 0x80AE6CA0@l */
 /* 80AE6470  6C 80 80 00 */	xoris r0, r4, 0x8000
 /* 80AE6474  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80AE6478  3C 00 43 30 */	lis r0, 0x4330
 /* 80AE647C  90 01 00 08 */	stw r0, 8(r1)
 /* 80AE6480  C8 01 00 08 */	lfd f0, 8(r1)
 /* 80AE6484  EC 20 08 28 */	fsubs f1, f0, f1
-/* 80AE6488  4B 78 14 CC */	b cM_rndF__Ff
-/* 80AE648C  3C 60 80 AE */	lis r3, lit_4716@ha
-/* 80AE6490  C8 43 6C A0 */	lfd f2, lit_4716@l(r3)
+/* 80AE6488  4B 78 14 CD */	bl cM_rndF__Ff
+/* 80AE648C  3C 60 80 AE */	lis r3, lit_4716@ha /* 0x80AE6CA0@ha */
+/* 80AE6490  C8 43 6C A0 */	lfd f2, lit_4716@l(r3)  /* 0x80AE6CA0@l */
 /* 80AE6494  6F E0 80 00 */	xoris r0, r31, 0x8000
 /* 80AE6498  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80AE649C  3C 00 43 30 */	lis r0, 0x4330

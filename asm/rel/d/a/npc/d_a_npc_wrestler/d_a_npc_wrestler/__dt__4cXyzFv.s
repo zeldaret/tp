@@ -7,7 +7,7 @@ lbl_80B40FCC:
 /* 80B40FE0  41 82 00 10 */	beq lbl_80B40FF0
 /* 80B40FE4  7C 80 07 35 */	extsh. r0, r4
 /* 80B40FE8  40 81 00 08 */	ble lbl_80B40FF0
-/* 80B40FEC  4B 78 DD 50 */	b __dl__FPv
+/* 80B40FEC  4B 78 DD 51 */	bl __dl__FPv
 lbl_80B40FF0:
 /* 80B40FF0  7F E3 FB 78 */	mr r3, r31
 /* 80B40FF4  83 E1 00 0C */	lwz r31, 0xc(r1)

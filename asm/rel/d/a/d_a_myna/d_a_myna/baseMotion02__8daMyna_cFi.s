@@ -7,8 +7,8 @@ lbl_80945F00:
 /* 80945F14  38 00 00 02 */	li r0, 2
 /* 80945F18  B0 03 09 16 */	sth r0, 0x916(r3)
 /* 80945F1C  38 80 00 0C */	li r4, 0xc
-/* 80945F20  3C A0 80 95 */	lis r5, lit_3926@ha
-/* 80945F24  C0 25 B1 F0 */	lfs f1, lit_3926@l(r5)
+/* 80945F20  3C A0 80 95 */	lis r5, lit_3926@ha /* 0x8094B1F0@ha */
+/* 80945F24  C0 25 B1 F0 */	lfs f1, lit_3926@l(r5)  /* 0x8094B1F0@l */
 /* 80945F28  48 00 41 2D */	bl setAnimeType__8daMyna_cFUcf
 lbl_80945F2C:
 /* 80945F2C  38 60 00 01 */	li r3, 1

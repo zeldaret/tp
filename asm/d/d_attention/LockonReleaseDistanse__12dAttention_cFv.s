@@ -43,15 +43,15 @@ lbl_8007362C:
 /* 80073678  38 81 00 08 */	addi r4, r1, 8
 /* 8007367C  48 1F D8 ED */	bl __ct__7cSAngleFRC7cSAngle
 /* 80073680  1F FF 00 1C */	mulli r31, r31, 0x1c
-/* 80073684  3C 60 80 3B */	lis r3, dist_table__12dAttention_c@ha
-/* 80073688  38 03 9C 70 */	addi r0, r3, dist_table__12dAttention_c@l
+/* 80073684  3C 60 80 3B */	lis r3, dist_table__12dAttention_c@ha /* 0x803A9C70@ha */
+/* 80073688  38 03 9C 70 */	addi r0, r3, dist_table__12dAttention_c@l /* 0x803A9C70@l */
 /* 8007368C  7C 60 FA 14 */	add r3, r0, r31
 /* 80073690  C0 23 00 08 */	lfs f1, 8(r3)
 /* 80073694  A8 61 00 0C */	lha r3, 0xc(r1)
 /* 80073698  C0 42 8C 58 */	lfs f2, lit_4073(r2)
 /* 8007369C  4B FF D5 A5 */	bl distace_angle_adjust__Ffsf
-/* 800736A0  3C 60 80 3B */	lis r3, dist_table__12dAttention_c@ha
-/* 800736A4  38 03 9C 70 */	addi r0, r3, dist_table__12dAttention_c@l
+/* 800736A0  3C 60 80 3B */	lis r3, dist_table__12dAttention_c@ha /* 0x803A9C70@ha */
+/* 800736A4  38 03 9C 70 */	addi r0, r3, dist_table__12dAttention_c@l /* 0x803A9C70@l */
 /* 800736A8  7C 60 FA 14 */	add r3, r0, r31
 /* 800736AC  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800736B0  EC 20 08 2A */	fadds f1, f0, f1

@@ -2,8 +2,8 @@ lbl_80316A54:
 /* 80316A54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80316A58  7C 08 02 A6 */	mflr r0
 /* 80316A5C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80316A60  3C A0 80 43 */	lis r5, j3dSys@ha
-/* 80316A64  38 A5 4A C8 */	addi r5, r5, j3dSys@l
+/* 80316A60  3C A0 80 43 */	lis r5, j3dSys@ha /* 0x80434AC8@ha */
+/* 80316A64  38 A5 4A C8 */	addi r5, r5, j3dSys@l /* 0x80434AC8@l */
 /* 80316A68  80 05 00 34 */	lwz r0, 0x34(r5)
 /* 80316A6C  54 00 00 43 */	rlwinm. r0, r0, 0, 1, 1
 /* 80316A70  41 82 00 1C */	beq lbl_80316A8C

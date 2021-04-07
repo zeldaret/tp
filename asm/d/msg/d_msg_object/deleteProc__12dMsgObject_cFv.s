@@ -39,8 +39,8 @@ lbl_80235F2C:
 /* 80235F44  7F E3 FB 78 */	mr r3, r31
 /* 80235F48  48 00 18 01 */	bl updateEquipBombInfoLocal__12dMsgObject_cFv
 /* 80235F4C  38 00 00 FF */	li r0, 0xff
-/* 80235F50  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80235F54  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80235F50  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80235F54  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80235F58  98 03 5E 7C */	stb r0, 0x5e7c(r3)
 /* 80235F5C  38 00 FF FF */	li r0, -1
 /* 80235F60  90 03 5E E8 */	stw r0, 0x5ee8(r3)
@@ -108,8 +108,8 @@ lbl_80236028:
 /* 80236040  88 9F 01 A5 */	lbz r4, 0x1a5(r31)
 /* 80236044  28 04 00 00 */	cmplwi r4, 0
 /* 80236048  41 82 00 20 */	beq lbl_80236068
-/* 8023604C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80236050  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8023604C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80236050  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80236054  A8 03 5D F4 */	lha r0, 0x5df4(r3)
 /* 80236058  7C 00 22 14 */	add r0, r0, r4
 /* 8023605C  B0 03 5D F4 */	sth r0, 0x5df4(r3)

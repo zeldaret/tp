@@ -25,8 +25,8 @@ lbl_8010BCA4:
 /* 8010BD00  41 82 00 28 */	beq lbl_8010BD28
 /* 8010BD04  38 00 00 02 */	li r0, 2
 /* 8010BD08  98 1F 2F 98 */	stb r0, 0x2f98(r31)
-/* 8010BD0C  3C 60 80 39 */	lis r3, m__19daAlinkHIO_basic_c0@ha
-/* 8010BD10  38 63 D6 64 */	addi r3, r3, m__19daAlinkHIO_basic_c0@l
+/* 8010BD0C  3C 60 80 39 */	lis r3, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 8010BD10  38 63 D6 64 */	addi r3, r3, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 8010BD14  C3 E3 00 18 */	lfs f31, 0x18(r3)
 /* 8010BD18  48 00 00 10 */	b lbl_8010BD28
 lbl_8010BD1C:

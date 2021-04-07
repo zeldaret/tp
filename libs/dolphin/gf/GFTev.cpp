@@ -19,8 +19,6 @@ struct _GXColorS10 {};
 // Forward References:
 //
 
-void GFSetTevColorS10(_GXTevRegID, _GXColorS10);
-
 extern "C" void GFSetTevColorS10__F11_GXTevRegID11_GXColorS10();
 
 //
@@ -31,8 +29,8 @@ extern "C" void GFSetTevColorS10__F11_GXTevRegID11_GXColorS10();
 // Declarations:
 //
 
-/* 802CE0D0-802CE138 0068+00 s=0 e=0 z=1  None .text GFSetTevColorS10__F11_GXTevRegID11_GXColorS10
- */
+/* 802CE0D0-802CE138 2C8A10 0068+00 0/0 0/0 1/1 .text
+ * GFSetTevColorS10__F11_GXTevRegID11_GXColorS10                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

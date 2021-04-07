@@ -3,19 +3,19 @@ lbl_80B9AE60:
 /* 80B9AE64  7C 08 02 A6 */	mflr r0
 /* 80B9AE68  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80B9AE6C  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80B9AE70  3C 60 80 BA */	lis r3, cNullVec__6Z2Calc@ha
-/* 80B9AE74  3B E3 B2 84 */	addi r31, r3, cNullVec__6Z2Calc@l
-/* 80B9AE78  3C 60 80 BA */	lis r3, __vt__17daNpc_zrZ_Param_c@ha
-/* 80B9AE7C  38 03 B8 54 */	addi r0, r3, __vt__17daNpc_zrZ_Param_c@l
-/* 80B9AE80  3C 60 80 BA */	lis r3, l_HIO@ha
-/* 80B9AE84  94 03 B8 B4 */	stwu r0, l_HIO@l(r3)
-/* 80B9AE88  3C 80 80 BA */	lis r4, __dt__17daNpc_zrZ_Param_cFv@ha
-/* 80B9AE8C  38 84 AF 80 */	addi r4, r4, __dt__17daNpc_zrZ_Param_cFv@l
-/* 80B9AE90  3C A0 80 BA */	lis r5, lit_4021@ha
-/* 80B9AE94  38 A5 B8 A8 */	addi r5, r5, lit_4021@l
+/* 80B9AE70  3C 60 80 BA */	lis r3, cNullVec__6Z2Calc@ha /* 0x80B9B284@ha */
+/* 80B9AE74  3B E3 B2 84 */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x80B9B284@l */
+/* 80B9AE78  3C 60 80 BA */	lis r3, __vt__17daNpc_zrZ_Param_c@ha /* 0x80B9B854@ha */
+/* 80B9AE7C  38 03 B8 54 */	addi r0, r3, __vt__17daNpc_zrZ_Param_c@l /* 0x80B9B854@l */
+/* 80B9AE80  3C 60 80 BA */	lis r3, l_HIO@ha /* 0x80B9B8B4@ha */
+/* 80B9AE84  94 03 B8 B4 */	stwu r0, l_HIO@l(r3)  /* 0x80B9B8B4@l */
+/* 80B9AE88  3C 80 80 BA */	lis r4, __dt__17daNpc_zrZ_Param_cFv@ha /* 0x80B9AF80@ha */
+/* 80B9AE8C  38 84 AF 80 */	addi r4, r4, __dt__17daNpc_zrZ_Param_cFv@l /* 0x80B9AF80@l */
+/* 80B9AE90  3C A0 80 BA */	lis r5, lit_4021@ha /* 0x80B9B8A8@ha */
+/* 80B9AE94  38 A5 B8 A8 */	addi r5, r5, lit_4021@l /* 0x80B9B8A8@l */
 /* 80B9AE98  4B FF 8E C1 */	bl __register_global_object
-/* 80B9AE9C  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 80B9AEA0  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 80B9AE9C  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80B9AEA0  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 80B9AEA4  80 64 00 00 */	lwz r3, 0(r4)
 /* 80B9AEA8  80 04 00 04 */	lwz r0, 4(r4)
 /* 80B9AEAC  90 7F 01 B0 */	stw r3, 0x1b0(r31)

@@ -4,7 +4,7 @@ lbl_809BFC98:
 /* 809BFCA0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 809BFCA4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 809BFCA8  7C 7F 1B 78 */	mr r31, r3
-/* 809BFCAC  4B 65 90 34 */	b fopAc_IsActor__FPv
+/* 809BFCAC  4B 65 90 35 */	bl fopAc_IsActor__FPv
 /* 809BFCB0  2C 03 00 00 */	cmpwi r3, 0
 /* 809BFCB4  41 82 00 38 */	beq lbl_809BFCEC
 /* 809BFCB8  A8 1F 00 08 */	lha r0, 8(r31)
@@ -17,7 +17,7 @@ lbl_809BFC98:
 lbl_809BFCD4:
 /* 809BFCD4  38 60 FF FF */	li r3, -1
 lbl_809BFCD8:
-/* 809BFCD8  4B 66 24 60 */	b fpcM_IsCreating__FUi
+/* 809BFCD8  4B 66 24 61 */	bl fpcM_IsCreating__FUi
 /* 809BFCDC  2C 03 00 00 */	cmpwi r3, 0
 /* 809BFCE0  40 82 00 0C */	bne lbl_809BFCEC
 /* 809BFCE4  7F E3 FB 78 */	mr r3, r31

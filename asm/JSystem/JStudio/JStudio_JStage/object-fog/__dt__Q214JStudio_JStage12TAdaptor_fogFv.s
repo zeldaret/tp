@@ -7,8 +7,8 @@ lbl_8028C610:
 /* 8028C624  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8028C628  7C 9F 23 78 */	mr r31, r4
 /* 8028C62C  41 82 00 3C */	beq lbl_8028C668
-/* 8028C630  3C 80 80 3C */	lis r4, __vt__Q214JStudio_JStage12TAdaptor_fog@ha
-/* 8028C634  38 04 59 D0 */	addi r0, r4, __vt__Q214JStudio_JStage12TAdaptor_fog@l
+/* 8028C630  3C 80 80 3C */	lis r4, __vt__Q214JStudio_JStage12TAdaptor_fog@ha /* 0x803C59D0@ha */
+/* 8028C634  38 04 59 D0 */	addi r0, r4, __vt__Q214JStudio_JStage12TAdaptor_fog@l /* 0x803C59D0@l */
 /* 8028C638  90 1E 00 00 */	stw r0, 0(r30)
 /* 8028C63C  81 83 00 00 */	lwz r12, 0(r3)
 /* 8028C640  81 8C 00 14 */	lwz r12, 0x14(r12)

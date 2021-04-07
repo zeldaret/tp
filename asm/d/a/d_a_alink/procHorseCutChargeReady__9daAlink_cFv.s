@@ -20,8 +20,8 @@ lbl_800F1980:
 /* 800F1990  48 06 CB 3D */	bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 800F1994  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800F1998  41 82 00 B0 */	beq lbl_800F1A48
-/* 800F199C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800F19A0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800F199C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800F19A0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800F19A4  88 03 00 14 */	lbz r0, 0x14(r3)
 /* 800F19A8  28 00 00 3F */	cmplwi r0, 0x3f
 /* 800F19AC  41 82 00 10 */	beq lbl_800F19BC

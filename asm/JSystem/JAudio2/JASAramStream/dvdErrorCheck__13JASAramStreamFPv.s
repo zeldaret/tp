@@ -6,8 +6,8 @@ lbl_80296D94:
 /* 80296DA4  38 03 00 01 */	addi r0, r3, 1
 /* 80296DA8  28 00 00 0C */	cmplwi r0, 0xc
 /* 80296DAC  41 81 00 28 */	bgt lbl_80296DD4
-/* 80296DB0  3C 60 80 3C */	lis r3, lit_613@ha
-/* 80296DB4  38 63 76 70 */	addi r3, r3, lit_613@l
+/* 80296DB0  3C 60 80 3C */	lis r3, lit_613@ha /* 0x803C7670@ha */
+/* 80296DB4  38 63 76 70 */	addi r3, r3, lit_613@l /* 0x803C7670@l */
 /* 80296DB8  54 00 10 3A */	slwi r0, r0, 2
 /* 80296DBC  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80296DC0  7C 09 03 A6 */	mtctr r0

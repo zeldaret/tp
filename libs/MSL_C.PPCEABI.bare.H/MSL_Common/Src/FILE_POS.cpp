@@ -28,31 +28,31 @@ extern "C" extern u8 errno[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 80365BB4-80365C20 006C+00 s=0 e=2 z=0  None .text      fseek */
+/* 80365BB4-80365C20 3604F4 006C+00 0/0 2/2 0/0 .text            fseek */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void fseek() {
+asm void fseek() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/FILE_POS/fseek.s"
 }
 #pragma pop
 
-/* 80365C20-80365E90 0270+00 s=1 e=0 z=0  None .text      _fseek */
+/* 80365C20-80365E90 360560 0270+00 1/1 0/0 0/0 .text            _fseek */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void _fseek() {
+static asm void _fseek() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/FILE_POS/_fseek.s"
 }
 #pragma pop
 
-/* 80365E90-80365F74 00E4+00 s=0 e=2 z=0  None .text      ftell */
+/* 80365E90-80365F74 3607D0 00E4+00 0/0 2/2 0/0 .text            ftell */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void ftell() {
+asm void ftell() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/FILE_POS/ftell.s"
 }

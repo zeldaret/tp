@@ -27,15 +27,15 @@ lbl_800333B4:
 /* 800333D0  57 A0 06 3E */	clrlwi r0, r29, 0x18
 /* 800333D4  28 00 00 6B */	cmplwi r0, 0x6b
 /* 800333D8  40 82 00 18 */	bne lbl_800333F0
-/* 800333DC  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 800333E0  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 800333DC  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 800333E0  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 800333E4  38 1F 00 0B */	addi r0, r31, 0xb
 /* 800333E8  54 04 06 3E */	clrlwi r4, r0, 0x18
 /* 800333EC  48 1E A8 D9 */	bl setHotSpringTimer__13dMeter2Info_cFUc
 lbl_800333F0:
 /* 800333F0  3B A0 00 00 */	li r29, 0
-/* 800333F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800333F8  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
+/* 800333F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800333F8  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800333FC  3B FF 00 0B */	addi r31, r31, 0xb
 lbl_80033400:
 /* 80033400  7F C3 F3 78 */	mr r3, r30

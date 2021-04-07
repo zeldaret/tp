@@ -5,8 +5,8 @@ lbl_80327E4C:
 /* 80327E58  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80327E5C  93 C1 00 08 */	stw r30, 8(r1)
 /* 80327E60  7C 7F 1B 78 */	mr r31, r3
-/* 80327E64  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80327E68  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80327E64  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80327E68  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80327E6C  93 E3 00 38 */	stw r31, 0x38(r3)
 /* 80327E70  80 1F 00 08 */	lwz r0, 8(r31)
 /* 80327E74  54 00 07 7B */	rlwinm. r0, r0, 0, 0x1d, 0x1d
@@ -23,15 +23,15 @@ lbl_80327E98:
 /* 80327E98  80 1F 00 08 */	lwz r0, 8(r31)
 /* 80327E9C  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 80327EA0  41 82 00 1C */	beq lbl_80327EBC
-/* 80327EA4  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80327EA8  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80327EA4  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80327EA8  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80327EAC  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 80327EB0  60 00 00 08 */	ori r0, r0, 8
 /* 80327EB4  90 03 00 34 */	stw r0, 0x34(r3)
 /* 80327EB8  48 00 00 18 */	b lbl_80327ED0
 lbl_80327EBC:
-/* 80327EBC  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80327EC0  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80327EBC  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80327EC0  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80327EC4  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 80327EC8  54 00 07 76 */	rlwinm r0, r0, 0, 0x1d, 0x1b
 /* 80327ECC  90 03 00 34 */	stw r0, 0x34(r3)
@@ -40,8 +40,8 @@ lbl_80327ED0:
 /* 80327ED4  4B FF E2 25 */	bl syncJ3DSysFlags__12J3DModelDataCFv
 /* 80327ED8  80 7F 00 04 */	lwz r3, 4(r31)
 /* 80327EDC  80 03 00 6C */	lwz r0, 0x6c(r3)
-/* 80327EE0  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80327EE4  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80327EE0  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80327EE4  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80327EE8  90 03 00 58 */	stw r0, 0x58(r3)
 /* 80327EEC  3B C0 00 00 */	li r30, 0
 /* 80327EF0  48 00 00 24 */	b lbl_80327F14

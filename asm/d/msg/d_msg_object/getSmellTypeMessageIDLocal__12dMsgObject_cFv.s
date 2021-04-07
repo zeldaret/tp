@@ -1,7 +1,7 @@
 lbl_80237DD8:
 /* 80237DD8  38 60 00 00 */	li r3, 0
-/* 80237DDC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80237DE0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80237DDC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80237DE0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80237DE4  88 84 00 16 */	lbz r4, 0x16(r4)
 /* 80237DE8  2C 04 00 B6 */	cmpwi r4, 0xb6
 /* 80237DEC  4C 80 00 20 */	bgelr 

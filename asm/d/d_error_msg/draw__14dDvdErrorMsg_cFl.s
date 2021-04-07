@@ -28,8 +28,8 @@ lbl_8009D194:
 /* 8009D1FC  4B F6 AD 95 */	bl beginRender__13mDoGph_gInf_cFv
 /* 8009D200  38 60 00 00 */	li r3, 0
 /* 8009D204  48 2C 2A 6D */	bl GXSetAlphaUpdate
-/* 8009D208  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8009D20C  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8009D208  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8009D20C  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8009D210  48 27 2E AD */	bl drawInit__6J3DSysFv
 /* 8009D214  38 61 00 24 */	addi r3, r1, 0x24
 /* 8009D218  C0 22 92 18 */	lfs f1, lit_3758(r2)
@@ -54,8 +54,8 @@ lbl_8009D194:
 /* 8009D264  38 61 00 24 */	addi r3, r1, 0x24
 /* 8009D268  48 24 C5 4D */	bl setPort__13J2DOrthoGraphFv
 /* 8009D26C  38 01 00 24 */	addi r0, r1, 0x24
-/* 8009D270  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8009D274  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8009D270  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8009D274  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8009D278  90 03 5F 50 */	stw r0, 0x5f50(r3)
 /* 8009D27C  2C 1F 00 04 */	cmpwi r31, 4
 /* 8009D280  40 82 00 14 */	bne lbl_8009D294
@@ -106,11 +106,11 @@ lbl_8009D308:
 /* 8009D31C  38 00 00 00 */	li r0, 0
 /* 8009D320  80 6D 8C 40 */	lwz r3, sManager__10JFWDisplay(r13)
 /* 8009D324  90 03 00 04 */	stw r0, 4(r3)
-/* 8009D328  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha
-/* 8009D32C  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l
+/* 8009D328  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha /* 0x803CC9E0@ha */
+/* 8009D32C  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l /* 0x803CC9E0@l */
 /* 8009D330  90 01 00 24 */	stw r0, 0x24(r1)
-/* 8009D334  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha
-/* 8009D338  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l
+/* 8009D334  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha /* 0x803CC9B8@ha */
+/* 8009D338  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l /* 0x803CC9B8@l */
 /* 8009D33C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8009D340  83 E1 00 FC */	lwz r31, 0xfc(r1)
 /* 8009D344  80 01 01 04 */	lwz r0, 0x104(r1)

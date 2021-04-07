@@ -5,8 +5,8 @@ lbl_80875EA0:
 /* 80875EAC  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80875EB0  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80875EB4  93 A1 00 24 */	stw r29, 0x24(r1)
-/* 80875EB8  3C 80 80 88 */	lis r4, daMP_ActivePlayer@ha
-/* 80875EBC  3B E4 9B D0 */	addi r31, r4, daMP_ActivePlayer@l
+/* 80875EB8  3C 80 80 88 */	lis r4, daMP_ActivePlayer@ha /* 0x80879BD0@ha */
+/* 80875EBC  3B E4 9B D0 */	addi r31, r4, daMP_ActivePlayer@l /* 0x80879BD0@l */
 /* 80875EC0  83 DF 00 BC */	lwz r30, 0xbc(r31)
 /* 80875EC4  90 61 00 08 */	stw r3, 8(r1)
 /* 80875EC8  3B A0 00 00 */	li r29, 0
@@ -16,11 +16,11 @@ lbl_80875ECC:
 /* 80875ED4  41 82 00 84 */	beq lbl_80875F58
 /* 80875ED8  48 00 00 74 */	b lbl_80875F4C
 lbl_80875EDC:
-/* 80875EDC  4B AC 78 18 */	b OSDisableInterrupts
+/* 80875EDC  4B AC 78 19 */	bl OSDisableInterrupts
 /* 80875EE0  80 9F 00 D8 */	lwz r4, 0xd8(r31)
 /* 80875EE4  38 04 00 01 */	addi r0, r4, 1
 /* 80875EE8  90 1F 00 D8 */	stw r0, 0xd8(r31)
-/* 80875EEC  4B AC 78 30 */	b OSRestoreInterrupts
+/* 80875EEC  4B AC 78 31 */	bl OSRestoreInterrupts
 /* 80875EF0  80 1F 00 C0 */	lwz r0, 0xc0(r31)
 /* 80875EF4  7C 7D 02 14 */	add r3, r29, r0
 /* 80875EF8  80 9F 00 50 */	lwz r4, 0x50(r31)
@@ -72,9 +72,9 @@ lbl_80875F58:
 /* 80875FA0  90 01 00 08 */	stw r0, 8(r1)
 /* 80875FA4  48 00 00 28 */	b lbl_80875FCC
 lbl_80875FA8:
-/* 80875FA8  3C 60 80 88 */	lis r3, daMP_VideoDecodeThread@ha
-/* 80875FAC  38 63 C1 A0 */	addi r3, r3, daMP_VideoDecodeThread@l
-/* 80875FB0  4B AC BA 8C */	b OSSuspendThread
+/* 80875FA8  3C 60 80 88 */	lis r3, daMP_VideoDecodeThread@ha /* 0x8087C1A0@ha */
+/* 80875FAC  38 63 C1 A0 */	addi r3, r3, daMP_VideoDecodeThread@l /* 0x8087C1A0@l */
+/* 80875FB0  4B AC BA 8D */	bl OSSuspendThread
 /* 80875FB4  48 00 00 18 */	b lbl_80875FCC
 lbl_80875FB8:
 /* 80875FB8  80 61 00 08 */	lwz r3, 8(r1)

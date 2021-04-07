@@ -7,11 +7,11 @@ lbl_80A9E270:
 /* 80A9E284  7C 7E 1B 78 */	mr r30, r3
 /* 80A9E288  7C BF 2B 78 */	mr r31, r5
 /* 80A9E28C  38 7E 04 D0 */	addi r3, r30, 0x4d0
-/* 80A9E290  4B 7D 29 74 */	b cLib_targetAngleY__FPC3VecPC3Vec
+/* 80A9E290  4B 7D 29 75 */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 80A9E294  7C 64 1B 78 */	mr r4, r3
 /* 80A9E298  38 7E 0D 7A */	addi r3, r30, 0xd7a
 /* 80A9E29C  7F E5 FB 78 */	mr r5, r31
-/* 80A9E2A0  4B 7D 28 F0 */	b cLib_chaseAngleS__FPsss
+/* 80A9E2A0  4B 7D 28 F1 */	bl cLib_chaseAngleS__FPsss
 /* 80A9E2A4  A8 1E 0D 7A */	lha r0, 0xd7a(r30)
 /* 80A9E2A8  B0 1E 04 DE */	sth r0, 0x4de(r30)
 /* 80A9E2AC  A8 1E 0D 7A */	lha r0, 0xd7a(r30)

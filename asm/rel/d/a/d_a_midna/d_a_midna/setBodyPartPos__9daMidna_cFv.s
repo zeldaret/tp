@@ -5,8 +5,8 @@ lbl_804BEDB8:
 /* 804BEDC4  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 804BEDC8  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 804BEDCC  7C 7E 1B 78 */	mr r30, r3
-/* 804BEDD0  3C 60 80 4C */	lis r3, lit_3777@ha
-/* 804BEDD4  3B E3 64 C8 */	addi r31, r3, lit_3777@l
+/* 804BEDD0  3C 60 80 4C */	lis r3, lit_3777@ha /* 0x804C64C8@ha */
+/* 804BEDD4  3B E3 64 C8 */	addi r31, r3, lit_3777@l /* 0x804C64C8@l */
 /* 804BEDD8  38 7F 01 1C */	addi r3, r31, 0x11c
 /* 804BEDDC  A0 63 00 D8 */	lhz r3, 0xd8(r3)
 /* 804BEDE0  A0 1E 05 E4 */	lhz r0, 0x5e4(r30)
@@ -24,7 +24,7 @@ lbl_804BEE00:
 /* 804BEE0C  38 63 00 C0 */	addi r3, r3, 0xc0
 /* 804BEE10  38 9F 00 14 */	addi r4, r31, 0x14
 /* 804BEE14  38 BE 05 38 */	addi r5, r30, 0x538
-/* 804BEE18  4B E8 7F 54 */	b PSMTXMultVec
+/* 804BEE18  4B E8 7F 55 */	bl PSMTXMultVec
 lbl_804BEE1C:
 /* 804BEE1C  88 9E 08 4E */	lbz r4, 0x84e(r30)
 /* 804BEE20  28 04 00 01 */	cmplwi r4, 1
@@ -40,8 +40,8 @@ lbl_804BEE1C:
 /* 804BEE48  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 804BEE4C  40 80 00 90 */	bge lbl_804BEEDC
 lbl_804BEE50:
-/* 804BEE50  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804BEE54  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804BEE50  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804BEE54  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804BEE58  80 A3 5D B4 */	lwz r5, 0x5db4(r3)
 /* 804BEE5C  80 05 05 74 */	lwz r0, 0x574(r5)
 /* 804BEE60  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
@@ -51,8 +51,8 @@ lbl_804BEE50:
 lbl_804BEE70:
 /* 804BEE70  C0 9F 04 28 */	lfs f4, 0x428(r31)
 lbl_804BEE74:
-/* 804BEE74  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 804BEE78  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 804BEE74  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 804BEE78  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 804BEE7C  A8 05 04 E6 */	lha r0, 0x4e6(r5)
 /* 804BEE80  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 804BEE84  7C 64 02 14 */	add r3, r4, r0
@@ -103,7 +103,7 @@ lbl_804BEF20:
 /* 804BEF2C  38 63 00 C0 */	addi r3, r3, 0xc0
 /* 804BEF30  38 9F 00 20 */	addi r4, r31, 0x20
 /* 804BEF34  38 BE 09 58 */	addi r5, r30, 0x958
-/* 804BEF38  4B E8 7E 34 */	b PSMTXMultVec
+/* 804BEF38  4B E8 7E 35 */	bl PSMTXMultVec
 /* 804BEF3C  80 1E 08 90 */	lwz r0, 0x890(r30)
 /* 804BEF40  54 00 04 A5 */	rlwinm. r0, r0, 0, 0x12, 0x12
 /* 804BEF44  40 82 00 44 */	bne lbl_804BEF88
@@ -113,9 +113,9 @@ lbl_804BEF20:
 /* 804BEF54  38 63 00 C0 */	addi r3, r3, 0xc0
 /* 804BEF58  38 9F 04 10 */	addi r4, r31, 0x410
 /* 804BEF5C  38 A1 00 08 */	addi r5, r1, 8
-/* 804BEF60  4B E8 7E 0C */	b PSMTXMultVec
-/* 804BEF64  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804BEF68  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804BEF60  4B E8 7E 0D */	bl PSMTXMultVec
+/* 804BEF64  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804BEF68  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804BEF6C  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 804BEF70  C0 01 00 08 */	lfs f0, 8(r1)
 /* 804BEF74  D0 03 05 B0 */	stfs f0, 0x5b0(r3)

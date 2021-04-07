@@ -29,9 +29,9 @@ struct daObjToaruMaki_c {
     /* 80D13524 */ void execute();
 };
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct cXyz {};
 
 struct J3DModelData {};
 
@@ -76,12 +76,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void daObjToaruMaki_c_createHeap(fopAc_ac_c*);
-static void daObjToaruMaki_create(daObjToaruMaki_c*);
-static void daObjToaruMaki_Delete(daObjToaruMaki_c*);
-static void daObjToaruMaki_execute(daObjToaruMaki_c*);
-static void daObjToaruMaki_draw(daObjToaruMaki_c*);
-
 extern "C" static void daObjToaruMaki_c_createHeap__FP10fopAc_ac_c();
 extern "C" void __ct__16daObjToaruMaki_cFv();
 extern "C" void __dt__16daObjToaruMaki_cFv();
@@ -95,22 +89,11 @@ extern "C" static void daObjToaruMaki_create__FP16daObjToaruMaki_c();
 extern "C" static void daObjToaruMaki_Delete__FP16daObjToaruMaki_c();
 extern "C" static void daObjToaruMaki_execute__FP16daObjToaruMaki_c();
 extern "C" static void daObjToaruMaki_draw__FP16daObjToaruMaki_c();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_ToaruMaki[12];
+extern "C" extern char const* const d_a_obj_toaru_maki__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_setupStageTexture(J3DModelData*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
@@ -148,47 +131,25 @@ extern "C" extern u8 j3dSys[284];
 // Declarations:
 //
 
-/* 80D13078-80D13098 0020+00 s=1 e=0 z=0  None .text daObjToaruMaki_c_createHeap__FP10fopAc_ac_c
+/* 80D13078-80D13098 000078 0020+00 1/1 0/0 0/0 .text daObjToaruMaki_c_createHeap__FP10fopAc_ac_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjToaruMaki_c_createHeap(fopAc_ac_c* param_0) {
+static asm void daObjToaruMaki_c_createHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_toaru_maki/d_a_obj_toaru_maki/daObjToaruMaki_c_createHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D13604-80D1360C 0008+00 s=1 e=0 z=0  None .rodata    l_bmdIdx */
-SECTION_RODATA static u8 const l_bmdIdx[8] = {
-    0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x03,
-};
-
-/* 80D1360C-80D13614 0008+00 s=1 e=0 z=0  None .rodata    l_heapSize */
-SECTION_RODATA static u8 const l_heapSize[8] = {
-    0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x0E, 0xB0,
-};
-
-/* 80D13614-80D1361C 0008+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80D13614 = "T_Maki1";
-#pragma pop
-
-/* 80D1361C-80D13624 0008+00 s=1 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const data_80D1361C[8] = {
-    0x54, 0x5F, 0x4D, 0x61, 0x6B, 0x69, 0x32, 0x00,
-};
-
-/* 80D13624-80D1362C 0008+00 s=3 e=0 z=0  None .data      l_arcName */
+/* 80D13624-80D1362C -00001 0008+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName[2] = {
-    (void*)&stringBase0,
-    (void*)&data_80D1361C,
+    (void*)&d_a_obj_toaru_maki__stringBase0,
+    (void*)(((char*)&d_a_obj_toaru_maki__stringBase0) + 0x8),
 };
 
-/* 80D1362C-80D1364C 0020+00 s=1 e=0 z=0  None .data      daObjToaruMaki_METHODS */
+/* 80D1362C-80D1364C -00001 0020+00 1/0 0/0 0/0 .data            daObjToaruMaki_METHODS */
 SECTION_DATA static void* daObjToaruMaki_METHODS[8] = {
     (void*)daObjToaruMaki_create__FP16daObjToaruMaki_c,
     (void*)daObjToaruMaki_Delete__FP16daObjToaruMaki_c,
@@ -200,8 +161,8 @@ SECTION_DATA static void* daObjToaruMaki_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 80D1364C-80D1367C 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_ToaruMaki */
-SECTION_DATA void* g_profile_Obj_ToaruMaki[12] = {
+/* 80D1364C-80D1367C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_ToaruMaki */
+SECTION_DATA extern void* g_profile_Obj_ToaruMaki[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01A90000, (void*)&g_fpcLf_Method,
     (void*)0x000005AC, (void*)NULL,
@@ -210,14 +171,14 @@ SECTION_DATA void* g_profile_Obj_ToaruMaki[12] = {
     (void*)0x00040000, (void*)0x030E0000,
 };
 
-/* 80D1367C-80D13688 000C+00 s=2 e=0 z=0  None .data      __vt__16daObjToaruMaki_c */
-SECTION_DATA static void* __vt__16daObjToaruMaki_c[3] = {
-    (void*)NULL,
+/* 80D1367C-80D13688 000058 000C+00 2/2 0/0 0/0 .data            __vt__16daObjToaruMaki_c */
+SECTION_DATA extern void* __vt__16daObjToaruMaki_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__16daObjToaruMaki_cFv,
 };
 
-/* 80D13098-80D130E0 0048+00 s=2 e=0 z=0  None .text      __ct__16daObjToaruMaki_cFv */
+/* 80D13098-80D130E0 000098 0048+00 2/2 0/0 0/0 .text            __ct__16daObjToaruMaki_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -227,7 +188,7 @@ asm daObjToaruMaki_c::daObjToaruMaki_c() {
 }
 #pragma pop
 
-/* 80D130E0-80D1316C 008C+00 s=1 e=0 z=0  None .text      __dt__16daObjToaruMaki_cFv */
+/* 80D130E0-80D1316C 0000E0 008C+00 1/0 0/0 0/0 .text            __dt__16daObjToaruMaki_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -237,7 +198,14 @@ asm daObjToaruMaki_c::~daObjToaruMaki_c() {
 }
 #pragma pop
 
-/* 80D1316C-80D132B4 0148+00 s=1 e=0 z=0  None .text      createHeap__16daObjToaruMaki_cFv */
+/* ############################################################################################## */
+/* 80D13604-80D1360C 000000 0008+00 1/1 0/0 0/0 .rodata          l_bmdIdx */
+SECTION_RODATA static u8 const l_bmdIdx[8] = {
+    0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x03,
+};
+COMPILER_STRIP_GATE(80D13604, &l_bmdIdx);
+
+/* 80D1316C-80D132B4 00016C 0148+00 1/1 0/0 0/0 .text            createHeap__16daObjToaruMaki_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -247,7 +215,14 @@ asm void daObjToaruMaki_c::createHeap() {
 }
 #pragma pop
 
-/* 80D132B4-80D133C0 010C+00 s=1 e=0 z=0  None .text      create__16daObjToaruMaki_cFv */
+/* ############################################################################################## */
+/* 80D1360C-80D13614 000008 0008+00 1/1 0/0 0/0 .rodata          l_heapSize */
+SECTION_RODATA static u8 const l_heapSize[8] = {
+    0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x0E, 0xB0,
+};
+COMPILER_STRIP_GATE(80D1360C, &l_heapSize);
+
+/* 80D132B4-80D133C0 0002B4 010C+00 1/1 0/0 0/0 .text            create__16daObjToaruMaki_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -257,7 +232,7 @@ asm void daObjToaruMaki_c::create() {
 }
 #pragma pop
 
-/* 80D133C0-80D1343C 007C+00 s=1 e=0 z=0  None .text      Delete__16daObjToaruMaki_cFv */
+/* 80D133C0-80D1343C 0003C0 007C+00 1/1 0/0 0/0 .text            Delete__16daObjToaruMaki_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -267,7 +242,8 @@ asm void daObjToaruMaki_c::Delete() {
 }
 #pragma pop
 
-/* 80D1343C-80D134A0 0064+00 s=2 e=0 z=0  None .text      setModelMtx__16daObjToaruMaki_cFv */
+/* 80D1343C-80D134A0 00043C 0064+00 2/2 0/0 0/0 .text            setModelMtx__16daObjToaruMaki_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -277,7 +253,7 @@ asm void daObjToaruMaki_c::setModelMtx() {
 }
 #pragma pop
 
-/* 80D134A0-80D13524 0084+00 s=1 e=0 z=0  None .text      draw__16daObjToaruMaki_cFv */
+/* 80D134A0-80D13524 0004A0 0084+00 1/1 0/0 0/0 .text            draw__16daObjToaruMaki_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -287,7 +263,7 @@ asm void daObjToaruMaki_c::draw() {
 }
 #pragma pop
 
-/* 80D13524-80D13548 0024+00 s=1 e=0 z=0  None .text      execute__16daObjToaruMaki_cFv */
+/* 80D13524-80D13548 000524 0024+00 1/1 0/0 0/0 .text            execute__16daObjToaruMaki_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -297,46 +273,53 @@ asm void daObjToaruMaki_c::execute() {
 }
 #pragma pop
 
-/* 80D13548-80D1359C 0054+00 s=1 e=0 z=0  None .text daObjToaruMaki_create__FP16daObjToaruMaki_c
+/* 80D13548-80D1359C 000548 0054+00 1/0 0/0 0/0 .text daObjToaruMaki_create__FP16daObjToaruMaki_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjToaruMaki_create(daObjToaruMaki_c* param_0) {
+static asm void daObjToaruMaki_create(daObjToaruMaki_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_toaru_maki/d_a_obj_toaru_maki/daObjToaruMaki_create__FP16daObjToaruMaki_c.s"
 }
 #pragma pop
 
-/* 80D1359C-80D135BC 0020+00 s=1 e=0 z=0  None .text daObjToaruMaki_Delete__FP16daObjToaruMaki_c
+/* 80D1359C-80D135BC 00059C 0020+00 1/0 0/0 0/0 .text daObjToaruMaki_Delete__FP16daObjToaruMaki_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjToaruMaki_Delete(daObjToaruMaki_c* param_0) {
+static asm void daObjToaruMaki_Delete(daObjToaruMaki_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_toaru_maki/d_a_obj_toaru_maki/daObjToaruMaki_Delete__FP16daObjToaruMaki_c.s"
 }
 #pragma pop
 
-/* 80D135BC-80D135DC 0020+00 s=1 e=0 z=0  None .text daObjToaruMaki_execute__FP16daObjToaruMaki_c
+/* 80D135BC-80D135DC 0005BC 0020+00 1/0 0/0 0/0 .text daObjToaruMaki_execute__FP16daObjToaruMaki_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjToaruMaki_execute(daObjToaruMaki_c* param_0) {
+static asm void daObjToaruMaki_execute(daObjToaruMaki_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_toaru_maki/d_a_obj_toaru_maki/daObjToaruMaki_execute__FP16daObjToaruMaki_c.s"
 }
 #pragma pop
 
-/* 80D135DC-80D135FC 0020+00 s=1 e=0 z=0  None .text      daObjToaruMaki_draw__FP16daObjToaruMaki_c
- */
+/* 80D135DC-80D135FC 0005DC 0020+00 1/0 0/0 0/0 .text daObjToaruMaki_draw__FP16daObjToaruMaki_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjToaruMaki_draw(daObjToaruMaki_c* param_0) {
+static asm void daObjToaruMaki_draw(daObjToaruMaki_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_toaru_maki/d_a_obj_toaru_maki/daObjToaruMaki_draw__FP16daObjToaruMaki_c.s"
 }
+#pragma pop
+
+/* 80D13614-80D13624 000010 0010+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80D13614 = "T_Maki1";
+SECTION_DEAD static char const* const stringBase_80D1361C = "T_Maki2";
 #pragma pop

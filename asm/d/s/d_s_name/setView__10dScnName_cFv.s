@@ -26,8 +26,8 @@ lbl_80258B2C:
 /* 80258B8C  D0 1F 03 D0 */	stfs f0, 0x3d0(r31)
 /* 80258B90  D0 1F 03 E0 */	stfs f0, 0x3e0(r31)
 /* 80258B94  38 7F 03 14 */	addi r3, r31, 0x314
-/* 80258B98  3C 80 80 43 */	lis r4, j3dSys@ha
-/* 80258B9C  38 84 4A C8 */	addi r4, r4, j3dSys@l
+/* 80258B98  3C 80 80 43 */	lis r4, j3dSys@ha /* 0x80434AC8@ha */
+/* 80258B9C  38 84 4A C8 */	addi r4, r4, j3dSys@l /* 0x80434AC8@l */
 /* 80258BA0  48 0E D9 11 */	bl PSMTXCopy
 /* 80258BA4  38 7F 02 D4 */	addi r3, r31, 0x2d4
 /* 80258BA8  38 9F 03 14 */	addi r4, r31, 0x314

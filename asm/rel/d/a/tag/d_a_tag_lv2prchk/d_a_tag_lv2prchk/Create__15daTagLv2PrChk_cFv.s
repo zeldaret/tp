@@ -13,13 +13,13 @@ lbl_805A4C58:
 /* 805A4C84  38 60 00 00 */	li r3, 0
 /* 805A4C88  48 00 00 40 */	b lbl_805A4CC8
 lbl_805A4C8C:
-/* 805A4C8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805A4C90  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805A4C8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805A4C90  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805A4C94  80 1F 00 B0 */	lwz r0, 0xb0(r31)
 /* 805A4C98  54 04 06 3E */	clrlwi r4, r0, 0x18
 /* 805A4C9C  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 805A4CA0  7C 05 07 74 */	extsb r5, r0
-/* 805A4CA4  4B A9 06 BC */	b isSwitch__10dSv_info_cCFii
+/* 805A4CA4  4B A9 06 BD */	bl isSwitch__10dSv_info_cCFii
 /* 805A4CA8  2C 03 00 00 */	cmpwi r3, 0
 /* 805A4CAC  41 82 00 10 */	beq lbl_805A4CBC
 /* 805A4CB0  38 00 00 01 */	li r0, 1

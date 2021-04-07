@@ -20,7 +20,6 @@ $(BUILD_DIR)/libvi.a: $(LIBVI_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libvi.a
 	@echo $(LIBVI_A_O_FILES) > build/LIBVI_A_ofiles
 	@$(LD) -xm l $(LIBVI_A_LDFLAGS) -o $(BUILD_DIR)/libvi.a @build/LIBVI_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libvi.a
 
 $(BUILD_DIR)/libs/dolphin/vi/%.o: libs/dolphin/vi/%.cpp
 	@mkdir -p $(@D)

@@ -5,12 +5,12 @@ lbl_80BEA400:
 /* 80BEA40C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80BEA410  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80BEA414  41 82 00 1C */	beq lbl_80BEA430
-/* 80BEA418  3C A0 80 BF */	lis r5, __vt__8cM3dGAab@ha
-/* 80BEA41C  38 05 B6 A0 */	addi r0, r5, __vt__8cM3dGAab@l
+/* 80BEA418  3C A0 80 BF */	lis r5, __vt__8cM3dGAab@ha /* 0x80BEB6A0@ha */
+/* 80BEA41C  38 05 B6 A0 */	addi r0, r5, __vt__8cM3dGAab@l /* 0x80BEB6A0@l */
 /* 80BEA420  90 1F 00 18 */	stw r0, 0x18(r31)
 /* 80BEA424  7C 80 07 35 */	extsh. r0, r4
 /* 80BEA428  40 81 00 08 */	ble lbl_80BEA430
-/* 80BEA42C  4B 6E 49 10 */	b __dl__FPv
+/* 80BEA42C  4B 6E 49 11 */	bl __dl__FPv
 lbl_80BEA430:
 /* 80BEA430  7F E3 FB 78 */	mr r3, r31
 /* 80BEA434  83 E1 00 0C */	lwz r31, 0xc(r1)

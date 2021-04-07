@@ -45,11 +45,11 @@ lbl_802A5AE4:
 /* 802A5AF0  7F E3 01 2E */	stwx r31, r3, r0
 /* 802A5AF4  28 1B 00 FF */	cmplwi r27, 0xff
 /* 802A5AF8  41 80 00 28 */	blt lbl_802A5B20
-/* 802A5AFC  3C 60 80 3D */	lis r3, __files@ha
-/* 802A5B00  38 63 29 B0 */	addi r3, r3, __files@l
+/* 802A5AFC  3C 60 80 3D */	lis r3, __files@ha /* 0x803D29B0@ha */
+/* 802A5B00  38 63 29 B0 */	addi r3, r3, __files@l /* 0x803D29B0@l */
 /* 802A5B04  38 63 00 A0 */	addi r3, r3, 0xa0
-/* 802A5B08  3C 80 80 3A */	lis r4, JAUSectionHeap__stringBase0@ha
-/* 802A5B0C  38 84 B9 50 */	addi r4, r4, JAUSectionHeap__stringBase0@l
+/* 802A5B08  3C 80 80 3A */	lis r4, JAUSectionHeap__stringBase0@ha /* 0x8039B950@ha */
+/* 802A5B0C  38 84 B9 50 */	addi r4, r4, JAUSectionHeap__stringBase0@l /* 0x8039B950@l */
 /* 802A5B10  38 84 00 47 */	addi r4, r4, 0x47
 /* 802A5B14  4C C6 31 82 */	crclr 6
 /* 802A5B18  48 0C 0C 85 */	bl fprintf

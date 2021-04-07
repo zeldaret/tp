@@ -10,8 +10,8 @@ lbl_80127C54:
 /* 80127C74  38 7F 2C A8 */	addi r3, r31, 0x2ca8
 /* 80127C78  38 80 00 01 */	li r4, 1
 /* 80127C7C  48 19 BE 81 */	bl setWolfEyeOpen__14Z2CreatureLinkFb
-/* 80127C80  3C 60 80 39 */	lis r3, m__18daAlinkHIO_wolf_c0@ha
-/* 80127C84  38 63 F9 F8 */	addi r3, r3, m__18daAlinkHIO_wolf_c0@l
+/* 80127C80  3C 60 80 39 */	lis r3, m__18daAlinkHIO_wolf_c0@ha /* 0x8038F9F8@ha */
+/* 80127C84  38 63 F9 F8 */	addi r3, r3, m__18daAlinkHIO_wolf_c0@l /* 0x8038F9F8@l */
 /* 80127C88  A8 03 00 0C */	lha r0, 0xc(r3)
 /* 80127C8C  B0 1F 30 AC */	sth r0, 0x30ac(r31)
 /* 80127C90  38 00 00 14 */	li r0, 0x14

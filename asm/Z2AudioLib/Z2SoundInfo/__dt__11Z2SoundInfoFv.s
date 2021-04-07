@@ -7,8 +7,8 @@ lbl_802BBBE0:
 /* 802BBBF4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802BBBF8  7C 9F 23 78 */	mr r31, r4
 /* 802BBBFC  41 82 00 A4 */	beq lbl_802BBCA0
-/* 802BBC00  3C 60 80 3D */	lis r3, __vt__11Z2SoundInfo@ha
-/* 802BBC04  38 63 AC 48 */	addi r3, r3, __vt__11Z2SoundInfo@l
+/* 802BBC00  3C 60 80 3D */	lis r3, __vt__11Z2SoundInfo@ha /* 0x803CAC48@ha */
+/* 802BBC04  38 63 AC 48 */	addi r3, r3, __vt__11Z2SoundInfo@l /* 0x803CAC48@l */
 /* 802BBC08  90 7E 00 00 */	stw r3, 0(r30)
 /* 802BBC0C  38 03 00 24 */	addi r0, r3, 0x24
 /* 802BBC10  90 1E 00 04 */	stw r0, 4(r30)
@@ -31,8 +31,8 @@ lbl_802BBC44:
 /* 802BBC4C  4B FE 7E 8D */	bl __dt__16JAIStreamDataMgrFv
 /* 802BBC50  34 1E 00 04 */	addic. r0, r30, 4
 /* 802BBC54  41 82 00 30 */	beq lbl_802BBC84
-/* 802BBC58  3C 60 80 3A */	lis r3, __vt__12JAUSoundInfo@ha
-/* 802BBC5C  38 03 2F 4C */	addi r0, r3, __vt__12JAUSoundInfo@l
+/* 802BBC58  3C 60 80 3A */	lis r3, __vt__12JAUSoundInfo@ha /* 0x803A2F4C@ha */
+/* 802BBC5C  38 03 2F 4C */	addi r0, r3, __vt__12JAUSoundInfo@l /* 0x803A2F4C@l */
 /* 802BBC60  90 1E 00 04 */	stw r0, 4(r30)
 /* 802BBC64  34 1E 00 04 */	addic. r0, r30, 4
 /* 802BBC68  41 82 00 1C */	beq lbl_802BBC84

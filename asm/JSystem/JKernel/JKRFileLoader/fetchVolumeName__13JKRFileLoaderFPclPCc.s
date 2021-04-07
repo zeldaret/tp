@@ -8,8 +8,8 @@ lbl_802D44C4:
 /* 802D44DC  7C 9E 23 78 */	mr r30, r4
 /* 802D44E0  7C BF 2B 78 */	mr r31, r5
 /* 802D44E4  7F E3 FB 78 */	mr r3, r31
-/* 802D44E8  3C 80 80 3A */	lis r4, JKRFileLoader__stringBase0@ha
-/* 802D44EC  38 84 D1 50 */	addi r4, r4, JKRFileLoader__stringBase0@l
+/* 802D44E8  3C 80 80 3A */	lis r4, JKRFileLoader__stringBase0@ha /* 0x8039D150@ha */
+/* 802D44EC  38 84 D1 50 */	addi r4, r4, JKRFileLoader__stringBase0@l /* 0x8039D150@l */
 /* 802D44F0  48 09 44 A5 */	bl strcmp
 /* 802D44F4  2C 03 00 00 */	cmpwi r3, 0
 /* 802D44F8  40 82 00 18 */	bne lbl_802D4510
@@ -19,8 +19,8 @@ lbl_802D44C4:
 /* 802D4508  38 6D 83 40 */	la r3, rootPath(r13) /* 804508C0-_SDA_BASE_ */
 /* 802D450C  48 00 00 7C */	b lbl_802D4588
 lbl_802D4510:
-/* 802D4510  3C 60 80 3D */	lis r3, __lower_map@ha
-/* 802D4514  38 63 2D 18 */	addi r3, r3, __lower_map@l
+/* 802D4510  3C 60 80 3D */	lis r3, __lower_map@ha /* 0x803D2D18@ha */
+/* 802D4514  38 63 2D 18 */	addi r3, r3, __lower_map@l /* 0x803D2D18@l */
 /* 802D4518  3B FF 00 01 */	addi r31, r31, 1
 /* 802D451C  48 00 00 38 */	b lbl_802D4554
 lbl_802D4520:

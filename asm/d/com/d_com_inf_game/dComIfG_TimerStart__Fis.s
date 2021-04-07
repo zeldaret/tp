@@ -6,8 +6,8 @@ lbl_8002F52C:
 /* 8002F53C  48 33 2C A1 */	bl _savegpr_29
 /* 8002F540  7C 7D 1B 78 */	mr r29, r3
 /* 8002F544  7C 9E 23 78 */	mr r30, r4
-/* 8002F548  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002F54C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002F548  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002F54C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002F550  3B E3 0F 38 */	addi r31, r3, 0xf38
 /* 8002F554  7F E3 FB 78 */	mr r3, r31
 /* 8002F558  4B FF D6 65 */	bl getTimerMode__14dComIfG_play_cFv

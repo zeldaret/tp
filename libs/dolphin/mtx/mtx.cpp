@@ -17,7 +17,7 @@ extern "C" void PSMTXConcat();
 extern "C" void PSMTXInverse();
 extern "C" void PSMTXRotRad();
 extern "C" static void PSMTXRotTrig();
-extern "C" static void __PSMTXRotAxisRadInternal();
+extern "C" void __PSMTXRotAxisRadInternal();
 extern "C" void PSMTXRotAxisRad();
 extern "C" void PSMTXTrans();
 extern "C" void PSMTXTransApply();
@@ -43,10 +43,10 @@ extern "C" void cosf();
 //
 
 /* ############################################################################################## */
-/* 80456508-8045650C 0004+00 s=6 e=0 z=0  None .sdata2    @96 */
+/* 80456508-8045650C 004B08 0004+00 6/6 0/0 0/0 .sdata2          @96 */
 SECTION_SDATA2 static f32 lit_96 = 1.0f;
 
-/* 8045650C-80456510 0004+00 s=6 e=0 z=0  None .sdata2    @97 */
+/* 8045650C-80456510 004B0C 0004+00 6/6 0/0 0/0 .sdata2          @97 */
 SECTION_SDATA2 static u8 lit_97[4] = {
     0x00,
     0x00,
@@ -54,188 +54,188 @@ SECTION_SDATA2 static u8 lit_97[4] = {
     0x00,
 };
 
-/* 80346484-803464B0 002C+00 s=0 e=27 z=13  None .text      PSMTXIdentity */
+/* 80346484-803464B0 340DC4 002C+00 0/0 27/27 13/13 .text            PSMTXIdentity */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PSMTXIdentity() {
+asm void PSMTXIdentity() {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXIdentity.s"
 }
 #pragma pop
 
-/* 803464B0-803464E4 0034+00 s=0 e=119 z=1436  None .text      PSMTXCopy */
+/* 803464B0-803464E4 340DF0 0034+00 0/0 119/119 1436/1436 .text            PSMTXCopy */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PSMTXCopy() {
+asm void PSMTXCopy() {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXCopy.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804509D0-804509D8 0008+00 s=1 e=0 z=0  None .sdata     Unit01 */
+/* 804509D0-804509D8 000450 0008+00 1/1 0/0 0/0 .sdata           Unit01 */
 SECTION_SDATA static u8 Unit01[8] = {
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
 
-/* 803464E4-803465B0 00CC+00 s=0 e=109 z=30  None .text      PSMTXConcat */
+/* 803464E4-803465B0 340E24 00CC+00 0/0 109/109 30/30 .text            PSMTXConcat */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PSMTXConcat() {
+asm void PSMTXConcat() {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXConcat.s"
 }
 #pragma pop
 
-/* 803465B0-803466A8 00F8+00 s=0 e=43 z=39  None .text      PSMTXInverse */
+/* 803465B0-803466A8 340EF0 00F8+00 0/0 43/43 39/39 .text            PSMTXInverse */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PSMTXInverse() {
+asm void PSMTXInverse() {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXInverse.s"
 }
 #pragma pop
 
-/* 803466A8-80346718 0070+00 s=0 e=17 z=0  None .text      PSMTXRotRad */
+/* 803466A8-80346718 340FE8 0070+00 0/0 17/17 0/0 .text            PSMTXRotRad */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PSMTXRotRad() {
+asm void PSMTXRotRad() {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXRotRad.s"
 }
 #pragma pop
 
-/* 80346718-803467C8 00B0+00 s=1 e=0 z=0  None .text      PSMTXRotTrig */
+/* 80346718-803467C8 341058 00B0+00 1/1 0/0 0/0 .text            PSMTXRotTrig */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void PSMTXRotTrig() {
+static asm void PSMTXRotTrig() {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXRotTrig.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80456510-80456514 0004+00 s=2 e=0 z=0  None .sdata2    @190 */
+/* 80456510-80456514 004B10 0004+00 2/2 0/0 0/0 .sdata2          @190 */
 SECTION_SDATA2 static f32 lit_190 = 0.5f;
 
-/* 80456514-80456518 0004+00 s=1 e=0 z=0  None .sdata2    @191 */
+/* 80456514-80456518 004B14 0004+00 1/1 0/0 0/0 .sdata2          @191 */
 SECTION_SDATA2 static f32 lit_191 = 3.0f;
 
-/* 803467C8-80346878 00B0+00 s=1 e=0 z=0  None .text      __PSMTXRotAxisRadInternal */
+/* 803467C8-80346878 341108 00B0+00 1/1 0/0 0/0 .text            __PSMTXRotAxisRadInternal */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void __PSMTXRotAxisRadInternal() {
+asm void __PSMTXRotAxisRadInternal() {
     nofralloc
 #include "asm/dolphin/mtx/mtx/__PSMTXRotAxisRadInternal.s"
 }
 #pragma pop
 
-/* 80346878-803468E8 0070+00 s=0 e=6 z=8  None .text      PSMTXRotAxisRad */
+/* 80346878-803468E8 3411B8 0070+00 0/0 6/6 8/8 .text            PSMTXRotAxisRad */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PSMTXRotAxisRad() {
+asm void PSMTXRotAxisRad() {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXRotAxisRad.s"
 }
 #pragma pop
 
-/* 803468E8-8034691C 0034+00 s=0 e=38 z=471  None .text      PSMTXTrans */
+/* 803468E8-8034691C 341228 0034+00 0/0 38/38 471/471 .text            PSMTXTrans */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PSMTXTrans() {
+asm void PSMTXTrans() {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXTrans.s"
 }
 #pragma pop
 
-/* 8034691C-80346968 004C+00 s=0 e=3 z=0  None .text      PSMTXTransApply */
+/* 8034691C-80346968 34125C 004C+00 0/0 3/3 0/0 .text            PSMTXTransApply */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PSMTXTransApply() {
+asm void PSMTXTransApply() {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXTransApply.s"
 }
 #pragma pop
 
-/* 80346968-80346990 0028+00 s=0 e=14 z=8  None .text      PSMTXScale */
+/* 80346968-80346990 3412A8 0028+00 0/0 14/14 8/8 .text            PSMTXScale */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PSMTXScale() {
+asm void PSMTXScale() {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXScale.s"
 }
 #pragma pop
 
-/* 80346990-803469E8 0058+00 s=0 e=1 z=0  None .text      PSMTXScaleApply */
+/* 80346990-803469E8 3412D0 0058+00 0/0 1/1 0/0 .text            PSMTXScaleApply */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PSMTXScaleApply() {
+asm void PSMTXScaleApply() {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXScaleApply.s"
 }
 #pragma pop
 
-/* 803469E8-80346A8C 00A4+00 s=0 e=8 z=2  None .text      PSMTXQuat */
+/* 803469E8-80346A8C 341328 00A4+00 0/0 8/8 2/2 .text            PSMTXQuat */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void PSMTXQuat() {
+asm void PSMTXQuat() {
     nofralloc
 #include "asm/dolphin/mtx/mtx/PSMTXQuat.s"
 }
 #pragma pop
 
-/* 80346A8C-80346C18 018C+00 s=0 e=2 z=0  None .text      C_MTXLookAt */
+/* 80346A8C-80346C18 3413CC 018C+00 0/0 2/2 0/0 .text            C_MTXLookAt */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void C_MTXLookAt() {
+asm void C_MTXLookAt() {
     nofralloc
 #include "asm/dolphin/mtx/mtx/C_MTXLookAt.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80456518-8045651C 0004+00 s=1 e=0 z=0  None .sdata2    @206 */
+/* 80456518-8045651C 004B18 0004+00 1/1 0/0 0/0 .sdata2          @206 */
 SECTION_SDATA2 static f32 lit_206 = 2.0f;
 
-/* 8045651C-80456520 0004+00 s=1 e=0 z=0  None .sdata2    @227 */
+/* 8045651C-80456520 004B1C 0004+00 1/1 0/0 0/0 .sdata2          @227 */
 SECTION_SDATA2 static f32 lit_227 = -1.0f;
 
-/* 80456520-80456528 0004+04 s=1 e=0 z=0  None .sdata2    @230 */
+/* 80456520-80456528 004B20 0004+04 1/1 0/0 0/0 .sdata2          @230 */
 SECTION_SDATA2 static f32 lit_230[1 + 1 /* padding */] = {
     0.01745329238474369f,
     /* padding */
     0.0f,
 };
 
-/* 80346C18-80346CE4 00CC+00 s=0 e=4 z=7  None .text      C_MTXLightPerspective */
+/* 80346C18-80346CE4 341558 00CC+00 0/0 4/4 7/7 .text            C_MTXLightPerspective */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void C_MTXLightPerspective() {
+asm void C_MTXLightPerspective() {
     nofralloc
 #include "asm/dolphin/mtx/mtx/C_MTXLightPerspective.s"
 }
 #pragma pop
 
-/* 80346CE4-80346D6C 0088+00 s=0 e=2 z=5  None .text      C_MTXLightOrtho */
+/* 80346CE4-80346D6C 341624 0088+00 0/0 2/2 5/5 .text            C_MTXLightOrtho */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void C_MTXLightOrtho() {
+asm void C_MTXLightOrtho() {
     nofralloc
 #include "asm/dolphin/mtx/mtx/C_MTXLightOrtho.s"
 }

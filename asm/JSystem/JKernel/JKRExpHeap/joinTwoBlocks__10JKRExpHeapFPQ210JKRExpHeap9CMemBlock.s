@@ -15,8 +15,8 @@ lbl_802D00B4:
 /* 802D00E8  3B BD 00 10 */	addi r29, r29, 0x10
 /* 802D00EC  7C 1D D8 40 */	cmplw r29, r27
 /* 802D00F0  40 81 00 4C */	ble lbl_802D013C
-/* 802D00F4  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha
-/* 802D00F8  38 63 CA F0 */	addi r3, r3, JKRExpHeap__stringBase0@l
+/* 802D00F4  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha /* 0x8039CAF0@ha */
+/* 802D00F8  38 63 CA F0 */	addi r3, r3, JKRExpHeap__stringBase0@l /* 0x8039CAF0@l */
 /* 802D00FC  38 63 00 4B */	addi r3, r3, 0x4b
 /* 802D0100  4C C6 31 82 */	crclr 6
 /* 802D0104  48 01 85 79 */	bl JUTWarningConsole_f
@@ -25,8 +25,8 @@ lbl_802D00B4:
 /* 802D0110  81 8C 00 1C */	lwz r12, 0x1c(r12)
 /* 802D0114  7D 89 03 A6 */	mtctr r12
 /* 802D0118  4E 80 04 21 */	bctrl 
-/* 802D011C  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha
-/* 802D0120  38 C3 CA F0 */	addi r6, r3, JKRExpHeap__stringBase0@l
+/* 802D011C  3C 60 80 3A */	lis r3, JKRExpHeap__stringBase0@ha /* 0x8039CAF0@ha */
+/* 802D0120  38 C3 CA F0 */	addi r6, r3, JKRExpHeap__stringBase0@l /* 0x8039CAF0@l */
 /* 802D0124  38 66 00 25 */	addi r3, r6, 0x25
 /* 802D0128  38 80 07 1C */	li r4, 0x71c
 /* 802D012C  38 A6 00 34 */	addi r5, r6, 0x34

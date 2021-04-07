@@ -110,8 +110,8 @@ lbl_802EDC28:
 /* 802EDC58  39 29 00 01 */	addi r9, r9, 1
 /* 802EDC5C  42 00 FF CC */	bdnz lbl_802EDC28
 /* 802EDC60  38 A0 00 00 */	li r5, 0
-/* 802EDC64  3C 80 80 3A */	lis r4, j2dDefaultIndTevStageInfo@ha
-/* 802EDC68  38 84 1B F4 */	addi r4, r4, j2dDefaultIndTevStageInfo@l
+/* 802EDC64  3C 80 80 3A */	lis r4, j2dDefaultIndTevStageInfo@ha /* 0x803A1BF4@ha */
+/* 802EDC68  38 84 1B F4 */	addi r4, r4, j2dDefaultIndTevStageInfo@l /* 0x803A1BF4@l */
 /* 802EDC6C  38 00 00 04 */	li r0, 4
 /* 802EDC70  7C 09 03 A6 */	mtctr r0
 lbl_802EDC74:

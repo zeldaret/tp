@@ -7,13 +7,13 @@ lbl_80267D5C:
 /* 80267D70  4B FF FD DD */	bl __ct__8cBgS_ChkFv
 /* 80267D74  38 7F 00 14 */	addi r3, r31, 0x14
 /* 80267D78  48 00 02 FD */	bl __ct__13cBgS_PolyInfoFv
-/* 80267D7C  3C 60 80 3C */	lis r3, __vt__11cBgS_LinChk@ha
-/* 80267D80  38 63 3F A8 */	addi r3, r3, __vt__11cBgS_LinChk@l
+/* 80267D7C  3C 60 80 3C */	lis r3, __vt__11cBgS_LinChk@ha /* 0x803C3FA8@ha */
+/* 80267D80  38 63 3F A8 */	addi r3, r3, __vt__11cBgS_LinChk@l /* 0x803C3FA8@l */
 /* 80267D84  90 7F 00 10 */	stw r3, 0x10(r31)
 /* 80267D88  38 03 00 0C */	addi r0, r3, 0xc
 /* 80267D8C  90 1F 00 20 */	stw r0, 0x20(r31)
-/* 80267D90  3C 60 80 3A */	lis r3, __vt__8cM3dGLin@ha
-/* 80267D94  38 03 78 F8 */	addi r0, r3, __vt__8cM3dGLin@l
+/* 80267D90  3C 60 80 3A */	lis r3, __vt__8cM3dGLin@ha /* 0x803A78F8@ha */
+/* 80267D94  38 03 78 F8 */	addi r0, r3, __vt__8cM3dGLin@l /* 0x803A78F8@l */
 /* 80267D98  90 1F 00 3C */	stw r0, 0x3c(r31)
 /* 80267D9C  7F E3 FB 78 */	mr r3, r31
 /* 80267DA0  48 00 00 A9 */	bl ct__11cBgS_LinChkFv

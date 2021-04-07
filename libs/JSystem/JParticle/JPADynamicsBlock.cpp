@@ -27,14 +27,6 @@ struct JPABaseEmitter {
 // Forward References:
 //
 
-static void JPAVolumePoint(JPAEmitterWorkData*);
-static void JPAVolumeLine(JPAEmitterWorkData*);
-static void JPAVolumeCircle(JPAEmitterWorkData*);
-static void JPAVolumeCube(JPAEmitterWorkData*);
-static void JPAVolumeSphere(JPAEmitterWorkData*);
-static void JPAVolumeCylinder(JPAEmitterWorkData*);
-static void JPAVolumeTorus(JPAEmitterWorkData*);
-
 extern "C" static void JPAVolumePoint__FP18JPAEmitterWorkData();
 extern "C" static void JPAVolumeLine__FP18JPAEmitterWorkData();
 extern "C" static void JPAVolumeCircle__FP18JPAEmitterWorkData();
@@ -58,7 +50,7 @@ extern "C" extern u8 sincosTable___5JMath[65536];
 //
 
 /* ############################################################################################## */
-/* 80455310-80455314 0004+00 s=7 e=0 z=0  None .sdata2    @2287 */
+/* 80455310-80455314 003910 0004+00 7/7 0/0 0/0 .sdata2          @2287 */
 SECTION_SDATA2 static u8 lit_2287[4] = {
     0x00,
     0x00,
@@ -66,103 +58,102 @@ SECTION_SDATA2 static u8 lit_2287[4] = {
     0x00,
 };
 
-/* 80455314-80455318 0004+00 s=7 e=0 z=0  None .sdata2    @2288 */
+/* 80455314-80455318 003914 0004+00 7/7 0/0 0/0 .sdata2          @2288 */
 SECTION_SDATA2 static f32 lit_2288 = 1.0f;
 
-/* 80455318-80455320 0004+04 s=3 e=0 z=0  None .sdata2    @2289 */
+/* 80455318-80455320 003918 0004+04 3/3 0/0 0/0 .sdata2          @2289 */
 SECTION_SDATA2 static f32 lit_2289[1 + 1 /* padding */] = {
     0.5f,
     /* padding */
     0.0f,
 };
 
-/* 8027B144-8027B220 00DC+00 s=1 e=0 z=0  None .text      JPAVolumePoint__FP18JPAEmitterWorkData */
+/* 8027B144-8027B220 275A84 00DC+00 1/1 0/0 0/0 .text JPAVolumePoint__FP18JPAEmitterWorkData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void JPAVolumePoint(JPAEmitterWorkData* param_0) {
+static asm void JPAVolumePoint(JPAEmitterWorkData* param_0) {
     nofralloc
 #include "asm/JSystem/JParticle/JPADynamicsBlock/JPAVolumePoint__FP18JPAEmitterWorkData.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455320-80455328 0008+00 s=6 e=0 z=0  None .sdata2    @2321 */
+/* 80455320-80455328 003920 0008+00 6/6 0/0 0/0 .sdata2          @2321 */
 SECTION_SDATA2 static f64 lit_2321 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 8027B220-8027B33C 011C+00 s=1 e=0 z=0  None .text      JPAVolumeLine__FP18JPAEmitterWorkData */
+/* 8027B220-8027B33C 275B60 011C+00 1/1 0/0 0/0 .text JPAVolumeLine__FP18JPAEmitterWorkData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void JPAVolumeLine(JPAEmitterWorkData* param_0) {
+static asm void JPAVolumeLine(JPAEmitterWorkData* param_0) {
     nofralloc
 #include "asm/JSystem/JParticle/JPADynamicsBlock/JPAVolumeLine__FP18JPAEmitterWorkData.s"
 }
 #pragma pop
 
-/* 8027B33C-8027B4E8 01AC+00 s=1 e=0 z=0  None .text      JPAVolumeCircle__FP18JPAEmitterWorkData */
+/* 8027B33C-8027B4E8 275C7C 01AC+00 1/1 0/0 0/0 .text JPAVolumeCircle__FP18JPAEmitterWorkData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void JPAVolumeCircle(JPAEmitterWorkData* param_0) {
+static asm void JPAVolumeCircle(JPAEmitterWorkData* param_0) {
     nofralloc
 #include "asm/JSystem/JParticle/JPADynamicsBlock/JPAVolumeCircle__FP18JPAEmitterWorkData.s"
 }
 #pragma pop
 
-/* 8027B4E8-8027B5F0 0108+00 s=1 e=0 z=0  None .text      JPAVolumeCube__FP18JPAEmitterWorkData */
+/* 8027B4E8-8027B5F0 275E28 0108+00 1/1 0/0 0/0 .text JPAVolumeCube__FP18JPAEmitterWorkData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void JPAVolumeCube(JPAEmitterWorkData* param_0) {
+static asm void JPAVolumeCube(JPAEmitterWorkData* param_0) {
     nofralloc
 #include "asm/JSystem/JParticle/JPADynamicsBlock/JPAVolumeCube__FP18JPAEmitterWorkData.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455328-80455330 0004+04 s=1 e=0 z=0  None .sdata2    @2501 */
+/* 80455328-80455330 003928 0004+04 1/1 0/0 0/0 .sdata2          @2501 */
 SECTION_SDATA2 static f32 lit_2501[1 + 1 /* padding */] = {
     32768.0f,
     /* padding */
     0.0f,
 };
 
-/* 80455330-80455338 0008+00 s=1 e=0 z=0  None .sdata2    @2503 */
+/* 80455330-80455338 003930 0008+00 1/1 0/0 0/0 .sdata2          @2503 */
 SECTION_SDATA2 static f64 lit_2503 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 8027B5F0-8027B87C 028C+00 s=1 e=0 z=0  None .text      JPAVolumeSphere__FP18JPAEmitterWorkData */
+/* 8027B5F0-8027B87C 275F30 028C+00 1/1 0/0 0/0 .text JPAVolumeSphere__FP18JPAEmitterWorkData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void JPAVolumeSphere(JPAEmitterWorkData* param_0) {
+static asm void JPAVolumeSphere(JPAEmitterWorkData* param_0) {
     nofralloc
 #include "asm/JSystem/JParticle/JPADynamicsBlock/JPAVolumeSphere__FP18JPAEmitterWorkData.s"
 }
 #pragma pop
 
-/* 8027B87C-8027B9F8 017C+00 s=1 e=0 z=0  None .text      JPAVolumeCylinder__FP18JPAEmitterWorkData
- */
+/* 8027B87C-8027B9F8 2761BC 017C+00 1/1 0/0 0/0 .text JPAVolumeCylinder__FP18JPAEmitterWorkData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void JPAVolumeCylinder(JPAEmitterWorkData* param_0) {
+static asm void JPAVolumeCylinder(JPAEmitterWorkData* param_0) {
     nofralloc
 #include "asm/JSystem/JParticle/JPADynamicsBlock/JPAVolumeCylinder__FP18JPAEmitterWorkData.s"
 }
 #pragma pop
 
-/* 8027B9F8-8027BB18 0120+00 s=1 e=0 z=0  None .text      JPAVolumeTorus__FP18JPAEmitterWorkData */
+/* 8027B9F8-8027BB18 276338 0120+00 1/1 0/0 0/0 .text JPAVolumeTorus__FP18JPAEmitterWorkData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void JPAVolumeTorus(JPAEmitterWorkData* param_0) {
+static asm void JPAVolumeTorus(JPAEmitterWorkData* param_0) {
     nofralloc
 #include "asm/JSystem/JParticle/JPADynamicsBlock/JPAVolumeTorus__FP18JPAEmitterWorkData.s"
 }
 #pragma pop
 
-/* 8027BB18-8027BB4C 0034+00 s=0 e=1 z=0  None .text      __ct__16JPADynamicsBlockFPCUc */
+/* 8027BB18-8027BB4C 276458 0034+00 0/0 1/1 0/0 .text            __ct__16JPADynamicsBlockFPCUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -173,7 +164,7 @@ asm JPADynamicsBlock::JPADynamicsBlock(u8 const* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C4488-803C44A8 001C+04 s=1 e=0 z=0  None .data      @2631 */
+/* 803C4488-803C44A8 -00001 001C+04 1/1 0/0 0/0 .data            @2631 */
 SECTION_DATA static void* lit_2631[7 + 1 /* padding */] = {
     (void*)(((char*)init__16JPADynamicsBlockFv) + 0x2C),
     (void*)(((char*)init__16JPADynamicsBlockFv) + 0x3C),
@@ -186,7 +177,7 @@ SECTION_DATA static void* lit_2631[7 + 1 /* padding */] = {
     NULL,
 };
 
-/* 8027BB4C-8027BBE8 009C+00 s=2 e=0 z=0  None .text      init__16JPADynamicsBlockFv */
+/* 8027BB4C-8027BBE8 27648C 009C+00 2/1 0/0 0/0 .text            init__16JPADynamicsBlockFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -196,7 +187,7 @@ asm void JPADynamicsBlock::init() {
 }
 #pragma pop
 
-/* 8027BBE8-8027BDEC 0204+00 s=0 e=1 z=0  None .text
+/* 8027BBE8-8027BDEC 276528 0204+00 0/0 1/1 0/0 .text
  * create__16JPADynamicsBlockFP18JPAEmitterWorkData             */
 #pragma push
 #pragma optimization_level 0

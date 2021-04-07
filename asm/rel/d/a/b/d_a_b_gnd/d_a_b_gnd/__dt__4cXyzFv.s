@@ -7,7 +7,7 @@ lbl_805F53A4:
 /* 805F53B8  41 82 00 10 */	beq lbl_805F53C8
 /* 805F53BC  7C 80 07 35 */	extsh. r0, r4
 /* 805F53C0  40 81 00 08 */	ble lbl_805F53C8
-/* 805F53C4  4B CD 99 78 */	b __dl__FPv
+/* 805F53C4  4B CD 99 79 */	bl __dl__FPv
 lbl_805F53C8:
 /* 805F53C8  7F E3 FB 78 */	mr r3, r31
 /* 805F53CC  83 E1 00 0C */	lwz r31, 0xc(r1)

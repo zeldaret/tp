@@ -19,7 +19,7 @@ lbl_804D5964:
 /* 804D5978  38 C6 FF FF */	addi r6, r6, 0xFFFF /* 0x0000FFFF@l */
 /* 804D597C  38 E0 00 00 */	li r7, 0
 /* 804D5980  39 00 00 01 */	li r8, 1
-/* 804D5984  4B B4 5C F8 */	b fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
+/* 804D5984  4B B4 5C F9 */	bl fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
 lbl_804D5988:
 /* 804D5988  38 60 00 01 */	li r3, 1
 /* 804D598C  83 E1 00 0C */	lwz r31, 0xc(r1)

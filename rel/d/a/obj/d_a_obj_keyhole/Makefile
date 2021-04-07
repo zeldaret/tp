@@ -3,19 +3,20 @@
 #
 
 M499_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_keyhole.plf
+M499_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_keyhole.lcf
+M499_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_keyhole.map
 
 M499_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_keyhole/executor.cpp \
-	rel/d/a/obj/d_a_obj_keyhole/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_keyhole/d_a_obj_keyhole.cpp \
 
 M499_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_keyhole/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_keyhole/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_keyhole/d_a_obj_keyhole.o \
 
 M499_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_keyhole/libRuntime.PPCEABI.H.a \
 
 M499_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M499_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M499_LDSCRIPT) \
+	-unused -map $(M499_MAP) \
+	-w off \
 
 $(M499_TARGET): $(M499_O_FILES) $(M499_LIBS)
+	@echo [499] creating $(M499_TARGET)
 	@echo $(M499_LIBS) $(M499_O_FILES) > build/M499_ofiles
-	$(LD) -partial $(M499_LDFLAGS) -o $(M499_TARGET) @build/M499_ofiles
+	@python3 tools/lcf.py rel 499 --output $(M499_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M499_LDFLAGS) -o $(M499_TARGET) @build/M499_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_keyhole/%.o: rel/d/a/obj/d_a_obj_keyhole/%.cpp
+	@echo [499] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M499_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M499_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_keyhole/libs/Runtime.PPCEABI.H/Makefile
 

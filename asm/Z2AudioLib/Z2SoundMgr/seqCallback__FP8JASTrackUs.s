@@ -9,8 +9,8 @@ lbl_802A9BC8:
 /* 802A9BE4  38 03 F0 00 */	addi r0, r3, -4096
 /* 802A9BE8  28 00 00 15 */	cmplwi r0, 0x15
 /* 802A9BEC  41 81 01 AC */	bgt lbl_802A9D98
-/* 802A9BF0  3C 60 80 3D */	lis r3, lit_3690@ha
-/* 802A9BF4  38 63 9D 18 */	addi r3, r3, lit_3690@l
+/* 802A9BF0  3C 60 80 3D */	lis r3, lit_3690@ha /* 0x803C9D18@ha */
+/* 802A9BF4  38 63 9D 18 */	addi r3, r3, lit_3690@l /* 0x803C9D18@l */
 /* 802A9BF8  54 00 10 3A */	slwi r0, r0, 2
 /* 802A9BFC  7C 03 00 2E */	lwzx r0, r3, r0
 /* 802A9C00  7C 09 03 A6 */	mtctr r0

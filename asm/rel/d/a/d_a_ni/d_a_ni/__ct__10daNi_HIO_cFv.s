@@ -1,8 +1,8 @@
 lbl_8094BC2C:
-/* 8094BC2C  3C 80 80 95 */	lis r4, lit_3958@ha
-/* 8094BC30  38 A4 11 C0 */	addi r5, r4, lit_3958@l
-/* 8094BC34  3C 80 80 95 */	lis r4, __vt__10daNi_HIO_c@ha
-/* 8094BC38  38 04 15 3C */	addi r0, r4, __vt__10daNi_HIO_c@l
+/* 8094BC2C  3C 80 80 95 */	lis r4, lit_3958@ha /* 0x809511C0@ha */
+/* 8094BC30  38 A4 11 C0 */	addi r5, r4, lit_3958@l /* 0x809511C0@l */
+/* 8094BC34  3C 80 80 95 */	lis r4, __vt__10daNi_HIO_c@ha /* 0x8095153C@ha */
+/* 8094BC38  38 04 15 3C */	addi r0, r4, __vt__10daNi_HIO_c@l /* 0x8095153C@l */
 /* 8094BC3C  90 03 00 00 */	stw r0, 0(r3)
 /* 8094BC40  38 00 FF FF */	li r0, -1
 /* 8094BC44  98 03 00 04 */	stb r0, 4(r3)

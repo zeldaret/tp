@@ -130,7 +130,6 @@ $(BUILD_DIR)/libMSL_C.PPCEABI.bare.H.a: $(LIBMSL_C_PPCEABI_BARE_H_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libMSL_C.PPCEABI.bare.H.a
 	@echo $(LIBMSL_C_PPCEABI_BARE_H_A_O_FILES) > build/LIBMSL_C_PPCEABI_BARE_H_A_ofiles
 	@$(LD) -xm l $(LIBMSL_C_PPCEABI_BARE_H_A_LDFLAGS) -o $(BUILD_DIR)/libMSL_C.PPCEABI.bare.H.a @build/LIBMSL_C_PPCEABI_BARE_H_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libMSL_C.PPCEABI.bare.H.a
 
 $(BUILD_DIR)/libs/MSL_C.PPCEABI.bare.H/%.o: libs/MSL_C.PPCEABI.bare.H/%.cpp
 	@mkdir -p $(@D)

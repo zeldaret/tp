@@ -3,17 +3,15 @@
 #
 
 M427_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvgate.plf
+M427_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvgate.lcf
+M427_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvgate.map
 
 M427_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_crvgate/executor.cpp \
-	rel/d/a/obj/d_a_obj_crvgate/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_crvgate/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_crvgate/d_a_obj_crvgate.cpp \
 
 M427_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvgate/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvgate/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvgate/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvgate/d_a_obj_crvgate.o \
 
 M427_LIBS := \
@@ -29,14 +27,21 @@ M427_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M427_LDSCRIPT) \
+	-unused -map $(M427_MAP) \
+	-w off \
 
 $(M427_TARGET): $(M427_O_FILES) $(M427_LIBS)
+	@echo [427] creating $(M427_TARGET)
 	@echo $(M427_LIBS) $(M427_O_FILES) > build/M427_ofiles
-	$(LD) -partial $(M427_LDFLAGS) -o $(M427_TARGET) @build/M427_ofiles
+	@python3 tools/lcf.py rel 427 --output $(M427_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M427_LDFLAGS) -o $(M427_TARGET) @build/M427_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_crvgate/%.o: rel/d/a/obj/d_a_obj_crvgate/%.cpp
+	@echo [427] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M427_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M427_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

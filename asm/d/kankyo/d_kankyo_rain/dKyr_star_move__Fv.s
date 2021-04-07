@@ -1,6 +1,6 @@
 lbl_8006140C:
-/* 8006140C  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80061410  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8006140C  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80061410  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80061414  80 83 0E A4 */	lwz r4, 0xea4(r3)
 /* 80061418  80 03 0E 9C */	lwz r0, 0xe9c(r3)
 /* 8006141C  B0 04 00 48 */	sth r0, 0x48(r4)

@@ -7,8 +7,8 @@ lbl_8008FA94:
 /* 8008FAA8  7C A9 2B 78 */	mr r9, r5
 /* 8008FAAC  7C C0 33 78 */	mr r0, r6
 /* 8008FAB0  7C E8 3B 78 */	mr r8, r7
-/* 8008FAB4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8008FAB8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8008FAB4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8008FAB8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8008FABC  38 63 23 3C */	addi r3, r3, 0x233c
 /* 8008FAC0  7D 64 5B 78 */	mr r4, r11
 /* 8008FAC4  7D 45 53 78 */	mr r5, r10

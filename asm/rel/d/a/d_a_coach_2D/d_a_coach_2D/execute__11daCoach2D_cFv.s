@@ -7,7 +7,7 @@ lbl_80656E94:
 /* 80656EA8  38 80 00 00 */	li r4, 0
 /* 80656EAC  48 00 05 E5 */	bl setBrkAnime__11daCoach2D_cFb
 /* 80656EB0  80 7F 05 74 */	lwz r3, 0x574(r31)
-/* 80656EB4  4B CA 27 DC */	b animation__9J2DScreenFv
+/* 80656EB4  4B CA 27 DD */	bl animation__9J2DScreenFv
 /* 80656EB8  38 60 00 01 */	li r3, 1
 /* 80656EBC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80656EC0  80 01 00 14 */	lwz r0, 0x14(r1)

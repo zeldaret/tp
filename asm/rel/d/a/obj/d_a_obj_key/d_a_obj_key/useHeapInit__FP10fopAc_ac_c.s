@@ -3,18 +3,18 @@ lbl_80C409AC:
 /* 80C409B0  7C 08 02 A6 */	mflr r0
 /* 80C409B4  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80C409B8  39 61 00 30 */	addi r11, r1, 0x30
-/* 80C409BC  4B 72 18 10 */	b _savegpr_25
+/* 80C409BC  4B 72 18 11 */	bl _savegpr_25
 /* 80C409C0  7C 7F 1B 78 */	mr r31, r3
-/* 80C409C4  3C 60 80 C4 */	lis r3, stringBase0@ha
-/* 80C409C8  38 63 10 7C */	addi r3, r3, stringBase0@l
+/* 80C409C4  3C 60 80 C4 */	lis r3, d_a_obj_key__stringBase0@ha /* 0x80C4107C@ha */
+/* 80C409C8  38 63 10 7C */	addi r3, r3, d_a_obj_key__stringBase0@l /* 0x80C4107C@l */
 /* 80C409CC  38 80 00 05 */	li r4, 5
-/* 80C409D0  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80C409D4  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80C409D0  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C409D4  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C409D8  3F 65 00 02 */	addis r27, r5, 2
 /* 80C409DC  3B 7B C2 F8 */	addi r27, r27, -15624
 /* 80C409E0  7F 65 DB 78 */	mr r5, r27
 /* 80C409E4  38 C0 00 80 */	li r6, 0x80
-/* 80C409E8  4B 3F B9 04 */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 80C409E8  4B 3F B9 05 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80C409EC  7C 7A 1B 78 */	mr r26, r3
 /* 80C409F0  3B 20 00 00 */	li r25, 0
 /* 80C409F4  3B C0 00 00 */	li r30, 0
@@ -23,18 +23,18 @@ lbl_80C409AC:
 lbl_80C40A00:
 /* 80C40A00  2C 19 00 01 */	cmpwi r25, 1
 /* 80C40A04  40 82 00 20 */	bne lbl_80C40A24
-/* 80C40A08  3C 60 80 C4 */	lis r3, stringBase0@ha
-/* 80C40A0C  38 63 10 7C */	addi r3, r3, stringBase0@l
+/* 80C40A08  3C 60 80 C4 */	lis r3, d_a_obj_key__stringBase0@ha /* 0x80C4107C@ha */
+/* 80C40A0C  38 63 10 7C */	addi r3, r3, d_a_obj_key__stringBase0@l /* 0x80C4107C@l */
 /* 80C40A10  38 80 00 03 */	li r4, 3
 /* 80C40A14  7F 65 DB 78 */	mr r5, r27
 /* 80C40A18  38 C0 00 80 */	li r6, 0x80
-/* 80C40A1C  4B 3F B8 D0 */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 80C40A1C  4B 3F B8 D1 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80C40A20  7C 7A 1B 78 */	mr r26, r3
 lbl_80C40A24:
 /* 80C40A24  7F 43 D3 78 */	mr r3, r26
 /* 80C40A28  3C 80 00 08 */	lis r4, 8
 /* 80C40A2C  38 BC 00 84 */	addi r5, r28, 0x84
-/* 80C40A30  4B 3D 42 24 */	b mDoExt_J3DModel__create__FP12J3DModelDataUlUl
+/* 80C40A30  4B 3D 42 25 */	bl mDoExt_J3DModel__create__FP12J3DModelDataUlUl
 /* 80C40A34  38 1D 05 70 */	addi r0, r29, 0x570
 /* 80C40A38  7C 7F 01 2E */	stwx r3, r31, r0
 /* 80C40A3C  7C 1F 00 2E */	lwzx r0, r31, r0
@@ -65,7 +65,7 @@ lbl_80C40A50:
 /* 80C40A9C  38 60 00 01 */	li r3, 1
 lbl_80C40AA0:
 /* 80C40AA0  39 61 00 30 */	addi r11, r1, 0x30
-/* 80C40AA4  4B 72 17 74 */	b _restgpr_25
+/* 80C40AA4  4B 72 17 75 */	bl _restgpr_25
 /* 80C40AA8  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80C40AAC  7C 08 03 A6 */	mtlr r0
 /* 80C40AB0  38 21 00 30 */	addi r1, r1, 0x30

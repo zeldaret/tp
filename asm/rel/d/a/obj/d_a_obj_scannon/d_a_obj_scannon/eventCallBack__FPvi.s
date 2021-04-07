@@ -5,7 +5,7 @@ lbl_80CC6A98:
 /* 80CC6AA4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CC6AA8  7C 7F 1B 78 */	mr r31, r3
 /* 80CC6AAC  38 60 00 00 */	li r3, 0
-/* 80CC6AB0  4B 36 5E CC */	b getLayerNo__14dComIfG_play_cFi
+/* 80CC6AB0  4B 36 5E CD */	bl getLayerNo__14dComIfG_play_cFi
 /* 80CC6AB4  2C 03 00 03 */	cmpwi r3, 3
 /* 80CC6AB8  41 82 00 0C */	beq lbl_80CC6AC4
 /* 80CC6ABC  2C 03 00 0A */	cmpwi r3, 0xa

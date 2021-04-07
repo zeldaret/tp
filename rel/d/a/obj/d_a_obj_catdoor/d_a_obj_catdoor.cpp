@@ -86,13 +86,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void createSolidHeap(fopAc_ac_c*);
-static void daObjCatDoor_Draw(daObjCatDoor_c*);
-static void daObjCatDoor_Execute(daObjCatDoor_c*);
-static bool daObjCatDoor_IsDelete(daObjCatDoor_c*);
-static void daObjCatDoor_Delete(daObjCatDoor_c*);
-static void daObjCatDoor_Create(fopAc_ac_c*);
-
 extern "C" void attr__14daObjCatDoor_cCFv();
 extern "C" static void createSolidHeap__FP10fopAc_ac_c();
 extern "C" void initBaseMtx__14daObjCatDoor_cFv();
@@ -103,21 +96,12 @@ extern "C" static void daObjCatDoor_Execute__FP14daObjCatDoor_c();
 extern "C" static bool daObjCatDoor_IsDelete__FP14daObjCatDoor_c();
 extern "C" static void daObjCatDoor_Delete__FP14daObjCatDoor_c();
 extern "C" static void daObjCatDoor_Create__FP10fopAc_ac_c();
-extern "C" extern char const* const stringBase0;
+extern "C" extern char const* const d_a_obj_catdoor__stringBase0;
 extern "C" extern void* g_profile_Obj_CatDoor[12];
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void cLib_chaseS(s16*, s16, s16);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void push__14mDoMtx_stack_cFv();
@@ -163,10 +147,11 @@ extern "C" extern u8 j3dSys[284];
 //
 
 /* ############################################################################################## */
-/* 80BC49B4-80BC49B8 0004+00 s=3 e=0 z=0  None .rodata    M_attr__14daObjCatDoor_c */
+/* 80BC49B4-80BC49B8 000000 0004+00 3/3 0/0 0/0 .rodata          M_attr__14daObjCatDoor_c */
 SECTION_RODATA static u32 const M_attr__14daObjCatDoor_c = 0x001E0578;
+COMPILER_STRIP_GATE(80BC49B4, &M_attr__14daObjCatDoor_c);
 
-/* 80BC42B8-80BC42C4 000C+00 s=1 e=0 z=1  None .text      attr__14daObjCatDoor_cCFv */
+/* 80BC42B8-80BC42C4 000078 000C+00 1/1 0/0 1/1 .text            attr__14daObjCatDoor_cCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -177,56 +162,20 @@ asm void daObjCatDoor_c::attr() const {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80BC49B8-80BC49BC 0004+00 s=1 e=0 z=0  None .rodata    @3712 */
-SECTION_RODATA static u32 const lit_3712 = 0xC2C20000;
+/* 80BC49E0-80BC49E4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_catdoor__stringBase0;
 
-/* 80BC49BC-80BC49C0 0004+00 s=1 e=0 z=0  None .rodata    @3713 */
-SECTION_RODATA static u32 const lit_3713 = 0x42C20000;
-
-/* 80BC49C0-80BC49C4 0004+00 s=2 e=0 z=0  None .rodata    @3714 */
-SECTION_RODATA static u8 const lit_3714[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80BC49C4-80BC49C8 0004+00 s=1 e=0 z=0  None .rodata    @3860 */
-SECTION_RODATA static u32 const lit_3860 = 0xC3480000;
-
-/* 80BC49C8-80BC49CC 0004+00 s=1 e=0 z=0  None .rodata    @3861 */
-SECTION_RODATA static u32 const lit_3861 = 0xC1A00000;
-
-/* 80BC49CC-80BC49D0 0004+00 s=1 e=0 z=0  None .rodata    @3862 */
-SECTION_RODATA static u32 const lit_3862 = 0x43480000;
-
-/* 80BC49D0-80BC49D4 0004+00 s=1 e=0 z=0  None .rodata    @3863 */
-SECTION_RODATA static u32 const lit_3863 = 0x43820000;
-
-/* 80BC49D4-80BC49D8 0004+00 s=1 e=0 z=0  None .rodata    @3864 */
-SECTION_RODATA static u32 const lit_3864 = 0x42C80000;
-
-/* 80BC49D8-80BC49E0 0008+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80BC49D8 = "CatDoor";
-#pragma pop
-
-/* 80BC49E0-80BC49E4 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80BC42C4-80BC43F4 0130+00 s=1 e=0 z=0  None .text      createSolidHeap__FP10fopAc_ac_c */
+/* 80BC42C4-80BC43F4 000084 0130+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void createSolidHeap(fopAc_ac_c* param_0) {
+static asm void createSolidHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_catdoor/d_a_obj_catdoor/createSolidHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80BC43F4-80BC4454 0060+00 s=1 e=0 z=0  None .text      initBaseMtx__14daObjCatDoor_cFv */
+/* 80BC43F4-80BC4454 0001B4 0060+00 1/1 0/0 0/0 .text            initBaseMtx__14daObjCatDoor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -236,7 +185,34 @@ asm void daObjCatDoor_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80BC4454-80BC4560 010C+00 s=2 e=0 z=1  None .text      setBaseMtx__14daObjCatDoor_cFv */
+/* ############################################################################################## */
+/* 80BC49B8-80BC49BC 000004 0004+00 0/1 0/0 0/0 .rodata          @3712 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3712 = -97.0f;
+COMPILER_STRIP_GATE(80BC49B8, &lit_3712);
+#pragma pop
+
+/* 80BC49BC-80BC49C0 000008 0004+00 0/1 0/0 0/0 .rodata          @3713 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3713 = 97.0f;
+COMPILER_STRIP_GATE(80BC49BC, &lit_3713);
+#pragma pop
+
+/* 80BC49C0-80BC49C4 00000C 0004+00 0/2 0/0 0/0 .rodata          @3714 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3714[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+COMPILER_STRIP_GATE(80BC49C0, &lit_3714);
+#pragma pop
+
+/* 80BC4454-80BC4560 000214 010C+00 2/2 0/0 1/1 .text            setBaseMtx__14daObjCatDoor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -246,7 +222,7 @@ asm void daObjCatDoor_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 80BC4560-80BC4628 00C8+00 s=1 e=0 z=0  None .text      calcOpen__14daObjCatDoor_cFv */
+/* 80BC4560-80BC4628 000320 00C8+00 1/1 0/0 0/0 .text            calcOpen__14daObjCatDoor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -256,55 +232,90 @@ asm void daObjCatDoor_c::calcOpen() {
 }
 #pragma pop
 
-/* 80BC4628-80BC46EC 00C4+00 s=1 e=0 z=0  None .text      daObjCatDoor_Draw__FP14daObjCatDoor_c */
+/* 80BC4628-80BC46EC 0003E8 00C4+00 1/0 0/0 0/0 .text daObjCatDoor_Draw__FP14daObjCatDoor_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjCatDoor_Draw(daObjCatDoor_c* param_0) {
+static asm void daObjCatDoor_Draw(daObjCatDoor_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_catdoor/d_a_obj_catdoor/daObjCatDoor_Draw__FP14daObjCatDoor_c.s"
 }
 #pragma pop
 
-/* 80BC46EC-80BC4760 0074+00 s=1 e=0 z=0  None .text      daObjCatDoor_Execute__FP14daObjCatDoor_c
- */
+/* 80BC46EC-80BC4760 0004AC 0074+00 1/0 0/0 0/0 .text daObjCatDoor_Execute__FP14daObjCatDoor_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjCatDoor_Execute(daObjCatDoor_c* param_0) {
+static asm void daObjCatDoor_Execute(daObjCatDoor_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_catdoor/d_a_obj_catdoor/daObjCatDoor_Execute__FP14daObjCatDoor_c.s"
 }
 #pragma pop
 
-/* 80BC4760-80BC4768 0008+00 s=1 e=0 z=0  None .text      daObjCatDoor_IsDelete__FP14daObjCatDoor_c
- */
+/* 80BC4760-80BC4768 000520 0008+00 1/0 0/0 0/0 .text daObjCatDoor_IsDelete__FP14daObjCatDoor_c */
 static bool daObjCatDoor_IsDelete(daObjCatDoor_c* param_0) {
     return true;
 }
 
-/* 80BC4768-80BC4848 00E0+00 s=1 e=0 z=0  None .text      daObjCatDoor_Delete__FP14daObjCatDoor_c */
+/* 80BC4768-80BC4848 000528 00E0+00 1/0 0/0 0/0 .text daObjCatDoor_Delete__FP14daObjCatDoor_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjCatDoor_Delete(daObjCatDoor_c* param_0) {
+static asm void daObjCatDoor_Delete(daObjCatDoor_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_catdoor/d_a_obj_catdoor/daObjCatDoor_Delete__FP14daObjCatDoor_c.s"
 }
 #pragma pop
 
-/* 80BC4848-80BC49AC 0164+00 s=1 e=0 z=0  None .text      daObjCatDoor_Create__FP10fopAc_ac_c */
+/* ############################################################################################## */
+/* 80BC49C4-80BC49C8 000010 0004+00 0/1 0/0 0/0 .rodata          @3860 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3860 = -200.0f;
+COMPILER_STRIP_GATE(80BC49C4, &lit_3860);
+#pragma pop
+
+/* 80BC49C8-80BC49CC 000014 0004+00 0/1 0/0 0/0 .rodata          @3861 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3861 = -20.0f;
+COMPILER_STRIP_GATE(80BC49C8, &lit_3861);
+#pragma pop
+
+/* 80BC49CC-80BC49D0 000018 0004+00 0/1 0/0 0/0 .rodata          @3862 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3862 = 200.0f;
+COMPILER_STRIP_GATE(80BC49CC, &lit_3862);
+#pragma pop
+
+/* 80BC49D0-80BC49D4 00001C 0004+00 0/1 0/0 0/0 .rodata          @3863 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3863 = 260.0f;
+COMPILER_STRIP_GATE(80BC49D0, &lit_3863);
+#pragma pop
+
+/* 80BC49D4-80BC49D8 000020 0004+00 0/1 0/0 0/0 .rodata          @3864 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3864 = 100.0f;
+COMPILER_STRIP_GATE(80BC49D4, &lit_3864);
+#pragma pop
+
+/* 80BC4848-80BC49AC 000608 0164+00 1/0 0/0 0/0 .text            daObjCatDoor_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjCatDoor_Create(fopAc_ac_c* param_0) {
+static asm void daObjCatDoor_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_catdoor/d_a_obj_catdoor/daObjCatDoor_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80BC49E4-80BC4A04 0020+00 s=1 e=0 z=0  None .data      l_daObjCatDoor_Method */
+/* 80BC49E4-80BC4A04 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjCatDoor_Method */
 SECTION_DATA static void* l_daObjCatDoor_Method[8] = {
     (void*)daObjCatDoor_Create__FP10fopAc_ac_c,
     (void*)daObjCatDoor_Delete__FP14daObjCatDoor_c,
@@ -316,8 +327,8 @@ SECTION_DATA static void* l_daObjCatDoor_Method[8] = {
     (void*)NULL,
 };
 
-/* 80BC4A04-80BC4A34 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_CatDoor */
-SECTION_DATA void* g_profile_Obj_CatDoor[12] = {
+/* 80BC4A04-80BC4A34 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_CatDoor */
+SECTION_DATA extern void* g_profile_Obj_CatDoor[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00B90000, (void*)&g_fpcLf_Method,
     (void*)0x00000794, (void*)NULL,
@@ -325,3 +336,10 @@ SECTION_DATA void* g_profile_Obj_CatDoor[12] = {
     (void*)0x02AC0000, (void*)&l_daObjCatDoor_Method,
     (void*)0x00044100, (void*)0x000E0000,
 };
+
+/* 80BC49D8-80BC49E0 000024 0008+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80BC49D8 = "CatDoor";
+#pragma pop

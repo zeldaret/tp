@@ -70,8 +70,8 @@ lbl_801E38CC:
 /* 801E39DC  80 01 00 10 */	lwz r0, 0x10(r1)
 /* 801E39E0  90 01 00 28 */	stw r0, 0x28(r1)
 /* 801E39E4  C0 01 00 2C */	lfs f0, 0x2c(r1)
-/* 801E39E8  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 801E39EC  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 801E39E8  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 801E39EC  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 801E39F0  C0 23 07 1C */	lfs f1, 0x71c(r3)
 /* 801E39F4  EC C0 08 2A */	fadds f6, f0, f1
 /* 801E39F8  D0 C1 00 2C */	stfs f6, 0x2c(r1)

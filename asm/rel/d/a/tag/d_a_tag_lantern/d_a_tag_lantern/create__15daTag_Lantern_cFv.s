@@ -11,14 +11,14 @@ lbl_8048ED28:
 /* 8048ED4C  7F E0 FB 79 */	or. r0, r31, r31
 /* 8048ED50  41 82 00 28 */	beq lbl_8048ED78
 /* 8048ED54  7C 1E 03 78 */	mr r30, r0
-/* 8048ED58  4B B8 9E 0C */	b __ct__10fopAc_ac_cFv
-/* 8048ED5C  3C 60 80 49 */	lis r3, __vt__15daTag_Lantern_c@ha
-/* 8048ED60  38 03 F1 A4 */	addi r0, r3, __vt__15daTag_Lantern_c@l
+/* 8048ED58  4B B8 9E 0D */	bl __ct__10fopAc_ac_cFv
+/* 8048ED5C  3C 60 80 49 */	lis r3, __vt__15daTag_Lantern_c@ha /* 0x8048F1A4@ha */
+/* 8048ED60  38 03 F1 A4 */	addi r0, r3, __vt__15daTag_Lantern_c@l /* 0x8048F1A4@l */
 /* 8048ED64  90 1E 06 08 */	stw r0, 0x608(r30)
 /* 8048ED68  38 7E 05 68 */	addi r3, r30, 0x568
-/* 8048ED6C  4B DB B1 94 */	b __ct__10dMsgFlow_cFv
+/* 8048ED6C  4B DB B1 95 */	bl __ct__10dMsgFlow_cFv
 /* 8048ED70  38 7E 05 B4 */	addi r3, r30, 0x5b4
-/* 8048ED74  4B DD 8E A8 */	b __ct__11cBgS_GndChkFv
+/* 8048ED74  4B DD 8E A9 */	bl __ct__11cBgS_GndChkFv
 lbl_8048ED78:
 /* 8048ED78  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 8048ED7C  60 00 00 08 */	ori r0, r0, 8

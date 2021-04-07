@@ -21,8 +21,8 @@ lbl_8031E328:
 /* 8031E374  4B FF 0A 9D */	bl J3DGDSetIndTexCoordScale__F16_GXIndTexStageID14_GXIndTexScale14_GXIndTexScale14_GXIndTexScale14_GXIndTexScale
 /* 8031E378  88 1E 00 06 */	lbz r0, 6(r30)
 /* 8031E37C  54 04 1E B8 */	rlwinm r4, r0, 3, 0x1a, 0x1c
-/* 8031E380  3C 60 80 43 */	lis r3, sTexCoordScaleTable__6J3DSys@ha
-/* 8031E384  38 03 4C 2C */	addi r0, r3, sTexCoordScaleTable__6J3DSys@l
+/* 8031E380  3C 60 80 43 */	lis r3, sTexCoordScaleTable__6J3DSys@ha /* 0x80434C2C@ha */
+/* 8031E384  38 03 4C 2C */	addi r0, r3, sTexCoordScaleTable__6J3DSys@l /* 0x80434C2C@l */
 /* 8031E388  7D 00 22 14 */	add r8, r0, r4
 /* 8031E38C  88 7E 00 05 */	lbz r3, 5(r30)
 /* 8031E390  A0 88 00 00 */	lhz r4, 0(r8)

@@ -3,17 +3,15 @@
 #
 
 M26_TARGET := $(BUILD_DIR)/rel/d/a/d_a_swhit0.plf
+M26_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_swhit0.lcf
+M26_MAP := $(BUILD_DIR)/rel/d/a/d_a_swhit0.map
 
 M26_CPP_FILES := \
-	rel/d/a/d_a_swhit0/executor.cpp \
-	rel/d/a/d_a_swhit0/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_swhit0/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_swhit0/d_a_swhit0.cpp \
 
 M26_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_swhit0/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_swhit0/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_swhit0/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_swhit0/d_a_swhit0.o \
 
 M26_LIBS := \
@@ -29,14 +27,21 @@ M26_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M26_LDSCRIPT) \
+	-unused -map $(M26_MAP) \
+	-w off \
 
 $(M26_TARGET): $(M26_O_FILES) $(M26_LIBS)
+	@echo [ 26] creating $(M26_TARGET)
 	@echo $(M26_LIBS) $(M26_O_FILES) > build/M26_ofiles
-	$(LD) -partial $(M26_LDFLAGS) -o $(M26_TARGET) @build/M26_ofiles
+	@python3 tools/lcf.py rel 26 --output $(M26_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M26_LDFLAGS) -o $(M26_TARGET) @build/M26_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_swhit0/%.o: rel/d/a/d_a_swhit0/%.cpp
+	@echo [ 26] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M26_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M26_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -4,7 +4,7 @@ lbl_809BFC4C:
 /* 809BFC54  90 01 00 14 */	stw r0, 0x14(r1)
 /* 809BFC58  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 809BFC5C  7C 7F 1B 78 */	mr r31, r3
-/* 809BFC60  4B 65 90 80 */	b fopAc_IsActor__FPv
+/* 809BFC60  4B 65 90 81 */	bl fopAc_IsActor__FPv
 /* 809BFC64  2C 03 00 00 */	cmpwi r3, 0
 /* 809BFC68  41 82 00 18 */	beq lbl_809BFC80
 /* 809BFC6C  A8 1F 00 08 */	lha r0, 8(r31)

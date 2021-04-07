@@ -3,17 +3,15 @@
 #
 
 M123_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_attack_item.plf
+M123_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_attack_item.lcf
+M123_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_attack_item.map
 
 M123_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_attack_item/executor.cpp \
-	rel/d/a/tag/d_a_tag_attack_item/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_attack_item/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_attack_item/d_a_tag_attack_item.cpp \
 
 M123_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_attack_item/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_attack_item/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_attack_item/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_attack_item/d_a_tag_attack_item.o \
 
 M123_LIBS := \
@@ -29,14 +27,21 @@ M123_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M123_LDSCRIPT) \
+	-unused -map $(M123_MAP) \
+	-w off \
 
 $(M123_TARGET): $(M123_O_FILES) $(M123_LIBS)
+	@echo [123] creating $(M123_TARGET)
 	@echo $(M123_LIBS) $(M123_O_FILES) > build/M123_ofiles
-	$(LD) -partial $(M123_LDFLAGS) -o $(M123_TARGET) @build/M123_ofiles
+	@python3 tools/lcf.py rel 123 --output $(M123_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M123_LDFLAGS) -o $(M123_TARGET) @build/M123_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_attack_item/%.o: rel/d/a/tag/d_a_tag_attack_item/%.cpp
+	@echo [123] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M123_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M123_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

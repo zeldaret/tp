@@ -18,17 +18,6 @@ struct mDoExt_morf_c {
     /* 8000FBC0 */ void frameUpdate();
 };
 
-struct J3DModelData {};
-
-struct J3DModel {
-    /* 80327100 */ void initialize();
-    /* 80327184 */ void entryModelData(J3DModelData*, u32, u32);
-    /* 803275FC */ void newDifferedDisplayList(u32);
-    /* 8032767C */ void lock();
-    /* 803276B4 */ void unlock();
-    /* 803279A0 */ void diff();
-};
-
 struct Vec {};
 
 struct cXyz {
@@ -39,6 +28,17 @@ struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
     /* 80266CBC */ void outprod(Vec const&) const;
     /* 80266F48 */ void normalizeZP();
+};
+
+struct J3DModelData {};
+
+struct J3DModel {
+    /* 80327100 */ void initialize();
+    /* 80327184 */ void entryModelData(J3DModelData*, u32, u32);
+    /* 803275FC */ void newDifferedDisplayList(u32);
+    /* 8032767C */ void lock();
+    /* 803276B4 */ void unlock();
+    /* 803279A0 */ void diff();
 };
 
 struct mDoExt_invisibleModel {
@@ -54,20 +54,17 @@ struct mDoExt_invJntPacket {
 };
 
 struct J3DMaterialTable;
-struct J3DAnmTextureSRTKey {
-    /* 8032B0C0 */ void searchUpdateMaterialID(J3DMaterialTable*);
+struct J3DAnmTevRegKey {
+    /* 8032B780 */ void searchUpdateMaterialID(J3DMaterialTable*);
 };
 
 struct J3DAnmColor {
     /* 8032A8A4 */ void searchUpdateMaterialID(J3DMaterialTable*);
 };
 
-struct J3DAnmTevRegKey {
-    /* 8032B780 */ void searchUpdateMaterialID(J3DMaterialTable*);
-};
-
-struct J3DAnmTexPattern {
-    /* 8032B004 */ void searchUpdateMaterialID(J3DMaterialTable*);
+struct J3DAnmTexPattern;
+struct J3DAnmTextureSRTKey {
+    /* 8032B0C0 */ void searchUpdateMaterialID(J3DMaterialTable*);
 };
 
 struct J3DMaterialTable {
@@ -75,6 +72,10 @@ struct J3DMaterialTable {
     /* 8032FBC8 */ void entryTexNoAnimator(J3DAnmTexPattern*);
     /* 8032FCC4 */ void entryTexMtxAnimator(J3DAnmTextureSRTKey*);
     /* 8032FE70 */ void entryTevRegAnimator(J3DAnmTevRegKey*);
+};
+
+struct J3DAnmTexPattern {
+    /* 8032B004 */ void searchUpdateMaterialID(J3DMaterialTable*);
 };
 
 struct mDoExt_btpAnm {
@@ -138,14 +139,14 @@ struct mDoExt_MtxCalcAnmBlendTbl {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DTransformInfo {};
-
 struct Z2Creature {
     /* 802C0628 */ void initAnime(void*, bool, f32, f32);
     /* 802C06D0 */ void updateAnime(f32, f32);
 };
 
 struct mDoExt_McaMorfCallBack1_c {};
+
+struct J3DTransformInfo {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -236,14 +237,14 @@ struct mDoExt_3DlineMat0_c {
     /* 80014E84 */ bool getMaterialID();
 };
 
-struct J3DPacket;
-struct J3DDrawBuffer {
-    /* 8032548C */ void entryImm(J3DPacket*, u16);
-};
-
+struct J3DDrawBuffer;
 struct J3DPacket {
     /* 8000E680 */ ~J3DPacket();
     /* 80312750 */ bool entry(J3DDrawBuffer*);
+};
+
+struct J3DDrawBuffer {
+    /* 8032548C */ void entryImm(J3DPacket*, u16);
 };
 
 struct dDlst_list_c {
@@ -258,9 +259,9 @@ struct _GXBlendMode {};
 
 struct _GXBlendFactor {};
 
-struct JAISoundID {};
-
 struct Z2SoundHandlePool {};
+
+struct JAISoundID {};
 
 struct Z2SoundObjBase {
     /* 802BE038 */ void framework(u32, s8);
@@ -372,16 +373,16 @@ struct J3DTevKColorAnm {};
 
 struct J3DTevColorAnm {};
 
+struct J3DIndTevStage {
+    /* 8000E14C */ J3DIndTevStage();
+};
+
 struct J3DGXColorS10 {
     /* 8000E460 */ J3DGXColorS10();
 };
 
 struct J3DGXColor {
     /* 8000E538 */ J3DGXColor();
-};
-
-struct J3DIndTevStage {
-    /* 8000E14C */ J3DIndTevStage();
 };
 
 struct J3DTevBlock {
@@ -421,9 +422,9 @@ struct J3DShape {
     /* 80315300 */ void loadPreDrawSetting() const;
 };
 
-struct J3DAlphaComp {};
-
 struct J3DBlend {};
+
+struct J3DAlphaComp {};
 
 struct J3DPEBlock {
     /* 8000DBCC */ void patch();
@@ -446,9 +447,9 @@ template <typename A0, typename B0>
 struct J3DMtxCalcNoAnm {};
 /* J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya> */
 struct J3DMtxCalcNoAnm__template0 {
-    /* 8000FA20 */ ~J3DMtxCalcNoAnm__template0();
-    /* 8001505C */ void init(Vec const&, f32 const (&)[3][4]);
-    /* 80015084 */ void calc();
+    /* 8000FA20 */ void func_8000FA20();
+    /* 8001505C */ void func_8001505C(Vec const&, f32 const (&)[3][4]);
+    /* 80015084 */ void func_80015084();
 };
 
 struct J3DMtxCalcJ3DSysInitMaya {
@@ -470,10 +471,10 @@ struct J3DMtxCalcAnimation {};
 /* J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>,
  * J3DMtxCalcJ3DSysInitMaya> */
 struct J3DMtxCalcAnimation__template0 {
-    /* 8000D8E4 */ void setAnmTransform(J3DAnmTransform*);
-    /* 80014FC8 */ ~J3DMtxCalcAnimation__template0();
-    /* 80015034 */ void init(Vec const&, f32 const (&)[3][4]);
-    /* 800150AC */ void calc();
+    /* 8000D8E4 */ void func_8000D8E4(J3DAnmTransform*);
+    /* 80014FC8 */ void func_80014FC8();
+    /* 80015034 */ void func_80015034(Vec const&, f32 const (&)[3][4]);
+    /* 800150AC */ void func_800150AC();
 };
 
 struct J3DMtxCalc {
@@ -550,62 +551,6 @@ struct J3DColorBlock {
 // Forward References:
 //
 
-static void mDoExt_setJ3DData(f32 (*)[4], J3DTransformInfo const*, u16);
-static void mDoExt_changeMaterial(J3DModel*);
-void mDoExt_modelTexturePatch(J3DModelData*);
-static void mDoExt_modelDiff(J3DModel*);
-void mDoExt_modelUpdate(J3DModel*);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_modelEntryDL(J3DModel*);
-void mDoExt_btkAnmRemove(J3DModelData*);
-void mDoExt_brkAnmRemove(J3DModelData*);
-void mDoExt_setupShareTexture(J3DModelData*, J3DModelData*);
-void mDoExt_setupStageTexture(J3DModelData*);
-void mDoExt_createAssertHeap(JKRHeap*);
-void mDoExt_getAssertHeap();
-void mDoExt_createDbPrintHeap(u32, JKRHeap*);
-void mDoExt_getDbPrintHeap();
-void mDoExt_createGameHeap(u32, JKRHeap*);
-void mDoExt_getGameHeap();
-void mDoExt_createZeldaHeap(u32, JKRHeap*);
-void mDoExt_getZeldaHeap();
-void mDoExt_createCommandHeap(u32, JKRHeap*);
-void mDoExt_getCommandHeap();
-void mDoExt_createArchiveHeap(u32, JKRHeap*);
-void mDoExt_getArchiveHeap();
-void mDoExt_getArchiveHeapPtr();
-void mDoExt_createJ2dHeap(u32, JKRHeap*);
-void mDoExt_getJ2dHeap();
-void mDoExt_getHostIOHeap();
-static void mDoExt_createSolidHeap(u32, JKRHeap*, u32);
-void mDoExt_createSolidHeapFromGame(u32, u32);
-void mDoExt_createSolidHeapFromSystem(u32, u32);
-static void mDoExt_createSolidHeapToCurrent(JKRHeap**, u32, JKRHeap*, u32);
-void mDoExt_createSolidHeapToCurrent(u32, JKRHeap*, u32);
-void mDoExt_createSolidHeapFromGameToCurrent(JKRHeap**, u32, u32);
-void mDoExt_createSolidHeapFromGameToCurrent(u32, u32);
-void mDoExt_adjustSolidHeap(JKRSolidHeap*);
-void mDoExt_adjustSolidHeapToSystem(JKRSolidHeap*);
-void mDoExt_destroySolidHeap(JKRSolidHeap*);
-void mDoExt_destroyExpHeap(JKRExpHeap*);
-void mDoExt_setCurrentHeap(JKRHeap*);
-void mDoExt_getCurrentHeap();
-void mDoExt_restoreCurrentHeap();
-void mDoExt_resIDToIndex(JKRArchive*, u16);
-static void mDoExt_initFontCommon(JUTFont**, ResFONT**, JKRHeap*, char const*, JKRArchive*, u8, u32,
-                                  u32);
-static void mDoExt_initFont0();
-void mDoExt_getMesgFont();
-void mDoExt_removeMesgFont();
-static void mDoExt_initFont1();
-void mDoExt_getRubyFont();
-static void mDoExt_initFont2();
-void mDoExt_getSubFont();
-void mDoExt_removeSubFont();
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void mDoExt_setAraCacheSize(u32);
-void mDoExt_GetCurrentRunningThread();
-
 extern "C" static void mDoExt_setJ3DData__FPA4_fPC16J3DTransformInfoUs();
 extern "C" void initPlay__14mDoExt_baseAnmFsifss();
 extern "C" void play__14mDoExt_baseAnmFv();
@@ -618,7 +563,7 @@ extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
 extern "C" void init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss();
 extern "C" void entry__13mDoExt_brkAnmFP16J3DMaterialTablef();
 extern "C" void init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb();
-extern "C" void func_8000D8E4();
+extern "C" void func_8000D8E4(J3DAnmTransform*);
 extern "C" void __dt__17J3DMtxCalcAnmBaseFv();
 extern "C" void __dt__10J3DMtxCalcFv();
 extern "C" void changeBckOnly__13mDoExt_bckAnmFP15J3DAnmTransform();
@@ -834,43 +779,15 @@ extern "C" void __dt__25mDoExt_MtxCalcAnmBlendTblFv();
 extern "C" void getAnmTransform__17J3DMtxCalcAnmBaseFv();
 extern "C" void setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform();
 extern "C" void func_80014FC8();
-extern "C" void func_80015034();
-extern "C" void func_8001505C();
+extern "C" void func_80015034(Vec const&, f32 const (&)[3][4]);
+extern "C" void func_8001505C(Vec const&, f32 const (&)[3][4]);
 extern "C" void func_80015084();
 extern "C" void func_800150AC();
 extern "C" extern char const* const m_Do_m_Do_ext__stringBase0;
-extern "C" extern void* __vt__7JUTFont[17];
-extern "C" extern void* __vt__26mDoExt_3DlineMatSortPacket[5];
-extern "C" extern void* __vt__19mDoExt_3DlineMat1_c[5];
-extern "C" extern void* __vt__19mDoExt_3DlineMat0_c[5];
-extern "C" extern void* __vt__12J3DFrameCtrl[3];
-extern "C" extern void* data_803A3360[11];
-extern "C" extern void* __vt__19J3DMtxCalcNoAnmBase[11];
-extern "C" extern void* __vt__28mDoExt_MtxCalcAnmBlendTblOld[11];
-extern "C" extern void* __vt__25mDoExt_MtxCalcAnmBlendTbl[11];
-extern "C" extern void* __vt__10J3DMtxCalc[11 + 1 /* padding */];
-extern "C" extern u8 gameHeap[4];
-extern "C" extern u8 zeldaHeap[4];
-extern "C" extern u8 commandHeap[4];
-extern "C" extern u8 archiveHeap[4];
 
 //
 // External References:
 //
-
-void dComIfG_getStageRes(char const*);
-void dKy_setLight_again();
-void dKy_Global_amb_set(dKy_tevstr_c*);
-void dKy_GxFog_set();
-void cLib_chaseF(f32*, f32, f32);
-void GFSetBlendModeEtc(_GXBlendMode, _GXBlendFactor, _GXBlendFactor, _GXLogicOp, u8, u8, u8);
-void GFSetZMode(u8, _GXCompare, u8);
-void* operator new(u32);
-void* operator new(u32, JKRHeap*, int);
-void* operator new[](u32);
-void operator delete(void*);
-void JMAEulerToQuat(s16, s16, s16, Quaternion*);
-void JMAQuatLerp(Quaternion const*, Quaternion const*, f32, Quaternion*);
 
 extern "C" void OSReport_FatalError();
 extern "C" void OSReport_Error();
@@ -1010,7 +927,7 @@ extern "C" extern void* __vt__8J3DModel[9];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 mParentS__6J3DSys[12];
+extern "C" extern f32 mParentS__6J3DSys[3];
 extern "C" extern u8 sGDLObj__17J3DDisplayListObj[16];
 extern "C" extern u32 __float_nan;
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
@@ -1030,22 +947,22 @@ extern "C" extern u8 struct_804563F8[4];
 //
 
 /* ############################################################################################## */
-/* 80451B18-80451B1C 0004+00 s=11 e=0 z=0  None .sdata2    @3847 */
+/* 80451B18-80451B1C 000118 0004+00 11/11 0/0 0/0 .sdata2          @3847 */
 SECTION_SDATA2 static f32 lit_3847 = 1.0f;
 
-/* 8000D0AC-8000D320 0274+00 s=5 e=0 z=0  None .text
+/* 8000D0AC-8000D320 0079EC 0274+00 5/5 0/0 0/0 .text
  * mDoExt_setJ3DData__FPA4_fPC16J3DTransformInfoUs              */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void mDoExt_setJ3DData(f32 (*param_0)[4], J3DTransformInfo const* param_1, u16 param_2) {
+static asm void mDoExt_setJ3DData(f32 (*param_0)[4], J3DTransformInfo const* param_1, u16 param_2) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/mDoExt_setJ3DData__FPA4_fPC16J3DTransformInfoUs.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451B1C-80451B20 0004+00 s=22 e=0 z=0  None .sdata2    @3876 */
+/* 80451B1C-80451B20 00011C 0004+00 22/22 0/0 0/0 .sdata2          @3876 */
 SECTION_SDATA2 static u8 lit_3876[4] = {
     0x00,
     0x00,
@@ -1053,10 +970,10 @@ SECTION_SDATA2 static u8 lit_3876[4] = {
     0x00,
 };
 
-/* 80451B20-80451B28 0008+00 s=10 e=0 z=0  None .sdata2    @3878 */
+/* 80451B20-80451B28 000120 0008+00 10/10 0/0 0/0 .sdata2          @3878 */
 SECTION_SDATA2 static f64 lit_3878 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 8000D320-8000D428 0108+00 s=6 e=0 z=0  None .text      initPlay__14mDoExt_baseAnmFsifss */
+/* 8000D320-8000D428 007C60 0108+00 6/6 0/0 0/0 .text            initPlay__14mDoExt_baseAnmFsifss */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1066,7 +983,7 @@ asm void mDoExt_baseAnm::initPlay(s16 param_0, int param_1, f32 param_2, s16 par
 }
 #pragma pop
 
-/* 8000D428-8000D47C 0054+00 s=0 e=12 z=198  None .text      play__14mDoExt_baseAnmFv */
+/* 8000D428-8000D47C 007D68 0054+00 0/0 12/12 198/198 .text            play__14mDoExt_baseAnmFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1076,7 +993,7 @@ asm void mDoExt_baseAnm::play() {
 }
 #pragma pop
 
-/* 8000D47C-8000D518 009C+00 s=0 e=3 z=6  None .text
+/* 8000D47C-8000D518 007DBC 009C+00 0/0 3/3 6/6 .text
  * init__13mDoExt_bpkAnmFP16J3DMaterialTableP11J3DAnmColoriifss */
 #pragma push
 #pragma optimization_level 0
@@ -1088,7 +1005,7 @@ asm void mDoExt_bpkAnm::init(J3DMaterialTable* param_0, J3DAnmColor* param_1, in
 }
 #pragma pop
 
-/* 8000D518-8000D54C 0034+00 s=0 e=3 z=6  None .text entry__13mDoExt_bpkAnmFP16J3DMaterialTablef
+/* 8000D518-8000D54C 007E58 0034+00 0/0 3/3 6/6 .text entry__13mDoExt_bpkAnmFP16J3DMaterialTablef
  */
 #pragma push
 #pragma optimization_level 0
@@ -1099,7 +1016,7 @@ asm void mDoExt_bpkAnm::entry(J3DMaterialTable* param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 8000D54C-8000D5E8 009C+00 s=0 e=5 z=28  None .text
+/* 8000D54C-8000D5E8 007E8C 009C+00 0/0 5/5 28/28 .text
  * init__13mDoExt_btpAnmFP16J3DMaterialTableP16J3DAnmTexPatterniifss */
 #pragma push
 #pragma optimization_level 0
@@ -1111,8 +1028,8 @@ asm void mDoExt_btpAnm::init(J3DMaterialTable* param_0, J3DAnmTexPattern* param_
 }
 #pragma pop
 
-/* 8000D5E8-8000D63C 0054+00 s=0 e=5 z=28  None .text entry__13mDoExt_btpAnmFP16J3DMaterialTables
- */
+/* 8000D5E8-8000D63C 007F28 0054+00 0/0 5/5 28/28 .text
+ * entry__13mDoExt_btpAnmFP16J3DMaterialTables                  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1122,7 +1039,7 @@ asm void mDoExt_btpAnm::entry(J3DMaterialTable* param_0, s16 param_1) {
 }
 #pragma pop
 
-/* 8000D63C-8000D6D8 009C+00 s=0 e=6 z=137  None .text
+/* 8000D63C-8000D6D8 007F7C 009C+00 0/0 6/6 137/137 .text
  * init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss */
 #pragma push
 #pragma optimization_level 0
@@ -1134,8 +1051,8 @@ asm void mDoExt_btkAnm::init(J3DMaterialTable* param_0, J3DAnmTextureSRTKey* par
 }
 #pragma pop
 
-/* 8000D6D8-8000D70C 0034+00 s=0 e=7 z=117  None .text entry__13mDoExt_btkAnmFP16J3DMaterialTablef
- */
+/* 8000D6D8-8000D70C 008018 0034+00 0/0 7/7 117/117 .text
+ * entry__13mDoExt_btkAnmFP16J3DMaterialTablef                  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1145,7 +1062,7 @@ asm void mDoExt_btkAnm::entry(J3DMaterialTable* param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 8000D70C-8000D7A8 009C+00 s=0 e=8 z=112  None .text
+/* 8000D70C-8000D7A8 00804C 009C+00 0/0 8/8 112/112 .text
  * init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss */
 #pragma push
 #pragma optimization_level 0
@@ -1157,8 +1074,8 @@ asm void mDoExt_brkAnm::init(J3DMaterialTable* param_0, J3DAnmTevRegKey* param_1
 }
 #pragma pop
 
-/* 8000D7A8-8000D7DC 0034+00 s=0 e=8 z=96  None .text entry__13mDoExt_brkAnmFP16J3DMaterialTablef
- */
+/* 8000D7A8-8000D7DC 0080E8 0034+00 0/0 8/8 96/96 .text
+ * entry__13mDoExt_brkAnmFP16J3DMaterialTablef                  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1169,7 +1086,7 @@ asm void mDoExt_brkAnm::entry(J3DMaterialTable* param_0, f32 param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A3020-803A30C0 0085+1B s=1 e=0 z=0  None .data      l_invisibleMat$7041 */
+/* 803A3020-803A30C0 000140 0085+1B 1/1 0/0 0/0 .data            l_invisibleMat$7041 */
 SECTION_DATA static u8 l_invisibleMat[133 + 27 /* padding */] = {
     0x10,
     0x00,
@@ -1334,7 +1251,7 @@ SECTION_DATA static u8 l_invisibleMat[133 + 27 /* padding */] = {
     0x00,
 };
 
-/* 803A30C0-803A3160 0084+1C s=1 e=0 z=0  None .data      l_matDL */
+/* 803A30C0-803A3160 0001E0 0084+1C 1/1 0/0 0/0 .data            l_matDL */
 SECTION_DATA static u8 l_matDL[132 + 28 /* padding */] = {
     0x08,
     0x30,
@@ -1499,7 +1416,7 @@ SECTION_DATA static u8 l_matDL[132 + 28 /* padding */] = {
     0x00,
 };
 
-/* 803A3160-803A31F0 008D+03 s=1 e=0 z=0  None .data      l_mat1DL */
+/* 803A3160-803A31F0 000280 008D+03 1/1 0/0 0/0 .data            l_mat1DL */
 SECTION_DATA static u8 l_mat1DL[141 + 3 /* padding */] = {
     0x10,
     0x00,
@@ -1648,9 +1565,9 @@ SECTION_DATA static u8 l_mat1DL[141 + 3 /* padding */] = {
     0x00,
 };
 
-/* 803A31F0-803A3234 0044+00 s=1 e=2 z=0  None .data      __vt__7JUTFont */
-SECTION_DATA void* __vt__7JUTFont[17] = {
-    (void*)NULL,
+/* 803A31F0-803A3234 000310 0044+00 1/1 2/2 0/0 .data            __vt__7JUTFont */
+SECTION_DATA extern void* __vt__7JUTFont[17] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__7JUTFontFv,
     (void*)NULL,
@@ -1669,45 +1586,46 @@ SECTION_DATA void* __vt__7JUTFont[17] = {
     (void*)NULL,
 };
 
-/* 803A3234-803A3248 0014+00 s=1 e=1 z=0  None .data      __vt__26mDoExt_3DlineMatSortPacket */
-SECTION_DATA void* __vt__26mDoExt_3DlineMatSortPacket[5] = {
-    (void*)NULL,
+/* 803A3234-803A3248 000354 0014+00 1/1 1/1 0/0 .data            __vt__26mDoExt_3DlineMatSortPacket
+ */
+SECTION_DATA extern void* __vt__26mDoExt_3DlineMatSortPacket[5] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)entry__9J3DPacketFP13J3DDrawBuffer,
     (void*)draw__26mDoExt_3DlineMatSortPacketFv,
     (void*)__dt__26mDoExt_3DlineMatSortPacketFv,
 };
 
-/* 803A3248-803A325C 0014+00 s=0 e=0 z=22  None .data      __vt__19mDoExt_3DlineMat1_c */
-SECTION_DATA void* __vt__19mDoExt_3DlineMat1_c[5] = {
-    (void*)NULL,
+/* 803A3248-803A325C 000368 0014+00 0/0 0/0 22/22 .data            __vt__19mDoExt_3DlineMat1_c */
+SECTION_DATA extern void* __vt__19mDoExt_3DlineMat1_c[5] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)getMaterialID__19mDoExt_3DlineMat1_cFv,
     (void*)setMaterial__19mDoExt_3DlineMat1_cFv,
     (void*)draw__19mDoExt_3DlineMat1_cFv,
 };
 
-/* 803A325C-803A3270 0014+00 s=0 e=0 z=14  None .data      __vt__19mDoExt_3DlineMat0_c */
-SECTION_DATA void* __vt__19mDoExt_3DlineMat0_c[5] = {
-    (void*)NULL,
+/* 803A325C-803A3270 00037C 0014+00 0/0 0/0 14/14 .data            __vt__19mDoExt_3DlineMat0_c */
+SECTION_DATA extern void* __vt__19mDoExt_3DlineMat0_c[5] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)getMaterialID__19mDoExt_3DlineMat0_cFv,
     (void*)setMaterial__19mDoExt_3DlineMat0_cFv,
     (void*)draw__19mDoExt_3DlineMat0_cFv,
 };
 
-/* 803A3270-803A3284 0014+00 s=2 e=0 z=0  None .data      __vt__19mDoExt_invJntPacket */
-SECTION_DATA static void* __vt__19mDoExt_invJntPacket[5] = {
-    (void*)NULL,
+/* 803A3270-803A3284 000390 0014+00 2/2 0/0 0/0 .data            __vt__19mDoExt_invJntPacket */
+SECTION_DATA extern void* __vt__19mDoExt_invJntPacket[5] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)entry__9J3DPacketFP13J3DDrawBuffer,
     (void*)draw__19mDoExt_invJntPacketFv,
     (void*)__dt__19mDoExt_invJntPacketFv,
 };
 
-/* 803A3284-803A32B0 002C+00 s=2 e=0 z=0  None .data      __vt__15mDoExt_McaMorf2 */
-SECTION_DATA static void* __vt__15mDoExt_McaMorf2[11] = {
-    (void*)NULL,
+/* 803A3284-803A32B0 0003A4 002C+00 2/2 0/0 0/0 .data            __vt__15mDoExt_McaMorf2 */
+SECTION_DATA extern void* __vt__15mDoExt_McaMorf2[11] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__15mDoExt_McaMorf2Fv,
     (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
@@ -1720,9 +1638,9 @@ SECTION_DATA static void* __vt__15mDoExt_McaMorf2[11] = {
     (void*)calc__15mDoExt_McaMorf2Fv,
 };
 
-/* 803A32B0-803A32DC 002C+00 s=2 e=0 z=0  None .data      __vt__16mDoExt_McaMorfSO */
-SECTION_DATA static void* __vt__16mDoExt_McaMorfSO[11] = {
-    (void*)NULL,
+/* 803A32B0-803A32DC 0003D0 002C+00 2/2 0/0 0/0 .data            __vt__16mDoExt_McaMorfSO */
+SECTION_DATA extern void* __vt__16mDoExt_McaMorfSO[11] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__16mDoExt_McaMorfSOFv,
     (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
@@ -1735,9 +1653,9 @@ SECTION_DATA static void* __vt__16mDoExt_McaMorfSO[11] = {
     (void*)calc__16mDoExt_McaMorfSOFv,
 };
 
-/* 803A32DC-803A32FC 0020+00 s=1 e=0 z=0  None .data      __vt__15mDoExt_zelAnime */
-SECTION_DATA static void* __vt__15mDoExt_zelAnime[8] = {
-    (void*)NULL,
+/* 803A32DC-803A32FC 0003FC 0020+00 1/1 0/0 0/0 .data            __vt__15mDoExt_zelAnime */
+SECTION_DATA extern void* __vt__15mDoExt_zelAnime[8] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)framework__14Z2SoundObjBaseFUlSc,
     (void*)dispose__14Z2SoundObjBaseFv,
@@ -1747,9 +1665,9 @@ SECTION_DATA static void* __vt__15mDoExt_zelAnime[8] = {
     (void*)startLevelSound__14Z2SoundObjBaseF10JAISoundIDUlSc,
 };
 
-/* 803A32FC-803A3328 002C+00 s=2 e=0 z=0  None .data      __vt__14mDoExt_McaMorf */
-SECTION_DATA static void* __vt__14mDoExt_McaMorf[11] = {
-    (void*)NULL,
+/* 803A32FC-803A3328 00041C 002C+00 2/2 0/0 0/0 .data            __vt__14mDoExt_McaMorf */
+SECTION_DATA extern void* __vt__14mDoExt_McaMorf[11] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14mDoExt_McaMorfFv,
     (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
@@ -1762,9 +1680,9 @@ SECTION_DATA static void* __vt__14mDoExt_McaMorf[11] = {
     (void*)calc__14mDoExt_McaMorfFv,
 };
 
-/* 803A3328-803A3354 002C+00 s=2 e=0 z=0  None .data      __vt__13mDoExt_morf_c */
-SECTION_DATA static void* __vt__13mDoExt_morf_c[11] = {
-    (void*)NULL,
+/* 803A3328-803A3354 000448 002C+00 2/2 0/0 0/0 .data            __vt__13mDoExt_morf_c */
+SECTION_DATA extern void* __vt__13mDoExt_morf_c[11] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__13mDoExt_morf_cFv,
     (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
@@ -1777,17 +1695,17 @@ SECTION_DATA static void* __vt__13mDoExt_morf_c[11] = {
     (void*)func_80015084,
 };
 
-/* 803A3354-803A3360 000C+00 s=3 e=30 z=0  None .data      __vt__12J3DFrameCtrl */
-SECTION_DATA void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL,
+/* 803A3354-803A3360 000474 000C+00 3/3 30/30 0/0 .data            __vt__12J3DFrameCtrl */
+SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12J3DFrameCtrlFv,
 };
 
-/* 803A3360-803A338C 002C+00 s=5 e=2 z=0  None .data
+/* 803A3360-803A338C 000480 002C+00 5/5 2/2 0/0 .data
  * __vt__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya> */
-SECTION_DATA void* data_803A3360[11] = {
-    (void*)NULL,
+SECTION_DATA extern void* data_803A3360[11] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)func_8000FA20,
     (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
@@ -1800,9 +1718,9 @@ SECTION_DATA void* data_803A3360[11] = {
     (void*)func_80015084,
 };
 
-/* 803A338C-803A33B8 002C+00 s=6 e=4 z=0  None .data      __vt__19J3DMtxCalcNoAnmBase */
-SECTION_DATA void* __vt__19J3DMtxCalcNoAnmBase[11] = {
-    (void*)NULL,
+/* 803A338C-803A33B8 0004AC 002C+00 6/6 4/4 0/0 .data            __vt__19J3DMtxCalcNoAnmBase */
+SECTION_DATA extern void* __vt__19J3DMtxCalcNoAnmBase[11] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__19J3DMtxCalcNoAnmBaseFv,
     (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
@@ -1815,9 +1733,9 @@ SECTION_DATA void* __vt__19J3DMtxCalcNoAnmBase[11] = {
     (void*)NULL,
 };
 
-/* 803A33B8-803A33E4 002C+00 s=1 e=1 z=2  None .data      __vt__28mDoExt_MtxCalcAnmBlendTblOld */
-SECTION_DATA void* __vt__28mDoExt_MtxCalcAnmBlendTblOld[11] = {
-    (void*)NULL,
+/* 803A33B8-803A33E4 0004D8 002C+00 1/1 1/1 2/2 .data __vt__28mDoExt_MtxCalcAnmBlendTblOld */
+SECTION_DATA extern void* __vt__28mDoExt_MtxCalcAnmBlendTblOld[11] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__28mDoExt_MtxCalcAnmBlendTblOldFv,
     (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
@@ -1830,9 +1748,10 @@ SECTION_DATA void* __vt__28mDoExt_MtxCalcAnmBlendTblOld[11] = {
     (void*)calc__28mDoExt_MtxCalcAnmBlendTblOldFv,
 };
 
-/* 803A33E4-803A3410 002C+00 s=2 e=1 z=2  None .data      __vt__25mDoExt_MtxCalcAnmBlendTbl */
-SECTION_DATA void* __vt__25mDoExt_MtxCalcAnmBlendTbl[11] = {
-    (void*)NULL,
+/* 803A33E4-803A3410 000504 002C+00 2/2 1/1 2/2 .data            __vt__25mDoExt_MtxCalcAnmBlendTbl
+ */
+SECTION_DATA extern void* __vt__25mDoExt_MtxCalcAnmBlendTbl[11] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__25mDoExt_MtxCalcAnmBlendTblFv,
     (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
@@ -1845,11 +1764,11 @@ SECTION_DATA void* __vt__25mDoExt_MtxCalcAnmBlendTbl[11] = {
     (void*)calc__25mDoExt_MtxCalcAnmBlendTblFv,
 };
 
-/* 803A3410-803A343C 002C+00 s=2 e=0 z=0  None .data
+/* 803A3410-803A343C 000530 002C+00 2/2 0/0 0/0 .data
  * __vt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>
  */
-SECTION_DATA static void* data_803A3410[11] = {
-    (void*)NULL,
+SECTION_DATA extern void* data_803A3410[11] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)func_80014FC8,
     (void*)func_8000D8E4,
@@ -1862,9 +1781,9 @@ SECTION_DATA static void* data_803A3410[11] = {
     (void*)func_800150AC,
 };
 
-/* 803A343C-803A3468 002C+00 s=3 e=0 z=0  None .data      __vt__17J3DMtxCalcAnmBase */
-SECTION_DATA static void* __vt__17J3DMtxCalcAnmBase[11] = {
-    (void*)NULL,
+/* 803A343C-803A3468 00055C 002C+00 3/3 0/0 0/0 .data            __vt__17J3DMtxCalcAnmBase */
+SECTION_DATA extern void* __vt__17J3DMtxCalcAnmBase[11] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__17J3DMtxCalcAnmBaseFv,
     (void*)setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform,
@@ -1877,9 +1796,9 @@ SECTION_DATA static void* __vt__17J3DMtxCalcAnmBase[11] = {
     (void*)NULL,
 };
 
-/* 803A3468-803A3498 002C+04 s=10 e=4 z=0  None .data      __vt__10J3DMtxCalc */
-SECTION_DATA void* __vt__10J3DMtxCalc[11 + 1 /* padding */] = {
-    (void*)NULL,
+/* 803A3468-803A3498 000588 002C+04 10/10 4/4 0/0 .data            __vt__10J3DMtxCalc */
+SECTION_DATA extern void* __vt__10J3DMtxCalc[11 + 1 /* padding */] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__10J3DMtxCalcFv,
     (void*)setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform,
@@ -1894,7 +1813,7 @@ SECTION_DATA void* __vt__10J3DMtxCalc[11 + 1 /* padding */] = {
     NULL,
 };
 
-/* 8000D7DC-8000D8E4 0108+00 s=0 e=18 z=85  None .text
+/* 8000D7DC-8000D8E4 00811C 0108+00 0/0 18/18 85/85 .text
  * init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb               */
 #pragma push
 #pragma optimization_level 0
@@ -1906,19 +1825,19 @@ asm void mDoExt_bckAnm::init(J3DAnmTransform* param_0, int param_1, int param_2,
 }
 #pragma pop
 
-/* 8000D8E4-8000D8EC 0008+00 s=1 e=0 z=0  None .text
+/* 8000D8E4-8000D8EC 008224 0008+00 1/0 0/0 0/0 .text
  * setAnmTransform__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FP15J3DAnmTransform
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DMtxCalcAnimation__template0::setAnmTransform(J3DAnmTransform* param_0) {
+extern "C" asm void func_8000D8E4(J3DAnmTransform* param_0) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/func_8000D8E4.s"
 }
 #pragma pop
 
-/* 8000D8EC-8000D948 005C+00 s=1 e=0 z=0  None .text      __dt__17J3DMtxCalcAnmBaseFv */
+/* 8000D8EC-8000D948 00822C 005C+00 1/0 0/0 0/0 .text            __dt__17J3DMtxCalcAnmBaseFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1928,7 +1847,7 @@ asm J3DMtxCalcAnmBase::~J3DMtxCalcAnmBase() {
 }
 #pragma pop
 
-/* 8000D948-8000D990 0048+00 s=1 e=0 z=0  None .text      __dt__10J3DMtxCalcFv */
+/* 8000D948-8000D990 008288 0048+00 1/0 0/0 0/0 .text            __dt__10J3DMtxCalcFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1938,7 +1857,7 @@ asm J3DMtxCalc::~J3DMtxCalc() {
 }
 #pragma pop
 
-/* 8000D990-8000D9CC 003C+00 s=0 e=5 z=31  None .text
+/* 8000D990-8000D9CC 0082D0 003C+00 0/0 5/5 31/31 .text
  * changeBckOnly__13mDoExt_bckAnmFP15J3DAnmTransform            */
 #pragma push
 #pragma optimization_level 0
@@ -1949,7 +1868,7 @@ asm void mDoExt_bckAnm::changeBckOnly(J3DAnmTransform* param_0) {
 }
 #pragma pop
 
-/* 8000D9CC-8000D9E8 001C+00 s=0 e=11 z=59  None .text      entry__13mDoExt_bckAnmFP12J3DModelDataf
+/* 8000D9CC-8000D9E8 00830C 001C+00 0/0 11/11 59/59 .text entry__13mDoExt_bckAnmFP12J3DModelDataf
  */
 #pragma push
 #pragma optimization_level 0
@@ -1960,7 +1879,7 @@ asm void mDoExt_bckAnm::entry(J3DModelData* param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 8000D9E8-8000DA08 0020+00 s=0 e=1 z=1  None .text
+/* 8000D9E8-8000DA08 008328 0020+00 0/0 1/1 1/1 .text
  * entryJoint__13mDoExt_bckAnmFP12J3DModelDataUsf               */
 #pragma push
 #pragma optimization_level 0
@@ -1971,7 +1890,7 @@ asm void mDoExt_bckAnm::entryJoint(J3DModelData* param_0, u16 param_1, f32 param
 }
 #pragma pop
 
-/* 8000DA08-8000DAA8 00A0+00 s=0 e=1 z=3  None .text
+/* 8000DA08-8000DAA8 008348 00A0+00 0/0 1/1 3/3 .text
  * init__13mDoExt_blkAnmFP13J3DDeformDataP13J3DAnmClusteriifss  */
 #pragma push
 #pragma optimization_level 0
@@ -1983,17 +1902,18 @@ asm void mDoExt_blkAnm::init(J3DDeformData* param_0, J3DAnmCluster* param_1, int
 }
 #pragma pop
 
-/* 8000DAA8-8000DB10 0068+00 s=3 e=0 z=0  None .text      mDoExt_changeMaterial__FP8J3DModel */
+/* 8000DAA8-8000DB10 0083E8 0068+00 3/3 0/0 0/0 .text            mDoExt_changeMaterial__FP8J3DModel
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void mDoExt_changeMaterial(J3DModel* param_0) {
+static asm void mDoExt_changeMaterial(J3DModel* param_0) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/mDoExt_changeMaterial__FP8J3DModel.s"
 }
 #pragma pop
 
-/* 8000DB10-8000DBC8 00B8+00 s=0 e=0 z=1  None .text      mDoExt_modelTexturePatch__FP12J3DModelData
+/* 8000DB10-8000DBC8 008450 00B8+00 0/0 0/0 1/1 .text mDoExt_modelTexturePatch__FP12J3DModelData
  */
 #pragma push
 #pragma optimization_level 0
@@ -2004,38 +1924,38 @@ asm void mDoExt_modelTexturePatch(J3DModelData* param_0) {
 }
 #pragma pop
 
-/* 8000DBC8-8000DBCC 0004+00 s=0 e=2 z=0  None .text patchTexNoAndTexCoordScale__11J3DTevBlockFv
+/* 8000DBC8-8000DBCC 008508 0004+00 0/0 2/0 0/0 .text patchTexNoAndTexCoordScale__11J3DTevBlockFv
  */
 void J3DTevBlock::patchTexNoAndTexCoordScale() {
     /* empty function */
 }
 
-/* 8000DBCC-8000DBD0 0004+00 s=0 e=6 z=0  None .text      patch__10J3DPEBlockFv */
+/* 8000DBCC-8000DBD0 00850C 0004+00 0/0 6/0 0/0 .text            patch__10J3DPEBlockFv */
 void J3DPEBlock::patch() {
     /* empty function */
 }
 
-/* 8000DBD0-8000DBD4 0004+00 s=0 e=2 z=0  None .text      patchLight__13J3DColorBlockFv */
+/* 8000DBD0-8000DBD4 008510 0004+00 0/0 2/0 0/0 .text            patchLight__13J3DColorBlockFv */
 void J3DColorBlock::patchLight() {
     /* empty function */
 }
 
-/* 8000DBD4-8000DBD8 0004+00 s=0 e=2 z=0  None .text      patch__11J3DTevBlockFv */
+/* 8000DBD4-8000DBD8 008514 0004+00 0/0 2/0 0/0 .text            patch__11J3DTevBlockFv */
 void J3DTevBlock::patch() {
     /* empty function */
 }
 
-/* 8000DBD8-8000DC2C 0054+00 s=3 e=0 z=0  None .text      mDoExt_modelDiff__FP8J3DModel */
+/* 8000DBD8-8000DC2C 008518 0054+00 3/3 0/0 0/0 .text            mDoExt_modelDiff__FP8J3DModel */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void mDoExt_modelDiff(J3DModel* param_0) {
+static asm void mDoExt_modelDiff(J3DModel* param_0) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/mDoExt_modelDiff__FP8J3DModel.s"
 }
 #pragma pop
 
-/* 8000DC2C-8000DCC4 0098+00 s=0 e=0 z=8  None .text      mDoExt_modelUpdate__FP8J3DModel */
+/* 8000DC2C-8000DCC4 00856C 0098+00 0/0 0/0 8/8 .text            mDoExt_modelUpdate__FP8J3DModel */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2045,7 +1965,7 @@ asm void mDoExt_modelUpdate(J3DModel* param_0) {
 }
 #pragma pop
 
-/* 8000DCC4-8000DD64 00A0+00 s=1 e=12 z=414  None .text      mDoExt_modelUpdateDL__FP8J3DModel */
+/* 8000DCC4-8000DD64 008604 00A0+00 1/1 12/12 414/414 .text mDoExt_modelUpdateDL__FP8J3DModel */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2055,7 +1975,8 @@ asm void mDoExt_modelUpdateDL(J3DModel* param_0) {
 }
 #pragma pop
 
-/* 8000DD64-8000DDF0 008C+00 s=4 e=3 z=10  None .text      mDoExt_modelEntryDL__FP8J3DModel */
+/* 8000DD64-8000DDF0 0086A4 008C+00 4/4 3/3 10/10 .text            mDoExt_modelEntryDL__FP8J3DModel
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2065,7 +1986,7 @@ asm void mDoExt_modelEntryDL(J3DModel* param_0) {
 }
 #pragma pop
 
-/* 8000DDF0-8000DE8C 009C+00 s=0 e=0 z=14  None .text      mDoExt_btkAnmRemove__FP12J3DModelData */
+/* 8000DDF0-8000DE8C 008730 009C+00 0/0 0/0 14/14 .text mDoExt_btkAnmRemove__FP12J3DModelData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2075,7 +1996,7 @@ asm void mDoExt_btkAnmRemove(J3DModelData* param_0) {
 }
 #pragma pop
 
-/* 8000DE8C-8000DF3C 00B0+00 s=0 e=0 z=7  None .text      mDoExt_brkAnmRemove__FP12J3DModelData */
+/* 8000DE8C-8000DF3C 0087CC 00B0+00 0/0 0/0 7/7 .text mDoExt_brkAnmRemove__FP12J3DModelData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2085,62 +2006,63 @@ asm void mDoExt_brkAnmRemove(J3DModelData* param_0) {
 }
 #pragma pop
 
-/* 8000DF3C-8000DF44 0008+00 s=0 e=5 z=0  None .text      getZCompLoc__10J3DPEBlockCFv */
+/* 8000DF3C-8000DF44 00887C 0008+00 0/0 5/0 0/0 .text            getZCompLoc__10J3DPEBlockCFv */
 bool J3DPEBlock::getZCompLoc() const {
     return false;
 }
 
-/* 8000DF44-8000DF4C 0008+00 s=0 e=5 z=0  None .text      getZMode__10J3DPEBlockFv */
+/* 8000DF44-8000DF4C 008884 0008+00 0/0 5/0 0/0 .text            getZMode__10J3DPEBlockFv */
 bool J3DPEBlock::getZMode() {
     return false;
 }
 
-/* 8000DF4C-8000DF54 0008+00 s=0 e=5 z=0  None .text      getBlend__10J3DPEBlockFv */
+/* 8000DF4C-8000DF54 00888C 0008+00 0/0 5/0 0/0 .text            getBlend__10J3DPEBlockFv */
 bool J3DPEBlock::getBlend() {
     return false;
 }
 
-/* 8000DF54-8000DF5C 0008+00 s=0 e=5 z=0  None .text      getAlphaComp__10J3DPEBlockFv */
+/* 8000DF54-8000DF5C 008894 0008+00 0/0 5/0 0/0 .text            getAlphaComp__10J3DPEBlockFv */
 bool J3DPEBlock::getAlphaComp() {
     return false;
 }
 
-/* 8000DF5C-8000DF64 0008+00 s=0 e=6 z=0  None .text      getFog__10J3DPEBlockFv */
+/* 8000DF5C-8000DF64 00889C 0008+00 0/0 6/0 0/0 .text            getFog__10J3DPEBlockFv */
 bool J3DPEBlock::getFog() {
     return false;
 }
 
-/* 8000DF64-8000DF6C 0008+00 s=0 e=2 z=0  None .text      getIndTexCoordScale__11J3DIndBlockFUl */
+/* 8000DF64-8000DF6C 0088A4 0008+00 0/0 2/0 0/0 .text getIndTexCoordScale__11J3DIndBlockFUl */
 bool J3DIndBlock::getIndTexCoordScale(u32 param_0) {
     return false;
 }
 
-/* 8000DF6C-8000DF74 0008+00 s=0 e=2 z=0  None .text      getIndTexMtx__11J3DIndBlockFUl */
+/* 8000DF6C-8000DF74 0088AC 0008+00 0/0 2/0 0/0 .text            getIndTexMtx__11J3DIndBlockFUl */
 bool J3DIndBlock::getIndTexMtx(u32 param_0) {
     return false;
 }
 
-/* 8000DF74-8000DF7C 0008+00 s=0 e=2 z=0  None .text      getIndTexOrder__11J3DIndBlockFUl */
+/* 8000DF74-8000DF7C 0088B4 0008+00 0/0 2/0 0/0 .text            getIndTexOrder__11J3DIndBlockFUl */
 bool J3DIndBlock::getIndTexOrder(u32 param_0) {
     return false;
 }
 
-/* 8000DF7C-8000DF84 0008+00 s=0 e=2 z=0  None .text      getIndTexStageNum__11J3DIndBlockCFv */
+/* 8000DF7C-8000DF84 0088BC 0008+00 0/0 2/0 0/0 .text            getIndTexStageNum__11J3DIndBlockCFv
+ */
 bool J3DIndBlock::getIndTexStageNum() const {
     return false;
 }
 
-/* 8000DF84-8000DF8C 0008+00 s=0 e=2 z=0  None .text      getIndTevStage__11J3DTevBlockFUl */
+/* 8000DF84-8000DF8C 0088C4 0008+00 0/0 2/0 0/0 .text            getIndTevStage__11J3DTevBlockFUl */
 bool J3DTevBlock::getIndTevStage(u32 param_0) {
     return false;
 }
 
-/* 8000DF8C-8000DF94 0008+00 s=0 e=2 z=0  None .text      getTevStage__11J3DTevBlockFUl */
+/* 8000DF8C-8000DF94 0088CC 0008+00 0/0 2/0 0/0 .text            getTevStage__11J3DTevBlockFUl */
 bool J3DTevBlock::getTevStage(u32 param_0) {
     return false;
 }
 
-/* 8000DF94-8000DFA0 000C+00 s=0 e=2 z=0  None .text      getTexNo__11J3DTevBlockCFUl */
+/* 8000DF94-8000DFA0 0088D4 000C+00 0/0 2/0 0/0 .text            getTexNo__11J3DTevBlockCFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2150,104 +2072,109 @@ asm void J3DTevBlock::getTexNo(u32 param_0) const {
 }
 #pragma pop
 
-/* 8000DFA0-8000DFA8 0008+00 s=0 e=4 z=0  None .text      getTevSwapModeTable__11J3DTevBlockFUl */
+/* 8000DFA0-8000DFA8 0088E0 0008+00 0/0 4/0 0/0 .text getTevSwapModeTable__11J3DTevBlockFUl */
 bool J3DTevBlock::getTevSwapModeTable(u32 param_0) {
     return false;
 }
 
-/* 8000DFA8-8000DFB0 0008+00 s=0 e=4 z=0  None .text      getTevKAlphaSel__11J3DTevBlockFUl */
+/* 8000DFA8-8000DFB0 0088E8 0008+00 0/0 4/0 0/0 .text            getTevKAlphaSel__11J3DTevBlockFUl
+ */
 bool J3DTevBlock::getTevKAlphaSel(u32 param_0) {
     return false;
 }
 
-/* 8000DFB0-8000DFB8 0008+00 s=0 e=3 z=0  None .text      getTevKColorSel__11J3DTevBlockFUl */
+/* 8000DFB0-8000DFB8 0088F0 0008+00 0/0 3/0 0/0 .text            getTevKColorSel__11J3DTevBlockFUl
+ */
 bool J3DTevBlock::getTevKColorSel(u32 param_0) {
     return false;
 }
 
-/* 8000DFB8-8000DFC0 0008+00 s=0 e=2 z=0  None .text      getTevOrder__11J3DTevBlockFUl */
+/* 8000DFB8-8000DFC0 0088F8 0008+00 0/0 2/0 0/0 .text            getTevOrder__11J3DTevBlockFUl */
 bool J3DTevBlock::getTevOrder(u32 param_0) {
     return false;
 }
 
-/* 8000DFC0-8000DFC8 0008+00 s=0 e=3 z=0  None .text      getTevKColor__11J3DTevBlockFUl */
+/* 8000DFC0-8000DFC8 008900 0008+00 0/0 3/0 0/0 .text            getTevKColor__11J3DTevBlockFUl */
 bool J3DTevBlock::getTevKColor(u32 param_0) {
     return false;
 }
 
-/* 8000DFC8-8000DFD0 0008+00 s=0 e=3 z=0  None .text      getTevColor__11J3DTevBlockFUl */
+/* 8000DFC8-8000DFD0 008908 0008+00 0/0 3/0 0/0 .text            getTevColor__11J3DTevBlockFUl */
 bool J3DTevBlock::getTevColor(u32 param_0) {
     return false;
 }
 
-/* 8000DFD0-8000DFD8 0008+00 s=0 e=2 z=0  None .text      getTevStageNum__11J3DTevBlockCFv */
+/* 8000DFD0-8000DFD8 008910 0008+00 0/0 2/0 0/0 .text            getTevStageNum__11J3DTevBlockCFv */
 bool J3DTevBlock::getTevStageNum() const {
     return true;
 }
 
-/* 8000DFD8-8000DFE0 0008+00 s=0 e=2 z=0  None .text      getTexMtx__14J3DTexGenBlockFUl */
+/* 8000DFD8-8000DFE0 008918 0008+00 0/0 2/0 0/0 .text            getTexMtx__14J3DTexGenBlockFUl */
 bool J3DTexGenBlock::getTexMtx(u32 param_0) {
     return false;
 }
 
-/* 8000DFE0-8000DFE8 0008+00 s=0 e=2 z=0  None .text      getTexCoord__14J3DTexGenBlockFUl */
+/* 8000DFE0-8000DFE8 008920 0008+00 0/0 2/0 0/0 .text            getTexCoord__14J3DTexGenBlockFUl */
 bool J3DTexGenBlock::getTexCoord(u32 param_0) {
     return false;
 }
 
-/* 8000DFE8-8000DFF0 0008+00 s=0 e=2 z=0  None .text      getTexGenNum__14J3DTexGenBlockCFv */
+/* 8000DFE8-8000DFF0 008928 0008+00 0/0 2/0 0/0 .text            getTexGenNum__14J3DTexGenBlockCFv
+ */
 bool J3DTexGenBlock::getTexGenNum() const {
     return false;
 }
 
-/* 8000DFF0-8000DFF8 0008+00 s=0 e=3 z=0  None .text      getAmbColor__13J3DColorBlockFUl */
+/* 8000DFF0-8000DFF8 008930 0008+00 0/0 3/0 0/0 .text            getAmbColor__13J3DColorBlockFUl */
 bool J3DColorBlock::getAmbColor(u32 param_0) {
     return false;
 }
 
-/* 8000DFF8-8000E000 0008+00 s=0 e=2 z=0  None .text      getColorChan__13J3DColorBlockFUl */
+/* 8000DFF8-8000E000 008938 0008+00 0/0 2/0 0/0 .text            getColorChan__13J3DColorBlockFUl */
 bool J3DColorBlock::getColorChan(u32 param_0) {
     return false;
 }
 
-/* 8000E000-8000E008 0008+00 s=0 e=2 z=0  None .text      getMatColor__13J3DColorBlockFUl */
+/* 8000E000-8000E008 008940 0008+00 0/0 2/0 0/0 .text            getMatColor__13J3DColorBlockFUl */
 bool J3DColorBlock::getMatColor(u32 param_0) {
     return false;
 }
 
-/* 8000E008-8000E010 0008+00 s=0 e=2 z=0  None .text      getColorChanNum__13J3DColorBlockCFv */
+/* 8000E008-8000E010 008948 0008+00 0/0 2/0 0/0 .text            getColorChanNum__13J3DColorBlockCFv
+ */
 bool J3DColorBlock::getColorChanNum() const {
     return false;
 }
 
-/* 8000E010-8000E014 0004+00 s=0 e=5 z=0  None .text      setZCompLoc__10J3DPEBlockFUc */
+/* 8000E010-8000E014 008950 0004+00 0/0 5/0 0/0 .text            setZCompLoc__10J3DPEBlockFUc */
 void J3DPEBlock::setZCompLoc(u8 param_0) {
     /* empty function */
 }
 
-/* 8000E014-8000E018 0004+00 s=0 e=5 z=0  None .text      setZMode__10J3DPEBlockF8J3DZMode */
+/* 8000E014-8000E018 008954 0004+00 0/0 5/0 0/0 .text            setZMode__10J3DPEBlockF8J3DZMode */
 void J3DPEBlock::setZMode(J3DZMode param_0) {
     /* empty function */
 }
 
-/* 8000E018-8000E01C 0004+00 s=0 e=5 z=0  None .text      setBlend__10J3DPEBlockFRC8J3DBlend */
+/* 8000E018-8000E01C 008958 0004+00 0/0 5/0 0/0 .text            setBlend__10J3DPEBlockFRC8J3DBlend
+ */
 void J3DPEBlock::setBlend(J3DBlend const& param_0) {
     /* empty function */
 }
 
-/* 8000E01C-8000E020 0004+00 s=0 e=5 z=0  None .text setAlphaComp__10J3DPEBlockFRC12J3DAlphaComp
+/* 8000E01C-8000E020 00895C 0004+00 0/0 5/0 0/0 .text setAlphaComp__10J3DPEBlockFRC12J3DAlphaComp
  */
 void J3DPEBlock::setAlphaComp(J3DAlphaComp const& param_0) {
     /* empty function */
 }
 
-/* 8000E020-8000E024 0004+00 s=0 e=2 z=0  None .text
+/* 8000E020-8000E024 008960 0004+00 0/0 2/0 0/0 .text
  * setIndTexCoordScale__11J3DIndBlockFUl19J3DIndTexCoordScale   */
 void J3DIndBlock::setIndTexCoordScale(u32 param_0, J3DIndTexCoordScale param_1) {
     /* empty function */
 }
 
-/* 8000E024-8000E060 003C+00 s=0 e=2 z=0  None .text      __dt__19J3DIndTexCoordScaleFv */
+/* 8000E024-8000E060 008964 003C+00 0/0 2/2 0/0 .text            __dt__19J3DIndTexCoordScaleFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2257,13 +2184,13 @@ asm J3DIndTexCoordScale::~J3DIndTexCoordScale() {
 }
 #pragma pop
 
-/* 8000E060-8000E064 0004+00 s=0 e=2 z=0  None .text setIndTexMtx__11J3DIndBlockFUl12J3DIndTexMtx
+/* 8000E060-8000E064 0089A0 0004+00 0/0 2/0 0/0 .text setIndTexMtx__11J3DIndBlockFUl12J3DIndTexMtx
  */
 void J3DIndBlock::setIndTexMtx(u32 param_0, J3DIndTexMtx param_1) {
     /* empty function */
 }
 
-/* 8000E064-8000E0A0 003C+00 s=0 e=2 z=0  None .text      __dt__12J3DIndTexMtxFv */
+/* 8000E064-8000E0A0 0089A4 003C+00 0/0 2/2 0/0 .text            __dt__12J3DIndTexMtxFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2273,102 +2200,107 @@ asm J3DIndTexMtx::~J3DIndTexMtx() {
 }
 #pragma pop
 
-/* 8000E0A0-8000E0A4 0004+00 s=0 e=2 z=0  None .text      setIndTexStageNum__11J3DIndBlockFUc */
+/* 8000E0A0-8000E0A4 0089E0 0004+00 0/0 2/0 0/0 .text            setIndTexStageNum__11J3DIndBlockFUc
+ */
 void J3DIndBlock::setIndTexStageNum(u8 param_0) {
     /* empty function */
 }
 
-/* 8000E0A4-8000E0A8 0004+00 s=0 e=2 z=0  None .text
+/* 8000E0A4-8000E0A8 0089E4 0004+00 0/0 2/0 0/0 .text
  * setIndTevStage__11J3DTevBlockFUl14J3DIndTevStage             */
 void J3DTevBlock::setIndTevStage(u32 param_0, J3DIndTevStage param_1) {
     /* empty function */
 }
 
-/* 8000E0A8-8000E0AC 0004+00 s=0 e=2 z=0  None .text      setTevStage__11J3DTevBlockFUl11J3DTevStage
+/* 8000E0A8-8000E0AC 0089E8 0004+00 0/0 2/0 0/0 .text setTevStage__11J3DTevBlockFUl11J3DTevStage
  */
 void J3DTevBlock::setTevStage(u32 param_0, J3DTevStage param_1) {
     /* empty function */
 }
 
-/* 8000E0AC-8000E0B0 0004+00 s=0 e=2 z=0  None .text      setTexNo__11J3DTevBlockFUlUs */
+/* 8000E0AC-8000E0B0 0089EC 0004+00 0/0 2/0 0/0 .text            setTexNo__11J3DTevBlockFUlUs */
 void J3DTevBlock::setTexNo(u32 param_0, u16 param_1) {
     /* empty function */
 }
 
-/* 8000E0B0-8000E0B4 0004+00 s=0 e=4 z=0  None .text
+/* 8000E0B0-8000E0B4 0089F0 0004+00 0/0 4/0 0/0 .text
  * setTevSwapModeTable__11J3DTevBlockFUl19J3DTevSwapModeTable   */
 void J3DTevBlock::setTevSwapModeTable(u32 param_0, J3DTevSwapModeTable param_1) {
     /* empty function */
 }
 
-/* 8000E0B4-8000E0B8 0004+00 s=0 e=4 z=0  None .text      setTevKAlphaSel__11J3DTevBlockFUlUc */
+/* 8000E0B4-8000E0B8 0089F4 0004+00 0/0 4/0 0/0 .text            setTevKAlphaSel__11J3DTevBlockFUlUc
+ */
 void J3DTevBlock::setTevKAlphaSel(u32 param_0, u8 param_1) {
     /* empty function */
 }
 
-/* 8000E0B8-8000E0BC 0004+00 s=0 e=3 z=0  None .text      setTevKColorSel__11J3DTevBlockFUlUc */
+/* 8000E0B8-8000E0BC 0089F8 0004+00 0/0 3/0 0/0 .text            setTevKColorSel__11J3DTevBlockFUlUc
+ */
 void J3DTevBlock::setTevKColorSel(u32 param_0, u8 param_1) {
     /* empty function */
 }
 
-/* 8000E0BC-8000E0C0 0004+00 s=0 e=2 z=0  None .text      setTevOrder__11J3DTevBlockFUl11J3DTevOrder
+/* 8000E0BC-8000E0C0 0089FC 0004+00 0/0 2/0 0/0 .text setTevOrder__11J3DTevBlockFUl11J3DTevOrder
  */
 void J3DTevBlock::setTevOrder(u32 param_0, J3DTevOrder param_1) {
     /* empty function */
 }
 
-/* 8000E0C0-8000E0C4 0004+00 s=0 e=3 z=0  None .text      setTevKColor__11J3DTevBlockFUl10J3DGXColor
+/* 8000E0C0-8000E0C4 008A00 0004+00 0/0 3/0 0/0 .text setTevKColor__11J3DTevBlockFUl10J3DGXColor
  */
 void J3DTevBlock::setTevKColor(u32 param_0, J3DGXColor param_1) {
     /* empty function */
 }
 
-/* 8000E0C4-8000E0C8 0004+00 s=0 e=3 z=0  None .text setTevColor__11J3DTevBlockFUl13J3DGXColorS10
+/* 8000E0C4-8000E0C8 008A04 0004+00 0/0 3/0 0/0 .text setTevColor__11J3DTevBlockFUl13J3DGXColorS10
  */
 void J3DTevBlock::setTevColor(u32 param_0, J3DGXColorS10 param_1) {
     /* empty function */
 }
 
-/* 8000E0C8-8000E0CC 0004+00 s=0 e=2 z=0  None .text      setTevStageNum__11J3DTevBlockFUc */
+/* 8000E0C8-8000E0CC 008A08 0004+00 0/0 2/0 0/0 .text            setTevStageNum__11J3DTevBlockFUc */
 void J3DTevBlock::setTevStageNum(u8 param_0) {
     /* empty function */
 }
 
-/* 8000E0CC-8000E0D0 0004+00 s=0 e=2 z=0  None .text
+/* 8000E0CC-8000E0D0 008A0C 0004+00 0/0 2/0 0/0 .text
  * setTexCoord__14J3DTexGenBlockFUlPC11J3DTexCoord              */
 void J3DTexGenBlock::setTexCoord(u32 param_0, J3DTexCoord const* param_1) {
     /* empty function */
 }
 
-/* 8000E0D0-8000E0D4 0004+00 s=0 e=2 z=0  None .text      setTexGenNum__14J3DTexGenBlockFUl */
+/* 8000E0D0-8000E0D4 008A10 0004+00 0/0 2/0 0/0 .text            setTexGenNum__14J3DTexGenBlockFUl
+ */
 void J3DTexGenBlock::setTexGenNum(u32 param_0) {
     /* empty function */
 }
 
-/* 8000E0D4-8000E0D8 0004+00 s=0 e=3 z=0  None .text setAmbColor__13J3DColorBlockFUl10J3DGXColor
+/* 8000E0D4-8000E0D8 008A14 0004+00 0/0 3/0 0/0 .text setAmbColor__13J3DColorBlockFUl10J3DGXColor
  */
 void J3DColorBlock::setAmbColor(u32 param_0, J3DGXColor param_1) {
     /* empty function */
 }
 
-/* 8000E0D8-8000E0DC 0004+00 s=0 e=2 z=0  None .text
+/* 8000E0D8-8000E0DC 008A18 0004+00 0/0 2/0 0/0 .text
  * setColorChan__13J3DColorBlockFUlRC12J3DColorChan             */
 void J3DColorBlock::setColorChan(u32 param_0, J3DColorChan const& param_1) {
     /* empty function */
 }
 
-/* 8000E0DC-8000E0E0 0004+00 s=0 e=2 z=0  None .text setMatColor__13J3DColorBlockFUl10J3DGXColor
+/* 8000E0DC-8000E0E0 008A1C 0004+00 0/0 2/0 0/0 .text setMatColor__13J3DColorBlockFUl10J3DGXColor
  */
 void J3DColorBlock::setMatColor(u32 param_0, J3DGXColor param_1) {
     /* empty function */
 }
 
-/* 8000E0E0-8000E0E4 0004+00 s=0 e=2 z=0  None .text      setColorChanNum__13J3DColorBlockFUc */
+/* 8000E0E0-8000E0E4 008A20 0004+00 0/0 2/0 0/0 .text            setColorChanNum__13J3DColorBlockFUc
+ */
 void J3DColorBlock::setColorChanNum(u8 param_0) {
     /* empty function */
 }
 
-/* 8000E0E4-8000E0F0 000C+00 s=0 e=1 z=0  None .text      __ct__19J3DIndTexCoordScaleFv */
+/* 8000E0E4-8000E0F0 008A24 000C+00 0/0 1/1 0/0 .text            __ct__19J3DIndTexCoordScaleFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2378,7 +2310,7 @@ asm J3DIndTexCoordScale::J3DIndTexCoordScale() {
 }
 #pragma pop
 
-/* 8000E0F0-8000E128 0038+00 s=0 e=1 z=0  None .text      __ct__12J3DIndTexMtxFv */
+/* 8000E0F0-8000E128 008A30 0038+00 0/0 1/1 0/0 .text            __ct__12J3DIndTexMtxFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2388,7 +2320,7 @@ asm J3DIndTexMtx::J3DIndTexMtx() {
 }
 #pragma pop
 
-/* 8000E128-8000E134 000C+00 s=0 e=1 z=0  None .text      __ct__14J3DIndTexOrderFv */
+/* 8000E128-8000E134 008A68 000C+00 0/0 1/1 0/0 .text            __ct__14J3DIndTexOrderFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2398,7 +2330,7 @@ asm J3DIndTexOrder::J3DIndTexOrder() {
 }
 #pragma pop
 
-/* 8000E134-8000E140 000C+00 s=0 e=1 z=0  None .text      __ct__19J3DTevSwapModeTableFv */
+/* 8000E134-8000E140 008A74 000C+00 0/0 1/1 0/0 .text            __ct__19J3DTevSwapModeTableFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2408,7 +2340,7 @@ asm J3DTevSwapModeTable::J3DTevSwapModeTable() {
 }
 #pragma pop
 
-/* 8000E140-8000E14C 000C+00 s=0 e=2 z=0  None .text      __ct__11J3DTevOrderFv */
+/* 8000E140-8000E14C 008A80 000C+00 0/0 2/2 0/0 .text            __ct__11J3DTevOrderFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2418,7 +2350,7 @@ asm J3DTevOrder::J3DTevOrder() {
 }
 #pragma pop
 
-/* 8000E14C-8000E230 00E4+00 s=0 e=2 z=0  None .text      __ct__14J3DIndTevStageFv */
+/* 8000E14C-8000E230 008A8C 00E4+00 0/0 2/2 0/0 .text            __ct__14J3DIndTevStageFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2428,7 +2360,7 @@ asm J3DIndTevStage::J3DIndTevStage() {
 }
 #pragma pop
 
-/* 8000E230-8000E298 0068+00 s=0 e=4 z=0  None .text      __ct__11J3DTevStageFv */
+/* 8000E230-8000E298 008B70 0068+00 0/0 4/4 0/0 .text            __ct__11J3DTevStageFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2438,7 +2370,7 @@ asm J3DTevStage::J3DTevStage() {
 }
 #pragma pop
 
-/* 8000E298-8000E460 01C8+00 s=1 e=1 z=0  None .text
+/* 8000E298-8000E460 008BD8 01C8+00 1/1 1/1 0/0 .text
  * setTevStageInfo__11J3DTevStageFRC15J3DTevStageInfo           */
 #pragma push
 #pragma optimization_level 0
@@ -2449,12 +2381,12 @@ asm void J3DTevStage::setTevStageInfo(J3DTevStageInfo const& param_0) {
 }
 #pragma pop
 
-/* 8000E460-8000E464 0004+00 s=0 e=3 z=0  None .text      __ct__13J3DGXColorS10Fv */
+/* 8000E460-8000E464 008DA0 0004+00 0/0 3/3 0/0 .text            __ct__13J3DGXColorS10Fv */
 J3DGXColorS10::J3DGXColorS10() {
     /* empty function */
 }
 
-/* 8000E464-8000E47C 0018+00 s=0 e=2 z=0  None .text      __ct__11J3DTexCoordFv */
+/* 8000E464-8000E47C 008DA4 0018+00 0/0 2/2 0/0 .text            __ct__11J3DTexCoordFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2464,7 +2396,7 @@ asm J3DTexCoord::J3DTexCoord() {
 }
 #pragma pop
 
-/* 8000E47C-8000E538 00BC+00 s=0 e=1 z=0  None .text      __ct__12J3DColorChanFv */
+/* 8000E47C-8000E538 008DBC 00BC+00 0/0 1/1 0/0 .text            __ct__12J3DColorChanFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2474,13 +2406,13 @@ asm J3DColorChan::J3DColorChan() {
 }
 #pragma pop
 
-/* 8000E538-8000E53C 0004+00 s=0 e=3 z=0  None .text      __ct__10J3DGXColorFv */
+/* 8000E538-8000E53C 008E78 0004+00 0/0 3/3 0/0 .text            __ct__10J3DGXColorFv */
 J3DGXColor::J3DGXColor() {
     /* empty function */
 }
 
-/* 8000E53C-8000E5F8 00BC+00 s=0 e=0 z=19  None .text create__21mDoExt_invisibleModelFP8J3DModelUc
- */
+/* 8000E53C-8000E5F8 008E7C 00BC+00 0/0 0/0 19/19 .text
+ * create__21mDoExt_invisibleModelFP8J3DModelUc                 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2490,7 +2422,7 @@ asm void mDoExt_invisibleModel::create(J3DModel* param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 8000E5F8-8000E654 005C+00 s=2 e=0 z=0  None .text      __dt__19mDoExt_invJntPacketFv */
+/* 8000E5F8-8000E654 008F38 005C+00 2/1 0/0 0/0 .text            __dt__19mDoExt_invJntPacketFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2500,7 +2432,7 @@ asm mDoExt_invJntPacket::~mDoExt_invJntPacket() {
 }
 #pragma pop
 
-/* 8000E654-8000E680 002C+00 s=1 e=0 z=0  None .text      __ct__19mDoExt_invJntPacketFv */
+/* 8000E654-8000E680 008F94 002C+00 1/1 0/0 0/0 .text            __ct__19mDoExt_invJntPacketFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2510,7 +2442,7 @@ asm mDoExt_invJntPacket::mDoExt_invJntPacket() {
 }
 #pragma pop
 
-/* 8000E680-8000E6C8 0048+00 s=0 e=1 z=0  None .text      __dt__9J3DPacketFv */
+/* 8000E680-8000E6C8 008FC0 0048+00 0/0 1/0 0/0 .text            __dt__9J3DPacketFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2520,7 +2452,7 @@ asm J3DPacket::~J3DPacket() {
 }
 #pragma pop
 
-/* 8000E6C8-8000E7C0 00F8+00 s=1 e=0 z=0  None .text      entryJoint__21mDoExt_invisibleModelFP4cXyz
+/* 8000E6C8-8000E7C0 009008 00F8+00 1/1 0/0 0/0 .text entryJoint__21mDoExt_invisibleModelFP4cXyz
  */
 #pragma push
 #pragma optimization_level 0
@@ -2531,8 +2463,7 @@ asm void mDoExt_invisibleModel::entryJoint(cXyz* param_0) {
 }
 #pragma pop
 
-/* 8000E7C0-8000E834 0074+00 s=0 e=0 z=17  None .text      entryDL__21mDoExt_invisibleModelFP4cXyz
- */
+/* 8000E7C0-8000E834 009100 0074+00 0/0 0/0 17/17 .text entryDL__21mDoExt_invisibleModelFP4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2542,7 +2473,7 @@ asm void mDoExt_invisibleModel::entryDL(cXyz* param_0) {
 }
 #pragma pop
 
-/* 8000E834-8000EA80 024C+00 s=0 e=0 z=7  None .text
+/* 8000E834-8000EA80 009174 024C+00 0/0 0/0 7/7 .text
  * mDoExt_setupShareTexture__FP12J3DModelDataP12J3DModelData    */
 #pragma push
 #pragma optimization_level 0
@@ -2553,8 +2484,1082 @@ asm void mDoExt_setupShareTexture(J3DModelData* param_0, J3DModelData* param_1) 
 }
 #pragma pop
 
+/* 8000EA80-8000ECC0 0093C0 0240+00 0/0 0/0 6/6 .text mDoExt_setupStageTexture__FP12J3DModelData
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_setupStageTexture(J3DModelData* param_0) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_setupStageTexture__FP12J3DModelData.s"
+}
+#pragma pop
+
 /* ############################################################################################## */
-/* 803740C0-803740D4 0012+02 s=1 e=0 z=0  None .rodata    fontdata$8224 */
+/* 80450C20-80450C24 000120 0004+00 2/2 0/0 0/0 .sbss            AssertHeap */
+static u8 AssertHeap[4];
+
+/* 8000ECC0-8000ECE4 009600 0024+00 0/0 1/1 0/0 .text            mDoExt_createAssertHeap__FP7JKRHeap
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_createAssertHeap(JKRHeap* param_0) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_createAssertHeap__FP7JKRHeap.s"
+}
+#pragma pop
+
+/* 8000ECE4-8000ECEC 009624 0008+00 0/0 3/3 0/0 .text            mDoExt_getAssertHeap__Fv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_getAssertHeap() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_getAssertHeap__Fv.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80450C24-80450C28 000124 0004+00 2/2 0/0 0/0 .sbss            DbPrintHeap */
+static u8 DbPrintHeap[4];
+
+/* 8000ECEC-8000ED14 00962C 0028+00 0/0 1/1 0/0 .text mDoExt_createDbPrintHeap__FUlP7JKRHeap */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_createDbPrintHeap(u32 param_0, JKRHeap* param_1) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_createDbPrintHeap__FUlP7JKRHeap.s"
+}
+#pragma pop
+
+/* 8000ED14-8000ED1C 009654 0008+00 0/0 1/1 0/0 .text            mDoExt_getDbPrintHeap__Fv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_getDbPrintHeap() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_getDbPrintHeap__Fv.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80450C28-80450C2C 000128 0004+00 2/2 3/3 0/0 .sbss            gameHeap */
+extern u8 gameHeap[4];
+u8 gameHeap[4];
+
+/* 8000ED1C-8000ED50 00965C 0034+00 0/0 1/1 0/0 .text            mDoExt_createGameHeap__FUlP7JKRHeap
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_createGameHeap(u32 param_0, JKRHeap* param_1) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_createGameHeap__FUlP7JKRHeap.s"
+}
+#pragma pop
+
+/* 8000ED50-8000ED58 009690 0008+00 3/3 10/10 1/1 .text            mDoExt_getGameHeap__Fv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_getGameHeap() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_getGameHeap__Fv.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80450C2C-80450C30 00012C 0004+00 2/2 3/3 0/0 .sbss            zeldaHeap */
+extern u8 zeldaHeap[4];
+u8 zeldaHeap[4];
+
+/* 8000ED58-8000ED80 009698 0028+00 0/0 1/1 0/0 .text mDoExt_createZeldaHeap__FUlP7JKRHeap */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_createZeldaHeap(u32 param_0, JKRHeap* param_1) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_createZeldaHeap__FUlP7JKRHeap.s"
+}
+#pragma pop
+
+/* 8000ED80-8000ED88 0096C0 0008+00 4/4 4/4 0/0 .text            mDoExt_getZeldaHeap__Fv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_getZeldaHeap() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_getZeldaHeap__Fv.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80450C30-80450C34 000130 0004+00 2/2 1/1 0/0 .sbss            commandHeap */
+extern u8 commandHeap[4];
+u8 commandHeap[4];
+
+/* 8000ED88-8000EDB0 0096C8 0028+00 0/0 1/1 0/0 .text mDoExt_createCommandHeap__FUlP7JKRHeap */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_createCommandHeap(u32 param_0, JKRHeap* param_1) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_createCommandHeap__FUlP7JKRHeap.s"
+}
+#pragma pop
+
+/* 8000EDB0-8000EDB8 0096F0 0008+00 0/0 6/6 0/0 .text            mDoExt_getCommandHeap__Fv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_getCommandHeap() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_getCommandHeap__Fv.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80450C34-80450C38 000134 0004+00 3/3 5/5 0/0 .sbss            archiveHeap */
+extern u8 archiveHeap[4];
+u8 archiveHeap[4];
+
+/* 8000EDB8-8000EDEC 0096F8 0034+00 0/0 1/1 0/0 .text mDoExt_createArchiveHeap__FUlP7JKRHeap */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_createArchiveHeap(u32 param_0, JKRHeap* param_1) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_createArchiveHeap__FUlP7JKRHeap.s"
+}
+#pragma pop
+
+/* 8000EDEC-8000EDF4 00972C 0008+00 0/0 18/18 1/1 .text            mDoExt_getArchiveHeap__Fv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_getArchiveHeap() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_getArchiveHeap__Fv.s"
+}
+#pragma pop
+
+/* 8000EDF4-8000EDFC 009734 0008+00 0/0 1/1 0/0 .text            mDoExt_getArchiveHeapPtr__Fv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_getArchiveHeapPtr() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_getArchiveHeapPtr__Fv.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80450C38-80450C3C 000138 0004+00 2/2 0/0 0/0 .sbss            j2dHeap */
+static u8 j2dHeap[4];
+
+/* 8000EDFC-8000EE30 00973C 0034+00 0/0 1/1 0/0 .text            mDoExt_createJ2dHeap__FUlP7JKRHeap
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_createJ2dHeap(u32 param_0, JKRHeap* param_1) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_createJ2dHeap__FUlP7JKRHeap.s"
+}
+#pragma pop
+
+/* 8000EE30-8000EE38 009770 0008+00 0/0 7/7 0/0 .text            mDoExt_getJ2dHeap__Fv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_getJ2dHeap() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_getJ2dHeap__Fv.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80450C3C-80450C40 00013C 0004+00 1/1 0/0 0/0 .sbss            HostIOHeap */
+static u8 HostIOHeap[4];
+
+/* 8000EE38-8000EE40 009778 0008+00 0/0 1/1 0/0 .text            mDoExt_getHostIOHeap__Fv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_getHostIOHeap() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_getHostIOHeap__Fv.s"
+}
+#pragma pop
+
+/* 8000EE40-8000EED8 009780 0098+00 3/3 0/0 0/0 .text mDoExt_createSolidHeap__FUlP7JKRHeapUl */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+static asm void mDoExt_createSolidHeap(u32 param_0, JKRHeap* param_1, u32 param_2) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_createSolidHeap__FUlP7JKRHeapUl.s"
+}
+#pragma pop
+
+/* 8000EED8-8000EF20 009818 0048+00 0/0 2/2 0/0 .text mDoExt_createSolidHeapFromGame__FUlUl */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_createSolidHeapFromGame(u32 param_0, u32 param_1) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_createSolidHeapFromGame__FUlUl.s"
+}
+#pragma pop
+
+/* 8000EF20-8000EF68 009860 0048+00 0/0 1/1 0/0 .text mDoExt_createSolidHeapFromSystem__FUlUl */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_createSolidHeapFromSystem(u32 param_0, u32 param_1) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_createSolidHeapFromSystem__FUlUl.s"
+}
+#pragma pop
+
+/* 8000EF68-8000EFBC 0098A8 0054+00 2/2 0/0 0/0 .text
+ * mDoExt_createSolidHeapToCurrent__FPP7JKRHeapUlP7JKRHeapUl    */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+static asm void mDoExt_createSolidHeapToCurrent(JKRHeap** param_0, u32 param_1, JKRHeap* param_2,
+                                                u32 param_3) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_createSolidHeapToCurrent__FPP7JKRHeapUlP7JKRHeapUl.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80450C40-80450C44 000140 0004+00 2/2 0/0 0/0 .sbss            mDoExt_SaveCurrentHeap */
+static u8 mDoExt_SaveCurrentHeap[4];
+
+/* 8000EFBC-8000EFF4 0098FC 0038+00 1/1 3/3 0/0 .text
+ * mDoExt_createSolidHeapToCurrent__FUlP7JKRHeapUl              */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_createSolidHeapToCurrent(u32 param_0, JKRHeap* param_1, u32 param_2) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_createSolidHeapToCurrent__FUlP7JKRHeapUl.s"
+}
+#pragma pop
+
+/* 8000EFF4-8000F044 009934 0050+00 0/0 2/2 0/0 .text
+ * mDoExt_createSolidHeapFromGameToCurrent__FPP7JKRHeapUlUl     */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_createSolidHeapFromGameToCurrent(JKRHeap** param_0, u32 param_1, u32 param_2) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_createSolidHeapFromGameToCurrent__FPP7JKRHeapUlUl.s"
+}
+#pragma pop
+
+/* 8000F044-8000F08C 009984 0048+00 0/0 7/7 0/0 .text
+ * mDoExt_createSolidHeapFromGameToCurrent__FUlUl               */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_createSolidHeapFromGameToCurrent(u32 param_0, u32 param_1) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_createSolidHeapFromGameToCurrent__FUlUl.s"
+}
+#pragma pop
+
+/* 8000F08C-8000F158 0099CC 00CC+00 1/1 11/11 0/0 .text mDoExt_adjustSolidHeap__FP12JKRSolidHeap
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_adjustSolidHeap(JKRSolidHeap* param_0) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_adjustSolidHeap__FP12JKRSolidHeap.s"
+}
+#pragma pop
+
+/* 8000F158-8000F18C 009A98 0034+00 0/0 1/1 0/0 .text
+ * mDoExt_adjustSolidHeapToSystem__FP12JKRSolidHeap             */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_adjustSolidHeapToSystem(JKRSolidHeap* param_0) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_adjustSolidHeapToSystem__FP12JKRSolidHeap.s"
+}
+#pragma pop
+
+/* 8000F18C-8000F1AC 009ACC 0020+00 0/0 13/13 0/0 .text mDoExt_destroySolidHeap__FP12JKRSolidHeap
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_destroySolidHeap(JKRSolidHeap* param_0) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_destroySolidHeap__FP12JKRSolidHeap.s"
+}
+#pragma pop
+
+/* 8000F1AC-8000F1CC 009AEC 0020+00 0/0 7/7 0/0 .text mDoExt_destroyExpHeap__FP10JKRExpHeap */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_destroyExpHeap(JKRExpHeap* param_0) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_destroyExpHeap__FP10JKRExpHeap.s"
+}
+#pragma pop
+
+/* 8000F1CC-8000F1EC 009B0C 0020+00 1/1 78/78 2/2 .text            mDoExt_setCurrentHeap__FP7JKRHeap
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_setCurrentHeap(JKRHeap* param_0) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_setCurrentHeap__FP7JKRHeap.s"
+}
+#pragma pop
+
+/* 8000F1EC-8000F1F4 009B2C 0008+00 0/0 4/4 0/0 .text            mDoExt_getCurrentHeap__Fv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_getCurrentHeap() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_getCurrentHeap__Fv.s"
+}
+#pragma pop
+
+/* 8000F1F4-8000F220 009B34 002C+00 1/1 9/9 0/0 .text            mDoExt_restoreCurrentHeap__Fv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_restoreCurrentHeap() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_restoreCurrentHeap__Fv.s"
+}
+#pragma pop
+
+/* 8000F220-8000F26C 009B60 004C+00 0/0 1/1 0/0 .text mDoExt_resIDToIndex__FP10JKRArchiveUs */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_resIDToIndex(JKRArchive* param_0, u16 param_1) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_resIDToIndex__FP10JKRArchiveUs.s"
+}
+#pragma pop
+
+/* 8000F26C-8000F4B0 009BAC 0244+00 1/0 0/0 0/0 .text            calc__25mDoExt_MtxCalcAnmBlendTblFv
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_MtxCalcAnmBlendTbl::calc() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/calc__25mDoExt_MtxCalcAnmBlendTblFv.s"
+}
+#pragma pop
+
+/* 8000F4B0-8000F848 009DF0 0398+00 1/0 0/0 0/0 .text calc__28mDoExt_MtxCalcAnmBlendTblOldFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_MtxCalcAnmBlendTblOld::calc() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/calc__28mDoExt_MtxCalcAnmBlendTblOldFv.s"
+}
+#pragma pop
+
+/* 8000F848-8000F8CC 00A188 0084+00 0/0 26/26 8/8 .text
+ * initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs             */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_MtxCalcOldFrame::initOldFrameMorf(f32 param_0, u16 param_1, u16 param_2) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs.s"
+}
+#pragma pop
+
+/* 8000F8CC-8000F950 00A20C 0084+00 2/2 0/0 0/0 .text
+ * decOldFrameMorfCounter__22mDoExt_MtxCalcOldFrameFv           */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_MtxCalcOldFrame::decOldFrameMorfCounter() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/decOldFrameMorfCounter__22mDoExt_MtxCalcOldFrameFv.s"
+}
+#pragma pop
+
+/* 8000F950-8000F9D8 00A290 0088+00 3/3 0/0 0/0 .text            __ct__13mDoExt_morf_cFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm mDoExt_morf_c::mDoExt_morf_c() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/__ct__13mDoExt_morf_cFv.s"
+}
+#pragma pop
+
+/* 8000F9D8-8000FA20 00A318 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm J3DFrameCtrl::~J3DFrameCtrl() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/__dt__12J3DFrameCtrlFv.s"
+}
+#pragma pop
+
+/* 8000FA20-8000FA8C 00A360 006C+00 1/0 0/0 0/0 .text
+ * __dt__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>Fv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+extern "C" asm void func_8000FA20() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/func_8000FA20.s"
+}
+#pragma pop
+
+/* 8000FA8C-8000FAE8 00A3CC 005C+00 1/0 0/0 0/0 .text            __dt__19J3DMtxCalcNoAnmBaseFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm J3DMtxCalcNoAnmBase::~J3DMtxCalcNoAnmBase() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/__dt__19J3DMtxCalcNoAnmBaseFv.s"
+}
+#pragma pop
+
+/* 8000FAE8-8000FB7C 00A428 0094+00 4/3 0/0 0/0 .text            __dt__13mDoExt_morf_cFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm mDoExt_morf_c::~mDoExt_morf_c() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/__dt__13mDoExt_morf_cFv.s"
+}
+#pragma pop
+
+/* 8000FB7C-8000FBC0 00A4BC 0044+00 3/3 4/4 20/20 .text            setMorf__13mDoExt_morf_cFf */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_morf_c::setMorf(f32 param_0) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/setMorf__13mDoExt_morf_cFf.s"
+}
+#pragma pop
+
+/* 8000FBC0-8000FC4C 00A500 008C+00 3/3 0/0 0/0 .text            frameUpdate__13mDoExt_morf_cFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_morf_c::frameUpdate() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/frameUpdate__13mDoExt_morf_cFv.s"
+}
+#pragma pop
+
+/* 8000FC4C-8000FD10 00A58C 00C4+00 0/0 0/0 34/34 .text
+ * __ct__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm mDoExt_McaMorf::mDoExt_McaMorf(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
+                                   mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
+                                   int param_4, f32 param_5, int param_6, int param_7, int param_8,
+                                   void* param_9, u32 param_10, u32 param_11) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/func_8000FC4C.s"
+}
+#pragma pop
+
+/* 8000FD10-8000FD94 00A650 0084+00 1/0 0/0 0/0 .text            __dt__14mDoExt_McaMorfFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm mDoExt_McaMorf::~mDoExt_McaMorf() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/__dt__14mDoExt_McaMorfFv.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80451B28-80451B2C 000128 0004+00 3/3 0/0 0/0 .sdata2          @5939 */
+SECTION_SDATA2 static f32 lit_5939 = -1.0f;
+
+/* 8000FD94-80010074 00A6D4 02E0+00 1/1 0/0 0/0 .text
+ * create__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorf::create(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
+                                mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
+                                int param_4, f32 param_5, int param_6, int param_7, int param_8,
+                                void* param_9, u32 param_10, u32 param_11) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/func_8000FD94.s"
+}
+#pragma pop
+
+/* 80010074-8001037C 00A9B4 0308+00 1/0 0/0 0/0 .text            calc__14mDoExt_McaMorfFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorf::calc() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/calc__14mDoExt_McaMorfFv.s"
+}
+#pragma pop
+
+/* 8001037C-800105C8 00ACBC 024C+00 1/1 1/1 29/29 .text
+ * setAnm__14mDoExt_McaMorfFP15J3DAnmTransformiffffPv           */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorf::setAnm(J3DAnmTransform* param_0, int param_1, f32 param_2, f32 param_3,
+                                f32 param_4, f32 param_5, void* param_6) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/setAnm__14mDoExt_McaMorfFP15J3DAnmTransformiffffPv.s"
+}
+#pragma pop
+
+/* 800105C8-80010680 00AF08 00B8+00 0/0 1/1 37/37 .text            play__14mDoExt_McaMorfFP3VecUlSc
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorf::play(Vec* param_0, u32 param_1, s8 param_2) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/play__14mDoExt_McaMorfFP3VecUlSc.s"
+}
+#pragma pop
+
+/* 80010680-800106AC 00AFC0 002C+00 0/0 0/0 33/33 .text            entryDL__14mDoExt_McaMorfFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorf::entryDL() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/entryDL__14mDoExt_McaMorfFv.s"
+}
+#pragma pop
+
+/* 800106AC-80010710 00AFEC 0064+00 0/0 0/0 37/37 .text            modelCalc__14mDoExt_McaMorfFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorf::modelCalc() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/modelCalc__14mDoExt_McaMorfFv.s"
+}
+#pragma pop
+
+/* 80010710-800107D0 00B050 00C0+00 1/1 0/0 0/0 .text
+ * getTransform__14mDoExt_McaMorfFUsP16J3DTransformInfo         */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorf::getTransform(u16 param_0, J3DTransformInfo* param_1) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/getTransform__14mDoExt_McaMorfFUsP16J3DTransformInfo.s"
+}
+#pragma pop
+
+/* 800107D0-80010888 00B110 00B8+00 0/0 2/2 222/222 .text
+ * __ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm mDoExt_McaMorfSO::mDoExt_McaMorfSO(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
+                                       mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
+                                       int param_4, f32 param_5, int param_6, int param_7,
+                                       Z2Creature* param_8, u32 param_9, u32 param_10) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/func_800107D0.s"
+}
+#pragma pop
+
+/* 80010888-800108F0 00B1C8 0068+00 1/0 0/0 0/0 .text            __dt__16mDoExt_McaMorfSOFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm mDoExt_McaMorfSO::~mDoExt_McaMorfSO() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/__dt__16mDoExt_McaMorfSOFv.s"
+}
+#pragma pop
+
+/* 800108F0-80010B68 00B230 0278+00 1/1 0/0 0/0 .text
+ * create__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorfSO::create(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
+                                  mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
+                                  int param_4, f32 param_5, int param_6, int param_7,
+                                  Z2Creature* param_8, u32 param_9, u32 param_10) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/func_800108F0.s"
+}
+#pragma pop
+
+/* 80010B68-80010E70 00B4A8 0308+00 1/0 0/0 0/0 .text            calc__16mDoExt_McaMorfSOFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorfSO::calc() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/calc__16mDoExt_McaMorfSOFv.s"
+}
+#pragma pop
+
+/* 80010E70-800110B0 00B7B0 0240+00 1/1 5/5 208/208 .text
+ * setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff           */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorfSO::setAnm(J3DAnmTransform* param_0, int param_1, f32 param_2, f32 param_3,
+                                  f32 param_4, f32 param_5) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff.s"
+}
+#pragma pop
+
+/* 800110B0-80011154 00B9F0 00A4+00 0/0 5/5 143/143 .text            play__16mDoExt_McaMorfSOFUlSc
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorfSO::play(u32 param_0, s8 param_1) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/play__16mDoExt_McaMorfSOFUlSc.s"
+}
+#pragma pop
+
+/* 80011154-800111C0 00BA94 006C+00 0/0 0/0 4/4 .text            updateDL__16mDoExt_McaMorfSOFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorfSO::updateDL() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/updateDL__16mDoExt_McaMorfSOFv.s"
+}
+#pragma pop
+
+/* 800111C0-800111EC 00BB00 002C+00 0/0 5/5 137/137 .text            entryDL__16mDoExt_McaMorfSOFv
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorfSO::entryDL() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/entryDL__16mDoExt_McaMorfSOFv.s"
+}
+#pragma pop
+
+/* 800111EC-80011250 00BB2C 0064+00 0/0 4/4 174/174 .text            modelCalc__16mDoExt_McaMorfSOFv
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorfSO::modelCalc() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/modelCalc__16mDoExt_McaMorfSOFv.s"
+}
+#pragma pop
+
+/* 80011250-80011310 00BB90 00C0+00 1/1 0/0 1/1 .text
+ * getTransform__16mDoExt_McaMorfSOFUsP16J3DTransformInfo       */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorfSO::getTransform(u16 param_0, J3DTransformInfo* param_1) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/getTransform__16mDoExt_McaMorfSOFUsP16J3DTransformInfo.s"
+}
+#pragma pop
+
+/* 80011310-80011348 00BC50 0038+00 1/1 2/2 260/260 .text stopZelAnime__16mDoExt_McaMorfSOFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorfSO::stopZelAnime() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/stopZelAnime__16mDoExt_McaMorfSOFv.s"
+}
+#pragma pop
+
+/* 80011348-800113FC 00BC88 00B4+00 0/0 0/0 1/1 .text
+ * __ct__15mDoExt_McaMorf2FP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformP15J3DAnmTransformifiiP10Z2CreatureUlUl
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm mDoExt_McaMorf2::mDoExt_McaMorf2(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
+                                     mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
+                                     J3DAnmTransform* param_4, int param_5, f32 param_6,
+                                     int param_7, int param_8, Z2Creature* param_9, u32 param_10,
+                                     u32 param_11) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/func_80011348.s"
+}
+#pragma pop
+
+/* 800113FC-80011464 00BD3C 0068+00 1/0 0/0 0/0 .text            __dt__15mDoExt_McaMorf2Fv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm mDoExt_McaMorf2::~mDoExt_McaMorf2() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/__dt__15mDoExt_McaMorf2Fv.s"
+}
+#pragma pop
+
+/* 80011464-800116B4 00BDA4 0250+00 1/1 0/0 0/0 .text
+ * create__15mDoExt_McaMorf2FP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformP15J3DAnmTransformifiiP10Z2CreatureUlUl
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorf2::create(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
+                                 mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
+                                 J3DAnmTransform* param_4, int param_5, f32 param_6, int param_7,
+                                 int param_8, Z2Creature* param_9, u32 param_10, u32 param_11) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/func_80011464.s"
+}
+#pragma pop
+
+/* 800116B4-800116F4 00BFF4 0040+00 1/1 0/0 0/0 .text            ERROR_EXIT__15mDoExt_McaMorf2Fv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorf2::ERROR_EXIT() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/ERROR_EXIT__15mDoExt_McaMorf2Fv.s"
+}
+#pragma pop
+
+/* 800116F4-80011D70 00C034 067C+00 1/0 0/0 0/0 .text            calc__15mDoExt_McaMorf2Fv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorf2::calc() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/calc__15mDoExt_McaMorf2Fv.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80451B2C-80451B30 00012C 0004+00 6/6 0/0 0/0 .sdata2          @6819 */
+SECTION_SDATA2 static f32 lit_6819 = 0.5f;
+
+/* 80011D70-80011FCC 00C6B0 025C+00 1/1 0/0 2/2 .text
+ * setAnm__15mDoExt_McaMorf2FP15J3DAnmTransformP15J3DAnmTransformfiffff */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorf2::setAnm(J3DAnmTransform* param_0, J3DAnmTransform* param_1, f32 param_2,
+                                 int param_3, f32 param_4, f32 param_5, f32 param_6, f32 param_7) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/setAnm__15mDoExt_McaMorf2FP15J3DAnmTransformP15J3DAnmTransformfiffff.s"
+}
+#pragma pop
+
+/* 80011FCC-800120A0 00C90C 00D4+00 0/0 0/0 2/2 .text            setAnmRate__15mDoExt_McaMorf2Ff */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorf2::setAnmRate(f32 param_0) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/setAnmRate__15mDoExt_McaMorf2Ff.s"
+}
+#pragma pop
+
+/* 800120A0-80012144 00C9E0 00A4+00 0/0 0/0 1/1 .text            play__15mDoExt_McaMorf2FUlSc */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorf2::play(u32 param_0, s8 param_1) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/play__15mDoExt_McaMorf2FUlSc.s"
+}
+#pragma pop
+
+/* 80012144-80012170 00CA84 002C+00 0/0 0/0 1/1 .text            entryDL__15mDoExt_McaMorf2Fv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorf2::entryDL() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/entryDL__15mDoExt_McaMorf2Fv.s"
+}
+#pragma pop
+
+/* 80012170-800121E8 00CAB0 0078+00 0/0 0/0 1/1 .text            modelCalc__15mDoExt_McaMorf2Fv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorf2::modelCalc() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/modelCalc__15mDoExt_McaMorf2Fv.s"
+}
+#pragma pop
+
+/* 800121E8-80012220 00CB28 0038+00 1/1 0/0 1/1 .text            stopZelAnime__15mDoExt_McaMorf2Fv
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_McaMorf2::stopZelAnime() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/stopZelAnime__15mDoExt_McaMorf2Fv.s"
+}
+#pragma pop
+
+/* 80012220-800123D0 00CB60 01B0+00 1/0 0/0 0/0 .text            draw__19mDoExt_invJntPacketFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_invJntPacket::draw() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/draw__19mDoExt_invJntPacketFv.s"
+}
+#pragma pop
+
+/* 800123D0-800125DC 00CD10 020C+00 2/2 0/0 0/0 .text            init__15mDoExt_3Dline_cFUsii */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_3Dline_c::init(u16 param_0, int param_1, int param_2) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/init__15mDoExt_3Dline_cFUsii.s"
+}
+#pragma pop
+
+/* 800125DC-800125E0 00CF1C 0004+00 1/1 9/9 0/0 .text            __ct__4cXyzFv */
+cXyz::cXyz() {
+    /* empty function */
+}
+
+/* 800125E0-800126BC 00CF20 00DC+00 0/0 0/0 12/12 .text            init__19mDoExt_3DlineMat0_cFUsUsi
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_3DlineMat0_c::init(u16 param_0, u16 param_1, int param_2) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/init__19mDoExt_3DlineMat0_cFUsUsi.s"
+}
+#pragma pop
+
+/* 800126BC-800126C0 00CFFC 0004+00 2/2 0/0 0/0 .text            __ct__15mDoExt_3Dline_cFv */
+mDoExt_3Dline_c::mDoExt_3Dline_c() {
+    /* empty function */
+}
+
+/* 800126C0-80012774 00D000 00B4+00 1/0 0/0 0/0 .text setMaterial__19mDoExt_3DlineMat0_cFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_3DlineMat0_c::setMaterial() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/setMaterial__19mDoExt_3DlineMat0_cFv.s"
+}
+#pragma pop
+
+/* 80012774-80012874 00D0B4 0100+00 1/0 0/0 0/0 .text            draw__19mDoExt_3DlineMat0_cFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_3DlineMat0_c::draw() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/draw__19mDoExt_3DlineMat0_cFv.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80451B30-80451B38 000130 0004+04 4/4 0/0 0/0 .sdata2          @7404 */
+SECTION_SDATA2 static f32 lit_7404[1 + 1 /* padding */] = {
+    64.0f,
+    /* padding */
+    0.0f,
+};
+
+/* 80451B38-80451B40 000138 0008+00 2/2 0/0 0/0 .sdata2          @7406 */
+SECTION_SDATA2 static f64 lit_7406 = 4503599627370496.0 /* cast u32 to float */;
+
+/* 80012874-80012E3C 00D1B4 05C8+00 0/0 0/0 2/2 .text
+ * update__19mDoExt_3DlineMat0_cFifR8_GXColorUsP12dKy_tevstr_c  */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_3DlineMat0_c::update(int param_0, f32 param_1, _GXColor& param_2, u16 param_3,
+                                     dKy_tevstr_c* param_4) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/update__19mDoExt_3DlineMat0_cFifR8_GXColorUsP12dKy_tevstr_c.s"
+}
+#pragma pop
+
+/* 80012E3C-80013360 00D77C 0524+00 0/0 0/0 9/9 .text
+ * update__19mDoExt_3DlineMat0_cFiR8_GXColorP12dKy_tevstr_c     */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_3DlineMat0_c::update(int param_0, _GXColor& param_1, dKy_tevstr_c* param_2) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/update__19mDoExt_3DlineMat0_cFiR8_GXColorP12dKy_tevstr_c.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80451B40-80451B44 000140 0004+00 1/1 0/0 0/0 .sdata2          @7624 */
+SECTION_SDATA2 static f32 lit_7624 = 0.125f;
+
+/* 80451B44-80451B48 000144 0004+00 1/1 0/0 0/0 .sdata2          @7625 */
+SECTION_SDATA2 static f32 lit_7625 = 1.0f / 100.0f;
+
+/* 80013360-800134F8 00DCA0 0198+00 0/0 0/0 19/19 .text init__19mDoExt_3DlineMat1_cFUsUsP7ResTIMGi
+ */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_3DlineMat1_c::init(u16 param_0, u16 param_1, ResTIMG* param_2, int param_3) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/init__19mDoExt_3DlineMat1_cFUsUsP7ResTIMGi.s"
+}
+#pragma pop
+
+/* 800134F8-800135D0 00DE38 00D8+00 1/0 0/0 0/0 .text setMaterial__19mDoExt_3DlineMat1_cFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_3DlineMat1_c::setMaterial() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/setMaterial__19mDoExt_3DlineMat1_cFv.s"
+}
+#pragma pop
+
+/* 800135D0-8001373C 00DF10 016C+00 1/0 0/0 0/0 .text            draw__19mDoExt_3DlineMat1_cFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_3DlineMat1_c::draw() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/draw__19mDoExt_3DlineMat1_cFv.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80451B48-80451B50 000148 0008+00 2/2 0/0 0/0 .sdata2          @7919 */
+SECTION_SDATA2 static f64 lit_7919 = 0.5;
+
+/* 80451B50-80451B58 000150 0008+00 2/2 0/0 0/0 .sdata2          @7920 */
+SECTION_SDATA2 static f64 lit_7920 = 3.0;
+
+/* 80451B58-80451B60 000158 0008+00 2/2 0/0 0/0 .sdata2          @7921 */
+SECTION_SDATA2 static u8 lit_7921[8] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+/* 80451B60-80451B64 000160 0004+00 2/2 0/0 0/0 .sdata2          @7922 */
+SECTION_SDATA2 static f32 lit_7922 = 1.0f / 10.0f;
+
+/* 80451B64-80451B68 000164 0004+00 1/1 0/0 0/0 .sdata2          @7923 */
+SECTION_SDATA2 static f32 lit_7923 = 1.0f / 50.0f;
+
+/* 80451B68-80451B70 000168 0004+04 1/1 0/0 0/0 .sdata2          @7924 */
+SECTION_SDATA2 static f32 lit_7924[1 + 1 /* padding */] = {
+    8.0f,
+    /* padding */
+    0.0f,
+};
+
+/* 8001373C-80013FB0 00E07C 0874+00 0/0 0/0 6/6 .text
+ * update__19mDoExt_3DlineMat1_cFifR8_GXColorUsP12dKy_tevstr_c  */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_3DlineMat1_c::update(int param_0, f32 param_1, _GXColor& param_2, u16 param_3,
+                                     dKy_tevstr_c* param_4) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/update__19mDoExt_3DlineMat1_cFifR8_GXColorUsP12dKy_tevstr_c.s"
+}
+#pragma pop
+
+/* 80013FB0-80014738 00E8F0 0788+00 0/0 0/0 14/14 .text
+ * update__19mDoExt_3DlineMat1_cFiR8_GXColorP12dKy_tevstr_c     */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_3DlineMat1_c::update(int param_0, _GXColor& param_1, dKy_tevstr_c* param_2) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/update__19mDoExt_3DlineMat1_cFiR8_GXColorP12dKy_tevstr_c.s"
+}
+#pragma pop
+
+/* 80014738-8001479C 00F078 0064+00 0/0 0/0 29/29 .text
+ * setMat__26mDoExt_3DlineMatSortPacketFP18mDoExt_3DlineMat_c   */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_3DlineMatSortPacket::setMat(mDoExt_3DlineMat_c* param_0) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/setMat__26mDoExt_3DlineMatSortPacketFP18mDoExt_3DlineMat_c.s"
+}
+#pragma pop
+
+/* 8001479C-80014804 00F0DC 0068+00 1/0 0/0 0/0 .text draw__26mDoExt_3DlineMatSortPacketFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void mDoExt_3DlineMatSortPacket::draw() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/draw__26mDoExt_3DlineMatSortPacketFv.s"
+}
+#pragma pop
+
+/* 80014804-8001494C 00F144 0148+00 3/3 0/0 0/0 .text
+ * mDoExt_initFontCommon__FPP7JUTFontPP7ResFONTP7JKRHeapPCcP10JKRArchiveUcUlUl */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+static asm void mDoExt_initFontCommon(JUTFont** param_0, ResFONT** param_1, JKRHeap* param_2,
+                                      char const* param_3, JKRArchive* param_4, u8 param_5,
+                                      u32 param_6, u32 param_7) {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/mDoExt_initFontCommon__FPP7JUTFontPP7ResFONTP7JKRHeapPCcP10JKRArchiveUcUlUl.s"
+}
+#pragma pop
+
+/* 8001494C-80014994 00F28C 0048+00 1/0 0/0 0/0 .text            __dt__7JUTFontFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm JUTFont::~JUTFont() {
+    nofralloc
+#include "asm/m_Do/m_Do_ext/__dt__7JUTFontFv.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 803740C0-803740D4 000720 0012+02 1/1 0/0 0/0 .rodata          fontdata$8224 */
 SECTION_RODATA static u8 const fontdata_8224[18 + 2 /* padding */] = {
     0x72,
     0x6F,
@@ -2578,1116 +3583,28 @@ SECTION_RODATA static u8 const fontdata_8224[18 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(803740C0, &fontdata_8224);
 
-/* 803740D4-803740E8 0014+00 s=1 e=0 z=0  None .rodata    fontdata$8253 */
-SECTION_RODATA static u8 const fontdata_8253[20] = {
-    0x72, 0x65, 0x69, 0x73, 0x68, 0x6F, 0x74, 0x61, 0x69, 0x5F,
-    0x32, 0x34, 0x5F, 0x32, 0x32, 0x2E, 0x62, 0x66, 0x6E, 0x00,
-};
-
-/* 803740E8-803740FC 0014+00 s=1 e=0 z=0  None .rodata    fontdata$8287 */
-SECTION_RODATA static u8 const fontdata_8287[20] = {
-    0x72, 0x65, 0x69, 0x73, 0x68, 0x6F, 0x74, 0x61, 0x69, 0x5F,
-    0x32, 0x34, 0x5F, 0x32, 0x32, 0x2E, 0x62, 0x66, 0x6E, 0x00,
-};
-
-/* 803740FC-80374198 009C+00 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-// MWCC ignores mapping of some japanese characters using the
-// byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
-SECTION_DEAD char const* const stringBase_803740FC =
-    "\x83\x5C\x83\x8A\x83\x62\x83\x68\x83\x71\x81\x5B\x83\x76\x82\xBF\x82\xE1\x82\xA4\x82\xAA\x82"
-    "\xC8\x81\x49\x0A";
-SECTION_DEAD char const* const stringBase_80374118 = "%s.bti";
-SECTION_DEAD char const* const stringBase_8037411F =
-    "親ヒープがExpでないのでアジャストできません %08x %08x\n";
-SECTION_DEAD char const* const stringBase_80374156 = "adjustSize失敗 %08x\n";
-SECTION_DEAD char const* const stringBase_8037416B =
-    "\nキャッシュフォントクラス作成に失敗しました\n";
-#pragma pop
-
-/* 8000EA80-8000ECC0 0240+00 s=0 e=0 z=6  None .text      mDoExt_setupStageTexture__FP12J3DModelData
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_setupStageTexture(J3DModelData* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_setupStageTexture__FP12J3DModelData.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80450C20-80450C24 0004+00 s=2 e=0 z=0  None .sbss      AssertHeap */
-static u8 AssertHeap[4];
-
-/* 8000ECC0-8000ECE4 0024+00 s=0 e=1 z=0  None .text      mDoExt_createAssertHeap__FP7JKRHeap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_createAssertHeap(JKRHeap* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_createAssertHeap__FP7JKRHeap.s"
-}
-#pragma pop
-
-/* 8000ECE4-8000ECEC 0008+00 s=0 e=3 z=0  None .text      mDoExt_getAssertHeap__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_getAssertHeap() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_getAssertHeap__Fv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80450C24-80450C28 0004+00 s=2 e=0 z=0  None .sbss      DbPrintHeap */
-static u8 DbPrintHeap[4];
-
-/* 8000ECEC-8000ED14 0028+00 s=0 e=1 z=0  None .text      mDoExt_createDbPrintHeap__FUlP7JKRHeap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_createDbPrintHeap(u32 param_0, JKRHeap* param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_createDbPrintHeap__FUlP7JKRHeap.s"
-}
-#pragma pop
-
-/* 8000ED14-8000ED1C 0008+00 s=0 e=1 z=0  None .text      mDoExt_getDbPrintHeap__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_getDbPrintHeap() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_getDbPrintHeap__Fv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80450C28-80450C2C 0004+00 s=2 e=3 z=0  None .sbss      gameHeap */
-u8 gameHeap[4];
-
-/* 8000ED1C-8000ED50 0034+00 s=0 e=1 z=0  None .text      mDoExt_createGameHeap__FUlP7JKRHeap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_createGameHeap(u32 param_0, JKRHeap* param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_createGameHeap__FUlP7JKRHeap.s"
-}
-#pragma pop
-
-/* 8000ED50-8000ED58 0008+00 s=3 e=10 z=1  None .text      mDoExt_getGameHeap__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_getGameHeap() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_getGameHeap__Fv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80450C2C-80450C30 0004+00 s=2 e=3 z=0  None .sbss      zeldaHeap */
-u8 zeldaHeap[4];
-
-/* 8000ED58-8000ED80 0028+00 s=0 e=1 z=0  None .text      mDoExt_createZeldaHeap__FUlP7JKRHeap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_createZeldaHeap(u32 param_0, JKRHeap* param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_createZeldaHeap__FUlP7JKRHeap.s"
-}
-#pragma pop
-
-/* 8000ED80-8000ED88 0008+00 s=4 e=4 z=0  None .text      mDoExt_getZeldaHeap__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_getZeldaHeap() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_getZeldaHeap__Fv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80450C30-80450C34 0004+00 s=2 e=1 z=0  None .sbss      commandHeap */
-u8 commandHeap[4];
-
-/* 8000ED88-8000EDB0 0028+00 s=0 e=1 z=0  None .text      mDoExt_createCommandHeap__FUlP7JKRHeap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_createCommandHeap(u32 param_0, JKRHeap* param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_createCommandHeap__FUlP7JKRHeap.s"
-}
-#pragma pop
-
-/* 8000EDB0-8000EDB8 0008+00 s=0 e=6 z=0  None .text      mDoExt_getCommandHeap__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_getCommandHeap() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_getCommandHeap__Fv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80450C34-80450C38 0004+00 s=3 e=5 z=0  None .sbss      archiveHeap */
-u8 archiveHeap[4];
-
-/* 8000EDB8-8000EDEC 0034+00 s=0 e=1 z=0  None .text      mDoExt_createArchiveHeap__FUlP7JKRHeap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_createArchiveHeap(u32 param_0, JKRHeap* param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_createArchiveHeap__FUlP7JKRHeap.s"
-}
-#pragma pop
-
-/* 8000EDEC-8000EDF4 0008+00 s=0 e=18 z=1  None .text      mDoExt_getArchiveHeap__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_getArchiveHeap() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_getArchiveHeap__Fv.s"
-}
-#pragma pop
-
-/* 8000EDF4-8000EDFC 0008+00 s=0 e=1 z=0  None .text      mDoExt_getArchiveHeapPtr__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_getArchiveHeapPtr() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_getArchiveHeapPtr__Fv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80450C38-80450C3C 0004+00 s=2 e=0 z=0  None .sbss      j2dHeap */
-static u8 j2dHeap[4];
-
-/* 8000EDFC-8000EE30 0034+00 s=0 e=1 z=0  None .text      mDoExt_createJ2dHeap__FUlP7JKRHeap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_createJ2dHeap(u32 param_0, JKRHeap* param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_createJ2dHeap__FUlP7JKRHeap.s"
-}
-#pragma pop
-
-/* 8000EE30-8000EE38 0008+00 s=0 e=7 z=0  None .text      mDoExt_getJ2dHeap__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_getJ2dHeap() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_getJ2dHeap__Fv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80450C3C-80450C40 0004+00 s=1 e=0 z=0  None .sbss      HostIOHeap */
-static u8 HostIOHeap[4];
-
-/* 8000EE38-8000EE40 0008+00 s=0 e=1 z=0  None .text      mDoExt_getHostIOHeap__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_getHostIOHeap() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_getHostIOHeap__Fv.s"
-}
-#pragma pop
-
-/* 8000EE40-8000EED8 0098+00 s=3 e=0 z=0  None .text      mDoExt_createSolidHeap__FUlP7JKRHeapUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void mDoExt_createSolidHeap(u32 param_0, JKRHeap* param_1, u32 param_2) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_createSolidHeap__FUlP7JKRHeapUl.s"
-}
-#pragma pop
-
-/* 8000EED8-8000EF20 0048+00 s=0 e=2 z=0  None .text      mDoExt_createSolidHeapFromGame__FUlUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_createSolidHeapFromGame(u32 param_0, u32 param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_createSolidHeapFromGame__FUlUl.s"
-}
-#pragma pop
-
-/* 8000EF20-8000EF68 0048+00 s=0 e=1 z=0  None .text      mDoExt_createSolidHeapFromSystem__FUlUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_createSolidHeapFromSystem(u32 param_0, u32 param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_createSolidHeapFromSystem__FUlUl.s"
-}
-#pragma pop
-
-/* 8000EF68-8000EFBC 0054+00 s=2 e=0 z=0  None .text
- * mDoExt_createSolidHeapToCurrent__FPP7JKRHeapUlP7JKRHeapUl    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void mDoExt_createSolidHeapToCurrent(JKRHeap** param_0, u32 param_1, JKRHeap* param_2,
-                                                u32 param_3) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_createSolidHeapToCurrent__FPP7JKRHeapUlP7JKRHeapUl.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80450C40-80450C44 0004+00 s=2 e=0 z=0  None .sbss      mDoExt_SaveCurrentHeap */
-static u8 mDoExt_SaveCurrentHeap[4];
-
-/* 8000EFBC-8000EFF4 0038+00 s=1 e=3 z=0  None .text
- * mDoExt_createSolidHeapToCurrent__FUlP7JKRHeapUl              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_createSolidHeapToCurrent(u32 param_0, JKRHeap* param_1, u32 param_2) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_createSolidHeapToCurrent__FUlP7JKRHeapUl.s"
-}
-#pragma pop
-
-/* 8000EFF4-8000F044 0050+00 s=0 e=2 z=0  None .text
- * mDoExt_createSolidHeapFromGameToCurrent__FPP7JKRHeapUlUl     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_createSolidHeapFromGameToCurrent(JKRHeap** param_0, u32 param_1, u32 param_2) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_createSolidHeapFromGameToCurrent__FPP7JKRHeapUlUl.s"
-}
-#pragma pop
-
-/* 8000F044-8000F08C 0048+00 s=0 e=7 z=0  None .text
- * mDoExt_createSolidHeapFromGameToCurrent__FUlUl               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_createSolidHeapFromGameToCurrent(u32 param_0, u32 param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_createSolidHeapFromGameToCurrent__FUlUl.s"
-}
-#pragma pop
-
-/* 8000F08C-8000F158 00CC+00 s=1 e=11 z=0  None .text      mDoExt_adjustSolidHeap__FP12JKRSolidHeap
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_adjustSolidHeap(JKRSolidHeap* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_adjustSolidHeap__FP12JKRSolidHeap.s"
-}
-#pragma pop
-
-/* 8000F158-8000F18C 0034+00 s=0 e=1 z=0  None .text
- * mDoExt_adjustSolidHeapToSystem__FP12JKRSolidHeap             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_adjustSolidHeapToSystem(JKRSolidHeap* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_adjustSolidHeapToSystem__FP12JKRSolidHeap.s"
-}
-#pragma pop
-
-/* 8000F18C-8000F1AC 0020+00 s=0 e=13 z=0  None .text      mDoExt_destroySolidHeap__FP12JKRSolidHeap
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_destroySolidHeap(JKRSolidHeap* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_destroySolidHeap__FP12JKRSolidHeap.s"
-}
-#pragma pop
-
-/* 8000F1AC-8000F1CC 0020+00 s=0 e=7 z=0  None .text      mDoExt_destroyExpHeap__FP10JKRExpHeap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_destroyExpHeap(JKRExpHeap* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_destroyExpHeap__FP10JKRExpHeap.s"
-}
-#pragma pop
-
-/* 8000F1CC-8000F1EC 0020+00 s=1 e=78 z=2  None .text      mDoExt_setCurrentHeap__FP7JKRHeap */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_setCurrentHeap(JKRHeap* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_setCurrentHeap__FP7JKRHeap.s"
-}
-#pragma pop
-
-/* 8000F1EC-8000F1F4 0008+00 s=0 e=4 z=0  None .text      mDoExt_getCurrentHeap__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_getCurrentHeap() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_getCurrentHeap__Fv.s"
-}
-#pragma pop
-
-/* 8000F1F4-8000F220 002C+00 s=1 e=9 z=0  None .text      mDoExt_restoreCurrentHeap__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_restoreCurrentHeap() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_restoreCurrentHeap__Fv.s"
-}
-#pragma pop
-
-/* 8000F220-8000F26C 004C+00 s=0 e=1 z=0  None .text      mDoExt_resIDToIndex__FP10JKRArchiveUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_resIDToIndex(JKRArchive* param_0, u16 param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_resIDToIndex__FP10JKRArchiveUs.s"
-}
-#pragma pop
-
-/* 8000F26C-8000F4B0 0244+00 s=1 e=0 z=0  None .text      calc__25mDoExt_MtxCalcAnmBlendTblFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_MtxCalcAnmBlendTbl::calc() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/calc__25mDoExt_MtxCalcAnmBlendTblFv.s"
-}
-#pragma pop
-
-/* 8000F4B0-8000F848 0398+00 s=1 e=0 z=0  None .text      calc__28mDoExt_MtxCalcAnmBlendTblOldFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_MtxCalcAnmBlendTblOld::calc() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/calc__28mDoExt_MtxCalcAnmBlendTblOldFv.s"
-}
-#pragma pop
-
-/* 8000F848-8000F8CC 0084+00 s=0 e=26 z=8  None .text
- * initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_MtxCalcOldFrame::initOldFrameMorf(f32 param_0, u16 param_1, u16 param_2) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs.s"
-}
-#pragma pop
-
-/* 8000F8CC-8000F950 0084+00 s=2 e=0 z=0  None .text
- * decOldFrameMorfCounter__22mDoExt_MtxCalcOldFrameFv           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_MtxCalcOldFrame::decOldFrameMorfCounter() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/decOldFrameMorfCounter__22mDoExt_MtxCalcOldFrameFv.s"
-}
-#pragma pop
-
-/* 8000F950-8000F9D8 0088+00 s=3 e=0 z=0  None .text      __ct__13mDoExt_morf_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoExt_morf_c::mDoExt_morf_c() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/__ct__13mDoExt_morf_cFv.s"
-}
-#pragma pop
-
-/* 8000F9D8-8000FA20 0048+00 s=1 e=0 z=0  None .text      __dt__12J3DFrameCtrlFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DFrameCtrl::~J3DFrameCtrl() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/__dt__12J3DFrameCtrlFv.s"
-}
-#pragma pop
-
-/* 8000FA20-8000FA8C 006C+00 s=1 e=0 z=0  None .text
- * __dt__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DMtxCalcNoAnm__template0::~J3DMtxCalcNoAnm__template0() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/func_8000FA20.s"
-}
-#pragma pop
-
-/* 8000FA8C-8000FAE8 005C+00 s=1 e=0 z=0  None .text      __dt__19J3DMtxCalcNoAnmBaseFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm J3DMtxCalcNoAnmBase::~J3DMtxCalcNoAnmBase() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/__dt__19J3DMtxCalcNoAnmBaseFv.s"
-}
-#pragma pop
-
-/* 8000FAE8-8000FB7C 0094+00 s=4 e=0 z=0  None .text      __dt__13mDoExt_morf_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoExt_morf_c::~mDoExt_morf_c() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/__dt__13mDoExt_morf_cFv.s"
-}
-#pragma pop
-
-/* 8000FB7C-8000FBC0 0044+00 s=3 e=4 z=20  None .text      setMorf__13mDoExt_morf_cFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_morf_c::setMorf(f32 param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/setMorf__13mDoExt_morf_cFf.s"
-}
-#pragma pop
-
-/* 8000FBC0-8000FC4C 008C+00 s=3 e=0 z=0  None .text      frameUpdate__13mDoExt_morf_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_morf_c::frameUpdate() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/frameUpdate__13mDoExt_morf_cFv.s"
-}
-#pragma pop
-
-/* 8000FC4C-8000FD10 00C4+00 s=0 e=0 z=34  None .text
- * __ct__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoExt_McaMorf::mDoExt_McaMorf(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
-                                   mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
-                                   int param_4, f32 param_5, int param_6, int param_7, int param_8,
-                                   void* param_9, u32 param_10, u32 param_11) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/func_8000FC4C.s"
-}
-#pragma pop
-
-/* 8000FD10-8000FD94 0084+00 s=1 e=0 z=0  None .text      __dt__14mDoExt_McaMorfFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoExt_McaMorf::~mDoExt_McaMorf() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/__dt__14mDoExt_McaMorfFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80451B28-80451B2C 0004+00 s=3 e=0 z=0  None .sdata2    @5939 */
-SECTION_SDATA2 static f32 lit_5939 = -1.0f;
-
-/* 8000FD94-80010074 02E0+00 s=1 e=0 z=0  None .text
- * create__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorf::create(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
-                                mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
-                                int param_4, f32 param_5, int param_6, int param_7, int param_8,
-                                void* param_9, u32 param_10, u32 param_11) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/func_8000FD94.s"
-}
-#pragma pop
-
-/* 80010074-8001037C 0308+00 s=1 e=0 z=0  None .text      calc__14mDoExt_McaMorfFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorf::calc() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/calc__14mDoExt_McaMorfFv.s"
-}
-#pragma pop
-
-/* 8001037C-800105C8 024C+00 s=1 e=1 z=29  None .text
- * setAnm__14mDoExt_McaMorfFP15J3DAnmTransformiffffPv           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorf::setAnm(J3DAnmTransform* param_0, int param_1, f32 param_2, f32 param_3,
-                                f32 param_4, f32 param_5, void* param_6) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/setAnm__14mDoExt_McaMorfFP15J3DAnmTransformiffffPv.s"
-}
-#pragma pop
-
-/* 800105C8-80010680 00B8+00 s=0 e=1 z=37  None .text      play__14mDoExt_McaMorfFP3VecUlSc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorf::play(Vec* param_0, u32 param_1, s8 param_2) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/play__14mDoExt_McaMorfFP3VecUlSc.s"
-}
-#pragma pop
-
-/* 80010680-800106AC 002C+00 s=0 e=0 z=33  None .text      entryDL__14mDoExt_McaMorfFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorf::entryDL() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/entryDL__14mDoExt_McaMorfFv.s"
-}
-#pragma pop
-
-/* 800106AC-80010710 0064+00 s=0 e=0 z=37  None .text      modelCalc__14mDoExt_McaMorfFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorf::modelCalc() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/modelCalc__14mDoExt_McaMorfFv.s"
-}
-#pragma pop
-
-/* 80010710-800107D0 00C0+00 s=1 e=0 z=0  None .text
- * getTransform__14mDoExt_McaMorfFUsP16J3DTransformInfo         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorf::getTransform(u16 param_0, J3DTransformInfo* param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/getTransform__14mDoExt_McaMorfFUsP16J3DTransformInfo.s"
-}
-#pragma pop
-
-/* 800107D0-80010888 00B8+00 s=0 e=2 z=222  None .text
- * __ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoExt_McaMorfSO::mDoExt_McaMorfSO(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
-                                       mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
-                                       int param_4, f32 param_5, int param_6, int param_7,
-                                       Z2Creature* param_8, u32 param_9, u32 param_10) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/func_800107D0.s"
-}
-#pragma pop
-
-/* 80010888-800108F0 0068+00 s=1 e=0 z=0  None .text      __dt__16mDoExt_McaMorfSOFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoExt_McaMorfSO::~mDoExt_McaMorfSO() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/__dt__16mDoExt_McaMorfSOFv.s"
-}
-#pragma pop
-
-/* 800108F0-80010B68 0278+00 s=1 e=0 z=0  None .text
- * create__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorfSO::create(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
-                                  mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
-                                  int param_4, f32 param_5, int param_6, int param_7,
-                                  Z2Creature* param_8, u32 param_9, u32 param_10) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/func_800108F0.s"
-}
-#pragma pop
-
-/* 80010B68-80010E70 0308+00 s=1 e=0 z=0  None .text      calc__16mDoExt_McaMorfSOFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorfSO::calc() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/calc__16mDoExt_McaMorfSOFv.s"
-}
-#pragma pop
-
-/* 80010E70-800110B0 0240+00 s=1 e=5 z=208  None .text
- * setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorfSO::setAnm(J3DAnmTransform* param_0, int param_1, f32 param_2, f32 param_3,
-                                  f32 param_4, f32 param_5) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff.s"
-}
-#pragma pop
-
-/* 800110B0-80011154 00A4+00 s=0 e=5 z=143  None .text      play__16mDoExt_McaMorfSOFUlSc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorfSO::play(u32 param_0, s8 param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/play__16mDoExt_McaMorfSOFUlSc.s"
-}
-#pragma pop
-
-/* 80011154-800111C0 006C+00 s=0 e=0 z=4  None .text      updateDL__16mDoExt_McaMorfSOFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorfSO::updateDL() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/updateDL__16mDoExt_McaMorfSOFv.s"
-}
-#pragma pop
-
-/* 800111C0-800111EC 002C+00 s=0 e=5 z=137  None .text      entryDL__16mDoExt_McaMorfSOFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorfSO::entryDL() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/entryDL__16mDoExt_McaMorfSOFv.s"
-}
-#pragma pop
-
-/* 800111EC-80011250 0064+00 s=0 e=4 z=174  None .text      modelCalc__16mDoExt_McaMorfSOFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorfSO::modelCalc() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/modelCalc__16mDoExt_McaMorfSOFv.s"
-}
-#pragma pop
-
-/* 80011250-80011310 00C0+00 s=1 e=0 z=1  None .text
- * getTransform__16mDoExt_McaMorfSOFUsP16J3DTransformInfo       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorfSO::getTransform(u16 param_0, J3DTransformInfo* param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/getTransform__16mDoExt_McaMorfSOFUsP16J3DTransformInfo.s"
-}
-#pragma pop
-
-/* 80011310-80011348 0038+00 s=1 e=2 z=260  None .text      stopZelAnime__16mDoExt_McaMorfSOFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorfSO::stopZelAnime() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/stopZelAnime__16mDoExt_McaMorfSOFv.s"
-}
-#pragma pop
-
-/* 80011348-800113FC 00B4+00 s=0 e=0 z=1  None .text
- * __ct__15mDoExt_McaMorf2FP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformP15J3DAnmTransformifiiP10Z2CreatureUlUl
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoExt_McaMorf2::mDoExt_McaMorf2(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
-                                     mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
-                                     J3DAnmTransform* param_4, int param_5, f32 param_6,
-                                     int param_7, int param_8, Z2Creature* param_9, u32 param_10,
-                                     u32 param_11) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/func_80011348.s"
-}
-#pragma pop
-
-/* 800113FC-80011464 0068+00 s=1 e=0 z=0  None .text      __dt__15mDoExt_McaMorf2Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm mDoExt_McaMorf2::~mDoExt_McaMorf2() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/__dt__15mDoExt_McaMorf2Fv.s"
-}
-#pragma pop
-
-/* 80011464-800116B4 0250+00 s=1 e=0 z=0  None .text
- * create__15mDoExt_McaMorf2FP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformP15J3DAnmTransformifiiP10Z2CreatureUlUl
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorf2::create(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
-                                 mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
-                                 J3DAnmTransform* param_4, int param_5, f32 param_6, int param_7,
-                                 int param_8, Z2Creature* param_9, u32 param_10, u32 param_11) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/func_80011464.s"
-}
-#pragma pop
-
-/* 800116B4-800116F4 0040+00 s=1 e=0 z=0  None .text      ERROR_EXIT__15mDoExt_McaMorf2Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorf2::ERROR_EXIT() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/ERROR_EXIT__15mDoExt_McaMorf2Fv.s"
-}
-#pragma pop
-
-/* 800116F4-80011D70 067C+00 s=1 e=0 z=0  None .text      calc__15mDoExt_McaMorf2Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorf2::calc() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/calc__15mDoExt_McaMorf2Fv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80451B2C-80451B30 0004+00 s=6 e=0 z=0  None .sdata2    @6819 */
-SECTION_SDATA2 static f32 lit_6819 = 0.5f;
-
-/* 80011D70-80011FCC 025C+00 s=1 e=0 z=2  None .text
- * setAnm__15mDoExt_McaMorf2FP15J3DAnmTransformP15J3DAnmTransformfiffff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorf2::setAnm(J3DAnmTransform* param_0, J3DAnmTransform* param_1, f32 param_2,
-                                 int param_3, f32 param_4, f32 param_5, f32 param_6, f32 param_7) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/setAnm__15mDoExt_McaMorf2FP15J3DAnmTransformP15J3DAnmTransformfiffff.s"
-}
-#pragma pop
-
-/* 80011FCC-800120A0 00D4+00 s=0 e=0 z=2  None .text      setAnmRate__15mDoExt_McaMorf2Ff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorf2::setAnmRate(f32 param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/setAnmRate__15mDoExt_McaMorf2Ff.s"
-}
-#pragma pop
-
-/* 800120A0-80012144 00A4+00 s=0 e=0 z=1  None .text      play__15mDoExt_McaMorf2FUlSc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorf2::play(u32 param_0, s8 param_1) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/play__15mDoExt_McaMorf2FUlSc.s"
-}
-#pragma pop
-
-/* 80012144-80012170 002C+00 s=0 e=0 z=1  None .text      entryDL__15mDoExt_McaMorf2Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorf2::entryDL() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/entryDL__15mDoExt_McaMorf2Fv.s"
-}
-#pragma pop
-
-/* 80012170-800121E8 0078+00 s=0 e=0 z=1  None .text      modelCalc__15mDoExt_McaMorf2Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorf2::modelCalc() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/modelCalc__15mDoExt_McaMorf2Fv.s"
-}
-#pragma pop
-
-/* 800121E8-80012220 0038+00 s=1 e=0 z=1  None .text      stopZelAnime__15mDoExt_McaMorf2Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_McaMorf2::stopZelAnime() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/stopZelAnime__15mDoExt_McaMorf2Fv.s"
-}
-#pragma pop
-
-/* 80012220-800123D0 01B0+00 s=1 e=0 z=0  None .text      draw__19mDoExt_invJntPacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_invJntPacket::draw() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/draw__19mDoExt_invJntPacketFv.s"
-}
-#pragma pop
-
-/* 800123D0-800125DC 020C+00 s=2 e=0 z=0  None .text      init__15mDoExt_3Dline_cFUsii */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_3Dline_c::init(u16 param_0, int param_1, int param_2) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/init__15mDoExt_3Dline_cFUsii.s"
-}
-#pragma pop
-
-/* 800125DC-800125E0 0004+00 s=1 e=9 z=0  None .text      __ct__4cXyzFv */
-cXyz::cXyz() {
-    /* empty function */
-}
-
-/* 800125E0-800126BC 00DC+00 s=0 e=0 z=12  None .text      init__19mDoExt_3DlineMat0_cFUsUsi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_3DlineMat0_c::init(u16 param_0, u16 param_1, int param_2) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/init__19mDoExt_3DlineMat0_cFUsUsi.s"
-}
-#pragma pop
-
-/* 800126BC-800126C0 0004+00 s=2 e=0 z=0  None .text      __ct__15mDoExt_3Dline_cFv */
-mDoExt_3Dline_c::mDoExt_3Dline_c() {
-    /* empty function */
-}
-
-/* 800126C0-80012774 00B4+00 s=1 e=0 z=0  None .text      setMaterial__19mDoExt_3DlineMat0_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_3DlineMat0_c::setMaterial() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/setMaterial__19mDoExt_3DlineMat0_cFv.s"
-}
-#pragma pop
-
-/* 80012774-80012874 0100+00 s=1 e=0 z=0  None .text      draw__19mDoExt_3DlineMat0_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_3DlineMat0_c::draw() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/draw__19mDoExt_3DlineMat0_cFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80451B30-80451B38 0004+04 s=4 e=0 z=0  None .sdata2    @7404 */
-SECTION_SDATA2 static f32 lit_7404[1 + 1 /* padding */] = {
-    64.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 80451B38-80451B40 0008+00 s=2 e=0 z=0  None .sdata2    @7406 */
-SECTION_SDATA2 static f64 lit_7406 = 4503599627370496.0 /* cast u32 to float */;
-
-/* 80012874-80012E3C 05C8+00 s=0 e=0 z=2  None .text
- * update__19mDoExt_3DlineMat0_cFifR8_GXColorUsP12dKy_tevstr_c  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_3DlineMat0_c::update(int param_0, f32 param_1, _GXColor& param_2, u16 param_3,
-                                     dKy_tevstr_c* param_4) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/update__19mDoExt_3DlineMat0_cFifR8_GXColorUsP12dKy_tevstr_c.s"
-}
-#pragma pop
-
-/* 80012E3C-80013360 0524+00 s=0 e=0 z=9  None .text
- * update__19mDoExt_3DlineMat0_cFiR8_GXColorP12dKy_tevstr_c     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_3DlineMat0_c::update(int param_0, _GXColor& param_1, dKy_tevstr_c* param_2) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/update__19mDoExt_3DlineMat0_cFiR8_GXColorP12dKy_tevstr_c.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80451B40-80451B44 0004+00 s=1 e=0 z=0  None .sdata2    @7624 */
-SECTION_SDATA2 static f32 lit_7624 = 0.125f;
-
-/* 80451B44-80451B48 0004+00 s=1 e=0 z=0  None .sdata2    @7625 */
-SECTION_SDATA2 static f32 lit_7625 = 1.0f / 100.0f;
-
-/* 80013360-800134F8 0198+00 s=0 e=0 z=19  None .text init__19mDoExt_3DlineMat1_cFUsUsP7ResTIMGi
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_3DlineMat1_c::init(u16 param_0, u16 param_1, ResTIMG* param_2, int param_3) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/init__19mDoExt_3DlineMat1_cFUsUsP7ResTIMGi.s"
-}
-#pragma pop
-
-/* 800134F8-800135D0 00D8+00 s=1 e=0 z=0  None .text      setMaterial__19mDoExt_3DlineMat1_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_3DlineMat1_c::setMaterial() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/setMaterial__19mDoExt_3DlineMat1_cFv.s"
-}
-#pragma pop
-
-/* 800135D0-8001373C 016C+00 s=1 e=0 z=0  None .text      draw__19mDoExt_3DlineMat1_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_3DlineMat1_c::draw() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/draw__19mDoExt_3DlineMat1_cFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80451B48-80451B50 0008+00 s=2 e=0 z=0  None .sdata2    @7919 */
-SECTION_SDATA2 static f64 lit_7919 = 0.5;
-
-/* 80451B50-80451B58 0008+00 s=2 e=0 z=0  None .sdata2    @7920 */
-SECTION_SDATA2 static f64 lit_7920 = 3.0;
-
-/* 80451B58-80451B60 0008+00 s=2 e=0 z=0  None .sdata2    @7921 */
-SECTION_SDATA2 static u8 lit_7921[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80451B60-80451B64 0004+00 s=2 e=0 z=0  None .sdata2    @7922 */
-SECTION_SDATA2 static f32 lit_7922 = 1.0f / 10.0f;
-
-/* 80451B64-80451B68 0004+00 s=1 e=0 z=0  None .sdata2    @7923 */
-SECTION_SDATA2 static f32 lit_7923 = 1.0f / 50.0f;
-
-/* 80451B68-80451B70 0004+04 s=1 e=0 z=0  None .sdata2    @7924 */
-SECTION_SDATA2 static f32 lit_7924[1 + 1 /* padding */] = {
-    8.0f,
-    /* padding */
-    0.0f,
-};
-
-/* 8001373C-80013FB0 0874+00 s=0 e=0 z=6  None .text
- * update__19mDoExt_3DlineMat1_cFifR8_GXColorUsP12dKy_tevstr_c  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_3DlineMat1_c::update(int param_0, f32 param_1, _GXColor& param_2, u16 param_3,
-                                     dKy_tevstr_c* param_4) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/update__19mDoExt_3DlineMat1_cFifR8_GXColorUsP12dKy_tevstr_c.s"
-}
-#pragma pop
-
-/* 80013FB0-80014738 0788+00 s=0 e=0 z=14  None .text
- * update__19mDoExt_3DlineMat1_cFiR8_GXColorP12dKy_tevstr_c     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_3DlineMat1_c::update(int param_0, _GXColor& param_1, dKy_tevstr_c* param_2) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/update__19mDoExt_3DlineMat1_cFiR8_GXColorP12dKy_tevstr_c.s"
-}
-#pragma pop
-
-/* 80014738-8001479C 0064+00 s=0 e=0 z=29  None .text
- * setMat__26mDoExt_3DlineMatSortPacketFP18mDoExt_3DlineMat_c   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_3DlineMatSortPacket::setMat(mDoExt_3DlineMat_c* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/setMat__26mDoExt_3DlineMatSortPacketFP18mDoExt_3DlineMat_c.s"
-}
-#pragma pop
-
-/* 8001479C-80014804 0068+00 s=1 e=0 z=0  None .text      draw__26mDoExt_3DlineMatSortPacketFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_3DlineMatSortPacket::draw() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/draw__26mDoExt_3DlineMatSortPacketFv.s"
-}
-#pragma pop
-
-/* 80014804-8001494C 0148+00 s=3 e=0 z=0  None .text
- * mDoExt_initFontCommon__FPP7JUTFontPP7ResFONTP7JKRHeapPCcP10JKRArchiveUcUlUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm static void mDoExt_initFontCommon(JUTFont** param_0, ResFONT** param_1, JKRHeap* param_2,
-                                      char const* param_3, JKRArchive* param_4, u8 param_5,
-                                      u32 param_6, u32 param_7) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_initFontCommon__FPP7JUTFontPP7ResFONTP7JKRHeapPCcP10JKRArchiveUcUlUl.s"
-}
-#pragma pop
-
-/* 8001494C-80014994 0048+00 s=1 e=0 z=0  None .text      __dt__7JUTFontFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JUTFont::~JUTFont() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/__dt__7JUTFontFv.s"
-}
-#pragma pop
-
-/* ############################################################################################## */
-/* 80450C44-80450C48 0004+00 s=3 e=0 z=0  None .sbss      mDoExt_font0 */
+/* 80450C44-80450C48 000144 0004+00 3/3 0/0 0/0 .sbss            mDoExt_font0 */
 static u8 mDoExt_font0[4];
 
-/* 80450C48-80450C4C 0004+00 s=2 e=0 z=0  None .sbss      mDoExt_font0_getCount */
+/* 80450C48-80450C4C 000148 0004+00 2/2 0/0 0/0 .sbss            mDoExt_font0_getCount */
 static u8 mDoExt_font0_getCount[4];
 
-/* 80450C4C-80450C50 0004+00 s=2 e=0 z=0  None .sbss      mDoExt_resfont0 */
+/* 80450C4C-80450C50 00014C 0004+00 2/2 0/0 0/0 .sbss            mDoExt_resfont0 */
 static u8 mDoExt_resfont0[4];
 
-/* 80014994-800149F0 005C+00 s=1 e=0 z=0  None .text      mDoExt_initFont0__Fv */
+/* 80014994-800149F0 00F2D4 005C+00 1/1 0/0 0/0 .text            mDoExt_initFont0__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void mDoExt_initFont0() {
+static asm void mDoExt_initFont0() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/mDoExt_initFont0__Fv.s"
 }
 #pragma pop
 
-/* 800149F0-80014A2C 003C+00 s=0 e=51 z=2  None .text      mDoExt_getMesgFont__Fv */
+/* 800149F0-80014A2C 00F330 003C+00 0/0 51/51 2/2 .text            mDoExt_getMesgFont__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3697,7 +3614,7 @@ asm void mDoExt_getMesgFont() {
 }
 #pragma pop
 
-/* 80014A2C-80014AA4 0078+00 s=0 e=6 z=0  None .text      mDoExt_removeMesgFont__Fv */
+/* 80014A2C-80014AA4 00F36C 0078+00 0/0 6/6 0/0 .text            mDoExt_removeMesgFont__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3708,26 +3625,33 @@ asm void mDoExt_removeMesgFont() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450C50-80450C54 0004+00 s=2 e=0 z=0  None .sbss      mDoExt_font1 */
+/* 803740D4-803740E8 000734 0014+00 1/1 0/0 0/0 .rodata          fontdata$8253 */
+SECTION_RODATA static u8 const fontdata_8253[20] = {
+    0x72, 0x65, 0x69, 0x73, 0x68, 0x6F, 0x74, 0x61, 0x69, 0x5F,
+    0x32, 0x34, 0x5F, 0x32, 0x32, 0x2E, 0x62, 0x66, 0x6E, 0x00,
+};
+COMPILER_STRIP_GATE(803740D4, &fontdata_8253);
+
+/* 80450C50-80450C54 000150 0004+00 2/2 0/0 0/0 .sbss            mDoExt_font1 */
 static u8 mDoExt_font1[4];
 
-/* 80450C54-80450C58 0004+00 s=1 e=0 z=0  None .sbss      mDoExt_font1_getCount */
+/* 80450C54-80450C58 000154 0004+00 1/1 0/0 0/0 .sbss            mDoExt_font1_getCount */
 static u8 mDoExt_font1_getCount[4];
 
-/* 80450C58-80450C5C 0004+00 s=1 e=0 z=0  None .sbss      mDoExt_resfont1 */
+/* 80450C58-80450C5C 000158 0004+00 1/1 0/0 0/0 .sbss            mDoExt_resfont1 */
 static u8 mDoExt_resfont1[4];
 
-/* 80014AA4-80014B04 0060+00 s=1 e=0 z=0  None .text      mDoExt_initFont1__Fv */
+/* 80014AA4-80014B04 00F3E4 0060+00 1/1 0/0 0/0 .text            mDoExt_initFont1__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void mDoExt_initFont1() {
+static asm void mDoExt_initFont1() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/mDoExt_initFont1__Fv.s"
 }
 #pragma pop
 
-/* 80014B04-80014B40 003C+00 s=0 e=8 z=0  None .text      mDoExt_getRubyFont__Fv */
+/* 80014B04-80014B40 00F444 003C+00 0/0 8/8 0/0 .text            mDoExt_getRubyFont__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3738,26 +3662,33 @@ asm void mDoExt_getRubyFont() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450C5C-80450C60 0004+00 s=3 e=0 z=0  None .sbss      mDoExt_font2 */
+/* 803740E8-803740FC 000748 0014+00 1/1 0/0 0/0 .rodata          fontdata$8287 */
+SECTION_RODATA static u8 const fontdata_8287[20] = {
+    0x72, 0x65, 0x69, 0x73, 0x68, 0x6F, 0x74, 0x61, 0x69, 0x5F,
+    0x32, 0x34, 0x5F, 0x32, 0x32, 0x2E, 0x62, 0x66, 0x6E, 0x00,
+};
+COMPILER_STRIP_GATE(803740E8, &fontdata_8287);
+
+/* 80450C5C-80450C60 00015C 0004+00 3/3 0/0 0/0 .sbss            mDoExt_font2 */
 static u8 mDoExt_font2[4];
 
-/* 80450C60-80450C64 0004+00 s=2 e=0 z=0  None .sbss      mDoExt_font2_getCount */
+/* 80450C60-80450C64 000160 0004+00 2/2 0/0 0/0 .sbss            mDoExt_font2_getCount */
 static u8 mDoExt_font2_getCount[4];
 
-/* 80450C64-80450C68 0004+00 s=2 e=0 z=0  None .sbss      mDoExt_resfont2 */
+/* 80450C64-80450C68 000164 0004+00 2/2 0/0 0/0 .sbss            mDoExt_resfont2 */
 static u8 mDoExt_resfont2[4];
 
-/* 80014B40-80014BA0 0060+00 s=1 e=0 z=0  None .text      mDoExt_initFont2__Fv */
+/* 80014B40-80014BA0 00F480 0060+00 1/1 0/0 0/0 .text            mDoExt_initFont2__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void mDoExt_initFont2() {
+static asm void mDoExt_initFont2() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/mDoExt_initFont2__Fv.s"
 }
 #pragma pop
 
-/* 80014BA0-80014BDC 003C+00 s=0 e=11 z=0  None .text      mDoExt_getSubFont__Fv */
+/* 80014BA0-80014BDC 00F4E0 003C+00 0/0 11/11 0/0 .text            mDoExt_getSubFont__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3767,7 +3698,7 @@ asm void mDoExt_getSubFont() {
 }
 #pragma pop
 
-/* 80014BDC-80014C54 0078+00 s=0 e=2 z=0  None .text      mDoExt_removeSubFont__Fv */
+/* 80014BDC-80014C54 00F51C 0078+00 0/0 2/2 0/0 .text            mDoExt_removeSubFont__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3777,7 +3708,7 @@ asm void mDoExt_removeSubFont() {
 }
 #pragma pop
 
-/* 80014C54-80014D5C 0108+00 s=3 e=14 z=445  None .text
+/* 80014C54-80014D5C 00F594 0108+00 3/3 14/14 445/445 .text
  * mDoExt_J3DModel__create__FP12J3DModelDataUlUl                */
 #pragma push
 #pragma optimization_level 0
@@ -3789,10 +3720,10 @@ asm void mDoExt_J3DModel__create(J3DModelData* param_0, u32 param_1, u32 param_2
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450C68-80450C70 0004+04 s=1 e=0 z=0  None .sbss      aram_cache_size */
+/* 80450C68-80450C70 000168 0004+04 1/1 0/0 0/0 .sbss            aram_cache_size */
 static u8 aram_cache_size[4 + 4 /* padding */];
 
-/* 80014D5C-80014D64 0008+00 s=0 e=1 z=0  None .text      mDoExt_setAraCacheSize__FUl */
+/* 80014D5C-80014D64 00F69C 0008+00 0/0 1/1 0/0 .text            mDoExt_setAraCacheSize__FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3802,7 +3733,8 @@ asm void mDoExt_setAraCacheSize(u32 param_0) {
 }
 #pragma pop
 
-/* 80014D64-80014D9C 0038+00 s=0 e=2 z=0  None .text      mDoExt_GetCurrentRunningThread__Fv */
+/* 80014D64-80014D9C 00F6A4 0038+00 0/0 2/2 0/0 .text            mDoExt_GetCurrentRunningThread__Fv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3812,7 +3744,7 @@ asm void mDoExt_GetCurrentRunningThread() {
 }
 #pragma pop
 
-/* 80014D9C-80014DC8 002C+00 s=1 e=0 z=0  None .text
+/* 80014D9C-80014DC8 00F6DC 002C+00 1/0 0/0 0/0 .text
  * setGX__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor         */
 #pragma push
 #pragma optimization_level 0
@@ -3823,7 +3755,7 @@ asm void JUTFont::setGX(JUtility::TColor param_0, JUtility::TColor param_1) {
 }
 #pragma pop
 
-/* 80014DC8-80014DF4 002C+00 s=1 e=0 z=0  None .text      getCellWidth__7JUTFontCFv */
+/* 80014DC8-80014DF4 00F708 002C+00 1/0 0/0 0/0 .text            getCellWidth__7JUTFontCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3833,7 +3765,7 @@ asm void JUTFont::getCellWidth() const {
 }
 #pragma pop
 
-/* 80014DF4-80014E20 002C+00 s=1 e=0 z=0  None .text      getCellHeight__7JUTFontCFv */
+/* 80014DF4-80014E20 00F734 002C+00 1/0 0/0 0/0 .text            getCellHeight__7JUTFontCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3843,7 +3775,7 @@ asm void JUTFont::getCellHeight() const {
 }
 #pragma pop
 
-/* 80014E20-80014E7C 005C+00 s=1 e=2 z=0  None .text      __dt__26mDoExt_3DlineMatSortPacketFv */
+/* 80014E20-80014E7C 00F760 005C+00 1/0 2/2 0/0 .text __dt__26mDoExt_3DlineMatSortPacketFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3853,44 +3785,45 @@ asm mDoExt_3DlineMatSortPacket::~mDoExt_3DlineMatSortPacket() {
 }
 #pragma pop
 
-/* 80014E7C-80014E84 0008+00 s=1 e=0 z=0  None .text      getMaterialID__19mDoExt_3DlineMat1_cFv */
+/* 80014E7C-80014E84 00F7BC 0008+00 1/0 0/0 0/0 .text getMaterialID__19mDoExt_3DlineMat1_cFv */
 bool mDoExt_3DlineMat1_c::getMaterialID() {
     return true;
 }
 
-/* 80014E84-80014E8C 0008+00 s=1 e=0 z=0  None .text      getMaterialID__19mDoExt_3DlineMat0_cFv */
+/* 80014E84-80014E8C 00F7C4 0008+00 1/0 0/0 0/0 .text getMaterialID__19mDoExt_3DlineMat0_cFv */
 bool mDoExt_3DlineMat0_c::getMaterialID() {
     return false;
 }
 
-/* 80014E8C-80014E90 0004+00 s=11 e=2 z=0  None .text
+/* 80014E8C-80014E90 00F7CC 0004+00 11/0 2/0 0/0 .text
  * setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform           */
 void J3DMtxCalc::setAnmTransform(u8 param_0, J3DAnmTransform* param_1) {
     /* empty function */
 }
 
-/* 80014E90-80014E94 0004+00 s=9 e=2 z=0  None .text
+/* 80014E90-80014E94 00F7D0 0004+00 9/0 2/0 0/0 .text
  * setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform             */
 void J3DMtxCalc::setAnmTransform(J3DAnmTransform* param_0) {
     /* empty function */
 }
 
-/* 80014E94-80014E9C 0008+00 s=11 e=2 z=0  None .text      getAnmTransform__10J3DMtxCalcFUc */
+/* 80014E94-80014E9C 00F7D4 0008+00 11/0 2/0 0/0 .text            getAnmTransform__10J3DMtxCalcFUc
+ */
 bool J3DMtxCalc::getAnmTransform(u8 param_0) {
     return false;
 }
 
-/* 80014E9C-80014EA4 0008+00 s=9 e=2 z=0  None .text      getAnmTransform__10J3DMtxCalcFv */
+/* 80014E9C-80014EA4 00F7DC 0008+00 9/0 2/0 0/0 .text            getAnmTransform__10J3DMtxCalcFv */
 bool J3DMtxCalc::getAnmTransform() {
     return false;
 }
 
-/* 80014EA4-80014EA8 0004+00 s=11 e=2 z=0  None .text      setWeight__10J3DMtxCalcFUcf */
+/* 80014EA4-80014EA8 00F7E4 0004+00 11/0 2/0 0/0 .text            setWeight__10J3DMtxCalcFUcf */
 void J3DMtxCalc::setWeight(u8 param_0, f32 param_1) {
     /* empty function */
 }
 
-/* 80014EA8-80014EB0 0008+00 s=11 e=2 z=0  None .text      getWeight__10J3DMtxCalcCFUc */
+/* 80014EA8-80014EB0 00F7E8 0008+00 11/0 2/0 0/0 .text            getWeight__10J3DMtxCalcCFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3900,7 +3833,7 @@ asm void J3DMtxCalc::getWeight(u8 param_0) const {
 }
 #pragma pop
 
-/* 80014EB0-80014F3C 008C+00 s=1 e=0 z=0  None .text      __dt__28mDoExt_MtxCalcAnmBlendTblOldFv */
+/* 80014EB0-80014F3C 00F7F0 008C+00 1/0 0/0 0/0 .text __dt__28mDoExt_MtxCalcAnmBlendTblOldFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3910,7 +3843,8 @@ asm mDoExt_MtxCalcAnmBlendTblOld::~mDoExt_MtxCalcAnmBlendTblOld() {
 }
 #pragma pop
 
-/* 80014F3C-80014FB8 007C+00 s=1 e=0 z=0  None .text      __dt__25mDoExt_MtxCalcAnmBlendTblFv */
+/* 80014F3C-80014FB8 00F87C 007C+00 1/0 0/0 0/0 .text            __dt__25mDoExt_MtxCalcAnmBlendTblFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3920,7 +3854,7 @@ asm mDoExt_MtxCalcAnmBlendTbl::~mDoExt_MtxCalcAnmBlendTbl() {
 }
 #pragma pop
 
-/* 80014FB8-80014FC0 0008+00 s=2 e=0 z=0  None .text      getAnmTransform__17J3DMtxCalcAnmBaseFv */
+/* 80014FB8-80014FC0 00F8F8 0008+00 2/0 0/0 0/0 .text getAnmTransform__17J3DMtxCalcAnmBaseFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3930,7 +3864,7 @@ asm void J3DMtxCalcAnmBase::getAnmTransform() {
 }
 #pragma pop
 
-/* 80014FC0-80014FC8 0008+00 s=1 e=0 z=0  None .text
+/* 80014FC0-80014FC8 00F900 0008+00 1/0 0/0 0/0 .text
  * setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform      */
 #pragma push
 #pragma optimization_level 0
@@ -3941,61 +3875,78 @@ asm void J3DMtxCalcAnmBase::setAnmTransform(J3DAnmTransform* param_0) {
 }
 #pragma pop
 
-/* 80014FC8-80015034 006C+00 s=1 e=0 z=0  None .text
+/* 80014FC8-80015034 00F908 006C+00 1/0 0/0 0/0 .text
  * __dt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm J3DMtxCalcAnimation__template0::~J3DMtxCalcAnimation__template0() {
+extern "C" asm void func_80014FC8() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/func_80014FC8.s"
 }
 #pragma pop
 
-/* 80015034-8001505C 0028+00 s=1 e=0 z=0  None .text
+/* 80015034-8001505C 00F974 0028+00 1/0 0/0 0/0 .text
  * init__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DMtxCalcAnimation__template0::init(Vec const& param_0, f32 const (&param_1)[3][4]) {
+extern "C" asm void func_80015034(Vec const& param_0, f32 const (&param_1)[3][4]) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/func_80015034.s"
 }
 #pragma pop
 
-/* 8001505C-80015084 0028+00 s=7 e=0 z=0  None .text
+/* 8001505C-80015084 00F99C 0028+00 7/0 0/0 0/0 .text
  * init__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DMtxCalcNoAnm__template0::init(Vec const& param_0, f32 const (&param_1)[3][4]) {
+extern "C" asm void func_8001505C(Vec const& param_0, f32 const (&param_1)[3][4]) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/func_8001505C.s"
 }
 #pragma pop
 
-/* 80015084-800150AC 0028+00 s=2 e=0 z=0  None .text
+/* 80015084-800150AC 00F9C4 0028+00 2/0 0/0 0/0 .text
  * calc__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DMtxCalcNoAnm__template0::calc() {
+extern "C" asm void func_80015084() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/func_80015084.s"
 }
 #pragma pop
 
-/* 800150AC-8001513C 0090+00 s=1 e=0 z=0  None .text
+/* 800150AC-8001513C 00F9EC 0090+00 1/0 0/0 0/0 .text
  * calc__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void J3DMtxCalcAnimation__template0::calc() {
+extern "C" asm void func_800150AC() {
     nofralloc
 #include "asm/m_Do/m_Do_ext/func_800150AC.s"
 }
+#pragma pop
+
+/* 803740FC-80374198 00075C 009C+00 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+// MWCC ignores mapping of some japanese characters using the
+// byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
+SECTION_DEAD static char const* const stringBase_803740FC =
+    "\x83\x5C\x83\x8A\x83\x62\x83\x68\x83\x71\x81\x5B\x83\x76\x82\xBF\x82\xE1\x82\xA4\x82\xAA\x82"
+    "\xC8\x81\x49\x0A";
+SECTION_DEAD static char const* const stringBase_80374118 = "%s.bti";
+SECTION_DEAD static char const* const stringBase_8037411F =
+    "親ヒープがExpでないのでアジャストできません %08x %08x\n";
+SECTION_DEAD static char const* const stringBase_80374156 = "adjustSize失敗 %08x\n";
+SECTION_DEAD static char const* const stringBase_8037416B =
+    "\nキャッシュフォントクラス作成に失敗しました\n";
 #pragma pop

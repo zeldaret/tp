@@ -11,12 +11,12 @@ lbl_804ABCE0:
 /* 804ABD04  DB 81 00 A0 */	stfd f28, 0xa0(r1)
 /* 804ABD08  F3 81 00 A8 */	psq_st f28, 168(r1), 0, 0 /* qr0 */
 /* 804ABD0C  39 61 00 A0 */	addi r11, r1, 0xa0
-/* 804ABD10  4B EB 64 B8 */	b _savegpr_24
+/* 804ABD10  4B EB 64 B9 */	bl _savegpr_24
 /* 804ABD14  7C 78 1B 78 */	mr r24, r3
-/* 804ABD18  3C 60 80 4C */	lis r3, lit_3879@ha
-/* 804ABD1C  3B C3 B5 34 */	addi r30, r3, lit_3879@l
+/* 804ABD18  3C 60 80 4C */	lis r3, lit_3879@ha /* 0x804BB534@ha */
+/* 804ABD1C  3B C3 B5 34 */	addi r30, r3, lit_3879@l /* 0x804BB534@l */
 /* 804ABD20  38 61 00 2C */	addi r3, r1, 0x2c
-/* 804ABD24  4B BC B8 58 */	b __ct__11dBgS_GndChkFv
+/* 804ABD24  4B BC B8 59 */	bl __ct__11dBgS_GndChkFv
 /* 804ABD28  C0 18 04 D0 */	lfs f0, 0x4d0(r24)
 /* 804ABD2C  D0 18 0C 14 */	stfs f0, 0xc14(r24)
 /* 804ABD30  C0 18 04 D4 */	lfs f0, 0x4d4(r24)
@@ -30,11 +30,11 @@ lbl_804ABCE0:
 /* 804ABD50  C0 18 0F 5C */	lfs f0, 0xf5c(r24)
 /* 804ABD54  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 804ABD58  3B 80 00 62 */	li r28, 0x62
-/* 804ABD5C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804ABD60  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804ABD5C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804ABD60  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804ABD64  3B A3 0F 38 */	addi r29, r3, 0xf38
-/* 804ABD68  3C 60 80 45 */	lis r3, calc_mtx@ha
-/* 804ABD6C  3B E3 07 68 */	addi r31, r3, calc_mtx@l
+/* 804ABD68  3C 60 80 45 */	lis r3, calc_mtx@ha /* 0x80450768@ha */
+/* 804ABD6C  3B E3 07 68 */	addi r31, r3, calc_mtx@l /* 0x80450768@l */
 lbl_804ABD70:
 /* 804ABD70  C0 39 00 00 */	lfs f1, 0(r25)
 /* 804ABD74  C0 19 00 0C */	lfs f0, 0xc(r25)
@@ -53,10 +53,10 @@ lbl_804ABD70:
 /* 804ABDA8  D0 41 00 10 */	stfs f2, 0x10(r1)
 /* 804ABDAC  38 61 00 2C */	addi r3, r1, 0x2c
 /* 804ABDB0  38 81 00 08 */	addi r4, r1, 8
-/* 804ABDB4  4B DB BF 58 */	b SetPos__11cBgS_GndChkFPC3Vec
+/* 804ABDB4  4B DB BF 59 */	bl SetPos__11cBgS_GndChkFPC3Vec
 /* 804ABDB8  7F A3 EB 78 */	mr r3, r29
 /* 804ABDBC  38 81 00 2C */	addi r4, r1, 0x2c
-/* 804ABDC0  4B BC 86 E0 */	b GroundCross__4cBgSFP11cBgS_GndChk
+/* 804ABDC0  4B BC 86 E1 */	bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 804ABDC4  C0 1E 00 B8 */	lfs f0, 0xb8(r30)
 /* 804ABDC8  EC 00 08 2A */	fadds f0, f0, f1
 /* 804ABDCC  C0 39 00 04 */	lfs f1, 4(r25)
@@ -74,7 +74,7 @@ lbl_804ABDE8:
 lbl_804ABDF4:
 /* 804ABDF4  FC 20 F0 90 */	fmr f1, f30
 /* 804ABDF8  FC 40 E0 90 */	fmr f2, f28
-/* 804ABDFC  4B DB B8 78 */	b cM_atan2s__Fff
+/* 804ABDFC  4B DB B8 79 */	bl cM_atan2s__Fff
 /* 804ABE00  7C 7A 07 34 */	extsh r26, r3
 /* 804ABE04  EC 3E 07 B2 */	fmuls f1, f30, f30
 /* 804ABE08  EC 1C 07 32 */	fmuls f0, f28, f28
@@ -85,18 +85,18 @@ lbl_804ABDF4:
 /* 804ABE1C  EC 40 00 B2 */	fmuls f2, f0, f2
 lbl_804ABE20:
 /* 804ABE20  FC 20 E8 90 */	fmr f1, f29
-/* 804ABE24  4B DB B8 50 */	b cM_atan2s__Fff
+/* 804ABE24  4B DB B8 51 */	bl cM_atan2s__Fff
 /* 804ABE28  7C 03 00 D0 */	neg r0, r3
 /* 804ABE2C  7C 1B 07 34 */	extsh r27, r0
 /* 804ABE30  80 7F 00 00 */	lwz r3, 0(r31)
 /* 804ABE34  7F 44 D3 78 */	mr r4, r26
-/* 804ABE38  4B B6 05 A4 */	b mDoMtx_YrotS__FPA4_fs
+/* 804ABE38  4B B6 05 A5 */	bl mDoMtx_YrotS__FPA4_fs
 /* 804ABE3C  80 7F 00 00 */	lwz r3, 0(r31)
 /* 804ABE40  7F 64 DB 78 */	mr r4, r27
-/* 804ABE44  4B B6 05 58 */	b mDoMtx_XrotM__FPA4_fs
+/* 804ABE44  4B B6 05 59 */	bl mDoMtx_XrotM__FPA4_fs
 /* 804ABE48  38 61 00 20 */	addi r3, r1, 0x20
 /* 804ABE4C  38 81 00 14 */	addi r4, r1, 0x14
-/* 804ABE50  4B DC 50 9C */	b MtxPosition__FP4cXyzP4cXyz
+/* 804ABE50  4B DC 50 9D */	bl MtxPosition__FP4cXyzP4cXyz
 /* 804ABE54  C0 39 00 0C */	lfs f1, 0xc(r25)
 /* 804ABE58  C0 01 00 14 */	lfs f0, 0x14(r1)
 /* 804ABE5C  EC 01 00 2A */	fadds f0, f1, f0
@@ -115,7 +115,7 @@ lbl_804ABE20:
 /* 804ABE90  40 80 FE E0 */	bge lbl_804ABD70
 /* 804ABE94  38 61 00 2C */	addi r3, r1, 0x2c
 /* 804ABE98  38 80 FF FF */	li r4, -1
-/* 804ABE9C  4B BC B7 54 */	b __dt__11dBgS_GndChkFv
+/* 804ABE9C  4B BC B7 55 */	bl __dt__11dBgS_GndChkFv
 /* 804ABEA0  E3 E1 00 D8 */	psq_l f31, 216(r1), 0, 0 /* qr0 */
 /* 804ABEA4  CB E1 00 D0 */	lfd f31, 0xd0(r1)
 /* 804ABEA8  E3 C1 00 C8 */	psq_l f30, 200(r1), 0, 0 /* qr0 */
@@ -125,7 +125,7 @@ lbl_804ABE20:
 /* 804ABEB8  E3 81 00 A8 */	psq_l f28, 168(r1), 0, 0 /* qr0 */
 /* 804ABEBC  CB 81 00 A0 */	lfd f28, 0xa0(r1)
 /* 804ABEC0  39 61 00 A0 */	addi r11, r1, 0xa0
-/* 804ABEC4  4B EB 63 50 */	b _restgpr_24
+/* 804ABEC4  4B EB 63 51 */	bl _restgpr_24
 /* 804ABEC8  80 01 00 E4 */	lwz r0, 0xe4(r1)
 /* 804ABECC  7C 08 03 A6 */	mtlr r0
 /* 804ABED0  38 21 00 E0 */	addi r1, r1, 0xe0

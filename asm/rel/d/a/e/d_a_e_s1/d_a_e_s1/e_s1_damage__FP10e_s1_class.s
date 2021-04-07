@@ -13,8 +13,8 @@ lbl_8077C52C:
 /* 8077C558  48 00 00 90 */	b lbl_8077C5E8
 lbl_8077C55C:
 /* 8077C55C  38 80 00 07 */	li r4, 7
-/* 8077C560  3C A0 80 78 */	lis r5, lit_3905@ha
-/* 8077C564  C0 25 0D CC */	lfs f1, lit_3905@l(r5)
+/* 8077C560  3C A0 80 78 */	lis r5, lit_3905@ha /* 0x80780DCC@ha */
+/* 8077C564  C0 25 0D CC */	lfs f1, lit_3905@l(r5)  /* 0x80780DCC@l */
 /* 8077C568  38 A0 00 00 */	li r5, 0
 /* 8077C56C  FC 40 08 90 */	fmr f2, f1
 /* 8077C570  4B FF E6 89 */	bl anm_init__FP10e_s1_classifUcf
@@ -34,8 +34,8 @@ lbl_8077C598:
 /* 8077C5A0  88 04 00 11 */	lbz r0, 0x11(r4)
 /* 8077C5A4  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 8077C5A8  40 82 00 1C */	bne lbl_8077C5C4
-/* 8077C5AC  3C 60 80 78 */	lis r3, lit_3904@ha
-/* 8077C5B0  C0 23 0D C8 */	lfs f1, lit_3904@l(r3)
+/* 8077C5AC  3C 60 80 78 */	lis r3, lit_3904@ha /* 0x80780DC8@ha */
+/* 8077C5B0  C0 23 0D C8 */	lfs f1, lit_3904@l(r3)  /* 0x80780DC8@l */
 /* 8077C5B4  C0 04 00 18 */	lfs f0, 0x18(r4)
 /* 8077C5B8  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 8077C5BC  41 82 00 08 */	beq lbl_8077C5C4
@@ -43,8 +43,8 @@ lbl_8077C598:
 lbl_8077C5C4:
 /* 8077C5C4  54 A0 06 3F */	clrlwi. r0, r5, 0x18
 /* 8077C5C8  41 82 00 20 */	beq lbl_8077C5E8
-/* 8077C5CC  3C 60 80 78 */	lis r3, lit_3904@ha
-/* 8077C5D0  C0 03 0D C8 */	lfs f0, lit_3904@l(r3)
+/* 8077C5CC  3C 60 80 78 */	lis r3, lit_3904@ha /* 0x80780DC8@ha */
+/* 8077C5D0  C0 03 0D C8 */	lfs f0, lit_3904@l(r3)  /* 0x80780DC8@l */
 /* 8077C5D4  D0 1F 06 AC */	stfs f0, 0x6ac(r31)
 /* 8077C5D8  38 00 00 02 */	li r0, 2
 /* 8077C5DC  B0 1F 06 96 */	sth r0, 0x696(r31)

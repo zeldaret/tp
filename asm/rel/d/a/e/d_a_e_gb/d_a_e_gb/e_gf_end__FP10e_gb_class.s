@@ -3,10 +3,10 @@ lbl_806C48EC:
 /* 806C48F0  7C 08 02 A6 */	mflr r0
 /* 806C48F4  90 01 00 44 */	stw r0, 0x44(r1)
 /* 806C48F8  39 61 00 40 */	addi r11, r1, 0x40
-/* 806C48FC  4B C9 D8 E0 */	b _savegpr_29
+/* 806C48FC  4B C9 D8 E1 */	bl _savegpr_29
 /* 806C4900  7C 7E 1B 78 */	mr r30, r3
-/* 806C4904  3C 80 80 6C */	lis r4, lit_3906@ha
-/* 806C4908  3B E4 74 E8 */	addi r31, r4, lit_3906@l
+/* 806C4904  3C 80 80 6C */	lis r4, lit_3906@ha /* 0x806C74E8@ha */
+/* 806C4908  3B E4 74 E8 */	addi r31, r4, lit_3906@l /* 0x806C74E8@l */
 /* 806C490C  A8 03 06 A0 */	lha r0, 0x6a0(r3)
 /* 806C4910  2C 00 00 02 */	cmpwi r0, 2
 /* 806C4914  41 82 01 88 */	beq lbl_806C4A9C
@@ -28,8 +28,8 @@ lbl_806C4938:
 /* 806C494C  3C 60 00 07 */	lis r3, 0x0007 /* 0x0007015C@ha */
 /* 806C4950  38 03 01 5C */	addi r0, r3, 0x015C /* 0x0007015C@l */
 /* 806C4954  90 01 00 0C */	stw r0, 0xc(r1)
-/* 806C4958  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 806C495C  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 806C4958  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 806C495C  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 806C4960  80 63 00 00 */	lwz r3, 0(r3)
 /* 806C4964  38 81 00 0C */	addi r4, r1, 0xc
 /* 806C4968  38 BE 04 A8 */	addi r5, r30, 0x4a8
@@ -40,7 +40,7 @@ lbl_806C4938:
 /* 806C497C  C0 7F 00 30 */	lfs f3, 0x30(r31)
 /* 806C4980  FC 80 18 90 */	fmr f4, f3
 /* 806C4984  39 00 00 00 */	li r8, 0
-/* 806C4988  4B BE 6F FC */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 806C4988  4B BE 6F FD */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 806C498C  38 00 00 01 */	li r0, 1
 /* 806C4990  B0 1E 06 A0 */	sth r0, 0x6a0(r30)
 lbl_806C4994:
@@ -66,23 +66,23 @@ lbl_806C49D8:
 /* 806C49D8  A8 1E 06 C4 */	lha r0, 0x6c4(r30)
 /* 806C49DC  2C 00 00 14 */	cmpwi r0, 0x14
 /* 806C49E0  40 82 00 20 */	bne lbl_806C4A00
-/* 806C49E4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 806C49E8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 806C49E4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806C49E8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806C49EC  80 1E 00 B0 */	lwz r0, 0xb0(r30)
 /* 806C49F0  54 04 86 3E */	rlwinm r4, r0, 0x10, 0x18, 0x1f
 /* 806C49F4  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 806C49F8  7C 05 07 74 */	extsb r5, r0
-/* 806C49FC  4B 97 08 04 */	b onSwitch__10dSv_info_cFii
+/* 806C49FC  4B 97 08 05 */	bl onSwitch__10dSv_info_cFii
 lbl_806C4A00:
 /* 806C4A00  A8 1E 06 C4 */	lha r0, 0x6c4(r30)
 /* 806C4A04  2C 00 00 00 */	cmpwi r0, 0
 /* 806C4A08  40 82 00 94 */	bne lbl_806C4A9C
 /* 806C4A0C  38 00 02 19 */	li r0, 0x219
 /* 806C4A10  B0 01 00 08 */	sth r0, 8(r1)
-/* 806C4A14  3C 60 80 02 */	lis r3, fpcSch_JudgeForPName__FPvPv@ha
-/* 806C4A18  38 63 35 78 */	addi r3, r3, fpcSch_JudgeForPName__FPvPv@l
+/* 806C4A14  3C 60 80 02 */	lis r3, fpcSch_JudgeForPName__FPvPv@ha /* 0x80023578@ha */
+/* 806C4A18  38 63 35 78 */	addi r3, r3, fpcSch_JudgeForPName__FPvPv@l /* 0x80023578@l */
 /* 806C4A1C  38 81 00 08 */	addi r4, r1, 8
-/* 806C4A20  4B 95 4D D8 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 806C4A20  4B 95 4D D9 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 806C4A24  7C 60 1B 78 */	mr r0, r3
 /* 806C4A28  7C 1D 03 79 */	or. r29, r0, r0
 /* 806C4A2C  C0 5E 04 A8 */	lfs f2, 0x4a8(r30)
@@ -104,19 +104,19 @@ lbl_806C4A00:
 /* 806C4A6C  C0 1F 00 E4 */	lfs f0, 0xe4(r31)
 /* 806C4A70  D0 1D 05 30 */	stfs f0, 0x530(r29)
 /* 806C4A74  7F A3 EB 78 */	mr r3, r29
-/* 806C4A78  48 61 5F 34 */	b actionWaitInit__7daKey_cFv
+/* 806C4A78  48 61 5F 35 */	bl actionWaitInit__7daKey_cFv
 lbl_806C4A7C:
 /* 806C4A7C  7F C3 F3 78 */	mr r3, r30
 /* 806C4A80  38 81 00 1C */	addi r4, r1, 0x1c
 /* 806C4A84  38 A0 00 14 */	li r5, 0x14
 /* 806C4A88  38 C0 00 00 */	li r6, 0
 /* 806C4A8C  88 FE 05 64 */	lbz r7, 0x564(r30)
-/* 806C4A90  4B 95 80 48 */	b fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc
+/* 806C4A90  4B 95 80 49 */	bl fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc
 /* 806C4A94  7F C3 F3 78 */	mr r3, r30
-/* 806C4A98  4B 95 51 E4 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 806C4A98  4B 95 51 E5 */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_806C4A9C:
 /* 806C4A9C  39 61 00 40 */	addi r11, r1, 0x40
-/* 806C4AA0  4B C9 D7 88 */	b _restgpr_29
+/* 806C4AA0  4B C9 D7 89 */	bl _restgpr_29
 /* 806C4AA4  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 806C4AA8  7C 08 03 A6 */	mtlr r0
 /* 806C4AAC  38 21 00 40 */	addi r1, r1, 0x40

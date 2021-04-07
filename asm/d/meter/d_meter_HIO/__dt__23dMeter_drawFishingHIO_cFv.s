@@ -5,8 +5,8 @@ lbl_80200F08:
 /* 80200F14  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80200F18  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80200F1C  41 82 00 1C */	beq lbl_80200F38
-/* 80200F20  3C A0 80 3C */	lis r5, __vt__23dMeter_drawFishingHIO_c@ha
-/* 80200F24  38 05 F1 6C */	addi r0, r5, __vt__23dMeter_drawFishingHIO_c@l
+/* 80200F20  3C A0 80 3C */	lis r5, __vt__23dMeter_drawFishingHIO_c@ha /* 0x803BF16C@ha */
+/* 80200F24  38 05 F1 6C */	addi r0, r5, __vt__23dMeter_drawFishingHIO_c@l /* 0x803BF16C@l */
 /* 80200F28  90 1F 00 00 */	stw r0, 0(r31)
 /* 80200F2C  7C 80 07 35 */	extsh. r0, r4
 /* 80200F30  40 81 00 08 */	ble lbl_80200F38

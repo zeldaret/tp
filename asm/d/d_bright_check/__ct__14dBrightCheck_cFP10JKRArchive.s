@@ -4,14 +4,14 @@ lbl_80192F10:
 /* 80192F18  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80192F1C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80192F20  7C 7F 1B 78 */	mr r31, r3
-/* 80192F24  3C 60 80 3C */	lis r3, __vt__14dBrightCheck_c@ha
-/* 80192F28  38 03 B5 FC */	addi r0, r3, __vt__14dBrightCheck_c@l
+/* 80192F24  3C 60 80 3C */	lis r3, __vt__14dBrightCheck_c@ha /* 0x803BB5FC@ha */
+/* 80192F28  38 03 B5 FC */	addi r0, r3, __vt__14dBrightCheck_c@l /* 0x803BB5FC@l */
 /* 80192F2C  90 1F 00 00 */	stw r0, 0(r31)
-/* 80192F30  3C 60 80 3A */	lis r3, __vt__12dDlst_base_c@ha
-/* 80192F34  38 03 6F 88 */	addi r0, r3, __vt__12dDlst_base_c@l
+/* 80192F30  3C 60 80 3A */	lis r3, __vt__12dDlst_base_c@ha /* 0x803A6F88@ha */
+/* 80192F34  38 03 6F 88 */	addi r0, r3, __vt__12dDlst_base_c@l /* 0x803A6F88@l */
 /* 80192F38  90 1F 00 08 */	stw r0, 8(r31)
-/* 80192F3C  3C 60 80 3C */	lis r3, __vt__19dDlst_BrightCheck_c@ha
-/* 80192F40  38 03 B5 EC */	addi r0, r3, __vt__19dDlst_BrightCheck_c@l
+/* 80192F3C  3C 60 80 3C */	lis r3, __vt__19dDlst_BrightCheck_c@ha /* 0x803BB5EC@ha */
+/* 80192F40  38 03 B5 EC */	addi r0, r3, __vt__19dDlst_BrightCheck_c@l /* 0x803BB5EC@l */
 /* 80192F44  90 1F 00 08 */	stw r0, 8(r31)
 /* 80192F48  90 9F 00 04 */	stw r4, 4(r31)
 /* 80192F4C  38 60 00 2C */	li r3, 0x2c

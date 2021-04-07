@@ -4,8 +4,8 @@ lbl_80675ADC:
 /* 80675AE4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80675AE8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80675AEC  93 C1 00 08 */	stw r30, 8(r1)
-/* 80675AF0  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80675AF4  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80675AF0  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80675AF4  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80675AF8  83 E4 5D AC */	lwz r31, 0x5dac(r4)
 /* 80675AFC  AB C3 04 E6 */	lha r30, 0x4e6(r3)
 /* 80675B00  48 00 07 A5 */	bl checkFront__12daMBdoorL1_cFv

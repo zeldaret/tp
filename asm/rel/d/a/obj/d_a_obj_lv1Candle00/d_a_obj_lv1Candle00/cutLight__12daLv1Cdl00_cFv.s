@@ -9,7 +9,7 @@ lbl_80C562A0:
 /* 80C562BC  40 82 00 0C */	bne lbl_80C562C8
 lbl_80C562C0:
 /* 80C562C0  38 63 07 10 */	addi r3, r3, 0x710
-/* 80C562C4  4B 55 16 68 */	b dKy_plight_cut__FP15LIGHT_INFLUENCE
+/* 80C562C4  4B 55 16 69 */	bl dKy_plight_cut__FP15LIGHT_INFLUENCE
 lbl_80C562C8:
 /* 80C562C8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80C562CC  7C 08 03 A6 */	mtlr r0

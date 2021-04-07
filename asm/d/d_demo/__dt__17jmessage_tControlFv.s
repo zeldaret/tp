@@ -7,8 +7,8 @@ lbl_80039B0C:
 /* 80039B20  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80039B24  7C 9F 23 78 */	mr r31, r4
 /* 80039B28  41 82 00 28 */	beq lbl_80039B50
-/* 80039B2C  3C 80 80 3A */	lis r4, __vt__17jmessage_tControl@ha
-/* 80039B30  38 04 79 28 */	addi r0, r4, __vt__17jmessage_tControl@l
+/* 80039B2C  3C 80 80 3A */	lis r4, __vt__17jmessage_tControl@ha /* 0x803A7928@ha */
+/* 80039B30  38 04 79 28 */	addi r0, r4, __vt__17jmessage_tControl@l /* 0x803A7928@l */
 /* 80039B34  90 1E 00 00 */	stw r0, 0(r30)
 /* 80039B38  38 80 00 00 */	li r4, 0
 /* 80039B3C  48 26 DA 51 */	bl __dt__Q28JMessage8TControlFv

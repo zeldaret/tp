@@ -3,7 +3,7 @@ lbl_807040B0:
 /* 807040B4  7C 08 02 A6 */	mflr r0
 /* 807040B8  90 01 00 34 */	stw r0, 0x34(r1)
 /* 807040BC  39 61 00 30 */	addi r11, r1, 0x30
-/* 807040C0  4B C5 E1 18 */	b _savegpr_28
+/* 807040C0  4B C5 E1 19 */	bl _savegpr_28
 /* 807040C4  7C 7F 1B 78 */	mr r31, r3
 /* 807040C8  38 00 00 03 */	li r0, 3
 /* 807040CC  98 03 05 46 */	stb r0, 0x546(r3)
@@ -13,8 +13,8 @@ lbl_807040B0:
 /* 807040DC  A8 03 06 68 */	lha r0, 0x668(r3)
 /* 807040E0  28 00 00 0A */	cmplwi r0, 0xa
 /* 807040E4  41 81 00 7C */	bgt lbl_80704160
-/* 807040E8  3C 80 80 70 */	lis r4, lit_5528@ha
-/* 807040EC  38 84 5D DC */	addi r4, r4, lit_5528@l
+/* 807040E8  3C 80 80 70 */	lis r4, lit_5528@ha /* 0x80705DDC@ha */
+/* 807040EC  38 84 5D DC */	addi r4, r4, lit_5528@l /* 0x80705DDC@l */
 /* 807040F0  54 00 10 3A */	slwi r0, r0, 2
 /* 807040F4  7C 04 00 2E */	lwzx r0, r4, r0
 /* 807040F8  7C 09 03 A6 */	mtctr r0
@@ -55,12 +55,12 @@ lbl_80704160:
 /* 80704164  41 82 00 14 */	beq lbl_80704178
 /* 80704168  38 7F 05 C0 */	addi r3, r31, 0x5c0
 /* 8070416C  38 80 00 01 */	li r4, 1
-/* 80704170  4B BB DA 0C */	b setLinkSearch__15Z2CreatureEnemyFb
+/* 80704170  4B BB DA 0D */	bl setLinkSearch__15Z2CreatureEnemyFb
 /* 80704174  48 00 00 10 */	b lbl_80704184
 lbl_80704178:
 /* 80704178  38 7F 05 C0 */	addi r3, r31, 0x5c0
 /* 8070417C  38 80 00 00 */	li r4, 0
-/* 80704180  4B BB D9 FC */	b setLinkSearch__15Z2CreatureEnemyFb
+/* 80704180  4B BB D9 FD */	bl setLinkSearch__15Z2CreatureEnemyFb
 lbl_80704184:
 /* 80704184  7F 80 07 75 */	extsb. r0, r28
 /* 80704188  41 82 00 10 */	beq lbl_80704198
@@ -80,10 +80,10 @@ lbl_807041AC:
 /* 807041B8  38 80 00 00 */	li r4, 0
 /* 807041BC  38 A0 00 04 */	li r5, 4
 /* 807041C0  38 C0 08 00 */	li r6, 0x800
-/* 807041C4  4B B6 C4 44 */	b cLib_addCalcAngleS2__FPssss
+/* 807041C4  4B B6 C4 45 */	bl cLib_addCalcAngleS2__FPssss
 lbl_807041C8:
-/* 807041C8  3C 60 80 70 */	lis r3, lit_5527@ha
-/* 807041CC  C0 03 5C 14 */	lfs f0, lit_5527@l(r3)
+/* 807041C8  3C 60 80 70 */	lis r3, lit_5527@ha /* 0x80705C14@ha */
+/* 807041CC  C0 03 5C 14 */	lfs f0, lit_5527@l(r3)  /* 0x80705C14@l */
 /* 807041D0  D0 01 00 08 */	stfs f0, 8(r1)
 /* 807041D4  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 807041D8  D0 01 00 10 */	stfs f0, 0x10(r1)
@@ -93,7 +93,7 @@ lbl_807041C8:
 /* 807041E8  38 C1 00 08 */	addi r6, r1, 8
 /* 807041EC  48 00 14 A9 */	bl setMidnaBindEffect__FP13fopEn_enemy_cP15Z2CreatureEnemyP4cXyzP4cXyz
 /* 807041F0  39 61 00 30 */	addi r11, r1, 0x30
-/* 807041F4  4B C5 E0 30 */	b _restgpr_28
+/* 807041F4  4B C5 E0 31 */	bl _restgpr_28
 /* 807041F8  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 807041FC  7C 08 03 A6 */	mtlr r0
 /* 80704200  38 21 00 30 */	addi r1, r1, 0x30

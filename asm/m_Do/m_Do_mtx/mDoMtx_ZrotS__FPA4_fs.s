@@ -1,6 +1,6 @@
 lbl_8000C474:
-/* 8000C474  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha
-/* 8000C478  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l
+/* 8000C474  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8000C478  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8000C47C  54 80 04 38 */	rlwinm r0, r4, 0, 0x10, 0x1c
 /* 8000C480  7C 85 02 14 */	add r4, r5, r0
 /* 8000C484  C0 44 00 04 */	lfs f2, 4(r4)

@@ -10,9 +10,9 @@ lbl_80A3B3E8:
 /* 80A3B408  7F E4 FB 78 */	mr r4, r31
 /* 80A3B40C  7C 05 03 78 */	mr r5, r0
 /* 80A3B410  38 C0 00 00 */	li r6, 0
-/* 80A3B414  4B 80 EB 7C */	b init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
-/* 80A3B418  3C 60 80 A4 */	lis r3, lit_4204@ha
-/* 80A3B41C  C0 03 09 00 */	lfs f0, lit_4204@l(r3)
+/* 80A3B414  4B 80 EB 7D */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
+/* 80A3B418  3C 60 80 A4 */	lis r3, lit_4204@ha /* 0x80A40900@ha */
+/* 80A3B41C  C0 03 09 00 */	lfs f0, lit_4204@l(r3)  /* 0x80A40900@l */
 /* 80A3B420  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 80A3B424  D0 1F 04 F8 */	stfs f0, 0x4f8(r31)
 /* 80A3B428  D0 1F 04 FC */	stfs f0, 0x4fc(r31)

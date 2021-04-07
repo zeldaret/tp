@@ -1,11 +1,11 @@
 lbl_80C768EC:
-/* 80C768EC  3C 80 80 C7 */	lis r4, lit_3668@ha
-/* 80C768F0  38 A4 79 B0 */	addi r5, r4, lit_3668@l
-/* 80C768F4  3C 80 80 C7 */	lis r4, __vt__14mDoHIO_entry_c@ha
-/* 80C768F8  38 04 7A BC */	addi r0, r4, __vt__14mDoHIO_entry_c@l
+/* 80C768EC  3C 80 80 C7 */	lis r4, lit_3668@ha /* 0x80C779B0@ha */
+/* 80C768F0  38 A4 79 B0 */	addi r5, r4, lit_3668@l /* 0x80C779B0@l */
+/* 80C768F4  3C 80 80 C7 */	lis r4, __vt__14mDoHIO_entry_c@ha /* 0x80C77ABC@ha */
+/* 80C768F8  38 04 7A BC */	addi r0, r4, __vt__14mDoHIO_entry_c@l /* 0x80C77ABC@l */
 /* 80C768FC  90 03 00 00 */	stw r0, 0(r3)
-/* 80C76900  3C 80 80 C7 */	lis r4, __vt__14daTenbin_HIO_c@ha
-/* 80C76904  38 04 7A B0 */	addi r0, r4, __vt__14daTenbin_HIO_c@l
+/* 80C76900  3C 80 80 C7 */	lis r4, __vt__14daTenbin_HIO_c@ha /* 0x80C77AB0@ha */
+/* 80C76904  38 04 7A B0 */	addi r0, r4, __vt__14daTenbin_HIO_c@l /* 0x80C77AB0@l */
 /* 80C76908  90 03 00 00 */	stw r0, 0(r3)
 /* 80C7690C  C0 05 00 00 */	lfs f0, 0(r5)
 /* 80C76910  D0 03 00 04 */	stfs f0, 4(r3)

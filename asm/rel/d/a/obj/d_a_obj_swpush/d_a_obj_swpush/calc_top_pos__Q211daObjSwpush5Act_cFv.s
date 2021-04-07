@@ -1,6 +1,6 @@
 lbl_80483A5C:
-/* 80483A5C  3C 80 80 48 */	lis r4, M_bmd__Q211daObjSwpush5Act_c@ha
-/* 80483A60  38 A4 4D 10 */	addi r5, r4, M_bmd__Q211daObjSwpush5Act_c@l
+/* 80483A5C  3C 80 80 48 */	lis r4, M_bmd__Q211daObjSwpush5Act_c@ha /* 0x80484D10@ha */
+/* 80483A60  38 A4 4D 10 */	addi r5, r4, M_bmd__Q211daObjSwpush5Act_c@l /* 0x80484D10@l */
 /* 80483A64  80 03 05 AC */	lwz r0, 0x5ac(r3)
 /* 80483A68  1C 00 00 2C */	mulli r0, r0, 0x2c
 /* 80483A6C  38 85 00 1C */	addi r4, r5, 0x1c

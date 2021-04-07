@@ -3,19 +3,20 @@
 #
 
 M606_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotTrap.plf
+M606_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotTrap.lcf
+M606_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotTrap.map
 
 M606_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_rotTrap/executor.cpp \
-	rel/d/a/obj/d_a_obj_rotTrap/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_rotTrap/d_a_obj_rotTrap.cpp \
 
 M606_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotTrap/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotTrap/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotTrap/d_a_obj_rotTrap.o \
 
 M606_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotTrap/libRuntime.PPCEABI.H.a \
 
 M606_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M606_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M606_LDSCRIPT) \
+	-unused -map $(M606_MAP) \
+	-w off \
 
 $(M606_TARGET): $(M606_O_FILES) $(M606_LIBS)
+	@echo [606] creating $(M606_TARGET)
 	@echo $(M606_LIBS) $(M606_O_FILES) > build/M606_ofiles
-	$(LD) -partial $(M606_LDFLAGS) -o $(M606_TARGET) @build/M606_ofiles
+	@python3 tools/lcf.py rel 606 --output $(M606_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M606_LDFLAGS) -o $(M606_TARGET) @build/M606_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rotTrap/%.o: rel/d/a/obj/d_a_obj_rotTrap/%.cpp
+	@echo [606] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M606_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M606_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_rotTrap/libs/Runtime.PPCEABI.H/Makefile
 

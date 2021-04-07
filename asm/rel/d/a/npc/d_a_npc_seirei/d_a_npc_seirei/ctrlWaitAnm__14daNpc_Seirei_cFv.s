@@ -24,7 +24,7 @@ lbl_80AD6764:
 /* 80AD6774  2C 00 00 01 */	cmpwi r0, 1
 /* 80AD6778  40 82 00 50 */	bne lbl_80AD67C8
 /* 80AD677C  38 7E 0B 74 */	addi r3, r30, 0xb74
-/* 80AD6780  4B 66 F2 A4 */	b checkEndSequence__22daNpcT_MotionSeqMngr_cFv
+/* 80AD6780  4B 66 F2 A5 */	bl checkEndSequence__22daNpcT_MotionSeqMngr_cFv
 /* 80AD6784  2C 03 00 00 */	cmpwi r3, 0
 /* 80AD6788  41 82 00 68 */	beq lbl_80AD67F0
 /* 80AD678C  80 1E 0B 7C */	lwz r0, 0xb7c(r30)
@@ -32,12 +32,12 @@ lbl_80AD6764:
 /* 80AD6794  41 82 00 28 */	beq lbl_80AD67BC
 /* 80AD6798  83 FE 0B 80 */	lwz r31, 0xb80(r30)
 /* 80AD679C  38 7E 0B 74 */	addi r3, r30, 0xb74
-/* 80AD67A0  4B 66 F0 F8 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80AD67A0  4B 66 F0 F9 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80AD67A4  93 FE 0B 80 */	stw r31, 0xb80(r30)
 /* 80AD67A8  38 00 00 00 */	li r0, 0
 /* 80AD67AC  90 1E 0B 7C */	stw r0, 0xb7c(r30)
-/* 80AD67B0  3C 60 80 AD */	lis r3, lit_4348@ha
-/* 80AD67B4  C0 03 7D 54 */	lfs f0, lit_4348@l(r3)
+/* 80AD67B0  3C 60 80 AD */	lis r3, lit_4348@ha /* 0x80AD7D54@ha */
+/* 80AD67B4  C0 03 7D 54 */	lfs f0, lit_4348@l(r3)  /* 0x80AD7D54@l */
 /* 80AD67B8  D0 1E 0B 8C */	stfs f0, 0xb8c(r30)
 lbl_80AD67BC:
 /* 80AD67BC  38 00 00 03 */	li r0, 3
@@ -47,12 +47,12 @@ lbl_80AD67C8:
 /* 80AD67C8  41 82 00 28 */	beq lbl_80AD67F0
 /* 80AD67CC  83 FE 0B 80 */	lwz r31, 0xb80(r30)
 /* 80AD67D0  38 7E 0B 74 */	addi r3, r30, 0xb74
-/* 80AD67D4  4B 66 F0 C4 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80AD67D4  4B 66 F0 C5 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80AD67D8  93 FE 0B 80 */	stw r31, 0xb80(r30)
 /* 80AD67DC  38 00 00 01 */	li r0, 1
 /* 80AD67E0  90 1E 0B 7C */	stw r0, 0xb7c(r30)
-/* 80AD67E4  3C 60 80 AD */	lis r3, lit_4348@ha
-/* 80AD67E8  C0 03 7D 54 */	lfs f0, lit_4348@l(r3)
+/* 80AD67E4  3C 60 80 AD */	lis r3, lit_4348@ha /* 0x80AD7D54@ha */
+/* 80AD67E8  C0 03 7D 54 */	lfs f0, lit_4348@l(r3)  /* 0x80AD7D54@l */
 /* 80AD67EC  D0 1E 0B 8C */	stfs f0, 0xb8c(r30)
 lbl_80AD67F0:
 /* 80AD67F0  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -4,7 +4,7 @@ lbl_80D22230:
 /* 80D22238  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80D2223C  38 80 00 00 */	li r4, 0
 /* 80D22240  38 A0 00 00 */	li r5, 0
-/* 80D22244  4B 32 73 3C */	b __ct__19dPa_followEcallBackFUcUc
+/* 80D22244  4B 32 73 3D */	bl __ct__19dPa_followEcallBackFUcUc
 /* 80D22248  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80D2224C  7C 08 03 A6 */	mtlr r0
 /* 80D22250  38 21 00 10 */	addi r1, r1, 0x10

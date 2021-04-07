@@ -5,8 +5,8 @@ lbl_80024DC0:
 /* 80024DCC  39 61 00 20 */	addi r11, r1, 0x20
 /* 80024DD0  48 33 D4 0D */	bl _savegpr_29
 /* 80024DD4  7C 7D 1B 78 */	mr r29, r3
-/* 80024DD8  3C 60 80 3A */	lis r3, l_objectName@ha
-/* 80024DDC  38 03 3B 18 */	addi r0, r3, l_objectName@l
+/* 80024DD8  3C 60 80 3A */	lis r3, l_objectName@ha /* 0x803A3B18@ha */
+/* 80024DDC  38 03 3B 18 */	addi r0, r3, l_objectName@l /* 0x803A3B18@l */
 /* 80024DE0  7C 1F 03 78 */	mr r31, r0
 /* 80024DE4  3B C0 00 00 */	li r30, 0
 lbl_80024DE8:

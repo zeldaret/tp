@@ -5,14 +5,14 @@ lbl_80121004:
 /* 80121010  39 61 00 70 */	addi r11, r1, 0x70
 /* 80121014  48 24 11 AD */	bl _savegpr_22
 /* 80121018  7C 7D 1B 78 */	mr r29, r3
-/* 8012101C  3C 60 80 39 */	lis r3, lit_3757@ha
-/* 80121020  3B 03 D6 58 */	addi r24, r3, lit_3757@l
+/* 8012101C  3C 60 80 39 */	lis r3, lit_3757@ha /* 0x8038D658@ha */
+/* 80121020  3B 03 D6 58 */	addi r24, r3, lit_3757@l /* 0x8038D658@l */
 /* 80121024  3B C0 00 00 */	li r30, 0
 /* 80121028  3B 80 00 00 */	li r28, 0
-/* 8012102C  3C 60 80 3B */	lis r3, m_typeFourData__8dPaPoF_c@ha
-/* 80121030  3B 23 86 D0 */	addi r25, r3, m_typeFourData__8dPaPoF_c@l
-/* 80121034  3C 60 80 3B */	lis r3, m_emitterFourData__8dPaPoF_c@ha
-/* 80121038  3B 43 87 48 */	addi r26, r3, m_emitterFourData__8dPaPoF_c@l
+/* 8012102C  3C 60 80 3B */	lis r3, m_typeFourData__8dPaPoF_c@ha /* 0x803A86D0@ha */
+/* 80121030  3B 23 86 D0 */	addi r25, r3, m_typeFourData__8dPaPoF_c@l /* 0x803A86D0@l */
+/* 80121034  3C 60 80 3B */	lis r3, m_emitterFourData__8dPaPoF_c@ha /* 0x803A8748@ha */
+/* 80121038  3B 43 87 48 */	addi r26, r3, m_emitterFourData__8dPaPoF_c@l /* 0x803A8748@l */
 lbl_8012103C:
 /* 8012103C  3B E0 00 00 */	li r31, 0
 /* 80121040  7E F9 E2 14 */	add r23, r25, r28

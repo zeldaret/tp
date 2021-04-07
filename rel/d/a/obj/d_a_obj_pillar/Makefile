@@ -3,19 +3,20 @@
 #
 
 M593_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pillar.plf
+M593_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pillar.lcf
+M593_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pillar.map
 
 M593_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_pillar/executor.cpp \
-	rel/d/a/obj/d_a_obj_pillar/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_pillar/d_a_obj_pillar.cpp \
 
 M593_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pillar/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pillar/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pillar/d_a_obj_pillar.o \
 
 M593_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pillar/libRuntime.PPCEABI.H.a \
 
 M593_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M593_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M593_LDSCRIPT) \
+	-unused -map $(M593_MAP) \
+	-w off \
 
 $(M593_TARGET): $(M593_O_FILES) $(M593_LIBS)
+	@echo [593] creating $(M593_TARGET)
 	@echo $(M593_LIBS) $(M593_O_FILES) > build/M593_ofiles
-	$(LD) -partial $(M593_LDFLAGS) -o $(M593_TARGET) @build/M593_ofiles
+	@python3 tools/lcf.py rel 593 --output $(M593_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M593_LDFLAGS) -o $(M593_TARGET) @build/M593_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pillar/%.o: rel/d/a/obj/d_a_obj_pillar/%.cpp
+	@echo [593] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M593_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M593_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_pillar/libs/Runtime.PPCEABI.H/Makefile
 

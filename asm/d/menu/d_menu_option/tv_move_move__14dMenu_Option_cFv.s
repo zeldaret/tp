@@ -4,8 +4,8 @@ lbl_801E5260:
 /* 801E5268  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801E526C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 801E5270  7C 7F 1B 78 */	mr r31, r3
-/* 801E5274  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 801E5278  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 801E5274  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801E5278  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801E527C  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 801E5280  54 60 06 F7 */	rlwinm. r0, r3, 0, 0x1b, 0x1b
 /* 801E5284  40 82 00 0C */	bne lbl_801E5290

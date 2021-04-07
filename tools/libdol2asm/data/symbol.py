@@ -49,6 +49,7 @@ class Symbol:
     padding: int = 0
     alignment: int = 0
     reference_count: ReferenceCount = field(default_factory=ReferenceCount)
+    implicit_reference_count: ReferenceCount = field(default_factory=ReferenceCount)
     sda_hack_reference_count: ReferenceCount = field(
         default_factory=ReferenceCount)
     require_forward_reference: bool = False
@@ -59,9 +60,13 @@ class Symbol:
     _library: str = None
     _translation_unit: str = None
     _section: str = None
+    alignment: int = 0
+    relative_addr: int = -1
 
     demangled_name: NamedType = None
     references: Set[int] = field(default_factory=set)
+    implicit_references: Set[int] = field(default_factory=set)
+    is_reachable: bool = False
 
     def __hash__(self):
         return hash(self.addr)
@@ -89,10 +94,25 @@ class Symbol:
 
     @property
     def is_static(self):
-        return self.reference_count.static > 0 and self.reference_count.extern == 0 and self.reference_count.rel == 0
+        return False
+
+    @property
+    def has_body(self):
+        return True
+
+    @property
+    def uses_class_template(self):
+        return False
+
+    @property
+    def requires_force_active(self):
+        return False
 
     def add_reference(self, referencer, count=1):
         self.reference_count.add_reference(self, referencer, count)
+
+    def add_implicit_reference(self, referencer, count=1):
+        self.implicit_reference_count.add_reference(self, referencer, count)
 
     def add_sda_hack(self, referencer, count=1):
         self.sda_hack_reference_count.add_reference(self, referencer, count)
@@ -130,18 +150,28 @@ class Symbol:
             await builder.write("#pragma section \"extabindex_\"")
         elif self._section == ".ctors":
             if self.identifier.label == "__init_cpp_exceptions_reference":
-                await builder.write("#pragma section \".ctors$10\"")
-                await builder.write_nonewline("__declspec(section \".ctors$10\") ")
+                #await builder.write("#pragma section \".ctors$10\"")
+                #await builder.write_nonewline("__declspec(section \".ctors$10\") ")
+                await builder.write_nonewline("SECTION_CTORS10 ")
             elif self.identifier.label == "_ctors":
-                await builder.write("#pragma section \".ctors$15\"")
-                await builder.write_nonewline("__declspec(section \".ctors$10\") ")
+                #await builder.write("#pragma section \".ctors$15\"")
+                #await builder.write_nonewline("__declspec(section \".ctors$15\") ")
+                await builder.write_nonewline("SECTION_CTORS15 ")
         elif self._section == ".dtors":
             if self.identifier.label == "__destroy_global_chain_reference":
-                await builder.write("#pragma section \".dtors$10\"")
-                await builder.write_nonewline("__declspec(section \".dtors$10\") ")
+                #await builder.write("#pragma section \".dtors$10\"")
+                #await builder.write_nonewline("__declspec(section \".dtors$10\") ")
+                await builder.write_nonewline("SECTION_DTORS10 ")
             elif self.identifier.label == "__fini_cpp_exceptions_reference":
-                await builder.write("#pragma section \".dtors$15\"")
-                await builder.write_nonewline("__declspec(section \".dtors$15\") ")
+                #await builder.write("#pragma section \".dtors$15\"")
+                #await builder.write_nonewline("__declspec(section \".dtors$15\") ")
+                await builder.write_nonewline("SECTION_DTORS15 ")
+            elif self.identifier.label == "__dtors_null_terminator":
+                #await builder.write("#pragma section \".dtors$15\"")
+                #await builder.write_nonewline("__declspec(section \".dtors$15\") ")
+                await builder.write_nonewline("SECTION_DTORS15 ")
+            elif self.identifier.label == "_dtors":
+                await builder.write_nonewline("SECTION_DTORS10 ")
         elif self.force_section:
             if self.force_section == '.bss':
                 await builder.write_nonewline("SECTION_BSS ")
@@ -175,14 +205,23 @@ class Symbol:
             await builder.write_nonewline("SECTION_EXTABINDEX ")
         elif self._section == ".ctors":
             if self.identifier.label == "__init_cpp_exceptions_reference":
-                section = "__declspec(section \".ctors$10\") "
+                #section = "__declspec(section \".ctors$10\") "
+                section = "SECTION_CTORS10 "
             elif self.identifier.label == "_ctors":
-                section = "__declspec(section \".ctors$10\") "
+                #section = "__declspec(section \".ctors$15\") "
+                section = "SECTION_CTORS15 "
         elif self._section == ".dtors":
             if self.identifier.label == "__destroy_global_chain_reference":
-                section = "__declspec(section \".dtors$10\") "
+                #section = "__declspec(section \".dtors$10\") "
+                section = "SECTION_DTORS10 "
             elif self.identifier.label == "__fini_cpp_exceptions_reference":
-                section = "__declspec(section \".dtors$15\") "
+                #section = "__declspec(section \".dtors$15\") "
+                section = "SECTION_DTORS15 "
+            elif self.identifier.label == "__dtors_null_terminator":
+                #section = "__declspec(section \".dtors$15\") "
+                section = "SECTION_DTORS15 "
+            elif self.identifier.label == "_dtors":
+                section = "SECTION_DTORS10 "
         await builder.write_nonewline(section)
 
     async def export_extern(self, builder: AsyncBuilder):
@@ -190,6 +229,9 @@ class Symbol:
 
     async def export_static(self, builder: AsyncBuilder):
         await builder.write_nonewline(f"static ")
+
+    async def export_force_active(self, builder: AsyncBuilder):
+        await builder.write_nonewline(f"__declspec(forceactive) ")
 
     async def export_readonly(self, builder: AsyncBuilder): 
         if self._section == ".rodata":

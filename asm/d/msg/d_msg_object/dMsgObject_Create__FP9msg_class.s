@@ -5,8 +5,8 @@ lbl_80237F80:
 /* 80237F8C  39 61 00 20 */	addi r11, r1, 0x20
 /* 80237F90  48 12 A2 4D */	bl _savegpr_29
 /* 80237F94  7C 7E 1B 78 */	mr r30, r3
-/* 80237F98  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80237F9C  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 80237F98  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80237F9C  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80237FA0  93 DF 5D BC */	stw r30, 0x5dbc(r31)
 /* 80237FA4  80 7F 5E C8 */	lwz r3, 0x5ec8(r31)
 /* 80237FA8  4B DD 72 25 */	bl mDoExt_setCurrentHeap__FP7JKRHeap
@@ -22,8 +22,8 @@ lbl_80237F80:
 /* 80237FD0  4B FF B2 B5 */	bl _create__12dMsgObject_cFP9msg_class
 /* 80237FD4  7C 7E 1B 78 */	mr r30, r3
 /* 80237FD8  38 00 FF FF */	li r0, -1
-/* 80237FDC  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha
-/* 80237FE0  38 63 02 8C */	addi r3, r3, g_MsgObject_HIO_c@l
+/* 80237FDC  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 80237FE0  38 63 02 8C */	addi r3, r3, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 80237FE4  98 03 00 04 */	stb r0, 4(r3)
 /* 80237FE8  7F A3 EB 78 */	mr r3, r29
 /* 80237FEC  4B DD 71 E1 */	bl mDoExt_setCurrentHeap__FP7JKRHeap

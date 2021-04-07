@@ -8,8 +8,8 @@ lbl_8025B980:
 /* 8025B998  80 63 00 B0 */	lwz r3, 0xb0(r3)
 /* 8025B99C  4B DD 3B 21 */	bl dComIfG_getRoomArcName__Fi
 /* 8025B9A0  7C 7F 1B 78 */	mr r31, r3
-/* 8025B9A4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8025B9A8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8025B9A4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025B9A8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025B9AC  3C 84 00 02 */	addis r4, r4, 2
 /* 8025B9B0  3B C4 D4 F8 */	addi r30, r4, -11016
 /* 8025B9B4  7F C4 F3 78 */	mr r4, r30
@@ -29,16 +29,16 @@ lbl_8025B9DC:
 /* 8025B9E4  4B DD 1F CD */	bl getZoneNo__20dStage_roomControl_cFi
 /* 8025B9E8  2C 03 00 00 */	cmpwi r3, 0
 /* 8025B9EC  40 80 00 20 */	bge lbl_8025BA0C
-/* 8025B9F0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025B9F4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8025B9F0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025B9F4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025B9F8  7F A4 EB 78 */	mr r4, r29
 /* 8025B9FC  4B DD 97 A9 */	bl createZone__10dSv_info_cFi
 /* 8025BA00  7C 64 1B 78 */	mr r4, r3
 /* 8025BA04  7F A3 EB 78 */	mr r3, r29
 /* 8025BA08  48 00 00 A5 */	bl setZoneNo__20dStage_roomControl_cFii
 lbl_8025BA0C:
-/* 8025BA0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025BA10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8025BA0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025BA10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025BA14  38 63 4E C4 */	addi r3, r3, 0x4ec4
 /* 8025BA18  7F A4 EB 78 */	mr r4, r29
 /* 8025BA1C  4B DC 89 69 */	bl getStatusRoomDt__20dStage_roomControl_cFi
@@ -46,8 +46,8 @@ lbl_8025BA0C:
 /* 8025BA24  80 7C 01 D0 */	lwz r3, 0x1d0(r28)
 /* 8025BA28  9B A3 00 04 */	stb r29, 4(r3)
 /* 8025BA2C  7F E3 FB 78 */	mr r3, r31
-/* 8025BA30  3C 80 80 3A */	lis r4, d_s_d_s_room__stringBase0@ha
-/* 8025BA34  38 84 A3 88 */	addi r4, r4, d_s_d_s_room__stringBase0@l
+/* 8025BA30  3C 80 80 3A */	lis r4, d_s_d_s_room__stringBase0@ha /* 0x8039A388@ha */
+/* 8025BA34  38 84 A3 88 */	addi r4, r4, d_s_d_s_room__stringBase0@l /* 0x8039A388@l */
 /* 8025BA38  38 84 00 42 */	addi r4, r4, 0x42
 /* 8025BA3C  7F C5 F3 78 */	mr r5, r30
 /* 8025BA40  38 C0 00 40 */	li r6, 0x40

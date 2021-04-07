@@ -4,7 +4,7 @@ lbl_8073762C:
 /* 80737634  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80737638  80 63 04 A4 */	lwz r3, 0x4a4(r3)
 /* 8073763C  38 81 00 08 */	addi r4, r1, 8
-/* 80737640  4B 8E 23 7C */	b fopAcM_SearchByID__FUiPP10fopAc_ac_c
+/* 80737640  4B 8E 23 7D */	bl fopAcM_SearchByID__FUiPP10fopAc_ac_c
 /* 80737644  2C 03 00 00 */	cmpwi r3, 0
 /* 80737648  41 82 00 10 */	beq lbl_80737658
 /* 8073764C  80 61 00 08 */	lwz r3, 8(r1)

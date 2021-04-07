@@ -11,8 +11,8 @@ lbl_80323C0C:
 /* 80323C30  54 00 06 BE */	clrlwi r0, r0, 0x1a
 /* 80323C34  28 00 00 0B */	cmplwi r0, 0xb
 /* 80323C38  41 81 02 E4 */	bgt lbl_80323F1C
-/* 80323C3C  3C 60 80 3D */	lis r3, lit_1131@ha
-/* 80323C40  38 63 EB B8 */	addi r3, r3, lit_1131@l
+/* 80323C3C  3C 60 80 3D */	lis r3, lit_1131@ha /* 0x803CEBB8@ha */
+/* 80323C40  38 63 EB B8 */	addi r3, r3, lit_1131@l /* 0x803CEBB8@l */
 /* 80323C44  54 00 10 3A */	slwi r0, r0, 2
 /* 80323C48  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80323C4C  7C 09 03 A6 */	mtctr r0
@@ -32,8 +32,8 @@ lbl_80323C70:
 /* 80323C80  4B FE DF B5 */	bl J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f
 lbl_80323C84:
 /* 80323C84  38 61 00 08 */	addi r3, r1, 8
-/* 80323C88  3C 80 80 3D */	lis r4, qMtx_1063@ha
-/* 80323C8C  38 84 EB 58 */	addi r4, r4, qMtx_1063@l
+/* 80323C88  3C 80 80 3D */	lis r4, qMtx_1063@ha /* 0x803CEB58@ha */
+/* 80323C8C  38 84 EB 58 */	addi r4, r4, qMtx_1063@l /* 0x803CEB58@l */
 /* 80323C90  7C 65 1B 78 */	mr r5, r3
 /* 80323C94  48 02 28 51 */	bl PSMTXConcat
 /* 80323C98  38 61 00 08 */	addi r3, r1, 8
@@ -60,8 +60,8 @@ lbl_80323CD8:
 /* 80323CE8  4B FE DF 4D */	bl J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f
 lbl_80323CEC:
 /* 80323CEC  38 61 00 08 */	addi r3, r1, 8
-/* 80323CF0  3C 80 80 3D */	lis r4, qMtx_1063@ha
-/* 80323CF4  38 84 EB 58 */	addi r4, r4, qMtx_1063@l
+/* 80323CF0  3C 80 80 3D */	lis r4, qMtx_1063@ha /* 0x803CEB58@ha */
+/* 80323CF4  38 84 EB 58 */	addi r4, r4, qMtx_1063@l /* 0x803CEB58@l */
 /* 80323CF8  7C 65 1B 78 */	mr r5, r3
 /* 80323CFC  48 02 27 E9 */	bl PSMTXConcat
 /* 80323D00  38 61 00 08 */	addi r3, r1, 8
@@ -84,8 +84,8 @@ lbl_80323D30:
 /* 80323D40  4B FE DE F5 */	bl J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f
 lbl_80323D44:
 /* 80323D44  38 61 00 48 */	addi r3, r1, 0x48
-/* 80323D48  3C 80 80 3D */	lis r4, qMtx_1063@ha
-/* 80323D4C  38 84 EB 58 */	addi r4, r4, qMtx_1063@l
+/* 80323D48  3C 80 80 3D */	lis r4, qMtx_1063@ha /* 0x803CEB58@ha */
+/* 80323D4C  38 84 EB 58 */	addi r4, r4, qMtx_1063@l /* 0x803CEB58@l */
 /* 80323D50  38 BF 00 64 */	addi r5, r31, 0x64
 /* 80323D54  48 02 27 91 */	bl PSMTXConcat
 /* 80323D58  48 00 01 F4 */	b lbl_80323F4C
@@ -104,8 +104,8 @@ lbl_80323D78:
 /* 80323D88  4B FE DF 5D */	bl J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f
 lbl_80323D8C:
 /* 80323D8C  38 61 00 08 */	addi r3, r1, 8
-/* 80323D90  3C 80 80 3D */	lis r4, qMtx2_1064@ha
-/* 80323D94  38 84 EB 88 */	addi r4, r4, qMtx2_1064@l
+/* 80323D90  3C 80 80 3D */	lis r4, qMtx2_1064@ha /* 0x803CEB88@ha */
+/* 80323D94  38 84 EB 88 */	addi r4, r4, qMtx2_1064@l /* 0x803CEB88@l */
 /* 80323D98  7C 65 1B 78 */	mr r5, r3
 /* 80323D9C  48 02 27 49 */	bl PSMTXConcat
 /* 80323DA0  38 61 00 08 */	addi r3, r1, 8
@@ -132,8 +132,8 @@ lbl_80323DE0:
 /* 80323DF0  4B FE DE F5 */	bl J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f
 lbl_80323DF4:
 /* 80323DF4  38 61 00 48 */	addi r3, r1, 0x48
-/* 80323DF8  3C 80 80 3D */	lis r4, qMtx2_1064@ha
-/* 80323DFC  38 84 EB 88 */	addi r4, r4, qMtx2_1064@l
+/* 80323DF8  3C 80 80 3D */	lis r4, qMtx2_1064@ha /* 0x803CEB88@ha */
+/* 80323DFC  38 84 EB 88 */	addi r4, r4, qMtx2_1064@l /* 0x803CEB88@l */
 /* 80323E00  38 BF 00 64 */	addi r5, r31, 0x64
 /* 80323E04  48 02 26 E1 */	bl PSMTXConcat
 /* 80323E08  48 00 01 44 */	b lbl_80323F4C

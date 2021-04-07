@@ -7,8 +7,8 @@ lbl_800D0C6C:
 /* 800D0C80  7C 7E 1B 79 */	or. r30, r3, r3
 /* 800D0C84  7C 9F 23 78 */	mr r31, r4
 /* 800D0C88  41 82 00 38 */	beq lbl_800D0CC0
-/* 800D0C8C  3C 80 80 3B */	lis r4, __vt__12dBgS_ObjAcch@ha
-/* 800D0C90  38 84 35 C8 */	addi r4, r4, __vt__12dBgS_ObjAcch@l
+/* 800D0C8C  3C 80 80 3B */	lis r4, __vt__12dBgS_ObjAcch@ha /* 0x803B35C8@ha */
+/* 800D0C90  38 84 35 C8 */	addi r4, r4, __vt__12dBgS_ObjAcch@l /* 0x803B35C8@l */
 /* 800D0C94  90 9E 00 10 */	stw r4, 0x10(r30)
 /* 800D0C98  38 04 00 0C */	addi r0, r4, 0xc
 /* 800D0C9C  90 1E 00 14 */	stw r0, 0x14(r30)

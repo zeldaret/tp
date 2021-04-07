@@ -13,8 +13,8 @@ lbl_800A2280:
 /* 800A22AC  7C 60 07 34 */	extsh r0, r3
 /* 800A22B0  2C 00 00 21 */	cmpwi r0, 0x21
 /* 800A22B4  40 82 00 1C */	bne lbl_800A22D0
-/* 800A22B8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800A22BC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800A22B8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800A22BC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800A22C0  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 800A22C4  A0 9F 1A 62 */	lhz r4, 0x1a62(r31)
 /* 800A22C8  4B FD 23 51 */	bl GetActorPointer__4cBgSCFi

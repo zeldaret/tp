@@ -4,8 +4,8 @@ lbl_80090174:
 /* 8009017C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80090180  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80090184  7C 7F 1B 78 */	mr r31, r3
-/* 80090188  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8009018C  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 80090188  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8009018C  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80090190  38 64 4E C8 */	addi r3, r4, 0x4ec8
 /* 80090194  80 84 4F 8C */	lwz r4, 0x4f8c(r4)
 /* 80090198  4B FB 31 55 */	bl convPId__14dEvt_control_cFUi
@@ -38,8 +38,8 @@ lbl_800901F0:
 /* 800901FC  7C A5 02 14 */	add r5, r5, r0
 /* 80090200  A0 05 00 04 */	lhz r0, 4(r5)
 /* 80090204  1C C0 00 0C */	mulli r6, r0, 0xc
-/* 80090208  3C A0 80 3C */	lis r5, engine_tbl__9dCamera_c@ha
-/* 8009020C  38 05 A2 5C */	addi r0, r5, engine_tbl__9dCamera_c@l
+/* 80090208  3C A0 80 3C */	lis r5, engine_tbl__9dCamera_c@ha /* 0x803BA25C@ha */
+/* 8009020C  38 05 A2 5C */	addi r0, r5, engine_tbl__9dCamera_c@l /* 0x803BA25C@l */
 /* 80090210  7D 80 32 14 */	add r12, r0, r6
 /* 80090214  48 2D 1E 71 */	bl __ptmf_scall
 /* 80090218  60 00 00 00 */	nop 

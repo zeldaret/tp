@@ -7,7 +7,7 @@ lbl_80ABA218:
 /* 80ABA22C  41 82 00 10 */	beq lbl_80ABA23C
 /* 80ABA230  7C 80 07 35 */	extsh. r0, r4
 /* 80ABA234  40 81 00 08 */	ble lbl_80ABA23C
-/* 80ABA238  4B 81 4B 04 */	b __dl__FPv
+/* 80ABA238  4B 81 4B 05 */	bl __dl__FPv
 lbl_80ABA23C:
 /* 80ABA23C  7F E3 FB 78 */	mr r3, r31
 /* 80ABA240  83 E1 00 0C */	lwz r31, 0xc(r1)

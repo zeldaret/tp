@@ -3,7 +3,7 @@ lbl_80BE0840:
 /* 80BE0844  7C 08 02 A6 */	mflr r0
 /* 80BE0848  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80BE084C  39 61 00 20 */	addi r11, r1, 0x20
-/* 80BE0850  4B 78 19 8C */	b _savegpr_29
+/* 80BE0850  4B 78 19 8D */	bl _savegpr_29
 /* 80BE0854  7C 7D 1B 78 */	mr r29, r3
 /* 80BE0858  3B C0 00 00 */	li r30, 0
 /* 80BE085C  3B E0 00 00 */	li r31, 0
@@ -19,7 +19,7 @@ lbl_80BE0860:
 /* 80BE0880  3B FF 00 14 */	addi r31, r31, 0x14
 /* 80BE0884  41 80 FF DC */	blt lbl_80BE0860
 /* 80BE0888  39 61 00 20 */	addi r11, r1, 0x20
-/* 80BE088C  4B 78 19 9C */	b _restgpr_29
+/* 80BE088C  4B 78 19 9D */	bl _restgpr_29
 /* 80BE0890  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80BE0894  7C 08 03 A6 */	mtlr r0
 /* 80BE0898  38 21 00 20 */	addi r1, r1, 0x20

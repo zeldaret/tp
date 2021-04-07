@@ -9,8 +9,8 @@ lbl_8004D128:
 /* 8004D144  88 03 00 19 */	lbz r0, 0x19(r3)
 /* 8004D148  28 00 00 19 */	cmplwi r0, 0x19
 /* 8004D14C  41 80 00 20 */	blt lbl_8004D16C
-/* 8004D150  3C 60 80 38 */	lis r3, d_particle_d_particle__stringBase0@ha
-/* 8004D154  38 63 A1 2C */	addi r3, r3, d_particle_d_particle__stringBase0@l
+/* 8004D150  3C 60 80 38 */	lis r3, d_particle_d_particle__stringBase0@ha /* 0x8037A12C@ha */
+/* 8004D154  38 63 A1 2C */	addi r3, r3, d_particle_d_particle__stringBase0@l /* 0x8037A12C@l */
 /* 8004D158  38 63 00 23 */	addi r3, r3, 0x23
 /* 8004D15C  4C C6 31 82 */	crclr 6
 /* 8004D160  4B FB 99 5D */	bl OSReport

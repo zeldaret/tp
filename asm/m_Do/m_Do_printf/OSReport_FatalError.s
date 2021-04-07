@@ -29,19 +29,19 @@ lbl_80006B74:
 /* 80006BA4  38 01 00 08 */	addi r0, r1, 8
 /* 80006BA8  90 01 00 70 */	stw r0, 0x70(r1)
 /* 80006BAC  4B FF FD 01 */	bl OSReportForceEnableOn
-/* 80006BB0  3C 60 80 37 */	lis r3, m_Do_m_Do_printf__stringBase0@ha
-/* 80006BB4  38 63 3C B0 */	addi r3, r3, m_Do_m_Do_printf__stringBase0@l
+/* 80006BB0  3C 60 80 37 */	lis r3, m_Do_m_Do_printf__stringBase0@ha /* 0x80373CB0@ha */
+/* 80006BB4  38 63 3C B0 */	addi r3, r3, m_Do_m_Do_printf__stringBase0@l /* 0x80373CB0@l */
 /* 80006BB8  4B FF FC 11 */	bl my_PutString__FPCc
 /* 80006BBC  7F E3 FB 78 */	mr r3, r31
 /* 80006BC0  38 81 00 68 */	addi r4, r1, 0x68
 /* 80006BC4  4B FF FC 31 */	bl OSVAttention__FPCcP16__va_list_struct
-/* 80006BC8  3C 60 80 37 */	lis r3, m_Do_m_Do_printf__stringBase0@ha
-/* 80006BCC  38 63 3C B0 */	addi r3, r3, m_Do_m_Do_printf__stringBase0@l
+/* 80006BC8  3C 60 80 37 */	lis r3, m_Do_m_Do_printf__stringBase0@ha /* 0x80373CB0@ha */
+/* 80006BCC  38 63 3C B0 */	addi r3, r3, m_Do_m_Do_printf__stringBase0@l /* 0x80373CB0@l */
 /* 80006BD0  38 63 00 21 */	addi r3, r3, 0x21
 /* 80006BD4  4B FF FB F5 */	bl my_PutString__FPCc
 /* 80006BD8  4B FF FC E1 */	bl OSReportForceEnableOff
-/* 80006BDC  3C 60 80 3D */	lis r3, __files@ha
-/* 80006BE0  38 63 29 B0 */	addi r3, r3, __files@l
+/* 80006BDC  3C 60 80 3D */	lis r3, __files@ha /* 0x803D29B0@ha */
+/* 80006BE0  38 63 29 B0 */	addi r3, r3, __files@l /* 0x803D29B0@l */
 /* 80006BE4  38 63 00 50 */	addi r3, r3, 0x50
 /* 80006BE8  48 35 EC D9 */	bl fflush
 /* 80006BEC  80 6D 86 28 */	lwz r3, print_errors(r13)

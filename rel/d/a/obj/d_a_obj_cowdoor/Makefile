@@ -3,17 +3,15 @@
 #
 
 M424_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cowdoor.plf
+M424_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cowdoor.lcf
+M424_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cowdoor.map
 
 M424_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_cowdoor/executor.cpp \
-	rel/d/a/obj/d_a_obj_cowdoor/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_cowdoor/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_cowdoor/d_a_obj_cowdoor.cpp \
 
 M424_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cowdoor/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cowdoor/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cowdoor/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cowdoor/d_a_obj_cowdoor.o \
 
 M424_LIBS := \
@@ -29,14 +27,21 @@ M424_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M424_LDSCRIPT) \
+	-unused -map $(M424_MAP) \
+	-w off \
 
 $(M424_TARGET): $(M424_O_FILES) $(M424_LIBS)
+	@echo [424] creating $(M424_TARGET)
 	@echo $(M424_LIBS) $(M424_O_FILES) > build/M424_ofiles
-	$(LD) -partial $(M424_LDFLAGS) -o $(M424_TARGET) @build/M424_ofiles
+	@python3 tools/lcf.py rel 424 --output $(M424_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M424_LDFLAGS) -o $(M424_TARGET) @build/M424_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cowdoor/%.o: rel/d/a/obj/d_a_obj_cowdoor/%.cpp
+	@echo [424] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M424_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M424_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

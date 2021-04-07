@@ -6,25 +6,25 @@ lbl_808771F4:
 /* 80877204  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80877208  93 A1 00 14 */	stw r29, 0x14(r1)
 /* 8087720C  7C 7D 1B 78 */	mr r29, r3
-/* 80877210  3C 60 80 88 */	lis r3, lit_1109@ha
-/* 80877214  38 63 95 A0 */	addi r3, r3, lit_1109@l
+/* 80877210  3C 60 80 88 */	lis r3, lit_1109@ha /* 0x808795A0@ha */
+/* 80877214  38 63 95 A0 */	addi r3, r3, lit_1109@l /* 0x808795A0@l */
 /* 80877218  3F E3 00 0D */	addis r31, r3, 0xd
 /* 8087721C  38 63 06 30 */	addi r3, r3, 0x630
 /* 80877220  38 80 00 00 */	li r4, 0
 /* 80877224  38 A0 01 D0 */	li r5, 0x1d0
-/* 80877228  4B 78 C2 30 */	b memset
-/* 8087722C  4B AC 45 88 */	b LCEnable
+/* 80877228  4B 78 C2 31 */	bl memset
+/* 8087722C  4B AC 45 89 */	bl LCEnable
 /* 80877230  38 7F B3 60 */	addi r3, r31, -19616
 /* 80877234  38 9F B3 84 */	addi r4, r31, -19580
 /* 80877238  38 A0 00 03 */	li r5, 3
-/* 8087723C  4B AC 77 58 */	b OSInitMessageQueue
+/* 8087723C  4B AC 77 59 */	bl OSInitMessageQueue
 /* 80877240  4B FF E5 A1 */	bl THPInit
 /* 80877244  2C 03 00 00 */	cmpwi r3, 0
 /* 80877248  40 82 00 0C */	bne lbl_80877254
 /* 8087724C  38 60 00 00 */	li r3, 0
 /* 80877250  48 00 00 60 */	b lbl_808772B0
 lbl_80877254:
-/* 80877254  4B AC 64 A0 */	b OSDisableInterrupts
+/* 80877254  4B AC 64 A1 */	bl OSDisableInterrupts
 /* 80877258  7C 7E 1B 78 */	mr r30, r3
 /* 8087725C  93 BF B3 A4 */	stw r29, -0x4c5c(r31)
 /* 80877260  38 00 00 00 */	li r0, 0
@@ -33,17 +33,17 @@ lbl_80877254:
 /* 8087726C  90 1F B3 A0 */	stw r0, -0x4c60(r31)
 /* 80877270  4B FF FE BD */	bl daMP_audioInitWithMSound__Fv
 /* 80877274  7F C3 F3 78 */	mr r3, r30
-/* 80877278  4B AC 64 A4 */	b OSRestoreInterrupts
+/* 80877278  4B AC 64 A5 */	bl OSRestoreInterrupts
 /* 8087727C  80 1F B3 A4 */	lwz r0, -0x4c5c(r31)
 /* 80877280  2C 00 00 00 */	cmpwi r0, 0
 /* 80877284  40 82 00 20 */	bne lbl_808772A4
 /* 80877288  38 7F B3 C0 */	addi r3, r31, -19520
 /* 8087728C  38 80 00 00 */	li r4, 0
 /* 80877290  38 A0 11 80 */	li r5, 0x1180
-/* 80877294  4B 78 C1 C4 */	b memset
+/* 80877294  4B 78 C1 C5 */	bl memset
 /* 80877298  38 7F B3 C0 */	addi r3, r31, -19520
 /* 8087729C  38 80 11 80 */	li r4, 0x1180
-/* 808772A0  4B AC 43 3C */	b DCStoreRange
+/* 808772A0  4B AC 43 3D */	bl DCStoreRange
 lbl_808772A4:
 /* 808772A4  38 00 00 01 */	li r0, 1
 /* 808772A8  90 1F B2 E8 */	stw r0, -0x4d18(r31)

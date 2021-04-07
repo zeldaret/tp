@@ -75,11 +75,11 @@ lbl_80254D84:
 /* 80254DAC  90 1F 00 04 */	stw r0, 4(r31)
 /* 80254DB0  80 01 00 2C */	lwz r0, 0x2c(r1)
 /* 80254DB4  90 1F 00 08 */	stw r0, 8(r31)
-/* 80254DB8  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha
-/* 80254DBC  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l
+/* 80254DB8  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha /* 0x803CC9E0@ha */
+/* 80254DBC  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l /* 0x803CC9E0@l */
 /* 80254DC0  90 01 00 60 */	stw r0, 0x60(r1)
-/* 80254DC4  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha
-/* 80254DC8  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l
+/* 80254DC4  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha /* 0x803CC9B8@ha */
+/* 80254DC8  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l /* 0x803CC9B8@l */
 /* 80254DCC  90 01 00 60 */	stw r0, 0x60(r1)
 /* 80254DD0  48 00 00 D4 */	b lbl_80254EA4
 lbl_80254DD4:
@@ -133,11 +133,11 @@ lbl_80254E14:
 /* 80254E80  90 1F 00 04 */	stw r0, 4(r31)
 /* 80254E84  80 01 00 2C */	lwz r0, 0x2c(r1)
 /* 80254E88  90 1F 00 08 */	stw r0, 8(r31)
-/* 80254E8C  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha
-/* 80254E90  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l
+/* 80254E8C  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha /* 0x803CC9E0@ha */
+/* 80254E90  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l /* 0x803CC9E0@l */
 /* 80254E94  90 01 00 60 */	stw r0, 0x60(r1)
-/* 80254E98  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha
-/* 80254E9C  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l
+/* 80254E98  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha /* 0x803CC9B8@ha */
+/* 80254E9C  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l /* 0x803CC9B8@l */
 /* 80254EA0  90 01 00 60 */	stw r0, 0x60(r1)
 lbl_80254EA4:
 /* 80254EA4  39 61 01 60 */	addi r11, r1, 0x160

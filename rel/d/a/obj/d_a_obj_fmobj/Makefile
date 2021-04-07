@@ -3,17 +3,15 @@
 #
 
 M95_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fmobj.plf
+M95_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fmobj.lcf
+M95_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fmobj.map
 
 M95_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_fmobj/executor.cpp \
-	rel/d/a/obj/d_a_obj_fmobj/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_fmobj/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_fmobj/d_a_obj_fmobj.cpp \
 
 M95_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fmobj/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fmobj/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fmobj/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fmobj/d_a_obj_fmobj.o \
 
 M95_LIBS := \
@@ -29,14 +27,21 @@ M95_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M95_LDSCRIPT) \
+	-unused -map $(M95_MAP) \
+	-w off \
 
 $(M95_TARGET): $(M95_O_FILES) $(M95_LIBS)
+	@echo [ 95] creating $(M95_TARGET)
 	@echo $(M95_LIBS) $(M95_O_FILES) > build/M95_ofiles
-	$(LD) -partial $(M95_LDFLAGS) -o $(M95_TARGET) @build/M95_ofiles
+	@python3 tools/lcf.py rel 95 --output $(M95_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M95_LDFLAGS) -o $(M95_TARGET) @build/M95_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fmobj/%.o: rel/d/a/obj/d_a_obj_fmobj/%.cpp
+	@echo [ 95] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M95_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M95_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -1,6 +1,6 @@
 lbl_80D3D508:
-/* 80D3D508  3C 80 80 D4 */	lis r4, lit_4312@ha
-/* 80D3D50C  C0 04 DC F8 */	lfs f0, lit_4312@l(r4)
+/* 80D3D508  3C 80 80 D4 */	lis r4, lit_4312@ha /* 0x80D3DCF8@ha */
+/* 80D3D50C  C0 04 DC F8 */	lfs f0, lit_4312@l(r4)  /* 0x80D3DCF8@l */
 /* 80D3D510  D0 03 09 C4 */	stfs f0, 0x9c4(r3)
 /* 80D3D514  D0 03 09 C8 */	stfs f0, 0x9c8(r3)
 /* 80D3D518  D0 03 09 CC */	stfs f0, 0x9cc(r3)

@@ -3,19 +3,20 @@
 #
 
 M561_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8Lift.plf
+M561_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8Lift.lcf
+M561_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8Lift.map
 
 M561_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv8Lift/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv8Lift/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv8Lift/d_a_obj_lv8Lift.cpp \
 
 M561_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8Lift/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8Lift/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8Lift/d_a_obj_lv8Lift.o \
 
 M561_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8Lift/libRuntime.PPCEABI.H.a \
 
 M561_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M561_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M561_LDSCRIPT) \
+	-unused -map $(M561_MAP) \
+	-w off \
 
 $(M561_TARGET): $(M561_O_FILES) $(M561_LIBS)
+	@echo [561] creating $(M561_TARGET)
 	@echo $(M561_LIBS) $(M561_O_FILES) > build/M561_ofiles
-	$(LD) -partial $(M561_LDFLAGS) -o $(M561_TARGET) @build/M561_ofiles
+	@python3 tools/lcf.py rel 561 --output $(M561_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M561_LDFLAGS) -o $(M561_TARGET) @build/M561_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8Lift/%.o: rel/d/a/obj/d_a_obj_lv8Lift/%.cpp
+	@echo [561] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M561_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M561_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv8Lift/libs/Runtime.PPCEABI.H/Makefile
 

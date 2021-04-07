@@ -6,8 +6,8 @@ lbl_800D1E1C:
 /* 800D1E2C  48 29 03 B1 */	bl _savegpr_29
 /* 800D1E30  7C 7F 1B 78 */	mr r31, r3
 /* 800D1E34  7C BD 2B 78 */	mr r29, r5
-/* 800D1E38  3C A0 80 39 */	lis r5, lit_3757@ha
-/* 800D1E3C  3B C5 D6 58 */	addi r30, r5, lit_3757@l
+/* 800D1E38  3C A0 80 39 */	lis r5, lit_3757@ha /* 0x8038D658@ha */
+/* 800D1E3C  3B C5 D6 58 */	addi r30, r5, lit_3757@l /* 0x8038D658@l */
 /* 800D1E40  2C 04 00 00 */	cmpwi r4, 0
 /* 800D1E44  40 82 00 18 */	bne lbl_800D1E5C
 /* 800D1E48  80 1F 05 74 */	lwz r0, 0x574(r31)

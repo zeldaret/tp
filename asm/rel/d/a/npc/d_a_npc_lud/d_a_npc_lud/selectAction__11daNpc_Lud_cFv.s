@@ -1,8 +1,8 @@
 lbl_80A6CD30:
-/* 80A6CD30  3C 80 80 A7 */	lis r4, cNullVec__6Z2Calc@ha
-/* 80A6CD34  38 C4 FF CC */	addi r6, r4, cNullVec__6Z2Calc@l
-/* 80A6CD38  3C 80 80 3A */	lis r4, __ptmf_null@ha
-/* 80A6CD3C  38 A4 21 80 */	addi r5, r4, __ptmf_null@l
+/* 80A6CD30  3C 80 80 A7 */	lis r4, cNullVec__6Z2Calc@ha /* 0x80A6FFCC@ha */
+/* 80A6CD34  38 C4 FF CC */	addi r6, r4, cNullVec__6Z2Calc@l /* 0x80A6FFCC@l */
+/* 80A6CD38  3C 80 80 3A */	lis r4, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80A6CD3C  38 A4 21 80 */	addi r5, r4, __ptmf_null@l /* 0x803A2180@l */
 /* 80A6CD40  80 85 00 00 */	lwz r4, 0(r5)
 /* 80A6CD44  80 05 00 04 */	lwz r0, 4(r5)
 /* 80A6CD48  90 83 0F A8 */	stw r4, 0xfa8(r3)

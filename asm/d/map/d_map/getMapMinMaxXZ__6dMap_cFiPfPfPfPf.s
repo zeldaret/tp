@@ -31,8 +31,8 @@ lbl_80029A8C:
 /* 80029B00  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80029B04  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80029B08  D0 01 00 08 */	stfs f0, 8(r1)
-/* 80029B0C  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha
-/* 80029B10  38 63 60 94 */	addi r3, r3, mStatus__20dStage_roomControl_c@l
+/* 80029B0C  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 80029B10  38 63 60 94 */	addi r3, r3, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 /* 80029B14  1C 04 04 04 */	mulli r0, r4, 0x404
 /* 80029B18  7C 63 02 14 */	add r3, r3, r0
 /* 80029B1C  80 03 00 20 */	lwz r0, 0x20(r3)

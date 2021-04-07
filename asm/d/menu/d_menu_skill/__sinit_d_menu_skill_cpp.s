@@ -1,6 +1,6 @@
 lbl_801F9A28:
-/* 801F9A28  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 801F9A2C  38 A3 E7 D8 */	addi r5, r3, cNullVec__6Z2Calc@l
+/* 801F9A28  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803BE7D8@ha */
+/* 801F9A2C  38 A3 E7 D8 */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x803BE7D8@l */
 /* 801F9A30  80 65 00 0C */	lwz r3, 0xc(r5)
 /* 801F9A34  80 05 00 10 */	lwz r0, 0x10(r5)
 /* 801F9A38  90 65 00 3C */	stw r3, 0x3c(r5)

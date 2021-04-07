@@ -1,8 +1,8 @@
 lbl_80228A54:
 /* 80228A54  28 03 00 09 */	cmplwi r3, 9
 /* 80228A58  41 81 00 6C */	bgt lbl_80228AC4
-/* 80228A5C  3C 80 80 3C */	lis r4, lit_3903@ha
-/* 80228A60  38 84 FF 78 */	addi r4, r4, lit_3903@l
+/* 80228A5C  3C 80 80 3C */	lis r4, lit_3903@ha /* 0x803BFF78@ha */
+/* 80228A60  38 84 FF 78 */	addi r4, r4, lit_3903@l /* 0x803BFF78@l */
 /* 80228A64  54 60 10 3A */	slwi r0, r3, 2
 /* 80228A68  7C 04 00 2E */	lwzx r0, r4, r0
 /* 80228A6C  7C 09 03 A6 */	mtctr r0

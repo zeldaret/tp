@@ -9,11 +9,11 @@ lbl_8003EDEC:
 /* 8003EE08  41 82 00 08 */	beq lbl_8003EE10
 /* 8003EE0C  A8 83 00 1C */	lha r4, 0x1c(r3)
 lbl_8003EE10:
-/* 8003EE10  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8003EE14  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8003EE10  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8003EE14  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8003EE18  4B FC D5 C5 */	bl mDoMtx_YrotS__FPA4_fs
-/* 8003EE1C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8003EE20  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8003EE1C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8003EE20  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8003EE24  7F E4 FB 78 */	mr r4, r31
 /* 8003EE28  38 A1 00 08 */	addi r5, r1, 8
 /* 8003EE2C  48 30 7F 41 */	bl PSMTXMultVec

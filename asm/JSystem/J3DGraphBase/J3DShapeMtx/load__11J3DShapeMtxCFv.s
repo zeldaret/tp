@@ -4,8 +4,8 @@ lbl_80313B94:
 /* 80313B9C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80313BA0  80 0D 90 28 */	lwz r0, sCurrentPipeline__11J3DShapeMtx(r13)
 /* 80313BA4  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 80313BA8  3C 80 80 3D */	lis r4, sMtxLoadPipeline__11J3DShapeMtx@ha
-/* 80313BAC  38 04 D9 C0 */	addi r0, r4, sMtxLoadPipeline__11J3DShapeMtx@l
+/* 80313BA8  3C 80 80 3D */	lis r4, sMtxLoadPipeline__11J3DShapeMtx@ha /* 0x803CD9C0@ha */
+/* 80313BAC  38 04 D9 C0 */	addi r0, r4, sMtxLoadPipeline__11J3DShapeMtx@l /* 0x803CD9C0@l */
 /* 80313BB0  7C A0 2A 14 */	add r5, r0, r5
 /* 80313BB4  80 85 00 00 */	lwz r4, 0(r5)
 /* 80313BB8  80 05 00 04 */	lwz r0, 4(r5)

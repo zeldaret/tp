@@ -3,11 +3,11 @@ lbl_8047E134:
 /* 8047E138  7C 08 02 A6 */	mflr r0
 /* 8047E13C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8047E140  39 61 00 20 */	addi r11, r1, 0x20
-/* 8047E144  4B EE 40 90 */	b _savegpr_27
+/* 8047E144  4B EE 40 91 */	bl _savegpr_27
 /* 8047E148  7C 7D 1B 78 */	mr r29, r3
 /* 8047E14C  7C 9E 23 78 */	mr r30, r4
-/* 8047E150  3C 60 80 48 */	lis r3, M_lin5__Q212daObjMovebox5Bgc_c@ha
-/* 8047E154  3B 83 0F 28 */	addi r28, r3, M_lin5__Q212daObjMovebox5Bgc_c@l
+/* 8047E150  3C 60 80 48 */	lis r3, M_lin5__Q212daObjMovebox5Bgc_c@ha /* 0x80480F28@ha */
+/* 8047E154  3B 83 0F 28 */	addi r28, r3, M_lin5__Q212daObjMovebox5Bgc_c@l /* 0x80480F28@l */
 /* 8047E158  83 FD 01 80 */	lwz r31, 0x180(r29)
 /* 8047E15C  38 00 00 00 */	li r0, 0
 /* 8047E160  90 1D 01 80 */	stw r0, 0x180(r29)
@@ -94,19 +94,19 @@ lbl_8047E27C:
 /* 8047E288  80 1D 00 5C */	lwz r0, 0x5c(r29)
 /* 8047E28C  2C 00 00 00 */	cmpwi r0, 0
 /* 8047E290  41 80 00 2C */	blt lbl_8047E2BC
-/* 8047E294  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8047E298  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8047E294  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8047E298  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8047E29C  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8047E2A0  1C A0 00 54 */	mulli r5, r0, 0x54
-/* 8047E2A4  3C 80 80 48 */	lis r4, M_gnd_work__Q212daObjMovebox5Bgc_c@ha
-/* 8047E2A8  38 04 18 D4 */	addi r0, r4, M_gnd_work__Q212daObjMovebox5Bgc_c@l
+/* 8047E2A4  3C 80 80 48 */	lis r4, M_gnd_work__Q212daObjMovebox5Bgc_c@ha /* 0x804818D4@ha */
+/* 8047E2A8  38 04 18 D4 */	addi r0, r4, M_gnd_work__Q212daObjMovebox5Bgc_c@l /* 0x804818D4@l */
 /* 8047E2AC  7C 80 2A 14 */	add r4, r0, r5
 /* 8047E2B0  38 84 00 14 */	addi r4, r4, 0x14
 /* 8047E2B4  7F C5 F3 78 */	mr r5, r30
-/* 8047E2B8  4B BF 78 CC */	b RideCallBack__4dBgSFRC13cBgS_PolyInfoP10fopAc_ac_c
+/* 8047E2B8  4B BF 78 CD */	bl RideCallBack__4dBgSFRC13cBgS_PolyInfoP10fopAc_ac_c
 lbl_8047E2BC:
 /* 8047E2BC  39 61 00 20 */	addi r11, r1, 0x20
-/* 8047E2C0  4B EE 3F 60 */	b _restgpr_27
+/* 8047E2C0  4B EE 3F 61 */	bl _restgpr_27
 /* 8047E2C4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8047E2C8  7C 08 03 A6 */	mtlr r0
 /* 8047E2CC  38 21 00 20 */	addi r1, r1, 0x20

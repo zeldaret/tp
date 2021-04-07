@@ -52,15 +52,15 @@ lbl_80104F4C:
 /* 80104F70  38 00 00 00 */	li r0, 0
 /* 80104F74  B0 1F 30 80 */	sth r0, 0x3080(r31)
 lbl_80104F78:
-/* 80104F78  3C 60 80 39 */	lis r3, m__18daAlinkHIO_swim_c0@ha
-/* 80104F7C  38 63 ED 2C */	addi r3, r3, m__18daAlinkHIO_swim_c0@l
+/* 80104F78  3C 60 80 39 */	lis r3, m__18daAlinkHIO_swim_c0@ha /* 0x8038ED2C@ha */
+/* 80104F7C  38 63 ED 2C */	addi r3, r3, m__18daAlinkHIO_swim_c0@l /* 0x8038ED2C@l */
 /* 80104F80  C0 03 00 60 */	lfs f0, 0x60(r3)
 /* 80104F84  D0 1F 34 80 */	stfs f0, 0x3480(r31)
 /* 80104F88  38 00 00 00 */	li r0, 0
 /* 80104F8C  B0 1F 30 10 */	sth r0, 0x3010(r31)
 /* 80104F90  B0 1F 30 D0 */	sth r0, 0x30d0(r31)
-/* 80104F94  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80104F98  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80104F94  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80104F98  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80104F9C  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 80104FA0  64 00 00 10 */	oris r0, r0, 0x10
 /* 80104FA4  60 00 40 00 */	ori r0, r0, 0x4000

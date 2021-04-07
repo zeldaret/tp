@@ -6,25 +6,25 @@ lbl_80193690:
 /* 801936A0  48 1C EB 3D */	bl _savegpr_29
 /* 801936A4  7C 7D 1B 78 */	mr r29, r3
 /* 801936A8  7C 9E 23 78 */	mr r30, r4
-/* 801936AC  3C 60 80 3A */	lis r3, __vt__12dDlst_base_c@ha
-/* 801936B0  38 03 6F 88 */	addi r0, r3, __vt__12dDlst_base_c@l
+/* 801936AC  3C 60 80 3A */	lis r3, __vt__12dDlst_base_c@ha /* 0x803A6F88@ha */
+/* 801936B0  38 03 6F 88 */	addi r0, r3, __vt__12dDlst_base_c@l /* 0x803A6F88@l */
 /* 801936B4  90 1D 00 00 */	stw r0, 0(r29)
-/* 801936B8  3C 60 80 3C */	lis r3, __vt__11dMeterSub_c@ha
-/* 801936BC  38 03 B6 D4 */	addi r0, r3, __vt__11dMeterSub_c@l
+/* 801936B8  3C 60 80 3C */	lis r3, __vt__11dMeterSub_c@ha /* 0x803BB6D4@ha */
+/* 801936BC  38 03 B6 D4 */	addi r0, r3, __vt__11dMeterSub_c@l /* 0x803BB6D4@l */
 /* 801936C0  90 1D 00 00 */	stw r0, 0(r29)
-/* 801936C4  3C 60 80 3C */	lis r3, __vt__8dScope_c@ha
-/* 801936C8  38 03 B6 B4 */	addi r0, r3, __vt__8dScope_c@l
+/* 801936C4  3C 60 80 3C */	lis r3, __vt__8dScope_c@ha /* 0x803BB6B4@ha */
+/* 801936C8  38 03 B6 B4 */	addi r0, r3, __vt__8dScope_c@l /* 0x803BB6B4@l */
 /* 801936CC  90 1D 00 00 */	stw r0, 0(r29)
 /* 801936D0  38 7D 00 48 */	addi r3, r29, 0x48
-/* 801936D4  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha
-/* 801936D8  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l
+/* 801936D4  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha /* 0x80193960@ha */
+/* 801936D8  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l /* 0x80193960@l */
 /* 801936DC  38 A0 00 00 */	li r5, 0
 /* 801936E0  38 C0 00 04 */	li r6, 4
 /* 801936E4  38 E0 00 02 */	li r7, 2
 /* 801936E8  48 1C E6 79 */	bl __construct_array
 /* 801936EC  38 7D 00 50 */	addi r3, r29, 0x50
-/* 801936F0  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha
-/* 801936F4  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l
+/* 801936F0  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha /* 0x80193960@ha */
+/* 801936F4  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l /* 0x80193960@l */
 /* 801936F8  38 A0 00 00 */	li r5, 0
 /* 801936FC  38 C0 00 04 */	li r6, 4
 /* 80193700  38 E0 00 02 */	li r7, 2
@@ -33,13 +33,13 @@ lbl_80193690:
 /* 8019370C  90 1D 00 58 */	stw r0, 0x58(r29)
 /* 80193710  90 1D 00 5C */	stw r0, 0x5c(r29)
 /* 80193714  9B DD 00 8D */	stb r30, 0x8d(r29)
-/* 80193718  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8019371C  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 80193718  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8019371C  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80193720  80 7F 5D 30 */	lwz r3, 0x5d30(r31)
 /* 80193724  3C 80 54 49 */	lis r4, 0x5449 /* 0x54494D47@ha */
 /* 80193728  38 84 4D 47 */	addi r4, r4, 0x4D47 /* 0x54494D47@l */
-/* 8019372C  3C A0 80 39 */	lis r5, d_d_scope__stringBase0@ha
-/* 80193730  38 A5 49 F0 */	addi r5, r5, d_d_scope__stringBase0@l
+/* 8019372C  3C A0 80 39 */	lis r5, d_d_scope__stringBase0@ha /* 0x803949F0@ha */
+/* 80193730  38 A5 49 F0 */	addi r5, r5, d_d_scope__stringBase0@l /* 0x803949F0@l */
 /* 80193734  81 83 00 00 */	lwz r12, 0(r3)
 /* 80193738  81 8C 00 18 */	lwz r12, 0x18(r12)
 /* 8019373C  7D 89 03 A6 */	mtctr r12
@@ -122,8 +122,8 @@ lbl_801937D0:
 /* 80193860  80 7F 5D 30 */	lwz r3, 0x5d30(r31)
 /* 80193864  3C 80 54 49 */	lis r4, 0x5449 /* 0x54494D47@ha */
 /* 80193868  38 84 4D 47 */	addi r4, r4, 0x4D47 /* 0x54494D47@l */
-/* 8019386C  3C A0 80 39 */	lis r5, d_d_scope__stringBase0@ha
-/* 80193870  38 A5 49 F0 */	addi r5, r5, d_d_scope__stringBase0@l
+/* 8019386C  3C A0 80 39 */	lis r5, d_d_scope__stringBase0@ha /* 0x803949F0@ha */
+/* 80193870  38 A5 49 F0 */	addi r5, r5, d_d_scope__stringBase0@l /* 0x803949F0@l */
 /* 80193874  38 A5 00 0C */	addi r5, r5, 0xc
 /* 80193878  81 83 00 00 */	lwz r12, 0(r3)
 /* 8019387C  81 8C 00 18 */	lwz r12, 0x18(r12)
@@ -172,8 +172,8 @@ lbl_801938A8:
 /* 80193924  7F A3 EB 78 */	mr r3, r29
 /* 80193928  88 1D 00 8C */	lbz r0, 0x8c(r29)
 /* 8019392C  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 80193930  3C 80 80 3C */	lis r4, init_process@ha
-/* 80193934  38 04 B6 48 */	addi r0, r4, init_process@l
+/* 80193930  3C 80 80 3C */	lis r4, init_process@ha /* 0x803BB648@ha */
+/* 80193934  38 04 B6 48 */	addi r0, r4, init_process@l /* 0x803BB648@l */
 /* 80193938  7D 80 2A 14 */	add r12, r0, r5
 /* 8019393C  48 1C E7 49 */	bl __ptmf_scall
 /* 80193940  60 00 00 00 */	nop 

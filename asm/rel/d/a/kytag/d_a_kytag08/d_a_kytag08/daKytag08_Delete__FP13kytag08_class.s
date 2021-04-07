@@ -7,7 +7,7 @@ lbl_8085AEA8:
 /* 8085AEBC  80 63 05 9C */	lwz r3, 0x59c(r3)
 /* 8085AEC0  28 03 00 00 */	cmplwi r3, 0
 /* 8085AEC4  41 82 00 40 */	beq lbl_8085AF04
-/* 8085AEC8  4B A2 3D 98 */	b deleteAllParticle__14JPABaseEmitterFv
+/* 8085AEC8  4B A2 3D 99 */	bl deleteAllParticle__14JPABaseEmitterFv
 /* 8085AECC  80 7F 05 9C */	lwz r3, 0x59c(r31)
 /* 8085AED0  80 03 00 F4 */	lwz r0, 0xf4(r3)
 /* 8085AED4  60 00 00 01 */	ori r0, r0, 1
@@ -26,7 +26,7 @@ lbl_8085AF04:
 /* 8085AF04  80 7F 05 A0 */	lwz r3, 0x5a0(r31)
 /* 8085AF08  28 03 00 00 */	cmplwi r3, 0
 /* 8085AF0C  41 82 00 40 */	beq lbl_8085AF4C
-/* 8085AF10  4B A2 3D 50 */	b deleteAllParticle__14JPABaseEmitterFv
+/* 8085AF10  4B A2 3D 51 */	bl deleteAllParticle__14JPABaseEmitterFv
 /* 8085AF14  80 7F 05 A0 */	lwz r3, 0x5a0(r31)
 /* 8085AF18  80 03 00 F4 */	lwz r0, 0xf4(r3)
 /* 8085AF1C  60 00 00 01 */	ori r0, r0, 1
@@ -43,9 +43,9 @@ lbl_8085AF04:
 /* 8085AF48  90 1F 05 A0 */	stw r0, 0x5a0(r31)
 lbl_8085AF4C:
 /* 8085AF4C  38 7F 05 A4 */	addi r3, r31, 0x5a4
-/* 8085AF50  3C 80 80 86 */	lis r4, stringBase0@ha
-/* 8085AF54  38 84 B3 10 */	addi r4, r4, stringBase0@l
-/* 8085AF58  4B 7D 20 B0 */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 8085AF50  3C 80 80 86 */	lis r4, d_a_kytag08__stringBase0@ha /* 0x8085B310@ha */
+/* 8085AF54  38 84 B3 10 */	addi r4, r4, d_a_kytag08__stringBase0@l /* 0x8085B310@l */
+/* 8085AF58  4B 7D 20 B1 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 8085AF5C  38 60 00 01 */	li r3, 1
 /* 8085AF60  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8085AF64  80 01 00 14 */	lwz r0, 0x14(r1)

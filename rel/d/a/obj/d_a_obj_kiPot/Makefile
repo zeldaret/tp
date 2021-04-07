@@ -3,19 +3,20 @@
 #
 
 M501_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kiPot.plf
+M501_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kiPot.lcf
+M501_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kiPot.map
 
 M501_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_kiPot/executor.cpp \
-	rel/d/a/obj/d_a_obj_kiPot/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_kiPot/d_a_obj_kiPot.cpp \
 
 M501_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kiPot/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kiPot/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kiPot/d_a_obj_kiPot.o \
 
 M501_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kiPot/libRuntime.PPCEABI.H.a \
 
 M501_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M501_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M501_LDSCRIPT) \
+	-unused -map $(M501_MAP) \
+	-w off \
 
 $(M501_TARGET): $(M501_O_FILES) $(M501_LIBS)
+	@echo [501] creating $(M501_TARGET)
 	@echo $(M501_LIBS) $(M501_O_FILES) > build/M501_ofiles
-	$(LD) -partial $(M501_LDFLAGS) -o $(M501_TARGET) @build/M501_ofiles
+	@python3 tools/lcf.py rel 501 --output $(M501_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M501_LDFLAGS) -o $(M501_TARGET) @build/M501_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kiPot/%.o: rel/d/a/obj/d_a_obj_kiPot/%.cpp
+	@echo [501] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M501_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M501_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_kiPot/libs/Runtime.PPCEABI.H/Makefile
 

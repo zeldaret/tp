@@ -6,8 +6,8 @@ lbl_80A1E3AC:
 /* 80A1E3BC  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 80A1E3C0  7C 7E 1B 78 */	mr r30, r3
 /* 80A1E3C4  7C 9F 23 78 */	mr r31, r4
-/* 80A1E3C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80A1E3CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80A1E3C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80A1E3CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80A1E3D0  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 80A1E3D4  C0 43 04 D0 */	lfs f2, 0x4d0(r3)
 /* 80A1E3D8  D0 41 00 20 */	stfs f2, 0x20(r1)
@@ -54,7 +54,7 @@ lbl_80A1E454:
 /* 80A1E46C  38 7F 0C 94 */	addi r3, r31, 0xc94
 /* 80A1E470  38 81 00 08 */	addi r4, r1, 8
 /* 80A1E474  38 A1 00 14 */	addi r5, r1, 0x14
-/* 80A1E478  4B 73 29 68 */	b getDstPos__13daNpcF_Path_cF4cXyzR4cXyz
+/* 80A1E478  4B 73 29 69 */	bl getDstPos__13daNpcF_Path_cF4cXyzR4cXyz
 /* 80A1E47C  C0 01 00 14 */	lfs f0, 0x14(r1)
 /* 80A1E480  D0 1E 00 00 */	stfs f0, 0(r30)
 /* 80A1E484  C0 01 00 18 */	lfs f0, 0x18(r1)

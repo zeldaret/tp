@@ -26,8 +26,8 @@ lbl_80548420:
 /* 80548450  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 80548454  60 00 00 01 */	ori r0, r0, 1
 /* 80548458  B0 1F 00 FA */	sth r0, 0xfa(r31)
-/* 8054845C  3C 60 80 55 */	lis r3, lrl@ha
-/* 80548460  38 63 B0 04 */	addi r3, r3, lrl@l
+/* 8054845C  3C 60 80 55 */	lis r3, lrl@ha /* 0x8054B004@ha */
+/* 80548460  38 63 B0 04 */	addi r3, r3, lrl@l /* 0x8054B004@l */
 /* 80548464  80 63 00 00 */	lwz r3, 0(r3)
 /* 80548468  28 03 00 00 */	cmplwi r3, 0
 /* 8054846C  41 82 00 10 */	beq lbl_8054847C
@@ -35,8 +35,8 @@ lbl_80548420:
 /* 80548474  2C 00 00 00 */	cmpwi r0, 0
 /* 80548478  40 82 01 B0 */	bne lbl_80548628
 lbl_8054847C:
-/* 8054847C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80548480  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
+/* 8054847C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80548480  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80548484  88 1E 4F AD */	lbz r0, 0x4fad(r30)
 /* 80548488  28 00 00 00 */	cmplwi r0, 0
 /* 8054848C  41 82 01 60 */	beq lbl_805485EC
@@ -63,7 +63,7 @@ lbl_805484D4:
 /* 805484DC  38 A0 03 C3 */	li r5, 0x3c3
 /* 805484E0  38 C0 00 00 */	li r6, 0
 /* 805484E4  38 E0 00 00 */	li r7, 0
-/* 805484E8  4B D0 1A A8 */	b init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
+/* 805484E8  4B D0 1A A9 */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 /* 805484EC  38 00 00 00 */	li r0, 0
 /* 805484F0  98 1F 07 D5 */	stb r0, 0x7d5(r31)
 /* 805484F4  38 00 00 01 */	li r0, 1
@@ -80,7 +80,7 @@ lbl_80548500:
 /* 8054851C  38 A0 03 CC */	li r5, 0x3cc
 /* 80548520  38 C0 00 00 */	li r6, 0
 /* 80548524  38 E0 00 00 */	li r7, 0
-/* 80548528  4B D0 1A 68 */	b init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
+/* 80548528  4B D0 1A 69 */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 /* 8054852C  48 00 00 90 */	b lbl_805485BC
 lbl_80548530:
 /* 80548530  80 1F 07 CC */	lwz r0, 0x7cc(r31)
@@ -94,7 +94,7 @@ lbl_80548530:
 /* 80548550  38 A0 03 CD */	li r5, 0x3cd
 /* 80548554  38 C0 00 00 */	li r6, 0
 /* 80548558  38 E0 00 00 */	li r7, 0
-/* 8054855C  4B D0 1A 34 */	b init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
+/* 8054855C  4B D0 1A 35 */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 /* 80548560  48 00 00 5C */	b lbl_805485BC
 lbl_80548564:
 /* 80548564  54 00 07 FF */	clrlwi. r0, r0, 0x1f
@@ -104,7 +104,7 @@ lbl_80548564:
 /* 80548574  38 A0 03 CD */	li r5, 0x3cd
 /* 80548578  38 C0 00 00 */	li r6, 0
 /* 8054857C  38 E0 00 00 */	li r7, 0
-/* 80548580  4B D0 1A 10 */	b init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
+/* 80548580  4B D0 1A 11 */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 /* 80548584  48 00 00 38 */	b lbl_805485BC
 lbl_80548588:
 /* 80548588  38 7F 05 C0 */	addi r3, r31, 0x5c0
@@ -112,7 +112,7 @@ lbl_80548588:
 /* 80548590  38 A0 03 CE */	li r5, 0x3ce
 /* 80548594  38 C0 00 00 */	li r6, 0
 /* 80548598  38 E0 00 00 */	li r7, 0
-/* 8054859C  4B D0 19 F4 */	b init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
+/* 8054859C  4B D0 19 F5 */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 /* 805485A0  48 00 00 1C */	b lbl_805485BC
 lbl_805485A4:
 /* 805485A4  38 7F 05 C0 */	addi r3, r31, 0x5c0
@@ -120,17 +120,17 @@ lbl_805485A4:
 /* 805485AC  38 A0 03 CE */	li r5, 0x3ce
 /* 805485B0  38 C0 00 00 */	li r6, 0
 /* 805485B4  38 E0 00 00 */	li r7, 0
-/* 805485B8  4B D0 19 D8 */	b init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
+/* 805485B8  4B D0 19 D9 */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 lbl_805485BC:
 /* 805485BC  38 7F 05 C0 */	addi r3, r31, 0x5c0
 /* 805485C0  7F E4 FB 78 */	mr r4, r31
 /* 805485C4  38 A0 00 00 */	li r5, 0
 /* 805485C8  38 C0 00 00 */	li r6, 0
-/* 805485CC  4B D0 1D 0C */	b doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
+/* 805485CC  4B D0 1D 0D */	bl doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
 /* 805485D0  2C 03 00 00 */	cmpwi r3, 0
 /* 805485D4  41 82 00 54 */	beq lbl_80548628
 /* 805485D8  38 7E 4E C8 */	addi r3, r30, 0x4ec8
-/* 805485DC  4B AF 9E 8C */	b reset__14dEvt_control_cFv
+/* 805485DC  4B AF 9E 8D */	bl reset__14dEvt_control_cFv
 /* 805485E0  38 00 00 00 */	li r0, 0
 /* 805485E4  B0 1F 05 B8 */	sth r0, 0x5b8(r31)
 /* 805485E8  48 00 00 40 */	b lbl_80548628

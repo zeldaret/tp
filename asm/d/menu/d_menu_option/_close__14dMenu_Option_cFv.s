@@ -7,8 +7,8 @@ lbl_801E3DE0:
 /* 801E3DF4  39 61 00 30 */	addi r11, r1, 0x30
 /* 801E3DF8  48 17 E3 E1 */	bl _savegpr_28
 /* 801E3DFC  7C 7F 1B 78 */	mr r31, r3
-/* 801E3E00  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 801E3E04  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 801E3E00  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 801E3E04  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 801E3E08  AB A4 07 22 */	lha r29, 0x722(r4)
 /* 801E3E0C  38 00 00 00 */	li r0, 0
 /* 801E3E10  B0 03 03 D8 */	sth r0, 0x3d8(r3)

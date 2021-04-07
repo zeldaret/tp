@@ -9,27 +9,27 @@ lbl_8020DCE4:
 /* 8020DD00  88 03 00 2B */	lbz r0, 0x2b(r3)
 /* 8020DD04  28 00 00 00 */	cmplwi r0, 0
 /* 8020DD08  40 82 00 84 */	bne lbl_8020DD8C
-/* 8020DD0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8020DD10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8020DD0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8020DD10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8020DD14  3B 83 07 F0 */	addi r28, r3, 0x7f0
 /* 8020DD18  7F 83 E3 78 */	mr r3, r28
-/* 8020DD1C  3C 80 80 3A */	lis r4, saveBitLabels__16dSv_event_flag_c@ha
-/* 8020DD20  3B A4 72 88 */	addi r29, r4, saveBitLabels__16dSv_event_flag_c@l
+/* 8020DD1C  3C 80 80 3A */	lis r4, saveBitLabels__16dSv_event_flag_c@ha /* 0x803A7288@ha */
+/* 8020DD20  3B A4 72 88 */	addi r29, r4, saveBitLabels__16dSv_event_flag_c@l /* 0x803A7288@l */
 /* 8020DD24  A0 9D 00 EC */	lhz r4, 0xec(r29)
 /* 8020DD28  4B E2 6C 95 */	bl isEventBit__11dSv_event_cCFUs
 /* 8020DD2C  2C 03 00 00 */	cmpwi r3, 0
 /* 8020DD30  41 82 00 5C */	beq lbl_8020DD8C
-/* 8020DD34  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8020DD38  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8020DD34  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8020DD38  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8020DD3C  38 63 4E 00 */	addi r3, r3, 0x4e00
-/* 8020DD40  3C 80 80 3A */	lis r4, d_meter_d_meter_map__stringBase0@ha
-/* 8020DD44  38 84 82 08 */	addi r4, r4, d_meter_d_meter_map__stringBase0@l
+/* 8020DD40  3C 80 80 3A */	lis r4, d_meter_d_meter_map__stringBase0@ha /* 0x80398208@ha */
+/* 8020DD44  38 84 82 08 */	addi r4, r4, d_meter_d_meter_map__stringBase0@l /* 0x80398208@l */
 /* 8020DD48  48 15 AC 4D */	bl strcmp
 /* 8020DD4C  2C 03 00 00 */	cmpwi r3, 0
 /* 8020DD50  40 82 00 1C */	bne lbl_8020DD6C
 /* 8020DD54  7F 83 E3 78 */	mr r3, r28
-/* 8020DD58  3C 80 80 3A */	lis r4, saveBitLabels__16dSv_event_flag_c@ha
-/* 8020DD5C  38 84 72 88 */	addi r4, r4, saveBitLabels__16dSv_event_flag_c@l
+/* 8020DD58  3C 80 80 3A */	lis r4, saveBitLabels__16dSv_event_flag_c@ha /* 0x803A7288@ha */
+/* 8020DD5C  38 84 72 88 */	addi r4, r4, saveBitLabels__16dSv_event_flag_c@l /* 0x803A7288@l */
 /* 8020DD60  A0 84 00 EE */	lhz r4, 0xee(r4)
 /* 8020DD64  4B E2 6C 29 */	bl onEventBit__11dSv_event_cFUs
 /* 8020DD68  48 00 00 24 */	b lbl_8020DD8C
@@ -39,8 +39,8 @@ lbl_8020DD6C:
 /* 8020DD74  4B E2 6C 49 */	bl isEventBit__11dSv_event_cCFUs
 /* 8020DD78  98 7E 00 2B */	stb r3, 0x2b(r30)
 /* 8020DD7C  38 00 00 02 */	li r0, 2
-/* 8020DD80  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8020DD84  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8020DD80  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8020DD84  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8020DD88  98 03 00 C1 */	stb r0, 0xc1(r3)
 lbl_8020DD8C:
 /* 8020DD8C  8B AD 87 E4 */	lbz r29, struct_80450D64+0x0(r13)
@@ -56,8 +56,8 @@ lbl_8020DD8C:
 /* 8020DDB4  41 82 00 48 */	beq lbl_8020DDFC
 /* 8020DDB8  28 00 00 03 */	cmplwi r0, 3
 /* 8020DDBC  41 82 00 40 */	beq lbl_8020DDFC
-/* 8020DDC0  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8020DDC4  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8020DDC0  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8020DDC4  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8020DDC8  88 03 00 C1 */	lbz r0, 0xc1(r3)
 /* 8020DDCC  28 00 00 07 */	cmplwi r0, 7
 /* 8020DDD0  41 82 00 2C */	beq lbl_8020DDFC
@@ -134,8 +134,8 @@ lbl_8020DE6C:
 /* 8020DEDC  7F A4 EB 78 */	mr r4, r29
 /* 8020DEE0  C0 61 00 18 */	lfs f3, 0x18(r1)
 /* 8020DEE4  4B E1 C4 49 */	bl _move__6dMap_cFffif
-/* 8020DEE8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8020DEEC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8020DEE8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8020DEEC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8020DEF0  88 63 4F AD */	lbz r3, 0x4fad(r3)
 /* 8020DEF4  30 03 FF FF */	addic r0, r3, -1
 /* 8020DEF8  7C 00 19 10 */	subfe r0, r0, r3

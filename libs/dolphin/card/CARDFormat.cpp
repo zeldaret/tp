@@ -12,7 +12,7 @@
 //
 
 extern "C" static void FormatCallback();
-extern "C" static void __CARDFormatRegionAsync();
+extern "C" void __CARDFormatRegionAsync();
 extern "C" void CARDFormat();
 
 //
@@ -43,31 +43,31 @@ extern "C" extern u8 __CARDBlock[544];
 // Declarations:
 //
 
-/* 80357484-803575C8 0144+00 s=1 e=0 z=0  None .text      FormatCallback */
+/* 80357484-803575C8 351DC4 0144+00 1/1 0/0 0/0 .text            FormatCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void FormatCallback() {
+static asm void FormatCallback() {
     nofralloc
 #include "asm/dolphin/card/CARDFormat/FormatCallback.s"
 }
 #pragma pop
 
-/* 803575C8-80357C20 0658+00 s=1 e=0 z=0  None .text      __CARDFormatRegionAsync */
+/* 803575C8-80357C20 351F08 0658+00 1/1 0/0 0/0 .text            __CARDFormatRegionAsync */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void __CARDFormatRegionAsync() {
+asm void __CARDFormatRegionAsync() {
     nofralloc
 #include "asm/dolphin/card/CARDFormat/__CARDFormatRegionAsync.s"
 }
 #pragma pop
 
-/* 80357C20-80357C74 0054+00 s=0 e=1 z=0  None .text      CARDFormat */
+/* 80357C20-80357C74 352560 0054+00 0/0 1/1 0/0 .text            CARDFormat */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void CARDFormat() {
+asm void CARDFormat() {
     nofralloc
 #include "asm/dolphin/card/CARDFormat/CARDFormat.s"
 }

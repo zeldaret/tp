@@ -5,7 +5,7 @@ lbl_80CA843C:
 /* 80CA8448  28 03 00 00 */	cmplwi r3, 0
 /* 80CA844C  41 82 00 0C */	beq lbl_80CA8458
 /* 80CA8450  38 80 00 00 */	li r4, 0
-/* 80CA8454  4B 37 08 38 */	b __dt__10fopAc_ac_cFv
+/* 80CA8454  4B 37 08 39 */	bl __dt__10fopAc_ac_cFv
 lbl_80CA8458:
 /* 80CA8458  38 60 00 01 */	li r3, 1
 /* 80CA845C  80 01 00 14 */	lwz r0, 0x14(r1)

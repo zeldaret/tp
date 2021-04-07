@@ -15,8 +15,8 @@ lbl_80841730:
 /* 80841738  38 04 F5 FF */	addi r0, r4, 0xF5FF /* 0xEFFEF5FF@l */
 /* 8084173C  7C A0 00 38 */	and r0, r5, r0
 /* 80841740  90 1F 17 44 */	stw r0, 0x1744(r31)
-/* 80841744  3C 80 80 84 */	lis r4, lit_9343@ha
-/* 80841748  38 A4 59 D0 */	addi r5, r4, lit_9343@l
+/* 80841744  3C 80 80 84 */	lis r4, lit_9343@ha /* 0x808459D0@ha */
+/* 80841748  38 A4 59 D0 */	addi r5, r4, lit_9343@l /* 0x808459D0@l */
 /* 8084174C  80 85 00 00 */	lwz r4, 0(r5)
 /* 80841750  80 05 00 04 */	lwz r0, 4(r5)
 /* 80841754  90 9F 18 A4 */	stw r4, 0x18a4(r31)
@@ -25,16 +25,16 @@ lbl_80841730:
 /* 80841760  90 1F 18 AC */	stw r0, 0x18ac(r31)
 /* 80841764  38 00 00 00 */	li r0, 0
 /* 80841768  98 1F 16 B4 */	stb r0, 0x16b4(r31)
-/* 8084176C  3C 80 80 84 */	lis r4, lit_4306@ha
-/* 80841770  C0 04 55 FC */	lfs f0, lit_4306@l(r4)
+/* 8084176C  3C 80 80 84 */	lis r4, lit_4306@ha /* 0x808455FC@ha */
+/* 80841770  C0 04 55 FC */	lfs f0, lit_4306@l(r4)  /* 0x808455FC@l */
 /* 80841774  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 80841778  D0 1F 17 60 */	stfs f0, 0x1760(r31)
 /* 8084177C  4B FF F0 85 */	bl checkServiceWaitAnime__9daHorse_cFv
 /* 80841780  2C 03 00 00 */	cmpwi r3, 0
 /* 80841784  40 82 00 1C */	bne lbl_808417A0
 /* 80841788  7F E3 FB 78 */	mr r3, r31
-/* 8084178C  3C 80 80 84 */	lis r4, lit_4303@ha
-/* 80841790  C0 24 55 F0 */	lfs f1, lit_4303@l(r4)
+/* 8084178C  3C 80 80 84 */	lis r4, lit_4303@ha /* 0x808455F0@ha */
+/* 80841790  C0 24 55 F0 */	lfs f1, lit_4303@l(r4)  /* 0x808455F0@l */
 /* 80841794  4B FF A0 9D */	bl setMoveAnime__9daHorse_cFf
 /* 80841798  7F E3 FB 78 */	mr r3, r31
 /* 8084179C  4B FF F0 15 */	bl setServiceWaitTimer__9daHorse_cFv

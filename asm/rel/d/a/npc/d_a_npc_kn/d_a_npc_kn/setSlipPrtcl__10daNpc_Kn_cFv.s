@@ -10,11 +10,11 @@ lbl_80A37430:
 /* 80A37450  80 63 00 84 */	lwz r3, 0x84(r3)
 /* 80A37454  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 80A37458  38 63 05 D0 */	addi r3, r3, 0x5d0
-/* 80A3745C  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha
-/* 80A37460  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l
-/* 80A37464  4B 90 F0 4C */	b PSMTXCopy
-/* 80A37468  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80A3746C  3B C3 D4 70 */	addi r30, r3, now__14mDoMtx_stack_c@l
+/* 80A3745C  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80A37460  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 80A37464  4B 90 F0 4D */	bl PSMTXCopy
+/* 80A37468  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80A3746C  3B C3 D4 70 */	addi r30, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80A37470  C0 1E 00 0C */	lfs f0, 0xc(r30)
 /* 80A37474  D0 1F 15 E4 */	stfs f0, 0x15e4(r31)
 /* 80A37478  C0 1E 00 1C */	lfs f0, 0x1c(r30)
@@ -22,8 +22,8 @@ lbl_80A37430:
 /* 80A37480  C0 1E 00 2C */	lfs f0, 0x2c(r30)
 /* 80A37484  D0 1F 15 EC */	stfs f0, 0x15ec(r31)
 /* 80A37488  C0 3F 15 E8 */	lfs f1, 0x15e8(r31)
-/* 80A3748C  3C 60 80 A4 */	lis r3, lit_4326@ha
-/* 80A37490  C0 03 09 08 */	lfs f0, lit_4326@l(r3)
+/* 80A3748C  3C 60 80 A4 */	lis r3, lit_4326@ha /* 0x80A40908@ha */
+/* 80A37490  C0 03 09 08 */	lfs f0, lit_4326@l(r3)  /* 0x80A40908@l */
 /* 80A37494  EC 01 00 28 */	fsubs f0, f1, f0
 /* 80A37498  D0 1F 15 E8 */	stfs f0, 0x15e8(r31)
 /* 80A3749C  A8 1F 04 DC */	lha r0, 0x4dc(r31)
@@ -43,7 +43,7 @@ lbl_80A37430:
 /* 80A374D4  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 80A374D8  38 63 05 10 */	addi r3, r3, 0x510
 /* 80A374DC  7F C4 F3 78 */	mr r4, r30
-/* 80A374E0  4B 90 EF D0 */	b PSMTXCopy
+/* 80A374E0  4B 90 EF D1 */	bl PSMTXCopy
 /* 80A374E4  C0 1E 00 0C */	lfs f0, 0xc(r30)
 /* 80A374E8  D0 1F 16 40 */	stfs f0, 0x1640(r31)
 /* 80A374EC  C0 1E 00 1C */	lfs f0, 0x1c(r30)
@@ -51,8 +51,8 @@ lbl_80A37430:
 /* 80A374F4  C0 1E 00 2C */	lfs f0, 0x2c(r30)
 /* 80A374F8  D0 1F 16 48 */	stfs f0, 0x1648(r31)
 /* 80A374FC  C0 3F 16 44 */	lfs f1, 0x1644(r31)
-/* 80A37500  3C 60 80 A4 */	lis r3, lit_4326@ha
-/* 80A37504  C0 03 09 08 */	lfs f0, lit_4326@l(r3)
+/* 80A37500  3C 60 80 A4 */	lis r3, lit_4326@ha /* 0x80A40908@ha */
+/* 80A37504  C0 03 09 08 */	lfs f0, lit_4326@l(r3)  /* 0x80A40908@l */
 /* 80A37508  EC 01 00 28 */	fsubs f0, f1, f0
 /* 80A3750C  D0 1F 16 44 */	stfs f0, 0x1644(r31)
 /* 80A37510  A8 1F 04 DC */	lha r0, 0x4dc(r31)

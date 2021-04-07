@@ -11,8 +11,8 @@ lbl_8032F170:
 /* 8032F194  98 03 00 16 */	stb r0, 0x16(r3)
 /* 8032F198  98 83 00 17 */	stb r4, 0x17(r3)
 /* 8032F19C  38 C3 00 14 */	addi r6, r3, 0x14
-/* 8032F1A0  3C 80 80 3A */	lis r4, j3dDefaultTransformInfo@ha
-/* 8032F1A4  38 84 1E 30 */	addi r4, r4, j3dDefaultTransformInfo@l
+/* 8032F1A0  3C 80 80 3A */	lis r4, j3dDefaultTransformInfo@ha /* 0x803A1E30@ha */
+/* 8032F1A4  38 84 1E 30 */	addi r4, r4, j3dDefaultTransformInfo@l /* 0x803A1E30@l */
 /* 8032F1A8  38 A4 FF FC */	addi r5, r4, -4
 /* 8032F1AC  38 00 00 04 */	li r0, 4
 /* 8032F1B0  7C 09 03 A6 */	mtctr r0
@@ -27,8 +27,8 @@ lbl_8032F1B4:
 /* 8032F1D0  38 00 00 00 */	li r0, 0
 /* 8032F1D4  90 03 00 54 */	stw r0, 0x54(r3)
 /* 8032F1D8  90 03 00 58 */	stw r0, 0x58(r3)
-/* 8032F1DC  3C 80 80 3A */	lis r4, lit_1257@ha
-/* 8032F1E0  38 A4 20 80 */	addi r5, r4, lit_1257@l
+/* 8032F1DC  3C 80 80 3A */	lis r4, lit_1257@ha /* 0x803A2080@ha */
+/* 8032F1E0  38 A4 20 80 */	addi r5, r4, lit_1257@l /* 0x803A2080@l */
 /* 8032F1E4  80 85 00 00 */	lwz r4, 0(r5)
 /* 8032F1E8  80 05 00 04 */	lwz r0, 4(r5)
 /* 8032F1EC  90 81 00 14 */	stw r4, 0x14(r1)
@@ -41,8 +41,8 @@ lbl_8032F1B4:
 /* 8032F208  D0 03 00 40 */	stfs f0, 0x40(r3)
 /* 8032F20C  C0 01 00 1C */	lfs f0, 0x1c(r1)
 /* 8032F210  D0 03 00 44 */	stfs f0, 0x44(r3)
-/* 8032F214  3C 80 80 3A */	lis r4, lit_1259@ha
-/* 8032F218  38 A4 20 8C */	addi r5, r4, lit_1259@l
+/* 8032F214  3C 80 80 3A */	lis r4, lit_1259@ha /* 0x803A208C@ha */
+/* 8032F218  38 A4 20 8C */	addi r5, r4, lit_1259@l /* 0x803A208C@l */
 /* 8032F21C  80 85 00 00 */	lwz r4, 0(r5)
 /* 8032F220  80 05 00 04 */	lwz r0, 4(r5)
 /* 8032F224  90 81 00 08 */	stw r4, 8(r1)

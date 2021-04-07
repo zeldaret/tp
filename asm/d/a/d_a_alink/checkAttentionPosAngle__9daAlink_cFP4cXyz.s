@@ -18,8 +18,8 @@ lbl_800A0804:
 /* 800A0814  54 00 05 6B */	rlwinm. r0, r0, 0, 0x15, 0x15
 /* 800A0818  41 82 00 14 */	beq lbl_800A082C
 lbl_800A081C:
-/* 800A081C  3C 60 80 39 */	lis r3, m__19daAlinkHIO_horse_c0@ha
-/* 800A0820  38 63 E5 A4 */	addi r3, r3, m__19daAlinkHIO_horse_c0@l
+/* 800A081C  3C 60 80 39 */	lis r3, m__19daAlinkHIO_horse_c0@ha /* 0x8038E5A4@ha */
+/* 800A0820  38 63 E5 A4 */	addi r3, r3, m__19daAlinkHIO_horse_c0@l /* 0x8038E5A4@l */
 /* 800A0824  AB E3 00 52 */	lha r31, 0x52(r3)
 /* 800A0828  48 00 00 08 */	b lbl_800A0830
 lbl_800A082C:

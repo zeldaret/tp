@@ -12,7 +12,7 @@
 //
 
 extern "C" void fputs();
-extern "C" static void __put_char();
+extern "C" void __put_char();
 
 //
 // External References:
@@ -30,21 +30,21 @@ extern "C" void fwide();
 // Declarations:
 //
 
-/* 803651D8-803652AC 00D4+00 s=0 e=1 z=0  None .text      fputs */
+/* 803651D8-803652AC 35FB18 00D4+00 0/0 1/1 0/0 .text            fputs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void fputs() {
+asm void fputs() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/char_io/fputs.s"
 }
 #pragma pop
 
-/* 803652AC-80365464 01B8+00 s=1 e=0 z=0  None .text      __put_char */
+/* 803652AC-80365464 35FBEC 01B8+00 1/1 0/0 0/0 .text            __put_char */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void __put_char() {
+asm void __put_char() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/char_io/__put_char.s"
 }

@@ -44,8 +44,8 @@ lbl_80040B00:
 /* 80040BA8  3B 42 84 A4 */	la r26, tboxNotStayColor_4542(r2) /* 80451EA4-_SDA2_BASE_ */
 /* 80040BAC  3B 22 84 7C */	la r25, l_treasureStartColor(r2) /* 80451E7C-_SDA2_BASE_ */
 /* 80040BB0  56 98 06 3E */	clrlwi r24, r20, 0x18
-/* 80040BB4  3C 60 80 38 */	lis r3, l_treasureDispList_4524@ha
-/* 80040BB8  3B 63 9C 88 */	addi r27, r3, l_treasureDispList_4524@l
+/* 80040BB4  3C 60 80 38 */	lis r3, l_treasureDispList_4524@ha /* 0x80379C88@ha */
+/* 80040BB8  3B 63 9C 88 */	addi r27, r3, l_treasureDispList_4524@l /* 0x80379C88@l */
 lbl_80040BBC:
 /* 80040BBC  7F BB F2 14 */	add r29, r27, r30
 /* 80040BC0  88 9D 00 00 */	lbz r4, 0(r29)
@@ -75,8 +75,8 @@ lbl_80040BBC:
 /* 80040C20  48 31 DA 45 */	bl GXInvalidateTexAll
 /* 80040C24  80 1D 00 04 */	lwz r0, 4(r29)
 /* 80040C28  54 00 10 3A */	slwi r0, r0, 2
-/* 80040C2C  3C 60 80 42 */	lis r3, m_texObjAgg__8dMpath_n@ha
-/* 80040C30  38 63 46 84 */	addi r3, r3, m_texObjAgg__8dMpath_n@l
+/* 80040C2C  3C 60 80 42 */	lis r3, m_texObjAgg__8dMpath_n@ha /* 0x80424684@ha */
+/* 80040C30  38 63 46 84 */	addi r3, r3, m_texObjAgg__8dMpath_n@l /* 0x80424684@l */
 /* 80040C34  7C 63 00 2E */	lwzx r3, r3, r0
 /* 80040C38  38 80 00 00 */	li r4, 0
 /* 80040C3C  48 31 D7 D9 */	bl GXLoadTexObj

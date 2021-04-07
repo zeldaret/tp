@@ -40,9 +40,9 @@ struct daObjHata_c {
     /* 80C1919C */ void moveSwing();
 };
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct cXyz {};
 
 struct J3DModelData {};
 
@@ -65,13 +65,6 @@ struct J3DJoint {};
 // Forward References:
 //
 
-static void daObjHata_c_createHeap(fopAc_ac_c*);
-static void nodeCallBack(J3DJoint*, int);
-static void daObjHata_create(daObjHata_c*);
-static void daObjHata_Delete(daObjHata_c*);
-static void daObjHata_execute(daObjHata_c*);
-static void daObjHata_draw(daObjHata_c*);
-
 extern "C" static void daObjHata_c_createHeap__FP10fopAc_ac_c();
 extern "C" static void nodeCallBack__FP8J3DJointi();
 extern "C" void __dt__5csXyzFv();
@@ -90,24 +83,11 @@ extern "C" static void daObjHata_create__FP11daObjHata_c();
 extern "C" static void daObjHata_Delete__FP11daObjHata_c();
 extern "C" static void daObjHata_execute__FP11daObjHata_c();
 extern "C" static void daObjHata_draw__FP11daObjHata_c();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_Hata[12];
+extern "C" extern char const* const d_a_obj_hata__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void cM_rndF(f32);
-void cM_rndFX(f32);
-void cLib_chaseF(f32*, f32, f32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
@@ -146,27 +126,27 @@ extern "C" extern u8 mCurrentMtx__6J3DSys[48];
 // Declarations:
 //
 
-/* 80C18BB8-80C18BD8 0020+00 s=1 e=0 z=0  None .text      daObjHata_c_createHeap__FP10fopAc_ac_c */
+/* 80C18BB8-80C18BD8 000078 0020+00 1/1 0/0 0/0 .text daObjHata_c_createHeap__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjHata_c_createHeap(fopAc_ac_c* param_0) {
+static asm void daObjHata_c_createHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hata/d_a_obj_hata/daObjHata_c_createHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80C18BD8-80C18CCC 00F4+00 s=1 e=0 z=0  None .text      nodeCallBack__FP8J3DJointi */
+/* 80C18BD8-80C18CCC 000098 00F4+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void nodeCallBack(J3DJoint* param_0, int param_1) {
+static asm void nodeCallBack(J3DJoint* param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hata/d_a_obj_hata/nodeCallBack__FP8J3DJointi.s"
 }
 #pragma pop
 
-/* 80C18CCC-80C18D08 003C+00 s=2 e=0 z=0  None .text      __dt__5csXyzFv */
+/* 80C18CCC-80C18D08 00018C 003C+00 2/2 0/0 0/0 .text            __dt__5csXyzFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -177,59 +157,10 @@ asm csXyz::~csXyz() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C19478-80C1947C 0004+00 s=2 e=0 z=0  None .rodata    @3788 */
-SECTION_RODATA static u32 const lit_3788 = 0x44A00000;
+/* 80C194C8-80C194CC -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_hata__stringBase0;
 
-/* 80C1947C-80C19480 0004+00 s=2 e=0 z=0  None .rodata    @3789 */
-SECTION_RODATA static u32 const lit_3789 = 0x3F800000;
-
-/* 80C19480-80C1948C 000C+00 s=1 e=0 z=0  None .rodata    SING$3793 */
-SECTION_RODATA static u8 const SING[12] = {
-    0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x01,
-};
-
-/* 80C1948C-80C19498 000C+00 s=1 e=0 z=0  None .rodata    AIM_ANGLE_X$3794 */
-SECTION_RODATA static u8 const AIM_ANGLE_X[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xBC, 0x00, 0x00, 0x02, 0xBC,
-};
-
-/* 80C19498-80C194A4 000C+00 s=1 e=0 z=0  None .rodata    STEP_ANGLE_X$3795 */
-SECTION_RODATA static u8 const STEP_ANGLE_X[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3C, 0x00, 0x00, 0x00, 0x5A,
-};
-
-/* 80C194A4-80C194A8 0004+00 s=1 e=0 z=0  None .rodata    @3823 */
-SECTION_RODATA static u32 const lit_3823 = 0x42480000;
-
-/* 80C194A8-80C194AC 0004+00 s=1 e=0 z=0  None .rodata    @3824 */
-SECTION_RODATA static u32 const lit_3824 = 0x44BB8000;
-
-/* 80C194AC-80C194B0 0004+00 s=1 e=0 z=0  None .rodata    @3825 */
-SECTION_RODATA static u32 const lit_3825 = 0x3DCCCCCD;
-
-/* 80C194B0-80C194B8 0004+04 s=1 e=0 z=0  None .rodata    @3826 */
-SECTION_RODATA static u32 const lit_3826[1 + 1 /* padding */] = {
-    0x3F000000,
-    /* padding */
-    0x00000000,
-};
-
-/* 80C194B8-80C194C0 0008+00 s=1 e=0 z=0  None .rodata    @3828 */
-SECTION_RODATA static u8 const lit_3828[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-
-/* 80C194C0-80C194C5 0005+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80C194C0 = "Hata";
-#pragma pop
-
-/* 80C194C8-80C194CC 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80C194CC-80C194EC 0020+00 s=1 e=0 z=0  None .data      daObjHata_METHODS */
+/* 80C194CC-80C194EC -00001 0020+00 1/0 0/0 0/0 .data            daObjHata_METHODS */
 SECTION_DATA static void* daObjHata_METHODS[8] = {
     (void*)daObjHata_create__FP11daObjHata_c,
     (void*)daObjHata_Delete__FP11daObjHata_c,
@@ -241,8 +172,8 @@ SECTION_DATA static void* daObjHata_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 80C194EC-80C1951C 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_Hata */
-SECTION_DATA void* g_profile_Obj_Hata[12] = {
+/* 80C194EC-80C1951C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Hata */
+SECTION_DATA extern void* g_profile_Obj_Hata[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01A80000, (void*)&g_fpcLf_Method,
     (void*)0x000005C4, (void*)NULL,
@@ -251,14 +182,14 @@ SECTION_DATA void* g_profile_Obj_Hata[12] = {
     (void*)0x00040180, (void*)0x030E0000,
 };
 
-/* 80C1951C-80C19528 000C+00 s=2 e=0 z=0  None .data      __vt__11daObjHata_c */
-SECTION_DATA static void* __vt__11daObjHata_c[3] = {
-    (void*)NULL,
+/* 80C1951C-80C19528 000054 000C+00 2/2 0/0 0/0 .data            __vt__11daObjHata_c */
+SECTION_DATA extern void* __vt__11daObjHata_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__11daObjHata_cFv,
 };
 
-/* 80C18D08-80C18D64 005C+00 s=2 e=0 z=0  None .text      __ct__11daObjHata_cFv */
+/* 80C18D08-80C18D64 0001C8 005C+00 2/2 0/0 0/0 .text            __ct__11daObjHata_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -268,12 +199,12 @@ asm daObjHata_c::daObjHata_c() {
 }
 #pragma pop
 
-/* 80C18D64-80C18D68 0004+00 s=1 e=0 z=0  None .text      __ct__5csXyzFv */
+/* 80C18D64-80C18D68 000224 0004+00 1/1 0/0 0/0 .text            __ct__5csXyzFv */
 csXyz::csXyz() {
     /* empty function */
 }
 
-/* 80C18D68-80C18E00 0098+00 s=1 e=0 z=0  None .text      __dt__11daObjHata_cFv */
+/* 80C18D68-80C18E00 000228 0098+00 1/0 0/0 0/0 .text            __dt__11daObjHata_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -283,7 +214,7 @@ asm daObjHata_c::~daObjHata_c() {
 }
 #pragma pop
 
-/* 80C18E00-80C18E70 0070+00 s=1 e=0 z=0  None .text      createHeap__11daObjHata_cFv */
+/* 80C18E00-80C18E70 0002C0 0070+00 1/1 0/0 0/0 .text            createHeap__11daObjHata_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -293,7 +224,7 @@ asm void daObjHata_c::createHeap() {
 }
 #pragma pop
 
-/* 80C18E70-80C18F88 0118+00 s=1 e=0 z=0  None .text      create__11daObjHata_cFv */
+/* 80C18E70-80C18F88 000330 0118+00 1/1 0/0 0/0 .text            create__11daObjHata_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -303,7 +234,7 @@ asm void daObjHata_c::create() {
 }
 #pragma pop
 
-/* 80C18F88-80C18FBC 0034+00 s=1 e=0 z=0  None .text      Delete__11daObjHata_cFv */
+/* 80C18F88-80C18FBC 000448 0034+00 1/1 0/0 0/0 .text            Delete__11daObjHata_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -313,7 +244,7 @@ asm void daObjHata_c::Delete() {
 }
 #pragma pop
 
-/* 80C18FBC-80C19060 00A4+00 s=1 e=0 z=0  None .text      draw__11daObjHata_cFv */
+/* 80C18FBC-80C19060 00047C 00A4+00 1/1 0/0 0/0 .text            draw__11daObjHata_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -323,7 +254,7 @@ asm void daObjHata_c::draw() {
 }
 #pragma pop
 
-/* 80C19060-80C19098 0038+00 s=1 e=0 z=0  None .text      execute__11daObjHata_cFv */
+/* 80C19060-80C19098 000520 0038+00 1/1 0/0 0/0 .text            execute__11daObjHata_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -333,7 +264,7 @@ asm void daObjHata_c::execute() {
 }
 #pragma pop
 
-/* 80C19098-80C190FC 0064+00 s=2 e=0 z=0  None .text      setModelMtx__11daObjHata_cFv */
+/* 80C19098-80C190FC 000558 0064+00 2/2 0/0 0/0 .text            setModelMtx__11daObjHata_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -343,7 +274,16 @@ asm void daObjHata_c::setModelMtx() {
 }
 #pragma pop
 
-/* 80C190FC-80C1919C 00A0+00 s=1 e=0 z=0  None .text      init__11daObjHata_cFv */
+/* ############################################################################################## */
+/* 80C19478-80C1947C 000000 0004+00 2/2 0/0 0/0 .rodata          @3788 */
+SECTION_RODATA static f32 const lit_3788 = 1280.0f;
+COMPILER_STRIP_GATE(80C19478, &lit_3788);
+
+/* 80C1947C-80C19480 000004 0004+00 1/2 0/0 0/0 .rodata          @3789 */
+SECTION_RODATA static f32 const lit_3789 = 1.0f;
+COMPILER_STRIP_GATE(80C1947C, &lit_3789);
+
+/* 80C190FC-80C1919C 0005BC 00A0+00 1/1 0/0 0/0 .text            init__11daObjHata_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -353,7 +293,76 @@ asm void daObjHata_c::init() {
 }
 #pragma pop
 
-/* 80C1919C-80C193BC 0220+00 s=1 e=0 z=0  None .text      moveSwing__11daObjHata_cFv */
+/* ############################################################################################## */
+/* 80C19480-80C1948C 000008 000C+00 0/1 0/0 0/0 .rodata          SING$3793 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const SING[12] = {
+    0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x01,
+};
+COMPILER_STRIP_GATE(80C19480, &SING);
+#pragma pop
+
+/* 80C1948C-80C19498 000014 000C+00 0/1 0/0 0/0 .rodata          AIM_ANGLE_X$3794 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const AIM_ANGLE_X[12] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xBC, 0x00, 0x00, 0x02, 0xBC,
+};
+COMPILER_STRIP_GATE(80C1948C, &AIM_ANGLE_X);
+#pragma pop
+
+/* 80C19498-80C194A4 000020 000C+00 0/1 0/0 0/0 .rodata          STEP_ANGLE_X$3795 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const STEP_ANGLE_X[12] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3C, 0x00, 0x00, 0x00, 0x5A,
+};
+COMPILER_STRIP_GATE(80C19498, &STEP_ANGLE_X);
+#pragma pop
+
+/* 80C194A4-80C194A8 00002C 0004+00 0/1 0/0 0/0 .rodata          @3823 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3823 = 50.0f;
+COMPILER_STRIP_GATE(80C194A4, &lit_3823);
+#pragma pop
+
+/* 80C194A8-80C194AC 000030 0004+00 0/1 0/0 0/0 .rodata          @3824 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3824 = 1500.0f;
+COMPILER_STRIP_GATE(80C194A8, &lit_3824);
+#pragma pop
+
+/* 80C194AC-80C194B0 000034 0004+00 0/1 0/0 0/0 .rodata          @3825 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3825 = 1.0f / 10.0f;
+COMPILER_STRIP_GATE(80C194AC, &lit_3825);
+#pragma pop
+
+/* 80C194B0-80C194B8 000038 0004+04 0/1 0/0 0/0 .rodata          @3826 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3826[1 + 1 /* padding */] = {
+    0.5f,
+    /* padding */
+    0.0f,
+};
+COMPILER_STRIP_GATE(80C194B0, &lit_3826);
+#pragma pop
+
+/* 80C194B8-80C194C0 000040 0008+00 0/1 0/0 0/0 .rodata          @3828 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3828[8] = {
+    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(80C194B8, &lit_3828);
+#pragma pop
+
+/* 80C1919C-80C193BC 00065C 0220+00 1/1 0/0 0/0 .text            moveSwing__11daObjHata_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -363,42 +372,52 @@ asm void daObjHata_c::moveSwing() {
 }
 #pragma pop
 
-/* 80C193BC-80C19410 0054+00 s=1 e=0 z=0  None .text      daObjHata_create__FP11daObjHata_c */
+/* 80C193BC-80C19410 00087C 0054+00 1/0 0/0 0/0 .text            daObjHata_create__FP11daObjHata_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjHata_create(daObjHata_c* param_0) {
+static asm void daObjHata_create(daObjHata_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hata/d_a_obj_hata/daObjHata_create__FP11daObjHata_c.s"
 }
 #pragma pop
 
-/* 80C19410-80C19430 0020+00 s=1 e=0 z=0  None .text      daObjHata_Delete__FP11daObjHata_c */
+/* 80C19410-80C19430 0008D0 0020+00 1/0 0/0 0/0 .text            daObjHata_Delete__FP11daObjHata_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjHata_Delete(daObjHata_c* param_0) {
+static asm void daObjHata_Delete(daObjHata_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hata/d_a_obj_hata/daObjHata_Delete__FP11daObjHata_c.s"
 }
 #pragma pop
 
-/* 80C19430-80C19450 0020+00 s=1 e=0 z=0  None .text      daObjHata_execute__FP11daObjHata_c */
+/* 80C19430-80C19450 0008F0 0020+00 1/0 0/0 0/0 .text            daObjHata_execute__FP11daObjHata_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjHata_execute(daObjHata_c* param_0) {
+static asm void daObjHata_execute(daObjHata_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hata/d_a_obj_hata/daObjHata_execute__FP11daObjHata_c.s"
 }
 #pragma pop
 
-/* 80C19450-80C19470 0020+00 s=1 e=0 z=0  None .text      daObjHata_draw__FP11daObjHata_c */
+/* 80C19450-80C19470 000910 0020+00 1/0 0/0 0/0 .text            daObjHata_draw__FP11daObjHata_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjHata_draw(daObjHata_c* param_0) {
+static asm void daObjHata_draw(daObjHata_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hata/d_a_obj_hata/daObjHata_draw__FP11daObjHata_c.s"
 }
+#pragma pop
+
+/* 80C194C0-80C194C5 000048 0005+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80C194C0 = "Hata";
 #pragma pop

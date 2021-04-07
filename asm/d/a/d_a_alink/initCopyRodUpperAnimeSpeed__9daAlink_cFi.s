@@ -19,8 +19,8 @@ lbl_800E13CC:
 /* 800E13EC  D0 03 00 08 */	stfs f0, 8(r3)
 /* 800E13F0  4E 80 00 20 */	blr 
 lbl_800E13F4:
-/* 800E13F4  3C 80 80 39 */	lis r4, m__18daAlinkHIO_boom_c0@ha
-/* 800E13F8  38 84 E6 C8 */	addi r4, r4, m__18daAlinkHIO_boom_c0@l
+/* 800E13F4  3C 80 80 39 */	lis r4, m__18daAlinkHIO_boom_c0@ha /* 0x8038E6C8@ha */
+/* 800E13F8  38 84 E6 C8 */	addi r4, r4, m__18daAlinkHIO_boom_c0@l /* 0x8038E6C8@l */
 /* 800E13FC  C0 04 00 2C */	lfs f0, 0x2c(r4)
 /* 800E1400  D0 03 20 54 */	stfs f0, 0x2054(r3)
 /* 800E1404  4E 80 00 20 */	blr 

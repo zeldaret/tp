@@ -40,8 +40,8 @@ lbl_800CEE88:
 /* 800CEE90  4B FF FD 49 */	bl checkSubjectEnd__9daAlink_cFi
 /* 800CEE94  2C 03 00 00 */	cmpwi r3, 0
 /* 800CEE98  40 82 00 2C */	bne lbl_800CEEC4
-/* 800CEE9C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800CEEA0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800CEE9C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800CEEA0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800CEEA4  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 800CEEA8  54 00 02 95 */	rlwinm. r0, r0, 0, 0xa, 0xa
 /* 800CEEAC  41 82 00 58 */	beq lbl_800CEF04

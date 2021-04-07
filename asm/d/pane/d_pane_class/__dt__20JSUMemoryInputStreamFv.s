@@ -7,12 +7,12 @@ lbl_802552B8:
 /* 802552CC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802552D0  7C 9F 23 78 */	mr r31, r4
 /* 802552D4  41 82 00 38 */	beq lbl_8025530C
-/* 802552D8  3C 80 80 3D */	lis r4, __vt__20JSUMemoryInputStream@ha
-/* 802552DC  38 04 C4 F0 */	addi r0, r4, __vt__20JSUMemoryInputStream@l
+/* 802552D8  3C 80 80 3D */	lis r4, __vt__20JSUMemoryInputStream@ha /* 0x803CC4F0@ha */
+/* 802552DC  38 04 C4 F0 */	addi r0, r4, __vt__20JSUMemoryInputStream@l /* 0x803CC4F0@l */
 /* 802552E0  90 1E 00 00 */	stw r0, 0(r30)
 /* 802552E4  41 82 00 18 */	beq lbl_802552FC
-/* 802552E8  3C 80 80 3D */	lis r4, __vt__20JSURandomInputStream@ha
-/* 802552EC  38 04 C4 B0 */	addi r0, r4, __vt__20JSURandomInputStream@l
+/* 802552E8  3C 80 80 3D */	lis r4, __vt__20JSURandomInputStream@ha /* 0x803CC4B0@ha */
+/* 802552EC  38 04 C4 B0 */	addi r0, r4, __vt__20JSURandomInputStream@l /* 0x803CC4B0@l */
 /* 802552F0  90 1E 00 00 */	stw r0, 0(r30)
 /* 802552F4  38 80 00 00 */	li r4, 0
 /* 802552F8  48 08 6F 45 */	bl __dt__14JSUInputStreamFv

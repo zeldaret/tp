@@ -8,8 +8,8 @@ lbl_801BA974:
 /* 801BA98C  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 801BA990  7C 7E 1B 78 */	mr r30, r3
 /* 801BA994  88 A3 0D D7 */	lbz r5, 0xdd7(r3)
-/* 801BA998  3C 80 80 43 */	lis r4, g_fmapHIO@ha
-/* 801BA99C  3B E4 FC 60 */	addi r31, r4, g_fmapHIO@l
+/* 801BA998  3C 80 80 43 */	lis r4, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801BA99C  3B E4 FC 60 */	addi r31, r4, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801BA9A0  A8 1F 00 94 */	lha r0, 0x94(r31)
 /* 801BA9A4  7C 05 00 00 */	cmpw r5, r0
 /* 801BA9A8  41 80 00 14 */	blt lbl_801BA9BC

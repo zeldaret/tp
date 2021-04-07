@@ -5,13 +5,13 @@ lbl_8010D9B0:
 /* 8010D9BC  48 00 01 41 */	bl checkLv4BossRoom__9daAlink_cFv
 /* 8010D9C0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8010D9C4  41 82 00 14 */	beq lbl_8010D9D8
-/* 8010D9C8  3C 60 80 39 */	lis r3, m__21daAlinkHIO_spinner_c0@ha
-/* 8010D9CC  38 63 EA 30 */	addi r3, r3, m__21daAlinkHIO_spinner_c0@l
+/* 8010D9C8  3C 60 80 39 */	lis r3, m__21daAlinkHIO_spinner_c0@ha /* 0x8038EA30@ha */
+/* 8010D9CC  38 63 EA 30 */	addi r3, r3, m__21daAlinkHIO_spinner_c0@l /* 0x8038EA30@l */
 /* 8010D9D0  C0 23 00 3C */	lfs f1, 0x3c(r3)
 /* 8010D9D4  48 00 00 10 */	b lbl_8010D9E4
 lbl_8010D9D8:
-/* 8010D9D8  3C 60 80 39 */	lis r3, m__21daAlinkHIO_spinner_c0@ha
-/* 8010D9DC  38 63 EA 30 */	addi r3, r3, m__21daAlinkHIO_spinner_c0@l
+/* 8010D9D8  3C 60 80 39 */	lis r3, m__21daAlinkHIO_spinner_c0@ha /* 0x8038EA30@ha */
+/* 8010D9DC  38 63 EA 30 */	addi r3, r3, m__21daAlinkHIO_spinner_c0@l /* 0x8038EA30@l */
 /* 8010D9E0  C0 23 00 2C */	lfs f1, 0x2c(r3)
 lbl_8010D9E4:
 /* 8010D9E4  80 01 00 14 */	lwz r0, 0x14(r1)

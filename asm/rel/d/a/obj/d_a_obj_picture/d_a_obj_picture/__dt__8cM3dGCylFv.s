@@ -5,12 +5,12 @@ lbl_80CAD498:
 /* 80CAD4A4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CAD4A8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80CAD4AC  41 82 00 1C */	beq lbl_80CAD4C8
-/* 80CAD4B0  3C A0 80 CB */	lis r5, __vt__8cM3dGCyl@ha
-/* 80CAD4B4  38 05 F2 28 */	addi r0, r5, __vt__8cM3dGCyl@l
+/* 80CAD4B0  3C A0 80 CB */	lis r5, __vt__8cM3dGCyl@ha /* 0x80CAF228@ha */
+/* 80CAD4B4  38 05 F2 28 */	addi r0, r5, __vt__8cM3dGCyl@l /* 0x80CAF228@l */
 /* 80CAD4B8  90 1F 00 14 */	stw r0, 0x14(r31)
 /* 80CAD4BC  7C 80 07 35 */	extsh. r0, r4
 /* 80CAD4C0  40 81 00 08 */	ble lbl_80CAD4C8
-/* 80CAD4C4  4B 62 18 78 */	b __dl__FPv
+/* 80CAD4C4  4B 62 18 79 */	bl __dl__FPv
 lbl_80CAD4C8:
 /* 80CAD4C8  7F E3 FB 78 */	mr r3, r31
 /* 80CAD4CC  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -23,8 +23,8 @@ lbl_80189E28:
 /* 80189E7C  FC 80 18 90 */	fmr f4, f3
 /* 80189E80  39 00 00 00 */	li r8, 0
 /* 80189E84  48 12 26 89 */	bl seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
-/* 80189E88  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80189E8C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80189E88  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80189E8C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80189E90  38 9F 03 B8 */	addi r4, r31, 0x3b8
 /* 80189E94  88 BF 02 65 */	lbz r5, 0x265(r31)
 /* 80189E98  4B EA BD 39 */	bl initdata_to_card__10dSv_info_cFPci
@@ -64,16 +64,16 @@ lbl_80189EBC:
 /* 80189F1C  88 9F 02 6D */	lbz r4, 0x26d(r31)
 /* 80189F20  4B E8 DE 19 */	bl mDoMemCdRWm_SetCheckSumGameData__FPUcUc
 /* 80189F24  88 1F 02 6D */	lbz r0, 0x26d(r31)
-/* 80189F28  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 80189F2C  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l
+/* 80189F28  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 80189F2C  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 80189F30  98 03 1F BD */	stb r0, 0x1fbd(r3)
 /* 80189F34  7F E3 FB 78 */	mr r3, r31
 /* 80189F38  48 00 63 81 */	bl dataSave__14dFile_select_cFv
 /* 80189F3C  38 00 00 21 */	li r0, 0x21
 /* 80189F40  98 1F 02 6F */	stb r0, 0x26f(r31)
 lbl_80189F44:
-/* 80189F44  3C 60 80 43 */	lis r3, g_fsHIO@ha
-/* 80189F48  38 63 C9 EC */	addi r3, r3, g_fsHIO@l
+/* 80189F44  3C 60 80 43 */	lis r3, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 80189F48  38 63 C9 EC */	addi r3, r3, g_fsHIO@l /* 0x8042C9EC@l */
 /* 80189F4C  88 03 00 0C */	lbz r0, 0xc(r3)
 /* 80189F50  B0 1F 03 AC */	sth r0, 0x3ac(r31)
 /* 80189F54  83 E1 00 1C */	lwz r31, 0x1c(r1)

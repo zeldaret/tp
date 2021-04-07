@@ -11,8 +11,8 @@ lbl_802A0A8C:
 /* 802A0AB0  38 7D 00 98 */	addi r3, r29, 0x98
 /* 802A0AB4  7F A4 EB 78 */	mr r4, r29
 /* 802A0AB8  48 03 B3 45 */	bl __ct__10JSUPtrLinkFPv
-/* 802A0ABC  3C 60 80 3D */	lis r3, __vt__6JAISeq@ha
-/* 802A0AC0  38 03 98 F4 */	addi r0, r3, __vt__6JAISeq@l
+/* 802A0ABC  3C 60 80 3D */	lis r3, __vt__6JAISeq@ha /* 0x803C98F4@ha */
+/* 802A0AC0  38 03 98 F4 */	addi r0, r3, __vt__6JAISeq@l /* 0x803C98F4@l */
 /* 802A0AC4  90 1D 00 00 */	stw r0, 0(r29)
 /* 802A0AC8  3B 9D 00 A8 */	addi r28, r29, 0xa8
 /* 802A0ACC  7F 83 E3 78 */	mr r3, r28

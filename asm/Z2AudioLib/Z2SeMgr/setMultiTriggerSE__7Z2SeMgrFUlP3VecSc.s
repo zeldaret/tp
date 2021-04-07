@@ -35,8 +35,8 @@ lbl_802AE044:
 /* 802AE06C  98 1E 03 3C */	stb r0, 0x33c(r30)
 lbl_802AE070:
 /* 802AE070  C0 42 BE 80 */	lfs f2, lit_4042(r2)
-/* 802AE074  3C 60 80 3A */	lis r3, lit_5100@ha
-/* 802AE078  38 C3 B9 FC */	addi r6, r3, lit_5100@l
+/* 802AE074  3C 60 80 3A */	lis r3, lit_5100@ha /* 0x8039B9FC@ha */
+/* 802AE078  38 C3 B9 FC */	addi r6, r3, lit_5100@l /* 0x8039B9FC@l */
 /* 802AE07C  80 66 00 00 */	lwz r3, 0(r6)
 /* 802AE080  80 06 00 04 */	lwz r0, 4(r6)
 /* 802AE084  90 61 00 14 */	stw r3, 0x14(r1)

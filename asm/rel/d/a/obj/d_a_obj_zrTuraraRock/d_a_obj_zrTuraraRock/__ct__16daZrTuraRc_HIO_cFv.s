@@ -1,11 +1,11 @@
 lbl_80D4188C:
-/* 80D4188C  3C 80 80 D4 */	lis r4, lit_3653@ha
-/* 80D41890  38 A4 23 C0 */	addi r5, r4, lit_3653@l
-/* 80D41894  3C 80 80 D4 */	lis r4, __vt__14mDoHIO_entry_c@ha
-/* 80D41898  38 04 25 8C */	addi r0, r4, __vt__14mDoHIO_entry_c@l
+/* 80D4188C  3C 80 80 D4 */	lis r4, lit_3653@ha /* 0x80D423C0@ha */
+/* 80D41890  38 A4 23 C0 */	addi r5, r4, lit_3653@l /* 0x80D423C0@l */
+/* 80D41894  3C 80 80 D4 */	lis r4, __vt__14mDoHIO_entry_c@ha /* 0x80D4258C@ha */
+/* 80D41898  38 04 25 8C */	addi r0, r4, __vt__14mDoHIO_entry_c@l /* 0x80D4258C@l */
 /* 80D4189C  90 03 00 00 */	stw r0, 0(r3)
-/* 80D418A0  3C 80 80 D4 */	lis r4, __vt__16daZrTuraRc_HIO_c@ha
-/* 80D418A4  38 04 25 80 */	addi r0, r4, __vt__16daZrTuraRc_HIO_c@l
+/* 80D418A0  3C 80 80 D4 */	lis r4, __vt__16daZrTuraRc_HIO_c@ha /* 0x80D42580@ha */
+/* 80D418A4  38 04 25 80 */	addi r0, r4, __vt__16daZrTuraRc_HIO_c@l /* 0x80D42580@l */
 /* 80D418A8  90 03 00 00 */	stw r0, 0(r3)
 /* 80D418AC  C0 05 00 00 */	lfs f0, 0(r5)
 /* 80D418B0  D0 03 00 04 */	stfs f0, 4(r3)

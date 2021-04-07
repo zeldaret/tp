@@ -24,18 +24,18 @@ extern "C" void strncpy();
 //
 
 /* ############################################################################################## */
-/* 80456668-80456670 0004+04 s=1 e=0 z=0  None .sdata2    @74 */
+/* 80456668-80456670 004C68 0004+04 1/1 0/0 0/0 .sdata2          @74 */
 SECTION_SDATA2 static u32 lit_74[1 + 1 /* padding */] = {
     0x0000C0E0,
     /* padding */
     0x00000000,
 };
 
-/* 80365F74-8036608C 0118+00 s=0 e=1 z=0  None .text      wcstombs */
+/* 80365F74-8036608C 3608B4 0118+00 0/0 1/1 0/0 .text            wcstombs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void wcstombs() {
+asm void wcstombs() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/mbstring/wcstombs.s"
 }

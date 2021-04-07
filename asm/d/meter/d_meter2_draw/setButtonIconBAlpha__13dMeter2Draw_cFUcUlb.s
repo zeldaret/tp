@@ -23,8 +23,8 @@ lbl_80219788:
 /* 802197DC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802197E0  41 82 02 7C */	beq lbl_80219A5C
 lbl_802197E4:
-/* 802197E4  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 802197E8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 802197E4  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 802197E8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 802197EC  C0 43 00 F0 */	lfs f2, 0xf0(r3)
 /* 802197F0  C0 23 00 18 */	lfs f1, 0x18(r3)
 /* 802197F4  C0 03 00 84 */	lfs f0, 0x84(r3)
@@ -67,16 +67,16 @@ lbl_8021981C:
 /* 80219880  80 7D 02 F8 */	lwz r3, 0x2f8(r29)
 /* 80219884  48 03 BF A5 */	bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80219888  FF E0 08 90 */	fmr f31, f1
-/* 8021988C  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80219890  3B E3 01 88 */	addi r31, r3, g_meter2_info@l
+/* 8021988C  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80219890  3B E3 01 88 */	addi r31, r3, g_meter2_info@l /* 0x80430188@l */
 /* 80219894  A0 1F 00 AE */	lhz r0, 0xae(r31)
 /* 80219898  54 00 FF FF */	rlwinm. r0, r0, 0x1f, 0x1f, 0x1f
 /* 8021989C  40 82 00 28 */	bne lbl_802198C4
 /* 802198A0  A0 1F 00 A2 */	lhz r0, 0xa2(r31)
 /* 802198A4  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 802198A8  40 82 00 1C */	bne lbl_802198C4
-/* 802198AC  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 802198B0  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 802198AC  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 802198B0  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 802198B4  88 03 04 2A */	lbz r0, 0x42a(r3)
 /* 802198B8  7C 19 03 78 */	mr r25, r0
 /* 802198BC  7C 1A 03 78 */	mr r26, r0
@@ -136,10 +136,10 @@ lbl_802198D0:
 /* 8021998C  4E 80 04 21 */	bctrl 
 /* 80219990  3B C0 00 00 */	li r30, 0
 /* 80219994  3B 80 00 00 */	li r28, 0
-/* 80219998  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8021999C  3B 23 01 88 */	addi r25, r3, g_meter2_info@l
-/* 802199A0  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 802199A4  3B 43 EB C8 */	addi r26, r3, g_drawHIO@l
+/* 80219998  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8021999C  3B 23 01 88 */	addi r25, r3, g_meter2_info@l /* 0x80430188@l */
+/* 802199A0  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 802199A4  3B 43 EB C8 */	addi r26, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 802199A8  CB C2 AE C0 */	lfd f30, lit_6293(r2)
 /* 802199AC  3F 60 43 30 */	lis r27, 0x4330
 lbl_802199B0:

@@ -30,6 +30,10 @@ struct daCoachFire_c {
 
 struct dPa_levelEcallBack {};
 
+struct _GXColor {};
+
+struct dKy_tevstr_c {};
+
 struct Vec {};
 
 struct cXyz {
@@ -37,10 +41,6 @@ struct cXyz {
 };
 
 struct csXyz {};
-
-struct _GXColor {};
-
-struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     struct level_c {
@@ -104,12 +104,6 @@ struct LIGHT_INFLUENCE {};
 // Forward References:
 //
 
-static void daCoachFire_Draw(daCoachFire_c*);
-static void daCoachFire_Execute(daCoachFire_c*);
-static bool daCoachFire_IsDelete(daCoachFire_c*);
-static void daCoachFire_Delete(daCoachFire_c*);
-static void daCoachFire_Create(fopAc_ac_c*);
-
 extern "C" void create_init__13daCoachFire_cFv();
 extern "C" void initBaseMtx__13daCoachFire_cFv();
 extern "C" void setBaseMtx__13daCoachFire_cFv();
@@ -123,20 +117,11 @@ extern "C" void __dt__8cM3dGSphFv();
 extern "C" void __dt__8cM3dGAabFv();
 extern "C" void __dt__10dCcD_GSttsFv();
 extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_COACH_FIRE[12];
+extern "C" extern char const* const d_a_coach_fire__stringBase0;
 
 //
 // External References:
 //
-
-void fopAcM_setStageLayer(void*);
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
-void fpcEx_SearchByID(unsigned int);
-void dKy_plight_set(LIGHT_INFLUENCE*);
-void dKy_plight_cut(LIGHT_INFLUENCE*);
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -185,24 +170,41 @@ extern "C" void deleteFireArrowFromList__12daNpcCoach_cFUi();
 //
 
 /* ############################################################################################## */
-/* 806583E8-806583F8 0010+00 s=3 e=0 z=0  None .rodata    M_attr__13daCoachFire_c */
+/* 806583E8-806583F8 000000 0010+00 3/3 0/0 0/0 .rodata          M_attr__13daCoachFire_c */
 SECTION_RODATA static u8 const M_attr__13daCoachFire_c[16] = {
     0x42, 0x48, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x24, 0xFF, 0x64, 0x00, 0x44, 0x2F, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(806583E8, &M_attr__13daCoachFire_c);
 
-/* 806583F8-806583FC 0004+00 s=1 e=0 z=0  None .rodata    @3812 */
-SECTION_RODATA static u32 const lit_3812 = 0xC2C80000;
+/* 806583F8-806583FC 000010 0004+00 0/1 0/0 0/0 .rodata          @3812 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3812 = -100.0f;
+COMPILER_STRIP_GATE(806583F8, &lit_3812);
+#pragma pop
 
-/* 806583FC-80658400 0004+00 s=1 e=0 z=0  None .rodata    @3813 */
-SECTION_RODATA static u32 const lit_3813 = 0xC1200000;
+/* 806583FC-80658400 000014 0004+00 0/1 0/0 0/0 .rodata          @3813 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3813 = -10.0f;
+COMPILER_STRIP_GATE(806583FC, &lit_3813);
+#pragma pop
 
-/* 80658400-80658404 0004+00 s=1 e=0 z=0  None .rodata    @3814 */
-SECTION_RODATA static u32 const lit_3814 = 0x42C80000;
+/* 80658400-80658404 000018 0004+00 0/1 0/0 0/0 .rodata          @3814 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3814 = 100.0f;
+COMPILER_STRIP_GATE(80658400, &lit_3814);
+#pragma pop
 
-/* 80658404-80658408 0004+00 s=1 e=0 z=0  None .rodata    @3815 */
-SECTION_RODATA static u32 const lit_3815 = 0x43480000;
+/* 80658404-80658408 00001C 0004+00 0/1 0/0 0/0 .rodata          @3815 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3815 = 200.0f;
+COMPILER_STRIP_GATE(80658404, &lit_3815);
+#pragma pop
 
-/* 80657B78-80657C48 00D0+00 s=1 e=0 z=0  None .text      create_init__13daCoachFire_cFv */
+/* 80657B78-80657C48 000078 00D0+00 1/1 0/0 0/0 .text            create_init__13daCoachFire_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -212,7 +214,7 @@ asm void daCoachFire_c::create_init() {
 }
 #pragma pop
 
-/* 80657C48-80657CA8 0060+00 s=1 e=0 z=0  None .text      initBaseMtx__13daCoachFire_cFv */
+/* 80657C48-80657CA8 000148 0060+00 1/1 0/0 0/0 .text            initBaseMtx__13daCoachFire_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -222,7 +224,7 @@ asm void daCoachFire_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80657CA8-80657D2C 0084+00 s=1 e=0 z=0  None .text      setBaseMtx__13daCoachFire_cFv */
+/* 80657CA8-80657D2C 0001A8 0084+00 1/1 0/0 0/0 .text            setBaseMtx__13daCoachFire_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -233,7 +235,7 @@ asm void daCoachFire_c::setBaseMtx() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80658408-80658448 0040+00 s=1 e=0 z=0  None .rodata
+/* 80658408-80658448 000020 0040+00 1/1 0/0 0/0 .rodata
  * ccSphSrc$localstatic3$initCcSphere__13daCoachFire_cFv        */
 SECTION_RODATA static u8 const data_80658408[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -241,8 +243,9 @@ SECTION_RODATA static u8 const data_80658408[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80658408, &data_80658408);
 
-/* 80657D2C-80657D9C 0070+00 s=1 e=0 z=0  None .text      initCcSphere__13daCoachFire_cFv */
+/* 80657D2C-80657D9C 00022C 0070+00 1/1 0/0 0/0 .text            initCcSphere__13daCoachFire_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -253,47 +256,60 @@ asm void daCoachFire_c::initCcSphere() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80658448-8065844C 0004+00 s=1 e=0 z=0  None .rodata    @3911 */
-SECTION_RODATA static u32 const lit_3911 = 0x3F800000;
+/* 80658448-8065844C 000060 0004+00 0/1 0/0 0/0 .rodata          @3911 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3911 = 1.0f;
+COMPILER_STRIP_GATE(80658448, &lit_3911);
+#pragma pop
 
-/* 8065844C-80658450 0004+00 s=1 e=0 z=0  None .rodata    @3912 */
+/* 8065844C-80658450 000064 0004+00 0/1 0/0 0/0 .rodata          @3912 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_3912[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8065844C, &lit_3912);
+#pragma pop
 
-/* 80658450-80658454 0004+00 s=1 e=0 z=0  None .rodata    @3913 */
-SECTION_RODATA static u32 const lit_3913 = 0x3F666666;
+/* 80658450-80658454 000068 0004+00 0/1 0/0 0/0 .rodata          @3913 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3913 = 9.0f / 10.0f;
+COMPILER_STRIP_GATE(80658450, &lit_3913);
+#pragma pop
 
-/* 80657D9C-80657EA0 0104+00 s=1 e=0 z=0  None .text      daCoachFire_Draw__FP13daCoachFire_c */
+/* 80657D9C-80657EA0 00029C 0104+00 1/0 0/0 0/0 .text            daCoachFire_Draw__FP13daCoachFire_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daCoachFire_Draw(daCoachFire_c* param_0) {
+static asm void daCoachFire_Draw(daCoachFire_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_coach_fire/d_a_coach_fire/daCoachFire_Draw__FP13daCoachFire_c.s"
 }
 #pragma pop
 
-/* 80657EA0-80658094 01F4+00 s=1 e=0 z=0  None .text      daCoachFire_Execute__FP13daCoachFire_c */
+/* 80657EA0-80658094 0003A0 01F4+00 1/0 0/0 0/0 .text daCoachFire_Execute__FP13daCoachFire_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daCoachFire_Execute(daCoachFire_c* param_0) {
+static asm void daCoachFire_Execute(daCoachFire_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_coach_fire/d_a_coach_fire/daCoachFire_Execute__FP13daCoachFire_c.s"
 }
 #pragma pop
 
-/* 80658094-8065809C 0008+00 s=1 e=0 z=0  None .text      daCoachFire_IsDelete__FP13daCoachFire_c */
+/* 80658094-8065809C 000594 0008+00 1/0 0/0 0/0 .text daCoachFire_IsDelete__FP13daCoachFire_c */
 static bool daCoachFire_IsDelete(daCoachFire_c* param_0) {
     return true;
 }
 
 /* ############################################################################################## */
-/* 8065845C-8065847C 0020+00 s=1 e=0 z=0  None .data      l_daCoachFire_Method */
+/* 8065845C-8065847C -00001 0020+00 1/0 0/0 0/0 .data            l_daCoachFire_Method */
 SECTION_DATA static void* l_daCoachFire_Method[8] = {
     (void*)daCoachFire_Create__FP10fopAc_ac_c,
     (void*)daCoachFire_Delete__FP13daCoachFire_c,
@@ -305,8 +321,8 @@ SECTION_DATA static void* l_daCoachFire_Method[8] = {
     (void*)NULL,
 };
 
-/* 8065847C-806584AC 0030+00 s=0 e=0 z=1  None .data      g_profile_COACH_FIRE */
-SECTION_DATA void* g_profile_COACH_FIRE[12] = {
+/* 8065847C-806584AC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_COACH_FIRE */
+SECTION_DATA extern void* g_profile_COACH_FIRE[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00580000, (void*)&g_fpcLf_Method,
     (void*)0x00000714, (void*)NULL,
@@ -315,55 +331,56 @@ SECTION_DATA void* g_profile_COACH_FIRE[12] = {
     (void*)0x00044000, (void*)0x000E0000,
 };
 
-/* 806584AC-806584B8 000C+00 s=3 e=0 z=0  None .data      __vt__10cCcD_GStts */
-SECTION_DATA static void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL,
+/* 806584AC-806584B8 000050 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
+SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__10cCcD_GSttsFv,
 };
 
-/* 806584B8-806584C4 000C+00 s=2 e=0 z=0  None .data      __vt__10dCcD_GStts */
-SECTION_DATA static void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL,
+/* 806584B8-806584C4 00005C 000C+00 2/2 0/0 0/0 .data            __vt__10dCcD_GStts */
+SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__10dCcD_GSttsFv,
 };
 
-/* 806584C4-806584D0 000C+00 s=3 e=0 z=0  None .data      __vt__8cM3dGAab */
-SECTION_DATA static void* __vt__8cM3dGAab[3] = {
-    (void*)NULL,
+/* 806584C4-806584D0 000068 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGAab */
+SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGAabFv,
 };
 
-/* 806584D0-806584DC 000C+00 s=3 e=0 z=0  None .data      __vt__8cM3dGSph */
-SECTION_DATA static void* __vt__8cM3dGSph[3] = {
-    (void*)NULL,
+/* 806584D0-806584DC 000074 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGSph */
+SECTION_DATA extern void* __vt__8cM3dGSph[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGSphFv,
 };
 
-/* 8065809C-806581C0 0124+00 s=1 e=0 z=0  None .text      daCoachFire_Delete__FP13daCoachFire_c */
+/* 8065809C-806581C0 00059C 0124+00 1/0 0/0 0/0 .text daCoachFire_Delete__FP13daCoachFire_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daCoachFire_Delete(daCoachFire_c* param_0) {
+static asm void daCoachFire_Delete(daCoachFire_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_coach_fire/d_a_coach_fire/daCoachFire_Delete__FP13daCoachFire_c.s"
 }
 #pragma pop
 
-/* 806581C0-806582AC 00EC+00 s=1 e=0 z=0  None .text      daCoachFire_Create__FP10fopAc_ac_c */
+/* 806581C0-806582AC 0006C0 00EC+00 1/0 0/0 0/0 .text            daCoachFire_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daCoachFire_Create(fopAc_ac_c* param_0) {
+static asm void daCoachFire_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_coach_fire/d_a_coach_fire/daCoachFire_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 806582AC-806582F4 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGSphFv */
+/* 806582AC-806582F4 0007AC 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -373,7 +390,7 @@ asm cM3dGSph::~cM3dGSph() {
 }
 #pragma pop
 
-/* 806582F4-8065833C 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGAabFv */
+/* 806582F4-8065833C 0007F4 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -383,7 +400,7 @@ asm cM3dGAab::~cM3dGAab() {
 }
 #pragma pop
 
-/* 8065833C-80658398 005C+00 s=1 e=0 z=0  None .text      __dt__10dCcD_GSttsFv */
+/* 8065833C-80658398 00083C 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -393,7 +410,7 @@ asm dCcD_GStts::~dCcD_GStts() {
 }
 #pragma pop
 
-/* 80658398-806583E0 0048+00 s=1 e=0 z=0  None .text      __dt__10cCcD_GSttsFv */
+/* 80658398-806583E0 000898 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -403,10 +420,9 @@ asm cCcD_GStts::~cCcD_GStts() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80658454-8065845A 0006+00 s=0 e=0 z=0  None .rodata    @stringBase0 */
+/* 80658454-8065845A 00006C 0006+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
 #pragma force_active on
 #pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80658454 = "Coach";
+SECTION_DEAD static char const* const stringBase_80658454 = "Coach";
 #pragma pop

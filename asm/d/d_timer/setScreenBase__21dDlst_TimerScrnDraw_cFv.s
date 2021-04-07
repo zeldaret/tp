@@ -13,8 +13,8 @@ lbl_8025E240:
 lbl_8025E26C:
 /* 8025E26C  90 1F 00 04 */	stw r0, 4(r31)
 /* 8025E270  80 7F 00 04 */	lwz r3, 4(r31)
-/* 8025E274  3C 80 80 3A */	lis r4, d_d_timer__stringBase0@ha
-/* 8025E278  38 84 A3 D8 */	addi r4, r4, d_d_timer__stringBase0@l
+/* 8025E274  3C 80 80 3A */	lis r4, d_d_timer__stringBase0@ha /* 0x8039A3D8@ha */
+/* 8025E278  38 84 A3 D8 */	addi r4, r4, d_d_timer__stringBase0@l /* 0x8039A3D8@l */
 /* 8025E27C  38 84 00 46 */	addi r4, r4, 0x46
 /* 8025E280  3C A0 00 02 */	lis r5, 2
 /* 8025E284  80 DF 00 7C */	lwz r6, 0x7c(r31)

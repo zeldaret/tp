@@ -20,11 +20,11 @@ lbl_80B64954:
 /* 80B64960  2C 00 00 00 */	cmpwi r0, 0
 /* 80B64964  40 81 00 2C */	ble lbl_80B64990
 lbl_80B64968:
-/* 80B64968  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80B6496C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80B64968  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80B6496C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80B64970  38 63 0D D8 */	addi r3, r3, 0xdd8
 /* 80B64974  38 80 0E 80 */	li r4, 0xe80
-/* 80B64978  4B 4D 00 2C */	b offEventBit__11dSv_event_cFUs
+/* 80B64978  4B 4D 00 2D */	bl offEventBit__11dSv_event_cFUs
 /* 80B6497C  38 00 00 00 */	li r0, 0
 /* 80B64980  90 1F 10 20 */	stw r0, 0x1020(r31)
 /* 80B64984  38 60 00 01 */	li r3, 1

@@ -3,19 +3,20 @@
 #
 
 M282_TARGET := $(BUILD_DIR)/rel/d/a/d_a_ni.plf
+M282_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_ni.lcf
+M282_MAP := $(BUILD_DIR)/rel/d/a/d_a_ni.map
 
 M282_CPP_FILES := \
-	rel/d/a/d_a_ni/executor.cpp \
-	rel/d/a/d_a_ni/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_ni/d_a_ni.cpp \
 
 M282_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_ni/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_ni/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_ni/d_a_ni.o \
 
 M282_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_ni/libRuntime.PPCEABI.H.a \
 
 M282_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M282_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M282_LDSCRIPT) \
+	-unused -map $(M282_MAP) \
+	-w off \
 
 $(M282_TARGET): $(M282_O_FILES) $(M282_LIBS)
+	@echo [282] creating $(M282_TARGET)
 	@echo $(M282_LIBS) $(M282_O_FILES) > build/M282_ofiles
-	$(LD) -partial $(M282_LDFLAGS) -o $(M282_TARGET) @build/M282_ofiles
+	@python3 tools/lcf.py rel 282 --output $(M282_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M282_LDFLAGS) -o $(M282_TARGET) @build/M282_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_ni/%.o: rel/d/a/d_a_ni/%.cpp
+	@echo [282] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M282_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M282_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_ni/libs/Runtime.PPCEABI.H/Makefile
 

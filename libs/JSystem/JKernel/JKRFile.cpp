@@ -33,7 +33,7 @@ extern "C" void _restgpr_28();
 // Declarations:
 //
 
-/* 802D9518-802D9584 006C+00 s=0 e=2 z=0  None .text      read__7JKRFileFPvll */
+/* 802D9518-802D9584 2D3E58 006C+00 0/0 2/2 0/0 .text            read__7JKRFileFPvll */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

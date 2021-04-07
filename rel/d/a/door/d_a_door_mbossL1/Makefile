@@ -3,18 +3,16 @@
 #
 
 M168_TARGET := $(BUILD_DIR)/rel/d/a/door/d_a_door_mbossL1.plf
+M168_LDSCRIPT := $(BUILD_DIR)/rel/d/a/door/d_a_door_mbossL1.lcf
+M168_MAP := $(BUILD_DIR)/rel/d/a/door/d_a_door_mbossL1.map
 
 M168_CPP_FILES := \
-	rel/d/a/door/d_a_door_mbossL1/executor.cpp \
-	rel/d/a/door/d_a_door_mbossL1/unknown_translation_unit_ctors.cpp \
-	rel/d/a/door/d_a_door_mbossL1/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/door/d_a_door_mbossL1/unknown_translation_unit_bss.cpp \
 	rel/d/a/door/d_a_door_mbossL1/d_a_door_mbossL1.cpp \
 
 M168_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_mbossL1/executor.o \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_mbossL1/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_mbossL1/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/door/d_a_door_mbossL1/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/door/d_a_door_mbossL1/d_a_door_mbossL1.o \
 
@@ -31,14 +29,21 @@ M168_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M168_LDSCRIPT) \
+	-unused -map $(M168_MAP) \
+	-w off \
 
 $(M168_TARGET): $(M168_O_FILES) $(M168_LIBS)
+	@echo [168] creating $(M168_TARGET)
 	@echo $(M168_LIBS) $(M168_O_FILES) > build/M168_ofiles
-	$(LD) -partial $(M168_LDFLAGS) -o $(M168_TARGET) @build/M168_ofiles
+	@python3 tools/lcf.py rel 168 --output $(M168_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M168_LDFLAGS) -o $(M168_TARGET) @build/M168_ofiles
 
 $(BUILD_DIR)/rel/d/a/door/d_a_door_mbossL1/%.o: rel/d/a/door/d_a_door_mbossL1/%.cpp
+	@echo [168] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M168_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M168_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

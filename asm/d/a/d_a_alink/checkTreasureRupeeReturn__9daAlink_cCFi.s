@@ -18,15 +18,15 @@ lbl_8011A734:
 /* 8011A734  38 60 00 00 */	li r3, 0
 /* 8011A738  48 00 00 48 */	b lbl_8011A780
 lbl_8011A73C:
-/* 8011A73C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011A740  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011A73C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011A740  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011A744  A3 E3 00 04 */	lhz r31, 4(r3)
 /* 8011A748  4B F1 83 61 */	bl getRupeeMax__21dSv_player_status_a_cCFv
 /* 8011A74C  54 65 04 3E */	clrlwi r5, r3, 0x10
 /* 8011A750  38 1E FF FC */	addi r0, r30, -4
 /* 8011A754  54 00 10 3A */	slwi r0, r0, 2
-/* 8011A758  3C 60 80 39 */	lis r3, rupeeCount@ha
-/* 8011A75C  38 63 1B 7C */	addi r3, r3, rupeeCount@l
+/* 8011A758  3C 60 80 39 */	lis r3, rupeeCount@ha /* 0x80391B7C@ha */
+/* 8011A75C  38 63 1B 7C */	addi r3, r3, rupeeCount@l /* 0x80391B7C@l */
 /* 8011A760  7C 63 00 2E */	lwzx r3, r3, r0
 /* 8011A764  57 E0 04 3E */	clrlwi r0, r31, 0x10
 /* 8011A768  7C 83 02 14 */	add r4, r3, r0

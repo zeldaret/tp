@@ -5,12 +5,12 @@ lbl_80570E10:
 /* 80570E1C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80570E20  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80570E24  41 82 00 1C */	beq lbl_80570E40
-/* 80570E28  3C A0 80 57 */	lis r5, __vt__12J3DFrameCtrl@ha
-/* 80570E2C  38 05 33 F8 */	addi r0, r5, __vt__12J3DFrameCtrl@l
+/* 80570E28  3C A0 80 57 */	lis r5, __vt__12J3DFrameCtrl@ha /* 0x805733F8@ha */
+/* 80570E2C  38 05 33 F8 */	addi r0, r5, __vt__12J3DFrameCtrl@l /* 0x805733F8@l */
 /* 80570E30  90 1F 00 00 */	stw r0, 0(r31)
 /* 80570E34  7C 80 07 35 */	extsh. r0, r4
 /* 80570E38  40 81 00 08 */	ble lbl_80570E40
-/* 80570E3C  4B D5 DF 00 */	b __dl__FPv
+/* 80570E3C  4B D5 DF 01 */	bl __dl__FPv
 lbl_80570E40:
 /* 80570E40  7F E3 FB 78 */	mr r3, r31
 /* 80570E44  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -4,7 +4,7 @@ lbl_80A01F08:
 /* 80A01F10  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80A01F14  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A01F18  7C 7F 1B 78 */	mr r31, r3
-/* 80A01F1C  4B 61 6D C4 */	b fopAc_IsActor__FPv
+/* 80A01F1C  4B 61 6D C5 */	bl fopAc_IsActor__FPv
 /* 80A01F20  2C 03 00 00 */	cmpwi r3, 0
 /* 80A01F24  41 82 00 18 */	beq lbl_80A01F3C
 /* 80A01F28  A8 1F 00 08 */	lha r0, 8(r31)

@@ -30,10 +30,10 @@ lbl_80A1DA90:
 /* 80A1DA90  2C 00 00 01 */	cmpwi r0, 1
 /* 80A1DA94  40 82 00 58 */	bne lbl_80A1DAEC
 /* 80A1DA98  A8 9F 09 96 */	lha r4, 0x996(r31)
-/* 80A1DA9C  3C A0 80 A2 */	lis r5, lit_5045@ha
-/* 80A1DAA0  C0 25 11 68 */	lfs f1, lit_5045@l(r5)
+/* 80A1DA9C  3C A0 80 A2 */	lis r5, lit_5045@ha /* 0x80A21168@ha */
+/* 80A1DAA0  C0 25 11 68 */	lfs f1, lit_5045@l(r5)  /* 0x80A21168@l */
 /* 80A1DAA4  38 A0 00 00 */	li r5, 0
-/* 80A1DAA8  4B 73 64 4C */	b turn__8daNpcF_cFsfi
+/* 80A1DAA8  4B 73 64 4D */	bl turn__8daNpcF_cFsfi
 /* 80A1DAAC  2C 03 00 00 */	cmpwi r3, 0
 /* 80A1DAB0  41 82 00 2C */	beq lbl_80A1DADC
 /* 80A1DAB4  A8 1F 04 DE */	lha r0, 0x4de(r31)

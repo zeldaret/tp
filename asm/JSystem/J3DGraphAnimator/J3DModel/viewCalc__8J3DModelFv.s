@@ -36,8 +36,8 @@ lbl_80327F40:
 /* 80327FC8  54 00 07 BE */	clrlwi r0, r0, 0x1e
 /* 80327FCC  28 00 00 02 */	cmplwi r0, 2
 /* 80327FD0  40 82 01 A4 */	bne lbl_80328174
-/* 80327FD4  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80327FD8  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80327FD4  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80327FD8  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80327FDC  38 9F 00 18 */	addi r4, r31, 0x18
 /* 80327FE0  38 BF 00 24 */	addi r5, r31, 0x24
 /* 80327FE4  38 DF 00 54 */	addi r6, r31, 0x54
@@ -57,8 +57,8 @@ lbl_8032800C:
 /* 80328014  54 80 07 BE */	clrlwi r0, r4, 0x1e
 /* 80328018  28 00 00 02 */	cmplwi r0, 2
 /* 8032801C  40 82 01 58 */	bne lbl_80328174
-/* 80328020  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80328024  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80328020  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80328024  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80328028  38 9F 00 18 */	addi r4, r31, 0x18
 /* 8032802C  38 BF 00 24 */	addi r5, r31, 0x24
 /* 80328030  38 DF 00 54 */	addi r6, r31, 0x54

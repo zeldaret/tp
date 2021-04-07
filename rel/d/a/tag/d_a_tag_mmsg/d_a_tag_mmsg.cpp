@@ -35,11 +35,6 @@ struct dSv_event_c {
 // Forward References:
 //
 
-static void daTagMmsg_Create(fopAc_ac_c*);
-static void daTagMmsg_Delete(daTagMmsg_c*);
-static void daTagMmsg_Execute(daTagMmsg_c*);
-static bool daTagMmsg_Draw(daTagMmsg_c*);
-
 extern "C" void create__11daTagMmsg_cFv();
 extern "C" static void daTagMmsg_Create__FP10fopAc_ac_c();
 extern "C" void __dt__11daTagMmsg_cFv();
@@ -52,13 +47,6 @@ extern "C" extern void* g_profile_Tag_Mmsg[12];
 //
 // External References:
 //
-
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_searchActorAngleY(fopAc_ac_c const*, fopAc_ac_c const*);
-void fopAcM_searchActorDistanceXZ2(fopAc_ac_c const*, fopAc_ac_c const*);
-void dComIfGp_getRoomCamera(int);
-void dComIfGp_getRoomArrow(int);
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -84,16 +72,25 @@ extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
 //
 
 /* ############################################################################################## */
-/* 80D5BD38-80D5BD3C 0004+00 s=1 e=0 z=0  None .rodata    @3702 */
-SECTION_RODATA static u32 const lit_3702 = 0x41200000;
+/* 80D5BD38-80D5BD3C 000000 0004+00 1/1 0/0 0/0 .rodata          @3702 */
+SECTION_RODATA static f32 const lit_3702 = 10.0f;
+COMPILER_STRIP_GATE(80D5BD38, &lit_3702);
 
-/* 80D5BD3C-80D5BD40 0004+00 s=1 e=0 z=0  None .rodata    @3703 */
-SECTION_RODATA static u32 const lit_3703 = 0x461C4000;
+/* 80D5BD3C-80D5BD40 000004 0004+00 0/1 0/0 0/0 .rodata          @3703 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3703 = 10000.0f;
+COMPILER_STRIP_GATE(80D5BD3C, &lit_3703);
+#pragma pop
 
-/* 80D5BD40-80D5BD44 0004+00 s=1 e=0 z=0  None .rodata    @3704 */
-SECTION_RODATA static u32 const lit_3704 = 0x42C80000;
+/* 80D5BD40-80D5BD44 000008 0004+00 0/1 0/0 0/0 .rodata          @3704 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3704 = 100.0f;
+COMPILER_STRIP_GATE(80D5BD40, &lit_3704);
+#pragma pop
 
-/* 80D5B918-80D5BA94 017C+00 s=1 e=0 z=0  None .text      create__11daTagMmsg_cFv */
+/* 80D5B918-80D5BA94 000078 017C+00 1/1 0/0 0/0 .text            create__11daTagMmsg_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -103,17 +100,17 @@ asm void daTagMmsg_c::create() {
 }
 #pragma pop
 
-/* 80D5BA94-80D5BAB4 0020+00 s=1 e=0 z=0  None .text      daTagMmsg_Create__FP10fopAc_ac_c */
+/* 80D5BA94-80D5BAB4 0001F4 0020+00 1/0 0/0 0/0 .text            daTagMmsg_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagMmsg_Create(fopAc_ac_c* param_0) {
+static asm void daTagMmsg_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_mmsg/d_a_tag_mmsg/daTagMmsg_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D5BAB4-80D5BB08 0054+00 s=1 e=0 z=0  None .text      __dt__11daTagMmsg_cFv */
+/* 80D5BAB4-80D5BB08 000214 0054+00 1/1 0/0 0/0 .text            __dt__11daTagMmsg_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -123,17 +120,18 @@ asm daTagMmsg_c::~daTagMmsg_c() {
 }
 #pragma pop
 
-/* 80D5BB08-80D5BB30 0028+00 s=1 e=0 z=0  None .text      daTagMmsg_Delete__FP11daTagMmsg_c */
+/* 80D5BB08-80D5BB30 000268 0028+00 1/0 0/0 0/0 .text            daTagMmsg_Delete__FP11daTagMmsg_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagMmsg_Delete(daTagMmsg_c* param_0) {
+static asm void daTagMmsg_Delete(daTagMmsg_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_mmsg/d_a_tag_mmsg/daTagMmsg_Delete__FP11daTagMmsg_c.s"
 }
 #pragma pop
 
-/* 80D5BB30-80D5BD08 01D8+00 s=1 e=0 z=0  None .text      execute__11daTagMmsg_cFv */
+/* 80D5BB30-80D5BD08 000290 01D8+00 1/1 0/0 0/0 .text            execute__11daTagMmsg_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -143,23 +141,24 @@ asm void daTagMmsg_c::execute() {
 }
 #pragma pop
 
-/* 80D5BD08-80D5BD28 0020+00 s=1 e=0 z=0  None .text      daTagMmsg_Execute__FP11daTagMmsg_c */
+/* 80D5BD08-80D5BD28 000468 0020+00 1/0 0/0 0/0 .text            daTagMmsg_Execute__FP11daTagMmsg_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagMmsg_Execute(daTagMmsg_c* param_0) {
+static asm void daTagMmsg_Execute(daTagMmsg_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_mmsg/d_a_tag_mmsg/daTagMmsg_Execute__FP11daTagMmsg_c.s"
 }
 #pragma pop
 
-/* 80D5BD28-80D5BD30 0008+00 s=1 e=0 z=0  None .text      daTagMmsg_Draw__FP11daTagMmsg_c */
+/* 80D5BD28-80D5BD30 000488 0008+00 1/0 0/0 0/0 .text            daTagMmsg_Draw__FP11daTagMmsg_c */
 static bool daTagMmsg_Draw(daTagMmsg_c* param_0) {
     return true;
 }
 
 /* ############################################################################################## */
-/* 80D5BD44-80D5BD64 0020+00 s=1 e=0 z=0  None .data      l_daTagMmsg_Method */
+/* 80D5BD44-80D5BD64 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagMmsg_Method */
 SECTION_DATA static void* l_daTagMmsg_Method[8] = {
     (void*)daTagMmsg_Create__FP10fopAc_ac_c,
     (void*)daTagMmsg_Delete__FP11daTagMmsg_c,
@@ -171,8 +170,8 @@ SECTION_DATA static void* l_daTagMmsg_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D5BD64-80D5BD94 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_Mmsg */
-SECTION_DATA void* g_profile_Tag_Mmsg[12] = {
+/* 80D5BD64-80D5BD94 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Mmsg */
+SECTION_DATA extern void* g_profile_Tag_Mmsg[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02C20000, (void*)&g_fpcLf_Method,
     (void*)0x0000057C, (void*)NULL,

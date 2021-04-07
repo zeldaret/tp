@@ -30,13 +30,13 @@ struct dSv_info_c {
 
 struct dPa_levelEcallBack {};
 
-struct cXyz {};
-
-struct csXyz {};
-
 struct _GXColor {};
 
 struct dKy_tevstr_c {};
+
+struct cXyz {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -47,10 +47,6 @@ struct dPa_control_c {
 //
 // Forward References:
 //
-
-static void daObjSmoke_Execute(daObjSmoke_c*);
-static void daObjSmoke_Delete(daObjSmoke_c*);
-static void daObjSmoke_Create(fopAc_ac_c*);
 
 extern "C" void initBaseMtx__12daObjSmoke_cFv();
 extern "C" void setBaseMtx__12daObjSmoke_cFv();
@@ -67,8 +63,6 @@ extern "C" extern void* g_profile_Obj_Smoke[12];
 // External References:
 //
 
-void mDoMtx_ZXYrotM(f32 (*)[4], s16, s16, s16);
-
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void isSwitch__10dSv_info_cCFii();
@@ -84,7 +78,7 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 // Declarations:
 //
 
-/* 80CDCE78-80CDCE98 0020+00 s=1 e=0 z=0  None .text      initBaseMtx__12daObjSmoke_cFv */
+/* 80CDCE78-80CDCE98 000078 0020+00 1/1 0/0 0/0 .text            initBaseMtx__12daObjSmoke_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -94,7 +88,7 @@ asm void daObjSmoke_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80CDCE98-80CDCEF0 0058+00 s=1 e=0 z=0  None .text      setBaseMtx__12daObjSmoke_cFv */
+/* 80CDCE98-80CDCEF0 000098 0058+00 1/1 0/0 0/0 .text            setBaseMtx__12daObjSmoke_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -105,10 +99,11 @@ asm void daObjSmoke_c::setBaseMtx() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80CDD160-80CDD164 0004+00 s=2 e=0 z=0  None .rodata    @3655 */
-SECTION_RODATA static u32 const lit_3655 = 0x3F800000;
+/* 80CDD160-80CDD164 000000 0004+00 2/2 0/0 0/0 .rodata          @3655 */
+SECTION_RODATA static f32 const lit_3655 = 1.0f;
+COMPILER_STRIP_GATE(80CDD160, &lit_3655);
 
-/* 80CDCEF0-80CDCF9C 00AC+00 s=1 e=0 z=0  None .text      Create__12daObjSmoke_cFv */
+/* 80CDCEF0-80CDCF9C 0000F0 00AC+00 1/1 0/0 0/0 .text            Create__12daObjSmoke_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -118,7 +113,7 @@ asm void daObjSmoke_c::Create() {
 }
 #pragma pop
 
-/* 80CDCF9C-80CDD004 0068+00 s=1 e=0 z=0  None .text      create__12daObjSmoke_cFv */
+/* 80CDCF9C-80CDD004 00019C 0068+00 1/1 0/0 0/0 .text            create__12daObjSmoke_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -128,7 +123,7 @@ asm void daObjSmoke_c::create() {
 }
 #pragma pop
 
-/* 80CDD004-80CDD0B8 00B4+00 s=1 e=0 z=0  None .text      execute__12daObjSmoke_cFv */
+/* 80CDD004-80CDD0B8 000204 00B4+00 1/1 0/0 0/0 .text            execute__12daObjSmoke_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -138,7 +133,7 @@ asm void daObjSmoke_c::execute() {
 }
 #pragma pop
 
-/* 80CDD0B8-80CDD0F8 0040+00 s=1 e=0 z=0  None .text      _delete__12daObjSmoke_cFv */
+/* 80CDD0B8-80CDD0F8 0002B8 0040+00 1/1 0/0 0/0 .text            _delete__12daObjSmoke_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -148,38 +143,40 @@ asm void daObjSmoke_c::_delete() {
 }
 #pragma pop
 
-/* 80CDD0F8-80CDD118 0020+00 s=1 e=0 z=0  None .text      daObjSmoke_Execute__FP12daObjSmoke_c */
+/* 80CDD0F8-80CDD118 0002F8 0020+00 1/0 0/0 0/0 .text daObjSmoke_Execute__FP12daObjSmoke_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjSmoke_Execute(daObjSmoke_c* param_0) {
+static asm void daObjSmoke_Execute(daObjSmoke_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_smoke/d_a_obj_smoke/daObjSmoke_Execute__FP12daObjSmoke_c.s"
 }
 #pragma pop
 
-/* 80CDD118-80CDD138 0020+00 s=1 e=0 z=0  None .text      daObjSmoke_Delete__FP12daObjSmoke_c */
+/* 80CDD118-80CDD138 000318 0020+00 1/0 0/0 0/0 .text            daObjSmoke_Delete__FP12daObjSmoke_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjSmoke_Delete(daObjSmoke_c* param_0) {
+static asm void daObjSmoke_Delete(daObjSmoke_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_smoke/d_a_obj_smoke/daObjSmoke_Delete__FP12daObjSmoke_c.s"
 }
 #pragma pop
 
-/* 80CDD138-80CDD158 0020+00 s=1 e=0 z=0  None .text      daObjSmoke_Create__FP10fopAc_ac_c */
+/* 80CDD138-80CDD158 000338 0020+00 1/0 0/0 0/0 .text            daObjSmoke_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjSmoke_Create(fopAc_ac_c* param_0) {
+static asm void daObjSmoke_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_smoke/d_a_obj_smoke/daObjSmoke_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80CDD164-80CDD184 0020+00 s=1 e=0 z=0  None .data      l_daObjSmoke_Method */
+/* 80CDD164-80CDD184 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjSmoke_Method */
 SECTION_DATA static void* l_daObjSmoke_Method[8] = {
     (void*)daObjSmoke_Create__FP10fopAc_ac_c,
     (void*)daObjSmoke_Delete__FP12daObjSmoke_c,
@@ -191,8 +188,8 @@ SECTION_DATA static void* l_daObjSmoke_Method[8] = {
     (void*)NULL,
 };
 
-/* 80CDD184-80CDD1B4 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_Smoke */
-SECTION_DATA void* g_profile_Obj_Smoke[12] = {
+/* 80CDD184-80CDD1B4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Smoke */
+SECTION_DATA extern void* g_profile_Obj_Smoke[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01760000, (void*)&g_fpcLf_Method,
     (void*)0x0000056C, (void*)NULL,

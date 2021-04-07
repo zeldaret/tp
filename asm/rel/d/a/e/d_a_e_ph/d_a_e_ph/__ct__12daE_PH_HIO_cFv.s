@@ -1,8 +1,8 @@
 lbl_8073D44C:
-/* 8073D44C  3C 80 80 74 */	lis r4, lit_3767@ha
-/* 8073D450  38 A4 1B F4 */	addi r5, r4, lit_3767@l
-/* 8073D454  3C 80 80 74 */	lis r4, __vt__12daE_PH_HIO_c@ha
-/* 8073D458  38 04 1D A8 */	addi r0, r4, __vt__12daE_PH_HIO_c@l
+/* 8073D44C  3C 80 80 74 */	lis r4, lit_3767@ha /* 0x80741BF4@ha */
+/* 8073D450  38 A4 1B F4 */	addi r5, r4, lit_3767@l /* 0x80741BF4@l */
+/* 8073D454  3C 80 80 74 */	lis r4, __vt__12daE_PH_HIO_c@ha /* 0x80741DA8@ha */
+/* 8073D458  38 04 1D A8 */	addi r0, r4, __vt__12daE_PH_HIO_c@l /* 0x80741DA8@l */
 /* 8073D45C  90 03 00 00 */	stw r0, 0(r3)
 /* 8073D460  38 00 FF FF */	li r0, -1
 /* 8073D464  98 03 00 04 */	stb r0, 4(r3)

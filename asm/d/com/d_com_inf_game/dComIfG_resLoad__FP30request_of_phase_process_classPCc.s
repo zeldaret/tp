@@ -9,8 +9,8 @@ lbl_8002CEBC:
 /* 8002CED8  38 60 00 04 */	li r3, 4
 /* 8002CEDC  48 00 00 10 */	b lbl_8002CEEC
 lbl_8002CEE0:
-/* 8002CEE0  3C 80 80 3A */	lis r4, l_method_5017@ha
-/* 8002CEE4  38 84 71 B8 */	addi r4, r4, l_method_5017@l
+/* 8002CEE0  3C 80 80 3A */	lis r4, l_method_5017@ha /* 0x803A71B8@ha */
+/* 8002CEE4  38 84 71 B8 */	addi r4, r4, l_method_5017@l /* 0x803A71B8@l */
 /* 8002CEE8  48 00 2C 39 */	bl dComLbG_PhaseHandler__FP30request_of_phase_process_classPPFPv_iPv
 lbl_8002CEEC:
 /* 8002CEEC  80 01 00 14 */	lwz r0, 0x14(r1)

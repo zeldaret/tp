@@ -3,17 +3,15 @@
 #
 
 M746_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_ss_drink.plf
+M746_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_ss_drink.lcf
+M746_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_ss_drink.map
 
 M746_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_ss_drink/executor.cpp \
-	rel/d/a/tag/d_a_tag_ss_drink/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_ss_drink/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_ss_drink/d_a_tag_ss_drink.cpp \
 
 M746_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_ss_drink/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_ss_drink/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_ss_drink/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_ss_drink/d_a_tag_ss_drink.o \
 
 M746_LIBS := \
@@ -29,14 +27,21 @@ M746_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M746_LDSCRIPT) \
+	-unused -map $(M746_MAP) \
+	-w off \
 
 $(M746_TARGET): $(M746_O_FILES) $(M746_LIBS)
+	@echo [746] creating $(M746_TARGET)
 	@echo $(M746_LIBS) $(M746_O_FILES) > build/M746_ofiles
-	$(LD) -partial $(M746_LDFLAGS) -o $(M746_TARGET) @build/M746_ofiles
+	@python3 tools/lcf.py rel 746 --output $(M746_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M746_LDFLAGS) -o $(M746_TARGET) @build/M746_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_ss_drink/%.o: rel/d/a/tag/d_a_tag_ss_drink/%.cpp
+	@echo [746] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M746_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M746_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -3,7 +3,7 @@ lbl_8055CCD8:
 /* 8055CCDC  7C 08 02 A6 */	mflr r0
 /* 8055CCE0  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8055CCE4  39 61 00 20 */	addi r11, r1, 0x20
-/* 8055CCE8  4B E0 54 F4 */	b _savegpr_29
+/* 8055CCE8  4B E0 54 F5 */	bl _savegpr_29
 /* 8055CCEC  7C 7D 1B 78 */	mr r29, r3
 /* 8055CCF0  3B C0 00 09 */	li r30, 9
 /* 8055CCF4  80 03 0B 58 */	lwz r0, 0xb58(r3)
@@ -30,15 +30,15 @@ lbl_8055CD2C:
 /* 8055CD38  41 82 00 24 */	beq lbl_8055CD5C
 /* 8055CD3C  83 FD 0B 5C */	lwz r31, 0xb5c(r29)
 /* 8055CD40  38 7D 0B 50 */	addi r3, r29, 0xb50
-/* 8055CD44  4B BE 8B 54 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 8055CD44  4B BE 8B 55 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 8055CD48  93 FD 0B 5C */	stw r31, 0xb5c(r29)
 /* 8055CD4C  93 DD 0B 58 */	stw r30, 0xb58(r29)
-/* 8055CD50  3C 60 80 56 */	lis r3, lit_5128@ha
-/* 8055CD54  C0 03 4C CC */	lfs f0, lit_5128@l(r3)
+/* 8055CD50  3C 60 80 56 */	lis r3, lit_5128@ha /* 0x80564CCC@ha */
+/* 8055CD54  C0 03 4C CC */	lfs f0, lit_5128@l(r3)  /* 0x80564CCC@l */
 /* 8055CD58  D0 1D 0B 68 */	stfs f0, 0xb68(r29)
 lbl_8055CD5C:
 /* 8055CD5C  39 61 00 20 */	addi r11, r1, 0x20
-/* 8055CD60  4B E0 54 C8 */	b _restgpr_29
+/* 8055CD60  4B E0 54 C9 */	bl _restgpr_29
 /* 8055CD64  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8055CD68  7C 08 03 A6 */	mtlr r0
 /* 8055CD6C  38 21 00 20 */	addi r1, r1, 0x20

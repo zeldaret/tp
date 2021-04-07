@@ -47,8 +47,8 @@ lbl_800F5ABC:
 /* 800F5AC4  4B FF F7 21 */	bl procCanoeWaitInit__9daAlink_cFi
 /* 800F5AC8  48 00 02 18 */	b lbl_800F5CE0
 lbl_800F5ACC:
-/* 800F5ACC  3C 60 80 39 */	lis r3, m__19daAlinkHIO_canoe_c0@ha
-/* 800F5AD0  38 63 E6 10 */	addi r3, r3, m__19daAlinkHIO_canoe_c0@l
+/* 800F5ACC  3C 60 80 39 */	lis r3, m__19daAlinkHIO_canoe_c0@ha /* 0x8038E610@ha */
+/* 800F5AD0  38 63 E6 10 */	addi r3, r3, m__19daAlinkHIO_canoe_c0@l /* 0x8038E610@l */
 /* 800F5AD4  C3 E3 00 1C */	lfs f31, 0x1c(r3)
 /* 800F5AD8  A8 1D 30 0E */	lha r0, 0x300e(r29)
 /* 800F5ADC  2C 00 00 01 */	cmpwi r0, 1
@@ -73,8 +73,8 @@ lbl_800F5B04:
 /* 800F5B24  FC 00 08 40 */	fcmpo cr0, f0, f1
 /* 800F5B28  40 80 00 10 */	bge lbl_800F5B38
 lbl_800F5B2C:
-/* 800F5B2C  3C 60 80 39 */	lis r3, m__19daAlinkHIO_canoe_c0@ha
-/* 800F5B30  38 63 E6 10 */	addi r3, r3, m__19daAlinkHIO_canoe_c0@l
+/* 800F5B2C  3C 60 80 39 */	lis r3, m__19daAlinkHIO_canoe_c0@ha /* 0x8038E610@ha */
+/* 800F5B30  38 63 E6 10 */	addi r3, r3, m__19daAlinkHIO_canoe_c0@l /* 0x8038E610@l */
 /* 800F5B34  C3 E3 00 30 */	lfs f31, 0x30(r3)
 lbl_800F5B38:
 /* 800F5B38  C0 1E 00 0C */	lfs f0, 0xc(r30)
@@ -146,14 +146,14 @@ lbl_800F5BF8:
 /* 800F5C24  54 03 08 3C */	slwi r3, r0, 1
 /* 800F5C28  48 26 F4 A9 */	bl abs
 /* 800F5C2C  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
-/* 800F5C30  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800F5C34  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800F5C30  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800F5C34  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800F5C38  7C 03 04 2E */	lfsx f0, r3, r0
 /* 800F5C3C  EF FF 00 32 */	fmuls f31, f31, f0
 /* 800F5C40  48 00 00 24 */	b lbl_800F5C64
 lbl_800F5C44:
-/* 800F5C44  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800F5C48  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800F5C44  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800F5C48  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800F5C4C  54 80 04 38 */	rlwinm r0, r4, 0, 0x10, 0x1c
 /* 800F5C50  7C 63 02 14 */	add r3, r3, r0
 /* 800F5C54  C0 03 00 04 */	lfs f0, 4(r3)
@@ -171,8 +171,8 @@ lbl_800F5C64:
 /* 800F5C80  48 00 00 1C */	b lbl_800F5C9C
 lbl_800F5C84:
 /* 800F5C84  FC 20 F8 50 */	fneg f1, f31
-/* 800F5C88  3C 60 80 39 */	lis r3, m__19daAlinkHIO_canoe_c0@ha
-/* 800F5C8C  38 63 E6 10 */	addi r3, r3, m__19daAlinkHIO_canoe_c0@l
+/* 800F5C88  3C 60 80 39 */	lis r3, m__19daAlinkHIO_canoe_c0@ha /* 0x8038E610@ha */
+/* 800F5C8C  38 63 E6 10 */	addi r3, r3, m__19daAlinkHIO_canoe_c0@l /* 0x8038E610@l */
 /* 800F5C90  C0 03 00 34 */	lfs f0, 0x34(r3)
 /* 800F5C94  EC 01 00 32 */	fmuls f0, f1, f0
 /* 800F5C98  D0 1F 14 68 */	stfs f0, 0x1468(r31)

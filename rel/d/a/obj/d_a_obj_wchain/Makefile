@@ -3,17 +3,15 @@
 #
 
 M682_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wchain.plf
+M682_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wchain.lcf
+M682_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wchain.map
 
 M682_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_wchain/executor.cpp \
-	rel/d/a/obj/d_a_obj_wchain/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_wchain/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain.cpp \
 
 M682_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wchain/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wchain/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wchain/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wchain/d_a_obj_wchain.o \
 
 M682_LIBS := \
@@ -29,14 +27,21 @@ M682_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M682_LDSCRIPT) \
+	-unused -map $(M682_MAP) \
+	-w off \
 
 $(M682_TARGET): $(M682_O_FILES) $(M682_LIBS)
+	@echo [682] creating $(M682_TARGET)
 	@echo $(M682_LIBS) $(M682_O_FILES) > build/M682_ofiles
-	$(LD) -partial $(M682_LDFLAGS) -o $(M682_TARGET) @build/M682_ofiles
+	@python3 tools/lcf.py rel 682 --output $(M682_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M682_LDFLAGS) -o $(M682_TARGET) @build/M682_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wchain/%.o: rel/d/a/obj/d_a_obj_wchain/%.cpp
+	@echo [682] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M682_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M682_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

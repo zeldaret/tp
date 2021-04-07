@@ -8,8 +8,8 @@ lbl_8033B2D8:
 /* 8033B2F0  38 A0 00 80 */	li r5, 0x80
 /* 8033B2F4  38 63 FF 80 */	addi r3, r3, -128
 /* 8033B2F8  4B CC 82 49 */	bl memcpy
-/* 8033B2FC  3C 60 80 3D */	lis r3, DSPInitCode@ha
-/* 8033B300  38 83 F4 90 */	addi r4, r3, DSPInitCode@l
+/* 8033B2FC  3C 60 80 3D */	lis r3, DSPInitCode@ha /* 0x803CF490@ha */
+/* 8033B300  38 83 F4 90 */	addi r4, r3, DSPInitCode@l /* 0x803CF490@l */
 /* 8033B304  3C 60 81 00 */	lis r3, 0x8100
 /* 8033B308  38 A0 00 80 */	li r5, 0x80
 /* 8033B30C  4B CC 82 35 */	bl memcpy
@@ -32,7 +32,7 @@ lbl_8033B344:
 /* 8033B34C  40 82 FF F8 */	bne lbl_8033B344
 /* 8033B350  38 00 00 00 */	li r0, 0
 /* 8033B354  3C 80 CC 00 */	lis r4, 0xCC00 /* 0xCC005000@ha */
-/* 8033B358  B0 04 50 00 */	sth r0, 0x5000(r4)
+/* 8033B358  B0 04 50 00 */	sth r0, 0x5000(r4)  /* 0xCC005000@l */
 lbl_8033B35C:
 /* 8033B35C  3B C4 50 00 */	addi r30, r4, 0x5000
 /* 8033B360  A4 7E 00 04 */	lhzu r3, 4(r30)

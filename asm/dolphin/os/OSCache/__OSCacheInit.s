@@ -4,8 +4,8 @@ lbl_8033BAF0:
 /* 8033BAF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033BAFC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8033BB00  93 C1 00 08 */	stw r30, 8(r1)
-/* 8033BB04  3C 60 80 3D */	lis r3, lit_63@ha
-/* 8033BB08  3B E3 F5 10 */	addi r31, r3, lit_63@l
+/* 8033BB04  3C 60 80 3D */	lis r3, lit_63@ha /* 0x803CF510@ha */
+/* 8033BB08  3B E3 F5 10 */	addi r31, r3, lit_63@l /* 0x803CF510@l */
 /* 8033BB0C  4B FF E1 C5 */	bl PPCMfhid0
 /* 8033BB10  54 60 04 20 */	rlwinm r0, r3, 0, 0x10, 0x10
 /* 8033BB14  28 00 00 00 */	cmplwi r0, 0
@@ -50,8 +50,8 @@ lbl_8033BB4C:
 /* 8033BBA8  4C C6 31 82 */	crclr 6
 /* 8033BBAC  48 00 A8 89 */	bl DBPrintf
 lbl_8033BBB0:
-/* 8033BBB0  3C 60 80 34 */	lis r3, DMAErrorHandler@ha
-/* 8033BBB4  38 83 B9 90 */	addi r4, r3, DMAErrorHandler@l
+/* 8033BBB0  3C 60 80 34 */	lis r3, DMAErrorHandler@ha /* 0x8033B990@ha */
+/* 8033BBB4  38 83 B9 90 */	addi r4, r3, DMAErrorHandler@l /* 0x8033B990@l */
 /* 8033BBB8  38 60 00 01 */	li r3, 1
 /* 8033BBBC  48 00 09 C5 */	bl OSSetErrorHandler
 /* 8033BBC0  38 7F 01 FC */	addi r3, r31, 0x1fc

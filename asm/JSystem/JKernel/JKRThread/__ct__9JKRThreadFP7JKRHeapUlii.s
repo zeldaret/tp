@@ -10,8 +10,8 @@ lbl_802D1610:
 /* 802D1630  7C DE 33 78 */	mr r30, r6
 /* 802D1634  7C FF 3B 78 */	mr r31, r7
 /* 802D1638  4B FF FE 45 */	bl __ct__11JKRDisposerFv
-/* 802D163C  3C 60 80 3D */	lis r3, __vt__9JKRThread@ha
-/* 802D1640  38 03 C1 14 */	addi r0, r3, __vt__9JKRThread@l
+/* 802D163C  3C 60 80 3D */	lis r3, __vt__9JKRThread@ha /* 0x803CC114@ha */
+/* 802D1640  38 03 C1 14 */	addi r0, r3, __vt__9JKRThread@l /* 0x803CC114@l */
 /* 802D1644  90 1B 00 00 */	stw r0, 0(r27)
 /* 802D1648  38 7B 00 18 */	addi r3, r27, 0x18
 /* 802D164C  7F 64 DB 78 */	mr r4, r27

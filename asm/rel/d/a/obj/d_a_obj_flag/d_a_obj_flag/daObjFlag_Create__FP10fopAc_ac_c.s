@@ -11,42 +11,42 @@ lbl_80BEC3F8:
 /* 80BEC41C  7F E0 FB 79 */	or. r0, r31, r31
 /* 80BEC420  41 82 00 2C */	beq lbl_80BEC44C
 /* 80BEC424  7C 1E 03 78 */	mr r30, r0
-/* 80BEC428  4B 42 C7 3C */	b __ct__10fopAc_ac_cFv
+/* 80BEC428  4B 42 C7 3D */	bl __ct__10fopAc_ac_cFv
 /* 80BEC42C  38 7E 05 80 */	addi r3, r30, 0x580
-/* 80BEC430  3C 80 80 BF */	lis r4, __ct__11FlagJoint_cFv@ha
-/* 80BEC434  38 84 C4 E0 */	addi r4, r4, __ct__11FlagJoint_cFv@l
-/* 80BEC438  3C A0 80 BF */	lis r5, __dt__11FlagJoint_cFv@ha
-/* 80BEC43C  38 A5 C3 BC */	addi r5, r5, __dt__11FlagJoint_cFv@l
+/* 80BEC430  3C 80 80 BF */	lis r4, __ct__11FlagJoint_cFv@ha /* 0x80BEC4E0@ha */
+/* 80BEC434  38 84 C4 E0 */	addi r4, r4, __ct__11FlagJoint_cFv@l /* 0x80BEC4E0@l */
+/* 80BEC438  3C A0 80 BF */	lis r5, __dt__11FlagJoint_cFv@ha /* 0x80BEC3BC@ha */
+/* 80BEC43C  38 A5 C3 BC */	addi r5, r5, __dt__11FlagJoint_cFv@l /* 0x80BEC3BC@l */
 /* 80BEC440  38 C0 00 14 */	li r6, 0x14
 /* 80BEC444  38 E0 00 04 */	li r7, 4
-/* 80BEC448  4B 77 59 18 */	b __construct_array
+/* 80BEC448  4B 77 59 19 */	bl __construct_array
 lbl_80BEC44C:
 /* 80BEC44C  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 80BEC450  60 00 00 08 */	ori r0, r0, 8
 /* 80BEC454  90 1F 04 A0 */	stw r0, 0x4a0(r31)
 lbl_80BEC458:
 /* 80BEC458  38 7F 05 70 */	addi r3, r31, 0x570
-/* 80BEC45C  3C 80 80 BF */	lis r4, stringBase0@ha
-/* 80BEC460  38 84 C5 54 */	addi r4, r4, stringBase0@l
+/* 80BEC45C  3C 80 80 BF */	lis r4, d_a_obj_flag__stringBase0@ha /* 0x80BEC554@ha */
+/* 80BEC460  38 84 C5 54 */	addi r4, r4, d_a_obj_flag__stringBase0@l /* 0x80BEC554@l */
 /* 80BEC464  38 84 00 16 */	addi r4, r4, 0x16
-/* 80BEC468  4B 44 0A 54 */	b dComIfG_resLoad__FP30request_of_phase_process_classPCc
+/* 80BEC468  4B 44 0A 55 */	bl dComIfG_resLoad__FP30request_of_phase_process_classPCc
 /* 80BEC46C  2C 03 00 04 */	cmpwi r3, 4
 /* 80BEC470  41 82 00 08 */	beq lbl_80BEC478
 /* 80BEC474  48 00 00 54 */	b lbl_80BEC4C8
 lbl_80BEC478:
 /* 80BEC478  7F E3 FB 78 */	mr r3, r31
-/* 80BEC47C  4B 44 53 F4 */	b getArcName__12daSetBgObj_cFP10fopAc_ac_c
+/* 80BEC47C  4B 44 53 F5 */	bl getArcName__12daSetBgObj_cFP10fopAc_ac_c
 /* 80BEC480  7C 64 1B 78 */	mr r4, r3
 /* 80BEC484  38 7F 05 78 */	addi r3, r31, 0x578
-/* 80BEC488  4B 44 0A 34 */	b dComIfG_resLoad__FP30request_of_phase_process_classPCc
+/* 80BEC488  4B 44 0A 35 */	bl dComIfG_resLoad__FP30request_of_phase_process_classPCc
 /* 80BEC48C  7C 7E 1B 78 */	mr r30, r3
 /* 80BEC490  2C 1E 00 04 */	cmpwi r30, 4
 /* 80BEC494  40 82 00 30 */	bne lbl_80BEC4C4
 /* 80BEC498  7F E3 FB 78 */	mr r3, r31
-/* 80BEC49C  3C 80 80 BF */	lis r4, createSolidHeap__FP10fopAc_ac_c@ha
-/* 80BEC4A0  38 84 C0 B8 */	addi r4, r4, createSolidHeap__FP10fopAc_ac_c@l
+/* 80BEC49C  3C 80 80 BF */	lis r4, createSolidHeap__FP10fopAc_ac_c@ha /* 0x80BEC0B8@ha */
+/* 80BEC4A0  38 84 C0 B8 */	addi r4, r4, createSolidHeap__FP10fopAc_ac_c@l /* 0x80BEC0B8@l */
 /* 80BEC4A4  38 A0 40 00 */	li r5, 0x4000
-/* 80BEC4A8  4B 42 E0 08 */	b fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
+/* 80BEC4A8  4B 42 E0 09 */	bl fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
 /* 80BEC4AC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80BEC4B0  40 82 00 0C */	bne lbl_80BEC4BC
 /* 80BEC4B4  38 60 00 05 */	li r3, 5

@@ -8,8 +8,8 @@ lbl_803279A0:
 /* 803279B8  80 63 00 04 */	lwz r3, 4(r3)
 /* 803279BC  A3 E3 00 5C */	lhz r31, 0x5c(r3)
 /* 803279C0  3B A0 00 00 */	li r29, 0
-/* 803279C4  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 803279C8  3B C3 4A C8 */	addi r30, r3, j3dSys@l
+/* 803279C4  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 803279C8  3B C3 4A C8 */	addi r30, r3, j3dSys@l /* 0x80434AC8@l */
 /* 803279CC  48 00 00 3C */	b lbl_80327A08
 lbl_803279D0:
 /* 803279D0  80 7C 00 C0 */	lwz r3, 0xc0(r28)

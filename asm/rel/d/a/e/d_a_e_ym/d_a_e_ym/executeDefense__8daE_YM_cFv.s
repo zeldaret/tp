@@ -5,8 +5,8 @@ lbl_8080E26C:
 /* 8080E278  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8080E27C  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8080E280  7C 7E 1B 78 */	mr r30, r3
-/* 8080E284  3C 60 80 81 */	lis r3, lit_3925@ha
-/* 8080E288  3B E3 59 94 */	addi r31, r3, lit_3925@l
+/* 8080E284  3C 60 80 81 */	lis r3, lit_3925@ha /* 0x80815994@ha */
+/* 8080E288  3B E3 59 94 */	addi r31, r3, lit_3925@l /* 0x80815994@l */
 /* 8080E28C  80 1E 06 98 */	lwz r0, 0x698(r30)
 /* 8080E290  2C 00 00 01 */	cmpwi r0, 1
 /* 8080E294  41 82 00 F8 */	beq lbl_8080E38C
@@ -79,7 +79,7 @@ lbl_8080E38C:
 /* 8080E38C  38 7E 04 FC */	addi r3, r30, 0x4fc
 /* 8080E390  C0 3F 00 88 */	lfs f1, 0x88(r31)
 /* 8080E394  C0 5F 00 80 */	lfs f2, 0x80(r31)
-/* 8080E398  4B A6 23 A8 */	b cLib_chaseF__FPfff
+/* 8080E398  4B A6 23 A9 */	bl cLib_chaseF__FPfff
 /* 8080E39C  80 1E 07 8C */	lwz r0, 0x78c(r30)
 /* 8080E3A0  54 00 06 B5 */	rlwinm. r0, r0, 0, 0x1a, 0x1a
 /* 8080E3A4  41 82 00 E0 */	beq lbl_8080E484
@@ -112,13 +112,13 @@ lbl_8080E3E8:
 /* 8080E40C  C0 3F 00 8C */	lfs f1, 0x8c(r31)
 /* 8080E410  38 FE 01 0C */	addi r7, r30, 0x10c
 /* 8080E414  39 00 00 00 */	li r8, 0
-/* 8080E418  4B 80 EC 08 */	b fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci
+/* 8080E418  4B 80 EC 09 */	bl fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci
 lbl_8080E41C:
 /* 8080E41C  C0 3F 00 04 */	lfs f1, 4(r31)
 /* 8080E420  D0 3E 04 FC */	stfs f1, 0x4fc(r30)
 /* 8080E424  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 8080E428  C0 5F 00 08 */	lfs f2, 8(r31)
-/* 8080E42C  4B A6 23 14 */	b cLib_chaseF__FPfff
+/* 8080E42C  4B A6 23 15 */	bl cLib_chaseF__FPfff
 /* 8080E430  2C 03 00 00 */	cmpwi r3, 0
 /* 8080E434  41 82 00 50 */	beq lbl_8080E484
 /* 8080E438  7F C3 F3 78 */	mr r3, r30

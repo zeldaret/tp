@@ -5,8 +5,8 @@ lbl_802BE844:
 /* 802BE850  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802BE854  7C 7F 1B 78 */	mr r31, r3
 /* 802BE858  4B FF F6 99 */	bl __ct__14Z2SoundObjBaseFv
-/* 802BE85C  3C 60 80 3D */	lis r3, __vt__16Z2SoundObjSimple@ha
-/* 802BE860  38 03 AD 10 */	addi r0, r3, __vt__16Z2SoundObjSimple@l
+/* 802BE85C  3C 60 80 3D */	lis r3, __vt__16Z2SoundObjSimple@ha /* 0x803CAD10@ha */
+/* 802BE860  38 03 AD 10 */	addi r0, r3, __vt__16Z2SoundObjSimple@l /* 0x803CAD10@l */
 /* 802BE864  90 1F 00 10 */	stw r0, 0x10(r31)
 /* 802BE868  7F E3 FB 78 */	mr r3, r31
 /* 802BE86C  83 E1 00 0C */	lwz r31, 0xc(r1)

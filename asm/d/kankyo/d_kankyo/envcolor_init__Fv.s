@@ -6,8 +6,8 @@ lbl_8019EC98:
 /* 8019ECA8  F3 E1 00 38 */	psq_st f31, 56(r1), 0, 0 /* qr0 */
 /* 8019ECAC  39 61 00 30 */	addi r11, r1, 0x30
 /* 8019ECB0  48 1C 35 1D */	bl _savegpr_25
-/* 8019ECB4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8019ECB8  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 8019ECB4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8019ECB8  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8019ECBC  3B 3F 4E 20 */	addi r25, r31, 0x4e20
 /* 8019ECC0  7F 23 CB 78 */	mr r3, r25
 /* 8019ECC4  81 99 00 00 */	lwz r12, 0(r25)
@@ -48,8 +48,8 @@ lbl_8019EC98:
 /* 8019ED50  C0 22 A2 0C */	lfs f1, lit_4409(r2)
 /* 8019ED54  48 00 93 0D */	bl dKy_vrbox_addcol_set__Fsssf
 /* 8019ED58  38 80 00 00 */	li r4, 0
-/* 8019ED5C  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019ED60  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019ED5C  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019ED60  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019ED64  90 83 12 80 */	stw r4, 0x1280(r3)
 /* 8019ED68  38 00 00 01 */	li r0, 1
 /* 8019ED6C  98 03 12 D2 */	stb r0, 0x12d2(r3)
@@ -64,8 +64,8 @@ lbl_8019EC98:
 /* 8019ED90  38 60 00 00 */	li r3, 0
 /* 8019ED94  4B EB 7C 91 */	bl dKyd_xfog_table_set__FUc
 /* 8019ED98  C0 02 A2 48 */	lfs f0, lit_4505(r2)
-/* 8019ED9C  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019EDA0  3B C3 CA 54 */	addi r30, r3, g_env_light@l
+/* 8019ED9C  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019EDA0  3B C3 CA 54 */	addi r30, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019EDA4  D0 1E 11 F8 */	stfs f0, 0x11f8(r30)
 /* 8019EDA8  D0 1E 11 FC */	stfs f0, 0x11fc(r30)
 /* 8019EDAC  D0 1E 12 00 */	stfs f0, 0x1200(r30)
@@ -103,8 +103,8 @@ lbl_8019EC98:
 /* 8019EE2C  D0 3E 12 70 */	stfs f1, 0x1270(r30)
 /* 8019EE30  3B FF 4E 00 */	addi r31, r31, 0x4e00
 /* 8019EE34  7F E3 FB 78 */	mr r3, r31
-/* 8019EE38  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha
-/* 8019EE3C  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l
+/* 8019EE38  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha /* 0x80394C6C@ha */
+/* 8019EE3C  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l /* 0x80394C6C@l */
 /* 8019EE40  38 84 01 5C */	addi r4, r4, 0x15c
 /* 8019EE44  48 1C 9B 51 */	bl strcmp
 /* 8019EE48  2C 03 00 00 */	cmpwi r3, 0
@@ -113,8 +113,8 @@ lbl_8019EC98:
 /* 8019EE54  D0 1E 12 70 */	stfs f0, 0x1270(r30)
 lbl_8019EE58:
 /* 8019EE58  38 00 00 00 */	li r0, 0
-/* 8019EE5C  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019EE60  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019EE5C  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019EE60  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019EE64  98 03 13 08 */	stb r0, 0x1308(r3)
 /* 8019EE68  98 03 13 0B */	stb r0, 0x130b(r3)
 /* 8019EE6C  38 00 00 01 */	li r0, 1
@@ -122,8 +122,8 @@ lbl_8019EE58:
 /* 8019EE74  7F E3 FB 78 */	mr r3, r31
 /* 8019EE78  4B FF FD 59 */	bl dKy_light_size_get__FPCc
 /* 8019EE7C  C0 02 A2 48 */	lfs f0, lit_4505(r2)
-/* 8019EE80  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019EE84  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019EE80  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019EE84  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019EE88  D0 03 12 60 */	stfs f0, 0x1260(r3)
 /* 8019EE8C  38 00 FF FF */	li r0, -1
 /* 8019EE90  98 03 12 FC */	stb r0, 0x12fc(r3)
@@ -146,20 +146,20 @@ lbl_8019EE58:
 /* 8019EED4  28 00 00 03 */	cmplwi r0, 3
 /* 8019EED8  40 82 00 18 */	bne lbl_8019EEF0
 /* 8019EEDC  4B EB 7B 3D */	bl dKyd_schejule_boss_getp__Fv
-/* 8019EEE0  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 8019EEE4  38 84 CA 54 */	addi r4, r4, g_env_light@l
+/* 8019EEE0  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019EEE4  38 84 CA 54 */	addi r4, r4, g_env_light@l /* 0x8042CA54@l */
 /* 8019EEE8  90 64 00 14 */	stw r3, 0x14(r4)
 /* 8019EEEC  48 00 00 14 */	b lbl_8019EF00
 lbl_8019EEF0:
 /* 8019EEF0  4B EB 7B 1D */	bl dKyd_schejule_getp__Fv
-/* 8019EEF4  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 8019EEF8  38 84 CA 54 */	addi r4, r4, g_env_light@l
+/* 8019EEF4  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019EEF8  38 84 CA 54 */	addi r4, r4, g_env_light@l /* 0x8042CA54@l */
 /* 8019EEFC  90 64 00 14 */	stw r3, 0x14(r4)
 lbl_8019EF00:
 /* 8019EF00  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
 /* 8019EF04  7C 00 07 74 */	extsb r0, r0
-/* 8019EF08  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019EF0C  3B C3 CA 54 */	addi r30, r3, g_env_light@l
+/* 8019EF08  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019EF0C  3B C3 CA 54 */	addi r30, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019EF10  98 1E 12 C6 */	stb r0, 0x12c6(r30)
 /* 8019EF14  98 1E 12 C7 */	stb r0, 0x12c7(r30)
 /* 8019EF18  C0 02 A2 48 */	lfs f0, lit_4505(r2)
@@ -170,22 +170,22 @@ lbl_8019EF00:
 /* 8019EF2C  C0 02 A2 0C */	lfs f0, lit_4409(r2)
 /* 8019EF30  D0 1E 0E CC */	stfs f0, 0xecc(r30)
 /* 8019EF34  7F E3 FB 78 */	mr r3, r31
-/* 8019EF38  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha
-/* 8019EF3C  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l
+/* 8019EF38  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha /* 0x80394C6C@ha */
+/* 8019EF3C  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l /* 0x80394C6C@l */
 /* 8019EF40  38 84 01 7A */	addi r4, r4, 0x17a
 /* 8019EF44  48 1C 9A 51 */	bl strcmp
 /* 8019EF48  2C 03 00 00 */	cmpwi r3, 0
 /* 8019EF4C  41 82 00 20 */	beq lbl_8019EF6C
 /* 8019EF50  7F E3 FB 78 */	mr r3, r31
-/* 8019EF54  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha
-/* 8019EF58  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l
+/* 8019EF54  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha /* 0x80394C6C@ha */
+/* 8019EF58  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l /* 0x80394C6C@l */
 /* 8019EF5C  38 84 01 5C */	addi r4, r4, 0x15c
 /* 8019EF60  48 1C 9A 35 */	bl strcmp
 /* 8019EF64  2C 03 00 00 */	cmpwi r3, 0
 /* 8019EF68  40 82 00 38 */	bne lbl_8019EFA0
 lbl_8019EF6C:
-/* 8019EF6C  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019EF70  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019EF6C  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019EF70  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019EF74  88 03 12 CC */	lbz r0, 0x12cc(r3)
 /* 8019EF78  28 00 00 07 */	cmplwi r0, 7
 /* 8019EF7C  41 80 00 10 */	blt lbl_8019EF8C
@@ -200,14 +200,14 @@ lbl_8019EF8C:
 /* 8019EF9C  48 00 00 64 */	b lbl_8019F000
 lbl_8019EFA0:
 /* 8019EFA0  7F E3 FB 78 */	mr r3, r31
-/* 8019EFA4  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha
-/* 8019EFA8  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l
+/* 8019EFA4  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha /* 0x80394C6C@ha */
+/* 8019EFA8  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l /* 0x80394C6C@l */
 /* 8019EFAC  38 84 00 6F */	addi r4, r4, 0x6f
 /* 8019EFB0  48 1C 99 E5 */	bl strcmp
 /* 8019EFB4  2C 03 00 00 */	cmpwi r3, 0
 /* 8019EFB8  40 82 00 38 */	bne lbl_8019EFF0
-/* 8019EFBC  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019EFC0  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019EFBC  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019EFC0  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019EFC4  88 03 12 CC */	lbz r0, 0x12cc(r3)
 /* 8019EFC8  28 00 00 01 */	cmplwi r0, 1
 /* 8019EFCC  40 82 00 10 */	bne lbl_8019EFDC
@@ -222,21 +222,21 @@ lbl_8019EFDC:
 /* 8019EFEC  48 00 00 14 */	b lbl_8019F000
 lbl_8019EFF0:
 /* 8019EFF0  38 00 00 00 */	li r0, 0
-/* 8019EFF4  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019EFF8  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019EFF4  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019EFF8  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019EFFC  98 03 12 CC */	stb r0, 0x12cc(r3)
 lbl_8019F000:
 /* 8019F000  38 00 00 00 */	li r0, 0
-/* 8019F004  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019F008  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019F004  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019F008  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019F00C  90 03 12 9C */	stw r0, 0x129c(r3)
 /* 8019F010  90 03 12 A0 */	stw r0, 0x12a0(r3)
 /* 8019F014  98 03 12 C9 */	stb r0, 0x12c9(r3)
-/* 8019F018  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8019F01C  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 8019F018  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8019F01C  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8019F020  C3 FF 00 34 */	lfs f31, 0x34(r31)
-/* 8019F024  3C 60 80 43 */	lis r3, g_Counter@ha
-/* 8019F028  80 03 0C D8 */	lwz r0, g_Counter@l(r3)
+/* 8019F024  3C 60 80 43 */	lis r3, g_Counter@ha /* 0x80430CD8@ha */
+/* 8019F028  80 03 0C D8 */	lwz r0, g_Counter@l(r3)  /* 0x80430CD8@l */
 /* 8019F02C  54 00 06 FE */	clrlwi r0, r0, 0x1b
 /* 8019F030  C8 22 A2 80 */	lfd f1, lit_4964(r2)
 /* 8019F034  90 01 00 0C */	stw r0, 0xc(r1)
@@ -248,8 +248,8 @@ lbl_8019F000:
 /* 8019F04C  C0 02 A2 AC */	lfs f0, lit_5347(r2)
 /* 8019F050  EC 00 00 72 */	fmuls f0, f0, f1
 /* 8019F054  EC 3F 00 2A */	fadds f1, f31, f0
-/* 8019F058  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019F05C  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019F058  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019F05C  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019F060  D0 23 11 D4 */	stfs f1, 0x11d4(r3)
 /* 8019F064  C0 02 A2 B0 */	lfs f0, lit_5348(r2)
 /* 8019F068  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -259,8 +259,8 @@ lbl_8019F000:
 /* 8019F078  D0 03 11 D4 */	stfs f0, 0x11d4(r3)
 lbl_8019F07C:
 /* 8019F07C  38 80 00 00 */	li r4, 0
-/* 8019F080  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019F084  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019F080  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019F084  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019F088  98 83 12 CA */	stb r4, 0x12ca(r3)
 /* 8019F08C  98 83 12 CB */	stb r4, 0x12cb(r3)
 /* 8019F090  90 83 12 98 */	stw r4, 0x1298(r3)
@@ -282,44 +282,44 @@ lbl_8019F07C:
 /* 8019F0D0  48 00 00 14 */	b lbl_8019F0E4
 lbl_8019F0D4:
 /* 8019F0D4  4B EB 79 21 */	bl dKyd_dmenvr_getp__Fv
-/* 8019F0D8  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 8019F0DC  38 84 CA 54 */	addi r4, r4, g_env_light@l
+/* 8019F0D8  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019F0DC  38 84 CA 54 */	addi r4, r4, g_env_light@l /* 0x8042CA54@l */
 /* 8019F0E0  90 64 00 0C */	stw r3, 0xc(r4)
 lbl_8019F0E4:
 /* 8019F0E4  28 1A 00 00 */	cmplwi r26, 0
 /* 8019F0E8  41 82 00 14 */	beq lbl_8019F0FC
-/* 8019F0EC  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019F0F0  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019F0EC  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019F0F0  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019F0F4  93 43 00 04 */	stw r26, 4(r3)
 /* 8019F0F8  48 00 00 14 */	b lbl_8019F10C
 lbl_8019F0FC:
 /* 8019F0FC  4B EB 78 E1 */	bl dKyd_dmpalet_getp__Fv
-/* 8019F100  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 8019F104  38 84 CA 54 */	addi r4, r4, g_env_light@l
+/* 8019F100  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019F104  38 84 CA 54 */	addi r4, r4, g_env_light@l /* 0x8042CA54@l */
 /* 8019F108  90 64 00 04 */	stw r3, 4(r4)
 lbl_8019F10C:
 /* 8019F10C  28 1B 00 00 */	cmplwi r27, 0
 /* 8019F110  41 82 00 14 */	beq lbl_8019F124
-/* 8019F114  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019F118  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019F114  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019F118  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019F11C  93 63 00 08 */	stw r27, 8(r3)
 /* 8019F120  48 00 00 14 */	b lbl_8019F134
 lbl_8019F124:
 /* 8019F124  4B EB 78 C5 */	bl dKyd_dmpselect_getp__Fv
-/* 8019F128  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 8019F12C  38 84 CA 54 */	addi r4, r4, g_env_light@l
+/* 8019F128  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019F12C  38 84 CA 54 */	addi r4, r4, g_env_light@l /* 0x8042CA54@l */
 /* 8019F130  90 64 00 08 */	stw r3, 8(r4)
 lbl_8019F134:
 /* 8019F134  28 1D 00 00 */	cmplwi r29, 0
 /* 8019F138  41 82 00 14 */	beq lbl_8019F14C
-/* 8019F13C  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019F140  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019F13C  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019F140  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019F144  93 A3 00 10 */	stw r29, 0x10(r3)
 /* 8019F148  48 00 00 14 */	b lbl_8019F15C
 lbl_8019F14C:
 /* 8019F14C  4B EB 78 B5 */	bl dKyd_dmvrbox_getp__Fv
-/* 8019F150  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 8019F154  38 84 CA 54 */	addi r4, r4, g_env_light@l
+/* 8019F150  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019F154  38 84 CA 54 */	addi r4, r4, g_env_light@l /* 0x8042CA54@l */
 /* 8019F158  90 64 00 10 */	stw r3, 0x10(r4)
 lbl_8019F15C:
 /* 8019F15C  4B FF F5 39 */	bl plight_init__Fv
@@ -327,8 +327,8 @@ lbl_8019F15C:
 /* 8019F164  4B FF F5 A5 */	bl darkmist_init__Fv
 /* 8019F168  4B FF F6 ED */	bl bgparts_activelight_init__Fv
 /* 8019F16C  C0 02 A2 48 */	lfs f0, lit_4505(r2)
-/* 8019F170  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019F174  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019F170  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019F174  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019F178  D0 03 11 C8 */	stfs f0, 0x11c8(r3)
 /* 8019F17C  D0 03 11 CC */	stfs f0, 0x11cc(r3)
 /* 8019F180  D0 03 11 D0 */	stfs f0, 0x11d0(r3)
@@ -342,8 +342,8 @@ lbl_8019F15C:
 /* 8019F1A0  38 60 00 00 */	li r3, 0
 /* 8019F1A4  4B E9 08 4D */	bl dComIfGs_PolyDamageOff_Set__FSc
 /* 8019F1A8  88 0D 87 E4 */	lbz r0, struct_80450D64+0x0(r13)
-/* 8019F1AC  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019F1B0  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019F1AC  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019F1B0  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019F1B4  98 03 09 8C */	stb r0, 0x98c(r3)
 /* 8019F1B8  38 00 00 00 */	li r0, 0
 /* 8019F1BC  98 03 12 FA */	stb r0, 0x12fa(r3)
@@ -374,8 +374,8 @@ lbl_8019F15C:
 /* 8019F220  D0 1F 00 34 */	stfs f0, 0x34(r31)
 lbl_8019F224:
 /* 8019F224  C0 02 A2 B4 */	lfs f0, lit_5349(r2)
-/* 8019F228  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019F22C  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019F228  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019F22C  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019F230  D0 03 12 4C */	stfs f0, 0x124c(r3)
 /* 8019F234  38 63 12 88 */	addi r3, r3, 0x1288
 /* 8019F238  38 80 00 00 */	li r4, 0

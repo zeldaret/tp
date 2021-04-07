@@ -261,8 +261,8 @@ lbl_8004CE44:
 /* 8004CE58  39 01 00 14 */	addi r8, r1, 0x14
 /* 8004CE5C  FC 20 F8 90 */	fmr f1, f31
 /* 8004CE60  48 15 CE 5D */	bl dKy_ParticleColor_get_bg__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf
-/* 8004CE64  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8004CE68  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8004CE64  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8004CE68  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8004CE6C  C0 23 12 5C */	lfs f1, 0x125c(r3)
 /* 8004CE70  C0 02 85 88 */	lfs f0, lit_4519(r2)
 /* 8004CE74  EC 00 08 28 */	fsubs f0, f0, f1

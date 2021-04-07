@@ -13,8 +13,8 @@ lbl_800C6F18:
 /* 800C6F44  D0 1F 33 98 */	stfs f0, 0x3398(r31)
 /* 800C6F48  7F E3 FB 78 */	mr r3, r31
 /* 800C6F4C  38 80 00 33 */	li r4, 0x33
-/* 800C6F50  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha
-/* 800C6F54  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l
+/* 800C6F50  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 800C6F54  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 800C6F58  38 A5 00 14 */	addi r5, r5, 0x14
 /* 800C6F5C  4B FE 61 99 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800C6F60  7F E3 FB 78 */	mr r3, r31

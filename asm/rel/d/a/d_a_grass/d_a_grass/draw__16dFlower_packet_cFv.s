@@ -13,88 +13,88 @@ lbl_80521DAC:
 /* 80521DD8  DB 61 00 B0 */	stfd f27, 0xb0(r1)
 /* 80521DDC  F3 61 00 B8 */	psq_st f27, 184(r1), 0, 0 /* qr0 */
 /* 80521DE0  39 61 00 B0 */	addi r11, r1, 0xb0
-/* 80521DE4  4B E4 03 D4 */	b _savegpr_20
+/* 80521DE4  4B E4 03 D5 */	bl _savegpr_20
 /* 80521DE8  7C 7F 1B 78 */	mr r31, r3
-/* 80521DEC  3C 60 80 52 */	lis r3, cNullVec__6Z2Calc@ha
-/* 80521DF0  3B 43 31 D8 */	addi r26, r3, cNullVec__6Z2Calc@l
-/* 80521DF4  3C 60 80 52 */	lis r3, lit_3999@ha
-/* 80521DF8  3B 63 30 28 */	addi r27, r3, lit_3999@l
-/* 80521DFC  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80521E00  3B A3 CA 54 */	addi r29, r3, g_env_light@l
-/* 80521E04  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80521E08  38 63 4A C8 */	addi r3, r3, j3dSys@l
-/* 80521E0C  4B DE E9 30 */	b reinitGX__6J3DSysFv
+/* 80521DEC  3C 60 80 52 */	lis r3, cNullVec__6Z2Calc@ha /* 0x805231D8@ha */
+/* 80521DF0  3B 43 31 D8 */	addi r26, r3, cNullVec__6Z2Calc@l /* 0x805231D8@l */
+/* 80521DF4  3C 60 80 52 */	lis r3, lit_3999@ha /* 0x80523028@ha */
+/* 80521DF8  3B 63 30 28 */	addi r27, r3, lit_3999@l /* 0x80523028@l */
+/* 80521DFC  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80521E00  3B A3 CA 54 */	addi r29, r3, g_env_light@l /* 0x8042CA54@l */
+/* 80521E04  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80521E08  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
+/* 80521E0C  4B DE E9 31 */	bl reinitGX__6J3DSysFv
 /* 80521E10  38 60 00 00 */	li r3, 0
-/* 80521E14  4B E3 D2 C0 */	b GXSetNumIndStages
-/* 80521E18  4B C8 57 A8 */	b dKy_setLight_again__Fv
-/* 80521E1C  4B E3 97 70 */	b GXClearVtxDesc
+/* 80521E14  4B E3 D2 C1 */	bl GXSetNumIndStages
+/* 80521E18  4B C8 57 A9 */	bl dKy_setLight_again__Fv
+/* 80521E1C  4B E3 97 71 */	bl GXClearVtxDesc
 /* 80521E20  38 60 00 09 */	li r3, 9
 /* 80521E24  38 80 00 02 */	li r4, 2
-/* 80521E28  4B E3 90 90 */	b GXSetVtxDesc
+/* 80521E28  4B E3 90 91 */	bl GXSetVtxDesc
 /* 80521E2C  38 60 00 0A */	li r3, 0xa
 /* 80521E30  38 80 00 02 */	li r4, 2
-/* 80521E34  4B E3 90 84 */	b GXSetVtxDesc
+/* 80521E34  4B E3 90 85 */	bl GXSetVtxDesc
 /* 80521E38  38 60 00 0B */	li r3, 0xb
 /* 80521E3C  38 80 00 02 */	li r4, 2
-/* 80521E40  4B E3 90 78 */	b GXSetVtxDesc
+/* 80521E40  4B E3 90 79 */	bl GXSetVtxDesc
 /* 80521E44  38 60 00 0D */	li r3, 0xd
 /* 80521E48  38 80 00 02 */	li r4, 2
-/* 80521E4C  4B E3 90 6C */	b GXSetVtxDesc
+/* 80521E4C  4B E3 90 6D */	bl GXSetVtxDesc
 /* 80521E50  38 60 00 00 */	li r3, 0
 /* 80521E54  38 80 00 09 */	li r4, 9
 /* 80521E58  38 A0 00 01 */	li r5, 1
 /* 80521E5C  38 C0 00 04 */	li r6, 4
 /* 80521E60  38 E0 00 00 */	li r7, 0
-/* 80521E64  4B E3 97 60 */	b GXSetVtxAttrFmt
+/* 80521E64  4B E3 97 61 */	bl GXSetVtxAttrFmt
 /* 80521E68  38 60 00 00 */	li r3, 0
 /* 80521E6C  38 80 00 0A */	li r4, 0xa
 /* 80521E70  38 A0 00 00 */	li r5, 0
 /* 80521E74  38 C0 00 04 */	li r6, 4
 /* 80521E78  38 E0 00 00 */	li r7, 0
-/* 80521E7C  4B E3 97 48 */	b GXSetVtxAttrFmt
+/* 80521E7C  4B E3 97 49 */	bl GXSetVtxAttrFmt
 /* 80521E80  38 60 00 00 */	li r3, 0
 /* 80521E84  38 80 00 0B */	li r4, 0xb
 /* 80521E88  38 A0 00 01 */	li r5, 1
 /* 80521E8C  38 C0 00 05 */	li r6, 5
 /* 80521E90  38 E0 00 00 */	li r7, 0
-/* 80521E94  4B E3 97 30 */	b GXSetVtxAttrFmt
+/* 80521E94  4B E3 97 31 */	bl GXSetVtxAttrFmt
 /* 80521E98  38 60 00 00 */	li r3, 0
 /* 80521E9C  38 80 00 0D */	li r4, 0xd
 /* 80521EA0  38 A0 00 01 */	li r5, 1
 /* 80521EA4  38 C0 00 04 */	li r6, 4
 /* 80521EA8  38 E0 00 00 */	li r7, 0
-/* 80521EAC  4B E3 97 18 */	b GXSetVtxAttrFmt
+/* 80521EAC  4B E3 97 19 */	bl GXSetVtxAttrFmt
 /* 80521EB0  38 60 00 09 */	li r3, 9
 /* 80521EB4  38 9A 22 00 */	addi r4, r26, 0x2200
 /* 80521EB8  38 A0 00 0C */	li r5, 0xc
-/* 80521EBC  4B E3 9C 6C */	b GXSetArray
+/* 80521EBC  4B E3 9C 6D */	bl GXSetArray
 /* 80521EC0  38 60 00 0A */	li r3, 0xa
 /* 80521EC4  38 9A 24 C4 */	addi r4, r26, 0x24c4
 /* 80521EC8  38 A0 00 0C */	li r5, 0xc
-/* 80521ECC  4B E3 9C 5C */	b GXSetArray
+/* 80521ECC  4B E3 9C 5D */	bl GXSetArray
 /* 80521ED0  38 60 00 0B */	li r3, 0xb
 /* 80521ED4  38 9A 25 78 */	addi r4, r26, 0x2578
 /* 80521ED8  38 A0 00 04 */	li r5, 4
-/* 80521EDC  4B E3 9C 4C */	b GXSetArray
+/* 80521EDC  4B E3 9C 4D */	bl GXSetArray
 /* 80521EE0  38 60 00 0D */	li r3, 0xd
 /* 80521EE4  38 9A 25 80 */	addi r4, r26, 0x2580
 /* 80521EE8  38 A0 00 08 */	li r5, 8
-/* 80521EEC  4B E3 9C 3C */	b GXSetArray
+/* 80521EEC  4B E3 9C 3D */	bl GXSetArray
 /* 80521EF0  3E FF 00 01 */	addis r23, r31, 1
 /* 80521EF4  3B 20 00 00 */	li r25, 0
 /* 80521EF8  3A 80 00 00 */	li r20, 0
-/* 80521EFC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80521F00  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80521EFC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80521F00  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80521F04  3B 03 4E C4 */	addi r24, r3, 0x4ec4
-/* 80521F08  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80521F0C  3B 83 CA 54 */	addi r28, r3, g_env_light@l
+/* 80521F08  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80521F0C  3B 83 CA 54 */	addi r28, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80521F10  3A F7 29 14 */	addi r23, r23, 0x2914
 lbl_80521F14:
 /* 80521F14  80 17 00 00 */	lwz r0, 0(r23)
 /* 80521F18  28 00 00 00 */	cmplwi r0, 0
 /* 80521F1C  41 82 02 F0 */	beq lbl_8052220C
-/* 80521F20  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha
-/* 80521F24  38 03 60 94 */	addi r0, r3, mStatus__20dStage_roomControl_c@l
+/* 80521F20  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 80521F24  38 03 60 94 */	addi r0, r3, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 /* 80521F28  7C 60 A2 14 */	add r3, r0, r20
 /* 80521F2C  88 03 03 F4 */	lbz r0, 0x3f4(r3)
 /* 80521F30  54 00 06 F7 */	rlwinm. r0, r0, 0, 0x1b, 0x1b
@@ -107,19 +107,19 @@ lbl_80521F14:
 /* 80521F4C  3A A0 00 06 */	li r21, 6
 /* 80521F50  7F 03 C3 78 */	mr r3, r24
 /* 80521F54  7F 24 CB 78 */	mr r4, r25
-/* 80521F58  4B B0 24 2C */	b getStatusRoomDt__20dStage_roomControl_cFi
+/* 80521F58  4B B0 24 2D */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 80521F5C  28 03 00 00 */	cmplwi r3, 0
 /* 80521F60  41 82 00 24 */	beq lbl_80521F84
 /* 80521F64  7F 03 C3 78 */	mr r3, r24
 /* 80521F68  7F 24 CB 78 */	mr r4, r25
-/* 80521F6C  4B B0 24 18 */	b getStatusRoomDt__20dStage_roomControl_cFi
+/* 80521F6C  4B B0 24 19 */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 80521F70  81 83 00 00 */	lwz r12, 0(r3)
 /* 80521F74  81 8C 00 B4 */	lwz r12, 0xb4(r12)
 /* 80521F78  7D 89 03 A6 */	mtctr r12
 /* 80521F7C  4E 80 04 21 */	bctrl 
 /* 80521F80  7C 75 1B 78 */	mr r21, r3
 lbl_80521F84:
-/* 80521F84  4B C8 A1 E4 */	b dKy_SunMoon_Light_Check__Fv
+/* 80521F84  4B C8 A1 E5 */	bl dKy_SunMoon_Light_Check__Fv
 /* 80521F88  2C 03 00 01 */	cmpwi r3, 1
 /* 80521F8C  40 82 00 10 */	bne lbl_80521F9C
 /* 80521F90  2C 15 00 02 */	cmpwi r21, 2
@@ -142,12 +142,12 @@ lbl_80521FBC:
 /* 80521FC8  41 81 00 14 */	bgt lbl_80521FDC
 /* 80521FCC  38 7A 29 A0 */	addi r3, r26, 0x29a0
 /* 80521FD0  38 80 00 80 */	li r4, 0x80
-/* 80521FD4  4B E3 DF 1C */	b GXCallDisplayList
+/* 80521FD4  4B E3 DF 1D */	bl GXCallDisplayList
 /* 80521FD8  48 00 00 10 */	b lbl_80521FE8
 lbl_80521FDC:
 /* 80521FDC  38 7A 29 00 */	addi r3, r26, 0x2900
 /* 80521FE0  38 80 00 80 */	li r4, 0x80
-/* 80521FE4  4B E3 DF 0C */	b GXCallDisplayList
+/* 80521FE4  4B E3 DF 0D */	bl GXCallDisplayList
 lbl_80521FE8:
 /* 80521FE8  80 61 00 30 */	lwz r3, 0x30(r1)
 /* 80521FEC  80 01 00 34 */	lwz r0, 0x34(r1)
@@ -155,15 +155,15 @@ lbl_80521FE8:
 /* 80521FF4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80521FF8  38 60 00 01 */	li r3, 1
 /* 80521FFC  38 81 00 20 */	addi r4, r1, 0x20
-/* 80522000  4B E3 D3 DC */	b GXSetTevColorS10
+/* 80522000  4B E3 D3 DD */	bl GXSetTevColorS10
 /* 80522004  7F C3 F3 78 */	mr r3, r30
-/* 80522008  4B C8 55 D8 */	b dKy_Global_amb_set__FP12dKy_tevstr_c
+/* 80522008  4B C8 55 D9 */	bl dKy_Global_amb_set__FP12dKy_tevstr_c
 /* 8052200C  7F C3 F3 78 */	mr r3, r30
-/* 80522010  4B C8 66 40 */	b dKy_GxFog_tevstr_set__FP12dKy_tevstr_c
+/* 80522010  4B C8 66 41 */	bl dKy_GxFog_tevstr_set__FP12dKy_tevstr_c
 /* 80522014  88 1E 03 80 */	lbz r0, 0x380(r30)
 /* 80522018  7C 03 07 74 */	extsb r3, r0
 /* 8052201C  C0 3B 00 68 */	lfs f1, 0x68(r27)
-/* 80522020  4B C8 4C 38 */	b dKy_setLight_nowroom_grass__Fcf
+/* 80522020  4B C8 4C 39 */	bl dKy_setLight_nowroom_grass__Fcf
 /* 80522024  82 D7 00 00 */	lwz r22, 0(r23)
 /* 80522028  48 00 01 DC */	b lbl_80522204
 lbl_8052202C:
@@ -174,7 +174,7 @@ lbl_8052202C:
 /* 8052203C  98 01 00 15 */	stb r0, 0x15(r1)
 /* 80522040  54 60 BE BC */	rlwinm r0, r3, 0x17, 0x1a, 0x1e
 /* 80522044  98 01 00 16 */	stb r0, 0x16(r1)
-/* 80522048  4B C3 D3 DC */	b checkNowWolfEyeUp__9daPy_py_cFv
+/* 80522048  4B C3 D3 DD */	bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 8052204C  2C 03 00 00 */	cmpwi r3, 0
 /* 80522050  41 82 01 08 */	beq lbl_80522158
 /* 80522054  A8 1C 11 08 */	lha r0, 0x1108(r28)
@@ -265,7 +265,7 @@ lbl_80522194:
 /* 80522198  90 01 00 0C */	stw r0, 0xc(r1)
 /* 8052219C  38 60 00 04 */	li r3, 4
 /* 805221A0  38 81 00 0C */	addi r4, r1, 0xc
-/* 805221A4  4B E3 B7 BC */	b GXSetChanAmbColor
+/* 805221A4  4B E3 B7 BD */	bl GXSetChanAmbColor
 /* 805221A8  88 76 00 00 */	lbz r3, 0(r22)
 /* 805221AC  54 60 07 7B */	rlwinm. r0, r3, 0, 0x1d, 0x1d
 /* 805221B0  40 82 00 50 */	bne lbl_80522200
@@ -273,22 +273,22 @@ lbl_80522194:
 /* 805221B8  40 82 00 48 */	bne lbl_80522200
 /* 805221BC  38 76 00 14 */	addi r3, r22, 0x14
 /* 805221C0  38 80 00 00 */	li r4, 0
-/* 805221C4  4B E3 E0 88 */	b GXLoadPosMtxImm
-/* 805221C8  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 805221CC  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 805221C4  4B E3 E0 89 */	bl GXLoadPosMtxImm
+/* 805221C8  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 805221CC  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 805221D0  38 80 00 00 */	li r4, 0
-/* 805221D4  4B E3 E0 C8 */	b GXLoadNrmMtxImm
+/* 805221D4  4B E3 E0 C9 */	bl GXLoadNrmMtxImm
 /* 805221D8  88 16 00 00 */	lbz r0, 0(r22)
 /* 805221DC  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 805221E0  40 82 00 14 */	bne lbl_805221F4
 /* 805221E4  38 7A 26 C0 */	addi r3, r26, 0x26c0
 /* 805221E8  38 80 01 40 */	li r4, 0x140
-/* 805221EC  4B E3 DD 04 */	b GXCallDisplayList
+/* 805221EC  4B E3 DD 05 */	bl GXCallDisplayList
 /* 805221F0  48 00 00 10 */	b lbl_80522200
 lbl_805221F4:
 /* 805221F4  38 7A 28 20 */	addi r3, r26, 0x2820
 /* 805221F8  38 80 00 C0 */	li r4, 0xc0
-/* 805221FC  4B E3 DC F4 */	b GXCallDisplayList
+/* 805221FC  4B E3 DC F5 */	bl GXCallDisplayList
 lbl_80522200:
 /* 80522200  82 D6 00 44 */	lwz r22, 0x44(r22)
 lbl_80522204:
@@ -304,21 +304,21 @@ lbl_8052220C:
 /* 80522224  3C 9F 00 01 */	addis r4, r31, 1
 /* 80522228  80 84 2A 28 */	lwz r4, 0x2a28(r4)
 /* 8052222C  38 A0 00 0C */	li r5, 0xc
-/* 80522230  4B E3 98 F8 */	b GXSetArray
+/* 80522230  4B E3 98 F9 */	bl GXSetArray
 /* 80522234  38 60 00 0A */	li r3, 0xa
 /* 80522238  38 9A 3F 08 */	addi r4, r26, 0x3f08
 /* 8052223C  38 A0 00 0C */	li r5, 0xc
-/* 80522240  4B E3 98 E8 */	b GXSetArray
+/* 80522240  4B E3 98 E9 */	bl GXSetArray
 /* 80522244  38 60 00 0B */	li r3, 0xb
 /* 80522248  3C 9F 00 01 */	addis r4, r31, 1
 /* 8052224C  80 84 2A 2C */	lwz r4, 0x2a2c(r4)
 /* 80522250  38 A0 00 04 */	li r5, 4
-/* 80522254  4B E3 98 D4 */	b GXSetArray
+/* 80522254  4B E3 98 D5 */	bl GXSetArray
 /* 80522258  38 60 00 0D */	li r3, 0xd
 /* 8052225C  3C 9F 00 01 */	addis r4, r31, 1
 /* 80522260  80 84 2A 30 */	lwz r4, 0x2a30(r4)
 /* 80522264  38 A0 00 08 */	li r5, 8
-/* 80522268  4B E3 98 C0 */	b GXSetArray
+/* 80522268  4B E3 98 C1 */	bl GXSetArray
 /* 8052226C  3E FF 00 01 */	addis r23, r31, 1
 /* 80522270  3A C0 00 00 */	li r22, 0
 /* 80522274  3B C0 00 00 */	li r30, 0
@@ -330,8 +330,8 @@ lbl_8052227C:
 /* 80522288  7C 15 03 78 */	mr r21, r0
 /* 8052228C  3A 80 00 00 */	li r20, 0
 /* 80522290  3B A0 00 06 */	li r29, 6
-/* 80522294  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha
-/* 80522298  38 03 60 94 */	addi r0, r3, mStatus__20dStage_roomControl_c@l
+/* 80522294  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 80522298  38 03 60 94 */	addi r0, r3, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 /* 8052229C  7C 60 F2 14 */	add r3, r0, r30
 /* 805222A0  3B 23 00 6C */	addi r25, r3, 0x6c
 /* 805222A4  80 7B 01 60 */	lwz r3, 0x160(r27)
@@ -340,19 +340,19 @@ lbl_8052227C:
 /* 805222B0  90 01 00 2C */	stw r0, 0x2c(r1)
 /* 805222B4  7F 03 C3 78 */	mr r3, r24
 /* 805222B8  7E C4 B3 78 */	mr r4, r22
-/* 805222BC  4B B0 20 C8 */	b getStatusRoomDt__20dStage_roomControl_cFi
+/* 805222BC  4B B0 20 C9 */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 805222C0  28 03 00 00 */	cmplwi r3, 0
 /* 805222C4  41 82 00 24 */	beq lbl_805222E8
 /* 805222C8  7F 03 C3 78 */	mr r3, r24
 /* 805222CC  7E C4 B3 78 */	mr r4, r22
-/* 805222D0  4B B0 20 B4 */	b getStatusRoomDt__20dStage_roomControl_cFi
+/* 805222D0  4B B0 20 B5 */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 805222D4  81 83 00 00 */	lwz r12, 0(r3)
 /* 805222D8  81 8C 00 B4 */	lwz r12, 0xb4(r12)
 /* 805222DC  7D 89 03 A6 */	mtctr r12
 /* 805222E0  4E 80 04 21 */	bctrl 
 /* 805222E4  7C 7D 1B 78 */	mr r29, r3
 lbl_805222E8:
-/* 805222E8  4B C8 9E 80 */	b dKy_SunMoon_Light_Check__Fv
+/* 805222E8  4B C8 9E 81 */	bl dKy_SunMoon_Light_Check__Fv
 /* 805222EC  2C 03 00 01 */	cmpwi r3, 1
 /* 805222F0  40 82 00 10 */	bne lbl_80522300
 /* 805222F4  2C 1D 00 02 */	cmpwi r29, 2
@@ -364,13 +364,13 @@ lbl_80522300:
 /* 80522308  3C 9F 00 01 */	addis r4, r31, 1
 /* 8052230C  80 64 2A 3C */	lwz r3, 0x2a3c(r4)
 /* 80522310  80 84 2A 40 */	lwz r4, 0x2a40(r4)
-/* 80522314  4B E3 DB DC */	b GXCallDisplayList
+/* 80522314  4B E3 DB DD */	bl GXCallDisplayList
 /* 80522318  48 00 00 14 */	b lbl_8052232C
 lbl_8052231C:
 /* 8052231C  3C 9F 00 01 */	addis r4, r31, 1
 /* 80522320  80 64 2A 34 */	lwz r3, 0x2a34(r4)
 /* 80522324  80 84 2A 38 */	lwz r4, 0x2a38(r4)
-/* 80522328  4B E3 DB C8 */	b GXCallDisplayList
+/* 80522328  4B E3 DB C9 */	bl GXCallDisplayList
 lbl_8052232C:
 /* 8052232C  80 61 00 28 */	lwz r3, 0x28(r1)
 /* 80522330  80 01 00 2C */	lwz r0, 0x2c(r1)
@@ -378,15 +378,15 @@ lbl_8052232C:
 /* 80522338  90 01 00 1C */	stw r0, 0x1c(r1)
 /* 8052233C  38 60 00 01 */	li r3, 1
 /* 80522340  38 81 00 18 */	addi r4, r1, 0x18
-/* 80522344  4B E3 D0 98 */	b GXSetTevColorS10
+/* 80522344  4B E3 D0 99 */	bl GXSetTevColorS10
 /* 80522348  7F 23 CB 78 */	mr r3, r25
-/* 8052234C  4B C8 52 94 */	b dKy_Global_amb_set__FP12dKy_tevstr_c
+/* 8052234C  4B C8 52 95 */	bl dKy_Global_amb_set__FP12dKy_tevstr_c
 /* 80522350  7F 23 CB 78 */	mr r3, r25
-/* 80522354  4B C8 62 FC */	b dKy_GxFog_tevstr_set__FP12dKy_tevstr_c
+/* 80522354  4B C8 62 FD */	bl dKy_GxFog_tevstr_set__FP12dKy_tevstr_c
 /* 80522358  88 19 03 80 */	lbz r0, 0x380(r25)
 /* 8052235C  7C 03 07 74 */	extsb r3, r0
 /* 80522360  C0 3B 00 68 */	lfs f1, 0x68(r27)
-/* 80522364  4B C8 48 F4 */	b dKy_setLight_nowroom_grass__Fcf
+/* 80522364  4B C8 48 F5 */	bl dKy_setLight_nowroom_grass__Fcf
 /* 80522368  CB 7B 00 38 */	lfd f27, 0x38(r27)
 /* 8052236C  3F A0 43 30 */	lis r29, 0x4330
 /* 80522370  C3 9B 01 68 */	lfs f28, 0x168(r27)
@@ -461,8 +461,8 @@ lbl_805223FC:
 /* 80522474  56 85 07 7E */	clrlwi r5, r20, 0x1d
 /* 80522478  28 05 00 07 */	cmplwi r5, 7
 /* 8052247C  41 81 00 F0 */	bgt lbl_8052256C
-/* 80522480  3C 60 80 52 */	lis r3, lit_6092@ha
-/* 80522484  38 83 77 E0 */	addi r4, r3, lit_6092@l
+/* 80522480  3C 60 80 52 */	lis r3, lit_6092@ha /* 0x805277E0@ha */
+/* 80522484  38 83 77 E0 */	addi r4, r3, lit_6092@l /* 0x805277E0@l */
 /* 80522488  54 A3 10 3A */	slwi r3, r5, 2
 /* 8052248C  7C 64 18 2E */	lwzx r3, r4, r3
 /* 80522490  7C 69 03 A6 */	mtctr r3
@@ -528,7 +528,7 @@ lbl_8052254C:
 /* 80522564  7C 03 02 14 */	add r0, r3, r0
 /* 80522568  98 01 00 12 */	stb r0, 0x12(r1)
 lbl_8052256C:
-/* 8052256C  4B C3 CE B8 */	b checkNowWolfEyeUp__9daPy_py_cFv
+/* 8052256C  4B C3 CE B9 */	bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 80522570  2C 03 00 00 */	cmpwi r3, 0
 /* 80522574  41 82 01 04 */	beq lbl_80522678
 /* 80522578  A8 1C 11 08 */	lha r0, 0x1108(r28)
@@ -600,7 +600,7 @@ lbl_80522678:
 /* 8052267C  90 01 00 08 */	stw r0, 8(r1)
 /* 80522680  38 60 00 04 */	li r3, 4
 /* 80522684  38 81 00 08 */	addi r4, r1, 8
-/* 80522688  4B E3 B2 D8 */	b GXSetChanAmbColor
+/* 80522688  4B E3 B2 D9 */	bl GXSetChanAmbColor
 /* 8052268C  88 75 00 00 */	lbz r3, 0(r21)
 /* 80522690  54 60 07 7B */	rlwinm. r0, r3, 0, 0x1d, 0x1d
 /* 80522694  3A 94 00 01 */	addi r20, r20, 1
@@ -609,11 +609,11 @@ lbl_80522678:
 /* 805226A0  41 82 00 68 */	beq lbl_80522708
 /* 805226A4  38 75 00 14 */	addi r3, r21, 0x14
 /* 805226A8  38 80 00 00 */	li r4, 0
-/* 805226AC  4B E3 DB A0 */	b GXLoadPosMtxImm
-/* 805226B0  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 805226B4  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 805226AC  4B E3 DB A1 */	bl GXLoadPosMtxImm
+/* 805226B0  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 805226B4  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 805226B8  38 80 00 00 */	li r4, 0
-/* 805226BC  4B E3 DB E0 */	b GXLoadNrmMtxImm
+/* 805226BC  4B E3 DB E1 */	bl GXLoadNrmMtxImm
 /* 805226C0  88 75 00 00 */	lbz r3, 0(r21)
 /* 805226C4  54 60 07 39 */	rlwinm. r0, r3, 0, 0x1c, 0x1c
 /* 805226C8  40 82 00 30 */	bne lbl_805226F8
@@ -622,18 +622,18 @@ lbl_80522678:
 /* 805226D4  3C 9F 00 01 */	addis r4, r31, 1
 /* 805226D8  80 64 2A 44 */	lwz r3, 0x2a44(r4)
 /* 805226DC  80 84 2A 48 */	lwz r4, 0x2a48(r4)
-/* 805226E0  4B E3 D8 10 */	b GXCallDisplayList
+/* 805226E0  4B E3 D8 11 */	bl GXCallDisplayList
 /* 805226E4  48 00 00 24 */	b lbl_80522708
 lbl_805226E8:
 /* 805226E8  38 7A 42 A0 */	addi r3, r26, 0x42a0
 /* 805226EC  38 80 00 C0 */	li r4, 0xc0
-/* 805226F0  4B E3 D8 00 */	b GXCallDisplayList
+/* 805226F0  4B E3 D8 01 */	bl GXCallDisplayList
 /* 805226F4  48 00 00 14 */	b lbl_80522708
 lbl_805226F8:
 /* 805226F8  3C 9F 00 01 */	addis r4, r31, 1
 /* 805226FC  80 64 2A 4C */	lwz r3, 0x2a4c(r4)
 /* 80522700  80 84 2A 50 */	lwz r4, 0x2a50(r4)
-/* 80522704  4B E3 D7 EC */	b GXCallDisplayList
+/* 80522704  4B E3 D7 ED */	bl GXCallDisplayList
 lbl_80522708:
 /* 80522708  82 B5 00 44 */	lwz r21, 0x44(r21)
 lbl_8052270C:
@@ -646,8 +646,8 @@ lbl_80522714:
 /* 80522720  3B DE 04 04 */	addi r30, r30, 0x404
 /* 80522724  41 80 FB 58 */	blt lbl_8052227C
 /* 80522728  38 00 00 00 */	li r0, 0
-/* 8052272C  3C 60 80 45 */	lis r3, sOldVcdVatCmd__8J3DShape@ha
-/* 80522730  90 03 15 D0 */	stw r0, sOldVcdVatCmd__8J3DShape@l(r3)
+/* 8052272C  3C 60 80 45 */	lis r3, sOldVcdVatCmd__8J3DShape@ha /* 0x804515D0@ha */
+/* 80522730  90 03 15 D0 */	stw r0, sOldVcdVatCmd__8J3DShape@l(r3)  /* 0x804515D0@l */
 /* 80522734  E3 E1 00 F8 */	psq_l f31, 248(r1), 0, 0 /* qr0 */
 /* 80522738  CB E1 00 F0 */	lfd f31, 0xf0(r1)
 /* 8052273C  E3 C1 00 E8 */	psq_l f30, 232(r1), 0, 0 /* qr0 */
@@ -659,7 +659,7 @@ lbl_80522714:
 /* 80522754  E3 61 00 B8 */	psq_l f27, 184(r1), 0, 0 /* qr0 */
 /* 80522758  CB 61 00 B0 */	lfd f27, 0xb0(r1)
 /* 8052275C  39 61 00 B0 */	addi r11, r1, 0xb0
-/* 80522760  4B E3 FA A4 */	b _restgpr_20
+/* 80522760  4B E3 FA A5 */	bl _restgpr_20
 /* 80522764  80 01 01 04 */	lwz r0, 0x104(r1)
 /* 80522768  7C 08 03 A6 */	mtlr r0
 /* 8052276C  38 21 01 00 */	addi r1, r1, 0x100

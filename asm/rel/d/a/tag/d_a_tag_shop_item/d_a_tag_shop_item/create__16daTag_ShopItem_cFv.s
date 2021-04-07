@@ -10,9 +10,9 @@ lbl_80D60B78:
 /* 80D60B98  40 82 00 28 */	bne lbl_80D60BC0
 /* 80D60B9C  28 1F 00 00 */	cmplwi r31, 0
 /* 80D60BA0  41 82 00 14 */	beq lbl_80D60BB4
-/* 80D60BA4  4B 2B 7F C0 */	b __ct__10fopAc_ac_cFv
-/* 80D60BA8  3C 60 80 D6 */	lis r3, __vt__16daTag_ShopItem_c@ha
-/* 80D60BAC  38 03 12 40 */	addi r0, r3, __vt__16daTag_ShopItem_c@l
+/* 80D60BA4  4B 2B 7F C1 */	bl __ct__10fopAc_ac_cFv
+/* 80D60BA8  3C 60 80 D6 */	lis r3, __vt__16daTag_ShopItem_c@ha /* 0x80D61240@ha */
+/* 80D60BAC  38 03 12 40 */	addi r0, r3, __vt__16daTag_ShopItem_c@l /* 0x80D61240@l */
 /* 80D60BB0  90 1F 05 68 */	stw r0, 0x568(r31)
 lbl_80D60BB4:
 /* 80D60BB4  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
@@ -23,36 +23,36 @@ lbl_80D60BC0:
 /* 80D60BC4  48 00 04 99 */	bl initialize__16daTag_ShopItem_cFv
 /* 80D60BC8  38 00 00 00 */	li r0, 0
 /* 80D60BCC  98 1F 05 72 */	stb r0, 0x572(r31)
-/* 80D60BD0  3C 60 80 D6 */	lis r3, stringBase0@ha
-/* 80D60BD4  38 63 11 E8 */	addi r3, r3, stringBase0@l
-/* 80D60BD8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80D60BDC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80D60BD0  3C 60 80 D6 */	lis r3, d_a_tag_shop_item__stringBase0@ha /* 0x80D611E8@ha */
+/* 80D60BD4  38 63 11 E8 */	addi r3, r3, d_a_tag_shop_item__stringBase0@l /* 0x80D611E8@l */
+/* 80D60BD8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D60BDC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D60BE0  38 84 4E 00 */	addi r4, r4, 0x4e00
-/* 80D60BE4  4B 60 7D B0 */	b strcmp
+/* 80D60BE4  4B 60 7D B1 */	bl strcmp
 /* 80D60BE8  2C 03 00 00 */	cmpwi r3, 0
 /* 80D60BEC  40 82 00 68 */	bne lbl_80D60C54
-/* 80D60BF0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80D60BF4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80D60BF0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D60BF4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D60BF8  38 63 07 F0 */	addi r3, r3, 0x7f0
-/* 80D60BFC  3C 80 80 3A */	lis r4, saveBitLabels__16dSv_event_flag_c@ha
-/* 80D60C00  38 84 72 88 */	addi r4, r4, saveBitLabels__16dSv_event_flag_c@l
+/* 80D60BFC  3C 80 80 3A */	lis r4, saveBitLabels__16dSv_event_flag_c@ha /* 0x803A7288@ha */
+/* 80D60C00  38 84 72 88 */	addi r4, r4, saveBitLabels__16dSv_event_flag_c@l /* 0x803A7288@l */
 /* 80D60C04  A0 84 00 80 */	lhz r4, 0x80(r4)
-/* 80D60C08  4B 2D 3D B4 */	b isEventBit__11dSv_event_cCFUs
+/* 80D60C08  4B 2D 3D B5 */	bl isEventBit__11dSv_event_cCFUs
 /* 80D60C0C  2C 03 00 00 */	cmpwi r3, 0
 /* 80D60C10  40 82 00 0C */	bne lbl_80D60C1C
 /* 80D60C14  38 60 00 05 */	li r3, 5
 /* 80D60C18  48 00 01 48 */	b lbl_80D60D60
 lbl_80D60C1C:
-/* 80D60C1C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80D60C20  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80D60C1C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D60C20  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D60C24  C0 23 00 34 */	lfs f1, 0x34(r3)
-/* 80D60C28  3C 60 80 D6 */	lis r3, lit_3684@ha
-/* 80D60C2C  C0 03 11 D0 */	lfs f0, lit_3684@l(r3)
+/* 80D60C28  3C 60 80 D6 */	lis r3, lit_3684@ha /* 0x80D611D0@ha */
+/* 80D60C2C  C0 03 11 D0 */	lfs f0, lit_3684@l(r3)  /* 0x80D611D0@l */
 /* 80D60C30  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80D60C34  4C 41 13 82 */	cror 2, 1, 2
 /* 80D60C38  40 82 00 1C */	bne lbl_80D60C54
-/* 80D60C3C  3C 60 80 D6 */	lis r3, lit_3685@ha
-/* 80D60C40  C0 03 11 D4 */	lfs f0, lit_3685@l(r3)
+/* 80D60C3C  3C 60 80 D6 */	lis r3, lit_3685@ha /* 0x80D611D4@ha */
+/* 80D60C40  C0 03 11 D4 */	lfs f0, lit_3685@l(r3)  /* 0x80D611D4@l */
 /* 80D60C44  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80D60C48  40 80 00 0C */	bge lbl_80D60C54
 /* 80D60C4C  38 60 00 05 */	li r3, 5
@@ -73,18 +73,18 @@ lbl_80D60C54:
 /* 80D60C84  7F E3 FB 78 */	mr r3, r31
 /* 80D60C88  48 00 03 BD */	bl getSwitchBit1__16daTag_ShopItem_cFv
 /* 80D60C8C  54 64 06 3E */	clrlwi r4, r3, 0x18
-/* 80D60C90  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80D60C94  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80D60C90  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D60C94  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D60C98  3B C3 09 58 */	addi r30, r3, 0x958
 /* 80D60C9C  7F C3 F3 78 */	mr r3, r30
-/* 80D60CA0  4B 2D 3B C0 */	b isSwitch__12dSv_memBit_cCFi
+/* 80D60CA0  4B 2D 3B C1 */	bl isSwitch__12dSv_memBit_cCFi
 /* 80D60CA4  2C 03 00 00 */	cmpwi r3, 0
 /* 80D60CA8  40 82 00 B4 */	bne lbl_80D60D5C
 /* 80D60CAC  7F E3 FB 78 */	mr r3, r31
 /* 80D60CB0  48 00 03 A1 */	bl getSwitchBit2__16daTag_ShopItem_cFv
 /* 80D60CB4  54 64 06 3E */	clrlwi r4, r3, 0x18
 /* 80D60CB8  7F C3 F3 78 */	mr r3, r30
-/* 80D60CBC  4B 2D 3B 54 */	b onSwitch__12dSv_memBit_cFi
+/* 80D60CBC  4B 2D 3B 55 */	bl onSwitch__12dSv_memBit_cFi
 /* 80D60CC0  38 00 00 01 */	li r0, 1
 /* 80D60CC4  98 1F 05 72 */	stb r0, 0x572(r31)
 /* 80D60CC8  38 00 00 00 */	li r0, 0
@@ -101,10 +101,10 @@ lbl_80D60CD4:
 /* 80D60CF0  7F E3 FB 78 */	mr r3, r31
 /* 80D60CF4  48 00 03 51 */	bl getSwitchBit1__16daTag_ShopItem_cFv
 /* 80D60CF8  54 64 06 3E */	clrlwi r4, r3, 0x18
-/* 80D60CFC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80D60D00  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80D60CFC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D60D00  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D60D04  38 63 09 58 */	addi r3, r3, 0x958
-/* 80D60D08  4B 2D 3B 58 */	b isSwitch__12dSv_memBit_cCFi
+/* 80D60D08  4B 2D 3B 59 */	bl isSwitch__12dSv_memBit_cCFi
 /* 80D60D0C  2C 03 00 00 */	cmpwi r3, 0
 /* 80D60D10  41 82 00 0C */	beq lbl_80D60D1C
 /* 80D60D14  38 00 00 96 */	li r0, 0x96
@@ -118,10 +118,10 @@ lbl_80D60D1C:
 /* 80D60D30  7F E3 FB 78 */	mr r3, r31
 /* 80D60D34  48 00 03 1D */	bl getSwitchBit2__16daTag_ShopItem_cFv
 /* 80D60D38  54 64 06 3E */	clrlwi r4, r3, 0x18
-/* 80D60D3C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80D60D40  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80D60D3C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D60D40  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D60D44  38 63 09 58 */	addi r3, r3, 0x958
-/* 80D60D48  4B 2D 3B 18 */	b isSwitch__12dSv_memBit_cCFi
+/* 80D60D48  4B 2D 3B 19 */	bl isSwitch__12dSv_memBit_cCFi
 /* 80D60D4C  2C 03 00 00 */	cmpwi r3, 0
 /* 80D60D50  40 82 00 0C */	bne lbl_80D60D5C
 /* 80D60D54  38 00 00 96 */	li r0, 0x96

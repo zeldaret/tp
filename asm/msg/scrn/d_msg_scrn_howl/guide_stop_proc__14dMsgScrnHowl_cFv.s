@@ -4,8 +4,8 @@ lbl_80241E80:
 /* 80241E88  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80241E8C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80241E90  7C 7F 1B 78 */	mr r31, r3
-/* 80241E94  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80241E98  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80241E94  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80241E98  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80241E9C  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 80241EA0  81 83 06 28 */	lwz r12, 0x628(r3)
 /* 80241EA4  81 8C 02 98 */	lwz r12, 0x298(r12)
@@ -19,8 +19,8 @@ lbl_80241E80:
 /* 80241EC4  54 00 10 3A */	slwi r0, r0, 2
 /* 80241EC8  7C 7F 02 14 */	add r3, r31, r0
 /* 80241ECC  D0 23 01 80 */	stfs f1, 0x180(r3)
-/* 80241ED0  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 80241ED4  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 80241ED0  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 80241ED4  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 80241ED8  80 03 00 30 */	lwz r0, 0x30(r3)
 /* 80241EDC  54 00 05 EF */	rlwinm. r0, r0, 0, 0x17, 0x17
 /* 80241EE0  41 82 00 18 */	beq lbl_80241EF8

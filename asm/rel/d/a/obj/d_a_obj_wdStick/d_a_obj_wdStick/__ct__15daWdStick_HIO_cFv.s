@@ -1,9 +1,9 @@
 lbl_80D31B4C:
-/* 80D31B4C  3C 80 80 D3 */	lis r4, __vt__14mDoHIO_entry_c@ha
-/* 80D31B50  38 04 44 04 */	addi r0, r4, __vt__14mDoHIO_entry_c@l
+/* 80D31B4C  3C 80 80 D3 */	lis r4, __vt__14mDoHIO_entry_c@ha /* 0x80D34404@ha */
+/* 80D31B50  38 04 44 04 */	addi r0, r4, __vt__14mDoHIO_entry_c@l /* 0x80D34404@l */
 /* 80D31B54  90 03 00 00 */	stw r0, 0(r3)
-/* 80D31B58  3C 80 80 D3 */	lis r4, __vt__15daWdStick_HIO_c@ha
-/* 80D31B5C  38 04 43 F8 */	addi r0, r4, __vt__15daWdStick_HIO_c@l
+/* 80D31B58  3C 80 80 D3 */	lis r4, __vt__15daWdStick_HIO_c@ha /* 0x80D343F8@ha */
+/* 80D31B5C  38 04 43 F8 */	addi r0, r4, __vt__15daWdStick_HIO_c@l /* 0x80D343F8@l */
 /* 80D31B60  90 03 00 00 */	stw r0, 0(r3)
 /* 80D31B64  38 00 00 3C */	li r0, 0x3c
 /* 80D31B68  98 03 00 04 */	stb r0, 4(r3)

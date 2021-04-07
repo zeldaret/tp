@@ -42,8 +42,8 @@ lbl_801F29F0:
 /* 801F2A28  39 00 00 00 */	li r8, 0
 /* 801F2A2C  48 0B 8F 59 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 801F2A30  88 1F 00 54 */	lbz r0, 0x54(r31)
-/* 801F2A34  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801F2A38  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801F2A34  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801F2A38  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801F2A3C  98 03 0F 18 */	stb r0, 0xf18(r3)
 /* 801F2A40  38 00 00 00 */	li r0, 0
 /* 801F2A44  98 03 0F 1A */	stb r0, 0xf1a(r3)

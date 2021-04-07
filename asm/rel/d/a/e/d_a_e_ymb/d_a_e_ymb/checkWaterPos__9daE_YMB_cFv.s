@@ -5,8 +5,8 @@ lbl_80817064:
 /* 80817070  93 E1 00 6C */	stw r31, 0x6c(r1)
 /* 80817074  93 C1 00 68 */	stw r30, 0x68(r1)
 /* 80817078  7C 7E 1B 78 */	mr r30, r3
-/* 8081707C  3C 60 80 82 */	lis r3, lit_3791@ha
-/* 80817080  3B E3 18 AC */	addi r31, r3, lit_3791@l
+/* 8081707C  3C 60 80 82 */	lis r3, lit_3791@ha /* 0x808218AC@ha */
+/* 80817080  3B E3 18 AC */	addi r31, r3, lit_3791@l /* 0x808218AC@l */
 /* 80817084  80 7E 04 D0 */	lwz r3, 0x4d0(r30)
 /* 80817088  80 1E 04 D4 */	lwz r0, 0x4d4(r30)
 /* 8081708C  90 61 00 08 */	stw r3, 8(r1)
@@ -18,23 +18,23 @@ lbl_80817064:
 /* 808170A4  EC 01 00 2A */	fadds f0, f1, f0
 /* 808170A8  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 808170AC  38 61 00 14 */	addi r3, r1, 0x14
-/* 808170B0  4B 86 07 00 */	b __ct__18dBgS_ObjGndChk_SplFv
+/* 808170B0  4B 86 07 01 */	bl __ct__18dBgS_ObjGndChk_SplFv
 /* 808170B4  38 61 00 14 */	addi r3, r1, 0x14
 /* 808170B8  38 81 00 08 */	addi r4, r1, 8
-/* 808170BC  4B A5 0C 50 */	b SetPos__11cBgS_GndChkFPC3Vec
-/* 808170C0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 808170C4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 808170BC  4B A5 0C 51 */	bl SetPos__11cBgS_GndChkFPC3Vec
+/* 808170C0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 808170C4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 808170C8  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 808170CC  38 81 00 14 */	addi r4, r1, 0x14
-/* 808170D0  4B 85 D3 D0 */	b GroundCross__4cBgSFP11cBgS_GndChk
+/* 808170D0  4B 85 D3 D1 */	bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 808170D4  C0 1F 00 60 */	lfs f0, 0x60(r31)
 /* 808170D8  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 808170DC  41 82 00 64 */	beq lbl_80817140
 /* 808170E0  D0 3E 06 CC */	stfs f1, 0x6cc(r30)
 /* 808170E4  C0 1F 00 5C */	lfs f0, 0x5c(r31)
 /* 808170E8  EC 20 08 2A */	fadds f1, f0, f1
-/* 808170EC  3C 60 80 82 */	lis r3, l_HIO@ha
-/* 808170F0  38 63 1E 64 */	addi r3, r3, l_HIO@l
+/* 808170EC  3C 60 80 82 */	lis r3, l_HIO@ha /* 0x80821E64@ha */
+/* 808170F0  38 63 1E 64 */	addi r3, r3, l_HIO@l /* 0x80821E64@l */
 /* 808170F4  C0 03 00 1C */	lfs f0, 0x1c(r3)
 /* 808170F8  EC 01 00 2A */	fadds f0, f1, f0
 /* 808170FC  D0 1E 06 A0 */	stfs f0, 0x6a0(r30)
@@ -59,7 +59,7 @@ lbl_80817138:
 lbl_80817140:
 /* 80817140  38 61 00 14 */	addi r3, r1, 0x14
 /* 80817144  38 80 FF FF */	li r4, -1
-/* 80817148  4B 86 07 00 */	b __dt__18dBgS_ObjGndChk_SplFv
+/* 80817148  4B 86 07 01 */	bl __dt__18dBgS_ObjGndChk_SplFv
 /* 8081714C  83 E1 00 6C */	lwz r31, 0x6c(r1)
 /* 80817150  83 C1 00 68 */	lwz r30, 0x68(r1)
 /* 80817154  80 01 00 74 */	lwz r0, 0x74(r1)

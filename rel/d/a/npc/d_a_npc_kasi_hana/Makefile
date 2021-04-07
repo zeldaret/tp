@@ -3,19 +3,20 @@
 #
 
 M323_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_hana.plf
+M323_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_hana.lcf
+M323_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_hana.map
 
 M323_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_kasi_hana/executor.cpp \
-	rel/d/a/npc/d_a_npc_kasi_hana/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_kasi_hana/d_a_npc_kasi_hana.cpp \
 
 M323_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_hana/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_hana/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_hana/d_a_npc_kasi_hana.o \
 
 M323_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_hana/libRuntime.PPCEABI.H.a \
 
 M323_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M323_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M323_LDSCRIPT) \
+	-unused -map $(M323_MAP) \
+	-w off \
 
 $(M323_TARGET): $(M323_O_FILES) $(M323_LIBS)
+	@echo [323] creating $(M323_TARGET)
 	@echo $(M323_LIBS) $(M323_O_FILES) > build/M323_ofiles
-	$(LD) -partial $(M323_LDFLAGS) -o $(M323_TARGET) @build/M323_ofiles
+	@python3 tools/lcf.py rel 323 --output $(M323_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M323_LDFLAGS) -o $(M323_TARGET) @build/M323_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kasi_hana/%.o: rel/d/a/npc/d_a_npc_kasi_hana/%.cpp
+	@echo [323] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M323_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M323_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_kasi_hana/libs/Runtime.PPCEABI.H/Makefile
 

@@ -3,19 +3,20 @@
 #
 
 M298_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_doc.plf
+M298_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_doc.lcf
+M298_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_doc.map
 
 M298_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_doc/executor.cpp \
-	rel/d/a/npc/d_a_npc_doc/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_doc/d_a_npc_doc.cpp \
 
 M298_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_doc/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_doc/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_doc/d_a_npc_doc.o \
 
 M298_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_doc/libRuntime.PPCEABI.H.a \
 
 M298_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M298_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M298_LDSCRIPT) \
+	-unused -map $(M298_MAP) \
+	-w off \
 
 $(M298_TARGET): $(M298_O_FILES) $(M298_LIBS)
+	@echo [298] creating $(M298_TARGET)
 	@echo $(M298_LIBS) $(M298_O_FILES) > build/M298_ofiles
-	$(LD) -partial $(M298_LDFLAGS) -o $(M298_TARGET) @build/M298_ofiles
+	@python3 tools/lcf.py rel 298 --output $(M298_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M298_LDFLAGS) -o $(M298_TARGET) @build/M298_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_doc/%.o: rel/d/a/npc/d_a_npc_doc/%.cpp
+	@echo [298] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M298_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M298_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_doc/libs/Runtime.PPCEABI.H/Makefile
 

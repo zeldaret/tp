@@ -10,8 +10,8 @@ lbl_8013890C:
 /* 8013892C  4B F8 96 41 */	bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80138930  7F C3 F3 78 */	mr r3, r30
 /* 80138934  38 80 00 3A */	li r4, 0x3a
-/* 80138938  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlSwim_c0@ha
-/* 8013893C  38 A5 F8 B4 */	addi r5, r5, m__20daAlinkHIO_wlSwim_c0@l
+/* 80138938  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlSwim_c0@ha /* 0x8038F8B4@ha */
+/* 8013893C  38 A5 F8 B4 */	addi r5, r5, m__20daAlinkHIO_wlSwim_c0@l /* 0x8038F8B4@l */
 /* 80138940  38 A5 00 14 */	addi r5, r5, 0x14
 /* 80138944  4B FF 0F 05 */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 80138948  7F C3 F3 78 */	mr r3, r30

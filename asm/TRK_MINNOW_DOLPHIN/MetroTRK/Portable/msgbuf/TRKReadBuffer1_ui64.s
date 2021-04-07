@@ -1,12 +1,12 @@
 lbl_8036D1A4:
 /* 8036D1A4  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8036D1A8  7C 08 02 A6 */	mflr r0
-/* 8036D1AC  3C A0 80 45 */	lis r5, gTRKBigEndian@ha
+/* 8036D1AC  3C A0 80 45 */	lis r5, gTRKBigEndian@ha /* 0x8044D8B8@ha */
 /* 8036D1B0  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8036D1B4  BF 61 00 1C */	stmw r27, 0x1c(r1)
 /* 8036D1B8  7C 7B 1B 78 */	mr r27, r3
 /* 8036D1BC  7C 9E 23 78 */	mr r30, r4
-/* 8036D1C0  80 05 D8 B8 */	lwz r0, gTRKBigEndian@l(r5)
+/* 8036D1C0  80 05 D8 B8 */	lwz r0, gTRKBigEndian@l(r5)  /* 0x8044D8B8@l */
 /* 8036D1C4  2C 00 00 00 */	cmpwi r0, 0
 /* 8036D1C8  41 82 00 0C */	beq lbl_8036D1D4
 /* 8036D1CC  7F DF F3 78 */	mr r31, r30
@@ -30,10 +30,10 @@ lbl_8036D1FC:
 /* 8036D208  7C 9B 22 14 */	add r4, r27, r4
 /* 8036D20C  4B C9 63 B5 */	bl TRK_memcpy
 /* 8036D210  80 1B 00 0C */	lwz r0, 0xc(r27)
-/* 8036D214  3C 60 80 45 */	lis r3, gTRKBigEndian@ha
+/* 8036D214  3C 60 80 45 */	lis r3, gTRKBigEndian@ha /* 0x8044D8B8@ha */
 /* 8036D218  7C 00 E2 14 */	add r0, r0, r28
 /* 8036D21C  90 1B 00 0C */	stw r0, 0xc(r27)
-/* 8036D220  80 03 D8 B8 */	lwz r0, gTRKBigEndian@l(r3)
+/* 8036D220  80 03 D8 B8 */	lwz r0, gTRKBigEndian@l(r3)  /* 0x8044D8B8@l */
 /* 8036D224  2C 00 00 00 */	cmpwi r0, 0
 /* 8036D228  40 82 00 4C */	bne lbl_8036D274
 /* 8036D22C  2C 1D 00 00 */	cmpwi r29, 0

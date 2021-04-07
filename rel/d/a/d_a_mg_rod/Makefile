@@ -3,19 +3,20 @@
 #
 
 M50_TARGET := $(BUILD_DIR)/rel/d/a/d_a_mg_rod.plf
+M50_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_mg_rod.lcf
+M50_MAP := $(BUILD_DIR)/rel/d/a/d_a_mg_rod.map
 
 M50_CPP_FILES := \
-	rel/d/a/d_a_mg_rod/executor.cpp \
-	rel/d/a/d_a_mg_rod/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_mg_rod/d_a_mg_rod.cpp \
 
 M50_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_mg_rod/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_mg_rod/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_mg_rod/d_a_mg_rod.o \
 
 M50_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_mg_rod/libRuntime.PPCEABI.H.a \
 
 M50_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M50_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M50_LDSCRIPT) \
+	-unused -map $(M50_MAP) \
+	-w off \
 
 $(M50_TARGET): $(M50_O_FILES) $(M50_LIBS)
+	@echo [ 50] creating $(M50_TARGET)
 	@echo $(M50_LIBS) $(M50_O_FILES) > build/M50_ofiles
-	$(LD) -partial $(M50_LDFLAGS) -o $(M50_TARGET) @build/M50_ofiles
+	@python3 tools/lcf.py rel 50 --output $(M50_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M50_LDFLAGS) -o $(M50_TARGET) @build/M50_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_mg_rod/%.o: rel/d/a/d_a_mg_rod/%.cpp
+	@echo [ 50] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M50_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M50_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_mg_rod/libs/Runtime.PPCEABI.H/Makefile
 

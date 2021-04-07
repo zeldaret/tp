@@ -5,18 +5,18 @@ lbl_80A02918:
 /* 80A02924  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80A02928  7C 7F 1B 78 */	mr r31, r3
 /* 80A0292C  38 7F 0F AC */	addi r3, r31, 0xfac
-/* 80A02930  4B 95 F6 E8 */	b __ptmf_test
+/* 80A02930  4B 95 F6 E9 */	bl __ptmf_test
 /* 80A02934  2C 03 00 00 */	cmpwi r3, 0
 /* 80A02938  41 82 00 54 */	beq lbl_80A0298C
 /* 80A0293C  38 7F 0F B8 */	addi r3, r31, 0xfb8
 /* 80A02940  38 9F 0F AC */	addi r4, r31, 0xfac
-/* 80A02944  4B 95 F7 04 */	b __ptmf_cmpr
+/* 80A02944  4B 95 F7 05 */	bl __ptmf_cmpr
 /* 80A02948  2C 03 00 00 */	cmpwi r3, 0
 /* 80A0294C  40 82 00 1C */	bne lbl_80A02968
 /* 80A02950  7F E3 FB 78 */	mr r3, r31
 /* 80A02954  38 80 00 00 */	li r4, 0
 /* 80A02958  39 9F 0F B8 */	addi r12, r31, 0xfb8
-/* 80A0295C  4B 95 F7 28 */	b __ptmf_scall
+/* 80A0295C  4B 95 F7 29 */	bl __ptmf_scall
 /* 80A02960  60 00 00 00 */	nop 
 /* 80A02964  48 00 00 28 */	b lbl_80A0298C
 lbl_80A02968:

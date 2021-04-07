@@ -5,8 +5,8 @@ lbl_80B05C7C:
 /* 80B05C88  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80B05C8C  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80B05C90  7C 7E 1B 78 */	mr r30, r3
-/* 80B05C94  3C 80 80 B1 */	lis r4, lit_3999@ha
-/* 80B05C98  3B E4 C1 C4 */	addi r31, r4, lit_3999@l
+/* 80B05C94  3C 80 80 B1 */	lis r4, lit_3999@ha /* 0x80B0C1C4@ha */
+/* 80B05C98  3B E4 C1 C4 */	addi r31, r4, lit_3999@l /* 0x80B0C1C4@l */
 /* 80B05C9C  48 00 14 79 */	bl checkAttackDemo__10daNPC_TK_cFv
 /* 80B05CA0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80B05CA4  40 82 02 0C */	bne lbl_80B05EB0
@@ -27,15 +27,15 @@ lbl_80B05CD8:
 /* 80B05CD8  38 00 00 01 */	li r0, 1
 /* 80B05CDC  90 1E 06 94 */	stw r0, 0x694(r30)
 lbl_80B05CE0:
-/* 80B05CE0  3C 60 80 B0 */	lis r3, s_hanjo__FPvPv@ha
-/* 80B05CE4  38 63 22 08 */	addi r3, r3, s_hanjo__FPvPv@l
+/* 80B05CE0  3C 60 80 B0 */	lis r3, s_hanjo__FPvPv@ha /* 0x80B02208@ha */
+/* 80B05CE4  38 63 22 08 */	addi r3, r3, s_hanjo__FPvPv@l /* 0x80B02208@l */
 /* 80B05CE8  7F C4 F3 78 */	mr r4, r30
-/* 80B05CEC  4B 51 B6 4C */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80B05CEC  4B 51 B6 4D */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 80B05CF0  90 7E 06 38 */	stw r3, 0x638(r30)
 /* 80B05CF4  80 7E 06 38 */	lwz r3, 0x638(r30)
 /* 80B05CF8  28 03 00 00 */	cmplwi r3, 0
 /* 80B05CFC  41 82 00 38 */	beq lbl_80B05D34
-/* 80B05D00  4B EF 3F 98 */	b getType__13daNpc_Hanjo_cFv
+/* 80B05D00  4B EF 3F 99 */	bl getType__13daNpc_Hanjo_cFv
 /* 80B05D04  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80B05D08  28 00 00 01 */	cmplwi r0, 1
 /* 80B05D0C  40 82 00 28 */	bne lbl_80B05D34
@@ -61,7 +61,7 @@ lbl_80B05D44:
 /* 80B05D54  C0 5F 00 00 */	lfs f2, 0(r31)
 /* 80B05D58  4B FF B7 41 */	bl setBck__10daNPC_TK_cFiUcff
 /* 80B05D5C  C0 3F 00 84 */	lfs f1, 0x84(r31)
-/* 80B05D60  4B 76 1B F4 */	b cM_rndF__Ff
+/* 80B05D60  4B 76 1B F5 */	bl cM_rndF__Ff
 /* 80B05D64  C0 1F 00 38 */	lfs f0, 0x38(r31)
 /* 80B05D68  EC 00 08 2A */	fadds f0, f0, f1
 /* 80B05D6C  FC 00 00 1E */	fctiwz f0, f0
@@ -78,11 +78,11 @@ lbl_80B05D88:
 /* 80B05D94  80 7E 05 70 */	lwz r3, 0x570(r30)
 /* 80B05D98  38 63 00 0C */	addi r3, r3, 0xc
 /* 80B05D9C  C0 3F 00 30 */	lfs f1, 0x30(r31)
-/* 80B05DA0  4B 82 26 8C */	b checkPass__12J3DFrameCtrlFf
+/* 80B05DA0  4B 82 26 8D */	bl checkPass__12J3DFrameCtrlFf
 /* 80B05DA4  2C 03 00 00 */	cmpwi r3, 0
 /* 80B05DA8  41 82 00 54 */	beq lbl_80B05DFC
 /* 80B05DAC  C0 3F 00 00 */	lfs f1, 0(r31)
-/* 80B05DB0  4B 76 1B A4 */	b cM_rndF__Ff
+/* 80B05DB0  4B 76 1B A5 */	bl cM_rndF__Ff
 /* 80B05DB4  C0 1F 00 CC */	lfs f0, 0xcc(r31)
 /* 80B05DB8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80B05DBC  40 80 00 20 */	bge lbl_80B05DDC

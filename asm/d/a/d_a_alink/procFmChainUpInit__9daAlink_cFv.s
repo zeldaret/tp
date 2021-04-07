@@ -26,8 +26,8 @@ lbl_800E7C80:
 /* 800E7C88  4B FD A2 E5 */	bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800E7C8C  7F E3 FB 78 */	mr r3, r31
 /* 800E7C90  38 80 01 81 */	li r4, 0x181
-/* 800E7C94  3C A0 80 39 */	lis r5, m__21daAlinkHIO_fmChain_c0@ha
-/* 800E7C98  38 A5 E7 CC */	addi r5, r5, m__21daAlinkHIO_fmChain_c0@l
+/* 800E7C94  3C A0 80 39 */	lis r5, m__21daAlinkHIO_fmChain_c0@ha /* 0x8038E7CC@ha */
+/* 800E7C98  38 A5 E7 CC */	addi r5, r5, m__21daAlinkHIO_fmChain_c0@l /* 0x8038E7CC@l */
 /* 800E7C9C  4B FC 54 59 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800E7CA0  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 800E7CA4  D0 1F 33 98 */	stfs f0, 0x3398(r31)

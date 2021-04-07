@@ -3,17 +3,15 @@
 #
 
 M627_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_snow_soup.plf
+M627_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_snow_soup.lcf
+M627_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_snow_soup.map
 
 M627_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_snow_soup/executor.cpp \
-	rel/d/a/obj/d_a_obj_snow_soup/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_snow_soup/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_snow_soup/d_a_obj_snow_soup.cpp \
 
 M627_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_snow_soup/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_snow_soup/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_snow_soup/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_snow_soup/d_a_obj_snow_soup.o \
 
 M627_LIBS := \
@@ -29,14 +27,21 @@ M627_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M627_LDSCRIPT) \
+	-unused -map $(M627_MAP) \
+	-w off \
 
 $(M627_TARGET): $(M627_O_FILES) $(M627_LIBS)
+	@echo [627] creating $(M627_TARGET)
 	@echo $(M627_LIBS) $(M627_O_FILES) > build/M627_ofiles
-	$(LD) -partial $(M627_LDFLAGS) -o $(M627_TARGET) @build/M627_ofiles
+	@python3 tools/lcf.py rel 627 --output $(M627_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M627_LDFLAGS) -o $(M627_TARGET) @build/M627_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_snow_soup/%.o: rel/d/a/obj/d_a_obj_snow_soup/%.cpp
+	@echo [627] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M627_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M627_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

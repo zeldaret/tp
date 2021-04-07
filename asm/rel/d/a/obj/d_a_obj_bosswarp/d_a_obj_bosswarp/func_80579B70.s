@@ -11,27 +11,27 @@ lbl_80579B70:
 /* 80579B94  7F C0 F3 79 */	or. r0, r30, r30
 /* 80579B98  41 82 00 14 */	beq lbl_80579BAC
 /* 80579B9C  7C 1F 03 78 */	mr r31, r0
-/* 80579BA0  4B A9 EF C4 */	b __ct__10fopAc_ac_cFv
+/* 80579BA0  4B A9 EF C5 */	bl __ct__10fopAc_ac_cFv
 /* 80579BA4  38 7F 05 D0 */	addi r3, r31, 0x5d0
-/* 80579BA8  4B CD 03 58 */	b __ct__10dMsgFlow_cFv
+/* 80579BA8  4B CD 03 59 */	bl __ct__10dMsgFlow_cFv
 lbl_80579BAC:
 /* 80579BAC  80 1E 04 A0 */	lwz r0, 0x4a0(r30)
 /* 80579BB0  60 00 00 08 */	ori r0, r0, 8
 /* 80579BB4  90 1E 04 A0 */	stw r0, 0x4a0(r30)
 lbl_80579BB8:
 /* 80579BB8  38 7E 05 68 */	addi r3, r30, 0x568
-/* 80579BBC  3C 80 80 58 */	lis r4, l_arcName@ha
-/* 80579BC0  38 84 B6 78 */	addi r4, r4, l_arcName@l
+/* 80579BBC  3C 80 80 58 */	lis r4, l_arcName@ha /* 0x8057B678@ha */
+/* 80579BC0  38 84 B6 78 */	addi r4, r4, l_arcName@l /* 0x8057B678@l */
 /* 80579BC4  80 84 00 00 */	lwz r4, 0(r4)
-/* 80579BC8  4B AB 32 F4 */	b dComIfG_resLoad__FP30request_of_phase_process_classPCc
+/* 80579BC8  4B AB 32 F5 */	bl dComIfG_resLoad__FP30request_of_phase_process_classPCc
 /* 80579BCC  7C 7F 1B 78 */	mr r31, r3
 /* 80579BD0  2C 1F 00 04 */	cmpwi r31, 4
 /* 80579BD4  40 82 00 40 */	bne lbl_80579C14
 /* 80579BD8  7F C3 F3 78 */	mr r3, r30
-/* 80579BDC  3C 80 80 58 */	lis r4, CheckCreateHeap__FP10fopAc_ac_c@ha
-/* 80579BE0  38 84 96 38 */	addi r4, r4, CheckCreateHeap__FP10fopAc_ac_c@l
+/* 80579BDC  3C 80 80 58 */	lis r4, CheckCreateHeap__FP10fopAc_ac_c@ha /* 0x80579638@ha */
+/* 80579BE0  38 84 96 38 */	addi r4, r4, CheckCreateHeap__FP10fopAc_ac_c@l /* 0x80579638@l */
 /* 80579BE4  38 A0 18 E0 */	li r5, 0x18e0
-/* 80579BE8  4B AA 08 C8 */	b fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
+/* 80579BE8  4B AA 08 C9 */	bl fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
 /* 80579BEC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80579BF0  40 82 00 0C */	bne lbl_80579BFC
 /* 80579BF4  38 60 00 05 */	li r3, 5

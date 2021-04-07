@@ -72,12 +72,12 @@ lbl_8059EAAC:
 /* 8059EAB0  41 82 00 08 */	beq lbl_8059EAB8
 /* 8059EAB4  48 00 01 20 */	b lbl_8059EBD4
 lbl_8059EAB8:
-/* 8059EAB8  3C 60 80 5A */	lis r3, stringBase0@ha
-/* 8059EABC  38 63 F4 8C */	addi r3, r3, stringBase0@l
-/* 8059EAC0  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8059EAC4  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8059EAB8  3C 60 80 5A */	lis r3, d_a_shop_item__stringBase0@ha /* 0x8059F48C@ha */
+/* 8059EABC  38 63 F4 8C */	addi r3, r3, d_a_shop_item__stringBase0@l /* 0x8059F48C@l */
+/* 8059EAC0  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8059EAC4  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8059EAC8  38 84 4E 00 */	addi r4, r4, 0x4e00
-/* 8059EACC  4B DC 9E C8 */	b strcmp
+/* 8059EACC  4B DC 9E C9 */	bl strcmp
 /* 8059EAD0  2C 03 00 00 */	cmpwi r3, 0
 /* 8059EAD4  40 82 00 10 */	bne lbl_8059EAE4
 /* 8059EAD8  38 00 00 14 */	li r0, 0x14
@@ -169,8 +169,8 @@ lbl_8059EBD4:
 lbl_8059EBDC:
 /* 8059EBDC  88 1F 09 64 */	lbz r0, 0x964(r31)
 /* 8059EBE0  1C 00 00 30 */	mulli r0, r0, 0x30
-/* 8059EBE4  3C 60 80 38 */	lis r3, mData__12daShopItem_c@ha
-/* 8059EBE8  38 63 92 E8 */	addi r3, r3, mData__12daShopItem_c@l
+/* 8059EBE4  3C 60 80 38 */	lis r3, mData__12daShopItem_c@ha /* 0x803792E8@ha */
+/* 8059EBE8  38 63 92 E8 */	addi r3, r3, mData__12daShopItem_c@l /* 0x803792E8@l */
 /* 8059EBEC  7C 63 00 2E */	lwzx r3, r3, r0
 lbl_8059EBF0:
 /* 8059EBF0  83 E1 00 0C */	lwz r31, 0xc(r1)

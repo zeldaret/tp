@@ -3,17 +3,15 @@
 #
 
 M705_TARGET := $(BUILD_DIR)/rel/d/a/d_a_skip_2D.plf
+M705_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_skip_2D.lcf
+M705_MAP := $(BUILD_DIR)/rel/d/a/d_a_skip_2D.map
 
 M705_CPP_FILES := \
-	rel/d/a/d_a_skip_2D/executor.cpp \
-	rel/d/a/d_a_skip_2D/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_skip_2D/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_skip_2D/d_a_skip_2D.cpp \
 
 M705_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_skip_2D/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_skip_2D/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_skip_2D/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_skip_2D/d_a_skip_2D.o \
 
 M705_LIBS := \
@@ -29,14 +27,21 @@ M705_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M705_LDSCRIPT) \
+	-unused -map $(M705_MAP) \
+	-w off \
 
 $(M705_TARGET): $(M705_O_FILES) $(M705_LIBS)
+	@echo [705] creating $(M705_TARGET)
 	@echo $(M705_LIBS) $(M705_O_FILES) > build/M705_ofiles
-	$(LD) -partial $(M705_LDFLAGS) -o $(M705_TARGET) @build/M705_ofiles
+	@python3 tools/lcf.py rel 705 --output $(M705_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M705_LDFLAGS) -o $(M705_TARGET) @build/M705_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_skip_2D/%.o: rel/d/a/d_a_skip_2D/%.cpp
+	@echo [705] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M705_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M705_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

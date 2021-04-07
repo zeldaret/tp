@@ -4,8 +4,8 @@ lbl_8029C6C4:
 /* 8029C6CC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8029C6D0  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8029C6D4  38 60 00 03 */	li r3, 3
-/* 8029C6D8  3C 80 80 3A */	lis r4, JASAiCtrl__stringBase0@ha
-/* 8029C6DC  38 84 B2 F0 */	addi r4, r4, JASAiCtrl__stringBase0@l
+/* 8029C6D8  3C 80 80 3A */	lis r4, JASAiCtrl__stringBase0@ha /* 0x8039B2F0@ha */
+/* 8029C6DC  38 84 B2 F0 */	addi r4, r4, JASAiCtrl__stringBase0@l /* 0x8039B2F0@l */
 /* 8029C6E0  4B FF 48 05 */	bl start__8JASProbeFlPCc
 /* 8029C6E4  48 00 13 BD */	bl invalChannelAll__6JASDspFv
 /* 8029C6E8  4B FF 49 79 */	bl execAllCommand__10JASPortCmdFv
@@ -26,8 +26,8 @@ lbl_8029C70C:
 /* 8029C720  80 AD 8D 58 */	lwz r5, snIntCount__14JASAudioThread(r13)
 /* 8029C724  7C 05 18 50 */	subf r0, r5, r3
 /* 8029C728  54 00 10 3A */	slwi r0, r0, 2
-/* 8029C72C  3C 80 80 3C */	lis r4, history@ha
-/* 8029C730  38 84 78 B8 */	addi r4, r4, history@l
+/* 8029C72C  3C 80 80 3C */	lis r4, history@ha /* 0x803C78B8@ha */
+/* 8029C730  38 84 78 B8 */	addi r4, r4, history@l /* 0x803C78B8@l */
 /* 8029C734  7F E4 01 2E */	stwx r31, r4, r0
 /* 8029C738  7C 03 28 40 */	cmplw r3, r5
 /* 8029C73C  41 82 00 58 */	beq lbl_8029C794
@@ -46,8 +46,8 @@ lbl_8029C70C:
 /* 8029C770  C0 02 BD 2C */	lfs f0, lit_275(r2)
 /* 8029C774  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8029C778  40 80 00 1C */	bge lbl_8029C794
-/* 8029C77C  3C 60 80 3A */	lis r3, JASAiCtrl__stringBase0@ha
-/* 8029C780  38 63 B2 F0 */	addi r3, r3, JASAiCtrl__stringBase0@l
+/* 8029C77C  3C 60 80 3A */	lis r3, JASAiCtrl__stringBase0@ha /* 0x8039B2F0@ha */
+/* 8029C780  38 63 B2 F0 */	addi r3, r3, JASAiCtrl__stringBase0@l /* 0x8039B2F0@l */
 /* 8029C784  38 63 00 0B */	addi r3, r3, 0xb
 /* 8029C788  4C C6 31 82 */	crclr 6
 /* 8029C78C  4B FF 47 D9 */	bl JASReport__FPCce
@@ -59,8 +59,8 @@ lbl_8029C794:
 /* 8029C7A0  48 00 02 49 */	bl getDacRate__9JASDriverFv
 /* 8029C7A4  C0 02 BD 30 */	lfs f0, lit_276(r2)
 /* 8029C7A8  EC 20 08 24 */	fdivs f1, f0, f1
-/* 8029C7AC  3C 60 80 43 */	lis r3, sFreeRunLfo__6JASLfo@ha
-/* 8029C7B0  38 63 1C 40 */	addi r3, r3, sFreeRunLfo__6JASLfo@l
+/* 8029C7AC  3C 60 80 43 */	lis r3, sFreeRunLfo__6JASLfo@ha /* 0x80431C40@ha */
+/* 8029C7B0  38 63 1C 40 */	addi r3, r3, sFreeRunLfo__6JASLfo@l /* 0x80431C40@l */
 /* 8029C7B4  4B FF F6 25 */	bl incCounter__6JASLfoFf
 /* 8029C7B8  38 60 00 03 */	li r3, 3
 /* 8029C7BC  4B FF 47 69 */	bl stop__8JASProbeFl

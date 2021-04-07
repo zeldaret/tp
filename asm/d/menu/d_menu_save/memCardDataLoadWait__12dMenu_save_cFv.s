@@ -4,8 +4,8 @@ lbl_801F27CC:
 /* 801F27D4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801F27D8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801F27DC  7C 7F 1B 78 */	mr r31, r3
-/* 801F27E0  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 801F27E4  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l
+/* 801F27E0  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 801F27E4  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 801F27E8  38 9F 01 D0 */	addi r4, r31, 0x1d0
 /* 801F27EC  38 A0 1F BC */	li r5, 0x1fbc
 /* 801F27F0  38 C0 00 00 */	li r6, 0

@@ -5,8 +5,8 @@ lbl_800777B0:
 /* 800777BC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800777C0  7C 7F 1B 78 */	mr r31, r3
 /* 800777C4  4B FF FD B9 */	bl __ct__11dBgS_GndChkFv
-/* 800777C8  3C 60 80 3A */	lis r3, __vt__14dBgS_ObjGndChk@ha
-/* 800777CC  38 63 38 2C */	addi r3, r3, __vt__14dBgS_ObjGndChk@l
+/* 800777C8  3C 60 80 3A */	lis r3, __vt__14dBgS_ObjGndChk@ha /* 0x803A382C@ha */
+/* 800777CC  38 63 38 2C */	addi r3, r3, __vt__14dBgS_ObjGndChk@l /* 0x803A382C@l */
 /* 800777D0  90 7F 00 10 */	stw r3, 0x10(r31)
 /* 800777D4  38 03 00 0C */	addi r0, r3, 0xc
 /* 800777D8  90 1F 00 20 */	stw r0, 0x20(r31)
@@ -16,8 +16,8 @@ lbl_800777B0:
 /* 800777E8  90 1F 00 4C */	stw r0, 0x4c(r31)
 /* 800777EC  38 7F 00 3C */	addi r3, r31, 0x3c
 /* 800777F0  48 00 16 79 */	bl SetObj__16dBgS_PolyPassChkFv
-/* 800777F4  3C 60 80 3B */	lis r3, __vt__18dBgS_ObjGndChk_Spl@ha
-/* 800777F8  38 63 B7 18 */	addi r3, r3, __vt__18dBgS_ObjGndChk_Spl@l
+/* 800777F4  3C 60 80 3B */	lis r3, __vt__18dBgS_ObjGndChk_Spl@ha /* 0x803AB718@ha */
+/* 800777F8  38 63 B7 18 */	addi r3, r3, __vt__18dBgS_ObjGndChk_Spl@l /* 0x803AB718@l */
 /* 800777FC  90 7F 00 10 */	stw r3, 0x10(r31)
 /* 80077800  38 03 00 0C */	addi r0, r3, 0xc
 /* 80077804  90 1F 00 20 */	stw r0, 0x20(r31)

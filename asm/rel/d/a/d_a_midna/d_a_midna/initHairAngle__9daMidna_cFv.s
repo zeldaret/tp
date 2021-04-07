@@ -5,15 +5,15 @@ lbl_804C3168:
 /* 804C3174  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 804C3178  93 C1 00 08 */	stw r30, 8(r1)
 /* 804C317C  7C 7E 1B 78 */	mr r30, r3
-/* 804C3180  3C 60 80 4C */	lis r3, lit_3777@ha
-/* 804C3184  3B E3 64 C8 */	addi r31, r3, lit_3777@l
+/* 804C3180  3C 60 80 4C */	lis r3, lit_3777@ha /* 0x804C64C8@ha */
+/* 804C3184  3B E3 64 C8 */	addi r31, r3, lit_3777@l /* 0x804C64C8@l */
 /* 804C3188  80 7E 05 74 */	lwz r3, 0x574(r30)
 /* 804C318C  38 63 00 24 */	addi r3, r3, 0x24
 /* 804C3190  38 9F 04 F8 */	addi r4, r31, 0x4f8
 /* 804C3194  38 BE 08 E0 */	addi r5, r30, 0x8e0
-/* 804C3198  4B E8 3B D4 */	b PSMTXMultVec
-/* 804C319C  3C 60 80 43 */	lis r3, Zero__4cXyz@ha
-/* 804C31A0  38 A3 0C F4 */	addi r5, r3, Zero__4cXyz@l
+/* 804C3198  4B E8 3B D5 */	bl PSMTXMultVec
+/* 804C319C  3C 60 80 43 */	lis r3, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 804C31A0  38 A3 0C F4 */	addi r5, r3, Zero__4cXyz@l /* 0x80430CF4@l */
 /* 804C31A4  C0 05 00 00 */	lfs f0, 0(r5)
 /* 804C31A8  D0 1E 09 1C */	stfs f0, 0x91c(r30)
 /* 804C31AC  C0 05 00 04 */	lfs f0, 4(r5)

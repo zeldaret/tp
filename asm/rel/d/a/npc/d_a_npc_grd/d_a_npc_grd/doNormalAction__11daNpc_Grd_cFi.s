@@ -9,7 +9,7 @@ lbl_809D20A4:
 /* 809D20C0  38 9F 0C 94 */	addi r4, r31, 0xc94
 /* 809D20C4  38 A0 00 01 */	li r5, 1
 /* 809D20C8  38 C0 00 00 */	li r6, 0
-/* 809D20CC  4B 78 14 AC */	b hitChk2__8daNpcF_cFP8dCcD_Cylii
+/* 809D20CC  4B 78 14 AD */	bl hitChk2__8daNpcF_cFP8dCcD_Cylii
 /* 809D20D0  2C 03 00 00 */	cmpwi r3, 0
 /* 809D20D4  41 82 00 44 */	beq lbl_809D2118
 /* 809D20D8  7F E3 FB 78 */	mr r3, r31
@@ -19,13 +19,13 @@ lbl_809D20A4:
 /* 809D20E8  38 80 00 14 */	li r4, 0x14
 /* 809D20EC  48 00 00 10 */	b lbl_809D20FC
 lbl_809D20F0:
-/* 809D20F0  3C 80 80 9D */	lis r4, m__17daNpc_Grd_Param_c@ha
-/* 809D20F4  38 84 3A 04 */	addi r4, r4, m__17daNpc_Grd_Param_c@l
+/* 809D20F0  3C 80 80 9D */	lis r4, m__17daNpc_Grd_Param_c@ha /* 0x809D3A04@ha */
+/* 809D20F4  38 84 3A 04 */	addi r4, r4, m__17daNpc_Grd_Param_c@l /* 0x809D3A04@l */
 /* 809D20F8  A8 84 00 62 */	lha r4, 0x62(r4)
 lbl_809D20FC:
 /* 809D20FC  38 A0 00 03 */	li r5, 3
 /* 809D2100  38 C0 00 00 */	li r6, 0
-/* 809D2104  4B 78 15 54 */	b setDamage__8daNpcF_cFiii
+/* 809D2104  4B 78 15 55 */	bl setDamage__8daNpcF_cFiii
 /* 809D2108  7F E3 FB 78 */	mr r3, r31
 /* 809D210C  38 80 00 01 */	li r4, 1
 /* 809D2110  48 00 03 61 */	bl setLookMode__11daNpc_Grd_cFi
@@ -44,18 +44,18 @@ lbl_809D213C:
 /* 809D213C  38 00 00 00 */	li r0, 0
 /* 809D2140  B0 1F 09 E6 */	sth r0, 0x9e6(r31)
 /* 809D2144  38 7F 0D D0 */	addi r3, r31, 0xdd0
-/* 809D2148  4B 98 FE D0 */	b __ptmf_test
+/* 809D2148  4B 98 FE D1 */	bl __ptmf_test
 /* 809D214C  2C 03 00 00 */	cmpwi r3, 0
 /* 809D2150  41 82 00 54 */	beq lbl_809D21A4
 /* 809D2154  38 7F 0D DC */	addi r3, r31, 0xddc
 /* 809D2158  38 9F 0D D0 */	addi r4, r31, 0xdd0
-/* 809D215C  4B 98 FE EC */	b __ptmf_cmpr
+/* 809D215C  4B 98 FE ED */	bl __ptmf_cmpr
 /* 809D2160  2C 03 00 00 */	cmpwi r3, 0
 /* 809D2164  40 82 00 1C */	bne lbl_809D2180
 /* 809D2168  7F E3 FB 78 */	mr r3, r31
 /* 809D216C  38 80 00 00 */	li r4, 0
 /* 809D2170  39 9F 0D DC */	addi r12, r31, 0xddc
-/* 809D2174  4B 98 FF 10 */	b __ptmf_scall
+/* 809D2174  4B 98 FF 11 */	bl __ptmf_scall
 /* 809D2178  60 00 00 00 */	nop 
 /* 809D217C  48 00 00 28 */	b lbl_809D21A4
 lbl_809D2180:

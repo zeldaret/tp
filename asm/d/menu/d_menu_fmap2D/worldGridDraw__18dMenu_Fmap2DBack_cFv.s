@@ -36,8 +36,8 @@ lbl_801D31D0:
 /* 801D3258  38 61 00 34 */	addi r3, r1, 0x34
 /* 801D325C  38 80 00 06 */	li r4, 6
 /* 801D3260  48 11 67 39 */	bl J2DDrawLine__FffffQ28JUtility6TColori
-/* 801D3264  3C 60 80 43 */	lis r3, g_fmapHIO@ha
-/* 801D3268  3B E3 FC 60 */	addi r31, r3, g_fmapHIO@l
+/* 801D3264  3C 60 80 43 */	lis r3, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801D3268  3B E3 FC 60 */	addi r31, r3, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801D326C  C0 1F 00 A4 */	lfs f0, 0xa4(r31)
 /* 801D3270  EF 9F 00 28 */	fsubs f28, f31, f0
 lbl_801D3274:

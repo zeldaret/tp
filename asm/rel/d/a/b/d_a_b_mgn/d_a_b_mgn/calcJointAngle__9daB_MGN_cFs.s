@@ -13,14 +13,14 @@ lbl_80608738:
 /* 80608764  38 7E 0B 16 */	addi r3, r30, 0xb16
 /* 80608768  38 A0 00 04 */	li r5, 4
 /* 8060876C  38 C0 0C 00 */	li r6, 0xc00
-/* 80608770  4B C6 7E 98 */	b cLib_addCalcAngleS2__FPssss
+/* 80608770  4B C6 7E 99 */	bl cLib_addCalcAngleS2__FPssss
 /* 80608774  A8 1E 0B 16 */	lha r0, 0xb16(r30)
 /* 80608778  B0 1E 0B 14 */	sth r0, 0xb14(r30)
 /* 8060877C  38 7E 0B 14 */	addi r3, r30, 0xb14
 /* 80608780  7F E4 FB 78 */	mr r4, r31
 /* 80608784  38 A0 00 04 */	li r5, 4
 /* 80608788  38 C0 0C 00 */	li r6, 0xc00
-/* 8060878C  4B C6 7E 7C */	b cLib_addCalcAngleS2__FPssss
+/* 8060878C  4B C6 7E 7D */	bl cLib_addCalcAngleS2__FPssss
 /* 80608790  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80608794  83 C1 00 08 */	lwz r30, 8(r1)
 /* 80608798  80 01 00 14 */	lwz r0, 0x14(r1)

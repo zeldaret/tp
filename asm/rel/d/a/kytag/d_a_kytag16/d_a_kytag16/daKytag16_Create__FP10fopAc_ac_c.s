@@ -5,14 +5,14 @@ lbl_80860EAC:
 /* 80860EB8  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80860EBC  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80860EC0  7C 7E 1B 78 */	mr r30, r3
-/* 80860EC4  3C 80 80 86 */	lis r4, lit_3839@ha
-/* 80860EC8  3B E4 11 34 */	addi r31, r4, lit_3839@l
+/* 80860EC4  3C 80 80 86 */	lis r4, lit_3839@ha /* 0x80861134@ha */
+/* 80860EC8  3B E4 11 34 */	addi r31, r4, lit_3839@l /* 0x80861134@l */
 /* 80860ECC  80 03 04 A0 */	lwz r0, 0x4a0(r3)
 /* 80860ED0  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 80860ED4  40 82 00 1C */	bne lbl_80860EF0
 /* 80860ED8  28 1E 00 00 */	cmplwi r30, 0
 /* 80860EDC  41 82 00 08 */	beq lbl_80860EE4
-/* 80860EE0  4B 7B 7C 84 */	b __ct__10fopAc_ac_cFv
+/* 80860EE0  4B 7B 7C 85 */	bl __ct__10fopAc_ac_cFv
 lbl_80860EE4:
 /* 80860EE4  80 1E 04 A0 */	lwz r0, 0x4a0(r30)
 /* 80860EE8  60 00 00 08 */	ori r0, r0, 8
@@ -61,13 +61,13 @@ lbl_80860EF0:
 /* 80860F90  EC 03 00 32 */	fmuls f0, f3, f0
 /* 80860F94  D0 1E 05 7C */	stfs f0, 0x57c(r30)
 /* 80860F98  C0 3F 00 34 */	lfs f1, 0x34(r31)
-/* 80860F9C  4B A0 69 F0 */	b cM_rndFX__Ff
+/* 80860F9C  4B A0 69 F1 */	bl cM_rndFX__Ff
 /* 80860FA0  FC 00 08 1E */	fctiwz f0, f1
 /* 80860FA4  D8 01 00 18 */	stfd f0, 0x18(r1)
 /* 80860FA8  80 01 00 1C */	lwz r0, 0x1c(r1)
 /* 80860FAC  B0 1E 05 88 */	sth r0, 0x588(r30)
 /* 80860FB0  C0 3F 00 34 */	lfs f1, 0x34(r31)
-/* 80860FB4  4B A0 69 D8 */	b cM_rndFX__Ff
+/* 80860FB4  4B A0 69 D9 */	bl cM_rndFX__Ff
 /* 80860FB8  FC 00 08 1E */	fctiwz f0, f1
 /* 80860FBC  D8 01 00 20 */	stfd f0, 0x20(r1)
 /* 80860FC0  80 01 00 24 */	lwz r0, 0x24(r1)
@@ -79,8 +79,8 @@ lbl_80860EF0:
 /* 80860FD8  88 1E 05 6C */	lbz r0, 0x56c(r30)
 /* 80860FDC  28 00 00 07 */	cmplwi r0, 7
 /* 80860FE0  41 81 01 30 */	bgt lbl_80861110
-/* 80860FE4  3C 60 80 86 */	lis r3, lit_3917@ha
-/* 80860FE8  38 63 11 9C */	addi r3, r3, lit_3917@l
+/* 80860FE4  3C 60 80 86 */	lis r3, lit_3917@ha /* 0x8086119C@ha */
+/* 80860FE8  38 63 11 9C */	addi r3, r3, lit_3917@l /* 0x8086119C@l */
 /* 80860FEC  54 00 10 3A */	slwi r0, r0, 2
 /* 80860FF0  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80860FF4  7C 09 03 A6 */	mtctr r0

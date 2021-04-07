@@ -9,8 +9,8 @@ lbl_802F9B74:
 /* 802F9B90  7C BE 2B 78 */	mr r30, r5
 /* 802F9B94  7C DF 33 78 */	mr r31, r6
 /* 802F9B98  4B FF C0 61 */	bl __ct__7J2DPaneFv
-/* 802F9B9C  3C 60 80 3D */	lis r3, __vt__9J2DWindow@ha
-/* 802F9BA0  38 03 D1 08 */	addi r0, r3, __vt__9J2DWindow@l
+/* 802F9B9C  3C 60 80 3D */	lis r3, __vt__9J2DWindow@ha /* 0x803CD108@ha */
+/* 802F9BA0  38 03 D1 08 */	addi r0, r3, __vt__9J2DWindow@l /* 0x803CD108@l */
 /* 802F9BA4  90 1C 00 00 */	stw r0, 0(r28)
 /* 802F9BA8  38 00 00 00 */	li r0, 0
 /* 802F9BAC  90 1C 01 00 */	stw r0, 0x100(r28)

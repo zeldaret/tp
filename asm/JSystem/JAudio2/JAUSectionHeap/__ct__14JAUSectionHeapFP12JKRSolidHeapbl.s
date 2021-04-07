@@ -18,11 +18,11 @@ lbl_802A5FE0:
 lbl_802A6020:
 /* 802A6020  90 6D 87 40 */	stw r3, data_80450CC0(r13)
 lbl_802A6024:
-/* 802A6024  3C 60 80 3D */	lis r3, __vt__13JAISeqDataMgr@ha
-/* 802A6028  38 03 99 28 */	addi r0, r3, __vt__13JAISeqDataMgr@l
+/* 802A6024  3C 60 80 3D */	lis r3, __vt__13JAISeqDataMgr@ha /* 0x803C9928@ha */
+/* 802A6028  38 03 99 28 */	addi r0, r3, __vt__13JAISeqDataMgr@l /* 0x803C9928@l */
 /* 802A602C  90 1D 00 DC */	stw r0, 0xdc(r29)
-/* 802A6030  3C 60 80 3D */	lis r3, __vt__14JAUSectionHeap@ha
-/* 802A6034  38 63 9A C0 */	addi r3, r3, __vt__14JAUSectionHeap@l
+/* 802A6030  3C 60 80 3D */	lis r3, __vt__14JAUSectionHeap@ha /* 0x803C9AC0@ha */
+/* 802A6034  38 63 9A C0 */	addi r3, r3, __vt__14JAUSectionHeap@l /* 0x803C9AC0@l */
 /* 802A6038  90 7D 00 00 */	stw r3, 0(r29)
 /* 802A603C  38 03 00 10 */	addi r0, r3, 0x10
 /* 802A6040  90 1D 00 DC */	stw r0, 0xdc(r29)

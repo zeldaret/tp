@@ -5,12 +5,12 @@ lbl_80816E78:
 /* 80816E84  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80816E88  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80816E8C  7C 7F 1B 78 */	mr r31, r3
-/* 80816E90  3C 60 80 82 */	lis r3, lit_3791@ha
-/* 80816E94  3B C3 18 AC */	addi r30, r3, lit_3791@l
+/* 80816E90  3C 60 80 82 */	lis r3, lit_3791@ha /* 0x808218AC@ha */
+/* 80816E94  3B C3 18 AC */	addi r30, r3, lit_3791@l /* 0x808218AC@l */
 /* 80816E98  38 00 00 00 */	li r0, 0
 /* 80816E9C  98 1F 07 13 */	stb r0, 0x713(r31)
-/* 80816EA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80816EA4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80816EA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80816EA4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80816EA8  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 80816EAC  C0 5F 06 A4 */	lfs f2, 0x6a4(r31)
 /* 80816EB0  C0 1F 06 9C */	lfs f0, 0x69c(r31)
@@ -25,7 +25,7 @@ lbl_80816E78:
 /* 80816ED4  D0 41 00 20 */	stfs f2, 0x20(r1)
 /* 80816ED8  38 61 00 0C */	addi r3, r1, 0xc
 /* 80816EDC  38 81 00 18 */	addi r4, r1, 0x18
-/* 80816EE0  4B B3 04 BC */	b PSVECSquareDistance
+/* 80816EE0  4B B3 04 BD */	bl PSVECSquareDistance
 /* 80816EE4  C0 1E 00 18 */	lfs f0, 0x18(r30)
 /* 80816EE8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80816EEC  40 81 00 58 */	ble lbl_80816F44
@@ -54,8 +54,8 @@ lbl_80816F44:
 /* 80816F44  C8 1E 00 50 */	lfd f0, 0x50(r30)
 /* 80816F48  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80816F4C  40 80 00 10 */	bge lbl_80816F5C
-/* 80816F50  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80816F54  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80816F50  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80816F54  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80816F58  48 00 00 70 */	b lbl_80816FC8
 lbl_80816F5C:
 /* 80816F5C  D0 21 00 08 */	stfs f1, 8(r1)
@@ -89,8 +89,8 @@ lbl_80816FB4:
 lbl_80816FB8:
 /* 80816FB8  2C 00 00 01 */	cmpwi r0, 1
 /* 80816FBC  40 82 00 0C */	bne lbl_80816FC8
-/* 80816FC0  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80816FC4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80816FC0  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80816FC4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80816FC8:
 /* 80816FC8  C0 1E 00 58 */	lfs f0, 0x58(r30)
 /* 80816FCC  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -101,20 +101,20 @@ lbl_80816FDC:
 /* 80816FDC  88 1F 07 13 */	lbz r0, 0x713(r31)
 /* 80816FE0  28 00 00 00 */	cmplwi r0, 0
 /* 80816FE4  41 82 00 20 */	beq lbl_80817004
-/* 80816FE8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80816FEC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80816FE8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80816FEC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80816FF0  38 80 00 05 */	li r4, 5
 /* 80816FF4  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80816FF8  7C 05 07 74 */	extsb r5, r0
-/* 80816FFC  4B 81 E2 04 */	b onSwitch__10dSv_info_cFii
+/* 80816FFC  4B 81 E2 05 */	bl onSwitch__10dSv_info_cFii
 /* 80817000  48 00 00 1C */	b lbl_8081701C
 lbl_80817004:
-/* 80817004  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80817008  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80817004  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80817008  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8081700C  38 80 00 05 */	li r4, 5
 /* 80817010  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80817014  7C 05 07 74 */	extsb r5, r0
-/* 80817018  4B 81 E2 98 */	b offSwitch__10dSv_info_cFii
+/* 80817018  4B 81 E2 99 */	bl offSwitch__10dSv_info_cFii
 lbl_8081701C:
 /* 8081701C  88 1F 07 14 */	lbz r0, 0x714(r31)
 /* 80817020  28 00 00 00 */	cmplwi r0, 0
@@ -122,13 +122,13 @@ lbl_8081701C:
 /* 80817028  38 60 00 0F */	li r3, 0xf
 /* 8081702C  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80817030  7C 04 07 74 */	extsb r4, r0
-/* 80817034  4B 81 6A 68 */	b dComIfGs_onOneZoneSwitch__Fii
+/* 80817034  4B 81 6A 69 */	bl dComIfGs_onOneZoneSwitch__Fii
 /* 80817038  48 00 00 14 */	b lbl_8081704C
 lbl_8081703C:
 /* 8081703C  38 60 00 0F */	li r3, 0xf
 /* 80817040  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80817044  7C 04 07 74 */	extsb r4, r0
-/* 80817048  4B 81 6A B8 */	b dComIfGs_offOneZoneSwitch__Fii
+/* 80817048  4B 81 6A B9 */	bl dComIfGs_offOneZoneSwitch__Fii
 lbl_8081704C:
 /* 8081704C  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 80817050  83 C1 00 28 */	lwz r30, 0x28(r1)

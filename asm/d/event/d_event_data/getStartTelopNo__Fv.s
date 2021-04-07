@@ -4,8 +4,8 @@ lbl_800437F0:
 /* 800437F8  90 01 00 24 */	stw r0, 0x24(r1)
 /* 800437FC  39 61 00 20 */	addi r11, r1, 0x20
 /* 80043800  48 31 E9 DD */	bl _savegpr_29
-/* 80043804  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80043808  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80043804  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80043808  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8004380C  3B A3 4E 00 */	addi r29, r3, 0x4e00
 /* 80043810  3B E3 5F 5C */	addi r31, r3, 0x5f5c
 /* 80043814  7F A3 EB 78 */	mr r3, r29
@@ -40,8 +40,8 @@ lbl_80043870:
 /* 8004387C  7C A6 03 78 */	or r6, r5, r0
 /* 80043880  38 60 00 00 */	li r3, 0
 /* 80043884  80 0D 80 C0 */	lwz r0, numTelopData(r13)
-/* 80043888  3C 80 80 3A */	lis r4, TelopData@ha
-/* 8004388C  38 84 7F B0 */	addi r4, r4, TelopData@l
+/* 80043888  3C 80 80 3A */	lis r4, TelopData@ha /* 0x803A7FB0@ha */
+/* 8004388C  38 84 7F B0 */	addi r4, r4, TelopData@l /* 0x803A7FB0@l */
 /* 80043890  7C 09 03 A6 */	mtctr r0
 /* 80043894  2C 00 00 00 */	cmpwi r0, 0
 /* 80043898  40 81 00 24 */	ble lbl_800438BC
@@ -71,8 +71,8 @@ lbl_800438DC:
 /* 800438E4  A0 9E 00 06 */	lhz r4, 6(r30)
 /* 800438E8  28 04 FF FF */	cmplwi r4, 0xffff
 /* 800438EC  41 82 00 28 */	beq lbl_80043914
-/* 800438F0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800438F4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800438F0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800438F4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800438F8  38 63 07 F0 */	addi r3, r3, 0x7f0
 /* 800438FC  4B FF 10 C1 */	bl isEventBit__11dSv_event_cCFUs
 /* 80043900  2C 03 00 00 */	cmpwi r3, 0
@@ -119,8 +119,8 @@ lbl_80043988:
 /* 80043994  7C A6 03 78 */	or r6, r5, r0
 /* 80043998  38 60 00 00 */	li r3, 0
 /* 8004399C  80 0D 80 C0 */	lwz r0, numTelopData(r13)
-/* 800439A0  3C 80 80 3A */	lis r4, TelopData@ha
-/* 800439A4  38 84 7F B0 */	addi r4, r4, TelopData@l
+/* 800439A0  3C 80 80 3A */	lis r4, TelopData@ha /* 0x803A7FB0@ha */
+/* 800439A4  38 84 7F B0 */	addi r4, r4, TelopData@l /* 0x803A7FB0@l */
 /* 800439A8  7C 09 03 A6 */	mtctr r0
 /* 800439AC  2C 00 00 00 */	cmpwi r0, 0
 /* 800439B0  40 81 00 24 */	ble lbl_800439D4

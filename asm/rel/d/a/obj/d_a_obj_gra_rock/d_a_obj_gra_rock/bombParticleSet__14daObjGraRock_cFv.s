@@ -5,8 +5,8 @@ lbl_80C1157C:
 /* 80C11588  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80C1158C  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80C11590  7C 7E 1B 78 */	mr r30, r3
-/* 80C11594  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C11598  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 80C11594  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C11598  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C1159C  80 7F 5D 3C */	lwz r3, 0x5d3c(r31)
 /* 80C115A0  38 80 00 00 */	li r4, 0
 /* 80C115A4  90 81 00 08 */	stw r4, 8(r1)
@@ -23,9 +23,9 @@ lbl_80C1157C:
 /* 80C115D0  39 1E 04 DC */	addi r8, r30, 0x4dc
 /* 80C115D4  39 20 00 00 */	li r9, 0
 /* 80C115D8  39 40 00 FF */	li r10, 0xff
-/* 80C115DC  3D 60 80 C1 */	lis r11, lit_3860@ha
-/* 80C115E0  C0 2B 24 0C */	lfs f1, lit_3860@l(r11)
-/* 80C115E4  4B 43 B4 AC */	b set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 80C115DC  3D 60 80 C1 */	lis r11, lit_3860@ha /* 0x80C1240C@ha */
+/* 80C115E0  C0 2B 24 0C */	lfs f1, lit_3860@l(r11)  /* 0x80C1240C@l */
+/* 80C115E4  4B 43 B4 AD */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 80C115E8  80 7F 5D 3C */	lwz r3, 0x5d3c(r31)
 /* 80C115EC  38 80 00 00 */	li r4, 0
 /* 80C115F0  90 81 00 08 */	stw r4, 8(r1)
@@ -42,9 +42,9 @@ lbl_80C1157C:
 /* 80C1161C  39 1E 04 DC */	addi r8, r30, 0x4dc
 /* 80C11620  39 20 00 00 */	li r9, 0
 /* 80C11624  39 40 00 FF */	li r10, 0xff
-/* 80C11628  3D 60 80 C1 */	lis r11, lit_3860@ha
-/* 80C1162C  C0 2B 24 0C */	lfs f1, lit_3860@l(r11)
-/* 80C11630  4B 43 B4 60 */	b set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 80C11628  3D 60 80 C1 */	lis r11, lit_3860@ha /* 0x80C1240C@ha */
+/* 80C1162C  C0 2B 24 0C */	lfs f1, lit_3860@l(r11)  /* 0x80C1240C@l */
+/* 80C11630  4B 43 B4 61 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 80C11634  80 7F 5D 3C */	lwz r3, 0x5d3c(r31)
 /* 80C11638  38 80 00 00 */	li r4, 0
 /* 80C1163C  90 81 00 08 */	stw r4, 8(r1)
@@ -61,9 +61,9 @@ lbl_80C1157C:
 /* 80C11668  39 1E 04 DC */	addi r8, r30, 0x4dc
 /* 80C1166C  39 20 00 00 */	li r9, 0
 /* 80C11670  39 40 00 FF */	li r10, 0xff
-/* 80C11674  3D 60 80 C1 */	lis r11, lit_3860@ha
-/* 80C11678  C0 2B 24 0C */	lfs f1, lit_3860@l(r11)
-/* 80C1167C  4B 43 B4 14 */	b set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 80C11674  3D 60 80 C1 */	lis r11, lit_3860@ha /* 0x80C1240C@ha */
+/* 80C11678  C0 2B 24 0C */	lfs f1, lit_3860@l(r11)  /* 0x80C1240C@l */
+/* 80C1167C  4B 43 B4 15 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 80C11680  80 7F 5D 3C */	lwz r3, 0x5d3c(r31)
 /* 80C11684  38 80 00 00 */	li r4, 0
 /* 80C11688  90 81 00 08 */	stw r4, 8(r1)
@@ -80,9 +80,9 @@ lbl_80C1157C:
 /* 80C116B4  39 1E 04 DC */	addi r8, r30, 0x4dc
 /* 80C116B8  39 20 00 00 */	li r9, 0
 /* 80C116BC  39 40 00 FF */	li r10, 0xff
-/* 80C116C0  3D 60 80 C1 */	lis r11, lit_3860@ha
-/* 80C116C4  C0 2B 24 0C */	lfs f1, lit_3860@l(r11)
-/* 80C116C8  4B 43 B3 C8 */	b set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 80C116C0  3D 60 80 C1 */	lis r11, lit_3860@ha /* 0x80C1240C@ha */
+/* 80C116C4  C0 2B 24 0C */	lfs f1, lit_3860@l(r11)  /* 0x80C1240C@l */
+/* 80C116C8  4B 43 B3 C9 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 80C116CC  80 7F 5D 3C */	lwz r3, 0x5d3c(r31)
 /* 80C116D0  38 80 00 00 */	li r4, 0
 /* 80C116D4  90 81 00 08 */	stw r4, 8(r1)
@@ -99,9 +99,9 @@ lbl_80C1157C:
 /* 80C11700  39 1E 04 DC */	addi r8, r30, 0x4dc
 /* 80C11704  39 20 00 00 */	li r9, 0
 /* 80C11708  39 40 00 FF */	li r10, 0xff
-/* 80C1170C  3D 60 80 C1 */	lis r11, lit_3860@ha
-/* 80C11710  C0 2B 24 0C */	lfs f1, lit_3860@l(r11)
-/* 80C11714  4B 43 B3 7C */	b set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 80C1170C  3D 60 80 C1 */	lis r11, lit_3860@ha /* 0x80C1240C@ha */
+/* 80C11710  C0 2B 24 0C */	lfs f1, lit_3860@l(r11)  /* 0x80C1240C@l */
+/* 80C11714  4B 43 B3 7D */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 80C11718  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 80C1171C  83 C1 00 28 */	lwz r30, 0x28(r1)
 /* 80C11720  80 01 00 34 */	lwz r0, 0x34(r1)

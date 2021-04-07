@@ -5,7 +5,7 @@ lbl_80C7A6B0:
 /* 80C7A6BC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C7A6C0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80C7A6C4  41 82 00 24 */	beq lbl_80C7A6E8
-/* 80C7A6C8  4B 39 E6 18 */	b fopAc_IsActor__FPv
+/* 80C7A6C8  4B 39 E6 19 */	bl fopAc_IsActor__FPv
 /* 80C7A6CC  2C 03 00 00 */	cmpwi r3, 0
 /* 80C7A6D0  41 82 00 18 */	beq lbl_80C7A6E8
 /* 80C7A6D4  A8 1F 00 0E */	lha r0, 0xe(r31)

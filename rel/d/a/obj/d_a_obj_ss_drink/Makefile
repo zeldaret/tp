@@ -3,17 +3,15 @@
 #
 
 M630_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ss_drink.plf
+M630_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ss_drink.lcf
+M630_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ss_drink.map
 
 M630_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_ss_drink/executor.cpp \
-	rel/d/a/obj/d_a_obj_ss_drink/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_ss_drink/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_ss_drink/d_a_obj_ss_drink.cpp \
 
 M630_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ss_drink/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ss_drink/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ss_drink/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ss_drink/d_a_obj_ss_drink.o \
 
 M630_LIBS := \
@@ -29,14 +27,21 @@ M630_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M630_LDSCRIPT) \
+	-unused -map $(M630_MAP) \
+	-w off \
 
 $(M630_TARGET): $(M630_O_FILES) $(M630_LIBS)
+	@echo [630] creating $(M630_TARGET)
 	@echo $(M630_LIBS) $(M630_O_FILES) > build/M630_ofiles
-	$(LD) -partial $(M630_LDFLAGS) -o $(M630_TARGET) @build/M630_ofiles
+	@python3 tools/lcf.py rel 630 --output $(M630_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M630_LDFLAGS) -o $(M630_TARGET) @build/M630_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ss_drink/%.o: rel/d/a/obj/d_a_obj_ss_drink/%.cpp
+	@echo [630] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M630_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M630_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

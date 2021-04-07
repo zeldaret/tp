@@ -15,8 +15,8 @@ lbl_801C605C:
 /* 801C6090  57 04 06 3E */	clrlwi r4, r24, 0x18
 /* 801C6094  4B FF FF 85 */	bl getFigure__15dMenu_Fishing_cFi
 /* 801C6098  57 05 06 3E */	clrlwi r5, r24, 0x18
-/* 801C609C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 801C60A0  3B 24 61 C0 */	addi r25, r4, g_dComIfG_gameInfo@l
+/* 801C609C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801C60A0  3B 24 61 C0 */	addi r25, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801C60A4  57 40 10 3A */	slwi r0, r26, 2
 /* 801C60A8  7F FD 02 14 */	add r31, r29, r0
 /* 801C60AC  54 7A 06 3E */	clrlwi r26, r3, 0x18

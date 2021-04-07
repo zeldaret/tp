@@ -7,13 +7,13 @@ lbl_8003C85C:
 /* 8003C870  7C 7A 1B 78 */	mr r26, r3
 /* 8003C874  3B 60 00 00 */	li r27, 0
 /* 8003C878  3B E0 00 00 */	li r31, 0
-/* 8003C87C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8003C880  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8003C87C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8003C880  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8003C884  3F 83 00 02 */	addis r28, r3, 2
-/* 8003C888  3C 60 80 38 */	lis r3, d_map_d_map_path__stringBase0@ha
-/* 8003C88C  3B A3 9C 4C */	addi r29, r3, d_map_d_map_path__stringBase0@l
-/* 8003C890  3C 60 80 38 */	lis r3, data@ha
-/* 8003C894  3B C3 9C 30 */	addi r30, r3, data@l
+/* 8003C888  3C 60 80 38 */	lis r3, d_map_d_map_path__stringBase0@ha /* 0x80379C4C@ha */
+/* 8003C88C  3B A3 9C 4C */	addi r29, r3, d_map_d_map_path__stringBase0@l /* 0x80379C4C@l */
+/* 8003C890  3C 60 80 38 */	lis r3, data@ha /* 0x80379C30@ha */
+/* 8003C894  3B C3 9C 30 */	addi r30, r3, data@l /* 0x80379C30@l */
 /* 8003C898  3B 9C C2 F8 */	addi r28, r28, -15624
 lbl_8003C89C:
 /* 8003C89C  38 60 00 20 */	li r3, 0x20

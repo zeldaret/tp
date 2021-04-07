@@ -108,7 +108,7 @@ class CPPDisassembler(Disassembler):
             name = self.addr_to_label(value)
 
             if name:
-                return f"{insn.mnemonic} {reg}, {name}@{suffix}"
+                return f"{insn.mnemonic} {reg}, {name}@{suffix} /* 0x{value:08X}@{suffix} */"
             else:
                 if suffix == 'h':
                     fixed_value = value >> 16
@@ -119,13 +119,15 @@ class CPPDisassembler(Disassembler):
                     fixed_value &= 0xFFFF
                 return f"{insn.mnemonic} {reg}, 0x{fixed_value:04X} /* 0x{value:08X}@{suffix} */"
         # Handle split loads (low part)
-        elif id in {PPC_INS_ADDI, PPC_INS_ORI} and split_load:
+        elif id in {PPC_INS_ADDI, PPC_INS_ADDIC, PPC_INS_ORI} and split_load:
+            # NOTE: PPC_INS_ADDIC only works with a patched compiler 
+
             value = self.splitDataLoads[addr]
             rA = insn.reg_name(insn.operands[0].reg)
             rB = insn.reg_name(insn.operands[1].reg)
             name = self.addr_to_label(value)
             if name:
-                return f"{insn.mnemonic} {rA}, {rB}, {name}@l"
+                return f"{insn.mnemonic} {rA}, {rB}, {name}@l /* 0x{value:08X}@l */"
             else:
                 fixed_value = value & 0xFFFF
                 return f"{insn.mnemonic} {rA}, {rB}, 0x{fixed_value:04X} /* 0x{value:08X}@l */"
@@ -135,10 +137,10 @@ class CPPDisassembler(Disassembler):
             rB = insn.reg_name(insn.operands[1].mem.base)
             name = self.addr_to_label(value)
             if name:
-                return f"{insn.mnemonic} {rA}, {name}@l({rB})"
+                return f"{insn.mnemonic} {rA}, {name}@l({rB})  /* 0x{value:08X}@l */"
             else:
                 fixed_value = value & 0xFFFF
-                return f"{insn.mnemonic} {rA}, 0x{fixed_value:04X}({rB})"
+                return f"{insn.mnemonic} {rA}, 0x{fixed_value:04X}({rB})  /* 0x{value:08X}@l */"
 
         if r13_addr == self.common_r13_addr:
             if id == PPC_INS_ADDI and insn.operands[1].reg == PPC_REG_R13:
@@ -161,7 +163,6 @@ class CPPDisassembler(Disassembler):
                     return f"{insn.mnemonic} {rA}, {name}({rB})"
 
         if r2_addr == self.common_r2_addr:
-            #g.LOG.debug(f"{id == PPC_INS_ADDI}, {insn.operands[1].reg == PPC_REG_R2 if len(insn.operands) > 1 else False}")
             if id == PPC_INS_ADDI and insn.operands[1].reg == PPC_REG_R2:
                 value = r2_addr + sign_extend_16(insn.operands[2].imm)
                 rA = insn.reg_name(insn.operands[0].reg)

@@ -18,10 +18,10 @@ lbl_80BF8D24:
 /* 80BF8D64  7F E3 FB 78 */	mr r3, r31
 /* 80BF8D68  4B FF F8 D5 */	bl cutPntWind__13daObjGeyser_cFv
 /* 80BF8D6C  38 7F 05 A0 */	addi r3, r31, 0x5a0
-/* 80BF8D70  3C 80 80 C0 */	lis r4, l_arcName@ha
-/* 80BF8D74  38 84 90 88 */	addi r4, r4, l_arcName@l
+/* 80BF8D70  3C 80 80 C0 */	lis r4, l_arcName@ha /* 0x80BF9088@ha */
+/* 80BF8D74  38 84 90 88 */	addi r4, r4, l_arcName@l /* 0x80BF9088@l */
 /* 80BF8D78  80 84 00 00 */	lwz r4, 0(r4)
-/* 80BF8D7C  4B 43 42 8C */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 80BF8D7C  4B 43 42 8D */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 80BF8D80  38 60 00 01 */	li r3, 1
 /* 80BF8D84  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80BF8D88  80 01 00 14 */	lwz r0, 0x14(r1)

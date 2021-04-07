@@ -7,7 +7,7 @@ lbl_80AC360C:
 /* 80AC3620  41 82 00 10 */	beq lbl_80AC3630
 /* 80AC3624  7C 80 07 35 */	extsh. r0, r4
 /* 80AC3628  40 81 00 08 */	ble lbl_80AC3630
-/* 80AC362C  4B 80 B7 10 */	b __dl__FPv
+/* 80AC362C  4B 80 B7 11 */	bl __dl__FPv
 lbl_80AC3630:
 /* 80AC3630  7F E3 FB 78 */	mr r3, r31
 /* 80AC3634  83 E1 00 0C */	lwz r31, 0xc(r1)

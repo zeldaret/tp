@@ -5,8 +5,8 @@ lbl_80ACD538:
 /* 80ACD544  88 03 0A 88 */	lbz r0, 0xa88(r3)
 /* 80ACD548  28 00 00 01 */	cmplwi r0, 1
 /* 80ACD54C  40 82 00 0C */	bne lbl_80ACD558
-/* 80ACD550  3C C0 80 AD */	lis r6, lit_4063@ha
-/* 80ACD554  C0 26 FE 98 */	lfs f1, lit_4063@l(r6)
+/* 80ACD550  3C C0 80 AD */	lis r6, lit_4063@ha /* 0x80ACFE98@ha */
+/* 80ACD554  C0 26 FE 98 */	lfs f1, lit_4063@l(r6)  /* 0x80ACFE98@l */
 lbl_80ACD558:
 /* 80ACD558  38 C0 00 01 */	li r6, 1
 /* 80ACD55C  4B FF FE FD */	bl setBottleAnm__13daNpc_Seira_cFiifb

@@ -1,10 +1,10 @@
 lbl_8034A0AC:
 /* 8034A0AC  7C 08 02 A6 */	mflr r0
-/* 8034A0B0  3C 60 80 45 */	lis r3, BB2@ha
+/* 8034A0B0  3C 60 80 45 */	lis r3, BB2@ha /* 0x8044C900@ha */
 /* 8034A0B4  90 01 00 04 */	stw r0, 4(r1)
 /* 8034A0B8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8034A0BC  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 8034A0C0  3B E3 C9 00 */	addi r31, r3, BB2@l
+/* 8034A0C0  3B E3 C9 00 */	addi r31, r3, BB2@l /* 0x8044C900@l */
 /* 8034A0C4  48 00 18 F1 */	bl __DVDCheckWaitingQueue
 /* 8034A0C8  2C 03 00 00 */	cmpwi r3, 0
 /* 8034A0CC  40 82 00 10 */	bne lbl_8034A0DC
@@ -66,23 +66,23 @@ lbl_8034A188:
 /* 8034A198  48 00 01 00 */	b lbl_8034A298
 lbl_8034A19C:
 /* 8034A19C  38 00 00 0B */	li r0, 0xb
-/* 8034A1A0  3C 60 80 35 */	lis r3, cbForStateMotorStopped@ha
+/* 8034A1A0  3C 60 80 35 */	lis r3, cbForStateMotorStopped@ha /* 0x80349FC0@ha */
 /* 8034A1A4  90 04 00 0C */	stw r0, 0xc(r4)
-/* 8034A1A8  38 63 9F C0 */	addi r3, r3, cbForStateMotorStopped@l
+/* 8034A1A8  38 63 9F C0 */	addi r3, r3, cbForStateMotorStopped@l /* 0x80349FC0@l */
 /* 8034A1AC  4B FF DD 99 */	bl DVDLowWaitCoverClose
 /* 8034A1B0  48 00 00 FC */	b lbl_8034A2AC
 lbl_8034A1B4:
 /* 8034A1B4  38 00 00 04 */	li r0, 4
-/* 8034A1B8  3C 60 80 35 */	lis r3, cbForStateMotorStopped@ha
+/* 8034A1B8  3C 60 80 35 */	lis r3, cbForStateMotorStopped@ha /* 0x80349FC0@ha */
 /* 8034A1BC  90 04 00 0C */	stw r0, 0xc(r4)
-/* 8034A1C0  38 63 9F C0 */	addi r3, r3, cbForStateMotorStopped@l
+/* 8034A1C0  38 63 9F C0 */	addi r3, r3, cbForStateMotorStopped@l /* 0x80349FC0@l */
 /* 8034A1C4  4B FF DD 81 */	bl DVDLowWaitCoverClose
 /* 8034A1C8  48 00 00 E4 */	b lbl_8034A2AC
 lbl_8034A1CC:
 /* 8034A1CC  38 00 00 05 */	li r0, 5
-/* 8034A1D0  3C 60 80 35 */	lis r3, cbForStateMotorStopped@ha
+/* 8034A1D0  3C 60 80 35 */	lis r3, cbForStateMotorStopped@ha /* 0x80349FC0@ha */
 /* 8034A1D4  90 04 00 0C */	stw r0, 0xc(r4)
-/* 8034A1D8  38 63 9F C0 */	addi r3, r3, cbForStateMotorStopped@l
+/* 8034A1D8  38 63 9F C0 */	addi r3, r3, cbForStateMotorStopped@l /* 0x80349FC0@l */
 /* 8034A1DC  4B FF DD 69 */	bl DVDLowWaitCoverClose
 /* 8034A1E0  48 00 00 CC */	b lbl_8034A2AC
 lbl_8034A1E4:
@@ -122,15 +122,15 @@ lbl_8034A24C:
 /* 8034A258  38 7F 00 70 */	addi r3, r31, 0x70
 /* 8034A25C  4B FF 06 9D */	bl OSCreateAlarm
 /* 8034A260  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000F8@ha */
-/* 8034A264  80 03 00 F8 */	lwz r0, 0x00F8(r3)
+/* 8034A264  80 03 00 F8 */	lwz r0, 0x00F8(r3)  /* 0x800000F8@l */
 /* 8034A268  3C 80 10 62 */	lis r4, 0x1062 /* 0x10624DD3@ha */
-/* 8034A26C  3C 60 80 35 */	lis r3, AlarmHandler@ha
+/* 8034A26C  3C 60 80 35 */	lis r3, AlarmHandler@ha /* 0x80349DEC@ha */
 /* 8034A270  54 00 F0 BE */	srwi r0, r0, 2
 /* 8034A274  38 84 4D D3 */	addi r4, r4, 0x4DD3 /* 0x10624DD3@l */
 /* 8034A278  7C 04 00 16 */	mulhwu r0, r4, r0
 /* 8034A27C  54 00 D1 BE */	srwi r0, r0, 6
 /* 8034A280  1C C0 04 7E */	mulli r6, r0, 0x47e
-/* 8034A284  38 E3 9D EC */	addi r7, r3, AlarmHandler@l
+/* 8034A284  38 E3 9D EC */	addi r7, r3, AlarmHandler@l /* 0x80349DEC@l */
 /* 8034A288  38 7F 00 70 */	addi r3, r31, 0x70
 /* 8034A28C  38 A0 00 00 */	li r5, 0
 /* 8034A290  4B FF 08 C9 */	bl OSSetAlarm
@@ -138,8 +138,8 @@ lbl_8034A24C:
 lbl_8034A298:
 /* 8034A298  80 6D 92 24 */	lwz r3, CancelLastError(r13)
 /* 8034A29C  48 00 18 ED */	bl __DVDStoreErrorCode
-/* 8034A2A0  3C 60 80 35 */	lis r3, cbForStateError@ha
-/* 8034A2A4  38 63 92 DC */	addi r3, r3, cbForStateError@l
+/* 8034A2A0  3C 60 80 35 */	lis r3, cbForStateError@ha /* 0x803492DC@ha */
+/* 8034A2A4  38 63 92 DC */	addi r3, r3, cbForStateError@l /* 0x803492DC@l */
 /* 8034A2A8  4B FF DD 6D */	bl DVDLowStopMotor
 lbl_8034A2AC:
 /* 8034A2AC  38 00 00 00 */	li r0, 0
@@ -189,15 +189,15 @@ lbl_8034A338:
 /* 8034A344  38 7F 00 70 */	addi r3, r31, 0x70
 /* 8034A348  4B FF 05 B1 */	bl OSCreateAlarm
 /* 8034A34C  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000F8@ha */
-/* 8034A350  80 03 00 F8 */	lwz r0, 0x00F8(r3)
+/* 8034A350  80 03 00 F8 */	lwz r0, 0x00F8(r3)  /* 0x800000F8@l */
 /* 8034A354  3C 80 10 62 */	lis r4, 0x1062 /* 0x10624DD3@ha */
-/* 8034A358  3C 60 80 35 */	lis r3, AlarmHandler@ha
+/* 8034A358  3C 60 80 35 */	lis r3, AlarmHandler@ha /* 0x80349DEC@ha */
 /* 8034A35C  54 00 F0 BE */	srwi r0, r0, 2
 /* 8034A360  38 84 4D D3 */	addi r4, r4, 0x4DD3 /* 0x10624DD3@l */
 /* 8034A364  7C 04 00 16 */	mulhwu r0, r4, r0
 /* 8034A368  54 00 D1 BE */	srwi r0, r0, 6
 /* 8034A36C  1C C0 04 7E */	mulli r6, r0, 0x47e
-/* 8034A370  38 E3 9D EC */	addi r7, r3, AlarmHandler@l
+/* 8034A370  38 E3 9D EC */	addi r7, r3, AlarmHandler@l /* 0x80349DEC@l */
 /* 8034A374  38 7F 00 70 */	addi r3, r31, 0x70
 /* 8034A378  38 A0 00 00 */	li r5, 0
 /* 8034A37C  4B FF 07 DD */	bl OSSetAlarm

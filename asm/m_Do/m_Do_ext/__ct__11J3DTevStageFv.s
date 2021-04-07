@@ -4,8 +4,8 @@ lbl_8000E230:
 /* 8000E238  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8000E23C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8000E240  7C 7F 1B 78 */	mr r31, r3
-/* 8000E244  3C 80 80 3A */	lis r4, j3dDefaultTevStageInfo@ha
-/* 8000E248  38 84 1F 9C */	addi r4, r4, j3dDefaultTevStageInfo@l
+/* 8000E244  3C 80 80 3A */	lis r4, j3dDefaultTevStageInfo@ha /* 0x803A1F9C@ha */
+/* 8000E248  38 84 1F 9C */	addi r4, r4, j3dDefaultTevStageInfo@l /* 0x803A1F9C@l */
 /* 8000E24C  48 00 00 4D */	bl setTevStageInfo__11J3DTevStageFRC15J3DTevStageInfo
 /* 8000E250  88 1F 00 07 */	lbz r0, 7(r31)
 /* 8000E254  54 04 07 B6 */	rlwinm r4, r0, 0, 0x1e, 0x1b

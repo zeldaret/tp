@@ -3,17 +3,15 @@
 #
 
 M582_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ndoor.plf
+M582_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ndoor.lcf
+M582_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ndoor.map
 
 M582_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_ndoor/executor.cpp \
-	rel/d/a/obj/d_a_obj_ndoor/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_ndoor/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_ndoor/d_a_obj_ndoor.cpp \
 
 M582_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ndoor/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ndoor/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ndoor/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ndoor/d_a_obj_ndoor.o \
 
 M582_LIBS := \
@@ -29,14 +27,21 @@ M582_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M582_LDSCRIPT) \
+	-unused -map $(M582_MAP) \
+	-w off \
 
 $(M582_TARGET): $(M582_O_FILES) $(M582_LIBS)
+	@echo [582] creating $(M582_TARGET)
 	@echo $(M582_LIBS) $(M582_O_FILES) > build/M582_ofiles
-	$(LD) -partial $(M582_LDFLAGS) -o $(M582_TARGET) @build/M582_ofiles
+	@python3 tools/lcf.py rel 582 --output $(M582_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M582_LDFLAGS) -o $(M582_TARGET) @build/M582_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ndoor/%.o: rel/d/a/obj/d_a_obj_ndoor/%.cpp
+	@echo [582] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M582_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M582_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

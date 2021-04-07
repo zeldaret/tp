@@ -19,8 +19,8 @@ lbl_801C3EC4:
 /* 801C3F08  EC 40 F8 2A */	fadds f2, f0, f31
 /* 801C3F0C  D0 43 0C 88 */	stfs f2, 0xc88(r3)
 /* 801C3F10  54 84 10 3A */	slwi r4, r4, 2
-/* 801C3F14  3C 60 80 43 */	lis r3, g_fmapHIO@ha
-/* 801C3F18  38 03 FC 60 */	addi r0, r3, g_fmapHIO@l
+/* 801C3F14  3C 60 80 43 */	lis r3, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801C3F18  38 03 FC 60 */	addi r0, r3, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801C3F1C  7C 60 22 14 */	add r3, r0, r4
 /* 801C3F20  C0 63 04 0C */	lfs f3, 0x40c(r3)
 /* 801C3F24  C0 43 04 04 */	lfs f2, 0x404(r3)

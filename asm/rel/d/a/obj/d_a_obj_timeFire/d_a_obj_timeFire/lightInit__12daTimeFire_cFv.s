@@ -1,6 +1,6 @@
 lbl_80D0EACC:
-/* 80D0EACC  3C 80 80 D1 */	lis r4, lit_3686@ha
-/* 80D0EAD0  38 84 F0 E4 */	addi r4, r4, lit_3686@l
+/* 80D0EACC  3C 80 80 D1 */	lis r4, lit_3686@ha /* 0x80D0F0E4@ha */
+/* 80D0EAD0  38 84 F0 E4 */	addi r4, r4, lit_3686@l /* 0x80D0F0E4@l */
 /* 80D0EAD4  C0 03 05 70 */	lfs f0, 0x570(r3)
 /* 80D0EAD8  D0 03 05 94 */	stfs f0, 0x594(r3)
 /* 80D0EADC  C0 03 05 74 */	lfs f0, 0x574(r3)

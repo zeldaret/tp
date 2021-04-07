@@ -3,17 +3,15 @@
 #
 
 M25_TARGET := $(BUILD_DIR)/rel/d/a/d_a_set_bgobj.plf
+M25_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_set_bgobj.lcf
+M25_MAP := $(BUILD_DIR)/rel/d/a/d_a_set_bgobj.map
 
 M25_CPP_FILES := \
-	rel/d/a/d_a_set_bgobj/executor.cpp \
-	rel/d/a/d_a_set_bgobj/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_set_bgobj/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_set_bgobj/d_a_set_bgobj.cpp \
 
 M25_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_set_bgobj/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_set_bgobj/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_set_bgobj/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_set_bgobj/d_a_set_bgobj.o \
 
 M25_LIBS := \
@@ -29,14 +27,21 @@ M25_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M25_LDSCRIPT) \
+	-unused -map $(M25_MAP) \
+	-w off \
 
 $(M25_TARGET): $(M25_O_FILES) $(M25_LIBS)
+	@echo [ 25] creating $(M25_TARGET)
 	@echo $(M25_LIBS) $(M25_O_FILES) > build/M25_ofiles
-	$(LD) -partial $(M25_LDFLAGS) -o $(M25_TARGET) @build/M25_ofiles
+	@python3 tools/lcf.py rel 25 --output $(M25_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M25_LDFLAGS) -o $(M25_TARGET) @build/M25_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_set_bgobj/%.o: rel/d/a/d_a_set_bgobj/%.cpp
+	@echo [ 25] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M25_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M25_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -7,13 +7,13 @@ lbl_80108DB4:
 /* 80108DC8  4B FF F9 BD */	bl checkLv7BossRoom__9daAlink_cFv
 /* 80108DCC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80108DD0  41 82 00 14 */	beq lbl_80108DE4
-/* 80108DD4  3C 60 80 39 */	lis r3, m__22daAlinkHIO_hookshot_c0@ha
-/* 80108DD8  38 63 E9 C0 */	addi r3, r3, m__22daAlinkHIO_hookshot_c0@l
+/* 80108DD4  3C 60 80 39 */	lis r3, m__22daAlinkHIO_hookshot_c0@ha /* 0x8038E9C0@ha */
+/* 80108DD8  38 63 E9 C0 */	addi r3, r3, m__22daAlinkHIO_hookshot_c0@l /* 0x8038E9C0@l */
 /* 80108DDC  C0 23 00 60 */	lfs f1, 0x60(r3)
 /* 80108DE0  48 00 00 10 */	b lbl_80108DF0
 lbl_80108DE4:
-/* 80108DE4  3C 60 80 39 */	lis r3, m__22daAlinkHIO_hookshot_c0@ha
-/* 80108DE8  38 63 E9 C0 */	addi r3, r3, m__22daAlinkHIO_hookshot_c0@l
+/* 80108DE4  3C 60 80 39 */	lis r3, m__22daAlinkHIO_hookshot_c0@ha /* 0x8038E9C0@ha */
+/* 80108DE8  38 63 E9 C0 */	addi r3, r3, m__22daAlinkHIO_hookshot_c0@l /* 0x8038E9C0@l */
 /* 80108DEC  C0 23 00 48 */	lfs f1, 0x48(r3)
 lbl_80108DF0:
 /* 80108DF0  7F E3 FB 78 */	mr r3, r31

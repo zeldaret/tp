@@ -3,17 +3,15 @@
 #
 
 M576_TARGET := $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_table.plf
+M576_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_table.lcf
+M576_MAP := $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_table.map
 
 M576_CPP_FILES := \
-	rel/d/a/obj/mirror/d_a_obj_mirror_table/executor.cpp \
-	rel/d/a/obj/mirror/d_a_obj_mirror_table/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/mirror/d_a_obj_mirror_table/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/mirror/d_a_obj_mirror_table/d_a_obj_mirror_table.cpp \
 
 M576_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_table/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_table/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_table/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_table/d_a_obj_mirror_table.o \
 
 M576_LIBS := \
@@ -29,14 +27,21 @@ M576_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M576_LDSCRIPT) \
+	-unused -map $(M576_MAP) \
+	-w off \
 
 $(M576_TARGET): $(M576_O_FILES) $(M576_LIBS)
+	@echo [576] creating $(M576_TARGET)
 	@echo $(M576_LIBS) $(M576_O_FILES) > build/M576_ofiles
-	$(LD) -partial $(M576_LDFLAGS) -o $(M576_TARGET) @build/M576_ofiles
+	@python3 tools/lcf.py rel 576 --output $(M576_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M576_LDFLAGS) -o $(M576_TARGET) @build/M576_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_table/%.o: rel/d/a/obj/mirror/d_a_obj_mirror_table/%.cpp
+	@echo [576] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M576_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M576_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

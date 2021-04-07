@@ -8,19 +8,19 @@ lbl_80BC8238:
 /* 80BC8250  7C 9F 23 78 */	mr r31, r4
 /* 80BC8254  88 03 06 09 */	lbz r0, 0x609(r3)
 /* 80BC8258  1C 80 00 0C */	mulli r4, r0, 0xc
-/* 80BC825C  3C 60 80 BD */	lis r3, s_exeProc__17daObjChandelier_c@ha
-/* 80BC8260  38 03 8D A4 */	addi r0, r3, s_exeProc__17daObjChandelier_c@l
+/* 80BC825C  3C 60 80 BD */	lis r3, s_exeProc__17daObjChandelier_c@ha /* 0x80BC8DA4@ha */
+/* 80BC8260  38 03 8D A4 */	addi r0, r3, s_exeProc__17daObjChandelier_c@l /* 0x80BC8DA4@l */
 /* 80BC8264  7C 60 22 14 */	add r3, r0, r4
-/* 80BC8268  4B 79 9D B0 */	b __ptmf_test
+/* 80BC8268  4B 79 9D B1 */	bl __ptmf_test
 /* 80BC826C  2C 03 00 00 */	cmpwi r3, 0
 /* 80BC8270  41 82 00 24 */	beq lbl_80BC8294
 /* 80BC8274  7F C3 F3 78 */	mr r3, r30
 /* 80BC8278  88 1E 06 09 */	lbz r0, 0x609(r30)
 /* 80BC827C  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 80BC8280  3C 80 80 BD */	lis r4, s_exeProc__17daObjChandelier_c@ha
-/* 80BC8284  38 04 8D A4 */	addi r0, r4, s_exeProc__17daObjChandelier_c@l
+/* 80BC8280  3C 80 80 BD */	lis r4, s_exeProc__17daObjChandelier_c@ha /* 0x80BC8DA4@ha */
+/* 80BC8284  38 04 8D A4 */	addi r0, r4, s_exeProc__17daObjChandelier_c@l /* 0x80BC8DA4@l */
 /* 80BC8288  7D 80 2A 14 */	add r12, r0, r5
-/* 80BC828C  4B 79 9D F8 */	b __ptmf_scall
+/* 80BC828C  4B 79 9D F9 */	bl __ptmf_scall
 /* 80BC8290  60 00 00 00 */	nop 
 lbl_80BC8294:
 /* 80BC8294  7F C3 F3 78 */	mr r3, r30

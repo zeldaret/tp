@@ -8,7 +8,7 @@ lbl_80BF41F0:
 /* 80BF4208  38 80 00 00 */	li r4, 0
 /* 80BF420C  38 1F 0A 47 */	addi r0, r31, 0xa47
 /* 80BF4210  7C A3 00 50 */	subf r5, r3, r0
-/* 80BF4214  4B 40 F2 44 */	b memset
+/* 80BF4214  4B 40 F2 45 */	bl memset
 /* 80BF4218  88 1F 09 D0 */	lbz r0, 0x9d0(r31)
 /* 80BF421C  2C 00 00 02 */	cmpwi r0, 2
 /* 80BF4220  40 80 00 18 */	bge lbl_80BF4238

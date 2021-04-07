@@ -13,8 +13,8 @@ lbl_801013B8:
 /* 801013E4  7C 03 00 50 */	subf r0, r3, r0
 /* 801013E8  7C 00 07 35 */	extsh. r0, r0
 /* 801013EC  40 80 00 6C */	bge lbl_80101458
-/* 801013F0  3C 60 80 39 */	lis r3, m__22daAlinkHIO_roofHang_c0@ha
-/* 801013F4  38 63 EB FC */	addi r3, r3, m__22daAlinkHIO_roofHang_c0@l
+/* 801013F0  3C 60 80 39 */	lis r3, m__22daAlinkHIO_roofHang_c0@ha /* 0x8038EBFC@ha */
+/* 801013F4  38 63 EB FC */	addi r3, r3, m__22daAlinkHIO_roofHang_c0@l /* 0x8038EBFC@l */
 /* 801013F8  C0 03 00 44 */	lfs f0, 0x44(r3)
 /* 801013FC  FF E0 00 50 */	fneg f31, f0
 /* 80101400  38 00 00 01 */	li r0, 1
@@ -40,8 +40,8 @@ lbl_801013B8:
 /* 80101450  D0 1F 34 7C */	stfs f0, 0x347c(r31)
 /* 80101454  48 00 00 38 */	b lbl_8010148C
 lbl_80101458:
-/* 80101458  3C 60 80 39 */	lis r3, m__22daAlinkHIO_roofHang_c0@ha
-/* 8010145C  38 63 EB FC */	addi r3, r3, m__22daAlinkHIO_roofHang_c0@l
+/* 80101458  3C 60 80 39 */	lis r3, m__22daAlinkHIO_roofHang_c0@ha /* 0x8038EBFC@ha */
+/* 8010145C  38 63 EB FC */	addi r3, r3, m__22daAlinkHIO_roofHang_c0@l /* 0x8038EBFC@l */
 /* 80101460  C3 E3 00 44 */	lfs f31, 0x44(r3)
 /* 80101464  38 00 00 00 */	li r0, 0
 /* 80101468  B0 1F 30 08 */	sth r0, 0x3008(r31)
@@ -59,8 +59,8 @@ lbl_8010148C:
 /* 80101494  7F E3 FB 78 */	mr r3, r31
 /* 80101498  38 80 00 AD */	li r4, 0xad
 /* 8010149C  FC 20 F8 90 */	fmr f1, f31
-/* 801014A0  3C A0 80 39 */	lis r5, m__22daAlinkHIO_roofHang_c0@ha
-/* 801014A4  38 A5 EB FC */	addi r5, r5, m__22daAlinkHIO_roofHang_c0@l
+/* 801014A0  3C A0 80 39 */	lis r5, m__22daAlinkHIO_roofHang_c0@ha /* 0x8038EBFC@ha */
+/* 801014A4  38 A5 EB FC */	addi r5, r5, m__22daAlinkHIO_roofHang_c0@l /* 0x8038EBFC@l */
 /* 801014A8  C0 45 00 48 */	lfs f2, 0x48(r5)
 /* 801014AC  4B FA BB 35 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 801014B0  A8 1F 30 08 */	lha r0, 0x3008(r31)
@@ -85,8 +85,8 @@ lbl_801014D8:
 /* 801014F4  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 801014F8  D0 1F 33 98 */	stfs f0, 0x3398(r31)
 /* 801014FC  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
-/* 80101500  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80101504  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80101500  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80101504  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80101508  80 03 5F 1C */	lwz r0, 0x5f1c(r3)
 /* 8010150C  64 00 00 10 */	oris r0, r0, 0x10
 /* 80101510  90 03 5F 1C */	stw r0, 0x5f1c(r3)

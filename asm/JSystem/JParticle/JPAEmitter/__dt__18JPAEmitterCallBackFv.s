@@ -5,8 +5,8 @@ lbl_8027E6A4:
 /* 8027E6B0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8027E6B4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8027E6B8  41 82 00 1C */	beq lbl_8027E6D4
-/* 8027E6BC  3C A0 80 3B */	lis r5, __vt__18JPAEmitterCallBack@ha
-/* 8027E6C0  38 05 85 78 */	addi r0, r5, __vt__18JPAEmitterCallBack@l
+/* 8027E6BC  3C A0 80 3B */	lis r5, __vt__18JPAEmitterCallBack@ha /* 0x803A8578@ha */
+/* 8027E6C0  38 05 85 78 */	addi r0, r5, __vt__18JPAEmitterCallBack@l /* 0x803A8578@l */
 /* 8027E6C4  90 1F 00 00 */	stw r0, 0(r31)
 /* 8027E6C8  7C 80 07 35 */	extsh. r0, r4
 /* 8027E6CC  40 81 00 08 */	ble lbl_8027E6D4

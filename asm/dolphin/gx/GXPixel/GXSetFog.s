@@ -108,7 +108,7 @@ lbl_8035FA24:
 /* 8035FA30  3C 80 CC 01 */	lis r4, 0xCC01 /* 0xCC008000@ha */
 /* 8035FA34  50 FB A5 7E */	rlwimi r27, r7, 0x14, 0x15, 0x1f
 /* 8035FA38  38 DB 00 00 */	addi r6, r27, 0
-/* 8035FA3C  98 04 80 00 */	stb r0, 0x8000(r4)
+/* 8035FA3C  98 04 80 00 */	stb r0, 0x8000(r4)  /* 0xCC008000@l */
 /* 8035FA40  50 E6 A3 68 */	rlwimi r6, r7, 0x14, 0xd, 0x14
 /* 8035FA44  81 01 00 20 */	lwz r8, 0x20(r1)
 /* 8035FA48  38 A0 00 EE */	li r5, 0xee

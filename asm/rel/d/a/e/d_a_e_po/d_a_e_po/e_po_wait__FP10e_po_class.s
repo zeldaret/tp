@@ -5,8 +5,8 @@ lbl_8074D16C:
 /* 8074D178  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8074D17C  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8074D180  7C 7F 1B 78 */	mr r31, r3
-/* 8074D184  3C 80 80 75 */	lis r4, lit_3917@ha
-/* 8074D188  3B C4 76 FC */	addi r30, r4, lit_3917@l
+/* 8074D184  3C 80 80 75 */	lis r4, lit_3917@ha /* 0x807576FC@ha */
+/* 8074D188  3B C4 76 FC */	addi r30, r4, lit_3917@l /* 0x807576FC@l */
 /* 8074D18C  80 03 05 B4 */	lwz r0, 0x5b4(r3)
 /* 8074D190  2C 00 00 01 */	cmpwi r0, 1
 /* 8074D194  41 82 00 58 */	beq lbl_8074D1EC
@@ -21,7 +21,7 @@ lbl_8074D1A8:
 /* 8074D1B4  C0 5E 00 08 */	lfs f2, 8(r30)
 /* 8074D1B8  4B FF F4 A9 */	bl anm_init__FP10e_po_classifUcf
 /* 8074D1BC  C0 3E 00 68 */	lfs f1, 0x68(r30)
-/* 8074D1C0  4B B1 A7 94 */	b cM_rndF__Ff
+/* 8074D1C0  4B B1 A7 95 */	bl cM_rndF__Ff
 /* 8074D1C4  C0 1E 00 68 */	lfs f0, 0x68(r30)
 /* 8074D1C8  EC 00 08 2A */	fadds f0, f0, f1
 /* 8074D1CC  FC 00 00 1E */	fctiwz f0, f0
@@ -36,25 +36,25 @@ lbl_8074D1EC:
 /* 8074D1EC  88 1F 05 C1 */	lbz r0, 0x5c1(r31)
 /* 8074D1F0  28 00 00 00 */	cmplwi r0, 0
 /* 8074D1F4  40 82 00 C0 */	bne lbl_8074D2B4
-/* 8074D1F8  4B A1 22 2C */	b checkNowWolfEyeUp__9daPy_py_cFv
+/* 8074D1F8  4B A1 22 2D */	bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 8074D1FC  2C 03 00 00 */	cmpwi r3, 0
 /* 8074D200  41 82 00 90 */	beq lbl_8074D290
-/* 8074D204  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8074D208  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8074D204  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8074D208  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8074D20C  3B C3 56 B8 */	addi r30, r3, 0x56b8
 /* 8074D210  7F C3 F3 78 */	mr r3, r30
 /* 8074D214  38 80 00 00 */	li r4, 0
-/* 8074D218  4B 92 36 2C */	b GetLockonList__12dAttention_cFl
+/* 8074D218  4B 92 36 2D */	bl GetLockonList__12dAttention_cFl
 /* 8074D21C  28 03 00 00 */	cmplwi r3, 0
 /* 8074D220  41 82 00 70 */	beq lbl_8074D290
 /* 8074D224  7F C3 F3 78 */	mr r3, r30
-/* 8074D228  4B 92 65 BC */	b LockonTruth__12dAttention_cFv
+/* 8074D228  4B 92 65 BD */	bl LockonTruth__12dAttention_cFv
 /* 8074D22C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8074D230  41 82 00 60 */	beq lbl_8074D290
 /* 8074D234  7F C3 F3 78 */	mr r3, r30
 /* 8074D238  38 80 00 00 */	li r4, 0
-/* 8074D23C  4B 92 36 08 */	b GetLockonList__12dAttention_cFl
-/* 8074D240  4B 92 66 24 */	b getActor__10dAttList_cFv
+/* 8074D23C  4B 92 36 09 */	bl GetLockonList__12dAttention_cFl
+/* 8074D240  4B 92 66 25 */	bl getActor__10dAttList_cFv
 /* 8074D244  7C 03 F8 40 */	cmplw r3, r31
 /* 8074D248  40 82 00 48 */	bne lbl_8074D290
 /* 8074D24C  38 00 00 00 */	li r0, 0
@@ -76,10 +76,10 @@ lbl_8074D1EC:
 /* 8074D28C  48 00 00 94 */	b lbl_8074D320
 lbl_8074D290:
 /* 8074D290  7F E3 FB 78 */	mr r3, r31
-/* 8074D294  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8074D298  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8074D294  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8074D298  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8074D29C  80 84 5D AC */	lwz r4, 0x5dac(r4)
-/* 8074D2A0  4B 8C D4 70 */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 8074D2A0  4B 8C D4 71 */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 8074D2A4  3C 63 00 01 */	addis r3, r3, 1
 /* 8074D2A8  38 03 80 00 */	addi r0, r3, -32768
 /* 8074D2AC  B0 1F 04 DE */	sth r0, 0x4de(r31)

@@ -7,8 +7,8 @@ lbl_80472EF0:
 /* 80472F04  93 E1 00 4C */	stw r31, 0x4c(r1)
 /* 80472F08  93 C1 00 48 */	stw r30, 0x48(r1)
 /* 80472F0C  7C 7F 1B 78 */	mr r31, r3
-/* 80472F10  3C 80 80 48 */	lis r4, l_cyl_info@ha
-/* 80472F14  3B C4 99 0C */	addi r30, r4, l_cyl_info@l
+/* 80472F10  3C 80 80 48 */	lis r4, l_cyl_info@ha /* 0x8047990C@ha */
+/* 80472F14  3B C4 99 0C */	addi r30, r4, l_cyl_info@l /* 0x8047990C@l */
 /* 80472F18  4B FF C7 8D */	bl data__12daObjCarry_cFv
 /* 80472F1C  A8 03 00 78 */	lha r0, 0x78(r3)
 /* 80472F20  C8 3E 0A A0 */	lfd f1, 0xaa0(r30)
@@ -27,22 +27,22 @@ lbl_80472EF0:
 /* 80472F54  C0 1E 0B 1C */	lfs f0, 0xb1c(r30)
 /* 80472F58  EC 01 00 2A */	fadds f0, f1, f0
 /* 80472F5C  D0 01 00 18 */	stfs f0, 0x18(r1)
-/* 80472F60  3C 60 80 48 */	lis r3, __vt__8cM3dGPla@ha
-/* 80472F64  38 03 B1 CC */	addi r0, r3, __vt__8cM3dGPla@l
+/* 80472F60  3C 60 80 48 */	lis r3, __vt__8cM3dGPla@ha /* 0x8047B1CC@ha */
+/* 80472F64  38 03 B1 CC */	addi r0, r3, __vt__8cM3dGPla@l /* 0x8047B1CC@l */
 /* 80472F68  90 01 00 30 */	stw r0, 0x30(r1)
 /* 80472F6C  38 61 00 14 */	addi r3, r1, 0x14
-/* 80472F70  4B BA AD 4C */	b gndCheck__11fopAcM_gc_cFPC4cXyz
+/* 80472F70  4B BA AD 4D */	bl gndCheck__11fopAcM_gc_cFPC4cXyz
 /* 80472F74  7C 7F 1B 78 */	mr r31, r3
-/* 80472F78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80472F7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80472F78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80472F7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80472F80  38 63 0F 38 */	addi r3, r3, 0xf38
-/* 80472F84  3C 80 80 3F */	lis r4, mGndCheck__11fopAcM_gc_c@ha
-/* 80472F88  38 84 1C C4 */	addi r4, r4, mGndCheck__11fopAcM_gc_c@l
+/* 80472F84  3C 80 80 3F */	lis r4, mGndCheck__11fopAcM_gc_c@ha /* 0x803F1CC4@ha */
+/* 80472F88  38 84 1C C4 */	addi r4, r4, mGndCheck__11fopAcM_gc_c@l /* 0x803F1CC4@l */
 /* 80472F8C  38 84 00 14 */	addi r4, r4, 0x14
 /* 80472F90  38 A1 00 20 */	addi r5, r1, 0x20
-/* 80472F94  4B C0 17 B0 */	b GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla
-/* 80472F98  3C 80 80 45 */	lis r4, mGroundY__11fopAcM_gc_c@ha
-/* 80472F9C  C0 24 0C D0 */	lfs f1, mGroundY__11fopAcM_gc_c@l(r4)
+/* 80472F94  4B C0 17 B1 */	bl GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla
+/* 80472F98  3C 80 80 45 */	lis r4, mGroundY__11fopAcM_gc_c@ha /* 0x80450CD0@ha */
+/* 80472F9C  C0 24 0C D0 */	lfs f1, mGroundY__11fopAcM_gc_c@l(r4)  /* 0x80450CD0@l */
 /* 80472FA0  57 E0 06 3F */	clrlwi. r0, r31, 0x18
 /* 80472FA4  41 82 00 7C */	beq lbl_80473020
 /* 80472FA8  C0 1E 0B 10 */	lfs f0, 0xb10(r30)
@@ -57,8 +57,8 @@ lbl_80472EF0:
 /* 80472FCC  FC 00 00 1E */	fctiwz f0, f0
 /* 80472FD0  D8 01 00 38 */	stfd f0, 0x38(r1)
 /* 80472FD4  80 01 00 3C */	lwz r0, 0x3c(r1)
-/* 80472FD8  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80472FDC  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80472FD8  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80472FDC  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80472FE0  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 80472FE4  7C 63 02 14 */	add r3, r3, r0
 /* 80472FE8  C0 43 00 04 */	lfs f2, 4(r3)
@@ -70,14 +70,14 @@ lbl_80472EF0:
 /* 80473000  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80473004  FC 01 10 40 */	fcmpo cr0, f1, f2
 /* 80473008  40 80 00 18 */	bge lbl_80473020
-/* 8047300C  3C 60 80 48 */	lis r3, __vt__8cM3dGPla@ha
-/* 80473010  38 03 B1 CC */	addi r0, r3, __vt__8cM3dGPla@l
+/* 8047300C  3C 60 80 48 */	lis r3, __vt__8cM3dGPla@ha /* 0x8047B1CC@ha */
+/* 80473010  38 03 B1 CC */	addi r0, r3, __vt__8cM3dGPla@l /* 0x8047B1CC@l */
 /* 80473014  90 01 00 30 */	stw r0, 0x30(r1)
 /* 80473018  38 60 00 01 */	li r3, 1
 /* 8047301C  48 00 00 14 */	b lbl_80473030
 lbl_80473020:
-/* 80473020  3C 60 80 48 */	lis r3, __vt__8cM3dGPla@ha
-/* 80473024  38 03 B1 CC */	addi r0, r3, __vt__8cM3dGPla@l
+/* 80473020  3C 60 80 48 */	lis r3, __vt__8cM3dGPla@ha /* 0x8047B1CC@ha */
+/* 80473024  38 03 B1 CC */	addi r0, r3, __vt__8cM3dGPla@l /* 0x8047B1CC@l */
 /* 80473028  90 01 00 30 */	stw r0, 0x30(r1)
 /* 8047302C  38 60 00 00 */	li r3, 0
 lbl_80473030:

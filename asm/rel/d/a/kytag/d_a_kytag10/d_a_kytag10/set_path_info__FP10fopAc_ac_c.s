@@ -10,7 +10,7 @@ lbl_80528D0C:
 /* 80528D2C  41 82 00 14 */	beq lbl_80528D40
 /* 80528D30  88 05 04 E2 */	lbz r0, 0x4e2(r5)
 /* 80528D34  7C 04 07 74 */	extsb r4, r0
-/* 80528D38  4B B2 8A B4 */	b dPath_GetRoomPath__Fii
+/* 80528D38  4B B2 8A B5 */	bl dPath_GetRoomPath__Fii
 /* 80528D3C  7C 64 1B 78 */	mr r4, r3
 lbl_80528D40:
 /* 80528D40  7C 83 23 78 */	mr r3, r4

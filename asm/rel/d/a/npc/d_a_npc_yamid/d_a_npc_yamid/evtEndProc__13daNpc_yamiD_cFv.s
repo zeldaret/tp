@@ -8,11 +8,11 @@ lbl_80B45F74:
 /* 80B45F8C  2C 00 00 00 */	cmpwi r0, 0
 /* 80B45F90  41 82 00 28 */	beq lbl_80B45FB8
 /* 80B45F94  38 7F 0B A8 */	addi r3, r31, 0xba8
-/* 80B45F98  4B 5F F7 64 */	b remove__18daNpcT_ActorMngr_cFv
+/* 80B45F98  4B 5F F7 65 */	bl remove__18daNpcT_ActorMngr_cFv
 /* 80B45F9C  38 00 00 00 */	li r0, 0
 /* 80B45FA0  90 1F 0B C8 */	stw r0, 0xbc8(r31)
-/* 80B45FA4  3C 60 80 B4 */	lis r3, lit_4194@ha
-/* 80B45FA8  C0 03 60 F0 */	lfs f0, lit_4194@l(r3)
+/* 80B45FA4  3C 60 80 B4 */	lis r3, lit_4194@ha /* 0x80B460F0@ha */
+/* 80B45FA8  C0 03 60 F0 */	lfs f0, lit_4194@l(r3)  /* 0x80B460F0@l */
 /* 80B45FAC  D0 1F 0C F4 */	stfs f0, 0xcf4(r31)
 /* 80B45FB0  98 1F 0C FF */	stb r0, 0xcff(r31)
 /* 80B45FB4  90 1F 0C E0 */	stw r0, 0xce0(r31)

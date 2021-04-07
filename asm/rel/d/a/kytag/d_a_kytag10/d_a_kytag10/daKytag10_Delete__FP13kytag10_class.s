@@ -5,13 +5,13 @@ lbl_8052917C:
 /* 80529188  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8052918C  7C 7F 1B 78 */	mr r31, r3
 /* 80529190  38 00 00 00 */	li r0, 0
-/* 80529194  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80529198  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 80529194  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80529198  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8052919C  98 03 0F 21 */	stb r0, 0xf21(r3)
 /* 805291A0  80 7F 05 6C */	lwz r3, 0x56c(r31)
 /* 805291A4  28 03 00 00 */	cmplwi r3, 0
 /* 805291A8  41 82 00 40 */	beq lbl_805291E8
-/* 805291AC  4B D5 5A B4 */	b deleteAllParticle__14JPABaseEmitterFv
+/* 805291AC  4B D5 5A B5 */	bl deleteAllParticle__14JPABaseEmitterFv
 /* 805291B0  80 7F 05 6C */	lwz r3, 0x56c(r31)
 /* 805291B4  80 03 00 F4 */	lwz r0, 0xf4(r3)
 /* 805291B8  60 00 00 01 */	ori r0, r0, 1
@@ -30,7 +30,7 @@ lbl_805291E8:
 /* 805291E8  80 7F 05 70 */	lwz r3, 0x570(r31)
 /* 805291EC  28 03 00 00 */	cmplwi r3, 0
 /* 805291F0  41 82 00 40 */	beq lbl_80529230
-/* 805291F4  4B D5 5A 6C */	b deleteAllParticle__14JPABaseEmitterFv
+/* 805291F4  4B D5 5A 6D */	bl deleteAllParticle__14JPABaseEmitterFv
 /* 805291F8  80 7F 05 70 */	lwz r3, 0x570(r31)
 /* 805291FC  80 03 00 F4 */	lwz r0, 0xf4(r3)
 /* 80529200  60 00 00 01 */	ori r0, r0, 1

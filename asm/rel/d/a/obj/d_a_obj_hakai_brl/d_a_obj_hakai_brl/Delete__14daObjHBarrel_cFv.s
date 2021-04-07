@@ -5,7 +5,7 @@ lbl_80C16BF8:
 /* 80C16C04  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C16C08  7C 7F 1B 78 */	mr r31, r3
 /* 80C16C0C  38 7F 06 F0 */	addi r3, r31, 0x6f0
-/* 80C16C10  4B 6A 73 E8 */	b deleteObject__14Z2SoundObjBaseFv
+/* 80C16C10  4B 6A 73 E9 */	bl deleteObject__14Z2SoundObjBaseFv
 /* 80C16C14  7F E3 FB 78 */	mr r3, r31
 /* 80C16C18  38 80 FF FF */	li r4, -1
 /* 80C16C1C  81 9F 05 70 */	lwz r12, 0x570(r31)

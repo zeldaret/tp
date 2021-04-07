@@ -5,8 +5,8 @@ lbl_8023C124:
 /* 8023C130  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8023C134  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8023C138  41 82 00 1C */	beq lbl_8023C154
-/* 8023C13C  3C A0 80 3C */	lis r5, __vt__14dMsgScrnBase_c@ha
-/* 8023C140  38 05 0D 58 */	addi r0, r5, __vt__14dMsgScrnBase_c@l
+/* 8023C13C  3C A0 80 3C */	lis r5, __vt__14dMsgScrnBase_c@ha /* 0x803C0D58@ha */
+/* 8023C140  38 05 0D 58 */	addi r0, r5, __vt__14dMsgScrnBase_c@l /* 0x803C0D58@l */
 /* 8023C144  90 1F 00 00 */	stw r0, 0(r31)
 /* 8023C148  7C 80 07 35 */	extsh. r0, r4
 /* 8023C14C  40 81 00 08 */	ble lbl_8023C154

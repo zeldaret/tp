@@ -1,7 +1,7 @@
 lbl_803620AC:
 /* 803620AC  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 803620B0  3C 80 80 3A */	lis r4, __constants@h
-/* 803620B4  60 84 21 90 */	ori r4, r4, __constants@l
+/* 803620B0  3C 80 80 3A */	lis r4, __constants@h /* 0x803A2190@h */
+/* 803620B4  60 84 21 90 */	ori r4, r4, __constants@l /* 0x803A2190@l */
 /* 803620B8  38 60 00 00 */	li r3, 0
 /* 803620BC  C8 04 00 00 */	lfd f0, 0(r4)
 /* 803620C0  C8 64 00 08 */	lfd f3, 8(r4)

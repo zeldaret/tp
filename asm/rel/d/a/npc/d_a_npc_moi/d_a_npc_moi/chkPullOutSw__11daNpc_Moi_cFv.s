@@ -7,15 +7,15 @@ lbl_80A76888:
 /* 80A7689C  88 03 15 C4 */	lbz r0, 0x15c4(r3)
 /* 80A768A0  28 00 00 02 */	cmplwi r0, 2
 /* 80A768A4  40 82 00 40 */	bne lbl_80A768E4
-/* 80A768A8  3C 80 80 A8 */	lis r4, l_motionAnmData@ha
-/* 80A768AC  38 A4 B4 58 */	addi r5, r4, l_motionAnmData@l
+/* 80A768A8  3C 80 80 A8 */	lis r4, l_motionAnmData@ha /* 0x80A7B458@ha */
+/* 80A768AC  38 A4 B4 58 */	addi r5, r4, l_motionAnmData@l /* 0x80A7B458@l */
 /* 80A768B0  80 05 02 C4 */	lwz r0, 0x2c4(r5)
 /* 80A768B4  54 00 10 3A */	slwi r0, r0, 2
-/* 80A768B8  3C 80 80 A8 */	lis r4, l_resNameList@ha
-/* 80A768BC  38 84 B1 DC */	addi r4, r4, l_resNameList@l
+/* 80A768B8  3C 80 80 A8 */	lis r4, l_resNameList@ha /* 0x80A7B1DC@ha */
+/* 80A768BC  38 84 B1 DC */	addi r4, r4, l_resNameList@l /* 0x80A7B1DC@l */
 /* 80A768C0  7C 84 00 2E */	lwzx r4, r4, r0
 /* 80A768C4  80 A5 02 BC */	lwz r5, 0x2bc(r5)
-/* 80A768C8  4B 6D 17 90 */	b getTrnsfrmAnmP__8daNpcT_cFPCci
+/* 80A768C8  4B 6D 17 91 */	bl getTrnsfrmAnmP__8daNpcT_cFPCci
 /* 80A768CC  80 9F 05 78 */	lwz r4, 0x578(r31)
 /* 80A768D0  80 04 00 08 */	lwz r0, 8(r4)
 /* 80A768D4  7C 03 00 50 */	subf r0, r3, r0

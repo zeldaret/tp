@@ -9,8 +9,8 @@ lbl_80194C30:
 /* 80194C4C  48 0C 0B DD */	bl getAlphaRate__13CPaneMgrAlphaFv
 /* 80194C50  7F C3 F3 78 */	mr r3, r30
 /* 80194C54  48 00 00 6D */	bl update__16dSelect_cursor_cFv
-/* 80194C58  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80194C5C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80194C58  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80194C5C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80194C60  83 E3 5F 50 */	lwz r31, 0x5f50(r3)
 /* 80194C64  7F E3 FB 78 */	mr r3, r31
 /* 80194C68  81 9F 00 00 */	lwz r12, 0(r31)

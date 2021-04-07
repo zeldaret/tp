@@ -13,12 +13,12 @@
 
 struct Vec {};
 
-struct JPAEmitterWorkData {};
-
 struct JPABaseParticle;
 struct JPABaseEmitter {
     /* 8027EB60 */ void createChild(JPABaseParticle*);
 };
+
+struct JPAEmitterWorkData {};
 
 struct JPABaseParticle {
     /* 8027EFEC */ void init_p(JPAEmitterWorkData*);
@@ -57,10 +57,6 @@ extern "C" void getHeight__15JPABaseParticleCFPC14JPABaseEmitter();
 // External References:
 //
 
-void JPAGetYZRotateMtx(s16, s16, f32 (*)[4]);
-void operator delete(void*);
-void JMAVECScaleAdd(Vec const*, Vec const*, Vec*, f32);
-
 extern "C" void calc_p__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle();
 extern "C" void calc_c__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle();
 extern "C" void calcField__11JPAResourceFP18JPAEmitterWorkDataP15JPABaseParticle();
@@ -81,7 +77,7 @@ extern "C" extern u32 __float_epsilon;
 // Declarations:
 //
 
-/* 8027EFA4-8027EFEC 0048+00 s=0 e=11 z=1  None .text      __dt__19JPAParticleCallBackFv */
+/* 8027EFA4-8027EFEC 2798E4 0048+00 0/0 11/11 1/1 .text            __dt__19JPAParticleCallBackFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -92,10 +88,10 @@ asm JPAParticleCallBack::~JPAParticleCallBack() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455388-8045538C 0004+00 s=2 e=0 z=0  None .sdata2    @2565 */
+/* 80455388-8045538C 003988 0004+00 2/2 0/0 0/0 .sdata2          @2565 */
 SECTION_SDATA2 static f32 lit_2565 = 1.0f;
 
-/* 8045538C-80455390 0004+00 s=4 e=0 z=0  None .sdata2    @2566 */
+/* 8045538C-80455390 00398C 0004+00 4/4 0/0 0/0 .sdata2          @2566 */
 SECTION_SDATA2 static u8 lit_2566[4] = {
     0x00,
     0x00,
@@ -103,25 +99,25 @@ SECTION_SDATA2 static u8 lit_2566[4] = {
     0x00,
 };
 
-/* 80455390-80455394 0004+00 s=2 e=0 z=0  None .sdata2    @2567 */
+/* 80455390-80455394 003990 0004+00 2/2 0/0 0/0 .sdata2          @2567 */
 SECTION_SDATA2 static f32 lit_2567 = 32.0f;
 
-/* 80455394-80455398 0004+00 s=2 e=0 z=0  None .sdata2    @2568 */
+/* 80455394-80455398 003994 0004+00 2/2 0/0 0/0 .sdata2          @2568 */
 SECTION_SDATA2 static f32 lit_2568 = 0.5f;
 
-/* 80455398-8045539C 0004+00 s=2 e=0 z=0  None .sdata2    @2569 */
+/* 80455398-8045539C 003998 0004+00 2/2 0/0 0/0 .sdata2          @2569 */
 SECTION_SDATA2 static f32 lit_2569 = 3.0f;
 
-/* 8045539C-804553A0 0004+00 s=1 e=0 z=0  None .sdata2    @2570 */
+/* 8045539C-804553A0 00399C 0004+00 1/1 0/0 0/0 .sdata2          @2570 */
 SECTION_SDATA2 static f32 lit_2570 = 32768.0f;
 
-/* 804553A0-804553A8 0008+00 s=4 e=0 z=0  None .sdata2    @2572 */
+/* 804553A0-804553A8 0039A0 0008+00 4/4 0/0 0/0 .sdata2          @2572 */
 SECTION_SDATA2 static f64 lit_2572 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 804553A8-804553B0 0008+00 s=2 e=0 z=0  None .sdata2    @2574 */
+/* 804553A8-804553B0 0039A8 0008+00 2/2 0/0 0/0 .sdata2          @2574 */
 SECTION_SDATA2 static f64 lit_2574 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 8027EFEC-8027F8C8 08DC+00 s=0 e=1 z=0  None .text
+/* 8027EFEC-8027F8C8 27992C 08DC+00 0/0 1/1 0/0 .text
  * init_p__15JPABaseParticleFP18JPAEmitterWorkData              */
 #pragma push
 #pragma optimization_level 0
@@ -132,7 +128,7 @@ asm void JPABaseParticle::init_p(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 8027F8C8-8027FFD0 0708+00 s=0 e=1 z=0  None .text
+/* 8027F8C8-8027FFD0 27A208 0708+00 0/0 1/1 0/0 .text
  * init_c__15JPABaseParticleFP18JPAEmitterWorkDataP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -143,7 +139,7 @@ asm void JPABaseParticle::init_c(JPAEmitterWorkData* param_0, JPABaseParticle* p
 }
 #pragma pop
 
-/* 8027FFD0-80280260 0290+00 s=0 e=1 z=0  None .text
+/* 8027FFD0-80280260 27A910 0290+00 0/0 1/1 0/0 .text
  * calc_p__15JPABaseParticleFP18JPAEmitterWorkData              */
 #pragma push
 #pragma optimization_level 0
@@ -154,7 +150,7 @@ asm void JPABaseParticle::calc_p(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 80280260-802804C8 0268+00 s=0 e=1 z=0  None .text
+/* 80280260-802804C8 27ABA0 0268+00 0/0 1/1 0/0 .text
  * calc_c__15JPABaseParticleFP18JPAEmitterWorkData              */
 #pragma push
 #pragma optimization_level 0
@@ -165,7 +161,7 @@ asm void JPABaseParticle::calc_c(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 802804C8-80280548 0080+00 s=1 e=0 z=0  None .text
+/* 802804C8-80280548 27AE08 0080+00 1/1 0/0 0/0 .text
  * canCreateChild__15JPABaseParticleFP18JPAEmitterWorkData      */
 #pragma push
 #pragma optimization_level 0
@@ -177,14 +173,14 @@ asm void JPABaseParticle::canCreateChild(JPAEmitterWorkData* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804553B0-804553B8 0004+04 s=2 e=0 z=0  None .sdata2    @3010 */
+/* 804553B0-804553B8 0039B0 0004+04 2/2 0/0 0/0 .sdata2          @3010 */
 SECTION_SDATA2 static f32 lit_3010[1 + 1 /* padding */] = {
     2.0f,
     /* padding */
     0.0f,
 };
 
-/* 80280548-80280568 0020+00 s=0 e=3 z=0  None .text
+/* 80280548-80280568 27AE88 0020+00 0/0 3/3 0/0 .text
  * getWidth__15JPABaseParticleCFPC14JPABaseEmitter              */
 #pragma push
 #pragma optimization_level 0
@@ -195,7 +191,7 @@ asm void JPABaseParticle::getWidth(JPABaseEmitter const* param_0) const {
 }
 #pragma pop
 
-/* 80280568-80280588 0020+00 s=0 e=3 z=0  None .text
+/* 80280568-80280588 27AEA8 0020+00 0/0 3/3 0/0 .text
  * getHeight__15JPABaseParticleCFPC14JPABaseEmitter             */
 #pragma push
 #pragma optimization_level 0

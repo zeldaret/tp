@@ -9,14 +9,14 @@ lbl_805A58E8:
 /* 805A5904  41 82 00 2C */	beq lbl_805A5930
 /* 805A5908  38 7E 05 80 */	addi r3, r30, 0x580
 /* 805A590C  38 80 FF FF */	li r4, -1
-/* 805A5910  4B CA 46 38 */	b __dt__10dMsgFlow_cFv
+/* 805A5910  4B CA 46 39 */	bl __dt__10dMsgFlow_cFv
 /* 805A5914  7F C3 F3 78 */	mr r3, r30
 /* 805A5918  38 80 00 00 */	li r4, 0
-/* 805A591C  4B A7 33 70 */	b __dt__10fopAc_ac_cFv
+/* 805A591C  4B A7 33 71 */	bl __dt__10fopAc_ac_cFv
 /* 805A5920  7F E0 07 35 */	extsh. r0, r31
 /* 805A5924  40 81 00 0C */	ble lbl_805A5930
 /* 805A5928  7F C3 F3 78 */	mr r3, r30
-/* 805A592C  4B D2 94 10 */	b __dl__FPv
+/* 805A592C  4B D2 94 11 */	bl __dl__FPv
 lbl_805A5930:
 /* 805A5930  7F C3 F3 78 */	mr r3, r30
 /* 805A5934  83 E1 00 0C */	lwz r31, 0xc(r1)

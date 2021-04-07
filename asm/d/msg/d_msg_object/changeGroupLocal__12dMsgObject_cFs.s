@@ -6,8 +6,8 @@ lbl_80236D0C:
 /* 80236D1C  48 12 B4 C1 */	bl _savegpr_29
 /* 80236D20  7C 7E 1B 78 */	mr r30, r3
 /* 80236D24  7C 9F 23 78 */	mr r31, r4
-/* 80236D28  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80236D2C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80236D28  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80236D2C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80236D30  80 63 5E C8 */	lwz r3, 0x5ec8(r3)
 /* 80236D34  4B DD 84 99 */	bl mDoExt_setCurrentHeap__FP7JKRHeap
 /* 80236D38  7C 7D 1B 78 */	mr r29, r3
@@ -30,8 +30,8 @@ lbl_80236D60:
 /* 80236D78  38 00 00 01 */	li r0, 1
 /* 80236D7C  98 1E 01 9D */	stb r0, 0x19d(r30)
 lbl_80236D80:
-/* 80236D80  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80236D84  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 80236D80  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80236D84  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 80236D88  80 03 00 14 */	lwz r0, 0x14(r3)
 /* 80236D8C  90 1E 01 30 */	stw r0, 0x130(r30)
 /* 80236D90  48 00 00 0C */	b lbl_80236D9C

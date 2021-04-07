@@ -22,8 +22,8 @@ lbl_80041F60:
 /* 80041F60  A8 9F 00 DE */	lha r4, 0xde(r31)
 /* 80041F64  2C 04 FF FF */	cmpwi r4, -1
 /* 80041F68  41 82 00 20 */	beq lbl_80041F88
-/* 80041F6C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80041F70  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80041F6C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80041F70  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80041F74  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 80041F78  38 A0 00 01 */	li r5, 1
 /* 80041F7C  48 00 4E 31 */	bl endProc__16dEvent_manager_cFsi

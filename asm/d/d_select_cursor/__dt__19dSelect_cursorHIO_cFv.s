@@ -5,8 +5,8 @@ lbl_80195978:
 /* 80195984  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80195988  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8019598C  41 82 00 1C */	beq lbl_801959A8
-/* 80195990  3C A0 80 3C */	lis r5, __vt__19dSelect_cursorHIO_c@ha
-/* 80195994  38 05 B7 A8 */	addi r0, r5, __vt__19dSelect_cursorHIO_c@l
+/* 80195990  3C A0 80 3C */	lis r5, __vt__19dSelect_cursorHIO_c@ha /* 0x803BB7A8@ha */
+/* 80195994  38 05 B7 A8 */	addi r0, r5, __vt__19dSelect_cursorHIO_c@l /* 0x803BB7A8@l */
 /* 80195998  90 1F 00 00 */	stw r0, 0(r31)
 /* 8019599C  7C 80 07 35 */	extsh. r0, r4
 /* 801959A0  40 81 00 08 */	ble lbl_801959A8

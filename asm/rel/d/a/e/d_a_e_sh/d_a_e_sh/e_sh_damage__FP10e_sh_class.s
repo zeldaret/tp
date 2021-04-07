@@ -5,8 +5,8 @@ lbl_8078FBC8:
 /* 8078FBD4  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8078FBD8  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8078FBDC  7C 7E 1B 78 */	mr r30, r3
-/* 8078FBE0  3C 80 80 79 */	lis r4, lit_3902@ha
-/* 8078FBE4  3B E4 1D 70 */	addi r31, r4, lit_3902@l
+/* 8078FBE0  3C 80 80 79 */	lis r4, lit_3902@ha /* 0x80791D70@ha */
+/* 8078FBE4  3B E4 1D 70 */	addi r31, r4, lit_3902@l /* 0x80791D70@l */
 /* 8078FBE8  38 00 00 06 */	li r0, 6
 /* 8078FBEC  B0 03 06 A0 */	sth r0, 0x6a0(r3)
 /* 8078FBF0  C0 3F 00 04 */	lfs f1, 4(r31)
@@ -52,7 +52,7 @@ lbl_8078FC80:
 /* 8078FC80  38 00 00 05 */	li r0, 5
 /* 8078FC84  B0 1E 06 78 */	sth r0, 0x678(r30)
 /* 8078FC88  C0 3F 00 6C */	lfs f1, 0x6c(r31)
-/* 8078FC8C  4B AD 7C C8 */	b cM_rndF__Ff
+/* 8078FC8C  4B AD 7C C9 */	bl cM_rndF__Ff
 /* 8078FC90  C0 1F 00 6C */	lfs f0, 0x6c(r31)
 /* 8078FC94  EC 00 08 2A */	fadds f0, f0, f1
 /* 8078FC98  FC 00 00 1E */	fctiwz f0, f0

@@ -9,7 +9,7 @@ lbl_809E6444:
 /* 809E6460  38 9F 0C 90 */	addi r4, r31, 0xc90
 /* 809E6464  38 A0 00 01 */	li r5, 1
 /* 809E6468  38 C0 00 00 */	li r6, 0
-/* 809E646C  4B 76 D1 0C */	b hitChk2__8daNpcF_cFP8dCcD_Cylii
+/* 809E646C  4B 76 D1 0D */	bl hitChk2__8daNpcF_cFP8dCcD_Cylii
 /* 809E6470  2C 03 00 00 */	cmpwi r3, 0
 /* 809E6474  41 82 00 44 */	beq lbl_809E64B8
 /* 809E6478  7F E3 FB 78 */	mr r3, r31
@@ -19,13 +19,13 @@ lbl_809E6444:
 /* 809E6488  38 80 00 14 */	li r4, 0x14
 /* 809E648C  48 00 00 10 */	b lbl_809E649C
 lbl_809E6490:
-/* 809E6490  3C 80 80 9E */	lis r4, m__17daNpc_grS_Param_c@ha
-/* 809E6494  38 84 7D CC */	addi r4, r4, m__17daNpc_grS_Param_c@l
+/* 809E6490  3C 80 80 9E */	lis r4, m__17daNpc_grS_Param_c@ha /* 0x809E7DCC@ha */
+/* 809E6494  38 84 7D CC */	addi r4, r4, m__17daNpc_grS_Param_c@l /* 0x809E7DCC@l */
 /* 809E6498  A8 84 00 62 */	lha r4, 0x62(r4)
 lbl_809E649C:
 /* 809E649C  38 A0 00 03 */	li r5, 3
 /* 809E64A0  38 C0 00 00 */	li r6, 0
-/* 809E64A4  4B 76 D1 B4 */	b setDamage__8daNpcF_cFiii
+/* 809E64A4  4B 76 D1 B5 */	bl setDamage__8daNpcF_cFiii
 /* 809E64A8  7F E3 FB 78 */	mr r3, r31
 /* 809E64AC  38 80 00 01 */	li r4, 1
 /* 809E64B0  48 00 03 A5 */	bl setLookMode__11daNpc_grS_cFi
@@ -52,18 +52,18 @@ lbl_809E64F4:
 /* 809E64F8  B0 1F 09 E6 */	sth r0, 0x9e6(r31)
 lbl_809E64FC:
 /* 809E64FC  38 7F 0D CC */	addi r3, r31, 0xdcc
-/* 809E6500  4B 97 BB 18 */	b __ptmf_test
+/* 809E6500  4B 97 BB 19 */	bl __ptmf_test
 /* 809E6504  2C 03 00 00 */	cmpwi r3, 0
 /* 809E6508  41 82 00 54 */	beq lbl_809E655C
 /* 809E650C  38 7F 0D D8 */	addi r3, r31, 0xdd8
 /* 809E6510  38 9F 0D CC */	addi r4, r31, 0xdcc
-/* 809E6514  4B 97 BB 34 */	b __ptmf_cmpr
+/* 809E6514  4B 97 BB 35 */	bl __ptmf_cmpr
 /* 809E6518  2C 03 00 00 */	cmpwi r3, 0
 /* 809E651C  40 82 00 1C */	bne lbl_809E6538
 /* 809E6520  7F E3 FB 78 */	mr r3, r31
 /* 809E6524  38 80 00 00 */	li r4, 0
 /* 809E6528  39 9F 0D D8 */	addi r12, r31, 0xdd8
-/* 809E652C  4B 97 BB 58 */	b __ptmf_scall
+/* 809E652C  4B 97 BB 59 */	bl __ptmf_scall
 /* 809E6530  60 00 00 00 */	nop 
 /* 809E6534  48 00 00 28 */	b lbl_809E655C
 lbl_809E6538:

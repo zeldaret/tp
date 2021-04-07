@@ -10,21 +10,21 @@ lbl_8098F208:
 /* 8098F228  38 A1 00 08 */	addi r5, r1, 8
 /* 8098F22C  7F C6 F3 78 */	mr r6, r30
 /* 8098F230  38 E0 00 00 */	li r7, 0
-/* 8098F234  4B 7C 44 E4 */	b ctrlMsgAnm__8daNpcF_cFRiRiP10fopAc_ac_ci
+/* 8098F234  4B 7C 44 E5 */	bl ctrlMsgAnm__8daNpcF_cFRiRiP10fopAc_ac_ci
 /* 8098F238  2C 03 00 00 */	cmpwi r3, 0
 /* 8098F23C  41 82 00 4C */	beq lbl_8098F288
 /* 8098F240  7F C3 F3 78 */	mr r3, r30
 /* 8098F244  80 81 00 0C */	lwz r4, 0xc(r1)
-/* 8098F248  3C A0 80 99 */	lis r5, lit_4627@ha
-/* 8098F24C  C0 25 19 A4 */	lfs f1, lit_4627@l(r5)
+/* 8098F248  3C A0 80 99 */	lis r5, lit_4627@ha /* 0x809919A4@ha */
+/* 8098F24C  C0 25 19 A4 */	lfs f1, lit_4627@l(r5)  /* 0x809919A4@l */
 /* 8098F250  81 9E 0B 44 */	lwz r12, 0xb44(r30)
 /* 8098F254  81 8C 00 34 */	lwz r12, 0x34(r12)
 /* 8098F258  7D 89 03 A6 */	mtctr r12
 /* 8098F25C  4E 80 04 21 */	bctrl 
 /* 8098F260  7F C3 F3 78 */	mr r3, r30
 /* 8098F264  80 81 00 08 */	lwz r4, 8(r1)
-/* 8098F268  3C A0 80 99 */	lis r5, lit_4627@ha
-/* 8098F26C  C0 25 19 A4 */	lfs f1, lit_4627@l(r5)
+/* 8098F268  3C A0 80 99 */	lis r5, lit_4627@ha /* 0x809919A4@ha */
+/* 8098F26C  C0 25 19 A4 */	lfs f1, lit_4627@l(r5)  /* 0x809919A4@l */
 /* 8098F270  38 A0 00 00 */	li r5, 0
 /* 8098F274  81 9E 0B 44 */	lwz r12, 0xb44(r30)
 /* 8098F278  81 8C 00 3C */	lwz r12, 0x3c(r12)

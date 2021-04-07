@@ -6,10 +6,10 @@ lbl_80C494A8:
 /* 80C494B8  7C 7F 1B 78 */	mr r31, r3
 /* 80C494BC  80 03 06 14 */	lwz r0, 0x614(r3)
 /* 80C494C0  90 01 00 08 */	stw r0, 8(r1)
-/* 80C494C4  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 80C494C8  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 80C494C4  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 80C494C8  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 80C494CC  38 81 00 08 */	addi r4, r1, 8
-/* 80C494D0  4B 3D 03 28 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 80C494D0  4B 3D 03 29 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80C494D4  88 1F 05 E9 */	lbz r0, 0x5e9(r31)
 /* 80C494D8  2C 00 00 02 */	cmpwi r0, 2
 /* 80C494DC  41 82 00 78 */	beq lbl_80C49554
@@ -31,8 +31,8 @@ lbl_80C49504:
 lbl_80C49514:
 /* 80C49514  38 00 00 01 */	li r0, 1
 /* 80C49518  98 1F 05 E9 */	stb r0, 0x5e9(r31)
-/* 80C4951C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C49520  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 80C4951C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C49520  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C49524  A8 64 5D C8 */	lha r3, 0x5dc8(r4)
 /* 80C49528  38 03 FF FF */	addi r0, r3, -1
 /* 80C4952C  B0 04 5D C8 */	sth r0, 0x5dc8(r4)
@@ -47,8 +47,8 @@ lbl_80C49534:
 /* 80C4954C  98 1F 05 E9 */	stb r0, 0x5e9(r31)
 /* 80C49550  48 00 00 3C */	b lbl_80C4958C
 lbl_80C49554:
-/* 80C49554  3C 60 80 C5 */	lis r3, lit_3779@ha
-/* 80C49558  C0 03 9C FC */	lfs f0, lit_3779@l(r3)
+/* 80C49554  3C 60 80 C5 */	lis r3, lit_3779@ha /* 0x80C49CFC@ha */
+/* 80C49558  C0 03 9C FC */	lfs f0, lit_3779@l(r3)  /* 0x80C49CFC@l */
 /* 80C4955C  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 80C49560  38 00 00 03 */	li r0, 3
 /* 80C49564  98 1F 05 E9 */	stb r0, 0x5e9(r31)
@@ -57,7 +57,7 @@ lbl_80C49554:
 /* 80C49570  48 00 00 1C */	b lbl_80C4958C
 lbl_80C49574:
 /* 80C49574  80 7F 05 B4 */	lwz r3, 0x5b4(r31)
-/* 80C49578  4B 3C 3E B0 */	b play__14mDoExt_baseAnmFv
+/* 80C49578  4B 3C 3E B1 */	bl play__14mDoExt_baseAnmFv
 /* 80C4957C  2C 03 00 00 */	cmpwi r3, 0
 /* 80C49580  41 82 00 0C */	beq lbl_80C4958C
 /* 80C49584  38 00 00 04 */	li r0, 4

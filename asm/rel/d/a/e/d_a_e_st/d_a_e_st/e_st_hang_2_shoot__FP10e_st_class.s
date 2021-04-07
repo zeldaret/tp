@@ -3,13 +3,13 @@ lbl_807A1DB8:
 /* 807A1DBC  7C 08 02 A6 */	mflr r0
 /* 807A1DC0  90 01 00 44 */	stw r0, 0x44(r1)
 /* 807A1DC4  39 61 00 40 */	addi r11, r1, 0x40
-/* 807A1DC8  4B BC 04 08 */	b _savegpr_26
+/* 807A1DC8  4B BC 04 09 */	bl _savegpr_26
 /* 807A1DCC  7C 7D 1B 78 */	mr r29, r3
-/* 807A1DD0  3C 80 80 7A */	lis r4, lit_3903@ha
-/* 807A1DD4  3B C4 68 24 */	addi r30, r4, lit_3903@l
+/* 807A1DD0  3C 80 80 7A */	lis r4, lit_3903@ha /* 0x807A6824@ha */
+/* 807A1DD4  3B C4 68 24 */	addi r30, r4, lit_3903@l /* 0x807A6824@l */
 /* 807A1DD8  C0 23 04 D4 */	lfs f1, 0x4d4(r3)
-/* 807A1DDC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 807A1DE0  3B E4 61 C0 */	addi r31, r4, g_dComIfG_gameInfo@l
+/* 807A1DDC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 807A1DE0  3B E4 61 C0 */	addi r31, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 807A1DE4  80 9F 5D AC */	lwz r4, 0x5dac(r31)
 /* 807A1DE8  C0 04 04 D4 */	lfs f0, 0x4d4(r4)
 /* 807A1DEC  EC 21 00 28 */	fsubs f1, f1, f0
@@ -70,7 +70,7 @@ lbl_807A1EA8:
 /* 807A1EB0  39 00 00 00 */	li r8, 0
 /* 807A1EB4  39 20 00 00 */	li r9, 0
 /* 807A1EB8  39 40 FF FF */	li r10, -1
-/* 807A1EBC  4B 87 80 34 */	b fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
+/* 807A1EBC  4B 87 80 35 */	bl fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
 /* 807A1EC0  88 7D 0F 84 */	lbz r3, 0xf84(r29)
 /* 807A1EC4  38 03 00 01 */	addi r0, r3, 1
 /* 807A1EC8  98 1D 0F 84 */	stb r0, 0xf84(r29)
@@ -120,15 +120,15 @@ lbl_807A1F3C:
 lbl_807A1F6C:
 /* 807A1F6C  7F A3 EB 78 */	mr r3, r29
 /* 807A1F70  80 9F 5D AC */	lwz r4, 0x5dac(r31)
-/* 807A1F74  4B 87 87 9C */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 807A1F74  4B 87 87 9D */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 807A1F78  7C 64 1B 78 */	mr r4, r3
 /* 807A1F7C  38 7D 04 DE */	addi r3, r29, 0x4de
 /* 807A1F80  38 A0 00 04 */	li r5, 4
 /* 807A1F84  38 C0 10 00 */	li r6, 0x1000
-/* 807A1F88  4B AC E6 80 */	b cLib_addCalcAngleS2__FPssss
+/* 807A1F88  4B AC E6 81 */	bl cLib_addCalcAngleS2__FPssss
 lbl_807A1F8C:
 /* 807A1F8C  39 61 00 40 */	addi r11, r1, 0x40
-/* 807A1F90  4B BC 02 8C */	b _restgpr_26
+/* 807A1F90  4B BC 02 8D */	bl _restgpr_26
 /* 807A1F94  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 807A1F98  7C 08 03 A6 */	mtlr r0
 /* 807A1F9C  38 21 00 40 */	addi r1, r1, 0x40

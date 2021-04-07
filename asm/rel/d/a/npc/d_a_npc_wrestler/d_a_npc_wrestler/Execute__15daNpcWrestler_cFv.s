@@ -6,7 +6,7 @@ lbl_80B2FDE4:
 /* 80B2FDF4  7C 7F 1B 78 */	mr r31, r3
 /* 80B2FDF8  48 00 0D F5 */	bl checkArenaInfo__15daNpcWrestler_cFv
 /* 80B2FDFC  7F E3 FB 78 */	mr r3, r31
-/* 80B2FE00  4B 62 22 14 */	b execute__8daNpcF_cFv
+/* 80B2FE00  4B 62 22 15 */	bl execute__8daNpcF_cFv
 /* 80B2FE04  38 60 00 01 */	li r3, 1
 /* 80B2FE08  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80B2FE0C  80 01 00 14 */	lwz r0, 0x14(r1)

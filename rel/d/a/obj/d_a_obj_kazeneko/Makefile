@@ -3,17 +3,15 @@
 #
 
 M496_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kazeneko.plf
+M496_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kazeneko.lcf
+M496_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kazeneko.map
 
 M496_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_kazeneko/executor.cpp \
-	rel/d/a/obj/d_a_obj_kazeneko/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_kazeneko/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_kazeneko/d_a_obj_kazeneko.cpp \
 
 M496_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kazeneko/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kazeneko/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kazeneko/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kazeneko/d_a_obj_kazeneko.o \
 
 M496_LIBS := \
@@ -29,14 +27,21 @@ M496_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M496_LDSCRIPT) \
+	-unused -map $(M496_MAP) \
+	-w off \
 
 $(M496_TARGET): $(M496_O_FILES) $(M496_LIBS)
+	@echo [496] creating $(M496_TARGET)
 	@echo $(M496_LIBS) $(M496_O_FILES) > build/M496_ofiles
-	$(LD) -partial $(M496_LDFLAGS) -o $(M496_TARGET) @build/M496_ofiles
+	@python3 tools/lcf.py rel 496 --output $(M496_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M496_LDFLAGS) -o $(M496_TARGET) @build/M496_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kazeneko/%.o: rel/d/a/obj/d_a_obj_kazeneko/%.cpp
+	@echo [496] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M496_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M496_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

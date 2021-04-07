@@ -7,8 +7,8 @@ lbl_8001787C:
 /* 80017890  7C 7F 1B 78 */	mr r31, r3
 /* 80017894  38 7F 24 00 */	addi r3, r31, 0x2400
 /* 80017898  38 80 00 20 */	li r4, 0x20
-/* 8001789C  3C A0 80 37 */	lis r5, m_Do_m_Do_MemCardRWmng__stringBase0@ha
-/* 800178A0  38 A5 44 08 */	addi r5, r5, m_Do_m_Do_MemCardRWmng__stringBase0@l
+/* 8001789C  3C A0 80 37 */	lis r5, m_Do_m_Do_MemCardRWmng__stringBase0@ha /* 0x80374408@ha */
+/* 800178A0  38 A5 44 08 */	addi r5, r5, m_Do_m_Do_MemCardRWmng__stringBase0@l /* 0x80374408@l */
 /* 800178A4  4C C6 31 82 */	crclr 6
 /* 800178A8  48 34 ED 15 */	bl snprintf
 /* 800178AC  48 32 AE 51 */	bl OSGetTime
@@ -16,19 +16,19 @@ lbl_8001787C:
 /* 800178B4  48 32 B0 C1 */	bl OSTicksToCalendarTime
 /* 800178B8  38 7F 24 20 */	addi r3, r31, 0x2420
 /* 800178BC  38 80 00 20 */	li r4, 0x20
-/* 800178C0  3C A0 80 37 */	lis r5, m_Do_m_Do_MemCardRWmng__stringBase0@ha
-/* 800178C4  38 A5 44 08 */	addi r5, r5, m_Do_m_Do_MemCardRWmng__stringBase0@l
+/* 800178C0  3C A0 80 37 */	lis r5, m_Do_m_Do_MemCardRWmng__stringBase0@ha /* 0x80374408@ha */
+/* 800178C4  38 A5 44 08 */	addi r5, r5, m_Do_m_Do_MemCardRWmng__stringBase0@l /* 0x80374408@l */
 /* 800178C8  38 A5 00 19 */	addi r5, r5, 0x19
 /* 800178CC  80 C1 00 18 */	lwz r6, 0x18(r1)
 /* 800178D0  38 C6 00 01 */	addi r6, r6, 1
 /* 800178D4  80 E1 00 14 */	lwz r7, 0x14(r1)
 /* 800178D8  4C C6 31 82 */	crclr 6
 /* 800178DC  48 34 EC E1 */	bl snprintf
-/* 800178E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800178E4  3B 83 61 C0 */	addi r28, r3, g_dComIfG_gameInfo@l
+/* 800178E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800178E4  3B 83 61 C0 */	addi r28, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800178E8  80 7C 5C F0 */	lwz r3, 0x5cf0(r28)
-/* 800178EC  3C 80 80 37 */	lis r4, m_Do_m_Do_MemCardRWmng__stringBase0@ha
-/* 800178F0  38 84 44 08 */	addi r4, r4, m_Do_m_Do_MemCardRWmng__stringBase0@l
+/* 800178EC  3C 80 80 37 */	lis r4, m_Do_m_Do_MemCardRWmng__stringBase0@ha /* 0x80374408@ha */
+/* 800178F0  38 84 44 08 */	addi r4, r4, m_Do_m_Do_MemCardRWmng__stringBase0@l /* 0x80374408@l */
 /* 800178F4  38 84 00 29 */	addi r4, r4, 0x29
 /* 800178F8  81 83 00 00 */	lwz r12, 0(r3)
 /* 800178FC  81 8C 00 14 */	lwz r12, 0x14(r12)
@@ -36,8 +36,8 @@ lbl_8001787C:
 /* 80017904  4E 80 04 21 */	bctrl 
 /* 80017908  7C 7D 1B 78 */	mr r29, r3
 /* 8001790C  80 7C 5C F0 */	lwz r3, 0x5cf0(r28)
-/* 80017910  3C 80 80 37 */	lis r4, m_Do_m_Do_MemCardRWmng__stringBase0@ha
-/* 80017914  38 84 44 08 */	addi r4, r4, m_Do_m_Do_MemCardRWmng__stringBase0@l
+/* 80017910  3C 80 80 37 */	lis r4, m_Do_m_Do_MemCardRWmng__stringBase0@ha /* 0x80374408@ha */
+/* 80017914  38 84 44 08 */	addi r4, r4, m_Do_m_Do_MemCardRWmng__stringBase0@l /* 0x80374408@l */
 /* 80017918  38 84 00 3E */	addi r4, r4, 0x3e
 /* 8001791C  81 83 00 00 */	lwz r12, 0(r3)
 /* 80017920  81 8C 00 14 */	lwz r12, 0x14(r12)

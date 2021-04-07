@@ -7,7 +7,7 @@ lbl_80740024:
 /* 80740038  38 7F 06 12 */	addi r3, r31, 0x612
 /* 8074003C  38 A0 00 10 */	li r5, 0x10
 /* 80740040  38 C0 10 00 */	li r6, 0x1000
-/* 80740044  4B B3 05 C4 */	b cLib_addCalcAngleS2__FPssss
+/* 80740044  4B B3 05 C5 */	bl cLib_addCalcAngleS2__FPssss
 /* 80740048  A8 7F 06 66 */	lha r3, 0x666(r31)
 /* 8074004C  A8 1F 06 12 */	lha r0, 0x612(r31)
 /* 80740050  7C 03 02 14 */	add r0, r3, r0

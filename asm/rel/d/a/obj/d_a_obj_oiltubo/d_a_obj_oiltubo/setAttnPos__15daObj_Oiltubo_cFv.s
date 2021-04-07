@@ -6,8 +6,8 @@ lbl_80CA7430:
 /* 80CA7440  C0 03 04 D8 */	lfs f0, 0x4d8(r3)
 /* 80CA7444  D0 03 05 58 */	stfs f0, 0x558(r3)
 /* 80CA7448  C0 23 05 54 */	lfs f1, 0x554(r3)
-/* 80CA744C  3C 80 80 CA */	lis r4, lit_3999@ha
-/* 80CA7450  C0 04 79 3C */	lfs f0, lit_3999@l(r4)
+/* 80CA744C  3C 80 80 CA */	lis r4, lit_3999@ha /* 0x80CA793C@ha */
+/* 80CA7450  C0 04 79 3C */	lfs f0, lit_3999@l(r4)  /* 0x80CA793C@l */
 /* 80CA7454  EC 01 00 2A */	fadds f0, f1, f0
 /* 80CA7458  D0 03 05 54 */	stfs f0, 0x554(r3)
 /* 80CA745C  C0 03 04 D0 */	lfs f0, 0x4d0(r3)

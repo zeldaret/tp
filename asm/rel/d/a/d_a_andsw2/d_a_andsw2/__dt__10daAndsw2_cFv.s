@@ -8,11 +8,11 @@ lbl_804D60CC:
 /* 804D60E4  7C 9F 23 78 */	mr r31, r4
 /* 804D60E8  41 82 00 1C */	beq lbl_804D6104
 /* 804D60EC  38 80 00 00 */	li r4, 0
-/* 804D60F0  4B B4 2B 9C */	b __dt__10fopAc_ac_cFv
+/* 804D60F0  4B B4 2B 9D */	bl __dt__10fopAc_ac_cFv
 /* 804D60F4  7F E0 07 35 */	extsh. r0, r31
 /* 804D60F8  40 81 00 0C */	ble lbl_804D6104
 /* 804D60FC  7F C3 F3 78 */	mr r3, r30
-/* 804D6100  4B DF 8C 3C */	b __dl__FPv
+/* 804D6100  4B DF 8C 3D */	bl __dl__FPv
 lbl_804D6104:
 /* 804D6104  7F C3 F3 78 */	mr r3, r30
 /* 804D6108  83 E1 00 0C */	lwz r31, 0xc(r1)

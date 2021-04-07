@@ -1,9 +1,9 @@
 lbl_80083760:
-/* 80083760  3C 80 80 3B */	lis r4, __vt__10cCcD_GStts@ha
-/* 80083764  38 04 C3 1C */	addi r0, r4, __vt__10cCcD_GStts@l
+/* 80083760  3C 80 80 3B */	lis r4, __vt__10cCcD_GStts@ha /* 0x803AC31C@ha */
+/* 80083764  38 04 C3 1C */	addi r0, r4, __vt__10cCcD_GStts@l /* 0x803AC31C@l */
 /* 80083768  90 03 00 00 */	stw r0, 0(r3)
-/* 8008376C  3C 80 80 3B */	lis r4, __vt__10dCcD_GStts@ha
-/* 80083770  38 04 C3 10 */	addi r0, r4, __vt__10dCcD_GStts@l
+/* 8008376C  3C 80 80 3B */	lis r4, __vt__10dCcD_GStts@ha /* 0x803AC310@ha */
+/* 80083770  38 04 C3 10 */	addi r0, r4, __vt__10dCcD_GStts@l /* 0x803AC310@l */
 /* 80083774  90 03 00 00 */	stw r0, 0(r3)
 /* 80083778  38 A0 00 00 */	li r5, 0
 /* 8008377C  98 A3 00 04 */	stb r5, 4(r3)

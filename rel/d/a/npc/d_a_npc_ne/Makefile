@@ -3,19 +3,20 @@
 #
 
 M340_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ne.plf
+M340_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ne.lcf
+M340_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ne.map
 
 M340_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_ne/executor.cpp \
-	rel/d/a/npc/d_a_npc_ne/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_ne/d_a_npc_ne.cpp \
 
 M340_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ne/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ne/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ne/d_a_npc_ne.o \
 
 M340_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ne/libRuntime.PPCEABI.H.a \
 
 M340_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M340_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M340_LDSCRIPT) \
+	-unused -map $(M340_MAP) \
+	-w off \
 
 $(M340_TARGET): $(M340_O_FILES) $(M340_LIBS)
+	@echo [340] creating $(M340_TARGET)
 	@echo $(M340_LIBS) $(M340_O_FILES) > build/M340_ofiles
-	$(LD) -partial $(M340_LDFLAGS) -o $(M340_TARGET) @build/M340_ofiles
+	@python3 tools/lcf.py rel 340 --output $(M340_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M340_LDFLAGS) -o $(M340_TARGET) @build/M340_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ne/%.o: rel/d/a/npc/d_a_npc_ne/%.cpp
+	@echo [340] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M340_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M340_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_ne/libs/Runtime.PPCEABI.H/Makefile
 

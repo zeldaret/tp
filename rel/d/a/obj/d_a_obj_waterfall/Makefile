@@ -3,17 +3,15 @@
 #
 
 M681_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterfall.plf
+M681_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterfall.lcf
+M681_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterfall.map
 
 M681_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_waterfall/executor.cpp \
-	rel/d/a/obj/d_a_obj_waterfall/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_waterfall/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_waterfall/d_a_obj_waterfall.cpp \
 
 M681_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterfall/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterfall/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterfall/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterfall/d_a_obj_waterfall.o \
 
 M681_LIBS := \
@@ -29,14 +27,21 @@ M681_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M681_LDSCRIPT) \
+	-unused -map $(M681_MAP) \
+	-w off \
 
 $(M681_TARGET): $(M681_O_FILES) $(M681_LIBS)
+	@echo [681] creating $(M681_TARGET)
 	@echo $(M681_LIBS) $(M681_O_FILES) > build/M681_ofiles
-	$(LD) -partial $(M681_LDFLAGS) -o $(M681_TARGET) @build/M681_ofiles
+	@python3 tools/lcf.py rel 681 --output $(M681_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M681_LDFLAGS) -o $(M681_TARGET) @build/M681_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_waterfall/%.o: rel/d/a/obj/d_a_obj_waterfall/%.cpp
+	@echo [681] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M681_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M681_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -1,12 +1,12 @@
 lbl_80038020:
-/* 80038020  3C 80 80 3C */	lis r4, __vt__Q26JStage7TObject@ha
-/* 80038024  38 04 47 E8 */	addi r0, r4, __vt__Q26JStage7TObject@l
+/* 80038020  3C 80 80 3C */	lis r4, __vt__Q26JStage7TObject@ha /* 0x803C47E8@ha */
+/* 80038024  38 04 47 E8 */	addi r0, r4, __vt__Q26JStage7TObject@l /* 0x803C47E8@l */
 /* 80038028  90 03 00 00 */	stw r0, 0(r3)
-/* 8003802C  3C 80 80 3C */	lis r4, __vt__Q26JStage6TActor@ha
-/* 80038030  38 04 45 A8 */	addi r0, r4, __vt__Q26JStage6TActor@l
+/* 8003802C  3C 80 80 3C */	lis r4, __vt__Q26JStage6TActor@ha /* 0x803C45A8@ha */
+/* 80038030  38 04 45 A8 */	addi r0, r4, __vt__Q26JStage6TActor@l /* 0x803C45A8@l */
 /* 80038034  90 03 00 00 */	stw r0, 0(r3)
-/* 80038038  3C 80 80 3A */	lis r4, __vt__13dDemo_actor_c@ha
-/* 8003803C  38 04 7B 34 */	addi r0, r4, __vt__13dDemo_actor_c@l
+/* 80038038  3C 80 80 3A */	lis r4, __vt__13dDemo_actor_c@ha /* 0x803A7B34@ha */
+/* 8003803C  38 04 7B 34 */	addi r0, r4, __vt__13dDemo_actor_c@l /* 0x803A7B34@l */
 /* 80038040  90 03 00 00 */	stw r0, 0(r3)
 /* 80038044  38 00 00 00 */	li r0, 0
 /* 80038048  90 03 00 50 */	stw r0, 0x50(r3)
@@ -23,8 +23,8 @@ lbl_80038020:
 /* 80038074  B0 03 00 22 */	sth r0, 0x22(r3)
 /* 80038078  B0 03 00 24 */	sth r0, 0x24(r3)
 /* 8003807C  90 03 00 48 */	stw r0, 0x48(r3)
-/* 80038080  3C 80 80 45 */	lis r4, __float_max@ha
-/* 80038084  C4 04 0A E8 */	lfsu f0, __float_max@l(r4)
+/* 80038080  3C 80 80 45 */	lis r4, __float_max@ha /* 0x80450AE8@ha */
+/* 80038084  C4 04 0A E8 */	lfsu f0, __float_max@l(r4)  /* 0x80450AE8@l */
 /* 80038088  D0 03 00 38 */	stfs f0, 0x38(r3)
 /* 8003808C  C0 04 00 00 */	lfs f0, 0(r4)
 /* 80038090  D0 03 00 44 */	stfs f0, 0x44(r3)

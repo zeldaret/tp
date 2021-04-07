@@ -12,7 +12,7 @@ lbl_80D0DAC8:
 /* 80D0DAF0  38 A0 00 1E */	li r5, 0x1e
 /* 80D0DAF4  38 C0 00 60 */	li r6, 0x60
 /* 80D0DAF8  38 E0 00 10 */	li r7, 0x10
-/* 80D0DAFC  4B 56 2A 44 */	b cLib_addCalcAngleS__FPsssss
+/* 80D0DAFC  4B 56 2A 45 */	bl cLib_addCalcAngleS__FPsssss
 /* 80D0DB00  A8 7E 06 08 */	lha r3, 0x608(r30)
 /* 80D0DB04  A8 1E 06 0A */	lha r0, 0x60a(r30)
 /* 80D0DB08  7C 03 02 14 */	add r0, r3, r0

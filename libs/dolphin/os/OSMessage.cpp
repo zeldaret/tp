@@ -30,41 +30,41 @@ extern "C" void OSWakeupThread();
 // Declarations:
 //
 
-/* 8033E994-8033E9F4 0060+00 s=0 e=13 z=5  None .text      OSInitMessageQueue */
+/* 8033E994-8033E9F4 3392D4 0060+00 0/0 13/13 5/5 .text            OSInitMessageQueue */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void OSInitMessageQueue() {
+asm void OSInitMessageQueue() {
     nofralloc
 #include "asm/dolphin/os/OSMessage/OSInitMessageQueue.s"
 }
 #pragma pop
 
-/* 8033E9F4-8033EABC 00C8+00 s=0 e=21 z=9  None .text      OSSendMessage */
+/* 8033E9F4-8033EABC 339334 00C8+00 0/0 21/21 9/9 .text            OSSendMessage */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void OSSendMessage() {
+asm void OSSendMessage() {
     nofralloc
 #include "asm/dolphin/os/OSMessage/OSSendMessage.s"
 }
 #pragma pop
 
-/* 8033EABC-8033EB98 00DC+00 s=0 e=15 z=9  None .text      OSReceiveMessage */
+/* 8033EABC-8033EB98 3393FC 00DC+00 0/0 15/15 9/9 .text            OSReceiveMessage */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void OSReceiveMessage() {
+asm void OSReceiveMessage() {
     nofralloc
 #include "asm/dolphin/os/OSMessage/OSReceiveMessage.s"
 }
 #pragma pop
 
-/* 8033EB98-8033EC6C 00D4+00 s=0 e=1 z=0  None .text      OSJamMessage */
+/* 8033EB98-8033EC6C 3394D8 00D4+00 0/0 1/1 0/0 .text            OSJamMessage */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void OSJamMessage() {
+asm void OSJamMessage() {
     nofralloc
 #include "asm/dolphin/os/OSMessage/OSJamMessage.s"
 }

@@ -12,8 +12,8 @@ lbl_801F485C:
 /* 801F4884  54 00 10 3A */	slwi r0, r0, 2
 /* 801F4888  7C 7F 02 14 */	add r3, r31, r0
 /* 801F488C  80 63 01 70 */	lwz r3, 0x170(r3)
-/* 801F4890  3C 80 80 39 */	lis r4, d_menu_d_menu_save__stringBase0@ha
-/* 801F4894  38 84 79 60 */	addi r4, r4, d_menu_d_menu_save__stringBase0@l
+/* 801F4890  3C 80 80 39 */	lis r4, d_menu_d_menu_save__stringBase0@ha /* 0x80397960@ha */
+/* 801F4894  38 84 79 60 */	addi r4, r4, d_menu_d_menu_save__stringBase0@l /* 0x80397960@l */
 /* 801F4898  38 84 00 A5 */	addi r4, r4, 0xa5
 /* 801F489C  48 17 42 91 */	bl strcpy
 /* 801F48A0  48 00 00 40 */	b lbl_801F48E0

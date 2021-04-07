@@ -5,8 +5,8 @@ lbl_80290EE4:
 /* 80290EF0  2C 03 00 10 */	cmpwi r3, 0x10
 /* 80290EF4  40 80 00 20 */	bge lbl_80290F14
 /* 80290EF8  54 60 10 3A */	slwi r0, r3, 2
-/* 80290EFC  3C 60 80 43 */	lis r3, sProbeTable__8JASProbe@ha
-/* 80290F00  38 63 16 20 */	addi r3, r3, sProbeTable__8JASProbe@l
+/* 80290EFC  3C 60 80 43 */	lis r3, sProbeTable__8JASProbe@ha /* 0x80431620@ha */
+/* 80290F00  38 63 16 20 */	addi r3, r3, sProbeTable__8JASProbe@l /* 0x80431620@l */
 /* 80290F04  7C 63 00 2E */	lwzx r3, r3, r0
 /* 80290F08  28 03 00 00 */	cmplwi r3, 0
 /* 80290F0C  41 82 00 08 */	beq lbl_80290F14

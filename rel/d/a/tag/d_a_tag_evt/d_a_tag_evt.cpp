@@ -76,13 +76,6 @@ struct cXyz {
 // Forward References:
 //
 
-static void daTag_Evt_Create(void*);
-static void daTag_Evt_Delete(void*);
-static void daTag_Evt_Execute(void*);
-static void daTag_Evt_Draw(void*);
-static bool daTag_Evt_IsDelete(void*);
-static void cLib_calcTimer__template0(int*);
-
 extern "C" void create__11daTag_Evt_cFv();
 extern "C" void destroy__11daTag_Evt_cFv();
 extern "C" void execute__11daTag_Evt_cFv();
@@ -98,20 +91,12 @@ extern "C" static void daTag_Evt_Execute__FPv();
 extern "C" static void daTag_Evt_Draw__FPv();
 extern "C" static bool daTag_Evt_IsDelete__FPv();
 extern "C" void __dt__11daTag_Evt_cFv();
-extern "C" static void func_8048C374();
-extern "C" extern void* g_profile_TAG_EVT[12];
+extern "C" void func_8048C374(int*);
+extern "C" extern char const* const d_a_tag_evt__stringBase0;
 
 //
 // External References:
 //
-
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_orderOtherEventId(fopAc_ac_c*, s16, u8, u16, u16, u16);
-void dStage_changeScene(int, f32, u32, s8, s16, int);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void daNpcMsg_setEvtNum(u8);
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -158,98 +143,23 @@ extern "C" extern u8 struct_80450D64[4];
 //
 
 /* ############################################################################################## */
-/* 8048C398-8048C39C 0004+00 s=2 e=0 z=0  None .rodata    @3784 */
-SECTION_RODATA static u32 const lit_3784 = 0x42C80000;
-
-/* 8048C39C-8048C3A0 0004+00 s=2 e=0 z=0  None .rodata    @3785 */
-SECTION_RODATA static u8 const lit_3785[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 8048C3A0-8048C3A8 0008+00 s=1 e=0 z=0  None .rodata    @3786 */
-SECTION_RODATA static u8 const lit_3786[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8048C3A8-8048C3B0 0008+00 s=1 e=0 z=0  None .rodata    @3787 */
-SECTION_RODATA static u8 const lit_3787[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8048C3B0-8048C3B8 0008+00 s=1 e=0 z=0  None .rodata    @3788 */
-SECTION_RODATA static u8 const lit_3788[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8048C3B8-8048C3BC 0004+00 s=1 e=0 z=0  None .rodata    @3815 */
-SECTION_RODATA static u32 const lit_3815 = 0x41200000;
-
-/* 8048C3BC-8048C3DC 0020+00 s=6 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const struct_8048C3BC[32] = {
-    /* 8048C3BC 000F stringBase_8048C3BC @stringBase0 */
-    0x4A,
-    0x55,
-    0x4D,
-    0x50,
-    0x5F,
-    0x44,
-    0x45,
-    0x4D,
-    0x4F,
-    0x53,
-    0x54,
-    0x41,
-    0x47,
-    0x45,
-    0x00,
-    /* 8048C3CB 0007 data_8048C3CB None */
-    0x54,
-    0x41,
-    0x47,
-    0x45,
-    0x56,
-    0x54,
-    0x00,
-    /* 8048C3D2 0005 data_8048C3D2 None */
-    0x57,
-    0x41,
-    0x49,
-    0x54,
-    0x00,
-    /* 8048C3D7 0005 data_8048C3D7 None */
-    0x54,
-    0x41,
-    0x4C,
-    0x4B,
-    0x00,
-};
-
-/* 8048C3DC-8048C3FC 0020+00 s=1 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const data_8048C3DC[32] = {
-    0x4E, 0x45, 0x58, 0x54, 0x00, 0x54, 0x61, 0x67, 0x45, 0x76, 0x74, 0x00, 0x74, 0x69, 0x6D, 0x65,
-    0x72, 0x00, 0x66, 0x6C, 0x6F, 0x77, 0x4E, 0x6F, 0x64, 0x65, 0x4E, 0x6F, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8048C3FC-8048C404 0008+00 s=1 e=0 z=0  None .data      l_evtNameList */
+/* 8048C3FC-8048C404 -00001 0008+00 1/1 0/0 0/0 .data            l_evtNameList */
 SECTION_DATA static void* l_evtNameList[2] = {
     (void*)NULL,
-    (void*)(((char*)&struct_8048C3BC) + 0x0) /* @stringBase0 */,
+    (void*)&d_a_tag_evt__stringBase0,
 };
 
-/* 8048C404-8048C408 0004+00 s=2 e=0 z=0  None .data      l_resFileName */
-SECTION_DATA static void* l_resFileName = (void*)(((char*)&struct_8048C3BC) + 0xF) /* None */;
+/* 8048C404-8048C408 -00001 0004+00 2/2 0/0 0/0 .data            l_resFileName */
+SECTION_DATA static void* l_resFileName = (void*)(((char*)&d_a_tag_evt__stringBase0) + 0xF);
 
-/* 8048C408-8048C414 000C+00 s=1 e=0 z=0  None .data      mEvtCutList__11daTag_Evt_c */
+/* 8048C408-8048C414 -00001 000C+00 1/1 0/0 0/0 .data            mEvtCutList__11daTag_Evt_c */
 SECTION_DATA static void* mEvtCutList__11daTag_Evt_c[3] = {
-    (void*)(((char*)&struct_8048C3BC) + 0x16) /* None */,
-    (void*)(((char*)&struct_8048C3BC) + 0x1B) /* None */,
-    (void*)&data_8048C3DC,
+    (void*)(((char*)&d_a_tag_evt__stringBase0) + 0x16),
+    (void*)(((char*)&d_a_tag_evt__stringBase0) + 0x1B),
+    (void*)(((char*)&d_a_tag_evt__stringBase0) + 0x20),
 };
 
-/* 8048C414-8048C434 0020+00 s=1 e=0 z=0  None .data      daTag_Evt_MethodTable */
+/* 8048C414-8048C434 -00001 0020+00 1/0 0/0 0/0 .data            daTag_Evt_MethodTable */
 SECTION_DATA static void* daTag_Evt_MethodTable[8] = {
     (void*)daTag_Evt_Create__FPv,
     (void*)daTag_Evt_Delete__FPv,
@@ -261,8 +171,8 @@ SECTION_DATA static void* daTag_Evt_MethodTable[8] = {
     (void*)NULL,
 };
 
-/* 8048C434-8048C464 0030+00 s=0 e=0 z=1  None .data      g_profile_TAG_EVT */
-SECTION_DATA void* g_profile_TAG_EVT[12] = {
+/* 8048C434-8048C464 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_EVT */
+SECTION_DATA extern void* g_profile_TAG_EVT[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02D20000, (void*)&g_fpcLf_Method,
     (void*)0x000005EC, (void*)NULL,
@@ -271,14 +181,14 @@ SECTION_DATA void* g_profile_TAG_EVT[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 8048C464-8048C470 000C+00 s=2 e=0 z=0  None .data      __vt__11daTag_Evt_c */
-SECTION_DATA static void* __vt__11daTag_Evt_c[3] = {
-    (void*)NULL,
+/* 8048C464-8048C470 000068 000C+00 2/2 0/0 0/0 .data            __vt__11daTag_Evt_c */
+SECTION_DATA extern void* __vt__11daTag_Evt_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__11daTag_Evt_cFv,
 };
 
-/* 8048B918-8048B9D8 00C0+00 s=1 e=0 z=0  None .text      create__11daTag_Evt_cFv */
+/* 8048B918-8048B9D8 000078 00C0+00 1/1 0/0 0/0 .text            create__11daTag_Evt_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -288,7 +198,7 @@ asm void daTag_Evt_c::create() {
 }
 #pragma pop
 
-/* 8048B9D8-8048BA0C 0034+00 s=1 e=0 z=0  None .text      destroy__11daTag_Evt_cFv */
+/* 8048B9D8-8048BA0C 000138 0034+00 1/1 0/0 0/0 .text            destroy__11daTag_Evt_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -298,7 +208,48 @@ asm void daTag_Evt_c::destroy() {
 }
 #pragma pop
 
-/* 8048BA0C-8048BE44 0438+00 s=1 e=0 z=0  None .text      execute__11daTag_Evt_cFv */
+/* ############################################################################################## */
+/* 8048C398-8048C39C 000000 0004+00 2/2 0/0 0/0 .rodata          @3784 */
+SECTION_RODATA static f32 const lit_3784 = 100.0f;
+COMPILER_STRIP_GATE(8048C398, &lit_3784);
+
+/* 8048C39C-8048C3A0 000004 0004+00 1/2 0/0 0/0 .rodata          @3785 */
+SECTION_RODATA static u8 const lit_3785[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+COMPILER_STRIP_GATE(8048C39C, &lit_3785);
+
+/* 8048C3A0-8048C3A8 000008 0008+00 0/1 0/0 0/0 .rodata          @3786 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3786[8] = {
+    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(8048C3A0, &lit_3786);
+#pragma pop
+
+/* 8048C3A8-8048C3B0 000010 0008+00 0/1 0/0 0/0 .rodata          @3787 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3787[8] = {
+    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(8048C3A8, &lit_3787);
+#pragma pop
+
+/* 8048C3B0-8048C3B8 000018 0008+00 0/1 0/0 0/0 .rodata          @3788 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3788[8] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(8048C3B0, &lit_3788);
+#pragma pop
+
+/* 8048BA0C-8048BE44 00016C 0438+00 1/1 0/0 0/0 .text            execute__11daTag_Evt_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -308,12 +259,17 @@ asm void daTag_Evt_c::execute() {
 }
 #pragma pop
 
-/* 8048BE44-8048BE4C 0008+00 s=1 e=0 z=0  None .text      draw__11daTag_Evt_cFv */
+/* 8048BE44-8048BE4C 0005A4 0008+00 1/1 0/0 0/0 .text            draw__11daTag_Evt_cFv */
 bool daTag_Evt_c::draw() {
     return true;
 }
 
-/* 8048BE4C-8048BF64 0118+00 s=1 e=0 z=0  None .text      getParam__11daTag_Evt_cFv */
+/* ############################################################################################## */
+/* 8048C3B8-8048C3BC 000020 0004+00 1/1 0/0 0/0 .rodata          @3815 */
+SECTION_RODATA static f32 const lit_3815 = 10.0f;
+COMPILER_STRIP_GATE(8048C3B8, &lit_3815);
+
+/* 8048BE4C-8048BF64 0005AC 0118+00 1/1 0/0 0/0 .text            getParam__11daTag_Evt_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -323,7 +279,7 @@ asm void daTag_Evt_c::getParam() {
 }
 #pragma pop
 
-/* 8048BF64-8048C090 012C+00 s=1 e=0 z=0  None .text      isDelete__11daTag_Evt_cFv */
+/* 8048BF64-8048C090 0006C4 012C+00 1/1 0/0 0/0 .text            isDelete__11daTag_Evt_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -333,7 +289,7 @@ asm void daTag_Evt_c::isDelete() {
 }
 #pragma pop
 
-/* 8048C090-8048C124 0094+00 s=1 e=0 z=0  None .text      doEvtCutWait__11daTag_Evt_cFi */
+/* 8048C090-8048C124 0007F0 0094+00 1/1 0/0 0/0 .text            doEvtCutWait__11daTag_Evt_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -343,7 +299,7 @@ asm void daTag_Evt_c::doEvtCutWait(int param_0) {
 }
 #pragma pop
 
-/* 8048C124-8048C1C8 00A4+00 s=1 e=0 z=0  None .text      doEvtCutTalk__11daTag_Evt_cFi */
+/* 8048C124-8048C1C8 000884 00A4+00 1/1 0/0 0/0 .text            doEvtCutTalk__11daTag_Evt_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -353,7 +309,7 @@ asm void daTag_Evt_c::doEvtCutTalk(int param_0) {
 }
 #pragma pop
 
-/* 8048C1C8-8048C27C 00B4+00 s=1 e=0 z=0  None .text      doEvtCutNext__11daTag_Evt_cFi */
+/* 8048C1C8-8048C27C 000928 00B4+00 1/1 0/0 0/0 .text            doEvtCutNext__11daTag_Evt_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -363,52 +319,52 @@ asm void daTag_Evt_c::doEvtCutNext(int param_0) {
 }
 #pragma pop
 
-/* 8048C27C-8048C29C 0020+00 s=1 e=0 z=0  None .text      daTag_Evt_Create__FPv */
+/* 8048C27C-8048C29C 0009DC 0020+00 1/0 0/0 0/0 .text            daTag_Evt_Create__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_Evt_Create(void* param_0) {
+static asm void daTag_Evt_Create(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_evt/d_a_tag_evt/daTag_Evt_Create__FPv.s"
 }
 #pragma pop
 
-/* 8048C29C-8048C2BC 0020+00 s=1 e=0 z=0  None .text      daTag_Evt_Delete__FPv */
+/* 8048C29C-8048C2BC 0009FC 0020+00 1/0 0/0 0/0 .text            daTag_Evt_Delete__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_Evt_Delete(void* param_0) {
+static asm void daTag_Evt_Delete(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_evt/d_a_tag_evt/daTag_Evt_Delete__FPv.s"
 }
 #pragma pop
 
-/* 8048C2BC-8048C2DC 0020+00 s=1 e=0 z=0  None .text      daTag_Evt_Execute__FPv */
+/* 8048C2BC-8048C2DC 000A1C 0020+00 1/0 0/0 0/0 .text            daTag_Evt_Execute__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_Evt_Execute(void* param_0) {
+static asm void daTag_Evt_Execute(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_evt/d_a_tag_evt/daTag_Evt_Execute__FPv.s"
 }
 #pragma pop
 
-/* 8048C2DC-8048C2FC 0020+00 s=1 e=0 z=0  None .text      daTag_Evt_Draw__FPv */
+/* 8048C2DC-8048C2FC 000A3C 0020+00 1/0 0/0 0/0 .text            daTag_Evt_Draw__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_Evt_Draw(void* param_0) {
+static asm void daTag_Evt_Draw(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_evt/d_a_tag_evt/daTag_Evt_Draw__FPv.s"
 }
 #pragma pop
 
-/* 8048C2FC-8048C304 0008+00 s=1 e=0 z=0  None .text      daTag_Evt_IsDelete__FPv */
+/* 8048C2FC-8048C304 000A5C 0008+00 1/0 0/0 0/0 .text            daTag_Evt_IsDelete__FPv */
 static bool daTag_Evt_IsDelete(void* param_0) {
     return true;
 }
 
-/* 8048C304-8048C374 0070+00 s=1 e=0 z=0  None .text      __dt__11daTag_Evt_cFv */
+/* 8048C304-8048C374 000A64 0070+00 1/0 0/0 0/0 .text            __dt__11daTag_Evt_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -418,12 +374,26 @@ asm daTag_Evt_c::~daTag_Evt_c() {
 }
 #pragma pop
 
-/* 8048C374-8048C390 001C+00 s=2 e=0 z=0  None .text      cLib_calcTimer<i>__FPi */
+/* 8048C374-8048C390 000AD4 001C+00 2/2 0/0 0/0 .text            cLib_calcTimer<i>__FPi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void cLib_calcTimer__template0(int* param_0) {
+extern "C" asm void func_8048C374(int* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_evt/d_a_tag_evt/func_8048C374.s"
 }
+#pragma pop
+
+/* 8048C3BC-8048C3F9 000024 003D+00 6/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8048C3BC = "JUMP_DEMOSTAGE";
+SECTION_DEAD static char const* const stringBase_8048C3CB = "TAGEVT";
+SECTION_DEAD static char const* const stringBase_8048C3D2 = "WAIT";
+SECTION_DEAD static char const* const stringBase_8048C3D7 = "TALK";
+SECTION_DEAD static char const* const stringBase_8048C3DC = "NEXT";
+SECTION_DEAD static char const* const stringBase_8048C3E1 = "TagEvt";
+SECTION_DEAD static char const* const stringBase_8048C3E8 = "timer";
+SECTION_DEAD static char const* const stringBase_8048C3EE = "flowNodeNo";
 #pragma pop

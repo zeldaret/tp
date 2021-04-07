@@ -27,8 +27,8 @@ lbl_8000EABC:
 /* 8000EAE0  7C 66 1B 78 */	mr r6, r3
 /* 8000EAE4  38 61 00 08 */	addi r3, r1, 8
 /* 8000EAE8  38 80 00 40 */	li r4, 0x40
-/* 8000EAEC  3C A0 80 37 */	lis r5, m_Do_m_Do_ext__stringBase0@ha
-/* 8000EAF0  38 A5 40 FC */	addi r5, r5, m_Do_m_Do_ext__stringBase0@l
+/* 8000EAEC  3C A0 80 37 */	lis r5, m_Do_m_Do_ext__stringBase0@ha /* 0x803740FC@ha */
+/* 8000EAF0  38 A5 40 FC */	addi r5, r5, m_Do_m_Do_ext__stringBase0@l /* 0x803740FC@l */
 /* 8000EAF4  38 A5 00 1C */	addi r5, r5, 0x1c
 /* 8000EAF8  4C C6 31 82 */	crclr 6
 /* 8000EAFC  48 35 7A C1 */	bl snprintf
@@ -102,8 +102,8 @@ lbl_8000EBF8:
 /* 8000EC04  41 80 FE B8 */	blt lbl_8000EABC
 /* 8000EC08  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 8000EC0C  41 82 00 9C */	beq lbl_8000ECA8
-/* 8000EC10  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8000EC14  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8000EC10  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8000EC14  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8000EC18  93 E3 00 58 */	stw r31, 0x58(r3)
 /* 8000EC1C  3B C0 00 00 */	li r30, 0
 /* 8000EC20  48 00 00 78 */	b lbl_8000EC98
@@ -119,13 +119,13 @@ lbl_8000EC24:
 /* 8000EC44  41 82 00 50 */	beq lbl_8000EC94
 /* 8000EC48  48 32 EA AD */	bl OSDisableInterrupts
 /* 8000EC4C  7C 7F 1B 78 */	mr r31, r3
-/* 8000EC50  3C 60 80 43 */	lis r3, sGDLObj__17J3DDisplayListObj@ha
-/* 8000EC54  38 63 4C 70 */	addi r3, r3, sGDLObj__17J3DDisplayListObj@l
+/* 8000EC50  3C 60 80 43 */	lis r3, sGDLObj__17J3DDisplayListObj@ha /* 0x80434C70@ha */
+/* 8000EC54  38 63 4C 70 */	addi r3, r3, sGDLObj__17J3DDisplayListObj@l /* 0x80434C70@l */
 /* 8000EC58  80 9D 00 00 */	lwz r4, 0(r29)
 /* 8000EC5C  80 BD 00 08 */	lwz r5, 8(r29)
 /* 8000EC60  48 35 23 39 */	bl GDInitGDLObj
-/* 8000EC64  3C 60 80 43 */	lis r3, sGDLObj__17J3DDisplayListObj@ha
-/* 8000EC68  38 03 4C 70 */	addi r0, r3, sGDLObj__17J3DDisplayListObj@l
+/* 8000EC64  3C 60 80 43 */	lis r3, sGDLObj__17J3DDisplayListObj@ha /* 0x80434C70@ha */
+/* 8000EC68  38 03 4C 70 */	addi r0, r3, sGDLObj__17J3DDisplayListObj@l /* 0x80434C70@l */
 /* 8000EC6C  90 0D 94 00 */	stw r0, __GDCurrentDL(r13)
 /* 8000EC70  7F 83 E3 78 */	mr r3, r28
 /* 8000EC74  81 9C 00 00 */	lwz r12, 0(r28)

@@ -237,8 +237,8 @@ lbl_80297184:
 /* 802971A0  7C 00 F0 10 */	subfc r0, r0, r30
 /* 802971A4  7C 00 01 10 */	subfe r0, r0, r0
 /* 802971A8  7F 20 00 D0 */	neg r25, r0
-/* 802971AC  3C 60 80 29 */	lis r3, loadToAramTask__13JASAramStreamFPv@ha
-/* 802971B0  3B 43 68 48 */	addi r26, r3, loadToAramTask__13JASAramStreamFPv@l
+/* 802971AC  3C 60 80 29 */	lis r3, loadToAramTask__13JASAramStreamFPv@ha /* 0x80296848@ha */
+/* 802971B0  3B 43 68 48 */	addi r26, r3, loadToAramTask__13JASAramStreamFPv@l /* 0x80296848@l */
 /* 802971B4  48 00 00 64 */	b lbl_80297218
 lbl_802971B8:
 /* 802971B8  80 6D 8C D0 */	lwz r3, sLoadThread__13JASAramStream(r13)
@@ -429,8 +429,8 @@ lbl_80297444:
 /* 80297454  38 00 00 01 */	li r0, 1
 /* 80297458  98 1B 01 14 */	stb r0, 0x114(r27)
 /* 8029745C  80 6D 8C D0 */	lwz r3, sLoadThread__13JASAramStream(r13)
-/* 80297460  3C 80 80 29 */	lis r4, finishTask__13JASAramStreamFPv@ha
-/* 80297464  38 84 68 68 */	addi r4, r4, finishTask__13JASAramStreamFPv@l
+/* 80297460  3C 80 80 29 */	lis r4, finishTask__13JASAramStreamFPv@ha /* 0x80296868@ha */
+/* 80297464  38 84 68 68 */	addi r4, r4, finishTask__13JASAramStreamFPv@l /* 0x80296868@l */
 /* 80297468  7F 65 DB 78 */	mr r5, r27
 /* 8029746C  4B FF 87 E9 */	bl sendCmdMsg__13JASTaskThreadFPFPv_vPv
 /* 80297470  2C 03 00 00 */	cmpwi r3, 0

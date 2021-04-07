@@ -8,8 +8,8 @@ lbl_80A28910:
 /* 80A28928  A0 04 0C 94 */	lhz r0, 0xc94(r4)
 /* 80A2892C  7C 00 18 00 */	cmpw r0, r3
 /* 80A28930  40 82 00 2C */	bne lbl_80A2895C
-/* 80A28934  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80A28938  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80A28934  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80A28938  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80A2893C  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 80A28940  C0 03 04 D0 */	lfs f0, 0x4d0(r3)
 /* 80A28944  D0 1F 00 00 */	stfs f0, 0(r31)
@@ -37,7 +37,7 @@ lbl_80A28978:
 /* 80A28990  38 64 0C 94 */	addi r3, r4, 0xc94
 /* 80A28994  38 81 00 08 */	addi r4, r1, 8
 /* 80A28998  38 A1 00 14 */	addi r5, r1, 0x14
-/* 80A2899C  4B 72 84 44 */	b getDstPos__13daNpcF_Path_cF4cXyzR4cXyz
+/* 80A2899C  4B 72 84 45 */	bl getDstPos__13daNpcF_Path_cF4cXyzR4cXyz
 /* 80A289A0  C0 01 00 14 */	lfs f0, 0x14(r1)
 /* 80A289A4  D0 1F 00 00 */	stfs f0, 0(r31)
 /* 80A289A8  C0 01 00 18 */	lfs f0, 0x18(r1)

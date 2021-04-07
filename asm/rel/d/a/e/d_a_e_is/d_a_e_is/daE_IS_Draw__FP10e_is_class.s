@@ -3,23 +3,23 @@ lbl_806F5B40:
 /* 806F5B44  7C 08 02 A6 */	mflr r0
 /* 806F5B48  90 01 00 64 */	stw r0, 0x64(r1)
 /* 806F5B4C  39 61 00 60 */	addi r11, r1, 0x60
-/* 806F5B50  4B C6 C6 80 */	b _savegpr_26
+/* 806F5B50  4B C6 C6 81 */	bl _savegpr_26
 /* 806F5B54  7C 7C 1B 78 */	mr r28, r3
-/* 806F5B58  3C 60 80 6F */	lis r3, lit_3648@ha
-/* 806F5B5C  3B E3 7B 6C */	addi r31, r3, lit_3648@l
+/* 806F5B58  3C 60 80 6F */	lis r3, lit_3648@ha /* 0x806F7B6C@ha */
+/* 806F5B5C  3B E3 7B 6C */	addi r31, r3, lit_3648@l /* 0x806F7B6C@l */
 /* 806F5B60  80 7C 05 C8 */	lwz r3, 0x5c8(r28)
 /* 806F5B64  83 C3 00 04 */	lwz r30, 4(r3)
-/* 806F5B68  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 806F5B6C  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 806F5B68  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 806F5B6C  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 806F5B70  38 80 00 00 */	li r4, 0
 /* 806F5B74  38 BC 04 D0 */	addi r5, r28, 0x4d0
 /* 806F5B78  38 DC 01 0C */	addi r6, r28, 0x10c
-/* 806F5B7C  4B AA DC 48 */	b settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
-/* 806F5B80  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 806F5B84  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 806F5B7C  4B AA DC 49 */	bl settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
+/* 806F5B80  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 806F5B84  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 806F5B88  80 9E 00 04 */	lwz r4, 4(r30)
 /* 806F5B8C  38 BC 01 0C */	addi r5, r28, 0x10c
-/* 806F5B90  4B AA F2 10 */	b setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
+/* 806F5B90  4B AA F2 11 */	bl setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
 /* 806F5B94  83 BE 00 04 */	lwz r29, 4(r30)
 /* 806F5B98  3B 60 00 00 */	li r27, 0
 /* 806F5B9C  48 00 02 00 */	b lbl_806F5D9C
@@ -160,9 +160,9 @@ lbl_806F5D9C:
 /* 806F5DA8  41 80 FD F8 */	blt lbl_806F5BA0
 /* 806F5DAC  7F 83 E3 78 */	mr r3, r28
 /* 806F5DB0  7F A4 EB 78 */	mr r4, r29
-/* 806F5DB4  4B 92 76 78 */	b fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData
+/* 806F5DB4  4B 92 76 79 */	bl fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData
 /* 806F5DB8  80 7C 05 C8 */	lwz r3, 0x5c8(r28)
-/* 806F5DBC  4B 91 B4 04 */	b entryDL__16mDoExt_McaMorfSOFv
+/* 806F5DBC  4B 91 B4 05 */	bl entryDL__16mDoExt_McaMorfSOFv
 /* 806F5DC0  C0 5C 04 D8 */	lfs f2, 0x4d8(r28)
 /* 806F5DC4  C0 1F 00 40 */	lfs f0, 0x40(r31)
 /* 806F5DC8  C0 7C 04 D4 */	lfs f3, 0x4d4(r28)
@@ -182,13 +182,13 @@ lbl_806F5D9C:
 /* 806F5E00  39 1C 01 0C */	addi r8, r28, 0x10c
 /* 806F5E04  39 20 00 00 */	li r9, 0
 /* 806F5E08  C0 BF 00 00 */	lfs f5, 0(r31)
-/* 806F5E0C  3D 40 80 42 */	lis r10, mSimpleTexObj__21dDlst_shadowControl_c@ha
-/* 806F5E10  39 4A 48 D0 */	addi r10, r10, mSimpleTexObj__21dDlst_shadowControl_c@l
-/* 806F5E14  4B 93 8A FC */	b dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj
+/* 806F5E0C  3D 40 80 42 */	lis r10, mSimpleTexObj__21dDlst_shadowControl_c@ha /* 0x804248D0@ha */
+/* 806F5E10  39 4A 48 D0 */	addi r10, r10, mSimpleTexObj__21dDlst_shadowControl_c@l /* 0x804248D0@l */
+/* 806F5E14  4B 93 8A FD */	bl dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj
 /* 806F5E18  90 7C 06 8C */	stw r3, 0x68c(r28)
 /* 806F5E1C  38 60 00 01 */	li r3, 1
 /* 806F5E20  39 61 00 60 */	addi r11, r1, 0x60
-/* 806F5E24  4B C6 C3 F8 */	b _restgpr_26
+/* 806F5E24  4B C6 C3 F9 */	bl _restgpr_26
 /* 806F5E28  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 806F5E2C  7C 08 03 A6 */	mtlr r0
 /* 806F5E30  38 21 00 60 */	addi r1, r1, 0x60

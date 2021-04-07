@@ -21,8 +21,8 @@ lbl_8004B064:
 /* 8004B0B0  7C 00 07 75 */	extsb. r0, r0
 /* 8004B0B4  40 82 00 20 */	bne lbl_8004B0D4
 /* 8004B0B8  C0 02 85 50 */	lfs f0, lit_3964(r2)
-/* 8004B0BC  3C 60 80 42 */	lis r3, pos@ha
-/* 8004B0C0  D4 03 47 28 */	stfsu f0, pos@l(r3)
+/* 8004B0BC  3C 60 80 42 */	lis r3, pos@ha /* 0x80424728@ha */
+/* 8004B0C0  D4 03 47 28 */	stfsu f0, pos@l(r3)  /* 0x80424728@l */
 /* 8004B0C4  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8004B0C8  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8004B0CC  38 00 00 01 */	li r0, 1
@@ -32,8 +32,8 @@ lbl_8004B0D4:
 /* 8004B0D8  48 00 0A 99 */	bl getRM_ID__13dPa_control_cFUs
 /* 8004B0DC  7C 67 1B 78 */	mr r7, r3
 /* 8004B0E0  7F A3 EB 78 */	mr r3, r29
-/* 8004B0E4  3C 80 80 42 */	lis r4, pos@ha
-/* 8004B0E8  38 84 47 28 */	addi r4, r4, pos@l
+/* 8004B0E4  3C 80 80 42 */	lis r4, pos@ha /* 0x80424728@ha */
+/* 8004B0E8  38 84 47 28 */	addi r4, r4, pos@l /* 0x80424728@l */
 /* 8004B0EC  A0 BF 00 08 */	lhz r5, 8(r31)
 /* 8004B0F0  88 DF 00 0A */	lbz r6, 0xa(r31)
 /* 8004B0F4  39 00 00 00 */	li r8, 0

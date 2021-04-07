@@ -7,8 +7,8 @@ lbl_801924A0:
 /* 801924B4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801924B8  7C 9F 23 78 */	mr r31, r4
 /* 801924BC  41 82 00 98 */	beq lbl_80192554
-/* 801924C0  3C 60 80 3C */	lis r3, __vt__12dFile_info_c@ha
-/* 801924C4  38 03 B5 98 */	addi r0, r3, __vt__12dFile_info_c@l
+/* 801924C0  3C 60 80 3C */	lis r3, __vt__12dFile_info_c@ha /* 0x803BB598@ha */
+/* 801924C4  38 03 B5 98 */	addi r0, r3, __vt__12dFile_info_c@l /* 0x803BB598@l */
 /* 801924C8  90 1E 00 00 */	stw r0, 0(r30)
 /* 801924CC  80 7E 00 0C */	lwz r3, 0xc(r30)
 /* 801924D0  28 03 00 00 */	cmplwi r3, 0
@@ -40,8 +40,8 @@ lbl_8019252C:
 /* 8019252C  4B E8 25 01 */	bl mDoExt_removeMesgFont__Fv
 /* 80192530  34 1E 00 08 */	addic. r0, r30, 8
 /* 80192534  41 82 00 10 */	beq lbl_80192544
-/* 80192538  3C 60 80 3C */	lis r3, __vt__16dDlst_FileInfo_c@ha
-/* 8019253C  38 03 B5 88 */	addi r0, r3, __vt__16dDlst_FileInfo_c@l
+/* 80192538  3C 60 80 3C */	lis r3, __vt__16dDlst_FileInfo_c@ha /* 0x803BB588@ha */
+/* 8019253C  38 03 B5 88 */	addi r0, r3, __vt__16dDlst_FileInfo_c@l /* 0x803BB588@l */
 /* 80192540  90 1E 00 08 */	stw r0, 8(r30)
 lbl_80192544:
 /* 80192544  7F E0 07 35 */	extsh. r0, r31

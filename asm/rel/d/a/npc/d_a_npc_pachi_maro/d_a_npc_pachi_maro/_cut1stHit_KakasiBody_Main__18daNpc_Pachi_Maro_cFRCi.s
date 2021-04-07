@@ -3,8 +3,8 @@ lbl_80A9A05C:
 /* 80A9A060  7C 08 02 A6 */	mflr r0
 /* 80A9A064  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80A9A068  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 80A9A06C  3C A0 80 AA */	lis r5, m__24daNpc_Pachi_Maro_Param_c@ha
-/* 80A9A070  38 A5 B8 8C */	addi r5, r5, m__24daNpc_Pachi_Maro_Param_c@l
+/* 80A9A06C  3C A0 80 AA */	lis r5, m__24daNpc_Pachi_Maro_Param_c@ha /* 0x80A9B88C@ha */
+/* 80A9A070  38 A5 B8 8C */	addi r5, r5, m__24daNpc_Pachi_Maro_Param_c@l /* 0x80A9B88C@l */
 /* 80A9A074  3B E0 00 00 */	li r31, 0
 /* 80A9A078  80 04 00 00 */	lwz r0, 0(r4)
 /* 80A9A07C  2C 00 00 0A */	cmpwi r0, 0xa

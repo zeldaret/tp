@@ -50,8 +50,6 @@ struct JKRSolidHeap {};
 // Forward References:
 //
 
-static void dSmplMdl_modelUpdateDL(J3DModel*);
-
 extern "C" static void dSmplMdl_modelUpdateDL__FP8J3DModel();
 extern "C" void __ct__15dSmplMdl_draw_cFv();
 extern "C" void __ct__12diff_model_cFv();
@@ -72,14 +70,6 @@ extern "C" void insert__12diff_model_cFP11modelList_c();
 //
 // External References:
 //
-
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_createSolidHeapFromGameToCurrent(u32, u32);
-void mDoExt_adjustSolidHeapToSystem(JKRSolidHeap*);
-void mDoExt_destroySolidHeap(JKRSolidHeap*);
-void mDoExt_restoreCurrentHeap();
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void operator delete(void*);
 
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
 extern "C" void mDoExt_createSolidHeapFromGameToCurrent__FUlUl();
@@ -109,27 +99,28 @@ extern "C" extern u8 j3dSys[284];
 // Declarations:
 //
 
-/* 80048C54-80048CB4 0060+00 s=1 e=0 z=0  None .text      dSmplMdl_modelUpdateDL__FP8J3DModel */
+/* 80048C54-80048CB4 043594 0060+00 1/1 0/0 0/0 .text            dSmplMdl_modelUpdateDL__FP8J3DModel
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dSmplMdl_modelUpdateDL(J3DModel* param_0) {
+static asm void dSmplMdl_modelUpdateDL(J3DModel* param_0) {
     nofralloc
 #include "asm/d/d_simple_model/dSmplMdl_modelUpdateDL__FP8J3DModel.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A82F8-803A8308 000C+04 s=2 e=0 z=0  None .data      __vt__15dSmplMdl_draw_c */
-SECTION_DATA static void* __vt__15dSmplMdl_draw_c[3 + 1 /* padding */] = {
-    (void*)NULL,
+/* 803A82F8-803A8308 005418 000C+04 2/2 0/0 0/0 .data            __vt__15dSmplMdl_draw_c */
+SECTION_DATA extern void* __vt__15dSmplMdl_draw_c[3 + 1 /* padding */] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__15dSmplMdl_draw_cFv,
     /* padding */
     NULL,
 };
 
-/* 80048CB4-80048D60 00AC+00 s=0 e=1 z=0  None .text      __ct__15dSmplMdl_draw_cFv */
+/* 80048CB4-80048D60 0435F4 00AC+00 0/0 1/1 0/0 .text            __ct__15dSmplMdl_draw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -139,7 +130,7 @@ asm dSmplMdl_draw_c::dSmplMdl_draw_c() {
 }
 #pragma pop
 
-/* 80048D60-80048D80 0020+00 s=1 e=0 z=0  None .text      __ct__12diff_model_cFv */
+/* 80048D60-80048D80 0436A0 0020+00 1/1 0/0 0/0 .text            __ct__12diff_model_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -149,7 +140,7 @@ asm diff_model_c::diff_model_c() {
 }
 #pragma pop
 
-/* 80048D80-80048E0C 008C+00 s=1 e=0 z=0  None .text      __dt__15dSmplMdl_draw_cFv */
+/* 80048D80-80048E0C 0436C0 008C+00 1/0 0/0 0/0 .text            __dt__15dSmplMdl_draw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -159,7 +150,7 @@ asm dSmplMdl_draw_c::~dSmplMdl_draw_c() {
 }
 #pragma pop
 
-/* 80048E0C-80048EBC 00B0+00 s=0 e=1 z=0  None .text      draw__15dSmplMdl_draw_cFv */
+/* 80048E0C-80048EBC 04374C 00B0+00 0/0 1/1 0/0 .text            draw__15dSmplMdl_draw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -169,7 +160,7 @@ asm void dSmplMdl_draw_c::draw() {
 }
 #pragma pop
 
-/* 80048EBC-80048F70 00B4+00 s=0 e=1 z=0  None .text      entry__15dSmplMdl_draw_cFP8J3DModeli */
+/* 80048EBC-80048F70 0437FC 00B4+00 0/0 1/1 0/0 .text entry__15dSmplMdl_draw_cFP8J3DModeli */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -179,7 +170,7 @@ asm void dSmplMdl_draw_c::entry(J3DModel* param_0, int param_1) {
 }
 #pragma pop
 
-/* 80048F70-80049058 00E8+00 s=0 e=1 z=0  None .text
+/* 80048F70-80049058 0438B0 00E8+00 0/0 1/1 0/0 .text
  * addModel__15dSmplMdl_draw_cFP12J3DModelDataiUc               */
 #pragma push
 #pragma optimization_level 0
@@ -190,7 +181,7 @@ asm void dSmplMdl_draw_c::addModel(J3DModelData* param_0, int param_1, u8 param_
 }
 #pragma pop
 
-/* 80049058-800490EC 0094+00 s=0 e=1 z=0  None .text
+/* 80049058-800490EC 043998 0094+00 0/0 1/1 0/0 .text
  * removeModel__15dSmplMdl_draw_cFP12J3DModelDatai              */
 #pragma push
 #pragma optimization_level 0
@@ -202,15 +193,14 @@ asm void dSmplMdl_draw_c::removeModel(J3DModelData* param_0, int param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451F38-80451F40 0004+04 s=1 e=0 z=0  None .sdata2    @3763 */
+/* 80451F38-80451F40 000538 0004+04 1/1 0/0 0/0 .sdata2          @3763 */
 SECTION_SDATA2 static f32 lit_3763[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 800490EC-800491F4 0108+00 s=1 e=0 z=0  None .text      create__12diff_model_cFP12J3DModelDataiUc
- */
+/* 800490EC-800491F4 043A2C 0108+00 1/1 0/0 0/0 .text create__12diff_model_cFP12J3DModelDataiUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -220,7 +210,7 @@ asm void diff_model_c::create(J3DModelData* param_0, int param_1, u8 param_2) {
 }
 #pragma pop
 
-/* 800491F4-80049210 001C+00 s=2 e=0 z=0  None .text      getModelData__12diff_model_cFv */
+/* 800491F4-80049210 043B34 001C+00 2/2 0/0 0/0 .text            getModelData__12diff_model_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -230,7 +220,7 @@ asm void diff_model_c::getModelData() {
 }
 #pragma pop
 
-/* 80049210-80049270 0060+00 s=3 e=0 z=0  None .text      remove__12diff_model_cFi */
+/* 80049210-80049270 043B50 0060+00 3/3 0/0 0/0 .text            remove__12diff_model_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -240,7 +230,7 @@ asm void diff_model_c::remove(int param_0) {
 }
 #pragma pop
 
-/* 80049270-80049368 00F8+00 s=1 e=0 z=0  None .text      draw__12diff_model_cFv */
+/* 80049270-80049368 043BB0 00F8+00 1/1 0/0 0/0 .text            draw__12diff_model_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -250,7 +240,7 @@ asm void diff_model_c::draw() {
 }
 #pragma pop
 
-/* 80049368-80049388 0020+00 s=2 e=0 z=0  None .text      init__12diff_model_cFv */
+/* 80049368-80049388 043CA8 0020+00 2/2 0/0 0/0 .text            init__12diff_model_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -260,7 +250,7 @@ asm void diff_model_c::init() {
 }
 #pragma pop
 
-/* 80049388-800493FC 0074+00 s=3 e=0 z=0  None .text      isSame__12diff_model_cFP12J3DModelDatai */
+/* 80049388-800493FC 043CC8 0074+00 3/3 0/0 0/0 .text isSame__12diff_model_cFP12J3DModelDatai */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -270,7 +260,7 @@ asm void diff_model_c::isSame(J3DModelData* param_0, int param_1) {
 }
 #pragma pop
 
-/* 800493FC-80049408 000C+00 s=2 e=0 z=0  None .text      getRoomNo__12diff_model_cFv */
+/* 800493FC-80049408 043D3C 000C+00 2/2 0/0 0/0 .text            getRoomNo__12diff_model_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -280,7 +270,7 @@ asm void diff_model_c::getRoomNo() {
 }
 #pragma pop
 
-/* 80049408-80049420 0018+00 s=2 e=0 z=0  None .text      insert__12diff_model_cFP11modelList_c */
+/* 80049408-80049420 043D48 0018+00 2/2 0/0 0/0 .text insert__12diff_model_cFP11modelList_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

@@ -3,19 +3,20 @@
 #
 
 M603_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_riverrock.plf
+M603_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_riverrock.lcf
+M603_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_riverrock.map
 
 M603_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_riverrock/executor.cpp \
-	rel/d/a/obj/d_a_obj_riverrock/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_riverrock/d_a_obj_riverrock.cpp \
 
 M603_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_riverrock/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_riverrock/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_riverrock/d_a_obj_riverrock.o \
 
 M603_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_riverrock/libRuntime.PPCEABI.H.a \
 
 M603_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M603_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M603_LDSCRIPT) \
+	-unused -map $(M603_MAP) \
+	-w off \
 
 $(M603_TARGET): $(M603_O_FILES) $(M603_LIBS)
+	@echo [603] creating $(M603_TARGET)
 	@echo $(M603_LIBS) $(M603_O_FILES) > build/M603_ofiles
-	$(LD) -partial $(M603_LDFLAGS) -o $(M603_TARGET) @build/M603_ofiles
+	@python3 tools/lcf.py rel 603 --output $(M603_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M603_LDFLAGS) -o $(M603_TARGET) @build/M603_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_riverrock/%.o: rel/d/a/obj/d_a_obj_riverrock/%.cpp
+	@echo [603] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M603_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M603_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_riverrock/libs/Runtime.PPCEABI.H/Makefile
 

@@ -16,8 +16,8 @@ lbl_80465490:
 /* 804654C8  FF C0 08 90 */	fmr f30, f1
 /* 804654CC  FF E0 10 90 */	fmr f31, f2
 /* 804654D0  FF 80 18 90 */	fmr f28, f3
-/* 804654D4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804654D8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804654D4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804654D8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804654DC  83 E3 5D AC */	lwz r31, 0x5dac(r3)
 /* 804654E0  C0 1F 05 50 */	lfs f0, 0x550(r31)
 /* 804654E4  D0 01 00 2C */	stfs f0, 0x2c(r1)
@@ -30,7 +30,7 @@ lbl_80465490:
 /* 80465500  38 61 00 20 */	addi r3, r1, 0x20
 /* 80465504  38 81 00 2C */	addi r4, r1, 0x2c
 /* 80465508  38 BE 04 D0 */	addi r5, r30, 0x4d0
-/* 8046550C  4B E0 16 28 */	b __mi__4cXyzCFRC3Vec
+/* 8046550C  4B E0 16 29 */	bl __mi__4cXyzCFRC3Vec
 /* 80465510  C0 41 00 20 */	lfs f2, 0x20(r1)
 /* 80465514  D0 41 00 38 */	stfs f2, 0x38(r1)
 /* 80465518  C0 01 00 24 */	lfs f0, 0x24(r1)
@@ -38,12 +38,12 @@ lbl_80465490:
 /* 80465520  C0 21 00 28 */	lfs f1, 0x28(r1)
 /* 80465524  D0 21 00 40 */	stfs f1, 0x40(r1)
 /* 80465528  D0 41 00 08 */	stfs f2, 8(r1)
-/* 8046552C  3C 60 80 46 */	lis r3, lit_4256@ha
-/* 80465530  C0 03 68 2C */	lfs f0, lit_4256@l(r3)
+/* 8046552C  3C 60 80 46 */	lis r3, lit_4256@ha /* 0x8046682C@ha */
+/* 80465530  C0 03 68 2C */	lfs f0, lit_4256@l(r3)  /* 0x8046682C@l */
 /* 80465534  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80465538  D0 21 00 10 */	stfs f1, 0x10(r1)
 /* 8046553C  38 61 00 08 */	addi r3, r1, 8
-/* 80465540  4B EE 1B F8 */	b PSVECSquareMag
+/* 80465540  4B EE 1B F9 */	bl PSVECSquareMag
 /* 80465544  FF A0 08 90 */	fmr f29, f1
 /* 80465548  FC 1D E0 40 */	fcmpo cr0, f29, f28
 /* 8046554C  40 81 00 0C */	ble lbl_80465558
@@ -52,7 +52,7 @@ lbl_80465490:
 lbl_80465558:
 /* 80465558  38 61 00 14 */	addi r3, r1, 0x14
 /* 8046555C  38 81 00 38 */	addi r4, r1, 0x38
-/* 80465560  4B E0 19 94 */	b normalize__4cXyzFv
+/* 80465560  4B E0 19 95 */	bl normalize__4cXyzFv
 /* 80465564  C0 21 00 38 */	lfs f1, 0x38(r1)
 /* 80465568  C0 1E 06 80 */	lfs f0, 0x680(r30)
 /* 8046556C  EC 41 00 32 */	fmuls f2, f1, f0
@@ -83,7 +83,7 @@ lbl_804655C4:
 /* 804655C4  A8 1F 04 DE */	lha r0, 0x4de(r31)
 /* 804655C8  7C 00 18 50 */	subf r0, r0, r3
 /* 804655CC  7C 03 07 34 */	extsh r3, r0
-/* 804655D0  4B EF FB 00 */	b abs
+/* 804655D0  4B EF FB 01 */	bl abs
 /* 804655D4  2C 03 50 00 */	cmpwi r3, 0x5000
 /* 804655D8  40 80 00 0C */	bge lbl_804655E4
 /* 804655DC  38 60 00 00 */	li r3, 0

@@ -7,42 +7,42 @@ lbl_80252094:
 /* 802520A8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802520AC  7C 9F 23 78 */	mr r31, r4
 /* 802520B0  41 82 00 B0 */	beq lbl_80252160
-/* 802520B4  3C 60 80 3C */	lis r3, __vt__16dNpcLib_lookat_c@ha
-/* 802520B8  38 03 2B 88 */	addi r0, r3, __vt__16dNpcLib_lookat_c@l
+/* 802520B4  3C 60 80 3C */	lis r3, __vt__16dNpcLib_lookat_c@ha /* 0x803C2B88@ha */
+/* 802520B8  38 03 2B 88 */	addi r0, r3, __vt__16dNpcLib_lookat_c@l /* 0x803C2B88@l */
 /* 802520BC  90 1E 00 00 */	stw r0, 0(r30)
 /* 802520C0  38 7E 00 94 */	addi r3, r30, 0x94
-/* 802520C4  3C 80 80 02 */	lis r4, __dt__5csXyzFv@ha
-/* 802520C8  38 84 8B D0 */	addi r4, r4, __dt__5csXyzFv@l
+/* 802520C4  3C 80 80 02 */	lis r4, __dt__5csXyzFv@ha /* 0x80018BD0@ha */
+/* 802520C8  38 84 8B D0 */	addi r4, r4, __dt__5csXyzFv@l /* 0x80018BD0@l */
 /* 802520CC  38 A0 00 06 */	li r5, 6
 /* 802520D0  38 C0 00 04 */	li r6, 4
 /* 802520D4  48 10 FC 15 */	bl __destroy_arr
 /* 802520D8  38 7E 00 7C */	addi r3, r30, 0x7c
-/* 802520DC  3C 80 80 02 */	lis r4, __dt__5csXyzFv@ha
-/* 802520E0  38 84 8B D0 */	addi r4, r4, __dt__5csXyzFv@l
+/* 802520DC  3C 80 80 02 */	lis r4, __dt__5csXyzFv@ha /* 0x80018BD0@ha */
+/* 802520E0  38 84 8B D0 */	addi r4, r4, __dt__5csXyzFv@l /* 0x80018BD0@l */
 /* 802520E4  38 A0 00 06 */	li r5, 6
 /* 802520E8  38 C0 00 04 */	li r6, 4
 /* 802520EC  48 10 FB FD */	bl __destroy_arr
 /* 802520F0  38 7E 00 64 */	addi r3, r30, 0x64
-/* 802520F4  3C 80 80 02 */	lis r4, __dt__5csXyzFv@ha
-/* 802520F8  38 84 8B D0 */	addi r4, r4, __dt__5csXyzFv@l
+/* 802520F4  3C 80 80 02 */	lis r4, __dt__5csXyzFv@ha /* 0x80018BD0@ha */
+/* 802520F8  38 84 8B D0 */	addi r4, r4, __dt__5csXyzFv@l /* 0x80018BD0@l */
 /* 802520FC  38 A0 00 06 */	li r5, 6
 /* 80252100  38 C0 00 04 */	li r6, 4
 /* 80252104  48 10 FB E5 */	bl __destroy_arr
 /* 80252108  38 7E 00 4C */	addi r3, r30, 0x4c
-/* 8025210C  3C 80 80 02 */	lis r4, __dt__5csXyzFv@ha
-/* 80252110  38 84 8B D0 */	addi r4, r4, __dt__5csXyzFv@l
+/* 8025210C  3C 80 80 02 */	lis r4, __dt__5csXyzFv@ha /* 0x80018BD0@ha */
+/* 80252110  38 84 8B D0 */	addi r4, r4, __dt__5csXyzFv@l /* 0x80018BD0@l */
 /* 80252114  38 A0 00 06 */	li r5, 6
 /* 80252118  38 C0 00 04 */	li r6, 4
 /* 8025211C  48 10 FB CD */	bl __destroy_arr
 /* 80252120  38 7E 00 34 */	addi r3, r30, 0x34
-/* 80252124  3C 80 80 02 */	lis r4, __dt__5csXyzFv@ha
-/* 80252128  38 84 8B D0 */	addi r4, r4, __dt__5csXyzFv@l
+/* 80252124  3C 80 80 02 */	lis r4, __dt__5csXyzFv@ha /* 0x80018BD0@ha */
+/* 80252128  38 84 8B D0 */	addi r4, r4, __dt__5csXyzFv@l /* 0x80018BD0@l */
 /* 8025212C  38 A0 00 06 */	li r5, 6
 /* 80252130  38 C0 00 04 */	li r6, 4
 /* 80252134  48 10 FB B5 */	bl __destroy_arr
 /* 80252138  38 7E 00 04 */	addi r3, r30, 4
-/* 8025213C  3C 80 80 01 */	lis r4, __dt__4cXyzFv@ha
-/* 80252140  38 84 91 84 */	addi r4, r4, __dt__4cXyzFv@l
+/* 8025213C  3C 80 80 01 */	lis r4, __dt__4cXyzFv@ha /* 0x80009184@ha */
+/* 80252140  38 84 91 84 */	addi r4, r4, __dt__4cXyzFv@l /* 0x80009184@l */
 /* 80252144  38 A0 00 0C */	li r5, 0xc
 /* 80252148  38 C0 00 04 */	li r6, 4
 /* 8025214C  48 10 FB 9D */	bl __destroy_arr

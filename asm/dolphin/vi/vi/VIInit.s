@@ -1,14 +1,14 @@
 lbl_8034C514:
 /* 8034C514  7C 08 02 A6 */	mflr r0
-/* 8034C518  3C 80 80 3D */	lis r4, lit_1@ha
+/* 8034C518  3C 80 80 3D */	lis r4, lit_1@ha /* 0x803D1760@ha */
 /* 8034C51C  90 01 00 04 */	stw r0, 4(r1)
-/* 8034C520  3C 60 80 45 */	lis r3, regs@ha
+/* 8034C520  3C 60 80 45 */	lis r3, regs@ha /* 0x8044CA28@ha */
 /* 8034C524  94 21 FF E8 */	stwu r1, -0x18(r1)
 /* 8034C528  93 E1 00 14 */	stw r31, 0x14(r1)
 /* 8034C52C  93 C1 00 10 */	stw r30, 0x10(r1)
-/* 8034C530  3B C3 CA 28 */	addi r30, r3, regs@l
+/* 8034C530  3B C3 CA 28 */	addi r30, r3, regs@l /* 0x8044CA28@l */
 /* 8034C534  93 A1 00 0C */	stw r29, 0xc(r1)
-/* 8034C538  3B A4 17 60 */	addi r29, r4, lit_1@l
+/* 8034C538  3B A4 17 60 */	addi r29, r4, lit_1@l /* 0x803D1760@l */
 /* 8034C53C  93 81 00 08 */	stw r28, 8(r1)
 /* 8034C540  80 0D 92 60 */	lwz r0, IsInitialized(r13)
 /* 8034C544  2C 00 00 00 */	cmpwi r0, 0
@@ -121,7 +121,7 @@ lbl_8034C57C:
 /* 8034C6EC  4B FF 3E 4D */	bl __OSUnlockSram
 /* 8034C6F0  A3 BC 00 00 */	lhz r29, 0(r28)
 /* 8034C6F4  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000CC@ha */
-/* 8034C6F8  80 63 00 CC */	lwz r3, 0x00CC(r3)
+/* 8034C6F8  80 63 00 CC */	lwz r3, 0x00CC(r3)  /* 0x800000CC@l */
 /* 8034C6FC  38 9E 01 14 */	addi r4, r30, 0x114
 /* 8034C700  57 A0 F7 FE */	rlwinm r0, r29, 0x1e, 0x1f, 0x1f
 /* 8034C704  90 1E 01 14 */	stw r0, 0x114(r30)
@@ -296,13 +296,13 @@ lbl_8034C8EC:
 /* 8034C958  93 9E 01 34 */	stw r28, 0x134(r30)
 /* 8034C95C  4B FF 43 19 */	bl OSInitThreadQueue
 /* 8034C960  3C 60 CC 00 */	lis r3, 0xCC00 /* 0xCC002030@ha */
-/* 8034C964  A0 03 20 30 */	lhz r0, 0x2030(r3)
+/* 8034C964  A0 03 20 30 */	lhz r0, 0x2030(r3)  /* 0xCC002030@l */
 /* 8034C968  38 83 20 00 */	addi r4, r3, 0x2000
 /* 8034C96C  38 A3 20 00 */	addi r5, r3, 0x2000
 /* 8034C970  54 00 04 7E */	clrlwi r0, r0, 0x11
 /* 8034C974  B0 04 00 30 */	sth r0, 0x30(r4)
-/* 8034C978  3C 60 80 35 */	lis r3, __VIRetraceHandler@ha
-/* 8034C97C  38 83 BF 6C */	addi r4, r3, __VIRetraceHandler@l
+/* 8034C978  3C 60 80 35 */	lis r3, __VIRetraceHandler@ha /* 0x8034BF6C@ha */
+/* 8034C97C  38 83 BF 6C */	addi r4, r3, __VIRetraceHandler@l /* 0x8034BF6C@l */
 /* 8034C980  A0 05 00 34 */	lhz r0, 0x34(r5)
 /* 8034C984  38 60 00 18 */	li r3, 0x18
 /* 8034C988  54 00 04 7E */	clrlwi r0, r0, 0x11

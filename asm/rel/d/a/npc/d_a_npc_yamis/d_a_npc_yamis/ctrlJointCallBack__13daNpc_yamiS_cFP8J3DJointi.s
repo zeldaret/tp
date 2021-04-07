@@ -5,8 +5,8 @@ lbl_80B46EC4:
 /* 80B46ED0  7C 60 1B 78 */	mr r0, r3
 /* 80B46ED4  2C 04 00 00 */	cmpwi r4, 0
 /* 80B46ED8  40 82 00 30 */	bne lbl_80B46F08
-/* 80B46EDC  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80B46EE0  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80B46EDC  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80B46EE0  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80B46EE4  80 A3 00 38 */	lwz r5, 0x38(r3)
 /* 80B46EE8  80 65 00 14 */	lwz r3, 0x14(r5)
 /* 80B46EEC  28 03 00 00 */	cmplwi r3, 0

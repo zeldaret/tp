@@ -13,8 +13,8 @@ lbl_8011B57C:
 lbl_8011B5A8:
 /* 8011B5A8  C0 42 92 C0 */	lfs f2, lit_6108(r2)
 /* 8011B5AC  38 A0 FF FF */	li r5, -1
-/* 8011B5B0  3C 60 80 39 */	lis r3, m__19daAlinkHIO_basic_c0@ha
-/* 8011B5B4  38 63 D6 64 */	addi r3, r3, m__19daAlinkHIO_basic_c0@l
+/* 8011B5B0  3C 60 80 39 */	lis r3, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 8011B5B4  38 63 D6 64 */	addi r3, r3, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 8011B5B8  C0 03 00 18 */	lfs f0, 0x18(r3)
 /* 8011B5BC  D0 1F 34 78 */	stfs f0, 0x3478(r31)
 /* 8011B5C0  38 60 00 00 */	li r3, 0
@@ -71,8 +71,8 @@ lbl_8011B66C:
 /* 8011B674  C0 42 93 94 */	lfs f2, lit_8785(r2)
 /* 8011B678  38 00 00 05 */	li r0, 5
 /* 8011B67C  98 1F 2F 99 */	stb r0, 0x2f99(r31)
-/* 8011B680  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 8011B684  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)
+/* 8011B680  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 8011B684  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)  /* 0x80425514@l */
 /* 8011B688  D0 1F 34 D4 */	stfs f0, 0x34d4(r31)
 /* 8011B68C  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8011B690  D0 1F 34 D8 */	stfs f0, 0x34d8(r31)
@@ -96,8 +96,8 @@ lbl_8011B6AC:
 /* 8011B6D0  80 1F 19 9C */	lwz r0, 0x199c(r31)
 /* 8011B6D4  60 00 40 00 */	ori r0, r0, 0x4000
 /* 8011B6D8  90 1F 19 9C */	stw r0, 0x199c(r31)
-/* 8011B6DC  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 8011B6E0  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)
+/* 8011B6DC  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 8011B6E0  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)  /* 0x80425514@l */
 /* 8011B6E4  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 8011B6E8  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8011B6EC  D0 1F 35 8C */	stfs f0, 0x358c(r31)

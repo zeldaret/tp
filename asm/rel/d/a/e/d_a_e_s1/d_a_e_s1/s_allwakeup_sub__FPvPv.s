@@ -6,7 +6,7 @@ lbl_8077CAD0:
 /* 8077CAE0  93 C1 00 08 */	stw r30, 8(r1)
 /* 8077CAE4  7C 7E 1B 78 */	mr r30, r3
 /* 8077CAE8  7C 9F 23 78 */	mr r31, r4
-/* 8077CAEC  4B 89 C1 F4 */	b fopAc_IsActor__FPv
+/* 8077CAEC  4B 89 C1 F5 */	bl fopAc_IsActor__FPv
 /* 8077CAF0  2C 03 00 00 */	cmpwi r3, 0
 /* 8077CAF4  41 82 00 58 */	beq lbl_8077CB4C
 /* 8077CAF8  A8 1E 00 08 */	lha r0, 8(r30)
@@ -20,8 +20,8 @@ lbl_8077CAD0:
 /* 8077CB18  40 82 00 34 */	bne lbl_8077CB4C
 /* 8077CB1C  38 00 00 0C */	li r0, 0xc
 /* 8077CB20  B0 1E 06 98 */	sth r0, 0x698(r30)
-/* 8077CB24  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8077CB28  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8077CB24  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8077CB28  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8077CB2C  88 03 4F AD */	lbz r0, 0x4fad(r3)
 /* 8077CB30  28 00 00 00 */	cmplwi r0, 0
 /* 8077CB34  41 82 00 10 */	beq lbl_8077CB44

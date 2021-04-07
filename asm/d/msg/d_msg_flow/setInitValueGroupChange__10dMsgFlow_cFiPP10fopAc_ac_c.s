@@ -13,13 +13,13 @@ lbl_8024A618:
 /* 8024A644  38 80 00 00 */	li r4, 0
 /* 8024A648  4B FF FF 39 */	bl setInitValue__10dMsgFlow_cFi
 /* 8024A64C  7F A3 EB 78 */	mr r3, r29
-/* 8024A650  3C 80 80 3A */	lis r4, d_msg_d_msg_flow__stringBase0@ha
-/* 8024A654  38 84 9C B0 */	addi r4, r4, d_msg_d_msg_flow__stringBase0@l
+/* 8024A650  3C 80 80 3A */	lis r4, d_msg_d_msg_flow__stringBase0@ha /* 0x80399CB0@ha */
+/* 8024A654  38 84 9C B0 */	addi r4, r4, d_msg_d_msg_flow__stringBase0@l /* 0x80399CB0@l */
 /* 8024A658  48 00 00 95 */	bl getMsgDataBlock__10dMsgFlow_cFPCc
 /* 8024A65C  90 7D 00 04 */	stw r3, 4(r29)
 /* 8024A660  7F A3 EB 78 */	mr r3, r29
-/* 8024A664  3C 80 80 3A */	lis r4, d_msg_d_msg_flow__stringBase0@ha
-/* 8024A668  38 84 9C B0 */	addi r4, r4, d_msg_d_msg_flow__stringBase0@l
+/* 8024A664  3C 80 80 3A */	lis r4, d_msg_d_msg_flow__stringBase0@ha /* 0x80399CB0@ha */
+/* 8024A668  38 84 9C B0 */	addi r4, r4, d_msg_d_msg_flow__stringBase0@l /* 0x80399CB0@l */
 /* 8024A66C  38 84 00 05 */	addi r4, r4, 5
 /* 8024A670  48 00 00 7D */	bl getMsgDataBlock__10dMsgFlow_cFPCc
 /* 8024A674  90 7D 00 08 */	stw r3, 8(r29)

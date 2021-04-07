@@ -9,9 +9,9 @@ lbl_80C5C2F0:
 /* 80C5C30C  40 82 00 28 */	bne lbl_80C5C334
 /* 80C5C310  28 1F 00 00 */	cmplwi r31, 0
 /* 80C5C314  41 82 00 14 */	beq lbl_80C5C328
-/* 80C5C318  4B 41 C3 0C */	b __ct__16dBgS_MoveBgActorFv
-/* 80C5C31C  3C 60 80 C6 */	lis r3, __vt__14daObjLv3saka_c@ha
-/* 80C5C320  38 03 C4 48 */	addi r0, r3, __vt__14daObjLv3saka_c@l
+/* 80C5C318  4B 41 C3 0D */	bl __ct__16dBgS_MoveBgActorFv
+/* 80C5C31C  3C 60 80 C6 */	lis r3, __vt__14daObjLv3saka_c@ha /* 0x80C5C448@ha */
+/* 80C5C320  38 03 C4 48 */	addi r0, r3, __vt__14daObjLv3saka_c@l /* 0x80C5C448@l */
 /* 80C5C324  90 1F 05 9C */	stw r0, 0x59c(r31)
 lbl_80C5C328:
 /* 80C5C328  80 1F 04 A0 */	lwz r0, 0x4a0(r31)

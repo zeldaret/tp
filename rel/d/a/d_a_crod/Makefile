@@ -3,18 +3,16 @@
 #
 
 M47_TARGET := $(BUILD_DIR)/rel/d/a/d_a_crod.plf
+M47_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_crod.lcf
+M47_MAP := $(BUILD_DIR)/rel/d/a/d_a_crod.map
 
 M47_CPP_FILES := \
-	rel/d/a/d_a_crod/executor.cpp \
-	rel/d/a/d_a_crod/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_crod/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_crod/unknown_translation_unit_bss.cpp \
 	rel/d/a/d_a_crod/d_a_crod.cpp \
 
 M47_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_crod/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_crod/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_crod/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_crod/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/d_a_crod/d_a_crod.o \
 
@@ -31,14 +29,21 @@ M47_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M47_LDSCRIPT) \
+	-unused -map $(M47_MAP) \
+	-w off \
 
 $(M47_TARGET): $(M47_O_FILES) $(M47_LIBS)
+	@echo [ 47] creating $(M47_TARGET)
 	@echo $(M47_LIBS) $(M47_O_FILES) > build/M47_ofiles
-	$(LD) -partial $(M47_LDFLAGS) -o $(M47_TARGET) @build/M47_ofiles
+	@python3 tools/lcf.py rel 47 --output $(M47_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M47_LDFLAGS) -o $(M47_TARGET) @build/M47_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_crod/%.o: rel/d/a/d_a_crod/%.cpp
+	@echo [ 47] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M47_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M47_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -7,8 +7,8 @@ lbl_8028E700:
 /* 8028E714  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8028E718  7C 9F 23 78 */	mr r31, r4
 /* 8028E71C  41 82 00 28 */	beq lbl_8028E744
-/* 8028E720  3C 80 80 3C */	lis r4, __vt__Q317JStudio_JParticle17TAdaptor_particle21TJPACallback_emitter_@ha
-/* 8028E724  38 04 5A F0 */	addi r0, r4, __vt__Q317JStudio_JParticle17TAdaptor_particle21TJPACallback_emitter_@l
+/* 8028E720  3C 80 80 3C */	lis r4, __vt__Q317JStudio_JParticle17TAdaptor_particle21TJPACallback_emitter_@ha /* 0x803C5AF0@ha */
+/* 8028E724  38 04 5A F0 */	addi r0, r4, __vt__Q317JStudio_JParticle17TAdaptor_particle21TJPACallback_emitter_@l /* 0x803C5AF0@l */
 /* 8028E728  90 1E 00 00 */	stw r0, 0(r30)
 /* 8028E72C  38 80 00 00 */	li r4, 0
 /* 8028E730  4B FE FF 75 */	bl __dt__18JPAEmitterCallBackFv

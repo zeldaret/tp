@@ -3,16 +3,16 @@ lbl_8050E6B4:
 /* 8050E6B8  7C 08 02 A6 */	mflr r0
 /* 8050E6BC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8050E6C0  39 61 00 20 */	addi r11, r1, 0x20
-/* 8050E6C4  4B E5 3B 18 */	b _savegpr_29
+/* 8050E6C4  4B E5 3B 19 */	bl _savegpr_29
 /* 8050E6C8  7C 7E 1B 78 */	mr r30, r3
-/* 8050E6CC  3C 60 80 52 */	lis r3, lit_4208@ha
-/* 8050E6D0  3B E3 85 84 */	addi r31, r3, lit_4208@l
+/* 8050E6CC  3C 60 80 52 */	lis r3, lit_4208@ha /* 0x80518584@ha */
+/* 8050E6D0  3B E3 85 84 */	addi r31, r3, lit_4208@l /* 0x80518584@l */
 /* 8050E6D4  80 1E 09 8C */	lwz r0, 0x98c(r30)
 /* 8050E6D8  90 01 00 08 */	stw r0, 8(r1)
-/* 8050E6DC  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 8050E6E0  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 8050E6DC  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 8050E6E0  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 8050E6E4  38 81 00 08 */	addi r4, r1, 8
-/* 8050E6E8  4B B0 B1 10 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 8050E6E8  4B B0 B1 11 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8050E6EC  7C 7D 1B 78 */	mr r29, r3
 /* 8050E6F0  38 00 00 0A */	li r0, 0xa
 /* 8050E6F4  B0 1E 09 98 */	sth r0, 0x998(r30)
@@ -102,10 +102,10 @@ lbl_8050E810:
 /* 8050E82C  4B FF 63 A9 */	bl anm_init__FP10e_rd_classifUcf
 /* 8050E830  48 00 00 A8 */	b lbl_8050E8D8
 lbl_8050E834:
-/* 8050E834  3C 60 80 51 */	lis r3, s_rdb_sub__FPvPv@ha
-/* 8050E838  38 63 E6 68 */	addi r3, r3, s_rdb_sub__FPvPv@l
+/* 8050E834  3C 60 80 51 */	lis r3, s_rdb_sub__FPvPv@ha /* 0x8050E668@ha */
+/* 8050E838  38 63 E6 68 */	addi r3, r3, s_rdb_sub__FPvPv@l /* 0x8050E668@l */
 /* 8050E83C  7F C4 F3 78 */	mr r4, r30
-/* 8050E840  4B B1 2A F8 */	b fpcEx_Search__FPFPvPv_PvPv
+/* 8050E840  4B B1 2A F9 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 8050E844  28 03 00 00 */	cmplwi r3, 0
 /* 8050E848  41 82 00 90 */	beq lbl_8050E8D8
 /* 8050E84C  A8 03 10 A8 */	lha r0, 0x10a8(r3)
@@ -147,7 +147,7 @@ lbl_8050E8B0:
 /* 8050E8D4  B0 1E 05 B4 */	sth r0, 0x5b4(r30)
 lbl_8050E8D8:
 /* 8050E8D8  39 61 00 20 */	addi r11, r1, 0x20
-/* 8050E8DC  4B E5 39 4C */	b _restgpr_29
+/* 8050E8DC  4B E5 39 4D */	bl _restgpr_29
 /* 8050E8E0  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8050E8E4  7C 08 03 A6 */	mtlr r0
 /* 8050E8E8  38 21 00 20 */	addi r1, r1, 0x20

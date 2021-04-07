@@ -8,8 +8,8 @@ lbl_801FB064:
 /* 801FB07C  4B FF 03 51 */	bl isClose__12dMenu_Ring_cFv
 /* 801FB080  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801FB084  41 82 00 20 */	beq lbl_801FB0A4
-/* 801FB088  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801FB08C  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801FB088  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801FB08C  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801FB090  A0 03 00 98 */	lhz r0, 0x98(r3)
 /* 801FB094  54 00 07 B8 */	rlwinm r0, r0, 0, 0x1e, 0x1c
 /* 801FB098  B0 03 00 98 */	sth r0, 0x98(r3)

@@ -12,7 +12,7 @@ lbl_8055D5C4:
 /* 8055D5EC  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 8055D5F0  28 00 00 00 */	cmplwi r0, 0
 /* 8055D5F4  40 82 00 1C */	bne lbl_8055D610
-/* 8055D5F8  4B AD 24 5C */	b dComIfGs_wolfeye_effect_check__Fv
+/* 8055D5F8  4B AD 24 5D */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 8055D5FC  2C 03 00 00 */	cmpwi r3, 0
 /* 8055D600  40 82 00 14 */	bne lbl_8055D614
 /* 8055D604  88 1E 0A 89 */	lbz r0, 0xa89(r30)
@@ -31,7 +31,7 @@ lbl_8055D628:
 /* 8055D62C  88 1E 0E 25 */	lbz r0, 0xe25(r30)
 /* 8055D630  28 00 00 00 */	cmplwi r0, 0
 /* 8055D634  40 82 00 1C */	bne lbl_8055D650
-/* 8055D638  4B AD 24 1C */	b dComIfGs_wolfeye_effect_check__Fv
+/* 8055D638  4B AD 24 1D */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 8055D63C  2C 03 00 00 */	cmpwi r3, 0
 /* 8055D640  40 82 00 14 */	bne lbl_8055D654
 /* 8055D644  88 1E 0A 89 */	lbz r0, 0xa89(r30)

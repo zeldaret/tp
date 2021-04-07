@@ -3,17 +3,15 @@
 #
 
 M137_TARGET := $(BUILD_DIR)/rel/d/a/d_a_L7op_demo_dr.plf
+M137_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_L7op_demo_dr.lcf
+M137_MAP := $(BUILD_DIR)/rel/d/a/d_a_L7op_demo_dr.map
 
 M137_CPP_FILES := \
-	rel/d/a/d_a_L7op_demo_dr/executor.cpp \
-	rel/d/a/d_a_L7op_demo_dr/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_L7op_demo_dr/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_L7op_demo_dr/d_a_L7op_demo_dr.cpp \
 
 M137_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_L7op_demo_dr/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_L7op_demo_dr/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_L7op_demo_dr/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_L7op_demo_dr/d_a_L7op_demo_dr.o \
 
 M137_LIBS := \
@@ -29,14 +27,21 @@ M137_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M137_LDSCRIPT) \
+	-unused -map $(M137_MAP) \
+	-w off \
 
 $(M137_TARGET): $(M137_O_FILES) $(M137_LIBS)
+	@echo [137] creating $(M137_TARGET)
 	@echo $(M137_LIBS) $(M137_O_FILES) > build/M137_ofiles
-	$(LD) -partial $(M137_LDFLAGS) -o $(M137_TARGET) @build/M137_ofiles
+	@python3 tools/lcf.py rel 137 --output $(M137_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M137_LDFLAGS) -o $(M137_TARGET) @build/M137_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_L7op_demo_dr/%.o: rel/d/a/d_a_L7op_demo_dr/%.cpp
+	@echo [137] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M137_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M137_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

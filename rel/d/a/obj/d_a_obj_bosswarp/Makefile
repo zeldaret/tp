@@ -3,18 +3,16 @@
 #
 
 M91_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bosswarp.plf
+M91_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bosswarp.lcf
+M91_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bosswarp.map
 
 M91_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_bosswarp/executor.cpp \
-	rel/d/a/obj/d_a_obj_bosswarp/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_bosswarp/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_bosswarp/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_bosswarp/d_a_obj_bosswarp.cpp \
 
 M91_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bosswarp/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bosswarp/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bosswarp/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bosswarp/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bosswarp/d_a_obj_bosswarp.o \
 
@@ -31,14 +29,21 @@ M91_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M91_LDSCRIPT) \
+	-unused -map $(M91_MAP) \
+	-w off \
 
 $(M91_TARGET): $(M91_O_FILES) $(M91_LIBS)
+	@echo [ 91] creating $(M91_TARGET)
 	@echo $(M91_LIBS) $(M91_O_FILES) > build/M91_ofiles
-	$(LD) -partial $(M91_LDFLAGS) -o $(M91_TARGET) @build/M91_ofiles
+	@python3 tools/lcf.py rel 91 --output $(M91_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M91_LDFLAGS) -o $(M91_TARGET) @build/M91_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bosswarp/%.o: rel/d/a/obj/d_a_obj_bosswarp/%.cpp
+	@echo [ 91] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M91_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M91_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

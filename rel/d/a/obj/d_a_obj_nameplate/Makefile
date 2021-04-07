@@ -3,17 +3,15 @@
 #
 
 M108_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_nameplate.plf
+M108_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_nameplate.lcf
+M108_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_nameplate.map
 
 M108_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_nameplate/executor.cpp \
-	rel/d/a/obj/d_a_obj_nameplate/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_nameplate/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_nameplate/d_a_obj_nameplate.cpp \
 
 M108_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_nameplate/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_nameplate/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_nameplate/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_nameplate/d_a_obj_nameplate.o \
 
 M108_LIBS := \
@@ -29,14 +27,21 @@ M108_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M108_LDSCRIPT) \
+	-unused -map $(M108_MAP) \
+	-w off \
 
 $(M108_TARGET): $(M108_O_FILES) $(M108_LIBS)
+	@echo [108] creating $(M108_TARGET)
 	@echo $(M108_LIBS) $(M108_O_FILES) > build/M108_ofiles
-	$(LD) -partial $(M108_LDFLAGS) -o $(M108_TARGET) @build/M108_ofiles
+	@python3 tools/lcf.py rel 108 --output $(M108_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M108_LDFLAGS) -o $(M108_TARGET) @build/M108_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_nameplate/%.o: rel/d/a/obj/d_a_obj_nameplate/%.cpp
+	@echo [108] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M108_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M108_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

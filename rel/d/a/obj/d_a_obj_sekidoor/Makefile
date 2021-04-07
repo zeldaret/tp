@@ -3,19 +3,20 @@
 #
 
 M616_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekidoor.plf
+M616_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekidoor.lcf
+M616_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekidoor.map
 
 M616_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_sekidoor/executor.cpp \
-	rel/d/a/obj/d_a_obj_sekidoor/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_sekidoor/d_a_obj_sekidoor.cpp \
 
 M616_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekidoor/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekidoor/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekidoor/d_a_obj_sekidoor.o \
 
 M616_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekidoor/libRuntime.PPCEABI.H.a \
 
 M616_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M616_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M616_LDSCRIPT) \
+	-unused -map $(M616_MAP) \
+	-w off \
 
 $(M616_TARGET): $(M616_O_FILES) $(M616_LIBS)
+	@echo [616] creating $(M616_TARGET)
 	@echo $(M616_LIBS) $(M616_O_FILES) > build/M616_ofiles
-	$(LD) -partial $(M616_LDFLAGS) -o $(M616_TARGET) @build/M616_ofiles
+	@python3 tools/lcf.py rel 616 --output $(M616_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M616_LDFLAGS) -o $(M616_TARGET) @build/M616_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekidoor/%.o: rel/d/a/obj/d_a_obj_sekidoor/%.cpp
+	@echo [616] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M616_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M616_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_sekidoor/libs/Runtime.PPCEABI.H/Makefile
 

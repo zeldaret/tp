@@ -12,10 +12,10 @@ lbl_800123D0:
 /* 800123F8  1C 7B 00 0C */	mulli r3, r27, 0xc
 /* 800123FC  38 63 00 10 */	addi r3, r3, 0x10
 /* 80012400  48 2B C8 C5 */	bl __nwa__FUl
-/* 80012404  3C 80 80 01 */	lis r4, __ct__4cXyzFv@ha
-/* 80012408  38 84 25 DC */	addi r4, r4, __ct__4cXyzFv@l
-/* 8001240C  3C A0 80 01 */	lis r5, __dt__4cXyzFv@ha
-/* 80012410  38 A5 91 84 */	addi r5, r5, __dt__4cXyzFv@l
+/* 80012404  3C 80 80 01 */	lis r4, __ct__4cXyzFv@ha /* 0x800125DC@ha */
+/* 80012408  38 84 25 DC */	addi r4, r4, __ct__4cXyzFv@l /* 0x800125DC@l */
+/* 8001240C  3C A0 80 01 */	lis r5, __dt__4cXyzFv@ha /* 0x80009184@ha */
+/* 80012410  38 A5 91 84 */	addi r5, r5, __dt__4cXyzFv@l /* 0x80009184@l */
 /* 80012414  38 C0 00 0C */	li r6, 0xc
 /* 80012418  7F 67 DB 78 */	mr r7, r27
 /* 8001241C  48 34 FA F9 */	bl __construct_new_array
@@ -47,10 +47,10 @@ lbl_80012468:
 /* 80012478  1C 60 00 0C */	mulli r3, r0, 0xc
 /* 8001247C  38 63 00 10 */	addi r3, r3, 0x10
 /* 80012480  48 2B C8 45 */	bl __nwa__FUl
-/* 80012484  3C 80 80 01 */	lis r4, __ct__4cXyzFv@ha
-/* 80012488  38 84 25 DC */	addi r4, r4, __ct__4cXyzFv@l
-/* 8001248C  3C A0 80 01 */	lis r5, __dt__4cXyzFv@ha
-/* 80012490  38 A5 91 84 */	addi r5, r5, __dt__4cXyzFv@l
+/* 80012484  3C 80 80 01 */	lis r4, __ct__4cXyzFv@ha /* 0x800125DC@ha */
+/* 80012488  38 84 25 DC */	addi r4, r4, __ct__4cXyzFv@l /* 0x800125DC@l */
+/* 8001248C  3C A0 80 01 */	lis r5, __dt__4cXyzFv@ha /* 0x80009184@ha */
+/* 80012490  38 A5 91 84 */	addi r5, r5, __dt__4cXyzFv@l /* 0x80009184@l */
 /* 80012494  38 C0 00 0C */	li r6, 0xc
 /* 80012498  7F 67 DB 78 */	mr r7, r27
 /* 8001249C  48 34 FA 79 */	bl __construct_new_array
@@ -64,10 +64,10 @@ lbl_800124B8:
 /* 800124B8  1C 7F 00 0C */	mulli r3, r31, 0xc
 /* 800124BC  38 63 00 10 */	addi r3, r3, 0x10
 /* 800124C0  48 2B C8 05 */	bl __nwa__FUl
-/* 800124C4  3C 80 80 01 */	lis r4, __ct__4cXyzFv@ha
-/* 800124C8  38 84 25 DC */	addi r4, r4, __ct__4cXyzFv@l
-/* 800124CC  3C A0 80 01 */	lis r5, __dt__4cXyzFv@ha
-/* 800124D0  38 A5 91 84 */	addi r5, r5, __dt__4cXyzFv@l
+/* 800124C4  3C 80 80 01 */	lis r4, __ct__4cXyzFv@ha /* 0x800125DC@ha */
+/* 800124C8  38 84 25 DC */	addi r4, r4, __ct__4cXyzFv@l /* 0x800125DC@l */
+/* 800124CC  3C A0 80 01 */	lis r5, __dt__4cXyzFv@ha /* 0x80009184@ha */
+/* 800124D0  38 A5 91 84 */	addi r5, r5, __dt__4cXyzFv@l /* 0x80009184@l */
 /* 800124D4  38 C0 00 0C */	li r6, 0xc
 /* 800124D8  7F E7 FB 78 */	mr r7, r31
 /* 800124DC  48 34 FA 39 */	bl __construct_new_array

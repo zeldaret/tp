@@ -1,6 +1,6 @@
 lbl_8025BC14:
-/* 8025BC14  3C 80 80 3C */	lis r4, __vt__26dSvBit_childSwDungeonHIO_c@ha
-/* 8025BC18  38 04 33 78 */	addi r0, r4, __vt__26dSvBit_childSwDungeonHIO_c@l
+/* 8025BC14  3C 80 80 3C */	lis r4, __vt__26dSvBit_childSwDungeonHIO_c@ha /* 0x803C3378@ha */
+/* 8025BC18  38 04 33 78 */	addi r0, r4, __vt__26dSvBit_childSwDungeonHIO_c@l /* 0x803C3378@l */
 /* 8025BC1C  90 03 00 00 */	stw r0, 0(r3)
 /* 8025BC20  38 C0 00 00 */	li r6, 0
 /* 8025BC24  38 80 00 00 */	li r4, 0

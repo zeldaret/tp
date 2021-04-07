@@ -85,8 +85,8 @@ lbl_8000C804:
 /* 8000C854  10 42 00 BA */	ps_madd f2, f2, f2, f0
 /* 8000C858  10 42 00 14 */	ps_sum0 f2, f2, f0, f0
 /* 8000C85C  C0 22 81 10 */	lfs f1, lit_3840(r2)
-/* 8000C860  3C 60 80 45 */	lis r3, __float_epsilon@ha
-/* 8000C864  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)
+/* 8000C860  3C 60 80 45 */	lis r3, __float_epsilon@ha /* 0x80450AEC@ha */
+/* 8000C864  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)  /* 0x80450AEC@l */
 /* 8000C868  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8000C86C  FC 02 00 40 */	fcmpo cr0, f2, f0
 /* 8000C870  4C 40 13 82 */	cror 2, 0, 2

@@ -34,11 +34,6 @@ struct JKRHeap {
 // Forward References:
 //
 
-void mDoDvdErr_ThdInit();
-void mDoDvdErr_ThdCleanup();
-static void mDoDvdErr_Watch(void*);
-static void AlarmHandler(OSAlarm*, OSContext*);
-
 extern "C" void mDoDvdErr_ThdInit__Fv();
 extern "C" void mDoDvdErr_ThdCleanup__Fv();
 extern "C" static void mDoDvdErr_Watch__FPv();
@@ -47,8 +42,6 @@ extern "C" static void AlarmHandler__FP7OSAlarmP9OSContext();
 //
 // External References:
 //
-
-void mDoExt_getAssertHeap();
 
 extern "C" void mDoExt_getAssertHeap__Fv();
 extern "C" void suspend__9mDoDvdThdFv();
@@ -76,16 +69,19 @@ extern "C" extern u8 data_80450C88[8];
 //
 
 /* ############################################################################################## */
-/* 803DECC0-803DEFE0 0318+08 s=4 e=0 z=0  None .bss       DvdErr_thread */
+/* 803DECC0-803DEFE0 00B9E0 0318+08 4/4 0/0 0/0 .bss             DvdErr_thread */
 static u8 DvdErr_thread[792 + 8 /* padding */];
 
-/* 803DEFE0-803DFBE0 0C00+00 s=1 e=0 z=0  None .bss       DvdErr_stack */
+/* 803DEFE0-803DFBE0 00BD00 0C00+00 0/1 0/0 0/0 .bss             DvdErr_stack */
+#pragma push
+#pragma force_active on
 static u8 DvdErr_stack[3072];
+#pragma pop
 
-/* 803DFBE0-803DFC20 0028+18 s=2 e=0 z=0  None .bss       Alarm */
+/* 803DFBE0-803DFC20 00C900 0028+18 1/2 0/0 0/0 .bss             Alarm */
 static u8 Alarm[40 + 24 /* padding */];
 
-/* 8001659C-8001665C 00C0+00 s=0 e=1 z=0  None .text      mDoDvdErr_ThdInit__Fv */
+/* 8001659C-8001665C 010EDC 00C0+00 0/0 1/1 0/0 .text            mDoDvdErr_ThdInit__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -95,7 +91,7 @@ asm void mDoDvdErr_ThdInit() {
 }
 #pragma pop
 
-/* 8001665C-800166A4 0048+00 s=0 e=1 z=0  None .text      mDoDvdErr_ThdCleanup__Fv */
+/* 8001665C-800166A4 010F9C 0048+00 0/0 1/1 0/0 .text            mDoDvdErr_ThdCleanup__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -105,21 +101,22 @@ asm void mDoDvdErr_ThdCleanup() {
 }
 #pragma pop
 
-/* 800166A4-80016704 0060+00 s=1 e=0 z=0  None .text      mDoDvdErr_Watch__FPv */
+/* 800166A4-80016704 010FE4 0060+00 1/1 0/0 0/0 .text            mDoDvdErr_Watch__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void mDoDvdErr_Watch(void* param_0) {
+static asm void mDoDvdErr_Watch(void* param_0) {
     nofralloc
 #include "asm/m_Do/m_Do_DVDError/mDoDvdErr_Watch__FPv.s"
 }
 #pragma pop
 
-/* 80016704-8001672C 0028+00 s=1 e=0 z=0  None .text      AlarmHandler__FP7OSAlarmP9OSContext */
+/* 80016704-8001672C 011044 0028+00 1/1 0/0 0/0 .text            AlarmHandler__FP7OSAlarmP9OSContext
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void AlarmHandler(OSAlarm* param_0, OSContext* param_1) {
+static asm void AlarmHandler(OSAlarm* param_0, OSContext* param_1) {
     nofralloc
 #include "asm/m_Do/m_Do_DVDError/AlarmHandler__FP7OSAlarmP9OSContext.s"
 }

@@ -13,8 +13,8 @@ lbl_801E0330:
 lbl_801E035C:
 /* 801E035C  90 1F 00 24 */	stw r0, 0x24(r31)
 /* 801E0360  80 7F 00 24 */	lwz r3, 0x24(r31)
-/* 801E0364  3C 80 80 39 */	lis r4, d_menu_d_menu_letter__stringBase0@ha
-/* 801E0368  38 84 6D C0 */	addi r4, r4, d_menu_d_menu_letter__stringBase0@l
+/* 801E0364  3C 80 80 39 */	lis r4, d_menu_d_menu_letter__stringBase0@ha /* 0x80396DC0@ha */
+/* 801E0368  38 84 6D C0 */	addi r4, r4, d_menu_d_menu_letter__stringBase0@l /* 0x80396DC0@l */
 /* 801E036C  38 84 00 59 */	addi r4, r4, 0x59
 /* 801E0370  3C A0 00 02 */	lis r5, 2
 /* 801E0374  80 DF 00 08 */	lwz r6, 8(r31)

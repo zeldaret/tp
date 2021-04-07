@@ -3,19 +3,20 @@
 #
 
 M79_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_besu.plf
+M79_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_besu.lcf
+M79_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_besu.map
 
 M79_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_besu/executor.cpp \
-	rel/d/a/npc/d_a_npc_besu/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_besu/d_a_npc_besu.cpp \
 
 M79_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_besu/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_besu/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_besu/d_a_npc_besu.o \
 
 M79_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_besu/libRuntime.PPCEABI.H.a \
 
 M79_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M79_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M79_LDSCRIPT) \
+	-unused -map $(M79_MAP) \
+	-w off \
 
 $(M79_TARGET): $(M79_O_FILES) $(M79_LIBS)
+	@echo [ 79] creating $(M79_TARGET)
 	@echo $(M79_LIBS) $(M79_O_FILES) > build/M79_ofiles
-	$(LD) -partial $(M79_LDFLAGS) -o $(M79_TARGET) @build/M79_ofiles
+	@python3 tools/lcf.py rel 79 --output $(M79_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M79_LDFLAGS) -o $(M79_TARGET) @build/M79_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_besu/%.o: rel/d/a/npc/d_a_npc_besu/%.cpp
+	@echo [ 79] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M79_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M79_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_besu/libs/Runtime.PPCEABI.H/Makefile
 

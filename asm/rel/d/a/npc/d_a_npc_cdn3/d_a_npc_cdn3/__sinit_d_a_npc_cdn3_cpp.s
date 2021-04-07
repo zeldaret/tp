@@ -1,7 +1,7 @@
 lbl_8097E050:
 /* 8097E050  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 8097E054  3C 60 80 98 */	lis r3, cNullVec__6Z2Calc@ha
-/* 8097E058  38 A3 F6 A8 */	addi r5, r3, cNullVec__6Z2Calc@l
+/* 8097E054  3C 60 80 98 */	lis r3, cNullVec__6Z2Calc@ha /* 0x8097F6A8@ha */
+/* 8097E058  38 A3 F6 A8 */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x8097F6A8@l */
 /* 8097E05C  80 65 00 20 */	lwz r3, 0x20(r5)
 /* 8097E060  80 05 00 24 */	lwz r0, 0x24(r5)
 /* 8097E064  90 65 00 E0 */	stw r3, 0xe0(r5)
@@ -105,8 +105,8 @@ lbl_8097E050:
 /* 8097E1EC  90 05 02 60 */	stw r0, 0x260(r5)
 /* 8097E1F0  80 05 02 58 */	lwz r0, 0x258(r5)
 /* 8097E1F4  90 05 02 64 */	stw r0, 0x264(r5)
-/* 8097E1F8  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 8097E1FC  38 C3 21 80 */	addi r6, r3, __ptmf_null@l
+/* 8097E1F8  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 8097E1FC  38 C3 21 80 */	addi r6, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 8097E200  80 86 00 00 */	lwz r4, 0(r6)
 /* 8097E204  80 66 00 04 */	lwz r3, 4(r6)
 /* 8097E208  90 81 00 08 */	stw r4, 8(r1)

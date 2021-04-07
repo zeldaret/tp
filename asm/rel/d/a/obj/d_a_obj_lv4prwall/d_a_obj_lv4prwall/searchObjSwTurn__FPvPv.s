@@ -7,7 +7,7 @@ lbl_80C69064:
 /* 80C69078  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80C6907C  7C 9F 23 78 */	mr r31, r4
 /* 80C69080  41 82 00 3C */	beq lbl_80C690BC
-/* 80C69084  4B 3A FC 5C */	b fopAc_IsActor__FPv
+/* 80C69084  4B 3A FC 5D */	bl fopAc_IsActor__FPv
 /* 80C69088  2C 03 00 00 */	cmpwi r3, 0
 /* 80C6908C  41 82 00 30 */	beq lbl_80C690BC
 /* 80C69090  A8 1E 00 0E */	lha r0, 0xe(r30)

@@ -13,10 +13,10 @@ lbl_80261A18:
 /* 80261A44  90 01 00 10 */	stw r0, 0x10(r1)
 /* 80261A48  80 1F 00 E4 */	lwz r0, 0xe4(r31)
 /* 80261A4C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80261A50  3C 60 80 3E */	lis r3, mClipper__14mDoLib_clipper@ha
-/* 80261A54  38 63 D8 E4 */	addi r3, r3, mClipper__14mDoLib_clipper@l
-/* 80261A58  3C 80 80 43 */	lis r4, j3dSys@ha
-/* 80261A5C  38 84 4A C8 */	addi r4, r4, j3dSys@l
+/* 80261A50  3C 60 80 3E */	lis r3, mClipper__14mDoLib_clipper@ha /* 0x803DD8E4@ha */
+/* 80261A54  38 63 D8 E4 */	addi r3, r3, mClipper__14mDoLib_clipper@l /* 0x803DD8E4@l */
+/* 80261A58  3C 80 80 43 */	lis r4, j3dSys@ha /* 0x80434AC8@ha */
+/* 80261A5C  38 84 4A C8 */	addi r4, r4, j3dSys@l /* 0x80434AC8@l */
 /* 80261A60  38 A1 00 0C */	addi r5, r1, 0xc
 /* 80261A64  48 01 1E 99 */	bl clip__11J3DUClipperCFPA4_Cf3Vecf
 /* 80261A68  2C 03 00 00 */	cmpwi r3, 0
@@ -24,22 +24,22 @@ lbl_80261A18:
 /* 80261A70  38 60 00 01 */	li r3, 1
 /* 80261A74  48 00 00 CC */	b lbl_80261B40
 lbl_80261A78:
-/* 80261A78  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80261A7C  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 80261A78  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80261A7C  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80261A80  38 80 00 00 */	li r4, 0
 /* 80261A84  38 BF 00 DC */	addi r5, r31, 0xdc
 /* 80261A88  38 DF 01 00 */	addi r6, r31, 0x100
 /* 80261A8C  4B F4 1D 39 */	bl settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
-/* 80261A90  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80261A94  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 80261A90  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80261A94  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80261A98  80 9F 00 FC */	lwz r4, 0xfc(r31)
 /* 80261A9C  80 84 00 04 */	lwz r4, 4(r4)
 /* 80261AA0  38 BF 01 00 */	addi r5, r31, 0x100
 /* 80261AA4  4B F4 32 FD */	bl setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
 /* 80261AA8  A8 1F 04 8E */	lha r0, 0x48e(r31)
 /* 80261AAC  54 04 10 3A */	slwi r4, r0, 2
-/* 80261AB0  3C 60 80 3A */	lis r3, data_8039A488@ha
-/* 80261AB4  38 03 A4 88 */	addi r0, r3, data_8039A488@l
+/* 80261AB0  3C 60 80 3A */	lis r3, data_8039A488@ha /* 0x8039A488@ha */
+/* 80261AB4  38 03 A4 88 */	addi r0, r3, data_8039A488@l /* 0x8039A488@l */
 /* 80261AB8  7C 60 22 14 */	add r3, r0, r4
 /* 80261ABC  88 03 00 00 */	lbz r0, 0(r3)
 /* 80261AC0  98 01 00 08 */	stb r0, 8(r1)

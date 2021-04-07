@@ -12,8 +12,8 @@ lbl_8029A800:
 /* 8029A828  90 03 00 14 */	stw r0, 0x14(r3)
 /* 8029A82C  90 03 00 18 */	stw r0, 0x18(r3)
 /* 8029A830  38 7F 00 1C */	addi r3, r31, 0x1c
-/* 8029A834  3C 80 80 2A */	lis r4, __ct__13JASOscillatorFv@ha
-/* 8029A838  38 84 BE 94 */	addi r4, r4, __ct__13JASOscillatorFv@l
+/* 8029A834  3C 80 80 2A */	lis r4, __ct__13JASOscillatorFv@ha /* 0x8029BE94@ha */
+/* 8029A838  38 84 BE 94 */	addi r4, r4, __ct__13JASOscillatorFv@l /* 0x8029BE94@l */
 /* 8029A83C  38 A0 00 00 */	li r5, 0
 /* 8029A840  38 C0 00 20 */	li r6, 0x20
 /* 8029A844  38 E0 00 02 */	li r7, 2

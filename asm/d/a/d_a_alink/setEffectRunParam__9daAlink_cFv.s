@@ -9,14 +9,14 @@ lbl_80120B00:
 /* 80120B1C  39 61 00 60 */	addi r11, r1, 0x60
 /* 80120B20  48 24 16 A1 */	bl _savegpr_22
 /* 80120B24  7C 7D 1B 78 */	mr r29, r3
-/* 80120B28  3C 60 80 39 */	lis r3, lit_3757@ha
-/* 80120B2C  3B 23 D6 58 */	addi r25, r3, lit_3757@l
+/* 80120B28  3C 60 80 39 */	lis r3, lit_3757@ha /* 0x8038D658@ha */
+/* 80120B2C  3B 23 D6 58 */	addi r25, r3, lit_3757@l /* 0x8038D658@l */
 /* 80120B30  3B C0 00 00 */	li r30, 0
 /* 80120B34  3B 80 00 00 */	li r28, 0
-/* 80120B38  3C 60 80 3B */	lis r3, m_typeFourData__8dPaPoF_c@ha
-/* 80120B3C  3B 43 86 D0 */	addi r26, r3, m_typeFourData__8dPaPoF_c@l
-/* 80120B40  3C 60 80 3B */	lis r3, m_emitterFourData__8dPaPoF_c@ha
-/* 80120B44  3B 63 87 48 */	addi r27, r3, m_emitterFourData__8dPaPoF_c@l
+/* 80120B38  3C 60 80 3B */	lis r3, m_typeFourData__8dPaPoF_c@ha /* 0x803A86D0@ha */
+/* 80120B3C  3B 43 86 D0 */	addi r26, r3, m_typeFourData__8dPaPoF_c@l /* 0x803A86D0@l */
+/* 80120B40  3C 60 80 3B */	lis r3, m_emitterFourData__8dPaPoF_c@ha /* 0x803A8748@ha */
+/* 80120B44  3B 63 87 48 */	addi r27, r3, m_emitterFourData__8dPaPoF_c@l /* 0x803A8748@l */
 lbl_80120B48:
 /* 80120B48  3B E0 00 00 */	li r31, 0
 /* 80120B4C  7F 1A E2 14 */	add r24, r26, r28

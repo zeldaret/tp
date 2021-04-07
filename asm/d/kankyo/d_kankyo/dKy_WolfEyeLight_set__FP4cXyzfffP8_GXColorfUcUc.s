@@ -1,6 +1,6 @@
 lbl_801AAC5C:
-/* 801AAC5C  3C E0 80 43 */	lis r7, g_env_light@ha
-/* 801AAC60  38 E7 CA 54 */	addi r7, r7, g_env_light@l
+/* 801AAC5C  3C E0 80 43 */	lis r7, g_env_light@ha /* 0x8042CA54@ha */
+/* 801AAC60  38 E7 CA 54 */	addi r7, r7, g_env_light@l /* 0x8042CA54@l */
 /* 801AAC64  C0 03 00 00 */	lfs f0, 0(r3)
 /* 801AAC68  D0 07 0C 18 */	stfs f0, 0xc18(r7)
 /* 801AAC6C  C0 03 00 04 */	lfs f0, 4(r3)

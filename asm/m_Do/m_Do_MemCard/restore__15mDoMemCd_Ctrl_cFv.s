@@ -8,8 +8,8 @@ lbl_80016A0C:
 /* 80016A24  38 00 00 00 */	li r0, 0
 /* 80016A28  90 03 1F C8 */	stw r0, 0x1fc8(r3)
 /* 80016A2C  88 63 1F BC */	lbz r3, 0x1fbc(r3)
-/* 80016A30  3C 80 80 37 */	lis r4, m_Do_m_Do_MemCard__stringBase0@ha
-/* 80016A34  38 84 43 F8 */	addi r4, r4, m_Do_m_Do_MemCard__stringBase0@l
+/* 80016A30  3C 80 80 37 */	lis r4, m_Do_m_Do_MemCard__stringBase0@ha /* 0x803743F8@ha */
+/* 80016A34  38 84 43 F8 */	addi r4, r4, m_Do_m_Do_MemCard__stringBase0@l /* 0x803743F8@l */
 /* 80016A38  38 A1 00 08 */	addi r5, r1, 8
 /* 80016A3C  48 34 15 5D */	bl CARDOpen
 /* 80016A40  7C 7F 1B 79 */	or. r31, r3, r3

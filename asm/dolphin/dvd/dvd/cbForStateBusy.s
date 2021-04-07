@@ -2,10 +2,10 @@ lbl_8034A6D4:
 /* 8034A6D4  7C 08 02 A6 */	mflr r0
 /* 8034A6D8  28 03 00 10 */	cmplwi r3, 0x10
 /* 8034A6DC  90 01 00 04 */	stw r0, 4(r1)
-/* 8034A6E0  3C 80 80 45 */	lis r4, BB2@ha
+/* 8034A6E0  3C 80 80 45 */	lis r4, BB2@ha /* 0x8044C900@ha */
 /* 8034A6E4  94 21 FF E8 */	stwu r1, -0x18(r1)
 /* 8034A6E8  93 E1 00 14 */	stw r31, 0x14(r1)
-/* 8034A6EC  3B E4 C9 00 */	addi r31, r4, BB2@l
+/* 8034A6EC  3B E4 C9 00 */	addi r31, r4, BB2@l /* 0x8044C900@l */
 /* 8034A6F0  93 C1 00 10 */	stw r30, 0x10(r1)
 /* 8034A6F4  40 82 00 20 */	bne lbl_8034A714
 /* 8034A6F8  3C 60 01 23 */	lis r3, 0x0123 /* 0x01234568@ha */
@@ -28,8 +28,8 @@ lbl_8034A72C:
 /* 8034A734  3C 60 01 23 */	lis r3, 0x0123 /* 0x01234567@ha */
 /* 8034A738  38 63 45 67 */	addi r3, r3, 0x4567 /* 0x01234567@l */
 /* 8034A73C  48 00 14 4D */	bl __DVDStoreErrorCode
-/* 8034A740  3C 60 80 35 */	lis r3, cbForStateError@ha
-/* 8034A744  38 63 92 DC */	addi r3, r3, cbForStateError@l
+/* 8034A740  3C 60 80 35 */	lis r3, cbForStateError@ha /* 0x803492DC@ha */
+/* 8034A744  38 63 92 DC */	addi r3, r3, cbForStateError@l /* 0x803492DC@l */
 /* 8034A748  4B FF D8 CD */	bl DVDLowStopMotor
 /* 8034A74C  48 00 05 C8 */	b lbl_8034AD14
 lbl_8034A750:
@@ -79,9 +79,9 @@ lbl_8034A7E4:
 /* 8034A7E8  40 82 05 2C */	bne lbl_8034AD14
 /* 8034A7EC  80 8D 91 F8 */	lwz r4, executing(r13)
 /* 8034A7F0  38 00 00 07 */	li r0, 7
-/* 8034A7F4  3C 60 80 35 */	lis r3, cbForStateMotorStopped@ha
+/* 8034A7F4  3C 60 80 35 */	lis r3, cbForStateMotorStopped@ha /* 0x80349FC0@ha */
 /* 8034A7F8  90 04 00 0C */	stw r0, 0xc(r4)
-/* 8034A7FC  38 63 9F C0 */	addi r3, r3, cbForStateMotorStopped@l
+/* 8034A7FC  38 63 9F C0 */	addi r3, r3, cbForStateMotorStopped@l /* 0x80349FC0@l */
 /* 8034A800  4B FF D7 45 */	bl DVDLowWaitCoverClose
 /* 8034A804  48 00 05 10 */	b lbl_8034AD14
 lbl_8034A808:
@@ -251,8 +251,8 @@ lbl_8034AA34:
 /* 8034AA44  38 00 00 01 */	li r0, 1
 /* 8034AA48  48 00 00 48 */	b lbl_8034AA90
 lbl_8034AA4C:
-/* 8034AA4C  3C 60 80 3D */	lis r3, ImmCommand@ha
-/* 8034AA50  84 03 15 EC */	lwzu r0, ImmCommand@l(r3)
+/* 8034AA4C  3C 60 80 3D */	lis r3, ImmCommand@ha /* 0x803D15EC@ha */
+/* 8034AA50  84 03 15 EC */	lwzu r0, ImmCommand@l(r3)  /* 0x803D15EC@l */
 /* 8034AA54  7C 04 00 40 */	cmplw r4, r0
 /* 8034AA58  40 82 00 0C */	bne lbl_8034AA64
 /* 8034AA5C  38 00 00 01 */	li r0, 1
@@ -282,7 +282,7 @@ lbl_8034AA90:
 /* 8034AAAC  40 82 00 14 */	bne lbl_8034AAC0
 lbl_8034AAB0:
 /* 8034AAB0  3C 60 CC 00 */	lis r3, 0xCC00 /* 0xCC006020@ha */
-/* 8034AAB4  80 03 60 20 */	lwz r0, 0x6020(r3)
+/* 8034AAB4  80 03 60 20 */	lwz r0, 0x6020(r3)  /* 0xCC006020@l */
 /* 8034AAB8  54 03 10 3A */	slwi r3, r0, 2
 /* 8034AABC  48 00 00 10 */	b lbl_8034AACC
 lbl_8034AAC0:
@@ -313,7 +313,7 @@ lbl_8034AAFC:
 /* 8034AB14  28 00 00 00 */	cmplwi r0, 0
 /* 8034AB18  40 82 00 74 */	bne lbl_8034AB8C
 /* 8034AB1C  3C 60 CC 00 */	lis r3, 0xCC00 /* 0xCC006020@ha */
-/* 8034AB20  80 03 60 20 */	lwz r0, 0x6020(r3)
+/* 8034AB20  80 03 60 20 */	lwz r0, 0x6020(r3)  /* 0xCC006020@l */
 /* 8034AB24  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 8034AB28  41 82 00 34 */	beq lbl_8034AB5C
 /* 8034AB2C  38 1F 00 40 */	addi r0, r31, 0x40
@@ -333,9 +333,9 @@ lbl_8034AB5C:
 /* 8034AB5C  38 00 00 00 */	li r0, 0
 /* 8034AB60  90 0D 92 0C */	stw r0, AutoFinishing(r13)
 /* 8034AB64  38 00 00 01 */	li r0, 1
-/* 8034AB68  3C 60 80 35 */	lis r3, cbForStateBusy@ha
+/* 8034AB68  3C 60 80 35 */	lis r3, cbForStateBusy@ha /* 0x8034A6D4@ha */
 /* 8034AB6C  90 05 00 00 */	stw r0, 0(r5)
-/* 8034AB70  38 C3 A6 D4 */	addi r6, r3, cbForStateBusy@l
+/* 8034AB70  38 C3 A6 D4 */	addi r6, r3, cbForStateBusy@l /* 0x8034A6D4@l */
 /* 8034AB74  38 60 00 00 */	li r3, 0
 /* 8034AB78  80 AD 91 F8 */	lwz r5, executing(r13)
 /* 8034AB7C  80 85 00 14 */	lwz r4, 0x14(r5)
@@ -378,8 +378,8 @@ lbl_8034ABF0:
 /* 8034ABFC  3C 60 01 23 */	lis r3, 0x0123 /* 0x01234567@ha */
 /* 8034AC00  38 63 45 67 */	addi r3, r3, 0x4567 /* 0x01234567@l */
 /* 8034AC04  48 00 0F 85 */	bl __DVDStoreErrorCode
-/* 8034AC08  3C 60 80 35 */	lis r3, cbForStateError@ha
-/* 8034AC0C  38 63 92 DC */	addi r3, r3, cbForStateError@l
+/* 8034AC08  3C 60 80 35 */	lis r3, cbForStateError@ha /* 0x803492DC@ha */
+/* 8034AC0C  38 63 92 DC */	addi r3, r3, cbForStateError@l /* 0x803492DC@l */
 /* 8034AC10  4B FF D4 05 */	bl DVDLowStopMotor
 /* 8034AC14  48 00 01 00 */	b lbl_8034AD14
 lbl_8034AC18:
@@ -450,8 +450,8 @@ lbl_8034AD00:
 /* 8034AD00  4B FF F3 AD */	bl stateReady
 /* 8034AD04  48 00 00 10 */	b lbl_8034AD14
 lbl_8034AD08:
-/* 8034AD08  3C 60 80 35 */	lis r3, cbForStateGettingError@ha
-/* 8034AD0C  38 63 94 98 */	addi r3, r3, cbForStateGettingError@l
+/* 8034AD08  3C 60 80 35 */	lis r3, cbForStateGettingError@ha /* 0x80349498@ha */
+/* 8034AD0C  38 63 94 98 */	addi r3, r3, cbForStateGettingError@l /* 0x80349498@l */
 /* 8034AD10  4B FF D3 91 */	bl DVDLowRequestError
 lbl_8034AD14:
 /* 8034AD14  80 01 00 1C */	lwz r0, 0x1c(r1)

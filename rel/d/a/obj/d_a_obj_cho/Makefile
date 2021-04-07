@@ -3,19 +3,20 @@
 #
 
 M423_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cho.plf
+M423_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cho.lcf
+M423_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cho.map
 
 M423_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_cho/executor.cpp \
-	rel/d/a/obj/d_a_obj_cho/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_cho/d_a_obj_cho.cpp \
 
 M423_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cho/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cho/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cho/d_a_obj_cho.o \
 
 M423_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cho/libRuntime.PPCEABI.H.a \
 
 M423_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M423_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M423_LDSCRIPT) \
+	-unused -map $(M423_MAP) \
+	-w off \
 
 $(M423_TARGET): $(M423_O_FILES) $(M423_LIBS)
+	@echo [423] creating $(M423_TARGET)
 	@echo $(M423_LIBS) $(M423_O_FILES) > build/M423_ofiles
-	$(LD) -partial $(M423_LDFLAGS) -o $(M423_TARGET) @build/M423_ofiles
+	@python3 tools/lcf.py rel 423 --output $(M423_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M423_LDFLAGS) -o $(M423_TARGET) @build/M423_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cho/%.o: rel/d/a/obj/d_a_obj_cho/%.cpp
+	@echo [423] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M423_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M423_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_cho/libs/Runtime.PPCEABI.H/Makefile
 

@@ -5,8 +5,8 @@ lbl_8068B938:
 /* 8068B944  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8068B948  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8068B94C  7C 7E 1B 78 */	mr r30, r3
-/* 8068B950  3C 80 80 69 */	lis r4, lit_3903@ha
-/* 8068B954  3B E4 D7 EC */	addi r31, r4, lit_3903@l
+/* 8068B950  3C 80 80 69 */	lis r4, lit_3903@ha /* 0x8068D7EC@ha */
+/* 8068B954  3B E4 D7 EC */	addi r31, r4, lit_3903@l /* 0x8068D7EC@l */
 /* 8068B958  A8 03 06 70 */	lha r0, 0x670(r3)
 /* 8068B95C  2C 00 00 01 */	cmpwi r0, 1
 /* 8068B960  41 82 00 44 */	beq lbl_8068B9A4
@@ -39,7 +39,7 @@ lbl_8068B9A4:
 /* 8068B9C4  C0 1F 00 04 */	lfs f0, 4(r31)
 /* 8068B9C8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8068B9CC  40 80 00 0C */	bge lbl_8068B9D8
-/* 8068B9D0  4B 98 E2 AC */	b fopAcM_delete__FP10fopAc_ac_c
+/* 8068B9D0  4B 98 E2 AD */	bl fopAcM_delete__FP10fopAc_ac_c
 /* 8068B9D4  48 00 00 3C */	b lbl_8068BA10
 lbl_8068B9D8:
 /* 8068B9D8  C0 1E 06 60 */	lfs f0, 0x660(r30)

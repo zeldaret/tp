@@ -9,7 +9,7 @@ lbl_80D587D8:
 /* 80D587F4  40 82 00 1C */	bne lbl_80D58810
 /* 80D587F8  28 1F 00 00 */	cmplwi r31, 0
 /* 80D587FC  41 82 00 08 */	beq lbl_80D58804
-/* 80D58800  4B 2C 03 64 */	b __ct__10fopAc_ac_cFv
+/* 80D58800  4B 2C 03 65 */	bl __ct__10fopAc_ac_cFv
 lbl_80D58804:
 /* 80D58804  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 80D58808  60 00 00 08 */	ori r0, r0, 8

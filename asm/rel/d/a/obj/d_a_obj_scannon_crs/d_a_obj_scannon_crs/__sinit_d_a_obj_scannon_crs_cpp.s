@@ -1,6 +1,6 @@
 lbl_80CCAFD4:
-/* 80CCAFD4  3C 60 80 CD */	lis r3, cNullVec__6Z2Calc@ha
-/* 80CCAFD8  38 A3 B1 5C */	addi r5, r3, cNullVec__6Z2Calc@l
+/* 80CCAFD4  3C 60 80 CD */	lis r3, cNullVec__6Z2Calc@ha /* 0x80CCB15C@ha */
+/* 80CCAFD8  38 A3 B1 5C */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x80CCB15C@l */
 /* 80CCAFDC  80 65 00 2C */	lwz r3, 0x2c(r5)
 /* 80CCAFE0  80 05 00 30 */	lwz r0, 0x30(r5)
 /* 80CCAFE4  90 65 00 74 */	stw r3, 0x74(r5)

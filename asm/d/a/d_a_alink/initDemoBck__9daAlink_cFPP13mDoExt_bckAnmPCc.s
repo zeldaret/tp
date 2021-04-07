@@ -5,10 +5,10 @@ lbl_800A3F98:
 /* 800A3FA4  39 61 00 20 */	addi r11, r1, 0x20
 /* 800A3FA8  48 2B E2 35 */	bl _savegpr_29
 /* 800A3FAC  7C 7D 1B 78 */	mr r29, r3
-/* 800A3FB0  3C 60 80 40 */	lis r3, mDemoArcName__20dStage_roomControl_c@ha
-/* 800A3FB4  38 63 61 94 */	addi r3, r3, mDemoArcName__20dStage_roomControl_c@l
-/* 800A3FB8  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 800A3FBC  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 800A3FB0  3C 60 80 40 */	lis r3, mDemoArcName__20dStage_roomControl_c@ha /* 0x80406194@ha */
+/* 800A3FB4  38 63 61 94 */	addi r3, r3, mDemoArcName__20dStage_roomControl_c@l /* 0x80406194@l */
+/* 800A3FB8  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800A3FBC  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800A3FC0  3C A5 00 02 */	addis r5, r5, 2
 /* 800A3FC4  38 C0 00 80 */	li r6, 0x80
 /* 800A3FC8  38 A5 C2 F8 */	addi r5, r5, -15624
@@ -19,8 +19,8 @@ lbl_800A3F98:
 /* 800A3FDC  48 22 AC 71 */	bl __nw__FUl
 /* 800A3FE0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 800A3FE4  41 82 00 20 */	beq lbl_800A4004
-/* 800A3FE8  3C 80 80 3A */	lis r4, __vt__12J3DFrameCtrl@ha
-/* 800A3FEC  38 04 33 54 */	addi r0, r4, __vt__12J3DFrameCtrl@l
+/* 800A3FE8  3C 80 80 3A */	lis r4, __vt__12J3DFrameCtrl@ha /* 0x803A3354@ha */
+/* 800A3FEC  38 04 33 54 */	addi r0, r4, __vt__12J3DFrameCtrl@l /* 0x803A3354@l */
 /* 800A3FF0  90 1F 00 00 */	stw r0, 0(r31)
 /* 800A3FF4  38 80 00 00 */	li r4, 0
 /* 800A3FF8  48 28 44 05 */	bl init__12J3DFrameCtrlFs

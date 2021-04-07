@@ -17,12 +17,12 @@ lbl_80D0FE80:
 /* 80D0FE98  90 04 00 3C */	stw r0, 0x3c(r4)
 /* 80D0FE9C  38 80 00 00 */	li r4, 0
 /* 80D0FEA0  38 A0 00 00 */	li r5, 0
-/* 80D0FEA4  3C C0 80 D1 */	lis r6, m__16daObjTks_Param_c@ha
-/* 80D0FEA8  38 C6 27 3C */	addi r6, r6, m__16daObjTks_Param_c@l
+/* 80D0FEA4  3C C0 80 D1 */	lis r6, m__16daObjTks_Param_c@ha /* 0x80D1273C@ha */
+/* 80D0FEA8  38 C6 27 3C */	addi r6, r6, m__16daObjTks_Param_c@l /* 0x80D1273C@l */
 /* 80D0FEAC  C0 26 00 0C */	lfs f1, 0xc(r6)
 /* 80D0FEB0  38 C0 00 00 */	li r6, 0
 /* 80D0FEB4  38 E0 00 00 */	li r7, 0
-/* 80D0FEB8  4B 44 23 F4 */	b draw__8daNpcF_cFiifP11_GXColorS10i
+/* 80D0FEB8  4B 44 23 F5 */	bl draw__8daNpcF_cFiifP11_GXColorS10i
 /* 80D0FEBC  38 60 00 01 */	li r3, 1
 lbl_80D0FEC0:
 /* 80D0FEC0  80 01 00 14 */	lwz r0, 0x14(r1)

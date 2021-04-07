@@ -12,7 +12,7 @@ lbl_80A15CA4:
 /* 80A15CCC  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 80A15CD0  28 00 00 00 */	cmplwi r0, 0
 /* 80A15CD4  40 82 00 1C */	bne lbl_80A15CF0
-/* 80A15CD8  4B 61 9D 7C */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80A15CD8  4B 61 9D 7D */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80A15CDC  2C 03 00 00 */	cmpwi r3, 0
 /* 80A15CE0  40 82 00 14 */	bne lbl_80A15CF4
 /* 80A15CE4  88 1E 0A 89 */	lbz r0, 0xa89(r30)
@@ -31,7 +31,7 @@ lbl_80A15D08:
 /* 80A15D0C  88 1E 0E 25 */	lbz r0, 0xe25(r30)
 /* 80A15D10  28 00 00 00 */	cmplwi r0, 0
 /* 80A15D14  40 82 00 1C */	bne lbl_80A15D30
-/* 80A15D18  4B 61 9D 3C */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80A15D18  4B 61 9D 3D */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80A15D1C  2C 03 00 00 */	cmpwi r3, 0
 /* 80A15D20  40 82 00 14 */	bne lbl_80A15D34
 /* 80A15D24  88 1E 0A 89 */	lbz r0, 0xa89(r30)

@@ -24,11 +24,11 @@ lbl_802E56DC:
 /* 802E5734  38 61 00 1C */	addi r3, r1, 0x1c
 /* 802E5738  38 9F 00 10 */	addi r4, r31, 0x10
 /* 802E573C  48 00 3B 25 */	bl func_802E9260
-/* 802E5740  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha
-/* 802E5744  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l
+/* 802E5740  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha /* 0x803CC9E0@ha */
+/* 802E5744  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l /* 0x803CC9E0@l */
 /* 802E5748  90 01 00 1C */	stw r0, 0x1c(r1)
-/* 802E574C  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha
-/* 802E5750  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l
+/* 802E574C  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha /* 0x803CC9B8@ha */
+/* 802E5750  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l /* 0x803CC9B8@l */
 /* 802E5754  90 01 00 1C */	stw r0, 0x1c(r1)
 lbl_802E5758:
 /* 802E5758  83 E1 00 FC */	lwz r31, 0xfc(r1)

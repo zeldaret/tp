@@ -5,30 +5,30 @@ lbl_8015A4D8:
 /* 8015A4E4  39 61 00 30 */	addi r11, r1, 0x30
 /* 8015A4E8  48 20 7C D9 */	bl _savegpr_22
 /* 8015A4EC  7C 7E 1B 78 */	mr r30, r3
-/* 8015A4F0  3C 60 80 3B */	lis r3, cNullVec__6Z2Calc@ha
-/* 8015A4F4  3B E3 61 C0 */	addi r31, r3, cNullVec__6Z2Calc@l
-/* 8015A4F8  3C 60 80 3B */	lis r3, __vt__14mDoHIO_entry_c@ha
-/* 8015A4FC  38 03 61 B4 */	addi r0, r3, __vt__14mDoHIO_entry_c@l
+/* 8015A4F0  3C 60 80 3B */	lis r3, cNullVec__6Z2Calc@ha /* 0x803B61C0@ha */
+/* 8015A4F4  3B E3 61 C0 */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x803B61C0@l */
+/* 8015A4F8  3C 60 80 3B */	lis r3, __vt__14mDoHIO_entry_c@ha /* 0x803B61B4@ha */
+/* 8015A4FC  38 03 61 B4 */	addi r0, r3, __vt__14mDoHIO_entry_c@l /* 0x803B61B4@l */
 /* 8015A500  90 1E 00 00 */	stw r0, 0(r30)
-/* 8015A504  3C 60 80 3B */	lis r3, __vt__18fOpAcm_HIO_entry_c@ha
-/* 8015A508  38 03 61 A8 */	addi r0, r3, __vt__18fOpAcm_HIO_entry_c@l
+/* 8015A504  3C 60 80 3B */	lis r3, __vt__18fOpAcm_HIO_entry_c@ha /* 0x803B61A8@ha */
+/* 8015A508  38 03 61 A8 */	addi r0, r3, __vt__18fOpAcm_HIO_entry_c@l /* 0x803B61A8@l */
 /* 8015A50C  90 1E 00 00 */	stw r0, 0(r30)
-/* 8015A510  3C 60 80 3C */	lis r3, __vt__14daNpcCd2_HIO_c@ha
-/* 8015A514  38 03 9D 78 */	addi r0, r3, __vt__14daNpcCd2_HIO_c@l
+/* 8015A510  3C 60 80 3C */	lis r3, __vt__14daNpcCd2_HIO_c@ha /* 0x803B9D78@ha */
+/* 8015A514  38 03 9D 78 */	addi r0, r3, __vt__14daNpcCd2_HIO_c@l /* 0x803B9D78@l */
 /* 8015A518  90 1E 00 00 */	stw r0, 0(r30)
 /* 8015A51C  38 7E 00 04 */	addi r3, r30, 4
-/* 8015A520  3C 80 80 16 */	lis r4, __ct__21daNpcCd2_HIO_MChild_cFv@ha
-/* 8015A524  38 84 A8 08 */	addi r4, r4, __ct__21daNpcCd2_HIO_MChild_cFv@l
-/* 8015A528  3C A0 80 16 */	lis r5, __dt__21daNpcCd2_HIO_MChild_cFv@ha
-/* 8015A52C  38 A5 A7 98 */	addi r5, r5, __dt__21daNpcCd2_HIO_MChild_cFv@l
+/* 8015A520  3C 80 80 16 */	lis r4, __ct__21daNpcCd2_HIO_MChild_cFv@ha /* 0x8015A808@ha */
+/* 8015A524  38 84 A8 08 */	addi r4, r4, __ct__21daNpcCd2_HIO_MChild_cFv@l /* 0x8015A808@l */
+/* 8015A528  3C A0 80 16 */	lis r5, __dt__21daNpcCd2_HIO_MChild_cFv@ha /* 0x8015A798@ha */
+/* 8015A52C  38 A5 A7 98 */	addi r5, r5, __dt__21daNpcCd2_HIO_MChild_cFv@l /* 0x8015A798@l */
 /* 8015A530  38 C0 02 0C */	li r6, 0x20c
 /* 8015A534  38 E0 00 10 */	li r7, 0x10
 /* 8015A538  48 20 78 29 */	bl __construct_array
 /* 8015A53C  38 7E 20 C4 */	addi r3, r30, 0x20c4
-/* 8015A540  3C 80 80 16 */	lis r4, __ct__21daNpcCd2_HIO_WChild_cFv@ha
-/* 8015A544  38 84 A7 30 */	addi r4, r4, __ct__21daNpcCd2_HIO_WChild_cFv@l
-/* 8015A548  3C A0 80 16 */	lis r5, __dt__21daNpcCd2_HIO_WChild_cFv@ha
-/* 8015A54C  38 A5 A6 78 */	addi r5, r5, __dt__21daNpcCd2_HIO_WChild_cFv@l
+/* 8015A540  3C 80 80 16 */	lis r4, __ct__21daNpcCd2_HIO_WChild_cFv@ha /* 0x8015A730@ha */
+/* 8015A544  38 84 A7 30 */	addi r4, r4, __ct__21daNpcCd2_HIO_WChild_cFv@l /* 0x8015A730@l */
+/* 8015A548  3C A0 80 16 */	lis r5, __dt__21daNpcCd2_HIO_WChild_cFv@ha /* 0x8015A678@ha */
+/* 8015A54C  38 A5 A6 78 */	addi r5, r5, __dt__21daNpcCd2_HIO_WChild_cFv@l /* 0x8015A678@l */
 /* 8015A550  38 C0 02 3C */	li r6, 0x23c
 /* 8015A554  38 E0 00 0E */	li r7, 0xe
 /* 8015A558  48 20 78 09 */	bl __construct_array

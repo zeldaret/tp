@@ -23,9 +23,9 @@ struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
 };
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct cXyz {};
 
 struct J3DModelData {};
 
@@ -52,41 +52,18 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void daObj_Kage_Draw(obj_kage_class*);
-static void daObj_Kage_Execute(obj_kage_class*);
-static bool daObj_Kage_IsDelete(obj_kage_class*);
-static void daObj_Kage_Delete(obj_kage_class*);
-static void useHeapInit(fopAc_ac_c*);
-static void daObj_Kage_Create(fopAc_ac_c*);
-
 extern "C" static void daObj_Kage_Draw__FP14obj_kage_class();
 extern "C" static void daObj_Kage_Execute__FP14obj_kage_class();
 extern "C" static bool daObj_Kage_IsDelete__FP14obj_kage_class();
 extern "C" static void daObj_Kage_Delete__FP14obj_kage_class();
 extern "C" static void useHeapInit__FP10fopAc_ac_c();
 extern "C" static void daObj_Kage_Create__FP10fopAc_ac_c();
-extern "C" extern char const* const stringBase0;
+extern "C" extern char const* const d_a_obj_kage__stringBase0;
 extern "C" extern void* g_profile_OBJ_KAGE[12];
 
 //
 // External References:
 //
-
-void mDoMtx_XrotM(f32 (*)[4], s16);
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoMtx_ZrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_createChild(s16, unsigned int, u32, cXyz const*, int, csXyz const*, cXyz const*, s8,
-                        int (*)(void*));
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fopAcM_SetMin(fopAc_ac_c*, f32, f32, f32);
-void fopAcM_SetMax(fopAc_ac_c*, f32, f32, f32);
-void fopAcM_searchActorDistanceXZ(fopAc_ac_c const*, fopAc_ac_c const*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void cM_rndF(f32);
-void cLib_addCalc2(f32*, f32, f32, f32);
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
@@ -125,116 +102,160 @@ extern "C" extern u8 sincosTable___5JMath[65536];
 // Declarations:
 //
 
-/* 80C314D8-80C3153C 0064+00 s=1 e=0 z=0  None .text      daObj_Kage_Draw__FP14obj_kage_class */
+/* 80C314D8-80C3153C 000078 0064+00 1/0 0/0 0/0 .text            daObj_Kage_Draw__FP14obj_kage_class
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Kage_Draw(obj_kage_class* param_0) {
+static asm void daObj_Kage_Draw(obj_kage_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kage/d_a_obj_kage/daObj_Kage_Draw__FP14obj_kage_class.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C3195C-80C31960 0004+00 s=2 e=0 z=0  None .rodata    @3854 */
+/* 80C3195C-80C31960 000000 0004+00 2/2 0/0 0/0 .rodata          @3854 */
 SECTION_RODATA static u8 const lit_3854[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80C3195C, &lit_3854);
 
-/* 80C31960-80C31964 0004+00 s=1 e=0 z=0  None .rodata    @3855 */
-SECTION_RODATA static u32 const lit_3855 = 0x3F000000;
+/* 80C31960-80C31964 000004 0004+00 0/1 0/0 0/0 .rodata          @3855 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3855 = 0.5f;
+COMPILER_STRIP_GATE(80C31960, &lit_3855);
+#pragma pop
 
-/* 80C31964-80C31968 0004+00 s=1 e=0 z=0  None .rodata    @3856 */
-SECTION_RODATA static u32 const lit_3856 = 0x42200000;
+/* 80C31964-80C31968 000008 0004+00 0/1 0/0 0/0 .rodata          @3856 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3856 = 40.0f;
+COMPILER_STRIP_GATE(80C31964, &lit_3856);
+#pragma pop
 
-/* 80C31968-80C3196C 0004+00 s=1 e=0 z=0  None .rodata    @3857 */
-SECTION_RODATA static u32 const lit_3857 = 0x42F00000;
+/* 80C31968-80C3196C 00000C 0004+00 0/1 0/0 0/0 .rodata          @3857 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3857 = 120.0f;
+COMPILER_STRIP_GATE(80C31968, &lit_3857);
+#pragma pop
 
-/* 80C3196C-80C31970 0004+00 s=1 e=0 z=0  None .rodata    @3858 */
-SECTION_RODATA static u32 const lit_3858 = 0x3DCCCCCD;
+/* 80C3196C-80C31970 000010 0004+00 0/1 0/0 0/0 .rodata          @3858 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3858 = 1.0f / 10.0f;
+COMPILER_STRIP_GATE(80C3196C, &lit_3858);
+#pragma pop
 
-/* 80C31970-80C31974 0004+00 s=1 e=0 z=0  None .rodata    @3859 */
-SECTION_RODATA static u32 const lit_3859 = 0x40000000;
+/* 80C31970-80C31974 000014 0004+00 0/1 0/0 0/0 .rodata          @3859 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3859 = 2.0f;
+COMPILER_STRIP_GATE(80C31970, &lit_3859);
+#pragma pop
 
-/* 80C31974-80C31978 0004+00 s=1 e=0 z=0  None .rodata    @3860 */
-SECTION_RODATA static u32 const lit_3860 = 0xC2F00000;
+/* 80C31974-80C31978 000018 0004+00 0/1 0/0 0/0 .rodata          @3860 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3860 = -120.0f;
+COMPILER_STRIP_GATE(80C31974, &lit_3860);
+#pragma pop
 
-/* 80C31978-80C3197C 0004+00 s=2 e=0 z=0  None .rodata    @3861 */
-SECTION_RODATA static u32 const lit_3861 = 0x43480000;
+/* 80C31978-80C3197C 00001C 0004+00 0/2 0/0 0/0 .rodata          @3861 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3861 = 200.0f;
+COMPILER_STRIP_GATE(80C31978, &lit_3861);
+#pragma pop
 
-/* 80C3197C-80C31980 0004+00 s=1 e=0 z=0  None .rodata    @3862 */
-SECTION_RODATA static u32 const lit_3862 = 0x43FA0000;
+/* 80C3197C-80C31980 000020 0004+00 0/1 0/0 0/0 .rodata          @3862 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3862 = 500.0f;
+COMPILER_STRIP_GATE(80C3197C, &lit_3862);
+#pragma pop
 
-/* 80C31980-80C31984 0004+00 s=1 e=0 z=0  None .rodata    @3863 */
-SECTION_RODATA static u32 const lit_3863 = 0x3F800000;
+/* 80C31980-80C31984 000024 0004+00 0/1 0/0 0/0 .rodata          @3863 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3863 = 1.0f;
+COMPILER_STRIP_GATE(80C31980, &lit_3863);
+#pragma pop
 
-/* 80C31984-80C31988 0004+00 s=1 e=0 z=0  None .rodata    @3864 */
-SECTION_RODATA static u32 const lit_3864 = 0x41200000;
+/* 80C31984-80C31988 000028 0004+00 0/1 0/0 0/0 .rodata          @3864 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3864 = 10.0f;
+COMPILER_STRIP_GATE(80C31984, &lit_3864);
+#pragma pop
 
-/* 80C3153C-80C31764 0228+00 s=2 e=0 z=0  None .text      daObj_Kage_Execute__FP14obj_kage_class */
+/* 80C3153C-80C31764 0000DC 0228+00 2/1 0/0 0/0 .text daObj_Kage_Execute__FP14obj_kage_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Kage_Execute(obj_kage_class* param_0) {
+static asm void daObj_Kage_Execute(obj_kage_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kage/d_a_obj_kage/daObj_Kage_Execute__FP14obj_kage_class.s"
 }
 #pragma pop
 
-/* 80C31764-80C3176C 0008+00 s=1 e=0 z=0  None .text      daObj_Kage_IsDelete__FP14obj_kage_class */
+/* 80C31764-80C3176C 000304 0008+00 1/0 0/0 0/0 .text daObj_Kage_IsDelete__FP14obj_kage_class */
 static bool daObj_Kage_IsDelete(obj_kage_class* param_0) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 80C31988-80C3198C 0004+00 s=1 e=0 z=0  None .rodata    @3926 */
-SECTION_RODATA static u32 const lit_3926 = 0x47800000;
-
-/* 80C3198C-80C31990 0004+00 s=1 e=0 z=0  None .rodata    @3927 */
-SECTION_RODATA static u32 const lit_3927 = 0xC3480000;
-
-/* 80C31990-80C31999 0009+00 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80C31990 = "Obj_kage";
-#pragma pop
-
-/* 80C3176C-80C3179C 0030+00 s=1 e=0 z=0  None .text      daObj_Kage_Delete__FP14obj_kage_class */
+/* 80C3176C-80C3179C 00030C 0030+00 1/0 0/0 0/0 .text daObj_Kage_Delete__FP14obj_kage_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Kage_Delete(obj_kage_class* param_0) {
+static asm void daObj_Kage_Delete(obj_kage_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kage/d_a_obj_kage/daObj_Kage_Delete__FP14obj_kage_class.s"
 }
 #pragma pop
 
-/* 80C3179C-80C31808 006C+00 s=1 e=0 z=0  None .text      useHeapInit__FP10fopAc_ac_c */
+/* 80C3179C-80C31808 00033C 006C+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void useHeapInit(fopAc_ac_c* param_0) {
+static asm void useHeapInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kage/d_a_obj_kage/useHeapInit__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80C31808-80C31954 014C+00 s=1 e=0 z=0  None .text      daObj_Kage_Create__FP10fopAc_ac_c */
+/* ############################################################################################## */
+/* 80C31988-80C3198C 00002C 0004+00 0/1 0/0 0/0 .rodata          @3926 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3926 = 65536.0f;
+COMPILER_STRIP_GATE(80C31988, &lit_3926);
+#pragma pop
+
+/* 80C3198C-80C31990 000030 0004+00 0/1 0/0 0/0 .rodata          @3927 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3927 = -200.0f;
+COMPILER_STRIP_GATE(80C3198C, &lit_3927);
+#pragma pop
+
+/* 80C31808-80C31954 0003A8 014C+00 1/0 0/0 0/0 .text            daObj_Kage_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Kage_Create(fopAc_ac_c* param_0) {
+static asm void daObj_Kage_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kage/d_a_obj_kage/daObj_Kage_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C3199C-80C319BC 0020+00 s=1 e=0 z=0  None .data      l_daObj_Kage_Method */
+/* 80C3199C-80C319BC -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Kage_Method */
 SECTION_DATA static void* l_daObj_Kage_Method[8] = {
     (void*)daObj_Kage_Create__FP10fopAc_ac_c,
     (void*)daObj_Kage_Delete__FP14obj_kage_class,
@@ -246,8 +267,8 @@ SECTION_DATA static void* l_daObj_Kage_Method[8] = {
     (void*)NULL,
 };
 
-/* 80C319BC-80C319EC 0030+00 s=0 e=0 z=1  None .data      g_profile_OBJ_KAGE */
-SECTION_DATA void* g_profile_OBJ_KAGE[12] = {
+/* 80C319BC-80C319EC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_KAGE */
+SECTION_DATA extern void* g_profile_OBJ_KAGE[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x011A0000, (void*)&g_fpcLf_Method,
     (void*)0x000005B4, (void*)NULL,
@@ -255,3 +276,10 @@ SECTION_DATA void* g_profile_OBJ_KAGE[12] = {
     (void*)0x003E0000, (void*)&l_daObj_Kage_Method,
     (void*)0x00040100, (void*)0x000E0000,
 };
+
+/* 80C31990-80C31999 000034 0009+00 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80C31990 = "Obj_kage";
+#pragma pop

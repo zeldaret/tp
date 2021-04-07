@@ -12,13 +12,13 @@ lbl_802733A8:
 /* 802733D0  7C 7E 1B 78 */	mr r30, r3
 /* 802733D4  38 61 00 08 */	addi r3, r1, 8
 /* 802733D8  48 0C 75 21 */	bl OSCreateAlarm
-/* 802733DC  3C 60 80 43 */	lis r3, sList__8JFWAlarm@ha
-/* 802733E0  38 63 0F E4 */	addi r3, r3, sList__8JFWAlarm@l
+/* 802733DC  3C 60 80 43 */	lis r3, sList__8JFWAlarm@ha /* 0x80430FE4@ha */
+/* 802733E0  38 63 0F E4 */	addi r3, r3, sList__8JFWAlarm@l /* 0x80430FE4@l */
 /* 802733E4  7F E4 FB 78 */	mr r4, r31
 /* 802733E8  48 06 8B 65 */	bl append__10JSUPtrListFP10JSUPtrLink
 /* 802733EC  C8 42 B8 70 */	lfd f2, lit_2964(r2)
 /* 802733F0  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000F8@ha */
-/* 802733F4  80 03 00 F8 */	lwz r0, 0x00F8(r3)
+/* 802733F4  80 03 00 F8 */	lwz r0, 0x00F8(r3)  /* 0x800000F8@l */
 /* 802733F8  54 00 F0 BE */	srwi r0, r0, 2
 /* 802733FC  C8 22 B8 60 */	lfd f1, lit_2500(r2)
 /* 80273400  90 01 00 4C */	stw r0, 0x4c(r1)
@@ -31,14 +31,14 @@ lbl_802733A8:
 /* 8027341C  7C 65 1B 78 */	mr r5, r3
 /* 80273420  38 61 00 08 */	addi r3, r1, 8
 /* 80273424  7C 86 23 78 */	mr r6, r4
-/* 80273428  3C 80 80 27 */	lis r4, JFWGXAbortAlarmHandler__FP7OSAlarmP9OSContext@ha
-/* 8027342C  38 E4 34 84 */	addi r7, r4, JFWGXAbortAlarmHandler__FP7OSAlarmP9OSContext@l
+/* 80273428  3C 80 80 27 */	lis r4, JFWGXAbortAlarmHandler__FP7OSAlarmP9OSContext@ha /* 0x80273484@ha */
+/* 8027342C  38 E4 34 84 */	addi r7, r4, JFWGXAbortAlarmHandler__FP7OSAlarmP9OSContext@l /* 0x80273484@l */
 /* 80273430  48 0C 77 29 */	bl OSSetAlarm
 /* 80273434  48 0E 8E C1 */	bl GXDrawDone
 /* 80273438  38 61 00 08 */	addi r3, r1, 8
 /* 8027343C  48 0C 78 01 */	bl OSCancelAlarm
-/* 80273440  3C 60 80 43 */	lis r3, sList__8JFWAlarm@ha
-/* 80273444  38 63 0F E4 */	addi r3, r3, sList__8JFWAlarm@l
+/* 80273440  3C 60 80 43 */	lis r3, sList__8JFWAlarm@ha /* 0x80430FE4@ha */
+/* 80273444  38 63 0F E4 */	addi r3, r3, sList__8JFWAlarm@l /* 0x80430FE4@l */
 /* 80273448  7F E4 FB 78 */	mr r4, r31
 /* 8027344C  48 06 8D 11 */	bl remove__10JSUPtrListFP10JSUPtrLink
 /* 80273450  7F C3 F3 78 */	mr r3, r30

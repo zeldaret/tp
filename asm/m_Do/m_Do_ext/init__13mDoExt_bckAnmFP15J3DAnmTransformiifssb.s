@@ -19,15 +19,15 @@ lbl_8000D7DC:
 /* 8000D820  28 03 00 00 */	cmplwi r3, 0
 /* 8000D824  41 82 00 30 */	beq lbl_8000D854
 /* 8000D828  80 BF 00 14 */	lwz r5, 0x14(r31)
-/* 8000D82C  3C 80 80 3A */	lis r4, __vt__10J3DMtxCalc@ha
-/* 8000D830  38 04 34 68 */	addi r0, r4, __vt__10J3DMtxCalc@l
+/* 8000D82C  3C 80 80 3A */	lis r4, __vt__10J3DMtxCalc@ha /* 0x803A3468@ha */
+/* 8000D830  38 04 34 68 */	addi r0, r4, __vt__10J3DMtxCalc@l /* 0x803A3468@l */
 /* 8000D834  90 03 00 00 */	stw r0, 0(r3)
-/* 8000D838  3C 80 80 3A */	lis r4, __vt__17J3DMtxCalcAnmBase@ha
-/* 8000D83C  38 04 34 3C */	addi r0, r4, __vt__17J3DMtxCalcAnmBase@l
+/* 8000D838  3C 80 80 3A */	lis r4, __vt__17J3DMtxCalcAnmBase@ha /* 0x803A343C@ha */
+/* 8000D83C  38 04 34 3C */	addi r0, r4, __vt__17J3DMtxCalcAnmBase@l /* 0x803A343C@l */
 /* 8000D840  90 03 00 00 */	stw r0, 0(r3)
 /* 8000D844  90 A3 00 04 */	stw r5, 4(r3)
-/* 8000D848  3C 80 80 3A */	lis r4, data_803A3410@ha
-/* 8000D84C  38 04 34 10 */	addi r0, r4, data_803A3410@l
+/* 8000D848  3C 80 80 3A */	lis r4, data_803A3410@ha /* 0x803A3410@ha */
+/* 8000D84C  38 04 34 10 */	addi r0, r4, data_803A3410@l /* 0x803A3410@l */
 /* 8000D850  90 03 00 00 */	stw r0, 0(r3)
 lbl_8000D854:
 /* 8000D854  90 7F 00 18 */	stw r3, 0x18(r31)

@@ -8,8 +8,8 @@ lbl_801F2698:
 /* 801F26B0  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 801F26B4  28 00 00 01 */	cmplwi r0, 1
 /* 801F26B8  40 82 00 3C */	bne lbl_801F26F4
-/* 801F26BC  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 801F26C0  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 801F26BC  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 801F26C0  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 801F26C4  80 64 00 00 */	lwz r3, 0(r4)
 /* 801F26C8  80 04 00 04 */	lwz r0, 4(r4)
 /* 801F26CC  90 7F 01 C4 */	stw r3, 0x1c4(r31)

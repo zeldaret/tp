@@ -34,9 +34,9 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct cXyz {};
 
 struct J3DModelData {};
 
@@ -53,9 +53,9 @@ struct dRes_control_c {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -70,9 +70,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -83,12 +83,6 @@ struct J3DModel {};
 //
 // Forward References:
 //
-
-static void rideCallBack(dBgW*, fopAc_ac_c*, fopAc_ac_c*);
-static void daObjMHasu_create1st(nObjMHasu::daObjMHasu_c*);
-static void daObjMHasu_MoveBGDelete(nObjMHasu::daObjMHasu_c*);
-static void daObjMHasu_MoveBGExecute(nObjMHasu::daObjMHasu_c*);
-static void daObjMHasu_MoveBGDraw(nObjMHasu::daObjMHasu_c*);
 
 extern "C" static void rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c();
 extern "C" void __ct__Q29nObjMHasu12daObjMHasu_cFv();
@@ -107,24 +101,11 @@ extern "C" static void daObjMHasu_MoveBGDelete__FPQ29nObjMHasu12daObjMHasu_c();
 extern "C" static void daObjMHasu_MoveBGExecute__FPQ29nObjMHasu12daObjMHasu_c();
 extern "C" static void daObjMHasu_MoveBGDraw__FPQ29nObjMHasu12daObjMHasu_c();
 extern "C" void __dt__Q29nObjMHasu12daObjMHasu_cFv();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_MHasu[12];
+extern "C" extern char const* const d_a_obj_hasu2__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
-void cM_rnd();
-void cM_rndF(f32);
-void cLib_addCalc(f32*, f32, f32, f32, f32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
@@ -166,76 +147,50 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 80C18298-80C182DC 0044+00 s=1 e=0 z=0  None .text
+/* 80C18298-80C182DC 000078 0044+00 1/1 0/0 0/0 .text
  * rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c              */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
+static asm void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hasu2/d_a_obj_hasu2/rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C18A58-80C18A70 0018+00 s=4 e=0 z=0  None .rodata    l_cull_box */
+/* 80C18A58-80C18A70 000000 0018+00 4/4 0/0 0/0 .rodata          l_cull_box */
 SECTION_RODATA static u8 const l_cull_box[24] = {
     0xC2, 0xF6, 0x00, 0x00, 0xC3, 0x2F, 0x00, 0x00, 0xC3, 0x0E, 0x00, 0x00,
     0x43, 0x05, 0x00, 0x00, 0x41, 0xE8, 0x00, 0x00, 0x42, 0xFE, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80C18A58, &l_cull_box);
 
-/* 80C18A70-80C18A74 0004+00 s=1 e=0 z=0  None .rodata    @3634 */
-SECTION_RODATA static u32 const lit_3634 = 0x41CC0000;
-
-/* 80C18A74-80C18A78 0004+00 s=2 e=0 z=0  None .rodata    @3635 */
-SECTION_RODATA static u32 const lit_3635 = 0x40D00000;
-
-/* 80C18A78-80C18A7C 0004+00 s=1 e=0 z=0  None .rodata    @3636 */
-SECTION_RODATA static u32 const lit_3636 = 0x40B00000;
-
-/* 80C18A7C-80C18A80 0004+00 s=2 e=0 z=0  None .rodata    @3685 */
-SECTION_RODATA static u32 const lit_3685 = 0x3F000000;
-
-/* 80C18A80-80C18A84 0004+00 s=2 e=0 z=0  None .rodata    @3686 */
-SECTION_RODATA static u32 const lit_3686 = 0x3EB33333;
-
-/* 80C18A84-80C18A88 0004+00 s=1 e=0 z=0  None .rodata    @3687 */
-SECTION_RODATA static u32 const lit_3687 = 0x3E4CCCCD;
-
-/* 80C18A88-80C18A8C 0004+00 s=1 e=0 z=0  None .rodata    @3757 */
-SECTION_RODATA static u32 const lit_3757 = 0x40C00000;
-
-/* 80C18A8C-80C18A90 0004+00 s=1 e=0 z=0  None .rodata    @3758 */
-SECTION_RODATA static u32 const lit_3758 = 0x3F800000;
-
-/* 80C18A90-80C18A94 0004+00 s=1 e=0 z=0  None .rodata    @3759 */
-SECTION_RODATA static u32 const lit_3759 = 0xBF800000;
-
-/* 80C18A94-80C18A98 0004+00 s=1 e=0 z=0  None .rodata    @3760 */
-SECTION_RODATA static u8 const lit_3760[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80C18A98-80C18A9C 0004+00 s=1 e=0 z=0  None .rodata    @3782 */
-SECTION_RODATA static u32 const lit_3782 = 0x3FC00000;
-
-/* 80C18A9C-80C18AA0 0004+00 s=1 e=0 z=0  None .rodata    @3783 */
-SECTION_RODATA static u32 const lit_3783 = 0x41200000;
-
-/* 80C18AA0-80C18AA7 0007+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
+/* 80C18A70-80C18A74 000018 0004+00 0/1 0/0 0/0 .rodata          @3634 */
 #pragma push
 #pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80C18AA0 = "M_Hasu";
+SECTION_RODATA static f32 const lit_3634 = 25.5f;
+COMPILER_STRIP_GATE(80C18A70, &lit_3634);
 #pragma pop
 
-/* 80C18AA8-80C18AAC 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
+/* 80C18A74-80C18A78 00001C 0004+00 0/2 0/0 0/0 .rodata          @3635 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3635 = 6.5f;
+COMPILER_STRIP_GATE(80C18A74, &lit_3635);
+#pragma pop
 
-/* 80C18AAC-80C18ACC 0020+00 s=1 e=0 z=0  None .data      daObjMHasu_METHODS */
+/* 80C18A78-80C18A7C 000020 0004+00 0/1 0/0 0/0 .rodata          @3636 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3636 = 5.5f;
+COMPILER_STRIP_GATE(80C18A78, &lit_3636);
+#pragma pop
+
+/* 80C18AA8-80C18AAC -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_hasu2__stringBase0;
+
+/* 80C18AAC-80C18ACC -00001 0020+00 1/0 0/0 0/0 .data            daObjMHasu_METHODS */
 SECTION_DATA static void* daObjMHasu_METHODS[8] = {
     (void*)daObjMHasu_create1st__FPQ29nObjMHasu12daObjMHasu_c,
     (void*)daObjMHasu_MoveBGDelete__FPQ29nObjMHasu12daObjMHasu_c,
@@ -247,8 +202,8 @@ SECTION_DATA static void* daObjMHasu_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 80C18ACC-80C18AFC 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_MHasu */
-SECTION_DATA void* g_profile_Obj_MHasu[12] = {
+/* 80C18ACC-80C18AFC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_MHasu */
+SECTION_DATA extern void* g_profile_Obj_MHasu[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00CB0000, (void*)&g_fpcLf_Method,
     (void*)0x00000634, (void*)NULL,
@@ -257,9 +212,9 @@ SECTION_DATA void* g_profile_Obj_MHasu[12] = {
     (void*)0x00040100, (void*)0x000E0000,
 };
 
-/* 80C18AFC-80C18B28 002C+00 s=2 e=0 z=0  None .data      __vt__Q29nObjMHasu12daObjMHasu_c */
-SECTION_DATA static void* __vt__Q29nObjMHasu12daObjMHasu_c[11] = {
-    (void*)NULL,
+/* 80C18AFC-80C18B28 000054 002C+00 2/2 0/0 0/0 .data            __vt__Q29nObjMHasu12daObjMHasu_c */
+SECTION_DATA extern void* __vt__Q29nObjMHasu12daObjMHasu_c[11] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__Q29nObjMHasu12daObjMHasu_cFv,
     (void*)Create__Q29nObjMHasu12daObjMHasu_cFv,
@@ -272,7 +227,8 @@ SECTION_DATA static void* __vt__Q29nObjMHasu12daObjMHasu_c[11] = {
     (void*)__dt__Q29nObjMHasu12daObjMHasu_cFv,
 };
 
-/* 80C182DC-80C18340 0064+00 s=1 e=0 z=0  None .text      __ct__Q29nObjMHasu12daObjMHasu_cFv */
+/* 80C182DC-80C18340 0000BC 0064+00 1/1 0/0 0/0 .text            __ct__Q29nObjMHasu12daObjMHasu_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -282,7 +238,7 @@ asm nObjMHasu::daObjMHasu_c::daObjMHasu_c() {
 }
 #pragma pop
 
-/* 80C18340-80C183D0 0090+00 s=1 e=0 z=0  None .text      create1st__Q29nObjMHasu12daObjMHasu_cFv */
+/* 80C18340-80C183D0 000120 0090+00 1/1 0/0 0/0 .text create1st__Q29nObjMHasu12daObjMHasu_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -292,7 +248,7 @@ asm void nObjMHasu::daObjMHasu_c::create1st() {
 }
 #pragma pop
 
-/* 80C183D0-80C18440 0070+00 s=2 e=0 z=0  None .text      setMtx__Q29nObjMHasu12daObjMHasu_cFv */
+/* 80C183D0-80C18440 0001B0 0070+00 2/2 0/0 0/0 .text setMtx__Q29nObjMHasu12daObjMHasu_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -302,8 +258,7 @@ asm void nObjMHasu::daObjMHasu_c::setMtx() {
 }
 #pragma pop
 
-/* 80C18440-80C184B0 0070+00 s=1 e=0 z=0  None .text      CreateHeap__Q29nObjMHasu12daObjMHasu_cFv
- */
+/* 80C18440-80C184B0 000220 0070+00 1/0 0/0 0/0 .text CreateHeap__Q29nObjMHasu12daObjMHasu_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -313,7 +268,29 @@ asm void nObjMHasu::daObjMHasu_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80C184B0-80C185A4 00F4+00 s=1 e=0 z=0  None .text      Create__Q29nObjMHasu12daObjMHasu_cFv */
+/* ############################################################################################## */
+/* 80C18A7C-80C18A80 000024 0004+00 0/2 0/0 0/0 .rodata          @3685 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3685 = 0.5f;
+COMPILER_STRIP_GATE(80C18A7C, &lit_3685);
+#pragma pop
+
+/* 80C18A80-80C18A84 000028 0004+00 0/2 0/0 0/0 .rodata          @3686 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3686 = 7.0f / 20.0f;
+COMPILER_STRIP_GATE(80C18A80, &lit_3686);
+#pragma pop
+
+/* 80C18A84-80C18A88 00002C 0004+00 0/1 0/0 0/0 .rodata          @3687 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3687 = 1.0f / 5.0f;
+COMPILER_STRIP_GATE(80C18A84, &lit_3687);
+#pragma pop
+
+/* 80C184B0-80C185A4 000290 00F4+00 1/0 0/0 0/0 .text Create__Q29nObjMHasu12daObjMHasu_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -323,8 +300,8 @@ asm void nObjMHasu::daObjMHasu_c::Create() {
 }
 #pragma pop
 
-/* 80C185A4-80C18600 005C+00 s=1 e=0 z=0  None .text Execute__Q29nObjMHasu12daObjMHasu_cFPPA3_A4_f
- */
+/* 80C185A4-80C18600 000384 005C+00 1/0 0/0 0/0 .text
+ * Execute__Q29nObjMHasu12daObjMHasu_cFPPA3_A4_f                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -334,7 +311,8 @@ asm void nObjMHasu::daObjMHasu_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 80C18600-80C186A4 00A4+00 s=1 e=0 z=0  None .text      Draw__Q29nObjMHasu12daObjMHasu_cFv */
+/* 80C18600-80C186A4 0003E0 00A4+00 1/0 0/0 0/0 .text            Draw__Q29nObjMHasu12daObjMHasu_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -344,7 +322,7 @@ asm void nObjMHasu::daObjMHasu_c::Draw() {
 }
 #pragma pop
 
-/* 80C186A4-80C186E0 003C+00 s=1 e=0 z=0  None .text      Delete__Q29nObjMHasu12daObjMHasu_cFv */
+/* 80C186A4-80C186E0 000484 003C+00 1/0 0/0 0/0 .text Delete__Q29nObjMHasu12daObjMHasu_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -354,8 +332,41 @@ asm void nObjMHasu::daObjMHasu_c::Delete() {
 }
 #pragma pop
 
-/* 80C186E0-80C18888 01A8+00 s=1 e=0 z=0  None .text      upDownHasu__Q29nObjMHasu12daObjMHasu_cFv
- */
+/* ############################################################################################## */
+/* 80C18A88-80C18A8C 000030 0004+00 0/1 0/0 0/0 .rodata          @3757 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3757 = 6.0f;
+COMPILER_STRIP_GATE(80C18A88, &lit_3757);
+#pragma pop
+
+/* 80C18A8C-80C18A90 000034 0004+00 0/1 0/0 0/0 .rodata          @3758 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3758 = 1.0f;
+COMPILER_STRIP_GATE(80C18A8C, &lit_3758);
+#pragma pop
+
+/* 80C18A90-80C18A94 000038 0004+00 0/1 0/0 0/0 .rodata          @3759 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3759 = -1.0f;
+COMPILER_STRIP_GATE(80C18A90, &lit_3759);
+#pragma pop
+
+/* 80C18A94-80C18A98 00003C 0004+00 0/1 0/0 0/0 .rodata          @3760 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3760[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+COMPILER_STRIP_GATE(80C18A94, &lit_3760);
+#pragma pop
+
+/* 80C186E0-80C18888 0004C0 01A8+00 1/1 0/0 0/0 .text upDownHasu__Q29nObjMHasu12daObjMHasu_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -365,7 +376,7 @@ asm void nObjMHasu::daObjMHasu_c::upDownHasu() {
 }
 #pragma pop
 
-/* 80C18888-80C188A0 0018+00 s=1 e=0 z=0  None .text      updateCount__Q29nObjMHasu12daObjMHasu_cFUc
+/* 80C18888-80C188A0 000668 0018+00 1/1 0/0 0/0 .text updateCount__Q29nObjMHasu12daObjMHasu_cFUc
  */
 #pragma push
 #pragma optimization_level 0
@@ -376,7 +387,22 @@ asm void nObjMHasu::daObjMHasu_c::updateCount(u8 param_0) {
 }
 #pragma pop
 
-/* 80C188A0-80C18920 0080+00 s=1 e=0 z=0  None .text      setHasuCount__Q29nObjMHasu12daObjMHasu_cFf
+/* ############################################################################################## */
+/* 80C18A98-80C18A9C 000040 0004+00 0/1 0/0 0/0 .rodata          @3782 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3782 = 1.5f;
+COMPILER_STRIP_GATE(80C18A98, &lit_3782);
+#pragma pop
+
+/* 80C18A9C-80C18AA0 000044 0004+00 0/1 0/0 0/0 .rodata          @3783 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3783 = 10.0f;
+COMPILER_STRIP_GATE(80C18A9C, &lit_3783);
+#pragma pop
+
+/* 80C188A0-80C18920 000680 0080+00 1/1 0/0 0/0 .text setHasuCount__Q29nObjMHasu12daObjMHasu_cFf
  */
 #pragma push
 #pragma optimization_level 0
@@ -387,51 +413,52 @@ asm void nObjMHasu::daObjMHasu_c::setHasuCount(f32 param_0) {
 }
 #pragma pop
 
-/* 80C18920-80C18974 0054+00 s=1 e=0 z=0  None .text
+/* 80C18920-80C18974 000700 0054+00 1/0 0/0 0/0 .text
  * daObjMHasu_create1st__FPQ29nObjMHasu12daObjMHasu_c           */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjMHasu_create1st(nObjMHasu::daObjMHasu_c* param_0) {
+static asm void daObjMHasu_create1st(nObjMHasu::daObjMHasu_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hasu2/d_a_obj_hasu2/daObjMHasu_create1st__FPQ29nObjMHasu12daObjMHasu_c.s"
 }
 #pragma pop
 
-/* 80C18974-80C18994 0020+00 s=1 e=0 z=0  None .text
+/* 80C18974-80C18994 000754 0020+00 1/0 0/0 0/0 .text
  * daObjMHasu_MoveBGDelete__FPQ29nObjMHasu12daObjMHasu_c        */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjMHasu_MoveBGDelete(nObjMHasu::daObjMHasu_c* param_0) {
+static asm void daObjMHasu_MoveBGDelete(nObjMHasu::daObjMHasu_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hasu2/d_a_obj_hasu2/daObjMHasu_MoveBGDelete__FPQ29nObjMHasu12daObjMHasu_c.s"
 }
 #pragma pop
 
-/* 80C18994-80C189B4 0020+00 s=1 e=0 z=0  None .text
+/* 80C18994-80C189B4 000774 0020+00 1/0 0/0 0/0 .text
  * daObjMHasu_MoveBGExecute__FPQ29nObjMHasu12daObjMHasu_c       */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjMHasu_MoveBGExecute(nObjMHasu::daObjMHasu_c* param_0) {
+static asm void daObjMHasu_MoveBGExecute(nObjMHasu::daObjMHasu_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hasu2/d_a_obj_hasu2/daObjMHasu_MoveBGExecute__FPQ29nObjMHasu12daObjMHasu_c.s"
 }
 #pragma pop
 
-/* 80C189B4-80C189E0 002C+00 s=1 e=0 z=0  None .text
+/* 80C189B4-80C189E0 000794 002C+00 1/0 0/0 0/0 .text
  * daObjMHasu_MoveBGDraw__FPQ29nObjMHasu12daObjMHasu_c          */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjMHasu_MoveBGDraw(nObjMHasu::daObjMHasu_c* param_0) {
+static asm void daObjMHasu_MoveBGDraw(nObjMHasu::daObjMHasu_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hasu2/d_a_obj_hasu2/daObjMHasu_MoveBGDraw__FPQ29nObjMHasu12daObjMHasu_c.s"
 }
 #pragma pop
 
-/* 80C189E0-80C18A50 0070+00 s=1 e=0 z=0  None .text      __dt__Q29nObjMHasu12daObjMHasu_cFv */
+/* 80C189E0-80C18A50 0007C0 0070+00 1/0 0/0 0/0 .text            __dt__Q29nObjMHasu12daObjMHasu_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -439,4 +466,11 @@ asm nObjMHasu::daObjMHasu_c::~daObjMHasu_c() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hasu2/d_a_obj_hasu2/__dt__Q29nObjMHasu12daObjMHasu_cFv.s"
 }
+#pragma pop
+
+/* 80C18AA0-80C18AA7 000048 0007+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80C18AA0 = "M_Hasu";
 #pragma pop

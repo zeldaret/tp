@@ -6,8 +6,8 @@ lbl_80056390:
 /* 800563A0  48 30 BE 39 */	bl _savegpr_28
 /* 800563A4  7C 7F 1B 78 */	mr r31, r3
 /* 800563A8  7F FE FB 78 */	mr r30, r31
-/* 800563AC  3C 60 80 38 */	lis r3, l_drawlistSize@ha
-/* 800563B0  38 03 A1 78 */	addi r0, r3, l_drawlistSize@l
+/* 800563AC  3C 60 80 38 */	lis r3, l_drawlistSize@ha /* 0x8037A178@ha */
+/* 800563B0  38 03 A1 78 */	addi r0, r3, l_drawlistSize@l /* 0x8037A178@l */
 /* 800563B4  7C 1D 03 78 */	mr r29, r0
 /* 800563B8  3B 80 00 00 */	li r28, 0
 lbl_800563BC:
@@ -19,8 +19,8 @@ lbl_800563BC:
 /* 800563D0  2C 1C 00 15 */	cmpwi r28, 0x15
 /* 800563D4  3B DE 00 04 */	addi r30, r30, 4
 /* 800563D8  41 80 FF E4 */	blt lbl_800563BC
-/* 800563DC  3C 60 80 38 */	lis r3, l_nonSortId@ha
-/* 800563E0  38 03 A1 A4 */	addi r0, r3, l_nonSortId@l
+/* 800563DC  3C 60 80 38 */	lis r3, l_nonSortId@ha /* 0x8037A1A4@ha */
+/* 800563E0  38 03 A1 A4 */	addi r0, r3, l_nonSortId@l /* 0x8037A1A4@l */
 /* 800563E4  7C 05 03 78 */	mr r5, r0
 /* 800563E8  38 60 00 05 */	li r3, 5
 /* 800563EC  38 00 00 09 */	li r0, 9
@@ -44,8 +44,8 @@ lbl_8005641C:
 /* 8005642C  38 A5 00 01 */	addi r5, r5, 1
 /* 80056430  42 00 FF EC */	bdnz lbl_8005641C
 /* 80056434  80 1F 00 1C */	lwz r0, 0x1c(r31)
-/* 80056438  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8005643C  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80056438  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8005643C  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80056440  90 03 00 48 */	stw r0, 0x48(r3)
 /* 80056444  80 1F 00 20 */	lwz r0, 0x20(r31)
 /* 80056448  90 03 00 4C */	stw r0, 0x4c(r3)

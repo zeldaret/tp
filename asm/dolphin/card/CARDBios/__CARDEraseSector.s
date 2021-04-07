@@ -7,8 +7,8 @@ lbl_803539B8:
 /* 803539CC  93 A1 00 1C */	stw r29, 0x1c(r1)
 /* 803539D0  3B A3 00 00 */	addi r29, r3, 0
 /* 803539D4  1C DD 01 10 */	mulli r6, r29, 0x110
-/* 803539D8  3C 60 80 45 */	lis r3, __CARDBlock@ha
-/* 803539DC  38 03 CB C0 */	addi r0, r3, __CARDBlock@l
+/* 803539D8  3C 60 80 45 */	lis r3, __CARDBlock@ha /* 0x8044CBC0@ha */
+/* 803539DC  38 03 CB C0 */	addi r0, r3, __CARDBlock@l /* 0x8044CBC0@l */
 /* 803539E0  7F E0 32 14 */	add r31, r0, r6
 /* 803539E4  A0 1F 00 0A */	lhz r0, 0xa(r31)
 /* 803539E8  28 00 00 80 */	cmplwi r0, 0x80

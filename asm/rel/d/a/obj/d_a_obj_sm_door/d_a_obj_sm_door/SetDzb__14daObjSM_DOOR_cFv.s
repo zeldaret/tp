@@ -6,10 +6,10 @@ lbl_80CD8A40:
 /* 80CD8A50  80 83 05 68 */	lwz r4, 0x568(r3)
 /* 80CD8A54  28 04 00 00 */	cmplwi r4, 0
 /* 80CD8A58  41 82 00 24 */	beq lbl_80CD8A7C
-/* 80CD8A5C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CD8A60  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80CD8A5C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CD8A60  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CD8A64  38 63 0F 38 */	addi r3, r3, 0xf38
-/* 80CD8A68  4B 39 BF A0 */	b Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c
+/* 80CD8A68  4B 39 BF A1 */	bl Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c
 /* 80CD8A6C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80CD8A70  41 82 00 0C */	beq lbl_80CD8A7C
 /* 80CD8A74  38 60 00 00 */	li r3, 0

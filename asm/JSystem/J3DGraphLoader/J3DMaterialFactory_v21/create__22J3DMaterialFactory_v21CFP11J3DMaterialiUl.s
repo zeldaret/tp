@@ -38,8 +38,8 @@ lbl_803330B4:
 /* 803330F0  4B F9 BB 5D */	bl __nw__FUl
 /* 803330F4  7C 73 1B 79 */	or. r19, r3, r3
 /* 803330F8  41 82 00 2C */	beq lbl_80333124
-/* 803330FC  3C 80 80 3D */	lis r4, __vt__11J3DMaterial@ha
-/* 80333100  38 04 DC F0 */	addi r0, r4, __vt__11J3DMaterial@l
+/* 803330FC  3C 80 80 3D */	lis r4, __vt__11J3DMaterial@ha /* 0x803CDCF0@ha */
+/* 80333100  38 04 DC F0 */	addi r0, r4, __vt__11J3DMaterial@l /* 0x803CDCF0@l */
 /* 80333104  90 13 00 00 */	stw r0, 0(r19)
 /* 80333108  3C 80 3C F4 */	lis r4, 0x3CF4 /* 0x3CF3CF00@ha */
 /* 8033310C  38 04 CF 00 */	addi r0, r4, 0xCF00 /* 0x3CF3CF00@l */

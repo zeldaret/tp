@@ -23,8 +23,8 @@ lbl_800D2944:
 /* 800D2944  57 E0 06 3F */	clrlwi. r0, r31, 0x18
 /* 800D2948  41 82 00 40 */	beq lbl_800D2988
 /* 800D294C  3B E0 00 01 */	li r31, 1
-/* 800D2950  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D2954  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D2950  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D2954  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D2958  38 63 07 F0 */	addi r3, r3, 0x7f0
 /* 800D295C  38 80 29 01 */	li r4, 0x2901
 /* 800D2960  4B F6 20 5D */	bl isEventBit__11dSv_event_cCFUs

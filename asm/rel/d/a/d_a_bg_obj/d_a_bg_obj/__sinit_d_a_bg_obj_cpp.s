@@ -1,6 +1,6 @@
 lbl_8045C7F8:
-/* 8045C7F8  3C 60 80 46 */	lis r3, cNullVec__6Z2Calc@ha
-/* 8045C7FC  38 63 CA C4 */	addi r3, r3, cNullVec__6Z2Calc@l
+/* 8045C7F8  3C 60 80 46 */	lis r3, cNullVec__6Z2Calc@ha /* 0x8045CAC4@ha */
+/* 8045C7FC  38 63 CA C4 */	addi r3, r3, cNullVec__6Z2Calc@l /* 0x8045CAC4@l */
 /* 8045C800  80 83 00 78 */	lwz r4, 0x78(r3)
 /* 8045C804  80 03 00 7C */	lwz r0, 0x7c(r3)
 /* 8045C808  90 83 00 A8 */	stw r4, 0xa8(r3)

@@ -9,9 +9,9 @@ lbl_80D60898:
 /* 80D608B4  40 82 00 28 */	bne lbl_80D608DC
 /* 80D608B8  28 1F 00 00 */	cmplwi r31, 0
 /* 80D608BC  41 82 00 14 */	beq lbl_80D608D0
-/* 80D608C0  4B 2B 82 A4 */	b __ct__10fopAc_ac_cFv
-/* 80D608C4  3C 60 80 D6 */	lis r3, __vt__18daTag_ShopCamera_c@ha
-/* 80D608C8  38 03 0A E0 */	addi r0, r3, __vt__18daTag_ShopCamera_c@l
+/* 80D608C0  4B 2B 82 A5 */	bl __ct__10fopAc_ac_cFv
+/* 80D608C4  3C 60 80 D6 */	lis r3, __vt__18daTag_ShopCamera_c@ha /* 0x80D60AE0@ha */
+/* 80D608C8  38 03 0A E0 */	addi r0, r3, __vt__18daTag_ShopCamera_c@l /* 0x80D60AE0@l */
 /* 80D608CC  90 1F 05 68 */	stw r0, 0x568(r31)
 lbl_80D608D0:
 /* 80D608D0  80 1F 04 A0 */	lwz r0, 0x4a0(r31)

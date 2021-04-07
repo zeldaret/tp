@@ -22,8 +22,8 @@ lbl_80115510:
 lbl_80115530:
 /* 80115530  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 80115534  B0 1F 04 DE */	sth r0, 0x4de(r31)
-/* 80115538  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011553C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80115538  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011553C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80115540  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 80115544  60 00 04 00 */	ori r0, r0, 0x400
 /* 80115548  90 03 5F 18 */	stw r0, 0x5f18(r3)

@@ -108,7 +108,7 @@ lbl_802FDD0C:
 /* 802FDE10  48 05 E9 55 */	bl GXBegin
 /* 802FDE14  C0 02 C8 6C */	lfs f0, lit_2017(r2)
 /* 802FDE18  3C 60 CC 01 */	lis r3, 0xCC01 /* 0xCC008000@ha */
-/* 802FDE1C  D0 03 80 00 */	stfs f0, 0x8000(r3)
+/* 802FDE1C  D0 03 80 00 */	stfs f0, 0x8000(r3)  /* 0xCC008000@l */
 /* 802FDE20  C0 02 C8 6C */	lfs f0, lit_2017(r2)
 /* 802FDE24  D0 03 80 00 */	stfs f0, -0x8000(r3)
 /* 802FDE28  C0 02 C8 6C */	lfs f0, lit_2017(r2)

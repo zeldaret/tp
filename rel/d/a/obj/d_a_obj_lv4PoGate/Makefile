@@ -3,19 +3,20 @@
 #
 
 M528_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4PoGate.plf
+M528_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4PoGate.lcf
+M528_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4PoGate.map
 
 M528_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv4PoGate/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv4PoGate/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv4PoGate/d_a_obj_lv4PoGate.cpp \
 
 M528_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4PoGate/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4PoGate/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4PoGate/d_a_obj_lv4PoGate.o \
 
 M528_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4PoGate/libRuntime.PPCEABI.H.a \
 
 M528_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M528_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M528_LDSCRIPT) \
+	-unused -map $(M528_MAP) \
+	-w off \
 
 $(M528_TARGET): $(M528_O_FILES) $(M528_LIBS)
+	@echo [528] creating $(M528_TARGET)
 	@echo $(M528_LIBS) $(M528_O_FILES) > build/M528_ofiles
-	$(LD) -partial $(M528_LDFLAGS) -o $(M528_TARGET) @build/M528_ofiles
+	@python3 tools/lcf.py rel 528 --output $(M528_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M528_LDFLAGS) -o $(M528_TARGET) @build/M528_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4PoGate/%.o: rel/d/a/obj/d_a_obj_lv4PoGate/%.cpp
+	@echo [528] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M528_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M528_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv4PoGate/libs/Runtime.PPCEABI.H/Makefile
 

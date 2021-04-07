@@ -48,8 +48,8 @@ lbl_800A00E0:
 /* 800A00E0  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 800A00E4  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800A00E8  40 80 00 10 */	bge lbl_800A00F8
-/* 800A00EC  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800A00F0  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)
+/* 800A00EC  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800A00F0  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 800A00F4  48 00 00 78 */	b lbl_800A016C
 lbl_800A00F8:
 /* 800A00F8  D0 21 00 0C */	stfs f1, 0xc(r1)
@@ -83,8 +83,8 @@ lbl_800A0150:
 lbl_800A0154:
 /* 800A0154  2C 00 00 01 */	cmpwi r0, 1
 /* 800A0158  40 82 00 10 */	bne lbl_800A0168
-/* 800A015C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800A0160  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)
+/* 800A015C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800A0160  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 800A0164  48 00 00 08 */	b lbl_800A016C
 lbl_800A0168:
 /* 800A0168  FF E0 08 90 */	fmr f31, f1
@@ -125,8 +125,8 @@ lbl_800A01EC:
 /* 800A01EC  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 800A01F0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800A01F4  40 80 00 10 */	bge lbl_800A0204
-/* 800A01F8  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800A01FC  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)
+/* 800A01F8  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800A01FC  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 800A0200  48 00 00 78 */	b lbl_800A0278
 lbl_800A0204:
 /* 800A0204  D0 21 00 08 */	stfs f1, 8(r1)
@@ -160,8 +160,8 @@ lbl_800A025C:
 lbl_800A0260:
 /* 800A0260  2C 00 00 01 */	cmpwi r0, 1
 /* 800A0264  40 82 00 10 */	bne lbl_800A0274
-/* 800A0268  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800A026C  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)
+/* 800A0268  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800A026C  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 800A0270  48 00 00 08 */	b lbl_800A0278
 lbl_800A0274:
 /* 800A0274  FF C0 08 90 */	fmr f30, f1
@@ -299,8 +299,8 @@ lbl_800A0330:
 /* 800A0474  EC 42 07 32 */	fmuls f2, f2, f28
 /* 800A0478  EC 23 07 72 */	fmuls f1, f3, f29
 /* 800A047C  EC 22 08 2A */	fadds f1, f2, f1
-/* 800A0480  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800A0484  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800A0480  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800A0484  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800A0488  38 63 00 04 */	addi r3, r3, 4
 /* 800A048C  A8 1E 30 70 */	lha r0, 0x3070(r30)
 /* 800A0490  54 00 04 3E */	clrlwi r0, r0, 0x10

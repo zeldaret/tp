@@ -5,15 +5,15 @@ lbl_80822AFC:
 /* 80822B08  DB E1 00 B0 */	stfd f31, 0xb0(r1)
 /* 80822B0C  F3 E1 00 B8 */	psq_st f31, 184(r1), 0, 0 /* qr0 */
 /* 80822B10  39 61 00 B0 */	addi r11, r1, 0xb0
-/* 80822B14  4B B3 F6 C0 */	b _savegpr_27
+/* 80822B14  4B B3 F6 C1 */	bl _savegpr_27
 /* 80822B18  7C 7E 1B 78 */	mr r30, r3
-/* 80822B1C  3C 60 80 83 */	lis r3, lit_3902@ha
-/* 80822B20  3B E3 88 50 */	addi r31, r3, lit_3902@l
+/* 80822B1C  3C 60 80 83 */	lis r3, lit_3902@ha /* 0x80828850@ha */
+/* 80822B20  3B E3 88 50 */	addi r31, r3, lit_3902@l /* 0x80828850@l */
 /* 80822B24  80 1E 06 EC */	lwz r0, 0x6ec(r30)
 /* 80822B28  28 00 00 00 */	cmplwi r0, 0
 /* 80822B2C  41 82 02 00 */	beq lbl_80822D2C
 /* 80822B30  38 61 00 20 */	addi r3, r1, 0x20
-/* 80822B34  4B 85 51 34 */	b __ct__11dBgS_LinChkFv
+/* 80822B34  4B 85 51 35 */	bl __ct__11dBgS_LinChkFv
 /* 80822B38  C0 1E 04 D0 */	lfs f0, 0x4d0(r30)
 /* 80822B3C  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 80822B40  C0 3E 04 D4 */	lfs f1, 0x4d4(r30)
@@ -26,8 +26,8 @@ lbl_80822AFC:
 /* 80822B5C  80 7E 06 EC */	lwz r3, 0x6ec(r30)
 /* 80822B60  83 83 00 08 */	lwz r28, 8(r3)
 /* 80822B64  3B 60 00 00 */	li r27, 0
-/* 80822B68  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80822B6C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80822B68  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80822B6C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80822B70  3B A3 0F 38 */	addi r29, r3, 0xf38
 /* 80822B74  48 00 00 74 */	b lbl_80822BE8
 lbl_80822B78:
@@ -42,21 +42,21 @@ lbl_80822B78:
 /* 80822B98  38 81 00 14 */	addi r4, r1, 0x14
 /* 80822B9C  38 A1 00 08 */	addi r5, r1, 8
 /* 80822BA0  7F C6 F3 78 */	mr r6, r30
-/* 80822BA4  4B 85 51 C0 */	b Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c
+/* 80822BA4  4B 85 51 C1 */	bl Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c
 /* 80822BA8  7F A3 EB 78 */	mr r3, r29
 /* 80822BAC  38 81 00 20 */	addi r4, r1, 0x20
-/* 80822BB0  4B 85 18 04 */	b LineCross__4cBgSFP11cBgS_LinChk
+/* 80822BB0  4B 85 18 05 */	bl LineCross__4cBgSFP11cBgS_LinChk
 /* 80822BB4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80822BB8  40 82 00 18 */	bne lbl_80822BD0
 /* 80822BBC  38 00 00 01 */	li r0, 1
-/* 80822BC0  3C 60 80 83 */	lis r3, check_index@ha
-/* 80822BC4  38 63 8E 34 */	addi r3, r3, check_index@l
+/* 80822BC0  3C 60 80 83 */	lis r3, check_index@ha /* 0x80828E34@ha */
+/* 80822BC4  38 63 8E 34 */	addi r3, r3, check_index@l /* 0x80828E34@l */
 /* 80822BC8  7C 03 D9 AE */	stbx r0, r3, r27
 /* 80822BCC  48 00 00 14 */	b lbl_80822BE0
 lbl_80822BD0:
 /* 80822BD0  38 00 00 00 */	li r0, 0
-/* 80822BD4  3C 60 80 83 */	lis r3, check_index@ha
-/* 80822BD8  38 63 8E 34 */	addi r3, r3, check_index@l
+/* 80822BD4  3C 60 80 83 */	lis r3, check_index@ha /* 0x80828E34@ha */
+/* 80822BD8  38 63 8E 34 */	addi r3, r3, check_index@l /* 0x80828E34@l */
 /* 80822BDC  7C 03 D9 AE */	stbx r0, r3, r27
 lbl_80822BE0:
 /* 80822BE0  3B 7B 00 01 */	addi r27, r27, 1
@@ -69,8 +69,8 @@ lbl_80822BE8:
 /* 80822BF8  C0 DF 00 04 */	lfs f6, 4(r31)
 /* 80822BFC  38 C0 00 00 */	li r6, 0
 /* 80822C00  38 E0 00 00 */	li r7, 0
-/* 80822C04  3C 60 80 83 */	lis r3, check_index@ha
-/* 80822C08  38 A3 8E 34 */	addi r5, r3, check_index@l
+/* 80822C04  3C 60 80 83 */	lis r3, check_index@ha /* 0x80828E34@ha */
+/* 80822C08  38 A3 8E 34 */	addi r5, r3, check_index@l /* 0x80828E34@l */
 /* 80822C0C  C0 1F 00 48 */	lfs f0, 0x48(r31)
 lbl_80822C10:
 /* 80822C10  80 7E 06 EC */	lwz r3, 0x6ec(r30)
@@ -152,12 +152,12 @@ lbl_80822D14:
 lbl_80822D20:
 /* 80822D20  38 61 00 20 */	addi r3, r1, 0x20
 /* 80822D24  38 80 FF FF */	li r4, -1
-/* 80822D28  4B 85 4F B4 */	b __dt__11dBgS_LinChkFv
+/* 80822D28  4B 85 4F B5 */	bl __dt__11dBgS_LinChkFv
 lbl_80822D2C:
 /* 80822D2C  E3 E1 00 B8 */	psq_l f31, 184(r1), 0, 0 /* qr0 */
 /* 80822D30  CB E1 00 B0 */	lfd f31, 0xb0(r1)
 /* 80822D34  39 61 00 B0 */	addi r11, r1, 0xb0
-/* 80822D38  4B B3 F4 E8 */	b _restgpr_27
+/* 80822D38  4B B3 F4 E9 */	bl _restgpr_27
 /* 80822D3C  80 01 00 C4 */	lwz r0, 0xc4(r1)
 /* 80822D40  7C 08 03 A6 */	mtlr r0
 /* 80822D44  38 21 00 C0 */	addi r1, r1, 0xc0

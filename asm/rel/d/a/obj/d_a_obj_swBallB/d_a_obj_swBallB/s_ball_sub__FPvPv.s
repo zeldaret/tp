@@ -4,7 +4,7 @@ lbl_80CF45B8:
 /* 80CF45C0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80CF45C4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CF45C8  7C 7F 1B 78 */	mr r31, r3
-/* 80CF45CC  4B 32 47 14 */	b fopAc_IsActor__FPv
+/* 80CF45CC  4B 32 47 15 */	bl fopAc_IsActor__FPv
 /* 80CF45D0  2C 03 00 00 */	cmpwi r3, 0
 /* 80CF45D4  41 82 00 60 */	beq lbl_80CF4634
 /* 80CF45D8  A8 1F 00 08 */	lha r0, 8(r31)
@@ -21,14 +21,14 @@ lbl_80CF45FC:
 lbl_80CF4600:
 /* 80CF4600  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 80CF4604  41 82 00 30 */	beq lbl_80CF4634
-/* 80CF4608  3C 60 80 CF */	lis r3, l_target_info_count@ha
-/* 80CF460C  38 83 5B 18 */	addi r4, r3, l_target_info_count@l
+/* 80CF4608  3C 60 80 CF */	lis r3, l_target_info_count@ha /* 0x80CF5B18@ha */
+/* 80CF460C  38 83 5B 18 */	addi r4, r3, l_target_info_count@l /* 0x80CF5B18@l */
 /* 80CF4610  80 A4 00 00 */	lwz r5, 0(r4)
 /* 80CF4614  2C 05 00 02 */	cmpwi r5, 2
 /* 80CF4618  40 80 00 1C */	bge lbl_80CF4634
 /* 80CF461C  54 A0 10 3A */	slwi r0, r5, 2
-/* 80CF4620  3C 60 80 CF */	lis r3, l_target_info@ha
-/* 80CF4624  38 63 5B 10 */	addi r3, r3, l_target_info@l
+/* 80CF4620  3C 60 80 CF */	lis r3, l_target_info@ha /* 0x80CF5B10@ha */
+/* 80CF4624  38 63 5B 10 */	addi r3, r3, l_target_info@l /* 0x80CF5B10@l */
 /* 80CF4628  7F E3 01 2E */	stwx r31, r3, r0
 /* 80CF462C  38 05 00 01 */	addi r0, r5, 1
 /* 80CF4630  90 04 00 00 */	stw r0, 0(r4)

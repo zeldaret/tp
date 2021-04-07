@@ -20,8 +20,8 @@ lbl_80147FD4:
 /* 8014801C  40 82 00 20 */	bne lbl_8014803C
 /* 80148020  80 8D 8A 5C */	lwz r4, mFindCount__8daNpcT_c(r13)
 /* 80148024  54 80 10 3A */	slwi r0, r4, 2
-/* 80148028  3C 60 80 42 */	lis r3, mFindActorPtrs__8daNpcT_c@ha
-/* 8014802C  38 63 57 08 */	addi r3, r3, mFindActorPtrs__8daNpcT_c@l
+/* 80148028  3C 60 80 42 */	lis r3, mFindActorPtrs__8daNpcT_c@ha /* 0x80425708@ha */
+/* 8014802C  38 63 57 08 */	addi r3, r3, mFindActorPtrs__8daNpcT_c@l /* 0x80425708@l */
 /* 80148030  7F C3 01 2E */	stwx r30, r3, r0
 /* 80148034  38 04 00 01 */	addi r0, r4, 1
 /* 80148038  90 0D 8A 5C */	stw r0, mFindCount__8daNpcT_c(r13)

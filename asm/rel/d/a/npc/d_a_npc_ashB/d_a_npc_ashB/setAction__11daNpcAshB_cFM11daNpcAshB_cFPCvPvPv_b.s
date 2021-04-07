@@ -9,13 +9,13 @@ lbl_8095F21C:
 /* 8095F238  38 00 00 03 */	li r0, 3
 /* 8095F23C  B0 03 0D E8 */	sth r0, 0xde8(r3)
 /* 8095F240  38 7E 0D C4 */	addi r3, r30, 0xdc4
-/* 8095F244  4B A0 2D D4 */	b __ptmf_test
+/* 8095F244  4B A0 2D D5 */	bl __ptmf_test
 /* 8095F248  2C 03 00 00 */	cmpwi r3, 0
 /* 8095F24C  41 82 00 18 */	beq lbl_8095F264
 /* 8095F250  7F C3 F3 78 */	mr r3, r30
 /* 8095F254  38 80 00 00 */	li r4, 0
 /* 8095F258  39 9E 0D C4 */	addi r12, r30, 0xdc4
-/* 8095F25C  4B A0 2E 28 */	b __ptmf_scall
+/* 8095F25C  4B A0 2E 29 */	bl __ptmf_scall
 /* 8095F260  60 00 00 00 */	nop 
 lbl_8095F264:
 /* 8095F264  38 00 00 00 */	li r0, 0
@@ -27,13 +27,13 @@ lbl_8095F264:
 /* 8095F27C  80 1F 00 08 */	lwz r0, 8(r31)
 /* 8095F280  90 1E 0D CC */	stw r0, 0xdcc(r30)
 /* 8095F284  38 7E 0D C4 */	addi r3, r30, 0xdc4
-/* 8095F288  4B A0 2D 90 */	b __ptmf_test
+/* 8095F288  4B A0 2D 91 */	bl __ptmf_test
 /* 8095F28C  2C 03 00 00 */	cmpwi r3, 0
 /* 8095F290  41 82 00 18 */	beq lbl_8095F2A8
 /* 8095F294  7F C3 F3 78 */	mr r3, r30
 /* 8095F298  38 80 00 00 */	li r4, 0
 /* 8095F29C  39 9E 0D C4 */	addi r12, r30, 0xdc4
-/* 8095F2A0  4B A0 2D E4 */	b __ptmf_scall
+/* 8095F2A0  4B A0 2D E5 */	bl __ptmf_scall
 /* 8095F2A4  60 00 00 00 */	nop 
 lbl_8095F2A8:
 /* 8095F2A8  38 60 00 01 */	li r3, 1

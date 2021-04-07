@@ -10,7 +10,7 @@ lbl_804988DC:
 /* 804988FC  40 82 00 1C */	bne lbl_80498918
 /* 80498900  28 1E 00 00 */	cmplwi r30, 0
 /* 80498904  41 82 00 08 */	beq lbl_8049890C
-/* 80498908  4B B8 02 5C */	b __ct__10fopAc_ac_cFv
+/* 80498908  4B B8 02 5D */	bl __ct__10fopAc_ac_cFv
 lbl_8049890C:
 /* 8049890C  80 1E 04 A0 */	lwz r0, 0x4a0(r30)
 /* 80498910  60 00 00 08 */	ori r0, r0, 8
@@ -20,20 +20,20 @@ lbl_80498918:
 /* 8049891C  98 1E 05 74 */	stb r0, 0x574(r30)
 /* 80498920  3B E0 00 04 */	li r31, 4
 /* 80498924  7F C3 F3 78 */	mr r3, r30
-/* 80498928  3C 80 80 4A */	lis r4, daVrbox_solidHeapCB__FP10fopAc_ac_c@ha
-/* 8049892C  38 84 88 68 */	addi r4, r4, daVrbox_solidHeapCB__FP10fopAc_ac_c@l
+/* 80498928  3C 80 80 4A */	lis r4, daVrbox_solidHeapCB__FP10fopAc_ac_c@ha /* 0x80498868@ha */
+/* 8049892C  38 84 88 68 */	addi r4, r4, daVrbox_solidHeapCB__FP10fopAc_ac_c@l /* 0x80498868@l */
 /* 80498930  38 A0 0C 60 */	li r5, 0xc60
-/* 80498934  4B B8 1B 7C */	b fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
+/* 80498934  4B B8 1B 7D */	bl fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
 /* 80498938  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8049893C  41 82 00 2C */	beq lbl_80498968
-/* 80498940  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80498944  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80498940  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80498944  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80498948  A0 03 5D 46 */	lhz r0, 0x5d46(r3)
 /* 8049894C  60 00 00 01 */	ori r0, r0, 1
 /* 80498950  B0 03 5D 46 */	sth r0, 0x5d46(r3)
 /* 80498954  38 00 00 00 */	li r0, 0
-/* 80498958  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8049895C  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 80498958  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8049895C  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80498960  98 03 12 D4 */	stb r0, 0x12d4(r3)
 /* 80498964  48 00 00 08 */	b lbl_8049896C
 lbl_80498968:

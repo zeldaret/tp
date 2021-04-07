@@ -15,10 +15,10 @@ lbl_8071E1A4:
 lbl_8071E1D8:
 /* 8071E1D8  80 03 04 A4 */	lwz r0, 0x4a4(r3)
 /* 8071E1DC  90 01 00 08 */	stw r0, 8(r1)
-/* 8071E1E0  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 8071E1E4  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 8071E1E0  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 8071E1E4  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 8071E1E8  38 81 00 08 */	addi r4, r1, 8
-/* 8071E1EC  4B 8F B6 0C */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 8071E1EC  4B 8F B6 0D */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8071E1F0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8071E1F4  7C 08 03 A6 */	mtlr r0
 /* 8071E1F8  38 21 00 10 */	addi r1, r1, 0x10

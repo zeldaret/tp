@@ -3,15 +3,15 @@ lbl_8064A688:
 /* 8064A68C  7C 08 02 A6 */	mflr r0
 /* 8064A690  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8064A694  39 61 00 30 */	addi r11, r1, 0x30
-/* 8064A698  4B D1 7B 44 */	b _savegpr_29
+/* 8064A698  4B D1 7B 45 */	bl _savegpr_29
 /* 8064A69C  7C 7E 1B 78 */	mr r30, r3
-/* 8064A6A0  3C 80 80 65 */	lis r4, lit_3757@ha
-/* 8064A6A4  3B E4 EB 1C */	addi r31, r4, lit_3757@l
+/* 8064A6A0  3C 80 80 65 */	lis r4, lit_3757@ha /* 0x8064EB1C@ha */
+/* 8064A6A4  3B E4 EB 1C */	addi r31, r4, lit_3757@l /* 0x8064EB1C@l */
 /* 8064A6A8  80 03 06 DC */	lwz r0, 0x6dc(r3)
 /* 8064A6AC  28 00 00 15 */	cmplwi r0, 0x15
 /* 8064A6B0  41 81 05 58 */	bgt lbl_8064AC08
-/* 8064A6B4  3C 80 80 65 */	lis r4, lit_9307@ha
-/* 8064A6B8  38 84 F2 F8 */	addi r4, r4, lit_9307@l
+/* 8064A6B4  3C 80 80 65 */	lis r4, lit_9307@ha /* 0x8064F2F8@ha */
+/* 8064A6B8  38 84 F2 F8 */	addi r4, r4, lit_9307@l /* 0x8064F2F8@l */
 /* 8064A6BC  54 00 10 3A */	slwi r0, r0, 2
 /* 8064A6C0  7C 04 00 2E */	lwzx r0, r4, r0
 /* 8064A6C4  7C 09 03 A6 */	mtctr r0
@@ -119,7 +119,7 @@ lbl_8064A818:
 /* 8064A834  4B FF 3D 91 */	bl setBck__10daB_ZANT_cFiUcff
 /* 8064A838  48 00 00 48 */	b lbl_8064A880
 lbl_8064A83C:
-/* 8064A83C  4B C1 D0 30 */	b cM_rnd__Fv
+/* 8064A83C  4B C1 D0 31 */	bl cM_rnd__Fv
 /* 8064A840  C0 1F 00 30 */	lfs f0, 0x30(r31)
 /* 8064A844  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8064A848  40 80 00 20 */	bge lbl_8064A868
@@ -160,7 +160,7 @@ lbl_8064A8B0:
 /* 8064A8C8  80 7E 05 B4 */	lwz r3, 0x5b4(r30)
 /* 8064A8CC  38 63 00 0C */	addi r3, r3, 0xc
 /* 8064A8D0  C0 3F 02 04 */	lfs f1, 0x204(r31)
-/* 8064A8D4  4B CD DB 58 */	b checkPass__12J3DFrameCtrlFf
+/* 8064A8D4  4B CD DB 59 */	bl checkPass__12J3DFrameCtrlFf
 /* 8064A8D8  2C 03 00 00 */	cmpwi r3, 0
 /* 8064A8DC  41 82 00 2C */	beq lbl_8064A908
 /* 8064A8E0  3C 60 00 07 */	lis r3, 0x0007 /* 0x00070449@ha */
@@ -180,7 +180,7 @@ lbl_8064A908:
 /* 8064A914  80 7E 05 B4 */	lwz r3, 0x5b4(r30)
 /* 8064A918  38 63 00 0C */	addi r3, r3, 0xc
 /* 8064A91C  C0 3F 01 AC */	lfs f1, 0x1ac(r31)
-/* 8064A920  4B CD DB 0C */	b checkPass__12J3DFrameCtrlFf
+/* 8064A920  4B CD DB 0D */	bl checkPass__12J3DFrameCtrlFf
 /* 8064A924  2C 03 00 00 */	cmpwi r3, 0
 /* 8064A928  41 82 00 28 */	beq lbl_8064A950
 /* 8064A92C  3B A0 00 01 */	li r29, 1
@@ -189,7 +189,7 @@ lbl_8064A934:
 /* 8064A934  80 7E 05 B4 */	lwz r3, 0x5b4(r30)
 /* 8064A938  38 63 00 0C */	addi r3, r3, 0xc
 /* 8064A93C  C0 3F 02 E0 */	lfs f1, 0x2e0(r31)
-/* 8064A940  4B CD DA EC */	b checkPass__12J3DFrameCtrlFf
+/* 8064A940  4B CD DA ED */	bl checkPass__12J3DFrameCtrlFf
 /* 8064A944  2C 03 00 00 */	cmpwi r3, 0
 /* 8064A948  41 82 00 08 */	beq lbl_8064A950
 /* 8064A94C  3B A0 00 01 */	li r29, 1
@@ -238,7 +238,7 @@ lbl_8064A9E4:
 /* 8064A9E4  80 7E 05 B4 */	lwz r3, 0x5b4(r30)
 /* 8064A9E8  38 63 00 0C */	addi r3, r3, 0xc
 /* 8064A9EC  C0 3F 00 A4 */	lfs f1, 0xa4(r31)
-/* 8064A9F0  4B CD DA 3C */	b checkPass__12J3DFrameCtrlFf
+/* 8064A9F0  4B CD DA 3D */	bl checkPass__12J3DFrameCtrlFf
 /* 8064A9F4  2C 03 00 00 */	cmpwi r3, 0
 /* 8064A9F8  41 82 00 2C */	beq lbl_8064AA24
 /* 8064A9FC  3C 60 00 07 */	lis r3, 0x0007 /* 0x00070448@ha */
@@ -258,7 +258,7 @@ lbl_8064AA24:
 /* 8064AA30  80 7E 05 B4 */	lwz r3, 0x5b4(r30)
 /* 8064AA34  38 63 00 0C */	addi r3, r3, 0xc
 /* 8064AA38  C0 3F 01 F4 */	lfs f1, 0x1f4(r31)
-/* 8064AA3C  4B CD D9 F0 */	b checkPass__12J3DFrameCtrlFf
+/* 8064AA3C  4B CD D9 F1 */	bl checkPass__12J3DFrameCtrlFf
 /* 8064AA40  2C 03 00 00 */	cmpwi r3, 0
 /* 8064AA44  41 82 00 28 */	beq lbl_8064AA6C
 /* 8064AA48  3B A0 00 01 */	li r29, 1
@@ -267,7 +267,7 @@ lbl_8064AA50:
 /* 8064AA50  80 7E 05 B4 */	lwz r3, 0x5b4(r30)
 /* 8064AA54  38 63 00 0C */	addi r3, r3, 0xc
 /* 8064AA58  C0 3F 00 D0 */	lfs f1, 0xd0(r31)
-/* 8064AA5C  4B CD D9 D0 */	b checkPass__12J3DFrameCtrlFf
+/* 8064AA5C  4B CD D9 D1 */	bl checkPass__12J3DFrameCtrlFf
 /* 8064AA60  2C 03 00 00 */	cmpwi r3, 0
 /* 8064AA64  41 82 00 08 */	beq lbl_8064AA6C
 /* 8064AA68  3B A0 00 01 */	li r29, 1
@@ -385,7 +385,7 @@ lbl_8064ABE0:
 /* 8064AC04  4B FF DB 75 */	bl setLastWarp__10daB_ZANT_cFii
 lbl_8064AC08:
 /* 8064AC08  39 61 00 30 */	addi r11, r1, 0x30
-/* 8064AC0C  4B D1 76 1C */	b _restgpr_29
+/* 8064AC0C  4B D1 76 1D */	bl _restgpr_29
 /* 8064AC10  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 8064AC14  7C 08 03 A6 */	mtlr r0
 /* 8064AC18  38 21 00 30 */	addi r1, r1, 0x30

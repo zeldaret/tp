@@ -5,8 +5,8 @@ lbl_80A28F74:
 /* 80A28F80  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80A28F84  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80A28F88  7C 7E 1B 78 */	mr r30, r3
-/* 80A28F8C  3C 80 80 A3 */	lis r4, m__21daNpcKasiMich_Param_c@ha
-/* 80A28F90  3B E4 A0 4C */	addi r31, r4, m__21daNpcKasiMich_Param_c@l
+/* 80A28F8C  3C 80 80 A3 */	lis r4, m__21daNpcKasiMich_Param_c@ha /* 0x80A2A04C@ha */
+/* 80A28F90  3B E4 A0 4C */	addi r31, r4, m__21daNpcKasiMich_Param_c@l /* 0x80A2A04C@l */
 /* 80A28F94  A8 03 14 04 */	lha r0, 0x1404(r3)
 /* 80A28F98  2C 00 00 01 */	cmpwi r0, 1
 /* 80A28F9C  41 82 00 6C */	beq lbl_80A29008

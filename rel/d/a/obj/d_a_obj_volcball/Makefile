@@ -3,18 +3,16 @@
 #
 
 M675_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_volcball.plf
+M675_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_volcball.lcf
+M675_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_volcball.map
 
 M675_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_volcball/executor.cpp \
-	rel/d/a/obj/d_a_obj_volcball/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_volcball/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_volcball/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_volcball/d_a_obj_volcball.cpp \
 
 M675_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_volcball/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_volcball/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_volcball/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_volcball/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_volcball/d_a_obj_volcball.o \
 
@@ -31,14 +29,21 @@ M675_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M675_LDSCRIPT) \
+	-unused -map $(M675_MAP) \
+	-w off \
 
 $(M675_TARGET): $(M675_O_FILES) $(M675_LIBS)
+	@echo [675] creating $(M675_TARGET)
 	@echo $(M675_LIBS) $(M675_O_FILES) > build/M675_ofiles
-	$(LD) -partial $(M675_LDFLAGS) -o $(M675_TARGET) @build/M675_ofiles
+	@python3 tools/lcf.py rel 675 --output $(M675_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M675_LDFLAGS) -o $(M675_TARGET) @build/M675_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_volcball/%.o: rel/d/a/obj/d_a_obj_volcball/%.cpp
+	@echo [675] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M675_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M675_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

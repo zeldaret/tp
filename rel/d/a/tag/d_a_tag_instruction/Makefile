@@ -3,17 +3,15 @@
 #
 
 M723_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_instruction.plf
+M723_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_instruction.lcf
+M723_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_instruction.map
 
 M723_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_instruction/executor.cpp \
-	rel/d/a/tag/d_a_tag_instruction/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_instruction/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_instruction/d_a_tag_instruction.cpp \
 
 M723_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_instruction/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_instruction/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_instruction/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_instruction/d_a_tag_instruction.o \
 
 M723_LIBS := \
@@ -29,14 +27,21 @@ M723_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M723_LDSCRIPT) \
+	-unused -map $(M723_MAP) \
+	-w off \
 
 $(M723_TARGET): $(M723_O_FILES) $(M723_LIBS)
+	@echo [723] creating $(M723_TARGET)
 	@echo $(M723_LIBS) $(M723_O_FILES) > build/M723_ofiles
-	$(LD) -partial $(M723_LDFLAGS) -o $(M723_TARGET) @build/M723_ofiles
+	@python3 tools/lcf.py rel 723 --output $(M723_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M723_LDFLAGS) -o $(M723_TARGET) @build/M723_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_instruction/%.o: rel/d/a/tag/d_a_tag_instruction/%.cpp
+	@echo [723] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M723_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M723_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

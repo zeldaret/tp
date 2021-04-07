@@ -5,12 +5,12 @@ lbl_805A2BA4:
 /* 805A2BB0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 805A2BB4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 805A2BB8  41 82 00 1C */	beq lbl_805A2BD4
-/* 805A2BBC  3C A0 80 5A */	lis r5, __vt__8cM3dGAab@ha
-/* 805A2BC0  38 05 33 D8 */	addi r0, r5, __vt__8cM3dGAab@l
+/* 805A2BBC  3C A0 80 5A */	lis r5, __vt__8cM3dGAab@ha /* 0x805A33D8@ha */
+/* 805A2BC0  38 05 33 D8 */	addi r0, r5, __vt__8cM3dGAab@l /* 0x805A33D8@l */
 /* 805A2BC4  90 1F 00 18 */	stw r0, 0x18(r31)
 /* 805A2BC8  7C 80 07 35 */	extsh. r0, r4
 /* 805A2BCC  40 81 00 08 */	ble lbl_805A2BD4
-/* 805A2BD0  4B D2 C1 6C */	b __dl__FPv
+/* 805A2BD0  4B D2 C1 6D */	bl __dl__FPv
 lbl_805A2BD4:
 /* 805A2BD4  7F E3 FB 78 */	mr r3, r31
 /* 805A2BD8  83 E1 00 0C */	lwz r31, 0xc(r1)

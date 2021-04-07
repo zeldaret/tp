@@ -27,8 +27,8 @@ lbl_80258C24:
 /* 80258C24  7F E3 FB 78 */	mr r3, r31
 /* 80258C28  88 1F 04 1D */	lbz r0, 0x41d(r31)
 /* 80258C2C  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 80258C30  3C 80 80 3C */	lis r4, MainProc@ha
-/* 80258C34  38 04 30 94 */	addi r0, r4, MainProc@l
+/* 80258C30  3C 80 80 3C */	lis r4, MainProc@ha /* 0x803C3094@ha */
+/* 80258C34  38 04 30 94 */	addi r0, r4, MainProc@l /* 0x803C3094@l */
 /* 80258C38  7D 80 2A 14 */	add r12, r0, r5
 /* 80258C3C  48 10 94 49 */	bl __ptmf_scall
 /* 80258C40  60 00 00 00 */	nop 

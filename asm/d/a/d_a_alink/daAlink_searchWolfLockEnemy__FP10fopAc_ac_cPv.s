@@ -4,8 +4,8 @@ lbl_801392A8:
 /* 801392B0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801392B4  7C 60 1B 78 */	mr r0, r3
 /* 801392B8  7C 85 23 78 */	mr r5, r4
-/* 801392BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801392C0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801392BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801392C0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801392C4  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 801392C8  7C 04 03 78 */	mr r4, r0
 /* 801392CC  4B FF FF 19 */	bl searchWolfLockEnemy__9daAlink_cFP10fopAc_ac_cPv

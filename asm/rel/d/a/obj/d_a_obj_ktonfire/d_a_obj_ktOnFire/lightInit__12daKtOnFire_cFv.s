@@ -1,6 +1,6 @@
 lbl_8058C960:
-/* 8058C960  3C 80 80 59 */	lis r4, mCcDObjInfo__12daKtOnFire_c@ha
-/* 8058C964  38 84 CF 88 */	addi r4, r4, mCcDObjInfo__12daKtOnFire_c@l
+/* 8058C960  3C 80 80 59 */	lis r4, mCcDObjInfo__12daKtOnFire_c@ha /* 0x8058CF88@ha */
+/* 8058C964  38 84 CF 88 */	addi r4, r4, mCcDObjInfo__12daKtOnFire_c@l /* 0x8058CF88@l */
 /* 8058C968  C0 03 06 E4 */	lfs f0, 0x6e4(r3)
 /* 8058C96C  D0 03 06 FC */	stfs f0, 0x6fc(r3)
 /* 8058C970  C0 03 06 E8 */	lfs f0, 0x6e8(r3)

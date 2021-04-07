@@ -21,8 +21,8 @@ lbl_8011234C:
 /* 8011234C  48 00 38 D5 */	bl checkEventRun__9daAlink_cCFv
 /* 80112350  2C 03 00 00 */	cmpwi r3, 0
 /* 80112354  41 82 00 1C */	beq lbl_80112370
-/* 80112358  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011235C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80112358  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011235C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80112360  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 80112364  80 9E 31 84 */	lwz r4, 0x3184(r30)
 /* 80112368  4B F3 5E 15 */	bl cutEnd__16dEvent_manager_cFi

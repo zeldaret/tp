@@ -1,13 +1,13 @@
 lbl_8036D01C:
 /* 8036D01C  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8036D020  7C 08 02 A6 */	mflr r0
-/* 8036D024  3C C0 80 45 */	lis r6, gTRKBigEndian@ha
+/* 8036D024  3C C0 80 45 */	lis r6, gTRKBigEndian@ha /* 0x8044D8B8@ha */
 /* 8036D028  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8036D02C  BF 01 00 10 */	stmw r24, 0x10(r1)
 /* 8036D030  7C 7C 1B 78 */	mr r28, r3
 /* 8036D034  7C BD 2B 78 */	mr r29, r5
 /* 8036D038  7C 9F 23 78 */	mr r31, r4
-/* 8036D03C  3B 66 D8 B8 */	addi r27, r6, gTRKBigEndian@l
+/* 8036D03C  3B 66 D8 B8 */	addi r27, r6, gTRKBigEndian@l /* 0x8044D8B8@l */
 /* 8036D040  3B C0 00 00 */	li r30, 0
 /* 8036D044  38 60 00 00 */	li r3, 0
 /* 8036D048  48 00 00 A0 */	b lbl_8036D0E8

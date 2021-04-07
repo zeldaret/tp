@@ -7,8 +7,8 @@ lbl_800F95B8:
 /* 800F95CC  39 61 00 90 */	addi r11, r1, 0x90
 /* 800F95D0  48 26 8B F9 */	bl _savegpr_24
 /* 800F95D4  7C 79 1B 78 */	mr r25, r3
-/* 800F95D8  3C 80 80 39 */	lis r4, lit_3757@ha
-/* 800F95DC  3B 84 D6 58 */	addi r28, r4, lit_3757@l
+/* 800F95D8  3C 80 80 39 */	lis r4, lit_3757@ha /* 0x8038D658@ha */
+/* 800F95DC  3B 84 D6 58 */	addi r28, r4, lit_3757@l /* 0x8038D658@l */
 /* 800F95E0  3B 79 1F D0 */	addi r27, r25, 0x1fd0
 /* 800F95E4  38 00 00 0C */	li r0, 0xc
 /* 800F95E8  98 03 2F 99 */	stb r0, 0x2f99(r3)
@@ -81,8 +81,8 @@ lbl_800F96E4:
 /* 800F96EC  54 00 01 88 */	rlwinm r0, r0, 0, 6, 4
 /* 800F96F0  90 19 31 A0 */	stw r0, 0x31a0(r25)
 lbl_800F96F4:
-/* 800F96F4  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800F96F8  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800F96F4  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800F96F8  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800F96FC  90 01 00 60 */	stw r0, 0x60(r1)
 /* 800F9700  2C 1A 00 00 */	cmpwi r26, 0
 /* 800F9704  41 82 00 10 */	beq lbl_800F9714
@@ -223,8 +223,8 @@ lbl_800F98BC:
 /* 800F98EC  4B FF E5 5D */	bl changeCrawlAutoMoveProc__9daAlink_cFP4cXyz
 /* 800F98F0  2C 03 00 00 */	cmpwi r3, 0
 /* 800F98F4  41 82 00 18 */	beq lbl_800F990C
-/* 800F98F8  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800F98FC  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800F98F8  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800F98FC  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800F9900  90 01 00 60 */	stw r0, 0x60(r1)
 /* 800F9904  38 60 00 01 */	li r3, 1
 /* 800F9908  48 00 00 D4 */	b lbl_800F99DC
@@ -280,8 +280,8 @@ lbl_800F99A4:
 /* 800F99C4  38 C0 00 01 */	li r6, 1
 /* 800F99C8  4B FF EB F9 */	bl crawlBgCheck__9daAlink_cFP4cXyzP4cXyzi
 lbl_800F99CC:
-/* 800F99CC  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800F99D0  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800F99CC  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800F99D0  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800F99D4  90 01 00 60 */	stw r0, 0x60(r1)
 /* 800F99D8  38 60 00 01 */	li r3, 1
 lbl_800F99DC:

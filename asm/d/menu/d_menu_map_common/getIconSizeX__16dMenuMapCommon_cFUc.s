@@ -1,8 +1,8 @@
 lbl_801C4738:
 /* 801C4738  38 60 00 00 */	li r3, 0
 /* 801C473C  54 85 06 3E */	clrlwi r5, r4, 0x18
-/* 801C4740  3C 80 80 3C */	lis r4, map_icon_size@ha
-/* 801C4744  38 84 CF 18 */	addi r4, r4, map_icon_size@l
+/* 801C4740  3C 80 80 3C */	lis r4, map_icon_size@ha /* 0x803BCF18@ha */
+/* 801C4744  38 84 CF 18 */	addi r4, r4, map_icon_size@l /* 0x803BCF18@l */
 /* 801C4748  38 00 00 17 */	li r0, 0x17
 /* 801C474C  7C 09 03 A6 */	mtctr r0
 lbl_801C4750:

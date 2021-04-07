@@ -5,8 +5,8 @@ lbl_8019C2CC:
 /* 8019C2D8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8019C2DC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8019C2E0  41 82 00 1C */	beq lbl_8019C2FC
-/* 8019C2E4  3C A0 80 3C */	lis r5, __vt__24dDlst_Gameover_CAPTURE_c@ha
-/* 8019C2E8  38 05 BD A8 */	addi r0, r5, __vt__24dDlst_Gameover_CAPTURE_c@l
+/* 8019C2E4  3C A0 80 3C */	lis r5, __vt__24dDlst_Gameover_CAPTURE_c@ha /* 0x803BBDA8@ha */
+/* 8019C2E8  38 05 BD A8 */	addi r0, r5, __vt__24dDlst_Gameover_CAPTURE_c@l /* 0x803BBDA8@l */
 /* 8019C2EC  90 1F 00 00 */	stw r0, 0(r31)
 /* 8019C2F0  7C 80 07 35 */	extsh. r0, r4
 /* 8019C2F4  40 81 00 08 */	ble lbl_8019C2FC

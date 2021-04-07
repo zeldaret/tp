@@ -1,6 +1,6 @@
 lbl_802861C0:
-/* 802861C0  3C A0 80 28 */	lis r5, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha
-/* 802861C4  38 C5 5E B8 */	addi r6, r5, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l
+/* 802861C0  3C A0 80 28 */	lis r5, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha /* 0x80285EB8@ha */
+/* 802861C4  38 C5 5E B8 */	addi r6, r5, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l /* 0x80285EB8@l */
 /* 802861C8  38 A0 00 00 */	li r5, 0
 /* 802861CC  48 00 00 24 */	b lbl_802861F0
 lbl_802861D0:

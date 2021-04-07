@@ -36,8 +36,8 @@ lbl_8031AFF8:
 /* 8031B024  4B FF 40 E5 */	bl J3DGDSetTevOrder__F13_GXTevStageID13_GXTexCoordID11_GXTexMapID12_GXChannelID13_GXTexCoordID11_GXTexMapID12_GXChannelID
 /* 8031B028  88 1E 00 0D */	lbz r0, 0xd(r30)
 /* 8031B02C  54 04 1E B8 */	rlwinm r4, r0, 3, 0x1a, 0x1c
-/* 8031B030  3C 60 80 43 */	lis r3, sTexCoordScaleTable__6J3DSys@ha
-/* 8031B034  38 03 4C 2C */	addi r0, r3, sTexCoordScaleTable__6J3DSys@l
+/* 8031B030  3C 60 80 43 */	lis r3, sTexCoordScaleTable__6J3DSys@ha /* 0x80434C2C@ha */
+/* 8031B034  38 03 4C 2C */	addi r0, r3, sTexCoordScaleTable__6J3DSys@l /* 0x80434C2C@l */
 /* 8031B038  7D 00 22 14 */	add r8, r0, r4
 /* 8031B03C  88 7E 00 0C */	lbz r3, 0xc(r30)
 /* 8031B040  A0 88 00 00 */	lhz r4, 0(r8)
@@ -55,8 +55,8 @@ lbl_8031AFF8:
 /* 8031B070  4B FF 31 C5 */	bl J3DGDSetTexCoordScale2__F13_GXTexCoordIDUsUcUcUsUcUc
 /* 8031B074  88 1E 00 11 */	lbz r0, 0x11(r30)
 /* 8031B078  54 04 1E B8 */	rlwinm r4, r0, 3, 0x1a, 0x1c
-/* 8031B07C  3C 60 80 43 */	lis r3, sTexCoordScaleTable__6J3DSys@ha
-/* 8031B080  38 03 4C 2C */	addi r0, r3, sTexCoordScaleTable__6J3DSys@l
+/* 8031B07C  3C 60 80 43 */	lis r3, sTexCoordScaleTable__6J3DSys@ha /* 0x80434C2C@ha */
+/* 8031B080  38 03 4C 2C */	addi r0, r3, sTexCoordScaleTable__6J3DSys@l /* 0x80434C2C@l */
 /* 8031B084  7D 00 22 14 */	add r8, r0, r4
 /* 8031B088  88 1E 00 10 */	lbz r0, 0x10(r30)
 /* 8031B08C  54 03 07 7E */	clrlwi r3, r0, 0x1d
@@ -214,8 +214,8 @@ lbl_8031B15C:
 /* 8031B2E0  42 00 FE 7C */	bdnz lbl_8031B15C
 lbl_8031B2E4:
 /* 8031B2E4  38 A0 00 00 */	li r5, 0
-/* 8031B2E8  3C 60 80 43 */	lis r3, j3dTevSwapTableTable@ha
-/* 8031B2EC  38 63 6A 60 */	addi r3, r3, j3dTevSwapTableTable@l
+/* 8031B2E8  3C 60 80 43 */	lis r3, j3dTevSwapTableTable@ha /* 0x80436A60@ha */
+/* 8031B2EC  38 63 6A 60 */	addi r3, r3, j3dTevSwapTableTable@l /* 0x80436A60@l */
 /* 8031B2F0  38 00 00 04 */	li r0, 4
 /* 8031B2F4  7C 09 03 A6 */	mtctr r0
 lbl_8031B2F8:

@@ -39,7 +39,7 @@ lbl_80470C6C:
 /* 80470C70  4B FF EA 4D */	bl getArcName__12daObjCarry_cFv
 /* 80470C74  7C 64 1B 78 */	mr r4, r3
 /* 80470C78  38 7E 05 68 */	addi r3, r30, 0x568
-/* 80470C7C  4B BB C2 40 */	b dComIfG_resLoad__FP30request_of_phase_process_classPCc
+/* 80470C7C  4B BB C2 41 */	bl dComIfG_resLoad__FP30request_of_phase_process_classPCc
 /* 80470C80  7C 7F 1B 78 */	mr r31, r3
 /* 80470C84  2C 1F 00 04 */	cmpwi r31, 4
 /* 80470C88  40 82 00 4C */	bne lbl_80470CD4
@@ -47,10 +47,10 @@ lbl_80470C6C:
 /* 80470C90  4B FF EA 15 */	bl data__12daObjCarry_cFv
 /* 80470C94  7C 65 1B 78 */	mr r5, r3
 /* 80470C98  7F C3 F3 78 */	mr r3, r30
-/* 80470C9C  3C 80 80 47 */	lis r4, CheckCreateHeap__FP10fopAc_ac_c@ha
-/* 80470CA0  38 84 F6 84 */	addi r4, r4, CheckCreateHeap__FP10fopAc_ac_c@l
+/* 80470C9C  3C 80 80 47 */	lis r4, CheckCreateHeap__FP10fopAc_ac_c@ha /* 0x8046F684@ha */
+/* 80470CA0  38 84 F6 84 */	addi r4, r4, CheckCreateHeap__FP10fopAc_ac_c@l /* 0x8046F684@l */
 /* 80470CA4  80 A5 00 90 */	lwz r5, 0x90(r5)
-/* 80470CA8  4B BA 98 08 */	b fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
+/* 80470CA8  4B BA 98 09 */	bl fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
 /* 80470CAC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80470CB0  40 82 00 0C */	bne lbl_80470CBC
 /* 80470CB4  38 60 00 05 */	li r3, 5

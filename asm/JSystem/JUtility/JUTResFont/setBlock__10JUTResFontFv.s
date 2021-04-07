@@ -43,8 +43,8 @@ lbl_802DF3D8:
 /* 802DF3DC  80 7C 00 4C */	lwz r3, 0x4c(r28)
 /* 802DF3E0  A0 03 00 08 */	lhz r0, 8(r3)
 /* 802DF3E4  54 04 10 3A */	slwi r4, r0, 2
-/* 802DF3E8  3C 60 80 3A */	lis r3, saoAboutEncoding___10JUTResFont@ha
-/* 802DF3EC  38 03 D3 90 */	addi r0, r3, saoAboutEncoding___10JUTResFont@l
+/* 802DF3E8  3C 60 80 3A */	lis r3, saoAboutEncoding___10JUTResFont@ha /* 0x8039D390@ha */
+/* 802DF3EC  38 03 D3 90 */	addi r0, r3, saoAboutEncoding___10JUTResFont@l /* 0x8039D390@l */
 /* 802DF3F0  7C 00 22 14 */	add r0, r0, r4
 /* 802DF3F4  90 1C 00 6C */	stw r0, 0x6c(r28)
 /* 802DF3F8  48 00 00 60 */	b lbl_802DF458
@@ -72,8 +72,8 @@ lbl_802DF440:
 /* 802DF440  3B 39 00 04 */	addi r25, r25, 4
 /* 802DF444  48 00 00 14 */	b lbl_802DF458
 lbl_802DF448:
-/* 802DF448  3C 60 80 3A */	lis r3, JUTResFont__stringBase0@ha
-/* 802DF44C  38 63 D4 5C */	addi r3, r3, JUTResFont__stringBase0@l
+/* 802DF448  3C 60 80 3A */	lis r3, JUTResFont__stringBase0@ha /* 0x8039D45C@ha */
+/* 802DF44C  38 63 D4 5C */	addi r3, r3, JUTResFont__stringBase0@l /* 0x8039D45C@l */
 /* 802DF450  38 63 00 20 */	addi r3, r3, 0x20
 /* 802DF454  48 00 91 F5 */	bl JUTReportConsole
 lbl_802DF458:

@@ -9,12 +9,12 @@ lbl_8049EB64:
 /* 8049EB80  DB A1 00 40 */	stfd f29, 0x40(r1)
 /* 8049EB84  F3 A1 00 48 */	psq_st f29, 72(r1), 0, 0 /* qr0 */
 /* 8049EB88  39 61 00 40 */	addi r11, r1, 0x40
-/* 8049EB8C  4B EC 36 38 */	b _savegpr_23
+/* 8049EB8C  4B EC 36 39 */	bl _savegpr_23
 /* 8049EB90  7C 7D 1B 78 */	mr r29, r3
 /* 8049EB94  7C 97 23 78 */	mr r23, r4
 /* 8049EB98  7C B8 2B 78 */	mr r24, r5
-/* 8049EB9C  3C 60 80 4A */	lis r3, lit_4078@ha
-/* 8049EBA0  3B 63 28 50 */	addi r27, r3, lit_4078@l
+/* 8049EB9C  3C 60 80 4A */	lis r3, lit_4078@ha /* 0x804A2850@ha */
+/* 8049EBA0  3B 63 28 50 */	addi r27, r3, lit_4078@l /* 0x804A2850@l */
 /* 8049EBA4  3B 3D 00 98 */	addi r25, r29, 0x98
 /* 8049EBA8  3B FD 00 B0 */	addi r31, r29, 0xb0
 /* 8049EBAC  3B DD 00 62 */	addi r30, r29, 0x62
@@ -64,13 +64,13 @@ lbl_8049EC40:
 /* 8049EC50  7F C3 F3 78 */	mr r3, r30
 /* 8049EC54  38 80 00 FF */	li r4, 0xff
 /* 8049EC58  38 A0 00 1E */	li r5, 0x1e
-/* 8049EC5C  4B DD 1A 00 */	b cLib_chaseUC__FPUcUcUc
+/* 8049EC5C  4B DD 1A 01 */	bl cLib_chaseUC__FPUcUcUc
 /* 8049EC60  48 00 00 30 */	b lbl_8049EC90
 lbl_8049EC64:
 /* 8049EC64  7F C3 F3 78 */	mr r3, r30
 /* 8049EC68  38 80 00 00 */	li r4, 0
 /* 8049EC6C  38 A0 00 1E */	li r5, 0x1e
-/* 8049EC70  4B DD 19 EC */	b cLib_chaseUC__FPUcUcUc
+/* 8049EC70  4B DD 19 ED */	bl cLib_chaseUC__FPUcUcUc
 /* 8049EC74  88 1E 00 00 */	lbz r0, 0(r30)
 /* 8049EC78  28 00 00 00 */	cmplwi r0, 0
 /* 8049EC7C  40 82 00 14 */	bne lbl_8049EC90
@@ -134,13 +134,13 @@ lbl_8049ED48:
 /* 8049ED54  7F C3 F3 78 */	mr r3, r30
 /* 8049ED58  38 80 00 80 */	li r4, 0x80
 /* 8049ED5C  38 A0 00 1E */	li r5, 0x1e
-/* 8049ED60  4B DD 18 FC */	b cLib_chaseUC__FPUcUcUc
+/* 8049ED60  4B DD 18 FD */	bl cLib_chaseUC__FPUcUcUc
 /* 8049ED64  48 00 00 14 */	b lbl_8049ED78
 lbl_8049ED68:
 /* 8049ED68  7F C3 F3 78 */	mr r3, r30
 /* 8049ED6C  38 80 00 00 */	li r4, 0
 /* 8049ED70  38 A0 00 1E */	li r5, 0x1e
-/* 8049ED74  4B DD 18 E8 */	b cLib_chaseUC__FPUcUcUc
+/* 8049ED74  4B DD 18 E9 */	bl cLib_chaseUC__FPUcUcUc
 lbl_8049ED78:
 /* 8049ED78  E3 E1 00 68 */	psq_l f31, 104(r1), 0, 0 /* qr0 */
 /* 8049ED7C  CB E1 00 60 */	lfd f31, 0x60(r1)
@@ -149,7 +149,7 @@ lbl_8049ED78:
 /* 8049ED88  E3 A1 00 48 */	psq_l f29, 72(r1), 0, 0 /* qr0 */
 /* 8049ED8C  CB A1 00 40 */	lfd f29, 0x40(r1)
 /* 8049ED90  39 61 00 40 */	addi r11, r1, 0x40
-/* 8049ED94  4B EC 34 7C */	b _restgpr_23
+/* 8049ED94  4B EC 34 7D */	bl _restgpr_23
 /* 8049ED98  80 01 00 74 */	lwz r0, 0x74(r1)
 /* 8049ED9C  7C 08 03 A6 */	mtlr r0
 /* 8049EDA0  38 21 00 70 */	addi r1, r1, 0x70

@@ -31,7 +31,7 @@ lbl_80BB615C:
 /* 80BB6164  39 01 00 10 */	addi r8, r1, 0x10
 /* 80BB6168  39 3F 04 EC */	addi r9, r31, 0x4ec
 /* 80BB616C  39 40 FF FF */	li r10, -1
-/* 80BB6170  4B 46 3D 80 */	b fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
+/* 80BB6170  4B 46 3D 81 */	bl fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
 /* 80BB6174  90 7F 05 78 */	stw r3, 0x578(r31)
 /* 80BB6178  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 80BB617C  80 01 00 24 */	lwz r0, 0x24(r1)

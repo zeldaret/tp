@@ -1,6 +1,6 @@
 lbl_8036F818:
-/* 8036F818  3C 40 80 3D */	lis r2, gTRKExceptionStatus@h
-/* 8036F81C  60 42 32 44 */	ori r2, r2, gTRKExceptionStatus@l
+/* 8036F818  3C 40 80 3D */	lis r2, gTRKExceptionStatus@h /* 0x803D3244@h */
+/* 8036F81C  60 42 32 44 */	ori r2, r2, gTRKExceptionStatus@l /* 0x803D3244@l */
 /* 8036F820  B0 62 00 08 */	sth r3, 8(r2)
 /* 8036F824  7C 7A 02 A6 */	mfspr r3, 0x1a
 /* 8036F828  90 62 00 00 */	stw r3, 0(r2)
@@ -31,8 +31,8 @@ lbl_8036F884:
 /* 8036F888  38 63 00 04 */	addi r3, r3, 4
 /* 8036F88C  7C 7A 03 A6 */	mtspr 0x1a, r3
 lbl_8036F890:
-/* 8036F890  3C 40 80 3D */	lis r2, gTRKExceptionStatus@h
-/* 8036F894  60 42 32 44 */	ori r2, r2, gTRKExceptionStatus@l
+/* 8036F890  3C 40 80 3D */	lis r2, gTRKExceptionStatus@h /* 0x803D3244@h */
+/* 8036F894  60 42 32 44 */	ori r2, r2, gTRKExceptionStatus@l /* 0x803D3244@l */
 /* 8036F898  38 60 00 01 */	li r3, 1
 /* 8036F89C  98 62 00 0D */	stb r3, 0xd(r2)
 /* 8036F8A0  7C 73 42 A6 */	mfspr r3, 0x113

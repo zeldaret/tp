@@ -26,8 +26,8 @@ lbl_8003FD08:
 /* 8003FD68  D0 06 00 0C */	stfs f0, 0xc(r6)
 /* 8003FD6C  90 86 00 2C */	stw r4, 0x2c(r6)
 /* 8003FD70  98 A6 00 30 */	stb r5, 0x30(r6)
-/* 8003FD74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8003FD78  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8003FD74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8003FD78  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8003FD7C  38 63 5F 64 */	addi r3, r3, 0x5f64
 /* 8003FD80  38 83 00 64 */	addi r4, r3, 0x64
 /* 8003FD84  38 A3 00 68 */	addi r5, r3, 0x68

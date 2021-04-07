@@ -3,17 +3,15 @@
 #
 
 M181_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_cr_egg.plf
+M181_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_cr_egg.lcf
+M181_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_cr_egg.map
 
 M181_CPP_FILES := \
-	rel/d/a/e/d_a_e_cr_egg/executor.cpp \
-	rel/d/a/e/d_a_e_cr_egg/unknown_translation_unit_ctors.cpp \
-	rel/d/a/e/d_a_e_cr_egg/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/e/d_a_e_cr_egg/d_a_e_cr_egg.cpp \
 
 M181_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_cr_egg/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_cr_egg/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_cr_egg/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_cr_egg/d_a_e_cr_egg.o \
 
 M181_LIBS := \
@@ -29,14 +27,21 @@ M181_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M181_LDSCRIPT) \
+	-unused -map $(M181_MAP) \
+	-w off \
 
 $(M181_TARGET): $(M181_O_FILES) $(M181_LIBS)
+	@echo [181] creating $(M181_TARGET)
 	@echo $(M181_LIBS) $(M181_O_FILES) > build/M181_ofiles
-	$(LD) -partial $(M181_LDFLAGS) -o $(M181_TARGET) @build/M181_ofiles
+	@python3 tools/lcf.py rel 181 --output $(M181_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M181_LDFLAGS) -o $(M181_TARGET) @build/M181_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_cr_egg/%.o: rel/d/a/e/d_a_e_cr_egg/%.cpp
+	@echo [181] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M181_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M181_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

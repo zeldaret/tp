@@ -3,17 +3,15 @@
 #
 
 M345_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_passer.plf
+M345_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_passer.lcf
+M345_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_passer.map
 
 M345_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_passer/executor.cpp \
-	rel/d/a/npc/d_a_npc_passer/unknown_translation_unit_ctors.cpp \
-	rel/d/a/npc/d_a_npc_passer/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/npc/d_a_npc_passer/d_a_npc_passer.cpp \
 
 M345_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_passer/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_passer/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_passer/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_passer/d_a_npc_passer.o \
 
 M345_LIBS := \
@@ -29,14 +27,21 @@ M345_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M345_LDSCRIPT) \
+	-unused -map $(M345_MAP) \
+	-w off \
 
 $(M345_TARGET): $(M345_O_FILES) $(M345_LIBS)
+	@echo [345] creating $(M345_TARGET)
 	@echo $(M345_LIBS) $(M345_O_FILES) > build/M345_ofiles
-	$(LD) -partial $(M345_LDFLAGS) -o $(M345_TARGET) @build/M345_ofiles
+	@python3 tools/lcf.py rel 345 --output $(M345_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M345_LDFLAGS) -o $(M345_TARGET) @build/M345_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_passer/%.o: rel/d/a/npc/d_a_npc_passer/%.cpp
+	@echo [345] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M345_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M345_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

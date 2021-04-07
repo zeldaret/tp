@@ -21,7 +21,7 @@ extern "C" void DCZeroRange();
 extern "C" void ICInvalidateRange();
 extern "C" void ICFlashInvalidate();
 extern "C" static void ICEnable();
-extern "C" static void __LCEnable();
+extern "C" void __LCEnable();
 extern "C" void LCEnable();
 extern "C" void LCDisable();
 extern "C" static void LCStoreBlocks();
@@ -54,168 +54,168 @@ extern "C" void DBPrintf();
 // Declarations:
 //
 
-/* 8033B56C-8033B580 0014+00 s=1 e=0 z=0  None .text      DCEnable */
+/* 8033B56C-8033B580 335EAC 0014+00 1/1 0/0 0/0 .text            DCEnable */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void DCEnable() {
+static asm void DCEnable() {
     nofralloc
 #include "asm/dolphin/os/OSCache/DCEnable.s"
 }
 #pragma pop
 
-/* 8033B580-8033B5AC 002C+00 s=0 e=30 z=1  None .text      DCInvalidateRange */
+/* 8033B580-8033B5AC 335EC0 002C+00 0/0 30/30 1/1 .text            DCInvalidateRange */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DCInvalidateRange() {
+asm void DCInvalidateRange() {
     nofralloc
 #include "asm/dolphin/os/OSCache/DCInvalidateRange.s"
 }
 #pragma pop
 
-/* 8033B5AC-8033B5DC 0030+00 s=0 e=11 z=0  None .text      DCFlushRange */
+/* 8033B5AC-8033B5DC 335EEC 0030+00 0/0 11/11 0/0 .text            DCFlushRange */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DCFlushRange() {
+asm void DCFlushRange() {
     nofralloc
 #include "asm/dolphin/os/OSCache/DCFlushRange.s"
 }
 #pragma pop
 
-/* 8033B5DC-8033B60C 0030+00 s=0 e=54 z=1  None .text      DCStoreRange */
+/* 8033B5DC-8033B60C 335F1C 0030+00 0/0 54/54 1/1 .text            DCStoreRange */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DCStoreRange() {
+asm void DCStoreRange() {
     nofralloc
 #include "asm/dolphin/os/OSCache/DCStoreRange.s"
 }
 #pragma pop
 
-/* 8033B60C-8033B638 002C+00 s=0 e=2 z=0  None .text      DCFlushRangeNoSync */
+/* 8033B60C-8033B638 335F4C 002C+00 0/0 2/2 0/0 .text            DCFlushRangeNoSync */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DCFlushRangeNoSync() {
+asm void DCFlushRangeNoSync() {
     nofralloc
 #include "asm/dolphin/os/OSCache/DCFlushRangeNoSync.s"
 }
 #pragma pop
 
-/* 8033B638-8033B664 002C+00 s=0 e=13 z=3  None .text      DCStoreRangeNoSync */
+/* 8033B638-8033B664 335F78 002C+00 0/0 13/13 3/3 .text            DCStoreRangeNoSync */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DCStoreRangeNoSync() {
+asm void DCStoreRangeNoSync() {
     nofralloc
 #include "asm/dolphin/os/OSCache/DCStoreRangeNoSync.s"
 }
 #pragma pop
 
-/* 8033B664-8033B690 002C+00 s=0 e=1 z=1  None .text      DCZeroRange */
+/* 8033B664-8033B690 335FA4 002C+00 0/0 1/1 1/1 .text            DCZeroRange */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DCZeroRange() {
+asm void DCZeroRange() {
     nofralloc
 #include "asm/dolphin/os/OSCache/DCZeroRange.s"
 }
 #pragma pop
 
-/* 8033B690-8033B6C4 0034+00 s=0 e=6 z=0  None .text      ICInvalidateRange */
+/* 8033B690-8033B6C4 335FD0 0034+00 0/0 6/6 0/0 .text            ICInvalidateRange */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void ICInvalidateRange() {
+asm void ICInvalidateRange() {
     nofralloc
 #include "asm/dolphin/os/OSCache/ICInvalidateRange.s"
 }
 #pragma pop
 
-/* 8033B6C4-8033B6D4 0010+00 s=0 e=5 z=0  None .text      ICFlashInvalidate */
+/* 8033B6C4-8033B6D4 336004 0010+00 0/0 5/5 0/0 .text            ICFlashInvalidate */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void ICFlashInvalidate() {
+asm void ICFlashInvalidate() {
     nofralloc
 #include "asm/dolphin/os/OSCache/ICFlashInvalidate.s"
 }
 #pragma pop
 
-/* 8033B6D4-8033B6E8 0014+00 s=1 e=0 z=0  None .text      ICEnable */
+/* 8033B6D4-8033B6E8 336014 0014+00 1/1 0/0 0/0 .text            ICEnable */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void ICEnable() {
+static asm void ICEnable() {
     nofralloc
 #include "asm/dolphin/os/OSCache/ICEnable.s"
 }
 #pragma pop
 
-/* 8033B6E8-8033B7B4 00CC+00 s=1 e=0 z=0  None .text      __LCEnable */
+/* 8033B6E8-8033B7B4 336028 00CC+00 1/1 0/0 0/0 .text            __LCEnable */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void __LCEnable() {
+asm void __LCEnable() {
     nofralloc
 #include "asm/dolphin/os/OSCache/__LCEnable.s"
 }
 #pragma pop
 
-/* 8033B7B4-8033B7EC 0038+00 s=0 e=0 z=1  None .text      LCEnable */
+/* 8033B7B4-8033B7EC 3360F4 0038+00 0/0 0/0 1/1 .text            LCEnable */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void LCEnable() {
+asm void LCEnable() {
     nofralloc
 #include "asm/dolphin/os/OSCache/LCEnable.s"
 }
 #pragma pop
 
-/* 8033B7EC-8033B814 0028+00 s=0 e=2 z=1  None .text      LCDisable */
+/* 8033B7EC-8033B814 33612C 0028+00 0/0 2/2 1/1 .text            LCDisable */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void LCDisable() {
+asm void LCDisable() {
     nofralloc
 #include "asm/dolphin/os/OSCache/LCDisable.s"
 }
 #pragma pop
 
-/* 8033B814-8033B838 0024+00 s=1 e=0 z=0  None .text      LCStoreBlocks */
+/* 8033B814-8033B838 336154 0024+00 1/1 0/0 0/0 .text            LCStoreBlocks */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void LCStoreBlocks() {
+static asm void LCStoreBlocks() {
     nofralloc
 #include "asm/dolphin/os/OSCache/LCStoreBlocks.s"
 }
 #pragma pop
 
-/* 8033B838-8033B8E4 00AC+00 s=0 e=0 z=3  None .text      LCStoreData */
+/* 8033B838-8033B8E4 336178 00AC+00 0/0 0/0 3/3 .text            LCStoreData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void LCStoreData() {
+asm void LCStoreData() {
     nofralloc
 #include "asm/dolphin/os/OSCache/LCStoreData.s"
 }
 #pragma pop
 
-/* 8033B8E4-8033B8F8 0014+00 s=0 e=0 z=3  None .text      LCQueueWait */
+/* 8033B8E4-8033B8F8 336224 0014+00 0/0 0/0 3/3 .text            LCQueueWait */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void LCQueueWait() {
+asm void LCQueueWait() {
     nofralloc
 #include "asm/dolphin/os/OSCache/LCQueueWait.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CF510-803CF53C 0029+03 s=3 e=0 z=0  None .data      @63 */
+/* 803CF510-803CF53C 02C630 0029+03 3/3 0/0 0/0 .data            @63 */
 SECTION_DATA static u8 lit_63[41 + 3 /* padding */] = {
     0x3E,
     0x3E,
@@ -264,24 +264,29 @@ SECTION_DATA static u8 lit_63[41 + 3 /* padding */] = {
     0x00,
 };
 
-/* 8033B8F8-8033B990 0098+00 s=1 e=0 z=0  None .text      L2GlobalInvalidate */
+/* 8033B8F8-8033B990 336238 0098+00 1/1 0/0 0/0 .text            L2GlobalInvalidate */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void L2GlobalInvalidate() {
+static asm void L2GlobalInvalidate() {
     nofralloc
 #include "asm/dolphin/os/OSCache/L2GlobalInvalidate.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CF53C-803CF554 0018+00 s=1 e=0 z=0  None .data      @84 */
+/* 803CF53C-803CF554 02C65C 0018+00 0/1 0/0 0/0 .data            @84 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 lit_84[24] = {
     0x4D, 0x61, 0x63, 0x68, 0x69, 0x6E, 0x65, 0x20, 0x63, 0x68, 0x65, 0x63,
     0x6B, 0x20, 0x72, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x64, 0x0A, 0x00,
 };
+#pragma pop
 
-/* 803CF554-803CF570 001B+01 s=1 e=0 z=0  None .data      @85 */
+/* 803CF554-803CF570 02C674 001B+01 0/1 0/0 0/0 .data            @85 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 lit_85[27 + 1 /* padding */] = {
     0x48,
     0x49,
@@ -313,23 +318,32 @@ SECTION_DATA static u8 lit_85[27 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
+#pragma pop
 
-/* 803CF570-803CF5A0 0030+00 s=1 e=0 z=0  None .data      @86 */
+/* 803CF570-803CF5A0 02C690 0030+00 0/1 0/0 0/0 .data            @86 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 lit_86[48] = {
     0x4D, 0x61, 0x63, 0x68, 0x69, 0x6E, 0x65, 0x20, 0x63, 0x68, 0x65, 0x63, 0x6B, 0x20, 0x77, 0x61,
     0x73, 0x20, 0x6E, 0x6F, 0x74, 0x20, 0x44, 0x4D, 0x41, 0x2F, 0x6C, 0x6F, 0x63, 0x6B, 0x65, 0x64,
     0x20, 0x63, 0x61, 0x63, 0x68, 0x65, 0x20, 0x72, 0x65, 0x6C, 0x61, 0x74, 0x65, 0x64, 0x0A, 0x00,
 };
+#pragma pop
 
-/* 803CF5A0-803CF5DC 003C+00 s=1 e=0 z=0  None .data      @87 */
+/* 803CF5A0-803CF5DC 02C6C0 003C+00 0/1 0/0 0/0 .data            @87 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 lit_87[60] = {
     0x44, 0x4D, 0x41, 0x45, 0x72, 0x72, 0x6F, 0x72, 0x48, 0x61, 0x6E, 0x64, 0x6C, 0x65, 0x72,
     0x28, 0x29, 0x3A, 0x20, 0x41, 0x6E, 0x20, 0x65, 0x72, 0x72, 0x6F, 0x72, 0x20, 0x6F, 0x63,
     0x63, 0x75, 0x72, 0x72, 0x65, 0x64, 0x20, 0x77, 0x68, 0x69, 0x6C, 0x65, 0x20, 0x70, 0x72,
     0x6F, 0x63, 0x65, 0x73, 0x73, 0x69, 0x6E, 0x67, 0x20, 0x44, 0x4D, 0x41, 0x2E, 0x0A, 0x00,
 };
+#pragma pop
 
-/* 803CF5DC-803CF614 0037+01 s=1 e=0 z=0  None .data      @88 */
+/* 803CF5DC-803CF614 02C6FC 0037+01 0/1 0/0 0/0 .data            @88 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 lit_88[55 + 1 /* padding */] = {
     0x54,
     0x68,
@@ -389,8 +403,11 @@ SECTION_DATA static u8 lit_88[55 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
+#pragma pop
 
-/* 803CF614-803CF654 003F+01 s=1 e=0 z=0  None .data      @89 */
+/* 803CF614-803CF654 02C734 003F+01 0/1 0/0 0/0 .data            @89 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 lit_89[63 + 1 /* padding */] = {
     0x09,
     0x2D,
@@ -458,8 +475,11 @@ SECTION_DATA static u8 lit_89[63 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
+#pragma pop
 
-/* 803CF654-803CF680 0029+03 s=1 e=0 z=0  None .data      @90 */
+/* 803CF654-803CF680 02C774 0029+03 0/1 0/0 0/0 .data            @90 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 lit_90[41 + 3 /* padding */] = {
     0x09,
     0x2D,
@@ -507,8 +527,11 @@ SECTION_DATA static u8 lit_90[41 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 803CF680-803CF6A0 001D+03 s=1 e=0 z=0  None .data      @91 */
+/* 803CF680-803CF6A0 02C7A0 001D+03 0/1 0/0 0/0 .data            @91 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 lit_91[29 + 3 /* padding */] = {
     0x09,
     0x2D,
@@ -544,8 +567,11 @@ SECTION_DATA static u8 lit_91[29 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 803CF6A0-803CF6BC 0019+03 s=1 e=0 z=0  None .data      @92 */
+/* 803CF6A0-803CF6BC 02C7C0 0019+03 0/1 0/0 0/0 .data            @92 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 lit_92[25 + 3 /* padding */] = {
     0x09,
     0x2D,
@@ -577,19 +603,22 @@ SECTION_DATA static u8 lit_92[25 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 8033B990-8033BAF0 0160+00 s=1 e=0 z=0  None .text      DMAErrorHandler */
+/* 8033B990-8033BAF0 3362D0 0160+00 1/1 0/0 0/0 .text            DMAErrorHandler */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void DMAErrorHandler() {
+static asm void DMAErrorHandler() {
     nofralloc
 #include "asm/dolphin/os/OSCache/DMAErrorHandler.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CF6BC-803CF6D8 0019+03 s=1 e=0 z=0  None .data      @104 */
+/* 803CF6BC-803CF6D8 02C7DC 0019+03 0/1 0/0 0/0 .data            @104 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 lit_104[25 + 3 /* padding */] = {
     0x4C,
     0x31,
@@ -621,8 +650,11 @@ SECTION_DATA static u8 lit_104[25 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 803CF6D8-803CF6F4 0019+03 s=1 e=0 z=0  None .data      @105 */
+/* 803CF6D8-803CF6F4 02C7F8 0019+03 0/1 0/0 0/0 .data            @105 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 lit_105[25 + 3 /* padding */] = {
     0x4C,
     0x31,
@@ -654,8 +686,11 @@ SECTION_DATA static u8 lit_105[25 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 803CF6F4-803CF70C 0016+02 s=1 e=0 z=0  None .data      @106 */
+/* 803CF6F4-803CF70C 02C814 0016+02 0/1 0/0 0/0 .data            @106 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 lit_106[22 + 2 /* padding */] = {
     0x4C,
     0x32,
@@ -683,8 +718,11 @@ SECTION_DATA static u8 lit_106[22 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 803CF70C-803CF740 002E+06 s=1 e=0 z=0  None .data      @107 */
+/* 803CF70C-803CF740 02C82C 002E+06 0/1 0/0 0/0 .data            @107 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 lit_107[46 + 6 /* padding */] = {
     0x4C,
     0x6F,
@@ -740,12 +778,13 @@ SECTION_DATA static u8 lit_107[46 + 6 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 8033BAF0-8033BBE4 00F4+00 s=0 e=2 z=0  None .text      __OSCacheInit */
+/* 8033BAF0-8033BBE4 336430 00F4+00 0/0 2/2 0/0 .text            __OSCacheInit */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __OSCacheInit() {
+asm void __OSCacheInit() {
     nofralloc
 #include "asm/dolphin/os/OSCache/__OSCacheInit.s"
 }

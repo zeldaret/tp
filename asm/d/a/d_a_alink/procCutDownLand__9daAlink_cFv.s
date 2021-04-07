@@ -41,8 +41,8 @@ lbl_800D5B60:
 /* 800D5B6C  80 1F 06 14 */	lwz r0, 0x614(r31)
 /* 800D5B70  28 00 00 51 */	cmplwi r0, 0x51
 /* 800D5B74  40 82 00 1C */	bne lbl_800D5B90
-/* 800D5B78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D5B7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D5B78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D5B7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D5B80  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 800D5B84  80 9F 31 84 */	lwz r4, 0x3184(r31)
 /* 800D5B88  4B F7 25 F5 */	bl cutEnd__16dEvent_manager_cFi
@@ -55,8 +55,8 @@ lbl_800D5B90:
 lbl_800D5BA0:
 /* 800D5BA0  7F E3 FB 78 */	mr r3, r31
 /* 800D5BA4  38 80 00 7B */	li r4, 0x7b
-/* 800D5BA8  3C A0 80 39 */	lis r5, m__21daAlinkHIO_cutDown_c0@ha
-/* 800D5BAC  38 A5 DD 44 */	addi r5, r5, m__21daAlinkHIO_cutDown_c0@l
+/* 800D5BA8  3C A0 80 39 */	lis r5, m__21daAlinkHIO_cutDown_c0@ha /* 0x8038DD44@ha */
+/* 800D5BAC  38 A5 DD 44 */	addi r5, r5, m__21daAlinkHIO_cutDown_c0@l /* 0x8038DD44@l */
 /* 800D5BB0  38 A5 00 3C */	addi r5, r5, 0x3c
 /* 800D5BB4  4B FD 75 41 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800D5BB8  38 00 00 01 */	li r0, 1
@@ -98,8 +98,8 @@ lbl_800D5C18:
 /* 800D5C38  4B FE 94 B5 */	bl seStartSwordCut__9daAlink_cFUl
 lbl_800D5C3C:
 /* 800D5C3C  C0 3E 00 10 */	lfs f1, 0x10(r30)
-/* 800D5C40  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutDown_c0@ha
-/* 800D5C44  38 63 DD 44 */	addi r3, r3, m__21daAlinkHIO_cutDown_c0@l
+/* 800D5C40  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutDown_c0@ha /* 0x8038DD44@ha */
+/* 800D5C44  38 63 DD 44 */	addi r3, r3, m__21daAlinkHIO_cutDown_c0@l /* 0x8038DD44@l */
 /* 800D5C48  C0 03 00 4C */	lfs f0, 0x4c(r3)
 /* 800D5C4C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800D5C50  40 81 00 1C */	ble lbl_800D5C6C

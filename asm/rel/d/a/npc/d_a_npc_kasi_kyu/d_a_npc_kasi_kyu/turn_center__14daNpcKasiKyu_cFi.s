@@ -18,15 +18,15 @@ lbl_80A243A4:
 /* 80A243A8  4B FF EF 85 */	bl setLookMode__14daNpcKasiKyu_cFi
 /* 80A243AC  7F E3 FB 78 */	mr r3, r31
 /* 80A243B0  38 80 00 04 */	li r4, 4
-/* 80A243B4  3C A0 80 A2 */	lis r5, lit_4249@ha
-/* 80A243B8  C0 25 59 44 */	lfs f1, lit_4249@l(r5)
+/* 80A243B4  3C A0 80 A2 */	lis r5, lit_4249@ha /* 0x80A25944@ha */
+/* 80A243B8  C0 25 59 44 */	lfs f1, lit_4249@l(r5)  /* 0x80A25944@l */
 /* 80A243BC  38 A0 00 00 */	li r5, 0
 /* 80A243C0  81 9F 0B 44 */	lwz r12, 0xb44(r31)
 /* 80A243C4  81 8C 00 3C */	lwz r12, 0x3c(r12)
 /* 80A243C8  7D 89 03 A6 */	mtctr r12
 /* 80A243CC  4E 80 04 21 */	bctrl 
-/* 80A243D0  3C 60 80 A2 */	lis r3, lit_4449@ha
-/* 80A243D4  C0 03 59 5C */	lfs f0, lit_4449@l(r3)
+/* 80A243D0  3C 60 80 A2 */	lis r3, lit_4449@ha /* 0x80A2595C@ha */
+/* 80A243D4  C0 03 59 5C */	lfs f0, lit_4449@l(r3)  /* 0x80A2595C@l */
 /* 80A243D8  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 80A243DC  38 00 00 01 */	li r0, 1
 /* 80A243E0  B0 1F 14 04 */	sth r0, 0x1404(r31)
@@ -37,8 +37,8 @@ lbl_80A243E8:
 /* 80A243F0  48 00 09 21 */	bl _turn_pos__14daNpcKasiKyu_cFRC4cXyzs
 /* 80A243F4  2C 03 00 00 */	cmpwi r3, 0
 /* 80A243F8  41 82 00 30 */	beq lbl_80A24428
-/* 80A243FC  3C 60 80 A2 */	lis r3, lit_5148@ha
-/* 80A24400  38 83 5E 94 */	addi r4, r3, lit_5148@l
+/* 80A243FC  3C 60 80 A2 */	lis r3, lit_5148@ha /* 0x80A25E94@ha */
+/* 80A24400  38 83 5E 94 */	addi r4, r3, lit_5148@l /* 0x80A25E94@l */
 /* 80A24404  80 64 00 00 */	lwz r3, 0(r4)
 /* 80A24408  80 04 00 04 */	lwz r0, 4(r4)
 /* 80A2440C  90 61 00 08 */	stw r3, 8(r1)

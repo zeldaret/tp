@@ -1,8 +1,8 @@
 lbl_80741EEC:
-/* 80741EEC  3C 80 80 75 */	lis r4, lit_3910@ha
-/* 80741EF0  38 A4 BF 3C */	addi r5, r4, lit_3910@l
-/* 80741EF4  3C 80 80 75 */	lis r4, __vt__12daE_PM_HIO_c@ha
-/* 80741EF8  38 04 C3 34 */	addi r0, r4, __vt__12daE_PM_HIO_c@l
+/* 80741EEC  3C 80 80 75 */	lis r4, lit_3910@ha /* 0x8074BF3C@ha */
+/* 80741EF0  38 A4 BF 3C */	addi r5, r4, lit_3910@l /* 0x8074BF3C@l */
+/* 80741EF4  3C 80 80 75 */	lis r4, __vt__12daE_PM_HIO_c@ha /* 0x8074C334@ha */
+/* 80741EF8  38 04 C3 34 */	addi r0, r4, __vt__12daE_PM_HIO_c@l /* 0x8074C334@l */
 /* 80741EFC  90 03 00 00 */	stw r0, 0(r3)
 /* 80741F00  38 00 FF FF */	li r0, -1
 /* 80741F04  98 03 00 04 */	stb r0, 4(r3)

@@ -7,31 +7,31 @@ lbl_80BF1804:
 /* 80BF1818  88 03 05 70 */	lbz r0, 0x570(r3)
 /* 80BF181C  28 00 00 01 */	cmplwi r0, 1
 /* 80BF1820  40 82 00 2C */	bne lbl_80BF184C
-/* 80BF1824  3C 60 80 BF */	lis r3, stringBase0@ha
-/* 80BF1828  38 63 1E 10 */	addi r3, r3, stringBase0@l
+/* 80BF1824  3C 60 80 BF */	lis r3, d_a_obj_food__stringBase0@ha /* 0x80BF1E10@ha */
+/* 80BF1828  38 63 1E 10 */	addi r3, r3, d_a_obj_food__stringBase0@l /* 0x80BF1E10@l */
 /* 80BF182C  38 80 00 03 */	li r4, 3
-/* 80BF1830  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80BF1834  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80BF1830  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BF1834  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BF1838  3C A5 00 02 */	addis r5, r5, 2
 /* 80BF183C  38 C0 00 80 */	li r6, 0x80
 /* 80BF1840  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 80BF1844  4B 44 AA A8 */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 80BF1844  4B 44 AA A9 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80BF1848  48 00 00 28 */	b lbl_80BF1870
 lbl_80BF184C:
-/* 80BF184C  3C 60 80 BF */	lis r3, stringBase0@ha
-/* 80BF1850  38 63 1E 10 */	addi r3, r3, stringBase0@l
+/* 80BF184C  3C 60 80 BF */	lis r3, d_a_obj_food__stringBase0@ha /* 0x80BF1E10@ha */
+/* 80BF1850  38 63 1E 10 */	addi r3, r3, d_a_obj_food__stringBase0@l /* 0x80BF1E10@l */
 /* 80BF1854  38 80 00 04 */	li r4, 4
-/* 80BF1858  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80BF185C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80BF1858  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BF185C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BF1860  3C A5 00 02 */	addis r5, r5, 2
 /* 80BF1864  38 C0 00 80 */	li r6, 0x80
 /* 80BF1868  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 80BF186C  4B 44 AA 80 */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 80BF186C  4B 44 AA 81 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 lbl_80BF1870:
 /* 80BF1870  3C 80 00 08 */	lis r4, 8
 /* 80BF1874  3C A0 11 00 */	lis r5, 0x1100 /* 0x11000084@ha */
 /* 80BF1878  38 A5 00 84 */	addi r5, r5, 0x0084 /* 0x11000084@l */
-/* 80BF187C  4B 42 33 D8 */	b mDoExt_J3DModel__create__FP12J3DModelDataUlUl
+/* 80BF187C  4B 42 33 D9 */	bl mDoExt_J3DModel__create__FP12J3DModelDataUlUl
 /* 80BF1880  90 7F 05 74 */	stw r3, 0x574(r31)
 /* 80BF1884  80 1F 05 74 */	lwz r0, 0x574(r31)
 /* 80BF1888  28 00 00 00 */	cmplwi r0, 0

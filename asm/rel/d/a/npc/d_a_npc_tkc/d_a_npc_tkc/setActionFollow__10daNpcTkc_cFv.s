@@ -2,8 +2,8 @@ lbl_80B0D37C:
 /* 80B0D37C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80B0D380  7C 08 02 A6 */	mflr r0
 /* 80B0D384  90 01 00 24 */	stw r0, 0x24(r1)
-/* 80B0D388  3C 80 80 B1 */	lis r4, lit_4447@ha
-/* 80B0D38C  38 A4 0B 20 */	addi r5, r4, lit_4447@l
+/* 80B0D388  3C 80 80 B1 */	lis r4, lit_4447@ha /* 0x80B10B20@ha */
+/* 80B0D38C  38 A4 0B 20 */	addi r5, r4, lit_4447@l /* 0x80B10B20@l */
 /* 80B0D390  80 85 00 00 */	lwz r4, 0(r5)
 /* 80B0D394  80 05 00 04 */	lwz r0, 4(r5)
 /* 80B0D398  90 81 00 08 */	stw r4, 8(r1)

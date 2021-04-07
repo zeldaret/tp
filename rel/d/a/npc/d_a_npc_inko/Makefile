@@ -3,17 +3,15 @@
 #
 
 M320_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_inko.plf
+M320_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_inko.lcf
+M320_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_inko.map
 
 M320_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_inko/executor.cpp \
-	rel/d/a/npc/d_a_npc_inko/unknown_translation_unit_ctors.cpp \
-	rel/d/a/npc/d_a_npc_inko/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/npc/d_a_npc_inko/d_a_npc_inko.cpp \
 
 M320_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_inko/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_inko/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_inko/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_inko/d_a_npc_inko.o \
 
 M320_LIBS := \
@@ -29,14 +27,21 @@ M320_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M320_LDSCRIPT) \
+	-unused -map $(M320_MAP) \
+	-w off \
 
 $(M320_TARGET): $(M320_O_FILES) $(M320_LIBS)
+	@echo [320] creating $(M320_TARGET)
 	@echo $(M320_LIBS) $(M320_O_FILES) > build/M320_ofiles
-	$(LD) -partial $(M320_LDFLAGS) -o $(M320_TARGET) @build/M320_ofiles
+	@python3 tools/lcf.py rel 320 --output $(M320_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M320_LDFLAGS) -o $(M320_TARGET) @build/M320_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_inko/%.o: rel/d/a/npc/d_a_npc_inko/%.cpp
+	@echo [320] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M320_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M320_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

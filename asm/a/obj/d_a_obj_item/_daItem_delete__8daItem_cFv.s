@@ -20,8 +20,8 @@ lbl_8015BE18:
 lbl_8015BE2C:
 /* 8015BE2C  88 1F 09 2A */	lbz r0, 0x92a(r31)
 /* 8015BE30  54 00 20 36 */	slwi r0, r0, 4
-/* 8015BE34  3C 60 80 3B */	lis r3, field_item_res__10dItem_data@ha
-/* 8015BE38  38 63 DD 88 */	addi r3, r3, field_item_res__10dItem_data@l
+/* 8015BE34  3C 60 80 3B */	lis r3, field_item_res__10dItem_data@ha /* 0x803ADD88@ha */
+/* 8015BE38  38 63 DD 88 */	addi r3, r3, field_item_res__10dItem_data@l /* 0x803ADD88@l */
 /* 8015BE3C  7C 83 00 2E */	lwzx r4, r3, r0
 /* 8015BE40  7F E3 FB 78 */	mr r3, r31
 /* 8015BE44  4B FE 88 E1 */	bl DeleteBase__12daItemBase_cFPCc

@@ -27,9 +27,9 @@ lbl_80B81D18:
 /* 80B81D28  38 80 00 06 */	li r4, 6
 /* 80B81D2C  4B FF D9 B9 */	bl func_80B7F6E4
 /* 80B81D30  98 7F 15 92 */	stb r3, 0x1592(r31)
-/* 80B81D34  4B 6E 5B 38 */	b cM_rnd__Fv
-/* 80B81D38  3C 60 80 B9 */	lis r3, lit_6507@ha
-/* 80B81D3C  C0 03 CB A4 */	lfs f0, lit_6507@l(r3)
+/* 80B81D34  4B 6E 5B 39 */	bl cM_rnd__Fv
+/* 80B81D38  3C 60 80 B9 */	lis r3, lit_6507@ha /* 0x80B8CBA4@ha */
+/* 80B81D3C  C0 03 CB A4 */	lfs f0, lit_6507@l(r3)  /* 0x80B8CBA4@l */
 /* 80B81D40  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80B81D44  40 80 00 0C */	bge lbl_80B81D50
 /* 80B81D48  38 00 00 01 */	li r0, 1

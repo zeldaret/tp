@@ -24,8 +24,8 @@ lbl_8012F9C0:
 /* 8012FA18  EC 03 00 32 */	fmuls f0, f3, f0
 /* 8012FA1C  EC 04 00 28 */	fsubs f0, f4, f0
 /* 8012FA20  EC 25 00 32 */	fmuls f1, f5, f0
-/* 8012FA24  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha
-/* 8012FA28  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)
+/* 8012FA24  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha /* 0x8042561C@ha */
+/* 8012FA28  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)  /* 0x8042561C@l */
 /* 8012FA2C  EC 00 00 72 */	fmuls f0, f0, f1
 /* 8012FA30  D0 1E 35 88 */	stfs f0, 0x3588(r30)
 /* 8012FA34  C0 03 00 08 */	lfs f0, 8(r3)
@@ -59,8 +59,8 @@ lbl_8012FA98:
 /* 8012FA9C  41 82 00 60 */	beq lbl_8012FAFC
 /* 8012FAA0  C0 5E 04 D4 */	lfs f2, 0x4d4(r30)
 /* 8012FAA4  C0 3E 34 FC */	lfs f1, 0x34fc(r30)
-/* 8012FAA8  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlMove_c0@ha
-/* 8012FAAC  38 63 EE 28 */	addi r3, r3, m__20daAlinkHIO_wlMove_c0@l
+/* 8012FAA8  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlMove_c0@ha /* 0x8038EE28@ha */
+/* 8012FAAC  38 63 EE 28 */	addi r3, r3, m__20daAlinkHIO_wlMove_c0@l /* 0x8038EE28@l */
 /* 8012FAB0  C0 03 00 C0 */	lfs f0, 0xc0(r3)
 /* 8012FAB4  EC 01 00 28 */	fsubs f0, f1, f0
 /* 8012FAB8  FC 02 00 40 */	fcmpo cr0, f2, f0
@@ -76,8 +76,8 @@ lbl_8012FA98:
 /* 8012FAE0  B0 1E 2F E6 */	sth r0, 0x2fe6(r30)
 /* 8012FAE4  7F C3 F3 78 */	mr r3, r30
 /* 8012FAE8  38 80 00 02 */	li r4, 2
-/* 8012FAEC  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlMove_c0@ha
-/* 8012FAF0  38 A5 EE 28 */	addi r5, r5, m__20daAlinkHIO_wlMove_c0@l
+/* 8012FAEC  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlMove_c0@ha /* 0x8038EE28@ha */
+/* 8012FAF0  38 A5 EE 28 */	addi r5, r5, m__20daAlinkHIO_wlMove_c0@l /* 0x8038EE28@l */
 /* 8012FAF4  C0 25 00 C4 */	lfs f1, 0xc4(r5)
 /* 8012FAF8  4B FF F2 D9 */	bl procWolfFallInit__9daAlink_cFif
 lbl_8012FAFC:

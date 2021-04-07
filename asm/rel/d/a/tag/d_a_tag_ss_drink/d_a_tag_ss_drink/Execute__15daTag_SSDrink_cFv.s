@@ -8,13 +8,13 @@ lbl_80D62E64:
 /* 80D62E7C  2C 03 00 00 */	cmpwi r3, 0
 /* 80D62E80  41 82 00 30 */	beq lbl_80D62EB0
 /* 80D62E84  38 7F 05 C4 */	addi r3, r31, 0x5c4
-/* 80D62E88  4B 5F F1 90 */	b __ptmf_test
+/* 80D62E88  4B 5F F1 91 */	bl __ptmf_test
 /* 80D62E8C  2C 03 00 00 */	cmpwi r3, 0
 /* 80D62E90  41 82 00 18 */	beq lbl_80D62EA8
 /* 80D62E94  7F E3 FB 78 */	mr r3, r31
 /* 80D62E98  38 80 00 00 */	li r4, 0
 /* 80D62E9C  39 9F 05 C4 */	addi r12, r31, 0x5c4
-/* 80D62EA0  4B 5F F1 E4 */	b __ptmf_scall
+/* 80D62EA0  4B 5F F1 E5 */	bl __ptmf_scall
 /* 80D62EA4  60 00 00 00 */	nop 
 lbl_80D62EA8:
 /* 80D62EA8  7F E3 FB 78 */	mr r3, r31

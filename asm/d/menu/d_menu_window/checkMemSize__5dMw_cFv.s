@@ -16,8 +16,8 @@ lbl_801FD0D4:
 lbl_801FD10C:
 /* 801FD10C  2C 00 00 20 */	cmpwi r0, 0x20
 /* 801FD110  40 81 00 14 */	ble lbl_801FD124
-/* 801FD114  3C 60 80 39 */	lis r3, d_menu_d_menu_window__stringBase0@ha
-/* 801FD118  38 63 7E 38 */	addi r3, r3, d_menu_d_menu_window__stringBase0@l
+/* 801FD114  3C 60 80 39 */	lis r3, d_menu_d_menu_window__stringBase0@ha /* 0x80397E38@ha */
+/* 801FD118  38 63 7E 38 */	addi r3, r3, d_menu_d_menu_window__stringBase0@l /* 0x80397E38@l */
 /* 801FD11C  4C C6 31 82 */	crclr 6
 /* 801FD120  4B E0 9A ED */	bl OSReport_Error
 lbl_801FD124:

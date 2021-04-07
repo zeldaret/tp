@@ -5,8 +5,8 @@ lbl_80157CB4:
 /* 80157CC0  7C 60 1B 78 */	mr r0, r3
 /* 80157CC4  2C 04 00 00 */	cmpwi r4, 0
 /* 80157CC8  40 82 00 24 */	bne lbl_80157CEC
-/* 80157CCC  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80157CD0  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80157CCC  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80157CD0  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80157CD4  80 A3 00 38 */	lwz r5, 0x38(r3)
 /* 80157CD8  80 65 00 14 */	lwz r3, 0x14(r5)
 /* 80157CDC  28 03 00 00 */	cmplwi r3, 0

@@ -3,19 +3,20 @@
 #
 
 M530_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4SlideWall.plf
+M530_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4SlideWall.lcf
+M530_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4SlideWall.map
 
 M530_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv4SlideWall/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv4SlideWall/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv4SlideWall/d_a_obj_lv4SlideWall.cpp \
 
 M530_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4SlideWall/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4SlideWall/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4SlideWall/d_a_obj_lv4SlideWall.o \
 
 M530_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4SlideWall/libRuntime.PPCEABI.H.a \
 
 M530_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M530_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M530_LDSCRIPT) \
+	-unused -map $(M530_MAP) \
+	-w off \
 
 $(M530_TARGET): $(M530_O_FILES) $(M530_LIBS)
+	@echo [530] creating $(M530_TARGET)
 	@echo $(M530_LIBS) $(M530_O_FILES) > build/M530_ofiles
-	$(LD) -partial $(M530_LDFLAGS) -o $(M530_TARGET) @build/M530_ofiles
+	@python3 tools/lcf.py rel 530 --output $(M530_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M530_LDFLAGS) -o $(M530_TARGET) @build/M530_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4SlideWall/%.o: rel/d/a/obj/d_a_obj_lv4SlideWall/%.cpp
+	@echo [530] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M530_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M530_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv4SlideWall/libs/Runtime.PPCEABI.H/Makefile
 

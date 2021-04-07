@@ -4,14 +4,14 @@ lbl_80118AD0:
 /* 80118AD8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80118ADC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80118AE0  3B E0 00 00 */	li r31, 0
-/* 80118AE4  3C 60 80 39 */	lis r3, d_a_d_a_alink__stringBase0@ha
-/* 80118AE8  38 63 20 94 */	addi r3, r3, d_a_d_a_alink__stringBase0@l
+/* 80118AE4  3C 60 80 39 */	lis r3, d_a_d_a_alink__stringBase0@ha /* 0x80392094@ha */
+/* 80118AE8  38 63 20 94 */	addi r3, r3, d_a_d_a_alink__stringBase0@l /* 0x80392094@l */
 /* 80118AEC  38 63 00 F6 */	addi r3, r3, 0xf6
 /* 80118AF0  4B F8 4F 71 */	bl checkStageName__9daAlink_cFPCc
 /* 80118AF4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80118AF8  41 82 00 24 */	beq lbl_80118B1C
-/* 80118AFC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80118B00  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80118AFC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80118B00  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80118B04  38 63 09 78 */	addi r3, r3, 0x978
 /* 80118B08  38 80 00 01 */	li r4, 1
 /* 80118B0C  4B F1 C0 DD */	bl isSwitch__12dSv_danBit_cCFi

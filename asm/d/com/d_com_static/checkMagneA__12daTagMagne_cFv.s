@@ -6,8 +6,8 @@ lbl_80031BF4:
 /* 80031C04  88 83 05 68 */	lbz r4, 0x568(r3)
 /* 80031C08  28 04 00 FF */	cmplwi r4, 0xff
 /* 80031C0C  41 82 00 20 */	beq lbl_80031C2C
-/* 80031C10  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80031C14  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80031C10  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80031C14  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80031C18  88 05 04 BA */	lbz r0, 0x4ba(r5)
 /* 80031C1C  7C 05 07 74 */	extsb r5, r0
 /* 80031C20  48 00 37 41 */	bl isSwitch__10dSv_info_cCFii

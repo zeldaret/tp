@@ -5,7 +5,7 @@ lbl_80D599E0:
 /* 80D599EC  28 03 00 00 */	cmplwi r3, 0
 /* 80D599F0  41 82 00 0C */	beq lbl_80D599FC
 /* 80D599F4  38 80 00 00 */	li r4, 0
-/* 80D599F8  4B 2B F2 94 */	b __dt__10fopAc_ac_cFv
+/* 80D599F8  4B 2B F2 95 */	bl __dt__10fopAc_ac_cFv
 lbl_80D599FC:
 /* 80D599FC  38 60 00 01 */	li r3, 1
 /* 80D59A00  80 01 00 14 */	lwz r0, 0x14(r1)

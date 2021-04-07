@@ -11,7 +11,7 @@ lbl_80350084:
 /* 803500A8  80 6D 84 C0 */	lwz r3, __AIVersion(r13)
 /* 803500AC  4B FE A7 C9 */	bl OSRegisterVersion
 /* 803500B0  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000F8@ha */
-/* 803500B4  80 03 00 F8 */	lwz r0, 0x00F8(r3)
+/* 803500B4  80 03 00 F8 */	lwz r0, 0x00F8(r3)  /* 0x800000F8@l */
 /* 803500B8  3C 60 43 1C */	lis r3, 0x431C /* 0x431BDE83@ha */
 /* 803500BC  3C 80 00 01 */	lis r4, 0x0001 /* 0x0000A428@ha */
 /* 803500C0  54 00 F0 BE */	srwi r0, r0, 2
@@ -45,7 +45,7 @@ lbl_80350084:
 /* 80350130  3C C0 CC 00 */	lis r6, 0xCC00 /* 0xCC006C00@ha */
 /* 80350134  90 6D 93 34 */	stw r3, data_804518B4(r13)
 /* 80350138  38 60 00 01 */	li r3, 1
-/* 8035013C  80 06 6C 00 */	lwz r0, 0x6C00(r6)
+/* 8035013C  80 06 6C 00 */	lwz r0, 0x6C00(r6)  /* 0xCC006C00@l */
 /* 80350140  90 8D 93 2C */	stw r4, data_804518AC(r13)
 /* 80350144  54 00 06 F2 */	rlwinm r0, r0, 0, 0x1b, 0x19
 /* 80350148  60 00 00 20 */	ori r0, r0, 0x20
@@ -67,17 +67,17 @@ lbl_80350084:
 /* 80350188  4B FF FD C1 */	bl __AI_set_stream_sample_rate
 /* 8035018C  38 60 00 00 */	li r3, 0
 /* 80350190  4B FF FC C5 */	bl AISetDSPSampleRate
-/* 80350194  3C 60 80 35 */	lis r3, __AIDHandler@ha
+/* 80350194  3C 60 80 35 */	lis r3, __AIDHandler@ha /* 0x8035026C@ha */
 /* 80350198  93 ED 92 F8 */	stw r31, __AIS_Callback(r13)
-/* 8035019C  38 83 02 6C */	addi r4, r3, __AIDHandler@l
+/* 8035019C  38 83 02 6C */	addi r4, r3, __AIDHandler@l /* 0x8035026C@l */
 /* 803501A0  93 ED 92 FC */	stw r31, __AID_Callback(r13)
 /* 803501A4  38 60 00 05 */	li r3, 5
 /* 803501A8  93 CD 93 00 */	stw r30, __CallbackStack(r13)
 /* 803501AC  4B FE D5 95 */	bl __OSSetInterruptHandler
 /* 803501B0  3C 60 04 00 */	lis r3, 0x400
 /* 803501B4  4B FE D9 91 */	bl __OSUnmaskInterrupts
-/* 803501B8  3C 60 80 35 */	lis r3, __AISHandler@ha
-/* 803501BC  38 83 01 F0 */	addi r4, r3, __AISHandler@l
+/* 803501B8  3C 60 80 35 */	lis r3, __AISHandler@ha /* 0x803501F0@ha */
+/* 803501BC  38 83 01 F0 */	addi r4, r3, __AISHandler@l /* 0x803501F0@l */
 /* 803501C0  38 60 00 08 */	li r3, 8
 /* 803501C4  4B FE D5 7D */	bl __OSSetInterruptHandler
 /* 803501C8  3C 60 00 80 */	lis r3, 0x80

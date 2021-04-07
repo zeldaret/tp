@@ -37,8 +37,8 @@ lbl_80048AE4:
 /* 80048AF4  38 60 00 01 */	li r3, 1
 /* 80048AF8  48 00 00 10 */	b lbl_80048B08
 lbl_80048AFC:
-/* 80048AFC  3C 80 80 42 */	lis r4, l_runAction@ha
-/* 80048B00  38 84 46 F8 */	addi r4, r4, l_runAction@l
+/* 80048AFC  3C 80 80 42 */	lis r4, l_runAction@ha /* 0x804246F8@ha */
+/* 80048B00  38 84 46 F8 */	addi r4, r4, l_runAction@l /* 0x804246F8@l */
 /* 80048B04  4B FF FE 6D */	bl func_80048970
 lbl_80048B08:
 /* 80048B08  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -1,10 +1,10 @@
 lbl_801BB498:
-/* 801BB498  3D 20 80 3C */	lis r9, __vt__12dMenu_Dmap_c@ha
-/* 801BB49C  38 09 CB 10 */	addi r0, r9, __vt__12dMenu_Dmap_c@l
+/* 801BB498  3D 20 80 3C */	lis r9, __vt__12dMenu_Dmap_c@ha /* 0x803BCB10@ha */
+/* 801BB49C  38 09 CB 10 */	addi r0, r9, __vt__12dMenu_Dmap_c@l /* 0x803BCB10@l */
 /* 801BB4A0  90 03 00 00 */	stw r0, 0(r3)
 /* 801BB4A4  39 40 00 00 */	li r10, 0
-/* 801BB4A8  3D 20 80 43 */	lis r9, g_meter2_info@ha
-/* 801BB4AC  39 29 01 88 */	addi r9, r9, g_meter2_info@l
+/* 801BB4A8  3D 20 80 43 */	lis r9, g_meter2_info@ha /* 0x80430188@ha */
+/* 801BB4AC  39 29 01 88 */	addi r9, r9, g_meter2_info@l /* 0x80430188@l */
 /* 801BB4B0  99 49 00 F2 */	stb r10, 0xf2(r9)
 /* 801BB4B4  90 6D 8B 00 */	stw r3, myclass__12dMenu_Dmap_c(r13)
 /* 801BB4B8  90 83 00 E8 */	stw r4, 0xe8(r3)

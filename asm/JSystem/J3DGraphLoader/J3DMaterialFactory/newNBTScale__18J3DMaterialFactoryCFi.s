@@ -1,7 +1,7 @@
 lbl_803328FC:
 /* 803328FC  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 80332900  3C C0 80 3A */	lis r6, j3dDefaultNBTScaleInfo@ha
-/* 80332904  8C 06 1F E8 */	lbzu r0, j3dDefaultNBTScaleInfo@l(r6)
+/* 80332900  3C C0 80 3A */	lis r6, j3dDefaultNBTScaleInfo@ha /* 0x803A1FE8@ha */
+/* 80332904  8C 06 1F E8 */	lbzu r0, j3dDefaultNBTScaleInfo@l(r6)  /* 0x803A1FE8@l */
 /* 80332908  98 01 00 08 */	stb r0, 8(r1)
 /* 8033290C  C0 06 00 04 */	lfs f0, 4(r6)
 /* 80332910  D0 01 00 0C */	stfs f0, 0xc(r1)

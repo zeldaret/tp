@@ -23,11 +23,11 @@ extern "C" void __ieee754_fmod();
 // Declarations:
 //
 
-/* 8036C760-8036C780 0020+00 s=0 e=8 z=0  None .text      fmod */
+/* 8036C760-8036C780 3670A0 0020+00 0/0 8/8 0/0 .text            fmod */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void fmod() {
+asm void fmod() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/Math/Double_precision/w_fmod/fmod.s"
 }

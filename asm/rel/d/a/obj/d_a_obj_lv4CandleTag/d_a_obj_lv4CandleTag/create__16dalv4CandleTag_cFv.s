@@ -9,15 +9,15 @@ lbl_80C5D4F0:
 /* 80C5D50C  40 82 00 48 */	bne lbl_80C5D554
 /* 80C5D510  28 1F 00 00 */	cmplwi r31, 0
 /* 80C5D514  41 82 00 34 */	beq lbl_80C5D548
-/* 80C5D518  4B 3B B6 4C */	b __ct__10fopAc_ac_cFv
-/* 80C5D51C  3C 60 80 C6 */	lis r3, __vt__17dEvLib_callback_c@ha
-/* 80C5D520  38 03 DC 5C */	addi r0, r3, __vt__17dEvLib_callback_c@l
+/* 80C5D518  4B 3B B6 4D */	bl __ct__10fopAc_ac_cFv
+/* 80C5D51C  3C 60 80 C6 */	lis r3, __vt__17dEvLib_callback_c@ha /* 0x80C5DC5C@ha */
+/* 80C5D520  38 03 DC 5C */	addi r0, r3, __vt__17dEvLib_callback_c@l /* 0x80C5DC5C@l */
 /* 80C5D524  90 1F 05 70 */	stw r0, 0x570(r31)
 /* 80C5D528  93 FF 05 74 */	stw r31, 0x574(r31)
 /* 80C5D52C  38 00 00 00 */	li r0, 0
 /* 80C5D530  90 1F 05 78 */	stw r0, 0x578(r31)
-/* 80C5D534  3C 60 80 C6 */	lis r3, __vt__16dalv4CandleTag_c@ha
-/* 80C5D538  38 63 DC 34 */	addi r3, r3, __vt__16dalv4CandleTag_c@l
+/* 80C5D534  3C 60 80 C6 */	lis r3, __vt__16dalv4CandleTag_c@ha /* 0x80C5DC34@ha */
+/* 80C5D538  38 63 DC 34 */	addi r3, r3, __vt__16dalv4CandleTag_c@l /* 0x80C5DC34@l */
 /* 80C5D53C  90 7F 05 80 */	stw r3, 0x580(r31)
 /* 80C5D540  38 03 00 08 */	addi r0, r3, 8
 /* 80C5D544  90 1F 05 70 */	stw r0, 0x570(r31)
@@ -39,12 +39,12 @@ lbl_80C5D554:
 /* 80C5D57C  80 1F 00 B0 */	lwz r0, 0xb0(r31)
 /* 80C5D580  54 00 46 3E */	srwi r0, r0, 0x18
 /* 80C5D584  98 1F 05 88 */	stb r0, 0x588(r31)
-/* 80C5D588  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C5D58C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C5D588  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C5D58C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C5D590  88 9F 05 86 */	lbz r4, 0x586(r31)
 /* 80C5D594  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 80C5D598  7C 05 07 74 */	extsb r5, r0
-/* 80C5D59C  4B 3D 7D C4 */	b isSwitch__10dSv_info_cCFii
+/* 80C5D59C  4B 3D 7D C5 */	bl isSwitch__10dSv_info_cCFii
 /* 80C5D5A0  2C 03 00 00 */	cmpwi r3, 0
 /* 80C5D5A4  41 82 00 10 */	beq lbl_80C5D5B4
 /* 80C5D5A8  7F E3 FB 78 */	mr r3, r31

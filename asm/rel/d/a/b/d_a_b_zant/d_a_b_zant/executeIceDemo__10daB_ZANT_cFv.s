@@ -5,8 +5,8 @@ lbl_80645014:
 /* 80645020  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80645024  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80645028  7C 7E 1B 78 */	mr r30, r3
-/* 8064502C  3C 60 80 65 */	lis r3, lit_3757@ha
-/* 80645030  3B E3 EB 1C */	addi r31, r3, lit_3757@l
+/* 8064502C  3C 60 80 65 */	lis r3, lit_3757@ha /* 0x8064EB1C@ha */
+/* 80645030  3B E3 EB 1C */	addi r31, r3, lit_3757@l /* 0x8064EB1C@l */
 /* 80645034  80 1E 06 DC */	lwz r0, 0x6dc(r30)
 /* 80645038  2C 00 00 02 */	cmpwi r0, 2
 /* 8064503C  41 82 01 90 */	beq lbl_806451CC
@@ -85,7 +85,7 @@ lbl_80645148:
 /* 80645148  80 7E 05 B4 */	lwz r3, 0x5b4(r30)
 /* 8064514C  38 63 00 0C */	addi r3, r3, 0xc
 /* 80645150  C0 3F 01 DC */	lfs f1, 0x1dc(r31)
-/* 80645154  4B CE 32 D8 */	b checkPass__12J3DFrameCtrlFf
+/* 80645154  4B CE 32 D9 */	bl checkPass__12J3DFrameCtrlFf
 /* 80645158  2C 03 00 00 */	cmpwi r3, 0
 /* 8064515C  41 82 00 2C */	beq lbl_80645188
 /* 80645160  3C 60 00 07 */	lis r3, 0x0007 /* 0x00070430@ha */
@@ -102,15 +102,15 @@ lbl_80645188:
 /* 80645188  38 7E 06 C0 */	addi r3, r30, 0x6c0
 /* 8064518C  C0 3F 00 10 */	lfs f1, 0x10(r31)
 /* 80645190  C0 5F 00 AC */	lfs f2, 0xac(r31)
-/* 80645194  4B C2 B5 AC */	b cLib_chaseF__FPfff
+/* 80645194  4B C2 B5 AD */	bl cLib_chaseF__FPfff
 /* 80645198  38 7E 06 C4 */	addi r3, r30, 0x6c4
 /* 8064519C  C0 3F 00 10 */	lfs f1, 0x10(r31)
 /* 806451A0  C0 5F 00 AC */	lfs f2, 0xac(r31)
-/* 806451A4  4B C2 B5 9C */	b cLib_chaseF__FPfff
+/* 806451A4  4B C2 B5 9D */	bl cLib_chaseF__FPfff
 /* 806451A8  80 7E 05 B4 */	lwz r3, 0x5b4(r30)
 /* 806451AC  38 63 00 0C */	addi r3, r3, 0xc
 /* 806451B0  C0 3F 01 EC */	lfs f1, 0x1ec(r31)
-/* 806451B4  4B CE 32 78 */	b checkPass__12J3DFrameCtrlFf
+/* 806451B4  4B CE 32 79 */	bl checkPass__12J3DFrameCtrlFf
 /* 806451B8  2C 03 00 00 */	cmpwi r3, 0
 /* 806451BC  41 82 00 78 */	beq lbl_80645234
 /* 806451C0  38 00 00 02 */	li r0, 2
@@ -120,7 +120,7 @@ lbl_806451CC:
 /* 806451CC  38 7E 04 FC */	addi r3, r30, 0x4fc
 /* 806451D0  C0 3F 01 98 */	lfs f1, 0x198(r31)
 /* 806451D4  C0 5F 00 EC */	lfs f2, 0xec(r31)
-/* 806451D8  4B C2 B5 68 */	b cLib_chaseF__FPfff
+/* 806451D8  4B C2 B5 69 */	bl cLib_chaseF__FPfff
 /* 806451DC  80 7E 05 B4 */	lwz r3, 0x5b4(r30)
 /* 806451E0  38 80 00 01 */	li r4, 1
 /* 806451E4  88 03 00 11 */	lbz r0, 0x11(r3)

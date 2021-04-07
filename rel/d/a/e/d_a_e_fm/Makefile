@@ -3,19 +3,20 @@
 #
 
 M66_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_fm.plf
+M66_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_fm.lcf
+M66_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_fm.map
 
 M66_CPP_FILES := \
-	rel/d/a/e/d_a_e_fm/executor.cpp \
-	rel/d/a/e/d_a_e_fm/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_fm/d_a_e_fm.cpp \
 
 M66_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_fm/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_fm/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_fm/d_a_e_fm.o \
 
 M66_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_fm/libRuntime.PPCEABI.H.a \
 
 M66_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M66_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M66_LDSCRIPT) \
+	-unused -map $(M66_MAP) \
+	-w off \
 
 $(M66_TARGET): $(M66_O_FILES) $(M66_LIBS)
+	@echo [ 66] creating $(M66_TARGET)
 	@echo $(M66_LIBS) $(M66_O_FILES) > build/M66_ofiles
-	$(LD) -partial $(M66_LDFLAGS) -o $(M66_TARGET) @build/M66_ofiles
+	@python3 tools/lcf.py rel 66 --output $(M66_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M66_LDFLAGS) -o $(M66_TARGET) @build/M66_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_fm/%.o: rel/d/a/e/d_a_e_fm/%.cpp
+	@echo [ 66] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M66_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M66_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_fm/libs/Runtime.PPCEABI.H/Makefile
 

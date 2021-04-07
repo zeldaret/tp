@@ -3,19 +3,20 @@
 #
 
 M502_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kita.plf
+M502_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kita.lcf
+M502_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kita.map
 
 M502_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_kita/executor.cpp \
-	rel/d/a/obj/d_a_obj_kita/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_kita/d_a_obj_kita.cpp \
 
 M502_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kita/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kita/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kita/d_a_obj_kita.o \
 
 M502_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kita/libRuntime.PPCEABI.H.a \
 
 M502_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M502_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M502_LDSCRIPT) \
+	-unused -map $(M502_MAP) \
+	-w off \
 
 $(M502_TARGET): $(M502_O_FILES) $(M502_LIBS)
+	@echo [502] creating $(M502_TARGET)
 	@echo $(M502_LIBS) $(M502_O_FILES) > build/M502_ofiles
-	$(LD) -partial $(M502_LDFLAGS) -o $(M502_TARGET) @build/M502_ofiles
+	@python3 tools/lcf.py rel 502 --output $(M502_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M502_LDFLAGS) -o $(M502_TARGET) @build/M502_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kita/%.o: rel/d/a/obj/d_a_obj_kita/%.cpp
+	@echo [502] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M502_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M502_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_kita/libs/Runtime.PPCEABI.H/Makefile
 

@@ -20,15 +20,15 @@ lbl_80709AF0:
 lbl_80709B00:
 /* 80709B00  4B FF FE 2D */	bl WaitAction__8daE_MD_cFv
 /* 80709B04  7F E3 FB 78 */	mr r3, r31
-/* 80709B08  3C 80 80 71 */	lis r4, lit_4064@ha
-/* 80709B0C  C0 24 A5 4C */	lfs f1, lit_4064@l(r4)
+/* 80709B08  3C 80 80 71 */	lis r4, lit_4064@ha /* 0x8070A54C@ha */
+/* 80709B0C  C0 24 A5 4C */	lfs f1, lit_4064@l(r4)  /* 0x8070A54C@l */
 /* 80709B10  4B FF F3 61 */	bl setCcCylinder__8daE_MD_cFf
 /* 80709B14  48 00 00 8C */	b lbl_80709BA0
 lbl_80709B18:
 /* 80709B18  4B FF FE 35 */	bl HalfBreakAction__8daE_MD_cFv
 /* 80709B1C  7F E3 FB 78 */	mr r3, r31
-/* 80709B20  3C 80 80 71 */	lis r4, lit_4065@ha
-/* 80709B24  C0 24 A5 50 */	lfs f1, lit_4065@l(r4)
+/* 80709B20  3C 80 80 71 */	lis r4, lit_4065@ha /* 0x8070A550@ha */
+/* 80709B24  C0 24 A5 50 */	lfs f1, lit_4065@l(r4)  /* 0x8070A550@l */
 /* 80709B28  4B FF F3 49 */	bl setCcCylinder__8daE_MD_cFf
 /* 80709B2C  48 00 00 74 */	b lbl_80709BA0
 lbl_80709B30:
@@ -41,14 +41,14 @@ lbl_80709B30:
 /* 80709B48  80 1F 05 B0 */	lwz r0, 0x5b0(r31)
 /* 80709B4C  2C 00 00 02 */	cmpwi r0, 2
 /* 80709B50  40 82 00 0C */	bne lbl_80709B5C
-/* 80709B54  4B 91 01 28 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80709B54  4B 91 01 29 */	bl fopAcM_delete__FP10fopAc_ac_c
 /* 80709B58  48 00 00 48 */	b lbl_80709BA0
 lbl_80709B5C:
-/* 80709B5C  4B 91 01 20 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80709B5C  4B 91 01 21 */	bl fopAcM_delete__FP10fopAc_ac_c
 /* 80709B60  48 00 00 40 */	b lbl_80709BA0
 lbl_80709B64:
-/* 80709B64  3C 80 80 71 */	lis r4, lit_4064@ha
-/* 80709B68  C0 24 A5 4C */	lfs f1, lit_4064@l(r4)
+/* 80709B64  3C 80 80 71 */	lis r4, lit_4064@ha /* 0x8070A54C@ha */
+/* 80709B68  C0 24 A5 4C */	lfs f1, lit_4064@l(r4)  /* 0x8070A54C@l */
 /* 80709B6C  4B FF F3 05 */	bl setCcCylinder__8daE_MD_cFf
 /* 80709B70  48 00 00 30 */	b lbl_80709BA0
 lbl_80709B74:
@@ -61,8 +61,8 @@ lbl_80709B74:
 /* 80709B8C  90 1F 05 AC */	stw r0, 0x5ac(r31)
 lbl_80709B90:
 /* 80709B90  7F E3 FB 78 */	mr r3, r31
-/* 80709B94  3C 80 80 71 */	lis r4, lit_4064@ha
-/* 80709B98  C0 24 A5 4C */	lfs f1, lit_4064@l(r4)
+/* 80709B94  3C 80 80 71 */	lis r4, lit_4064@ha /* 0x8070A54C@ha */
+/* 80709B98  C0 24 A5 4C */	lfs f1, lit_4064@l(r4)  /* 0x8070A54C@l */
 /* 80709B9C  4B FF F2 D5 */	bl setCcCylinder__8daE_MD_cFf
 lbl_80709BA0:
 /* 80709BA0  83 E1 00 0C */	lwz r31, 0xc(r1)

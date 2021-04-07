@@ -3,15 +3,15 @@ lbl_8001DD1C:
 /* 8001DD20  7C 08 02 A6 */	mflr r0
 /* 8001DD24  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8001DD28  C0 03 00 00 */	lfs f0, 0(r3)
-/* 8001DD2C  3C 80 80 3F */	lis r4, mRoofCheck__11fopAcM_rc_c@ha
-/* 8001DD30  38 84 1D 24 */	addi r4, r4, mRoofCheck__11fopAcM_rc_c@l
+/* 8001DD2C  3C 80 80 3F */	lis r4, mRoofCheck__11fopAcM_rc_c@ha /* 0x803F1D24@ha */
+/* 8001DD30  38 84 1D 24 */	addi r4, r4, mRoofCheck__11fopAcM_rc_c@l /* 0x803F1D24@l */
 /* 8001DD34  D0 04 00 3C */	stfs f0, 0x3c(r4)
 /* 8001DD38  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8001DD3C  D0 04 00 40 */	stfs f0, 0x40(r4)
 /* 8001DD40  C0 03 00 08 */	lfs f0, 8(r3)
 /* 8001DD44  D0 04 00 44 */	stfs f0, 0x44(r4)
-/* 8001DD48  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8001DD4C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8001DD48  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8001DD4C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8001DD50  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8001DD54  48 05 77 49 */	bl RoofChk__4dBgSFP12dBgS_RoofChk
 /* 8001DD58  D0 2D 87 54 */	stfs f1, mRoofY__11fopAcM_rc_c(r13)

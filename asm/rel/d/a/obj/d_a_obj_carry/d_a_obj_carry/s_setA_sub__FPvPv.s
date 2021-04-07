@@ -6,7 +6,7 @@ lbl_8046F59C:
 /* 8046F5AC  93 C1 00 08 */	stw r30, 8(r1)
 /* 8046F5B0  7C 7E 1B 78 */	mr r30, r3
 /* 8046F5B4  7C 9F 23 78 */	mr r31, r4
-/* 8046F5B8  4B BA 97 28 */	b fopAc_IsActor__FPv
+/* 8046F5B8  4B BA 97 29 */	bl fopAc_IsActor__FPv
 /* 8046F5BC  2C 03 00 00 */	cmpwi r3, 0
 /* 8046F5C0  41 82 00 34 */	beq lbl_8046F5F4
 /* 8046F5C4  A8 1E 00 08 */	lha r0, 8(r30)

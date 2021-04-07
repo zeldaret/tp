@@ -40,8 +40,8 @@ lbl_8096B978:
 /* 8096B980  88 04 00 11 */	lbz r0, 0x11(r4)
 /* 8096B984  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 8096B988  40 82 00 1C */	bne lbl_8096B9A4
-/* 8096B98C  3C 60 80 97 */	lis r3, lit_4393@ha
-/* 8096B990  C0 23 C9 F4 */	lfs f1, lit_4393@l(r3)
+/* 8096B98C  3C 60 80 97 */	lis r3, lit_4393@ha /* 0x8096C9F4@ha */
+/* 8096B990  C0 23 C9 F4 */	lfs f1, lit_4393@l(r3)  /* 0x8096C9F4@l */
 /* 8096B994  C0 04 00 18 */	lfs f0, 0x18(r4)
 /* 8096B998  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 8096B99C  41 82 00 08 */	beq lbl_8096B9A4
@@ -56,10 +56,10 @@ lbl_8096B9A4:
 lbl_8096B9BC:
 /* 8096B9BC  80 1E 0E 00 */	lwz r0, 0xe00(r30)
 /* 8096B9C0  90 01 00 08 */	stw r0, 8(r1)
-/* 8096B9C4  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 8096B9C8  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 8096B9C4  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 8096B9C8  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 8096B9CC  38 81 00 08 */	addi r4, r1, 8
-/* 8096B9D0  4B 6A DE 28 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 8096B9D0  4B 6A DE 29 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8096B9D4  90 7E 0D FC */	stw r3, 0xdfc(r30)
 /* 8096B9D8  80 7E 0D FC */	lwz r3, 0xdfc(r30)
 /* 8096B9DC  28 03 00 00 */	cmplwi r3, 0

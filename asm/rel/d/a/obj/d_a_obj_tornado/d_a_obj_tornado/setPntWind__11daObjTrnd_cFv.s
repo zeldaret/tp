@@ -2,8 +2,8 @@ lbl_80D1B998:
 /* 80D1B998  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80D1B99C  7C 08 02 A6 */	mflr r0
 /* 80D1B9A0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80D1B9A4  3C 80 80 D2 */	lis r4, lit_3628@ha
-/* 80D1B9A8  38 84 C3 54 */	addi r4, r4, lit_3628@l
+/* 80D1B9A4  3C 80 80 D2 */	lis r4, lit_3628@ha /* 0x80D1C354@ha */
+/* 80D1B9A8  38 84 C3 54 */	addi r4, r4, lit_3628@l /* 0x80D1C354@l */
 /* 80D1B9AC  C0 03 04 D0 */	lfs f0, 0x4d0(r3)
 /* 80D1B9B0  D0 03 07 40 */	stfs f0, 0x740(r3)
 /* 80D1B9B4  C0 03 04 D4 */	lfs f0, 0x4d4(r3)
@@ -23,7 +23,7 @@ lbl_80D1B998:
 /* 80D1B9EC  C0 04 00 0C */	lfs f0, 0xc(r4)
 /* 80D1B9F0  D0 03 07 5C */	stfs f0, 0x75c(r3)
 /* 80D1B9F4  38 63 07 40 */	addi r3, r3, 0x740
-/* 80D1B9F8  4B 33 F4 04 */	b dKyw_pntwind_set__FP14WIND_INFLUENCE
+/* 80D1B9F8  4B 33 F4 05 */	bl dKyw_pntwind_set__FP14WIND_INFLUENCE
 /* 80D1B9FC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80D1BA00  7C 08 03 A6 */	mtlr r0
 /* 80D1BA04  38 21 00 10 */	addi r1, r1, 0x10

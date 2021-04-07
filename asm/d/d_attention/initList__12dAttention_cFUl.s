@@ -28,8 +28,8 @@ lbl_80071240:
 lbl_800712A8:
 /* 800712A8  38 00 00 00 */	li r0, 0
 /* 800712AC  90 1F 03 DC */	stw r0, 0x3dc(r31)
-/* 800712B0  3C 60 80 45 */	lis r3, __float_max@ha
-/* 800712B4  3B A3 0A E8 */	addi r29, r3, __float_max@l
+/* 800712B0  3C 60 80 45 */	lis r3, __float_max@ha /* 0x80450AE8@ha */
+/* 800712B4  3B A3 0A E8 */	addi r29, r3, __float_max@l /* 0x80450AE8@l */
 /* 800712B8  1F DB 00 14 */	mulli r30, r27, 0x14
 /* 800712BC  48 00 00 24 */	b lbl_800712E0
 lbl_800712C0:
@@ -49,8 +49,8 @@ lbl_800712E8:
 /* 800712EC  3B C0 00 00 */	li r30, 0
 /* 800712F0  93 7F 04 34 */	stw r27, 0x434(r31)
 /* 800712F4  93 7F 04 30 */	stw r27, 0x430(r31)
-/* 800712F8  3C 60 80 45 */	lis r3, __float_max@ha
-/* 800712FC  3B A3 0A E8 */	addi r29, r3, __float_max@l
+/* 800712F8  3C 60 80 45 */	lis r3, __float_max@ha /* 0x80450AE8@ha */
+/* 800712FC  3B A3 0A E8 */	addi r29, r3, __float_max@l /* 0x80450AE8@l */
 lbl_80071300:
 /* 80071300  7F 9F F2 14 */	add r28, r31, r30
 /* 80071304  38 7C 03 E0 */	addi r3, r28, 0x3e0
@@ -66,8 +66,8 @@ lbl_80071300:
 /* 8007132C  3B C0 00 00 */	li r30, 0
 /* 80071330  93 7F 04 8C */	stw r27, 0x48c(r31)
 /* 80071334  93 7F 04 88 */	stw r27, 0x488(r31)
-/* 80071338  3C 60 80 45 */	lis r3, __float_max@ha
-/* 8007133C  3B A3 0A E8 */	addi r29, r3, __float_max@l
+/* 80071338  3C 60 80 45 */	lis r3, __float_max@ha /* 0x80450AE8@ha */
+/* 8007133C  3B A3 0A E8 */	addi r29, r3, __float_max@l /* 0x80450AE8@l */
 lbl_80071340:
 /* 80071340  7F 9F F2 14 */	add r28, r31, r30
 /* 80071344  38 7C 04 38 */	addi r3, r28, 0x438

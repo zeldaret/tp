@@ -36,41 +36,41 @@ extern "C" void __div2i();
 // Declarations:
 //
 
-/* 80358C90-80358E88 01F8+00 s=2 e=0 z=0  None .text      UpdateIconOffsets */
+/* 80358C90-80358E88 3535D0 01F8+00 2/2 0/0 0/0 .text            UpdateIconOffsets */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void UpdateIconOffsets() {
+static asm void UpdateIconOffsets() {
     nofralloc
 #include "asm/dolphin/card/CARDStat/UpdateIconOffsets.s"
 }
 #pragma pop
 
-/* 80358E88-80358F9C 0114+00 s=0 e=2 z=0  None .text      CARDGetStatus */
+/* 80358E88-80358F9C 3537C8 0114+00 0/0 2/2 0/0 .text            CARDGetStatus */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void CARDGetStatus() {
+asm void CARDGetStatus() {
     nofralloc
 #include "asm/dolphin/card/CARDStat/CARDGetStatus.s"
 }
 #pragma pop
 
-/* 80358F9C-80359110 0174+00 s=1 e=0 z=0  None .text      CARDSetStatusAsync */
+/* 80358F9C-80359110 3538DC 0174+00 1/1 0/0 0/0 .text            CARDSetStatusAsync */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void CARDSetStatusAsync() {
+static asm void CARDSetStatusAsync() {
     nofralloc
 #include "asm/dolphin/card/CARDStat/CARDSetStatusAsync.s"
 }
 #pragma pop
 
-/* 80359110-80359158 0048+00 s=0 e=1 z=0  None .text      CARDSetStatus */
+/* 80359110-80359158 353A50 0048+00 0/0 1/1 0/0 .text            CARDSetStatus */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void CARDSetStatus() {
+asm void CARDSetStatus() {
     nofralloc
 #include "asm/dolphin/card/CARDStat/CARDSetStatus.s"
 }

@@ -7,8 +7,8 @@ lbl_80165B60:
 /* 80165B74  7C 9C 23 78 */	mr r28, r4
 /* 80165B78  7C BD 2B 78 */	mr r29, r5
 /* 80165B7C  3B C0 00 00 */	li r30, 0
-/* 80165B80  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80165B84  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80165B80  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80165B84  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80165B88  3B E3 4B 88 */	addi r31, r3, 0x4b88
 /* 80165B8C  7F E3 FB 78 */	mr r3, r31
 /* 80165B90  4B F2 03 21 */	bl GetResultCam__12dCcMassS_MngCFv

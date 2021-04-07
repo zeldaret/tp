@@ -16,8 +16,8 @@ lbl_8019D1A0:
 /* 8019D1D8  EF A2 00 24 */	fdivs f29, f2, f0
 /* 8019D1DC  FC 20 E8 90 */	fmr f1, f29
 /* 8019D1E0  48 0C A4 05 */	bl cM_rad2s__Ff
-/* 8019D1E4  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha
-/* 8019D1E8  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l
+/* 8019D1E4  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8019D1E8  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8019D1EC  3B E4 00 04 */	addi r31, r4, 4
 /* 8019D1F0  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
 /* 8019D1F4  7F FF 04 2E */	lfsx f31, r31, r0
@@ -30,15 +30,15 @@ lbl_8019D1A0:
 /* 8019D210  FC 20 F0 90 */	fmr f1, f30
 /* 8019D214  48 0C A3 D1 */	bl cM_rad2s__Ff
 /* 8019D218  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
-/* 8019D21C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8019D220  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8019D21C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8019D220  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8019D224  7C 03 04 2E */	lfsx f0, r3, r0
 /* 8019D228  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8019D22C  FC 20 E8 90 */	fmr f1, f29
 /* 8019D230  48 0C A3 B5 */	bl cM_rad2s__Ff
 /* 8019D234  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
-/* 8019D238  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8019D23C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8019D238  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8019D23C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8019D240  7F E3 04 2E */	lfsx f31, r3, r0
 /* 8019D244  FC 20 F0 90 */	fmr f1, f30
 /* 8019D248  48 0C A3 9D */	bl cM_rad2s__Ff
@@ -46,8 +46,8 @@ lbl_8019D1A0:
 /* 8019D250  7C 1F 04 2E */	lfsx f0, r31, r0
 /* 8019D254  EC 00 07 F2 */	fmuls f0, f0, f31
 /* 8019D258  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 8019D25C  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8019D260  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8019D25C  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8019D260  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8019D264  38 81 00 20 */	addi r4, r1, 0x20
 /* 8019D268  4B E6 F7 49 */	bl mDoMtx_inverseTranspose__FPA4_CfPA4_f
 /* 8019D26C  38 61 00 20 */	addi r3, r1, 0x20

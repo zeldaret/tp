@@ -7,8 +7,8 @@ lbl_8027D83C:
 /* 8027D850  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8027D854  7C 9F 23 78 */	mr r31, r4
 /* 8027D858  41 82 00 2C */	beq lbl_8027D884
-/* 8027D85C  3C 60 80 3C */	lis r3, __vt__10JPATexture@ha
-/* 8027D860  38 03 45 98 */	addi r0, r3, __vt__10JPATexture@l
+/* 8027D85C  3C 60 80 3C */	lis r3, __vt__10JPATexture@ha /* 0x803C4598@ha */
+/* 8027D860  38 03 45 98 */	addi r0, r3, __vt__10JPATexture@l /* 0x803C4598@l */
 /* 8027D864  90 1E 00 00 */	stw r0, 0(r30)
 /* 8027D868  38 7E 00 04 */	addi r3, r30, 4
 /* 8027D86C  38 80 FF FF */	li r4, -1

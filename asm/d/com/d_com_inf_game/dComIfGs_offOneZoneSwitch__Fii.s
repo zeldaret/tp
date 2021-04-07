@@ -15,8 +15,8 @@ lbl_8002DB2C:
 /* 8002DB2C  7C 83 23 78 */	mr r3, r4
 /* 8002DB30  4B FF FE 81 */	bl getZoneNo__20dStage_roomControl_cFi
 /* 8002DB34  54 64 28 34 */	slwi r4, r3, 5
-/* 8002DB38  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002DB3C  38 03 61 C0 */	addi r0, r3, g_dComIfG_gameInfo@l
+/* 8002DB38  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002DB3C  38 03 61 C0 */	addi r0, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002DB40  7C 60 22 14 */	add r3, r0, r4
 /* 8002DB44  38 63 09 B6 */	addi r3, r3, 0x9b6
 /* 8002DB48  7F E4 FB 78 */	mr r4, r31

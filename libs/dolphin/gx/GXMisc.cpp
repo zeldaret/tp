@@ -32,7 +32,6 @@ extern "C" static void GXTokenInterruptHandler();
 extern "C" void GXSetDrawDoneCallback();
 extern "C" static void GXFinishInterruptHandler();
 extern "C" void __GXPEInit();
-extern "C" extern u8 pad_8045197C[4];
 
 //
 // External References:
@@ -61,230 +60,233 @@ extern "C" extern void* __GXData;
 // Declarations:
 //
 
-/* 8035BE38-8035BECC 0094+00 s=0 e=9 z=0  None .text      GXSetMisc */
+/* 8035BE38-8035BECC 356778 0094+00 0/0 9/9 0/0 .text            GXSetMisc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetMisc() {
+asm void GXSetMisc() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXSetMisc.s"
 }
 #pragma pop
 
-/* 8035BECC-8035BF28 005C+00 s=1 e=10 z=0  None .text      GXFlush */
+/* 8035BECC-8035BF28 35680C 005C+00 1/1 10/10 0/0 .text            GXFlush */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXFlush() {
+asm void GXFlush() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXFlush.s"
 }
 #pragma pop
 
-/* 8035BF28-8035C094 016C+00 s=0 e=1 z=0  None .text      __GXAbort */
+/* 8035BF28-8035C094 356868 016C+00 0/0 1/1 0/0 .text            __GXAbort */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __GXAbort() {
+asm void __GXAbort() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/__GXAbort.s"
 }
 #pragma pop
 
-/* 8035C094-8035C25C 01C8+00 s=0 e=2 z=0  None .text      GXAbortFrame */
+/* 8035C094-8035C25C 3569D4 01C8+00 0/0 2/2 0/0 .text            GXAbortFrame */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXAbortFrame() {
+asm void GXAbortFrame() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXAbortFrame.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451968-8045196C 0004+00 s=2 e=0 z=0  None .sbss      TokenCB */
+/* 80451968-8045196C 000E68 0004+00 2/2 0/0 0/0 .sbss            TokenCB */
 static u8 TokenCB[4];
 
-/* 8045196C-80451970 0004+00 s=2 e=0 z=0  None .sbss      DrawDoneCB */
+/* 8045196C-80451970 000E6C 0004+00 2/2 0/0 0/0 .sbss            DrawDoneCB */
 static u8 DrawDoneCB[4];
 
-/* 80451970-80451974 0004+00 s=3 e=0 z=0  None .sbss      None */
+/* 80451970-80451974 000E70 0004+00 3/3 0/0 0/0 .sbss            None */
 static u8 data_80451970[4];
 
-/* 8035C25C-8035C2F4 0098+00 s=0 e=2 z=0  None .text      GXSetDrawDone */
+/* 8035C25C-8035C2F4 356B9C 0098+00 0/0 2/2 0/0 .text            GXSetDrawDone */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetDrawDone() {
+asm void GXSetDrawDone() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXSetDrawDone.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451974-8045197C 0008+00 s=3 e=0 z=0  None .sbss      FinishQueue */
+/* 80451974-8045197C 000E74 0008+00 3/3 0/0 0/0 .sbss            FinishQueue */
 static u8 FinishQueue[8];
 
-/* 8035C2F4-8035C374 0080+00 s=0 e=3 z=1  None .text      GXDrawDone */
+/* 8035C2F4-8035C374 356C34 0080+00 0/0 3/3 1/1 .text            GXDrawDone */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXDrawDone() {
+asm void GXDrawDone() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXDrawDone.s"
 }
 #pragma pop
 
-/* 8035C374-8035C398 0024+00 s=0 e=9 z=0  None .text      GXPixModeSync */
+/* 8035C374-8035C398 356CB4 0024+00 0/0 9/9 0/0 .text            GXPixModeSync */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXPixModeSync() {
+asm void GXPixModeSync() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXPixModeSync.s"
 }
 #pragma pop
 
-/* 8035C398-8035C3AC 0014+00 s=0 e=1 z=0  None .text      GXPokeAlphaMode */
+/* 8035C398-8035C3AC 356CD8 0014+00 0/0 1/1 0/0 .text            GXPokeAlphaMode */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXPokeAlphaMode() {
+asm void GXPokeAlphaMode() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXPokeAlphaMode.s"
 }
 #pragma pop
 
-/* 8035C3AC-8035C3CC 0020+00 s=0 e=1 z=0  None .text      GXPokeAlphaRead */
+/* 8035C3AC-8035C3CC 356CEC 0020+00 0/0 1/1 0/0 .text            GXPokeAlphaRead */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXPokeAlphaRead() {
+asm void GXPokeAlphaRead() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXPokeAlphaRead.s"
 }
 #pragma pop
 
-/* 8035C3CC-8035C3E4 0018+00 s=0 e=1 z=0  None .text      GXPokeAlphaUpdate */
+/* 8035C3CC-8035C3E4 356D0C 0018+00 0/0 1/1 0/0 .text            GXPokeAlphaUpdate */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXPokeAlphaUpdate() {
+asm void GXPokeAlphaUpdate() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXPokeAlphaUpdate.s"
 }
 #pragma pop
 
-/* 8035C3E4-8035C448 0064+00 s=0 e=1 z=0  None .text      GXPokeBlendMode */
+/* 8035C3E4-8035C448 356D24 0064+00 0/0 1/1 0/0 .text            GXPokeBlendMode */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXPokeBlendMode() {
+asm void GXPokeBlendMode() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXPokeBlendMode.s"
 }
 #pragma pop
 
-/* 8035C448-8035C460 0018+00 s=0 e=1 z=0  None .text      GXPokeColorUpdate */
+/* 8035C448-8035C460 356D88 0018+00 0/0 1/1 0/0 .text            GXPokeColorUpdate */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXPokeColorUpdate() {
+asm void GXPokeColorUpdate() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXPokeColorUpdate.s"
 }
 #pragma pop
 
-/* 8035C460-8035C484 0024+00 s=0 e=1 z=0  None .text      GXPokeDstAlpha */
+/* 8035C460-8035C484 356DA0 0024+00 0/0 1/1 0/0 .text            GXPokeDstAlpha */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXPokeDstAlpha() {
+asm void GXPokeDstAlpha() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXPokeDstAlpha.s"
 }
 #pragma pop
 
-/* 8035C484-8035C49C 0018+00 s=0 e=1 z=0  None .text      GXPokeDither */
+/* 8035C484-8035C49C 356DC4 0018+00 0/0 1/1 0/0 .text            GXPokeDither */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXPokeDither() {
+asm void GXPokeDither() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXPokeDither.s"
 }
 #pragma pop
 
-/* 8035C49C-8035C4BC 0020+00 s=0 e=1 z=0  None .text      GXPokeZMode */
+/* 8035C49C-8035C4BC 356DDC 0020+00 0/0 1/1 0/0 .text            GXPokeZMode */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXPokeZMode() {
+asm void GXPokeZMode() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXPokeZMode.s"
 }
 #pragma pop
 
-/* 8035C4BC-8035C4E0 0024+00 s=0 e=1 z=0  None .text      GXPeekZ */
+/* 8035C4BC-8035C4E0 356DFC 0024+00 0/0 1/1 0/0 .text            GXPeekZ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXPeekZ() {
+asm void GXPeekZ() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXPeekZ.s"
 }
 #pragma pop
 
-/* 8035C4E0-8035C524 0044+00 s=0 e=1 z=0  None .text      GXSetDrawSyncCallback */
+/* 8035C4E0-8035C524 356E20 0044+00 0/0 1/1 0/0 .text            GXSetDrawSyncCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetDrawSyncCallback() {
+asm void GXSetDrawSyncCallback() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXSetDrawSyncCallback.s"
 }
 #pragma pop
 
-/* 8035C524-8035C5AC 0088+00 s=1 e=0 z=0  None .text      GXTokenInterruptHandler */
+/* 8035C524-8035C5AC 356E64 0088+00 1/1 0/0 0/0 .text            GXTokenInterruptHandler */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void GXTokenInterruptHandler() {
+static asm void GXTokenInterruptHandler() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXTokenInterruptHandler.s"
 }
 #pragma pop
 
-/* 8035C5AC-8035C5F0 0044+00 s=0 e=4 z=0  None .text      GXSetDrawDoneCallback */
+/* 8035C5AC-8035C5F0 356EEC 0044+00 0/0 4/4 0/0 .text            GXSetDrawDoneCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetDrawDoneCallback() {
+asm void GXSetDrawDoneCallback() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXSetDrawDoneCallback.s"
 }
 #pragma pop
 
-/* 8035C5F0-8035C670 0080+00 s=1 e=0 z=0  None .text      GXFinishInterruptHandler */
+/* 8035C5F0-8035C670 356F30 0080+00 1/1 0/0 0/0 .text            GXFinishInterruptHandler */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void GXFinishInterruptHandler() {
+static asm void GXFinishInterruptHandler() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/GXFinishInterruptHandler.s"
 }
 #pragma pop
 
-/* 8035C670-8035C6E4 0074+00 s=0 e=1 z=0  None .text      __GXPEInit */
+/* 8035C670-8035C6E4 356FB0 0074+00 0/0 1/1 0/0 .text            __GXPEInit */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __GXPEInit() {
+asm void __GXPEInit() {
     nofralloc
 #include "asm/dolphin/gx/GXMisc/__GXPEInit.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8045197C-80451980 0004+00 s=0 e=0 z=0  None .sbss      None */
-u8 pad_8045197C[4];
+/* 8045197C-80451980 -00001 0004+00 0/0 0/0 0/0 .sbss            None */
+#pragma push
+#pragma force_active on
+static u8 pad_8045197C[4];
+#pragma pop

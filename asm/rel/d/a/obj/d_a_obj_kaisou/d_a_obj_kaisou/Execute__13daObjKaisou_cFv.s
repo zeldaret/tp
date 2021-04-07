@@ -5,8 +5,8 @@ lbl_80C34824:
 /* 80C34830  93 E1 00 6C */	stw r31, 0x6c(r1)
 /* 80C34834  93 C1 00 68 */	stw r30, 0x68(r1)
 /* 80C34838  7C 7E 1B 78 */	mr r30, r3
-/* 80C3483C  3C 60 80 C3 */	lis r3, lit_3806@ha
-/* 80C34840  3B E3 4E EC */	addi r31, r3, lit_3806@l
+/* 80C3483C  3C 60 80 C3 */	lis r3, lit_3806@ha /* 0x80C34EEC@ha */
+/* 80C34840  3B E3 4E EC */	addi r31, r3, lit_3806@l /* 0x80C34EEC@l */
 /* 80C34844  A8 7E 05 A8 */	lha r3, 0x5a8(r30)
 /* 80C34848  38 03 FF FF */	addi r0, r3, -1
 /* 80C3484C  B0 1E 05 A8 */	sth r0, 0x5a8(r30)
@@ -36,8 +36,8 @@ lbl_80C34864:
 /* 80C348A8  D8 01 00 10 */	stfd f0, 0x10(r1)
 /* 80C348AC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80C348B0  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80C348B4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80C348B8  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80C348B4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80C348B8  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80C348BC  7C 23 04 2E */	lfsx f1, r3, r0
 /* 80C348C0  A8 1E 05 74 */	lha r0, 0x574(r30)
 /* 80C348C4  6C 00 80 00 */	xoris r0, r0, 0x8000
@@ -109,43 +109,43 @@ lbl_80C34864:
 /* 80C349CC  38 A0 00 15 */	li r5, 0x15
 /* 80C349D0  38 C0 10 00 */	li r6, 0x1000
 /* 80C349D4  38 E0 00 00 */	li r7, 0
-/* 80C349D8  4B 63 BB 68 */	b cLib_addCalcAngleS__FPsssss
+/* 80C349D8  4B 63 BB 69 */	bl cLib_addCalcAngleS__FPsssss
 /* 80C349DC  38 7E 05 80 */	addi r3, r30, 0x580
 /* 80C349E0  38 80 00 80 */	li r4, 0x80
 /* 80C349E4  38 A0 00 15 */	li r5, 0x15
 /* 80C349E8  38 C0 10 00 */	li r6, 0x1000
 /* 80C349EC  38 E0 00 00 */	li r7, 0
-/* 80C349F0  4B 63 BB 50 */	b cLib_addCalcAngleS__FPsssss
+/* 80C349F0  4B 63 BB 51 */	bl cLib_addCalcAngleS__FPsssss
 /* 80C349F4  38 7E 05 74 */	addi r3, r30, 0x574
 /* 80C349F8  A8 9E 05 76 */	lha r4, 0x576(r30)
 /* 80C349FC  38 A0 00 15 */	li r5, 0x15
 /* 80C34A00  38 C0 10 00 */	li r6, 0x1000
 /* 80C34A04  38 E0 00 00 */	li r7, 0
-/* 80C34A08  4B 63 BB 38 */	b cLib_addCalcAngleS__FPsssss
+/* 80C34A08  4B 63 BB 39 */	bl cLib_addCalcAngleS__FPsssss
 /* 80C34A0C  38 7E 05 78 */	addi r3, r30, 0x578
 /* 80C34A10  A8 9E 05 7A */	lha r4, 0x57a(r30)
 /* 80C34A14  38 A0 00 15 */	li r5, 0x15
 /* 80C34A18  38 C0 10 00 */	li r6, 0x1000
 /* 80C34A1C  38 E0 00 00 */	li r7, 0
-/* 80C34A20  4B 63 BB 20 */	b cLib_addCalcAngleS__FPsssss
+/* 80C34A20  4B 63 BB 21 */	bl cLib_addCalcAngleS__FPsssss
 /* 80C34A24  38 7E 05 7A */	addi r3, r30, 0x57a
 /* 80C34A28  38 80 00 00 */	li r4, 0
 /* 80C34A2C  38 A0 00 15 */	li r5, 0x15
 /* 80C34A30  38 C0 10 00 */	li r6, 0x1000
 /* 80C34A34  38 E0 00 00 */	li r7, 0
-/* 80C34A38  4B 63 BB 08 */	b cLib_addCalcAngleS__FPsssss
+/* 80C34A38  4B 63 BB 09 */	bl cLib_addCalcAngleS__FPsssss
 /* 80C34A3C  38 7E 05 76 */	addi r3, r30, 0x576
 /* 80C34A40  38 80 05 00 */	li r4, 0x500
 /* 80C34A44  38 A0 00 20 */	li r5, 0x20
 /* 80C34A48  38 C0 10 00 */	li r6, 0x1000
 /* 80C34A4C  38 E0 00 00 */	li r7, 0
-/* 80C34A50  4B 63 BA F0 */	b cLib_addCalcAngleS__FPsssss
+/* 80C34A50  4B 63 BA F1 */	bl cLib_addCalcAngleS__FPsssss
 /* 80C34A54  38 7E 05 82 */	addi r3, r30, 0x582
 /* 80C34A58  38 80 10 00 */	li r4, 0x1000
 /* 80C34A5C  38 A0 00 20 */	li r5, 0x20
 /* 80C34A60  38 C0 10 00 */	li r6, 0x1000
 /* 80C34A64  38 E0 00 00 */	li r7, 0
-/* 80C34A68  4B 63 BA D8 */	b cLib_addCalcAngleS__FPsssss
+/* 80C34A68  4B 63 BA D9 */	bl cLib_addCalcAngleS__FPsssss
 /* 80C34A6C  7F C3 F3 78 */	mr r3, r30
 /* 80C34A70  4B FF F9 81 */	bl setCcCylinder__13daObjKaisou_cFv
 /* 80C34A74  7F C3 F3 78 */	mr r3, r30

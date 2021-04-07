@@ -7,12 +7,12 @@ lbl_802A8EF8:
 /* 802A8F0C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802A8F10  7C 9F 23 78 */	mr r31, r4
 /* 802A8F14  41 82 00 3C */	beq lbl_802A8F50
-/* 802A8F18  3C 80 80 3D */	lis r4, __vt__Q38JMessage18TResourceContainer10TCResource@ha
-/* 802A8F1C  38 04 9C A8 */	addi r0, r4, __vt__Q38JMessage18TResourceContainer10TCResource@l
+/* 802A8F18  3C 80 80 3D */	lis r4, __vt__Q38JMessage18TResourceContainer10TCResource@ha /* 0x803C9CA8@ha */
+/* 802A8F1C  38 04 9C A8 */	addi r0, r4, __vt__Q38JMessage18TResourceContainer10TCResource@l /* 0x803C9CA8@l */
 /* 802A8F20  90 1E 00 0C */	stw r0, 0xc(r30)
 /* 802A8F24  41 82 00 1C */	beq lbl_802A8F40
-/* 802A8F28  3C 80 80 3D */	lis r4, data_803C9CBC@ha
-/* 802A8F2C  38 04 9C BC */	addi r0, r4, data_803C9CBC@l
+/* 802A8F28  3C 80 80 3D */	lis r4, data_803C9CBC@ha /* 0x803C9CBC@ha */
+/* 802A8F2C  38 04 9C BC */	addi r0, r4, data_803C9CBC@l /* 0x803C9CBC@l */
 /* 802A8F30  90 1E 00 0C */	stw r0, 0xc(r30)
 /* 802A8F34  41 82 00 0C */	beq lbl_802A8F40
 /* 802A8F38  38 80 00 00 */	li r4, 0

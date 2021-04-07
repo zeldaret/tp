@@ -11,8 +11,8 @@ lbl_8023CBF0:
 /* 8023CC14  80 63 00 08 */	lwz r3, 8(r3)
 /* 8023CC18  48 01 8B B9 */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 8023CC1C  80 7D 00 C4 */	lwz r3, 0xc4(r29)
-/* 8023CC20  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha
-/* 8023CC24  38 84 02 8C */	addi r4, r4, g_MsgObject_HIO_c@l
+/* 8023CC20  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 8023CC24  38 84 02 8C */	addi r4, r4, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 8023CC28  C0 04 01 D0 */	lfs f0, 0x1d0(r4)
 /* 8023CC2C  EC 3F 00 32 */	fmuls f1, f31, f0
 /* 8023CC30  48 01 8B A1 */	bl setAlphaRate__13CPaneMgrAlphaFf

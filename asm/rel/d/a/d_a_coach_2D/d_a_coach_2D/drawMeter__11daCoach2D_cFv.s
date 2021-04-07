@@ -3,13 +3,13 @@ lbl_80656ED0:
 /* 80656ED4  7C 08 02 A6 */	mflr r0
 /* 80656ED8  90 01 00 54 */	stw r0, 0x54(r1)
 /* 80656EDC  39 61 00 50 */	addi r11, r1, 0x50
-/* 80656EE0  4B D0 B2 EC */	b _savegpr_25
+/* 80656EE0  4B D0 B2 ED */	bl _savegpr_25
 /* 80656EE4  7C 7A 1B 78 */	mr r26, r3
-/* 80656EE8  3C 80 80 65 */	lis r4, lit_4003@ha
-/* 80656EEC  3B A4 79 24 */	addi r29, r4, lit_4003@l
+/* 80656EE8  3C 80 80 65 */	lis r4, lit_4003@ha /* 0x80657924@ha */
+/* 80656EEC  3B A4 79 24 */	addi r29, r4, lit_4003@l /* 0x80657924@l */
 /* 80656EF0  48 00 03 71 */	bl update__11daCoach2D_cFv
-/* 80656EF4  3C 60 80 65 */	lis r3, l_HOSTIO@ha
-/* 80656EF8  38 63 7A 9C */	addi r3, r3, l_HOSTIO@l
+/* 80656EF4  3C 60 80 65 */	lis r3, l_HOSTIO@ha /* 0x80657A9C@ha */
+/* 80656EF8  38 63 7A 9C */	addi r3, r3, l_HOSTIO@l /* 0x80657A9C@l */
 /* 80656EFC  88 03 00 5B */	lbz r0, 0x5b(r3)
 /* 80656F00  28 00 00 00 */	cmplwi r0, 0
 /* 80656F04  41 82 00 28 */	beq lbl_80656F2C
@@ -34,30 +34,30 @@ lbl_80656F2C:
 lbl_80656F4C:
 /* 80656F4C  3B 60 00 00 */	li r27, 0
 /* 80656F50  3B 20 00 00 */	li r25, 0
-/* 80656F54  3C 60 80 65 */	lis r3, l_HOSTIO@ha
-/* 80656F58  3B C3 7A 9C */	addi r30, r3, l_HOSTIO@l
-/* 80656F5C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80656F60  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 80656F54  3C 60 80 65 */	lis r3, l_HOSTIO@ha /* 0x80657A9C@ha */
+/* 80656F58  3B C3 7A 9C */	addi r30, r3, l_HOSTIO@l /* 0x80657A9C@l */
+/* 80656F5C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80656F60  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80656F64  48 00 01 94 */	b lbl_806570F8
 lbl_80656F68:
 /* 80656F68  7F 9A CA 14 */	add r28, r26, r25
 /* 80656F6C  80 7A 05 88 */	lwz r3, 0x588(r26)
 /* 80656F70  C0 3C 05 90 */	lfs f1, 0x590(r28)
 /* 80656F74  C0 5C 05 94 */	lfs f2, 0x594(r28)
-/* 80656F78  4B BF D6 38 */	b paneTrans__8CPaneMgrFff
+/* 80656F78  4B BF D6 39 */	bl paneTrans__8CPaneMgrFff
 /* 80656F7C  80 7A 05 8C */	lwz r3, 0x58c(r26)
 /* 80656F80  C0 3C 05 90 */	lfs f1, 0x590(r28)
 /* 80656F84  C0 5C 05 94 */	lfs f2, 0x594(r28)
-/* 80656F88  4B BF D6 28 */	b paneTrans__8CPaneMgrFff
+/* 80656F88  4B BF D6 29 */	bl paneTrans__8CPaneMgrFff
 /* 80656F8C  88 1A 07 80 */	lbz r0, 0x780(r26)
 /* 80656F90  7C 1B 00 00 */	cmpw r27, r0
 /* 80656F94  40 80 00 F8 */	bge lbl_8065708C
 /* 80656F98  80 7A 05 84 */	lwz r3, 0x584(r26)
-/* 80656F9C  4B BF E6 6C */	b hide__13CPaneMgrAlphaFv
+/* 80656F9C  4B BF E6 6D */	bl hide__13CPaneMgrAlphaFv
 /* 80656FA0  80 7A 05 88 */	lwz r3, 0x588(r26)
-/* 80656FA4  4B BF E6 24 */	b show__13CPaneMgrAlphaFv
+/* 80656FA4  4B BF E6 25 */	bl show__13CPaneMgrAlphaFv
 /* 80656FA8  80 7A 05 8C */	lwz r3, 0x58c(r26)
-/* 80656FAC  4B BF E6 5C */	b hide__13CPaneMgrAlphaFv
+/* 80656FAC  4B BF E6 5D */	bl hide__13CPaneMgrAlphaFv
 /* 80656FB0  88 7A 07 80 */	lbz r3, 0x780(r26)
 /* 80656FB4  38 03 FF FF */	addi r0, r3, -1
 /* 80656FB8  7C 1B 00 00 */	cmpw r27, r0
@@ -87,7 +87,7 @@ lbl_8065700C:
 /* 80657010  C0 3D 00 04 */	lfs f1, 4(r29)
 /* 80657014  FC 40 08 90 */	fmr f2, f1
 /* 80657018  80 9F 5F 50 */	lwz r4, 0x5f50(r31)
-/* 8065701C  4B CA 1E B8 */	b draw__9J2DScreenFffPC14J2DGrafContext
+/* 8065701C  4B CA 1E B9 */	bl draw__9J2DScreenFffPC14J2DGrafContext
 /* 80657020  88 1C 05 A5 */	lbz r0, 0x5a5(r28)
 /* 80657024  28 00 00 FF */	cmplwi r0, 0xff
 /* 80657028  40 82 00 14 */	bne lbl_8065703C
@@ -104,7 +104,7 @@ lbl_8065703C:
 /* 80657050  80 A4 00 04 */	lwz r5, 4(r4)
 /* 80657054  38 C0 00 00 */	li r6, 0
 /* 80657058  38 E0 00 00 */	li r7, 0
-/* 8065705C  4B BF DE 60 */	b getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
+/* 8065705C  4B BF DE 61 */	bl getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs
 /* 80657060  80 61 00 18 */	lwz r3, 0x18(r1)
 /* 80657064  80 01 00 1C */	lwz r0, 0x1c(r1)
 /* 80657068  90 61 00 24 */	stw r3, 0x24(r1)
@@ -118,11 +118,11 @@ lbl_8065703C:
 /* 80657088  48 00 00 68 */	b lbl_806570F0
 lbl_8065708C:
 /* 8065708C  80 7A 05 84 */	lwz r3, 0x584(r26)
-/* 80657090  4B BF E5 78 */	b hide__13CPaneMgrAlphaFv
+/* 80657090  4B BF E5 79 */	bl hide__13CPaneMgrAlphaFv
 /* 80657094  80 7A 05 88 */	lwz r3, 0x588(r26)
-/* 80657098  4B BF E5 70 */	b hide__13CPaneMgrAlphaFv
+/* 80657098  4B BF E5 71 */	bl hide__13CPaneMgrAlphaFv
 /* 8065709C  80 7A 05 8C */	lwz r3, 0x58c(r26)
-/* 806570A0  4B BF E5 28 */	b show__13CPaneMgrAlphaFv
+/* 806570A0  4B BF E5 29 */	bl show__13CPaneMgrAlphaFv
 /* 806570A4  C0 1E 00 20 */	lfs f0, 0x20(r30)
 /* 806570A8  80 7A 05 8C */	lwz r3, 0x58c(r26)
 /* 806570AC  80 63 00 04 */	lwz r3, 4(r3)
@@ -136,7 +136,7 @@ lbl_8065708C:
 /* 806570CC  C0 3D 00 04 */	lfs f1, 4(r29)
 /* 806570D0  FC 40 08 90 */	fmr f2, f1
 /* 806570D4  80 9F 5F 50 */	lwz r4, 0x5f50(r31)
-/* 806570D8  4B CA 1D FC */	b draw__9J2DScreenFffPC14J2DGrafContext
+/* 806570D8  4B CA 1D FD */	bl draw__9J2DScreenFffPC14J2DGrafContext
 /* 806570DC  88 1C 05 A5 */	lbz r0, 0x5a5(r28)
 /* 806570E0  28 00 00 00 */	cmplwi r0, 0
 /* 806570E4  40 82 00 0C */	bne lbl_806570F0
@@ -150,26 +150,26 @@ lbl_806570F8:
 /* 806570FC  7C 1B 00 00 */	cmpw r27, r0
 /* 80657100  41 80 FE 68 */	blt lbl_80656F68
 /* 80657104  80 7A 05 84 */	lwz r3, 0x584(r26)
-/* 80657108  4B BF E4 C0 */	b show__13CPaneMgrAlphaFv
+/* 80657108  4B BF E4 C1 */	bl show__13CPaneMgrAlphaFv
 /* 8065710C  80 7A 05 88 */	lwz r3, 0x588(r26)
-/* 80657110  4B BF E4 F8 */	b hide__13CPaneMgrAlphaFv
+/* 80657110  4B BF E4 F9 */	bl hide__13CPaneMgrAlphaFv
 /* 80657114  80 7A 05 8C */	lwz r3, 0x58c(r26)
-/* 80657118  4B BF E4 F0 */	b hide__13CPaneMgrAlphaFv
+/* 80657118  4B BF E4 F1 */	bl hide__13CPaneMgrAlphaFv
 /* 8065711C  80 7A 05 84 */	lwz r3, 0x584(r26)
-/* 80657120  3C 80 80 65 */	lis r4, l_HOSTIO@ha
-/* 80657124  38 84 7A 9C */	addi r4, r4, l_HOSTIO@l
+/* 80657120  3C 80 80 65 */	lis r4, l_HOSTIO@ha /* 0x80657A9C@ha */
+/* 80657124  38 84 7A 9C */	addi r4, r4, l_HOSTIO@l /* 0x80657A9C@l */
 /* 80657128  C0 24 00 28 */	lfs f1, 0x28(r4)
 /* 8065712C  C0 44 00 2C */	lfs f2, 0x2c(r4)
-/* 80657130  4B BF D4 80 */	b paneTrans__8CPaneMgrFff
+/* 80657130  4B BF D4 81 */	bl paneTrans__8CPaneMgrFff
 /* 80657134  80 7A 05 74 */	lwz r3, 0x574(r26)
 /* 80657138  C0 3D 00 04 */	lfs f1, 4(r29)
 /* 8065713C  FC 40 08 90 */	fmr f2, f1
 /* 80657140  80 9F 5F 50 */	lwz r4, 0x5f50(r31)
-/* 80657144  4B CA 1D 90 */	b draw__9J2DScreenFffPC14J2DGrafContext
+/* 80657144  4B CA 1D 91 */	bl draw__9J2DScreenFffPC14J2DGrafContext
 /* 80657148  3B 60 00 00 */	li r27, 0
 /* 8065714C  3B C0 00 00 */	li r30, 0
-/* 80657150  3C 60 80 65 */	lis r3, l_HOSTIO@ha
-/* 80657154  3B 23 7A 9C */	addi r25, r3, l_HOSTIO@l
+/* 80657150  3C 60 80 65 */	lis r3, l_HOSTIO@ha /* 0x80657A9C@ha */
+/* 80657154  3B 23 7A 9C */	addi r25, r3, l_HOSTIO@l /* 0x80657A9C@l */
 /* 80657158  48 00 00 B0 */	b lbl_80657208
 lbl_8065715C:
 /* 8065715C  7F 9A F2 14 */	add r28, r26, r30
@@ -206,7 +206,7 @@ lbl_8065715C:
 /* 806571D8  C0 D9 00 44 */	lfs f6, 0x44(r25)
 /* 806571DC  38 A1 00 14 */	addi r5, r1, 0x14
 /* 806571E0  38 C1 00 0C */	addi r6, r1, 0xc
-/* 806571E4  4B BE ED AC */	b draw__15dMsgScrnLight_cFPfffffffQ28JUtility6TColorQ28JUtility6TColor
+/* 806571E4  4B BE ED AD */	bl draw__15dMsgScrnLight_cFPfffffffQ28JUtility6TColorQ28JUtility6TColor
 /* 806571E8  C0 3D 00 04 */	lfs f1, 4(r29)
 /* 806571EC  C0 1C 05 A0 */	lfs f0, 0x5a0(r28)
 /* 806571F0  FC 01 00 00 */	fcmpu cr0, f1, f0
@@ -221,7 +221,7 @@ lbl_80657208:
 /* 8065720C  7C 1B 00 00 */	cmpw r27, r0
 /* 80657210  41 80 FF 4C */	blt lbl_8065715C
 /* 80657214  39 61 00 50 */	addi r11, r1, 0x50
-/* 80657218  4B D0 B0 00 */	b _restgpr_25
+/* 80657218  4B D0 B0 01 */	bl _restgpr_25
 /* 8065721C  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 80657220  7C 08 03 A6 */	mtlr r0
 /* 80657224  38 21 00 50 */	addi r1, r1, 0x50

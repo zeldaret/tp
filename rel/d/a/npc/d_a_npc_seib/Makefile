@@ -3,19 +3,20 @@
 #
 
 M353_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seib.plf
+M353_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seib.lcf
+M353_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seib.map
 
 M353_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_seib/executor.cpp \
-	rel/d/a/npc/d_a_npc_seib/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_seib/d_a_npc_seib.cpp \
 
 M353_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seib/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seib/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seib/d_a_npc_seib.o \
 
 M353_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seib/libRuntime.PPCEABI.H.a \
 
 M353_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M353_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M353_LDSCRIPT) \
+	-unused -map $(M353_MAP) \
+	-w off \
 
 $(M353_TARGET): $(M353_O_FILES) $(M353_LIBS)
+	@echo [353] creating $(M353_TARGET)
 	@echo $(M353_LIBS) $(M353_O_FILES) > build/M353_ofiles
-	$(LD) -partial $(M353_LDFLAGS) -o $(M353_TARGET) @build/M353_ofiles
+	@python3 tools/lcf.py rel 353 --output $(M353_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M353_LDFLAGS) -o $(M353_TARGET) @build/M353_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seib/%.o: rel/d/a/npc/d_a_npc_seib/%.cpp
+	@echo [353] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M353_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M353_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_seib/libs/Runtime.PPCEABI.H/Makefile
 

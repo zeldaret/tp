@@ -106,9 +106,9 @@ lbl_8036A838:
 /* 8036A88C  FC 81 21 7C */	fnmsub f4, f1, f5, f4
 /* 8036A890  FC 20 01 72 */	fmul f1, f0, f5
 /* 8036A894  40 80 00 2C */	bge lbl_8036A8C0
-/* 8036A898  3C 80 80 3A */	lis r4, npio2_hw@ha
+/* 8036A898  3C 80 80 3A */	lis r4, npio2_hw@ha /* 0x803A24B8@ha */
 /* 8036A89C  54 60 10 3A */	slwi r0, r3, 2
-/* 8036A8A0  38 84 24 B8 */	addi r4, r4, npio2_hw@l
+/* 8036A8A0  38 84 24 B8 */	addi r4, r4, npio2_hw@l /* 0x803A24B8@l */
 /* 8036A8A4  7C 84 02 14 */	add r4, r4, r0
 /* 8036A8A8  80 04 FF FC */	lwz r0, -4(r4)
 /* 8036A8AC  7C 06 00 00 */	cmpw r6, r0
@@ -223,9 +223,9 @@ lbl_8036AA48:
 /* 8036AA48  C8 04 FF F8 */	lfd f0, -8(r4)
 /* 8036AA4C  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 8036AA50  41 82 FF F0 */	beq lbl_8036AA40
-/* 8036AA54  3C 60 80 3A */	lis r3, two_over_pi@ha
+/* 8036AA54  3C 60 80 3A */	lis r3, two_over_pi@ha /* 0x803A23B0@ha */
 /* 8036AA58  7F C4 F3 78 */	mr r4, r30
-/* 8036AA5C  39 03 23 B0 */	addi r8, r3, two_over_pi@l
+/* 8036AA5C  39 03 23 B0 */	addi r8, r3, two_over_pi@l /* 0x803A23B0@l */
 /* 8036AA60  38 E0 00 02 */	li r7, 2
 /* 8036AA64  38 61 00 18 */	addi r3, r1, 0x18
 /* 8036AA68  48 00 01 35 */	bl __kernel_rem_pio2

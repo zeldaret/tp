@@ -1,6 +1,6 @@
 lbl_8028B9D4:
-/* 8028B9D4  3C 80 80 43 */	lis r4, saoVVOutput___Q214JStudio_JStage15TAdaptor_camera@ha
-/* 8028B9D8  38 04 12 D4 */	addi r0, r4, saoVVOutput___Q214JStudio_JStage15TAdaptor_camera@l
+/* 8028B9D4  3C 80 80 43 */	lis r4, saoVVOutput___Q214JStudio_JStage15TAdaptor_camera@ha /* 0x804312D4@ha */
+/* 8028B9D8  38 04 12 D4 */	addi r0, r4, saoVVOutput___Q214JStudio_JStage15TAdaptor_camera@l /* 0x804312D4@l */
 /* 8028B9DC  7C 05 03 78 */	mr r5, r0
 /* 8028B9E0  48 00 00 2C */	b lbl_8028BA0C
 lbl_8028B9E4:

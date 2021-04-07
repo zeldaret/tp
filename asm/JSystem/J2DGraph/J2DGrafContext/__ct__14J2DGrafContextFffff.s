@@ -4,8 +4,8 @@ lbl_802E8B08:
 /* 802E8B10  90 01 00 34 */	stw r0, 0x34(r1)
 /* 802E8B14  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 802E8B18  7C 7F 1B 78 */	mr r31, r3
-/* 802E8B1C  3C 80 80 3D */	lis r4, __vt__14J2DGrafContext@ha
-/* 802E8B20  38 04 C9 B8 */	addi r0, r4, __vt__14J2DGrafContext@l
+/* 802E8B1C  3C 80 80 3D */	lis r4, __vt__14J2DGrafContext@ha /* 0x803CC9B8@ha */
+/* 802E8B20  38 04 C9 B8 */	addi r0, r4, __vt__14J2DGrafContext@l /* 0x803CC9B8@l */
 /* 802E8B24  90 03 00 00 */	stw r0, 0(r3)
 /* 802E8B28  D0 23 00 04 */	stfs f1, 4(r3)
 /* 802E8B2C  D0 43 00 08 */	stfs f2, 8(r3)

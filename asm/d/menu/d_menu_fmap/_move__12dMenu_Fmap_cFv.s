@@ -14,32 +14,32 @@ lbl_801C74A8:
 /* 801C74D8  7F E3 FB 78 */	mr r3, r31
 /* 801C74DC  88 1F 03 00 */	lbz r0, 0x300(r31)
 /* 801C74E0  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801C74E4  3C 80 80 3C */	lis r4, move_process@ha
-/* 801C74E8  38 04 D4 D4 */	addi r0, r4, move_process@l
+/* 801C74E4  3C 80 80 3C */	lis r4, move_process@ha /* 0x803BD4D4@ha */
+/* 801C74E8  38 04 D4 D4 */	addi r0, r4, move_process@l /* 0x803BD4D4@l */
 /* 801C74EC  7D 80 2A 14 */	add r12, r0, r5
 /* 801C74F0  48 19 AB 95 */	bl __ptmf_scall
 /* 801C74F4  60 00 00 00 */	nop 
 /* 801C74F8  80 7F 00 18 */	lwz r3, 0x18(r31)
 /* 801C74FC  48 00 F5 49 */	bl _execute__17dMenu_Fmap2DTop_cFv
 /* 801C7500  80 7F 00 14 */	lwz r3, 0x14(r31)
-/* 801C7504  3C 80 80 43 */	lis r4, g_fmHIO@ha
-/* 801C7508  38 84 E8 2C */	addi r4, r4, g_fmHIO@l
+/* 801C7504  3C 80 80 43 */	lis r4, g_fmHIO@ha /* 0x8042E82C@ha */
+/* 801C7508  38 84 E8 2C */	addi r4, r4, g_fmHIO@l /* 0x8042E82C@l */
 /* 801C750C  88 84 00 10 */	lbz r4, 0x10(r4)
 /* 801C7510  48 00 D5 ED */	bl setBaseBackAlpha__18dMenu_Fmap2DBack_cFUc
 /* 801C7514  80 7F 00 14 */	lwz r3, 0x14(r31)
-/* 801C7518  3C 80 80 43 */	lis r4, g_fmHIO@ha
-/* 801C751C  38 84 E8 2C */	addi r4, r4, g_fmHIO@l
+/* 801C7518  3C 80 80 43 */	lis r4, g_fmHIO@ha /* 0x8042E82C@ha */
+/* 801C751C  38 84 E8 2C */	addi r4, r4, g_fmHIO@l /* 0x8042E82C@l */
 /* 801C7520  C0 24 00 08 */	lfs f1, 8(r4)
 /* 801C7524  48 00 D4 BD */	bl btkAnimeLoop__18dMenu_Fmap2DBack_cFf
 /* 801C7528  80 7F 00 18 */	lwz r3, 0x18(r31)
-/* 801C752C  3C 80 80 43 */	lis r4, g_fmHIO@ha
-/* 801C7530  38 84 E8 2C */	addi r4, r4, g_fmHIO@l
+/* 801C752C  3C 80 80 43 */	lis r4, g_fmHIO@ha /* 0x8042E82C@ha */
+/* 801C7530  38 84 E8 2C */	addi r4, r4, g_fmHIO@l /* 0x8042E82C@l */
 /* 801C7534  88 84 00 11 */	lbz r4, 0x11(r4)
 /* 801C7538  48 00 F9 A5 */	bl setMoyaAlpha__17dMenu_Fmap2DTop_cFUc
 /* 801C753C  80 7F 00 18 */	lwz r3, 0x18(r31)
 /* 801C7540  80 83 00 10 */	lwz r4, 0x10(r3)
-/* 801C7544  3C A0 80 43 */	lis r5, g_fmHIO@ha
-/* 801C7548  38 A5 E8 2C */	addi r5, r5, g_fmHIO@l
+/* 801C7544  3C A0 80 43 */	lis r5, g_fmHIO@ha /* 0x8042E82C@ha */
+/* 801C7548  38 A5 E8 2C */	addi r5, r5, g_fmHIO@l /* 0x8042E82C@l */
 /* 801C754C  C0 25 00 0C */	lfs f1, 0xc(r5)
 /* 801C7550  48 00 F8 A9 */	bl btkAnimeLoop__17dMenu_Fmap2DTop_cFP19J2DAnmTextureSRTKeyf
 /* 801C7554  88 1F 03 00 */	lbz r0, 0x300(r31)
@@ -47,8 +47,8 @@ lbl_801C74A8:
 /* 801C755C  41 82 00 20 */	beq lbl_801C757C
 /* 801C7560  7F E3 FB 78 */	mr r3, r31
 /* 801C7564  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801C7568  3C 80 80 3C */	lis r4, init_process@ha
-/* 801C756C  38 04 D2 04 */	addi r0, r4, init_process@l
+/* 801C7568  3C 80 80 3C */	lis r4, init_process@ha /* 0x803BD204@ha */
+/* 801C756C  38 04 D2 04 */	addi r0, r4, init_process@l /* 0x803BD204@l */
 /* 801C7570  7D 80 2A 14 */	add r12, r0, r5
 /* 801C7574  48 19 AB 11 */	bl __ptmf_scall
 /* 801C7578  60 00 00 00 */	nop 
@@ -75,8 +75,8 @@ lbl_801C75A4:
 /* 801C75C0  C0 1F 01 1C */	lfs f0, 0x11c(r31)
 /* 801C75C4  D0 03 00 78 */	stfs f0, 0x78(r3)
 /* 801C75C8  D0 23 00 7C */	stfs f1, 0x7c(r3)
-/* 801C75CC  3C 60 80 43 */	lis r3, g_fmapHIO@ha
-/* 801C75D0  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l
+/* 801C75CC  3C 60 80 43 */	lis r3, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801C75D0  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801C75D4  88 03 02 FF */	lbz r0, 0x2ff(r3)
 /* 801C75D8  28 00 00 00 */	cmplwi r0, 0
 /* 801C75DC  41 82 00 0C */	beq lbl_801C75E8

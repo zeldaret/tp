@@ -2,8 +2,8 @@ lbl_8024B584:
 /* 8024B584  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8024B588  7C 08 02 A6 */	mflr r0
 /* 8024B58C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8024B590  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024B594  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8024B590  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024B594  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024B598  38 63 09 58 */	addi r3, r3, 0x958
 /* 8024B59C  A0 84 00 04 */	lhz r4, 4(r4)
 /* 8024B5A0  4B DE 92 C1 */	bl isSwitch__12dSv_memBit_cCFi

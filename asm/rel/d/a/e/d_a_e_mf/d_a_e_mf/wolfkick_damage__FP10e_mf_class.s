@@ -4,10 +4,10 @@ lbl_8070FEE0:
 /* 8070FEE8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8070FEEC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8070FEF0  7C 7F 1B 78 */	mr r31, r3
-/* 8070FEF4  3C 60 80 71 */	lis r3, lit_3828@ha
-/* 8070FEF8  38 A3 39 74 */	addi r5, r3, lit_3828@l
-/* 8070FEFC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8070FF00  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8070FEF4  3C 60 80 71 */	lis r3, lit_3828@ha /* 0x80713974@ha */
+/* 8070FEF8  38 A3 39 74 */	addi r5, r3, lit_3828@l /* 0x80713974@l */
+/* 8070FEFC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8070FF00  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8070FF04  80 C3 5D AC */	lwz r6, 0x5dac(r3)
 /* 8070FF08  A8 9F 10 A2 */	lha r4, 0x10a2(r31)
 /* 8070FF0C  A8 7F 04 E6 */	lha r3, 0x4e6(r31)

@@ -5,34 +5,34 @@ lbl_80BF5168:
 /* 80BF5174  DB E1 00 C0 */	stfd f31, 0xc0(r1)
 /* 80BF5178  F3 E1 00 C8 */	psq_st f31, 200(r1), 0, 0 /* qr0 */
 /* 80BF517C  39 61 00 C0 */	addi r11, r1, 0xc0
-/* 80BF5180  4B 76 D0 58 */	b _savegpr_28
+/* 80BF5180  4B 76 D0 59 */	bl _savegpr_28
 /* 80BF5184  7C 7E 1B 78 */	mr r30, r3
-/* 80BF5188  3C 80 80 BF */	lis r4, l_idx@ha
-/* 80BF518C  3B E4 55 EC */	addi r31, r4, l_idx@l
+/* 80BF5188  3C 80 80 BF */	lis r4, l_idx@ha /* 0x80BF55EC@ha */
+/* 80BF518C  3B E4 55 EC */	addi r31, r4, l_idx@l /* 0x80BF55EC@l */
 /* 80BF5190  4B FF FF 3D */	bl checkDraw__12daObjGWall_cFv
 /* 80BF5194  2C 03 00 00 */	cmpwi r3, 0
 /* 80BF5198  40 82 00 0C */	bne lbl_80BF51A4
 /* 80BF519C  38 60 00 01 */	li r3, 1
 /* 80BF51A0  48 00 03 70 */	b lbl_80BF5510
 lbl_80BF51A4:
-/* 80BF51A4  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80BF51A8  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 80BF51A4  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80BF51A8  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80BF51AC  38 80 00 00 */	li r4, 0
 /* 80BF51B0  38 BE 04 D0 */	addi r5, r30, 0x4d0
 /* 80BF51B4  38 DE 01 0C */	addi r6, r30, 0x10c
-/* 80BF51B8  4B 5A E6 0C */	b settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
-/* 80BF51BC  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80BF51C0  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 80BF51B8  4B 5A E6 0D */	bl settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
+/* 80BF51BC  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80BF51C0  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80BF51C4  80 9E 05 70 */	lwz r4, 0x570(r30)
 /* 80BF51C8  80 84 00 04 */	lwz r4, 4(r4)
 /* 80BF51CC  38 BE 01 0C */	addi r5, r30, 0x10c
-/* 80BF51D0  4B 5A FB D0 */	b setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
+/* 80BF51D0  4B 5A FB D1 */	bl setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
 /* 80BF51D4  80 7E 05 70 */	lwz r3, 0x570(r30)
 /* 80BF51D8  80 83 00 04 */	lwz r4, 4(r3)
 /* 80BF51DC  80 7E 05 74 */	lwz r3, 0x574(r30)
 /* 80BF51E0  C0 23 00 10 */	lfs f1, 0x10(r3)
 /* 80BF51E4  38 84 00 58 */	addi r4, r4, 0x58
-/* 80BF51E8  4B 41 84 F0 */	b entry__13mDoExt_btkAnmFP16J3DMaterialTablef
+/* 80BF51E8  4B 41 84 F1 */	bl entry__13mDoExt_btkAnmFP16J3DMaterialTablef
 /* 80BF51EC  3B 80 00 00 */	li r28, 0
 /* 80BF51F0  48 00 00 64 */	b lbl_80BF5254
 lbl_80BF51F4:
@@ -68,9 +68,9 @@ lbl_80BF5254:
 /* 80BF5260  57 80 04 3E */	clrlwi r0, r28, 0x10
 /* 80BF5264  7C 00 18 40 */	cmplw r0, r3
 /* 80BF5268  41 80 FF 8C */	blt lbl_80BF51F4
-/* 80BF526C  4B 5A A7 A4 */	b dKy_getdaytime_hour__Fv
+/* 80BF526C  4B 5A A7 A5 */	bl dKy_getdaytime_hour__Fv
 /* 80BF5270  7C 7D 1B 78 */	mr r29, r3
-/* 80BF5274  4B 5A A7 C8 */	b dKy_getdaytime_minute__Fv
+/* 80BF5274  4B 5A A7 C9 */	bl dKy_getdaytime_minute__Fv
 /* 80BF5278  C8 3F 00 D8 */	lfd f1, 0xd8(r31)
 /* 80BF527C  6C 60 80 00 */	xoris r0, r3, 0x8000
 /* 80BF5280  90 01 00 0C */	stw r0, 0xc(r1)
@@ -235,13 +235,13 @@ lbl_80BF5254:
 /* 80BF54FC  80 01 00 AC */	lwz r0, 0xac(r1)
 /* 80BF5500  98 03 00 03 */	stb r0, 3(r3)
 /* 80BF5504  80 7E 05 70 */	lwz r3, 0x570(r30)
-/* 80BF5508  4B 41 87 BC */	b mDoExt_modelUpdateDL__FP8J3DModel
+/* 80BF5508  4B 41 87 BD */	bl mDoExt_modelUpdateDL__FP8J3DModel
 /* 80BF550C  38 60 00 01 */	li r3, 1
 lbl_80BF5510:
 /* 80BF5510  E3 E1 00 C8 */	psq_l f31, 200(r1), 0, 0 /* qr0 */
 /* 80BF5514  CB E1 00 C0 */	lfd f31, 0xc0(r1)
 /* 80BF5518  39 61 00 C0 */	addi r11, r1, 0xc0
-/* 80BF551C  4B 76 CD 08 */	b _restgpr_28
+/* 80BF551C  4B 76 CD 09 */	bl _restgpr_28
 /* 80BF5520  80 01 00 D4 */	lwz r0, 0xd4(r1)
 /* 80BF5524  7C 08 03 A6 */	mtlr r0
 /* 80BF5528  38 21 00 D0 */	addi r1, r1, 0xd0

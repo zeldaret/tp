@@ -5,12 +5,12 @@ lbl_806A42F0:
 /* 806A42FC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 806A4300  93 C1 00 08 */	stw r30, 8(r1)
 /* 806A4304  7C 7E 1B 78 */	mr r30, r3
-/* 806A4308  3C 60 80 6A */	lis r3, lit_3903@ha
-/* 806A430C  3B E3 71 C4 */	addi r31, r3, lit_3903@l
+/* 806A4308  3C 60 80 6A */	lis r3, lit_3903@ha /* 0x806A71C4@ha */
+/* 806A430C  3B E3 71 C4 */	addi r31, r3, lit_3903@l /* 0x806A71C4@l */
 /* 806A4310  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 806A4314  C0 3F 00 08 */	lfs f1, 8(r31)
 /* 806A4318  C0 5F 00 64 */	lfs f2, 0x64(r31)
-/* 806A431C  4B BC B7 64 */	b cLib_addCalc0__FPfff
+/* 806A431C  4B BC B7 65 */	bl cLib_addCalc0__FPfff
 /* 806A4320  38 00 00 05 */	li r0, 5
 /* 806A4324  B0 1E 06 B2 */	sth r0, 0x6b2(r30)
 /* 806A4328  A8 1E 06 8C */	lha r0, 0x68c(r30)

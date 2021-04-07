@@ -1,8 +1,8 @@
 lbl_80354DF0:
 /* 80354DF0  7C 08 02 A6 */	mflr r0
-/* 80354DF4  3C 80 80 45 */	lis r4, __CARDBlock@ha
+/* 80354DF4  3C 80 80 45 */	lis r4, __CARDBlock@ha /* 0x8044CBC0@ha */
 /* 80354DF8  90 01 00 04 */	stw r0, 4(r1)
-/* 80354DFC  38 84 CB C0 */	addi r4, r4, __CARDBlock@l
+/* 80354DFC  38 84 CB C0 */	addi r4, r4, __CARDBlock@l /* 0x8044CBC0@l */
 /* 80354E00  38 04 00 30 */	addi r0, r4, 0x30
 /* 80354E04  94 21 FF E8 */	stwu r1, -0x18(r1)
 /* 80354E08  7C 00 18 40 */	cmplw r0, r3

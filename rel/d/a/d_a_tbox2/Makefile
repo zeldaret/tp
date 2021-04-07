@@ -3,18 +3,16 @@
 #
 
 M42_TARGET := $(BUILD_DIR)/rel/d/a/d_a_tbox2.plf
+M42_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_tbox2.lcf
+M42_MAP := $(BUILD_DIR)/rel/d/a/d_a_tbox2.map
 
 M42_CPP_FILES := \
-	rel/d/a/d_a_tbox2/executor.cpp \
-	rel/d/a/d_a_tbox2/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_tbox2/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_tbox2/unknown_translation_unit_bss.cpp \
 	rel/d/a/d_a_tbox2/d_a_tbox2.cpp \
 
 M42_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_tbox2/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_tbox2/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_tbox2/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_tbox2/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/d_a_tbox2/d_a_tbox2.o \
 
@@ -31,14 +29,21 @@ M42_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M42_LDSCRIPT) \
+	-unused -map $(M42_MAP) \
+	-w off \
 
 $(M42_TARGET): $(M42_O_FILES) $(M42_LIBS)
+	@echo [ 42] creating $(M42_TARGET)
 	@echo $(M42_LIBS) $(M42_O_FILES) > build/M42_ofiles
-	$(LD) -partial $(M42_LDFLAGS) -o $(M42_TARGET) @build/M42_ofiles
+	@python3 tools/lcf.py rel 42 --output $(M42_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M42_LDFLAGS) -o $(M42_TARGET) @build/M42_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_tbox2/%.o: rel/d/a/d_a_tbox2/%.cpp
+	@echo [ 42] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M42_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M42_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

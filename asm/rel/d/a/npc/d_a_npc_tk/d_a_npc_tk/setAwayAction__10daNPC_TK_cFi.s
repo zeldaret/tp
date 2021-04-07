@@ -3,11 +3,11 @@ lbl_80B01E48:
 /* 80B01E4C  7C 08 02 A6 */	mflr r0
 /* 80B01E50  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80B01E54  39 61 00 20 */	addi r11, r1, 0x20
-/* 80B01E58  4B 86 03 84 */	b _savegpr_29
+/* 80B01E58  4B 86 03 85 */	bl _savegpr_29
 /* 80B01E5C  7C 7D 1B 78 */	mr r29, r3
 /* 80B01E60  7C 9E 23 78 */	mr r30, r4
-/* 80B01E64  3C 60 80 B1 */	lis r3, lit_3999@ha
-/* 80B01E68  3B E3 C1 C4 */	addi r31, r3, lit_3999@l
+/* 80B01E64  3C 60 80 B1 */	lis r3, lit_3999@ha /* 0x80B0C1C4@ha */
+/* 80B01E68  3B E3 C1 C4 */	addi r31, r3, lit_3999@l /* 0x80B0C1C4@l */
 /* 80B01E6C  80 1D 06 8C */	lwz r0, 0x68c(r29)
 /* 80B01E70  2C 00 00 03 */	cmpwi r0, 3
 /* 80B01E74  41 82 00 0C */	beq lbl_80B01E80
@@ -39,7 +39,7 @@ lbl_80B01E80:
 /* 80B01ED8  B0 1D 04 E4 */	sth r0, 0x4e4(r29)
 lbl_80B01EDC:
 /* 80B01EDC  39 61 00 20 */	addi r11, r1, 0x20
-/* 80B01EE0  4B 86 03 48 */	b _restgpr_29
+/* 80B01EE0  4B 86 03 49 */	bl _restgpr_29
 /* 80B01EE4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80B01EE8  7C 08 03 A6 */	mtlr r0
 /* 80B01EEC  38 21 00 20 */	addi r1, r1, 0x20

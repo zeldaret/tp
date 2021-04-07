@@ -24,8 +24,8 @@ lbl_8013BD84:
 /* 8013BDA8  48 00 00 60 */	b lbl_8013BE08
 lbl_8013BDAC:
 /* 8013BDAC  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 8013BDB0  3C 60 80 39 */	lis r3, m__22daAlinkHIO_wlAtDown_c0@ha
-/* 8013BDB4  38 63 F6 58 */	addi r3, r3, m__22daAlinkHIO_wlAtDown_c0@l
+/* 8013BDB0  3C 60 80 39 */	lis r3, m__22daAlinkHIO_wlAtDown_c0@ha /* 0x8038F658@ha */
+/* 8013BDB4  38 63 F6 58 */	addi r3, r3, m__22daAlinkHIO_wlAtDown_c0@l /* 0x8038F658@l */
 /* 8013BDB8  C0 03 00 74 */	lfs f0, 0x74(r3)
 /* 8013BDBC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8013BDC0  40 81 00 14 */	ble lbl_8013BDD4

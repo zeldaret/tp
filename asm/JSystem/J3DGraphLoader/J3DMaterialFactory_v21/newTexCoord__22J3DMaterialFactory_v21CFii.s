@@ -18,8 +18,8 @@ lbl_80333A48:
 /* 80333A88  B0 03 00 04 */	sth r0, 4(r3)
 /* 80333A8C  4E 80 00 20 */	blr 
 lbl_80333A90:
-/* 80333A90  3C 80 80 3A */	lis r4, j3dDefaultTexCoordInfo@ha
-/* 80333A94  80 04 1E FC */	lwz r0, j3dDefaultTexCoordInfo@l(r4)
+/* 80333A90  3C 80 80 3A */	lis r4, j3dDefaultTexCoordInfo@ha /* 0x803A1EFC@ha */
+/* 80333A94  80 04 1E FC */	lwz r0, j3dDefaultTexCoordInfo@l(r4)  /* 0x803A1EFC@l */
 /* 80333A98  90 03 00 00 */	stw r0, 0(r3)
 /* 80333A9C  88 03 00 02 */	lbz r0, 2(r3)
 /* 80333AA0  B0 03 00 04 */	sth r0, 4(r3)

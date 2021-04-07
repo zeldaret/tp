@@ -11,8 +11,8 @@ lbl_802862AC:
 /* 802862D0  80 04 00 00 */	lwz r0, 0(r4)
 /* 802862D4  1C 00 00 14 */	mulli r0, r0, 0x14
 /* 802862D8  7D 46 02 14 */	add r10, r6, r0
-/* 802862DC  3C C0 80 28 */	lis r6, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha
-/* 802862E0  39 06 5E B8 */	addi r8, r6, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l
+/* 802862DC  3C C0 80 28 */	lis r6, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha /* 0x80285EB8@ha */
+/* 802862E0  39 06 5E B8 */	addi r8, r6, update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l /* 0x80285EB8@l */
 /* 802862E4  91 0A 00 08 */	stw r8, 8(r10)
 /* 802862E8  38 E0 00 00 */	li r7, 0
 /* 802862EC  90 EA 00 04 */	stw r7, 4(r10)

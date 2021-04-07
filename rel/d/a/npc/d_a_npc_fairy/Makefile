@@ -3,19 +3,20 @@
 #
 
 M302_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fairy.plf
+M302_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fairy.lcf
+M302_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fairy.map
 
 M302_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_fairy/executor.cpp \
-	rel/d/a/npc/d_a_npc_fairy/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_fairy/d_a_npc_fairy.cpp \
 
 M302_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_fairy/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_fairy/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_fairy/d_a_npc_fairy.o \
 
 M302_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_fairy/libRuntime.PPCEABI.H.a \
 
 M302_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M302_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M302_LDSCRIPT) \
+	-unused -map $(M302_MAP) \
+	-w off \
 
 $(M302_TARGET): $(M302_O_FILES) $(M302_LIBS)
+	@echo [302] creating $(M302_TARGET)
 	@echo $(M302_LIBS) $(M302_O_FILES) > build/M302_ofiles
-	$(LD) -partial $(M302_LDFLAGS) -o $(M302_TARGET) @build/M302_ofiles
+	@python3 tools/lcf.py rel 302 --output $(M302_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M302_LDFLAGS) -o $(M302_TARGET) @build/M302_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fairy/%.o: rel/d/a/npc/d_a_npc_fairy/%.cpp
+	@echo [302] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M302_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M302_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_fairy/libs/Runtime.PPCEABI.H/Makefile
 

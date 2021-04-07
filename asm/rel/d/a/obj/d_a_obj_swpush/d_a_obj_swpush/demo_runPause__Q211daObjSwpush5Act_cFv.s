@@ -4,8 +4,8 @@ lbl_8048464C:
 /* 80484654  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80484658  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8048465C  7C 7F 1B 78 */	mr r31, r3
-/* 80484660  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80484664  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 80484660  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80484664  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80484668  80 64 5D AC */	lwz r3, 0x5dac(r4)
 /* 8048466C  80 03 05 8C */	lwz r0, 0x58c(r3)
 /* 80484670  60 00 02 00 */	ori r0, r0, 0x200
@@ -17,7 +17,7 @@ lbl_8048464C:
 /* 80484688  2C 00 00 00 */	cmpwi r0, 0
 /* 8048468C  41 81 00 14 */	bgt lbl_804846A0
 /* 80484690  38 64 4E C8 */	addi r3, r4, 0x4ec8
-/* 80484694  4B BB DD D4 */	b reset__14dEvt_control_cFv
+/* 80484694  4B BB DD D5 */	bl reset__14dEvt_control_cFv
 /* 80484698  7F E3 FB 78 */	mr r3, r31
 /* 8048469C  4B FF FE D5 */	bl demo_non_init__Q211daObjSwpush5Act_cFv
 lbl_804846A0:

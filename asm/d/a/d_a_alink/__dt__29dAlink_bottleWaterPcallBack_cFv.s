@@ -7,8 +7,8 @@ lbl_800CFCF8:
 /* 800CFD0C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 800CFD10  7C 9F 23 78 */	mr r31, r4
 /* 800CFD14  41 82 00 28 */	beq lbl_800CFD3C
-/* 800CFD18  3C 80 80 3B */	lis r4, __vt__29dAlink_bottleWaterPcallBack_c@ha
-/* 800CFD1C  38 04 35 B4 */	addi r0, r4, __vt__29dAlink_bottleWaterPcallBack_c@l
+/* 800CFD18  3C 80 80 3B */	lis r4, __vt__29dAlink_bottleWaterPcallBack_c@ha /* 0x803B35B4@ha */
+/* 800CFD1C  38 04 35 B4 */	addi r0, r4, __vt__29dAlink_bottleWaterPcallBack_c@l /* 0x803B35B4@l */
 /* 800CFD20  90 1E 00 00 */	stw r0, 0(r30)
 /* 800CFD24  38 80 00 00 */	li r4, 0
 /* 800CFD28  48 1A F2 7D */	bl __dt__19JPAParticleCallBackFv

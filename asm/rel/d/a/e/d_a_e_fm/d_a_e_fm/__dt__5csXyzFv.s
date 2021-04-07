@@ -7,7 +7,7 @@ lbl_804EF63C:
 /* 804EF650  41 82 00 10 */	beq lbl_804EF660
 /* 804EF654  7C 80 07 35 */	extsh. r0, r4
 /* 804EF658  40 81 00 08 */	ble lbl_804EF660
-/* 804EF65C  4B DD F6 E0 */	b __dl__FPv
+/* 804EF65C  4B DD F6 E1 */	bl __dl__FPv
 lbl_804EF660:
 /* 804EF660  7F E3 FB 78 */	mr r3, r31
 /* 804EF664  83 E1 00 0C */	lwz r31, 0xc(r1)

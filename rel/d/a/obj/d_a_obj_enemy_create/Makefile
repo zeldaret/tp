@@ -3,17 +3,15 @@
 #
 
 M441_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_enemy_create.plf
+M441_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_enemy_create.lcf
+M441_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_enemy_create.map
 
 M441_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_enemy_create/executor.cpp \
-	rel/d/a/obj/d_a_obj_enemy_create/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_enemy_create/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_enemy_create/d_a_obj_enemy_create.cpp \
 
 M441_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_enemy_create/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_enemy_create/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_enemy_create/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_enemy_create/d_a_obj_enemy_create.o \
 
 M441_LIBS := \
@@ -29,14 +27,21 @@ M441_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M441_LDSCRIPT) \
+	-unused -map $(M441_MAP) \
+	-w off \
 
 $(M441_TARGET): $(M441_O_FILES) $(M441_LIBS)
+	@echo [441] creating $(M441_TARGET)
 	@echo $(M441_LIBS) $(M441_O_FILES) > build/M441_ofiles
-	$(LD) -partial $(M441_LDFLAGS) -o $(M441_TARGET) @build/M441_ofiles
+	@python3 tools/lcf.py rel 441 --output $(M441_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M441_LDFLAGS) -o $(M441_TARGET) @build/M441_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_enemy_create/%.o: rel/d/a/obj/d_a_obj_enemy_create/%.cpp
+	@echo [441] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M441_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M441_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

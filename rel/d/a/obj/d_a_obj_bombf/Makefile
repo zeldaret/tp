@@ -3,17 +3,15 @@
 #
 
 M412_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bombf.plf
+M412_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bombf.lcf
+M412_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bombf.map
 
 M412_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_bombf/executor.cpp \
-	rel/d/a/obj/d_a_obj_bombf/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_bombf/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_bombf/d_a_obj_bombf.cpp \
 
 M412_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bombf/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bombf/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bombf/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bombf/d_a_obj_bombf.o \
 
 M412_LIBS := \
@@ -29,14 +27,21 @@ M412_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M412_LDSCRIPT) \
+	-unused -map $(M412_MAP) \
+	-w off \
 
 $(M412_TARGET): $(M412_O_FILES) $(M412_LIBS)
+	@echo [412] creating $(M412_TARGET)
 	@echo $(M412_LIBS) $(M412_O_FILES) > build/M412_ofiles
-	$(LD) -partial $(M412_LDFLAGS) -o $(M412_TARGET) @build/M412_ofiles
+	@python3 tools/lcf.py rel 412 --output $(M412_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M412_LDFLAGS) -o $(M412_TARGET) @build/M412_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bombf/%.o: rel/d/a/obj/d_a_obj_bombf/%.cpp
+	@echo [412] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M412_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M412_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

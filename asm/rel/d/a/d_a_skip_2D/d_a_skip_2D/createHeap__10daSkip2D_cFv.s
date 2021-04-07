@@ -5,10 +5,10 @@ lbl_80D4D498:
 /* 80D4D4A4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80D4D4A8  7C 7F 1B 78 */	mr r31, r3
 /* 80D4D4AC  38 60 06 30 */	li r3, 0x630
-/* 80D4D4B0  4B 58 17 9C */	b __nw__FUl
+/* 80D4D4B0  4B 58 17 9D */	bl __nw__FUl
 /* 80D4D4B4  7C 60 1B 79 */	or. r0, r3, r3
 /* 80D4D4B8  41 82 00 0C */	beq lbl_80D4D4C4
-/* 80D4D4BC  4B 4B 3E 6C */	b __ct__14dMeterButton_cFv
+/* 80D4D4BC  4B 4B 3E 6D */	bl __ct__14dMeterButton_cFv
 /* 80D4D4C0  7C 60 1B 78 */	mr r0, r3
 lbl_80D4D4C4:
 /* 80D4D4C4  90 1F 05 70 */	stw r0, 0x570(r31)

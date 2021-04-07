@@ -4,8 +4,8 @@ lbl_8014F0FC:
 /* 8014F104  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8014F108  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8014F10C  7C 7F 1B 78 */	mr r31, r3
-/* 8014F110  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8014F114  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8014F110  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8014F114  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8014F118  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8014F11C  38 9F 09 E8 */	addi r4, r31, 0x9e8
 /* 8014F120  4B F2 5F E1 */	bl GetRoomId__4dBgSFRC13cBgS_PolyInfo

@@ -39,14 +39,10 @@ extern "C" void align__20JSURandomInputStreamFl();
 extern "C" void skip__20JSURandomInputStreamFl();
 extern "C" void peek__20JSURandomInputStreamFPvl();
 extern "C" void seek__20JSURandomInputStreamFl17JSUStreamSeekFrom();
-extern "C" extern void* __vt__20JSURandomInputStream[9];
-extern "C" extern void* __vt__14JSUInputStream[6 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __dt__20JSURandomInputStreamFv();
 extern "C" void __dl__FPv();
@@ -62,9 +58,9 @@ extern "C" extern void* __vt__10JSUIosBase[3];
 //
 
 /* ############################################################################################## */
-/* 803CC4B0-803CC4D4 0024+00 s=0 e=7 z=0  None .data      __vt__20JSURandomInputStream */
-SECTION_DATA void* __vt__20JSURandomInputStream[9] = {
-    (void*)NULL,
+/* 803CC4B0-803CC4D4 0295D0 0024+00 0/0 7/7 0/0 .data            __vt__20JSURandomInputStream */
+SECTION_DATA extern void* __vt__20JSURandomInputStream[9] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__20JSURandomInputStreamFv,
     (void*)getAvailable__20JSURandomInputStreamCFv,
@@ -75,9 +71,9 @@ SECTION_DATA void* __vt__20JSURandomInputStream[9] = {
     (void*)NULL,
 };
 
-/* 803CC4D4-803CC4F0 0018+04 s=1 e=4 z=0  None .data      __vt__14JSUInputStream */
-SECTION_DATA void* __vt__14JSUInputStream[6 + 1 /* padding */] = {
-    (void*)NULL,
+/* 803CC4D4-803CC4F0 0295F4 0018+04 1/1 4/4 0/0 .data            __vt__14JSUInputStream */
+SECTION_DATA extern void* __vt__14JSUInputStream[6 + 1 /* padding */] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14JSUInputStreamFv,
     (void*)NULL,
@@ -87,7 +83,7 @@ SECTION_DATA void* __vt__14JSUInputStream[6 + 1 /* padding */] = {
     NULL,
 };
 
-/* 802DC23C-802DC298 005C+00 s=1 e=6 z=0  None .text      __dt__14JSUInputStreamFv */
+/* 802DC23C-802DC298 2D6B7C 005C+00 1/0 6/6 0/0 .text            __dt__14JSUInputStreamFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -97,7 +93,7 @@ asm JSUInputStream::~JSUInputStream() {
 }
 #pragma pop
 
-/* 802DC298-802DC2F0 0058+00 s=1 e=20 z=0  None .text      read__14JSUInputStreamFPvl */
+/* 802DC298-802DC2F0 2D6BD8 0058+00 1/1 20/20 0/0 .text            read__14JSUInputStreamFPvl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -107,7 +103,7 @@ asm void JSUInputStream::read(void* param_0, s32 param_1) {
 }
 #pragma pop
 
-/* 802DC2F0-802DC370 0080+00 s=1 e=0 z=0  None .text      skip__14JSUInputStreamFl */
+/* 802DC2F0-802DC370 2D6C30 0080+00 1/0 0/0 0/0 .text            skip__14JSUInputStreamFl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -117,7 +113,7 @@ asm void JSUInputStream::skip(s32 param_0) {
 }
 #pragma pop
 
-/* 802DC370-802DC3FC 008C+00 s=0 e=1 z=0  None .text      align__20JSURandomInputStreamFl */
+/* 802DC370-802DC3FC 2D6CB0 008C+00 0/0 1/1 0/0 .text            align__20JSURandomInputStreamFl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -127,7 +123,7 @@ asm void JSURandomInputStream::align(s32 param_0) {
 }
 #pragma pop
 
-/* 802DC3FC-802DC458 005C+00 s=1 e=2 z=0  None .text      skip__20JSURandomInputStreamFl */
+/* 802DC3FC-802DC458 2D6D3C 005C+00 1/0 2/0 0/0 .text            skip__20JSURandomInputStreamFl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -137,7 +133,7 @@ asm void JSURandomInputStream::skip(s32 param_0) {
 }
 #pragma pop
 
-/* 802DC458-802DC4DC 0084+00 s=0 e=8 z=0  None .text      peek__20JSURandomInputStreamFPvl */
+/* 802DC458-802DC4DC 2D6D98 0084+00 0/0 8/8 0/0 .text            peek__20JSURandomInputStreamFPvl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -147,7 +143,7 @@ asm void JSURandomInputStream::peek(void* param_0, s32 param_1) {
 }
 #pragma pop
 
-/* 802DC4DC-802DC520 0044+00 s=0 e=16 z=0  None .text
+/* 802DC4DC-802DC520 2D6E1C 0044+00 0/0 16/16 0/0 .text
  * seek__20JSURandomInputStreamFl17JSUStreamSeekFrom            */
 #pragma push
 #pragma optimization_level 0

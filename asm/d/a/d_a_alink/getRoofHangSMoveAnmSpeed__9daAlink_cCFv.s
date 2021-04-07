@@ -1,6 +1,6 @@
 lbl_801005F0:
-/* 801005F0  3C 80 80 39 */	lis r4, m__22daAlinkHIO_roofHang_c0@ha
-/* 801005F4  38 84 EB FC */	addi r4, r4, m__22daAlinkHIO_roofHang_c0@l
+/* 801005F0  3C 80 80 39 */	lis r4, m__22daAlinkHIO_roofHang_c0@ha /* 0x8038EBFC@ha */
+/* 801005F4  38 84 EB FC */	addi r4, r4, m__22daAlinkHIO_roofHang_c0@l /* 0x8038EBFC@l */
 /* 801005F8  C0 44 00 38 */	lfs f2, 0x38(r4)
 /* 801005FC  C0 23 33 A8 */	lfs f1, 0x33a8(r3)
 /* 80100600  C0 04 00 3C */	lfs f0, 0x3c(r4)

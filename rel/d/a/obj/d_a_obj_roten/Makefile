@@ -3,17 +3,15 @@
 #
 
 M607_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_roten.plf
+M607_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_roten.lcf
+M607_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_roten.map
 
 M607_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_roten/executor.cpp \
-	rel/d/a/obj/d_a_obj_roten/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_roten/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_roten/d_a_obj_roten.cpp \
 
 M607_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_roten/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_roten/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_roten/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_roten/d_a_obj_roten.o \
 
 M607_LIBS := \
@@ -29,14 +27,21 @@ M607_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M607_LDSCRIPT) \
+	-unused -map $(M607_MAP) \
+	-w off \
 
 $(M607_TARGET): $(M607_O_FILES) $(M607_LIBS)
+	@echo [607] creating $(M607_TARGET)
 	@echo $(M607_LIBS) $(M607_O_FILES) > build/M607_ofiles
-	$(LD) -partial $(M607_LDFLAGS) -o $(M607_TARGET) @build/M607_ofiles
+	@python3 tools/lcf.py rel 607 --output $(M607_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M607_LDFLAGS) -o $(M607_TARGET) @build/M607_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_roten/%.o: rel/d/a/obj/d_a_obj_roten/%.cpp
+	@echo [607] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M607_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M607_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -3,19 +3,20 @@
 #
 
 M159_TARGET := $(BUILD_DIR)/rel/d/a/d_a_balloon_2D.plf
+M159_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_balloon_2D.lcf
+M159_MAP := $(BUILD_DIR)/rel/d/a/d_a_balloon_2D.map
 
 M159_CPP_FILES := \
-	rel/d/a/d_a_balloon_2D/executor.cpp \
-	rel/d/a/d_a_balloon_2D/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_balloon_2D/d_a_balloon_2D.cpp \
 
 M159_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_balloon_2D/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_balloon_2D/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_balloon_2D/d_a_balloon_2D.o \
 
 M159_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_balloon_2D/libRuntime.PPCEABI.H.a \
 
 M159_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M159_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M159_LDSCRIPT) \
+	-unused -map $(M159_MAP) \
+	-w off \
 
 $(M159_TARGET): $(M159_O_FILES) $(M159_LIBS)
+	@echo [159] creating $(M159_TARGET)
 	@echo $(M159_LIBS) $(M159_O_FILES) > build/M159_ofiles
-	$(LD) -partial $(M159_LDFLAGS) -o $(M159_TARGET) @build/M159_ofiles
+	@python3 tools/lcf.py rel 159 --output $(M159_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M159_LDFLAGS) -o $(M159_TARGET) @build/M159_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_balloon_2D/%.o: rel/d/a/d_a_balloon_2D/%.cpp
+	@echo [159] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M159_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M159_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_balloon_2D/libs/Runtime.PPCEABI.H/Makefile
 

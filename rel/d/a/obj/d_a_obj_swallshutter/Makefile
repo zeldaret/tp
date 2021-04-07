@@ -3,19 +3,20 @@
 #
 
 M111_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swallshutter.plf
+M111_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swallshutter.lcf
+M111_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swallshutter.map
 
 M111_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_swallshutter/executor.cpp \
-	rel/d/a/obj/d_a_obj_swallshutter/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter.cpp \
 
 M111_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swallshutter/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swallshutter/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swallshutter/d_a_obj_sWallShutter.o \
 
 M111_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swallshutter/libRuntime.PPCEABI.H.a \
 
 M111_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M111_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M111_LDSCRIPT) \
+	-unused -map $(M111_MAP) \
+	-w off \
 
 $(M111_TARGET): $(M111_O_FILES) $(M111_LIBS)
+	@echo [111] creating $(M111_TARGET)
 	@echo $(M111_LIBS) $(M111_O_FILES) > build/M111_ofiles
-	$(LD) -partial $(M111_LDFLAGS) -o $(M111_TARGET) @build/M111_ofiles
+	@python3 tools/lcf.py rel 111 --output $(M111_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M111_LDFLAGS) -o $(M111_TARGET) @build/M111_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swallshutter/%.o: rel/d/a/obj/d_a_obj_swallshutter/%.cpp
+	@echo [111] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M111_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M111_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_swallshutter/libs/Runtime.PPCEABI.H/Makefile
 

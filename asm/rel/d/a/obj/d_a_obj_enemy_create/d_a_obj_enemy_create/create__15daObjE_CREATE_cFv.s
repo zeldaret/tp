@@ -9,7 +9,7 @@ lbl_80BE3770:
 /* 80BE378C  40 82 00 1C */	bne lbl_80BE37A8
 /* 80BE3790  28 1F 00 00 */	cmplwi r31, 0
 /* 80BE3794  41 82 00 08 */	beq lbl_80BE379C
-/* 80BE3798  4B 43 53 CC */	b __ct__10fopAc_ac_cFv
+/* 80BE3798  4B 43 53 CD */	bl __ct__10fopAc_ac_cFv
 lbl_80BE379C:
 /* 80BE379C  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 80BE37A0  60 00 00 08 */	ori r0, r0, 8
@@ -41,12 +41,12 @@ lbl_80BE37F8:
 /* 80BE37F8  80 1F 00 B0 */	lwz r0, 0xb0(r31)
 /* 80BE37FC  54 00 46 3E */	srwi r0, r0, 0x18
 /* 80BE3800  98 1F 05 6C */	stb r0, 0x56c(r31)
-/* 80BE3804  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BE3808  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80BE3804  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BE3808  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BE380C  88 9F 05 6C */	lbz r4, 0x56c(r31)
 /* 80BE3810  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80BE3814  7C 05 07 74 */	extsb r5, r0
-/* 80BE3818  4B 45 1B 48 */	b isSwitch__10dSv_info_cCFii
+/* 80BE3818  4B 45 1B 49 */	bl isSwitch__10dSv_info_cCFii
 /* 80BE381C  2C 03 00 00 */	cmpwi r3, 0
 /* 80BE3820  41 82 00 0C */	beq lbl_80BE382C
 /* 80BE3824  38 60 00 05 */	li r3, 5
@@ -60,7 +60,7 @@ lbl_80BE382C:
 /* 80BE3840  98 1F 05 6B */	stb r0, 0x56b(r31)
 /* 80BE3844  88 1F 05 69 */	lbz r0, 0x569(r31)
 /* 80BE3848  54 03 10 3A */	slwi r3, r0, 2
-/* 80BE384C  4B 6E B4 78 */	b __nwa__FUl
+/* 80BE384C  4B 6E B4 79 */	bl __nwa__FUl
 /* 80BE3850  90 7F 05 7C */	stw r3, 0x57c(r31)
 /* 80BE3854  80 1F 05 7C */	lwz r0, 0x57c(r31)
 /* 80BE3858  7C 00 00 34 */	cntlzw r0, r0

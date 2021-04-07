@@ -1,8 +1,8 @@
 lbl_806BE94C:
-/* 806BE94C  3C 80 80 6C */	lis r4, lit_3803@ha
-/* 806BE950  38 A4 19 38 */	addi r5, r4, lit_3803@l
-/* 806BE954  3C 80 80 6C */	lis r4, __vt__12daE_FZ_HIO_c@ha
-/* 806BE958  38 04 1B 8C */	addi r0, r4, __vt__12daE_FZ_HIO_c@l
+/* 806BE94C  3C 80 80 6C */	lis r4, lit_3803@ha /* 0x806C1938@ha */
+/* 806BE950  38 A4 19 38 */	addi r5, r4, lit_3803@l /* 0x806C1938@l */
+/* 806BE954  3C 80 80 6C */	lis r4, __vt__12daE_FZ_HIO_c@ha /* 0x806C1B8C@ha */
+/* 806BE958  38 04 1B 8C */	addi r0, r4, __vt__12daE_FZ_HIO_c@l /* 0x806C1B8C@l */
 /* 806BE95C  90 03 00 00 */	stw r0, 0(r3)
 /* 806BE960  38 00 FF FF */	li r0, -1
 /* 806BE964  98 03 00 04 */	stb r0, 4(r3)

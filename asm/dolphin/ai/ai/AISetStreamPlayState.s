@@ -26,7 +26,7 @@ lbl_8034FD6C:
 /* 8034FDCC  7C 7F 1B 78 */	mr r31, r3
 /* 8034FDD0  48 00 05 A1 */	bl __AI_SRC_INIT
 /* 8034FDD4  3C 80 CC 00 */	lis r4, 0xCC00 /* 0xCC006C00@ha */
-/* 8034FDD8  80 04 6C 00 */	lwz r0, 0x6C00(r4)
+/* 8034FDD8  80 04 6C 00 */	lwz r0, 0x6C00(r4)  /* 0xCC006C00@l */
 /* 8034FDDC  38 7F 00 00 */	addi r3, r31, 0
 /* 8034FDE0  54 00 06 F2 */	rlwinm r0, r0, 0, 0x1b, 0x19
 /* 8034FDE4  60 00 00 20 */	ori r0, r0, 0x20
@@ -43,7 +43,7 @@ lbl_8034FD6C:
 /* 8034FE10  48 00 00 18 */	b lbl_8034FE28
 lbl_8034FE14:
 /* 8034FE14  3C 60 CC 00 */	lis r3, 0xCC00 /* 0xCC006C00@ha */
-/* 8034FE18  80 03 6C 00 */	lwz r0, 0x6C00(r3)
+/* 8034FE18  80 03 6C 00 */	lwz r0, 0x6C00(r3)  /* 0xCC006C00@l */
 /* 8034FE1C  54 00 00 3C */	rlwinm r0, r0, 0, 0, 0x1e
 /* 8034FE20  7C 00 EB 78 */	or r0, r0, r29
 /* 8034FE24  90 03 6C 00 */	stw r0, 0x6c00(r3)

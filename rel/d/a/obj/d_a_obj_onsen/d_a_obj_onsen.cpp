@@ -62,9 +62,9 @@ struct dRes_control_c {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -90,11 +90,6 @@ struct J3DFrameCtrl {
 // Forward References:
 //
 
-static void daObjOnsen_create1st(daObjOnsen_c*);
-static void daObjOnsen_MoveBGDelete(daObjOnsen_c*);
-static void daObjOnsen_MoveBGExecute(daObjOnsen_c*);
-static void daObjOnsen_MoveBGDraw(daObjOnsen_c*);
-
 extern "C" void initBaseMtx__12daObjOnsen_cFv();
 extern "C" void setBaseMtx__12daObjOnsen_cFv();
 extern "C" void Create__12daObjOnsen_cFv();
@@ -108,22 +103,11 @@ extern "C" static void daObjOnsen_create1st__FP12daObjOnsen_c();
 extern "C" static void daObjOnsen_MoveBGDelete__FP12daObjOnsen_c();
 extern "C" static void daObjOnsen_MoveBGExecute__FP12daObjOnsen_c();
 extern "C" static void daObjOnsen_MoveBGDraw__FP12daObjOnsen_c();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_Onsen[12];
+extern "C" extern char const* const d_a_obj_onsen__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dKy_bg_MAxx_proc(void*);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
@@ -164,7 +148,7 @@ extern "C" extern u8 j3dSys[284];
 // Declarations:
 //
 
-/* 80CA7B58-80CA7BB0 0058+00 s=1 e=0 z=0  None .text      initBaseMtx__12daObjOnsen_cFv */
+/* 80CA7B58-80CA7BB0 000078 0058+00 1/1 0/0 0/0 .text            initBaseMtx__12daObjOnsen_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -174,7 +158,7 @@ asm void daObjOnsen_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80CA7BB0-80CA7C28 0078+00 s=1 e=0 z=0  None .text      setBaseMtx__12daObjOnsen_cFv */
+/* 80CA7BB0-80CA7C28 0000D0 0078+00 1/1 0/0 0/0 .text            setBaseMtx__12daObjOnsen_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -184,7 +168,7 @@ asm void daObjOnsen_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 80CA7C28-80CA7C74 004C+00 s=1 e=0 z=0  None .text      Create__12daObjOnsen_cFv */
+/* 80CA7C28-80CA7C74 000148 004C+00 1/0 0/0 0/0 .text            Create__12daObjOnsen_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -195,53 +179,56 @@ asm void daObjOnsen_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80CA811C-80CA8124 0008+00 s=1 e=0 z=0  None .rodata    l_bmd */
+/* 80CA811C-80CA8124 000000 0008+00 1/1 0/0 0/0 .rodata          l_bmd */
 SECTION_RODATA static u8 const l_bmd[8] = {
     0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x05,
 };
+COMPILER_STRIP_GATE(80CA811C, &l_bmd);
 
-/* 80CA8124-80CA812C 0008+00 s=1 e=0 z=0  None .rodata    l_btk */
+/* 80CA8124-80CA812C 000008 0008+00 0/1 0/0 0/0 .rodata          l_btk */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const l_btk[8] = {
     0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x09,
 };
+COMPILER_STRIP_GATE(80CA8124, &l_btk);
+#pragma pop
 
-/* 80CA812C-80CA8134 0008+00 s=1 e=0 z=0  None .rodata    l_bmd2 */
+/* 80CA812C-80CA8134 000010 0008+00 0/1 0/0 0/0 .rodata          l_bmd2 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const l_bmd2[8] = {
     0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x06,
 };
+COMPILER_STRIP_GATE(80CA812C, &l_bmd2);
+#pragma pop
 
-/* 80CA8134-80CA813C 0008+00 s=1 e=0 z=0  None .rodata    l_dzb */
+/* 80CA8134-80CA813C 000018 0008+00 1/1 0/0 0/0 .rodata          l_dzb */
 SECTION_RODATA static u8 const l_dzb[8] = {
     0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x0C,
 };
+COMPILER_STRIP_GATE(80CA8134, &l_dzb);
 
-/* 80CA813C-80CA8144 0008+00 s=1 e=0 z=0  None .rodata    l_heap_size */
+/* 80CA813C-80CA8144 000020 0008+00 1/1 0/0 0/0 .rodata          l_heap_size */
 SECTION_RODATA static u8 const l_heap_size[8] = {
     0x00, 0x00, 0x28, 0x00, 0x00, 0x00, 0x1A, 0xE0,
 };
+COMPILER_STRIP_GATE(80CA813C, &l_heap_size);
 
-/* 80CA8144-80CA8148 0004+00 s=1 e=0 z=0  None .rodata    @3694 */
-SECTION_RODATA static u32 const lit_3694 = 0x3F800000;
-
-/* 80CA8148-80CA8150 0008+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
+/* 80CA8144-80CA8148 000028 0004+00 0/1 0/0 0/0 .rodata          @3694 */
 #pragma push
 #pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80CA8148 = "H_Onsen";
+SECTION_RODATA static f32 const lit_3694 = 1.0f;
+COMPILER_STRIP_GATE(80CA8144, &lit_3694);
 #pragma pop
 
-/* 80CA8150-80CA815C 000C+00 s=1 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const data_80CA8150[12] = {
-    0x48, 0x5F, 0x4B, 0x61, 0x4F, 0x6E, 0x73, 0x65, 0x6E, 0x00, 0x00, 0x00,
-};
-
-/* 80CA815C-80CA8164 0008+00 s=3 e=0 z=0  None .data      l_arcName */
+/* 80CA815C-80CA8164 -00001 0008+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName[2] = {
-    (void*)&stringBase0,
-    (void*)&data_80CA8150,
+    (void*)&d_a_obj_onsen__stringBase0,
+    (void*)(((char*)&d_a_obj_onsen__stringBase0) + 0x8),
 };
 
-/* 80CA8164-80CA8184 0020+00 s=1 e=0 z=0  None .data      daObjOnsen_METHODS */
+/* 80CA8164-80CA8184 -00001 0020+00 1/0 0/0 0/0 .data            daObjOnsen_METHODS */
 SECTION_DATA static void* daObjOnsen_METHODS[8] = {
     (void*)daObjOnsen_create1st__FP12daObjOnsen_c,
     (void*)daObjOnsen_MoveBGDelete__FP12daObjOnsen_c,
@@ -253,8 +240,8 @@ SECTION_DATA static void* daObjOnsen_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 80CA8184-80CA81B4 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_Onsen */
-SECTION_DATA void* g_profile_Obj_Onsen[12] = {
+/* 80CA8184-80CA81B4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Onsen */
+SECTION_DATA extern void* g_profile_Obj_Onsen[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00820000, (void*)&g_fpcLf_Method,
     (void*)0x000005B8, (void*)NULL,
@@ -263,14 +250,14 @@ SECTION_DATA void* g_profile_Obj_Onsen[12] = {
     (void*)0x00044100, (void*)0x000E0000,
 };
 
-/* 80CA81B4-80CA81C0 000C+00 s=2 e=0 z=0  None .data      __vt__12J3DFrameCtrl */
-SECTION_DATA static void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL,
+/* 80CA81B4-80CA81C0 000058 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
+SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12J3DFrameCtrlFv,
 };
 
-/* 80CA7C74-80CA7DFC 0188+00 s=1 e=0 z=0  None .text      CreateHeap__12daObjOnsen_cFv */
+/* 80CA7C74-80CA7DFC 000194 0188+00 1/0 0/0 0/0 .text            CreateHeap__12daObjOnsen_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -280,7 +267,7 @@ asm void daObjOnsen_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80CA7DFC-80CA7E44 0048+00 s=1 e=0 z=0  None .text      __dt__12J3DFrameCtrlFv */
+/* 80CA7DFC-80CA7E44 00031C 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -290,7 +277,7 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 }
 #pragma pop
 
-/* 80CA7E44-80CA7EEC 00A8+00 s=1 e=0 z=0  None .text      create1st__12daObjOnsen_cFv */
+/* 80CA7E44-80CA7EEC 000364 00A8+00 1/1 0/0 0/0 .text            create1st__12daObjOnsen_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -300,7 +287,8 @@ asm void daObjOnsen_c::create1st() {
 }
 #pragma pop
 
-/* 80CA7EEC-80CA7F1C 0030+00 s=1 e=0 z=0  None .text      Execute__12daObjOnsen_cFPPA3_A4_f */
+/* 80CA7EEC-80CA7F1C 00040C 0030+00 1/0 0/0 0/0 .text            Execute__12daObjOnsen_cFPPA3_A4_f
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -310,7 +298,7 @@ asm void daObjOnsen_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 80CA7F1C-80CA8008 00EC+00 s=1 e=0 z=0  None .text      Draw__12daObjOnsen_cFv */
+/* 80CA7F1C-80CA8008 00043C 00EC+00 1/0 0/0 0/0 .text            Draw__12daObjOnsen_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -320,7 +308,7 @@ asm void daObjOnsen_c::Draw() {
 }
 #pragma pop
 
-/* 80CA8008-80CA8048 0040+00 s=1 e=0 z=0  None .text      Delete__12daObjOnsen_cFv */
+/* 80CA8008-80CA8048 000528 0040+00 1/0 0/0 0/0 .text            Delete__12daObjOnsen_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -331,9 +319,9 @@ asm void daObjOnsen_c::Delete() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80CA81C0-80CA81E8 0028+00 s=1 e=0 z=0  None .data      __vt__12daObjOnsen_c */
-SECTION_DATA static void* __vt__12daObjOnsen_c[10] = {
-    (void*)NULL,
+/* 80CA81C0-80CA81E8 000064 0028+00 1/1 0/0 0/0 .data            __vt__12daObjOnsen_c */
+SECTION_DATA extern void* __vt__12daObjOnsen_c[10] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__12daObjOnsen_cFv,
     (void*)Create__12daObjOnsen_cFv,
@@ -345,44 +333,51 @@ SECTION_DATA static void* __vt__12daObjOnsen_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80CA8048-80CA80A8 0060+00 s=1 e=0 z=0  None .text      daObjOnsen_create1st__FP12daObjOnsen_c */
+/* 80CA8048-80CA80A8 000568 0060+00 1/0 0/0 0/0 .text daObjOnsen_create1st__FP12daObjOnsen_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjOnsen_create1st(daObjOnsen_c* param_0) {
+static asm void daObjOnsen_create1st(daObjOnsen_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_onsen/d_a_obj_onsen/daObjOnsen_create1st__FP12daObjOnsen_c.s"
 }
 #pragma pop
 
-/* 80CA80A8-80CA80C8 0020+00 s=1 e=0 z=0  None .text      daObjOnsen_MoveBGDelete__FP12daObjOnsen_c
- */
+/* 80CA80A8-80CA80C8 0005C8 0020+00 1/0 0/0 0/0 .text daObjOnsen_MoveBGDelete__FP12daObjOnsen_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjOnsen_MoveBGDelete(daObjOnsen_c* param_0) {
+static asm void daObjOnsen_MoveBGDelete(daObjOnsen_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_onsen/d_a_obj_onsen/daObjOnsen_MoveBGDelete__FP12daObjOnsen_c.s"
 }
 #pragma pop
 
-/* 80CA80C8-80CA80E8 0020+00 s=1 e=0 z=0  None .text      daObjOnsen_MoveBGExecute__FP12daObjOnsen_c
+/* 80CA80C8-80CA80E8 0005E8 0020+00 1/0 0/0 0/0 .text daObjOnsen_MoveBGExecute__FP12daObjOnsen_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjOnsen_MoveBGExecute(daObjOnsen_c* param_0) {
+static asm void daObjOnsen_MoveBGExecute(daObjOnsen_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_onsen/d_a_obj_onsen/daObjOnsen_MoveBGExecute__FP12daObjOnsen_c.s"
 }
 #pragma pop
 
-/* 80CA80E8-80CA8114 002C+00 s=1 e=0 z=0  None .text      daObjOnsen_MoveBGDraw__FP12daObjOnsen_c */
+/* 80CA80E8-80CA8114 000608 002C+00 1/0 0/0 0/0 .text daObjOnsen_MoveBGDraw__FP12daObjOnsen_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjOnsen_MoveBGDraw(daObjOnsen_c* param_0) {
+static asm void daObjOnsen_MoveBGDraw(daObjOnsen_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_onsen/d_a_obj_onsen/daObjOnsen_MoveBGDraw__FP12daObjOnsen_c.s"
 }
+#pragma pop
+
+/* 80CA8148-80CA815A 00002C 0012+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80CA8148 = "H_Onsen";
+SECTION_DEAD static char const* const stringBase_80CA8150 = "H_KaOnsen";
 #pragma pop

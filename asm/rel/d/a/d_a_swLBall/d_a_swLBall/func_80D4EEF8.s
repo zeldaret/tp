@@ -9,7 +9,7 @@ lbl_80D4EEF8:
 /* 80D4EF14  40 82 00 1C */	bne lbl_80D4EF30
 /* 80D4EF18  28 1F 00 00 */	cmplwi r31, 0
 /* 80D4EF1C  41 82 00 08 */	beq lbl_80D4EF24
-/* 80D4EF20  4B 2C 9C 44 */	b __ct__10fopAc_ac_cFv
+/* 80D4EF20  4B 2C 9C 45 */	bl __ct__10fopAc_ac_cFv
 lbl_80D4EF24:
 /* 80D4EF24  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 80D4EF28  60 00 00 08 */	ori r0, r0, 8

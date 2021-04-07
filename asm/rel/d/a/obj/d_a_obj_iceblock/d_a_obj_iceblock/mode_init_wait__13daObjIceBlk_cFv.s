@@ -13,11 +13,11 @@ lbl_80C22EF8:
 /* 80C22F24  7F E3 FB 78 */	mr r3, r31
 /* 80C22F28  4B FF F3 25 */	bl disablePushPull__13daObjIceBlk_cFv
 lbl_80C22F2C:
-/* 80C22F2C  3C 60 80 C2 */	lis r3, lit_3936@ha
-/* 80C22F30  C0 03 43 70 */	lfs f0, lit_3936@l(r3)
+/* 80C22F2C  3C 60 80 C2 */	lis r3, lit_3936@ha /* 0x80C24370@ha */
+/* 80C22F30  C0 03 43 70 */	lfs f0, lit_3936@l(r3)  /* 0x80C24370@l */
 /* 80C22F34  D0 1F 05 2C */	stfs f0, 0x52c(r31)
-/* 80C22F38  3C 60 80 C2 */	lis r3, lit_4079@ha
-/* 80C22F3C  C0 03 43 98 */	lfs f0, lit_4079@l(r3)
+/* 80C22F38  3C 60 80 C2 */	lis r3, lit_4079@ha /* 0x80C24398@ha */
+/* 80C22F3C  C0 03 43 98 */	lfs f0, lit_4079@l(r3)  /* 0x80C24398@l */
 /* 80C22F40  D0 1F 05 30 */	stfs f0, 0x530(r31)
 /* 80C22F44  38 00 FF FF */	li r0, -1
 /* 80C22F48  90 1F 09 50 */	stw r0, 0x950(r31)

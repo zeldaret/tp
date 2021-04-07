@@ -1,6 +1,6 @@
 lbl_801C2644:
-/* 801C2644  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 801C2648  38 A3 CB 60 */	addi r5, r3, cNullVec__6Z2Calc@l
+/* 801C2644  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803BCB60@ha */
+/* 801C2648  38 A3 CB 60 */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x803BCB60@l */
 /* 801C264C  80 65 01 54 */	lwz r3, 0x154(r5)
 /* 801C2650  80 05 01 58 */	lwz r0, 0x158(r5)
 /* 801C2654  90 65 01 84 */	stw r3, 0x184(r5)

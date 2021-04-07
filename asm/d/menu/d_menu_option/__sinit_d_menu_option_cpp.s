@@ -1,6 +1,6 @@
 lbl_801E8E8C:
-/* 801E8E8C  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 801E8E90  38 63 DB A8 */	addi r3, r3, cNullVec__6Z2Calc@l
+/* 801E8E8C  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803BDBA8@ha */
+/* 801E8E90  38 63 DB A8 */	addi r3, r3, cNullVec__6Z2Calc@l /* 0x803BDBA8@l */
 /* 801E8E94  80 83 00 0C */	lwz r4, 0xc(r3)
 /* 801E8E98  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 801E8E9C  90 83 00 6C */	stw r4, 0x6c(r3)

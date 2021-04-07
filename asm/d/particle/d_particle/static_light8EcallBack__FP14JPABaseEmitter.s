@@ -5,12 +5,12 @@ lbl_80049FEC:
 /* 80049FF8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80049FFC  7C 7F 1B 78 */	mr r31, r3
 /* 8004A000  48 31 1E CD */	bl GXFlush
-/* 8004A004  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8004A008  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8004A004  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8004A008  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8004A00C  38 80 00 00 */	li r4, 0
 /* 8004A010  48 31 62 3D */	bl GXLoadPosMtxImm
-/* 8004A014  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8004A018  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8004A014  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8004A018  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8004A01C  38 80 00 00 */	li r4, 0
 /* 8004A020  48 31 62 7D */	bl GXLoadNrmMtxImm
 /* 8004A024  48 31 1B 49 */	bl GXInvalidateVtxCache

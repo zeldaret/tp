@@ -5,11 +5,11 @@ lbl_80947A00:
 /* 80947A0C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80947A10  7C 7F 1B 78 */	mr r31, r3
 /* 80947A14  38 80 00 04 */	li r4, 4
-/* 80947A18  3C A0 80 95 */	lis r5, lit_3926@ha
-/* 80947A1C  C0 25 B1 F0 */	lfs f1, lit_3926@l(r5)
+/* 80947A18  3C A0 80 95 */	lis r5, lit_3926@ha /* 0x8094B1F0@ha */
+/* 80947A1C  C0 25 B1 F0 */	lfs f1, lit_3926@l(r5)  /* 0x8094B1F0@l */
 /* 80947A20  48 00 26 35 */	bl setAnimeType__8daMyna_cFUcf
-/* 80947A24  3C 60 80 95 */	lis r3, daMyna_LightActor@ha
-/* 80947A28  38 63 BA C0 */	addi r3, r3, daMyna_LightActor@l
+/* 80947A24  3C 60 80 95 */	lis r3, daMyna_LightActor@ha /* 0x8094BAC0@ha */
+/* 80947A28  38 63 BA C0 */	addi r3, r3, daMyna_LightActor@l /* 0x8094BAC0@l */
 /* 80947A2C  80 63 00 00 */	lwz r3, 0(r3)
 /* 80947A30  88 03 05 79 */	lbz r0, 0x579(r3)
 /* 80947A34  28 00 00 00 */	cmplwi r0, 0

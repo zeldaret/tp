@@ -15,8 +15,8 @@ lbl_80256198:
 /* 802561CC  48 00 23 55 */	bl isProgressiveMode__10dScnLogo_cFv
 /* 802561D0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 802561D4  40 82 00 18 */	bne lbl_802561EC
-/* 802561D8  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 802561DC  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 802561D8  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 802561DC  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 802561E0  80 03 00 30 */	lwz r0, 0x30(r3)
 /* 802561E4  54 00 05 AD */	rlwinm. r0, r0, 0, 0x16, 0x16
 /* 802561E8  41 82 00 14 */	beq lbl_802561FC

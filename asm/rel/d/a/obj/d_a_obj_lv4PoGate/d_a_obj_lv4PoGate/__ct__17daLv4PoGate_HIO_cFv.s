@@ -1,11 +1,11 @@
 lbl_80C5FBEC:
-/* 80C5FBEC  3C 80 80 C6 */	lis r4, lit_3629@ha
-/* 80C5FBF0  38 A4 08 04 */	addi r5, r4, lit_3629@l
-/* 80C5FBF4  3C 80 80 C6 */	lis r4, __vt__14mDoHIO_entry_c@ha
-/* 80C5FBF8  38 04 09 A0 */	addi r0, r4, __vt__14mDoHIO_entry_c@l
+/* 80C5FBEC  3C 80 80 C6 */	lis r4, lit_3629@ha /* 0x80C60804@ha */
+/* 80C5FBF0  38 A4 08 04 */	addi r5, r4, lit_3629@l /* 0x80C60804@l */
+/* 80C5FBF4  3C 80 80 C6 */	lis r4, __vt__14mDoHIO_entry_c@ha /* 0x80C609A0@ha */
+/* 80C5FBF8  38 04 09 A0 */	addi r0, r4, __vt__14mDoHIO_entry_c@l /* 0x80C609A0@l */
 /* 80C5FBFC  90 03 00 00 */	stw r0, 0(r3)
-/* 80C5FC00  3C 80 80 C6 */	lis r4, __vt__17daLv4PoGate_HIO_c@ha
-/* 80C5FC04  38 04 09 94 */	addi r0, r4, __vt__17daLv4PoGate_HIO_c@l
+/* 80C5FC00  3C 80 80 C6 */	lis r4, __vt__17daLv4PoGate_HIO_c@ha /* 0x80C60994@ha */
+/* 80C5FC04  38 04 09 94 */	addi r0, r4, __vt__17daLv4PoGate_HIO_c@l /* 0x80C60994@l */
 /* 80C5FC08  90 03 00 00 */	stw r0, 0(r3)
 /* 80C5FC0C  C0 05 00 00 */	lfs f0, 0(r5)
 /* 80C5FC10  D0 03 00 04 */	stfs f0, 4(r3)

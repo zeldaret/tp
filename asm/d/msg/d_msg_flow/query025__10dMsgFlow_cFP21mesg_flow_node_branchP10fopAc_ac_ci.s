@@ -5,8 +5,8 @@ lbl_8024B974:
 /* 8024B980  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8024B984  A0 04 00 04 */	lhz r0, 4(r4)
 /* 8024B988  54 1F 06 3E */	clrlwi r31, r0, 0x18
-/* 8024B98C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024B990  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8024B98C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024B990  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024B994  38 63 00 9C */	addi r3, r3, 0x9c
 /* 8024B998  4B DE 7E 55 */	bl checkEmptyBottle__17dSv_player_item_cFv
 /* 8024B99C  54 60 06 3E */	clrlwi r0, r3, 0x18

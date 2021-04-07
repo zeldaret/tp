@@ -5,10 +5,10 @@ lbl_8036CFD8:
 /* 8036CFE4  80 83 00 08 */	lwz r4, 8(r3)
 /* 8036CFE8  38 63 00 10 */	addi r3, r3, 0x10
 /* 8036CFEC  48 00 4D 7D */	bl TRKWriteUARTN
-/* 8036CFF0  3C 80 80 3A */	lis r4, lit_98@ha
+/* 8036CFF0  3C 80 80 3A */	lis r4, lit_98@ha /* 0x803A26B8@ha */
 /* 8036CFF4  7C 65 1B 78 */	mr r5, r3
 /* 8036CFF8  38 60 00 01 */	li r3, 1
-/* 8036CFFC  38 84 26 B8 */	addi r4, r4, lit_98@l
+/* 8036CFFC  38 84 26 B8 */	addi r4, r4, lit_98@l /* 0x803A26B8@l */
 /* 8036D000  4C C6 31 82 */	crclr 6
 /* 8036D004  48 00 5C 51 */	bl MWTRACE
 /* 8036D008  80 01 00 14 */	lwz r0, 0x14(r1)

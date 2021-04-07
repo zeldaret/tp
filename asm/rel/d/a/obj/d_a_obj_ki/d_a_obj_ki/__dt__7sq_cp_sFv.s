@@ -7,15 +7,15 @@ lbl_80C449F8:
 /* 80C44A0C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80C44A10  7C 9F 23 78 */	mr r31, r4
 /* 80C44A14  41 82 00 28 */	beq lbl_80C44A3C
-/* 80C44A18  3C 80 80 C4 */	lis r4, __dt__4cXyzFv@ha
-/* 80C44A1C  38 84 40 8C */	addi r4, r4, __dt__4cXyzFv@l
+/* 80C44A18  3C 80 80 C4 */	lis r4, __dt__4cXyzFv@ha /* 0x80C4408C@ha */
+/* 80C44A1C  38 84 40 8C */	addi r4, r4, __dt__4cXyzFv@l /* 0x80C4408C@l */
 /* 80C44A20  38 A0 00 0C */	li r5, 0xc
 /* 80C44A24  38 C0 00 04 */	li r6, 4
-/* 80C44A28  4B 71 D2 C0 */	b __destroy_arr
+/* 80C44A28  4B 71 D2 C1 */	bl __destroy_arr
 /* 80C44A2C  7F E0 07 35 */	extsh. r0, r31
 /* 80C44A30  40 81 00 0C */	ble lbl_80C44A3C
 /* 80C44A34  7F C3 F3 78 */	mr r3, r30
-/* 80C44A38  4B 68 A3 04 */	b __dl__FPv
+/* 80C44A38  4B 68 A3 05 */	bl __dl__FPv
 lbl_80C44A3C:
 /* 80C44A3C  7F C3 F3 78 */	mr r3, r30
 /* 80C44A40  83 E1 00 0C */	lwz r31, 0xc(r1)

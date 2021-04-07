@@ -6,7 +6,7 @@ lbl_80BE8DA0:
 /* 80BE8DB0  28 00 00 00 */	cmplwi r0, 0
 /* 80BE8DB4  41 82 00 0C */	beq lbl_80BE8DC0
 /* 80BE8DB8  38 63 07 20 */	addi r3, r3, 0x720
-/* 80BE8DBC  4B 5B EB 70 */	b dKy_plight_cut__FP15LIGHT_INFLUENCE
+/* 80BE8DBC  4B 5B EB 71 */	bl dKy_plight_cut__FP15LIGHT_INFLUENCE
 lbl_80BE8DC0:
 /* 80BE8DC0  38 60 00 01 */	li r3, 1
 /* 80BE8DC4  80 01 00 14 */	lwz r0, 0x14(r1)

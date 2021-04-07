@@ -13,9 +13,9 @@
 
 struct JAISeqData {};
 
-struct JAISoundID {};
-
 struct JAISeqDataUser {};
+
+struct JAISoundID {};
 
 struct JAUSeqDataMgr_SeqCollection {
     /* 802A677C */ JAUSeqDataMgr_SeqCollection();
@@ -56,8 +56,6 @@ extern "C" void __dt__27JAUSeqDataMgr_SeqCollectionFv();
 // External References:
 //
 
-void operator delete(void*);
-
 extern "C" void __dt__13JAISeqDataMgrFv();
 extern "C" void __dl__FPv();
 extern "C" extern void* __vt__13JAISeqDataMgr[6];
@@ -66,7 +64,7 @@ extern "C" extern void* __vt__13JAISeqDataMgr[6];
 // Declarations:
 //
 
-/* 802A66A0-802A66AC 000C+00 s=1 e=0 z=0  None .text      __ct__16JAUSeqCollectionFv */
+/* 802A66A0-802A66AC 2A0FE0 000C+00 1/1 0/0 0/0 .text            __ct__16JAUSeqCollectionFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -76,7 +74,7 @@ asm JAUSeqCollection::JAUSeqCollection() {
 }
 #pragma pop
 
-/* 802A66AC-802A66FC 0050+00 s=0 e=1 z=0  None .text      init__16JAUSeqCollectionFPCv */
+/* 802A66AC-802A66FC 2A0FEC 0050+00 0/0 1/1 0/0 .text            init__16JAUSeqCollectionFPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -86,7 +84,7 @@ asm void JAUSeqCollection::init(void const* param_0) {
 }
 #pragma pop
 
-/* 802A66FC-802A6754 0058+00 s=1 e=0 z=0  None .text
+/* 802A66FC-802A6754 2A103C 0058+00 1/1 0/0 0/0 .text
  * getSeqData__16JAUSeqCollectionFiiP10JAISeqData               */
 #pragma push
 #pragma optimization_level 0
@@ -97,7 +95,7 @@ asm void JAUSeqCollection::getSeqData(int param_0, int param_1, JAISeqData* para
 }
 #pragma pop
 
-/* 802A6754-802A677C 0028+00 s=1 e=0 z=0  None .text
+/* 802A6754-802A677C 2A1094 0028+00 1/1 0/0 0/0 .text
  * getSeqDataRegion__16JAUSeqCollectionFP16JAISeqDataRegion     */
 #pragma push
 #pragma optimization_level 0
@@ -109,9 +107,10 @@ asm void JAUSeqCollection::getSeqDataRegion(JAISeqDataRegion* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C9B38-803C9B50 0018+00 s=2 e=0 z=0  None .data      __vt__27JAUSeqDataMgr_SeqCollection */
-SECTION_DATA static void* __vt__27JAUSeqDataMgr_SeqCollection[6] = {
-    (void*)NULL,
+/* 803C9B38-803C9B50 026C58 0018+00 2/2 0/0 0/0 .data            __vt__27JAUSeqDataMgr_SeqCollection
+ */
+SECTION_DATA extern void* __vt__27JAUSeqDataMgr_SeqCollection[6] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__27JAUSeqDataMgr_SeqCollectionFv,
     (void*)getSeqData__27JAUSeqDataMgr_SeqCollectionF10JAISoundIDP10JAISeqData,
@@ -119,7 +118,7 @@ SECTION_DATA static void* __vt__27JAUSeqDataMgr_SeqCollection[6] = {
     (void*)setSeqDataUser__27JAUSeqDataMgr_SeqCollectionFP14JAISeqDataUser,
 };
 
-/* 802A677C-802A67D0 0054+00 s=0 e=1 z=0  None .text      __ct__27JAUSeqDataMgr_SeqCollectionFv */
+/* 802A677C-802A67D0 2A10BC 0054+00 0/0 1/1 0/0 .text __ct__27JAUSeqDataMgr_SeqCollectionFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -129,7 +128,7 @@ asm JAUSeqDataMgr_SeqCollection::JAUSeqDataMgr_SeqCollection() {
 }
 #pragma pop
 
-/* 802A67D0-802A67DC 000C+00 s=1 e=0 z=0  None .text
+/* 802A67D0-802A67DC 2A1110 000C+00 1/0 0/0 0/0 .text
  * setSeqDataUser__27JAUSeqDataMgr_SeqCollectionFP14JAISeqDataUser */
 #pragma push
 #pragma optimization_level 0
@@ -140,7 +139,7 @@ asm void JAUSeqDataMgr_SeqCollection::setSeqDataUser(JAISeqDataUser* param_0) {
 }
 #pragma pop
 
-/* 802A67DC-802A683C 0060+00 s=1 e=0 z=0  None .text
+/* 802A67DC-802A683C 2A111C 0060+00 1/0 0/0 0/0 .text
  * releaseSeqData__27JAUSeqDataMgr_SeqCollectionFv              */
 #pragma push
 #pragma optimization_level 0
@@ -151,7 +150,7 @@ asm void JAUSeqDataMgr_SeqCollection::releaseSeqData() {
 }
 #pragma pop
 
-/* 802A683C-802A6894 0058+00 s=1 e=0 z=0  None .text
+/* 802A683C-802A6894 2A117C 0058+00 1/0 0/0 0/0 .text
  * getSeqData__27JAUSeqDataMgr_SeqCollectionF10JAISoundIDP10JAISeqData */
 #pragma push
 #pragma optimization_level 0
@@ -162,7 +161,7 @@ asm void JAUSeqDataMgr_SeqCollection::getSeqData(JAISoundID param_0, JAISeqData*
 }
 #pragma pop
 
-/* 802A6894-802A68F4 0060+00 s=1 e=0 z=0  None .text      __dt__27JAUSeqDataMgr_SeqCollectionFv */
+/* 802A6894-802A68F4 2A11D4 0060+00 1/0 0/0 0/0 .text __dt__27JAUSeqDataMgr_SeqCollectionFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

@@ -5,20 +5,20 @@ lbl_80A81274:
 /* 80A81280  93 E1 01 0C */	stw r31, 0x10c(r1)
 /* 80A81284  93 C1 01 08 */	stw r30, 0x108(r1)
 /* 80A81288  7C 7E 1B 78 */	mr r30, r3
-/* 80A8128C  3C 60 80 A8 */	lis r3, m__17daNpcMoiR_Param_c@ha
-/* 80A81290  3B E3 32 AC */	addi r31, r3, m__17daNpcMoiR_Param_c@l
+/* 80A8128C  3C 60 80 A8 */	lis r3, m__17daNpcMoiR_Param_c@ha /* 0x80A832AC@ha */
+/* 80A81290  3B E3 32 AC */	addi r31, r3, m__17daNpcMoiR_Param_c@l /* 0x80A832AC@l */
 /* 80A81294  38 7E 0D DC */	addi r3, r30, 0xddc
-/* 80A81298  4B 8E 0D 80 */	b __ptmf_test
+/* 80A81298  4B 8E 0D 81 */	bl __ptmf_test
 /* 80A8129C  2C 03 00 00 */	cmpwi r3, 0
 /* 80A812A0  41 82 00 18 */	beq lbl_80A812B8
 /* 80A812A4  7F C3 F3 78 */	mr r3, r30
 /* 80A812A8  38 80 00 00 */	li r4, 0
 /* 80A812AC  39 9E 0D DC */	addi r12, r30, 0xddc
-/* 80A812B0  4B 8E 0D D4 */	b __ptmf_scall
+/* 80A812B0  4B 8E 0D D5 */	bl __ptmf_scall
 /* 80A812B4  60 00 00 00 */	nop 
 lbl_80A812B8:
-/* 80A812B8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80A812BC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80A812B8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80A812BC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80A812C0  88 03 4F AD */	lbz r0, 0x4fad(r3)
 /* 80A812C4  28 00 00 00 */	cmplwi r0, 0
 /* 80A812C8  41 82 00 30 */	beq lbl_80A812F8
@@ -30,7 +30,7 @@ lbl_80A812B8:
 /* 80A812E0  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80A812E4  41 82 00 14 */	beq lbl_80A812F8
 /* 80A812E8  38 63 4E C8 */	addi r3, r3, 0x4ec8
-/* 80A812EC  4B 5C 24 00 */	b setPtI_Id__14dEvt_control_cFUi
+/* 80A812EC  4B 5C 24 01 */	bl setPtI_Id__14dEvt_control_cFUi
 /* 80A812F0  38 00 FF FF */	li r0, -1
 /* 80A812F4  90 1E 0D F8 */	stw r0, 0xdf8(r30)
 lbl_80A812F8:
@@ -206,7 +206,7 @@ lbl_80A814F0:
 /* 80A81598  40 80 00 10 */	bge lbl_80A815A8
 /* 80A8159C  7F C3 F3 78 */	mr r3, r30
 /* 80A815A0  38 81 00 BC */	addi r4, r1, 0xbc
-/* 80A815A4  4B 6D 1B AC */	b playExpressionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
+/* 80A815A4  4B 6D 1B AD */	bl playExpressionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
 lbl_80A815A8:
 /* 80A815A8  7F C3 F3 78 */	mr r3, r30
 /* 80A815AC  48 00 03 09 */	bl playMotion__11daNpcMoiR_cFv

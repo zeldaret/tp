@@ -3,18 +3,16 @@
 #
 
 M437_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_digsnow.plf
+M437_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_digsnow.lcf
+M437_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_digsnow.map
 
 M437_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_digsnow/executor.cpp \
-	rel/d/a/obj/d_a_obj_digsnow/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_digsnow/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_digsnow/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_digsnow/d_a_obj_digsnow.cpp \
 
 M437_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_digsnow/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_digsnow/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_digsnow/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_digsnow/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_digsnow/d_a_obj_digsnow.o \
 
@@ -31,14 +29,21 @@ M437_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M437_LDSCRIPT) \
+	-unused -map $(M437_MAP) \
+	-w off \
 
 $(M437_TARGET): $(M437_O_FILES) $(M437_LIBS)
+	@echo [437] creating $(M437_TARGET)
 	@echo $(M437_LIBS) $(M437_O_FILES) > build/M437_ofiles
-	$(LD) -partial $(M437_LDFLAGS) -o $(M437_TARGET) @build/M437_ofiles
+	@python3 tools/lcf.py rel 437 --output $(M437_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M437_LDFLAGS) -o $(M437_TARGET) @build/M437_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_digsnow/%.o: rel/d/a/obj/d_a_obj_digsnow/%.cpp
+	@echo [437] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M437_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M437_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

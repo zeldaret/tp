@@ -5,10 +5,10 @@ lbl_80CDA680:
 /* 80CDA68C  DB E1 00 30 */	stfd f31, 0x30(r1)
 /* 80CDA690  F3 E1 00 38 */	psq_st f31, 56(r1), 0, 0 /* qr0 */
 /* 80CDA694  39 61 00 30 */	addi r11, r1, 0x30
-/* 80CDA698  4B 68 7B 44 */	b _savegpr_29
+/* 80CDA698  4B 68 7B 45 */	bl _savegpr_29
 /* 80CDA69C  7C 7F 1B 78 */	mr r31, r3
-/* 80CDA6A0  3C 60 80 CE */	lis r3, l_cyl_src@ha
-/* 80CDA6A4  3B C3 B7 F4 */	addi r30, r3, l_cyl_src@l
+/* 80CDA6A0  3C 60 80 CE */	lis r3, l_cyl_src@ha /* 0x80CDB7F4@ha */
+/* 80CDA6A4  3B C3 B7 F4 */	addi r30, r3, l_cyl_src@l /* 0x80CDB7F4@l */
 /* 80CDA6A8  80 1F 05 B8 */	lwz r0, 0x5b8(r31)
 /* 80CDA6AC  54 00 06 F7 */	rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 80CDA6B0  41 82 00 34 */	beq lbl_80CDA6E4
@@ -23,7 +23,7 @@ lbl_80CDA680:
 lbl_80CDA6D4:
 /* 80CDA6D4  C0 3F 04 F8 */	lfs f1, 0x4f8(r31)
 /* 80CDA6D8  C0 5F 05 00 */	lfs f2, 0x500(r31)
-/* 80CDA6DC  4B 58 CF 98 */	b cM_atan2s__Fff
+/* 80CDA6DC  4B 58 CF 99 */	bl cM_atan2s__Fff
 /* 80CDA6E0  B0 7F 04 DE */	sth r3, 0x4de(r31)
 lbl_80CDA6E4:
 /* 80CDA6E4  80 1F 05 B8 */	lwz r0, 0x5b8(r31)
@@ -64,17 +64,17 @@ lbl_80CDA754:
 /* 80CDA768  FF E0 00 18 */	frsp f31, f0
 /* 80CDA76C  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80CDA770  7C 03 07 74 */	extsb r3, r0
-/* 80CDA774  4B 35 28 F8 */	b dComIfGp_getReverb__Fi
+/* 80CDA774  4B 35 28 F9 */	bl dComIfGp_getReverb__Fi
 /* 80CDA778  7C 7D 1B 78 */	mr r29, r3
 /* 80CDA77C  3C 60 00 08 */	lis r3, 0x0008 /* 0x000800C4@ha */
 /* 80CDA780  38 03 00 C4 */	addi r0, r3, 0x00C4 /* 0x000800C4@l */
 /* 80CDA784  90 01 00 08 */	stw r0, 8(r1)
 /* 80CDA788  C0 1E 00 88 */	lfs f0, 0x88(r30)
 /* 80CDA78C  EC 20 07 F2 */	fmuls f1, f0, f31
-/* 80CDA790  4B 68 79 1C */	b __cvt_fp2unsigned
+/* 80CDA790  4B 68 79 1D */	bl __cvt_fp2unsigned
 /* 80CDA794  7C 66 1B 78 */	mr r6, r3
-/* 80CDA798  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80CDA79C  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80CDA798  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80CDA79C  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80CDA7A0  80 63 00 00 */	lwz r3, 0(r3)
 /* 80CDA7A4  38 81 00 08 */	addi r4, r1, 8
 /* 80CDA7A8  38 BF 05 38 */	addi r5, r31, 0x538
@@ -84,12 +84,12 @@ lbl_80CDA754:
 /* 80CDA7B8  C0 7E 00 8C */	lfs f3, 0x8c(r30)
 /* 80CDA7BC  FC 80 18 90 */	fmr f4, f3
 /* 80CDA7C0  39 00 00 00 */	li r8, 0
-/* 80CDA7C4  4B 5D 11 C0 */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80CDA7C4  4B 5D 11 C1 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 lbl_80CDA7C8:
 /* 80CDA7C8  E3 E1 00 38 */	psq_l f31, 56(r1), 0, 0 /* qr0 */
 /* 80CDA7CC  CB E1 00 30 */	lfd f31, 0x30(r1)
 /* 80CDA7D0  39 61 00 30 */	addi r11, r1, 0x30
-/* 80CDA7D4  4B 68 7A 54 */	b _restgpr_29
+/* 80CDA7D4  4B 68 7A 55 */	bl _restgpr_29
 /* 80CDA7D8  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80CDA7DC  7C 08 03 A6 */	mtlr r0
 /* 80CDA7E0  38 21 00 40 */	addi r1, r1, 0x40

@@ -1,6 +1,6 @@
 lbl_801FE954:
-/* 801FE954  3C 80 80 3C */	lis r4, __vt__27dMeter_drawCalibrationHIO_c@ha
-/* 801FE958  38 04 F1 54 */	addi r0, r4, __vt__27dMeter_drawCalibrationHIO_c@l
+/* 801FE954  3C 80 80 3C */	lis r4, __vt__27dMeter_drawCalibrationHIO_c@ha /* 0x803BF154@ha */
+/* 801FE958  38 04 F1 54 */	addi r0, r4, __vt__27dMeter_drawCalibrationHIO_c@l /* 0x803BF154@l */
 /* 801FE95C  90 03 00 00 */	stw r0, 0(r3)
 /* 801FE960  38 00 00 0A */	li r0, 0xa
 /* 801FE964  B0 03 00 10 */	sth r0, 0x10(r3)

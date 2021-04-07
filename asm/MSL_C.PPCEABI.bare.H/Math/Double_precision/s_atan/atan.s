@@ -1,9 +1,9 @@
 lbl_8036BCA4:
 /* 8036BCA4  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 8036BCA8  3C 60 80 3A */	lis r3, atanhi@ha
+/* 8036BCA8  3C 60 80 3A */	lis r3, atanhi@ha /* 0x803A25F0@ha */
 /* 8036BCAC  3C 00 44 10 */	lis r0, 0x4410
 /* 8036BCB0  D8 21 00 08 */	stfd f1, 8(r1)
-/* 8036BCB4  38 A3 25 F0 */	addi r5, r3, atanhi@l
+/* 8036BCB4  38 A3 25 F0 */	addi r5, r3, atanhi@l /* 0x803A25F0@l */
 /* 8036BCB8  80 C1 00 08 */	lwz r6, 8(r1)
 /* 8036BCBC  54 C4 00 7E */	clrlwi r4, r6, 1
 /* 8036BCC0  7C 04 00 00 */	cmpw r4, r0

@@ -3,19 +3,20 @@
 #
 
 M571_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mie.plf
+M571_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mie.lcf
+M571_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mie.map
 
 M571_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_mie/executor.cpp \
-	rel/d/a/obj/d_a_obj_mie/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_mie/d_a_obj_mie.cpp \
 
 M571_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mie/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mie/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mie/d_a_obj_mie.o \
 
 M571_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mie/libRuntime.PPCEABI.H.a \
 
 M571_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M571_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M571_LDSCRIPT) \
+	-unused -map $(M571_MAP) \
+	-w off \
 
 $(M571_TARGET): $(M571_O_FILES) $(M571_LIBS)
+	@echo [571] creating $(M571_TARGET)
 	@echo $(M571_LIBS) $(M571_O_FILES) > build/M571_ofiles
-	$(LD) -partial $(M571_LDFLAGS) -o $(M571_TARGET) @build/M571_ofiles
+	@python3 tools/lcf.py rel 571 --output $(M571_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M571_LDFLAGS) -o $(M571_TARGET) @build/M571_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mie/%.o: rel/d/a/obj/d_a_obj_mie/%.cpp
+	@echo [571] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M571_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M571_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_mie/libs/Runtime.PPCEABI.H/Makefile
 

@@ -5,12 +5,12 @@ lbl_804DAC68:
 /* 804DAC74  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 804DAC78  7C 7F 1B 79 */	or. r31, r3, r3
 /* 804DAC7C  41 82 00 1C */	beq lbl_804DAC98
-/* 804DAC80  3C A0 80 4E */	lis r5, __vt__8cM3dGCyl@ha
-/* 804DAC84  38 05 D7 E4 */	addi r0, r5, __vt__8cM3dGCyl@l
+/* 804DAC80  3C A0 80 4E */	lis r5, __vt__8cM3dGCyl@ha /* 0x804DD7E4@ha */
+/* 804DAC84  38 05 D7 E4 */	addi r0, r5, __vt__8cM3dGCyl@l /* 0x804DD7E4@l */
 /* 804DAC88  90 1F 00 14 */	stw r0, 0x14(r31)
 /* 804DAC8C  7C 80 07 35 */	extsh. r0, r4
 /* 804DAC90  40 81 00 08 */	ble lbl_804DAC98
-/* 804DAC94  4B DF 40 A8 */	b __dl__FPv
+/* 804DAC94  4B DF 40 A9 */	bl __dl__FPv
 lbl_804DAC98:
 /* 804DAC98  7F E3 FB 78 */	mr r3, r31
 /* 804DAC9C  83 E1 00 0C */	lwz r31, 0xc(r1)

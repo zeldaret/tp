@@ -52,12 +52,6 @@ struct cXyz {
 // Forward References:
 //
 
-static void daTag_BottleItem_Create(void*);
-static void daTag_BottleItem_Delete(void*);
-static void daTag_BottleItem_Execute(void*);
-static void daTag_BottleItem_Draw(void*);
-static bool daTag_BottleItem_IsDelete(void*);
-
 extern "C" void create__18daTag_BottleItem_cFv();
 extern "C" bool Delete__18daTag_BottleItem_cFv();
 extern "C" void Execute__18daTag_BottleItem_cFv();
@@ -78,15 +72,10 @@ extern "C" static void daTag_BottleItem_Execute__FPv();
 extern "C" static void daTag_BottleItem_Draw__FPv();
 extern "C" static bool daTag_BottleItem_IsDelete__FPv();
 extern "C" void __dt__18daTag_BottleItem_cFv();
-extern "C" extern void* g_profile_TAG_BTLITM[12];
 
 //
 // External References:
 //
-
-void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
-void isBottleItem(u8);
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -110,14 +99,14 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 //
 
 /* ############################################################################################## */
-/* 80D56670-80D5667C 000C+00 s=1 e=0 z=0  None .data      @3683 */
+/* 80D56670-80D5667C -00001 000C+00 1/1 0/0 0/0 .data            @3683 */
 SECTION_DATA static void* lit_3683[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)wait__18daTag_BottleItem_cFPv,
 };
 
-/* 80D5667C-80D5669C 0020+00 s=1 e=0 z=0  None .data      daTag_BottleItem_MethodTable */
+/* 80D5667C-80D5669C -00001 0020+00 1/0 0/0 0/0 .data            daTag_BottleItem_MethodTable */
 SECTION_DATA static void* daTag_BottleItem_MethodTable[8] = {
     (void*)daTag_BottleItem_Create__FPv,
     (void*)daTag_BottleItem_Delete__FPv,
@@ -129,8 +118,8 @@ SECTION_DATA static void* daTag_BottleItem_MethodTable[8] = {
     (void*)NULL,
 };
 
-/* 80D5669C-80D566CC 0030+00 s=0 e=0 z=1  None .data      g_profile_TAG_BTLITM */
-SECTION_DATA void* g_profile_TAG_BTLITM[12] = {
+/* 80D5669C-80D566CC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_BTLITM */
+SECTION_DATA extern void* g_profile_TAG_BTLITM[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01220000, (void*)&g_fpcLf_Method,
     (void*)0x0000057C, (void*)NULL,
@@ -139,14 +128,14 @@ SECTION_DATA void* g_profile_TAG_BTLITM[12] = {
     (void*)0x00064100, (void*)0x050E0000,
 };
 
-/* 80D566CC-80D566D8 000C+00 s=2 e=0 z=0  None .data      __vt__18daTag_BottleItem_c */
-SECTION_DATA static void* __vt__18daTag_BottleItem_c[3] = {
-    (void*)NULL,
+/* 80D566CC-80D566D8 00005C 000C+00 2/2 0/0 0/0 .data            __vt__18daTag_BottleItem_c */
+SECTION_DATA extern void* __vt__18daTag_BottleItem_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__18daTag_BottleItem_cFv,
 };
 
-/* 80D55FD8-80D5605C 0084+00 s=1 e=0 z=0  None .text      create__18daTag_BottleItem_cFv */
+/* 80D55FD8-80D5605C 000078 0084+00 1/1 0/0 0/0 .text            create__18daTag_BottleItem_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -156,12 +145,12 @@ asm void daTag_BottleItem_c::create() {
 }
 #pragma pop
 
-/* 80D5605C-80D56064 0008+00 s=1 e=0 z=0  None .text      Delete__18daTag_BottleItem_cFv */
+/* 80D5605C-80D56064 0000FC 0008+00 1/1 0/0 0/0 .text            Delete__18daTag_BottleItem_cFv */
 bool daTag_BottleItem_c::Delete() {
     return true;
 }
 
-/* 80D56064-80D560D0 006C+00 s=2 e=0 z=0  None .text      Execute__18daTag_BottleItem_cFv */
+/* 80D56064-80D560D0 000104 006C+00 2/2 0/0 0/0 .text            Execute__18daTag_BottleItem_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -171,13 +160,12 @@ asm void daTag_BottleItem_c::Execute() {
 }
 #pragma pop
 
-/* 80D560D0-80D560D8 0008+00 s=1 e=0 z=0  None .text      Draw__18daTag_BottleItem_cFv */
+/* 80D560D0-80D560D8 000170 0008+00 1/1 0/0 0/0 .text            Draw__18daTag_BottleItem_cFv */
 bool daTag_BottleItem_c::Draw() {
     return true;
 }
 
-/* 80D560D8-80D56100 0028+00 s=1 e=0 z=0  None .text      setTypeFromParam__18daTag_BottleItem_cFv
- */
+/* 80D560D8-80D56100 000178 0028+00 1/1 0/0 0/0 .text setTypeFromParam__18daTag_BottleItem_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -187,7 +175,7 @@ asm void daTag_BottleItem_c::setTypeFromParam() {
 }
 #pragma pop
 
-/* 80D56100-80D56170 0070+00 s=1 e=0 z=0  None .text      restart__18daTag_BottleItem_cFv */
+/* 80D56100-80D56170 0001A0 0070+00 1/1 0/0 0/0 .text            restart__18daTag_BottleItem_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -198,19 +186,33 @@ asm void daTag_BottleItem_c::restart() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D56658-80D5665C 0004+00 s=1 e=0 z=0  None .rodata    @3697 */
-SECTION_RODATA static u32 const lit_3697 = 0xC1F00000;
+/* 80D56658-80D5665C 000000 0004+00 1/1 0/0 0/0 .rodata          @3697 */
+SECTION_RODATA static f32 const lit_3697 = -30.0f;
+COMPILER_STRIP_GATE(80D56658, &lit_3697);
 
-/* 80D5665C-80D56660 0004+00 s=1 e=0 z=0  None .rodata    @3698 */
-SECTION_RODATA static u32 const lit_3698 = 0xC1700000;
+/* 80D5665C-80D56660 000004 0004+00 0/1 0/0 0/0 .rodata          @3698 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3698 = -15.0f;
+COMPILER_STRIP_GATE(80D5665C, &lit_3698);
+#pragma pop
 
-/* 80D56660-80D56664 0004+00 s=1 e=0 z=0  None .rodata    @3699 */
-SECTION_RODATA static u32 const lit_3699 = 0x41F00000;
+/* 80D56660-80D56664 000008 0004+00 0/1 0/0 0/0 .rodata          @3699 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3699 = 30.0f;
+COMPILER_STRIP_GATE(80D56660, &lit_3699);
+#pragma pop
 
-/* 80D56664-80D56668 0004+00 s=1 e=0 z=0  None .rodata    @3700 */
-SECTION_RODATA static u32 const lit_3700 = 0x42340000;
+/* 80D56664-80D56668 00000C 0004+00 0/1 0/0 0/0 .rodata          @3700 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3700 = 45.0f;
+COMPILER_STRIP_GATE(80D56664, &lit_3700);
+#pragma pop
 
-/* 80D56170-80D561E8 0078+00 s=1 e=0 z=0  None .text      initialize__18daTag_BottleItem_cFv */
+/* 80D56170-80D561E8 000210 0078+00 1/1 0/0 0/0 .text            initialize__18daTag_BottleItem_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -220,7 +222,7 @@ asm void daTag_BottleItem_c::initialize() {
 }
 #pragma pop
 
-/* 80D561E8-80D56214 002C+00 s=1 e=0 z=0  None .text
+/* 80D561E8-80D56214 000288 002C+00 1/1 0/0 0/0 .text
  * checkProcess__18daTag_BottleItem_cFM18daTag_BottleItem_cFPCvPvPv_i */
 #pragma push
 #pragma optimization_level 0
@@ -231,7 +233,7 @@ asm void daTag_BottleItem_c::checkProcess(int (daTag_BottleItem_c::*)(void*)) {
 }
 #pragma pop
 
-/* 80D56214-80D56300 00EC+00 s=1 e=0 z=0  None .text
+/* 80D56214-80D56300 0002B4 00EC+00 1/1 0/0 0/0 .text
  * setProcess__18daTag_BottleItem_cFM18daTag_BottleItem_cFPCvPvPv_i */
 #pragma push
 #pragma optimization_level 0
@@ -242,7 +244,8 @@ asm void daTag_BottleItem_c::setProcess(int (daTag_BottleItem_c::*)(void*)) {
 }
 #pragma pop
 
-/* 80D56300-80D56334 0034+00 s=1 e=0 z=0  None .text      setAttnPos__18daTag_BottleItem_cFv */
+/* 80D56300-80D56334 0003A0 0034+00 1/1 0/0 0/0 .text            setAttnPos__18daTag_BottleItem_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -252,7 +255,7 @@ asm void daTag_BottleItem_c::setAttnPos() {
 }
 #pragma pop
 
-/* 80D56334-80D56384 0050+00 s=1 e=0 z=0  None .text      chkEvent__18daTag_BottleItem_cFv */
+/* 80D56334-80D56384 0003D4 0050+00 1/1 0/0 0/0 .text            chkEvent__18daTag_BottleItem_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -262,7 +265,8 @@ asm void daTag_BottleItem_c::chkEvent() {
 }
 #pragma pop
 
-/* 80D56384-80D56418 0094+00 s=1 e=0 z=0  None .text      orderEvent__18daTag_BottleItem_cFv */
+/* 80D56384-80D56418 000424 0094+00 1/1 0/0 0/0 .text            orderEvent__18daTag_BottleItem_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -272,7 +276,7 @@ asm void daTag_BottleItem_c::orderEvent() {
 }
 #pragma pop
 
-/* 80D56418-80D564A0 0088+00 s=2 e=0 z=0  None .text      makeSoup__18daTag_BottleItem_cFv */
+/* 80D56418-80D564A0 0004B8 0088+00 2/2 0/0 0/0 .text            makeSoup__18daTag_BottleItem_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -283,13 +287,15 @@ asm void daTag_BottleItem_c::makeSoup() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D56668-80D5666C 0004+00 s=1 e=0 z=0  None .rodata    @3796 */
-SECTION_RODATA static u32 const lit_3796 = 0x430C0000;
+/* 80D56668-80D5666C 000010 0004+00 1/1 0/0 0/0 .rodata          @3796 */
+SECTION_RODATA static f32 const lit_3796 = 140.0f;
+COMPILER_STRIP_GATE(80D56668, &lit_3796);
 
-/* 80D5666C-80D56670 0004+00 s=1 e=0 z=0  None .rodata    @3797 */
-SECTION_RODATA static u32 const lit_3797 = 0x42C80000;
+/* 80D5666C-80D56670 000014 0004+00 1/1 0/0 0/0 .rodata          @3797 */
+SECTION_RODATA static f32 const lit_3797 = 100.0f;
+COMPILER_STRIP_GATE(80D5666C, &lit_3797);
 
-/* 80D564A0-80D56568 00C8+00 s=1 e=0 z=0  None .text      wait__18daTag_BottleItem_cFPv */
+/* 80D564A0-80D56568 000540 00C8+00 1/0 0/0 0/0 .text            wait__18daTag_BottleItem_cFPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -299,52 +305,52 @@ asm void daTag_BottleItem_c::wait(void* param_0) {
 }
 #pragma pop
 
-/* 80D56568-80D56588 0020+00 s=1 e=0 z=0  None .text      daTag_BottleItem_Create__FPv */
+/* 80D56568-80D56588 000608 0020+00 1/0 0/0 0/0 .text            daTag_BottleItem_Create__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_BottleItem_Create(void* param_0) {
+static asm void daTag_BottleItem_Create(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_bottle_item/d_a_tag_bottle_item/daTag_BottleItem_Create__FPv.s"
 }
 #pragma pop
 
-/* 80D56588-80D565A8 0020+00 s=1 e=0 z=0  None .text      daTag_BottleItem_Delete__FPv */
+/* 80D56588-80D565A8 000628 0020+00 1/0 0/0 0/0 .text            daTag_BottleItem_Delete__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_BottleItem_Delete(void* param_0) {
+static asm void daTag_BottleItem_Delete(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_bottle_item/d_a_tag_bottle_item/daTag_BottleItem_Delete__FPv.s"
 }
 #pragma pop
 
-/* 80D565A8-80D565C8 0020+00 s=1 e=0 z=0  None .text      daTag_BottleItem_Execute__FPv */
+/* 80D565A8-80D565C8 000648 0020+00 1/0 0/0 0/0 .text            daTag_BottleItem_Execute__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_BottleItem_Execute(void* param_0) {
+static asm void daTag_BottleItem_Execute(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_bottle_item/d_a_tag_bottle_item/daTag_BottleItem_Execute__FPv.s"
 }
 #pragma pop
 
-/* 80D565C8-80D565E8 0020+00 s=1 e=0 z=0  None .text      daTag_BottleItem_Draw__FPv */
+/* 80D565C8-80D565E8 000668 0020+00 1/0 0/0 0/0 .text            daTag_BottleItem_Draw__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_BottleItem_Draw(void* param_0) {
+static asm void daTag_BottleItem_Draw(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_bottle_item/d_a_tag_bottle_item/daTag_BottleItem_Draw__FPv.s"
 }
 #pragma pop
 
-/* 80D565E8-80D565F0 0008+00 s=1 e=0 z=0  None .text      daTag_BottleItem_IsDelete__FPv */
+/* 80D565E8-80D565F0 000688 0008+00 1/0 0/0 0/0 .text            daTag_BottleItem_IsDelete__FPv */
 static bool daTag_BottleItem_IsDelete(void* param_0) {
     return true;
 }
 
-/* 80D565F0-80D56650 0060+00 s=1 e=0 z=0  None .text      __dt__18daTag_BottleItem_cFv */
+/* 80D565F0-80D56650 000690 0060+00 1/0 0/0 0/0 .text            __dt__18daTag_BottleItem_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

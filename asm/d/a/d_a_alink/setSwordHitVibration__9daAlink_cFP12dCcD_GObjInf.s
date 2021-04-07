@@ -70,8 +70,8 @@ lbl_800D18D0:
 /* 800D18D8  C0 02 92 B8 */	lfs f0, lit_6040(r2)
 /* 800D18DC  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 800D18E0  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 800D18E4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D18E8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D18E4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D18E8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D18EC  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 800D18F0  38 A0 00 1F */	li r5, 0x1f
 /* 800D18F4  38 C1 00 08 */	addi r6, r1, 8

@@ -11,8 +11,8 @@ lbl_803629CC:
 /* 803629F0  38 60 00 00 */	li r3, 0
 /* 803629F4  48 00 2A 71 */	bl __end_critical_region
 /* 803629F8  4B FF F1 E5 */	bl __destroy_global_chain
-/* 803629FC  3C 60 80 37 */	lis r3, __destroy_global_chain_reference@ha
-/* 80362A00  38 03 39 80 */	addi r0, r3, __destroy_global_chain_reference@l
+/* 803629FC  3C 60 80 37 */	lis r3, __destroy_global_chain_reference@ha /* 0x80373980@ha */
+/* 80362A00  38 03 39 80 */	addi r0, r3, __destroy_global_chain_reference@l /* 0x80373980@l */
 /* 80362A04  7C 1F 03 78 */	mr r31, r0
 /* 80362A08  48 00 00 10 */	b lbl_80362A18
 lbl_80362A0C:
@@ -33,8 +33,8 @@ lbl_80362A18:
 lbl_80362A40:
 /* 80362A40  38 60 00 00 */	li r3, 0
 /* 80362A44  48 00 2A 25 */	bl __begin_critical_region
-/* 80362A48  3C 60 80 45 */	lis r3, __atexit_funcs@ha
-/* 80362A4C  3B E3 D4 40 */	addi r31, r3, __atexit_funcs@l
+/* 80362A48  3C 60 80 45 */	lis r3, __atexit_funcs@ha /* 0x8044D440@ha */
+/* 80362A4C  3B E3 D4 40 */	addi r31, r3, __atexit_funcs@l /* 0x8044D440@l */
 /* 80362A50  48 00 00 20 */	b lbl_80362A70
 lbl_80362A54:
 /* 80362A54  80 6D 94 14 */	lwz r3, __atexit_curr_func(r13)

@@ -7,7 +7,7 @@ lbl_8055BD94:
 /* 8055BDA8  41 82 00 10 */	beq lbl_8055BDB8
 /* 8055BDAC  7C 80 07 35 */	extsh. r0, r4
 /* 8055BDB0  40 81 00 08 */	ble lbl_8055BDB8
-/* 8055BDB4  4B D7 2F 88 */	b __dl__FPv
+/* 8055BDB4  4B D7 2F 89 */	bl __dl__FPv
 lbl_8055BDB8:
 /* 8055BDB8  7F E3 FB 78 */	mr r3, r31
 /* 8055BDBC  83 E1 00 0C */	lwz r31, 0xc(r1)

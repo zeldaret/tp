@@ -2,8 +2,8 @@ lbl_8048CD08:
 /* 8048CD08  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8048CD0C  7C 08 02 A6 */	mflr r0
 /* 8048CD10  90 01 00 34 */	stw r0, 0x34(r1)
-/* 8048CD14  3C A0 80 49 */	lis r5, lit_3922@ha
-/* 8048CD18  C0 25 CD E0 */	lfs f1, lit_3922@l(r5)
+/* 8048CD14  3C A0 80 49 */	lis r5, lit_3922@ha /* 0x8048CDE0@ha */
+/* 8048CD18  C0 25 CD E0 */	lfs f1, lit_3922@l(r5)  /* 0x8048CDE0@l */
 /* 8048CD1C  D0 21 00 20 */	stfs f1, 0x20(r1)
 /* 8048CD20  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 8048CD24  D0 21 00 28 */	stfs f1, 0x28(r1)

@@ -1,6 +1,6 @@
 lbl_80200CD4:
-/* 80200CD4  3C 80 80 3C */	lis r4, __vt__18dMeter_cursorHIO_c@ha
-/* 80200CD8  38 04 F0 E8 */	addi r0, r4, __vt__18dMeter_cursorHIO_c@l
+/* 80200CD4  3C 80 80 3C */	lis r4, __vt__18dMeter_cursorHIO_c@ha /* 0x803BF0E8@ha */
+/* 80200CD8  38 04 F0 E8 */	addi r0, r4, __vt__18dMeter_cursorHIO_c@l /* 0x803BF0E8@l */
 /* 80200CDC  90 03 00 00 */	stw r0, 0(r3)
 /* 80200CE0  C0 02 AD 24 */	lfs f0, lit_4428(r2)
 /* 80200CE4  D0 03 00 2C */	stfs f0, 0x2c(r3)

@@ -13,8 +13,8 @@ lbl_80C0F5C8:
 /* 80C0F5CC  FC 00 02 10 */	fabs f0, f0
 /* 80C0F5D0  D0 21 00 38 */	stfs f1, 0x38(r1)
 /* 80C0F5D4  FC 40 00 18 */	frsp f2, f0
-/* 80C0F5D8  3C C0 80 C1 */	lis r6, lit_5568@ha
-/* 80C0F5DC  C0 06 FC A0 */	lfs f0, lit_5568@l(r6)
+/* 80C0F5D8  3C C0 80 C1 */	lis r6, lit_5568@ha /* 0x80C0FCA0@ha */
+/* 80C0F5DC  C0 06 FC A0 */	lfs f0, lit_5568@l(r6)  /* 0x80C0FCA0@l */
 /* 80C0F5E0  EC A2 00 32 */	fmuls f5, f2, f0
 /* 80C0F5E4  D0 A1 00 3C */	stfs f5, 0x3c(r1)
 /* 80C0F5E8  D0 21 00 40 */	stfs f1, 0x40(r1)

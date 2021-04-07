@@ -3,28 +3,28 @@ lbl_80581D04:
 /* 80581D08  7C 08 02 A6 */	mflr r0
 /* 80581D0C  90 01 00 64 */	stw r0, 0x64(r1)
 /* 80581D10  39 61 00 60 */	addi r11, r1, 0x60
-/* 80581D14  4B DE 04 B8 */	b _savegpr_25
+/* 80581D14  4B DE 04 B9 */	bl _savegpr_25
 /* 80581D18  7C 7B 1B 78 */	mr r27, r3
-/* 80581D1C  3C 60 80 58 */	lis r3, lit_3970@ha
-/* 80581D20  3B E3 56 20 */	addi r31, r3, lit_3970@l
+/* 80581D1C  3C 60 80 58 */	lis r3, lit_3970@ha /* 0x80585620@ha */
+/* 80581D20  3B E3 56 20 */	addi r31, r3, lit_3970@l /* 0x80585620@l */
 /* 80581D24  3B C0 00 00 */	li r30, 0
 /* 80581D28  88 1B 06 28 */	lbz r0, 0x628(r27)
 /* 80581D2C  28 00 00 00 */	cmplwi r0, 0
 /* 80581D30  40 82 04 D4 */	bne lbl_80582204
 /* 80581D34  38 7B 08 64 */	addi r3, r27, 0x864
-/* 80581D38  4B B0 1A F8 */	b Move__10dCcD_GSttsFv
+/* 80581D38  4B B0 1A F9 */	bl Move__10dCcD_GSttsFv
 /* 80581D3C  3B A0 00 00 */	li r29, 0
 /* 80581D40  38 7B 08 84 */	addi r3, r27, 0x884
-/* 80581D44  4B B0 27 1C */	b ChkTgHit__12dCcD_GObjInfFv
+/* 80581D44  4B B0 27 1D */	bl ChkTgHit__12dCcD_GObjInfFv
 /* 80581D48  28 03 00 00 */	cmplwi r3, 0
 /* 80581D4C  41 82 04 B8 */	beq lbl_80582204
 /* 80581D50  38 00 00 03 */	li r0, 3
 /* 80581D54  98 1B 06 28 */	stb r0, 0x628(r27)
 /* 80581D58  3B 80 00 09 */	li r28, 9
 /* 80581D5C  38 7B 08 84 */	addi r3, r27, 0x884
-/* 80581D60  4B B0 27 98 */	b GetTgHitObj__12dCcD_GObjInfFv
+/* 80581D60  4B B0 27 99 */	bl GetTgHitObj__12dCcD_GObjInfFv
 /* 80581D64  7C 7A 1B 78 */	mr r26, r3
-/* 80581D68  4B CE 1C E0 */	b GetAc__8cCcD_ObjFv
+/* 80581D68  4B CE 1C E1 */	bl GetAc__8cCcD_ObjFv
 /* 80581D6C  80 9A 00 10 */	lwz r4, 0x10(r26)
 /* 80581D70  54 80 06 73 */	rlwinm. r0, r4, 0, 0x19, 0x19
 /* 80581D74  41 82 00 0C */	beq lbl_80581D80
@@ -40,7 +40,7 @@ lbl_80581D90:
 /* 80581D94  70 00 0F 0F */	andi. r0, r0, 0xf0f
 /* 80581D98  41 82 00 58 */	beq lbl_80581DF0
 /* 80581D9C  7F 43 D3 78 */	mr r3, r26
-/* 80581DA0  4B CE 1C A8 */	b GetAc__8cCcD_ObjFv
+/* 80581DA0  4B CE 1C A9 */	bl GetAc__8cCcD_ObjFv
 /* 80581DA4  28 03 00 00 */	cmplwi r3, 0
 /* 80581DA8  41 82 00 40 */	beq lbl_80581DE8
 /* 80581DAC  C0 43 04 D4 */	lfs f2, 0x4d4(r3)
@@ -123,8 +123,8 @@ lbl_80581EA0:
 lbl_80581EB4:
 /* 80581EB4  28 1C 00 09 */	cmplwi r28, 9
 /* 80581EB8  41 81 02 B8 */	bgt lbl_80582170
-/* 80581EBC  3C 60 80 58 */	lis r3, lit_4286@ha
-/* 80581EC0  38 63 5B 30 */	addi r3, r3, lit_4286@l
+/* 80581EBC  3C 60 80 58 */	lis r3, lit_4286@ha /* 0x80585B30@ha */
+/* 80581EC0  38 63 5B 30 */	addi r3, r3, lit_4286@l /* 0x80585B30@l */
 /* 80581EC4  57 80 10 3A */	slwi r0, r28, 2
 /* 80581EC8  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80581ECC  7C 09 03 A6 */	mtctr r0
@@ -158,8 +158,8 @@ lbl_80581ED4:
 /* 80581F38  3C 60 00 08 */	lis r3, 0x0008 /* 0x000800E4@ha */
 /* 80581F3C  38 03 00 E4 */	addi r0, r3, 0x00E4 /* 0x000800E4@l */
 /* 80581F40  90 01 00 10 */	stw r0, 0x10(r1)
-/* 80581F44  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80581F48  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80581F44  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80581F48  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80581F4C  80 63 00 00 */	lwz r3, 0(r3)
 /* 80581F50  38 81 00 10 */	addi r4, r1, 0x10
 /* 80581F54  38 BB 04 D0 */	addi r5, r27, 0x4d0
@@ -170,7 +170,7 @@ lbl_80581ED4:
 /* 80581F68  C0 7F 00 10 */	lfs f3, 0x10(r31)
 /* 80581F6C  FC 80 18 90 */	fmr f4, f3
 /* 80581F70  39 00 00 00 */	li r8, 0
-/* 80581F74  4B D2 9A 10 */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80581F74  4B D2 9A 11 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 lbl_80581F78:
 /* 80581F78  38 7B 08 84 */	addi r3, r27, 0x884
 /* 80581F7C  81 9B 08 C0 */	lwz r12, 0x8c0(r27)
@@ -228,8 +228,8 @@ lbl_8058202C:
 /* 8058202C  3B 20 00 00 */	li r25, 0
 /* 80582030  3B 80 00 00 */	li r28, 0
 /* 80582034  3B 40 00 01 */	li r26, 1
-/* 80582038  3C 60 80 58 */	lis r3, data_8058597C@ha
-/* 8058203C  3B A3 59 7C */	addi r29, r3, data_8058597C@l
+/* 80582038  3C 60 80 58 */	lis r3, data_8058597C@ha /* 0x8058597C@ha */
+/* 8058203C  3B A3 59 7C */	addi r29, r3, data_8058597C@l /* 0x8058597C@l */
 lbl_80582040:
 /* 80582040  80 7B 06 1C */	lwz r3, 0x61c(r27)
 /* 80582044  7F 40 C8 30 */	slw r0, r26, r25
@@ -255,8 +255,8 @@ lbl_80582078:
 /* 80582090  3C 60 00 08 */	lis r3, 0x0008 /* 0x000800E4@ha */
 /* 80582094  38 03 00 E4 */	addi r0, r3, 0x00E4 /* 0x000800E4@l */
 /* 80582098  90 01 00 0C */	stw r0, 0xc(r1)
-/* 8058209C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 805820A0  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 8058209C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 805820A0  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 805820A4  80 63 00 00 */	lwz r3, 0(r3)
 /* 805820A8  38 81 00 0C */	addi r4, r1, 0xc
 /* 805820AC  38 BB 04 D0 */	addi r5, r27, 0x4d0
@@ -267,7 +267,7 @@ lbl_80582078:
 /* 805820C0  C0 7F 00 10 */	lfs f3, 0x10(r31)
 /* 805820C4  FC 80 18 90 */	fmr f4, f3
 /* 805820C8  39 00 00 00 */	li r8, 0
-/* 805820CC  4B D2 98 B8 */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 805820CC  4B D2 98 B9 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 lbl_805820D0:
 /* 805820D0  80 1B 06 1C */	lwz r0, 0x61c(r27)
 /* 805820D4  54 00 00 22 */	rlwinm r0, r0, 0, 0, 0x11
@@ -288,13 +288,13 @@ lbl_80582104:
 /* 80582108  48 00 00 68 */	b lbl_80582170
 lbl_8058210C:
 /* 8058210C  7F 63 DB 78 */	mr r3, r27
-/* 80582110  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80582114  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80582110  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80582114  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80582118  80 84 5D AC */	lwz r4, 0x5dac(r4)
-/* 8058211C  4B A9 85 F4 */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 8058211C  4B A9 85 F5 */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 80582120  7C 64 1B 78 */	mr r4, r3
 /* 80582124  A8 7B 04 E6 */	lha r3, 0x4e6(r27)
-/* 80582128  4B CE EC FC */	b cLib_distanceAngleS__Fss
+/* 80582128  4B CE EC FD */	bl cLib_distanceAngleS__Fss
 /* 8058212C  B0 7B 05 EA */	sth r3, 0x5ea(r27)
 /* 80582130  38 00 00 00 */	li r0, 0
 /* 80582134  B0 1B 05 E8 */	sth r0, 0x5e8(r27)
@@ -325,8 +325,8 @@ lbl_80582170:
 /* 80582190  3C 60 00 08 */	lis r3, 0x0008 /* 0x000800E4@ha */
 /* 80582194  38 03 00 E4 */	addi r0, r3, 0x00E4 /* 0x000800E4@l */
 /* 80582198  90 01 00 08 */	stw r0, 8(r1)
-/* 8058219C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 805821A0  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 8058219C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 805821A0  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 805821A4  80 63 00 00 */	lwz r3, 0(r3)
 /* 805821A8  38 81 00 08 */	addi r4, r1, 8
 /* 805821AC  38 BB 04 D0 */	addi r5, r27, 0x4d0
@@ -337,7 +337,7 @@ lbl_80582170:
 /* 805821C0  C0 7F 00 10 */	lfs f3, 0x10(r31)
 /* 805821C4  FC 80 18 90 */	fmr f4, f3
 /* 805821C8  39 00 00 00 */	li r8, 0
-/* 805821CC  4B D2 97 B8 */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 805821CC  4B D2 97 B9 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 805821D0  80 1B 04 E4 */	lwz r0, 0x4e4(r27)
 /* 805821D4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 805821D8  A0 1B 04 E8 */	lhz r0, 0x4e8(r27)
@@ -354,7 +354,7 @@ lbl_805821F0:
 /* 80582200  4E 80 04 21 */	bctrl 
 lbl_80582204:
 /* 80582204  39 61 00 60 */	addi r11, r1, 0x60
-/* 80582208  4B DE 00 10 */	b _restgpr_25
+/* 80582208  4B DE 00 11 */	bl _restgpr_25
 /* 8058220C  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 80582210  7C 08 03 A6 */	mtlr r0
 /* 80582214  38 21 00 60 */	addi r1, r1, 0x60

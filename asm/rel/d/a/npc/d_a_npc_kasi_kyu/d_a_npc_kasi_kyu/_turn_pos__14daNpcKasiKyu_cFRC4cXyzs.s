@@ -7,11 +7,11 @@ lbl_80A24D10:
 /* 80A24D24  7C 7E 1B 78 */	mr r30, r3
 /* 80A24D28  7C BF 2B 78 */	mr r31, r5
 /* 80A24D2C  38 7E 04 D0 */	addi r3, r30, 0x4d0
-/* 80A24D30  4B 84 BE D4 */	b cLib_targetAngleY__FPC3VecPC3Vec
+/* 80A24D30  4B 84 BE D5 */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 80A24D34  7C 64 1B 78 */	mr r4, r3
 /* 80A24D38  38 7E 08 F2 */	addi r3, r30, 0x8f2
 /* 80A24D3C  7F E5 FB 78 */	mr r5, r31
-/* 80A24D40  4B 84 BE 50 */	b cLib_chaseAngleS__FPsss
+/* 80A24D40  4B 84 BE 51 */	bl cLib_chaseAngleS__FPsss
 /* 80A24D44  A8 1E 08 F2 */	lha r0, 0x8f2(r30)
 /* 80A24D48  B0 1E 04 DE */	sth r0, 0x4de(r30)
 /* 80A24D4C  A8 1E 08 F2 */	lha r0, 0x8f2(r30)

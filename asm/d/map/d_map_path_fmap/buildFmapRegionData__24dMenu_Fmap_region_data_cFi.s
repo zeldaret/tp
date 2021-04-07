@@ -13,8 +13,8 @@ lbl_8003DEE0:
 /* 8003DF0C  39 61 00 20 */	addi r11, r1, 0x20
 /* 8003DF10  48 32 42 CD */	bl _savegpr_29
 /* 8003DF14  7C 7D 1B 78 */	mr r29, r3
-/* 8003DF18  3C 60 80 45 */	lis r3, __float_max@ha
-/* 8003DF1C  C0 03 0A E8 */	lfs f0, __float_max@l(r3)
+/* 8003DF18  3C 60 80 45 */	lis r3, __float_max@ha /* 0x80450AE8@ha */
+/* 8003DF1C  C0 03 0A E8 */	lfs f0, __float_max@l(r3)  /* 0x80450AE8@l */
 /* 8003DF20  FF E0 00 90 */	fmr f31, f0
 /* 8003DF24  FF C0 00 90 */	fmr f30, f0
 /* 8003DF28  FC 00 00 50 */	fneg f0, f0

@@ -3,19 +3,20 @@
 #
 
 M376_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_uri.plf
+M376_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_uri.lcf
+M376_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_uri.map
 
 M376_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_uri/executor.cpp \
-	rel/d/a/npc/d_a_npc_uri/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_uri/d_a_npc_uri.cpp \
 
 M376_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_uri/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_uri/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_uri/d_a_npc_uri.o \
 
 M376_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_uri/libRuntime.PPCEABI.H.a \
 
 M376_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M376_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M376_LDSCRIPT) \
+	-unused -map $(M376_MAP) \
+	-w off \
 
 $(M376_TARGET): $(M376_O_FILES) $(M376_LIBS)
+	@echo [376] creating $(M376_TARGET)
 	@echo $(M376_LIBS) $(M376_O_FILES) > build/M376_ofiles
-	$(LD) -partial $(M376_LDFLAGS) -o $(M376_TARGET) @build/M376_ofiles
+	@python3 tools/lcf.py rel 376 --output $(M376_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M376_LDFLAGS) -o $(M376_TARGET) @build/M376_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_uri/%.o: rel/d/a/npc/d_a_npc_uri/%.cpp
+	@echo [376] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M376_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M376_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_uri/libs/Runtime.PPCEABI.H/Makefile
 

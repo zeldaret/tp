@@ -14,8 +14,8 @@ lbl_8003A348:
 /* 8003A378  41 82 00 4C */	beq lbl_8003A3C4
 /* 8003A37C  38 61 00 08 */	addi r3, r1, 8
 /* 8003A380  38 80 00 28 */	li r4, 0x28
-/* 8003A384  3C A0 80 38 */	lis r5, d_d_resorce__stringBase0@ha
-/* 8003A388  38 A5 98 B8 */	addi r5, r5, d_d_resorce__stringBase0@l
+/* 8003A384  3C A0 80 38 */	lis r5, d_d_resorce__stringBase0@ha /* 0x803798B8@ha */
+/* 8003A388  38 A5 98 B8 */	addi r5, r5, d_d_resorce__stringBase0@l /* 0x803798B8@l */
 /* 8003A38C  7D 06 43 78 */	mr r6, r8
 /* 8003A390  7F A7 EB 78 */	mr r7, r29
 /* 8003A394  4C C6 31 82 */	crclr 6

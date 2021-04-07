@@ -5,8 +5,8 @@ lbl_80CD75EC:
 /* 80CD75F8  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80CD75FC  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80CD7600  7C 7F 1B 78 */	mr r31, r3
-/* 80CD7604  3C 60 80 CE */	lis r3, l_cyl_src@ha
-/* 80CD7608  3B C3 82 74 */	addi r30, r3, l_cyl_src@l
+/* 80CD7604  3C 60 80 CE */	lis r3, l_cyl_src@ha /* 0x80CD8274@ha */
+/* 80CD7608  3B C3 82 74 */	addi r30, r3, l_cyl_src@l /* 0x80CD8274@l */
 /* 80CD760C  80 1F 05 B8 */	lwz r0, 0x5b8(r31)
 /* 80CD7610  54 00 06 F7 */	rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 80CD7614  41 82 00 34 */	beq lbl_80CD7648
@@ -21,7 +21,7 @@ lbl_80CD75EC:
 lbl_80CD7638:
 /* 80CD7638  C0 3F 04 F8 */	lfs f1, 0x4f8(r31)
 /* 80CD763C  C0 5F 05 00 */	lfs f2, 0x500(r31)
-/* 80CD7640  4B 59 00 34 */	b cM_atan2s__Fff
+/* 80CD7640  4B 59 00 35 */	bl cM_atan2s__Fff
 /* 80CD7644  B0 7F 04 DE */	sth r3, 0x4de(r31)
 lbl_80CD7648:
 /* 80CD7648  80 1F 05 B8 */	lwz r0, 0x5b8(r31)
@@ -62,13 +62,13 @@ lbl_80CD76B8:
 /* 80CD76CC  40 82 00 50 */	bne lbl_80CD771C
 /* 80CD76D0  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80CD76D4  7C 03 07 74 */	extsb r3, r0
-/* 80CD76D8  4B 35 59 94 */	b dComIfGp_getReverb__Fi
+/* 80CD76D8  4B 35 59 95 */	bl dComIfGp_getReverb__Fi
 /* 80CD76DC  7C 67 1B 78 */	mr r7, r3
 /* 80CD76E0  3C 60 00 08 */	lis r3, 0x0008 /* 0x00080108@ha */
 /* 80CD76E4  38 03 01 08 */	addi r0, r3, 0x0108 /* 0x00080108@l */
 /* 80CD76E8  90 01 00 08 */	stw r0, 8(r1)
-/* 80CD76EC  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80CD76F0  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80CD76EC  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80CD76F0  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80CD76F4  80 63 00 00 */	lwz r3, 0(r3)
 /* 80CD76F8  38 81 00 08 */	addi r4, r1, 8
 /* 80CD76FC  38 BF 05 38 */	addi r5, r31, 0x538
@@ -78,7 +78,7 @@ lbl_80CD76B8:
 /* 80CD770C  C0 7E 00 A8 */	lfs f3, 0xa8(r30)
 /* 80CD7710  FC 80 18 90 */	fmr f4, f3
 /* 80CD7714  39 00 00 00 */	li r8, 0
-/* 80CD7718  4B 5D 42 6C */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80CD7718  4B 5D 42 6D */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 lbl_80CD771C:
 /* 80CD771C  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 80CD7720  83 C1 00 18 */	lwz r30, 0x18(r1)

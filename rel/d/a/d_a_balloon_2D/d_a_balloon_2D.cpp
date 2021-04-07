@@ -125,12 +125,6 @@ struct CPaneMgr {
 // Forward References:
 //
 
-static void daBalloon2D_createHeap(fopAc_ac_c*);
-static void daBalloon2D_create(daBalloon2D_c*);
-static void daBalloon2D_destroy(daBalloon2D_c*);
-static void daBalloon2D_execute(daBalloon2D_c*);
-static void daBalloon2D_draw(daBalloon2D_c*);
-
 extern "C" void draw__Q213daBalloon2D_c6c_listFv();
 extern "C" static void daBalloon2D_createHeap__FP10fopAc_ac_c();
 extern "C" void createHeap__13daBalloon2D_cFv();
@@ -163,24 +157,11 @@ extern "C" void __dt__14mDoHIO_entry_cFv();
 extern "C" void __dt__Q213daBalloon2D_c6c_listFv();
 extern "C" void __dt__13daBalloon2D_cFv();
 extern "C" void __sinit_d_a_balloon_2D_cpp();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_BALLOON2D[12];
+extern "C" extern char const* const d_a_balloon_2D__stringBase0;
 
 //
 // External References:
 //
-
-void mDoExt_getMesgFont();
-void mDoLib_project(Vec*, Vec*);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dMeter2Info_getNumberTextureName(int);
-void dMeter2Info_getPlusTextureName();
-void dPaneClass_showNullPane(J2DScreen*);
-void cLib_addCalc2(f32*, f32, f32, f32);
-void* operator new(u32);
-void operator delete(void*);
 
 SECTION_INIT void memcpy();
 extern "C" void mDoExt_getMesgFont__Fv();
@@ -231,7 +212,7 @@ extern "C" void __register_global_object();
 // Declarations:
 //
 
-/* 806534CC-80653518 004C+00 s=1 e=0 z=0  None .text      draw__Q213daBalloon2D_c6c_listFv */
+/* 806534CC-80653518 0000EC 004C+00 1/0 0/0 0/0 .text            draw__Q213daBalloon2D_c6c_listFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -241,79 +222,27 @@ asm void daBalloon2D_c::c_list::draw() {
 }
 #pragma pop
 
-/* 80653518-80653538 0020+00 s=1 e=0 z=0  None .text      daBalloon2D_createHeap__FP10fopAc_ac_c */
+/* 80653518-80653538 000138 0020+00 1/1 0/0 0/0 .text daBalloon2D_createHeap__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daBalloon2D_createHeap(fopAc_ac_c* param_0) {
+static asm void daBalloon2D_createHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_balloon_2D/d_a_balloon_2D/daBalloon2D_createHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 806555AC-806555B0 0004+00 s=5 e=0 z=0  None .rodata    @3896 */
+/* 806555AC-806555B0 000000 0004+00 5/5 0/0 0/0 .rodata          @3896 */
 SECTION_RODATA static u8 const lit_3896[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(806555AC, &lit_3896);
 
-/* 806555B0-806555B4 0004+00 s=3 e=0 z=0  None .rodata    @4064 */
-SECTION_RODATA static u32 const lit_4064 = 0x3F800000;
-
-/* 806555B4-806555B8 0004+00 s=2 e=0 z=0  None .rodata    @4065 */
-SECTION_RODATA static u32 const lit_4065 = 0x3ECCCCCD;
-
-/* 806555B8-806555BC 0004+00 s=3 e=0 z=0  None .rodata    @4066 */
-SECTION_RODATA static u32 const lit_4066 = 0x3F000000;
-
-/* 806555BC-806555C0 0004+00 s=2 e=0 z=0  None .rodata    @4067 */
-SECTION_RODATA static u32 const lit_4067 = 0x3DCCCCCD;
-
-/* 806555C0-806555C4 0004+00 s=1 e=0 z=0  None .rodata    @4165 */
-SECTION_RODATA static u32 const lit_4165 = 0x41F00000;
-
-/* 806555C4-806555C8 0004+00 s=1 e=0 z=0  None .rodata    @4166 */
-SECTION_RODATA static u32 const lit_4166 = 0x3E99999A;
-
-/* 806555C8-806555CC 0004+00 s=1 e=0 z=0  None .rodata    @4167 */
-SECTION_RODATA static u32 const lit_4167 = 0x41200000;
-
-/* 806555CC-806555D0 0004+00 s=1 e=0 z=0  None .rodata    @4168 */
-SECTION_RODATA static u32 const lit_4168 = 0x437F0000;
-
-/* 806555D0-806555D4 0004+00 s=1 e=0 z=0  None .rodata    @4169 */
-SECTION_RODATA static u32 const lit_4169 = 0x40C00000;
-
-/* 806555D4-806555D8 0004+00 s=1 e=0 z=0  None .rodata    @4170 */
-SECTION_RODATA static u32 const lit_4170 = 0x40000000;
-
-/* 806555D8-806555DC 0004+00 s=1 e=0 z=0  None .rodata    @4171 */
-SECTION_RODATA static u32 const lit_4171 = 0x40400000;
-
-/* 806555DC-806555E0 0004+00 s=1 e=0 z=0  None .rodata    @4172 */
-SECTION_RODATA static u32 const lit_4172 = 0x40800000;
-
-/* 806555E0-806555E4 0004+00 s=1 e=0 z=0  None .rodata    @4173 */
-SECTION_RODATA static u32 const lit_4173 = 0x40A00000;
-
-/* 806555E4-806555EC 0008+00 s=1 e=0 z=0  None .rodata    @4175 */
-SECTION_RODATA static u8 const lit_4175[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 806555EC-8065560E 0022+00 s=2 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_806555EC = "Balloon2D";
-SECTION_DEAD char const* const stringBase_806555F6 = "zelda_balloon_game.blo";
-SECTION_DEAD char const* const stringBase_8065560D = "";
-#pragma pop
-
-/* 80655610-806556D4 00C4+00 s=1 e=0 z=0  None .data
+/* 80655610-806556D4 000000 00C4+00 1/1 0/0 0/0 .data
  * aParam$localstatic3$__ct__17daBalloon2D_HIO_cFv              */
 SECTION_DATA static u8 data_80655610[196] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -331,10 +260,10 @@ SECTION_DATA static u8 data_80655610[196] = {
     0x41, 0xA0, 0x00, 0x00,
 };
 
-/* 806556D4-806556D8 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
+/* 806556D4-806556D8 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_balloon_2D__stringBase0;
 
-/* 80653538-80653D24 07EC+00 s=1 e=0 z=0  None .text      createHeap__13daBalloon2D_cFv */
+/* 80653538-80653D24 000158 07EC+00 1/1 0/0 0/0 .text            createHeap__13daBalloon2D_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -345,16 +274,16 @@ asm void daBalloon2D_c::createHeap() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80655770-8065577C 000C+00 s=1 e=0 z=0  None .bss       @3779 */
+/* 80655770-8065577C 000008 000C+00 1/1 0/0 0/0 .bss             @3779 */
 static u8 lit_3779[12];
 
-/* 8065577C-80655844 00C8+00 s=3 e=0 z=0  None .bss       l_HOSTIO */
+/* 8065577C-80655844 000014 00C8+00 3/3 0/0 0/0 .bss             l_HOSTIO */
 static u8 l_HOSTIO[200];
 
-/* 80655844-80655848 0004+00 s=2 e=0 z=0  None .bss       myclass__13daBalloon2D_c */
+/* 80655844-80655848 0000DC 0004+00 2/2 0/0 0/0 .bss             myclass__13daBalloon2D_c */
 static u8 myclass__13daBalloon2D_c[4];
 
-/* 80653D24-80653DB4 0090+00 s=1 e=0 z=0  None .text      create__13daBalloon2D_cFv */
+/* 80653D24-80653DB4 000944 0090+00 1/1 0/0 0/0 .text            create__13daBalloon2D_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -364,7 +293,7 @@ asm void daBalloon2D_c::create() {
 }
 #pragma pop
 
-/* 80653DB4-80653E10 005C+00 s=1 e=0 z=0  None .text      destroy__13daBalloon2D_cFv */
+/* 80653DB4-80653E10 0009D4 005C+00 1/1 0/0 0/0 .text            destroy__13daBalloon2D_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -374,7 +303,7 @@ asm void daBalloon2D_c::destroy() {
 }
 #pragma pop
 
-/* 80653E10-80653EC0 00B0+00 s=1 e=0 z=0  None .text      draw__13daBalloon2D_cFv */
+/* 80653E10-80653EC0 000A30 00B0+00 1/1 0/0 0/0 .text            draw__13daBalloon2D_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -384,7 +313,7 @@ asm void daBalloon2D_c::draw() {
 }
 #pragma pop
 
-/* 80653EC0-80653F04 0044+00 s=1 e=0 z=0  None .text      execute__13daBalloon2D_cFv */
+/* 80653EC0-80653F04 000AE0 0044+00 1/1 0/0 0/0 .text            execute__13daBalloon2D_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -394,7 +323,7 @@ asm void daBalloon2D_c::execute() {
 }
 #pragma pop
 
-/* 80653F04-80653F58 0054+00 s=1 e=0 z=0  None .text      drawMeter__13daBalloon2D_cFv */
+/* 80653F04-80653F58 000B24 0054+00 1/1 0/0 0/0 .text            drawMeter__13daBalloon2D_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -404,7 +333,8 @@ asm void daBalloon2D_c::drawMeter() {
 }
 #pragma pop
 
-/* 80653F58-80653FC0 0068+00 s=0 e=0 z=1  None .text      setComboCount__13daBalloon2D_cFUcUc */
+/* 80653F58-80653FC0 000B78 0068+00 0/0 0/0 1/1 .text            setComboCount__13daBalloon2D_cFUcUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -414,7 +344,8 @@ asm void daBalloon2D_c::setComboCount(u8 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 80653FC0-80653FEC 002C+00 s=0 e=0 z=2  None .text      setScoreCount__13daBalloon2D_cFUl */
+/* 80653FC0-80653FEC 000BE0 002C+00 0/0 0/0 2/2 .text            setScoreCount__13daBalloon2D_cFUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -424,8 +355,7 @@ asm void daBalloon2D_c::setScoreCount(u32 param_0) {
 }
 #pragma pop
 
-/* 80653FEC-806540B4 00C8+00 s=0 e=0 z=1  None .text      addScoreCount__13daBalloon2D_cFP4cXyzUlUc
- */
+/* 80653FEC-806540B4 000C0C 00C8+00 0/0 0/0 1/1 .text addScoreCount__13daBalloon2D_cFP4cXyzUlUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -435,17 +365,17 @@ asm void daBalloon2D_c::addScoreCount(cXyz* param_0, u32 param_1, u8 param_2) {
 }
 #pragma pop
 
-/* 806540B4-806540B8 0004+00 s=1 e=0 z=0  None .text      initiate__13daBalloon2D_cFv */
+/* 806540B4-806540B8 000CD4 0004+00 1/1 0/0 0/0 .text            initiate__13daBalloon2D_cFv */
 void daBalloon2D_c::initiate() {
     /* empty function */
 }
 
-/* 806540B8-806540BC 0004+00 s=1 e=0 z=0  None .text      update__13daBalloon2D_cFv */
+/* 806540B8-806540BC 000CD8 0004+00 1/1 0/0 0/0 .text            update__13daBalloon2D_cFv */
 void daBalloon2D_c::update() {
     /* empty function */
 }
 
-/* 806540BC-806541B4 00F8+00 s=2 e=0 z=0  None .text      setComboNum__13daBalloon2D_cFUc */
+/* 806540BC-806541B4 000CDC 00F8+00 2/2 0/0 0/0 .text            setComboNum__13daBalloon2D_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -455,7 +385,8 @@ asm void daBalloon2D_c::setComboNum(u8 param_0) {
 }
 #pragma pop
 
-/* 806541B4-80654258 00A4+00 s=2 e=0 z=0  None .text      setBalloonSize__13daBalloon2D_cFUc */
+/* 806541B4-80654258 000DD4 00A4+00 2/2 0/0 0/0 .text            setBalloonSize__13daBalloon2D_cFUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -465,7 +396,7 @@ asm void daBalloon2D_c::setBalloonSize(u8 param_0) {
 }
 #pragma pop
 
-/* 80654258-80654440 01E8+00 s=2 e=0 z=0  None .text      setScoreNum__13daBalloon2D_cFi */
+/* 80654258-80654440 000E78 01E8+00 2/2 0/0 0/0 .text            setScoreNum__13daBalloon2D_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -475,7 +406,36 @@ asm void daBalloon2D_c::setScoreNum(int param_0) {
 }
 #pragma pop
 
-/* 80654440-8065464C 020C+00 s=1 e=0 z=0  None .text      setAllAlpha__13daBalloon2D_cFv */
+/* ############################################################################################## */
+/* 806555B0-806555B4 000004 0004+00 0/3 0/0 0/0 .rodata          @4064 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4064 = 1.0f;
+COMPILER_STRIP_GATE(806555B0, &lit_4064);
+#pragma pop
+
+/* 806555B4-806555B8 000008 0004+00 0/2 0/0 0/0 .rodata          @4065 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4065 = 2.0f / 5.0f;
+COMPILER_STRIP_GATE(806555B4, &lit_4065);
+#pragma pop
+
+/* 806555B8-806555BC 00000C 0004+00 0/3 0/0 0/0 .rodata          @4066 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4066 = 0.5f;
+COMPILER_STRIP_GATE(806555B8, &lit_4066);
+#pragma pop
+
+/* 806555BC-806555C0 000010 0004+00 0/2 0/0 0/0 .rodata          @4067 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4067 = 1.0f / 10.0f;
+COMPILER_STRIP_GATE(806555BC, &lit_4067);
+#pragma pop
+
+/* 80654440-8065464C 001060 020C+00 1/1 0/0 0/0 .text            setAllAlpha__13daBalloon2D_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -485,7 +445,7 @@ asm void daBalloon2D_c::setAllAlpha() {
 }
 #pragma pop
 
-/* 8065464C-80654730 00E4+00 s=2 e=0 z=0  None .text      setComboAlpha__13daBalloon2D_cFv */
+/* 8065464C-80654730 00126C 00E4+00 2/2 0/0 0/0 .text            setComboAlpha__13daBalloon2D_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -495,7 +455,80 @@ asm void daBalloon2D_c::setComboAlpha() {
 }
 #pragma pop
 
-/* 80654730-80654E8C 075C+00 s=1 e=0 z=0  None .text      drawAddScore__13daBalloon2D_cFv */
+/* ############################################################################################## */
+/* 806555C0-806555C4 000014 0004+00 0/1 0/0 0/0 .rodata          @4165 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4165 = 30.0f;
+COMPILER_STRIP_GATE(806555C0, &lit_4165);
+#pragma pop
+
+/* 806555C4-806555C8 000018 0004+00 0/1 0/0 0/0 .rodata          @4166 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4166 = 3.0f / 10.0f;
+COMPILER_STRIP_GATE(806555C4, &lit_4166);
+#pragma pop
+
+/* 806555C8-806555CC 00001C 0004+00 0/1 0/0 0/0 .rodata          @4167 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4167 = 10.0f;
+COMPILER_STRIP_GATE(806555C8, &lit_4167);
+#pragma pop
+
+/* 806555CC-806555D0 000020 0004+00 0/1 0/0 0/0 .rodata          @4168 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4168 = 255.0f;
+COMPILER_STRIP_GATE(806555CC, &lit_4168);
+#pragma pop
+
+/* 806555D0-806555D4 000024 0004+00 0/1 0/0 0/0 .rodata          @4169 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4169 = 6.0f;
+COMPILER_STRIP_GATE(806555D0, &lit_4169);
+#pragma pop
+
+/* 806555D4-806555D8 000028 0004+00 0/1 0/0 0/0 .rodata          @4170 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4170 = 2.0f;
+COMPILER_STRIP_GATE(806555D4, &lit_4170);
+#pragma pop
+
+/* 806555D8-806555DC 00002C 0004+00 0/1 0/0 0/0 .rodata          @4171 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4171 = 3.0f;
+COMPILER_STRIP_GATE(806555D8, &lit_4171);
+#pragma pop
+
+/* 806555DC-806555E0 000030 0004+00 0/1 0/0 0/0 .rodata          @4172 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4172 = 4.0f;
+COMPILER_STRIP_GATE(806555DC, &lit_4172);
+#pragma pop
+
+/* 806555E0-806555E4 000034 0004+00 0/1 0/0 0/0 .rodata          @4173 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4173 = 5.0f;
+COMPILER_STRIP_GATE(806555E0, &lit_4173);
+#pragma pop
+
+/* 806555E4-806555EC 000038 0008+00 0/1 0/0 0/0 .rodata          @4175 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_4175[8] = {
+    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(806555E4, &lit_4175);
+#pragma pop
+
+/* 80654730-80654E8C 001350 075C+00 1/1 0/0 0/0 .text            drawAddScore__13daBalloon2D_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -505,7 +538,7 @@ asm void daBalloon2D_c::drawAddScore() {
 }
 #pragma pop
 
-/* 80654E8C-80655250 03C4+00 s=2 e=0 z=0  None .text      setHIO__13daBalloon2D_cFb */
+/* 80654E8C-80655250 001AAC 03C4+00 2/2 0/0 0/0 .text            setHIO__13daBalloon2D_cFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -516,7 +549,7 @@ asm void daBalloon2D_c::setHIO(bool param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 806556D8-806556F8 0020+00 s=1 e=0 z=0  None .data      daBalloon2D_METHODS */
+/* 806556D8-806556F8 -00001 0020+00 1/0 0/0 0/0 .data            daBalloon2D_METHODS */
 SECTION_DATA static void* daBalloon2D_METHODS[8] = {
     (void*)daBalloon2D_create__FP13daBalloon2D_c,
     (void*)daBalloon2D_destroy__FP13daBalloon2D_c,
@@ -528,8 +561,8 @@ SECTION_DATA static void* daBalloon2D_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 806556F8-80655728 0030+00 s=0 e=0 z=1  None .data      g_profile_BALLOON2D */
-SECTION_DATA void* g_profile_BALLOON2D[12] = {
+/* 806556F8-80655728 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_BALLOON2D */
+SECTION_DATA extern void* g_profile_BALLOON2D[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x005A0000, (void*)&g_fpcLf_Method,
     (void*)0x00000748, (void*)NULL,
@@ -538,39 +571,39 @@ SECTION_DATA void* g_profile_BALLOON2D[12] = {
     (void*)0x00040000, (void*)NULL,
 };
 
-/* 80655728-80655734 000C+00 s=1 e=0 z=0  None .data      __vt__12dDlst_base_c */
-SECTION_DATA static void* __vt__12dDlst_base_c[3] = {
-    (void*)NULL,
+/* 80655728-80655734 000118 000C+00 1/1 0/0 0/0 .data            __vt__12dDlst_base_c */
+SECTION_DATA extern void* __vt__12dDlst_base_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__12dDlst_base_cFv,
 };
 
-/* 80655734-80655740 000C+00 s=2 e=0 z=0  None .data      __vt__13daBalloon2D_c */
-SECTION_DATA static void* __vt__13daBalloon2D_c[3] = {
-    (void*)NULL,
+/* 80655734-80655740 000124 000C+00 2/2 0/0 0/0 .data            __vt__13daBalloon2D_c */
+SECTION_DATA extern void* __vt__13daBalloon2D_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__13daBalloon2D_cFv,
 };
 
-/* 80655740-80655750 0010+00 s=3 e=0 z=0  None .data      __vt__Q213daBalloon2D_c6c_list */
-SECTION_DATA static void* __vt__Q213daBalloon2D_c6c_list[4] = {
-    (void*)NULL,
+/* 80655740-80655750 000130 0010+00 3/3 0/0 0/0 .data            __vt__Q213daBalloon2D_c6c_list */
+SECTION_DATA extern void* __vt__Q213daBalloon2D_c6c_list[4] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__Q213daBalloon2D_c6c_listFv,
     (void*)__dt__Q213daBalloon2D_c6c_listFv,
 };
 
-/* 80655250-80655304 00B4+00 s=1 e=0 z=0  None .text      daBalloon2D_create__FP13daBalloon2D_c */
+/* 80655250-80655304 001E70 00B4+00 1/0 0/0 0/0 .text daBalloon2D_create__FP13daBalloon2D_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daBalloon2D_create(daBalloon2D_c* param_0) {
+static asm void daBalloon2D_create(daBalloon2D_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_balloon_2D/d_a_balloon_2D/daBalloon2D_create__FP13daBalloon2D_c.s"
 }
 #pragma pop
 
-/* 80655304-80655340 003C+00 s=2 e=0 z=0  None .text      __dt__Q213daBalloon2D_c10CHeadScoreFv */
+/* 80655304-80655340 001F24 003C+00 2/2 0/0 0/0 .text __dt__Q213daBalloon2D_c10CHeadScoreFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -580,62 +613,63 @@ asm daBalloon2D_c::CHeadScore::~CHeadScore() {
 }
 #pragma pop
 
-/* 80655340-80655344 0004+00 s=1 e=0 z=0  None .text      __ct__Q213daBalloon2D_c10CHeadScoreFv */
+/* 80655340-80655344 001F60 0004+00 1/1 0/0 0/0 .text __ct__Q213daBalloon2D_c10CHeadScoreFv */
 daBalloon2D_c::CHeadScore::CHeadScore() {
     /* empty function */
 }
 
-/* 80655344-80655364 0020+00 s=1 e=0 z=0  None .text      daBalloon2D_destroy__FP13daBalloon2D_c */
+/* 80655344-80655364 001F64 0020+00 1/0 0/0 0/0 .text daBalloon2D_destroy__FP13daBalloon2D_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daBalloon2D_destroy(daBalloon2D_c* param_0) {
+static asm void daBalloon2D_destroy(daBalloon2D_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_balloon_2D/d_a_balloon_2D/daBalloon2D_destroy__FP13daBalloon2D_c.s"
 }
 #pragma pop
 
-/* 80655364-80655384 0020+00 s=1 e=0 z=0  None .text      daBalloon2D_execute__FP13daBalloon2D_c */
+/* 80655364-80655384 001F84 0020+00 1/0 0/0 0/0 .text daBalloon2D_execute__FP13daBalloon2D_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daBalloon2D_execute(daBalloon2D_c* param_0) {
+static asm void daBalloon2D_execute(daBalloon2D_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_balloon_2D/d_a_balloon_2D/daBalloon2D_execute__FP13daBalloon2D_c.s"
 }
 #pragma pop
 
-/* 80655384-806553A4 0020+00 s=1 e=0 z=0  None .text      daBalloon2D_draw__FP13daBalloon2D_c */
+/* 80655384-806553A4 001FA4 0020+00 1/0 0/0 0/0 .text            daBalloon2D_draw__FP13daBalloon2D_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daBalloon2D_draw(daBalloon2D_c* param_0) {
+static asm void daBalloon2D_draw(daBalloon2D_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_balloon_2D/d_a_balloon_2D/daBalloon2D_draw__FP13daBalloon2D_c.s"
 }
 #pragma pop
 
-/* 806553A4-806553A8 0004+00 s=1 e=0 z=0  None .text      draw__12dDlst_base_cFv */
+/* 806553A4-806553A8 001FC4 0004+00 1/0 0/0 0/0 .text            draw__12dDlst_base_cFv */
 void dDlst_base_c::draw() {
     /* empty function */
 }
 
 /* ############################################################################################## */
-/* 80655750-8065575C 000C+00 s=2 e=0 z=0  None .data      __vt__17daBalloon2D_HIO_c */
-SECTION_DATA static void* __vt__17daBalloon2D_HIO_c[3] = {
-    (void*)NULL,
+/* 80655750-8065575C 000140 000C+00 2/2 0/0 0/0 .data            __vt__17daBalloon2D_HIO_c */
+SECTION_DATA extern void* __vt__17daBalloon2D_HIO_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__17daBalloon2D_HIO_cFv,
 };
 
-/* 8065575C-80655768 000C+00 s=3 e=0 z=0  None .data      __vt__14mDoHIO_entry_c */
-SECTION_DATA static void* __vt__14mDoHIO_entry_c[3] = {
-    (void*)NULL,
+/* 8065575C-80655768 00014C 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
+SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14mDoHIO_entry_cFv,
 };
 
-/* 806553A8-80655404 005C+00 s=2 e=0 z=0  None .text      __dt__17daBalloon2D_HIO_cFv */
+/* 806553A8-80655404 001FC8 005C+00 2/1 0/0 0/0 .text            __dt__17daBalloon2D_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -645,7 +679,7 @@ asm daBalloon2D_HIO_c::~daBalloon2D_HIO_c() {
 }
 #pragma pop
 
-/* 80655404-8065544C 0048+00 s=1 e=0 z=0  None .text      __dt__14mDoHIO_entry_cFv */
+/* 80655404-8065544C 002024 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -655,7 +689,7 @@ asm mDoHIO_entry_c::~mDoHIO_entry_c() {
 }
 #pragma pop
 
-/* 8065544C-80655494 0048+00 s=1 e=0 z=0  None .text      __dt__Q213daBalloon2D_c6c_listFv */
+/* 8065544C-80655494 00206C 0048+00 1/0 0/0 0/0 .text            __dt__Q213daBalloon2D_c6c_listFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -665,7 +699,7 @@ asm daBalloon2D_c::c_list::~c_list() {
 }
 #pragma pop
 
-/* 80655494-80655524 0090+00 s=1 e=0 z=0  None .text      __dt__13daBalloon2D_cFv */
+/* 80655494-80655524 0020B4 0090+00 1/0 0/0 0/0 .text            __dt__13daBalloon2D_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -675,12 +709,26 @@ asm daBalloon2D_c::~daBalloon2D_c() {
 }
 #pragma pop
 
-/* 80655524-80655598 0074+00 s=0 e=1 z=0  None .text      __sinit_d_a_balloon_2D_cpp */
+/* 80655524-80655598 002144 0074+00 0/0 1/0 0/0 .text            __sinit_d_a_balloon_2D_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_a_balloon_2D_cpp() {
+asm void __sinit_d_a_balloon_2D_cpp() {
     nofralloc
 #include "asm/rel/d/a/d_a_balloon_2D/d_a_balloon_2D/__sinit_d_a_balloon_2D_cpp.s"
 }
+#pragma pop
+
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_80655524 = (void*)__sinit_d_a_balloon_2D_cpp;
+#pragma pop
+
+/* 806555EC-8065560E 000040 0022+00 2/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_806555EC = "Balloon2D";
+SECTION_DEAD static char const* const stringBase_806555F6 = "zelda_balloon_game.blo";
+SECTION_DEAD static char const* const stringBase_8065560D = "";
 #pragma pop

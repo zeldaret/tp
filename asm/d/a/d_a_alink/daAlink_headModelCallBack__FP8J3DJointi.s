@@ -3,8 +3,8 @@ lbl_8009EF38:
 /* 8009EF3C  7C 08 02 A6 */	mflr r0
 /* 8009EF40  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8009EF44  A0 03 00 14 */	lhz r0, 0x14(r3)
-/* 8009EF48  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8009EF4C  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8009EF48  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8009EF4C  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8009EF50  80 63 00 38 */	lwz r3, 0x38(r3)
 /* 8009EF54  80 63 00 14 */	lwz r3, 0x14(r3)
 /* 8009EF58  2C 04 00 00 */	cmpwi r4, 0

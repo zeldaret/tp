@@ -10,8 +10,8 @@ lbl_800D6130:
 /* 800D6150  48 00 0E 91 */	bl checkCutLandDamage__9daAlink_cFv
 /* 800D6154  7F E3 FB 78 */	mr r3, r31
 /* 800D6158  38 80 00 7E */	li r4, 0x7e
-/* 800D615C  3C A0 80 39 */	lis r5, m__21daAlinkHIO_cutHead_c0@ha
-/* 800D6160  38 A5 DD B8 */	addi r5, r5, m__21daAlinkHIO_cutHead_c0@l
+/* 800D615C  3C A0 80 39 */	lis r5, m__21daAlinkHIO_cutHead_c0@ha /* 0x8038DDB8@ha */
+/* 800D6160  38 A5 DD B8 */	addi r5, r5, m__21daAlinkHIO_cutHead_c0@l /* 0x8038DDB8@l */
 /* 800D6164  38 A5 00 28 */	addi r5, r5, 0x28
 /* 800D6168  4B FD 6F 8D */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800D616C  C0 02 92 C0 */	lfs f0, lit_6108(r2)

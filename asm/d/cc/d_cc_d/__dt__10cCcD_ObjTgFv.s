@@ -5,12 +5,12 @@ lbl_80083FE4:
 /* 80083FF0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80083FF4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80083FF8  41 82 00 30 */	beq lbl_80084028
-/* 80083FFC  3C 60 80 3B */	lis r3, __vt__10cCcD_ObjTg@ha
-/* 80084000  38 03 C2 B4 */	addi r0, r3, __vt__10cCcD_ObjTg@l
+/* 80083FFC  3C 60 80 3B */	lis r3, __vt__10cCcD_ObjTg@ha /* 0x803AC2B4@ha */
+/* 80084000  38 03 C2 B4 */	addi r0, r3, __vt__10cCcD_ObjTg@l /* 0x803AC2B4@l */
 /* 80084004  90 1F 00 0C */	stw r0, 0xc(r31)
 /* 80084008  41 82 00 10 */	beq lbl_80084018
-/* 8008400C  3C 60 80 3B */	lis r3, __vt__18cCcD_ObjCommonBase@ha
-/* 80084010  38 03 C2 CC */	addi r0, r3, __vt__18cCcD_ObjCommonBase@l
+/* 8008400C  3C 60 80 3B */	lis r3, __vt__18cCcD_ObjCommonBase@ha /* 0x803AC2CC@ha */
+/* 80084010  38 03 C2 CC */	addi r0, r3, __vt__18cCcD_ObjCommonBase@l /* 0x803AC2CC@l */
 /* 80084014  90 1F 00 0C */	stw r0, 0xc(r31)
 lbl_80084018:
 /* 80084018  7C 80 07 35 */	extsh. r0, r4

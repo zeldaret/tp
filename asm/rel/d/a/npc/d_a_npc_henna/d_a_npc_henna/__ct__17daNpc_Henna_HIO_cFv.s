@@ -1,8 +1,8 @@
 lbl_80542F0C:
-/* 80542F0C  3C 80 80 55 */	lis r4, lit_3905@ha
-/* 80542F10  38 C4 A9 64 */	addi r6, r4, lit_3905@l
-/* 80542F14  3C 80 80 55 */	lis r4, __vt__17daNpc_Henna_HIO_c@ha
-/* 80542F18  38 04 AF 68 */	addi r0, r4, __vt__17daNpc_Henna_HIO_c@l
+/* 80542F0C  3C 80 80 55 */	lis r4, lit_3905@ha /* 0x8054A964@ha */
+/* 80542F10  38 C4 A9 64 */	addi r6, r4, lit_3905@l /* 0x8054A964@l */
+/* 80542F14  3C 80 80 55 */	lis r4, __vt__17daNpc_Henna_HIO_c@ha /* 0x8054AF68@ha */
+/* 80542F18  38 04 AF 68 */	addi r0, r4, __vt__17daNpc_Henna_HIO_c@l /* 0x8054AF68@l */
 /* 80542F1C  90 03 00 00 */	stw r0, 0(r3)
 /* 80542F20  38 00 FF FF */	li r0, -1
 /* 80542F24  98 03 00 04 */	stb r0, 4(r3)

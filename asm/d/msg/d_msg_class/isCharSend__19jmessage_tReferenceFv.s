@@ -2,14 +2,14 @@ lbl_8022986C:
 /* 8022986C  88 03 12 46 */	lbz r0, 0x1246(r3)
 /* 80229870  28 00 00 08 */	cmplwi r0, 8
 /* 80229874  40 82 00 18 */	bne lbl_8022988C
-/* 80229878  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha
-/* 8022987C  38 84 02 8C */	addi r4, r4, g_MsgObject_HIO_c@l
+/* 80229878  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 8022987C  38 84 02 8C */	addi r4, r4, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 80229880  A8 84 03 1C */	lha r4, 0x31c(r4)
 /* 80229884  7C 85 23 78 */	mr r5, r4
 /* 80229888  48 00 00 14 */	b lbl_8022989C
 lbl_8022988C:
-/* 8022988C  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha
-/* 80229890  38 84 02 8C */	addi r4, r4, g_MsgObject_HIO_c@l
+/* 8022988C  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 80229890  38 84 02 8C */	addi r4, r4, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 80229894  A8 84 03 1A */	lha r4, 0x31a(r4)
 /* 80229898  7C 85 23 78 */	mr r5, r4
 lbl_8022989C:

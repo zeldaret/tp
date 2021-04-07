@@ -5,8 +5,8 @@ lbl_802915D4:
 /* 802915E0  39 61 00 30 */	addi r11, r1, 0x30
 /* 802915E4  48 0D 0B F1 */	bl _savegpr_27
 /* 802915E8  7C 7C 1B 78 */	mr r28, r3
-/* 802915EC  3C 80 80 3A */	lis r4, sAdsTable__8JASTrack@ha
-/* 802915F0  3B 64 AF D0 */	addi r27, r4, sAdsTable__8JASTrack@l
+/* 802915EC  3C 80 80 3A */	lis r4, sAdsTable__8JASTrack@ha /* 0x8039AFD0@ha */
+/* 802915F0  3B 64 AF D0 */	addi r27, r4, sAdsTable__8JASTrack@l /* 0x8039AFD0@l */
 /* 802915F4  48 00 23 31 */	bl init__10JASSeqCtrlFv
 /* 802915F8  38 7C 00 5C */	addi r3, r28, 0x5c
 /* 802915FC  48 00 1F 51 */	bl init__12JASTrackPortFv
@@ -79,23 +79,23 @@ lbl_802916EC:
 /* 802916FC  88 0D 8C B0 */	lbz r0, struct_80451230+0x0(r13)
 /* 80291700  7C 00 07 75 */	extsb. r0, r0
 /* 80291704  40 82 00 34 */	bne lbl_80291738
-/* 80291708  3C 60 80 43 */	lis r3, data_80431AF4@ha
-/* 8029170C  38 63 1A F4 */	addi r3, r3, data_80431AF4@l
+/* 80291708  3C 60 80 43 */	lis r3, data_80431AF4@ha /* 0x80431AF4@ha */
+/* 8029170C  38 63 1A F4 */	addi r3, r3, data_80431AF4@l /* 0x80431AF4@l */
 /* 80291710  4B FF F1 39 */	bl __ct__17JASGenericMemPoolFv
-/* 80291714  3C 60 80 43 */	lis r3, data_80431AF4@ha
-/* 80291718  38 63 1A F4 */	addi r3, r3, data_80431AF4@l
-/* 8029171C  3C 80 80 29 */	lis r4, func_80293334@ha
-/* 80291720  38 84 33 34 */	addi r4, r4, func_80293334@l
-/* 80291724  3C A0 80 43 */	lis r5, lit_470@ha
-/* 80291728  38 A5 1A DC */	addi r5, r5, lit_470@l
+/* 80291714  3C 60 80 43 */	lis r3, data_80431AF4@ha /* 0x80431AF4@ha */
+/* 80291718  38 63 1A F4 */	addi r3, r3, data_80431AF4@l /* 0x80431AF4@l */
+/* 8029171C  3C 80 80 29 */	lis r4, func_80293334@ha /* 0x80293334@ha */
+/* 80291720  38 84 33 34 */	addi r4, r4, func_80293334@l /* 0x80293334@l */
+/* 80291724  3C A0 80 43 */	lis r5, lit_470@ha /* 0x80431ADC@ha */
+/* 80291728  38 A5 1A DC */	addi r5, r5, lit_470@l /* 0x80431ADC@l */
 /* 8029172C  48 0D 04 F9 */	bl __register_global_object
 /* 80291730  38 00 00 01 */	li r0, 1
 /* 80291734  98 0D 8C B0 */	stb r0, struct_80451230+0x0(r13)
 lbl_80291738:
 /* 80291738  48 0A BF BD */	bl OSDisableInterrupts
 /* 8029173C  90 61 00 08 */	stw r3, 8(r1)
-/* 80291740  3C 60 80 43 */	lis r3, data_80431AF4@ha
-/* 80291744  38 63 1A F4 */	addi r3, r3, data_80431AF4@l
+/* 80291740  3C 60 80 43 */	lis r3, data_80431AF4@ha /* 0x80431AF4@ha */
+/* 80291744  38 63 1A F4 */	addi r3, r3, data_80431AF4@l /* 0x80431AF4@l */
 /* 80291748  7F E4 FB 78 */	mr r4, r31
 /* 8029174C  38 A0 00 50 */	li r5, 0x50
 /* 80291750  4B FF F2 45 */	bl free__17JASGenericMemPoolFPvUl
@@ -108,8 +108,8 @@ lbl_80291764:
 /* 80291768  2C 1D 00 04 */	cmpwi r29, 4
 /* 8029176C  3B 7B 00 04 */	addi r27, r27, 4
 /* 80291770  41 80 FF 7C */	blt lbl_802916EC
-/* 80291774  3C 60 80 43 */	lis r3, sDefaultBankTable__8JASTrack@ha
-/* 80291778  38 03 16 B4 */	addi r0, r3, sDefaultBankTable__8JASTrack@l
+/* 80291774  3C 60 80 43 */	lis r3, sDefaultBankTable__8JASTrack@ha /* 0x804316B4@ha */
+/* 80291778  38 03 16 B4 */	addi r0, r3, sDefaultBankTable__8JASTrack@l /* 0x804316B4@l */
 /* 8029177C  90 1C 01 D4 */	stw r0, 0x1d4(r28)
 /* 80291780  C0 22 BB A4 */	lfs f1, lit_679(r2)
 /* 80291784  D0 3C 01 D8 */	stfs f1, 0x1d8(r28)

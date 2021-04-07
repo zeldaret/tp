@@ -6,8 +6,8 @@ lbl_80241E00:
 /* 80241E10  93 C1 00 08 */	stw r30, 8(r1)
 /* 80241E14  7C 7E 1B 78 */	mr r30, r3
 /* 80241E18  48 00 1A 21 */	bl calcMain__14dMsgScrnHowl_cFv
-/* 80241E1C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80241E20  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 80241E1C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80241E20  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80241E24  80 7F 5D B4 */	lwz r3, 0x5db4(r31)
 /* 80241E28  81 83 06 28 */	lwz r12, 0x628(r3)
 /* 80241E2C  81 8C 02 98 */	lwz r12, 0x298(r12)

@@ -37,8 +37,8 @@ lbl_80203730:
 /* 80203748  B0 1F 04 B0 */	sth r0, 0x4b0(r31)
 /* 8020374C  48 00 00 50 */	b lbl_8020379C
 lbl_80203750:
-/* 80203750  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80203754  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80203750  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80203754  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80203758  88 03 5E 4B */	lbz r0, 0x5e4b(r3)
 /* 8020375C  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 80203760  41 82 00 18 */	beq lbl_80203778

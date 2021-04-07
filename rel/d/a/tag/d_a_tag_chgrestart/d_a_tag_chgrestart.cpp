@@ -44,10 +44,6 @@ struct dStage_roomControl_c {
 // Forward References:
 //
 
-static void daTagChgRestart_Execute(daTagChgRestart_c*);
-static void daTagChgRestart_Delete(daTagChgRestart_c*);
-static void daTagChgRestart_Create(fopAc_ac_c*);
-
 extern "C" void Create__17daTagChgRestart_cFv();
 extern "C" void create__17daTagChgRestart_cFv();
 extern "C" void __dt__4cXyzFv();
@@ -62,9 +58,6 @@ extern "C" extern void* g_profile_Tag_ChgRestart[12];
 //
 // External References:
 //
-
-void mDoMtx_YrotS(f32 (*)[4], s16);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void __ct__10fopAc_ac_cFv();
@@ -88,21 +81,30 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 //
 
 /* ############################################################################################## */
-/* 80D56AF4-80D56AF8 0004+00 s=1 e=0 z=0  None .rodata    @3650 */
-SECTION_RODATA static u32 const lit_3650 = 0xC2C80000;
+/* 80D56AF4-80D56AF8 000000 0004+00 1/1 0/0 0/0 .rodata          @3650 */
+SECTION_RODATA static f32 const lit_3650 = -100.0f;
+COMPILER_STRIP_GATE(80D56AF4, &lit_3650);
 
-/* 80D56AF8-80D56AFC 0004+00 s=1 e=0 z=0  None .rodata    @3651 */
-SECTION_RODATA static u32 const lit_3651 = 0x42C80000;
+/* 80D56AF8-80D56AFC 000004 0004+00 0/1 0/0 0/0 .rodata          @3651 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3651 = 100.0f;
+COMPILER_STRIP_GATE(80D56AF8, &lit_3651);
+#pragma pop
 
-/* 80D56AFC-80D56B00 0004+00 s=1 e=0 z=0  None .rodata    @3652 */
+/* 80D56AFC-80D56B00 000008 0004+00 0/1 0/0 0/0 .rodata          @3652 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_3652[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80D56AFC, &lit_3652);
+#pragma pop
 
-/* 80D56758-80D567E4 008C+00 s=1 e=0 z=0  None .text      Create__17daTagChgRestart_cFv */
+/* 80D56758-80D567E4 000078 008C+00 1/1 0/0 0/0 .text            Create__17daTagChgRestart_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -112,7 +114,7 @@ asm void daTagChgRestart_c::Create() {
 }
 #pragma pop
 
-/* 80D567E4-80D56878 0094+00 s=1 e=0 z=0  None .text      create__17daTagChgRestart_cFv */
+/* 80D567E4-80D56878 000104 0094+00 1/1 0/0 0/0 .text            create__17daTagChgRestart_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -122,7 +124,7 @@ asm void daTagChgRestart_c::create() {
 }
 #pragma pop
 
-/* 80D56878-80D568B4 003C+00 s=1 e=0 z=0  None .text      __dt__4cXyzFv */
+/* 80D56878-80D568B4 000198 003C+00 1/1 0/0 0/0 .text            __dt__4cXyzFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -132,12 +134,12 @@ asm cXyz::~cXyz() {
 }
 #pragma pop
 
-/* 80D568B4-80D568B8 0004+00 s=1 e=0 z=0  None .text      __ct__4cXyzFv */
+/* 80D568B4-80D568B8 0001D4 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
 cXyz::cXyz() {
     /* empty function */
 }
 
-/* 80D568B8-80D56A84 01CC+00 s=1 e=0 z=0  None .text      execute__17daTagChgRestart_cFv */
+/* 80D568B8-80D56A84 0001D8 01CC+00 1/1 0/0 0/0 .text            execute__17daTagChgRestart_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -147,45 +149,45 @@ asm void daTagChgRestart_c::execute() {
 }
 #pragma pop
 
-/* 80D56A84-80D56A8C 0008+00 s=1 e=0 z=0  None .text      _delete__17daTagChgRestart_cFv */
+/* 80D56A84-80D56A8C 0003A4 0008+00 1/1 0/0 0/0 .text            _delete__17daTagChgRestart_cFv */
 bool daTagChgRestart_c::_delete() {
     return true;
 }
 
-/* 80D56A8C-80D56AAC 0020+00 s=1 e=0 z=0  None .text
+/* 80D56A8C-80D56AAC 0003AC 0020+00 1/0 0/0 0/0 .text
  * daTagChgRestart_Execute__FP17daTagChgRestart_c               */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagChgRestart_Execute(daTagChgRestart_c* param_0) {
+static asm void daTagChgRestart_Execute(daTagChgRestart_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_chgrestart/d_a_tag_chgrestart/daTagChgRestart_Execute__FP17daTagChgRestart_c.s"
 }
 #pragma pop
 
-/* 80D56AAC-80D56ACC 0020+00 s=1 e=0 z=0  None .text daTagChgRestart_Delete__FP17daTagChgRestart_c
- */
+/* 80D56AAC-80D56ACC 0003CC 0020+00 1/0 0/0 0/0 .text
+ * daTagChgRestart_Delete__FP17daTagChgRestart_c                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagChgRestart_Delete(daTagChgRestart_c* param_0) {
+static asm void daTagChgRestart_Delete(daTagChgRestart_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_chgrestart/d_a_tag_chgrestart/daTagChgRestart_Delete__FP17daTagChgRestart_c.s"
 }
 #pragma pop
 
-/* 80D56ACC-80D56AEC 0020+00 s=1 e=0 z=0  None .text      daTagChgRestart_Create__FP10fopAc_ac_c */
+/* 80D56ACC-80D56AEC 0003EC 0020+00 1/0 0/0 0/0 .text daTagChgRestart_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagChgRestart_Create(fopAc_ac_c* param_0) {
+static asm void daTagChgRestart_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_chgrestart/d_a_tag_chgrestart/daTagChgRestart_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D56B00-80D56B20 0020+00 s=1 e=0 z=0  None .data      l_daTagChgRestart_Method */
+/* 80D56B00-80D56B20 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagChgRestart_Method */
 SECTION_DATA static void* l_daTagChgRestart_Method[8] = {
     (void*)daTagChgRestart_Create__FP10fopAc_ac_c,
     (void*)daTagChgRestart_Delete__FP17daTagChgRestart_c,
@@ -197,8 +199,8 @@ SECTION_DATA static void* l_daTagChgRestart_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D56B20-80D56B50 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_ChgRestart */
-SECTION_DATA void* g_profile_Tag_ChgRestart[12] = {
+/* 80D56B20-80D56B50 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_ChgRestart */
+SECTION_DATA extern void* g_profile_Tag_ChgRestart[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x022E0000, (void*)&g_fpcLf_Method,
     (void*)0x00000598, (void*)NULL,

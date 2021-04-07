@@ -9,13 +9,13 @@ lbl_80A46B18:
 /* 80A46B34  38 00 00 03 */	li r0, 3
 /* 80A46B38  B0 03 0E 22 */	sth r0, 0xe22(r3)
 /* 80A46B3C  38 7E 0F C4 */	addi r3, r30, 0xfc4
-/* 80A46B40  4B 91 B4 D8 */	b __ptmf_test
+/* 80A46B40  4B 91 B4 D9 */	bl __ptmf_test
 /* 80A46B44  2C 03 00 00 */	cmpwi r3, 0
 /* 80A46B48  41 82 00 18 */	beq lbl_80A46B60
 /* 80A46B4C  7F C3 F3 78 */	mr r3, r30
 /* 80A46B50  38 80 00 00 */	li r4, 0
 /* 80A46B54  39 9E 0F C4 */	addi r12, r30, 0xfc4
-/* 80A46B58  4B 91 B5 2C */	b __ptmf_scall
+/* 80A46B58  4B 91 B5 2D */	bl __ptmf_scall
 /* 80A46B5C  60 00 00 00 */	nop 
 lbl_80A46B60:
 /* 80A46B60  38 00 00 00 */	li r0, 0
@@ -27,13 +27,13 @@ lbl_80A46B60:
 /* 80A46B78  80 1F 00 08 */	lwz r0, 8(r31)
 /* 80A46B7C  90 1E 0F CC */	stw r0, 0xfcc(r30)
 /* 80A46B80  38 7E 0F C4 */	addi r3, r30, 0xfc4
-/* 80A46B84  4B 91 B4 94 */	b __ptmf_test
+/* 80A46B84  4B 91 B4 95 */	bl __ptmf_test
 /* 80A46B88  2C 03 00 00 */	cmpwi r3, 0
 /* 80A46B8C  41 82 00 18 */	beq lbl_80A46BA4
 /* 80A46B90  7F C3 F3 78 */	mr r3, r30
 /* 80A46B94  38 80 00 00 */	li r4, 0
 /* 80A46B98  39 9E 0F C4 */	addi r12, r30, 0xfc4
-/* 80A46B9C  4B 91 B4 E8 */	b __ptmf_scall
+/* 80A46B9C  4B 91 B4 E9 */	bl __ptmf_scall
 /* 80A46BA0  60 00 00 00 */	nop 
 lbl_80A46BA4:
 /* 80A46BA4  38 60 00 01 */	li r3, 1

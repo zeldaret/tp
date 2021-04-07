@@ -4,7 +4,7 @@ lbl_805EE6E0:
 /* 805EE6E8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 805EE6EC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 805EE6F0  7C 7F 1B 78 */	mr r31, r3
-/* 805EE6F4  4B A2 A5 EC */	b fopAc_IsActor__FPv
+/* 805EE6F4  4B A2 A5 ED */	bl fopAc_IsActor__FPv
 /* 805EE6F8  2C 03 00 00 */	cmpwi r3, 0
 /* 805EE6FC  41 82 00 24 */	beq lbl_805EE720
 /* 805EE700  A8 1F 00 08 */	lha r0, 8(r31)

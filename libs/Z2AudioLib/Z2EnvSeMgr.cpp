@@ -36,9 +36,9 @@ struct Z2SoundMgr {
     /* 802AA270 */ void setIIR(JAISound*, s16 const*);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -211,10 +211,6 @@ extern "C" void startLv3WaterSe__10Z2EnvSeMgrFSc();
 // External References:
 //
 
-void dComIfGp_getReverb(int);
-void operator delete(void*);
-void JMAFastVECNormalize(Vec const*, Vec*);
-
 extern "C" void dComIfGp_getReverb__Fi();
 extern "C" void isSwitch__12dSv_memBit_cCFi();
 extern "C" void isEventBit__11dSv_event_cCFUs();
@@ -272,7 +268,7 @@ extern "C" extern f32 cEqualPSlope__6Z2Calc;
 // Declarations:
 //
 
-/* 802C589C-802C58AC 0010+00 s=3 e=0 z=0  None .text      __ct__11Z2EnvSeBaseFP3Vec */
+/* 802C589C-802C58AC 2C01DC 0010+00 3/3 0/0 0/0 .text            __ct__11Z2EnvSeBaseFP3Vec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -282,7 +278,7 @@ asm Z2EnvSeBase::Z2EnvSeBase(Vec* param_0) {
 }
 #pragma pop
 
-/* 802C58AC-802C5908 005C+00 s=3 e=0 z=0  None .text      __dt__11Z2EnvSeBaseFv */
+/* 802C58AC-802C5908 2C01EC 005C+00 3/3 0/0 0/0 .text            __dt__11Z2EnvSeBaseFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -293,13 +289,13 @@ asm Z2EnvSeBase::~Z2EnvSeBase() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455D40-80455D44 0004+00 s=2 e=0 z=0  None .sdata2    @3501 */
+/* 80455D40-80455D44 004340 0004+00 2/2 0/0 0/0 .sdata2          @3501 */
 SECTION_SDATA2 static f32 lit_3501 = 33.0f / 100.0f;
 
-/* 80455D44-80455D48 0004+00 s=24 e=0 z=0  None .sdata2    @3502 */
+/* 80455D44-80455D48 004344 0004+00 24/24 0/0 0/0 .sdata2          @3502 */
 SECTION_SDATA2 static f32 lit_3502 = 1.0f;
 
-/* 80455D48-80455D4C 0004+00 s=19 e=0 z=0  None .sdata2    @3503 */
+/* 80455D48-80455D4C 004348 0004+00 19/19 0/0 0/0 .sdata2          @3503 */
 SECTION_SDATA2 static u8 lit_3503[4] = {
     0x00,
     0x00,
@@ -307,21 +303,21 @@ SECTION_SDATA2 static u8 lit_3503[4] = {
     0x00,
 };
 
-/* 80455D4C-80455D50 0004+00 s=2 e=0 z=0  None .sdata2    @3504 */
+/* 80455D4C-80455D50 00434C 0004+00 2/2 0/0 0/0 .sdata2          @3504 */
 SECTION_SDATA2 static f32 lit_3504 = 1500.0f;
 
-/* 80455D50-80455D58 0004+04 s=9 e=0 z=0  None .sdata2    @3505 */
+/* 80455D50-80455D58 004350 0004+04 9/9 0/0 0/0 .sdata2          @3505 */
 SECTION_SDATA2 static f32 lit_3505[1 + 1 /* padding */] = {
     1.0f / 10.0f,
     /* padding */
     0.0f,
 };
 
-/* 80455D58-80455D60 0008+00 s=8 e=0 z=0  None .sdata2    @3508 */
+/* 80455D58-80455D60 004358 0008+00 8/8 0/0 0/0 .sdata2          @3508 */
 SECTION_SDATA2 static f64 lit_3508 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 802C5908-802C5AB4 01AC+00 s=2 e=0 z=0  None .text startEnvSe__11Z2EnvSeBaseF10JAISoundIDfffffUl
- */
+/* 802C5908-802C5AB4 2C0248 01AC+00 2/2 0/0 0/0 .text
+ * startEnvSe__11Z2EnvSeBaseF10JAISoundIDfffffUl                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -332,7 +328,7 @@ asm void Z2EnvSeBase::startEnvSe(JAISoundID param_0, f32 param_1, f32 param_2, f
 }
 #pragma pop
 
-/* 802C5AB4-802C5C9C 01E8+00 s=9 e=0 z=0  None .text
+/* 802C5AB4-802C5C9C 2C03F4 01E8+00 9/9 0/0 0/0 .text
  * startEnvSeLevel__11Z2EnvSeBaseF10JAISoundIDfffffUl           */
 #pragma push
 #pragma optimization_level 0
@@ -345,7 +341,7 @@ asm void Z2EnvSeBase::startEnvSeLevel(JAISoundID param_0, f32 param_1, f32 param
 #pragma pop
 
 /* ############################################################################################## */
-/* 8039C250-8039C260 000C+04 s=2 e=0 z=0  None .rodata    cNullVec__6Z2Calc */
+/* 8039C250-8039C260 0288B0 000C+04 2/2 0/0 0/0 .rodata          cNullVec__6Z2Calc */
 SECTION_RODATA static u8 const cNullVec__6Z2Calc[12 + 4 /* padding */] = {
     0x00,
     0x00,
@@ -365,11 +361,12 @@ SECTION_RODATA static u8 const cNullVec__6Z2Calc[12 + 4 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8039C250, &cNullVec__6Z2Calc);
 
-/* 80455D60-80455D64 0004+00 s=10 e=0 z=0  None .sdata2    @3574 */
+/* 80455D60-80455D64 004360 0004+00 10/10 0/0 0/0 .sdata2          @3574 */
 SECTION_SDATA2 static f32 lit_3574 = 0.5f;
 
-/* 802C5C9C-802C5D1C 0080+00 s=1 e=0 z=0  None .text      __ct__10Z2EnvSeDirFP3Vec */
+/* 802C5C9C-802C5D1C 2C05DC 0080+00 1/1 0/0 0/0 .text            __ct__10Z2EnvSeDirFP3Vec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -379,7 +376,7 @@ asm Z2EnvSeDir::Z2EnvSeDir(Vec* param_0) {
 }
 #pragma pop
 
-/* 802C5D1C-802C5D70 0054+00 s=1 e=0 z=0  None .text      __dt__10Z2EnvSeDirFv */
+/* 802C5D1C-802C5D70 2C065C 0054+00 1/1 0/0 0/0 .text            __dt__10Z2EnvSeDirFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -390,10 +387,10 @@ asm Z2EnvSeDir::~Z2EnvSeDir() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455D64-80455D68 0004+00 s=1 e=0 z=0  None .sdata2    @3585 */
+/* 80455D64-80455D68 004364 0004+00 1/1 0/0 0/0 .sdata2          @3585 */
 SECTION_SDATA2 static f32 lit_3585 = -1000.0f;
 
-/* 802C5D70-802C5D9C 002C+00 s=2 e=0 z=0  None .text      setPanDir__10Z2EnvSeDirFP3Vec */
+/* 802C5D70-802C5D9C 2C06B0 002C+00 2/2 0/0 0/0 .text            setPanDir__10Z2EnvSeDirFP3Vec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -403,7 +400,7 @@ asm void Z2EnvSeDir::setPanDir(Vec* param_0) {
 }
 #pragma pop
 
-/* 802C5D9C-802C5E90 00F4+00 s=1 e=0 z=0  None .text      calcPan__10Z2EnvSeDirFf */
+/* 802C5D9C-802C5E90 2C06DC 00F4+00 1/1 0/0 0/0 .text            calcPan__10Z2EnvSeDirFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -413,7 +410,7 @@ asm void Z2EnvSeDir::calcPan(f32 param_0) {
 }
 #pragma pop
 
-/* 802C5E90-802C5ECC 003C+00 s=1 e=0 z=0  None .text
+/* 802C5E90-802C5ECC 2C07D0 003C+00 1/1 0/0 0/0 .text
  * startEnvSeDirLevel__10Z2EnvSeDirF10JAISoundIDff              */
 #pragma push
 #pragma optimization_level 0
@@ -425,13 +422,13 @@ asm void Z2EnvSeDir::startEnvSeDirLevel(JAISoundID param_0, f32 param_1, f32 par
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455D68-80455D6C 0004+00 s=3 e=0 z=0  None .sdata2    @3654 */
+/* 80455D68-80455D6C 004368 0004+00 3/3 0/0 0/0 .sdata2          @3654 */
 SECTION_SDATA2 static f32 lit_3654 = 0.0018554000416770577f;
 
-/* 80455D6C-80455D70 0004+00 s=3 e=0 z=0  None .sdata2    @3655 */
+/* 80455D6C-80455D70 00436C 0004+00 3/3 0/0 0/0 .sdata2          @3655 */
 SECTION_SDATA2 static f32 lit_3655 = 0.0008553999941796064f;
 
-/* 802C5ECC-802C5F28 005C+00 s=1 e=0 z=0  None .text      __ct__14Z2EnvSeAutoPanFv */
+/* 802C5ECC-802C5F28 2C080C 005C+00 1/1 0/0 0/0 .text            __ct__14Z2EnvSeAutoPanFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -441,7 +438,7 @@ asm Z2EnvSeAutoPan::Z2EnvSeAutoPan() {
 }
 #pragma pop
 
-/* 802C5F28-802C5F7C 0054+00 s=1 e=0 z=0  None .text      __dt__14Z2EnvSeAutoPanFv */
+/* 802C5F28-802C5F7C 2C0868 0054+00 1/1 0/0 0/0 .text            __dt__14Z2EnvSeAutoPanFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -451,7 +448,7 @@ asm Z2EnvSeAutoPan::~Z2EnvSeAutoPan() {
 }
 #pragma pop
 
-/* 802C5F7C-802C5F98 001C+00 s=2 e=0 z=0  None .text      setPanParam__14Z2EnvSeAutoPanFffbbff */
+/* 802C5F7C-802C5F98 2C08BC 001C+00 2/2 0/0 0/0 .text setPanParam__14Z2EnvSeAutoPanFffbbff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -463,13 +460,13 @@ asm void Z2EnvSeAutoPan::setPanParam(f32 param_0, f32 param_1, bool param_2, boo
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455D70-80455D74 0004+00 s=4 e=0 z=0  None .sdata2    @3704 */
+/* 80455D70-80455D74 004370 0004+00 4/4 0/0 0/0 .sdata2          @3704 */
 SECTION_SDATA2 static f32 lit_3704 = 2.0f;
 
-/* 80455D74-80455D78 0004+00 s=7 e=0 z=0  None .sdata2    @3705 */
+/* 80455D74-80455D78 004374 0004+00 7/7 0/0 0/0 .sdata2          @3705 */
 SECTION_SDATA2 static f32 lit_3705 = -1.0f;
 
-/* 802C5F98-802C60E0 0148+00 s=2 e=0 z=0  None .text      calcPan__14Z2EnvSeAutoPanFv */
+/* 802C5F98-802C60E0 2C08D8 0148+00 2/2 0/0 0/0 .text            calcPan__14Z2EnvSeAutoPanFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -479,7 +476,7 @@ asm void Z2EnvSeAutoPan::calcPan() {
 }
 #pragma pop
 
-/* 802C60E0-802C611C 003C+00 s=2 e=0 z=0  None .text
+/* 802C60E0-802C611C 2C0A20 003C+00 2/2 0/0 0/0 .text
  * startEnvSeAutoPanLevel__14Z2EnvSeAutoPanF10JAISoundIDfff     */
 #pragma push
 #pragma optimization_level 0
@@ -492,94 +489,94 @@ asm void Z2EnvSeAutoPan::startEnvSeAutoPanLevel(JAISoundID param_0, f32 param_1,
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455D78-80455D7C 0004+00 s=8 e=0 z=0  None .sdata2    @3749 */
+/* 80455D78-80455D7C 004378 0004+00 8/8 0/0 0/0 .sdata2          @3749 */
 SECTION_SDATA2 static f32 lit_3749 = 1.0f / 100.0f;
 
-/* 80455D7C-80455D80 0004+00 s=1 e=0 z=0  None .sdata2    @3750 */
+/* 80455D7C-80455D80 00437C 0004+00 1/1 0/0 0/0 .sdata2          @3750 */
 SECTION_SDATA2 static f32 lit_3750 = 0.007823764346539974f;
 
-/* 80455D80-80455D84 0004+00 s=1 e=0 z=0  None .sdata2    @3751 */
+/* 80455D80-80455D84 004380 0004+00 1/1 0/0 0/0 .sdata2          @3751 */
 SECTION_SDATA2 static f32 lit_3751 = 3.0f / 50.0f;
 
-/* 80455D84-80455D88 0004+00 s=4 e=0 z=0  None .sdata2    @3752 */
+/* 80455D84-80455D88 004384 0004+00 4/4 0/0 0/0 .sdata2          @3752 */
 SECTION_SDATA2 static f32 lit_3752 = 1.0f / 5.0f;
 
-/* 80455D88-80455D8C 0004+00 s=1 e=0 z=0  None .sdata2    @3753 */
+/* 80455D88-80455D8C 004388 0004+00 1/1 0/0 0/0 .sdata2          @3753 */
 SECTION_SDATA2 static f32 lit_3753 = 0.026302523910999298f;
 
-/* 80455D8C-80455D90 0004+00 s=1 e=0 z=0  None .sdata2    @3754 */
+/* 80455D8C-80455D90 00438C 0004+00 1/1 0/0 0/0 .sdata2          @3754 */
 SECTION_SDATA2 static f32 lit_3754 = 0.004999999888241291f;
 
-/* 80455D90-80455D94 0004+00 s=2 e=0 z=0  None .sdata2    @3755 */
+/* 80455D90-80455D94 004390 0004+00 2/2 0/0 0/0 .sdata2          @3755 */
 SECTION_SDATA2 static f32 lit_3755 = 9.0f / 10.0f;
 
-/* 80455D94-80455D98 0004+00 s=1 e=0 z=0  None .sdata2    @3756 */
+/* 80455D94-80455D98 004394 0004+00 1/1 0/0 0/0 .sdata2          @3756 */
 SECTION_SDATA2 static f32 lit_3756 = 0.023310113698244095f;
 
-/* 80455D98-80455D9C 0004+00 s=1 e=0 z=0  None .sdata2    @3757 */
+/* 80455D98-80455D9C 004398 0004+00 1/1 0/0 0/0 .sdata2          @3757 */
 SECTION_SDATA2 static f32 lit_3757 = 0.003000000026077032f;
 
-/* 80455D9C-80455DA0 0004+00 s=1 e=0 z=0  None .sdata2    @3758 */
+/* 80455D9C-80455DA0 00439C 0004+00 1/1 0/0 0/0 .sdata2          @3758 */
 SECTION_SDATA2 static f32 lit_3758 = 0.006385157350450754f;
 
-/* 80455DA0-80455DA4 0004+00 s=1 e=0 z=0  None .sdata2    @3759 */
+/* 80455DA0-80455DA4 0043A0 0004+00 1/1 0/0 0/0 .sdata2          @3759 */
 SECTION_SDATA2 static f32 lit_3759 = 0.004000000189989805f;
 
-/* 80455DA4-80455DA8 0004+00 s=6 e=0 z=0  None .sdata2    @3760 */
+/* 80455DA4-80455DA8 0043A4 0004+00 6/6 0/0 0/0 .sdata2          @3760 */
 SECTION_SDATA2 static f32 lit_3760 = 4.0f / 5.0f;
 
-/* 80455DA8-80455DAC 0004+00 s=1 e=0 z=0  None .sdata2    @3761 */
+/* 80455DA8-80455DAC 0043A8 0004+00 1/1 0/0 0/0 .sdata2          @3761 */
 SECTION_SDATA2 static f32 lit_3761 = 0.006188805215060711f;
 
-/* 80455DAC-80455DB0 0004+00 s=1 e=0 z=0  None .sdata2    @3762 */
+/* 80455DAC-80455DB0 0043AC 0004+00 1/1 0/0 0/0 .sdata2          @3762 */
 SECTION_SDATA2 static f32 lit_3762 = 0.0044999998062849045f;
 
-/* 80455DB0-80455DB4 0004+00 s=6 e=0 z=0  None .sdata2    @3763 */
+/* 80455DB0-80455DB4 0043B0 0004+00 6/6 0/0 0/0 .sdata2          @3763 */
 SECTION_SDATA2 static f32 lit_3763 = 3.0f / 10.0f;
 
-/* 80455DB4-80455DB8 0004+00 s=1 e=0 z=0  None .sdata2    @3764 */
+/* 80455DB4-80455DB8 0043B4 0004+00 1/1 0/0 0/0 .sdata2          @3764 */
 SECTION_SDATA2 static f32 lit_3764 = 0.05343298241496086f;
 
-/* 80455DB8-80455DBC 0004+00 s=1 e=0 z=0  None .sdata2    @3765 */
+/* 80455DB8-80455DBC 0043B8 0004+00 1/1 0/0 0/0 .sdata2          @3765 */
 SECTION_SDATA2 static f32 lit_3765 = 0.0020000000949949026f;
 
-/* 80455DBC-80455DC0 0004+00 s=7 e=0 z=0  None .sdata2    @3766 */
+/* 80455DBC-80455DC0 0043BC 0004+00 7/7 0/0 0/0 .sdata2          @3766 */
 SECTION_SDATA2 static f32 lit_3766 = 7.0f / 10.0f;
 
-/* 80455DC0-80455DC4 0004+00 s=1 e=0 z=0  None .sdata2    @3767 */
+/* 80455DC0-80455DC4 0043C0 0004+00 1/1 0/0 0/0 .sdata2          @3767 */
 SECTION_SDATA2 static f32 lit_3767 = 0.04256627336144447f;
 
-/* 80455DC4-80455DC8 0004+00 s=1 e=0 z=0  None .sdata2    @3768 */
+/* 80455DC4-80455DC8 0043C4 0004+00 1/1 0/0 0/0 .sdata2          @3768 */
 SECTION_SDATA2 static f32 lit_3768 = 0.0024999999441206455f;
 
-/* 80455DC8-80455DCC 0004+00 s=5 e=0 z=0  None .sdata2    @3769 */
+/* 80455DC8-80455DCC 0043C8 0004+00 5/5 0/0 0/0 .sdata2          @3769 */
 SECTION_SDATA2 static f32 lit_3769 = 2.0f / 5.0f;
 
-/* 80455DCC-80455DD0 0004+00 s=1 e=0 z=0  None .sdata2    @3770 */
+/* 80455DCC-80455DD0 0043CC 0004+00 1/1 0/0 0/0 .sdata2          @3770 */
 SECTION_SDATA2 static f32 lit_3770 = 0.01293395459651947f;
 
-/* 80455DD0-80455DD4 0004+00 s=1 e=0 z=0  None .sdata2    @3771 */
+/* 80455DD0-80455DD4 0043D0 0004+00 1/1 0/0 0/0 .sdata2          @3771 */
 SECTION_SDATA2 static f32 lit_3771 = 0.006000000052154064f;
 
-/* 80455DD4-80455DD8 0004+00 s=3 e=0 z=0  None .sdata2    @3772 */
+/* 80455DD4-80455DD8 0043D4 0004+00 3/3 0/0 0/0 .sdata2          @3772 */
 SECTION_SDATA2 static f32 lit_3772 = 3.0f / 5.0f;
 
-/* 80455DD8-80455DDC 0004+00 s=1 e=0 z=0  None .sdata2    @3773 */
+/* 80455DD8-80455DDC 0043D8 0004+00 1/1 0/0 0/0 .sdata2          @3773 */
 SECTION_SDATA2 static f32 lit_3773 = 0.012157413177192211f;
 
-/* 80455DDC-80455DE0 0004+00 s=1 e=0 z=0  None .sdata2    @3774 */
+/* 80455DDC-80455DE0 0043DC 0004+00 1/1 0/0 0/0 .sdata2          @3774 */
 SECTION_SDATA2 static f32 lit_3774 = 0.006500000134110451f;
 
-/* 80455DE0-80455DE4 0004+00 s=1 e=0 z=0  None .sdata2    @3775 */
+/* 80455DE0-80455DE4 0043E0 0004+00 1/1 0/0 0/0 .sdata2          @3775 */
 SECTION_SDATA2 static f32 lit_3775 = 0.020923573523759842f;
 
-/* 80455DE4-80455DE8 0004+00 s=1 e=0 z=0  None .sdata2    @3776 */
+/* 80455DE4-80455DE8 0043E4 0004+00 1/1 0/0 0/0 .sdata2          @3776 */
 SECTION_SDATA2 static f32 lit_3776 = 0.0010000000474974513f;
 
-/* 80455DE8-80455DEC 0004+00 s=1 e=0 z=0  None .sdata2    @3777 */
+/* 80455DE8-80455DEC 0043E8 0004+00 1/1 0/0 0/0 .sdata2          @3777 */
 SECTION_SDATA2 static f32 lit_3777 = 0.0037908784579485655f;
 
-/* 802C611C-802C6540 0424+00 s=0 e=1 z=0  None .text      __ct__10Z2EnvSeMgrFv */
+/* 802C611C-802C6540 2C0A5C 0424+00 0/0 1/1 0/0 .text            __ct__10Z2EnvSeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -589,7 +586,7 @@ asm Z2EnvSeMgr::Z2EnvSeMgr() {
 }
 #pragma pop
 
-/* 802C6540-802C66B0 0170+00 s=0 e=1 z=0  None .text      __dt__10Z2EnvSeMgrFv */
+/* 802C6540-802C66B0 2C0E80 0170+00 0/0 1/1 0/0 .text            __dt__10Z2EnvSeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -600,10 +597,10 @@ asm Z2EnvSeMgr::~Z2EnvSeMgr() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455DEC-80455DF0 0004+00 s=1 e=0 z=0  None .sdata2    @3928 */
+/* 80455DEC-80455DF0 0043EC 0004+00 1/1 0/0 0/0 .sdata2          @3928 */
 SECTION_SDATA2 static f32 lit_3928 = 30.0f;
 
-/* 802C66B0-802C6998 02E8+00 s=0 e=1 z=0  None .text      framework__10Z2EnvSeMgrFv */
+/* 802C66B0-802C6998 2C0FF0 02E8+00 0/0 1/1 0/0 .text            framework__10Z2EnvSeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -613,12 +610,12 @@ asm void Z2EnvSeMgr::framework() {
 }
 #pragma pop
 
-/* 802C6998-802C699C 0004+00 s=0 e=1 z=0  None .text      resetScene__10Z2EnvSeMgrFv */
+/* 802C6998-802C699C 2C12D8 0004+00 0/0 1/1 0/0 .text            resetScene__10Z2EnvSeMgrFv */
 void Z2EnvSeMgr::resetScene() {
     /* empty function */
 }
 
-/* 802C699C-802C6AC0 0124+00 s=0 e=1 z=0  None .text      resetSceneInner__10Z2EnvSeMgrFv */
+/* 802C699C-802C6AC0 2C12DC 0124+00 0/0 1/1 0/0 .text            resetSceneInner__10Z2EnvSeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -629,10 +626,11 @@ asm void Z2EnvSeMgr::resetSceneInner() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455DF0-80455DF4 0004+00 s=2 e=0 z=0  None .sdata2    @3963 */
+/* 80455DF0-80455DF4 0043F0 0004+00 2/2 0/0 0/0 .sdata2          @3963 */
 SECTION_SDATA2 static f32 lit_3963 = 100.0f;
 
-/* 802C6AC0-802C6C1C 015C+00 s=0 e=1 z=0  None .text      initSceneEnvSe__10Z2EnvSeMgrFlScf */
+/* 802C6AC0-802C6C1C 2C1400 015C+00 0/0 1/1 0/0 .text            initSceneEnvSe__10Z2EnvSeMgrFlScf
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -642,7 +640,7 @@ asm void Z2EnvSeMgr::initSceneEnvSe(s32 param_0, s8 param_1, f32 param_2) {
 }
 #pragma pop
 
-/* 802C6C1C-802C6C84 0068+00 s=1 e=0 z=0  None .text      playSceneEnvSe__10Z2EnvSeMgrFv */
+/* 802C6C1C-802C6C84 2C155C 0068+00 1/1 0/0 0/0 .text            playSceneEnvSe__10Z2EnvSeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -653,7 +651,7 @@ asm void Z2EnvSeMgr::playSceneEnvSe() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CB9C8-803CB9F8 0030+00 s=1 e=0 z=0  None .data      @4025 */
+/* 803CB9C8-803CB9F8 -00001 0030+00 1/1 0/0 0/0 .data            @4025 */
 SECTION_DATA static void* lit_4025[12] = {
     (void*)(((char*)initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec) + 0x428),
     (void*)(((char*)initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec) + 0x1C8),
@@ -669,7 +667,7 @@ SECTION_DATA static void* lit_4025[12] = {
     (void*)(((char*)initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec) + 0x2D8),
 };
 
-/* 802C6C84-802C70C8 0444+00 s=2 e=1 z=0  None .text initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec
+/* 802C6C84-802C70C8 2C15C4 0444+00 2/1 1/1 0/0 .text initStaticEnvSe__10Z2EnvSeMgrFUcUcUcUcP3Vec
  */
 #pragma push
 #pragma optimization_level 0
@@ -681,7 +679,7 @@ asm void Z2EnvSeMgr::initStaticEnvSe(u8 param_0, u8 param_1, u8 param_2, u8 para
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CB9F8-803CBA28 0030+00 s=1 e=0 z=0  None .data      @4272 */
+/* 803CB9F8-803CBA28 -00001 0030+00 1/1 0/0 0/0 .data            @4272 */
 SECTION_DATA static void* lit_4272[12] = {
     (void*)(((char*)startStaticEnvSe__10Z2EnvSeMgrFSc) + 0x168),
     (void*)(((char*)startStaticEnvSe__10Z2EnvSeMgrFSc) + 0x170),
@@ -697,44 +695,45 @@ SECTION_DATA static void* lit_4272[12] = {
     (void*)(((char*)startStaticEnvSe__10Z2EnvSeMgrFSc) + 0x464),
 };
 
-/* 80455DF4-80455DF8 0004+00 s=9 e=0 z=0  None .sdata2    @4260 */
+/* 80455DF4-80455DF8 0043F4 0004+00 9/9 0/0 0/0 .sdata2          @4260 */
 SECTION_SDATA2 static f32 lit_4260 = 127.0f;
 
-/* 80455DF8-80455DFC 0004+00 s=1 e=0 z=0  None .sdata2    @4261 */
+/* 80455DF8-80455DFC 0043F8 0004+00 1/1 0/0 0/0 .sdata2          @4261 */
 SECTION_SDATA2 static f32 lit_4261 = 21.0f / 10.0f;
 
-/* 80455DFC-80455E00 0004+00 s=1 e=0 z=0  None .sdata2    @4262 */
+/* 80455DFC-80455E00 0043FC 0004+00 1/1 0/0 0/0 .sdata2          @4262 */
 SECTION_SDATA2 static f32 lit_4262 = 64.0f;
 
-/* 80455E00-80455E04 0004+00 s=1 e=0 z=0  None .sdata2    @4263 */
+/* 80455E00-80455E04 004400 0004+00 1/1 0/0 0/0 .sdata2          @4263 */
 SECTION_SDATA2 static f32 lit_4263 = 7.0f / 20.0f;
 
-/* 80455E04-80455E08 0004+00 s=1 e=0 z=0  None .sdata2    @4264 */
+/* 80455E04-80455E08 004404 0004+00 1/1 0/0 0/0 .sdata2          @4264 */
 SECTION_SDATA2 static f32 lit_4264 = 23.0f / 20.0f;
 
-/* 80455E08-80455E0C 0004+00 s=1 e=0 z=0  None .sdata2    @4265 */
+/* 80455E08-80455E0C 004408 0004+00 1/1 0/0 0/0 .sdata2          @4265 */
 SECTION_SDATA2 static f32 lit_4265 = 8.0f / 5.0f;
 
-/* 80455E0C-80455E10 0004+00 s=1 e=0 z=0  None .sdata2    @4266 */
+/* 80455E0C-80455E10 00440C 0004+00 1/1 0/0 0/0 .sdata2          @4266 */
 SECTION_SDATA2 static f32 lit_4266 = 13.0f / 20.0f;
 
-/* 80455E10-80455E14 0004+00 s=1 e=0 z=0  None .sdata2    @4267 */
+/* 80455E10-80455E14 004410 0004+00 1/1 0/0 0/0 .sdata2          @4267 */
 SECTION_SDATA2 static f32 lit_4267 = 3.0f / 25.0f;
 
-/* 80455E14-80455E18 0004+00 s=1 e=0 z=0  None .sdata2    @4268 */
+/* 80455E14-80455E18 004414 0004+00 1/1 0/0 0/0 .sdata2          @4268 */
 SECTION_SDATA2 static f32 lit_4268 = 17.0f / 20.0f;
 
-/* 80455E18-80455E20 0004+04 s=3 e=0 z=0  None .sdata2    @4269 */
+/* 80455E18-80455E20 004418 0004+04 3/3 0/0 0/0 .sdata2          @4269 */
 SECTION_SDATA2 static f32 lit_4269[1 + 1 /* padding */] = {
     0.75f,
     /* padding */
     0.0f,
 };
 
-/* 80455E20-80455E28 0008+00 s=9 e=0 z=0  None .sdata2    @4271 */
+/* 80455E20-80455E28 004420 0008+00 9/9 0/0 0/0 .sdata2          @4271 */
 SECTION_SDATA2 static f64 lit_4271 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 802C70C8-802C780C 0744+00 s=2 e=1 z=0  None .text      startStaticEnvSe__10Z2EnvSeMgrFSc */
+/* 802C70C8-802C780C 2C1A08 0744+00 2/1 1/1 0/0 .text            startStaticEnvSe__10Z2EnvSeMgrFSc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -744,7 +743,8 @@ asm void Z2EnvSeMgr::startStaticEnvSe(s8 param_0) {
 }
 #pragma pop
 
-/* 802C780C-802C7830 0024+00 s=0 e=1 z=0  None .text      registWindowPos__10Z2EnvSeMgrFP3Vec */
+/* 802C780C-802C7830 2C214C 0024+00 0/0 1/1 0/0 .text            registWindowPos__10Z2EnvSeMgrFP3Vec
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -755,10 +755,10 @@ asm void Z2EnvSeMgr::registWindowPos(Vec* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455E28-80455E2C 0004+00 s=3 e=0 z=0  None .sdata2    @4400 */
+/* 80455E28-80455E2C 004428 0004+00 3/3 0/0 0/0 .sdata2          @4400 */
 SECTION_SDATA2 static f32 lit_4400 = 11.0f / 10.0f;
 
-/* 802C7830-802C7CF4 04C4+00 s=1 e=1 z=0  None .text      startRainSe__10Z2EnvSeMgrFlSc */
+/* 802C7830-802C7CF4 2C2170 04C4+00 1/1 1/1 0/0 .text            startRainSe__10Z2EnvSeMgrFlSc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -769,10 +769,11 @@ asm void Z2EnvSeMgr::startRainSe(s32 param_0, s8 param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455E2C-80455E30 0004+00 s=1 e=0 z=0  None .sdata2    @4422 */
+/* 80455E2C-80455E30 00442C 0004+00 1/1 0/0 0/0 .sdata2          @4422 */
 SECTION_SDATA2 static f32 lit_4422 = 0.25f;
 
-/* 802C7CF4-802C7E68 0174+00 s=0 e=1 z=0  None .text      startNearThunderSe__10Z2EnvSeMgrFSc */
+/* 802C7CF4-802C7E68 2C2634 0174+00 0/0 1/1 0/0 .text            startNearThunderSe__10Z2EnvSeMgrFSc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -782,7 +783,7 @@ asm void Z2EnvSeMgr::startNearThunderSe(s8 param_0) {
 }
 #pragma pop
 
-/* 802C7E68-802C7FB4 014C+00 s=0 e=2 z=0  None .text      startFarThunderSe__10Z2EnvSeMgrFP3VecSc */
+/* 802C7E68-802C7FB4 2C27A8 014C+00 0/0 2/2 0/0 .text startFarThunderSe__10Z2EnvSeMgrFP3VecSc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -792,7 +793,7 @@ asm void Z2EnvSeMgr::startFarThunderSe(Vec* param_0, s8 param_1) {
 }
 #pragma pop
 
-/* 802C7FB4-802C7FBC 0008+00 s=0 e=0 z=3  None .text      setSnowPower__10Z2EnvSeMgrFSc */
+/* 802C7FB4-802C7FBC 2C28F4 0008+00 0/0 0/0 3/3 .text            setSnowPower__10Z2EnvSeMgrFSc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -802,7 +803,7 @@ asm void Z2EnvSeMgr::setSnowPower(s8 param_0) {
 }
 #pragma pop
 
-/* 802C7FBC-802C7FC8 000C+00 s=0 e=1 z=1  None .text      initStrongWindSe__10Z2EnvSeMgrFv */
+/* 802C7FBC-802C7FC8 2C28FC 000C+00 0/0 1/1 1/1 .text            initStrongWindSe__10Z2EnvSeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -812,7 +813,7 @@ asm void Z2EnvSeMgr::initStrongWindSe() {
 }
 #pragma pop
 
-/* 802C7FC8-802C800C 0044+00 s=0 e=1 z=1  None .text      setWindDirection__10Z2EnvSeMgrFP3Vec */
+/* 802C7FC8-802C800C 2C2908 0044+00 0/0 1/1 1/1 .text setWindDirection__10Z2EnvSeMgrFP3Vec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -822,7 +823,8 @@ asm void Z2EnvSeMgr::setWindDirection(Vec* param_0) {
 }
 #pragma pop
 
-/* 802C800C-802C80F8 00EC+00 s=0 e=1 z=1  None .text      startStrongWindSe__10Z2EnvSeMgrFSc */
+/* 802C800C-802C80F8 2C294C 00EC+00 0/0 1/1 1/1 .text            startStrongWindSe__10Z2EnvSeMgrFSc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -833,13 +835,14 @@ asm void Z2EnvSeMgr::startStrongWindSe(s8 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455E30-80455E34 0004+00 s=3 e=0 z=0  None .sdata2    @4510 */
+/* 80455E30-80455E34 004430 0004+00 3/3 0/0 0/0 .sdata2          @4510 */
 SECTION_SDATA2 static f32 lit_4510 = 1.5f;
 
-/* 80455E34-80455E38 0004+00 s=3 e=0 z=0  None .sdata2    @4511 */
+/* 80455E34-80455E38 004434 0004+00 3/3 0/0 0/0 .sdata2          @4511 */
 SECTION_SDATA2 static f32 lit_4511 = 3.0f;
 
-/* 802C80F8-802C8234 013C+00 s=0 e=1 z=0  None .text      initRiverSe__10Z2EnvSeMgrFUcUcUcUc */
+/* 802C80F8-802C8234 2C2A38 013C+00 0/0 1/1 0/0 .text            initRiverSe__10Z2EnvSeMgrFUcUcUcUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -849,7 +852,7 @@ asm void Z2EnvSeMgr::initRiverSe(u8 param_0, u8 param_1, u8 param_2, u8 param_3)
 }
 #pragma pop
 
-/* 802C8234-802C8258 0024+00 s=1 e=1 z=0  None .text      registRiverSePos__10Z2EnvSeMgrFP3Vec */
+/* 802C8234-802C8258 2C2B74 0024+00 1/1 1/1 0/0 .text registRiverSePos__10Z2EnvSeMgrFP3Vec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -859,7 +862,8 @@ asm void Z2EnvSeMgr::registRiverSePos(Vec* param_0) {
 }
 #pragma pop
 
-/* 802C8258-802C8300 00A8+00 s=0 e=0 z=1  None .text      setHyrulSewerOpen__10Z2EnvSeMgrFb */
+/* 802C8258-802C8300 2C2B98 00A8+00 0/0 0/0 1/1 .text            setHyrulSewerOpen__10Z2EnvSeMgrFb
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -870,7 +874,7 @@ asm void Z2EnvSeMgr::setHyrulSewerOpen(bool param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CBA28-803CBAD0 00A8+00 s=1 e=0 z=0  None .data      @4622 */
+/* 803CBA28-803CBAD0 -00001 00A8+00 1/1 0/0 0/0 .data            @4622 */
 SECTION_DATA static void* lit_4622[42] = {
     (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0x80),
     (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xA0),
@@ -916,13 +920,13 @@ SECTION_DATA static void* lit_4622[42] = {
     (void*)(((char*)startRiverSe__10Z2EnvSeMgrFSc) + 0xAC),
 };
 
-/* 80455E38-80455E3C 0004+00 s=2 e=0 z=0  None .sdata2    @4619 */
+/* 80455E38-80455E3C 004438 0004+00 2/2 0/0 0/0 .sdata2          @4619 */
 SECTION_SDATA2 static f32 lit_4619 = -14500.0f;
 
-/* 80455E3C-80455E40 0004+00 s=1 e=0 z=0  None .sdata2    @4621 */
+/* 80455E3C-80455E40 00443C 0004+00 1/1 0/0 0/0 .sdata2          @4621 */
 SECTION_SDATA2 static f32 lit_4621 = 150.0f;
 
-/* 802C8300-802C8730 0430+00 s=2 e=1 z=0  None .text      startRiverSe__10Z2EnvSeMgrFSc */
+/* 802C8300-802C8730 2C2C40 0430+00 2/1 1/1 0/0 .text            startRiverSe__10Z2EnvSeMgrFSc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -932,7 +936,8 @@ asm void Z2EnvSeMgr::startRiverSe(s8 param_0) {
 }
 #pragma pop
 
-/* 802C8730-802C886C 013C+00 s=1 e=1 z=0  None .text      initFallSe__10Z2EnvSeMgrFUcUcUcUc */
+/* 802C8730-802C886C 2C3070 013C+00 1/1 1/1 0/0 .text            initFallSe__10Z2EnvSeMgrFUcUcUcUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -942,7 +947,8 @@ asm void Z2EnvSeMgr::initFallSe(u8 param_0, u8 param_1, u8 param_2, u8 param_3) 
 }
 #pragma pop
 
-/* 802C886C-802C8890 0024+00 s=0 e=1 z=0  None .text      registFallSePos__10Z2EnvSeMgrFP3Vec */
+/* 802C886C-802C8890 2C31AC 0024+00 0/0 1/1 0/0 .text            registFallSePos__10Z2EnvSeMgrFP3Vec
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -952,7 +958,7 @@ asm void Z2EnvSeMgr::registFallSePos(Vec* param_0) {
 }
 #pragma pop
 
-/* 802C8890-802C8A90 0200+00 s=1 e=1 z=0  None .text      startFallSe__10Z2EnvSeMgrFSc */
+/* 802C8890-802C8A90 2C31D0 0200+00 1/1 1/1 0/0 .text            startFallSe__10Z2EnvSeMgrFSc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -963,7 +969,7 @@ asm void Z2EnvSeMgr::startFallSe(s8 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CBAD0-803CBB10 0040+00 s=1 e=0 z=0  None .data      @4734 */
+/* 803CBAD0-803CBB10 -00001 0040+00 1/1 0/0 0/0 .data            @4734 */
 SECTION_DATA static void* lit_4734[16] = {
     (void*)(((char*)initEtcSe__10Z2EnvSeMgrFUcUcUcUc) + 0x15C),
     (void*)(((char*)initEtcSe__10Z2EnvSeMgrFUcUcUcUc) + 0xF4),
@@ -983,10 +989,10 @@ SECTION_DATA static void* lit_4734[16] = {
     (void*)(((char*)initEtcSe__10Z2EnvSeMgrFUcUcUcUc) + 0x13C),
 };
 
-/* 80455E40-80455E44 0004+00 s=1 e=0 z=0  None .sdata2    @4732 */
+/* 80455E40-80455E44 004440 0004+00 1/1 0/0 0/0 .sdata2          @4732 */
 SECTION_SDATA2 static f32 lit_4732 = 4.0f;
 
-/* 802C8A90-802C8C24 0194+00 s=2 e=1 z=0  None .text      initEtcSe__10Z2EnvSeMgrFUcUcUcUc */
+/* 802C8A90-802C8C24 2C33D0 0194+00 2/1 1/1 0/0 .text            initEtcSe__10Z2EnvSeMgrFUcUcUcUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -996,7 +1002,8 @@ asm void Z2EnvSeMgr::initEtcSe(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
 }
 #pragma pop
 
-/* 802C8C24-802C8C48 0024+00 s=1 e=1 z=0  None .text      registEtcSePos__10Z2EnvSeMgrFP3Vec */
+/* 802C8C24-802C8C48 2C3564 0024+00 1/1 1/1 0/0 .text            registEtcSePos__10Z2EnvSeMgrFP3Vec
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1007,7 +1014,7 @@ asm void Z2EnvSeMgr::registEtcSePos(Vec* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CBB10-803CBB90 0080+00 s=1 e=0 z=0  None .data      @4839 */
+/* 803CBB10-803CBB90 -00001 0080+00 1/1 0/0 0/0 .data            @4839 */
 SECTION_DATA static void* lit_4839[32] = {
     (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x62C),
     (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x624),
@@ -1043,22 +1050,22 @@ SECTION_DATA static void* lit_4839[32] = {
     (void*)(((char*)startEtcSe__10Z2EnvSeMgrFSc) + 0x324),
 };
 
-/* 80455E44-80455E48 0004+00 s=1 e=0 z=0  None .sdata2    @4833 */
+/* 80455E44-80455E48 004444 0004+00 1/1 0/0 0/0 .sdata2          @4833 */
 SECTION_SDATA2 static f32 lit_4833 = 6.0f / 5.0f;
 
-/* 80455E48-80455E4C 0004+00 s=1 e=0 z=0  None .sdata2    @4834 */
+/* 80455E48-80455E4C 004448 0004+00 1/1 0/0 0/0 .sdata2          @4834 */
 SECTION_SDATA2 static f32 lit_4834 = 13.0f / 10.0f;
 
-/* 80455E4C-80455E50 0004+00 s=1 e=0 z=0  None .sdata2    @4835 */
+/* 80455E4C-80455E50 00444C 0004+00 1/1 0/0 0/0 .sdata2          @4835 */
 SECTION_SDATA2 static f32 lit_4835 = 89.0f / 100.0f;
 
-/* 80455E50-80455E54 0004+00 s=2 e=0 z=0  None .sdata2    @4836 */
+/* 80455E50-80455E54 004450 0004+00 2/2 0/0 0/0 .sdata2          @4836 */
 SECTION_SDATA2 static f32 lit_4836 = 0.3319999873638153f;
 
-/* 80455E54-80455E58 0004+00 s=2 e=0 z=0  None .sdata2    @4837 */
+/* 80455E54-80455E58 004454 0004+00 2/2 0/0 0/0 .sdata2          @4837 */
 SECTION_SDATA2 static f32 lit_4837 = 0.6679999828338623f;
 
-/* 802C8C48-802C92C8 0680+00 s=2 e=1 z=0  None .text      startEtcSe__10Z2EnvSeMgrFSc */
+/* 802C8C48-802C92C8 2C3588 0680+00 2/1 1/1 0/0 .text            startEtcSe__10Z2EnvSeMgrFSc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1068,8 +1075,7 @@ asm void Z2EnvSeMgr::startEtcSe(s8 param_0) {
 }
 #pragma pop
 
-/* 802C92C8-802C92EC 0024+00 s=0 e=0 z=1  None .text      registWolfSmellSePos__10Z2EnvSeMgrFP3Vec
- */
+/* 802C92C8-802C92EC 2C3C08 0024+00 0/0 0/0 1/1 .text registWolfSmellSePos__10Z2EnvSeMgrFP3Vec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1080,10 +1086,10 @@ asm void Z2EnvSeMgr::registWolfSmellSePos(Vec* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455E58-80455E5C 0004+00 s=1 e=0 z=0  None .sdata2    @4856 */
+/* 80455E58-80455E5C 004458 0004+00 1/1 0/0 0/0 .sdata2          @4856 */
 SECTION_SDATA2 static f32 lit_4856 = 340.0f;
 
-/* 802C92EC-802C93A0 00B4+00 s=0 e=0 z=1  None .text      startFogWipeTrigger__10Z2EnvSeMgrFP3Vec */
+/* 802C92EC-802C93A0 2C3C2C 00B4+00 0/0 0/0 1/1 .text startFogWipeTrigger__10Z2EnvSeMgrFP3Vec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1093,7 +1099,7 @@ asm void Z2EnvSeMgr::startFogWipeTrigger(Vec* param_0) {
 }
 #pragma pop
 
-/* 802C93A0-802C93E4 0044+00 s=0 e=0 z=1  None .text      setFogWipeWidth__10Z2EnvSeMgrFf */
+/* 802C93A0-802C93E4 2C3CE0 0044+00 0/0 0/0 1/1 .text            setFogWipeWidth__10Z2EnvSeMgrFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1103,7 +1109,7 @@ asm void Z2EnvSeMgr::setFogWipeWidth(f32 param_0) {
 }
 #pragma pop
 
-/* 802C93E4-802C9400 001C+00 s=3 e=2 z=0  None .text      getFogDensity__10Z2EnvSeMgrFv */
+/* 802C93E4-802C9400 2C3D24 001C+00 3/3 2/2 0/0 .text            getFogDensity__10Z2EnvSeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1114,10 +1120,10 @@ asm void Z2EnvSeMgr::getFogDensity() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455E5C-80455E60 0004+00 s=1 e=0 z=0  None .sdata2    @4879 */
+/* 80455E5C-80455E60 00445C 0004+00 1/1 0/0 0/0 .sdata2          @4879 */
 SECTION_SDATA2 static f32 lit_4879 = 20.0f;
 
-/* 802C9400-802C950C 010C+00 s=0 e=0 z=1  None .text      startFogSe__10Z2EnvSeMgrFv */
+/* 802C9400-802C950C 2C3D40 010C+00 0/0 0/0 1/1 .text            startFogSe__10Z2EnvSeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1128,7 +1134,7 @@ asm void Z2EnvSeMgr::startFogSe() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CBB90-803CBBC8 0038+00 s=1 e=0 z=0  None .data      @5076 */
+/* 803CBB90-803CBBC8 -00001 0038+00 1/1 0/0 0/0 .data            @5076 */
 SECTION_DATA static void* lit_5076[14] = {
     (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x640),
     (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x61C),
@@ -1146,7 +1152,7 @@ SECTION_DATA static void* lit_5076[14] = {
     (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x99C),
 };
 
-/* 803CBBC8-803CBBF0 0028+00 s=1 e=0 z=0  None .data      @5074 */
+/* 803CBBC8-803CBBF0 -00001 0028+00 1/1 0/0 0/0 .data            @5074 */
 SECTION_DATA static void* lit_5074[10] = {
     (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x50),
     (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x1E8),
@@ -1160,7 +1166,7 @@ SECTION_DATA static void* lit_5074[10] = {
     (void*)(((char*)initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc) + 0x518),
 };
 
-/* 802C950C-802C9F58 0A4C+00 s=2 e=1 z=0  None .text      initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc */
+/* 802C950C-802C9F58 2C3E4C 0A4C+00 2/0 1/1 0/0 .text initLv3WaterSe__10Z2EnvSeMgrFUcUcUcUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1171,7 +1177,7 @@ asm void Z2EnvSeMgr::initLv3WaterSe(u8 param_0, u8 param_1, u8 param_2, u8 param
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CBBF0-803CBC28 0038+00 s=1 e=0 z=0  None .data      @5259 */
+/* 803CBBF0-803CBC28 -00001 0038+00 1/1 0/0 0/0 .data            @5259 */
 SECTION_DATA static void* lit_5259[14] = {
     (void*)(((char*)registLv3WaterSePos__10Z2EnvSeMgrFUcP3Vec) + 0xBC),
     (void*)(((char*)registLv3WaterSePos__10Z2EnvSeMgrFUcP3Vec) + 0xA4),
@@ -1189,7 +1195,7 @@ SECTION_DATA static void* lit_5259[14] = {
     (void*)(((char*)registLv3WaterSePos__10Z2EnvSeMgrFUcP3Vec) + 0x770),
 };
 
-/* 803CBC28-803CBC50 0028+00 s=1 e=0 z=0  None .data      @5258 */
+/* 803CBC28-803CBC50 -00001 0028+00 1/1 0/0 0/0 .data            @5258 */
 SECTION_DATA static void* lit_5258[10] = {
     (void*)(((char*)registLv3WaterSePos__10Z2EnvSeMgrFUcP3Vec) + 0x48),
     (void*)(((char*)registLv3WaterSePos__10Z2EnvSeMgrFUcP3Vec) + 0x58),
@@ -1203,8 +1209,7 @@ SECTION_DATA static void* lit_5258[10] = {
     (void*)(((char*)registLv3WaterSePos__10Z2EnvSeMgrFUcP3Vec) + 0x68),
 };
 
-/* 802C9F58-802CA794 083C+00 s=2 e=1 z=0  None .text      registLv3WaterSePos__10Z2EnvSeMgrFUcP3Vec
- */
+/* 802C9F58-802CA794 2C4898 083C+00 2/0 1/1 0/0 .text registLv3WaterSePos__10Z2EnvSeMgrFUcP3Vec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1214,7 +1219,7 @@ asm void Z2EnvSeMgr::registLv3WaterSePos(u8 param_0, Vec* param_1) {
 }
 #pragma pop
 
-/* 802CA794-802CAAC0 032C+00 s=1 e=1 z=0  None .text      startLv3WaterSe__10Z2EnvSeMgrFSc */
+/* 802CA794-802CAAC0 2C50D4 032C+00 1/1 1/1 0/0 .text            startLv3WaterSe__10Z2EnvSeMgrFSc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

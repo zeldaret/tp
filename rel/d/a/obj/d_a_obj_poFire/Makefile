@@ -3,19 +3,20 @@
 #
 
 M596_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_poFire.plf
+M596_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_poFire.lcf
+M596_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_poFire.map
 
 M596_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_poFire/executor.cpp \
-	rel/d/a/obj/d_a_obj_poFire/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_poFire/d_a_obj_poFire.cpp \
 
 M596_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_poFire/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_poFire/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_poFire/d_a_obj_poFire.o \
 
 M596_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_poFire/libRuntime.PPCEABI.H.a \
 
 M596_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M596_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M596_LDSCRIPT) \
+	-unused -map $(M596_MAP) \
+	-w off \
 
 $(M596_TARGET): $(M596_O_FILES) $(M596_LIBS)
+	@echo [596] creating $(M596_TARGET)
 	@echo $(M596_LIBS) $(M596_O_FILES) > build/M596_ofiles
-	$(LD) -partial $(M596_LDFLAGS) -o $(M596_TARGET) @build/M596_ofiles
+	@python3 tools/lcf.py rel 596 --output $(M596_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M596_LDFLAGS) -o $(M596_TARGET) @build/M596_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_poFire/%.o: rel/d/a/obj/d_a_obj_poFire/%.cpp
+	@echo [596] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M596_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M596_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_poFire/libs/Runtime.PPCEABI.H/Makefile
 

@@ -5,8 +5,8 @@ lbl_809E4F90:
 /* 809E4F9C  7C 60 1B 78 */	mr r0, r3
 /* 809E4FA0  2C 04 00 00 */	cmpwi r4, 0
 /* 809E4FA4  40 82 00 24 */	bne lbl_809E4FC8
-/* 809E4FA8  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 809E4FAC  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 809E4FA8  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 809E4FAC  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 809E4FB0  80 A3 00 38 */	lwz r5, 0x38(r3)
 /* 809E4FB4  80 65 00 14 */	lwz r3, 0x14(r5)
 /* 809E4FB8  28 03 00 00 */	cmplwi r3, 0

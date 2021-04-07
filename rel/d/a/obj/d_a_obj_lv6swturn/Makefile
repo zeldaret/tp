@@ -3,18 +3,16 @@
 #
 
 M556_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6swturn.plf
+M556_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6swturn.lcf
+M556_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6swturn.map
 
 M556_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv6swturn/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv6swturn/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_lv6swturn/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_lv6swturn/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_lv6swturn/d_a_obj_lv6swturn.cpp \
 
 M556_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6swturn/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6swturn/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6swturn/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6swturn/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6swturn/d_a_obj_lv6swturn.o \
 
@@ -31,14 +29,21 @@ M556_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M556_LDSCRIPT) \
+	-unused -map $(M556_MAP) \
+	-w off \
 
 $(M556_TARGET): $(M556_O_FILES) $(M556_LIBS)
+	@echo [556] creating $(M556_TARGET)
 	@echo $(M556_LIBS) $(M556_O_FILES) > build/M556_ofiles
-	$(LD) -partial $(M556_LDFLAGS) -o $(M556_TARGET) @build/M556_ofiles
+	@python3 tools/lcf.py rel 556 --output $(M556_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M556_LDFLAGS) -o $(M556_TARGET) @build/M556_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6swturn/%.o: rel/d/a/obj/d_a_obj_lv6swturn/%.cpp
+	@echo [556] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M556_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M556_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

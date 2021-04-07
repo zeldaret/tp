@@ -110,8 +110,8 @@ lbl_800AD558:
 /* 800AD564  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 800AD568  40 82 00 24 */	bne lbl_800AD58C
 lbl_800AD56C:
-/* 800AD56C  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha
-/* 800AD570  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l
+/* 800AD56C  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha /* 0x8038E7F4@ha */
+/* 800AD570  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l /* 0x8038E7F4@l */
 /* 800AD574  C0 43 00 28 */	lfs f2, 0x28(r3)
 /* 800AD578  C0 22 92 B8 */	lfs f1, lit_6040(r2)
 /* 800AD57C  C0 03 00 2C */	lfs f0, 0x2c(r3)

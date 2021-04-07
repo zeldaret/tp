@@ -5,8 +5,8 @@ lbl_806B1BEC:
 /* 806B1BF8  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 806B1BFC  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 806B1C00  7C 7E 1B 78 */	mr r30, r3
-/* 806B1C04  3C 60 80 6B */	lis r3, lit_3792@ha
-/* 806B1C08  3B E3 5C D4 */	addi r31, r3, lit_3792@l
+/* 806B1C04  3C 60 80 6B */	lis r3, lit_3792@ha /* 0x806B5CD4@ha */
+/* 806B1C08  3B E3 5C D4 */	addi r31, r3, lit_3792@l /* 0x806B5CD4@l */
 /* 806B1C0C  80 1E 07 58 */	lwz r0, 0x758(r30)
 /* 806B1C10  2C 00 00 00 */	cmpwi r0, 0
 /* 806B1C14  41 82 00 3C */	beq lbl_806B1C50

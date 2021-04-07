@@ -42,12 +42,6 @@ struct Vec {};
 // Forward References:
 //
 
-static void daPasserMng_Execute(daPasserMng_c*);
-static bool daPasserMng_IsDelete(daPasserMng_c*);
-static void daPasserMng_Delete(daPasserMng_c*);
-static void daPasserMng_Create(fopAc_ac_c*);
-static void cLib_getRndValue__template0(int, int);
-
 extern "C" static void daPasserMng_Execute__FP13daPasserMng_c();
 extern "C" void execute__13daPasserMng_cFv();
 extern "C" void getPasserParam__13daPasserMng_cFv();
@@ -57,29 +51,12 @@ extern "C" static void daPasserMng_Delete__FP13daPasserMng_c();
 extern "C" static void daPasserMng_Create__FP10fopAc_ac_c();
 extern "C" void create__13daPasserMng_cFv();
 extern "C" void create_init__13daPasserMng_cFv();
-extern "C" static void func_80D46B9C();
+extern "C" void func_80D46B9C(int, int);
 extern "C" extern void* g_profile_PASSER_MNG[12];
 
 //
 // External References:
 //
-
-void fopAcM_SearchByID(unsigned int, fopAc_ac_c**);
-void fopAcM_createChild(s16, unsigned int, u32, cXyz const*, int, csXyz const*, cXyz const*, s8,
-                        int (*)(void*));
-void dPath_GetPnt(dPath const*, int);
-void dPath_GetRoomPath(int, int);
-void dKy_getdaytime_hour();
-void dKy_getdaytime_minute();
-void dKy_getDarktime_hour();
-void dKy_getDarktime_minute();
-void dKy_getDarktime_week();
-void dKy_get_dayofweek();
-void dKy_darkworld_check();
-void cM_rndF(f32);
-void cLib_targetAngleY(Vec const&, Vec const&);
-void* operator new[](u32);
-void operator delete[](void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -115,17 +92,17 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 // Declarations:
 //
 
-/* 80D45718-80D45738 0020+00 s=1 e=0 z=0  None .text      daPasserMng_Execute__FP13daPasserMng_c */
+/* 80D45718-80D45738 000078 0020+00 1/0 0/0 0/0 .text daPasserMng_Execute__FP13daPasserMng_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daPasserMng_Execute(daPasserMng_c* param_0) {
+static asm void daPasserMng_Execute(daPasserMng_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_passer_mng/d_a_passer_mng/daPasserMng_Execute__FP13daPasserMng_c.s"
 }
 #pragma pop
 
-/* 80D45738-80D4597C 0244+00 s=1 e=0 z=0  None .text      execute__13daPasserMng_cFv */
+/* 80D45738-80D4597C 000098 0244+00 1/1 0/0 0/0 .text            execute__13daPasserMng_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -136,33 +113,37 @@ asm void daPasserMng_c::execute() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D46C20-80D46C40 0020+00 s=1 e=0 z=0  None .rodata    groupA */
+/* 80D46C20-80D46C40 000000 0020+00 1/0 0/0 0/0 .rodata          groupA */
 SECTION_RODATA static u8 const groupA[32] = {
     0x07, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x04, 0x50, 0x00, 0x00, 0x06, 0x01, 0x00, 0x00, 0x07,
     0x01, 0x00, 0x00, 0x05, 0x01, 0x00, 0x00, 0x1B, 0x01, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x1D,
 };
+COMPILER_STRIP_GATE(80D46C20, &groupA);
 
-/* 80D46C40-80D46C64 0024+00 s=1 e=0 z=0  None .rodata    groupB */
+/* 80D46C40-80D46C64 000020 0024+00 1/0 0/0 0/0 .rodata          groupB */
 SECTION_RODATA static u8 const groupB[36] = {
     0x08, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x10, 0x10, 0x00, 0x00, 0x11,
     0x11, 0x00, 0x00, 0x12, 0x10, 0x00, 0x00, 0x13, 0x40, 0x00, 0x00, 0x09,
     0x40, 0x00, 0x00, 0x08, 0x50, 0x00, 0x00, 0x0A, 0x01, 0x00, 0x00, 0x0B,
 };
+COMPILER_STRIP_GATE(80D46C40, &groupB);
 
-/* 80D46C64-80D46C88 0024+00 s=1 e=0 z=0  None .rodata    groupC */
+/* 80D46C64-80D46C88 000044 0024+00 1/0 0/0 0/0 .rodata          groupC */
 SECTION_RODATA static u8 const groupC[36] = {
     0x08, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x01,
     0x50, 0x00, 0x00, 0x02, 0x01, 0x00, 0x00, 0x03, 0x21, 0x00, 0x00, 0x17,
     0x10, 0x00, 0x00, 0x18, 0x01, 0x00, 0x00, 0x19, 0x10, 0x00, 0x00, 0x1A,
 };
+COMPILER_STRIP_GATE(80D46C64, &groupC);
 
-/* 80D46C88-80D46CA8 0020+00 s=1 e=0 z=0  None .rodata    groupD */
+/* 80D46C88-80D46CA8 000068 0020+00 1/0 0/0 0/0 .rodata          groupD */
 SECTION_RODATA static u8 const groupD[32] = {
     0x07, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x14, 0x21, 0x00, 0x00, 0x15, 0x00, 0x00, 0x00, 0x16,
     0x11, 0x00, 0x00, 0x0C, 0x50, 0x00, 0x00, 0x0E, 0x40, 0x00, 0x00, 0x0F, 0x01, 0x00, 0x00, 0x0D,
 };
+COMPILER_STRIP_GATE(80D46C88, &groupD);
 
-/* 80D46CB0-80D46CC0 0010+00 s=1 e=0 z=0  None .data      mGroupTbl__13daPasserMng_c */
+/* 80D46CB0-80D46CC0 -00001 0010+00 1/1 0/0 0/0 .data            mGroupTbl__13daPasserMng_c */
 SECTION_DATA static void* mGroupTbl__13daPasserMng_c[4] = {
     (void*)&groupA,
     (void*)&groupB,
@@ -170,7 +151,7 @@ SECTION_DATA static void* mGroupTbl__13daPasserMng_c[4] = {
     (void*)&groupD,
 };
 
-/* 80D46CC0-80D46D38 0078+00 s=1 e=0 z=0  None .data      @4134 */
+/* 80D46CC0-80D46D38 -00001 0078+00 1/1 0/0 0/0 .data            @4134 */
 SECTION_DATA static void* lit_4134[30] = {
     (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x168),
     (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x168),
@@ -204,7 +185,8 @@ SECTION_DATA static void* lit_4134[30] = {
     (void*)(((char*)getPasserParam__13daPasserMng_cFv) + 0x430),
 };
 
-/* 80D4597C-80D45E14 0498+00 s=3 e=0 z=0  None .text      getPasserParam__13daPasserMng_cFv */
+/* 80D4597C-80D45E14 0002DC 0498+00 3/2 0/0 0/0 .text            getPasserParam__13daPasserMng_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -215,7 +197,7 @@ asm void daPasserMng_c::getPasserParam() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D46D38-80D46DB0 0078+00 s=1 e=0 z=0  None .data      @4305 */
+/* 80D46D38-80D46DB0 -00001 0078+00 1/1 0/0 0/0 .data            @4305 */
 SECTION_DATA static void* lit_4305[30] = {
     (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x34),
     (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x34),
@@ -249,7 +231,7 @@ SECTION_DATA static void* lit_4305[30] = {
     (void*)(((char*)getLuggageParamHigh__13daPasserMng_cFUl) + 0x814),
 };
 
-/* 80D45E14-80D466FC 08E8+00 s=2 e=0 z=0  None .text      getLuggageParamHigh__13daPasserMng_cFUl */
+/* 80D45E14-80D466FC 000774 08E8+00 2/1 0/0 0/0 .text getLuggageParamHigh__13daPasserMng_cFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -259,32 +241,33 @@ asm void daPasserMng_c::getLuggageParamHigh(u32 param_0) {
 }
 #pragma pop
 
-/* 80D466FC-80D46704 0008+00 s=1 e=0 z=0  None .text      daPasserMng_IsDelete__FP13daPasserMng_c */
+/* 80D466FC-80D46704 00105C 0008+00 1/0 0/0 0/0 .text daPasserMng_IsDelete__FP13daPasserMng_c */
 static bool daPasserMng_IsDelete(daPasserMng_c* param_0) {
     return true;
 }
 
-/* 80D46704-80D46748 0044+00 s=1 e=0 z=0  None .text      daPasserMng_Delete__FP13daPasserMng_c */
+/* 80D46704-80D46748 001064 0044+00 1/0 0/0 0/0 .text daPasserMng_Delete__FP13daPasserMng_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daPasserMng_Delete(daPasserMng_c* param_0) {
+static asm void daPasserMng_Delete(daPasserMng_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_passer_mng/d_a_passer_mng/daPasserMng_Delete__FP13daPasserMng_c.s"
 }
 #pragma pop
 
-/* 80D46748-80D46768 0020+00 s=1 e=0 z=0  None .text      daPasserMng_Create__FP10fopAc_ac_c */
+/* 80D46748-80D46768 0010A8 0020+00 1/0 0/0 0/0 .text            daPasserMng_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daPasserMng_Create(fopAc_ac_c* param_0) {
+static asm void daPasserMng_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_passer_mng/d_a_passer_mng/daPasserMng_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D46768-80D467C0 0058+00 s=1 e=0 z=0  None .text      create__13daPasserMng_cFv */
+/* 80D46768-80D467C0 0010C8 0058+00 1/1 0/0 0/0 .text            create__13daPasserMng_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -294,7 +277,7 @@ asm void daPasserMng_c::create() {
 }
 #pragma pop
 
-/* 80D467C0-80D46B9C 03DC+00 s=1 e=0 z=0  None .text      create_init__13daPasserMng_cFv */
+/* 80D467C0-80D46B9C 001120 03DC+00 1/1 0/0 0/0 .text            create_init__13daPasserMng_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -305,23 +288,24 @@ asm void daPasserMng_c::create_init() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D46CA8-80D46CB0 0008+00 s=1 e=0 z=0  None .rodata    @4430 */
+/* 80D46CA8-80D46CB0 000088 0008+00 1/1 0/0 0/0 .rodata          @4430 */
 SECTION_RODATA static u8 const lit_4430[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80D46CA8, &lit_4430);
 
-/* 80D46B9C-80D46C18 007C+00 s=3 e=0 z=0  None .text      cLib_getRndValue<i>__Fii */
+/* 80D46B9C-80D46C18 0014FC 007C+00 3/3 0/0 0/0 .text            cLib_getRndValue<i>__Fii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void cLib_getRndValue__template0(int param_0, int param_1) {
+extern "C" asm void func_80D46B9C(int param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/d_a_passer_mng/d_a_passer_mng/func_80D46B9C.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D46DB0-80D46DD0 0020+00 s=1 e=0 z=0  None .data      l_daPasserMng_Method */
+/* 80D46DB0-80D46DD0 -00001 0020+00 1/0 0/0 0/0 .data            l_daPasserMng_Method */
 SECTION_DATA static void* l_daPasserMng_Method[8] = {
     (void*)daPasserMng_Create__FP10fopAc_ac_c,
     (void*)daPasserMng_Delete__FP13daPasserMng_c,
@@ -333,8 +317,8 @@ SECTION_DATA static void* l_daPasserMng_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D46DD0-80D46E00 0030+00 s=0 e=0 z=1  None .data      g_profile_PASSER_MNG */
-SECTION_DATA void* g_profile_PASSER_MNG[12] = {
+/* 80D46DD0-80D46E00 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_PASSER_MNG */
+SECTION_DATA extern void* g_profile_PASSER_MNG[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x028E0000, (void*)&g_fpcLf_Method,
     (void*)0x00000598, (void*)NULL,

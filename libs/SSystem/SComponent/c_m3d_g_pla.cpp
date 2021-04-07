@@ -41,8 +41,6 @@ extern "C" void Set__8cM3dGPlaFPC8cM3dGPla();
 // External References:
 //
 
-void cM3d_InDivPos2(Vec const*, Vec const*, f32, Vec*);
-
 extern "C" void cM3d_InDivPos2__FPC3VecPC3VecfP3Vec();
 extern "C" void PSVECNormalize();
 extern "C" void PSVECDotProduct();
@@ -55,7 +53,7 @@ extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 // Declarations:
 //
 
-/* 8026F3DC-8026F408 002C+00 s=0 e=3 z=0  None .text      __ct__8cM3dGPlaFPC4cXyzf */
+/* 8026F3DC-8026F408 269D1C 002C+00 0/0 3/3 0/0 .text            __ct__8cM3dGPlaFPC4cXyzf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -65,7 +63,7 @@ asm cM3dGPla::cM3dGPla(cXyz const* param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 8026F408-8026F4C4 00BC+00 s=0 e=3 z=0  None .text crossInfLin__8cM3dGPlaCFRC4cXyzRC4cXyzR4cXyz
+/* 8026F408-8026F4C4 269D48 00BC+00 0/0 3/3 0/0 .text crossInfLin__8cM3dGPlaCFRC4cXyzRC4cXyzR4cXyz
  */
 #pragma push
 #pragma optimization_level 0
@@ -76,7 +74,7 @@ asm void cM3dGPla::crossInfLin(cXyz const& param_0, cXyz const& param_1, cXyz& p
 }
 #pragma pop
 
-/* 8026F4C4-8026F52C 0068+00 s=0 e=1 z=0  None .text      SetupNP0__8cM3dGPlaFRC3VecRC3Vec */
+/* 8026F4C4-8026F52C 269E04 0068+00 0/0 1/1 0/0 .text            SetupNP0__8cM3dGPlaFRC3VecRC3Vec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -86,7 +84,7 @@ asm void cM3dGPla::SetupNP0(Vec const& param_0, Vec const& param_1) {
 }
 #pragma pop
 
-/* 8026F52C-8026F57C 0050+00 s=0 e=2 z=0  None .text      SetupNP__8cM3dGPlaFRC3VecRC3Vec */
+/* 8026F52C-8026F57C 269E6C 0050+00 0/0 2/2 0/0 .text            SetupNP__8cM3dGPlaFRC3VecRC3Vec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -96,7 +94,7 @@ asm void cM3dGPla::SetupNP(Vec const& param_0, Vec const& param_1) {
 }
 #pragma pop
 
-/* 8026F57C-8026F5D4 0058+00 s=0 e=2 z=0  None .text      getCrossY__8cM3dGPlaCFRC4cXyzPf */
+/* 8026F57C-8026F5D4 269EBC 0058+00 0/0 2/2 0/0 .text            getCrossY__8cM3dGPlaCFRC4cXyzPf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -106,7 +104,8 @@ asm void cM3dGPla::getCrossY(cXyz const& param_0, f32* param_1) const {
 }
 #pragma pop
 
-/* 8026F5D4-8026F624 0050+00 s=0 e=1 z=0  None .text      getCrossYLessD__8cM3dGPlaCFRC3VecPf */
+/* 8026F5D4-8026F624 269F14 0050+00 0/0 1/1 0/0 .text            getCrossYLessD__8cM3dGPlaCFRC3VecPf
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -116,7 +115,7 @@ asm void cM3dGPla::getCrossYLessD(Vec const& param_0, f32* param_1) const {
 }
 #pragma pop
 
-/* 8026F624-8026F648 0024+00 s=0 e=1 z=0  None .text      Set__8cM3dGPlaFPC8cM3dGPla */
+/* 8026F624-8026F648 269F64 0024+00 0/0 1/1 0/0 .text            Set__8cM3dGPlaFPC8cM3dGPla */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

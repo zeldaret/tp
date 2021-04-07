@@ -3,17 +3,15 @@
 #
 
 M434_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_damCps.plf
+M434_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_damCps.lcf
+M434_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_damCps.map
 
 M434_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_damCps/executor.cpp \
-	rel/d/a/obj/d_a_obj_damCps/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_damCps/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_damCps/d_a_obj_damCps.cpp \
 
 M434_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_damCps/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_damCps/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_damCps/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_damCps/d_a_obj_damCps.o \
 
 M434_LIBS := \
@@ -29,14 +27,21 @@ M434_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M434_LDSCRIPT) \
+	-unused -map $(M434_MAP) \
+	-w off \
 
 $(M434_TARGET): $(M434_O_FILES) $(M434_LIBS)
+	@echo [434] creating $(M434_TARGET)
 	@echo $(M434_LIBS) $(M434_O_FILES) > build/M434_ofiles
-	$(LD) -partial $(M434_LDFLAGS) -o $(M434_TARGET) @build/M434_ofiles
+	@python3 tools/lcf.py rel 434 --output $(M434_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M434_LDFLAGS) -o $(M434_TARGET) @build/M434_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_damCps/%.o: rel/d/a/obj/d_a_obj_damCps/%.cpp
+	@echo [434] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M434_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M434_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

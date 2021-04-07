@@ -36,8 +36,8 @@ lbl_800FAE60:
 /* 800FAE94  2C 03 00 00 */	cmpwi r3, 0
 /* 800FAE98  40 82 00 18 */	bne lbl_800FAEB0
 /* 800FAE9C  7F C3 F3 78 */	mr r3, r30
-/* 800FAEA0  3C 80 80 39 */	lis r4, m__23daAlinkHIO_wallCatch_c0@ha
-/* 800FAEA4  38 84 E1 64 */	addi r4, r4, m__23daAlinkHIO_wallCatch_c0@l
+/* 800FAEA0  3C 80 80 39 */	lis r4, m__23daAlinkHIO_wallCatch_c0@ha /* 0x8038E164@ha */
+/* 800FAEA4  38 84 E1 64 */	addi r4, r4, m__23daAlinkHIO_wallCatch_c0@l /* 0x8038E164@l */
 /* 800FAEA8  C0 24 00 30 */	lfs f1, 0x30(r4)
 /* 800FAEAC  48 00 0D 1D */	bl procHangClimbInit__9daAlink_cFf
 lbl_800FAEB0:

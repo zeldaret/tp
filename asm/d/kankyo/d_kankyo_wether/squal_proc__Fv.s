@@ -4,8 +4,8 @@ lbl_8005AC30:
 /* 8005AC38  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8005AC3C  39 61 00 20 */	addi r11, r1, 0x20
 /* 8005AC40  48 30 75 91 */	bl _savegpr_26
-/* 8005AC44  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8005AC48  3B C3 CA 54 */	addi r30, r3, g_env_light@l
+/* 8005AC44  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8005AC48  3B C3 CA 54 */	addi r30, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8005AC4C  3B 40 00 00 */	li r26, 0
 /* 8005AC50  3B E0 00 00 */	li r31, 0
 lbl_8005AC54:

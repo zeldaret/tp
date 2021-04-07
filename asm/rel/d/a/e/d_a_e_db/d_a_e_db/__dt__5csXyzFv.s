@@ -7,7 +7,7 @@ lbl_806A1880:
 /* 806A1894  41 82 00 10 */	beq lbl_806A18A4
 /* 806A1898  7C 80 07 35 */	extsh. r0, r4
 /* 806A189C  40 81 00 08 */	ble lbl_806A18A4
-/* 806A18A0  4B C2 D4 9C */	b __dl__FPv
+/* 806A18A0  4B C2 D4 9D */	bl __dl__FPv
 lbl_806A18A4:
 /* 806A18A4  7F E3 FB 78 */	mr r3, r31
 /* 806A18A8  83 E1 00 0C */	lwz r31, 0xc(r1)

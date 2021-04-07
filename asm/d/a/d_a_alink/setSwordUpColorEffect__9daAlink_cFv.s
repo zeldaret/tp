@@ -16,8 +16,8 @@ lbl_80124514:
 /* 80124514  C0 42 93 A0 */	lfs f2, lit_9054(r2)
 /* 80124518  48 14 C2 29 */	bl cLib_chaseF__FPfff
 /* 8012451C  38 60 00 00 */	li r3, 0
-/* 80124520  3C 80 80 39 */	lis r4, swordUpColor@ha
-/* 80124524  38 A4 1D 44 */	addi r5, r4, swordUpColor@l
+/* 80124520  3C 80 80 39 */	lis r4, swordUpColor@ha /* 0x80391D44@ha */
+/* 80124524  38 A4 1D 44 */	addi r5, r4, swordUpColor@l /* 0x80391D44@l */
 /* 80124528  C8 42 92 B0 */	lfd f2, lit_6025(r2)
 /* 8012452C  3C 80 43 30 */	lis r4, 0x4330
 /* 80124530  38 00 00 02 */	li r0, 2

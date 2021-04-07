@@ -62,8 +62,8 @@ lbl_80156110:
 /* 80156140  54 06 06 3E */	clrlwi r6, r0, 0x18
 /* 80156144  48 16 AC 05 */	bl setMdlType__17Z2CreatureCitizenFScbb
 /* 80156148  1C 1E 00 0C */	mulli r0, r30, 0xc
-/* 8015614C  3C 60 80 39 */	lis r3, a_transScaleTbl@ha
-/* 80156150  38 63 2E 5C */	addi r3, r3, a_transScaleTbl@l
+/* 8015614C  3C 60 80 39 */	lis r3, a_transScaleTbl@ha /* 0x80392E5C@ha */
+/* 80156150  38 63 2E 5C */	addi r3, r3, a_transScaleTbl@l /* 0x80392E5C@l */
 /* 80156154  7C 43 04 2E */	lfsx f2, r3, r0
 /* 80156158  D0 41 00 18 */	stfs f2, 0x18(r1)
 /* 8015615C  7C 63 02 14 */	add r3, r3, r0
@@ -79,8 +79,8 @@ lbl_80156110:
 /* 80156184  D0 23 00 44 */	stfs f1, 0x44(r3)
 /* 80156188  D0 03 00 48 */	stfs f0, 0x48(r3)
 /* 8015618C  38 A0 00 00 */	li r5, 0
-/* 80156190  3C 60 80 15 */	lis r3, jntNodeCallBack__FP8J3DJointi@ha
-/* 80156194  38 83 60 10 */	addi r4, r3, jntNodeCallBack__FP8J3DJointi@l
+/* 80156190  3C 60 80 15 */	lis r3, jntNodeCallBack__FP8J3DJointi@ha /* 0x80156010@ha */
+/* 80156194  38 83 60 10 */	addi r4, r3, jntNodeCallBack__FP8J3DJointi@l /* 0x80156010@l */
 /* 80156198  48 00 00 18 */	b lbl_801561B0
 lbl_8015619C:
 /* 8015619C  80 7F 00 28 */	lwz r3, 0x28(r31)

@@ -5,12 +5,12 @@ lbl_8068D294:
 /* 8068D2A0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8068D2A4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8068D2A8  41 82 00 1C */	beq lbl_8068D2C4
-/* 8068D2AC  3C A0 80 69 */	lis r5, __vt__10cCcD_GStts@ha
-/* 8068D2B0  38 05 DA 2C */	addi r0, r5, __vt__10cCcD_GStts@l
+/* 8068D2AC  3C A0 80 69 */	lis r5, __vt__10cCcD_GStts@ha /* 0x8068DA2C@ha */
+/* 8068D2B0  38 05 DA 2C */	addi r0, r5, __vt__10cCcD_GStts@l /* 0x8068DA2C@l */
 /* 8068D2B4  90 1F 00 00 */	stw r0, 0(r31)
 /* 8068D2B8  7C 80 07 35 */	extsh. r0, r4
 /* 8068D2BC  40 81 00 08 */	ble lbl_8068D2C4
-/* 8068D2C0  4B C4 1A 7C */	b __dl__FPv
+/* 8068D2C0  4B C4 1A 7D */	bl __dl__FPv
 lbl_8068D2C4:
 /* 8068D2C4  7F E3 FB 78 */	mr r3, r31
 /* 8068D2C8  83 E1 00 0C */	lwz r31, 0xc(r1)

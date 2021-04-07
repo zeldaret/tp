@@ -1,10 +1,10 @@
 lbl_8036E3C4:
 /* 8036E3C4  94 21 FF 20 */	stwu r1, -0xe0(r1)
 /* 8036E3C8  7C 08 02 A6 */	mflr r0
-/* 8036E3CC  3C A0 80 3A */	lis r5, lit_321@ha
+/* 8036E3CC  3C A0 80 3A */	lis r5, lit_321@ha /* 0x803A28D0@ha */
 /* 8036E3D0  90 01 00 E4 */	stw r0, 0xe4(r1)
 /* 8036E3D4  93 E1 00 DC */	stw r31, 0xdc(r1)
-/* 8036E3D8  3B E5 28 D0 */	addi r31, r5, lit_321@l
+/* 8036E3D8  3B E5 28 D0 */	addi r31, r5, lit_321@l /* 0x803A28D0@l */
 /* 8036E3DC  93 C1 00 D8 */	stw r30, 0xd8(r1)
 /* 8036E3E0  93 A1 00 D4 */	stw r29, 0xd4(r1)
 /* 8036E3E4  7C 7D 1B 78 */	mr r29, r3

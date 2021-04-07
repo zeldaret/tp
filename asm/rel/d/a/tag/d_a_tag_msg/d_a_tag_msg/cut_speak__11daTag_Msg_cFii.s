@@ -9,14 +9,14 @@ lbl_8049004C:
 /* 80490068  80 A4 05 7C */	lwz r5, 0x57c(r4)
 /* 8049006C  38 C0 00 00 */	li r6, 0
 /* 80490070  38 E0 00 00 */	li r7, 0
-/* 80490074  4B DB 9F 1C */	b init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
+/* 80490074  4B DB 9F 1D */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 /* 80490078  38 60 00 00 */	li r3, 0
 /* 8049007C  48 00 00 14 */	b lbl_80490090
 lbl_80490080:
 /* 80490080  38 64 05 80 */	addi r3, r4, 0x580
 /* 80490084  38 A0 00 00 */	li r5, 0
 /* 80490088  38 C0 00 00 */	li r6, 0
-/* 8049008C  4B DB A2 4C */	b doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
+/* 8049008C  4B DB A2 4D */	bl doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
 lbl_80490090:
 /* 80490090  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80490094  7C 08 03 A6 */	mtlr r0

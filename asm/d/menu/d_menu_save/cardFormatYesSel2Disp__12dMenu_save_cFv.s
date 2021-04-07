@@ -15,12 +15,12 @@ lbl_801F2250:
 /* 801F2284  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 801F2288  28 00 00 01 */	cmplwi r0, 1
 /* 801F228C  40 82 00 28 */	bne lbl_801F22B4
-/* 801F2290  3C 60 80 43 */	lis r3, g_msHIO@ha
-/* 801F2294  38 63 E8 4C */	addi r3, r3, g_msHIO@l
+/* 801F2290  3C 60 80 43 */	lis r3, g_msHIO@ha /* 0x8042E84C@ha */
+/* 801F2294  38 63 E8 4C */	addi r3, r3, g_msHIO@l /* 0x8042E84C@l */
 /* 801F2298  88 03 00 06 */	lbz r0, 6(r3)
 /* 801F229C  98 1E 01 BD */	stb r0, 0x1bd(r30)
-/* 801F22A0  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 801F22A4  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l
+/* 801F22A0  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 801F22A4  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 801F22A8  4B E2 4B B1 */	bl command_format__15mDoMemCd_Ctrl_cFv
 /* 801F22AC  38 00 00 15 */	li r0, 0x15
 /* 801F22B0  98 1E 01 B2 */	stb r0, 0x1b2(r30)

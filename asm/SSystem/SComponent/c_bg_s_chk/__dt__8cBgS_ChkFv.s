@@ -5,8 +5,8 @@ lbl_80267B70:
 /* 80267B7C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80267B80  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80267B84  41 82 00 1C */	beq lbl_80267BA0
-/* 80267B88  3C A0 80 3C */	lis r5, __vt__8cBgS_Chk@ha
-/* 80267B8C  38 05 3F 80 */	addi r0, r5, __vt__8cBgS_Chk@l
+/* 80267B88  3C A0 80 3C */	lis r5, __vt__8cBgS_Chk@ha /* 0x803C3F80@ha */
+/* 80267B8C  38 05 3F 80 */	addi r0, r5, __vt__8cBgS_Chk@l /* 0x803C3F80@l */
 /* 80267B90  90 1F 00 10 */	stw r0, 0x10(r31)
 /* 80267B94  7C 80 07 35 */	extsh. r0, r4
 /* 80267B98  40 81 00 08 */	ble lbl_80267BA0

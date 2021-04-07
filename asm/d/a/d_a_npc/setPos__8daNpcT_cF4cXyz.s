@@ -12,8 +12,8 @@ lbl_8014A908:
 /* 8014A930  D0 04 00 04 */	stfs f0, 4(r4)
 /* 8014A934  38 7E 09 30 */	addi r3, r30, 0x930
 /* 8014A938  48 11 D3 F1 */	bl SetPos__11cBgS_GndChkFPC4cXyz
-/* 8014A93C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8014A940  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8014A93C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8014A940  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8014A944  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8014A948  38 9E 09 30 */	addi r4, r30, 0x930
 /* 8014A94C  4B F2 9B 55 */	bl GroundCross__4cBgSFP11cBgS_GndChk

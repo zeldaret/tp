@@ -8,7 +8,7 @@ lbl_80672D80:
 /* 80672D98  3C 80 00 08 */	lis r4, 8
 /* 80672D9C  3C A0 11 00 */	lis r5, 0x1100 /* 0x11000084@ha */
 /* 80672DA0  38 A5 00 84 */	addi r5, r5, 0x0084 /* 0x11000084@l */
-/* 80672DA4  4B 9A 1E B0 */	b mDoExt_J3DModel__create__FP12J3DModelDataUlUl
+/* 80672DA4  4B 9A 1E B1 */	bl mDoExt_J3DModel__create__FP12J3DModelDataUlUl
 /* 80672DA8  90 7F 00 00 */	stw r3, 0(r31)
 /* 80672DAC  80 7F 00 00 */	lwz r3, 0(r31)
 /* 80672DB0  30 03 FF FF */	addic r0, r3, -1

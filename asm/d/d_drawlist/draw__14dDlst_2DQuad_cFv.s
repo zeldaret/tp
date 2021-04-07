@@ -46,8 +46,8 @@ lbl_80051CF0:
 /* 80051DA0  38 A0 00 05 */	li r5, 5
 /* 80051DA4  38 C0 00 0F */	li r6, 0xf
 /* 80051DA8  48 30 DE 49 */	bl GXSetBlendMode
-/* 80051DAC  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha
-/* 80051DB0  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l
+/* 80051DAC  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha /* 0x803A2FD8@ha */
+/* 80051DB0  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l /* 0x803A2FD8@l */
 /* 80051DB4  38 80 00 00 */	li r4, 0
 /* 80051DB8  48 30 E4 95 */	bl GXLoadPosMtxImm
 /* 80051DBC  38 60 00 00 */	li r3, 0
@@ -59,7 +59,7 @@ lbl_80051CF0:
 /* 80051DD4  A8 7F 00 06 */	lha r3, 6(r31)
 /* 80051DD8  A8 1F 00 04 */	lha r0, 4(r31)
 /* 80051DDC  3C A0 CC 01 */	lis r5, 0xCC01 /* 0xCC008000@ha */
-/* 80051DE0  B0 05 80 00 */	sth r0, 0x8000(r5)
+/* 80051DE0  B0 05 80 00 */	sth r0, 0x8000(r5)  /* 0xCC008000@l */
 /* 80051DE4  B0 65 80 00 */	sth r3, -0x8000(r5)
 /* 80051DE8  38 80 00 00 */	li r4, 0
 /* 80051DEC  B0 85 80 00 */	sth r4, -0x8000(r5)
@@ -78,8 +78,8 @@ lbl_80051CF0:
 /* 80051E20  B0 05 80 00 */	sth r0, -0x8000(r5)
 /* 80051E24  B0 65 80 00 */	sth r3, -0x8000(r5)
 /* 80051E28  B0 85 80 00 */	sth r4, -0x8000(r5)
-/* 80051E2C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80051E30  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80051E2C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80051E30  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80051E34  80 63 5F 50 */	lwz r3, 0x5f50(r3)
 /* 80051E38  81 83 00 00 */	lwz r12, 0(r3)
 /* 80051E3C  81 8C 00 18 */	lwz r12, 0x18(r12)

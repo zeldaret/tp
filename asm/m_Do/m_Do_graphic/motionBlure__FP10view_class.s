@@ -5,13 +5,13 @@ lbl_8000A290:
 /* 8000A29C  93 E1 00 5C */	stw r31, 0x5c(r1)
 /* 8000A2A0  93 C1 00 58 */	stw r30, 0x58(r1)
 /* 8000A2A4  7C 7E 1B 78 */	mr r30, r3
-/* 8000A2A8  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8000A2AC  3B E3 CA 54 */	addi r31, r3, g_env_light@l
+/* 8000A2A8  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8000A2AC  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8000A2B0  88 1F 12 FA */	lbz r0, 0x12fa(r31)
 /* 8000A2B4  28 00 00 00 */	cmplwi r0, 0
 /* 8000A2B8  41 82 02 14 */	beq lbl_8000A4CC
-/* 8000A2BC  3C 60 80 3E */	lis r3, mFrameBufferTexObj__13mDoGph_gInf_c@ha
-/* 8000A2C0  38 63 D3 E8 */	addi r3, r3, mFrameBufferTexObj__13mDoGph_gInf_c@l
+/* 8000A2BC  3C 60 80 3E */	lis r3, mFrameBufferTexObj__13mDoGph_gInf_c@ha /* 0x803DD3E8@ha */
+/* 8000A2C0  38 63 D3 E8 */	addi r3, r3, mFrameBufferTexObj__13mDoGph_gInf_c@l /* 0x803DD3E8@l */
 /* 8000A2C4  38 80 00 00 */	li r4, 0
 /* 8000A2C8  48 35 41 4D */	bl GXLoadTexObj
 /* 8000A2CC  88 0D 86 65 */	lbz r0, struct_80450BE4+0x1(r13)
@@ -103,12 +103,12 @@ lbl_8000A290:
 /* 8000A424  FC A0 08 90 */	fmr f5, f1
 /* 8000A428  C0 C2 80 40 */	lfs f6, lit_4105(r2)
 /* 8000A42C  48 33 CB CD */	bl C_MTXOrtho
-/* 8000A430  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha
-/* 8000A434  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l
+/* 8000A430  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha /* 0x803A2FD8@ha */
+/* 8000A434  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l /* 0x803A2FD8@l */
 /* 8000A438  38 80 00 00 */	li r4, 0
 /* 8000A43C  48 35 5E 11 */	bl GXLoadPosMtxImm
-/* 8000A440  3C 60 80 3E */	lis r3, mBlureMtx__13mDoGph_gInf_c@ha
-/* 8000A444  38 63 D4 3C */	addi r3, r3, mBlureMtx__13mDoGph_gInf_c@l
+/* 8000A440  3C 60 80 3E */	lis r3, mBlureMtx__13mDoGph_gInf_c@ha /* 0x803DD43C@ha */
+/* 8000A444  38 63 D4 3C */	addi r3, r3, mBlureMtx__13mDoGph_gInf_c@l /* 0x803DD43C@l */
 /* 8000A448  38 80 00 1E */	li r4, 0x1e
 /* 8000A44C  38 A0 00 01 */	li r5, 1
 /* 8000A450  48 35 5E D1 */	bl GXLoadTexMtxImm

@@ -24,19 +24,19 @@ lbl_802F8674:
 /* 802F869C  4E 80 04 21 */	bctrl 
 /* 802F86A0  7C 65 1B 78 */	mr r5, r3
 /* 802F86A4  38 61 00 08 */	addi r3, r1, 8
-/* 802F86A8  3C 80 80 3C */	lis r4, __vt__10JSUIosBase@ha
-/* 802F86AC  38 04 2D F8 */	addi r0, r4, __vt__10JSUIosBase@l
+/* 802F86A8  3C 80 80 3C */	lis r4, __vt__10JSUIosBase@ha /* 0x803C2DF8@ha */
+/* 802F86AC  38 04 2D F8 */	addi r0, r4, __vt__10JSUIosBase@l /* 0x803C2DF8@l */
 /* 802F86B0  90 01 00 08 */	stw r0, 8(r1)
 /* 802F86B4  38 00 00 00 */	li r0, 0
 /* 802F86B8  98 01 00 0C */	stb r0, 0xc(r1)
-/* 802F86BC  3C 80 80 3D */	lis r4, __vt__14JSUInputStream@ha
-/* 802F86C0  38 04 C4 D4 */	addi r0, r4, __vt__14JSUInputStream@l
+/* 802F86BC  3C 80 80 3D */	lis r4, __vt__14JSUInputStream@ha /* 0x803CC4D4@ha */
+/* 802F86C0  38 04 C4 D4 */	addi r0, r4, __vt__14JSUInputStream@l /* 0x803CC4D4@l */
 /* 802F86C4  90 01 00 08 */	stw r0, 8(r1)
-/* 802F86C8  3C 80 80 3D */	lis r4, __vt__20JSURandomInputStream@ha
-/* 802F86CC  38 04 C4 B0 */	addi r0, r4, __vt__20JSURandomInputStream@l
+/* 802F86C8  3C 80 80 3D */	lis r4, __vt__20JSURandomInputStream@ha /* 0x803CC4B0@ha */
+/* 802F86CC  38 04 C4 B0 */	addi r0, r4, __vt__20JSURandomInputStream@l /* 0x803CC4B0@l */
 /* 802F86D0  90 01 00 08 */	stw r0, 8(r1)
-/* 802F86D4  3C 80 80 3D */	lis r4, __vt__20JSUMemoryInputStream@ha
-/* 802F86D8  38 04 C4 F0 */	addi r0, r4, __vt__20JSUMemoryInputStream@l
+/* 802F86D4  3C 80 80 3D */	lis r4, __vt__20JSUMemoryInputStream@ha /* 0x803CC4F0@ha */
+/* 802F86D8  38 04 C4 F0 */	addi r0, r4, __vt__20JSUMemoryInputStream@l /* 0x803CC4F0@l */
 /* 802F86DC  90 01 00 08 */	stw r0, 8(r1)
 /* 802F86E0  7F 84 E3 78 */	mr r4, r28
 /* 802F86E4  4B FE 3E 3D */	bl setBuffer__20JSUMemoryInputStreamFPCvl
@@ -46,11 +46,11 @@ lbl_802F8674:
 /* 802F86F4  7F E6 FB 78 */	mr r6, r31
 /* 802F86F8  48 00 00 51 */	bl setPriority__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive
 /* 802F86FC  7C 7D 1B 78 */	mr r29, r3
-/* 802F8700  3C 60 80 3D */	lis r3, __vt__20JSUMemoryInputStream@ha
-/* 802F8704  38 03 C4 F0 */	addi r0, r3, __vt__20JSUMemoryInputStream@l
+/* 802F8700  3C 60 80 3D */	lis r3, __vt__20JSUMemoryInputStream@ha /* 0x803CC4F0@ha */
+/* 802F8704  38 03 C4 F0 */	addi r0, r3, __vt__20JSUMemoryInputStream@l /* 0x803CC4F0@l */
 /* 802F8708  90 01 00 08 */	stw r0, 8(r1)
-/* 802F870C  3C 60 80 3D */	lis r3, __vt__20JSURandomInputStream@ha
-/* 802F8710  38 03 C4 B0 */	addi r0, r3, __vt__20JSURandomInputStream@l
+/* 802F870C  3C 60 80 3D */	lis r3, __vt__20JSURandomInputStream@ha /* 0x803CC4B0@ha */
+/* 802F8710  38 03 C4 B0 */	addi r0, r3, __vt__20JSURandomInputStream@l /* 0x803CC4B0@l */
 /* 802F8714  90 01 00 08 */	stw r0, 8(r1)
 /* 802F8718  38 61 00 08 */	addi r3, r1, 8
 /* 802F871C  38 80 00 00 */	li r4, 0

@@ -3,18 +3,16 @@
 #
 
 M53_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_life_container.plf
+M53_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_life_container.lcf
+M53_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_life_container.map
 
 M53_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_life_container/executor.cpp \
-	rel/d/a/obj/d_a_obj_life_container/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_life_container/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_life_container/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_life_container/d_a_obj_life_container.cpp \
 
 M53_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_life_container/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_life_container/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_life_container/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_life_container/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_life_container/d_a_obj_life_container.o \
 
@@ -31,14 +29,21 @@ M53_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M53_LDSCRIPT) \
+	-unused -map $(M53_MAP) \
+	-w off \
 
 $(M53_TARGET): $(M53_O_FILES) $(M53_LIBS)
+	@echo [ 53] creating $(M53_TARGET)
 	@echo $(M53_LIBS) $(M53_O_FILES) > build/M53_ofiles
-	$(LD) -partial $(M53_LDFLAGS) -o $(M53_TARGET) @build/M53_ofiles
+	@python3 tools/lcf.py rel 53 --output $(M53_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M53_LDFLAGS) -o $(M53_TARGET) @build/M53_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_life_container/%.o: rel/d/a/obj/d_a_obj_life_container/%.cpp
+	@echo [ 53] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M53_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M53_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -24,8 +24,8 @@ lbl_8011BB6C:
 lbl_8011BB94:
 /* 8011BB94  7F E3 FB 78 */	mr r3, r31
 /* 8011BB98  38 80 00 08 */	li r4, 8
-/* 8011BB9C  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlPush_c0@ha
-/* 8011BBA0  38 C5 F1 24 */	addi r6, r5, m__20daAlinkHIO_wlPush_c0@l
+/* 8011BB9C  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlPush_c0@ha /* 0x8038F124@ha */
+/* 8011BBA0  38 C5 F1 24 */	addi r6, r5, m__20daAlinkHIO_wlPush_c0@l /* 0x8038F124@l */
 /* 8011BBA4  C0 26 00 08 */	lfs f1, 8(r6)
 /* 8011BBA8  C0 42 92 C0 */	lfs f2, lit_6108(r2)
 /* 8011BBAC  38 A0 00 18 */	li r5, 0x18
@@ -43,8 +43,8 @@ lbl_8011BBBC:
 lbl_8011BBD8:
 /* 8011BBD8  7F E3 FB 78 */	mr r3, r31
 /* 8011BBDC  38 80 00 37 */	li r4, 0x37
-/* 8011BBE0  3C A0 80 39 */	lis r5, m__22daAlinkHIO_pushpull_c0@ha
-/* 8011BBE4  38 A5 E2 10 */	addi r5, r5, m__22daAlinkHIO_pushpull_c0@l
+/* 8011BBE0  3C A0 80 39 */	lis r5, m__22daAlinkHIO_pushpull_c0@ha /* 0x8038E210@ha */
+/* 8011BBE4  38 A5 E2 10 */	addi r5, r5, m__22daAlinkHIO_pushpull_c0@l /* 0x8038E210@l */
 /* 8011BBE8  C0 25 00 18 */	lfs f1, 0x18(r5)
 /* 8011BBEC  C0 45 00 1C */	lfs f2, 0x1c(r5)
 /* 8011BBF0  4B F9 13 F1 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff

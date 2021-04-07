@@ -13,23 +13,23 @@ lbl_8054C1B0:
 /* 8054C1DC  38 80 00 00 */	li r4, 0
 /* 8054C1E0  38 A0 FF FF */	li r5, -1
 /* 8054C1E4  38 C0 FF FF */	li r6, -1
-/* 8054C1E8  4B BF E8 E8 */	b setDamage__8daNpcT_cFiii
+/* 8054C1E8  4B BF E8 E9 */	bl setDamage__8daNpcT_cFiii
 /* 8054C1EC  38 00 00 00 */	li r0, 0
 /* 8054C1F0  90 1F 0D B8 */	stw r0, 0xdb8(r31)
 lbl_8054C1F4:
 /* 8054C1F4  38 7F 13 4C */	addi r3, r31, 0x134c
-/* 8054C1F8  4B E1 5E 20 */	b __ptmf_test
+/* 8054C1F8  4B E1 5E 21 */	bl __ptmf_test
 /* 8054C1FC  2C 03 00 00 */	cmpwi r3, 0
 /* 8054C200  41 82 00 54 */	beq lbl_8054C254
 /* 8054C204  38 7F 13 58 */	addi r3, r31, 0x1358
 /* 8054C208  38 9F 13 4C */	addi r4, r31, 0x134c
-/* 8054C20C  4B E1 5E 3C */	b __ptmf_cmpr
+/* 8054C20C  4B E1 5E 3D */	bl __ptmf_cmpr
 /* 8054C210  2C 03 00 00 */	cmpwi r3, 0
 /* 8054C214  40 82 00 1C */	bne lbl_8054C230
 /* 8054C218  7F E3 FB 78 */	mr r3, r31
 /* 8054C21C  38 80 00 00 */	li r4, 0
 /* 8054C220  39 9F 13 58 */	addi r12, r31, 0x1358
-/* 8054C224  4B E1 5E 60 */	b __ptmf_scall
+/* 8054C224  4B E1 5E 61 */	bl __ptmf_scall
 /* 8054C228  60 00 00 00 */	nop 
 /* 8054C22C  48 00 00 28 */	b lbl_8054C254
 lbl_8054C230:

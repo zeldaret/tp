@@ -7,8 +7,8 @@ lbl_8001645C:
 /* 80016470  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80016474  7C 9F 23 78 */	mr r31, r4
 /* 80016478  41 82 00 28 */	beq lbl_800164A0
-/* 8001647C  3C 80 80 3A */	lis r4, __vt__21mDoDvdThd_toMainRam_c@ha
-/* 80016480  38 04 34 A8 */	addi r0, r4, __vt__21mDoDvdThd_toMainRam_c@l
+/* 8001647C  3C 80 80 3A */	lis r4, __vt__21mDoDvdThd_toMainRam_c@ha /* 0x803A34A8@ha */
+/* 80016480  38 04 34 A8 */	addi r0, r4, __vt__21mDoDvdThd_toMainRam_c@l /* 0x803A34A8@l */
 /* 80016484  90 1E 00 10 */	stw r0, 0x10(r30)
 /* 80016488  38 80 00 00 */	li r4, 0
 /* 8001648C  4B FF F4 71 */	bl __dt__19mDoDvdThd_command_cFv

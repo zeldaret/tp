@@ -297,8 +297,6 @@ struct Z2AudioMgr {
 // Forward References:
 //
 
-static void dSv_item_rename(u8);
-
 extern "C" static void dSv_item_rename__FUc();
 extern "C" void init__21dSv_player_status_a_cFv();
 extern "C" void setSelectItemIndex__21dSv_player_status_a_cFiUc();
@@ -461,19 +459,10 @@ extern "C" void card_to_memory__10dSv_info_cFPci();
 extern "C" void initdata_to_card__10dSv_info_cFPci();
 extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" extern char const* const d_save_d_save__stringBase0;
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 
 //
 // External References:
 //
-
-void dComIfGs_setSelectItemIndex(int, u8);
-void dComIfGs_setMixItemIndex(int, u8);
-void dComIfGs_getMixItemIndex(int);
-void dComIfGp_setSelectItem(int);
-s32 dComIfGs_getBottleMax();
-void dComIfGs_setKeyNum(int, u8);
-void setInitEventBit();
 
 SECTION_INIT void memcpy();
 extern "C" void OSReport_Error();
@@ -520,17 +509,17 @@ extern "C" extern u8 sRumbleSupported__10JUTGamePad[4];
 // Declarations:
 //
 
-/* 80032918-80032958 0040+00 s=4 e=0 z=0  None .text      dSv_item_rename__FUc */
+/* 80032918-80032958 02D258 0040+00 4/4 0/0 0/0 .text            dSv_item_rename__FUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dSv_item_rename(u8 param_0) {
+static asm void dSv_item_rename(u8 param_0) {
     nofralloc
 #include "asm/d/save/d_save/dSv_item_rename__FUc.s"
 }
 #pragma pop
 
-/* 80032958-80032A48 00F0+00 s=1 e=0 z=0  None .text      init__21dSv_player_status_a_cFv */
+/* 80032958-80032A48 02D298 00F0+00 1/1 0/0 0/0 .text            init__21dSv_player_status_a_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -540,7 +529,7 @@ asm void dSv_player_status_a_c::init() {
 }
 #pragma pop
 
-/* 80032A48-80032A5C 0014+00 s=0 e=1 z=0  None .text
+/* 80032A48-80032A5C 02D388 0014+00 0/0 1/1 0/0 .text
  * setSelectItemIndex__21dSv_player_status_a_cFiUc              */
 #pragma push
 #pragma optimization_level 0
@@ -551,7 +540,7 @@ asm void dSv_player_status_a_c::setSelectItemIndex(int param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 80032A5C-80032A78 001C+00 s=7 e=20 z=0  None .text
+/* 80032A5C-80032A78 02D39C 001C+00 7/7 20/20 0/0 .text
  * getSelectItemIndex__21dSv_player_status_a_cCFi               */
 #pragma push
 #pragma optimization_level 0
@@ -562,7 +551,7 @@ asm void dSv_player_status_a_c::getSelectItemIndex(int param_0) const {
 }
 #pragma pop
 
-/* 80032A78-80032A8C 0014+00 s=0 e=1 z=0  None .text setMixItemIndex__21dSv_player_status_a_cFiUc
+/* 80032A78-80032A8C 02D3B8 0014+00 0/0 1/1 0/0 .text setMixItemIndex__21dSv_player_status_a_cFiUc
  */
 #pragma push
 #pragma optimization_level 0
@@ -573,7 +562,7 @@ asm void dSv_player_status_a_c::setMixItemIndex(int param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 80032A8C-80032AA8 001C+00 s=0 e=1 z=0  None .text getMixItemIndex__21dSv_player_status_a_cCFi
+/* 80032A8C-80032AA8 02D3CC 001C+00 0/0 1/1 0/0 .text getMixItemIndex__21dSv_player_status_a_cCFi
  */
 #pragma push
 #pragma optimization_level 0
@@ -584,7 +573,7 @@ asm void dSv_player_status_a_c::getMixItemIndex(int param_0) const {
 }
 #pragma pop
 
-/* 80032AA8-80032AF8 0050+00 s=0 e=4 z=0  None .text      getRupeeMax__21dSv_player_status_a_cCFv */
+/* 80032AA8-80032AF8 02D3E8 0050+00 0/0 4/4 0/0 .text getRupeeMax__21dSv_player_status_a_cCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -594,8 +583,7 @@ asm void dSv_player_status_a_c::getRupeeMax() const {
 }
 #pragma pop
 
-/* 80032AF8-80032B50 0058+00 s=0 e=1 z=0  None .text      isMagicFlag__21dSv_player_status_a_cCFUc
- */
+/* 80032AF8-80032B50 02D438 0058+00 0/0 1/1 0/0 .text isMagicFlag__21dSv_player_status_a_cCFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -606,10 +594,10 @@ asm void dSv_player_status_a_c::isMagicFlag(u8 param_0) const {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451D58-80451D5C 0004+00 s=1 e=0 z=0  None .sdata2    @3775 */
+/* 80451D58-80451D5C 000358 0004+00 1/1 0/0 0/0 .sdata2          @3775 */
 SECTION_SDATA2 static f32 lit_3775 = 255.0f;
 
-/* 80032B50-80032B94 0044+00 s=1 e=0 z=0  None .text      init__21dSv_player_status_b_cFv */
+/* 80032B50-80032B94 02D490 0044+00 1/1 0/0 0/0 .text            init__21dSv_player_status_b_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -619,8 +607,7 @@ asm void dSv_player_status_b_c::init() {
 }
 #pragma pop
 
-/* 80032B94-80032BB0 001C+00 s=0 e=1 z=0  None .text      onDarkClearLV__21dSv_player_status_b_cFi
- */
+/* 80032B94-80032BB0 02D4D4 001C+00 0/0 1/1 0/0 .text onDarkClearLV__21dSv_player_status_b_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -630,8 +617,7 @@ asm void dSv_player_status_b_c::onDarkClearLV(int param_0) {
 }
 #pragma pop
 
-/* 80032BB0-80032BD0 0020+00 s=0 e=4 z=8  None .text      isDarkClearLV__21dSv_player_status_b_cCFi
- */
+/* 80032BB0-80032BD0 02D4F0 0020+00 0/0 4/4 8/8 .text isDarkClearLV__21dSv_player_status_b_cCFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -641,8 +627,7 @@ asm void dSv_player_status_b_c::isDarkClearLV(int param_0) const {
 }
 #pragma pop
 
-/* 80032BD0-80032BEC 001C+00 s=0 e=1 z=0  None .text      onTransformLV__21dSv_player_status_b_cFi
- */
+/* 80032BD0-80032BEC 02D510 001C+00 0/0 1/1 0/0 .text onTransformLV__21dSv_player_status_b_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -652,8 +637,7 @@ asm void dSv_player_status_b_c::onTransformLV(int param_0) {
 }
 #pragma pop
 
-/* 80032BEC-80032C0C 0020+00 s=0 e=8 z=9  None .text      isTransformLV__21dSv_player_status_b_cCFi
- */
+/* 80032BEC-80032C0C 02D52C 0020+00 0/0 8/8 9/9 .text isTransformLV__21dSv_player_status_b_cCFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -664,399 +648,7 @@ asm void dSv_player_status_b_c::isTransformLV(int param_0) const {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803790C0-80379234 0172+02 s=0 e=17 z=7  None .rodata    tempBitLabels__20dSv_event_tmp_flag_c */
-SECTION_RODATA u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */] = {
-    0xFF,
-    0xFF,
-    0xFF,
-    0xFF,
-    0xFF,
-    0x0F,
-    0xFE,
-    0xFF,
-    0x00,
-    0x40,
-    0xFD,
-    0xFF,
-    0xFC,
-    0xFF,
-    0x00,
-    0x20,
-    0x00,
-    0x80,
-    0x00,
-    0x10,
-    0x00,
-    0x08,
-    0x00,
-    0x04,
-    0x00,
-    0x02,
-    0x00,
-    0x01,
-    0x01,
-    0x80,
-    0x01,
-    0x40,
-    0x01,
-    0x20,
-    0x01,
-    0x10,
-    0x01,
-    0x08,
-    0x01,
-    0x04,
-    0x01,
-    0x02,
-    0x01,
-    0x01,
-    0x02,
-    0x80,
-    0x02,
-    0x40,
-    0x02,
-    0x20,
-    0x02,
-    0x10,
-    0x02,
-    0x08,
-    0x02,
-    0x04,
-    0x02,
-    0x02,
-    0x02,
-    0x01,
-    0x03,
-    0x80,
-    0x03,
-    0x40,
-    0x03,
-    0x20,
-    0x03,
-    0x10,
-    0xFB,
-    0xFF,
-    0x03,
-    0x08,
-    0x03,
-    0x04,
-    0x03,
-    0x02,
-    0x03,
-    0x01,
-    0x04,
-    0x80,
-    0x04,
-    0x40,
-    0x04,
-    0x20,
-    0x04,
-    0x10,
-    0x04,
-    0x08,
-    0x04,
-    0x04,
-    0x04,
-    0x02,
-    0x04,
-    0x01,
-    0x05,
-    0x80,
-    0x05,
-    0x40,
-    0x05,
-    0x20,
-    0x05,
-    0x10,
-    0x05,
-    0x08,
-    0x05,
-    0x04,
-    0x05,
-    0x02,
-    0x05,
-    0x01,
-    0x06,
-    0x80,
-    0x06,
-    0x40,
-    0x06,
-    0x20,
-    0x06,
-    0x10,
-    0x06,
-    0x08,
-    0x06,
-    0x04,
-    0x06,
-    0x02,
-    0x06,
-    0x01,
-    0x07,
-    0x80,
-    0x07,
-    0x40,
-    0x07,
-    0x20,
-    0x07,
-    0x10,
-    0x07,
-    0x08,
-    0x07,
-    0x04,
-    0x07,
-    0x02,
-    0x07,
-    0x01,
-    0x08,
-    0x80,
-    0x08,
-    0x40,
-    0x08,
-    0x20,
-    0x08,
-    0x10,
-    0x08,
-    0x08,
-    0x08,
-    0x04,
-    0x08,
-    0x02,
-    0x08,
-    0x01,
-    0x09,
-    0x80,
-    0x09,
-    0x40,
-    0x09,
-    0x20,
-    0x09,
-    0x10,
-    0x09,
-    0x08,
-    0x09,
-    0x04,
-    0x09,
-    0x02,
-    0x09,
-    0x01,
-    0x0A,
-    0x80,
-    0x0A,
-    0x40,
-    0x0A,
-    0x20,
-    0x0A,
-    0x10,
-    0x0A,
-    0x08,
-    0x0A,
-    0x04,
-    0x0A,
-    0x02,
-    0x0A,
-    0x01,
-    0x0B,
-    0x80,
-    0x0B,
-    0x40,
-    0x0B,
-    0x20,
-    0x0B,
-    0x10,
-    0x0B,
-    0x08,
-    0x0B,
-    0x04,
-    0xFA,
-    0xFF,
-    0xF9,
-    0xFF,
-    0xF8,
-    0xFF,
-    0xF7,
-    0xFF,
-    0xF6,
-    0xFF,
-    0xF5,
-    0xFF,
-    0x0B,
-    0x02,
-    0x0B,
-    0x01,
-    0x0C,
-    0x80,
-    0x0C,
-    0x40,
-    0x0C,
-    0x20,
-    0x0C,
-    0x10,
-    0x0C,
-    0x08,
-    0xF4,
-    0xFF,
-    0xF3,
-    0xFF,
-    0x0C,
-    0x04,
-    0x0C,
-    0x02,
-    0x0C,
-    0x01,
-    0x0D,
-    0x80,
-    0x0D,
-    0x40,
-    0x0D,
-    0x20,
-    0x0D,
-    0x10,
-    0x0D,
-    0x08,
-    0x0D,
-    0x04,
-    0x0D,
-    0x02,
-    0x0D,
-    0x01,
-    0x0E,
-    0x80,
-    0x0E,
-    0x40,
-    0x0E,
-    0x20,
-    0x0E,
-    0x10,
-    0x0E,
-    0x08,
-    0x0E,
-    0x04,
-    0x0E,
-    0x02,
-    0x0E,
-    0x01,
-    0x0F,
-    0x80,
-    0x0F,
-    0x40,
-    0x0F,
-    0x20,
-    0x0F,
-    0x10,
-    0x0F,
-    0x08,
-    0x0F,
-    0x04,
-    0x0F,
-    0x02,
-    0x0F,
-    0x01,
-    0x10,
-    0x80,
-    0x10,
-    0x40,
-    0x10,
-    0x20,
-    0x10,
-    0x10,
-    0x10,
-    0x08,
-    0x10,
-    0x04,
-    0x10,
-    0x02,
-    0x10,
-    0x01,
-    0x11,
-    0x80,
-    0x11,
-    0x40,
-    0x11,
-    0x20,
-    0x11,
-    0x10,
-    0x11,
-    0x08,
-    0x11,
-    0x04,
-    0x11,
-    0x02,
-    0x11,
-    0x01,
-    0x12,
-    0x80,
-    0x12,
-    0x40,
-    0x12,
-    0x20,
-    0x12,
-    0x10,
-    0x12,
-    0x08,
-    0x12,
-    0x04,
-    0x12,
-    0x02,
-    0x12,
-    0x01,
-    0x13,
-    0x80,
-    0x13,
-    0x40,
-    0x13,
-    0x20,
-    0x13,
-    0x10,
-    0x13,
-    0x08,
-    0x13,
-    0x04,
-    0x13,
-    0x02,
-    0x13,
-    0x01,
-    0x14,
-    0x80,
-    0x14,
-    0x40,
-    0x14,
-    0x20,
-    0x14,
-    0x10,
-    0x14,
-    0x08,
-    0x14,
-    0x04,
-    0x14,
-    0x02,
-    0x14,
-    0x01,
-    0x15,
-    0x80,
-    0xF2,
-    0xFF,
-    /* padding */
-    0x00,
-    0x00,
-};
-
-/* 80379234-80379298 0062+02 s=8 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80379234 = "";
-SECTION_DEAD char const* const stringBase_80379235 = "F_SP108";
-SECTION_DEAD char const* const stringBase_8037923D = "合成アイテム不定＝＝＝＞%d, %d\n";
-SECTION_DEAD char const* const stringBase_8037925D = "Write size:%d\n";
-SECTION_DEAD char const* const stringBase_8037926C = "SAVE size:%d\n";
-SECTION_DEAD char const* const stringBase_8037927A = "LOAD size:%d\n";
-SECTION_DEAD char const* const stringBase_80379288 = "INIT size:%d\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80379296 = "\0";
-#pragma pop
-
-/* 80451D5C-80451D60 0004+00 s=3 e=0 z=0  None .sdata2    @3813 */
+/* 80451D5C-80451D60 00035C 0004+00 3/3 0/0 0/0 .sdata2          @3813 */
 SECTION_SDATA2 static u8 lit_3813[4] = {
     0x00,
     0x00,
@@ -1064,7 +656,7 @@ SECTION_SDATA2 static u8 lit_3813[4] = {
     0x00,
 };
 
-/* 80032C0C-80032C64 0058+00 s=1 e=0 z=0  None .text      init__17dSv_horse_place_cFv */
+/* 80032C0C-80032C64 02D54C 0058+00 1/1 0/0 0/0 .text            init__17dSv_horse_place_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1074,7 +666,7 @@ asm void dSv_horse_place_c::init() {
 }
 #pragma pop
 
-/* 80032C64-80032CC8 0064+00 s=0 e=0 z=1  None .text      set__17dSv_horse_place_cFPCcRC4cXyzsSc */
+/* 80032C64-80032CC8 02D5A4 0064+00 0/0 0/0 1/1 .text set__17dSv_horse_place_cFPCcRC4cXyzsSc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1084,7 +676,8 @@ asm void dSv_horse_place_c::set(char const* param_0, cXyz const& param_1, s16 pa
 }
 #pragma pop
 
-/* 80032CC8-80032D1C 0054+00 s=1 e=0 z=0  None .text      init__25dSv_player_return_place_cFv */
+/* 80032CC8-80032D1C 02D608 0054+00 1/1 0/0 0/0 .text            init__25dSv_player_return_place_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1094,8 +687,7 @@ asm void dSv_player_return_place_c::init() {
 }
 #pragma pop
 
-/* 80032D1C-80032D60 0044+00 s=0 e=0 z=1  None .text      set__25dSv_player_return_place_cFPCcScUc
- */
+/* 80032D1C-80032D60 02D65C 0044+00 0/0 0/0 1/1 .text set__25dSv_player_return_place_cFPCcScUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1105,7 +697,7 @@ asm void dSv_player_return_place_c::set(char const* param_0, s8 param_1, u8 para
 }
 #pragma pop
 
-/* 80032D60-80032DE0 0080+00 s=1 e=0 z=0  None .text init__33dSv_player_field_last_stay_info_cFv
+/* 80032D60-80032DE0 02D6A0 0080+00 1/1 0/0 0/0 .text init__33dSv_player_field_last_stay_info_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -1116,7 +708,7 @@ asm void dSv_player_field_last_stay_info_c::init() {
 }
 #pragma pop
 
-/* 80032DE0-80032E4C 006C+00 s=0 e=2 z=0  None .text
+/* 80032DE0-80032E4C 02D720 006C+00 0/0 2/2 0/0 .text
  * set__33dSv_player_field_last_stay_info_cFPCcRC4cXyzsScUc     */
 #pragma push
 #pragma optimization_level 0
@@ -1128,7 +720,7 @@ asm void dSv_player_field_last_stay_info_c::set(char const* param_0, cXyz const&
 }
 #pragma pop
 
-/* 80032E4C-80032E78 002C+00 s=0 e=1 z=0  None .text
+/* 80032E4C-80032E78 02D78C 002C+00 0/0 1/1 0/0 .text
  * onRegionBit__33dSv_player_field_last_stay_info_cFi           */
 #pragma push
 #pragma optimization_level 0
@@ -1139,7 +731,7 @@ asm void dSv_player_field_last_stay_info_c::onRegionBit(int param_0) {
 }
 #pragma pop
 
-/* 80032E78-80032EB0 0038+00 s=0 e=2 z=0  None .text
+/* 80032E78-80032EB0 02D7B8 0038+00 0/0 2/2 0/0 .text
  * isRegionBit__33dSv_player_field_last_stay_info_cCFi          */
 #pragma push
 #pragma optimization_level 0
@@ -1150,7 +742,7 @@ asm void dSv_player_field_last_stay_info_c::isRegionBit(int param_0) const {
 }
 #pragma pop
 
-/* 80032EB0-80032F2C 007C+00 s=1 e=0 z=0  None .text      init__27dSv_player_last_mark_info_cFv */
+/* 80032EB0-80032F2C 02D7F0 007C+00 1/1 0/0 0/0 .text init__27dSv_player_last_mark_info_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1160,7 +752,7 @@ asm void dSv_player_last_mark_info_c::init() {
 }
 #pragma pop
 
-/* 80032F2C-80032F90 0064+00 s=0 e=1 z=0  None .text
+/* 80032F2C-80032F90 02D86C 0064+00 0/0 1/1 0/0 .text
  * setWarpItemData__27dSv_player_last_mark_info_cFPCcRC4cXyzsScUcUc */
 #pragma push
 #pragma optimization_level 0
@@ -1173,7 +765,7 @@ asm void dSv_player_last_mark_info_c::setWarpItemData(char const* param_0, cXyz 
 }
 #pragma pop
 
-/* 80032F90-80032FB8 0028+00 s=1 e=0 z=0  None .text      init__17dSv_player_item_cFv */
+/* 80032F90-80032FB8 02D8D0 0028+00 1/1 0/0 0/0 .text            init__17dSv_player_item_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1183,7 +775,7 @@ asm void dSv_player_item_c::init() {
 }
 #pragma pop
 
-/* 80032FB8-80033030 0078+00 s=11 e=45 z=2  None .text      setItem__17dSv_player_item_cFiUc */
+/* 80032FB8-80033030 02D8F8 0078+00 11/11 45/45 2/2 .text setItem__17dSv_player_item_cFiUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1193,7 +785,8 @@ asm void dSv_player_item_c::setItem(int param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 80033030-800332F8 02C8+00 s=7 e=70 z=2  None .text      getItem__17dSv_player_item_cCFib */
+/* 80033030-800332F8 02D970 02C8+00 7/7 70/70 2/2 .text            getItem__17dSv_player_item_cCFib
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1204,7 +797,7 @@ asm void dSv_player_item_c::getItem(int param_0, bool param_1) const {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A7270-803A7288 0017+01 s=1 e=0 z=0  None .data      i_item_lst$4006 */
+/* 803A7270-803A7288 004390 0017+01 1/1 0/0 0/0 .data            i_item_lst$4006 */
 SECTION_DATA static u8 i_item_lst[23 + 1 /* padding */] = {
     0x0A,
     0x08,
@@ -1233,7 +826,7 @@ SECTION_DATA static u8 i_item_lst[23 + 1 /* padding */] = {
     0x00,
 };
 
-/* 800332F8-80033354 005C+00 s=2 e=0 z=0  None .text      setLineUpItem__17dSv_player_item_cFv */
+/* 800332F8-80033354 02DC38 005C+00 2/2 0/0 0/0 .text setLineUpItem__17dSv_player_item_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1243,7 +836,7 @@ asm void dSv_player_item_c::setLineUpItem() {
 }
 #pragma pop
 
-/* 80033354-80033370 001C+00 s=0 e=2 z=0  None .text      getLineUpItem__17dSv_player_item_cCFi */
+/* 80033354-80033370 02DC94 001C+00 0/0 2/2 0/0 .text getLineUpItem__17dSv_player_item_cCFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1253,8 +846,7 @@ asm void dSv_player_item_c::getLineUpItem(int param_0) const {
 }
 #pragma pop
 
-/* 80033370-80033450 00E0+00 s=1 e=2 z=0  None .text      setBottleItemIn__17dSv_player_item_cFUcUc
- */
+/* 80033370-80033450 02DCB0 00E0+00 1/1 2/2 0/0 .text setBottleItemIn__17dSv_player_item_cFUcUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1264,8 +856,8 @@ asm void dSv_player_item_c::setBottleItemIn(u8 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 80033450-80033494 0044+00 s=0 e=26 z=0  None .text setEmptyBottleItemIn__17dSv_player_item_cFUc
- */
+/* 80033450-80033494 02DD90 0044+00 0/0 26/26 0/0 .text
+ * setEmptyBottleItemIn__17dSv_player_item_cFUc                 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1275,7 +867,7 @@ asm void dSv_player_item_c::setEmptyBottleItemIn(u8 param_0) {
 }
 #pragma pop
 
-/* 80033494-80033514 0080+00 s=0 e=1 z=1  None .text      setEmptyBottle__17dSv_player_item_cFv */
+/* 80033494-80033514 02DDD4 0080+00 0/0 1/1 1/1 .text setEmptyBottle__17dSv_player_item_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1285,7 +877,7 @@ asm void dSv_player_item_c::setEmptyBottle() {
 }
 #pragma pop
 
-/* 80033514-80033598 0084+00 s=0 e=3 z=0  None .text      setEmptyBottle__17dSv_player_item_cFUc */
+/* 80033514-80033598 02DE54 0084+00 0/0 3/3 0/0 .text setEmptyBottle__17dSv_player_item_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1295,7 +887,7 @@ asm void dSv_player_item_c::setEmptyBottle(u8 param_0) {
 }
 #pragma pop
 
-/* 80033598-800336BC 0124+00 s=1 e=3 z=0  None .text
+/* 80033598-800336BC 02DED8 0124+00 1/1 3/3 0/0 .text
  * setEquipBottleItemIn__17dSv_player_item_cFUcUc               */
 #pragma push
 #pragma optimization_level 0
@@ -1306,7 +898,7 @@ asm void dSv_player_item_c::setEquipBottleItemIn(u8 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 800336BC-800336E0 0024+00 s=0 e=4 z=0  None .text
+/* 800336BC-800336E0 02DFFC 0024+00 0/0 4/4 0/0 .text
  * setEquipBottleItemEmpty__17dSv_player_item_cFUc              */
 #pragma push
 #pragma optimization_level 0
@@ -1317,7 +909,7 @@ asm void dSv_player_item_c::setEquipBottleItemEmpty(u8 param_0) {
 }
 #pragma pop
 
-/* 800336E0-80033754 0074+00 s=0 e=30 z=0  None .text      checkBottle__17dSv_player_item_cFUc */
+/* 800336E0-80033754 02E020 0074+00 0/0 30/30 0/0 .text checkBottle__17dSv_player_item_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1328,8 +920,8 @@ asm void dSv_player_item_c::checkBottle(u8 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A7288-803A78F8 066C+04 s=2 e=45 z=148  None .data      saveBitLabels__16dSv_event_flag_c */
-SECTION_DATA u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */] = {
+/* 803A7288-803A78F8 0043A8 066C+04 2/2 45/45 148/148 .data saveBitLabels__16dSv_event_flag_c */
+SECTION_DATA extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */] = {
     0xFF,
     0xFF,
     0x00,
@@ -2981,8 +2573,7 @@ SECTION_DATA u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */] = {
     0x00,
 };
 
-/* 80033754-800337EC 0098+00 s=0 e=1 z=0  None .text      checkInsectBottle__17dSv_player_item_cFv
- */
+/* 80033754-800337EC 02E094 0098+00 0/0 1/1 0/0 .text checkInsectBottle__17dSv_player_item_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2992,7 +2583,7 @@ asm void dSv_player_item_c::checkInsectBottle() {
 }
 #pragma pop
 
-/* 800337EC-80033828 003C+00 s=0 e=1 z=1  None .text      checkEmptyBottle__17dSv_player_item_cFv */
+/* 800337EC-80033828 02E12C 003C+00 0/0 1/1 1/1 .text checkEmptyBottle__17dSv_player_item_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3002,7 +2593,7 @@ asm void dSv_player_item_c::checkEmptyBottle() {
 }
 #pragma pop
 
-/* 80033828-80033910 00E8+00 s=1 e=0 z=0  None .text setBombBagItemIn__17dSv_player_item_cFUcUcb
+/* 80033828-80033910 02E168 00E8+00 1/1 0/0 0/0 .text setBombBagItemIn__17dSv_player_item_cFUcUcb
  */
 #pragma push
 #pragma optimization_level 0
@@ -3013,8 +2604,8 @@ asm void dSv_player_item_c::setBombBagItemIn(u8 param_0, u8 param_1, bool param_
 }
 #pragma pop
 
-/* 80033910-80033A20 0110+00 s=1 e=0 z=0  None .text setBombBagItemIn__17dSv_player_item_cFUcUcUcb
- */
+/* 80033910-80033A20 02E250 0110+00 1/1 0/0 0/0 .text
+ * setBombBagItemIn__17dSv_player_item_cFUcUcUcb                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3024,7 +2615,7 @@ asm void dSv_player_item_c::setBombBagItemIn(u8 param_0, u8 param_1, u8 param_2,
 }
 #pragma pop
 
-/* 80033A20-80033A50 0030+00 s=0 e=2 z=0  None .text
+/* 80033A20-80033A50 02E360 0030+00 0/0 2/2 0/0 .text
  * setEmptyBombBagItemIn__17dSv_player_item_cFUcb               */
 #pragma push
 #pragma optimization_level 0
@@ -3035,7 +2626,7 @@ asm void dSv_player_item_c::setEmptyBombBagItemIn(u8 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80033A50-80033A88 0038+00 s=0 e=1 z=1  None .text
+/* 80033A50-80033A88 02E390 0038+00 0/0 1/1 1/1 .text
  * setEmptyBombBagItemIn__17dSv_player_item_cFUcUcb             */
 #pragma push
 #pragma optimization_level 0
@@ -3046,7 +2637,7 @@ asm void dSv_player_item_c::setEmptyBombBagItemIn(u8 param_0, u8 param_1, bool p
 }
 #pragma pop
 
-/* 80033A88-80033B08 0080+00 s=0 e=2 z=0  None .text      setEmptyBombBag__17dSv_player_item_cFv */
+/* 80033A88-80033B08 02E3C8 0080+00 0/0 2/2 0/0 .text setEmptyBombBag__17dSv_player_item_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3056,8 +2647,7 @@ asm void dSv_player_item_c::setEmptyBombBag() {
 }
 #pragma pop
 
-/* 80033B08-80033BEC 00E4+00 s=0 e=3 z=0  None .text      setEmptyBombBag__17dSv_player_item_cFUcUc
- */
+/* 80033B08-80033BEC 02E448 00E4+00 0/0 3/3 0/0 .text setEmptyBombBag__17dSv_player_item_cFUcUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3067,7 +2657,7 @@ asm void dSv_player_item_c::setEmptyBombBag(u8 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 80033BEC-80033C2C 0040+00 s=0 e=1 z=0  None .text      checkBombBag__17dSv_player_item_cFUc */
+/* 80033BEC-80033C2C 02E52C 0040+00 0/0 1/1 0/0 .text checkBombBag__17dSv_player_item_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3077,8 +2667,7 @@ asm void dSv_player_item_c::checkBombBag(u8 param_0) {
 }
 #pragma pop
 
-/* 80033C2C-80033CBC 0090+00 s=0 e=2 z=1  None .text      setWarashibeItem__17dSv_player_item_cFUc
- */
+/* 80033C2C-80033CBC 02E56C 0090+00 0/0 2/2 1/1 .text setWarashibeItem__17dSv_player_item_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3088,8 +2677,7 @@ asm void dSv_player_item_c::setWarashibeItem(u8 param_0) {
 }
 #pragma pop
 
-/* 80033CBC-80033D40 0084+00 s=0 e=1 z=0  None .text      setRodTypeLevelUp__17dSv_player_item_cFv
- */
+/* 80033CBC-80033D40 02E5FC 0084+00 0/0 1/1 0/0 .text setRodTypeLevelUp__17dSv_player_item_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3099,7 +2687,8 @@ asm void dSv_player_item_c::setRodTypeLevelUp() {
 }
 #pragma pop
 
-/* 80033D40-80033E40 0100+00 s=0 e=2 z=0  None .text      setBaitItem__17dSv_player_item_cFUc */
+/* 80033D40-80033E40 02E680 0100+00 0/0 2/2 0/0 .text            setBaitItem__17dSv_player_item_cFUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3109,7 +2698,7 @@ asm void dSv_player_item_c::setBaitItem(u8 param_0) {
 }
 #pragma pop
 
-/* 80033E40-80033E60 0020+00 s=1 e=0 z=0  None .text      init__21dSv_player_get_item_cFv */
+/* 80033E40-80033E60 02E780 0020+00 1/1 0/0 0/0 .text            init__21dSv_player_get_item_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3119,7 +2708,7 @@ asm void dSv_player_get_item_c::init() {
 }
 #pragma pop
 
-/* 80033E60-80033E94 0034+00 s=0 e=3 z=1  None .text      onFirstBit__21dSv_player_get_item_cFUc */
+/* 80033E60-80033E94 02E7A0 0034+00 0/0 3/3 1/1 .text onFirstBit__21dSv_player_get_item_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3129,7 +2718,7 @@ asm void dSv_player_get_item_c::onFirstBit(u8 param_0) {
 }
 #pragma pop
 
-/* 80033E94-80033EC8 0034+00 s=0 e=7 z=1  None .text      offFirstBit__21dSv_player_get_item_cFUc */
+/* 80033E94-80033EC8 02E7D4 0034+00 0/0 7/7 1/1 .text offFirstBit__21dSv_player_get_item_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3139,8 +2728,7 @@ asm void dSv_player_get_item_c::offFirstBit(u8 param_0) {
 }
 #pragma pop
 
-/* 80033EC8-80033F00 0038+00 s=4 e=87 z=2  None .text      isFirstBit__21dSv_player_get_item_cCFUc
- */
+/* 80033EC8-80033F00 02E808 0038+00 4/4 87/87 2/2 .text isFirstBit__21dSv_player_get_item_cCFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3150,7 +2738,8 @@ asm void dSv_player_get_item_c::isFirstBit(u8 param_0) const {
 }
 #pragma pop
 
-/* 80033F00-80033F6C 006C+00 s=1 e=0 z=0  None .text      init__24dSv_player_item_record_cFv */
+/* 80033F00-80033F6C 02E840 006C+00 1/1 0/0 0/0 .text            init__24dSv_player_item_record_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3160,7 +2749,7 @@ asm void dSv_player_item_record_c::init() {
 }
 #pragma pop
 
-/* 80033F6C-80033F7C 0010+00 s=3 e=5 z=0  None .text setBombNum__24dSv_player_item_record_cFUcUc
+/* 80033F6C-80033F7C 02E8AC 0010+00 3/3 5/5 0/0 .text setBombNum__24dSv_player_item_record_cFUcUc
  */
 #pragma push
 #pragma optimization_level 0
@@ -3171,7 +2760,7 @@ asm void dSv_player_item_record_c::setBombNum(u8 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 80033F7C-80033F8C 0010+00 s=0 e=13 z=2  None .text getBombNum__24dSv_player_item_record_cCFUc
+/* 80033F7C-80033F8C 02E8BC 0010+00 0/0 13/13 2/2 .text getBombNum__24dSv_player_item_record_cCFUc
  */
 #pragma push
 #pragma optimization_level 0
@@ -3182,8 +2771,8 @@ asm void dSv_player_item_record_c::getBombNum(u8 param_0) const {
 }
 #pragma pop
 
-/* 80033F8C-80033F9C 0010+00 s=0 e=2 z=0  None .text setBottleNum__24dSv_player_item_record_cFUcUc
- */
+/* 80033F8C-80033F9C 02E8CC 0010+00 0/0 2/2 0/0 .text
+ * setBottleNum__24dSv_player_item_record_cFUcUc                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3193,7 +2782,7 @@ asm void dSv_player_item_record_c::setBottleNum(u8 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 80033F9C-80034030 0094+00 s=0 e=1 z=0  None .text addBottleNum__24dSv_player_item_record_cFUcs
+/* 80033F9C-80034030 02E8DC 0094+00 0/0 1/1 0/0 .text addBottleNum__24dSv_player_item_record_cFUcs
  */
 #pragma push
 #pragma optimization_level 0
@@ -3204,7 +2793,7 @@ asm void dSv_player_item_record_c::addBottleNum(u8 param_0, s16 param_1) {
 }
 #pragma pop
 
-/* 80034030-80034040 0010+00 s=0 e=4 z=0  None .text getBottleNum__24dSv_player_item_record_cCFUc
+/* 80034030-80034040 02E970 0010+00 0/0 4/4 0/0 .text getBottleNum__24dSv_player_item_record_cCFUc
  */
 #pragma push
 #pragma optimization_level 0
@@ -3215,7 +2804,7 @@ asm void dSv_player_item_record_c::getBottleNum(u8 param_0) const {
 }
 #pragma pop
 
-/* 80034040-800340B8 0078+00 s=1 e=0 z=0  None .text      init__21dSv_player_item_max_cFv */
+/* 80034040-800340B8 02E980 0078+00 1/1 0/0 0/0 .text            init__21dSv_player_item_max_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3225,8 +2814,7 @@ asm void dSv_player_item_max_c::init() {
 }
 #pragma pop
 
-/* 800340B8-800340F8 0040+00 s=1 e=0 z=0  None .text      setBombNum__21dSv_player_item_max_cFUcUc
- */
+/* 800340B8-800340F8 02E9F8 0040+00 1/1 0/0 0/0 .text setBombNum__21dSv_player_item_max_cFUcUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3236,8 +2824,7 @@ asm void dSv_player_item_max_c::setBombNum(u8 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 800340F8-800341AC 00B4+00 s=3 e=14 z=2  None .text      getBombNum__21dSv_player_item_max_cCFUc
- */
+/* 800340F8-800341AC 02EA38 00B4+00 3/3 14/14 2/2 .text getBombNum__21dSv_player_item_max_cCFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3247,7 +2834,7 @@ asm void dSv_player_item_max_c::getBombNum(u8 param_0) const {
 }
 #pragma pop
 
-/* 800341AC-800341E8 003C+00 s=1 e=0 z=0  None .text      init__20dSv_player_collect_cFv */
+/* 800341AC-800341E8 02EAEC 003C+00 1/1 0/0 0/0 .text            init__20dSv_player_collect_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3257,7 +2844,7 @@ asm void dSv_player_collect_c::init() {
 }
 #pragma pop
 
-/* 800341E8-80034208 0020+00 s=0 e=8 z=0  None .text      setCollect__20dSv_player_collect_cFiUc */
+/* 800341E8-80034208 02EB28 0020+00 0/0 8/8 0/0 .text setCollect__20dSv_player_collect_cFiUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3267,7 +2854,7 @@ asm void dSv_player_collect_c::setCollect(int param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 80034208-8003422C 0024+00 s=0 e=4 z=4  None .text      isCollect__20dSv_player_collect_cCFiUc */
+/* 80034208-8003422C 02EB48 0024+00 0/0 4/4 4/4 .text isCollect__20dSv_player_collect_cCFiUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3277,7 +2864,7 @@ asm void dSv_player_collect_c::isCollect(int param_0, u8 param_1) const {
 }
 #pragma pop
 
-/* 8003422C-8003424C 0020+00 s=0 e=1 z=1  None .text onCollectCrystal__20dSv_player_collect_cFUc
+/* 8003422C-8003424C 02EB6C 0020+00 0/0 1/1 1/1 .text onCollectCrystal__20dSv_player_collect_cFUc
  */
 #pragma push
 #pragma optimization_level 0
@@ -3288,7 +2875,7 @@ asm void dSv_player_collect_c::onCollectCrystal(u8 param_0) {
 }
 #pragma pop
 
-/* 8003424C-80034270 0024+00 s=0 e=4 z=0  None .text isCollectCrystal__20dSv_player_collect_cCFUc
+/* 8003424C-80034270 02EB8C 0024+00 0/0 4/4 0/0 .text isCollectCrystal__20dSv_player_collect_cCFUc
  */
 #pragma push
 #pragma optimization_level 0
@@ -3299,7 +2886,7 @@ asm void dSv_player_collect_c::isCollectCrystal(u8 param_0) const {
 }
 #pragma pop
 
-/* 80034270-80034290 0020+00 s=0 e=1 z=1  None .text      onCollectMirror__20dSv_player_collect_cFUc
+/* 80034270-80034290 02EBB0 0020+00 0/0 1/1 1/1 .text onCollectMirror__20dSv_player_collect_cFUc
  */
 #pragma push
 #pragma optimization_level 0
@@ -3310,7 +2897,7 @@ asm void dSv_player_collect_c::onCollectMirror(u8 param_0) {
 }
 #pragma pop
 
-/* 80034290-800342B4 0024+00 s=0 e=4 z=0  None .text isCollectMirror__20dSv_player_collect_cCFUc
+/* 80034290-800342B4 02EBD0 0024+00 0/0 4/4 0/0 .text isCollectMirror__20dSv_player_collect_cCFUc
  */
 #pragma push
 #pragma optimization_level 0
@@ -3321,7 +2908,7 @@ asm void dSv_player_collect_c::isCollectMirror(u8 param_0) const {
 }
 #pragma pop
 
-/* 800342B4-800342DC 0028+00 s=1 e=0 z=0  None .text      init__17dSv_player_wolf_cFv */
+/* 800342B4-800342DC 02EBF4 0028+00 1/1 0/0 0/0 .text            init__17dSv_player_wolf_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3331,7 +2918,7 @@ asm void dSv_player_wolf_c::init() {
 }
 #pragma pop
 
-/* 800342DC-80034320 0044+00 s=1 e=0 z=0  None .text      init__16dSv_light_drop_cFv */
+/* 800342DC-80034320 02EC1C 0044+00 1/1 0/0 0/0 .text            init__16dSv_light_drop_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3341,8 +2928,7 @@ asm void dSv_light_drop_c::init() {
 }
 #pragma pop
 
-/* 80034320-80034340 0020+00 s=0 e=0 z=1  None .text      setLightDropNum__16dSv_light_drop_cFUcUc
- */
+/* 80034320-80034340 02EC60 0020+00 0/0 0/0 1/1 .text setLightDropNum__16dSv_light_drop_cFUcUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3352,8 +2938,7 @@ asm void dSv_light_drop_c::setLightDropNum(u8 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 80034340-80034368 0028+00 s=0 e=11 z=4  None .text      getLightDropNum__16dSv_light_drop_cCFUc
- */
+/* 80034340-80034368 02EC80 0028+00 0/0 11/11 4/4 .text getLightDropNum__16dSv_light_drop_cCFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3363,8 +2948,7 @@ asm void dSv_light_drop_c::getLightDropNum(u8 param_0) const {
 }
 #pragma pop
 
-/* 80034368-8003439C 0034+00 s=0 e=4 z=0  None .text      onLightDropGetFlag__16dSv_light_drop_cFUc
- */
+/* 80034368-8003439C 02ECA8 0034+00 0/0 4/4 0/0 .text onLightDropGetFlag__16dSv_light_drop_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3374,7 +2958,7 @@ asm void dSv_light_drop_c::onLightDropGetFlag(u8 param_0) {
 }
 #pragma pop
 
-/* 8003439C-800343DC 0040+00 s=0 e=8 z=2  None .text      isLightDropGetFlag__16dSv_light_drop_cCFUc
+/* 8003439C-800343DC 02ECDC 0040+00 0/0 8/8 2/2 .text isLightDropGetFlag__16dSv_light_drop_cCFUc
  */
 #pragma push
 #pragma optimization_level 0
@@ -3385,7 +2969,7 @@ asm void dSv_light_drop_c::isLightDropGetFlag(u8 param_0) const {
 }
 #pragma pop
 
-/* 800343DC-80034428 004C+00 s=1 e=0 z=0  None .text      init__17dSv_letter_info_cFv */
+/* 800343DC-80034428 02ED1C 004C+00 1/1 0/0 0/0 .text            init__17dSv_letter_info_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3395,7 +2979,7 @@ asm void dSv_letter_info_c::init() {
 }
 #pragma pop
 
-/* 80034428-8003444C 0024+00 s=0 e=2 z=0  None .text      onLetterGetFlag__17dSv_letter_info_cFi */
+/* 80034428-8003444C 02ED68 0024+00 0/0 2/2 0/0 .text onLetterGetFlag__17dSv_letter_info_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3405,7 +2989,7 @@ asm void dSv_letter_info_c::onLetterGetFlag(int param_0) {
 }
 #pragma pop
 
-/* 8003444C-80034474 0028+00 s=0 e=4 z=0  None .text      isLetterGetFlag__17dSv_letter_info_cCFi */
+/* 8003444C-80034474 02ED8C 0028+00 0/0 4/4 0/0 .text isLetterGetFlag__17dSv_letter_info_cCFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3415,7 +2999,7 @@ asm void dSv_letter_info_c::isLetterGetFlag(int param_0) const {
 }
 #pragma pop
 
-/* 80034474-8003449C 0028+00 s=0 e=1 z=0  None .text      onLetterReadFlag__17dSv_letter_info_cFi */
+/* 80034474-8003449C 02EDB4 0028+00 0/0 1/1 0/0 .text onLetterReadFlag__17dSv_letter_info_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3425,8 +3009,7 @@ asm void dSv_letter_info_c::onLetterReadFlag(int param_0) {
 }
 #pragma pop
 
-/* 8003449C-800344C8 002C+00 s=0 e=3 z=0  None .text      isLetterReadFlag__17dSv_letter_info_cCFi
- */
+/* 8003449C-800344C8 02EDDC 002C+00 0/0 3/3 0/0 .text isLetterReadFlag__17dSv_letter_info_cCFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3436,7 +3019,7 @@ asm void dSv_letter_info_c::isLetterReadFlag(int param_0) const {
 }
 #pragma pop
 
-/* 800344C8-800344FC 0034+00 s=1 e=0 z=0  None .text      init__18dSv_fishing_info_cFv */
+/* 800344C8-800344FC 02EE08 0034+00 1/1 0/0 0/0 .text            init__18dSv_fishing_info_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3446,7 +3029,7 @@ asm void dSv_fishing_info_c::init() {
 }
 #pragma pop
 
-/* 800344FC-80034518 001C+00 s=0 e=0 z=1  None .text      addFishCount__18dSv_fishing_info_cFUc */
+/* 800344FC-80034518 02EE3C 001C+00 0/0 0/0 1/1 .text addFishCount__18dSv_fishing_info_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3456,7 +3039,7 @@ asm void dSv_fishing_info_c::addFishCount(u8 param_0) {
 }
 #pragma pop
 
-/* 80034518-800345AC 0094+00 s=1 e=0 z=0  None .text      init__17dSv_player_info_cFv */
+/* 80034518-800345AC 02EE58 0094+00 1/1 0/0 0/0 .text            init__17dSv_player_info_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3466,7 +3049,7 @@ asm void dSv_player_info_c::init() {
 }
 #pragma pop
 
-/* 800345AC-80034644 0098+00 s=1 e=0 z=0  None .text      init__19dSv_player_config_cFv */
+/* 800345AC-80034644 02EEEC 0098+00 1/1 0/0 0/0 .text            init__19dSv_player_config_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3476,8 +3059,7 @@ asm void dSv_player_config_c::init() {
 }
 #pragma pop
 
-/* 80034644-80034684 0040+00 s=0 e=4 z=0  None .text      checkVibration__19dSv_player_config_cCFv
- */
+/* 80034644-80034684 02EF84 0040+00 0/0 4/4 0/0 .text checkVibration__19dSv_player_config_cCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3487,7 +3069,8 @@ asm void dSv_player_config_c::checkVibration() const {
 }
 #pragma pop
 
-/* 80034684-8003468C 0008+00 s=1 e=2 z=0  None .text      getSound__19dSv_player_config_cFv */
+/* 80034684-8003468C 02EFC4 0008+00 1/1 2/2 0/0 .text            getSound__19dSv_player_config_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3497,7 +3080,8 @@ asm void dSv_player_config_c::getSound() {
 }
 #pragma pop
 
-/* 8003468C-80034694 0008+00 s=1 e=1 z=0  None .text      setSound__19dSv_player_config_cFUc */
+/* 8003468C-80034694 02EFCC 0008+00 1/1 1/1 0/0 .text            setSound__19dSv_player_config_cFUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3507,7 +3091,7 @@ asm void dSv_player_config_c::setSound(u8 param_0) {
 }
 #pragma pop
 
-/* 80034694-8003469C 0008+00 s=1 e=1 z=0  None .text      getVibration__19dSv_player_config_cFv */
+/* 80034694-8003469C 02EFD4 0008+00 1/1 1/1 0/0 .text getVibration__19dSv_player_config_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3517,7 +3101,7 @@ asm void dSv_player_config_c::getVibration() {
 }
 #pragma pop
 
-/* 8003469C-800346A4 0008+00 s=0 e=1 z=0  None .text      setVibration__19dSv_player_config_cFUc */
+/* 8003469C-800346A4 02EFDC 0008+00 0/0 1/1 0/0 .text setVibration__19dSv_player_config_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3527,7 +3111,7 @@ asm void dSv_player_config_c::setVibration(u8 param_0) {
 }
 #pragma pop
 
-/* 800346A4-80034750 00AC+00 s=1 e=0 z=0  None .text      init__12dSv_player_cFv */
+/* 800346A4-80034750 02EFE4 00AC+00 1/1 0/0 0/0 .text            init__12dSv_player_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3537,7 +3121,7 @@ asm void dSv_player_c::init() {
 }
 #pragma pop
 
-/* 80034750-800347A0 0050+00 s=1 e=0 z=0  None .text      init__12dSv_memBit_cFv */
+/* 80034750-800347A0 02F090 0050+00 1/1 0/0 0/0 .text            init__12dSv_memBit_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3547,7 +3131,7 @@ asm void dSv_memBit_c::init() {
 }
 #pragma pop
 
-/* 800347A0-800347C4 0024+00 s=0 e=0 z=15  None .text      onTbox__12dSv_memBit_cFi */
+/* 800347A0-800347C4 02F0E0 0024+00 0/0 0/0 15/15 .text            onTbox__12dSv_memBit_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3557,7 +3141,7 @@ asm void dSv_memBit_c::onTbox(int param_0) {
 }
 #pragma pop
 
-/* 800347C4-800347E8 0024+00 s=0 e=0 z=5  None .text      offTbox__12dSv_memBit_cFi */
+/* 800347C4-800347E8 02F104 0024+00 0/0 0/0 5/5 .text            offTbox__12dSv_memBit_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3567,7 +3151,7 @@ asm void dSv_memBit_c::offTbox(int param_0) {
 }
 #pragma pop
 
-/* 800347E8-80034810 0028+00 s=0 e=6 z=7  None .text      isTbox__12dSv_memBit_cCFi */
+/* 800347E8-80034810 02F128 0028+00 0/0 6/6 7/7 .text            isTbox__12dSv_memBit_cCFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3577,7 +3161,7 @@ asm void dSv_memBit_c::isTbox(int param_0) const {
 }
 #pragma pop
 
-/* 80034810-80034838 0028+00 s=1 e=5 z=18  None .text      onSwitch__12dSv_memBit_cFi */
+/* 80034810-80034838 02F150 0028+00 1/1 5/5 18/18 .text            onSwitch__12dSv_memBit_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3587,7 +3171,7 @@ asm void dSv_memBit_c::onSwitch(int param_0) {
 }
 #pragma pop
 
-/* 80034838-80034860 0028+00 s=1 e=3 z=3  None .text      offSwitch__12dSv_memBit_cFi */
+/* 80034838-80034860 02F178 0028+00 1/1 3/3 3/3 .text            offSwitch__12dSv_memBit_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3597,7 +3181,7 @@ asm void dSv_memBit_c::offSwitch(int param_0) {
 }
 #pragma pop
 
-/* 80034860-8003488C 002C+00 s=1 e=11 z=23  None .text      isSwitch__12dSv_memBit_cCFi */
+/* 80034860-8003488C 02F1A0 002C+00 1/1 11/11 23/23 .text            isSwitch__12dSv_memBit_cCFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3607,7 +3191,7 @@ asm void dSv_memBit_c::isSwitch(int param_0) const {
 }
 #pragma pop
 
-/* 8003488C-800348C4 0038+00 s=1 e=0 z=0  None .text      revSwitch__12dSv_memBit_cFi */
+/* 8003488C-800348C4 02F1CC 0038+00 1/1 0/0 0/0 .text            revSwitch__12dSv_memBit_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3617,7 +3201,7 @@ asm void dSv_memBit_c::revSwitch(int param_0) {
 }
 #pragma pop
 
-/* 800348C4-800348EC 0028+00 s=1 e=0 z=0  None .text      onItem__12dSv_memBit_cFi */
+/* 800348C4-800348EC 02F204 0028+00 1/1 0/0 0/0 .text            onItem__12dSv_memBit_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3627,7 +3211,7 @@ asm void dSv_memBit_c::onItem(int param_0) {
 }
 #pragma pop
 
-/* 800348EC-80034918 002C+00 s=1 e=2 z=1  None .text      isItem__12dSv_memBit_cCFi */
+/* 800348EC-80034918 02F22C 002C+00 1/1 2/2 1/1 .text            isItem__12dSv_memBit_cCFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3637,7 +3221,8 @@ asm void dSv_memBit_c::isItem(int param_0) const {
 }
 #pragma pop
 
-/* 80034918-80034934 001C+00 s=0 e=8 z=18  None .text      onDungeonItem__12dSv_memBit_cFi */
+/* 80034918-80034934 02F258 001C+00 0/0 8/8 18/18 .text            onDungeonItem__12dSv_memBit_cFi
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3647,7 +3232,7 @@ asm void dSv_memBit_c::onDungeonItem(int param_0) {
 }
 #pragma pop
 
-/* 80034934-80034954 0020+00 s=0 e=27 z=47  None .text      isDungeonItem__12dSv_memBit_cCFi */
+/* 80034934-80034954 02F274 0020+00 0/0 27/27 47/47 .text isDungeonItem__12dSv_memBit_cCFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3657,7 +3242,7 @@ asm void dSv_memBit_c::isDungeonItem(int param_0) const {
 }
 #pragma pop
 
-/* 80034954-8003498C 0038+00 s=2 e=0 z=0  None .text      init__11dSv_event_cFv */
+/* 80034954-8003498C 02F294 0038+00 2/2 0/0 0/0 .text            init__11dSv_event_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3667,7 +3252,7 @@ asm void dSv_event_c::init() {
 }
 #pragma pop
 
-/* 8003498C-800349A4 0018+00 s=1 e=27 z=58  None .text      onEventBit__11dSv_event_cFUs */
+/* 8003498C-800349A4 02F2CC 0018+00 1/1 27/27 58/58 .text            onEventBit__11dSv_event_cFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3677,7 +3262,8 @@ asm void dSv_event_c::onEventBit(u16 param_0) {
 }
 #pragma pop
 
-/* 800349A4-800349BC 0018+00 s=1 e=14 z=23  None .text      offEventBit__11dSv_event_cFUs */
+/* 800349A4-800349BC 02F2E4 0018+00 1/1 14/14 23/23 .text            offEventBit__11dSv_event_cFUs
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3687,7 +3273,8 @@ asm void dSv_event_c::offEventBit(u16 param_0) {
 }
 #pragma pop
 
-/* 800349BC-800349E0 0024+00 s=3 e=77 z=153  None .text      isEventBit__11dSv_event_cCFUs */
+/* 800349BC-800349E0 02F2FC 0024+00 3/3 77/77 153/153 .text            isEventBit__11dSv_event_cCFUs
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3697,7 +3284,8 @@ asm void dSv_event_c::isEventBit(u16 param_0) const {
 }
 #pragma pop
 
-/* 800349E0-80034A04 0024+00 s=0 e=12 z=17  None .text      setEventReg__11dSv_event_cFUsUc */
+/* 800349E0-80034A04 02F320 0024+00 0/0 12/12 17/17 .text            setEventReg__11dSv_event_cFUsUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3707,7 +3295,8 @@ asm void dSv_event_c::setEventReg(u16 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 80034A04-80034A1C 0018+00 s=0 e=19 z=20  None .text      getEventReg__11dSv_event_cCFUs */
+/* 80034A04-80034A1C 02F344 0018+00 0/0 19/19 20/20 .text            getEventReg__11dSv_event_cCFUs
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3717,7 +3306,7 @@ asm void dSv_event_c::getEventReg(u16 param_0) const {
 }
 #pragma pop
 
-/* 80034A1C-80034A64 0048+00 s=1 e=0 z=0  None .text      init__14dSv_MiniGame_cFv */
+/* 80034A1C-80034A64 02F35C 0048+00 1/1 0/0 0/0 .text            init__14dSv_MiniGame_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3727,7 +3316,7 @@ asm void dSv_MiniGame_c::init() {
 }
 #pragma pop
 
-/* 80034A64-80034A84 0020+00 s=2 e=2 z=0  None .text      init__12dSv_memory_cFv */
+/* 80034A64-80034A84 02F3A4 0020+00 2/2 2/2 0/0 .text            init__12dSv_memory_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3737,7 +3326,7 @@ asm void dSv_memory_c::init() {
 }
 #pragma pop
 
-/* 80034A84-80034AA4 0020+00 s=1 e=1 z=0  None .text      init__13dSv_memory2_cFv */
+/* 80034A84-80034AA4 02F3C4 0020+00 1/1 1/1 0/0 .text            init__13dSv_memory2_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3747,7 +3336,7 @@ asm void dSv_memory2_c::init() {
 }
 #pragma pop
 
-/* 80034AA4-80034AC8 0024+00 s=0 e=1 z=1  None .text      onVisitedRoom__13dSv_memory2_cFi */
+/* 80034AA4-80034AC8 02F3E4 0024+00 0/0 1/1 1/1 .text            onVisitedRoom__13dSv_memory2_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3757,7 +3346,8 @@ asm void dSv_memory2_c::onVisitedRoom(int param_0) {
 }
 #pragma pop
 
-/* 80034AC8-80034AEC 0024+00 s=0 e=1 z=1  None .text      offVisitedRoom__13dSv_memory2_cFi */
+/* 80034AC8-80034AEC 02F408 0024+00 0/0 1/1 1/1 .text            offVisitedRoom__13dSv_memory2_cFi
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3767,7 +3357,7 @@ asm void dSv_memory2_c::offVisitedRoom(int param_0) {
 }
 #pragma pop
 
-/* 80034AEC-80034B14 0028+00 s=0 e=4 z=0  None .text      isVisitedRoom__13dSv_memory2_cFi */
+/* 80034AEC-80034B14 02F42C 0028+00 0/0 4/4 0/0 .text            isVisitedRoom__13dSv_memory2_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3777,7 +3367,7 @@ asm void dSv_memory2_c::isVisitedRoom(int param_0) {
 }
 #pragma pop
 
-/* 80034B14-80034B98 0084+00 s=1 e=1 z=0  None .text      init__12dSv_danBit_cFSc */
+/* 80034B14-80034B98 02F454 0084+00 1/1 1/1 0/0 .text            init__12dSv_danBit_cFSc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3787,7 +3377,7 @@ asm void dSv_danBit_c::init(s8 param_0) {
 }
 #pragma pop
 
-/* 80034B98-80034BC0 0028+00 s=1 e=2 z=26  None .text      onSwitch__12dSv_danBit_cFi */
+/* 80034B98-80034BC0 02F4D8 0028+00 1/1 2/2 26/26 .text            onSwitch__12dSv_danBit_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3797,7 +3387,7 @@ asm void dSv_danBit_c::onSwitch(int param_0) {
 }
 #pragma pop
 
-/* 80034BC0-80034BE8 0028+00 s=1 e=1 z=10  None .text      offSwitch__12dSv_danBit_cFi */
+/* 80034BC0-80034BE8 02F500 0028+00 1/1 1/1 10/10 .text            offSwitch__12dSv_danBit_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3807,7 +3397,7 @@ asm void dSv_danBit_c::offSwitch(int param_0) {
 }
 #pragma pop
 
-/* 80034BE8-80034C14 002C+00 s=1 e=6 z=14  None .text      isSwitch__12dSv_danBit_cCFi */
+/* 80034BE8-80034C14 02F528 002C+00 1/1 6/6 14/14 .text            isSwitch__12dSv_danBit_cCFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3817,7 +3407,7 @@ asm void dSv_danBit_c::isSwitch(int param_0) const {
 }
 #pragma pop
 
-/* 80034C14-80034C4C 0038+00 s=1 e=0 z=0  None .text      revSwitch__12dSv_danBit_cFi */
+/* 80034C14-80034C4C 02F554 0038+00 1/1 0/0 0/0 .text            revSwitch__12dSv_danBit_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3827,7 +3417,7 @@ asm void dSv_danBit_c::revSwitch(int param_0) {
 }
 #pragma pop
 
-/* 80034C4C-80034C74 0028+00 s=1 e=0 z=0  None .text      onItem__12dSv_danBit_cFi */
+/* 80034C4C-80034C74 02F58C 0028+00 1/1 0/0 0/0 .text            onItem__12dSv_danBit_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3837,7 +3427,7 @@ asm void dSv_danBit_c::onItem(int param_0) {
 }
 #pragma pop
 
-/* 80034C74-80034CA0 002C+00 s=1 e=2 z=0  None .text      isItem__12dSv_danBit_cCFi */
+/* 80034C74-80034CA0 02F5B4 002C+00 1/1 2/2 0/0 .text            isItem__12dSv_danBit_cCFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3847,7 +3437,7 @@ asm void dSv_danBit_c::isItem(int param_0) const {
 }
 #pragma pop
 
-/* 80034CA0-80034CEC 004C+00 s=1 e=0 z=0  None .text      init__13dSv_zoneBit_cFv */
+/* 80034CA0-80034CEC 02F5E0 004C+00 1/1 0/0 0/0 .text            init__13dSv_zoneBit_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3857,7 +3447,8 @@ asm void dSv_zoneBit_c::init() {
 }
 #pragma pop
 
-/* 80034CEC-80034CF8 000C+00 s=0 e=3 z=0  None .text      clearRoomSwitch__13dSv_zoneBit_cFv */
+/* 80034CEC-80034CF8 02F62C 000C+00 0/0 3/3 0/0 .text            clearRoomSwitch__13dSv_zoneBit_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3867,7 +3458,7 @@ asm void dSv_zoneBit_c::clearRoomSwitch() {
 }
 #pragma pop
 
-/* 80034CF8-80034D04 000C+00 s=0 e=3 z=0  None .text      clearRoomItem__13dSv_zoneBit_cFv */
+/* 80034CF8-80034D04 02F638 000C+00 0/0 3/3 0/0 .text            clearRoomItem__13dSv_zoneBit_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3877,7 +3468,7 @@ asm void dSv_zoneBit_c::clearRoomItem() {
 }
 #pragma pop
 
-/* 80034D04-80034D2C 0028+00 s=1 e=1 z=0  None .text      onSwitch__13dSv_zoneBit_cFi */
+/* 80034D04-80034D2C 02F644 0028+00 1/1 1/1 0/0 .text            onSwitch__13dSv_zoneBit_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3887,7 +3478,7 @@ asm void dSv_zoneBit_c::onSwitch(int param_0) {
 }
 #pragma pop
 
-/* 80034D2C-80034D50 0024+00 s=1 e=1 z=0  None .text      offSwitch__13dSv_zoneBit_cFi */
+/* 80034D2C-80034D50 02F66C 0024+00 1/1 1/1 0/0 .text            offSwitch__13dSv_zoneBit_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3897,7 +3488,7 @@ asm void dSv_zoneBit_c::offSwitch(int param_0) {
 }
 #pragma pop
 
-/* 80034D50-80034D78 0028+00 s=1 e=1 z=0  None .text      isSwitch__13dSv_zoneBit_cCFi */
+/* 80034D50-80034D78 02F690 0028+00 1/1 1/1 0/0 .text            isSwitch__13dSv_zoneBit_cCFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3907,7 +3498,7 @@ asm void dSv_zoneBit_c::isSwitch(int param_0) const {
 }
 #pragma pop
 
-/* 80034D78-80034DAC 0034+00 s=1 e=0 z=0  None .text      revSwitch__13dSv_zoneBit_cFi */
+/* 80034D78-80034DAC 02F6B8 0034+00 1/1 0/0 0/0 .text            revSwitch__13dSv_zoneBit_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3917,7 +3508,7 @@ asm void dSv_zoneBit_c::revSwitch(int param_0) {
 }
 #pragma pop
 
-/* 80034DAC-80034DC8 001C+00 s=1 e=1 z=0  None .text      onOneSwitch__13dSv_zoneBit_cFi */
+/* 80034DAC-80034DC8 02F6EC 001C+00 1/1 1/1 0/0 .text            onOneSwitch__13dSv_zoneBit_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3927,7 +3518,7 @@ asm void dSv_zoneBit_c::onOneSwitch(int param_0) {
 }
 #pragma pop
 
-/* 80034DC8-80034DE0 0018+00 s=1 e=1 z=0  None .text      offOneSwitch__13dSv_zoneBit_cFi */
+/* 80034DC8-80034DE0 02F708 0018+00 1/1 1/1 0/0 .text            offOneSwitch__13dSv_zoneBit_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3937,7 +3528,7 @@ asm void dSv_zoneBit_c::offOneSwitch(int param_0) {
 }
 #pragma pop
 
-/* 80034DE0-80034DFC 001C+00 s=1 e=1 z=0  None .text      isOneSwitch__13dSv_zoneBit_cCFi */
+/* 80034DE0-80034DFC 02F720 001C+00 1/1 1/1 0/0 .text            isOneSwitch__13dSv_zoneBit_cCFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3947,7 +3538,7 @@ asm void dSv_zoneBit_c::isOneSwitch(int param_0) const {
 }
 #pragma pop
 
-/* 80034DFC-80034E24 0028+00 s=1 e=0 z=0  None .text      revOneSwitch__13dSv_zoneBit_cFi */
+/* 80034DFC-80034E24 02F73C 0028+00 1/1 0/0 0/0 .text            revOneSwitch__13dSv_zoneBit_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3957,7 +3548,7 @@ asm void dSv_zoneBit_c::revOneSwitch(int param_0) {
 }
 #pragma pop
 
-/* 80034E24-80034E50 002C+00 s=1 e=0 z=0  None .text      onItem__13dSv_zoneBit_cFi */
+/* 80034E24-80034E50 02F764 002C+00 1/1 0/0 0/0 .text            onItem__13dSv_zoneBit_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3967,7 +3558,7 @@ asm void dSv_zoneBit_c::onItem(int param_0) {
 }
 #pragma pop
 
-/* 80034E50-80034E7C 002C+00 s=1 e=1 z=0  None .text      isItem__13dSv_zoneBit_cCFi */
+/* 80034E50-80034E7C 02F790 002C+00 1/1 1/1 0/0 .text            isItem__13dSv_zoneBit_cCFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3977,7 +3568,7 @@ asm void dSv_zoneBit_c::isItem(int param_0) const {
 }
 #pragma pop
 
-/* 80034E7C-80034E98 001C+00 s=1 e=0 z=0  None .text      onOneItem__13dSv_zoneBit_cFi */
+/* 80034E7C-80034E98 02F7BC 001C+00 1/1 0/0 0/0 .text            onOneItem__13dSv_zoneBit_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3987,7 +3578,7 @@ asm void dSv_zoneBit_c::onOneItem(int param_0) {
 }
 #pragma pop
 
-/* 80034E98-80034EB4 001C+00 s=1 e=1 z=0  None .text      isOneItem__13dSv_zoneBit_cCFi */
+/* 80034E98-80034EB4 02F7D8 001C+00 1/1 1/1 0/0 .text            isOneItem__13dSv_zoneBit_cCFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -3997,7 +3588,7 @@ asm void dSv_zoneBit_c::isOneItem(int param_0) const {
 }
 #pragma pop
 
-/* 80034EB4-80034ED4 0020+00 s=1 e=0 z=0  None .text      init__15dSv_zoneActor_cFv */
+/* 80034EB4-80034ED4 02F7F4 0020+00 1/1 0/0 0/0 .text            init__15dSv_zoneActor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4007,7 +3598,7 @@ asm void dSv_zoneActor_c::init() {
 }
 #pragma pop
 
-/* 80034ED4-80034EF8 0024+00 s=1 e=0 z=0  None .text      on__15dSv_zoneActor_cFi */
+/* 80034ED4-80034EF8 02F814 0024+00 1/1 0/0 0/0 .text            on__15dSv_zoneActor_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4017,7 +3608,7 @@ asm void dSv_zoneActor_c::on(int param_0) {
 }
 #pragma pop
 
-/* 80034EF8-80034F1C 0024+00 s=1 e=0 z=0  None .text      off__15dSv_zoneActor_cFi */
+/* 80034EF8-80034F1C 02F838 0024+00 1/1 0/0 0/0 .text            off__15dSv_zoneActor_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4027,7 +3618,7 @@ asm void dSv_zoneActor_c::off(int param_0) {
 }
 #pragma pop
 
-/* 80034F1C-80034F44 0028+00 s=1 e=0 z=0  None .text      is__15dSv_zoneActor_cCFi */
+/* 80034F1C-80034F44 02F85C 0028+00 1/1 0/0 0/0 .text            is__15dSv_zoneActor_cCFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4037,7 +3628,7 @@ asm void dSv_zoneActor_c::is(int param_0) const {
 }
 #pragma pop
 
-/* 80034F44-80034F80 003C+00 s=2 e=0 z=0  None .text      init__10dSv_zone_cFi */
+/* 80034F44-80034F80 02F884 003C+00 2/2 0/0 0/0 .text            init__10dSv_zone_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4047,7 +3638,7 @@ asm void dSv_zone_c::init(int param_0) {
 }
 #pragma pop
 
-/* 80034F80-80034FA4 0024+00 s=0 e=3 z=14  None .text      setRoom__13dSv_restart_cFRC4cXyzsSc */
+/* 80034F80-80034FA4 02F8C0 0024+00 0/0 3/3 14/14 .text setRoom__13dSv_restart_cFRC4cXyzsSc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4057,7 +3648,7 @@ asm void dSv_restart_c::setRoom(cXyz const& param_0, s16 param_1, s8 param_2) {
 }
 #pragma pop
 
-/* 80034FA4-80034FCC 0028+00 s=0 e=2 z=0  None .text      set__17dSv_turnRestart_cFRC4cXyzsScUl */
+/* 80034FA4-80034FCC 02F8E4 0028+00 0/0 2/2 0/0 .text set__17dSv_turnRestart_cFRC4cXyzsScUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4067,7 +3658,7 @@ asm void dSv_turnRestart_c::set(cXyz const& param_0, s16 param_1, s8 param_2, u3
 }
 #pragma pop
 
-/* 80034FCC-8003501C 0050+00 s=0 e=2 z=0  None .text      init__10dSv_info_cFv */
+/* 80034FCC-8003501C 02F90C 0050+00 0/0 2/2 0/0 .text            init__10dSv_info_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4077,7 +3668,7 @@ asm void dSv_info_c::init() {
 }
 #pragma pop
 
-/* 8003501C-800350A8 008C+00 s=2 e=0 z=0  None .text      init__10dSv_save_cFv */
+/* 8003501C-800350A8 02F95C 008C+00 2/2 0/0 0/0 .text            init__10dSv_save_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4087,7 +3678,7 @@ asm void dSv_save_c::init() {
 }
 #pragma pop
 
-/* 800350A8-800350BC 0014+00 s=0 e=6 z=1  None .text      getSave2__10dSv_save_cFi */
+/* 800350A8-800350BC 02F9E8 0014+00 0/0 6/6 1/1 .text            getSave2__10dSv_save_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4097,7 +3688,7 @@ asm void dSv_save_c::getSave2(int param_0) {
 }
 #pragma pop
 
-/* 800350BC-800350F0 0034+00 s=0 e=1 z=0  None .text      getSave__10dSv_info_cFi */
+/* 800350BC-800350F0 02F9FC 0034+00 0/0 1/1 0/0 .text            getSave__10dSv_info_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4107,7 +3698,7 @@ asm void dSv_info_c::getSave(int param_0) {
 }
 #pragma pop
 
-/* 800350F0-8003514C 005C+00 s=0 e=2 z=0  None .text      putSave__10dSv_info_cFi */
+/* 800350F0-8003514C 02FA30 005C+00 0/0 2/2 0/0 .text            putSave__10dSv_info_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4117,7 +3708,7 @@ asm void dSv_info_c::putSave(int param_0) {
 }
 #pragma pop
 
-/* 8003514C-800351A4 0058+00 s=1 e=1 z=0  None .text      initZone__10dSv_info_cFv */
+/* 8003514C-800351A4 02FA8C 0058+00 1/1 1/1 0/0 .text            initZone__10dSv_info_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4127,7 +3718,7 @@ asm void dSv_info_c::initZone() {
 }
 #pragma pop
 
-/* 800351A4-80035200 005C+00 s=0 e=1 z=0  None .text      createZone__10dSv_info_cFi */
+/* 800351A4-80035200 02FAE4 005C+00 0/0 1/1 0/0 .text            createZone__10dSv_info_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4137,7 +3728,7 @@ asm void dSv_info_c::createZone(int param_0) {
 }
 #pragma pop
 
-/* 80035200-800352B0 00B0+00 s=0 e=8 z=352  None .text      onSwitch__10dSv_info_cFii */
+/* 80035200-800352B0 02FB40 00B0+00 0/0 8/8 352/352 .text            onSwitch__10dSv_info_cFii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4147,7 +3738,7 @@ asm void dSv_info_c::onSwitch(int param_0, int param_1) {
 }
 #pragma pop
 
-/* 800352B0-80035360 00B0+00 s=0 e=2 z=93  None .text      offSwitch__10dSv_info_cFii */
+/* 800352B0-80035360 02FBF0 00B0+00 0/0 2/2 93/93 .text            offSwitch__10dSv_info_cFii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4157,7 +3748,7 @@ asm void dSv_info_c::offSwitch(int param_0, int param_1) {
 }
 #pragma pop
 
-/* 80035360-8003542C 00CC+00 s=0 e=27 z=734  None .text      isSwitch__10dSv_info_cCFii */
+/* 80035360-8003542C 02FCA0 00CC+00 0/0 27/27 734/734 .text            isSwitch__10dSv_info_cCFii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4167,7 +3758,7 @@ asm void dSv_info_c::isSwitch(int param_0, int param_1) const {
 }
 #pragma pop
 
-/* 8003542C-800354E0 00B4+00 s=0 e=0 z=2  None .text      revSwitch__10dSv_info_cFii */
+/* 8003542C-800354E0 02FD6C 00B4+00 0/0 0/0 2/2 .text            revSwitch__10dSv_info_cFii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4177,7 +3768,7 @@ asm void dSv_info_c::revSwitch(int param_0, int param_1) {
 }
 #pragma pop
 
-/* 800354E0-80035590 00B0+00 s=0 e=1 z=3  None .text      onItem__10dSv_info_cFii */
+/* 800354E0-80035590 02FE20 00B0+00 0/0 1/1 3/3 .text            onItem__10dSv_info_cFii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4187,7 +3778,7 @@ asm void dSv_info_c::onItem(int param_0, int param_1) {
 }
 #pragma pop
 
-/* 80035590-80035644 00B4+00 s=0 e=1 z=3  None .text      isItem__10dSv_info_cCFii */
+/* 80035590-80035644 02FED0 00B4+00 0/0 1/1 3/3 .text            isItem__10dSv_info_cCFii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4197,7 +3788,7 @@ asm void dSv_info_c::isItem(int param_0, int param_1) const {
 }
 #pragma pop
 
-/* 80035644-800356B4 0070+00 s=0 e=1 z=4  None .text      onActor__10dSv_info_cFii */
+/* 80035644-800356B4 02FF84 0070+00 0/0 1/1 4/4 .text            onActor__10dSv_info_cFii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4207,7 +3798,7 @@ asm void dSv_info_c::onActor(int param_0, int param_1) {
 }
 #pragma pop
 
-/* 800356B4-80035724 0070+00 s=0 e=0 z=2  None .text      offActor__10dSv_info_cFii */
+/* 800356B4-80035724 02FFF4 0070+00 0/0 0/0 2/2 .text            offActor__10dSv_info_cFii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4217,7 +3808,7 @@ asm void dSv_info_c::offActor(int param_0, int param_1) {
 }
 #pragma pop
 
-/* 80035724-80035798 0074+00 s=0 e=3 z=0  None .text      isActor__10dSv_info_cCFii */
+/* 80035724-80035798 030064 0074+00 0/0 3/3 0/0 .text            isActor__10dSv_info_cCFii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4227,7 +3818,7 @@ asm void dSv_info_c::isActor(int param_0, int param_1) const {
 }
 #pragma pop
 
-/* 80035798-80035A04 026C+00 s=0 e=1 z=0  None .text      memory_to_card__10dSv_info_cFPci */
+/* 80035798-80035A04 0300D8 026C+00 0/0 1/1 0/0 .text            memory_to_card__10dSv_info_cFPci */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4237,7 +3828,7 @@ asm void dSv_info_c::memory_to_card(char* param_0, int param_1) {
 }
 #pragma pop
 
-/* 80035A04-80035BD0 01CC+00 s=0 e=2 z=0  None .text      card_to_memory__10dSv_info_cFPci */
+/* 80035A04-80035BD0 030344 01CC+00 0/0 2/2 0/0 .text            card_to_memory__10dSv_info_cFPci */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4247,7 +3838,8 @@ asm void dSv_info_c::card_to_memory(char* param_0, int param_1) {
 }
 #pragma pop
 
-/* 80035BD0-80035C88 00B8+00 s=0 e=3 z=0  None .text      initdata_to_card__10dSv_info_cFPci */
+/* 80035BD0-80035C88 030510 00B8+00 0/0 3/3 0/0 .text            initdata_to_card__10dSv_info_cFPci
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -4255,4 +3847,398 @@ asm void dSv_info_c::initdata_to_card(char* param_0, int param_1) {
     nofralloc
 #include "asm/d/save/d_save/initdata_to_card__10dSv_info_cFPci.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 803790C0-80379234 005720 0172+02 0/0 17/17 7/7 .rodata tempBitLabels__20dSv_event_tmp_flag_c */
+SECTION_RODATA extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */] = {
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0x0F,
+    0xFE,
+    0xFF,
+    0x00,
+    0x40,
+    0xFD,
+    0xFF,
+    0xFC,
+    0xFF,
+    0x00,
+    0x20,
+    0x00,
+    0x80,
+    0x00,
+    0x10,
+    0x00,
+    0x08,
+    0x00,
+    0x04,
+    0x00,
+    0x02,
+    0x00,
+    0x01,
+    0x01,
+    0x80,
+    0x01,
+    0x40,
+    0x01,
+    0x20,
+    0x01,
+    0x10,
+    0x01,
+    0x08,
+    0x01,
+    0x04,
+    0x01,
+    0x02,
+    0x01,
+    0x01,
+    0x02,
+    0x80,
+    0x02,
+    0x40,
+    0x02,
+    0x20,
+    0x02,
+    0x10,
+    0x02,
+    0x08,
+    0x02,
+    0x04,
+    0x02,
+    0x02,
+    0x02,
+    0x01,
+    0x03,
+    0x80,
+    0x03,
+    0x40,
+    0x03,
+    0x20,
+    0x03,
+    0x10,
+    0xFB,
+    0xFF,
+    0x03,
+    0x08,
+    0x03,
+    0x04,
+    0x03,
+    0x02,
+    0x03,
+    0x01,
+    0x04,
+    0x80,
+    0x04,
+    0x40,
+    0x04,
+    0x20,
+    0x04,
+    0x10,
+    0x04,
+    0x08,
+    0x04,
+    0x04,
+    0x04,
+    0x02,
+    0x04,
+    0x01,
+    0x05,
+    0x80,
+    0x05,
+    0x40,
+    0x05,
+    0x20,
+    0x05,
+    0x10,
+    0x05,
+    0x08,
+    0x05,
+    0x04,
+    0x05,
+    0x02,
+    0x05,
+    0x01,
+    0x06,
+    0x80,
+    0x06,
+    0x40,
+    0x06,
+    0x20,
+    0x06,
+    0x10,
+    0x06,
+    0x08,
+    0x06,
+    0x04,
+    0x06,
+    0x02,
+    0x06,
+    0x01,
+    0x07,
+    0x80,
+    0x07,
+    0x40,
+    0x07,
+    0x20,
+    0x07,
+    0x10,
+    0x07,
+    0x08,
+    0x07,
+    0x04,
+    0x07,
+    0x02,
+    0x07,
+    0x01,
+    0x08,
+    0x80,
+    0x08,
+    0x40,
+    0x08,
+    0x20,
+    0x08,
+    0x10,
+    0x08,
+    0x08,
+    0x08,
+    0x04,
+    0x08,
+    0x02,
+    0x08,
+    0x01,
+    0x09,
+    0x80,
+    0x09,
+    0x40,
+    0x09,
+    0x20,
+    0x09,
+    0x10,
+    0x09,
+    0x08,
+    0x09,
+    0x04,
+    0x09,
+    0x02,
+    0x09,
+    0x01,
+    0x0A,
+    0x80,
+    0x0A,
+    0x40,
+    0x0A,
+    0x20,
+    0x0A,
+    0x10,
+    0x0A,
+    0x08,
+    0x0A,
+    0x04,
+    0x0A,
+    0x02,
+    0x0A,
+    0x01,
+    0x0B,
+    0x80,
+    0x0B,
+    0x40,
+    0x0B,
+    0x20,
+    0x0B,
+    0x10,
+    0x0B,
+    0x08,
+    0x0B,
+    0x04,
+    0xFA,
+    0xFF,
+    0xF9,
+    0xFF,
+    0xF8,
+    0xFF,
+    0xF7,
+    0xFF,
+    0xF6,
+    0xFF,
+    0xF5,
+    0xFF,
+    0x0B,
+    0x02,
+    0x0B,
+    0x01,
+    0x0C,
+    0x80,
+    0x0C,
+    0x40,
+    0x0C,
+    0x20,
+    0x0C,
+    0x10,
+    0x0C,
+    0x08,
+    0xF4,
+    0xFF,
+    0xF3,
+    0xFF,
+    0x0C,
+    0x04,
+    0x0C,
+    0x02,
+    0x0C,
+    0x01,
+    0x0D,
+    0x80,
+    0x0D,
+    0x40,
+    0x0D,
+    0x20,
+    0x0D,
+    0x10,
+    0x0D,
+    0x08,
+    0x0D,
+    0x04,
+    0x0D,
+    0x02,
+    0x0D,
+    0x01,
+    0x0E,
+    0x80,
+    0x0E,
+    0x40,
+    0x0E,
+    0x20,
+    0x0E,
+    0x10,
+    0x0E,
+    0x08,
+    0x0E,
+    0x04,
+    0x0E,
+    0x02,
+    0x0E,
+    0x01,
+    0x0F,
+    0x80,
+    0x0F,
+    0x40,
+    0x0F,
+    0x20,
+    0x0F,
+    0x10,
+    0x0F,
+    0x08,
+    0x0F,
+    0x04,
+    0x0F,
+    0x02,
+    0x0F,
+    0x01,
+    0x10,
+    0x80,
+    0x10,
+    0x40,
+    0x10,
+    0x20,
+    0x10,
+    0x10,
+    0x10,
+    0x08,
+    0x10,
+    0x04,
+    0x10,
+    0x02,
+    0x10,
+    0x01,
+    0x11,
+    0x80,
+    0x11,
+    0x40,
+    0x11,
+    0x20,
+    0x11,
+    0x10,
+    0x11,
+    0x08,
+    0x11,
+    0x04,
+    0x11,
+    0x02,
+    0x11,
+    0x01,
+    0x12,
+    0x80,
+    0x12,
+    0x40,
+    0x12,
+    0x20,
+    0x12,
+    0x10,
+    0x12,
+    0x08,
+    0x12,
+    0x04,
+    0x12,
+    0x02,
+    0x12,
+    0x01,
+    0x13,
+    0x80,
+    0x13,
+    0x40,
+    0x13,
+    0x20,
+    0x13,
+    0x10,
+    0x13,
+    0x08,
+    0x13,
+    0x04,
+    0x13,
+    0x02,
+    0x13,
+    0x01,
+    0x14,
+    0x80,
+    0x14,
+    0x40,
+    0x14,
+    0x20,
+    0x14,
+    0x10,
+    0x14,
+    0x08,
+    0x14,
+    0x04,
+    0x14,
+    0x02,
+    0x14,
+    0x01,
+    0x15,
+    0x80,
+    0xF2,
+    0xFF,
+    /* padding */
+    0x00,
+    0x00,
+};
+COMPILER_STRIP_GATE(803790C0, &tempBitLabels__20dSv_event_tmp_flag_c);
+
+/* 80379234-80379298 005894 0062+02 8/8 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80379234 = "";
+SECTION_DEAD static char const* const stringBase_80379235 = "F_SP108";
+SECTION_DEAD static char const* const stringBase_8037923D = "合成アイテム不定＝＝＝＞%d, %d\n";
+SECTION_DEAD static char const* const stringBase_8037925D = "Write size:%d\n";
+SECTION_DEAD static char const* const stringBase_8037926C = "SAVE size:%d\n";
+SECTION_DEAD static char const* const stringBase_8037927A = "LOAD size:%d\n";
+SECTION_DEAD static char const* const stringBase_80379288 = "INIT size:%d\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80379296 = "\0";
 #pragma pop

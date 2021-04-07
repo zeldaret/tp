@@ -12,7 +12,7 @@ lbl_80A65A60:
 /* 80A65A88  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 80A65A8C  28 00 00 00 */	cmplwi r0, 0
 /* 80A65A90  40 82 00 1C */	bne lbl_80A65AAC
-/* 80A65A94  4B 5C 9F C0 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80A65A94  4B 5C 9F C1 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80A65A98  2C 03 00 00 */	cmpwi r3, 0
 /* 80A65A9C  40 82 00 14 */	bne lbl_80A65AB0
 /* 80A65AA0  88 1E 0A 89 */	lbz r0, 0xa89(r30)
@@ -31,7 +31,7 @@ lbl_80A65AC4:
 /* 80A65AC8  88 1E 0E 25 */	lbz r0, 0xe25(r30)
 /* 80A65ACC  28 00 00 00 */	cmplwi r0, 0
 /* 80A65AD0  40 82 00 1C */	bne lbl_80A65AEC
-/* 80A65AD4  4B 5C 9F 80 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80A65AD4  4B 5C 9F 81 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80A65AD8  2C 03 00 00 */	cmpwi r3, 0
 /* 80A65ADC  40 82 00 14 */	bne lbl_80A65AF0
 /* 80A65AE0  88 1E 0A 89 */	lbz r0, 0xa89(r30)

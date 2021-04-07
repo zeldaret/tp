@@ -1,9 +1,9 @@
 lbl_8019AFE0:
-/* 8019AFE0  3C 80 80 3B */	lis r4, __vt__14mDoHIO_entry_c@ha
-/* 8019AFE4  38 04 61 B4 */	addi r0, r4, __vt__14mDoHIO_entry_c@l
+/* 8019AFE0  3C 80 80 3B */	lis r4, __vt__14mDoHIO_entry_c@ha /* 0x803B61B4@ha */
+/* 8019AFE4  38 04 61 B4 */	addi r0, r4, __vt__14mDoHIO_entry_c@l /* 0x803B61B4@l */
 /* 8019AFE8  90 03 00 00 */	stw r0, 0(r3)
-/* 8019AFEC  3C 80 80 3C */	lis r4, __vt__10dGov_HIO_c@ha
-/* 8019AFF0  38 04 BD 90 */	addi r0, r4, __vt__10dGov_HIO_c@l
+/* 8019AFEC  3C 80 80 3C */	lis r4, __vt__10dGov_HIO_c@ha /* 0x803BBD90@ha */
+/* 8019AFF0  38 04 BD 90 */	addi r0, r4, __vt__10dGov_HIO_c@l /* 0x803BBD90@l */
 /* 8019AFF4  90 03 00 00 */	stw r0, 0(r3)
 /* 8019AFF8  C0 02 A1 8C */	lfs f0, lit_3878(r2)
 /* 8019AFFC  D0 03 00 08 */	stfs f0, 8(r3)

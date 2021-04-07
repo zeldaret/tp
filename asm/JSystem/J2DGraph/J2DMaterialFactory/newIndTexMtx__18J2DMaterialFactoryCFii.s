@@ -2,8 +2,8 @@ lbl_802F3D20:
 /* 802F3D20  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 802F3D24  39 40 00 00 */	li r10, 0
 /* 802F3D28  38 E0 00 00 */	li r7, 0
-/* 802F3D2C  3D 00 80 3A */	lis r8, j2dDefaultIndTexMtxInfo@ha
-/* 802F3D30  39 08 1B C4 */	addi r8, r8, j2dDefaultIndTexMtxInfo@l
+/* 802F3D2C  3D 00 80 3A */	lis r8, j2dDefaultIndTexMtxInfo@ha /* 0x803A1BC4@ha */
+/* 802F3D30  39 08 1B C4 */	addi r8, r8, j2dDefaultIndTexMtxInfo@l /* 0x803A1BC4@l */
 lbl_802F3D34:
 /* 802F3D34  39 20 00 00 */	li r9, 0
 /* 802F3D38  7D 68 3A 14 */	add r11, r8, r7
@@ -20,8 +20,8 @@ lbl_802F3D4C:
 /* 802F3D60  2C 0A 00 02 */	cmpwi r10, 2
 /* 802F3D64  38 E7 00 0C */	addi r7, r7, 0xc
 /* 802F3D68  41 80 FF CC */	blt lbl_802F3D34
-/* 802F3D6C  3C E0 80 3A */	lis r7, j2dDefaultIndTexMtxInfo@ha
-/* 802F3D70  38 E7 1B C4 */	addi r7, r7, j2dDefaultIndTexMtxInfo@l
+/* 802F3D6C  3C E0 80 3A */	lis r7, j2dDefaultIndTexMtxInfo@ha /* 0x803A1BC4@ha */
+/* 802F3D70  38 E7 1B C4 */	addi r7, r7, j2dDefaultIndTexMtxInfo@l /* 0x803A1BC4@l */
 /* 802F3D74  88 07 00 18 */	lbz r0, 0x18(r7)
 /* 802F3D78  98 01 00 20 */	stb r0, 0x20(r1)
 /* 802F3D7C  80 84 00 0C */	lwz r4, 0xc(r4)

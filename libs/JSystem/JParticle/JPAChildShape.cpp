@@ -23,10 +23,6 @@ struct JPABaseParticle {};
 // Forward References:
 //
 
-void JPARegistChildPrmEnv(JPAEmitterWorkData*);
-void JPACalcChildAlphaOut(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcChildScaleOut(JPAEmitterWorkData*, JPABaseParticle*);
-
 extern "C" void JPARegistChildPrmEnv__FP18JPAEmitterWorkData();
 extern "C" void JPACalcChildAlphaOut__FP18JPAEmitterWorkDataP15JPABaseParticle();
 extern "C" void JPACalcChildScaleOut__FP18JPAEmitterWorkDataP15JPABaseParticle();
@@ -42,7 +38,7 @@ extern "C" void GXSetTevColor();
 // Declarations:
 //
 
-/* 8027AEBC-8027AFDC 0120+00 s=0 e=1 z=0  None .text JPARegistChildPrmEnv__FP18JPAEmitterWorkData
+/* 8027AEBC-8027AFDC 2757FC 0120+00 0/0 1/1 0/0 .text JPARegistChildPrmEnv__FP18JPAEmitterWorkData
  */
 #pragma push
 #pragma optimization_level 0
@@ -54,13 +50,13 @@ asm void JPARegistChildPrmEnv(JPAEmitterWorkData* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455308-8045530C 0004+00 s=1 e=0 z=0  None .sdata2    @2318 */
+/* 80455308-8045530C 003908 0004+00 1/1 0/0 0/0 .sdata2          @2318 */
 SECTION_SDATA2 static f32 lit_2318 = 255.0f;
 
-/* 8045530C-80455310 0004+00 s=2 e=0 z=0  None .sdata2    @2319 */
+/* 8045530C-80455310 00390C 0004+00 2/2 0/0 0/0 .sdata2          @2319 */
 SECTION_SDATA2 static f32 lit_2319 = 1.0f;
 
-/* 8027AFDC-8027B008 002C+00 s=0 e=1 z=0  None .text
+/* 8027AFDC-8027B008 27591C 002C+00 0/0 1/1 0/0 .text
  * JPACalcChildAlphaOut__FP18JPAEmitterWorkDataP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -71,7 +67,7 @@ asm void JPACalcChildAlphaOut(JPAEmitterWorkData* param_0, JPABaseParticle* para
 }
 #pragma pop
 
-/* 8027B008-8027B038 0030+00 s=0 e=1 z=0  None .text
+/* 8027B008-8027B038 275948 0030+00 0/0 1/1 0/0 .text
  * JPACalcChildScaleOut__FP18JPAEmitterWorkDataP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -82,7 +78,7 @@ asm void JPACalcChildScaleOut(JPAEmitterWorkData* param_0, JPABaseParticle* para
 }
 #pragma pop
 
-/* 8027B038-8027B040 0008+00 s=0 e=1 z=0  None .text      __ct__13JPAChildShapeFPCUc */
+/* 8027B038-8027B040 275978 0008+00 0/0 1/1 0/0 .text            __ct__13JPAChildShapeFPCUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

@@ -7,20 +7,20 @@ lbl_80CAD140:
 /* 80CAD154  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80CAD158  7C 9F 23 78 */	mr r31, r4
 /* 80CAD15C  41 82 00 38 */	beq lbl_80CAD194
-/* 80CAD160  3C 80 80 CB */	lis r4, __vt__13daObjPDwall_c@ha
-/* 80CAD164  38 04 D2 50 */	addi r0, r4, __vt__13daObjPDwall_c@l
+/* 80CAD160  3C 80 80 CB */	lis r4, __vt__13daObjPDwall_c@ha /* 0x80CAD250@ha */
+/* 80CAD164  38 04 D2 50 */	addi r0, r4, __vt__13daObjPDwall_c@l /* 0x80CAD250@l */
 /* 80CAD168  90 1E 05 9C */	stw r0, 0x59c(r30)
 /* 80CAD16C  41 82 00 18 */	beq lbl_80CAD184
-/* 80CAD170  3C 80 80 3B */	lis r4, __vt__16dBgS_MoveBgActor@ha
-/* 80CAD174  38 04 B9 A0 */	addi r0, r4, __vt__16dBgS_MoveBgActor@l
+/* 80CAD170  3C 80 80 3B */	lis r4, __vt__16dBgS_MoveBgActor@ha /* 0x803AB9A0@ha */
+/* 80CAD174  38 04 B9 A0 */	addi r0, r4, __vt__16dBgS_MoveBgActor@l /* 0x803AB9A0@l */
 /* 80CAD178  90 1E 05 9C */	stw r0, 0x59c(r30)
 /* 80CAD17C  38 80 00 00 */	li r4, 0
-/* 80CAD180  4B 36 BB 0C */	b __dt__10fopAc_ac_cFv
+/* 80CAD180  4B 36 BB 0D */	bl __dt__10fopAc_ac_cFv
 lbl_80CAD184:
 /* 80CAD184  7F E0 07 35 */	extsh. r0, r31
 /* 80CAD188  40 81 00 0C */	ble lbl_80CAD194
 /* 80CAD18C  7F C3 F3 78 */	mr r3, r30
-/* 80CAD190  4B 62 1B AC */	b __dl__FPv
+/* 80CAD190  4B 62 1B AD */	bl __dl__FPv
 lbl_80CAD194:
 /* 80CAD194  7F C3 F3 78 */	mr r3, r30
 /* 80CAD198  83 E1 00 0C */	lwz r31, 0xc(r1)

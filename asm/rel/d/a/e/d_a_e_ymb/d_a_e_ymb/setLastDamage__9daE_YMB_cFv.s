@@ -5,8 +5,8 @@ lbl_80816A88:
 /* 80816A94  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80816A98  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80816A9C  7C 7E 1B 78 */	mr r30, r3
-/* 80816AA0  3C 80 80 82 */	lis r4, lit_3791@ha
-/* 80816AA4  3B E4 18 AC */	addi r31, r4, lit_3791@l
+/* 80816AA0  3C 80 80 82 */	lis r4, lit_3791@ha /* 0x808218AC@ha */
+/* 80816AA4  3B E4 18 AC */	addi r31, r4, lit_3791@l /* 0x808218AC@l */
 /* 80816AA8  48 00 13 D5 */	bl setRockDamageEffect__9daE_YMB_cFv
 /* 80816AAC  80 7E 06 F4 */	lwz r3, 0x6f4(r30)
 /* 80816AB0  38 03 00 01 */	addi r0, r3, 1
@@ -25,8 +25,8 @@ lbl_80816ACC:
 /* 80816AE0  81 8C 00 2C */	lwz r12, 0x2c(r12)
 /* 80816AE4  7D 89 03 A6 */	mtctr r12
 /* 80816AE8  4E 80 04 21 */	bctrl 
-/* 80816AEC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80816AF0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80816AEC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80816AF0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80816AF4  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 80816AF8  38 80 00 03 */	li r4, 3
 /* 80816AFC  7F C5 F3 78 */	mr r5, r30
@@ -34,7 +34,7 @@ lbl_80816ACC:
 /* 80816B04  38 E0 00 00 */	li r7, 0
 /* 80816B08  39 00 00 00 */	li r8, 0
 /* 80816B0C  39 20 00 00 */	li r9, 0
-/* 80816B10  4B 83 57 08 */	b setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl
+/* 80816B10  4B 83 57 09 */	bl setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl
 /* 80816B14  38 00 00 03 */	li r0, 3
 /* 80816B18  90 1E 06 F8 */	stw r0, 0x6f8(r30)
 /* 80816B1C  7F C3 F3 78 */	mr r3, r30
@@ -48,13 +48,13 @@ lbl_80816ACC:
 /* 80816B3C  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 80816B40  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80816B44  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 80816B48  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80816B4C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80816B48  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80816B4C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80816B50  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 80816B54  38 80 00 03 */	li r4, 3
 /* 80816B58  38 A0 00 1F */	li r5, 0x1f
 /* 80816B5C  38 C1 00 08 */	addi r6, r1, 8
-/* 80816B60  4B 85 8E C4 */	b StartShock__12dVibration_cFii4cXyz
+/* 80816B60  4B 85 8E C5 */	bl StartShock__12dVibration_cFii4cXyz
 /* 80816B64  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 80816B68  83 C1 00 18 */	lwz r30, 0x18(r1)
 /* 80816B6C  80 01 00 24 */	lwz r0, 0x24(r1)

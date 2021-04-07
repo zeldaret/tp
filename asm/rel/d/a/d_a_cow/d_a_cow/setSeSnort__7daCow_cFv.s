@@ -6,9 +6,9 @@ lbl_80658CD0:
 /* 80658CE0  7C 7F 1B 78 */	mr r31, r3
 /* 80658CE4  80 63 05 74 */	lwz r3, 0x574(r3)
 /* 80658CE8  38 63 00 0C */	addi r3, r3, 0xc
-/* 80658CEC  3C 80 80 66 */	lis r4, lit_3989@ha
-/* 80658CF0  C0 24 2D B8 */	lfs f1, lit_3989@l(r4)
-/* 80658CF4  4B CC F7 38 */	b checkPass__12J3DFrameCtrlFf
+/* 80658CEC  3C 80 80 66 */	lis r4, lit_3989@ha /* 0x80662DB8@ha */
+/* 80658CF0  C0 24 2D B8 */	lfs f1, lit_3989@l(r4)  /* 0x80662DB8@l */
+/* 80658CF4  4B CC F7 39 */	bl checkPass__12J3DFrameCtrlFf
 /* 80658CF8  2C 03 00 00 */	cmpwi r3, 0
 /* 80658CFC  41 82 00 2C */	beq lbl_80658D28
 /* 80658D00  3C 60 00 05 */	lis r3, 0x0005 /* 0x00050079@ha */

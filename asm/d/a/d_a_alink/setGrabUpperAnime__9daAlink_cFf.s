@@ -17,16 +17,16 @@ lbl_800E3DBC:
 /* 800E3DF8  2C 03 00 00 */	cmpwi r3, 0
 /* 800E3DFC  41 82 00 20 */	beq lbl_800E3E1C
 /* 800E3E00  C0 22 92 B8 */	lfs f1, lit_6040(r2)
-/* 800E3E04  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha
-/* 800E3E08  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l
+/* 800E3E04  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha /* 0x8038E7F4@ha */
+/* 800E3E08  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l /* 0x8038E7F4@l */
 /* 800E3E0C  C0 03 00 48 */	lfs f0, 0x48(r3)
 /* 800E3E10  EC 01 00 24 */	fdivs f0, f1, f0
 /* 800E3E14  EF FF 00 32 */	fmuls f31, f31, f0
 /* 800E3E18  48 00 00 1C */	b lbl_800E3E34
 lbl_800E3E1C:
 /* 800E3E1C  C0 22 92 B8 */	lfs f1, lit_6040(r2)
-/* 800E3E20  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha
-/* 800E3E24  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l
+/* 800E3E20  3C 60 80 39 */	lis r3, m__24daAlinkHIO_magneBoots_c0@ha /* 0x8038E7F4@ha */
+/* 800E3E24  38 63 E7 F4 */	addi r3, r3, m__24daAlinkHIO_magneBoots_c0@l /* 0x8038E7F4@l */
 /* 800E3E28  C0 03 00 28 */	lfs f0, 0x28(r3)
 /* 800E3E2C  EC 01 00 24 */	fdivs f0, f1, f0
 /* 800E3E30  EF FF 00 32 */	fmuls f31, f31, f0

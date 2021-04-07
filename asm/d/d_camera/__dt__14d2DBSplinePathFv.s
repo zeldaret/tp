@@ -5,8 +5,8 @@ lbl_801828D4:
 /* 801828E0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801828E4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 801828E8  41 82 00 1C */	beq lbl_80182904
-/* 801828EC  3C A0 80 3C */	lis r5, __vt__14d2DBSplinePath@ha
-/* 801828F0  38 05 A7 EC */	addi r0, r5, __vt__14d2DBSplinePath@l
+/* 801828EC  3C A0 80 3C */	lis r5, __vt__14d2DBSplinePath@ha /* 0x803BA7EC@ha */
+/* 801828F0  38 05 A7 EC */	addi r0, r5, __vt__14d2DBSplinePath@l /* 0x803BA7EC@l */
 /* 801828F4  90 1F 00 30 */	stw r0, 0x30(r31)
 /* 801828F8  7C 80 07 35 */	extsh. r0, r4
 /* 801828FC  40 81 00 08 */	ble lbl_80182904

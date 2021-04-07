@@ -3,19 +3,19 @@ lbl_80AF25D8:
 /* 80AF25DC  7C 08 02 A6 */	mflr r0
 /* 80AF25E0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80AF25E4  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80AF25E8  3C 60 80 AF */	lis r3, cNullVec__6Z2Calc@ha
-/* 80AF25EC  3B E3 28 88 */	addi r31, r3, cNullVec__6Z2Calc@l
-/* 80AF25F0  3C 60 80 AF */	lis r3, __vt__22daNpc_SoldierA_Param_c@ha
-/* 80AF25F4  38 03 2A D8 */	addi r0, r3, __vt__22daNpc_SoldierA_Param_c@l
-/* 80AF25F8  3C 60 80 AF */	lis r3, l_HIO@ha
-/* 80AF25FC  94 03 2B 3C */	stwu r0, l_HIO@l(r3)
-/* 80AF2600  3C 80 80 AF */	lis r4, __dt__22daNpc_SoldierA_Param_cFv@ha
-/* 80AF2604  38 84 26 7C */	addi r4, r4, __dt__22daNpc_SoldierA_Param_cFv@l
-/* 80AF2608  3C A0 80 AF */	lis r5, lit_4017@ha
-/* 80AF260C  38 A5 2B 30 */	addi r5, r5, lit_4017@l
+/* 80AF25E8  3C 60 80 AF */	lis r3, cNullVec__6Z2Calc@ha /* 0x80AF2888@ha */
+/* 80AF25EC  3B E3 28 88 */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x80AF2888@l */
+/* 80AF25F0  3C 60 80 AF */	lis r3, __vt__22daNpc_SoldierA_Param_c@ha /* 0x80AF2AD8@ha */
+/* 80AF25F4  38 03 2A D8 */	addi r0, r3, __vt__22daNpc_SoldierA_Param_c@l /* 0x80AF2AD8@l */
+/* 80AF25F8  3C 60 80 AF */	lis r3, l_HIO@ha /* 0x80AF2B3C@ha */
+/* 80AF25FC  94 03 2B 3C */	stwu r0, l_HIO@l(r3)  /* 0x80AF2B3C@l */
+/* 80AF2600  3C 80 80 AF */	lis r4, __dt__22daNpc_SoldierA_Param_cFv@ha /* 0x80AF267C@ha */
+/* 80AF2604  38 84 26 7C */	addi r4, r4, __dt__22daNpc_SoldierA_Param_cFv@l /* 0x80AF267C@l */
+/* 80AF2608  3C A0 80 AF */	lis r5, lit_4017@ha /* 0x80AF2B30@ha */
+/* 80AF260C  38 A5 2B 30 */	addi r5, r5, lit_4017@l /* 0x80AF2B30@l */
 /* 80AF2610  4B FF CF 09 */	bl __register_global_object
-/* 80AF2614  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 80AF2618  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 80AF2614  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80AF2618  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 80AF261C  80 64 00 00 */	lwz r3, 0(r4)
 /* 80AF2620  80 04 00 04 */	lwz r0, 4(r4)
 /* 80AF2624  90 7F 00 D4 */	stw r3, 0xd4(r31)

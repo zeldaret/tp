@@ -24,7 +24,7 @@ lbl_805CDA7C:
 /* 805CDA98  48 00 00 14 */	b lbl_805CDAAC
 lbl_805CDA9C:
 /* 805CDA9C  80 7F 08 68 */	lwz r3, 0x868(r31)
-/* 805CDAA0  4B A5 1F 84 */	b fopMsgM_SearchByID__FUi
+/* 805CDAA0  4B A5 1F 85 */	bl fopMsgM_SearchByID__FUi
 /* 805CDAA4  90 7F 08 6C */	stw r3, 0x86c(r31)
 lbl_805CDAA8:
 /* 805CDAA8  38 60 00 00 */	li r3, 0

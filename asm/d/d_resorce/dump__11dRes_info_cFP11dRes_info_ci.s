@@ -6,15 +6,15 @@ lbl_8003BE38:
 /* 8003BE48  48 32 63 85 */	bl _savegpr_25
 /* 8003BE4C  7C 7C 1B 78 */	mr r28, r3
 /* 8003BE50  7C 9D 23 78 */	mr r29, r4
-/* 8003BE54  3C 60 80 38 */	lis r3, d_d_resorce__stringBase0@ha
-/* 8003BE58  38 63 98 B8 */	addi r3, r3, d_d_resorce__stringBase0@l
+/* 8003BE54  3C 60 80 38 */	lis r3, d_d_resorce__stringBase0@ha /* 0x803798B8@ha */
+/* 8003BE58  38 63 98 B8 */	addi r3, r3, d_d_resorce__stringBase0@l /* 0x803798B8@l */
 /* 8003BE5C  38 63 01 80 */	addi r3, r3, 0x180
 /* 8003BE60  7F 84 E3 78 */	mr r4, r28
 /* 8003BE64  7F A5 EB 78 */	mr r5, r29
 /* 8003BE68  4C C6 31 82 */	crclr 6
 /* 8003BE6C  48 2A C7 5D */	bl JUTReportConsole_f
-/* 8003BE70  3C 60 80 38 */	lis r3, d_d_resorce__stringBase0@ha
-/* 8003BE74  38 63 98 B8 */	addi r3, r3, d_d_resorce__stringBase0@l
+/* 8003BE70  3C 60 80 38 */	lis r3, d_d_resorce__stringBase0@ha /* 0x803798B8@ha */
+/* 8003BE74  38 63 98 B8 */	addi r3, r3, d_d_resorce__stringBase0@l /* 0x803798B8@l */
 /* 8003BE78  38 63 01 9B */	addi r3, r3, 0x19b
 /* 8003BE7C  4C C6 31 82 */	crclr 6
 /* 8003BE80  48 2A C7 49 */	bl JUTReportConsole_f
@@ -35,8 +35,8 @@ lbl_8003BE94:
 /* 8003BEB8  38 80 00 00 */	li r4, 0
 /* 8003BEBC  48 29 27 F5 */	bl getSize__7JKRHeapFPvP7JKRHeap
 /* 8003BEC0  7C 7A 1B 78 */	mr r26, r3
-/* 8003BEC4  3C 60 80 38 */	lis r3, d_d_resorce__stringBase0@ha
-/* 8003BEC8  38 63 98 B8 */	addi r3, r3, d_d_resorce__stringBase0@l
+/* 8003BEC4  3C 60 80 38 */	lis r3, d_d_resorce__stringBase0@ha /* 0x803798B8@ha */
+/* 8003BEC8  38 63 98 B8 */	addi r3, r3, d_d_resorce__stringBase0@l /* 0x803798B8@l */
 /* 8003BECC  38 63 01 D1 */	addi r3, r3, 0x1d1
 /* 8003BED0  7F 24 CB 78 */	mr r4, r25
 /* 8003BED4  C8 62 83 F8 */	lfd f3, lit_4277(r2)
@@ -68,8 +68,8 @@ lbl_8003BF30:
 lbl_8003BF38:
 /* 8003BF38  7C 19 E8 00 */	cmpw r25, r29
 /* 8003BF3C  41 80 FF 58 */	blt lbl_8003BE94
-/* 8003BF40  3C 60 80 38 */	lis r3, d_d_resorce__stringBase0@ha
-/* 8003BF44  38 63 98 B8 */	addi r3, r3, d_d_resorce__stringBase0@l
+/* 8003BF40  3C 60 80 38 */	lis r3, d_d_resorce__stringBase0@ha /* 0x803798B8@ha */
+/* 8003BF44  38 63 98 B8 */	addi r3, r3, d_d_resorce__stringBase0@l /* 0x803798B8@l */
 /* 8003BF48  38 63 01 F1 */	addi r3, r3, 0x1f1
 /* 8003BF4C  C8 62 83 F8 */	lfd f3, lit_4277(r2)
 /* 8003BF50  6F E0 80 00 */	xoris r0, r31, 0x8000

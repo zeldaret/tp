@@ -35,7 +35,7 @@ lbl_805F0620:
 /* 805F06A4  FC 00 02 10 */	fabs f0, f0
 /* 805F06A8  FC 00 00 18 */	frsp f0, f0
 /* 805F06AC  D0 03 1C D4 */	stfs f0, 0x1cd4(r3)
-/* 805F06B0  3C 80 80 5F */	lis r4, lit_3794@ha
-/* 805F06B4  C0 04 41 A4 */	lfs f0, lit_3794@l(r4)
+/* 805F06B0  3C 80 80 5F */	lis r4, lit_3794@ha /* 0x805F41A4@ha */
+/* 805F06B4  C0 04 41 A4 */	lfs f0, lit_3794@l(r4)  /* 0x805F41A4@l */
 /* 805F06B8  D0 03 1C DC */	stfs f0, 0x1cdc(r3)
 /* 805F06BC  4E 80 00 20 */	blr 

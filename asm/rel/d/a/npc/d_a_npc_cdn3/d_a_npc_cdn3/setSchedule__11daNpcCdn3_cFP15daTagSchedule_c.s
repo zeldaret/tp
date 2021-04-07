@@ -30,7 +30,7 @@ lbl_8097B3E4:
 /* 8097B3F0  7F C6 F3 78 */	mr r6, r30
 /* 8097B3F4  38 FF 04 D0 */	addi r7, r31, 0x4d0
 /* 8097B3F8  39 00 00 00 */	li r8, 0
-/* 8097B3FC  4B 7D E6 3C */	b setPath__11PathTrace_cFiiiP4cXyzb
+/* 8097B3FC  4B 7D E6 3D */	bl setPath__11PathTrace_cFiiiP4cXyzb
 /* 8097B400  2C 1E FF FF */	cmpwi r30, -1
 /* 8097B404  40 82 00 14 */	bne lbl_8097B418
 /* 8097B408  80 7F 0A D8 */	lwz r3, 0xad8(r31)
@@ -62,11 +62,11 @@ lbl_8097B418:
 /* 8097B46C  2C 04 00 2C */	cmpwi r4, 0x2c
 /* 8097B470  41 80 00 18 */	blt lbl_8097B488
 lbl_8097B474:
-/* 8097B474  3C 60 80 98 */	lis r3, stringBase0@ha
-/* 8097B478  38 63 F5 AC */	addi r3, r3, stringBase0@l
+/* 8097B474  3C 60 80 98 */	lis r3, d_a_npc_cdn3__stringBase0@ha /* 0x8097F5AC@ha */
+/* 8097B478  38 63 F5 AC */	addi r3, r3, d_a_npc_cdn3__stringBase0@l /* 0x8097F5AC@l */
 /* 8097B47C  38 63 00 4C */	addi r3, r3, 0x4c
 /* 8097B480  4C C6 31 82 */	crclr 6
-/* 8097B484  4B 68 B7 88 */	b OSReport_Error
+/* 8097B484  4B 68 B7 89 */	bl OSReport_Error
 lbl_8097B488:
 /* 8097B488  80 7F 0B 84 */	lwz r3, 0xb84(r31)
 /* 8097B48C  80 03 00 B0 */	lwz r0, 0xb0(r3)
@@ -114,7 +114,7 @@ lbl_8097B488:
 /* 8097B534  90 01 00 1C */	stw r0, 0x1c(r1)
 /* 8097B538  38 61 00 14 */	addi r3, r1, 0x14
 /* 8097B53C  38 81 00 08 */	addi r4, r1, 8
-/* 8097B540  4B 8F 56 FC */	b cLib_targetAngleY__FRC3VecRC3Vec
+/* 8097B540  4B 8F 56 FD */	bl cLib_targetAngleY__FRC3VecRC3Vec
 /* 8097B544  B0 7F 04 DE */	sth r3, 0x4de(r31)
 /* 8097B548  A8 1F 04 DE */	lha r0, 0x4de(r31)
 /* 8097B54C  B0 1F 04 E6 */	sth r0, 0x4e6(r31)

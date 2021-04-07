@@ -58,7 +58,6 @@ $(BUILD_DIR)/libJUtility.a: $(LIBJUTILITY_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libJUtility.a
 	@echo $(LIBJUTILITY_A_O_FILES) > build/LIBJUTILITY_A_ofiles
 	@$(LD) -xm l $(LIBJUTILITY_A_LDFLAGS) -o $(BUILD_DIR)/libJUtility.a @build/LIBJUTILITY_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libJUtility.a
 
 $(BUILD_DIR)/libs/JSystem/JUtility/%.o: libs/JSystem/JUtility/%.cpp
 	@mkdir -p $(@D)

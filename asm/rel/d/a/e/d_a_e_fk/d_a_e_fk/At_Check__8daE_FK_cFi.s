@@ -3,15 +3,15 @@ lbl_806BABB8:
 /* 806BABBC  7C 08 02 A6 */	mflr r0
 /* 806BABC0  90 01 00 24 */	stw r0, 0x24(r1)
 /* 806BABC4  39 61 00 20 */	addi r11, r1, 0x20
-/* 806BABC8  4B CA 76 14 */	b _savegpr_29
+/* 806BABC8  4B CA 76 15 */	bl _savegpr_29
 /* 806BABCC  7C 7F 1B 78 */	mr r31, r3
 /* 806BABD0  1C 64 01 38 */	mulli r3, r4, 0x138
 /* 806BABD4  38 63 06 18 */	addi r3, r3, 0x618
 /* 806BABD8  7C 7F 1A 14 */	add r3, r31, r3
-/* 806BABDC  4B 9C 99 1C */	b GetTgHitObj__12dCcD_GObjInfFv
+/* 806BABDC  4B 9C 99 1D */	bl GetTgHitObj__12dCcD_GObjInfFv
 /* 806BABE0  90 7F 0F 44 */	stw r3, 0xf44(r31)
 /* 806BABE4  38 7F 0F 44 */	addi r3, r31, 0xf44
-/* 806BABE8  4B 9C CE 70 */	b at_power_check__FP11dCcU_AtInfo
+/* 806BABE8  4B 9C CE 71 */	bl at_power_check__FP11dCcU_AtInfo
 /* 806BABEC  90 7F 0F 48 */	stw r3, 0xf48(r31)
 /* 806BABF0  80 1F 0F 48 */	lwz r0, 0xf48(r31)
 /* 806BABF4  28 00 00 00 */	cmplwi r0, 0
@@ -57,7 +57,7 @@ lbl_806BAC70:
 /* 806BAC80  28 1E 00 00 */	cmplwi r30, 0
 /* 806BAC84  41 82 00 2C */	beq lbl_806BACB0
 /* 806BAC88  38 80 00 00 */	li r4, 0
-/* 806BAC8C  4B 9C 99 24 */	b getHitSeID__12dCcD_GObjInfFUci
+/* 806BAC8C  4B 9C 99 25 */	bl getHitSeID__12dCcD_GObjInfFUci
 /* 806BAC90  7C 64 1B 78 */	mr r4, r3
 /* 806BAC94  80 7F 0F 4C */	lwz r3, 0xf4c(r31)
 /* 806BAC98  7F C5 F3 78 */	mr r5, r30
@@ -68,7 +68,7 @@ lbl_806BAC70:
 /* 806BACAC  48 00 00 28 */	b lbl_806BACD4
 lbl_806BACB0:
 /* 806BACB0  38 80 00 00 */	li r4, 0
-/* 806BACB4  4B 9C 98 FC */	b getHitSeID__12dCcD_GObjInfFUci
+/* 806BACB4  4B 9C 98 FD */	bl getHitSeID__12dCcD_GObjInfFUci
 /* 806BACB8  7C 64 1B 78 */	mr r4, r3
 /* 806BACBC  80 7F 0F 4C */	lwz r3, 0xf4c(r31)
 /* 806BACC0  7F A5 EB 78 */	mr r5, r29
@@ -78,7 +78,7 @@ lbl_806BACB0:
 /* 806BACD0  4E 80 04 21 */	bctrl 
 lbl_806BACD4:
 /* 806BACD4  39 61 00 20 */	addi r11, r1, 0x20
-/* 806BACD8  4B CA 75 50 */	b _restgpr_29
+/* 806BACD8  4B CA 75 51 */	bl _restgpr_29
 /* 806BACDC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 806BACE0  7C 08 03 A6 */	mtlr r0
 /* 806BACE4  38 21 00 20 */	addi r1, r1, 0x20

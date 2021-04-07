@@ -6,7 +6,7 @@ lbl_80A125E8:
 /* 80A125F8  7C 85 23 78 */	mr r5, r4
 /* 80A125FC  80 63 00 08 */	lwz r3, 8(r3)
 /* 80A12600  A0 86 00 04 */	lhz r4, 4(r6)
-/* 80A12604  4B 91 89 4C */	b getTexNo__16J3DAnmTexPatternCFUsPUs
+/* 80A12604  4B 91 89 4D */	bl getTexNo__16J3DAnmTexPatternCFUsPUs
 /* 80A12608  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80A1260C  7C 08 03 A6 */	mtlr r0
 /* 80A12610  38 21 00 10 */	addi r1, r1, 0x10

@@ -3,17 +3,15 @@
 #
 
 M129_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_magne.plf
+M129_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_magne.lcf
+M129_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_magne.map
 
 M129_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_magne/executor.cpp \
-	rel/d/a/tag/d_a_tag_magne/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_magne/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.cpp \
 
 M129_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_magne/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_magne/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_magne/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_magne/d_a_tag_magne.o \
 
 M129_LIBS := \
@@ -29,14 +27,21 @@ M129_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M129_LDSCRIPT) \
+	-unused -map $(M129_MAP) \
+	-w off \
 
 $(M129_TARGET): $(M129_O_FILES) $(M129_LIBS)
+	@echo [129] creating $(M129_TARGET)
 	@echo $(M129_LIBS) $(M129_O_FILES) > build/M129_ofiles
-	$(LD) -partial $(M129_LDFLAGS) -o $(M129_TARGET) @build/M129_ofiles
+	@python3 tools/lcf.py rel 129 --output $(M129_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M129_LDFLAGS) -o $(M129_TARGET) @build/M129_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_magne/%.o: rel/d/a/tag/d_a_tag_magne/%.cpp
+	@echo [129] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M129_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M129_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -28,8 +28,8 @@ lbl_801CC7F4:
 /* 801CC804  41 82 00 28 */	beq lbl_801CC82C
 /* 801CC808  41 82 00 24 */	beq lbl_801CC82C
 /* 801CC80C  7F C3 F3 78 */	mr r3, r30
-/* 801CC810  3C 80 80 04 */	lis r4, __dt__26fmpTresTypeGroupDataList_cFv@ha
-/* 801CC814  38 84 EB 10 */	addi r4, r4, __dt__26fmpTresTypeGroupDataList_cFv@l
+/* 801CC810  3C 80 80 04 */	lis r4, __dt__26fmpTresTypeGroupDataList_cFv@ha /* 0x8003EB10@ha */
+/* 801CC814  38 84 EB 10 */	addi r4, r4, __dt__26fmpTresTypeGroupDataList_cFv@l /* 0x8003EB10@l */
 /* 801CC818  38 A0 00 08 */	li r5, 8
 /* 801CC81C  38 C0 00 11 */	li r6, 0x11
 /* 801CC820  48 19 54 C9 */	bl __destroy_arr

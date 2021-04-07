@@ -1,6 +1,6 @@
 lbl_80992C84:
-/* 80992C84  3C 80 80 99 */	lis r4, __vt__11J3DTexNoAnm@ha
-/* 80992C88  38 04 5C A0 */	addi r0, r4, __vt__11J3DTexNoAnm@l
+/* 80992C84  3C 80 80 99 */	lis r4, __vt__11J3DTexNoAnm@ha /* 0x80995CA0@ha */
+/* 80992C88  38 04 5C A0 */	addi r0, r4, __vt__11J3DTexNoAnm@l /* 0x80995CA0@l */
 /* 80992C8C  90 03 00 00 */	stw r0, 0(r3)
 /* 80992C90  38 80 00 00 */	li r4, 0
 /* 80992C94  B0 83 00 04 */	sth r4, 4(r3)

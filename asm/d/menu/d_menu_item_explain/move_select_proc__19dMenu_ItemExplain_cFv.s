@@ -6,8 +6,8 @@ lbl_801DBF44:
 /* 801DBF54  7C 7F 1B 78 */	mr r31, r3
 /* 801DBF58  80 63 00 B8 */	lwz r3, 0xb8(r3)
 /* 801DBF5C  4B E5 62 41 */	bl checkTrigger__9STControlFv
-/* 801DBF60  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 801DBF64  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 801DBF60  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801DBF64  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801DBF68  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 801DBF6C  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 801DBF70  41 82 00 E4 */	beq lbl_801DC054
@@ -21,14 +21,14 @@ lbl_801DBF44:
 /* 801DBF90  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801DBF94  40 82 00 18 */	bne lbl_801DBFAC
 /* 801DBF98  38 00 00 01 */	li r0, 1
-/* 801DBF9C  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801DBFA0  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801DBF9C  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801DBFA0  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801DBFA4  98 03 00 C0 */	stb r0, 0xc0(r3)
 /* 801DBFA8  48 00 00 14 */	b lbl_801DBFBC
 lbl_801DBFAC:
 /* 801DBFAC  38 00 00 02 */	li r0, 2
-/* 801DBFB0  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801DBFB4  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801DBFB0  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801DBFB4  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801DBFB8  98 03 00 C0 */	stb r0, 0xc0(r3)
 lbl_801DBFBC:
 /* 801DBFBC  88 1F 00 E5 */	lbz r0, 0xe5(r31)

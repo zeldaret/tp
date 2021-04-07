@@ -34,15 +34,15 @@ lbl_801030BC:
 /* 801030C8  80 1F 05 74 */	lwz r0, 0x574(r31)
 /* 801030CC  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
 /* 801030D0  41 82 00 18 */	beq lbl_801030E8
-/* 801030D4  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlSwim_c0@ha
-/* 801030D8  38 63 F8 B4 */	addi r3, r3, m__20daAlinkHIO_wlSwim_c0@l
+/* 801030D4  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlSwim_c0@ha /* 0x8038F8B4@ha */
+/* 801030D8  38 63 F8 B4 */	addi r3, r3, m__20daAlinkHIO_wlSwim_c0@l /* 0x8038F8B4@l */
 /* 801030DC  C0 03 00 48 */	lfs f0, 0x48(r3)
 /* 801030E0  D0 1F 34 80 */	stfs f0, 0x3480(r31)
 /* 801030E4  48 00 00 30 */	b lbl_80103114
 lbl_801030E8:
 /* 801030E8  38 7F 34 80 */	addi r3, r31, 0x3480
-/* 801030EC  3C 80 80 39 */	lis r4, m__18daAlinkHIO_swim_c0@ha
-/* 801030F0  38 84 ED 2C */	addi r4, r4, m__18daAlinkHIO_swim_c0@l
+/* 801030EC  3C 80 80 39 */	lis r4, m__18daAlinkHIO_swim_c0@ha /* 0x8038ED2C@ha */
+/* 801030F0  38 84 ED 2C */	addi r4, r4, m__18daAlinkHIO_swim_c0@l /* 0x8038ED2C@l */
 /* 801030F4  C0 24 00 60 */	lfs f1, 0x60(r4)
 /* 801030F8  C0 42 92 98 */	lfs f2, lit_5943(r2)
 /* 801030FC  C0 62 94 64 */	lfs f3, lit_14954(r2)
@@ -56,13 +56,13 @@ lbl_80103114:
 /* 80103114  80 1F 05 74 */	lwz r0, 0x574(r31)
 /* 80103118  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
 /* 8010311C  41 82 00 14 */	beq lbl_80103130
-/* 80103120  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlSwim_c0@ha
-/* 80103124  38 63 F8 B4 */	addi r3, r3, m__20daAlinkHIO_wlSwim_c0@l
+/* 80103120  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlSwim_c0@ha /* 0x8038F8B4@ha */
+/* 80103124  38 63 F8 B4 */	addi r3, r3, m__20daAlinkHIO_wlSwim_c0@l /* 0x8038F8B4@l */
 /* 80103128  C3 E3 00 4C */	lfs f31, 0x4c(r3)
 /* 8010312C  48 00 00 10 */	b lbl_8010313C
 lbl_80103130:
-/* 80103130  3C 60 80 39 */	lis r3, m__18daAlinkHIO_swim_c0@ha
-/* 80103134  38 63 ED 2C */	addi r3, r3, m__18daAlinkHIO_swim_c0@l
+/* 80103130  3C 60 80 39 */	lis r3, m__18daAlinkHIO_swim_c0@ha /* 0x8038ED2C@ha */
+/* 80103134  38 63 ED 2C */	addi r3, r3, m__18daAlinkHIO_swim_c0@l /* 0x8038ED2C@l */
 /* 80103138  C3 E3 00 64 */	lfs f31, 0x64(r3)
 lbl_8010313C:
 /* 8010313C  7F E3 FB 78 */	mr r3, r31

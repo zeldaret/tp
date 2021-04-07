@@ -10,14 +10,14 @@ lbl_80C89874:
 /* 80C89894  38 00 00 00 */	li r0, 0
 /* 80C89898  98 1F 08 0D */	stb r0, 0x80d(r31)
 /* 80C8989C  38 7F 08 10 */	addi r3, r31, 0x810
-/* 80C898A0  4B 51 E0 8C */	b dKy_plight_cut__FP15LIGHT_INFLUENCE
+/* 80C898A0  4B 51 E0 8D */	bl dKy_plight_cut__FP15LIGHT_INFLUENCE
 lbl_80C898A4:
-/* 80C898A4  3C 60 80 C9 */	lis r3, l_HIO@ha
-/* 80C898A8  38 63 A1 F4 */	addi r3, r3, l_HIO@l
+/* 80C898A4  3C 60 80 C9 */	lis r3, l_HIO@ha /* 0x80C8A1F4@ha */
+/* 80C898A8  38 63 A1 F4 */	addi r3, r3, l_HIO@l /* 0x80C8A1F4@l */
 /* 80C898AC  88 03 00 04 */	lbz r0, 4(r3)
 /* 80C898B0  98 1F 08 09 */	stb r0, 0x809(r31)
-/* 80C898B4  3C 60 80 C9 */	lis r3, lit_3896@ha
-/* 80C898B8  C0 03 9F C8 */	lfs f0, lit_3896@l(r3)
+/* 80C898B4  3C 60 80 C9 */	lis r3, lit_3896@ha /* 0x80C89FC8@ha */
+/* 80C898B8  C0 03 9F C8 */	lfs f0, lit_3896@l(r3)  /* 0x80C89FC8@l */
 /* 80C898BC  D0 1F 05 B8 */	stfs f0, 0x5b8(r31)
 /* 80C898C0  38 00 00 07 */	li r0, 7
 /* 80C898C4  98 1F 05 E8 */	stb r0, 0x5e8(r31)

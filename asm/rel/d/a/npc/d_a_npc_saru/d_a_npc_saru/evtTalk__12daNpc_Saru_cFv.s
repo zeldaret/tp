@@ -4,8 +4,8 @@ lbl_80AC11D4:
 /* 80AC11DC  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80AC11E0  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80AC11E4  7C 7F 1B 78 */	mr r31, r3
-/* 80AC11E8  3C 80 80 AC */	lis r4, lit_4623@ha
-/* 80AC11EC  38 A4 4E 00 */	addi r5, r4, lit_4623@l
+/* 80AC11E8  3C 80 80 AC */	lis r4, lit_4623@ha /* 0x80AC4E00@ha */
+/* 80AC11EC  38 A4 4E 00 */	addi r5, r4, lit_4623@l /* 0x80AC4E00@l */
 /* 80AC11F0  80 85 00 00 */	lwz r4, 0(r5)
 /* 80AC11F4  80 05 00 04 */	lwz r0, 4(r5)
 /* 80AC11F8  90 81 00 14 */	stw r4, 0x14(r1)
@@ -19,12 +19,12 @@ lbl_80AC11D4:
 /* 80AC1218  7F E3 FB 78 */	mr r3, r31
 /* 80AC121C  38 80 00 00 */	li r4, 0
 /* 80AC1220  39 9F 0F C8 */	addi r12, r31, 0xfc8
-/* 80AC1224  4B 8A 0E 60 */	b __ptmf_scall
+/* 80AC1224  4B 8A 0E 61 */	bl __ptmf_scall
 /* 80AC1228  60 00 00 00 */	nop 
 /* 80AC122C  48 00 00 30 */	b lbl_80AC125C
 lbl_80AC1230:
-/* 80AC1230  3C 60 80 AC */	lis r3, lit_4628@ha
-/* 80AC1234  38 83 4E 0C */	addi r4, r3, lit_4628@l
+/* 80AC1230  3C 60 80 AC */	lis r3, lit_4628@ha /* 0x80AC4E0C@ha */
+/* 80AC1234  38 83 4E 0C */	addi r4, r3, lit_4628@l /* 0x80AC4E0C@l */
 /* 80AC1238  80 64 00 00 */	lwz r3, 0(r4)
 /* 80AC123C  80 04 00 04 */	lwz r0, 4(r4)
 /* 80AC1240  90 61 00 08 */	stw r3, 8(r1)

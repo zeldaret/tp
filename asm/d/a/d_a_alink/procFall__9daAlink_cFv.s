@@ -38,8 +38,8 @@ lbl_800C6D90:
 /* 800C6DA4  4B FE EF 29 */	bl checkLandAction__9daAlink_cFi
 /* 800C6DA8  48 00 01 58 */	b lbl_800C6F00
 lbl_800C6DAC:
-/* 800C6DAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800C6DB0  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
+/* 800C6DAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800C6DB0  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800C6DB4  A0 1E 00 02 */	lhz r0, 2(r30)
 /* 800C6DB8  28 00 00 00 */	cmplwi r0, 0
 /* 800C6DBC  41 82 01 2C */	beq lbl_800C6EE8
@@ -100,8 +100,8 @@ lbl_800C6E68:
 /* 800C6E84  A8 1F 30 0C */	lha r0, 0x300c(r31)
 /* 800C6E88  2C 00 00 00 */	cmpwi r0, 0
 /* 800C6E8C  40 82 00 34 */	bne lbl_800C6EC0
-/* 800C6E90  3C 60 80 39 */	lis r3, m__21daAlinkHIO_damFall_c0@ha
-/* 800C6E94  38 A3 E4 54 */	addi r5, r3, m__21daAlinkHIO_damFall_c0@l
+/* 800C6E90  3C 60 80 39 */	lis r3, m__21daAlinkHIO_damFall_c0@ha /* 0x8038E454@ha */
+/* 800C6E94  38 A3 E4 54 */	addi r5, r3, m__21daAlinkHIO_damFall_c0@l /* 0x8038E454@l */
 /* 800C6E98  C0 05 00 40 */	lfs f0, 0x40(r5)
 /* 800C6E9C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800C6EA0  40 81 00 20 */	ble lbl_800C6EC0

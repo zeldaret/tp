@@ -6,11 +6,11 @@ lbl_8052A1C0:
 /* 8052A1D0  28 00 00 00 */	cmplwi r0, 0
 /* 8052A1D4  41 82 00 24 */	beq lbl_8052A1F8
 /* 8052A1D8  38 80 00 05 */	li r4, 5
-/* 8052A1DC  3C A0 80 53 */	lis r5, lit_3833@ha
-/* 8052A1E0  C0 25 61 B4 */	lfs f1, lit_3833@l(r5)
+/* 8052A1DC  3C A0 80 53 */	lis r5, lit_3833@ha /* 0x805361B4@ha */
+/* 8052A1E0  C0 25 61 B4 */	lfs f1, lit_3833@l(r5)  /* 0x805361B4@l */
 /* 8052A1E4  38 A0 00 00 */	li r5, 0
-/* 8052A1E8  3C C0 80 53 */	lis r6, lit_3679@ha
-/* 8052A1EC  C0 46 61 68 */	lfs f2, lit_3679@l(r6)
+/* 8052A1E8  3C C0 80 53 */	lis r6, lit_3679@ha /* 0x80536168@ha */
+/* 8052A1EC  C0 46 61 68 */	lfs f2, lit_3679@l(r6)  /* 0x80536168@l */
 /* 8052A1F0  4B FF FF 25 */	bl anm_init__FP13mg_fish_classifUcf
 /* 8052A1F4  48 00 00 18 */	b lbl_8052A20C
 lbl_8052A1F8:

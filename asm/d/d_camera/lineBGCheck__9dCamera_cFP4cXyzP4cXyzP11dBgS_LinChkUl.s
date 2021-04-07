@@ -70,8 +70,8 @@ lbl_801659A8:
 /* 801659AC  54 00 07 FA */	rlwinm r0, r0, 0, 0x1f, 0x1d
 /* 801659B0  90 1F 00 6C */	stw r0, 0x6c(r31)
 lbl_801659B4:
-/* 801659B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801659B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801659B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801659B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801659BC  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 801659C0  7F E4 FB 78 */	mr r4, r31
 /* 801659C4  4B F0 E9 F1 */	bl LineCross__4cBgSFP11cBgS_LinChk

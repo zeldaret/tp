@@ -13,8 +13,8 @@ lbl_8034B2D4:
 /* 8034B300  38 04 00 01 */	addi r0, r4, 1
 /* 8034B304  28 00 00 0C */	cmplwi r0, 0xc
 /* 8034B308  41 81 02 20 */	bgt lbl_8034B528
-/* 8034B30C  3C 60 80 3D */	lis r3, lit_956@ha
-/* 8034B310  38 63 16 3C */	addi r3, r3, lit_956@l
+/* 8034B30C  3C 60 80 3D */	lis r3, lit_956@ha /* 0x803D163C@ha */
+/* 8034B310  38 63 16 3C */	addi r3, r3, lit_956@l /* 0x803D163C@l */
 /* 8034B314  54 00 10 3A */	slwi r0, r0, 2
 /* 8034B318  7C 03 00 2E */	lwzx r0, r3, r0
 /* 8034B31C  7C 09 03 A6 */	mtctr r0
@@ -102,8 +102,8 @@ lbl_8034B440:
 /* 8034B448  90 0D 92 18 */	stw r0, Canceling(r13)
 /* 8034B44C  48 00 00 DC */	b lbl_8034B528
 /* 8034B450  4B FF D0 09 */	bl DVDLowClearCallback
-/* 8034B454  3C 80 80 35 */	lis r4, cbForStateMotorStopped@ha
-/* 8034B458  38 04 9F C0 */	addi r0, r4, cbForStateMotorStopped@l
+/* 8034B454  3C 80 80 35 */	lis r4, cbForStateMotorStopped@ha /* 0x80349FC0@ha */
+/* 8034B458  38 04 9F C0 */	addi r0, r4, cbForStateMotorStopped@l /* 0x80349FC0@l */
 /* 8034B45C  7C 03 00 40 */	cmplw r3, r0
 /* 8034B460  41 82 00 14 */	beq lbl_8034B474
 /* 8034B464  7F E3 FB 78 */	mr r3, r31
@@ -141,8 +141,8 @@ lbl_8034B4C4:
 /* 8034B4D0  38 00 00 07 */	li r0, 7
 /* 8034B4D4  90 0D 92 20 */	stw r0, ResumeFromHere(r13)
 lbl_8034B4D8:
-/* 8034B4D8  3C 60 80 45 */	lis r3, DummyCommandBlock@ha
-/* 8034B4DC  38 03 C9 40 */	addi r0, r3, DummyCommandBlock@l
+/* 8034B4D8  3C 60 80 45 */	lis r3, DummyCommandBlock@ha /* 0x8044C940@ha */
+/* 8034B4DC  38 03 C9 40 */	addi r0, r3, DummyCommandBlock@l /* 0x8044C940@l */
 /* 8034B4E0  90 0D 91 F8 */	stw r0, executing(r13)
 /* 8034B4E4  38 00 00 0A */	li r0, 0xa
 /* 8034B4E8  90 1D 00 0C */	stw r0, 0xc(r29)

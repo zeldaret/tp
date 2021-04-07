@@ -5,8 +5,8 @@ lbl_801ED31C:
 /* 801ED328  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 801ED32C  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 801ED330  7C 7F 1B 78 */	mr r31, r3
-/* 801ED334  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801ED338  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801ED334  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801ED338  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801ED33C  38 63 00 9C */	addi r3, r3, 0x9c
 /* 801ED340  88 1F 06 A8 */	lbz r0, 0x6a8(r31)
 /* 801ED344  7C 9F 02 14 */	add r4, r31, r0
@@ -29,8 +29,8 @@ lbl_801ED380:
 /* 801ED380  48 00 CC BD */	bl dMw_A_TRIGGER__Fv
 /* 801ED384  2C 03 00 00 */	cmpwi r3, 0
 /* 801ED388  41 82 00 60 */	beq lbl_801ED3E8
-/* 801ED38C  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801ED390  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801ED38C  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801ED390  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801ED394  A0 03 00 B2 */	lhz r0, 0xb2(r3)
 /* 801ED398  54 00 04 63 */	rlwinm. r0, r0, 0, 0x11, 0x11
 /* 801ED39C  40 82 00 4C */	bne lbl_801ED3E8
@@ -40,8 +40,8 @@ lbl_801ED380:
 /* 801ED3AC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801ED3B0  41 82 00 38 */	beq lbl_801ED3E8
 /* 801ED3B4  38 00 00 01 */	li r0, 1
-/* 801ED3B8  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801ED3BC  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801ED3B8  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801ED3BC  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801ED3C0  98 03 00 E8 */	stb r0, 0xe8(r3)
 /* 801ED3C4  88 1F 06 A8 */	lbz r0, 0x6a8(r31)
 /* 801ED3C8  98 1F 06 C4 */	stb r0, 0x6c4(r31)
@@ -56,8 +56,8 @@ lbl_801ED3E8:
 /* 801ED3E8  48 00 CC 55 */	bl dMw_A_TRIGGER__Fv
 /* 801ED3EC  2C 03 00 00 */	cmpwi r3, 0
 /* 801ED3F0  41 82 00 4C */	beq lbl_801ED43C
-/* 801ED3F4  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801ED3F8  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801ED3F4  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801ED3F8  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801ED3FC  A0 03 00 B2 */	lhz r0, 0xb2(r3)
 /* 801ED400  54 00 04 63 */	rlwinm. r0, r0, 0, 0x11, 0x11
 /* 801ED404  40 82 00 38 */	bne lbl_801ED43C

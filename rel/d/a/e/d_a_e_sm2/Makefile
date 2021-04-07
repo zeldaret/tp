@@ -3,19 +3,20 @@
 #
 
 M232_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_sm2.plf
+M232_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_sm2.lcf
+M232_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_sm2.map
 
 M232_CPP_FILES := \
-	rel/d/a/e/d_a_e_sm2/executor.cpp \
-	rel/d/a/e/d_a_e_sm2/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_sm2/d_a_e_sm2.cpp \
 
 M232_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_sm2/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_sm2/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_sm2/d_a_e_sm2.o \
 
 M232_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_sm2/libRuntime.PPCEABI.H.a \
 
 M232_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M232_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M232_LDSCRIPT) \
+	-unused -map $(M232_MAP) \
+	-w off \
 
 $(M232_TARGET): $(M232_O_FILES) $(M232_LIBS)
+	@echo [232] creating $(M232_TARGET)
 	@echo $(M232_LIBS) $(M232_O_FILES) > build/M232_ofiles
-	$(LD) -partial $(M232_LDFLAGS) -o $(M232_TARGET) @build/M232_ofiles
+	@python3 tools/lcf.py rel 232 --output $(M232_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M232_LDFLAGS) -o $(M232_TARGET) @build/M232_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_sm2/%.o: rel/d/a/e/d_a_e_sm2/%.cpp
+	@echo [232] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M232_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M232_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_sm2/libs/Runtime.PPCEABI.H/Makefile
 

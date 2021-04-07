@@ -9,8 +9,8 @@ lbl_8011EC60:
 /* 8011EC7C  A8 03 30 0C */	lha r0, 0x300c(r3)
 /* 8011EC80  2C 00 00 00 */	cmpwi r0, 0
 /* 8011EC84  41 82 00 1C */	beq lbl_8011ECA0
-/* 8011EC88  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011EC8C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011EC88  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011EC8C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011EC90  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 8011EC94  80 9E 31 84 */	lwz r4, 0x3184(r30)
 /* 8011EC98  4B F2 94 E5 */	bl cutEnd__16dEvent_manager_cFi
@@ -26,8 +26,8 @@ lbl_8011ECA0:
 /* 8011ECBC  38 80 01 90 */	li r4, 0x190
 /* 8011ECC0  C0 22 92 BC */	lfs f1, lit_6041(r2)
 /* 8011ECC4  4B F8 E2 ED */	bl setSingleAnimeBaseMorf__9daAlink_cFQ29daAlink_c11daAlink_ANMf
-/* 8011ECC8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011ECCC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011ECC8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011ECCC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011ECD0  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 8011ECD4  80 9E 31 84 */	lwz r4, 0x3184(r30)
 /* 8011ECD8  4B F2 94 A5 */	bl cutEnd__16dEvent_manager_cFi

@@ -15,10 +15,6 @@ struct mDoRst {
     /* 800157F4 */ void getResetData();
 };
 
-struct mDoDvdThd {
-    /* 800157FC */ void main(void*);
-};
-
 struct Z2AudioMgr {
     /* 802CDA6C */ void hasReset() const;
 };
@@ -43,18 +39,12 @@ struct JASDvd {
 // Forward References:
 //
 
-static void my_OSCancelAlarmAll();
-static void destroyVideo();
-void mDoRst_reset(int, u32, int);
-void mDoRst_resetCallBack(int, void*);
-
 extern "C" static void my_OSCancelAlarmAll__Fv();
 extern "C" static void destroyVideo__Fv();
 extern "C" void mDoRst_reset__FiUli();
 extern "C" void mDoRst_resetCallBack__FiPv();
 extern "C" void getResetData__6mDoRstFv();
 extern "C" extern char const* const m_Do_m_Do_Reset__stringBase0;
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
 extern "C" extern u8 struct_80450C80[8];
 extern "C" extern u8 data_80450C88[8];
 
@@ -62,11 +52,7 @@ extern "C" extern u8 data_80450C88[8];
 // External References:
 //
 
-void mDoDvdErr_ThdCleanup();
-void cAPICPad_recalibrate();
-
 extern "C" void OSAttention();
-extern "C" void main__9mDoDvdThdFPv();
 extern "C" void mDoDvdErr_ThdCleanup__Fv();
 extern "C" void cAPICPad_recalibrate__Fv();
 extern "C" void pause__13JASTaskThreadFb();
@@ -107,33 +93,27 @@ extern "C" extern u8 sManager__6JUTXfb[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 800155D8-800155DC 0004+00 s=1 e=0 z=0  None .text      my_OSCancelAlarmAll__Fv */
+/* 800155D8-800155DC 00FF18 0004+00 1/1 0/0 0/0 .text            my_OSCancelAlarmAll__Fv */
 static void my_OSCancelAlarmAll() {
     /* empty function */
 }
 
-/* 800155DC-80015614 0038+00 s=1 e=0 z=0  None .text      destroyVideo__Fv */
+/* 800155DC-80015614 00FF1C 0038+00 1/1 0/0 0/0 .text            destroyVideo__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void destroyVideo() {
+static asm void destroyVideo() {
     nofralloc
 #include "asm/m_Do/m_Do_Reset/destroyVideo__Fv.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80374198-803741A8 0010+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80374198 = "DVD_STATE_BUSY\n";
-#pragma pop
-
-/* 80450C78-80450C80 0004+04 s=3 e=42 z=2  None .sbss      mResetData__6mDoRst */
+/* 80450C78-80450C80 000178 0004+04 3/3 42/42 2/2 .sbss            mResetData__6mDoRst */
+extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
 u8 mResetData__6mDoRst[4 + 4 /* padding */];
 
-/* 80015614-8001574C 0138+00 s=0 e=3 z=0  None .text      mDoRst_reset__FiUli */
+/* 80015614-8001574C 00FF54 0138+00 0/0 3/3 0/0 .text            mDoRst_reset__FiUli */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -143,7 +123,7 @@ asm void mDoRst_reset(int param_0, u32 param_1, int param_2) {
 }
 #pragma pop
 
-/* 8001574C-800157F4 00A8+00 s=0 e=3 z=0  None .text      mDoRst_resetCallBack__FiPv */
+/* 8001574C-800157F4 01008C 00A8+00 0/0 3/3 0/0 .text            mDoRst_resetCallBack__FiPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -153,7 +133,7 @@ asm void mDoRst_resetCallBack(int param_0, void* param_1) {
 }
 #pragma pop
 
-/* 800157F4-800157FC 0008+00 s=1 e=0 z=0  None .text      getResetData__6mDoRstFv */
+/* 800157F4-800157FC 010134 0008+00 1/1 0/0 0/0 .text            getResetData__6mDoRstFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -164,8 +144,19 @@ asm void mDoRst::getResetData() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450C80-80450C88 0008+00 s=0 e=6 z=0  None .sbss      None */
+/* 80450C80-80450C88 -00001 0008+00 0/0 6/6 0/0 .sbss            None */
+/* 80450C80 0001+00 data_80450C80 None */
+/* 80450C81 0007+00 data_80450C81 None */
+extern u8 struct_80450C80[8];
 u8 struct_80450C80[8];
 
-/* 80450C88-80450C90 0008+00 s=0 e=2 z=0  None .sbss      None */
+/* 80450C88-80450C90 000188 0008+00 0/0 2/2 0/0 .sbss            None */
+extern u8 data_80450C88[8];
 u8 data_80450C88[8];
+
+/* 80374198-803741A8 0007F8 0010+00 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80374198 = "DVD_STATE_BUSY\n";
+#pragma pop

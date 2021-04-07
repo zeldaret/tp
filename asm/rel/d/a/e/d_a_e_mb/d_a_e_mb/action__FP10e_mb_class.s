@@ -40,34 +40,34 @@ lbl_807075E8:
 lbl_807075F0:
 /* 807075F0  4B FF FF 71 */	bl e_mb_end__FP10e_mb_class
 lbl_807075F4:
-/* 807075F4  3C 60 80 45 */	lis r3, calc_mtx@ha
-/* 807075F8  38 63 07 68 */	addi r3, r3, calc_mtx@l
+/* 807075F4  3C 60 80 45 */	lis r3, calc_mtx@ha /* 0x80450768@ha */
+/* 807075F8  38 63 07 68 */	addi r3, r3, calc_mtx@l /* 0x80450768@l */
 /* 807075FC  80 63 00 00 */	lwz r3, 0(r3)
 /* 80707600  A8 9E 04 DE */	lha r4, 0x4de(r30)
-/* 80707604  4B 90 4D D8 */	b mDoMtx_YrotS__FPA4_fs
-/* 80707608  3C 60 80 45 */	lis r3, calc_mtx@ha
-/* 8070760C  38 63 07 68 */	addi r3, r3, calc_mtx@l
+/* 80707604  4B 90 4D D9 */	bl mDoMtx_YrotS__FPA4_fs
+/* 80707608  3C 60 80 45 */	lis r3, calc_mtx@ha /* 0x80450768@ha */
+/* 8070760C  38 63 07 68 */	addi r3, r3, calc_mtx@l /* 0x80450768@l */
 /* 80707610  80 63 00 00 */	lwz r3, 0(r3)
 /* 80707614  A8 9E 04 DC */	lha r4, 0x4dc(r30)
-/* 80707618  4B 90 4D 84 */	b mDoMtx_XrotM__FPA4_fs
-/* 8070761C  3C 60 80 71 */	lis r3, lit_3767@ha
-/* 80707620  C0 03 8A 1C */	lfs f0, lit_3767@l(r3)
+/* 80707618  4B 90 4D 85 */	bl mDoMtx_XrotM__FPA4_fs
+/* 8070761C  3C 60 80 71 */	lis r3, lit_3767@ha /* 0x80708A1C@ha */
+/* 80707620  C0 03 8A 1C */	lfs f0, lit_3767@l(r3)  /* 0x80708A1C@l */
 /* 80707624  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80707628  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8070762C  C0 1E 05 2C */	lfs f0, 0x52c(r30)
 /* 80707630  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80707634  38 61 00 08 */	addi r3, r1, 8
 /* 80707638  38 9E 04 F8 */	addi r4, r30, 0x4f8
-/* 8070763C  4B B6 98 B0 */	b MtxPosition__FP4cXyzP4cXyz
+/* 8070763C  4B B6 98 B1 */	bl MtxPosition__FP4cXyzP4cXyz
 /* 80707640  38 7E 04 D0 */	addi r3, r30, 0x4d0
 /* 80707644  38 9E 04 F8 */	addi r4, r30, 0x4f8
 /* 80707648  7C 65 1B 78 */	mr r5, r3
-/* 8070764C  4B C3 FA 44 */	b PSVECAdd
+/* 8070764C  4B C3 FA 45 */	bl PSVECAdd
 /* 80707650  38 7E 04 E6 */	addi r3, r30, 0x4e6
 /* 80707654  A8 9E 04 DE */	lha r4, 0x4de(r30)
 /* 80707658  38 A0 00 04 */	li r5, 4
 /* 8070765C  38 C0 08 00 */	li r6, 0x800
-/* 80707660  4B B6 8F A8 */	b cLib_addCalcAngleS2__FPssss
+/* 80707660  4B B6 8F A9 */	bl cLib_addCalcAngleS2__FPssss
 /* 80707664  7F E3 FB 78 */	mr r3, r31
 /* 80707668  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8070766C  83 C1 00 18 */	lwz r30, 0x18(r1)

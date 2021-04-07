@@ -6,8 +6,8 @@ lbl_802E227C:
 /* 802E228C  28 03 00 00 */	cmplwi r3, 0
 /* 802E2290  41 82 00 18 */	beq lbl_802E22A8
 /* 802E2294  38 60 00 10 */	li r3, 0x10
-/* 802E2298  3C 80 80 2E */	lis r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha
-/* 802E229C  38 84 1F CC */	addi r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l
+/* 802E2298  3C 80 80 2E */	lis r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha /* 0x802E1FCC@ha */
+/* 802E229C  38 84 1F CC */	addi r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l /* 0x802E1FCC@l */
 /* 802E22A0  48 05 A2 E1 */	bl OSSetErrorHandler
 /* 802E22A4  48 00 00 10 */	b lbl_802E22B4
 lbl_802E22A8:

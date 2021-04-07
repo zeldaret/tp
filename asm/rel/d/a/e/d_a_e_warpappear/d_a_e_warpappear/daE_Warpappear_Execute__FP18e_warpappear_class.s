@@ -7,8 +7,8 @@ lbl_807D1BAC:
 /* 807D1BC0  A8 63 05 94 */	lha r3, 0x594(r3)
 /* 807D1BC4  38 03 00 01 */	addi r0, r3, 1
 /* 807D1BC8  B0 1F 05 94 */	sth r0, 0x594(r31)
-/* 807D1BCC  3C 60 80 7D */	lis r3, lit_4949@ha
-/* 807D1BD0  C0 03 22 7C */	lfs f0, lit_4949@l(r3)
+/* 807D1BCC  3C 60 80 7D */	lis r3, lit_4949@ha /* 0x807D227C@ha */
+/* 807D1BD0  C0 03 22 7C */	lfs f0, lit_4949@l(r3)  /* 0x807D227C@l */
 /* 807D1BD4  D0 1F 04 EC */	stfs f0, 0x4ec(r31)
 /* 807D1BD8  38 60 00 00 */	li r3, 0
 /* 807D1BDC  38 00 00 02 */	li r0, 2
@@ -30,12 +30,12 @@ lbl_807D1BFC:
 /* 807D1C14  7F E3 FB 78 */	mr r3, r31
 /* 807D1C18  4B FF FF 31 */	bl mtx_set__FP18e_warpappear_class
 /* 807D1C1C  80 7F 05 78 */	lwz r3, 0x578(r31)
-/* 807D1C20  4B 83 B8 08 */	b play__14mDoExt_baseAnmFv
+/* 807D1C20  4B 83 B8 09 */	bl play__14mDoExt_baseAnmFv
 /* 807D1C24  80 1F 05 84 */	lwz r0, 0x584(r31)
 /* 807D1C28  54 00 10 3A */	slwi r0, r0, 2
 /* 807D1C2C  7C 7F 02 14 */	add r3, r31, r0
 /* 807D1C30  80 63 05 7C */	lwz r3, 0x57c(r3)
-/* 807D1C34  4B 83 B7 F4 */	b play__14mDoExt_baseAnmFv
+/* 807D1C34  4B 83 B7 F5 */	bl play__14mDoExt_baseAnmFv
 /* 807D1C38  38 60 00 01 */	li r3, 1
 /* 807D1C3C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 807D1C40  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -6,8 +6,8 @@ lbl_802E3B0C:
 /* 802E3B1C  93 C1 00 08 */	stw r30, 8(r1)
 /* 802E3B20  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802E3B24  41 82 00 64 */	beq lbl_802E3B88
-/* 802E3B28  3C 60 80 43 */	lis r3, sMapFileList__12JUTException@ha
-/* 802E3B2C  83 E3 45 98 */	lwz r31, sMapFileList__12JUTException@l(r3)
+/* 802E3B28  3C 60 80 43 */	lis r3, sMapFileList__12JUTException@ha /* 0x80434598@ha */
+/* 802E3B2C  83 E3 45 98 */	lwz r31, sMapFileList__12JUTException@l(r3)  /* 0x80434598@l */
 /* 802E3B30  48 00 00 20 */	b lbl_802E3B50
 lbl_802E3B34:
 /* 802E3B34  80 9F 00 00 */	lwz r4, 0(r31)
@@ -29,8 +29,8 @@ lbl_802E3B50:
 /* 802E3B70  4B FF 82 8D */	bl __ct__10JSUPtrLinkFPv
 /* 802E3B74  93 DF 00 00 */	stw r30, 0(r31)
 lbl_802E3B78:
-/* 802E3B78  3C 60 80 43 */	lis r3, sMapFileList__12JUTException@ha
-/* 802E3B7C  38 63 45 98 */	addi r3, r3, sMapFileList__12JUTException@l
+/* 802E3B78  3C 60 80 43 */	lis r3, sMapFileList__12JUTException@ha /* 0x80434598@ha */
+/* 802E3B7C  38 63 45 98 */	addi r3, r3, sMapFileList__12JUTException@l /* 0x80434598@l */
 /* 802E3B80  38 9F 00 04 */	addi r4, r31, 4
 /* 802E3B84  4B FF 83 C9 */	bl append__10JSUPtrListFP10JSUPtrLink
 lbl_802E3B88:

@@ -8,8 +8,8 @@ lbl_800FE6E8:
 /* 800FE700  7C 9F 23 78 */	mr r31, r4
 /* 800FE704  A8 03 04 E6 */	lha r0, 0x4e6(r3)
 /* 800FE708  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 800FE70C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800FE710  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800FE70C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800FE710  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800FE714  7C C3 04 2E */	lfsx f6, r3, r0
 /* 800FE718  7C 63 02 14 */	add r3, r3, r0
 /* 800FE71C  C0 E3 00 04 */	lfs f7, 4(r3)

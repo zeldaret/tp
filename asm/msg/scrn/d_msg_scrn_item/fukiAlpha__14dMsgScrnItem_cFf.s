@@ -11,8 +11,8 @@ lbl_802400CC:
 /* 802400F0  D3 E3 01 3C */	stfs f31, 0x13c(r3)
 /* 802400F4  D3 E3 01 94 */	stfs f31, 0x194(r3)
 /* 802400F8  80 63 00 08 */	lwz r3, 8(r3)
-/* 802400FC  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha
-/* 80240100  38 84 02 8C */	addi r4, r4, g_MsgObject_HIO_c@l
+/* 802400FC  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 80240100  38 84 02 8C */	addi r4, r4, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 80240104  C0 04 00 24 */	lfs f0, 0x24(r4)
 /* 80240108  EC 3F 00 32 */	fmuls f1, f31, f0
 /* 8024010C  48 01 56 C5 */	bl setAlphaRate__13CPaneMgrAlphaFf

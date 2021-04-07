@@ -3,8 +3,8 @@ lbl_80074ABC:
 /* 80074AC0  7C 08 02 A6 */	mflr r0
 /* 80074AC4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80074AC8  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80074ACC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80074AD0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80074ACC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80074AD0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80074AD4  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80074AD8  4B FF FB 51 */	bl GetBgWBasePointer__4cBgSCFRC13cBgS_PolyInfo
 /* 80074ADC  7C 7F 1B 79 */	or. r31, r3, r3

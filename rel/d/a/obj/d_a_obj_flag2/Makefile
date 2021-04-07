@@ -3,17 +3,15 @@
 #
 
 M450_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag2.plf
+M450_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag2.lcf
+M450_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag2.map
 
 M450_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_flag2/executor.cpp \
-	rel/d/a/obj/d_a_obj_flag2/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_flag2/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_flag2/d_a_obj_flag2.cpp \
 
 M450_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag2/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag2/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag2/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag2/d_a_obj_flag2.o \
 
 M450_LIBS := \
@@ -29,14 +27,21 @@ M450_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M450_LDSCRIPT) \
+	-unused -map $(M450_MAP) \
+	-w off \
 
 $(M450_TARGET): $(M450_O_FILES) $(M450_LIBS)
+	@echo [450] creating $(M450_TARGET)
 	@echo $(M450_LIBS) $(M450_O_FILES) > build/M450_ofiles
-	$(LD) -partial $(M450_LDFLAGS) -o $(M450_TARGET) @build/M450_ofiles
+	@python3 tools/lcf.py rel 450 --output $(M450_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M450_LDFLAGS) -o $(M450_TARGET) @build/M450_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag2/%.o: rel/d/a/obj/d_a_obj_flag2/%.cpp
+	@echo [450] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M450_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M450_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

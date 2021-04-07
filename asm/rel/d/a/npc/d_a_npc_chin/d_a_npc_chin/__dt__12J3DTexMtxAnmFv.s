@@ -7,7 +7,7 @@ lbl_8098CC3C:
 /* 8098CC50  41 82 00 10 */	beq lbl_8098CC60
 /* 8098CC54  7C 80 07 35 */	extsh. r0, r4
 /* 8098CC58  40 81 00 08 */	ble lbl_8098CC60
-/* 8098CC5C  4B 94 20 E0 */	b __dl__FPv
+/* 8098CC5C  4B 94 20 E1 */	bl __dl__FPv
 lbl_8098CC60:
 /* 8098CC60  7F E3 FB 78 */	mr r3, r31
 /* 8098CC64  83 E1 00 0C */	lwz r31, 0xc(r1)

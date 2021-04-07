@@ -5,7 +5,7 @@ lbl_8058E628:
 /* 8058E634  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8058E638  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8058E63C  41 82 00 24 */	beq lbl_8058E660
-/* 8058E640  4B A8 A6 A0 */	b fopAc_IsActor__FPv
+/* 8058E640  4B A8 A6 A1 */	bl fopAc_IsActor__FPv
 /* 8058E644  2C 03 00 00 */	cmpwi r3, 0
 /* 8058E648  41 82 00 18 */	beq lbl_8058E660
 /* 8058E64C  A8 1F 00 0E */	lha r0, 0xe(r31)

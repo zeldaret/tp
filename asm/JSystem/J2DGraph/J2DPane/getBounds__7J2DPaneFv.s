@@ -3,8 +3,8 @@ lbl_802F7100:
 /* 802F7104  7C 08 02 A6 */	mflr r0
 /* 802F7108  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802F710C  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 802F7110  3C 80 80 43 */	lis r4, static_mBounds__7J2DPane@ha
-/* 802F7114  3B E4 49 B0 */	addi r31, r4, static_mBounds__7J2DPane@l
+/* 802F7110  3C 80 80 43 */	lis r4, static_mBounds__7J2DPane@ha /* 0x804349B0@ha */
+/* 802F7114  3B E4 49 B0 */	addi r31, r4, static_mBounds__7J2DPane@l /* 0x804349B0@l */
 /* 802F7118  80 83 00 20 */	lwz r4, 0x20(r3)
 /* 802F711C  80 03 00 24 */	lwz r0, 0x24(r3)
 /* 802F7120  90 9F 00 00 */	stw r4, 0(r31)
@@ -34,8 +34,8 @@ lbl_802F7100:
 /* 802F7180  FC 20 00 50 */	fneg f1, f0
 /* 802F7184  C0 03 00 24 */	lfs f0, 0x24(r3)
 /* 802F7188  FC 40 00 50 */	fneg f2, f0
-/* 802F718C  3C 60 80 43 */	lis r3, static_mBounds__7J2DPane@ha
-/* 802F7190  C4 03 49 B0 */	lfsu f0, static_mBounds__7J2DPane@l(r3)
+/* 802F718C  3C 60 80 43 */	lis r3, static_mBounds__7J2DPane@ha /* 0x804349B0@ha */
+/* 802F7190  C4 03 49 B0 */	lfsu f0, static_mBounds__7J2DPane@l(r3)  /* 0x804349B0@l */
 /* 802F7194  EC 00 08 2A */	fadds f0, f0, f1
 /* 802F7198  D0 03 00 00 */	stfs f0, 0(r3)
 /* 802F719C  C0 1F 00 04 */	lfs f0, 4(r31)
@@ -48,8 +48,8 @@ lbl_802F7100:
 /* 802F71B8  EC 00 10 2A */	fadds f0, f0, f2
 /* 802F71BC  D0 1F 00 0C */	stfs f0, 0xc(r31)
 lbl_802F71C0:
-/* 802F71C0  3C 60 80 43 */	lis r3, static_mBounds__7J2DPane@ha
-/* 802F71C4  38 63 49 B0 */	addi r3, r3, static_mBounds__7J2DPane@l
+/* 802F71C0  3C 60 80 43 */	lis r3, static_mBounds__7J2DPane@ha /* 0x804349B0@ha */
+/* 802F71C4  38 63 49 B0 */	addi r3, r3, static_mBounds__7J2DPane@l /* 0x804349B0@l */
 /* 802F71C8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802F71CC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802F71D0  7C 08 03 A6 */	mtlr r0

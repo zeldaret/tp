@@ -8,8 +8,8 @@ lbl_8031DA1C:
 /* 8031DA34  8B C3 00 20 */	lbz r30, 0x20(r3)
 /* 8031DA38  3B A0 00 00 */	li r29, 0
 /* 8031DA3C  3B 60 00 00 */	li r27, 0
-/* 8031DA40  3C 60 80 43 */	lis r3, sTexCoordScaleTable__6J3DSys@ha
-/* 8031DA44  3B E3 4C 2C */	addi r31, r3, sTexCoordScaleTable__6J3DSys@l
+/* 8031DA40  3C 60 80 43 */	lis r3, sTexCoordScaleTable__6J3DSys@ha /* 0x80434C2C@ha */
+/* 8031DA44  3B E3 4C 2C */	addi r31, r3, sTexCoordScaleTable__6J3DSys@l /* 0x80434C2C@l */
 /* 8031DA48  48 00 00 AC */	b lbl_8031DAF4
 lbl_8031DA4C:
 /* 8031DA4C  7C 7C DA 14 */	add r3, r28, r27

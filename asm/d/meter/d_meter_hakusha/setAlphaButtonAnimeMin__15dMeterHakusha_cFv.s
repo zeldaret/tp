@@ -12,8 +12,8 @@ lbl_8020D3B8:
 /* 8020D3E0  80 7F 00 34 */	lwz r3, 0x34(r31)
 /* 8020D3E4  C0 22 AE 08 */	lfs f1, lit_3936(r2)
 /* 8020D3E8  48 04 83 E9 */	bl setAlphaRate__13CPaneMgrAlphaFf
-/* 8020D3EC  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8020D3F0  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8020D3EC  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8020D3F0  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8020D3F4  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 8020D3F8  80 63 01 0C */	lwz r3, 0x10c(r3)
 /* 8020D3FC  80 9F 00 34 */	lwz r4, 0x34(r31)

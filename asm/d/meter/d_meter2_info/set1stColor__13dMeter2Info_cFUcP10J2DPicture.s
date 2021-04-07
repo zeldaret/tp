@@ -5,8 +5,8 @@ lbl_8021D524:
 /* 8021D530  39 61 00 30 */	addi r11, r1, 0x30
 /* 8021D534  48 14 4C A9 */	bl _savegpr_29
 /* 8021D538  7C BF 2B 78 */	mr r31, r5
-/* 8021D53C  3C 60 80 3A */	lis r3, black_color_4634@ha
-/* 8021D540  3B C3 8A 78 */	addi r30, r3, black_color_4634@l
+/* 8021D53C  3C 60 80 3A */	lis r3, black_color_4634@ha /* 0x80398A78@ha */
+/* 8021D540  3B C3 8A 78 */	addi r30, r3, black_color_4634@l /* 0x80398A78@l */
 /* 8021D544  54 9D 15 BA */	rlwinm r29, r4, 2, 0x16, 0x1d
 /* 8021D548  38 7E 00 94 */	addi r3, r30, 0x94
 /* 8021D54C  7C 03 E8 2E */	lwzx r0, r3, r29

@@ -5,27 +5,27 @@ lbl_80CF34E4:
 /* 80CF34F0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CF34F4  7C 7F 1B 78 */	mr r31, r3
 /* 80CF34F8  38 A0 00 00 */	li r5, 0
-/* 80CF34FC  3C 60 80 CF */	lis r3, l_target_info_count@ha
-/* 80CF3500  90 A3 45 28 */	stw r5, l_target_info_count@l(r3)
+/* 80CF34FC  3C 60 80 CF */	lis r3, l_target_info_count@ha /* 0x80CF4528@ha */
+/* 80CF3500  90 A3 45 28 */	stw r5, l_target_info_count@l(r3)  /* 0x80CF4528@l */
 /* 80CF3504  7C A3 2B 78 */	mr r3, r5
-/* 80CF3508  3C 80 80 CF */	lis r4, l_target_info@ha
-/* 80CF350C  38 84 45 08 */	addi r4, r4, l_target_info@l
+/* 80CF3508  3C 80 80 CF */	lis r4, l_target_info@ha /* 0x80CF4508@ha */
+/* 80CF350C  38 84 45 08 */	addi r4, r4, l_target_info@l /* 0x80CF4508@l */
 /* 80CF3510  38 00 00 08 */	li r0, 8
 /* 80CF3514  7C 09 03 A6 */	mtctr r0
 lbl_80CF3518:
 /* 80CF3518  7C A4 19 2E */	stwx r5, r4, r3
 /* 80CF351C  38 63 00 04 */	addi r3, r3, 4
 /* 80CF3520  42 00 FF F8 */	bdnz lbl_80CF3518
-/* 80CF3524  3C 60 80 CF */	lis r3, s_ball_sub__FPvPv@ha
-/* 80CF3528  38 63 32 F8 */	addi r3, r3, s_ball_sub__FPvPv@l
+/* 80CF3524  3C 60 80 CF */	lis r3, s_ball_sub__FPvPv@ha /* 0x80CF32F8@ha */
+/* 80CF3528  38 63 32 F8 */	addi r3, r3, s_ball_sub__FPvPv@l /* 0x80CF32F8@l */
 /* 80CF352C  7F E4 FB 78 */	mr r4, r31
-/* 80CF3530  4B 32 DE 08 */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80CF3530  4B 32 DE 09 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 80CF3534  39 40 00 00 */	li r10, 0
 /* 80CF3538  38 60 00 00 */	li r3, 0
-/* 80CF353C  3C 80 80 CF */	lis r4, l_target_info@ha
-/* 80CF3540  38 E4 45 08 */	addi r7, r4, l_target_info@l
-/* 80CF3544  3C 80 80 CF */	lis r4, l_target_info_count@ha
-/* 80CF3548  38 A4 45 28 */	addi r5, r4, l_target_info_count@l
+/* 80CF353C  3C 80 80 CF */	lis r4, l_target_info@ha /* 0x80CF4508@ha */
+/* 80CF3540  38 E4 45 08 */	addi r7, r4, l_target_info@l /* 0x80CF4508@l */
+/* 80CF3544  3C 80 80 CF */	lis r4, l_target_info_count@ha /* 0x80CF4528@ha */
+/* 80CF3548  38 A4 45 28 */	addi r5, r4, l_target_info_count@l /* 0x80CF4528@l */
 /* 80CF354C  48 00 00 A4 */	b lbl_80CF35F0
 lbl_80CF3550:
 /* 80CF3550  7C 87 18 2E */	lwzx r4, r7, r3

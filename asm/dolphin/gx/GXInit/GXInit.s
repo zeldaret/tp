@@ -5,9 +5,9 @@ lbl_80359670:
 /* 8035967C  BF 21 00 1C */	stmw r25, 0x1c(r1)
 /* 80359680  7C 7A 1B 78 */	mr r26, r3
 /* 80359684  7C 99 23 78 */	mr r25, r4
-/* 80359688  3C 80 80 45 */	lis r4, FifoObj@ha
+/* 80359688  3C 80 80 45 */	lis r4, FifoObj@ha /* 0x8044CE00@ha */
 /* 8035968C  80 6D 84 F8 */	lwz r3, __GXVersion(r13)
-/* 80359690  3B E4 CE 00 */	addi r31, r4, FifoObj@l
+/* 80359690  3B E4 CE 00 */	addi r31, r4, FifoObj@l /* 0x8044CE00@l */
 /* 80359694  4B FE 11 E1 */	bl OSRegisterVersion
 /* 80359698  80 A2 CB 80 */	lwz r5, __GXData(r2)
 /* 8035969C  38 00 00 00 */	li r0, 0
@@ -40,8 +40,8 @@ lbl_80359670:
 /* 80359708  80 0D 93 C4 */	lwz r0, resetFuncRegistered(r13)
 /* 8035970C  28 00 00 00 */	cmplwi r0, 0
 /* 80359710  40 82 00 14 */	bne lbl_80359724
-/* 80359714  3C 60 80 3D */	lis r3, GXResetFuncInfo@ha
-/* 80359718  38 63 22 6C */	addi r3, r3, GXResetFuncInfo@l
+/* 80359714  3C 60 80 3D */	lis r3, GXResetFuncInfo@ha /* 0x803D226C@ha */
+/* 80359718  38 63 22 6C */	addi r3, r3, GXResetFuncInfo@l /* 0x803D226C@l */
 /* 8035971C  4B FE 5F 45 */	bl OSRegisterResetFunction
 /* 80359720  93 8D 93 C4 */	stw r28, resetFuncRegistered(r13)
 lbl_80359724:
@@ -252,7 +252,7 @@ lbl_803598DC:
 /* 80359A3C  D0 08 05 0C */	stfs f0, 0x50c(r8)
 /* 80359A40  93 C8 05 AC */	stw r30, 0x5ac(r8)
 /* 80359A44  9B C8 05 AB */	stb r30, 0x5ab(r8)
-/* 80359A48  80 04 00 F8 */	lwz r0, 0x00F8(r4)
+/* 80359A48  80 04 00 F8 */	lwz r0, 0x00F8(r4)  /* 0x800000F8@l */
 /* 80359A4C  7C 03 00 16 */	mulhwu r0, r3, r0
 /* 80359A50  54 19 D9 7E */	srwi r25, r0, 5
 /* 80359A54  48 00 57 21 */	bl __GXFlushTextureState
@@ -260,7 +260,7 @@ lbl_803598DC:
 /* 80359A5C  64 00 69 00 */	oris r0, r0, 0x6900
 /* 80359A60  3B 80 00 61 */	li r28, 0x61
 /* 80359A64  3F A0 CC 01 */	lis r29, 0xCC01 /* 0xCC008000@ha */
-/* 80359A68  9B 9D 80 00 */	stb r28, 0x8000(r29)
+/* 80359A68  9B 9D 80 00 */	stb r28, 0x8000(r29)  /* 0xCC008000@l */
 /* 80359A6C  60 00 04 00 */	ori r0, r0, 0x400
 /* 80359A70  90 1D 80 00 */	stw r0, -0x8000(r29)
 /* 80359A74  48 00 57 01 */	bl __GXFlushTextureState
@@ -273,9 +273,9 @@ lbl_803598DC:
 /* 80359A90  60 00 02 00 */	ori r0, r0, 0x200
 /* 80359A94  90 1D 80 00 */	stw r0, -0x8000(r29)
 /* 80359A98  4B FF FA 35 */	bl __GXInitRevisionBits
-/* 80359A9C  3C 60 80 3D */	lis r3, GXTexRegionAddrTable@ha
+/* 80359A9C  3C 60 80 3D */	lis r3, GXTexRegionAddrTable@ha /* 0x803D21AC@ha */
 /* 80359AA0  57 C4 10 3A */	slwi r4, r30, 2
-/* 80359AA4  38 03 21 AC */	addi r0, r3, GXTexRegionAddrTable@l
+/* 80359AA4  38 03 21 AC */	addi r0, r3, GXTexRegionAddrTable@l /* 0x803D21AC@l */
 /* 80359AA8  7F 60 22 14 */	add r27, r0, r4
 /* 80359AAC  57 DC 20 36 */	slwi r28, r30, 4
 /* 80359AB0  48 00 00 04 */	b lbl_80359AB4
@@ -374,7 +374,7 @@ lbl_80359B9C:
 /* 80359C00  90 6B 05 A4 */	stw r3, 0x5a4(r11)
 /* 80359C04  3C A0 23 00 */	lis r5, 0x2300
 /* 80359C08  3C 80 24 00 */	lis r4, 0x2400
-/* 80359C0C  98 0A 80 00 */	stb r0, 0x8000(r10)
+/* 80359C0C  98 0A 80 00 */	stb r0, 0x8000(r10)  /* 0xCC008000@l */
 /* 80359C10  3C 00 67 00 */	lis r0, 0x6700
 /* 80359C14  38 60 00 00 */	li r3, 0
 /* 80359C18  99 2A 80 00 */	stb r9, -0x8000(r10)

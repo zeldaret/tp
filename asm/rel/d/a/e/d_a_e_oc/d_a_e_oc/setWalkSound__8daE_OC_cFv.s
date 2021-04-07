@@ -10,9 +10,9 @@ lbl_8072E5A4:
 /* 8072E5C4  41 82 00 98 */	beq lbl_8072E65C
 /* 8072E5C8  80 7F 05 BC */	lwz r3, 0x5bc(r31)
 /* 8072E5CC  38 63 00 0C */	addi r3, r3, 0xc
-/* 8072E5D0  3C 80 80 73 */	lis r4, lit_4991@ha
-/* 8072E5D4  C0 24 5B EC */	lfs f1, lit_4991@l(r4)
-/* 8072E5D8  4B BF 9E 54 */	b checkPass__12J3DFrameCtrlFf
+/* 8072E5D0  3C 80 80 73 */	lis r4, lit_4991@ha /* 0x80735BEC@ha */
+/* 8072E5D4  C0 24 5B EC */	lfs f1, lit_4991@l(r4)  /* 0x80735BEC@l */
+/* 8072E5D8  4B BF 9E 55 */	bl checkPass__12J3DFrameCtrlFf
 /* 8072E5DC  2C 03 00 00 */	cmpwi r3, 0
 /* 8072E5E0  41 82 00 34 */	beq lbl_8072E614
 /* 8072E5E4  3C 60 00 07 */	lis r3, 0x0007 /* 0x00070178@ha */
@@ -30,9 +30,9 @@ lbl_8072E5A4:
 lbl_8072E614:
 /* 8072E614  80 7F 05 BC */	lwz r3, 0x5bc(r31)
 /* 8072E618  38 63 00 0C */	addi r3, r3, 0xc
-/* 8072E61C  3C 80 80 73 */	lis r4, lit_4992@ha
-/* 8072E620  C0 24 5B F0 */	lfs f1, lit_4992@l(r4)
-/* 8072E624  4B BF 9E 08 */	b checkPass__12J3DFrameCtrlFf
+/* 8072E61C  3C 80 80 73 */	lis r4, lit_4992@ha /* 0x80735BF0@ha */
+/* 8072E620  C0 24 5B F0 */	lfs f1, lit_4992@l(r4)  /* 0x80735BF0@l */
+/* 8072E624  4B BF 9E 09 */	bl checkPass__12J3DFrameCtrlFf
 /* 8072E628  2C 03 00 00 */	cmpwi r3, 0
 /* 8072E62C  41 82 00 30 */	beq lbl_8072E65C
 /* 8072E630  3C 60 00 07 */	lis r3, 0x0007 /* 0x00070179@ha */

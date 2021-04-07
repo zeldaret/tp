@@ -5,13 +5,13 @@ lbl_8025C874:
 /* 8025C880  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8025C884  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8025C888  41 82 00 34 */	beq lbl_8025C8BC
-/* 8025C88C  3C 60 80 3C */	lis r3, __vt__25dSvBit_childTreasureHIO_c@ha
-/* 8025C890  38 03 33 90 */	addi r0, r3, __vt__25dSvBit_childTreasureHIO_c@l
+/* 8025C88C  3C 60 80 3C */	lis r3, __vt__25dSvBit_childTreasureHIO_c@ha /* 0x803C3390@ha */
+/* 8025C890  38 03 33 90 */	addi r0, r3, __vt__25dSvBit_childTreasureHIO_c@l /* 0x803C3390@l */
 /* 8025C894  90 1F 00 00 */	stw r0, 0(r31)
 /* 8025C898  34 1F 00 08 */	addic. r0, r31, 8
 /* 8025C89C  41 82 00 10 */	beq lbl_8025C8AC
-/* 8025C8A0  3C 60 80 3C */	lis r3, __vt__29dSvBit_childTbPerfectionHIO_c@ha
-/* 8025C8A4  38 03 33 24 */	addi r0, r3, __vt__29dSvBit_childTbPerfectionHIO_c@l
+/* 8025C8A0  3C 60 80 3C */	lis r3, __vt__29dSvBit_childTbPerfectionHIO_c@ha /* 0x803C3324@ha */
+/* 8025C8A4  38 03 33 24 */	addi r0, r3, __vt__29dSvBit_childTbPerfectionHIO_c@l /* 0x803C3324@l */
 /* 8025C8A8  90 1F 00 08 */	stw r0, 8(r31)
 lbl_8025C8AC:
 /* 8025C8AC  7C 80 07 35 */	extsh. r0, r4

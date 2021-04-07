@@ -13,8 +13,8 @@ lbl_801115CC:
 /* 801115F8  80 1E 06 14 */	lwz r0, 0x614(r30)
 /* 801115FC  28 00 00 27 */	cmplwi r0, 0x27
 /* 80111600  40 82 00 1C */	bne lbl_8011161C
-/* 80111604  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80111608  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80111604  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80111608  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011160C  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 80111610  80 9E 31 84 */	lwz r4, 0x3184(r30)
 /* 80111614  4B F3 6B 69 */	bl cutEnd__16dEvent_manager_cFi

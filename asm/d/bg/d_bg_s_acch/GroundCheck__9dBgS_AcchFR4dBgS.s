@@ -29,20 +29,20 @@ lbl_80076350:
 /* 800763BC  88 0D 89 E8 */	lbz r0, data_80450F68(r13)
 /* 800763C0  7C 00 07 75 */	extsb. r0, r0
 /* 800763C4  40 82 00 2C */	bne lbl_800763F0
-/* 800763C8  3C 60 80 42 */	lis r3, tmpRoofChk@ha
-/* 800763CC  38 63 4B 2C */	addi r3, r3, tmpRoofChk@l
+/* 800763C8  3C 60 80 42 */	lis r3, tmpRoofChk@ha /* 0x80424B2C@ha */
+/* 800763CC  38 63 4B 2C */	addi r3, r3, tmpRoofChk@l /* 0x80424B2C@l */
 /* 800763D0  48 00 2C 25 */	bl __ct__12dBgS_RoofChkFv
-/* 800763D4  3C 80 80 08 */	lis r4, __dt__12dBgS_RoofChkFv@ha
-/* 800763D8  38 84 90 90 */	addi r4, r4, __dt__12dBgS_RoofChkFv@l
-/* 800763DC  3C A0 80 42 */	lis r5, lit_4166@ha
-/* 800763E0  38 A5 4B 20 */	addi r5, r5, lit_4166@l
+/* 800763D4  3C 80 80 08 */	lis r4, __dt__12dBgS_RoofChkFv@ha /* 0x80079090@ha */
+/* 800763D8  38 84 90 90 */	addi r4, r4, __dt__12dBgS_RoofChkFv@l /* 0x80079090@l */
+/* 800763DC  3C A0 80 42 */	lis r5, lit_4166@ha /* 0x80424B20@ha */
+/* 800763E0  38 A5 4B 20 */	addi r5, r5, lit_4166@l /* 0x80424B20@l */
 /* 800763E4  48 2E B8 41 */	bl __register_global_object
 /* 800763E8  38 00 00 01 */	li r0, 1
 /* 800763EC  98 0D 89 E8 */	stb r0, data_80450F68(r13)
 lbl_800763F0:
 /* 800763F0  80 1E 00 E4 */	lwz r0, 0xe4(r30)
-/* 800763F4  3C 60 80 42 */	lis r3, tmpRoofChk@ha
-/* 800763F8  38 83 4B 2C */	addi r4, r3, tmpRoofChk@l
+/* 800763F4  3C 60 80 42 */	lis r3, tmpRoofChk@ha /* 0x80424B2C@ha */
+/* 800763F8  38 83 4B 2C */	addi r4, r3, tmpRoofChk@l /* 0x80424B2C@l */
 /* 800763FC  90 04 00 18 */	stw r0, 0x18(r4)
 /* 80076400  80 7E 00 30 */	lwz r3, 0x30(r30)
 /* 80076404  C0 03 00 00 */	lfs f0, 0(r3)

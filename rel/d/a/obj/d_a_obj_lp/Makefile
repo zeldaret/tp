@@ -3,17 +3,15 @@
 #
 
 M514_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lp.plf
+M514_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lp.lcf
+M514_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lp.map
 
 M514_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lp/executor.cpp \
-	rel/d/a/obj/d_a_obj_lp/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_lp/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_lp/d_a_obj_lp.cpp \
 
 M514_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lp/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lp/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lp/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lp/d_a_obj_lp.o \
 
 M514_LIBS := \
@@ -29,14 +27,21 @@ M514_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M514_LDSCRIPT) \
+	-unused -map $(M514_MAP) \
+	-w off \
 
 $(M514_TARGET): $(M514_O_FILES) $(M514_LIBS)
+	@echo [514] creating $(M514_TARGET)
 	@echo $(M514_LIBS) $(M514_O_FILES) > build/M514_ofiles
-	$(LD) -partial $(M514_LDFLAGS) -o $(M514_TARGET) @build/M514_ofiles
+	@python3 tools/lcf.py rel 514 --output $(M514_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M514_LDFLAGS) -o $(M514_TARGET) @build/M514_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lp/%.o: rel/d/a/obj/d_a_obj_lp/%.cpp
+	@echo [514] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M514_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M514_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

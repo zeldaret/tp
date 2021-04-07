@@ -1,6 +1,6 @@
 lbl_8033FAAC:
-/* 8033FAAC  3C 60 80 45 */	lis r3, __OSRebootParams@ha
-/* 8033FAB0  38 63 BA B0 */	addi r3, r3, __OSRebootParams@l
+/* 8033FAAC  3C 60 80 45 */	lis r3, __OSRebootParams@ha /* 0x8044BAB0@ha */
+/* 8033FAB0  38 63 BA B0 */	addi r3, r3, __OSRebootParams@l /* 0x8044BAB0@l */
 /* 8033FAB4  80 03 00 00 */	lwz r0, 0(r3)
 /* 8033FAB8  2C 00 00 00 */	cmpwi r0, 0
 /* 8033FABC  41 82 00 10 */	beq lbl_8033FACC

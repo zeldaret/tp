@@ -1,6 +1,6 @@
 lbl_807E7BDC:
-/* 807E7BDC  3C C0 80 7F */	lis r6, lit_4066@ha
-/* 807E7BE0  C0 06 F7 B8 */	lfs f0, lit_4066@l(r6)
+/* 807E7BDC  3C C0 80 7F */	lis r6, lit_4066@ha /* 0x807EF7B8@ha */
+/* 807E7BE0  C0 06 F7 B8 */	lfs f0, lit_4066@l(r6)  /* 0x807EF7B8@l */
 /* 807E7BE4  D0 03 05 30 */	stfs f0, 0x530(r3)
 /* 807E7BE8  90 83 06 B8 */	stw r4, 0x6b8(r3)
 /* 807E7BEC  90 A3 06 BC */	stw r5, 0x6bc(r3)

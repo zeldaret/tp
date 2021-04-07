@@ -3,16 +3,16 @@ lbl_8050E430:
 /* 8050E434  7C 08 02 A6 */	mflr r0
 /* 8050E438  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8050E43C  39 61 00 20 */	addi r11, r1, 0x20
-/* 8050E440  4B E5 3D 9C */	b _savegpr_29
+/* 8050E440  4B E5 3D 9D */	bl _savegpr_29
 /* 8050E444  7C 7D 1B 78 */	mr r29, r3
-/* 8050E448  3C 60 80 52 */	lis r3, lit_4208@ha
-/* 8050E44C  3B C3 85 84 */	addi r30, r3, lit_4208@l
+/* 8050E448  3C 60 80 52 */	lis r3, lit_4208@ha /* 0x80518584@ha */
+/* 8050E44C  3B C3 85 84 */	addi r30, r3, lit_4208@l /* 0x80518584@l */
 /* 8050E450  80 1D 09 8C */	lwz r0, 0x98c(r29)
 /* 8050E454  90 01 00 08 */	stw r0, 8(r1)
-/* 8050E458  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 8050E45C  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 8050E458  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 8050E45C  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 8050E460  38 81 00 08 */	addi r4, r1, 8
-/* 8050E464  4B B0 B3 94 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 8050E464  4B B0 B3 95 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8050E468  7C 7F 1B 78 */	mr r31, r3
 /* 8050E46C  80 1D 04 9C */	lwz r0, 0x49c(r29)
 /* 8050E470  54 00 00 3E */	slwi r0, r0, 0
@@ -44,8 +44,8 @@ lbl_8050E4C8:
 /* 8050E4CC  40 80 01 84 */	bge lbl_8050E650
 /* 8050E4D0  48 00 01 60 */	b lbl_8050E630
 lbl_8050E4D4:
-/* 8050E4D4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8050E4D8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8050E4D4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8050E4D8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8050E4DC  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 8050E4E0  81 83 06 28 */	lwz r12, 0x628(r3)
 /* 8050E4E4  81 8C 01 88 */	lwz r12, 0x188(r12)
@@ -67,13 +67,13 @@ lbl_8050E4D4:
 /* 8050E524  B0 1F 05 B4 */	sth r0, 0x5b4(r31)
 /* 8050E528  38 00 00 5A */	li r0, 0x5a
 /* 8050E52C  B0 1F 16 9E */	sth r0, 0x169e(r31)
-/* 8050E530  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 8050E534  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 8050E530  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 8050E534  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 8050E538  80 63 00 00 */	lwz r3, 0(r3)
 /* 8050E53C  38 63 03 D0 */	addi r3, r3, 0x3d0
 /* 8050E540  38 80 00 1E */	li r4, 0x1e
 /* 8050E544  38 A0 00 00 */	li r5, 0
-/* 8050E548  4B DA 0E C0 */	b bgmStop__8Z2SeqMgrFUll
+/* 8050E548  4B DA 0E C1 */	bl bgmStop__8Z2SeqMgrFUll
 /* 8050E54C  48 00 01 04 */	b lbl_8050E650
 lbl_8050E550:
 /* 8050E550  80 7D 05 D0 */	lwz r3, 0x5d0(r29)
@@ -143,10 +143,10 @@ lbl_8050E630:
 /* 8050E640  38 7D 09 EC */	addi r3, r29, 0x9ec
 /* 8050E644  C0 5E 00 C8 */	lfs f2, 0xc8(r30)
 /* 8050E648  C0 7E 00 08 */	lfs f3, 8(r30)
-/* 8050E64C  4B D6 13 F0 */	b cLib_addCalc2__FPffff
+/* 8050E64C  4B D6 13 F1 */	bl cLib_addCalc2__FPffff
 lbl_8050E650:
 /* 8050E650  39 61 00 20 */	addi r11, r1, 0x20
-/* 8050E654  4B E5 3B D4 */	b _restgpr_29
+/* 8050E654  4B E5 3B D5 */	bl _restgpr_29
 /* 8050E658  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8050E65C  7C 08 03 A6 */	mtlr r0
 /* 8050E660  38 21 00 20 */	addi r1, r1, 0x20

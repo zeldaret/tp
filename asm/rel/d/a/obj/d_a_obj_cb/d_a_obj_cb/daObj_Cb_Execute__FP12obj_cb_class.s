@@ -21,7 +21,7 @@ lbl_80BC51F0:
 /* 80BC51FC  4B FF F9 B9 */	bl action__FP12obj_cb_class
 /* 80BC5200  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80BC5204  7C 03 07 74 */	extsb r3, r0
-/* 80BC5208  4B 46 7E 64 */	b dComIfGp_getReverb__Fi
+/* 80BC5208  4B 46 7E 65 */	bl dComIfGp_getReverb__Fi
 /* 80BC520C  7C 65 1B 78 */	mr r5, r3
 /* 80BC5210  38 7F 05 74 */	addi r3, r31, 0x574
 /* 80BC5214  38 80 00 00 */	li r4, 0

@@ -6,8 +6,8 @@ lbl_80115C50:
 /* 80115C60  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80115C64  7C BE 2B 78 */	mr r30, r5
 /* 80115C68  7C DF 33 78 */	mr r31, r6
-/* 80115C6C  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha
-/* 80115C70  38 C5 9A 20 */	addi r6, r5, sincosTable___5JMath@l
+/* 80115C6C  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80115C70  38 C5 9A 20 */	addi r6, r5, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80115C74  A8 A3 04 E6 */	lha r5, 0x4e6(r3)
 /* 80115C78  54 A0 04 38 */	rlwinm r0, r5, 0, 0x10, 0x1c
 /* 80115C7C  7C 66 02 14 */	add r3, r6, r0

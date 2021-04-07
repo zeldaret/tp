@@ -3,19 +3,20 @@
 #
 
 M112_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stick.plf
+M112_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stick.lcf
+M112_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stick.map
 
 M112_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_stick/executor.cpp \
-	rel/d/a/obj/d_a_obj_stick/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_stick/d_a_obj_stick.cpp \
 
 M112_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stick/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stick/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stick/d_a_obj_stick.o \
 
 M112_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_stick/libRuntime.PPCEABI.H.a \
 
 M112_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M112_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M112_LDSCRIPT) \
+	-unused -map $(M112_MAP) \
+	-w off \
 
 $(M112_TARGET): $(M112_O_FILES) $(M112_LIBS)
+	@echo [112] creating $(M112_TARGET)
 	@echo $(M112_LIBS) $(M112_O_FILES) > build/M112_ofiles
-	$(LD) -partial $(M112_LDFLAGS) -o $(M112_TARGET) @build/M112_ofiles
+	@python3 tools/lcf.py rel 112 --output $(M112_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M112_LDFLAGS) -o $(M112_TARGET) @build/M112_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_stick/%.o: rel/d/a/obj/d_a_obj_stick/%.cpp
+	@echo [112] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M112_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M112_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_stick/libs/Runtime.PPCEABI.H/Makefile
 

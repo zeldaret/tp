@@ -89,8 +89,8 @@ lbl_8022EE1C:
 /* 8022EE68  D0 1F 00 48 */	stfs f0, 0x48(r31)
 /* 8022EE6C  38 61 00 08 */	addi r3, r1, 8
 /* 8022EE70  38 80 00 0F */	li r4, 0xf
-/* 8022EE74  3C A0 80 3A */	lis r5, d_msg_d_msg_class__stringBase0@ha
-/* 8022EE78  38 A5 96 10 */	addi r5, r5, d_msg_d_msg_class__stringBase0@l
+/* 8022EE74  3C A0 80 3A */	lis r5, d_msg_d_msg_class__stringBase0@ha /* 0x80399610@ha */
+/* 8022EE78  38 A5 96 10 */	addi r5, r5, d_msg_d_msg_class__stringBase0@l /* 0x80399610@l */
 /* 8022EE7C  38 A5 00 08 */	addi r5, r5, 8
 /* 8022EE80  4C C6 31 82 */	crclr 6
 /* 8022EE84  48 13 77 39 */	bl snprintf

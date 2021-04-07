@@ -1,7 +1,7 @@
 lbl_802E5530:
 /* 802E5530  94 21 FF D0 */	stwu r1, -0x30(r1)
-/* 802E5534  3D 20 80 3D */	lis r9, __vt__8JUTFader@ha
-/* 802E5538  38 09 C9 90 */	addi r0, r9, __vt__8JUTFader@l
+/* 802E5534  3D 20 80 3D */	lis r9, __vt__8JUTFader@ha /* 0x803CC990@ha */
+/* 802E5538  38 09 C9 90 */	addi r0, r9, __vt__8JUTFader@l /* 0x803CC990@l */
 /* 802E553C  90 03 00 00 */	stw r0, 0(r3)
 /* 802E5540  80 08 00 00 */	lwz r0, 0(r8)
 /* 802E5544  90 03 00 0C */	stw r0, 0xc(r3)

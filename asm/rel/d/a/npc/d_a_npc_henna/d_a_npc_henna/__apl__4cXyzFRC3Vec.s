@@ -5,7 +5,7 @@ lbl_8054A724:
 /* 8054A730  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8054A734  7C 7F 1B 78 */	mr r31, r3
 /* 8054A738  7F E5 FB 78 */	mr r5, r31
-/* 8054A73C  4B DF C9 54 */	b PSVECAdd
+/* 8054A73C  4B DF C9 55 */	bl PSVECAdd
 /* 8054A740  7F E3 FB 78 */	mr r3, r31
 /* 8054A744  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8054A748  80 01 00 14 */	lwz r0, 0x14(r1)

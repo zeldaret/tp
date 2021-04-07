@@ -33,9 +33,9 @@ lbl_8032DF2C:
 /* 8032DF34  7C 05 1A 2E */	lhzx r0, r5, r3
 /* 8032DF38  1C 00 00 24 */	mulli r0, r0, 0x24
 /* 8032DF3C  7D 07 02 14 */	add r8, r7, r0
-/* 8032DF40  3C C0 80 3D */	lis r6, PSMulUnit01@ha
+/* 8032DF40  3C C0 80 3D */	lis r6, PSMulUnit01@ha /* 0x803CD8F8@ha */
 /* 8032DF44  E0 09 70 00 */	psq_l f0, 0(r9), 0, 7 /* qr7 */
-/* 8032DF48  38 C6 D8 F8 */	addi r6, r6, PSMulUnit01@l
+/* 8032DF48  38 C6 D8 F8 */	addi r6, r6, PSMulUnit01@l /* 0x803CD8F8@l */
 /* 8032DF4C  E0 48 00 00 */	psq_l f2, 0(r8), 0, 0 /* qr0 */
 /* 8032DF50  E1 A6 00 00 */	psq_l f13, 0(r6), 0, 0 /* qr0 */
 /* 8032DF54  E0 29 F0 04 */	psq_l f1, 4(r9), 1, 7 /* qr7 */

@@ -2,8 +2,8 @@ lbl_8019FB30:
 /* 8019FB30  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8019FB34  7C 08 02 A6 */	mflr r0
 /* 8019FB38  90 01 00 24 */	stw r0, 0x24(r1)
-/* 8019FB3C  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019FB40  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019FB3C  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019FB40  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019FB44  48 00 00 89 */	bl getDarkDaytime__18dScnKy_env_light_cFv
 /* 8019FB48  C0 62 A2 BC */	lfs f3, lit_5554(r2)
 /* 8019FB4C  C0 42 A2 70 */	lfs f2, lit_4850(r2)

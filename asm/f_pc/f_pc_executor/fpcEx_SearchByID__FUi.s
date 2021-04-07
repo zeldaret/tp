@@ -9,8 +9,8 @@ lbl_80021358:
 /* 80021374  38 60 00 00 */	li r3, 0
 /* 80021378  48 00 00 14 */	b lbl_8002138C
 lbl_8002137C:
-/* 8002137C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 80021380  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 8002137C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 80021380  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 80021384  38 81 00 08 */	addi r4, r1, 8
 /* 80021388  4B FF FF B1 */	bl fpcEx_Search__FPFPvPv_PvPv
 lbl_8002138C:

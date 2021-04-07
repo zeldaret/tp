@@ -11,7 +11,7 @@ lbl_8097B60C:
 /* 8097B630  41 82 00 34 */	beq lbl_8097B664
 /* 8097B634  2C 00 00 11 */	cmpwi r0, 0x11
 /* 8097B638  40 82 00 10 */	bne lbl_8097B648
-/* 8097B63C  4B 7D CA 6C */	b isM___10daNpcCd2_cFv
+/* 8097B63C  4B 7D CA 6D */	bl isM___10daNpcCd2_cFv
 /* 8097B640  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8097B644  40 82 00 20 */	bne lbl_8097B664
 lbl_8097B648:

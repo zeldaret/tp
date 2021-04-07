@@ -4,7 +4,7 @@ lbl_809EC7BC:
 /* 809EC7C4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 809EC7C8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 809EC7CC  7C 7F 1B 78 */	mr r31, r3
-/* 809EC7D0  4B 62 C5 10 */	b fopAc_IsActor__FPv
+/* 809EC7D0  4B 62 C5 11 */	bl fopAc_IsActor__FPv
 /* 809EC7D4  2C 03 00 00 */	cmpwi r3, 0
 /* 809EC7D8  41 82 00 18 */	beq lbl_809EC7F0
 /* 809EC7DC  A8 1F 00 08 */	lha r0, 8(r31)

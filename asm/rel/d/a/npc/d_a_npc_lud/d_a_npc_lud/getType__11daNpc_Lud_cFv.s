@@ -3,8 +3,8 @@ lbl_80A6B75C:
 /* 80A6B760  54 00 06 3E */	clrlwi r0, r0, 0x18
 /* 80A6B764  28 00 00 07 */	cmplwi r0, 7
 /* 80A6B768  41 81 00 5C */	bgt lbl_80A6B7C4
-/* 80A6B76C  3C 60 80 A7 */	lis r3, lit_4501@ha
-/* 80A6B770  38 63 08 54 */	addi r3, r3, lit_4501@l
+/* 80A6B76C  3C 60 80 A7 */	lis r3, lit_4501@ha /* 0x80A70854@ha */
+/* 80A6B770  38 63 08 54 */	addi r3, r3, lit_4501@l /* 0x80A70854@l */
 /* 80A6B774  54 00 10 3A */	slwi r0, r0, 2
 /* 80A6B778  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80A6B77C  7C 09 03 A6 */	mtctr r0

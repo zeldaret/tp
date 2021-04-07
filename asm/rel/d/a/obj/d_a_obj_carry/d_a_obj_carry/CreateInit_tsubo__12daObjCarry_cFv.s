@@ -12,13 +12,13 @@ lbl_804705DC:
 lbl_80470604:
 /* 80470604  7F E3 FB 78 */	mr r3, r31
 /* 80470608  48 00 2D E1 */	bl mode_init_wait__12daObjCarry_cFv
-/* 8047060C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80470610  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8047060C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80470610  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80470614  38 63 4E 00 */	addi r3, r3, 0x4e00
-/* 80470618  3C 80 80 48 */	lis r4, struct_8047A4BC+0x0@ha
-/* 8047061C  38 84 A4 BC */	addi r4, r4, struct_8047A4BC+0x0@l
+/* 80470618  3C 80 80 48 */	lis r4, d_a_obj_carry__stringBase0@ha /* 0x8047A4BC@ha */
+/* 8047061C  38 84 A4 BC */	addi r4, r4, d_a_obj_carry__stringBase0@l /* 0x8047A4BC@l */
 /* 80470620  38 84 01 33 */	addi r4, r4, 0x133
-/* 80470624  4B EF 83 70 */	b strcmp
+/* 80470624  4B EF 83 71 */	bl strcmp
 /* 80470628  2C 03 00 00 */	cmpwi r3, 0
 /* 8047062C  40 82 00 0C */	bne lbl_80470638
 /* 80470630  38 00 00 01 */	li r0, 1

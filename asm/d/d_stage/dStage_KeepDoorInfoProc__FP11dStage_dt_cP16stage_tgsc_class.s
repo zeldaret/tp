@@ -2,8 +2,8 @@ lbl_80023F84:
 /* 80023F84  28 04 00 00 */	cmplwi r4, 0
 /* 80023F88  40 82 00 14 */	bne lbl_80023F9C
 /* 80023F8C  38 00 00 00 */	li r0, 0
-/* 80023F90  3C 60 80 3F */	lis r3, DoorInfo@ha
-/* 80023F94  90 03 4E 74 */	stw r0, DoorInfo@l(r3)
+/* 80023F90  3C 60 80 3F */	lis r3, DoorInfo@ha /* 0x803F4E74@ha */
+/* 80023F94  90 03 4E 74 */	stw r0, DoorInfo@l(r3)  /* 0x803F4E74@l */
 /* 80023F98  4E 80 00 20 */	blr 
 lbl_80023F9C:
 /* 80023F9C  80 04 00 00 */	lwz r0, 0(r4)
@@ -13,12 +13,12 @@ lbl_80023F9C:
 /* 80023FAC  40 80 00 14 */	bge lbl_80023FC0
 lbl_80023FB0:
 /* 80023FB0  38 00 00 00 */	li r0, 0
-/* 80023FB4  3C 60 80 3F */	lis r3, DoorInfo@ha
-/* 80023FB8  90 03 4E 74 */	stw r0, DoorInfo@l(r3)
+/* 80023FB4  3C 60 80 3F */	lis r3, DoorInfo@ha /* 0x803F4E74@ha */
+/* 80023FB8  90 03 4E 74 */	stw r0, DoorInfo@l(r3)  /* 0x803F4E74@l */
 /* 80023FBC  4E 80 00 20 */	blr 
 lbl_80023FC0:
-/* 80023FC0  3C 60 80 3F */	lis r3, DoorInfo@ha
-/* 80023FC4  38 A3 4E 74 */	addi r5, r3, DoorInfo@l
+/* 80023FC0  3C 60 80 3F */	lis r3, DoorInfo@ha /* 0x803F4E74@ha */
+/* 80023FC4  38 A3 4E 74 */	addi r5, r3, DoorInfo@l /* 0x803F4E74@l */
 /* 80023FC8  90 05 00 00 */	stw r0, 0(r5)
 /* 80023FCC  4D 82 00 20 */	beqlr 
 /* 80023FD0  80 84 00 04 */	lwz r4, 4(r4)

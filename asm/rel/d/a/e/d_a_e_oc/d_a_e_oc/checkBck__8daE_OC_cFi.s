@@ -4,15 +4,15 @@ lbl_8072E31C:
 /* 8072E324  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8072E328  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8072E32C  7C 7F 1B 78 */	mr r31, r3
-/* 8072E330  3C 60 80 73 */	lis r3, stringBase0@ha
-/* 8072E334  38 63 5D 0C */	addi r3, r3, stringBase0@l
+/* 8072E330  3C 60 80 73 */	lis r3, d_a_e_oc__stringBase0@ha /* 0x80735D0C@ha */
+/* 8072E334  38 63 5D 0C */	addi r3, r3, d_a_e_oc__stringBase0@l /* 0x80735D0C@l */
 /* 8072E338  38 63 00 05 */	addi r3, r3, 5
-/* 8072E33C  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8072E340  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 8072E33C  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8072E340  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8072E344  3C A5 00 02 */	addis r5, r5, 2
 /* 8072E348  38 C0 00 80 */	li r6, 0x80
 /* 8072E34C  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 8072E350  4B 90 DF 9C */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 8072E350  4B 90 DF 9D */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8072E354  80 9F 05 BC */	lwz r4, 0x5bc(r31)
 /* 8072E358  80 04 00 08 */	lwz r0, 8(r4)
 /* 8072E35C  7C 00 18 50 */	subf r0, r0, r3

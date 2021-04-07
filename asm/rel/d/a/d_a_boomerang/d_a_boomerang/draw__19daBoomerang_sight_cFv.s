@@ -7,12 +7,12 @@ lbl_8049EF60:
 /* 8049EF74  DB C1 00 40 */	stfd f30, 0x40(r1)
 /* 8049EF78  F3 C1 00 48 */	psq_st f30, 72(r1), 0, 0 /* qr0 */
 /* 8049EF7C  39 61 00 40 */	addi r11, r1, 0x40
-/* 8049EF80  4B EC 32 38 */	b _savegpr_20
+/* 8049EF80  4B EC 32 39 */	bl _savegpr_20
 /* 8049EF84  7C 78 1B 78 */	mr r24, r3
-/* 8049EF88  3C 60 80 4A */	lis r3, lit_4078@ha
-/* 8049EF8C  3B E3 28 50 */	addi r31, r3, lit_4078@l
-/* 8049EF90  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8049EF94  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8049EF88  3C 60 80 4A */	lis r3, lit_4078@ha /* 0x804A2850@ha */
+/* 8049EF8C  3B E3 28 50 */	addi r31, r3, lit_4078@l /* 0x804A2850@l */
+/* 8049EF90  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8049EF94  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8049EF98  83 C3 5F 50 */	lwz r30, 0x5f50(r3)
 /* 8049EF9C  3B B8 00 62 */	addi r29, r24, 0x62
 /* 8049EFA0  3B 20 00 00 */	li r25, 0
@@ -75,7 +75,7 @@ lbl_8049F050:
 /* 8049F070  C3 FF 00 80 */	lfs f31, 0x80(r31)
 lbl_8049F074:
 /* 8049F074  7F 43 D3 78 */	mr r3, r26
-/* 8049F078  4B E5 A6 18 */	b animation__9J2DScreenFv
+/* 8049F078  4B E5 A6 19 */	bl animation__9J2DScreenFv
 /* 8049F07C  C0 1F 00 84 */	lfs f0, 0x84(r31)
 /* 8049F080  D0 14 00 CC */	stfs f0, 0xcc(r20)
 /* 8049F084  D0 14 00 D0 */	stfs f0, 0xd0(r20)
@@ -145,16 +145,16 @@ lbl_8049F15C:
 /* 8049F178  7D 89 03 A6 */	mtctr r12
 /* 8049F17C  4E 80 04 21 */	bctrl 
 /* 8049F180  C0 3F 00 9C */	lfs f1, 0x9c(r31)
-/* 8049F184  4B DC 84 60 */	b cM_rad2s__Ff
+/* 8049F184  4B DC 84 61 */	bl cM_rad2s__Ff
 /* 8049F188  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
-/* 8049F18C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8049F190  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8049F18C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8049F190  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8049F194  7F E3 04 2E */	lfsx f31, r3, r0
 /* 8049F198  C0 3F 00 9C */	lfs f1, 0x9c(r31)
-/* 8049F19C  4B DC 84 48 */	b cM_rad2s__Ff
+/* 8049F19C  4B DC 84 49 */	bl cM_rad2s__Ff
 /* 8049F1A0  54 64 04 38 */	rlwinm r4, r3, 0, 0x10, 0x1c
-/* 8049F1A4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8049F1A8  38 03 9A 20 */	addi r0, r3, sincosTable___5JMath@l
+/* 8049F1A4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8049F1A8  38 03 9A 20 */	addi r0, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8049F1AC  7C 60 22 14 */	add r3, r0, r4
 /* 8049F1B0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8049F1B4  EC 1E 00 32 */	fmuls f0, f30, f0
@@ -167,16 +167,16 @@ lbl_8049F15C:
 /* 8049F1D0  7D 89 03 A6 */	mtctr r12
 /* 8049F1D4  4E 80 04 21 */	bctrl 
 /* 8049F1D8  C0 3F 00 A0 */	lfs f1, 0xa0(r31)
-/* 8049F1DC  4B DC 84 08 */	b cM_rad2s__Ff
+/* 8049F1DC  4B DC 84 09 */	bl cM_rad2s__Ff
 /* 8049F1E0  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
-/* 8049F1E4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8049F1E8  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8049F1E4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8049F1E8  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8049F1EC  7F E3 04 2E */	lfsx f31, r3, r0
 /* 8049F1F0  C0 3F 00 A0 */	lfs f1, 0xa0(r31)
-/* 8049F1F4  4B DC 83 F0 */	b cM_rad2s__Ff
+/* 8049F1F4  4B DC 83 F1 */	bl cM_rad2s__Ff
 /* 8049F1F8  54 64 04 38 */	rlwinm r4, r3, 0, 0x10, 0x1c
-/* 8049F1FC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8049F200  38 03 9A 20 */	addi r0, r3, sincosTable___5JMath@l
+/* 8049F1FC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8049F200  38 03 9A 20 */	addi r0, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8049F204  7C 60 22 14 */	add r3, r0, r4
 /* 8049F208  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8049F20C  EC 1E 00 32 */	fmuls f0, f30, f0
@@ -193,7 +193,7 @@ lbl_8049F230:
 /* 8049F234  C0 3F 00 54 */	lfs f1, 0x54(r31)
 /* 8049F238  FC 40 08 90 */	fmr f2, f1
 /* 8049F23C  7F C4 F3 78 */	mr r4, r30
-/* 8049F240  4B E5 9C 94 */	b draw__9J2DScreenFffPC14J2DGrafContext
+/* 8049F240  4B E5 9C 95 */	bl draw__9J2DScreenFffPC14J2DGrafContext
 lbl_8049F244:
 /* 8049F244  3B 39 00 01 */	addi r25, r25, 1
 /* 8049F248  2C 19 00 06 */	cmpwi r25, 6
@@ -205,7 +205,7 @@ lbl_8049F244:
 /* 8049F260  E3 C1 00 48 */	psq_l f30, 72(r1), 0, 0 /* qr0 */
 /* 8049F264  CB C1 00 40 */	lfd f30, 0x40(r1)
 /* 8049F268  39 61 00 40 */	addi r11, r1, 0x40
-/* 8049F26C  4B EC 2F 98 */	b _restgpr_20
+/* 8049F26C  4B EC 2F 99 */	bl _restgpr_20
 /* 8049F270  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 8049F274  7C 08 03 A6 */	mtlr r0
 /* 8049F278  38 21 00 60 */	addi r1, r1, 0x60

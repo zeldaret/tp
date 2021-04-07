@@ -3,17 +3,15 @@
 #
 
 M642_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swchain.plf
+M642_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swchain.lcf
+M642_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swchain.map
 
 M642_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_swchain/executor.cpp \
-	rel/d/a/obj/d_a_obj_swchain/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_swchain/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_swchain/d_a_obj_swchain.cpp \
 
 M642_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swchain/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swchain/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swchain/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swchain/d_a_obj_swchain.o \
 
 M642_LIBS := \
@@ -29,14 +27,21 @@ M642_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M642_LDSCRIPT) \
+	-unused -map $(M642_MAP) \
+	-w off \
 
 $(M642_TARGET): $(M642_O_FILES) $(M642_LIBS)
+	@echo [642] creating $(M642_TARGET)
 	@echo $(M642_LIBS) $(M642_O_FILES) > build/M642_ofiles
-	$(LD) -partial $(M642_LDFLAGS) -o $(M642_TARGET) @build/M642_ofiles
+	@python3 tools/lcf.py rel 642 --output $(M642_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M642_LDFLAGS) -o $(M642_TARGET) @build/M642_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swchain/%.o: rel/d/a/obj/d_a_obj_swchain/%.cpp
+	@echo [642] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M642_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M642_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

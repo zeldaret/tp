@@ -3,8 +3,8 @@ lbl_80057390:
 /* 80057394  7C 08 02 A6 */	mflr r0
 /* 80057398  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8005739C  7C 64 1B 78 */	mr r4, r3
-/* 800573A0  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 800573A4  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 800573A0  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 800573A4  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 800573A8  80 63 0F 1C */	lwz r3, 0xf1c(r3)
 /* 800573AC  4B FF F7 9D */	bl dKyw_setDrawPacketListSky__FP9J3DPacketi
 /* 800573B0  80 01 00 14 */	lwz r0, 0x14(r1)

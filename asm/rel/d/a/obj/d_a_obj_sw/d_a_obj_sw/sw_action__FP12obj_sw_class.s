@@ -13,14 +13,14 @@ lbl_80CF2160:
 /* 80CF218C  DB 61 00 F0 */	stfd f27, 0xf0(r1)
 /* 80CF2190  F3 61 00 F8 */	psq_st f27, 248(r1), 0, 0 /* qr0 */
 /* 80CF2194  39 61 00 F0 */	addi r11, r1, 0xf0
-/* 80CF2198  4B 67 00 34 */	b _savegpr_25
+/* 80CF2198  4B 67 00 35 */	bl _savegpr_25
 /* 80CF219C  7C 7C 1B 78 */	mr r28, r3
-/* 80CF21A0  3C 60 80 CF */	lis r3, lit_3850@ha
-/* 80CF21A4  3B C3 30 00 */	addi r30, r3, lit_3850@l
+/* 80CF21A0  3C 60 80 CF */	lis r3, lit_3850@ha /* 0x80CF3000@ha */
+/* 80CF21A4  3B C3 30 00 */	addi r30, r3, lit_3850@l /* 0x80CF3000@l */
 /* 80CF21A8  38 61 00 48 */	addi r3, r1, 0x48
 /* 80CF21AC  38 9C 09 10 */	addi r4, r28, 0x910
 /* 80CF21B0  38 BC 09 04 */	addi r5, r28, 0x904
-/* 80CF21B4  4B 57 49 80 */	b __mi__4cXyzCFRC3Vec
+/* 80CF21B4  4B 57 49 81 */	bl __mi__4cXyzCFRC3Vec
 /* 80CF21B8  C0 01 00 48 */	lfs f0, 0x48(r1)
 /* 80CF21BC  D0 01 00 78 */	stfs f0, 0x78(r1)
 /* 80CF21C0  C0 01 00 4C */	lfs f0, 0x4c(r1)
@@ -30,11 +30,11 @@ lbl_80CF2160:
 /* 80CF21D0  38 61 00 3C */	addi r3, r1, 0x3c
 /* 80CF21D4  38 81 00 78 */	addi r4, r1, 0x78
 /* 80CF21D8  C0 3E 00 30 */	lfs f1, 0x30(r30)
-/* 80CF21DC  4B 57 49 A8 */	b __ml__4cXyzCFf
+/* 80CF21DC  4B 57 49 A9 */	bl __ml__4cXyzCFf
 /* 80CF21E0  38 61 00 30 */	addi r3, r1, 0x30
 /* 80CF21E4  38 9C 09 04 */	addi r4, r28, 0x904
 /* 80CF21E8  38 A1 00 3C */	addi r5, r1, 0x3c
-/* 80CF21EC  4B 57 48 F8 */	b __pl__4cXyzCFRC3Vec
+/* 80CF21EC  4B 57 48 F9 */	bl __pl__4cXyzCFRC3Vec
 /* 80CF21F0  C0 01 00 30 */	lfs f0, 0x30(r1)
 /* 80CF21F4  D0 01 00 6C */	stfs f0, 0x6c(r1)
 /* 80CF21F8  C0 01 00 34 */	lfs f0, 0x34(r1)
@@ -57,30 +57,30 @@ lbl_80CF2160:
 /* 80CF223C  38 61 00 6C */	addi r3, r1, 0x6c
 /* 80CF2240  38 81 00 54 */	addi r4, r1, 0x54
 /* 80CF2244  38 A1 00 08 */	addi r5, r1, 8
-/* 80CF2248  4B 36 90 B0 */	b dKyw_get_AllWind_vec__FP4cXyzP4cXyzPf
+/* 80CF2248  4B 36 90 B1 */	bl dKyw_get_AllWind_vec__FP4cXyzP4cXyzPf
 /* 80CF224C  C0 01 00 08 */	lfs f0, 8(r1)
 /* 80CF2250  EC 20 00 32 */	fmuls f1, f0, f0
 /* 80CF2254  D0 21 00 08 */	stfs f1, 8(r1)
 /* 80CF2258  38 7C 05 A4 */	addi r3, r28, 0x5a4
 /* 80CF225C  C0 5E 00 80 */	lfs f2, 0x80(r30)
 /* 80CF2260  C0 7E 00 A4 */	lfs f3, 0xa4(r30)
-/* 80CF2264  4B 57 D7 D8 */	b cLib_addCalc2__FPffff
+/* 80CF2264  4B 57 D7 D9 */	bl cLib_addCalc2__FPffff
 /* 80CF2268  C0 21 00 54 */	lfs f1, 0x54(r1)
 /* 80CF226C  C0 41 00 5C */	lfs f2, 0x5c(r1)
-/* 80CF2270  4B 57 54 04 */	b cM_atan2s__Fff
+/* 80CF2270  4B 57 54 05 */	bl cM_atan2s__Fff
 /* 80CF2274  7C 64 1B 78 */	mr r4, r3
-/* 80CF2278  3C 60 80 45 */	lis r3, calc_mtx@ha
-/* 80CF227C  38 63 07 68 */	addi r3, r3, calc_mtx@l
+/* 80CF2278  3C 60 80 45 */	lis r3, calc_mtx@ha /* 0x80450768@ha */
+/* 80CF227C  38 63 07 68 */	addi r3, r3, calc_mtx@l /* 0x80450768@l */
 /* 80CF2280  80 63 00 00 */	lwz r3, 0(r3)
-/* 80CF2284  4B 31 A1 58 */	b mDoMtx_YrotS__FPA4_fs
+/* 80CF2284  4B 31 A1 59 */	bl mDoMtx_YrotS__FPA4_fs
 /* 80CF2288  3B A0 00 00 */	li r29, 0
 /* 80CF228C  3B 60 00 00 */	li r27, 0
 /* 80CF2290  3B 40 00 00 */	li r26, 0
 /* 80CF2294  CB DE 00 B8 */	lfd f30, 0xb8(r30)
 /* 80CF2298  3F E0 43 30 */	lis r31, 0x4330
 /* 80CF229C  C3 FE 00 A0 */	lfs f31, 0xa0(r30)
-/* 80CF22A0  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80CF22A4  3B 23 9A 20 */	addi r25, r3, sincosTable___5JMath@l
+/* 80CF22A0  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80CF22A4  3B 23 9A 20 */	addi r25, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80CF22A8  C3 7E 00 00 */	lfs f27, 0(r30)
 /* 80CF22AC  C3 9E 00 A8 */	lfs f28, 0xa8(r30)
 /* 80CF22B0  48 00 01 58 */	b lbl_80CF2408
@@ -93,7 +93,7 @@ lbl_80CF22B4:
 /* 80CF22C8  93 E1 00 A0 */	stw r31, 0xa0(r1)
 /* 80CF22CC  C8 01 00 A0 */	lfd f0, 0xa0(r1)
 /* 80CF22D0  EC 20 F0 28 */	fsubs f1, f0, f30
-/* 80CF22D4  4B 57 49 44 */	b __dv__4cXyzCFf
+/* 80CF22D4  4B 57 49 45 */	bl __dv__4cXyzCFf
 /* 80CF22D8  38 61 00 18 */	addi r3, r1, 0x18
 /* 80CF22DC  38 81 00 24 */	addi r4, r1, 0x24
 /* 80CF22E0  6F A0 80 00 */	xoris r0, r29, 0x8000
@@ -101,7 +101,7 @@ lbl_80CF22B4:
 /* 80CF22E8  93 E1 00 A8 */	stw r31, 0xa8(r1)
 /* 80CF22EC  C8 01 00 A8 */	lfd f0, 0xa8(r1)
 /* 80CF22F0  EC 20 F0 28 */	fsubs f1, f0, f30
-/* 80CF22F4  4B 57 48 90 */	b __ml__4cXyzCFf
+/* 80CF22F4  4B 57 48 91 */	bl __ml__4cXyzCFf
 /* 80CF22F8  C0 01 00 18 */	lfs f0, 0x18(r1)
 /* 80CF22FC  D0 01 00 60 */	stfs f0, 0x60(r1)
 /* 80CF2300  C0 41 00 1C */	lfs f2, 0x1c(r1)
@@ -147,7 +147,7 @@ lbl_80CF22B4:
 /* 80CF23A0  D0 01 00 98 */	stfs f0, 0x98(r1)
 /* 80CF23A4  38 61 00 90 */	addi r3, r1, 0x90
 /* 80CF23A8  38 81 00 84 */	addi r4, r1, 0x84
-/* 80CF23AC  4B 57 EB 40 */	b MtxPosition__FP4cXyzP4cXyz
+/* 80CF23AC  4B 57 EB 41 */	bl MtxPosition__FP4cXyzP4cXyz
 /* 80CF23B0  C0 21 00 60 */	lfs f1, 0x60(r1)
 /* 80CF23B4  C0 01 00 84 */	lfs f0, 0x84(r1)
 /* 80CF23B8  EC 01 00 2A */	fadds f0, f1, f0
@@ -159,7 +159,7 @@ lbl_80CF22B4:
 /* 80CF23D0  38 61 00 0C */	addi r3, r1, 0xc
 /* 80CF23D4  38 9C 09 04 */	addi r4, r28, 0x904
 /* 80CF23D8  38 A1 00 60 */	addi r5, r1, 0x60
-/* 80CF23DC  4B 57 47 08 */	b __pl__4cXyzCFRC3Vec
+/* 80CF23DC  4B 57 47 09 */	bl __pl__4cXyzCFRC3Vec
 /* 80CF23E0  C0 01 00 0C */	lfs f0, 0xc(r1)
 /* 80CF23E4  7C 7C DA 14 */	add r3, r28, r27
 /* 80CF23E8  D0 03 09 20 */	stfs f0, 0x920(r3)
@@ -207,7 +207,7 @@ lbl_80CF2480:
 /* 80CF2480  7F FC DA 14 */	add r31, r28, r27
 /* 80CF2484  38 7F 0C 14 */	addi r3, r31, 0xc14
 /* 80CF2488  C0 5E 00 30 */	lfs f2, 0x30(r30)
-/* 80CF248C  4B 57 D5 B0 */	b cLib_addCalc2__FPffff
+/* 80CF248C  4B 57 D5 B1 */	bl cLib_addCalc2__FPffff
 /* 80CF2490  C0 1F 0C 14 */	lfs f0, 0xc14(r31)
 /* 80CF2494  FC 00 F8 00 */	fcmpu cr0, f0, f31
 /* 80CF2498  41 82 00 E8 */	beq lbl_80CF2580
@@ -288,7 +288,7 @@ lbl_80CF25A8:
 /* 80CF25AC  C0 3C 09 00 */	lfs f1, 0x900(r28)
 /* 80CF25B0  C0 5E 00 80 */	lfs f2, 0x80(r30)
 /* 80CF25B4  C0 7E 00 B0 */	lfs f3, 0xb0(r30)
-/* 80CF25B8  4B 57 D4 84 */	b cLib_addCalc2__FPffff
+/* 80CF25B8  4B 57 D4 85 */	bl cLib_addCalc2__FPffff
 /* 80CF25BC  C0 1E 00 00 */	lfs f0, 0(r30)
 /* 80CF25C0  D0 1C 09 00 */	stfs f0, 0x900(r28)
 /* 80CF25C4  E3 E1 01 38 */	psq_l f31, 312(r1), 0, 0 /* qr0 */
@@ -302,7 +302,7 @@ lbl_80CF25A8:
 /* 80CF25E4  E3 61 00 F8 */	psq_l f27, 248(r1), 0, 0 /* qr0 */
 /* 80CF25E8  CB 61 00 F0 */	lfd f27, 0xf0(r1)
 /* 80CF25EC  39 61 00 F0 */	addi r11, r1, 0xf0
-/* 80CF25F0  4B 66 FC 28 */	b _restgpr_25
+/* 80CF25F0  4B 66 FC 29 */	bl _restgpr_25
 /* 80CF25F4  80 01 01 44 */	lwz r0, 0x144(r1)
 /* 80CF25F8  7C 08 03 A6 */	mtlr r0
 /* 80CF25FC  38 21 01 40 */	addi r1, r1, 0x140

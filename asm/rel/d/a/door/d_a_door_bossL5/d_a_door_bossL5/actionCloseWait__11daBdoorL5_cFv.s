@@ -8,14 +8,14 @@ lbl_80671E78:
 /* 80671E90  A0 03 00 F8 */	lhz r0, 0xf8(r3)
 /* 80671E94  28 00 00 03 */	cmplwi r0, 3
 /* 80671E98  40 82 00 3C */	bne lbl_80671ED4
-/* 80671E9C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80671EA0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80671E9C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80671EA0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80671EA4  38 63 4F F8 */	addi r3, r3, 0x4ff8
-/* 80671EA8  3C 80 80 67 */	lis r4, l_staff_name@ha
-/* 80671EAC  38 84 24 FC */	addi r4, r4, l_staff_name@l
+/* 80671EA8  3C 80 80 67 */	lis r4, l_staff_name@ha /* 0x806724FC@ha */
+/* 80671EAC  38 84 24 FC */	addi r4, r4, l_staff_name@l /* 0x806724FC@l */
 /* 80671EB0  38 A0 00 00 */	li r5, 0
 /* 80671EB4  38 C0 00 00 */	li r6, 0
-/* 80671EB8  4B 9D 5C 64 */	b getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci
+/* 80671EB8  4B 9D 5C 65 */	bl getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci
 /* 80671EBC  90 7F 05 9C */	stw r3, 0x59c(r31)
 /* 80671EC0  7F E3 FB 78 */	mr r3, r31
 /* 80671EC4  4B FF F4 61 */	bl demoProc__11daBdoorL5_cFv
@@ -29,12 +29,12 @@ lbl_80671ED4:
 /* 80671EE0  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80671EE4  7C 1E 07 74 */	extsb r30, r0
 /* 80671EE8  7F E3 FB 78 */	mr r3, r31
-/* 80671EEC  4B 9C 82 E4 */	b getSwbit__13door_param2_cFP10fopAc_ac_c
+/* 80671EEC  4B 9C 82 E5 */	bl getSwbit__13door_param2_cFP10fopAc_ac_c
 /* 80671EF0  54 64 06 3E */	clrlwi r4, r3, 0x18
-/* 80671EF4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80671EF8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80671EF4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80671EF8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80671EFC  7F C5 F3 78 */	mr r5, r30
-/* 80671F00  4B 9C 34 60 */	b isSwitch__10dSv_info_cCFii
+/* 80671F00  4B 9C 34 61 */	bl isSwitch__10dSv_info_cCFii
 /* 80671F04  2C 03 00 00 */	cmpwi r3, 0
 /* 80671F08  41 82 00 18 */	beq lbl_80671F20
 /* 80671F0C  A8 1F 05 9A */	lha r0, 0x59a(r31)

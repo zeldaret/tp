@@ -4,12 +4,12 @@ lbl_8019EAA0:
 /* 8019EAA8  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8019EAAC  39 61 00 20 */	addi r11, r1, 0x20
 /* 8019EAB0  48 1C 37 25 */	bl _savegpr_27
-/* 8019EAB4  3C 60 80 39 */	lis r3, d_kankyo_d_kankyo__stringBase0@ha
-/* 8019EAB8  38 63 4C 6C */	addi r3, r3, d_kankyo_d_kankyo__stringBase0@l
+/* 8019EAB4  3C 60 80 39 */	lis r3, d_kankyo_d_kankyo__stringBase0@ha /* 0x80394C6C@ha */
+/* 8019EAB8  38 63 4C 6C */	addi r3, r3, d_kankyo_d_kankyo__stringBase0@l /* 0x80394C6C@l */
 /* 8019EABC  38 63 01 73 */	addi r3, r3, 0x173
 /* 8019EAC0  38 80 00 1D */	li r4, 0x1d
-/* 8019EAC4  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8019EAC8  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 8019EAC4  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8019EAC8  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8019EACC  3F 85 00 02 */	addis r28, r5, 2
 /* 8019EAD0  3B 9C C2 F8 */	addi r28, r28, -15624
 /* 8019EAD4  7F 85 E3 78 */	mr r5, r28
@@ -19,8 +19,8 @@ lbl_8019EAA0:
 /* 8019EAE4  38 60 06 00 */	li r3, 0x600
 /* 8019EAE8  38 80 00 20 */	li r4, 0x20
 /* 8019EAEC  4B E7 05 59 */	bl mDoExt_createSolidHeapFromGameToCurrent__FUlUl
-/* 8019EAF0  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 8019EAF4  3B A4 CA 54 */	addi r29, r4, g_env_light@l
+/* 8019EAF0  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019EAF4  3B A4 CA 54 */	addi r29, r4, g_env_light@l /* 0x8042CA54@l */
 /* 8019EAF8  90 7D 0F 38 */	stw r3, 0xf38(r29)
 /* 8019EAFC  28 03 00 00 */	cmplwi r3, 0
 /* 8019EB00  41 82 00 B8 */	beq lbl_8019EBB8
@@ -29,8 +29,8 @@ lbl_8019EAA0:
 /* 8019EB0C  3C A0 11 02 */	lis r5, 0x1102 /* 0x11020202@ha */
 /* 8019EB10  38 A5 02 02 */	addi r5, r5, 0x0202 /* 0x11020202@l */
 /* 8019EB14  4B E7 61 41 */	bl mDoExt_J3DModel__create__FP12J3DModelDataUlUl
-/* 8019EB18  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 8019EB1C  38 84 CA 54 */	addi r4, r4, g_env_light@l
+/* 8019EB18  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019EB1C  38 84 CA 54 */	addi r4, r4, g_env_light@l /* 0x8042CA54@l */
 /* 8019EB20  90 64 0F 30 */	stw r3, 0xf30(r4)
 /* 8019EB24  28 03 00 00 */	cmplwi r3, 0
 /* 8019EB28  41 82 00 84 */	beq lbl_8019EBAC
@@ -38,21 +38,21 @@ lbl_8019EAA0:
 /* 8019EB30  48 13 01 1D */	bl __nw__FUl
 /* 8019EB34  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8019EB38  41 82 00 20 */	beq lbl_8019EB58
-/* 8019EB3C  3C 80 80 3A */	lis r4, __vt__12J3DFrameCtrl@ha
-/* 8019EB40  38 04 33 54 */	addi r0, r4, __vt__12J3DFrameCtrl@l
+/* 8019EB3C  3C 80 80 3A */	lis r4, __vt__12J3DFrameCtrl@ha /* 0x803A3354@ha */
+/* 8019EB40  38 04 33 54 */	addi r0, r4, __vt__12J3DFrameCtrl@l /* 0x803A3354@l */
 /* 8019EB44  90 1E 00 00 */	stw r0, 0(r30)
 /* 8019EB48  38 80 00 00 */	li r4, 0
 /* 8019EB4C  48 18 98 B1 */	bl init__12J3DFrameCtrlFs
 /* 8019EB50  38 00 00 00 */	li r0, 0
 /* 8019EB54  90 1E 00 14 */	stw r0, 0x14(r30)
 lbl_8019EB58:
-/* 8019EB58  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019EB5C  3B E3 CA 54 */	addi r31, r3, g_env_light@l
+/* 8019EB58  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019EB5C  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019EB60  93 DF 10 5C */	stw r30, 0x105c(r31)
 /* 8019EB64  28 1E 00 00 */	cmplwi r30, 0
 /* 8019EB68  41 82 00 44 */	beq lbl_8019EBAC
-/* 8019EB6C  3C 60 80 39 */	lis r3, d_kankyo_d_kankyo__stringBase0@ha
-/* 8019EB70  38 63 4C 6C */	addi r3, r3, d_kankyo_d_kankyo__stringBase0@l
+/* 8019EB6C  3C 60 80 39 */	lis r3, d_kankyo_d_kankyo__stringBase0@ha /* 0x80394C6C@ha */
+/* 8019EB70  38 63 4C 6C */	addi r3, r3, d_kankyo_d_kankyo__stringBase0@l /* 0x80394C6C@l */
 /* 8019EB74  38 63 01 73 */	addi r3, r3, 0x173
 /* 8019EB78  38 80 00 3C */	li r4, 0x3c
 /* 8019EB7C  7F 85 E3 78 */	mr r5, r28

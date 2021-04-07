@@ -7,12 +7,12 @@ lbl_802A9B58:
 /* 802A9B6C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802A9B70  7C 9F 23 78 */	mr r31, r4
 /* 802A9B74  41 82 00 38 */	beq lbl_802A9BAC
-/* 802A9B78  3C 80 80 3D */	lis r4, __vt__16Z2AudioArcLoader@ha
-/* 802A9B7C  38 04 9C D0 */	addi r0, r4, __vt__16Z2AudioArcLoader@l
+/* 802A9B78  3C 80 80 3D */	lis r4, __vt__16Z2AudioArcLoader@ha /* 0x803C9CD0@ha */
+/* 802A9B7C  38 04 9C D0 */	addi r0, r4, __vt__16Z2AudioArcLoader@l /* 0x803C9CD0@l */
 /* 802A9B80  90 1E 00 00 */	stw r0, 0(r30)
 /* 802A9B84  41 82 00 18 */	beq lbl_802A9B9C
-/* 802A9B88  3C 80 80 3D */	lis r4, __vt__17JAUAudioArcLoader@ha
-/* 802A9B8C  38 04 9A 78 */	addi r0, r4, __vt__17JAUAudioArcLoader@l
+/* 802A9B88  3C 80 80 3D */	lis r4, __vt__17JAUAudioArcLoader@ha /* 0x803C9A78@ha */
+/* 802A9B8C  38 04 9A 78 */	addi r0, r4, __vt__17JAUAudioArcLoader@l /* 0x803C9A78@l */
 /* 802A9B90  90 1E 00 00 */	stw r0, 0(r30)
 /* 802A9B94  38 80 00 00 */	li r4, 0
 /* 802A9B98  4B FF A6 C9 */	bl __dt__22JAUAudioArcInterpreterFv

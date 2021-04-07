@@ -43,26 +43,26 @@ lbl_80D1A46C:
 /* 80D1A47C  C0 1F 05 00 */	lfs f0, 0x500(r31)
 /* 80D1A480  EC 00 00 32 */	fmuls f0, f0, f0
 /* 80D1A484  EC 41 00 2A */	fadds f2, f1, f0
-/* 80D1A488  3C 60 80 D2 */	lis r3, lit_3942@ha
-/* 80D1A48C  C0 03 B7 30 */	lfs f0, lit_3942@l(r3)
+/* 80D1A488  3C 60 80 D2 */	lis r3, lit_3942@ha /* 0x80D1B730@ha */
+/* 80D1A48C  C0 03 B7 30 */	lfs f0, lit_3942@l(r3)  /* 0x80D1B730@l */
 /* 80D1A490  FC 02 00 40 */	fcmpo cr0, f2, f0
 /* 80D1A494  40 81 00 0C */	ble lbl_80D1A4A0
 /* 80D1A498  FC 00 10 34 */	frsqrte f0, f2
 /* 80D1A49C  EC 40 00 B2 */	fmuls f2, f0, f2
 lbl_80D1A4A0:
 /* 80D1A4A0  C0 3F 07 20 */	lfs f1, 0x720(r31)
-/* 80D1A4A4  4B 54 D1 D0 */	b cM_atan2s__Fff
+/* 80D1A4A4  4B 54 D1 D1 */	bl cM_atan2s__Fff
 /* 80D1A4A8  7C 60 07 34 */	extsh r0, r3
-/* 80D1A4AC  3C 60 80 D2 */	lis r3, lit_4212@ha
-/* 80D1A4B0  C8 23 B7 98 */	lfd f1, lit_4212@l(r3)
+/* 80D1A4AC  3C 60 80 D2 */	lis r3, lit_4212@ha /* 0x80D1B798@ha */
+/* 80D1A4B0  C8 23 B7 98 */	lfd f1, lit_4212@l(r3)  /* 0x80D1B798@l */
 /* 80D1A4B4  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 80D1A4B8  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80D1A4BC  3C 00 43 30 */	lis r0, 0x4330
 /* 80D1A4C0  90 01 00 08 */	stw r0, 8(r1)
 /* 80D1A4C4  C8 01 00 08 */	lfd f0, 8(r1)
 /* 80D1A4C8  EC 20 08 28 */	fsubs f1, f0, f1
-/* 80D1A4CC  3C 60 80 D2 */	lis r3, lit_4210@ha
-/* 80D1A4D0  C0 03 B7 94 */	lfs f0, lit_4210@l(r3)
+/* 80D1A4CC  3C 60 80 D2 */	lis r3, lit_4210@ha /* 0x80D1B794@ha */
+/* 80D1A4D0  C0 03 B7 94 */	lfs f0, lit_4210@l(r3)  /* 0x80D1B794@l */
 /* 80D1A4D4  EC 00 00 72 */	fmuls f0, f0, f1
 /* 80D1A4D8  FC 00 00 1E */	fctiwz f0, f0
 /* 80D1A4DC  D8 01 00 10 */	stfd f0, 0x10(r1)
@@ -70,7 +70,7 @@ lbl_80D1A4A0:
 /* 80D1A4E4  38 7F 04 E4 */	addi r3, r31, 0x4e4
 /* 80D1A4E8  38 A0 00 02 */	li r5, 2
 /* 80D1A4EC  38 C0 06 00 */	li r6, 0x600
-/* 80D1A4F0  4B 55 61 18 */	b cLib_addCalcAngleS2__FPssss
+/* 80D1A4F0  4B 55 61 19 */	bl cLib_addCalcAngleS2__FPssss
 /* 80D1A4F4  48 00 00 0C */	b lbl_80D1A500
 lbl_80D1A4F8:
 /* 80D1A4F8  7F E3 FB 78 */	mr r3, r31

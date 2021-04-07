@@ -1,6 +1,6 @@
 lbl_8003B240:
-/* 8003B240  3C 80 80 3A */	lis r4, __vt__11J3DTexNoAnm@ha
-/* 8003B244  38 04 7C 84 */	addi r0, r4, __vt__11J3DTexNoAnm@l
+/* 8003B240  3C 80 80 3A */	lis r4, __vt__11J3DTexNoAnm@ha /* 0x803A7C84@ha */
+/* 8003B244  38 04 7C 84 */	addi r0, r4, __vt__11J3DTexNoAnm@l /* 0x803A7C84@l */
 /* 8003B248  90 03 00 00 */	stw r0, 0(r3)
 /* 8003B24C  38 80 00 00 */	li r4, 0
 /* 8003B250  B0 83 00 04 */	sth r4, 4(r3)

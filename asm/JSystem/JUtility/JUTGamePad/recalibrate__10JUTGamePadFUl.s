@@ -4,8 +4,8 @@ lbl_802E1A98:
 /* 802E1AA0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802E1AA4  38 80 00 00 */	li r4, 0
 /* 802E1AA8  80 ED 8F 58 */	lwz r7, sSuppressPadReset__10JUTGamePad(r13)
-/* 802E1AAC  3C A0 80 3D */	lis r5, channel_mask@ha
-/* 802E1AB0  38 C5 C6 00 */	addi r6, r5, channel_mask@l
+/* 802E1AAC  3C A0 80 3D */	lis r5, channel_mask@ha /* 0x803CC600@ha */
+/* 802E1AB0  38 C5 C6 00 */	addi r6, r5, channel_mask@l /* 0x803CC600@l */
 /* 802E1AB4  38 A0 FF FF */	li r5, -1
 /* 802E1AB8  38 00 00 04 */	li r0, 4
 /* 802E1ABC  7C 09 03 A6 */	mtctr r0

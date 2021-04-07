@@ -15,8 +15,8 @@ lbl_80A24654:
 /* 80A24654  A8 03 09 E0 */	lha r0, 0x9e0(r3)
 /* 80A24658  2C 00 00 00 */	cmpwi r0, 0
 /* 80A2465C  41 82 00 30 */	beq lbl_80A2468C
-/* 80A24660  3C 80 80 A2 */	lis r4, lit_5201@ha
-/* 80A24664  38 A4 5E A0 */	addi r5, r4, lit_5201@l
+/* 80A24660  3C 80 80 A2 */	lis r4, lit_5201@ha /* 0x80A25EA0@ha */
+/* 80A24664  38 A4 5E A0 */	addi r5, r4, lit_5201@l /* 0x80A25EA0@l */
 /* 80A24668  80 85 00 00 */	lwz r4, 0(r5)
 /* 80A2466C  80 05 00 04 */	lwz r0, 4(r5)
 /* 80A24670  90 81 00 14 */	stw r4, 0x14(r1)
@@ -33,17 +33,17 @@ lbl_80A2468C:
 lbl_80A24698:
 /* 80A24698  80 83 05 68 */	lwz r4, 0x568(r3)
 /* 80A2469C  C0 24 00 1C */	lfs f1, 0x1c(r4)
-/* 80A246A0  3C 80 80 A2 */	lis r4, lit_5219@ha
-/* 80A246A4  C0 04 5A FC */	lfs f0, lit_5219@l(r4)
+/* 80A246A0  3C 80 80 A2 */	lis r4, lit_5219@ha /* 0x80A25AFC@ha */
+/* 80A246A4  C0 04 5A FC */	lfs f0, lit_5219@l(r4)  /* 0x80A25AFC@l */
 /* 80A246A8  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80A246AC  41 82 00 14 */	beq lbl_80A246C0
-/* 80A246B0  3C 80 80 A2 */	lis r4, lit_4247@ha
-/* 80A246B4  C0 04 59 3C */	lfs f0, lit_4247@l(r4)
+/* 80A246B0  3C 80 80 A2 */	lis r4, lit_4247@ha /* 0x80A2593C@ha */
+/* 80A246B4  C0 04 59 3C */	lfs f0, lit_4247@l(r4)  /* 0x80A2593C@l */
 /* 80A246B8  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80A246BC  40 82 00 2C */	bne lbl_80A246E8
 lbl_80A246C0:
-/* 80A246C0  3C 80 80 A2 */	lis r4, lit_5209@ha
-/* 80A246C4  38 A4 5E AC */	addi r5, r4, lit_5209@l
+/* 80A246C0  3C 80 80 A2 */	lis r4, lit_5209@ha /* 0x80A25EAC@ha */
+/* 80A246C4  38 A4 5E AC */	addi r5, r4, lit_5209@l /* 0x80A25EAC@l */
 /* 80A246C8  80 85 00 00 */	lwz r4, 0(r5)
 /* 80A246CC  80 05 00 04 */	lwz r0, 4(r5)
 /* 80A246D0  90 81 00 08 */	stw r4, 8(r1)

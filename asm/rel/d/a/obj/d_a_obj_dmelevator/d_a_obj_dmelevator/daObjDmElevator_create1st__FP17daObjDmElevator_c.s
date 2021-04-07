@@ -11,12 +11,12 @@ lbl_80BDF764:
 /* 80BDF788  7F E0 FB 79 */	or. r0, r31, r31
 /* 80BDF78C  41 82 00 20 */	beq lbl_80BDF7AC
 /* 80BDF790  7C 1E 03 78 */	mr r30, r0
-/* 80BDF794  4B 49 8E 90 */	b __ct__16dBgS_MoveBgActorFv
-/* 80BDF798  3C 60 80 BE */	lis r3, __vt__17daObjDmElevator_c@ha
-/* 80BDF79C  38 03 FB 08 */	addi r0, r3, __vt__17daObjDmElevator_c@l
+/* 80BDF794  4B 49 8E 91 */	bl __ct__16dBgS_MoveBgActorFv
+/* 80BDF798  3C 60 80 BE */	lis r3, __vt__17daObjDmElevator_c@ha /* 0x80BDFB08@ha */
+/* 80BDF79C  38 03 FB 08 */	addi r0, r3, __vt__17daObjDmElevator_c@l /* 0x80BDFB08@l */
 /* 80BDF7A0  90 1E 05 9C */	stw r0, 0x59c(r30)
 /* 80BDF7A4  38 7E 05 B8 */	addi r3, r30, 0x5b8
-/* 80BDF7A8  4B 6D F0 9C */	b __ct__16Z2SoundObjSimpleFv
+/* 80BDF7A8  4B 6D F0 9D */	bl __ct__16Z2SoundObjSimpleFv
 lbl_80BDF7AC:
 /* 80BDF7AC  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 80BDF7B0  60 00 00 08 */	ori r0, r0, 8

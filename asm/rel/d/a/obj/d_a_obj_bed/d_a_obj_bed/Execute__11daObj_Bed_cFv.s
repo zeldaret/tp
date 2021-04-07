@@ -5,10 +5,10 @@ lbl_80BADCB4:
 /* 80BADCC0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80BADCC4  7C 7F 1B 78 */	mr r31, r3
 /* 80BADCC8  38 7F 05 78 */	addi r3, r31, 0x578
-/* 80BADCCC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80BADCD0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80BADCCC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BADCD0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BADCD4  38 84 0F 38 */	addi r4, r4, 0xf38
-/* 80BADCD8  4B 4C 8D D4 */	b CrrPos__9dBgS_AcchFR4dBgS
+/* 80BADCD8  4B 4C 8D D5 */	bl CrrPos__9dBgS_AcchFR4dBgS
 /* 80BADCDC  80 1F 06 54 */	lwz r0, 0x654(r31)
 /* 80BADCE0  90 1F 07 90 */	stw r0, 0x790(r31)
 /* 80BADCE4  80 1F 06 58 */	lwz r0, 0x658(r31)
@@ -39,8 +39,8 @@ lbl_80BADCB4:
 /* 80BADD48  90 1F 07 C8 */	stw r0, 0x7c8(r31)
 /* 80BADD4C  C0 1F 06 10 */	lfs f0, 0x610(r31)
 /* 80BADD50  D0 1F 08 34 */	stfs f0, 0x834(r31)
-/* 80BADD54  3C 60 80 BB */	lis r3, lit_3905@ha
-/* 80BADD58  C0 23 E1 84 */	lfs f1, lit_3905@l(r3)
+/* 80BADD54  3C 60 80 BB */	lis r3, lit_3905@ha /* 0x80BAE184@ha */
+/* 80BADD58  C0 23 E1 84 */	lfs f1, lit_3905@l(r3)  /* 0x80BAE184@l */
 /* 80BADD5C  C0 1F 08 34 */	lfs f0, 0x834(r31)
 /* 80BADD60  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 80BADD64  41 82 00 14 */	beq lbl_80BADD78
@@ -57,9 +57,9 @@ lbl_80BADD78:
 /* 80BADD8C  80 7F 05 74 */	lwz r3, 0x574(r31)
 /* 80BADD90  38 63 00 24 */	addi r3, r3, 0x24
 /* 80BADD94  38 9F 07 CC */	addi r4, r31, 0x7cc
-/* 80BADD98  4B 79 87 18 */	b PSMTXCopy
+/* 80BADD98  4B 79 87 19 */	bl PSMTXCopy
 /* 80BADD9C  80 7F 07 FC */	lwz r3, 0x7fc(r31)
-/* 80BADDA0  4B 4C DC 20 */	b Move__4dBgWFv
+/* 80BADDA0  4B 4C DC 21 */	bl Move__4dBgWFv
 lbl_80BADDA4:
 /* 80BADDA4  C0 1F 04 D0 */	lfs f0, 0x4d0(r31)
 /* 80BADDA8  D0 1F 05 50 */	stfs f0, 0x550(r31)

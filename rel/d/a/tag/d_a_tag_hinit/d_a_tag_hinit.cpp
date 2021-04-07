@@ -35,11 +35,6 @@ struct dSv_event_c {
 // Forward References:
 //
 
-static void daTagHinit_Create(fopAc_ac_c*);
-static void daTagHinit_Delete(daTagHinit_c*);
-static void daTagHinit_Execute(daTagHinit_c*);
-static bool daTagHinit_Draw(daTagHinit_c*);
-
 extern "C" void create__12daTagHinit_cFv();
 extern "C" static void daTagHinit_Create__FP10fopAc_ac_c();
 extern "C" void __dt__12daTagHinit_cFv();
@@ -52,9 +47,6 @@ extern "C" extern void* g_profile_Tag_Hinit[12];
 //
 // External References:
 //
-
-void fopAcM_delete(fopAc_ac_c*);
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -73,7 +65,7 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 // Declarations:
 //
 
-/* 805A3758-805A3800 00A8+00 s=1 e=0 z=0  None .text      create__12daTagHinit_cFv */
+/* 805A3758-805A3800 000078 00A8+00 1/1 0/0 0/0 .text            create__12daTagHinit_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -83,17 +75,18 @@ asm void daTagHinit_c::create() {
 }
 #pragma pop
 
-/* 805A3800-805A3820 0020+00 s=1 e=0 z=0  None .text      daTagHinit_Create__FP10fopAc_ac_c */
+/* 805A3800-805A3820 000120 0020+00 1/0 0/0 0/0 .text            daTagHinit_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagHinit_Create(fopAc_ac_c* param_0) {
+static asm void daTagHinit_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_hinit/d_a_tag_hinit/daTagHinit_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 805A3820-805A3874 0054+00 s=1 e=0 z=0  None .text      __dt__12daTagHinit_cFv */
+/* 805A3820-805A3874 000140 0054+00 1/1 0/0 0/0 .text            __dt__12daTagHinit_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -103,17 +96,18 @@ asm daTagHinit_c::~daTagHinit_c() {
 }
 #pragma pop
 
-/* 805A3874-805A389C 0028+00 s=1 e=0 z=0  None .text      daTagHinit_Delete__FP12daTagHinit_c */
+/* 805A3874-805A389C 000194 0028+00 1/0 0/0 0/0 .text            daTagHinit_Delete__FP12daTagHinit_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagHinit_Delete(daTagHinit_c* param_0) {
+static asm void daTagHinit_Delete(daTagHinit_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_hinit/d_a_tag_hinit/daTagHinit_Delete__FP12daTagHinit_c.s"
 }
 #pragma pop
 
-/* 805A389C-805A39B8 011C+00 s=1 e=0 z=0  None .text      execute__12daTagHinit_cFv */
+/* 805A389C-805A39B8 0001BC 011C+00 1/1 0/0 0/0 .text            execute__12daTagHinit_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -123,23 +117,24 @@ asm void daTagHinit_c::execute() {
 }
 #pragma pop
 
-/* 805A39B8-805A39D8 0020+00 s=1 e=0 z=0  None .text      daTagHinit_Execute__FP12daTagHinit_c */
+/* 805A39B8-805A39D8 0002D8 0020+00 1/0 0/0 0/0 .text daTagHinit_Execute__FP12daTagHinit_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagHinit_Execute(daTagHinit_c* param_0) {
+static asm void daTagHinit_Execute(daTagHinit_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_hinit/d_a_tag_hinit/daTagHinit_Execute__FP12daTagHinit_c.s"
 }
 #pragma pop
 
-/* 805A39D8-805A39E0 0008+00 s=1 e=0 z=0  None .text      daTagHinit_Draw__FP12daTagHinit_c */
+/* 805A39D8-805A39E0 0002F8 0008+00 1/0 0/0 0/0 .text            daTagHinit_Draw__FP12daTagHinit_c
+ */
 static bool daTagHinit_Draw(daTagHinit_c* param_0) {
     return true;
 }
 
 /* ############################################################################################## */
-/* 805A39E8-805A3A08 0020+00 s=1 e=0 z=0  None .data      l_daTagHinit_Method */
+/* 805A39E8-805A3A08 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagHinit_Method */
 SECTION_DATA static void* l_daTagHinit_Method[8] = {
     (void*)daTagHinit_Create__FP10fopAc_ac_c,
     (void*)daTagHinit_Delete__FP12daTagHinit_c,
@@ -151,8 +146,8 @@ SECTION_DATA static void* l_daTagHinit_Method[8] = {
     (void*)NULL,
 };
 
-/* 805A3A08-805A3A38 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_Hinit */
-SECTION_DATA void* g_profile_Tag_Hinit[12] = {
+/* 805A3A08-805A3A38 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Hinit */
+SECTION_DATA extern void* g_profile_Tag_Hinit[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00E90000, (void*)&g_fpcLf_Method,
     (void*)0x00000570, (void*)NULL,

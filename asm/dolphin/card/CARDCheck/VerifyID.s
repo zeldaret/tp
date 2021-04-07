@@ -100,8 +100,8 @@ lbl_80355CF0:
 /* 80355CF0  83 FB 00 0C */	lwz r31, 0xc(r27)
 /* 80355CF4  83 9B 00 10 */	lwz r28, 0x10(r27)
 /* 80355CF8  4B FE A4 A9 */	bl __OSLockSramEx
-/* 80355CFC  3C 80 80 45 */	lis r4, __CARDBlock@ha
-/* 80355D00  38 04 CB C0 */	addi r0, r4, __CARDBlock@l
+/* 80355CFC  3C 80 80 45 */	lis r4, __CARDBlock@ha /* 0x8044CBC0@ha */
+/* 80355D00  38 04 CB C0 */	addi r0, r4, __CARDBlock@l /* 0x8044CBC0@l */
 /* 80355D04  3C 80 78 78 */	lis r4, 0x7878 /* 0x78787879@ha */
 /* 80355D08  7C 00 D0 50 */	subf r0, r0, r26
 /* 80355D0C  38 84 78 79 */	addi r4, r4, 0x7879 /* 0x78787879@l */

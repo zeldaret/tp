@@ -19,11 +19,6 @@ struct camera_class {};
 // Forward References:
 //
 
-void fopCamM_GetParam(camera_class*);
-void fopCamM_Create(int, s16, void*);
-void fopCamM_Management();
-void fopCamM_Init();
-
 extern "C" void fopCamM_GetParam__FP12camera_class();
 extern "C" void fopCamM_Create__FisPv();
 extern "C" void fopCamM_Management__Fv();
@@ -32,9 +27,6 @@ extern "C" void fopCamM_Init__Fv();
 //
 // External References:
 //
-
-void fpcLy_CurrentLayer();
-void fpcSCtRq_Request(layer_class*, s16, int (*)(void*, void*), void*, void*);
 
 extern "C" void fpcLy_CurrentLayer__Fv();
 extern "C" void fpcSCtRq_Request__FP11layer_classsPFPvPv_iPvPv();
@@ -45,7 +37,7 @@ extern "C" void _restgpr_29();
 // Declarations:
 //
 
-/* 8001E308-8001E310 0008+00 s=0 e=12 z=2  None .text      fopCamM_GetParam__FP12camera_class */
+/* 8001E308-8001E310 018C48 0008+00 0/0 12/12 2/2 .text fopCamM_GetParam__FP12camera_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -56,10 +48,10 @@ asm void fopCamM_GetParam(camera_class* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803F1DD8-803F1DE8 0010+00 s=1 e=0 z=0  None .bss       l_fopCamM_id */
+/* 803F1DD8-803F1DE8 01EAF8 0010+00 1/1 0/0 0/0 .bss             l_fopCamM_id */
 static u8 l_fopCamM_id[16];
 
-/* 8001E310-8001E374 0064+00 s=0 e=1 z=0  None .text      fopCamM_Create__FisPv */
+/* 8001E310-8001E374 018C50 0064+00 0/0 1/1 0/0 .text            fopCamM_Create__FisPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -69,12 +61,12 @@ asm void fopCamM_Create(int param_0, s16 param_1, void* param_2) {
 }
 #pragma pop
 
-/* 8001E374-8001E378 0004+00 s=0 e=1 z=0  None .text      fopCamM_Management__Fv */
+/* 8001E374-8001E378 018CB4 0004+00 0/0 1/1 0/0 .text            fopCamM_Management__Fv */
 void fopCamM_Management() {
     /* empty function */
 }
 
-/* 8001E378-8001E37C 0004+00 s=0 e=1 z=0  None .text      fopCamM_Init__Fv */
+/* 8001E378-8001E37C 018CB8 0004+00 0/0 1/1 0/0 .text            fopCamM_Init__Fv */
 void fopCamM_Init() {
     /* empty function */
 }

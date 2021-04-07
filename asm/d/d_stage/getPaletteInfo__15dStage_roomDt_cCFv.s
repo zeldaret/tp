@@ -2,8 +2,8 @@ lbl_80027610:
 /* 80027610  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80027614  7C 08 02 A6 */	mflr r0
 /* 80027618  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8002761C  3C 60 80 38 */	lis r3, d_d_stage__stringBase0@ha
-/* 80027620  38 63 8A 50 */	addi r3, r3, d_d_stage__stringBase0@l
+/* 8002761C  3C 60 80 38 */	lis r3, d_d_stage__stringBase0@ha /* 0x80378A50@ha */
+/* 80027620  38 63 8A 50 */	addi r3, r3, d_d_stage__stringBase0@l /* 0x80378A50@l */
 /* 80027624  38 63 01 86 */	addi r3, r3, 0x186
 /* 80027628  4C C6 31 82 */	crclr 6
 /* 8002762C  4B FD F4 91 */	bl OSReport

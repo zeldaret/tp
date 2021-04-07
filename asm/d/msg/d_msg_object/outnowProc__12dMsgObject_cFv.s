@@ -51,8 +51,8 @@ lbl_80234A8C:
 /* 80234A98  C0 22 B0 C0 */	lfs f1, lit_4084(r2)
 /* 80234A9C  FC 02 08 40 */	fcmpo cr0, f2, f1
 /* 80234AA0  40 80 00 60 */	bge lbl_80234B00
-/* 80234AA4  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 80234AA8  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 80234AA4  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 80234AA8  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 80234AAC  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 80234AB0  54 00 05 EF */	rlwinm. r0, r0, 0, 0x17, 0x17
 /* 80234AB4  41 82 00 0C */	beq lbl_80234AC0

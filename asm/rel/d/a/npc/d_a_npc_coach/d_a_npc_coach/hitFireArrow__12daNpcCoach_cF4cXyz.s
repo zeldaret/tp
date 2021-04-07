@@ -3,7 +3,7 @@ lbl_8099DA60:
 /* 8099DA64  7C 08 02 A6 */	mflr r0
 /* 8099DA68  90 01 00 44 */	stw r0, 0x44(r1)
 /* 8099DA6C  39 61 00 40 */	addi r11, r1, 0x40
-/* 8099DA70  4B 9C 47 6C */	b _savegpr_29
+/* 8099DA70  4B 9C 47 6D */	bl _savegpr_29
 /* 8099DA74  7C 7F 1B 78 */	mr r31, r3
 /* 8099DA78  7C 9D 23 78 */	mr r29, r4
 /* 8099DA7C  80 03 24 C0 */	lwz r0, 0x24c0(r3)
@@ -33,14 +33,14 @@ lbl_8099DAC8:
 /* 8099DAD4  28 00 FF FF */	cmplwi r0, 0xffff
 /* 8099DAD8  40 82 00 AC */	bne lbl_8099DB84
 /* 8099DADC  38 7F 1B 68 */	addi r3, r31, 0x1b68
-/* 8099DAE0  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha
-/* 8099DAE4  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l
-/* 8099DAE8  4B 9A 89 C8 */	b PSMTXCopy
-/* 8099DAEC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8099DAF0  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8099DAE0  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8099DAE4  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 8099DAE8  4B 9A 89 C9 */	bl PSMTXCopy
+/* 8099DAEC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8099DAF0  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8099DAF4  7F A4 EB 78 */	mr r4, r29
 /* 8099DAF8  38 A1 00 18 */	addi r5, r1, 0x18
-/* 8099DAFC  4B 9A 92 70 */	b PSMTXMultVec
+/* 8099DAFC  4B 9A 92 71 */	bl PSMTXMultVec
 /* 8099DB00  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 8099DB04  7C 07 07 74 */	extsb r7, r0
 /* 8099DB08  38 00 00 00 */	li r0, 0
@@ -58,7 +58,7 @@ lbl_8099DB28:
 /* 8099DB30  39 00 00 00 */	li r8, 0
 /* 8099DB34  39 20 00 00 */	li r9, 0
 /* 8099DB38  39 40 FF FF */	li r10, -1
-/* 8099DB3C  4B 67 C3 B4 */	b fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
+/* 8099DB3C  4B 67 C3 B5 */	bl fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
 /* 8099DB40  7C 9F F2 14 */	add r4, r31, r30
 /* 8099DB44  90 64 24 7C */	stw r3, 0x247c(r4)
 /* 8099DB48  3C 60 00 06 */	lis r3, 0x0006 /* 0x00060052@ha */
@@ -81,7 +81,7 @@ lbl_8099DB84:
 /* 8099DB88  42 00 FF 40 */	bdnz lbl_8099DAC8
 lbl_8099DB8C:
 /* 8099DB8C  39 61 00 40 */	addi r11, r1, 0x40
-/* 8099DB90  4B 9C 46 98 */	b _restgpr_29
+/* 8099DB90  4B 9C 46 99 */	bl _restgpr_29
 /* 8099DB94  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 8099DB98  7C 08 03 A6 */	mtlr r0
 /* 8099DB9C  38 21 00 40 */	addi r1, r1, 0x40

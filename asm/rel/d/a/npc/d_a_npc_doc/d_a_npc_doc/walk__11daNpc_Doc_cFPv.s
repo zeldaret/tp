@@ -25,12 +25,12 @@ lbl_809A8ADC:
 /* 809A8AF0  41 82 00 28 */	beq lbl_809A8B18
 /* 809A8AF4  83 DF 0B 5C */	lwz r30, 0xb5c(r31)
 /* 809A8AF8  38 7F 0B 50 */	addi r3, r31, 0xb50
-/* 809A8AFC  4B 79 CD 9C */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 809A8AFC  4B 79 CD 9D */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 809A8B00  93 DF 0B 5C */	stw r30, 0xb5c(r31)
 /* 809A8B04  38 00 00 09 */	li r0, 9
 /* 809A8B08  90 1F 0B 58 */	stw r0, 0xb58(r31)
-/* 809A8B0C  3C 60 80 9B */	lis r3, lit_4588@ha
-/* 809A8B10  C0 03 A3 DC */	lfs f0, lit_4588@l(r3)
+/* 809A8B0C  3C 60 80 9B */	lis r3, lit_4588@ha /* 0x809AA3DC@ha */
+/* 809A8B10  C0 03 A3 DC */	lfs f0, lit_4588@l(r3)  /* 0x809AA3DC@l */
 /* 809A8B14  D0 1F 0B 68 */	stfs f0, 0xb68(r31)
 lbl_809A8B18:
 /* 809A8B18  80 1F 0B 7C */	lwz r0, 0xb7c(r31)
@@ -38,12 +38,12 @@ lbl_809A8B18:
 /* 809A8B20  41 82 00 28 */	beq lbl_809A8B48
 /* 809A8B24  83 DF 0B 80 */	lwz r30, 0xb80(r31)
 /* 809A8B28  38 7F 0B 74 */	addi r3, r31, 0xb74
-/* 809A8B2C  4B 79 CD 6C */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 809A8B2C  4B 79 CD 6D */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 809A8B30  93 DF 0B 80 */	stw r30, 0xb80(r31)
 /* 809A8B34  38 00 00 0C */	li r0, 0xc
 /* 809A8B38  90 1F 0B 7C */	stw r0, 0xb7c(r31)
-/* 809A8B3C  3C 60 80 9B */	lis r3, lit_4588@ha
-/* 809A8B40  C0 03 A3 DC */	lfs f0, lit_4588@l(r3)
+/* 809A8B3C  3C 60 80 9B */	lis r3, lit_4588@ha /* 0x809AA3DC@ha */
+/* 809A8B40  C0 03 A3 DC */	lfs f0, lit_4588@l(r3)  /* 0x809AA3DC@l */
 /* 809A8B44  D0 1F 0B 8C */	stfs f0, 0xb8c(r31)
 lbl_809A8B48:
 /* 809A8B48  80 1F 06 B8 */	lwz r0, 0x6b8(r31)
@@ -59,11 +59,11 @@ lbl_809A8B5C:
 /* 809A8B6C  2C 00 00 00 */	cmpwi r0, 0
 /* 809A8B70  41 82 00 28 */	beq lbl_809A8B98
 /* 809A8B74  38 7F 0B A8 */	addi r3, r31, 0xba8
-/* 809A8B78  4B 79 CB 84 */	b remove__18daNpcT_ActorMngr_cFv
+/* 809A8B78  4B 79 CB 85 */	bl remove__18daNpcT_ActorMngr_cFv
 /* 809A8B7C  38 00 00 00 */	li r0, 0
 /* 809A8B80  90 1F 0B C8 */	stw r0, 0xbc8(r31)
-/* 809A8B84  3C 60 80 9B */	lis r3, lit_4037@ha
-/* 809A8B88  C0 03 A3 C4 */	lfs f0, lit_4037@l(r3)
+/* 809A8B84  3C 60 80 9B */	lis r3, lit_4037@ha /* 0x809AA3C4@ha */
+/* 809A8B88  C0 03 A3 C4 */	lfs f0, lit_4037@l(r3)  /* 0x809AA3C4@l */
 /* 809A8B8C  D0 1F 0C F4 */	stfs f0, 0xcf4(r31)
 /* 809A8B90  98 1F 0C FF */	stb r0, 0xcff(r31)
 /* 809A8B94  90 1F 0C E0 */	stw r0, 0xce0(r31)
@@ -82,7 +82,7 @@ lbl_809A8B98:
 /* 809A8BC4  80 DF 0F 84 */	lwz r6, 0xf84(r31)
 /* 809A8BC8  A0 C6 00 00 */	lhz r6, 0(r6)
 /* 809A8BCC  38 E0 00 02 */	li r7, 2
-/* 809A8BD0  4B 79 D3 E4 */	b getDstPosH__13daNpcT_Path_cF4cXyzP4cXyzii
+/* 809A8BD0  4B 79 D3 E5 */	bl getDstPosH__13daNpcT_Path_cF4cXyzP4cXyzii
 /* 809A8BD4  7C 7E 1B 78 */	mr r30, r3
 /* 809A8BD8  C0 01 00 20 */	lfs f0, 0x20(r1)
 /* 809A8BDC  D0 01 00 08 */	stfs f0, 8(r1)
@@ -95,14 +95,14 @@ lbl_809A8B98:
 /* 809A8BF8  7F C5 F3 78 */	mr r5, r30
 /* 809A8BFC  38 C0 00 04 */	li r6, 4
 /* 809A8C00  38 E0 08 00 */	li r7, 0x800
-/* 809A8C04  4B 7A 2C 04 */	b calcSpeedAndAngle__8daNpcT_cF4cXyziss
+/* 809A8C04  4B 7A 2C 05 */	bl calcSpeedAndAngle__8daNpcT_cF4cXyziss
 /* 809A8C08  2C 1E 00 00 */	cmpwi r30, 0
 /* 809A8C0C  41 82 00 38 */	beq lbl_809A8C44
 /* 809A8C10  C0 1F 05 2C */	lfs f0, 0x52c(r31)
 /* 809A8C14  FC 00 02 10 */	fabs f0, f0
 /* 809A8C18  FC 20 00 18 */	frsp f1, f0
-/* 809A8C1C  3C 60 80 45 */	lis r3, G_CM3D_F_ABS_MIN@ha
-/* 809A8C20  C0 03 11 80 */	lfs f0, G_CM3D_F_ABS_MIN@l(r3)
+/* 809A8C1C  3C 60 80 45 */	lis r3, G_CM3D_F_ABS_MIN@ha /* 0x80451180@ha */
+/* 809A8C20  C0 03 11 80 */	lfs f0, G_CM3D_F_ABS_MIN@l(r3)  /* 0x80451180@l */
 /* 809A8C24  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 809A8C28  40 80 00 1C */	bge lbl_809A8C44
 /* 809A8C2C  38 00 00 01 */	li r0, 1
@@ -110,7 +110,7 @@ lbl_809A8B98:
 /* 809A8C34  A8 1F 04 DE */	lha r0, 0x4de(r31)
 /* 809A8C38  B0 1F 04 B6 */	sth r0, 0x4b6(r31)
 /* 809A8C3C  38 7F 0B 98 */	addi r3, r31, 0xb98
-/* 809A8C40  4B 79 CA BC */	b remove__18daNpcT_ActorMngr_cFv
+/* 809A8C40  4B 79 CA BD */	bl remove__18daNpcT_ActorMngr_cFv
 lbl_809A8C44:
 /* 809A8C44  38 00 00 00 */	li r0, 0
 /* 809A8C48  90 1F 05 5C */	stw r0, 0x55c(r31)

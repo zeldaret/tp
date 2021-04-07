@@ -11,8 +11,8 @@ lbl_80253984:
 /* 802539A8  7C FE 3B 78 */	mr r30, r7
 /* 802539AC  7D 1F 43 78 */	mr r31, r8
 /* 802539B0  48 00 1A 3D */	bl __ct__13CPaneMgrAlphaFv
-/* 802539B4  3C 60 80 3C */	lis r3, __vt__8CPaneMgr@ha
-/* 802539B8  38 03 2E 04 */	addi r0, r3, __vt__8CPaneMgr@l
+/* 802539B4  3C 60 80 3C */	lis r3, __vt__8CPaneMgr@ha /* 0x803C2E04@ha */
+/* 802539B8  38 03 2E 04 */	addi r0, r3, __vt__8CPaneMgr@l /* 0x803C2E04@l */
 /* 802539BC  90 1A 00 00 */	stw r0, 0(r26)
 /* 802539C0  38 00 FF FF */	li r0, -1
 /* 802539C4  90 1A 00 58 */	stw r0, 0x58(r26)

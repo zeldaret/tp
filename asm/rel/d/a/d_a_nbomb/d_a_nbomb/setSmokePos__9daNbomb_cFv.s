@@ -21,20 +21,20 @@ lbl_804C8500:
 lbl_804C8520:
 /* 804C8520  80 7F 05 74 */	lwz r3, 0x574(r31)
 /* 804C8524  38 63 00 24 */	addi r3, r3, 0x24
-/* 804C8528  3C 80 80 4D */	lis r4, localOffset@ha
-/* 804C852C  38 84 C3 E8 */	addi r4, r4, localOffset@l
+/* 804C8528  3C 80 80 4D */	lis r4, localOffset@ha /* 0x804CC3E8@ha */
+/* 804C852C  38 84 C3 E8 */	addi r4, r4, localOffset@l /* 0x804CC3E8@l */
 /* 804C8530  38 BF 0B CC */	addi r5, r31, 0xbcc
-/* 804C8534  4B E7 E8 38 */	b PSMTXMultVec
+/* 804C8534  4B E7 E8 39 */	bl PSMTXMultVec
 lbl_804C8538:
 /* 804C8538  38 61 00 14 */	addi r3, r1, 0x14
 /* 804C853C  38 9F 0B CC */	addi r4, r31, 0xbcc
 /* 804C8540  38 BF 0B D8 */	addi r5, r31, 0xbd8
-/* 804C8544  4B D9 E5 F0 */	b __mi__4cXyzCFRC3Vec
+/* 804C8544  4B D9 E5 F1 */	bl __mi__4cXyzCFRC3Vec
 /* 804C8548  38 61 00 08 */	addi r3, r1, 8
 /* 804C854C  38 81 00 14 */	addi r4, r1, 0x14
-/* 804C8550  3C A0 80 4D */	lis r5, lit_4214@ha
-/* 804C8554  C0 25 C3 74 */	lfs f1, lit_4214@l(r5)
-/* 804C8558  4B D9 E6 2C */	b __ml__4cXyzCFf
+/* 804C8550  3C A0 80 4D */	lis r5, lit_4214@ha /* 0x804CC374@ha */
+/* 804C8554  C0 25 C3 74 */	lfs f1, lit_4214@l(r5)  /* 0x804CC374@l */
+/* 804C8558  4B D9 E6 2D */	bl __ml__4cXyzCFf
 /* 804C855C  C0 01 00 08 */	lfs f0, 8(r1)
 /* 804C8560  D0 1F 0B E4 */	stfs f0, 0xbe4(r31)
 /* 804C8564  C0 01 00 0C */	lfs f0, 0xc(r1)

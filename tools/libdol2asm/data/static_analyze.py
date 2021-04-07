@@ -667,34 +667,8 @@ def analyze_function(instructions):
 
     analyze_block(labels[0], True)
 
-
     if error:
         sys.exit(1)
-
-    """
-    for label, insns in label_groups.items():
-        for xinsn in insns:
-            addr, insn, _ = xinsn
-            if not insn:
-                continue
-
-            regs = registers[addr]
-            if insn.id in branch_inst:
-                for op in insn.operands:
-                    if op.type == PPC_OP_IMM:
-                        references.add(op.value.imm)
-
-            elif insn.id in {PPC_INS_ADDI, PPC_INS_ORI} and insn.operands[0].reg in regs:
-                value = regs[insn.operands[0].reg]
-                if value:
-                    references.add(value)
-
-            elif (is_load_store_reg_offset(insn, None) and insn.operands[1].mem.base in regs):
-                value = regs[insn.operands[1].mem.base]
-                if value != None:
-                    value += sign_extend_16(insn.operands[1].mem.disp)
-                    references.add(value)
-    """
 
     if start == 0x802860CC and False:
         for label, insns in label_groups.items():

@@ -5,8 +5,8 @@ lbl_806E3724:
 /* 806E3730  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 806E3734  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 806E3738  7C 7E 1B 78 */	mr r30, r3
-/* 806E373C  3C 60 80 6E */	lis r3, lit_3791@ha
-/* 806E3740  3B E3 59 20 */	addi r31, r3, lit_3791@l
+/* 806E373C  3C 60 80 6E */	lis r3, lit_3791@ha /* 0x806E5920@ha */
+/* 806E3740  3B E3 59 20 */	addi r31, r3, lit_3791@l /* 0x806E5920@l */
 /* 806E3744  A8 1E 05 D6 */	lha r0, 0x5d6(r30)
 /* 806E3748  2C 00 00 01 */	cmpwi r0, 1
 /* 806E374C  41 82 00 44 */	beq lbl_806E3790
@@ -17,7 +17,7 @@ lbl_806E3724:
 lbl_806E3760:
 /* 806E3760  38 7E 06 30 */	addi r3, r30, 0x630
 /* 806E3764  38 80 00 00 */	li r4, 0
-/* 806E3768  4B BD E4 14 */	b setLinkSearch__15Z2CreatureEnemyFb
+/* 806E3768  4B BD E4 15 */	bl setLinkSearch__15Z2CreatureEnemyFb
 /* 806E376C  7F C3 F3 78 */	mr r3, r30
 /* 806E3770  38 80 00 0E */	li r4, 0xe
 /* 806E3774  38 A0 00 02 */	li r5, 2
@@ -31,7 +31,7 @@ lbl_806E3790:
 /* 806E3790  80 7E 06 18 */	lwz r3, 0x618(r30)
 /* 806E3794  38 63 00 0C */	addi r3, r3, 0xc
 /* 806E3798  C0 3F 00 04 */	lfs f1, 4(r31)
-/* 806E379C  4B C4 4C 90 */	b checkPass__12J3DFrameCtrlFf
+/* 806E379C  4B C4 4C 91 */	bl checkPass__12J3DFrameCtrlFf
 /* 806E37A0  2C 03 00 00 */	cmpwi r3, 0
 /* 806E37A4  41 82 00 30 */	beq lbl_806E37D4
 /* 806E37A8  3C 60 00 07 */	lis r3, 0x0007 /* 0x00070241@ha */

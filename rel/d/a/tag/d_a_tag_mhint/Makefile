@@ -3,17 +3,15 @@
 #
 
 M130_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_mhint.plf
+M130_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_mhint.lcf
+M130_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_mhint.map
 
 M130_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_mhint/executor.cpp \
-	rel/d/a/tag/d_a_tag_mhint/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_mhint/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_mhint/d_a_tag_mhint.cpp \
 
 M130_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_mhint/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_mhint/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_mhint/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_mhint/d_a_tag_mhint.o \
 
 M130_LIBS := \
@@ -29,14 +27,21 @@ M130_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M130_LDSCRIPT) \
+	-unused -map $(M130_MAP) \
+	-w off \
 
 $(M130_TARGET): $(M130_O_FILES) $(M130_LIBS)
+	@echo [130] creating $(M130_TARGET)
 	@echo $(M130_LIBS) $(M130_O_FILES) > build/M130_ofiles
-	$(LD) -partial $(M130_LDFLAGS) -o $(M130_TARGET) @build/M130_ofiles
+	@python3 tools/lcf.py rel 130 --output $(M130_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M130_LDFLAGS) -o $(M130_TARGET) @build/M130_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_mhint/%.o: rel/d/a/tag/d_a_tag_mhint/%.cpp
+	@echo [130] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M130_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M130_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

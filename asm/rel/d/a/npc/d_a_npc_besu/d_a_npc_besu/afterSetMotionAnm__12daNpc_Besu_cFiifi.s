@@ -5,8 +5,8 @@ lbl_805396C4:
 /* 805396D0  88 03 0A 88 */	lbz r0, 0xa88(r3)
 /* 805396D4  28 00 00 01 */	cmplwi r0, 1
 /* 805396D8  40 82 00 0C */	bne lbl_805396E4
-/* 805396DC  3C C0 80 54 */	lis r6, lit_4337@ha
-/* 805396E0  C0 26 E8 44 */	lfs f1, lit_4337@l(r6)
+/* 805396DC  3C C0 80 54 */	lis r6, lit_4337@ha /* 0x8053E844@ha */
+/* 805396E0  C0 26 E8 44 */	lfs f1, lit_4337@l(r6)  /* 0x8053E844@l */
 lbl_805396E4:
 /* 805396E4  4B FF FF 11 */	bl setCupAnm__12daNpc_Besu_cFiif
 /* 805396E8  80 01 00 14 */	lwz r0, 0x14(r1)

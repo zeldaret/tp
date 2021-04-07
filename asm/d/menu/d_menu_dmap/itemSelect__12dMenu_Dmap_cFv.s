@@ -176,13 +176,13 @@ lbl_801BED5C:
 /* 801BEDE0  48 00 01 ED */	bl itemSelectAnmInit__12dMenu_Dmap_cFv
 /* 801BEDE4  48 00 01 2C */	b lbl_801BEF10
 lbl_801BEDE8:
-/* 801BEDE8  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 801BEDEC  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 801BEDE8  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801BEDEC  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801BEDF0  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 801BEDF4  54 00 05 EF */	rlwinm. r0, r0, 0, 0x17, 0x17
 /* 801BEDF8  41 82 01 18 */	beq lbl_801BEF10
-/* 801BEDFC  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801BEE00  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801BEDFC  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801BEE00  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801BEE04  A0 03 00 B2 */	lhz r0, 0xb2(r3)
 /* 801BEE08  54 00 04 E7 */	rlwinm. r0, r0, 0, 0x13, 0x13
 /* 801BEE0C  40 82 01 04 */	bne lbl_801BEF10

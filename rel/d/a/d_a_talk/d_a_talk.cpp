@@ -50,11 +50,6 @@ struct dEvt_control_c {
 // Forward References:
 //
 
-static void daTalk_Create(fopAc_ac_c*);
-static void daTalk_Delete(daTalk_c*);
-static void daTalk_Execute(daTalk_c*);
-static void daTalk_Draw(daTalk_c*);
-
 extern "C" void __dt__8daTalk_cFv();
 extern "C" void create__8daTalk_cFv();
 extern "C" void execute__8daTalk_cFv();
@@ -71,11 +66,6 @@ extern "C" extern void* g_profile_TALK[12];
 //
 // External References:
 //
-
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_searchActorDistanceXZ(fopAc_ac_c const*, fopAc_ac_c const*);
-void fopMsgM_messageSet(u32, fopAc_ac_c*, u32);
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -106,7 +96,7 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 // Declarations:
 //
 
-/* 80D66378-80D663E4 006C+00 s=1 e=0 z=0  None .text      __dt__8daTalk_cFv */
+/* 80D66378-80D663E4 000078 006C+00 1/1 0/0 0/0 .text            __dt__8daTalk_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -116,7 +106,7 @@ asm daTalk_c::~daTalk_c() {
 }
 #pragma pop
 
-/* 80D663E4-80D664AC 00C8+00 s=1 e=0 z=0  None .text      create__8daTalk_cFv */
+/* 80D663E4-80D664AC 0000E4 00C8+00 1/1 0/0 0/0 .text            create__8daTalk_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -126,7 +116,7 @@ asm void daTalk_c::create() {
 }
 #pragma pop
 
-/* 80D664AC-80D6665C 01B0+00 s=1 e=0 z=0  None .text      execute__8daTalk_cFv */
+/* 80D664AC-80D6665C 0001AC 01B0+00 1/1 0/0 0/0 .text            execute__8daTalk_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -136,12 +126,12 @@ asm void daTalk_c::execute() {
 }
 #pragma pop
 
-/* 80D6665C-80D66664 0008+00 s=1 e=0 z=0  None .text      draw__8daTalk_cFv */
+/* 80D6665C-80D66664 00035C 0008+00 1/1 0/0 0/0 .text            draw__8daTalk_cFv */
 bool daTalk_c::draw() {
     return true;
 }
 
-/* 80D66664-80D66688 0024+00 s=1 e=0 z=0  None .text      setStatus__8daTalk_cFUs */
+/* 80D66664-80D66688 000364 0024+00 1/1 0/0 0/0 .text            setStatus__8daTalk_cFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -151,7 +141,7 @@ asm void daTalk_c::setStatus(u16 param_0) {
 }
 #pragma pop
 
-/* 80D66688-80D666A8 0020+00 s=2 e=0 z=0  None .text      getStatus__8daTalk_cFv */
+/* 80D66688-80D666A8 000388 0020+00 2/2 0/0 0/0 .text            getStatus__8daTalk_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -161,7 +151,7 @@ asm void daTalk_c::getStatus() {
 }
 #pragma pop
 
-/* 80D666A8-80D666E4 003C+00 s=1 e=0 z=0  None .text      messageSet__8daTalk_cFv */
+/* 80D666A8-80D666E4 0003A8 003C+00 1/1 0/0 0/0 .text            messageSet__8daTalk_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -171,48 +161,48 @@ asm void daTalk_c::messageSet() {
 }
 #pragma pop
 
-/* 80D666E4-80D66704 0020+00 s=1 e=0 z=0  None .text      daTalk_Create__FP10fopAc_ac_c */
+/* 80D666E4-80D66704 0003E4 0020+00 1/0 0/0 0/0 .text            daTalk_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTalk_Create(fopAc_ac_c* param_0) {
+static asm void daTalk_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_talk/d_a_talk/daTalk_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D66704-80D6672C 0028+00 s=1 e=0 z=0  None .text      daTalk_Delete__FP8daTalk_c */
+/* 80D66704-80D6672C 000404 0028+00 1/0 0/0 0/0 .text            daTalk_Delete__FP8daTalk_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTalk_Delete(daTalk_c* param_0) {
+static asm void daTalk_Delete(daTalk_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_talk/d_a_talk/daTalk_Delete__FP8daTalk_c.s"
 }
 #pragma pop
 
-/* 80D6672C-80D6674C 0020+00 s=1 e=0 z=0  None .text      daTalk_Execute__FP8daTalk_c */
+/* 80D6672C-80D6674C 00042C 0020+00 1/0 0/0 0/0 .text            daTalk_Execute__FP8daTalk_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTalk_Execute(daTalk_c* param_0) {
+static asm void daTalk_Execute(daTalk_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_talk/d_a_talk/daTalk_Execute__FP8daTalk_c.s"
 }
 #pragma pop
 
-/* 80D6674C-80D6676C 0020+00 s=1 e=0 z=0  None .text      daTalk_Draw__FP8daTalk_c */
+/* 80D6674C-80D6676C 00044C 0020+00 1/0 0/0 0/0 .text            daTalk_Draw__FP8daTalk_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTalk_Draw(daTalk_c* param_0) {
+static asm void daTalk_Draw(daTalk_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_talk/d_a_talk/daTalk_Draw__FP8daTalk_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D66774-80D66794 0020+00 s=1 e=0 z=0  None .data      l_daTalk_Method */
+/* 80D66774-80D66794 -00001 0020+00 1/0 0/0 0/0 .data            l_daTalk_Method */
 SECTION_DATA static void* l_daTalk_Method[8] = {
     (void*)daTalk_Create__FP10fopAc_ac_c,
     (void*)daTalk_Delete__FP8daTalk_c,
@@ -224,8 +214,8 @@ SECTION_DATA static void* l_daTalk_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D66794-80D667C4 0030+00 s=0 e=0 z=1  None .data      g_profile_TALK */
-SECTION_DATA void* g_profile_TALK[12] = {
+/* 80D66794-80D667C4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TALK */
+SECTION_DATA extern void* g_profile_TALK[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02BD0000, (void*)&g_fpcLf_Method,
     (void*)0x000005B8, (void*)NULL,

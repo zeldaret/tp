@@ -9,8 +9,8 @@ lbl_80037B78:
 /* 80037B94  38 00 FF FF */	li r0, -1
 /* 80037B98  90 01 00 08 */	stw r0, 8(r1)
 /* 80037B9C  7F E3 FB 78 */	mr r3, r31
-/* 80037BA0  3C 80 80 3B */	lis r4, field_item_res__10dItem_data@ha
-/* 80037BA4  38 A4 DD 88 */	addi r5, r4, field_item_res__10dItem_data@l
+/* 80037BA0  3C 80 80 3B */	lis r4, field_item_res__10dItem_data@ha /* 0x803ADD88@ha */
+/* 80037BA4  38 A4 DD 88 */	addi r5, r4, field_item_res__10dItem_data@l /* 0x803ADD88@l */
 /* 80037BA8  7C 85 30 2E */	lwzx r4, r5, r6
 /* 80037BAC  7D 45 32 14 */	add r10, r5, r6
 /* 80037BB0  A8 AA 00 04 */	lha r5, 4(r10)

@@ -82,9 +82,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     struct level_c {
@@ -217,12 +217,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void bound(cXyz*, cBgS_PolyInfo const&, f32);
-static void daWdStick_Draw(daWdStick_c*);
-static void daWdStick_Execute(daWdStick_c*);
-static void daWdStick_Delete(daWdStick_c*);
-static void daWdStick_Create(fopAc_ac_c*);
-
 extern "C" void __ct__15daWdStick_HIO_cFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
 extern "C" void setBaseMtx__11daWdStick_cFv();
@@ -269,28 +263,11 @@ extern "C" static void func_80D34104();
 extern "C" static void func_80D3410C();
 extern "C" static void func_80D34114();
 extern "C" static void func_80D3411C();
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_WdStick[12];
+extern "C" extern char const* const d_a_obj_wdStick__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_ZXYrotS(f32 (*)[4], s16, s16, s16);
-void mDoMtx_ZXYrotM(f32 (*)[4], s16, s16, s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void fopAcM_posMoveF(fopAc_ac_c*, cXyz const*);
-void fopKyM_createWpillar(cXyz const*, f32, int);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dComIfGp_getReverb(int);
-void cM_atan2s(f32, f32);
-void cLib_addCalc(f32*, f32, f32, f32, f32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_ZXYrotS__FPA4_fsss();
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
@@ -379,20 +356,21 @@ extern "C" extern u32 __float_nan;
 extern "C" extern u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
 extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
-extern void* const pad_80D34130[2];
 
 //
 // Declarations:
 //
 
 /* ############################################################################################## */
-/* 80D3421C-80D34228 000C+00 s=1 e=0 z=0  None .data      cNullVec__6Z2Calc */
+/* 80D3421C-80D34228 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80D34228-80D3423C 0004+10 s=0 e=0 z=0  None .data      @1787 */
-SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
+/* 80D34228-80D3423C 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,
@@ -400,8 +378,9 @@ SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
     0x3FE00000,
     0x00000000,
 };
+#pragma pop
 
-/* 80D3423C-80D3427C 0040+00 s=2 e=0 z=0  None .data      mCcDSph__11daWdStick_c */
+/* 80D3423C-80D3427C 000020 0040+00 2/2 0/0 0/0 .data            mCcDSph__11daWdStick_c */
 SECTION_DATA static u8 mCcDSph__11daWdStick_c[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -409,50 +388,68 @@ SECTION_DATA static u8 mCcDSph__11daWdStick_c[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00,
 };
 
-/* 80D3427C-80D34288 000C+00 s=1 e=0 z=0  None .data      @4470 */
+/* 80D3427C-80D34288 -00001 000C+00 0/1 0/0 0/0 .data            @4470 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_4470[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)mode_proc_wait__11daWdStick_cFv,
 };
+#pragma pop
 
-/* 80D34288-80D34294 000C+00 s=1 e=0 z=0  None .data      @4471 */
+/* 80D34288-80D34294 -00001 000C+00 0/1 0/0 0/0 .data            @4471 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_4471[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)mode_proc_carry__11daWdStick_cFv,
 };
+#pragma pop
 
-/* 80D34294-80D342A0 000C+00 s=1 e=0 z=0  None .data      @4472 */
+/* 80D34294-80D342A0 -00001 000C+00 0/1 0/0 0/0 .data            @4472 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_4472[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)mode_proc_drop__11daWdStick_cFv,
 };
+#pragma pop
 
-/* 80D342A0-80D342AC 000C+00 s=1 e=0 z=0  None .data      @4473 */
+/* 80D342A0-80D342AC -00001 000C+00 0/1 0/0 0/0 .data            @4473 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_4473[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)mode_proc_roll__11daWdStick_cFv,
 };
+#pragma pop
 
-/* 80D342AC-80D342B8 000C+00 s=1 e=0 z=0  None .data      @4474 */
+/* 80D342AC-80D342B8 -00001 000C+00 0/1 0/0 0/0 .data            @4474 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_4474[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)mode_proc_sink__11daWdStick_cFv,
 };
+#pragma pop
 
-/* 80D342B8-80D342F4 003C+00 s=1 e=0 z=0  None .data      l_mode_func$4469 */
+/* 80D342B8-80D342F4 00009C 003C+00 0/1 0/0 0/0 .data            l_mode_func$4469 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 l_mode_func[60] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+#pragma pop
 
-/* 80D342F4-80D34314 0020+00 s=1 e=0 z=0  None .data      l_daWdStick_Method */
+/* 80D342F4-80D34314 -00001 0020+00 1/0 0/0 0/0 .data            l_daWdStick_Method */
 SECTION_DATA static void* l_daWdStick_Method[8] = {
     (void*)daWdStick_Create__FP10fopAc_ac_c,
     (void*)daWdStick_Delete__FP11daWdStick_c,
@@ -464,8 +461,8 @@ SECTION_DATA static void* l_daWdStick_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D34314-80D34344 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_WdStick */
-SECTION_DATA void* g_profile_Obj_WdStick[12] = {
+/* 80D34314-80D34344 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_WdStick */
+SECTION_DATA extern void* g_profile_Obj_WdStick[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01650000, (void*)&g_fpcLf_Method,
     (void*)0x00000AF8, (void*)NULL,
@@ -474,66 +471,80 @@ SECTION_DATA void* g_profile_Obj_WdStick[12] = {
     (void*)0x00044000, (void*)0x000E0000,
 };
 
-/* 80D34344-80D34374 0030+00 s=2 e=0 z=0  None .data      __vt__14dBgS_ObjGndChk */
-SECTION_DATA static void* __vt__14dBgS_ObjGndChk[12] = {
-    (void*)NULL, (void*)NULL, (void*)__dt__14dBgS_ObjGndChkFv,
-    (void*)NULL, (void*)NULL, (void*)func_80D3410C,
-    (void*)NULL, (void*)NULL, (void*)func_80D3411C,
-    (void*)NULL, (void*)NULL, (void*)func_80D34114,
+/* 80D34344-80D34374 000128 0030+00 2/2 0/0 0/0 .data            __vt__14dBgS_ObjGndChk */
+SECTION_DATA extern void* __vt__14dBgS_ObjGndChk[12] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)__dt__14dBgS_ObjGndChkFv,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_80D3410C,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_80D3411C,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_80D34114,
 };
 
-/* 80D34374-80D34380 000C+00 s=4 e=0 z=0  None .data      __vt__8cM3dGPla */
-SECTION_DATA static void* __vt__8cM3dGPla[3] = {
-    (void*)NULL,
+/* 80D34374-80D34380 000158 000C+00 4/4 0/0 0/0 .data            __vt__8cM3dGPla */
+SECTION_DATA extern void* __vt__8cM3dGPla[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGPlaFv,
 };
 
-/* 80D34380-80D3438C 000C+00 s=1 e=0 z=0  None .data      __vt__12dBgS_AcchCir */
-SECTION_DATA static void* __vt__12dBgS_AcchCir[3] = {
-    (void*)NULL,
+/* 80D34380-80D3438C 000164 000C+00 1/1 0/0 0/0 .data            __vt__12dBgS_AcchCir */
+SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12dBgS_AcchCirFv,
 };
 
-/* 80D3438C-80D34398 000C+00 s=2 e=0 z=0  None .data      __vt__10cCcD_GStts */
-SECTION_DATA static void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL,
+/* 80D3438C-80D34398 000170 000C+00 2/2 0/0 0/0 .data            __vt__10cCcD_GStts */
+SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__10cCcD_GSttsFv,
 };
 
-/* 80D34398-80D343A4 000C+00 s=1 e=0 z=0  None .data      __vt__10dCcD_GStts */
-SECTION_DATA static void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL,
+/* 80D34398-80D343A4 00017C 000C+00 1/1 0/0 0/0 .data            __vt__10dCcD_GStts */
+SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__10dCcD_GSttsFv,
 };
 
-/* 80D343A4-80D343B0 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGSph */
-SECTION_DATA static void* __vt__8cM3dGSph[3] = {
-    (void*)NULL,
+/* 80D343A4-80D343B0 000188 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGSph */
+SECTION_DATA extern void* __vt__8cM3dGSph[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGSphFv,
 };
 
-/* 80D343B0-80D343BC 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGAab */
-SECTION_DATA static void* __vt__8cM3dGAab[3] = {
-    (void*)NULL,
+/* 80D343B0-80D343BC 000194 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGAab */
+SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGAabFv,
 };
 
-/* 80D343BC-80D343E0 0024+00 s=2 e=0 z=0  None .data      __vt__12dBgS_ObjAcch */
-SECTION_DATA static void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL, (void*)NULL, (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL, (void*)NULL, (void*)func_80D34104,
-    (void*)NULL, (void*)NULL, (void*)func_80D340FC,
+/* 80D343BC-80D343E0 0001A0 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
+SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)__dt__12dBgS_ObjAcchFv,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_80D34104,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_80D340FC,
 };
 
-/* 80D343E0-80D343F8 0018+00 s=1 e=0 z=0  None .data      __vt__11daWdStick_c */
-SECTION_DATA static void* __vt__11daWdStick_c[6] = {
-    (void*)NULL,
+/* 80D343E0-80D343F8 0001C4 0018+00 1/1 0/0 0/0 .data            __vt__11daWdStick_c */
+SECTION_DATA extern void* __vt__11daWdStick_c[6] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__11daWdStick_cFv,
     (void*)Execute__11daWdStick_cFv,
@@ -541,21 +552,21 @@ SECTION_DATA static void* __vt__11daWdStick_c[6] = {
     (void*)Delete__11daWdStick_cFv,
 };
 
-/* 80D343F8-80D34404 000C+00 s=2 e=0 z=0  None .data      __vt__15daWdStick_HIO_c */
-SECTION_DATA static void* __vt__15daWdStick_HIO_c[3] = {
-    (void*)NULL,
+/* 80D343F8-80D34404 0001DC 000C+00 2/2 0/0 0/0 .data            __vt__15daWdStick_HIO_c */
+SECTION_DATA extern void* __vt__15daWdStick_HIO_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__15daWdStick_HIO_cFv,
 };
 
-/* 80D34404-80D34410 000C+00 s=3 e=0 z=0  None .data      __vt__14mDoHIO_entry_c */
-SECTION_DATA static void* __vt__14mDoHIO_entry_c[3] = {
-    (void*)NULL,
+/* 80D34404-80D34410 0001E8 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
+SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14mDoHIO_entry_cFv,
 };
 
-/* 80D31B4C-80D31B88 003C+00 s=1 e=0 z=0  None .text      __ct__15daWdStick_HIO_cFv */
+/* 80D31B4C-80D31B88 0000EC 003C+00 1/1 0/0 0/0 .text            __ct__15daWdStick_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -565,7 +576,7 @@ asm daWdStick_HIO_c::daWdStick_HIO_c() {
 }
 #pragma pop
 
-/* 80D31B88-80D31BD0 0048+00 s=1 e=0 z=0  None .text      __dt__14mDoHIO_entry_cFv */
+/* 80D31B88-80D31BD0 000128 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -575,7 +586,7 @@ asm mDoHIO_entry_c::~mDoHIO_entry_c() {
 }
 #pragma pop
 
-/* 80D31BD0-80D31C58 0088+00 s=2 e=0 z=0  None .text      setBaseMtx__11daWdStick_cFv */
+/* 80D31BD0-80D31C58 000170 0088+00 2/2 0/0 0/0 .text            setBaseMtx__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -585,151 +596,7 @@ asm void daWdStick_c::setBaseMtx() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80D34138-80D34168 0030+00 s=10 e=0 z=0  None .rodata    mCcDObjInfo__11daWdStick_c */
-SECTION_RODATA static u8 const mCcDObjInfo__11daWdStick_c[48] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F,
-    0xD8, 0xFB, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80D34168-80D3416C 0004+00 s=2 e=0 z=0  None .rodata    @3775 */
-SECTION_RODATA static u32 const lit_3775 = 0x41200000;
-
-/* 80D3416C-80D34170 0004+00 s=1 e=0 z=0  None .rodata    @3776 */
-SECTION_RODATA static u32 const lit_3776 = 0x420C0000;
-
-/* 80D34170-80D34174 0004+00 s=2 e=0 z=0  None .rodata    @3777 */
-SECTION_RODATA static u32 const lit_3777 = 0xC1200000;
-
-/* 80D34174-80D34178 0004+00 s=1 e=0 z=0  None .rodata    @3778 */
-SECTION_RODATA static u32 const lit_3778 = 0xC2C80000;
-
-/* 80D34178-80D3417C 0004+00 s=1 e=0 z=0  None .rodata    @4028 */
-SECTION_RODATA static u32 const lit_4028 = 0x42960000;
-
-/* 80D3417C-80D34180 0004+00 s=3 e=0 z=0  None .rodata    @4029 */
-SECTION_RODATA static u32 const lit_4029 = 0x40800000;
-
-/* 80D34180-80D34184 0004+00 s=9 e=0 z=0  None .rodata    @4030 */
-SECTION_RODATA static u8 const lit_4030[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80D34184-80D34188 0004+00 s=1 e=0 z=0  None .rodata    @4031 */
-SECTION_RODATA static u32 const lit_4031 = 0xC2960000;
-
-/* 80D34188-80D3418C 0004+00 s=6 e=0 z=0  None .rodata    @4032 */
-SECTION_RODATA static u32 const lit_4032 = 0x3F800000;
-
-/* 80D3418C-80D34190 0004+00 s=5 e=0 z=0  None .rodata    @4033 */
-SECTION_RODATA static u32 const lit_4033 = 0xBF800000;
-
-/* 80D34190-80D34194 0004+00 s=1 e=0 z=0  None .rodata    @4034 */
-SECTION_RODATA static u32 const lit_4034 = 0x3F333333;
-
-/* 80D34194-80D34198 0004+00 s=1 e=0 z=0  None .rodata    @4118 */
-SECTION_RODATA static u32 const lit_4118 = 0x42B40000;
-
-/* 80D34198-80D3419C 0004+00 s=1 e=0 z=0  None .rodata    @4119 */
-SECTION_RODATA static u32 const lit_4119 = 0xC2B40000;
-
-/* 80D3419C-80D341A0 0004+00 s=1 e=0 z=0  None .rodata    @4120 */
-SECTION_RODATA static u32 const lit_4120 = 0x41F00000;
-
-/* 80D341A0-80D341A8 0004+04 s=1 e=0 z=0  None .rodata    @4121 */
-SECTION_RODATA static u32 const lit_4121[1 + 1 /* padding */] = {
-    0xC4408000,
-    /* padding */
-    0x00000000,
-};
-
-/* 80D341A8-80D341B0 0008+00 s=3 e=0 z=0  None .rodata    @4220 */
-SECTION_RODATA static u8 const lit_4220[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80D341B0-80D341B8 0008+00 s=3 e=0 z=0  None .rodata    @4221 */
-SECTION_RODATA static u8 const lit_4221[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80D341B8-80D341C0 0008+00 s=3 e=0 z=0  None .rodata    @4222 */
-SECTION_RODATA static u8 const lit_4222[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80D341C0-80D341C4 0004+00 s=1 e=0 z=0  None .rodata    @4444 */
-SECTION_RODATA static u32 const lit_4444 = 0x41000000;
-
-/* 80D341C4-80D341C8 0004+00 s=1 e=0 z=0  None .rodata    @4445 */
-SECTION_RODATA static u32 const lit_4445 = 0x3F19999A;
-
-/* 80D341C8-80D341CC 0004+00 s=1 e=0 z=0  None .rodata    @4446 */
-SECTION_RODATA static u32 const lit_4446 = 0xC2480000;
-
-/* 80D341CC-80D341D0 0004+00 s=2 e=0 z=0  None .rodata    @4447 */
-SECTION_RODATA static u32 const lit_4447 = 0xC1700000;
-
-/* 80D341D0-80D341D4 0004+00 s=2 e=0 z=0  None .rodata    @4448 */
-SECTION_RODATA static u32 const lit_4448 = 0x40000000;
-
-/* 80D341D4-80D341D8 0004+00 s=1 e=0 z=0  None .rodata    @4449 */
-SECTION_RODATA static u32 const lit_4449 = 0x40A00000;
-
-/* 80D341D8-80D341DC 0004+00 s=2 e=0 z=0  None .rodata    @4574 */
-SECTION_RODATA static u32 const lit_4574 = 0xC0A00000;
-
-/* 80D341DC-80D341E0 0004+00 s=1 e=0 z=0  None .rodata    @4704 */
-SECTION_RODATA static u32 const lit_4704 = 0xCE6E6B28;
-
-/* 80D341E0-80D341E4 0004+00 s=1 e=0 z=0  None .rodata    @4705 */
-SECTION_RODATA static u32 const lit_4705 = 0x4645B05B;
-
-/* 80D341E4-80D341E8 0004+00 s=2 e=0 z=0  None .rodata    @4706 */
-SECTION_RODATA static u32 const lit_4706 = 0x3DCCCCCD;
-
-/* 80D341E8-80D341EC 0004+00 s=1 e=0 z=0  None .rodata    @4707 */
-SECTION_RODATA static u32 const lit_4707 = 0x3F400000;
-
-/* 80D341EC-80D341F0 0004+00 s=1 e=0 z=0  None .rodata    @4708 */
-SECTION_RODATA static u32 const lit_4708 = 0x3C23D70B;
-
-/* 80D341F0-80D341F4 0004+00 s=2 e=0 z=0  None .rodata    @4709 */
-SECTION_RODATA static u32 const lit_4709 = 0x3F666666;
-
-/* 80D341F4-80D341F8 0004+00 s=1 e=0 z=0  None .rodata    @4710 */
-SECTION_RODATA static u32 const lit_4710 = 0x3E99999A;
-
-/* 80D341F8-80D341FC 0004+00 s=1 e=0 z=0  None .rodata    @4725 */
-SECTION_RODATA static u32 const lit_4725 = 0x42C80000;
-
-/* 80D341FC-80D34200 0004+00 s=1 e=0 z=0  None .rodata    @4731 */
-SECTION_RODATA static u32 const lit_4731 = 0x42200000;
-
-/* 80D34200-80D34204 0004+00 s=1 e=0 z=0  None .rodata    @4777 */
-SECTION_RODATA static u32 const lit_4777 = 0x3D4CCCCD;
-
-/* 80D34204-80D34208 0004+00 s=1 e=0 z=0  None .rodata    @4778 */
-SECTION_RODATA static u32 const lit_4778 = 0x3C23D70A;
-
-/* 80D34208-80D3420C 0004+00 s=1 e=0 z=0  None .rodata    @4779 */
-SECTION_RODATA static u32 const lit_4779 = 0x41500000;
-
-/* 80D3420C-80D34210 0004+00 s=1 e=0 z=0  None .rodata    @4780 */
-SECTION_RODATA static u32 const lit_4780 = 0xC0000000;
-
-/* 80D34210-80D3421A 000A+00 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80D34210 = "H_Kinobou";
-#pragma pop
-
-/* 80D31C58-80D31CC4 006C+00 s=1 e=0 z=0  None .text      CreateHeap__11daWdStick_cFv */
+/* 80D31C58-80D31CC4 0001F8 006C+00 1/0 0/0 0/0 .text            CreateHeap__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -739,7 +606,41 @@ asm void daWdStick_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80D31CC4-80D31F9C 02D8+00 s=1 e=0 z=0  None .text      create__11daWdStick_cFv */
+/* ############################################################################################## */
+/* 80D34138-80D34168 000000 0030+00 10/10 0/0 0/0 .rodata          mCcDObjInfo__11daWdStick_c */
+SECTION_RODATA static u8 const mCcDObjInfo__11daWdStick_c[48] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F,
+    0xD8, 0xFB, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(80D34138, &mCcDObjInfo__11daWdStick_c);
+
+/* 80D34168-80D3416C 000030 0004+00 0/2 0/0 0/0 .rodata          @3775 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3775 = 10.0f;
+COMPILER_STRIP_GATE(80D34168, &lit_3775);
+#pragma pop
+
+/* 80D3416C-80D34170 000034 0004+00 0/1 0/0 0/0 .rodata          @3776 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3776 = 35.0f;
+COMPILER_STRIP_GATE(80D3416C, &lit_3776);
+#pragma pop
+
+/* 80D34170-80D34174 000038 0004+00 1/2 0/0 0/0 .rodata          @3777 */
+SECTION_RODATA static f32 const lit_3777 = -10.0f;
+COMPILER_STRIP_GATE(80D34170, &lit_3777);
+
+/* 80D34174-80D34178 00003C 0004+00 0/1 0/0 0/0 .rodata          @3778 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3778 = -100.0f;
+COMPILER_STRIP_GATE(80D34174, &lit_3778);
+#pragma pop
+
+/* 80D31CC4-80D31F9C 000264 02D8+00 1/1 0/0 0/0 .text            create__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -749,7 +650,7 @@ asm void daWdStick_c::create() {
 }
 #pragma pop
 
-/* 80D31F9C-80D31FE4 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGSphFv */
+/* 80D31F9C-80D31FE4 00053C 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -759,7 +660,7 @@ asm cM3dGSph::~cM3dGSph() {
 }
 #pragma pop
 
-/* 80D31FE4-80D3202C 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGAabFv */
+/* 80D31FE4-80D3202C 000584 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -769,7 +670,7 @@ asm cM3dGAab::~cM3dGAab() {
 }
 #pragma pop
 
-/* 80D3202C-80D32088 005C+00 s=1 e=0 z=0  None .text      __dt__10dCcD_GSttsFv */
+/* 80D3202C-80D32088 0005CC 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -779,7 +680,7 @@ asm dCcD_GStts::~dCcD_GStts() {
 }
 #pragma pop
 
-/* 80D32088-80D320F8 0070+00 s=1 e=0 z=0  None .text      __dt__12dBgS_AcchCirFv */
+/* 80D32088-80D320F8 000628 0070+00 1/0 0/0 0/0 .text            __dt__12dBgS_AcchCirFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -789,7 +690,7 @@ asm dBgS_AcchCir::~dBgS_AcchCir() {
 }
 #pragma pop
 
-/* 80D320F8-80D32168 0070+00 s=3 e=0 z=0  None .text      __dt__12dBgS_ObjAcchFv */
+/* 80D320F8-80D32168 000698 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -799,7 +700,7 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 }
 #pragma pop
 
-/* 80D32168-80D32194 002C+00 s=1 e=0 z=0  None .text
+/* 80D32168-80D32194 000708 002C+00 1/1 0/0 0/0 .text
  * createHeapCallBack__11daWdStick_cFP10fopAc_ac_c              */
 #pragma push
 #pragma optimization_level 0
@@ -810,17 +711,69 @@ asm void daWdStick_c::createHeapCallBack(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 80D32194-80D32198 0004+00 s=1 e=0 z=0  None .text      lightInit__11daWdStick_cFv */
+/* 80D32194-80D32198 000734 0004+00 1/1 0/0 0/0 .text            lightInit__11daWdStick_cFv */
 void daWdStick_c::lightInit() {
     /* empty function */
 }
 
-/* 80D32198-80D3219C 0004+00 s=2 e=0 z=0  None .text      setLight__11daWdStick_cFv */
+/* 80D32198-80D3219C 000738 0004+00 2/2 0/0 0/0 .text            setLight__11daWdStick_cFv */
 void daWdStick_c::setLight() {
     /* empty function */
 }
 
-/* 80D3219C-80D3269C 0500+00 s=1 e=0 z=0  None .text      setFire__11daWdStick_cFv */
+/* ############################################################################################## */
+/* 80D34178-80D3417C 000040 0004+00 0/1 0/0 0/0 .rodata          @4028 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4028 = 75.0f;
+COMPILER_STRIP_GATE(80D34178, &lit_4028);
+#pragma pop
+
+/* 80D3417C-80D34180 000044 0004+00 0/3 0/0 0/0 .rodata          @4029 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4029 = 4.0f;
+COMPILER_STRIP_GATE(80D3417C, &lit_4029);
+#pragma pop
+
+/* 80D34180-80D34184 000048 0004+00 2/9 0/0 0/0 .rodata          @4030 */
+SECTION_RODATA static u8 const lit_4030[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+COMPILER_STRIP_GATE(80D34180, &lit_4030);
+
+/* 80D34184-80D34188 00004C 0004+00 0/1 0/0 0/0 .rodata          @4031 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4031 = -75.0f;
+COMPILER_STRIP_GATE(80D34184, &lit_4031);
+#pragma pop
+
+/* 80D34188-80D3418C 000050 0004+00 0/6 0/0 0/0 .rodata          @4032 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4032 = 1.0f;
+COMPILER_STRIP_GATE(80D34188, &lit_4032);
+#pragma pop
+
+/* 80D3418C-80D34190 000054 0004+00 0/5 0/0 0/0 .rodata          @4033 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4033 = -1.0f;
+COMPILER_STRIP_GATE(80D3418C, &lit_4033);
+#pragma pop
+
+/* 80D34190-80D34194 000058 0004+00 0/1 0/0 0/0 .rodata          @4034 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4034 = 7.0f / 10.0f;
+COMPILER_STRIP_GATE(80D34190, &lit_4034);
+#pragma pop
+
+/* 80D3219C-80D3269C 00073C 0500+00 1/1 0/0 0/0 .text            setFire__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -831,13 +784,45 @@ asm void daWdStick_c::setFire() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D34418-80D34424 000C+00 s=1 e=0 z=0  None .bss       @3643 */
+/* 80D34194-80D34198 00005C 0004+00 0/1 0/0 0/0 .rodata          @4118 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4118 = 90.0f;
+COMPILER_STRIP_GATE(80D34194, &lit_4118);
+#pragma pop
+
+/* 80D34198-80D3419C 000060 0004+00 0/1 0/0 0/0 .rodata          @4119 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4119 = -90.0f;
+COMPILER_STRIP_GATE(80D34198, &lit_4119);
+#pragma pop
+
+/* 80D3419C-80D341A0 000064 0004+00 0/1 0/0 0/0 .rodata          @4120 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4120 = 30.0f;
+COMPILER_STRIP_GATE(80D3419C, &lit_4120);
+#pragma pop
+
+/* 80D341A0-80D341A8 000068 0004+04 0/1 0/0 0/0 .rodata          @4121 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4121[1 + 1 /* padding */] = {
+    -770.0f,
+    /* padding */
+    0.0f,
+};
+COMPILER_STRIP_GATE(80D341A0, &lit_4121);
+#pragma pop
+
+/* 80D34418-80D34424 000008 000C+00 1/1 0/0 0/0 .bss             @3643 */
 static u8 lit_3643[12];
 
-/* 80D34424-80D34430 000C+00 s=2 e=0 z=0  None .bss       l_HIO */
+/* 80D34424-80D34430 000014 000C+00 2/2 0/0 0/0 .bss             l_HIO */
 static u8 l_HIO[12];
 
-/* 80D3269C-80D32A70 03D4+00 s=1 e=0 z=0  None .text      Execute__11daWdStick_cFv */
+/* 80D3269C-80D32A70 000C3C 03D4+00 1/0 0/0 0/0 .text            Execute__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -847,17 +832,45 @@ asm void daWdStick_c::Execute() {
 }
 #pragma pop
 
-/* 80D32A70-80D32D6C 02FC+00 s=1 e=0 z=0  None .text      bound__FP4cXyzRC13cBgS_PolyInfof */
+/* ############################################################################################## */
+/* 80D341A8-80D341B0 000070 0008+00 0/3 0/0 0/0 .rodata          @4220 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_4220[8] = {
+    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(80D341A8, &lit_4220);
+#pragma pop
+
+/* 80D341B0-80D341B8 000078 0008+00 0/3 0/0 0/0 .rodata          @4221 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_4221[8] = {
+    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(80D341B0, &lit_4221);
+#pragma pop
+
+/* 80D341B8-80D341C0 000080 0008+00 0/3 0/0 0/0 .rodata          @4222 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_4222[8] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(80D341B8, &lit_4222);
+#pragma pop
+
+/* 80D32A70-80D32D6C 001010 02FC+00 1/1 0/0 0/0 .text            bound__FP4cXyzRC13cBgS_PolyInfof */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void bound(cXyz* param_0, cBgS_PolyInfo const& param_1, f32 param_2) {
+static asm void bound(cXyz* param_0, cBgS_PolyInfo const& param_1, f32 param_2) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wdStick/d_a_obj_wdStick/bound__FP4cXyzRC13cBgS_PolyInfof.s"
 }
 #pragma pop
 
-/* 80D32D6C-80D32DB4 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGPlaFv */
+/* 80D32D6C-80D32DB4 00130C 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGPlaFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -867,7 +880,50 @@ asm cM3dGPla::~cM3dGPla() {
 }
 #pragma pop
 
-/* 80D32DB4-80D33348 0594+00 s=3 e=0 z=0  None .text      bgCheck__11daWdStick_cFv */
+/* ############################################################################################## */
+/* 80D341C0-80D341C4 000088 0004+00 0/1 0/0 0/0 .rodata          @4444 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4444 = 8.0f;
+COMPILER_STRIP_GATE(80D341C0, &lit_4444);
+#pragma pop
+
+/* 80D341C4-80D341C8 00008C 0004+00 0/1 0/0 0/0 .rodata          @4445 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4445 = 3.0f / 5.0f;
+COMPILER_STRIP_GATE(80D341C4, &lit_4445);
+#pragma pop
+
+/* 80D341C8-80D341CC 000090 0004+00 0/1 0/0 0/0 .rodata          @4446 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4446 = -50.0f;
+COMPILER_STRIP_GATE(80D341C8, &lit_4446);
+#pragma pop
+
+/* 80D341CC-80D341D0 000094 0004+00 0/2 0/0 0/0 .rodata          @4447 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4447 = -15.0f;
+COMPILER_STRIP_GATE(80D341CC, &lit_4447);
+#pragma pop
+
+/* 80D341D0-80D341D4 000098 0004+00 0/2 0/0 0/0 .rodata          @4448 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4448 = 2.0f;
+COMPILER_STRIP_GATE(80D341D0, &lit_4448);
+#pragma pop
+
+/* 80D341D4-80D341D8 00009C 0004+00 0/1 0/0 0/0 .rodata          @4449 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4449 = 5.0f;
+COMPILER_STRIP_GATE(80D341D4, &lit_4449);
+#pragma pop
+
+/* 80D32DB4-80D33348 001354 0594+00 3/3 0/0 0/0 .text            bgCheck__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -877,7 +933,7 @@ asm void daWdStick_c::bgCheck() {
 }
 #pragma pop
 
-/* 80D33348-80D333F4 00AC+00 s=1 e=0 z=0  None .text      setBoundSe__11daWdStick_cFv */
+/* 80D33348-80D333F4 0018E8 00AC+00 1/1 0/0 0/0 .text            setBoundSe__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -888,10 +944,10 @@ asm void daWdStick_c::setBoundSe() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D34430-80D34434 0004+00 s=1 e=0 z=0  None .bss       None */
+/* 80D34430-80D34434 000020 0004+00 1/1 0/0 0/0 .bss             None */
 static u8 data_80D34430[4];
 
-/* 80D333F4-80D3350C 0118+00 s=1 e=0 z=0  None .text      mode_proc_call__11daWdStick_cFv */
+/* 80D333F4-80D3350C 001994 0118+00 1/1 0/0 0/0 .text            mode_proc_call__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -901,7 +957,7 @@ asm void daWdStick_c::mode_proc_call() {
 }
 #pragma pop
 
-/* 80D3350C-80D3353C 0030+00 s=4 e=0 z=0  None .text      mode_init_wait__11daWdStick_cFv */
+/* 80D3350C-80D3353C 001AAC 0030+00 4/4 0/0 0/0 .text            mode_init_wait__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -911,7 +967,7 @@ asm void daWdStick_c::mode_init_wait() {
 }
 #pragma pop
 
-/* 80D3353C-80D33588 004C+00 s=1 e=0 z=0  None .text      mode_proc_wait__11daWdStick_cFv */
+/* 80D3353C-80D33588 001ADC 004C+00 1/0 0/0 0/0 .text            mode_proc_wait__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -921,7 +977,7 @@ asm void daWdStick_c::mode_proc_wait() {
 }
 #pragma pop
 
-/* 80D33588-80D335AC 0024+00 s=1 e=0 z=0  None .text      mode_init_carry__11daWdStick_cFv */
+/* 80D33588-80D335AC 001B28 0024+00 1/1 0/0 0/0 .text            mode_init_carry__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -931,7 +987,7 @@ asm void daWdStick_c::mode_init_carry() {
 }
 #pragma pop
 
-/* 80D335AC-80D3386C 02C0+00 s=1 e=0 z=0  None .text      mode_proc_carry__11daWdStick_cFv */
+/* 80D335AC-80D3386C 001B4C 02C0+00 1/0 0/0 0/0 .text            mode_proc_carry__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -941,7 +997,12 @@ asm void daWdStick_c::mode_proc_carry() {
 }
 #pragma pop
 
-/* 80D3386C-80D33890 0024+00 s=1 e=0 z=0  None .text      mode_init_drop__11daWdStick_cFv */
+/* ############################################################################################## */
+/* 80D341D8-80D341DC 0000A0 0004+00 1/2 0/0 0/0 .rodata          @4574 */
+SECTION_RODATA static f32 const lit_4574 = -5.0f;
+COMPILER_STRIP_GATE(80D341D8, &lit_4574);
+
+/* 80D3386C-80D33890 001E0C 0024+00 1/1 0/0 0/0 .text            mode_init_drop__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -951,7 +1012,7 @@ asm void daWdStick_c::mode_init_drop() {
 }
 #pragma pop
 
-/* 80D33890-80D338DC 004C+00 s=1 e=0 z=0  None .text      mode_proc_drop__11daWdStick_cFv */
+/* 80D33890-80D338DC 001E30 004C+00 1/0 0/0 0/0 .text            mode_proc_drop__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -961,7 +1022,7 @@ asm void daWdStick_c::mode_proc_drop() {
 }
 #pragma pop
 
-/* 80D338DC-80D338F4 0018+00 s=2 e=0 z=0  None .text      mode_init_roll__11daWdStick_cFv */
+/* 80D338DC-80D338F4 001E7C 0018+00 2/2 0/0 0/0 .text            mode_init_roll__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -971,7 +1032,57 @@ asm void daWdStick_c::mode_init_roll() {
 }
 #pragma pop
 
-/* 80D338F4-80D33CCC 03D8+00 s=1 e=0 z=0  None .text      mode_proc_roll__11daWdStick_cFv */
+/* ############################################################################################## */
+/* 80D341DC-80D341E0 0000A4 0004+00 0/1 0/0 0/0 .rodata          @4704 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4704 = -1000000000.0f;
+COMPILER_STRIP_GATE(80D341DC, &lit_4704);
+#pragma pop
+
+/* 80D341E0-80D341E4 0000A8 0004+00 0/1 0/0 0/0 .rodata          @4705 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4705 = 0x4645B05B;
+COMPILER_STRIP_GATE(80D341E0, &lit_4705);
+#pragma pop
+
+/* 80D341E4-80D341E8 0000AC 0004+00 0/2 0/0 0/0 .rodata          @4706 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4706 = 1.0f / 10.0f;
+COMPILER_STRIP_GATE(80D341E4, &lit_4706);
+#pragma pop
+
+/* 80D341E8-80D341EC 0000B0 0004+00 0/1 0/0 0/0 .rodata          @4707 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4707 = 0.75f;
+COMPILER_STRIP_GATE(80D341E8, &lit_4707);
+#pragma pop
+
+/* 80D341EC-80D341F0 0000B4 0004+00 0/1 0/0 0/0 .rodata          @4708 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4708 = 0x3C23D70B;
+COMPILER_STRIP_GATE(80D341EC, &lit_4708);
+#pragma pop
+
+/* 80D341F0-80D341F4 0000B8 0004+00 0/2 0/0 0/0 .rodata          @4709 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4709 = 9.0f / 10.0f;
+COMPILER_STRIP_GATE(80D341F0, &lit_4709);
+#pragma pop
+
+/* 80D341F4-80D341F8 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4710 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4710 = 3.0f / 10.0f;
+COMPILER_STRIP_GATE(80D341F4, &lit_4710);
+#pragma pop
+
+/* 80D338F4-80D33CCC 001E94 03D8+00 1/0 0/0 0/0 .text            mode_proc_roll__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -981,7 +1092,7 @@ asm void daWdStick_c::mode_proc_roll() {
 }
 #pragma pop
 
-/* 80D33CCC-80D33D44 0078+00 s=4 e=0 z=0  None .text      __dt__14dBgS_ObjGndChkFv */
+/* 80D33CCC-80D33D44 00226C 0078+00 4/3 0/0 0/0 .text            __dt__14dBgS_ObjGndChkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -991,7 +1102,19 @@ asm dBgS_ObjGndChk::~dBgS_ObjGndChk() {
 }
 #pragma pop
 
-/* 80D33D44-80D33D68 0024+00 s=2 e=0 z=0  None .text      chkWaterLineIn__11daWdStick_cFv */
+/* ############################################################################################## */
+/* 80D341F8-80D341FC 0000C0 0004+00 0/1 0/0 0/0 .rodata          @4725 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4725 = 100.0f;
+COMPILER_STRIP_GATE(80D341F8, &lit_4725);
+#pragma pop
+
+/* 80D341FC-80D34200 0000C4 0004+00 1/1 0/0 0/0 .rodata          @4731 */
+SECTION_RODATA static f32 const lit_4731 = 40.0f;
+COMPILER_STRIP_GATE(80D341FC, &lit_4731);
+
+/* 80D33D44-80D33D68 0022E4 0024+00 2/2 0/0 0/0 .text            chkWaterLineIn__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1001,7 +1124,7 @@ asm void daWdStick_c::chkWaterLineIn() {
 }
 #pragma pop
 
-/* 80D33D68-80D33D8C 0024+00 s=1 e=0 z=0  None .text      mode_init_sink__11daWdStick_cFv */
+/* 80D33D68-80D33D8C 002308 0024+00 1/1 0/0 0/0 .text            mode_init_sink__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1011,7 +1134,36 @@ asm void daWdStick_c::mode_init_sink() {
 }
 #pragma pop
 
-/* 80D33D8C-80D33EB0 0124+00 s=1 e=0 z=0  None .text      mode_proc_sink__11daWdStick_cFv */
+/* ############################################################################################## */
+/* 80D34200-80D34204 0000C8 0004+00 0/1 0/0 0/0 .rodata          @4777 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4777 = 1.0f / 20.0f;
+COMPILER_STRIP_GATE(80D34200, &lit_4777);
+#pragma pop
+
+/* 80D34204-80D34208 0000CC 0004+00 0/1 0/0 0/0 .rodata          @4778 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4778 = 1.0f / 100.0f;
+COMPILER_STRIP_GATE(80D34204, &lit_4778);
+#pragma pop
+
+/* 80D34208-80D3420C 0000D0 0004+00 0/1 0/0 0/0 .rodata          @4779 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4779 = 13.0f;
+COMPILER_STRIP_GATE(80D34208, &lit_4779);
+#pragma pop
+
+/* 80D3420C-80D34210 0000D4 0004+00 0/1 0/0 0/0 .rodata          @4780 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4780 = -2.0f;
+COMPILER_STRIP_GATE(80D3420C, &lit_4780);
+#pragma pop
+
+/* 80D33D8C-80D33EB0 00232C 0124+00 1/0 0/0 0/0 .text            mode_proc_sink__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1021,7 +1173,7 @@ asm void daWdStick_c::mode_proc_sink() {
 }
 #pragma pop
 
-/* 80D33EB0-80D33F14 0064+00 s=1 e=0 z=0  None .text      Draw__11daWdStick_cFv */
+/* 80D33EB0-80D33F14 002450 0064+00 1/0 0/0 0/0 .text            Draw__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1031,7 +1183,7 @@ asm void daWdStick_c::Draw() {
 }
 #pragma pop
 
-/* 80D33F14-80D33F44 0030+00 s=1 e=0 z=0  None .text      Delete__11daWdStick_cFv */
+/* 80D33F14-80D33F44 0024B4 0030+00 1/0 0/0 0/0 .text            Delete__11daWdStick_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1041,47 +1193,49 @@ asm void daWdStick_c::Delete() {
 }
 #pragma pop
 
-/* 80D33F44-80D33F70 002C+00 s=1 e=0 z=0  None .text      daWdStick_Draw__FP11daWdStick_c */
+/* 80D33F44-80D33F70 0024E4 002C+00 1/0 0/0 0/0 .text            daWdStick_Draw__FP11daWdStick_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daWdStick_Draw(daWdStick_c* param_0) {
+static asm void daWdStick_Draw(daWdStick_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wdStick/d_a_obj_wdStick/daWdStick_Draw__FP11daWdStick_c.s"
 }
 #pragma pop
 
-/* 80D33F70-80D33F9C 002C+00 s=1 e=0 z=0  None .text      daWdStick_Execute__FP11daWdStick_c */
+/* 80D33F70-80D33F9C 002510 002C+00 1/0 0/0 0/0 .text            daWdStick_Execute__FP11daWdStick_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daWdStick_Execute(daWdStick_c* param_0) {
+static asm void daWdStick_Execute(daWdStick_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wdStick/d_a_obj_wdStick/daWdStick_Execute__FP11daWdStick_c.s"
 }
 #pragma pop
 
-/* 80D33F9C-80D33FC8 002C+00 s=1 e=0 z=0  None .text      daWdStick_Delete__FP11daWdStick_c */
+/* 80D33F9C-80D33FC8 00253C 002C+00 1/0 0/0 0/0 .text            daWdStick_Delete__FP11daWdStick_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daWdStick_Delete(daWdStick_c* param_0) {
+static asm void daWdStick_Delete(daWdStick_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wdStick/d_a_obj_wdStick/daWdStick_Delete__FP11daWdStick_c.s"
 }
 #pragma pop
 
-/* 80D33FC8-80D33FE8 0020+00 s=1 e=0 z=0  None .text      daWdStick_Create__FP10fopAc_ac_c */
+/* 80D33FC8-80D33FE8 002568 0020+00 1/0 0/0 0/0 .text            daWdStick_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daWdStick_Create(fopAc_ac_c* param_0) {
+static asm void daWdStick_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wdStick/d_a_obj_wdStick/daWdStick_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D33FE8-80D34030 0048+00 s=1 e=0 z=0  None .text      __dt__10cCcD_GSttsFv */
+/* 80D33FE8-80D34030 002588 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1091,7 +1245,7 @@ asm cCcD_GStts::~cCcD_GStts() {
 }
 #pragma pop
 
-/* 80D34030-80D3408C 005C+00 s=2 e=0 z=0  None .text      __dt__15daWdStick_HIO_cFv */
+/* 80D34030-80D3408C 0025D0 005C+00 2/1 0/0 0/0 .text            __dt__15daWdStick_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1101,62 +1255,74 @@ asm daWdStick_HIO_c::~daWdStick_HIO_c() {
 }
 #pragma pop
 
-/* 80D3408C-80D340FC 0070+00 s=0 e=1 z=0  None .text      __sinit_d_a_obj_wdStick_cpp */
+/* 80D3408C-80D340FC 00262C 0070+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_wdStick_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_a_obj_wdStick_cpp() {
+asm void __sinit_d_a_obj_wdStick_cpp() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wdStick/d_a_obj_wdStick/__sinit_d_a_obj_wdStick_cpp.s"
 }
 #pragma pop
 
-/* 80D340FC-80D34104 0008+00 s=1 e=0 z=0  None .text      @36@__dt__12dBgS_ObjAcchFv */
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_80D3408C = (void*)__sinit_d_a_obj_wdStick_cpp;
+#pragma pop
+
+/* 80D340FC-80D34104 00269C 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80D340FC() {
+static asm void func_80D340FC() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wdStick/d_a_obj_wdStick/func_80D340FC.s"
 }
 #pragma pop
 
-/* 80D34104-80D3410C 0008+00 s=1 e=0 z=0  None .text      @20@__dt__12dBgS_ObjAcchFv */
+/* 80D34104-80D3410C 0026A4 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80D34104() {
+static asm void func_80D34104() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wdStick/d_a_obj_wdStick/func_80D34104.s"
 }
 #pragma pop
 
-/* 80D3410C-80D34114 0008+00 s=1 e=0 z=0  None .text      @20@__dt__14dBgS_ObjGndChkFv */
+/* 80D3410C-80D34114 0026AC 0008+00 1/0 0/0 0/0 .text            @20@__dt__14dBgS_ObjGndChkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80D3410C() {
+static asm void func_80D3410C() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wdStick/d_a_obj_wdStick/func_80D3410C.s"
 }
 #pragma pop
 
-/* 80D34114-80D3411C 0008+00 s=1 e=0 z=0  None .text      @76@__dt__14dBgS_ObjGndChkFv */
+/* 80D34114-80D3411C 0026B4 0008+00 1/0 0/0 0/0 .text            @76@__dt__14dBgS_ObjGndChkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80D34114() {
+static asm void func_80D34114() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wdStick/d_a_obj_wdStick/func_80D34114.s"
 }
 #pragma pop
 
-/* 80D3411C-80D34124 0008+00 s=1 e=0 z=0  None .text      @60@__dt__14dBgS_ObjGndChkFv */
+/* 80D3411C-80D34124 0026BC 0008+00 1/0 0/0 0/0 .text            @60@__dt__14dBgS_ObjGndChkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80D3411C() {
+static asm void func_80D3411C() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_wdStick/d_a_obj_wdStick/func_80D3411C.s"
 }
+#pragma pop
+
+/* 80D34210-80D3421A 0000D8 000A+00 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80D34210 = "H_Kinobou";
 #pragma pop

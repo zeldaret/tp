@@ -3,19 +3,20 @@
 #
 
 M83_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kakashi.plf
+M83_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kakashi.lcf
+M83_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kakashi.map
 
 M83_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_kakashi/executor.cpp \
-	rel/d/a/npc/d_a_npc_kakashi/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_kakashi/d_a_npc_kakashi.cpp \
 
 M83_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kakashi/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kakashi/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kakashi/d_a_npc_kakashi.o \
 
 M83_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kakashi/libRuntime.PPCEABI.H.a \
 
 M83_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M83_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M83_LDSCRIPT) \
+	-unused -map $(M83_MAP) \
+	-w off \
 
 $(M83_TARGET): $(M83_O_FILES) $(M83_LIBS)
+	@echo [ 83] creating $(M83_TARGET)
 	@echo $(M83_LIBS) $(M83_O_FILES) > build/M83_ofiles
-	$(LD) -partial $(M83_LDFLAGS) -o $(M83_TARGET) @build/M83_ofiles
+	@python3 tools/lcf.py rel 83 --output $(M83_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M83_LDFLAGS) -o $(M83_TARGET) @build/M83_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kakashi/%.o: rel/d/a/npc/d_a_npc_kakashi/%.cpp
+	@echo [ 83] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M83_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M83_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_kakashi/libs/Runtime.PPCEABI.H/Makefile
 

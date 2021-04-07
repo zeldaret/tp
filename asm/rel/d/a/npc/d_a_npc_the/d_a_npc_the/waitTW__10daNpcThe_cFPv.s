@@ -22,16 +22,16 @@ lbl_80AF8BBC:
 /* 80AF8BC4  40 82 00 4C */	bne lbl_80AF8C10
 /* 80AF8BC8  7F E3 FB 78 */	mr r3, r31
 /* 80AF8BCC  38 80 00 08 */	li r4, 8
-/* 80AF8BD0  3C A0 80 B0 */	lis r5, lit_4781@ha
-/* 80AF8BD4  C0 25 C1 20 */	lfs f1, lit_4781@l(r5)
+/* 80AF8BD0  3C A0 80 B0 */	lis r5, lit_4781@ha /* 0x80AFC120@ha */
+/* 80AF8BD4  C0 25 C1 20 */	lfs f1, lit_4781@l(r5)  /* 0x80AFC120@l */
 /* 80AF8BD8  81 9F 0B 44 */	lwz r12, 0xb44(r31)
 /* 80AF8BDC  81 8C 00 34 */	lwz r12, 0x34(r12)
 /* 80AF8BE0  7D 89 03 A6 */	mtctr r12
 /* 80AF8BE4  4E 80 04 21 */	bctrl 
 /* 80AF8BE8  7F E3 FB 78 */	mr r3, r31
 /* 80AF8BEC  38 80 00 08 */	li r4, 8
-/* 80AF8BF0  3C A0 80 B0 */	lis r5, lit_4781@ha
-/* 80AF8BF4  C0 25 C1 20 */	lfs f1, lit_4781@l(r5)
+/* 80AF8BF0  3C A0 80 B0 */	lis r5, lit_4781@ha /* 0x80AFC120@ha */
+/* 80AF8BF4  C0 25 C1 20 */	lfs f1, lit_4781@l(r5)  /* 0x80AFC120@l */
 /* 80AF8BF8  38 A0 00 00 */	li r5, 0
 /* 80AF8BFC  81 9F 0B 44 */	lwz r12, 0xb44(r31)
 /* 80AF8C00  81 8C 00 3C */	lwz r12, 0x3c(r12)
@@ -41,16 +41,16 @@ lbl_80AF8BBC:
 lbl_80AF8C10:
 /* 80AF8C10  7F E3 FB 78 */	mr r3, r31
 /* 80AF8C14  38 80 00 0B */	li r4, 0xb
-/* 80AF8C18  3C A0 80 B0 */	lis r5, lit_4781@ha
-/* 80AF8C1C  C0 25 C1 20 */	lfs f1, lit_4781@l(r5)
+/* 80AF8C18  3C A0 80 B0 */	lis r5, lit_4781@ha /* 0x80AFC120@ha */
+/* 80AF8C1C  C0 25 C1 20 */	lfs f1, lit_4781@l(r5)  /* 0x80AFC120@l */
 /* 80AF8C20  81 9F 0B 44 */	lwz r12, 0xb44(r31)
 /* 80AF8C24  81 8C 00 34 */	lwz r12, 0x34(r12)
 /* 80AF8C28  7D 89 03 A6 */	mtctr r12
 /* 80AF8C2C  4E 80 04 21 */	bctrl 
 /* 80AF8C30  7F E3 FB 78 */	mr r3, r31
 /* 80AF8C34  38 80 00 00 */	li r4, 0
-/* 80AF8C38  3C A0 80 B0 */	lis r5, lit_4781@ha
-/* 80AF8C3C  C0 25 C1 20 */	lfs f1, lit_4781@l(r5)
+/* 80AF8C38  3C A0 80 B0 */	lis r5, lit_4781@ha /* 0x80AFC120@ha */
+/* 80AF8C3C  C0 25 C1 20 */	lfs f1, lit_4781@l(r5)  /* 0x80AFC120@l */
 /* 80AF8C40  38 A0 00 00 */	li r5, 0
 /* 80AF8C44  81 9F 0B 44 */	lwz r12, 0xb44(r31)
 /* 80AF8C48  81 8C 00 3C */	lwz r12, 0x3c(r12)
@@ -70,7 +70,7 @@ lbl_80AF8C68:
 /* 80AF8C78  38 A0 FF FF */	li r5, -1
 /* 80AF8C7C  38 C0 FF FF */	li r6, -1
 /* 80AF8C80  38 E0 00 0F */	li r7, 0xf
-/* 80AF8C84  4B 65 B4 20 */	b step__8daNpcF_cFsiii
+/* 80AF8C84  4B 65 B4 21 */	bl step__8daNpcF_cFsiii
 /* 80AF8C88  2C 03 00 00 */	cmpwi r3, 0
 /* 80AF8C8C  41 82 00 0C */	beq lbl_80AF8C98
 /* 80AF8C90  38 00 00 01 */	li r0, 1

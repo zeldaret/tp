@@ -10,8 +10,8 @@ lbl_8013E6C0:
 /* 8013E6E0  4B F8 38 8D */	bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 8013E6E4  7F C3 F3 78 */	mr r3, r30
 /* 8013E6E8  38 80 00 57 */	li r4, 0x57
-/* 8013E6EC  3C A0 80 39 */	lis r5, m__21daAlinkHIO_wlChain_c0@ha
-/* 8013E6F0  38 A5 F8 58 */	addi r5, r5, m__21daAlinkHIO_wlChain_c0@l
+/* 8013E6EC  3C A0 80 39 */	lis r5, m__21daAlinkHIO_wlChain_c0@ha /* 0x8038F858@ha */
+/* 8013E6F0  38 A5 F8 58 */	addi r5, r5, m__21daAlinkHIO_wlChain_c0@l /* 0x8038F858@l */
 /* 8013E6F4  4B FE B1 55 */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013E6F8  38 00 00 00 */	li r0, 0
 /* 8013E6FC  B0 1E 30 0A */	sth r0, 0x300a(r30)
@@ -34,8 +34,8 @@ lbl_8013E6C0:
 /* 8013E740  D0 1E 04 FC */	stfs f0, 0x4fc(r30)
 /* 8013E744  38 00 00 00 */	li r0, 0
 /* 8013E748  B0 1E 30 10 */	sth r0, 0x3010(r30)
-/* 8013E74C  3C 60 80 39 */	lis r3, m__21daAlinkHIO_wlChain_c0@ha
-/* 8013E750  38 63 F8 58 */	addi r3, r3, m__21daAlinkHIO_wlChain_c0@l
+/* 8013E74C  3C 60 80 39 */	lis r3, m__21daAlinkHIO_wlChain_c0@ha /* 0x8038F858@ha */
+/* 8013E750  38 63 F8 58 */	addi r3, r3, m__21daAlinkHIO_wlChain_c0@l /* 0x8038F858@l */
 /* 8013E754  A8 63 00 3C */	lha r3, 0x3c(r3)
 /* 8013E758  38 03 00 14 */	addi r0, r3, 0x14
 /* 8013E75C  B0 1E 30 08 */	sth r0, 0x3008(r30)
@@ -55,8 +55,8 @@ lbl_8013E78C:
 /* 8013E790  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8013E794  D0 1E 33 98 */	stfs f0, 0x3398(r30)
 lbl_8013E798:
-/* 8013E798  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8013E79C  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 8013E798  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8013E79C  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8013E7A0  A8 1E 04 E6 */	lha r0, 0x4e6(r30)
 /* 8013E7A4  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 8013E7A8  7C 64 02 14 */	add r3, r4, r0

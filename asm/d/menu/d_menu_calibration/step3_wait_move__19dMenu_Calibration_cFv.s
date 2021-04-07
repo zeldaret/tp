@@ -6,8 +6,8 @@ lbl_801AF4F8:
 /* 801AF508  F3 E1 00 28 */	psq_st f31, 40(r1), 0, 0 /* qr0 */
 /* 801AF50C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 801AF510  7C 7F 1B 78 */	mr r31, r3
-/* 801AF514  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 801AF518  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 801AF514  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 801AF518  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 801AF51C  A8 83 0A 2C */	lha r4, 0xa2c(r3)
 /* 801AF520  A8 7F 00 FA */	lha r3, 0xfa(r31)
 /* 801AF524  38 03 00 01 */	addi r0, r3, 1

@@ -20,8 +20,8 @@ lbl_8019EC08:
 /* 8019EC14  2C 03 00 00 */	cmpwi r3, 0
 /* 8019EC18  40 82 00 18 */	bne lbl_8019EC30
 /* 8019EC1C  88 1F 00 04 */	lbz r0, 4(r31)
-/* 8019EC20  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019EC24  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019EC20  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019EC24  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019EC28  98 03 13 09 */	stb r0, 0x1309(r3)
 /* 8019EC2C  48 00 00 54 */	b lbl_8019EC80
 lbl_8019EC30:
@@ -39,8 +39,8 @@ lbl_8019EC48:
 /* 8019EC54  2C 03 00 00 */	cmpwi r3, 0
 /* 8019EC58  40 82 00 18 */	bne lbl_8019EC70
 /* 8019EC5C  88 1E 00 04 */	lbz r0, 4(r30)
-/* 8019EC60  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019EC64  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019EC60  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019EC64  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019EC68  98 03 13 09 */	stb r0, 0x1309(r3)
 /* 8019EC6C  48 00 00 14 */	b lbl_8019EC80
 lbl_8019EC70:

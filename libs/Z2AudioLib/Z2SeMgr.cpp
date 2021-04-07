@@ -153,8 +153,6 @@ extern "C" void getDolbyPower__12Z2MultiSeMgrFv();
 // External References:
 //
 
-void operator delete(void*);
-
 extern "C" void __dt__14JAISoundHandleFv();
 extern "C" void __dt__12Z2MultiSeObjFv();
 extern "C" void stop__16JAISeCategoryMgrFUl();
@@ -232,7 +230,7 @@ extern "C" extern u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 802AB64C-802AB710 00C4+00 s=0 e=1 z=0  None .text      __ct__7Z2SeMgrFv */
+/* 802AB64C-802AB710 2A5F8C 00C4+00 0/0 1/1 0/0 .text            __ct__7Z2SeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -242,7 +240,7 @@ asm Z2SeMgr::Z2SeMgr() {
 }
 #pragma pop
 
-/* 802AB710-802AB750 0040+00 s=1 e=0 z=0  None .text      __ct__12Z2MultiSeObjFv */
+/* 802AB710-802AB750 2A6050 0040+00 1/1 0/0 0/0 .text            __ct__12Z2MultiSeObjFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -252,7 +250,7 @@ asm Z2MultiSeObj::Z2MultiSeObj() {
 }
 #pragma pop
 
-/* 802AB750-802AB80C 00BC+00 s=0 e=1 z=0  None .text      initSe__7Z2SeMgrFv */
+/* 802AB750-802AB80C 2A6090 00BC+00 0/0 1/1 0/0 .text            initSe__7Z2SeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -262,7 +260,7 @@ asm void Z2SeMgr::initSe() {
 }
 #pragma pop
 
-/* 802AB80C-802AB830 0024+00 s=1 e=1 z=0  None .text      resetModY__7Z2SeMgrFv */
+/* 802AB80C-802AB830 2A614C 0024+00 1/1 1/1 0/0 .text            resetModY__7Z2SeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -272,7 +270,8 @@ asm void Z2SeMgr::resetModY() {
 }
 #pragma pop
 
-/* 802AB830-802AB93C 010C+00 s=1 e=0 z=0  None .text      modHeightAtCamera__7Z2SeMgrFPPC3Vec */
+/* 802AB830-802AB93C 2A6170 010C+00 1/1 0/0 0/0 .text            modHeightAtCamera__7Z2SeMgrFPPC3Vec
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -282,7 +281,7 @@ asm void Z2SeMgr::modHeightAtCamera(Vec const** param_0) {
 }
 #pragma pop
 
-/* 802AB93C-802AB960 0024+00 s=0 e=1 z=0  None .text      incrCrowdSize__7Z2SeMgrFv */
+/* 802AB93C-802AB960 2A627C 0024+00 0/0 1/1 0/0 .text            incrCrowdSize__7Z2SeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -292,7 +291,7 @@ asm void Z2SeMgr::incrCrowdSize() {
 }
 #pragma pop
 
-/* 802AB960-802AB984 0024+00 s=0 e=3 z=0  None .text      decrCrowdSize__7Z2SeMgrFv */
+/* 802AB960-802AB984 2A62A0 0024+00 0/0 3/3 0/0 .text            decrCrowdSize__7Z2SeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -303,13 +302,13 @@ asm void Z2SeMgr::decrCrowdSize() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455870-80455874 0004+00 s=1 e=0 z=0  None .sdata2    @4038 */
+/* 80455870-80455874 003E70 0004+00 1/1 0/0 0/0 .sdata2          @4038 */
 SECTION_SDATA2 static f32 lit_4038 = 10000.0f;
 
-/* 80455874-80455878 0004+00 s=2 e=0 z=0  None .sdata2    @4039 */
+/* 80455874-80455878 003E74 0004+00 2/2 0/0 0/0 .sdata2          @4039 */
 SECTION_SDATA2 static f32 lit_4039 = 100.0f;
 
-/* 80455878-8045587C 0004+00 s=11 e=0 z=0  None .sdata2    @4040 */
+/* 80455878-8045587C 003E78 0004+00 11/11 0/0 0/0 .sdata2          @4040 */
 SECTION_SDATA2 static u8 lit_4040[4] = {
     0x00,
     0x00,
@@ -317,82 +316,82 @@ SECTION_SDATA2 static u8 lit_4040[4] = {
     0x00,
 };
 
-/* 8045587C-80455880 0004+00 s=2 e=0 z=0  None .sdata2    @4041 */
+/* 8045587C-80455880 003E7C 0004+00 2/2 0/0 0/0 .sdata2          @4041 */
 SECTION_SDATA2 static f32 lit_4041 = 1.0f / 5.0f;
 
-/* 80455880-80455884 0004+00 s=8 e=0 z=0  None .sdata2    @4042 */
+/* 80455880-80455884 003E80 0004+00 8/8 0/0 0/0 .sdata2          @4042 */
 SECTION_SDATA2 static f32 lit_4042 = 1.0f;
 
-/* 80455884-80455888 0004+00 s=3 e=0 z=0  None .sdata2    @4043 */
+/* 80455884-80455888 003E84 0004+00 3/3 0/0 0/0 .sdata2          @4043 */
 SECTION_SDATA2 static f32 lit_4043 = 7.0f / 10.0f;
 
-/* 80455888-8045588C 0004+00 s=1 e=0 z=0  None .sdata2    @4044 */
+/* 80455888-8045588C 003E88 0004+00 1/1 0/0 0/0 .sdata2          @4044 */
 SECTION_SDATA2 static f32 lit_4044 = 1.25f;
 
-/* 8045588C-80455890 0004+00 s=2 e=0 z=0  None .sdata2    @4045 */
+/* 8045588C-80455890 003E8C 0004+00 2/2 0/0 0/0 .sdata2          @4045 */
 SECTION_SDATA2 static f32 lit_4045 = 2.0f / 5.0f;
 
-/* 80455890-80455894 0004+00 s=1 e=0 z=0  None .sdata2    @4046 */
+/* 80455890-80455894 003E90 0004+00 1/1 0/0 0/0 .sdata2          @4046 */
 SECTION_SDATA2 static f32 lit_4046 = 1.5f;
 
-/* 80455894-80455898 0004+00 s=1 e=0 z=0  None .sdata2    @4047 */
+/* 80455894-80455898 003E94 0004+00 1/1 0/0 0/0 .sdata2          @4047 */
 SECTION_SDATA2 static f32 lit_4047 = 35.0f;
 
-/* 80455898-8045589C 0004+00 s=1 e=0 z=0  None .sdata2    @4048 */
+/* 80455898-8045589C 003E98 0004+00 1/1 0/0 0/0 .sdata2          @4048 */
 SECTION_SDATA2 static f32 lit_4048 = 261.0f;
 
-/* 8045589C-804558A0 0004+00 s=1 e=0 z=0  None .sdata2    @4049 */
+/* 8045589C-804558A0 003E9C 0004+00 1/1 0/0 0/0 .sdata2          @4049 */
 SECTION_SDATA2 static f32 lit_4049 = 1.0f / 20.0f;
 
-/* 804558A0-804558A4 0004+00 s=1 e=0 z=0  None .sdata2    @4050 */
+/* 804558A0-804558A4 003EA0 0004+00 1/1 0/0 0/0 .sdata2          @4050 */
 SECTION_SDATA2 static f32 lit_4050 = 7.0f / 5.0f;
 
-/* 804558A4-804558A8 0004+00 s=1 e=0 z=0  None .sdata2    @4051 */
+/* 804558A4-804558A8 003EA4 0004+00 1/1 0/0 0/0 .sdata2          @4051 */
 SECTION_SDATA2 static f32 lit_4051 = 47.0f;
 
-/* 804558A8-804558AC 0004+00 s=5 e=0 z=0  None .sdata2    @4052 */
+/* 804558A8-804558AC 003EA8 0004+00 5/5 0/0 0/0 .sdata2          @4052 */
 SECTION_SDATA2 static f32 lit_4052 = 0.5f;
 
-/* 804558AC-804558B0 0004+00 s=2 e=0 z=0  None .sdata2    @4053 */
+/* 804558AC-804558B0 003EAC 0004+00 2/2 0/0 0/0 .sdata2          @4053 */
 SECTION_SDATA2 static f32 lit_4053 = 9.0f / 10.0f;
 
-/* 804558B0-804558B4 0004+00 s=1 e=0 z=0  None .sdata2    @4054 */
+/* 804558B0-804558B4 003EB0 0004+00 1/1 0/0 0/0 .sdata2          @4054 */
 SECTION_SDATA2 static f32 lit_4054 = 41.0f;
 
-/* 804558B4-804558B8 0004+00 s=2 e=0 z=0  None .sdata2    @4055 */
+/* 804558B4-804558B8 003EB4 0004+00 2/2 0/0 0/0 .sdata2          @4055 */
 SECTION_SDATA2 static f32 lit_4055 = 3.0f / 10.0f;
 
-/* 804558B8-804558BC 0004+00 s=3 e=0 z=0  None .sdata2    @4056 */
+/* 804558B8-804558BC 003EB8 0004+00 3/3 0/0 0/0 .sdata2          @4056 */
 SECTION_SDATA2 static f32 lit_4056 = -1.0f;
 
-/* 804558BC-804558C0 0004+00 s=2 e=0 z=0  None .sdata2    @4057 */
+/* 804558BC-804558C0 003EBC 0004+00 2/2 0/0 0/0 .sdata2          @4057 */
 SECTION_SDATA2 static f32 lit_4057 = 400.0f;
 
-/* 804558C0-804558C4 0004+00 s=2 e=0 z=0  None .sdata2    @4058 */
+/* 804558C0-804558C4 003EC0 0004+00 2/2 0/0 0/0 .sdata2          @4058 */
 SECTION_SDATA2 static f32 lit_4058 = 4.0f / 5.0f;
 
-/* 804558C4-804558C8 0004+00 s=2 e=0 z=0  None .sdata2    @4059 */
+/* 804558C4-804558C8 003EC4 0004+00 2/2 0/0 0/0 .sdata2          @4059 */
 SECTION_SDATA2 static f32 lit_4059 = 11.0f / 10.0f;
 
-/* 804558C8-804558CC 0004+00 s=1 e=0 z=0  None .sdata2    @4060 */
+/* 804558C8-804558CC 003EC8 0004+00 1/1 0/0 0/0 .sdata2          @4060 */
 SECTION_SDATA2 static f32 lit_4060 = 15.0f;
 
-/* 804558CC-804558D0 0004+00 s=1 e=0 z=0  None .sdata2    @4061 */
+/* 804558CC-804558D0 003ECC 0004+00 1/1 0/0 0/0 .sdata2          @4061 */
 SECTION_SDATA2 static f32 lit_4061 = 60.0f;
 
-/* 804558D0-804558D4 0004+00 s=2 e=0 z=0  None .sdata2    @4062 */
+/* 804558D0-804558D4 003ED0 0004+00 2/2 0/0 0/0 .sdata2          @4062 */
 SECTION_SDATA2 static f32 lit_4062 = 127.0f;
 
-/* 804558D4-804558D8 0004+00 s=2 e=0 z=0  None .sdata2    @4063 */
+/* 804558D4-804558D8 003ED4 0004+00 2/2 0/0 0/0 .sdata2          @4063 */
 SECTION_SDATA2 static f32 lit_4063 = 6.0f / 5.0f;
 
-/* 804558D8-804558E0 0008+00 s=2 e=0 z=0  None .sdata2    @4067 */
+/* 804558D8-804558E0 003ED8 0008+00 2/2 0/0 0/0 .sdata2          @4067 */
 SECTION_SDATA2 static f64 lit_4067 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 804558E0-804558E8 0008+00 s=2 e=0 z=0  None .sdata2    @4070 */
+/* 804558E0-804558E8 003EE0 0008+00 2/2 0/0 0/0 .sdata2          @4070 */
 SECTION_SDATA2 static f64 lit_4070 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 802AB984-802AC50C 0B88+00 s=1 e=196 z=549  None .text
+/* 802AB984-802AC50C 2A62C4 0B88+00 1/1 196/196 549/549 .text
  * seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc               */
 #pragma push
 #pragma optimization_level 0
@@ -405,7 +404,7 @@ asm void Z2SeMgr::seStart(JAISoundID param_0, Vec const* param_1, u32 param_2, s
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C9D98-803C9DF8 0060+00 s=1 e=0 z=0  None .data      @4619 */
+/* 803C9D98-803C9DF8 -00001 0060+00 1/1 0/0 0/0 .data            @4619 */
 SECTION_DATA static void* lit_4619[24] = {
     (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0xF78),
     (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0xF78),
@@ -433,107 +432,107 @@ SECTION_DATA static void* lit_4619[24] = {
     (void*)(((char*)seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc) + 0x1020),
 };
 
-/* 804558E8-804558EC 0004+00 s=1 e=0 z=0  None .sdata2    @4586 */
+/* 804558E8-804558EC 003EE8 0004+00 1/1 0/0 0/0 .sdata2          @4586 */
 SECTION_SDATA2 static f32 lit_4586 = 25.0f;
 
-/* 804558EC-804558F0 0004+00 s=1 e=0 z=0  None .sdata2    @4587 */
+/* 804558EC-804558F0 003EEC 0004+00 1/1 0/0 0/0 .sdata2          @4587 */
 SECTION_SDATA2 static f32 lit_4587 = 1.0f / 10.0f;
 
-/* 804558F0-804558F4 0004+00 s=1 e=0 z=0  None .sdata2    @4588 */
+/* 804558F0-804558F4 003EF0 0004+00 1/1 0/0 0/0 .sdata2          @4588 */
 SECTION_SDATA2 static f32 lit_4588 = 10.0f;
 
-/* 804558F4-804558F8 0004+00 s=1 e=0 z=0  None .sdata2    @4589 */
+/* 804558F4-804558F8 003EF4 0004+00 1/1 0/0 0/0 .sdata2          @4589 */
 SECTION_SDATA2 static f32 lit_4589 = 2.0f;
 
-/* 804558F8-80455900 0004+04 s=2 e=0 z=0  None .sdata2    @4590 */
+/* 804558F8-80455900 003EF8 0004+04 2/2 0/0 0/0 .sdata2          @4590 */
 SECTION_SDATA2 static f32 lit_4590[1 + 1 /* padding */] = {
     13.0f / 10.0f,
     /* padding */
     0.0f,
 };
 
-/* 80455900-80455908 0008+00 s=1 e=0 z=0  None .sdata2    @4591 */
+/* 80455900-80455908 003F00 0008+00 1/1 0/0 0/0 .sdata2          @4591 */
 SECTION_SDATA2 static f64 lit_4591 = 0.7;
 
-/* 80455908-80455910 0008+00 s=1 e=0 z=0  None .sdata2    @4592 */
+/* 80455908-80455910 003F08 0008+00 1/1 0/0 0/0 .sdata2          @4592 */
 SECTION_SDATA2 static f64 lit_4592 = 0.0006;
 
-/* 80455910-80455918 0008+00 s=1 e=0 z=0  None .sdata2    @4593 */
+/* 80455910-80455918 003F10 0008+00 1/1 0/0 0/0 .sdata2          @4593 */
 SECTION_SDATA2 static f64 lit_4593 = 1.0;
 
-/* 80455918-80455920 0008+00 s=1 e=0 z=0  None .sdata2    @4594 */
+/* 80455918-80455920 003F18 0008+00 1/1 0/0 0/0 .sdata2          @4594 */
 SECTION_SDATA2 static f64 lit_4594 = 0.0015;
 
-/* 80455920-80455928 0008+00 s=1 e=0 z=0  None .sdata2    @4595 */
+/* 80455920-80455928 003F20 0008+00 1/1 0/0 0/0 .sdata2          @4595 */
 SECTION_SDATA2 static f64 lit_4595 = 0.005;
 
-/* 80455928-80455930 0008+00 s=1 e=0 z=0  None .sdata2    @4596 */
+/* 80455928-80455930 003F28 0008+00 1/1 0/0 0/0 .sdata2          @4596 */
 SECTION_SDATA2 static f64 lit_4596 = 0.3;
 
-/* 80455930-80455938 0008+00 s=1 e=0 z=0  None .sdata2    @4597 */
+/* 80455930-80455938 003F30 0008+00 1/1 0/0 0/0 .sdata2          @4597 */
 SECTION_SDATA2 static f64 lit_4597 = 0.001;
 
-/* 80455938-8045593C 0004+00 s=1 e=0 z=0  None .sdata2    @4598 */
+/* 80455938-8045593C 003F38 0004+00 1/1 0/0 0/0 .sdata2          @4598 */
 SECTION_SDATA2 static f32 lit_4598 = 4000.0f;
 
-/* 8045593C-80455940 0004+00 s=1 e=0 z=0  None .sdata2    @4599 */
+/* 8045593C-80455940 003F3C 0004+00 1/1 0/0 0/0 .sdata2          @4599 */
 SECTION_SDATA2 static f32 lit_4599 = 3500.0f;
 
-/* 80455940-80455944 0004+00 s=1 e=0 z=0  None .sdata2    @4600 */
+/* 80455940-80455944 003F40 0004+00 1/1 0/0 0/0 .sdata2          @4600 */
 SECTION_SDATA2 static f32 lit_4600 = 26.0f;
 
-/* 80455944-80455948 0004+00 s=1 e=0 z=0  None .sdata2    @4601 */
+/* 80455944-80455948 003F44 0004+00 1/1 0/0 0/0 .sdata2          @4601 */
 SECTION_SDATA2 static f32 lit_4601 = 3.0f / 5.0f;
 
-/* 80455948-8045594C 0004+00 s=1 e=0 z=0  None .sdata2    @4602 */
+/* 80455948-8045594C 003F48 0004+00 1/1 0/0 0/0 .sdata2          @4602 */
 SECTION_SDATA2 static f32 lit_4602 = 64.0f;
 
-/* 8045594C-80455950 0004+00 s=1 e=0 z=0  None .sdata2    @4603 */
+/* 8045594C-80455950 003F4C 0004+00 1/1 0/0 0/0 .sdata2          @4603 */
 SECTION_SDATA2 static f32 lit_4603 = 4500.0f;
 
-/* 80455950-80455954 0004+00 s=1 e=0 z=0  None .sdata2    @4604 */
+/* 80455950-80455954 003F50 0004+00 1/1 0/0 0/0 .sdata2          @4604 */
 SECTION_SDATA2 static f32 lit_4604 = 40.0f;
 
-/* 80455954-80455958 0004+00 s=1 e=0 z=0  None .sdata2    @4605 */
+/* 80455954-80455958 003F54 0004+00 1/1 0/0 0/0 .sdata2          @4605 */
 SECTION_SDATA2 static f32 lit_4605 = 120.0f;
 
-/* 80455958-80455960 0004+04 s=1 e=0 z=0  None .sdata2    @4606 */
+/* 80455958-80455960 003F58 0004+04 1/1 0/0 0/0 .sdata2          @4606 */
 SECTION_SDATA2 static f32 lit_4606[1 + 1 /* padding */] = {
     5.0f,
     /* padding */
     0.0f,
 };
 
-/* 80455960-80455968 0008+00 s=1 e=0 z=0  None .sdata2    @4607 */
+/* 80455960-80455968 003F60 0008+00 1/1 0/0 0/0 .sdata2          @4607 */
 SECTION_SDATA2 static f64 lit_4607 = 0.5;
 
-/* 80455968-80455970 0008+00 s=1 e=0 z=0  None .sdata2    @4608 */
+/* 80455968-80455970 003F68 0008+00 1/1 0/0 0/0 .sdata2          @4608 */
 SECTION_SDATA2 static f64 lit_4608 = 3.0;
 
-/* 80455970-80455978 0008+00 s=1 e=0 z=0  None .sdata2    @4609 */
+/* 80455970-80455978 003F70 0008+00 1/1 0/0 0/0 .sdata2          @4609 */
 SECTION_SDATA2 static u8 lit_4609[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80455978-8045597C 0004+00 s=1 e=0 z=0  None .sdata2    @4610 */
+/* 80455978-8045597C 003F78 0004+00 1/1 0/0 0/0 .sdata2          @4610 */
 SECTION_SDATA2 static f32 lit_4610 = 2000.0f;
 
-/* 8045597C-80455980 0004+00 s=1 e=0 z=0  None .sdata2    @4611 */
+/* 8045597C-80455980 003F7C 0004+00 1/1 0/0 0/0 .sdata2          @4611 */
 SECTION_SDATA2 static f32 lit_4611 = 5000.0f;
 
-/* 80455980-80455984 0004+00 s=1 e=0 z=0  None .sdata2    @4612 */
+/* 80455980-80455984 003F80 0004+00 1/1 0/0 0/0 .sdata2          @4612 */
 SECTION_SDATA2 static f32 lit_4612 = 9.0f / 20.0f;
 
-/* 80455984-80455988 0004+00 s=1 e=0 z=0  None .sdata2    @4613 */
+/* 80455984-80455988 003F84 0004+00 1/1 0/0 0/0 .sdata2          @4613 */
 SECTION_SDATA2 static f32 lit_4613 = 50.0f;
 
-/* 80455988-8045598C 0004+00 s=1 e=0 z=0  None .sdata2    @4614 */
+/* 80455988-8045598C 003F88 0004+00 1/1 0/0 0/0 .sdata2          @4614 */
 SECTION_SDATA2 static f32 lit_4614 = 600.0f;
 
-/* 8045598C-80455990 0004+00 s=1 e=0 z=0  None .sdata2    @4615 */
+/* 8045598C-80455990 003F8C 0004+00 1/1 0/0 0/0 .sdata2          @4615 */
 SECTION_SDATA2 static f32 lit_4615 = 90.0f;
 
-/* 802AC50C-802AD8B0 13A4+00 s=3 e=19 z=199  None .text
+/* 802AC50C-802AD8B0 2A6E4C 13A4+00 3/2 19/19 199/199 .text
  * seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc          */
 #pragma push
 #pragma optimization_level 0
@@ -545,7 +544,7 @@ asm void Z2SeMgr::seStartLevel(JAISoundID param_0, Vec const* param_1, u32 param
 }
 #pragma pop
 
-/* 802AD8B0-802AD94C 009C+00 s=1 e=0 z=4  None .text      seStop__7Z2SeMgrF10JAISoundIDUl */
+/* 802AD8B0-802AD94C 2A81F0 009C+00 1/1 0/0 4/4 .text            seStop__7Z2SeMgrF10JAISoundIDUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -555,7 +554,7 @@ asm void Z2SeMgr::seStop(JAISoundID param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802AD94C-802AD9F4 00A8+00 s=0 e=1 z=0  None .text      seStopAll__7Z2SeMgrFUl */
+/* 802AD94C-802AD9F4 2A828C 00A8+00 0/0 1/1 0/0 .text            seStopAll__7Z2SeMgrFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -565,7 +564,7 @@ asm void Z2SeMgr::seStopAll(u32 param_0) {
 }
 #pragma pop
 
-/* 802AD9F4-802ADB14 0120+00 s=3 e=5 z=1  None .text      seMoveVolumeAll__7Z2SeMgrFfUl */
+/* 802AD9F4-802ADB14 2A8334 0120+00 3/3 5/5 1/1 .text            seMoveVolumeAll__7Z2SeMgrFfUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -575,7 +574,8 @@ asm void Z2SeMgr::seMoveVolumeAll(f32 param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802ADB14-802ADB50 003C+00 s=0 e=1 z=0  None .text      messageSePlay__7Z2SeMgrFUsP3VecSc */
+/* 802ADB14-802ADB50 2A8454 003C+00 0/0 1/1 0/0 .text            messageSePlay__7Z2SeMgrFUsP3VecSc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -585,7 +585,7 @@ asm void Z2SeMgr::messageSePlay(u16 param_0, Vec* param_1, s8 param_2) {
 }
 #pragma pop
 
-/* 802ADB50-802ADC54 0104+00 s=0 e=1 z=0  None .text      talkInSe__7Z2SeMgrFv */
+/* 802ADB50-802ADC54 2A8490 0104+00 0/0 1/1 0/0 .text            talkInSe__7Z2SeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -595,7 +595,7 @@ asm void Z2SeMgr::talkInSe() {
 }
 #pragma pop
 
-/* 802ADC54-802ADD58 0104+00 s=0 e=2 z=0  None .text      talkOutSe__7Z2SeMgrFv */
+/* 802ADC54-802ADD58 2A8594 0104+00 0/0 2/2 0/0 .text            talkOutSe__7Z2SeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -605,7 +605,7 @@ asm void Z2SeMgr::talkOutSe() {
 }
 #pragma pop
 
-/* 802ADD58-802ADE5C 0104+00 s=0 e=1 z=0  None .text      menuInSe__7Z2SeMgrFv */
+/* 802ADD58-802ADE5C 2A8698 0104+00 0/0 1/1 0/0 .text            menuInSe__7Z2SeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -616,15 +616,16 @@ asm void Z2SeMgr::menuInSe() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 8039B9F0-8039B9FC 000C+00 s=1 e=0 z=0  None .rodata    @5054 */
+/* 8039B9F0-8039B9FC 028050 000C+00 1/1 0/0 0/0 .rodata          @5054 */
 SECTION_RODATA static u8 const lit_5054[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(8039B9F0, &lit_5054);
 
-/* 80455990-80455994 0004+00 s=1 e=0 z=0  None .sdata2    @5085 */
+/* 80455990-80455994 003F90 0004+00 1/1 0/0 0/0 .sdata2          @5085 */
 SECTION_SDATA2 static f32 lit_5085 = 4.0f;
 
-/* 802ADE5C-802ADFF4 0198+00 s=1 e=0 z=0  None .text      setLevObjSE__7Z2SeMgrFUlP3VecSc */
+/* 802ADE5C-802ADFF4 2A879C 0198+00 1/1 0/0 0/0 .text            setLevObjSE__7Z2SeMgrFUlP3VecSc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -635,15 +636,16 @@ asm void Z2SeMgr::setLevObjSE(u32 param_0, Vec* param_1, s8 param_2) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 8039B9FC-8039BA08 000C+00 s=1 e=0 z=0  None .rodata    @5100 */
+/* 8039B9FC-8039BA08 02805C 000C+00 1/1 0/0 0/0 .rodata          @5100 */
 SECTION_RODATA static u8 const lit_5100[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(8039B9FC, &lit_5100);
 
-/* 80455994-80455998 0004+00 s=1 e=0 z=0  None .sdata2    @5134 */
+/* 80455994-80455998 003F94 0004+00 1/1 0/0 0/0 .sdata2          @5134 */
 SECTION_SDATA2 static f32 lit_5134 = 3.0f;
 
-/* 802ADFF4-802AE184 0190+00 s=1 e=0 z=0  None .text      setMultiTriggerSE__7Z2SeMgrFUlP3VecSc */
+/* 802ADFF4-802AE184 2A8934 0190+00 1/1 0/0 0/0 .text setMultiTriggerSE__7Z2SeMgrFUlP3VecSc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -653,7 +655,7 @@ asm void Z2SeMgr::setMultiTriggerSE(u32 param_0, Vec* param_1, s8 param_2) {
 }
 #pragma pop
 
-/* 802AE184-802AE524 03A0+00 s=0 e=1 z=0  None .text      processSeFramework__7Z2SeMgrFv */
+/* 802AE184-802AE524 2A8AC4 03A0+00 0/0 1/1 0/0 .text            processSeFramework__7Z2SeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -663,7 +665,7 @@ asm void Z2SeMgr::processSeFramework() {
 }
 #pragma pop
 
-/* 802AE524-802AE5B0 008C+00 s=1 e=0 z=0  None .text      isLevelSe__7Z2SeMgrF10JAISoundID */
+/* 802AE524-802AE5B0 2A8E64 008C+00 1/1 0/0 0/0 .text            isLevelSe__7Z2SeMgrF10JAISoundID */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -673,7 +675,7 @@ asm void Z2SeMgr::isLevelSe(JAISoundID param_0) {
 }
 #pragma pop
 
-/* 802AE5B0-802AEB04 0554+00 s=2 e=3 z=0  None .text      isSoundCulling__7Z2SeMgrF10JAISoundID */
+/* 802AE5B0-802AEB04 2A8EF0 0554+00 2/2 3/3 0/0 .text isSoundCulling__7Z2SeMgrF10JAISoundID */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -683,7 +685,7 @@ asm void Z2SeMgr::isSoundCulling(JAISoundID param_0) {
 }
 #pragma pop
 
-/* 802AEB04-802AEB34 0030+00 s=1 e=1 z=0  None .text      __ct__12Z2MultiSeMgrFv */
+/* 802AEB04-802AEB34 2A9444 0030+00 1/1 1/1 0/0 .text            __ct__12Z2MultiSeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -693,7 +695,7 @@ asm Z2MultiSeMgr::Z2MultiSeMgr() {
 }
 #pragma pop
 
-/* 802AEB34-802AEB70 003C+00 s=0 e=2 z=0  None .text      __dt__12Z2MultiSeMgrFv */
+/* 802AEB34-802AEB70 2A9474 003C+00 0/0 2/2 0/0 .text            __dt__12Z2MultiSeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -703,7 +705,7 @@ asm Z2MultiSeMgr::~Z2MultiSeMgr() {
 }
 #pragma pop
 
-/* 802AEB70-802AECBC 014C+00 s=2 e=6 z=0  None .text      registMultiSePos__12Z2MultiSeMgrFP3Vec */
+/* 802AEB70-802AECBC 2A94B0 014C+00 2/2 6/6 0/0 .text registMultiSePos__12Z2MultiSeMgrFP3Vec */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -713,7 +715,8 @@ asm void Z2MultiSeMgr::registMultiSePos(Vec* param_0) {
 }
 #pragma pop
 
-/* 802AECBC-802AECE0 0024+00 s=3 e=6 z=0  None .text      resetMultiSePos__12Z2MultiSeMgrFv */
+/* 802AECBC-802AECE0 2A95FC 0024+00 3/3 6/6 0/0 .text            resetMultiSePos__12Z2MultiSeMgrFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -723,7 +726,7 @@ asm void Z2MultiSeMgr::resetMultiSePos() {
 }
 #pragma pop
 
-/* 802AECE0-802AEDC0 00E0+00 s=1 e=8 z=0  None .text      getPanPower__12Z2MultiSeMgrFv */
+/* 802AECE0-802AEDC0 2A9620 00E0+00 1/1 8/8 0/0 .text            getPanPower__12Z2MultiSeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -733,7 +736,7 @@ asm void Z2MultiSeMgr::getPanPower() {
 }
 #pragma pop
 
-/* 802AEDC0-802AEEA0 00E0+00 s=1 e=8 z=0  None .text      getDolbyPower__12Z2MultiSeMgrFv */
+/* 802AEDC0-802AEEA0 2A9700 00E0+00 1/1 8/8 0/0 .text            getDolbyPower__12Z2MultiSeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

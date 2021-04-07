@@ -8,21 +8,21 @@ lbl_807803F4:
 /* 8078040C  7C 9F 23 78 */	mr r31, r4
 /* 80780410  41 82 00 44 */	beq lbl_80780454
 /* 80780414  38 7E 00 C0 */	addi r3, r30, 0xc0
-/* 80780418  3C 80 80 78 */	lis r4, __dt__4cXyzFv@ha
-/* 8078041C  38 84 0D 74 */	addi r4, r4, __dt__4cXyzFv@l
+/* 80780418  3C 80 80 78 */	lis r4, __dt__4cXyzFv@ha /* 0x80780D74@ha */
+/* 8078041C  38 84 0D 74 */	addi r4, r4, __dt__4cXyzFv@l /* 0x80780D74@l */
 /* 80780420  38 A0 00 0C */	li r5, 0xc
 /* 80780424  38 C0 00 10 */	li r6, 0x10
-/* 80780428  4B BE 18 C0 */	b __destroy_arr
+/* 80780428  4B BE 18 C1 */	bl __destroy_arr
 /* 8078042C  7F C3 F3 78 */	mr r3, r30
-/* 80780430  3C 80 80 78 */	lis r4, __dt__4cXyzFv@ha
-/* 80780434  38 84 0D 74 */	addi r4, r4, __dt__4cXyzFv@l
+/* 80780430  3C 80 80 78 */	lis r4, __dt__4cXyzFv@ha /* 0x80780D74@ha */
+/* 80780434  38 84 0D 74 */	addi r4, r4, __dt__4cXyzFv@l /* 0x80780D74@l */
 /* 80780438  38 A0 00 0C */	li r5, 0xc
 /* 8078043C  38 C0 00 10 */	li r6, 0x10
-/* 80780440  4B BE 18 A8 */	b __destroy_arr
+/* 80780440  4B BE 18 A9 */	bl __destroy_arr
 /* 80780444  7F E0 07 35 */	extsh. r0, r31
 /* 80780448  40 81 00 0C */	ble lbl_80780454
 /* 8078044C  7F C3 F3 78 */	mr r3, r30
-/* 80780450  4B B4 E8 EC */	b __dl__FPv
+/* 80780450  4B B4 E8 ED */	bl __dl__FPv
 lbl_80780454:
 /* 80780454  7F C3 F3 78 */	mr r3, r30
 /* 80780458  83 E1 00 0C */	lwz r31, 0xc(r1)

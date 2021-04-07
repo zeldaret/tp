@@ -10,21 +10,21 @@ lbl_80CF629C:
 /* 80CF62BC  38 00 00 02 */	li r0, 2
 /* 80CF62C0  98 1F 05 7F */	stb r0, 0x57f(r31)
 /* 80CF62C4  48 00 01 31 */	bl demoProc__14daObjSwBallC_cFv
-/* 80CF62C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CF62CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80CF62C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CF62CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CF62D0  38 80 00 3F */	li r4, 0x3f
 /* 80CF62D4  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 80CF62D8  7C 05 07 74 */	extsb r5, r0
-/* 80CF62DC  4B 33 EF 24 */	b onSwitch__10dSv_info_cFii
-/* 80CF62E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CF62E4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80CF62DC  4B 33 EF 25 */	bl onSwitch__10dSv_info_cFii
+/* 80CF62E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CF62E4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CF62E8  3B E3 09 58 */	addi r31, r3, 0x958
 /* 80CF62EC  7F E3 FB 78 */	mr r3, r31
 /* 80CF62F0  38 80 00 0A */	li r4, 0xa
-/* 80CF62F4  4B 33 E4 AC */	b onTbox__12dSv_memBit_cFi
+/* 80CF62F4  4B 33 E4 AD */	bl onTbox__12dSv_memBit_cFi
 /* 80CF62F8  7F E3 FB 78 */	mr r3, r31
 /* 80CF62FC  38 80 00 0B */	li r4, 0xb
-/* 80CF6300  4B 33 E4 A0 */	b onTbox__12dSv_memBit_cFi
+/* 80CF6300  4B 33 E4 A1 */	bl onTbox__12dSv_memBit_cFi
 /* 80CF6304  48 00 00 2C */	b lbl_80CF6330
 lbl_80CF6308:
 /* 80CF6308  A8 9F 05 7C */	lha r4, 0x57c(r31)
@@ -33,7 +33,7 @@ lbl_80CF6308:
 /* 80CF6314  38 C6 FF FF */	addi r6, r6, 0xFFFF /* 0x0000FFFF@l */
 /* 80CF6318  38 E0 00 00 */	li r7, 0
 /* 80CF631C  39 00 00 01 */	li r8, 1
-/* 80CF6320  4B 32 53 5C */	b fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
+/* 80CF6320  4B 32 53 5D */	bl fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
 /* 80CF6324  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 80CF6328  60 00 00 02 */	ori r0, r0, 2
 /* 80CF632C  B0 1F 00 FA */	sth r0, 0xfa(r31)

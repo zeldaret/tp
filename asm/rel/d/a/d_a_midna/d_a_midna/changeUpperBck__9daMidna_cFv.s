@@ -9,7 +9,7 @@ lbl_804BC5C4:
 /* 804BC5E0  80 63 05 78 */	lwz r3, 0x578(r3)
 /* 804BC5E4  80 83 00 08 */	lwz r4, 8(r3)
 /* 804BC5E8  38 7E 05 84 */	addi r3, r30, 0x584
-/* 804BC5EC  4B B5 13 A4 */	b changeBckOnly__13mDoExt_bckAnmFP15J3DAnmTransform
+/* 804BC5EC  4B B5 13 A5 */	bl changeBckOnly__13mDoExt_bckAnmFP15J3DAnmTransform
 /* 804BC5F0  80 7E 05 78 */	lwz r3, 0x578(r30)
 /* 804BC5F4  93 E3 00 08 */	stw r31, 8(r3)
 /* 804BC5F8  38 60 00 01 */	li r3, 1

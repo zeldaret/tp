@@ -124,8 +124,8 @@ lbl_8026C064:
 /* 8026C0CC  7F E5 FB 78 */	mr r5, r31
 /* 8026C0D0  4B FF FD 8D */	bl cM3d_CalcSphVsTriCrossPoint__FPC8cM3dGSphPC8cM3dGTriP3Vec
 lbl_8026C0D4:
-/* 8026C0D4  3C 60 80 3A */	lis r3, __vt__8cM3dGLin@ha
-/* 8026C0D8  38 03 78 F8 */	addi r0, r3, __vt__8cM3dGLin@l
+/* 8026C0D4  3C 60 80 3A */	lis r3, __vt__8cM3dGLin@ha /* 0x803A78F8@ha */
+/* 8026C0D8  38 03 78 F8 */	addi r0, r3, __vt__8cM3dGLin@l /* 0x803A78F8@l */
 /* 8026C0DC  90 01 00 DC */	stw r0, 0xdc(r1)
 /* 8026C0E0  38 60 00 01 */	li r3, 1
 /* 8026C0E4  48 00 01 30 */	b lbl_8026C214
@@ -159,8 +159,8 @@ lbl_8026C0E8:
 /* 8026C150  7F E5 FB 78 */	mr r5, r31
 /* 8026C154  4B FF FD 09 */	bl cM3d_CalcSphVsTriCrossPoint__FPC8cM3dGSphPC8cM3dGTriP3Vec
 lbl_8026C158:
-/* 8026C158  3C 60 80 3A */	lis r3, __vt__8cM3dGLin@ha
-/* 8026C15C  38 03 78 F8 */	addi r0, r3, __vt__8cM3dGLin@l
+/* 8026C158  3C 60 80 3A */	lis r3, __vt__8cM3dGLin@ha /* 0x803A78F8@ha */
+/* 8026C15C  38 03 78 F8 */	addi r0, r3, __vt__8cM3dGLin@l /* 0x803A78F8@l */
 /* 8026C160  90 01 00 C0 */	stw r0, 0xc0(r1)
 /* 8026C164  90 01 00 DC */	stw r0, 0xdc(r1)
 /* 8026C168  38 60 00 01 */	li r3, 1
@@ -195,16 +195,16 @@ lbl_8026C170:
 /* 8026C1D8  7F E5 FB 78 */	mr r5, r31
 /* 8026C1DC  4B FF FC 81 */	bl cM3d_CalcSphVsTriCrossPoint__FPC8cM3dGSphPC8cM3dGTriP3Vec
 lbl_8026C1E0:
-/* 8026C1E0  3C 60 80 3A */	lis r3, __vt__8cM3dGLin@ha
-/* 8026C1E4  38 03 78 F8 */	addi r0, r3, __vt__8cM3dGLin@l
+/* 8026C1E0  3C 60 80 3A */	lis r3, __vt__8cM3dGLin@ha /* 0x803A78F8@ha */
+/* 8026C1E4  38 03 78 F8 */	addi r0, r3, __vt__8cM3dGLin@l /* 0x803A78F8@l */
 /* 8026C1E8  90 01 00 A4 */	stw r0, 0xa4(r1)
 /* 8026C1EC  90 01 00 C0 */	stw r0, 0xc0(r1)
 /* 8026C1F0  90 01 00 DC */	stw r0, 0xdc(r1)
 /* 8026C1F4  38 60 00 01 */	li r3, 1
 /* 8026C1F8  48 00 00 1C */	b lbl_8026C214
 lbl_8026C1FC:
-/* 8026C1FC  3C 60 80 3A */	lis r3, __vt__8cM3dGLin@ha
-/* 8026C200  38 03 78 F8 */	addi r0, r3, __vt__8cM3dGLin@l
+/* 8026C1FC  3C 60 80 3A */	lis r3, __vt__8cM3dGLin@ha /* 0x803A78F8@ha */
+/* 8026C200  38 03 78 F8 */	addi r0, r3, __vt__8cM3dGLin@l /* 0x803A78F8@l */
 /* 8026C204  90 01 00 A4 */	stw r0, 0xa4(r1)
 /* 8026C208  90 01 00 C0 */	stw r0, 0xc0(r1)
 /* 8026C20C  90 01 00 DC */	stw r0, 0xdc(r1)

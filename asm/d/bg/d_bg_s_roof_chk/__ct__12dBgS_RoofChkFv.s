@@ -9,8 +9,8 @@ lbl_80078FF4:
 /* 80079010  48 1E EB 3D */	bl __ct__8cBgS_ChkFv
 /* 80079014  38 7F 00 24 */	addi r3, r31, 0x24
 /* 80079018  4B FF E4 85 */	bl __ct__8dBgS_ChkFv
-/* 8007901C  3C 60 80 3B */	lis r3, __vt__12dBgS_RoofChk@ha
-/* 80079020  38 63 BA 50 */	addi r3, r3, __vt__12dBgS_RoofChk@l
+/* 8007901C  3C 60 80 3B */	lis r3, __vt__12dBgS_RoofChk@ha /* 0x803ABA50@ha */
+/* 80079020  38 63 BA 50 */	addi r3, r3, __vt__12dBgS_RoofChk@l /* 0x803ABA50@l */
 /* 80079024  90 7F 00 0C */	stw r3, 0xc(r31)
 /* 80079028  38 03 00 0C */	addi r0, r3, 0xc
 /* 8007902C  90 1F 00 20 */	stw r0, 0x20(r31)

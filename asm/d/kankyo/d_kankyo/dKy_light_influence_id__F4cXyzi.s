@@ -15,12 +15,12 @@ lbl_8019DD6C:
 /* 8019DDA0  3B 60 FF FF */	li r27, -1
 /* 8019DDA4  3B 20 FF FF */	li r25, -1
 /* 8019DDA8  C3 C2 A2 74 */	lfs f30, lit_4851(r2)
-/* 8019DDAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8019DDB0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8019DDAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8019DDB0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8019DDB4  3B C3 4E 00 */	addi r30, r3, 0x4e00
 /* 8019DDB8  7F C3 F3 78 */	mr r3, r30
-/* 8019DDBC  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha
-/* 8019DDC0  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l
+/* 8019DDBC  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha /* 0x80394C6C@ha */
+/* 8019DDC0  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l /* 0x80394C6C@l */
 /* 8019DDC4  38 84 01 6C */	addi r4, r4, 0x16c
 /* 8019DDC8  48 1C AB CD */	bl strcmp
 /* 8019DDCC  2C 03 00 00 */	cmpwi r3, 0
@@ -28,8 +28,8 @@ lbl_8019DD6C:
 /* 8019DDD4  C3 C2 A2 78 */	lfs f30, lit_4852(r2)
 lbl_8019DDD8:
 /* 8019DDD8  3B 00 00 00 */	li r24, 0
-/* 8019DDDC  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019DDE0  3B E3 CA 54 */	addi r31, r3, g_env_light@l
+/* 8019DDDC  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019DDE0  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019DDE4  48 00 03 18 */	b lbl_8019E0FC
 lbl_8019DDE8:
 /* 8019DDE8  3B 40 00 00 */	li r26, 0
@@ -79,8 +79,8 @@ lbl_8019DE8C:
 /* 8019DE8C  C8 02 A2 20 */	lfd f0, lit_4412(r2)
 /* 8019DE90  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8019DE94  40 80 00 10 */	bge lbl_8019DEA4
-/* 8019DE98  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8019DE9C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8019DE98  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8019DE9C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8019DEA0  48 00 00 70 */	b lbl_8019DF10
 lbl_8019DEA4:
 /* 8019DEA4  D0 21 00 0C */	stfs f1, 0xc(r1)
@@ -114,8 +114,8 @@ lbl_8019DEFC:
 lbl_8019DF00:
 /* 8019DF00  2C 00 00 01 */	cmpwi r0, 1
 /* 8019DF04  40 82 00 0C */	bne lbl_8019DF10
-/* 8019DF08  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8019DF0C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8019DF08  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8019DF0C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_8019DF10:
 /* 8019DF10  FC 1F 08 40 */	fcmpo cr0, f31, f1
 /* 8019DF14  40 81 01 A8 */	ble lbl_8019E0BC
@@ -166,8 +166,8 @@ lbl_8019DFB8:
 /* 8019DFB8  C8 02 A2 20 */	lfd f0, lit_4412(r2)
 /* 8019DFBC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8019DFC0  40 80 00 10 */	bge lbl_8019DFD0
-/* 8019DFC4  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8019DFC8  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)
+/* 8019DFC4  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8019DFC8  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8019DFCC  48 00 00 78 */	b lbl_8019E044
 lbl_8019DFD0:
 /* 8019DFD0  D0 21 00 08 */	stfs f1, 8(r1)
@@ -201,8 +201,8 @@ lbl_8019E028:
 lbl_8019E02C:
 /* 8019E02C  2C 00 00 01 */	cmpwi r0, 1
 /* 8019E030  40 82 00 10 */	bne lbl_8019E040
-/* 8019E034  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8019E038  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)
+/* 8019E034  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8019E038  C3 E3 0A E0 */	lfs f31, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8019E03C  48 00 00 08 */	b lbl_8019E044
 lbl_8019E040:
 /* 8019E040  FF E0 08 90 */	fmr f31, f1
@@ -212,8 +212,8 @@ lbl_8019E044:
 /* 8019E04C  FC 1F 00 40 */	fcmpo cr0, f31, f0
 /* 8019E050  40 80 00 50 */	bge lbl_8019E0A0
 /* 8019E054  7F C3 F3 78 */	mr r3, r30
-/* 8019E058  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha
-/* 8019E05C  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l
+/* 8019E058  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha /* 0x80394C6C@ha */
+/* 8019E05C  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l /* 0x80394C6C@l */
 /* 8019E060  38 84 00 2F */	addi r4, r4, 0x2f
 /* 8019E064  48 1C A9 31 */	bl strcmp
 /* 8019E068  2C 03 00 00 */	cmpwi r3, 0

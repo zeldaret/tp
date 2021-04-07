@@ -14,8 +14,8 @@ lbl_80CC527C:
 /* 80CC52AC  C0 04 00 08 */	lfs f0, 8(r4)
 /* 80CC52B0  D0 03 00 10 */	stfs f0, 0x10(r3)
 /* 80CC52B4  C0 23 00 0C */	lfs f1, 0xc(r3)
-/* 80CC52B8  3C 80 80 CC */	lis r4, lit_3634@ha
-/* 80CC52BC  C0 04 69 04 */	lfs f0, lit_3634@l(r4)
+/* 80CC52B8  3C 80 80 CC */	lis r4, lit_3634@ha /* 0x80CC6904@ha */
+/* 80CC52BC  C0 04 69 04 */	lfs f0, lit_3634@l(r4)  /* 0x80CC6904@l */
 /* 80CC52C0  EC 01 00 28 */	fsubs f0, f1, f0
 /* 80CC52C4  D0 03 00 0C */	stfs f0, 0xc(r3)
 /* 80CC52C8  C0 03 00 08 */	lfs f0, 8(r3)
@@ -24,8 +24,8 @@ lbl_80CC527C:
 /* 80CC52D4  D0 03 00 18 */	stfs f0, 0x18(r3)
 /* 80CC52D8  C0 03 00 10 */	lfs f0, 0x10(r3)
 /* 80CC52DC  D0 03 00 1C */	stfs f0, 0x1c(r3)
-/* 80CC52E0  3C 80 80 CC */	lis r4, lit_3635@ha
-/* 80CC52E4  C0 04 69 08 */	lfs f0, lit_3635@l(r4)
+/* 80CC52E0  3C 80 80 CC */	lis r4, lit_3635@ha /* 0x80CC6908@ha */
+/* 80CC52E4  C0 04 69 08 */	lfs f0, lit_3635@l(r4)  /* 0x80CC6908@l */
 /* 80CC52E8  D0 03 00 20 */	stfs f0, 0x20(r3)
 /* 80CC52EC  D0 03 00 24 */	stfs f0, 0x24(r3)
 /* 80CC52F0  D0 03 00 28 */	stfs f0, 0x28(r3)

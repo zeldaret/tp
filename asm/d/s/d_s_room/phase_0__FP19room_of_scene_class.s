@@ -7,8 +7,8 @@ lbl_8025B870:
 lbl_8025B884:
 /* 8025B884  38 80 FF FF */	li r4, -1
 lbl_8025B888:
-/* 8025B888  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha
-/* 8025B88C  38 63 60 94 */	addi r3, r3, mStatus__20dStage_roomControl_c@l
+/* 8025B888  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 8025B88C  38 63 60 94 */	addi r3, r3, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 /* 8025B890  1C 00 04 04 */	mulli r0, r0, 0x404
 /* 8025B894  7C 63 02 14 */	add r3, r3, r0
 /* 8025B898  90 83 03 FC */	stw r4, 0x3fc(r3)

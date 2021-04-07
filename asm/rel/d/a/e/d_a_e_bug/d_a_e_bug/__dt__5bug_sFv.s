@@ -9,17 +9,17 @@ lbl_80697B4C:
 /* 80697B68  41 82 00 34 */	beq lbl_80697B9C
 /* 80697B6C  34 1E 00 58 */	addic. r0, r30, 0x58
 /* 80697B70  41 82 00 1C */	beq lbl_80697B8C
-/* 80697B74  3C 60 80 3D */	lis r3, __vt__16Z2SoundObjSimple@ha
-/* 80697B78  38 03 AD 10 */	addi r0, r3, __vt__16Z2SoundObjSimple@l
+/* 80697B74  3C 60 80 3D */	lis r3, __vt__16Z2SoundObjSimple@ha /* 0x803CAD10@ha */
+/* 80697B78  38 03 AD 10 */	addi r0, r3, __vt__16Z2SoundObjSimple@l /* 0x803CAD10@l */
 /* 80697B7C  90 1E 00 68 */	stw r0, 0x68(r30)
 /* 80697B80  38 7E 00 58 */	addi r3, r30, 0x58
 /* 80697B84  38 80 00 00 */	li r4, 0
-/* 80697B88  4B C2 63 C0 */	b __dt__14Z2SoundObjBaseFv
+/* 80697B88  4B C2 63 C1 */	bl __dt__14Z2SoundObjBaseFv
 lbl_80697B8C:
 /* 80697B8C  7F E0 07 35 */	extsh. r0, r31
 /* 80697B90  40 81 00 0C */	ble lbl_80697B9C
 /* 80697B94  7F C3 F3 78 */	mr r3, r30
-/* 80697B98  4B C3 71 A4 */	b __dl__FPv
+/* 80697B98  4B C3 71 A5 */	bl __dl__FPv
 lbl_80697B9C:
 /* 80697B9C  7F C3 F3 78 */	mr r3, r30
 /* 80697BA0  83 E1 00 0C */	lwz r31, 0xc(r1)

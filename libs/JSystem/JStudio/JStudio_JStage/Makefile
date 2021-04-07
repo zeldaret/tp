@@ -32,7 +32,6 @@ $(BUILD_DIR)/libJStudio_JStage.a: $(LIBJSTUDIO_JSTAGE_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libJStudio_JStage.a
 	@echo $(LIBJSTUDIO_JSTAGE_A_O_FILES) > build/LIBJSTUDIO_JSTAGE_A_ofiles
 	@$(LD) -xm l $(LIBJSTUDIO_JSTAGE_A_LDFLAGS) -o $(BUILD_DIR)/libJStudio_JStage.a @build/LIBJSTUDIO_JSTAGE_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libJStudio_JStage.a
 
 $(BUILD_DIR)/libs/JSystem/JStudio/JStudio_JStage/%.o: libs/JSystem/JStudio/JStudio_JStage/%.cpp
 	@mkdir -p $(@D)

@@ -14,23 +14,23 @@ lbl_8058B02C:
 /* 8058B05C  41 82 00 08 */	beq lbl_8058B064
 /* 8058B060  38 63 05 A0 */	addi r3, r3, 0x5a0
 lbl_8058B064:
-/* 8058B064  3C 80 80 59 */	lis r4, l_arcName@ha
-/* 8058B068  38 84 C3 F4 */	addi r4, r4, l_arcName@l
+/* 8058B064  3C 80 80 59 */	lis r4, l_arcName@ha /* 0x8058C3F4@ha */
+/* 8058B068  38 84 C3 F4 */	addi r4, r4, l_arcName@l /* 0x8058C3F4@l */
 /* 8058B06C  80 84 00 00 */	lwz r4, 0(r4)
-/* 8058B070  4B AA 1E 4C */	b dComIfG_resLoad__FP30request_of_phase_process_classPCc
+/* 8058B070  4B AA 1E 4D */	bl dComIfG_resLoad__FP30request_of_phase_process_classPCc
 /* 8058B074  7C 60 1B 78 */	mr r0, r3
 /* 8058B078  2C 00 00 04 */	cmpwi r0, 4
 /* 8058B07C  40 82 00 3C */	bne lbl_8058B0B8
 /* 8058B080  7F E3 FB 78 */	mr r3, r31
-/* 8058B084  3C 80 80 59 */	lis r4, l_arcName@ha
-/* 8058B088  38 84 C3 F4 */	addi r4, r4, l_arcName@l
+/* 8058B084  3C 80 80 59 */	lis r4, l_arcName@ha /* 0x8058C3F4@ha */
+/* 8058B088  38 84 C3 F4 */	addi r4, r4, l_arcName@l /* 0x8058C3F4@l */
 /* 8058B08C  80 84 00 00 */	lwz r4, 0(r4)
 /* 8058B090  38 A0 00 09 */	li r5, 9
-/* 8058B094  3C C0 80 07 */	lis r6, dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz@ha
-/* 8058B098  38 C6 5A D8 */	addi r6, r6, dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz@l
+/* 8058B094  3C C0 80 07 */	lis r6, dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz@ha /* 0x80075AD8@ha */
+/* 8058B098  38 C6 5A D8 */	addi r6, r6, dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz@l /* 0x80075AD8@l */
 /* 8058B09C  38 E0 20 00 */	li r7, 0x2000
 /* 8058B0A0  39 00 00 00 */	li r8, 0
-/* 8058B0A4  4B AE D7 18 */	b MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f
+/* 8058B0A4  4B AE D7 19 */	bl MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f
 /* 8058B0A8  7C 60 1B 78 */	mr r0, r3
 /* 8058B0AC  2C 00 00 05 */	cmpwi r0, 5
 /* 8058B0B0  40 82 00 08 */	bne lbl_8058B0B8

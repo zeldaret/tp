@@ -32,11 +32,11 @@ extern "C" extern u8 gTRKInputPendingPtr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 8036CB20-8036CC18 00F8+00 s=0 e=1 z=0  None .text      TRKNubMainLoop */
+/* 8036CB20-8036CC18 367460 00F8+00 0/0 1/1 0/0 .text            TRKNubMainLoop */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKNubMainLoop() {
+asm void TRKNubMainLoop() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/mainloop/TRKNubMainLoop.s"
 }

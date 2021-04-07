@@ -16,8 +16,8 @@ lbl_800F1AAC:
 lbl_800F1AE4:
 /* 800F1AE4  7F E3 FB 78 */	mr r3, r31
 /* 800F1AE8  38 80 00 50 */	li r4, 0x50
-/* 800F1AEC  3C A0 80 39 */	lis r5, m__25daAlinkHIO_hoCutCharge_c0@ha
-/* 800F1AF0  38 A5 DC 9C */	addi r5, r5, m__25daAlinkHIO_hoCutCharge_c0@l
+/* 800F1AEC  3C A0 80 39 */	lis r5, m__25daAlinkHIO_hoCutCharge_c0@ha /* 0x8038DC9C@ha */
+/* 800F1AF0  38 A5 DC 9C */	addi r5, r5, m__25daAlinkHIO_hoCutCharge_c0@l /* 0x8038DC9C@l */
 /* 800F1AF4  38 A5 00 28 */	addi r5, r5, 0x28
 /* 800F1AF8  4B FB B5 FD */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800F1AFC  7F E3 FB 78 */	mr r3, r31
@@ -26,8 +26,8 @@ lbl_800F1AE4:
 /* 800F1B08  7F E3 FB 78 */	mr r3, r31
 /* 800F1B0C  38 80 00 01 */	li r4, 1
 /* 800F1B10  4B FF CE 09 */	bl setSyncRide__9daAlink_cFi
-/* 800F1B14  3C 60 80 39 */	lis r3, m__25daAlinkHIO_hoCutCharge_c0@ha
-/* 800F1B18  38 63 DC 9C */	addi r3, r3, m__25daAlinkHIO_hoCutCharge_c0@l
+/* 800F1B14  3C 60 80 39 */	lis r3, m__25daAlinkHIO_hoCutCharge_c0@ha /* 0x8038DC9C@ha */
+/* 800F1B18  38 63 DC 9C */	addi r3, r3, m__25daAlinkHIO_hoCutCharge_c0@l /* 0x8038DC9C@l */
 /* 800F1B1C  C0 03 00 50 */	lfs f0, 0x50(r3)
 /* 800F1B20  D0 1F 34 78 */	stfs f0, 0x3478(r31)
 /* 800F1B24  4B FD F4 39 */	bl getSwordAtType__9daAlink_cFv
@@ -42,8 +42,8 @@ lbl_800F1AE4:
 /* 800F1B48  EC 21 00 32 */	fmuls f1, f1, f0
 /* 800F1B4C  C0 42 93 68 */	lfs f2, lit_8472(r2)
 /* 800F1B50  4B FD F9 F1 */	bl setCylAtParam__9daAlink_cFUl11dCcG_At_SplUcUciff
-/* 800F1B54  3C 60 80 39 */	lis r3, m__25daAlinkHIO_hoCutCharge_c0@ha
-/* 800F1B58  38 63 DC 9C */	addi r3, r3, m__25daAlinkHIO_hoCutCharge_c0@l
+/* 800F1B54  3C 60 80 39 */	lis r3, m__25daAlinkHIO_hoCutCharge_c0@ha /* 0x8038DC9C@ha */
+/* 800F1B58  38 63 DC 9C */	addi r3, r3, m__25daAlinkHIO_hoCutCharge_c0@l /* 0x8038DC9C@l */
 /* 800F1B5C  A8 03 00 3E */	lha r0, 0x3e(r3)
 /* 800F1B60  B0 1F 30 10 */	sth r0, 0x3010(r31)
 /* 800F1B64  7F E3 FB 78 */	mr r3, r31

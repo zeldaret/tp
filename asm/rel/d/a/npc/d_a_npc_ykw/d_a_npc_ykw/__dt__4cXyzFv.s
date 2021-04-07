@@ -7,7 +7,7 @@ lbl_80B66BFC:
 /* 80B66C10  41 82 00 10 */	beq lbl_80B66C20
 /* 80B66C14  7C 80 07 35 */	extsh. r0, r4
 /* 80B66C18  40 81 00 08 */	ble lbl_80B66C20
-/* 80B66C1C  4B 76 81 20 */	b __dl__FPv
+/* 80B66C1C  4B 76 81 21 */	bl __dl__FPv
 lbl_80B66C20:
 /* 80B66C20  7F E3 FB 78 */	mr r3, r31
 /* 80B66C24  83 E1 00 0C */	lwz r31, 0xc(r1)

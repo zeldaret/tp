@@ -13,7 +13,7 @@ lbl_80C89ADC:
 /* 80C89B08  88 7E 05 C6 */	lbz r3, 0x5c6(r30)
 /* 80C89B0C  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80C89B10  7C 04 07 74 */	extsb r4, r0
-/* 80C89B14  4B 3C 7C D8 */	b dPath_GetRoomPath__Fii
+/* 80C89B14  4B 3C 7C D9 */	bl dPath_GetRoomPath__Fii
 /* 80C89B18  88 03 00 05 */	lbz r0, 5(r3)
 /* 80C89B1C  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 80C89B20  41 82 00 30 */	beq lbl_80C89B50

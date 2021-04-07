@@ -5,8 +5,8 @@ lbl_8050CB70:
 /* 8050CB7C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8050CB80  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8050CB84  7C 7E 1B 78 */	mr r30, r3
-/* 8050CB88  3C 80 80 52 */	lis r4, lit_4208@ha
-/* 8050CB8C  3B E4 85 84 */	addi r31, r4, lit_4208@l
+/* 8050CB88  3C 80 80 52 */	lis r4, lit_4208@ha /* 0x80518584@ha */
+/* 8050CB8C  3B E4 85 84 */	addi r31, r4, lit_4208@l /* 0x80518584@l */
 /* 8050CB90  A8 03 05 B4 */	lha r0, 0x5b4(r3)
 /* 8050CB94  2C 00 00 01 */	cmpwi r0, 1
 /* 8050CB98  41 82 00 60 */	beq lbl_8050CBF8
@@ -26,7 +26,7 @@ lbl_8050CBAC:
 /* 8050CBCC  38 00 00 01 */	li r0, 1
 /* 8050CBD0  B0 1E 05 B4 */	sth r0, 0x5b4(r30)
 /* 8050CBD4  C0 3F 00 E8 */	lfs f1, 0xe8(r31)
-/* 8050CBD8  4B D5 AD 7C */	b cM_rndF__Ff
+/* 8050CBD8  4B D5 AD 7D */	bl cM_rndF__Ff
 /* 8050CBDC  C0 1F 00 E4 */	lfs f0, 0xe4(r31)
 /* 8050CBE0  EC 00 08 2A */	fadds f0, f0, f1
 /* 8050CBE4  FC 00 00 1E */	fctiwz f0, f0
@@ -44,7 +44,7 @@ lbl_8050CBF8:
 /* 8050CC10  C0 5F 00 08 */	lfs f2, 8(r31)
 /* 8050CC14  4B FF 7F C1 */	bl anm_init__FP10e_rd_classifUcf
 /* 8050CC18  C0 3F 00 00 */	lfs f1, 0(r31)
-/* 8050CC1C  4B D5 AD 38 */	b cM_rndF__Ff
+/* 8050CC1C  4B D5 AD 39 */	bl cM_rndF__Ff
 /* 8050CC20  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 8050CC24  EC 00 08 2A */	fadds f0, f0, f1
 /* 8050CC28  FC 00 00 1E */	fctiwz f0, f0
@@ -60,8 +60,8 @@ lbl_8050CC40:
 /* 8050CC4C  88 BE 09 A1 */	lbz r5, 0x9a1(r30)
 /* 8050CC50  2C 05 00 01 */	cmpwi r5, 1
 /* 8050CC54  41 82 00 14 */	beq lbl_8050CC68
-/* 8050CC58  3C 60 80 52 */	lis r3, struct_805191E4+0x0@ha
-/* 8050CC5C  A8 03 91 E4 */	lha r0, struct_805191E4+0x0@l(r3)
+/* 8050CC58  3C 60 80 52 */	lis r3, struct_805191E4+0x0@ha /* 0x805191E4@ha */
+/* 8050CC5C  A8 03 91 E4 */	lha r0, struct_805191E4+0x0@l(r3)  /* 0x805191E4@l */
 /* 8050CC60  2C 00 00 00 */	cmpwi r0, 0
 /* 8050CC64  41 82 00 1C */	beq lbl_8050CC80
 lbl_8050CC68:
@@ -79,8 +79,8 @@ lbl_8050CC80:
 /* 8050CC8C  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 8050CC90  7C 00 07 75 */	extsb. r0, r0
 /* 8050CC94  40 82 00 5C */	bne lbl_8050CCF0
-/* 8050CC98  3C 60 80 52 */	lis r3, struct_805191E4+0x0@ha
-/* 8050CC9C  A8 03 91 E4 */	lha r0, struct_805191E4+0x0@l(r3)
+/* 8050CC98  3C 60 80 52 */	lis r3, struct_805191E4+0x0@ha /* 0x805191E4@ha */
+/* 8050CC9C  A8 03 91 E4 */	lha r0, struct_805191E4+0x0@l(r3)  /* 0x805191E4@l */
 /* 8050CCA0  2C 00 00 00 */	cmpwi r0, 0
 /* 8050CCA4  41 82 00 18 */	beq lbl_8050CCBC
 /* 8050CCA8  7F C3 F3 78 */	mr r3, r30

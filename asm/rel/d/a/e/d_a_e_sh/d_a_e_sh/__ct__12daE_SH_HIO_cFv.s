@@ -1,8 +1,8 @@
 lbl_8078E34C:
-/* 8078E34C  3C 80 80 79 */	lis r4, lit_3902@ha
-/* 8078E350  38 A4 1D 70 */	addi r5, r4, lit_3902@l
-/* 8078E354  3C 80 80 79 */	lis r4, __vt__12daE_SH_HIO_c@ha
-/* 8078E358  38 04 20 E0 */	addi r0, r4, __vt__12daE_SH_HIO_c@l
+/* 8078E34C  3C 80 80 79 */	lis r4, lit_3902@ha /* 0x80791D70@ha */
+/* 8078E350  38 A4 1D 70 */	addi r5, r4, lit_3902@l /* 0x80791D70@l */
+/* 8078E354  3C 80 80 79 */	lis r4, __vt__12daE_SH_HIO_c@ha /* 0x807920E0@ha */
+/* 8078E358  38 04 20 E0 */	addi r0, r4, __vt__12daE_SH_HIO_c@l /* 0x807920E0@l */
 /* 8078E35C  90 03 00 00 */	stw r0, 0(r3)
 /* 8078E360  38 00 FF FF */	li r0, -1
 /* 8078E364  98 03 00 04 */	stb r0, 4(r3)

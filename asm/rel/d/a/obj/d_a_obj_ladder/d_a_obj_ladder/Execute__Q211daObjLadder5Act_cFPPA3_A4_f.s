@@ -3,13 +3,13 @@ lbl_8058DAA0:
 /* 8058DAA4  7C 08 02 A6 */	mflr r0
 /* 8058DAA8  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8058DAAC  39 61 00 20 */	addi r11, r1, 0x20
-/* 8058DAB0  4B DD 47 2C */	b _savegpr_29
+/* 8058DAB0  4B DD 47 2D */	bl _savegpr_29
 /* 8058DAB4  7C 7D 1B 78 */	mr r29, r3
 /* 8058DAB8  7C 9E 23 78 */	mr r30, r4
-/* 8058DABC  3C 60 80 59 */	lis r3, cNullVec__6Z2Calc@ha
-/* 8058DAC0  3B E3 DD AC */	addi r31, r3, cNullVec__6Z2Calc@l
-/* 8058DAC4  3C 60 80 59 */	lis r3, data_8058DF50@ha
-/* 8058DAC8  38 A3 DF 50 */	addi r5, r3, data_8058DF50@l
+/* 8058DABC  3C 60 80 59 */	lis r3, cNullVec__6Z2Calc@ha /* 0x8058DDAC@ha */
+/* 8058DAC0  3B E3 DD AC */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x8058DDAC@l */
+/* 8058DAC4  3C 60 80 59 */	lis r3, data_8058DF50@ha /* 0x8058DF50@ha */
+/* 8058DAC8  38 A3 DF 50 */	addi r5, r3, data_8058DF50@l /* 0x8058DF50@l */
 /* 8058DACC  88 05 00 00 */	lbz r0, 0(r5)
 /* 8058DAD0  7C 00 07 75 */	extsb. r0, r0
 /* 8058DAD4  40 82 00 88 */	bne lbl_8058DB5C
@@ -54,18 +54,18 @@ lbl_8058DB5C:
 /* 8058DB6C  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 8058DB70  39 9F 00 8C */	addi r12, r31, 0x8c
 /* 8058DB74  7D 8C 02 14 */	add r12, r12, r0
-/* 8058DB78  4B DD 45 0C */	b __ptmf_scall
+/* 8058DB78  4B DD 45 0D */	bl __ptmf_scall
 /* 8058DB7C  60 00 00 00 */	nop 
 /* 8058DB80  C0 1D 04 D4 */	lfs f0, 0x4d4(r29)
 /* 8058DB84  D0 1D 05 3C */	stfs f0, 0x53c(r29)
 /* 8058DB88  7F A3 EB 78 */	mr r3, r29
 /* 8058DB8C  4B FF FE 45 */	bl set_mtx__Q211daObjLadder5Act_cFv
-/* 8058DB90  3C 60 80 59 */	lis r3, M_tmp_mtx__Q211daObjLadder5Act_c@ha
-/* 8058DB94  38 03 DF 20 */	addi r0, r3, M_tmp_mtx__Q211daObjLadder5Act_c@l
+/* 8058DB90  3C 60 80 59 */	lis r3, M_tmp_mtx__Q211daObjLadder5Act_c@ha /* 0x8058DF20@ha */
+/* 8058DB94  38 03 DF 20 */	addi r0, r3, M_tmp_mtx__Q211daObjLadder5Act_c@l /* 0x8058DF20@l */
 /* 8058DB98  90 1E 00 00 */	stw r0, 0(r30)
 /* 8058DB9C  38 60 00 01 */	li r3, 1
 /* 8058DBA0  39 61 00 20 */	addi r11, r1, 0x20
-/* 8058DBA4  4B DD 46 84 */	b _restgpr_29
+/* 8058DBA4  4B DD 46 85 */	bl _restgpr_29
 /* 8058DBA8  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8058DBAC  7C 08 03 A6 */	mtlr r0
 /* 8058DBB0  38 21 00 20 */	addi r1, r1, 0x20

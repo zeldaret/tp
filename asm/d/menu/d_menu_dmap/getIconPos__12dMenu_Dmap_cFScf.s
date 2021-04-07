@@ -315,8 +315,8 @@ lbl_801BCCAC:
 /* 801BCCD4  28 04 00 FF */	cmplwi r4, 0xff
 /* 801BCCD8  41 82 00 24 */	beq lbl_801BCCFC
 /* 801BCCDC  41 82 00 4C */	beq lbl_801BCD28
-/* 801BCCE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801BCCE4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801BCCE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801BCCE4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801BCCE8  88 A1 00 08 */	lbz r5, 8(r1)
 /* 801BCCEC  7C A5 07 74 */	extsb r5, r5
 /* 801BCCF0  4B E7 86 71 */	bl isSwitch__10dSv_info_cCFii

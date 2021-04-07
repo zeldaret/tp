@@ -3,17 +3,15 @@
 #
 
 M472_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hasu2.plf
+M472_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hasu2.lcf
+M472_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hasu2.map
 
 M472_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_hasu2/executor.cpp \
-	rel/d/a/obj/d_a_obj_hasu2/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_hasu2/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_hasu2/d_a_obj_hasu2.cpp \
 
 M472_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hasu2/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hasu2/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hasu2/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hasu2/d_a_obj_hasu2.o \
 
 M472_LIBS := \
@@ -29,14 +27,21 @@ M472_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M472_LDSCRIPT) \
+	-unused -map $(M472_MAP) \
+	-w off \
 
 $(M472_TARGET): $(M472_O_FILES) $(M472_LIBS)
+	@echo [472] creating $(M472_TARGET)
 	@echo $(M472_LIBS) $(M472_O_FILES) > build/M472_ofiles
-	$(LD) -partial $(M472_LDFLAGS) -o $(M472_TARGET) @build/M472_ofiles
+	@python3 tools/lcf.py rel 472 --output $(M472_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M472_LDFLAGS) -o $(M472_TARGET) @build/M472_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hasu2/%.o: rel/d/a/obj/d_a_obj_hasu2/%.cpp
+	@echo [472] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M472_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M472_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

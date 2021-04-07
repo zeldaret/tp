@@ -37,7 +37,7 @@ extern "C" void checkInsectBombMove__7dBomb_cFP10fopAc_ac_c();
 // Declarations:
 //
 
-/* 80031F94-80031FCC 0038+00 s=0 e=0 z=5  None .text      checkStateCarry__7dBomb_cFv */
+/* 80031F94-80031FCC 02C8D4 0038+00 0/0 0/0 5/5 .text            checkStateCarry__7dBomb_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -47,7 +47,7 @@ asm void dBomb_c::checkStateCarry() {
 }
 #pragma pop
 
-/* 80031FCC-80031FF4 0028+00 s=0 e=0 z=1  None .text checkFlowerBombWait__7dBomb_cFP10fopAc_ac_c
+/* 80031FCC-80031FF4 02C90C 0028+00 0/0 0/0 1/1 .text checkFlowerBombWait__7dBomb_cFP10fopAc_ac_c
  */
 #pragma push
 #pragma optimization_level 0
@@ -58,7 +58,7 @@ asm void dBomb_c::checkFlowerBombWait(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 80031FF4-8003201C 0028+00 s=0 e=0 z=1  None .text      checkWaterBomb__7dBomb_cFP10fopAc_ac_c */
+/* 80031FF4-8003201C 02C934 0028+00 0/0 0/0 1/1 .text checkWaterBomb__7dBomb_cFP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -68,7 +68,7 @@ asm void dBomb_c::checkWaterBomb(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 8003201C-80032044 0028+00 s=0 e=0 z=1  None .text checkInsectBombMove__7dBomb_cFP10fopAc_ac_c
+/* 8003201C-80032044 02C95C 0028+00 0/0 0/0 1/1 .text checkInsectBombMove__7dBomb_cFP10fopAc_ac_c
  */
 #pragma push
 #pragma optimization_level 0

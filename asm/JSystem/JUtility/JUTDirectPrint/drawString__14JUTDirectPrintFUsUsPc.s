@@ -3,8 +3,8 @@ lbl_802E46D8:
 /* 802E46DC  7C 08 02 A6 */	mflr r0
 /* 802E46E0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802E46E4  7C C7 33 78 */	mr r7, r6
-/* 802E46E8  3C C0 80 3A */	lis r6, JUTDirectPrint__stringBase0@ha
-/* 802E46EC  38 C6 D9 A0 */	addi r6, r6, JUTDirectPrint__stringBase0@l
+/* 802E46E8  3C C0 80 3A */	lis r6, JUTDirectPrint__stringBase0@ha /* 0x8039D9A0@ha */
+/* 802E46EC  38 C6 D9 A0 */	addi r6, r6, JUTDirectPrint__stringBase0@l /* 0x8039D9A0@l */
 /* 802E46F0  4C C6 31 82 */	crclr 6
 /* 802E46F4  48 00 00 15 */	bl drawString_f__14JUTDirectPrintFUsUsPCce
 /* 802E46F8  80 01 00 14 */	lwz r0, 0x14(r1)

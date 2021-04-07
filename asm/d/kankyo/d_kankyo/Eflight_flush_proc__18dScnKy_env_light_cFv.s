@@ -7,8 +7,8 @@ lbl_801A4F64:
 /* 801A4F78  39 61 00 30 */	addi r11, r1, 0x30
 /* 801A4F7C  48 1B D2 61 */	bl _savegpr_29
 /* 801A4F80  7C 7E 1B 78 */	mr r30, r3
-/* 801A4F84  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 801A4F88  38 63 BD B8 */	addi r3, r3, cNullVec__6Z2Calc@l
+/* 801A4F84  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803BBDB8@ha */
+/* 801A4F88  38 63 BD B8 */	addi r3, r3, cNullVec__6Z2Calc@l /* 0x803BBDB8@l */
 /* 801A4F8C  80 1E 07 A8 */	lwz r0, 0x7a8(r30)
 /* 801A4F90  2C 00 00 00 */	cmpwi r0, 0
 /* 801A4F94  40 82 00 14 */	bne lbl_801A4FA8

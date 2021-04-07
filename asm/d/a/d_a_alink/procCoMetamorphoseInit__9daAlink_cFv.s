@@ -8,8 +8,8 @@ lbl_800C77F4:
 /* 800C780C  48 29 A9 C9 */	bl _savegpr_27
 /* 800C7810  7C 7E 1B 78 */	mr r30, r3
 /* 800C7814  3B A0 00 00 */	li r29, 0
-/* 800C7818  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800C781C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800C7818  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800C781C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800C7820  3B E3 0F 38 */	addi r31, r3, 0xf38
 /* 800C7824  38 7F 3F 90 */	addi r3, r31, 0x3f90
 /* 800C7828  38 00 00 00 */	li r0, 0
@@ -87,8 +87,8 @@ lbl_800C7918:
 /* 800C7928  80 1E 05 88 */	lwz r0, 0x588(r30)
 /* 800C792C  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 800C7930  41 82 00 24 */	beq lbl_800C7954
-/* 800C7934  3C 60 80 39 */	lis r3, d_a_d_a_alink__stringBase0@ha
-/* 800C7938  38 63 20 94 */	addi r3, r3, d_a_d_a_alink__stringBase0@l
+/* 800C7934  3C 60 80 39 */	lis r3, d_a_d_a_alink__stringBase0@ha /* 0x80392094@ha */
+/* 800C7938  38 63 20 94 */	addi r3, r3, d_a_d_a_alink__stringBase0@l /* 0x80392094@l */
 /* 800C793C  38 63 01 70 */	addi r3, r3, 0x170
 /* 800C7940  4B FD 61 21 */	bl checkStageName__9daAlink_cFPCc
 /* 800C7944  54 60 06 3F */	clrlwi. r0, r3, 0x18
@@ -104,8 +104,8 @@ lbl_800C7954:
 /* 800C7968  7F C3 F3 78 */	mr r3, r30
 /* 800C796C  38 80 00 70 */	li r4, 0x70
 /* 800C7970  48 06 1D 09 */	bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
-/* 800C7974  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha
-/* 800C7978  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)
+/* 800C7974  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha /* 0x8042561C@ha */
+/* 800C7978  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)  /* 0x8042561C@l */
 /* 800C797C  D0 1E 35 88 */	stfs f0, 0x3588(r30)
 /* 800C7980  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800C7984  D0 1E 35 8C */	stfs f0, 0x358c(r30)
@@ -113,8 +113,8 @@ lbl_800C7954:
 /* 800C798C  D0 1E 35 90 */	stfs f0, 0x3590(r30)
 /* 800C7990  C0 02 92 98 */	lfs f0, lit_5943(r2)
 /* 800C7994  D0 1E 34 7C */	stfs f0, 0x347c(r30)
-/* 800C7998  3C 60 80 39 */	lis r3, m__19daAlinkHIO_basic_c0@ha
-/* 800C799C  38 63 D6 64 */	addi r3, r3, m__19daAlinkHIO_basic_c0@l
+/* 800C7998  3C 60 80 39 */	lis r3, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 800C799C  38 63 D6 64 */	addi r3, r3, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 800C79A0  C0 03 00 40 */	lfs f0, 0x40(r3)
 /* 800C79A4  D0 1E 34 80 */	stfs f0, 0x3480(r30)
 /* 800C79A8  A8 1E 04 E4 */	lha r0, 0x4e4(r30)
@@ -128,8 +128,8 @@ lbl_800C7954:
 /* 800C79C8  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 800C79CC  28 00 00 01 */	cmplwi r0, 1
 /* 800C79D0  41 82 00 24 */	beq lbl_800C79F4
-/* 800C79D4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800C79D8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800C79D4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800C79D8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800C79DC  38 63 00 28 */	addi r3, r3, 0x28
 /* 800C79E0  38 80 00 03 */	li r4, 3
 /* 800C79E4  4B F6 B2 09 */	bl isTransformLV__21dSv_player_status_b_cCFi
@@ -168,19 +168,19 @@ lbl_800C7A50:
 /* 800C7A5C  7F C3 F3 78 */	mr r3, r30
 /* 800C7A60  38 80 00 01 */	li r4, 1
 /* 800C7A64  4B FF 7D 39 */	bl setMetamorphoseModel__9daAlink_cFi
-/* 800C7A68  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 800C7A6C  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)
+/* 800C7A68  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 800C7A6C  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)  /* 0x80425514@l */
 /* 800C7A70  D0 1E 35 88 */	stfs f0, 0x3588(r30)
 /* 800C7A74  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800C7A78  D0 1E 35 8C */	stfs f0, 0x358c(r30)
 /* 800C7A7C  C0 03 00 08 */	lfs f0, 8(r3)
 /* 800C7A80  D0 1E 35 90 */	stfs f0, 0x3590(r30)
-/* 800C7A84  3C 60 80 39 */	lis r3, m__19daAlinkHIO_basic_c0@ha
-/* 800C7A88  38 63 D6 64 */	addi r3, r3, m__19daAlinkHIO_basic_c0@l
+/* 800C7A84  3C 60 80 39 */	lis r3, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 800C7A88  38 63 D6 64 */	addi r3, r3, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 800C7A8C  C0 03 00 3C */	lfs f0, 0x3c(r3)
 /* 800C7A90  D0 1E 34 80 */	stfs f0, 0x3480(r30)
-/* 800C7A94  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800C7A98  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 800C7A94  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800C7A98  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800C7A9C  A8 1E 04 E6 */	lha r0, 0x4e6(r30)
 /* 800C7AA0  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 800C7AA4  7C 64 02 14 */	add r3, r4, r0

@@ -3,7 +3,7 @@ lbl_8047E5A0:
 /* 8047E5A4  7C 08 02 A6 */	mflr r0
 /* 8047E5A8  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8047E5AC  39 61 00 30 */	addi r11, r1, 0x30
-/* 8047E5B0  4B EE 3C 18 */	b _savegpr_24
+/* 8047E5B0  4B EE 3C 19 */	bl _savegpr_24
 /* 8047E5B4  7C 78 1B 78 */	mr r24, r3
 /* 8047E5B8  7C 99 23 78 */	mr r25, r4
 /* 8047E5BC  7C BA 2B 78 */	mr r26, r5
@@ -32,7 +32,7 @@ lbl_8047E604:
 lbl_8047E60C:
 /* 8047E60C  7F C3 F3 78 */	mr r3, r30
 /* 8047E610  39 61 00 30 */	addi r11, r1, 0x30
-/* 8047E614  4B EE 3C 00 */	b _restgpr_24
+/* 8047E614  4B EE 3C 01 */	bl _restgpr_24
 /* 8047E618  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 8047E61C  7C 08 03 A6 */	mtlr r0
 /* 8047E620  38 21 00 30 */	addi r1, r1, 0x30

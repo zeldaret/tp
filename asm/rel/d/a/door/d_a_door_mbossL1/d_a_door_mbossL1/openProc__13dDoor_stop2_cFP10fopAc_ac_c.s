@@ -17,15 +17,15 @@ lbl_80672D10:
 /* 80672D10  48 00 01 35 */	bl getHeight__13dDoor_stop2_cFv
 /* 80672D14  FF E0 08 90 */	fmr f31, f1
 /* 80672D18  38 7F 05 2C */	addi r3, r31, 0x52c
-/* 80672D1C  3C 80 80 67 */	lis r4, lit_3801@ha
-/* 80672D20  C0 24 75 AC */	lfs f1, lit_3801@l(r4)
-/* 80672D24  3C 80 80 67 */	lis r4, lit_3802@ha
-/* 80672D28  C0 44 75 B0 */	lfs f2, lit_3802@l(r4)
-/* 80672D2C  4B BF DA 14 */	b cLib_chaseF__FPfff
+/* 80672D1C  3C 80 80 67 */	lis r4, lit_3801@ha /* 0x806775AC@ha */
+/* 80672D20  C0 24 75 AC */	lfs f1, lit_3801@l(r4)  /* 0x806775AC@l */
+/* 80672D24  3C 80 80 67 */	lis r4, lit_3802@ha /* 0x806775B0@ha */
+/* 80672D28  C0 44 75 B0 */	lfs f2, lit_3802@l(r4)  /* 0x806775B0@l */
+/* 80672D2C  4B BF DA 15 */	bl cLib_chaseF__FPfff
 /* 80672D30  38 7E 00 04 */	addi r3, r30, 4
 /* 80672D34  FC 20 F8 90 */	fmr f1, f31
 /* 80672D38  C0 5F 05 2C */	lfs f2, 0x52c(r31)
-/* 80672D3C  4B BF DA 04 */	b cLib_chaseF__FPfff
+/* 80672D3C  4B BF DA 05 */	bl cLib_chaseF__FPfff
 /* 80672D40  2C 03 00 00 */	cmpwi r3, 0
 /* 80672D44  41 82 00 18 */	beq lbl_80672D5C
 /* 80672D48  38 00 00 00 */	li r0, 0

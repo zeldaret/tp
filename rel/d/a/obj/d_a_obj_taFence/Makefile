@@ -3,19 +3,20 @@
 #
 
 M650_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_taFence.plf
+M650_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_taFence.lcf
+M650_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_taFence.map
 
 M650_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_taFence/executor.cpp \
-	rel/d/a/obj/d_a_obj_taFence/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_taFence/d_a_obj_taFence.cpp \
 
 M650_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_taFence/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_taFence/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_taFence/d_a_obj_taFence.o \
 
 M650_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_taFence/libRuntime.PPCEABI.H.a \
 
 M650_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M650_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M650_LDSCRIPT) \
+	-unused -map $(M650_MAP) \
+	-w off \
 
 $(M650_TARGET): $(M650_O_FILES) $(M650_LIBS)
+	@echo [650] creating $(M650_TARGET)
 	@echo $(M650_LIBS) $(M650_O_FILES) > build/M650_ofiles
-	$(LD) -partial $(M650_LDFLAGS) -o $(M650_TARGET) @build/M650_ofiles
+	@python3 tools/lcf.py rel 650 --output $(M650_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M650_LDFLAGS) -o $(M650_TARGET) @build/M650_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_taFence/%.o: rel/d/a/obj/d_a_obj_taFence/%.cpp
+	@echo [650] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M650_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M650_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_taFence/libs/Runtime.PPCEABI.H/Makefile
 

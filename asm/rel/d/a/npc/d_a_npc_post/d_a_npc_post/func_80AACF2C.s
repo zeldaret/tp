@@ -6,7 +6,7 @@ lbl_80AACF2C:
 /* 80AACF3C  F3 E1 00 18 */	psq_st f31, 24(r1), 0, 0 /* qr0 */
 /* 80AACF40  FF E0 08 90 */	fmr f31, f1
 /* 80AACF44  FC 20 10 90 */	fmr f1, f2
-/* 80AACF48  4B 7B AA 0C */	b cM_rndF__Ff
+/* 80AACF48  4B 7B AA 0D */	bl cM_rndF__Ff
 /* 80AACF4C  EC 3F 08 2A */	fadds f1, f31, f1
 /* 80AACF50  E3 E1 00 18 */	psq_l f31, 24(r1), 0, 0 /* qr0 */
 /* 80AACF54  CB E1 00 10 */	lfd f31, 0x10(r1)

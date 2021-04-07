@@ -3,10 +3,10 @@ lbl_80786154:
 /* 80786158  7C 08 02 A6 */	mflr r0
 /* 8078615C  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80786160  39 61 00 30 */	addi r11, r1, 0x30
-/* 80786164  4B BD C0 78 */	b _savegpr_29
+/* 80786164  4B BD C0 79 */	bl _savegpr_29
 /* 80786168  7C 7E 1B 78 */	mr r30, r3
-/* 8078616C  3C 80 80 79 */	lis r4, lit_3908@ha
-/* 80786170  3B E4 9C 38 */	addi r31, r4, lit_3908@l
+/* 8078616C  3C 80 80 79 */	lis r4, lit_3908@ha /* 0x80789C38@ha */
+/* 80786170  3B E4 9C 38 */	addi r31, r4, lit_3908@l /* 0x80789C38@l */
 /* 80786174  80 83 05 D4 */	lwz r4, 0x5d4(r3)
 /* 80786178  C0 04 00 1C */	lfs f0, 0x1c(r4)
 /* 8078617C  FC 00 00 1E */	fctiwz f0, f0
@@ -82,7 +82,7 @@ lbl_8078627C:
 /* 8078627C  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 80786280  C0 3F 00 08 */	lfs f1, 8(r31)
 /* 80786284  C0 5F 00 30 */	lfs f2, 0x30(r31)
-/* 80786288  4B AE 97 F8 */	b cLib_addCalc0__FPfff
+/* 80786288  4B AE 97 F9 */	bl cLib_addCalc0__FPfff
 /* 8078628C  88 1E 06 A9 */	lbz r0, 0x6a9(r30)
 /* 80786290  7C 00 07 75 */	extsb. r0, r0
 /* 80786294  41 82 00 80 */	beq lbl_80786314
@@ -93,8 +93,8 @@ lbl_8078627C:
 /* 807862A8  A8 03 00 08 */	lha r0, 8(r3)
 /* 807862AC  2C 00 00 FD */	cmpwi r0, 0xfd
 /* 807862B0  40 82 00 64 */	bne lbl_80786314
-/* 807862B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 807862B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 807862B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 807862B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 807862BC  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 807862C0  81 83 06 28 */	lwz r12, 0x628(r3)
 /* 807862C4  81 8C 00 40 */	lwz r12, 0x40(r12)
@@ -110,7 +110,7 @@ lbl_8078627C:
 /* 807862EC  38 00 00 00 */	li r0, 0
 /* 807862F0  B0 1E 05 B4 */	sth r0, 0x5b4(r30)
 /* 807862F4  C0 3F 00 78 */	lfs f1, 0x78(r31)
-/* 807862F8  4B AE 16 5C */	b cM_rndF__Ff
+/* 807862F8  4B AE 16 5D */	bl cM_rndF__Ff
 /* 807862FC  C0 1F 00 38 */	lfs f0, 0x38(r31)
 /* 80786300  EC 00 08 2A */	fadds f0, f0, f1
 /* 80786304  FC 00 00 1E */	fctiwz f0, f0
@@ -119,7 +119,7 @@ lbl_8078627C:
 /* 80786310  B0 1E 06 A0 */	sth r0, 0x6a0(r30)
 lbl_80786314:
 /* 80786314  39 61 00 30 */	addi r11, r1, 0x30
-/* 80786318  4B BD BF 10 */	b _restgpr_29
+/* 80786318  4B BD BF 11 */	bl _restgpr_29
 /* 8078631C  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80786320  7C 08 03 A6 */	mtlr r0
 /* 80786324  38 21 00 30 */	addi r1, r1, 0x30

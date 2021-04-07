@@ -1,6 +1,6 @@
 lbl_806ED6C8:
-/* 806ED6C8  3C 80 80 6F */	lis r4, lit_3966@ha
-/* 806ED6CC  38 A4 08 60 */	addi r5, r4, lit_3966@l
+/* 806ED6C8  3C 80 80 6F */	lis r4, lit_3966@ha /* 0x806F0860@ha */
+/* 806ED6CC  38 A4 08 60 */	addi r5, r4, lit_3966@l /* 0x806F0860@l */
 /* 806ED6D0  A8 83 11 FA */	lha r4, 0x11fa(r3)
 /* 806ED6D4  3C 84 00 01 */	addis r4, r4, 1
 /* 806ED6D8  38 04 80 00 */	addi r0, r4, -32768

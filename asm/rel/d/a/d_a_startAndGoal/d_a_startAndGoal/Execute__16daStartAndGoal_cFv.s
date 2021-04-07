@@ -22,13 +22,13 @@ lbl_80D4DC88:
 /* 80D4DC9C  88 1F 0B 99 */	lbz r0, 0xb99(r31)
 /* 80D4DCA0  28 00 00 00 */	cmplwi r0, 0
 /* 80D4DCA4  40 82 00 30 */	bne lbl_80D4DCD4
-/* 80D4DCA8  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80D4DCAC  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80D4DCA8  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80D4DCAC  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80D4DCB0  80 63 00 00 */	lwz r3, 0(r3)
 /* 80D4DCB4  38 63 03 D0 */	addi r3, r3, 0x3d0
 /* 80D4DCB8  3C 80 01 00 */	lis r4, 0x0100 /* 0x010000A5@ha */
 /* 80D4DCBC  38 84 00 A5 */	addi r4, r4, 0x00A5 /* 0x010000A5@l */
-/* 80D4DCC0  4B 56 17 DC */	b subBgmStart__8Z2SeqMgrFUl
+/* 80D4DCC0  4B 56 17 DD */	bl subBgmStart__8Z2SeqMgrFUl
 /* 80D4DCC4  48 00 00 10 */	b lbl_80D4DCD4
 lbl_80D4DCC8:
 /* 80D4DCC8  7F E3 FB 78 */	mr r3, r31

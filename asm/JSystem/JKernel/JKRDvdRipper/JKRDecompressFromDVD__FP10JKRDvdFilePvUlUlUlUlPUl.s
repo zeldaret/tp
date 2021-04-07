@@ -16,16 +16,16 @@ lbl_802DA1E4:
 /* 802DA21C  88 0D 8E D8 */	lbz r0, data_80451458(r13)
 /* 802DA220  28 00 00 00 */	cmplwi r0, 0
 /* 802DA224  40 82 00 18 */	bne lbl_802DA23C
-/* 802DA228  3C 60 80 43 */	lis r3, decompMutex@ha
-/* 802DA22C  38 63 43 90 */	addi r3, r3, decompMutex@l
+/* 802DA228  3C 60 80 43 */	lis r3, decompMutex@ha /* 0x80434390@ha */
+/* 802DA22C  38 63 43 90 */	addi r3, r3, decompMutex@l /* 0x80434390@l */
 /* 802DA230  48 06 4D D9 */	bl OSInitMutex
 /* 802DA234  38 00 00 01 */	li r0, 1
 /* 802DA238  98 0D 8E D8 */	stb r0, data_80451458(r13)
 lbl_802DA23C:
 /* 802DA23C  7F 03 C3 78 */	mr r3, r24
 /* 802DA240  48 06 34 DD */	bl OSRestoreInterrupts
-/* 802DA244  3C 60 80 43 */	lis r3, decompMutex@ha
-/* 802DA248  38 63 43 90 */	addi r3, r3, decompMutex@l
+/* 802DA244  3C 60 80 43 */	lis r3, decompMutex@ha /* 0x80434390@ha */
+/* 802DA248  38 63 43 90 */	addi r3, r3, decompMutex@l /* 0x80434390@l */
 /* 802DA24C  48 06 4D F5 */	bl OSLockMutex
 /* 802DA250  83 0D 83 4C */	lwz r24, sSZSBufferSize__12JKRDvdRipper(r13)
 /* 802DA254  80 6D 8D F0 */	lwz r3, sSystemHeap__7JKRHeap(r13)
@@ -91,8 +91,8 @@ lbl_802DA324:
 /* 802DA328  80 8D 8E DC */	lwz r4, tsPtr(r13)
 /* 802DA32C  80 84 00 00 */	lwz r4, 0(r4)
 /* 802DA330  48 06 13 09 */	bl DCStoreRangeNoSync
-/* 802DA334  3C 60 80 43 */	lis r3, decompMutex@ha
-/* 802DA338  38 63 43 90 */	addi r3, r3, decompMutex@l
+/* 802DA334  3C 60 80 43 */	lis r3, decompMutex@ha /* 0x80434390@ha */
+/* 802DA338  38 63 43 90 */	addi r3, r3, decompMutex@l /* 0x80434390@l */
 /* 802DA33C  48 06 4D E1 */	bl OSUnlockMutex
 /* 802DA340  7F 03 C3 78 */	mr r3, r24
 /* 802DA344  39 61 00 30 */	addi r11, r1, 0x30

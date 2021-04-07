@@ -11,8 +11,8 @@ lbl_800B3F2C:
 /* 800B3F50  48 2B 11 81 */	bl abs
 /* 800B3F54  2C 03 10 00 */	cmpwi r3, 0x1000
 /* 800B3F58  40 81 00 64 */	ble lbl_800B3FBC
-/* 800B3F5C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800B3F60  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 800B3F5C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800B3F60  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800B3F64  A8 7F 04 DE */	lha r3, 0x4de(r31)
 /* 800B3F68  A8 1F 2F E2 */	lha r0, 0x2fe2(r31)
 /* 800B3F6C  7C 03 00 50 */	subf r0, r3, r0

@@ -5,8 +5,8 @@ lbl_80297EC4:
 /* 80297ED0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80297ED4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80297ED8  41 82 00 1C */	beq lbl_80297EF4
-/* 80297EDC  3C A0 80 3C */	lis r5, __vt__7JASBank@ha
-/* 80297EE0  38 05 76 BC */	addi r0, r5, __vt__7JASBank@l
+/* 80297EDC  3C A0 80 3C */	lis r5, __vt__7JASBank@ha /* 0x803C76BC@ha */
+/* 80297EE0  38 05 76 BC */	addi r0, r5, __vt__7JASBank@l /* 0x803C76BC@l */
 /* 80297EE4  90 1F 00 00 */	stw r0, 0(r31)
 /* 80297EE8  7C 80 07 35 */	extsh. r0, r4
 /* 80297EEC  40 81 00 08 */	ble lbl_80297EF4

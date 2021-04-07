@@ -6,8 +6,8 @@ lbl_800319C8:
 /* 800319D8  80 6D 88 30 */	lwz r3, m_grass__9daGrass_c(r13)
 /* 800319DC  28 03 00 00 */	cmplwi r3, 0
 /* 800319E0  41 82 00 30 */	beq lbl_80031A10
-/* 800319E4  3C A0 80 42 */	lis r5, m_deleteRoom__15dGrass_packet_c@ha
-/* 800319E8  38 C5 45 88 */	addi r6, r5, m_deleteRoom__15dGrass_packet_c@l
+/* 800319E4  3C A0 80 42 */	lis r5, m_deleteRoom__15dGrass_packet_c@ha /* 0x80424588@ha */
+/* 800319E8  38 C5 45 88 */	addi r6, r5, m_deleteRoom__15dGrass_packet_c@l /* 0x80424588@l */
 /* 800319EC  80 A6 00 00 */	lwz r5, 0(r6)
 /* 800319F0  80 06 00 04 */	lwz r0, 4(r6)
 /* 800319F4  90 A1 00 08 */	stw r5, 8(r1)

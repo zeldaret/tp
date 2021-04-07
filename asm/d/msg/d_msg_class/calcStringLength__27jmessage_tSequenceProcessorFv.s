@@ -15,8 +15,8 @@ lbl_8022CBE8:
 /* 8022CC1C  93 C3 00 58 */	stw r30, 0x58(r3)
 /* 8022CC20  38 00 00 00 */	li r0, 0
 /* 8022CC24  90 03 00 5C */	stw r0, 0x5c(r3)
-/* 8022CC28  3C 60 80 2B */	lis r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
-/* 8022CC2C  38 03 82 8C */	addi r0, r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
+/* 8022CC28  3C 60 80 2B */	lis r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha /* 0x802A828C@ha */
+/* 8022CC2C  38 03 82 8C */	addi r0, r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l /* 0x802A828C@l */
 /* 8022CC30  90 1C 00 70 */	stw r0, 0x70(r28)
 /* 8022CC34  38 7C 00 4C */	addi r3, r28, 0x4c
 /* 8022CC38  7F C4 F3 78 */	mr r4, r30

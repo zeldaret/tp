@@ -4,17 +4,17 @@ lbl_80350318:
 /* 80350320  94 21 FF E8 */	stwu r1, -0x18(r1)
 /* 80350324  93 E1 00 14 */	stw r31, 0x14(r1)
 /* 80350328  7C 7F 1B 78 */	mr r31, r3
-/* 8035032C  3C A0 80 45 */	lis r5, __OldStack@ha
-/* 80350330  38 A5 18 84 */	addi r5, r5, __OldStack@l
+/* 8035032C  3C A0 80 45 */	lis r5, __OldStack@ha /* 0x80451884@ha */
+/* 80350330  38 A5 18 84 */	addi r5, r5, __OldStack@l /* 0x80451884@l */
 /* 80350334  90 25 00 00 */	stw r1, 0(r5)
-/* 80350338  3C A0 80 45 */	lis r5, __CallbackStack@ha
-/* 8035033C  38 A5 18 80 */	addi r5, r5, __CallbackStack@l
+/* 80350338  3C A0 80 45 */	lis r5, __CallbackStack@ha /* 0x80451880@ha */
+/* 8035033C  38 A5 18 80 */	addi r5, r5, __CallbackStack@l /* 0x80451880@l */
 /* 80350340  80 25 00 00 */	lwz r1, 0(r5)
 /* 80350344  38 21 FF F8 */	addi r1, r1, -8
 /* 80350348  7F E8 03 A6 */	mtlr r31
 /* 8035034C  4E 80 00 21 */	blrl 
-/* 80350350  3C A0 80 45 */	lis r5, __OldStack@ha
-/* 80350354  38 A5 18 84 */	addi r5, r5, __OldStack@l
+/* 80350350  3C A0 80 45 */	lis r5, __OldStack@ha /* 0x80451884@ha */
+/* 80350354  38 A5 18 84 */	addi r5, r5, __OldStack@l /* 0x80451884@l */
 /* 80350358  80 25 00 00 */	lwz r1, 0(r5)
 /* 8035035C  80 01 00 1C */	lwz r0, 0x1c(r1)
 /* 80350360  83 E1 00 14 */	lwz r31, 0x14(r1)

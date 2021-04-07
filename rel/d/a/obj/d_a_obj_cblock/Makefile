@@ -3,19 +3,20 @@
 #
 
 M419_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cblock.plf
+M419_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cblock.lcf
+M419_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cblock.map
 
 M419_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_cblock/executor.cpp \
-	rel/d/a/obj/d_a_obj_cblock/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_cblock/d_a_obj_cblock.cpp \
 
 M419_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cblock/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cblock/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cblock/d_a_obj_cblock.o \
 
 M419_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cblock/libRuntime.PPCEABI.H.a \
 
 M419_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M419_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M419_LDSCRIPT) \
+	-unused -map $(M419_MAP) \
+	-w off \
 
 $(M419_TARGET): $(M419_O_FILES) $(M419_LIBS)
+	@echo [419] creating $(M419_TARGET)
 	@echo $(M419_LIBS) $(M419_O_FILES) > build/M419_ofiles
-	$(LD) -partial $(M419_LDFLAGS) -o $(M419_TARGET) @build/M419_ofiles
+	@python3 tools/lcf.py rel 419 --output $(M419_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M419_LDFLAGS) -o $(M419_TARGET) @build/M419_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cblock/%.o: rel/d/a/obj/d_a_obj_cblock/%.cpp
+	@echo [419] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M419_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M419_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_cblock/libs/Runtime.PPCEABI.H/Makefile
 

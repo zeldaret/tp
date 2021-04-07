@@ -5,14 +5,14 @@ lbl_805CA670:
 /* 805CA67C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 805CA680  7C 7F 1B 78 */	mr r31, r3
 /* 805CA684  38 7F 06 3C */	addi r3, r31, 0x63c
-/* 805CA688  3C 80 80 5D */	lis r4, stringBase0@ha
-/* 805CA68C  38 84 AE CC */	addi r4, r4, stringBase0@l
-/* 805CA690  4B A6 29 78 */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 805CA688  3C 80 80 5D */	lis r4, d_a_b_dre__stringBase0@ha /* 0x805CAECC@ha */
+/* 805CA68C  38 84 AE CC */	addi r4, r4, d_a_b_dre__stringBase0@l /* 0x805CAECC@l */
+/* 805CA690  4B A6 29 79 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 805CA694  80 1F 00 F0 */	lwz r0, 0xf0(r31)
 /* 805CA698  28 00 00 00 */	cmplwi r0, 0
 /* 805CA69C  41 82 00 0C */	beq lbl_805CA6A8
 /* 805CA6A0  80 7F 06 EC */	lwz r3, 0x6ec(r31)
-/* 805CA6A4  4B A4 6C 6C */	b stopZelAnime__16mDoExt_McaMorfSOFv
+/* 805CA6A4  4B A4 6C 6D */	bl stopZelAnime__16mDoExt_McaMorfSOFv
 lbl_805CA6A8:
 /* 805CA6A8  38 60 00 01 */	li r3, 1
 /* 805CA6AC  83 E1 00 0C */	lwz r31, 0xc(r1)

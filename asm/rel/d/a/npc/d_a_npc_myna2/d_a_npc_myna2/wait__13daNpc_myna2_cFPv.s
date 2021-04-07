@@ -14,8 +14,8 @@ lbl_80A85BC8:
 /* 80A85BF8  48 00 00 50 */	b lbl_80A85C48
 lbl_80A85BFC:
 /* 80A85BFC  38 80 00 00 */	li r4, 0
-/* 80A85C00  3C A0 80 A9 */	lis r5, lit_4982@ha
-/* 80A85C04  C0 25 85 C0 */	lfs f1, lit_4982@l(r5)
+/* 80A85C00  3C A0 80 A9 */	lis r5, lit_4982@ha /* 0x80A885C0@ha */
+/* 80A85C04  C0 25 85 C0 */	lfs f1, lit_4982@l(r5)  /* 0x80A885C0@l */
 /* 80A85C08  38 A0 00 00 */	li r5, 0
 /* 80A85C0C  81 83 0B 44 */	lwz r12, 0xb44(r3)
 /* 80A85C10  81 8C 00 3C */	lwz r12, 0x3c(r12)
@@ -30,7 +30,7 @@ lbl_80A85BFC:
 /* 80A85C34  B0 1F 0E 0A */	sth r0, 0xe0a(r31)
 lbl_80A85C38:
 /* 80A85C38  7F E3 FB 78 */	mr r3, r31
-/* 80A85C3C  4B 59 40 40 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80A85C3C  4B 59 40 41 */	bl fopAcM_delete__FP10fopAc_ac_c
 /* 80A85C40  38 60 00 01 */	li r3, 1
 /* 80A85C44  48 00 00 08 */	b lbl_80A85C4C
 lbl_80A85C48:

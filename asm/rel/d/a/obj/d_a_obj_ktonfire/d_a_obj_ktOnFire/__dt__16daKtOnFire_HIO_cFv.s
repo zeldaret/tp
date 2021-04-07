@@ -5,18 +5,18 @@ lbl_8058CEA8:
 /* 8058CEB4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8058CEB8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8058CEBC  41 82 00 30 */	beq lbl_8058CEEC
-/* 8058CEC0  3C 60 80 59 */	lis r3, __vt__16daKtOnFire_HIO_c@ha
-/* 8058CEC4  38 03 D0 A0 */	addi r0, r3, __vt__16daKtOnFire_HIO_c@l
+/* 8058CEC0  3C 60 80 59 */	lis r3, __vt__16daKtOnFire_HIO_c@ha /* 0x8058D0A0@ha */
+/* 8058CEC4  38 03 D0 A0 */	addi r0, r3, __vt__16daKtOnFire_HIO_c@l /* 0x8058D0A0@l */
 /* 8058CEC8  90 1F 00 00 */	stw r0, 0(r31)
 /* 8058CECC  41 82 00 10 */	beq lbl_8058CEDC
-/* 8058CED0  3C 60 80 59 */	lis r3, __vt__14mDoHIO_entry_c@ha
-/* 8058CED4  38 03 D0 AC */	addi r0, r3, __vt__14mDoHIO_entry_c@l
+/* 8058CED0  3C 60 80 59 */	lis r3, __vt__14mDoHIO_entry_c@ha /* 0x8058D0AC@ha */
+/* 8058CED4  38 03 D0 AC */	addi r0, r3, __vt__14mDoHIO_entry_c@l /* 0x8058D0AC@l */
 /* 8058CED8  90 1F 00 00 */	stw r0, 0(r31)
 lbl_8058CEDC:
 /* 8058CEDC  7C 80 07 35 */	extsh. r0, r4
 /* 8058CEE0  40 81 00 0C */	ble lbl_8058CEEC
 /* 8058CEE4  7F E3 FB 78 */	mr r3, r31
-/* 8058CEE8  4B D4 1E 54 */	b __dl__FPv
+/* 8058CEE8  4B D4 1E 55 */	bl __dl__FPv
 lbl_8058CEEC:
 /* 8058CEEC  7F E3 FB 78 */	mr r3, r31
 /* 8058CEF0  83 E1 00 0C */	lwz r31, 0xc(r1)

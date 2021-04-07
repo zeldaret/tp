@@ -13,16 +13,16 @@ lbl_80262AFC:
 /* 80262B28  38 60 00 01 */	li r3, 1
 /* 80262B2C  48 00 00 84 */	b lbl_80262BB0
 lbl_80262B30:
-/* 80262B30  3C 60 80 26 */	lis r3, callback__20DynamicModuleControlFPv@ha
-/* 80262B34  38 63 27 94 */	addi r3, r3, callback__20DynamicModuleControlFPv@l
+/* 80262B30  3C 60 80 26 */	lis r3, callback__20DynamicModuleControlFPv@ha /* 0x80262794@ha */
+/* 80262B34  38 63 27 94 */	addi r3, r3, callback__20DynamicModuleControlFPv@l /* 0x80262794@l */
 /* 80262B38  7F E4 FB 78 */	mr r4, r31
 /* 80262B3C  4B DB 31 39 */	bl create__20mDoDvdThd_callback_cFPFPv_PvPv
 /* 80262B40  90 7F 00 28 */	stw r3, 0x28(r31)
 /* 80262B44  80 1F 00 28 */	lwz r0, 0x28(r31)
 /* 80262B48  28 00 00 00 */	cmplwi r0, 0
 /* 80262B4C  40 82 00 1C */	bne lbl_80262B68
-/* 80262B50  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha
-/* 80262B54  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l
+/* 80262B50  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha /* 0x8039A4A0@ha */
+/* 80262B54  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l /* 0x8039A4A0@l */
 /* 80262B58  38 63 01 DF */	addi r3, r3, 0x1df
 /* 80262B5C  80 9F 00 1C */	lwz r4, 0x1c(r31)
 /* 80262B60  4C C6 31 82 */	crclr 6

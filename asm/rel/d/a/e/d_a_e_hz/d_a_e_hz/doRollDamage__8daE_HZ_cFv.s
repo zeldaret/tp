@@ -5,8 +5,8 @@ lbl_806ED7A8:
 /* 806ED7B4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 806ED7B8  93 C1 00 08 */	stw r30, 8(r1)
 /* 806ED7BC  7C 7E 1B 78 */	mr r30, r3
-/* 806ED7C0  3C 60 80 6F */	lis r3, lit_3966@ha
-/* 806ED7C4  3B E3 08 60 */	addi r31, r3, lit_3966@l
+/* 806ED7C0  3C 60 80 6F */	lis r3, lit_3966@ha /* 0x806F0860@ha */
+/* 806ED7C4  3B E3 08 60 */	addi r31, r3, lit_3966@l /* 0x806F0860@l */
 /* 806ED7C8  A8 7E 04 E6 */	lha r3, 0x4e6(r30)
 /* 806ED7CC  A8 1E 06 B6 */	lha r0, 0x6b6(r30)
 /* 806ED7D0  7C 03 02 14 */	add r0, r3, r0
@@ -26,16 +26,16 @@ lbl_806ED7A8:
 /* 806ED808  C0 3F 00 7C */	lfs f1, 0x7c(r31)
 /* 806ED80C  38 FE 01 0C */	addi r7, r30, 0x10c
 /* 806ED810  39 00 00 00 */	li r8, 0
-/* 806ED814  4B 92 F8 0C */	b fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci
+/* 806ED814  4B 92 F8 0D */	bl fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci
 lbl_806ED818:
 /* 806ED818  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 806ED81C  C0 3F 00 04 */	lfs f1, 4(r31)
 /* 806ED820  C0 5F 00 08 */	lfs f2, 8(r31)
-/* 806ED824  4B B8 2F 1C */	b cLib_chaseF__FPfff
+/* 806ED824  4B B8 2F 1D */	bl cLib_chaseF__FPfff
 /* 806ED828  38 7E 06 B6 */	addi r3, r30, 0x6b6
 /* 806ED82C  38 80 00 00 */	li r4, 0
 /* 806ED830  38 A0 00 80 */	li r5, 0x80
-/* 806ED834  4B B8 33 5C */	b cLib_chaseAngleS__FPsss
+/* 806ED834  4B B8 33 5D */	bl cLib_chaseAngleS__FPsss
 /* 806ED838  C0 1E 05 2C */	lfs f0, 0x52c(r30)
 /* 806ED83C  C0 3F 00 04 */	lfs f1, 4(r31)
 /* 806ED840  FC 00 08 00 */	fcmpu cr0, f0, f1

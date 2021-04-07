@@ -6,16 +6,16 @@ lbl_8006B1A8:
 /* 8006B1B8  F3 E1 00 68 */	psq_st f31, 104(r1), 0, 0 /* qr0 */
 /* 8006B1BC  39 61 00 60 */	addi r11, r1, 0x60
 /* 8006B1C0  48 2F 70 15 */	bl _savegpr_27
-/* 8006B1C4  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8006B1C8  3B E3 CA 54 */	addi r31, r3, g_env_light@l
-/* 8006B1CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8006B1D0  3B 83 61 C0 */	addi r28, r3, g_dComIfG_gameInfo@l
+/* 8006B1C4  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8006B1C8  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
+/* 8006B1CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8006B1D0  3B 83 61 C0 */	addi r28, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8006B1D4  83 DC 5D 74 */	lwz r30, 0x5d74(r28)
 /* 8006B1D8  3B A0 00 00 */	li r29, 0
 /* 8006B1DC  3B 7C 4E 00 */	addi r27, r28, 0x4e00
 /* 8006B1E0  7F 63 DB 78 */	mr r3, r27
-/* 8006B1E4  3C 80 80 38 */	lis r4, d_kankyo_d_kankyo_rain__stringBase0@ha
-/* 8006B1E8  38 84 A5 78 */	addi r4, r4, d_kankyo_d_kankyo_rain__stringBase0@l
+/* 8006B1E4  3C 80 80 38 */	lis r4, d_kankyo_d_kankyo_rain__stringBase0@ha /* 0x8037A578@ha */
+/* 8006B1E8  38 84 A5 78 */	addi r4, r4, d_kankyo_d_kankyo_rain__stringBase0@l /* 0x8037A578@l */
 /* 8006B1EC  38 84 00 8F */	addi r4, r4, 0x8f
 /* 8006B1F0  38 A0 00 04 */	li r5, 4
 /* 8006B1F4  48 2F AE 99 */	bl memcmp
@@ -23,8 +23,8 @@ lbl_8006B1A8:
 /* 8006B1FC  40 82 00 34 */	bne lbl_8006B230
 /* 8006B200  3B A0 00 01 */	li r29, 1
 /* 8006B204  7F 63 DB 78 */	mr r3, r27
-/* 8006B208  3C 80 80 38 */	lis r4, d_kankyo_d_kankyo_rain__stringBase0@ha
-/* 8006B20C  38 84 A5 78 */	addi r4, r4, d_kankyo_d_kankyo_rain__stringBase0@l
+/* 8006B208  3C 80 80 38 */	lis r4, d_kankyo_d_kankyo_rain__stringBase0@ha /* 0x8037A578@ha */
+/* 8006B20C  38 84 A5 78 */	addi r4, r4, d_kankyo_d_kankyo_rain__stringBase0@l /* 0x8037A578@l */
 /* 8006B210  38 84 00 1F */	addi r4, r4, 0x1f
 /* 8006B214  48 2F D7 81 */	bl strcmp
 /* 8006B218  2C 03 00 00 */	cmpwi r3, 0
@@ -64,8 +64,8 @@ lbl_8006B268:
 /* 8006B294  2C 00 00 00 */	cmpwi r0, 0
 /* 8006B298  41 82 00 B0 */	beq lbl_8006B348
 /* 8006B29C  38 80 00 00 */	li r4, 0
-/* 8006B2A0  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8006B2A4  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8006B2A0  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8006B2A4  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8006B2A8  88 03 0E D6 */	lbz r0, 0xed6(r3)
 /* 8006B2AC  28 00 00 00 */	cmplwi r0, 0
 /* 8006B2B0  41 82 00 10 */	beq lbl_8006B2C0
@@ -109,8 +109,8 @@ lbl_8006B2C0:
 /* 8006B344  48 00 03 04 */	b lbl_8006B648
 lbl_8006B348:
 /* 8006B348  7F 63 DB 78 */	mr r3, r27
-/* 8006B34C  3C 80 80 38 */	lis r4, d_kankyo_d_kankyo_rain__stringBase0@ha
-/* 8006B350  38 84 A5 78 */	addi r4, r4, d_kankyo_d_kankyo_rain__stringBase0@l
+/* 8006B34C  3C 80 80 38 */	lis r4, d_kankyo_d_kankyo_rain__stringBase0@ha /* 0x8037A578@ha */
+/* 8006B350  38 84 A5 78 */	addi r4, r4, d_kankyo_d_kankyo_rain__stringBase0@l /* 0x8037A578@l */
 /* 8006B354  38 84 00 08 */	addi r4, r4, 8
 /* 8006B358  48 2F D6 3D */	bl strcmp
 /* 8006B35C  2C 03 00 00 */	cmpwi r3, 0
@@ -118,8 +118,8 @@ lbl_8006B348:
 /* 8006B364  88 1C 4F AD */	lbz r0, 0x4fad(r28)
 /* 8006B368  28 00 00 00 */	cmplwi r0, 0
 /* 8006B36C  41 82 00 98 */	beq lbl_8006B404
-/* 8006B370  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8006B374  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8006B370  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8006B374  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8006B378  88 03 0E D6 */	lbz r0, 0xed6(r3)
 /* 8006B37C  28 00 00 00 */	cmplwi r0, 0
 /* 8006B380  41 82 02 C8 */	beq lbl_8006B648
@@ -186,8 +186,8 @@ lbl_8006B464:
 /* 8006B46C  C0 02 89 E4 */	lfs f0, lit_6720(r2)
 /* 8006B470  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8006B474  40 80 01 D4 */	bge lbl_8006B648
-/* 8006B478  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8006B47C  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8006B478  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8006B47C  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8006B480  80 03 0E D8 */	lwz r0, 0xed8(r3)
 /* 8006B484  2C 00 00 0A */	cmpwi r0, 0xa
 /* 8006B488  40 80 01 C0 */	bge lbl_8006B648
@@ -239,8 +239,8 @@ lbl_8006B510:
 /* 8006B53C  88 1F 0E D5 */	lbz r0, 0xed5(r31)
 /* 8006B540  28 00 00 0A */	cmplwi r0, 0xa
 /* 8006B544  40 80 00 14 */	bge lbl_8006B558
-/* 8006B548  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha
-/* 8006B54C  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l
+/* 8006B548  3C 60 80 43 */	lis r3, g_mEnvSeMgr@ha /* 0x8042DD70@ha */
+/* 8006B54C  38 63 DD 70 */	addi r3, r3, g_mEnvSeMgr@l /* 0x8042DD70@l */
 /* 8006B550  38 80 00 00 */	li r4, 0
 /* 8006B554  48 25 C7 A1 */	bl startNearThunderSe__10Z2EnvSeMgrFSc
 lbl_8006B558:
@@ -268,8 +268,8 @@ lbl_8006B568:
 lbl_8006B5A8:
 /* 8006B5A8  38 80 00 00 */	li r4, 0
 /* 8006B5AC  98 9F 0E D5 */	stb r4, 0xed5(r31)
-/* 8006B5B0  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8006B5B4  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8006B5B0  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8006B5B4  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8006B5B8  80 03 0E D8 */	lwz r0, 0xed8(r3)
 /* 8006B5BC  2C 00 00 00 */	cmpwi r0, 0
 /* 8006B5C0  40 82 00 88 */	bne lbl_8006B648
@@ -365,8 +365,8 @@ lbl_8006B6CC:
 /* 8006B718  80 01 00 2C */	lwz r0, 0x2c(r1)
 /* 8006B71C  54 00 06 3E */	clrlwi r0, r0, 0x18
 /* 8006B720  B0 1F 0F 08 */	sth r0, 0xf08(r31)
-/* 8006B724  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8006B728  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8006B724  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8006B728  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8006B72C  88 03 12 D6 */	lbz r0, 0x12d6(r3)
 /* 8006B730  28 00 00 00 */	cmplwi r0, 0
 /* 8006B734  40 82 01 88 */	bne lbl_8006B8BC
@@ -429,8 +429,8 @@ lbl_8006B7E0:
 /* 8006B810  EC 21 00 32 */	fmuls f1, f1, f0
 /* 8006B814  48 13 C7 AD */	bl dKy_vrbox_addcol_kasumi_set__Fsssf
 /* 8006B818  C0 22 88 14 */	lfs f1, lit_4354(r2)
-/* 8006B81C  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8006B820  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8006B81C  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8006B820  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8006B824  C0 03 12 10 */	lfs f0, 0x1210(r3)
 /* 8006B828  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 8006B82C  40 82 00 90 */	bne lbl_8006B8BC
@@ -458,8 +458,8 @@ lbl_8006B850:
 /* 8006B880  EC 21 00 32 */	fmuls f1, f1, f0
 /* 8006B884  48 13 C7 3D */	bl dKy_vrbox_addcol_kasumi_set__Fsssf
 /* 8006B888  C0 22 88 14 */	lfs f1, lit_4354(r2)
-/* 8006B88C  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8006B890  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8006B88C  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8006B890  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8006B894  C0 03 12 10 */	lfs f0, 0x1210(r3)
 /* 8006B898  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 8006B89C  40 82 00 20 */	bne lbl_8006B8BC

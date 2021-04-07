@@ -19,15 +19,15 @@ lbl_80156E8C:
 /* 80156ED0  48 00 00 88 */	b lbl_80156F58
 lbl_80156ED4:
 /* 80156ED4  57 E0 10 3A */	slwi r0, r31, 2
-/* 80156ED8  3C 60 80 39 */	lis r3, a_jntNumTbl@ha
-/* 80156EDC  38 63 2F C4 */	addi r3, r3, a_jntNumTbl@l
+/* 80156ED8  3C 60 80 39 */	lis r3, a_jntNumTbl@ha /* 0x80392FC4@ha */
+/* 80156EDC  38 63 2F C4 */	addi r3, r3, a_jntNumTbl@l /* 0x80392FC4@l */
 /* 80156EE0  7F E3 00 2E */	lwzx r31, r3, r0
 /* 80156EE4  28 1E 00 00 */	cmplwi r30, 0
 /* 80156EE8  41 82 00 6C */	beq lbl_80156F54
 /* 80156EEC  2C 1F 00 00 */	cmpwi r31, 0
 /* 80156EF0  41 80 00 64 */	blt lbl_80156F54
-/* 80156EF4  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80156EF8  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 80156EF4  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80156EF8  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80156EFC  80 9E 00 04 */	lwz r4, 4(r30)
 /* 80156F00  38 BD 01 0C */	addi r5, r29, 0x10c
 /* 80156F04  48 04 DE 9D */	bl setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
@@ -37,15 +37,15 @@ lbl_80156ED4:
 /* 80156F14  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 80156F18  1C 1F 00 30 */	mulli r0, r31, 0x30
 /* 80156F1C  7C 63 02 14 */	add r3, r3, r0
-/* 80156F20  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha
-/* 80156F24  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l
+/* 80156F20  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80156F24  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80156F28  48 1E F5 89 */	bl PSMTXCopy
 /* 80156F2C  FC 20 F8 90 */	fmr f1, f31
 /* 80156F30  FC 40 F8 90 */	fmr f2, f31
 /* 80156F34  FC 60 F8 90 */	fmr f3, f31
 /* 80156F38  4B EB 5F 01 */	bl scaleM__14mDoMtx_stack_cFfff
-/* 80156F3C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80156F40  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80156F3C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80156F40  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80156F44  38 9E 00 24 */	addi r4, r30, 0x24
 /* 80156F48  48 1E F5 69 */	bl PSMTXCopy
 /* 80156F4C  7F C3 F3 78 */	mr r3, r30

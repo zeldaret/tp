@@ -28,13 +28,9 @@ struct daObjPRElvtr_c {
     /* 80C68AF0 */ ~daObjPRElvtr_c();
 };
 
-struct daObjLv4PRwall_c {
-    /* 80C68C98 */ void create1st();
-};
+struct dKy_tevstr_c {};
 
 struct cXyz {};
-
-struct dKy_tevstr_c {};
 
 struct J3DModelData {};
 
@@ -51,9 +47,9 @@ struct dRes_control_c {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -74,12 +70,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void searchObjSwTurn(void*, void*);
-static void daObjPRElvtr_create1st(daObjPRElvtr_c*);
-static void daObjPRElvtr_MoveBGDelete(daObjPRElvtr_c*);
-static void daObjPRElvtr_MoveBGExecute(daObjPRElvtr_c*);
-static void daObjPRElvtr_MoveBGDraw(daObjPRElvtr_c*);
-
 extern "C" void create1st__14daObjPRElvtr_cFv();
 extern "C" void setMtx__14daObjPRElvtr_cFv();
 extern "C" void CreateHeap__14daObjPRElvtr_cFv();
@@ -93,23 +83,11 @@ extern "C" static void daObjPRElvtr_MoveBGDelete__FP14daObjPRElvtr_c();
 extern "C" static void daObjPRElvtr_MoveBGExecute__FP14daObjPRElvtr_c();
 extern "C" static void daObjPRElvtr_MoveBGDraw__FP14daObjPRElvtr_c();
 extern "C" void __dt__14daObjPRElvtr_cFv();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_PRElvtr[12];
+extern "C" extern char const* const d_a_obj_lv4prelvtr__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAc_IsActor(void*);
-void fopAcIt_Judge(void* (*)(void*, void*), void*);
-void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dBgS_MoveBGProc_Trans(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
@@ -142,42 +120,16 @@ extern "C" extern u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" void _unresolved();
-extern "C" void create1st__16daObjLv4PRwall_cFv();
 
 //
 // Declarations:
 //
 
 /* ############################################################################################## */
-/* 80C68B68-80C68B80 0018+00 s=1 e=0 z=0  None .rodata    l_cull_box */
-SECTION_RODATA static u8 const l_cull_box[24] = {
-    0xC4, 0x35, 0x40, 0x00, 0xC3, 0x9D, 0x80, 0x00, 0xC4, 0x35, 0x40, 0x00,
-    0x44, 0x35, 0x40, 0x00, 0xC1, 0x70, 0x00, 0x00, 0x44, 0x35, 0x40, 0x00,
-};
+/* 80C68B98-80C68B9C -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_lv4prelvtr__stringBase0;
 
-/* 80C68B80-80C68B84 0004+00 s=1 e=0 z=0  None .rodata    @3694 */
-SECTION_RODATA static u32 const lit_3694 = 0x44610000;
-
-/* 80C68B84-80C68B88 0004+00 s=1 e=0 z=0  None .rodata    @3695 */
-SECTION_RODATA static u32 const lit_3695 = 0x467FFC00;
-
-/* 80C68B88-80C68B90 0008+00 s=1 e=0 z=0  None .rodata    @3697 */
-SECTION_RODATA static u8 const lit_3697[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-
-/* 80C68B90-80C68B98 0008+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80C68B90 = "PRElvtr";
-#pragma pop
-
-/* 80C68B98-80C68B9C 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80C685F8-80C68688 0090+00 s=1 e=0 z=0  None .text      create1st__14daObjPRElvtr_cFv */
+/* 80C685F8-80C68688 000078 0090+00 1/1 0/0 0/0 .text            create1st__14daObjPRElvtr_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -187,7 +139,7 @@ asm void daObjPRElvtr_c::create1st() {
 }
 #pragma pop
 
-/* 80C68688-80C686F8 0070+00 s=2 e=0 z=0  None .text      setMtx__14daObjPRElvtr_cFv */
+/* 80C68688-80C686F8 000108 0070+00 2/2 0/0 0/0 .text            setMtx__14daObjPRElvtr_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -197,7 +149,7 @@ asm void daObjPRElvtr_c::setMtx() {
 }
 #pragma pop
 
-/* 80C686F8-80C68768 0070+00 s=1 e=0 z=0  None .text      CreateHeap__14daObjPRElvtr_cFv */
+/* 80C686F8-80C68768 000178 0070+00 1/0 0/0 0/0 .text            CreateHeap__14daObjPRElvtr_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -207,7 +159,15 @@ asm void daObjPRElvtr_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80C68768-80C687D0 0068+00 s=1 e=0 z=0  None .text      Create__14daObjPRElvtr_cFv */
+/* ############################################################################################## */
+/* 80C68B68-80C68B80 000000 0018+00 1/1 0/0 0/0 .rodata          l_cull_box */
+SECTION_RODATA static u8 const l_cull_box[24] = {
+    0xC4, 0x35, 0x40, 0x00, 0xC3, 0x9D, 0x80, 0x00, 0xC4, 0x35, 0x40, 0x00,
+    0x44, 0x35, 0x40, 0x00, 0xC1, 0x70, 0x00, 0x00, 0x44, 0x35, 0x40, 0x00,
+};
+COMPILER_STRIP_GATE(80C68B68, &l_cull_box);
+
+/* 80C68768-80C687D0 0001E8 0068+00 1/0 0/0 0/0 .text            Create__14daObjPRElvtr_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -217,17 +177,33 @@ asm void daObjPRElvtr_c::Create() {
 }
 #pragma pop
 
-/* 80C687D0-80C68844 0074+00 s=1 e=0 z=0  None .text      searchObjSwTurn__FPvPv */
+/* 80C687D0-80C68844 000250 0074+00 1/1 0/0 0/0 .text            searchObjSwTurn__FPvPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void searchObjSwTurn(void* param_0, void* param_1) {
+static asm void searchObjSwTurn(void* param_0, void* param_1) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4prelvtr/d_a_obj_lv4prelvtr/searchObjSwTurn__FPvPv.s"
 }
 #pragma pop
 
-/* 80C68844-80C68944 0100+00 s=1 e=0 z=0  None .text      Execute__14daObjPRElvtr_cFPPA3_A4_f */
+/* ############################################################################################## */
+/* 80C68B80-80C68B84 000018 0004+00 1/1 0/0 0/0 .rodata          @3694 */
+SECTION_RODATA static f32 const lit_3694 = 900.0f;
+COMPILER_STRIP_GATE(80C68B80, &lit_3694);
+
+/* 80C68B84-80C68B88 00001C 0004+00 1/1 0/0 0/0 .rodata          @3695 */
+SECTION_RODATA static f32 const lit_3695 = 16383.0f;
+COMPILER_STRIP_GATE(80C68B84, &lit_3695);
+
+/* 80C68B88-80C68B90 000020 0008+00 1/1 0/0 0/0 .rodata          @3697 */
+SECTION_RODATA static u8 const lit_3697[8] = {
+    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(80C68B88, &lit_3697);
+
+/* 80C68844-80C68944 0002C4 0100+00 1/0 0/0 0/0 .text            Execute__14daObjPRElvtr_cFPPA3_A4_f
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -237,7 +213,7 @@ asm void daObjPRElvtr_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 80C68944-80C689E8 00A4+00 s=1 e=0 z=0  None .text      Draw__14daObjPRElvtr_cFv */
+/* 80C68944-80C689E8 0003C4 00A4+00 1/0 0/0 0/0 .text            Draw__14daObjPRElvtr_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -247,7 +223,7 @@ asm void daObjPRElvtr_c::Draw() {
 }
 #pragma pop
 
-/* 80C689E8-80C68A24 003C+00 s=1 e=0 z=0  None .text      Delete__14daObjPRElvtr_cFv */
+/* 80C689E8-80C68A24 000468 003C+00 1/0 0/0 0/0 .text            Delete__14daObjPRElvtr_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -258,7 +234,7 @@ asm void daObjPRElvtr_c::Delete() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C68B9C-80C68BBC 0020+00 s=1 e=0 z=0  None .data      daObjPRElvtr_METHODS */
+/* 80C68B9C-80C68BBC -00001 0020+00 1/0 0/0 0/0 .data            daObjPRElvtr_METHODS */
 SECTION_DATA static void* daObjPRElvtr_METHODS[8] = {
     (void*)daObjPRElvtr_create1st__FP14daObjPRElvtr_c,
     (void*)daObjPRElvtr_MoveBGDelete__FP14daObjPRElvtr_c,
@@ -270,8 +246,8 @@ SECTION_DATA static void* daObjPRElvtr_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 80C68BBC-80C68BEC 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_PRElvtr */
-SECTION_DATA void* g_profile_Obj_PRElvtr[12] = {
+/* 80C68BBC-80C68BEC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_PRElvtr */
+SECTION_DATA extern void* g_profile_Obj_PRElvtr[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00CA0000, (void*)&g_fpcLf_Method,
     (void*)0x00000610, (void*)NULL,
@@ -280,9 +256,9 @@ SECTION_DATA void* g_profile_Obj_PRElvtr[12] = {
     (void*)0x00040100, (void*)0x000E0000,
 };
 
-/* 80C68BEC-80C68C18 002C+00 s=2 e=0 z=0  None .data      __vt__14daObjPRElvtr_c */
-SECTION_DATA static void* __vt__14daObjPRElvtr_c[11] = {
-    (void*)NULL,
+/* 80C68BEC-80C68C18 000054 002C+00 2/2 0/0 0/0 .data            __vt__14daObjPRElvtr_c */
+SECTION_DATA extern void* __vt__14daObjPRElvtr_c[11] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__14daObjPRElvtr_cFv,
     (void*)Create__14daObjPRElvtr_cFv,
@@ -295,51 +271,51 @@ SECTION_DATA static void* __vt__14daObjPRElvtr_c[11] = {
     (void*)__dt__14daObjPRElvtr_cFv,
 };
 
-/* 80C68A24-80C68A84 0060+00 s=1 e=0 z=0  None .text      daObjPRElvtr_create1st__FP14daObjPRElvtr_c
+/* 80C68A24-80C68A84 0004A4 0060+00 1/0 0/0 0/0 .text daObjPRElvtr_create1st__FP14daObjPRElvtr_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjPRElvtr_create1st(daObjPRElvtr_c* param_0) {
+static asm void daObjPRElvtr_create1st(daObjPRElvtr_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4prelvtr/d_a_obj_lv4prelvtr/daObjPRElvtr_create1st__FP14daObjPRElvtr_c.s"
 }
 #pragma pop
 
-/* 80C68A84-80C68AA4 0020+00 s=1 e=0 z=0  None .text daObjPRElvtr_MoveBGDelete__FP14daObjPRElvtr_c
- */
+/* 80C68A84-80C68AA4 000504 0020+00 1/0 0/0 0/0 .text
+ * daObjPRElvtr_MoveBGDelete__FP14daObjPRElvtr_c                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjPRElvtr_MoveBGDelete(daObjPRElvtr_c* param_0) {
+static asm void daObjPRElvtr_MoveBGDelete(daObjPRElvtr_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4prelvtr/d_a_obj_lv4prelvtr/daObjPRElvtr_MoveBGDelete__FP14daObjPRElvtr_c.s"
 }
 #pragma pop
 
-/* 80C68AA4-80C68AC4 0020+00 s=1 e=0 z=0  None .text
+/* 80C68AA4-80C68AC4 000524 0020+00 1/0 0/0 0/0 .text
  * daObjPRElvtr_MoveBGExecute__FP14daObjPRElvtr_c               */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjPRElvtr_MoveBGExecute(daObjPRElvtr_c* param_0) {
+static asm void daObjPRElvtr_MoveBGExecute(daObjPRElvtr_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4prelvtr/d_a_obj_lv4prelvtr/daObjPRElvtr_MoveBGExecute__FP14daObjPRElvtr_c.s"
 }
 #pragma pop
 
-/* 80C68AC4-80C68AF0 002C+00 s=1 e=0 z=0  None .text daObjPRElvtr_MoveBGDraw__FP14daObjPRElvtr_c
+/* 80C68AC4-80C68AF0 000544 002C+00 1/0 0/0 0/0 .text daObjPRElvtr_MoveBGDraw__FP14daObjPRElvtr_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjPRElvtr_MoveBGDraw(daObjPRElvtr_c* param_0) {
+static asm void daObjPRElvtr_MoveBGDraw(daObjPRElvtr_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4prelvtr/d_a_obj_lv4prelvtr/daObjPRElvtr_MoveBGDraw__FP14daObjPRElvtr_c.s"
 }
 #pragma pop
 
-/* 80C68AF0-80C68B60 0070+00 s=1 e=0 z=0  None .text      __dt__14daObjPRElvtr_cFv */
+/* 80C68AF0-80C68B60 000570 0070+00 1/0 0/0 0/0 .text            __dt__14daObjPRElvtr_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -347,4 +323,11 @@ asm daObjPRElvtr_c::~daObjPRElvtr_c() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv4prelvtr/d_a_obj_lv4prelvtr/__dt__14daObjPRElvtr_cFv.s"
 }
+#pragma pop
+
+/* 80C68B90-80C68B98 000028 0008+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80C68B90 = "PRElvtr";
 #pragma pop

@@ -7,7 +7,7 @@ lbl_80BE0318:
 /* 80BE032C  41 82 00 10 */	beq lbl_80BE033C
 /* 80BE0330  7C 80 07 35 */	extsh. r0, r4
 /* 80BE0334  40 81 00 08 */	ble lbl_80BE033C
-/* 80BE0338  4B 6E EA 04 */	b __dl__FPv
+/* 80BE0338  4B 6E EA 05 */	bl __dl__FPv
 lbl_80BE033C:
 /* 80BE033C  7F E3 FB 78 */	mr r3, r31
 /* 80BE0340  83 E1 00 0C */	lwz r31, 0xc(r1)

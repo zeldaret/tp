@@ -45,13 +45,10 @@ extern "C" void __dt__Q26JStage13TAmbientLightFv();
 extern "C" s32 JSGFGetType__Q26JStage13TAmbientLightCFv();
 extern "C" void JSGGetColor__Q26JStage13TAmbientLightCFv();
 extern "C" void JSGSetColor__Q26JStage13TAmbientLightF8_GXColor();
-extern "C" extern void* __vt__Q26JStage13TAmbientLight[17 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __dt__Q26JStage7TObjectFv();
 extern "C" bool JSGGetName__Q26JStage7TObjectCFv();
@@ -72,9 +69,9 @@ extern "C" void __dl__FPv();
 //
 
 /* ############################################################################################## */
-/* 803C4638-803C4680 0044+04 s=1 e=1 z=0  None .data      __vt__Q26JStage13TAmbientLight */
-SECTION_DATA void* __vt__Q26JStage13TAmbientLight[17 + 1 /* padding */] = {
-    (void*)NULL,
+/* 803C4638-803C4680 021758 0044+04 1/1 1/1 0/0 .data            __vt__Q26JStage13TAmbientLight */
+SECTION_DATA extern void* __vt__Q26JStage13TAmbientLight[17 + 1 /* padding */] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)NULL,
     (void*)JSGFGetType__Q26JStage13TAmbientLightCFv,
@@ -95,7 +92,7 @@ SECTION_DATA void* __vt__Q26JStage13TAmbientLight[17 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80280B20-80280B80 0060+00 s=0 e=1 z=0  None .text      __dt__Q26JStage13TAmbientLightFv */
+/* 80280B20-80280B80 27B460 0060+00 0/0 1/1 0/0 .text            __dt__Q26JStage13TAmbientLightFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -105,22 +102,20 @@ asm JStage::TAmbientLight::~TAmbientLight() {
 }
 #pragma pop
 
-/* 80280B80-80280B88 0008+00 s=1 e=1 z=0  None .text      JSGFGetType__Q26JStage13TAmbientLightCFv
- */
+/* 80280B80-80280B88 27B4C0 0008+00 1/0 1/0 0/0 .text JSGFGetType__Q26JStage13TAmbientLightCFv */
 s32 JStage::TAmbientLight::JSGFGetType() const {
     return 4;
 }
 
 /* ############################################################################################## */
-/* 804553D0-804553D8 0004+04 s=1 e=0 z=0  None .sdata2    @302 */
+/* 804553D0-804553D8 0039D0 0004+04 1/1 0/0 0/0 .sdata2          @302 */
 SECTION_SDATA2 static u32 lit_302[1 + 1 /* padding */] = {
     0xFFFFFFFF,
     /* padding */
     0x00000000,
 };
 
-/* 80280B88-80280B9C 0014+00 s=1 e=1 z=0  None .text      JSGGetColor__Q26JStage13TAmbientLightCFv
- */
+/* 80280B88-80280B9C 27B4C8 0014+00 1/0 1/0 0/0 .text JSGGetColor__Q26JStage13TAmbientLightCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -130,7 +125,7 @@ asm void JStage::TAmbientLight::JSGGetColor() const {
 }
 #pragma pop
 
-/* 80280B9C-80280BA0 0004+00 s=1 e=0 z=0  None .text
+/* 80280B9C-80280BA0 27B4DC 0004+00 1/0 0/0 0/0 .text
  * JSGSetColor__Q26JStage13TAmbientLightF8_GXColor              */
 void JStage::TAmbientLight::JSGSetColor(_GXColor param_0) {
     /* empty function */

@@ -5,8 +5,8 @@ lbl_8020123C:
 /* 80201248  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8020124C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80201250  41 82 00 1C */	beq lbl_8020126C
-/* 80201254  3C A0 80 3C */	lis r5, __vt__16dMeter_menuHIO_c@ha
-/* 80201258  38 05 F1 9C */	addi r0, r5, __vt__16dMeter_menuHIO_c@l
+/* 80201254  3C A0 80 3C */	lis r5, __vt__16dMeter_menuHIO_c@ha /* 0x803BF19C@ha */
+/* 80201258  38 05 F1 9C */	addi r0, r5, __vt__16dMeter_menuHIO_c@l /* 0x803BF19C@l */
 /* 8020125C  90 1F 00 00 */	stw r0, 0(r31)
 /* 80201260  7C 80 07 35 */	extsh. r0, r4
 /* 80201264  40 81 00 08 */	ble lbl_8020126C

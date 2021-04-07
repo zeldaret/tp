@@ -15,8 +15,8 @@ lbl_8028CFBC:
 /* 8028CFF0  80 83 00 04 */	lwz r4, 4(r3)
 /* 8028CFF4  83 E4 00 14 */	lwz r31, 0x14(r4)
 /* 8028CFF8  38 81 00 0C */	addi r4, r1, 0xc
-/* 8028CFFC  3C A0 80 3A */	lis r5, sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light@ha
-/* 8028D000  38 A5 AA E8 */	addi r5, r5, sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light@l
+/* 8028CFFC  3C A0 80 3A */	lis r5, sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light@ha /* 0x8039AAE8@ha */
+/* 8028D000  38 A5 AA E8 */	addi r5, r5, sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light@l /* 0x8039AAE8@l */
 /* 8028D004  4B FF 93 89 */	bl adaptor_getVariableValue_GXColor__Q27JStudio8TAdaptorCFP8_GXColorPCUl
 /* 8028D008  80 01 00 0C */	lwz r0, 0xc(r1)
 /* 8028D00C  90 01 00 08 */	stw r0, 8(r1)
@@ -28,8 +28,8 @@ lbl_8028CFBC:
 /* 8028D024  4E 80 04 21 */	bctrl 
 /* 8028D028  7F A3 EB 78 */	mr r3, r29
 /* 8028D02C  38 81 00 34 */	addi r4, r1, 0x34
-/* 8028D030  3C A0 80 3A */	lis r5, sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light@ha
-/* 8028D034  38 A5 AA F8 */	addi r5, r5, sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light@l
+/* 8028D030  3C A0 80 3A */	lis r5, sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light@ha /* 0x8039AAF8@ha */
+/* 8028D034  38 A5 AA F8 */	addi r5, r5, sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light@l /* 0x8039AAF8@l */
 /* 8028D038  4B FF 92 3D */	bl adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl
 /* 8028D03C  80 1D 01 1C */	lwz r0, 0x11c(r29)
 /* 8028D040  2C 00 00 02 */	cmpwi r0, 2
@@ -67,8 +67,8 @@ lbl_8028D058:
 lbl_8028D0BC:
 /* 8028D0BC  7F A3 EB 78 */	mr r3, r29
 /* 8028D0C0  38 81 00 10 */	addi r4, r1, 0x10
-/* 8028D0C4  3C A0 80 3A */	lis r5, sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light@ha
-/* 8028D0C8  38 A5 AB 04 */	addi r5, r5, sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light@l
+/* 8028D0C4  3C A0 80 3A */	lis r5, sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light@ha /* 0x8039AB04@ha */
+/* 8028D0C8  38 A5 AB 04 */	addi r5, r5, sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light@l /* 0x8039AB04@l */
 /* 8028D0CC  4B FF 91 A9 */	bl adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl
 /* 8028D0D0  38 61 00 10 */	addi r3, r1, 0x10
 /* 8028D0D4  38 81 00 34 */	addi r4, r1, 0x34

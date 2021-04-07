@@ -15,8 +15,8 @@ lbl_80023D94:
 /* 80023DC8  48 00 00 48 */	b lbl_80023E10
 lbl_80023DCC:
 /* 80023DCC  38 80 00 60 */	li r4, 0x60
-/* 80023DD0  3C A0 80 3A */	lis r5, submethod@ha
-/* 80023DD4  38 A5 3A F0 */	addi r5, r5, submethod@l
+/* 80023DD0  3C A0 80 3A */	lis r5, submethod@ha /* 0x803A3AF0@ha */
+/* 80023DD4  38 A5 3A F0 */	addi r5, r5, submethod@l /* 0x803A3AF0@l */
 /* 80023DD8  4B FF CF D9 */	bl fpcCtRq_Create__FP11layer_classUlP27create_request_method_class
 /* 80023DDC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80023DE0  40 82 00 0C */	bne lbl_80023DEC
@@ -24,8 +24,8 @@ lbl_80023DCC:
 /* 80023DE8  48 00 00 28 */	b lbl_80023E10
 lbl_80023DEC:
 /* 80023DEC  38 7F 00 48 */	addi r3, r31, 0x48
-/* 80023DF0  3C 80 80 3A */	lis r4, method@ha
-/* 80023DF4  38 84 3A FC */	addi r4, r4, method@l
+/* 80023DF0  3C 80 80 3A */	lis r4, method@ha /* 0x803A3AFC@ha */
+/* 80023DF4  38 84 3A FC */	addi r4, r4, method@l /* 0x803A3AFC@l */
 /* 80023DF8  48 24 28 39 */	bl cPhs_Set__FP30request_of_phase_process_classPPFPv_i
 /* 80023DFC  B3 7F 00 50 */	sth r27, 0x50(r31)
 /* 80023E00  93 9F 00 58 */	stw r28, 0x58(r31)

@@ -11,7 +11,7 @@ lbl_80796324:
 /* 80796348  D0 03 09 E8 */	stfs f0, 0x9e8(r3)
 /* 8079634C  38 65 09 D4 */	addi r3, r5, 0x9d4
 /* 80796350  38 85 09 E0 */	addi r4, r5, 0x9e0
-/* 80796354  4B AD 9E 24 */	b cLib_addCalcPos2__FP4cXyzRC4cXyzff
+/* 80796354  4B AD 9E 25 */	bl cLib_addCalcPos2__FP4cXyzRC4cXyzff
 /* 80796358  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8079635C  7C 08 03 A6 */	mtlr r0
 /* 80796360  38 21 00 10 */	addi r1, r1, 0x10

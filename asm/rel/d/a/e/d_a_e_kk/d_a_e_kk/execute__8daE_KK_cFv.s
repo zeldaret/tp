@@ -9,7 +9,7 @@ lbl_806FE2A8:
 /* 806FE2C4  40 82 00 48 */	bne lbl_806FE30C
 /* 806FE2C8  38 60 00 42 */	li r3, 0x42
 /* 806FE2CC  38 80 00 01 */	li r4, 1
-/* 806FE2D0  4B 99 9C 10 */	b checkItemGet__FUci
+/* 806FE2D0  4B 99 9C 11 */	bl checkItemGet__FUci
 /* 806FE2D4  2C 03 00 00 */	cmpwi r3, 0
 /* 806FE2D8  40 82 00 0C */	bne lbl_806FE2E4
 /* 806FE2DC  38 60 00 01 */	li r3, 1
@@ -60,7 +60,7 @@ lbl_806FE370:
 /* 806FE374  4B FF FD 45 */	bl cc_set__8daE_KK_cFv
 /* 806FE378  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 806FE37C  7C 03 07 74 */	extsb r3, r0
-/* 806FE380  4B 92 EC EC */	b dComIfGp_getReverb__Fi
+/* 806FE380  4B 92 EC ED */	bl dComIfGp_getReverb__Fi
 /* 806FE384  7C 65 1B 78 */	mr r5, r3
 /* 806FE388  38 7F 05 BC */	addi r3, r31, 0x5bc
 /* 806FE38C  38 80 00 00 */	li r4, 0

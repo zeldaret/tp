@@ -5,8 +5,8 @@ lbl_804E16BC:
 /* 804E16C8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 804E16CC  93 C1 00 08 */	stw r30, 8(r1)
 /* 804E16D0  7C 7E 1B 78 */	mr r30, r3
-/* 804E16D4  3C 80 80 4E */	lis r4, l_light_color@ha
-/* 804E16D8  3B E4 19 D4 */	addi r31, r4, l_light_color@l
+/* 804E16D4  3C 80 80 4E */	lis r4, l_light_color@ha /* 0x804E19D4@ha */
+/* 804E16D8  3B E4 19 D4 */	addi r31, r4, l_light_color@l /* 0x804E19D4@l */
 /* 804E16DC  80 83 09 24 */	lwz r4, 0x924(r3)
 /* 804E16E0  38 04 00 01 */	addi r0, r4, 1
 /* 804E16E4  90 03 09 24 */	stw r0, 0x924(r3)
@@ -16,7 +16,7 @@ lbl_804E16BC:
 /* 804E16F4  7F C3 F3 78 */	mr r3, r30
 /* 804E16F8  4B FF F9 65 */	bl anim_control__9daDitem_cFv
 /* 804E16FC  7F C3 F3 78 */	mr r3, r30
-/* 804E1700  4B B5 63 CC */	b chkDraw__12daItemBase_cFv
+/* 804E1700  4B B5 63 CD */	bl chkDraw__12daItemBase_cFv
 /* 804E1704  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 804E1708  41 82 00 38 */	beq lbl_804E1740
 /* 804E170C  C0 3F 00 04 */	lfs f1, 4(r31)
@@ -28,7 +28,7 @@ lbl_804E16BC:
 lbl_804E1724:
 /* 804E1724  38 7E 04 EC */	addi r3, r30, 0x4ec
 /* 804E1728  C0 5F 00 58 */	lfs f2, 0x58(r31)
-/* 804E172C  4B D8 F0 14 */	b cLib_chaseF__FPfff
+/* 804E172C  4B D8 F0 15 */	bl cLib_chaseF__FPfff
 /* 804E1730  C0 1E 04 EC */	lfs f0, 0x4ec(r30)
 /* 804E1734  D0 1E 04 F0 */	stfs f0, 0x4f0(r30)
 /* 804E1738  C0 1E 04 EC */	lfs f0, 0x4ec(r30)
@@ -103,7 +103,7 @@ lbl_804E181C:
 lbl_804E1834:
 /* 804E1834  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 804E1838  7C 03 07 74 */	extsb r3, r0
-/* 804E183C  4B B4 B8 30 */	b dComIfGp_getReverb__Fi
+/* 804E183C  4B B4 B8 31 */	bl dComIfGp_getReverb__Fi
 /* 804E1840  7C 65 1B 78 */	mr r5, r3
 /* 804E1844  38 7E 09 A8 */	addi r3, r30, 0x9a8
 /* 804E1848  38 80 00 00 */	li r4, 0

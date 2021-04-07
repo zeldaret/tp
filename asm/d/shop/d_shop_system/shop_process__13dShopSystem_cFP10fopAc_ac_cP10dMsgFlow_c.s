@@ -7,8 +7,8 @@ lbl_8019A158:
 /* 8019A16C  7C 7F 1B 78 */	mr r31, r3
 /* 8019A170  88 03 0F 70 */	lbz r0, 0xf70(r3)
 /* 8019A174  1C E0 00 0C */	mulli r7, r0, 0xc
-/* 8019A178  3C C0 80 3C */	lis r6, process@ha
-/* 8019A17C  38 06 B9 74 */	addi r0, r6, process@l
+/* 8019A178  3C C0 80 3C */	lis r6, process@ha /* 0x803BB974@ha */
+/* 8019A17C  38 06 B9 74 */	addi r0, r6, process@l /* 0x803BB974@l */
 /* 8019A180  7D 80 3A 14 */	add r12, r0, r7
 /* 8019A184  48 1C 7F 01 */	bl __ptmf_scall
 /* 8019A188  60 00 00 00 */	nop 
@@ -29,8 +29,8 @@ lbl_8019A1BC:
 /* 8019A1BC  2C 1E 00 00 */	cmpwi r30, 0
 /* 8019A1C0  41 82 00 40 */	beq lbl_8019A200
 /* 8019A1C4  38 00 00 00 */	li r0, 0
-/* 8019A1C8  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8019A1CC  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8019A1C8  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8019A1CC  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8019A1D0  98 03 00 BD */	stb r0, 0xbd(r3)
 /* 8019A1D4  88 1F 0F 70 */	lbz r0, 0xf70(r31)
 /* 8019A1D8  28 00 00 00 */	cmplwi r0, 0

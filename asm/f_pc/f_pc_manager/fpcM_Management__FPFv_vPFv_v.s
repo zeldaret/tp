@@ -7,8 +7,8 @@ lbl_80022158:
 /* 8002216C  7C 7E 1B 78 */	mr r30, r3
 /* 80022170  7C 9F 23 78 */	mr r31, r4
 /* 80022174  48 24 EC D9 */	bl MtxInit__Fv
-/* 80022178  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002217C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80022178  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002217C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80022180  3C 63 00 02 */	addis r3, r3, 2
 /* 80022184  38 63 C0 F4 */	addi r3, r3, -16140
 /* 80022188  48 03 3E F9 */	bl peekData__13dDlst_peekZ_cFv
@@ -54,13 +54,13 @@ lbl_80022204:
 /* 80022218  7D 89 03 A6 */	mtctr r12
 /* 8002221C  4E 80 04 21 */	bctrl 
 lbl_80022220:
-/* 80022220  3C 60 80 02 */	lis r3, fpcM_Execute__FPv@ha
-/* 80022224  38 63 20 F8 */	addi r3, r3, fpcM_Execute__FPv@l
+/* 80022220  3C 60 80 02 */	lis r3, fpcM_Execute__FPv@ha /* 0x800220F8@ha */
+/* 80022224  38 63 20 F8 */	addi r3, r3, fpcM_Execute__FPv@l /* 0x800220F8@l */
 /* 80022228  4B FF F3 41 */	bl fpcEx_Handler__FPFPvPv_i
-/* 8002222C  3C 60 80 02 */	lis r3, fpcM_DrawIterater__FPFPvPv_i@ha
-/* 80022230  38 63 20 C0 */	addi r3, r3, fpcM_DrawIterater__FPFPvPv_i@l
-/* 80022234  3C 80 80 02 */	lis r4, fpcM_Draw__FPv@ha
-/* 80022238  38 84 20 A0 */	addi r4, r4, fpcM_Draw__FPv@l
+/* 8002222C  3C 60 80 02 */	lis r3, fpcM_DrawIterater@ha /* 0x800220C0@ha */
+/* 80022230  38 63 20 C0 */	addi r3, r3, fpcM_DrawIterater@l /* 0x800220C0@l */
+/* 80022234  3C 80 80 02 */	lis r4, fpcM_Draw__FPv@ha /* 0x800220A0@ha */
+/* 80022238  38 84 20 A0 */	addi r4, r4, fpcM_Draw__FPv@l /* 0x800220A0@l */
 /* 8002223C  48 00 17 B9 */	bl fpcDw_Handler__FPFPFPvPv_i_iPFPvPv_i
 /* 80022240  28 1F 00 00 */	cmplwi r31, 0
 /* 80022244  41 82 00 10 */	beq lbl_80022254
@@ -68,8 +68,8 @@ lbl_80022220:
 /* 8002224C  7D 89 03 A6 */	mtctr r12
 /* 80022250  4E 80 04 21 */	bctrl 
 lbl_80022254:
-/* 80022254  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80022258  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80022254  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80022258  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002225C  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80022260  48 00 A8 65 */	bl drawSimpleModel__14dComIfG_play_cFv
 /* 80022264  48 00 00 3C */	b lbl_800222A0
@@ -81,8 +81,8 @@ lbl_80022268:
 /* 80022278  80 6D 85 E0 */	lwz r3, data_80450B60(r13)
 /* 8002227C  38 80 00 01 */	li r4, 1
 /* 80022280  48 28 84 31 */	bl pauseAllGameSound__10Z2SoundMgrFb
-/* 80022284  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha
-/* 80022288  80 83 D2 D8 */	lwz r4, m_gamePad__8mDoCPd_c@l(r3)
+/* 80022284  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha /* 0x803DD2D8@ha */
+/* 80022288  80 83 D2 D8 */	lwz r4, m_gamePad__8mDoCPd_c@l(r3)  /* 0x803DD2D8@l */
 /* 8002228C  38 64 00 68 */	addi r3, r4, 0x68
 /* 80022290  A8 84 00 7C */	lha r4, 0x7c(r4)
 /* 80022294  48 2B F6 B5 */	bl stopPatternedRumble__Q210JUTGamePad7CRumbleFs

@@ -5,8 +5,8 @@ lbl_80201098:
 /* 802010A4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802010A8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802010AC  41 82 00 1C */	beq lbl_802010C8
-/* 802010B0  3C A0 80 3C */	lis r5, __vt__18dMeter_cursorHIO_c@ha
-/* 802010B4  38 05 F0 E8 */	addi r0, r5, __vt__18dMeter_cursorHIO_c@l
+/* 802010B0  3C A0 80 3C */	lis r5, __vt__18dMeter_cursorHIO_c@ha /* 0x803BF0E8@ha */
+/* 802010B4  38 05 F0 E8 */	addi r0, r5, __vt__18dMeter_cursorHIO_c@l /* 0x803BF0E8@l */
 /* 802010B8  90 1F 00 00 */	stw r0, 0(r31)
 /* 802010BC  7C 80 07 35 */	extsh. r0, r4
 /* 802010C0  40 81 00 08 */	ble lbl_802010C8

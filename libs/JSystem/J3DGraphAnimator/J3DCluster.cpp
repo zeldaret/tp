@@ -17,8 +17,6 @@ struct J3DModel {};
 
 struct J3DCluster {};
 
-struct J3DClusterKey {};
-
 struct J3DAnmCluster {};
 
 struct J3DDeformData {
@@ -28,6 +26,8 @@ struct J3DDeformData {
     /* 8032E274 */ void deform(J3DModel*);
     /* 8032E364 */ void setAnm(J3DAnmCluster*);
 };
+
+struct J3DClusterKey {};
 
 struct J3DDeformer {
     /* 8032E39C */ J3DDeformer(J3DDeformData*);
@@ -70,13 +70,13 @@ extern "C" void _restgpr_21();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
-extern "C" extern u8 asinAcosTable___5JMath[4128];
+extern "C" extern f32 asinAcosTable___5JMath[1032];
 
 //
 // Declarations:
 //
 
-/* 8032E1F8-8032E230 0038+00 s=0 e=1 z=0  None .text      __ct__13J3DDeformDataFv */
+/* 8032E1F8-8032E230 328B38 0038+00 0/0 1/1 0/0 .text            __ct__13J3DDeformDataFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -86,7 +86,7 @@ asm J3DDeformData::J3DDeformData() {
 }
 #pragma pop
 
-/* 8032E230-8032E274 0044+00 s=0 e=1 z=0  None .text      offAllFlag__13J3DDeformDataFUl */
+/* 8032E230-8032E274 328B70 0044+00 0/0 1/1 0/0 .text            offAllFlag__13J3DDeformDataFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -96,7 +96,8 @@ asm void J3DDeformData::offAllFlag(u32 param_0) {
 }
 #pragma pop
 
-/* 8032E274-8032E298 0024+00 s=0 e=1 z=0  None .text      deform__13J3DDeformDataFP8J3DModel */
+/* 8032E274-8032E298 328BB4 0024+00 0/0 1/1 0/0 .text            deform__13J3DDeformDataFP8J3DModel
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -106,7 +107,7 @@ asm void J3DDeformData::deform(J3DModel* param_0) {
 }
 #pragma pop
 
-/* 8032E298-8032E364 00CC+00 s=1 e=0 z=0  None .text      deform__13J3DDeformDataFP15J3DVertexBuffer
+/* 8032E298-8032E364 328BD8 00CC+00 1/1 0/0 0/0 .text deform__13J3DDeformDataFP15J3DVertexBuffer
  */
 #pragma push
 #pragma optimization_level 0
@@ -117,8 +118,7 @@ asm void J3DDeformData::deform(J3DVertexBuffer* param_0) {
 }
 #pragma pop
 
-/* 8032E364-8032E39C 0038+00 s=0 e=1 z=0  None .text      setAnm__13J3DDeformDataFP13J3DAnmCluster
- */
+/* 8032E364-8032E39C 328CA4 0038+00 0/0 1/1 0/0 .text setAnm__13J3DDeformDataFP13J3DAnmCluster */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -128,7 +128,7 @@ asm void J3DDeformData::setAnm(J3DAnmCluster* param_0) {
 }
 #pragma pop
 
-/* 8032E39C-8032E3BC 0020+00 s=0 e=1 z=0  None .text      __ct__11J3DDeformerFP13J3DDeformData */
+/* 8032E39C-8032E3BC 328CDC 0020+00 0/0 1/1 0/0 .text __ct__11J3DDeformerFP13J3DDeformData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -138,7 +138,7 @@ asm J3DDeformer::J3DDeformer(J3DDeformData* param_0) {
 }
 #pragma pop
 
-/* 8032E3BC-8032E4A4 00E8+00 s=1 e=0 z=0  None .text      deform__11J3DDeformerFP15J3DVertexBufferUs
+/* 8032E3BC-8032E4A4 328CFC 00E8+00 1/1 0/0 0/0 .text deform__11J3DDeformerFP15J3DVertexBufferUs
  */
 #pragma push
 #pragma optimization_level 0
@@ -150,16 +150,16 @@ asm void J3DDeformer::deform(J3DVertexBuffer* param_0, u16 param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80456470-80456474 0004+00 s=2 e=0 z=0  None .sdata2    @830 */
+/* 80456470-80456474 004A70 0004+00 2/2 0/0 0/0 .sdata2          @830 */
 SECTION_SDATA2 static f32 lit_830 = 1.0f;
 
-/* 80456474-80456478 0004+00 s=1 e=0 z=0  None .sdata2    @840 */
-SECTION_SDATA2 static u32 lit_840 = 0x3F800000;
+/* 80456474-80456478 004A74 0004+00 1/1 0/0 0/0 .sdata2          @840 */
+SECTION_SDATA2 static f32 lit_840 = 1.0f;
 
-/* 80456478-8045647C 0004+00 s=1 e=0 z=0  None .sdata2    None */
-SECTION_SDATA2 static u32 data_80456478 = 0xBF800000;
+/* 80456478-8045647C 004A78 0004+00 1/1 0/0 0/0 .sdata2          None */
+SECTION_SDATA2 static f32 data_80456478 = -1.0f;
 
-/* 8045647C-80456480 0004+00 s=3 e=0 z=0  None .sdata2    @866 */
+/* 8045647C-80456480 004A7C 0004+00 3/3 0/0 0/0 .sdata2          @866 */
 SECTION_SDATA2 static u8 lit_866[4] = {
     0x00,
     0x00,
@@ -167,7 +167,7 @@ SECTION_SDATA2 static u8 lit_866[4] = {
     0x00,
 };
 
-/* 8032E4A4-8032E60C 0168+00 s=1 e=0 z=0  None .text
+/* 8032E4A4-8032E60C 328DE4 0168+00 1/1 0/0 0/0 .text
  * deform_VtxPosF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf */
 #pragma push
 #pragma optimization_level 0
@@ -180,28 +180,28 @@ asm void J3DDeformer::deform_VtxPosF32(J3DVertexBuffer* param_0, J3DCluster* par
 #pragma pop
 
 /* ############################################################################################## */
-/* 80456480-80456484 0004+00 s=1 e=0 z=0  None .sdata2    @1020 */
+/* 80456480-80456484 004A80 0004+00 1/1 0/0 0/0 .sdata2          @1020 */
 SECTION_SDATA2 static f32 lit_1020 = -1.0f;
 
-/* 80456484-80456488 0004+00 s=1 e=0 z=0  None .sdata2    @1021 */
+/* 80456484-80456488 004A84 0004+00 1/1 0/0 0/0 .sdata2          @1021 */
 SECTION_SDATA2 static f32 lit_1021 = 3.1415927410125732f;
 
-/* 80456488-8045648C 0004+00 s=1 e=0 z=0  None .sdata2    @1022 */
+/* 80456488-8045648C 004A88 0004+00 1/1 0/0 0/0 .sdata2          @1022 */
 SECTION_SDATA2 static f32 lit_1022 = 1023.5f;
 
-/* 8045648C-80456490 0004+00 s=1 e=0 z=0  None .sdata2    @1023 */
+/* 8045648C-80456490 004A8C 0004+00 1/1 0/0 0/0 .sdata2          @1023 */
 SECTION_SDATA2 static f32 lit_1023 = 1.5707963705062866f;
 
-/* 80456490-80456494 0004+00 s=1 e=0 z=0  None .sdata2    @1024 */
+/* 80456490-80456494 004A90 0004+00 1/1 0/0 0/0 .sdata2          @1024 */
 SECTION_SDATA2 static f32 lit_1024 = 57.2957763671875f;
 
-/* 80456494-80456498 0004+00 s=1 e=0 z=0  None .sdata2    @1025 */
+/* 80456494-80456498 004A94 0004+00 1/1 0/0 0/0 .sdata2          @1025 */
 SECTION_SDATA2 static f32 lit_1025 = 180.0f;
 
-/* 80456498-804564A0 0008+00 s=1 e=0 z=0  None .sdata2    @1027 */
+/* 80456498-804564A0 004A98 0008+00 1/1 0/0 0/0 .sdata2          @1027 */
 SECTION_SDATA2 static f64 lit_1027 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 8032E60C-8032EAB4 04A8+00 s=1 e=0 z=0  None .text
+/* 8032E60C-8032EAB4 328F4C 04A8+00 1/1 0/0 0/0 .text
  * deform_VtxNrmF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf */
 #pragma push
 #pragma optimization_level 0
@@ -213,7 +213,7 @@ asm void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer* param_0, J3DCluster* par
 }
 #pragma pop
 
-/* 8032EAB4-8032EBCC 0118+00 s=1 e=0 z=0  None .text deform__11J3DDeformerFP15J3DVertexBufferUsPf
+/* 8032EAB4-8032EBCC 3293F4 0118+00 1/1 0/0 0/0 .text deform__11J3DDeformerFP15J3DVertexBufferUsPf
  */
 #pragma push
 #pragma optimization_level 0
@@ -224,7 +224,8 @@ asm void J3DDeformer::deform(J3DVertexBuffer* param_0, u16 param_1, f32* param_2
 }
 #pragma pop
 
-/* 8032EBCC-8032EC28 005C+00 s=1 e=0 z=0  None .text      normalizeWeight__11J3DDeformerFiPf */
+/* 8032EBCC-8032EC28 32950C 005C+00 1/1 0/0 0/0 .text            normalizeWeight__11J3DDeformerFiPf
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

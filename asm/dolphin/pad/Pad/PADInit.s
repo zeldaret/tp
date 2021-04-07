@@ -1,10 +1,10 @@
 lbl_8034ED50:
 /* 8034ED50  7C 08 02 A6 */	mflr r0
-/* 8034ED54  3C 60 80 45 */	lis r3, Type@ha
+/* 8034ED54  3C 60 80 45 */	lis r3, Type@ha /* 0x8044CB70@ha */
 /* 8034ED58  90 01 00 04 */	stw r0, 4(r1)
 /* 8034ED5C  94 21 FF C8 */	stwu r1, -0x38(r1)
 /* 8034ED60  BF 21 00 1C */	stmw r25, 0x1c(r1)
-/* 8034ED64  3B E3 CB 70 */	addi r31, r3, Type@l
+/* 8034ED64  3B E3 CB 70 */	addi r31, r3, Type@l /* 0x8044CB70@l */
 /* 8034ED68  80 0D 92 C8 */	lwz r0, Initialized(r13)
 /* 8034ED6C  2C 00 00 00 */	cmpwi r0, 0
 /* 8034ED70  41 82 00 0C */	beq lbl_8034ED7C
@@ -56,10 +56,10 @@ lbl_8034ED94:
 /* 8034EE20  90 0D 92 D4 */	stw r0, RecalibrateBits(r13)
 /* 8034EE24  7C A0 20 38 */	and r0, r5, r4
 /* 8034EE28  3C 60 80 00 */	lis r3, 0x8000 /* 0x800030E0@ha */
-/* 8034EE2C  B0 03 30 E0 */	sth r0, 0x30E0(r3)
+/* 8034EE2C  B0 03 30 E0 */	sth r0, 0x30E0(r3)  /* 0x800030E0@l */
 lbl_8034EE30:
 /* 8034EE30  3C 60 80 00 */	lis r3, 0x8000 /* 0x800030E0@ha */
-/* 8034EE34  A0 03 30 E0 */	lhz r0, 0x30E0(r3)
+/* 8034EE34  A0 03 30 E0 */	lhz r0, 0x30E0(r3)  /* 0x800030E0@l */
 /* 8034EE38  54 00 42 AE */	rlwinm r0, r0, 8, 0xa, 0x17
 /* 8034EE3C  64 00 4D 00 */	oris r0, r0, 0x4d00
 /* 8034EE40  90 1F 00 40 */	stw r0, 0x40(r31)
@@ -76,8 +76,8 @@ lbl_8034EE30:
 /* 8034EE6C  64 00 4D C0 */	oris r0, r0, 0x4dc0
 /* 8034EE70  90 1F 00 4C */	stw r0, 0x4c(r31)
 /* 8034EE74  4B FF 75 01 */	bl SIRefreshSamplingRate
-/* 8034EE78  3C 60 80 3D */	lis r3, ResetFunctionInfo@ha
-/* 8034EE7C  38 63 1B 90 */	addi r3, r3, ResetFunctionInfo@l
+/* 8034EE78  3C 60 80 3D */	lis r3, ResetFunctionInfo@ha /* 0x803D1B90@ha */
+/* 8034EE7C  38 63 1B 90 */	addi r3, r3, ResetFunctionInfo@l /* 0x803D1B90@l */
 /* 8034EE80  4B FF 07 E1 */	bl OSRegisterResetFunction
 /* 8034EE84  3C 60 F0 00 */	lis r3, 0xf000
 /* 8034EE88  4B FF FC A5 */	bl PADReset

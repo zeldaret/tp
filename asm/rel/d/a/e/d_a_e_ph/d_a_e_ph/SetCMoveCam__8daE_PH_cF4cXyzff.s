@@ -11,7 +11,7 @@ lbl_8073D768:
 /* 8073D78C  D0 03 05 E8 */	stfs f0, 0x5e8(r3)
 /* 8073D790  38 65 05 D4 */	addi r3, r5, 0x5d4
 /* 8073D794  38 85 05 E0 */	addi r4, r5, 0x5e0
-/* 8073D798  4B B3 29 E0 */	b cLib_addCalcPos2__FP4cXyzRC4cXyzff
+/* 8073D798  4B B3 29 E1 */	bl cLib_addCalcPos2__FP4cXyzRC4cXyzff
 /* 8073D79C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8073D7A0  7C 08 03 A6 */	mtlr r0
 /* 8073D7A4  38 21 00 10 */	addi r1, r1, 0x10

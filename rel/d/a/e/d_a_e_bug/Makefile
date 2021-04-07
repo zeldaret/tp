@@ -3,19 +3,20 @@
 #
 
 M179_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_bug.plf
+M179_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_bug.lcf
+M179_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_bug.map
 
 M179_CPP_FILES := \
-	rel/d/a/e/d_a_e_bug/executor.cpp \
-	rel/d/a/e/d_a_e_bug/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_bug/d_a_e_bug.cpp \
 
 M179_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_bug/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_bug/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_bug/d_a_e_bug.o \
 
 M179_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_bug/libRuntime.PPCEABI.H.a \
 
 M179_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M179_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M179_LDSCRIPT) \
+	-unused -map $(M179_MAP) \
+	-w off \
 
 $(M179_TARGET): $(M179_O_FILES) $(M179_LIBS)
+	@echo [179] creating $(M179_TARGET)
 	@echo $(M179_LIBS) $(M179_O_FILES) > build/M179_ofiles
-	$(LD) -partial $(M179_LDFLAGS) -o $(M179_TARGET) @build/M179_ofiles
+	@python3 tools/lcf.py rel 179 --output $(M179_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M179_LDFLAGS) -o $(M179_TARGET) @build/M179_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_bug/%.o: rel/d/a/e/d_a_e_bug/%.cpp
+	@echo [179] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M179_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M179_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_bug/libs/Runtime.PPCEABI.H/Makefile
 

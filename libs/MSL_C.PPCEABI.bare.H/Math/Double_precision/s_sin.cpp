@@ -26,16 +26,16 @@ extern "C" void __kernel_sin();
 //
 
 /* ############################################################################################## */
-/* 80456B38-80456B40 0008+00 s=1 e=0 z=0  None .sdata2    @67 */
+/* 80456B38-80456B40 005138 0008+00 1/1 0/0 0/0 .sdata2          @67 */
 SECTION_SDATA2 static u8 lit_67[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 8036C590-8036C668 00D8+00 s=0 e=11 z=2  None .text      sin */
+/* 8036C590-8036C668 366ED0 00D8+00 0/0 11/11 2/2 .text            sin */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void sin() {
+asm void sin() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/Math/Double_precision/s_sin/sin.s"
 }

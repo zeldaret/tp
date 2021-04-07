@@ -1,8 +1,8 @@
 lbl_803715F8:
 /* 803715F8  38 21 FF FC */	addi r1, r1, -4
 /* 803715FC  90 61 00 00 */	stw r3, 0(r1)
-/* 80371600  3C 60 80 44 */	lis r3, gTRKCPUState@h
-/* 80371604  60 63 F3 38 */	ori r3, r3, gTRKCPUState@l
+/* 80371600  3C 60 80 44 */	lis r3, gTRKCPUState@h /* 0x8044F338@h */
+/* 80371604  60 63 F3 38 */	ori r3, r3, gTRKCPUState@l /* 0x8044F338@l */
 /* 80371608  BC 03 00 00 */	stmw r0, 0(r3)
 /* 8037160C  80 81 00 00 */	lwz r4, 0(r1)
 /* 80371610  38 21 00 04 */	addi r1, r1, 4
@@ -18,8 +18,8 @@ lbl_803715F8:
 /* 80371638  7C 60 01 24 */	mtmsr r3
 /* 8037163C  7C 9B 03 A6 */	mtspr 0x1b, r4
 /* 80371640  4B FF FB B1 */	bl TRKSaveExtended1Block
-/* 80371644  3C 60 80 44 */	lis r3, gTRKCPUState@h
-/* 80371648  60 63 F3 38 */	ori r3, r3, gTRKCPUState@l
+/* 80371644  3C 60 80 44 */	lis r3, gTRKCPUState@h /* 0x8044F338@h */
+/* 80371648  60 63 F3 38 */	ori r3, r3, gTRKCPUState@l /* 0x8044F338@l */
 /* 8037164C  B8 03 00 00 */	lmw r0, 0(r3)
 /* 80371650  38 00 00 00 */	li r0, 0
 /* 80371654  7C 12 FB A6 */	mtspr 0x3f2, r0

@@ -35,54 +35,54 @@ extern "C" void EXIGetID();
 // Declarations:
 //
 
-/* 803445E8-80344774 018C+00 s=1 e=0 z=0  None .text      ProbeBarnacle */
+/* 803445E8-80344774 33EF28 018C+00 1/1 0/0 0/0 .text            ProbeBarnacle */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void ProbeBarnacle() {
+static asm void ProbeBarnacle() {
     nofralloc
 #include "asm/exi/EXIUart/ProbeBarnacle.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804516E0-804516E4 0004+00 s=3 e=0 z=0  None .sbss      Chan */
+/* 804516E0-804516E4 000BE0 0004+00 3/3 0/0 0/0 .sbss            Chan */
 static u8 Chan[4];
 
-/* 804516E4-804516E8 0004+00 s=3 e=0 z=0  None .sbss      Dev */
+/* 804516E4-804516E8 000BE4 0004+00 3/3 0/0 0/0 .sbss            Dev */
 static u8 Dev[4];
 
-/* 804516E8-804516EC 0004+00 s=3 e=0 z=0  None .sbss      Enabled */
+/* 804516E8-804516EC 000BE8 0004+00 3/3 0/0 0/0 .sbss            Enabled */
 static u8 Enabled[4];
 
-/* 804516EC-804516F0 0004+00 s=2 e=0 z=0  None .sbss      BarnacleEnabled */
+/* 804516EC-804516F0 000BEC 0004+00 2/2 0/0 0/0 .sbss            BarnacleEnabled */
 static u8 BarnacleEnabled[4];
 
-/* 80344774-80344930 01BC+00 s=0 e=1 z=0  None .text      __OSEnableBarnacle */
+/* 80344774-80344930 33F0B4 01BC+00 0/0 1/1 0/0 .text            __OSEnableBarnacle */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __OSEnableBarnacle() {
+asm void __OSEnableBarnacle() {
     nofralloc
 #include "asm/exi/EXIUart/__OSEnableBarnacle.s"
 }
 #pragma pop
 
-/* 80344930-803449A0 0070+00 s=0 e=1 z=0  None .text      InitializeUART */
+/* 80344930-803449A0 33F270 0070+00 0/0 1/1 0/0 .text            InitializeUART */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void InitializeUART() {
+asm void InitializeUART() {
     nofralloc
 #include "asm/exi/EXIUart/InitializeUART.s"
 }
 #pragma pop
 
-/* 803449A0-80344BA0 0200+00 s=0 e=1 z=0  None .text      WriteUARTN */
+/* 803449A0-80344BA0 33F2E0 0200+00 0/0 1/1 0/0 .text            WriteUARTN */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void WriteUARTN() {
+asm void WriteUARTN() {
     nofralloc
 #include "asm/exi/EXIUart/WriteUARTN.s"
 }

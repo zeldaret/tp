@@ -3,19 +3,20 @@
 #
 
 M356_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira.plf
+M356_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira.lcf
+M356_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira.map
 
 M356_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_seira/executor.cpp \
-	rel/d/a/npc/d_a_npc_seira/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_seira/d_a_npc_seira.cpp \
 
 M356_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira/d_a_npc_seira.o \
 
 M356_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira/libRuntime.PPCEABI.H.a \
 
 M356_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M356_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M356_LDSCRIPT) \
+	-unused -map $(M356_MAP) \
+	-w off \
 
 $(M356_TARGET): $(M356_O_FILES) $(M356_LIBS)
+	@echo [356] creating $(M356_TARGET)
 	@echo $(M356_LIBS) $(M356_O_FILES) > build/M356_ofiles
-	$(LD) -partial $(M356_LDFLAGS) -o $(M356_TARGET) @build/M356_ofiles
+	@python3 tools/lcf.py rel 356 --output $(M356_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M356_LDFLAGS) -o $(M356_TARGET) @build/M356_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seira/%.o: rel/d/a/npc/d_a_npc_seira/%.cpp
+	@echo [356] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M356_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M356_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_seira/libs/Runtime.PPCEABI.H/Makefile
 

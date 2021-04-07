@@ -28,8 +28,8 @@ lbl_80291228:
 /* 80291290  D0 1F 00 DC */	stfs f0, 0xdc(r31)
 /* 80291294  90 1F 00 E0 */	stw r0, 0xe0(r31)
 /* 80291298  38 7F 00 9C */	addi r3, r31, 0x9c
-/* 8029129C  3C 80 80 29 */	lis r4, __ct__Q28JASTrack10MoveParam_Fv@ha
-/* 802912A0  38 84 32 C8 */	addi r4, r4, __ct__Q28JASTrack10MoveParam_Fv@l
+/* 8029129C  3C 80 80 29 */	lis r4, __ct__Q28JASTrack10MoveParam_Fv@ha /* 0x802932C8@ha */
+/* 802912A0  38 84 32 C8 */	addi r4, r4, __ct__Q28JASTrack10MoveParam_Fv@l /* 0x802932C8@l */
 /* 802912A4  38 A0 00 00 */	li r5, 0
 /* 802912A8  38 C0 00 0C */	li r6, 0xc
 /* 802912AC  38 E0 00 06 */	li r7, 6

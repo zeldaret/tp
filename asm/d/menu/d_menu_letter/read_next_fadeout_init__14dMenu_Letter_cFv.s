@@ -4,8 +4,8 @@ lbl_801DEA48:
 /* 801DEA50  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801DEA54  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801DEA58  7C 7F 1B 78 */	mr r31, r3
-/* 801DEA5C  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 801DEA60  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 801DEA5C  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 801DEA60  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 801DEA64  A8 04 07 5E */	lha r0, 0x75e(r4)
 /* 801DEA68  B0 03 03 6A */	sth r0, 0x36a(r3)
 /* 801DEA6C  38 80 00 00 */	li r4, 0

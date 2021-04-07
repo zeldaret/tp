@@ -20,11 +20,11 @@ lbl_80188234:
 /* 8018827C  88 1F 02 65 */	lbz r0, 0x265(r31)
 /* 80188280  54 00 10 3A */	slwi r0, r0, 2
 /* 80188284  7F E3 FB 78 */	mr r3, r31
-/* 80188288  3C 80 80 3C */	lis r4, SelOpenStartFrameTbl@ha
-/* 8018828C  38 84 A8 6C */	addi r4, r4, SelOpenStartFrameTbl@l
+/* 80188288  3C 80 80 3C */	lis r4, SelOpenStartFrameTbl@ha /* 0x803BA86C@ha */
+/* 8018828C  38 84 A8 6C */	addi r4, r4, SelOpenStartFrameTbl@l /* 0x803BA86C@l */
 /* 80188290  7C 84 00 2E */	lwzx r4, r4, r0
-/* 80188294  3C A0 80 3C */	lis r5, SelOpenEndFrameTbl@ha
-/* 80188298  38 A5 A8 78 */	addi r5, r5, SelOpenEndFrameTbl@l
+/* 80188294  3C A0 80 3C */	lis r5, SelOpenEndFrameTbl@ha /* 0x803BA878@ha */
+/* 80188298  38 A5 A8 78 */	addi r5, r5, SelOpenEndFrameTbl@l /* 0x803BA878@l */
 /* 8018829C  7C A5 00 2E */	lwzx r5, r5, r0
 /* 801882A0  4B FF D6 F5 */	bl selectDataMoveAnmInitSet__14dFile_select_cFii
 /* 801882A4  7F E3 FB 78 */	mr r3, r31
@@ -50,8 +50,8 @@ lbl_80188234:
 /* 801882F4  88 9F 02 65 */	lbz r4, 0x265(r31)
 /* 801882F8  38 A0 00 FF */	li r5, 0xff
 /* 801882FC  38 C0 00 00 */	li r6, 0
-/* 80188300  3C E0 80 43 */	lis r7, g_fsHIO@ha
-/* 80188304  38 E7 C9 EC */	addi r7, r7, g_fsHIO@l
+/* 80188300  3C E0 80 43 */	lis r7, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 80188304  38 E7 C9 EC */	addi r7, r7, g_fsHIO@l /* 0x8042C9EC@l */
 /* 80188308  88 E7 00 08 */	lbz r7, 8(r7)
 /* 8018830C  48 00 53 45 */	bl selectWakuAlpahAnmInit__14dFile_select_cFUcUcUcUc
 /* 80188310  38 00 00 18 */	li r0, 0x18

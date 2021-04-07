@@ -17,17 +17,17 @@ lbl_8065AE88:
 lbl_8065AEC4:
 /* 8065AEC4  38 00 00 06 */	li r0, 6
 /* 8065AEC8  98 1F 0C 60 */	stb r0, 0xc60(r31)
-/* 8065AECC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8065AED0  3B C4 61 C0 */	addi r30, r4, g_dComIfG_gameInfo@l
+/* 8065AECC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8065AED0  3B C4 61 C0 */	addi r30, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8065AED4  80 9E 5D AC */	lwz r4, 0x5dac(r30)
-/* 8065AED8  4B 9B F9 08 */	b fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 8065AED8  4B 9B F9 09 */	bl fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 8065AEDC  FF E0 08 90 */	fmr f31, f1
 /* 8065AEE0  C3 DF 0C 78 */	lfs f30, 0xc78(r31)
 /* 8065AEE4  88 1F 0C A3 */	lbz r0, 0xca3(r31)
 /* 8065AEE8  28 00 00 00 */	cmplwi r0, 0
 /* 8065AEEC  41 82 00 0C */	beq lbl_8065AEF8
-/* 8065AEF0  3C 60 80 66 */	lis r3, lit_5049@ha
-/* 8065AEF4  C3 C3 2E 48 */	lfs f30, lit_5049@l(r3)
+/* 8065AEF0  3C 60 80 66 */	lis r3, lit_5049@ha /* 0x80662E48@ha */
+/* 8065AEF4  C3 C3 2E 48 */	lfs f30, lit_5049@l(r3)  /* 0x80662E48@l */
 lbl_8065AEF8:
 /* 8065AEF8  FC 1F F0 40 */	fcmpo cr0, f31, f30
 /* 8065AEFC  40 81 00 0C */	ble lbl_8065AF08
@@ -36,12 +36,12 @@ lbl_8065AEF8:
 lbl_8065AF08:
 /* 8065AF08  7F E3 FB 78 */	mr r3, r31
 /* 8065AF0C  80 9E 5D AC */	lwz r4, 0x5dac(r30)
-/* 8065AF10  4B 9B F8 00 */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 8065AF10  4B 9B F8 01 */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 8065AF14  A8 1F 0C 34 */	lha r0, 0xc34(r31)
 /* 8065AF18  7C 00 18 50 */	subf r0, r0, r3
 /* 8065AF1C  7C 1E 07 34 */	extsh r30, r0
 /* 8065AF20  7F C3 F3 78 */	mr r3, r30
-/* 8065AF24  4B D0 A1 AC */	b abs
+/* 8065AF24  4B D0 A1 AD */	bl abs
 /* 8065AF28  7C 60 07 34 */	extsh r0, r3
 /* 8065AF2C  2C 00 20 00 */	cmpwi r0, 0x2000
 /* 8065AF30  40 80 00 24 */	bge lbl_8065AF54
@@ -67,8 +67,8 @@ lbl_8065AF70:
 /* 8065AF74  98 1F 0C 60 */	stb r0, 0xc60(r31)
 /* 8065AF78  48 00 00 90 */	b lbl_8065B008
 lbl_8065AF7C:
-/* 8065AF7C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8065AF80  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 8065AF7C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8065AF80  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8065AF84  57 C0 04 38 */	rlwinm r0, r30, 0, 0x10, 0x1c
 /* 8065AF88  7C 64 02 14 */	add r3, r4, r0
 /* 8065AF8C  C0 03 00 04 */	lfs f0, 4(r3)

@@ -26,14 +26,14 @@ lbl_802E499C:
 /* 802E49FC  7F E3 FB 78 */	mr r3, r31
 /* 802E4A00  38 80 00 10 */	li r4, 0x10
 /* 802E4A04  38 A0 00 10 */	li r5, 0x10
-/* 802E4A08  3C C0 80 43 */	lis r6, data_80434870@ha
-/* 802E4A0C  38 C6 48 70 */	addi r6, r6, data_80434870@l
+/* 802E4A08  3C C0 80 43 */	lis r6, data_80434870@ha /* 0x80434870@ha */
+/* 802E4A0C  38 C6 48 70 */	addi r6, r6, data_80434870@l /* 0x80434870@l */
 /* 802E4A10  4B FF FC C9 */	bl drawString__14JUTDirectPrintFUsUsPc
 /* 802E4A14  7F E3 FB 78 */	mr r3, r31
 /* 802E4A18  38 80 00 10 */	li r4, 0x10
 /* 802E4A1C  38 A0 00 18 */	li r5, 0x18
-/* 802E4A20  3C C0 80 43 */	lis r6, data_804348B0@ha
-/* 802E4A24  38 C6 48 B0 */	addi r6, r6, data_804348B0@l
+/* 802E4A20  3C C0 80 43 */	lis r6, data_804348B0@ha /* 0x804348B0@ha */
+/* 802E4A24  38 C6 48 B0 */	addi r6, r6, data_804348B0@l /* 0x804348B0@l */
 /* 802E4A28  4B FF FC B1 */	bl drawString__14JUTDirectPrintFUsUsPc
 /* 802E4A2C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 802E4A30  90 01 00 08 */	stw r0, 8(r1)

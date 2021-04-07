@@ -3,19 +3,20 @@
 #
 
 M547_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6SwGate.plf
+M547_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6SwGate.lcf
+M547_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6SwGate.map
 
 M547_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv6SwGate/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv6SwGate/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv6SwGate/d_a_obj_lv6SwGate.cpp \
 
 M547_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6SwGate/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6SwGate/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6SwGate/d_a_obj_lv6SwGate.o \
 
 M547_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6SwGate/libRuntime.PPCEABI.H.a \
 
 M547_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M547_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M547_LDSCRIPT) \
+	-unused -map $(M547_MAP) \
+	-w off \
 
 $(M547_TARGET): $(M547_O_FILES) $(M547_LIBS)
+	@echo [547] creating $(M547_TARGET)
 	@echo $(M547_LIBS) $(M547_O_FILES) > build/M547_ofiles
-	$(LD) -partial $(M547_LDFLAGS) -o $(M547_TARGET) @build/M547_ofiles
+	@python3 tools/lcf.py rel 547 --output $(M547_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M547_LDFLAGS) -o $(M547_TARGET) @build/M547_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6SwGate/%.o: rel/d/a/obj/d_a_obj_lv6SwGate/%.cpp
+	@echo [547] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M547_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M547_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv6SwGate/libs/Runtime.PPCEABI.H/Makefile
 

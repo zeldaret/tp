@@ -3,7 +3,7 @@ lbl_80CAEDDC:
 /* 80CAEDE0  7C 08 02 A6 */	mflr r0
 /* 80CAEDE4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80CAEDE8  39 61 00 20 */	addi r11, r1, 0x20
-/* 80CAEDEC  4B 6B 33 EC */	b _savegpr_28
+/* 80CAEDEC  4B 6B 33 ED */	bl _savegpr_28
 /* 80CAEDF0  7C 7C 1B 78 */	mr r28, r3
 /* 80CAEDF4  3B A0 00 00 */	li r29, 0
 /* 80CAEDF8  3B E0 00 00 */	li r31, 0
@@ -11,11 +11,11 @@ lbl_80CAEDFC:
 /* 80CAEDFC  3B DF 09 EC */	addi r30, r31, 0x9ec
 /* 80CAEE00  7F DC F2 14 */	add r30, r28, r30
 /* 80CAEE04  7F C3 F3 78 */	mr r3, r30
-/* 80CAEE08  4B 3D 56 58 */	b ChkTgHit__12dCcD_GObjInfFv
+/* 80CAEE08  4B 3D 56 59 */	bl ChkTgHit__12dCcD_GObjInfFv
 /* 80CAEE0C  28 03 00 00 */	cmplwi r3, 0
 /* 80CAEE10  41 82 00 54 */	beq lbl_80CAEE64
 /* 80CAEE14  7F C3 F3 78 */	mr r3, r30
-/* 80CAEE18  4B 3D 56 E0 */	b GetTgHitObj__12dCcD_GObjInfFv
+/* 80CAEE18  4B 3D 56 E1 */	bl GetTgHitObj__12dCcD_GObjInfFv
 /* 80CAEE1C  28 03 00 00 */	cmplwi r3, 0
 /* 80CAEE20  41 82 00 30 */	beq lbl_80CAEE50
 /* 80CAEE24  80 03 00 10 */	lwz r0, 0x10(r3)
@@ -43,7 +43,7 @@ lbl_80CAEE64:
 /* 80CAEE74  38 60 00 00 */	li r3, 0
 lbl_80CAEE78:
 /* 80CAEE78  39 61 00 20 */	addi r11, r1, 0x20
-/* 80CAEE7C  4B 6B 33 A8 */	b _restgpr_28
+/* 80CAEE7C  4B 6B 33 A9 */	bl _restgpr_28
 /* 80CAEE80  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80CAEE84  7C 08 03 A6 */	mtlr r0
 /* 80CAEE88  38 21 00 20 */	addi r1, r1, 0x20

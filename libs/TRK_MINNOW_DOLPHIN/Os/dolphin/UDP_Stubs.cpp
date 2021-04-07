@@ -29,47 +29,47 @@ extern "C" s32 udp_cc_initialize();
 // Declarations:
 //
 
-/* 80372314-8037231C 0008+00 s=0 e=1 z=0  None .text      udp_cc_post_stop */
-extern "C" s32 udp_cc_post_stop() {
+/* 80372314-8037231C 36CC54 0008+00 0/0 1/1 0/0 .text            udp_cc_post_stop */
+s32 udp_cc_post_stop() {
     return -1;
 }
 
-/* 8037231C-80372324 0008+00 s=0 e=1 z=0  None .text      udp_cc_pre_continue */
-extern "C" s32 udp_cc_pre_continue() {
+/* 8037231C-80372324 36CC5C 0008+00 0/0 1/1 0/0 .text            udp_cc_pre_continue */
+s32 udp_cc_pre_continue() {
     return -1;
 }
 
-/* 80372324-8037232C 0008+00 s=0 e=1 z=0  None .text      udp_cc_peek */
-extern "C" bool udp_cc_peek() {
+/* 80372324-8037232C 36CC64 0008+00 0/0 1/1 0/0 .text            udp_cc_peek */
+bool udp_cc_peek() {
     return false;
 }
 
-/* 8037232C-80372334 0008+00 s=0 e=1 z=0  None .text      udp_cc_write */
-extern "C" bool udp_cc_write() {
+/* 8037232C-80372334 36CC6C 0008+00 0/0 1/1 0/0 .text            udp_cc_write */
+bool udp_cc_write() {
     return false;
 }
 
-/* 80372334-8037233C 0008+00 s=0 e=1 z=0  None .text      udp_cc_read */
-extern "C" bool udp_cc_read() {
+/* 80372334-8037233C 36CC74 0008+00 0/0 1/1 0/0 .text            udp_cc_read */
+bool udp_cc_read() {
     return false;
 }
 
-/* 8037233C-80372344 0008+00 s=0 e=1 z=0  None .text      udp_cc_close */
-extern "C" s32 udp_cc_close() {
+/* 8037233C-80372344 36CC7C 0008+00 0/0 1/1 0/0 .text            udp_cc_close */
+s32 udp_cc_close() {
     return -1;
 }
 
-/* 80372344-8037234C 0008+00 s=0 e=1 z=0  None .text      udp_cc_open */
-extern "C" s32 udp_cc_open() {
+/* 80372344-8037234C 36CC84 0008+00 0/0 1/1 0/0 .text            udp_cc_open */
+s32 udp_cc_open() {
     return -1;
 }
 
-/* 8037234C-80372354 0008+00 s=0 e=1 z=0  None .text      udp_cc_shutdown */
-extern "C" s32 udp_cc_shutdown() {
+/* 8037234C-80372354 36CC8C 0008+00 0/0 1/1 0/0 .text            udp_cc_shutdown */
+s32 udp_cc_shutdown() {
     return -1;
 }
 
-/* 80372354-8037235C 0008+00 s=0 e=1 z=0  None .text      udp_cc_initialize */
-extern "C" s32 udp_cc_initialize() {
+/* 80372354-8037235C 36CC94 0008+00 0/0 1/1 0/0 .text            udp_cc_initialize */
+s32 udp_cc_initialize() {
     return -1;
 }

@@ -1,14 +1,14 @@
 lbl_8036D860:
 /* 8036D860  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8036D864  7C 08 02 A6 */	mflr r0
-/* 8036D868  3C 60 80 45 */	lis r3, gTRKFramingState@ha
-/* 8036D86C  3C 80 80 3A */	lis r4, lit_121@ha
+/* 8036D868  3C 60 80 45 */	lis r3, gTRKFramingState@ha /* 0x8044F270@ha */
+/* 8036D86C  3C 80 80 3A */	lis r4, lit_121@ha /* 0x803A2700@ha */
 /* 8036D870  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8036D874  38 C3 F2 70 */	addi r6, r3, gTRKFramingState@l
+/* 8036D874  38 C3 F2 70 */	addi r6, r3, gTRKFramingState@l /* 0x8044F270@l */
 /* 8036D878  38 00 00 00 */	li r0, 0
 /* 8036D87C  38 60 FF FF */	li r3, -1
 /* 8036D880  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 8036D884  3B E4 27 00 */	addi r31, r4, lit_121@l
+/* 8036D884  3B E4 27 00 */	addi r31, r4, lit_121@l /* 0x803A2700@l */
 /* 8036D888  38 9F 00 00 */	addi r4, r31, 0
 /* 8036D88C  38 A0 00 40 */	li r5, 0x40
 /* 8036D890  90 66 00 00 */	stw r3, 0(r6)

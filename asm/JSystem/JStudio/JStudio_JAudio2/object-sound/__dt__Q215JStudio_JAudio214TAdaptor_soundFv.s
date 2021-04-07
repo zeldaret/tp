@@ -7,8 +7,8 @@ lbl_8028D8F4:
 /* 8028D908  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8028D90C  7C 9F 23 78 */	mr r31, r4
 /* 8028D910  41 82 00 78 */	beq lbl_8028D988
-/* 8028D914  3C 60 80 3C */	lis r3, __vt__Q215JStudio_JAudio214TAdaptor_sound@ha
-/* 8028D918  38 03 5A 88 */	addi r0, r3, __vt__Q215JStudio_JAudio214TAdaptor_sound@l
+/* 8028D914  3C 60 80 3C */	lis r3, __vt__Q215JStudio_JAudio214TAdaptor_sound@ha /* 0x803C5A88@ha */
+/* 8028D918  38 03 5A 88 */	addi r0, r3, __vt__Q215JStudio_JAudio214TAdaptor_sound@l /* 0x803C5A88@l */
 /* 8028D91C  90 1E 00 00 */	stw r0, 0(r30)
 /* 8028D920  80 7E 01 18 */	lwz r3, 0x118(r30)
 /* 8028D924  28 03 00 00 */	cmplwi r3, 0

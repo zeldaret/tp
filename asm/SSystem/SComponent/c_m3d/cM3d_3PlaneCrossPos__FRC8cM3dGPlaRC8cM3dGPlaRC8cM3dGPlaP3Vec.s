@@ -8,15 +8,15 @@ lbl_8026E8A0:
 /* 8026E8B8  48 0F 39 25 */	bl _savegpr_29
 /* 8026E8BC  7C BD 2B 78 */	mr r29, r5
 /* 8026E8C0  7C DE 33 78 */	mr r30, r6
-/* 8026E8C4  3C A0 80 3A */	lis r5, __vt__8cM3dGLin@ha
-/* 8026E8C8  38 05 78 F8 */	addi r0, r5, __vt__8cM3dGLin@l
+/* 8026E8C4  3C A0 80 3A */	lis r5, __vt__8cM3dGLin@ha /* 0x803A78F8@ha */
+/* 8026E8C8  38 05 78 F8 */	addi r0, r5, __vt__8cM3dGLin@l /* 0x803A78F8@l */
 /* 8026E8CC  90 01 00 20 */	stw r0, 0x20(r1)
 /* 8026E8D0  38 A1 00 08 */	addi r5, r1, 8
 /* 8026E8D4  4B FF FE 1D */	bl cM3d_2PlaneCrossLine__FRC8cM3dGPlaRC8cM3dGPlaP8cM3dGLin
 /* 8026E8D8  2C 03 00 00 */	cmpwi r3, 0
 /* 8026E8DC  40 82 00 18 */	bne lbl_8026E8F4
-/* 8026E8E0  3C 60 80 3A */	lis r3, __vt__8cM3dGLin@ha
-/* 8026E8E4  38 03 78 F8 */	addi r0, r3, __vt__8cM3dGLin@l
+/* 8026E8E0  3C 60 80 3A */	lis r3, __vt__8cM3dGLin@ha /* 0x803A78F8@ha */
+/* 8026E8E4  38 03 78 F8 */	addi r0, r3, __vt__8cM3dGLin@l /* 0x803A78F8@l */
 /* 8026E8E8  90 01 00 20 */	stw r0, 0x20(r1)
 /* 8026E8EC  38 60 00 00 */	li r3, 0
 /* 8026E8F0  48 00 00 70 */	b lbl_8026E960
@@ -39,14 +39,14 @@ lbl_8026E8F4:
 /* 8026E930  4B FF A5 A5 */	bl cM3d_CrossInfLineVsInfPlane_proc__FffPC3VecPC3VecP3Vec
 /* 8026E934  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8026E938  40 82 00 18 */	bne lbl_8026E950
-/* 8026E93C  3C 60 80 3A */	lis r3, __vt__8cM3dGLin@ha
-/* 8026E940  38 03 78 F8 */	addi r0, r3, __vt__8cM3dGLin@l
+/* 8026E93C  3C 60 80 3A */	lis r3, __vt__8cM3dGLin@ha /* 0x803A78F8@ha */
+/* 8026E940  38 03 78 F8 */	addi r0, r3, __vt__8cM3dGLin@l /* 0x803A78F8@l */
 /* 8026E944  90 01 00 20 */	stw r0, 0x20(r1)
 /* 8026E948  38 60 00 00 */	li r3, 0
 /* 8026E94C  48 00 00 14 */	b lbl_8026E960
 lbl_8026E950:
-/* 8026E950  3C 60 80 3A */	lis r3, __vt__8cM3dGLin@ha
-/* 8026E954  38 03 78 F8 */	addi r0, r3, __vt__8cM3dGLin@l
+/* 8026E950  3C 60 80 3A */	lis r3, __vt__8cM3dGLin@ha /* 0x803A78F8@ha */
+/* 8026E954  38 03 78 F8 */	addi r0, r3, __vt__8cM3dGLin@l /* 0x803A78F8@l */
 /* 8026E958  90 01 00 20 */	stw r0, 0x20(r1)
 /* 8026E95C  38 60 00 01 */	li r3, 1
 lbl_8026E960:

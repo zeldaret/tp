@@ -5,8 +5,8 @@ lbl_8072A8CC:
 /* 8072A8D8  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8072A8DC  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8072A8E0  7C 7E 1B 78 */	mr r30, r3
-/* 8072A8E4  3C 80 80 73 */	lis r4, lit_3789@ha
-/* 8072A8E8  3B E4 C1 80 */	addi r31, r4, lit_3789@l
+/* 8072A8E4  3C 80 80 73 */	lis r4, lit_3789@ha /* 0x8072C180@ha */
+/* 8072A8E8  3B E4 C1 80 */	addi r31, r4, lit_3789@l /* 0x8072C180@l */
 /* 8072A8EC  38 00 00 06 */	li r0, 6
 /* 8072A8F0  B0 03 06 AA */	sth r0, 0x6aa(r3)
 /* 8072A8F4  A8 03 05 B4 */	lha r0, 0x5b4(r3)
@@ -25,14 +25,14 @@ lbl_8072A910:
 /* 8072A924  38 00 00 01 */	li r0, 1
 /* 8072A928  B0 1E 05 B4 */	sth r0, 0x5b4(r30)
 /* 8072A92C  C0 3F 00 60 */	lfs f1, 0x60(r31)
-/* 8072A930  4B B3 D0 24 */	b cM_rndF__Ff
+/* 8072A930  4B B3 D0 25 */	bl cM_rndF__Ff
 /* 8072A934  C0 1F 00 84 */	lfs f0, 0x84(r31)
 /* 8072A938  EC 00 08 2A */	fadds f0, f0, f1
 /* 8072A93C  D0 1E 04 FC */	stfs f0, 0x4fc(r30)
 /* 8072A940  C0 1F 00 88 */	lfs f0, 0x88(r31)
 /* 8072A944  D0 1E 05 2C */	stfs f0, 0x52c(r30)
 /* 8072A948  C0 3F 00 7C */	lfs f1, 0x7c(r31)
-/* 8072A94C  4B B3 D0 08 */	b cM_rndF__Ff
+/* 8072A94C  4B B3 D0 09 */	bl cM_rndF__Ff
 /* 8072A950  C0 1F 00 8C */	lfs f0, 0x8c(r31)
 /* 8072A954  EC 00 08 2A */	fadds f0, f0, f1
 /* 8072A958  FC 00 00 1E */	fctiwz f0, f0
@@ -48,7 +48,7 @@ lbl_8072A968:
 /* 8072A97C  38 A0 00 06 */	li r5, 6
 /* 8072A980  38 C0 00 03 */	li r6, 3
 /* 8072A984  38 E0 00 27 */	li r7, 0x27
-/* 8072A988  4B 8F 21 50 */	b fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc
+/* 8072A988  4B 8F 21 51 */	bl fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc
 /* 8072A98C  88 1E 05 B6 */	lbz r0, 0x5b6(r30)
 /* 8072A990  28 00 00 01 */	cmplwi r0, 1
 /* 8072A994  40 82 00 DC */	bne lbl_8072AA70
@@ -94,11 +94,11 @@ lbl_8072A968:
 /* 8072AA34  88 FE 06 AC */	lbz r7, 0x6ac(r30)
 /* 8072AA38  7C E0 07 75 */	extsb. r0, r7
 /* 8072AA3C  41 82 00 3C */	beq lbl_8072AA78
-/* 8072AA40  3C 60 80 73 */	lis r3, data_8072C454@ha
-/* 8072AA44  38 A3 C4 54 */	addi r5, r3, data_8072C454@l
+/* 8072AA40  3C 60 80 73 */	lis r3, data_8072C454@ha /* 0x8072C454@ha */
+/* 8072AA44  38 A3 C4 54 */	addi r5, r3, data_8072C454@l /* 0x8072C454@l */
 /* 8072AA48  88 85 00 00 */	lbz r4, 0(r5)
-/* 8072AA4C  3C 60 80 73 */	lis r3, stick_bit@ha
-/* 8072AA50  38 63 C2 84 */	addi r3, r3, stick_bit@l
+/* 8072AA4C  3C 60 80 73 */	lis r3, stick_bit@ha /* 0x8072C284@ha */
+/* 8072AA50  38 63 C2 84 */	addi r3, r3, stick_bit@l /* 0x8072C284@l */
 /* 8072AA54  7C E0 07 74 */	extsb r0, r7
 /* 8072AA58  7C 63 02 14 */	add r3, r3, r0
 /* 8072AA5C  88 03 FF FF */	lbz r0, -1(r3)
@@ -108,7 +108,7 @@ lbl_8072A968:
 /* 8072AA6C  48 00 00 0C */	b lbl_8072AA78
 lbl_8072AA70:
 /* 8072AA70  7F C3 F3 78 */	mr r3, r30
-/* 8072AA74  4B 8E F2 08 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 8072AA74  4B 8E F2 09 */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_8072AA78:
 /* 8072AA78  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8072AA7C  83 C1 00 18 */	lwz r30, 0x18(r1)

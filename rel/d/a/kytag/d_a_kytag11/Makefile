@@ -3,17 +3,15 @@
 #
 
 M76_TARGET := $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag11.plf
+M76_LDSCRIPT := $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag11.lcf
+M76_MAP := $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag11.map
 
 M76_CPP_FILES := \
-	rel/d/a/kytag/d_a_kytag11/executor.cpp \
-	rel/d/a/kytag/d_a_kytag11/unknown_translation_unit_ctors.cpp \
-	rel/d/a/kytag/d_a_kytag11/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/kytag/d_a_kytag11/d_a_kytag11.cpp \
 
 M76_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag11/executor.o \
-	$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag11/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag11/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag11/d_a_kytag11.o \
 
 M76_LIBS := \
@@ -29,14 +27,21 @@ M76_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M76_LDSCRIPT) \
+	-unused -map $(M76_MAP) \
+	-w off \
 
 $(M76_TARGET): $(M76_O_FILES) $(M76_LIBS)
+	@echo [ 76] creating $(M76_TARGET)
 	@echo $(M76_LIBS) $(M76_O_FILES) > build/M76_ofiles
-	$(LD) -partial $(M76_LDFLAGS) -o $(M76_TARGET) @build/M76_ofiles
+	@python3 tools/lcf.py rel 76 --output $(M76_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M76_LDFLAGS) -o $(M76_TARGET) @build/M76_ofiles
 
 $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag11/%.o: rel/d/a/kytag/d_a_kytag11/%.cpp
+	@echo [ 76] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M76_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M76_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

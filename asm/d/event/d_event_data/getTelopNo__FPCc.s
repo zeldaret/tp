@@ -21,8 +21,8 @@ lbl_80043764:
 /* 80043770  7C C5 03 78 */	or r5, r6, r0
 /* 80043774  38 60 00 00 */	li r3, 0
 /* 80043778  80 0D 80 C0 */	lwz r0, numTelopData(r13)
-/* 8004377C  3C 80 80 3A */	lis r4, TelopData@ha
-/* 80043780  38 84 7F B0 */	addi r4, r4, TelopData@l
+/* 8004377C  3C 80 80 3A */	lis r4, TelopData@ha /* 0x803A7FB0@ha */
+/* 80043780  38 84 7F B0 */	addi r4, r4, TelopData@l /* 0x803A7FB0@l */
 /* 80043784  7C 09 03 A6 */	mtctr r0
 /* 80043788  2C 00 00 00 */	cmpwi r0, 0
 /* 8004378C  40 81 00 2C */	ble lbl_800437B8
@@ -30,8 +30,8 @@ lbl_80043790:
 /* 80043790  7C 04 18 2E */	lwzx r0, r4, r3
 /* 80043794  7C 05 00 00 */	cmpw r5, r0
 /* 80043798  40 82 00 18 */	bne lbl_800437B0
-/* 8004379C  3C 80 80 3A */	lis r4, TelopData@ha
-/* 800437A0  38 04 7F B0 */	addi r0, r4, TelopData@l
+/* 8004379C  3C 80 80 3A */	lis r4, TelopData@ha /* 0x803A7FB0@ha */
+/* 800437A0  38 04 7F B0 */	addi r0, r4, TelopData@l /* 0x803A7FB0@l */
 /* 800437A4  7C 60 1A 14 */	add r3, r0, r3
 /* 800437A8  A0 63 00 04 */	lhz r3, 4(r3)
 /* 800437AC  4E 80 00 20 */	blr 

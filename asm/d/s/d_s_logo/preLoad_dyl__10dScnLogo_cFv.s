@@ -9,8 +9,8 @@ lbl_8025611C:
 /* 80256138  3B 60 00 00 */	li r27, 0
 /* 8025613C  3B E0 00 00 */	li r31, 0
 /* 80256140  3B C0 00 00 */	li r30, 0
-/* 80256144  3C 60 80 3A */	lis r3, l_preLoad_dylKeyTbl@ha
-/* 80256148  3B A3 9F E0 */	addi r29, r3, l_preLoad_dylKeyTbl@l
+/* 80256144  3C 60 80 3A */	lis r3, l_preLoad_dylKeyTbl@ha /* 0x80399FE0@ha */
+/* 80256148  3B A3 9F E0 */	addi r29, r3, l_preLoad_dylKeyTbl@l /* 0x80399FE0@l */
 lbl_8025614C:
 /* 8025614C  80 1A 01 FC */	lwz r0, 0x1fc(r26)
 /* 80256150  7C 60 F2 14 */	add r3, r0, r30

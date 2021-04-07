@@ -5,8 +5,8 @@ lbl_8029EE40:
 /* 8029EE4C  88 0D 8D 88 */	lbz r0, struct_80451308+0x0(r13)
 /* 8029EE50  28 00 00 01 */	cmplwi r0, 1
 /* 8029EE54  41 82 00 20 */	beq lbl_8029EE74
-/* 8029EE58  3C C0 80 43 */	lis r6, sync_stack@ha
-/* 8029EE5C  94 66 40 60 */	stwu r3, sync_stack@l(r6)
+/* 8029EE58  3C C0 80 43 */	lis r6, sync_stack@ha /* 0x80434060@ha */
+/* 8029EE5C  94 66 40 60 */	stwu r3, sync_stack@l(r6)  /* 0x80434060@l */
 /* 8029EE60  38 00 00 01 */	li r0, 1
 /* 8029EE64  98 0D 8D 89 */	stb r0, struct_80451308+0x1(r13)
 /* 8029EE68  90 86 00 04 */	stw r4, 4(r6)

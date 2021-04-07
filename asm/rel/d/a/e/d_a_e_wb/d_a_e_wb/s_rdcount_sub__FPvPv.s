@@ -4,7 +4,7 @@ lbl_807DA7F0:
 /* 807DA7F8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 807DA7FC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 807DA800  7C 7F 1B 78 */	mr r31, r3
-/* 807DA804  4B 83 E4 DC */	b fopAc_IsActor__FPv
+/* 807DA804  4B 83 E4 DD */	bl fopAc_IsActor__FPv
 /* 807DA808  2C 03 00 00 */	cmpwi r3, 0
 /* 807DA80C  41 82 00 44 */	beq lbl_807DA850
 /* 807DA810  A8 1F 00 08 */	lha r0, 8(r31)
@@ -19,8 +19,8 @@ lbl_807DA7F0:
 /* 807DA834  28 00 00 02 */	cmplwi r0, 2
 /* 807DA838  40 82 00 18 */	bne lbl_807DA850
 lbl_807DA83C:
-/* 807DA83C  3C 60 80 7E */	lis r3, rd_count@ha
-/* 807DA840  38 83 38 00 */	addi r4, r3, rd_count@l
+/* 807DA83C  3C 60 80 7E */	lis r3, rd_count@ha /* 0x807E3800@ha */
+/* 807DA840  38 83 38 00 */	addi r4, r3, rd_count@l /* 0x807E3800@l */
 /* 807DA844  80 64 00 00 */	lwz r3, 0(r4)
 /* 807DA848  38 03 00 01 */	addi r0, r3, 1
 /* 807DA84C  90 04 00 00 */	stw r0, 0(r4)

@@ -3,8 +3,8 @@ lbl_80017B4C:
 /* 80017B50  7C 08 02 A6 */	mflr r0
 /* 80017B54  90 01 00 84 */	stw r0, 0x84(r1)
 /* 80017B58  7C 64 1B 78 */	mr r4, r3
-/* 80017B5C  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 80017B60  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l
+/* 80017B5C  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 80017B60  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 80017B64  88 63 1F BC */	lbz r3, 0x1fbc(r3)
 /* 80017B68  80 84 00 04 */	lwz r4, 4(r4)
 /* 80017B6C  38 A1 00 08 */	addi r5, r1, 8

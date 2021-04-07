@@ -11,12 +11,12 @@ lbl_8095E96C:
 /* 8095E990  90 04 00 3C */	stw r0, 0x3c(r4)
 /* 8095E994  38 80 00 00 */	li r4, 0
 /* 8095E998  38 A0 00 00 */	li r5, 0
-/* 8095E99C  3C C0 80 96 */	lis r6, m__17daNpcAshB_Param_c@ha
-/* 8095E9A0  38 C6 20 E4 */	addi r6, r6, m__17daNpcAshB_Param_c@l
+/* 8095E99C  3C C0 80 96 */	lis r6, m__17daNpcAshB_Param_c@ha /* 0x809620E4@ha */
+/* 8095E9A0  38 C6 20 E4 */	addi r6, r6, m__17daNpcAshB_Param_c@l /* 0x809620E4@l */
 /* 8095E9A4  C0 26 00 0C */	lfs f1, 0xc(r6)
 /* 8095E9A8  38 C0 00 00 */	li r6, 0
 /* 8095E9AC  38 E0 00 00 */	li r7, 0
-/* 8095E9B0  4B 7F 38 FC */	b draw__8daNpcF_cFiifP11_GXColorS10i
+/* 8095E9B0  4B 7F 38 FD */	bl draw__8daNpcF_cFiifP11_GXColorS10i
 /* 8095E9B4  38 60 00 01 */	li r3, 1
 /* 8095E9B8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8095E9BC  7C 08 03 A6 */	mtlr r0

@@ -25,8 +25,8 @@ lbl_80131B44:
 /* 80131B50  C0 62 92 B8 */	lfs f3, lit_6040(r2)
 /* 80131B54  FC 80 10 90 */	fmr f4, f2
 /* 80131B58  48 13 DE 25 */	bl cLib_addCalc__FPfffff
-/* 80131B5C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80131B60  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80131B5C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80131B60  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80131B64  A8 1F 30 08 */	lha r0, 0x3008(r31)
 /* 80131B68  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 80131B6C  7C 63 02 14 */	add r3, r3, r0

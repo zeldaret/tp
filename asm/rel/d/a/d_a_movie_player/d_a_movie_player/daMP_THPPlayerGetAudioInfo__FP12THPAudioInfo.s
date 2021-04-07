@@ -2,14 +2,14 @@ lbl_808785B0:
 /* 808785B0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 808785B4  7C 08 02 A6 */	mflr r0
 /* 808785B8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 808785BC  3C 80 80 88 */	lis r4, daMP_ActivePlayer@ha
-/* 808785C0  38 84 9B D0 */	addi r4, r4, daMP_ActivePlayer@l
+/* 808785BC  3C 80 80 88 */	lis r4, daMP_ActivePlayer@ha /* 0x80879BD0@ha */
+/* 808785C0  38 84 9B D0 */	addi r4, r4, daMP_ActivePlayer@l /* 0x80879BD0@l */
 /* 808785C4  80 04 00 A0 */	lwz r0, 0xa0(r4)
 /* 808785C8  2C 00 00 00 */	cmpwi r0, 0
 /* 808785CC  41 82 00 18 */	beq lbl_808785E4
 /* 808785D0  38 84 00 8C */	addi r4, r4, 0x8c
 /* 808785D4  38 A0 00 10 */	li r5, 0x10
-/* 808785D8  4B 78 AF 68 */	b memcpy
+/* 808785D8  4B 78 AF 69 */	bl memcpy
 /* 808785DC  38 60 00 01 */	li r3, 1
 /* 808785E0  48 00 00 08 */	b lbl_808785E8
 lbl_808785E4:

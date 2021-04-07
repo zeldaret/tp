@@ -15,7 +15,7 @@ lbl_80ACE098:
 /* 80ACE0CC  48 00 01 38 */	b lbl_80ACE204
 lbl_80ACE0D0:
 /* 80ACE0D0  38 60 00 A5 */	li r3, 0xa5
-/* 80ACE0D4  4B 67 E9 D8 */	b daNpcT_chkEvtBit__FUl
+/* 80ACE0D4  4B 67 E9 D9 */	bl daNpcT_chkEvtBit__FUl
 /* 80ACE0D8  2C 03 00 00 */	cmpwi r3, 0
 /* 80ACE0DC  41 82 00 70 */	beq lbl_80ACE14C
 /* 80ACE0E0  80 1F 0B 58 */	lwz r0, 0xb58(r31)
@@ -23,12 +23,12 @@ lbl_80ACE0D0:
 /* 80ACE0E8  41 82 00 28 */	beq lbl_80ACE110
 /* 80ACE0EC  83 DF 0B 5C */	lwz r30, 0xb5c(r31)
 /* 80ACE0F0  38 7F 0B 50 */	addi r3, r31, 0xb50
-/* 80ACE0F4  4B 67 77 A4 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80ACE0F4  4B 67 77 A5 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80ACE0F8  93 DF 0B 5C */	stw r30, 0xb5c(r31)
 /* 80ACE0FC  38 00 00 06 */	li r0, 6
 /* 80ACE100  90 1F 0B 58 */	stw r0, 0xb58(r31)
-/* 80ACE104  3C 60 80 AD */	lis r3, lit_4716@ha
-/* 80ACE108  C0 03 FE B0 */	lfs f0, lit_4716@l(r3)
+/* 80ACE104  3C 60 80 AD */	lis r3, lit_4716@ha /* 0x80ACFEB0@ha */
+/* 80ACE108  C0 03 FE B0 */	lfs f0, lit_4716@l(r3)  /* 0x80ACFEB0@l */
 /* 80ACE10C  D0 1F 0B 68 */	stfs f0, 0xb68(r31)
 lbl_80ACE110:
 /* 80ACE110  80 1F 0B 7C */	lwz r0, 0xb7c(r31)
@@ -36,12 +36,12 @@ lbl_80ACE110:
 /* 80ACE118  41 82 00 28 */	beq lbl_80ACE140
 /* 80ACE11C  83 DF 0B 80 */	lwz r30, 0xb80(r31)
 /* 80ACE120  38 7F 0B 74 */	addi r3, r31, 0xb74
-/* 80ACE124  4B 67 77 74 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80ACE124  4B 67 77 75 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80ACE128  93 DF 0B 80 */	stw r30, 0xb80(r31)
 /* 80ACE12C  38 00 00 0B */	li r0, 0xb
 /* 80ACE130  90 1F 0B 7C */	stw r0, 0xb7c(r31)
-/* 80ACE134  3C 60 80 AD */	lis r3, lit_4716@ha
-/* 80ACE138  C0 03 FE B0 */	lfs f0, lit_4716@l(r3)
+/* 80ACE134  3C 60 80 AD */	lis r3, lit_4716@ha /* 0x80ACFEB0@ha */
+/* 80ACE138  C0 03 FE B0 */	lfs f0, lit_4716@l(r3)  /* 0x80ACFEB0@l */
 /* 80ACE13C  D0 1F 0B 8C */	stfs f0, 0xb8c(r31)
 lbl_80ACE140:
 /* 80ACE140  38 00 00 00 */	li r0, 0
@@ -53,12 +53,12 @@ lbl_80ACE14C:
 /* 80ACE154  41 82 00 28 */	beq lbl_80ACE17C
 /* 80ACE158  83 DF 0B 5C */	lwz r30, 0xb5c(r31)
 /* 80ACE15C  38 7F 0B 50 */	addi r3, r31, 0xb50
-/* 80ACE160  4B 67 77 38 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80ACE160  4B 67 77 39 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80ACE164  93 DF 0B 5C */	stw r30, 0xb5c(r31)
 /* 80ACE168  38 00 00 06 */	li r0, 6
 /* 80ACE16C  90 1F 0B 58 */	stw r0, 0xb58(r31)
-/* 80ACE170  3C 60 80 AD */	lis r3, lit_4716@ha
-/* 80ACE174  C0 03 FE B0 */	lfs f0, lit_4716@l(r3)
+/* 80ACE170  3C 60 80 AD */	lis r3, lit_4716@ha /* 0x80ACFEB0@ha */
+/* 80ACE174  C0 03 FE B0 */	lfs f0, lit_4716@l(r3)  /* 0x80ACFEB0@l */
 /* 80ACE178  D0 1F 0B 68 */	stfs f0, 0xb68(r31)
 lbl_80ACE17C:
 /* 80ACE17C  80 1F 0B 7C */	lwz r0, 0xb7c(r31)
@@ -66,23 +66,23 @@ lbl_80ACE17C:
 /* 80ACE184  41 82 00 28 */	beq lbl_80ACE1AC
 /* 80ACE188  83 DF 0B 80 */	lwz r30, 0xb80(r31)
 /* 80ACE18C  38 7F 0B 74 */	addi r3, r31, 0xb74
-/* 80ACE190  4B 67 77 08 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80ACE190  4B 67 77 09 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80ACE194  93 DF 0B 80 */	stw r30, 0xb80(r31)
 /* 80ACE198  38 00 00 07 */	li r0, 7
 /* 80ACE19C  90 1F 0B 7C */	stw r0, 0xb7c(r31)
-/* 80ACE1A0  3C 60 80 AD */	lis r3, lit_4716@ha
-/* 80ACE1A4  C0 03 FE B0 */	lfs f0, lit_4716@l(r3)
+/* 80ACE1A0  3C 60 80 AD */	lis r3, lit_4716@ha /* 0x80ACFEB0@ha */
+/* 80ACE1A4  C0 03 FE B0 */	lfs f0, lit_4716@l(r3)  /* 0x80ACFEB0@l */
 /* 80ACE1A8  D0 1F 0B 8C */	stfs f0, 0xb8c(r31)
 lbl_80ACE1AC:
 /* 80ACE1AC  80 1F 0C E0 */	lwz r0, 0xce0(r31)
 /* 80ACE1B0  2C 00 00 00 */	cmpwi r0, 0
 /* 80ACE1B4  41 82 00 28 */	beq lbl_80ACE1DC
 /* 80ACE1B8  38 7F 0B A8 */	addi r3, r31, 0xba8
-/* 80ACE1BC  4B 67 75 40 */	b remove__18daNpcT_ActorMngr_cFv
+/* 80ACE1BC  4B 67 75 41 */	bl remove__18daNpcT_ActorMngr_cFv
 /* 80ACE1C0  38 00 00 00 */	li r0, 0
 /* 80ACE1C4  90 1F 0B C8 */	stw r0, 0xbc8(r31)
-/* 80ACE1C8  3C 60 80 AD */	lis r3, lit_4063@ha
-/* 80ACE1CC  C0 03 FE 98 */	lfs f0, lit_4063@l(r3)
+/* 80ACE1C8  3C 60 80 AD */	lis r3, lit_4063@ha /* 0x80ACFE98@ha */
+/* 80ACE1CC  C0 03 FE 98 */	lfs f0, lit_4063@l(r3)  /* 0x80ACFE98@l */
 /* 80ACE1D0  D0 1F 0C F4 */	stfs f0, 0xcf4(r31)
 /* 80ACE1D4  98 1F 0C FF */	stb r0, 0xcff(r31)
 /* 80ACE1D8  90 1F 0C E0 */	stw r0, 0xce0(r31)

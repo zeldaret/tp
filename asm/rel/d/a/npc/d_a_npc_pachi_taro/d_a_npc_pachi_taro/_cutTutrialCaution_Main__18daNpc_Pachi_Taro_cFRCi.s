@@ -23,7 +23,7 @@ lbl_80AA00D0:
 /* 80AA00D4  38 A0 00 00 */	li r5, 0
 /* 80AA00D8  38 C0 00 00 */	li r6, 0
 /* 80AA00DC  38 E0 00 00 */	li r7, 0
-/* 80AA00E0  4B 6A BB 98 */	b talkProc__8daNpcT_cFPiiPP10fopAc_ac_ci
+/* 80AA00E0  4B 6A BB 99 */	bl talkProc__8daNpcT_cFPiiPP10fopAc_ac_ci
 /* 80AA00E4  2C 03 00 00 */	cmpwi r3, 0
 /* 80AA00E8  41 82 00 08 */	beq lbl_80AA00F0
 /* 80AA00EC  3B E0 00 01 */	li r31, 1

@@ -3,18 +3,16 @@
 #
 
 M474_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hb.plf
+M474_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hb.lcf
+M474_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hb.map
 
 M474_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_hb/executor.cpp \
-	rel/d/a/obj/d_a_obj_hb/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_hb/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_hb/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_hb/d_a_obj_hb.cpp \
 
 M474_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hb/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hb/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hb/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hb/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hb/d_a_obj_hb.o \
 
@@ -31,14 +29,21 @@ M474_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M474_LDSCRIPT) \
+	-unused -map $(M474_MAP) \
+	-w off \
 
 $(M474_TARGET): $(M474_O_FILES) $(M474_LIBS)
+	@echo [474] creating $(M474_TARGET)
 	@echo $(M474_LIBS) $(M474_O_FILES) > build/M474_ofiles
-	$(LD) -partial $(M474_LDFLAGS) -o $(M474_TARGET) @build/M474_ofiles
+	@python3 tools/lcf.py rel 474 --output $(M474_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M474_LDFLAGS) -o $(M474_TARGET) @build/M474_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hb/%.o: rel/d/a/obj/d_a_obj_hb/%.cpp
+	@echo [474] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M474_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M474_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

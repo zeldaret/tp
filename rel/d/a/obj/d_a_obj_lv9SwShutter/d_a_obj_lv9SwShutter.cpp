@@ -48,9 +48,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct cXyz {};
 
 struct J3DModelData {};
 
@@ -67,9 +67,9 @@ struct dRes_control_c {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -85,9 +85,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -99,11 +99,6 @@ struct J3DModel {};
 //
 // Forward References:
 //
-
-static void daLv9SwShutter_Draw(daLv9SwShutter_c*);
-static void daLv9SwShutter_Execute(daLv9SwShutter_c*);
-static void daLv9SwShutter_Delete(daLv9SwShutter_c*);
-static void daLv9SwShutter_Create(fopAc_ac_c*);
 
 extern "C" void __ct__20daLv9SwShutter_HIO_cFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
@@ -126,26 +121,11 @@ extern "C" static void daLv9SwShutter_Delete__FP16daLv9SwShutter_c();
 extern "C" static void daLv9SwShutter_Create__FP10fopAc_ac_c();
 extern "C" void __dt__20daLv9SwShutter_HIO_cFv();
 extern "C" void __sinit_d_a_obj_lv9SwShutter_cpp();
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_Lv9SwShutter[12];
+extern "C" extern char const* const d_a_obj_lv9SwShutter__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_ZXYrotS(f32 (*)[4], s16, s16, s16);
-void mDoMtx_ZXYrotM(f32 (*)[4], s16, s16, s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dComIfGp_getReverb(int);
-void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
-void cLib_addCalc(f32*, f32, f32, f32, f32);
-void cLib_chaseF(f32*, f32, f32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_ZXYrotS__FPA4_fsss();
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
@@ -196,22 +176,33 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
-/* 80C8D7DC-80C8D7E0 0004+00 s=3 e=0 z=0  None .rodata    @3627 */
-SECTION_RODATA static u32 const lit_3627 = 0x40C00000;
+/* 80C8D7DC-80C8D7E0 000000 0004+00 3/3 0/0 0/0 .rodata          @3627 */
+SECTION_RODATA static f32 const lit_3627 = 6.0f;
+COMPILER_STRIP_GATE(80C8D7DC, &lit_3627);
 
-/* 80C8D7E0-80C8D7E4 0004+00 s=1 e=0 z=0  None .rodata    @3628 */
-SECTION_RODATA static u32 const lit_3628 = 0x41F00000;
+/* 80C8D7E0-80C8D7E4 000004 0004+00 0/1 0/0 0/0 .rodata          @3628 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3628 = 30.0f;
+COMPILER_STRIP_GATE(80C8D7E0, &lit_3628);
+#pragma pop
 
-/* 80C8D7E4-80C8D7E8 0004+00 s=1 e=0 z=0  None .rodata    @3629 */
-SECTION_RODATA static u32 const lit_3629 = 0x41700000;
+/* 80C8D7E4-80C8D7E8 000008 0004+00 0/1 0/0 0/0 .rodata          @3629 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3629 = 15.0f;
+COMPILER_STRIP_GATE(80C8D7E4, &lit_3629);
+#pragma pop
 
-/* 80C8D80C-80C8D818 000C+00 s=1 e=0 z=0  None .data      cNullVec__6Z2Calc */
+/* 80C8D80C-80C8D818 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80C8D818-80C8D82C 0004+10 s=0 e=0 z=0  None .data      @1787 */
-SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
+/* 80C8D818-80C8D82C 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,
@@ -219,36 +210,49 @@ SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
     0x3FE00000,
     0x00000000,
 };
+#pragma pop
 
-/* 80C8D82C-80C8D838 000C+00 s=1 e=0 z=0  None .data      @3722 */
+/* 80C8D82C-80C8D838 -00001 000C+00 0/1 0/0 0/0 .data            @3722 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3722[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)modeWait__16daLv9SwShutter_cFv,
 };
+#pragma pop
 
-/* 80C8D838-80C8D844 000C+00 s=1 e=0 z=0  None .data      @3723 */
+/* 80C8D838-80C8D844 -00001 000C+00 0/1 0/0 0/0 .data            @3723 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3723[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)modeOpen__16daLv9SwShutter_cFv,
 };
+#pragma pop
 
-/* 80C8D844-80C8D850 000C+00 s=1 e=0 z=0  None .data      @3724 */
+/* 80C8D844-80C8D850 -00001 000C+00 0/1 0/0 0/0 .data            @3724 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3724[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)modeClose__16daLv9SwShutter_cFv,
 };
+#pragma pop
 
-/* 80C8D850-80C8D874 0024+00 s=1 e=0 z=0  None .data      mode_proc$3721 */
+/* 80C8D850-80C8D874 000044 0024+00 0/1 0/0 0/0 .data            mode_proc$3721 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 mode_proc[36] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+#pragma pop
 
-/* 80C8D874-80C8D894 0020+00 s=1 e=0 z=0  None .data      l_daLv9SwShutter_Method */
+/* 80C8D874-80C8D894 -00001 0020+00 1/0 0/0 0/0 .data            l_daLv9SwShutter_Method */
 SECTION_DATA static void* l_daLv9SwShutter_Method[8] = {
     (void*)daLv9SwShutter_Create__FP10fopAc_ac_c,
     (void*)daLv9SwShutter_Delete__FP16daLv9SwShutter_c,
@@ -260,8 +264,8 @@ SECTION_DATA static void* l_daLv9SwShutter_Method[8] = {
     (void*)NULL,
 };
 
-/* 80C8D894-80C8D8C4 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_Lv9SwShutter */
-SECTION_DATA void* g_profile_Obj_Lv9SwShutter[12] = {
+/* 80C8D894-80C8D8C4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Lv9SwShutter */
+SECTION_DATA extern void* g_profile_Obj_Lv9SwShutter[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00A60000, (void*)&g_fpcLf_Method,
     (void*)0x000005B4, (void*)NULL,
@@ -270,9 +274,9 @@ SECTION_DATA void* g_profile_Obj_Lv9SwShutter[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80C8D8C4-80C8D8EC 0028+00 s=1 e=0 z=0  None .data      __vt__16daLv9SwShutter_c */
-SECTION_DATA static void* __vt__16daLv9SwShutter_c[10] = {
-    (void*)NULL,
+/* 80C8D8C4-80C8D8EC 0000B8 0028+00 1/1 0/0 0/0 .data            __vt__16daLv9SwShutter_c */
+SECTION_DATA extern void* __vt__16daLv9SwShutter_c[10] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__16daLv9SwShutter_cFv,
     (void*)Create__16dBgS_MoveBgActorFv,
@@ -284,21 +288,21 @@ SECTION_DATA static void* __vt__16daLv9SwShutter_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80C8D8EC-80C8D8F8 000C+00 s=2 e=0 z=0  None .data      __vt__20daLv9SwShutter_HIO_c */
-SECTION_DATA static void* __vt__20daLv9SwShutter_HIO_c[3] = {
-    (void*)NULL,
+/* 80C8D8EC-80C8D8F8 0000E0 000C+00 2/2 0/0 0/0 .data            __vt__20daLv9SwShutter_HIO_c */
+SECTION_DATA extern void* __vt__20daLv9SwShutter_HIO_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__20daLv9SwShutter_HIO_cFv,
 };
 
-/* 80C8D8F8-80C8D904 000C+00 s=3 e=0 z=0  None .data      __vt__14mDoHIO_entry_c */
-SECTION_DATA static void* __vt__14mDoHIO_entry_c[3] = {
-    (void*)NULL,
+/* 80C8D8F8-80C8D904 0000EC 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
+SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14mDoHIO_entry_cFv,
 };
 
-/* 80C8CEAC-80C8CEF0 0044+00 s=1 e=0 z=0  None .text      __ct__20daLv9SwShutter_HIO_cFv */
+/* 80C8CEAC-80C8CEF0 0000EC 0044+00 1/1 0/0 0/0 .text            __ct__20daLv9SwShutter_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -308,7 +312,7 @@ asm daLv9SwShutter_HIO_c::daLv9SwShutter_HIO_c() {
 }
 #pragma pop
 
-/* 80C8CEF0-80C8CF38 0048+00 s=1 e=0 z=0  None .text      __dt__14mDoHIO_entry_cFv */
+/* 80C8CEF0-80C8CF38 000130 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -319,15 +323,16 @@ asm mDoHIO_entry_c::~mDoHIO_entry_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C8D7E8-80C8D7EC 0004+00 s=5 e=0 z=0  None .rodata    @3650 */
+/* 80C8D7E8-80C8D7EC 00000C 0004+00 3/5 0/0 0/0 .rodata          @3650 */
 SECTION_RODATA static u8 const lit_3650[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80C8D7E8, &lit_3650);
 
-/* 80C8CF38-80C8CFD4 009C+00 s=2 e=0 z=0  None .text      setBaseMtx__16daLv9SwShutter_cFv */
+/* 80C8CF38-80C8CFD4 000178 009C+00 2/2 0/0 0/0 .text            setBaseMtx__16daLv9SwShutter_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -337,30 +342,7 @@ asm void daLv9SwShutter_c::setBaseMtx() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80C8D7EC-80C8D7F0 0004+00 s=2 e=0 z=0  None .rodata    @3708 */
-SECTION_RODATA static u32 const lit_3708 = 0x44160000;
-
-/* 80C8D7F0-80C8D7F4 0004+00 s=1 e=0 z=0  None .rodata    @3782 */
-SECTION_RODATA static u32 const lit_3782 = 0x3DCCCCCD;
-
-/* 80C8D7F4-80C8D7F8 0004+00 s=2 e=0 z=0  None .rodata    @3783 */
-SECTION_RODATA static u32 const lit_3783 = 0x40A00000;
-
-/* 80C8D7F8-80C8D7FC 0004+00 s=2 e=0 z=0  None .rodata    @3784 */
-SECTION_RODATA static u32 const lit_3784 = 0x3F800000;
-
-/* 80C8D7FC-80C8D800 0004+00 s=2 e=0 z=0  None .rodata    @3785 */
-SECTION_RODATA static u32 const lit_3785 = 0xBF800000;
-
-/* 80C8D800-80C8D809 0009+00 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80C8D800 = "L9SwShut";
-#pragma pop
-
-/* 80C8CFD4-80C8D040 006C+00 s=1 e=0 z=0  None .text      CreateHeap__16daLv9SwShutter_cFv */
+/* 80C8CFD4-80C8D040 000214 006C+00 1/0 0/0 0/0 .text            CreateHeap__16daLv9SwShutter_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -370,7 +352,12 @@ asm void daLv9SwShutter_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80C8D040-80C8D168 0128+00 s=1 e=0 z=0  None .text      create__16daLv9SwShutter_cFv */
+/* ############################################################################################## */
+/* 80C8D7EC-80C8D7F0 000010 0004+00 1/2 0/0 0/0 .rodata          @3708 */
+SECTION_RODATA static f32 const lit_3708 = 600.0f;
+COMPILER_STRIP_GATE(80C8D7EC, &lit_3708);
+
+/* 80C8D040-80C8D168 000280 0128+00 1/1 0/0 0/0 .text            create__16daLv9SwShutter_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -380,7 +367,7 @@ asm void daLv9SwShutter_c::create() {
 }
 #pragma pop
 
-/* 80C8D168-80C8D1B8 0050+00 s=1 e=0 z=0  None .text      Execute__16daLv9SwShutter_cFPPA3_A4_f */
+/* 80C8D168-80C8D1B8 0003A8 0050+00 1/0 0/0 0/0 .text Execute__16daLv9SwShutter_cFPPA3_A4_f */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -391,16 +378,17 @@ asm void daLv9SwShutter_c::Execute(f32 (**param_0)[3][4]) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C8D910-80C8D91C 000C+00 s=1 e=0 z=0  None .bss       @3621 */
+/* 80C8D910-80C8D91C 000008 000C+00 1/1 0/0 0/0 .bss             @3621 */
 static u8 lit_3621[12];
 
-/* 80C8D91C-80C8D930 0014+00 s=3 e=0 z=0  None .bss       l_HIO */
+/* 80C8D91C-80C8D930 000014 0014+00 3/3 0/0 0/0 .bss             l_HIO */
 static u8 l_HIO[20];
 
-/* 80C8D930-80C8D934 0004+00 s=1 e=0 z=0  None .bss       None */
+/* 80C8D930-80C8D934 000028 0004+00 1/1 0/0 0/0 .bss             None */
 static u8 data_80C8D930[4];
 
-/* 80C8D1B8-80C8D2BC 0104+00 s=1 e=0 z=0  None .text      moveShutter__16daLv9SwShutter_cFv */
+/* 80C8D1B8-80C8D2BC 0003F8 0104+00 1/1 0/0 0/0 .text            moveShutter__16daLv9SwShutter_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -410,7 +398,8 @@ asm void daLv9SwShutter_c::moveShutter() {
 }
 #pragma pop
 
-/* 80C8D2BC-80C8D2C8 000C+00 s=3 e=0 z=0  None .text      init_modeWait__16daLv9SwShutter_cFv */
+/* 80C8D2BC-80C8D2C8 0004FC 000C+00 3/3 0/0 0/0 .text            init_modeWait__16daLv9SwShutter_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -420,12 +409,13 @@ asm void daLv9SwShutter_c::init_modeWait() {
 }
 #pragma pop
 
-/* 80C8D2C8-80C8D2CC 0004+00 s=1 e=0 z=0  None .text      modeWait__16daLv9SwShutter_cFv */
+/* 80C8D2C8-80C8D2CC 000508 0004+00 1/0 0/0 0/0 .text            modeWait__16daLv9SwShutter_cFv */
 void daLv9SwShutter_c::modeWait() {
     /* empty function */
 }
 
-/* 80C8D2CC-80C8D2D8 000C+00 s=1 e=0 z=0  None .text      init_modeOpen__16daLv9SwShutter_cFv */
+/* 80C8D2CC-80C8D2D8 00050C 000C+00 1/1 0/0 0/0 .text            init_modeOpen__16daLv9SwShutter_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -435,7 +425,36 @@ asm void daLv9SwShutter_c::init_modeOpen() {
 }
 #pragma pop
 
-/* 80C8D2D8-80C8D440 0168+00 s=1 e=0 z=0  None .text      modeOpen__16daLv9SwShutter_cFv */
+/* ############################################################################################## */
+/* 80C8D7F0-80C8D7F4 000014 0004+00 0/1 0/0 0/0 .rodata          @3782 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3782 = 1.0f / 10.0f;
+COMPILER_STRIP_GATE(80C8D7F0, &lit_3782);
+#pragma pop
+
+/* 80C8D7F4-80C8D7F8 000018 0004+00 0/2 0/0 0/0 .rodata          @3783 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3783 = 5.0f;
+COMPILER_STRIP_GATE(80C8D7F4, &lit_3783);
+#pragma pop
+
+/* 80C8D7F8-80C8D7FC 00001C 0004+00 0/2 0/0 0/0 .rodata          @3784 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3784 = 1.0f;
+COMPILER_STRIP_GATE(80C8D7F8, &lit_3784);
+#pragma pop
+
+/* 80C8D7FC-80C8D800 000020 0004+00 0/2 0/0 0/0 .rodata          @3785 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3785 = -1.0f;
+COMPILER_STRIP_GATE(80C8D7FC, &lit_3785);
+#pragma pop
+
+/* 80C8D2D8-80C8D440 000518 0168+00 1/0 0/0 0/0 .text            modeOpen__16daLv9SwShutter_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -445,7 +464,7 @@ asm void daLv9SwShutter_c::modeOpen() {
 }
 #pragma pop
 
-/* 80C8D440-80C8D458 0018+00 s=1 e=0 z=0  None .text      init_modeClose__16daLv9SwShutter_cFv */
+/* 80C8D440-80C8D458 000680 0018+00 1/1 0/0 0/0 .text init_modeClose__16daLv9SwShutter_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -455,7 +474,7 @@ asm void daLv9SwShutter_c::init_modeClose() {
 }
 #pragma pop
 
-/* 80C8D458-80C8D5D0 0178+00 s=1 e=0 z=0  None .text      modeClose__16daLv9SwShutter_cFv */
+/* 80C8D458-80C8D5D0 000698 0178+00 1/0 0/0 0/0 .text            modeClose__16daLv9SwShutter_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -465,7 +484,7 @@ asm void daLv9SwShutter_c::modeClose() {
 }
 #pragma pop
 
-/* 80C8D5D0-80C8D674 00A4+00 s=1 e=0 z=0  None .text      Draw__16daLv9SwShutter_cFv */
+/* 80C8D5D0-80C8D674 000810 00A4+00 1/0 0/0 0/0 .text            Draw__16daLv9SwShutter_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -475,7 +494,7 @@ asm void daLv9SwShutter_c::Draw() {
 }
 #pragma pop
 
-/* 80C8D674-80C8D6A4 0030+00 s=1 e=0 z=0  None .text      Delete__16daLv9SwShutter_cFv */
+/* 80C8D674-80C8D6A4 0008B4 0030+00 1/0 0/0 0/0 .text            Delete__16daLv9SwShutter_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -485,50 +504,49 @@ asm void daLv9SwShutter_c::Delete() {
 }
 #pragma pop
 
-/* 80C8D6A4-80C8D6D0 002C+00 s=1 e=0 z=0  None .text      daLv9SwShutter_Draw__FP16daLv9SwShutter_c
- */
+/* 80C8D6A4-80C8D6D0 0008E4 002C+00 1/0 0/0 0/0 .text daLv9SwShutter_Draw__FP16daLv9SwShutter_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daLv9SwShutter_Draw(daLv9SwShutter_c* param_0) {
+static asm void daLv9SwShutter_Draw(daLv9SwShutter_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv9SwShutter/d_a_obj_lv9SwShutter/daLv9SwShutter_Draw__FP16daLv9SwShutter_c.s"
 }
 #pragma pop
 
-/* 80C8D6D0-80C8D6F0 0020+00 s=1 e=0 z=0  None .text daLv9SwShutter_Execute__FP16daLv9SwShutter_c
+/* 80C8D6D0-80C8D6F0 000910 0020+00 1/0 0/0 0/0 .text daLv9SwShutter_Execute__FP16daLv9SwShutter_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daLv9SwShutter_Execute(daLv9SwShutter_c* param_0) {
+static asm void daLv9SwShutter_Execute(daLv9SwShutter_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv9SwShutter/d_a_obj_lv9SwShutter/daLv9SwShutter_Execute__FP16daLv9SwShutter_c.s"
 }
 #pragma pop
 
-/* 80C8D6F0-80C8D710 0020+00 s=1 e=0 z=0  None .text daLv9SwShutter_Delete__FP16daLv9SwShutter_c
+/* 80C8D6F0-80C8D710 000930 0020+00 1/0 0/0 0/0 .text daLv9SwShutter_Delete__FP16daLv9SwShutter_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daLv9SwShutter_Delete(daLv9SwShutter_c* param_0) {
+static asm void daLv9SwShutter_Delete(daLv9SwShutter_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv9SwShutter/d_a_obj_lv9SwShutter/daLv9SwShutter_Delete__FP16daLv9SwShutter_c.s"
 }
 #pragma pop
 
-/* 80C8D710-80C8D730 0020+00 s=1 e=0 z=0  None .text      daLv9SwShutter_Create__FP10fopAc_ac_c */
+/* 80C8D710-80C8D730 000950 0020+00 1/0 0/0 0/0 .text daLv9SwShutter_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daLv9SwShutter_Create(fopAc_ac_c* param_0) {
+static asm void daLv9SwShutter_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv9SwShutter/d_a_obj_lv9SwShutter/daLv9SwShutter_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80C8D730-80C8D78C 005C+00 s=2 e=0 z=0  None .text      __dt__20daLv9SwShutter_HIO_cFv */
+/* 80C8D730-80C8D78C 000970 005C+00 2/1 0/0 0/0 .text            __dt__20daLv9SwShutter_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -538,12 +556,24 @@ asm daLv9SwShutter_HIO_c::~daLv9SwShutter_HIO_c() {
 }
 #pragma pop
 
-/* 80C8D78C-80C8D7C8 003C+00 s=0 e=1 z=0  None .text      __sinit_d_a_obj_lv9SwShutter_cpp */
+/* 80C8D78C-80C8D7C8 0009CC 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_lv9SwShutter_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_a_obj_lv9SwShutter_cpp() {
+asm void __sinit_d_a_obj_lv9SwShutter_cpp() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv9SwShutter/d_a_obj_lv9SwShutter/__sinit_d_a_obj_lv9SwShutter_cpp.s"
 }
+#pragma pop
+
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_80C8D78C = (void*)__sinit_d_a_obj_lv9SwShutter_cpp;
+#pragma pop
+
+/* 80C8D800-80C8D809 000024 0009+00 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80C8D800 = "L9SwShut";
 #pragma pop

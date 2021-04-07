@@ -1,13 +1,13 @@
 lbl_8034CE8C:
 /* 8034CE8C  7C 08 02 A6 */	mflr r0
-/* 8034CE90  3C A0 80 3D */	lis r5, lit_1@ha
+/* 8034CE90  3C A0 80 3D */	lis r5, lit_1@ha /* 0x803D1760@ha */
 /* 8034CE94  90 01 00 04 */	stw r0, 4(r1)
-/* 8034CE98  3C 80 80 45 */	lis r4, regs@ha
+/* 8034CE98  3C 80 80 45 */	lis r4, regs@ha /* 0x8044CA28@ha */
 /* 8034CE9C  94 21 FF 88 */	stwu r1, -0x78(r1)
 /* 8034CEA0  BD E1 00 34 */	stmw r15, 0x34(r1)
 /* 8034CEA4  3A 63 00 00 */	addi r19, r3, 0
-/* 8034CEA8  3A 05 17 60 */	addi r16, r5, lit_1@l
-/* 8034CEAC  3B C4 CA 28 */	addi r30, r4, regs@l
+/* 8034CEA8  3A 05 17 60 */	addi r16, r5, lit_1@l /* 0x803D1760@l */
+/* 8034CEAC  3B C4 CA 28 */	addi r30, r4, regs@l /* 0x8044CA28@l */
 /* 8034CEB0  4B FF 08 45 */	bl OSDisableInterrupts
 /* 8034CEB4  80 93 00 00 */	lwz r4, 0(r19)
 /* 8034CEB8  3B BE 01 14 */	addi r29, r30, 0x114
@@ -22,7 +22,7 @@ lbl_8034CE8C:
 lbl_8034CEDC:
 /* 8034CEDC  80 13 00 00 */	lwz r0, 0(r19)
 /* 8034CEE0  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000CC@ha */
-/* 8034CEE4  82 23 00 CC */	lwz r17, 0x00CC(r3)
+/* 8034CEE4  82 23 00 CC */	lwz r17, 0x00CC(r3)  /* 0x800000CC@l */
 /* 8034CEE8  54 00 F0 BE */	srwi r0, r0, 2
 /* 8034CEEC  28 00 00 04 */	cmplwi r0, 4
 /* 8034CEF0  7C 12 03 78 */	mr r18, r0

@@ -2,8 +2,8 @@ lbl_801CB260:
 /* 801CB260  80 83 00 14 */	lwz r4, 0x14(r3)
 /* 801CB264  28 04 00 00 */	cmplwi r4, 0
 /* 801CB268  41 82 00 20 */	beq lbl_801CB288
-/* 801CB26C  3C 60 80 43 */	lis r3, g_fmapHIO@ha
-/* 801CB270  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l
+/* 801CB26C  3C 60 80 43 */	lis r3, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801CB270  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801CB274  88 03 02 F9 */	lbz r0, 0x2f9(r3)
 /* 801CB278  28 00 00 00 */	cmplwi r0, 0
 /* 801CB27C  41 82 00 0C */	beq lbl_801CB288

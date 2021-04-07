@@ -16,7 +16,7 @@ lbl_80C3A65C:
 /* 80C3A65C  7F E3 FB 78 */	mr r3, r31
 /* 80C3A660  4B FF FE 79 */	bl MoveAction__10daObjKAT_cFv
 /* 80C3A664  7F E3 FB 78 */	mr r3, r31
-/* 80C3A668  4B 52 3A 10 */	b Insect_GetDemoMain__9dInsect_cFv
+/* 80C3A668  4B 52 3A 11 */	bl Insect_GetDemoMain__9dInsect_cFv
 /* 80C3A66C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80C3A670  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80C3A674  7C 08 03 A6 */	mtlr r0

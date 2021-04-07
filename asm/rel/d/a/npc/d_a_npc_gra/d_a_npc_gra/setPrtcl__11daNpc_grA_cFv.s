@@ -3,10 +3,10 @@ lbl_809C36AC:
 /* 809C36B0  7C 08 02 A6 */	mflr r0
 /* 809C36B4  90 01 00 64 */	stw r0, 0x64(r1)
 /* 809C36B8  39 61 00 60 */	addi r11, r1, 0x60
-/* 809C36BC  4B 99 EB 0C */	b _savegpr_24
+/* 809C36BC  4B 99 EB 0D */	bl _savegpr_24
 /* 809C36C0  7C 7A 1B 78 */	mr r26, r3
-/* 809C36C4  3C 60 80 9D */	lis r3, m__17daNpc_grA_Param_c@ha
-/* 809C36C8  3B E3 9D 98 */	addi r31, r3, m__17daNpc_grA_Param_c@l
+/* 809C36C4  3C 60 80 9D */	lis r3, m__17daNpc_grA_Param_c@ha /* 0x809C9D98@ha */
+/* 809C36C8  3B E3 9D 98 */	addi r31, r3, m__17daNpc_grA_Param_c@l /* 0x809C9D98@l */
 /* 809C36CC  3B A0 00 00 */	li r29, 0
 /* 809C36D0  3B 80 00 00 */	li r28, 0
 /* 809C36D4  C0 1F 06 8C */	lfs f0, 0x68c(r31)
@@ -15,8 +15,8 @@ lbl_809C36AC:
 /* 809C36E0  D0 01 00 30 */	stfs f0, 0x30(r1)
 /* 809C36E4  3B 60 00 00 */	li r27, 0
 /* 809C36E8  3B 20 00 00 */	li r25, 0
-/* 809C36EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 809C36F0  3B 03 61 C0 */	addi r24, r3, g_dComIfG_gameInfo@l
+/* 809C36EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 809C36F0  3B 03 61 C0 */	addi r24, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 lbl_809C36F4:
 /* 809C36F4  28 1B 00 01 */	cmplwi r27, 1
 /* 809C36F8  40 81 00 0C */	ble lbl_809C3704
@@ -72,14 +72,14 @@ lbl_809C37A0:
 /* 809C37A0  7F 8A E3 78 */	mr r10, r28
 /* 809C37A4  C0 3F 00 9C */	lfs f1, 0x9c(r31)
 /* 809C37A8  C0 5A 05 2C */	lfs f2, 0x52c(r26)
-/* 809C37AC  4B 68 D8 5C */	b setEffectCenter__7dPaPo_cFPC12dKy_tevstr_cPC4cXyzUlUlPC4cXyzPC5csXyzPC4cXyzScff
+/* 809C37AC  4B 68 D8 5D */	bl setEffectCenter__7dPaPo_cFPC12dKy_tevstr_cPC4cXyzUlUlPC4cXyzPC5csXyzPC4cXyzScff
 /* 809C37B0  88 1E 15 20 */	lbz r0, 0x1520(r30)
 /* 809C37B4  28 00 00 00 */	cmplwi r0, 0
 /* 809C37B8  41 82 00 B0 */	beq lbl_809C3868
 /* 809C37BC  80 78 5D 3C */	lwz r3, 0x5d3c(r24)
 /* 809C37C0  38 63 02 10 */	addi r3, r3, 0x210
 /* 809C37C4  80 9E 15 4C */	lwz r4, 0x154c(r30)
-/* 809C37C8  4B 68 81 50 */	b getEmitter__Q213dPa_control_c7level_cFUl
+/* 809C37C8  4B 68 81 51 */	bl getEmitter__Q213dPa_control_c7level_cFUl
 /* 809C37CC  28 03 00 00 */	cmplwi r3, 0
 /* 809C37D0  41 82 00 98 */	beq lbl_809C3868
 /* 809C37D4  2C 1B 00 00 */	cmpwi r27, 0
@@ -130,7 +130,7 @@ lbl_809C3868:
 /* 809C387C  41 80 FE 78 */	blt lbl_809C36F4
 /* 809C3880  38 60 00 01 */	li r3, 1
 /* 809C3884  39 61 00 60 */	addi r11, r1, 0x60
-/* 809C3888  4B 99 E9 8C */	b _restgpr_24
+/* 809C3888  4B 99 E9 8D */	bl _restgpr_24
 /* 809C388C  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 809C3890  7C 08 03 A6 */	mtlr r0
 /* 809C3894  38 21 00 60 */	addi r1, r1, 0x60

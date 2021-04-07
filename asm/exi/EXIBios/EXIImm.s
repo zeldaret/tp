@@ -9,8 +9,8 @@ lbl_80342D00:
 /* 80342D1C  3B A6 00 00 */	addi r29, r6, 0
 /* 80342D20  3B 27 00 00 */	addi r25, r7, 0
 /* 80342D24  54 64 30 32 */	slwi r4, r3, 6
-/* 80342D28  3C 60 80 45 */	lis r3, Ecb@ha
-/* 80342D2C  38 03 C5 70 */	addi r0, r3, Ecb@l
+/* 80342D28  3C 60 80 45 */	lis r3, Ecb@ha /* 0x8044C570@ha */
+/* 80342D2C  38 03 C5 70 */	addi r0, r3, Ecb@l /* 0x8044C570@l */
 /* 80342D30  7F E0 22 14 */	add r31, r0, r4
 /* 80342D34  4B FF A9 C1 */	bl OSDisableInterrupts
 /* 80342D38  7C 7E 1B 78 */	mr r30, r3

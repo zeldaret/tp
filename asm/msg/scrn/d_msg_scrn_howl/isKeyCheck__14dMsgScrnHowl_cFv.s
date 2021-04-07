@@ -1,6 +1,6 @@
 lbl_80242080:
-/* 80242080  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80242084  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80242080  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80242084  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80242088  80 84 5D B4 */	lwz r4, 0x5db4(r4)
 /* 8024208C  80 04 2E 0C */	lwz r0, 0x2e0c(r4)
 /* 80242090  28 00 00 00 */	cmplwi r0, 0

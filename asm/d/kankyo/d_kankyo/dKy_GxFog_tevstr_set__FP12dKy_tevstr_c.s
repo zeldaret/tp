@@ -11,8 +11,8 @@ lbl_801A8650:
 /* 801A8674  98 01 00 0D */	stb r0, 0xd(r1)
 /* 801A8678  A8 03 03 54 */	lha r0, 0x354(r3)
 /* 801A867C  98 01 00 0E */	stb r0, 0xe(r1)
-/* 801A8680  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801A8684  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801A8680  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801A8684  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801A8688  80 63 61 B0 */	lwz r3, 0x61b0(r3)
 /* 801A868C  28 03 00 00 */	cmplwi r3, 0
 /* 801A8690  41 82 00 38 */	beq lbl_801A86C8

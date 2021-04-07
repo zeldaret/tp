@@ -5,13 +5,13 @@ lbl_800300F4:
 /* 80030100  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80030104  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80030108  41 82 00 34 */	beq lbl_8003013C
-/* 8003010C  3C 60 80 3A */	lis r3, __vt__12dCcMassS_Obj@ha
-/* 80030110  38 03 71 F4 */	addi r0, r3, __vt__12dCcMassS_Obj@l
+/* 8003010C  3C 60 80 3A */	lis r3, __vt__12dCcMassS_Obj@ha /* 0x803A71F4@ha */
+/* 80030110  38 03 71 F4 */	addi r0, r3, __vt__12dCcMassS_Obj@l /* 0x803A71F4@l */
 /* 80030114  90 1F 00 1C */	stw r0, 0x1c(r31)
 /* 80030118  34 1F 00 0C */	addic. r0, r31, 0xc
 /* 8003011C  41 82 00 10 */	beq lbl_8003012C
-/* 80030120  3C 60 80 3A */	lis r3, __vt__15cCcD_DivideInfo@ha
-/* 80030124  38 03 72 24 */	addi r0, r3, __vt__15cCcD_DivideInfo@l
+/* 80030120  3C 60 80 3A */	lis r3, __vt__15cCcD_DivideInfo@ha /* 0x803A7224@ha */
+/* 80030124  38 03 72 24 */	addi r0, r3, __vt__15cCcD_DivideInfo@l /* 0x803A7224@l */
 /* 80030128  90 1F 00 18 */	stw r0, 0x18(r31)
 lbl_8003012C:
 /* 8003012C  7C 80 07 35 */	extsh. r0, r4

@@ -5,12 +5,12 @@ lbl_803363F4:
 /* 80336400  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80336404  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80336408  41 82 00 30 */	beq lbl_80336438
-/* 8033640C  3C 60 80 3D */	lis r3, __vt__18J3DModelLoader_v21@ha
-/* 80336410  38 03 F1 08 */	addi r0, r3, __vt__18J3DModelLoader_v21@l
+/* 8033640C  3C 60 80 3D */	lis r3, __vt__18J3DModelLoader_v21@ha /* 0x803CF108@ha */
+/* 80336410  38 03 F1 08 */	addi r0, r3, __vt__18J3DModelLoader_v21@l /* 0x803CF108@l */
 /* 80336414  90 1F 00 00 */	stw r0, 0(r31)
 /* 80336418  41 82 00 10 */	beq lbl_80336428
-/* 8033641C  3C 60 80 3D */	lis r3, __vt__14J3DModelLoader@ha
-/* 80336420  38 03 F1 F4 */	addi r0, r3, __vt__14J3DModelLoader@l
+/* 8033641C  3C 60 80 3D */	lis r3, __vt__14J3DModelLoader@ha /* 0x803CF1F4@ha */
+/* 80336420  38 03 F1 F4 */	addi r0, r3, __vt__14J3DModelLoader@l /* 0x803CF1F4@l */
 /* 80336424  90 1F 00 00 */	stw r0, 0(r31)
 lbl_80336428:
 /* 80336428  7C 80 07 35 */	extsh. r0, r4

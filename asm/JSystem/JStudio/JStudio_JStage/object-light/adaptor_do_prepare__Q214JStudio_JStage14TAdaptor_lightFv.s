@@ -1,6 +1,6 @@
 lbl_8028CC68:
-/* 8028CC68  3C 80 80 43 */	lis r4, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@ha
-/* 8028CC6C  38 04 14 48 */	addi r0, r4, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@l
+/* 8028CC68  3C 80 80 43 */	lis r4, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@ha /* 0x80431448@ha */
+/* 8028CC6C  38 04 14 48 */	addi r0, r4, saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light@l /* 0x80431448@l */
 /* 8028CC70  7C 05 03 78 */	mr r5, r0
 /* 8028CC74  48 00 00 2C */	b lbl_8028CCA0
 lbl_8028CC78:

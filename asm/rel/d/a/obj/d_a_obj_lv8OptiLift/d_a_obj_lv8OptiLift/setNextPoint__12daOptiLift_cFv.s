@@ -13,7 +13,7 @@ lbl_80C8B53C:
 /* 80C8B568  88 7E 05 C8 */	lbz r3, 0x5c8(r30)
 /* 80C8B56C  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80C8B570  7C 04 07 74 */	extsb r4, r0
-/* 80C8B574  4B 3C 62 78 */	b dPath_GetRoomPath__Fii
+/* 80C8B574  4B 3C 62 79 */	bl dPath_GetRoomPath__Fii
 /* 80C8B578  88 03 00 05 */	lbz r0, 5(r3)
 /* 80C8B57C  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 80C8B580  41 82 00 30 */	beq lbl_80C8B5B0

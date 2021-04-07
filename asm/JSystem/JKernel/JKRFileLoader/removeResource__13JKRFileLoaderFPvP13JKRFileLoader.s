@@ -15,8 +15,8 @@ lbl_802D4308:
 /* 802D433C  4E 80 04 21 */	bctrl 
 /* 802D4340  48 00 00 48 */	b lbl_802D4388
 lbl_802D4344:
-/* 802D4344  3C 60 80 43 */	lis r3, sVolumeList__13JKRFileLoader@ha
-/* 802D4348  83 E3 43 54 */	lwz r31, sVolumeList__13JKRFileLoader@l(r3)
+/* 802D4344  3C 60 80 43 */	lis r3, sVolumeList__13JKRFileLoader@ha /* 0x80434354@ha */
+/* 802D4348  83 E3 43 54 */	lwz r31, sVolumeList__13JKRFileLoader@l(r3)  /* 0x80434354@l */
 /* 802D434C  48 00 00 30 */	b lbl_802D437C
 lbl_802D4350:
 /* 802D4350  80 7F 00 00 */	lwz r3, 0(r31)

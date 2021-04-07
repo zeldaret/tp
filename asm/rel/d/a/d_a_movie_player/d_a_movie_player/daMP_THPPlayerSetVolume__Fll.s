@@ -7,15 +7,15 @@ lbl_8087862C:
 /* 80878640  93 A1 00 14 */	stw r29, 0x14(r1)
 /* 80878644  7C 7D 1B 78 */	mr r29, r3
 /* 80878648  7C 9E 23 78 */	mr r30, r4
-/* 8087864C  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha
-/* 80878650  38 63 9B D0 */	addi r3, r3, daMP_ActivePlayer@l
+/* 8087864C  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha /* 0x80879BD0@ha */
+/* 80878650  38 63 9B D0 */	addi r3, r3, daMP_ActivePlayer@l /* 0x80879BD0@l */
 /* 80878654  80 03 00 A0 */	lwz r0, 0xa0(r3)
 /* 80878658  2C 00 00 00 */	cmpwi r0, 0
 /* 8087865C  41 82 00 DC */	beq lbl_80878738
 /* 80878660  88 03 00 A7 */	lbz r0, 0xa7(r3)
 /* 80878664  28 00 00 00 */	cmplwi r0, 0
 /* 80878668  41 82 00 D0 */	beq lbl_80878738
-/* 8087866C  4B AD 78 C8 */	b AIGetDSPSampleRate
+/* 8087866C  4B AD 78 C9 */	bl AIGetDSPSampleRate
 /* 80878670  28 03 00 00 */	cmplwi r3, 0
 /* 80878674  3B E0 00 30 */	li r31, 0x30
 /* 80878678  40 82 00 08 */	bne lbl_80878680
@@ -39,17 +39,17 @@ lbl_808786AC:
 /* 808786B0  40 80 00 08 */	bge lbl_808786B8
 /* 808786B4  3B C0 00 00 */	li r30, 0
 lbl_808786B8:
-/* 808786B8  4B AC 50 3C */	b OSDisableInterrupts
-/* 808786BC  3C 80 80 88 */	lis r4, lit_4814@ha
-/* 808786C0  C8 44 91 0C */	lfd f2, lit_4814@l(r4)
+/* 808786B8  4B AC 50 3D */	bl OSDisableInterrupts
+/* 808786BC  3C 80 80 88 */	lis r4, lit_4814@ha /* 0x8087910C@ha */
+/* 808786C0  C8 44 91 0C */	lfd f2, lit_4814@l(r4)  /* 0x8087910C@l */
 /* 808786C4  6F A0 80 00 */	xoris r0, r29, 0x8000
 /* 808786C8  90 01 00 0C */	stw r0, 0xc(r1)
 /* 808786CC  3C A0 43 30 */	lis r5, 0x4330
 /* 808786D0  90 A1 00 08 */	stw r5, 8(r1)
 /* 808786D4  C8 01 00 08 */	lfd f0, 8(r1)
 /* 808786D8  EC 20 10 28 */	fsubs f1, f0, f2
-/* 808786DC  3C 80 80 88 */	lis r4, daMP_ActivePlayer@ha
-/* 808786E0  38 84 9B D0 */	addi r4, r4, daMP_ActivePlayer@l
+/* 808786DC  3C 80 80 88 */	lis r4, daMP_ActivePlayer@ha /* 0x80879BD0@ha */
+/* 808786E0  38 84 9B D0 */	addi r4, r4, daMP_ActivePlayer@l /* 0x80879BD0@l */
 /* 808786E4  D0 24 00 E0 */	stfs f1, 0xe0(r4)
 /* 808786E8  2C 1E 00 00 */	cmpwi r30, 0
 /* 808786EC  41 82 00 34 */	beq lbl_80878720
@@ -70,7 +70,7 @@ lbl_80878720:
 /* 80878724  90 04 00 E8 */	stw r0, 0xe8(r4)
 /* 80878728  D0 24 00 DC */	stfs f1, 0xdc(r4)
 lbl_8087872C:
-/* 8087872C  4B AC 4F F0 */	b OSRestoreInterrupts
+/* 8087872C  4B AC 4F F1 */	bl OSRestoreInterrupts
 /* 80878730  38 60 00 01 */	li r3, 1
 /* 80878734  48 00 00 08 */	b lbl_8087873C
 lbl_80878738:

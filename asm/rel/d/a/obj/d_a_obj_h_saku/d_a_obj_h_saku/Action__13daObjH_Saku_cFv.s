@@ -5,8 +5,8 @@ lbl_80C15A4C:
 /* 80C15A58  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80C15A5C  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80C15A60  7C 7E 1B 78 */	mr r30, r3
-/* 80C15A64  3C 80 80 C1 */	lis r4, lit_3703@ha
-/* 80C15A68  3B E4 64 C8 */	addi r31, r4, lit_3703@l
+/* 80C15A64  3C 80 80 C1 */	lis r4, lit_3703@ha /* 0x80C164C8@ha */
+/* 80C15A68  3B E4 64 C8 */	addi r31, r4, lit_3703@l /* 0x80C164C8@l */
 /* 80C15A6C  88 03 05 A0 */	lbz r0, 0x5a0(r3)
 /* 80C15A70  2C 00 00 02 */	cmpwi r0, 2
 /* 80C15A74  41 82 01 58 */	beq lbl_80C15BCC
@@ -122,12 +122,12 @@ lbl_80C15C08:
 /* 80C15C18  2C 00 00 11 */	cmpwi r0, 0x11
 /* 80C15C1C  40 82 00 0C */	bne lbl_80C15C28
 /* 80C15C20  7F C3 F3 78 */	mr r3, r30
-/* 80C15C24  4B 40 40 58 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80C15C24  4B 40 40 59 */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_80C15C28:
 /* 80C15C28  38 7E 04 E8 */	addi r3, r30, 0x4e8
 /* 80C15C2C  38 80 00 00 */	li r4, 0
 /* 80C15C30  38 A0 02 00 */	li r5, 0x200
-/* 80C15C34  4B 65 AF 5C */	b cLib_chaseAngleS__FPsss
+/* 80C15C34  4B 65 AF 5D */	bl cLib_chaseAngleS__FPsss
 /* 80C15C38  88 1E 05 DD */	lbz r0, 0x5dd(r30)
 /* 80C15C3C  28 00 00 00 */	cmplwi r0, 0
 /* 80C15C40  41 82 00 54 */	beq lbl_80C15C94
@@ -147,7 +147,7 @@ lbl_80C15C70:
 /* 80C15C70  38 7E 04 E4 */	addi r3, r30, 0x4e4
 /* 80C15C74  38 80 40 00 */	li r4, 0x4000
 /* 80C15C78  A8 BE 05 D6 */	lha r5, 0x5d6(r30)
-/* 80C15C7C  4B 65 AF 14 */	b cLib_chaseAngleS__FPsss
+/* 80C15C7C  4B 65 AF 15 */	bl cLib_chaseAngleS__FPsss
 /* 80C15C80  A8 7E 04 E6 */	lha r3, 0x4e6(r30)
 /* 80C15C84  A8 1E 05 D8 */	lha r0, 0x5d8(r30)
 /* 80C15C88  7C 03 02 14 */	add r0, r3, r0
@@ -156,13 +156,13 @@ lbl_80C15C70:
 lbl_80C15C94:
 /* 80C15C94  38 7E 04 E4 */	addi r3, r30, 0x4e4
 /* 80C15C98  38 9E 05 D6 */	addi r4, r30, 0x5d6
-/* 80C15C9C  4B 65 17 C0 */	b __apl__5csXyzFR5csXyz
+/* 80C15C9C  4B 65 17 C1 */	bl __apl__5csXyzFR5csXyz
 /* 80C15CA0  48 00 00 28 */	b lbl_80C15CC8
 lbl_80C15CA4:
 /* 80C15CA4  38 7E 04 E4 */	addi r3, r30, 0x4e4
 /* 80C15CA8  38 80 40 00 */	li r4, 0x4000
 /* 80C15CAC  A8 BE 05 D6 */	lha r5, 0x5d6(r30)
-/* 80C15CB0  4B 65 AE E0 */	b cLib_chaseAngleS__FPsss
+/* 80C15CB0  4B 65 AE E1 */	bl cLib_chaseAngleS__FPsss
 /* 80C15CB4  2C 03 00 00 */	cmpwi r3, 0
 /* 80C15CB8  41 82 00 10 */	beq lbl_80C15CC8
 /* 80C15CBC  88 7E 05 A0 */	lbz r3, 0x5a0(r30)
@@ -203,7 +203,7 @@ lbl_80C15D28:
 /* 80C15D38  2C 00 00 01 */	cmpwi r0, 1
 /* 80C15D3C  40 82 00 0C */	bne lbl_80C15D48
 /* 80C15D40  7F C3 F3 78 */	mr r3, r30
-/* 80C15D44  4B 40 3F 38 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80C15D44  4B 40 3F 39 */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_80C15D48:
 /* 80C15D48  88 1E 05 DC */	lbz r0, 0x5dc(r30)
 /* 80C15D4C  28 00 00 00 */	cmplwi r0, 0
@@ -224,7 +224,7 @@ lbl_80C15D80:
 /* 80C15D80  38 7E 05 BC */	addi r3, r30, 0x5bc
 /* 80C15D84  38 80 C0 00 */	li r4, -16384
 /* 80C15D88  A8 BE 05 D6 */	lha r5, 0x5d6(r30)
-/* 80C15D8C  4B 65 AE 04 */	b cLib_chaseAngleS__FPsss
+/* 80C15D8C  4B 65 AE 05 */	bl cLib_chaseAngleS__FPsss
 /* 80C15D90  A8 7E 05 BE */	lha r3, 0x5be(r30)
 /* 80C15D94  A8 1E 05 D2 */	lha r0, 0x5d2(r30)
 /* 80C15D98  7C 03 02 14 */	add r0, r3, r0
@@ -233,18 +233,18 @@ lbl_80C15D80:
 lbl_80C15DA4:
 /* 80C15DA4  38 7E 05 BC */	addi r3, r30, 0x5bc
 /* 80C15DA8  38 9E 05 D0 */	addi r4, r30, 0x5d0
-/* 80C15DAC  4B 65 16 B0 */	b __apl__5csXyzFR5csXyz
+/* 80C15DAC  4B 65 16 B1 */	bl __apl__5csXyzFR5csXyz
 lbl_80C15DB0:
 /* 80C15DB0  38 7E 05 C0 */	addi r3, r30, 0x5c0
 /* 80C15DB4  38 80 00 00 */	li r4, 0
 /* 80C15DB8  38 A0 02 00 */	li r5, 0x200
-/* 80C15DBC  4B 65 AD D4 */	b cLib_chaseAngleS__FPsss
+/* 80C15DBC  4B 65 AD D5 */	bl cLib_chaseAngleS__FPsss
 /* 80C15DC0  48 00 00 28 */	b lbl_80C15DE8
 lbl_80C15DC4:
 /* 80C15DC4  38 7E 05 BC */	addi r3, r30, 0x5bc
 /* 80C15DC8  38 80 C0 00 */	li r4, -16384
 /* 80C15DCC  A8 BE 05 D6 */	lha r5, 0x5d6(r30)
-/* 80C15DD0  4B 65 AD C0 */	b cLib_chaseAngleS__FPsss
+/* 80C15DD0  4B 65 AD C1 */	bl cLib_chaseAngleS__FPsss
 /* 80C15DD4  2C 03 00 00 */	cmpwi r3, 0
 /* 80C15DD8  41 82 00 10 */	beq lbl_80C15DE8
 /* 80C15DDC  88 7E 05 A1 */	lbz r3, 0x5a1(r30)

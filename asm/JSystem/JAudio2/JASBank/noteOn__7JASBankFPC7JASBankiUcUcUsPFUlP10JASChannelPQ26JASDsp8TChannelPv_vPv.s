@@ -91,23 +91,23 @@ lbl_80297A78:
 /* 80297A78  88 0D 8C E2 */	lbz r0, struct_80451260+0x2(r13)
 /* 80297A7C  7C 00 07 75 */	extsb. r0, r0
 /* 80297A80  40 82 00 34 */	bne lbl_80297AB4
-/* 80297A84  3C 60 80 43 */	lis r3, data_80431B34@ha
-/* 80297A88  38 63 1B 34 */	addi r3, r3, data_80431B34@l
+/* 80297A84  3C 60 80 43 */	lis r3, data_80431B34@ha /* 0x80431B34@ha */
+/* 80297A88  38 63 1B 34 */	addi r3, r3, data_80431B34@l /* 0x80431B34@l */
 /* 80297A8C  4B FF 8D BD */	bl __ct__17JASGenericMemPoolFv
-/* 80297A90  3C 60 80 43 */	lis r3, data_80431B34@ha
-/* 80297A94  38 63 1B 34 */	addi r3, r3, data_80431B34@l
-/* 80297A98  3C 80 80 29 */	lis r4, func_802978DC@ha
-/* 80297A9C  38 84 78 DC */	addi r4, r4, func_802978DC@l
-/* 80297AA0  3C A0 80 43 */	lis r5, lit_156@ha
-/* 80297AA4  38 A5 1B 48 */	addi r5, r5, lit_156@l
+/* 80297A90  3C 60 80 43 */	lis r3, data_80431B34@ha /* 0x80431B34@ha */
+/* 80297A94  38 63 1B 34 */	addi r3, r3, data_80431B34@l /* 0x80431B34@l */
+/* 80297A98  3C 80 80 29 */	lis r4, func_802978DC@ha /* 0x802978DC@ha */
+/* 80297A9C  38 84 78 DC */	addi r4, r4, func_802978DC@l /* 0x802978DC@l */
+/* 80297AA0  3C A0 80 43 */	lis r5, lit_156@ha /* 0x80431B48@ha */
+/* 80297AA4  38 A5 1B 48 */	addi r5, r5, lit_156@l /* 0x80431B48@l */
 /* 80297AA8  48 0C A1 7D */	bl __register_global_object
 /* 80297AAC  38 00 00 01 */	li r0, 1
 /* 80297AB0  98 0D 8C E2 */	stb r0, struct_80451260+0x2(r13)
 lbl_80297AB4:
 /* 80297AB4  48 0A 5C 41 */	bl OSDisableInterrupts
 /* 80297AB8  90 61 00 08 */	stw r3, 8(r1)
-/* 80297ABC  3C 60 80 43 */	lis r3, data_80431B34@ha
-/* 80297AC0  38 63 1B 34 */	addi r3, r3, data_80431B34@l
+/* 80297ABC  3C 60 80 43 */	lis r3, data_80431B34@ha /* 0x80431B34@ha */
+/* 80297AC0  38 63 1B 34 */	addi r3, r3, data_80431B34@l /* 0x80431B34@l */
 /* 80297AC4  38 80 01 08 */	li r4, 0x108
 /* 80297AC8  4B FF 8E 81 */	bl alloc__17JASGenericMemPoolFUl
 /* 80297ACC  7C 77 1B 78 */	mr r23, r3

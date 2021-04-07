@@ -4,7 +4,7 @@ lbl_8033EEF0:
 /* 8033EEF8  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8033EEFC  BF 61 00 3C */	stmw r27, 0x3c(r1)
 /* 8033EF00  3F 60 80 00 */	lis r27, 0x8000 /* 0x800000F0@ha */
-/* 8033EF04  83 FB 00 F0 */	lwz r31, 0x00F0(r27)
+/* 8033EF04  83 FB 00 F0 */	lwz r31, 0x00F0(r27)  /* 0x800000F0@l */
 /* 8033EF08  4B FF E7 ED */	bl OSDisableInterrupts
 /* 8033EF0C  3C 80 CC 00 */	lis r4, 0xCC00 /* 0xCC004000@ha */
 /* 8033EF10  3B 84 40 00 */	addi r28, r4, 0x4000 /* 0xCC004000@l */
@@ -15,8 +15,8 @@ lbl_8033EEF0:
 /* 8033EF24  B0 1C 00 10 */	sth r0, 0x10(r28)
 /* 8033EF28  3C 60 F0 00 */	lis r3, 0xf000
 /* 8033EF2C  4B FF EB 91 */	bl __OSMaskInterrupts
-/* 8033EF30  3C 60 80 34 */	lis r3, MEMIntrruptHandler@ha
-/* 8033EF34  3B A3 EC A8 */	addi r29, r3, MEMIntrruptHandler@l
+/* 8033EF30  3C 60 80 34 */	lis r3, MEMIntrruptHandler@ha /* 0x8033ECA8@ha */
+/* 8033EF34  3B A3 EC A8 */	addi r29, r3, MEMIntrruptHandler@l /* 0x8033ECA8@l */
 /* 8033EF38  7F A4 EB 78 */	mr r4, r29
 /* 8033EF3C  38 60 00 00 */	li r3, 0
 /* 8033EF40  4B FF E8 01 */	bl __OSSetInterruptHandler
@@ -32,8 +32,8 @@ lbl_8033EEF0:
 /* 8033EF68  7F A4 EB 78 */	mr r4, r29
 /* 8033EF6C  38 60 00 04 */	li r3, 4
 /* 8033EF70  4B FF E7 D1 */	bl __OSSetInterruptHandler
-/* 8033EF74  3C 60 80 3D */	lis r3, ResetFunctionInfo@ha
-/* 8033EF78  38 63 07 D8 */	addi r3, r3, ResetFunctionInfo@l
+/* 8033EF74  3C 60 80 3D */	lis r3, ResetFunctionInfo@ha /* 0x803D07D8@ha */
+/* 8033EF78  38 63 07 D8 */	addi r3, r3, ResetFunctionInfo@l /* 0x803D07D8@l */
 /* 8033EF7C  48 00 06 E5 */	bl OSRegisterResetFunction
 /* 8033EF80  80 7B 00 F0 */	lwz r3, 0xf0(r27)
 /* 8033EF84  80 1B 00 28 */	lwz r0, 0x28(r27)
@@ -51,16 +51,16 @@ lbl_8033EFB0:
 /* 8033EFB0  3C 00 01 80 */	lis r0, 0x180
 /* 8033EFB4  7C 1F 00 40 */	cmplw r31, r0
 /* 8033EFB8  41 81 00 14 */	bgt lbl_8033EFCC
-/* 8033EFBC  3C 60 80 34 */	lis r3, Config24MB@ha
-/* 8033EFC0  38 63 ED D8 */	addi r3, r3, Config24MB@l
+/* 8033EFBC  3C 60 80 34 */	lis r3, Config24MB@ha /* 0x8033EDD8@ha */
+/* 8033EFC0  38 63 ED D8 */	addi r3, r3, Config24MB@l /* 0x8033EDD8@l */
 /* 8033EFC4  4B FF FF 15 */	bl RealMode
 /* 8033EFC8  48 00 00 1C */	b lbl_8033EFE4
 lbl_8033EFCC:
 /* 8033EFCC  3C 00 03 00 */	lis r0, 0x300
 /* 8033EFD0  7C 1F 00 40 */	cmplw r31, r0
 /* 8033EFD4  41 81 00 10 */	bgt lbl_8033EFE4
-/* 8033EFD8  3C 60 80 34 */	lis r3, Config48MB@ha
-/* 8033EFDC  38 63 EE 58 */	addi r3, r3, Config48MB@l
+/* 8033EFD8  3C 60 80 34 */	lis r3, Config48MB@ha /* 0x8033EE58@ha */
+/* 8033EFDC  38 63 EE 58 */	addi r3, r3, Config48MB@l /* 0x8033EE58@l */
 /* 8033EFE0  4B FF FE F9 */	bl RealMode
 lbl_8033EFE4:
 /* 8033EFE4  3C 60 08 00 */	lis r3, 0x800

@@ -7,7 +7,7 @@ lbl_80A3B760:
 /* 80A3B774  41 82 00 10 */	beq lbl_80A3B784
 /* 80A3B778  7C 80 07 35 */	extsh. r0, r4
 /* 80A3B77C  40 81 00 08 */	ble lbl_80A3B784
-/* 80A3B780  4B 89 35 BC */	b __dl__FPv
+/* 80A3B780  4B 89 35 BD */	bl __dl__FPv
 lbl_80A3B784:
 /* 80A3B784  7F E3 FB 78 */	mr r3, r31
 /* 80A3B788  83 E1 00 0C */	lwz r31, 0xc(r1)

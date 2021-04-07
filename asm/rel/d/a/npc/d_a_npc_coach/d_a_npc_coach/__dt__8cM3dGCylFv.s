@@ -5,12 +5,12 @@ lbl_809A4CB0:
 /* 809A4CBC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 809A4CC0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 809A4CC4  41 82 00 1C */	beq lbl_809A4CE0
-/* 809A4CC8  3C A0 80 9A */	lis r5, __vt__8cM3dGCyl@ha
-/* 809A4CCC  38 05 52 2C */	addi r0, r5, __vt__8cM3dGCyl@l
+/* 809A4CC8  3C A0 80 9A */	lis r5, __vt__8cM3dGCyl@ha /* 0x809A522C@ha */
+/* 809A4CCC  38 05 52 2C */	addi r0, r5, __vt__8cM3dGCyl@l /* 0x809A522C@l */
 /* 809A4CD0  90 1F 00 14 */	stw r0, 0x14(r31)
 /* 809A4CD4  7C 80 07 35 */	extsh. r0, r4
 /* 809A4CD8  40 81 00 08 */	ble lbl_809A4CE0
-/* 809A4CDC  4B 92 A0 60 */	b __dl__FPv
+/* 809A4CDC  4B 92 A0 61 */	bl __dl__FPv
 lbl_809A4CE0:
 /* 809A4CE0  7F E3 FB 78 */	mr r3, r31
 /* 809A4CE4  83 E1 00 0C */	lwz r31, 0xc(r1)

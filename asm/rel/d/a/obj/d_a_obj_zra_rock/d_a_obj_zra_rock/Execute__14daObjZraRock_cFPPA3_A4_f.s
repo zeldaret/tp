@@ -7,7 +7,7 @@ lbl_80D4531C:
 /* 80D45330  7C 7E 1B 78 */	mr r30, r3
 /* 80D45334  7C 9F 23 78 */	mr r31, r4
 /* 80D45338  38 7E 05 B0 */	addi r3, r30, 0x5b0
-/* 80D4533C  4B 2C 80 EC */	b play__14mDoExt_baseAnmFv
+/* 80D4533C  4B 2C 80 ED */	bl play__14mDoExt_baseAnmFv
 /* 80D45340  38 1E 05 6C */	addi r0, r30, 0x56c
 /* 80D45344  90 1F 00 00 */	stw r0, 0(r31)
 /* 80D45348  7F C3 F3 78 */	mr r3, r30

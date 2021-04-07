@@ -40,14 +40,14 @@ lbl_80C0F8A4:
 /* 80C0F8F0  90 1F 1F CC */	stw r0, 0x1fcc(r31)
 /* 80C0F8F4  7F E3 FB 78 */	mr r3, r31
 /* 80C0F8F8  38 80 00 15 */	li r4, 0x15
-/* 80C0F8FC  3C A0 80 C1 */	lis r5, m__17daObj_GrA_Param_c@ha
-/* 80C0F900  38 A5 FA 7C */	addi r5, r5, m__17daObj_GrA_Param_c@l
+/* 80C0F8FC  3C A0 80 C1 */	lis r5, m__17daObj_GrA_Param_c@ha /* 0x80C0FA7C@ha */
+/* 80C0F900  38 A5 FA 7C */	addi r5, r5, m__17daObj_GrA_Param_c@l /* 0x80C0FA7C@l */
 /* 80C0F904  C0 25 00 0C */	lfs f1, 0xc(r5)
 /* 80C0F908  4B FF 1E 85 */	bl setBaseMotion__11daObj_GrA_cFif
 /* 80C0F90C  7F E3 FB 78 */	mr r3, r31
 /* 80C0F910  38 80 00 00 */	li r4, 0
-/* 80C0F914  3C A0 80 C1 */	lis r5, lit_4618@ha
-/* 80C0F918  C0 25 FB B4 */	lfs f1, lit_4618@l(r5)
+/* 80C0F914  3C A0 80 C1 */	lis r5, lit_4618@ha /* 0x80C0FBB4@ha */
+/* 80C0F918  C0 25 FB B4 */	lfs f1, lit_4618@l(r5)  /* 0x80C0FBB4@l */
 /* 80C0F91C  4B FF 1E 91 */	bl setFaceMotion__11daObj_GrA_cFif
 /* 80C0F920  48 00 01 2C */	b lbl_80C0FA4C
 lbl_80C0F924:
@@ -56,19 +56,19 @@ lbl_80C0F924:
 /* 80C0F92C  41 82 01 20 */	beq lbl_80C0FA4C
 /* 80C0F930  7F E3 FB 78 */	mr r3, r31
 /* 80C0F934  38 80 00 15 */	li r4, 0x15
-/* 80C0F938  3C A0 80 C1 */	lis r5, m__17daObj_GrA_Param_c@ha
-/* 80C0F93C  38 A5 FA 7C */	addi r5, r5, m__17daObj_GrA_Param_c@l
+/* 80C0F938  3C A0 80 C1 */	lis r5, m__17daObj_GrA_Param_c@ha /* 0x80C0FA7C@ha */
+/* 80C0F93C  38 A5 FA 7C */	addi r5, r5, m__17daObj_GrA_Param_c@l /* 0x80C0FA7C@l */
 /* 80C0F940  C0 25 00 0C */	lfs f1, 0xc(r5)
 /* 80C0F944  4B FF 1E 49 */	bl setBaseMotion__11daObj_GrA_cFif
 /* 80C0F948  7F E3 FB 78 */	mr r3, r31
 /* 80C0F94C  38 80 00 00 */	li r4, 0
-/* 80C0F950  3C A0 80 C1 */	lis r5, lit_4618@ha
-/* 80C0F954  C0 25 FB B4 */	lfs f1, lit_4618@l(r5)
+/* 80C0F950  3C A0 80 C1 */	lis r5, lit_4618@ha /* 0x80C0FBB4@ha */
+/* 80C0F954  C0 25 FB B4 */	lfs f1, lit_4618@l(r5)  /* 0x80C0FBB4@l */
 /* 80C0F958  4B FF 1E 55 */	bl setFaceMotion__11daObj_GrA_cFif
 /* 80C0F95C  48 00 00 F0 */	b lbl_80C0FA4C
 lbl_80C0F960:
 /* 80C0F960  38 7F 14 F8 */	addi r3, r31, 0x14f8
-/* 80C0F964  4B 53 DE D4 */	b getActor__18daBaseNpc_acMngr_cFv
+/* 80C0F964  4B 53 DE D5 */	bl getActor__18daBaseNpc_acMngr_cFv
 /* 80C0F968  30 03 FF FF */	addic r0, r3, -1
 /* 80C0F96C  7C 00 19 10 */	subfe r0, r0, r3
 /* 80C0F970  54 1E 06 3E */	clrlwi r30, r0, 0x18
@@ -81,20 +81,20 @@ lbl_80C0F960:
 /* 80C0F98C  2C 1E 00 00 */	cmpwi r30, 0
 /* 80C0F990  40 82 00 30 */	bne lbl_80C0F9C0
 /* 80C0F994  38 7F 14 F8 */	addi r3, r31, 0x14f8
-/* 80C0F998  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80C0F99C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80C0F998  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C0F99C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C0F9A0  80 84 5D AC */	lwz r4, 0x5dac(r4)
-/* 80C0F9A4  4B 53 DE 78 */	b entry__18daBaseNpc_acMngr_cFP10fopAc_ac_c
+/* 80C0F9A4  4B 53 DE 79 */	bl entry__18daBaseNpc_acMngr_cFP10fopAc_ac_c
 /* 80C0F9A8  48 00 00 18 */	b lbl_80C0F9C0
 lbl_80C0F9AC:
 /* 80C0F9AC  2C 1E 00 00 */	cmpwi r30, 0
 /* 80C0F9B0  41 82 00 10 */	beq lbl_80C0F9C0
 /* 80C0F9B4  38 7F 14 F8 */	addi r3, r31, 0x14f8
 /* 80C0F9B8  38 80 00 00 */	li r4, 0
-/* 80C0F9BC  4B 53 DE 60 */	b entry__18daBaseNpc_acMngr_cFP10fopAc_ac_c
+/* 80C0F9BC  4B 53 DE 61 */	bl entry__18daBaseNpc_acMngr_cFP10fopAc_ac_c
 lbl_80C0F9C0:
 /* 80C0F9C0  38 7F 14 F8 */	addi r3, r31, 0x14f8
-/* 80C0F9C4  4B 53 DE 74 */	b getActor__18daBaseNpc_acMngr_cFv
+/* 80C0F9C4  4B 53 DE 75 */	bl getActor__18daBaseNpc_acMngr_cFv
 /* 80C0F9C8  28 03 00 00 */	cmplwi r3, 0
 /* 80C0F9CC  41 82 00 14 */	beq lbl_80C0F9E0
 /* 80C0F9D0  7F E3 FB 78 */	mr r3, r31
@@ -120,14 +120,14 @@ lbl_80C0F9E0:
 /* 80C0FA1C  90 1F 1F CC */	stw r0, 0x1fcc(r31)
 /* 80C0FA20  7F E3 FB 78 */	mr r3, r31
 /* 80C0FA24  38 80 00 00 */	li r4, 0
-/* 80C0FA28  3C A0 80 C1 */	lis r5, m__17daObj_GrA_Param_c@ha
-/* 80C0FA2C  38 A5 FA 7C */	addi r5, r5, m__17daObj_GrA_Param_c@l
+/* 80C0FA28  3C A0 80 C1 */	lis r5, m__17daObj_GrA_Param_c@ha /* 0x80C0FA7C@ha */
+/* 80C0FA2C  38 A5 FA 7C */	addi r5, r5, m__17daObj_GrA_Param_c@l /* 0x80C0FA7C@l */
 /* 80C0FA30  C0 25 00 0C */	lfs f1, 0xc(r5)
 /* 80C0FA34  4B FF 1D 59 */	bl setBaseMotion__11daObj_GrA_cFif
 /* 80C0FA38  7F E3 FB 78 */	mr r3, r31
 /* 80C0FA3C  38 80 00 00 */	li r4, 0
-/* 80C0FA40  3C A0 80 C1 */	lis r5, lit_4618@ha
-/* 80C0FA44  C0 25 FB B4 */	lfs f1, lit_4618@l(r5)
+/* 80C0FA40  3C A0 80 C1 */	lis r5, lit_4618@ha /* 0x80C0FBB4@ha */
+/* 80C0FA44  C0 25 FB B4 */	lfs f1, lit_4618@l(r5)  /* 0x80C0FBB4@l */
 /* 80C0FA48  4B FF 1D 65 */	bl setFaceMotion__11daObj_GrA_cFif
 lbl_80C0FA4C:
 /* 80C0FA4C  38 60 00 01 */	li r3, 1

@@ -9,7 +9,7 @@ lbl_804D5354:
 /* 804D5370  40 82 00 1C */	bne lbl_804D538C
 /* 804D5374  28 1F 00 00 */	cmplwi r31, 0
 /* 804D5378  41 82 00 08 */	beq lbl_804D5380
-/* 804D537C  4B B4 37 E8 */	b __ct__10fopAc_ac_cFv
+/* 804D537C  4B B4 37 E9 */	bl __ct__10fopAc_ac_cFv
 lbl_804D5380:
 /* 804D5380  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 804D5384  60 00 00 08 */	ori r0, r0, 8

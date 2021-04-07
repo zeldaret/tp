@@ -1,8 +1,8 @@
 lbl_8069AAEC:
-/* 8069AAEC  3C 80 80 6A */	lis r4, lit_3902@ha
-/* 8069AAF0  38 A4 19 0C */	addi r5, r4, lit_3902@l
-/* 8069AAF4  3C 80 80 6A */	lis r4, __vt__12daE_DB_HIO_c@ha
-/* 8069AAF8  38 04 1D 84 */	addi r0, r4, __vt__12daE_DB_HIO_c@l
+/* 8069AAEC  3C 80 80 6A */	lis r4, lit_3902@ha /* 0x806A190C@ha */
+/* 8069AAF0  38 A4 19 0C */	addi r5, r4, lit_3902@l /* 0x806A190C@l */
+/* 8069AAF4  3C 80 80 6A */	lis r4, __vt__12daE_DB_HIO_c@ha /* 0x806A1D84@ha */
+/* 8069AAF8  38 04 1D 84 */	addi r0, r4, __vt__12daE_DB_HIO_c@l /* 0x806A1D84@l */
 /* 8069AAFC  90 03 00 00 */	stw r0, 0(r3)
 /* 8069AB00  38 00 FF FF */	li r0, -1
 /* 8069AB04  98 03 00 04 */	stb r0, 4(r3)

@@ -1,6 +1,6 @@
 lbl_80232AEC:
-/* 80232AEC  3C 80 80 3C */	lis r4, __vt__20dMsgObject_HowlHIO_c@ha
-/* 80232AF0  38 04 0B E4 */	addi r0, r4, __vt__20dMsgObject_HowlHIO_c@l
+/* 80232AEC  3C 80 80 3C */	lis r4, __vt__20dMsgObject_HowlHIO_c@ha /* 0x803C0BE4@ha */
+/* 80232AF0  38 04 0B E4 */	addi r0, r4, __vt__20dMsgObject_HowlHIO_c@l /* 0x803C0BE4@l */
 /* 80232AF4  90 03 00 00 */	stw r0, 0(r3)
 /* 80232AF8  38 00 FF FF */	li r0, -1
 /* 80232AFC  90 03 00 08 */	stw r0, 8(r3)

@@ -16,8 +16,8 @@ lbl_802D1B14:
 /* 802D1B18  38 03 00 01 */	addi r0, r3, 1
 /* 802D1B1C  90 0D 8E 34 */	stw r0, sTotalCount__15JKRThreadSwitch(r13)
 /* 802D1B20  3B A0 00 00 */	li r29, 0
-/* 802D1B24  3C 60 80 43 */	lis r3, sThreadList__9JKRThread@ha
-/* 802D1B28  83 C3 42 8C */	lwz r30, sThreadList__9JKRThread@l(r3)
+/* 802D1B24  3C 60 80 43 */	lis r3, sThreadList__9JKRThread@ha /* 0x8043428C@ha */
+/* 802D1B28  83 C3 42 8C */	lwz r30, sThreadList__9JKRThread@l(r3)  /* 0x8043428C@l */
 /* 802D1B2C  48 00 00 FC */	b lbl_802D1C28
 lbl_802D1B30:
 /* 802D1B30  83 FE 00 00 */	lwz r31, 0(r30)
@@ -77,8 +77,8 @@ lbl_802D1BF4:
 /* 802D1BF8  40 80 00 2C */	bge lbl_802D1C24
 /* 802D1BFC  48 00 00 24 */	b lbl_802D1C20
 lbl_802D1C00:
-/* 802D1C00  3C 60 80 3A */	lis r3, JKRThread__stringBase0@ha
-/* 802D1C04  38 63 CF A8 */	addi r3, r3, JKRThread__stringBase0@l
+/* 802D1C00  3C 60 80 3A */	lis r3, JKRThread__stringBase0@ha /* 0x8039CFA8@ha */
+/* 802D1C04  38 63 CF A8 */	addi r3, r3, JKRThread__stringBase0@l /* 0x8039CFA8@l */
 /* 802D1C08  38 63 00 34 */	addi r3, r3, 0x34
 /* 802D1C0C  48 01 6A F1 */	bl JUTWarningConsole
 /* 802D1C10  83 AD 8D F4 */	lwz r29, sCurrentHeap__7JKRHeap(r13)

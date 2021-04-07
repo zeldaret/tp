@@ -5,8 +5,8 @@ lbl_8032A93C:
 /* 8032A948  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8032A94C  7C 7F 1B 78 */	mr r31, r3
 /* 8032A950  4B FF FE D9 */	bl __ct__11J3DAnmColorFv
-/* 8032A954  3C 60 80 3D */	lis r3, __vt__15J3DAnmColorFull@ha
-/* 8032A958  38 03 ED 84 */	addi r0, r3, __vt__15J3DAnmColorFull@l
+/* 8032A954  3C 60 80 3D */	lis r3, __vt__15J3DAnmColorFull@ha /* 0x803CED84@ha */
+/* 8032A958  38 03 ED 84 */	addi r0, r3, __vt__15J3DAnmColorFull@l /* 0x803CED84@l */
 /* 8032A95C  90 1F 00 00 */	stw r0, 0(r31)
 /* 8032A960  38 00 00 00 */	li r0, 0
 /* 8032A964  90 1F 00 2C */	stw r0, 0x2c(r31)

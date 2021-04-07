@@ -37,8 +37,8 @@ lbl_8019D68C:
 /* 8019D718  90 01 00 08 */	stw r0, 8(r1)
 /* 8019D71C  C8 01 00 08 */	lfd f0, 8(r1)
 /* 8019D720  EC 20 08 28 */	fsubs f1, f0, f1
-/* 8019D724  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8019D728  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8019D724  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019D728  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019D72C  C0 03 11 F8 */	lfs f0, 0x11f8(r3)
 /* 8019D730  EC 00 07 F2 */	fmuls f0, f0, f31
 /* 8019D734  EC 01 00 32 */	fmuls f0, f1, f0

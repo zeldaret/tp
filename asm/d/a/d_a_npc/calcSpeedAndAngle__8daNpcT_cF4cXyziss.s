@@ -67,8 +67,8 @@ lbl_8014B904:
 /* 8014B904  C8 02 9A 18 */	lfd f0, lit_4725(r2)
 /* 8014B908  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8014B90C  40 80 00 10 */	bge lbl_8014B91C
-/* 8014B910  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8014B914  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8014B910  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8014B914  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8014B918  48 00 00 70 */	b lbl_8014B988
 lbl_8014B91C:
 /* 8014B91C  D0 21 00 0C */	stfs f1, 0xc(r1)
@@ -102,8 +102,8 @@ lbl_8014B974:
 lbl_8014B978:
 /* 8014B978  2C 00 00 01 */	cmpwi r0, 1
 /* 8014B97C  40 82 00 0C */	bne lbl_8014B988
-/* 8014B980  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8014B984  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8014B980  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8014B984  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_8014B988:
 /* 8014B988  D0 3F 05 2C */	stfs f1, 0x52c(r31)
 /* 8014B98C  48 00 01 1C */	b lbl_8014BAA8
@@ -148,8 +148,8 @@ lbl_8014BA20:
 /* 8014BA20  C8 02 9A 18 */	lfd f0, lit_4725(r2)
 /* 8014BA24  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8014BA28  40 80 00 10 */	bge lbl_8014BA38
-/* 8014BA2C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8014BA30  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8014BA2C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8014BA30  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8014BA34  48 00 00 70 */	b lbl_8014BAA4
 lbl_8014BA38:
 /* 8014BA38  D0 21 00 08 */	stfs f1, 8(r1)
@@ -183,13 +183,13 @@ lbl_8014BA90:
 lbl_8014BA94:
 /* 8014BA94  2C 00 00 01 */	cmpwi r0, 1
 /* 8014BA98  40 82 00 0C */	bne lbl_8014BAA4
-/* 8014BA9C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8014BAA0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8014BA9C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8014BAA0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_8014BAA4:
 /* 8014BAA4  D0 3F 05 2C */	stfs f1, 0x52c(r31)
 lbl_8014BAA8:
-/* 8014BAA8  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8014BAAC  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8014BAA8  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8014BAAC  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8014BAB0  A8 1F 0D CA */	lha r0, 0xdca(r31)
 /* 8014BAB4  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 8014BAB8  7C 63 02 14 */	add r3, r3, r0

@@ -15,8 +15,8 @@ lbl_8073FB98:
 /* 8073FBA0  A8 1F 05 AC */	lha r0, 0x5ac(r31)
 /* 8073FBA4  2C 00 00 00 */	cmpwi r0, 0
 /* 8073FBA8  40 81 00 18 */	ble lbl_8073FBC0
-/* 8073FBAC  3C 60 80 74 */	lis r3, lit_3767@ha
-/* 8073FBB0  C0 03 1B F4 */	lfs f0, lit_3767@l(r3)
+/* 8073FBAC  3C 60 80 74 */	lis r3, lit_3767@ha /* 0x80741BF4@ha */
+/* 8073FBB0  C0 03 1B F4 */	lfs f0, lit_3767@l(r3)  /* 0x80741BF4@l */
 /* 8073FBB4  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
 /* 8073FBB8  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 8073FBBC  48 00 00 0C */	b lbl_8073FBC8

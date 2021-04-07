@@ -4,8 +4,8 @@ lbl_80047A78:
 /* 80047A80  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80047A84  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80047A88  7C 7F 1B 78 */	mr r31, r3
-/* 80047A8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80047A90  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80047A8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80047A90  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80047A94  38 63 4E C8 */	addi r3, r3, 0x4ec8
 /* 80047A98  4B FF BB 75 */	bl runningEventID__14dEvt_control_cFs
 /* 80047A9C  7C 64 1B 78 */	mr r4, r3

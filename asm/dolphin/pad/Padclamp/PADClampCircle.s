@@ -1,6 +1,6 @@
 lbl_8034E1A8:
 /* 8034E1A8  7C 08 02 A6 */	mflr r0
-/* 8034E1AC  3C 80 80 3A */	lis r4, ClampRegion@ha
+/* 8034E1AC  3C 80 80 3A */	lis r4, ClampRegion@ha /* 0x803A2170@ha */
 /* 8034E1B0  90 01 00 04 */	stw r0, 4(r1)
 /* 8034E1B4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8034E1B8  93 E1 00 1C */	stw r31, 0x1c(r1)
@@ -9,7 +9,7 @@ lbl_8034E1A8:
 /* 8034E1C4  93 A1 00 14 */	stw r29, 0x14(r1)
 /* 8034E1C8  3B A3 00 00 */	addi r29, r3, 0
 /* 8034E1CC  93 81 00 10 */	stw r28, 0x10(r1)
-/* 8034E1D0  3B 84 21 70 */	addi r28, r4, ClampRegion@l
+/* 8034E1D0  3B 84 21 70 */	addi r28, r4, ClampRegion@l /* 0x803A2170@l */
 /* 8034E1D4  3B FC 00 01 */	addi r31, r28, 1
 lbl_8034E1D8:
 /* 8034E1D8  88 1D 00 0A */	lbz r0, 0xa(r29)

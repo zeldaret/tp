@@ -42,11 +42,6 @@ struct dEvt_control_c {
 // Forward References:
 //
 
-static void daTagMwait_Create(fopAc_ac_c*);
-static void daTagMwait_Delete(daTagMwait_c*);
-static void daTagMwait_Execute(daTagMwait_c*);
-static bool daTagMwait_Draw(daTagMwait_c*);
-
 extern "C" void create__12daTagMwait_cFv();
 extern "C" static void daTagMwait_Create__FP10fopAc_ac_c();
 extern "C" void __dt__12daTagMwait_cFv();
@@ -59,10 +54,6 @@ extern "C" extern void* g_profile_Tag_Mwait[12];
 //
 // External References:
 //
-
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_orderSpeakEvent(fopAc_ac_c*, u16, u16);
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -93,31 +84,52 @@ extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
 //
 
 /* ############################################################################################## */
-/* 80D5C580-80D5C584 0004+00 s=2 e=0 z=0  None .rodata    @3841 */
-SECTION_RODATA static u32 const lit_3841 = 0xBF800000;
+/* 80D5C580-80D5C584 000000 0004+00 2/2 0/0 0/0 .rodata          @3841 */
+SECTION_RODATA static f32 const lit_3841 = -1.0f;
+COMPILER_STRIP_GATE(80D5C580, &lit_3841);
 
-/* 80D5C584-80D5C588 0004+00 s=1 e=0 z=0  None .rodata    @3842 */
-SECTION_RODATA static u32 const lit_3842 = 0x42C80000;
+/* 80D5C584-80D5C588 000004 0004+00 0/1 0/0 0/0 .rodata          @3842 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3842 = 100.0f;
+COMPILER_STRIP_GATE(80D5C584, &lit_3842);
+#pragma pop
 
-/* 80D5C588-80D5C58C 0004+00 s=1 e=0 z=0  None .rodata    @3843 */
-SECTION_RODATA static u32 const lit_3843 = 0x41200000;
+/* 80D5C588-80D5C58C 000008 0004+00 0/1 0/0 0/0 .rodata          @3843 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3843 = 10.0f;
+COMPILER_STRIP_GATE(80D5C588, &lit_3843);
+#pragma pop
 
-/* 80D5C58C-80D5C590 0004+00 s=1 e=0 z=0  None .rodata    @3844 */
-SECTION_RODATA static u32 const lit_3844 = 0x435C0000;
+/* 80D5C58C-80D5C590 00000C 0004+00 0/1 0/0 0/0 .rodata          @3844 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3844 = 220.0f;
+COMPILER_STRIP_GATE(80D5C58C, &lit_3844);
+#pragma pop
 
-/* 80D5C590-80D5C598 0004+04 s=1 e=0 z=0  None .rodata    @3845 */
-SECTION_RODATA static u32 const lit_3845[1 + 1 /* padding */] = {
-    0x43160000,
+/* 80D5C590-80D5C598 000010 0004+04 0/1 0/0 0/0 .rodata          @3845 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3845[1 + 1 /* padding */] = {
+    150.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
+COMPILER_STRIP_GATE(80D5C590, &lit_3845);
+#pragma pop
 
-/* 80D5C598-80D5C5A0 0008+00 s=1 e=0 z=0  None .rodata    @3847 */
+/* 80D5C598-80D5C5A0 000018 0008+00 0/1 0/0 0/0 .rodata          @3847 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_3847[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80D5C598, &lit_3847);
+#pragma pop
 
-/* 80D5BE18-80D5BFFC 01E4+00 s=1 e=0 z=0  None .text      create__12daTagMwait_cFv */
+/* 80D5BE18-80D5BFFC 000078 01E4+00 1/1 0/0 0/0 .text            create__12daTagMwait_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -127,17 +139,18 @@ asm void daTagMwait_c::create() {
 }
 #pragma pop
 
-/* 80D5BFFC-80D5C01C 0020+00 s=1 e=0 z=0  None .text      daTagMwait_Create__FP10fopAc_ac_c */
+/* 80D5BFFC-80D5C01C 00025C 0020+00 1/0 0/0 0/0 .text            daTagMwait_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagMwait_Create(fopAc_ac_c* param_0) {
+static asm void daTagMwait_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_mwait/d_a_tag_mwait/daTagMwait_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D5C01C-80D5C080 0064+00 s=1 e=0 z=0  None .text      __dt__12daTagMwait_cFv */
+/* 80D5C01C-80D5C080 00027C 0064+00 1/1 0/0 0/0 .text            __dt__12daTagMwait_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -147,18 +160,21 @@ asm daTagMwait_c::~daTagMwait_c() {
 }
 #pragma pop
 
-/* 80D5C080-80D5C0A8 0028+00 s=1 e=0 z=0  None .text      daTagMwait_Delete__FP12daTagMwait_c */
+/* 80D5C080-80D5C0A8 0002E0 0028+00 1/0 0/0 0/0 .text            daTagMwait_Delete__FP12daTagMwait_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagMwait_Delete(daTagMwait_c* param_0) {
+static asm void daTagMwait_Delete(daTagMwait_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_mwait/d_a_tag_mwait/daTagMwait_Delete__FP12daTagMwait_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D5C5A0-80D5C5A8 0004+04 s=1 e=0 z=0  None .rodata    @4006 */
+/* 80D5C5A0-80D5C5A8 000020 0004+04 0/1 0/0 0/0 .rodata          @4006 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_4006[4 + 4 /* padding */] = {
     0x00,
     0x00,
@@ -170,26 +186,44 @@ SECTION_RODATA static u8 const lit_4006[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80D5C5A0, &lit_4006);
+#pragma pop
 
-/* 80D5C5A8-80D5C5B0 0008+00 s=1 e=0 z=0  None .rodata    @4007 */
+/* 80D5C5A8-80D5C5B0 000028 0008+00 0/1 0/0 0/0 .rodata          @4007 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_4007[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80D5C5A8, &lit_4007);
+#pragma pop
 
-/* 80D5C5B0-80D5C5B8 0008+00 s=1 e=0 z=0  None .rodata    @4008 */
+/* 80D5C5B0-80D5C5B8 000030 0008+00 0/1 0/0 0/0 .rodata          @4008 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_4008[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80D5C5B0, &lit_4008);
+#pragma pop
 
-/* 80D5C5B8-80D5C5C0 0008+00 s=1 e=0 z=0  None .rodata    @4009 */
+/* 80D5C5B8-80D5C5C0 000038 0008+00 0/1 0/0 0/0 .rodata          @4009 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_4009[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80D5C5B8, &lit_4009);
+#pragma pop
 
-/* 80D5C5C0-80D5C5C4 0004+00 s=1 e=0 z=0  None .rodata    @4010 */
-SECTION_RODATA static u32 const lit_4010 = 0x40A00000;
+/* 80D5C5C0-80D5C5C4 000040 0004+00 0/1 0/0 0/0 .rodata          @4010 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4010 = 5.0f;
+COMPILER_STRIP_GATE(80D5C5C0, &lit_4010);
+#pragma pop
 
-/* 80D5C0A8-80D5C550 04A8+00 s=1 e=0 z=0  None .text      execute__12daTagMwait_cFv */
+/* 80D5C0A8-80D5C550 000308 04A8+00 1/1 0/0 0/0 .text            execute__12daTagMwait_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -199,23 +233,24 @@ asm void daTagMwait_c::execute() {
 }
 #pragma pop
 
-/* 80D5C550-80D5C570 0020+00 s=1 e=0 z=0  None .text      daTagMwait_Execute__FP12daTagMwait_c */
+/* 80D5C550-80D5C570 0007B0 0020+00 1/0 0/0 0/0 .text daTagMwait_Execute__FP12daTagMwait_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagMwait_Execute(daTagMwait_c* param_0) {
+static asm void daTagMwait_Execute(daTagMwait_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_mwait/d_a_tag_mwait/daTagMwait_Execute__FP12daTagMwait_c.s"
 }
 #pragma pop
 
-/* 80D5C570-80D5C578 0008+00 s=1 e=0 z=0  None .text      daTagMwait_Draw__FP12daTagMwait_c */
+/* 80D5C570-80D5C578 0007D0 0008+00 1/0 0/0 0/0 .text            daTagMwait_Draw__FP12daTagMwait_c
+ */
 static bool daTagMwait_Draw(daTagMwait_c* param_0) {
     return true;
 }
 
 /* ############################################################################################## */
-/* 80D5C5C4-80D5C5E4 0020+00 s=1 e=0 z=0  None .data      l_daTagMwait_Method */
+/* 80D5C5C4-80D5C5E4 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagMwait_Method */
 SECTION_DATA static void* l_daTagMwait_Method[8] = {
     (void*)daTagMwait_Create__FP10fopAc_ac_c,
     (void*)daTagMwait_Delete__FP12daTagMwait_c,
@@ -227,8 +262,8 @@ SECTION_DATA static void* l_daTagMwait_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D5C5E4-80D5C614 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_Mwait */
-SECTION_DATA void* g_profile_Tag_Mwait[12] = {
+/* 80D5C5E4-80D5C614 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Mwait */
+SECTION_DATA extern void* g_profile_Tag_Mwait[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02C30000, (void*)&g_fpcLf_Method,
     (void*)0x000005CC, (void*)NULL,

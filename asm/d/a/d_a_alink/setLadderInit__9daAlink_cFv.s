@@ -15,8 +15,8 @@ lbl_800FCF84:
 /* 800FCFB8  7F E3 FB 78 */	mr r3, r31
 /* 800FCFBC  38 84 FF FE */	addi r4, r4, -2
 /* 800FCFC0  48 00 02 31 */	bl setLadderPos__9daAlink_cFi
-/* 800FCFC4  3C 60 80 39 */	lis r3, m__18daAlinkHIO_swim_c0@ha
-/* 800FCFC8  38 63 ED 2C */	addi r3, r3, m__18daAlinkHIO_swim_c0@l
+/* 800FCFC4  3C 60 80 39 */	lis r3, m__18daAlinkHIO_swim_c0@ha /* 0x8038ED2C@ha */
+/* 800FCFC8  38 63 ED 2C */	addi r3, r3, m__18daAlinkHIO_swim_c0@l /* 0x8038ED2C@l */
 /* 800FCFCC  C0 62 95 84 */	lfs f3, lit_24618(r2)
 /* 800FCFD0  C0 03 00 60 */	lfs f0, 0x60(r3)
 /* 800FCFD4  48 00 00 10 */	b lbl_800FCFE4

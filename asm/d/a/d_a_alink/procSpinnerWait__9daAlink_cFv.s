@@ -35,8 +35,8 @@ lbl_8010DFC0:
 /* 8010DFCC  4B FA 69 05 */	bl setJumpMode__9daAlink_cFv
 /* 8010DFD0  7F C3 F3 78 */	mr r3, r30
 /* 8010DFD4  38 80 00 01 */	li r4, 1
-/* 8010DFD8  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha
-/* 8010DFDC  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l
+/* 8010DFD8  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 8010DFDC  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 8010DFE0  C0 25 00 70 */	lfs f1, 0x70(r5)
 /* 8010DFE4  4B FB 8A 65 */	bl procFallInit__9daAlink_cFif
 /* 8010DFE8  48 00 04 8C */	b lbl_8010E474
@@ -135,15 +135,15 @@ lbl_8010E130:
 /* 8010E13C  D0 1E 33 98 */	stfs f0, 0x3398(r30)
 /* 8010E140  7F C3 F3 78 */	mr r3, r30
 /* 8010E144  38 80 00 01 */	li r4, 1
-/* 8010E148  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha
-/* 8010E14C  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l
+/* 8010E148  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 8010E14C  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 8010E150  C0 25 00 70 */	lfs f1, 0x70(r5)
 /* 8010E154  4B FB 88 F5 */	bl procFallInit__9daAlink_cFif
 /* 8010E158  48 00 03 1C */	b lbl_8010E474
 lbl_8010E15C:
 /* 8010E15C  3B 9E 1F D0 */	addi r28, r30, 0x1fd0
-/* 8010E160  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8010E164  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8010E160  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8010E164  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8010E168  7F A4 EB 78 */	mr r4, r29
 /* 8010E16C  48 10 E7 C9 */	bl onDirectUseItem__13dMeter2Info_cFi
 /* 8010E170  80 1F 0A 64 */	lwz r0, 0xa64(r31)
@@ -197,8 +197,8 @@ lbl_8010E1D8:
 /* 8010E228  40 80 02 38 */	bge lbl_8010E460
 /* 8010E22C  7F C3 F3 78 */	mr r3, r30
 /* 8010E230  38 80 00 F4 */	li r4, 0xf4
-/* 8010E234  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha
-/* 8010E238  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l
+/* 8010E234  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha /* 0x8038E870@ha */
+/* 8010E238  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l /* 0x8038E870@l */
 /* 8010E23C  C0 25 00 68 */	lfs f1, 0x68(r5)
 /* 8010E240  C0 45 00 80 */	lfs f2, 0x80(r5)
 /* 8010E244  4B F9 ED 9D */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
@@ -255,8 +255,8 @@ lbl_8010E2F0:
 lbl_8010E300:
 /* 8010E300  7F C3 F3 78 */	mr r3, r30
 /* 8010E304  38 80 00 F2 */	li r4, 0xf2
-/* 8010E308  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha
-/* 8010E30C  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l
+/* 8010E308  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha /* 0x8038E870@ha */
+/* 8010E30C  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l /* 0x8038E870@l */
 /* 8010E310  C0 25 00 60 */	lfs f1, 0x60(r5)
 /* 8010E314  C0 45 00 64 */	lfs f2, 0x64(r5)
 /* 8010E318  4B F9 EC C9 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
@@ -275,8 +275,8 @@ lbl_8010E328:
 /* 8010E348  7F C3 F3 78 */	mr r3, r30
 /* 8010E34C  38 80 00 F7 */	li r4, 0xf7
 /* 8010E350  C0 22 92 C0 */	lfs f1, lit_6108(r2)
-/* 8010E354  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha
-/* 8010E358  38 C5 E8 70 */	addi r6, r5, m__19daAlinkHIO_board_c0@l
+/* 8010E354  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha /* 0x8038E870@ha */
+/* 8010E358  38 C5 E8 70 */	addi r6, r5, m__19daAlinkHIO_board_c0@l /* 0x8038E870@l */
 /* 8010E35C  C0 46 00 1C */	lfs f2, 0x1c(r6)
 /* 8010E360  A8 A6 00 14 */	lha r5, 0x14(r6)
 /* 8010E364  C0 66 00 20 */	lfs f3, 0x20(r6)
@@ -293,8 +293,8 @@ lbl_8010E378:
 /* 8010E38C  40 82 00 34 */	bne lbl_8010E3C0
 /* 8010E390  7F C3 F3 78 */	mr r3, r30
 /* 8010E394  38 80 00 F8 */	li r4, 0xf8
-/* 8010E398  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha
-/* 8010E39C  38 C5 E8 70 */	addi r6, r5, m__19daAlinkHIO_board_c0@l
+/* 8010E398  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha /* 0x8038E870@ha */
+/* 8010E39C  38 C5 E8 70 */	addi r6, r5, m__19daAlinkHIO_board_c0@l /* 0x8038E870@l */
 /* 8010E3A0  C0 26 00 2C */	lfs f1, 0x2c(r6)
 /* 8010E3A4  C0 46 00 30 */	lfs f2, 0x30(r6)
 /* 8010E3A8  38 A0 00 10 */	li r5, 0x10
@@ -314,8 +314,8 @@ lbl_8010E3C0:
 /* 8010E3DC  40 80 00 84 */	bge lbl_8010E460
 /* 8010E3E0  7F C3 F3 78 */	mr r3, r30
 /* 8010E3E4  38 80 00 F7 */	li r4, 0xf7
-/* 8010E3E8  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha
-/* 8010E3EC  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l
+/* 8010E3E8  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha /* 0x8038E870@ha */
+/* 8010E3EC  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l /* 0x8038E870@l */
 /* 8010E3F0  C0 25 00 18 */	lfs f1, 0x18(r5)
 /* 8010E3F4  C0 45 00 1C */	lfs f2, 0x1c(r5)
 /* 8010E3F8  A8 A5 00 14 */	lha r5, 0x14(r5)
@@ -340,8 +340,8 @@ lbl_8010E428:
 lbl_8010E43C:
 /* 8010E43C  7F C3 F3 78 */	mr r3, r30
 /* 8010E440  38 80 00 F4 */	li r4, 0xf4
-/* 8010E444  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha
-/* 8010E448  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l
+/* 8010E444  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha /* 0x8038E870@ha */
+/* 8010E448  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l /* 0x8038E870@l */
 /* 8010E44C  C0 25 00 68 */	lfs f1, 0x68(r5)
 /* 8010E450  C0 45 00 6C */	lfs f2, 0x6c(r5)
 /* 8010E454  4B F9 EB 8D */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff

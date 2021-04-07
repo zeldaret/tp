@@ -21,9 +21,9 @@ lbl_80349D30:
 /* 80349D44  28 00 00 00 */	cmplwi r0, 0
 /* 80349D48  41 82 00 64 */	beq lbl_80349DAC
 /* 80349D4C  90 8D 92 20 */	stw r4, ResumeFromHere(r13)
-/* 80349D50  3C 60 80 45 */	lis r3, DummyCommandBlock@ha
+/* 80349D50  3C 60 80 45 */	lis r3, DummyCommandBlock@ha /* 0x8044C940@ha */
 /* 80349D54  83 ED 91 F8 */	lwz r31, executing(r13)
-/* 80349D58  38 63 C9 40 */	addi r3, r3, DummyCommandBlock@l
+/* 80349D58  38 63 C9 40 */	addi r3, r3, DummyCommandBlock@l /* 0x8044C940@l */
 /* 80349D5C  90 8D 92 18 */	stw r4, Canceling(r13)
 /* 80349D60  38 00 00 0A */	li r0, 0xa
 /* 80349D64  90 6D 91 F8 */	stw r3, executing(r13)
@@ -56,8 +56,8 @@ lbl_80349DAC:
 /* 80349DC4  48 00 05 D1 */	bl stateBusy
 /* 80349DC8  48 00 00 10 */	b lbl_80349DD8
 lbl_80349DCC:
-/* 80349DCC  3C 60 80 35 */	lis r3, cbForStateGettingError@ha
-/* 80349DD0  38 63 94 98 */	addi r3, r3, cbForStateGettingError@l
+/* 80349DCC  3C 60 80 35 */	lis r3, cbForStateGettingError@ha /* 0x80349498@ha */
+/* 80349DD0  38 63 94 98 */	addi r3, r3, cbForStateGettingError@l /* 0x80349498@l */
 /* 80349DD4  4B FF E2 CD */	bl DVDLowRequestError
 lbl_80349DD8:
 /* 80349DD8  80 01 00 1C */	lwz r0, 0x1c(r1)

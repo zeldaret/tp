@@ -1,6 +1,6 @@
 lbl_80B04FA8:
-/* 80B04FA8  3C 80 80 B1 */	lis r4, lit_3999@ha
-/* 80B04FAC  38 84 C1 C4 */	addi r4, r4, lit_3999@l
+/* 80B04FA8  3C 80 80 B1 */	lis r4, lit_3999@ha /* 0x80B0C1C4@ha */
+/* 80B04FAC  38 84 C1 C4 */	addi r4, r4, lit_3999@l /* 0x80B0C1C4@l */
 /* 80B04FB0  88 03 06 AC */	lbz r0, 0x6ac(r3)
 /* 80B04FB4  28 00 00 00 */	cmplwi r0, 0
 /* 80B04FB8  40 82 00 0C */	bne lbl_80B04FC4

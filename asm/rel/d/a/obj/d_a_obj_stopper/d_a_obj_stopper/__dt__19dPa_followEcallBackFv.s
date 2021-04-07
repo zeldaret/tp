@@ -7,12 +7,12 @@ lbl_80CED440:
 /* 80CED454  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80CED458  7C 9F 23 78 */	mr r31, r4
 /* 80CED45C  41 82 00 4C */	beq lbl_80CED4A8
-/* 80CED460  3C 80 80 3B */	lis r4, __vt__19dPa_followEcallBack@ha
-/* 80CED464  38 04 85 2C */	addi r0, r4, __vt__19dPa_followEcallBack@l
+/* 80CED460  3C 80 80 3B */	lis r4, __vt__19dPa_followEcallBack@ha /* 0x803A852C@ha */
+/* 80CED464  38 04 85 2C */	addi r0, r4, __vt__19dPa_followEcallBack@l /* 0x803A852C@l */
 /* 80CED468  90 1E 00 00 */	stw r0, 0(r30)
 /* 80CED46C  41 82 00 2C */	beq lbl_80CED498
-/* 80CED470  3C 80 80 CF */	lis r4, __vt__18dPa_levelEcallBack@ha
-/* 80CED474  38 04 F1 54 */	addi r0, r4, __vt__18dPa_levelEcallBack@l
+/* 80CED470  3C 80 80 CF */	lis r4, __vt__18dPa_levelEcallBack@ha /* 0x80CEF154@ha */
+/* 80CED474  38 04 F1 54 */	addi r0, r4, __vt__18dPa_levelEcallBack@l /* 0x80CEF154@l */
 /* 80CED478  90 1E 00 00 */	stw r0, 0(r30)
 /* 80CED47C  81 83 00 00 */	lwz r12, 0(r3)
 /* 80CED480  81 8C 00 20 */	lwz r12, 0x20(r12)
@@ -20,12 +20,12 @@ lbl_80CED440:
 /* 80CED488  4E 80 04 21 */	bctrl 
 /* 80CED48C  7F C3 F3 78 */	mr r3, r30
 /* 80CED490  38 80 00 00 */	li r4, 0
-/* 80CED494  4B 59 12 10 */	b __dt__18JPAEmitterCallBackFv
+/* 80CED494  4B 59 12 11 */	bl __dt__18JPAEmitterCallBackFv
 lbl_80CED498:
 /* 80CED498  7F E0 07 35 */	extsh. r0, r31
 /* 80CED49C  40 81 00 0C */	ble lbl_80CED4A8
 /* 80CED4A0  7F C3 F3 78 */	mr r3, r30
-/* 80CED4A4  4B 5E 18 98 */	b __dl__FPv
+/* 80CED4A4  4B 5E 18 99 */	bl __dl__FPv
 lbl_80CED4A8:
 /* 80CED4A8  7F C3 F3 78 */	mr r3, r30
 /* 80CED4AC  83 E1 00 0C */	lwz r31, 0xc(r1)

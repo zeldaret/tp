@@ -5,12 +5,12 @@ lbl_80B95F3C:
 /* 80B95F48  DB E1 00 20 */	stfd f31, 0x20(r1)
 /* 80B95F4C  F3 E1 00 28 */	psq_st f31, 40(r1), 0, 0 /* qr0 */
 /* 80B95F50  39 61 00 20 */	addi r11, r1, 0x20
-/* 80B95F54  4B 7C C2 7C */	b _savegpr_26
+/* 80B95F54  4B 7C C2 7D */	bl _savegpr_26
 /* 80B95F58  7C 7A 1B 78 */	mr r26, r3
 /* 80B95F5C  7C 9B 23 78 */	mr r27, r4
 /* 80B95F60  FF E0 08 90 */	fmr f31, f1
-/* 80B95F64  3C 80 80 BA */	lis r4, cNullVec__6Z2Calc@ha
-/* 80B95F68  3B E4 B2 84 */	addi r31, r4, cNullVec__6Z2Calc@l
+/* 80B95F64  3C 80 80 BA */	lis r4, cNullVec__6Z2Calc@ha /* 0x80B9B284@ha */
+/* 80B95F68  3B E4 B2 84 */	addi r31, r4, cNullVec__6Z2Calc@l /* 0x80B9B284@l */
 /* 80B95F6C  3B C0 00 00 */	li r30, 0
 /* 80B95F70  3B A0 00 00 */	li r29, 0
 /* 80B95F74  3B 80 00 02 */	li r28, 2
@@ -30,7 +30,7 @@ lbl_80B95F3C:
 /* 80B95FAC  54 00 10 3A */	slwi r0, r0, 2
 /* 80B95FB0  38 9F 01 10 */	addi r4, r31, 0x110
 /* 80B95FB4  7C 84 00 2E */	lwzx r4, r4, r0
-/* 80B95FB8  4B 5B CB 74 */	b getTrnsfrmKeyAnmP__8daNpcF_cFPci
+/* 80B95FB8  4B 5B CB 75 */	bl getTrnsfrmKeyAnmP__8daNpcF_cFPci
 /* 80B95FBC  7C 7E 1B 78 */	mr r30, r3
 /* 80B95FC0  48 00 00 34 */	b lbl_80B95FF4
 lbl_80B95FC4:
@@ -44,7 +44,7 @@ lbl_80B95FC4:
 /* 80B95FE0  54 00 10 3A */	slwi r0, r0, 2
 /* 80B95FE4  38 9F 01 10 */	addi r4, r31, 0x110
 /* 80B95FE8  7C 84 00 2E */	lwzx r4, r4, r0
-/* 80B95FEC  4B 5B CB 40 */	b getTrnsfrmKeyAnmP__8daNpcF_cFPci
+/* 80B95FEC  4B 5B CB 41 */	bl getTrnsfrmKeyAnmP__8daNpcF_cFPci
 /* 80B95FF0  7C 7E 1B 78 */	mr r30, r3
 lbl_80B95FF4:
 /* 80B95FF4  2C 1B 00 04 */	cmpwi r27, 4
@@ -72,7 +72,7 @@ lbl_80B9601C:
 /* 80B96040  54 00 10 3A */	slwi r0, r0, 2
 /* 80B96044  38 9F 01 10 */	addi r4, r31, 0x110
 /* 80B96048  7C 84 00 2E */	lwzx r4, r4, r0
-/* 80B9604C  4B 5B CB 58 */	b getTexSRTKeyAnmP__8daNpcF_cFPci
+/* 80B9604C  4B 5B CB 59 */	bl getTexSRTKeyAnmP__8daNpcF_cFPci
 /* 80B96050  7C 7D 1B 78 */	mr r29, r3
 /* 80B96054  48 00 00 30 */	b lbl_80B96084
 lbl_80B96058:
@@ -85,7 +85,7 @@ lbl_80B96058:
 /* 80B96070  54 00 10 3A */	slwi r0, r0, 2
 /* 80B96074  38 9F 01 10 */	addi r4, r31, 0x110
 /* 80B96078  7C 84 00 2E */	lwzx r4, r4, r0
-/* 80B9607C  4B 5B CB 28 */	b getTexSRTKeyAnmP__8daNpcF_cFPci
+/* 80B9607C  4B 5B CB 29 */	bl getTexSRTKeyAnmP__8daNpcF_cFPci
 /* 80B96080  7C 7D 1B 78 */	mr r29, r3
 lbl_80B96084:
 /* 80B96084  28 1D 00 00 */	cmplwi r29, 0
@@ -95,10 +95,10 @@ lbl_80B96084:
 /* 80B96094  80 A3 00 04 */	lwz r5, 4(r3)
 /* 80B96098  7F 43 D3 78 */	mr r3, r26
 /* 80B9609C  7F A4 EB 78 */	mr r4, r29
-/* 80B960A0  3C C0 80 BA */	lis r6, lit_4521@ha
-/* 80B960A4  C0 26 B0 80 */	lfs f1, lit_4521@l(r6)
+/* 80B960A0  3C C0 80 BA */	lis r6, lit_4521@ha /* 0x80B9B080@ha */
+/* 80B960A4  C0 26 B0 80 */	lfs f1, lit_4521@l(r6)  /* 0x80B9B080@l */
 /* 80B960A8  38 C0 00 02 */	li r6, 2
-/* 80B960AC  4B 5B CC 58 */	b setBtkAnm__8daNpcF_cFP19J3DAnmTextureSRTKeyP12J3DModelDatafi
+/* 80B960AC  4B 5B CC 59 */	bl setBtkAnm__8daNpcF_cFP19J3DAnmTextureSRTKeyP12J3DModelDatafi
 /* 80B960B0  2C 03 00 00 */	cmpwi r3, 0
 /* 80B960B4  41 82 00 10 */	beq lbl_80B960C4
 /* 80B960B8  80 1A 09 9C */	lwz r0, 0x99c(r26)
@@ -109,13 +109,13 @@ lbl_80B960C4:
 /* 80B960C8  41 82 00 44 */	beq lbl_80B9610C
 /* 80B960CC  7F 43 D3 78 */	mr r3, r26
 /* 80B960D0  7F C4 F3 78 */	mr r4, r30
-/* 80B960D4  3C A0 80 BA */	lis r5, lit_4521@ha
-/* 80B960D8  C0 25 B0 80 */	lfs f1, lit_4521@l(r5)
+/* 80B960D4  3C A0 80 BA */	lis r5, lit_4521@ha /* 0x80B9B080@ha */
+/* 80B960D8  C0 25 B0 80 */	lfs f1, lit_4521@l(r5)  /* 0x80B9B080@l */
 /* 80B960DC  FC 40 F8 90 */	fmr f2, f31
 /* 80B960E0  7F 85 E3 78 */	mr r5, r28
 /* 80B960E4  38 C0 00 00 */	li r6, 0
 /* 80B960E8  38 E0 FF FF */	li r7, -1
-/* 80B960EC  4B 5B CB 30 */	b setMcaMorfAnm__8daNpcF_cFP18J3DAnmTransformKeyffiii
+/* 80B960EC  4B 5B CB 31 */	bl setMcaMorfAnm__8daNpcF_cFP18J3DAnmTransformKeyffiii
 /* 80B960F0  2C 03 00 00 */	cmpwi r3, 0
 /* 80B960F4  41 82 00 18 */	beq lbl_80B9610C
 /* 80B960F8  80 1A 09 9C */	lwz r0, 0x99c(r26)
@@ -127,7 +127,7 @@ lbl_80B9610C:
 /* 80B9610C  E3 E1 00 28 */	psq_l f31, 40(r1), 0, 0 /* qr0 */
 /* 80B96110  CB E1 00 20 */	lfd f31, 0x20(r1)
 /* 80B96114  39 61 00 20 */	addi r11, r1, 0x20
-/* 80B96118  4B 7C C1 04 */	b _restgpr_26
+/* 80B96118  4B 7C C1 05 */	bl _restgpr_26
 /* 80B9611C  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80B96120  7C 08 03 A6 */	mtlr r0
 /* 80B96124  38 21 00 30 */	addi r1, r1, 0x30

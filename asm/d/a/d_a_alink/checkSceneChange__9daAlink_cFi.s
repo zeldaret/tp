@@ -95,8 +95,8 @@ lbl_800BEC34:
 /* 800BEC44  4E 80 04 21 */	bctrl 
 /* 800BEC48  28 03 00 00 */	cmplwi r3, 0
 /* 800BEC4C  41 82 00 D0 */	beq lbl_800BED1C
-/* 800BEC50  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800BEC54  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800BEC50  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800BEC54  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800BEC58  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 800BEC5C  38 9C 1A 60 */	addi r4, r28, 0x1a60
 /* 800BEC60  4B FB 60 0D */	bl GetHorseNoEntry__4dBgSFRC13cBgS_PolyInfo
@@ -174,8 +174,8 @@ lbl_800BED4C:
 /* 800BED68  C3 C2 92 AC */	lfs f30, lit_6023(r2)
 /* 800BED6C  48 00 00 94 */	b lbl_800BEE00
 lbl_800BED70:
-/* 800BED70  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800BED74  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800BED70  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800BED74  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800BED78  80 63 5D B8 */	lwz r3, 0x5db8(r3)
 /* 800BED7C  C3 E3 17 8C */	lfs f31, 0x178c(r3)
 /* 800BED80  C3 C2 92 B8 */	lfs f30, lit_6040(r2)
@@ -195,8 +195,8 @@ lbl_800BEDAC:
 /* 800BEDB0  C3 C2 92 AC */	lfs f30, lit_6023(r2)
 /* 800BEDB4  48 00 00 4C */	b lbl_800BEE00
 lbl_800BEDB8:
-/* 800BEDB8  3C 60 80 39 */	lis r3, m__23daAlinkHIO_wlMoveNoP_c0@ha
-/* 800BEDBC  38 63 EF 28 */	addi r3, r3, m__23daAlinkHIO_wlMoveNoP_c0@l
+/* 800BEDB8  3C 60 80 39 */	lis r3, m__23daAlinkHIO_wlMoveNoP_c0@ha /* 0x8038EF28@ha */
+/* 800BEDBC  38 63 EF 28 */	addi r3, r3, m__23daAlinkHIO_wlMoveNoP_c0@l /* 0x8038EF28@l */
 /* 800BEDC0  C3 E3 00 08 */	lfs f31, 8(r3)
 /* 800BEDC4  C3 C2 92 B8 */	lfs f30, lit_6040(r2)
 /* 800BEDC8  48 00 00 38 */	b lbl_800BEE00
@@ -212,8 +212,8 @@ lbl_800BEDE4:
 /* 800BEDE8  C3 C2 97 00 */	lfs f30, lit_41718(r2)
 /* 800BEDEC  48 00 00 14 */	b lbl_800BEE00
 lbl_800BEDF0:
-/* 800BEDF0  3C 60 80 39 */	lis r3, m__18daAlinkHIO_move_c0@ha
-/* 800BEDF4  38 63 D6 BC */	addi r3, r3, m__18daAlinkHIO_move_c0@l
+/* 800BEDF0  3C 60 80 39 */	lis r3, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 800BEDF4  38 63 D6 BC */	addi r3, r3, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 800BEDF8  C3 E3 00 30 */	lfs f31, 0x30(r3)
 /* 800BEDFC  C3 C2 92 B8 */	lfs f30, lit_6040(r2)
 lbl_800BEE00:
@@ -258,8 +258,8 @@ lbl_800BEE5C:
 /* 800BEE84  A0 1C 31 06 */	lhz r0, 0x3106(r28)
 /* 800BEE88  28 00 00 00 */	cmplwi r0, 0
 /* 800BEE8C  40 82 00 2C */	bne lbl_800BEEB8
-/* 800BEE90  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800BEE94  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800BEE90  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800BEE94  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800BEE98  38 63 4E C8 */	addi r3, r3, 0x4ec8
 /* 800BEE9C  7F 84 E3 78 */	mr r4, r28
 /* 800BEEA0  38 A0 00 00 */	li r5, 0
@@ -320,8 +320,8 @@ lbl_800BEF58:
 /* 800BEF6C  A8 DC 04 E6 */	lha r6, 0x4e6(r28)
 /* 800BEF70  4B F6 81 8D */	bl dStage_changeSceneExitId__FR13cBgS_PolyInfofUlScs
 /* 800BEF74  7C 7D 1B 78 */	mr r29, r3
-/* 800BEF78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800BEF7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800BEF78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800BEF7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800BEF80  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 800BEF84  38 9C 1A 60 */	addi r4, r28, 0x1a60
 /* 800BEF88  4B FB 60 59 */	bl GetRoomPathId__4dBgSFRC13cBgS_PolyInfo
@@ -365,8 +365,8 @@ lbl_800BF008:
 /* 800BF010  B0 7C 06 06 */	sth r3, 0x606(r28)
 /* 800BF014  2C 1E 00 00 */	cmpwi r30, 0
 /* 800BF018  41 82 00 38 */	beq lbl_800BF050
-/* 800BF01C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800BF020  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800BF01C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800BF020  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800BF024  80 83 5D B8 */	lwz r4, 0x5db8(r3)
 /* 800BF028  38 00 00 03 */	li r0, 3
 /* 800BF02C  98 04 16 B8 */	stb r0, 0x16b8(r4)

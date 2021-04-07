@@ -6,8 +6,8 @@ lbl_802E168C:
 /* 802E169C  7C 7F 1B 78 */	mr r31, r3
 /* 802E16A0  80 CD 8F 68 */	lwz r6, mEnabled__Q210JUTGamePad7CRumble(r13)
 /* 802E16A4  54 60 10 3A */	slwi r0, r3, 2
-/* 802E16A8  3C A0 80 3D */	lis r5, sChannelMask__Q210JUTGamePad7CRumble@ha
-/* 802E16AC  38 A5 C5 F0 */	addi r5, r5, sChannelMask__Q210JUTGamePad7CRumble@l
+/* 802E16A8  3C A0 80 3D */	lis r5, sChannelMask__Q210JUTGamePad7CRumble@ha /* 0x803CC5F0@ha */
+/* 802E16AC  38 A5 C5 F0 */	addi r5, r5, sChannelMask__Q210JUTGamePad7CRumble@l /* 0x803CC5F0@l */
 /* 802E16B0  7C 05 00 2E */	lwzx r0, r5, r0
 /* 802E16B4  7C C0 00 39 */	and. r0, r6, r0
 /* 802E16B8  41 82 00 2C */	beq lbl_802E16E4

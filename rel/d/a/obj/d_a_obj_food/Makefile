@@ -3,19 +3,20 @@
 #
 
 M452_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_food.plf
+M452_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_food.lcf
+M452_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_food.map
 
 M452_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_food/executor.cpp \
-	rel/d/a/obj/d_a_obj_food/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_food/d_a_obj_food.cpp \
 
 M452_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_food/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_food/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_food/d_a_obj_food.o \
 
 M452_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_food/libRuntime.PPCEABI.H.a \
 
 M452_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M452_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M452_LDSCRIPT) \
+	-unused -map $(M452_MAP) \
+	-w off \
 
 $(M452_TARGET): $(M452_O_FILES) $(M452_LIBS)
+	@echo [452] creating $(M452_TARGET)
 	@echo $(M452_LIBS) $(M452_O_FILES) > build/M452_ofiles
-	$(LD) -partial $(M452_LDFLAGS) -o $(M452_TARGET) @build/M452_ofiles
+	@python3 tools/lcf.py rel 452 --output $(M452_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M452_LDFLAGS) -o $(M452_TARGET) @build/M452_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_food/%.o: rel/d/a/obj/d_a_obj_food/%.cpp
+	@echo [452] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M452_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M452_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_food/libs/Runtime.PPCEABI.H/Makefile
 

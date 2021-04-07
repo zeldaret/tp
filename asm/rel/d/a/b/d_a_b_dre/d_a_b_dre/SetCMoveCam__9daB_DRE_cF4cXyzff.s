@@ -11,7 +11,7 @@ lbl_805C8208:
 /* 805C822C  D0 03 05 DC */	stfs f0, 0x5dc(r3)
 /* 805C8230  38 65 05 C8 */	addi r3, r5, 0x5c8
 /* 805C8234  38 85 05 D4 */	addi r4, r5, 0x5d4
-/* 805C8238  4B CA 7F 40 */	b cLib_addCalcPos2__FP4cXyzRC4cXyzff
+/* 805C8238  4B CA 7F 41 */	bl cLib_addCalcPos2__FP4cXyzRC4cXyzff
 /* 805C823C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 805C8240  7C 08 03 A6 */	mtlr r0
 /* 805C8244  38 21 00 10 */	addi r1, r1, 0x10

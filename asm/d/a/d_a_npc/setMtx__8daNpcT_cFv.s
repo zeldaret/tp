@@ -13,8 +13,8 @@ lbl_80149190:
 /* 801491BC  4B EC 3D 89 */	bl ZXYrotM__14mDoMtx_stack_cFRC5csXyz
 /* 801491C0  38 7E 04 EC */	addi r3, r30, 0x4ec
 /* 801491C4  4B EC 3C AD */	bl scaleM__14mDoMtx_stack_cFRC4cXyz
-/* 801491C8  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 801491CC  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 801491C8  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 801491CC  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 801491D0  38 9F 00 24 */	addi r4, r31, 0x24
 /* 801491D4  48 1F D2 DD */	bl PSMTXCopy
 /* 801491D8  93 DF 00 14 */	stw r30, 0x14(r31)

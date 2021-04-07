@@ -51,13 +51,6 @@ struct J2DOrthoGraph {
 // Forward References:
 //
 
-static void dOvlpFd2_Draw(dOvlpFd2_c*);
-static void dOvlpFd2_Execute(dOvlpFd2_c*);
-static bool dOvlpFd2_IsDelete(dOvlpFd2_c*);
-static bool dOvlpFd2_Delete(dOvlpFd2_c*);
-static void dOvlpFd2_Create(void*);
-void cLib_calcTimer__template4(s8*);
-
 extern "C" void draw__15dOvlpFd2_dlst_cFv();
 extern "C" void __ct__10dOvlpFd2_cFv();
 extern "C" void execFirstSnap__10dOvlpFd2_cFv();
@@ -69,23 +62,12 @@ extern "C" static void dOvlpFd2_Execute__FP10dOvlpFd2_c();
 extern "C" static bool dOvlpFd2_IsDelete__FP10dOvlpFd2_c();
 extern "C" static bool dOvlpFd2_Delete__FP10dOvlpFd2_c();
 extern "C" static void dOvlpFd2_Create__FPv();
-extern "C" void func_80252E70();
+extern "C" void func_80252E70(s8*);
 extern "C" void __dt__15dOvlpFd2_dlst_cFv();
-extern "C" extern void* g_profile_OVERLAP2[10];
 
 //
 // External References:
 //
-
-void mDoMtx_ZrotM(f32 (*)[4], s16);
-void fopOvlpM_SceneIsStop();
-void fopOvlpM_SceneIsStart();
-void fopOvlpM_IsOutReq(overlap_task_class*);
-void fopOvlpM_Done(overlap_task_class*);
-void cLib_addCalc2(f32*, f32, f32, f32);
-void cLib_addCalc0(f32*, f32, f32);
-void cLib_chaseAngleS(s16*, s16, s16);
-void operator delete(void*);
 
 extern "C" void mDoMtx_ZrotM__FPA4_fs();
 extern "C" void scaleM__14mDoMtx_stack_cFfff();
@@ -152,10 +134,10 @@ extern "C" extern u8 sManager__10JFWDisplay[4];
 //
 
 /* ############################################################################################## */
-/* 80454E20-80454E24 0004+00 s=1 e=0 z=0  None .sdata2    @3631 */
+/* 80454E20-80454E24 003420 0004+00 1/1 0/0 0/0 .sdata2          @3631 */
 SECTION_SDATA2 static u32 lit_3631 = 0xFFFFFFFF;
 
-/* 80454E24-80454E28 0004+00 s=2 e=0 z=0  None .sdata2    @3683 */
+/* 80454E24-80454E28 003424 0004+00 2/2 0/0 0/0 .sdata2          @3683 */
 SECTION_SDATA2 static u8 lit_3683[4] = {
     0x00,
     0x00,
@@ -163,31 +145,31 @@ SECTION_SDATA2 static u8 lit_3683[4] = {
     0x00,
 };
 
-/* 80454E28-80454E2C 0004+00 s=1 e=0 z=0  None .sdata2    @3684 */
+/* 80454E28-80454E2C 003428 0004+00 1/1 0/0 0/0 .sdata2          @3684 */
 SECTION_SDATA2 static f32 lit_3684 = 608.0f;
 
-/* 80454E2C-80454E30 0004+00 s=1 e=0 z=0  None .sdata2    @3685 */
+/* 80454E2C-80454E30 00342C 0004+00 1/1 0/0 0/0 .sdata2          @3685 */
 SECTION_SDATA2 static f32 lit_3685 = 448.0f;
 
-/* 80454E30-80454E34 0004+00 s=4 e=0 z=0  None .sdata2    @3686 */
+/* 80454E30-80454E34 003430 0004+00 4/4 0/0 0/0 .sdata2          @3686 */
 SECTION_SDATA2 static f32 lit_3686 = 1.0f;
 
-/* 80454E34-80454E38 0004+00 s=1 e=0 z=0  None .sdata2    @3687 */
+/* 80454E34-80454E38 003434 0004+00 1/1 0/0 0/0 .sdata2          @3687 */
 SECTION_SDATA2 static f32 lit_3687 = 60.0f;
 
-/* 80454E38-80454E3C 0004+00 s=1 e=0 z=0  None .sdata2    @3688 */
+/* 80454E38-80454E3C 003438 0004+00 1/1 0/0 0/0 .sdata2          @3688 */
 SECTION_SDATA2 static f32 lit_3688 = 19.0f / 14.0f;
 
-/* 80454E3C-80454E40 0004+00 s=1 e=0 z=0  None .sdata2    @3689 */
+/* 80454E3C-80454E40 00343C 0004+00 1/1 0/0 0/0 .sdata2          @3689 */
 SECTION_SDATA2 static f32 lit_3689 = 100.0f;
 
-/* 80454E40-80454E44 0004+00 s=1 e=0 z=0  None .sdata2    @3690 */
+/* 80454E40-80454E44 003440 0004+00 1/1 0/0 0/0 .sdata2          @3690 */
 SECTION_SDATA2 static f32 lit_3690 = 100000.0f;
 
-/* 80454E44-80454E48 0004+00 s=1 e=0 z=0  None .sdata2    @3691 */
+/* 80454E44-80454E48 003444 0004+00 1/1 0/0 0/0 .sdata2          @3691 */
 SECTION_SDATA2 static f32 lit_3691 = -1.0f;
 
-/* 8025247C-80252990 0514+00 s=1 e=0 z=0  None .text      draw__15dOvlpFd2_dlst_cFv */
+/* 8025247C-80252990 24CDBC 0514+00 1/0 0/0 0/0 .text            draw__15dOvlpFd2_dlst_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -198,35 +180,35 @@ asm void dOvlpFd2_dlst_c::draw() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C2CF0-803C2CFC 000C+00 s=1 e=0 z=0  None .data      @3695 */
+/* 803C2CF0-803C2CFC -00001 000C+00 1/1 0/0 0/0 .data            @3695 */
 SECTION_DATA static void* lit_3695[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)execFirstSnap__10dOvlpFd2_cFv,
 };
 
-/* 803C2CFC-803C2D08 000C+00 s=1 e=0 z=0  None .data      @3721 */
+/* 803C2CFC-803C2D08 -00001 000C+00 1/1 0/0 0/0 .data            @3721 */
 SECTION_DATA static void* lit_3721[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)execFadeOut__10dOvlpFd2_cFv,
 };
 
-/* 803C2D08-803C2D14 000C+00 s=1 e=0 z=0  None .data      @3736 */
+/* 803C2D08-803C2D14 -00001 000C+00 1/1 0/0 0/0 .data            @3736 */
 SECTION_DATA static void* lit_3736[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)execNextSnap__10dOvlpFd2_cFv,
 };
 
-/* 803C2D14-803C2D20 000C+00 s=1 e=0 z=0  None .data      @3765 */
+/* 803C2D14-803C2D20 -00001 000C+00 1/1 0/0 0/0 .data            @3765 */
 SECTION_DATA static void* lit_3765[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)execFadeIn__10dOvlpFd2_cFv,
 };
 
-/* 803C2D20-803C2D34 0014+00 s=1 e=0 z=0  None .data      l_dOvlpFd2_Method */
+/* 803C2D20-803C2D34 -00001 0014+00 1/0 0/0 0/0 .data            l_dOvlpFd2_Method */
 SECTION_DATA static void* l_dOvlpFd2_Method[5] = {
     (void*)dOvlpFd2_Create__FPv,
     (void*)dOvlpFd2_Delete__FP10dOvlpFd2_c,
@@ -235,8 +217,8 @@ SECTION_DATA static void* l_dOvlpFd2_Method[5] = {
     (void*)dOvlpFd2_Draw__FP10dOvlpFd2_c,
 };
 
-/* 803C2D34-803C2D5C 0028+00 s=0 e=0 z=1  None .data      g_profile_OVERLAP2 */
-SECTION_DATA void* g_profile_OVERLAP2[10] = {
+/* 803C2D34-803C2D5C -00001 0028+00 0/0 0/0 1/0 .data            g_profile_OVERLAP2 */
+SECTION_DATA extern void* g_profile_OVERLAP2[10] = {
     (void*)NULL,       (void*)0x0002FFFD,
     (void*)0x00110000, (void*)&g_fpcLf_Method,
     (void*)0x00000120, (void*)NULL,
@@ -244,9 +226,9 @@ SECTION_DATA void* g_profile_OVERLAP2[10] = {
     (void*)0x03070000, (void*)&l_dOvlpFd2_Method,
 };
 
-/* 803C2D5C-803C2D70 0010+04 s=2 e=0 z=0  None .data      __vt__15dOvlpFd2_dlst_c */
-SECTION_DATA static void* __vt__15dOvlpFd2_dlst_c[4 + 1 /* padding */] = {
-    (void*)NULL,
+/* 803C2D5C-803C2D70 01FE7C 0010+04 2/2 0/0 0/0 .data            __vt__15dOvlpFd2_dlst_c */
+SECTION_DATA extern void* __vt__15dOvlpFd2_dlst_c[4 + 1 /* padding */] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__15dOvlpFd2_dlst_cFv,
     (void*)__dt__15dOvlpFd2_dlst_cFv,
@@ -254,7 +236,7 @@ SECTION_DATA static void* __vt__15dOvlpFd2_dlst_c[4 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80252990-802529F4 0064+00 s=1 e=0 z=0  None .text      __ct__10dOvlpFd2_cFv */
+/* 80252990-802529F4 24D2D0 0064+00 1/1 0/0 0/0 .text            __ct__10dOvlpFd2_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -264,7 +246,7 @@ asm dOvlpFd2_c::dOvlpFd2_c() {
 }
 #pragma pop
 
-/* 802529F4-80252A78 0084+00 s=1 e=0 z=0  None .text      execFirstSnap__10dOvlpFd2_cFv */
+/* 802529F4-80252A78 24D334 0084+00 1/0 0/0 0/0 .text            execFirstSnap__10dOvlpFd2_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -275,10 +257,10 @@ asm void dOvlpFd2_c::execFirstSnap() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454E48-80454E4C 0004+00 s=1 e=0 z=0  None .sdata2    @3757 */
+/* 80454E48-80454E4C 003448 0004+00 1/1 0/0 0/0 .sdata2          @3757 */
 SECTION_SDATA2 static f32 lit_3757 = 1.0f / 20.0f;
 
-/* 80252A78-80252BC0 0148+00 s=1 e=0 z=0  None .text      execFadeOut__10dOvlpFd2_cFv */
+/* 80252A78-80252BC0 24D3B8 0148+00 1/0 0/0 0/0 .text            execFadeOut__10dOvlpFd2_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -288,7 +270,7 @@ asm void dOvlpFd2_c::execFadeOut() {
 }
 #pragma pop
 
-/* 80252BC0-80252C68 00A8+00 s=1 e=0 z=0  None .text      execNextSnap__10dOvlpFd2_cFv */
+/* 80252BC0-80252C68 24D500 00A8+00 1/0 0/0 0/0 .text            execNextSnap__10dOvlpFd2_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -299,13 +281,13 @@ asm void dOvlpFd2_c::execNextSnap() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454E4C-80454E50 0004+00 s=1 e=0 z=0  None .sdata2    @3794 */
+/* 80454E4C-80454E50 00344C 0004+00 1/1 0/0 0/0 .sdata2          @3794 */
 SECTION_SDATA2 static f32 lit_3794 = 3.0f / 100.0f;
 
-/* 80454E50-80454E54 0004+00 s=1 e=0 z=0  None .sdata2    @3795 */
+/* 80454E50-80454E54 003450 0004+00 1/1 0/0 0/0 .sdata2          @3795 */
 SECTION_SDATA2 static f32 lit_3795 = 0.0010000000474974513f;
 
-/* 80252C68-80252D0C 00A4+00 s=1 e=0 z=0  None .text      execFadeIn__10dOvlpFd2_cFv */
+/* 80252C68-80252D0C 24D5A8 00A4+00 1/0 0/0 0/0 .text            execFadeIn__10dOvlpFd2_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -316,60 +298,61 @@ asm void dOvlpFd2_c::execFadeIn() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454E54-80454E58 0004+00 s=1 e=0 z=0  None .sdata2    @3822 */
+/* 80454E54-80454E58 003454 0004+00 1/1 0/0 0/0 .sdata2          @3822 */
 SECTION_SDATA2 static f32 lit_3822 = -420.0f;
 
-/* 80252D0C-80252E08 00FC+00 s=1 e=0 z=0  None .text      dOvlpFd2_Draw__FP10dOvlpFd2_c */
+/* 80252D0C-80252E08 24D64C 00FC+00 1/0 0/0 0/0 .text            dOvlpFd2_Draw__FP10dOvlpFd2_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dOvlpFd2_Draw(dOvlpFd2_c* param_0) {
+static asm void dOvlpFd2_Draw(dOvlpFd2_c* param_0) {
     nofralloc
 #include "asm/d/ovlp/d_ovlp_fade2/dOvlpFd2_Draw__FP10dOvlpFd2_c.s"
 }
 #pragma pop
 
-/* 80252E08-80252E34 002C+00 s=1 e=0 z=0  None .text      dOvlpFd2_Execute__FP10dOvlpFd2_c */
+/* 80252E08-80252E34 24D748 002C+00 1/0 0/0 0/0 .text            dOvlpFd2_Execute__FP10dOvlpFd2_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dOvlpFd2_Execute(dOvlpFd2_c* param_0) {
+static asm void dOvlpFd2_Execute(dOvlpFd2_c* param_0) {
     nofralloc
 #include "asm/d/ovlp/d_ovlp_fade2/dOvlpFd2_Execute__FP10dOvlpFd2_c.s"
 }
 #pragma pop
 
-/* 80252E34-80252E3C 0008+00 s=1 e=0 z=0  None .text      dOvlpFd2_IsDelete__FP10dOvlpFd2_c */
+/* 80252E34-80252E3C 24D774 0008+00 1/0 0/0 0/0 .text            dOvlpFd2_IsDelete__FP10dOvlpFd2_c
+ */
 static bool dOvlpFd2_IsDelete(dOvlpFd2_c* param_0) {
     return true;
 }
 
-/* 80252E3C-80252E44 0008+00 s=1 e=0 z=0  None .text      dOvlpFd2_Delete__FP10dOvlpFd2_c */
+/* 80252E3C-80252E44 24D77C 0008+00 1/0 0/0 0/0 .text            dOvlpFd2_Delete__FP10dOvlpFd2_c */
 static bool dOvlpFd2_Delete(dOvlpFd2_c* param_0) {
     return true;
 }
 
-/* 80252E44-80252E70 002C+00 s=1 e=0 z=0  None .text      dOvlpFd2_Create__FPv */
+/* 80252E44-80252E70 24D784 002C+00 1/0 0/0 0/0 .text            dOvlpFd2_Create__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dOvlpFd2_Create(void* param_0) {
+static asm void dOvlpFd2_Create(void* param_0) {
     nofralloc
 #include "asm/d/ovlp/d_ovlp_fade2/dOvlpFd2_Create__FPv.s"
 }
 #pragma pop
 
-/* 80252E70-80252E8C 001C+00 s=3 e=4 z=0  None .text      cLib_calcTimer<Sc>__FPSc */
+/* 80252E70-80252E8C 24D7B0 001C+00 3/3 4/4 0/0 .text            cLib_calcTimer<Sc>__FPSc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cLib_calcTimer__template4(s8* param_0) {
+extern "C" asm void func_80252E70(s8* param_0) {
     nofralloc
 #include "asm/d/ovlp/d_ovlp_fade2/func_80252E70.s"
 }
 #pragma pop
 
-/* 80252E8C-80252ED4 0048+00 s=1 e=0 z=0  None .text      __dt__15dOvlpFd2_dlst_cFv */
+/* 80252E8C-80252ED4 24D7CC 0048+00 1/0 0/0 0/0 .text            __dt__15dOvlpFd2_dlst_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

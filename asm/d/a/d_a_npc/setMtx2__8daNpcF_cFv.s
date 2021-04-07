@@ -13,8 +13,8 @@ lbl_801527FC:
 /* 80152828  4B EB A7 1D */	bl ZXYrotM__14mDoMtx_stack_cFRC5csXyz
 /* 8015282C  38 7E 04 EC */	addi r3, r30, 0x4ec
 /* 80152830  4B EB A6 41 */	bl scaleM__14mDoMtx_stack_cFRC4cXyz
-/* 80152834  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80152838  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80152834  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80152838  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8015283C  38 9F 00 24 */	addi r4, r31, 0x24
 /* 80152840  48 1F 3C 71 */	bl PSMTXCopy
 /* 80152844  93 DF 00 14 */	stw r30, 0x14(r31)

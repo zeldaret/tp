@@ -50,31 +50,21 @@ struct JASBasicWaveBank {
 // Forward References:
 //
 
-static void JSUConvertOffsetToPtr__template0(void const*, u32);
-static void JSUConvertOffsetToPtr__template1(void const*, u32);
-static void JSUConvertOffsetToPtr__template2(void const*, u32);
-static void JSUConvertOffsetToPtr__template3(void const*, u32);
-static void JSUConvertOffsetToPtr__template4(void const*, u32);
-static void JSUConvertOffsetToPtr__template5(void const*, u32);
-static void JSUConvertOffsetToPtr__template6(void const*, u32);
-
 extern "C" void getGroupCount__11JASWSParserFPCv();
 extern "C" void createWaveBank__11JASWSParserFPCvP7JKRHeap();
 extern "C" void createBasicWaveBank__11JASWSParserFPCvP7JKRHeap();
 extern "C" void createSimpleWaveBank__11JASWSParserFPCvP7JKRHeap();
-extern "C" static void func_80299490();
-extern "C" static void func_802994A8();
-extern "C" static void func_802994C0();
-extern "C" static void func_802994D8();
-extern "C" static void func_802994F0();
-extern "C" static void func_80299508();
-extern "C" static void func_80299520();
+extern "C" void func_80299490(void const*, u32);
+extern "C" void func_802994A8(void const*, u32);
+extern "C" void func_802994C0(void const*, u32);
+extern "C" void func_802994D8(void const*, u32);
+extern "C" void func_802994F0(void const*, u32);
+extern "C" void func_80299508(void const*, u32);
+extern "C" void func_80299520(void const*, u32);
 
 //
 // External References:
 //
-
-void* operator new(u32, JKRHeap*, int);
 
 extern "C" void __ct__16JASBasicWaveBankFv();
 extern "C" void getWaveGroup__16JASBasicWaveBankFUl();
@@ -100,7 +90,7 @@ extern "C" extern u8 JASDram[4];
 // Declarations:
 //
 
-/* 80298FB0-80298FD8 0028+00 s=1 e=0 z=0  None .text      getGroupCount__11JASWSParserFPCv */
+/* 80298FB0-80298FD8 2938F0 0028+00 1/1 0/0 0/0 .text            getGroupCount__11JASWSParserFPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -110,7 +100,7 @@ asm void JASWSParser::getGroupCount(void const* param_0) {
 }
 #pragma pop
 
-/* 80298FD8-80299034 005C+00 s=0 e=1 z=0  None .text      createWaveBank__11JASWSParserFPCvP7JKRHeap
+/* 80298FD8-80299034 293918 005C+00 0/0 1/1 0/0 .text createWaveBank__11JASWSParserFPCvP7JKRHeap
  */
 #pragma push
 #pragma optimization_level 0
@@ -122,10 +112,10 @@ asm void JASWSParser::createWaveBank(void const* param_0, JKRHeap* param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451280-80451288 0004+04 s=2 e=0 z=0  None .sbss      sUsedHeapSize__11JASWSParser */
+/* 80451280-80451288 000780 0004+04 2/2 0/0 0/0 .sbss            sUsedHeapSize__11JASWSParser */
 static u8 sUsedHeapSize__11JASWSParser[4 + 4 /* padding */];
 
-/* 80299034-80299264 0230+00 s=1 e=0 z=0  None .text
+/* 80299034-80299264 293974 0230+00 1/1 0/0 0/0 .text
  * createBasicWaveBank__11JASWSParserFPCvP7JKRHeap              */
 #pragma push
 #pragma optimization_level 0
@@ -136,7 +126,7 @@ asm void JASWSParser::createBasicWaveBank(void const* param_0, JKRHeap* param_1)
 }
 #pragma pop
 
-/* 80299264-80299490 022C+00 s=1 e=0 z=0  None .text
+/* 80299264-80299490 293BA4 022C+00 1/1 0/0 0/0 .text
  * createSimpleWaveBank__11JASWSParserFPCvP7JKRHeap             */
 #pragma push
 #pragma optimization_level 0
@@ -147,78 +137,78 @@ asm void JASWSParser::createSimpleWaveBank(void const* param_0, JKRHeap* param_1
 }
 #pragma pop
 
-/* 80299490-802994A8 0018+00 s=2 e=0 z=0  None .text
+/* 80299490-802994A8 293DD0 0018+00 2/2 0/0 0/0 .text
  * JSUConvertOffsetToPtr<Q211JASWSParser9TCtrlWave>__FPCvUl     */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void JSUConvertOffsetToPtr__template0(void const* param_0, u32 param_1) {
+extern "C" asm void func_80299490(void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASWSParser/func_80299490.s"
 }
 #pragma pop
 
-/* 802994A8-802994C0 0018+00 s=2 e=0 z=0  None .text
+/* 802994A8-802994C0 293DE8 0018+00 2/2 0/0 0/0 .text
  * JSUConvertOffsetToPtr<Q211JASWSParser5TWave>__FPCvUl         */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void JSUConvertOffsetToPtr__template1(void const* param_0, u32 param_1) {
+extern "C" asm void func_802994A8(void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASWSParser/func_802994A8.s"
 }
 #pragma pop
 
-/* 802994C0-802994D8 0018+00 s=2 e=0 z=0  None .text
+/* 802994C0-802994D8 293E00 0018+00 2/2 0/0 0/0 .text
  * JSUConvertOffsetToPtr<Q211JASWSParser12TWaveArchive>__FPCvUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void JSUConvertOffsetToPtr__template2(void const* param_0, u32 param_1) {
+extern "C" asm void func_802994C0(void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASWSParser/func_802994C0.s"
 }
 #pragma pop
 
-/* 802994D8-802994F0 0018+00 s=2 e=0 z=0  None .text
+/* 802994D8-802994F0 293E18 0018+00 2/2 0/0 0/0 .text
  * JSUConvertOffsetToPtr<Q211JASWSParser16TWaveArchiveBank>__FPCvUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void JSUConvertOffsetToPtr__template3(void const* param_0, u32 param_1) {
+extern "C" asm void func_802994D8(void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASWSParser/func_802994D8.s"
 }
 #pragma pop
 
-/* 802994F0-80299508 0018+00 s=2 e=0 z=0  None .text
+/* 802994F0-80299508 293E30 0018+00 2/2 0/0 0/0 .text
  * JSUConvertOffsetToPtr<Q211JASWSParser5TCtrl>__FPCvUl         */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void JSUConvertOffsetToPtr__template4(void const* param_0, u32 param_1) {
+extern "C" asm void func_802994F0(void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASWSParser/func_802994F0.s"
 }
 #pragma pop
 
-/* 80299508-80299520 0018+00 s=2 e=0 z=0  None .text
+/* 80299508-80299520 293E48 0018+00 2/2 0/0 0/0 .text
  * JSUConvertOffsetToPtr<Q211JASWSParser10TCtrlScene>__FPCvUl   */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void JSUConvertOffsetToPtr__template5(void const* param_0, u32 param_1) {
+extern "C" asm void func_80299508(void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASWSParser/func_80299508.s"
 }
 #pragma pop
 
-/* 80299520-80299538 0018+00 s=3 e=0 z=0  None .text
+/* 80299520-80299538 293E60 0018+00 3/3 0/0 0/0 .text
  * JSUConvertOffsetToPtr<Q211JASWSParser10TCtrlGroup>__FPCvUl   */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void JSUConvertOffsetToPtr__template6(void const* param_0, u32 param_1) {
+extern "C" asm void func_80299520(void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASWSParser/func_80299520.s"
 }

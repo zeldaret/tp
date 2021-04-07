@@ -1,6 +1,6 @@
 lbl_8024DACC:
-/* 8024DACC  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 8024DAD0  38 83 14 B8 */	addi r4, r3, cNullVec__6Z2Calc@l
+/* 8024DACC  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803C14B8@ha */
+/* 8024DAD0  38 83 14 B8 */	addi r4, r3, cNullVec__6Z2Calc@l /* 0x803C14B8@l */
 /* 8024DAD4  80 64 01 18 */	lwz r3, 0x118(r4)
 /* 8024DAD8  80 04 01 1C */	lwz r0, 0x11c(r4)
 /* 8024DADC  90 64 03 94 */	stw r3, 0x394(r4)

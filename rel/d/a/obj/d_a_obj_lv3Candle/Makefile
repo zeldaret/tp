@@ -3,19 +3,20 @@
 #
 
 M517_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Candle.plf
+M517_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Candle.lcf
+M517_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Candle.map
 
 M517_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv3Candle/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv3Candle/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle.cpp \
 
 M517_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Candle/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Candle/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Candle/d_a_obj_lv3Candle.o \
 
 M517_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Candle/libRuntime.PPCEABI.H.a \
 
 M517_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M517_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M517_LDSCRIPT) \
+	-unused -map $(M517_MAP) \
+	-w off \
 
 $(M517_TARGET): $(M517_O_FILES) $(M517_LIBS)
+	@echo [517] creating $(M517_TARGET)
 	@echo $(M517_LIBS) $(M517_O_FILES) > build/M517_ofiles
-	$(LD) -partial $(M517_LDFLAGS) -o $(M517_TARGET) @build/M517_ofiles
+	@python3 tools/lcf.py rel 517 --output $(M517_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M517_LDFLAGS) -o $(M517_TARGET) @build/M517_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3Candle/%.o: rel/d/a/obj/d_a_obj_lv3Candle/%.cpp
+	@echo [517] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M517_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M517_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv3Candle/libs/Runtime.PPCEABI.H/Makefile
 

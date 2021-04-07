@@ -5,24 +5,24 @@ lbl_80014EB0:
 /* 80014EBC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80014EC0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80014EC4  41 82 00 60 */	beq lbl_80014F24
-/* 80014EC8  3C 60 80 3A */	lis r3, __vt__28mDoExt_MtxCalcAnmBlendTblOld@ha
-/* 80014ECC  38 03 33 B8 */	addi r0, r3, __vt__28mDoExt_MtxCalcAnmBlendTblOld@l
+/* 80014EC8  3C 60 80 3A */	lis r3, __vt__28mDoExt_MtxCalcAnmBlendTblOld@ha /* 0x803A33B8@ha */
+/* 80014ECC  38 03 33 B8 */	addi r0, r3, __vt__28mDoExt_MtxCalcAnmBlendTblOld@l /* 0x803A33B8@l */
 /* 80014ED0  90 1F 00 00 */	stw r0, 0(r31)
 /* 80014ED4  41 82 00 40 */	beq lbl_80014F14
-/* 80014ED8  3C 60 80 3A */	lis r3, __vt__25mDoExt_MtxCalcAnmBlendTbl@ha
-/* 80014EDC  38 03 33 E4 */	addi r0, r3, __vt__25mDoExt_MtxCalcAnmBlendTbl@l
+/* 80014ED8  3C 60 80 3A */	lis r3, __vt__25mDoExt_MtxCalcAnmBlendTbl@ha /* 0x803A33E4@ha */
+/* 80014EDC  38 03 33 E4 */	addi r0, r3, __vt__25mDoExt_MtxCalcAnmBlendTbl@l /* 0x803A33E4@l */
 /* 80014EE0  90 1F 00 00 */	stw r0, 0(r31)
 /* 80014EE4  41 82 00 30 */	beq lbl_80014F14
-/* 80014EE8  3C 60 80 3A */	lis r3, data_803A3360@ha
-/* 80014EEC  38 03 33 60 */	addi r0, r3, data_803A3360@l
+/* 80014EE8  3C 60 80 3A */	lis r3, data_803A3360@ha /* 0x803A3360@ha */
+/* 80014EEC  38 03 33 60 */	addi r0, r3, data_803A3360@l /* 0x803A3360@l */
 /* 80014EF0  90 1F 00 00 */	stw r0, 0(r31)
 /* 80014EF4  41 82 00 20 */	beq lbl_80014F14
-/* 80014EF8  3C 60 80 3A */	lis r3, __vt__19J3DMtxCalcNoAnmBase@ha
-/* 80014EFC  38 03 33 8C */	addi r0, r3, __vt__19J3DMtxCalcNoAnmBase@l
+/* 80014EF8  3C 60 80 3A */	lis r3, __vt__19J3DMtxCalcNoAnmBase@ha /* 0x803A338C@ha */
+/* 80014EFC  38 03 33 8C */	addi r0, r3, __vt__19J3DMtxCalcNoAnmBase@l /* 0x803A338C@l */
 /* 80014F00  90 1F 00 00 */	stw r0, 0(r31)
 /* 80014F04  41 82 00 10 */	beq lbl_80014F14
-/* 80014F08  3C 60 80 3A */	lis r3, __vt__10J3DMtxCalc@ha
-/* 80014F0C  38 03 34 68 */	addi r0, r3, __vt__10J3DMtxCalc@l
+/* 80014F08  3C 60 80 3A */	lis r3, __vt__10J3DMtxCalc@ha /* 0x803A3468@ha */
+/* 80014F0C  38 03 34 68 */	addi r0, r3, __vt__10J3DMtxCalc@l /* 0x803A3468@l */
 /* 80014F10  90 1F 00 00 */	stw r0, 0(r31)
 lbl_80014F14:
 /* 80014F14  7C 80 07 35 */	extsh. r0, r4

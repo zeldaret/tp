@@ -27,8 +27,8 @@ lbl_80259D04:
 /* 80259D0C  38 80 00 00 */	li r4, 0
 /* 80259D10  48 05 CB A1 */	bl setInDarkness__10Z2SceneMgrFb
 lbl_80259D14:
-/* 80259D14  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80259D18  38 A3 61 C0 */	addi r5, r3, g_dComIfG_gameInfo@l
+/* 80259D14  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80259D18  38 A3 61 C0 */	addi r5, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80259D1C  88 05 4E 0A */	lbz r0, 0x4e0a(r5)
 /* 80259D20  7C 1F 07 74 */	extsb r31, r0
 /* 80259D24  3B C5 4E 00 */	addi r30, r5, 0x4e00

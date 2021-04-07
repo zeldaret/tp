@@ -7,7 +7,7 @@ lbl_80D303D8:
 /* 80D303EC  41 82 00 10 */	beq lbl_80D303FC
 /* 80D303F0  7C 80 07 35 */	extsh. r0, r4
 /* 80D303F4  40 81 00 08 */	ble lbl_80D303FC
-/* 80D303F8  4B 59 E9 44 */	b __dl__FPv
+/* 80D303F8  4B 59 E9 45 */	bl __dl__FPv
 lbl_80D303FC:
 /* 80D303FC  7F E3 FB 78 */	mr r3, r31
 /* 80D30400  83 E1 00 0C */	lwz r31, 0xc(r1)

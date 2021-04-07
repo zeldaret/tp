@@ -5,12 +5,12 @@ lbl_80B1169C:
 /* 80B116A8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80B116AC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80B116B0  41 82 00 1C */	beq lbl_80B116CC
-/* 80B116B4  3C A0 80 B1 */	lis r5, __vt__8cM3dGPla@ha
-/* 80B116B8  38 05 44 DC */	addi r0, r5, __vt__8cM3dGPla@l
+/* 80B116B4  3C A0 80 B1 */	lis r5, __vt__8cM3dGPla@ha /* 0x80B144DC@ha */
+/* 80B116B8  38 05 44 DC */	addi r0, r5, __vt__8cM3dGPla@l /* 0x80B144DC@l */
 /* 80B116BC  90 1F 00 10 */	stw r0, 0x10(r31)
 /* 80B116C0  7C 80 07 35 */	extsh. r0, r4
 /* 80B116C4  40 81 00 08 */	ble lbl_80B116CC
-/* 80B116C8  4B 7B D6 74 */	b __dl__FPv
+/* 80B116C8  4B 7B D6 75 */	bl __dl__FPv
 lbl_80B116CC:
 /* 80B116CC  7F E3 FB 78 */	mr r3, r31
 /* 80B116D0  83 E1 00 0C */	lwz r31, 0xc(r1)

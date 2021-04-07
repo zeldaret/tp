@@ -1,49 +1,49 @@
 lbl_80371EA8:
 /* 80371EA8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80371EAC  7C 08 02 A6 */	mflr r0
-/* 80371EB0  3C 80 80 3A */	lis r4, EndofProgramInstruction@ha
+/* 80371EB0  3C 80 80 3A */	lis r4, EndofProgramInstruction@ha /* 0x803A2C08@ha */
 /* 80371EB4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80371EB8  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80371EBC  3B E0 00 01 */	li r31, 1
 /* 80371EC0  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80371EC4  7C 7E 1B 78 */	mr r30, r3
 /* 80371EC8  93 A1 00 14 */	stw r29, 0x14(r1)
-/* 80371ECC  3B A4 2C 08 */	addi r29, r4, EndofProgramInstruction@l
+/* 80371ECC  3B A4 2C 08 */	addi r29, r4, EndofProgramInstruction@l /* 0x803A2C08@l */
 /* 80371ED0  7F C4 F3 78 */	mr r4, r30
 /* 80371ED4  38 7D 00 08 */	addi r3, r29, 8
 /* 80371ED8  4C C6 31 82 */	crclr 6
 /* 80371EDC  4B C9 4B E1 */	bl OSReport
-/* 80371EE0  3C 60 80 45 */	lis r3, data_8044F820@ha
+/* 80371EE0  3C 60 80 45 */	lis r3, data_8044F820@ha /* 0x8044F820@ha */
 /* 80371EE4  38 00 00 00 */	li r0, 0
 /* 80371EE8  2C 1E 00 02 */	cmpwi r30, 2
-/* 80371EEC  98 03 F8 20 */	stb r0, data_8044F820@l(r3)
+/* 80371EEC  98 03 F8 20 */	stb r0, data_8044F820@l(r3)  /* 0x8044F820@l */
 /* 80371EF0  40 82 00 A4 */	bne lbl_80371F94
 /* 80371EF4  38 7D 00 20 */	addi r3, r29, 0x20
 /* 80371EF8  4C C6 31 82 */	crclr 6
 /* 80371EFC  4B C9 4B C1 */	bl OSReport
-/* 80371F00  3F C0 80 45 */	lis r30, data_8044F820@ha
-/* 80371F04  3D 80 80 37 */	lis r12, udp_cc_initialize@ha
-/* 80371F08  3D 60 80 3D */	lis r11, gDBCommTable@ha
-/* 80371F0C  3D 40 80 37 */	lis r10, udp_cc_open@ha
-/* 80371F10  3D 20 80 37 */	lis r9, udp_cc_close@ha
-/* 80371F14  3D 00 80 37 */	lis r8, udp_cc_read@ha
-/* 80371F18  3C E0 80 37 */	lis r7, udp_cc_write@ha
-/* 80371F1C  3C C0 80 37 */	lis r6, udp_cc_shutdown@ha
-/* 80371F20  3C A0 80 37 */	lis r5, udp_cc_peek@ha
-/* 80371F24  3C 80 80 37 */	lis r4, udp_cc_pre_continue@ha
-/* 80371F28  3C 60 80 37 */	lis r3, udp_cc_post_stop@ha
-/* 80371F2C  3B FE F8 20 */	addi r31, r30, data_8044F820@l
+/* 80371F00  3F C0 80 45 */	lis r30, data_8044F820@ha /* 0x8044F820@ha */
+/* 80371F04  3D 80 80 37 */	lis r12, udp_cc_initialize@ha /* 0x80372354@ha */
+/* 80371F08  3D 60 80 3D */	lis r11, gDBCommTable@ha /* 0x803D32A8@ha */
+/* 80371F0C  3D 40 80 37 */	lis r10, udp_cc_open@ha /* 0x80372344@ha */
+/* 80371F10  3D 20 80 37 */	lis r9, udp_cc_close@ha /* 0x8037233C@ha */
+/* 80371F14  3D 00 80 37 */	lis r8, udp_cc_read@ha /* 0x80372334@ha */
+/* 80371F18  3C E0 80 37 */	lis r7, udp_cc_write@ha /* 0x8037232C@ha */
+/* 80371F1C  3C C0 80 37 */	lis r6, udp_cc_shutdown@ha /* 0x8037234C@ha */
+/* 80371F20  3C A0 80 37 */	lis r5, udp_cc_peek@ha /* 0x80372324@ha */
+/* 80371F24  3C 80 80 37 */	lis r4, udp_cc_pre_continue@ha /* 0x8037231C@ha */
+/* 80371F28  3C 60 80 37 */	lis r3, udp_cc_post_stop@ha /* 0x80372314@ha */
+/* 80371F2C  3B FE F8 20 */	addi r31, r30, data_8044F820@l /* 0x8044F820@l */
 /* 80371F30  3B A0 00 01 */	li r29, 1
-/* 80371F34  3B CC 23 54 */	addi r30, r12, udp_cc_initialize@l
-/* 80371F38  39 8B 32 A8 */	addi r12, r11, gDBCommTable@l
-/* 80371F3C  39 6A 23 44 */	addi r11, r10, udp_cc_open@l
-/* 80371F40  39 49 23 3C */	addi r10, r9, udp_cc_close@l
-/* 80371F44  39 28 23 34 */	addi r9, r8, udp_cc_read@l
-/* 80371F48  39 07 23 2C */	addi r8, r7, udp_cc_write@l
-/* 80371F4C  38 E6 23 4C */	addi r7, r6, udp_cc_shutdown@l
-/* 80371F50  38 C5 23 24 */	addi r6, r5, udp_cc_peek@l
-/* 80371F54  38 A4 23 1C */	addi r5, r4, udp_cc_pre_continue@l
-/* 80371F58  38 83 23 14 */	addi r4, r3, udp_cc_post_stop@l
+/* 80371F34  3B CC 23 54 */	addi r30, r12, udp_cc_initialize@l /* 0x80372354@l */
+/* 80371F38  39 8B 32 A8 */	addi r12, r11, gDBCommTable@l /* 0x803D32A8@l */
+/* 80371F3C  39 6A 23 44 */	addi r11, r10, udp_cc_open@l /* 0x80372344@l */
+/* 80371F40  39 49 23 3C */	addi r10, r9, udp_cc_close@l /* 0x8037233C@l */
+/* 80371F44  39 28 23 34 */	addi r9, r8, udp_cc_read@l /* 0x80372334@l */
+/* 80371F48  39 07 23 2C */	addi r8, r7, udp_cc_write@l /* 0x8037232C@l */
+/* 80371F4C  38 E6 23 4C */	addi r7, r6, udp_cc_shutdown@l /* 0x8037234C@l */
+/* 80371F50  38 C5 23 24 */	addi r6, r5, udp_cc_peek@l /* 0x80372324@l */
+/* 80371F54  38 A4 23 1C */	addi r5, r4, udp_cc_pre_continue@l /* 0x8037231C@l */
+/* 80371F58  38 83 23 14 */	addi r4, r3, udp_cc_post_stop@l /* 0x80372314@l */
 /* 80371F5C  38 00 00 00 */	li r0, 0
 /* 80371F60  9B BF 00 00 */	stb r29, 0(r31)
 /* 80371F64  38 60 00 00 */	li r3, 0
@@ -65,28 +65,28 @@ lbl_80371F94:
 /* 80371FA0  4C C6 31 82 */	crclr 6
 /* 80371FA4  4B C9 4B 19 */	bl OSReport
 /* 80371FA8  48 00 18 05 */	bl Hu_IsStub
-/* 80371FAC  3F E0 80 37 */	lis r31, gdev_cc_initialize@ha
-/* 80371FB0  3D 80 80 37 */	lis r12, gdev_cc_open@ha
-/* 80371FB4  3B FF 2B CC */	addi r31, r31, gdev_cc_initialize@l
-/* 80371FB8  3F C0 80 3D */	lis r30, gDBCommTable@ha
-/* 80371FBC  3D 60 80 37 */	lis r11, gdev_cc_close@ha
-/* 80371FC0  3D 40 80 37 */	lis r10, gdev_cc_read@ha
-/* 80371FC4  3D 20 80 37 */	lis r9, gdev_cc_write@ha
-/* 80371FC8  3D 00 80 37 */	lis r8, gdev_cc_shutdown@ha
-/* 80371FCC  3C E0 80 37 */	lis r7, gdev_cc_peek@ha
-/* 80371FD0  3C C0 80 37 */	lis r6, gdev_cc_pre_continue@ha
-/* 80371FD4  3C A0 80 37 */	lis r5, gdev_cc_post_stop@ha
-/* 80371FD8  3C 80 80 37 */	lis r4, gdev_cc_initinterrupts@ha
-/* 80371FDC  97 FE 32 A8 */	stwu r31, gDBCommTable@l(r30)
-/* 80371FE0  39 8C 2B A0 */	addi r12, r12, gdev_cc_open@l
-/* 80371FE4  39 6B 2B 98 */	addi r11, r11, gdev_cc_close@l
-/* 80371FE8  39 4A 2A A4 */	addi r10, r10, gdev_cc_read@l
-/* 80371FEC  39 29 29 E4 */	addi r9, r9, gdev_cc_write@l
-/* 80371FF0  39 08 2B C4 */	addi r8, r8, gdev_cc_shutdown@l
-/* 80371FF4  38 E7 29 2C */	addi r7, r7, gdev_cc_peek@l
-/* 80371FF8  38 C6 29 C0 */	addi r6, r6, gdev_cc_pre_continue@l
-/* 80371FFC  38 A5 29 9C */	addi r5, r5, gdev_cc_post_stop@l
-/* 80372000  38 04 29 08 */	addi r0, r4, gdev_cc_initinterrupts@l
+/* 80371FAC  3F E0 80 37 */	lis r31, gdev_cc_initialize@ha /* 0x80372BCC@ha */
+/* 80371FB0  3D 80 80 37 */	lis r12, gdev_cc_open@ha /* 0x80372BA0@ha */
+/* 80371FB4  3B FF 2B CC */	addi r31, r31, gdev_cc_initialize@l /* 0x80372BCC@l */
+/* 80371FB8  3F C0 80 3D */	lis r30, gDBCommTable@ha /* 0x803D32A8@ha */
+/* 80371FBC  3D 60 80 37 */	lis r11, gdev_cc_close@ha /* 0x80372B98@ha */
+/* 80371FC0  3D 40 80 37 */	lis r10, gdev_cc_read@ha /* 0x80372AA4@ha */
+/* 80371FC4  3D 20 80 37 */	lis r9, gdev_cc_write@ha /* 0x803729E4@ha */
+/* 80371FC8  3D 00 80 37 */	lis r8, gdev_cc_shutdown@ha /* 0x80372BC4@ha */
+/* 80371FCC  3C E0 80 37 */	lis r7, gdev_cc_peek@ha /* 0x8037292C@ha */
+/* 80371FD0  3C C0 80 37 */	lis r6, gdev_cc_pre_continue@ha /* 0x803729C0@ha */
+/* 80371FD4  3C A0 80 37 */	lis r5, gdev_cc_post_stop@ha /* 0x8037299C@ha */
+/* 80371FD8  3C 80 80 37 */	lis r4, gdev_cc_initinterrupts@ha /* 0x80372908@ha */
+/* 80371FDC  97 FE 32 A8 */	stwu r31, gDBCommTable@l(r30)  /* 0x803D32A8@l */
+/* 80371FE0  39 8C 2B A0 */	addi r12, r12, gdev_cc_open@l /* 0x80372BA0@l */
+/* 80371FE4  39 6B 2B 98 */	addi r11, r11, gdev_cc_close@l /* 0x80372B98@l */
+/* 80371FE8  39 4A 2A A4 */	addi r10, r10, gdev_cc_read@l /* 0x80372AA4@l */
+/* 80371FEC  39 29 29 E4 */	addi r9, r9, gdev_cc_write@l /* 0x803729E4@l */
+/* 80371FF0  39 08 2B C4 */	addi r8, r8, gdev_cc_shutdown@l /* 0x80372BC4@l */
+/* 80371FF4  38 E7 29 2C */	addi r7, r7, gdev_cc_peek@l /* 0x8037292C@l */
+/* 80371FF8  38 C6 29 C0 */	addi r6, r6, gdev_cc_pre_continue@l /* 0x803729C0@l */
+/* 80371FFC  38 A5 29 9C */	addi r5, r5, gdev_cc_post_stop@l /* 0x8037299C@l */
+/* 80372000  38 04 29 08 */	addi r0, r4, gdev_cc_initinterrupts@l /* 0x80372908@l */
 /* 80372004  91 9E 00 18 */	stw r12, 0x18(r30)
 /* 80372008  7C 7F 1B 78 */	mr r31, r3
 /* 8037200C  91 7E 00 1C */	stw r11, 0x1c(r30)
@@ -105,28 +105,28 @@ lbl_80372030:
 /* 8037203C  4C C6 31 82 */	crclr 6
 /* 80372040  4B C9 4A 7D */	bl OSReport
 /* 80372044  48 00 0C E1 */	bl AMC_IsStub
-/* 80372048  3F E0 80 37 */	lis r31, ddh_cc_initialize@ha
-/* 8037204C  3D 80 80 37 */	lis r12, ddh_cc_open@ha
-/* 80372050  3B FF 26 18 */	addi r31, r31, ddh_cc_initialize@l
-/* 80372054  3F C0 80 3D */	lis r30, gDBCommTable@ha
-/* 80372058  3D 60 80 37 */	lis r11, ddh_cc_close@ha
-/* 8037205C  3D 40 80 37 */	lis r10, ddh_cc_read@ha
-/* 80372060  3D 20 80 37 */	lis r9, ddh_cc_write@ha
-/* 80372064  3D 00 80 37 */	lis r8, ddh_cc_shutdown@ha
-/* 80372068  3C E0 80 37 */	lis r7, ddh_cc_peek@ha
-/* 8037206C  3C C0 80 37 */	lis r6, ddh_cc_pre_continue@ha
-/* 80372070  3C A0 80 37 */	lis r5, ddh_cc_post_stop@ha
-/* 80372074  3C 80 80 37 */	lis r4, ddh_cc_initinterrupts@ha
-/* 80372078  97 FE 32 A8 */	stwu r31, gDBCommTable@l(r30)
-/* 8037207C  39 8C 25 EC */	addi r12, r12, ddh_cc_open@l
-/* 80372080  39 6B 25 E4 */	addi r11, r11, ddh_cc_close@l
-/* 80372084  39 4A 24 F8 */	addi r10, r10, ddh_cc_read@l
-/* 80372088  39 29 24 38 */	addi r9, r9, ddh_cc_write@l
-/* 8037208C  39 08 26 10 */	addi r8, r8, ddh_cc_shutdown@l
-/* 80372090  38 E7 23 80 */	addi r7, r7, ddh_cc_peek@l
-/* 80372094  38 C6 24 14 */	addi r6, r6, ddh_cc_pre_continue@l
-/* 80372098  38 A5 23 F0 */	addi r5, r5, ddh_cc_post_stop@l
-/* 8037209C  38 04 23 5C */	addi r0, r4, ddh_cc_initinterrupts@l
+/* 80372048  3F E0 80 37 */	lis r31, ddh_cc_initialize@ha /* 0x80372618@ha */
+/* 8037204C  3D 80 80 37 */	lis r12, ddh_cc_open@ha /* 0x803725EC@ha */
+/* 80372050  3B FF 26 18 */	addi r31, r31, ddh_cc_initialize@l /* 0x80372618@l */
+/* 80372054  3F C0 80 3D */	lis r30, gDBCommTable@ha /* 0x803D32A8@ha */
+/* 80372058  3D 60 80 37 */	lis r11, ddh_cc_close@ha /* 0x803725E4@ha */
+/* 8037205C  3D 40 80 37 */	lis r10, ddh_cc_read@ha /* 0x803724F8@ha */
+/* 80372060  3D 20 80 37 */	lis r9, ddh_cc_write@ha /* 0x80372438@ha */
+/* 80372064  3D 00 80 37 */	lis r8, ddh_cc_shutdown@ha /* 0x80372610@ha */
+/* 80372068  3C E0 80 37 */	lis r7, ddh_cc_peek@ha /* 0x80372380@ha */
+/* 8037206C  3C C0 80 37 */	lis r6, ddh_cc_pre_continue@ha /* 0x80372414@ha */
+/* 80372070  3C A0 80 37 */	lis r5, ddh_cc_post_stop@ha /* 0x803723F0@ha */
+/* 80372074  3C 80 80 37 */	lis r4, ddh_cc_initinterrupts@ha /* 0x8037235C@ha */
+/* 80372078  97 FE 32 A8 */	stwu r31, gDBCommTable@l(r30)  /* 0x803D32A8@l */
+/* 8037207C  39 8C 25 EC */	addi r12, r12, ddh_cc_open@l /* 0x803725EC@l */
+/* 80372080  39 6B 25 E4 */	addi r11, r11, ddh_cc_close@l /* 0x803725E4@l */
+/* 80372084  39 4A 24 F8 */	addi r10, r10, ddh_cc_read@l /* 0x803724F8@l */
+/* 80372088  39 29 24 38 */	addi r9, r9, ddh_cc_write@l /* 0x80372438@l */
+/* 8037208C  39 08 26 10 */	addi r8, r8, ddh_cc_shutdown@l /* 0x80372610@l */
+/* 80372090  38 E7 23 80 */	addi r7, r7, ddh_cc_peek@l /* 0x80372380@l */
+/* 80372094  38 C6 24 14 */	addi r6, r6, ddh_cc_pre_continue@l /* 0x80372414@l */
+/* 80372098  38 A5 23 F0 */	addi r5, r5, ddh_cc_post_stop@l /* 0x803723F0@l */
+/* 8037209C  38 04 23 5C */	addi r0, r4, ddh_cc_initinterrupts@l /* 0x8037235C@l */
 /* 803720A0  91 9E 00 18 */	stw r12, 0x18(r30)
 /* 803720A4  7C 7F 1B 78 */	mr r31, r3
 /* 803720A8  91 7E 00 1C */	stw r11, 0x1c(r30)

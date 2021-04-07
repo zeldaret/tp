@@ -22,11 +22,6 @@ struct daTagAssist_c {};
 // Forward References:
 //
 
-static void daTagAssist_Create(fopAc_ac_c*);
-static void daTagAssist_Execute(daTagAssist_c*);
-static bool daTagAssist_IsDelete(daTagAssist_c*);
-static void daTagAssist_Delete(daTagAssist_c*);
-
 extern "C" static void daTagAssist_Create__FP10fopAc_ac_c();
 extern "C" static void daTagAssist_Execute__FP13daTagAssist_c();
 extern "C" static bool daTagAssist_IsDelete__FP13daTagAssist_c();
@@ -36,8 +31,6 @@ extern "C" extern void* g_profile_Tag_Assist[12];
 //
 // External References:
 //
-
-void fopAcM_searchActorDistanceXZ(fopAc_ac_c const*, fopAc_ac_c const*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -50,43 +43,44 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 // Declarations:
 //
 
-/* 80D55E38-80D55E98 0060+00 s=1 e=0 z=0  None .text      daTagAssist_Create__FP10fopAc_ac_c */
+/* 80D55E38-80D55E98 000078 0060+00 1/0 0/0 0/0 .text            daTagAssist_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagAssist_Create(fopAc_ac_c* param_0) {
+static asm void daTagAssist_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_assistance/d_a_tag_assistance/daTagAssist_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D55E98-80D55EC8 0030+00 s=1 e=0 z=0  None .text      daTagAssist_Execute__FP13daTagAssist_c */
+/* 80D55E98-80D55EC8 0000D8 0030+00 1/0 0/0 0/0 .text daTagAssist_Execute__FP13daTagAssist_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagAssist_Execute(daTagAssist_c* param_0) {
+static asm void daTagAssist_Execute(daTagAssist_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_assistance/d_a_tag_assistance/daTagAssist_Execute__FP13daTagAssist_c.s"
 }
 #pragma pop
 
-/* 80D55EC8-80D55ED0 0008+00 s=1 e=0 z=0  None .text      daTagAssist_IsDelete__FP13daTagAssist_c */
+/* 80D55EC8-80D55ED0 000108 0008+00 1/0 0/0 0/0 .text daTagAssist_IsDelete__FP13daTagAssist_c */
 static bool daTagAssist_IsDelete(daTagAssist_c* param_0) {
     return true;
 }
 
-/* 80D55ED0-80D55F00 0030+00 s=1 e=0 z=0  None .text      daTagAssist_Delete__FP13daTagAssist_c */
+/* 80D55ED0-80D55F00 000110 0030+00 1/0 0/0 0/0 .text daTagAssist_Delete__FP13daTagAssist_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagAssist_Delete(daTagAssist_c* param_0) {
+static asm void daTagAssist_Delete(daTagAssist_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_assistance/d_a_tag_assistance/daTagAssist_Delete__FP13daTagAssist_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D55F08-80D55F28 0020+00 s=1 e=0 z=0  None .data      l_daTagAssist_Method */
+/* 80D55F08-80D55F28 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagAssist_Method */
 SECTION_DATA static void* l_daTagAssist_Method[8] = {
     (void*)daTagAssist_Create__FP10fopAc_ac_c,
     (void*)daTagAssist_Delete__FP13daTagAssist_c,
@@ -98,8 +92,8 @@ SECTION_DATA static void* l_daTagAssist_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D55F28-80D55F58 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_Assist */
-SECTION_DATA void* g_profile_Tag_Assist[12] = {
+/* 80D55F28-80D55F58 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Assist */
+SECTION_DATA extern void* g_profile_Tag_Assist[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02CD0000, (void*)&g_fpcLf_Method,
     (void*)0x00000574, (void*)NULL,

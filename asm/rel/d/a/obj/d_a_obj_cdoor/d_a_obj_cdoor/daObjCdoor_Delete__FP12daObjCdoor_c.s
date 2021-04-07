@@ -4,7 +4,7 @@ lbl_80BC7378:
 /* 80BC7380  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80BC7384  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80BC7388  7C 7F 1B 78 */	mr r31, r3
-/* 80BC738C  4B 4B 15 50 */	b MoveBGDelete__16dBgS_MoveBgActorFv
+/* 80BC738C  4B 4B 15 51 */	bl MoveBGDelete__16dBgS_MoveBgActorFv
 /* 80BC7390  7F E3 FB 78 */	mr r3, r31
 /* 80BC7394  38 80 FF FF */	li r4, -1
 /* 80BC7398  81 9F 05 9C */	lwz r12, 0x59c(r31)

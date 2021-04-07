@@ -23,17 +23,17 @@ lbl_802AA378:
 /* 802AA38C  28 00 00 01 */	cmplwi r0, 1
 /* 802AA390  40 82 00 78 */	bne lbl_802AA408
 /* 802AA394  7F 63 DB 78 */	mr r3, r27
-/* 802AA398  3C 80 80 3A */	lis r4, cResetFilterTable@ha
-/* 802AA39C  38 84 B9 C0 */	addi r4, r4, cResetFilterTable@l
+/* 802AA398  3C 80 80 3A */	lis r4, cResetFilterTable@ha /* 0x8039B9C0@ha */
+/* 802AA39C  38 84 B9 C0 */	addi r4, r4, cResetFilterTable@l /* 0x8039B9C0@l */
 /* 802AA3A0  4B FE 84 FD */	bl setIIR__8JASTrackFPCs
 /* 802AA3A4  7F 63 DB 78 */	mr r3, r27
-/* 802AA3A8  3C 80 80 3A */	lis r4, cResetFilterTable@ha
-/* 802AA3AC  38 84 B9 C0 */	addi r4, r4, cResetFilterTable@l
+/* 802AA3A8  3C 80 80 3A */	lis r4, cResetFilterTable@ha /* 0x8039B9C0@ha */
+/* 802AA3AC  38 84 B9 C0 */	addi r4, r4, cResetFilterTable@l /* 0x8039B9C0@l */
 /* 802AA3B0  4B FE 84 AD */	bl setFIR__8JASTrackFPCs
 /* 802AA3B4  3B 00 00 00 */	li r24, 0
 /* 802AA3B8  3B C0 00 00 */	li r30, 0
-/* 802AA3BC  3C 60 80 3A */	lis r3, cResetFilterTable@ha
-/* 802AA3C0  3B A3 B9 C0 */	addi r29, r3, cResetFilterTable@l
+/* 802AA3BC  3C 60 80 3A */	lis r3, cResetFilterTable@ha /* 0x8039B9C0@ha */
+/* 802AA3C0  3B A3 B9 C0 */	addi r29, r3, cResetFilterTable@l /* 0x8039B9C0@l */
 lbl_802AA3C4:
 /* 802AA3C4  38 1E 01 30 */	addi r0, r30, 0x130
 /* 802AA3C8  7F 5B 00 2E */	lwzx r26, r27, r0

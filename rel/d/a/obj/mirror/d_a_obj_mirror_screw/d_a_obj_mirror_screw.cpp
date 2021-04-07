@@ -98,9 +98,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -112,12 +112,6 @@ struct J3DModel {};
 //
 // Forward References:
 //
-
-static void daObjMirrorScrew_Draw(daObjMirrorScrew_c*);
-static void daObjMirrorScrew_Execute(daObjMirrorScrew_c*);
-static bool daObjMirrorScrew_IsDelete(daObjMirrorScrew_c*);
-static void daObjMirrorScrew_Delete(daObjMirrorScrew_c*);
-static void daObjMirrorScrew_Create(fopAc_ac_c*);
 
 extern "C" void initWait__18daObjMirrorScrew_cFv();
 extern "C" void executeWait__18daObjMirrorScrew_cFv();
@@ -134,27 +128,11 @@ extern "C" void Execute__18daObjMirrorScrew_cFPPA3_A4_f();
 extern "C" void Draw__18daObjMirrorScrew_cFv();
 extern "C" void Delete__18daObjMirrorScrew_cFv();
 extern "C" void __sinit_d_a_obj_mirror_screw_cpp();
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_MirrorScrew[12];
+extern "C" extern char const* const d_a_obj_mirror_screw__stringBase0;
 
 //
 // External References:
 //
-
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcIt_Judge(void* (*)(void*, void*), void*);
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_createChild(s16, unsigned int, u32, cXyz const*, int, csXyz const*, cXyz const*, s8,
-                        int (*)(void*));
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void fopAcM_orderMapToolEvent(fopAc_ac_c*, u8, s16, u16, u16, u16);
-void fpcSch_JudgeForPName(void*, void*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
-void cLib_chaseF(f32*, f32, f32);
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
@@ -211,7 +189,7 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 80C98AD8-80C98AE4 000C+00 s=1 e=0 z=0  None .text      initWait__18daObjMirrorScrew_cFv */
+/* 80C98AD8-80C98AE4 000078 000C+00 1/0 0/0 0/0 .text            initWait__18daObjMirrorScrew_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -222,55 +200,61 @@ asm void daObjMirrorScrew_c::initWait() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C9975C-80C99774 0018+00 s=3 e=0 z=0  None .rodata    M_attr__18daObjMirrorScrew_c */
+/* 80C9975C-80C99774 000000 0018+00 3/3 0/0 0/0 .rodata          M_attr__18daObjMirrorScrew_c */
 SECTION_RODATA static u8 const M_attr__18daObjMirrorScrew_c[24] = {
     0xC5, 0x29, 0x60, 0x00, 0x3F, 0x19, 0x99, 0x9A, 0x00, 0x00, 0x00, 0x2D,
     0x00, 0x00, 0x00, 0x00, 0x40, 0xA0, 0x00, 0x00, 0xC0, 0x58, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80C9975C, &M_attr__18daObjMirrorScrew_c);
 
-/* 80C99774-80C99778 0004+00 s=1 e=0 z=0  None .rodata    @3680 */
-SECTION_RODATA static u32 const lit_3680 = 0x45800000;
+/* 80C99774-80C99778 000018 0004+00 0/1 0/0 0/0 .rodata          @3680 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3680 = 4096.0f;
+COMPILER_STRIP_GATE(80C99774, &lit_3680);
+#pragma pop
 
-/* 80C99778-80C9977C 0004+00 s=3 e=0 z=0  None .rodata    @3681 */
+/* 80C99778-80C9977C 00001C 0004+00 0/3 0/0 0/0 .rodata          @3681 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_3681[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80C99778, &lit_3681);
+#pragma pop
 
-/* 80C9977C-80C99784 0004+04 s=3 e=0 z=0  None .rodata    @3682 */
-SECTION_RODATA static u32 const lit_3682[1 + 1 /* padding */] = {
-    0x3F800000,
+/* 80C9977C-80C99784 000020 0004+04 0/3 0/0 0/0 .rodata          @3682 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3682[1 + 1 /* padding */] = {
+    1.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
+COMPILER_STRIP_GATE(80C9977C, &lit_3682);
+#pragma pop
 
-/* 80C99784-80C9978C 0008+00 s=1 e=0 z=0  None .rodata    @3684 */
+/* 80C99784-80C9978C 000028 0008+00 0/1 0/0 0/0 .rodata          @3684 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_3684[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-
-/* 80C9978C-80C99790 0004+00 s=2 e=0 z=0  None .rodata    @3746 */
-SECTION_RODATA static u32 const lit_3746 = 0xBF800000;
-
-/* 80C99790-80C99794 0004+00 s=2 e=0 z=0  None .rodata    @3845 */
-SECTION_RODATA static u32 const lit_3845 = 0x4524C1F0;
-
-/* 80C99794-80C9979D 0009+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80C99794 = "MR-Screw";
+COMPILER_STRIP_GATE(80C99784, &lit_3684);
 #pragma pop
 
-/* 80C997A0-80C997AC 000C+00 s=1 e=0 z=0  None .data      cNullVec__6Z2Calc */
+/* 80C997A0-80C997AC 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80C997AC-80C997C0 0004+10 s=0 e=0 z=0  None .data      @1787 */
-SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
+/* 80C997AC-80C997C0 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,
@@ -278,46 +262,61 @@ SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
     0x3FE00000,
     0x00000000,
 };
+#pragma pop
 
-/* 80C997C0-80C997C4 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
+/* 80C997C0-80C997C4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_mirror_screw__stringBase0;
 
-/* 80C997C4-80C997D0 000C+00 s=1 e=0 z=0  None .data      @3648 */
+/* 80C997C4-80C997D0 -00001 000C+00 0/1 0/0 0/0 .data            @3648 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3648[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)initWait__18daObjMirrorScrew_cFv,
 };
+#pragma pop
 
-/* 80C997D0-80C997DC 000C+00 s=1 e=0 z=0  None .data      @3649 */
+/* 80C997D0-80C997DC -00001 000C+00 0/1 0/0 0/0 .data            @3649 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3649[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)executeWait__18daObjMirrorScrew_cFv,
 };
+#pragma pop
 
-/* 80C997DC-80C997E8 000C+00 s=1 e=0 z=0  None .data      @3650 */
+/* 80C997DC-80C997E8 -00001 000C+00 0/1 0/0 0/0 .data            @3650 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3650[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)initDown__18daObjMirrorScrew_cFv,
 };
+#pragma pop
 
-/* 80C997E8-80C997F4 000C+00 s=1 e=0 z=0  None .data      @3651 */
+/* 80C997E8-80C997F4 -00001 000C+00 0/1 0/0 0/0 .data            @3651 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3651[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)executeDown__18daObjMirrorScrew_cFv,
 };
+#pragma pop
 
-/* 80C997F4-80C99824 0030+00 s=3 e=0 z=0  None .data      ActionTable__18daObjMirrorScrew_c */
+/* 80C997F4-80C99824 000054 0030+00 2/3 0/0 0/0 .data            ActionTable__18daObjMirrorScrew_c
+ */
 SECTION_DATA static u8 ActionTable__18daObjMirrorScrew_c[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80C98AE4-80C98C00 011C+00 s=1 e=0 z=0  None .text      executeWait__18daObjMirrorScrew_cFv */
+/* 80C98AE4-80C98C00 000084 011C+00 1/0 0/0 0/0 .text            executeWait__18daObjMirrorScrew_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -327,7 +326,15 @@ asm void daObjMirrorScrew_c::executeWait() {
 }
 #pragma pop
 
-/* 80C98C00-80C98F04 0304+00 s=1 e=0 z=0  None .text      initDown__18daObjMirrorScrew_cFv */
+/* ############################################################################################## */
+/* 80C9978C-80C99790 000030 0004+00 0/2 0/0 0/0 .rodata          @3746 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3746 = -1.0f;
+COMPILER_STRIP_GATE(80C9978C, &lit_3746);
+#pragma pop
+
+/* 80C98C00-80C98F04 0001A0 0304+00 1/0 0/0 0/0 .text            initDown__18daObjMirrorScrew_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -337,7 +344,13 @@ asm void daObjMirrorScrew_c::initDown() {
 }
 #pragma pop
 
-/* 80C98F04-80C99154 0250+00 s=1 e=0 z=0  None .text      executeDown__18daObjMirrorScrew_cFv */
+/* ############################################################################################## */
+/* 80C99790-80C99794 000034 0004+00 1/2 0/0 0/0 .rodata          @3845 */
+SECTION_RODATA static u32 const lit_3845 = 0x4524C1F0;
+COMPILER_STRIP_GATE(80C99790, &lit_3845);
+
+/* 80C98F04-80C99154 0004A4 0250+00 1/0 0/0 0/0 .text            executeDown__18daObjMirrorScrew_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -347,47 +360,47 @@ asm void daObjMirrorScrew_c::executeDown() {
 }
 #pragma pop
 
-/* 80C99154-80C99180 002C+00 s=1 e=0 z=0  None .text daObjMirrorScrew_Draw__FP18daObjMirrorScrew_c
- */
+/* 80C99154-80C99180 0006F4 002C+00 1/0 0/0 0/0 .text
+ * daObjMirrorScrew_Draw__FP18daObjMirrorScrew_c                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjMirrorScrew_Draw(daObjMirrorScrew_c* param_0) {
+static asm void daObjMirrorScrew_Draw(daObjMirrorScrew_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/mirror/d_a_obj_mirror_screw/d_a_obj_mirror_screw/daObjMirrorScrew_Draw__FP18daObjMirrorScrew_c.s"
 }
 #pragma pop
 
-/* 80C99180-80C991A0 0020+00 s=1 e=0 z=0  None .text
+/* 80C99180-80C991A0 000720 0020+00 1/0 0/0 0/0 .text
  * daObjMirrorScrew_Execute__FP18daObjMirrorScrew_c             */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjMirrorScrew_Execute(daObjMirrorScrew_c* param_0) {
+static asm void daObjMirrorScrew_Execute(daObjMirrorScrew_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/mirror/d_a_obj_mirror_screw/d_a_obj_mirror_screw/daObjMirrorScrew_Execute__FP18daObjMirrorScrew_c.s"
 }
 #pragma pop
 
-/* 80C991A0-80C991A8 0008+00 s=1 e=0 z=0  None .text
+/* 80C991A0-80C991A8 000740 0008+00 1/0 0/0 0/0 .text
  * daObjMirrorScrew_IsDelete__FP18daObjMirrorScrew_c            */
 static bool daObjMirrorScrew_IsDelete(daObjMirrorScrew_c* param_0) {
     return true;
 }
 
-/* 80C991A8-80C991CC 0024+00 s=1 e=0 z=0  None .text
+/* 80C991A8-80C991CC 000748 0024+00 1/0 0/0 0/0 .text
  * daObjMirrorScrew_Delete__FP18daObjMirrorScrew_c              */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjMirrorScrew_Delete(daObjMirrorScrew_c* param_0) {
+static asm void daObjMirrorScrew_Delete(daObjMirrorScrew_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/mirror/d_a_obj_mirror_screw/d_a_obj_mirror_screw/daObjMirrorScrew_Delete__FP18daObjMirrorScrew_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C99824-80C99844 0020+00 s=1 e=0 z=0  None .data      l_daObjMirrorScrew_Method */
+/* 80C99824-80C99844 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjMirrorScrew_Method */
 SECTION_DATA static void* l_daObjMirrorScrew_Method[8] = {
     (void*)daObjMirrorScrew_Create__FP10fopAc_ac_c,
     (void*)daObjMirrorScrew_Delete__FP18daObjMirrorScrew_c,
@@ -399,8 +412,8 @@ SECTION_DATA static void* l_daObjMirrorScrew_Method[8] = {
     (void*)NULL,
 };
 
-/* 80C99844-80C99874 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_MirrorScrew */
-SECTION_DATA void* g_profile_Obj_MirrorScrew[12] = {
+/* 80C99844-80C99874 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_MirrorScrew */
+SECTION_DATA extern void* g_profile_Obj_MirrorScrew[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00AE0000, (void*)&g_fpcLf_Method,
     (void*)0x000005E8, (void*)NULL,
@@ -409,9 +422,9 @@ SECTION_DATA void* g_profile_Obj_MirrorScrew[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80C99874-80C9989C 0028+00 s=1 e=0 z=0  None .data      __vt__18daObjMirrorScrew_c */
-SECTION_DATA static void* __vt__18daObjMirrorScrew_c[10] = {
-    (void*)NULL,
+/* 80C99874-80C9989C 0000D4 0028+00 1/1 0/0 0/0 .data            __vt__18daObjMirrorScrew_c */
+SECTION_DATA extern void* __vt__18daObjMirrorScrew_c[10] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__18daObjMirrorScrew_cFv,
     (void*)Create__18daObjMirrorScrew_cFv,
@@ -423,17 +436,18 @@ SECTION_DATA static void* __vt__18daObjMirrorScrew_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80C991CC-80C992F4 0128+00 s=1 e=0 z=0  None .text      daObjMirrorScrew_Create__FP10fopAc_ac_c */
+/* 80C991CC-80C992F4 00076C 0128+00 1/0 0/0 0/0 .text daObjMirrorScrew_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjMirrorScrew_Create(fopAc_ac_c* param_0) {
+static asm void daObjMirrorScrew_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/mirror/d_a_obj_mirror_screw/d_a_obj_mirror_screw/daObjMirrorScrew_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80C992F4-80C99364 0070+00 s=1 e=0 z=0  None .text      CreateHeap__18daObjMirrorScrew_cFv */
+/* 80C992F4-80C99364 000894 0070+00 1/0 0/0 0/0 .text            CreateHeap__18daObjMirrorScrew_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -443,7 +457,7 @@ asm void daObjMirrorScrew_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80C99364-80C99490 012C+00 s=1 e=0 z=0  None .text      Create__18daObjMirrorScrew_cFv */
+/* 80C99364-80C99490 000904 012C+00 1/0 0/0 0/0 .text            Create__18daObjMirrorScrew_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -453,7 +467,7 @@ asm void daObjMirrorScrew_c::Create() {
 }
 #pragma pop
 
-/* 80C99490-80C99608 0178+00 s=1 e=0 z=0  None .text      Execute__18daObjMirrorScrew_cFPPA3_A4_f */
+/* 80C99490-80C99608 000A30 0178+00 1/0 0/0 0/0 .text Execute__18daObjMirrorScrew_cFPPA3_A4_f */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -463,7 +477,7 @@ asm void daObjMirrorScrew_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 80C99608-80C996AC 00A4+00 s=1 e=0 z=0  None .text      Draw__18daObjMirrorScrew_cFv */
+/* 80C99608-80C996AC 000BA8 00A4+00 1/0 0/0 0/0 .text            Draw__18daObjMirrorScrew_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -473,7 +487,7 @@ asm void daObjMirrorScrew_c::Draw() {
 }
 #pragma pop
 
-/* 80C996AC-80C996E0 0034+00 s=1 e=0 z=0  None .text      Delete__18daObjMirrorScrew_cFv */
+/* 80C996AC-80C996E0 000C4C 0034+00 1/0 0/0 0/0 .text            Delete__18daObjMirrorScrew_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -483,12 +497,24 @@ asm void daObjMirrorScrew_c::Delete() {
 }
 #pragma pop
 
-/* 80C996E0-80C99750 0070+00 s=0 e=1 z=0  None .text      __sinit_d_a_obj_mirror_screw_cpp */
+/* 80C996E0-80C99750 000C80 0070+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_mirror_screw_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_a_obj_mirror_screw_cpp() {
+asm void __sinit_d_a_obj_mirror_screw_cpp() {
     nofralloc
 #include "asm/rel/d/a/obj/mirror/d_a_obj_mirror_screw/d_a_obj_mirror_screw/__sinit_d_a_obj_mirror_screw_cpp.s"
 }
+#pragma pop
+
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_80C996E0 = (void*)__sinit_d_a_obj_mirror_screw_cpp;
+#pragma pop
+
+/* 80C99794-80C9979D 000038 0009+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80C99794 = "MR-Screw";
 #pragma pop

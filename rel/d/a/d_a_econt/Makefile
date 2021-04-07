@@ -3,18 +3,16 @@
 #
 
 M71_TARGET := $(BUILD_DIR)/rel/d/a/d_a_econt.plf
+M71_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_econt.lcf
+M71_MAP := $(BUILD_DIR)/rel/d/a/d_a_econt.map
 
 M71_CPP_FILES := \
-	rel/d/a/d_a_econt/executor.cpp \
-	rel/d/a/d_a_econt/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_econt/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_econt/unknown_translation_unit_bss.cpp \
 	rel/d/a/d_a_econt/d_a_econt.cpp \
 
 M71_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_econt/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_econt/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_econt/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_econt/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/d_a_econt/d_a_econt.o \
 
@@ -31,14 +29,21 @@ M71_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M71_LDSCRIPT) \
+	-unused -map $(M71_MAP) \
+	-w off \
 
 $(M71_TARGET): $(M71_O_FILES) $(M71_LIBS)
+	@echo [ 71] creating $(M71_TARGET)
 	@echo $(M71_LIBS) $(M71_O_FILES) > build/M71_ofiles
-	$(LD) -partial $(M71_LDFLAGS) -o $(M71_TARGET) @build/M71_ofiles
+	@python3 tools/lcf.py rel 71 --output $(M71_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M71_LDFLAGS) -o $(M71_TARGET) @build/M71_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_econt/%.o: rel/d/a/d_a_econt/%.cpp
+	@echo [ 71] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M71_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M71_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

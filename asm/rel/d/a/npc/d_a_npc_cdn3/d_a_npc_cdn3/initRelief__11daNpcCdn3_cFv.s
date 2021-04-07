@@ -5,11 +5,11 @@ lbl_8097A960:
 /* 8097A96C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8097A970  93 C1 00 08 */	stw r30, 8(r1)
 /* 8097A974  7C 7E 1B 78 */	mr r30, r3
-/* 8097A978  3C 80 80 98 */	lis r4, lit_4037@ha
-/* 8097A97C  3B E4 F5 40 */	addi r31, r4, lit_4037@l
+/* 8097A978  3C 80 80 98 */	lis r4, lit_4037@ha /* 0x8097F540@ha */
+/* 8097A97C  3B E4 F5 40 */	addi r31, r4, lit_4037@l /* 0x8097F540@l */
 /* 8097A980  38 80 00 00 */	li r4, 0
 /* 8097A984  80 A3 0B 58 */	lwz r5, 0xb58(r3)
-/* 8097A988  4B 7D D7 68 */	b getAnmP__10daNpcCd2_cFii
+/* 8097A988  4B 7D D7 69 */	bl getAnmP__10daNpcCd2_cFii
 /* 8097A98C  7C 64 1B 78 */	mr r4, r3
 /* 8097A990  7F C3 F3 78 */	mr r3, r30
 /* 8097A994  C0 3F 00 04 */	lfs f1, 4(r31)
@@ -17,7 +17,7 @@ lbl_8097A960:
 /* 8097A99C  38 A0 00 02 */	li r5, 2
 /* 8097A9A0  38 C0 00 00 */	li r6, 0
 /* 8097A9A4  38 E0 FF FF */	li r7, -1
-/* 8097A9A8  4B 7D E5 58 */	b setAnm__10daNpcCd2_cFP18J3DAnmTransformKeyffiii
+/* 8097A9A8  4B 7D E5 59 */	bl setAnm__10daNpcCd2_cFP18J3DAnmTransformKeyffiii
 /* 8097A9AC  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 8097A9B0  D0 1E 05 2C */	stfs f0, 0x52c(r30)
 /* 8097A9B4  A8 7E 04 E6 */	lha r3, 0x4e6(r30)

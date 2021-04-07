@@ -29,8 +29,8 @@ lbl_80140338:
 /* 801403A4  80 1F 1F 20 */	lwz r0, 0x1f20(r31)
 /* 801403A8  90 03 00 54 */	stw r0, 0x54(r3)
 /* 801403AC  38 C0 00 00 */	li r6, 0
-/* 801403B0  3C 60 80 0A */	lis r3, daAlink_modelCallBack__FP8J3DJointi@ha
-/* 801403B4  38 63 EC 28 */	addi r3, r3, daAlink_modelCallBack__FP8J3DJointi@l
+/* 801403B0  3C 60 80 0A */	lis r3, daAlink_modelCallBack__FP8J3DJointi@ha /* 0x8009EC28@ha */
+/* 801403B4  38 63 EC 28 */	addi r3, r3, daAlink_modelCallBack__FP8J3DJointi@l /* 0x8009EC28@l */
 /* 801403B8  48 00 00 1C */	b lbl_801403D4
 lbl_801403BC:
 /* 801403BC  80 BF 06 4C */	lwz r5, 0x64c(r31)
@@ -46,8 +46,8 @@ lbl_801403D4:
 /* 801403E0  80 7F 06 58 */	lwz r3, 0x658(r31)
 /* 801403E4  80 C3 00 04 */	lwz r6, 4(r3)
 /* 801403E8  38 E0 00 01 */	li r7, 1
-/* 801403EC  3C 60 80 0A */	lis r3, daAlink_headModelCallBack__FP8J3DJointi@ha
-/* 801403F0  38 A3 EF 38 */	addi r5, r3, daAlink_headModelCallBack__FP8J3DJointi@l
+/* 801403EC  3C 60 80 0A */	lis r3, daAlink_headModelCallBack__FP8J3DJointi@ha /* 0x8009EF38@ha */
+/* 801403F0  38 A3 EF 38 */	addi r5, r3, daAlink_headModelCallBack__FP8J3DJointi@l /* 0x8009EF38@l */
 /* 801403F4  48 00 00 18 */	b lbl_8014040C
 lbl_801403F8:
 /* 801403F8  80 66 00 28 */	lwz r3, 0x28(r6)
@@ -127,8 +127,8 @@ lbl_801404F0:
 /* 80140504  54 00 02 D9 */	rlwinm. r0, r0, 0, 0xb, 0xc
 /* 80140508  40 82 00 34 */	bne lbl_8014053C
 /* 8014050C  38 C0 00 06 */	li r6, 6
-/* 80140510  3C 60 80 0A */	lis r3, daAlink_headModelCallBack__FP8J3DJointi@ha
-/* 80140514  38 63 EF 38 */	addi r3, r3, daAlink_headModelCallBack__FP8J3DJointi@l
+/* 80140510  3C 60 80 0A */	lis r3, daAlink_headModelCallBack__FP8J3DJointi@ha /* 0x8009EF38@ha */
+/* 80140514  38 63 EF 38 */	addi r3, r3, daAlink_headModelCallBack__FP8J3DJointi@l /* 0x8009EF38@l */
 /* 80140518  48 00 00 18 */	b lbl_80140530
 lbl_8014051C:
 /* 8014051C  80 85 00 28 */	lwz r4, 0x28(r5)

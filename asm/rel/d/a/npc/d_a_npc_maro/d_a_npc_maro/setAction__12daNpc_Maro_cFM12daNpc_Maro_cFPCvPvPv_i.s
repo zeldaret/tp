@@ -9,13 +9,13 @@ lbl_8055DD34:
 /* 8055DD50  38 00 00 03 */	li r0, 3
 /* 8055DD54  B0 03 0E 22 */	sth r0, 0xe22(r3)
 /* 8055DD58  38 7E 11 18 */	addi r3, r30, 0x1118
-/* 8055DD5C  4B E0 42 BC */	b __ptmf_test
+/* 8055DD5C  4B E0 42 BD */	bl __ptmf_test
 /* 8055DD60  2C 03 00 00 */	cmpwi r3, 0
 /* 8055DD64  41 82 00 18 */	beq lbl_8055DD7C
 /* 8055DD68  7F C3 F3 78 */	mr r3, r30
 /* 8055DD6C  38 80 00 00 */	li r4, 0
 /* 8055DD70  39 9E 11 18 */	addi r12, r30, 0x1118
-/* 8055DD74  4B E0 43 10 */	b __ptmf_scall
+/* 8055DD74  4B E0 43 11 */	bl __ptmf_scall
 /* 8055DD78  60 00 00 00 */	nop 
 lbl_8055DD7C:
 /* 8055DD7C  38 00 00 00 */	li r0, 0
@@ -27,13 +27,13 @@ lbl_8055DD7C:
 /* 8055DD94  80 1F 00 08 */	lwz r0, 8(r31)
 /* 8055DD98  90 1E 11 20 */	stw r0, 0x1120(r30)
 /* 8055DD9C  38 7E 11 18 */	addi r3, r30, 0x1118
-/* 8055DDA0  4B E0 42 78 */	b __ptmf_test
+/* 8055DDA0  4B E0 42 79 */	bl __ptmf_test
 /* 8055DDA4  2C 03 00 00 */	cmpwi r3, 0
 /* 8055DDA8  41 82 00 18 */	beq lbl_8055DDC0
 /* 8055DDAC  7F C3 F3 78 */	mr r3, r30
 /* 8055DDB0  38 80 00 00 */	li r4, 0
 /* 8055DDB4  39 9E 11 18 */	addi r12, r30, 0x1118
-/* 8055DDB8  4B E0 42 CC */	b __ptmf_scall
+/* 8055DDB8  4B E0 42 CD */	bl __ptmf_scall
 /* 8055DDBC  60 00 00 00 */	nop 
 lbl_8055DDC0:
 /* 8055DDC0  38 60 00 01 */	li r3, 1

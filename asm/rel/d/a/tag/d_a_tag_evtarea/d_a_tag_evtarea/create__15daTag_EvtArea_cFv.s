@@ -5,16 +5,16 @@ lbl_8048C4F8:
 /* 8048C504  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8048C508  93 C1 00 08 */	stw r30, 8(r1)
 /* 8048C50C  7C 7F 1B 78 */	mr r31, r3
-/* 8048C510  3C 80 80 49 */	lis r4, lit_3853@ha
-/* 8048C514  3B C4 CD D0 */	addi r30, r4, lit_3853@l
+/* 8048C510  3C 80 80 49 */	lis r4, lit_3853@ha /* 0x8048CDD0@ha */
+/* 8048C514  3B C4 CD D0 */	addi r30, r4, lit_3853@l /* 0x8048CDD0@l */
 /* 8048C518  80 03 04 A0 */	lwz r0, 0x4a0(r3)
 /* 8048C51C  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 8048C520  40 82 00 28 */	bne lbl_8048C548
 /* 8048C524  28 1F 00 00 */	cmplwi r31, 0
 /* 8048C528  41 82 00 14 */	beq lbl_8048C53C
-/* 8048C52C  4B B8 C6 38 */	b __ct__10fopAc_ac_cFv
-/* 8048C530  3C 60 80 49 */	lis r3, __vt__15daTag_EvtArea_c@ha
-/* 8048C534  38 03 CE 98 */	addi r0, r3, __vt__15daTag_EvtArea_c@l
+/* 8048C52C  4B B8 C6 39 */	bl __ct__10fopAc_ac_cFv
+/* 8048C530  3C 60 80 49 */	lis r3, __vt__15daTag_EvtArea_c@ha /* 0x8048CE98@ha */
+/* 8048C534  38 03 CE 98 */	addi r0, r3, __vt__15daTag_EvtArea_c@l /* 0x8048CE98@l */
 /* 8048C538  90 1F 05 68 */	stw r0, 0x568(r31)
 lbl_8048C53C:
 /* 8048C53C  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
@@ -29,8 +29,8 @@ lbl_8048C548:
 /* 8048C55C  7C 60 00 78 */	andc r0, r3, r0
 /* 8048C560  28 00 00 17 */	cmplwi r0, 0x17
 /* 8048C564  41 81 01 60 */	bgt lbl_8048C6C4
-/* 8048C568  3C 60 80 49 */	lis r3, lit_3857@ha
-/* 8048C56C  38 63 CD E8 */	addi r3, r3, lit_3857@l
+/* 8048C568  3C 60 80 49 */	lis r3, lit_3857@ha /* 0x8048CDE8@ha */
+/* 8048C56C  38 63 CD E8 */	addi r3, r3, lit_3857@l /* 0x8048CDE8@l */
 /* 8048C570  54 00 10 3A */	slwi r0, r0, 2
 /* 8048C574  7C 03 00 2E */	lwzx r0, r3, r0
 /* 8048C578  7C 09 03 A6 */	mtctr r0

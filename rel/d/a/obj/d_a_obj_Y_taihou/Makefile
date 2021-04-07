@@ -3,19 +3,20 @@
 #
 
 M396_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_Y_taihou.plf
+M396_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_Y_taihou.lcf
+M396_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_Y_taihou.map
 
 M396_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_Y_taihou/executor.cpp \
-	rel/d/a/obj/d_a_obj_Y_taihou/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_Y_taihou/d_a_obj_Y_taihou.cpp \
 
 M396_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_Y_taihou/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_Y_taihou/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_Y_taihou/d_a_obj_Y_taihou.o \
 
 M396_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_Y_taihou/libRuntime.PPCEABI.H.a \
 
 M396_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M396_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M396_LDSCRIPT) \
+	-unused -map $(M396_MAP) \
+	-w off \
 
 $(M396_TARGET): $(M396_O_FILES) $(M396_LIBS)
+	@echo [396] creating $(M396_TARGET)
 	@echo $(M396_LIBS) $(M396_O_FILES) > build/M396_ofiles
-	$(LD) -partial $(M396_LDFLAGS) -o $(M396_TARGET) @build/M396_ofiles
+	@python3 tools/lcf.py rel 396 --output $(M396_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M396_LDFLAGS) -o $(M396_TARGET) @build/M396_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_Y_taihou/%.o: rel/d/a/obj/d_a_obj_Y_taihou/%.cpp
+	@echo [396] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M396_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M396_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_Y_taihou/libs/Runtime.PPCEABI.H/Makefile
 

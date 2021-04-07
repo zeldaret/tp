@@ -78,8 +78,8 @@ lbl_80086510:
 /* 80086528  7F 43 D3 78 */	mr r3, r26
 /* 8008652C  4B FF FE 35 */	bl GetRank__4dCcSFUc
 /* 80086530  1C B9 00 0B */	mulli r5, r25, 0xb
-/* 80086534  3C 80 80 3B */	lis r4, rank_tbl@ha
-/* 80086538  38 04 C3 28 */	addi r0, r4, rank_tbl@l
+/* 80086534  3C 80 80 3B */	lis r4, rank_tbl@ha /* 0x803AC328@ha */
+/* 80086538  38 04 C3 28 */	addi r0, r4, rank_tbl@l /* 0x803AC328@l */
 /* 8008653C  7C 80 2A 14 */	add r4, r0, r5
 /* 80086540  7C 04 18 AE */	lbzx r0, r4, r3
 /* 80086544  C0 42 8D 7C */	lfs f2, lit_3924(r2)

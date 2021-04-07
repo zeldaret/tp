@@ -19,7 +19,7 @@ extern "C" static void SIEnablePollingInterrupt();
 extern "C" void SIRegisterPollingHandler();
 extern "C" void SIUnregisterPollingHandler();
 extern "C" void SIInit();
-extern "C" static void __SITransfer();
+extern "C" void __SITransfer();
 extern "C" void SIGetStatus();
 extern "C" void SISetCommand();
 extern "C" void SITransferCommands();
@@ -33,21 +33,6 @@ extern "C" void SITransfer();
 extern "C" static void GetTypeCallback();
 extern "C" void SIGetType();
 extern "C" void SIGetTypeAsync();
-extern "C" extern u8 lit_457[12];
-extern "C" extern u8 lit_459[15 + 1 /* padding */];
-extern "C" extern u8 lit_460[15 + 1 /* padding */];
-extern "C" extern u8 lit_461[13 + 3 /* padding */];
-extern "C" extern u8 lit_462[10 + 2 /* padding */];
-extern "C" extern u8 lit_463[16];
-extern "C" extern u8 lit_464[20];
-extern "C" extern u8 lit_465[18 + 2 /* padding */];
-extern "C" extern u8 lit_466[20];
-extern "C" extern u8 lit_467[9 + 3 /* padding */];
-extern "C" extern u8 lit_468[9 + 7 /* padding */];
-extern "C" extern u8 InputBufferValid[16];
-extern "C" extern u8 InputBuffer[32];
-extern "C" extern u8 data_8044C820[16];
-extern "C" extern u8 __PADFixBits[4 + 4 /* padding */];
 
 //
 // External References:
@@ -71,7 +56,7 @@ extern "C" void VIGetCurrentLine();
 //
 
 /* ############################################################################################## */
-/* 803D11B8-803D11FC 0044+00 s=4 e=0 z=0  None .data      @1 */
+/* 803D11B8-803D11FC 02E2D8 0044+00 4/3 0/0 0/0 .data            @1 */
 SECTION_DATA static u8 lit_1[68] = {
     0x3C, 0x3C, 0x20, 0x44, 0x6F, 0x6C, 0x70, 0x68, 0x69, 0x6E, 0x20, 0x53, 0x44, 0x4B,
     0x20, 0x2D, 0x20, 0x53, 0x49, 0x09, 0x72, 0x65, 0x6C, 0x65, 0x61, 0x73, 0x65, 0x20,
@@ -80,294 +65,309 @@ SECTION_DATA static u8 lit_1[68] = {
     0x28, 0x30, 0x78, 0x32, 0x33, 0x30, 0x31, 0x29, 0x20, 0x3E, 0x3E, 0x00,
 };
 
-/* 803D11FC-803D1210 0014+00 s=11 e=0 z=0  None .data      Si */
+/* 803D11FC-803D1210 02E31C 0014+00 8/11 0/0 0/0 .data            Si */
 SECTION_DATA static u8 Si[20] = {
     0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80344BA0-80344BC0 0020+00 s=0 e=1 z=0  None .text      SIBusy */
+/* 80344BA0-80344BC0 33F4E0 0020+00 0/0 1/1 0/0 .text            SIBusy */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void SIBusy() {
+asm void SIBusy() {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIBusy.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8044C630-8044C6B0 0080+00 s=9 e=0 z=0  None .bss       Packet */
+/* 8044C630-8044C6B0 079350 0080+00 9/9 0/0 0/0 .bss             Packet */
 static u8 Packet[128];
 
-/* 80344BC0-80344BFC 003C+00 s=0 e=1 z=0  None .text      SIIsChanBusy */
+/* 80344BC0-80344BFC 33F500 003C+00 0/0 1/1 0/0 .text            SIIsChanBusy */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void SIIsChanBusy() {
+asm void SIIsChanBusy() {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIIsChanBusy.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8044C6B0-8044C750 00A0+00 s=1 e=0 z=0  None .bss       Alarm */
+/* 8044C6B0-8044C750 0793D0 00A0+00 1/1 0/0 0/0 .bss             Alarm */
 static u8 Alarm[160];
 
-/* 8044C750-8044C770 0020+00 s=2 e=0 z=0  None .bss       TypeTime */
+/* 8044C750-8044C770 079470 0020+00 2/2 0/0 0/0 .bss             TypeTime */
 static u8 TypeTime[32];
 
-/* 8044C770-8044C790 0020+00 s=1 e=0 z=0  None .bss       XferTime */
+/* 8044C770-8044C790 079490 0020+00 1/1 0/0 0/0 .bss             XferTime */
 static u8 XferTime[32];
 
-/* 80344BFC-80344EF8 02FC+00 s=1 e=0 z=0  None .text      CompleteTransfer */
+/* 80344BFC-80344EF8 33F53C 02FC+00 1/1 0/0 0/0 .text            CompleteTransfer */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void CompleteTransfer() {
+static asm void CompleteTransfer() {
     nofralloc
 #include "asm/dolphin/si/SIBios/CompleteTransfer.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8044C790-8044C7D0 0040+00 s=1 e=0 z=0  None .bss       TypeCallback */
+/* 8044C790-8044C7D0 0794B0 0040+00 1/1 0/0 0/0 .bss             TypeCallback */
 static u8 TypeCallback[64];
 
-/* 8044C7D0-8044C7E0 0010+00 s=3 e=0 z=0  None .bss       RDSTHandler */
+/* 8044C7D0-8044C7E0 0794F0 0010+00 2/3 0/0 0/0 .bss             RDSTHandler */
 static u8 RDSTHandler[16];
 
-/* 8044C7E0-8044C7F0 0010+00 s=0 e=0 z=0  None .bss       InputBufferValid */
-u8 InputBufferValid[16];
+/* 8044C7E0-8044C7F0 079500 0010+00 0/0 0/0 0/0 .bss             InputBufferValid */
+#pragma push
+#pragma force_active on
+static u8 InputBufferValid[16];
+#pragma pop
 
-/* 8044C7F0-8044C810 0020+00 s=0 e=0 z=0  None .bss       InputBuffer */
-u8 InputBuffer[32];
+/* 8044C7F0-8044C810 079510 0020+00 0/0 0/0 0/0 .bss             InputBuffer */
+#pragma push
+#pragma force_active on
+static u8 InputBuffer[32];
+#pragma pop
 
-/* 8044C810-8044C820 0010+00 s=2 e=0 z=0  None .bss       InputBufferVcount */
+/* 8044C810-8044C820 079530 0010+00 0/2 0/0 0/0 .bss             InputBufferVcount */
+#pragma push
+#pragma force_active on
 static u8 InputBufferVcount[16];
+#pragma pop
 
-/* 804516F0-804516F4 0004+00 s=1 e=0 z=0  None .sbss      cmdTypeAndStatus$78 */
+/* 804516F0-804516F4 000BF0 0004+00 1/1 0/0 0/0 .sbss            cmdTypeAndStatus$78 */
 static u8 cmdTypeAndStatus_78[4];
 
-/* 80344EF8-8034523C 0344+00 s=1 e=0 z=0  None .text      SIInterruptHandler */
+/* 80344EF8-8034523C 33F838 0344+00 1/1 0/0 0/0 .text            SIInterruptHandler */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void SIInterruptHandler() {
+static asm void SIInterruptHandler() {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIInterruptHandler.s"
 }
 #pragma pop
 
-/* 8034523C-803452D4 0098+00 s=2 e=0 z=0  None .text      SIEnablePollingInterrupt */
+/* 8034523C-803452D4 33FB7C 0098+00 2/2 0/0 0/0 .text            SIEnablePollingInterrupt */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void SIEnablePollingInterrupt() {
+static asm void SIEnablePollingInterrupt() {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIEnablePollingInterrupt.s"
 }
 #pragma pop
 
-/* 803452D4-803453A0 00CC+00 s=0 e=1 z=0  None .text      SIRegisterPollingHandler */
+/* 803452D4-803453A0 33FC14 00CC+00 0/0 1/1 0/0 .text            SIRegisterPollingHandler */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void SIRegisterPollingHandler() {
+asm void SIRegisterPollingHandler() {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIRegisterPollingHandler.s"
 }
 #pragma pop
 
-/* 803453A0-80345494 00F4+00 s=0 e=1 z=0  None .text      SIUnregisterPollingHandler */
+/* 803453A0-80345494 33FCE0 00F4+00 0/0 1/1 0/0 .text            SIUnregisterPollingHandler */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void SIUnregisterPollingHandler() {
+asm void SIUnregisterPollingHandler() {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIUnregisterPollingHandler.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804509C8-804509D0 0004+04 s=1 e=0 z=0  None .sdata     __SIVersion */
+/* 804509C8-804509D0 -00001 0004+04 1/1 0/0 0/0 .sdata           __SIVersion */
 SECTION_SDATA static void* __SIVersion[1 + 1 /* padding */] = {
     (void*)&lit_1,
     /* padding */
     NULL,
 };
 
-/* 80345494-80345548 00B4+00 s=0 e=1 z=0  None .text      SIInit */
+/* 80345494-80345548 33FDD4 00B4+00 0/0 1/1 0/0 .text            SIInit */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void SIInit() {
+asm void SIInit() {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIInit.s"
 }
 #pragma pop
 
-/* 80345548-80345754 020C+00 s=3 e=0 z=0  None .text      __SITransfer */
+/* 80345548-80345754 33FE88 020C+00 3/3 0/0 0/0 .text            __SITransfer */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void __SITransfer() {
+asm void __SITransfer() {
     nofralloc
 #include "asm/dolphin/si/SIBios/__SITransfer.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803D1210-803D1220 0010+00 s=5 e=0 z=0  None .data      Type */
+/* 803D1210-803D1220 02E330 0010+00 5/5 0/0 0/0 .data            Type */
 SECTION_DATA static u8 Type[16] = {
     0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x08,
 };
 
-/* 80345754-803457D0 007C+00 s=1 e=1 z=0  None .text      SIGetStatus */
+/* 80345754-803457D0 340094 007C+00 1/1 1/1 0/0 .text            SIGetStatus */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void SIGetStatus() {
+asm void SIGetStatus() {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIGetStatus.s"
 }
 #pragma pop
 
-/* 803457D0-803457E4 0014+00 s=0 e=4 z=0  None .text      SISetCommand */
+/* 803457D0-803457E4 340110 0014+00 0/0 4/4 0/0 .text            SISetCommand */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void SISetCommand() {
+asm void SISetCommand() {
     nofralloc
 #include "asm/dolphin/si/SIBios/SISetCommand.s"
 }
 #pragma pop
 
-/* 803457E4-803457F4 0010+00 s=0 e=1 z=0  None .text      SITransferCommands */
+/* 803457E4-803457F4 340124 0010+00 0/0 1/1 0/0 .text            SITransferCommands */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void SITransferCommands() {
+asm void SITransferCommands() {
     nofralloc
 #include "asm/dolphin/si/SIBios/SITransferCommands.s"
 }
 #pragma pop
 
-/* 803457F4-80345860 006C+00 s=0 e=1 z=0  None .text      SISetXY */
+/* 803457F4-80345860 340134 006C+00 0/0 1/1 0/0 .text            SISetXY */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void SISetXY() {
+asm void SISetXY() {
     nofralloc
 #include "asm/dolphin/si/SIBios/SISetXY.s"
 }
 #pragma pop
 
-/* 80345860-803458FC 009C+00 s=0 e=3 z=0  None .text      SIEnablePolling */
+/* 80345860-803458FC 3401A0 009C+00 0/0 3/3 0/0 .text            SIEnablePolling */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void SIEnablePolling() {
+asm void SIEnablePolling() {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIEnablePolling.s"
 }
 #pragma pop
 
-/* 803458FC-80345968 006C+00 s=0 e=6 z=0  None .text      SIDisablePolling */
+/* 803458FC-80345968 34023C 006C+00 0/0 6/6 0/0 .text            SIDisablePolling */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void SIDisablePolling() {
+asm void SIDisablePolling() {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIDisablePolling.s"
 }
 #pragma pop
 
-/* 80345968-80345A3C 00D4+00 s=1 e=0 z=0  None .text      SIGetResponseRaw */
+/* 80345968-80345A3C 3402A8 00D4+00 1/1 0/0 0/0 .text            SIGetResponseRaw */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void SIGetResponseRaw() {
+static asm void SIGetResponseRaw() {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIGetResponseRaw.s"
 }
 #pragma pop
 
-/* 80345A3C-80345B00 00C4+00 s=0 e=4 z=0  None .text      SIGetResponse */
+/* 80345A3C-80345B00 34037C 00C4+00 0/0 4/4 0/0 .text            SIGetResponse */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void SIGetResponse() {
+asm void SIGetResponse() {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIGetResponse.s"
 }
 #pragma pop
 
-/* 80345B00-80345B8C 008C+00 s=1 e=0 z=0  None .text      AlarmHandler */
+/* 80345B00-80345B8C 340440 008C+00 1/1 0/0 0/0 .text            AlarmHandler */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void AlarmHandler() {
+static asm void AlarmHandler() {
     nofralloc
 #include "asm/dolphin/si/SIBios/AlarmHandler.s"
 }
 #pragma pop
 
-/* 80345B8C-80345CF8 016C+00 s=3 e=3 z=0  None .text      SITransfer */
+/* 80345B8C-80345CF8 3404CC 016C+00 3/3 3/3 0/0 .text            SITransfer */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void SITransfer() {
+asm void SITransfer() {
     nofralloc
 #include "asm/dolphin/si/SIBios/SITransfer.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804516F4-804516F8 0004+00 s=1 e=0 z=0  None .sbss      cmdTypeAndStatus$372 */
+/* 804516F4-804516F8 000BF4 0004+00 1/1 0/0 0/0 .sbss            cmdTypeAndStatus$372 */
 static u8 cmdTypeAndStatus_372[4];
 
-/* 804516F8-80451700 0004+04 s=1 e=1 z=0  None .sbss      __PADFixBits */
+/* 804516F8-80451700 000BF8 0004+04 1/1 1/1 0/0 .sbss            __PADFixBits */
+extern u8 __PADFixBits[4 + 4 /* padding */];
 u8 __PADFixBits[4 + 4 /* padding */];
 
-/* 80345CF8-80345F90 0298+00 s=2 e=0 z=0  None .text      GetTypeCallback */
+/* 80345CF8-80345F90 340638 0298+00 2/2 0/0 0/0 .text            GetTypeCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void GetTypeCallback() {
+static asm void GetTypeCallback() {
     nofralloc
 #include "asm/dolphin/si/SIBios/GetTypeCallback.s"
 }
 #pragma pop
 
-/* 80345F90-80346154 01C4+00 s=2 e=3 z=0  None .text      SIGetType */
+/* 80345F90-80346154 3408D0 01C4+00 2/2 3/3 0/0 .text            SIGetType */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void SIGetType() {
+asm void SIGetType() {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIGetType.s"
 }
 #pragma pop
 
-/* 80346154-80346290 013C+00 s=0 e=6 z=0  None .text      SIGetTypeAsync */
+/* 80346154-80346290 340A94 013C+00 0/0 6/6 0/0 .text            SIGetTypeAsync */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void SIGetTypeAsync() {
+asm void SIGetTypeAsync() {
     nofralloc
 #include "asm/dolphin/si/SIBios/SIGetTypeAsync.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803D1220-803D122C 000C+00 s=0 e=0 z=0  None .data      @457 */
-SECTION_DATA u8 lit_457[12] = {
+/* 803D1220-803D122C 02E340 000C+00 0/0 0/0 0/0 .data            @457 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_457[12] = {
     0x4E, 0x6F, 0x20, 0x72, 0x65, 0x73, 0x70, 0x6F, 0x6E, 0x73, 0x65, 0x00,
 };
+#pragma pop
 
-/* 803D122C-803D123C 000F+01 s=0 e=0 z=0  None .data      @459 */
-SECTION_DATA u8 lit_459[15 + 1 /* padding */] = {
+/* 803D122C-803D123C 02E34C 000F+01 0/0 0/0 0/0 .data            @459 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_459[15 + 1 /* padding */] = {
     0x4E,
     0x36,
     0x34,
@@ -386,9 +386,12 @@ SECTION_DATA u8 lit_459[15 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
+#pragma pop
 
-/* 803D123C-803D124C 000F+01 s=0 e=0 z=0  None .data      @460 */
-SECTION_DATA u8 lit_460[15 + 1 /* padding */] = {
+/* 803D123C-803D124C 02E35C 000F+01 0/0 0/0 0/0 .data            @460 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_460[15 + 1 /* padding */] = {
     0x4E,
     0x36,
     0x34,
@@ -407,9 +410,12 @@ SECTION_DATA u8 lit_460[15 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
+#pragma pop
 
-/* 803D124C-803D125C 000D+03 s=0 e=0 z=0  None .data      @461 */
-SECTION_DATA u8 lit_461[13 + 3 /* padding */] = {
+/* 803D124C-803D125C 02E36C 000D+03 0/0 0/0 0/0 .data            @461 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_461[13 + 3 /* padding */] = {
     0x4E,
     0x36,
     0x34,
@@ -428,9 +434,12 @@ SECTION_DATA u8 lit_461[13 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 803D125C-803D1268 000A+02 s=0 e=0 z=0  None .data      @462 */
-SECTION_DATA u8 lit_462[10 + 2 /* padding */] = {
+/* 803D125C-803D1268 02E37C 000A+02 0/0 0/0 0/0 .data            @462 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_462[10 + 2 /* padding */] = {
     0x4E,
     0x36,
     0x34,
@@ -445,20 +454,29 @@ SECTION_DATA u8 lit_462[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 803D1268-803D1278 0010+00 s=0 e=0 z=0  None .data      @463 */
-SECTION_DATA u8 lit_463[16] = {
+/* 803D1268-803D1278 02E388 0010+00 0/0 0/0 0/0 .data            @463 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_463[16] = {
     0x47, 0x61, 0x6D, 0x65, 0x42, 0x6F, 0x79, 0x20, 0x41, 0x64, 0x76, 0x61, 0x6E, 0x63, 0x65, 0x00,
 };
+#pragma pop
 
-/* 803D1278-803D128C 0014+00 s=0 e=0 z=0  None .data      @464 */
-SECTION_DATA u8 lit_464[20] = {
+/* 803D1278-803D128C 02E398 0014+00 0/0 0/0 0/0 .data            @464 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_464[20] = {
     0x53, 0x74, 0x61, 0x6E, 0x64, 0x61, 0x72, 0x64, 0x20, 0x63,
     0x6F, 0x6E, 0x74, 0x72, 0x6F, 0x6C, 0x6C, 0x65, 0x72, 0x00,
 };
+#pragma pop
 
-/* 803D128C-803D12A0 0012+02 s=0 e=0 z=0  None .data      @465 */
-SECTION_DATA u8 lit_465[18 + 2 /* padding */] = {
+/* 803D128C-803D12A0 02E3AC 0012+02 0/0 0/0 0/0 .data            @465 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_465[18 + 2 /* padding */] = {
     0x57,
     0x69,
     0x72,
@@ -481,15 +499,21 @@ SECTION_DATA u8 lit_465[18 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 803D12A0-803D12B4 0014+00 s=0 e=0 z=0  None .data      @466 */
-SECTION_DATA u8 lit_466[20] = {
+/* 803D12A0-803D12B4 02E3C0 0014+00 0/0 0/0 0/0 .data            @466 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_466[20] = {
     0x57, 0x61, 0x76, 0x65, 0x42, 0x69, 0x72, 0x64, 0x20, 0x63,
     0x6F, 0x6E, 0x74, 0x72, 0x6F, 0x6C, 0x6C, 0x65, 0x72, 0x00,
 };
+#pragma pop
 
-/* 803D12B4-803D12C0 0009+03 s=0 e=0 z=0  None .data      @467 */
-SECTION_DATA u8 lit_467[9 + 3 /* padding */] = {
+/* 803D12B4-803D12C0 02E3D4 0009+03 0/0 0/0 0/0 .data            @467 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_467[9 + 3 /* padding */] = {
     0x4B,
     0x65,
     0x79,
@@ -504,9 +528,12 @@ SECTION_DATA u8 lit_467[9 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 803D12C0-803D12D0 0009+07 s=0 e=0 z=0  None .data      @468 */
-SECTION_DATA u8 lit_468[9 + 7 /* padding */] = {
+/* 803D12C0-803D12D0 02E3E0 0009+07 0/0 0/0 0/0 .data            @468 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u8 lit_468[9 + 7 /* padding */] = {
     0x53,
     0x74,
     0x65,
@@ -525,6 +552,10 @@ SECTION_DATA u8 lit_468[9 + 7 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 8044C820-8044C830 0010+00 s=0 e=0 z=0  None .bss       cmdFixDevice$327 */
-u8 data_8044C820[16];
+/* 8044C820-8044C830 079540 0010+00 0/0 0/0 0/0 .bss             cmdFixDevice$327 */
+#pragma push
+#pragma force_active on
+static u8 cmdFixDevice[16];
+#pragma pop

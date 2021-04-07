@@ -4,8 +4,8 @@ lbl_80CA9320:
 /* 80CA9328  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80CA932C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CA9330  7C 7F 1B 78 */	mr r31, r3
-/* 80CA9334  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CA9338  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80CA9334  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CA9338  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CA933C  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 80CA9340  C0 3F 05 7C */	lfs f1, 0x57c(r31)
 /* 80CA9344  C0 5F 05 84 */	lfs f2, 0x584(r31)
@@ -25,8 +25,8 @@ lbl_80CA9320:
 /* 80CA937C  48 00 01 9D */	bl mode_init_sink__11daOnsTaru_cFv
 /* 80CA9380  48 00 00 2C */	b lbl_80CA93AC
 lbl_80CA9384:
-/* 80CA9384  3C 60 80 CB */	lis r3, lit_4020@ha
-/* 80CA9388  C0 23 9B D8 */	lfs f1, lit_4020@l(r3)
+/* 80CA9384  3C 60 80 CB */	lis r3, lit_4020@ha /* 0x80CA9BD8@ha */
+/* 80CA9388  C0 23 9B D8 */	lfs f1, lit_4020@l(r3)  /* 0x80CA9BD8@l */
 /* 80CA938C  C0 1F 05 2C */	lfs f0, 0x52c(r31)
 /* 80CA9390  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 80CA9394  41 82 00 10 */	beq lbl_80CA93A4

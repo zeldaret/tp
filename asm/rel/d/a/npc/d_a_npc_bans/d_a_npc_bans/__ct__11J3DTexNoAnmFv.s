@@ -1,6 +1,6 @@
 lbl_8096326C:
-/* 8096326C  3C 80 80 97 */	lis r4, __vt__11J3DTexNoAnm@ha
-/* 80963270  38 04 86 D4 */	addi r0, r4, __vt__11J3DTexNoAnm@l
+/* 8096326C  3C 80 80 97 */	lis r4, __vt__11J3DTexNoAnm@ha /* 0x809686D4@ha */
+/* 80963270  38 04 86 D4 */	addi r0, r4, __vt__11J3DTexNoAnm@l /* 0x809686D4@l */
 /* 80963274  90 03 00 00 */	stw r0, 0(r3)
 /* 80963278  38 80 00 00 */	li r4, 0
 /* 8096327C  B0 83 00 04 */	sth r4, 4(r3)

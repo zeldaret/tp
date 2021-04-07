@@ -27,8 +27,8 @@ lbl_80136A24:
 /* 80136A40  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80136A44  EC 02 00 28 */	fsubs f0, f2, f0
 /* 80136A48  EC 23 00 32 */	fmuls f1, f3, f0
-/* 80136A4C  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha
-/* 80136A50  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)
+/* 80136A4C  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha /* 0x8042561C@ha */
+/* 80136A50  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)  /* 0x8042561C@l */
 /* 80136A54  EC 00 00 72 */	fmuls f0, f0, f1
 /* 80136A58  D0 1E 35 88 */	stfs f0, 0x3588(r30)
 /* 80136A5C  C0 03 00 08 */	lfs f0, 8(r3)
@@ -44,8 +44,8 @@ lbl_80136A68:
 /* 80136A80  38 60 00 01 */	li r3, 1
 /* 80136A84  48 00 01 7C */	b lbl_80136C00
 lbl_80136A88:
-/* 80136A88  3C 60 80 39 */	lis r3, m__24daAlinkHIO_wlDamLarge_c0@ha
-/* 80136A8C  38 63 F2 9C */	addi r3, r3, m__24daAlinkHIO_wlDamLarge_c0@l
+/* 80136A88  3C 60 80 39 */	lis r3, m__24daAlinkHIO_wlDamLarge_c0@ha /* 0x8038F29C@ha */
+/* 80136A8C  38 63 F2 9C */	addi r3, r3, m__24daAlinkHIO_wlDamLarge_c0@l /* 0x8038F29C@l */
 /* 80136A90  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80136A94  D0 1F 00 0C */	stfs f0, 0xc(r31)
 lbl_80136A98:
@@ -59,8 +59,8 @@ lbl_80136A98:
 /* 80136AB4  40 82 01 48 */	bne lbl_80136BFC
 /* 80136AB8  38 00 FF FF */	li r0, -1
 /* 80136ABC  B0 1E 30 08 */	sth r0, 0x3008(r30)
-/* 80136AC0  3C 60 80 39 */	lis r3, m__22daAlinkHIO_wlDamage_c0@ha
-/* 80136AC4  38 63 F3 C4 */	addi r3, r3, m__22daAlinkHIO_wlDamage_c0@l
+/* 80136AC0  3C 60 80 39 */	lis r3, m__22daAlinkHIO_wlDamage_c0@ha /* 0x8038F3C4@ha */
+/* 80136AC4  38 63 F3 C4 */	addi r3, r3, m__22daAlinkHIO_wlDamage_c0@l /* 0x8038F3C4@l */
 /* 80136AC8  C0 03 00 28 */	lfs f0, 0x28(r3)
 /* 80136ACC  D0 1F 00 0C */	stfs f0, 0xc(r31)
 /* 80136AD0  38 00 00 00 */	li r0, 0
@@ -115,8 +115,8 @@ lbl_80136B78:
 /* 80136B84  28 00 00 09 */	cmplwi r0, 9
 /* 80136B88  40 82 00 1C */	bne lbl_80136BA4
 lbl_80136B8C:
-/* 80136B8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80136B90  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80136B8C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80136B90  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80136B94  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 80136B98  80 9E 31 84 */	lwz r4, 0x3184(r30)
 /* 80136B9C  4B F1 15 E1 */	bl cutEnd__16dEvent_manager_cFi

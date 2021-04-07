@@ -7,8 +7,8 @@ lbl_804CCB78:
 /* 804CCB8C  41 82 00 44 */	beq lbl_804CCBD0
 /* 804CCB90  28 05 00 00 */	cmplwi r5, 0
 /* 804CCB94  41 82 00 3C */	beq lbl_804CCBD0
-/* 804CCB98  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804CCB9C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804CCB98  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804CCB9C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804CCBA0  80 03 5D B4 */	lwz r0, 0x5db4(r3)
 /* 804CCBA4  7C 05 00 40 */	cmplw r5, r0
 /* 804CCBA8  40 82 00 28 */	bne lbl_804CCBD0

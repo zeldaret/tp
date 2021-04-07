@@ -3,8 +3,8 @@ lbl_802D5778:
 /* 802D577C  40 82 00 08 */	bne lbl_802D5784
 /* 802D5780  80 8D 8D F4 */	lwz r4, sCurrentHeap__7JKRHeap(r13)
 lbl_802D5784:
-/* 802D5784  3C A0 80 43 */	lis r5, sVolumeList__13JKRFileLoader@ha
-/* 802D5788  80 C5 43 54 */	lwz r6, sVolumeList__13JKRFileLoader@l(r5)
+/* 802D5784  3C A0 80 43 */	lis r5, sVolumeList__13JKRFileLoader@ha /* 0x80434354@ha */
+/* 802D5788  80 C5 43 54 */	lwz r6, sVolumeList__13JKRFileLoader@l(r5)  /* 0x80434354@l */
 /* 802D578C  48 00 00 48 */	b lbl_802D57D4
 lbl_802D5790:
 /* 802D5790  80 E6 00 00 */	lwz r7, 0(r6)

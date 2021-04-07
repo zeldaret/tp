@@ -5,7 +5,7 @@ lbl_805402F4:
 /* 80540300  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80540304  3B E0 00 00 */	li r31, 0
 /* 80540308  38 60 01 F9 */	li r3, 0x1f9
-/* 8054030C  4B C0 C7 A0 */	b daNpcT_chkEvtBit__FUl
+/* 8054030C  4B C0 C7 A1 */	bl daNpcT_chkEvtBit__FUl
 /* 80540310  2C 03 00 00 */	cmpwi r3, 0
 /* 80540314  40 82 00 08 */	bne lbl_8054031C
 /* 80540318  3B E0 00 01 */	li r31, 1

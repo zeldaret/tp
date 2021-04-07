@@ -1,6 +1,6 @@
 lbl_80958FF8:
-/* 80958FF8  3C 80 80 96 */	lis r4, __vt__11J3DTexNoAnm@ha
-/* 80958FFC  38 04 DC 54 */	addi r0, r4, __vt__11J3DTexNoAnm@l
+/* 80958FF8  3C 80 80 96 */	lis r4, __vt__11J3DTexNoAnm@ha /* 0x8095DC54@ha */
+/* 80958FFC  38 04 DC 54 */	addi r0, r4, __vt__11J3DTexNoAnm@l /* 0x8095DC54@l */
 /* 80959000  90 03 00 00 */	stw r0, 0(r3)
 /* 80959004  38 80 00 00 */	li r4, 0
 /* 80959008  B0 83 00 04 */	sth r4, 4(r3)

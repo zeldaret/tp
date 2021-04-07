@@ -6,7 +6,7 @@ lbl_80B8A3CC:
 /* 80B8A3DC  93 C1 00 08 */	stw r30, 8(r1)
 /* 80B8A3E0  7C 7E 1B 78 */	mr r30, r3
 /* 80B8A3E4  7C 9F 23 78 */	mr r31, r4
-/* 80B8A3E8  4B 48 E8 F8 */	b fopAc_IsActor__FPv
+/* 80B8A3E8  4B 48 E8 F9 */	bl fopAc_IsActor__FPv
 /* 80B8A3EC  2C 03 00 00 */	cmpwi r3, 0
 /* 80B8A3F0  41 82 00 30 */	beq lbl_80B8A420
 /* 80B8A3F4  A8 1E 00 08 */	lha r0, 8(r30)

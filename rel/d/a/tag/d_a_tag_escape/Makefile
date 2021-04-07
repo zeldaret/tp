@@ -3,17 +3,15 @@
 #
 
 M719_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_escape.plf
+M719_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_escape.lcf
+M719_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_escape.map
 
 M719_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_escape/executor.cpp \
-	rel/d/a/tag/d_a_tag_escape/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_escape/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_escape/d_a_tag_escape.cpp \
 
 M719_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_escape/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_escape/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_escape/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_escape/d_a_tag_escape.o \
 
 M719_LIBS := \
@@ -29,14 +27,21 @@ M719_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M719_LDSCRIPT) \
+	-unused -map $(M719_MAP) \
+	-w off \
 
 $(M719_TARGET): $(M719_O_FILES) $(M719_LIBS)
+	@echo [719] creating $(M719_TARGET)
 	@echo $(M719_LIBS) $(M719_O_FILES) > build/M719_ofiles
-	$(LD) -partial $(M719_LDFLAGS) -o $(M719_TARGET) @build/M719_ofiles
+	@python3 tools/lcf.py rel 719 --output $(M719_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M719_LDFLAGS) -o $(M719_TARGET) @build/M719_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_escape/%.o: rel/d/a/tag/d_a_tag_escape/%.cpp
+	@echo [719] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M719_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M719_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

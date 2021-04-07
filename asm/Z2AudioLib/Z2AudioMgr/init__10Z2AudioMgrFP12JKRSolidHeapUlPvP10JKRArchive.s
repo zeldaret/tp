@@ -16,8 +16,8 @@ lbl_802CD34C:
 /* 802CD384  90 01 00 64 */	stw r0, 0x64(r1)
 /* 802CD388  C0 02 C5 58 */	lfs f0, lit_3931(r2)
 /* 802CD38C  D0 01 00 74 */	stfs f0, 0x74(r1)
-/* 802CD390  3C 60 80 3A */	lis r3, Z2AudioMgr__stringBase0@ha
-/* 802CD394  38 03 CA 58 */	addi r0, r3, Z2AudioMgr__stringBase0@l
+/* 802CD390  3C 60 80 3A */	lis r3, Z2AudioMgr__stringBase0@ha /* 0x8039CA58@ha */
+/* 802CD394  38 03 CA 58 */	addi r0, r3, Z2AudioMgr__stringBase0@l /* 0x8039CA58@l */
 /* 802CD398  90 01 00 78 */	stw r0, 0x78(r1)
 /* 802CD39C  38 61 00 48 */	addi r3, r1, 0x48
 /* 802CD3A0  7F 64 DB 78 */	mr r4, r27
@@ -121,28 +121,28 @@ lbl_802CD34C:
 /* 802CD528  48 00 17 71 */	bl __nw__FUlP7JKRHeapi
 /* 802CD52C  7C 7B 1B 79 */	or. r27, r3, r3
 /* 802CD530  41 82 00 9C */	beq lbl_802CD5CC
-/* 802CD534  3C 60 80 3D */	lis r3, __vt__16JAIStreamAramMgr@ha
-/* 802CD538  38 03 9A 08 */	addi r0, r3, __vt__16JAIStreamAramMgr@l
+/* 802CD534  3C 60 80 3D */	lis r3, __vt__16JAIStreamAramMgr@ha /* 0x803C9A08@ha */
+/* 802CD538  38 03 9A 08 */	addi r0, r3, __vt__16JAIStreamAramMgr@l /* 0x803C9A08@l */
 /* 802CD53C  90 1B 00 00 */	stw r0, 0(r27)
-/* 802CD540  3C 60 80 3D */	lis r3, data_803CBF58@ha
-/* 802CD544  38 03 BF 58 */	addi r0, r3, data_803CBF58@l
+/* 802CD540  3C 60 80 3D */	lis r3, data_803CBF58@ha /* 0x803CBF58@ha */
+/* 802CD544  38 03 BF 58 */	addi r0, r3, data_803CBF58@l /* 0x803CBF58@l */
 /* 802CD548  90 1B 00 00 */	stw r0, 0(r27)
 /* 802CD54C  38 00 00 00 */	li r0, 0
 /* 802CD550  90 1B 00 04 */	stw r0, 4(r27)
 /* 802CD554  38 7B 00 08 */	addi r3, r27, 8
-/* 802CD558  3C 80 80 2A */	lis r4, __defctor__7JASHeapFv@ha
-/* 802CD55C  38 84 4A 5C */	addi r4, r4, __defctor__7JASHeapFv@l
-/* 802CD560  3C A0 80 29 */	lis r5, __dt__7JASHeapFv@ha
-/* 802CD564  38 A5 0B 54 */	addi r5, r5, __dt__7JASHeapFv@l
+/* 802CD558  3C 80 80 2A */	lis r4, __defctor__7JASHeapFv@ha /* 0x802A4A5C@ha */
+/* 802CD55C  38 84 4A 5C */	addi r4, r4, __defctor__7JASHeapFv@l /* 0x802A4A5C@l */
+/* 802CD560  3C A0 80 29 */	lis r5, __dt__7JASHeapFv@ha /* 0x80290B54@ha */
+/* 802CD564  38 A5 0B 54 */	addi r5, r5, __dt__7JASHeapFv@l /* 0x80290B54@l */
 /* 802CD568  38 C0 00 44 */	li r6, 0x44
 /* 802CD56C  38 E0 00 01 */	li r7, 1
 /* 802CD570  48 09 47 F1 */	bl __construct_array
 /* 802CD574  3B 00 00 00 */	li r24, 0
-/* 802CD578  3C 60 80 3D */	lis r3, __files@ha
-/* 802CD57C  38 63 29 B0 */	addi r3, r3, __files@l
+/* 802CD578  3C 60 80 3D */	lis r3, __files@ha /* 0x803D29B0@ha */
+/* 802CD57C  38 63 29 B0 */	addi r3, r3, __files@l /* 0x803D29B0@l */
 /* 802CD580  38 63 00 A0 */	addi r3, r3, 0xa0
-/* 802CD584  3C 80 80 3A */	lis r4, Z2AudioMgr__stringBase0@ha
-/* 802CD588  38 84 CA 58 */	addi r4, r4, Z2AudioMgr__stringBase0@l
+/* 802CD584  3C 80 80 3A */	lis r4, Z2AudioMgr__stringBase0@ha /* 0x8039CA58@ha */
+/* 802CD588  38 84 CA 58 */	addi r4, r4, Z2AudioMgr__stringBase0@l /* 0x8039CA58@l */
 /* 802CD58C  3B 20 00 01 */	li r25, 1
 /* 802CD590  28 18 00 01 */	cmplwi r24, 1
 /* 802CD594  41 80 00 14 */	blt lbl_802CD5A8
@@ -155,8 +155,8 @@ lbl_802CD5A8:
 /* 802CD5AC  7F 20 C0 30 */	slw r0, r25, r24
 /* 802CD5B0  7C 60 00 78 */	andc r0, r3, r0
 /* 802CD5B4  90 1B 00 04 */	stw r0, 4(r27)
-/* 802CD5B8  3C 60 80 3D */	lis r3, data_803CBF44@ha
-/* 802CD5BC  38 03 BF 44 */	addi r0, r3, data_803CBF44@l
+/* 802CD5B8  3C 60 80 3D */	lis r3, data_803CBF44@ha /* 0x803CBF44@ha */
+/* 802CD5BC  38 03 BF 44 */	addi r0, r3, data_803CBF44@l /* 0x803CBF44@l */
 /* 802CD5C0  90 1B 00 00 */	stw r0, 0(r27)
 /* 802CD5C4  38 00 00 00 */	li r0, 0
 /* 802CD5C8  90 1B 00 4C */	stw r0, 0x4c(r27)
@@ -180,21 +180,21 @@ lbl_802CD5F4:
 /* 802CD608  88 0D 8D D4 */	lbz r0, data_80451354(r13)
 /* 802CD60C  7C 00 07 75 */	extsb. r0, r0
 /* 802CD610  40 82 00 34 */	bne lbl_802CD644
-/* 802CD614  3C 60 80 43 */	lis r3, data_804341E4@ha
-/* 802CD618  38 63 41 E4 */	addi r3, r3, data_804341E4@l
+/* 802CD614  3C 60 80 43 */	lis r3, data_804341E4@ha /* 0x804341E4@ha */
+/* 802CD618  38 63 41 E4 */	addi r3, r3, data_804341E4@l /* 0x804341E4@l */
 /* 802CD61C  4B FC 32 2D */	bl __ct__17JASGenericMemPoolFv
-/* 802CD620  3C 60 80 43 */	lis r3, data_804341E4@ha
-/* 802CD624  38 63 41 E4 */	addi r3, r3, data_804341E4@l
-/* 802CD628  3C 80 80 2C */	lis r4, func_802BD288@ha
-/* 802CD62C  38 84 D2 88 */	addi r4, r4, func_802BD288@l
-/* 802CD630  3C A0 80 43 */	lis r5, lit_3779@ha
-/* 802CD634  38 A5 42 68 */	addi r5, r5, lit_3779@l
+/* 802CD620  3C 60 80 43 */	lis r3, data_804341E4@ha /* 0x804341E4@ha */
+/* 802CD624  38 63 41 E4 */	addi r3, r3, data_804341E4@l /* 0x804341E4@l */
+/* 802CD628  3C 80 80 2C */	lis r4, func_802BD288@ha /* 0x802BD288@ha */
+/* 802CD62C  38 84 D2 88 */	addi r4, r4, func_802BD288@l /* 0x802BD288@l */
+/* 802CD630  3C A0 80 43 */	lis r5, lit_3779@ha /* 0x80434268@ha */
+/* 802CD634  38 A5 42 68 */	addi r5, r5, lit_3779@l /* 0x80434268@l */
 /* 802CD638  48 09 45 ED */	bl __register_global_object
 /* 802CD63C  38 00 00 01 */	li r0, 1
 /* 802CD640  98 0D 8D D4 */	stb r0, data_80451354(r13)
 lbl_802CD644:
-/* 802CD644  3C 60 80 43 */	lis r3, data_804341E4@ha
-/* 802CD648  38 63 41 E4 */	addi r3, r3, data_804341E4@l
+/* 802CD644  3C 60 80 43 */	lis r3, data_804341E4@ha /* 0x804341E4@ha */
+/* 802CD648  38 63 41 E4 */	addi r3, r3, data_804341E4@l /* 0x804341E4@l */
 /* 802CD64C  38 80 00 68 */	li r4, 0x68
 /* 802CD650  38 A0 00 4E */	li r5, 0x4e
 /* 802CD654  4B FC 32 75 */	bl newMemPool__17JASGenericMemPoolFUli
@@ -206,21 +206,21 @@ lbl_802CD644:
 /* 802CD66C  88 0D 8D C8 */	lbz r0, data_80451348(r13)
 /* 802CD670  7C 00 07 75 */	extsb. r0, r0
 /* 802CD674  40 82 00 34 */	bne lbl_802CD6A8
-/* 802CD678  3C 60 80 43 */	lis r3, data_804341C4@ha
-/* 802CD67C  38 63 41 C4 */	addi r3, r3, data_804341C4@l
+/* 802CD678  3C 60 80 43 */	lis r3, data_804341C4@ha /* 0x804341C4@ha */
+/* 802CD67C  38 63 41 C4 */	addi r3, r3, data_804341C4@l /* 0x804341C4@l */
 /* 802CD680  4B FC 31 C9 */	bl __ct__17JASGenericMemPoolFv
-/* 802CD684  3C 60 80 43 */	lis r3, data_804341C4@ha
-/* 802CD688  38 63 41 C4 */	addi r3, r3, data_804341C4@l
-/* 802CD68C  3C 80 80 2B */	lis r4, func_802AB200@ha
-/* 802CD690  38 84 B2 00 */	addi r4, r4, func_802AB200@l
-/* 802CD694  3C A0 80 43 */	lis r5, lit_3783@ha
-/* 802CD698  38 A5 42 74 */	addi r5, r5, lit_3783@l
+/* 802CD684  3C 60 80 43 */	lis r3, data_804341C4@ha /* 0x804341C4@ha */
+/* 802CD688  38 63 41 C4 */	addi r3, r3, data_804341C4@l /* 0x804341C4@l */
+/* 802CD68C  3C 80 80 2B */	lis r4, func_802AB200@ha /* 0x802AB200@ha */
+/* 802CD690  38 84 B2 00 */	addi r4, r4, func_802AB200@l /* 0x802AB200@l */
+/* 802CD694  3C A0 80 43 */	lis r5, lit_3783@ha /* 0x80434274@ha */
+/* 802CD698  38 A5 42 74 */	addi r5, r5, lit_3783@l /* 0x80434274@l */
 /* 802CD69C  48 09 45 89 */	bl __register_global_object
 /* 802CD6A0  38 00 00 01 */	li r0, 1
 /* 802CD6A4  98 0D 8D C8 */	stb r0, data_80451348(r13)
 lbl_802CD6A8:
-/* 802CD6A8  3C 60 80 43 */	lis r3, data_804341C4@ha
-/* 802CD6AC  38 63 41 C4 */	addi r3, r3, data_804341C4@l
+/* 802CD6A8  3C 60 80 43 */	lis r3, data_804341C4@ha /* 0x804341C4@ha */
+/* 802CD6AC  38 63 41 C4 */	addi r3, r3, data_804341C4@l /* 0x804341C4@l */
 /* 802CD6B0  38 80 00 14 */	li r4, 0x14
 /* 802CD6B4  38 A0 00 4E */	li r5, 0x4e
 /* 802CD6B8  4B FC 32 11 */	bl newMemPool__17JASGenericMemPoolFUli
@@ -289,14 +289,14 @@ lbl_802CD7A0:
 /* 802CD7A4  4B FD 79 55 */	bl finishBuild__10JAUSectionFv
 /* 802CD7A8  7F C3 F3 78 */	mr r3, r30
 /* 802CD7AC  4B FD DF A5 */	bl initSe__7Z2SeMgrFv
-/* 802CD7B0  3C 60 80 2B */	lis r3, seqCallback__FP8JASTrackUs@ha
-/* 802CD7B4  38 03 9B C8 */	addi r0, r3, seqCallback__FP8JASTrackUs@l
+/* 802CD7B0  3C 60 80 2B */	lis r3, seqCallback__FP8JASTrackUs@ha /* 0x802A9BC8@ha */
+/* 802CD7B4  38 03 9B C8 */	addi r0, r3, seqCallback__FP8JASTrackUs@l /* 0x802A9BC8@l */
 /* 802CD7B8  90 0D 8C C0 */	stw r0, sCallBackFunc__12JASSeqParser(r13)
-/* 802CD7BC  3C 60 80 3D */	lis r3, __vt__16Z2AudioArcLoader@ha
-/* 802CD7C0  38 03 9C D0 */	addi r0, r3, __vt__16Z2AudioArcLoader@l
+/* 802CD7BC  3C 60 80 3D */	lis r3, __vt__16Z2AudioArcLoader@ha /* 0x803C9CD0@ha */
+/* 802CD7C0  38 03 9C D0 */	addi r0, r3, __vt__16Z2AudioArcLoader@l /* 0x803C9CD0@l */
 /* 802CD7C4  90 01 00 08 */	stw r0, 8(r1)
-/* 802CD7C8  3C 60 80 3D */	lis r3, __vt__17JAUAudioArcLoader@ha
-/* 802CD7CC  38 03 9A 78 */	addi r0, r3, __vt__17JAUAudioArcLoader@l
+/* 802CD7C8  3C 60 80 3D */	lis r3, __vt__17JAUAudioArcLoader@ha /* 0x803C9A78@ha */
+/* 802CD7CC  38 03 9A 78 */	addi r0, r3, __vt__17JAUAudioArcLoader@l /* 0x803C9A78@l */
 /* 802CD7D0  90 01 00 08 */	stw r0, 8(r1)
 /* 802CD7D4  38 61 00 08 */	addi r3, r1, 8
 /* 802CD7D8  38 80 00 00 */	li r4, 0

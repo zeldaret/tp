@@ -3,17 +3,15 @@
 #
 
 M473_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hata.plf
+M473_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hata.lcf
+M473_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hata.map
 
 M473_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_hata/executor.cpp \
-	rel/d/a/obj/d_a_obj_hata/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_hata/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_hata/d_a_obj_hata.cpp \
 
 M473_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hata/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hata/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hata/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_hata/d_a_obj_hata.o \
 
 M473_LIBS := \
@@ -29,14 +27,21 @@ M473_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M473_LDSCRIPT) \
+	-unused -map $(M473_MAP) \
+	-w off \
 
 $(M473_TARGET): $(M473_O_FILES) $(M473_LIBS)
+	@echo [473] creating $(M473_TARGET)
 	@echo $(M473_LIBS) $(M473_O_FILES) > build/M473_ofiles
-	$(LD) -partial $(M473_LDFLAGS) -o $(M473_TARGET) @build/M473_ofiles
+	@python3 tools/lcf.py rel 473 --output $(M473_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M473_LDFLAGS) -o $(M473_TARGET) @build/M473_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_hata/%.o: rel/d/a/obj/d_a_obj_hata/%.cpp
+	@echo [473] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M473_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M473_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

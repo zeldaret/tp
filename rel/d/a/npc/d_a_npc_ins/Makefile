@@ -3,19 +3,20 @@
 #
 
 M321_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ins.plf
+M321_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ins.lcf
+M321_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ins.map
 
 M321_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_ins/executor.cpp \
-	rel/d/a/npc/d_a_npc_ins/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_ins/d_a_npc_ins.cpp \
 
 M321_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ins/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ins/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ins/d_a_npc_ins.o \
 
 M321_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ins/libRuntime.PPCEABI.H.a \
 
 M321_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M321_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M321_LDSCRIPT) \
+	-unused -map $(M321_MAP) \
+	-w off \
 
 $(M321_TARGET): $(M321_O_FILES) $(M321_LIBS)
+	@echo [321] creating $(M321_TARGET)
 	@echo $(M321_LIBS) $(M321_O_FILES) > build/M321_ofiles
-	$(LD) -partial $(M321_LDFLAGS) -o $(M321_TARGET) @build/M321_ofiles
+	@python3 tools/lcf.py rel 321 --output $(M321_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M321_LDFLAGS) -o $(M321_TARGET) @build/M321_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ins/%.o: rel/d/a/npc/d_a_npc_ins/%.cpp
+	@echo [321] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M321_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M321_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_ins/libs/Runtime.PPCEABI.H/Makefile
 

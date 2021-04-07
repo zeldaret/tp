@@ -40,8 +40,8 @@ lbl_800EA46C:
 /* 800EA47C  A8 7F 04 E6 */	lha r3, 0x4e6(r31)
 /* 800EA480  38 03 C0 00 */	addi r0, r3, -16384
 /* 800EA484  B0 1F 04 DE */	sth r0, 0x4de(r31)
-/* 800EA488  3C 60 80 39 */	lis r3, m__21daAlinkHIO_atnMove_c0@ha
-/* 800EA48C  38 63 D7 14 */	addi r3, r3, m__21daAlinkHIO_atnMove_c0@l
+/* 800EA488  3C 60 80 39 */	lis r3, m__21daAlinkHIO_atnMove_c0@ha /* 0x8038D714@ha */
+/* 800EA48C  38 63 D7 14 */	addi r3, r3, m__21daAlinkHIO_atnMove_c0@l /* 0x8038D714@l */
 /* 800EA490  C0 03 00 1C */	lfs f0, 0x1c(r3)
 /* 800EA494  D0 1F 05 94 */	stfs f0, 0x594(r31)
 /* 800EA498  7F E3 FB 78 */	mr r3, r31

@@ -4,13 +4,13 @@ lbl_80228B04:
 /* 80228B0C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80228B10  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80228B14  7C 7F 1B 78 */	mr r31, r3
-/* 80228B18  3C 60 80 3D */	lis r3, __vt__Q28JMessage10TReference@ha
-/* 80228B1C  38 03 9C 6C */	addi r0, r3, __vt__Q28JMessage10TReference@l
+/* 80228B18  3C 60 80 3D */	lis r3, __vt__Q28JMessage10TReference@ha /* 0x803C9C6C@ha */
+/* 80228B1C  38 03 9C 6C */	addi r0, r3, __vt__Q28JMessage10TReference@l /* 0x803C9C6C@l */
 /* 80228B20  90 1F 00 00 */	stw r0, 0(r31)
 /* 80228B24  38 00 00 00 */	li r0, 0
 /* 80228B28  90 1F 00 04 */	stw r0, 4(r31)
-/* 80228B2C  3C 60 80 3C */	lis r3, __vt__19jmessage_tReference@ha
-/* 80228B30  38 03 0A D4 */	addi r0, r3, __vt__19jmessage_tReference@l
+/* 80228B2C  3C 60 80 3C */	lis r3, __vt__19jmessage_tReference@ha /* 0x803C0AD4@ha */
+/* 80228B30  38 03 0A D4 */	addi r0, r3, __vt__19jmessage_tReference@l /* 0x803C0AD4@l */
 /* 80228B34  90 1F 00 00 */	stw r0, 0(r31)
 /* 80228B38  38 60 00 30 */	li r3, 0x30
 /* 80228B3C  48 0A 61 11 */	bl __nw__FUl

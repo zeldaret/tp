@@ -7,8 +7,8 @@ lbl_80262660:
 /* 80262674  7C 7E 1B 78 */	mr r30, r3
 /* 80262678  7C 9F 23 78 */	mr r31, r4
 /* 8026267C  4B FF FC 09 */	bl __ct__24DynamicModuleControlBaseFv
-/* 80262680  3C 60 80 3C */	lis r3, __vt__20DynamicModuleControl@ha
-/* 80262684  38 03 34 C0 */	addi r0, r3, __vt__20DynamicModuleControl@l
+/* 80262680  3C 60 80 3C */	lis r3, __vt__20DynamicModuleControl@ha /* 0x803C34C0@ha */
+/* 80262684  38 03 34 C0 */	addi r0, r3, __vt__20DynamicModuleControl@l /* 0x803C34C0@l */
 /* 80262688  90 1E 00 0C */	stw r0, 0xc(r30)
 /* 8026268C  38 00 00 00 */	li r0, 0
 /* 80262690  90 1E 00 10 */	stw r0, 0x10(r30)

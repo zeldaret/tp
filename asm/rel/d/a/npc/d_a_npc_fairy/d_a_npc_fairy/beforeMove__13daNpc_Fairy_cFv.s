@@ -9,7 +9,7 @@ lbl_809B3B20:
 /* 809B3B3C  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 809B3B40  28 00 00 00 */	cmplwi r0, 0
 /* 809B3B44  40 82 00 1C */	bne lbl_809B3B60
-/* 809B3B48  4B 67 BF 0C */	b dComIfGs_wolfeye_effect_check__Fv
+/* 809B3B48  4B 67 BF 0D */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 809B3B4C  2C 03 00 00 */	cmpwi r3, 0
 /* 809B3B50  40 82 00 14 */	bne lbl_809B3B64
 /* 809B3B54  88 1E 0A 89 */	lbz r0, 0xa89(r30)

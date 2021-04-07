@@ -1,6 +1,6 @@
 lbl_80339878:
-/* 80339878  3C E0 80 44 */	lis r7, sincosTable___5JMath@ha
-/* 8033987C  38 E7 9A 20 */	addi r7, r7, sincosTable___5JMath@l
+/* 80339878  3C E0 80 44 */	lis r7, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8033987C  38 E7 9A 20 */	addi r7, r7, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80339880  39 07 00 04 */	addi r8, r7, 4
 /* 80339884  7C 60 07 34 */	extsh r0, r3
 /* 80339888  7C 00 0E 70 */	srawi r0, r0, 1

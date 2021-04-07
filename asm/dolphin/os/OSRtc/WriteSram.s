@@ -1,8 +1,8 @@
 lbl_8033FEF0:
 /* 8033FEF0  7C 08 02 A6 */	mflr r0
-/* 8033FEF4  3C C0 80 34 */	lis r6, WriteSramCallback@ha
+/* 8033FEF4  3C C0 80 34 */	lis r6, WriteSramCallback@ha /* 0x8033FE90@ha */
 /* 8033FEF8  90 01 00 04 */	stw r0, 4(r1)
-/* 8033FEFC  38 06 FE 90 */	addi r0, r6, WriteSramCallback@l
+/* 8033FEFC  38 06 FE 90 */	addi r0, r6, WriteSramCallback@l /* 0x8033FE90@l */
 /* 8033FF00  94 21 FF D8 */	stwu r1, -0x28(r1)
 /* 8033FF04  93 E1 00 24 */	stw r31, 0x24(r1)
 /* 8033FF08  3B E4 00 00 */	addi r31, r4, 0

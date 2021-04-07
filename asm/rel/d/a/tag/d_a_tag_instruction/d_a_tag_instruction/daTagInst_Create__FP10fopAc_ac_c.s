@@ -9,7 +9,7 @@ lbl_80D59AF8:
 /* 80D59B14  40 82 00 1C */	bne lbl_80D59B30
 /* 80D59B18  28 1F 00 00 */	cmplwi r31, 0
 /* 80D59B1C  41 82 00 08 */	beq lbl_80D59B24
-/* 80D59B20  4B 2B F0 44 */	b __ct__10fopAc_ac_cFv
+/* 80D59B20  4B 2B F0 45 */	bl __ct__10fopAc_ac_cFv
 lbl_80D59B24:
 /* 80D59B24  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 80D59B28  60 00 00 08 */	ori r0, r0, 8

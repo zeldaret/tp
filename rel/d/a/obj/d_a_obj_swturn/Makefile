@@ -3,18 +3,16 @@
 #
 
 M647_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swturn.plf
+M647_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swturn.lcf
+M647_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swturn.map
 
 M647_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_swturn/executor.cpp \
-	rel/d/a/obj/d_a_obj_swturn/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_swturn/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_swturn/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_swturn/d_a_obj_swturn.cpp \
 
 M647_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swturn/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swturn/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swturn/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swturn/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swturn/d_a_obj_swturn.o \
 
@@ -31,14 +29,21 @@ M647_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M647_LDSCRIPT) \
+	-unused -map $(M647_MAP) \
+	-w off \
 
 $(M647_TARGET): $(M647_O_FILES) $(M647_LIBS)
+	@echo [647] creating $(M647_TARGET)
 	@echo $(M647_LIBS) $(M647_O_FILES) > build/M647_ofiles
-	$(LD) -partial $(M647_LDFLAGS) -o $(M647_TARGET) @build/M647_ofiles
+	@python3 tools/lcf.py rel 647 --output $(M647_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M647_LDFLAGS) -o $(M647_TARGET) @build/M647_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swturn/%.o: rel/d/a/obj/d_a_obj_swturn/%.cpp
+	@echo [647] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M647_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M647_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -3,19 +3,20 @@
 #
 
 M219_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_ph.plf
+M219_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_ph.lcf
+M219_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_ph.map
 
 M219_CPP_FILES := \
-	rel/d/a/e/d_a_e_ph/executor.cpp \
-	rel/d/a/e/d_a_e_ph/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_ph/d_a_e_ph.cpp \
 
 M219_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_ph/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_ph/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_ph/d_a_e_ph.o \
 
 M219_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_ph/libRuntime.PPCEABI.H.a \
 
 M219_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M219_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M219_LDSCRIPT) \
+	-unused -map $(M219_MAP) \
+	-w off \
 
 $(M219_TARGET): $(M219_O_FILES) $(M219_LIBS)
+	@echo [219] creating $(M219_TARGET)
 	@echo $(M219_LIBS) $(M219_O_FILES) > build/M219_ofiles
-	$(LD) -partial $(M219_LDFLAGS) -o $(M219_TARGET) @build/M219_ofiles
+	@python3 tools/lcf.py rel 219 --output $(M219_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M219_LDFLAGS) -o $(M219_TARGET) @build/M219_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_ph/%.o: rel/d/a/e/d_a_e_ph/%.cpp
+	@echo [219] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M219_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M219_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_ph/libs/Runtime.PPCEABI.H/Makefile
 

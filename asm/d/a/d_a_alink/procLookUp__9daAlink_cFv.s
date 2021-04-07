@@ -9,8 +9,8 @@ lbl_8011CA4C:
 /* 8011CA68  38 00 00 04 */	li r0, 4
 /* 8011CA6C  98 04 2F 99 */	stb r0, 0x2f99(r4)
 lbl_8011CA70:
-/* 8011CA70  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011CA74  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011CA70  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011CA74  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011CA78  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 8011CA7C  80 84 31 84 */	lwz r4, 0x3184(r4)
 /* 8011CA80  4B F2 B6 FD */	bl cutEnd__16dEvent_manager_cFi

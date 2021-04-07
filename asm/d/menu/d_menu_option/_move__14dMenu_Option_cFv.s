@@ -21,8 +21,8 @@ lbl_801E344C:
 /* 801E3450  80 03 00 04 */	lwz r0, 4(r3)
 /* 801E3454  2C 00 00 01 */	cmpwi r0, 1
 /* 801E3458  40 82 01 84 */	bne lbl_801E35DC
-/* 801E345C  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 801E3460  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 801E345C  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801E3460  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801E3464  80 83 00 34 */	lwz r4, 0x34(r3)
 /* 801E3468  54 85 05 EF */	rlwinm. r5, r4, 0, 0x17, 0x17
 /* 801E346C  41 82 00 B8 */	beq lbl_801E3524
@@ -65,8 +65,8 @@ lbl_801E344C:
 /* 801E3500  7F E3 FB 78 */	mr r3, r31
 /* 801E3504  88 1F 03 EF */	lbz r0, 0x3ef(r31)
 /* 801E3508  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801E350C  3C 80 80 3C */	lis r4, init@ha
-/* 801E3510  38 04 DC 14 */	addi r0, r4, init@l
+/* 801E350C  3C 80 80 3C */	lis r4, init@ha /* 0x803BDC14@ha */
+/* 801E3510  38 04 DC 14 */	addi r0, r4, init@l /* 0x803BDC14@l */
 /* 801E3514  7D 80 2A 14 */	add r12, r0, r5
 /* 801E3518  48 17 EB 6D */	bl __ptmf_scall
 /* 801E351C  60 00 00 00 */	nop 
@@ -113,8 +113,8 @@ lbl_801E3524:
 /* 801E35BC  7F E3 FB 78 */	mr r3, r31
 /* 801E35C0  88 1F 03 EF */	lbz r0, 0x3ef(r31)
 /* 801E35C4  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801E35C8  3C 80 80 3C */	lis r4, init@ha
-/* 801E35CC  38 04 DC 14 */	addi r0, r4, init@l
+/* 801E35C8  3C 80 80 3C */	lis r4, init@ha /* 0x803BDC14@ha */
+/* 801E35CC  38 04 DC 14 */	addi r0, r4, init@l /* 0x803BDC14@l */
 /* 801E35D0  7D 80 2A 14 */	add r12, r0, r5
 /* 801E35D4  48 17 EA B1 */	bl __ptmf_scall
 /* 801E35D8  60 00 00 00 */	nop 
@@ -156,8 +156,8 @@ lbl_801E3658:
 /* 801E3658  7F E3 FB 78 */	mr r3, r31
 /* 801E365C  88 1F 03 EF */	lbz r0, 0x3ef(r31)
 /* 801E3660  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801E3664  3C 80 80 3C */	lis r4, process@ha
-/* 801E3668  38 04 DC D4 */	addi r0, r4, process@l
+/* 801E3664  3C 80 80 3C */	lis r4, process@ha /* 0x803BDCD4@ha */
+/* 801E3668  38 04 DC D4 */	addi r0, r4, process@l /* 0x803BDCD4@l */
 /* 801E366C  7D 80 2A 14 */	add r12, r0, r5
 /* 801E3670  48 17 EA 15 */	bl __ptmf_scall
 /* 801E3674  60 00 00 00 */	nop 
@@ -168,8 +168,8 @@ lbl_801E3658:
 /* 801E3688  41 82 00 20 */	beq lbl_801E36A8
 /* 801E368C  7F E3 FB 78 */	mr r3, r31
 /* 801E3690  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801E3694  3C 80 80 3C */	lis r4, init@ha
-/* 801E3698  38 04 DC 14 */	addi r0, r4, init@l
+/* 801E3694  3C 80 80 3C */	lis r4, init@ha /* 0x803BDC14@ha */
+/* 801E3698  38 04 DC 14 */	addi r0, r4, init@l /* 0x803BDC14@l */
 /* 801E369C  7D 80 2A 14 */	add r12, r0, r5
 /* 801E36A0  48 17 E9 E5 */	bl __ptmf_scall
 /* 801E36A4  60 00 00 00 */	nop 

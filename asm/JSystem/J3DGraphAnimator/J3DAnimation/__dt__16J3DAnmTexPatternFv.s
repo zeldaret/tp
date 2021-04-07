@@ -5,19 +5,19 @@ lbl_8032BD20:
 /* 8032BD2C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8032BD30  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8032BD34  41 82 00 48 */	beq lbl_8032BD7C
-/* 8032BD38  3C 60 80 3D */	lis r3, __vt__16J3DAnmTexPattern@ha
-/* 8032BD3C  38 03 ED 50 */	addi r0, r3, __vt__16J3DAnmTexPattern@l
+/* 8032BD38  3C 60 80 3D */	lis r3, __vt__16J3DAnmTexPattern@ha /* 0x803CED50@ha */
+/* 8032BD3C  38 03 ED 50 */	addi r0, r3, __vt__16J3DAnmTexPattern@l /* 0x803CED50@l */
 /* 8032BD40  90 1F 00 00 */	stw r0, 0(r31)
 /* 8032BD44  34 1F 00 1C */	addic. r0, r31, 0x1c
 /* 8032BD48  41 82 00 10 */	beq lbl_8032BD58
-/* 8032BD4C  3C 60 80 3C */	lis r3, __vt__10JUTNameTab@ha
-/* 8032BD50  38 03 B3 DC */	addi r0, r3, __vt__10JUTNameTab@l
+/* 8032BD4C  3C 60 80 3C */	lis r3, __vt__10JUTNameTab@ha /* 0x803BB3DC@ha */
+/* 8032BD50  38 03 B3 DC */	addi r0, r3, __vt__10JUTNameTab@l /* 0x803BB3DC@l */
 /* 8032BD54  90 1F 00 1C */	stw r0, 0x1c(r31)
 lbl_8032BD58:
 /* 8032BD58  28 1F 00 00 */	cmplwi r31, 0
 /* 8032BD5C  41 82 00 10 */	beq lbl_8032BD6C
-/* 8032BD60  3C 60 80 3A */	lis r3, __vt__10J3DAnmBase@ha
-/* 8032BD64  38 03 7C 38 */	addi r0, r3, __vt__10J3DAnmBase@l
+/* 8032BD60  3C 60 80 3A */	lis r3, __vt__10J3DAnmBase@ha /* 0x803A7C38@ha */
+/* 8032BD64  38 03 7C 38 */	addi r0, r3, __vt__10J3DAnmBase@l /* 0x803A7C38@l */
 /* 8032BD68  90 1F 00 00 */	stw r0, 0(r31)
 lbl_8032BD6C:
 /* 8032BD6C  7C 80 07 35 */	extsh. r0, r4

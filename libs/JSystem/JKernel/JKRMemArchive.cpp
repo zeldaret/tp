@@ -104,8 +104,6 @@ extern "C" extern char const* const JKRMemArchive__stringBase0;
 // External References:
 //
 
-void operator delete(void*);
-
 SECTION_INIT void memcpy();
 extern "C" void free__7JKRHeapFPvP7JKRHeap();
 extern "C" void findFromRoot__7JKRHeapFPv();
@@ -143,9 +141,9 @@ extern "C" extern u8 sVolumeList__13JKRFileLoader[12];
 //
 
 /* ############################################################################################## */
-/* 803CC2D8-803CC328 0050+00 s=3 e=0 z=0  None .data      __vt__13JKRMemArchive */
-SECTION_DATA static void* __vt__13JKRMemArchive[20] = {
-    (void*)NULL,
+/* 803CC2D8-803CC328 0293F8 0050+00 3/3 0/0 0/0 .data            __vt__13JKRMemArchive */
+SECTION_DATA extern void* __vt__13JKRMemArchive[20] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__13JKRMemArchiveFv,
     (void*)unmount__13JKRFileLoaderFv,
@@ -167,7 +165,7 @@ SECTION_DATA static void* __vt__13JKRMemArchive[20] = {
     (void*)getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry,
 };
 
-/* 802D69B8-802D6A6C 00B4+00 s=0 e=2 z=0  None .text
+/* 802D69B8-802D6A6C 2D12F8 00B4+00 0/0 2/2 0/0 .text
  * __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection       */
 #pragma push
 #pragma optimization_level 0
@@ -178,7 +176,7 @@ asm JKRMemArchive::JKRMemArchive(s32 param_0, JKRArchive::EMountDirection param_
 }
 #pragma pop
 
-/* 802D6A6C-802D6B24 00B8+00 s=0 e=2 z=0  None .text __ct__13JKRMemArchiveFPvUl15JKRMemBreakFlag
+/* 802D6A6C-802D6B24 2D13AC 00B8+00 0/0 2/2 0/0 .text __ct__13JKRMemArchiveFPvUl15JKRMemBreakFlag
  */
 #pragma push
 #pragma optimization_level 0
@@ -189,7 +187,7 @@ asm JKRMemArchive::JKRMemArchive(void* param_0, u32 param_1, JKRMemBreakFlag par
 }
 #pragma pop
 
-/* 802D6B24-802D6BCC 00A8+00 s=1 e=0 z=0  None .text      __dt__13JKRMemArchiveFv */
+/* 802D6B24-802D6BCC 2D1464 00A8+00 1/0 0/0 0/0 .text            __dt__13JKRMemArchiveFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -199,7 +197,7 @@ asm JKRMemArchive::~JKRMemArchive() {
 }
 #pragma pop
 
-/* 802D6BCC-802D6D30 0164+00 s=1 e=0 z=0  None .text
+/* 802D6BCC-802D6D30 2D150C 0164+00 1/1 0/0 0/0 .text
  * open__13JKRMemArchiveFlQ210JKRArchive15EMountDirection       */
 #pragma push
 #pragma optimization_level 0
@@ -210,7 +208,7 @@ asm void JKRMemArchive::open(s32 param_0, JKRArchive::EMountDirection param_1) {
 }
 #pragma pop
 
-/* 802D6D30-802D6DDC 00AC+00 s=1 e=0 z=0  None .text open__13JKRMemArchiveFPvUl15JKRMemBreakFlag
+/* 802D6D30-802D6DDC 2D1670 00AC+00 1/1 0/0 0/0 .text open__13JKRMemArchiveFPvUl15JKRMemBreakFlag
  */
 #pragma push
 #pragma optimization_level 0
@@ -221,7 +219,7 @@ asm void JKRMemArchive::open(void* param_0, u32 param_1, JKRMemBreakFlag param_2
 }
 #pragma pop
 
-/* 802D6DDC-802D6E10 0034+00 s=1 e=0 z=0  None .text
+/* 802D6DDC-802D6E10 2D171C 0034+00 1/0 0/0 0/0 .text
  * fetchResource__13JKRMemArchiveFPQ210JKRArchive12SDIFileEntryPUl */
 #pragma push
 #pragma optimization_level 0
@@ -232,7 +230,7 @@ asm void JKRMemArchive::fetchResource(JKRArchive::SDIFileEntry* param_0, u32* pa
 }
 #pragma pop
 
-/* 802D6E10-802D6ED0 00C0+00 s=1 e=0 z=0  None .text
+/* 802D6E10-802D6ED0 2D1750 00C0+00 1/0 0/0 0/0 .text
  * fetchResource__13JKRMemArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl */
 #pragma push
 #pragma optimization_level 0
@@ -244,7 +242,7 @@ asm void JKRMemArchive::fetchResource(void* param_0, u32 param_1, JKRArchive::SD
 }
 #pragma pop
 
-/* 802D6ED0-802D6F20 0050+00 s=1 e=0 z=0  None .text      removeResourceAll__13JKRMemArchiveFv */
+/* 802D6ED0-802D6F20 2D1810 0050+00 1/0 0/0 0/0 .text removeResourceAll__13JKRMemArchiveFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -254,7 +252,8 @@ asm void JKRMemArchive::removeResourceAll() {
 }
 #pragma pop
 
-/* 802D6F20-802D6F5C 003C+00 s=1 e=0 z=0  None .text      removeResource__13JKRMemArchiveFPv */
+/* 802D6F20-802D6F5C 2D1860 003C+00 1/0 0/0 0/0 .text            removeResource__13JKRMemArchiveFPv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -264,19 +263,7 @@ asm void JKRMemArchive::removeResource(void* param_0) {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 8039D160-8039D188 0027+01 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_8039D160 = "JKRMemArchive.cpp";
-SECTION_DEAD char const* const stringBase_8039D172 = "%s";
-SECTION_DEAD char const* const stringBase_8039D175 = "??? bad sequence\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D187 = "";
-#pragma pop
-
-/* 802D6F5C-802D7030 00D4+00 s=1 e=1 z=0  None .text
+/* 802D6F5C-802D7030 2D189C 00D4+00 1/1 1/1 0/0 .text
  * fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUli        */
 #pragma push
 #pragma optimization_level 0
@@ -288,8 +275,7 @@ asm void JKRMemArchive::fetchResource_subroutine(u8* param_0, u32 param_1, u8* p
 }
 #pragma pop
 
-/* 802D7030-802D70C0 0090+00 s=1 e=0 z=0  None .text      getExpandedResSize__13JKRMemArchiveCFPCv
- */
+/* 802D7030-802D70C0 2D1970 0090+00 1/0 0/0 0/0 .text getExpandedResSize__13JKRMemArchiveCFPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -297,4 +283,15 @@ asm void JKRMemArchive::getExpandedResSize(void const* param_0) const {
     nofralloc
 #include "asm/JSystem/JKernel/JKRMemArchive/getExpandedResSize__13JKRMemArchiveCFPCv.s"
 }
+#pragma pop
+
+/* 8039D160-8039D188 0297C0 0027+01 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8039D160 = "JKRMemArchive.cpp";
+SECTION_DEAD static char const* const stringBase_8039D172 = "%s";
+SECTION_DEAD static char const* const stringBase_8039D175 = "??? bad sequence\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039D187 = "";
 #pragma pop

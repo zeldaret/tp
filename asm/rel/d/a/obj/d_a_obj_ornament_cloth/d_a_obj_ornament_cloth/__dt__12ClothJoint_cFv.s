@@ -7,7 +7,7 @@ lbl_80595B9C:
 /* 80595BB0  41 82 00 10 */	beq lbl_80595BC0
 /* 80595BB4  7C 80 07 35 */	extsh. r0, r4
 /* 80595BB8  40 81 00 08 */	ble lbl_80595BC0
-/* 80595BBC  4B D3 91 80 */	b __dl__FPv
+/* 80595BBC  4B D3 91 81 */	bl __dl__FPv
 lbl_80595BC0:
 /* 80595BC0  7F E3 FB 78 */	mr r3, r31
 /* 80595BC4  83 E1 00 0C */	lwz r31, 0xc(r1)

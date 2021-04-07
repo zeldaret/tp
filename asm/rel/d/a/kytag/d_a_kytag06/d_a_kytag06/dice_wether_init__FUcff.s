@@ -11,21 +11,21 @@ lbl_8085786C:
 /* 80857890  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80857894  FF A0 08 90 */	fmr f29, f1
 /* 80857898  FF C0 10 90 */	fmr f30, f2
-/* 8085789C  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 808578A0  3B E4 CA 54 */	addi r31, r4, g_env_light@l
+/* 8085789C  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 808578A0  3B E4 CA 54 */	addi r31, r4, g_env_light@l /* 0x8042CA54@l */
 /* 808578A4  98 7F 12 C9 */	stb r3, 0x12c9(r31)
-/* 808578A8  4B A1 00 AC */	b cM_rndF__Ff
+/* 808578A8  4B A1 00 AD */	bl cM_rndF__Ff
 /* 808578AC  FF E0 08 90 */	fmr f31, f1
 /* 808578B0  FC 20 E8 90 */	fmr f1, f29
-/* 808578B4  4B A1 00 A0 */	b cM_rndF__Ff
+/* 808578B4  4B A1 00 A1 */	bl cM_rndF__Ff
 /* 808578B8  EC 1E E8 2A */	fadds f0, f30, f29
 /* 808578BC  EC 00 08 2A */	fadds f0, f0, f1
 /* 808578C0  EC 20 F8 2A */	fadds f1, f0, f31
-/* 808578C4  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 808578C8  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 808578C4  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 808578C8  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 808578CC  D0 23 11 D8 */	stfs f1, 0x11d8(r3)
-/* 808578D0  3C 60 80 86 */	lis r3, lit_3740@ha
-/* 808578D4  C0 03 9E 78 */	lfs f0, lit_3740@l(r3)
+/* 808578D0  3C 60 80 86 */	lis r3, lit_3740@ha /* 0x80859E78@ha */
+/* 808578D4  C0 03 9E 78 */	lfs f0, lit_3740@l(r3)  /* 0x80859E78@l */
 /* 808578D8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 808578DC  4C 41 13 82 */	cror 2, 1, 2
 /* 808578E0  40 82 00 0C */	bne lbl_808578EC

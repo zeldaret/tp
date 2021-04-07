@@ -7,7 +7,7 @@ lbl_80A7CCE0:
 /* 80A7CCF4  41 82 00 10 */	beq lbl_80A7CD04
 /* 80A7CCF8  7C 80 07 35 */	extsh. r0, r4
 /* 80A7CCFC  40 81 00 08 */	ble lbl_80A7CD04
-/* 80A7CD00  4B 85 20 3C */	b __dl__FPv
+/* 80A7CD00  4B 85 20 3D */	bl __dl__FPv
 lbl_80A7CD04:
 /* 80A7CD04  7F E3 FB 78 */	mr r3, r31
 /* 80A7CD08  83 E1 00 0C */	lwz r31, 0xc(r1)

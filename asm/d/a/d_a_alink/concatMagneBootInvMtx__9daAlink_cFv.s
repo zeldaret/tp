@@ -6,8 +6,8 @@ lbl_800E243C:
 /* 800E244C  80 03 05 70 */	lwz r0, 0x570(r3)
 /* 800E2450  54 00 04 E7 */	rlwinm. r0, r0, 0, 0x13, 0x13
 /* 800E2454  41 82 00 18 */	beq lbl_800E246C
-/* 800E2458  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800E245C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 800E2458  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800E245C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800E2460  38 84 2C 78 */	addi r4, r4, 0x2c78
 /* 800E2464  7C 65 1B 78 */	mr r5, r3
 /* 800E2468  48 26 40 7D */	bl PSMTXConcat

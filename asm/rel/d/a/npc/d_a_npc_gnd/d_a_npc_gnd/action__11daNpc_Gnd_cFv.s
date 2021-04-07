@@ -10,8 +10,8 @@ lbl_809BC674:
 /* 809BC694  38 C0 00 00 */	li r6, 0
 /* 809BC698  38 60 00 00 */	li r3, 0
 /* 809BC69C  7C C4 33 78 */	mr r4, r6
-/* 809BC6A0  3C A0 80 9C */	lis r5, lit_4178@ha
-/* 809BC6A4  C0 05 E5 40 */	lfs f0, lit_4178@l(r5)
+/* 809BC6A0  3C A0 80 9C */	lis r5, lit_4178@ha /* 0x809BE540@ha */
+/* 809BC6A4  C0 05 E5 40 */	lfs f0, lit_4178@l(r5)  /* 0x809BE540@l */
 /* 809BC6A8  38 00 00 02 */	li r0, 2
 /* 809BC6AC  7C 09 03 A6 */	mtctr r0
 lbl_809BC6B0:
@@ -32,18 +32,18 @@ lbl_809BC6B0:
 /* 809BC6E8  B0 1F 0E 22 */	sth r0, 0xe22(r31)
 lbl_809BC6EC:
 /* 809BC6EC  38 7F 0F 84 */	addi r3, r31, 0xf84
-/* 809BC6F0  4B 9A 59 28 */	b __ptmf_test
+/* 809BC6F0  4B 9A 59 29 */	bl __ptmf_test
 /* 809BC6F4  2C 03 00 00 */	cmpwi r3, 0
 /* 809BC6F8  41 82 00 54 */	beq lbl_809BC74C
 /* 809BC6FC  38 7F 0F 90 */	addi r3, r31, 0xf90
 /* 809BC700  38 9F 0F 84 */	addi r4, r31, 0xf84
-/* 809BC704  4B 9A 59 44 */	b __ptmf_cmpr
+/* 809BC704  4B 9A 59 45 */	bl __ptmf_cmpr
 /* 809BC708  2C 03 00 00 */	cmpwi r3, 0
 /* 809BC70C  40 82 00 1C */	bne lbl_809BC728
 /* 809BC710  7F E3 FB 78 */	mr r3, r31
 /* 809BC714  38 80 00 00 */	li r4, 0
 /* 809BC718  39 9F 0F 90 */	addi r12, r31, 0xf90
-/* 809BC71C  4B 9A 59 68 */	b __ptmf_scall
+/* 809BC71C  4B 9A 59 69 */	bl __ptmf_scall
 /* 809BC720  60 00 00 00 */	nop 
 /* 809BC724  48 00 00 28 */	b lbl_809BC74C
 lbl_809BC728:

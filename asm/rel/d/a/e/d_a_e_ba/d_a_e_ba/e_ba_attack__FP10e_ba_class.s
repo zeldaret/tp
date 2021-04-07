@@ -7,10 +7,10 @@ lbl_8067FD68:
 /* 8067FD7C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8067FD80  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8067FD84  7C 7E 1B 78 */	mr r30, r3
-/* 8067FD88  3C 80 80 68 */	lis r4, lit_3947@ha
-/* 8067FD8C  3B E4 23 BC */	addi r31, r4, lit_3947@l
-/* 8067FD90  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8067FD94  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8067FD88  3C 80 80 68 */	lis r4, lit_3947@ha /* 0x806823BC@ha */
+/* 8067FD8C  3B E4 23 BC */	addi r31, r4, lit_3947@l /* 0x806823BC@l */
+/* 8067FD90  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8067FD94  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8067FD98  80 A4 5D AC */	lwz r5, 0x5dac(r4)
 /* 8067FD9C  C3 FF 00 04 */	lfs f31, 4(r31)
 /* 8067FDA0  FC 20 F8 90 */	fmr f1, f31
@@ -70,8 +70,8 @@ lbl_8067FDFC:
 /* 8067FE6C  4E 80 04 21 */	bctrl 
 /* 8067FE70  48 00 00 A4 */	b lbl_8067FF14
 lbl_8067FE74:
-/* 8067FE74  3C 60 80 68 */	lis r3, l_HIO@ha
-/* 8067FE78  38 63 26 48 */	addi r3, r3, l_HIO@l
+/* 8067FE74  3C 60 80 68 */	lis r3, l_HIO@ha /* 0x80682648@ha */
+/* 8067FE78  38 63 26 48 */	addi r3, r3, l_HIO@l /* 0x80682648@l */
 /* 8067FE7C  C3 E3 00 18 */	lfs f31, 0x18(r3)
 /* 8067FE80  80 1E 09 7C */	lwz r0, 0x97c(r30)
 /* 8067FE84  54 00 07 FF */	clrlwi. r0, r0, 0x1f
@@ -93,7 +93,7 @@ lbl_8067FE74:
 /* 8067FEC4  38 80 00 02 */	li r4, 2
 /* 8067FEC8  38 A0 00 1F */	li r5, 0x1f
 /* 8067FECC  38 C1 00 0C */	addi r6, r1, 0xc
-/* 8067FED0  4B 9E FB 54 */	b StartShock__12dVibration_cFii4cXyz
+/* 8067FED0  4B 9E FB 55 */	bl StartShock__12dVibration_cFii4cXyz
 /* 8067FED4  48 00 00 40 */	b lbl_8067FF14
 lbl_8067FED8:
 /* 8067FED8  A8 1E 06 A6 */	lha r0, 0x6a6(r30)
@@ -117,11 +117,11 @@ lbl_8067FF14:
 /* 8067FF18  FC 20 F8 90 */	fmr f1, f31
 /* 8067FF1C  C0 5F 00 08 */	lfs f2, 8(r31)
 /* 8067FF20  C0 7F 00 44 */	lfs f3, 0x44(r31)
-/* 8067FF24  3C 80 80 68 */	lis r4, l_HIO@ha
-/* 8067FF28  38 84 26 48 */	addi r4, r4, l_HIO@l
+/* 8067FF24  3C 80 80 68 */	lis r4, l_HIO@ha /* 0x80682648@ha */
+/* 8067FF28  38 84 26 48 */	addi r4, r4, l_HIO@l /* 0x80682648@l */
 /* 8067FF2C  C0 04 00 18 */	lfs f0, 0x18(r4)
 /* 8067FF30  EC 63 00 32 */	fmuls f3, f3, f0
-/* 8067FF34  4B BE FB 08 */	b cLib_addCalc2__FPffff
+/* 8067FF34  4B BE FB 09 */	bl cLib_addCalc2__FPffff
 /* 8067FF38  7F C3 F3 78 */	mr r3, r30
 /* 8067FF3C  4B FF F6 09 */	bl fly_move__FP10e_ba_class
 /* 8067FF40  E3 E1 00 28 */	psq_l f31, 40(r1), 0, 0 /* qr0 */

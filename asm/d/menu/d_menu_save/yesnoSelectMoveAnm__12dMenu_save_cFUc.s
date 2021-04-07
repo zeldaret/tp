@@ -15,8 +15,8 @@ lbl_801F5AE4:
 /* 801F5B18  7C DC 02 14 */	add r6, r28, r0
 /* 801F5B1C  80 86 00 8C */	lwz r4, 0x8c(r6)
 /* 801F5B20  54 60 1D 78 */	rlwinm r0, r3, 3, 0x15, 0x1c
-/* 801F5B24  3C 60 80 3C */	lis r3, YnSelStartFrameTbl@ha
-/* 801F5B28  38 A3 DF B4 */	addi r5, r3, YnSelStartFrameTbl@l
+/* 801F5B24  3C 60 80 3C */	lis r3, YnSelStartFrameTbl@ha /* 0x803BDFB4@ha */
+/* 801F5B28  38 A3 DF B4 */	addi r5, r3, YnSelStartFrameTbl@l /* 0x803BDFB4@l */
 /* 801F5B2C  7C 65 02 14 */	add r3, r5, r0
 /* 801F5B30  57 A7 15 BA */	rlwinm r7, r29, 2, 0x16, 0x1d
 /* 801F5B34  7C 03 38 2E */	lwzx r0, r3, r7
@@ -79,8 +79,8 @@ lbl_801F5BF8:
 /* 801F5C0C  7C DC 02 14 */	add r6, r28, r0
 /* 801F5C10  80 86 00 8C */	lwz r4, 0x8c(r6)
 /* 801F5C14  54 60 1D 78 */	rlwinm r0, r3, 3, 0x15, 0x1c
-/* 801F5C18  3C 60 80 3C */	lis r3, YnSelEndFrameTbl@ha
-/* 801F5C1C  38 A3 DF C4 */	addi r5, r3, YnSelEndFrameTbl@l
+/* 801F5C18  3C 60 80 3C */	lis r3, YnSelEndFrameTbl@ha /* 0x803BDFC4@ha */
+/* 801F5C1C  38 A3 DF C4 */	addi r5, r3, YnSelEndFrameTbl@l /* 0x803BDFC4@l */
 /* 801F5C20  7C 65 02 14 */	add r3, r5, r0
 /* 801F5C24  57 A7 15 BA */	rlwinm r7, r29, 2, 0x16, 0x1d
 /* 801F5C28  7C 03 38 2E */	lwzx r0, r3, r7

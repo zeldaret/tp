@@ -5,12 +5,12 @@ lbl_8027D6D4:
 /* 8027D6E0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8027D6E4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8027D6E8  41 82 00 30 */	beq lbl_8027D718
-/* 8027D6EC  3C 60 80 3C */	lis r3, __vt__15JPAFieldGravity@ha
-/* 8027D6F0  38 03 45 80 */	addi r0, r3, __vt__15JPAFieldGravity@l
+/* 8027D6EC  3C 60 80 3C */	lis r3, __vt__15JPAFieldGravity@ha /* 0x803C4580@ha */
+/* 8027D6F0  38 03 45 80 */	addi r0, r3, __vt__15JPAFieldGravity@l /* 0x803C4580@l */
 /* 8027D6F4  90 1F 00 00 */	stw r0, 0(r31)
 /* 8027D6F8  41 82 00 10 */	beq lbl_8027D708
-/* 8027D6FC  3C 60 80 3C */	lis r3, __vt__12JPAFieldBase@ha
-/* 8027D700  38 03 44 CC */	addi r0, r3, __vt__12JPAFieldBase@l
+/* 8027D6FC  3C 60 80 3C */	lis r3, __vt__12JPAFieldBase@ha /* 0x803C44CC@ha */
+/* 8027D700  38 03 44 CC */	addi r0, r3, __vt__12JPAFieldBase@l /* 0x803C44CC@l */
 /* 8027D704  90 1F 00 00 */	stw r0, 0(r31)
 lbl_8027D708:
 /* 8027D708  7C 80 07 35 */	extsh. r0, r4

@@ -5,8 +5,8 @@ lbl_80117C90:
 /* 80117C9C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80117CA0  93 C1 00 08 */	stw r30, 8(r1)
 /* 80117CA4  7C 7E 1B 78 */	mr r30, r3
-/* 80117CA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80117CAC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80117CA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80117CAC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80117CB0  38 63 4E C8 */	addi r3, r3, 0x4ec8
 /* 80117CB4  4B F2 A7 B5 */	bl reset__14dEvt_control_cFv
 /* 80117CB8  28 1E 00 00 */	cmplwi r30, 0

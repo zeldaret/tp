@@ -3,17 +3,15 @@
 #
 
 M737_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_rmbit_sw.plf
+M737_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_rmbit_sw.lcf
+M737_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_rmbit_sw.map
 
 M737_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_rmbit_sw/executor.cpp \
-	rel/d/a/tag/d_a_tag_rmbit_sw/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_rmbit_sw/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_rmbit_sw/d_a_tag_rmbit_sw.cpp \
 
 M737_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_rmbit_sw/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_rmbit_sw/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_rmbit_sw/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_rmbit_sw/d_a_tag_rmbit_sw.o \
 
 M737_LIBS := \
@@ -29,14 +27,21 @@ M737_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M737_LDSCRIPT) \
+	-unused -map $(M737_MAP) \
+	-w off \
 
 $(M737_TARGET): $(M737_O_FILES) $(M737_LIBS)
+	@echo [737] creating $(M737_TARGET)
 	@echo $(M737_LIBS) $(M737_O_FILES) > build/M737_ofiles
-	$(LD) -partial $(M737_LDFLAGS) -o $(M737_TARGET) @build/M737_ofiles
+	@python3 tools/lcf.py rel 737 --output $(M737_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M737_LDFLAGS) -o $(M737_TARGET) @build/M737_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_rmbit_sw/%.o: rel/d/a/tag/d_a_tag_rmbit_sw/%.cpp
+	@echo [737] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M737_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M737_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

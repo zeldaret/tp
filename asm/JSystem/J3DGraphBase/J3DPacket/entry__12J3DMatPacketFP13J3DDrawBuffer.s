@@ -5,8 +5,8 @@ lbl_80313048:
 /* 80313054  7C 66 1B 78 */	mr r6, r3
 /* 80313058  80 04 00 0C */	lwz r0, 0xc(r4)
 /* 8031305C  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 80313060  3C 60 80 3D */	lis r3, sortFuncTable__13J3DDrawBuffer@ha
-/* 80313064  38 03 EC 30 */	addi r0, r3, sortFuncTable__13J3DDrawBuffer@l
+/* 80313060  3C 60 80 3D */	lis r3, sortFuncTable__13J3DDrawBuffer@ha /* 0x803CEC30@ha */
+/* 80313064  38 03 EC 30 */	addi r0, r3, sortFuncTable__13J3DDrawBuffer@l /* 0x803CEC30@l */
 /* 80313068  7C A0 2A 14 */	add r5, r0, r5
 /* 8031306C  80 65 00 00 */	lwz r3, 0(r5)
 /* 80313070  80 05 00 04 */	lwz r0, 4(r5)

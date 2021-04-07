@@ -10,8 +10,8 @@ lbl_801F25AC:
 /* 801F25CC  38 03 FF FF */	addi r0, r3, -1
 /* 801F25D0  98 1F 01 BD */	stb r0, 0x1bd(r31)
 lbl_801F25D4:
-/* 801F25D4  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 801F25D8  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l
+/* 801F25D4  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 801F25D8  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 801F25DC  4B E2 47 05 */	bl SaveSync__15mDoMemCd_Ctrl_cFv
 /* 801F25E0  90 7F 21 98 */	stw r3, 0x2198(r31)
 /* 801F25E4  80 1F 21 98 */	lwz r0, 0x2198(r31)

@@ -23,8 +23,8 @@ lbl_8035D688:
 /* 8035D698  48 00 F3 75 */	bl cosf
 /* 8035D69C  28 1F 00 06 */	cmplwi r31, 6
 /* 8035D6A0  41 81 01 0C */	bgt lbl_8035D7AC
-/* 8035D6A4  3C 60 80 3D */	lis r3, lit_145@ha
-/* 8035D6A8  38 63 25 78 */	addi r3, r3, lit_145@l
+/* 8035D6A4  3C 60 80 3D */	lis r3, lit_145@ha /* 0x803D2578@ha */
+/* 8035D6A8  38 63 25 78 */	addi r3, r3, lit_145@l /* 0x803D2578@l */
 /* 8035D6AC  57 E0 10 3A */	slwi r0, r31, 2
 /* 8035D6B0  7C 03 00 2E */	lwzx r0, r3, r0
 /* 8035D6B4  7C 09 03 A6 */	mtctr r0

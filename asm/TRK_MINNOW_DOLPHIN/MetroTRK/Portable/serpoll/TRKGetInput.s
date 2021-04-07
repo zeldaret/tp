@@ -11,9 +11,9 @@ lbl_8036D974:
 /* 8036D998  38 61 00 08 */	addi r3, r1, 8
 /* 8036D99C  38 80 00 02 */	li r4, 2
 /* 8036D9A0  4B FF F2 9D */	bl TRKConstructEvent
-/* 8036D9A4  3C 60 80 45 */	lis r3, gTRKFramingState@ha
+/* 8036D9A4  3C 60 80 45 */	lis r3, gTRKFramingState@ha /* 0x8044F270@ha */
 /* 8036D9A8  38 00 FF FF */	li r0, -1
-/* 8036D9AC  38 83 F2 70 */	addi r4, r3, gTRKFramingState@l
+/* 8036D9AC  38 83 F2 70 */	addi r4, r3, gTRKFramingState@l /* 0x8044F270@l */
 /* 8036D9B0  93 E1 00 10 */	stw r31, 0x10(r1)
 /* 8036D9B4  38 61 00 08 */	addi r3, r1, 8
 /* 8036D9B8  90 04 00 00 */	stw r0, 0(r4)

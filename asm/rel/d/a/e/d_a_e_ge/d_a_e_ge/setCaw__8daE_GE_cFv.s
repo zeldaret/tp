@@ -12,11 +12,11 @@ lbl_806CB280:
 /* 806CB2A8  40 82 00 34 */	bne lbl_806CB2DC
 /* 806CB2AC  38 80 00 06 */	li r4, 6
 /* 806CB2B0  4B FF CE 49 */	bl setActionMode__8daE_GE_cFi
-/* 806CB2B4  3C 60 80 6D */	lis r3, lit_4155@ha
-/* 806CB2B8  C0 23 D0 64 */	lfs f1, lit_4155@l(r3)
-/* 806CB2BC  4B B9 C6 D0 */	b cM_rndFX__Ff
-/* 806CB2C0  3C 60 80 6D */	lis r3, lit_5270@ha
-/* 806CB2C4  C0 03 D0 F0 */	lfs f0, lit_5270@l(r3)
+/* 806CB2B4  3C 60 80 6D */	lis r3, lit_4155@ha /* 0x806CD064@ha */
+/* 806CB2B8  C0 23 D0 64 */	lfs f1, lit_4155@l(r3)  /* 0x806CD064@l */
+/* 806CB2BC  4B B9 C6 D1 */	bl cM_rndFX__Ff
+/* 806CB2C0  3C 60 80 6D */	lis r3, lit_5270@ha /* 0x806CD0F0@ha */
+/* 806CB2C4  C0 03 D0 F0 */	lfs f0, lit_5270@l(r3)  /* 0x806CD0F0@l */
 /* 806CB2C8  EC 00 08 2A */	fadds f0, f0, f1
 /* 806CB2CC  FC 00 00 1E */	fctiwz f0, f0
 /* 806CB2D0  D8 01 00 08 */	stfd f0, 8(r1)

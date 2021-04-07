@@ -1,7 +1,7 @@
 lbl_8034CCEC:
 /* 8034CCEC  94 21 FF D8 */	stwu r1, -0x28(r1)
-/* 8034CCF0  3D 60 80 45 */	lis r11, regs@ha
-/* 8034CCF4  39 6B CA 28 */	addi r11, r11, regs@l
+/* 8034CCF0  3D 60 80 45 */	lis r11, regs@ha /* 0x8044CA28@ha */
+/* 8034CCF4  39 6B CA 28 */	addi r11, r11, regs@l /* 0x8044CA28@l */
 /* 8034CCF8  93 E1 00 24 */	stw r31, 0x24(r1)
 /* 8034CCFC  83 E1 00 30 */	lwz r31, 0x30(r1)
 /* 8034CD00  93 C1 00 20 */	stw r30, 0x20(r1)

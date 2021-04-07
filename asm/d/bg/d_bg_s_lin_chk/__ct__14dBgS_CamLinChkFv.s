@@ -5,8 +5,8 @@ lbl_80077DA4:
 /* 80077DB0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80077DB4  7C 7F 1B 78 */	mr r31, r3
 /* 80077DB8  4B FF FE B1 */	bl __ct__11dBgS_LinChkFv
-/* 80077DBC  3C 60 80 3B */	lis r3, __vt__14dBgS_CamLinChk@ha
-/* 80077DC0  38 63 B9 40 */	addi r3, r3, __vt__14dBgS_CamLinChk@l
+/* 80077DBC  3C 60 80 3B */	lis r3, __vt__14dBgS_CamLinChk@ha /* 0x803AB940@ha */
+/* 80077DC0  38 63 B9 40 */	addi r3, r3, __vt__14dBgS_CamLinChk@l /* 0x803AB940@l */
 /* 80077DC4  90 7F 00 10 */	stw r3, 0x10(r31)
 /* 80077DC8  38 03 00 0C */	addi r0, r3, 0xc
 /* 80077DCC  90 1F 00 20 */	stw r0, 0x20(r31)

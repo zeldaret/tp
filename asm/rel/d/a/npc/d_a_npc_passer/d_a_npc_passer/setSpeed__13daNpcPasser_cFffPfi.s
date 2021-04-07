@@ -29,13 +29,13 @@ lbl_80AA43B0:
 /* 80AA441C  7C 04 00 50 */	subf r0, r4, r0
 /* 80AA4420  7C 1F 07 34 */	extsh r31, r0
 /* 80AA4424  7F E3 FB 78 */	mr r3, r31
-/* 80AA4428  4B 8C 0C A8 */	b abs
+/* 80AA4428  4B 8C 0C A9 */	bl abs
 /* 80AA442C  2C 03 40 00 */	cmpwi r3, 0x4000
 /* 80AA4430  40 80 00 28 */	bge lbl_80AA4458
-/* 80AA4434  3C 60 80 AA */	lis r3, lit_4189@ha
-/* 80AA4438  C0 23 69 98 */	lfs f1, lit_4189@l(r3)
-/* 80AA443C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80AA4440  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80AA4434  3C 60 80 AA */	lis r3, lit_4189@ha /* 0x80AA6998@ha */
+/* 80AA4438  C0 23 69 98 */	lfs f1, lit_4189@l(r3)  /* 0x80AA6998@l */
+/* 80AA443C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80AA4440  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80AA4444  57 E0 04 38 */	rlwinm r0, r31, 0, 0x10, 0x1c
 /* 80AA4448  7C 63 02 14 */	add r3, r3, r0
 /* 80AA444C  C0 03 00 04 */	lfs f0, 4(r3)
@@ -49,7 +49,7 @@ lbl_80AA4464:
 /* 80AA4464  7F C3 F3 78 */	mr r3, r30
 /* 80AA4468  FC 20 F8 90 */	fmr f1, f31
 /* 80AA446C  FC 40 F0 90 */	fmr f2, f30
-/* 80AA4470  4B 7C C2 D0 */	b cLib_chaseF__FPfff
+/* 80AA4470  4B 7C C2 D1 */	bl cLib_chaseF__FPfff
 /* 80AA4474  E3 E1 00 38 */	psq_l f31, 56(r1), 0, 0 /* qr0 */
 /* 80AA4478  CB E1 00 30 */	lfd f31, 0x30(r1)
 /* 80AA447C  E3 C1 00 28 */	psq_l f30, 40(r1), 0, 0 /* qr0 */

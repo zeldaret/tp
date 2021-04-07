@@ -4,7 +4,7 @@ lbl_804DE51C:
 /* 804DE524  90 01 00 14 */	stw r0, 0x14(r1)
 /* 804DE528  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 804DE52C  7C 7F 1B 78 */	mr r31, r3
-/* 804DE530  4B B9 A3 AC */	b MoveBGDelete__16dBgS_MoveBgActorFv
+/* 804DE530  4B B9 A3 AD */	bl MoveBGDelete__16dBgS_MoveBgActorFv
 /* 804DE534  7F E3 FB 78 */	mr r3, r31
 /* 804DE538  38 80 FF FF */	li r4, -1
 /* 804DE53C  4B FF FD BD */	bl __dt__9daCstaF_cFv

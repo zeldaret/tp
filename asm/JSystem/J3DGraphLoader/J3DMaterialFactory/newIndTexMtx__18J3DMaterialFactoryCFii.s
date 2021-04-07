@@ -9,8 +9,8 @@ lbl_8033240C:
 /* 80332428  7C BE 2B 78 */	mr r30, r5
 /* 8033242C  7C DF 33 78 */	mr r31, r6
 /* 80332430  38 61 00 08 */	addi r3, r1, 8
-/* 80332434  3C 80 80 3A */	lis r4, j3dDefaultIndTexMtxInfo@ha
-/* 80332438  38 84 1F 80 */	addi r4, r4, j3dDefaultIndTexMtxInfo@l
+/* 80332434  3C 80 80 3A */	lis r4, j3dDefaultIndTexMtxInfo@ha /* 0x803A1F80@ha */
+/* 80332438  38 84 1F 80 */	addi r4, r4, j3dDefaultIndTexMtxInfo@l /* 0x803A1F80@l */
 /* 8033243C  4B FF 33 A1 */	bl __as__16J3DIndTexMtxInfoFRC16J3DIndTexMtxInfo
 /* 80332440  80 7D 00 0C */	lwz r3, 0xc(r29)
 /* 80332444  1C 1E 01 38 */	mulli r0, r30, 0x138

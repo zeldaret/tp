@@ -89,20 +89,10 @@ struct JFWSystem {
 
 extern "C" void firstInit__9JFWSystemFv();
 extern "C" void init__9JFWSystemFv();
-extern "C" extern u32 maxStdHeaps__Q29JFWSystem11CSetUpParam;
-extern "C" extern u32 sysHeapSize__Q29JFWSystem11CSetUpParam;
-extern "C" extern u32 fifoBufSize__Q29JFWSystem11CSetUpParam;
-extern "C" extern u32 aramAudioBufSize__Q29JFWSystem11CSetUpParam;
-extern "C" extern u32 aramGraphBufSize__Q29JFWSystem11CSetUpParam;
-extern "C" extern void* renderMode__Q29JFWSystem11CSetUpParam;
-extern "C" extern u8 systemHeap__9JFWSystem[4];
-extern "C" extern u8 systemConsole__9JFWSystem[4];
 
 //
 // External References:
 //
-
-void* operator new(u32);
 
 extern "C" void alloc__7JKRHeapFUli();
 extern "C" void* __nw__FUl();
@@ -135,19 +125,20 @@ extern "C" extern u8 GXNtsc480IntDf[60];
 //
 
 /* ############################################################################################## */
-/* 80450770-80450774 0004+00 s=1 e=1 z=0  None .sdata     maxStdHeaps__Q29JFWSystem11CSetUpParam */
-SECTION_SDATA u32 maxStdHeaps__Q29JFWSystem11CSetUpParam = 0x00000002;
+/* 80450770-80450774 0001F0 0004+00 1/1 1/1 0/0 .sdata maxStdHeaps__Q29JFWSystem11CSetUpParam */
+SECTION_SDATA extern u32 maxStdHeaps__Q29JFWSystem11CSetUpParam = 0x00000002;
 
-/* 80450774-80450778 0004+00 s=1 e=1 z=0  None .sdata     sysHeapSize__Q29JFWSystem11CSetUpParam */
-SECTION_SDATA u32 sysHeapSize__Q29JFWSystem11CSetUpParam = 0x00400000;
+/* 80450774-80450778 0001F4 0004+00 1/1 1/1 0/0 .sdata sysHeapSize__Q29JFWSystem11CSetUpParam */
+SECTION_SDATA extern u32 sysHeapSize__Q29JFWSystem11CSetUpParam = 0x00400000;
 
-/* 804511A0-804511A4 0004+00 s=2 e=0 z=0  None .sbss      rootHeap__9JFWSystem */
+/* 804511A0-804511A4 0006A0 0004+00 2/2 0/0 0/0 .sbss            rootHeap__9JFWSystem */
 static u8 rootHeap__9JFWSystem[4];
 
-/* 804511A4-804511A8 0004+00 s=2 e=1 z=0  None .sbss      systemHeap__9JFWSystem */
+/* 804511A4-804511A8 0006A4 0004+00 2/2 1/1 0/0 .sbss            systemHeap__9JFWSystem */
+extern u8 systemHeap__9JFWSystem[4];
 u8 systemHeap__9JFWSystem[4];
 
-/* 80271CD0-80271D18 0048+00 s=1 e=1 z=0  None .text      firstInit__9JFWSystemFv */
+/* 80271CD0-80271D18 26C610 0048+00 1/1 1/1 0/0 .text            firstInit__9JFWSystemFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -158,38 +149,37 @@ asm void JFWSystem::firstInit() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450778-8045077C 0004+00 s=1 e=1 z=0  None .sdata     fifoBufSize__Q29JFWSystem11CSetUpParam */
-SECTION_SDATA u32 fifoBufSize__Q29JFWSystem11CSetUpParam = 0x00040000;
+/* 80450778-8045077C 0001F8 0004+00 1/1 1/1 0/0 .sdata fifoBufSize__Q29JFWSystem11CSetUpParam */
+SECTION_SDATA extern u32 fifoBufSize__Q29JFWSystem11CSetUpParam = 0x00040000;
 
-/* 8045077C-80450780 0004+00 s=1 e=1 z=0  None .sdata aramAudioBufSize__Q29JFWSystem11CSetUpParam
+/* 8045077C-80450780 0001FC 0004+00 1/1 1/1 0/0 .sdata aramAudioBufSize__Q29JFWSystem11CSetUpParam
  */
-SECTION_SDATA u32 aramAudioBufSize__Q29JFWSystem11CSetUpParam = 0x00800000;
+SECTION_SDATA extern u32 aramAudioBufSize__Q29JFWSystem11CSetUpParam = 0x00800000;
 
-/* 80450780-80450784 0004+00 s=1 e=1 z=0  None .sdata aramGraphBufSize__Q29JFWSystem11CSetUpParam
+/* 80450780-80450784 000200 0004+00 1/1 1/1 0/0 .sdata aramGraphBufSize__Q29JFWSystem11CSetUpParam
  */
-SECTION_SDATA u32 aramGraphBufSize__Q29JFWSystem11CSetUpParam = 0x00600000;
+SECTION_SDATA extern u32 aramGraphBufSize__Q29JFWSystem11CSetUpParam = 0x00600000;
 
-/* 80450784-80450788 0004+00 s=1 e=0 z=0  None .sdata     streamPriority__Q29JFWSystem11CSetUpParam
+/* 80450784-80450788 000204 0004+00 1/1 0/0 0/0 .sdata streamPriority__Q29JFWSystem11CSetUpParam
  */
 SECTION_SDATA static u32 streamPriority__Q29JFWSystem11CSetUpParam = 0x00000008;
 
-/* 80450788-8045078C 0004+00 s=1 e=0 z=0  None .sdata     decompPriority__Q29JFWSystem11CSetUpParam
+/* 80450788-8045078C 000208 0004+00 1/1 0/0 0/0 .sdata decompPriority__Q29JFWSystem11CSetUpParam
  */
 SECTION_SDATA static u32 decompPriority__Q29JFWSystem11CSetUpParam = 0x00000007;
 
-/* 8045078C-80450790 0004+00 s=1 e=0 z=0  None .sdata     aPiecePriority__Q29JFWSystem11CSetUpParam
+/* 8045078C-80450790 00020C 0004+00 1/1 0/0 0/0 .sdata aPiecePriority__Q29JFWSystem11CSetUpParam
  */
 SECTION_SDATA static u32 aPiecePriority__Q29JFWSystem11CSetUpParam = 0x00000006;
 
-/* 80450790-80450794 0004+00 s=1 e=0 z=0  None .sdata     systemFontRes__Q29JFWSystem11CSetUpParam
- */
+/* 80450790-80450794 -00001 0004+00 1/1 0/0 0/0 .sdata systemFontRes__Q29JFWSystem11CSetUpParam */
 SECTION_SDATA static void* systemFontRes__Q29JFWSystem11CSetUpParam =
     (void*)&JUTResFONT_Ascfont_fix12;
 
-/* 80450794-80450798 0004+00 s=1 e=1 z=0  None .sdata     renderMode__Q29JFWSystem11CSetUpParam */
-SECTION_SDATA void* renderMode__Q29JFWSystem11CSetUpParam = (void*)&GXNtsc480IntDf;
+/* 80450794-80450798 -00001 0004+00 1/1 1/1 0/0 .sdata renderMode__Q29JFWSystem11CSetUpParam */
+SECTION_SDATA extern void* renderMode__Q29JFWSystem11CSetUpParam = (void*)&GXNtsc480IntDf;
 
-/* 80450798-804507A0 0004+04 s=1 e=0 z=0  None .sdata
+/* 80450798-804507A0 000218 0004+04 1/1 0/0 0/0 .sdata
  * exConsoleBufferSize__Q29JFWSystem11CSetUpParam               */
 SECTION_SDATA static u32 exConsoleBufferSize__Q29JFWSystem11CSetUpParam[1 + 1 /* padding */] = {
     0x000024FC,
@@ -197,34 +187,35 @@ SECTION_SDATA static u32 exConsoleBufferSize__Q29JFWSystem11CSetUpParam[1 + 1 /*
     0x00000000,
 };
 
-/* 804511A8-804511AC 0004+00 s=1 e=0 z=0  None .sbss      mainThread__9JFWSystem */
+/* 804511A8-804511AC 0006A8 0004+00 1/1 0/0 0/0 .sbss            mainThread__9JFWSystem */
 static u8 mainThread__9JFWSystem[4];
 
-/* 804511AC-804511B0 0004+00 s=1 e=0 z=0  None .sbss      debugPrint__9JFWSystem */
+/* 804511AC-804511B0 0006AC 0004+00 1/1 0/0 0/0 .sbss            debugPrint__9JFWSystem */
 static u8 debugPrint__9JFWSystem[4];
 
-/* 804511B0-804511B4 0004+00 s=1 e=0 z=0  None .sbss      systemFont__9JFWSystem */
+/* 804511B0-804511B4 0006B0 0004+00 1/1 0/0 0/0 .sbss            systemFont__9JFWSystem */
 static u8 systemFont__9JFWSystem[4];
 
-/* 804511B4-804511B8 0004+00 s=1 e=0 z=0  None .sbss      systemConsoleManager__9JFWSystem */
+/* 804511B4-804511B8 0006B4 0004+00 1/1 0/0 0/0 .sbss            systemConsoleManager__9JFWSystem */
 static u8 systemConsoleManager__9JFWSystem[4];
 
-/* 804511B8-804511BC 0004+00 s=1 e=7 z=0  None .sbss      systemConsole__9JFWSystem */
+/* 804511B8-804511BC 0006B8 0004+00 1/1 7/7 0/0 .sbss            systemConsole__9JFWSystem */
+extern u8 systemConsole__9JFWSystem[4];
 u8 systemConsole__9JFWSystem[4];
 
-/* 804511BC-804511C0 0004+00 s=1 e=0 z=0  None .sbss      None */
+/* 804511BC-804511C0 0006BC 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_804511BC[4];
 
-/* 80455240-80455244 0004+00 s=1 e=0 z=0  None .sdata2    @2242 */
+/* 80455240-80455244 003840 0004+00 1/1 0/0 0/0 .sdata2          @2242 */
 SECTION_SDATA2 static f32 lit_2242 = 0.5f;
 
-/* 80455244-80455248 0004+00 s=1 e=0 z=0  None .sdata2    @2243 */
+/* 80455244-80455248 003844 0004+00 1/1 0/0 0/0 .sdata2          @2243 */
 SECTION_SDATA2 static f32 lit_2243 = 17.0f / 20.0f;
 
-/* 80455248-80455250 0008+00 s=1 e=0 z=0  None .sdata2    @2245 */
+/* 80455248-80455250 003848 0008+00 1/1 0/0 0/0 .sdata2          @2245 */
 SECTION_SDATA2 static f64 lit_2245 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 80271D18-80272040 0328+00 s=0 e=1 z=0  None .text      init__9JFWSystemFv */
+/* 80271D18-80272040 26C658 0328+00 0/0 1/1 0/0 .text            init__9JFWSystemFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

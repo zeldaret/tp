@@ -3,17 +3,15 @@
 #
 
 M7_TARGET := $(BUILD_DIR)/rel/d/a/door/d_a_door_knob00.plf
+M7_LDSCRIPT := $(BUILD_DIR)/rel/d/a/door/d_a_door_knob00.lcf
+M7_MAP := $(BUILD_DIR)/rel/d/a/door/d_a_door_knob00.map
 
 M7_CPP_FILES := \
-	rel/d/a/door/d_a_door_knob00/executor.cpp \
-	rel/d/a/door/d_a_door_knob00/unknown_translation_unit_ctors.cpp \
-	rel/d/a/door/d_a_door_knob00/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/door/d_a_door_knob00/d_a_door_knob00.cpp \
 
 M7_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_knob00/executor.o \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_knob00/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_knob00/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/door/d_a_door_knob00/d_a_door_knob00.o \
 
 M7_LIBS := \
@@ -29,14 +27,21 @@ M7_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M7_LDSCRIPT) \
+	-unused -map $(M7_MAP) \
+	-w off \
 
 $(M7_TARGET): $(M7_O_FILES) $(M7_LIBS)
+	@echo [  7] creating $(M7_TARGET)
 	@echo $(M7_LIBS) $(M7_O_FILES) > build/M7_ofiles
-	$(LD) -partial $(M7_LDFLAGS) -o $(M7_TARGET) @build/M7_ofiles
+	@python3 tools/lcf.py rel 7 --output $(M7_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M7_LDFLAGS) -o $(M7_TARGET) @build/M7_ofiles
 
 $(BUILD_DIR)/rel/d/a/door/d_a_door_knob00/%.o: rel/d/a/door/d_a_door_knob00/%.cpp
+	@echo [  7] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M7_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M7_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

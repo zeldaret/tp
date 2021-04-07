@@ -61,13 +61,13 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
+struct _GXColor {};
+
 struct cXyz {};
 
 struct csXyz {
     /* 80018BD0 */ ~csXyz();
 };
-
-struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
@@ -97,12 +97,12 @@ struct create_tag_class {};
 
 struct J3DModel {};
 
-struct J3DAnmTextureSRTKey {
-    /* 8032B1D4 */ void searchUpdateMaterialID(J3DModelData*);
-};
-
 struct J3DAnmTevRegKey {
     /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
+};
+
+struct J3DAnmTextureSRTKey {
+    /* 8032B1D4 */ void searchUpdateMaterialID(J3DModelData*);
 };
 
 struct J3DMaterialTable {
@@ -122,13 +122,6 @@ struct J3DLightInfo {
 // Forward References:
 //
 
-void fopAc_IsActor(void*);
-static void fopAc_Draw(void*);
-static void fopAc_Execute(void*);
-static void fopAc_IsDelete(void*);
-static void fopAc_Delete(void*);
-static void fopAc_Create(void*);
-
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__5csXyzFv();
 extern "C" void __ct__11J3DLightObjFv();
@@ -146,38 +139,11 @@ extern "C" void checkBallModelDraw__13fopEn_enemy_cFv();
 extern "C" void setBallModelEffect__13fopEn_enemy_cFP12dKy_tevstr_c();
 extern "C" void drawBallModel__13fopEn_enemy_cFP12dKy_tevstr_c();
 extern "C" extern char const* const f_op_f_op_actor__stringBase0;
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* __vt__11dEvt_info_c[3 + 1 /* padding */];
-extern "C" extern u8 stopStatus__10fopAc_ac_c[4];
 extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
 
 //
 // External References:
 //
-
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcTg_ToActorQ(create_tag_class*);
-void fopAcTg_ActorQTo(create_tag_class*);
-void fopAcTg_Init(create_tag_class*, void*);
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_DeleteHeap(fopAc_ac_c*);
-void fopAcM_cullingCheck(fopAc_ac_c const*);
-void fopDwTg_ToDrawQ(create_tag_class*, int);
-void fopDwTg_DrawQTo(create_tag_class*);
-void fopDwTg_Init(create_tag_class*, void*);
-void fpcBs_Is_JustOfType(int, int);
-void fpcBs_MakeOfType(int*);
-void fpcLf_GetPriority(leafdraw_class const*);
-void fpcLf_DrawMethod(leafdraw_method_class*, void*);
-void fpcMtd_Execute(process_method_class*, void*);
-void fpcMtd_IsDelete(process_method_class*, void*);
-void fpcMtd_Delete(process_method_class*, void*);
-void fpcMtd_Create(process_method_class*, void*);
-void dKy_tevstr_init(dKy_tevstr_c*, s8, u8);
-void dKy_depth_dist_set(void*);
-void cLib_chaseF(f32*, f32, f32);
-void operator delete(void*);
 
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
 extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
@@ -236,7 +202,7 @@ extern "C" extern u8 struct_80451124[4];
 // Declarations:
 //
 
-/* 80018B64-80018BD0 006C+00 s=0 e=7 z=562  None .text      __ct__10fopAc_ac_cFv */
+/* 80018B64-80018BD0 0134A4 006C+00 0/0 7/7 562/562 .text            __ct__10fopAc_ac_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -246,7 +212,7 @@ asm fopAc_ac_c::fopAc_ac_c() {
 }
 #pragma pop
 
-/* 80018BD0-80018C0C 003C+00 s=0 e=12 z=0  None .text      __dt__5csXyzFv */
+/* 80018BD0-80018C0C 013510 003C+00 0/0 12/12 0/0 .text            __dt__5csXyzFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -256,7 +222,7 @@ asm csXyz::~csXyz() {
 }
 #pragma pop
 
-/* 80018C0C-80018C44 0038+00 s=1 e=6 z=0  None .text      __ct__11J3DLightObjFv */
+/* 80018C0C-80018C44 01354C 0038+00 1/1 6/6 0/0 .text            __ct__11J3DLightObjFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -267,8 +233,8 @@ asm J3DLightObj::J3DLightObj() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A35B0-803A35D0 0020+00 s=0 e=3 z=756  None .data      g_fopAc_Method */
-SECTION_DATA void* g_fopAc_Method[8] = {
+/* 803A35B0-803A35D0 -00001 0020+00 0/0 3/0 756/0 .data            g_fopAc_Method */
+SECTION_DATA extern void* g_fopAc_Method[8] = {
     (void*)fopAc_Create__FPv,
     (void*)fopAc_Delete__FPv,
     (void*)fopAc_Execute__FPv,
@@ -279,16 +245,16 @@ SECTION_DATA void* g_fopAc_Method[8] = {
     (void*)NULL,
 };
 
-/* 803A35D0-803A35E0 000C+04 s=2 e=1 z=0  None .data      __vt__11dEvt_info_c */
-SECTION_DATA void* __vt__11dEvt_info_c[3 + 1 /* padding */] = {
-    (void*)NULL,
+/* 803A35D0-803A35E0 0006F0 000C+04 2/2 1/1 0/0 .data            __vt__11dEvt_info_c */
+SECTION_DATA extern void* __vt__11dEvt_info_c[3 + 1 /* padding */] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__11dEvt_info_cFv,
     /* padding */
     NULL,
 };
 
-/* 80018C44-80018C8C 0048+00 s=1 e=0 z=0  None .text      __dt__11dEvt_info_cFv */
+/* 80018C44-80018C8C 013584 0048+00 1/0 0/0 0/0 .text            __dt__11dEvt_info_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -298,7 +264,7 @@ asm dEvt_info_c::~dEvt_info_c() {
 }
 #pragma pop
 
-/* 80018C8C-80018CE0 0054+00 s=0 e=5 z=270  None .text      __dt__10fopAc_ac_cFv */
+/* 80018C8C-80018CE0 0135CC 0054+00 0/0 5/5 270/270 .text            __dt__10fopAc_ac_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -309,10 +275,10 @@ asm fopAc_ac_c::~fopAc_ac_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450CB8-80450CBC 0004+00 s=2 e=0 z=0  None .sbss      g_fopAc_type */
+/* 80450CB8-80450CBC 0001B8 0004+00 2/2 0/0 0/0 .sbss            g_fopAc_type */
 static u8 g_fopAc_type[4];
 
-/* 80018CE0-80018D0C 002C+00 s=0 e=12 z=391  None .text      fopAc_IsActor__FPv */
+/* 80018CE0-80018D0C 013620 002C+00 0/0 12/12 391/391 .text            fopAc_IsActor__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -323,77 +289,78 @@ asm void fopAc_IsActor(void* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450CBC-80450CC0 0004+00 s=2 e=1 z=0  None .sbss      stopStatus__10fopAc_ac_c */
+/* 80450CBC-80450CC0 0001BC 0004+00 2/2 1/1 0/0 .sbss            stopStatus__10fopAc_ac_c */
+extern u8 stopStatus__10fopAc_ac_c[4];
 u8 stopStatus__10fopAc_ac_c[4];
 
-/* 80018D0C-80018DD8 00CC+00 s=1 e=0 z=0  None .text      fopAc_Draw__FPv */
+/* 80018D0C-80018DD8 01364C 00CC+00 1/0 0/0 0/0 .text            fopAc_Draw__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fopAc_Draw(void* param_0) {
+static asm void fopAc_Draw(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_actor/fopAc_Draw__FPv.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451BC8-80451BCC 0004+00 s=1 e=0 z=0  None .sdata2    @4324 */
+/* 80451BC8-80451BCC 0001C8 0004+00 1/1 0/0 0/0 .sdata2          @4324 */
 SECTION_SDATA2 static f32 lit_4324 = 5000.0f;
 
-/* 80451BCC-80451BD0 0004+00 s=1 e=0 z=0  None .sdata2    @4325 */
+/* 80451BCC-80451BD0 0001CC 0004+00 1/1 0/0 0/0 .sdata2          @4325 */
 SECTION_SDATA2 static f32 lit_4325 = -9.999999848243207e+30f;
 
-/* 80018DD8-80018F78 01A0+00 s=1 e=0 z=0  None .text      fopAc_Execute__FPv */
+/* 80018DD8-80018F78 013718 01A0+00 1/0 0/0 0/0 .text            fopAc_Execute__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fopAc_Execute(void* param_0) {
+static asm void fopAc_Execute(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_actor/fopAc_Execute__FPv.s"
 }
 #pragma pop
 
-/* 80018F78-80018FCC 0054+00 s=1 e=0 z=0  None .text      fopAc_IsDelete__FPv */
+/* 80018F78-80018FCC 0138B8 0054+00 1/0 0/0 0/0 .text            fopAc_IsDelete__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fopAc_IsDelete(void* param_0) {
+static asm void fopAc_IsDelete(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_actor/fopAc_IsDelete__FPv.s"
 }
 #pragma pop
 
-/* 80018FCC-8001904C 0080+00 s=1 e=0 z=0  None .text      fopAc_Delete__FPv */
+/* 80018FCC-8001904C 01390C 0080+00 1/0 0/0 0/0 .text            fopAc_Delete__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fopAc_Delete(void* param_0) {
+static asm void fopAc_Delete(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_actor/fopAc_Delete__FPv.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451BD0-80451BD4 0004+00 s=2 e=0 z=0  None .sdata2    @4431 */
+/* 80451BD0-80451BD4 0001D0 0004+00 2/2 0/0 0/0 .sdata2          @4431 */
 SECTION_SDATA2 static f32 lit_4431 = 1.0f / 10.0f;
 
-/* 80451BD4-80451BD8 0004+00 s=1 e=0 z=0  None .sdata2    @4432 */
+/* 80451BD4-80451BD8 0001D4 0004+00 1/1 0/0 0/0 .sdata2          @4432 */
 SECTION_SDATA2 static f32 lit_4432 = -100.0f;
 
-/* 80451BD8-80451BE0 0008+00 s=1 e=0 z=0  None .sdata2    @4434 */
+/* 80451BD8-80451BE0 0001D8 0008+00 1/1 0/0 0/0 .sdata2          @4434 */
 SECTION_SDATA2 static f64 lit_4434 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 8001904C-800193FC 03B0+00 s=1 e=0 z=0  None .text      fopAc_Create__FPv */
+/* 8001904C-800193FC 01398C 03B0+00 1/0 0/0 0/0 .text            fopAc_Create__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fopAc_Create(void* param_0) {
+static asm void fopAc_Create(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_actor/fopAc_Create__FPv.s"
 }
 #pragma pop
 
-/* 800193FC-80019404 0008+00 s=0 e=1 z=0  None .text      getFileListInfo__15dStage_roomDt_cCFv */
+/* 800193FC-80019404 013D3C 0008+00 0/0 1/0 0/0 .text getFileListInfo__15dStage_roomDt_cCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -403,17 +370,7 @@ asm void dStage_roomDt_c::getFileListInfo() const {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80378878-80378880 0006+02 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80378878 = "Alink";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037887E = "\0";
-#pragma pop
-
-/* 80019404-800194FC 00F8+00 s=0 e=0 z=2  None .text      initBallModel__13fopEn_enemy_cFv */
+/* 80019404-800194FC 013D44 00F8+00 0/0 0/0 2/2 .text            initBallModel__13fopEn_enemy_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -423,7 +380,7 @@ asm void fopEn_enemy_c::initBallModel() {
 }
 #pragma pop
 
-/* 800194FC-80019520 0024+00 s=2 e=0 z=2  None .text      checkBallModelDraw__13fopEn_enemy_cFv */
+/* 800194FC-80019520 013E3C 0024+00 2/2 0/0 2/2 .text checkBallModelDraw__13fopEn_enemy_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -434,17 +391,17 @@ asm void fopEn_enemy_c::checkBallModelDraw() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451BE0-80451BE8 0004+04 s=2 e=0 z=0  None .sdata2    @4505 */
+/* 80451BE0-80451BE8 0001E0 0004+04 2/2 0/0 0/0 .sdata2          @4505 */
 SECTION_SDATA2 static f32 lit_4505[1 + 1 /* padding */] = {
     1.0f,
     /* padding */
     0.0f,
 };
 
-/* 80451BE8-80451BF0 0008+00 s=1 e=0 z=0  None .sdata2    @4507 */
+/* 80451BE8-80451BF0 0001E8 0008+00 1/1 0/0 0/0 .sdata2          @4507 */
 SECTION_SDATA2 static f64 lit_4507 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 80019520-800196A0 0180+00 s=0 e=0 z=2  None .text
+/* 80019520-800196A0 013E60 0180+00 0/0 0/0 2/2 .text
  * setBallModelEffect__13fopEn_enemy_cFP12dKy_tevstr_c          */
 #pragma push
 #pragma optimization_level 0
@@ -456,7 +413,7 @@ asm void fopEn_enemy_c::setBallModelEffect(dKy_tevstr_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451BF0-80451BF4 0004+00 s=1 e=0 z=0  None .sdata2    @4555 */
+/* 80451BF0-80451BF4 0001F0 0004+00 1/1 0/0 0/0 .sdata2          @4555 */
 SECTION_SDATA2 static u8 lit_4555[4] = {
     0x00,
     0x00,
@@ -464,17 +421,17 @@ SECTION_SDATA2 static u8 lit_4555[4] = {
     0x00,
 };
 
-/* 80451BF4-80451BF8 0004+00 s=1 e=0 z=0  None .sdata2    @4556 */
+/* 80451BF4-80451BF8 0001F4 0004+00 1/1 0/0 0/0 .sdata2          @4556 */
 SECTION_SDATA2 static f32 lit_4556 = 1.0f / 20.0f;
 
-/* 80451BF8-80451C00 0004+04 s=1 e=0 z=0  None .sdata2    @4557 */
+/* 80451BF8-80451C00 0001F8 0004+04 1/1 0/0 0/0 .sdata2          @4557 */
 SECTION_SDATA2 static f32 lit_4557[1 + 1 /* padding */] = {
     1.0f / 100.0f,
     /* padding */
     0.0f,
 };
 
-/* 800196A0-800197BC 011C+00 s=0 e=0 z=2  None .text
+/* 800196A0-800197BC 013FE0 011C+00 0/0 0/0 2/2 .text
  * drawBallModel__13fopEn_enemy_cFP12dKy_tevstr_c               */
 #pragma push
 #pragma optimization_level 0
@@ -486,6 +443,16 @@ asm void fopEn_enemy_c::drawBallModel(dKy_tevstr_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450CC0-80450CC8 0004+04 s=0 e=9 z=0  None .sbss
+/* 80450CC0-80450CC8 0001C0 0004+04 0/0 9/9 0/0 .sbss
  * sInstance__35JASGlobalInstance<14JAUSectionHeap>             */
+extern u8 data_80450CC0[4 + 4 /* padding */];
 u8 data_80450CC0[4 + 4 /* padding */];
+
+/* 80378878-80378880 004ED8 0006+02 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80378878 = "Alink";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8037887E = "\0";
+#pragma pop

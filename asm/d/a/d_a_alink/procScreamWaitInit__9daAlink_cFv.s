@@ -15,11 +15,11 @@ lbl_800DBD1C:
 lbl_800DBD50:
 /* 800DBD50  7F E3 FB 78 */	mr r3, r31
 /* 800DBD54  38 80 00 19 */	li r4, 0x19
-/* 800DBD58  3C A0 80 39 */	lis r5, m__18daAlinkHIO_move_c0@ha
-/* 800DBD5C  38 A5 D6 BC */	addi r5, r5, m__18daAlinkHIO_move_c0@l
+/* 800DBD58  3C A0 80 39 */	lis r5, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 800DBD5C  38 A5 D6 BC */	addi r5, r5, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 800DBD60  C0 25 00 1C */	lfs f1, 0x1c(r5)
-/* 800DBD64  3C A0 80 39 */	lis r5, m__19daAlinkHIO_basic_c0@ha
-/* 800DBD68  38 A5 D6 64 */	addi r5, r5, m__19daAlinkHIO_basic_c0@l
+/* 800DBD64  3C A0 80 39 */	lis r5, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 800DBD68  38 A5 D6 64 */	addi r5, r5, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 800DBD6C  C0 45 00 18 */	lfs f2, 0x18(r5)
 /* 800DBD70  4B FD 12 71 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 800DBD74  38 00 00 00 */	li r0, 0

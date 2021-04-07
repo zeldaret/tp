@@ -3,18 +3,16 @@
 #
 
 M589_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdoor.plf
+M589_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdoor.lcf
+M589_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdoor.map
 
 M589_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_pdoor/executor.cpp \
-	rel/d/a/obj/d_a_obj_pdoor/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_pdoor/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_pdoor/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_pdoor/d_a_obj_pdoor.cpp \
 
 M589_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdoor/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdoor/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdoor/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdoor/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdoor/d_a_obj_pdoor.o \
 
@@ -31,14 +29,21 @@ M589_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M589_LDSCRIPT) \
+	-unused -map $(M589_MAP) \
+	-w off \
 
 $(M589_TARGET): $(M589_O_FILES) $(M589_LIBS)
+	@echo [589] creating $(M589_TARGET)
 	@echo $(M589_LIBS) $(M589_O_FILES) > build/M589_ofiles
-	$(LD) -partial $(M589_LDFLAGS) -o $(M589_TARGET) @build/M589_ofiles
+	@python3 tools/lcf.py rel 589 --output $(M589_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M589_LDFLAGS) -o $(M589_TARGET) @build/M589_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdoor/%.o: rel/d/a/obj/d_a_obj_pdoor/%.cpp
+	@echo [589] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M589_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M589_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

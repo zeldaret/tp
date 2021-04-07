@@ -8,7 +8,7 @@ lbl_80743D10:
 /* 80743D28  3B E0 00 00 */	li r31, 0
 lbl_80743D2C:
 /* 80743D2C  7F C3 F3 78 */	mr r3, r30
-/* 80743D30  4B 8D 4F B0 */	b fopAc_IsActor__FPv
+/* 80743D30  4B 8D 4F B1 */	bl fopAc_IsActor__FPv
 /* 80743D34  2C 03 00 00 */	cmpwi r3, 0
 /* 80743D38  41 82 00 2C */	beq lbl_80743D64
 /* 80743D3C  A8 1E 00 08 */	lha r0, 8(r30)

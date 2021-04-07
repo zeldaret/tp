@@ -9,12 +9,12 @@ lbl_802FC1D4:
 /* 802FC1F0  7C BB 2B 78 */	mr r27, r5
 /* 802FC1F4  7C DC 33 78 */	mr r28, r6
 /* 802FC1F8  4B FF 9A 01 */	bl __ct__7J2DPaneFv
-/* 802FC1FC  3C 60 80 3D */	lis r3, __vt__10J2DPicture@ha
-/* 802FC200  38 03 D1 D8 */	addi r0, r3, __vt__10J2DPicture@l
+/* 802FC1FC  3C 60 80 3D */	lis r3, __vt__10J2DPicture@ha /* 0x803CD1D8@ha */
+/* 802FC200  38 03 D1 D8 */	addi r0, r3, __vt__10J2DPicture@l /* 0x803CD1D8@l */
 /* 802FC204  90 1F 00 00 */	stw r0, 0(r31)
 /* 802FC208  38 7F 01 0A */	addi r3, r31, 0x10a
-/* 802FC20C  3C 80 80 30 */	lis r4, func_802FF204@ha
-/* 802FC210  38 84 F2 04 */	addi r4, r4, func_802FF204@l
+/* 802FC20C  3C 80 80 30 */	lis r4, func_802FF204@ha /* 0x802FF204@ha */
+/* 802FC210  38 84 F2 04 */	addi r4, r4, func_802FF204@l /* 0x802FF204@l */
 /* 802FC214  38 A0 00 00 */	li r5, 0
 /* 802FC218  38 C0 00 04 */	li r6, 4
 /* 802FC21C  38 E0 00 04 */	li r7, 4
@@ -25,8 +25,8 @@ lbl_802FC1D4:
 /* 802FC230  90 1F 01 30 */	stw r0, 0x130(r31)
 /* 802FC234  90 1F 01 34 */	stw r0, 0x134(r31)
 /* 802FC238  38 7F 01 38 */	addi r3, r31, 0x138
-/* 802FC23C  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha
-/* 802FC240  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l
+/* 802FC23C  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha /* 0x80193960@ha */
+/* 802FC240  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l /* 0x80193960@l */
 /* 802FC244  38 A0 00 00 */	li r5, 0
 /* 802FC248  38 C0 00 04 */	li r6, 4
 /* 802FC24C  38 E0 00 04 */	li r7, 4
@@ -67,8 +67,8 @@ lbl_802FC1D4:
 /* 802FC2D8  38 A0 00 00 */	li r5, 0
 /* 802FC2DC  4B FE 02 01 */	bl seek__20JSURandomInputStreamFl17JSUStreamSeekFrom
 /* 802FC2E0  38 61 00 44 */	addi r3, r1, 0x44
-/* 802FC2E4  3C 80 80 30 */	lis r4, func_802FF204@ha
-/* 802FC2E8  38 84 F2 04 */	addi r4, r4, func_802FF204@l
+/* 802FC2E4  3C 80 80 30 */	lis r4, func_802FF204@ha /* 0x802FF204@ha */
+/* 802FC2E8  38 84 F2 04 */	addi r4, r4, func_802FF204@l /* 0x802FF204@l */
 /* 802FC2EC  38 A0 00 00 */	li r5, 0
 /* 802FC2F0  38 C0 00 04 */	li r6, 4
 /* 802FC2F4  38 E0 00 04 */	li r7, 4

@@ -1,6 +1,6 @@
 lbl_80A608DC:
-/* 80A608DC  3C 80 80 A6 */	lis r4, __vt__11J3DTexNoAnm@ha
-/* 80A608E0  38 04 40 A0 */	addi r0, r4, __vt__11J3DTexNoAnm@l
+/* 80A608DC  3C 80 80 A6 */	lis r4, __vt__11J3DTexNoAnm@ha /* 0x80A640A0@ha */
+/* 80A608E0  38 04 40 A0 */	addi r0, r4, __vt__11J3DTexNoAnm@l /* 0x80A640A0@l */
 /* 80A608E4  90 03 00 00 */	stw r0, 0(r3)
 /* 80A608E8  38 80 00 00 */	li r4, 0
 /* 80A608EC  B0 83 00 04 */	sth r4, 4(r3)

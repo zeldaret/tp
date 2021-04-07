@@ -6,12 +6,12 @@ lbl_8000DB10:
 /* 8000DB20  48 35 46 B1 */	bl _savegpr_26
 /* 8000DB24  7C 7A 1B 78 */	mr r26, r3
 /* 8000DB28  80 03 00 6C */	lwz r0, 0x6c(r3)
-/* 8000DB2C  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8000DB30  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8000DB2C  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8000DB30  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8000DB34  90 03 00 58 */	stw r0, 0x58(r3)
 /* 8000DB38  3B 80 00 00 */	li r28, 0
-/* 8000DB3C  3C 60 80 43 */	lis r3, sGDLObj__17J3DDisplayListObj@ha
-/* 8000DB40  3B E3 4C 70 */	addi r31, r3, sGDLObj__17J3DDisplayListObj@l
+/* 8000DB3C  3C 60 80 43 */	lis r3, sGDLObj__17J3DDisplayListObj@ha /* 0x80434C70@ha */
+/* 8000DB40  3B E3 4C 70 */	addi r31, r3, sGDLObj__17J3DDisplayListObj@l /* 0x80434C70@l */
 /* 8000DB44  48 00 00 5C */	b lbl_8000DBA0
 lbl_8000DB48:
 /* 8000DB48  80 7A 00 60 */	lwz r3, 0x60(r26)

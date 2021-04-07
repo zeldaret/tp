@@ -12,8 +12,8 @@ lbl_800E5FD0:
 /* 800E5FF8  4B FF DC FD */	bl checkGrabCarryActor__9daAlink_cFv
 /* 800E5FFC  2C 03 00 00 */	cmpwi r3, 0
 /* 800E6000  41 82 00 48 */	beq lbl_800E6048
-/* 800E6004  3C 60 80 39 */	lis r3, m__18daAlinkHIO_grab_c0@ha
-/* 800E6008  38 A3 EC 48 */	addi r5, r3, m__18daAlinkHIO_grab_c0@l
+/* 800E6004  3C 60 80 39 */	lis r3, m__18daAlinkHIO_grab_c0@ha /* 0x8038EC48@ha */
+/* 800E6008  38 A3 EC 48 */	addi r5, r3, m__18daAlinkHIO_grab_c0@l /* 0x8038EC48@l */
 /* 800E600C  C0 25 00 90 */	lfs f1, 0x90(r5)
 /* 800E6010  7F C3 F3 78 */	mr r3, r30
 /* 800E6014  38 80 00 B5 */	li r4, 0xb5
@@ -32,8 +32,8 @@ lbl_800E5FD0:
 lbl_800E6048:
 /* 800E6048  7F C3 F3 78 */	mr r3, r30
 /* 800E604C  38 80 00 B0 */	li r4, 0xb0
-/* 800E6050  3C A0 80 39 */	lis r5, m__18daAlinkHIO_grab_c0@ha
-/* 800E6054  38 A5 EC 48 */	addi r5, r5, m__18daAlinkHIO_grab_c0@l
+/* 800E6050  3C A0 80 39 */	lis r5, m__18daAlinkHIO_grab_c0@ha /* 0x8038EC48@ha */
+/* 800E6054  38 A5 EC 48 */	addi r5, r5, m__18daAlinkHIO_grab_c0@l /* 0x8038EC48@l */
 /* 800E6058  38 A5 00 14 */	addi r5, r5, 0x14
 /* 800E605C  4B FC 70 99 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800E6060  38 00 00 00 */	li r0, 0
@@ -87,8 +87,8 @@ lbl_800E6118:
 /* 800E6118  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 800E611C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800E6120  40 80 00 10 */	bge lbl_800E6130
-/* 800E6124  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800E6128  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 800E6124  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800E6128  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 800E612C  48 00 00 70 */	b lbl_800E619C
 lbl_800E6130:
 /* 800E6130  D0 21 00 08 */	stfs f1, 8(r1)
@@ -122,8 +122,8 @@ lbl_800E6188:
 lbl_800E618C:
 /* 800E618C  2C 00 00 01 */	cmpwi r0, 1
 /* 800E6190  40 82 00 0C */	bne lbl_800E619C
-/* 800E6194  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800E6198  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 800E6194  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800E6198  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_800E619C:
 /* 800E619C  C0 02 94 70 */	lfs f0, lit_15188(r2)
 /* 800E61A0  EC 21 00 28 */	fsubs f1, f1, f0

@@ -7,8 +7,8 @@ lbl_802F7EF4:
 /* 802F7F08  80 04 00 0C */	lwz r0, 0xc(r4)
 /* 802F7F0C  28 00 00 07 */	cmplwi r0, 7
 /* 802F7F10  41 81 00 A4 */	bgt lbl_802F7FB4
-/* 802F7F14  3C A0 80 3D */	lis r5, lit_2709@ha
-/* 802F7F18  38 A5 CF B0 */	addi r5, r5, lit_2709@l
+/* 802F7F14  3C A0 80 3D */	lis r5, lit_2709@ha /* 0x803CCFB0@ha */
+/* 802F7F18  38 A5 CF B0 */	addi r5, r5, lit_2709@l /* 0x803CCFB0@l */
 /* 802F7F1C  54 00 10 3A */	slwi r0, r0, 2
 /* 802F7F20  7C 05 00 2E */	lwzx r0, r5, r0
 /* 802F7F24  7C 09 03 A6 */	mtctr r0

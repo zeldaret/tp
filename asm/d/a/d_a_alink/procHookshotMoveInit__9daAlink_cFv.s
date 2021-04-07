@@ -25,13 +25,13 @@ lbl_8010BC50:
 /* 8010BC5C  2C 03 00 00 */	cmpwi r3, 0
 /* 8010BC60  41 82 00 18 */	beq lbl_8010BC78
 /* 8010BC64  7F E3 FB 78 */	mr r3, r31
-/* 8010BC68  3C 80 80 39 */	lis r4, m__22daAlinkHIO_hookshot_c0@ha
-/* 8010BC6C  38 84 E9 C0 */	addi r4, r4, m__22daAlinkHIO_hookshot_c0@l
+/* 8010BC68  3C 80 80 39 */	lis r4, m__22daAlinkHIO_hookshot_c0@ha /* 0x8038E9C0@ha */
+/* 8010BC6C  38 84 E9 C0 */	addi r4, r4, m__22daAlinkHIO_hookshot_c0@l /* 0x8038E9C0@l */
 /* 8010BC70  C0 24 00 44 */	lfs f1, 0x44(r4)
 /* 8010BC74  4B FA 2D FD */	bl setBlendAtnMoveAnime__9daAlink_cFf
 lbl_8010BC78:
-/* 8010BC78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8010BC7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8010BC78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8010BC7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8010BC80  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 8010BC84  60 00 40 00 */	ori r0, r0, 0x4000
 /* 8010BC88  90 03 5F 18 */	stw r0, 0x5f18(r3)

@@ -6,19 +6,19 @@ lbl_80778934:
 /* 80778944  7C 7F 1B 78 */	mr r31, r3
 /* 80778948  38 7F 05 AC */	addi r3, r31, 0x5ac
 /* 8077894C  80 9F 06 74 */	lwz r4, 0x674(r31)
-/* 80778950  4B 8B 46 B8 */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 80778950  4B 8B 46 B9 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 80778954  88 1F 13 2C */	lbz r0, 0x132c(r31)
 /* 80778958  28 00 00 00 */	cmplwi r0, 0
 /* 8077895C  41 82 00 10 */	beq lbl_8077896C
 /* 80778960  38 00 00 00 */	li r0, 0
-/* 80778964  3C 60 80 78 */	lis r3, data_8077A874@ha
-/* 80778968  98 03 A8 74 */	stb r0, data_8077A874@l(r3)
+/* 80778964  3C 60 80 78 */	lis r3, data_8077A874@ha /* 0x8077A874@ha */
+/* 80778968  98 03 A8 74 */	stb r0, data_8077A874@l(r3)  /* 0x8077A874@l */
 lbl_8077896C:
 /* 8077896C  80 1F 00 F0 */	lwz r0, 0xf0(r31)
 /* 80778970  28 00 00 00 */	cmplwi r0, 0
 /* 80778974  41 82 00 0C */	beq lbl_80778980
 /* 80778978  80 7F 05 CC */	lwz r3, 0x5cc(r31)
-/* 8077897C  4B 89 89 94 */	b stopZelAnime__16mDoExt_McaMorfSOFv
+/* 8077897C  4B 89 89 95 */	bl stopZelAnime__16mDoExt_McaMorfSOFv
 lbl_80778980:
 /* 80778980  38 60 00 01 */	li r3, 1
 /* 80778984  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -56,8 +56,8 @@ lbl_8004ED44:
 /* 8004EE1C  10 62 00 BA */	ps_madd f3, f2, f2, f0
 /* 8004EE20  10 63 00 14 */	ps_sum0 f3, f3, f0, f0
 /* 8004EE24  C0 22 85 D8 */	lfs f1, lit_6075(r2)
-/* 8004EE28  3C 60 80 45 */	lis r3, __float_epsilon@ha
-/* 8004EE2C  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)
+/* 8004EE28  3C 60 80 45 */	lis r3, __float_epsilon@ha /* 0x80450AEC@ha */
+/* 8004EE2C  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)  /* 0x80450AEC@l */
 /* 8004EE30  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8004EE34  FC 03 00 40 */	fcmpo cr0, f3, f0
 /* 8004EE38  4C 40 13 82 */	cror 2, 0, 2
@@ -111,8 +111,8 @@ lbl_8004EECC:
 /* 8004EEE8  10 57 05 FA */	ps_madd f2, f23, f23, f0
 /* 8004EEEC  10 42 00 14 */	ps_sum0 f2, f2, f0, f0
 /* 8004EEF0  C0 22 85 D8 */	lfs f1, lit_6075(r2)
-/* 8004EEF4  3C 60 80 45 */	lis r3, __float_epsilon@ha
-/* 8004EEF8  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)
+/* 8004EEF4  3C 60 80 45 */	lis r3, __float_epsilon@ha /* 0x80450AEC@ha */
+/* 8004EEF8  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)  /* 0x80450AEC@l */
 /* 8004EEFC  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8004EF00  FC 02 00 40 */	fcmpo cr0, f2, f0
 /* 8004EF04  4C 40 13 82 */	cror 2, 0, 2
@@ -166,8 +166,8 @@ lbl_8004EF98:
 /* 8004EFB4  10 96 05 BA */	ps_madd f4, f22, f22, f0
 /* 8004EFB8  10 84 00 14 */	ps_sum0 f4, f4, f0, f0
 /* 8004EFBC  C0 22 85 D8 */	lfs f1, lit_6075(r2)
-/* 8004EFC0  3C 60 80 45 */	lis r3, __float_epsilon@ha
-/* 8004EFC4  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)
+/* 8004EFC0  3C 60 80 45 */	lis r3, __float_epsilon@ha /* 0x80450AEC@ha */
+/* 8004EFC4  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)  /* 0x80450AEC@l */
 /* 8004EFC8  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8004EFCC  FC 04 00 40 */	fcmpo cr0, f4, f0
 /* 8004EFD0  4C 40 13 82 */	cror 2, 0, 2
@@ -227,8 +227,8 @@ lbl_8004F030:
 /* 8004F09C  C0 02 85 50 */	lfs f0, lit_3964(r2)
 /* 8004F0A0  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 8004F0A4  41 82 00 48 */	beq lbl_8004F0EC
-/* 8004F0A8  3C 60 80 38 */	lis r3, lit_6363@ha
-/* 8004F0AC  38 83 A1 20 */	addi r4, r3, lit_6363@l
+/* 8004F0A8  3C 60 80 38 */	lis r3, lit_6363@ha /* 0x8037A120@ha */
+/* 8004F0AC  38 83 A1 20 */	addi r4, r3, lit_6363@l /* 0x8037A120@l */
 /* 8004F0B0  80 64 00 00 */	lwz r3, 0(r4)
 /* 8004F0B4  80 04 00 04 */	lwz r0, 4(r4)
 /* 8004F0B8  90 61 00 08 */	stw r3, 8(r1)
@@ -270,8 +270,8 @@ lbl_8004F0EC:
 /* 8004F144  38 81 00 74 */	addi r4, r1, 0x74
 /* 8004F148  7C 65 1B 78 */	mr r5, r3
 /* 8004F14C  48 2F 73 99 */	bl PSMTXConcat
-/* 8004F150  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8004F154  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8004F150  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8004F154  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8004F158  38 81 01 04 */	addi r4, r1, 0x104
 /* 8004F15C  38 A1 00 A4 */	addi r5, r1, 0xa4
 /* 8004F160  48 2F 73 85 */	bl PSMTXConcat
@@ -304,8 +304,8 @@ lbl_8004F0EC:
 /* 8004F1CC  10 82 00 BA */	ps_madd f4, f2, f2, f0
 /* 8004F1D0  10 84 00 14 */	ps_sum0 f4, f4, f0, f0
 /* 8004F1D4  C0 22 85 D8 */	lfs f1, lit_6075(r2)
-/* 8004F1D8  3C 60 80 45 */	lis r3, __float_epsilon@ha
-/* 8004F1DC  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)
+/* 8004F1D8  3C 60 80 45 */	lis r3, __float_epsilon@ha /* 0x80450AEC@ha */
+/* 8004F1DC  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)  /* 0x80450AEC@l */
 /* 8004F1E0  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8004F1E4  FC 04 00 40 */	fcmpo cr0, f4, f0
 /* 8004F1E8  4C 40 13 82 */	cror 2, 0, 2
@@ -340,8 +340,8 @@ lbl_8004F244:
 /* 8004F250  10 95 05 7A */	ps_madd f4, f21, f21, f0
 /* 8004F254  10 84 00 14 */	ps_sum0 f4, f4, f0, f0
 /* 8004F258  C0 22 85 D8 */	lfs f1, lit_6075(r2)
-/* 8004F25C  3C 60 80 45 */	lis r3, __float_epsilon@ha
-/* 8004F260  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)
+/* 8004F25C  3C 60 80 45 */	lis r3, __float_epsilon@ha /* 0x80450AEC@ha */
+/* 8004F260  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)  /* 0x80450AEC@l */
 /* 8004F264  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8004F268  FC 04 00 40 */	fcmpo cr0, f4, f0
 /* 8004F26C  4C 40 13 82 */	cror 2, 0, 2
@@ -377,8 +377,8 @@ lbl_8004F2CC:
 /* 8004F2D8  10 94 05 3A */	ps_madd f4, f20, f20, f0
 /* 8004F2DC  10 84 00 14 */	ps_sum0 f4, f4, f0, f0
 /* 8004F2E0  C0 22 85 D8 */	lfs f1, lit_6075(r2)
-/* 8004F2E4  3C 60 80 45 */	lis r3, __float_epsilon@ha
-/* 8004F2E8  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)
+/* 8004F2E4  3C 60 80 45 */	lis r3, __float_epsilon@ha /* 0x80450AEC@ha */
+/* 8004F2E8  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)  /* 0x80450AEC@l */
 /* 8004F2EC  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8004F2F0  FC 04 00 40 */	fcmpo cr0, f4, f0
 /* 8004F2F4  4C 40 13 82 */	cror 2, 0, 2
@@ -414,8 +414,8 @@ lbl_8004F354:
 /* 8004F360  10 93 04 FA */	ps_madd f4, f19, f19, f0
 /* 8004F364  10 84 00 14 */	ps_sum0 f4, f4, f0, f0
 /* 8004F368  C0 22 85 D8 */	lfs f1, lit_6075(r2)
-/* 8004F36C  3C 60 80 45 */	lis r3, __float_epsilon@ha
-/* 8004F370  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)
+/* 8004F36C  3C 60 80 45 */	lis r3, __float_epsilon@ha /* 0x80450AEC@ha */
+/* 8004F370  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)  /* 0x80450AEC@l */
 /* 8004F374  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8004F378  FC 04 00 40 */	fcmpo cr0, f4, f0
 /* 8004F37C  4C 40 13 82 */	cror 2, 0, 2
@@ -451,8 +451,8 @@ lbl_8004F3DC:
 /* 8004F3E8  10 92 04 BA */	ps_madd f4, f18, f18, f0
 /* 8004F3EC  10 84 00 14 */	ps_sum0 f4, f4, f0, f0
 /* 8004F3F0  C0 22 85 D8 */	lfs f1, lit_6075(r2)
-/* 8004F3F4  3C 60 80 45 */	lis r3, __float_epsilon@ha
-/* 8004F3F8  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)
+/* 8004F3F4  3C 60 80 45 */	lis r3, __float_epsilon@ha /* 0x80450AEC@ha */
+/* 8004F3F8  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)  /* 0x80450AEC@l */
 /* 8004F3FC  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8004F400  FC 04 00 40 */	fcmpo cr0, f4, f0
 /* 8004F404  4C 40 13 82 */	cror 2, 0, 2
@@ -488,7 +488,7 @@ lbl_8004F464:
 /* 8004F470  48 30 D2 F5 */	bl GXBegin
 /* 8004F474  C0 02 85 50 */	lfs f0, lit_3964(r2)
 /* 8004F478  3C 60 CC 01 */	lis r3, 0xCC01 /* 0xCC008000@ha */
-/* 8004F47C  D0 03 80 00 */	stfs f0, 0x8000(r3)
+/* 8004F47C  D0 03 80 00 */	stfs f0, 0x8000(r3)  /* 0xCC008000@l */
 /* 8004F480  C0 02 85 50 */	lfs f0, lit_3964(r2)
 /* 8004F484  D0 03 80 00 */	stfs f0, -0x8000(r3)
 /* 8004F488  C0 02 85 50 */	lfs f0, lit_3964(r2)

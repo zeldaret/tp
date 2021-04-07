@@ -11,8 +11,8 @@ lbl_80357D70:
 /* 80357D94  3B C0 FF FC */	li r30, -4
 /* 80357D98  48 00 00 50 */	b lbl_80357DE8
 lbl_80357D9C:
-/* 80357D9C  3C 60 80 45 */	lis r3, __CARDDiskNone@ha
-/* 80357DA0  38 03 CD E0 */	addi r0, r3, __CARDDiskNone@l
+/* 80357D9C  3C 60 80 45 */	lis r3, __CARDDiskNone@ha /* 0x8044CDE0@ha */
+/* 80357DA0  38 03 CD E0 */	addi r0, r3, __CARDDiskNone@l /* 0x8044CDE0@l */
 /* 80357DA4  7C 1D 00 40 */	cmplw r29, r0
 /* 80357DA8  41 82 00 34 */	beq lbl_80357DDC
 /* 80357DAC  38 7B 00 00 */	addi r3, r27, 0
@@ -41,8 +41,8 @@ lbl_80357DE8:
 /* 80357DFC  54 1C 06 3E */	clrlwi r28, r0, 0x18
 /* 80357E00  54 00 06 B5 */	rlwinm. r0, r0, 0, 0x1a, 0x1a
 /* 80357E04  41 82 00 44 */	beq lbl_80357E48
-/* 80357E08  3C 60 80 45 */	lis r3, __CARDDiskNone@ha
-/* 80357E0C  3B E3 CD E0 */	addi r31, r3, __CARDDiskNone@l
+/* 80357E08  3C 60 80 45 */	lis r3, __CARDDiskNone@ha /* 0x8044CDE0@ha */
+/* 80357E0C  3B E3 CD E0 */	addi r31, r3, __CARDDiskNone@l /* 0x8044CDE0@l */
 /* 80357E10  38 7B 00 00 */	addi r3, r27, 0
 /* 80357E14  38 9F 00 00 */	addi r4, r31, 0
 /* 80357E18  38 A0 00 04 */	li r5, 4
@@ -60,8 +60,8 @@ lbl_80357DE8:
 lbl_80357E48:
 /* 80357E48  57 80 06 73 */	rlwinm. r0, r28, 0, 0x19, 0x19
 /* 80357E4C  41 82 00 40 */	beq lbl_80357E8C
-/* 80357E50  3C 60 80 45 */	lis r3, __CARDDiskNone@ha
-/* 80357E54  38 83 CD E0 */	addi r4, r3, __CARDDiskNone@l
+/* 80357E50  3C 60 80 45 */	lis r3, __CARDDiskNone@ha /* 0x8044CDE0@ha */
+/* 80357E54  38 83 CD E0 */	addi r4, r3, __CARDDiskNone@l /* 0x8044CDE0@l */
 /* 80357E58  38 7B 00 00 */	addi r3, r27, 0
 /* 80357E5C  38 A0 00 04 */	li r5, 4
 /* 80357E60  48 00 E2 2D */	bl memcmp

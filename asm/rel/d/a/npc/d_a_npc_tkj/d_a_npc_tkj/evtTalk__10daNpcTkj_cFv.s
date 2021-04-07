@@ -4,8 +4,8 @@ lbl_805742D4:
 /* 805742DC  90 01 00 34 */	stw r0, 0x34(r1)
 /* 805742E0  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 805742E4  7C 7F 1B 78 */	mr r31, r3
-/* 805742E8  3C 80 80 57 */	lis r4, lit_4553@ha
-/* 805742EC  38 A4 67 DC */	addi r5, r4, lit_4553@l
+/* 805742E8  3C 80 80 57 */	lis r4, lit_4553@ha /* 0x805767DC@ha */
+/* 805742EC  38 A4 67 DC */	addi r5, r4, lit_4553@l /* 0x805767DC@l */
 /* 805742F0  80 85 00 00 */	lwz r4, 0(r5)
 /* 805742F4  80 05 00 04 */	lwz r0, 4(r5)
 /* 805742F8  90 81 00 14 */	stw r4, 0x14(r1)
@@ -19,13 +19,13 @@ lbl_805742D4:
 /* 80574318  7F E3 FB 78 */	mr r3, r31
 /* 8057431C  38 80 00 00 */	li r4, 0
 /* 80574320  39 9F 0F 90 */	addi r12, r31, 0xf90
-/* 80574324  4B DE DD 60 */	b __ptmf_scall
+/* 80574324  4B DE DD 61 */	bl __ptmf_scall
 /* 80574328  60 00 00 00 */	nop 
 /* 8057432C  48 00 00 74 */	b lbl_805743A0
 lbl_80574330:
 /* 80574330  38 00 00 00 */	li r0, 0
-/* 80574334  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80574338  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80574334  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80574338  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8057433C  88 63 4F B5 */	lbz r3, 0x4fb5(r3)
 /* 80574340  28 03 00 01 */	cmplwi r3, 1
 /* 80574344  41 82 00 0C */	beq lbl_80574350
@@ -36,15 +36,15 @@ lbl_80574350:
 lbl_80574354:
 /* 80574354  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 80574358  41 82 00 1C */	beq lbl_80574374
-/* 8057435C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80574360  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8057435C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80574360  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80574364  38 63 4F F8 */	addi r3, r3, 0x4ff8
-/* 80574368  4B AD 44 88 */	b ChkPresentEnd__16dEvent_manager_cFv
+/* 80574368  4B AD 44 89 */	bl ChkPresentEnd__16dEvent_manager_cFv
 /* 8057436C  2C 03 00 00 */	cmpwi r3, 0
 /* 80574370  41 82 00 30 */	beq lbl_805743A0
 lbl_80574374:
-/* 80574374  3C 60 80 57 */	lis r3, lit_4561@ha
-/* 80574378  38 83 67 E8 */	addi r4, r3, lit_4561@l
+/* 80574374  3C 60 80 57 */	lis r3, lit_4561@ha /* 0x805767E8@ha */
+/* 80574378  38 83 67 E8 */	addi r4, r3, lit_4561@l /* 0x805767E8@l */
 /* 8057437C  80 64 00 00 */	lwz r3, 0(r4)
 /* 80574380  80 04 00 04 */	lwz r0, 4(r4)
 /* 80574384  90 61 00 08 */	stw r3, 8(r1)

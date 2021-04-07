@@ -21,18 +21,18 @@ lbl_80C16B44:
 /* 80C16B4C  41 82 00 08 */	beq lbl_80C16B54
 /* 80C16B50  38 7E 05 68 */	addi r3, r30, 0x568
 lbl_80C16B54:
-/* 80C16B54  3C 80 80 C1 */	lis r4, l_arcName@ha
-/* 80C16B58  38 84 73 7C */	addi r4, r4, l_arcName@l
+/* 80C16B54  3C 80 80 C1 */	lis r4, l_arcName@ha /* 0x80C1737C@ha */
+/* 80C16B58  38 84 73 7C */	addi r4, r4, l_arcName@l /* 0x80C1737C@l */
 /* 80C16B5C  80 84 00 00 */	lwz r4, 0(r4)
-/* 80C16B60  4B 41 63 5C */	b dComIfG_resLoad__FP30request_of_phase_process_classPCc
+/* 80C16B60  4B 41 63 5D */	bl dComIfG_resLoad__FP30request_of_phase_process_classPCc
 /* 80C16B64  7C 7F 1B 78 */	mr r31, r3
 /* 80C16B68  2C 1F 00 04 */	cmpwi r31, 4
 /* 80C16B6C  40 82 00 70 */	bne lbl_80C16BDC
 /* 80C16B70  7F C3 F3 78 */	mr r3, r30
-/* 80C16B74  3C 80 80 C1 */	lis r4, daObjHBarrel_c_createHeap__FP10fopAc_ac_c@ha
-/* 80C16B78  38 84 67 38 */	addi r4, r4, daObjHBarrel_c_createHeap__FP10fopAc_ac_c@l
+/* 80C16B74  3C 80 80 C1 */	lis r4, daObjHBarrel_c_createHeap__FP10fopAc_ac_c@ha /* 0x80C16738@ha */
+/* 80C16B78  38 84 67 38 */	addi r4, r4, daObjHBarrel_c_createHeap__FP10fopAc_ac_c@l /* 0x80C16738@l */
 /* 80C16B7C  38 A0 10 00 */	li r5, 0x1000
-/* 80C16B80  4B 40 39 30 */	b fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
+/* 80C16B80  4B 40 39 31 */	bl fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
 /* 80C16B84  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80C16B88  40 82 00 0C */	bne lbl_80C16B94
 /* 80C16B8C  38 60 00 05 */	li r3, 5
@@ -48,7 +48,7 @@ lbl_80C16B94:
 /* 80C16BB0  80 7E 05 74 */	lwz r3, 0x574(r30)
 /* 80C16BB4  80 83 00 04 */	lwz r4, 4(r3)
 /* 80C16BB8  7F C3 F3 78 */	mr r3, r30
-/* 80C16BBC  4B 40 39 BC */	b fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
+/* 80C16BBC  4B 40 39 BD */	bl fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
 /* 80C16BC0  38 7E 06 F0 */	addi r3, r30, 0x6f0
 /* 80C16BC4  38 9E 04 D0 */	addi r4, r30, 0x4d0
 /* 80C16BC8  38 A0 00 01 */	li r5, 1

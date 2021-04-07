@@ -3,17 +3,15 @@
 #
 
 M92_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cboard.plf
+M92_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cboard.lcf
+M92_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cboard.map
 
 M92_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_cboard/executor.cpp \
-	rel/d/a/obj/d_a_obj_cboard/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_cboard/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_cboard/d_a_obj_cboard.cpp \
 
 M92_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cboard/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cboard/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cboard/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cboard/d_a_obj_cboard.o \
 
 M92_LIBS := \
@@ -29,14 +27,21 @@ M92_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M92_LDSCRIPT) \
+	-unused -map $(M92_MAP) \
+	-w off \
 
 $(M92_TARGET): $(M92_O_FILES) $(M92_LIBS)
+	@echo [ 92] creating $(M92_TARGET)
 	@echo $(M92_LIBS) $(M92_O_FILES) > build/M92_ofiles
-	$(LD) -partial $(M92_LDFLAGS) -o $(M92_TARGET) @build/M92_ofiles
+	@python3 tools/lcf.py rel 92 --output $(M92_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M92_LDFLAGS) -o $(M92_TARGET) @build/M92_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cboard/%.o: rel/d/a/obj/d_a_obj_cboard/%.cpp
+	@echo [ 92] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M92_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M92_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -5,8 +5,8 @@ lbl_802F5BF8:
 /* 802F5C04  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802F5C08  93 C1 00 08 */	stw r30, 8(r1)
 /* 802F5C0C  7C 7E 1B 78 */	mr r30, r3
-/* 802F5C10  3C 60 80 3D */	lis r3, __vt__7J2DPane@ha
-/* 802F5C14  38 03 CF D0 */	addi r0, r3, __vt__7J2DPane@l
+/* 802F5C10  3C 60 80 3D */	lis r3, __vt__7J2DPane@ha /* 0x803CCFD0@ha */
+/* 802F5C14  38 03 CF D0 */	addi r0, r3, __vt__7J2DPane@l /* 0x803CCFD0@l */
 /* 802F5C18  90 1E 00 00 */	stw r0, 0(r30)
 /* 802F5C1C  3B FE 00 DC */	addi r31, r30, 0xdc
 /* 802F5C20  7F E3 FB 78 */	mr r3, r31

@@ -7,8 +7,8 @@ lbl_8028E760:
 /* 8028E774  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8028E778  7C 9F 23 78 */	mr r31, r4
 /* 8028E77C  41 82 00 B8 */	beq lbl_8028E834
-/* 8028E780  3C 60 80 3C */	lis r3, __vt__Q217JStudio_JParticle17TAdaptor_particle@ha
-/* 8028E784  38 03 5B 0C */	addi r0, r3, __vt__Q217JStudio_JParticle17TAdaptor_particle@l
+/* 8028E780  3C 60 80 3C */	lis r3, __vt__Q217JStudio_JParticle17TAdaptor_particle@ha /* 0x803C5B0C@ha */
+/* 8028E784  38 03 5B 0C */	addi r0, r3, __vt__Q217JStudio_JParticle17TAdaptor_particle@l /* 0x803C5B0C@l */
 /* 8028E788  90 1E 00 00 */	stw r0, 0(r30)
 /* 8028E78C  80 9E 01 A4 */	lwz r4, 0x1a4(r30)
 /* 8028E790  28 04 00 00 */	cmplwi r4, 0
@@ -42,8 +42,8 @@ lbl_8028E7E4:
 lbl_8028E7F8:
 /* 8028E7F8  34 1E 01 A8 */	addic. r0, r30, 0x1a8
 /* 8028E7FC  41 82 00 1C */	beq lbl_8028E818
-/* 8028E800  3C 60 80 3C */	lis r3, __vt__Q317JStudio_JParticle17TAdaptor_particle21TJPACallback_emitter_@ha
-/* 8028E804  38 03 5A F0 */	addi r0, r3, __vt__Q317JStudio_JParticle17TAdaptor_particle21TJPACallback_emitter_@l
+/* 8028E800  3C 60 80 3C */	lis r3, __vt__Q317JStudio_JParticle17TAdaptor_particle21TJPACallback_emitter_@ha /* 0x803C5AF0@ha */
+/* 8028E804  38 03 5A F0 */	addi r0, r3, __vt__Q317JStudio_JParticle17TAdaptor_particle21TJPACallback_emitter_@l /* 0x803C5AF0@l */
 /* 8028E808  90 1E 01 A8 */	stw r0, 0x1a8(r30)
 /* 8028E80C  38 7E 01 A8 */	addi r3, r30, 0x1a8
 /* 8028E810  38 80 00 00 */	li r4, 0

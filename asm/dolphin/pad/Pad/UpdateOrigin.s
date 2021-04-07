@@ -1,10 +1,10 @@
 lbl_8034E2B4:
 /* 8034E2B4  7C 08 02 A6 */	mflr r0
-/* 8034E2B8  3C A0 80 45 */	lis r5, Origin@ha
+/* 8034E2B8  3C A0 80 45 */	lis r5, Origin@ha /* 0x8044CB80@ha */
 /* 8034E2BC  90 01 00 04 */	stw r0, 4(r1)
 /* 8034E2C0  1C C3 00 0C */	mulli r6, r3, 0xc
 /* 8034E2C4  94 21 FF E8 */	stwu r1, -0x18(r1)
-/* 8034E2C8  38 A5 CB 80 */	addi r5, r5, Origin@l
+/* 8034E2C8  38 A5 CB 80 */	addi r5, r5, Origin@l /* 0x8044CB80@l */
 /* 8034E2CC  93 E1 00 14 */	stw r31, 0x14(r1)
 /* 8034E2D0  7F E5 32 14 */	add r31, r5, r6
 /* 8034E2D4  80 0D 84 AC */	lwz r0, AnalogMode(r13)

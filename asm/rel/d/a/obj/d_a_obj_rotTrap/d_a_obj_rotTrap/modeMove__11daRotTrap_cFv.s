@@ -5,17 +5,17 @@ lbl_80CC0360:
 /* 80CC036C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80CC0370  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80CC0374  7C 7E 1B 78 */	mr r30, r3
-/* 80CC0378  3C 60 80 CC */	lis r3, lit_3649@ha
-/* 80CC037C  3B E3 08 08 */	addi r31, r3, lit_3649@l
+/* 80CC0378  3C 60 80 CC */	lis r3, lit_3649@ha /* 0x80CC0808@ha */
+/* 80CC037C  3B E3 08 08 */	addi r31, r3, lit_3649@l /* 0x80CC0808@l */
 /* 80CC0380  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80CC0384  7C 03 07 74 */	extsb r3, r0
-/* 80CC0388  4B 36 CC E4 */	b dComIfGp_getReverb__Fi
+/* 80CC0388  4B 36 CC E5 */	bl dComIfGp_getReverb__Fi
 /* 80CC038C  7C 67 1B 78 */	mr r7, r3
 /* 80CC0390  3C 60 00 08 */	lis r3, 0x0008 /* 0x000801A6@ha */
 /* 80CC0394  38 03 01 A6 */	addi r0, r3, 0x01A6 /* 0x000801A6@l */
 /* 80CC0398  90 01 00 08 */	stw r0, 8(r1)
-/* 80CC039C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80CC03A0  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80CC039C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80CC03A0  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80CC03A4  80 63 00 00 */	lwz r3, 0(r3)
 /* 80CC03A8  38 81 00 08 */	addi r4, r1, 8
 /* 80CC03AC  38 BE 04 D0 */	addi r5, r30, 0x4d0
@@ -25,12 +25,12 @@ lbl_80CC0360:
 /* 80CC03BC  C0 7F 00 4C */	lfs f3, 0x4c(r31)
 /* 80CC03C0  FC 80 18 90 */	fmr f4, f3
 /* 80CC03C4  39 00 00 00 */	li r8, 0
-/* 80CC03C8  4B 5E C1 44 */	b seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80CC03C8  4B 5E C1 45 */	bl seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 80CC03CC  C0 7F 00 40 */	lfs f3, 0x40(r31)
 /* 80CC03D0  C0 5F 00 44 */	lfs f2, 0x44(r31)
 /* 80CC03D4  C0 3F 00 48 */	lfs f1, 0x48(r31)
-/* 80CC03D8  3C 60 80 CC */	lis r3, l_HIO@ha
-/* 80CC03DC  38 63 0A C4 */	addi r3, r3, l_HIO@l
+/* 80CC03D8  3C 60 80 CC */	lis r3, l_HIO@ha /* 0x80CC0AC4@ha */
+/* 80CC03DC  38 63 0A C4 */	addi r3, r3, l_HIO@l /* 0x80CC0AC4@l */
 /* 80CC03E0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80CC03E4  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80CC03E8  EC 02 00 24 */	fdivs f0, f2, f0

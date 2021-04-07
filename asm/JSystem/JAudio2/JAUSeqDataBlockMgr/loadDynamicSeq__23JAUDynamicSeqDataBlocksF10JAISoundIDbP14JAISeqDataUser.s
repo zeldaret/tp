@@ -68,8 +68,8 @@ lbl_802A6CD8:
 /* 802A6D10  7F C4 F3 78 */	mr r4, r30
 /* 802A6D14  80 A6 00 14 */	lwz r5, 0x14(r6)
 /* 802A6D18  80 C6 00 18 */	lwz r6, 0x18(r6)
-/* 802A6D1C  3C E0 80 2A */	lis r7, JAUDynamicSeqDataBlocks_receiveLoaded___FUlUl@ha
-/* 802A6D20  38 E7 6B F4 */	addi r7, r7, JAUDynamicSeqDataBlocks_receiveLoaded___FUlUl@l
+/* 802A6D1C  3C E0 80 2A */	lis r7, JAUDynamicSeqDataBlocks_receiveLoaded___FUlUl@ha /* 0x802A6BF4@ha */
+/* 802A6D20  38 E7 6B F4 */	addi r7, r7, JAUDynamicSeqDataBlocks_receiveLoaded___FUlUl@l /* 0x802A6BF4@l */
 /* 802A6D24  7F 88 E3 78 */	mr r8, r28
 /* 802A6D28  4B FE 9F F1 */	bl loadResourceAsync__15JASResArcLoaderFP10JKRArchiveUsPUcUlPFUlUl_vUl
 /* 802A6D2C  38 60 00 01 */	li r3, 1

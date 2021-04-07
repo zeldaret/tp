@@ -5,16 +5,16 @@ lbl_801A516C:
 /* 801A5178  39 61 00 30 */	addi r11, r1, 0x30
 /* 801A517C  48 1B D0 61 */	bl _savegpr_29
 /* 801A5180  7C 7D 1B 78 */	mr r29, r3
-/* 801A5184  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A5188  3B E3 CA 54 */	addi r31, r3, g_env_light@l
-/* 801A518C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801A5190  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801A5184  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A5188  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
+/* 801A518C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801A5190  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801A5194  83 C3 5D 74 */	lwz r30, 0x5d74(r3)
 /* 801A5198  48 00 6F D1 */	bl dKy_SunMoon_Light_Check__Fv
 /* 801A519C  2C 03 00 01 */	cmpwi r3, 1
 /* 801A51A0  40 82 00 94 */	bne lbl_801A5234
-/* 801A51A4  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A51A8  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801A51A4  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A51A8  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A51AC  4B FF A8 5D */	bl getDaytime__18dScnKy_env_light_cFv
 /* 801A51B0  C0 02 A3 98 */	lfs f0, lit_7365(r2)
 /* 801A51B4  FC 01 00 40 */	fcmpo cr0, f1, f0

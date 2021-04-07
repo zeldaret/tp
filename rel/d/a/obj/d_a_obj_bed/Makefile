@@ -3,19 +3,20 @@
 #
 
 M405_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bed.plf
+M405_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bed.lcf
+M405_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bed.map
 
 M405_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_bed/executor.cpp \
-	rel/d/a/obj/d_a_obj_bed/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_bed/d_a_obj_bed.cpp \
 
 M405_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bed/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bed/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bed/d_a_obj_bed.o \
 
 M405_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bed/libRuntime.PPCEABI.H.a \
 
 M405_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M405_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M405_LDSCRIPT) \
+	-unused -map $(M405_MAP) \
+	-w off \
 
 $(M405_TARGET): $(M405_O_FILES) $(M405_LIBS)
+	@echo [405] creating $(M405_TARGET)
 	@echo $(M405_LIBS) $(M405_O_FILES) > build/M405_ofiles
-	$(LD) -partial $(M405_LDFLAGS) -o $(M405_TARGET) @build/M405_ofiles
+	@python3 tools/lcf.py rel 405 --output $(M405_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M405_LDFLAGS) -o $(M405_TARGET) @build/M405_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bed/%.o: rel/d/a/obj/d_a_obj_bed/%.cpp
+	@echo [405] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M405_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M405_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_bed/libs/Runtime.PPCEABI.H/Makefile
 

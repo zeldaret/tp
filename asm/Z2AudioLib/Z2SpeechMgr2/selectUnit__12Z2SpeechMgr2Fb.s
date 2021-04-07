@@ -9,8 +9,8 @@ lbl_802CC4C0:
 /* 802CC4DC  4B FD 60 BD */	bl stop__8JAISoundFv
 /* 802CC4E0  48 00 02 48 */	b lbl_802CC728
 lbl_802CC4E4:
-/* 802CC4E4  3C A0 80 3A */	lis r5, sPrm__8Z2MdnPrm@ha
-/* 802CC4E8  38 C5 C9 8C */	addi r6, r5, sPrm__8Z2MdnPrm@l
+/* 802CC4E4  3C A0 80 3A */	lis r5, sPrm__8Z2MdnPrm@ha /* 0x8039C98C@ha */
+/* 802CC4E8  38 C5 C9 8C */	addi r6, r5, sPrm__8Z2MdnPrm@l /* 0x8039C98C@l */
 /* 802CC4EC  A0 03 03 FC */	lhz r0, 0x3fc(r3)
 /* 802CC4F0  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 802CC4F4  7C A6 02 14 */	add r5, r6, r0
@@ -115,8 +115,8 @@ lbl_802CC660:
 /* 802CC664  40 82 FF 24 */	bne lbl_802CC588
 /* 802CC668  A1 23 03 FC */	lhz r9, 0x3fc(r3)
 /* 802CC66C  1D 49 00 0C */	mulli r10, r9, 0xc
-/* 802CC670  3D 20 80 3A */	lis r9, sPrm__8Z2MdnPrm@ha
-/* 802CC674  39 29 C9 8C */	addi r9, r9, sPrm__8Z2MdnPrm@l
+/* 802CC670  3D 20 80 3A */	lis r9, sPrm__8Z2MdnPrm@ha /* 0x8039C98C@ha */
+/* 802CC674  39 29 C9 8C */	addi r9, r9, sPrm__8Z2MdnPrm@l /* 0x8039C98C@l */
 /* 802CC678  7D 69 50 2E */	lwzx r11, r9, r10
 /* 802CC67C  39 2B 00 01 */	addi r9, r11, 1
 /* 802CC680  7D 44 48 AE */	lbzx r10, r4, r9

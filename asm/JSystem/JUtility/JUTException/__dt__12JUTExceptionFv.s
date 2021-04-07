@@ -7,8 +7,8 @@ lbl_802E40EC:
 /* 802E4100  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802E4104  7C 9F 23 78 */	mr r31, r4
 /* 802E4108  41 82 00 28 */	beq lbl_802E4130
-/* 802E410C  3C 80 80 3D */	lis r4, __vt__12JUTException@ha
-/* 802E4110  38 04 C6 A4 */	addi r0, r4, __vt__12JUTException@l
+/* 802E410C  3C 80 80 3D */	lis r4, __vt__12JUTException@ha /* 0x803CC6A4@ha */
+/* 802E4110  38 04 C6 A4 */	addi r0, r4, __vt__12JUTException@l /* 0x803CC6A4@l */
 /* 802E4114  90 1E 00 00 */	stw r0, 0(r30)
 /* 802E4118  38 80 00 00 */	li r4, 0
 /* 802E411C  4B FE D6 3D */	bl __dt__9JKRThreadFv

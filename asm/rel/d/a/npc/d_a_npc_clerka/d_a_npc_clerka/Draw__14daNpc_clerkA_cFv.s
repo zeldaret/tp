@@ -3,7 +3,7 @@ lbl_80992E5C:
 /* 80992E60  7C 08 02 A6 */	mflr r0
 /* 80992E64  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80992E68  39 61 00 20 */	addi r11, r1, 0x20
-/* 80992E6C  4B 9C F3 70 */	b _savegpr_29
+/* 80992E6C  4B 9C F3 71 */	bl _savegpr_29
 /* 80992E70  7C 7D 1B 78 */	mr r29, r3
 /* 80992E74  83 C3 09 6C */	lwz r30, 0x96c(r3)
 /* 80992E78  28 1E 00 00 */	cmplwi r30, 0
@@ -25,14 +25,14 @@ lbl_80992EAC:
 /* 80992EB4  38 A0 00 00 */	li r5, 0
 /* 80992EB8  C0 3D 0D E8 */	lfs f1, 0xde8(r29)
 /* 80992EBC  38 C0 00 00 */	li r6, 0
-/* 80992EC0  3C E0 80 99 */	lis r7, lit_4124@ha
-/* 80992EC4  C0 47 59 24 */	lfs f2, lit_4124@l(r7)
+/* 80992EC0  3C E0 80 99 */	lis r7, lit_4124@ha /* 0x80995924@ha */
+/* 80992EC4  C0 47 59 24 */	lfs f2, lit_4124@l(r7)  /* 0x80995924@l */
 /* 80992EC8  38 E0 00 00 */	li r7, 0
 /* 80992ECC  39 00 00 00 */	li r8, 0
 /* 80992ED0  39 20 00 00 */	li r9, 0
-/* 80992ED4  4B 7B 59 98 */	b draw__8daNpcT_cFiifP11_GXColorS10fiii
+/* 80992ED4  4B 7B 59 99 */	bl draw__8daNpcT_cFiifP11_GXColorS10fiii
 /* 80992ED8  39 61 00 20 */	addi r11, r1, 0x20
-/* 80992EDC  4B 9C F3 4C */	b _restgpr_29
+/* 80992EDC  4B 9C F3 4D */	bl _restgpr_29
 /* 80992EE0  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80992EE4  7C 08 03 A6 */	mtlr r0
 /* 80992EE8  38 21 00 20 */	addi r1, r1, 0x20

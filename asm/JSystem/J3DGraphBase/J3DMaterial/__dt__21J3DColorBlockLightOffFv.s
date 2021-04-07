@@ -5,12 +5,12 @@ lbl_803170DC:
 /* 803170E8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 803170EC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 803170F0  41 82 00 30 */	beq lbl_80317120
-/* 803170F4  3C 60 80 3D */	lis r3, __vt__21J3DColorBlockLightOff@ha
-/* 803170F8  38 03 EA 34 */	addi r0, r3, __vt__21J3DColorBlockLightOff@l
+/* 803170F4  3C 60 80 3D */	lis r3, __vt__21J3DColorBlockLightOff@ha /* 0x803CEA34@ha */
+/* 803170F8  38 03 EA 34 */	addi r0, r3, __vt__21J3DColorBlockLightOff@l /* 0x803CEA34@l */
 /* 803170FC  90 1F 00 00 */	stw r0, 0(r31)
 /* 80317100  41 82 00 10 */	beq lbl_80317110
-/* 80317104  3C 60 80 3D */	lis r3, __vt__13J3DColorBlock@ha
-/* 80317108  38 03 DE A0 */	addi r0, r3, __vt__13J3DColorBlock@l
+/* 80317104  3C 60 80 3D */	lis r3, __vt__13J3DColorBlock@ha /* 0x803CDEA0@ha */
+/* 80317108  38 03 DE A0 */	addi r0, r3, __vt__13J3DColorBlock@l /* 0x803CDEA0@l */
 /* 8031710C  90 1F 00 00 */	stw r0, 0(r31)
 lbl_80317110:
 /* 80317110  7C 80 07 35 */	extsh. r0, r4

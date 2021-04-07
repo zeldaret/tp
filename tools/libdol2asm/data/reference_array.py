@@ -64,7 +64,10 @@ class ReferenceArray(ArbitraryData):
 
 
     @staticmethod
-    def create(identifier: Identifier, addr: int, data: bytearray, padding_data: bytearray) -> "ReferenceArray":
+    def create(identifier: Identifier, addr: int, data: bytearray, padding_data: bytearray, always_extern: bool = False) -> "ReferenceArray":
+        if sum(padding_data) != 0:
+            print(identifier)
+
         assert sum(padding_data) == 0
         assert len(data) % 4 == 0
         assert len(padding_data) % 4 == 0
@@ -76,4 +79,5 @@ class ReferenceArray(ArbitraryData):
             size=len(data),
             padding_data = padding_data,
             padding = len(padding_data),
+            always_extern=always_extern,
         )

@@ -7,7 +7,7 @@ lbl_80D11FBC:
 /* 80D11FD0  41 82 00 10 */	beq lbl_80D11FE0
 /* 80D11FD4  7C 80 07 35 */	extsh. r0, r4
 /* 80D11FD8  40 81 00 08 */	ble lbl_80D11FE0
-/* 80D11FDC  4B 5B CD 60 */	b __dl__FPv
+/* 80D11FDC  4B 5B CD 61 */	bl __dl__FPv
 lbl_80D11FE0:
 /* 80D11FE0  7F E3 FB 78 */	mr r3, r31
 /* 80D11FE4  83 E1 00 0C */	lwz r31, 0xc(r1)

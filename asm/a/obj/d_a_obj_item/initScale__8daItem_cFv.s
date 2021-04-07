@@ -3,8 +3,8 @@ lbl_8015DBF0:
 /* 8015DBF4  54 00 47 3E */	rlwinm r0, r0, 8, 0x1c, 0x1f
 /* 8015DBF8  28 00 00 09 */	cmplwi r0, 9
 /* 8015DBFC  41 81 00 30 */	bgt lbl_8015DC2C
-/* 8015DC00  3C 80 80 3C */	lis r4, lit_5193@ha
-/* 8015DC04  38 84 9E 04 */	addi r4, r4, lit_5193@l
+/* 8015DC00  3C 80 80 3C */	lis r4, lit_5193@ha /* 0x803B9E04@ha */
+/* 8015DC04  38 84 9E 04 */	addi r4, r4, lit_5193@l /* 0x803B9E04@l */
 /* 8015DC08  54 00 10 3A */	slwi r0, r0, 2
 /* 8015DC0C  7C 04 00 2E */	lwzx r0, r4, r0
 /* 8015DC10  7C 09 03 A6 */	mtctr r0

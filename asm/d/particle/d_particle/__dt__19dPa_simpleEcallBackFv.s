@@ -7,8 +7,8 @@ lbl_8004FC08:
 /* 8004FC1C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8004FC20  7C 9F 23 78 */	mr r31, r4
 /* 8004FC24  41 82 00 28 */	beq lbl_8004FC4C
-/* 8004FC28  3C 80 80 3B */	lis r4, __vt__19dPa_simpleEcallBack@ha
-/* 8004FC2C  38 04 84 48 */	addi r0, r4, __vt__19dPa_simpleEcallBack@l
+/* 8004FC28  3C 80 80 3B */	lis r4, __vt__19dPa_simpleEcallBack@ha /* 0x803A8448@ha */
+/* 8004FC2C  38 04 84 48 */	addi r0, r4, __vt__19dPa_simpleEcallBack@l /* 0x803A8448@l */
 /* 8004FC30  90 1E 00 00 */	stw r0, 0(r30)
 /* 8004FC34  38 80 00 00 */	li r4, 0
 /* 8004FC38  48 22 EA 6D */	bl __dt__18JPAEmitterCallBackFv

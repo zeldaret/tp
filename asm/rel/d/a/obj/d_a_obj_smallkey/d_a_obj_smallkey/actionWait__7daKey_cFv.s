@@ -5,15 +5,15 @@ lbl_80CDAA28:
 /* 80CDAA34  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CDAA38  93 C1 00 08 */	stw r30, 8(r1)
 /* 80CDAA3C  7C 7F 1B 78 */	mr r31, r3
-/* 80CDAA40  3C 80 80 CE */	lis r4, l_cyl_src@ha
-/* 80CDAA44  3B C4 B7 F4 */	addi r30, r4, l_cyl_src@l
+/* 80CDAA40  3C 80 80 CE */	lis r4, l_cyl_src@ha /* 0x80CDB7F4@ha */
+/* 80CDAA44  3B C4 B7 F4 */	addi r30, r4, l_cyl_src@l /* 0x80CDB7F4@l */
 /* 80CDAA48  38 9F 07 A4 */	addi r4, r31, 0x7a4
-/* 80CDAA4C  4B 33 FC 80 */	b fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
+/* 80CDAA4C  4B 33 FC 81 */	bl fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
 /* 80CDAA50  38 7F 05 8C */	addi r3, r31, 0x58c
-/* 80CDAA54  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80CDAA58  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80CDAA54  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CDAA58  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CDAA5C  38 84 0F 38 */	addi r4, r4, 0xf38
-/* 80CDAA60  4B 39 C0 4C */	b CrrPos__9dBgS_AcchFR4dBgS
+/* 80CDAA60  4B 39 C0 4D */	bl CrrPos__9dBgS_AcchFR4dBgS
 /* 80CDAA64  7F E3 FB 78 */	mr r3, r31
 /* 80CDAA68  4B FF FC 19 */	bl bg_check__7daKey_cFv
 /* 80CDAA6C  80 1F 05 B8 */	lwz r0, 0x5b8(r31)
@@ -38,8 +38,8 @@ lbl_80CDAAB0:
 /* 80CDAAB4  54 00 07 34 */	rlwinm r0, r0, 0, 0x1c, 0x1a
 /* 80CDAAB8  90 1F 05 5C */	stw r0, 0x55c(r31)
 lbl_80CDAABC:
-/* 80CDAABC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CDAAC0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80CDAABC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CDAAC0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CDAAC4  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 80CDAAC8  80 1F 04 9C */	lwz r0, 0x49c(r31)
 /* 80CDAACC  54 00 04 A5 */	rlwinm. r0, r0, 0, 0x12, 0x12
@@ -51,7 +51,7 @@ lbl_80CDAABC:
 /* 80CDAAE4  54 00 04 21 */	rlwinm. r0, r0, 0, 0x10, 0x10
 /* 80CDAAE8  41 82 00 24 */	beq lbl_80CDAB0C
 /* 80CDAAEC  7F E3 FB 78 */	mr r3, r31
-/* 80CDAAF0  4B 34 20 B0 */	b fopAcM_cancelCarryNow__FP10fopAc_ac_c
+/* 80CDAAF0  4B 34 20 B1 */	bl fopAcM_cancelCarryNow__FP10fopAc_ac_c
 /* 80CDAAF4  7F E3 FB 78 */	mr r3, r31
 /* 80CDAAF8  48 00 00 7D */	bl initActionOrderGetDemo__7daKey_cFv
 /* 80CDAAFC  48 00 00 10 */	b lbl_80CDAB0C

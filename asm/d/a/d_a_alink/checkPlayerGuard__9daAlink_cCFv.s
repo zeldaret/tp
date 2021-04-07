@@ -11,8 +11,8 @@ lbl_800DCE6C:
 /* 800DCE90  28 00 00 16 */	cmplwi r0, 0x16
 /* 800DCE94  41 82 00 38 */	beq lbl_800DCECC
 /* 800DCE98  3B A0 00 00 */	li r29, 0
-/* 800DCE9C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 800DCEA0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 800DCE9C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800DCEA0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800DCEA4  88 04 00 15 */	lbz r0, 0x15(r4)
 /* 800DCEA8  28 00 00 FF */	cmplwi r0, 0xff
 /* 800DCEAC  41 82 00 14 */	beq lbl_800DCEC0

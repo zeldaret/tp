@@ -19,8 +19,8 @@ lbl_8029DB78:
 /* 8029DBBC  B0 1F 00 0A */	sth r0, 0xa(r31)
 /* 8029DBC0  A0 1E 00 02 */	lhz r0, 2(r30)
 /* 8029DBC4  54 00 08 3C */	slwi r0, r0, 1
-/* 8029DBC8  3C 60 80 3C */	lis r3, SEND_TABLE__6JASDsp@ha
-/* 8029DBCC  38 63 78 F0 */	addi r3, r3, SEND_TABLE__6JASDsp@l
+/* 8029DBC8  3C 60 80 3C */	lis r3, SEND_TABLE__6JASDsp@ha /* 0x803C78F0@ha */
+/* 8029DBCC  38 63 78 F0 */	addi r3, r3, SEND_TABLE__6JASDsp@l /* 0x803C78F0@l */
 /* 8029DBD0  7C 03 02 2E */	lhzx r0, r3, r0
 /* 8029DBD4  B0 1F 00 08 */	sth r0, 8(r31)
 /* 8029DBD8  A8 1E 00 08 */	lha r0, 8(r30)

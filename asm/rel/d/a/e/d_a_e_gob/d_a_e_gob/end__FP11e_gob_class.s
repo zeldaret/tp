@@ -5,15 +5,15 @@ lbl_806DB304:
 /* 806DB310  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 806DB314  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 806DB318  7C 7F 1B 78 */	mr r31, r3
-/* 806DB31C  3C 60 80 6E */	lis r3, lit_3763@ha
-/* 806DB320  3B C3 EE 38 */	addi r30, r3, lit_3763@l
+/* 806DB31C  3C 60 80 6E */	lis r3, lit_3763@ha /* 0x806DEE38@ha */
+/* 806DB320  3B C3 EE 38 */	addi r30, r3, lit_3763@l /* 0x806DEE38@l */
 /* 806DB324  38 00 00 05 */	li r0, 5
 /* 806DB328  B0 1F 06 7E */	sth r0, 0x67e(r31)
 /* 806DB32C  38 7F 04 DE */	addi r3, r31, 0x4de
 /* 806DB330  A8 9F 06 6A */	lha r4, 0x66a(r31)
 /* 806DB334  38 A0 00 01 */	li r5, 1
 /* 806DB338  38 C0 10 00 */	li r6, 0x1000
-/* 806DB33C  4B B9 52 CC */	b cLib_addCalcAngleS2__FPssss
+/* 806DB33C  4B B9 52 CD */	bl cLib_addCalcAngleS2__FPssss
 /* 806DB340  A8 1F 06 58 */	lha r0, 0x658(r31)
 /* 806DB344  2C 00 00 03 */	cmpwi r0, 3
 /* 806DB348  41 82 00 F4 */	beq lbl_806DB43C

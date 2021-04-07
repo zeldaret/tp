@@ -3,18 +3,16 @@
 #
 
 M645_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush2.plf
+M645_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush2.lcf
+M645_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush2.map
 
 M645_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_swpush2/executor.cpp \
-	rel/d/a/obj/d_a_obj_swpush2/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_swpush2/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_swpush2/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_swpush2/d_a_obj_swpush2.cpp \
 
 M645_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush2/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush2/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush2/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush2/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush2/d_a_obj_swpush2.o \
 
@@ -31,14 +29,21 @@ M645_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M645_LDSCRIPT) \
+	-unused -map $(M645_MAP) \
+	-w off \
 
 $(M645_TARGET): $(M645_O_FILES) $(M645_LIBS)
+	@echo [645] creating $(M645_TARGET)
 	@echo $(M645_LIBS) $(M645_O_FILES) > build/M645_ofiles
-	$(LD) -partial $(M645_LDFLAGS) -o $(M645_TARGET) @build/M645_ofiles
+	@python3 tools/lcf.py rel 645 --output $(M645_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M645_LDFLAGS) -o $(M645_TARGET) @build/M645_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swpush2/%.o: rel/d/a/obj/d_a_obj_swpush2/%.cpp
+	@echo [645] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M645_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M645_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

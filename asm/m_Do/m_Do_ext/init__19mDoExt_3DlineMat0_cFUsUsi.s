@@ -14,8 +14,8 @@ lbl_800125E0:
 /* 80012610  54 83 2A F4 */	rlwinm r3, r4, 5, 0xb, 0x1a
 /* 80012614  38 63 00 10 */	addi r3, r3, 0x10
 /* 80012618  48 2B C6 AD */	bl __nwa__FUl
-/* 8001261C  3C 80 80 01 */	lis r4, __ct__15mDoExt_3Dline_cFv@ha
-/* 80012620  38 84 26 BC */	addi r4, r4, __ct__15mDoExt_3Dline_cFv@l
+/* 8001261C  3C 80 80 01 */	lis r4, __ct__15mDoExt_3Dline_cFv@ha /* 0x800126BC@ha */
+/* 80012620  38 84 26 BC */	addi r4, r4, __ct__15mDoExt_3Dline_cFv@l /* 0x800126BC@l */
 /* 80012624  38 A0 00 00 */	li r5, 0
 /* 80012628  38 C0 00 20 */	li r6, 0x20
 /* 8001262C  7F E7 FB 78 */	mr r7, r31

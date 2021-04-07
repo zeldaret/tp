@@ -70,8 +70,8 @@ lbl_8026FEFC:
 /* 8026FEFC  C8 02 B7 F8 */	lfd f0, lit_2381(r2)
 /* 8026FF00  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8026FF04  40 80 00 10 */	bge lbl_8026FF14
-/* 8026FF08  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8026FF0C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8026FF08  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8026FF0C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8026FF10  48 00 00 70 */	b lbl_8026FF80
 lbl_8026FF14:
 /* 8026FF14  D0 21 00 0C */	stfs f1, 0xc(r1)
@@ -105,8 +105,8 @@ lbl_8026FF6C:
 lbl_8026FF70:
 /* 8026FF70  2C 00 00 01 */	cmpwi r0, 1
 /* 8026FF74  40 82 00 0C */	bne lbl_8026FF80
-/* 8026FF78  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8026FF7C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8026FF78  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8026FF7C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_8026FF80:
 /* 8026FF80  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 8026FF84  40 80 00 18 */	bge lbl_8026FF9C
@@ -196,8 +196,8 @@ lbl_802700BC:
 /* 802700BC  C8 02 B7 F8 */	lfd f0, lit_2381(r2)
 /* 802700C0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 802700C4  40 80 00 10 */	bge lbl_802700D4
-/* 802700C8  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 802700CC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 802700C8  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 802700CC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 802700D0  48 00 00 70 */	b lbl_80270140
 lbl_802700D4:
 /* 802700D4  D0 21 00 08 */	stfs f1, 8(r1)
@@ -231,8 +231,8 @@ lbl_8027012C:
 lbl_80270130:
 /* 80270130  2C 00 00 01 */	cmpwi r0, 1
 /* 80270134  40 82 00 0C */	bne lbl_80270140
-/* 80270138  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8027013C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80270138  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8027013C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80270140:
 /* 80270140  E3 E1 00 98 */	psq_l f31, 152(r1), 0, 0 /* qr0 */
 /* 80270144  CB E1 00 90 */	lfd f31, 0x90(r1)

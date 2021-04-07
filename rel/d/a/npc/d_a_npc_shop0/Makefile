@@ -3,17 +3,15 @@
 #
 
 M362_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop0.plf
+M362_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop0.lcf
+M362_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop0.map
 
 M362_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_shop0/executor.cpp \
-	rel/d/a/npc/d_a_npc_shop0/unknown_translation_unit_ctors.cpp \
-	rel/d/a/npc/d_a_npc_shop0/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/npc/d_a_npc_shop0/d_a_npc_shop0.cpp \
 
 M362_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop0/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop0/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop0/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop0/d_a_npc_shop0.o \
 
 M362_LIBS := \
@@ -29,14 +27,21 @@ M362_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M362_LDSCRIPT) \
+	-unused -map $(M362_MAP) \
+	-w off \
 
 $(M362_TARGET): $(M362_O_FILES) $(M362_LIBS)
+	@echo [362] creating $(M362_TARGET)
 	@echo $(M362_LIBS) $(M362_O_FILES) > build/M362_ofiles
-	$(LD) -partial $(M362_LDFLAGS) -o $(M362_TARGET) @build/M362_ofiles
+	@python3 tools/lcf.py rel 362 --output $(M362_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M362_LDFLAGS) -o $(M362_TARGET) @build/M362_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shop0/%.o: rel/d/a/npc/d_a_npc_shop0/%.cpp
+	@echo [362] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M362_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M362_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

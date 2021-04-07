@@ -5,18 +5,18 @@ lbl_80C85164:
 /* 80C85170  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C85174  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80C85178  41 82 00 30 */	beq lbl_80C851A8
-/* 80C8517C  3C 60 80 C8 */	lis r3, __vt__17daLv7BsGate_HIO_c@ha
-/* 80C85180  38 03 53 3C */	addi r0, r3, __vt__17daLv7BsGate_HIO_c@l
+/* 80C8517C  3C 60 80 C8 */	lis r3, __vt__17daLv7BsGate_HIO_c@ha /* 0x80C8533C@ha */
+/* 80C85180  38 03 53 3C */	addi r0, r3, __vt__17daLv7BsGate_HIO_c@l /* 0x80C8533C@l */
 /* 80C85184  90 1F 00 00 */	stw r0, 0(r31)
 /* 80C85188  41 82 00 10 */	beq lbl_80C85198
-/* 80C8518C  3C 60 80 C8 */	lis r3, __vt__14mDoHIO_entry_c@ha
-/* 80C85190  38 03 53 48 */	addi r0, r3, __vt__14mDoHIO_entry_c@l
+/* 80C8518C  3C 60 80 C8 */	lis r3, __vt__14mDoHIO_entry_c@ha /* 0x80C85348@ha */
+/* 80C85190  38 03 53 48 */	addi r0, r3, __vt__14mDoHIO_entry_c@l /* 0x80C85348@l */
 /* 80C85194  90 1F 00 00 */	stw r0, 0(r31)
 lbl_80C85198:
 /* 80C85198  7C 80 07 35 */	extsh. r0, r4
 /* 80C8519C  40 81 00 0C */	ble lbl_80C851A8
 /* 80C851A0  7F E3 FB 78 */	mr r3, r31
-/* 80C851A4  4B 64 9B 98 */	b __dl__FPv
+/* 80C851A4  4B 64 9B 99 */	bl __dl__FPv
 lbl_80C851A8:
 /* 80C851A8  7F E3 FB 78 */	mr r3, r31
 /* 80C851AC  83 E1 00 0C */	lwz r31, 0xc(r1)

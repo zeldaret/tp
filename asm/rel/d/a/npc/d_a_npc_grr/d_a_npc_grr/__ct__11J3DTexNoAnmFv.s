@@ -1,6 +1,6 @@
 lbl_809E0330:
-/* 809E0330  3C 80 80 9E */	lis r4, __vt__11J3DTexNoAnm@ha
-/* 809E0334  38 04 3E 08 */	addi r0, r4, __vt__11J3DTexNoAnm@l
+/* 809E0330  3C 80 80 9E */	lis r4, __vt__11J3DTexNoAnm@ha /* 0x809E3E08@ha */
+/* 809E0334  38 04 3E 08 */	addi r0, r4, __vt__11J3DTexNoAnm@l /* 0x809E3E08@l */
 /* 809E0338  90 03 00 00 */	stw r0, 0(r3)
 /* 809E033C  38 80 00 00 */	li r4, 0
 /* 809E0340  B0 83 00 04 */	sth r4, 4(r3)

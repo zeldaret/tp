@@ -2,8 +2,8 @@ lbl_8009AC14:
 /* 8009AC14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009AC18  7C 08 02 A6 */	mflr r0
 /* 8009AC1C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8009AC20  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8009AC24  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8009AC20  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8009AC24  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8009AC28  38 63 00 9C */	addi r3, r3, 0x9c
 /* 8009AC2C  38 80 00 15 */	li r4, 0x15
 /* 8009AC30  38 A0 00 01 */	li r5, 1

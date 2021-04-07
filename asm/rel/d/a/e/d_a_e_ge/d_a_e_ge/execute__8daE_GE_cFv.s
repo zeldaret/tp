@@ -5,8 +5,8 @@ lbl_806CC068:
 /* 806CC074  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 806CC078  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 806CC07C  7C 7E 1B 78 */	mr r30, r3
-/* 806CC080  3C 60 80 6D */	lis r3, lit_3904@ha
-/* 806CC084  3B E3 D0 00 */	addi r31, r3, lit_3904@l
+/* 806CC080  3C 60 80 6D */	lis r3, lit_3904@ha /* 0x806CD000@ha */
+/* 806CC084  3B E3 D0 00 */	addi r31, r3, lit_3904@l /* 0x806CD000@l */
 /* 806CC088  38 60 00 00 */	li r3, 0
 /* 806CC08C  38 00 00 02 */	li r0, 2
 /* 806CC090  7C 09 03 A6 */	mtctr r0

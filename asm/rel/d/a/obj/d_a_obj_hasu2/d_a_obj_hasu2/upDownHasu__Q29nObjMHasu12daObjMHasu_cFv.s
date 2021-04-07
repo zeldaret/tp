@@ -9,8 +9,8 @@ lbl_80C186E0:
 /* 80C186FC  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80C18700  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80C18704  7C 7F 1B 78 */	mr r31, r3
-/* 80C18708  3C 60 80 C2 */	lis r3, l_cull_box@ha
-/* 80C1870C  3B C3 8A 58 */	addi r30, r3, l_cull_box@l
+/* 80C18708  3C 60 80 C2 */	lis r3, l_cull_box@ha /* 0x80C18A58@ha */
+/* 80C1870C  3B C3 8A 58 */	addi r30, r3, l_cull_box@l /* 0x80C18A58@l */
 /* 80C18710  88 1F 06 0C */	lbz r0, 0x60c(r31)
 /* 80C18714  54 00 CF FF */	rlwinm. r0, r0, 0x19, 0x1f, 0x1f
 /* 80C18718  41 82 00 84 */	beq lbl_80C1879C
@@ -66,10 +66,10 @@ lbl_80C187AC:
 /* 80C187CC  3C 60 00 08 */	lis r3, 0x0008 /* 0x000802AE@ha */
 /* 80C187D0  38 03 02 AE */	addi r0, r3, 0x02AE /* 0x000802AE@l */
 /* 80C187D4  90 01 00 08 */	stw r0, 8(r1)
-/* 80C187D8  4B 74 98 D4 */	b __cvt_fp2unsigned
+/* 80C187D8  4B 74 98 D5 */	bl __cvt_fp2unsigned
 /* 80C187DC  7C 66 1B 78 */	mr r6, r3
-/* 80C187E0  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80C187E4  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80C187E0  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80C187E4  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80C187E8  80 63 00 00 */	lwz r3, 0(r3)
 /* 80C187EC  38 81 00 08 */	addi r4, r1, 8
 /* 80C187F0  38 BF 04 D0 */	addi r5, r31, 0x4d0
@@ -79,14 +79,14 @@ lbl_80C187AC:
 /* 80C18800  C0 7E 00 38 */	lfs f3, 0x38(r30)
 /* 80C18804  FC 80 18 90 */	fmr f4, f3
 /* 80C18808  39 00 00 00 */	li r8, 0
-/* 80C1880C  4B 69 3D 00 */	b seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80C1880C  4B 69 3D 01 */	bl seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 lbl_80C18810:
 /* 80C18810  38 7F 04 D4 */	addi r3, r31, 0x4d4
 /* 80C18814  FC 20 F8 90 */	fmr f1, f31
 /* 80C18818  C0 5E 00 28 */	lfs f2, 0x28(r30)
 /* 80C1881C  FC 60 F0 90 */	fmr f3, f30
 /* 80C18820  FC 80 F0 90 */	fmr f4, f30
-/* 80C18824  4B 65 71 58 */	b cLib_addCalc__FPfffff
+/* 80C18824  4B 65 71 59 */	bl cLib_addCalc__FPfffff
 /* 80C18828  C0 1E 00 3C */	lfs f0, 0x3c(r30)
 /* 80C1882C  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80C18830  40 82 00 14 */	bne lbl_80C18844

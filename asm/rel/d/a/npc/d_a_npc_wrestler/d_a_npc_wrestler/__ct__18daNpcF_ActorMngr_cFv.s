@@ -4,10 +4,10 @@ lbl_80B40E80:
 /* 80B40E88  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80B40E8C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80B40E90  7C 7F 1B 78 */	mr r31, r3
-/* 80B40E94  3C 80 80 B4 */	lis r4, __vt__18daNpcF_ActorMngr_c@ha
-/* 80B40E98  38 04 2D D0 */	addi r0, r4, __vt__18daNpcF_ActorMngr_c@l
+/* 80B40E94  3C 80 80 B4 */	lis r4, __vt__18daNpcF_ActorMngr_c@ha /* 0x80B42DD0@ha */
+/* 80B40E98  38 04 2D D0 */	addi r0, r4, __vt__18daNpcF_ActorMngr_c@l /* 0x80B42DD0@l */
 /* 80B40E9C  90 03 00 04 */	stw r0, 4(r3)
-/* 80B40EA0  4B 60 F8 10 */	b initialize__18daNpcF_ActorMngr_cFv
+/* 80B40EA0  4B 60 F8 11 */	bl initialize__18daNpcF_ActorMngr_cFv
 /* 80B40EA4  7F E3 FB 78 */	mr r3, r31
 /* 80B40EA8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80B40EAC  80 01 00 14 */	lwz r0, 0x14(r1)

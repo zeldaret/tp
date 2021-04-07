@@ -20,8 +20,8 @@ lbl_8008901C:
 /* 80089024  80 63 05 28 */	lwz r3, 0x528(r3)
 /* 80089028  48 00 00 4C */	b lbl_80089074
 lbl_8008902C:
-/* 8008902C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80089030  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8008902C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80089030  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80089034  3B E3 4F F8 */	addi r31, r3, 0x4ff8
 /* 80089038  7F E3 FB 78 */	mr r3, r31
 /* 8008903C  80 9D 04 EC */	lwz r4, 0x4ec(r29)

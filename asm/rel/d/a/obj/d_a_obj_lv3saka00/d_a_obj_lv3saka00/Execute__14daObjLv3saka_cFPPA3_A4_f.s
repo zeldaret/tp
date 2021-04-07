@@ -6,13 +6,13 @@ lbl_80C5C0FC:
 /* 80C5C10C  93 C1 00 08 */	stw r30, 8(r1)
 /* 80C5C110  7C 7E 1B 78 */	mr r30, r3
 /* 80C5C114  7C 9F 23 78 */	mr r31, r4
-/* 80C5C118  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C5C11C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C5C118  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C5C11C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C5C120  80 1E 00 B0 */	lwz r0, 0xb0(r30)
 /* 80C5C124  54 04 06 3E */	clrlwi r4, r0, 0x18
 /* 80C5C128  88 1E 04 BA */	lbz r0, 0x4ba(r30)
 /* 80C5C12C  7C 05 07 74 */	extsb r5, r0
-/* 80C5C130  4B 3D 92 30 */	b isSwitch__10dSv_info_cCFii
+/* 80C5C130  4B 3D 92 31 */	bl isSwitch__10dSv_info_cCFii
 /* 80C5C134  2C 03 00 00 */	cmpwi r3, 0
 /* 80C5C138  41 82 00 10 */	beq lbl_80C5C148
 /* 80C5C13C  7F C3 F3 78 */	mr r3, r30

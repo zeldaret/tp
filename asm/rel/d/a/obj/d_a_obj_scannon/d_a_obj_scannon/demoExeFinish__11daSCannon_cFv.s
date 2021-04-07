@@ -5,8 +5,8 @@ lbl_80CC8538:
 /* 80CC8544  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80CC8548  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80CC854C  7C 7E 1B 78 */	mr r30, r3
-/* 80CC8550  3C 80 80 CD */	lis r4, TKS_SET_POS@ha
-/* 80CC8554  3B E4 91 88 */	addi r31, r4, TKS_SET_POS@l
+/* 80CC8550  3C 80 80 CD */	lis r4, TKS_SET_POS@ha /* 0x80CC9188@ha */
+/* 80CC8554  3B E4 91 88 */	addi r31, r4, TKS_SET_POS@l /* 0x80CC9188@l */
 /* 80CC8558  A0 83 06 12 */	lhz r4, 0x612(r3)
 /* 80CC855C  38 A0 00 03 */	li r5, 3
 /* 80CC8560  38 DE 06 28 */	addi r6, r30, 0x628
@@ -20,8 +20,8 @@ lbl_80CC8538:
 /* 80CC8580  3C 60 00 01 */	lis r3, 0x0001 /* 0x0001008E@ha */
 /* 80CC8584  38 03 00 8E */	addi r0, r3, 0x008E /* 0x0001008E@l */
 /* 80CC8588  90 01 00 08 */	stw r0, 8(r1)
-/* 80CC858C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80CC8590  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80CC858C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80CC8590  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80CC8594  80 63 00 00 */	lwz r3, 0(r3)
 /* 80CC8598  38 81 00 08 */	addi r4, r1, 8
 /* 80CC859C  38 A0 00 00 */	li r5, 0
@@ -32,7 +32,7 @@ lbl_80CC8538:
 /* 80CC85B0  C0 7F 00 78 */	lfs f3, 0x78(r31)
 /* 80CC85B4  FC 80 18 90 */	fmr f4, f3
 /* 80CC85B8  39 00 00 00 */	li r8, 0
-/* 80CC85BC  4B 5E 33 C8 */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80CC85BC  4B 5E 33 C9 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 80CC85C0  7F C3 F3 78 */	mr r3, r30
 /* 80CC85C4  48 00 06 31 */	bl initEmtLine__11daSCannon_cFv
 /* 80CC85C8  48 00 00 10 */	b lbl_80CC85D8
@@ -57,11 +57,11 @@ lbl_80CC85FC:
 /* 80CC8608  48 00 09 0D */	bl func_80CC8F14
 /* 80CC860C  2C 03 00 00 */	cmpwi r3, 0
 /* 80CC8610  40 82 00 20 */	bne lbl_80CC8630
-/* 80CC8614  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CC8618  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80CC8614  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CC8618  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CC861C  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 80CC8620  80 9E 06 04 */	lwz r4, 0x604(r30)
-/* 80CC8624  4B 37 FB 58 */	b cutEnd__16dEvent_manager_cFi
+/* 80CC8624  4B 37 FB 59 */	bl cutEnd__16dEvent_manager_cFi
 /* 80CC8628  7F C3 F3 78 */	mr r3, r30
 /* 80CC862C  48 00 02 7D */	bl changeScene__11daSCannon_cFv
 lbl_80CC8630:

@@ -13,12 +13,12 @@ lbl_8012E1E8:
 /* 8012E214  40 82 00 38 */	bne lbl_8012E24C
 /* 8012E218  7F C3 F3 78 */	mr r3, r30
 /* 8012E21C  38 80 00 4D */	li r4, 0x4d
-/* 8012E220  3C A0 80 39 */	lis r5, m__24daAlinkHIO_wlSideStep_c0@ha
-/* 8012E224  38 A5 EF A8 */	addi r5, r5, m__24daAlinkHIO_wlSideStep_c0@l
+/* 8012E220  3C A0 80 39 */	lis r5, m__24daAlinkHIO_wlSideStep_c0@ha /* 0x8038EFA8@ha */
+/* 8012E224  38 A5 EF A8 */	addi r5, r5, m__24daAlinkHIO_wlSideStep_c0@l /* 0x8038EFA8@l */
 /* 8012E228  38 A5 00 3C */	addi r5, r5, 0x3c
 /* 8012E22C  4B FF B6 1D */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
-/* 8012E230  3C 60 80 39 */	lis r3, m__24daAlinkHIO_wlSideStep_c0@ha
-/* 8012E234  38 63 EF A8 */	addi r3, r3, m__24daAlinkHIO_wlSideStep_c0@l
+/* 8012E230  3C 60 80 39 */	lis r3, m__24daAlinkHIO_wlSideStep_c0@ha /* 0x8038EFA8@ha */
+/* 8012E234  38 63 EF A8 */	addi r3, r3, m__24daAlinkHIO_wlSideStep_c0@l /* 0x8038EFA8@l */
 /* 8012E238  C0 03 00 4C */	lfs f0, 0x4c(r3)
 /* 8012E23C  D0 1E 34 78 */	stfs f0, 0x3478(r30)
 /* 8012E240  38 00 00 0A */	li r0, 0xa
@@ -34,12 +34,12 @@ lbl_8012E24C:
 /* 8012E264  40 82 00 08 */	bne lbl_8012E26C
 /* 8012E268  38 80 00 49 */	li r4, 0x49
 lbl_8012E26C:
-/* 8012E26C  3C A0 80 39 */	lis r5, m__24daAlinkHIO_wlSideStep_c0@ha
-/* 8012E270  38 A5 EF A8 */	addi r5, r5, m__24daAlinkHIO_wlSideStep_c0@l
+/* 8012E26C  3C A0 80 39 */	lis r5, m__24daAlinkHIO_wlSideStep_c0@ha /* 0x8038EFA8@ha */
+/* 8012E270  38 A5 EF A8 */	addi r5, r5, m__24daAlinkHIO_wlSideStep_c0@l /* 0x8038EFA8@l */
 /* 8012E274  38 A5 00 14 */	addi r5, r5, 0x14
 /* 8012E278  4B FF B5 D1 */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
-/* 8012E27C  3C 60 80 39 */	lis r3, m__24daAlinkHIO_wlSideStep_c0@ha
-/* 8012E280  38 63 EF A8 */	addi r3, r3, m__24daAlinkHIO_wlSideStep_c0@l
+/* 8012E27C  3C 60 80 39 */	lis r3, m__24daAlinkHIO_wlSideStep_c0@ha /* 0x8038EFA8@ha */
+/* 8012E280  38 63 EF A8 */	addi r3, r3, m__24daAlinkHIO_wlSideStep_c0@l /* 0x8038EFA8@l */
 /* 8012E284  C0 03 00 24 */	lfs f0, 0x24(r3)
 /* 8012E288  D0 1E 34 78 */	stfs f0, 0x3478(r30)
 lbl_8012E28C:

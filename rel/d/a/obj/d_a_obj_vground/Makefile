@@ -3,17 +3,15 @@
 #
 
 M674_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_vground.plf
+M674_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_vground.lcf
+M674_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_vground.map
 
 M674_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_vground/executor.cpp \
-	rel/d/a/obj/d_a_obj_vground/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_vground/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_vground/d_a_obj_vground.cpp \
 
 M674_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_vground/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_vground/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_vground/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_vground/d_a_obj_vground.o \
 
 M674_LIBS := \
@@ -29,14 +27,21 @@ M674_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M674_LDSCRIPT) \
+	-unused -map $(M674_MAP) \
+	-w off \
 
 $(M674_TARGET): $(M674_O_FILES) $(M674_LIBS)
+	@echo [674] creating $(M674_TARGET)
 	@echo $(M674_LIBS) $(M674_O_FILES) > build/M674_ofiles
-	$(LD) -partial $(M674_LDFLAGS) -o $(M674_TARGET) @build/M674_ofiles
+	@python3 tools/lcf.py rel 674 --output $(M674_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M674_LDFLAGS) -o $(M674_TARGET) @build/M674_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_vground/%.o: rel/d/a/obj/d_a_obj_vground/%.cpp
+	@echo [674] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M674_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M674_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

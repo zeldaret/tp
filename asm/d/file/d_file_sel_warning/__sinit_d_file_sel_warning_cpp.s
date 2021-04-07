@@ -1,6 +1,6 @@
 lbl_8019238C:
-/* 8019238C  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 80192390  38 A3 B4 10 */	addi r5, r3, cNullVec__6Z2Calc@l
+/* 8019238C  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803BB410@ha */
+/* 80192390  38 A3 B4 10 */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x803BB410@l */
 /* 80192394  80 65 00 0C */	lwz r3, 0xc(r5)
 /* 80192398  80 05 00 10 */	lwz r0, 0x10(r5)
 /* 8019239C  90 65 00 24 */	stw r3, 0x24(r5)

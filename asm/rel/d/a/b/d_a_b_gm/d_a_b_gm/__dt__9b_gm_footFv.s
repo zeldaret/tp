@@ -7,7 +7,7 @@ lbl_805F3AC0:
 /* 805F3AD4  41 82 00 10 */	beq lbl_805F3AE4
 /* 805F3AD8  7C 80 07 35 */	extsh. r0, r4
 /* 805F3ADC  40 81 00 08 */	ble lbl_805F3AE4
-/* 805F3AE0  4B CD B2 5C */	b __dl__FPv
+/* 805F3AE0  4B CD B2 5D */	bl __dl__FPv
 lbl_805F3AE4:
 /* 805F3AE4  7F E3 FB 78 */	mr r3, r31
 /* 805F3AE8  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -30,10 +30,6 @@ struct dSv_info_c {
 // Forward References:
 //
 
-static void daTagTheBHint_Create(fopAc_ac_c*);
-static void daTagTheBHint_Delete(daTagTheBHint_c*);
-static void daTagTheBHint_Execute(daTagTheBHint_c*);
-
 extern "C" static void daTagTheBHint_Create__FP10fopAc_ac_c();
 extern "C" static void daTagTheBHint_Delete__FP15daTagTheBHint_c();
 extern "C" static void daTagTheBHint_Execute__FP15daTagTheBHint_c();
@@ -42,11 +38,6 @@ extern "C" extern void* g_profile_Tag_TheBHint[12];
 //
 // External References:
 //
-
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_searchActorDistanceXZ2(fopAc_ac_c const*, fopAc_ac_c const*);
-void fpcLyIt_AllJudge(void* (*)(void*, void*), void*);
-void fpcSch_JudgeForPName(void*, void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -66,52 +57,53 @@ extern "C" void setHintEvent__11daNpcTheB_cFlUsi();
 //
 
 /* ############################################################################################## */
-/* 80D63E54-80D63E5C 0004+04 s=1 e=0 z=0  None .rodata    @3831 */
-SECTION_RODATA static u32 const lit_3831[1 + 1 /* padding */] = {
-    0x42C80000,
+/* 80D63E54-80D63E5C 000000 0004+04 1/1 0/0 0/0 .rodata          @3831 */
+SECTION_RODATA static f32 const lit_3831[1 + 1 /* padding */] = {
+    100.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
+COMPILER_STRIP_GATE(80D63E54, &lit_3831);
 
-/* 80D63E5C-80D63E64 0008+00 s=1 e=0 z=0  None .rodata    @3832 */
+/* 80D63E5C-80D63E64 000008 0008+00 1/1 0/0 0/0 .rodata          @3832 */
 SECTION_RODATA static u8 const lit_3832[8] = {
     0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80D63E5C, &lit_3832);
 
-/* 80D63CD8-80D63D4C 0074+00 s=1 e=0 z=0  None .text      daTagTheBHint_Create__FP10fopAc_ac_c */
+/* 80D63CD8-80D63D4C 000078 0074+00 1/0 0/0 0/0 .text daTagTheBHint_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagTheBHint_Create(fopAc_ac_c* param_0) {
+static asm void daTagTheBHint_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_theB_hint/d_a_tag_theB_hint/daTagTheBHint_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D63D4C-80D63D7C 0030+00 s=1 e=0 z=0  None .text      daTagTheBHint_Delete__FP15daTagTheBHint_c
- */
+/* 80D63D4C-80D63D7C 0000EC 0030+00 1/0 0/0 0/0 .text daTagTheBHint_Delete__FP15daTagTheBHint_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagTheBHint_Delete(daTagTheBHint_c* param_0) {
+static asm void daTagTheBHint_Delete(daTagTheBHint_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_theB_hint/d_a_tag_theB_hint/daTagTheBHint_Delete__FP15daTagTheBHint_c.s"
 }
 #pragma pop
 
-/* 80D63D7C-80D63E4C 00D0+00 s=1 e=0 z=0  None .text      daTagTheBHint_Execute__FP15daTagTheBHint_c
+/* 80D63D7C-80D63E4C 00011C 00D0+00 1/0 0/0 0/0 .text daTagTheBHint_Execute__FP15daTagTheBHint_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagTheBHint_Execute(daTagTheBHint_c* param_0) {
+static asm void daTagTheBHint_Execute(daTagTheBHint_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_theB_hint/d_a_tag_theB_hint/daTagTheBHint_Execute__FP15daTagTheBHint_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D63E64-80D63E84 0020+00 s=1 e=0 z=0  None .data      l_daTagTheBHint_Method */
+/* 80D63E64-80D63E84 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagTheBHint_Method */
 SECTION_DATA static void* l_daTagTheBHint_Method[8] = {
     (void*)daTagTheBHint_Create__FP10fopAc_ac_c,
     (void*)daTagTheBHint_Delete__FP15daTagTheBHint_c,
@@ -123,8 +115,8 @@ SECTION_DATA static void* l_daTagTheBHint_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D63E84-80D63EB4 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_TheBHint */
-SECTION_DATA void* g_profile_Tag_TheBHint[12] = {
+/* 80D63E84-80D63EB4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_TheBHint */
+SECTION_DATA extern void* g_profile_Tag_TheBHint[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02CC0000, (void*)&g_fpcLf_Method,
     (void*)0x0000056C, (void*)NULL,

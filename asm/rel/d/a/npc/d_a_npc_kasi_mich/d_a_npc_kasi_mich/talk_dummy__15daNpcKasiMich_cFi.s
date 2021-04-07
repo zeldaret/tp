@@ -12,15 +12,15 @@ lbl_80A28C40:
 /* 80A28C68  48 00 00 38 */	b lbl_80A28CA0
 lbl_80A28C6C:
 /* 80A28C6C  38 80 00 00 */	li r4, 0
-/* 80A28C70  3C A0 80 A3 */	lis r5, lit_4249@ha
-/* 80A28C74  C0 25 A0 D8 */	lfs f1, lit_4249@l(r5)
+/* 80A28C70  3C A0 80 A3 */	lis r5, lit_4249@ha /* 0x80A2A0D8@ha */
+/* 80A28C74  C0 25 A0 D8 */	lfs f1, lit_4249@l(r5)  /* 0x80A2A0D8@l */
 /* 80A28C78  38 A0 00 00 */	li r5, 0
 /* 80A28C7C  81 83 0B 44 */	lwz r12, 0xb44(r3)
 /* 80A28C80  81 8C 00 3C */	lwz r12, 0x3c(r12)
 /* 80A28C84  7D 89 03 A6 */	mtctr r12
 /* 80A28C88  4E 80 04 21 */	bctrl 
-/* 80A28C8C  3C 60 80 A3 */	lis r3, lit_4449@ha
-/* 80A28C90  C0 03 A0 F0 */	lfs f0, lit_4449@l(r3)
+/* 80A28C8C  3C 60 80 A3 */	lis r3, lit_4449@ha /* 0x80A2A0F0@ha */
+/* 80A28C90  C0 03 A0 F0 */	lfs f0, lit_4449@l(r3)  /* 0x80A2A0F0@l */
 /* 80A28C94  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 80A28C98  38 00 00 01 */	li r0, 1
 /* 80A28C9C  B0 1F 14 04 */	sth r0, 0x1404(r31)

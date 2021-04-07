@@ -90,8 +90,8 @@ lbl_80285CE8:
 /* 80285D20  C8 A2 BA 78 */	lfd f5, lit_624(r2)
 /* 80285D24  FC 9F 28 28 */	fsub f4, f31, f5
 /* 80285D28  C0 62 BA 80 */	lfs f3, lit_625(r2)
-/* 80285D2C  3C 60 80 45 */	lis r3, __float_epsilon@ha
-/* 80285D30  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)
+/* 80285D2C  3C 60 80 45 */	lis r3, __float_epsilon@ha /* 0x80450AEC@ha */
+/* 80285D30  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)  /* 0x80450AEC@l */
 /* 80285D34  EC 63 00 32 */	fmuls f3, f3, f0
 /* 80285D38  FC 00 18 50 */	fneg f0, f3
 /* 80285D3C  FC 04 00 40 */	fcmpo cr0, f4, f0

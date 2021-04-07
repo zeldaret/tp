@@ -7,7 +7,7 @@ lbl_8057FD30:
 /* 8057FD44  41 82 00 10 */	beq lbl_8057FD54
 /* 8057FD48  7C 80 07 35 */	extsh. r0, r4
 /* 8057FD4C  40 81 00 08 */	ble lbl_8057FD54
-/* 8057FD50  4B D4 EF EC */	b __dl__FPv
+/* 8057FD50  4B D4 EF ED */	bl __dl__FPv
 lbl_8057FD54:
 /* 8057FD54  7F E3 FB 78 */	mr r3, r31
 /* 8057FD58  83 E1 00 0C */	lwz r31, 0xc(r1)

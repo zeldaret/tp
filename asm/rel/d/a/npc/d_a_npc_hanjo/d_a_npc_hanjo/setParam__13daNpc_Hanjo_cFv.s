@@ -3,13 +3,13 @@ lbl_809FA050:
 /* 809FA054  7C 08 02 A6 */	mflr r0
 /* 809FA058  90 01 00 34 */	stw r0, 0x34(r1)
 /* 809FA05C  39 61 00 30 */	addi r11, r1, 0x30
-/* 809FA060  4B 96 81 74 */	b _savegpr_27
+/* 809FA060  4B 96 81 75 */	bl _savegpr_27
 /* 809FA064  7C 7F 1B 78 */	mr r31, r3
 /* 809FA068  48 00 15 35 */	bl selectAction__13daNpc_Hanjo_cFv
 /* 809FA06C  7F E3 FB 78 */	mr r3, r31
 /* 809FA070  48 00 03 ED */	bl srchActors__13daNpc_Hanjo_cFv
-/* 809FA074  3C 60 80 A0 */	lis r3, m__19daNpc_Hanjo_Param_c@ha
-/* 809FA078  38 63 06 00 */	addi r3, r3, m__19daNpc_Hanjo_Param_c@l
+/* 809FA074  3C 60 80 A0 */	lis r3, m__19daNpc_Hanjo_Param_c@ha /* 0x80A00600@ha */
+/* 809FA078  38 63 06 00 */	addi r3, r3, m__19daNpc_Hanjo_Param_c@l /* 0x80A00600@l */
 /* 809FA07C  AB A3 00 48 */	lha r29, 0x48(r3)
 /* 809FA080  AB 83 00 4A */	lha r28, 0x4a(r3)
 /* 809FA084  AB 63 00 4C */	lha r27, 0x4c(r3)
@@ -27,8 +27,8 @@ lbl_809FA0A4:
 /* 809FA0B0  3B A0 00 04 */	li r29, 4
 /* 809FA0B4  3B 80 00 06 */	li r28, 6
 lbl_809FA0B8:
-/* 809FA0B8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 809FA0BC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 809FA0B8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 809FA0BC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 809FA0C0  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 809FA0C4  81 83 06 28 */	lwz r12, 0x628(r3)
 /* 809FA0C8  81 8C 01 88 */	lwz r12, 0x188(r12)
@@ -48,18 +48,18 @@ lbl_809FA0EC:
 lbl_809FA0FC:
 /* 809FA0FC  7F 63 07 34 */	extsh r3, r27
 /* 809FA100  7F C4 07 34 */	extsh r4, r30
-/* 809FA104  4B 75 29 14 */	b daNpcT_getDistTableIdx__Fii
+/* 809FA104  4B 75 29 15 */	bl daNpcT_getDistTableIdx__Fii
 /* 809FA108  98 7F 05 44 */	stb r3, 0x544(r31)
 /* 809FA10C  88 1F 05 44 */	lbz r0, 0x544(r31)
 /* 809FA110  98 1F 05 45 */	stb r0, 0x545(r31)
 /* 809FA114  7F A3 07 34 */	extsh r3, r29
 /* 809FA118  7F 84 07 34 */	extsh r4, r28
-/* 809FA11C  4B 75 28 FC */	b daNpcT_getDistTableIdx__Fii
+/* 809FA11C  4B 75 28 FD */	bl daNpcT_getDistTableIdx__Fii
 /* 809FA120  98 7F 05 47 */	stb r3, 0x547(r31)
 /* 809FA124  38 00 00 0A */	li r0, 0xa
 /* 809FA128  90 1F 05 5C */	stw r0, 0x55c(r31)
-/* 809FA12C  3C 60 80 A0 */	lis r3, m__19daNpc_Hanjo_Param_c@ha
-/* 809FA130  38 63 06 00 */	addi r3, r3, m__19daNpc_Hanjo_Param_c@l
+/* 809FA12C  3C 60 80 A0 */	lis r3, m__19daNpc_Hanjo_Param_c@ha /* 0x80A00600@ha */
+/* 809FA130  38 63 06 00 */	addi r3, r3, m__19daNpc_Hanjo_Param_c@l /* 0x80A00600@l */
 /* 809FA134  C0 03 00 08 */	lfs f0, 8(r3)
 /* 809FA138  D0 1F 04 EC */	stfs f0, 0x4ec(r31)
 /* 809FA13C  D0 1F 04 F0 */	stfs f0, 0x4f0(r31)
@@ -77,9 +77,9 @@ lbl_809FA0FC:
 /* 809FA16C  D0 1F 0D F8 */	stfs f0, 0xdf8(r31)
 /* 809FA170  38 7F 08 A0 */	addi r3, r31, 0x8a0
 /* 809FA174  C0 3F 0D F0 */	lfs f1, 0xdf0(r31)
-/* 809FA178  4B 67 BD C8 */	b SetWallR__12dBgS_AcchCirFf
-/* 809FA17C  3C 60 80 A0 */	lis r3, m__19daNpc_Hanjo_Param_c@ha
-/* 809FA180  38 63 06 00 */	addi r3, r3, m__19daNpc_Hanjo_Param_c@l
+/* 809FA178  4B 67 BD C9 */	bl SetWallR__12dBgS_AcchCirFf
+/* 809FA17C  3C 60 80 A0 */	lis r3, m__19daNpc_Hanjo_Param_c@ha /* 0x80A00600@ha */
+/* 809FA180  38 63 06 00 */	addi r3, r3, m__19daNpc_Hanjo_Param_c@l /* 0x80A00600@l */
 /* 809FA184  C0 03 00 18 */	lfs f0, 0x18(r3)
 /* 809FA188  D0 1F 08 D0 */	stfs f0, 0x8d0(r31)
 /* 809FA18C  C0 03 00 0C */	lfs f0, 0xc(r3)
@@ -91,7 +91,7 @@ lbl_809FA0FC:
 /* 809FA1A4  C0 03 00 04 */	lfs f0, 4(r3)
 /* 809FA1A8  D0 1F 05 30 */	stfs f0, 0x530(r31)
 /* 809FA1AC  39 61 00 30 */	addi r11, r1, 0x30
-/* 809FA1B0  4B 96 80 70 */	b _restgpr_27
+/* 809FA1B0  4B 96 80 71 */	bl _restgpr_27
 /* 809FA1B4  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 809FA1B8  7C 08 03 A6 */	mtlr r0
 /* 809FA1BC  38 21 00 30 */	addi r1, r1, 0x30

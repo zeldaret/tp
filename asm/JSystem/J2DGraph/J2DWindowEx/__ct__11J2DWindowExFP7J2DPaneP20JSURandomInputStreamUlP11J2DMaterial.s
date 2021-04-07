@@ -9,8 +9,8 @@ lbl_80300C94:
 /* 80300CB0  7C BD 2B 78 */	mr r29, r5
 /* 80300CB4  7C FE 3B 78 */	mr r30, r7
 /* 80300CB8  4B FF 8D C5 */	bl __ct__9J2DWindowFv
-/* 80300CBC  3C 60 80 3D */	lis r3, __vt__11J2DWindowEx@ha
-/* 80300CC0  38 03 D3 E8 */	addi r0, r3, __vt__11J2DWindowEx@l
+/* 80300CBC  3C 60 80 3D */	lis r3, __vt__11J2DWindowEx@ha /* 0x803CD3E8@ha */
+/* 80300CC0  38 03 D3 E8 */	addi r0, r3, __vt__11J2DWindowEx@l /* 0x803CD3E8@l */
 /* 80300CC4  90 1C 00 00 */	stw r0, 0(r28)
 /* 80300CC8  38 00 00 00 */	li r0, 0
 /* 80300CCC  90 1C 01 74 */	stw r0, 0x174(r28)
@@ -50,8 +50,8 @@ lbl_80300C94:
 /* 80300D54  38 81 00 2C */	addi r4, r1, 0x2c
 /* 80300D58  38 A0 00 40 */	li r5, 0x40
 /* 80300D5C  4B FD B5 3D */	bl read__14JSUInputStreamFPvl
-/* 80300D60  3C 60 80 3A */	lis r3, lit_1508@ha
-/* 80300D64  38 83 1C 60 */	addi r4, r3, lit_1508@l
+/* 80300D60  3C 60 80 3A */	lis r3, lit_1508@ha /* 0x803A1C60@ha */
+/* 80300D64  38 83 1C 60 */	addi r4, r3, lit_1508@l /* 0x803A1C60@l */
 /* 80300D68  80 64 00 00 */	lwz r3, 0(r4)
 /* 80300D6C  80 04 00 04 */	lwz r0, 4(r4)
 /* 80300D70  90 61 00 1C */	stw r3, 0x1c(r1)

@@ -3,8 +3,8 @@ lbl_8001AC40:
 /* 8001AC44  7C 08 02 A6 */	mflr r0
 /* 8001AC48  90 01 00 54 */	stw r0, 0x54(r1)
 /* 8001AC4C  7C 64 1B 78 */	mr r4, r3
-/* 8001AC50  3C 60 80 38 */	lis r3, lit_4932@ha
-/* 8001AC54  38 A3 88 80 */	addi r5, r3, lit_4932@l
+/* 8001AC50  3C 60 80 38 */	lis r3, lit_4932@ha /* 0x80378880@ha */
+/* 8001AC54  38 A3 88 80 */	addi r5, r3, lit_4932@l /* 0x80378880@l */
 /* 8001AC58  80 65 00 00 */	lwz r3, 0(r5)
 /* 8001AC5C  80 05 00 04 */	lwz r0, 4(r5)
 /* 8001AC60  90 61 00 14 */	stw r3, 0x14(r1)
@@ -14,8 +14,8 @@ lbl_8001AC40:
 /* 8001AC70  D0 21 00 14 */	stfs f1, 0x14(r1)
 /* 8001AC74  D0 41 00 18 */	stfs f2, 0x18(r1)
 /* 8001AC78  D0 61 00 1C */	stfs f3, 0x1c(r1)
-/* 8001AC7C  3C 60 80 38 */	lis r3, lit_4933@ha
-/* 8001AC80  38 A3 88 8C */	addi r5, r3, lit_4933@l
+/* 8001AC7C  3C 60 80 38 */	lis r3, lit_4933@ha /* 0x8037888C@ha */
+/* 8001AC80  38 A3 88 8C */	addi r5, r3, lit_4933@l /* 0x8037888C@l */
 /* 8001AC84  80 65 00 00 */	lwz r3, 0(r5)
 /* 8001AC88  80 05 00 04 */	lwz r0, 4(r5)
 /* 8001AC8C  90 61 00 08 */	stw r3, 8(r1)
@@ -25,12 +25,12 @@ lbl_8001AC40:
 /* 8001AC9C  D0 81 00 08 */	stfs f4, 8(r1)
 /* 8001ACA0  D0 A1 00 0C */	stfs f5, 0xc(r1)
 /* 8001ACA4  D0 C1 00 10 */	stfs f6, 0x10(r1)
-/* 8001ACA8  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8001ACAC  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8001ACA8  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8001ACAC  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8001ACB0  38 A1 00 20 */	addi r5, r1, 0x20
 /* 8001ACB4  48 32 B8 31 */	bl PSMTXConcat
-/* 8001ACB8  3C 60 80 3E */	lis r3, mClipper__14mDoLib_clipper@ha
-/* 8001ACBC  38 63 D8 E4 */	addi r3, r3, mClipper__14mDoLib_clipper@l
+/* 8001ACB8  3C 60 80 3E */	lis r3, mClipper__14mDoLib_clipper@ha /* 0x803DD8E4@ha */
+/* 8001ACBC  38 63 D8 E4 */	addi r3, r3, mClipper__14mDoLib_clipper@l /* 0x803DD8E4@l */
 /* 8001ACC0  38 81 00 20 */	addi r4, r1, 0x20
 /* 8001ACC4  38 A1 00 08 */	addi r5, r1, 8
 /* 8001ACC8  38 C1 00 14 */	addi r6, r1, 0x14

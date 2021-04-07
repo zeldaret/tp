@@ -2,8 +2,8 @@ lbl_803142D4:
 /* 803142D4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 803142D8  7C 08 02 A6 */	mflr r0
 /* 803142DC  90 01 00 44 */	stw r0, 0x44(r1)
-/* 803142E0  3C 80 80 43 */	lis r4, j3dSys@ha
-/* 803142E4  38 C4 4A C8 */	addi r6, r4, j3dSys@l
+/* 803142E0  3C 80 80 43 */	lis r4, j3dSys@ha /* 0x80434AC8@ha */
+/* 803142E4  38 C4 4A C8 */	addi r6, r4, j3dSys@l /* 0x80434AC8@l */
 /* 803142E8  81 06 00 38 */	lwz r8, 0x38(r6)
 /* 803142EC  80 E8 00 04 */	lwz r7, 4(r8)
 /* 803142F0  80 A7 00 4C */	lwz r5, 0x4c(r7)
@@ -58,8 +58,8 @@ lbl_8031434C:
 /* 803143AC  4B FF B7 B5 */	bl J3DFifoLoadNrmMtxImm__FPA4_fUl
 /* 803143B0  48 00 00 24 */	b lbl_803143D4
 lbl_803143B4:
-/* 803143B4  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 803143B8  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 803143B4  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 803143B8  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 803143BC  80 83 01 18 */	lwz r4, 0x118(r3)
 /* 803143C0  38 61 00 08 */	addi r3, r1, 8
 /* 803143C4  4B FF D9 D1 */	bl J3DScaleNrmMtx__FPA4_fRC3Vec

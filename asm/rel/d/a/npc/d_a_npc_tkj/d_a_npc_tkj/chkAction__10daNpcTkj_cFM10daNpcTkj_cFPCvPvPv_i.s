@@ -3,7 +3,7 @@ lbl_805748A8:
 /* 805748AC  7C 08 02 A6 */	mflr r0
 /* 805748B0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 805748B4  38 63 0F 90 */	addi r3, r3, 0xf90
-/* 805748B8  4B DE D7 90 */	b __ptmf_cmpr
+/* 805748B8  4B DE D7 91 */	bl __ptmf_cmpr
 /* 805748BC  7C 60 00 34 */	cntlzw r0, r3
 /* 805748C0  54 03 D9 7E */	srwi r3, r0, 5
 /* 805748C4  80 01 00 14 */	lwz r0, 0x14(r1)

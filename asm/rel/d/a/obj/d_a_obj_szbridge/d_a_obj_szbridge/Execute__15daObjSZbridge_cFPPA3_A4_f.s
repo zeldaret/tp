@@ -18,7 +18,7 @@ lbl_80D049A8:
 /* 80D049B0  38 7E 05 D8 */	addi r3, r30, 0x5d8
 /* 80D049B4  80 9E 06 08 */	lwz r4, 0x608(r30)
 /* 80D049B8  38 84 00 24 */	addi r4, r4, 0x24
-/* 80D049BC  4B 64 1A F4 */	b PSMTXCopy
+/* 80D049BC  4B 64 1A F5 */	bl PSMTXCopy
 /* 80D049C0  38 1E 05 A8 */	addi r0, r30, 0x5a8
 /* 80D049C4  90 1F 00 00 */	stw r0, 0(r31)
 /* 80D049C8  38 60 00 01 */	li r3, 1

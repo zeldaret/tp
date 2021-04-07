@@ -6,12 +6,12 @@ lbl_8005B2F8:
 /* 8005B308  48 30 6E D5 */	bl _savegpr_29
 /* 8005B30C  7C 9F 23 78 */	mr r31, r4
 /* 8005B310  7C BD 2B 78 */	mr r29, r5
-/* 8005B314  3C C0 80 43 */	lis r6, g_env_light@ha
-/* 8005B318  3B C6 CA 54 */	addi r30, r6, g_env_light@l
+/* 8005B314  3C C0 80 43 */	lis r6, g_env_light@ha /* 0x8042CA54@ha */
+/* 8005B318  3B C6 CA 54 */	addi r30, r6, g_env_light@l /* 0x8042CA54@l */
 /* 8005B31C  4B FF FF 21 */	bl dKyw_pntwind_get_info__FP4cXyzP4cXyzPf
 /* 8005B320  38 61 00 30 */	addi r3, r1, 0x30
-/* 8005B324  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 8005B328  38 A4 CA 54 */	addi r5, r4, g_env_light@l
+/* 8005B324  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 8005B328  38 A4 CA 54 */	addi r5, r4, g_env_light@l /* 0x8042CA54@l */
 /* 8005B32C  38 85 0E 48 */	addi r4, r5, 0xe48
 /* 8005B330  C0 45 0E 58 */	lfs f2, 0xe58(r5)
 /* 8005B334  C0 22 86 E4 */	lfs f1, lit_4379(r2)
@@ -77,8 +77,8 @@ lbl_8005B420:
 /* 8005B420  C8 02 87 88 */	lfd f0, lit_5526(r2)
 /* 8005B424  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8005B428  40 80 00 10 */	bge lbl_8005B438
-/* 8005B42C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8005B430  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8005B42C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8005B430  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8005B434  48 00 00 70 */	b lbl_8005B4A4
 lbl_8005B438:
 /* 8005B438  D0 21 00 08 */	stfs f1, 8(r1)
@@ -112,8 +112,8 @@ lbl_8005B490:
 lbl_8005B494:
 /* 8005B494  2C 00 00 01 */	cmpwi r0, 1
 /* 8005B498  40 82 00 0C */	bne lbl_8005B4A4
-/* 8005B49C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8005B4A0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8005B49C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8005B4A0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_8005B4A4:
 /* 8005B4A4  D0 3D 00 00 */	stfs f1, 0(r29)
 /* 8005B4A8  38 61 00 0C */	addi r3, r1, 0xc
@@ -126,8 +126,8 @@ lbl_8005B4A4:
 /* 8005B4C4  C0 01 00 14 */	lfs f0, 0x14(r1)
 /* 8005B4C8  D0 01 00 5C */	stfs f0, 0x5c(r1)
 /* 8005B4CC  38 61 00 54 */	addi r3, r1, 0x54
-/* 8005B4D0  3C 80 80 43 */	lis r4, Zero__4cXyz@ha
-/* 8005B4D4  38 84 0C F4 */	addi r4, r4, Zero__4cXyz@l
+/* 8005B4D0  3C 80 80 43 */	lis r4, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 8005B4D4  38 84 0C F4 */	addi r4, r4, Zero__4cXyz@l /* 0x80430CF4@l */
 /* 8005B4D8  48 20 BB 95 */	bl __ne__4cXyzCFRC3Vec
 /* 8005B4DC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8005B4E0  41 82 00 20 */	beq lbl_8005B500

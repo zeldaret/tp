@@ -5,8 +5,8 @@ lbl_800ED4DC:
 /* 800ED4E8  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 800ED4EC  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 800ED4F0  7C 7E 1B 78 */	mr r30, r3
-/* 800ED4F4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 800ED4F8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 800ED4F4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800ED4F8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800ED4FC  83 E4 5D B8 */	lwz r31, 0x5db8(r4)
 /* 800ED500  28 1F 00 00 */	cmplwi r31, 0
 /* 800ED504  40 82 00 34 */	bne lbl_800ED538
@@ -54,8 +54,8 @@ lbl_800ED58C:
 /* 800ED59C  80 63 00 84 */	lwz r3, 0x84(r3)
 /* 800ED5A0  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 800ED5A4  38 63 03 F0 */	addi r3, r3, 0x3f0
-/* 800ED5A8  3C 80 80 39 */	lis r4, localHorseRun_18095@ha
-/* 800ED5AC  38 84 19 54 */	addi r4, r4, localHorseRun_18095@l
+/* 800ED5A8  3C 80 80 39 */	lis r4, localHorseRun_18095@ha /* 0x80391954@ha */
+/* 800ED5AC  38 84 19 54 */	addi r4, r4, localHorseRun_18095@l /* 0x80391954@l */
 /* 800ED5B0  38 BE 04 D0 */	addi r5, r30, 0x4d0
 /* 800ED5B4  48 25 97 B9 */	bl PSMTXMultVec
 /* 800ED5B8  38 60 00 00 */	li r3, 0
@@ -106,8 +106,8 @@ lbl_800ED65C:
 /* 800ED660  80 63 00 84 */	lwz r3, 0x84(r3)
 /* 800ED664  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 800ED668  38 63 03 F0 */	addi r3, r3, 0x3f0
-/* 800ED66C  3C 80 80 39 */	lis r4, localHorseRun_18103@ha
-/* 800ED670  38 84 19 60 */	addi r4, r4, localHorseRun_18103@l
+/* 800ED66C  3C 80 80 39 */	lis r4, localHorseRun_18103@ha /* 0x80391960@ha */
+/* 800ED670  38 84 19 60 */	addi r4, r4, localHorseRun_18103@l /* 0x80391960@l */
 /* 800ED674  38 BE 04 D0 */	addi r5, r30, 0x4d0
 /* 800ED678  48 25 96 F5 */	bl PSMTXMultVec
 lbl_800ED67C:
@@ -126,8 +126,8 @@ lbl_800ED67C:
 /* 800ED6AC  B0 1E 04 E8 */	sth r0, 0x4e8(r30)
 /* 800ED6B0  48 00 00 7C */	b lbl_800ED72C
 lbl_800ED6B4:
-/* 800ED6B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800ED6B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800ED6B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800ED6B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800ED6BC  80 1E 31 7C */	lwz r0, 0x317c(r30)
 /* 800ED6C0  1C 00 00 38 */	mulli r0, r0, 0x38
 /* 800ED6C4  7C 63 02 14 */	add r3, r3, r0
@@ -147,8 +147,8 @@ lbl_800ED6F8:
 /* 800ED6F8  80 7F 05 70 */	lwz r3, 0x570(r31)
 /* 800ED6FC  80 63 00 84 */	lwz r3, 0x84(r3)
 /* 800ED700  80 63 00 0C */	lwz r3, 0xc(r3)
-/* 800ED704  3C 80 80 42 */	lis r4, l_localHorseRidePos@ha
-/* 800ED708  38 84 55 BC */	addi r4, r4, l_localHorseRidePos@l
+/* 800ED704  3C 80 80 42 */	lis r4, l_localHorseRidePos@ha /* 0x804255BC@ha */
+/* 800ED708  38 84 55 BC */	addi r4, r4, l_localHorseRidePos@l /* 0x804255BC@l */
 /* 800ED70C  38 BE 04 D0 */	addi r5, r30, 0x4d0
 /* 800ED710  48 25 96 5D */	bl PSMTXMultVec
 lbl_800ED714:

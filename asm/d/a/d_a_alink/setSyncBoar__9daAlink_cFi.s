@@ -47,8 +47,8 @@ lbl_800EE688:
 /* 800EE6FC  2C 03 00 01 */	cmpwi r3, 1
 /* 800EE700  40 82 00 20 */	bne lbl_800EE720
 lbl_800EE704:
-/* 800EE704  3C 60 80 39 */	lis r3, m__19daAlinkHIO_horse_c0@ha
-/* 800EE708  38 A3 E5 A4 */	addi r5, r3, m__19daAlinkHIO_horse_c0@l
+/* 800EE704  3C 60 80 39 */	lis r3, m__19daAlinkHIO_horse_c0@ha /* 0x8038E5A4@ha */
+/* 800EE708  38 A3 E5 A4 */	addi r5, r3, m__19daAlinkHIO_horse_c0@l /* 0x8038E5A4@l */
 /* 800EE70C  A8 05 00 54 */	lha r0, 0x54(r5)
 /* 800EE710  B0 1E 30 04 */	sth r0, 0x3004(r30)
 /* 800EE714  7F C3 F3 78 */	mr r3, r30

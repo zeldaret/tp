@@ -1,6 +1,6 @@
 lbl_801FD928:
-/* 801FD928  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 801FD92C  38 83 E8 F8 */	addi r4, r3, cNullVec__6Z2Calc@l
+/* 801FD928  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803BE8F8@ha */
+/* 801FD92C  38 83 E8 F8 */	addi r4, r3, cNullVec__6Z2Calc@l /* 0x803BE8F8@l */
 /* 801FD930  80 64 00 0C */	lwz r3, 0xc(r4)
 /* 801FD934  80 04 00 10 */	lwz r0, 0x10(r4)
 /* 801FD938  90 64 01 B0 */	stw r3, 0x1b0(r4)

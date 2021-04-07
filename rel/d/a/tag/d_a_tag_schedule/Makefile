@@ -3,17 +3,15 @@
 #
 
 M738_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_schedule.plf
+M738_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_schedule.lcf
+M738_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_schedule.map
 
 M738_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_schedule/executor.cpp \
-	rel/d/a/tag/d_a_tag_schedule/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_schedule/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_schedule/d_a_tag_schedule.cpp \
 
 M738_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_schedule/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_schedule/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_schedule/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_schedule/d_a_tag_schedule.o \
 
 M738_LIBS := \
@@ -29,14 +27,21 @@ M738_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M738_LDSCRIPT) \
+	-unused -map $(M738_MAP) \
+	-w off \
 
 $(M738_TARGET): $(M738_O_FILES) $(M738_LIBS)
+	@echo [738] creating $(M738_TARGET)
 	@echo $(M738_LIBS) $(M738_O_FILES) > build/M738_ofiles
-	$(LD) -partial $(M738_LDFLAGS) -o $(M738_TARGET) @build/M738_ofiles
+	@python3 tools/lcf.py rel 738 --output $(M738_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M738_LDFLAGS) -o $(M738_TARGET) @build/M738_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_schedule/%.o: rel/d/a/tag/d_a_tag_schedule/%.cpp
+	@echo [738] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M738_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M738_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -9,15 +9,15 @@ lbl_80C62F78:
 /* 80C62F94  40 82 00 48 */	bne lbl_80C62FDC
 /* 80C62F98  28 1F 00 00 */	cmplwi r31, 0
 /* 80C62F9C  41 82 00 34 */	beq lbl_80C62FD0
-/* 80C62FA0  4B 41 56 84 */	b __ct__16dBgS_MoveBgActorFv
-/* 80C62FA4  3C 60 80 C6 */	lis r3, __vt__17dEvLib_callback_c@ha
-/* 80C62FA8  38 03 32 58 */	addi r0, r3, __vt__17dEvLib_callback_c@l
+/* 80C62FA0  4B 41 56 85 */	bl __ct__16dBgS_MoveBgActorFv
+/* 80C62FA4  3C 60 80 C6 */	lis r3, __vt__17dEvLib_callback_c@ha /* 0x80C63258@ha */
+/* 80C62FA8  38 03 32 58 */	addi r0, r3, __vt__17dEvLib_callback_c@l /* 0x80C63258@l */
 /* 80C62FAC  90 1F 05 A0 */	stw r0, 0x5a0(r31)
 /* 80C62FB0  93 FF 05 A4 */	stw r31, 0x5a4(r31)
 /* 80C62FB4  38 00 00 00 */	li r0, 0
 /* 80C62FB8  90 1F 05 A8 */	stw r0, 0x5a8(r31)
-/* 80C62FBC  3C 60 80 C6 */	lis r3, __vt__13daObjLv4Brg_c@ha
-/* 80C62FC0  38 63 32 70 */	addi r3, r3, __vt__13daObjLv4Brg_c@l
+/* 80C62FBC  3C 60 80 C6 */	lis r3, __vt__13daObjLv4Brg_c@ha /* 0x80C63270@ha */
+/* 80C62FC0  38 63 32 70 */	addi r3, r3, __vt__13daObjLv4Brg_c@l /* 0x80C63270@l */
 /* 80C62FC4  90 7F 05 9C */	stw r3, 0x59c(r31)
 /* 80C62FC8  38 03 00 28 */	addi r0, r3, 0x28
 /* 80C62FCC  90 1F 05 A0 */	stw r0, 0x5a0(r31)

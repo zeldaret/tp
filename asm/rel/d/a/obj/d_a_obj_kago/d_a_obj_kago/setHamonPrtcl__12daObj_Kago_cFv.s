@@ -13,11 +13,11 @@ lbl_80C33A58:
 /* 80C33A84  D0 41 00 10 */	stfs f2, 0x10(r1)
 /* 80C33A88  38 63 0B 8C */	addi r3, r3, 0xb8c
 /* 80C33A8C  38 81 00 08 */	addi r4, r1, 8
-/* 80C33A90  3C A0 80 C3 */	lis r5, lit_4531@ha
-/* 80C33A94  C0 25 3D 20 */	lfs f1, lit_4531@l(r5)
-/* 80C33A98  3C A0 80 C3 */	lis r5, lit_4544@ha
-/* 80C33A9C  C0 45 3D 54 */	lfs f2, lit_4544@l(r5)
-/* 80C33AA0  4B 3E 96 6C */	b fopAcM_effHamonSet__FPUlPC4cXyzff
+/* 80C33A90  3C A0 80 C3 */	lis r5, lit_4531@ha /* 0x80C33D20@ha */
+/* 80C33A94  C0 25 3D 20 */	lfs f1, lit_4531@l(r5)  /* 0x80C33D20@l */
+/* 80C33A98  3C A0 80 C3 */	lis r5, lit_4544@ha /* 0x80C33D54@ha */
+/* 80C33A9C  C0 45 3D 54 */	lfs f2, lit_4544@l(r5)  /* 0x80C33D54@l */
+/* 80C33AA0  4B 3E 96 6D */	bl fopAcM_effHamonSet__FPUlPC4cXyzff
 lbl_80C33AA4:
 /* 80C33AA4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80C33AA8  7C 08 03 A6 */	mtlr r0

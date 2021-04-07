@@ -8,8 +8,8 @@ lbl_80312E08:
 /* 80312E20  38 63 00 88 */	addi r3, r3, 0x88
 /* 80312E24  4B FF E2 49 */	bl setArray__15J3DVertexBufferCFv
 /* 80312E28  80 9F 00 38 */	lwz r4, 0x38(r31)
-/* 80312E2C  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80312E30  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80312E2C  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80312E30  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80312E34  90 83 00 38 */	stw r4, 0x38(r3)
 /* 80312E38  93 E3 00 40 */	stw r31, 0x40(r3)
 /* 80312E3C  80 04 00 08 */	lwz r0, 8(r4)

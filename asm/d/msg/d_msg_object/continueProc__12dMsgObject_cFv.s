@@ -22,8 +22,8 @@ lbl_80234FF4:
 /* 80235044  7D 89 03 A6 */	mtctr r12
 /* 80235048  4E 80 04 21 */	bctrl 
 lbl_8023504C:
-/* 8023504C  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 80235050  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 8023504C  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 80235050  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 80235054  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 80235058  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 8023505C  40 82 00 0C */	bne lbl_80235068
@@ -115,25 +115,25 @@ lbl_80235144:
 /* 80235198  7D 89 03 A6 */	mtctr r12
 /* 8023519C  4E 80 04 21 */	bctrl 
 /* 802351A0  38 7F 0A 1C */	addi r3, r31, 0xa1c
-/* 802351A4  3C 80 80 3A */	lis r4, d_msg_d_msg_object__stringBase0@ha
-/* 802351A8  38 84 96 60 */	addi r4, r4, d_msg_d_msg_object__stringBase0@l
+/* 802351A4  3C 80 80 3A */	lis r4, d_msg_d_msg_object__stringBase0@ha /* 0x80399660@ha */
+/* 802351A8  38 84 96 60 */	addi r4, r4, d_msg_d_msg_object__stringBase0@l /* 0x80399660@l */
 /* 802351AC  38 84 00 6E */	addi r4, r4, 0x6e
 /* 802351B0  48 13 39 7D */	bl strcpy
 /* 802351B4  38 7F 0C 1C */	addi r3, r31, 0xc1c
-/* 802351B8  3C 80 80 3A */	lis r4, d_msg_d_msg_object__stringBase0@ha
-/* 802351BC  38 84 96 60 */	addi r4, r4, d_msg_d_msg_object__stringBase0@l
+/* 802351B8  3C 80 80 3A */	lis r4, d_msg_d_msg_object__stringBase0@ha /* 0x80399660@ha */
+/* 802351BC  38 84 96 60 */	addi r4, r4, d_msg_d_msg_object__stringBase0@l /* 0x80399660@l */
 /* 802351C0  38 84 00 6E */	addi r4, r4, 0x6e
 /* 802351C4  48 13 39 69 */	bl strcpy
 /* 802351C8  38 7F 0E 1C */	addi r3, r31, 0xe1c
-/* 802351CC  3C 80 80 3A */	lis r4, d_msg_d_msg_object__stringBase0@ha
-/* 802351D0  38 84 96 60 */	addi r4, r4, d_msg_d_msg_object__stringBase0@l
+/* 802351CC  3C 80 80 3A */	lis r4, d_msg_d_msg_object__stringBase0@ha /* 0x80399660@ha */
+/* 802351D0  38 84 96 60 */	addi r4, r4, d_msg_d_msg_object__stringBase0@l /* 0x80399660@l */
 /* 802351D4  38 84 00 6E */	addi r4, r4, 0x6e
 /* 802351D8  48 13 39 55 */	bl strcpy
 /* 802351DC  3B 40 00 00 */	li r26, 0
 /* 802351E0  3B A0 00 00 */	li r29, 0
 /* 802351E4  3B 80 00 00 */	li r28, 0
-/* 802351E8  3C 60 80 3A */	lis r3, d_msg_d_msg_object__stringBase0@ha
-/* 802351EC  3B 63 96 60 */	addi r27, r3, d_msg_d_msg_object__stringBase0@l
+/* 802351E8  3C 60 80 3A */	lis r3, d_msg_d_msg_object__stringBase0@ha /* 0x80399660@ha */
+/* 802351EC  3B 63 96 60 */	addi r27, r3, d_msg_d_msg_object__stringBase0@l /* 0x80399660@l */
 lbl_802351F0:
 /* 802351F0  38 7C 10 1C */	addi r3, r28, 0x101c
 /* 802351F4  7C 7F 1A 14 */	add r3, r31, r3

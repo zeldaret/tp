@@ -3,19 +3,20 @@
 #
 
 M68_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_hb.plf
+M68_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_hb.lcf
+M68_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_hb.map
 
 M68_CPP_FILES := \
-	rel/d/a/e/d_a_e_hb/executor.cpp \
-	rel/d/a/e/d_a_e_hb/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_hb/d_a_e_hb.cpp \
 
 M68_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_hb/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_hb/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_hb/d_a_e_hb.o \
 
 M68_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_hb/libRuntime.PPCEABI.H.a \
 
 M68_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M68_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M68_LDSCRIPT) \
+	-unused -map $(M68_MAP) \
+	-w off \
 
 $(M68_TARGET): $(M68_O_FILES) $(M68_LIBS)
+	@echo [ 68] creating $(M68_TARGET)
 	@echo $(M68_LIBS) $(M68_O_FILES) > build/M68_ofiles
-	$(LD) -partial $(M68_LDFLAGS) -o $(M68_TARGET) @build/M68_ofiles
+	@python3 tools/lcf.py rel 68 --output $(M68_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M68_LDFLAGS) -o $(M68_TARGET) @build/M68_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_hb/%.o: rel/d/a/e/d_a_e_hb/%.cpp
+	@echo [ 68] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M68_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M68_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_hb/libs/Runtime.PPCEABI.H/Makefile
 

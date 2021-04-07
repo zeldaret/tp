@@ -7,8 +7,8 @@ lbl_80192F98:
 /* 80192FAC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80192FB0  7C 9F 23 78 */	mr r31, r4
 /* 80192FB4  41 82 00 60 */	beq lbl_80193014
-/* 80192FB8  3C 60 80 3C */	lis r3, __vt__14dBrightCheck_c@ha
-/* 80192FBC  38 03 B5 FC */	addi r0, r3, __vt__14dBrightCheck_c@l
+/* 80192FB8  3C 60 80 3C */	lis r3, __vt__14dBrightCheck_c@ha /* 0x803BB5FC@ha */
+/* 80192FBC  38 03 B5 FC */	addi r0, r3, __vt__14dBrightCheck_c@l /* 0x803BB5FC@l */
 /* 80192FC0  90 1E 00 00 */	stw r0, 0(r30)
 /* 80192FC4  80 7E 00 0C */	lwz r3, 0xc(r30)
 /* 80192FC8  28 03 00 00 */	cmplwi r3, 0
@@ -24,8 +24,8 @@ lbl_80192FE4:
 /* 80192FEC  48 0B 6D 3D */	bl __dt__12dMsgString_cFv
 /* 80192FF0  34 1E 00 08 */	addic. r0, r30, 8
 /* 80192FF4  41 82 00 10 */	beq lbl_80193004
-/* 80192FF8  3C 60 80 3C */	lis r3, __vt__19dDlst_BrightCheck_c@ha
-/* 80192FFC  38 03 B5 EC */	addi r0, r3, __vt__19dDlst_BrightCheck_c@l
+/* 80192FF8  3C 60 80 3C */	lis r3, __vt__19dDlst_BrightCheck_c@ha /* 0x803BB5EC@ha */
+/* 80192FFC  38 03 B5 EC */	addi r0, r3, __vt__19dDlst_BrightCheck_c@l /* 0x803BB5EC@l */
 /* 80193000  90 1E 00 08 */	stw r0, 8(r30)
 lbl_80193004:
 /* 80193004  7F E0 07 35 */	extsh. r0, r31

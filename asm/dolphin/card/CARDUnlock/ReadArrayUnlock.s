@@ -4,8 +4,8 @@ lbl_80354090:
 /* 80354098  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8035409C  BF 41 00 28 */	stmw r26, 0x28(r1)
 /* 803540A0  3B A3 00 00 */	addi r29, r3, 0
-/* 803540A4  3C 60 80 45 */	lis r3, __CARDBlock@ha
-/* 803540A8  38 03 CB C0 */	addi r0, r3, __CARDBlock@l
+/* 803540A4  3C 60 80 45 */	lis r3, __CARDBlock@ha /* 0x8044CBC0@ha */
+/* 803540A8  38 03 CB C0 */	addi r0, r3, __CARDBlock@l /* 0x8044CBC0@l */
 /* 803540AC  1D 1D 01 10 */	mulli r8, r29, 0x110
 /* 803540B0  3B 44 00 00 */	addi r26, r4, 0
 /* 803540B4  3B C5 00 00 */	addi r30, r5, 0

@@ -28,11 +28,11 @@ lbl_800A2D40:
 /* 800A2D44  41 82 00 F0 */	beq lbl_800A2E34
 /* 800A2D48  38 7B 2B E8 */	addi r3, r27, 0x2be8
 /* 800A2D4C  38 9C 00 14 */	addi r4, r28, 0x14
-/* 800A2D50  3C A0 80 3E */	lis r5, now__14mDoMtx_stack_c@ha
-/* 800A2D54  38 A5 D4 70 */	addi r5, r5, now__14mDoMtx_stack_c@l
+/* 800A2D50  3C A0 80 3E */	lis r5, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800A2D54  38 A5 D4 70 */	addi r5, r5, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800A2D58  48 2A 37 8D */	bl PSMTXConcat
-/* 800A2D5C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800A2D60  3B 43 D4 70 */	addi r26, r3, now__14mDoMtx_stack_c@l
+/* 800A2D5C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800A2D60  3B 43 D4 70 */	addi r26, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800A2D64  C0 1A 00 0C */	lfs f0, 0xc(r26)
 /* 800A2D68  D0 01 00 FC */	stfs f0, 0xfc(r1)
 /* 800A2D6C  C0 1A 00 1C */	lfs f0, 0x1c(r26)
@@ -51,8 +51,8 @@ lbl_800A2D40:
 /* 800A2DA0  D0 01 00 F8 */	stfs f0, 0xf8(r1)
 /* 800A2DA4  38 7B 2B E8 */	addi r3, r27, 0x2be8
 /* 800A2DA8  38 9C 00 74 */	addi r4, r28, 0x74
-/* 800A2DAC  3C A0 80 3E */	lis r5, now__14mDoMtx_stack_c@ha
-/* 800A2DB0  38 A5 D4 70 */	addi r5, r5, now__14mDoMtx_stack_c@l
+/* 800A2DAC  3C A0 80 3E */	lis r5, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800A2DB0  38 A5 D4 70 */	addi r5, r5, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800A2DB4  48 2A 37 31 */	bl PSMTXConcat
 /* 800A2DB8  C0 3A 00 0C */	lfs f1, 0xc(r26)
 /* 800A2DBC  D0 21 00 E4 */	stfs f1, 0xe4(r1)
@@ -90,11 +90,11 @@ lbl_800A2E20:
 lbl_800A2E34:
 /* 800A2E34  38 7B 2B B8 */	addi r3, r27, 0x2bb8
 /* 800A2E38  38 9C 00 14 */	addi r4, r28, 0x14
-/* 800A2E3C  3C A0 80 3E */	lis r5, now__14mDoMtx_stack_c@ha
-/* 800A2E40  38 A5 D4 70 */	addi r5, r5, now__14mDoMtx_stack_c@l
+/* 800A2E3C  3C A0 80 3E */	lis r5, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800A2E40  38 A5 D4 70 */	addi r5, r5, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800A2E44  48 2A 36 A1 */	bl PSMTXConcat
-/* 800A2E48  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800A2E4C  3B 43 D4 70 */	addi r26, r3, now__14mDoMtx_stack_c@l
+/* 800A2E48  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800A2E4C  3B 43 D4 70 */	addi r26, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800A2E50  C0 1A 00 0C */	lfs f0, 0xc(r26)
 /* 800A2E54  D0 01 00 FC */	stfs f0, 0xfc(r1)
 /* 800A2E58  C0 1A 00 1C */	lfs f0, 0x1c(r26)
@@ -113,8 +113,8 @@ lbl_800A2E34:
 /* 800A2E8C  D0 01 00 F8 */	stfs f0, 0xf8(r1)
 /* 800A2E90  38 7B 2B B8 */	addi r3, r27, 0x2bb8
 /* 800A2E94  38 9C 00 74 */	addi r4, r28, 0x74
-/* 800A2E98  3C A0 80 3E */	lis r5, now__14mDoMtx_stack_c@ha
-/* 800A2E9C  38 A5 D4 70 */	addi r5, r5, now__14mDoMtx_stack_c@l
+/* 800A2E98  3C A0 80 3E */	lis r5, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800A2E9C  38 A5 D4 70 */	addi r5, r5, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800A2EA0  48 2A 36 45 */	bl PSMTXConcat
 /* 800A2EA4  C0 1A 00 0C */	lfs f0, 0xc(r26)
 /* 800A2EA8  D0 01 00 E4 */	stfs f0, 0xe4(r1)
@@ -344,8 +344,8 @@ lbl_800A31DC:
 /* 800A31DC  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 800A31E0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800A31E4  40 80 00 10 */	bge lbl_800A31F4
-/* 800A31E8  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800A31EC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 800A31E8  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800A31EC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 800A31F0  48 00 00 70 */	b lbl_800A3260
 lbl_800A31F4:
 /* 800A31F4  D0 21 00 08 */	stfs f1, 8(r1)
@@ -379,8 +379,8 @@ lbl_800A324C:
 lbl_800A3250:
 /* 800A3250  2C 00 00 01 */	cmpwi r0, 1
 /* 800A3254  40 82 00 0C */	bne lbl_800A3260
-/* 800A3258  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800A325C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 800A3258  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800A325C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_800A3260:
 /* 800A3260  FC 00 0A 10 */	fabs f0, f1
 /* 800A3264  FC 40 00 18 */	frsp f2, f0

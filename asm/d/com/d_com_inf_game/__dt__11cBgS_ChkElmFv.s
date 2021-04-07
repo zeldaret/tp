@@ -5,8 +5,8 @@ lbl_8002FEF8:
 /* 8002FF04  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8002FF08  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8002FF0C  41 82 00 1C */	beq lbl_8002FF28
-/* 8002FF10  3C A0 80 3B */	lis r5, __vt__11cBgS_ChkElm@ha
-/* 8002FF14  38 05 B6 30 */	addi r0, r5, __vt__11cBgS_ChkElm@l
+/* 8002FF10  3C A0 80 3B */	lis r5, __vt__11cBgS_ChkElm@ha /* 0x803AB630@ha */
+/* 8002FF14  38 05 B6 30 */	addi r0, r5, __vt__11cBgS_ChkElm@l /* 0x803AB630@l */
 /* 8002FF18  90 1F 00 10 */	stw r0, 0x10(r31)
 /* 8002FF1C  7C 80 07 35 */	extsh. r0, r4
 /* 8002FF20  40 81 00 08 */	ble lbl_8002FF28

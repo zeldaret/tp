@@ -18,8 +18,8 @@ lbl_80161D84:
 /* 80161DC4  D0 1F 02 A8 */	stfs f0, 0x2a8(r31)
 /* 80161DC8  48 00 00 20 */	b lbl_80161DE8
 lbl_80161DCC:
-/* 80161DCC  3C 60 80 43 */	lis r3, Zero__4cXyz@ha
-/* 80161DD0  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)
+/* 80161DCC  3C 60 80 43 */	lis r3, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 80161DD0  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)  /* 0x80430CF4@l */
 /* 80161DD4  D0 1F 02 A0 */	stfs f0, 0x2a0(r31)
 /* 80161DD8  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80161DDC  D0 1F 02 A4 */	stfs f0, 0x2a4(r31)
@@ -33,8 +33,8 @@ lbl_80161DE8:
 /* 80161DF8  38 00 00 00 */	li r0, 0
 /* 80161DFC  90 1F 02 C4 */	stw r0, 0x2c4(r31)
 /* 80161E00  D0 1F 02 C8 */	stfs f0, 0x2c8(r31)
-/* 80161E04  3C 60 80 43 */	lis r3, Zero__4cXyz@ha
-/* 80161E08  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)
+/* 80161E04  3C 60 80 43 */	lis r3, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 80161E08  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)  /* 0x80430CF4@l */
 /* 80161E0C  D0 1F 02 B4 */	stfs f0, 0x2b4(r31)
 /* 80161E10  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80161E14  D0 1F 02 B8 */	stfs f0, 0x2b8(r31)

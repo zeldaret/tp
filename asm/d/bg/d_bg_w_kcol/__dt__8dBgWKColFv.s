@@ -7,13 +7,13 @@ lbl_8007E74C:
 /* 8007E760  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8007E764  7C 9F 23 78 */	mr r31, r4
 /* 8007E768  41 82 00 4C */	beq lbl_8007E7B4
-/* 8007E76C  3C 60 80 3B */	lis r3, __vt__8dBgWKCol@ha
-/* 8007E770  38 03 BD C8 */	addi r0, r3, __vt__8dBgWKCol@l
+/* 8007E76C  3C 60 80 3B */	lis r3, __vt__8dBgWKCol@ha /* 0x803ABDC8@ha */
+/* 8007E770  38 03 BD C8 */	addi r0, r3, __vt__8dBgWKCol@l /* 0x803ABDC8@l */
 /* 8007E774  90 1E 00 04 */	stw r0, 4(r30)
 /* 8007E778  34 1E 00 20 */	addic. r0, r30, 0x20
 /* 8007E77C  41 82 00 10 */	beq lbl_8007E78C
-/* 8007E780  3C 60 80 3A */	lis r3, __vt__8cM3dGAab@ha
-/* 8007E784  38 03 72 18 */	addi r0, r3, __vt__8cM3dGAab@l
+/* 8007E780  3C 60 80 3A */	lis r3, __vt__8cM3dGAab@ha /* 0x803A7218@ha */
+/* 8007E784  38 03 72 18 */	addi r0, r3, __vt__8cM3dGAab@l /* 0x803A7218@l */
 /* 8007E788  90 1E 00 38 */	stw r0, 0x38(r30)
 lbl_8007E78C:
 /* 8007E78C  38 7E 00 1C */	addi r3, r30, 0x1c

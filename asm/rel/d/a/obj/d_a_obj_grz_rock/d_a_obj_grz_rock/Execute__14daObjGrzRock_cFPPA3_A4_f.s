@@ -9,7 +9,7 @@ lbl_80C1514C:
 /* 80C15168  41 82 00 18 */	beq lbl_80C15180
 /* 80C1516C  4B FF FB 85 */	bl setPrtcl__14daObjGrzRock_cFv
 /* 80C15170  7F E3 FB 78 */	mr r3, r31
-/* 80C15174  4B 40 4B 08 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80C15174  4B 40 4B 09 */	bl fopAcM_delete__FP10fopAc_ac_c
 /* 80C15178  38 60 00 01 */	li r3, 1
 /* 80C1517C  48 00 00 14 */	b lbl_80C15190
 lbl_80C15180:

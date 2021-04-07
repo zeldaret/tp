@@ -31,9 +31,31 @@ def calculate_function_alignments(context, libraries):
         for x in [32,16,8]:
             if (curr_end + x - 1) & ~(x - 1) == next_start:
                 next.alignment = x
-                context.debug(f"{next.addr:08X} {next.identifier.name} aligned with {next.alignment} bytes")
+                context.debug(f"[function] {next.addr:08X} {next.identifier.name} aligned with {next.alignment} bytes")
                 curr.padding = 0
                 break
+
+def caluclate_symbol_data_alignment(context, section):
+    for curr, next in util.mapOverlap(section.symbols, 2):
+        if not curr or not next:
+            continue
+
+        if isinstance(curr, Function):
+            continue
+
+        curr_end = curr.relative_addr + curr.size
+        next_start = next.relative_addr
+        if curr_end == next_start:
+            continue
+
+        for x in [64,32,16]:
+            if x > section.alignment:
+                continue
+            if (curr_end + x - 1) & ~(x - 1) == next_start:
+                next.alignment = x
+                context.debug(f"[symbol] {next.identifier.name}: {next.addr:08X} ({next.relative_addr:06X}) aligned with {x} bytes")
+                break
+
 
 
 def merge_symbol_from_group(context, section, group):

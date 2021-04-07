@@ -1,8 +1,8 @@
 lbl_80A4DDF8:
 /* 80A4DDF8  38 80 00 00 */	li r4, 0
 /* 80A4DDFC  38 C0 00 0A */	li r6, 0xa
-/* 80A4DE00  3C A0 80 A6 */	lis r5, saru_p@ha
-/* 80A4DE04  38 A5 E4 78 */	addi r5, r5, saru_p@l
+/* 80A4DE00  3C A0 80 A6 */	lis r5, saru_p@ha /* 0x80A5E478@ha */
+/* 80A4DE04  38 A5 E4 78 */	addi r5, r5, saru_p@l /* 0x80A5E478@l */
 /* 80A4DE08  7C 80 23 78 */	mr r0, r4
 /* 80A4DE0C  7C 69 03 A6 */	mtctr r3
 /* 80A4DE10  2C 03 00 00 */	cmpwi r3, 0

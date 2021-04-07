@@ -2,10 +2,10 @@ lbl_80C49158:
 /* 80C49158  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80C4915C  7C 08 02 A6 */	mflr r0
 /* 80C49160  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80C49164  3C 80 80 C5 */	lis r4, cNullVec__6Z2Calc@ha
-/* 80C49168  38 84 9E 60 */	addi r4, r4, cNullVec__6Z2Calc@l
-/* 80C4916C  3C A0 80 C5 */	lis r5, struct_80C4A0E8+0x3@ha
-/* 80C49170  38 E5 A0 EB */	addi r7, r5, struct_80C4A0E8+0x3@l
+/* 80C49164  3C 80 80 C5 */	lis r4, cNullVec__6Z2Calc@ha /* 0x80C49E60@ha */
+/* 80C49168  38 84 9E 60 */	addi r4, r4, cNullVec__6Z2Calc@l /* 0x80C49E60@l */
+/* 80C4916C  3C A0 80 C5 */	lis r5, struct_80C4A0E8+0x3@ha /* 0x80C4A0EB@ha */
+/* 80C49170  38 E5 A0 EB */	addi r7, r5, struct_80C4A0E8+0x3@l /* 0x80C4A0EB@l */
 /* 80C49174  88 07 00 00 */	lbz r0, 0(r7)
 /* 80C49178  7C 00 07 75 */	extsb. r0, r0
 /* 80C4917C  40 82 00 40 */	bne lbl_80C491BC
@@ -25,8 +25,8 @@ lbl_80C49158:
 /* 80C491B4  38 00 00 01 */	li r0, 1
 /* 80C491B8  98 07 00 00 */	stb r0, 0(r7)
 lbl_80C491BC:
-/* 80C491BC  3C A0 80 C5 */	lis r5, data_80C4A0EC@ha
-/* 80C491C0  38 E5 A0 EC */	addi r7, r5, data_80C4A0EC@l
+/* 80C491BC  3C A0 80 C5 */	lis r5, data_80C4A0EC@ha /* 0x80C4A0EC@ha */
+/* 80C491C0  38 E5 A0 EC */	addi r7, r5, data_80C4A0EC@l /* 0x80C4A0EC@l */
 /* 80C491C4  88 07 00 00 */	lbz r0, 0(r7)
 /* 80C491C8  7C 00 07 75 */	extsb. r0, r0
 /* 80C491CC  40 82 00 40 */	bne lbl_80C4920C
@@ -53,7 +53,7 @@ lbl_80C4920C:
 /* 80C4921C  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 80C49220  39 84 01 B8 */	addi r12, r4, 0x1b8
 /* 80C49224  7D 8C 02 14 */	add r12, r12, r0
-/* 80C49228  4B 71 8E 5C */	b __ptmf_scall
+/* 80C49228  4B 71 8E 5D */	bl __ptmf_scall
 /* 80C4922C  60 00 00 00 */	nop 
 /* 80C49230  48 00 00 1C */	b lbl_80C4924C
 lbl_80C49234:
@@ -61,7 +61,7 @@ lbl_80C49234:
 /* 80C49238  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 80C4923C  39 84 01 E8 */	addi r12, r4, 0x1e8
 /* 80C49240  7D 8C 02 14 */	add r12, r12, r0
-/* 80C49244  4B 71 8E 40 */	b __ptmf_scall
+/* 80C49244  4B 71 8E 41 */	bl __ptmf_scall
 /* 80C49248  60 00 00 00 */	nop 
 lbl_80C4924C:
 /* 80C4924C  80 01 00 14 */	lwz r0, 0x14(r1)

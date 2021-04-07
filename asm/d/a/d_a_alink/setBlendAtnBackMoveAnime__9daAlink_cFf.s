@@ -22,8 +22,8 @@ lbl_800AF11C:
 /* 800AF16C  48 2B 30 6D */	bl _savegpr_28
 /* 800AF170  7C 7F 1B 78 */	mr r31, r3
 /* 800AF174  FF E0 08 90 */	fmr f31, f1
-/* 800AF178  3C 80 80 39 */	lis r4, lit_3757@ha
-/* 800AF17C  3B C4 D6 58 */	addi r30, r4, lit_3757@l
+/* 800AF178  3C 80 80 39 */	lis r4, lit_3757@ha /* 0x8038D658@ha */
+/* 800AF17C  3B C4 D6 58 */	addi r30, r4, lit_3757@l /* 0x8038D658@l */
 /* 800AF180  38 80 00 01 */	li r4, 1
 /* 800AF184  48 03 33 99 */	bl checkBootsMoveAnime__9daAlink_cFi
 /* 800AF188  2C 03 00 00 */	cmpwi r3, 0
@@ -212,8 +212,8 @@ lbl_800AF3F4:
 /* 800AF430  C0 02 92 B8 */	lfs f0, lit_6040(r2)
 /* 800AF434  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 800AF438  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 800AF43C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800AF440  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800AF43C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800AF440  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800AF444  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 800AF448  38 80 00 01 */	li r4, 1
 /* 800AF44C  38 A0 00 0F */	li r5, 0xf

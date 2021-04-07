@@ -7,8 +7,8 @@ lbl_80039F9C:
 /* 80039FB0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80039FB4  7C 9F 23 78 */	mr r31, r4
 /* 80039FB8  41 82 00 28 */	beq lbl_80039FE0
-/* 80039FBC  3C 80 80 3A */	lis r4, __vt__16dDemo_particle_c@ha
-/* 80039FC0  38 04 79 10 */	addi r0, r4, __vt__16dDemo_particle_c@l
+/* 80039FBC  3C 80 80 3A */	lis r4, __vt__16dDemo_particle_c@ha /* 0x803A7910@ha */
+/* 80039FC0  38 04 79 10 */	addi r0, r4, __vt__16dDemo_particle_c@l /* 0x803A7910@l */
 /* 80039FC4  90 1E 00 00 */	stw r0, 0(r30)
 /* 80039FC8  38 80 00 00 */	li r4, 0
 /* 80039FCC  48 25 43 D5 */	bl __dt__Q217JStudio_JParticle13TCreateObjectFv

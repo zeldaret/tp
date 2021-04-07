@@ -7,15 +7,15 @@ lbl_80D61324:
 /* 80D61338  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80D6133C  7C 9F 23 78 */	mr r31, r4
 /* 80D61340  41 82 00 28 */	beq lbl_80D61368
-/* 80D61344  3C 80 80 D6 */	lis r4, __vt__13daTagSmkEmt_c@ha
-/* 80D61348  38 04 16 5C */	addi r0, r4, __vt__13daTagSmkEmt_c@l
+/* 80D61344  3C 80 80 D6 */	lis r4, __vt__13daTagSmkEmt_c@ha /* 0x80D6165C@ha */
+/* 80D61348  38 04 16 5C */	addi r0, r4, __vt__13daTagSmkEmt_c@l /* 0x80D6165C@l */
 /* 80D6134C  90 1E 05 68 */	stw r0, 0x568(r30)
 /* 80D61350  38 80 00 00 */	li r4, 0
-/* 80D61354  4B 2B 79 38 */	b __dt__10fopAc_ac_cFv
+/* 80D61354  4B 2B 79 39 */	bl __dt__10fopAc_ac_cFv
 /* 80D61358  7F E0 07 35 */	extsh. r0, r31
 /* 80D6135C  40 81 00 0C */	ble lbl_80D61368
 /* 80D61360  7F C3 F3 78 */	mr r3, r30
-/* 80D61364  4B 56 D9 D8 */	b __dl__FPv
+/* 80D61364  4B 56 D9 D9 */	bl __dl__FPv
 lbl_80D61368:
 /* 80D61368  7F C3 F3 78 */	mr r3, r30
 /* 80D6136C  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -6,11 +6,11 @@ lbl_80119134:
 /* 80119144  48 24 90 99 */	bl _savegpr_29
 /* 80119148  7C 9D 23 78 */	mr r29, r4
 /* 8011914C  7C BE 2B 78 */	mr r30, r5
-/* 80119150  3C 60 80 40 */	lis r3, mDemoArcName__20dStage_roomControl_c@ha
-/* 80119154  38 63 61 94 */	addi r3, r3, mDemoArcName__20dStage_roomControl_c@l
+/* 80119150  3C 60 80 40 */	lis r3, mDemoArcName__20dStage_roomControl_c@ha /* 0x80406194@ha */
+/* 80119154  38 63 61 94 */	addi r3, r3, mDemoArcName__20dStage_roomControl_c@l /* 0x80406194@l */
 /* 80119158  7C C4 33 78 */	mr r4, r6
-/* 8011915C  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80119160  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 8011915C  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80119160  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80119164  3C A5 00 02 */	addis r5, r5, 2
 /* 80119168  38 C0 00 80 */	li r6, 0x80
 /* 8011916C  38 A5 C2 F8 */	addi r5, r5, -15624

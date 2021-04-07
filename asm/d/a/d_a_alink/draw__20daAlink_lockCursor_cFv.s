@@ -87,13 +87,13 @@ lbl_80126544:
 /* 80126568  C0 22 97 28 */	lfs f1, lit_42687(r2)
 /* 8012656C  48 14 10 79 */	bl cM_rad2s__Ff
 /* 80126570  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
-/* 80126574  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80126578  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80126574  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80126578  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8012657C  7F E3 04 2E */	lfsx f31, r3, r0
 /* 80126580  C0 22 97 28 */	lfs f1, lit_42687(r2)
 /* 80126584  48 14 10 61 */	bl cM_rad2s__Ff
-/* 80126588  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha
-/* 8012658C  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l
+/* 80126588  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8012658C  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80126590  3B C4 00 04 */	addi r30, r4, 4
 /* 80126594  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
 /* 80126598  7C 1E 04 2E */	lfsx f0, r30, r0
@@ -109,8 +109,8 @@ lbl_80126544:
 /* 801265C0  C0 22 97 2C */	lfs f1, lit_42688(r2)
 /* 801265C4  48 14 10 21 */	bl cM_rad2s__Ff
 /* 801265C8  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
-/* 801265CC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 801265D0  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 801265CC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 801265D0  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 801265D4  7F E3 04 2E */	lfsx f31, r3, r0
 /* 801265D8  C0 22 97 2C */	lfs f1, lit_42688(r2)
 /* 801265DC  48 14 10 09 */	bl cM_rad2s__Ff
@@ -129,8 +129,8 @@ lbl_8012660C:
 /* 8012660C  80 7F 00 08 */	lwz r3, 8(r31)
 /* 80126610  C0 22 92 C0 */	lfs f1, lit_6108(r2)
 /* 80126614  FC 40 08 90 */	fmr f2, f1
-/* 80126618  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8012661C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80126618  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8012661C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80126620  80 84 5F 50 */	lwz r4, 0x5f50(r4)
 /* 80126624  48 1D 28 B1 */	bl draw__9J2DScreenFffPC14J2DGrafContext
 lbl_80126628:

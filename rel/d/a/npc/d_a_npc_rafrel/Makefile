@@ -3,19 +3,20 @@
 #
 
 M351_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_rafrel.plf
+M351_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_rafrel.lcf
+M351_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_rafrel.map
 
 M351_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_rafrel/executor.cpp \
-	rel/d/a/npc/d_a_npc_rafrel/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_rafrel/d_a_npc_rafrel.cpp \
 
 M351_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_rafrel/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_rafrel/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_rafrel/d_a_npc_rafrel.o \
 
 M351_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_rafrel/libRuntime.PPCEABI.H.a \
 
 M351_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M351_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M351_LDSCRIPT) \
+	-unused -map $(M351_MAP) \
+	-w off \
 
 $(M351_TARGET): $(M351_O_FILES) $(M351_LIBS)
+	@echo [351] creating $(M351_TARGET)
 	@echo $(M351_LIBS) $(M351_O_FILES) > build/M351_ofiles
-	$(LD) -partial $(M351_LDFLAGS) -o $(M351_TARGET) @build/M351_ofiles
+	@python3 tools/lcf.py rel 351 --output $(M351_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M351_LDFLAGS) -o $(M351_TARGET) @build/M351_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_rafrel/%.o: rel/d/a/npc/d_a_npc_rafrel/%.cpp
+	@echo [351] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M351_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M351_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_rafrel/libs/Runtime.PPCEABI.H/Makefile
 

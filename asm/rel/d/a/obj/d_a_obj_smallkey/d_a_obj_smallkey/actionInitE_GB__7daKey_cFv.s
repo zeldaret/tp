@@ -14,8 +14,8 @@ lbl_80CDB36C:
 /* 80CDB39C  54 00 00 3C */	rlwinm r0, r0, 0, 0, 0x1e
 /* 80CDB3A0  90 03 08 0C */	stw r0, 0x80c(r3)
 /* 80CDB3A4  4B FF FC 11 */	bl effectSet__7daKey_cFv
-/* 80CDB3A8  3C 60 80 CE */	lis r3, lit_3875@ha
-/* 80CDB3AC  C0 03 B8 38 */	lfs f0, lit_3875@l(r3)
+/* 80CDB3A8  3C 60 80 CE */	lis r3, lit_3875@ha /* 0x80CDB838@ha */
+/* 80CDB3AC  C0 03 B8 38 */	lfs f0, lit_3875@l(r3)  /* 0x80CDB838@l */
 /* 80CDB3B0  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 80CDB3B4  D0 1F 05 30 */	stfs f0, 0x530(r31)
 /* 80CDB3B8  38 00 00 07 */	li r0, 7

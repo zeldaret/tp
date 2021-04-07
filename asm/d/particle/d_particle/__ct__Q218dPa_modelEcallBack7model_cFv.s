@@ -7,12 +7,12 @@ lbl_8004FB90:
 /* 8004FBA4  7C 7E 1B 78 */	mr r30, r3
 /* 8004FBA8  3B FE 00 08 */	addi r31, r30, 8
 /* 8004FBAC  7F E3 FB 78 */	mr r3, r31
-/* 8004FBB0  3C 80 80 3A */	lis r4, j3dDefaultLightInfo@ha
-/* 8004FBB4  38 84 1E C8 */	addi r4, r4, j3dDefaultLightInfo@l
+/* 8004FBB0  3C 80 80 3A */	lis r4, j3dDefaultLightInfo@ha /* 0x803A1EC8@ha */
+/* 8004FBB4  38 84 1E C8 */	addi r4, r4, j3dDefaultLightInfo@l /* 0x803A1EC8@l */
 /* 8004FBB8  48 2D 5B 0D */	bl __as__12J3DLightInfoFRC12J3DLightInfo
 /* 8004FBBC  38 7F 00 74 */	addi r3, r31, 0x74
-/* 8004FBC0  3C 80 80 02 */	lis r4, __ct__11J3DLightObjFv@ha
-/* 8004FBC4  38 84 8C 0C */	addi r4, r4, __ct__11J3DLightObjFv@l
+/* 8004FBC0  3C 80 80 02 */	lis r4, __ct__11J3DLightObjFv@ha /* 0x80018C0C@ha */
+/* 8004FBC4  38 84 8C 0C */	addi r4, r4, __ct__11J3DLightObjFv@l /* 0x80018C0C@l */
 /* 8004FBC8  38 A0 00 00 */	li r5, 0
 /* 8004FBCC  38 C0 00 74 */	li r6, 0x74
 /* 8004FBD0  38 E0 00 06 */	li r7, 6

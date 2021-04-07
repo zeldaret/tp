@@ -4,31 +4,31 @@ lbl_801AB01C:
 /* 801AB024  90 01 00 84 */	stw r0, 0x84(r1)
 /* 801AB028  39 61 00 80 */	addi r11, r1, 0x80
 /* 801AB02C  48 1B 71 A5 */	bl _savegpr_26
-/* 801AB030  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801AB034  3B E3 CA 54 */	addi r31, r3, g_env_light@l
-/* 801AB038  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801AB03C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801AB030  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801AB034  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
+/* 801AB038  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801AB03C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801AB040  83 C3 5D AC */	lwz r30, 0x5dac(r3)
 /* 801AB044  83 63 5D 74 */	lwz r27, 0x5d74(r3)
 /* 801AB048  3B 40 00 01 */	li r26, 1
 /* 801AB04C  3B 83 0F 38 */	addi r28, r3, 0xf38
 /* 801AB050  3B BC 3E C8 */	addi r29, r28, 0x3ec8
 /* 801AB054  7F A3 EB 78 */	mr r3, r29
-/* 801AB058  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha
-/* 801AB05C  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l
+/* 801AB058  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha /* 0x80394C6C@ha */
+/* 801AB05C  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l /* 0x80394C6C@l */
 /* 801AB060  38 84 02 51 */	addi r4, r4, 0x251
 /* 801AB064  48 1B D9 31 */	bl strcmp
 /* 801AB068  2C 03 00 00 */	cmpwi r3, 0
 /* 801AB06C  41 82 00 38 */	beq lbl_801AB0A4
 /* 801AB070  7F A3 EB 78 */	mr r3, r29
-/* 801AB074  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha
-/* 801AB078  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l
+/* 801AB074  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha /* 0x80394C6C@ha */
+/* 801AB078  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l /* 0x80394C6C@l */
 /* 801AB07C  48 1B D9 19 */	bl strcmp
 /* 801AB080  2C 03 00 00 */	cmpwi r3, 0
 /* 801AB084  41 82 00 20 */	beq lbl_801AB0A4
 /* 801AB088  7F A3 EB 78 */	mr r3, r29
-/* 801AB08C  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha
-/* 801AB090  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l
+/* 801AB08C  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha /* 0x80394C6C@ha */
+/* 801AB090  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l /* 0x80394C6C@l */
 /* 801AB094  38 84 02 59 */	addi r4, r4, 0x259
 /* 801AB098  48 1B D8 FD */	bl strcmp
 /* 801AB09C  2C 03 00 00 */	cmpwi r3, 0
@@ -79,8 +79,8 @@ lbl_801AB118:
 /* 801AB13C  38 00 00 03 */	li r0, 3
 /* 801AB140  98 1F 0C 3D */	stb r0, 0xc3d(r31)
 /* 801AB144  7F A3 EB 78 */	mr r3, r29
-/* 801AB148  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha
-/* 801AB14C  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l
+/* 801AB148  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha /* 0x80394C6C@ha */
+/* 801AB14C  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l /* 0x80394C6C@l */
 /* 801AB150  38 84 00 F8 */	addi r4, r4, 0xf8
 /* 801AB154  3B DF 0C 28 */	addi r30, r31, 0xc28
 /* 801AB158  3B BF 0C 30 */	addi r29, r31, 0xc30

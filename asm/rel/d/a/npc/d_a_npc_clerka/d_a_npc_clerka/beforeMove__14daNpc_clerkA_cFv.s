@@ -9,7 +9,7 @@ lbl_8099371C:
 /* 80993738  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 8099373C  28 00 00 00 */	cmplwi r0, 0
 /* 80993740  40 82 00 1C */	bne lbl_8099375C
-/* 80993744  4B 69 C3 10 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80993744  4B 69 C3 11 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80993748  2C 03 00 00 */	cmpwi r3, 0
 /* 8099374C  40 82 00 14 */	bne lbl_80993760
 /* 80993750  88 1E 0A 89 */	lbz r0, 0xa89(r30)

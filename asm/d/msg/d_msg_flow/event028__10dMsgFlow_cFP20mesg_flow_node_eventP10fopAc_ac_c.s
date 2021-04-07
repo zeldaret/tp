@@ -4,8 +4,8 @@ lbl_8024D3C4:
 /* 8024D3CC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8024D3D0  39 61 00 20 */	addi r11, r1, 0x20
 /* 8024D3D4  48 11 4D FD */	bl _savegpr_26
-/* 8024D3D8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024D3DC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8024D3D8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024D3DC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024D3E0  38 63 0D D8 */	addi r3, r3, 0xdd8
 /* 8024D3E4  3C 80 00 01 */	lis r4, 0x0001 /* 0x0000FBFF@ha */
 /* 8024D3E8  38 84 FB FF */	addi r4, r4, 0xFBFF /* 0x0000FBFF@l */
@@ -16,8 +16,8 @@ lbl_8024D3C4:
 /* 8024D3FC  4B FE B1 B9 */	bl getSelectBombBagID__12dMsgObject_cFv
 /* 8024D400  7C 7F 1B 78 */	mr r31, r3
 /* 8024D404  4B FE B1 DD */	bl getSelectBombPrice__12dMsgObject_cFv
-/* 8024D408  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8024D40C  38 A4 61 C0 */	addi r5, r4, g_dComIfG_gameInfo@l
+/* 8024D408  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024D40C  38 A4 61 C0 */	addi r5, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024D410  80 85 5D C4 */	lwz r4, 0x5dc4(r5)
 /* 8024D414  7C 60 07 34 */	extsh r0, r3
 /* 8024D418  7C 04 02 14 */	add r0, r4, r0
@@ -26,8 +26,8 @@ lbl_8024D3C4:
 /* 8024D424  7F E4 FB 78 */	mr r4, r31
 /* 8024D428  38 A0 00 00 */	li r5, 0
 /* 8024D42C  4B DE 6B 41 */	bl setBombNum__24dSv_player_item_record_cFUcUc
-/* 8024D430  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024D434  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8024D430  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024D434  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024D438  3B C3 00 9C */	addi r30, r3, 0x9c
 /* 8024D43C  7F C3 F3 78 */	mr r3, r30
 /* 8024D440  57 E4 06 3E */	clrlwi r4, r31, 0x18
@@ -46,8 +46,8 @@ lbl_8024D3C4:
 /* 8024D474  48 00 00 70 */	b lbl_8024D4E4
 lbl_8024D478:
 /* 8024D478  3B 60 00 00 */	li r27, 0
-/* 8024D47C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024D480  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 8024D47C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024D480  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 lbl_8024D484:
 /* 8024D484  7F E3 FB 78 */	mr r3, r31
 /* 8024D488  7F 64 DB 78 */	mr r4, r27

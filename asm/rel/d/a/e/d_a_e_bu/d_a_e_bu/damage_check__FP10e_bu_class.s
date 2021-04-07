@@ -3,28 +3,28 @@ lbl_80691660:
 /* 80691664  7C 08 02 A6 */	mflr r0
 /* 80691668  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8069166C  39 61 00 20 */	addi r11, r1, 0x20
-/* 80691670  4B CD 0B 6C */	b _savegpr_29
+/* 80691670  4B CD 0B 6D */	bl _savegpr_29
 /* 80691674  7C 7E 1B 78 */	mr r30, r3
-/* 80691678  3C 60 80 69 */	lis r3, lit_3788@ha
-/* 8069167C  3B E3 46 90 */	addi r31, r3, lit_3788@l
-/* 80691680  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80691684  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80691678  3C 60 80 69 */	lis r3, lit_3788@ha /* 0x80694690@ha */
+/* 8069167C  3B E3 46 90 */	addi r31, r3, lit_3788@l /* 0x80694690@l */
+/* 80691680  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80691684  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80691688  83 A3 5D AC */	lwz r29, 0x5dac(r3)
 /* 8069168C  A8 1E 06 B4 */	lha r0, 0x6b4(r30)
 /* 80691690  2C 00 00 00 */	cmpwi r0, 0
 /* 80691694  40 82 01 80 */	bne lbl_80691814
 /* 80691698  38 7E 09 00 */	addi r3, r30, 0x900
-/* 8069169C  4B 9F 21 94 */	b Move__10dCcD_GSttsFv
+/* 8069169C  4B 9F 21 95 */	bl Move__10dCcD_GSttsFv
 /* 806916A0  38 7E 09 20 */	addi r3, r30, 0x920
-/* 806916A4  4B 9F 2D BC */	b ChkTgHit__12dCcD_GObjInfFv
+/* 806916A4  4B 9F 2D BD */	bl ChkTgHit__12dCcD_GObjInfFv
 /* 806916A8  28 03 00 00 */	cmplwi r3, 0
 /* 806916AC  41 82 01 4C */	beq lbl_806917F8
 /* 806916B0  38 7E 09 20 */	addi r3, r30, 0x920
-/* 806916B4  4B 9F 2E 44 */	b GetTgHitObj__12dCcD_GObjInfFv
+/* 806916B4  4B 9F 2E 45 */	bl GetTgHitObj__12dCcD_GObjInfFv
 /* 806916B8  90 7E 0A 58 */	stw r3, 0xa58(r30)
 /* 806916BC  7F C3 F3 78 */	mr r3, r30
 /* 806916C0  38 9E 0A 58 */	addi r4, r30, 0xa58
-/* 806916C4  4B 9F 65 40 */	b cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo
+/* 806916C4  4B 9F 65 41 */	bl cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo
 /* 806916C8  80 7E 0A 58 */	lwz r3, 0xa58(r30)
 /* 806916CC  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 806916D0  74 00 D8 00 */	andis. r0, r0, 0xd800
@@ -116,7 +116,7 @@ lbl_806917F8:
 /* 80691810  98 1E 09 DA */	stb r0, 0x9da(r30)
 lbl_80691814:
 /* 80691814  39 61 00 20 */	addi r11, r1, 0x20
-/* 80691818  4B CD 0A 10 */	b _restgpr_29
+/* 80691818  4B CD 0A 11 */	bl _restgpr_29
 /* 8069181C  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80691820  7C 08 03 A6 */	mtlr r0
 /* 80691824  38 21 00 20 */	addi r1, r1, 0x20

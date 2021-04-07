@@ -9,15 +9,15 @@ lbl_80C6A1C0:
 /* 80C6A1DC  40 82 00 48 */	bne lbl_80C6A224
 /* 80C6A1E0  28 1F 00 00 */	cmplwi r31, 0
 /* 80C6A1E4  41 82 00 34 */	beq lbl_80C6A218
-/* 80C6A1E8  4B 40 E4 3C */	b __ct__16dBgS_MoveBgActorFv
-/* 80C6A1EC  3C 60 80 C7 */	lis r3, __vt__17dEvLib_callback_c@ha
-/* 80C6A1F0  38 03 A4 9C */	addi r0, r3, __vt__17dEvLib_callback_c@l
+/* 80C6A1E8  4B 40 E4 3D */	bl __ct__16dBgS_MoveBgActorFv
+/* 80C6A1EC  3C 60 80 C7 */	lis r3, __vt__17dEvLib_callback_c@ha /* 0x80C6A49C@ha */
+/* 80C6A1F0  38 03 A4 9C */	addi r0, r3, __vt__17dEvLib_callback_c@l /* 0x80C6A49C@l */
 /* 80C6A1F4  90 1F 05 A0 */	stw r0, 0x5a0(r31)
 /* 80C6A1F8  93 FF 05 A4 */	stw r31, 0x5a4(r31)
 /* 80C6A1FC  38 00 00 00 */	li r0, 0
 /* 80C6A200  90 1F 05 A8 */	stw r0, 0x5a8(r31)
-/* 80C6A204  3C 60 80 C7 */	lis r3, __vt__14daObjLv4Sand_c@ha
-/* 80C6A208  38 63 A4 C0 */	addi r3, r3, __vt__14daObjLv4Sand_c@l
+/* 80C6A204  3C 60 80 C7 */	lis r3, __vt__14daObjLv4Sand_c@ha /* 0x80C6A4C0@ha */
+/* 80C6A208  38 63 A4 C0 */	addi r3, r3, __vt__14daObjLv4Sand_c@l /* 0x80C6A4C0@l */
 /* 80C6A20C  90 7F 05 9C */	stw r3, 0x59c(r31)
 /* 80C6A210  38 03 00 28 */	addi r0, r3, 0x28
 /* 80C6A214  90 1F 05 A0 */	stw r0, 0x5a0(r31)

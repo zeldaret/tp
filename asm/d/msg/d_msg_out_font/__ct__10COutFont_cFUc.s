@@ -5,8 +5,8 @@ lbl_80225C94:
 /* 80225CA0  39 61 00 20 */	addi r11, r1, 0x20
 /* 80225CA4  48 13 C5 39 */	bl _savegpr_29
 /* 80225CA8  7C 7D 1B 78 */	mr r29, r3
-/* 80225CAC  3C 60 80 3C */	lis r3, __vt__10COutFont_c@ha
-/* 80225CB0  38 03 FD C4 */	addi r0, r3, __vt__10COutFont_c@l
+/* 80225CAC  3C 60 80 3C */	lis r3, __vt__10COutFont_c@ha /* 0x803BFDC4@ha */
+/* 80225CB0  38 03 FD C4 */	addi r0, r3, __vt__10COutFont_c@l /* 0x803BFDC4@l */
 /* 80225CB4  90 1D 00 00 */	stw r0, 0(r29)
 /* 80225CB8  98 9D 02 42 */	stb r4, 0x242(r29)
 /* 80225CBC  3B C0 00 00 */	li r30, 0

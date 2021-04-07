@@ -5,11 +5,11 @@ lbl_80358914:
 /* 80358920  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80358924  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80358928  3B C3 00 00 */	addi r30, r3, 0
-/* 8035892C  3C 60 80 45 */	lis r3, __CARDBlock@ha
+/* 8035892C  3C 60 80 45 */	lis r3, __CARDBlock@ha /* 0x8044CBC0@ha */
 /* 80358930  93 A1 00 14 */	stw r29, 0x14(r1)
 /* 80358934  1C BE 01 10 */	mulli r5, r30, 0x110
 /* 80358938  93 81 00 10 */	stw r28, 0x10(r1)
-/* 8035893C  38 03 CB C0 */	addi r0, r3, __CARDBlock@l
+/* 8035893C  38 03 CB C0 */	addi r0, r3, __CARDBlock@l /* 0x8044CBC0@l */
 /* 80358940  7C 9C 23 79 */	or. r28, r4, r4
 /* 80358944  7F E0 2A 14 */	add r31, r0, r5
 /* 80358948  41 80 00 F0 */	blt lbl_80358A38
@@ -30,7 +30,7 @@ lbl_80358964:
 /* 80358980  4B FF CD FD */	bl __CARDGetDirBlock
 /* 80358984  80 BD 00 04 */	lwz r5, 4(r29)
 /* 80358988  3C 80 80 00 */	lis r4, 0x8000 /* 0x800000F8@ha */
-/* 8035898C  80 04 00 F8 */	lwz r0, 0x00F8(r4)
+/* 8035898C  80 04 00 F8 */	lwz r0, 0x00F8(r4)  /* 0x800000F8@l */
 /* 80358990  54 A4 30 32 */	slwi r4, r5, 6
 /* 80358994  7F 83 22 14 */	add r28, r3, r4
 /* 80358998  54 1D F0 BE */	srwi r29, r0, 2
@@ -68,8 +68,8 @@ lbl_80358A0C:
 /* 80358A10  48 00 00 28 */	b lbl_80358A38
 lbl_80358A14:
 /* 80358A14  80 1F 00 0C */	lwz r0, 0xc(r31)
-/* 80358A18  3C 60 80 36 */	lis r3, EraseCallback@ha
-/* 80358A1C  38 A3 8A 84 */	addi r5, r3, EraseCallback@l
+/* 80358A18  3C 60 80 36 */	lis r3, EraseCallback@ha /* 0x80358A84@ha */
+/* 80358A1C  38 A3 8A 84 */	addi r5, r3, EraseCallback@l /* 0x80358A84@l */
 /* 80358A20  7C 80 21 D6 */	mullw r4, r0, r4
 /* 80358A24  38 7E 00 00 */	addi r3, r30, 0
 /* 80358A28  4B FF AF 91 */	bl __CARDEraseSector

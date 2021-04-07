@@ -17,10 +17,10 @@ lbl_80350760:
 /* 80350764  4B FE A1 11 */	bl OSRegisterVersion
 /* 80350768  4B FE CF 8D */	bl OSDisableInterrupts
 /* 8035076C  38 00 00 00 */	li r0, 0
-/* 80350770  3C 80 80 35 */	lis r4, __ARHandler@ha
+/* 80350770  3C 80 80 35 */	lis r4, __ARHandler@ha /* 0x803507F8@ha */
 /* 80350774  90 0D 93 38 */	stw r0, __AR_Callback(r13)
 /* 80350778  3B E3 00 00 */	addi r31, r3, 0
-/* 8035077C  38 84 07 F8 */	addi r4, r4, __ARHandler@l
+/* 8035077C  38 84 07 F8 */	addi r4, r4, __ARHandler@l /* 0x803507F8@l */
 /* 80350780  38 60 00 06 */	li r3, 6
 /* 80350784  4B FE CF BD */	bl __OSSetInterruptHandler
 /* 80350788  3C 60 02 00 */	lis r3, 0x200

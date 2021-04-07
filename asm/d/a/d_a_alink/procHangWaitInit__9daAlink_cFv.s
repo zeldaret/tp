@@ -13,8 +13,8 @@ lbl_800FB43C:
 /* 800FB468  4B FF F1 61 */	bl checkHangFootWall__9daAlink_cFv
 /* 800FB46C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800FB470  41 82 00 4C */	beq lbl_800FB4BC
-/* 800FB474  3C 60 80 39 */	lis r3, m__20daAlinkHIO_ladder_c0@ha
-/* 800FB478  A8 A3 EB 8C */	lha r5, m__20daAlinkHIO_ladder_c0@l(r3)
+/* 800FB474  3C 60 80 39 */	lis r3, m__20daAlinkHIO_ladder_c0@ha /* 0x8038EB8C@ha */
+/* 800FB478  A8 A3 EB 8C */	lha r5, m__20daAlinkHIO_ladder_c0@l(r3)  /* 0x8038EB8C@l */
 /* 800FB47C  7F E3 FB 78 */	mr r3, r31
 /* 800FB480  38 80 00 A1 */	li r4, 0xa1
 /* 800FB484  C0 22 92 C0 */	lfs f1, lit_6108(r2)
@@ -32,8 +32,8 @@ lbl_800FB43C:
 /* 800FB4B4  98 1F 2F 93 */	stb r0, 0x2f93(r31)
 /* 800FB4B8  48 00 00 3C */	b lbl_800FB4F4
 lbl_800FB4BC:
-/* 800FB4BC  3C 60 80 39 */	lis r3, m__23daAlinkHIO_wallCatch_c0@ha
-/* 800FB4C0  A8 A3 E1 64 */	lha r5, m__23daAlinkHIO_wallCatch_c0@l(r3)
+/* 800FB4BC  3C 60 80 39 */	lis r3, m__23daAlinkHIO_wallCatch_c0@ha /* 0x8038E164@ha */
+/* 800FB4C0  A8 A3 E1 64 */	lha r5, m__23daAlinkHIO_wallCatch_c0@l(r3)  /* 0x8038E164@l */
 /* 800FB4C4  7F E3 FB 78 */	mr r3, r31
 /* 800FB4C8  38 80 00 92 */	li r4, 0x92
 /* 800FB4CC  C0 22 92 C0 */	lfs f1, lit_6108(r2)
@@ -54,8 +54,8 @@ lbl_800FB4F4:
 /* 800FB504  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 800FB508  D0 1F 33 98 */	stfs f0, 0x3398(r31)
 /* 800FB50C  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
-/* 800FB510  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800FB514  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800FB510  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800FB514  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800FB518  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 800FB51C  60 00 01 00 */	ori r0, r0, 0x100
 /* 800FB520  90 03 5F 18 */	stw r0, 0x5f18(r3)

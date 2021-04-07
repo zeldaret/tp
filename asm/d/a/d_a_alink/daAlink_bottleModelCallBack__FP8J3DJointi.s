@@ -2,8 +2,8 @@ lbl_8010E52C:
 /* 8010E52C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8010E530  7C 08 02 A6 */	mflr r0
 /* 8010E534  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8010E538  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8010E53C  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8010E538  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8010E53C  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8010E540  80 63 00 38 */	lwz r3, 0x38(r3)
 /* 8010E544  80 63 00 14 */	lwz r3, 0x14(r3)
 /* 8010E548  2C 04 00 00 */	cmpwi r4, 0

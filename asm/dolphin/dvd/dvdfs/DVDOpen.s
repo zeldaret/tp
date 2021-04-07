@@ -12,9 +12,9 @@ lbl_80348890:
 /* 803488B8  38 61 00 10 */	addi r3, r1, 0x10
 /* 803488BC  38 80 00 80 */	li r4, 0x80
 /* 803488C0  48 00 03 71 */	bl DVDGetCurrentDir
-/* 803488C4  3C 60 80 3D */	lis r3, lit_140@ha
+/* 803488C4  3C 60 80 3D */	lis r3, lit_140@ha /* 0x803D1448@ha */
 /* 803488C8  4C C6 31 82 */	crclr 6
-/* 803488CC  38 63 14 48 */	addi r3, r3, lit_140@l
+/* 803488CC  38 63 14 48 */	addi r3, r3, lit_140@l /* 0x803D1448@l */
 /* 803488D0  38 9E 00 00 */	addi r4, r30, 0
 /* 803488D4  38 A1 00 10 */	addi r5, r1, 0x10
 /* 803488D8  4B CB E1 E5 */	bl OSReport

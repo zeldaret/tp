@@ -5,8 +5,8 @@ lbl_80BF846C:
 /* 80BF8478  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80BF847C  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80BF8480  7C 7E 1B 78 */	mr r30, r3
-/* 80BF8484  3C 80 80 C0 */	lis r4, l_dzb@ha
-/* 80BF8488  3B E4 8F E8 */	addi r31, r4, l_dzb@l
+/* 80BF8484  3C 80 80 C0 */	lis r4, l_dzb@ha /* 0x80BF8FE8@ha */
+/* 80BF8488  3B E4 8F E8 */	addi r31, r4, l_dzb@l /* 0x80BF8FE8@l */
 /* 80BF848C  A0 03 07 60 */	lhz r0, 0x760(r3)
 /* 80BF8490  28 00 00 00 */	cmplwi r0, 0
 /* 80BF8494  40 82 00 1C */	bne lbl_80BF84B0
@@ -36,7 +36,7 @@ lbl_80BF84E8:
 /* 80BF84E8  38 7E 07 85 */	addi r3, r30, 0x785
 /* 80BF84EC  88 9E 07 84 */	lbz r4, 0x784(r30)
 /* 80BF84F0  38 A0 00 33 */	li r5, 0x33
-/* 80BF84F4  4B 67 81 68 */	b cLib_chaseUC__FPUcUcUc
+/* 80BF84F4  4B 67 81 69 */	bl cLib_chaseUC__FPUcUcUc
 /* 80BF84F8  80 7E 07 6C */	lwz r3, 0x76c(r30)
 /* 80BF84FC  28 03 00 00 */	cmplwi r3, 0
 /* 80BF8500  41 82 00 0C */	beq lbl_80BF850C
@@ -47,16 +47,16 @@ lbl_80BF850C:
 /* 80BF8510  38 7E 07 30 */	addi r3, r30, 0x730
 /* 80BF8514  C0 1F 00 64 */	lfs f0, 0x64(r31)
 /* 80BF8518  EC 40 00 72 */	fmuls f2, f0, f1
-/* 80BF851C  4B 67 82 24 */	b cLib_chaseF__FPfff
+/* 80BF851C  4B 67 82 25 */	bl cLib_chaseF__FPfff
 /* 80BF8520  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80BF8524  7C 03 07 74 */	extsb r3, r0
-/* 80BF8528  4B 43 4B 44 */	b dComIfGp_getReverb__Fi
+/* 80BF8528  4B 43 4B 45 */	bl dComIfGp_getReverb__Fi
 /* 80BF852C  7C 67 1B 78 */	mr r7, r3
 /* 80BF8530  3C 60 00 08 */	lis r3, 0x0008 /* 0x00080089@ha */
 /* 80BF8534  38 03 00 89 */	addi r0, r3, 0x0089 /* 0x00080089@l */
 /* 80BF8538  90 01 00 08 */	stw r0, 8(r1)
-/* 80BF853C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80BF8540  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80BF853C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80BF8540  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80BF8544  80 63 00 00 */	lwz r3, 0(r3)
 /* 80BF8548  38 81 00 08 */	addi r4, r1, 8
 /* 80BF854C  38 BE 05 38 */	addi r5, r30, 0x538
@@ -66,7 +66,7 @@ lbl_80BF850C:
 /* 80BF855C  C0 7F 00 60 */	lfs f3, 0x60(r31)
 /* 80BF8560  FC 80 18 90 */	fmr f4, f3
 /* 80BF8564  39 00 00 00 */	li r8, 0
-/* 80BF8568  4B 6B 3F A4 */	b seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80BF8568  4B 6B 3F A5 */	bl seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 80BF856C  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 80BF8570  83 C1 00 18 */	lwz r30, 0x18(r1)
 /* 80BF8574  80 01 00 24 */	lwz r0, 0x24(r1)

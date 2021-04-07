@@ -5,12 +5,12 @@ lbl_8063DAC4:
 /* 8063DAD0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8063DAD4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8063DAD8  41 82 00 1C */	beq lbl_8063DAF4
-/* 8063DADC  3C A0 80 64 */	lis r5, __vt__8cM3dGAab@ha
-/* 8063DAE0  38 05 DF C4 */	addi r0, r5, __vt__8cM3dGAab@l
+/* 8063DADC  3C A0 80 64 */	lis r5, __vt__8cM3dGAab@ha /* 0x8063DFC4@ha */
+/* 8063DAE0  38 05 DF C4 */	addi r0, r5, __vt__8cM3dGAab@l /* 0x8063DFC4@l */
 /* 8063DAE4  90 1F 00 18 */	stw r0, 0x18(r31)
 /* 8063DAE8  7C 80 07 35 */	extsh. r0, r4
 /* 8063DAEC  40 81 00 08 */	ble lbl_8063DAF4
-/* 8063DAF0  4B C9 12 4C */	b __dl__FPv
+/* 8063DAF0  4B C9 12 4D */	bl __dl__FPv
 lbl_8063DAF4:
 /* 8063DAF4  7F E3 FB 78 */	mr r3, r31
 /* 8063DAF8  83 E1 00 0C */	lwz r31, 0xc(r1)

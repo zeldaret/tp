@@ -1,6 +1,6 @@
 lbl_8024C2A0:
-/* 8024C2A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024C2A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8024C2A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024C2A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024C2A8  88 03 01 0C */	lbz r0, 0x10c(r3)
 /* 8024C2AC  28 00 00 00 */	cmplwi r0, 0
 /* 8024C2B0  40 82 00 0C */	bne lbl_8024C2BC

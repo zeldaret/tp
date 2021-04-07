@@ -34,11 +34,11 @@ lbl_8034E9EC:
 /* 8034EA6C  54 60 03 5B */	rlwinm. r0, r3, 0, 0xd, 0xd
 /* 8034EA70  40 82 00 3C */	bne lbl_8034EAAC
 /* 8034EA74  1C 9F 00 0C */	mulli r4, r31, 0xc
-/* 8034EA78  3C 60 80 45 */	lis r3, Origin@ha
-/* 8034EA7C  38 03 CB 80 */	addi r0, r3, Origin@l
-/* 8034EA80  3C 60 80 35 */	lis r3, PADOriginUpdateCallback@ha
+/* 8034EA78  3C 60 80 45 */	lis r3, Origin@ha /* 0x8044CB80@ha */
+/* 8034EA7C  38 03 CB 80 */	addi r0, r3, Origin@l /* 0x8044CB80@l */
+/* 8034EA80  3C 60 80 35 */	lis r3, PADOriginUpdateCallback@ha /* 0x8034E51C@ha */
 /* 8034EA84  7C C0 22 14 */	add r6, r0, r4
-/* 8034EA88  39 03 E5 1C */	addi r8, r3, PADOriginUpdateCallback@l
+/* 8034EA88  39 03 E5 1C */	addi r8, r3, PADOriginUpdateCallback@l /* 0x8034E51C@l */
 /* 8034EA8C  38 7F 00 00 */	addi r3, r31, 0
 /* 8034EA90  38 8D 84 B8 */	la r4, CmdReadOrigin(r13) /* 80450A38-_SDA_BASE_ */
 /* 8034EA94  38 A0 00 01 */	li r5, 1

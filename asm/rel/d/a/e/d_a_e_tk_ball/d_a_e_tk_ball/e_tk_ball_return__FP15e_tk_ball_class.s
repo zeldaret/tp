@@ -12,7 +12,7 @@ lbl_807BCA3C:
 /* 807BCA3C  38 7F 04 D0 */	addi r3, r31, 0x4d0
 /* 807BCA40  38 9F 04 F8 */	addi r4, r31, 0x4f8
 /* 807BCA44  7C 65 1B 78 */	mr r5, r3
-/* 807BCA48  4B B8 A6 48 */	b PSVECAdd
+/* 807BCA48  4B B8 A6 49 */	bl PSVECAdd
 /* 807BCA4C  A8 1F 05 E4 */	lha r0, 0x5e4(r31)
 /* 807BCA50  2C 00 00 00 */	cmpwi r0, 0
 /* 807BCA54  40 82 00 0C */	bne lbl_807BCA60
@@ -30,12 +30,12 @@ lbl_807BCA60:
 /* 807BCA80  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 807BCA84  38 7F 06 38 */	addi r3, r31, 0x638
 /* 807BCA88  38 81 00 08 */	addi r4, r1, 8
-/* 807BCA8C  4B 8C 80 38 */	b MoveCAt__8dCcD_SphFR4cXyz
-/* 807BCA90  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 807BCA94  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 807BCA8C  4B 8C 80 39 */	bl MoveCAt__8dCcD_SphFR4cXyz
+/* 807BCA90  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 807BCA94  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 807BCA98  38 63 23 3C */	addi r3, r3, 0x233c
 /* 807BCA9C  38 9F 06 38 */	addi r4, r31, 0x638
-/* 807BCAA0  4B AA 81 08 */	b Set__4cCcSFP8cCcD_Obj
+/* 807BCAA0  4B AA 81 09 */	bl Set__4cCcSFP8cCcD_Obj
 /* 807BCAA4  A8 1F 05 E4 */	lha r0, 0x5e4(r31)
 /* 807BCAA8  2C 00 00 00 */	cmpwi r0, 0
 /* 807BCAAC  40 82 00 34 */	bne lbl_807BCAE0
@@ -44,14 +44,14 @@ lbl_807BCA60:
 /* 807BCAB8  2C 03 00 00 */	cmpwi r3, 0
 /* 807BCABC  40 82 00 14 */	bne lbl_807BCAD0
 /* 807BCAC0  38 7F 06 38 */	addi r3, r31, 0x638
-/* 807BCAC4  4B 8C 77 FC */	b ChkAtHit__12dCcD_GObjInfFv
+/* 807BCAC4  4B 8C 77 FD */	bl ChkAtHit__12dCcD_GObjInfFv
 /* 807BCAC8  28 03 00 00 */	cmplwi r3, 0
 /* 807BCACC  41 82 00 14 */	beq lbl_807BCAE0
 lbl_807BCAD0:
 /* 807BCAD0  7F E3 FB 78 */	mr r3, r31
 /* 807BCAD4  4B FF F6 F9 */	bl impact_eff_set__FP15e_tk_ball_class
 /* 807BCAD8  7F E3 FB 78 */	mr r3, r31
-/* 807BCADC  4B 85 D1 A0 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 807BCADC  4B 85 D1 A1 */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_807BCAE0:
 /* 807BCAE0  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 807BCAE4  80 01 00 24 */	lwz r0, 0x24(r1)

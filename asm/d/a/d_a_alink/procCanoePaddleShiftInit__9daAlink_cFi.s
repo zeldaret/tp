@@ -13,18 +13,18 @@ lbl_800F5D04:
 /* 800F5D30  A8 1E 30 12 */	lha r0, 0x3012(r30)
 /* 800F5D34  2C 00 00 00 */	cmpwi r0, 0
 /* 800F5D38  40 82 00 14 */	bne lbl_800F5D4C
-/* 800F5D3C  3C A0 80 39 */	lis r5, m__19daAlinkHIO_canoe_c0@ha
-/* 800F5D40  38 A5 E6 10 */	addi r5, r5, m__19daAlinkHIO_canoe_c0@l
+/* 800F5D3C  3C A0 80 39 */	lis r5, m__19daAlinkHIO_canoe_c0@ha /* 0x8038E610@ha */
+/* 800F5D40  38 A5 E6 10 */	addi r5, r5, m__19daAlinkHIO_canoe_c0@l /* 0x8038E610@l */
 /* 800F5D44  C0 25 00 04 */	lfs f1, 4(r5)
 /* 800F5D48  48 00 00 14 */	b lbl_800F5D5C
 lbl_800F5D4C:
-/* 800F5D4C  3C A0 80 39 */	lis r5, m__19daAlinkHIO_canoe_c0@ha
-/* 800F5D50  38 A5 E6 10 */	addi r5, r5, m__19daAlinkHIO_canoe_c0@l
+/* 800F5D4C  3C A0 80 39 */	lis r5, m__19daAlinkHIO_canoe_c0@ha /* 0x8038E610@ha */
+/* 800F5D50  38 A5 E6 10 */	addi r5, r5, m__19daAlinkHIO_canoe_c0@l /* 0x8038E610@l */
 /* 800F5D54  C0 05 00 04 */	lfs f0, 4(r5)
 /* 800F5D58  FC 20 00 50 */	fneg f1, f0
 lbl_800F5D5C:
-/* 800F5D5C  3C A0 80 39 */	lis r5, m__19daAlinkHIO_canoe_c0@ha
-/* 800F5D60  38 C5 E6 10 */	addi r6, r5, m__19daAlinkHIO_canoe_c0@l
+/* 800F5D5C  3C A0 80 39 */	lis r5, m__19daAlinkHIO_canoe_c0@ha /* 0x8038E610@ha */
+/* 800F5D60  38 C5 E6 10 */	addi r6, r5, m__19daAlinkHIO_canoe_c0@l /* 0x8038E610@l */
 /* 800F5D64  C0 46 00 08 */	lfs f2, 8(r6)
 /* 800F5D68  A8 A6 00 00 */	lha r5, 0(r6)
 /* 800F5D6C  C0 66 00 0C */	lfs f3, 0xc(r6)

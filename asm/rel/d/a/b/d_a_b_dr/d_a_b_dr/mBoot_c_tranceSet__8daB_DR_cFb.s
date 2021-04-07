@@ -5,8 +5,8 @@ lbl_805BB540:
 /* 805BB54C  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 805BB550  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 805BB554  7C 7E 1B 78 */	mr r30, r3
-/* 805BB558  3C 60 80 5C */	lis r3, lit_3800@ha
-/* 805BB55C  3B E3 6C 74 */	addi r31, r3, lit_3800@l
+/* 805BB558  3C 60 80 5C */	lis r3, lit_3800@ha /* 0x805C6C74@ha */
+/* 805BB55C  3B E3 6C 74 */	addi r31, r3, lit_3800@l /* 0x805C6C74@l */
 /* 805BB560  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 805BB564  40 82 00 A8 */	bne lbl_805BB60C
 /* 805BB568  80 1E 07 10 */	lwz r0, 0x710(r30)
@@ -19,11 +19,11 @@ lbl_805BB540:
 /* 805BB584  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 805BB588  2C 00 00 2D */	cmpwi r0, 0x2d
 /* 805BB58C  41 81 00 A8 */	bgt lbl_805BB634
-/* 805BB590  3C 60 80 45 */	lis r3, calc_mtx@ha
-/* 805BB594  38 63 07 68 */	addi r3, r3, calc_mtx@l
+/* 805BB590  3C 60 80 45 */	lis r3, calc_mtx@ha /* 0x80450768@ha */
+/* 805BB594  38 63 07 68 */	addi r3, r3, calc_mtx@l /* 0x80450768@l */
 /* 805BB598  80 63 00 00 */	lwz r3, 0(r3)
 /* 805BB59C  A8 9E 04 E6 */	lha r4, 0x4e6(r30)
-/* 805BB5A0  4B A5 0E 3C */	b mDoMtx_YrotS__FPA4_fs
+/* 805BB5A0  4B A5 0E 3D */	bl mDoMtx_YrotS__FPA4_fs
 /* 805BB5A4  C0 1F 00 40 */	lfs f0, 0x40(r31)
 /* 805BB5A8  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 805BB5AC  C0 1F 00 30 */	lfs f0, 0x30(r31)
@@ -32,7 +32,7 @@ lbl_805BB540:
 /* 805BB5B8  D0 01 00 1C */	stfs f0, 0x1c(r1)
 /* 805BB5BC  38 61 00 14 */	addi r3, r1, 0x14
 /* 805BB5C0  38 81 00 08 */	addi r4, r1, 8
-/* 805BB5C4  4B CB 59 28 */	b MtxPosition__FP4cXyzP4cXyz
+/* 805BB5C4  4B CB 59 29 */	bl MtxPosition__FP4cXyzP4cXyz
 /* 805BB5C8  C0 3E 07 6C */	lfs f1, 0x76c(r30)
 /* 805BB5CC  C0 01 00 08 */	lfs f0, 8(r1)
 /* 805BB5D0  C0 5F 00 48 */	lfs f2, 0x48(r31)
@@ -60,7 +60,7 @@ lbl_805BB60C:
 /* 805BB624  C0 3F 00 00 */	lfs f1, 0(r31)
 /* 805BB628  C0 5F 00 1C */	lfs f2, 0x1c(r31)
 /* 805BB62C  C0 7F 00 20 */	lfs f3, 0x20(r31)
-/* 805BB630  4B CB 44 88 */	b cLib_addCalcPos__FP4cXyzRC4cXyzfff
+/* 805BB630  4B CB 44 89 */	bl cLib_addCalcPos__FP4cXyzRC4cXyzfff
 lbl_805BB634:
 /* 805BB634  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 805BB638  83 C1 00 28 */	lwz r30, 0x28(r1)

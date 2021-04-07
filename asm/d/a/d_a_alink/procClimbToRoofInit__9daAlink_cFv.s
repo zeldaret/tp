@@ -20,8 +20,8 @@ lbl_801003E4:
 /* 8010042C  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 80100430  38 00 00 0A */	li r0, 0xa
 /* 80100434  98 1F 2F 99 */	stb r0, 0x2f99(r31)
-/* 80100438  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8010043C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80100438  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8010043C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80100440  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 80100444  60 00 00 08 */	ori r0, r0, 8
 /* 80100448  90 03 5F 18 */	stw r0, 0x5f18(r3)

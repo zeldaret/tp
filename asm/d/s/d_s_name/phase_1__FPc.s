@@ -11,12 +11,12 @@ lbl_802587A4:
 /* 802587C8  38 C0 00 00 */	li r6, 0
 /* 802587CC  48 05 68 45 */	bl bgmStart__8Z2SeqMgrFUlUll
 /* 802587D0  7F E3 FB 78 */	mr r3, r31
-/* 802587D4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 802587D8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 802587D4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 802587D8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 802587DC  3C 84 00 02 */	addis r4, r4, 2
 /* 802587E0  38 A0 00 80 */	li r5, 0x80
-/* 802587E4  3C C0 80 3A */	lis r6, d_s_d_s_name__stringBase0@ha
-/* 802587E8  38 C6 A2 A8 */	addi r6, r6, d_s_d_s_name__stringBase0@l
+/* 802587E4  3C C0 80 3A */	lis r6, d_s_d_s_name__stringBase0@ha /* 0x8039A2A8@ha */
+/* 802587E8  38 C6 A2 A8 */	addi r6, r6, d_s_d_s_name__stringBase0@l /* 0x8039A2A8@l */
 /* 802587EC  38 E0 00 00 */	li r7, 0
 /* 802587F0  39 00 00 00 */	li r8, 0
 /* 802587F4  38 84 C2 F8 */	addi r4, r4, -15624

@@ -3,19 +3,20 @@
 #
 
 M180_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_cr.plf
+M180_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_cr.lcf
+M180_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_cr.map
 
 M180_CPP_FILES := \
-	rel/d/a/e/d_a_e_cr/executor.cpp \
-	rel/d/a/e/d_a_e_cr/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_cr/d_a_e_cr.cpp \
 
 M180_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_cr/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_cr/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_cr/d_a_e_cr.o \
 
 M180_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_cr/libRuntime.PPCEABI.H.a \
 
 M180_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M180_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M180_LDSCRIPT) \
+	-unused -map $(M180_MAP) \
+	-w off \
 
 $(M180_TARGET): $(M180_O_FILES) $(M180_LIBS)
+	@echo [180] creating $(M180_TARGET)
 	@echo $(M180_LIBS) $(M180_O_FILES) > build/M180_ofiles
-	$(LD) -partial $(M180_LDFLAGS) -o $(M180_TARGET) @build/M180_ofiles
+	@python3 tools/lcf.py rel 180 --output $(M180_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M180_LDFLAGS) -o $(M180_TARGET) @build/M180_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_cr/%.o: rel/d/a/e/d_a_e_cr/%.cpp
+	@echo [180] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M180_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M180_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_cr/libs/Runtime.PPCEABI.H/Makefile
 

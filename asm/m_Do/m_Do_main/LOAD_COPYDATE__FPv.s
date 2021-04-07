@@ -5,8 +5,8 @@ lbl_8000614C:
 /* 80006158  7C 21 59 6E */	stwux r1, r1, r11
 /* 8000615C  7C 08 02 A6 */	mflr r0
 /* 80006160  90 0C 00 04 */	stw r0, 4(r12)
-/* 80006164  3C 60 80 37 */	lis r3, m_Do_m_Do_main__stringBase0@ha
-/* 80006168  38 63 39 A0 */	addi r3, r3, m_Do_m_Do_main__stringBase0@l
+/* 80006164  3C 60 80 37 */	lis r3, m_Do_m_Do_main__stringBase0@ha /* 0x803739A0@ha */
+/* 80006168  38 63 39 A0 */	addi r3, r3, m_Do_m_Do_main__stringBase0@l /* 0x803739A0@l */
 /* 8000616C  38 63 02 83 */	addi r3, r3, 0x283
 /* 80006170  38 81 00 40 */	addi r4, r1, 0x40
 /* 80006174  48 34 27 1D */	bl DVDOpen
@@ -18,8 +18,8 @@ lbl_8000614C:
 /* 8000618C  38 C0 00 00 */	li r6, 0
 /* 80006190  38 E0 00 02 */	li r7, 2
 /* 80006194  48 34 2C B1 */	bl DVDReadPrio
-/* 80006198  3C 60 80 3A */	lis r3, COPYDATE_STRING__7mDoMain@ha
-/* 8000619C  38 63 2E E0 */	addi r3, r3, COPYDATE_STRING__7mDoMain@l
+/* 80006198  3C 60 80 3A */	lis r3, COPYDATE_STRING__7mDoMain@ha /* 0x803A2EE0@ha */
+/* 8000619C  38 63 2E E0 */	addi r3, r3, COPYDATE_STRING__7mDoMain@l /* 0x803A2EE0@l */
 /* 800061A0  38 81 00 20 */	addi r4, r1, 0x20
 /* 800061A4  38 A0 00 11 */	li r5, 0x11
 /* 800061A8  4B FF D3 99 */	bl memcpy

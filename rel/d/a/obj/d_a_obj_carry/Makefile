@@ -3,17 +3,15 @@
 #
 
 M18_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_carry.plf
+M18_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_carry.lcf
+M18_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_carry.map
 
 M18_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_carry/executor.cpp \
-	rel/d/a/obj/d_a_obj_carry/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_carry/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.cpp \
 
 M18_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_carry/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_carry/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_carry/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_carry/d_a_obj_carry.o \
 
 M18_LIBS := \
@@ -29,14 +27,21 @@ M18_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M18_LDSCRIPT) \
+	-unused -map $(M18_MAP) \
+	-w off \
 
 $(M18_TARGET): $(M18_O_FILES) $(M18_LIBS)
+	@echo [ 18] creating $(M18_TARGET)
 	@echo $(M18_LIBS) $(M18_O_FILES) > build/M18_ofiles
-	$(LD) -partial $(M18_LDFLAGS) -o $(M18_TARGET) @build/M18_ofiles
+	@python3 tools/lcf.py rel 18 --output $(M18_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M18_LDFLAGS) -o $(M18_TARGET) @build/M18_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_carry/%.o: rel/d/a/obj/d_a_obj_carry/%.cpp
+	@echo [ 18] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M18_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M18_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

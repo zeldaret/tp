@@ -18,7 +18,7 @@ lbl_80D5985C:
 /* 80D5989C  41 82 00 34 */	beq lbl_80D598D0
 /* 80D598A0  80 7E 05 68 */	lwz r3, 0x568(r30)
 /* 80D598A4  38 80 00 00 */	li r4, 0
-/* 80D598A8  4B 2F 7F 08 */	b dPath_GetPnt__FPC5dPathi
+/* 80D598A8  4B 2F 7F 09 */	bl dPath_GetPnt__FPC5dPathi
 /* 80D598AC  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80D598B0  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80D598B4  C0 03 00 08 */	lfs f0, 8(r3)
@@ -46,7 +46,7 @@ lbl_80D598F8:
 /* 80D59900  39 1E 04 DC */	addi r8, r30, 0x4dc
 /* 80D59904  39 20 00 00 */	li r9, 0
 /* 80D59908  39 40 FF FF */	li r10, -1
-/* 80D5990C  4B 2C 05 E4 */	b fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
+/* 80D5990C  4B 2C 05 E5 */	bl fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
 /* 80D59910  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 80D59914  83 C1 00 28 */	lwz r30, 0x28(r1)
 /* 80D59918  80 01 00 34 */	lwz r0, 0x34(r1)

@@ -5,8 +5,8 @@ lbl_8000D948:
 /* 8000D954  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8000D958  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8000D95C  41 82 00 1C */	beq lbl_8000D978
-/* 8000D960  3C A0 80 3A */	lis r5, __vt__10J3DMtxCalc@ha
-/* 8000D964  38 05 34 68 */	addi r0, r5, __vt__10J3DMtxCalc@l
+/* 8000D960  3C A0 80 3A */	lis r5, __vt__10J3DMtxCalc@ha /* 0x803A3468@ha */
+/* 8000D964  38 05 34 68 */	addi r0, r5, __vt__10J3DMtxCalc@l /* 0x803A3468@l */
 /* 8000D968  90 1F 00 00 */	stw r0, 0(r31)
 /* 8000D96C  7C 80 07 35 */	extsh. r0, r4
 /* 8000D970  40 81 00 08 */	ble lbl_8000D978

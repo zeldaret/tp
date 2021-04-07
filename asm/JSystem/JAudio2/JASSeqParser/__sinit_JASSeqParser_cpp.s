@@ -1,9 +1,9 @@
 lbl_80295950:
 /* 80295950  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 80295954  3C 60 80 3C */	lis r3, lit_486@ha
-/* 80295958  38 C3 5B E0 */	addi r6, r3, lit_486@l
-/* 8029595C  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 80295960  84 A3 21 80 */	lwzu r5, __ptmf_null@l(r3)
+/* 80295954  3C 60 80 3C */	lis r3, lit_486@ha /* 0x803C5BE0@ha */
+/* 80295958  38 C3 5B E0 */	addi r6, r3, lit_486@l /* 0x803C5BE0@l */
+/* 8029595C  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80295960  84 A3 21 80 */	lwzu r5, __ptmf_null@l(r3)  /* 0x803A2180@l */
 /* 80295964  80 83 00 04 */	lwz r4, 4(r3)
 /* 80295968  90 A1 00 08 */	stw r5, 8(r1)
 /* 8029596C  90 81 00 0C */	stw r4, 0xc(r1)

@@ -4,12 +4,12 @@ lbl_80BD2758:
 /* 80BD2760  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80BD2764  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80BD2768  7C 7F 1B 78 */	mr r31, r3
-/* 80BD276C  3C 60 80 BD */	lis r3, ccCylSrc@ha
-/* 80BD2770  38 83 30 C0 */	addi r4, r3, ccCylSrc@l
+/* 80BD276C  3C 60 80 BD */	lis r3, ccCylSrc@ha /* 0x80BD30C0@ha */
+/* 80BD2770  38 83 30 C0 */	addi r4, r3, ccCylSrc@l /* 0x80BD30C0@l */
 /* 80BD2774  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 80BD2778  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80BD277C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80BD2780  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80BD277C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80BD2780  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80BD2784  7C C3 04 2E */	lfsx f6, r3, r0
 /* 80BD2788  C0 7F 04 D8 */	lfs f3, 0x4d8(r31)
 /* 80BD278C  C0 24 00 E0 */	lfs f1, 0xe0(r4)
@@ -41,7 +41,7 @@ lbl_80BD2758:
 /* 80BD27F4  38 05 80 00 */	addi r0, r5, -32768
 /* 80BD27F8  7C 05 07 34 */	extsh r5, r0
 /* 80BD27FC  A8 DF 04 E8 */	lha r6, 0x4e8(r31)
-/* 80BD2800  4B 69 4B F4 */	b __ct__5csXyzFsss
+/* 80BD2800  4B 69 4B F5 */	bl __ct__5csXyzFsss
 /* 80BD2804  88 1F 05 AC */	lbz r0, 0x5ac(r31)
 /* 80BD2808  28 00 00 FF */	cmplwi r0, 0xff
 /* 80BD280C  40 82 00 84 */	bne lbl_80BD2890
@@ -74,7 +74,7 @@ lbl_80BD2868:
 /* 80BD2870  39 01 00 10 */	addi r8, r1, 0x10
 /* 80BD2874  39 20 00 00 */	li r9, 0
 /* 80BD2878  39 40 FF FF */	li r10, -1
-/* 80BD287C  4B 44 76 74 */	b fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
+/* 80BD287C  4B 44 76 75 */	bl fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
 /* 80BD2880  90 7F 06 40 */	stw r3, 0x640(r31)
 /* 80BD2884  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 80BD2888  B0 1F 06 44 */	sth r0, 0x644(r31)
@@ -86,7 +86,7 @@ lbl_80BD2890:
 /* 80BD289C  B0 1F 06 44 */	sth r0, 0x644(r31)
 /* 80BD28A0  80 7F 04 A4 */	lwz r3, 0x4a4(r31)
 /* 80BD28A4  38 9F 05 B4 */	addi r4, r31, 0x5b4
-/* 80BD28A8  4B 44 71 14 */	b fopAcM_SearchByID__FUiPP10fopAc_ac_c
+/* 80BD28A8  4B 44 71 15 */	bl fopAcM_SearchByID__FUiPP10fopAc_ac_c
 lbl_80BD28AC:
 /* 80BD28AC  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 80BD28B0  80 01 00 34 */	lwz r0, 0x34(r1)

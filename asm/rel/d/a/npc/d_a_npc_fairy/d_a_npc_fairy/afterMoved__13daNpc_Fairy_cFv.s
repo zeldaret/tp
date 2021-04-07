@@ -31,8 +31,8 @@ lbl_809B3BCC:
 lbl_809B3C08:
 /* 809B3C08  7F E3 FB 78 */	mr r3, r31
 /* 809B3C0C  4B FF FC DD */	bl ptcl_sprit__13daNpc_Fairy_cFv
-/* 809B3C10  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 809B3C14  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 809B3C10  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 809B3C14  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 809B3C18  88 03 4F AD */	lbz r0, 0x4fad(r3)
 /* 809B3C1C  28 00 00 00 */	cmplwi r0, 0
 /* 809B3C20  40 82 00 30 */	bne lbl_809B3C50

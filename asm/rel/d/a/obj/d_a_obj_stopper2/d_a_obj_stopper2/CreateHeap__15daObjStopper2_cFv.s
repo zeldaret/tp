@@ -8,7 +8,7 @@ lbl_80CEF57C:
 /* 80CEF594  3C 80 00 08 */	lis r4, 8
 /* 80CEF598  3C A0 11 00 */	lis r5, 0x1100 /* 0x11000084@ha */
 /* 80CEF59C  38 A5 00 84 */	addi r5, r5, 0x0084 /* 0x11000084@l */
-/* 80CEF5A0  4B 32 56 B4 */	b mDoExt_J3DModel__create__FP12J3DModelDataUlUl
+/* 80CEF5A0  4B 32 56 B5 */	bl mDoExt_J3DModel__create__FP12J3DModelDataUlUl
 /* 80CEF5A4  90 7F 05 70 */	stw r3, 0x570(r31)
 /* 80CEF5A8  80 7F 05 70 */	lwz r3, 0x570(r31)
 /* 80CEF5AC  30 03 FF FF */	addic r0, r3, -1

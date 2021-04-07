@@ -5,8 +5,8 @@ lbl_801C0C48:
 /* 801C0C54  39 61 00 20 */	addi r11, r1, 0x20
 /* 801C0C58  48 1A 15 85 */	bl _savegpr_29
 /* 801C0C5C  7C 9D 23 78 */	mr r29, r4
-/* 801C0C60  3C 80 80 39 */	lis r4, l_paletteDmap_m@ha
-/* 801C0C64  3B E4 58 60 */	addi r31, r4, l_paletteDmap_m@l
+/* 801C0C60  3C 80 80 39 */	lis r4, l_paletteDmap_m@ha /* 0x80395860@ha */
+/* 801C0C64  3B E4 58 60 */	addi r31, r4, l_paletteDmap_m@l /* 0x80395860@l */
 /* 801C0C68  3B DF 00 F0 */	addi r30, r31, 0xf0
 /* 801C0C6C  80 83 00 24 */	lwz r4, 0x24(r3)
 /* 801C0C70  80 03 00 2C */	lwz r0, 0x2c(r3)

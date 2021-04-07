@@ -5,11 +5,11 @@ lbl_80BECCE4:
 /* 80BECCF0  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80BECCF4  7C 7F 1B 78 */	mr r31, r3
 /* 80BECCF8  38 7F 03 F4 */	addi r3, r31, 0x3f4
-/* 80BECCFC  4B 49 77 64 */	b ChkTgHit__12dCcD_GObjInfFv
+/* 80BECCFC  4B 49 77 65 */	bl ChkTgHit__12dCcD_GObjInfFv
 /* 80BECD00  28 03 00 00 */	cmplwi r3, 0
 /* 80BECD04  41 82 00 54 */	beq lbl_80BECD58
 /* 80BECD08  38 7F 03 F4 */	addi r3, r31, 0x3f4
-/* 80BECD0C  4B 49 77 EC */	b GetTgHitObj__12dCcD_GObjInfFv
+/* 80BECD0C  4B 49 77 ED */	bl GetTgHitObj__12dCcD_GObjInfFv
 /* 80BECD10  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 80BECD14  54 00 03 DF */	rlwinm. r0, r0, 0, 0xf, 0xf
 /* 80BECD18  41 82 00 40 */	beq lbl_80BECD58
@@ -36,12 +36,12 @@ lbl_80BECD58:
 /* 80BECD60  48 00 13 59 */	bl getTargetPos__11FlagCloth_cFv
 /* 80BECD64  38 7F 05 18 */	addi r3, r31, 0x518
 /* 80BECD68  38 81 00 08 */	addi r4, r1, 8
-/* 80BECD6C  4B 68 28 DC */	b SetC__8cM3dGSphFRC4cXyz
-/* 80BECD70  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BECD74  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80BECD6C  4B 68 28 DD */	bl SetC__8cM3dGSphFRC4cXyz
+/* 80BECD70  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BECD74  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BECD78  38 63 23 3C */	addi r3, r3, 0x233c
 /* 80BECD7C  38 9F 03 F4 */	addi r4, r31, 0x3f4
-/* 80BECD80  4B 67 7E 28 */	b Set__4cCcSFP8cCcD_Obj
+/* 80BECD80  4B 67 7E 29 */	bl Set__4cCcSFP8cCcD_Obj
 /* 80BECD84  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 80BECD88  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80BECD8C  7C 08 03 A6 */	mtlr r0

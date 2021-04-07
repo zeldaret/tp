@@ -3,18 +3,16 @@
 #
 
 M169_TARGET := $(BUILD_DIR)/rel/d/a/door/d_a_door_push.plf
+M169_LDSCRIPT := $(BUILD_DIR)/rel/d/a/door/d_a_door_push.lcf
+M169_MAP := $(BUILD_DIR)/rel/d/a/door/d_a_door_push.map
 
 M169_CPP_FILES := \
-	rel/d/a/door/d_a_door_push/executor.cpp \
-	rel/d/a/door/d_a_door_push/unknown_translation_unit_ctors.cpp \
-	rel/d/a/door/d_a_door_push/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/door/d_a_door_push/unknown_translation_unit_bss.cpp \
 	rel/d/a/door/d_a_door_push/d_a_door_push.cpp \
 
 M169_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_push/executor.o \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_push/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_push/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/door/d_a_door_push/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/door/d_a_door_push/d_a_door_push.o \
 
@@ -31,14 +29,21 @@ M169_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M169_LDSCRIPT) \
+	-unused -map $(M169_MAP) \
+	-w off \
 
 $(M169_TARGET): $(M169_O_FILES) $(M169_LIBS)
+	@echo [169] creating $(M169_TARGET)
 	@echo $(M169_LIBS) $(M169_O_FILES) > build/M169_ofiles
-	$(LD) -partial $(M169_LDFLAGS) -o $(M169_TARGET) @build/M169_ofiles
+	@python3 tools/lcf.py rel 169 --output $(M169_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M169_LDFLAGS) -o $(M169_TARGET) @build/M169_ofiles
 
 $(BUILD_DIR)/rel/d/a/door/d_a_door_push/%.o: rel/d/a/door/d_a_door_push/%.cpp
+	@echo [169] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M169_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M169_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

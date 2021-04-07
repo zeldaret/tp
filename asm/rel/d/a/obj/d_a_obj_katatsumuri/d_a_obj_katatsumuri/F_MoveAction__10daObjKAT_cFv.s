@@ -14,8 +14,8 @@ lbl_80C3A8F0:
 /* 80C3A8F4  54 00 02 D7 */	rlwinm. r0, r0, 0, 0xb, 0xb
 /* 80C3A8F8  40 82 00 54 */	bne lbl_80C3A94C
 /* 80C3A8FC  C0 23 04 FC */	lfs f1, 0x4fc(r3)
-/* 80C3A900  3C 80 80 C4 */	lis r4, lit_4223@ha
-/* 80C3A904  C0 04 C7 14 */	lfs f0, lit_4223@l(r4)
+/* 80C3A900  3C 80 80 C4 */	lis r4, lit_4223@ha /* 0x80C3C714@ha */
+/* 80C3A904  C0 04 C7 14 */	lfs f0, lit_4223@l(r4)  /* 0x80C3C714@l */
 /* 80C3A908  EC 01 00 2A */	fadds f0, f1, f0
 /* 80C3A90C  D0 03 04 FC */	stfs f0, 0x4fc(r3)
 /* 80C3A910  C0 23 04 D4 */	lfs f1, 0x4d4(r3)

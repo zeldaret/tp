@@ -4,7 +4,7 @@ lbl_809A6314:
 /* 809A631C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 809A6320  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 809A6324  7C 7F 1B 78 */	mr r31, r3
-/* 809A6328  4B 67 29 B8 */	b fopAc_IsActor__FPv
+/* 809A6328  4B 67 29 B9 */	bl fopAc_IsActor__FPv
 /* 809A632C  2C 03 00 00 */	cmpwi r3, 0
 /* 809A6330  41 82 00 18 */	beq lbl_809A6348
 /* 809A6334  A8 1F 00 08 */	lha r0, 8(r31)

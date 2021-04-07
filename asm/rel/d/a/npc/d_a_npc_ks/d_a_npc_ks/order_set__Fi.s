@@ -1,6 +1,6 @@
 lbl_80A4DD70:
-/* 80A4DD70  3C 80 80 A6 */	lis r4, saru_p@ha
-/* 80A4DD74  38 C4 E4 78 */	addi r6, r4, saru_p@l
+/* 80A4DD70  3C 80 80 A6 */	lis r4, saru_p@ha /* 0x80A5E478@ha */
+/* 80A4DD74  38 C4 E4 78 */	addi r6, r4, saru_p@l /* 0x80A5E478@l */
 /* 80A4DD78  80 86 00 00 */	lwz r4, 0(r6)
 /* 80A4DD7C  C0 24 05 C4 */	lfs f1, 0x5c4(r4)
 /* 80A4DD80  54 60 10 3A */	slwi r0, r3, 2

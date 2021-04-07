@@ -3,17 +3,15 @@
 #
 
 M668_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado2.plf
+M668_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado2.lcf
+M668_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado2.map
 
 M668_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_tornado2/executor.cpp \
-	rel/d/a/obj/d_a_obj_tornado2/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_tornado2/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_tornado2/d_a_obj_tornado2.cpp \
 
 M668_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado2/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado2/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado2/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado2/d_a_obj_tornado2.o \
 
 M668_LIBS := \
@@ -29,14 +27,21 @@ M668_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M668_LDSCRIPT) \
+	-unused -map $(M668_MAP) \
+	-w off \
 
 $(M668_TARGET): $(M668_O_FILES) $(M668_LIBS)
+	@echo [668] creating $(M668_TARGET)
 	@echo $(M668_LIBS) $(M668_O_FILES) > build/M668_ofiles
-	$(LD) -partial $(M668_LDFLAGS) -o $(M668_TARGET) @build/M668_ofiles
+	@python3 tools/lcf.py rel 668 --output $(M668_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M668_LDFLAGS) -o $(M668_TARGET) @build/M668_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tornado2/%.o: rel/d/a/obj/d_a_obj_tornado2/%.cpp
+	@echo [668] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M668_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M668_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

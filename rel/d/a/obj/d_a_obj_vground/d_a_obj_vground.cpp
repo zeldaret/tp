@@ -52,9 +52,9 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct cXyz {};
 
 struct J3DModelData {};
 
@@ -80,12 +80,6 @@ struct J3DFrameCtrl {
 // Forward References:
 //
 
-static void CheckCreateHeap(fopAc_ac_c*);
-static void daObjVGnd_Draw(daObjVGnd_c*);
-static void daObjVGnd_Execute(daObjVGnd_c*);
-static void daObjVGnd_Delete(daObjVGnd_c*);
-static void daObjVGnd_Create(fopAc_ac_c*);
-
 extern "C" static void CheckCreateHeap__FP10fopAc_ac_c();
 extern "C" void initBaseMtx__11daObjVGnd_cFv();
 extern "C" void setBaseMtx__11daObjVGnd_cFv();
@@ -100,22 +94,11 @@ extern "C" static void daObjVGnd_Draw__FP11daObjVGnd_c();
 extern "C" static void daObjVGnd_Execute__FP11daObjVGnd_c();
 extern "C" static void daObjVGnd_Delete__FP11daObjVGnd_c();
 extern "C" static void daObjVGnd_Create__FP10fopAc_ac_c();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_VolcGnd[12];
+extern "C" extern char const* const d_a_obj_vground__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
@@ -153,21 +136,22 @@ extern "C" extern u8 j3dSys[284];
 // Declarations:
 //
 
-/* 80D213D8-80D213F8 0020+00 s=1 e=0 z=0  None .text      CheckCreateHeap__FP10fopAc_ac_c */
+/* 80D213D8-80D213F8 000078 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void CheckCreateHeap(fopAc_ac_c* param_0) {
+static asm void CheckCreateHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_vground/d_a_obj_vground/CheckCreateHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D21A08-80D21A0C 0004+00 s=2 e=0 z=0  None .rodata    @3630 */
-SECTION_RODATA static u32 const lit_3630 = 0x40A00000;
+/* 80D21A08-80D21A0C 000000 0004+00 2/2 0/0 0/0 .rodata          @3630 */
+SECTION_RODATA static f32 const lit_3630 = 5.0f;
+COMPILER_STRIP_GATE(80D21A08, &lit_3630);
 
-/* 80D213F8-80D21448 0050+00 s=1 e=0 z=0  None .text      initBaseMtx__11daObjVGnd_cFv */
+/* 80D213F8-80D21448 000098 0050+00 1/1 0/0 0/0 .text            initBaseMtx__11daObjVGnd_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -177,7 +161,7 @@ asm void daObjVGnd_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80D21448-80D214AC 0064+00 s=2 e=0 z=0  None .text      setBaseMtx__11daObjVGnd_cFv */
+/* 80D21448-80D214AC 0000E8 0064+00 2/2 0/0 0/0 .text            setBaseMtx__11daObjVGnd_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -187,7 +171,7 @@ asm void daObjVGnd_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 80D214AC-80D21500 0054+00 s=1 e=0 z=0  None .text      Create__11daObjVGnd_cFv */
+/* 80D214AC-80D21500 00014C 0054+00 1/1 0/0 0/0 .text            Create__11daObjVGnd_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -198,31 +182,14 @@ asm void daObjVGnd_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D21A0C-80D21A10 0004+00 s=2 e=0 z=0  None .rodata    @3704 */
-SECTION_RODATA static u32 const lit_3704 = 0x3F800000;
+/* 80D21A0C-80D21A10 000004 0004+00 1/2 0/0 0/0 .rodata          @3704 */
+SECTION_RODATA static f32 const lit_3704 = 1.0f;
+COMPILER_STRIP_GATE(80D21A0C, &lit_3704);
 
-/* 80D21A10-80D21A14 0004+00 s=1 e=0 z=0  None .rodata    @3778 */
-SECTION_RODATA static u32 const lit_3778 = 0x40000000;
+/* 80D21A24-80D21A28 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_vground__stringBase0;
 
-/* 80D21A14-80D21A18 0004+00 s=1 e=0 z=0  None .rodata    @3779 */
-SECTION_RODATA static u8 const lit_3779[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80D21A18-80D21A22 000A+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80D21A18 = "M_VolcGnd";
-#pragma pop
-
-/* 80D21A24-80D21A28 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80D21A28-80D21A48 0020+00 s=1 e=0 z=0  None .data      l_daObjVGnd_Method */
+/* 80D21A28-80D21A48 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjVGnd_Method */
 SECTION_DATA static void* l_daObjVGnd_Method[8] = {
     (void*)daObjVGnd_Create__FP10fopAc_ac_c,
     (void*)daObjVGnd_Delete__FP11daObjVGnd_c,
@@ -234,8 +201,8 @@ SECTION_DATA static void* l_daObjVGnd_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D21A48-80D21A78 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_VolcGnd */
-SECTION_DATA void* g_profile_Obj_VolcGnd[12] = {
+/* 80D21A48-80D21A78 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_VolcGnd */
+SECTION_DATA extern void* g_profile_Obj_VolcGnd[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00E20000, (void*)&g_fpcLf_Method,
     (void*)0x0000057C, (void*)NULL,
@@ -244,14 +211,14 @@ SECTION_DATA void* g_profile_Obj_VolcGnd[12] = {
     (void*)0x00040100, (void*)0x000E0000,
 };
 
-/* 80D21A78-80D21A84 000C+00 s=2 e=0 z=0  None .data      __vt__12J3DFrameCtrl */
-SECTION_DATA static void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL,
+/* 80D21A78-80D21A84 000054 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
+SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12J3DFrameCtrlFv,
 };
 
-/* 80D21500-80D216AC 01AC+00 s=1 e=0 z=0  None .text      CreateHeap__11daObjVGnd_cFv */
+/* 80D21500-80D216AC 0001A0 01AC+00 1/1 0/0 0/0 .text            CreateHeap__11daObjVGnd_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -261,7 +228,7 @@ asm void daObjVGnd_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80D216AC-80D216F4 0048+00 s=1 e=0 z=0  None .text      __dt__12J3DFrameCtrlFv */
+/* 80D216AC-80D216F4 00034C 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -271,7 +238,7 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 }
 #pragma pop
 
-/* 80D216F4-80D217A8 00B4+00 s=1 e=0 z=0  None .text      create__11daObjVGnd_cFv */
+/* 80D216F4-80D217A8 000394 00B4+00 1/1 0/0 0/0 .text            create__11daObjVGnd_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -281,7 +248,27 @@ asm void daObjVGnd_c::create() {
 }
 #pragma pop
 
-/* 80D217A8-80D21878 00D0+00 s=2 e=0 z=0  None .text      execute__11daObjVGnd_cFv */
+/* ############################################################################################## */
+/* 80D21A10-80D21A14 000008 0004+00 0/1 0/0 0/0 .rodata          @3778 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3778 = 2.0f;
+COMPILER_STRIP_GATE(80D21A10, &lit_3778);
+#pragma pop
+
+/* 80D21A14-80D21A18 00000C 0004+00 0/1 0/0 0/0 .rodata          @3779 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3779[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+COMPILER_STRIP_GATE(80D21A14, &lit_3779);
+#pragma pop
+
+/* 80D217A8-80D21878 000448 00D0+00 2/2 0/0 0/0 .text            execute__11daObjVGnd_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -291,7 +278,7 @@ asm void daObjVGnd_c::execute() {
 }
 #pragma pop
 
-/* 80D21878-80D2194C 00D4+00 s=1 e=0 z=0  None .text      draw__11daObjVGnd_cFv */
+/* 80D21878-80D2194C 000518 00D4+00 1/1 0/0 0/0 .text            draw__11daObjVGnd_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -301,7 +288,7 @@ asm void daObjVGnd_c::draw() {
 }
 #pragma pop
 
-/* 80D2194C-80D21980 0034+00 s=1 e=0 z=0  None .text      _delete__11daObjVGnd_cFv */
+/* 80D2194C-80D21980 0005EC 0034+00 1/1 0/0 0/0 .text            _delete__11daObjVGnd_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -311,42 +298,51 @@ asm void daObjVGnd_c::_delete() {
 }
 #pragma pop
 
-/* 80D21980-80D219A0 0020+00 s=1 e=0 z=0  None .text      daObjVGnd_Draw__FP11daObjVGnd_c */
+/* 80D21980-80D219A0 000620 0020+00 1/0 0/0 0/0 .text            daObjVGnd_Draw__FP11daObjVGnd_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjVGnd_Draw(daObjVGnd_c* param_0) {
+static asm void daObjVGnd_Draw(daObjVGnd_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_vground/d_a_obj_vground/daObjVGnd_Draw__FP11daObjVGnd_c.s"
 }
 #pragma pop
 
-/* 80D219A0-80D219C0 0020+00 s=1 e=0 z=0  None .text      daObjVGnd_Execute__FP11daObjVGnd_c */
+/* 80D219A0-80D219C0 000640 0020+00 1/0 0/0 0/0 .text            daObjVGnd_Execute__FP11daObjVGnd_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjVGnd_Execute(daObjVGnd_c* param_0) {
+static asm void daObjVGnd_Execute(daObjVGnd_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_vground/d_a_obj_vground/daObjVGnd_Execute__FP11daObjVGnd_c.s"
 }
 #pragma pop
 
-/* 80D219C0-80D219E0 0020+00 s=1 e=0 z=0  None .text      daObjVGnd_Delete__FP11daObjVGnd_c */
+/* 80D219C0-80D219E0 000660 0020+00 1/0 0/0 0/0 .text            daObjVGnd_Delete__FP11daObjVGnd_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjVGnd_Delete(daObjVGnd_c* param_0) {
+static asm void daObjVGnd_Delete(daObjVGnd_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_vground/d_a_obj_vground/daObjVGnd_Delete__FP11daObjVGnd_c.s"
 }
 #pragma pop
 
-/* 80D219E0-80D21A00 0020+00 s=1 e=0 z=0  None .text      daObjVGnd_Create__FP10fopAc_ac_c */
+/* 80D219E0-80D21A00 000680 0020+00 1/0 0/0 0/0 .text            daObjVGnd_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjVGnd_Create(fopAc_ac_c* param_0) {
+static asm void daObjVGnd_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_vground/d_a_obj_vground/daObjVGnd_Create__FP10fopAc_ac_c.s"
 }
+#pragma pop
+
+/* 80D21A18-80D21A22 000010 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80D21A18 = "M_VolcGnd";
 #pragma pop

@@ -5,8 +5,8 @@ lbl_80323F94:
 /* 80323FA0  39 61 00 30 */	addi r11, r1, 0x30
 /* 80323FA4  48 03 E2 35 */	bl _savegpr_28
 /* 80323FA8  7C 7E 1B 78 */	mr r30, r3
-/* 80323FAC  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80323FB0  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80323FAC  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80323FB0  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80323FB4  80 63 00 58 */	lwz r3, 0x58(r3)
 /* 80323FB8  80 63 00 04 */	lwz r3, 4(r3)
 /* 80323FBC  A0 04 00 00 */	lhz r0, 0(r4)
@@ -14,8 +14,8 @@ lbl_80323F94:
 /* 80323FC4  7F E3 02 14 */	add r31, r3, r0
 /* 80323FC8  A0 1F 00 02 */	lhz r0, 2(r31)
 /* 80323FCC  57 C4 18 38 */	slwi r4, r30, 3
-/* 80323FD0  3C 60 80 43 */	lis r3, sTexCoordScaleTable__6J3DSys@ha
-/* 80323FD4  38 63 4C 2C */	addi r3, r3, sTexCoordScaleTable__6J3DSys@l
+/* 80323FD0  3C 60 80 43 */	lis r3, sTexCoordScaleTable__6J3DSys@ha /* 0x80434C2C@ha */
+/* 80323FD4  38 63 4C 2C */	addi r3, r3, sTexCoordScaleTable__6J3DSys@l /* 0x80434C2C@l */
 /* 80323FD8  7C 03 23 2E */	sthx r0, r3, r4
 /* 80323FDC  A0 1F 00 04 */	lhz r0, 4(r31)
 /* 80323FE0  7C 63 22 14 */	add r3, r3, r4

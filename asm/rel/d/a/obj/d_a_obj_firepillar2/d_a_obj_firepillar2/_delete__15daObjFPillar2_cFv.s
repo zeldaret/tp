@@ -72,16 +72,16 @@ lbl_80BEB37C:
 /* 80BEB37C  38 63 00 04 */	addi r3, r3, 4
 /* 80BEB380  42 00 FF 88 */	bdnz lbl_80BEB308
 /* 80BEB384  38 7F 09 BC */	addi r3, r31, 0x9bc
-/* 80BEB388  4B 6D 2C 70 */	b deleteObject__14Z2SoundObjBaseFv
+/* 80BEB388  4B 6D 2C 71 */	bl deleteObject__14Z2SoundObjBaseFv
 /* 80BEB38C  A0 1F 09 7A */	lhz r0, 0x97a(r31)
 /* 80BEB390  54 00 E7 3E */	rlwinm r0, r0, 0x1c, 0x1c, 0x1f
 /* 80BEB394  28 00 00 01 */	cmplwi r0, 1
 /* 80BEB398  40 82 00 18 */	bne lbl_80BEB3B0
 /* 80BEB39C  38 7F 05 68 */	addi r3, r31, 0x568
-/* 80BEB3A0  3C 80 80 BF */	lis r4, l_arcName@ha
-/* 80BEB3A4  38 84 B5 48 */	addi r4, r4, l_arcName@l
+/* 80BEB3A0  3C 80 80 BF */	lis r4, l_arcName@ha /* 0x80BEB548@ha */
+/* 80BEB3A4  38 84 B5 48 */	addi r4, r4, l_arcName@l /* 0x80BEB548@l */
 /* 80BEB3A8  80 84 00 00 */	lwz r4, 0(r4)
-/* 80BEB3AC  4B 44 1C 5C */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 80BEB3AC  4B 44 1C 5D */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 lbl_80BEB3B0:
 /* 80BEB3B0  38 60 00 01 */	li r3, 1
 /* 80BEB3B4  83 E1 00 0C */	lwz r31, 0xc(r1)

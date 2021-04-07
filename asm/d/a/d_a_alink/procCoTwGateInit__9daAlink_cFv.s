@@ -17,8 +17,8 @@ lbl_8011D6FC:
 /* 8011D708  7F E3 FB 78 */	mr r3, r31
 /* 8011D70C  38 80 00 89 */	li r4, 0x89
 /* 8011D710  48 00 BF 69 */	bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
-/* 8011D714  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha
-/* 8011D718  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)
+/* 8011D714  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha /* 0x8042561C@ha */
+/* 8011D718  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)  /* 0x8042561C@l */
 /* 8011D71C  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 8011D720  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8011D724  D0 1F 35 8C */	stfs f0, 0x358c(r31)
@@ -36,8 +36,8 @@ lbl_8011D750:
 /* 8011D750  7F E3 FB 78 */	mr r3, r31
 /* 8011D754  38 80 01 80 */	li r4, 0x180
 /* 8011D758  4B F8 F8 29 */	bl setSingleAnimeBase__9daAlink_cFQ29daAlink_c11daAlink_ANM
-/* 8011D75C  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 8011D760  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)
+/* 8011D75C  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 8011D760  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)  /* 0x80425514@l */
 /* 8011D764  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 8011D768  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8011D76C  D0 1F 35 8C */	stfs f0, 0x358c(r31)

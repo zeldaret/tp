@@ -50,6 +50,7 @@ class Relocation:
     parent: "Section" = field(default=None, repr=False)
     access: "disassembler.Access" = None
     relative_offset: int = None
+    rel_offset: int = None
 
     @property
     def symbol_offset(self):
@@ -78,9 +79,11 @@ class Section:
     executable_flag: bool = False
     # Length in bytes of the section. If this is zero, this entry is skipped.
     length: int = 0
+    alignment: int = 0
 
     # not part of the section in the rel-file
     addr: int = None
+    write_offset: int = None 
     name: Optional[str] = None
     data: Optional[bytes] = field(default=None, repr=False)
     relocations: List[Relocation] = field(default_factory=list, repr=False)
@@ -123,8 +126,8 @@ class REL:
     # not part of the rel-file
     sections: List[Section] = field(default_factory=list, repr=False)
     relocations: List[Relocation] = field(default_factory=list, repr=False)
-    path: Optional[Path] = None
-    map: Optional[List[str]] = None
+    path: Optional[Path] = field(default=None, repr=False)
+    data: bytearray = field(default=None,repr=False)
 
 
 def read_relocation(module, buffer):
@@ -153,16 +156,20 @@ def read(buffer):
 
     align = 0
     bssAlign = 0
-    if header[5] >= 2:
-        align, bssAlign = struct.unpack('>II', buffer[0x40:0x48])
+    if header[7] >= 2:
+        v2 = struct.unpack('>II', buffer[0x40:0x48])
+        align = v2[0]
+        bssAlign = v2[1]
         header_size += 0x8
 
     fixSize = 0
-    if header[5] >= 3:
-        fixSize = struct.unpack('>I', buffer[0x48:0x4C])[0]
+    if header[7] >= 3:
+        v3 = struct.unpack('>I', buffer[0x48:0x4C])
+        fixSize = v3[0]
         header_size += 0x4
 
     rel = REL(*header, align, bssAlign, fixSize)
+    rel.data = buffer
 
     rel.sections = []
     section_buffer = buffer[rel.sectionInfoOffset:]
@@ -176,6 +183,7 @@ def read(buffer):
         section.offset_padding = 0
         section.first_padding = 0
         section.addr = addr
+        section.alignment = align
         addr += section.length
 
     for section in reversed(rel.sections):
@@ -196,6 +204,7 @@ def read(buffer):
     for bss_section in rel.sections[1:]:
         if bss_section.data == None:
             bss_section.addr = (last_end + 7) & ~7
+            bss_section.alignment = bssAlign
         last_end = bss_section.addr + bss_section.length
 
     rel.relocations = []
@@ -226,6 +235,7 @@ def read(buffer):
 
             assert section
             relocation.parent = section
+            relocation.rel_offset = rel_offset - 0x8
             relocation.relative_offset = relocation.offset
             relocation.offset += offset
             offset = relocation.offset
@@ -239,6 +249,73 @@ def read(buffer):
 
     return rel
 
+def write_header(file, rel):
+    header = struct.pack(
+        '>IIIIIIIIIIIIBBBBIII', 
+        rel.index,
+        rel.next,
+        rel.prev,
+        rel.numSections,
+        rel.sectionInfoOffset,
+        rel.nameOffset,
+        rel.nameSize,
+        rel.version,
+        rel.bssSize,
+        rel.relOffset,
+        rel.impOffset,
+        rel.impSize,
+        rel.prologSection,
+        rel.epilogSection,
+        rel.unresolvedSection,
+        rel.bssSection,
+        rel.prolog,
+        rel.epilog,
+        rel.unresolved)
+    file.write(header)
+
+    if rel.version >= 2:
+        header = struct.pack(
+            '>II', 
+            rel.align,
+            rel.bssAlign)
+        file.write(header)
+
+    if rel.version >= 3:
+        header = struct.pack(
+            '>I', 
+            rel.fixSize)
+        file.write(header)
+
+def write_section_header(file, section):
+    assert section.offset & 3 == 0
+    file.write(struct.pack('>II', 
+        section.offset | ((section.unknown_flag & 1) << 1) | ((section.executable_flag & 1) << 0),
+        section.length
+    ))
+
+def write_section_data(file, section):
+    assert len(section.data) == section.length
+    file.write(section.data)
+
+def write_relocation(file, offset, type, section, addend):
+    assert (offset & 0xFFFF) == offset
+    assert (type & 0xFF) == type
+    assert (section & 0xFF) == section
+    assert (addend & 0xFFFFFFFF) == addend
+    file.write(struct.pack('>HBBI', 
+        offset,
+        type,
+        section,
+        addend
+    ))
+  
+def write_imp(file, module, offset):
+    assert (module & 0xFFFFFFFF) == module
+    assert (offset & 0xFFFFFFFF) == offset
+    file.write(struct.pack('>II', 
+        module,
+        offset
+    ))   
 
 RELOCATION_SIZES = {
     R_PPC_ADDR32: (0, 4),
@@ -251,6 +328,8 @@ RELOCATION_SIZES = {
     R_PPC_REL14: (2, 4),
 }
 
+class RELRelocationException(Exception):
+    ...
 
 def apply_relocation(kind: int, module: int,
                      data: bytearray, data_offset: int,
@@ -264,13 +343,15 @@ def apply_relocation(kind: int, module: int,
     """
 
     offset, size = RELOCATION_SIZES.get(kind, (0, 0))
-    #if module != 0:
-    #    P -= offset
     I = P - data_offset
 
     if size == 4:
+        if len(data[I:]) < 4:
+            raise RELRelocationException(f"data length too short. length >= {I+4} (current length: {len(data)})")
         X = struct.unpack('>I', data[I:][:4])[0]
     elif size == 2:
+        if len(data[I:]) < 2:
+            raise RELRelocationException(f"data length too short. length >= {I+2} (current length: {len(data)})")
         X = struct.unpack('>H', data[I:][:2])[0]
     else:
         return False
@@ -292,41 +373,21 @@ def apply_relocation(kind: int, module: int,
         R = (S + A - P) & 0xFFFFFFFF
         TM = (0b111111 << 26) & 0xFFFFFFFF
         BM = (0b11)
-        """
-        print(f"P {P:08X} ({P+offset:08X})")
-        print(f"S {S:08X}")
-        print(f"A {A:08X}")
-        print(f"R {R:08X}")
-        print(f"  {R:032b}")
-        print(f"B {BM:032b}")
-        print(f"T {TM:032b}")
-        print(f"{(R & BM):08X} == {0:08X}")
-        print(f"{(R & TM):08X} == {0:08X}")
-        print(f"{(R & TM):08X} == {TM:08X}")
-        print(" ".join([f"{x:02X}" for x in data[I:][:size]]))
-        print(" ".join([f"{x:02X}" for x in Y]))
-        """
+
         assert (R & BM) == 0
         assert (R & TM) == 0 or (R & TM) == TM
-        Y = struct.pack(">I", (X & TM) | (R & ~TM))
-    elif kind == R_PPC_REL24:
+        M = TM | BM
+        Y = struct.pack(">I", (X & M) | (R & ~M))
+    elif kind == R_PPC_REL14:
         R = (S + A - P) & 0xFFFFFFFF
         TM = 0b1111111111111111 << 16
         BM = 0b11
         assert (R & BM) == 0
         assert (R & TM) == 0 or (R & TM) == TM
-        Y = struct.pack(">I", (X & TM)| (R & ~TM))
+        M = TM | BM
+        Y = struct.pack(">I", (X & M) | (R & ~M))
     else:
         return False
-
-    """
-    if P == 0x80006bb4:
-        print(kind, module, hex(P), hex(A), hex(S))
-        print(" ".join([f"{x:02X}" for x in data[I:][:size]]))
-        print(" ".join([f"{x:02X}" for x in Y]))
-        sys.exit(1)
-    """
     
     data[I:I+size] = Y
-    assert data[I:][:size] == Y
     return True 

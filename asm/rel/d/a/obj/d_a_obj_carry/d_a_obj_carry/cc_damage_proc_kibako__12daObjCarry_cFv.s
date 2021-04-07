@@ -3,13 +3,13 @@ lbl_80476B88:
 /* 80476B8C  7C 08 02 A6 */	mflr r0
 /* 80476B90  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80476B94  39 61 00 20 */	addi r11, r1, 0x20
-/* 80476B98  4B EE B6 40 */	b _savegpr_28
+/* 80476B98  4B EE B6 41 */	bl _savegpr_28
 /* 80476B9C  7C 7F 1B 78 */	mr r31, r3
 /* 80476BA0  3B C0 00 00 */	li r30, 0
 /* 80476BA4  3B A0 00 00 */	li r29, 0
 /* 80476BA8  3B 80 00 00 */	li r28, 0
 /* 80476BAC  38 7F 07 C8 */	addi r3, r31, 0x7c8
-/* 80476BB0  4B C0 D7 10 */	b ChkAtHit__12dCcD_GObjInfFv
+/* 80476BB0  4B C0 D7 11 */	bl ChkAtHit__12dCcD_GObjInfFv
 /* 80476BB4  28 03 00 00 */	cmplwi r3, 0
 /* 80476BB8  41 82 00 14 */	beq lbl_80476BCC
 /* 80476BBC  3B C0 00 01 */	li r30, 1
@@ -18,11 +18,11 @@ lbl_80476B88:
 /* 80476BC8  48 00 00 D4 */	b lbl_80476C9C
 lbl_80476BCC:
 /* 80476BCC  38 7F 07 C8 */	addi r3, r31, 0x7c8
-/* 80476BD0  4B C0 D8 90 */	b ChkTgHit__12dCcD_GObjInfFv
+/* 80476BD0  4B C0 D8 91 */	bl ChkTgHit__12dCcD_GObjInfFv
 /* 80476BD4  28 03 00 00 */	cmplwi r3, 0
 /* 80476BD8  41 82 00 C4 */	beq lbl_80476C9C
 /* 80476BDC  38 7F 07 C8 */	addi r3, r31, 0x7c8
-/* 80476BE0  4B C0 D9 68 */	b GetTgHitGObj__12dCcD_GObjInfFv
+/* 80476BE0  4B C0 D9 69 */	bl GetTgHitGObj__12dCcD_GObjInfFv
 /* 80476BE4  28 03 00 00 */	cmplwi r3, 0
 /* 80476BE8  41 82 00 B4 */	beq lbl_80476C9C
 /* 80476BEC  80 83 00 10 */	lwz r4, 0x10(r3)
@@ -51,7 +51,7 @@ lbl_80476C38:
 /* 80476C40  39 1F 04 E4 */	addi r8, r31, 0x4e4
 /* 80476C44  39 3F 04 EC */	addi r9, r31, 0x4ec
 /* 80476C48  39 40 FF FF */	li r10, -1
-/* 80476C4C  4B BA 32 A4 */	b fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
+/* 80476C4C  4B BA 32 A5 */	bl fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
 /* 80476C50  3B C0 00 01 */	li r30, 1
 /* 80476C54  3B A0 00 00 */	li r29, 0
 /* 80476C58  3B 80 00 00 */	li r28, 0
@@ -85,11 +85,11 @@ lbl_80476CB8:
 /* 80476CB8  57 80 06 3F */	clrlwi. r0, r28, 0x18
 /* 80476CBC  41 82 00 0C */	beq lbl_80476CC8
 /* 80476CC0  7F E3 FB 78 */	mr r3, r31
-/* 80476CC4  4B BA 2F B8 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80476CC4  4B BA 2F B9 */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_80476CC8:
 /* 80476CC8  7F C3 F3 78 */	mr r3, r30
 /* 80476CCC  39 61 00 20 */	addi r11, r1, 0x20
-/* 80476CD0  4B EE B5 54 */	b _restgpr_28
+/* 80476CD0  4B EE B5 55 */	bl _restgpr_28
 /* 80476CD4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80476CD8  7C 08 03 A6 */	mtlr r0
 /* 80476CDC  38 21 00 20 */	addi r1, r1, 0x20

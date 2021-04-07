@@ -5,12 +5,12 @@ lbl_80AF267C:
 /* 80AF2688  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80AF268C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80AF2690  41 82 00 1C */	beq lbl_80AF26AC
-/* 80AF2694  3C A0 80 AF */	lis r5, __vt__22daNpc_SoldierA_Param_c@ha
-/* 80AF2698  38 05 2A D8 */	addi r0, r5, __vt__22daNpc_SoldierA_Param_c@l
+/* 80AF2694  3C A0 80 AF */	lis r5, __vt__22daNpc_SoldierA_Param_c@ha /* 0x80AF2AD8@ha */
+/* 80AF2698  38 05 2A D8 */	addi r0, r5, __vt__22daNpc_SoldierA_Param_c@l /* 0x80AF2AD8@l */
 /* 80AF269C  90 1F 00 00 */	stw r0, 0(r31)
 /* 80AF26A0  7C 80 07 35 */	extsh. r0, r4
 /* 80AF26A4  40 81 00 08 */	ble lbl_80AF26AC
-/* 80AF26A8  4B 7D C6 94 */	b __dl__FPv
+/* 80AF26A8  4B 7D C6 95 */	bl __dl__FPv
 lbl_80AF26AC:
 /* 80AF26AC  7F E3 FB 78 */	mr r3, r31
 /* 80AF26B0  83 E1 00 0C */	lwz r31, 0xc(r1)

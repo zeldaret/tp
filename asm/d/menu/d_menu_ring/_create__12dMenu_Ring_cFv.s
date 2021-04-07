@@ -4,8 +4,8 @@ lbl_801EAB7C:
 /* 801EAB84  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801EAB88  88 03 06 B0 */	lbz r0, 0x6b0(r3)
 /* 801EAB8C  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801EAB90  3C 80 80 3C */	lis r4, stick_init@ha
-/* 801EAB94  38 04 DE AC */	addi r0, r4, stick_init@l
+/* 801EAB90  3C 80 80 3C */	lis r4, stick_init@ha /* 0x803BDEAC@ha */
+/* 801EAB94  38 04 DE AC */	addi r0, r4, stick_init@l /* 0x803BDEAC@l */
 /* 801EAB98  7D 80 2A 14 */	add r12, r0, r5
 /* 801EAB9C  48 17 74 E9 */	bl __ptmf_scall
 /* 801EABA0  60 00 00 00 */	nop 

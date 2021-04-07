@@ -7,8 +7,8 @@ lbl_8028F724:
 /* 8028F738  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8028F73C  7C 9F 23 78 */	mr r31, r4
 /* 8028F740  41 82 00 F4 */	beq lbl_8028F834
-/* 8028F744  3C 60 80 3C */	lis r3, __vt__13JASTaskThread@ha
-/* 8028F748  38 03 5B 58 */	addi r0, r3, __vt__13JASTaskThread@l
+/* 8028F744  3C 60 80 3C */	lis r3, __vt__13JASTaskThread@ha /* 0x803C5B58@ha */
+/* 8028F748  38 03 5B 58 */	addi r0, r3, __vt__13JASTaskThread@l /* 0x803C5B58@l */
 /* 8028F74C  90 1E 00 00 */	stw r0, 0(r30)
 lbl_8028F750:
 /* 8028F750  38 7E 00 30 */	addi r3, r30, 0x30

@@ -5,8 +5,8 @@ lbl_8060ACB8:
 /* 8060ACC4  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8060ACC8  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8060ACCC  7C 7E 1B 78 */	mr r30, r3
-/* 8060ACD0  3C 80 80 61 */	lis r4, lit_3928@ha
-/* 8060ACD4  3B E4 FD E0 */	addi r31, r4, lit_3928@l
+/* 8060ACD0  3C 80 80 61 */	lis r4, lit_3928@ha /* 0x8060FDE0@ha */
+/* 8060ACD4  3B E4 FD E0 */	addi r31, r4, lit_3928@l /* 0x8060FDE0@l */
 /* 8060ACD8  88 03 0A FA */	lbz r0, 0xafa(r3)
 /* 8060ACDC  2C 00 00 01 */	cmpwi r0, 1
 /* 8060ACE0  41 82 01 D8 */	beq lbl_8060AEB8
@@ -172,7 +172,7 @@ lbl_8060AF14:
 /* 8060AF2C  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 8060AF30  C0 3F 00 04 */	lfs f1, 4(r31)
 /* 8060AF34  C0 5F 00 70 */	lfs f2, 0x70(r31)
-/* 8060AF38  4B C6 58 08 */	b cLib_chaseF__FPfff
+/* 8060AF38  4B C6 58 09 */	bl cLib_chaseF__FPfff
 /* 8060AF3C  C0 3E 05 2C */	lfs f1, 0x52c(r30)
 /* 8060AF40  C0 1F 00 60 */	lfs f0, 0x60(r31)
 /* 8060AF44  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -187,7 +187,7 @@ lbl_8060AF60:
 /* 8060AF60  38 7E 0A 92 */	addi r3, r30, 0xa92
 /* 8060AF64  38 80 00 00 */	li r4, 0
 /* 8060AF68  38 A0 00 20 */	li r5, 0x20
-/* 8060AF6C  4B C6 5C 24 */	b cLib_chaseAngleS__FPsss
+/* 8060AF6C  4B C6 5C 25 */	bl cLib_chaseAngleS__FPsss
 /* 8060AF70  A8 7E 04 E6 */	lha r3, 0x4e6(r30)
 /* 8060AF74  A8 1E 0A 92 */	lha r0, 0xa92(r30)
 /* 8060AF78  7C 03 02 14 */	add r0, r3, r0
@@ -196,7 +196,7 @@ lbl_8060AF80:
 /* 8060AF80  80 7E 05 BC */	lwz r3, 0x5bc(r30)
 /* 8060AF84  38 63 00 0C */	addi r3, r3, 0xc
 /* 8060AF88  C0 3F 01 44 */	lfs f1, 0x144(r31)
-/* 8060AF8C  4B D1 D4 A0 */	b checkPass__12J3DFrameCtrlFf
+/* 8060AF8C  4B D1 D4 A1 */	bl checkPass__12J3DFrameCtrlFf
 /* 8060AF90  2C 03 00 00 */	cmpwi r3, 0
 /* 8060AF94  41 82 00 7C */	beq lbl_8060B010
 /* 8060AF98  88 1E 0A FF */	lbz r0, 0xaff(r30)

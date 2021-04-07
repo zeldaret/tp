@@ -11,8 +11,8 @@ lbl_80228530:
 /* 80228554  48 00 00 14 */	b lbl_80228568
 lbl_80228558:
 /* 80228558  54 80 10 3A */	slwi r0, r4, 2
-/* 8022855C  3C 60 80 3C */	lis r3, mpIconName@ha
-/* 80228560  38 63 FC AC */	addi r3, r3, mpIconName@l
+/* 8022855C  3C 60 80 3C */	lis r3, mpIconName@ha /* 0x803BFCAC@ha */
+/* 80228560  38 63 FC AC */	addi r3, r3, mpIconName@l /* 0x803BFCAC@l */
 /* 80228564  7C 63 00 2E */	lwzx r3, r3, r0
 lbl_80228568:
 /* 80228568  80 01 00 14 */	lwz r0, 0x14(r1)

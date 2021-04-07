@@ -5,12 +5,12 @@ lbl_8082F160:
 /* 8082F16C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8082F170  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8082F174  41 82 00 1C */	beq lbl_8082F190
-/* 8082F178  3C A0 80 83 */	lis r5, __vt__12daE_ZH_HIO_c@ha
-/* 8082F17C  38 05 F6 D4 */	addi r0, r5, __vt__12daE_ZH_HIO_c@l
+/* 8082F178  3C A0 80 83 */	lis r5, __vt__12daE_ZH_HIO_c@ha /* 0x8082F6D4@ha */
+/* 8082F17C  38 05 F6 D4 */	addi r0, r5, __vt__12daE_ZH_HIO_c@l /* 0x8082F6D4@l */
 /* 8082F180  90 1F 00 00 */	stw r0, 0(r31)
 /* 8082F184  7C 80 07 35 */	extsh. r0, r4
 /* 8082F188  40 81 00 08 */	ble lbl_8082F190
-/* 8082F18C  4B A9 FB B0 */	b __dl__FPv
+/* 8082F18C  4B A9 FB B1 */	bl __dl__FPv
 lbl_8082F190:
 /* 8082F190  7F E3 FB 78 */	mr r3, r31
 /* 8082F194  83 E1 00 0C */	lwz r31, 0xc(r1)

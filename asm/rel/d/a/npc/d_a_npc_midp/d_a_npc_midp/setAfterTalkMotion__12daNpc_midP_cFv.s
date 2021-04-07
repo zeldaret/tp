@@ -10,12 +10,12 @@ lbl_80A71A98:
 /* 80A71AB8  41 82 00 28 */	beq lbl_80A71AE0
 /* 80A71ABC  83 FE 0B 5C */	lwz r31, 0xb5c(r30)
 /* 80A71AC0  38 7E 0B 50 */	addi r3, r30, 0xb50
-/* 80A71AC4  4B 6D 3D D4 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80A71AC4  4B 6D 3D D5 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80A71AC8  93 FE 0B 5C */	stw r31, 0xb5c(r30)
 /* 80A71ACC  38 00 00 00 */	li r0, 0
 /* 80A71AD0  90 1E 0B 58 */	stw r0, 0xb58(r30)
-/* 80A71AD4  3C 60 80 A7 */	lis r3, lit_4551@ha
-/* 80A71AD8  C0 03 3A 70 */	lfs f0, lit_4551@l(r3)
+/* 80A71AD4  3C 60 80 A7 */	lis r3, lit_4551@ha /* 0x80A73A70@ha */
+/* 80A71AD8  C0 03 3A 70 */	lfs f0, lit_4551@l(r3)  /* 0x80A73A70@l */
 /* 80A71ADC  D0 1E 0B 68 */	stfs f0, 0xb68(r30)
 lbl_80A71AE0:
 /* 80A71AE0  83 E1 00 0C */	lwz r31, 0xc(r1)

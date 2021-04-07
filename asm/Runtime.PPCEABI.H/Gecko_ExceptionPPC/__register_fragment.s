@@ -1,6 +1,6 @@
 lbl_803628E0:
-/* 803628E0  3C A0 80 45 */	lis r5, fragmentinfo@ha
-/* 803628E4  38 A5 D4 30 */	addi r5, r5, fragmentinfo@l
+/* 803628E0  3C A0 80 45 */	lis r5, fragmentinfo@ha /* 0x8044D430@ha */
+/* 803628E4  38 A5 D4 30 */	addi r5, r5, fragmentinfo@l /* 0x8044D430@l */
 /* 803628E8  80 05 00 08 */	lwz r0, 8(r5)
 /* 803628EC  2C 00 00 00 */	cmpwi r0, 0
 /* 803628F0  40 82 00 1C */	bne lbl_8036290C

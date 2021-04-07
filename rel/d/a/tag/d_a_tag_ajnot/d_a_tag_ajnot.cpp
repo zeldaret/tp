@@ -26,11 +26,6 @@ struct daTagAJnot_c {
 // Forward References:
 //
 
-static void daTagAJnot_Create(fopAc_ac_c*);
-static void daTagAJnot_Delete(daTagAJnot_c*);
-static void daTagAJnot_Execute(daTagAJnot_c*);
-static bool daTagAJnot_Draw(daTagAJnot_c*);
-
 extern "C" void create__12daTagAJnot_cFv();
 extern "C" static void daTagAJnot_Create__FP10fopAc_ac_c();
 extern "C" void __dt__12daTagAJnot_cFv();
@@ -43,8 +38,6 @@ extern "C" extern void* g_profile_Tag_AJnot[12];
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -60,7 +53,7 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 // Declarations:
 //
 
-/* 805A2658-805A26A8 0050+00 s=1 e=0 z=0  None .text      create__12daTagAJnot_cFv */
+/* 805A2658-805A26A8 000078 0050+00 1/1 0/0 0/0 .text            create__12daTagAJnot_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -70,17 +63,18 @@ asm void daTagAJnot_c::create() {
 }
 #pragma pop
 
-/* 805A26A8-805A26C8 0020+00 s=1 e=0 z=0  None .text      daTagAJnot_Create__FP10fopAc_ac_c */
+/* 805A26A8-805A26C8 0000C8 0020+00 1/0 0/0 0/0 .text            daTagAJnot_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagAJnot_Create(fopAc_ac_c* param_0) {
+static asm void daTagAJnot_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_ajnot/d_a_tag_ajnot/daTagAJnot_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 805A26C8-805A271C 0054+00 s=1 e=0 z=0  None .text      __dt__12daTagAJnot_cFv */
+/* 805A26C8-805A271C 0000E8 0054+00 1/1 0/0 0/0 .text            __dt__12daTagAJnot_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -90,32 +84,42 @@ asm daTagAJnot_c::~daTagAJnot_c() {
 }
 #pragma pop
 
-/* 805A271C-805A2744 0028+00 s=1 e=0 z=0  None .text      daTagAJnot_Delete__FP12daTagAJnot_c */
+/* 805A271C-805A2744 00013C 0028+00 1/0 0/0 0/0 .text            daTagAJnot_Delete__FP12daTagAJnot_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagAJnot_Delete(daTagAJnot_c* param_0) {
+static asm void daTagAJnot_Delete(daTagAJnot_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_ajnot/d_a_tag_ajnot/daTagAJnot_Delete__FP12daTagAJnot_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 805A2880-805A2884 0004+00 s=1 e=0 z=0  None .rodata    @3713 */
+/* 805A2880-805A2884 000000 0004+00 1/1 0/0 0/0 .rodata          @3713 */
 SECTION_RODATA static u8 const lit_3713[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(805A2880, &lit_3713);
 
-/* 805A2884-805A2888 0004+00 s=1 e=0 z=0  None .rodata    @3714 */
-SECTION_RODATA static u32 const lit_3714 = 0x42C80000;
+/* 805A2884-805A2888 000004 0004+00 0/1 0/0 0/0 .rodata          @3714 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3714 = 100.0f;
+COMPILER_STRIP_GATE(805A2884, &lit_3714);
+#pragma pop
 
-/* 805A2888-805A288C 0004+00 s=1 e=0 z=0  None .rodata    @3715 */
-SECTION_RODATA static u32 const lit_3715 = 0x461C4000;
+/* 805A2888-805A288C 000008 0004+00 0/1 0/0 0/0 .rodata          @3715 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3715 = 10000.0f;
+COMPILER_STRIP_GATE(805A2888, &lit_3715);
+#pragma pop
 
-/* 805A2744-805A2850 010C+00 s=1 e=0 z=0  None .text      execute__12daTagAJnot_cFv */
+/* 805A2744-805A2850 000164 010C+00 1/1 0/0 0/0 .text            execute__12daTagAJnot_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -125,23 +129,24 @@ asm void daTagAJnot_c::execute() {
 }
 #pragma pop
 
-/* 805A2850-805A2870 0020+00 s=1 e=0 z=0  None .text      daTagAJnot_Execute__FP12daTagAJnot_c */
+/* 805A2850-805A2870 000270 0020+00 1/0 0/0 0/0 .text daTagAJnot_Execute__FP12daTagAJnot_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagAJnot_Execute(daTagAJnot_c* param_0) {
+static asm void daTagAJnot_Execute(daTagAJnot_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_ajnot/d_a_tag_ajnot/daTagAJnot_Execute__FP12daTagAJnot_c.s"
 }
 #pragma pop
 
-/* 805A2870-805A2878 0008+00 s=1 e=0 z=0  None .text      daTagAJnot_Draw__FP12daTagAJnot_c */
+/* 805A2870-805A2878 000290 0008+00 1/0 0/0 0/0 .text            daTagAJnot_Draw__FP12daTagAJnot_c
+ */
 static bool daTagAJnot_Draw(daTagAJnot_c* param_0) {
     return true;
 }
 
 /* ############################################################################################## */
-/* 805A288C-805A28AC 0020+00 s=1 e=0 z=0  None .data      l_daTagAJnot_Method */
+/* 805A288C-805A28AC -00001 0020+00 1/0 0/0 0/0 .data            l_daTagAJnot_Method */
 SECTION_DATA static void* l_daTagAJnot_Method[8] = {
     (void*)daTagAJnot_Create__FP10fopAc_ac_c,
     (void*)daTagAJnot_Delete__FP12daTagAJnot_c,
@@ -153,8 +158,8 @@ SECTION_DATA static void* l_daTagAJnot_Method[8] = {
     (void*)NULL,
 };
 
-/* 805A28AC-805A28DC 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_AJnot */
-SECTION_DATA void* g_profile_Tag_AJnot[12] = {
+/* 805A28AC-805A28DC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_AJnot */
+SECTION_DATA extern void* g_profile_Tag_AJnot[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00EB0000, (void*)&g_fpcLf_Method,
     (void*)0x00000568, (void*)NULL,

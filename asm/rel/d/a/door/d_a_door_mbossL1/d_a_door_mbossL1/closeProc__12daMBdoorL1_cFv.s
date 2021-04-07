@@ -6,7 +6,7 @@ lbl_806752BC:
 /* 806752CC  93 C1 00 08 */	stw r30, 8(r1)
 /* 806752D0  7C 7E 1B 78 */	mr r30, r3
 /* 806752D4  80 63 05 88 */	lwz r3, 0x588(r3)
-/* 806752D8  4B 99 81 50 */	b play__14mDoExt_baseAnmFv
+/* 806752D8  4B 99 81 51 */	bl play__14mDoExt_baseAnmFv
 /* 806752DC  7C 7F 1B 78 */	mr r31, r3
 /* 806752E0  7F C3 F3 78 */	mr r3, r30
 /* 806752E4  4B FF E3 15 */	bl calcMtx__12daMBdoorL1_cFv

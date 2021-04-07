@@ -20,7 +20,6 @@ $(BUILD_DIR)/libodenotstub.a: $(LIBODENOTSTUB_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libodenotstub.a
 	@echo $(LIBODENOTSTUB_A_O_FILES) > build/LIBODENOTSTUB_A_ofiles
 	@$(LD) -xm l $(LIBODENOTSTUB_A_LDFLAGS) -o $(BUILD_DIR)/libodenotstub.a @build/LIBODENOTSTUB_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libodenotstub.a
 
 $(BUILD_DIR)/libs/odenotstub/%.o: libs/odenotstub/%.cpp
 	@mkdir -p $(@D)

@@ -2,8 +2,8 @@ lbl_801A8AD8:
 /* 801A8AD8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A8ADC  7C 08 02 A6 */	mflr r0
 /* 801A8AE0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801A8AE4  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A8AE8  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801A8AE4  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A8AE8  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A8AEC  80 03 12 88 */	lwz r0, 0x1288(r3)
 /* 801A8AF0  28 00 00 00 */	cmplwi r0, 0
 /* 801A8AF4  41 82 00 34 */	beq lbl_801A8B28

@@ -11,8 +11,8 @@ lbl_80215E40:
 /* 80215E64  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80215E68  41 82 01 08 */	beq lbl_80215F70
 /* 80215E6C  80 7F 01 E0 */	lwz r3, 0x1e0(r31)
-/* 80215E70  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 80215E74  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 80215E70  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80215E74  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80215E78  C0 24 00 18 */	lfs f1, 0x18(r4)
 /* 80215E7C  C0 1F 06 FC */	lfs f0, 0x6fc(r31)
 /* 80215E80  EC 21 00 32 */	fmuls f1, f1, f0
@@ -23,8 +23,8 @@ lbl_80215E40:
 /* 80215E94  48 00 4B 35 */	bl setAlphaAnimeMin__13dMeter2Draw_cFP13CPaneMgrAlphas
 /* 80215E98  3B 60 00 00 */	li r27, 0
 /* 80215E9C  3B C0 00 00 */	li r30, 0
-/* 80215EA0  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80215EA4  3B A3 EB C8 */	addi r29, r3, g_drawHIO@l
+/* 80215EA0  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80215EA4  3B A3 EB C8 */	addi r29, r3, g_drawHIO@l /* 0x8042EBC8@l */
 lbl_80215EA8:
 /* 80215EA8  80 7F 01 E0 */	lwz r3, 0x1e0(r31)
 /* 80215EAC  48 03 F9 7D */	bl getAlphaRate__13CPaneMgrAlphaFv
@@ -40,8 +40,8 @@ lbl_80215EA8:
 /* 80215ED4  41 80 FF D4 */	blt lbl_80215EA8
 /* 80215ED8  3B 40 00 00 */	li r26, 0
 /* 80215EDC  3B C0 00 00 */	li r30, 0
-/* 80215EE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80215EE4  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l
+/* 80215EE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80215EE4  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80215EE8  3B 9D 01 14 */	addi r28, r29, 0x114
 lbl_80215EEC:
 /* 80215EEC  7F 83 E3 78 */	mr r3, r28

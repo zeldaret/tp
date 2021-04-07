@@ -10,9 +10,9 @@ lbl_80B01878:
 /* 80B01898  7C 00 F8 00 */	cmpw r0, r31
 /* 80B0189C  41 82 00 40 */	beq lbl_80B018DC
 /* 80B018A0  38 7E 07 B0 */	addi r3, r30, 0x7b0
-/* 80B018A4  3C 80 80 B1 */	lis r4, lit_4024@ha
-/* 80B018A8  C0 24 C1 F4 */	lfs f1, lit_4024@l(r4)
-/* 80B018AC  4B 57 58 68 */	b SetGroundUpY__9dBgS_AcchFf
+/* 80B018A4  3C 80 80 B1 */	lis r4, lit_4024@ha /* 0x80B0C1F4@ha */
+/* 80B018A8  C0 24 C1 F4 */	lfs f1, lit_4024@l(r4)  /* 0x80B0C1F4@l */
+/* 80B018AC  4B 57 58 69 */	bl SetGroundUpY__9dBgS_AcchFf
 /* 80B018B0  80 1E 06 8C */	lwz r0, 0x68c(r30)
 /* 80B018B4  90 1E 06 90 */	stw r0, 0x690(r30)
 /* 80B018B8  93 FE 06 8C */	stw r31, 0x68c(r30)

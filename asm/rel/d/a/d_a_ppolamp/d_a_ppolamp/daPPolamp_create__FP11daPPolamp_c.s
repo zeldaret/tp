@@ -11,16 +11,16 @@ lbl_80D4D140:
 /* 80D4D164  7F E0 FB 79 */	or. r0, r31, r31
 /* 80D4D168  41 82 00 38 */	beq lbl_80D4D1A0
 /* 80D4D16C  7C 1E 03 78 */	mr r30, r0
-/* 80D4D170  4B 2C B9 F4 */	b __ct__10fopAc_ac_cFv
-/* 80D4D174  3C 60 80 D5 */	lis r3, __vt__11daPPolamp_c@ha
-/* 80D4D178  38 03 D3 30 */	addi r0, r3, __vt__11daPPolamp_c@l
+/* 80D4D170  4B 2C B9 F5 */	bl __ct__10fopAc_ac_cFv
+/* 80D4D174  3C 60 80 D5 */	lis r3, __vt__11daPPolamp_c@ha /* 0x80D4D330@ha */
+/* 80D4D178  38 03 D3 30 */	addi r0, r3, __vt__11daPPolamp_c@l /* 0x80D4D330@l */
 /* 80D4D17C  90 1E 05 70 */	stw r0, 0x570(r30)
-/* 80D4D180  3C 60 80 D5 */	lis r3, __vt__12J3DFrameCtrl@ha
-/* 80D4D184  38 03 D3 24 */	addi r0, r3, __vt__12J3DFrameCtrl@l
+/* 80D4D180  3C 60 80 D5 */	lis r3, __vt__12J3DFrameCtrl@ha /* 0x80D4D324@ha */
+/* 80D4D184  38 03 D3 24 */	addi r0, r3, __vt__12J3DFrameCtrl@l /* 0x80D4D324@l */
 /* 80D4D188  94 1E 05 7C */	stwu r0, 0x57c(r30)
 /* 80D4D18C  7F C3 F3 78 */	mr r3, r30
 /* 80D4D190  38 80 00 00 */	li r4, 0
-/* 80D4D194  4B 5D B2 68 */	b init__12J3DFrameCtrlFs
+/* 80D4D194  4B 5D B2 69 */	bl init__12J3DFrameCtrlFs
 /* 80D4D198  38 00 00 00 */	li r0, 0
 /* 80D4D19C  90 1E 00 18 */	stw r0, 0x18(r30)
 lbl_80D4D1A0:

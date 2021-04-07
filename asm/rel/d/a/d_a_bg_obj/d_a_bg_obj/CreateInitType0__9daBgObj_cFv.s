@@ -16,8 +16,8 @@ lbl_8045A0EC:
 /* 8045A124  7F E3 FB 78 */	mr r3, r31
 /* 8045A128  88 9F 0C C8 */	lbz r4, 0xcc8(r31)
 /* 8045A12C  4B FF FD E9 */	bl settingCullSizeBoxForCull__9daBgObj_cFi
-/* 8045A130  3C 60 80 46 */	lis r3, lit_3873@ha
-/* 8045A134  C0 03 CA 00 */	lfs f0, lit_3873@l(r3)
+/* 8045A130  3C 60 80 46 */	lis r3, lit_3873@ha /* 0x8045CA00@ha */
+/* 8045A134  C0 03 CA 00 */	lfs f0, lit_3873@l(r3)  /* 0x8045CA00@l */
 /* 8045A138  C0 3F 0C F0 */	lfs f1, 0xcf0(r31)
 /* 8045A13C  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 8045A140  41 82 00 08 */	beq lbl_8045A148

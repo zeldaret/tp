@@ -3,19 +3,20 @@
 #
 
 M664_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tobyhouse.plf
+M664_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tobyhouse.lcf
+M664_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tobyhouse.map
 
 M664_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_tobyhouse/executor.cpp \
-	rel/d/a/obj/d_a_obj_tobyhouse/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_tobyhouse/d_a_obj_tobyhouse.cpp \
 
 M664_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tobyhouse/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tobyhouse/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tobyhouse/d_a_obj_tobyhouse.o \
 
 M664_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tobyhouse/libRuntime.PPCEABI.H.a \
 
 M664_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M664_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M664_LDSCRIPT) \
+	-unused -map $(M664_MAP) \
+	-w off \
 
 $(M664_TARGET): $(M664_O_FILES) $(M664_LIBS)
+	@echo [664] creating $(M664_TARGET)
 	@echo $(M664_LIBS) $(M664_O_FILES) > build/M664_ofiles
-	$(LD) -partial $(M664_LDFLAGS) -o $(M664_TARGET) @build/M664_ofiles
+	@python3 tools/lcf.py rel 664 --output $(M664_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M664_LDFLAGS) -o $(M664_TARGET) @build/M664_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tobyhouse/%.o: rel/d/a/obj/d_a_obj_tobyhouse/%.cpp
+	@echo [664] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M664_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M664_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_tobyhouse/libs/Runtime.PPCEABI.H/Makefile
 

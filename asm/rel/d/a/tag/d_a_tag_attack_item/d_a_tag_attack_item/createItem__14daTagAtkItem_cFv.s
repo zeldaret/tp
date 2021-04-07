@@ -3,13 +3,13 @@ lbl_805A2F54:
 /* 805A2F58  7C 08 02 A6 */	mflr r0
 /* 805A2F5C  90 01 00 44 */	stw r0, 0x44(r1)
 /* 805A2F60  39 61 00 40 */	addi r11, r1, 0x40
-/* 805A2F64  4B DB F2 70 */	b _savegpr_27
+/* 805A2F64  4B DB F2 71 */	bl _savegpr_27
 /* 805A2F68  7C 7B 1B 78 */	mr r27, r3
 /* 805A2F6C  38 61 00 10 */	addi r3, r1, 0x10
 /* 805A2F70  38 80 00 00 */	li r4, 0
 /* 805A2F74  38 A0 00 00 */	li r5, 0
 /* 805A2F78  38 C0 00 00 */	li r6, 0
-/* 805A2F7C  4B CC 44 78 */	b __ct__5csXyzFsss
+/* 805A2F7C  4B CC 44 79 */	bl __ct__5csXyzFsss
 /* 805A2F80  80 7B 00 B0 */	lwz r3, 0xb0(r27)
 /* 805A2F84  54 60 C6 3E */	rlwinm r0, r3, 0x18, 0x18, 0x1f
 /* 805A2F88  28 00 00 FF */	cmplwi r0, 0xff
@@ -20,12 +20,12 @@ lbl_805A2F98:
 /* 805A2F98  54 60 86 3E */	rlwinm r0, r3, 0x10, 0x18, 0x1f
 /* 805A2F9C  7C 1D 03 78 */	mr r29, r0
 /* 805A2FA0  3B 80 00 00 */	li r28, 0
-/* 805A2FA4  3C 60 80 5A */	lis r3, lit_3898@ha
-/* 805A2FA8  3B E3 32 F0 */	addi r31, r3, lit_3898@l
+/* 805A2FA4  3C 60 80 5A */	lis r3, lit_3898@ha /* 0x805A32F0@ha */
+/* 805A2FA8  3B E3 32 F0 */	addi r31, r3, lit_3898@l /* 0x805A32F0@l */
 /* 805A2FAC  48 00 00 6C */	b lbl_805A3018
 lbl_805A2FB0:
 /* 805A2FB0  C0 3F 00 00 */	lfs f1, 0(r31)
-/* 805A2FB4  4B CC 49 D8 */	b cM_rndFX__Ff
+/* 805A2FB4  4B CC 49 D9 */	bl cM_rndFX__Ff
 /* 805A2FB8  FC 00 08 1E */	fctiwz f0, f1
 /* 805A2FBC  D8 01 00 18 */	stfd f0, 0x18(r1)
 /* 805A2FC0  80 61 00 1C */	lwz r3, 0x1c(r1)
@@ -45,7 +45,7 @@ lbl_805A2FB0:
 /* 805A2FF8  39 00 00 00 */	li r8, 0
 /* 805A2FFC  39 20 00 00 */	li r9, 0
 /* 805A3000  39 40 00 00 */	li r10, 0
-/* 805A3004  4B A7 8F 60 */	b fopAcM_createItemFromTable__FPC4cXyziiiPC5csXyziPC4cXyzPfPfb
+/* 805A3004  4B A7 8F 61 */	bl fopAcM_createItemFromTable__FPC4cXyziiiPC5csXyziPC4cXyzPfPfb
 /* 805A3008  2C 1D 00 FF */	cmpwi r29, 0xff
 /* 805A300C  41 82 00 08 */	beq lbl_805A3014
 /* 805A3010  3B BD 00 01 */	addi r29, r29, 1
@@ -55,7 +55,7 @@ lbl_805A3018:
 /* 805A3018  7C 1C F0 00 */	cmpw r28, r30
 /* 805A301C  41 80 FF 94 */	blt lbl_805A2FB0
 /* 805A3020  39 61 00 40 */	addi r11, r1, 0x40
-/* 805A3024  4B DB F1 FC */	b _restgpr_27
+/* 805A3024  4B DB F1 FD */	bl _restgpr_27
 /* 805A3028  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 805A302C  7C 08 03 A6 */	mtlr r0
 /* 805A3030  38 21 00 40 */	addi r1, r1, 0x40

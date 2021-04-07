@@ -3,17 +3,15 @@
 #
 
 M757_TARGET := $(BUILD_DIR)/rel/d/a/d_a_warp_bug.plf
+M757_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_warp_bug.lcf
+M757_MAP := $(BUILD_DIR)/rel/d/a/d_a_warp_bug.map
 
 M757_CPP_FILES := \
-	rel/d/a/d_a_warp_bug/executor.cpp \
-	rel/d/a/d_a_warp_bug/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_warp_bug/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_warp_bug/d_a_warp_bug.cpp \
 
 M757_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_warp_bug/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_warp_bug/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_warp_bug/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_warp_bug/d_a_warp_bug.o \
 
 M757_LIBS := \
@@ -29,14 +27,21 @@ M757_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M757_LDSCRIPT) \
+	-unused -map $(M757_MAP) \
+	-w off \
 
 $(M757_TARGET): $(M757_O_FILES) $(M757_LIBS)
+	@echo [757] creating $(M757_TARGET)
 	@echo $(M757_LIBS) $(M757_O_FILES) > build/M757_ofiles
-	$(LD) -partial $(M757_LDFLAGS) -o $(M757_TARGET) @build/M757_ofiles
+	@python3 tools/lcf.py rel 757 --output $(M757_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M757_LDFLAGS) -o $(M757_TARGET) @build/M757_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_warp_bug/%.o: rel/d/a/d_a_warp_bug/%.cpp
+	@echo [757] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M757_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M757_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

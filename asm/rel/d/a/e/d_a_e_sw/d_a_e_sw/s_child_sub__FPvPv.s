@@ -12,11 +12,11 @@ lbl_807AAD28:
 lbl_807AAD50:
 /* 807AAD50  38 60 FF FF */	li r3, -1
 lbl_807AAD54:
-/* 807AAD54  4B 87 73 E4 */	b fpcM_IsCreating__FUi
+/* 807AAD54  4B 87 73 E5 */	bl fpcM_IsCreating__FUi
 /* 807AAD58  2C 03 00 00 */	cmpwi r3, 0
 /* 807AAD5C  40 82 00 54 */	bne lbl_807AADB0
 /* 807AAD60  7F C3 F3 78 */	mr r3, r30
-/* 807AAD64  4B 86 DF 7C */	b fopAc_IsActor__FPv
+/* 807AAD64  4B 86 DF 7D */	bl fopAc_IsActor__FPv
 /* 807AAD68  2C 03 00 00 */	cmpwi r3, 0
 /* 807AAD6C  41 82 00 44 */	beq lbl_807AADB0
 /* 807AAD70  A8 1E 00 08 */	lha r0, 8(r30)
@@ -32,8 +32,8 @@ lbl_807AAD90:
 lbl_807AAD94:
 /* 807AAD94  7C 03 00 40 */	cmplw r3, r0
 /* 807AAD98  40 82 00 18 */	bne lbl_807AADB0
-/* 807AAD9C  3C 60 80 7B */	lis r3, struct_807B0200+0x1@ha
-/* 807AADA0  38 83 02 01 */	addi r4, r3, struct_807B0200+0x1@l
+/* 807AAD9C  3C 60 80 7B */	lis r3, struct_807B0200+0x1@ha /* 0x807B0201@ha */
+/* 807AADA0  38 83 02 01 */	addi r4, r3, struct_807B0200+0x1@l /* 0x807B0201@l */
 /* 807AADA4  88 64 00 00 */	lbz r3, 0(r4)
 /* 807AADA8  38 03 00 01 */	addi r0, r3, 1
 /* 807AADAC  98 04 00 00 */	stb r0, 0(r4)

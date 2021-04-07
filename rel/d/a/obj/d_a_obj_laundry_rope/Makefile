@@ -3,17 +3,15 @@
 #
 
 M512_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_laundry_rope.plf
+M512_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_laundry_rope.lcf
+M512_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_laundry_rope.map
 
 M512_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_laundry_rope/executor.cpp \
-	rel/d/a/obj/d_a_obj_laundry_rope/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_laundry_rope/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_laundry_rope/d_a_obj_laundry_rope.cpp \
 
 M512_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_laundry_rope/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_laundry_rope/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_laundry_rope/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_laundry_rope/d_a_obj_laundry_rope.o \
 
 M512_LIBS := \
@@ -29,14 +27,21 @@ M512_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M512_LDSCRIPT) \
+	-unused -map $(M512_MAP) \
+	-w off \
 
 $(M512_TARGET): $(M512_O_FILES) $(M512_LIBS)
+	@echo [512] creating $(M512_TARGET)
 	@echo $(M512_LIBS) $(M512_O_FILES) > build/M512_ofiles
-	$(LD) -partial $(M512_LDFLAGS) -o $(M512_TARGET) @build/M512_ofiles
+	@python3 tools/lcf.py rel 512 --output $(M512_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M512_LDFLAGS) -o $(M512_TARGET) @build/M512_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_laundry_rope/%.o: rel/d/a/obj/d_a_obj_laundry_rope/%.cpp
+	@echo [512] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M512_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M512_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

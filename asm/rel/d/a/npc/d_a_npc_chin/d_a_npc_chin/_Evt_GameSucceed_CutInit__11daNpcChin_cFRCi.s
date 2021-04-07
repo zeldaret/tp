@@ -27,7 +27,7 @@ lbl_80990308:
 /* 8099031C  7C 60 07 75 */	extsb. r0, r3
 /* 80990320  40 82 00 10 */	bne lbl_80990330
 /* 80990324  38 60 00 4E */	li r3, 0x4e
-/* 80990328  4B 7C 53 CC */	b daNpcF_onTmpBit__FUl
+/* 80990328  4B 7C 53 CD */	bl daNpcF_onTmpBit__FUl
 /* 8099032C  48 00 00 20 */	b lbl_8099034C
 lbl_80990330:
 /* 80990330  7C 60 07 74 */	extsb r0, r3
@@ -37,20 +37,20 @@ lbl_80990330:
 /* 80990340  40 82 00 0C */	bne lbl_8099034C
 lbl_80990344:
 /* 80990344  38 60 00 4F */	li r3, 0x4f
-/* 80990348  4B 7C 53 AC */	b daNpcF_onTmpBit__FUl
+/* 80990348  4B 7C 53 AD */	bl daNpcF_onTmpBit__FUl
 lbl_8099034C:
 /* 8099034C  38 60 00 0B */	li r3, 0xb
-/* 80990350  4B 7C 53 E4 */	b daNpcF_offTmpBit__FUl
+/* 80990350  4B 7C 53 E5 */	bl daNpcF_offTmpBit__FUl
 /* 80990354  7F E3 FB 78 */	mr r3, r31
 /* 80990358  A8 9F 0E 00 */	lha r4, 0xe00(r31)
 /* 8099035C  38 A0 00 00 */	li r5, 0
-/* 80990360  4B 7C 39 BC */	b initTalk__8daNpcF_cFiPP10fopAc_ac_c
+/* 80990360  4B 7C 39 BD */	bl initTalk__8daNpcF_cFiPP10fopAc_ac_c
 /* 80990364  38 00 00 00 */	li r0, 0
 /* 80990368  98 1F 0E 06 */	stb r0, 0xe06(r31)
 /* 8099036C  7F E3 FB 78 */	mr r3, r31
 /* 80990370  38 80 00 00 */	li r4, 0
-/* 80990374  3C A0 80 99 */	lis r5, lit_4627@ha
-/* 80990378  C0 25 19 A4 */	lfs f1, lit_4627@l(r5)
+/* 80990374  3C A0 80 99 */	lis r5, lit_4627@ha /* 0x809919A4@ha */
+/* 80990378  C0 25 19 A4 */	lfs f1, lit_4627@l(r5)  /* 0x809919A4@l */
 /* 8099037C  81 9F 0B 44 */	lwz r12, 0xb44(r31)
 /* 80990380  81 8C 00 34 */	lwz r12, 0x34(r12)
 /* 80990384  7D 89 03 A6 */	mtctr r12
@@ -68,7 +68,7 @@ lbl_8099039C:
 /* 809903B0  7C 60 07 75 */	extsb. r0, r3
 /* 809903B4  40 82 00 10 */	bne lbl_809903C4
 /* 809903B8  38 60 00 4E */	li r3, 0x4e
-/* 809903BC  4B 7C 53 38 */	b daNpcF_onTmpBit__FUl
+/* 809903BC  4B 7C 53 39 */	bl daNpcF_onTmpBit__FUl
 /* 809903C0  48 00 00 20 */	b lbl_809903E0
 lbl_809903C4:
 /* 809903C4  7C 60 07 74 */	extsb r0, r3
@@ -78,12 +78,12 @@ lbl_809903C4:
 /* 809903D4  40 82 00 0C */	bne lbl_809903E0
 lbl_809903D8:
 /* 809903D8  38 60 00 4F */	li r3, 0x4f
-/* 809903DC  4B 7C 53 18 */	b daNpcF_onTmpBit__FUl
+/* 809903DC  4B 7C 53 19 */	bl daNpcF_onTmpBit__FUl
 lbl_809903E0:
 /* 809903E0  7F E3 FB 78 */	mr r3, r31
 /* 809903E4  A8 9F 0E 00 */	lha r4, 0xe00(r31)
 /* 809903E8  38 A0 00 00 */	li r5, 0
-/* 809903EC  4B 7C 39 30 */	b initTalk__8daNpcF_cFiPP10fopAc_ac_c
+/* 809903EC  4B 7C 39 31 */	bl initTalk__8daNpcF_cFiPP10fopAc_ac_c
 /* 809903F0  38 00 00 00 */	li r0, 0
 /* 809903F4  98 1F 0E 06 */	stb r0, 0xe06(r31)
 /* 809903F8  7F E3 FB 78 */	mr r3, r31

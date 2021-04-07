@@ -35,8 +35,8 @@ lbl_802ADEAC:
 /* 802ADED4  98 1E 01 D0 */	stb r0, 0x1d0(r30)
 lbl_802ADED8:
 /* 802ADED8  C0 42 BE 80 */	lfs f2, lit_4042(r2)
-/* 802ADEDC  3C C0 80 3A */	lis r6, lit_5054@ha
-/* 802ADEE0  38 E6 B9 F0 */	addi r7, r6, lit_5054@l
+/* 802ADEDC  3C C0 80 3A */	lis r6, lit_5054@ha /* 0x8039B9F0@ha */
+/* 802ADEE0  38 E6 B9 F0 */	addi r7, r6, lit_5054@l /* 0x8039B9F0@l */
 /* 802ADEE4  80 C7 00 00 */	lwz r6, 0(r7)
 /* 802ADEE8  80 07 00 04 */	lwz r0, 4(r7)
 /* 802ADEEC  90 C1 00 14 */	stw r6, 0x14(r1)

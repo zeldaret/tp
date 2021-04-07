@@ -9,11 +9,11 @@ lbl_802B9D98:
 /* 802B9DB4  4B FF 3B 99 */	bl seStopAll__7Z2SeMgrFUl
 /* 802B9DB8  80 6D 85 BC */	lwz r3, data_80450B3C(r13)
 /* 802B9DBC  48 00 CB E1 */	bl resetSceneInner__10Z2EnvSeMgrFv
-/* 802B9DC0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 802B9DC4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 802B9DC0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 802B9DC4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 802B9DC8  38 63 07 F0 */	addi r3, r3, 0x7f0
-/* 802B9DCC  3C 80 80 3A */	lis r4, saveBitLabels__16dSv_event_flag_c@ha
-/* 802B9DD0  38 84 72 88 */	addi r4, r4, saveBitLabels__16dSv_event_flag_c@l
+/* 802B9DCC  3C 80 80 3A */	lis r4, saveBitLabels__16dSv_event_flag_c@ha /* 0x803A7288@ha */
+/* 802B9DD0  38 84 72 88 */	addi r4, r4, saveBitLabels__16dSv_event_flag_c@l /* 0x803A7288@l */
 /* 802B9DD4  A0 84 00 D0 */	lhz r4, 0xd0(r4)
 /* 802B9DD8  4B D7 AB E5 */	bl isEventBit__11dSv_event_cCFUs
 /* 802B9DDC  30 03 FF FF */	addic r0, r3, -1

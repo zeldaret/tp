@@ -3,19 +3,20 @@
 #
 
 M388_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelRo.plf
+M388_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelRo.lcf
+M388_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelRo.map
 
 M388_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_zelRo/executor.cpp \
-	rel/d/a/npc/d_a_npc_zelRo/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_zelRo/d_a_npc_zelRo.cpp \
 
 M388_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelRo/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelRo/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelRo/d_a_npc_zelRo.o \
 
 M388_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelRo/libRuntime.PPCEABI.H.a \
 
 M388_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M388_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M388_LDSCRIPT) \
+	-unused -map $(M388_MAP) \
+	-w off \
 
 $(M388_TARGET): $(M388_O_FILES) $(M388_LIBS)
+	@echo [388] creating $(M388_TARGET)
 	@echo $(M388_LIBS) $(M388_O_FILES) > build/M388_ofiles
-	$(LD) -partial $(M388_LDFLAGS) -o $(M388_TARGET) @build/M388_ofiles
+	@python3 tools/lcf.py rel 388 --output $(M388_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M388_LDFLAGS) -o $(M388_TARGET) @build/M388_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_zelRo/%.o: rel/d/a/npc/d_a_npc_zelRo/%.cpp
+	@echo [388] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M388_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M388_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_zelRo/libs/Runtime.PPCEABI.H/Makefile
 

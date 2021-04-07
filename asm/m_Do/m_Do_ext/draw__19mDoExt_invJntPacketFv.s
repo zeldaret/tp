@@ -69,8 +69,8 @@ lbl_80012314:
 /* 80012318  40 82 FF 54 */	bne lbl_8001226C
 /* 8001231C  48 00 00 74 */	b lbl_80012390
 lbl_80012320:
-/* 80012320  3C 60 80 3A */	lis r3, l_invisibleMat@ha
-/* 80012324  38 63 30 20 */	addi r3, r3, l_invisibleMat@l
+/* 80012320  3C 60 80 3A */	lis r3, l_invisibleMat@ha /* 0x803A3020@ha */
+/* 80012324  38 63 30 20 */	addi r3, r3, l_invisibleMat@l /* 0x803A3020@l */
 /* 80012328  38 80 00 80 */	li r4, 0x80
 /* 8001232C  48 34 DB C5 */	bl GXCallDisplayList
 /* 80012330  80 7F 00 10 */	lwz r3, 0x10(r31)

@@ -1,8 +1,8 @@
 lbl_803524BC:
 /* 803524BC  7C 08 02 A6 */	mflr r0
-/* 803524C0  3C 60 80 3D */	lis r3, lit_1@ha
+/* 803524C0  3C 60 80 3D */	lis r3, lit_1@ha /* 0x803D1C78@ha */
 /* 803524C4  90 01 00 04 */	stw r0, 4(r1)
-/* 803524C8  38 A3 1C 78 */	addi r5, r3, lit_1@l
+/* 803524C8  38 A3 1C 78 */	addi r5, r3, lit_1@l /* 0x803D1C78@l */
 /* 803524CC  4C C6 31 82 */	crclr 6
 /* 803524D0  38 65 00 48 */	addi r3, r5, 0x48
 /* 803524D4  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -16,9 +16,9 @@ lbl_803524BC:
 /* 803524F4  80 6D 84 D8 */	lwz r3, __DSPVersion(r13)
 /* 803524F8  4B FE 83 7D */	bl OSRegisterVersion
 /* 803524FC  4B FE B1 F9 */	bl OSDisableInterrupts
-/* 80352500  3C 80 80 2A */	lis r4, __DSPHandler@ha
+/* 80352500  3C 80 80 2A */	lis r4, __DSPHandler@ha /* 0x8029EB20@ha */
 /* 80352504  3B E3 00 00 */	addi r31, r3, 0
-/* 80352508  38 84 EB 20 */	addi r4, r4, __DSPHandler@l
+/* 80352508  38 84 EB 20 */	addi r4, r4, __DSPHandler@l /* 0x8029EB20@l */
 /* 8035250C  38 60 00 07 */	li r3, 7
 /* 80352510  4B FE B2 31 */	bl __OSSetInterruptHandler
 /* 80352514  3C 60 01 00 */	lis r3, 0x100

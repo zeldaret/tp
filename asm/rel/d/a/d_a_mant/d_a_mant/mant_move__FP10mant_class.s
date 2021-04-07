@@ -43,7 +43,7 @@ lbl_8086246C:
 /* 808624C0  7C 7F 02 14 */	add r3, r31, r0
 /* 808624C4  38 63 05 E8 */	addi r3, r3, 0x5e8
 /* 808624C8  38 80 07 EC */	li r4, 0x7ec
-/* 808624CC  4B AD 91 6C */	b DCStoreRangeNoSync
+/* 808624CC  4B AD 91 6D */	bl DCStoreRangeNoSync
 /* 808624D0  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 808624D4  83 C1 00 08 */	lwz r30, 8(r1)
 /* 808624D8  80 01 00 14 */	lwz r0, 0x14(r1)

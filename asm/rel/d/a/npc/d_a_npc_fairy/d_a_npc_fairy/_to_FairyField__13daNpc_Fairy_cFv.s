@@ -5,8 +5,8 @@ lbl_809B39FC:
 /* 809B3A08  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 809B3A0C  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 809B3A10  7C 7E 1B 78 */	mr r30, r3
-/* 809B3A14  3C 60 80 9C */	lis r3, m__19daNpc_Fairy_Param_c@ha
-/* 809B3A18  3B E3 92 E4 */	addi r31, r3, m__19daNpc_Fairy_Param_c@l
+/* 809B3A14  3C 60 80 9C */	lis r3, m__19daNpc_Fairy_Param_c@ha /* 0x809B92E4@ha */
+/* 809B3A18  3B E3 92 E4 */	addi r31, r3, m__19daNpc_Fairy_Param_c@l /* 0x809B92E4@l */
 /* 809B3A1C  80 1E 0F E4 */	lwz r0, 0xfe4(r30)
 /* 809B3A20  2C 00 00 00 */	cmpwi r0, 0
 /* 809B3A24  41 80 00 74 */	blt lbl_809B3A98
@@ -16,8 +16,8 @@ lbl_809B39FC:
 lbl_809B3A34:
 /* 809B3A34  38 00 00 9B */	li r0, 0x9b
 /* 809B3A38  90 01 00 08 */	stw r0, 8(r1)
-/* 809B3A3C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 809B3A40  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 809B3A3C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 809B3A40  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 809B3A44  80 63 00 00 */	lwz r3, 0(r3)
 /* 809B3A48  38 81 00 08 */	addi r4, r1, 8
 /* 809B3A4C  38 A0 00 00 */	li r5, 0
@@ -28,7 +28,7 @@ lbl_809B3A34:
 /* 809B3A60  C0 7F 00 E8 */	lfs f3, 0xe8(r31)
 /* 809B3A64  FC 80 18 90 */	fmr f4, f3
 /* 809B3A68  39 00 00 00 */	li r8, 0
-/* 809B3A6C  4B 8F 7F 18 */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 809B3A6C  4B 8F 7F 19 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 809B3A70  80 1E 0F E4 */	lwz r0, 0xfe4(r30)
 /* 809B3A74  38 7F 01 34 */	addi r3, r31, 0x134
 /* 809B3A78  7C 63 00 AE */	lbzx r3, r3, r0
@@ -38,7 +38,7 @@ lbl_809B3A34:
 /* 809B3A88  7C 05 07 74 */	extsb r5, r0
 /* 809B3A8C  38 C0 00 00 */	li r6, 0
 /* 809B3A90  38 E0 FF FF */	li r7, -1
-/* 809B3A94  4B 67 36 DC */	b dStage_changeScene__FifUlScsi
+/* 809B3A94  4B 67 36 DD */	bl dStage_changeScene__FifUlScsi
 lbl_809B3A98:
 /* 809B3A98  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 809B3A9C  83 C1 00 18 */	lwz r30, 0x18(r1)

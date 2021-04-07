@@ -2,10 +2,10 @@ lbl_809FFEC4:
 /* 809FFEC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 809FFEC8  7C 08 02 A6 */	mflr r0
 /* 809FFECC  90 01 00 14 */	stw r0, 0x14(r1)
-/* 809FFED0  3C 60 80 A0 */	lis r3, cNullVec__6Z2Calc@ha
-/* 809FFED4  38 A3 09 40 */	addi r5, r3, cNullVec__6Z2Calc@l
-/* 809FFED8  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 809FFEDC  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 809FFED0  3C 60 80 A0 */	lis r3, cNullVec__6Z2Calc@ha /* 0x80A00940@ha */
+/* 809FFED4  38 A3 09 40 */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x80A00940@l */
+/* 809FFED8  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 809FFEDC  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 809FFEE0  80 64 00 00 */	lwz r3, 0(r4)
 /* 809FFEE4  80 04 00 04 */	lwz r0, 4(r4)
 /* 809FFEE8  90 65 06 8C */	stw r3, 0x68c(r5)
@@ -44,8 +44,8 @@ lbl_809FFEC4:
 /* 809FFF6C  80 05 06 88 */	lwz r0, 0x688(r5)
 /* 809FFF70  90 04 00 44 */	stw r0, 0x44(r4)
 /* 809FFF74  38 A5 06 D0 */	addi r5, r5, 0x6d0
-/* 809FFF78  3C 60 80 A0 */	lis r3, mStoneCcDObjInfo__13daNpc_Hanjo_c@ha
-/* 809FFF7C  38 63 06 B4 */	addi r3, r3, mStoneCcDObjInfo__13daNpc_Hanjo_c@l
+/* 809FFF78  3C 60 80 A0 */	lis r3, mStoneCcDObjInfo__13daNpc_Hanjo_c@ha /* 0x80A006B4@ha */
+/* 809FFF7C  38 63 06 B4 */	addi r3, r3, mStoneCcDObjInfo__13daNpc_Hanjo_c@l /* 0x80A006B4@l */
 /* 809FFF80  38 83 FF FC */	addi r4, r3, -4
 /* 809FFF84  38 00 00 06 */	li r0, 6
 /* 809FFF88  7C 09 03 A6 */	mtctr r0
@@ -55,14 +55,14 @@ lbl_809FFF8C:
 /* 809FFF94  90 65 00 04 */	stw r3, 4(r5)
 /* 809FFF98  94 05 00 08 */	stwu r0, 8(r5)
 /* 809FFF9C  42 00 FF F0 */	bdnz lbl_809FFF8C
-/* 809FFFA0  3C 60 80 A0 */	lis r3, __vt__19daNpc_Hanjo_Param_c@ha
-/* 809FFFA4  38 03 12 70 */	addi r0, r3, __vt__19daNpc_Hanjo_Param_c@l
-/* 809FFFA8  3C 60 80 A0 */	lis r3, l_HIO@ha
-/* 809FFFAC  94 03 12 D4 */	stwu r0, l_HIO@l(r3)
-/* 809FFFB0  3C 80 80 A0 */	lis r4, __dt__19daNpc_Hanjo_Param_cFv@ha
-/* 809FFFB4  38 84 05 34 */	addi r4, r4, __dt__19daNpc_Hanjo_Param_cFv@l
-/* 809FFFB8  3C A0 80 A0 */	lis r5, lit_3859@ha
-/* 809FFFBC  38 A5 12 C8 */	addi r5, r5, lit_3859@l
+/* 809FFFA0  3C 60 80 A0 */	lis r3, __vt__19daNpc_Hanjo_Param_c@ha /* 0x80A01270@ha */
+/* 809FFFA4  38 03 12 70 */	addi r0, r3, __vt__19daNpc_Hanjo_Param_c@l /* 0x80A01270@l */
+/* 809FFFA8  3C 60 80 A0 */	lis r3, l_HIO@ha /* 0x80A012D4@ha */
+/* 809FFFAC  94 03 12 D4 */	stwu r0, l_HIO@l(r3)  /* 0x80A012D4@l */
+/* 809FFFB0  3C 80 80 A0 */	lis r4, __dt__19daNpc_Hanjo_Param_cFv@ha /* 0x80A00534@ha */
+/* 809FFFB4  38 84 05 34 */	addi r4, r4, __dt__19daNpc_Hanjo_Param_cFv@l /* 0x80A00534@l */
+/* 809FFFB8  3C A0 80 A0 */	lis r5, lit_3859@ha /* 0x80A012C8@ha */
+/* 809FFFBC  38 A5 12 C8 */	addi r5, r5, lit_3859@l /* 0x80A012C8@l */
 /* 809FFFC0  4B FF 90 59 */	bl __register_global_object
 /* 809FFFC4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 809FFFC8  7C 08 03 A6 */	mtlr r0

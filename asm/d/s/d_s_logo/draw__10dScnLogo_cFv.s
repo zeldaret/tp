@@ -9,8 +9,8 @@ lbl_80256210:
 /* 8025622C  7F E3 FB 78 */	mr r3, r31
 /* 80256230  88 1F 02 08 */	lbz r0, 0x208(r31)
 /* 80256234  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 80256238  3C 80 80 3C */	lis r4, l_execFunc@ha
-/* 8025623C  38 04 2F 04 */	addi r0, r4, l_execFunc@l
+/* 80256238  3C 80 80 3C */	lis r4, l_execFunc@ha /* 0x803C2F04@ha */
+/* 8025623C  38 04 2F 04 */	addi r0, r4, l_execFunc@l /* 0x803C2F04@l */
 /* 80256240  7D 80 2A 14 */	add r12, r0, r5
 /* 80256244  48 10 BE 41 */	bl __ptmf_scall
 /* 80256248  60 00 00 00 */	nop 

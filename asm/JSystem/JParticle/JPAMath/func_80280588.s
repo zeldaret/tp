@@ -18,8 +18,8 @@ lbl_80280588:
 /* 802805C8  38 61 00 08 */	addi r3, r1, 8
 /* 802805CC  48 0C 6B 85 */	bl PSVECMag
 /* 802805D0  C0 42 B9 C0 */	lfs f2, lit_2239(r2)
-/* 802805D4  3C 60 80 45 */	lis r3, __float_epsilon@ha
-/* 802805D8  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)
+/* 802805D4  3C 60 80 45 */	lis r3, __float_epsilon@ha /* 0x80450AEC@ha */
+/* 802805D8  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)  /* 0x80450AEC@l */
 /* 802805DC  EC 02 00 32 */	fmuls f0, f2, f0
 /* 802805E0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 802805E4  4C 40 13 82 */	cror 2, 0, 2

@@ -7,8 +7,8 @@ lbl_80078314:
 /* 80078328  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8007832C  7C 9F 23 78 */	mr r31, r4
 /* 80078330  41 82 00 40 */	beq lbl_80078370
-/* 80078334  3C 80 80 3B */	lis r4, __vt__20dBgS_BoomerangLinChk@ha
-/* 80078338  38 84 B8 20 */	addi r4, r4, __vt__20dBgS_BoomerangLinChk@l
+/* 80078334  3C 80 80 3B */	lis r4, __vt__20dBgS_BoomerangLinChk@ha /* 0x803AB820@ha */
+/* 80078338  38 84 B8 20 */	addi r4, r4, __vt__20dBgS_BoomerangLinChk@l /* 0x803AB820@l */
 /* 8007833C  90 9E 00 10 */	stw r4, 0x10(r30)
 /* 80078340  38 04 00 0C */	addi r0, r4, 0xc
 /* 80078344  90 1E 00 20 */	stw r0, 0x20(r30)

@@ -5,8 +5,8 @@ lbl_8069D234:
 /* 8069D240  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 8069D244  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 8069D248  7C 7E 1B 78 */	mr r30, r3
-/* 8069D24C  3C 80 80 6A */	lis r4, lit_3902@ha
-/* 8069D250  3B E4 19 0C */	addi r31, r4, lit_3902@l
+/* 8069D24C  3C 80 80 6A */	lis r4, lit_3902@ha /* 0x806A190C@ha */
+/* 8069D250  3B E4 19 0C */	addi r31, r4, lit_3902@l /* 0x806A190C@l */
 /* 8069D254  A8 03 06 6C */	lha r0, 0x66c(r3)
 /* 8069D258  2C 00 00 01 */	cmpwi r0, 1
 /* 8069D25C  41 82 00 88 */	beq lbl_8069D2E4
@@ -51,8 +51,8 @@ lbl_8069D2E4:
 /* 8069D2E4  A8 9E 06 68 */	lha r4, 0x668(r30)
 /* 8069D2E8  1C 04 03 84 */	mulli r0, r4, 0x384
 /* 8069D2EC  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 8069D2F0  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8069D2F4  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8069D2F0  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8069D2F4  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8069D2F8  7C 23 04 2E */	lfsx f1, r3, r0
 /* 8069D2FC  C0 1F 00 48 */	lfs f0, 0x48(r31)
 /* 8069D300  EC 20 00 72 */	fmuls f1, f0, f1
@@ -70,7 +70,7 @@ lbl_8069D2E4:
 /* 8069D330  C0 7F 00 54 */	lfs f3, 0x54(r31)
 /* 8069D334  C0 1E 06 8C */	lfs f0, 0x68c(r30)
 /* 8069D338  EC 63 00 32 */	fmuls f3, f3, f0
-/* 8069D33C  4B BD 27 00 */	b cLib_addCalc2__FPffff
+/* 8069D33C  4B BD 27 01 */	bl cLib_addCalc2__FPffff
 /* 8069D340  38 7E 04 D8 */	addi r3, r30, 0x4d8
 /* 8069D344  C0 3E 04 B0 */	lfs f1, 0x4b0(r30)
 /* 8069D348  C0 01 00 18 */	lfs f0, 0x18(r1)
@@ -79,7 +79,7 @@ lbl_8069D2E4:
 /* 8069D354  C0 7F 00 54 */	lfs f3, 0x54(r31)
 /* 8069D358  C0 1E 06 8C */	lfs f0, 0x68c(r30)
 /* 8069D35C  EC 63 00 32 */	fmuls f3, f3, f0
-/* 8069D360  4B BD 26 DC */	b cLib_addCalc2__FPffff
+/* 8069D360  4B BD 26 DD */	bl cLib_addCalc2__FPffff
 /* 8069D364  88 1E 08 50 */	lbz r0, 0x850(r30)
 /* 8069D368  7C 00 07 75 */	extsb. r0, r0
 /* 8069D36C  41 82 00 2C */	beq lbl_8069D398
@@ -91,7 +91,7 @@ lbl_8069D2E4:
 /* 8069D384  C0 7F 00 54 */	lfs f3, 0x54(r31)
 /* 8069D388  C0 1E 06 8C */	lfs f0, 0x68c(r30)
 /* 8069D38C  EC 63 00 32 */	fmuls f3, f3, f0
-/* 8069D390  4B BD 26 AC */	b cLib_addCalc2__FPffff
+/* 8069D390  4B BD 26 AD */	bl cLib_addCalc2__FPffff
 /* 8069D394  48 00 00 28 */	b lbl_8069D3BC
 lbl_8069D398:
 /* 8069D398  38 7E 04 D4 */	addi r3, r30, 0x4d4
@@ -102,13 +102,13 @@ lbl_8069D398:
 /* 8069D3AC  C0 7F 00 54 */	lfs f3, 0x54(r31)
 /* 8069D3B0  C0 1E 06 8C */	lfs f0, 0x68c(r30)
 /* 8069D3B4  EC 63 00 32 */	fmuls f3, f3, f0
-/* 8069D3B8  4B BD 26 84 */	b cLib_addCalc2__FPffff
+/* 8069D3B8  4B BD 26 85 */	bl cLib_addCalc2__FPffff
 lbl_8069D3BC:
 /* 8069D3BC  38 7E 06 8C */	addi r3, r30, 0x68c
 /* 8069D3C0  C0 3F 00 08 */	lfs f1, 8(r31)
 /* 8069D3C4  FC 40 08 90 */	fmr f2, f1
 /* 8069D3C8  C0 7F 00 68 */	lfs f3, 0x68(r31)
-/* 8069D3CC  4B BD 26 70 */	b cLib_addCalc2__FPffff
+/* 8069D3CC  4B BD 26 71 */	bl cLib_addCalc2__FPffff
 /* 8069D3D0  A8 1E 06 94 */	lha r0, 0x694(r30)
 /* 8069D3D4  2C 00 00 32 */	cmpwi r0, 0x32
 /* 8069D3D8  41 81 00 38 */	bgt lbl_8069D410
@@ -184,20 +184,20 @@ lbl_8069D4D0:
 /* 8069D4E0  38 80 40 00 */	li r4, 0x4000
 /* 8069D4E4  38 A0 00 04 */	li r5, 4
 /* 8069D4E8  38 C0 04 00 */	li r6, 0x400
-/* 8069D4EC  4B BD 31 1C */	b cLib_addCalcAngleS2__FPssss
+/* 8069D4EC  4B BD 31 1D */	bl cLib_addCalcAngleS2__FPssss
 /* 8069D4F0  48 00 00 18 */	b lbl_8069D508
 lbl_8069D4F4:
 /* 8069D4F4  38 7E 04 E4 */	addi r3, r30, 0x4e4
 /* 8069D4F8  38 80 C0 00 */	li r4, -16384
 /* 8069D4FC  38 A0 00 04 */	li r5, 4
 /* 8069D500  38 C0 04 00 */	li r6, 0x400
-/* 8069D504  4B BD 31 04 */	b cLib_addCalcAngleS2__FPssss
+/* 8069D504  4B BD 31 05 */	bl cLib_addCalcAngleS2__FPssss
 lbl_8069D508:
 /* 8069D508  38 7E 08 44 */	addi r3, r30, 0x844
 /* 8069D50C  C0 3F 00 2C */	lfs f1, 0x2c(r31)
 /* 8069D510  C0 5F 00 08 */	lfs f2, 8(r31)
 /* 8069D514  C0 7F 00 78 */	lfs f3, 0x78(r31)
-/* 8069D518  4B BD 25 24 */	b cLib_addCalc2__FPffff
+/* 8069D518  4B BD 25 25 */	bl cLib_addCalc2__FPffff
 /* 8069D51C  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 8069D520  83 C1 00 28 */	lwz r30, 0x28(r1)
 /* 8069D524  80 01 00 34 */	lwz r0, 0x34(r1)

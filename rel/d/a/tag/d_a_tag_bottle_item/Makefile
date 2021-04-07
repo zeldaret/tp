@@ -3,17 +3,15 @@
 #
 
 M716_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_bottle_item.plf
+M716_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_bottle_item.lcf
+M716_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_bottle_item.map
 
 M716_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_bottle_item/executor.cpp \
-	rel/d/a/tag/d_a_tag_bottle_item/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_bottle_item/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_bottle_item/d_a_tag_bottle_item.cpp \
 
 M716_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_bottle_item/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_bottle_item/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_bottle_item/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_bottle_item/d_a_tag_bottle_item.o \
 
 M716_LIBS := \
@@ -29,14 +27,21 @@ M716_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M716_LDSCRIPT) \
+	-unused -map $(M716_MAP) \
+	-w off \
 
 $(M716_TARGET): $(M716_O_FILES) $(M716_LIBS)
+	@echo [716] creating $(M716_TARGET)
 	@echo $(M716_LIBS) $(M716_O_FILES) > build/M716_ofiles
-	$(LD) -partial $(M716_LDFLAGS) -o $(M716_TARGET) @build/M716_ofiles
+	@python3 tools/lcf.py rel 716 --output $(M716_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M716_LDFLAGS) -o $(M716_TARGET) @build/M716_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_bottle_item/%.o: rel/d/a/tag/d_a_tag_bottle_item/%.cpp
+	@echo [716] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M716_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M716_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

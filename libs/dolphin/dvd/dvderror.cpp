@@ -26,7 +26,7 @@ extern "C" void __OSUnlockSramEx();
 //
 
 /* ############################################################################################## */
-/* 803D16A8-803D16F0 0048+00 s=1 e=0 z=0  None .data      ErrorTable */
+/* 803D16A8-803D16F0 02E7C8 0048+00 1/1 0/0 0/0 .data            ErrorTable */
 SECTION_DATA static u8 ErrorTable[72] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x3A, 0x00, 0x00, 0x06, 0x28, 0x00, 0x00, 0x03, 0x02,
     0x00, 0x00, 0x03, 0x11, 0x00, 0x00, 0x05, 0x20, 0x00, 0x00, 0x05, 0x20, 0x01, 0x00, 0x05,
@@ -35,21 +35,21 @@ SECTION_DATA static u8 ErrorTable[72] = {
     0x00, 0x04, 0x08, 0x00, 0x00, 0x10, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 8034BA6C-8034BB88 011C+00 s=1 e=0 z=0  None .text      ErrorCode2Num */
+/* 8034BA6C-8034BB88 3463AC 011C+00 1/1 0/0 0/0 .text            ErrorCode2Num */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void ErrorCode2Num() {
+static asm void ErrorCode2Num() {
     nofralloc
 #include "asm/dolphin/dvd/dvderror/ErrorCode2Num.s"
 }
 #pragma pop
 
-/* 8034BB88-8034BC04 007C+00 s=0 e=12 z=0  None .text      __DVDStoreErrorCode */
+/* 8034BB88-8034BC04 3464C8 007C+00 0/0 12/12 0/0 .text            __DVDStoreErrorCode */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __DVDStoreErrorCode() {
+asm void __DVDStoreErrorCode() {
     nofralloc
 #include "asm/dolphin/dvd/dvderror/__DVDStoreErrorCode.s"
 }

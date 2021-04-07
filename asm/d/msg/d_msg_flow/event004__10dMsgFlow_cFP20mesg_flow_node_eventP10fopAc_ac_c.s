@@ -11,8 +11,8 @@ lbl_8024C590:
 /* 8024C5B4  90 01 00 08 */	stw r0, 8(r1)
 /* 8024C5B8  C8 01 00 08 */	lfd f0, 8(r1)
 /* 8024C5BC  EC 20 08 28 */	fsubs f1, f0, f1
-/* 8024C5C0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024C5C4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8024C5C0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024C5C4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024C5C8  C0 03 5D C0 */	lfs f0, 0x5dc0(r3)
 /* 8024C5CC  EC 00 08 2A */	fadds f0, f0, f1
 /* 8024C5D0  D0 03 5D C0 */	stfs f0, 0x5dc0(r3)

@@ -5,12 +5,12 @@ lbl_8007E640:
 /* 8007E64C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8007E650  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8007E654  41 82 00 30 */	beq lbl_8007E684
-/* 8007E658  3C 60 80 3B */	lis r3, __vt__9dBgW_Base@ha
-/* 8007E65C  38 03 BC C8 */	addi r0, r3, __vt__9dBgW_Base@l
+/* 8007E658  3C 60 80 3B */	lis r3, __vt__9dBgW_Base@ha /* 0x803ABCC8@ha */
+/* 8007E65C  38 03 BC C8 */	addi r0, r3, __vt__9dBgW_Base@l /* 0x803ABCC8@l */
 /* 8007E660  90 1F 00 04 */	stw r0, 4(r31)
 /* 8007E664  41 82 00 10 */	beq lbl_8007E674
-/* 8007E668  3C 60 80 3B */	lis r3, __vt__9cBgW_BgId@ha
-/* 8007E66C  38 03 BD B8 */	addi r0, r3, __vt__9cBgW_BgId@l
+/* 8007E668  3C 60 80 3B */	lis r3, __vt__9cBgW_BgId@ha /* 0x803ABDB8@ha */
+/* 8007E66C  38 03 BD B8 */	addi r0, r3, __vt__9cBgW_BgId@l /* 0x803ABDB8@l */
 /* 8007E670  90 1F 00 04 */	stw r0, 4(r31)
 lbl_8007E674:
 /* 8007E674  7C 80 07 35 */	extsh. r0, r4

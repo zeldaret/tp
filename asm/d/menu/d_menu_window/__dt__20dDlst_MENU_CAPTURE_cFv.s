@@ -5,8 +5,8 @@ lbl_801FE2E8:
 /* 801FE2F4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801FE2F8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 801FE2FC  41 82 00 1C */	beq lbl_801FE318
-/* 801FE300  3C A0 80 3C */	lis r5, __vt__20dDlst_MENU_CAPTURE_c@ha
-/* 801FE304  38 05 F0 D4 */	addi r0, r5, __vt__20dDlst_MENU_CAPTURE_c@l
+/* 801FE300  3C A0 80 3C */	lis r5, __vt__20dDlst_MENU_CAPTURE_c@ha /* 0x803BF0D4@ha */
+/* 801FE304  38 05 F0 D4 */	addi r0, r5, __vt__20dDlst_MENU_CAPTURE_c@l /* 0x803BF0D4@l */
 /* 801FE308  90 1F 00 00 */	stw r0, 0(r31)
 /* 801FE30C  7C 80 07 35 */	extsh. r0, r4
 /* 801FE310  40 81 00 08 */	ble lbl_801FE318

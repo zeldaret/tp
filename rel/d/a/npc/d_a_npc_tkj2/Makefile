@@ -3,19 +3,20 @@
 #
 
 M372_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj2.plf
+M372_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj2.lcf
+M372_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj2.map
 
 M372_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_tkj2/executor.cpp \
-	rel/d/a/npc/d_a_npc_tkj2/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_tkj2/d_a_npc_tkj2.cpp \
 
 M372_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj2/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj2/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj2/d_a_npc_tkj2.o \
 
 M372_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj2/libRuntime.PPCEABI.H.a \
 
 M372_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M372_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M372_LDSCRIPT) \
+	-unused -map $(M372_MAP) \
+	-w off \
 
 $(M372_TARGET): $(M372_O_FILES) $(M372_LIBS)
+	@echo [372] creating $(M372_TARGET)
 	@echo $(M372_LIBS) $(M372_O_FILES) > build/M372_ofiles
-	$(LD) -partial $(M372_LDFLAGS) -o $(M372_TARGET) @build/M372_ofiles
+	@python3 tools/lcf.py rel 372 --output $(M372_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M372_LDFLAGS) -o $(M372_TARGET) @build/M372_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_tkj2/%.o: rel/d/a/npc/d_a_npc_tkj2/%.cpp
+	@echo [372] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M372_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M372_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_tkj2/libs/Runtime.PPCEABI.H/Makefile
 

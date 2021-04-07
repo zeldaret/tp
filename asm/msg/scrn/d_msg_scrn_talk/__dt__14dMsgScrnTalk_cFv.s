@@ -7,8 +7,8 @@ lbl_80247A90:
 /* 80247AA4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80247AA8  7C 9F 23 78 */	mr r31, r4
 /* 80247AAC  41 82 02 6C */	beq lbl_80247D18
-/* 80247AB0  3C 60 80 3C */	lis r3, __vt__14dMsgScrnTalk_c@ha
-/* 80247AB4  38 03 13 C8 */	addi r0, r3, __vt__14dMsgScrnTalk_c@l
+/* 80247AB0  3C 60 80 3C */	lis r3, __vt__14dMsgScrnTalk_c@ha /* 0x803C13C8@ha */
+/* 80247AB4  38 03 13 C8 */	addi r0, r3, __vt__14dMsgScrnTalk_c@l /* 0x803C13C8@l */
 /* 80247AB8  90 1E 00 00 */	stw r0, 0(r30)
 /* 80247ABC  80 7E 00 04 */	lwz r3, 4(r30)
 /* 80247AC0  28 03 00 00 */	cmplwi r3, 0
@@ -149,22 +149,22 @@ lbl_80247C98:
 /* 80247C9C  2C 1A 00 06 */	cmpwi r26, 6
 /* 80247CA0  3B BD 00 04 */	addi r29, r29, 4
 /* 80247CA4  41 80 FF 98 */	blt lbl_80247C3C
-/* 80247CA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80247CAC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80247CA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80247CAC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80247CB0  80 63 5C 6C */	lwz r3, 0x5c6c(r3)
 /* 80247CB4  81 83 00 00 */	lwz r12, 0(r3)
 /* 80247CB8  81 8C 00 24 */	lwz r12, 0x24(r12)
 /* 80247CBC  7D 89 03 A6 */	mtctr r12
 /* 80247CC0  4E 80 04 21 */	bctrl 
-/* 80247CC4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80247CC8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80247CC4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80247CC8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80247CCC  80 63 5C 70 */	lwz r3, 0x5c70(r3)
 /* 80247CD0  81 83 00 00 */	lwz r12, 0(r3)
 /* 80247CD4  81 8C 00 24 */	lwz r12, 0x24(r12)
 /* 80247CD8  7D 89 03 A6 */	mtctr r12
 /* 80247CDC  4E 80 04 21 */	bctrl 
-/* 80247CE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80247CE4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80247CE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80247CE4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80247CE8  80 63 5C E4 */	lwz r3, 0x5ce4(r3)
 /* 80247CEC  81 83 00 00 */	lwz r12, 0(r3)
 /* 80247CF0  81 8C 00 24 */	lwz r12, 0x24(r12)

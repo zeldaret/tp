@@ -5,8 +5,8 @@ lbl_80280F18:
 /* 80280F24  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80280F28  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80280F2C  41 82 00 1C */	beq lbl_80280F48
-/* 80280F30  3C A0 80 3C */	lis r5, __vt__Q37JStudio3ctb7TObject@ha
-/* 80280F34  38 05 48 D0 */	addi r0, r5, __vt__Q37JStudio3ctb7TObject@l
+/* 80280F30  3C A0 80 3C */	lis r5, __vt__Q37JStudio3ctb7TObject@ha /* 0x803C48D0@ha */
+/* 80280F34  38 05 48 D0 */	addi r0, r5, __vt__Q37JStudio3ctb7TObject@l /* 0x803C48D0@l */
 /* 80280F38  90 1F 00 08 */	stw r0, 8(r31)
 /* 80280F3C  7C 80 07 35 */	extsh. r0, r4
 /* 80280F40  40 81 00 08 */	ble lbl_80280F48

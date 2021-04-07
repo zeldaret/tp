@@ -73,12 +73,12 @@ struct dDlst_list_c {
     /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
 };
 
+struct JKRArchive {};
+
 struct J2DPane {
     /* 802F7AFC */ void getParentPane();
     /* 802F7FCC */ void animationTransform();
 };
-
-struct JKRArchive {};
 
 struct dDlst_TimerScrnDraw_c {
     /* 8025DB38 */ dDlst_TimerScrnDraw_c();
@@ -122,9 +122,9 @@ struct dComIfG_play_c {
     /* 8002CBDC */ void getTimerPtr();
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -171,21 +171,6 @@ struct CPaneMgr {
 //
 // Forward References:
 //
-
-static void dTimer_Draw(dTimer_c*);
-static void dTimer_Execute(dTimer_c*);
-static bool dTimer_IsDelete(dTimer_c*);
-static void dTimer_Delete(dTimer_c*);
-static void dTimer_Create(msg_class*);
-void dTimer_createTimer(s32, u32, u8, u8, f32, f32, f32, f32);
-void dTimer_createStockTimer();
-void dTimer_createGetIn2D(s32, cXyz);
-static void dTimer_createStart2D(s32, u16);
-void dTimer_isStart();
-void dTimer_getRestTimeMs();
-void dTimer_show();
-void dTimer_hide();
-void dTimer_isReadyFlag();
 
 extern "C" void _create__8dTimer_cFv();
 extern "C" void _execute__8dTimer_cFv();
@@ -246,27 +231,10 @@ extern "C" void dTimer_isReadyFlag__Fv();
 extern "C" void __dt__21dDlst_TimerScrnDraw_cFv();
 extern "C" void createGetIn__8dTimer_cF4cXyz();
 extern "C" extern char const* const d_d_timer__stringBase0;
-extern "C" extern void* g_profile_TIMER[10];
 
 //
 // External References:
 //
-
-void mDoExt_setCurrentHeap(JKRHeap*);
-void mDoExt_getMesgFont();
-void mDoLib_project(Vec*, Vec*);
-void fopMsgM_GetAppend(void*);
-void fopMsgM_Delete(void*);
-void fop_Timer_create(s16, u8, u32, u8, u8, f32, f32, f32, f32, int (*)(void*));
-void fopMsgM_createExpHeap(u32, JKRHeap*);
-void fopMsgM_destroyExpHeap(JKRExpHeap*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dMeter2Info_getNumberTextureName(int);
-void dPaneClass_showNullPane(J2DScreen*);
-void cM_rndFX(f32);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
 extern "C" void mDoExt_getMesgFont__Fv();
@@ -346,22 +314,7 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 8039A3D8-8039A488 00AC+04 s=7 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_8039A3D8 = "Timer";
-SECTION_DEAD char const* const stringBase_8039A3DE = "zelda_game_image_cow_get_in.blo";
-SECTION_DEAD char const* const stringBase_8039A3FE = "zelda_game_image_cow_get_in.bck";
-SECTION_DEAD char const* const stringBase_8039A41E = "zelda_game_image_cow_game.blo";
-SECTION_DEAD char const* const stringBase_8039A43C = "zelda_game_image_zora_kawakudari.blo";
-SECTION_DEAD char const* const stringBase_8039A461 = "zelda_game_image_rider.blo";
-SECTION_DEAD char const* const stringBase_8039A47C = "F_SP115";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039A484 = "\0\0\0";
-#pragma pop
-
-/* 80454F40-80454F44 0004+00 s=10 e=0 z=0  None .sdata2    @3919 */
+/* 80454F40-80454F44 003540 0004+00 10/10 0/0 0/0 .sdata2          @3919 */
 SECTION_SDATA2 static u8 lit_3919[4] = {
     0x00,
     0x00,
@@ -369,10 +322,10 @@ SECTION_SDATA2 static u8 lit_3919[4] = {
     0x00,
 };
 
-/* 80454F44-80454F48 0004+00 s=2 e=0 z=0  None .sdata2    @3920 */
+/* 80454F44-80454F48 003544 0004+00 2/2 0/0 0/0 .sdata2          @3920 */
 SECTION_SDATA2 static f32 lit_3920 = 145.0f;
 
-/* 8025CA0C-8025CF04 04F8+00 s=1 e=0 z=0  None .text      _create__8dTimer_cFv */
+/* 8025CA0C-8025CF04 25734C 04F8+00 1/1 0/0 0/0 .text            _create__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -383,10 +336,10 @@ asm void dTimer_c::_create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454F48-80454F4C 0004+00 s=3 e=0 z=0  None .sdata2    @4050 */
+/* 80454F48-80454F4C 003548 0004+00 3/3 0/0 0/0 .sdata2          @4050 */
 SECTION_SDATA2 static f32 lit_4050 = 25.0f;
 
-/* 8025CF04-8025D33C 0438+00 s=1 e=0 z=0  None .text      _execute__8dTimer_cFv */
+/* 8025CF04-8025D33C 257844 0438+00 1/1 0/0 0/0 .text            _execute__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -396,7 +349,7 @@ asm void dTimer_c::_execute() {
 }
 #pragma pop
 
-/* 8025D33C-8025D3BC 0080+00 s=1 e=0 z=0  None .text      _draw__8dTimer_cFv */
+/* 8025D33C-8025D3BC 257C7C 0080+00 1/1 0/0 0/0 .text            _draw__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -406,7 +359,7 @@ asm void dTimer_c::_draw() {
 }
 #pragma pop
 
-/* 8025D3BC-8025D524 0168+00 s=1 e=0 z=0  None .text      _delete__8dTimer_cFv */
+/* 8025D3BC-8025D524 257CFC 0168+00 1/1 0/0 0/0 .text            _delete__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -416,7 +369,7 @@ asm void dTimer_c::_delete() {
 }
 #pragma pop
 
-/* 8025D524-8025D538 0014+00 s=0 e=1 z=0  None .text      deleteCheck__8dTimer_cFv */
+/* 8025D524-8025D538 257E64 0014+00 0/0 1/1 0/0 .text            deleteCheck__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -426,7 +379,7 @@ asm void dTimer_c::deleteCheck() {
 }
 #pragma pop
 
-/* 8025D538-8025D618 00E0+00 s=1 e=1 z=0  None .text      start__8dTimer_cFi */
+/* 8025D538-8025D618 257E78 00E0+00 1/1 1/1 0/0 .text            start__8dTimer_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -436,7 +389,7 @@ asm void dTimer_c::start(int param_0) {
 }
 #pragma pop
 
-/* 8025D618-8025D708 00F0+00 s=0 e=1 z=0  None .text      start__8dTimer_cFis */
+/* 8025D618-8025D708 257F58 00F0+00 0/0 1/1 0/0 .text            start__8dTimer_cFis */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -446,7 +399,7 @@ asm void dTimer_c::start(int param_0, s16 param_1) {
 }
 #pragma pop
 
-/* 8025D708-8025D7C0 00B8+00 s=1 e=0 z=0  None .text      stock_start__8dTimer_cFv */
+/* 8025D708-8025D7C0 258048 00B8+00 1/1 0/0 0/0 .text            stock_start__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -456,7 +409,7 @@ asm void dTimer_c::stock_start() {
 }
 #pragma pop
 
-/* 8025D7C0-8025D7E8 0028+00 s=1 e=0 z=0  None .text      stock_start__8dTimer_cFs */
+/* 8025D7C0-8025D7E8 258100 0028+00 1/1 0/0 0/0 .text            stock_start__8dTimer_cFs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -466,7 +419,7 @@ asm void dTimer_c::stock_start(s16 param_0) {
 }
 #pragma pop
 
-/* 8025D7E8-8025D86C 0084+00 s=3 e=1 z=0  None .text      stop__8dTimer_cFUc */
+/* 8025D7E8-8025D86C 258128 0084+00 3/3 1/1 0/0 .text            stop__8dTimer_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -476,7 +429,7 @@ asm void dTimer_c::stop(u8 param_0) {
 }
 #pragma pop
 
-/* 8025D86C-8025D920 00B4+00 s=1 e=1 z=0  None .text      restart__8dTimer_cFUc */
+/* 8025D86C-8025D920 2581AC 00B4+00 1/1 1/1 0/0 .text            restart__8dTimer_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -486,7 +439,7 @@ asm void dTimer_c::restart(u8 param_0) {
 }
 #pragma pop
 
-/* 8025D920-8025D9E0 00C0+00 s=0 e=1 z=0  None .text      end__8dTimer_cFi */
+/* 8025D920-8025D9E0 258260 00C0+00 0/0 1/1 0/0 .text            end__8dTimer_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -496,7 +449,7 @@ asm void dTimer_c::end(int param_0) {
 }
 #pragma pop
 
-/* 8025D9E0-8025D9F0 0010+00 s=0 e=1 z=0  None .text      deleteRequest__8dTimer_cFv */
+/* 8025D9E0-8025D9F0 258320 0010+00 0/0 1/1 0/0 .text            deleteRequest__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -506,7 +459,7 @@ asm void dTimer_c::deleteRequest() {
 }
 #pragma pop
 
-/* 8025D9F0-8025DA54 0064+00 s=3 e=0 z=0  None .text      getTimeMs__8dTimer_cFv */
+/* 8025D9F0-8025DA54 258330 0064+00 3/3 0/0 0/0 .text            getTimeMs__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -516,7 +469,7 @@ asm void dTimer_c::getTimeMs() {
 }
 #pragma pop
 
-/* 8025DA54-8025DA9C 0048+00 s=3 e=0 z=0  None .text      getLimitTimeMs__8dTimer_cFv */
+/* 8025DA54-8025DA9C 258394 0048+00 3/3 0/0 0/0 .text            getLimitTimeMs__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -526,7 +479,7 @@ asm void dTimer_c::getLimitTimeMs() {
 }
 #pragma pop
 
-/* 8025DA9C-8025DB10 0074+00 s=2 e=0 z=1  None .text      getRestTimeMs__8dTimer_cFv */
+/* 8025DA9C-8025DB10 2583DC 0074+00 2/2 0/0 1/1 .text            getRestTimeMs__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -536,7 +489,7 @@ asm void dTimer_c::getRestTimeMs() {
 }
 #pragma pop
 
-/* 8025DB10-8025DB38 0028+00 s=1 e=0 z=4  None .text      isStart__8dTimer_cFv */
+/* 8025DB10-8025DB38 258450 0028+00 1/1 0/0 4/4 .text            isStart__8dTimer_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -547,7 +500,7 @@ asm void dTimer_c::isStart() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C33C0-803C33E4 0024+00 s=1 e=0 z=0  None .data      @5239 */
+/* 803C33C0-803C33E4 -00001 0024+00 1/1 0/0 0/0 .data            @5239 */
 SECTION_DATA static void* lit_5239[9] = {
     (void*)(((char*)createGetIn__21dDlst_TimerScrnDraw_cF4cXyz) + 0x2B8),
     (void*)(((char*)createGetIn__21dDlst_TimerScrnDraw_cF4cXyz) + 0x250),
@@ -560,15 +513,15 @@ SECTION_DATA static void* lit_5239[9] = {
     (void*)(((char*)createGetIn__21dDlst_TimerScrnDraw_cF4cXyz) + 0x294),
 };
 
-/* 803C33E4-803C33F8 0014+00 s=1 e=0 z=0  None .data      l_dTimer_Method */
+/* 803C33E4-803C33F8 -00001 0014+00 1/0 0/0 0/0 .data            l_dTimer_Method */
 SECTION_DATA static void* l_dTimer_Method[5] = {
     (void*)dTimer_Create__FP9msg_class, (void*)dTimer_Delete__FP8dTimer_c,
     (void*)dTimer_Execute__FP8dTimer_c, (void*)dTimer_IsDelete__FP8dTimer_c,
     (void*)dTimer_Draw__FP8dTimer_c,
 };
 
-/* 803C33F8-803C3420 0028+00 s=0 e=0 z=1  None .data      g_profile_TIMER */
-SECTION_DATA void* g_profile_TIMER[10] = {
+/* 803C33F8-803C3420 -00001 0028+00 0/0 0/0 1/0 .data            g_profile_TIMER */
+SECTION_DATA extern void* g_profile_TIMER[10] = {
     (void*)0xFFFFFFFD, (void*)0x000CFFFD,
     (void*)0x03150000, (void*)&g_fpcLf_Method,
     (void*)0x00000170, (void*)NULL,
@@ -576,15 +529,15 @@ SECTION_DATA void* g_profile_TIMER[10] = {
     (void*)0x03000000, (void*)&l_dTimer_Method,
 };
 
-/* 803C3420-803C3430 0010+00 s=2 e=0 z=0  None .data      __vt__21dDlst_TimerScrnDraw_c */
-SECTION_DATA static void* __vt__21dDlst_TimerScrnDraw_c[4] = {
-    (void*)NULL,
+/* 803C3420-803C3430 020540 0010+00 2/2 0/0 0/0 .data            __vt__21dDlst_TimerScrnDraw_c */
+SECTION_DATA extern void* __vt__21dDlst_TimerScrnDraw_c[4] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__21dDlst_TimerScrnDraw_cFv,
     (void*)__dt__21dDlst_TimerScrnDraw_cFv,
 };
 
-/* 8025DB38-8025DBE0 00A8+00 s=1 e=0 z=0  None .text      __ct__21dDlst_TimerScrnDraw_cFv */
+/* 8025DB38-8025DBE0 258478 00A8+00 1/1 0/0 0/0 .text            __ct__21dDlst_TimerScrnDraw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -594,7 +547,8 @@ asm dDlst_TimerScrnDraw_c::dDlst_TimerScrnDraw_c() {
 }
 #pragma pop
 
-/* 8025DBE0-8025DFBC 03DC+00 s=1 e=0 z=0  None .text      setHIO__21dDlst_TimerScrnDraw_cFv */
+/* 8025DBE0-8025DFBC 258520 03DC+00 1/1 0/0 0/0 .text            setHIO__21dDlst_TimerScrnDraw_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -604,7 +558,7 @@ asm void dDlst_TimerScrnDraw_c::setHIO() {
 }
 #pragma pop
 
-/* 8025DFBC-8025E240 0284+00 s=1 e=0 z=0  None .text
+/* 8025DFBC-8025E240 2588FC 0284+00 1/1 0/0 0/0 .text
  * setScreen__21dDlst_TimerScrnDraw_cFlP10JKRArchive            */
 #pragma push
 #pragma optimization_level 0
@@ -615,8 +569,7 @@ asm void dDlst_TimerScrnDraw_c::setScreen(s32 param_0, JKRArchive* param_1) {
 }
 #pragma pop
 
-/* 8025E240-8025E66C 042C+00 s=1 e=0 z=0  None .text      setScreenBase__21dDlst_TimerScrnDraw_cFv
- */
+/* 8025E240-8025E66C 258B80 042C+00 1/1 0/0 0/0 .text setScreenBase__21dDlst_TimerScrnDraw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -626,7 +579,7 @@ asm void dDlst_TimerScrnDraw_c::setScreenBase() {
 }
 #pragma pop
 
-/* 8025E66C-8025E8B8 024C+00 s=1 e=0 z=0  None .text setScreenBoatRace__21dDlst_TimerScrnDraw_cFv
+/* 8025E66C-8025E8B8 258FAC 024C+00 1/1 0/0 0/0 .text setScreenBoatRace__21dDlst_TimerScrnDraw_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -637,8 +590,7 @@ asm void dDlst_TimerScrnDraw_c::setScreenBoatRace() {
 }
 #pragma pop
 
-/* 8025E8B8-8025EB20 0268+00 s=1 e=0 z=0  None .text      setScreenRider__21dDlst_TimerScrnDraw_cFv
- */
+/* 8025E8B8-8025EB20 2591F8 0268+00 1/1 0/0 0/0 .text setScreenRider__21dDlst_TimerScrnDraw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -648,7 +600,7 @@ asm void dDlst_TimerScrnDraw_c::setScreenRider() {
 }
 #pragma pop
 
-/* 8025EB20-8025EC5C 013C+00 s=1 e=0 z=0  None .text      hideDenominator__21dDlst_TimerScrnDraw_cFv
+/* 8025EB20-8025EC5C 259460 013C+00 1/1 0/0 0/0 .text hideDenominator__21dDlst_TimerScrnDraw_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -659,7 +611,7 @@ asm void dDlst_TimerScrnDraw_c::hideDenominator() {
 }
 #pragma pop
 
-/* 8025EC5C-8025EE24 01C8+00 s=1 e=0 z=0  None .text      deleteScreen__21dDlst_TimerScrnDraw_cFv */
+/* 8025EC5C-8025EE24 25959C 01C8+00 1/1 0/0 0/0 .text deleteScreen__21dDlst_TimerScrnDraw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -669,7 +621,7 @@ asm void dDlst_TimerScrnDraw_c::deleteScreen() {
 }
 #pragma pop
 
-/* 8025EE24-8025EECC 00A8+00 s=2 e=0 z=0  None .text
+/* 8025EE24-8025EECC 259764 00A8+00 2/2 0/0 0/0 .text
  * changeNumberTexture__21dDlst_TimerScrnDraw_cFP7J2DPanei      */
 #pragma push
 #pragma optimization_level 0
@@ -680,7 +632,7 @@ asm void dDlst_TimerScrnDraw_c::changeNumberTexture(J2DPane* param_0, int param_
 }
 #pragma pop
 
-/* 8025EECC-8025EEF0 0024+00 s=1 e=0 z=0  None .text      getNumber__21dDlst_TimerScrnDraw_cFi */
+/* 8025EECC-8025EEF0 25980C 0024+00 1/1 0/0 0/0 .text getNumber__21dDlst_TimerScrnDraw_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -691,20 +643,21 @@ asm void dDlst_TimerScrnDraw_c::getNumber(int param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454F4C-80454F50 0004+00 s=5 e=0 z=0  None .sdata2    @4124 */
+/* 80454F4C-80454F50 00354C 0004+00 5/5 0/0 0/0 .sdata2          @4124 */
 SECTION_SDATA2 static f32 lit_4124 = 1.0f;
 
-/* 80454F50-80454F58 0004+04 s=3 e=0 z=0  None .sdata2    @4125 */
+/* 80454F50-80454F58 003550 0004+04 3/3 0/0 0/0 .sdata2          @4125 */
 SECTION_SDATA2 static f32 lit_4125[1 + 1 /* padding */] = {
     -1.0f,
     /* padding */
     0.0f,
 };
 
-/* 80454F58-80454F60 0008+00 s=7 e=0 z=0  None .sdata2    @4627 */
+/* 80454F58-80454F60 003558 0008+00 7/7 0/0 0/0 .sdata2          @4627 */
 SECTION_SDATA2 static f64 lit_4627 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 8025EEF0-8025F180 0290+00 s=1 e=0 z=0  None .text      setTimer__21dDlst_TimerScrnDraw_cFi */
+/* 8025EEF0-8025F180 259830 0290+00 1/1 0/0 0/0 .text            setTimer__21dDlst_TimerScrnDraw_cFi
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -714,8 +667,7 @@ asm void dDlst_TimerScrnDraw_c::setTimer(int param_0) {
 }
 #pragma pop
 
-/* 8025F180-8025FA00 0880+00 s=1 e=0 z=0  None .text      setCounter__21dDlst_TimerScrnDraw_cFUcUc
- */
+/* 8025F180-8025FA00 259AC0 0880+00 1/1 0/0 0/0 .text setCounter__21dDlst_TimerScrnDraw_cFUcUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -725,8 +677,7 @@ asm void dDlst_TimerScrnDraw_c::setCounter(u8 param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 8025FA00-8025FA2C 002C+00 s=1 e=0 z=0  None .text      setParentPos__21dDlst_TimerScrnDraw_cFff
- */
+/* 8025FA00-8025FA2C 25A340 002C+00 1/1 0/0 0/0 .text setParentPos__21dDlst_TimerScrnDraw_cFff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -736,7 +687,7 @@ asm void dDlst_TimerScrnDraw_c::setParentPos(f32 param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 8025FA2C-8025FA6C 0040+00 s=4 e=0 z=0  None .text      setTimerPos__21dDlst_TimerScrnDraw_cFff */
+/* 8025FA2C-8025FA6C 25A36C 0040+00 4/4 0/0 0/0 .text setTimerPos__21dDlst_TimerScrnDraw_cFff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -746,8 +697,7 @@ asm void dDlst_TimerScrnDraw_c::setTimerPos(f32 param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 8025FA6C-8025FA98 002C+00 s=4 e=0 z=0  None .text      setCounterPos__21dDlst_TimerScrnDraw_cFff
- */
+/* 8025FA6C-8025FA98 25A3AC 002C+00 4/4 0/0 0/0 .text setCounterPos__21dDlst_TimerScrnDraw_cFff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -757,7 +707,7 @@ asm void dDlst_TimerScrnDraw_c::setCounterPos(f32 param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 8025FA98-8025FAC4 002C+00 s=4 e=0 z=0  None .text      setImagePos__21dDlst_TimerScrnDraw_cFff */
+/* 8025FA98-8025FAC4 25A3D8 002C+00 4/4 0/0 0/0 .text setImagePos__21dDlst_TimerScrnDraw_cFff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -767,7 +717,7 @@ asm void dDlst_TimerScrnDraw_c::setImagePos(f32 param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 8025FAC4-8025FB74 00B0+00 s=2 e=0 z=0  None .text      setShowType__21dDlst_TimerScrnDraw_cFUc */
+/* 8025FAC4-8025FB74 25A404 00B0+00 2/2 0/0 0/0 .text setShowType__21dDlst_TimerScrnDraw_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -778,7 +728,7 @@ asm void dDlst_TimerScrnDraw_c::setShowType(u8 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454F60-80454F68 0006+02 s=1 e=0 z=0  None .sdata2    animeFrame$5017 */
+/* 80454F60-80454F68 003560 0006+02 1/1 0/0 0/0 .sdata2          animeFrame$5017 */
 SECTION_SDATA2 static u8 animeFrame[6 + 2 /* padding */] = {
     0x00,
     0x07,
@@ -791,10 +741,10 @@ SECTION_SDATA2 static u8 animeFrame[6 + 2 /* padding */] = {
     0x00,
 };
 
-/* 80454F68-80454F6C 0004+00 s=3 e=0 z=0  None .sdata2    @5094 */
+/* 80454F68-80454F6C 003568 0004+00 3/3 0/0 0/0 .sdata2          @5094 */
 SECTION_SDATA2 static f32 lit_5094 = -50.0f;
 
-/* 8025FB74-8025FF98 0424+00 s=1 e=0 z=0  None .text      anime__21dDlst_TimerScrnDraw_cFv */
+/* 8025FB74-8025FF98 25A4B4 0424+00 1/1 0/0 0/0 .text            anime__21dDlst_TimerScrnDraw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -805,10 +755,10 @@ asm void dDlst_TimerScrnDraw_c::anime() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454F6C-80454F70 0004+00 s=1 e=0 z=0  None .sdata2    @5143 */
+/* 80454F6C-80454F70 00356C 0004+00 1/1 0/0 0/0 .sdata2          @5143 */
 SECTION_SDATA2 static f32 lit_5143 = 49.0f;
 
-/* 8025FF98-802601E4 024C+00 s=1 e=0 z=0  None .text      closeAnime__21dDlst_TimerScrnDraw_cFv */
+/* 8025FF98-802601E4 25A8D8 024C+00 1/1 0/0 0/0 .text closeAnime__21dDlst_TimerScrnDraw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -819,34 +769,34 @@ asm void dDlst_TimerScrnDraw_c::closeAnime() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454F70-80454F74 0004+00 s=3 e=0 z=0  None .sdata2    @5227 */
+/* 80454F70-80454F74 003570 0004+00 3/3 0/0 0/0 .sdata2          @5227 */
 SECTION_SDATA2 static f32 lit_5227 = 40.0f;
 
-/* 80454F74-80454F78 0004+00 s=2 e=0 z=0  None .sdata2    @5228 */
+/* 80454F74-80454F78 003574 0004+00 2/2 0/0 0/0 .sdata2          @5228 */
 SECTION_SDATA2 static f32 lit_5228 = 60.0f;
 
-/* 80454F78-80454F7C 0004+00 s=1 e=0 z=0  None .sdata2    @5229 */
+/* 80454F78-80454F7C 003578 0004+00 1/1 0/0 0/0 .sdata2          @5229 */
 SECTION_SDATA2 static f32 lit_5229 = -100.0f;
 
-/* 80454F7C-80454F80 0004+00 s=1 e=0 z=0  None .sdata2    @5230 */
+/* 80454F7C-80454F80 00357C 0004+00 1/1 0/0 0/0 .sdata2          @5230 */
 SECTION_SDATA2 static f32 lit_5230 = 100.0f;
 
-/* 80454F80-80454F84 0004+00 s=1 e=0 z=0  None .sdata2    @5231 */
+/* 80454F80-80454F84 003580 0004+00 1/1 0/0 0/0 .sdata2          @5231 */
 SECTION_SDATA2 static f32 lit_5231 = 75.0f;
 
-/* 80454F84-80454F88 0004+00 s=1 e=0 z=0  None .sdata2    @5232 */
+/* 80454F84-80454F88 003584 0004+00 1/1 0/0 0/0 .sdata2          @5232 */
 SECTION_SDATA2 static f32 lit_5232 = -75.0f;
 
-/* 80454F88-80454F8C 0004+00 s=1 e=0 z=0  None .sdata2    @5233 */
+/* 80454F88-80454F8C 003588 0004+00 1/1 0/0 0/0 .sdata2          @5233 */
 SECTION_SDATA2 static f32 lit_5233 = 200.0f;
 
-/* 80454F8C-80454F90 0004+00 s=1 e=0 z=0  None .sdata2    @5234 */
+/* 80454F8C-80454F90 00358C 0004+00 1/1 0/0 0/0 .sdata2          @5234 */
 SECTION_SDATA2 static f32 lit_5234 = 150.0f;
 
-/* 80454F90-80454F94 0004+00 s=1 e=0 z=0  None .sdata2    @5235 */
+/* 80454F90-80454F94 003590 0004+00 1/1 0/0 0/0 .sdata2          @5235 */
 SECTION_SDATA2 static f32 lit_5235 = 20.0f;
 
-/* 802601E4-80260574 0390+00 s=2 e=0 z=0  None .text      createGetIn__21dDlst_TimerScrnDraw_cF4cXyz
+/* 802601E4-80260574 25AB24 0390+00 2/1 0/0 0/0 .text createGetIn__21dDlst_TimerScrnDraw_cF4cXyz
  */
 #pragma push
 #pragma optimization_level 0
@@ -857,7 +807,7 @@ asm void dDlst_TimerScrnDraw_c::createGetIn(cXyz param_0) {
 }
 #pragma pop
 
-/* 80260574-80260690 011C+00 s=3 e=0 z=0  None .text      createStart__21dDlst_TimerScrnDraw_cFUs */
+/* 80260574-80260690 25AEB4 011C+00 3/3 0/0 0/0 .text createStart__21dDlst_TimerScrnDraw_cFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -868,16 +818,16 @@ asm void dDlst_TimerScrnDraw_c::createStart(u16 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454F94-80454F98 0004+00 s=1 e=0 z=0  None .sdata2    @5325 */
+/* 80454F94-80454F98 003594 0004+00 1/1 0/0 0/0 .sdata2          @5325 */
 SECTION_SDATA2 static f32 lit_5325 = 3.0f / 20.0f;
 
-/* 80454F98-80454F9C 0004+00 s=2 e=0 z=0  None .sdata2    @5326 */
+/* 80454F98-80454F9C 003598 0004+00 2/2 0/0 0/0 .sdata2          @5326 */
 SECTION_SDATA2 static f32 lit_5326 = 0.5f;
 
-/* 80454F9C-80454FA0 0004+00 s=1 e=0 z=0  None .sdata2    @5327 */
+/* 80454F9C-80454FA0 00359C 0004+00 1/1 0/0 0/0 .sdata2          @5327 */
 SECTION_SDATA2 static f32 lit_5327 = 18.0f;
 
-/* 80260690-80260AA8 0418+00 s=1 e=0 z=0  None .text      draw__21dDlst_TimerScrnDraw_cFv */
+/* 80260690-80260AA8 25AFD0 0418+00 1/0 0/0 0/0 .text            draw__21dDlst_TimerScrnDraw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -887,8 +837,8 @@ asm void dDlst_TimerScrnDraw_c::draw() {
 }
 #pragma pop
 
-/* 80260AA8-80260AD4 002C+00 s=1 e=0 z=0  None .text checkStartAnimeEnd__21dDlst_TimerScrnDraw_cFv
- */
+/* 80260AA8-80260AD4 25B3E8 002C+00 1/1 0/0 0/0 .text
+ * checkStartAnimeEnd__21dDlst_TimerScrnDraw_cFv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -898,7 +848,7 @@ asm void dDlst_TimerScrnDraw_c::checkStartAnimeEnd() {
 }
 #pragma pop
 
-/* 80260AD4-80260B54 0080+00 s=2 e=0 z=0  None .text playBckAnimation__21dDlst_TimerScrnDraw_cFf
+/* 80260AD4-80260B54 25B414 0080+00 2/2 0/0 0/0 .text playBckAnimation__21dDlst_TimerScrnDraw_cFf
  */
 #pragma push
 #pragma optimization_level 0
@@ -909,7 +859,7 @@ asm void dDlst_TimerScrnDraw_c::playBckAnimation(f32 param_0) {
 }
 #pragma pop
 
-/* 80260B54-80260F04 03B0+00 s=1 e=0 z=0  None .text      drawPikari__21dDlst_TimerScrnDraw_cFi */
+/* 80260B54-80260F04 25B494 03B0+00 1/1 0/0 0/0 .text drawPikari__21dDlst_TimerScrnDraw_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -919,52 +869,52 @@ asm void dDlst_TimerScrnDraw_c::drawPikari(int param_0) {
 }
 #pragma pop
 
-/* 80260F04-80260F24 0020+00 s=1 e=0 z=0  None .text      dTimer_Draw__FP8dTimer_c */
+/* 80260F04-80260F24 25B844 0020+00 1/0 0/0 0/0 .text            dTimer_Draw__FP8dTimer_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dTimer_Draw(dTimer_c* param_0) {
+static asm void dTimer_Draw(dTimer_c* param_0) {
     nofralloc
 #include "asm/d/d_timer/dTimer_Draw__FP8dTimer_c.s"
 }
 #pragma pop
 
-/* 80260F24-80260F44 0020+00 s=1 e=0 z=0  None .text      dTimer_Execute__FP8dTimer_c */
+/* 80260F24-80260F44 25B864 0020+00 1/0 0/0 0/0 .text            dTimer_Execute__FP8dTimer_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dTimer_Execute(dTimer_c* param_0) {
+static asm void dTimer_Execute(dTimer_c* param_0) {
     nofralloc
 #include "asm/d/d_timer/dTimer_Execute__FP8dTimer_c.s"
 }
 #pragma pop
 
-/* 80260F44-80260F4C 0008+00 s=1 e=0 z=0  None .text      dTimer_IsDelete__FP8dTimer_c */
+/* 80260F44-80260F4C 25B884 0008+00 1/0 0/0 0/0 .text            dTimer_IsDelete__FP8dTimer_c */
 static bool dTimer_IsDelete(dTimer_c* param_0) {
     return true;
 }
 
-/* 80260F4C-80260F6C 0020+00 s=1 e=0 z=0  None .text      dTimer_Delete__FP8dTimer_c */
+/* 80260F4C-80260F6C 25B88C 0020+00 1/0 0/0 0/0 .text            dTimer_Delete__FP8dTimer_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dTimer_Delete(dTimer_c* param_0) {
+static asm void dTimer_Delete(dTimer_c* param_0) {
     nofralloc
 #include "asm/d/d_timer/dTimer_Delete__FP8dTimer_c.s"
 }
 #pragma pop
 
-/* 80260F6C-80260F8C 0020+00 s=1 e=0 z=0  None .text      dTimer_Create__FP9msg_class */
+/* 80260F6C-80260F8C 25B8AC 0020+00 1/0 0/0 0/0 .text            dTimer_Create__FP9msg_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dTimer_Create(msg_class* param_0) {
+static asm void dTimer_Create(msg_class* param_0) {
     nofralloc
 #include "asm/d/d_timer/dTimer_Create__FP9msg_class.s"
 }
 #pragma pop
 
-/* 80260F8C-80261034 00A8+00 s=0 e=1 z=9  None .text      dTimer_createTimer__FlUlUcUcffff */
+/* 80260F8C-80261034 25B8CC 00A8+00 0/0 1/1 9/9 .text            dTimer_createTimer__FlUlUcUcffff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -976,19 +926,19 @@ asm void dTimer_createTimer(s32 param_0, u32 param_1, u8 param_2, u8 param_3, f3
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454FA0-80454FA4 0004+00 s=1 e=0 z=0  None .sdata2    @5544 */
+/* 80454FA0-80454FA4 0035A0 0004+00 1/1 0/0 0/0 .sdata2          @5544 */
 SECTION_SDATA2 static f32 lit_5544 = 221.0f;
 
-/* 80454FA4-80454FA8 0004+00 s=1 e=0 z=0  None .sdata2    @5545 */
+/* 80454FA4-80454FA8 0035A4 0004+00 1/1 0/0 0/0 .sdata2          @5545 */
 SECTION_SDATA2 static f32 lit_5545 = 439.0f;
 
-/* 80454FA8-80454FAC 0004+00 s=1 e=0 z=0  None .sdata2    @5546 */
+/* 80454FA8-80454FAC 0035A8 0004+00 1/1 0/0 0/0 .sdata2          @5546 */
 SECTION_SDATA2 static f32 lit_5546 = 32.0f;
 
-/* 80454FAC-80454FB0 0004+00 s=1 e=0 z=0  None .sdata2    @5547 */
+/* 80454FAC-80454FB0 0035AC 0004+00 1/1 0/0 0/0 .sdata2          @5547 */
 SECTION_SDATA2 static f32 lit_5547 = 419.0f;
 
-/* 80261034-80261100 00CC+00 s=0 e=1 z=0  None .text      dTimer_createStockTimer__Fv */
+/* 80261034-80261100 25B974 00CC+00 0/0 1/1 0/0 .text            dTimer_createStockTimer__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -998,7 +948,7 @@ asm void dTimer_createStockTimer() {
 }
 #pragma pop
 
-/* 80261100-80261188 0088+00 s=0 e=0 z=1  None .text      dTimer_createGetIn2D__Fl4cXyz */
+/* 80261100-80261188 25BA40 0088+00 0/0 0/0 1/1 .text            dTimer_createGetIn2D__Fl4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1008,17 +958,17 @@ asm void dTimer_createGetIn2D(s32 param_0, cXyz param_1) {
 }
 #pragma pop
 
-/* 80261188-802611F0 0068+00 s=1 e=0 z=0  None .text      dTimer_createStart2D__FlUs */
+/* 80261188-802611F0 25BAC8 0068+00 1/1 0/0 0/0 .text            dTimer_createStart2D__FlUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dTimer_createStart2D(s32 param_0, u16 param_1) {
+static asm void dTimer_createStart2D(s32 param_0, u16 param_1) {
     nofralloc
 #include "asm/d/d_timer/dTimer_createStart2D__FlUs.s"
 }
 #pragma pop
 
-/* 802611F0-80261244 0054+00 s=0 e=0 z=5  None .text      dTimer_isStart__Fv */
+/* 802611F0-80261244 25BB30 0054+00 0/0 0/0 5/5 .text            dTimer_isStart__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1028,7 +978,7 @@ asm void dTimer_isStart() {
 }
 #pragma pop
 
-/* 80261244-80261298 0054+00 s=0 e=0 z=2  None .text      dTimer_getRestTimeMs__Fv */
+/* 80261244-80261298 25BB84 0054+00 0/0 0/0 2/2 .text            dTimer_getRestTimeMs__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1038,7 +988,7 @@ asm void dTimer_getRestTimeMs() {
 }
 #pragma pop
 
-/* 80261298-802612EC 0054+00 s=0 e=0 z=2  None .text      dTimer_show__Fv */
+/* 80261298-802612EC 25BBD8 0054+00 0/0 0/0 2/2 .text            dTimer_show__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1048,7 +998,7 @@ asm void dTimer_show() {
 }
 #pragma pop
 
-/* 802612EC-80261340 0054+00 s=0 e=0 z=2  None .text      dTimer_hide__Fv */
+/* 802612EC-80261340 25BC2C 0054+00 0/0 0/0 2/2 .text            dTimer_hide__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1058,7 +1008,7 @@ asm void dTimer_hide() {
 }
 #pragma pop
 
-/* 80261340-80261394 0054+00 s=0 e=0 z=1  None .text      dTimer_isReadyFlag__Fv */
+/* 80261340-80261394 25BC80 0054+00 0/0 0/0 1/1 .text            dTimer_isReadyFlag__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1068,7 +1018,7 @@ asm void dTimer_isReadyFlag() {
 }
 #pragma pop
 
-/* 80261394-802613DC 0048+00 s=1 e=0 z=0  None .text      __dt__21dDlst_TimerScrnDraw_cFv */
+/* 80261394-802613DC 25BCD4 0048+00 1/0 0/0 0/0 .text            __dt__21dDlst_TimerScrnDraw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1078,7 +1028,7 @@ asm dDlst_TimerScrnDraw_c::~dDlst_TimerScrnDraw_c() {
 }
 #pragma pop
 
-/* 802613DC-8026141C 0040+00 s=1 e=0 z=0  None .text      createGetIn__8dTimer_cF4cXyz */
+/* 802613DC-8026141C 25BD1C 0040+00 1/1 0/0 0/0 .text            createGetIn__8dTimer_cF4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1086,4 +1036,19 @@ asm void dTimer_c::createGetIn(cXyz param_0) {
     nofralloc
 #include "asm/d/d_timer/createGetIn__8dTimer_cF4cXyz.s"
 }
+#pragma pop
+
+/* 8039A3D8-8039A488 026A38 00AC+04 7/7 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8039A3D8 = "Timer";
+SECTION_DEAD static char const* const stringBase_8039A3DE = "zelda_game_image_cow_get_in.blo";
+SECTION_DEAD static char const* const stringBase_8039A3FE = "zelda_game_image_cow_get_in.bck";
+SECTION_DEAD static char const* const stringBase_8039A41E = "zelda_game_image_cow_game.blo";
+SECTION_DEAD static char const* const stringBase_8039A43C = "zelda_game_image_zora_kawakudari.blo";
+SECTION_DEAD static char const* const stringBase_8039A461 = "zelda_game_image_rider.blo";
+SECTION_DEAD static char const* const stringBase_8039A47C = "F_SP115";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039A484 = "\0\0\0";
 #pragma pop

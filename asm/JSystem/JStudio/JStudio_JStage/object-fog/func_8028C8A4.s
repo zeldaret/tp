@@ -4,15 +4,15 @@ lbl_8028C8A4:
 /* 8028C8AC  90 01 00 74 */	stw r0, 0x74(r1)
 /* 8028C8B0  93 E1 00 6C */	stw r31, 0x6c(r1)
 /* 8028C8B4  93 C1 00 68 */	stw r30, 0x68(r1)
-/* 8028C8B8  3C 60 80 43 */	lis r3, lit_848@ha
-/* 8028C8BC  3B C3 13 78 */	addi r30, r3, lit_848@l
-/* 8028C8C0  3C 60 80 3C */	lis r3, lit_844@ha
-/* 8028C8C4  3B E3 59 A0 */	addi r31, r3, lit_844@l
-/* 8028C8C8  3C 60 80 3C */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
-/* 8028C8CC  39 43 56 40 */	addi r10, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
+/* 8028C8B8  3C 60 80 43 */	lis r3, lit_848@ha /* 0x80431378@ha */
+/* 8028C8BC  3B C3 13 78 */	addi r30, r3, lit_848@l /* 0x80431378@l */
+/* 8028C8C0  3C 60 80 3C */	lis r3, lit_844@ha /* 0x803C59A0@ha */
+/* 8028C8C4  3B E3 59 A0 */	addi r31, r3, lit_844@l /* 0x803C59A0@l */
+/* 8028C8C8  3C 60 80 3C */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha /* 0x803C5640@ha */
+/* 8028C8CC  39 43 56 40 */	addi r10, r3, __vt__Q37JStudio14TVariableValue7TOutput@l /* 0x803C5640@l */
 /* 8028C8D0  91 41 00 48 */	stw r10, 0x48(r1)
-/* 8028C8D4  3C 60 80 3C */	lis r3, data_803C5A10@ha
-/* 8028C8D8  38 63 5A 10 */	addi r3, r3, data_803C5A10@l
+/* 8028C8D4  3C 60 80 3C */	lis r3, data_803C5A10@ha /* 0x803C5A10@ha */
+/* 8028C8D8  38 63 5A 10 */	addi r3, r3, data_803C5A10@l /* 0x803C5A10@l */
 /* 8028C8DC  90 61 00 48 */	stw r3, 0x48(r1)
 /* 8028C8E0  39 20 00 04 */	li r9, 4
 /* 8028C8E4  91 21 00 4C */	stw r9, 0x4c(r1)
@@ -38,21 +38,21 @@ lbl_8028C8A4:
 /* 8028C934  90 A3 00 14 */	stw r5, 0x14(r3)
 /* 8028C938  90 83 00 18 */	stw r4, 0x18(r3)
 /* 8028C93C  90 03 00 1C */	stw r0, 0x1c(r3)
-/* 8028C940  3C 80 80 29 */	lis r4, func_8028CAC0@ha
-/* 8028C944  38 84 CA C0 */	addi r4, r4, func_8028CAC0@l
+/* 8028C940  3C 80 80 29 */	lis r4, func_8028CAC0@ha /* 0x8028CAC0@ha */
+/* 8028C944  38 84 CA C0 */	addi r4, r4, func_8028CAC0@l /* 0x8028CAC0@l */
 /* 8028C948  38 BE 00 00 */	addi r5, r30, 0
 /* 8028C94C  48 0D 52 D9 */	bl __register_global_object
-/* 8028C950  3C 60 80 3C */	lis r3, data_803C5A10@ha
-/* 8028C954  38 03 5A 10 */	addi r0, r3, data_803C5A10@l
+/* 8028C950  3C 60 80 3C */	lis r3, data_803C5A10@ha /* 0x803C5A10@ha */
+/* 8028C954  38 03 5A 10 */	addi r0, r3, data_803C5A10@l /* 0x803C5A10@l */
 /* 8028C958  90 01 00 48 */	stw r0, 0x48(r1)
 /* 8028C95C  38 61 00 48 */	addi r3, r1, 0x48
 /* 8028C960  38 80 00 00 */	li r4, 0
 /* 8028C964  4B FF 94 A9 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
-/* 8028C968  3C 60 80 3C */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
-/* 8028C96C  39 63 56 40 */	addi r11, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
+/* 8028C968  3C 60 80 3C */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha /* 0x803C5640@ha */
+/* 8028C96C  39 63 56 40 */	addi r11, r3, __vt__Q37JStudio14TVariableValue7TOutput@l /* 0x803C5640@l */
 /* 8028C970  91 61 00 28 */	stw r11, 0x28(r1)
-/* 8028C974  3C 60 80 3C */	lis r3, data_803C5A10@ha
-/* 8028C978  39 43 5A 10 */	addi r10, r3, data_803C5A10@l
+/* 8028C974  3C 60 80 3C */	lis r3, data_803C5A10@ha /* 0x803C5A10@ha */
+/* 8028C978  39 43 5A 10 */	addi r10, r3, data_803C5A10@l /* 0x803C5A10@l */
 /* 8028C97C  91 41 00 28 */	stw r10, 0x28(r1)
 /* 8028C980  39 20 00 05 */	li r9, 5
 /* 8028C984  91 21 00 2C */	stw r9, 0x2c(r1)
@@ -79,26 +79,26 @@ lbl_8028C8A4:
 /* 8028C9D8  90 83 00 38 */	stw r4, 0x38(r3)
 /* 8028C9DC  90 03 00 3C */	stw r0, 0x3c(r3)
 /* 8028C9E0  38 63 00 20 */	addi r3, r3, 0x20
-/* 8028C9E4  3C 80 80 29 */	lis r4, func_8028CAC0@ha
-/* 8028C9E8  38 84 CA C0 */	addi r4, r4, func_8028CAC0@l
+/* 8028C9E4  3C 80 80 29 */	lis r4, func_8028CAC0@ha /* 0x8028CAC0@ha */
+/* 8028C9E8  38 84 CA C0 */	addi r4, r4, func_8028CAC0@l /* 0x8028CAC0@l */
 /* 8028C9EC  38 BE 00 0C */	addi r5, r30, 0xc
 /* 8028C9F0  48 0D 52 35 */	bl __register_global_object
-/* 8028C9F4  3C 60 80 3C */	lis r3, data_803C5A10@ha
-/* 8028C9F8  38 03 5A 10 */	addi r0, r3, data_803C5A10@l
+/* 8028C9F4  3C 60 80 3C */	lis r3, data_803C5A10@ha /* 0x803C5A10@ha */
+/* 8028C9F8  38 03 5A 10 */	addi r0, r3, data_803C5A10@l /* 0x803C5A10@l */
 /* 8028C9FC  90 01 00 28 */	stw r0, 0x28(r1)
 /* 8028CA00  38 61 00 28 */	addi r3, r1, 0x28
 /* 8028CA04  38 80 00 00 */	li r4, 0
 /* 8028CA08  4B FF 94 05 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
-/* 8028CA0C  3C 60 80 3C */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
-/* 8028CA10  39 03 56 40 */	addi r8, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
+/* 8028CA0C  3C 60 80 3C */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha /* 0x803C5640@ha */
+/* 8028CA10  39 03 56 40 */	addi r8, r3, __vt__Q37JStudio14TVariableValue7TOutput@l /* 0x803C5640@l */
 /* 8028CA14  91 01 00 08 */	stw r8, 8(r1)
-/* 8028CA18  3C 60 80 3C */	lis r3, data_803C5A10@ha
-/* 8028CA1C  38 E3 5A 10 */	addi r7, r3, data_803C5A10@l
+/* 8028CA18  3C 60 80 3C */	lis r3, data_803C5A10@ha /* 0x803C5A10@ha */
+/* 8028CA1C  38 E3 5A 10 */	addi r7, r3, data_803C5A10@l /* 0x803C5A10@l */
 /* 8028CA20  90 E1 00 08 */	stw r7, 8(r1)
 /* 8028CA24  38 C0 FF FF */	li r6, -1
 /* 8028CA28  90 C1 00 0C */	stw r6, 0xc(r1)
-/* 8028CA2C  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 8028CA30  84 A3 21 80 */	lwzu r5, __ptmf_null@l(r3)
+/* 8028CA2C  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 8028CA30  84 A3 21 80 */	lwzu r5, __ptmf_null@l(r3)  /* 0x803A2180@l */
 /* 8028CA34  80 83 00 04 */	lwz r4, 4(r3)
 /* 8028CA38  90 A1 00 10 */	stw r5, 0x10(r1)
 /* 8028CA3C  90 81 00 14 */	stw r4, 0x14(r1)
@@ -118,12 +118,12 @@ lbl_8028C8A4:
 /* 8028CA74  90 83 00 58 */	stw r4, 0x58(r3)
 /* 8028CA78  90 03 00 5C */	stw r0, 0x5c(r3)
 /* 8028CA7C  38 63 00 40 */	addi r3, r3, 0x40
-/* 8028CA80  3C 80 80 29 */	lis r4, func_8028CAC0@ha
-/* 8028CA84  38 84 CA C0 */	addi r4, r4, func_8028CAC0@l
+/* 8028CA80  3C 80 80 29 */	lis r4, func_8028CAC0@ha /* 0x8028CAC0@ha */
+/* 8028CA84  38 84 CA C0 */	addi r4, r4, func_8028CAC0@l /* 0x8028CAC0@l */
 /* 8028CA88  38 BE 00 18 */	addi r5, r30, 0x18
 /* 8028CA8C  48 0D 51 99 */	bl __register_global_object
-/* 8028CA90  3C 60 80 3C */	lis r3, data_803C5A10@ha
-/* 8028CA94  38 03 5A 10 */	addi r0, r3, data_803C5A10@l
+/* 8028CA90  3C 60 80 3C */	lis r3, data_803C5A10@ha /* 0x803C5A10@ha */
+/* 8028CA94  38 03 5A 10 */	addi r0, r3, data_803C5A10@l /* 0x803C5A10@l */
 /* 8028CA98  90 01 00 08 */	stw r0, 8(r1)
 /* 8028CA9C  38 61 00 08 */	addi r3, r1, 8
 /* 8028CAA0  38 80 00 00 */	li r4, 0

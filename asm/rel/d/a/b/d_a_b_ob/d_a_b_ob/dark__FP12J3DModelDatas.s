@@ -3,7 +3,7 @@ lbl_80610E2C:
 /* 80610E30  7C 08 02 A6 */	mflr r0
 /* 80610E34  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80610E38  39 61 00 20 */	addi r11, r1, 0x20
-/* 80610E3C  4B D5 13 9C */	b _savegpr_28
+/* 80610E3C  4B D5 13 9D */	bl _savegpr_28
 /* 80610E40  7C 7C 1B 78 */	mr r28, r3
 /* 80610E44  7C 9D 23 78 */	mr r29, r4
 /* 80610E48  7F A0 07 35 */	extsh. r0, r29
@@ -43,7 +43,7 @@ lbl_80610EBC:
 /* 80610EC8  41 80 FF 90 */	blt lbl_80610E58
 lbl_80610ECC:
 /* 80610ECC  39 61 00 20 */	addi r11, r1, 0x20
-/* 80610ED0  4B D5 13 54 */	b _restgpr_28
+/* 80610ED0  4B D5 13 55 */	bl _restgpr_28
 /* 80610ED4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80610ED8  7C 08 03 A6 */	mtlr r0
 /* 80610EDC  38 21 00 20 */	addi r1, r1, 0x20

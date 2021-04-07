@@ -1,6 +1,6 @@
 lbl_80BE79A0:
-/* 80BE79A0  3C 80 80 BF */	lis r4, lit_3625@ha
-/* 80BE79A4  38 84 80 04 */	addi r4, r4, lit_3625@l
+/* 80BE79A0  3C 80 80 BF */	lis r4, lit_3625@ha /* 0x80BE8004@ha */
+/* 80BE79A4  38 84 80 04 */	addi r4, r4, lit_3625@l /* 0x80BE8004@l */
 /* 80BE79A8  C0 03 06 EC */	lfs f0, 0x6ec(r3)
 /* 80BE79AC  D0 03 07 10 */	stfs f0, 0x710(r3)
 /* 80BE79B0  C0 03 06 F0 */	lfs f0, 0x6f0(r3)

@@ -11,8 +11,8 @@ lbl_800061C8:
 /* 800061EC  38 60 00 02 */	li r3, 2
 /* 800061F0  4B FF F5 9D */	bl CheckHeap__FUl
 lbl_800061F4:
-/* 800061F4  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha
-/* 800061F8  38 63 D2 D8 */	addi r3, r3, m_gamePad__8mDoCPd_c@l
+/* 800061F4  3C 60 80 3E */	lis r3, m_gamePad__8mDoCPd_c@ha /* 0x803DD2D8@ha */
+/* 800061F8  38 63 D2 D8 */	addi r3, r3, m_gamePad__8mDoCPd_c@l /* 0x803DD2D8@l */
 /* 800061FC  80 63 00 08 */	lwz r3, 8(r3)
 /* 80006200  80 03 00 18 */	lwz r0, 0x18(r3)
 /* 80006204  54 00 07 34 */	rlwinm r0, r0, 0, 0x1c, 0x1a

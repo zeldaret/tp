@@ -5,12 +5,12 @@ lbl_8003A840:
 /* 8003A84C  39 61 00 50 */	addi r11, r1, 0x50
 /* 8003A850  48 32 79 69 */	bl _savegpr_20
 /* 8003A854  7C 77 1B 78 */	mr r23, r3
-/* 8003A858  3C 60 80 38 */	lis r3, d_d_resorce__stringBase0@ha
-/* 8003A85C  38 63 98 B8 */	addi r3, r3, d_d_resorce__stringBase0@l
+/* 8003A858  3C 60 80 38 */	lis r3, d_d_resorce__stringBase0@ha /* 0x803798B8@ha */
+/* 8003A85C  38 63 98 B8 */	addi r3, r3, d_d_resorce__stringBase0@l /* 0x803798B8@l */
 /* 8003A860  38 63 00 23 */	addi r3, r3, 0x23
 /* 8003A864  38 80 00 5D */	li r4, 0x5d
-/* 8003A868  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8003A86C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 8003A868  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8003A86C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8003A870  3C A5 00 02 */	addis r5, r5, 2
 /* 8003A874  38 C0 00 80 */	li r6, 0x80
 /* 8003A878  38 A5 C2 F8 */	addi r5, r5, -15624
@@ -26,15 +26,15 @@ lbl_8003A840:
 /* 8003A8A0  48 29 43 AD */	bl __nw__FUl
 /* 8003A8A4  7C 7D 1B 79 */	or. r29, r3, r3
 /* 8003A8A8  41 82 00 10 */	beq lbl_8003A8B8
-/* 8003A8AC  3C 80 80 38 */	lis r4, l_texMtxInfo@ha
-/* 8003A8B0  38 84 98 40 */	addi r4, r4, l_texMtxInfo@l
+/* 8003A8AC  3C 80 80 38 */	lis r4, l_texMtxInfo@ha /* 0x80379840@ha */
+/* 8003A8B0  38 84 98 40 */	addi r4, r4, l_texMtxInfo@l /* 0x80379840@l */
 /* 8003A8B4  48 2E AE 65 */	bl __as__13J3DTexMtxInfoFRC13J3DTexMtxInfo
 lbl_8003A8B8:
 /* 8003A8B8  3B 20 00 00 */	li r25, 0
 /* 8003A8BC  3B 6D 80 A8 */	la r27, l_texCoordInfo(r13) /* 80450628-_SDA_BASE_ */
 /* 8003A8C0  3B 42 83 F0 */	la r26, l_alphaCompInfo(r2) /* 80451DF0-_SDA2_BASE_ */
-/* 8003A8C4  3C 60 80 38 */	lis r3, l_tevStageInfo@ha
-/* 8003A8C8  3B E3 98 A4 */	addi r31, r3, l_tevStageInfo@l
+/* 8003A8C4  3C 60 80 38 */	lis r3, l_tevStageInfo@ha /* 0x803798A4@ha */
+/* 8003A8C8  3B E3 98 A4 */	addi r31, r3, l_tevStageInfo@l /* 0x803798A4@l */
 /* 8003A8CC  48 00 01 D8 */	b lbl_8003AAA4
 lbl_8003A8D0:
 /* 8003A8D0  80 77 00 60 */	lwz r3, 0x60(r23)

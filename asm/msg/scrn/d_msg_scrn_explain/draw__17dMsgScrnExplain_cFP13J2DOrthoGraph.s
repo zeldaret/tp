@@ -91,8 +91,8 @@ lbl_8023DA5C:
 /* 8023DA6C  C0 62 B1 D4 */	lfs f3, lit_4122(r2)
 lbl_8023DA70:
 /* 8023DA70  C0 22 B1 D8 */	lfs f1, lit_4123(r2)
-/* 8023DA74  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha
-/* 8023DA78  38 84 02 8C */	addi r4, r4, g_MsgObject_HIO_c@l
+/* 8023DA74  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 8023DA78  38 84 02 8C */	addi r4, r4, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 8023DA7C  C0 04 01 F0 */	lfs f0, 0x1f0(r4)
 /* 8023DA80  EC 21 00 2A */	fadds f1, f1, f0
 /* 8023DA84  C0 42 B1 DC */	lfs f2, lit_4124(r2)

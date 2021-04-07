@@ -26,7 +26,7 @@ lbl_80C48D58:
 /* 80C48D5C  48 00 00 14 */	b lbl_80C48D70
 lbl_80C48D60:
 /* 80C48D60  80 63 05 B4 */	lwz r3, 0x5b4(r3)
-/* 80C48D64  4B 3C 46 C4 */	b play__14mDoExt_baseAnmFv
+/* 80C48D64  4B 3C 46 C5 */	bl play__14mDoExt_baseAnmFv
 /* 80C48D68  30 03 FF FF */	addic r0, r3, -1
 /* 80C48D6C  7C 60 19 10 */	subfe r3, r0, r3
 lbl_80C48D70:

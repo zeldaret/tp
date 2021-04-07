@@ -7,8 +7,8 @@ lbl_802621CC:
 /* 802621E0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802621E4  7C 9F 23 78 */	mr r31, r4
 /* 802621E8  41 82 00 80 */	beq lbl_80262268
-/* 802621EC  3C 80 80 3C */	lis r4, __vt__24DynamicModuleControlBase@ha
-/* 802621F0  38 04 34 F4 */	addi r0, r4, __vt__24DynamicModuleControlBase@l
+/* 802621EC  3C 80 80 3C */	lis r4, __vt__24DynamicModuleControlBase@ha /* 0x803C34F4@ha */
+/* 802621F0  38 04 34 F4 */	addi r0, r4, __vt__24DynamicModuleControlBase@l /* 0x803C34F4@l */
 /* 802621F4  90 1E 00 0C */	stw r0, 0xc(r30)
 /* 802621F8  48 00 02 35 */	bl force_unlink__24DynamicModuleControlBaseFv
 /* 802621FC  80 7E 00 04 */	lwz r3, 4(r30)

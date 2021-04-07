@@ -28,8 +28,8 @@ lbl_80291E48:
 /* 80291E5C  88 1F 02 32 */	lbz r0, 0x232(r31)
 /* 80291E60  50 07 44 2E */	rlwimi r7, r0, 8, 0x10, 0x17
 /* 80291E64  54 E7 04 3E */	clrlwi r7, r7, 0x10
-/* 80291E68  3D 00 80 29 */	lis r8, channelUpdateCallback__8JASTrackFUlP10JASChannelPQ26JASDsp8TChannelPv@ha
-/* 80291E6C  39 08 2C A4 */	addi r8, r8, channelUpdateCallback__8JASTrackFUlP10JASChannelPQ26JASDsp8TChannelPv@l
+/* 80291E68  3D 00 80 29 */	lis r8, channelUpdateCallback__8JASTrackFUlP10JASChannelPQ26JASDsp8TChannelPv@ha /* 0x80292CA4@ha */
+/* 80291E6C  39 08 2C A4 */	addi r8, r8, channelUpdateCallback__8JASTrackFUlP10JASChannelPQ26JASDsp8TChannelPv@l /* 0x80292CA4@l */
 /* 80291E70  7F 69 DB 78 */	mr r9, r27
 /* 80291E74  48 00 5A BD */	bl noteOn__7JASBankFPC7JASBankiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv
 /* 80291E78  7C 7D 1B 79 */	or. r29, r3, r3

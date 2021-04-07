@@ -4,8 +4,8 @@ lbl_803131D4:
 /* 803131DC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 803131E0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 803131E4  93 C1 00 08 */	stw r30, 8(r1)
-/* 803131E8  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 803131EC  3B E3 4A C8 */	addi r31, r3, j3dSys@l
+/* 803131E8  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 803131EC  3B E3 4A C8 */	addi r31, r3, j3dSys@l /* 0x80434AC8@l */
 /* 803131F0  80 7F 00 40 */	lwz r3, 0x40(r31)
 /* 803131F4  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 803131F8  1F C4 00 03 */	mulli r30, r4, 3

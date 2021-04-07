@@ -1,6 +1,6 @@
 lbl_806EB7B0:
-/* 806EB7B0  3C 80 80 6F */	lis r4, lit_3966@ha
-/* 806EB7B4  38 84 08 60 */	addi r4, r4, lit_3966@l
+/* 806EB7B0  3C 80 80 6F */	lis r4, lit_3966@ha /* 0x806F0860@ha */
+/* 806EB7B4  38 84 08 60 */	addi r4, r4, lit_3966@l /* 0x806F0860@l */
 /* 806EB7B8  80 03 06 CC */	lwz r0, 0x6cc(r3)
 /* 806EB7BC  2C 00 00 03 */	cmpwi r0, 3
 /* 806EB7C0  40 80 00 34 */	bge lbl_806EB7F4

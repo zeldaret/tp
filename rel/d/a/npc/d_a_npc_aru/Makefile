@@ -3,19 +3,20 @@
 #
 
 M283_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_aru.plf
+M283_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_aru.lcf
+M283_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_aru.map
 
 M283_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_aru/executor.cpp \
-	rel/d/a/npc/d_a_npc_aru/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_aru/d_a_npc_aru.cpp \
 
 M283_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_aru/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_aru/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_aru/d_a_npc_aru.o \
 
 M283_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_aru/libRuntime.PPCEABI.H.a \
 
 M283_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M283_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M283_LDSCRIPT) \
+	-unused -map $(M283_MAP) \
+	-w off \
 
 $(M283_TARGET): $(M283_O_FILES) $(M283_LIBS)
+	@echo [283] creating $(M283_TARGET)
 	@echo $(M283_LIBS) $(M283_O_FILES) > build/M283_ofiles
-	$(LD) -partial $(M283_LDFLAGS) -o $(M283_TARGET) @build/M283_ofiles
+	@python3 tools/lcf.py rel 283 --output $(M283_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M283_LDFLAGS) -o $(M283_TARGET) @build/M283_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_aru/%.o: rel/d/a/npc/d_a_npc_aru/%.cpp
+	@echo [283] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M283_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M283_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_aru/libs/Runtime.PPCEABI.H/Makefile
 

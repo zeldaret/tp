@@ -5,8 +5,8 @@ lbl_80150524:
 /* 80150530  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80150534  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80150538  41 82 00 1C */	beq lbl_80150554
-/* 8015053C  3C A0 80 3B */	lis r5, __vt__18daBaseNpc_acMngr_c@ha
-/* 80150540  38 05 3A 6C */	addi r0, r5, __vt__18daBaseNpc_acMngr_c@l
+/* 8015053C  3C A0 80 3B */	lis r5, __vt__18daBaseNpc_acMngr_c@ha /* 0x803B3A6C@ha */
+/* 80150540  38 05 3A 6C */	addi r0, r5, __vt__18daBaseNpc_acMngr_c@l /* 0x803B3A6C@l */
 /* 80150544  90 1F 00 00 */	stw r0, 0(r31)
 /* 80150548  7C 80 07 35 */	extsh. r0, r4
 /* 8015054C  40 81 00 08 */	ble lbl_80150554

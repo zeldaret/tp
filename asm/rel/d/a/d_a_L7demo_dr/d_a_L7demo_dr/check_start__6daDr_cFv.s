@@ -1,9 +1,9 @@
 lbl_805AA19C:
 /* 805AA19C  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 805AA1A0  3C 60 80 5B */	lis r3, lit_3864@ha
-/* 805AA1A4  38 83 A4 54 */	addi r4, r3, lit_3864@l
-/* 805AA1A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805AA1AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805AA1A0  3C 60 80 5B */	lis r3, lit_3864@ha /* 0x805AA454@ha */
+/* 805AA1A4  38 83 A4 54 */	addi r4, r3, lit_3864@l /* 0x805AA454@l */
+/* 805AA1A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805AA1AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805AA1B0  80 A3 5D AC */	lwz r5, 0x5dac(r3)
 /* 805AA1B4  88 03 09 74 */	lbz r0, 0x974(r3)
 /* 805AA1B8  28 00 00 00 */	cmplwi r0, 0

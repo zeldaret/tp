@@ -5,13 +5,13 @@ lbl_80D486A0:
 /* 80D486AC  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80D486B0  7C 7F 1B 78 */	mr r31, r3
 /* 80D486B4  38 7F 0E 40 */	addi r3, r31, 0xe40
-/* 80D486B8  4B 3F D0 50 */	b getActorP__18daNpcT_ActorMngr_cFv
+/* 80D486B8  4B 3F D0 51 */	bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80D486BC  28 03 00 00 */	cmplwi r3, 0
 /* 80D486C0  41 82 00 48 */	beq lbl_80D48708
 /* 80D486C4  38 7F 0E 40 */	addi r3, r31, 0xe40
-/* 80D486C8  4B 3F D0 40 */	b getActorP__18daNpcT_ActorMngr_cFv
-/* 80D486CC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80D486D0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80D486C8  4B 3F D0 41 */	bl getActorP__18daNpcT_ActorMngr_cFv
+/* 80D486CC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D486D0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D486D4  80 84 5D AC */	lwz r4, 0x5dac(r4)
 /* 80D486D8  C0 04 04 D0 */	lfs f0, 0x4d0(r4)
 /* 80D486DC  D0 01 00 08 */	stfs f0, 8(r1)

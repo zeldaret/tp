@@ -13,8 +13,8 @@ lbl_809F797C:
 /* 809F79A8  48 00 00 70 */	b lbl_809F7A18
 /* 809F79AC  48 00 00 6C */	b lbl_809F7A18
 lbl_809F79B0:
-/* 809F79B0  3C 60 80 A0 */	lis r3, lit_4457@ha
-/* 809F79B4  C0 03 85 94 */	lfs f0, lit_4457@l(r3)
+/* 809F79B0  3C 60 80 A0 */	lis r3, lit_4457@ha /* 0x809F8594@ha */
+/* 809F79B4  C0 03 85 94 */	lfs f0, lit_4457@l(r3)  /* 0x809F8594@l */
 /* 809F79B8  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 809F79BC  D0 1F 04 F8 */	stfs f0, 0x4f8(r31)
 /* 809F79C0  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
@@ -23,8 +23,8 @@ lbl_809F79B0:
 /* 809F79CC  B0 1F 0E 0E */	sth r0, 0xe0e(r31)
 lbl_809F79D0:
 /* 809F79D0  7F E3 FB 78 */	mr r3, r31
-/* 809F79D4  3C 80 80 A0 */	lis r4, m__19daNpc_GWolf_Param_c@ha
-/* 809F79D8  38 A4 84 F4 */	addi r5, r4, m__19daNpc_GWolf_Param_c@l
+/* 809F79D4  3C 80 80 A0 */	lis r4, m__19daNpc_GWolf_Param_c@ha /* 0x809F84F4@ha */
+/* 809F79D8  38 A4 84 F4 */	addi r5, r4, m__19daNpc_GWolf_Param_c@l /* 0x809F84F4@l */
 /* 809F79DC  A8 85 00 66 */	lha r4, 0x66(r5)
 /* 809F79E0  C0 25 00 44 */	lfs f1, 0x44(r5)
 /* 809F79E4  38 A0 00 00 */	li r5, 0
@@ -33,8 +33,8 @@ lbl_809F79D0:
 /* 809F79F0  7D 89 03 A6 */	mtctr r12
 /* 809F79F4  4E 80 04 21 */	bctrl 
 /* 809F79F8  7F E3 FB 78 */	mr r3, r31
-/* 809F79FC  3C 80 80 A0 */	lis r4, m__19daNpc_GWolf_Param_c@ha
-/* 809F7A00  38 84 84 F4 */	addi r4, r4, m__19daNpc_GWolf_Param_c@l
+/* 809F79FC  3C 80 80 A0 */	lis r4, m__19daNpc_GWolf_Param_c@ha /* 0x809F84F4@ha */
+/* 809F7A00  38 84 84 F4 */	addi r4, r4, m__19daNpc_GWolf_Param_c@l /* 0x809F84F4@l */
 /* 809F7A04  A8 84 00 68 */	lha r4, 0x68(r4)
 /* 809F7A08  4B FF E1 59 */	bl setLookMode__13daNpc_GWolf_cFi
 /* 809F7A0C  38 00 00 00 */	li r0, 0

@@ -7,13 +7,13 @@ lbl_8001FD34:
 /* 8001FD48  7C 7C 1B 78 */	mr r28, r3
 /* 8001FD4C  7C 9D 23 78 */	mr r29, r4
 /* 8001FD50  7C BE 2B 78 */	mr r30, r5
-/* 8001FD54  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8001FD58  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 8001FD54  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8001FD58  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8001FD5C  88 1F 5E 8F */	lbz r0, 0x5e8f(r31)
 /* 8001FD60  28 00 00 08 */	cmplwi r0, 8
 /* 8001FD64  40 82 00 14 */	bne lbl_8001FD78
-/* 8001FD68  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8001FD6C  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8001FD68  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8001FD6C  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8001FD70  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 8001FD74  48 1F F9 79 */	bl emphasisButtonDelete__9dMeter2_cFv
 lbl_8001FD78:
@@ -32,8 +32,8 @@ lbl_8001FD78:
 /* 8001FDA8  48 00 00 C4 */	b lbl_8001FE6C
 lbl_8001FDAC:
 /* 8001FDAC  38 00 00 FF */	li r0, 0xff
-/* 8001FDB0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8001FDB4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8001FDB0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8001FDB4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8001FDB8  98 03 5E 7C */	stb r0, 0x5e7c(r3)
 /* 8001FDBC  38 00 FF FF */	li r0, -1
 /* 8001FDC0  90 03 5E E8 */	stw r0, 0x5ee8(r3)
@@ -52,8 +52,8 @@ lbl_8001FDE8:
 /* 8001FDF0  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8001FDF4  D0 01 00 10 */	stfs f0, 0x10(r1)
 lbl_8001FDF8:
-/* 8001FDF8  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha
-/* 8001FDFC  38 63 02 8C */	addi r3, r3, g_MsgObject_HIO_c@l
+/* 8001FDF8  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 8001FDFC  38 63 02 8C */	addi r3, r3, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 8001FE00  88 03 03 1F */	lbz r0, 0x31f(r3)
 /* 8001FE04  28 00 00 01 */	cmplwi r0, 1
 /* 8001FE08  40 82 00 08 */	bne lbl_8001FE10

@@ -8,8 +8,8 @@ lbl_802C0F64:
 /* 802C0F7C  38 7F 00 90 */	addi r3, r31, 0x90
 /* 802C0F80  7F E4 FB 78 */	mr r4, r31
 /* 802C0F84  48 01 AE 79 */	bl __ct__10JSUPtrLinkFPv
-/* 802C0F88  3C 60 80 3D */	lis r3, __vt__15Z2CreatureEnemy@ha
-/* 802C0F8C  38 03 B8 60 */	addi r0, r3, __vt__15Z2CreatureEnemy@l
+/* 802C0F88  3C 60 80 3D */	lis r3, __vt__15Z2CreatureEnemy@ha /* 0x803CB860@ha */
+/* 802C0F8C  38 03 B8 60 */	addi r0, r3, __vt__15Z2CreatureEnemy@l /* 0x803CB860@l */
 /* 802C0F90  90 1F 00 00 */	stw r0, 0(r31)
 /* 802C0F94  38 60 00 00 */	li r3, 0
 /* 802C0F98  98 7F 00 A0 */	stb r3, 0xa0(r31)

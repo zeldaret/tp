@@ -20,7 +20,7 @@ lbl_80CFF4B4:
 /* 80CFF4D0  38 C6 FF FF */	addi r6, r6, 0xFFFF /* 0x0000FFFF@l */
 /* 80CFF4D4  38 E0 00 00 */	li r7, 0
 /* 80CFF4D8  39 00 00 01 */	li r8, 1
-/* 80CFF4DC  4B 31 C1 A0 */	b fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
+/* 80CFF4DC  4B 31 C1 A1 */	bl fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
 /* 80CFF4E0  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 80CFF4E4  60 00 00 02 */	ori r0, r0, 2
 /* 80CFF4E8  B0 1F 00 FA */	sth r0, 0xfa(r31)

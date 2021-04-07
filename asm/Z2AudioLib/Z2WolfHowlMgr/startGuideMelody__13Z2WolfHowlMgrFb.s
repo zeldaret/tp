@@ -16,8 +16,8 @@ lbl_802CBA88:
 /* 802CBAC0  88 1F 00 8E */	lbz r0, 0x8e(r31)
 /* 802CBAC4  7C 00 07 74 */	extsb r0, r0
 /* 802CBAC8  54 00 10 3A */	slwi r0, r0, 2
-/* 802CBACC  3C 60 80 43 */	lis r3, sWindStoneSound@ha
-/* 802CBAD0  38 63 42 1C */	addi r3, r3, sWindStoneSound@l
+/* 802CBACC  3C 60 80 43 */	lis r3, sWindStoneSound@ha /* 0x8043421C@ha */
+/* 802CBAD0  38 63 42 1C */	addi r3, r3, sWindStoneSound@l /* 0x8043421C@l */
 /* 802CBAD4  7C 03 00 2E */	lwzx r0, r3, r0
 /* 802CBAD8  90 01 00 08 */	stw r0, 8(r1)
 /* 802CBADC  80 6D 85 E0 */	lwz r3, data_80450B60(r13)

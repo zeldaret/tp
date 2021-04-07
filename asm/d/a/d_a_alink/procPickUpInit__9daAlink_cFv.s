@@ -22,8 +22,8 @@ lbl_800E729C:
 /* 800E729C  AB C5 00 08 */	lha r30, 8(r5)
 /* 800E72A0  2C 1E 00 60 */	cmpwi r30, 0x60
 /* 800E72A4  40 82 00 38 */	bne lbl_800E72DC
-/* 800E72A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800E72AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800E72A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800E72AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800E72B0  38 63 4E C8 */	addi r3, r3, 0x4ec8
 /* 800E72B4  7F E4 FB 78 */	mr r4, r31
 /* 800E72B8  38 A0 00 00 */	li r5, 0
@@ -83,8 +83,8 @@ lbl_800E7380:
 /* 800E7384  40 82 00 3C */	bne lbl_800E73C0
 /* 800E7388  7F E3 FB 78 */	mr r3, r31
 /* 800E738C  38 80 01 07 */	li r4, 0x107
-/* 800E7390  3C A0 80 39 */	lis r5, m__20daAlinkHIO_bottle_c0@ha
-/* 800E7394  38 A5 E9 0C */	addi r5, r5, m__20daAlinkHIO_bottle_c0@l
+/* 800E7390  3C A0 80 39 */	lis r5, m__20daAlinkHIO_bottle_c0@ha /* 0x8038E90C@ha */
+/* 800E7394  38 A5 E9 0C */	addi r5, r5, m__20daAlinkHIO_bottle_c0@l /* 0x8038E90C@l */
 /* 800E7398  38 A5 00 64 */	addi r5, r5, 0x64
 /* 800E739C  4B FC 5D 59 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800E73A0  38 00 00 01 */	li r0, 1
@@ -100,8 +100,8 @@ lbl_800E73C0:
 /* 800E73C4  40 82 00 54 */	bne lbl_800E7418
 /* 800E73C8  7F E3 FB 78 */	mr r3, r31
 /* 800E73CC  38 80 01 08 */	li r4, 0x108
-/* 800E73D0  3C A0 80 39 */	lis r5, m__20daAlinkHIO_bottle_c0@ha
-/* 800E73D4  38 A5 E9 0C */	addi r5, r5, m__20daAlinkHIO_bottle_c0@l
+/* 800E73D0  3C A0 80 39 */	lis r5, m__20daAlinkHIO_bottle_c0@ha /* 0x8038E90C@ha */
+/* 800E73D4  38 A5 E9 0C */	addi r5, r5, m__20daAlinkHIO_bottle_c0@l /* 0x8038E90C@l */
 /* 800E73D8  38 A5 00 50 */	addi r5, r5, 0x50
 /* 800E73DC  4B FC 5D 19 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800E73E0  38 00 00 01 */	li r0, 1
@@ -109,8 +109,8 @@ lbl_800E73C0:
 /* 800E73E8  C0 02 93 74 */	lfs f0, lit_8502(r2)
 /* 800E73EC  D0 1F 34 78 */	stfs f0, 0x3478(r31)
 /* 800E73F0  B0 1F 30 10 */	sth r0, 0x3010(r31)
-/* 800E73F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800E73F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800E73F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800E73F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800E73FC  38 80 00 3F */	li r4, 0x3f
 /* 800E7400  80 BF 27 F4 */	lwz r5, 0x27f4(r31)
 /* 800E7404  88 05 04 BA */	lbz r0, 0x4ba(r5)
@@ -121,8 +121,8 @@ lbl_800E73C0:
 lbl_800E7418:
 /* 800E7418  7F E3 FB 78 */	mr r3, r31
 /* 800E741C  38 80 00 EE */	li r4, 0xee
-/* 800E7420  3C A0 80 39 */	lis r5, m__20daAlinkHIO_pickUp_c0@ha
-/* 800E7424  38 A5 E8 40 */	addi r5, r5, m__20daAlinkHIO_pickUp_c0@l
+/* 800E7420  3C A0 80 39 */	lis r5, m__20daAlinkHIO_pickUp_c0@ha /* 0x8038E840@ha */
+/* 800E7424  38 A5 E8 40 */	addi r5, r5, m__20daAlinkHIO_pickUp_c0@l /* 0x8038E840@l */
 /* 800E7428  4B FC 5C CD */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800E742C  38 00 00 00 */	li r0, 0
 /* 800E7430  B0 1F 30 0E */	sth r0, 0x300e(r31)

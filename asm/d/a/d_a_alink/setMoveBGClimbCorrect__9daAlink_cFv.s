@@ -5,8 +5,8 @@ lbl_800FE868:
 /* 800FE874  93 E1 00 4C */	stw r31, 0x4c(r1)
 /* 800FE878  93 C1 00 48 */	stw r30, 0x48(r1)
 /* 800FE87C  7C 7F 1B 78 */	mr r31, r3
-/* 800FE880  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800FE884  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800FE880  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800FE884  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800FE888  3B C3 0F 38 */	addi r30, r3, 0xf38
 /* 800FE88C  7F C3 F3 78 */	mr r3, r30
 /* 800FE890  38 9F 1E 1C */	addi r4, r31, 0x1e1c
@@ -41,16 +41,16 @@ lbl_800FE8F4:
 /* 800FE8FC  41 82 00 20 */	beq lbl_800FE91C
 /* 800FE900  7F E3 FB 78 */	mr r3, r31
 /* 800FE904  38 80 00 01 */	li r4, 1
-/* 800FE908  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha
-/* 800FE90C  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l
+/* 800FE908  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 800FE90C  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 800FE910  C0 25 00 70 */	lfs f1, 0x70(r5)
 /* 800FE914  4B FC 81 35 */	bl procFallInit__9daAlink_cFif
 /* 800FE918  48 00 02 60 */	b lbl_800FEB78
 lbl_800FE91C:
 /* 800FE91C  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 800FE920  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 800FE924  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800FE928  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800FE924  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800FE928  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800FE92C  7D 03 04 2E */	lfsx f8, r3, r0
 /* 800FE930  7C 63 02 14 */	add r3, r3, r0
 /* 800FE934  C1 23 00 04 */	lfs f9, 4(r3)
@@ -147,14 +147,14 @@ lbl_800FEA70:
 lbl_800FEA90:
 /* 800FEA90  7F E3 FB 78 */	mr r3, r31
 /* 800FEA94  38 80 00 01 */	li r4, 1
-/* 800FEA98  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha
-/* 800FEA9C  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l
+/* 800FEA98  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 800FEA9C  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 800FEAA0  C0 25 00 70 */	lfs f1, 0x70(r5)
 /* 800FEAA4  4B FC 7F A5 */	bl procFallInit__9daAlink_cFif
 /* 800FEAA8  48 00 00 D0 */	b lbl_800FEB78
 lbl_800FEAAC:
-/* 800FEAAC  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800FEAB0  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800FEAAC  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800FEAB0  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800FEAB4  90 01 00 3C */	stw r0, 0x3c(r1)
 /* 800FEAB8  7F C3 F3 78 */	mr r3, r30
 /* 800FEABC  38 9F 1B 5C */	addi r4, r31, 0x1b5c
@@ -169,12 +169,12 @@ lbl_800FEAAC:
 /* 800FEAE0  41 81 00 2C */	bgt lbl_800FEB0C
 /* 800FEAE4  7F E3 FB 78 */	mr r3, r31
 /* 800FEAE8  38 80 00 01 */	li r4, 1
-/* 800FEAEC  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha
-/* 800FEAF0  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l
+/* 800FEAEC  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 800FEAF0  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 800FEAF4  C0 25 00 70 */	lfs f1, 0x70(r5)
 /* 800FEAF8  4B FC 7F 51 */	bl procFallInit__9daAlink_cFif
-/* 800FEAFC  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha
-/* 800FEB00  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l
+/* 800FEAFC  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800FEB00  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800FEB04  90 01 00 3C */	stw r0, 0x3c(r1)
 /* 800FEB08  48 00 00 70 */	b lbl_800FEB78
 lbl_800FEB0C:
@@ -201,8 +201,8 @@ lbl_800FEB0C:
 /* 800FEB5C  38 7F 1E 1C */	addi r3, r31, 0x1e1c
 /* 800FEB60  38 9F 1B 5C */	addi r4, r31, 0x1b5c
 /* 800FEB64  48 16 95 E5 */	bl SetPolyInfo__13cBgS_PolyInfoFRC13cBgS_PolyInfo
-/* 800FEB68  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800FEB6C  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800FEB68  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800FEB6C  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800FEB70  90 01 00 3C */	stw r0, 0x3c(r1)
 /* 800FEB74  38 60 00 00 */	li r3, 0
 lbl_800FEB78:

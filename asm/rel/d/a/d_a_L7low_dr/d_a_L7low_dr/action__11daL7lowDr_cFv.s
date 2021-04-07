@@ -12,7 +12,7 @@ lbl_805AA69C:
 lbl_805AA6C4:
 /* 805AA6C4  7F E3 FB 78 */	mr r3, r31
 /* 805AA6C8  39 9F 06 24 */	addi r12, r31, 0x624
-/* 805AA6CC  4B DB 79 B8 */	b __ptmf_scall
+/* 805AA6CC  4B DB 79 B9 */	bl __ptmf_scall
 /* 805AA6D0  60 00 00 00 */	nop 
 /* 805AA6D4  A8 1F 04 DC */	lha r0, 0x4dc(r31)
 /* 805AA6D8  B0 1F 04 E4 */	sth r0, 0x4e4(r31)
@@ -22,14 +22,14 @@ lbl_805AA6C4:
 /* 805AA6E8  B0 1F 04 E8 */	sth r0, 0x4e8(r31)
 /* 805AA6EC  7F E3 FB 78 */	mr r3, r31
 /* 805AA6F0  38 80 00 00 */	li r4, 0
-/* 805AA6F4  4B A6 FF D8 */	b fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
+/* 805AA6F4  4B A6 FF D9 */	bl fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
 /* 805AA6F8  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 805AA6FC  7C 03 07 74 */	extsb r3, r0
-/* 805AA700  4B A8 29 6C */	b dComIfGp_getReverb__Fi
+/* 805AA700  4B A8 29 6D */	bl dComIfGp_getReverb__Fi
 /* 805AA704  7C 65 1B 78 */	mr r5, r3
 /* 805AA708  80 7F 05 70 */	lwz r3, 0x570(r31)
 /* 805AA70C  38 80 00 00 */	li r4, 0
-/* 805AA710  4B A6 69 A0 */	b play__16mDoExt_McaMorfSOFUlSc
+/* 805AA710  4B A6 69 A1 */	bl play__16mDoExt_McaMorfSOFUlSc
 /* 805AA714  7F E3 FB 78 */	mr r3, r31
 /* 805AA718  48 00 00 A1 */	bl mtx_set__11daL7lowDr_cFv
 /* 805AA71C  C0 1F 04 D0 */	lfs f0, 0x4d0(r31)

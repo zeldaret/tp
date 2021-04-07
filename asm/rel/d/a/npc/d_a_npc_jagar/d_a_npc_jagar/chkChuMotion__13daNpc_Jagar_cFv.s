@@ -5,15 +5,15 @@ lbl_80A17984:
 /* 80A17990  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A17994  7C 7F 1B 78 */	mr r31, r3
 /* 80A17998  38 60 02 35 */	li r3, 0x235
-/* 80A1799C  4B 73 51 10 */	b daNpcT_chkEvtBit__FUl
+/* 80A1799C  4B 73 51 11 */	bl daNpcT_chkEvtBit__FUl
 /* 80A179A0  2C 03 00 00 */	cmpwi r3, 0
 /* 80A179A4  40 82 00 3C */	bne lbl_80A179E0
 /* 80A179A8  38 60 00 1C */	li r3, 0x1c
-/* 80A179AC  4B 73 51 00 */	b daNpcT_chkEvtBit__FUl
+/* 80A179AC  4B 73 51 01 */	bl daNpcT_chkEvtBit__FUl
 /* 80A179B0  2C 03 00 00 */	cmpwi r3, 0
 /* 80A179B4  41 82 00 2C */	beq lbl_80A179E0
 /* 80A179B8  38 60 00 87 */	li r3, 0x87
-/* 80A179BC  4B 73 50 F0 */	b daNpcT_chkEvtBit__FUl
+/* 80A179BC  4B 73 50 F1 */	bl daNpcT_chkEvtBit__FUl
 /* 80A179C0  2C 03 00 00 */	cmpwi r3, 0
 /* 80A179C4  41 82 00 0C */	beq lbl_80A179D0
 /* 80A179C8  38 60 00 00 */	li r3, 0

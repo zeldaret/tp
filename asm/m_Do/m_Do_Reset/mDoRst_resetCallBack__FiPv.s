@@ -16,8 +16,8 @@ lbl_80015778:
 /* 80015780  41 82 00 20 */	beq lbl_800157A0
 /* 80015784  38 80 00 00 */	li r4, 0
 /* 80015788  98 8D 8F 81 */	stb r4, struct_80451500+0x1(r13)
-/* 8001578C  3C 60 80 01 */	lis r3, mDoRst_resetCallBack__FiPv@ha
-/* 80015790  38 03 57 4C */	addi r0, r3, mDoRst_resetCallBack__FiPv@l
+/* 8001578C  3C 60 80 01 */	lis r3, mDoRst_resetCallBack__FiPv@ha /* 0x8001574C@ha */
+/* 80015790  38 03 57 4C */	addi r0, r3, mDoRst_resetCallBack__FiPv@l /* 0x8001574C@l */
 /* 80015794  90 0D 8F 6C */	stw r0, sCallback__Q210JUTGamePad13C3ButtonReset(r13)
 /* 80015798  90 8D 8F 70 */	stw r4, sCallbackArg__Q210JUTGamePad13C3ButtonReset(r13)
 /* 8001579C  48 00 00 48 */	b lbl_800157E4

@@ -1,6 +1,6 @@
 lbl_80281918:
-/* 80281918  3C 80 80 45 */	lis r4, __float_nan@ha
-/* 8028191C  C0 04 0A E0 */	lfs f0, __float_nan@l(r4)
+/* 80281918  3C 80 80 45 */	lis r4, __float_nan@ha /* 0x80450AE0@ha */
+/* 8028191C  C0 04 0A E0 */	lfs f0, __float_nan@l(r4)  /* 0x80450AE0@l */
 /* 80281920  D8 03 00 00 */	stfd f0, 0(r3)
 /* 80281924  C8 03 00 00 */	lfd f0, 0(r3)
 /* 80281928  D8 03 00 08 */	stfd f0, 8(r3)

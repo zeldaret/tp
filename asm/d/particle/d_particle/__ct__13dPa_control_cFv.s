@@ -5,10 +5,10 @@ lbl_8004BACC:
 /* 8004BAD8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8004BADC  7C 7F 1B 78 */	mr r31, r3
 /* 8004BAE0  38 7F 00 1C */	addi r3, r31, 0x1c
-/* 8004BAE4  3C 80 80 05 */	lis r4, __ct__19dPa_simpleEcallBackFv@ha
-/* 8004BAE8  38 84 AD F4 */	addi r4, r4, __ct__19dPa_simpleEcallBackFv@l
-/* 8004BAEC  3C A0 80 05 */	lis r5, __dt__19dPa_simpleEcallBackFv@ha
-/* 8004BAF0  38 A5 FC 08 */	addi r5, r5, __dt__19dPa_simpleEcallBackFv@l
+/* 8004BAE4  3C 80 80 05 */	lis r4, __ct__19dPa_simpleEcallBackFv@ha /* 0x8004ADF4@ha */
+/* 8004BAE8  38 84 AD F4 */	addi r4, r4, __ct__19dPa_simpleEcallBackFv@l /* 0x8004ADF4@l */
+/* 8004BAEC  3C A0 80 05 */	lis r5, __dt__19dPa_simpleEcallBackFv@ha /* 0x8004FC08@ha */
+/* 8004BAF0  38 A5 FC 08 */	addi r5, r5, __dt__19dPa_simpleEcallBackFv@l /* 0x8004FC08@l */
 /* 8004BAF4  38 C0 00 14 */	li r6, 0x14
 /* 8004BAF8  38 E0 00 19 */	li r7, 0x19
 /* 8004BAFC  48 31 62 65 */	bl __construct_array
@@ -31,8 +31,8 @@ lbl_8004BACC:
 /* 8004BB40  90 7F 00 04 */	stw r3, 4(r31)
 /* 8004BB44  90 7F 00 14 */	stw r3, 0x14(r31)
 /* 8004BB48  90 7F 00 10 */	stw r3, 0x10(r31)
-/* 8004BB4C  3C 60 80 42 */	lis r3, mWindViewMatrix__13dPa_control_c@ha
-/* 8004BB50  38 63 48 70 */	addi r3, r3, mWindViewMatrix__13dPa_control_c@l
+/* 8004BB4C  3C 60 80 42 */	lis r3, mWindViewMatrix__13dPa_control_c@ha /* 0x80424870@ha */
+/* 8004BB50  38 63 48 70 */	addi r3, r3, mWindViewMatrix__13dPa_control_c@l /* 0x80424870@l */
 /* 8004BB54  48 2F A9 31 */	bl PSMTXIdentity
 /* 8004BB58  7F E3 FB 78 */	mr r3, r31
 /* 8004BB5C  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -9,8 +9,8 @@ lbl_801DC340:
 /* 801DC35C  7C BD 2B 78 */	mr r29, r5
 /* 801DC360  7C DE 33 78 */	mr r30, r6
 /* 801DC364  7C FF 3B 78 */	mr r31, r7
-/* 801DC368  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801DC36C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801DC368  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801DC36C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801DC370  38 63 00 9C */	addi r3, r3, 0x9c
 /* 801DC374  54 84 06 3E */	clrlwi r4, r4, 0x18
 /* 801DC378  38 A0 00 00 */	li r5, 0

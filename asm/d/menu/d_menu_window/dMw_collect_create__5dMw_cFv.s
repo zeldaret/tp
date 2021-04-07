@@ -18,8 +18,8 @@ lbl_801FC034:
 /* 801FC034  90 1F 01 14 */	stw r0, 0x114(r31)
 /* 801FC038  80 7F 01 14 */	lwz r3, 0x114(r31)
 /* 801FC03C  4B FB B9 D1 */	bl _create__15dMenu_Collect_cFv
-/* 801FC040  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 801FC044  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 801FC040  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801FC044  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801FC048  88 03 00 39 */	lbz r0, 0x39(r3)
 /* 801FC04C  28 00 00 00 */	cmplwi r0, 0
 /* 801FC050  41 82 00 14 */	beq lbl_801FC064

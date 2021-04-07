@@ -68,8 +68,6 @@ extern "C" void getHandle__13JASDSPChannelFUl();
 // External References:
 //
 
-void* operator new[](u32, JKRHeap*, int);
-
 extern "C" void releaseHalt__6JASDspFUl();
 extern "C" void getDSPHandle__6JASDspFi();
 extern "C" void init__Q26JASDsp8TChannelFv();
@@ -89,7 +87,7 @@ extern "C" extern u8 JASDram[4];
 // Declarations:
 //
 
-/* 8029D2F4-8029D320 002C+00 s=1 e=0 z=0  None .text      __ct__13JASDSPChannelFv */
+/* 8029D2F4-8029D320 297C34 002C+00 1/1 0/0 0/0 .text            __ct__13JASDSPChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -99,7 +97,7 @@ asm JASDSPChannel::JASDSPChannel() {
 }
 #pragma pop
 
-/* 8029D320-8029D330 0010+00 s=0 e=3 z=0  None .text      free__13JASDSPChannelFv */
+/* 8029D320-8029D330 297C60 0010+00 0/0 3/3 0/0 .text            free__13JASDSPChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -109,7 +107,7 @@ asm void JASDSPChannel::free() {
 }
 #pragma pop
 
-/* 8029D330-8029D340 0010+00 s=0 e=2 z=0  None .text      start__13JASDSPChannelFv */
+/* 8029D330-8029D340 297C70 0010+00 0/0 2/2 0/0 .text            start__13JASDSPChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -119,7 +117,7 @@ asm void JASDSPChannel::start() {
 }
 #pragma pop
 
-/* 8029D340-8029D3C8 0088+00 s=3 e=2 z=0  None .text      drop__13JASDSPChannelFv */
+/* 8029D340-8029D3C8 297C80 0088+00 3/3 2/2 0/0 .text            drop__13JASDSPChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -130,10 +128,10 @@ asm void JASDSPChannel::drop() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804512E0-804512E8 0004+04 s=5 e=0 z=0  None .sbss      sDspChannels__13JASDSPChannel */
+/* 804512E0-804512E8 0007E0 0004+04 5/5 0/0 0/0 .sbss            sDspChannels__13JASDSPChannel */
 static u8 sDspChannels__13JASDSPChannel[4 + 4 /* padding */];
 
-/* 8029D3C8-8029D44C 0084+00 s=0 e=1 z=0  None .text      initAll__13JASDSPChannelFv */
+/* 8029D3C8-8029D44C 297D08 0084+00 0/0 1/1 0/0 .text            initAll__13JASDSPChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -143,7 +141,7 @@ asm void JASDSPChannel::initAll() {
 }
 #pragma pop
 
-/* 8029D44C-8029D4BC 0070+00 s=0 e=1 z=0  None .text
+/* 8029D44C-8029D4BC 297D8C 0070+00 0/0 1/1 0/0 .text
  * alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv       */
 #pragma push
 #pragma optimization_level 0
@@ -154,7 +152,7 @@ asm void JASDSPChannel::alloc(u8 param_0, s32 (*)(u32, JASDsp::TChannel*, void*)
 }
 #pragma pop
 
-/* 8029D4BC-8029D534 0078+00 s=0 e=1 z=0  None .text
+/* 8029D4BC-8029D534 297DFC 0078+00 0/0 1/1 0/0 .text
  * allocForce__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv  */
 #pragma push
 #pragma optimization_level 0
@@ -166,7 +164,7 @@ asm void JASDSPChannel::allocForce(u8 param_0, s32 (*)(u32, JASDsp::TChannel*, v
 }
 #pragma pop
 
-/* 8029D534-8029D540 000C+00 s=0 e=1 z=0  None .text      setPriority__13JASDSPChannelFUc */
+/* 8029D534-8029D540 297E74 000C+00 0/0 1/1 0/0 .text            setPriority__13JASDSPChannelFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -176,7 +174,8 @@ asm void JASDSPChannel::setPriority(u8 param_0) {
 }
 #pragma pop
 
-/* 8029D540-8029D5D0 0090+00 s=2 e=0 z=0  None .text      getLowestChannel__13JASDSPChannelFi */
+/* 8029D540-8029D5D0 297E80 0090+00 2/2 0/0 0/0 .text            getLowestChannel__13JASDSPChannelFi
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -186,8 +185,7 @@ asm void JASDSPChannel::getLowestChannel(int param_0) {
 }
 #pragma pop
 
-/* 8029D5D0-8029D65C 008C+00 s=1 e=0 z=0  None .text      getLowestActiveChannel__13JASDSPChannelFv
- */
+/* 8029D5D0-8029D65C 297F10 008C+00 1/1 0/0 0/0 .text getLowestActiveChannel__13JASDSPChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -197,7 +195,7 @@ asm void JASDSPChannel::getLowestActiveChannel() {
 }
 #pragma pop
 
-/* 8029D65C-8029D89C 0240+00 s=1 e=0 z=0  None .text      updateProc__13JASDSPChannelFv */
+/* 8029D65C-8029D89C 297F9C 0240+00 1/1 0/0 0/0 .text            updateProc__13JASDSPChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -207,7 +205,7 @@ asm void JASDSPChannel::updateProc() {
 }
 #pragma pop
 
-/* 8029D89C-8029D910 0074+00 s=0 e=1 z=0  None .text      updateAll__13JASDSPChannelFv */
+/* 8029D89C-8029D910 2981DC 0074+00 0/0 1/1 0/0 .text            updateAll__13JASDSPChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -217,7 +215,7 @@ asm void JASDSPChannel::updateAll() {
 }
 #pragma pop
 
-/* 8029D910-8029D948 0038+00 s=0 e=1 z=0  None .text      killActiveChannel__13JASDSPChannelFv */
+/* 8029D910-8029D948 298250 0038+00 0/0 1/1 0/0 .text killActiveChannel__13JASDSPChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -227,7 +225,7 @@ asm void JASDSPChannel::killActiveChannel() {
 }
 #pragma pop
 
-/* 8029D948-8029D958 0010+00 s=0 e=1 z=0  None .text      getHandle__13JASDSPChannelFUl */
+/* 8029D948-8029D958 298288 0010+00 0/0 1/1 0/0 .text            getHandle__13JASDSPChannelFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

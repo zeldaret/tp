@@ -10,8 +10,8 @@ lbl_800D21D0:
 /* 800D21F0  38 80 00 01 */	li r4, 1
 /* 800D21F4  4B FF F2 3D */	bl resetCombo__9daAlink_cFi
 lbl_800D21F8:
-/* 800D21F8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D21FC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D21F8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D21FC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D2200  88 03 5E 24 */	lbz r0, 0x5e24(r3)
 /* 800D2204  28 00 00 04 */	cmplwi r0, 4
 /* 800D2208  40 82 00 10 */	bne lbl_800D2218

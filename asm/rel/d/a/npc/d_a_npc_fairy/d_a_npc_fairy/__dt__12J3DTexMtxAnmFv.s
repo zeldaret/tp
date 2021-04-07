@@ -7,7 +7,7 @@ lbl_809B2A9C:
 /* 809B2AB0  41 82 00 10 */	beq lbl_809B2AC0
 /* 809B2AB4  7C 80 07 35 */	extsh. r0, r4
 /* 809B2AB8  40 81 00 08 */	ble lbl_809B2AC0
-/* 809B2ABC  4B 91 C2 80 */	b __dl__FPv
+/* 809B2ABC  4B 91 C2 81 */	bl __dl__FPv
 lbl_809B2AC0:
 /* 809B2AC0  7F E3 FB 78 */	mr r3, r31
 /* 809B2AC4  83 E1 00 0C */	lwz r31, 0xc(r1)

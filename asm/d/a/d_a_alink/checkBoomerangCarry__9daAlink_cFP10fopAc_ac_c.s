@@ -59,8 +59,8 @@ lbl_800E034C:
 /* 800E0390  C0 02 93 94 */	lfs f0, lit_8785(r2)
 /* 800E0394  D0 1E 33 E4 */	stfs f0, 0x33e4(r30)
 /* 800E0398  7F C3 F3 78 */	mr r3, r30
-/* 800E039C  3C 80 80 39 */	lis r4, m__19daAlinkHIO_basic_c0@ha
-/* 800E03A0  38 84 D6 64 */	addi r4, r4, m__19daAlinkHIO_basic_c0@l
+/* 800E039C  3C 80 80 39 */	lis r4, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 800E03A0  38 84 D6 64 */	addi r4, r4, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 800E03A4  C0 24 00 18 */	lfs f1, 0x18(r4)
 /* 800E03A8  48 00 3A 15 */	bl setGrabUpperAnime__9daAlink_cFf
 /* 800E03AC  38 60 00 01 */	li r3, 1

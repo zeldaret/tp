@@ -3,18 +3,16 @@
 #
 
 M533_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4digsand.plf
+M533_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4digsand.lcf
+M533_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4digsand.map
 
 M533_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv4digsand/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv4digsand/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_lv4digsand/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_lv4digsand/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_lv4digsand/d_a_obj_lv4digsand.cpp \
 
 M533_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4digsand/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4digsand/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4digsand/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4digsand/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4digsand/d_a_obj_lv4digsand.o \
 
@@ -31,14 +29,21 @@ M533_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M533_LDSCRIPT) \
+	-unused -map $(M533_MAP) \
+	-w off \
 
 $(M533_TARGET): $(M533_O_FILES) $(M533_LIBS)
+	@echo [533] creating $(M533_TARGET)
 	@echo $(M533_LIBS) $(M533_O_FILES) > build/M533_ofiles
-	$(LD) -partial $(M533_LDFLAGS) -o $(M533_TARGET) @build/M533_ofiles
+	@python3 tools/lcf.py rel 533 --output $(M533_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M533_LDFLAGS) -o $(M533_TARGET) @build/M533_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4digsand/%.o: rel/d/a/obj/d_a_obj_lv4digsand/%.cpp
+	@echo [533] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M533_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M533_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

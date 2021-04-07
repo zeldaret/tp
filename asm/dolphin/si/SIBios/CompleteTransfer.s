@@ -11,18 +11,18 @@ lbl_80344BFC:
 /* 80344C20  93 81 00 10 */	stw r28, 0x10(r1)
 /* 80344C24  80 03 64 34 */	lwz r0, 0x6434(r3)
 /* 80344C28  83 83 64 38 */	lwz r28, 0x6438(r3)
-/* 80344C2C  3C 60 80 3D */	lis r3, lit_1@ha
+/* 80344C2C  3C 60 80 3D */	lis r3, lit_1@ha /* 0x803D11B8@ha */
 /* 80344C30  64 00 80 00 */	oris r0, r0, 0x8000
 /* 80344C34  54 00 00 3C */	rlwinm r0, r0, 0, 0, 0x1e
 /* 80344C38  90 1E 00 34 */	stw r0, 0x34(r30)
-/* 80344C3C  3B E3 11 B8 */	addi r31, r3, lit_1@l
+/* 80344C3C  3B E3 11 B8 */	addi r31, r3, lit_1@l /* 0x803D11B8@l */
 /* 80344C40  80 1F 00 44 */	lwz r0, 0x44(r31)
 /* 80344C44  2C 00 FF FF */	cmpwi r0, -1
 /* 80344C48  41 82 02 74 */	beq lbl_80344EBC
 /* 80344C4C  4B FF DA D1 */	bl __OSGetSystemTime
 /* 80344C50  80 DF 00 44 */	lwz r6, 0x44(r31)
-/* 80344C54  3C A0 80 45 */	lis r5, XferTime@ha
-/* 80344C58  38 05 C7 70 */	addi r0, r5, XferTime@l
+/* 80344C54  3C A0 80 45 */	lis r5, XferTime@ha /* 0x8044C770@ha */
+/* 80344C58  38 05 C7 70 */	addi r0, r5, XferTime@l /* 0x8044C770@l */
 /* 80344C5C  54 C5 18 38 */	slwi r5, r6, 3
 /* 80344C60  7C A0 2A 14 */	add r5, r0, r5
 /* 80344C64  90 85 00 04 */	stw r4, 4(r5)
@@ -176,8 +176,8 @@ lbl_80344E80:
 lbl_80344E90:
 /* 80344E90  4B FF D8 8D */	bl __OSGetSystemTime
 /* 80344E94  80 DF 00 44 */	lwz r6, 0x44(r31)
-/* 80344E98  3C A0 80 45 */	lis r5, TypeTime@ha
-/* 80344E9C  38 05 C7 50 */	addi r0, r5, TypeTime@l
+/* 80344E98  3C A0 80 45 */	lis r5, TypeTime@ha /* 0x8044C750@ha */
+/* 80344E9C  38 05 C7 50 */	addi r0, r5, TypeTime@l /* 0x8044C750@l */
 /* 80344EA0  54 C5 18 38 */	slwi r5, r6, 3
 /* 80344EA4  7C A0 2A 14 */	add r5, r0, r5
 /* 80344EA8  90 85 00 04 */	stw r4, 4(r5)

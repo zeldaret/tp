@@ -131,8 +131,8 @@ lbl_80166930:
 /* 80166958  28 00 FF FF */	cmplwi r0, 0xffff
 /* 8016695C  41 82 00 48 */	beq lbl_801669A4
 /* 80166960  90 61 00 44 */	stw r3, 0x44(r1)
-/* 80166964  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 80166968  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 80166964  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 80166968  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 8016696C  38 81 00 44 */	addi r4, r1, 0x44
 /* 80166970  4B EB 2E 89 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80166974  28 03 00 00 */	cmplwi r3, 0
@@ -371,18 +371,18 @@ lbl_80166C50:
 /* 80166CE0  4B FF EB E1 */	bl lineBGCheck__9dCamera_cFP4cXyzP4cXyzP11dBgS_LinChkUl
 /* 80166CE4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80166CE8  41 82 08 A8 */	beq lbl_80167590
-/* 80166CEC  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 80166CF0  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 80166CEC  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 80166CF0  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 80166CF4  90 01 04 1C */	stw r0, 0x41c(r1)
-/* 80166CF8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80166CFC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80166CF8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80166CFC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80166D00  3B 43 0F 38 */	addi r26, r3, 0xf38
 /* 80166D04  7F 43 D3 78 */	mr r3, r26
 /* 80166D08  38 81 05 68 */	addi r4, r1, 0x568
 /* 80166D0C  38 A1 04 0C */	addi r5, r1, 0x40c
 /* 80166D10  4B F0 DA 35 */	bl GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla
-/* 80166D14  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 80166D18  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 80166D14  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 80166D18  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 80166D1C  90 01 04 08 */	stw r0, 0x408(r1)
 /* 80166D20  3A C1 04 0C */	addi r22, r1, 0x40c
 /* 80166D24  57 A0 07 FF */	clrlwi. r0, r29, 0x1f
@@ -1084,8 +1084,8 @@ lbl_80167740:
 /* 80167750  54 00 05 6B */	rlwinm. r0, r0, 0, 0x15, 0x15
 /* 80167754  41 82 01 E8 */	beq lbl_8016793C
 /* 80167758  3A C0 00 00 */	li r22, 0
-/* 8016775C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80167760  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8016775C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80167760  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80167764  3B 43 23 3C */	addi r26, r3, 0x233c
 /* 80167768  3B 61 03 E4 */	addi r27, r1, 0x3e4
 lbl_8016776C:
@@ -1220,8 +1220,8 @@ lbl_8016793C:
 /* 8016794C  38 61 04 20 */	addi r3, r1, 0x420
 /* 80167950  38 81 03 94 */	addi r4, r1, 0x394
 /* 80167954  48 10 03 D5 */	bl SetPos__11cBgS_GndChkFPC4cXyz
-/* 80167958  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8016795C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80167958  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8016795C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80167960  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80167964  38 81 04 20 */	addi r4, r1, 0x420
 /* 80167968  4B F0 CB 39 */	bl GroundCross__4cBgSFP11cBgS_GndChk
@@ -1278,8 +1278,8 @@ lbl_80167A14:
 /* 80167A2C  4B FF E1 35 */	bl lineCollisionCheckBush__9dCamera_cFP4cXyzP4cXyz
 /* 80167A30  54 60 07 7D */	rlwinm. r0, r3, 0, 0x1d, 0x1e
 /* 80167A34  41 82 00 44 */	beq lbl_80167A78
-/* 80167A38  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80167A3C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80167A38  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80167A3C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80167A40  38 63 4B 88 */	addi r3, r3, 0x4b88
 /* 80167A44  38 81 02 BC */	addi r4, r1, 0x2bc
 /* 80167A48  4B F1 E4 71 */	bl GetCamTopPos__12dCcMassS_MngFP3Vec

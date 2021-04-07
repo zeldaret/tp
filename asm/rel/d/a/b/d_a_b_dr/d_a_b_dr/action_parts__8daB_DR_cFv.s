@@ -7,15 +7,15 @@ lbl_805C4130:
 /* 805C4144  4B FF F8 95 */	bl executeParts__8daB_DR_cFv
 /* 805C4148  7F E3 FB 78 */	mr r3, r31
 /* 805C414C  38 9F 0A 08 */	addi r4, r31, 0xa08
-/* 805C4150  4B A5 65 7C */	b fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
+/* 805C4150  4B A5 65 7D */	bl fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
 /* 805C4154  38 7F 08 30 */	addi r3, r31, 0x830
-/* 805C4158  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 805C415C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 805C4158  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805C415C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805C4160  38 84 0F 38 */	addi r4, r4, 0xf38
-/* 805C4164  4B AB 29 48 */	b CrrPos__9dBgS_AcchFR4dBgS
+/* 805C4164  4B AB 29 49 */	bl CrrPos__9dBgS_AcchFR4dBgS
 /* 805C4168  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 805C416C  7C 03 07 74 */	extsb r3, r0
-/* 805C4170  4B A6 8E FC */	b dComIfGp_getReverb__Fi
+/* 805C4170  4B A6 8E FD */	bl dComIfGp_getReverb__Fi
 /* 805C4174  7C 65 1B 78 */	mr r5, r3
 /* 805C4178  38 7F 05 C0 */	addi r3, r31, 0x5c0
 /* 805C417C  38 80 00 00 */	li r4, 0

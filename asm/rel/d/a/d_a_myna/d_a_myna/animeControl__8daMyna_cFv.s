@@ -9,15 +9,15 @@ lbl_80949EE8:
 /* 80949F04  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80949F08  93 C1 00 08 */	stw r30, 8(r1)
 /* 80949F0C  7C 7E 1B 78 */	mr r30, r3
-/* 80949F10  3C 60 80 95 */	lis r3, lit_4270@ha
-/* 80949F14  C3 E3 B1 FC */	lfs f31, lit_4270@l(r3)
+/* 80949F10  3C 60 80 95 */	lis r3, lit_4270@ha /* 0x8094B1FC@ha */
+/* 80949F14  C3 E3 B1 FC */	lfs f31, lit_4270@l(r3)  /* 0x8094B1FC@l */
 /* 80949F18  3B E0 00 02 */	li r31, 2
 /* 80949F1C  C3 DE 09 0C */	lfs f30, 0x90c(r30)
 /* 80949F20  88 9E 09 35 */	lbz r4, 0x935(r30)
 /* 80949F24  28 04 00 0E */	cmplwi r4, 0xe
 /* 80949F28  41 81 00 70 */	bgt lbl_80949F98
-/* 80949F2C  3C 60 80 95 */	lis r3, lit_5890@ha
-/* 80949F30  38 63 B8 F8 */	addi r3, r3, lit_5890@l
+/* 80949F2C  3C 60 80 95 */	lis r3, lit_5890@ha /* 0x8094B8F8@ha */
+/* 80949F30  38 63 B8 F8 */	addi r3, r3, lit_5890@l /* 0x8094B8F8@l */
 /* 80949F34  54 80 10 3A */	slwi r0, r4, 2
 /* 80949F38  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80949F3C  7C 09 03 A6 */	mtctr r0
@@ -26,8 +26,8 @@ lbl_80949F44:
 /* 80949F44  88 1E 09 34 */	lbz r0, 0x934(r30)
 /* 80949F48  28 00 00 04 */	cmplwi r0, 4
 /* 80949F4C  40 82 00 4C */	bne lbl_80949F98
-/* 80949F50  3C 60 80 95 */	lis r3, lit_5889@ha
-/* 80949F54  C3 C3 B2 44 */	lfs f30, lit_5889@l(r3)
+/* 80949F50  3C 60 80 95 */	lis r3, lit_5889@ha /* 0x8094B244@ha */
+/* 80949F54  C3 C3 B2 44 */	lfs f30, lit_5889@l(r3)  /* 0x8094B244@l */
 /* 80949F58  48 00 00 40 */	b lbl_80949F98
 lbl_80949F5C:
 /* 80949F5C  3B E0 00 00 */	li r31, 0
@@ -36,14 +36,14 @@ lbl_80949F64:
 /* 80949F64  3B E0 00 00 */	li r31, 0
 /* 80949F68  48 00 00 30 */	b lbl_80949F98
 lbl_80949F6C:
-/* 80949F6C  3C 60 80 95 */	lis r3, l_HOSTIO@ha
-/* 80949F70  38 63 BA 3C */	addi r3, r3, l_HOSTIO@l
+/* 80949F6C  3C 60 80 95 */	lis r3, l_HOSTIO@ha /* 0x8094BA3C@ha */
+/* 80949F70  38 63 BA 3C */	addi r3, r3, l_HOSTIO@l /* 0x8094BA3C@l */
 /* 80949F74  C3 E3 00 08 */	lfs f31, 8(r3)
 /* 80949F78  48 00 00 20 */	b lbl_80949F98
 lbl_80949F7C:
 /* 80949F7C  3B E0 00 00 */	li r31, 0
-/* 80949F80  3C 60 80 95 */	lis r3, lit_5889@ha
-/* 80949F84  C3 C3 B2 44 */	lfs f30, lit_5889@l(r3)
+/* 80949F80  3C 60 80 95 */	lis r3, lit_5889@ha /* 0x8094B244@ha */
+/* 80949F84  C3 C3 B2 44 */	lfs f30, lit_5889@l(r3)  /* 0x8094B244@l */
 /* 80949F88  48 00 00 10 */	b lbl_80949F98
 lbl_80949F8C:
 /* 80949F8C  3B E0 00 00 */	li r31, 0
@@ -53,8 +53,8 @@ lbl_80949F94:
 lbl_80949F98:
 /* 80949F98  7F C3 F3 78 */	mr r3, r30
 /* 80949F9C  54 80 15 BA */	rlwinm r0, r4, 2, 0x16, 0x1d
-/* 80949FA0  3C 80 80 95 */	lis r4, l_bckFileNameTBL@ha
-/* 80949FA4  38 84 B7 A0 */	addi r4, r4, l_bckFileNameTBL@l
+/* 80949FA0  3C 80 80 95 */	lis r4, l_bckFileNameTBL@ha /* 0x8094B7A0@ha */
+/* 80949FA4  38 84 B7 A0 */	addi r4, r4, l_bckFileNameTBL@l /* 0x8094B7A0@l */
 /* 80949FA8  7C 84 00 2E */	lwzx r4, r4, r0
 /* 80949FAC  4B FF F9 4D */	bl getTrnsfrmKeyAnm__8daMyna_cFPc
 /* 80949FB0  7C 64 1B 78 */	mr r4, r3
@@ -71,8 +71,8 @@ lbl_80949F98:
 /* 80949FDC  7F C3 F3 78 */	mr r3, r30
 /* 80949FE0  88 1E 09 36 */	lbz r0, 0x936(r30)
 /* 80949FE4  54 00 10 3A */	slwi r0, r0, 2
-/* 80949FE8  3C 80 80 95 */	lis r4, l_btpFileNameTBL@ha
-/* 80949FEC  38 84 B7 DC */	addi r4, r4, l_btpFileNameTBL@l
+/* 80949FE8  3C 80 80 95 */	lis r4, l_btpFileNameTBL@ha /* 0x8094B7DC@ha */
+/* 80949FEC  38 84 B7 DC */	addi r4, r4, l_btpFileNameTBL@l /* 0x8094B7DC@l */
 /* 80949FF0  7C 84 00 2E */	lwzx r4, r4, r0
 /* 80949FF4  4B FF F9 55 */	bl getTexPtrnAnm__8daMyna_cFPc
 /* 80949FF8  7C 64 1B 79 */	or. r4, r3, r3
@@ -81,8 +81,8 @@ lbl_80949F98:
 /* 8094A004  80 63 00 04 */	lwz r3, 4(r3)
 /* 8094A008  80 A3 00 04 */	lwz r5, 4(r3)
 /* 8094A00C  7F C3 F3 78 */	mr r3, r30
-/* 8094A010  3C C0 80 95 */	lis r6, lit_4270@ha
-/* 8094A014  C0 26 B1 FC */	lfs f1, lit_4270@l(r6)
+/* 8094A010  3C C0 80 95 */	lis r6, lit_4270@ha /* 0x8094B1FC@ha */
+/* 8094A014  C0 26 B1 FC */	lfs f1, lit_4270@l(r6)  /* 0x8094B1FC@l */
 /* 8094A018  38 C0 00 02 */	li r6, 2
 /* 8094A01C  4B FF F8 9D */	bl setBtpAnm__8daMyna_cFP16J3DAnmTexPatternP12J3DModelDatafi
 /* 8094A020  A0 1E 09 14 */	lhz r0, 0x914(r30)

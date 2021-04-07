@@ -3,19 +3,20 @@
 #
 
 M350_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_raca.plf
+M350_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_raca.lcf
+M350_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_raca.map
 
 M350_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_raca/executor.cpp \
-	rel/d/a/npc/d_a_npc_raca/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_raca/d_a_npc_raca.cpp \
 
 M350_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_raca/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_raca/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_raca/d_a_npc_raca.o \
 
 M350_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_raca/libRuntime.PPCEABI.H.a \
 
 M350_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M350_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M350_LDSCRIPT) \
+	-unused -map $(M350_MAP) \
+	-w off \
 
 $(M350_TARGET): $(M350_O_FILES) $(M350_LIBS)
+	@echo [350] creating $(M350_TARGET)
 	@echo $(M350_LIBS) $(M350_O_FILES) > build/M350_ofiles
-	$(LD) -partial $(M350_LDFLAGS) -o $(M350_TARGET) @build/M350_ofiles
+	@python3 tools/lcf.py rel 350 --output $(M350_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M350_LDFLAGS) -o $(M350_TARGET) @build/M350_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_raca/%.o: rel/d/a/npc/d_a_npc_raca/%.cpp
+	@echo [350] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M350_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M350_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_raca/libs/Runtime.PPCEABI.H/Makefile
 

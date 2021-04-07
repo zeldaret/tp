@@ -9,7 +9,7 @@ lbl_80B90C34:
 /* 80B90C50  38 9F 0C 94 */	addi r4, r31, 0xc94
 /* 80B90C54  38 A0 00 01 */	li r5, 1
 /* 80B90C58  38 C0 00 00 */	li r6, 0
-/* 80B90C5C  4B 5C 29 1C */	b hitChk2__8daNpcF_cFP8dCcD_Cylii
+/* 80B90C5C  4B 5C 29 1D */	bl hitChk2__8daNpcF_cFP8dCcD_Cylii
 /* 80B90C60  2C 03 00 00 */	cmpwi r3, 0
 /* 80B90C64  41 82 00 44 */	beq lbl_80B90CA8
 /* 80B90C68  7F E3 FB 78 */	mr r3, r31
@@ -19,13 +19,13 @@ lbl_80B90C34:
 /* 80B90C78  38 80 00 14 */	li r4, 0x14
 /* 80B90C7C  48 00 00 10 */	b lbl_80B90C8C
 lbl_80B90C80:
-/* 80B90C80  3C 80 80 B9 */	lis r4, m__17daNpc_zrC_Param_c@ha
-/* 80B90C84  38 84 31 FC */	addi r4, r4, m__17daNpc_zrC_Param_c@l
+/* 80B90C80  3C 80 80 B9 */	lis r4, m__17daNpc_zrC_Param_c@ha /* 0x80B931FC@ha */
+/* 80B90C84  38 84 31 FC */	addi r4, r4, m__17daNpc_zrC_Param_c@l /* 0x80B931FC@l */
 /* 80B90C88  A8 84 00 62 */	lha r4, 0x62(r4)
 lbl_80B90C8C:
 /* 80B90C8C  38 A0 00 11 */	li r5, 0x11
 /* 80B90C90  38 C0 00 00 */	li r6, 0
-/* 80B90C94  4B 5C 29 C4 */	b setDamage__8daNpcF_cFiii
+/* 80B90C94  4B 5C 29 C5 */	bl setDamage__8daNpcF_cFiii
 /* 80B90C98  7F E3 FB 78 */	mr r3, r31
 /* 80B90C9C  38 80 00 01 */	li r4, 1
 /* 80B90CA0  48 00 04 9D */	bl setLookMode__11daNpc_zrC_cFi
@@ -44,18 +44,18 @@ lbl_80B90CCC:
 /* 80B90CCC  38 00 00 00 */	li r0, 0
 /* 80B90CD0  B0 1F 09 E6 */	sth r0, 0x9e6(r31)
 /* 80B90CD4  38 7F 0D D0 */	addi r3, r31, 0xdd0
-/* 80B90CD8  4B 7D 13 40 */	b __ptmf_test
+/* 80B90CD8  4B 7D 13 41 */	bl __ptmf_test
 /* 80B90CDC  2C 03 00 00 */	cmpwi r3, 0
 /* 80B90CE0  41 82 00 54 */	beq lbl_80B90D34
 /* 80B90CE4  38 7F 0D DC */	addi r3, r31, 0xddc
 /* 80B90CE8  38 9F 0D D0 */	addi r4, r31, 0xdd0
-/* 80B90CEC  4B 7D 13 5C */	b __ptmf_cmpr
+/* 80B90CEC  4B 7D 13 5D */	bl __ptmf_cmpr
 /* 80B90CF0  2C 03 00 00 */	cmpwi r3, 0
 /* 80B90CF4  40 82 00 1C */	bne lbl_80B90D10
 /* 80B90CF8  7F E3 FB 78 */	mr r3, r31
 /* 80B90CFC  38 80 00 00 */	li r4, 0
 /* 80B90D00  39 9F 0D DC */	addi r12, r31, 0xddc
-/* 80B90D04  4B 7D 13 80 */	b __ptmf_scall
+/* 80B90D04  4B 7D 13 81 */	bl __ptmf_scall
 /* 80B90D08  60 00 00 00 */	nop 
 /* 80B90D0C  48 00 00 28 */	b lbl_80B90D34
 lbl_80B90D10:

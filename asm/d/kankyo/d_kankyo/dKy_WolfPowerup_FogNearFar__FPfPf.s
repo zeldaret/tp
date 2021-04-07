@@ -9,8 +9,8 @@ lbl_8019CCDC:
 /* 8019CCF8  4B FF F6 AD */	bl dKy_sense_pat_get__Fv
 /* 8019CCFC  28 03 00 0F */	cmplwi r3, 0xf
 /* 8019CD00  41 81 01 44 */	bgt lbl_8019CE44
-/* 8019CD04  3C 80 80 3C */	lis r4, lit_4364@ha
-/* 8019CD08  38 84 BE FC */	addi r4, r4, lit_4364@l
+/* 8019CD04  3C 80 80 3C */	lis r4, lit_4364@ha /* 0x803BBEFC@ha */
+/* 8019CD08  38 84 BE FC */	addi r4, r4, lit_4364@l /* 0x803BBEFC@l */
 /* 8019CD0C  54 60 10 3A */	slwi r0, r3, 2
 /* 8019CD10  7C 04 00 2E */	lwzx r0, r4, r0
 /* 8019CD14  7C 09 03 A6 */	mtctr r0

@@ -11,8 +11,8 @@ lbl_800241E8:
 /* 8002420C  38 00 00 00 */	li r0, 0
 /* 80024210  98 0D 87 E8 */	stb r0, data_80450D68(r13)
 /* 80024214  98 8D 80 70 */	stb r4, data_804505F0(r13)
-/* 80024218  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8002421C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80024218  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002421C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80024220  A8 04 4E 08 */	lha r0, 0x4e08(r4)
 /* 80024224  7C 00 07 35 */	extsh. r0, r0
 /* 80024228  40 80 00 0C */	bge lbl_80024234
@@ -21,8 +21,8 @@ lbl_800241E8:
 lbl_80024234:
 /* 80024234  48 00 01 05 */	bl initZone__20dStage_roomControl_cFv
 lbl_80024238:
-/* 80024238  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha
-/* 8002423C  3B E3 60 94 */	addi r31, r3, mStatus__20dStage_roomControl_c@l
+/* 80024238  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 8002423C  3B E3 60 94 */	addi r31, r3, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 /* 80024240  7F FE FB 78 */	mr r30, r31
 /* 80024244  3B A0 00 00 */	li r29, 0
 /* 80024248  3B 80 00 00 */	li r28, 0
@@ -43,16 +43,16 @@ lbl_8002424C:
 /* 80024280  41 80 00 40 */	blt lbl_800242C0
 /* 80024284  7C 60 07 74 */	extsb r0, r3
 /* 80024288  54 04 28 34 */	slwi r4, r0, 5
-/* 8002428C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80024290  38 03 61 C0 */	addi r0, r3, g_dComIfG_gameInfo@l
+/* 8002428C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80024290  38 03 61 C0 */	addi r0, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80024294  7C 60 22 14 */	add r3, r0, r4
 /* 80024298  38 63 09 B6 */	addi r3, r3, 0x9b6
 /* 8002429C  48 01 0A 51 */	bl clearRoomSwitch__13dSv_zoneBit_cFv
 /* 800242A0  88 1E 03 F7 */	lbz r0, 0x3f7(r30)
 /* 800242A4  7C 00 07 74 */	extsb r0, r0
 /* 800242A8  54 04 28 34 */	slwi r4, r0, 5
-/* 800242AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800242B0  38 03 61 C0 */	addi r0, r3, g_dComIfG_gameInfo@l
+/* 800242AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800242B0  38 03 61 C0 */	addi r0, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800242B4  7C 60 22 14 */	add r3, r0, r4
 /* 800242B8  38 63 09 B6 */	addi r3, r3, 0x9b6
 /* 800242BC  48 01 0A 3D */	bl clearRoomItem__13dSv_zoneBit_cFv
@@ -66,13 +66,13 @@ lbl_800242C0:
 /* 800242D8  3B DE 04 04 */	addi r30, r30, 0x404
 /* 800242DC  3B 9C 04 04 */	addi r28, r28, 0x404
 /* 800242E0  41 80 FF 6C */	blt lbl_8002424C
-/* 800242E4  3C 60 80 38 */	lis r3, d_d_stage__stringBase0@ha
-/* 800242E8  38 63 8A 50 */	addi r3, r3, d_d_stage__stringBase0@l
+/* 800242E4  3C 60 80 38 */	lis r3, d_d_stage__stringBase0@ha /* 0x80378A50@ha */
+/* 800242E8  38 63 8A 50 */	addi r3, r3, d_d_stage__stringBase0@l /* 0x80378A50@l */
 /* 800242EC  38 63 00 8D */	addi r3, r3, 0x8d
 /* 800242F0  48 00 B1 45 */	bl dComIfG_getStageRes__FPCc
 /* 800242F4  90 6D 87 EC */	stw r3, mArcBankName__20dStage_roomControl_c(r13)
-/* 800242F8  3C 60 80 38 */	lis r3, d_d_stage__stringBase0@ha
-/* 800242FC  38 63 8A 50 */	addi r3, r3, d_d_stage__stringBase0@l
+/* 800242F8  3C 60 80 38 */	lis r3, d_d_stage__stringBase0@ha /* 0x80378A50@ha */
+/* 800242FC  38 63 8A 50 */	addi r3, r3, d_d_stage__stringBase0@l /* 0x80378A50@l */
 /* 80024300  38 63 00 96 */	addi r3, r3, 0x96
 /* 80024304  48 00 B1 31 */	bl dComIfG_getStageRes__FPCc
 /* 80024308  90 6D 87 F0 */	stw r3, mArcBankData__20dStage_roomControl_c(r13)

@@ -9,9 +9,9 @@ lbl_80CC262C:
 /* 80CC2648  40 82 00 28 */	bne lbl_80CC2670
 /* 80CC264C  28 1F 00 00 */	cmplwi r31, 0
 /* 80CC2650  41 82 00 14 */	beq lbl_80CC2664
-/* 80CC2654  4B 3B 5F D0 */	b __ct__16dBgS_MoveBgActorFv
-/* 80CC2658  3C 60 80 CC */	lis r3, __vt__15daObjRotStair_c@ha
-/* 80CC265C  38 03 28 58 */	addi r0, r3, __vt__15daObjRotStair_c@l
+/* 80CC2654  4B 3B 5F D1 */	bl __ct__16dBgS_MoveBgActorFv
+/* 80CC2658  3C 60 80 CC */	lis r3, __vt__15daObjRotStair_c@ha /* 0x80CC2858@ha */
+/* 80CC265C  38 03 28 58 */	addi r0, r3, __vt__15daObjRotStair_c@l /* 0x80CC2858@l */
 /* 80CC2660  90 1F 05 9C */	stw r0, 0x59c(r31)
 lbl_80CC2664:
 /* 80CC2664  80 1F 04 A0 */	lwz r0, 0x4a0(r31)

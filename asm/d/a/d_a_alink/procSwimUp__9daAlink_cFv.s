@@ -7,8 +7,8 @@ lbl_801041E8:
 /* 801041FC  7C 7E 1B 78 */	mr r30, r3
 /* 80104200  3B FE 1F D0 */	addi r31, r30, 0x1fd0
 /* 80104204  C0 22 92 C0 */	lfs f1, lit_6108(r2)
-/* 80104208  3C 80 80 39 */	lis r4, m__18daAlinkHIO_swim_c0@ha
-/* 8010420C  38 84 ED 2C */	addi r4, r4, m__18daAlinkHIO_swim_c0@l
+/* 80104208  3C 80 80 39 */	lis r4, m__18daAlinkHIO_swim_c0@ha /* 0x8038ED2C@ha */
+/* 8010420C  38 84 ED 2C */	addi r4, r4, m__18daAlinkHIO_swim_c0@l /* 0x8038ED2C@l */
 /* 80104210  C0 44 00 80 */	lfs f2, 0x80(r4)
 /* 80104214  4B FA F7 11 */	bl setNormalSpeedF__9daAlink_cFff
 /* 80104218  7F C3 F3 78 */	mr r3, r30
@@ -50,8 +50,8 @@ lbl_80104280:
 /* 8010429C  48 00 00 40 */	b lbl_801042DC
 lbl_801042A0:
 /* 801042A0  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 801042A4  3C 60 80 39 */	lis r3, m__18daAlinkHIO_swim_c0@ha
-/* 801042A8  38 63 ED 2C */	addi r3, r3, m__18daAlinkHIO_swim_c0@l
+/* 801042A4  3C 60 80 39 */	lis r3, m__18daAlinkHIO_swim_c0@ha /* 0x8038ED2C@ha */
+/* 801042A8  38 63 ED 2C */	addi r3, r3, m__18daAlinkHIO_swim_c0@l /* 0x8038ED2C@l */
 /* 801042AC  C0 03 00 10 */	lfs f0, 0x10(r3)
 /* 801042B0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 801042B4  40 81 00 20 */	ble lbl_801042D4

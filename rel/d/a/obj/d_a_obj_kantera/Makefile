@@ -3,18 +3,16 @@
 #
 
 M494_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kantera.plf
+M494_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kantera.lcf
+M494_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kantera.map
 
 M494_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_kantera/executor.cpp \
-	rel/d/a/obj/d_a_obj_kantera/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_kantera/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_kantera/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_kantera/d_a_obj_kantera.cpp \
 
 M494_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kantera/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kantera/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kantera/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kantera/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kantera/d_a_obj_kantera.o \
 
@@ -31,14 +29,21 @@ M494_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M494_LDSCRIPT) \
+	-unused -map $(M494_MAP) \
+	-w off \
 
 $(M494_TARGET): $(M494_O_FILES) $(M494_LIBS)
+	@echo [494] creating $(M494_TARGET)
 	@echo $(M494_LIBS) $(M494_O_FILES) > build/M494_ofiles
-	$(LD) -partial $(M494_LDFLAGS) -o $(M494_TARGET) @build/M494_ofiles
+	@python3 tools/lcf.py rel 494 --output $(M494_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M494_LDFLAGS) -o $(M494_TARGET) @build/M494_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kantera/%.o: rel/d/a/obj/d_a_obj_kantera/%.cpp
+	@echo [494] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M494_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M494_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

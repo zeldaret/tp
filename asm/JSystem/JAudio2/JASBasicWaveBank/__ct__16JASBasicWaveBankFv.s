@@ -4,11 +4,11 @@ lbl_802984F8:
 /* 80298500  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80298504  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80298508  7C 7F 1B 78 */	mr r31, r3
-/* 8029850C  3C 60 80 3C */	lis r3, __vt__11JASWaveBank@ha
-/* 80298510  38 03 77 80 */	addi r0, r3, __vt__11JASWaveBank@l
+/* 8029850C  3C 60 80 3C */	lis r3, __vt__11JASWaveBank@ha /* 0x803C7780@ha */
+/* 80298510  38 03 77 80 */	addi r0, r3, __vt__11JASWaveBank@l /* 0x803C7780@l */
 /* 80298514  90 1F 00 00 */	stw r0, 0(r31)
-/* 80298518  3C 60 80 3C */	lis r3, __vt__16JASBasicWaveBank@ha
-/* 8029851C  38 03 77 68 */	addi r0, r3, __vt__16JASBasicWaveBank@l
+/* 80298518  3C 60 80 3C */	lis r3, __vt__16JASBasicWaveBank@ha /* 0x803C7768@ha */
+/* 8029851C  38 03 77 68 */	addi r0, r3, __vt__16JASBasicWaveBank@l /* 0x803C7768@l */
 /* 80298520  90 1F 00 00 */	stw r0, 0(r31)
 /* 80298524  38 00 00 00 */	li r0, 0
 /* 80298528  90 1F 00 1C */	stw r0, 0x1c(r31)

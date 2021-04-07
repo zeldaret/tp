@@ -9,8 +9,8 @@ lbl_8004403C:
 /* 80044058  B0 03 00 36 */	sth r0, 0x36(r3)
 /* 8004405C  48 00 00 14 */	b lbl_80044070
 lbl_80044060:
-/* 80044060  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80044064  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80044060  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80044064  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80044068  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 8004406C  48 00 41 11 */	bl cutEnd__16dEvent_manager_cFi
 lbl_80044070:

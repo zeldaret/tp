@@ -9,8 +9,8 @@ lbl_8009A0C8:
 /* 8009A0E4  7F FD FB 78 */	mr r29, r31
 /* 8009A0E8  7F FC FB 78 */	mr r28, r31
 /* 8009A0EC  7F FB FB 78 */	mr r27, r31
-/* 8009A0F0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8009A0F4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8009A0F0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8009A0F4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8009A0F8  3B 43 00 9C */	addi r26, r3, 0x9c
 /* 8009A0FC  7F 43 D3 78 */	mr r3, r26
 /* 8009A100  38 80 00 14 */	li r4, 0x14

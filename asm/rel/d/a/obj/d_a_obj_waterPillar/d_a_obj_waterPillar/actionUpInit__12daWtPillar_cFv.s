@@ -1,7 +1,7 @@
 lbl_80D2D7B8:
 /* 80D2D7B8  94 21 FF F0 */	stwu r1, -0x10(r1)
-/* 80D2D7BC  3C 80 80 D3 */	lis r4, lit_3645@ha
-/* 80D2D7C0  38 84 E7 70 */	addi r4, r4, lit_3645@l
+/* 80D2D7BC  3C 80 80 D3 */	lis r4, lit_3645@ha /* 0x80D2E770@ha */
+/* 80D2D7C0  38 84 E7 70 */	addi r4, r4, lit_3645@l /* 0x80D2E770@l */
 /* 80D2D7C4  C0 64 00 84 */	lfs f3, 0x84(r4)
 /* 80D2D7C8  C0 44 00 8C */	lfs f2, 0x8c(r4)
 /* 80D2D7CC  80 03 00 B0 */	lwz r0, 0xb0(r3)

@@ -6,7 +6,7 @@ lbl_8077C894:
 /* 8077C8A4  93 C1 00 08 */	stw r30, 8(r1)
 /* 8077C8A8  7C 7E 1B 78 */	mr r30, r3
 /* 8077C8AC  7C 9F 23 78 */	mr r31, r4
-/* 8077C8B0  4B 89 C4 30 */	b fopAc_IsActor__FPv
+/* 8077C8B0  4B 89 C4 31 */	bl fopAc_IsActor__FPv
 /* 8077C8B4  2C 03 00 00 */	cmpwi r3, 0
 /* 8077C8B8  41 82 00 64 */	beq lbl_8077C91C
 /* 8077C8BC  A8 1E 00 08 */	lha r0, 8(r30)

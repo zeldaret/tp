@@ -35,8 +35,8 @@ lbl_8010048C:
 /* 801004E4  C0 02 92 BC */	lfs f0, lit_6041(r2)
 /* 801004E8  EC 01 00 32 */	fmuls f0, f1, f0
 /* 801004EC  D0 03 00 1C */	stfs f0, 0x1c(r3)
-/* 801004F0  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 801004F4  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 801004F0  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 801004F4  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 801004F8  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 801004FC  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 80100500  7C 64 02 14 */	add r3, r4, r0
@@ -58,8 +58,8 @@ lbl_8010048C:
 /* 80100540  D0 1F 1D 9C */	stfs f0, 0x1d9c(r31)
 /* 80100544  C0 01 00 10 */	lfs f0, 0x10(r1)
 /* 80100548  D0 1F 1D A0 */	stfs f0, 0x1da0(r31)
-/* 8010054C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80100550  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8010054C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80100550  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80100554  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80100558  38 9F 1D 5C */	addi r4, r31, 0x1d5c
 /* 8010055C  4B F7 4F 41 */	bl RoofChk__4dBgSFP12dBgS_RoofChk
@@ -81,8 +81,8 @@ lbl_8010048C:
 lbl_8010059C:
 /* 8010059C  7F E3 FB 78 */	mr r3, r31
 /* 801005A0  38 80 00 01 */	li r4, 1
-/* 801005A4  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha
-/* 801005A8  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l
+/* 801005A4  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 801005A8  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 801005AC  C0 25 00 70 */	lfs f1, 0x70(r5)
 /* 801005B0  4B FC 64 99 */	bl procFallInit__9daAlink_cFif
 lbl_801005B4:

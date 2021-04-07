@@ -11,8 +11,8 @@ lbl_802456A0:
 /* 802456C4  80 63 00 C4 */	lwz r3, 0xc4(r3)
 /* 802456C8  48 01 01 09 */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 802456CC  80 7C 00 08 */	lwz r3, 8(r28)
-/* 802456D0  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha
-/* 802456D4  38 84 02 8C */	addi r4, r4, g_MsgObject_HIO_c@l
+/* 802456D0  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 802456D4  38 84 02 8C */	addi r4, r4, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 802456D8  C0 04 00 28 */	lfs f0, 0x28(r4)
 /* 802456DC  EC 3F 00 32 */	fmuls f1, f31, f0
 /* 802456E0  48 01 00 F1 */	bl setAlphaRate__13CPaneMgrAlphaFf

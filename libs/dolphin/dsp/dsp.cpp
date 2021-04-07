@@ -38,58 +38,58 @@ extern "C" extern u8 __DSP_curr_task[4];
 // Declarations:
 //
 
-/* 80352430-80352440 0010+00 s=0 e=5 z=0  None .text      DSPCheckMailToDSP */
+/* 80352430-80352440 34CD70 0010+00 0/0 5/5 0/0 .text            DSPCheckMailToDSP */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DSPCheckMailToDSP() {
+asm void DSPCheckMailToDSP() {
     nofralloc
 #include "asm/dolphin/dsp/dsp/DSPCheckMailToDSP.s"
 }
 #pragma pop
 
-/* 80352440-80352450 0010+00 s=0 e=4 z=0  None .text      DSPCheckMailFromDSP */
+/* 80352440-80352450 34CD80 0010+00 0/0 4/4 0/0 .text            DSPCheckMailFromDSP */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DSPCheckMailFromDSP() {
+asm void DSPCheckMailFromDSP() {
     nofralloc
 #include "asm/dolphin/dsp/dsp/DSPCheckMailFromDSP.s"
 }
 #pragma pop
 
-/* 80352450-80352468 0018+00 s=0 e=4 z=0  None .text      DSPReadMailFromDSP */
+/* 80352450-80352468 34CD90 0018+00 0/0 4/4 0/0 .text            DSPReadMailFromDSP */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DSPReadMailFromDSP() {
+asm void DSPReadMailFromDSP() {
     nofralloc
 #include "asm/dolphin/dsp/dsp/DSPReadMailFromDSP.s"
 }
 #pragma pop
 
-/* 80352468-8035247C 0014+00 s=0 e=5 z=0  None .text      DSPSendMailToDSP */
+/* 80352468-8035247C 34CDA8 0014+00 0/0 5/5 0/0 .text            DSPSendMailToDSP */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DSPSendMailToDSP() {
+asm void DSPSendMailToDSP() {
     nofralloc
 #include "asm/dolphin/dsp/dsp/DSPSendMailToDSP.s"
 }
 #pragma pop
 
-/* 8035247C-803524BC 0040+00 s=0 e=1 z=0  None .text      DSPAssertInt */
+/* 8035247C-803524BC 34CDBC 0040+00 0/0 1/1 0/0 .text            DSPAssertInt */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DSPAssertInt() {
+asm void DSPAssertInt() {
     nofralloc
 #include "asm/dolphin/dsp/dsp/DSPAssertInt.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803D1C78-803D1CC0 0045+03 s=2 e=0 z=0  None .data      @1 */
+/* 803D1C78-803D1CC0 02ED98 0045+03 2/1 0/0 0/0 .data            @1 */
 SECTION_DATA static u8 lit_1[69 + 3 /* padding */] = {
     0x3C,
     0x3C,
@@ -166,7 +166,9 @@ SECTION_DATA static u8 lit_1[69 + 3 /* padding */] = {
     0x00,
 };
 
-/* 803D1CC0-803D1CE0 001E+02 s=1 e=0 z=0  None .data      @19 */
+/* 803D1CC0-803D1CE0 02EDE0 001E+02 0/1 0/0 0/0 .data            @19 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 lit_19[30 + 2 /* padding */] = {
     0x44,
     0x53,
@@ -202,13 +204,19 @@ SECTION_DATA static u8 lit_19[30 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 803D1CE0-803D1CEC 000C+00 s=1 e=0 z=0  None .data      @20 */
+/* 803D1CE0-803D1CEC 02EE00 000C+00 0/1 0/0 0/0 .data            @20 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 lit_20[12] = {
     0x41, 0x70, 0x72, 0x20, 0x20, 0x35, 0x20, 0x32, 0x30, 0x30, 0x34, 0x00,
 };
+#pragma pop
 
-/* 803D1CEC-803D1CF8 0009+03 s=1 e=0 z=0  None .data      @21 */
+/* 803D1CEC-803D1CF8 02EE0C 0009+03 0/1 0/0 0/0 .data            @21 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 lit_21[9 + 3 /* padding */] = {
     0x30,
     0x34,
@@ -224,22 +232,23 @@ SECTION_DATA static u8 lit_21[9 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 80450A58-80450A60 0004+04 s=1 e=0 z=0  None .sdata     __DSPVersion */
+/* 80450A58-80450A60 -00001 0004+04 1/1 0/0 0/0 .sdata           __DSPVersion */
 SECTION_SDATA static void* __DSPVersion[1 + 1 /* padding */] = {
     (void*)&lit_1,
     /* padding */
     NULL,
 };
 
-/* 80451900-80451908 0004+04 s=1 e=0 z=0  None .sbss      __DSP_init_flag */
+/* 80451900-80451908 000E00 0004+04 1/1 0/0 0/0 .sbss            __DSP_init_flag */
 static u8 __DSP_init_flag[4 + 4 /* padding */];
 
-/* 803524BC-80352580 00C4+00 s=0 e=2 z=0  None .text      DSPInit */
+/* 803524BC-80352580 34CDFC 00C4+00 0/0 2/2 0/0 .text            DSPInit */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void DSPInit() {
+asm void DSPInit() {
     nofralloc
 #include "asm/dolphin/dsp/dsp/DSPInit.s"
 }

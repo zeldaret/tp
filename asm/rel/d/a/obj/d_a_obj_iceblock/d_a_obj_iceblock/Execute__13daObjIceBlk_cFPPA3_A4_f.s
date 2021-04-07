@@ -29,7 +29,7 @@ lbl_80C228B4:
 /* 80C22920  90 1E 09 40 */	stw r0, 0x940(r30)
 /* 80C22924  98 1E 09 D1 */	stb r0, 0x9d1(r30)
 /* 80C22928  38 7E 07 E4 */	addi r3, r30, 0x7e4
-/* 80C2292C  4B 46 0F 04 */	b Move__10dCcD_GSttsFv
+/* 80C2292C  4B 46 0F 05 */	bl Move__10dCcD_GSttsFv
 /* 80C22930  38 60 00 01 */	li r3, 1
 /* 80C22934  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80C22938  83 C1 00 08 */	lwz r30, 8(r1)

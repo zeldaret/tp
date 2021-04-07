@@ -11,20 +11,20 @@ lbl_8048CF38:
 /* 8048CF5C  7F E0 FB 79 */	or. r0, r31, r31
 /* 8048CF60  41 82 00 20 */	beq lbl_8048CF80
 /* 8048CF64  7C 1E 03 78 */	mr r30, r0
-/* 8048CF68  4B B8 BB FC */	b __ct__10fopAc_ac_cFv
-/* 8048CF6C  3C 60 80 49 */	lis r3, __vt__14daTag_EvtMsg_c@ha
-/* 8048CF70  38 03 D8 D4 */	addi r0, r3, __vt__14daTag_EvtMsg_c@l
+/* 8048CF68  4B B8 BB FD */	bl __ct__10fopAc_ac_cFv
+/* 8048CF6C  3C 60 80 49 */	lis r3, __vt__14daTag_EvtMsg_c@ha /* 0x8048D8D4@ha */
+/* 8048CF70  38 03 D8 D4 */	addi r0, r3, __vt__14daTag_EvtMsg_c@l /* 0x8048D8D4@l */
 /* 8048CF74  90 1E 05 C0 */	stw r0, 0x5c0(r30)
 /* 8048CF78  38 7E 05 74 */	addi r3, r30, 0x574
-/* 8048CF7C  4B DB CF 84 */	b __ct__10dMsgFlow_cFv
+/* 8048CF7C  4B DB CF 85 */	bl __ct__10dMsgFlow_cFv
 lbl_8048CF80:
 /* 8048CF80  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 8048CF84  60 00 00 08 */	ori r0, r0, 8
 /* 8048CF88  90 1F 04 A0 */	stw r0, 0x4a0(r31)
 lbl_8048CF8C:
 /* 8048CF8C  C0 1F 04 EC */	lfs f0, 0x4ec(r31)
-/* 8048CF90  3C 60 80 49 */	lis r3, lit_3826@ha
-/* 8048CF94  C0 23 D7 E8 */	lfs f1, lit_3826@l(r3)
+/* 8048CF90  3C 60 80 49 */	lis r3, lit_3826@ha /* 0x8048D7E8@ha */
+/* 8048CF94  C0 23 D7 E8 */	lfs f1, lit_3826@l(r3)  /* 0x8048D7E8@l */
 /* 8048CF98  EC 00 00 72 */	fmuls f0, f0, f1
 /* 8048CF9C  D0 1F 04 EC */	stfs f0, 0x4ec(r31)
 /* 8048CFA0  C0 1F 04 F0 */	lfs f0, 0x4f0(r31)

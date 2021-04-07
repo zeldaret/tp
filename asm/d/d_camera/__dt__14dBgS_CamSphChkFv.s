@@ -7,8 +7,8 @@ lbl_80165E74:
 /* 80165E88  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80165E8C  7C 9F 23 78 */	mr r31, r4
 /* 80165E90  41 82 00 48 */	beq lbl_80165ED8
-/* 80165E94  3C 80 80 3C */	lis r4, __vt__14dBgS_CamSphChk@ha
-/* 80165E98  38 84 A7 98 */	addi r4, r4, __vt__14dBgS_CamSphChk@l
+/* 80165E94  3C 80 80 3C */	lis r4, __vt__14dBgS_CamSphChk@ha /* 0x803BA798@ha */
+/* 80165E98  38 84 A7 98 */	addi r4, r4, __vt__14dBgS_CamSphChk@l /* 0x803BA798@l */
 /* 80165E9C  90 9E 00 10 */	stw r4, 0x10(r30)
 /* 80165EA0  38 04 00 0C */	addi r0, r4, 0xc
 /* 80165EA4  90 1E 00 20 */	stw r0, 0x20(r30)

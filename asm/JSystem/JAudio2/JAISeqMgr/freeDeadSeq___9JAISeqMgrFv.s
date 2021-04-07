@@ -17,8 +17,8 @@ lbl_802A1A28:
 /* 802A1A40  48 03 A7 1D */	bl remove__10JSUPtrListFP10JSUPtrLink
 /* 802A1A44  28 1F 00 00 */	cmplwi r31, 0
 /* 802A1A48  41 82 00 88 */	beq lbl_802A1AD0
-/* 802A1A4C  3C 60 80 3D */	lis r3, __vt__6JAISeq@ha
-/* 802A1A50  38 03 98 F4 */	addi r0, r3, __vt__6JAISeq@l
+/* 802A1A4C  3C 60 80 3D */	lis r3, __vt__6JAISeq@ha /* 0x803C98F4@ha */
+/* 802A1A50  38 03 98 F4 */	addi r0, r3, __vt__6JAISeq@l /* 0x803C98F4@l */
 /* 802A1A54  90 1F 00 00 */	stw r0, 0(r31)
 /* 802A1A58  34 1F 00 A8 */	addic. r0, r31, 0xa8
 /* 802A1A5C  41 82 00 10 */	beq lbl_802A1A6C
@@ -35,21 +35,21 @@ lbl_802A1A80:
 /* 802A1A80  88 0D 8D A0 */	lbz r0, data_80451320(r13)
 /* 802A1A84  7C 00 07 75 */	extsb. r0, r0
 /* 802A1A88  40 82 00 34 */	bne lbl_802A1ABC
-/* 802A1A8C  3C 60 80 43 */	lis r3, data_804340CC@ha
-/* 802A1A90  38 63 40 CC */	addi r3, r3, data_804340CC@l
+/* 802A1A8C  3C 60 80 43 */	lis r3, data_804340CC@ha /* 0x804340CC@ha */
+/* 802A1A90  38 63 40 CC */	addi r3, r3, data_804340CC@l /* 0x804340CC@l */
 /* 802A1A94  4B FE ED B5 */	bl __ct__17JASGenericMemPoolFv
-/* 802A1A98  3C 60 80 43 */	lis r3, data_804340CC@ha
-/* 802A1A9C  38 63 40 CC */	addi r3, r3, data_804340CC@l
-/* 802A1AA0  3C 80 80 2A */	lis r4, func_802A1AF4@ha
-/* 802A1AA4  38 84 1A F4 */	addi r4, r4, func_802A1AF4@l
-/* 802A1AA8  3C A0 80 43 */	lis r5, lit_715@ha
-/* 802A1AAC  38 A5 40 C0 */	addi r5, r5, lit_715@l
+/* 802A1A98  3C 60 80 43 */	lis r3, data_804340CC@ha /* 0x804340CC@ha */
+/* 802A1A9C  38 63 40 CC */	addi r3, r3, data_804340CC@l /* 0x804340CC@l */
+/* 802A1AA0  3C 80 80 2A */	lis r4, func_802A1AF4@ha /* 0x802A1AF4@ha */
+/* 802A1AA4  38 84 1A F4 */	addi r4, r4, func_802A1AF4@l /* 0x802A1AF4@l */
+/* 802A1AA8  3C A0 80 43 */	lis r5, lit_715@ha /* 0x804340C0@ha */
+/* 802A1AAC  38 A5 40 C0 */	addi r5, r5, lit_715@l /* 0x804340C0@l */
 /* 802A1AB0  48 0C 01 75 */	bl __register_global_object
 /* 802A1AB4  38 00 00 01 */	li r0, 1
 /* 802A1AB8  98 0D 8D A0 */	stb r0, data_80451320(r13)
 lbl_802A1ABC:
-/* 802A1ABC  3C 60 80 43 */	lis r3, data_804340CC@ha
-/* 802A1AC0  38 63 40 CC */	addi r3, r3, data_804340CC@l
+/* 802A1ABC  3C 60 80 43 */	lis r3, data_804340CC@ha /* 0x804340CC@ha */
+/* 802A1AC0  38 63 40 CC */	addi r3, r3, data_804340CC@l /* 0x804340CC@l */
 /* 802A1AC4  7F E4 FB 78 */	mr r4, r31
 /* 802A1AC8  38 A0 03 AC */	li r5, 0x3ac
 /* 802A1ACC  4B FE EE C9 */	bl free__17JASGenericMemPoolFPvUl

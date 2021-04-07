@@ -18,8 +18,8 @@ lbl_801E3FC4:
 /* 801E4004  41 82 00 24 */	beq lbl_801E4028
 /* 801E4008  7F E3 FB 78 */	mr r3, r31
 /* 801E400C  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801E4010  3C 80 80 3C */	lis r4, tv_process@ha
-/* 801E4014  38 04 DD 70 */	addi r0, r4, tv_process@l
+/* 801E4010  3C 80 80 3C */	lis r4, tv_process@ha /* 0x803BDD70@ha */
+/* 801E4014  38 04 DD 70 */	addi r0, r4, tv_process@l /* 0x803BDD70@l */
 /* 801E4018  7D 80 2A 14 */	add r12, r0, r5
 /* 801E401C  48 17 E0 69 */	bl __ptmf_scall
 /* 801E4020  60 00 00 00 */	nop 

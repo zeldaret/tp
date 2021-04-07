@@ -11,16 +11,16 @@ lbl_80C0F330:
 /* 80C0F354  DB 81 00 50 */	stfd f28, 0x50(r1)
 /* 80C0F358  F3 81 00 58 */	psq_st f28, 88(r1), 0, 0 /* qr0 */
 /* 80C0F35C  39 61 00 50 */	addi r11, r1, 0x50
-/* 80C0F360  4B 75 2E 70 */	b _savegpr_26
+/* 80C0F360  4B 75 2E 71 */	bl _savegpr_26
 /* 80C0F364  7C 7C 1B 78 */	mr r28, r3
 /* 80C0F368  7C 9A 23 78 */	mr r26, r4
 /* 80C0F36C  7C BD 2B 78 */	mr r29, r5
-/* 80C0F370  3C 60 80 C1 */	lis r3, m__17daObj_GrA_Param_c@ha
-/* 80C0F374  3B C3 FA 7C */	addi r30, r3, m__17daObj_GrA_Param_c@l
+/* 80C0F370  3C 60 80 C1 */	lis r3, m__17daObj_GrA_Param_c@ha /* 0x80C0FA7C@ha */
+/* 80C0F374  3B C3 FA 7C */	addi r30, r3, m__17daObj_GrA_Param_c@l /* 0x80C0FA7C@l */
 /* 80C0F378  38 61 00 20 */	addi r3, r1, 0x20
 /* 80C0F37C  7F 84 E3 78 */	mr r4, r28
-/* 80C0F380  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80C0F384  3B E5 61 C0 */	addi r31, r5, g_dComIfG_gameInfo@l
+/* 80C0F380  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C0F384  3B E5 61 C0 */	addi r31, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C0F388  80 BF 5D AC */	lwz r5, 0x5dac(r31)
 /* 80C0F38C  48 00 04 61 */	bl getAttentionPos__11daObj_GrA_cFP10fopAc_ac_c
 /* 80C0F390  C0 01 00 20 */	lfs f0, 0x20(r1)
@@ -31,11 +31,11 @@ lbl_80C0F330:
 /* 80C0F3A4  D0 01 00 34 */	stfs f0, 0x34(r1)
 /* 80C0F3A8  7F 83 E3 78 */	mr r3, r28
 /* 80C0F3AC  80 9F 5D AC */	lwz r4, 0x5dac(r31)
-/* 80C0F3B0  4B 40 B3 60 */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 80C0F3B0  4B 40 B3 61 */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 80C0F3B4  A8 1C 04 DE */	lha r0, 0x4de(r28)
 /* 80C0F3B8  7C 00 18 50 */	subf r0, r0, r3
 /* 80C0F3BC  7C 03 07 34 */	extsh r3, r0
-/* 80C0F3C0  4B 75 5D 10 */	b abs
+/* 80C0F3C0  4B 75 5D 11 */	bl abs
 /* 80C0F3C4  2C 03 3C 00 */	cmpwi r3, 0x3c00
 /* 80C0F3C8  40 80 00 30 */	bge lbl_80C0F3F8
 /* 80C0F3CC  2C 1A 00 00 */	cmpwi r26, 0
@@ -162,7 +162,7 @@ lbl_80C0F558:
 /* 80C0F570  E3 81 00 58 */	psq_l f28, 88(r1), 0, 0 /* qr0 */
 /* 80C0F574  CB 81 00 50 */	lfd f28, 0x50(r1)
 /* 80C0F578  39 61 00 50 */	addi r11, r1, 0x50
-/* 80C0F57C  4B 75 2C A0 */	b _restgpr_26
+/* 80C0F57C  4B 75 2C A1 */	bl _restgpr_26
 /* 80C0F580  80 01 00 94 */	lwz r0, 0x94(r1)
 /* 80C0F584  7C 08 03 A6 */	mtlr r0
 /* 80C0F588  38 21 00 90 */	addi r1, r1, 0x90

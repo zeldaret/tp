@@ -17,12 +17,12 @@ lbl_800EEF30:
 /* 800EEF6C  38 C0 27 10 */	li r6, 0x2710
 /* 800EEF70  48 00 00 10 */	b lbl_800EEF80
 lbl_800EEF74:
-/* 800EEF74  3C 80 80 39 */	lis r4, m__19daAlinkHIO_horse_c0@ha
-/* 800EEF78  38 84 E5 A4 */	addi r4, r4, m__19daAlinkHIO_horse_c0@l
+/* 800EEF74  3C 80 80 39 */	lis r4, m__19daAlinkHIO_horse_c0@ha /* 0x8038E5A4@ha */
+/* 800EEF78  38 84 E5 A4 */	addi r4, r4, m__19daAlinkHIO_horse_c0@l /* 0x8038E5A4@l */
 /* 800EEF7C  A8 C4 00 58 */	lha r6, 0x58(r4)
 lbl_800EEF80:
-/* 800EEF80  3C 80 80 39 */	lis r4, m__19daAlinkHIO_horse_c0@ha
-/* 800EEF84  38 84 E5 A4 */	addi r4, r4, m__19daAlinkHIO_horse_c0@l
+/* 800EEF80  3C 80 80 39 */	lis r4, m__19daAlinkHIO_horse_c0@ha /* 0x8038E5A4@ha */
+/* 800EEF84  38 84 E5 A4 */	addi r4, r4, m__19daAlinkHIO_horse_c0@l /* 0x8038E5A4@l */
 /* 800EEF88  A8 04 00 5A */	lha r0, 0x5a(r4)
 /* 800EEF8C  A8 BE 05 9C */	lha r5, 0x59c(r30)
 /* 800EEF90  7C 05 00 00 */	cmpw r5, r0

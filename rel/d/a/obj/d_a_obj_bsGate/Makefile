@@ -3,19 +3,20 @@
 #
 
 M415_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bsGate.plf
+M415_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bsGate.lcf
+M415_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bsGate.map
 
 M415_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_bsGate/executor.cpp \
-	rel/d/a/obj/d_a_obj_bsGate/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_bsGate/d_a_obj_bsGate.cpp \
 
 M415_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bsGate/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bsGate/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bsGate/d_a_obj_bsGate.o \
 
 M415_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bsGate/libRuntime.PPCEABI.H.a \
 
 M415_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M415_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M415_LDSCRIPT) \
+	-unused -map $(M415_MAP) \
+	-w off \
 
 $(M415_TARGET): $(M415_O_FILES) $(M415_LIBS)
+	@echo [415] creating $(M415_TARGET)
 	@echo $(M415_LIBS) $(M415_O_FILES) > build/M415_ofiles
-	$(LD) -partial $(M415_LDFLAGS) -o $(M415_TARGET) @build/M415_ofiles
+	@python3 tools/lcf.py rel 415 --output $(M415_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M415_LDFLAGS) -o $(M415_TARGET) @build/M415_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bsGate/%.o: rel/d/a/obj/d_a_obj_bsGate/%.cpp
+	@echo [415] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M415_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M415_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_bsGate/libs/Runtime.PPCEABI.H/Makefile
 

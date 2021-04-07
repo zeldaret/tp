@@ -20,8 +20,8 @@ lbl_800DFE68:
 /* 800DFE80  90 1F 31 A0 */	stw r0, 0x31a0(r31)
 lbl_800DFE84:
 /* 800DFE84  7F E3 FB 78 */	mr r3, r31
-/* 800DFE88  3C 80 80 39 */	lis r4, m__17daAlinkHIO_bow_c0@ha
-/* 800DFE8C  38 84 E6 58 */	addi r4, r4, m__17daAlinkHIO_bow_c0@l
+/* 800DFE88  3C 80 80 39 */	lis r4, m__17daAlinkHIO_bow_c0@ha /* 0x8038E658@ha */
+/* 800DFE8C  38 84 E6 58 */	addi r4, r4, m__17daAlinkHIO_bow_c0@l /* 0x8038E658@l */
 /* 800DFE90  C0 24 00 30 */	lfs f1, 0x30(r4)
 /* 800DFE94  4B FC EB DD */	bl setBlendAtnMoveAnime__9daAlink_cFf
 /* 800DFE98  38 00 00 00 */	li r0, 0

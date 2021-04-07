@@ -42,10 +42,6 @@ struct dSv_restart_c {
 // Forward References:
 //
 
-static void daTagRestart_Execute(daTagRestart_c*);
-static void daTagRestart_Delete(daTagRestart_c*);
-static void daTagRestart_Create(fopAc_ac_c*);
-
 extern "C" void Create__14daTagRestart_cFv();
 extern "C" void create__14daTagRestart_cFv();
 extern "C" void __dt__4cXyzFv();
@@ -60,9 +56,6 @@ extern "C" extern void* g_profile_Tag_Restart[12];
 //
 // External References:
 //
-
-void mDoMtx_YrotS(f32 (*)[4], s16);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void __ct__10fopAc_ac_cFv();
@@ -87,21 +80,30 @@ extern "C" extern u8 struct_80450D64[4];
 //
 
 /* ############################################################################################## */
-/* 80D607B4-80D607B8 0004+00 s=2 e=0 z=0  None .rodata    @3650 */
-SECTION_RODATA static u32 const lit_3650 = 0xC2C80000;
+/* 80D607B4-80D607B8 000000 0004+00 2/2 0/0 0/0 .rodata          @3650 */
+SECTION_RODATA static f32 const lit_3650 = -100.0f;
+COMPILER_STRIP_GATE(80D607B4, &lit_3650);
 
-/* 80D607B8-80D607BC 0004+00 s=2 e=0 z=0  None .rodata    @3651 */
-SECTION_RODATA static u32 const lit_3651 = 0x42C80000;
+/* 80D607B8-80D607BC 000004 0004+00 0/2 0/0 0/0 .rodata          @3651 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3651 = 100.0f;
+COMPILER_STRIP_GATE(80D607B8, &lit_3651);
+#pragma pop
 
-/* 80D607BC-80D607C0 0004+00 s=2 e=0 z=0  None .rodata    @3652 */
+/* 80D607BC-80D607C0 000008 0004+00 0/2 0/0 0/0 .rodata          @3652 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_3652[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80D607BC, &lit_3652);
+#pragma pop
 
-/* 80D603F8-80D6048C 0094+00 s=1 e=0 z=0  None .text      Create__14daTagRestart_cFv */
+/* 80D603F8-80D6048C 000078 0094+00 1/1 0/0 0/0 .text            Create__14daTagRestart_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -111,7 +113,7 @@ asm void daTagRestart_c::Create() {
 }
 #pragma pop
 
-/* 80D6048C-80D60520 0094+00 s=1 e=0 z=0  None .text      create__14daTagRestart_cFv */
+/* 80D6048C-80D60520 00010C 0094+00 1/1 0/0 0/0 .text            create__14daTagRestart_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -121,7 +123,7 @@ asm void daTagRestart_c::create() {
 }
 #pragma pop
 
-/* 80D60520-80D6055C 003C+00 s=1 e=0 z=0  None .text      __dt__4cXyzFv */
+/* 80D60520-80D6055C 0001A0 003C+00 1/1 0/0 0/0 .text            __dt__4cXyzFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -131,12 +133,12 @@ asm cXyz::~cXyz() {
 }
 #pragma pop
 
-/* 80D6055C-80D60560 0004+00 s=1 e=0 z=0  None .text      __ct__4cXyzFv */
+/* 80D6055C-80D60560 0001DC 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
 cXyz::cXyz() {
     /* empty function */
 }
 
-/* 80D60560-80D60744 01E4+00 s=1 e=0 z=0  None .text      execute__14daTagRestart_cFv */
+/* 80D60560-80D60744 0001E0 01E4+00 1/1 0/0 0/0 .text            execute__14daTagRestart_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -146,44 +148,44 @@ asm void daTagRestart_c::execute() {
 }
 #pragma pop
 
-/* 80D60744-80D6074C 0008+00 s=1 e=0 z=0  None .text      _delete__14daTagRestart_cFv */
+/* 80D60744-80D6074C 0003C4 0008+00 1/1 0/0 0/0 .text            _delete__14daTagRestart_cFv */
 bool daTagRestart_c::_delete() {
     return true;
 }
 
-/* 80D6074C-80D6076C 0020+00 s=1 e=0 z=0  None .text      daTagRestart_Execute__FP14daTagRestart_c
- */
+/* 80D6074C-80D6076C 0003CC 0020+00 1/0 0/0 0/0 .text daTagRestart_Execute__FP14daTagRestart_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagRestart_Execute(daTagRestart_c* param_0) {
+static asm void daTagRestart_Execute(daTagRestart_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_setrestart/d_a_tag_setrestart/daTagRestart_Execute__FP14daTagRestart_c.s"
 }
 #pragma pop
 
-/* 80D6076C-80D6078C 0020+00 s=1 e=0 z=0  None .text      daTagRestart_Delete__FP14daTagRestart_c */
+/* 80D6076C-80D6078C 0003EC 0020+00 1/0 0/0 0/0 .text daTagRestart_Delete__FP14daTagRestart_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagRestart_Delete(daTagRestart_c* param_0) {
+static asm void daTagRestart_Delete(daTagRestart_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_setrestart/d_a_tag_setrestart/daTagRestart_Delete__FP14daTagRestart_c.s"
 }
 #pragma pop
 
-/* 80D6078C-80D607AC 0020+00 s=1 e=0 z=0  None .text      daTagRestart_Create__FP10fopAc_ac_c */
+/* 80D6078C-80D607AC 00040C 0020+00 1/0 0/0 0/0 .text            daTagRestart_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagRestart_Create(fopAc_ac_c* param_0) {
+static asm void daTagRestart_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_setrestart/d_a_tag_setrestart/daTagRestart_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D607C0-80D607E0 0020+00 s=1 e=0 z=0  None .data      l_daTagRestart_Method */
+/* 80D607C0-80D607E0 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagRestart_Method */
 SECTION_DATA static void* l_daTagRestart_Method[8] = {
     (void*)daTagRestart_Create__FP10fopAc_ac_c,
     (void*)daTagRestart_Delete__FP14daTagRestart_c,
@@ -195,8 +197,8 @@ SECTION_DATA static void* l_daTagRestart_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D607E0-80D60810 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_Restart */
-SECTION_DATA void* g_profile_Tag_Restart[12] = {
+/* 80D607E0-80D60810 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Restart */
+SECTION_DATA extern void* g_profile_Tag_Restart[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x022F0000, (void*)&g_fpcLf_Method,
     (void*)0x0000059C, (void*)NULL,

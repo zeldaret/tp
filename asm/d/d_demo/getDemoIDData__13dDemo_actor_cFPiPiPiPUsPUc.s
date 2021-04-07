@@ -20,8 +20,8 @@ lbl_80038338:
 /* 80038380  38 00 00 00 */	li r0, 0
 /* 80038384  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80038388  38 61 00 0C */	addi r3, r1, 0xc
-/* 8003838C  3C 80 80 42 */	lis r4, dummy@ha
-/* 80038390  38 84 46 48 */	addi r4, r4, dummy@l
+/* 8003838C  3C 80 80 42 */	lis r4, dummy@ha /* 0x80424648@ha */
+/* 80038390  38 84 46 48 */	addi r4, r4, dummy@l /* 0x80424648@l */
 /* 80038394  48 25 16 ED */	bl getData__Q47JStudio3stb4data22TParse_TParagraph_dataCFPQ57JStudio3stb4data22TParse_TParagraph_data5TData
 /* 80038398  38 00 00 01 */	li r0, 1
 /* 8003839C  98 0D 88 C8 */	stb r0, struct_80450E48+0x0(r13)
@@ -29,8 +29,8 @@ lbl_800383A0:
 /* 800383A0  88 0D 88 C9 */	lbz r0, struct_80450E48+0x1(r13)
 /* 800383A4  7C 00 07 75 */	extsb. r0, r0
 /* 800383A8  40 82 00 1C */	bne lbl_800383C4
-/* 800383AC  3C 60 80 42 */	lis r3, dummy@ha
-/* 800383B0  38 63 46 48 */	addi r3, r3, dummy@l
+/* 800383AC  3C 60 80 42 */	lis r3, dummy@ha /* 0x80424648@ha */
+/* 800383B0  38 63 46 48 */	addi r3, r3, dummy@l /* 0x80424648@l */
 /* 800383B4  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 800383B8  90 0D 88 CC */	stw r0, it(r13)
 /* 800383BC  38 00 00 01 */	li r0, 1
@@ -49,15 +49,15 @@ lbl_800383C4:
 /* 800383EC  90 81 00 2C */	stw r4, 0x2c(r1)
 /* 800383F0  7C 04 00 40 */	cmplw r4, r0
 /* 800383F4  40 82 00 1C */	bne lbl_80038410
-/* 800383F8  3C 60 80 42 */	lis r3, dummy@ha
-/* 800383FC  38 63 46 48 */	addi r3, r3, dummy@l
+/* 800383F8  3C 60 80 42 */	lis r3, dummy@ha /* 0x80424648@ha */
+/* 800383FC  38 63 46 48 */	addi r3, r3, dummy@l /* 0x80424648@l */
 /* 80038400  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 80038404  90 0D 88 CC */	stw r0, it(r13)
 /* 80038408  38 60 00 00 */	li r3, 0
 /* 8003840C  48 00 00 6C */	b lbl_80038478
 lbl_80038410:
-/* 80038410  3C 60 80 42 */	lis r3, dummy@ha
-/* 80038414  38 63 46 48 */	addi r3, r3, dummy@l
+/* 80038410  3C 60 80 42 */	lis r3, dummy@ha /* 0x80424648@ha */
+/* 80038414  38 63 46 48 */	addi r3, r3, dummy@l /* 0x80424648@l */
 /* 80038418  80 03 00 0C */	lwz r0, 0xc(r3)
 /* 8003841C  90 01 00 18 */	stw r0, 0x18(r1)
 /* 80038420  90 01 00 1C */	stw r0, 0x1c(r1)

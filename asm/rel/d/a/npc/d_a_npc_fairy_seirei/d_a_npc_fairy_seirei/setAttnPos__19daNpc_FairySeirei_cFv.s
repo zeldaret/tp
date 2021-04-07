@@ -11,10 +11,10 @@ lbl_80540988:
 /* 805409AC  C0 03 04 D8 */	lfs f0, 0x4d8(r3)
 /* 805409B0  D0 03 05 58 */	stfs f0, 0x558(r3)
 /* 805409B4  C0 43 05 54 */	lfs f2, 0x554(r3)
-/* 805409B8  3C 80 80 54 */	lis r4, m__25daNpc_FairySeirei_Param_c@ha
-/* 805409BC  C0 24 1D 8C */	lfs f1, m__25daNpc_FairySeirei_Param_c@l(r4)
-/* 805409C0  3C 80 80 54 */	lis r4, lit_4465@ha
-/* 805409C4  C0 04 1E 34 */	lfs f0, lit_4465@l(r4)
+/* 805409B8  3C 80 80 54 */	lis r4, m__25daNpc_FairySeirei_Param_c@ha /* 0x80541D8C@ha */
+/* 805409BC  C0 24 1D 8C */	lfs f1, m__25daNpc_FairySeirei_Param_c@l(r4)  /* 0x80541D8C@l */
+/* 805409C0  3C 80 80 54 */	lis r4, lit_4465@ha /* 0x80541E34@ha */
+/* 805409C4  C0 04 1E 34 */	lfs f0, lit_4465@l(r4)  /* 0x80541E34@l */
 /* 805409C8  EC 01 00 28 */	fsubs f0, f1, f0
 /* 805409CC  EC 02 00 2A */	fadds f0, f2, f0
 /* 805409D0  D0 03 05 54 */	stfs f0, 0x554(r3)

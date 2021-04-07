@@ -49,8 +49,8 @@ lbl_802A7984:
 /* 802A799C  93 BF 00 0C */	stw r29, 0xc(r31)
 /* 802A79A0  38 00 00 00 */	li r0, 0
 /* 802A79A4  90 1F 00 10 */	stw r0, 0x10(r31)
-/* 802A79A8  3C 60 80 2B */	lis r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
-/* 802A79AC  38 03 82 8C */	addi r0, r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
+/* 802A79A8  3C 60 80 2B */	lis r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha /* 0x802A828C@ha */
+/* 802A79AC  38 03 82 8C */	addi r0, r3, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l /* 0x802A828C@l */
 /* 802A79B0  90 1F 00 24 */	stw r0, 0x24(r31)
 /* 802A79B4  7F E3 FB 78 */	mr r3, r31
 /* 802A79B8  7F A4 EB 78 */	mr r4, r29

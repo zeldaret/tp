@@ -6,7 +6,7 @@ lbl_80C952F8:
 /* 80C95308  93 C1 00 08 */	stw r30, 8(r1)
 /* 80C9530C  7C 7E 1B 78 */	mr r30, r3
 /* 80C95310  7C 9F 23 78 */	mr r31, r4
-/* 80C95314  4B 38 39 CC */	b fopAc_IsActor__FPv
+/* 80C95314  4B 38 39 CD */	bl fopAc_IsActor__FPv
 /* 80C95318  2C 03 00 00 */	cmpwi r3, 0
 /* 80C9531C  41 82 00 34 */	beq lbl_80C95350
 /* 80C95320  7C 1E F8 40 */	cmplw r30, r31
@@ -15,7 +15,7 @@ lbl_80C952F8:
 /* 80C9532C  2C 00 02 92 */	cmpwi r0, 0x292
 /* 80C95330  40 82 00 20 */	bne lbl_80C95350
 /* 80C95334  7F C3 F3 78 */	mr r3, r30
-/* 80C95338  4B E1 95 B0 */	b getType__13daNpc_Pouya_cFv
+/* 80C95338  4B E1 95 B1 */	bl getType__13daNpc_Pouya_cFv
 /* 80C9533C  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80C95340  28 00 00 01 */	cmplwi r0, 1
 /* 80C95344  40 82 00 0C */	bne lbl_80C95350

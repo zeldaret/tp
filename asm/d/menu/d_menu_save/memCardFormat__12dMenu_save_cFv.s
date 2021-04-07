@@ -10,8 +10,8 @@ lbl_801F22CC:
 /* 801F22EC  38 03 FF FF */	addi r0, r3, -1
 /* 801F22F0  98 1F 01 BD */	stb r0, 0x1bd(r31)
 lbl_801F22F4:
-/* 801F22F4  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 801F22F8  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l
+/* 801F22F4  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 801F22F8  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 801F22FC  4B E2 4C 31 */	bl FormatSync__15mDoMemCd_Ctrl_cFv
 /* 801F2300  90 7F 21 98 */	stw r3, 0x2198(r31)
 /* 801F2304  80 1F 21 98 */	lwz r0, 0x2198(r31)

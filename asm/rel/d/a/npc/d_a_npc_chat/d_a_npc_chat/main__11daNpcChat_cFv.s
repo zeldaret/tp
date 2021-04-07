@@ -5,13 +5,13 @@ lbl_80982F4C:
 /* 80982F58  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80982F5C  7C 7F 1B 78 */	mr r31, r3
 /* 80982F60  38 7F 0D D8 */	addi r3, r31, 0xdd8
-/* 80982F64  4B 9D F0 B4 */	b __ptmf_test
+/* 80982F64  4B 9D F0 B5 */	bl __ptmf_test
 /* 80982F68  2C 03 00 00 */	cmpwi r3, 0
 /* 80982F6C  41 82 00 18 */	beq lbl_80982F84
 /* 80982F70  7F E3 FB 78 */	mr r3, r31
 /* 80982F74  38 80 00 00 */	li r4, 0
 /* 80982F78  39 9F 0D D8 */	addi r12, r31, 0xdd8
-/* 80982F7C  4B 9D F1 08 */	b __ptmf_scall
+/* 80982F7C  4B 9D F1 09 */	bl __ptmf_scall
 /* 80982F80  60 00 00 00 */	nop 
 lbl_80982F84:
 /* 80982F84  7F E3 FB 78 */	mr r3, r31

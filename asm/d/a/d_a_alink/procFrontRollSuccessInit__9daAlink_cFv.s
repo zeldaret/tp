@@ -13,8 +13,8 @@ lbl_800C5160:
 /* 800C518C  4B FF CD E1 */	bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800C5190  7F C3 F3 78 */	mr r3, r30
 /* 800C5194  38 80 00 25 */	li r4, 0x25
-/* 800C5198  3C A0 80 39 */	lis r5, m__23daAlinkHIO_frontRoll_c0@ha
-/* 800C519C  38 A5 D7 BC */	addi r5, r5, m__23daAlinkHIO_frontRoll_c0@l
+/* 800C5198  3C A0 80 39 */	lis r5, m__23daAlinkHIO_frontRoll_c0@ha /* 0x8038D7BC@ha */
+/* 800C519C  38 A5 D7 BC */	addi r5, r5, m__23daAlinkHIO_frontRoll_c0@l /* 0x8038D7BC@l */
 /* 800C51A0  38 A5 00 28 */	addi r5, r5, 0x28
 /* 800C51A4  4B FE 7F 51 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800C51A8  C0 02 92 C0 */	lfs f0, lit_6108(r2)
@@ -34,8 +34,8 @@ lbl_800C51D4:
 /* 800C51DC  80 7E 1F 2C */	lwz r3, 0x1f2c(r30)
 /* 800C51E0  D0 03 00 08 */	stfs f0, 8(r3)
 lbl_800C51E4:
-/* 800C51E4  3C 60 80 42 */	lis r3, l_halfAtnWaitBaseAnime@ha
-/* 800C51E8  C4 03 55 44 */	lfsu f0, l_halfAtnWaitBaseAnime@l(r3)
+/* 800C51E4  3C 60 80 42 */	lis r3, l_halfAtnWaitBaseAnime@ha /* 0x80425544@ha */
+/* 800C51E8  C4 03 55 44 */	lfsu f0, l_halfAtnWaitBaseAnime@l(r3)  /* 0x80425544@l */
 /* 800C51EC  D0 1E 35 88 */	stfs f0, 0x3588(r30)
 /* 800C51F0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800C51F4  D0 1E 35 8C */	stfs f0, 0x358c(r30)

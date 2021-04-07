@@ -37,15 +37,15 @@ lbl_801988F4:
 /* 801988F8  4B FF CA D5 */	bl decAlpha__16dSelect_cursor_cFv
 lbl_801988FC:
 /* 801988FC  80 7F 0E 44 */	lwz r3, 0xe44(r31)
-/* 80198900  3C 80 80 43 */	lis r4, g_cursorHIO@ha
-/* 80198904  38 84 01 10 */	addi r4, r4, g_cursorHIO@l
+/* 80198900  3C 80 80 43 */	lis r4, g_cursorHIO@ha /* 0x80430110@ha */
+/* 80198904  38 84 01 10 */	addi r4, r4, g_cursorHIO@l /* 0x80430110@l */
 /* 80198908  C0 24 00 2C */	lfs f1, 0x2c(r4)
 /* 8019890C  4B FF C8 BD */	bl setScale__16dSelect_cursor_cFf
 /* 80198910  88 1F 0F 6E */	lbz r0, 0xf6e(r31)
 /* 80198914  28 00 00 00 */	cmplwi r0, 0
 /* 80198918  41 82 00 20 */	beq lbl_80198938
-/* 8019891C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80198920  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8019891C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80198920  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80198924  38 63 5F 64 */	addi r3, r3, 0x5f64
 /* 80198928  38 83 01 B4 */	addi r4, r3, 0x1b4
 /* 8019892C  38 A3 01 B8 */	addi r5, r3, 0x1b8

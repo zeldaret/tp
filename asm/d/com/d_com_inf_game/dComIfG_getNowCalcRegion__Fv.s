@@ -7,13 +7,13 @@ lbl_8002EC54:
 /* 8002EC68  90 0C 00 04 */	stw r0, 4(r12)
 /* 8002EC6C  7D 8B 63 78 */	mr r11, r12
 /* 8002EC70  48 33 35 5D */	bl _savegpr_25
-/* 8002EC74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002EC78  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
+/* 8002EC74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002EC78  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002EC7C  80 7E 5C 68 */	lwz r3, 0x5c68(r30)
 /* 8002EC80  38 81 00 60 */	addi r4, r1, 0x60
 /* 8002EC84  38 A0 08 00 */	li r5, 0x800
-/* 8002EC88  3C C0 80 38 */	lis r6, d_com_d_com_inf_game__stringBase0@ha
-/* 8002EC8C  38 C6 8F 38 */	addi r6, r6, d_com_d_com_inf_game__stringBase0@l
+/* 8002EC88  3C C0 80 38 */	lis r6, d_com_d_com_inf_game__stringBase0@ha /* 0x80378F38@ha */
+/* 8002EC8C  38 C6 8F 38 */	addi r6, r6, d_com_d_com_inf_game__stringBase0@l /* 0x80378F38@l */
 /* 8002EC90  38 C6 01 52 */	addi r6, r6, 0x152
 /* 8002EC94  81 83 00 00 */	lwz r12, 0(r3)
 /* 8002EC98  81 8C 00 1C */	lwz r12, 0x1c(r12)
@@ -82,8 +82,8 @@ lbl_8002ED54:
 /* 8002ED74  57 40 06 3F */	clrlwi. r0, r26, 0x18
 /* 8002ED78  41 82 00 48 */	beq lbl_8002EDC0
 /* 8002ED7C  38 00 FF FF */	li r0, -1
-/* 8002ED80  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002ED84  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002ED80  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002ED84  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002ED88  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 8002ED8C  28 03 00 00 */	cmplwi r3, 0
 /* 8002ED90  41 82 00 0C */	beq lbl_8002ED9C
@@ -92,8 +92,8 @@ lbl_8002ED54:
 lbl_8002ED9C:
 /* 8002ED9C  2C 00 00 00 */	cmpwi r0, 0
 /* 8002EDA0  40 80 00 14 */	bge lbl_8002EDB4
-/* 8002EDA4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002EDA8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002EDA4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002EDA8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002EDAC  88 03 4E 0A */	lbz r0, 0x4e0a(r3)
 /* 8002EDB0  7C 00 07 74 */	extsb r0, r0
 lbl_8002EDB4:

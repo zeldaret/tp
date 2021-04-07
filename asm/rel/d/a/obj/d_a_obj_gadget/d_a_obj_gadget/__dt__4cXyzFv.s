@@ -7,7 +7,7 @@ lbl_80BF33CC:
 /* 80BF33E0  41 82 00 10 */	beq lbl_80BF33F0
 /* 80BF33E4  7C 80 07 35 */	extsh. r0, r4
 /* 80BF33E8  40 81 00 08 */	ble lbl_80BF33F0
-/* 80BF33EC  4B 6D B9 50 */	b __dl__FPv
+/* 80BF33EC  4B 6D B9 51 */	bl __dl__FPv
 lbl_80BF33F0:
 /* 80BF33F0  7F E3 FB 78 */	mr r3, r31
 /* 80BF33F4  83 E1 00 0C */	lwz r31, 0xc(r1)

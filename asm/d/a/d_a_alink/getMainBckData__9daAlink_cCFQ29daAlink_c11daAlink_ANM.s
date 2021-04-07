@@ -6,8 +6,8 @@ lbl_800AC450:
 /* 800AC460  48 2B 5D 7D */	bl _savegpr_29
 /* 800AC464  7C 7D 1B 78 */	mr r29, r3
 /* 800AC468  7C 9E 23 78 */	mr r30, r4
-/* 800AC46C  3C 60 80 39 */	lis r3, lit_3757@ha
-/* 800AC470  3B E3 D6 58 */	addi r31, r3, lit_3757@l
+/* 800AC46C  3C 60 80 39 */	lis r3, lit_3757@ha /* 0x8038D658@ha */
+/* 800AC470  3B E3 D6 58 */	addi r31, r3, lit_3757@l /* 0x8038D658@l */
 /* 800AC474  A0 1D 2F DC */	lhz r0, 0x2fdc(r29)
 /* 800AC478  28 00 00 48 */	cmplwi r0, 0x48
 /* 800AC47C  40 82 00 28 */	bne lbl_800AC4A4

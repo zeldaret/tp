@@ -9,19 +9,19 @@ lbl_80C20C98:
 /* 80C20CB4  DB A1 00 30 */	stfd f29, 0x30(r1)
 /* 80C20CB8  F3 A1 00 38 */	psq_st f29, 56(r1), 0, 0 /* qr0 */
 /* 80C20CBC  39 61 00 30 */	addi r11, r1, 0x30
-/* 80C20CC0  4B 74 15 18 */	b _savegpr_28
+/* 80C20CC0  4B 74 15 19 */	bl _savegpr_28
 /* 80C20CC4  7C 7E 1B 78 */	mr r30, r3
 /* 80C20CC8  7C 9C 23 78 */	mr r28, r4
-/* 80C20CCC  3C 60 80 C2 */	lis r3, lit_3644@ha
-/* 80C20CD0  3B E3 1A F8 */	addi r31, r3, lit_3644@l
+/* 80C20CCC  3C 60 80 C2 */	lis r3, lit_3644@ha /* 0x80C21AF8@ha */
+/* 80C20CD0  3B E3 1A F8 */	addi r31, r3, lit_3644@l /* 0x80C21AF8@l */
 /* 80C20CD4  38 00 00 01 */	li r0, 1
 /* 80C20CD8  98 1E 05 E8 */	stb r0, 0x5e8(r30)
 /* 80C20CDC  38 7E 04 D0 */	addi r3, r30, 0x4d0
-/* 80C20CE0  4B 64 FF 24 */	b cLib_targetAngleY__FPC3VecPC3Vec
+/* 80C20CE0  4B 64 FF 25 */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 80C20CE4  7C 7D 1B 78 */	mr r29, r3
 /* 80C20CE8  38 7E 04 D0 */	addi r3, r30, 0x4d0
 /* 80C20CEC  7F 84 E3 78 */	mr r4, r28
-/* 80C20CF0  4B 72 66 AC */	b PSVECSquareDistance
+/* 80C20CF0  4B 72 66 AD */	bl PSVECSquareDistance
 /* 80C20CF4  C0 1F 00 08 */	lfs f0, 8(r31)
 /* 80C20CF8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80C20CFC  40 81 00 58 */	ble lbl_80C20D54
@@ -50,8 +50,8 @@ lbl_80C20D54:
 /* 80C20D54  C8 1F 00 28 */	lfd f0, 0x28(r31)
 /* 80C20D58  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80C20D5C  40 80 00 10 */	bge lbl_80C20D6C
-/* 80C20D60  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80C20D64  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80C20D60  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80C20D64  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80C20D68  48 00 00 70 */	b lbl_80C20DD8
 lbl_80C20D6C:
 /* 80C20D6C  D0 21 00 08 */	stfs f1, 8(r1)
@@ -85,11 +85,11 @@ lbl_80C20DC4:
 lbl_80C20DC8:
 /* 80C20DC8  2C 00 00 01 */	cmpwi r0, 1
 /* 80C20DCC  40 82 00 0C */	bne lbl_80C20DD8
-/* 80C20DD0  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80C20DD4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80C20DD0  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80C20DD4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80C20DD8:
-/* 80C20DD8  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80C20DDC  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 80C20DD8  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80C20DDC  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80C20DE0  A8 1E 04 E6 */	lha r0, 0x4e6(r30)
 /* 80C20DE4  7C 00 E8 50 */	subf r0, r0, r29
 /* 80C20DE8  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
@@ -102,8 +102,8 @@ lbl_80C20DD8:
 /* 80C20E04  88 1E 05 C5 */	lbz r0, 0x5c5(r30)
 /* 80C20E08  28 00 00 FF */	cmplwi r0, 0xff
 /* 80C20E0C  40 82 00 10 */	bne lbl_80C20E1C
-/* 80C20E10  3C 60 80 C2 */	lis r3, l_HIO@ha
-/* 80C20E14  38 63 1C 48 */	addi r3, r3, l_HIO@l
+/* 80C20E10  3C 60 80 C2 */	lis r3, l_HIO@ha /* 0x80C21C48@ha */
+/* 80C20E14  38 63 1C 48 */	addi r3, r3, l_HIO@l /* 0x80C21C48@l */
 /* 80C20E18  C3 E3 00 08 */	lfs f31, 8(r3)
 lbl_80C20E1C:
 /* 80C20E1C  C0 5E 05 C8 */	lfs f2, 0x5c8(r30)
@@ -142,7 +142,7 @@ lbl_80C20E1C:
 /* 80C20EA0  E3 A1 00 38 */	psq_l f29, 56(r1), 0, 0 /* qr0 */
 /* 80C20EA4  CB A1 00 30 */	lfd f29, 0x30(r1)
 /* 80C20EA8  39 61 00 30 */	addi r11, r1, 0x30
-/* 80C20EAC  4B 74 13 78 */	b _restgpr_28
+/* 80C20EAC  4B 74 13 79 */	bl _restgpr_28
 /* 80C20EB0  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 80C20EB4  7C 08 03 A6 */	mtlr r0
 /* 80C20EB8  38 21 00 60 */	addi r1, r1, 0x60

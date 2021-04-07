@@ -10,7 +10,7 @@ lbl_80BC4560:
 /* 80BC4580  A8 A3 00 00 */	lha r5, 0(r3)
 /* 80BC4584  38 7E 07 90 */	addi r3, r30, 0x790
 /* 80BC4588  38 80 00 00 */	li r4, 0
-/* 80BC458C  4B 6A C1 44 */	b cLib_chaseS__FPsss
+/* 80BC458C  4B 6A C1 45 */	bl cLib_chaseS__FPsss
 /* 80BC4590  38 C0 00 00 */	li r6, 0
 /* 80BC4594  38 00 00 02 */	li r0, 2
 /* 80BC4598  7C 09 03 A6 */	mtctr r0
@@ -41,13 +41,13 @@ lbl_80BC45DC:
 /* 80BC45E8  41 82 00 28 */	beq lbl_80BC4610
 /* 80BC45EC  2C 03 00 00 */	cmpwi r3, 0
 /* 80BC45F0  41 82 00 20 */	beq lbl_80BC4610
-/* 80BC45F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BC45F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80BC45F4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BC45F8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BC45FC  80 1E 00 B0 */	lwz r0, 0xb0(r30)
 /* 80BC4600  54 04 06 3E */	clrlwi r4, r0, 0x18
 /* 80BC4604  88 1E 04 BA */	lbz r0, 0x4ba(r30)
 /* 80BC4608  7C 05 07 74 */	extsb r5, r0
-/* 80BC460C  4B 47 0B F4 */	b onSwitch__10dSv_info_cFii
+/* 80BC460C  4B 47 0B F5 */	bl onSwitch__10dSv_info_cFii
 lbl_80BC4610:
 /* 80BC4610  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80BC4614  83 C1 00 08 */	lwz r30, 8(r1)

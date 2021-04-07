@@ -3,17 +3,15 @@
 #
 
 M81_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fish.plf
+M81_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fish.lcf
+M81_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fish.map
 
 M81_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_fish/executor.cpp \
-	rel/d/a/npc/d_a_npc_fish/unknown_translation_unit_ctors.cpp \
-	rel/d/a/npc/d_a_npc_fish/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/npc/d_a_npc_fish/d_a_npc_fish.cpp \
 
 M81_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_fish/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_fish/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_fish/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_fish/d_a_npc_fish.o \
 
 M81_LIBS := \
@@ -29,14 +27,21 @@ M81_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M81_LDSCRIPT) \
+	-unused -map $(M81_MAP) \
+	-w off \
 
 $(M81_TARGET): $(M81_O_FILES) $(M81_LIBS)
+	@echo [ 81] creating $(M81_TARGET)
 	@echo $(M81_LIBS) $(M81_O_FILES) > build/M81_ofiles
-	$(LD) -partial $(M81_LDFLAGS) -o $(M81_TARGET) @build/M81_ofiles
+	@python3 tools/lcf.py rel 81 --output $(M81_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M81_LDFLAGS) -o $(M81_TARGET) @build/M81_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fish/%.o: rel/d/a/npc/d_a_npc_fish/%.cpp
+	@echo [ 81] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M81_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M81_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

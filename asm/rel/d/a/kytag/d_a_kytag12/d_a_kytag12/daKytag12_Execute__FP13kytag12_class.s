@@ -2,8 +2,8 @@ lbl_8085ED48:
 /* 8085ED48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8085ED4C  7C 08 02 A6 */	mflr r0
 /* 8085ED50  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8085ED54  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 8085ED58  38 84 CA 54 */	addi r4, r4, g_env_light@l
+/* 8085ED54  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 8085ED58  38 84 CA 54 */	addi r4, r4, g_env_light@l /* 0x8042CA54@l */
 /* 8085ED5C  88 04 10 51 */	lbz r0, 0x1051(r4)
 /* 8085ED60  88 A3 04 BA */	lbz r5, 0x4ba(r3)
 /* 8085ED64  7C A5 07 74 */	extsb r5, r5
@@ -37,14 +37,14 @@ lbl_8085EDBC:
 /* 8085EDC4  48 00 00 28 */	b lbl_8085EDEC
 lbl_8085EDC8:
 /* 8085EDC8  38 00 03 E8 */	li r0, 0x3e8
-/* 8085EDCC  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 8085EDD0  38 84 CA 54 */	addi r4, r4, g_env_light@l
+/* 8085EDCC  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 8085EDD0  38 84 CA 54 */	addi r4, r4, g_env_light@l /* 0x8042CA54@l */
 /* 8085EDD4  90 04 10 54 */	stw r0, 0x1054(r4)
 /* 8085EDD8  48 00 00 14 */	b lbl_8085EDEC
 lbl_8085EDDC:
 /* 8085EDDC  38 00 01 F4 */	li r0, 0x1f4
-/* 8085EDE0  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 8085EDE4  38 84 CA 54 */	addi r4, r4, g_env_light@l
+/* 8085EDE0  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 8085EDE4  38 84 CA 54 */	addi r4, r4, g_env_light@l /* 0x8042CA54@l */
 /* 8085EDE8  90 04 10 54 */	stw r0, 0x1054(r4)
 lbl_8085EDEC:
 /* 8085EDEC  88 03 05 74 */	lbz r0, 0x574(r3)

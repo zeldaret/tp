@@ -31,94 +31,94 @@ extern "C" extern void* __GXData;
 // Declarations:
 //
 
-/* 8035ECC0-8035ED2C 006C+00 s=1 e=3 z=0  None .text      GXSetTevIndirect */
+/* 8035ECC0-8035ED2C 359600 006C+00 1/1 3/3 0/0 .text            GXSetTevIndirect */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetTevIndirect() {
+asm void GXSetTevIndirect() {
     nofralloc
 #include "asm/dolphin/gx/GXBump/GXSetTevIndirect.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80456610-80456618 0004+04 s=1 e=0 z=0  None .sdata2    @149 */
+/* 80456610-80456618 004C10 0004+04 1/1 0/0 0/0 .sdata2          @149 */
 SECTION_SDATA2 static f32 lit_149[1 + 1 /* padding */] = {
     1024.0f,
     /* padding */
     0.0f,
 };
 
-/* 8035ED2C-8035EEA4 0178+00 s=0 e=4 z=1  None .text      GXSetIndTexMtx */
+/* 8035ED2C-8035EEA4 35966C 0178+00 0/0 4/4 1/1 .text            GXSetIndTexMtx */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetIndTexMtx() {
+asm void GXSetIndTexMtx() {
     nofralloc
 #include "asm/dolphin/gx/GXBump/GXSetIndTexMtx.s"
 }
 #pragma pop
 
-/* 8035EEA4-8035EFE8 0144+00 s=0 e=5 z=0  None .text      GXSetIndTexCoordScale */
+/* 8035EEA4-8035EFE8 3597E4 0144+00 0/0 5/5 0/0 .text            GXSetIndTexCoordScale */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetIndTexCoordScale() {
+asm void GXSetIndTexCoordScale() {
     nofralloc
 #include "asm/dolphin/gx/GXBump/GXSetIndTexCoordScale.s"
 }
 #pragma pop
 
-/* 8035EFE8-8035F0D4 00EC+00 s=0 e=3 z=0  None .text      GXSetIndTexOrder */
+/* 8035EFE8-8035F0D4 359928 00EC+00 0/0 3/3 0/0 .text            GXSetIndTexOrder */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetIndTexOrder() {
+asm void GXSetIndTexOrder() {
     nofralloc
 #include "asm/dolphin/gx/GXBump/GXSetIndTexOrder.s"
 }
 #pragma pop
 
-/* 8035F0D4-8035F0F8 0024+00 s=0 e=43 z=7  None .text      GXSetNumIndStages */
+/* 8035F0D4-8035F0F8 359A14 0024+00 0/0 43/43 7/7 .text            GXSetNumIndStages */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetNumIndStages() {
+asm void GXSetNumIndStages() {
     nofralloc
 #include "asm/dolphin/gx/GXBump/GXSetNumIndStages.s"
 }
 #pragma pop
 
-/* 8035F0F8-8035F140 0048+00 s=0 e=16 z=0  None .text      GXSetTevDirect */
+/* 8035F0F8-8035F140 359A38 0048+00 0/0 16/16 0/0 .text            GXSetTevDirect */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetTevDirect() {
+asm void GXSetTevDirect() {
     nofralloc
 #include "asm/dolphin/gx/GXBump/GXSetTevDirect.s"
 }
 #pragma pop
 
-/* 8035F140-8035F144 0004+00 s=0 e=2 z=0  None .text      __GXUpdateBPMask */
-extern "C" void __GXUpdateBPMask() {
+/* 8035F140-8035F144 359A80 0004+00 0/0 2/2 0/0 .text            __GXUpdateBPMask */
+void __GXUpdateBPMask() {
     /* empty function */
 }
 
-/* 8035F144-8035F174 0030+00 s=0 e=1 z=0  None .text      __GXSetIndirectMask */
+/* 8035F144-8035F174 359A84 0030+00 0/0 1/1 0/0 .text            __GXSetIndirectMask */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __GXSetIndirectMask() {
+asm void __GXSetIndirectMask() {
     nofralloc
 #include "asm/dolphin/gx/GXBump/__GXSetIndirectMask.s"
 }
 #pragma pop
 
-/* 8035F174-8035F198 0024+00 s=0 e=4 z=0  None .text      __GXFlushTextureState */
+/* 8035F174-8035F198 359AB4 0024+00 0/0 4/4 0/0 .text            __GXFlushTextureState */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __GXFlushTextureState() {
+asm void __GXFlushTextureState() {
     nofralloc
 #include "asm/dolphin/gx/GXBump/__GXFlushTextureState.s"
 }

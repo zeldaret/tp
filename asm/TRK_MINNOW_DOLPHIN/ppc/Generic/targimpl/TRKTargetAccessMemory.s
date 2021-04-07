@@ -1,11 +1,11 @@
 lbl_80370DD4:
 /* 80370DD4  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80370DD8  7C 08 02 A6 */	mflr r0
-/* 80370DDC  3C C0 80 3D */	lis r6, gTRKExceptionStatus@ha
+/* 80370DDC  3C C0 80 3D */	lis r6, gTRKExceptionStatus@ha /* 0x803D3244@ha */
 /* 80370DE0  90 01 00 44 */	stw r0, 0x44(r1)
 /* 80370DE4  38 00 00 00 */	li r0, 0
 /* 80370DE8  BF 21 00 24 */	stmw r25, 0x24(r1)
-/* 80370DEC  3B E6 32 44 */	addi r31, r6, gTRKExceptionStatus@l
+/* 80370DEC  3B E6 32 44 */	addi r31, r6, gTRKExceptionStatus@l /* 0x803D3244@l */
 /* 80370DF0  7C 9B 23 78 */	mr r27, r4
 /* 80370DF4  7C BC 2B 78 */	mr r28, r5
 /* 80370DF8  7C 7A 1B 78 */	mr r26, r3
@@ -33,9 +33,9 @@ lbl_80370DD4:
 /* 80370E50  48 00 00 78 */	b lbl_80370EC8
 lbl_80370E54:
 /* 80370E54  4B FF E7 E5 */	bl __TRK_get_MSR
-/* 80370E58  3C 80 80 45 */	lis r4, gTRKCPUState@ha
+/* 80370E58  3C 80 80 45 */	lis r4, gTRKCPUState@ha /* 0x8044F338@ha */
 /* 80370E5C  2C 1D 00 00 */	cmpwi r29, 0
-/* 80370E60  38 84 F3 38 */	addi r4, r4, gTRKCPUState@l
+/* 80370E60  38 84 F3 38 */	addi r4, r4, gTRKCPUState@l /* 0x8044F338@l */
 /* 80370E64  7C 68 1B 78 */	mr r8, r3
 /* 80370E68  80 04 01 F8 */	lwz r0, 0x1f8(r4)
 /* 80370E6C  54 00 06 F6 */	rlwinm r0, r0, 0, 0x1b, 0x1b
@@ -70,9 +70,9 @@ lbl_80370EC8:
 /* 80370ED8  3B C0 07 02 */	li r30, 0x702
 /* 80370EDC  90 1C 00 00 */	stw r0, 0(r28)
 lbl_80370EE0:
-/* 80370EE0  3C 60 80 3D */	lis r3, gTRKExceptionStatus@ha
+/* 80370EE0  3C 60 80 3D */	lis r3, gTRKExceptionStatus@ha /* 0x803D3244@ha */
 /* 80370EE4  80 C1 00 08 */	lwz r6, 8(r1)
-/* 80370EE8  38 E3 32 44 */	addi r7, r3, gTRKExceptionStatus@l
+/* 80370EE8  38 E3 32 44 */	addi r7, r3, gTRKExceptionStatus@l /* 0x803D3244@l */
 /* 80370EEC  80 A1 00 0C */	lwz r5, 0xc(r1)
 /* 80370EF0  80 81 00 10 */	lwz r4, 0x10(r1)
 /* 80370EF4  7F C3 F3 78 */	mr r3, r30

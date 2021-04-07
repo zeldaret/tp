@@ -7,8 +7,8 @@ lbl_801D6700:
 /* 801D6714  7C 7F 1B 79 */	or. r31, r3, r3
 /* 801D6718  7C 9E 23 78 */	mr r30, r4
 /* 801D671C  41 82 03 0C */	beq lbl_801D6A28
-/* 801D6720  3C 80 80 3C */	lis r4, __vt__17dMenu_Fmap2DTop_c@ha
-/* 801D6724  38 04 D7 50 */	addi r0, r4, __vt__17dMenu_Fmap2DTop_c@l
+/* 801D6720  3C 80 80 3C */	lis r4, __vt__17dMenu_Fmap2DTop_c@ha /* 0x803BD750@ha */
+/* 801D6724  38 04 D7 50 */	addi r0, r4, __vt__17dMenu_Fmap2DTop_c@l /* 0x803BD750@l */
 /* 801D6728  90 1F 00 00 */	stw r0, 0(r31)
 /* 801D672C  48 00 0F 95 */	bl deleteExplain__17dMenu_Fmap2DTop_cFv
 /* 801D6730  80 7F 00 08 */	lwz r3, 8(r31)

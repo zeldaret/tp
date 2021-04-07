@@ -5,12 +5,12 @@ lbl_80298314:
 /* 80298320  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80298324  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80298328  41 82 00 30 */	beq lbl_80298358
-/* 8029832C  3C 60 80 3C */	lis r3, __vt__10JASDrumSet@ha
-/* 80298330  38 03 77 10 */	addi r0, r3, __vt__10JASDrumSet@l
+/* 8029832C  3C 60 80 3C */	lis r3, __vt__10JASDrumSet@ha /* 0x803C7710@ha */
+/* 80298330  38 03 77 10 */	addi r0, r3, __vt__10JASDrumSet@l /* 0x803C7710@l */
 /* 80298334  90 1F 00 00 */	stw r0, 0(r31)
 /* 80298338  41 82 00 10 */	beq lbl_80298348
-/* 8029833C  3C 60 80 3C */	lis r3, __vt__7JASInst@ha
-/* 80298340  38 03 76 FC */	addi r0, r3, __vt__7JASInst@l
+/* 8029833C  3C 60 80 3C */	lis r3, __vt__7JASInst@ha /* 0x803C76FC@ha */
+/* 80298340  38 03 76 FC */	addi r0, r3, __vt__7JASInst@l /* 0x803C76FC@l */
 /* 80298344  90 1F 00 00 */	stw r0, 0(r31)
 lbl_80298348:
 /* 80298348  7C 80 07 35 */	extsh. r0, r4

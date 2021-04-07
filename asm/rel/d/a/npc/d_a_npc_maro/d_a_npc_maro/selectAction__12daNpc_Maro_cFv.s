@@ -5,10 +5,10 @@ lbl_8055DBF0:
 /* 8055DBFC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8055DC00  93 C1 00 08 */	stw r30, 8(r1)
 /* 8055DC04  7C 7E 1B 78 */	mr r30, r3
-/* 8055DC08  3C 60 80 56 */	lis r3, cNullVec__6Z2Calc@ha
-/* 8055DC0C  3B E3 4F 90 */	addi r31, r3, cNullVec__6Z2Calc@l
-/* 8055DC10  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 8055DC14  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 8055DC08  3C 60 80 56 */	lis r3, cNullVec__6Z2Calc@ha /* 0x80564F90@ha */
+/* 8055DC0C  3B E3 4F 90 */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x80564F90@l */
+/* 8055DC10  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 8055DC14  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 8055DC18  80 64 00 00 */	lwz r3, 0(r4)
 /* 8055DC1C  80 04 00 04 */	lwz r0, 4(r4)
 /* 8055DC20  90 7E 11 0C */	stw r3, 0x110c(r30)
@@ -43,7 +43,7 @@ lbl_8055DC74:
 /* 8055DC88  90 1E 11 14 */	stw r0, 0x1114(r30)
 /* 8055DC8C  48 00 00 60 */	b lbl_8055DCEC
 lbl_8055DC90:
-/* 8055DC90  4B AD 39 B8 */	b daNpcKakashi_chkSwdTutorialStage__Fv
+/* 8055DC90  4B AD 39 B9 */	bl daNpcKakashi_chkSwdTutorialStage__Fv
 /* 8055DC94  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8055DC98  41 82 00 20 */	beq lbl_8055DCB8
 /* 8055DC9C  80 7F 07 B4 */	lwz r3, 0x7b4(r31)

@@ -8,8 +8,8 @@ lbl_800DB5B0:
 /* 800DB5C8  4B FE 69 A5 */	bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800DB5CC  7F E3 FB 78 */	mr r3, r31
 /* 800DB5D0  38 80 00 BA */	li r4, 0xba
-/* 800DB5D4  3C A0 80 39 */	lis r5, m__23daAlinkHIO_damCaught_c0@ha
-/* 800DB5D8  38 A5 E4 9C */	addi r5, r5, m__23daAlinkHIO_damCaught_c0@l
+/* 800DB5D4  3C A0 80 39 */	lis r5, m__23daAlinkHIO_damCaught_c0@ha /* 0x8038E49C@ha */
+/* 800DB5D8  38 A5 E4 9C */	addi r5, r5, m__23daAlinkHIO_damCaught_c0@l /* 0x8038E49C@l */
 /* 800DB5DC  4B FD 1B 19 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800DB5E0  C0 02 93 74 */	lfs f0, lit_8502(r2)
 /* 800DB5E4  D0 1F 1F E0 */	stfs f0, 0x1fe0(r31)

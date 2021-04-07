@@ -26,8 +26,6 @@ struct daSus_c {
 // Forward References:
 //
 
-static void daSus_create(daSus_c*);
-
 extern "C" void create__7daSus_cFv();
 extern "C" static void daSus_create__FP7daSus_c();
 extern "C" extern void* g_profile_SUSPEND[12];
@@ -46,19 +44,32 @@ extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 804D523C-804D5240 0004+00 s=1 e=0 z=0  None .rodata    @3640 */
-SECTION_RODATA static u32 const lit_3640 = 0x449C4000;
+/* 804D523C-804D5240 000000 0004+00 1/1 0/0 0/0 .rodata          @3640 */
+SECTION_RODATA static f32 const lit_3640 = 1250.0f;
+COMPILER_STRIP_GATE(804D523C, &lit_3640);
 
-/* 804D5240-804D5244 0004+00 s=1 e=0 z=0  None .rodata    @3641 */
-SECTION_RODATA static u32 const lit_3641 = 0x451C4000;
+/* 804D5240-804D5244 000004 0004+00 0/1 0/0 0/0 .rodata          @3641 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3641 = 2500.0f;
+COMPILER_STRIP_GATE(804D5240, &lit_3641);
+#pragma pop
 
-/* 804D5244-804D5248 0004+00 s=1 e=0 z=0  None .rodata    @3642 */
-SECTION_RODATA static u32 const lit_3642 = 0x42FA0000;
+/* 804D5244-804D5248 000008 0004+00 0/1 0/0 0/0 .rodata          @3642 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3642 = 125.0f;
+COMPILER_STRIP_GATE(804D5244, &lit_3642);
+#pragma pop
 
-/* 804D5248-804D524C 0004+00 s=1 e=0 z=0  None .rodata    @3643 */
-SECTION_RODATA static u32 const lit_3643 = 0x437A0000;
+/* 804D5248-804D524C 00000C 0004+00 0/1 0/0 0/0 .rodata          @3643 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3643 = 250.0f;
+COMPILER_STRIP_GATE(804D5248, &lit_3643);
+#pragma pop
 
-/* 804D5118-804D51E0 00C8+00 s=1 e=0 z=0  None .text      create__7daSus_cFv */
+/* 804D5118-804D51E0 000078 00C8+00 1/1 0/0 0/0 .text            create__7daSus_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -68,18 +79,18 @@ asm void daSus_c::create() {
 }
 #pragma pop
 
-/* 804D51E0-804D5234 0054+00 s=1 e=0 z=0  None .text      daSus_create__FP7daSus_c */
+/* 804D51E0-804D5234 000140 0054+00 1/0 0/0 0/0 .text            daSus_create__FP7daSus_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daSus_create(daSus_c* param_0) {
+static asm void daSus_create(daSus_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_suspend/d_a_suspend/daSus_create__FP7daSus_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804D524C-804D526C 0020+00 s=1 e=0 z=0  None .data      daSus_METHODS */
+/* 804D524C-804D526C -00001 0020+00 1/0 0/0 0/0 .data            daSus_METHODS */
 SECTION_DATA static void* daSus_METHODS[8] = {
     (void*)daSus_create__FP7daSus_c,
     (void*)NULL,
@@ -91,8 +102,8 @@ SECTION_DATA static void* daSus_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 804D526C-804D529C 0030+00 s=0 e=0 z=1  None .data      g_profile_SUSPEND */
-SECTION_DATA void* g_profile_SUSPEND[12] = {
+/* 804D526C-804D529C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_SUSPEND */
+SECTION_DATA extern void* g_profile_SUSPEND[12] = {
     (void*)0xFFFFFFFD, (void*)0x000BFFFD,     (void*)0x030F0000, (void*)&g_fpcLf_Method,
     (void*)0x00000568, (void*)NULL,           (void*)NULL,       (void*)&g_fopAc_Method,
     (void*)0x02FB0000, (void*)&daSus_METHODS, (void*)0x00060000, (void*)0x05000000,

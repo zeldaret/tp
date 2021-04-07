@@ -5,6 +5,7 @@ from . import linker_map
 from .disassemble import Access, BranchAccess, FloatLoadAccess, DoubleLoadAccess
 from .data import *
 
+
 def string_decode(data: bytearray) -> Tuple[str, str]:
     """ Try to decode the data using utf-8 or shift-jis """
 
@@ -65,7 +66,7 @@ def value_initialized_symbol(section: Section,
     """ Create symbols from data. This will try to find strings, integers, floats, and other special symbols. """
 
     # all virtual tables begin with "__vt"
-    if identifier.name and identifier.name.startswith("__vt"):
+    if symbol.name and symbol.name.startswith("__vt"):
         assert section.name == ".data"
         assert symbol.size % 4 == 0
         assert len(padding_data) % 4 == 0
@@ -110,42 +111,104 @@ def value_initialized_symbol(section: Section,
                 count += 1
 
             _ctors_data = padding_data[0:count*4]
+
+            __init_cpp_exceptions_reference = ReferenceArray.create(
+                identifier,
+                symbol.addr,
+                data,
+                bytearray(),
+                always_extern=True)
+
+            # instead of creating the _ctors ourself we let the linker do it
+            _ctors = LinkerGenerated(
+                identifier=Identifier("_xx", symbol.addr + 4, "_ctors"),
+                addr=symbol.addr + 4,
+                size=len(_ctors_data),
+                data=[],
+                data_type=PointerType(VOID),
+                padding=0,
+                padding_data=[],
+                zero_length=True,
+                always_extern=True)
+
             return [
-                ReferenceArray.create(
-                    identifier,
-                    symbol.addr,
-                    data,
-                    bytearray()),
-                ReferenceArray.create(
-                    Identifier("_ctors", symbol.addr + 4, "_ctors"),
-                    symbol.addr + 4,
-                    _ctors_data,
-                    bytearray()),
+                __init_cpp_exceptions_reference,
+                _ctors
             ]
+        elif not symbol.name:
+            assert len(data) % 4 == 0
+            assert len(padding_data) == 0
+            _ctors = LinkerGenerated(
+                identifier=Identifier("_xx", symbol.addr, "_ctors"),
+                addr=symbol.addr,
+                size=len(data),
+                data=[],
+                data_type=PointerType(VOID),
+                padding=0,
+                padding_data=[],
+                zero_length=True,
+                always_extern=True)
+
+            return [_ctors]
 
     if section.name == ".dtors":
         if symbol.name == "__destroy_global_chain_reference":
             assert len(data) == 4
             __destroy_global_chain_reference = ReferenceArray.create(
-                identifier, symbol.addr, data, bytearray())
+                identifier, symbol.addr, data, bytearray(),
+                always_extern=True)
 
             if len(padding_data) == 0:
                 return [__destroy_global_chain_reference]
 
+            # _dtors
+            _dtors = LinkerGenerated(
+                identifier=Identifier("_xx", symbol.addr + 4, "_dtors"),
+                addr=symbol.addr + 4,
+                size=len(padding_data),
+                data=[],
+                data_type=PointerType(VOID),
+                padding=0,
+                padding_data=[],
+                zero_length=True,
+                always_extern=True)
+
             return [
                 __destroy_global_chain_reference,
-                ArbitraryData.create_with_data(
-                    Identifier('pad', symbol.addr + 4, None),
-                    symbol.addr + 4,
-                    padding_data,
-                    bytearray())
+                _dtors
             ]
-
         elif symbol.name == "__fini_cpp_exceptions_reference":
             assert len(data) == 4
             assert len(padding_data) == 0
-            return [ReferenceArray.create(identifier, symbol.addr, data, bytearray())]
 
+            __fini_cpp_exceptions_reference = ReferenceArray.create(
+                identifier, symbol.addr, data, bytearray(),
+                always_extern=True)
+
+            __dtors_null_terminator = ReferenceArray.create(
+                Identifier("_xx", symbol.addr + 4, "__dtors_null_terminator"),
+                symbol.addr + 4, bytearray([0, 0, 0, 0]), bytearray(),
+                always_extern=True)
+
+            return [
+                __fini_cpp_exceptions_reference,
+                __dtors_null_terminator,
+            ]
+        elif not symbol.name:
+            assert len(data) % 4 == 0
+            assert len(padding_data) == 0
+            _ctors = LinkerGenerated(
+                identifier=Identifier("_xx", symbol.addr, "_dtors"),
+                addr=symbol.addr,
+                size=len(data),
+                data=[],
+                data_type=PointerType(VOID),
+                padding=0,
+                padding_data=[],
+                zero_length=True,
+                always_extern=True)
+
+            return [_ctors]
     if isinstance(symbol.access, FloatLoadAccess):
         is_float_constant = identifier.name and identifier.name.startswith(
             "__float_")
@@ -178,9 +241,15 @@ def value_initialized_symbol(section: Section,
             pass
         else:
             values = Integer.u32_from(data)
-            padding_values = Integer.u32_from(padding_data)
+            float_values = FloatingPoint.f32_from(data)
             if values[0] != 0:
-                return [Integer.create_u32(identifier, symbol.addr, data, values, padding_data, padding_values)]
+                f32 = float_values[0][1]
+                if util.is_nice_float32(f32) or f32 in util.float32_exact:
+                    padding_values = FloatingPoint.f32_from(padding_data)
+                    return [FloatingPoint.create_f32(identifier, symbol.addr, float_values, padding_values)]
+                else:
+                    padding_values = Integer.u32_from(padding_data)
+                    return [Integer.create_u32(identifier, symbol.addr, data, values, padding_data, padding_values)]
 
     if symbol.size == 2 and len(padding_data) % 2 == 0:
         if identifier.name and "$" in identifier.name:

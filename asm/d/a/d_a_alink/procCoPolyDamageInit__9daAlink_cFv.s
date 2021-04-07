@@ -35,8 +35,8 @@ lbl_800DACEC:
 /* 800DAD00  41 82 00 4C */	beq lbl_800DAD4C
 /* 800DAD04  7F E3 FB 78 */	mr r3, r31
 /* 800DAD08  38 80 00 16 */	li r4, 0x16
-/* 800DAD0C  3C A0 80 39 */	lis r5, m__22daAlinkHIO_wlDamage_c0@ha
-/* 800DAD10  38 A5 F3 C4 */	addi r5, r5, m__22daAlinkHIO_wlDamage_c0@l
+/* 800DAD0C  3C A0 80 39 */	lis r5, m__22daAlinkHIO_wlDamage_c0@ha /* 0x8038F3C4@ha */
+/* 800DAD10  38 A5 F3 C4 */	addi r5, r5, m__22daAlinkHIO_wlDamage_c0@l /* 0x8038F3C4@l */
 /* 800DAD14  38 A5 00 14 */	addi r5, r5, 0x14
 /* 800DAD18  48 04 EB 31 */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 800DAD1C  7F E3 FB 78 */	mr r3, r31
@@ -46,19 +46,19 @@ lbl_800DACEC:
 /* 800DAD2C  81 8C 01 14 */	lwz r12, 0x114(r12)
 /* 800DAD30  7D 89 03 A6 */	mtctr r12
 /* 800DAD34  4E 80 04 21 */	bctrl 
-/* 800DAD38  3C 60 80 39 */	lis r3, m__22daAlinkHIO_wlDamage_c0@ha
-/* 800DAD3C  38 63 F3 C4 */	addi r3, r3, m__22daAlinkHIO_wlDamage_c0@l
+/* 800DAD38  3C 60 80 39 */	lis r3, m__22daAlinkHIO_wlDamage_c0@ha /* 0x8038F3C4@ha */
+/* 800DAD3C  38 63 F3 C4 */	addi r3, r3, m__22daAlinkHIO_wlDamage_c0@l /* 0x8038F3C4@l */
 /* 800DAD40  C0 03 00 24 */	lfs f0, 0x24(r3)
 /* 800DAD44  D0 1F 34 78 */	stfs f0, 0x3478(r31)
 /* 800DAD48  48 00 00 28 */	b lbl_800DAD70
 lbl_800DAD4C:
 /* 800DAD4C  7F E3 FB 78 */	mr r3, r31
 /* 800DAD50  38 80 00 8B */	li r4, 0x8b
-/* 800DAD54  3C A0 80 39 */	lis r5, m__20daAlinkHIO_damage_c0@ha
-/* 800DAD58  38 A5 E5 4C */	addi r5, r5, m__20daAlinkHIO_damage_c0@l
+/* 800DAD54  3C A0 80 39 */	lis r5, m__20daAlinkHIO_damage_c0@ha /* 0x8038E54C@ha */
+/* 800DAD58  38 A5 E5 4C */	addi r5, r5, m__20daAlinkHIO_damage_c0@l /* 0x8038E54C@l */
 /* 800DAD5C  4B FD 23 99 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
-/* 800DAD60  3C 60 80 39 */	lis r3, m__20daAlinkHIO_damage_c0@ha
-/* 800DAD64  38 63 E5 4C */	addi r3, r3, m__20daAlinkHIO_damage_c0@l
+/* 800DAD60  3C 60 80 39 */	lis r3, m__20daAlinkHIO_damage_c0@ha /* 0x8038E54C@ha */
+/* 800DAD64  38 63 E5 4C */	addi r3, r3, m__20daAlinkHIO_damage_c0@l /* 0x8038E54C@l */
 /* 800DAD68  C0 03 00 10 */	lfs f0, 0x10(r3)
 /* 800DAD6C  D0 1F 34 78 */	stfs f0, 0x3478(r31)
 lbl_800DAD70:

@@ -21,8 +21,8 @@ lbl_80139600:
 /* 8013964C  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80139650  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 80139654  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80139658  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha
-/* 8013965C  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l
+/* 80139658  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8013965C  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80139660  7C 04 04 2E */	lfsx f0, r4, r0
 /* 80139664  C0 3F 04 D0 */	lfs f1, 0x4d0(r31)
 /* 80139668  C0 42 93 B4 */	lfs f2, lit_10040(r2)

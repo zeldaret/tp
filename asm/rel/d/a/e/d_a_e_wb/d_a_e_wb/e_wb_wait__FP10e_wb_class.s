@@ -5,8 +5,8 @@ lbl_807D3FB0:
 /* 807D3FBC  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 807D3FC0  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 807D3FC4  7C 7E 1B 78 */	mr r30, r3
-/* 807D3FC8  3C 80 80 7E */	lis r4, lit_3882@ha
-/* 807D3FCC  3B E4 29 8C */	addi r31, r4, lit_3882@l
+/* 807D3FC8  3C 80 80 7E */	lis r4, lit_3882@ha /* 0x807E298C@ha */
+/* 807D3FCC  3B E4 29 8C */	addi r31, r4, lit_3882@l /* 0x807E298C@l */
 /* 807D3FD0  A8 03 05 B4 */	lha r0, 0x5b4(r3)
 /* 807D3FD4  2C 00 00 01 */	cmpwi r0, 1
 /* 807D3FD8  41 82 00 34 */	beq lbl_807D400C
@@ -58,7 +58,7 @@ lbl_807D4080:
 /* 807D4080  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 807D4084  C0 3F 00 60 */	lfs f1, 0x60(r31)
 /* 807D4088  FC 40 08 90 */	fmr f2, f1
-/* 807D408C  4B A9 B9 F4 */	b cLib_addCalc0__FPfff
+/* 807D408C  4B A9 B9 F5 */	bl cLib_addCalc0__FPfff
 /* 807D4090  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 807D4094  83 C1 00 18 */	lwz r30, 0x18(r1)
 /* 807D4098  80 01 00 24 */	lwz r0, 0x24(r1)

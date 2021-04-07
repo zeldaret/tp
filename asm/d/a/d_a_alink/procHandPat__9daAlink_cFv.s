@@ -13,8 +13,8 @@ lbl_8011CCA8:
 /* 8011CCD4  48 04 17 F9 */	bl checkAnmEnd__16daPy_frameCtrl_cFv
 /* 8011CCD8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8011CCDC  41 82 00 E8 */	beq lbl_8011CDC4
-/* 8011CCE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011CCE4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011CCE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011CCE4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011CCE8  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 8011CCEC  80 9F 31 84 */	lwz r4, 0x3184(r31)
 /* 8011CCF0  4B F2 B4 8D */	bl cutEnd__16dEvent_manager_cFi
@@ -23,8 +23,8 @@ lbl_8011CCA8:
 /* 8011CCFC  40 82 00 C8 */	bne lbl_8011CDC4
 /* 8011CD00  7F E3 FB 78 */	mr r3, r31
 /* 8011CD04  38 80 00 19 */	li r4, 0x19
-/* 8011CD08  3C A0 80 39 */	lis r5, m__18daAlinkHIO_move_c0@ha
-/* 8011CD0C  38 A5 D6 BC */	addi r5, r5, m__18daAlinkHIO_move_c0@l
+/* 8011CD08  3C A0 80 39 */	lis r5, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 8011CD0C  38 A5 D6 BC */	addi r5, r5, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 8011CD10  C0 25 00 1C */	lfs f1, 0x1c(r5)
 /* 8011CD14  C0 42 92 C4 */	lfs f2, lit_6109(r2)
 /* 8011CD18  4B F9 02 C9 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff

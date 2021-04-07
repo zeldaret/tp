@@ -28,7 +28,7 @@ extern "C" void OSGetTick();
 //
 
 /* ############################################################################################## */
-/* 803CF490-803CF510 0080+00 s=1 e=0 z=0  None .data      DSPInitCode */
+/* 803CF490-803CF510 02C5B0 0080+00 1/1 0/0 0/0 .data            DSPInitCode */
 SECTION_DATA static u8 DSPInitCode[128] = {
     0x02, 0x9F, 0x00, 0x10, 0x02, 0x9F, 0x00, 0x33, 0x02, 0x9F, 0x00, 0x34, 0x02, 0x9F, 0x00, 0x35,
     0x02, 0x9F, 0x00, 0x36, 0x02, 0x9F, 0x00, 0x37, 0x02, 0x9F, 0x00, 0x38, 0x02, 0x9F, 0x00, 0x39,
@@ -40,21 +40,21 @@ SECTION_DATA static u8 DSPInitCode[128] = {
     0x02, 0xFF, 0x02, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 8033B2D8-8033B494 01BC+00 s=0 e=1 z=0  None .text      __OSInitAudioSystem */
+/* 8033B2D8-8033B494 335C18 01BC+00 0/0 1/1 0/0 .text            __OSInitAudioSystem */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __OSInitAudioSystem() {
+asm void __OSInitAudioSystem() {
     nofralloc
 #include "asm/dolphin/os/OSAudioSystem/__OSInitAudioSystem.s"
 }
 #pragma pop
 
-/* 8033B494-8033B56C 00D8+00 s=0 e=1 z=0  None .text      __OSStopAudioSystem */
+/* 8033B494-8033B56C 335DD4 00D8+00 0/0 1/1 0/0 .text            __OSStopAudioSystem */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __OSStopAudioSystem() {
+asm void __OSStopAudioSystem() {
     nofralloc
 #include "asm/dolphin/os/OSAudioSystem/__OSStopAudioSystem.s"
 }

@@ -54,11 +54,11 @@ lbl_802E9998:
 /* 802E9A68  38 61 00 3C */	addi r3, r1, 0x3c
 /* 802E9A6C  38 81 00 1C */	addi r4, r1, 0x1c
 /* 802E9A70  4B FF FA F5 */	bl func_802E9564
-/* 802E9A74  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha
-/* 802E9A78  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l
+/* 802E9A74  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha /* 0x803CC9E0@ha */
+/* 802E9A78  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l /* 0x803CC9E0@l */
 /* 802E9A7C  90 01 00 3C */	stw r0, 0x3c(r1)
-/* 802E9A80  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha
-/* 802E9A84  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l
+/* 802E9A80  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha /* 0x803CC9B8@ha */
+/* 802E9A84  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l /* 0x803CC9B8@l */
 /* 802E9A88  90 01 00 3C */	stw r0, 0x3c(r1)
 /* 802E9A8C  E3 E1 01 58 */	psq_l f31, 344(r1), 0, 0 /* qr0 */
 /* 802E9A90  CB E1 01 50 */	lfd f31, 0x150(r1)

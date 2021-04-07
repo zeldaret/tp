@@ -3,20 +3,20 @@ lbl_80AE864C:
 /* 80AE8650  7C 08 02 A6 */	mflr r0
 /* 80AE8654  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80AE8658  39 61 00 30 */	addi r11, r1, 0x30
-/* 80AE865C  4B 87 9B 80 */	b _savegpr_29
+/* 80AE865C  4B 87 9B 81 */	bl _savegpr_29
 /* 80AE8660  7C 7E 1B 78 */	mr r30, r3
-/* 80AE8664  3C 80 80 AF */	lis r4, m__17daNpcShoe_Param_c@ha
-/* 80AE8668  3B E4 A3 B0 */	addi r31, r4, m__17daNpcShoe_Param_c@l
-/* 80AE866C  4B 66 A2 5C */	b initialize__8daNpcF_cFv
+/* 80AE8664  3C 80 80 AF */	lis r4, m__17daNpcShoe_Param_c@ha /* 0x80AEA3B0@ha */
+/* 80AE8668  3B E4 A3 B0 */	addi r31, r4, m__17daNpcShoe_Param_c@l /* 0x80AEA3B0@l */
+/* 80AE866C  4B 66 A2 5D */	bl initialize__8daNpcF_cFv
 /* 80AE8670  38 7E 0B F8 */	addi r3, r30, 0xbf8
-/* 80AE8674  4B 66 89 C4 */	b initialize__15daNpcF_Lookat_cFv
+/* 80AE8674  4B 66 89 C5 */	bl initialize__15daNpcF_Lookat_cFv
 /* 80AE8678  38 7E 0C 94 */	addi r3, r30, 0xc94
-/* 80AE867C  4B 66 80 34 */	b initialize__18daNpcF_ActorMngr_cFv
+/* 80AE867C  4B 66 80 35 */	bl initialize__18daNpcF_ActorMngr_cFv
 /* 80AE8680  38 A0 00 00 */	li r5, 0
 /* 80AE8684  90 BE 0E 04 */	stw r5, 0xe04(r30)
 /* 80AE8688  90 BE 0E 08 */	stw r5, 0xe08(r30)
-/* 80AE868C  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 80AE8690  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 80AE868C  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80AE8690  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 80AE8694  80 64 00 00 */	lwz r3, 0(r4)
 /* 80AE8698  80 04 00 04 */	lwz r0, 4(r4)
 /* 80AE869C  90 7E 0D DC */	stw r3, 0xddc(r30)
@@ -57,23 +57,23 @@ lbl_80AE86F4:
 lbl_80AE8724:
 /* 80AE8724  38 00 00 00 */	li r0, 0
 /* 80AE8728  98 1E 0E 1B */	stb r0, 0xe1b(r30)
-/* 80AE872C  4B 6C 3E 50 */	b dKy_darkworld_check__Fv
+/* 80AE872C  4B 6C 3E 51 */	bl dKy_darkworld_check__Fv
 /* 80AE8730  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80AE8734  41 82 00 10 */	beq lbl_80AE8744
-/* 80AE8738  4B 6B 73 F8 */	b dKy_getDarktime_minute__Fv
+/* 80AE8738  4B 6B 73 F9 */	bl dKy_getDarktime_minute__Fv
 /* 80AE873C  7C 7D 1B 78 */	mr r29, r3
 /* 80AE8740  48 00 00 0C */	b lbl_80AE874C
 lbl_80AE8744:
-/* 80AE8744  4B 6B 72 F8 */	b dKy_getdaytime_minute__Fv
+/* 80AE8744  4B 6B 72 F9 */	bl dKy_getdaytime_minute__Fv
 /* 80AE8748  7C 7D 1B 78 */	mr r29, r3
 lbl_80AE874C:
-/* 80AE874C  4B 6C 3E 30 */	b dKy_darkworld_check__Fv
+/* 80AE874C  4B 6C 3E 31 */	bl dKy_darkworld_check__Fv
 /* 80AE8750  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80AE8754  41 82 00 0C */	beq lbl_80AE8760
-/* 80AE8758  4B 6B 73 9C */	b dKy_getDarktime_hour__Fv
+/* 80AE8758  4B 6B 73 9D */	bl dKy_getDarktime_hour__Fv
 /* 80AE875C  48 00 00 08 */	b lbl_80AE8764
 lbl_80AE8760:
-/* 80AE8760  4B 6B 72 B0 */	b dKy_getdaytime_hour__Fv
+/* 80AE8760  4B 6B 72 B1 */	bl dKy_getdaytime_hour__Fv
 lbl_80AE8764:
 /* 80AE8764  1C 03 00 3C */	mulli r0, r3, 0x3c
 /* 80AE8768  7C 7D 02 14 */	add r3, r29, r0
@@ -140,11 +140,11 @@ lbl_80AE8798:
 /* 80AE8854  90 1E 0E 00 */	stw r0, 0xe00(r30)
 /* 80AE8858  B0 7E 09 E6 */	sth r3, 0x9e6(r30)
 /* 80AE885C  7F C3 F3 78 */	mr r3, r30
-/* 80AE8860  3C 80 80 AF */	lis r4, l_arcNames@ha
-/* 80AE8864  38 84 A5 A0 */	addi r4, r4, l_arcNames@l
+/* 80AE8860  3C 80 80 AF */	lis r4, l_arcNames@ha /* 0x80AEA5A0@ha */
+/* 80AE8864  38 84 A5 A0 */	addi r4, r4, l_arcNames@l /* 0x80AEA5A0@l */
 /* 80AE8868  80 84 00 00 */	lwz r4, 0(r4)
 /* 80AE886C  38 A0 00 0C */	li r5, 0xc
-/* 80AE8870  4B 66 A2 F8 */	b getTexPtrnAnmP__8daNpcF_cFPci
+/* 80AE8870  4B 66 A2 F9 */	bl getTexPtrnAnmP__8daNpcF_cFPci
 /* 80AE8874  7C 64 1B 78 */	mr r4, r3
 /* 80AE8878  80 7E 09 9C */	lwz r3, 0x99c(r30)
 /* 80AE887C  38 00 F5 7F */	li r0, -2689
@@ -156,7 +156,7 @@ lbl_80AE8798:
 /* 80AE8894  7F C3 F3 78 */	mr r3, r30
 /* 80AE8898  C0 3F 00 7C */	lfs f1, 0x7c(r31)
 /* 80AE889C  38 C0 00 02 */	li r6, 2
-/* 80AE88A0  4B 66 A4 24 */	b setBtpAnm__8daNpcF_cFP16J3DAnmTexPatternP12J3DModelDatafi
+/* 80AE88A0  4B 66 A4 25 */	bl setBtpAnm__8daNpcF_cFP16J3DAnmTexPatternP12J3DModelDatafi
 /* 80AE88A4  2C 03 00 00 */	cmpwi r3, 0
 /* 80AE88A8  41 82 00 10 */	beq lbl_80AE88B8
 /* 80AE88AC  80 1E 09 9C */	lwz r0, 0x99c(r30)
@@ -170,9 +170,9 @@ lbl_80AE88B8:
 /* 80AE88C8  80 1F 00 9C */	lwz r0, 0x9c(r31)
 /* 80AE88CC  90 01 00 1C */	stw r0, 0x1c(r1)
 /* 80AE88D0  38 7E 04 D0 */	addi r3, r30, 0x4d0
-/* 80AE88D4  4B 52 44 90 */	b transS__14mDoMtx_stack_cFRC4cXyz
+/* 80AE88D4  4B 52 44 91 */	bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 80AE88D8  38 7E 04 E4 */	addi r3, r30, 0x4e4
-/* 80AE88DC  4B 52 46 68 */	b ZXYrotM__14mDoMtx_stack_cFRC5csXyz
+/* 80AE88DC  4B 52 46 69 */	bl ZXYrotM__14mDoMtx_stack_cFRC5csXyz
 /* 80AE88E0  80 7E 0B 4C */	lwz r3, 0xb4c(r30)
 /* 80AE88E4  C0 01 00 14 */	lfs f0, 0x14(r1)
 /* 80AE88E8  D0 03 00 18 */	stfs f0, 0x18(r3)
@@ -180,13 +180,13 @@ lbl_80AE88B8:
 /* 80AE88F0  D0 03 00 1C */	stfs f0, 0x1c(r3)
 /* 80AE88F4  C0 01 00 1C */	lfs f0, 0x1c(r1)
 /* 80AE88F8  D0 03 00 20 */	stfs f0, 0x20(r3)
-/* 80AE88FC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80AE8900  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80AE88FC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80AE8900  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80AE8904  80 9E 0B 4C */	lwz r4, 0xb4c(r30)
 /* 80AE8908  38 84 00 24 */	addi r4, r4, 0x24
-/* 80AE890C  4B 85 DB A4 */	b PSMTXCopy
-/* 80AE8910  3C 60 80 AF */	lis r3, lit_4424@ha
-/* 80AE8914  38 83 A5 C0 */	addi r4, r3, lit_4424@l
+/* 80AE890C  4B 85 DB A5 */	bl PSMTXCopy
+/* 80AE8910  3C 60 80 AF */	lis r3, lit_4424@ha /* 0x80AEA5C0@ha */
+/* 80AE8914  38 83 A5 C0 */	addi r4, r3, lit_4424@l /* 0x80AEA5C0@l */
 /* 80AE8918  80 64 00 00 */	lwz r3, 0(r4)
 /* 80AE891C  80 04 00 04 */	lwz r0, 4(r4)
 /* 80AE8920  90 61 00 08 */	stw r3, 8(r1)
@@ -199,7 +199,7 @@ lbl_80AE88B8:
 /* 80AE893C  C0 1F 00 A0 */	lfs f0, 0xa0(r31)
 /* 80AE8940  D0 1E 09 7C */	stfs f0, 0x97c(r30)
 /* 80AE8944  39 61 00 30 */	addi r11, r1, 0x30
-/* 80AE8948  4B 87 98 E0 */	b _restgpr_29
+/* 80AE8948  4B 87 98 E1 */	bl _restgpr_29
 /* 80AE894C  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80AE8950  7C 08 03 A6 */	mtlr r0
 /* 80AE8954  38 21 00 30 */	addi r1, r1, 0x30

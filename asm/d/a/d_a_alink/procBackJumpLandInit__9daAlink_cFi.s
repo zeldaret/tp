@@ -10,8 +10,8 @@ lbl_800C5A54:
 /* 800C5A74  4B FF C4 F9 */	bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800C5A78  7F C3 F3 78 */	mr r3, r30
 /* 800C5A7C  38 80 00 27 */	li r4, 0x27
-/* 800C5A80  3C A0 80 39 */	lis r5, m__22daAlinkHIO_backJump_c0@ha
-/* 800C5A84  38 A5 D8 2C */	addi r5, r5, m__22daAlinkHIO_backJump_c0@l
+/* 800C5A80  3C A0 80 39 */	lis r5, m__22daAlinkHIO_backJump_c0@ha /* 0x8038D82C@ha */
+/* 800C5A84  38 A5 D8 2C */	addi r5, r5, m__22daAlinkHIO_backJump_c0@l /* 0x8038D82C@l */
 /* 800C5A88  38 A5 00 14 */	addi r5, r5, 0x14
 /* 800C5A8C  4B FE 76 69 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800C5A90  C0 02 92 C0 */	lfs f0, lit_6108(r2)

@@ -3,18 +3,16 @@
 #
 
 M529_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4RailWall.plf
+M529_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4RailWall.lcf
+M529_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4RailWall.map
 
 M529_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv4RailWall/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv4RailWall/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_lv4RailWall/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_lv4RailWall/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_lv4RailWall/d_a_obj_lv4RailWall.cpp \
 
 M529_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4RailWall/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4RailWall/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4RailWall/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4RailWall/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4RailWall/d_a_obj_lv4RailWall.o \
 
@@ -31,14 +29,21 @@ M529_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M529_LDSCRIPT) \
+	-unused -map $(M529_MAP) \
+	-w off \
 
 $(M529_TARGET): $(M529_O_FILES) $(M529_LIBS)
+	@echo [529] creating $(M529_TARGET)
 	@echo $(M529_LIBS) $(M529_O_FILES) > build/M529_ofiles
-	$(LD) -partial $(M529_LDFLAGS) -o $(M529_TARGET) @build/M529_ofiles
+	@python3 tools/lcf.py rel 529 --output $(M529_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M529_LDFLAGS) -o $(M529_TARGET) @build/M529_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4RailWall/%.o: rel/d/a/obj/d_a_obj_lv4RailWall/%.cpp
+	@echo [529] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M529_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M529_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

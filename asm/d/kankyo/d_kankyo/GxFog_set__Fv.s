@@ -2,8 +2,8 @@ lbl_801A85E8:
 /* 801A85E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801A85EC  7C 08 02 A6 */	mflr r0
 /* 801A85F0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801A85F4  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A85F8  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801A85F4  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A85F8  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A85FC  A8 03 11 58 */	lha r0, 0x1158(r3)
 /* 801A8600  98 01 00 08 */	stb r0, 8(r1)
 /* 801A8604  A8 03 11 5A */	lha r0, 0x115a(r3)

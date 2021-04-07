@@ -8,8 +8,8 @@ lbl_8009C864:
 /* 8009C87C  41 82 00 30 */	beq lbl_8009C8AC
 /* 8009C880  41 82 00 24 */	beq lbl_8009C8A4
 /* 8009C884  7F E3 FB 78 */	mr r3, r31
-/* 8009C888  3C 80 80 0A */	lis r4, __dt__6dMdl_cFv@ha
-/* 8009C88C  38 84 C8 08 */	addi r4, r4, __dt__6dMdl_cFv@l
+/* 8009C888  3C 80 80 0A */	lis r4, __dt__6dMdl_cFv@ha /* 0x8009C808@ha */
+/* 8009C88C  38 84 C8 08 */	addi r4, r4, __dt__6dMdl_cFv@l /* 0x8009C808@l */
 /* 8009C890  38 A0 00 20 */	li r5, 0x20
 /* 8009C894  38 C0 00 04 */	li r6, 4
 /* 8009C898  48 2C 54 51 */	bl __destroy_arr

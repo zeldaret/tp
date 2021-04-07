@@ -42,10 +42,10 @@ extern "C" void assignExtBuffer__8JASTrackFUlP14JASSoundParams();
 //
 
 /* ############################################################################################## */
-/* 804557D8-804557DC 0004+00 s=1 e=0 z=0  None .sdata2    @689 */
+/* 804557D8-804557DC 003DD8 0004+00 1/1 0/0 0/0 .sdata2          @689 */
 SECTION_SDATA2 static f32 lit_689 = 1.0f;
 
-/* 804557DC-804557E0 0004+00 s=1 e=0 z=0  None .sdata2    @690 */
+/* 804557DC-804557E0 003DDC 0004+00 1/1 0/0 0/0 .sdata2          @690 */
 SECTION_SDATA2 static u8 lit_690[4] = {
     0x00,
     0x00,
@@ -53,14 +53,14 @@ SECTION_SDATA2 static u8 lit_690[4] = {
     0x00,
 };
 
-/* 804557E0-804557E8 0004+04 s=1 e=0 z=0  None .sdata2    @691 */
+/* 804557E0-804557E8 003DE0 0004+04 1/1 0/0 0/0 .sdata2          @691 */
 SECTION_SDATA2 static f32 lit_691[1 + 1 /* padding */] = {
     0.5f,
     /* padding */
     0.0f,
 };
 
-/* 802A2AB0-802A2B28 0078+00 s=0 e=2 z=0  None .text      init__13JAISoundChildFv */
+/* 802A2AB0-802A2B28 29D3F0 0078+00 0/0 2/2 0/0 .text            init__13JAISoundChildFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -70,7 +70,8 @@ asm void JAISoundChild::init() {
 }
 #pragma pop
 
-/* 802A2B28-802A2B7C 0054+00 s=0 e=1 z=0  None .text      mixOut__13JAISoundChildFP8JASTrack */
+/* 802A2B28-802A2B7C 29D468 0054+00 0/0 1/1 0/0 .text            mixOut__13JAISoundChildFP8JASTrack
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -80,7 +81,7 @@ asm void JAISoundChild::mixOut(JASTrack* param_0) {
 }
 #pragma pop
 
-/* 802A2B7C-802A2C98 011C+00 s=0 e=2 z=0  None .text      calc__13JAISoundChildFv */
+/* 802A2B7C-802A2C98 29D4BC 011C+00 0/0 2/2 0/0 .text            calc__13JAISoundChildFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

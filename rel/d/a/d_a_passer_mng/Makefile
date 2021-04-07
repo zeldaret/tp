@@ -3,17 +3,15 @@
 #
 
 M702_TARGET := $(BUILD_DIR)/rel/d/a/d_a_passer_mng.plf
+M702_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_passer_mng.lcf
+M702_MAP := $(BUILD_DIR)/rel/d/a/d_a_passer_mng.map
 
 M702_CPP_FILES := \
-	rel/d/a/d_a_passer_mng/executor.cpp \
-	rel/d/a/d_a_passer_mng/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_passer_mng/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_passer_mng/d_a_passer_mng.cpp \
 
 M702_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_passer_mng/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_passer_mng/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_passer_mng/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_passer_mng/d_a_passer_mng.o \
 
 M702_LIBS := \
@@ -29,14 +27,21 @@ M702_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M702_LDSCRIPT) \
+	-unused -map $(M702_MAP) \
+	-w off \
 
 $(M702_TARGET): $(M702_O_FILES) $(M702_LIBS)
+	@echo [702] creating $(M702_TARGET)
 	@echo $(M702_LIBS) $(M702_O_FILES) > build/M702_ofiles
-	$(LD) -partial $(M702_LDFLAGS) -o $(M702_TARGET) @build/M702_ofiles
+	@python3 tools/lcf.py rel 702 --output $(M702_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M702_LDFLAGS) -o $(M702_TARGET) @build/M702_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_passer_mng/%.o: rel/d/a/d_a_passer_mng/%.cpp
+	@echo [702] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M702_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M702_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

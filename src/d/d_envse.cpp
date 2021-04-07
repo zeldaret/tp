@@ -58,13 +58,6 @@ struct Z2EnvSeMgr {
 // Forward References:
 //
 
-static bool dEnvSe_Draw(dEnvSe_c*);
-static void dEnvSe_getNearPathPos(cXyz*, cXyz*, dPath*);
-static void dEnvSe_Execute(dEnvSe_c*);
-static bool dEnvSe_IsDelete(dEnvSe_c*);
-static bool dEnvSe_Delete(dEnvSe_c*);
-static void dEnvSe_Create(dEnvSe_c*);
-
 extern "C" static bool dEnvSe_Draw__FP8dEnvSe_c();
 extern "C" static void dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath();
 extern "C" void execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc();
@@ -79,11 +72,6 @@ extern "C" extern void* g_profile_ENVSE[10 + 1 /* padding */];
 //
 // External References:
 //
-
-void dComIfGp_getReverb(int);
-void dPath_GetRoomPath(int, int);
-void dPath_GetNextRoomPath(dPath const*, int);
-void cM3d_Len3dSqPntAndSegLine(cM3dGLin const*, Vec const*, Vec*, f32*);
 
 extern "C" void getStatusRoomDt__20dStage_roomControl_cFi();
 extern "C" void dComIfGp_getReverb__Fi();
@@ -127,40 +115,30 @@ extern "C" extern u8 struct_80450D64[4];
 // Declarations:
 //
 
-/* 80182DD4-80182DDC 0008+00 s=1 e=0 z=0  None .text      dEnvSe_Draw__FP8dEnvSe_c */
+/* 80182DD4-80182DDC 17D714 0008+00 1/0 0/0 0/0 .text            dEnvSe_Draw__FP8dEnvSe_c */
 static bool dEnvSe_Draw(dEnvSe_c* param_0) {
     return true;
 }
 
 /* ############################################################################################## */
-/* 80456B80-80456B84 0004+00 s=1 e=0 z=0  None .sbss2     @3752 */
+/* 80456B80-80456B84 000020 0004+00 1/1 0/0 0/0 .sbss2           @3752 */
 SECTION_SBSS2 static u8 lit_3752[4];
 
-/* 80456B84-80456B88 0004+00 s=1 e=0 z=0  None .sbss2     None */
+/* 80456B84-80456B88 000024 0004+00 1/1 0/0 0/0 .sbss2           None */
 SECTION_SBSS2 static u8 data_80456B84[4];
 
-/* 80182DDC-80182FD8 01FC+00 s=1 e=0 z=0  None .text dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath
+/* 80182DDC-80182FD8 17D71C 01FC+00 1/1 0/0 0/0 .text dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dEnvSe_getNearPathPos(cXyz* param_0, cXyz* param_1, dPath* param_2) {
+static asm void dEnvSe_getNearPathPos(cXyz* param_0, cXyz* param_1, dPath* param_2) {
     nofralloc
 #include "asm/d/d_envse/dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath.s"
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80394308-80394310 0007+01 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80394308 = "sndtag";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039430F = "";
-#pragma pop
-
-/* 80182FD8-80183480 04A8+00 s=1 e=0 z=0  None .text
+/* 80182FD8-80183480 17D918 04A8+00 1/1 0/0 0/0 .text
  * execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc         */
 #pragma push
 #pragma optimization_level 0
@@ -171,7 +149,7 @@ asm void dEnvSe_c::execute_common(dStage_SoundInfo_c* param_0, s8* param_1, u8 p
 }
 #pragma pop
 
-/* 80183480-801835A0 0120+00 s=1 e=0 z=0  None .text      execute__8dEnvSe_cFv */
+/* 80183480-801835A0 17DDC0 0120+00 1/1 0/0 0/0 .text            execute__8dEnvSe_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -181,46 +159,46 @@ asm void dEnvSe_c::execute() {
 }
 #pragma pop
 
-/* 801835A0-801835C0 0020+00 s=1 e=0 z=0  None .text      dEnvSe_Execute__FP8dEnvSe_c */
+/* 801835A0-801835C0 17DEE0 0020+00 1/0 0/0 0/0 .text            dEnvSe_Execute__FP8dEnvSe_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dEnvSe_Execute(dEnvSe_c* param_0) {
+static asm void dEnvSe_Execute(dEnvSe_c* param_0) {
     nofralloc
 #include "asm/d/d_envse/dEnvSe_Execute__FP8dEnvSe_c.s"
 }
 #pragma pop
 
-/* 801835C0-801835C8 0008+00 s=1 e=0 z=0  None .text      dEnvSe_IsDelete__FP8dEnvSe_c */
+/* 801835C0-801835C8 17DF00 0008+00 1/0 0/0 0/0 .text            dEnvSe_IsDelete__FP8dEnvSe_c */
 static bool dEnvSe_IsDelete(dEnvSe_c* param_0) {
     return true;
 }
 
-/* 801835C8-801835D0 0008+00 s=1 e=0 z=0  None .text      dEnvSe_Delete__FP8dEnvSe_c */
+/* 801835C8-801835D0 17DF08 0008+00 1/0 0/0 0/0 .text            dEnvSe_Delete__FP8dEnvSe_c */
 static bool dEnvSe_Delete(dEnvSe_c* param_0) {
     return true;
 }
 
-/* 801835D0-801835F8 0028+00 s=1 e=0 z=0  None .text      dEnvSe_Create__FP8dEnvSe_c */
+/* 801835D0-801835F8 17DF10 0028+00 1/0 0/0 0/0 .text            dEnvSe_Create__FP8dEnvSe_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dEnvSe_Create(dEnvSe_c* param_0) {
+static asm void dEnvSe_Create(dEnvSe_c* param_0) {
     nofralloc
 #include "asm/d/d_envse/dEnvSe_Create__FP8dEnvSe_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803BA808-803BA81C 0014+00 s=1 e=0 z=0  None .data      l_dEnvSe_Method */
+/* 803BA808-803BA81C -00001 0014+00 1/0 0/0 0/0 .data            l_dEnvSe_Method */
 SECTION_DATA static void* l_dEnvSe_Method[5] = {
     (void*)dEnvSe_Create__FP8dEnvSe_c,  (void*)dEnvSe_Delete__FP8dEnvSe_c,
     (void*)dEnvSe_Execute__FP8dEnvSe_c, (void*)dEnvSe_IsDelete__FP8dEnvSe_c,
     (void*)dEnvSe_Draw__FP8dEnvSe_c,
 };
 
-/* 803BA81C-803BA848 0028+04 s=0 e=0 z=1  None .data      g_profile_ENVSE */
-SECTION_DATA void* g_profile_ENVSE[10 + 1 /* padding */] = {
+/* 803BA81C-803BA848 -00001 0028+04 0/0 0/0 1/0 .data            g_profile_ENVSE */
+SECTION_DATA extern void* g_profile_ENVSE[10 + 1 /* padding */] = {
     (void*)0xFFFFFFFD,
     (void*)0x0002FFFD,
     (void*)0x00150000,
@@ -234,3 +212,12 @@ SECTION_DATA void* g_profile_ENVSE[10 + 1 /* padding */] = {
     /* padding */
     NULL,
 };
+
+/* 80394308-80394310 020968 0007+01 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80394308 = "sndtag";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039430F = "";
+#pragma pop

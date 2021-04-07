@@ -26,8 +26,8 @@ lbl_801D1858:
 /* 801D18B8  FF E0 08 90 */	fmr f31, f1
 /* 801D18BC  7F E3 FB 78 */	mr r3, r31
 /* 801D18C0  48 00 0E 09 */	bl getMapAreaGlobalCenterPosY__18dMenu_Fmap2DBack_cFv
-/* 801D18C4  3C 60 80 43 */	lis r3, g_fmapHIO@ha
-/* 801D18C8  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l
+/* 801D18C4  3C 60 80 43 */	lis r3, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801D18C8  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801D18CC  88 03 03 08 */	lbz r0, 0x308(r3)
 /* 801D18D0  28 00 00 00 */	cmplwi r0, 0
 /* 801D18D4  40 82 00 64 */	bne lbl_801D1938

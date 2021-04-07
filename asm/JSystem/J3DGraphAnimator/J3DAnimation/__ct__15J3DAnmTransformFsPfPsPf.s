@@ -1,6 +1,6 @@
 lbl_80328E40:
-/* 80328E40  3D 00 80 3A */	lis r8, __vt__10J3DAnmBase@ha
-/* 80328E44  38 08 7C 38 */	addi r0, r8, __vt__10J3DAnmBase@l
+/* 80328E40  3D 00 80 3A */	lis r8, __vt__10J3DAnmBase@ha /* 0x803A7C38@ha */
+/* 80328E44  38 08 7C 38 */	addi r0, r8, __vt__10J3DAnmBase@l /* 0x803A7C38@l */
 /* 80328E48  90 03 00 00 */	stw r0, 0(r3)
 /* 80328E4C  39 00 00 00 */	li r8, 0
 /* 80328E50  99 03 00 04 */	stb r8, 4(r3)
@@ -8,8 +8,8 @@ lbl_80328E40:
 /* 80328E58  B0 83 00 06 */	sth r4, 6(r3)
 /* 80328E5C  C0 02 CA 34 */	lfs f0, lit_853(r2)
 /* 80328E60  D0 03 00 08 */	stfs f0, 8(r3)
-/* 80328E64  3C 80 80 3A */	lis r4, __vt__15J3DAnmTransform@ha
-/* 80328E68  38 04 7C 48 */	addi r0, r4, __vt__15J3DAnmTransform@l
+/* 80328E64  3C 80 80 3A */	lis r4, __vt__15J3DAnmTransform@ha /* 0x803A7C48@ha */
+/* 80328E68  38 04 7C 48 */	addi r0, r4, __vt__15J3DAnmTransform@l /* 0x803A7C48@l */
 /* 80328E6C  90 03 00 00 */	stw r0, 0(r3)
 /* 80328E70  90 A3 00 0C */	stw r5, 0xc(r3)
 /* 80328E74  90 C3 00 10 */	stw r6, 0x10(r3)

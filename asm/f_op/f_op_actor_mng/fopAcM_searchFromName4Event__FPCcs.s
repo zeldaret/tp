@@ -57,8 +57,8 @@ lbl_8001D860:
 /* 8001D864  B0 01 00 28 */	sth r0, 0x28(r1)
 /* 8001D868  88 03 00 0A */	lbz r0, 0xa(r3)
 /* 8001D86C  98 01 00 2A */	stb r0, 0x2a(r1)
-/* 8001D870  3C 60 80 02 */	lis r3, fopAcM_findObject4EventCB__FP10fopAc_ac_cPv@ha
-/* 8001D874  38 63 D6 F0 */	addi r3, r3, fopAcM_findObject4EventCB__FP10fopAc_ac_cPv@l
+/* 8001D870  3C 60 80 02 */	lis r3, fopAcM_findObject4EventCB__FP10fopAc_ac_cPv@ha /* 0x8001D6F0@ha */
+/* 8001D874  38 63 D6 F0 */	addi r3, r3, fopAcM_findObject4EventCB__FP10fopAc_ac_cPv@l /* 0x8001D6F0@l */
 /* 8001D878  38 81 00 08 */	addi r4, r1, 8
 /* 8001D87C  4B FF BF 7D */	bl fopAcIt_Judge__FPFPvPv_PvPv
 lbl_8001D880:

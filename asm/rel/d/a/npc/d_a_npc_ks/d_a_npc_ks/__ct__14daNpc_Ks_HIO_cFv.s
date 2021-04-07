@@ -1,8 +1,8 @@
 lbl_80A48F8C:
-/* 80A48F8C  3C 80 80 A6 */	lis r4, lit_4030@ha
-/* 80A48F90  38 A4 DE FC */	addi r5, r4, lit_4030@l
-/* 80A48F94  3C 80 80 A6 */	lis r4, __vt__14daNpc_Ks_HIO_c@ha
-/* 80A48F98  38 04 FE 30 */	addi r0, r4, __vt__14daNpc_Ks_HIO_c@l
+/* 80A48F8C  3C 80 80 A6 */	lis r4, lit_4030@ha /* 0x80A5DEFC@ha */
+/* 80A48F90  38 A4 DE FC */	addi r5, r4, lit_4030@l /* 0x80A5DEFC@l */
+/* 80A48F94  3C 80 80 A6 */	lis r4, __vt__14daNpc_Ks_HIO_c@ha /* 0x80A5FE30@ha */
+/* 80A48F98  38 04 FE 30 */	addi r0, r4, __vt__14daNpc_Ks_HIO_c@l /* 0x80A5FE30@l */
 /* 80A48F9C  90 03 00 00 */	stw r0, 0(r3)
 /* 80A48FA0  38 00 FF FF */	li r0, -1
 /* 80A48FA4  98 03 00 04 */	stb r0, 4(r3)

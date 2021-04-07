@@ -16,11 +16,11 @@ lbl_800BBD40:
 /* 800BBD78  1C 00 00 30 */	mulli r0, r0, 0x30
 /* 800BBD7C  7C 83 02 14 */	add r4, r3, r0
 /* 800BBD80  38 7F 2B B8 */	addi r3, r31, 0x2bb8
-/* 800BBD84  3C A0 80 3E */	lis r5, now__14mDoMtx_stack_c@ha
-/* 800BBD88  38 A5 D4 70 */	addi r5, r5, now__14mDoMtx_stack_c@l
+/* 800BBD84  3C A0 80 3E */	lis r5, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800BBD88  38 A5 D4 70 */	addi r5, r5, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800BBD8C  48 28 A7 59 */	bl PSMTXConcat
-/* 800BBD90  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800BBD94  3B C3 D4 70 */	addi r30, r3, now__14mDoMtx_stack_c@l
+/* 800BBD90  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800BBD94  3B C3 D4 70 */	addi r30, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800BBD98  C0 1E 00 0C */	lfs f0, 0xc(r30)
 /* 800BBD9C  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 800BBDA0  C0 1E 00 1C */	lfs f0, 0x1c(r30)
@@ -67,8 +67,8 @@ lbl_800BBE04:
 /* 800BBE3C  A8 1F 04 DE */	lha r0, 0x4de(r31)
 /* 800BBE40  7C 03 00 50 */	subf r0, r3, r0
 /* 800BBE44  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 800BBE48  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800BBE4C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800BBE48  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800BBE4C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800BBE50  7C 03 04 2E */	lfsx f0, r3, r0
 /* 800BBE54  EC 02 00 32 */	fmuls f0, f2, f0
 /* 800BBE58  FC 00 02 10 */	fabs f0, f0

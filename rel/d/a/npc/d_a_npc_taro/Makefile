@@ -3,19 +3,20 @@
 #
 
 M87_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_taro.plf
+M87_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_taro.lcf
+M87_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_taro.map
 
 M87_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_taro/executor.cpp \
-	rel/d/a/npc/d_a_npc_taro/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_taro/d_a_npc_taro.cpp \
 
 M87_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_taro/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_taro/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_taro/d_a_npc_taro.o \
 
 M87_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_taro/libRuntime.PPCEABI.H.a \
 
 M87_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M87_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M87_LDSCRIPT) \
+	-unused -map $(M87_MAP) \
+	-w off \
 
 $(M87_TARGET): $(M87_O_FILES) $(M87_LIBS)
+	@echo [ 87] creating $(M87_TARGET)
 	@echo $(M87_LIBS) $(M87_O_FILES) > build/M87_ofiles
-	$(LD) -partial $(M87_LDFLAGS) -o $(M87_TARGET) @build/M87_ofiles
+	@python3 tools/lcf.py rel 87 --output $(M87_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M87_LDFLAGS) -o $(M87_TARGET) @build/M87_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_taro/%.o: rel/d/a/npc/d_a_npc_taro/%.cpp
+	@echo [ 87] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M87_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M87_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_taro/libs/Runtime.PPCEABI.H/Makefile
 

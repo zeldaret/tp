@@ -13,8 +13,8 @@ lbl_8015D410:
 /* 8015D43C  EC 01 00 2A */	fadds f0, f1, f0
 /* 8015D440  FC 02 00 40 */	fcmpo cr0, f2, f0
 /* 8015D444  40 81 00 28 */	ble lbl_8015D46C
-/* 8015D448  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8015D44C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8015D448  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015D44C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8015D450  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8015D454  38 9F 07 0C */	addi r4, r31, 0x70c
 /* 8015D458  4B F1 79 F9 */	bl GetPolyAtt0__4dBgSFRC13cBgS_PolyInfo

@@ -3,7 +3,7 @@ lbl_8055DD08:
 /* 8055DD0C  7C 08 02 A6 */	mflr r0
 /* 8055DD10  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8055DD14  38 63 11 18 */	addi r3, r3, 0x1118
-/* 8055DD18  4B E0 43 30 */	b __ptmf_cmpr
+/* 8055DD18  4B E0 43 31 */	bl __ptmf_cmpr
 /* 8055DD1C  7C 60 00 34 */	cntlzw r0, r3
 /* 8055DD20  54 03 D9 7E */	srwi r3, r0, 5
 /* 8055DD24  80 01 00 14 */	lwz r0, 0x14(r1)

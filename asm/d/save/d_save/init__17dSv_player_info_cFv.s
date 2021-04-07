@@ -4,14 +4,14 @@ lbl_80034518:
 /* 80034520  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80034524  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80034528  7C 7F 1B 78 */	mr r31, r3
-/* 8003452C  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80034530  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8003452C  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80034530  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 80034534  38 80 03 82 */	li r4, 0x382
 /* 80034538  38 BF 00 14 */	addi r5, r31, 0x14
 /* 8003453C  38 C0 00 00 */	li r6, 0
 /* 80034540  48 1E 7D 11 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
-/* 80034544  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80034548  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 80034544  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80034548  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8003454C  38 80 03 83 */	li r4, 0x383
 /* 80034550  38 BF 00 25 */	addi r5, r31, 0x25
 /* 80034554  38 C0 00 00 */	li r6, 0

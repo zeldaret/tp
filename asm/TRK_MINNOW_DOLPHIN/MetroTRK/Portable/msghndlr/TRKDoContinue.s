@@ -1,10 +1,10 @@
 lbl_8036E084:
 /* 8036E084  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 8036E088  7C 08 02 A6 */	mflr r0
-/* 8036E08C  3C 80 80 3A */	lis r4, lit_370@ha
+/* 8036E08C  3C 80 80 3A */	lis r4, lit_370@ha /* 0x803A2904@ha */
 /* 8036E090  38 60 00 01 */	li r3, 1
 /* 8036E094  90 01 00 94 */	stw r0, 0x94(r1)
-/* 8036E098  38 84 29 04 */	addi r4, r4, lit_370@l
+/* 8036E098  38 84 29 04 */	addi r4, r4, lit_370@l /* 0x803A2904@l */
 /* 8036E09C  4C C6 31 82 */	crclr 6
 /* 8036E0A0  48 00 4B B5 */	bl MWTRACE
 /* 8036E0A4  48 00 1A 6D */	bl TRKTargetStopped

@@ -10,12 +10,12 @@ lbl_80A465D0:
 /* 80A465F0  41 82 00 28 */	beq lbl_80A46618
 /* 80A465F4  83 FE 0B 5C */	lwz r31, 0xb5c(r30)
 /* 80A465F8  38 7E 0B 50 */	addi r3, r30, 0xb50
-/* 80A465FC  4B 6F F2 9C */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80A465FC  4B 6F F2 9D */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80A46600  93 FE 0B 5C */	stw r31, 0xb5c(r30)
 /* 80A46604  38 00 00 08 */	li r0, 8
 /* 80A46608  90 1E 0B 58 */	stw r0, 0xb58(r30)
-/* 80A4660C  3C 60 80 A5 */	lis r3, lit_4542@ha
-/* 80A46610  C0 03 87 D0 */	lfs f0, lit_4542@l(r3)
+/* 80A4660C  3C 60 80 A5 */	lis r3, lit_4542@ha /* 0x80A487D0@ha */
+/* 80A46610  C0 03 87 D0 */	lfs f0, lit_4542@l(r3)  /* 0x80A487D0@l */
 /* 80A46614  D0 1E 0B 68 */	stfs f0, 0xb68(r30)
 lbl_80A46618:
 /* 80A46618  83 E1 00 0C */	lwz r31, 0xc(r1)

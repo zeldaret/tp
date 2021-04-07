@@ -5,15 +5,15 @@ lbl_801C55D8:
 /* 801C55E4  39 61 00 50 */	addi r11, r1, 0x50
 /* 801C55E8  48 19 CB C9 */	bl _savegpr_18
 /* 801C55EC  7C 7F 1B 78 */	mr r31, r3
-/* 801C55F0  3C 60 80 39 */	lis r3, fish_n@ha
-/* 801C55F4  3B C3 5D 90 */	addi r30, r3, fish_n@l
-/* 801C55F8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801C55FC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801C55F0  3C 60 80 39 */	lis r3, fish_n@ha /* 0x80395D90@ha */
+/* 801C55F4  3B C3 5D 90 */	addi r30, r3, fish_n@l /* 0x80395D90@l */
+/* 801C55F8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801C55FC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801C5600  80 63 5D 30 */	lwz r3, 0x5d30(r3)
 /* 801C5604  3C 80 54 49 */	lis r4, 0x5449 /* 0x54494D47@ha */
 /* 801C5608  38 84 4D 47 */	addi r4, r4, 0x4D47 /* 0x54494D47@l */
-/* 801C560C  3C A0 80 39 */	lis r5, d_menu_d_menu_fishing__stringBase0@ha
-/* 801C5610  38 A5 60 68 */	addi r5, r5, d_menu_d_menu_fishing__stringBase0@l
+/* 801C560C  3C A0 80 39 */	lis r5, d_menu_d_menu_fishing__stringBase0@ha /* 0x80396068@ha */
+/* 801C5610  38 A5 60 68 */	addi r5, r5, d_menu_d_menu_fishing__stringBase0@l /* 0x80396068@l */
 /* 801C5614  38 A5 00 18 */	addi r5, r5, 0x18
 /* 801C5618  81 83 00 00 */	lwz r12, 0(r3)
 /* 801C561C  81 8C 00 18 */	lwz r12, 0x18(r12)
@@ -59,8 +59,8 @@ lbl_801C5648:
 lbl_801C56B8:
 /* 801C56B8  90 1F 00 18 */	stw r0, 0x18(r31)
 /* 801C56BC  80 7F 00 18 */	lwz r3, 0x18(r31)
-/* 801C56C0  3C 80 80 39 */	lis r4, d_menu_d_menu_fishing__stringBase0@ha
-/* 801C56C4  38 84 60 68 */	addi r4, r4, d_menu_d_menu_fishing__stringBase0@l
+/* 801C56C0  3C 80 80 39 */	lis r4, d_menu_d_menu_fishing__stringBase0@ha /* 0x80396068@ha */
+/* 801C56C4  38 84 60 68 */	addi r4, r4, d_menu_d_menu_fishing__stringBase0@l /* 0x80396068@l */
 /* 801C56C8  38 84 00 28 */	addi r4, r4, 0x28
 /* 801C56CC  3C A0 00 02 */	lis r5, 2
 /* 801C56D0  80 DF 00 08 */	lwz r6, 8(r31)
@@ -257,8 +257,8 @@ lbl_801C5938:
 /* 801C59A0  4E 80 04 21 */	bctrl 
 /* 801C59A4  7E 43 93 78 */	mr r3, r18
 /* 801C59A8  38 80 02 00 */	li r4, 0x200
-/* 801C59AC  3C A0 80 39 */	lis r5, d_menu_d_menu_fishing__stringBase0@ha
-/* 801C59B0  38 A5 60 68 */	addi r5, r5, d_menu_d_menu_fishing__stringBase0@l
+/* 801C59AC  3C A0 80 39 */	lis r5, d_menu_d_menu_fishing__stringBase0@ha /* 0x80396068@ha */
+/* 801C59B0  38 A5 60 68 */	addi r5, r5, d_menu_d_menu_fishing__stringBase0@l /* 0x80396068@l */
 /* 801C59B4  38 A5 00 3E */	addi r5, r5, 0x3e
 /* 801C59B8  4C C6 31 82 */	crclr 6
 /* 801C59BC  48 13 AD 91 */	bl setString__10J2DTextBoxFsPCce
@@ -277,15 +277,15 @@ lbl_801C5938:
 /* 801C59F0  3A C0 00 00 */	li r22, 0
 /* 801C59F4  3A A0 00 00 */	li r21, 0
 /* 801C59F8  3B 1E 01 50 */	addi r24, r30, 0x150
-/* 801C59FC  3C 60 80 39 */	lis r3, d_menu_d_menu_fishing__stringBase0@ha
-/* 801C5A00  3B 23 60 68 */	addi r25, r3, d_menu_d_menu_fishing__stringBase0@l
+/* 801C59FC  3C 60 80 39 */	lis r3, d_menu_d_menu_fishing__stringBase0@ha /* 0x80396068@ha */
+/* 801C5A00  3B 23 60 68 */	addi r25, r3, d_menu_d_menu_fishing__stringBase0@l /* 0x80396068@l */
 /* 801C5A04  3B 5E 01 80 */	addi r26, r30, 0x180
 /* 801C5A08  3B BE 01 B0 */	addi r29, r30, 0x1b0
 /* 801C5A0C  3B 9E 01 E0 */	addi r28, r30, 0x1e0
 /* 801C5A10  3B 7E 02 10 */	addi r27, r30, 0x210
 /* 801C5A14  3A 9E 02 40 */	addi r20, r30, 0x240
-/* 801C5A18  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801C5A1C  3A 43 01 88 */	addi r18, r3, g_meter2_info@l
+/* 801C5A18  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801C5A1C  3A 43 01 88 */	addi r18, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801C5A20  3B DE 02 70 */	addi r30, r30, 0x270
 lbl_801C5A24:
 /* 801C5A24  80 7F 00 18 */	lwz r3, 0x18(r31)
@@ -452,31 +452,31 @@ lbl_801C5A24:
 /* 801C5CA8  4E 80 04 21 */	bctrl 
 /* 801C5CAC  80 7F 01 E4 */	lwz r3, 0x1e4(r31)
 /* 801C5CB0  38 80 00 20 */	li r4, 0x20
-/* 801C5CB4  3C A0 80 39 */	lis r5, d_menu_d_menu_fishing__stringBase0@ha
-/* 801C5CB8  38 A5 60 68 */	addi r5, r5, d_menu_d_menu_fishing__stringBase0@l
+/* 801C5CB4  3C A0 80 39 */	lis r5, d_menu_d_menu_fishing__stringBase0@ha /* 0x80396068@ha */
+/* 801C5CB8  38 A5 60 68 */	addi r5, r5, d_menu_d_menu_fishing__stringBase0@l /* 0x80396068@l */
 /* 801C5CBC  38 A5 00 3E */	addi r5, r5, 0x3e
 /* 801C5CC0  4C C6 31 82 */	crclr 6
 /* 801C5CC4  48 13 AA 89 */	bl setString__10J2DTextBoxFsPCce
 /* 801C5CC8  80 7F 01 E4 */	lwz r3, 0x1e4(r31)
 /* 801C5CCC  48 13 A9 8D */	bl getStringPtr__10J2DTextBoxCFv
 /* 801C5CD0  7C 65 1B 78 */	mr r5, r3
-/* 801C5CD4  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801C5CD8  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801C5CD4  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801C5CD8  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801C5CDC  38 80 05 9F */	li r4, 0x59f
 /* 801C5CE0  38 C0 00 00 */	li r6, 0
 /* 801C5CE4  48 05 68 61 */	bl getStringKanji__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
 /* 801C5CE8  80 7F 01 E8 */	lwz r3, 0x1e8(r31)
 /* 801C5CEC  38 80 00 20 */	li r4, 0x20
-/* 801C5CF0  3C A0 80 39 */	lis r5, d_menu_d_menu_fishing__stringBase0@ha
-/* 801C5CF4  38 A5 60 68 */	addi r5, r5, d_menu_d_menu_fishing__stringBase0@l
+/* 801C5CF0  3C A0 80 39 */	lis r5, d_menu_d_menu_fishing__stringBase0@ha /* 0x80396068@ha */
+/* 801C5CF4  38 A5 60 68 */	addi r5, r5, d_menu_d_menu_fishing__stringBase0@l /* 0x80396068@l */
 /* 801C5CF8  38 A5 00 3E */	addi r5, r5, 0x3e
 /* 801C5CFC  4C C6 31 82 */	crclr 6
 /* 801C5D00  48 13 AA 4D */	bl setString__10J2DTextBoxFsPCce
 /* 801C5D04  80 7F 01 E8 */	lwz r3, 0x1e8(r31)
 /* 801C5D08  48 13 A9 51 */	bl getStringPtr__10J2DTextBoxCFv
 /* 801C5D0C  7C 65 1B 78 */	mr r5, r3
-/* 801C5D10  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801C5D14  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801C5D10  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801C5D14  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801C5D18  38 80 05 A0 */	li r4, 0x5a0
 /* 801C5D1C  38 C0 00 00 */	li r6, 0
 /* 801C5D20  48 05 68 25 */	bl getStringKanji__13dMeter2Info_cFUlPcP14JMSMesgEntry_c

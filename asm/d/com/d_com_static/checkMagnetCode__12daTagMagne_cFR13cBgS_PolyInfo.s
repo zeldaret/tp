@@ -10,8 +10,8 @@ lbl_80031B50:
 /* 80031B70  38 60 00 00 */	li r3, 0
 /* 80031B74  48 00 00 6C */	b lbl_80031BE0
 lbl_80031B78:
-/* 80031B78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80031B7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80031B78  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80031B7C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80031B80  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80031B84  48 04 31 89 */	bl GetMagnetCode__4dBgSFRC13cBgS_PolyInfo
 /* 80031B88  7C 7F 1B 78 */	mr r31, r3

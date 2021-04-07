@@ -5,8 +5,8 @@ lbl_8003C734:
 /* 8003C740  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8003C744  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8003C748  41 82 00 1C */	beq lbl_8003C764
-/* 8003C74C  3C A0 80 3A */	lis r5, __vt__10J3DAnmBase@ha
-/* 8003C750  38 05 7C 38 */	addi r0, r5, __vt__10J3DAnmBase@l
+/* 8003C74C  3C A0 80 3A */	lis r5, __vt__10J3DAnmBase@ha /* 0x803A7C38@ha */
+/* 8003C750  38 05 7C 38 */	addi r0, r5, __vt__10J3DAnmBase@l /* 0x803A7C38@l */
 /* 8003C754  90 1F 00 00 */	stw r0, 0(r31)
 /* 8003C758  7C 80 07 35 */	extsh. r0, r4
 /* 8003C75C  40 81 00 08 */	ble lbl_8003C764

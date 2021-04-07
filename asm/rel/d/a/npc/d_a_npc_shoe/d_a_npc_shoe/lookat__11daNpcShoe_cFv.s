@@ -3,10 +3,10 @@ lbl_80AE9820:
 /* 80AE9824  7C 08 02 A6 */	mflr r0
 /* 80AE9828  90 01 00 64 */	stw r0, 0x64(r1)
 /* 80AE982C  39 61 00 60 */	addi r11, r1, 0x60
-/* 80AE9830  4B 87 89 A8 */	b _savegpr_28
+/* 80AE9830  4B 87 89 A9 */	bl _savegpr_28
 /* 80AE9834  7C 7C 1B 78 */	mr r28, r3
-/* 80AE9838  3C 60 80 AF */	lis r3, m__17daNpcShoe_Param_c@ha
-/* 80AE983C  38 83 A3 B0 */	addi r4, r3, m__17daNpcShoe_Param_c@l
+/* 80AE9838  3C 60 80 AF */	lis r3, m__17daNpcShoe_Param_c@ha /* 0x80AEA3B0@ha */
+/* 80AE983C  38 83 A3 B0 */	addi r4, r3, m__17daNpcShoe_Param_c@l /* 0x80AEA3B0@l */
 /* 80AE9840  38 A0 00 00 */	li r5, 0
 /* 80AE9844  80 7C 05 68 */	lwz r3, 0x568(r28)
 /* 80AE9848  83 E3 00 04 */	lwz r31, 4(r3)
@@ -67,8 +67,8 @@ lbl_80AE991C:
 /* 80AE991C  3B C0 00 01 */	li r30, 1
 /* 80AE9920  48 00 00 20 */	b lbl_80AE9940
 lbl_80AE9924:
-/* 80AE9924  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80AE9928  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80AE9924  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80AE9928  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80AE992C  80 A3 5D AC */	lwz r5, 0x5dac(r3)
 /* 80AE9930  2C 00 00 03 */	cmpwi r0, 3
 /* 80AE9934  40 82 00 0C */	bne lbl_80AE9940
@@ -111,7 +111,7 @@ lbl_80AE9998:
 /* 80AE99B8  FD 00 28 90 */	fmr f8, f5
 /* 80AE99BC  A8 9C 08 F2 */	lha r4, 0x8f2(r28)
 /* 80AE99C0  38 A1 00 24 */	addi r5, r1, 0x24
-/* 80AE99C4  4B 66 76 F4 */	b setParam__15daNpcF_Lookat_cFffffffffffffsP4cXyz
+/* 80AE99C4  4B 66 76 F5 */	bl setParam__15daNpcF_Lookat_cFffffffffffffsP4cXyz
 /* 80AE99C8  38 7C 0B F8 */	addi r3, r28, 0xbf8
 /* 80AE99CC  7F 84 E3 78 */	mr r4, r28
 /* 80AE99D0  38 BF 00 24 */	addi r5, r31, 0x24
@@ -119,9 +119,9 @@ lbl_80AE9998:
 /* 80AE99D8  7F C7 F3 78 */	mr r7, r30
 /* 80AE99DC  7F A8 EB 78 */	mr r8, r29
 /* 80AE99E0  39 20 00 00 */	li r9, 0
-/* 80AE99E4  4B 66 79 6C */	b calc__15daNpcF_Lookat_cFP10fopAc_ac_cPA4_fPP5csXyziii
+/* 80AE99E4  4B 66 79 6D */	bl calc__15daNpcF_Lookat_cFP10fopAc_ac_cPA4_fPP5csXyziii
 /* 80AE99E8  39 61 00 60 */	addi r11, r1, 0x60
-/* 80AE99EC  4B 87 88 38 */	b _restgpr_28
+/* 80AE99EC  4B 87 88 39 */	bl _restgpr_28
 /* 80AE99F0  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 80AE99F4  7C 08 03 A6 */	mtlr r0
 /* 80AE99F8  38 21 00 60 */	addi r1, r1, 0x60

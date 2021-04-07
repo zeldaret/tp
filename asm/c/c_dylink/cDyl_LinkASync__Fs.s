@@ -12,8 +12,8 @@ lbl_800185E4:
 /* 800185E4  7C 64 07 34 */	extsh r4, r3
 /* 800185E8  28 04 03 18 */	cmplwi r4, 0x318
 /* 800185EC  41 80 00 20 */	blt lbl_8001860C
-/* 800185F0  3C 60 80 37 */	lis r3, c_c_dylink__stringBase0@ha
-/* 800185F4  38 63 5D E8 */	addi r3, r3, c_c_dylink__stringBase0@l
+/* 800185F0  3C 60 80 37 */	lis r3, c_c_dylink__stringBase0@ha /* 0x80375DE8@ha */
+/* 800185F4  38 63 5D E8 */	addi r3, r3, c_c_dylink__stringBase0@l /* 0x80375DE8@l */
 /* 800185F8  38 63 2A 0D */	addi r3, r3, 0x2a0d
 /* 800185FC  4C C6 31 82 */	crclr 6
 /* 80018600  4B FE E6 0D */	bl OSReport_Error
@@ -21,8 +21,8 @@ lbl_800185E4:
 /* 80018608  48 00 00 6C */	b lbl_80018674
 lbl_8001860C:
 /* 8001860C  54 80 10 3A */	slwi r0, r4, 2
-/* 80018610  3C 60 80 3F */	lis r3, DMC@ha
-/* 80018614  38 63 0F 50 */	addi r3, r3, DMC@l
+/* 80018610  3C 60 80 3F */	lis r3, DMC@ha /* 0x803F0F50@ha */
+/* 80018614  38 63 0F 50 */	addi r3, r3, DMC@l /* 0x803F0F50@l */
 /* 80018618  7F E3 00 2E */	lwzx r31, r3, r0
 /* 8001861C  28 1F 00 00 */	cmplwi r31, 0
 /* 80018620  41 82 00 50 */	beq lbl_80018670
@@ -37,8 +37,8 @@ lbl_8001860C:
 /* 80018644  38 60 00 04 */	li r3, 4
 /* 80018648  48 00 00 2C */	b lbl_80018674
 lbl_8001864C:
-/* 8001864C  3C 60 80 37 */	lis r3, c_c_dylink__stringBase0@ha
-/* 80018650  38 63 5D E8 */	addi r3, r3, c_c_dylink__stringBase0@l
+/* 8001864C  3C 60 80 37 */	lis r3, c_c_dylink__stringBase0@ha /* 0x80375DE8@ha */
+/* 80018650  38 63 5D E8 */	addi r3, r3, c_c_dylink__stringBase0@l /* 0x80375DE8@l */
 /* 80018654  38 63 2A 26 */	addi r3, r3, 0x2a26
 /* 80018658  4C C6 31 82 */	crclr 6
 /* 8001865C  4B FE E5 B1 */	bl OSReport_Error

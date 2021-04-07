@@ -83,14 +83,14 @@ lbl_802A81A8:
 /* 802A81AC  4B FF FA 4D */	bl stack_pushCurrent__Q28JMessage10TProcessorFPCc
 /* 802A81B0  48 00 00 28 */	b lbl_802A81D8
 lbl_802A81B4:
-/* 802A81B4  3C 80 80 2B */	lis r4, process_onSelect_limited___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
-/* 802A81B8  38 84 83 3C */	addi r4, r4, process_onSelect_limited___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
+/* 802A81B4  3C 80 80 2B */	lis r4, process_onSelect_limited___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha /* 0x802A833C@ha */
+/* 802A81B8  38 84 83 3C */	addi r4, r4, process_onSelect_limited___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l /* 0x802A833C@l */
 /* 802A81BC  7C C5 32 14 */	add r6, r5, r6
 /* 802A81C0  4B FF FC 79 */	bl on_select_begin__Q28JMessage10TProcessorFPFPQ28JMessage10TProcessor_PCcPCvPCcUl
 /* 802A81C4  48 00 00 14 */	b lbl_802A81D8
 lbl_802A81C8:
-/* 802A81C8  3C 80 80 2B */	lis r4, process_onSelect___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
-/* 802A81CC  38 84 83 58 */	addi r4, r4, process_onSelect___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
+/* 802A81C8  3C 80 80 2B */	lis r4, process_onSelect___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha /* 0x802A8358@ha */
+/* 802A81CC  38 84 83 58 */	addi r4, r4, process_onSelect___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l /* 0x802A8358@l */
 /* 802A81D0  7C C5 32 14 */	add r6, r5, r6
 /* 802A81D4  4B FF FC 65 */	bl on_select_begin__Q28JMessage10TProcessorFPFPQ28JMessage10TProcessor_PCcPCvPCcUl
 lbl_802A81D8:

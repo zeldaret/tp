@@ -3,17 +3,15 @@
 #
 
 M156_TARGET := $(BUILD_DIR)/rel/d/a/b/d_a_b_zant_magic.plf
+M156_LDSCRIPT := $(BUILD_DIR)/rel/d/a/b/d_a_b_zant_magic.lcf
+M156_MAP := $(BUILD_DIR)/rel/d/a/b/d_a_b_zant_magic.map
 
 M156_CPP_FILES := \
-	rel/d/a/b/d_a_b_zant_magic/executor.cpp \
-	rel/d/a/b/d_a_b_zant_magic/unknown_translation_unit_ctors.cpp \
-	rel/d/a/b/d_a_b_zant_magic/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/b/d_a_b_zant_magic/d_a_b_zant_magic.cpp \
 
 M156_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_zant_magic/executor.o \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_zant_magic/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_zant_magic/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/b/d_a_b_zant_magic/d_a_b_zant_magic.o \
 
 M156_LIBS := \
@@ -29,14 +27,21 @@ M156_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M156_LDSCRIPT) \
+	-unused -map $(M156_MAP) \
+	-w off \
 
 $(M156_TARGET): $(M156_O_FILES) $(M156_LIBS)
+	@echo [156] creating $(M156_TARGET)
 	@echo $(M156_LIBS) $(M156_O_FILES) > build/M156_ofiles
-	$(LD) -partial $(M156_LDFLAGS) -o $(M156_TARGET) @build/M156_ofiles
+	@python3 tools/lcf.py rel 156 --output $(M156_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M156_LDFLAGS) -o $(M156_TARGET) @build/M156_ofiles
 
 $(BUILD_DIR)/rel/d/a/b/d_a_b_zant_magic/%.o: rel/d/a/b/d_a_b_zant_magic/%.cpp
+	@echo [156] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M156_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M156_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -5,20 +5,20 @@ lbl_80A1E78C:
 /* 80A1E798  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A1E79C  7C 7F 1B 78 */	mr r31, r3
 /* 80A1E7A0  38 00 00 00 */	li r0, 0
-/* 80A1E7A4  3C 80 80 A2 */	lis r4, mTargetTag__15daNpcKasiHana_c@ha
-/* 80A1E7A8  90 04 18 58 */	stw r0, mTargetTag__15daNpcKasiHana_c@l(r4)
-/* 80A1E7AC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80A1E7B0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80A1E7A4  3C 80 80 A2 */	lis r4, mTargetTag__15daNpcKasiHana_c@ha /* 0x80A21858@ha */
+/* 80A1E7A8  90 04 18 58 */	stw r0, mTargetTag__15daNpcKasiHana_c@l(r4)  /* 0x80A21858@l */
+/* 80A1E7AC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80A1E7B0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80A1E7B4  80 84 5D AC */	lwz r4, 0x5dac(r4)
-/* 80A1E7B8  4B 5F BF 58 */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
-/* 80A1E7BC  3C 80 80 A2 */	lis r4, mWolfAngle__15daNpcKasiHana_c@ha
-/* 80A1E7C0  B0 64 18 60 */	sth r3, mWolfAngle__15daNpcKasiHana_c@l(r4)
-/* 80A1E7C4  3C 60 80 A2 */	lis r3, _srch_escape_tag__15daNpcKasiHana_cFPvPv@ha
-/* 80A1E7C8  38 63 E7 F4 */	addi r3, r3, _srch_escape_tag__15daNpcKasiHana_cFPvPv@l
+/* 80A1E7B8  4B 5F BF 59 */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 80A1E7BC  3C 80 80 A2 */	lis r4, mWolfAngle__15daNpcKasiHana_c@ha /* 0x80A21860@ha */
+/* 80A1E7C0  B0 64 18 60 */	sth r3, mWolfAngle__15daNpcKasiHana_c@l(r4)  /* 0x80A21860@l */
+/* 80A1E7C4  3C 60 80 A2 */	lis r3, _srch_escape_tag__15daNpcKasiHana_cFPvPv@ha /* 0x80A1E7F4@ha */
+/* 80A1E7C8  38 63 E7 F4 */	addi r3, r3, _srch_escape_tag__15daNpcKasiHana_cFPvPv@l /* 0x80A1E7F4@l */
 /* 80A1E7CC  7F E4 FB 78 */	mr r4, r31
-/* 80A1E7D0  4B 60 2B 68 */	b fpcEx_Search__FPFPvPv_PvPv
-/* 80A1E7D4  3C 60 80 A2 */	lis r3, mTargetTag__15daNpcKasiHana_c@ha
-/* 80A1E7D8  38 63 18 58 */	addi r3, r3, mTargetTag__15daNpcKasiHana_c@l
+/* 80A1E7D0  4B 60 2B 69 */	bl fpcEx_Search__FPFPvPv_PvPv
+/* 80A1E7D4  3C 60 80 A2 */	lis r3, mTargetTag__15daNpcKasiHana_c@ha /* 0x80A21858@ha */
+/* 80A1E7D8  38 63 18 58 */	addi r3, r3, mTargetTag__15daNpcKasiHana_c@l /* 0x80A21858@l */
 /* 80A1E7DC  80 63 00 00 */	lwz r3, 0(r3)
 /* 80A1E7E0  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80A1E7E4  80 01 00 14 */	lwz r0, 0x14(r1)

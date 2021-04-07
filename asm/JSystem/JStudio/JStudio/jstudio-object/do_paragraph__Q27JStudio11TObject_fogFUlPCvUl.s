@@ -13,8 +13,8 @@ lbl_80287218:
 /* 80287244  38 03 FF E3 */	addi r0, r3, -29
 /* 80287248  28 00 00 10 */	cmplwi r0, 0x10
 /* 8028724C  41 81 00 AC */	bgt lbl_802872F8
-/* 80287250  3C 60 80 3C */	lis r3, lit_1546@ha
-/* 80287254  38 63 4E F0 */	addi r3, r3, lit_1546@l
+/* 80287250  3C 60 80 3C */	lis r3, lit_1546@ha /* 0x803C4EF0@ha */
+/* 80287254  38 63 4E F0 */	addi r3, r3, lit_1546@l /* 0x803C4EF0@l */
 /* 80287258  54 00 10 3A */	slwi r0, r0, 2
 /* 8028725C  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80287260  7C 09 03 A6 */	mtctr r0
@@ -31,13 +31,13 @@ lbl_80287218:
 /* 8028728C  48 00 00 44 */	b lbl_802872D0
 /* 80287290  38 A0 00 05 */	li r5, 5
 /* 80287294  48 00 00 3C */	b lbl_802872D0
-/* 80287298  3C 60 80 3A */	lis r3, sauVariableValue_3_COLOR_RGB__Q27JStudio12TAdaptor_fog@ha
-/* 8028729C  38 03 AA C0 */	addi r0, r3, sauVariableValue_3_COLOR_RGB__Q27JStudio12TAdaptor_fog@l
+/* 80287298  3C 60 80 3A */	lis r3, sauVariableValue_3_COLOR_RGB__Q27JStudio12TAdaptor_fog@ha /* 0x8039AAC0@ha */
+/* 8028729C  38 03 AA C0 */	addi r0, r3, sauVariableValue_3_COLOR_RGB__Q27JStudio12TAdaptor_fog@l /* 0x8039AAC0@l */
 /* 802872A0  7C 05 03 78 */	mr r5, r0
 /* 802872A4  38 C0 00 03 */	li r6, 3
 /* 802872A8  48 00 00 44 */	b lbl_802872EC
-/* 802872AC  3C 60 80 3A */	lis r3, sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog@ha
-/* 802872B0  38 03 AA CC */	addi r0, r3, sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog@l
+/* 802872AC  3C 60 80 3A */	lis r3, sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog@ha /* 0x8039AACC@ha */
+/* 802872B0  38 03 AA CC */	addi r0, r3, sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog@l /* 0x8039AACC@l */
 /* 802872B4  7C 05 03 78 */	mr r5, r0
 /* 802872B8  38 C0 00 04 */	li r6, 4
 /* 802872BC  48 00 00 30 */	b lbl_802872EC

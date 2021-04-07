@@ -23,8 +23,8 @@ lbl_80262364:
 /* 802623B8  4E 80 04 21 */	bctrl 
 /* 802623BC  48 00 00 18 */	b lbl_802623D4
 lbl_802623C0:
-/* 802623C0  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha
-/* 802623C4  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l
+/* 802623C0  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha /* 0x8039A4A0@ha */
+/* 802623C4  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l /* 0x8039A4A0@l */
 /* 802623C8  7F E4 FB 78 */	mr r4, r31
 /* 802623CC  4C C6 31 82 */	crclr 6
 /* 802623D0  4B DA 49 1D */	bl OSReport_Warning

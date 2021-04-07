@@ -58,12 +58,6 @@ struct cCcS {
 // Forward References:
 //
 
-static bool daHitobj_Draw(hitobj_class*);
-static void daHitobj_Execute(hitobj_class*);
-static bool daHitobj_IsDelete(hitobj_class*);
-static void daHitobj_Delete(hitobj_class*);
-static void daHitobj_Create(fopAc_ac_c*);
-
 extern "C" static bool daHitobj_Draw__FP12hitobj_class();
 extern "C" static void daHitobj_Execute__FP12hitobj_class();
 extern "C" static bool daHitobj_IsDelete__FP12hitobj_class();
@@ -71,17 +65,11 @@ extern "C" static void daHitobj_Delete__FP12hitobj_class();
 extern "C" static void daHitobj_Create__FP10fopAc_ac_c();
 extern "C" void __dt__8cM3dGSphFv();
 extern "C" void __dt__8cM3dGAabFv();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_HITOBJ[12];
+extern "C" extern char const* const d_a_hitobj__stringBase0;
 
 //
 // External References:
 //
-
-void fopKyM_Delete(void*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopKyM_Delete__FPv();
@@ -107,48 +95,41 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 // Declarations:
 //
 
-/* 8046B358-8046B360 0008+00 s=1 e=0 z=0  None .text      daHitobj_Draw__FP12hitobj_class */
+/* 8046B358-8046B360 000078 0008+00 1/0 0/0 0/0 .text            daHitobj_Draw__FP12hitobj_class */
 static bool daHitobj_Draw(hitobj_class* param_0) {
     return true;
 }
 
-/* 8046B360-8046B3C8 0068+00 s=1 e=0 z=0  None .text      daHitobj_Execute__FP12hitobj_class */
+/* 8046B360-8046B3C8 000080 0068+00 1/0 0/0 0/0 .text            daHitobj_Execute__FP12hitobj_class
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daHitobj_Execute(hitobj_class* param_0) {
+static asm void daHitobj_Execute(hitobj_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_hitobj/d_a_hitobj/daHitobj_Execute__FP12hitobj_class.s"
 }
 #pragma pop
 
-/* 8046B3C8-8046B3D0 0008+00 s=1 e=0 z=0  None .text      daHitobj_IsDelete__FP12hitobj_class */
+/* 8046B3C8-8046B3D0 0000E8 0008+00 1/0 0/0 0/0 .text            daHitobj_IsDelete__FP12hitobj_class
+ */
 static bool daHitobj_IsDelete(hitobj_class* param_0) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 8046B5D4-8046B5DC 0007+01 s=2 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_8046B5D4 = "Hitobj";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8046B5DB = "";
-#pragma pop
-
-/* 8046B3D0-8046B400 0030+00 s=1 e=0 z=0  None .text      daHitobj_Delete__FP12hitobj_class */
+/* 8046B3D0-8046B400 0000F0 0030+00 1/0 0/0 0/0 .text            daHitobj_Delete__FP12hitobj_class
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daHitobj_Delete(hitobj_class* param_0) {
+static asm void daHitobj_Delete(hitobj_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_hitobj/d_a_hitobj/daHitobj_Delete__FP12hitobj_class.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8046B5DC-8046B61C 0040+00 s=1 e=0 z=0  None .data      cc_sph_src$3657 */
+/* 8046B5DC-8046B61C 000000 0040+00 1/1 0/0 0/0 .data            cc_sph_src$3657 */
 SECTION_DATA static u8 cc_sph_src[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x13,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -156,7 +137,7 @@ SECTION_DATA static u8 cc_sph_src[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
 };
 
-/* 8046B61C-8046B63C 0020+00 s=1 e=0 z=0  None .data      l_daHitobj_Method */
+/* 8046B61C-8046B63C -00001 0020+00 1/0 0/0 0/0 .data            l_daHitobj_Method */
 SECTION_DATA static void* l_daHitobj_Method[8] = {
     (void*)daHitobj_Create__FP10fopAc_ac_c,
     (void*)daHitobj_Delete__FP12hitobj_class,
@@ -168,8 +149,8 @@ SECTION_DATA static void* l_daHitobj_Method[8] = {
     (void*)NULL,
 };
 
-/* 8046B63C-8046B66C 0030+00 s=0 e=0 z=1  None .data      g_profile_HITOBJ */
-SECTION_DATA void* g_profile_HITOBJ[12] = {
+/* 8046B63C-8046B66C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_HITOBJ */
+SECTION_DATA extern void* g_profile_HITOBJ[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01040000, (void*)&g_fpcLf_Method,
     (void*)0x000006E8, (void*)NULL,
@@ -178,31 +159,31 @@ SECTION_DATA void* g_profile_HITOBJ[12] = {
     (void*)0x00040000, (void*)NULL,
 };
 
-/* 8046B66C-8046B678 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGSph */
-SECTION_DATA static void* __vt__8cM3dGSph[3] = {
-    (void*)NULL,
+/* 8046B66C-8046B678 000090 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGSph */
+SECTION_DATA extern void* __vt__8cM3dGSph[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGSphFv,
 };
 
-/* 8046B678-8046B684 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGAab */
-SECTION_DATA static void* __vt__8cM3dGAab[3] = {
-    (void*)NULL,
+/* 8046B678-8046B684 00009C 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGAab */
+SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGAabFv,
 };
 
-/* 8046B400-8046B53C 013C+00 s=1 e=0 z=0  None .text      daHitobj_Create__FP10fopAc_ac_c */
+/* 8046B400-8046B53C 000120 013C+00 1/0 0/0 0/0 .text            daHitobj_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daHitobj_Create(fopAc_ac_c* param_0) {
+static asm void daHitobj_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_hitobj/d_a_hitobj/daHitobj_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 8046B53C-8046B584 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGSphFv */
+/* 8046B53C-8046B584 00025C 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -212,7 +193,7 @@ asm cM3dGSph::~cM3dGSph() {
 }
 #pragma pop
 
-/* 8046B584-8046B5CC 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGAabFv */
+/* 8046B584-8046B5CC 0002A4 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -220,4 +201,13 @@ asm cM3dGAab::~cM3dGAab() {
     nofralloc
 #include "asm/rel/d/a/d_a_hitobj/d_a_hitobj/__dt__8cM3dGAabFv.s"
 }
+#pragma pop
+
+/* 8046B5D4-8046B5DC 000000 0007+01 2/2 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8046B5D4 = "Hitobj";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8046B5DB = "";
 #pragma pop

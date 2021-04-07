@@ -4,9 +4,9 @@ lbl_8033C0E0:
 /* 8033C0E8  94 21 FD 08 */	stwu r1, -0x2f8(r1)
 /* 8033C0EC  BF 21 02 DC */	stmw r25, 0x2dc(r1)
 /* 8033C0F0  7C 7C 1B 78 */	mr r28, r3
-/* 8033C0F4  3C 60 80 3D */	lis r3, lit_61@ha
+/* 8033C0F4  3C 60 80 3D */	lis r3, lit_61@ha /* 0x803CF740@ha */
 /* 8033C0F8  4C C6 31 82 */	crclr 6
-/* 8033C0FC  3B E3 F7 40 */	addi r31, r3, lit_61@l
+/* 8033C0FC  3B E3 F7 40 */	addi r31, r3, lit_61@l /* 0x803CF740@l */
 /* 8033C100  7F E3 FB 78 */	mr r3, r31
 /* 8033C104  7F 84 E3 78 */	mr r4, r28
 /* 8033C108  4B CC A9 B5 */	bl OSReport
@@ -71,7 +71,7 @@ lbl_8033C1A4:
 /* 8033C1DC  41 82 01 3C */	beq lbl_8033C318
 /* 8033C1E0  48 00 15 15 */	bl OSDisableInterrupts
 /* 8033C1E4  3C C0 80 00 */	lis r6, 0x8000 /* 0x800000D4@ha */
-/* 8033C1E8  80 06 00 D4 */	lwz r0, 0x00D4(r6)
+/* 8033C1E8  80 06 00 D4 */	lwz r0, 0x00D4(r6)  /* 0x800000D4@l */
 /* 8033C1EC  38 A0 00 00 */	li r5, 0
 /* 8033C1F0  38 81 00 10 */	addi r4, r1, 0x10
 /* 8033C1F4  B0 A1 01 B0 */	sth r5, 0x1b0(r1)
@@ -146,7 +146,7 @@ lbl_8033C2A4:
 /* 8033C2EC  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000D8@ha */
 /* 8033C2F0  38 81 00 10 */	addi r4, r1, 0x10
 /* 8033C2F4  B0 A1 01 B2 */	sth r5, 0x1b2(r1)
-/* 8033C2F8  80 03 00 D8 */	lwz r0, 0x00D8(r3)
+/* 8033C2F8  80 03 00 D8 */	lwz r0, 0x00D8(r3)  /* 0x800000D8@l */
 /* 8033C2FC  7C 04 00 40 */	cmplw r4, r0
 /* 8033C300  40 82 00 08 */	bne lbl_8033C308
 /* 8033C304  90 A3 00 D8 */	stw r5, 0xd8(r3)

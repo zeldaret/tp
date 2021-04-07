@@ -7,8 +7,8 @@ lbl_80272160:
 /* 80272174  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80272178  7C 9F 23 78 */	mr r31, r4
 /* 8027217C  41 82 00 44 */	beq lbl_802721C0
-/* 80272180  3C 80 80 3C */	lis r4, __vt__10JFWDisplay@ha
-/* 80272184  38 04 40 A0 */	addi r0, r4, __vt__10JFWDisplay@l
+/* 80272180  3C 80 80 3C */	lis r4, __vt__10JFWDisplay@ha /* 0x803C40A0@ha */
+/* 80272184  38 04 40 A0 */	addi r0, r4, __vt__10JFWDisplay@l /* 0x803C40A0@l */
 /* 80272188  90 1E 00 00 */	stw r0, 0(r30)
 /* 8027218C  80 0D 8F B8 */	lwz r0, sManager__8JUTVideo(r13)
 /* 80272190  28 00 00 00 */	cmplwi r0, 0

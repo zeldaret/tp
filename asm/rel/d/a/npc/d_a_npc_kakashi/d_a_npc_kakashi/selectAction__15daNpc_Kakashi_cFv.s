@@ -5,10 +5,10 @@ lbl_8054C92C:
 /* 8054C938  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8054C93C  93 C1 00 08 */	stw r30, 8(r1)
 /* 8054C940  7C 7F 1B 78 */	mr r31, r3
-/* 8054C944  3C 60 80 55 */	lis r3, cNullVec__6Z2Calc@ha
-/* 8054C948  3B C3 ED 9C */	addi r30, r3, cNullVec__6Z2Calc@l
-/* 8054C94C  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 8054C950  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 8054C944  3C 60 80 55 */	lis r3, cNullVec__6Z2Calc@ha /* 0x8054ED9C@ha */
+/* 8054C948  3B C3 ED 9C */	addi r30, r3, cNullVec__6Z2Calc@l /* 0x8054ED9C@l */
+/* 8054C94C  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 8054C950  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 8054C954  80 64 00 00 */	lwz r3, 0(r4)
 /* 8054C958  80 04 00 04 */	lwz r0, 4(r4)
 /* 8054C95C  90 7F 13 4C */	stw r3, 0x134c(r31)
@@ -23,7 +23,7 @@ lbl_8054C92C:
 /* 8054C980  40 80 00 68 */	bge lbl_8054C9E8
 /* 8054C984  48 00 00 48 */	b lbl_8054C9CC
 lbl_8054C988:
-/* 8054C988  4B AE 4C C0 */	b daNpcKakashi_chkSwdTutorialStage__Fv
+/* 8054C988  4B AE 4C C1 */	bl daNpcKakashi_chkSwdTutorialStage__Fv
 /* 8054C98C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8054C990  41 82 00 20 */	beq lbl_8054C9B0
 /* 8054C994  80 7E 02 04 */	lwz r3, 0x204(r30)

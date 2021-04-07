@@ -5,8 +5,8 @@ lbl_800CC298:
 /* 800CC2A4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800CC2A8  7C 65 1B 78 */	mr r5, r3
 /* 800CC2AC  7C 9F 23 78 */	mr r31, r4
-/* 800CC2B0  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 800CC2B4  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 800CC2B0  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 800CC2B4  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 800CC2B8  80 84 00 04 */	lwz r4, 4(r4)
 /* 800CC2BC  38 A5 01 0C */	addi r5, r5, 0x10c
 /* 800CC2C0  48 0D 8A E1 */	bl setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c

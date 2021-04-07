@@ -95,6 +95,9 @@ async def export_file_async(module, symbols):
                                 f"'lib':{lib_index},"
                                 f"'tu':{tu_index},"
                                 f"'section':{sec_index},"
+                                f"'class_template':{symbol.uses_class_template},"
+                                f"'static':{symbol.is_static},"
+                                f"'is_reachable':{symbol.is_reachable},"
                                 f"'r':[{symbol.reference_count.static},{symbol.reference_count.extern},{symbol.reference_count.rel}],"
                                 f"'sh':[{symbol.sda_hack_reference_count.static},{symbol.sda_hack_reference_count.extern},{symbol.sda_hack_reference_count.rel}],"
                                 f"'type':{escape_text(type(symbol).__name__)}}},")

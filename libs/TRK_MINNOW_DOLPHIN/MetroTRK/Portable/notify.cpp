@@ -27,11 +27,11 @@ extern "C" void TRKTargetAddStopInfo();
 // Declarations:
 //
 
-/* 8036F4B0-8036F548 0098+00 s=0 e=1 z=0  None .text      TRKDoNotifyStopped */
+/* 8036F4B0-8036F548 369DF0 0098+00 0/0 1/1 0/0 .text            TRKDoNotifyStopped */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKDoNotifyStopped() {
+asm void TRKDoNotifyStopped() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/notify/TRKDoNotifyStopped.s"
 }

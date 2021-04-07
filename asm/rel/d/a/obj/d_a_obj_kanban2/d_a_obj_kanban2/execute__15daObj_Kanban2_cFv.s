@@ -7,7 +7,7 @@ lbl_80584DF0:
 /* 80584E04  80 03 06 1C */	lwz r0, 0x61c(r3)
 /* 80584E08  28 00 00 00 */	cmplwi r0, 0
 /* 80584E0C  40 82 00 10 */	bne lbl_80584E1C
-/* 80584E10  4B A9 4E 6C */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80584E10  4B A9 4E 6D */	bl fopAcM_delete__FP10fopAc_ac_c
 /* 80584E14  38 60 00 01 */	li r3, 1
 /* 80584E18  48 00 00 84 */	b lbl_80584E9C
 lbl_80584E1C:
@@ -37,7 +37,7 @@ lbl_80584E58:
 /* 80584E6C  4B FF FE 91 */	bl cc_set__15daObj_Kanban2_cFv
 /* 80584E70  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80584E74  7C 03 07 74 */	extsb r3, r0
-/* 80584E78  4B AA 81 F4 */	b dComIfGp_getReverb__Fi
+/* 80584E78  4B AA 81 F5 */	bl dComIfGp_getReverb__Fi
 /* 80584E7C  7C 65 1B 78 */	mr r5, r3
 /* 80584E80  38 7F 05 BC */	addi r3, r31, 0x5bc
 /* 80584E84  38 80 00 00 */	li r4, 0

@@ -1,6 +1,6 @@
 lbl_80CB022C:
-/* 80CB022C  3C 80 80 CB */	lis r4, l_shake_data@ha
-/* 80CB0230  38 84 0A 38 */	addi r4, r4, l_shake_data@l
+/* 80CB022C  3C 80 80 CB */	lis r4, l_shake_data@ha /* 0x80CB0A38@ha */
+/* 80CB0230  38 84 0A 38 */	addi r4, r4, l_shake_data@l /* 0x80CB0A38@l */
 /* 80CB0234  88 04 00 18 */	lbz r0, 0x18(r4)
 /* 80CB0238  98 03 07 42 */	stb r0, 0x742(r3)
 /* 80CB023C  88 04 00 19 */	lbz r0, 0x19(r4)

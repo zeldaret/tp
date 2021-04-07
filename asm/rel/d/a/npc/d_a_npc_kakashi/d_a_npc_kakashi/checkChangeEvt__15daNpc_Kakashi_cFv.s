@@ -4,8 +4,8 @@ lbl_8054BF8C:
 /* 8054BF94  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8054BF98  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8054BF9C  7C 7F 1B 78 */	mr r31, r3
-/* 8054BFA0  3C 80 80 55 */	lis r4, lit_4583@ha
-/* 8054BFA4  38 A4 EF 7C */	addi r5, r4, lit_4583@l
+/* 8054BFA0  3C 80 80 55 */	lis r4, lit_4583@ha /* 0x8054EF7C@ha */
+/* 8054BFA4  38 A4 EF 7C */	addi r5, r4, lit_4583@l /* 0x8054EF7C@l */
 /* 8054BFA8  80 85 00 00 */	lwz r4, 0(r5)
 /* 8054BFAC  80 05 00 04 */	lwz r0, 4(r5)
 /* 8054BFB0  90 81 00 08 */	stw r4, 8(r1)
@@ -34,7 +34,7 @@ lbl_8054BFF8:
 /* 8054C004  38 00 00 02 */	li r0, 2
 /* 8054C008  B0 1F 0E 30 */	sth r0, 0xe30(r31)
 /* 8054C00C  7F E3 FB 78 */	mr r3, r31
-/* 8054C010  4B BF E2 14 */	b evtChange__8daNpcT_cFv
+/* 8054C010  4B BF E2 15 */	bl evtChange__8daNpcT_cFv
 /* 8054C014  38 60 00 01 */	li r3, 1
 /* 8054C018  48 00 00 08 */	b lbl_8054C020
 lbl_8054C01C:

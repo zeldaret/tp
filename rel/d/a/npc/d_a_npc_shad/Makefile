@@ -3,19 +3,20 @@
 #
 
 M359_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shad.plf
+M359_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shad.lcf
+M359_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shad.map
 
 M359_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_shad/executor.cpp \
-	rel/d/a/npc/d_a_npc_shad/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_shad/d_a_npc_shad.cpp \
 
 M359_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shad/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shad/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shad/d_a_npc_shad.o \
 
 M359_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_shad/libRuntime.PPCEABI.H.a \
 
 M359_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M359_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M359_LDSCRIPT) \
+	-unused -map $(M359_MAP) \
+	-w off \
 
 $(M359_TARGET): $(M359_O_FILES) $(M359_LIBS)
+	@echo [359] creating $(M359_TARGET)
 	@echo $(M359_LIBS) $(M359_O_FILES) > build/M359_ofiles
-	$(LD) -partial $(M359_LDFLAGS) -o $(M359_TARGET) @build/M359_ofiles
+	@python3 tools/lcf.py rel 359 --output $(M359_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M359_LDFLAGS) -o $(M359_TARGET) @build/M359_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_shad/%.o: rel/d/a/npc/d_a_npc_shad/%.cpp
+	@echo [359] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M359_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M359_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_shad/libs/Runtime.PPCEABI.H/Makefile
 

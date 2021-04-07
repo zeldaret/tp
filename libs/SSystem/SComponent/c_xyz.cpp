@@ -318,54 +318,95 @@ asm s16 cXyz::atan2sY_XZ() const {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80430D00-80430D0C 000C+00 s=1 e=0 z=0  None .bss       @2451 */
+/* 80430D00-80430D0C 05DA20 000C+00 0/1 0/0 0/0 .bss             @2451 */
+#pragma push
+#pragma force_active on
 static u8 lit_2451[12];
+#pragma pop
 
-/* 80430D0C-80430D18 000C+00 s=1 e=3 z=9  None .bss       BaseX__4cXyz */
+/* 80430D0C-80430D18 05DA2C 000C+00 0/1 3/3 9/9 .bss             BaseX__4cXyz */
+extern u8 BaseX__4cXyz[12];
 u8 BaseX__4cXyz[12];
 
-/* 80430D18-80430D24 000C+00 s=1 e=0 z=0  None .bss       @2452 */
+/* 80430D18-80430D24 05DA38 000C+00 0/1 0/0 0/0 .bss             @2452 */
+#pragma push
+#pragma force_active on
 static u8 lit_2452[12];
+#pragma pop
 
-/* 80430D24-80430D30 000C+00 s=1 e=14 z=8  None .bss       BaseY__4cXyz */
+/* 80430D24-80430D30 05DA44 000C+00 0/1 14/14 8/8 .bss             BaseY__4cXyz */
+extern u8 BaseY__4cXyz[12];
 u8 BaseY__4cXyz[12];
 
-/* 80430D30-80430D3C 000C+00 s=1 e=0 z=0  None .bss       @2453 */
+/* 80430D30-80430D3C 05DA50 000C+00 0/1 0/0 0/0 .bss             @2453 */
+#pragma push
+#pragma force_active on
 static u8 lit_2453[12];
+#pragma pop
 
-/* 80430D3C-80430D48 000C+00 s=1 e=15 z=5  None .bss       BaseZ__4cXyz */
+/* 80430D3C-80430D48 05DA5C 000C+00 0/1 15/15 5/5 .bss             BaseZ__4cXyz */
+extern u8 BaseZ__4cXyz[12];
 u8 BaseZ__4cXyz[12];
 
-/* 80430D48-80430D54 000C+00 s=1 e=0 z=0  None .bss       @2454 */
+/* 80430D48-80430D54 05DA68 000C+00 0/1 0/0 0/0 .bss             @2454 */
+#pragma push
+#pragma force_active on
 static u8 lit_2454[12];
+#pragma pop
 
-/* 80430D54-80430D60 000C+00 s=1 e=0 z=0  None .bss       BaseXY__4cXyz */
+/* 80430D54-80430D60 05DA74 000C+00 0/1 0/0 0/0 .bss             BaseXY__4cXyz */
+#pragma push
+#pragma force_active on
 static u8 BaseXY__4cXyz[12];
+#pragma pop
 
-/* 80430D60-80430D6C 000C+00 s=1 e=0 z=0  None .bss       @2455 */
+/* 80430D60-80430D6C 05DA80 000C+00 0/1 0/0 0/0 .bss             @2455 */
+#pragma push
+#pragma force_active on
 static u8 lit_2455[12];
+#pragma pop
 
-/* 80430D6C-80430D78 000C+00 s=1 e=0 z=0  None .bss       BaseXZ__4cXyz */
+/* 80430D6C-80430D78 05DA8C 000C+00 0/1 0/0 0/0 .bss             BaseXZ__4cXyz */
+#pragma push
+#pragma force_active on
 static u8 BaseXZ__4cXyz[12];
+#pragma pop
 
-/* 80430D78-80430D84 000C+00 s=1 e=0 z=0  None .bss       @2456 */
+/* 80430D78-80430D84 05DA98 000C+00 0/1 0/0 0/0 .bss             @2456 */
+#pragma push
+#pragma force_active on
 static u8 lit_2456[12];
+#pragma pop
 
-/* 80430D84-80430D90 000C+00 s=1 e=0 z=0  None .bss       BaseYZ__4cXyz */
+/* 80430D84-80430D90 05DAA4 000C+00 0/1 0/0 0/0 .bss             BaseYZ__4cXyz */
+#pragma push
+#pragma force_active on
 static u8 BaseYZ__4cXyz[12];
+#pragma pop
 
-/* 80430D90-80430D9C 000C+00 s=1 e=0 z=0  None .bss       @2457 */
+/* 80430D90-80430D9C 05DAB0 000C+00 0/1 0/0 0/0 .bss             @2457 */
+#pragma push
+#pragma force_active on
 static u8 lit_2457[12];
+#pragma pop
 
-/* 80430D9C-80430DA8 000C+00 s=1 e=0 z=0  None .bss       BaseXYZ__4cXyz */
+/* 80430D9C-80430DA8 05DABC 000C+00 0/1 0/0 0/0 .bss             BaseXYZ__4cXyz */
+#pragma push
+#pragma force_active on
 static u8 BaseXYZ__4cXyz[12];
+#pragma pop
 
-/* 80267290-802673F4 0164+00 s=0 e=1 z=0  None .text      __sinit_c_xyz_cpp */
+/* 80267290-802673F4 261BD0 0164+00 0/0 1/0 0/0 .text            __sinit_c_xyz_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_c_xyz_cpp() {
+asm void __sinit_c_xyz_cpp() {
     nofralloc
 #include "asm/SSystem/SComponent/c_xyz/__sinit_c_xyz_cpp.s"
 }
+#pragma pop
+
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_80267290 = (void*)__sinit_c_xyz_cpp;
 #pragma pop

@@ -8,8 +8,8 @@ lbl_800D2ABC:
 /* 800D2AD4  3B C0 00 01 */	li r30, 1
 /* 800D2AD8  3B A0 00 00 */	li r29, 0
 /* 800D2ADC  7F DF F3 78 */	mr r31, r30
-/* 800D2AE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D2AE4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D2AE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D2AE4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D2AE8  38 63 07 F0 */	addi r3, r3, 0x7f0
 /* 800D2AEC  38 80 2A 20 */	li r4, 0x2a20
 /* 800D2AF0  4B F6 1E CD */	bl isEventBit__11dSv_event_cCFUs
@@ -22,8 +22,8 @@ lbl_800D2ABC:
 lbl_800D2B0C:
 /* 800D2B0C  57 E0 06 3F */	clrlwi. r0, r31, 0x18
 /* 800D2B10  41 82 00 28 */	beq lbl_800D2B38
-/* 800D2B14  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D2B18  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D2B14  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D2B18  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D2B1C  A3 E3 00 02 */	lhz r31, 2(r3)
 /* 800D2B20  4B F5 B1 89 */	bl dComIfGs_getMaxLifeGauge__Fv
 /* 800D2B24  54 63 04 3E */	clrlwi r3, r3, 0x10

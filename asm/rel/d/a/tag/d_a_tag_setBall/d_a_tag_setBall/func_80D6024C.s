@@ -9,7 +9,7 @@ lbl_80D6024C:
 /* 80D60268  40 82 00 1C */	bne lbl_80D60284
 /* 80D6026C  28 1F 00 00 */	cmplwi r31, 0
 /* 80D60270  41 82 00 08 */	beq lbl_80D60278
-/* 80D60274  4B 2B 88 F0 */	b __ct__10fopAc_ac_cFv
+/* 80D60274  4B 2B 88 F1 */	bl __ct__10fopAc_ac_cFv
 lbl_80D60278:
 /* 80D60278  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 80D6027C  60 00 00 08 */	ori r0, r0, 8

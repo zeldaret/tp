@@ -4,7 +4,7 @@ lbl_809D2C50:
 /* 809D2C58  90 01 00 14 */	stw r0, 0x14(r1)
 /* 809D2C5C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 809D2C60  7C 7F 1B 78 */	mr r31, r3
-/* 809D2C64  4B 64 60 7C */	b fopAc_IsActor__FPv
+/* 809D2C64  4B 64 60 7D */	bl fopAc_IsActor__FPv
 /* 809D2C68  2C 03 00 00 */	cmpwi r3, 0
 /* 809D2C6C  41 82 00 18 */	beq lbl_809D2C84
 /* 809D2C70  A8 1F 00 08 */	lha r0, 8(r31)

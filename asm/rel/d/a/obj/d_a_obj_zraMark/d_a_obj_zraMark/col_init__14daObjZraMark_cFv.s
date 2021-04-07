@@ -8,11 +8,11 @@ lbl_80D42EE0:
 /* 80D42EF8  38 80 00 FF */	li r4, 0xff
 /* 80D42EFC  38 A0 00 FF */	li r5, 0xff
 /* 80D42F00  7F E6 FB 78 */	mr r6, r31
-/* 80D42F04  4B 34 09 5C */	b Init__9dCcD_SttsFiiP10fopAc_ac_c
+/* 80D42F04  4B 34 09 5D */	bl Init__9dCcD_SttsFiiP10fopAc_ac_c
 /* 80D42F08  38 7F 05 E0 */	addi r3, r31, 0x5e0
-/* 80D42F0C  3C 80 80 D4 */	lis r4, l_sph_src@ha
-/* 80D42F10  38 84 3D 9C */	addi r4, r4, l_sph_src@l
-/* 80D42F14  4B 34 19 A0 */	b Set__8dCcD_CylFRC11dCcD_SrcCyl
+/* 80D42F0C  3C 80 80 D4 */	lis r4, l_sph_src@ha /* 0x80D43D9C@ha */
+/* 80D42F10  38 84 3D 9C */	addi r4, r4, l_sph_src@l /* 0x80D43D9C@l */
+/* 80D42F14  4B 34 19 A1 */	bl Set__8dCcD_CylFRC11dCcD_SrcCyl
 /* 80D42F18  38 1F 05 A4 */	addi r0, r31, 0x5a4
 /* 80D42F1C  90 1F 06 24 */	stw r0, 0x624(r31)
 /* 80D42F20  80 1F 00 B0 */	lwz r0, 0xb0(r31)

@@ -4,20 +4,20 @@ lbl_8094C4B0:
 /* 8094C4B8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8094C4BC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8094C4C0  7C 7F 1B 78 */	mr r31, r3
-/* 8094C4C4  4B 6C C8 1C */	b fopAc_IsActor__FPv
+/* 8094C4C4  4B 6C C8 1D */	bl fopAc_IsActor__FPv
 /* 8094C4C8  2C 03 00 00 */	cmpwi r3, 0
 /* 8094C4CC  41 82 00 3C */	beq lbl_8094C508
 /* 8094C4D0  A8 1F 00 08 */	lha r0, 8(r31)
 /* 8094C4D4  2C 00 01 0D */	cmpwi r0, 0x10d
 /* 8094C4D8  40 82 00 30 */	bne lbl_8094C508
-/* 8094C4DC  3C 60 80 95 */	lis r3, target_info_count@ha
-/* 8094C4E0  38 83 16 00 */	addi r4, r3, target_info_count@l
+/* 8094C4DC  3C 60 80 95 */	lis r3, target_info_count@ha /* 0x80951600@ha */
+/* 8094C4E0  38 83 16 00 */	addi r4, r3, target_info_count@l /* 0x80951600@l */
 /* 8094C4E4  80 A4 00 00 */	lwz r5, 0(r4)
 /* 8094C4E8  2C 05 00 0A */	cmpwi r5, 0xa
 /* 8094C4EC  40 80 00 1C */	bge lbl_8094C508
 /* 8094C4F0  54 A0 10 3A */	slwi r0, r5, 2
-/* 8094C4F4  3C 60 80 95 */	lis r3, target_info@ha
-/* 8094C4F8  38 63 15 D8 */	addi r3, r3, target_info@l
+/* 8094C4F4  3C 60 80 95 */	lis r3, target_info@ha /* 0x809515D8@ha */
+/* 8094C4F8  38 63 15 D8 */	addi r3, r3, target_info@l /* 0x809515D8@l */
 /* 8094C4FC  7F E3 01 2E */	stwx r31, r3, r0
 /* 8094C500  38 05 00 01 */	addi r0, r5, 1
 /* 8094C504  90 04 00 00 */	stw r0, 0(r4)

@@ -5,8 +5,8 @@ lbl_8022FB5C:
 /* 8022FB68  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8022FB6C  7C 7F 1B 78 */	mr r31, r3
 /* 8022FB70  48 07 79 D9 */	bl __ct__Q28JMessage8TControlFv
-/* 8022FB74  3C 60 80 3C */	lis r3, __vt__24jmessage_string_tControl@ha
-/* 8022FB78  38 03 09 E0 */	addi r0, r3, __vt__24jmessage_string_tControl@l
+/* 8022FB74  3C 60 80 3C */	lis r3, __vt__24jmessage_string_tControl@ha /* 0x803C09E0@ha */
+/* 8022FB78  38 03 09 E0 */	addi r0, r3, __vt__24jmessage_string_tControl@l /* 0x803C09E0@l */
 /* 8022FB7C  90 1F 00 00 */	stw r0, 0(r31)
 /* 8022FB80  7F E3 FB 78 */	mr r3, r31
 /* 8022FB84  83 E1 00 0C */	lwz r31, 0xc(r1)

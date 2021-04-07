@@ -3,12 +3,12 @@ lbl_80D253FC:
 /* 80D25400  7C 08 02 A6 */	mflr r0
 /* 80D25404  90 01 00 44 */	stw r0, 0x44(r1)
 /* 80D25408  39 61 00 40 */	addi r11, r1, 0x40
-/* 80D2540C  4B 63 CD C0 */	b _savegpr_25
+/* 80D2540C  4B 63 CD C1 */	bl _savegpr_25
 /* 80D25410  7C 7D 1B 78 */	mr r29, r3
-/* 80D25414  3C 60 80 D2 */	lis r3, l_midna_offset@ha
-/* 80D25418  3B C3 6B 5C */	addi r30, r3, l_midna_offset@l
-/* 80D2541C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80D25420  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 80D25414  3C 60 80 D2 */	lis r3, l_midna_offset@ha /* 0x80D26B5C@ha */
+/* 80D25418  3B C3 6B 5C */	addi r30, r3, l_midna_offset@l /* 0x80D26B5C@l */
+/* 80D2541C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D25420  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D25424  38 BE 00 0C */	addi r5, r30, 0xc
 /* 80D25428  80 7F 5D 3C */	lwz r3, 0x5d3c(r31)
 /* 80D2542C  38 80 00 00 */	li r4, 0
@@ -26,7 +26,7 @@ lbl_80D253FC:
 /* 80D2545C  39 3D 04 EC */	addi r9, r29, 0x4ec
 /* 80D25460  39 40 00 FF */	li r10, 0xff
 /* 80D25464  C0 3E 00 20 */	lfs f1, 0x20(r30)
-/* 80D25468  4B 32 76 28 */	b set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 80D25468  4B 32 76 29 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 80D2546C  90 7D 0A 04 */	stw r3, 0xa04(r29)
 /* 80D25470  80 7D 0A 04 */	lwz r3, 0xa04(r29)
 /* 80D25474  28 03 00 00 */	cmplwi r3, 0
@@ -56,7 +56,7 @@ lbl_80D25498:
 /* 80D254CC  39 3D 04 EC */	addi r9, r29, 0x4ec
 /* 80D254D0  39 40 00 FF */	li r10, 0xff
 /* 80D254D4  C0 3E 00 20 */	lfs f1, 0x20(r30)
-/* 80D254D8  4B 32 75 B8 */	b set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 80D254D8  4B 32 75 B9 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 80D254DC  38 1C 09 F8 */	addi r0, r28, 0x9f8
 /* 80D254E0  7C 7D 01 2E */	stwx r3, r29, r0
 /* 80D254E4  7C 7D 00 2E */	lwzx r3, r29, r0
@@ -72,7 +72,7 @@ lbl_80D254FC:
 /* 80D25508  3B 7B 00 02 */	addi r27, r27, 2
 /* 80D2550C  41 80 FF 8C */	blt lbl_80D25498
 /* 80D25510  39 61 00 40 */	addi r11, r1, 0x40
-/* 80D25514  4B 63 CD 04 */	b _restgpr_25
+/* 80D25514  4B 63 CD 05 */	bl _restgpr_25
 /* 80D25518  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80D2551C  7C 08 03 A6 */	mtlr r0
 /* 80D25520  38 21 00 40 */	addi r1, r1, 0x40

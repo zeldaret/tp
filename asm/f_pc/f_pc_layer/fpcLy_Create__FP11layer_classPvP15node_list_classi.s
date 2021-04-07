@@ -23,8 +23,8 @@ lbl_80021904:
 /* 80021918  38 00 00 01 */	li r0, 1
 /* 8002191C  98 0D 87 A8 */	stb r0, data_80450D28(r13)
 lbl_80021920:
-/* 80021920  3C 60 80 3A */	lis r3, l_fpcLy_Crear@ha
-/* 80021924  38 83 39 B0 */	addi r4, r3, l_fpcLy_Crear@l
+/* 80021920  3C 60 80 3A */	lis r3, l_fpcLy_Crear@ha /* 0x803A39B0@ha */
+/* 80021924  38 83 39 B0 */	addi r4, r3, l_fpcLy_Crear@l /* 0x803A39B0@l */
 /* 80021928  80 64 00 00 */	lwz r3, 0(r4)
 /* 8002192C  80 04 00 04 */	lwz r0, 4(r4)
 /* 80021930  90 7C 00 00 */	stw r3, 0(r28)
@@ -60,8 +60,8 @@ lbl_80021920:
 /* 800219A8  40 82 00 20 */	bne lbl_800219C8
 /* 800219AC  38 00 00 00 */	li r0, 0
 /* 800219B0  90 0D 87 9C */	stw r0, IsInitOfLayerList(r13)
-/* 800219B4  3C 60 80 3A */	lis r3, l_fpcLy_LayerList@ha
-/* 800219B8  38 63 39 DC */	addi r3, r3, l_fpcLy_LayerList@l
+/* 800219B4  3C 60 80 3A */	lis r3, l_fpcLy_LayerList@ha /* 0x803A39DC@ha */
+/* 800219B8  38 63 39 DC */	addi r3, r3, l_fpcLy_LayerList@l /* 0x803A39DC@l */
 /* 800219BC  48 24 46 85 */	bl cLs_Create__FP15node_list_class
 /* 800219C0  7F 83 E3 78 */	mr r3, r28
 /* 800219C4  4B FF FD 29 */	bl fpcLy_SetCurrentLayer__FP11layer_class

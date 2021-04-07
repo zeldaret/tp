@@ -3,17 +3,15 @@
 #
 
 M694_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ystone.plf
+M694_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ystone.lcf
+M694_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ystone.map
 
 M694_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_ystone/executor.cpp \
-	rel/d/a/obj/d_a_obj_ystone/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_ystone/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_ystone/d_a_obj_ystone.cpp \
 
 M694_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ystone/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ystone/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ystone/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ystone/d_a_obj_ystone.o \
 
 M694_LIBS := \
@@ -29,14 +27,21 @@ M694_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M694_LDSCRIPT) \
+	-unused -map $(M694_MAP) \
+	-w off \
 
 $(M694_TARGET): $(M694_O_FILES) $(M694_LIBS)
+	@echo [694] creating $(M694_TARGET)
 	@echo $(M694_LIBS) $(M694_O_FILES) > build/M694_ofiles
-	$(LD) -partial $(M694_LDFLAGS) -o $(M694_TARGET) @build/M694_ofiles
+	@python3 tools/lcf.py rel 694 --output $(M694_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M694_LDFLAGS) -o $(M694_TARGET) @build/M694_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ystone/%.o: rel/d/a/obj/d_a_obj_ystone/%.cpp
+	@echo [694] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M694_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M694_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

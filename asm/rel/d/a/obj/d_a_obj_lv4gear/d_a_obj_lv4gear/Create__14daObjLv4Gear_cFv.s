@@ -11,7 +11,7 @@ lbl_80C68050:
 /* 80C68074  80 7F 05 70 */	lwz r3, 0x570(r31)
 /* 80C68078  80 83 00 04 */	lwz r4, 4(r3)
 /* 80C6807C  7F E3 FB 78 */	mr r3, r31
-/* 80C68080  4B 3B 24 F8 */	b fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
+/* 80C68080  4B 3B 24 F9 */	bl fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
 /* 80C68084  38 00 FF FF */	li r0, -1
 /* 80C68088  90 1F 05 7C */	stw r0, 0x57c(r31)
 /* 80C6808C  38 60 00 01 */	li r3, 1

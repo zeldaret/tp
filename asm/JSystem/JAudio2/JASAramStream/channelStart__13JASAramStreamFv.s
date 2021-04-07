@@ -24,12 +24,12 @@ lbl_802976A4:
 lbl_802976A8:
 /* 802976A8  3B C0 00 00 */	li r30, 0
 /* 802976AC  3B 80 00 00 */	li r28, 0
-/* 802976B0  3C 60 80 43 */	lis r3, data_80431B34@ha
-/* 802976B4  3B 23 1B 34 */	addi r25, r3, data_80431B34@l
+/* 802976B0  3C 60 80 43 */	lis r3, data_80431B34@ha /* 0x80431B34@ha */
+/* 802976B4  3B 23 1B 34 */	addi r25, r3, data_80431B34@l /* 0x80431B34@l */
 /* 802976B8  CB E2 BC 20 */	lfd f31, lit_533(r2)
 /* 802976BC  3F 40 43 30 */	lis r26, 0x4330
-/* 802976C0  3C 60 80 3A */	lis r3, OSC_ENV@ha
-/* 802976C4  3B 63 B1 74 */	addi r27, r3, OSC_ENV@l
+/* 802976C0  3C 60 80 3A */	lis r3, OSC_ENV@ha /* 0x8039B174@ha */
+/* 802976C4  3B 63 B1 74 */	addi r27, r3, OSC_ENV@l /* 0x8039B174@l */
 /* 802976C8  48 00 01 6C */	b lbl_80297834
 lbl_802976CC:
 /* 802976CC  7F A3 EB 78 */	mr r3, r29
@@ -40,15 +40,15 @@ lbl_802976CC:
 /* 802976E0  88 0D 8C E2 */	lbz r0, struct_80451260+0x2(r13)
 /* 802976E4  7C 00 07 75 */	extsb. r0, r0
 /* 802976E8  40 82 00 34 */	bne lbl_8029771C
-/* 802976EC  3C 60 80 43 */	lis r3, data_80431B34@ha
-/* 802976F0  38 63 1B 34 */	addi r3, r3, data_80431B34@l
+/* 802976EC  3C 60 80 43 */	lis r3, data_80431B34@ha /* 0x80431B34@ha */
+/* 802976F0  38 63 1B 34 */	addi r3, r3, data_80431B34@l /* 0x80431B34@l */
 /* 802976F4  4B FF 91 55 */	bl __ct__17JASGenericMemPoolFv
-/* 802976F8  3C 60 80 43 */	lis r3, data_80431B34@ha
-/* 802976FC  38 63 1B 34 */	addi r3, r3, data_80431B34@l
-/* 80297700  3C 80 80 29 */	lis r4, func_802978DC@ha
-/* 80297704  38 84 78 DC */	addi r4, r4, func_802978DC@l
-/* 80297708  3C A0 80 43 */	lis r5, lit_792@ha
-/* 8029770C  38 A5 1B 28 */	addi r5, r5, lit_792@l
+/* 802976F8  3C 60 80 43 */	lis r3, data_80431B34@ha /* 0x80431B34@ha */
+/* 802976FC  38 63 1B 34 */	addi r3, r3, data_80431B34@l /* 0x80431B34@l */
+/* 80297700  3C 80 80 29 */	lis r4, func_802978DC@ha /* 0x802978DC@ha */
+/* 80297704  38 84 78 DC */	addi r4, r4, func_802978DC@l /* 0x802978DC@l */
+/* 80297708  3C A0 80 43 */	lis r5, lit_792@ha /* 0x80431B28@ha */
+/* 8029770C  38 A5 1B 28 */	addi r5, r5, lit_792@l /* 0x80431B28@l */
 /* 80297710  48 0C A5 15 */	bl __register_global_object
 /* 80297714  38 00 00 01 */	li r0, 1
 /* 80297718  98 0D 8C E2 */	stb r0, struct_80451260+0x2(r13)
@@ -64,8 +64,8 @@ lbl_8029771C:
 /* 8029773C  28 15 00 00 */	cmplwi r21, 0
 /* 80297740  41 82 00 1C */	beq lbl_8029775C
 /* 80297744  7E A3 AB 78 */	mr r3, r21
-/* 80297748  3C 80 80 29 */	lis r4, channelCallback__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannelPv@ha
-/* 8029774C  38 84 6D F0 */	addi r4, r4, channelCallback__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannelPv@l
+/* 80297748  3C 80 80 29 */	lis r4, channelCallback__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannelPv@ha /* 0x80296DF0@ha */
+/* 8029774C  38 84 6D F0 */	addi r4, r4, channelCallback__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChannelPv@l /* 0x80296DF0@l */
 /* 80297750  7F A5 EB 78 */	mr r5, r29
 /* 80297754  48 00 30 AD */	bl __ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv
 /* 80297758  7C 75 1B 78 */	mr r21, r3

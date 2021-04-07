@@ -81,8 +81,8 @@ lbl_8021BEA8:
 /* 8021BFA0  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8021BFA4  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 8021BFA8  7F E3 FB 78 */	mr r3, r31
-/* 8021BFAC  3C 80 80 3A */	lis r4, d_meter_d_meter2_info__stringBase0@ha
-/* 8021BFB0  38 84 91 68 */	addi r4, r4, d_meter_d_meter2_info__stringBase0@l
+/* 8021BFAC  3C 80 80 3A */	lis r4, d_meter_d_meter2_info__stringBase0@ha /* 0x80399168@ha */
+/* 8021BFB0  38 84 91 68 */	addi r4, r4, d_meter_d_meter2_info__stringBase0@l /* 0x80399168@l */
 /* 8021BFB4  38 A1 00 08 */	addi r5, r1, 8
 /* 8021BFB8  38 C0 00 00 */	li r6, 0
 /* 8021BFBC  38 E0 00 00 */	li r7, 0
@@ -124,8 +124,8 @@ lbl_8021BFFC:
 /* 8021C044  98 7F 00 DD */	stb r3, 0xdd(r31)
 /* 8021C048  98 7F 00 DE */	stb r3, 0xde(r31)
 /* 8021C04C  7F E3 FB 78 */	mr r3, r31
-/* 8021C050  3C 80 80 3A */	lis r4, d_meter_d_meter2_info__stringBase0@ha
-/* 8021C054  38 84 91 68 */	addi r4, r4, d_meter_d_meter2_info__stringBase0@l
+/* 8021C050  3C 80 80 3A */	lis r4, d_meter_d_meter2_info__stringBase0@ha /* 0x80399168@ha */
+/* 8021C054  38 84 91 68 */	addi r4, r4, d_meter_d_meter2_info__stringBase0@l /* 0x80399168@l */
 /* 8021C058  48 00 22 39 */	bl setSaveStageName__13dMeter2Info_cFPCc
 /* 8021C05C  3B A0 00 00 */	li r29, 0
 /* 8021C060  9B BF 00 DF */	stb r29, 0xdf(r31)
@@ -138,8 +138,8 @@ lbl_8021BFFC:
 /* 8021C07C  9B BF 00 E6 */	stb r29, 0xe6(r31)
 /* 8021C080  9B BF 00 F2 */	stb r29, 0xf2(r31)
 /* 8021C084  3B 60 00 00 */	li r27, 0
-/* 8021C088  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8021C08C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8021C088  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8021C08C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8021C090  3B 83 01 14 */	addi r28, r3, 0x114
 lbl_8021C094:
 /* 8021C094  7F 83 E3 78 */	mr r3, r28

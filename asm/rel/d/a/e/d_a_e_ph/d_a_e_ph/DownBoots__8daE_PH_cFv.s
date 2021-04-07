@@ -5,8 +5,8 @@ lbl_8073E924:
 /* 8073E930  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 8073E934  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 8073E938  7C 7E 1B 78 */	mr r30, r3
-/* 8073E93C  3C 60 80 74 */	lis r3, lit_3767@ha
-/* 8073E940  3B E3 1B F4 */	addi r31, r3, lit_3767@l
+/* 8073E93C  3C 60 80 74 */	lis r3, lit_3767@ha /* 0x80741BF4@ha */
+/* 8073E940  3B E3 1B F4 */	addi r31, r3, lit_3767@l /* 0x80741BF4@l */
 /* 8073E944  A8 7E 06 66 */	lha r3, 0x666(r30)
 /* 8073E948  A8 1E 06 12 */	lha r0, 0x612(r30)
 /* 8073E94C  C8 5F 00 80 */	lfd f2, 0x80(r31)
@@ -34,7 +34,7 @@ lbl_8073E924:
 /* 8073E9A4  EC 20 10 28 */	fsubs f1, f0, f2
 /* 8073E9A8  C0 1E 06 24 */	lfs f0, 0x624(r30)
 /* 8073E9AC  EC 21 00 32 */	fmuls f1, f1, f0
-/* 8073E9B0  4B C2 36 FC */	b __cvt_fp2unsigned
+/* 8073E9B0  4B C2 36 FD */	bl __cvt_fp2unsigned
 /* 8073E9B4  7C 65 1B 78 */	mr r5, r3
 /* 8073E9B8  38 7E 06 74 */	addi r3, r30, 0x674
 /* 8073E9BC  38 81 00 08 */	addi r4, r1, 8
@@ -45,8 +45,8 @@ lbl_8073E924:
 /* 8073E9D0  4E 80 04 21 */	bctrl 
 /* 8073E9D4  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 8073E9D8  D0 1E 04 FC */	stfs f0, 0x4fc(r30)
-/* 8073E9DC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8073E9E0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8073E9DC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8073E9E0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8073E9E4  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 8073E9E8  D0 1E 05 2C */	stfs f0, 0x52c(r30)
 /* 8073E9EC  C0 3E 04 D4 */	lfs f1, 0x4d4(r30)

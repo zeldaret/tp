@@ -15,7 +15,7 @@ lbl_80C75E18:
 /* 80C75E4C  80 7E 05 E8 */	lwz r3, 0x5e8(r30)
 /* 80C75E50  28 03 00 00 */	cmplwi r3, 0
 /* 80C75E54  41 82 00 08 */	beq lbl_80C75E5C
-/* 80C75E58  4B 40 5B 68 */	b Move__4dBgWFv
+/* 80C75E58  4B 40 5B 69 */	bl Move__4dBgWFv
 lbl_80C75E5C:
 /* 80C75E5C  38 60 00 01 */	li r3, 1
 /* 80C75E60  83 E1 00 0C */	lwz r31, 0xc(r1)

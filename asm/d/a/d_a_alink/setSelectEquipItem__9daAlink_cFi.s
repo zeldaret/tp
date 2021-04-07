@@ -10,8 +10,8 @@ lbl_800A4910:
 /* 800A4930  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
 /* 800A4934  40 82 01 C0 */	bne lbl_800A4AF4
 /* 800A4938  83 DC 06 B8 */	lwz r30, 0x6b8(r28)
-/* 800A493C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800A4940  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 800A493C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800A4940  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800A4944  88 1F 00 14 */	lbz r0, 0x14(r31)
 /* 800A4948  28 00 00 3F */	cmplwi r0, 0x3f
 /* 800A494C  40 82 00 18 */	bne lbl_800A4964

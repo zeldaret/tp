@@ -5,13 +5,13 @@ lbl_80220C30:
 /* 80220C3C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80220C40  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80220C44  7C 7E 1B 78 */	mr r30, r3
-/* 80220C48  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80220C4C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80220C48  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80220C4C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80220C50  4B E1 1E 59 */	bl getRupeeMax__21dSv_player_status_a_cCFv
 /* 80220C54  7C 65 07 34 */	extsh r5, r3
 /* 80220C58  3B E0 00 00 */	li r31, 0
-/* 80220C5C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80220C60  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 80220C5C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80220C60  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80220C64  80 64 5D C4 */	lwz r3, 0x5dc4(r4)
 /* 80220C68  2C 03 00 00 */	cmpwi r3, 0
 /* 80220C6C  41 82 00 B0 */	beq lbl_80220D1C
@@ -62,8 +62,8 @@ lbl_80220CE8:
 /* 80220D14  54 00 06 3C */	rlwinm r0, r0, 0, 0x18, 0x1e
 /* 80220D18  98 1E 01 EA */	stb r0, 0x1ea(r30)
 lbl_80220D1C:
-/* 80220D1C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80220D20  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80220D1C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80220D20  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80220D24  A0 03 00 04 */	lhz r0, 4(r3)
 /* 80220D28  A8 9E 01 B0 */	lha r4, 0x1b0(r30)
 /* 80220D2C  7C 04 00 00 */	cmpw r4, r0
@@ -178,8 +178,8 @@ lbl_80220E84:
 /* 80220ECC  98 1E 01 EA */	stb r0, 0x1ea(r30)
 lbl_80220ED0:
 /* 80220ED0  C0 1E 02 68 */	lfs f0, 0x268(r30)
-/* 80220ED4  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80220ED8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80220ED4  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80220ED8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80220EDC  C0 23 03 3C */	lfs f1, 0x33c(r3)
 /* 80220EE0  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80220EE4  41 82 00 0C */	beq lbl_80220EF0
@@ -187,8 +187,8 @@ lbl_80220ED0:
 /* 80220EEC  3B E0 00 01 */	li r31, 1
 lbl_80220EF0:
 /* 80220EF0  C0 1E 02 6C */	lfs f0, 0x26c(r30)
-/* 80220EF4  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80220EF8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80220EF4  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80220EF8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80220EFC  C0 23 03 40 */	lfs f1, 0x340(r3)
 /* 80220F00  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80220F04  41 82 00 0C */	beq lbl_80220F10
@@ -196,8 +196,8 @@ lbl_80220EF0:
 /* 80220F0C  3B E0 00 01 */	li r31, 1
 lbl_80220F10:
 /* 80220F10  C0 1E 02 70 */	lfs f0, 0x270(r30)
-/* 80220F14  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80220F18  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80220F14  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80220F18  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80220F1C  C0 23 03 44 */	lfs f1, 0x344(r3)
 /* 80220F20  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80220F24  41 82 00 0C */	beq lbl_80220F30
@@ -205,8 +205,8 @@ lbl_80220F10:
 /* 80220F2C  3B E0 00 01 */	li r31, 1
 lbl_80220F30:
 /* 80220F30  C0 1E 02 74 */	lfs f0, 0x274(r30)
-/* 80220F34  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80220F38  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80220F34  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80220F38  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80220F3C  C0 23 03 4C */	lfs f1, 0x34c(r3)
 /* 80220F40  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80220F44  41 82 00 0C */	beq lbl_80220F50
@@ -214,8 +214,8 @@ lbl_80220F30:
 /* 80220F4C  3B E0 00 01 */	li r31, 1
 lbl_80220F50:
 /* 80220F50  C0 1E 02 78 */	lfs f0, 0x278(r30)
-/* 80220F54  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80220F58  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80220F54  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80220F58  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80220F5C  C0 23 03 50 */	lfs f1, 0x350(r3)
 /* 80220F60  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80220F64  41 82 00 0C */	beq lbl_80220F70
@@ -223,8 +223,8 @@ lbl_80220F50:
 /* 80220F6C  3B E0 00 01 */	li r31, 1
 lbl_80220F70:
 /* 80220F70  C0 1E 02 7C */	lfs f0, 0x27c(r30)
-/* 80220F74  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80220F78  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80220F74  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80220F78  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80220F7C  C0 23 03 54 */	lfs f1, 0x354(r3)
 /* 80220F80  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80220F84  41 82 00 0C */	beq lbl_80220F90
@@ -232,8 +232,8 @@ lbl_80220F70:
 /* 80220F8C  3B E0 00 01 */	li r31, 1
 lbl_80220F90:
 /* 80220F90  C0 1E 02 80 */	lfs f0, 0x280(r30)
-/* 80220F94  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80220F98  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80220F94  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80220F98  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80220F9C  C0 23 03 74 */	lfs f1, 0x374(r3)
 /* 80220FA0  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80220FA4  41 82 00 0C */	beq lbl_80220FB0
@@ -241,8 +241,8 @@ lbl_80220F90:
 /* 80220FAC  3B E0 00 01 */	li r31, 1
 lbl_80220FB0:
 /* 80220FB0  C0 1E 02 84 */	lfs f0, 0x284(r30)
-/* 80220FB4  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80220FB8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80220FB4  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80220FB8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80220FBC  C0 23 03 6C */	lfs f1, 0x36c(r3)
 /* 80220FC0  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80220FC4  41 82 00 0C */	beq lbl_80220FD0
@@ -250,8 +250,8 @@ lbl_80220FB0:
 /* 80220FCC  3B E0 00 01 */	li r31, 1
 lbl_80220FD0:
 /* 80220FD0  C0 1E 02 88 */	lfs f0, 0x288(r30)
-/* 80220FD4  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80220FD8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80220FD4  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80220FD8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80220FDC  C0 23 03 70 */	lfs f1, 0x370(r3)
 /* 80220FE0  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80220FE4  41 82 00 0C */	beq lbl_80220FF0
@@ -259,8 +259,8 @@ lbl_80220FD0:
 /* 80220FEC  3B E0 00 01 */	li r31, 1
 lbl_80220FF0:
 /* 80220FF0  C0 1E 02 8C */	lfs f0, 0x28c(r30)
-/* 80220FF4  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80220FF8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80220FF4  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80220FF8  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80220FFC  C0 23 03 7C */	lfs f1, 0x37c(r3)
 /* 80221000  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80221004  41 82 00 0C */	beq lbl_80221010
@@ -268,8 +268,8 @@ lbl_80220FF0:
 /* 8022100C  3B E0 00 01 */	li r31, 1
 lbl_80221010:
 /* 80221010  C0 1E 02 90 */	lfs f0, 0x290(r30)
-/* 80221014  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80221018  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80221014  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80221018  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8022101C  C0 23 03 80 */	lfs f1, 0x380(r3)
 /* 80221020  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80221024  41 82 00 0C */	beq lbl_80221030
@@ -277,16 +277,16 @@ lbl_80221010:
 /* 8022102C  3B E0 00 01 */	li r31, 1
 lbl_80221030:
 /* 80221030  C0 1E 02 94 */	lfs f0, 0x294(r30)
-/* 80221034  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80221038  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 80221034  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80221038  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8022103C  C0 23 03 84 */	lfs f1, 0x384(r3)
 /* 80221040  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80221044  41 82 00 0C */	beq lbl_80221050
 /* 80221048  D0 3E 02 94 */	stfs f1, 0x294(r30)
 /* 8022104C  3B E0 00 01 */	li r31, 1
 lbl_80221050:
-/* 80221050  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80221054  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80221050  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80221054  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80221058  88 83 00 19 */	lbz r4, 0x19(r3)
 /* 8022105C  88 7E 02 98 */	lbz r3, 0x298(r30)
 /* 80221060  54 80 06 3E */	clrlwi r0, r4, 0x18

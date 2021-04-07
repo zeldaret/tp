@@ -3,19 +3,20 @@
 #
 
 M196_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_gob.plf
+M196_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_gob.lcf
+M196_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_gob.map
 
 M196_CPP_FILES := \
-	rel/d/a/e/d_a_e_gob/executor.cpp \
-	rel/d/a/e/d_a_e_gob/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_gob/d_a_e_gob.cpp \
 
 M196_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_gob/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_gob/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_gob/d_a_e_gob.o \
 
 M196_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_gob/libRuntime.PPCEABI.H.a \
 
 M196_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M196_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M196_LDSCRIPT) \
+	-unused -map $(M196_MAP) \
+	-w off \
 
 $(M196_TARGET): $(M196_O_FILES) $(M196_LIBS)
+	@echo [196] creating $(M196_TARGET)
 	@echo $(M196_LIBS) $(M196_O_FILES) > build/M196_ofiles
-	$(LD) -partial $(M196_LDFLAGS) -o $(M196_TARGET) @build/M196_ofiles
+	@python3 tools/lcf.py rel 196 --output $(M196_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M196_LDFLAGS) -o $(M196_TARGET) @build/M196_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_gob/%.o: rel/d/a/e/d_a_e_gob/%.cpp
+	@echo [196] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M196_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M196_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_gob/libs/Runtime.PPCEABI.H/Makefile
 

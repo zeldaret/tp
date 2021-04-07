@@ -5,8 +5,8 @@ lbl_809BBF64:
 /* 809BBF70  7C 60 1B 78 */	mr r0, r3
 /* 809BBF74  2C 04 00 00 */	cmpwi r4, 0
 /* 809BBF78  40 82 00 30 */	bne lbl_809BBFA8
-/* 809BBF7C  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 809BBF80  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 809BBF7C  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 809BBF80  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 809BBF84  80 A3 00 38 */	lwz r5, 0x38(r3)
 /* 809BBF88  80 65 00 14 */	lwz r3, 0x14(r5)
 /* 809BBF8C  28 03 00 00 */	cmplwi r3, 0

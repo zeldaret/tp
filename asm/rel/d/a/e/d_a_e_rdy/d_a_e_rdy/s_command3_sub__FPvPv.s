@@ -6,7 +6,7 @@ lbl_8076EB4C:
 /* 8076EB5C  93 C1 00 08 */	stw r30, 8(r1)
 /* 8076EB60  7C 7E 1B 78 */	mr r30, r3
 /* 8076EB64  7C 9F 23 78 */	mr r31, r4
-/* 8076EB68  4B 8A A1 78 */	b fopAc_IsActor__FPv
+/* 8076EB68  4B 8A A1 79 */	bl fopAc_IsActor__FPv
 /* 8076EB6C  2C 03 00 00 */	cmpwi r3, 0
 /* 8076EB70  41 82 00 2C */	beq lbl_8076EB9C
 /* 8076EB74  A8 1E 00 08 */	lha r0, 8(r30)

@@ -8,16 +8,16 @@ lbl_80876240:
 /* 80876258  93 81 00 10 */	stw r28, 0x10(r1)
 /* 8087625C  80 83 00 00 */	lwz r4, 0(r3)
 /* 80876260  3B A4 00 08 */	addi r29, r4, 8
-/* 80876264  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha
-/* 80876268  3B E3 9B D0 */	addi r31, r3, daMP_ActivePlayer@l
+/* 80876264  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha /* 0x80879BD0@ha */
+/* 80876268  3B E3 9B D0 */	addi r31, r3, daMP_ActivePlayer@l /* 0x80879BD0@l */
 /* 8087626C  80 1F 00 6C */	lwz r0, 0x6c(r31)
 /* 80876270  54 03 10 3A */	slwi r3, r0, 2
 /* 80876274  3B 83 00 08 */	addi r28, r3, 8
 /* 80876278  7F 84 E2 14 */	add r28, r4, r28
 /* 8087627C  4B FF FE ED */	bl daMP_PopFreeAudioBuffer__Fv
 /* 80876280  7C 7E 1B 78 */	mr r30, r3
-/* 80876284  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha
-/* 80876288  38 63 9B D0 */	addi r3, r3, daMP_ActivePlayer@l
+/* 80876284  3C 60 80 88 */	lis r3, daMP_ActivePlayer@ha /* 0x80879BD0@ha */
+/* 80876288  38 63 9B D0 */	addi r3, r3, daMP_ActivePlayer@l /* 0x80879BD0@l */
 /* 8087628C  80 1F 00 6C */	lwz r0, 0x6c(r31)
 /* 80876290  7C 09 03 A6 */	mtctr r0
 /* 80876294  28 00 00 00 */	cmplwi r0, 0
@@ -30,8 +30,8 @@ lbl_8087629C:
 lbl_808762AC:
 /* 808762AC  80 7E 00 00 */	lwz r3, 0(r30)
 /* 808762B0  80 BD 00 00 */	lwz r5, 0(r29)
-/* 808762B4  3C 80 80 88 */	lis r4, daMP_ActivePlayer@ha
-/* 808762B8  38 84 9B D0 */	addi r4, r4, daMP_ActivePlayer@l
+/* 808762B4  3C 80 80 88 */	lis r4, daMP_ActivePlayer@ha /* 0x80879BD0@ha */
+/* 808762B8  38 84 9B D0 */	addi r4, r4, daMP_ActivePlayer@l /* 0x80879BD0@l */
 /* 808762BC  80 04 00 EC */	lwz r0, 0xec(r4)
 /* 808762C0  7C 05 01 D6 */	mullw r0, r5, r0
 /* 808762C4  7C 9C 02 14 */	add r4, r28, r0

@@ -5,8 +5,8 @@ lbl_807B8D78:
 /* 807B8D84  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 807B8D88  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 807B8D8C  7C 7F 1B 78 */	mr r31, r3
-/* 807B8D90  3C 80 80 7C */	lis r4, lit_3762@ha
-/* 807B8D94  3B C4 A2 6C */	addi r30, r4, lit_3762@l
+/* 807B8D90  3C 80 80 7C */	lis r4, lit_3762@ha /* 0x807BA26C@ha */
+/* 807B8D94  3B C4 A2 6C */	addi r30, r4, lit_3762@l /* 0x807BA26C@l */
 /* 807B8D98  A8 03 06 78 */	lha r0, 0x678(r3)
 /* 807B8D9C  2C 00 00 01 */	cmpwi r0, 1
 /* 807B8DA0  41 82 00 40 */	beq lbl_807B8DE0
@@ -55,7 +55,7 @@ lbl_807B8E30:
 /* 807B8E38  39 1F 04 E4 */	addi r8, r31, 0x4e4
 /* 807B8E3C  39 20 00 00 */	li r9, 0
 /* 807B8E40  39 40 FF FF */	li r10, -1
-/* 807B8E44  4B 86 10 AC */	b fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
+/* 807B8E44  4B 86 10 AD */	bl fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
 /* 807B8E48  90 7F 06 AC */	stw r3, 0x6ac(r31)
 lbl_807B8E4C:
 /* 807B8E4C  80 7F 05 C4 */	lwz r3, 0x5c4(r31)
@@ -88,7 +88,7 @@ lbl_807B8E98:
 /* 807B8EB0  FC 40 08 90 */	fmr f2, f1
 /* 807B8EB4  4B FF F3 81 */	bl anm_init__FP10e_tk_classifUcf
 /* 807B8EB8  C0 3E 00 38 */	lfs f1, 0x38(r30)
-/* 807B8EBC  4B AA EA 98 */	b cM_rndF__Ff
+/* 807B8EBC  4B AA EA 99 */	bl cM_rndF__Ff
 /* 807B8EC0  C0 1E 00 5C */	lfs f0, 0x5c(r30)
 /* 807B8EC4  EC 00 08 2A */	fadds f0, f0, f1
 /* 807B8EC8  FC 00 00 1E */	fctiwz f0, f0
@@ -112,8 +112,8 @@ lbl_807B8EFC:
 /* 807B8F08  B0 1F 06 78 */	sth r0, 0x678(r31)
 lbl_807B8F0C:
 /* 807B8F0C  7F E3 FB 78 */	mr r3, r31
-/* 807B8F10  3C 80 80 7C */	lis r4, l_HIO@ha
-/* 807B8F14  38 84 A4 48 */	addi r4, r4, l_HIO@l
+/* 807B8F10  3C 80 80 7C */	lis r4, l_HIO@ha /* 0x807BA448@ha */
+/* 807B8F14  38 84 A4 48 */	addi r4, r4, l_HIO@l /* 0x807BA448@l */
 /* 807B8F18  C0 24 00 0C */	lfs f1, 0xc(r4)
 /* 807B8F1C  38 80 40 00 */	li r4, 0x4000
 /* 807B8F20  4B FF F5 41 */	bl pl_check__FP10e_tk_classfs
@@ -128,7 +128,7 @@ lbl_807B8F3C:
 /* 807B8F40  A8 9F 06 8C */	lha r4, 0x68c(r31)
 /* 807B8F44  38 A0 00 04 */	li r5, 4
 /* 807B8F48  38 C0 08 00 */	li r6, 0x800
-/* 807B8F4C  4B AB 76 BC */	b cLib_addCalcAngleS2__FPssss
+/* 807B8F4C  4B AB 76 BD */	bl cLib_addCalcAngleS2__FPssss
 /* 807B8F50  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 807B8F54  83 C1 00 18 */	lwz r30, 0x18(r1)
 /* 807B8F58  80 01 00 24 */	lwz r0, 0x24(r1)

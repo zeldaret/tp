@@ -6,8 +6,8 @@ lbl_801C5470:
 /* 801C5480  F3 E1 00 28 */	psq_st f31, 40(r1), 0, 0 /* qr0 */
 /* 801C5484  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 801C5488  7C 7F 1B 78 */	mr r31, r3
-/* 801C548C  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 801C5490  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 801C548C  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 801C5490  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 801C5494  A8 A3 09 A6 */	lha r5, 0x9a6(r3)
 /* 801C5498  38 60 00 00 */	li r3, 0
 /* 801C549C  B0 7F 01 F8 */	sth r3, 0x1f8(r31)

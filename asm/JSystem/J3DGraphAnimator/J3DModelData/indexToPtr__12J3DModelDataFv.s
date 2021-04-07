@@ -6,8 +6,8 @@ lbl_80325EC8:
 /* 80325ED8  48 03 C2 FD */	bl _savegpr_27
 /* 80325EDC  7C 7B 1B 78 */	mr r27, r3
 /* 80325EE0  80 03 00 6C */	lwz r0, 0x6c(r3)
-/* 80325EE4  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80325EE8  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80325EE4  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80325EE8  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80325EEC  90 03 00 58 */	stw r0, 0x58(r3)
 /* 80325EF0  88 0D 90 6C */	lbz r0, data_804515EC(r13)
 /* 80325EF4  7C 00 07 75 */	extsb. r0, r0

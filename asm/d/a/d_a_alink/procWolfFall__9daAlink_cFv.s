@@ -84,8 +84,8 @@ lbl_8012F0C8:
 /* 8012F0E4  C0 1F 04 D4 */	lfs f0, 0x4d4(r31)
 /* 8012F0E8  EC 01 00 28 */	fsubs f0, f1, f0
 /* 8012F0EC  EC 22 00 32 */	fmuls f1, f2, f0
-/* 8012F0F0  3C 60 80 39 */	lis r3, m__23daAlinkHIO_wlDamFall_c0@ha
-/* 8012F0F4  38 A3 F3 74 */	addi r5, r3, m__23daAlinkHIO_wlDamFall_c0@l
+/* 8012F0F0  3C 60 80 39 */	lis r3, m__23daAlinkHIO_wlDamFall_c0@ha /* 0x8038F374@ha */
+/* 8012F0F4  38 A3 F3 74 */	addi r5, r3, m__23daAlinkHIO_wlDamFall_c0@l /* 0x8038F374@l */
 /* 8012F0F8  C0 05 00 38 */	lfs f0, 0x38(r5)
 /* 8012F0FC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8012F100  40 81 00 20 */	ble lbl_8012F120

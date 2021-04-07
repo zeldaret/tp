@@ -9,24 +9,24 @@ lbl_80485198:
 /* 804851B4  40 82 00 1C */	bne lbl_804851D0
 /* 804851B8  28 1F 00 00 */	cmplwi r31, 0
 /* 804851BC  41 82 00 08 */	beq lbl_804851C4
-/* 804851C0  4B B9 39 A4 */	b __ct__10fopAc_ac_cFv
+/* 804851C0  4B B9 39 A5 */	bl __ct__10fopAc_ac_cFv
 lbl_804851C4:
 /* 804851C4  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 804851C8  60 00 00 08 */	ori r0, r0, 8
 /* 804851CC  90 1F 04 A0 */	stw r0, 0x4a0(r31)
 lbl_804851D0:
 /* 804851D0  38 7F 00 D8 */	addi r3, r31, 0xd8
-/* 804851D4  4B B9 B3 00 */	b fopDwTg_DrawQTo__FP16create_tag_class
+/* 804851D4  4B B9 B3 01 */	bl fopDwTg_DrawQTo__FP16create_tag_class
 /* 804851D8  7F E3 FB 78 */	mr r3, r31
 /* 804851DC  38 80 00 08 */	li r4, 8
 /* 804851E0  38 A0 00 08 */	li r5, 8
 /* 804851E4  48 00 04 39 */	bl func_8048561C
 /* 804851E8  7C 64 1B 78 */	mr r4, r3
-/* 804851EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804851F0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804851EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804851F0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804851F4  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 804851F8  7C 05 07 74 */	extsb r5, r0
-/* 804851FC  4B BB 01 64 */	b isSwitch__10dSv_info_cCFii
+/* 804851FC  4B BB 01 65 */	bl isSwitch__10dSv_info_cCFii
 /* 80485200  2C 03 00 00 */	cmpwi r3, 0
 /* 80485204  41 82 00 0C */	beq lbl_80485210
 /* 80485208  38 60 00 05 */	li r3, 5
@@ -37,11 +37,11 @@ lbl_80485210:
 /* 80485218  38 A0 00 10 */	li r5, 0x10
 /* 8048521C  48 00 04 01 */	bl func_8048561C
 /* 80485220  7C 64 1B 78 */	mr r4, r3
-/* 80485224  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80485228  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80485224  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80485228  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8048522C  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 80485230  7C 05 07 74 */	extsb r5, r0
-/* 80485234  4B BB 01 2C */	b isSwitch__10dSv_info_cCFii
+/* 80485234  4B BB 01 2D */	bl isSwitch__10dSv_info_cCFii
 /* 80485238  2C 03 00 00 */	cmpwi r3, 0
 /* 8048523C  41 82 00 10 */	beq lbl_8048524C
 /* 80485240  7F E3 FB 78 */	mr r3, r31

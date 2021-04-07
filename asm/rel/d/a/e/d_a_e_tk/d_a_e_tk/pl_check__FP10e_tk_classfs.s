@@ -2,8 +2,8 @@ lbl_807B8460:
 /* 807B8460  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 807B8464  7C 08 02 A6 */	mflr r0
 /* 807B8468  90 01 00 14 */	stw r0, 0x14(r1)
-/* 807B846C  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 807B8470  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 807B846C  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 807B8470  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 807B8474  80 C5 5D AC */	lwz r6, 0x5dac(r5)
 /* 807B8478  C0 03 06 90 */	lfs f0, 0x690(r3)
 /* 807B847C  FC 00 08 40 */	fcmpo cr0, f0, f1

@@ -5,16 +5,16 @@ lbl_80125BF4:
 /* 80125C00  39 61 00 20 */	addi r11, r1, 0x20
 /* 80125C04  48 23 C5 D5 */	bl _savegpr_28
 /* 80125C08  7C 7F 1B 78 */	mr r31, r3
-/* 80125C0C  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80125C10  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80125C0C  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80125C10  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80125C14  48 1E AB 29 */	bl reinitGX__6J3DSysFv
 /* 80125C18  38 60 00 00 */	li r3, 0
 /* 80125C1C  48 23 94 B9 */	bl GXSetNumIndStages
 /* 80125C20  80 1F 00 20 */	lwz r0, 0x20(r31)
 /* 80125C24  38 6D 81 24 */	la r3, nColor0(r13) /* 804506A4-_SDA_BASE_ */
 /* 80125C28  98 03 00 03 */	stb r0, 3(r3)
-/* 80125C2C  3C 60 80 42 */	lis r3, texObj@ha
-/* 80125C30  38 63 56 CC */	addi r3, r3, texObj@l
+/* 80125C2C  3C 60 80 42 */	lis r3, texObj@ha /* 0x804256CC@ha */
+/* 80125C30  38 63 56 CC */	addi r3, r3, texObj@l /* 0x804256CC@l */
 /* 80125C34  80 9F 00 10 */	lwz r4, 0x10(r31)
 /* 80125C38  80 04 00 1C */	lwz r0, 0x1c(r4)
 /* 80125C3C  7C 84 02 14 */	add r4, r4, r0
@@ -25,8 +25,8 @@ lbl_80125BF4:
 /* 80125C50  39 20 00 00 */	li r9, 0
 /* 80125C54  39 40 00 00 */	li r10, 0
 /* 80125C58  48 23 81 E9 */	bl GXInitTexObj
-/* 80125C5C  3C 60 80 42 */	lis r3, texObj@ha
-/* 80125C60  38 63 56 CC */	addi r3, r3, texObj@l
+/* 80125C5C  3C 60 80 42 */	lis r3, texObj@ha /* 0x804256CC@ha */
+/* 80125C60  38 63 56 CC */	addi r3, r3, texObj@l /* 0x804256CC@l */
 /* 80125C64  38 80 00 01 */	li r4, 1
 /* 80125C68  38 A0 00 01 */	li r5, 1
 /* 80125C6C  C0 22 92 C0 */	lfs f1, lit_6108(r2)
@@ -36,8 +36,8 @@ lbl_80125BF4:
 /* 80125C7C  38 E0 00 00 */	li r7, 0
 /* 80125C80  39 00 00 00 */	li r8, 0
 /* 80125C84  48 23 84 51 */	bl GXInitTexObjLOD
-/* 80125C88  3C 60 80 42 */	lis r3, texObj@ha
-/* 80125C8C  38 63 56 CC */	addi r3, r3, texObj@l
+/* 80125C88  3C 60 80 42 */	lis r3, texObj@ha /* 0x804256CC@ha */
+/* 80125C8C  38 63 56 CC */	addi r3, r3, texObj@l /* 0x804256CC@l */
 /* 80125C90  38 80 00 00 */	li r4, 0
 /* 80125C94  48 23 87 81 */	bl GXLoadTexObj
 /* 80125C98  38 60 00 00 */	li r3, 0
@@ -108,8 +108,8 @@ lbl_80125BF4:
 /* 80125D9C  38 E0 00 01 */	li r7, 1
 /* 80125DA0  39 00 00 00 */	li r8, 0
 /* 80125DA4  48 23 95 71 */	bl GXSetTevAlphaOp
-/* 80125DA8  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80125DAC  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80125DA8  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80125DAC  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80125DB0  38 80 00 00 */	li r4, 0
 /* 80125DB4  48 23 A4 99 */	bl GXLoadPosMtxImm
 /* 80125DB8  38 60 00 00 */	li r3, 0

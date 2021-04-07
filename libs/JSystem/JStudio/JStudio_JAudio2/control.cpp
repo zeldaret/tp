@@ -57,14 +57,10 @@ extern "C" void
 create__Q215JStudio_JAudio213TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object();
 extern "C" void
 createObject_JAI_SOUND___Q215JStudio_JAudio213TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ215JStudio_JAudio213TCreateObject();
-extern "C" extern void* __vt__Q215JStudio_JAudio213TCreateObject[4];
 
 //
 // External References:
 //
-
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void __dt__Q27JStudio13TCreateObjectFv();
 extern "C" void
@@ -80,17 +76,16 @@ extern "C" void _restgpr_29();
 //
 
 /* ############################################################################################## */
-/* 803C5A68-803C5A78 0010+00 s=1 e=1 z=0  None .data      __vt__Q215JStudio_JAudio213TCreateObject
- */
-SECTION_DATA void* __vt__Q215JStudio_JAudio213TCreateObject[4] = {
-    (void*)NULL,
+/* 803C5A68-803C5A78 022B88 0010+00 1/1 1/1 0/0 .data __vt__Q215JStudio_JAudio213TCreateObject */
+SECTION_DATA extern void* __vt__Q215JStudio_JAudio213TCreateObject[4] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__Q215JStudio_JAudio213TCreateObjectFv,
     (void*)
         create__Q215JStudio_JAudio213TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object,
 };
 
-/* 8028D550-8028D5B0 0060+00 s=1 e=0 z=0  None .text      __dt__Q215JStudio_JAudio213TCreateObjectFv
+/* 8028D550-8028D5B0 287E90 0060+00 1/0 0/0 0/0 .text __dt__Q215JStudio_JAudio213TCreateObjectFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -101,7 +96,7 @@ asm JStudio_JAudio2::TCreateObject::~TCreateObject() {
 }
 #pragma pop
 
-/* 8028D5B0-8028D624 0074+00 s=1 e=0 z=0  None .text
+/* 8028D5B0-8028D624 287EF0 0074+00 1/0 0/0 0/0 .text
  * create__Q215JStudio_JAudio213TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
  */
 #pragma push
@@ -115,7 +110,7 @@ JStudio_JAudio2::TCreateObject::create(JStudio::TObject** param_0,
 }
 #pragma pop
 
-/* 8028D624-8028D728 0104+00 s=1 e=0 z=0  None .text
+/* 8028D624-8028D728 287F64 0104+00 1/1 0/0 0/0 .text
  * createObject_JAI_SOUND___Q215JStudio_JAudio213TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ215JStudio_JAudio213TCreateObject
  */
 #pragma push

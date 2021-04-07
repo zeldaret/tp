@@ -5,8 +5,8 @@ lbl_8050DC10:
 /* 8050DC1C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8050DC20  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8050DC24  7C 7E 1B 78 */	mr r30, r3
-/* 8050DC28  3C 80 80 52 */	lis r4, lit_4208@ha
-/* 8050DC2C  3B E4 85 84 */	addi r31, r4, lit_4208@l
+/* 8050DC28  3C 80 80 52 */	lis r4, lit_4208@ha /* 0x80518584@ha */
+/* 8050DC2C  3B E4 85 84 */	addi r31, r4, lit_4208@l /* 0x80518584@l */
 /* 8050DC30  80 03 04 9C */	lwz r0, 0x49c(r3)
 /* 8050DC34  54 00 00 3E */	slwi r0, r0, 0
 /* 8050DC38  90 03 04 9C */	stw r0, 0x49c(r3)
@@ -17,8 +17,8 @@ lbl_8050DC10:
 /* 8050DC4C  A8 03 05 B4 */	lha r0, 0x5b4(r3)
 /* 8050DC50  28 00 00 06 */	cmplwi r0, 6
 /* 8050DC54  41 81 01 94 */	bgt lbl_8050DDE8
-/* 8050DC58  3C 80 80 52 */	lis r4, lit_7943@ha
-/* 8050DC5C  38 84 8C A0 */	addi r4, r4, lit_7943@l
+/* 8050DC58  3C 80 80 52 */	lis r4, lit_7943@ha /* 0x80518CA0@ha */
+/* 8050DC5C  38 84 8C A0 */	addi r4, r4, lit_7943@l /* 0x80518CA0@l */
 /* 8050DC60  54 00 10 3A */	slwi r0, r0, 2
 /* 8050DC64  7C 04 00 2E */	lwzx r0, r4, r0
 /* 8050DC68  7C 09 03 A6 */	mtctr r0

@@ -5,8 +5,8 @@ lbl_802934B4:
 /* 802934C0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802934C4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802934C8  41 82 00 48 */	beq lbl_80293510
-/* 802934CC  3C 60 80 3C */	lis r3, __vt__19JASDefaultBankTable@ha
-/* 802934D0  38 03 5B 68 */	addi r0, r3, __vt__19JASDefaultBankTable@l
+/* 802934CC  3C 60 80 3C */	lis r3, __vt__19JASDefaultBankTable@ha /* 0x803C5B68@ha */
+/* 802934D0  38 03 5B 68 */	addi r0, r3, __vt__19JASDefaultBankTable@l /* 0x803C5B68@l */
 /* 802934D4  90 1F 00 00 */	stw r0, 0(r31)
 /* 802934D8  34 1F 04 0C */	addic. r0, r31, 0x40c
 /* 802934DC  41 82 00 24 */	beq lbl_80293500

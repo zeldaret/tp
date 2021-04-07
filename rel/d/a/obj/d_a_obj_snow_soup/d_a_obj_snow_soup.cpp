@@ -38,9 +38,9 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct cXyz {};
 
 struct J3DModelData {};
 
@@ -57,11 +57,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
+struct _GXColor {};
+
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
-
-struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -69,9 +69,9 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -82,12 +82,6 @@ struct J3DModel {};
 //
 // Forward References:
 //
-
-static void daObjSnowSoup_c_createHeap(fopAc_ac_c*);
-static void daObjSnowSoup_create(daObjSnowSoup_c*);
-static void daObjSnowSoup_Delete(daObjSnowSoup_c*);
-static void daObjSnowSoup_execute(daObjSnowSoup_c*);
-static void daObjSnowSoup_draw(daObjSnowSoup_c*);
 
 extern "C" static void daObjSnowSoup_c_createHeap__FP10fopAc_ac_c();
 extern "C" void __ct__15daObjSnowSoup_cFv();
@@ -107,22 +101,11 @@ extern "C" static void daObjSnowSoup_create__FP15daObjSnowSoup_c();
 extern "C" static void daObjSnowSoup_Delete__FP15daObjSnowSoup_c();
 extern "C" static void daObjSnowSoup_execute__FP15daObjSnowSoup_c();
 extern "C" static void daObjSnowSoup_draw__FP15daObjSnowSoup_c();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_SnowSoup[12];
+extern "C" extern char const* const d_a_obj_snow_soup__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdate(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dComIfGp_getReverb(int);
-void operator delete(void*);
 
 SECTION_INIT void memset();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
@@ -162,63 +145,22 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 80CDF858-80CDF878 0020+00 s=1 e=0 z=0  None .text      daObjSnowSoup_c_createHeap__FP10fopAc_ac_c
+/* 80CDF858-80CDF878 000078 0020+00 1/1 0/0 0/0 .text daObjSnowSoup_c_createHeap__FP10fopAc_ac_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjSnowSoup_c_createHeap(fopAc_ac_c* param_0) {
+static asm void daObjSnowSoup_c_createHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_snow_soup/d_a_obj_snow_soup/daObjSnowSoup_c_createHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80CE023C-80CE0248 000C+00 s=3 e=0 z=0  None .rodata    SOUP_MODEL_OFFSET */
-SECTION_RODATA static u8 const SOUP_MODEL_OFFSET[12] = {
-    0x45, 0x4F, 0x5D, 0xC3, 0x43, 0x56, 0xBA, 0xE1, 0x43, 0xA1, 0xA6, 0x66,
-};
+/* 80CE0280-80CE0284 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_snow_soup__stringBase0;
 
-/* 80CE0248-80CE0254 000C+00 s=1 e=0 z=0  None .rodata    BMD_IDX$3657 */
-SECTION_RODATA static u8 const BMD_IDX[12] = {
-    0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x05,
-};
-
-/* 80CE0254-80CE0258 0004+00 s=3 e=0 z=0  None .rodata    @3706 */
-SECTION_RODATA static u8 const lit_3706[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80CE0258-80CE025C 0004+00 s=3 e=0 z=0  None .rodata    @3757 */
-SECTION_RODATA static u32 const lit_3757 = 0x3F800000;
-
-/* 80CE025C-80CE0260 0004+00 s=1 e=0 z=0  None .rodata    @3758 */
-SECTION_RODATA static u32 const lit_3758 = 0xBF800000;
-
-/* 80CE0260-80CE0268 0008+00 s=1 e=0 z=0  None .rodata    PARTICLE_NAME$3789 */
-SECTION_RODATA static u8 const PARTICLE_NAME_3789[8] = {
-    0x87, 0xE1, 0x87, 0xE2, 0x87, 0xE3, 0x87, 0xE6,
-};
-
-/* 80CE0268-80CE0274 000C+00 s=1 e=0 z=0  None .rodata    PARTICLE_NAME$3834 */
-SECTION_RODATA static u8 const PARTICLE_NAME_3834[12] = {
-    0x89, 0x84, 0x89, 0x85, 0x8A, 0x8B, 0x8A, 0x8D, 0x8A, 0x8C, 0x8A, 0x8E,
-};
-
-/* 80CE0274-80CE027D 0009+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80CE0274 = "SnowSoup";
-#pragma pop
-
-/* 80CE0280-80CE0284 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80CE0284-80CE02A4 0020+00 s=1 e=0 z=0  None .data      daObjSnowSoup_METHODS */
+/* 80CE0284-80CE02A4 -00001 0020+00 1/0 0/0 0/0 .data            daObjSnowSoup_METHODS */
 SECTION_DATA static void* daObjSnowSoup_METHODS[8] = {
     (void*)daObjSnowSoup_create__FP15daObjSnowSoup_c,
     (void*)daObjSnowSoup_Delete__FP15daObjSnowSoup_c,
@@ -230,8 +172,8 @@ SECTION_DATA static void* daObjSnowSoup_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 80CE02A4-80CE02D4 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_SnowSoup */
-SECTION_DATA void* g_profile_Obj_SnowSoup[12] = {
+/* 80CE02A4-80CE02D4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_SnowSoup */
+SECTION_DATA extern void* g_profile_Obj_SnowSoup[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x019B0000, (void*)&g_fpcLf_Method,
     (void*)0x000005C4, (void*)NULL,
@@ -240,14 +182,14 @@ SECTION_DATA void* g_profile_Obj_SnowSoup[12] = {
     (void*)0x00044100, (void*)0x030E0000,
 };
 
-/* 80CE02D4-80CE02E0 000C+00 s=2 e=0 z=0  None .data      __vt__15daObjSnowSoup_c */
-SECTION_DATA static void* __vt__15daObjSnowSoup_c[3] = {
-    (void*)NULL,
+/* 80CE02D4-80CE02E0 000054 000C+00 2/2 0/0 0/0 .data            __vt__15daObjSnowSoup_c */
+SECTION_DATA extern void* __vt__15daObjSnowSoup_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__15daObjSnowSoup_cFv,
 };
 
-/* 80CDF878-80CDF910 0098+00 s=2 e=0 z=0  None .text      __ct__15daObjSnowSoup_cFv */
+/* 80CDF878-80CDF910 000098 0098+00 2/2 0/0 0/0 .text            __ct__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -257,7 +199,7 @@ asm daObjSnowSoup_c::daObjSnowSoup_c() {
 }
 #pragma pop
 
-/* 80CDF910-80CDF990 0080+00 s=1 e=0 z=0  None .text      __dt__15daObjSnowSoup_cFv */
+/* 80CDF910-80CDF990 000130 0080+00 1/0 0/0 0/0 .text            __dt__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -267,7 +209,20 @@ asm daObjSnowSoup_c::~daObjSnowSoup_c() {
 }
 #pragma pop
 
-/* 80CDF990-80CDFA3C 00AC+00 s=1 e=0 z=0  None .text      createHeap__15daObjSnowSoup_cFv */
+/* ############################################################################################## */
+/* 80CE023C-80CE0248 000000 000C+00 3/3 0/0 0/0 .rodata          SOUP_MODEL_OFFSET */
+SECTION_RODATA static u8 const SOUP_MODEL_OFFSET[12] = {
+    0x45, 0x4F, 0x5D, 0xC3, 0x43, 0x56, 0xBA, 0xE1, 0x43, 0xA1, 0xA6, 0x66,
+};
+COMPILER_STRIP_GATE(80CE023C, &SOUP_MODEL_OFFSET);
+
+/* 80CE0248-80CE0254 00000C 000C+00 1/1 0/0 0/0 .rodata          BMD_IDX$3657 */
+SECTION_RODATA static u8 const BMD_IDX[12] = {
+    0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x05,
+};
+COMPILER_STRIP_GATE(80CE0248, &BMD_IDX);
+
+/* 80CDF990-80CDFA3C 0001B0 00AC+00 1/1 0/0 0/0 .text            createHeap__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -277,7 +232,17 @@ asm void daObjSnowSoup_c::createHeap() {
 }
 #pragma pop
 
-/* 80CDFA3C-80CDFB70 0134+00 s=1 e=0 z=0  None .text      create__15daObjSnowSoup_cFv */
+/* ############################################################################################## */
+/* 80CE0254-80CE0258 000018 0004+00 1/3 0/0 0/0 .rodata          @3706 */
+SECTION_RODATA static u8 const lit_3706[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+COMPILER_STRIP_GATE(80CE0254, &lit_3706);
+
+/* 80CDFA3C-80CDFB70 00025C 0134+00 1/1 0/0 0/0 .text            create__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -287,7 +252,7 @@ asm void daObjSnowSoup_c::create() {
 }
 #pragma pop
 
-/* 80CDFB70-80CDFBC4 0054+00 s=1 e=0 z=0  None .text      Delete__15daObjSnowSoup_cFv */
+/* 80CDFB70-80CDFBC4 000390 0054+00 1/1 0/0 0/0 .text            Delete__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -297,7 +262,7 @@ asm void daObjSnowSoup_c::Delete() {
 }
 #pragma pop
 
-/* 80CDFBC4-80CDFC40 007C+00 s=1 e=0 z=0  None .text      draw__15daObjSnowSoup_cFv */
+/* 80CDFBC4-80CDFC40 0003E4 007C+00 1/1 0/0 0/0 .text            draw__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -307,7 +272,16 @@ asm void daObjSnowSoup_c::draw() {
 }
 #pragma pop
 
-/* 80CDFC40-80CDFE14 01D4+00 s=1 e=0 z=0  None .text      execute__15daObjSnowSoup_cFv */
+/* ############################################################################################## */
+/* 80CE0258-80CE025C 00001C 0004+00 1/3 0/0 0/0 .rodata          @3757 */
+SECTION_RODATA static f32 const lit_3757 = 1.0f;
+COMPILER_STRIP_GATE(80CE0258, &lit_3757);
+
+/* 80CE025C-80CE0260 000020 0004+00 1/1 0/0 0/0 .rodata          @3758 */
+SECTION_RODATA static f32 const lit_3758 = -1.0f;
+COMPILER_STRIP_GATE(80CE025C, &lit_3758);
+
+/* 80CDFC40-80CDFE14 000460 01D4+00 1/1 0/0 0/0 .text            execute__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -317,7 +291,7 @@ asm void daObjSnowSoup_c::execute() {
 }
 #pragma pop
 
-/* 80CDFE14-80CDFEA4 0090+00 s=1 e=0 z=0  None .text      init__15daObjSnowSoup_cFv */
+/* 80CDFE14-80CDFEA4 000634 0090+00 1/1 0/0 0/0 .text            init__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -327,7 +301,7 @@ asm void daObjSnowSoup_c::init() {
 }
 #pragma pop
 
-/* 80CDFEA4-80CDFF14 0070+00 s=2 e=0 z=0  None .text      setModelMtx__15daObjSnowSoup_cFv */
+/* 80CDFEA4-80CDFF14 0006C4 0070+00 2/2 0/0 0/0 .text            setModelMtx__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -337,7 +311,17 @@ asm void daObjSnowSoup_c::setModelMtx() {
 }
 #pragma pop
 
-/* 80CDFF14-80CDFFF8 00E4+00 s=1 e=0 z=0  None .text      createSmkEmtCommon__15daObjSnowSoup_cFv */
+/* ############################################################################################## */
+/* 80CE0260-80CE0268 000024 0008+00 0/1 0/0 0/0 .rodata          PARTICLE_NAME$3789 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const PARTICLE_NAME_3789[8] = {
+    0x87, 0xE1, 0x87, 0xE2, 0x87, 0xE3, 0x87, 0xE6,
+};
+COMPILER_STRIP_GATE(80CE0260, &PARTICLE_NAME_3789);
+#pragma pop
+
+/* 80CDFF14-80CDFFF8 000734 00E4+00 1/1 0/0 0/0 .text createSmkEmtCommon__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -347,7 +331,7 @@ asm void daObjSnowSoup_c::createSmkEmtCommon() {
 }
 #pragma pop
 
-/* 80CDFFF8-80CE003C 0044+00 s=1 e=0 z=0  None .text      deleteSmkEmtCommon__15daObjSnowSoup_cFv */
+/* 80CDFFF8-80CE003C 000818 0044+00 1/1 0/0 0/0 .text deleteSmkEmtCommon__15daObjSnowSoup_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -357,7 +341,17 @@ asm void daObjSnowSoup_c::deleteSmkEmtCommon() {
 }
 #pragma pop
 
-/* 80CE003C-80CE0134 00F8+00 s=2 e=0 z=0  None .text      createSmkEmtChange__15daObjSnowSoup_cFi */
+/* ############################################################################################## */
+/* 80CE0268-80CE0274 00002C 000C+00 0/1 0/0 0/0 .rodata          PARTICLE_NAME$3834 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const PARTICLE_NAME_3834[12] = {
+    0x89, 0x84, 0x89, 0x85, 0x8A, 0x8B, 0x8A, 0x8D, 0x8A, 0x8C, 0x8A, 0x8E,
+};
+COMPILER_STRIP_GATE(80CE0268, &PARTICLE_NAME_3834);
+#pragma pop
+
+/* 80CE003C-80CE0134 00085C 00F8+00 2/2 0/0 0/0 .text createSmkEmtChange__15daObjSnowSoup_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -367,7 +361,7 @@ asm void daObjSnowSoup_c::createSmkEmtChange(int param_0) {
 }
 #pragma pop
 
-/* 80CE0134-80CE0180 004C+00 s=2 e=0 z=0  None .text      deleteSmkEmtChange__15daObjSnowSoup_cFi */
+/* 80CE0134-80CE0180 000954 004C+00 2/2 0/0 0/0 .text deleteSmkEmtChange__15daObjSnowSoup_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -377,45 +371,50 @@ asm void daObjSnowSoup_c::deleteSmkEmtChange(int param_0) {
 }
 #pragma pop
 
-/* 80CE0180-80CE01D4 0054+00 s=1 e=0 z=0  None .text      daObjSnowSoup_create__FP15daObjSnowSoup_c
- */
+/* 80CE0180-80CE01D4 0009A0 0054+00 1/0 0/0 0/0 .text daObjSnowSoup_create__FP15daObjSnowSoup_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjSnowSoup_create(daObjSnowSoup_c* param_0) {
+static asm void daObjSnowSoup_create(daObjSnowSoup_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_snow_soup/d_a_obj_snow_soup/daObjSnowSoup_create__FP15daObjSnowSoup_c.s"
 }
 #pragma pop
 
-/* 80CE01D4-80CE01F4 0020+00 s=1 e=0 z=0  None .text      daObjSnowSoup_Delete__FP15daObjSnowSoup_c
- */
+/* 80CE01D4-80CE01F4 0009F4 0020+00 1/0 0/0 0/0 .text daObjSnowSoup_Delete__FP15daObjSnowSoup_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjSnowSoup_Delete(daObjSnowSoup_c* param_0) {
+static asm void daObjSnowSoup_Delete(daObjSnowSoup_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_snow_soup/d_a_obj_snow_soup/daObjSnowSoup_Delete__FP15daObjSnowSoup_c.s"
 }
 #pragma pop
 
-/* 80CE01F4-80CE0214 0020+00 s=1 e=0 z=0  None .text      daObjSnowSoup_execute__FP15daObjSnowSoup_c
+/* 80CE01F4-80CE0214 000A14 0020+00 1/0 0/0 0/0 .text daObjSnowSoup_execute__FP15daObjSnowSoup_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjSnowSoup_execute(daObjSnowSoup_c* param_0) {
+static asm void daObjSnowSoup_execute(daObjSnowSoup_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_snow_soup/d_a_obj_snow_soup/daObjSnowSoup_execute__FP15daObjSnowSoup_c.s"
 }
 #pragma pop
 
-/* 80CE0214-80CE0234 0020+00 s=1 e=0 z=0  None .text      daObjSnowSoup_draw__FP15daObjSnowSoup_c */
+/* 80CE0214-80CE0234 000A34 0020+00 1/0 0/0 0/0 .text daObjSnowSoup_draw__FP15daObjSnowSoup_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjSnowSoup_draw(daObjSnowSoup_c* param_0) {
+static asm void daObjSnowSoup_draw(daObjSnowSoup_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_snow_soup/d_a_obj_snow_soup/daObjSnowSoup_draw__FP15daObjSnowSoup_c.s"
 }
+#pragma pop
+
+/* 80CE0274-80CE027D 000038 0009+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80CE0274 = "SnowSoup";
 #pragma pop

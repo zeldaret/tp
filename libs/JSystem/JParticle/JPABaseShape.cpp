@@ -54,90 +54,6 @@ struct JPABaseEmitter {
 // Forward References:
 //
 
-void JPASetPointSize(JPAEmitterWorkData*);
-void JPASetLineWidth(JPAEmitterWorkData*);
-void JPASetPointSize(JPAEmitterWorkData*, JPABaseParticle*);
-void JPASetLineWidth(JPAEmitterWorkData*, JPABaseParticle*);
-void JPARegistPrm(JPAEmitterWorkData*);
-void JPARegistEnv(JPAEmitterWorkData*);
-void JPARegistPrmEnv(JPAEmitterWorkData*);
-void JPARegistAlpha(JPAEmitterWorkData*, JPABaseParticle*);
-void JPARegistPrmAlpha(JPAEmitterWorkData*, JPABaseParticle*);
-void JPARegistPrmAlphaEnv(JPAEmitterWorkData*, JPABaseParticle*);
-void JPARegistAlphaEnv(JPAEmitterWorkData*, JPABaseParticle*);
-void JPARegistEnv(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcClrIdxNormal(JPAEmitterWorkData*);
-void JPACalcClrIdxNormal(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcClrIdxRepeat(JPAEmitterWorkData*);
-void JPACalcClrIdxRepeat(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcClrIdxReverse(JPAEmitterWorkData*);
-void JPACalcClrIdxReverse(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcClrIdxMerge(JPAEmitterWorkData*);
-void JPACalcClrIdxMerge(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcClrIdxRandom(JPAEmitterWorkData*);
-void JPACalcClrIdxRandom(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcPrm(JPAEmitterWorkData*);
-void JPACalcPrm(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcEnv(JPAEmitterWorkData*);
-void JPACalcEnv(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcColorCopy(JPAEmitterWorkData*, JPABaseParticle*);
-void JPAGenTexCrdMtxIdt(JPAEmitterWorkData*);
-void JPAGenTexCrdMtxAnm(JPAEmitterWorkData*);
-void JPAGenTexCrdMtxPrj(JPAEmitterWorkData*);
-void JPAGenCalcTexCrdMtxAnm(JPAEmitterWorkData*);
-void JPALoadCalcTexCrdMtxAnm(JPAEmitterWorkData*, JPABaseParticle*);
-void JPALoadTex(JPAEmitterWorkData*);
-void JPALoadTexAnm(JPAEmitterWorkData*);
-void JPALoadTexAnm(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcTexIdxNormal(JPAEmitterWorkData*);
-void JPACalcTexIdxNormal(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcTexIdxRepeat(JPAEmitterWorkData*);
-void JPACalcTexIdxRepeat(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcTexIdxReverse(JPAEmitterWorkData*);
-void JPACalcTexIdxReverse(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcTexIdxMerge(JPAEmitterWorkData*);
-void JPACalcTexIdxMerge(JPAEmitterWorkData*, JPABaseParticle*);
-void JPACalcTexIdxRandom(JPAEmitterWorkData*);
-void JPACalcTexIdxRandom(JPAEmitterWorkData*, JPABaseParticle*);
-void JPALoadPosMtxCam(JPAEmitterWorkData*);
-static void noLoadPrj(JPAEmitterWorkData const*, f32 const (*)[4]);
-static void loadPrj(JPAEmitterWorkData const*, f32 const (*)[4]);
-static void loadPrjAnm(JPAEmitterWorkData const*, f32 const (*)[4]);
-void JPADrawBillboard(JPAEmitterWorkData*, JPABaseParticle*);
-void JPADrawRotBillboard(JPAEmitterWorkData*, JPABaseParticle*);
-void JPADrawYBillboard(JPAEmitterWorkData*, JPABaseParticle*);
-void JPADrawRotYBillboard(JPAEmitterWorkData*, JPABaseParticle*);
-static void dirTypeVel(JPAEmitterWorkData const*, JPABaseParticle const*,
-                       JGeometry::TVec3__template0*);
-static void dirTypePos(JPAEmitterWorkData const*, JPABaseParticle const*,
-                       JGeometry::TVec3__template0*);
-static void dirTypePosInv(JPAEmitterWorkData const*, JPABaseParticle const*,
-                          JGeometry::TVec3__template0*);
-static void dirTypeEmtrDir(JPAEmitterWorkData const*, JPABaseParticle const*,
-                           JGeometry::TVec3__template0*);
-static void dirTypePrevPtcl(JPAEmitterWorkData const*, JPABaseParticle const*,
-                            JGeometry::TVec3__template0*);
-static void rotTypeY(f32, f32, f32 (&)[3][4]);
-static void rotTypeX(f32, f32, f32 (&)[3][4]);
-static void rotTypeZ(f32, f32, f32 (&)[3][4]);
-static void rotTypeXYZ(f32, f32, f32 (&)[3][4]);
-static void basePlaneTypeXY(f32 (*)[4], f32, f32);
-static void basePlaneTypeXZ(f32 (*)[4], f32, f32);
-static void basePlaneTypeX(f32 (*)[4], f32, f32);
-void JPADrawDirection(JPAEmitterWorkData*, JPABaseParticle*);
-void JPADrawRotDirection(JPAEmitterWorkData*, JPABaseParticle*);
-void JPADrawDBillboard(JPAEmitterWorkData*, JPABaseParticle*);
-void JPADrawRotation(JPAEmitterWorkData*, JPABaseParticle*);
-void JPADrawPoint(JPAEmitterWorkData*, JPABaseParticle*);
-void JPADrawLine(JPAEmitterWorkData*, JPABaseParticle*);
-static void getNext(JPANode__template0*);
-static void getPrev(JPANode__template0*);
-void JPADrawStripe(JPAEmitterWorkData*);
-void JPADrawStripeX(JPAEmitterWorkData*);
-void JPADrawEmitterCallBackB(JPAEmitterWorkData*);
-void JPADrawParticleCallBack(JPAEmitterWorkData*, JPABaseParticle*);
-static void makeColorTable(_GXColor**, JPAClrAnmKeyData const*, u8, s16, JKRHeap*);
-
 extern "C" void JPASetPointSize__FP18JPAEmitterWorkData();
 extern "C" void JPASetLineWidth__FP18JPAEmitterWorkData();
 extern "C" void JPASetPointSize__FP18JPAEmitterWorkDataP15JPABaseParticle();
@@ -191,11 +107,11 @@ extern "C" void JPADrawBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle();
 extern "C" void JPADrawRotBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle();
 extern "C" void JPADrawYBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle();
 extern "C" void JPADrawRotYBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle();
-extern "C" static void func_802782B4();
-extern "C" static void func_802782D0();
-extern "C" static void func_802782EC();
-extern "C" static void func_80278320();
-extern "C" static void func_8027833C();
+extern "C" void func_802782B4();
+extern "C" void func_802782D0();
+extern "C" void func_802782EC();
+extern "C" void func_80278320();
+extern "C" void func_8027833C();
 extern "C" static void rotTypeY__FffRA3_A4_f();
 extern "C" static void rotTypeX__FffRA3_A4_f();
 extern "C" static void rotTypeZ__FffRA3_A4_f();
@@ -209,8 +125,8 @@ extern "C" void JPADrawDBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle();
 extern "C" void JPADrawRotation__FP18JPAEmitterWorkDataP15JPABaseParticle();
 extern "C" void JPADrawPoint__FP18JPAEmitterWorkDataP15JPABaseParticle();
 extern "C" void JPADrawLine__FP18JPAEmitterWorkDataP15JPABaseParticle();
-extern "C" static void func_80279364();
-extern "C" static void func_8027936C();
+extern "C" void func_80279364();
+extern "C" void func_8027936C();
 extern "C" void JPADrawStripe__FP18JPAEmitterWorkData();
 extern "C" void JPADrawStripeX__FP18JPAEmitterWorkData();
 extern "C" void JPADrawEmitterCallBackB__FP18JPAEmitterWorkData();
@@ -263,14 +179,14 @@ extern "C" extern u32 __float_epsilon;
 //
 
 /* ############################################################################################## */
-/* 804552A8-804552B0 0004+04 s=7 e=0 z=0  None .sdata2    @2262 */
+/* 804552A8-804552B0 0038A8 0004+04 7/7 0/0 0/0 .sdata2          @2262 */
 SECTION_SDATA2 static f32 lit_2262[1 + 1 /* padding */] = {
     25.0f,
     /* padding */
     0.0f,
 };
 
-/* 80276A90-80276ACC 003C+00 s=0 e=1 z=0  None .text      JPASetPointSize__FP18JPAEmitterWorkData */
+/* 80276A90-80276ACC 2713D0 003C+00 0/0 1/1 0/0 .text JPASetPointSize__FP18JPAEmitterWorkData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -280,7 +196,7 @@ asm void JPASetPointSize(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 80276ACC-80276B08 003C+00 s=0 e=1 z=0  None .text      JPASetLineWidth__FP18JPAEmitterWorkData */
+/* 80276ACC-80276B08 27140C 003C+00 0/0 1/1 0/0 .text JPASetLineWidth__FP18JPAEmitterWorkData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -290,7 +206,7 @@ asm void JPASetLineWidth(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 80276B08-80276B4C 0044+00 s=0 e=1 z=0  None .text
+/* 80276B08-80276B4C 271448 0044+00 0/0 1/1 0/0 .text
  * JPASetPointSize__FP18JPAEmitterWorkDataP15JPABaseParticle    */
 #pragma push
 #pragma optimization_level 0
@@ -301,7 +217,7 @@ asm void JPASetPointSize(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) 
 }
 #pragma pop
 
-/* 80276B4C-80276B90 0044+00 s=0 e=1 z=0  None .text
+/* 80276B4C-80276B90 27148C 0044+00 0/0 1/1 0/0 .text
  * JPASetLineWidth__FP18JPAEmitterWorkDataP15JPABaseParticle    */
 #pragma push
 #pragma optimization_level 0
@@ -312,7 +228,7 @@ asm void JPASetLineWidth(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) 
 }
 #pragma pop
 
-/* 80276B90-80276C2C 009C+00 s=0 e=1 z=0  None .text      JPARegistPrm__FP18JPAEmitterWorkData */
+/* 80276B90-80276C2C 2714D0 009C+00 0/0 1/1 0/0 .text JPARegistPrm__FP18JPAEmitterWorkData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -322,7 +238,7 @@ asm void JPARegistPrm(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 80276C2C-80276CB0 0084+00 s=0 e=1 z=0  None .text      JPARegistEnv__FP18JPAEmitterWorkData */
+/* 80276C2C-80276CB0 27156C 0084+00 0/0 1/1 0/0 .text JPARegistEnv__FP18JPAEmitterWorkData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -332,7 +248,7 @@ asm void JPARegistEnv(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 80276CB0-80276DB0 0100+00 s=0 e=1 z=0  None .text      JPARegistPrmEnv__FP18JPAEmitterWorkData */
+/* 80276CB0-80276DB0 2715F0 0100+00 0/0 1/1 0/0 .text JPARegistPrmEnv__FP18JPAEmitterWorkData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -342,7 +258,7 @@ asm void JPARegistPrmEnv(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 80276DB0-80276E60 00B0+00 s=0 e=1 z=0  None .text
+/* 80276DB0-80276E60 2716F0 00B0+00 0/0 1/1 0/0 .text
  * JPARegistAlpha__FP18JPAEmitterWorkDataP15JPABaseParticle     */
 #pragma push
 #pragma optimization_level 0
@@ -353,7 +269,7 @@ asm void JPARegistAlpha(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
 }
 #pragma pop
 
-/* 80276E60-80276F10 00B0+00 s=0 e=1 z=0  None .text
+/* 80276E60-80276F10 2717A0 00B0+00 0/0 1/1 0/0 .text
  * JPARegistPrmAlpha__FP18JPAEmitterWorkDataP15JPABaseParticle  */
 #pragma push
 #pragma optimization_level 0
@@ -364,7 +280,7 @@ asm void JPARegistPrmAlpha(JPAEmitterWorkData* param_0, JPABaseParticle* param_1
 }
 #pragma pop
 
-/* 80276F10-80277024 0114+00 s=0 e=1 z=0  None .text
+/* 80276F10-80277024 271850 0114+00 0/0 1/1 0/0 .text
  * JPARegistPrmAlphaEnv__FP18JPAEmitterWorkDataP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -375,7 +291,7 @@ asm void JPARegistPrmAlphaEnv(JPAEmitterWorkData* param_0, JPABaseParticle* para
 }
 #pragma pop
 
-/* 80277024-80277138 0114+00 s=0 e=1 z=0  None .text
+/* 80277024-80277138 271964 0114+00 0/0 1/1 0/0 .text
  * JPARegistAlphaEnv__FP18JPAEmitterWorkDataP15JPABaseParticle  */
 #pragma push
 #pragma optimization_level 0
@@ -386,7 +302,7 @@ asm void JPARegistAlphaEnv(JPAEmitterWorkData* param_0, JPABaseParticle* param_1
 }
 #pragma pop
 
-/* 80277138-802771BC 0084+00 s=0 e=1 z=0  None .text
+/* 80277138-802771BC 271A78 0084+00 0/0 1/1 0/0 .text
  * JPARegistEnv__FP18JPAEmitterWorkDataP15JPABaseParticle       */
 #pragma push
 #pragma optimization_level 0
@@ -397,7 +313,7 @@ asm void JPARegistEnv(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
 }
 #pragma pop
 
-/* 802771BC-802771E8 002C+00 s=0 e=1 z=0  None .text JPACalcClrIdxNormal__FP18JPAEmitterWorkData
+/* 802771BC-802771E8 271AFC 002C+00 0/0 1/1 0/0 .text JPACalcClrIdxNormal__FP18JPAEmitterWorkData
  */
 #pragma push
 #pragma optimization_level 0
@@ -408,7 +324,7 @@ asm void JPACalcClrIdxNormal(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 802771E8-80277210 0028+00 s=0 e=1 z=0  None .text
+/* 802771E8-80277210 271B28 0028+00 0/0 1/1 0/0 .text
  * JPACalcClrIdxNormal__FP18JPAEmitterWorkDataP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -419,7 +335,7 @@ asm void JPACalcClrIdxNormal(JPAEmitterWorkData* param_0, JPABaseParticle* param
 }
 #pragma pop
 
-/* 80277210-80277240 0030+00 s=0 e=1 z=0  None .text JPACalcClrIdxRepeat__FP18JPAEmitterWorkData
+/* 80277210-80277240 271B50 0030+00 0/0 1/1 0/0 .text JPACalcClrIdxRepeat__FP18JPAEmitterWorkData
  */
 #pragma push
 #pragma optimization_level 0
@@ -430,7 +346,7 @@ asm void JPACalcClrIdxRepeat(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 80277240-8027727C 003C+00 s=0 e=1 z=0  None .text
+/* 80277240-8027727C 271B80 003C+00 0/0 1/1 0/0 .text
  * JPACalcClrIdxRepeat__FP18JPAEmitterWorkDataP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -441,7 +357,7 @@ asm void JPACalcClrIdxRepeat(JPAEmitterWorkData* param_0, JPABaseParticle* param
 }
 #pragma pop
 
-/* 8027727C-802772BC 0040+00 s=0 e=1 z=0  None .text JPACalcClrIdxReverse__FP18JPAEmitterWorkData
+/* 8027727C-802772BC 271BBC 0040+00 0/0 1/1 0/0 .text JPACalcClrIdxReverse__FP18JPAEmitterWorkData
  */
 #pragma push
 #pragma optimization_level 0
@@ -452,7 +368,7 @@ asm void JPACalcClrIdxReverse(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 802772BC-80277308 004C+00 s=0 e=1 z=0  None .text
+/* 802772BC-80277308 271BFC 004C+00 0/0 1/1 0/0 .text
  * JPACalcClrIdxReverse__FP18JPAEmitterWorkDataP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -463,7 +379,7 @@ asm void JPACalcClrIdxReverse(JPAEmitterWorkData* param_0, JPABaseParticle* para
 }
 #pragma pop
 
-/* 80277308-80277314 000C+00 s=0 e=1 z=0  None .text      JPACalcClrIdxMerge__FP18JPAEmitterWorkData
+/* 80277308-80277314 271C48 000C+00 0/0 1/1 0/0 .text JPACalcClrIdxMerge__FP18JPAEmitterWorkData
  */
 #pragma push
 #pragma optimization_level 0
@@ -475,10 +391,10 @@ asm void JPACalcClrIdxMerge(JPAEmitterWorkData* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804552B0-804552B8 0008+00 s=4 e=0 z=0  None .sdata2    @2623 */
+/* 804552B0-804552B8 0038B0 0008+00 4/4 0/0 0/0 .sdata2          @2623 */
 SECTION_SDATA2 static f64 lit_2623 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 80277314-80277384 0070+00 s=0 e=1 z=0  None .text
+/* 80277314-80277384 271C54 0070+00 0/0 1/1 0/0 .text
  * JPACalcClrIdxMerge__FP18JPAEmitterWorkDataP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -489,7 +405,7 @@ asm void JPACalcClrIdxMerge(JPAEmitterWorkData* param_0, JPABaseParticle* param_
 }
 #pragma pop
 
-/* 80277384-80277390 000C+00 s=0 e=1 z=0  None .text JPACalcClrIdxRandom__FP18JPAEmitterWorkData
+/* 80277384-80277390 271CC4 000C+00 0/0 1/1 0/0 .text JPACalcClrIdxRandom__FP18JPAEmitterWorkData
  */
 #pragma push
 #pragma optimization_level 0
@@ -500,7 +416,7 @@ asm void JPACalcClrIdxRandom(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 80277390-802773C4 0034+00 s=0 e=1 z=0  None .text
+/* 80277390-802773C4 271CD0 0034+00 0/0 1/1 0/0 .text
  * JPACalcClrIdxRandom__FP18JPAEmitterWorkDataP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -511,7 +427,8 @@ asm void JPACalcClrIdxRandom(JPAEmitterWorkData* param_0, JPABaseParticle* param
 }
 #pragma pop
 
-/* 802773C4-80277404 0040+00 s=0 e=1 z=0  None .text      JPACalcPrm__FP18JPAEmitterWorkData */
+/* 802773C4-80277404 271D04 0040+00 0/0 1/1 0/0 .text            JPACalcPrm__FP18JPAEmitterWorkData
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -521,7 +438,7 @@ asm void JPACalcPrm(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 80277404-80277440 003C+00 s=0 e=1 z=0  None .text
+/* 80277404-80277440 271D44 003C+00 0/0 1/1 0/0 .text
  * JPACalcPrm__FP18JPAEmitterWorkDataP15JPABaseParticle         */
 #pragma push
 #pragma optimization_level 0
@@ -532,7 +449,8 @@ asm void JPACalcPrm(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
 }
 #pragma pop
 
-/* 80277440-80277480 0040+00 s=0 e=1 z=0  None .text      JPACalcEnv__FP18JPAEmitterWorkData */
+/* 80277440-80277480 271D80 0040+00 0/0 1/1 0/0 .text            JPACalcEnv__FP18JPAEmitterWorkData
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -542,7 +460,7 @@ asm void JPACalcEnv(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 80277480-802774BC 003C+00 s=0 e=1 z=0  None .text
+/* 80277480-802774BC 271DC0 003C+00 0/0 1/1 0/0 .text
  * JPACalcEnv__FP18JPAEmitterWorkDataP15JPABaseParticle         */
 #pragma push
 #pragma optimization_level 0
@@ -553,7 +471,7 @@ asm void JPACalcEnv(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
 }
 #pragma pop
 
-/* 802774BC-80277504 0048+00 s=0 e=1 z=0  None .text
+/* 802774BC-80277504 271DFC 0048+00 0/0 1/1 0/0 .text
  * JPACalcColorCopy__FP18JPAEmitterWorkDataP15JPABaseParticle   */
 #pragma push
 #pragma optimization_level 0
@@ -564,7 +482,7 @@ asm void JPACalcColorCopy(JPAEmitterWorkData* param_0, JPABaseParticle* param_1)
 }
 #pragma pop
 
-/* 80277504-8027753C 0038+00 s=0 e=1 z=0  None .text      JPAGenTexCrdMtxIdt__FP18JPAEmitterWorkData
+/* 80277504-8027753C 271E44 0038+00 0/0 1/1 0/0 .text JPAGenTexCrdMtxIdt__FP18JPAEmitterWorkData
  */
 #pragma push
 #pragma optimization_level 0
@@ -575,7 +493,7 @@ asm void JPAGenTexCrdMtxIdt(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 8027753C-80277574 0038+00 s=0 e=1 z=0  None .text      JPAGenTexCrdMtxAnm__FP18JPAEmitterWorkData
+/* 8027753C-80277574 271E7C 0038+00 0/0 1/1 0/0 .text JPAGenTexCrdMtxAnm__FP18JPAEmitterWorkData
  */
 #pragma push
 #pragma optimization_level 0
@@ -586,7 +504,7 @@ asm void JPAGenTexCrdMtxAnm(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 80277574-802775AC 0038+00 s=0 e=1 z=0  None .text      JPAGenTexCrdMtxPrj__FP18JPAEmitterWorkData
+/* 80277574-802775AC 271EB4 0038+00 0/0 1/1 0/0 .text JPAGenTexCrdMtxPrj__FP18JPAEmitterWorkData
  */
 #pragma push
 #pragma optimization_level 0
@@ -598,23 +516,23 @@ asm void JPAGenTexCrdMtxPrj(JPAEmitterWorkData* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804552B8-804552BC 0004+00 s=9 e=0 z=0  None .sdata2    @2740 */
+/* 804552B8-804552BC 0038B8 0004+00 9/9 0/0 0/0 .sdata2          @2740 */
 SECTION_SDATA2 static f32 lit_2740 = 0.5f;
 
-/* 804552BC-804552C0 0004+00 s=14 e=0 z=0  None .sdata2    @2741 */
+/* 804552BC-804552C0 0038BC 0004+00 14/14 0/0 0/0 .sdata2          @2741 */
 SECTION_SDATA2 static f32 lit_2741 = 1.0f;
 
-/* 804552C0-804552C8 0004+04 s=19 e=0 z=0  None .sdata2    @2742 */
+/* 804552C0-804552C8 0038C0 0004+04 19/19 0/0 0/0 .sdata2          @2742 */
 SECTION_SDATA2 static f32 lit_2742[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 804552C8-804552D0 0008+00 s=6 e=0 z=0  None .sdata2    @2744 */
+/* 804552C8-804552D0 0038C8 0008+00 6/6 0/0 0/0 .sdata2          @2744 */
 SECTION_SDATA2 static f64 lit_2744 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 802775AC-80277758 01AC+00 s=0 e=1 z=0  None .text
+/* 802775AC-80277758 271EEC 01AC+00 0/0 1/1 0/0 .text
  * JPAGenCalcTexCrdMtxAnm__FP18JPAEmitterWorkData               */
 #pragma push
 #pragma optimization_level 0
@@ -625,7 +543,7 @@ asm void JPAGenCalcTexCrdMtxAnm(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 80277758-802778EC 0194+00 s=0 e=1 z=0  None .text
+/* 80277758-802778EC 272098 0194+00 0/0 1/1 0/0 .text
  * JPALoadCalcTexCrdMtxAnm__FP18JPAEmitterWorkDataP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -636,7 +554,8 @@ asm void JPALoadCalcTexCrdMtxAnm(JPAEmitterWorkData* param_0, JPABaseParticle* p
 }
 #pragma pop
 
-/* 802778EC-80277940 0054+00 s=0 e=1 z=0  None .text      JPALoadTex__FP18JPAEmitterWorkData */
+/* 802778EC-80277940 27222C 0054+00 0/0 1/1 0/0 .text            JPALoadTex__FP18JPAEmitterWorkData
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -646,7 +565,7 @@ asm void JPALoadTex(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 80277940-80277990 0050+00 s=0 e=1 z=0  None .text      JPALoadTexAnm__FP18JPAEmitterWorkData */
+/* 80277940-80277990 272280 0050+00 0/0 1/1 0/0 .text JPALoadTexAnm__FP18JPAEmitterWorkData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -656,7 +575,7 @@ asm void JPALoadTexAnm(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 80277990-802779DC 004C+00 s=0 e=1 z=0  None .text
+/* 80277990-802779DC 2722D0 004C+00 0/0 1/1 0/0 .text
  * JPALoadTexAnm__FP18JPAEmitterWorkDataP15JPABaseParticle      */
 #pragma push
 #pragma optimization_level 0
@@ -667,7 +586,7 @@ asm void JPALoadTexAnm(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
 }
 #pragma pop
 
-/* 802779DC-80277A18 003C+00 s=0 e=1 z=0  None .text JPACalcTexIdxNormal__FP18JPAEmitterWorkData
+/* 802779DC-80277A18 27231C 003C+00 0/0 1/1 0/0 .text JPACalcTexIdxNormal__FP18JPAEmitterWorkData
  */
 #pragma push
 #pragma optimization_level 0
@@ -678,7 +597,7 @@ asm void JPACalcTexIdxNormal(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 80277A18-80277A50 0038+00 s=0 e=1 z=0  None .text
+/* 80277A18-80277A50 272358 0038+00 0/0 1/1 0/0 .text
  * JPACalcTexIdxNormal__FP18JPAEmitterWorkDataP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -689,7 +608,7 @@ asm void JPACalcTexIdxNormal(JPAEmitterWorkData* param_0, JPABaseParticle* param
 }
 #pragma pop
 
-/* 80277A50-80277A88 0038+00 s=0 e=1 z=0  None .text JPACalcTexIdxRepeat__FP18JPAEmitterWorkData
+/* 80277A50-80277A88 272390 0038+00 0/0 1/1 0/0 .text JPACalcTexIdxRepeat__FP18JPAEmitterWorkData
  */
 #pragma push
 #pragma optimization_level 0
@@ -700,7 +619,7 @@ asm void JPACalcTexIdxRepeat(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 80277A88-80277ACC 0044+00 s=0 e=1 z=0  None .text
+/* 80277A88-80277ACC 2723C8 0044+00 0/0 1/1 0/0 .text
  * JPACalcTexIdxRepeat__FP18JPAEmitterWorkDataP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -711,7 +630,7 @@ asm void JPACalcTexIdxRepeat(JPAEmitterWorkData* param_0, JPABaseParticle* param
 }
 #pragma pop
 
-/* 80277ACC-80277B1C 0050+00 s=0 e=1 z=0  None .text JPACalcTexIdxReverse__FP18JPAEmitterWorkData
+/* 80277ACC-80277B1C 27240C 0050+00 0/0 1/1 0/0 .text JPACalcTexIdxReverse__FP18JPAEmitterWorkData
  */
 #pragma push
 #pragma optimization_level 0
@@ -722,7 +641,7 @@ asm void JPACalcTexIdxReverse(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 80277B1C-80277B78 005C+00 s=0 e=1 z=0  None .text
+/* 80277B1C-80277B78 27245C 005C+00 0/0 1/1 0/0 .text
  * JPACalcTexIdxReverse__FP18JPAEmitterWorkDataP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -733,7 +652,7 @@ asm void JPACalcTexIdxReverse(JPAEmitterWorkData* param_0, JPABaseParticle* para
 }
 #pragma pop
 
-/* 80277B78-80277B94 001C+00 s=0 e=1 z=0  None .text      JPACalcTexIdxMerge__FP18JPAEmitterWorkData
+/* 80277B78-80277B94 2724B8 001C+00 0/0 1/1 0/0 .text JPACalcTexIdxMerge__FP18JPAEmitterWorkData
  */
 #pragma push
 #pragma optimization_level 0
@@ -744,7 +663,7 @@ asm void JPACalcTexIdxMerge(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 80277B94-80277C0C 0078+00 s=0 e=1 z=0  None .text
+/* 80277B94-80277C0C 2724D4 0078+00 0/0 1/1 0/0 .text
  * JPACalcTexIdxMerge__FP18JPAEmitterWorkDataP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -755,7 +674,7 @@ asm void JPACalcTexIdxMerge(JPAEmitterWorkData* param_0, JPABaseParticle* param_
 }
 #pragma pop
 
-/* 80277C0C-80277C28 001C+00 s=0 e=1 z=0  None .text JPACalcTexIdxRandom__FP18JPAEmitterWorkData
+/* 80277C0C-80277C28 27254C 001C+00 0/0 1/1 0/0 .text JPACalcTexIdxRandom__FP18JPAEmitterWorkData
  */
 #pragma push
 #pragma optimization_level 0
@@ -766,7 +685,7 @@ asm void JPACalcTexIdxRandom(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 80277C28-80277C64 003C+00 s=0 e=1 z=0  None .text
+/* 80277C28-80277C64 272568 003C+00 0/0 1/1 0/0 .text
  * JPACalcTexIdxRandom__FP18JPAEmitterWorkDataP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -777,8 +696,7 @@ asm void JPACalcTexIdxRandom(JPAEmitterWorkData* param_0, JPABaseParticle* param
 }
 #pragma pop
 
-/* 80277C64-80277C8C 0028+00 s=0 e=1 z=0  None .text      JPALoadPosMtxCam__FP18JPAEmitterWorkData
- */
+/* 80277C64-80277C8C 2725A4 0028+00 0/0 1/1 0/0 .text JPALoadPosMtxCam__FP18JPAEmitterWorkData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -788,54 +706,52 @@ asm void JPALoadPosMtxCam(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 80277C8C-80277C90 0004+00 s=1 e=0 z=0  None .text      noLoadPrj__FPC18JPAEmitterWorkDataPA4_Cf
- */
+/* 80277C8C-80277C90 2725CC 0004+00 1/0 0/0 0/0 .text noLoadPrj__FPC18JPAEmitterWorkDataPA4_Cf */
 static void noLoadPrj(JPAEmitterWorkData const* param_0, f32 const (*param_1)[4]) {
     /* empty function */
 }
 
-/* 80277C90-80277CC8 0038+00 s=1 e=0 z=0  None .text      loadPrj__FPC18JPAEmitterWorkDataPA4_Cf */
+/* 80277C90-80277CC8 2725D0 0038+00 1/0 0/0 0/0 .text loadPrj__FPC18JPAEmitterWorkDataPA4_Cf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void loadPrj(JPAEmitterWorkData const* param_0, f32 const (*param_1)[4]) {
+static asm void loadPrj(JPAEmitterWorkData const* param_0, f32 const (*param_1)[4]) {
     nofralloc
 #include "asm/JSystem/JParticle/JPABaseShape/loadPrj__FPC18JPAEmitterWorkDataPA4_Cf.s"
 }
 #pragma pop
 
-/* 80277CC8-80277E88 01C0+00 s=1 e=0 z=0  None .text      loadPrjAnm__FPC18JPAEmitterWorkDataPA4_Cf
- */
+/* 80277CC8-80277E88 272608 01C0+00 1/0 0/0 0/0 .text loadPrjAnm__FPC18JPAEmitterWorkDataPA4_Cf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void loadPrjAnm(JPAEmitterWorkData const* param_0, f32 const (*param_1)[4]) {
+static asm void loadPrjAnm(JPAEmitterWorkData const* param_0, f32 const (*param_1)[4]) {
     nofralloc
 #include "asm/JSystem/JParticle/JPABaseShape/loadPrjAnm__FPC18JPAEmitterWorkDataPA4_Cf.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C42E0-803C4300 0020+00 s=10 e=0 z=0  None .data      jpa_dl */
+/* 803C42E0-803C4300 021400 0020+00 10/9 0/0 0/0 .data            jpa_dl */
 SECTION_DATA static u8 jpa_dl[32] = {
     0x80, 0x00, 0x04, 0x00, 0x00, 0x01, 0x01, 0x02, 0x02, 0x03, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803C4300-803C4320 0020+00 s=1 e=0 z=0  None .data      jpa_dl_x */
+/* 803C4300-803C4320 021420 0020+00 1/0 0/0 0/0 .data            jpa_dl_x */
 SECTION_DATA static u8 jpa_dl_x[32] = {
     0x80, 0x00, 0x08, 0x00, 0x00, 0x01, 0x01, 0x02, 0x02, 0x03, 0x03, 0x48, 0x00, 0x49, 0x01, 0x4A,
     0x02, 0x4B, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803C4320-803C432C 000C+00 s=10 e=0 z=0  None .data      p_prj */
+/* 803C4320-803C432C -00001 000C+00 6/10 0/0 0/0 .data            p_prj */
 SECTION_DATA static void* p_prj[3] = {
     (void*)noLoadPrj__FPC18JPAEmitterWorkDataPA4_Cf,
     (void*)loadPrj__FPC18JPAEmitterWorkDataPA4_Cf,
     (void*)loadPrjAnm__FPC18JPAEmitterWorkDataPA4_Cf,
 };
 
-/* 80277E88-80277F70 00E8+00 s=0 e=1 z=0  None .text
+/* 80277E88-80277F70 2727C8 00E8+00 0/0 1/1 0/0 .text
  * JPADrawBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle   */
 #pragma push
 #pragma optimization_level 0
@@ -846,7 +762,7 @@ asm void JPADrawBillboard(JPAEmitterWorkData* param_0, JPABaseParticle* param_1)
 }
 #pragma pop
 
-/* 80277F70-80278088 0118+00 s=0 e=1 z=0  None .text
+/* 80277F70-80278088 2728B0 0118+00 0/0 1/1 0/0 .text
  * JPADrawRotBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -857,7 +773,7 @@ asm void JPADrawRotBillboard(JPAEmitterWorkData* param_0, JPABaseParticle* param
 }
 #pragma pop
 
-/* 80278088-80278184 00FC+00 s=0 e=1 z=0  None .text
+/* 80278088-80278184 2729C8 00FC+00 0/0 1/1 0/0 .text
  * JPADrawYBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle  */
 #pragma push
 #pragma optimization_level 0
@@ -868,7 +784,7 @@ asm void JPADrawYBillboard(JPAEmitterWorkData* param_0, JPABaseParticle* param_1
 }
 #pragma pop
 
-/* 80278184-802782B4 0130+00 s=0 e=1 z=0  None .text
+/* 80278184-802782B4 272AC4 0130+00 0/0 1/1 0/0 .text
  * JPADrawRotYBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -879,176 +795,182 @@ asm void JPADrawRotYBillboard(JPAEmitterWorkData* param_0, JPABaseParticle* para
 }
 #pragma pop
 
-/* 802782B4-802782D0 001C+00 s=1 e=0 z=0  None .text
+/* 802782B4-802782D0 272BF4 001C+00 1/0 0/0 0/0 .text
  * dirTypeVel__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f> */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dirTypeVel(JPAEmitterWorkData const* param_0, JPABaseParticle const* param_1,
-                           JGeometry::TVec3<f32>* param_2) {
+asm void dirTypeVel(JPAEmitterWorkData const* param_0, JPABaseParticle const* param_1,
+                    JGeometry::TVec3<f32>* param_2) {
     nofralloc
 #include "asm/JSystem/JParticle/JPABaseShape/func_802782B4.s"
 }
 #pragma pop
 
-/* 802782D0-802782EC 001C+00 s=1 e=0 z=0  None .text
+/* 802782D0-802782EC 272C10 001C+00 1/0 0/0 0/0 .text
  * dirTypePos__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f> */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dirTypePos(JPAEmitterWorkData const* param_0, JPABaseParticle const* param_1,
-                           JGeometry::TVec3<f32>* param_2) {
+asm void dirTypePos(JPAEmitterWorkData const* param_0, JPABaseParticle const* param_1,
+                    JGeometry::TVec3<f32>* param_2) {
     nofralloc
 #include "asm/JSystem/JParticle/JPABaseShape/func_802782D0.s"
 }
 #pragma pop
 
-/* 802782EC-80278320 0034+00 s=1 e=0 z=0  None .text
+/* 802782EC-80278320 272C2C 0034+00 1/0 0/0 0/0 .text
  * dirTypePosInv__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f> */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dirTypePosInv(JPAEmitterWorkData const* param_0, JPABaseParticle const* param_1,
-                              JGeometry::TVec3<f32>* param_2) {
+asm void dirTypePosInv(JPAEmitterWorkData const* param_0, JPABaseParticle const* param_1,
+                       JGeometry::TVec3<f32>* param_2) {
     nofralloc
 #include "asm/JSystem/JParticle/JPABaseShape/func_802782EC.s"
 }
 #pragma pop
 
-/* 80278320-8027833C 001C+00 s=1 e=0 z=0  None .text
+/* 80278320-8027833C 272C60 001C+00 1/0 0/0 0/0 .text
  * dirTypeEmtrDir__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f> */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dirTypeEmtrDir(JPAEmitterWorkData const* param_0, JPABaseParticle const* param_1,
-                               JGeometry::TVec3<f32>* param_2) {
+asm void dirTypeEmtrDir(JPAEmitterWorkData const* param_0, JPABaseParticle const* param_1,
+                        JGeometry::TVec3<f32>* param_2) {
     nofralloc
 #include "asm/JSystem/JParticle/JPABaseShape/func_80278320.s"
 }
 #pragma pop
 
-/* 8027833C-802783D4 0098+00 s=1 e=0 z=0  None .text
+/* 8027833C-802783D4 272C7C 0098+00 1/0 0/0 0/0 .text
  * dirTypePrevPtcl__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f> */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dirTypePrevPtcl(JPAEmitterWorkData const* param_0, JPABaseParticle const* param_1,
-                                JGeometry::TVec3<f32>* param_2) {
+asm void dirTypePrevPtcl(JPAEmitterWorkData const* param_0, JPABaseParticle const* param_1,
+                         JGeometry::TVec3<f32>* param_2) {
     nofralloc
 #include "asm/JSystem/JParticle/JPABaseShape/func_8027833C.s"
 }
 #pragma pop
 
-/* 802783D4-80278414 0040+00 s=1 e=0 z=0  None .text      rotTypeY__FffRA3_A4_f */
+/* 802783D4-80278414 272D14 0040+00 1/0 0/0 0/0 .text            rotTypeY__FffRA3_A4_f */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void rotTypeY(f32 param_0, f32 param_1, f32 (&param_2)[3][4]) {
+static asm void rotTypeY(f32 param_0, f32 param_1, f32 (&param_2)[3][4]) {
     nofralloc
 #include "asm/JSystem/JParticle/JPABaseShape/rotTypeY__FffRA3_A4_f.s"
 }
 #pragma pop
 
-/* 80278414-80278454 0040+00 s=1 e=0 z=0  None .text      rotTypeX__FffRA3_A4_f */
+/* 80278414-80278454 272D54 0040+00 1/0 0/0 0/0 .text            rotTypeX__FffRA3_A4_f */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void rotTypeX(f32 param_0, f32 param_1, f32 (&param_2)[3][4]) {
+static asm void rotTypeX(f32 param_0, f32 param_1, f32 (&param_2)[3][4]) {
     nofralloc
 #include "asm/JSystem/JParticle/JPABaseShape/rotTypeX__FffRA3_A4_f.s"
 }
 #pragma pop
 
-/* 80278454-80278494 0040+00 s=1 e=0 z=0  None .text      rotTypeZ__FffRA3_A4_f */
+/* 80278454-80278494 272D94 0040+00 1/0 0/0 0/0 .text            rotTypeZ__FffRA3_A4_f */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void rotTypeZ(f32 param_0, f32 param_1, f32 (&param_2)[3][4]) {
+static asm void rotTypeZ(f32 param_0, f32 param_1, f32 (&param_2)[3][4]) {
     nofralloc
 #include "asm/JSystem/JParticle/JPABaseShape/rotTypeZ__FffRA3_A4_f.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804552D0-804552D4 0004+00 s=1 e=0 z=0  None .sdata2    @3145 */
+/* 804552D0-804552D4 0038D0 0004+00 1/1 0/0 0/0 .sdata2          @3145 */
 SECTION_SDATA2 static f32 lit_3145 = 0.33333298563957214f;
 
-/* 804552D4-804552D8 0004+00 s=1 e=0 z=0  None .sdata2    @3146 */
+/* 804552D4-804552D8 0038D4 0004+00 1/1 0/0 0/0 .sdata2          @3146 */
 SECTION_SDATA2 static f32 lit_3146 = 0.5773500204086304f;
 
-/* 80278494-802784F0 005C+00 s=1 e=0 z=0  None .text      rotTypeXYZ__FffRA3_A4_f */
+/* 80278494-802784F0 272DD4 005C+00 1/0 0/0 0/0 .text            rotTypeXYZ__FffRA3_A4_f */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void rotTypeXYZ(f32 param_0, f32 param_1, f32 (&param_2)[3][4]) {
+static asm void rotTypeXYZ(f32 param_0, f32 param_1, f32 (&param_2)[3][4]) {
     nofralloc
 #include "asm/JSystem/JParticle/JPABaseShape/rotTypeXYZ__FffRA3_A4_f.s"
 }
 #pragma pop
 
-/* 802784F0-8027853C 004C+00 s=1 e=0 z=0  None .text      basePlaneTypeXY__FPA4_fff */
+/* 802784F0-8027853C 272E30 004C+00 1/0 0/0 0/0 .text            basePlaneTypeXY__FPA4_fff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void basePlaneTypeXY(f32 (*param_0)[4], f32 param_1, f32 param_2) {
+static asm void basePlaneTypeXY(f32 (*param_0)[4], f32 param_1, f32 param_2) {
     nofralloc
 #include "asm/JSystem/JParticle/JPABaseShape/basePlaneTypeXY__FPA4_fff.s"
 }
 #pragma pop
 
-/* 8027853C-80278588 004C+00 s=1 e=0 z=0  None .text      basePlaneTypeXZ__FPA4_fff */
+/* 8027853C-80278588 272E7C 004C+00 1/0 0/0 0/0 .text            basePlaneTypeXZ__FPA4_fff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void basePlaneTypeXZ(f32 (*param_0)[4], f32 param_1, f32 param_2) {
+static asm void basePlaneTypeXZ(f32 (*param_0)[4], f32 param_1, f32 param_2) {
     nofralloc
 #include "asm/JSystem/JParticle/JPABaseShape/basePlaneTypeXZ__FPA4_fff.s"
 }
 #pragma pop
 
-/* 80278588-802785F8 0070+00 s=1 e=0 z=0  None .text      basePlaneTypeX__FPA4_fff */
+/* 80278588-802785F8 272EC8 0070+00 1/0 0/0 0/0 .text            basePlaneTypeX__FPA4_fff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void basePlaneTypeX(f32 (*param_0)[4], f32 param_1, f32 param_2) {
+static asm void basePlaneTypeX(f32 (*param_0)[4], f32 param_1, f32 param_2) {
     nofralloc
 #include "asm/JSystem/JParticle/JPABaseShape/basePlaneTypeX__FPA4_fff.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C432C-803C4340 0014+00 s=5 e=0 z=0  None .data      p_direction */
+/* 803C432C-803C4340 -00001 0014+00 2/5 0/0 0/0 .data            p_direction */
 SECTION_DATA static void* p_direction[5] = {
     (void*)func_802782B4, (void*)func_802782D0, (void*)func_802782EC,
     (void*)func_80278320, (void*)func_8027833C,
 };
 
-/* 803C4340-803C4354 0014+00 s=2 e=0 z=0  None .data      p_rot */
+/* 803C4340-803C4354 -00001 0014+00 0/2 0/0 0/0 .data            p_rot */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* p_rot[5] = {
     (void*)rotTypeY__FffRA3_A4_f,   (void*)rotTypeX__FffRA3_A4_f, (void*)rotTypeZ__FffRA3_A4_f,
     (void*)rotTypeXYZ__FffRA3_A4_f, (void*)rotTypeY__FffRA3_A4_f,
 };
+#pragma pop
 
-/* 803C4354-803C4360 000C+00 s=3 e=0 z=0  None .data      p_plane */
+/* 803C4354-803C4360 -00001 000C+00 0/3 0/0 0/0 .data            p_plane */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* p_plane[3] = {
     (void*)basePlaneTypeXY__FPA4_fff,
     (void*)basePlaneTypeXZ__FPA4_fff,
     (void*)basePlaneTypeX__FPA4_fff,
 };
+#pragma pop
 
-/* 804507A0-804507A8 0008+00 s=3 e=0 z=0  None .sdata     p_dl */
+/* 804507A0-804507A8 -00001 0008+00 3/3 0/0 0/0 .sdata           p_dl */
 SECTION_SDATA static void* p_dl[2] = {
     (void*)&jpa_dl,
     (void*)&jpa_dl_x,
 };
 
-/* 804552D8-804552DC 0004+00 s=6 e=0 z=0  None .sdata2    @3281 */
+/* 804552D8-804552DC 0038D8 0004+00 6/6 0/0 0/0 .sdata2          @3281 */
 SECTION_SDATA2 static f32 lit_3281 = 32.0f;
 
-/* 804552DC-804552E0 0004+00 s=6 e=0 z=0  None .sdata2    @3282 */
+/* 804552DC-804552E0 0038DC 0004+00 6/6 0/0 0/0 .sdata2          @3282 */
 SECTION_SDATA2 static f32 lit_3282 = 3.0f;
 
-/* 802785F8-80278994 039C+00 s=0 e=1 z=0  None .text
+/* 802785F8-80278994 272F38 039C+00 0/0 1/1 0/0 .text
  * JPADrawDirection__FP18JPAEmitterWorkDataP15JPABaseParticle   */
 #pragma push
 #pragma optimization_level 0
@@ -1059,7 +981,7 @@ asm void JPADrawDirection(JPAEmitterWorkData* param_0, JPABaseParticle* param_1)
 }
 #pragma pop
 
-/* 80278994-80278DA8 0414+00 s=0 e=1 z=0  None .text
+/* 80278994-80278DA8 2732D4 0414+00 0/0 1/1 0/0 .text
  * JPADrawRotDirection__FP18JPAEmitterWorkDataP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -1070,7 +992,7 @@ asm void JPADrawRotDirection(JPAEmitterWorkData* param_0, JPABaseParticle* param
 }
 #pragma pop
 
-/* 80278DA8-80278FC8 0220+00 s=0 e=1 z=0  None .text
+/* 80278DA8-80278FC8 2736E8 0220+00 0/0 1/1 0/0 .text
  * JPADrawDBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle  */
 #pragma push
 #pragma optimization_level 0
@@ -1081,7 +1003,7 @@ asm void JPADrawDBillboard(JPAEmitterWorkData* param_0, JPABaseParticle* param_1
 }
 #pragma pop
 
-/* 80278FC8-80279110 0148+00 s=0 e=1 z=0  None .text
+/* 80278FC8-80279110 273908 0148+00 0/0 1/1 0/0 .text
  * JPADrawRotation__FP18JPAEmitterWorkDataP15JPABaseParticle    */
 #pragma push
 #pragma optimization_level 0
@@ -1092,7 +1014,7 @@ asm void JPADrawRotation(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) 
 }
 #pragma pop
 
-/* 80279110-802791B0 00A0+00 s=0 e=1 z=0  None .text
+/* 80279110-802791B0 273A50 00A0+00 0/0 1/1 0/0 .text
  * JPADrawPoint__FP18JPAEmitterWorkDataP15JPABaseParticle       */
 #pragma push
 #pragma optimization_level 0
@@ -1103,7 +1025,7 @@ asm void JPADrawPoint(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
 }
 #pragma pop
 
-/* 802791B0-80279364 01B4+00 s=0 e=1 z=0  None .text
+/* 802791B0-80279364 273AF0 01B4+00 0/0 1/1 0/0 .text
  * JPADrawLine__FP18JPAEmitterWorkDataP15JPABaseParticle        */
 #pragma push
 #pragma optimization_level 0
@@ -1114,27 +1036,27 @@ asm void JPADrawLine(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
 }
 #pragma pop
 
-/* 80279364-8027936C 0008+00 s=2 e=0 z=0  None .text      getNext__FP26JPANode<15JPABaseParticle> */
+/* 80279364-8027936C 273CA4 0008+00 2/2 0/0 0/0 .text getNext__FP26JPANode<15JPABaseParticle> */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void getNext(JPANode<JPABaseParticle>* param_0) {
+asm void getNext(JPANode<JPABaseParticle>* param_0) {
     nofralloc
 #include "asm/JSystem/JParticle/JPABaseShape/func_80279364.s"
 }
 #pragma pop
 
-/* 8027936C-80279374 0008+00 s=2 e=0 z=0  None .text      getPrev__FP26JPANode<15JPABaseParticle> */
+/* 8027936C-80279374 273CAC 0008+00 2/2 0/0 0/0 .text getPrev__FP26JPANode<15JPABaseParticle> */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void getPrev(JPANode<JPABaseParticle>* param_0) {
+asm void getPrev(JPANode<JPABaseParticle>* param_0) {
     nofralloc
 #include "asm/JSystem/JParticle/JPABaseShape/func_8027936C.s"
 }
 #pragma pop
 
-/* 80279374-8027996C 05F8+00 s=0 e=1 z=0  None .text      JPADrawStripe__FP18JPAEmitterWorkData */
+/* 80279374-8027996C 273CB4 05F8+00 0/0 1/1 0/0 .text JPADrawStripe__FP18JPAEmitterWorkData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1144,7 +1066,7 @@ asm void JPADrawStripe(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 8027996C-8027A3D8 0A6C+00 s=0 e=1 z=0  None .text      JPADrawStripeX__FP18JPAEmitterWorkData */
+/* 8027996C-8027A3D8 2742AC 0A6C+00 0/0 1/1 0/0 .text JPADrawStripeX__FP18JPAEmitterWorkData */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1154,7 +1076,7 @@ asm void JPADrawStripeX(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 8027A3D8-8027A414 003C+00 s=0 e=1 z=0  None .text
+/* 8027A3D8-8027A414 274D18 003C+00 0/0 1/1 0/0 .text
  * JPADrawEmitterCallBackB__FP18JPAEmitterWorkData              */
 #pragma push
 #pragma optimization_level 0
@@ -1165,7 +1087,7 @@ asm void JPADrawEmitterCallBackB(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 8027A414-8027A454 0040+00 s=0 e=1 z=0  None .text
+/* 8027A414-8027A454 274D54 0040+00 0/0 1/1 0/0 .text
  * JPADrawParticleCallBack__FP18JPAEmitterWorkDataP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -1176,19 +1098,20 @@ asm void JPADrawParticleCallBack(JPAEmitterWorkData* param_0, JPABaseParticle* p
 }
 #pragma pop
 
-/* 8027A454-8027A6DC 0288+00 s=1 e=0 z=0  None .text
+/* 8027A454-8027A6DC 274D94 0288+00 1/1 0/0 0/0 .text
  * makeColorTable__FPP8_GXColorPC16JPAClrAnmKeyDataUcsP7JKRHeap */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void makeColorTable(_GXColor** param_0, JPAClrAnmKeyData const* param_1, u8 param_2,
+static asm void makeColorTable(_GXColor** param_0, JPAClrAnmKeyData const* param_1, u8 param_2,
                                s16 param_3, JKRHeap* param_4) {
     nofralloc
 #include "asm/JSystem/JParticle/JPABaseShape/makeColorTable__FPP8_GXColorPC16JPAClrAnmKeyDataUcsP7JKRHeap.s"
 }
 #pragma pop
 
-/* 8027A6DC-8027A7E8 010C+00 s=0 e=1 z=0  None .text      __ct__12JPABaseShapeFPCUcP7JKRHeap */
+/* 8027A6DC-8027A7E8 27501C 010C+00 0/0 1/1 0/0 .text            __ct__12JPABaseShapeFPCUcP7JKRHeap
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1199,38 +1122,55 @@ asm JPABaseShape::JPABaseShape(u8 const* param_0, JKRHeap* param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C4360-803C436C 000C+00 s=1 e=0 z=0  None .data      st_bm__12JPABaseShape */
+/* 803C4360-803C436C 021480 000C+00 0/1 0/0 0/0 .data            st_bm__12JPABaseShape */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 st_bm__12JPABaseShape[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02,
 };
+#pragma pop
 
-/* 803C436C-803C4394 0028+00 s=1 e=0 z=0  None .data      st_bf__12JPABaseShape */
+/* 803C436C-803C4394 02148C 0028+00 0/1 0/0 0/0 .data            st_bf__12JPABaseShape */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 st_bf__12JPABaseShape[40] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00,
     0x00, 0x03, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04,
     0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x07,
 };
+#pragma pop
 
-/* 803C4394-803C43D4 0040+00 s=1 e=0 z=0  None .data      st_lo__12JPABaseShape */
+/* 803C4394-803C43D4 0214B4 0040+00 0/1 0/0 0/0 .data            st_lo__12JPABaseShape */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 st_lo__12JPABaseShape[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x0C,
     0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x0E,
     0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x09,
     0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00, 0x00, 0x0D,
 };
+#pragma pop
 
-/* 803C43D4-803C43F4 0020+00 s=1 e=0 z=0  None .data      st_c__12JPABaseShape */
+/* 803C43D4-803C43F4 0214F4 0020+00 0/1 0/0 0/0 .data            st_c__12JPABaseShape */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 st_c__12JPABaseShape[32] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x02,
     0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x07,
 };
+#pragma pop
 
-/* 803C43F4-803C4404 0010+00 s=1 e=0 z=0  None .data      st_ao__12JPABaseShape */
+/* 803C43F4-803C4404 021514 0010+00 0/1 0/0 0/0 .data            st_ao__12JPABaseShape */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 st_ao__12JPABaseShape[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03,
 };
+#pragma pop
 
-/* 803C4404-803C4464 0060+00 s=1 e=0 z=0  None .data      st_ca__12JPABaseShape */
+/* 803C4404-803C4464 021524 0060+00 0/1 0/0 0/0 .data            st_ca__12JPABaseShape */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 st_ca__12JPABaseShape[96] = {
     0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x0F,
     0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0F,
@@ -1239,8 +1179,11 @@ SECTION_DATA static u8 st_ca__12JPABaseShape[96] = {
     0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x04,
     0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x02,
 };
+#pragma pop
 
-/* 803C4464-803C4488 0020+04 s=1 e=0 z=0  None .data      st_aa__12JPABaseShape */
+/* 803C4464-803C4488 021584 0020+04 0/1 0/0 0/0 .data            st_aa__12JPABaseShape */
+#pragma push
+#pragma force_active on
 SECTION_DATA static u8 st_aa__12JPABaseShape[32 + 4 /* padding */] = {
     0x00,
     0x00,
@@ -1280,8 +1223,9 @@ SECTION_DATA static u8 st_aa__12JPABaseShape[32 + 4 /* padding */] = {
     0x00,
     0x00,
 };
+#pragma pop
 
-/* 8027A7E8-8027A918 0130+00 s=0 e=1 z=0  None .text setGX__12JPABaseShapeCFP18JPAEmitterWorkData
+/* 8027A7E8-8027A918 275128 0130+00 0/0 1/1 0/0 .text setGX__12JPABaseShapeCFP18JPAEmitterWorkData
  */
 #pragma push
 #pragma optimization_level 0

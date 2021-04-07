@@ -13,14 +13,14 @@ lbl_8003927C:
 /* 80039280  48 29 59 CD */	bl __nw__FUl
 /* 80039284  28 03 00 00 */	cmplwi r3, 0
 /* 80039288  41 82 00 30 */	beq lbl_800392B8
-/* 8003928C  3C 80 80 3C */	lis r4, __vt__Q26JStage7TObject@ha
-/* 80039290  38 04 47 E8 */	addi r0, r4, __vt__Q26JStage7TObject@l
+/* 8003928C  3C 80 80 3C */	lis r4, __vt__Q26JStage7TObject@ha /* 0x803C47E8@ha */
+/* 80039290  38 04 47 E8 */	addi r0, r4, __vt__Q26JStage7TObject@l /* 0x803C47E8@l */
 /* 80039294  90 03 00 00 */	stw r0, 0(r3)
-/* 80039298  3C 80 80 3C */	lis r4, __vt__Q26JStage4TFog@ha
-/* 8003929C  38 04 47 18 */	addi r0, r4, __vt__Q26JStage4TFog@l
+/* 80039298  3C 80 80 3C */	lis r4, __vt__Q26JStage4TFog@ha /* 0x803C4718@ha */
+/* 8003929C  38 04 47 18 */	addi r0, r4, __vt__Q26JStage4TFog@l /* 0x803C4718@l */
 /* 800392A0  90 03 00 00 */	stw r0, 0(r3)
-/* 800392A4  3C 80 80 3A */	lis r4, __vt__11dDemo_fog_c@ha
-/* 800392A8  38 04 79 94 */	addi r0, r4, __vt__11dDemo_fog_c@l
+/* 800392A4  3C 80 80 3A */	lis r4, __vt__11dDemo_fog_c@ha /* 0x803A7994@ha */
+/* 800392A8  38 04 79 94 */	addi r0, r4, __vt__11dDemo_fog_c@l /* 0x803A7994@l */
 /* 800392AC  90 03 00 00 */	stw r0, 0(r3)
 /* 800392B0  38 00 00 00 */	li r0, 0
 /* 800392B4  98 03 00 04 */	stb r0, 4(r3)

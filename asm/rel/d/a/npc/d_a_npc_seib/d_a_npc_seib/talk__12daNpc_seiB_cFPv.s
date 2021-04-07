@@ -15,7 +15,7 @@ lbl_80AC616C:
 lbl_80AC61A0:
 /* 80AC61A0  80 9F 0A 7C */	lwz r4, 0xa7c(r31)
 /* 80AC61A4  38 A0 00 00 */	li r5, 0
-/* 80AC61A8  4B 68 5A 48 */	b initTalk__8daNpcT_cFiPP10fopAc_ac_c
+/* 80AC61A8  4B 68 5A 49 */	bl initTalk__8daNpcT_cFiPP10fopAc_ac_c
 /* 80AC61AC  38 00 00 00 */	li r0, 0
 /* 80AC61B0  98 1F 0E 26 */	stb r0, 0xe26(r31)
 /* 80AC61B4  38 00 00 02 */	li r0, 2
@@ -26,13 +26,13 @@ lbl_80AC61BC:
 /* 80AC61C4  38 A0 00 00 */	li r5, 0
 /* 80AC61C8  38 C0 00 00 */	li r6, 0
 /* 80AC61CC  38 E0 00 00 */	li r7, 0
-/* 80AC61D0  4B 68 5A A8 */	b talkProc__8daNpcT_cFPiiPP10fopAc_ac_ci
+/* 80AC61D0  4B 68 5A A9 */	bl talkProc__8daNpcT_cFPiiPP10fopAc_ac_ci
 /* 80AC61D4  2C 03 00 00 */	cmpwi r3, 0
 /* 80AC61D8  41 82 00 1C */	beq lbl_80AC61F4
-/* 80AC61DC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80AC61E0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80AC61DC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80AC61E0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80AC61E4  38 63 4E C8 */	addi r3, r3, 0x4ec8
-/* 80AC61E8  4B 57 C2 80 */	b reset__14dEvt_control_cFv
+/* 80AC61E8  4B 57 C2 81 */	bl reset__14dEvt_control_cFv
 /* 80AC61EC  38 00 00 03 */	li r0, 3
 /* 80AC61F0  B0 1F 0E 22 */	sth r0, 0xe22(r31)
 lbl_80AC61F4:

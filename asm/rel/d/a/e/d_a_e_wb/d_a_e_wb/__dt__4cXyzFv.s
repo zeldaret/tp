@@ -7,7 +7,7 @@ lbl_807D2B48:
 /* 807D2B5C  41 82 00 10 */	beq lbl_807D2B6C
 /* 807D2B60  7C 80 07 35 */	extsh. r0, r4
 /* 807D2B64  40 81 00 08 */	ble lbl_807D2B6C
-/* 807D2B68  4B AF C1 D4 */	b __dl__FPv
+/* 807D2B68  4B AF C1 D5 */	bl __dl__FPv
 lbl_807D2B6C:
 /* 807D2B6C  7F E3 FB 78 */	mr r3, r31
 /* 807D2B70  83 E1 00 0C */	lwz r31, 0xc(r1)

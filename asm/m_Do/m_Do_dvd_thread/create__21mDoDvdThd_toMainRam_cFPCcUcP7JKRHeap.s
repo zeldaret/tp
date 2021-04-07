@@ -41,8 +41,8 @@ lbl_80016424:
 /* 80016428  48 00 00 18 */	b lbl_80016440
 lbl_8001642C:
 /* 8001642C  93 DF 00 24 */	stw r30, 0x24(r31)
-/* 80016430  3C 60 80 3E */	lis r3, l_param__9mDoDvdThd@ha
-/* 80016434  38 63 EC 60 */	addi r3, r3, l_param__9mDoDvdThd@l
+/* 80016430  3C 60 80 3E */	lis r3, l_param__9mDoDvdThd@ha /* 0x803DEC60@ha */
+/* 80016434  38 63 EC 60 */	addi r3, r3, l_param__9mDoDvdThd@l /* 0x803DEC60@l */
 /* 80016438  7F E4 FB 78 */	mr r4, r31
 /* 8001643C  4B FF F5 A9 */	bl addition__17mDoDvdThd_param_cFP19mDoDvdThd_command_c
 lbl_80016440:

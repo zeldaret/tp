@@ -3,17 +3,15 @@
 #
 
 M696_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zdoor.plf
+M696_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zdoor.lcf
+M696_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zdoor.map
 
 M696_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_zdoor/executor.cpp \
-	rel/d/a/obj/d_a_obj_zdoor/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_zdoor/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_zdoor/d_a_obj_zdoor.cpp \
 
 M696_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zdoor/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zdoor/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zdoor/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zdoor/d_a_obj_zdoor.o \
 
 M696_LIBS := \
@@ -29,14 +27,21 @@ M696_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M696_LDSCRIPT) \
+	-unused -map $(M696_MAP) \
+	-w off \
 
 $(M696_TARGET): $(M696_O_FILES) $(M696_LIBS)
+	@echo [696] creating $(M696_TARGET)
 	@echo $(M696_LIBS) $(M696_O_FILES) > build/M696_ofiles
-	$(LD) -partial $(M696_LDFLAGS) -o $(M696_TARGET) @build/M696_ofiles
+	@python3 tools/lcf.py rel 696 --output $(M696_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M696_LDFLAGS) -o $(M696_TARGET) @build/M696_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zdoor/%.o: rel/d/a/obj/d_a_obj_zdoor/%.cpp
+	@echo [696] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M696_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M696_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

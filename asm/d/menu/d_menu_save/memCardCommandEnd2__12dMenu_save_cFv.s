@@ -28,8 +28,8 @@ lbl_801F2708:
 /* 801F2770  40 82 00 44 */	bne lbl_801F27B4
 /* 801F2774  28 04 00 01 */	cmplwi r4, 1
 /* 801F2778  40 82 00 3C */	bne lbl_801F27B4
-/* 801F277C  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 801F2780  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 801F277C  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 801F2780  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 801F2784  80 64 00 00 */	lwz r3, 0(r4)
 /* 801F2788  80 04 00 04 */	lwz r0, 4(r4)
 /* 801F278C  90 7F 01 C4 */	stw r3, 0x1c4(r31)

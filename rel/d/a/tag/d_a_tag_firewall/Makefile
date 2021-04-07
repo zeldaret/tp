@@ -3,17 +3,15 @@
 #
 
 M720_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_firewall.plf
+M720_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_firewall.lcf
+M720_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_firewall.map
 
 M720_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_firewall/executor.cpp \
-	rel/d/a/tag/d_a_tag_firewall/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_firewall/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_firewall/d_a_tag_firewall.cpp \
 
 M720_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_firewall/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_firewall/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_firewall/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_firewall/d_a_tag_firewall.o \
 
 M720_LIBS := \
@@ -29,14 +27,21 @@ M720_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M720_LDSCRIPT) \
+	-unused -map $(M720_MAP) \
+	-w off \
 
 $(M720_TARGET): $(M720_O_FILES) $(M720_LIBS)
+	@echo [720] creating $(M720_TARGET)
 	@echo $(M720_LIBS) $(M720_O_FILES) > build/M720_ofiles
-	$(LD) -partial $(M720_LDFLAGS) -o $(M720_TARGET) @build/M720_ofiles
+	@python3 tools/lcf.py rel 720 --output $(M720_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M720_LDFLAGS) -o $(M720_TARGET) @build/M720_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_firewall/%.o: rel/d/a/tag/d_a_tag_firewall/%.cpp
+	@echo [720] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M720_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M720_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

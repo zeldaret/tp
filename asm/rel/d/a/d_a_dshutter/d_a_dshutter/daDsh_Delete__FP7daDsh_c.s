@@ -5,7 +5,7 @@ lbl_80467C34:
 /* 80467C40  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80467C44  93 C1 00 08 */	stw r30, 8(r1)
 /* 80467C48  7C 7E 1B 78 */	mr r30, r3
-/* 80467C4C  4B C1 0C 90 */	b MoveBGDelete__16dBgS_MoveBgActorFv
+/* 80467C4C  4B C1 0C 91 */	bl MoveBGDelete__16dBgS_MoveBgActorFv
 /* 80467C50  7C 7F 1B 78 */	mr r31, r3
 /* 80467C54  7F C3 F3 78 */	mr r3, r30
 /* 80467C58  38 80 FF FF */	li r4, -1

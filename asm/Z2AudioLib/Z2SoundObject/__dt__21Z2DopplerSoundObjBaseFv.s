@@ -7,8 +7,8 @@ lbl_802BE5FC:
 /* 802BE610  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802BE614  7C 9F 23 78 */	mr r31, r4
 /* 802BE618  41 82 00 28 */	beq lbl_802BE640
-/* 802BE61C  3C 80 80 3D */	lis r4, __vt__21Z2DopplerSoundObjBase@ha
-/* 802BE620  38 04 AD 30 */	addi r0, r4, __vt__21Z2DopplerSoundObjBase@l
+/* 802BE61C  3C 80 80 3D */	lis r4, __vt__21Z2DopplerSoundObjBase@ha /* 0x803CAD30@ha */
+/* 802BE620  38 04 AD 30 */	addi r0, r4, __vt__21Z2DopplerSoundObjBase@l /* 0x803CAD30@l */
 /* 802BE624  90 1E 00 10 */	stw r0, 0x10(r30)
 /* 802BE628  38 80 00 00 */	li r4, 0
 /* 802BE62C  4B FF F9 1D */	bl __dt__14Z2SoundObjBaseFv

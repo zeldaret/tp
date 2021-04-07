@@ -3,17 +3,15 @@
 #
 
 M40_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_telop.plf
+M40_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_telop.lcf
+M40_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_telop.map
 
 M40_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_telop/executor.cpp \
-	rel/d/a/tag/d_a_tag_telop/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_telop/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_telop/d_a_tag_telop.cpp \
 
 M40_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_telop/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_telop/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_telop/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_telop/d_a_tag_telop.o \
 
 M40_LIBS := \
@@ -29,14 +27,21 @@ M40_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M40_LDSCRIPT) \
+	-unused -map $(M40_MAP) \
+	-w off \
 
 $(M40_TARGET): $(M40_O_FILES) $(M40_LIBS)
+	@echo [ 40] creating $(M40_TARGET)
 	@echo $(M40_LIBS) $(M40_O_FILES) > build/M40_ofiles
-	$(LD) -partial $(M40_LDFLAGS) -o $(M40_TARGET) @build/M40_ofiles
+	@python3 tools/lcf.py rel 40 --output $(M40_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M40_LDFLAGS) -o $(M40_TARGET) @build/M40_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_telop/%.o: rel/d/a/tag/d_a_tag_telop/%.cpp
+	@echo [ 40] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M40_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M40_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

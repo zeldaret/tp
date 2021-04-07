@@ -5,14 +5,14 @@ lbl_8085A3B0:
 /* 8085A3BC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8085A3C0  93 C1 00 08 */	stw r30, 8(r1)
 /* 8085A3C4  7C 7E 1B 78 */	mr r30, r3
-/* 8085A3C8  3C 80 80 86 */	lis r4, lit_3754@ha
-/* 8085A3CC  3B E4 A4 84 */	addi r31, r4, lit_3754@l
+/* 8085A3C8  3C 80 80 86 */	lis r4, lit_3754@ha /* 0x8085A484@ha */
+/* 8085A3CC  3B E4 A4 84 */	addi r31, r4, lit_3754@l /* 0x8085A484@l */
 /* 8085A3D0  80 03 04 A0 */	lwz r0, 0x4a0(r3)
 /* 8085A3D4  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 8085A3D8  40 82 00 1C */	bne lbl_8085A3F4
 /* 8085A3DC  28 1E 00 00 */	cmplwi r30, 0
 /* 8085A3E0  41 82 00 08 */	beq lbl_8085A3E8
-/* 8085A3E4  4B 7B E7 80 */	b __ct__10fopAc_ac_cFv
+/* 8085A3E4  4B 7B E7 81 */	bl __ct__10fopAc_ac_cFv
 lbl_8085A3E8:
 /* 8085A3E8  80 1E 04 A0 */	lwz r0, 0x4a0(r30)
 /* 8085A3EC  60 00 00 08 */	ori r0, r0, 8
@@ -44,7 +44,7 @@ lbl_8085A3F4:
 /* 8085A450  38 00 00 00 */	li r0, 0
 /* 8085A454  98 1E 05 8C */	stb r0, 0x58c(r30)
 /* 8085A458  38 7E 05 68 */	addi r3, r30, 0x568
-/* 8085A45C  4B 94 D4 40 */	b dKy_plight_priority_set__FP15LIGHT_INFLUENCE
+/* 8085A45C  4B 94 D4 41 */	bl dKy_plight_priority_set__FP15LIGHT_INFLUENCE
 /* 8085A460  38 60 00 04 */	li r3, 4
 /* 8085A464  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8085A468  83 C1 00 08 */	lwz r30, 8(r1)

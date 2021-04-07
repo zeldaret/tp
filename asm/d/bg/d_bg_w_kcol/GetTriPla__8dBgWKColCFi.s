@@ -22,15 +22,15 @@ lbl_8007E8C0:
 /* 8007E910  80 61 00 08 */	lwz r3, 8(r1)
 /* 8007E914  7F E4 FB 78 */	mr r4, r31
 /* 8007E918  48 2C 88 7D */	bl PSVECDotProduct
-/* 8007E91C  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 8007E920  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 8007E91C  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 8007E920  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 8007E924  90 01 00 1C */	stw r0, 0x1c(r1)
 /* 8007E928  38 61 00 0C */	addi r3, r1, 0xc
 /* 8007E92C  80 81 00 08 */	lwz r4, 8(r1)
 /* 8007E930  7F E5 FB 78 */	mr r5, r31
 /* 8007E934  48 1F 0B F9 */	bl SetupNP__8cM3dGPlaFRC3VecRC3Vec
-/* 8007E938  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 8007E93C  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 8007E938  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 8007E93C  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 8007E940  90 1D 00 10 */	stw r0, 0x10(r29)
 /* 8007E944  C0 01 00 0C */	lfs f0, 0xc(r1)
 /* 8007E948  D0 1D 00 00 */	stfs f0, 0(r29)

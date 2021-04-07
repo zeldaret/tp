@@ -7,8 +7,8 @@ lbl_80313E4C:
 /* 80313E60  7C 7B 1B 78 */	mr r27, r3
 /* 80313E64  80 0D 90 28 */	lwz r0, sCurrentPipeline__11J3DShapeMtx(r13)
 /* 80313E68  1C 80 00 0C */	mulli r4, r0, 0xc
-/* 80313E6C  3C 60 80 3D */	lis r3, sMtxLoadPipeline__11J3DShapeMtx@ha
-/* 80313E70  38 03 D9 C0 */	addi r0, r3, sMtxLoadPipeline__11J3DShapeMtx@l
+/* 80313E6C  3C 60 80 3D */	lis r3, sMtxLoadPipeline__11J3DShapeMtx@ha /* 0x803CD9C0@ha */
+/* 80313E70  38 03 D9 C0 */	addi r0, r3, sMtxLoadPipeline__11J3DShapeMtx@l /* 0x803CD9C0@l */
 /* 80313E74  7C 80 22 14 */	add r4, r0, r4
 /* 80313E78  80 64 00 00 */	lwz r3, 0(r4)
 /* 80313E7C  80 04 00 04 */	lwz r0, 4(r4)

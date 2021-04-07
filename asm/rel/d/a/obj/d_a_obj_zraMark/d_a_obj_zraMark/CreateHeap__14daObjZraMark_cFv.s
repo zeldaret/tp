@@ -3,27 +3,27 @@ lbl_80D4287C:
 /* 80D42880  7C 08 02 A6 */	mflr r0
 /* 80D42884  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80D42888  39 61 00 30 */	addi r11, r1, 0x30
-/* 80D4288C  4B 61 F9 50 */	b _savegpr_29
+/* 80D4288C  4B 61 F9 51 */	bl _savegpr_29
 /* 80D42890  7C 7D 1B 78 */	mr r29, r3
-/* 80D42894  3C 60 80 D4 */	lis r3, l_DATA@ha
-/* 80D42898  3B E3 3D 88 */	addi r31, r3, l_DATA@l
-/* 80D4289C  3C 60 80 D4 */	lis r3, l_arcName@ha
-/* 80D428A0  38 63 3F A4 */	addi r3, r3, l_arcName@l
+/* 80D42894  3C 60 80 D4 */	lis r3, l_DATA@ha /* 0x80D43D88@ha */
+/* 80D42898  3B E3 3D 88 */	addi r31, r3, l_DATA@l /* 0x80D43D88@l */
+/* 80D4289C  3C 60 80 D4 */	lis r3, l_arcName@ha /* 0x80D43FA4@ha */
+/* 80D428A0  38 63 3F A4 */	addi r3, r3, l_arcName@l /* 0x80D43FA4@l */
 /* 80D428A4  80 63 00 00 */	lwz r3, 0(r3)
 /* 80D428A8  88 1D 07 2D */	lbz r0, 0x72d(r29)
 /* 80D428AC  54 00 10 3A */	slwi r0, r0, 2
 /* 80D428B0  38 9F 00 58 */	addi r4, r31, 0x58
 /* 80D428B4  7C 84 00 2E */	lwzx r4, r4, r0
-/* 80D428B8  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80D428BC  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80D428B8  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D428BC  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D428C0  3C A5 00 02 */	addis r5, r5, 2
 /* 80D428C4  38 C0 00 80 */	li r6, 0x80
 /* 80D428C8  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 80D428CC  4B 2F 9A 20 */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 80D428CC  4B 2F 9A 21 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80D428D0  3C 80 00 08 */	lis r4, 8
 /* 80D428D4  3C A0 11 00 */	lis r5, 0x1100 /* 0x11000084@ha */
 /* 80D428D8  38 A5 00 84 */	addi r5, r5, 0x0084 /* 0x11000084@l */
-/* 80D428DC  4B 2D 23 78 */	b mDoExt_J3DModel__create__FP12J3DModelDataUlUl
+/* 80D428DC  4B 2D 23 79 */	bl mDoExt_J3DModel__create__FP12J3DModelDataUlUl
 /* 80D428E0  90 7D 05 70 */	stw r3, 0x570(r29)
 /* 80D428E4  80 1D 05 70 */	lwz r0, 0x570(r29)
 /* 80D428E8  28 00 00 00 */	cmplwi r0, 0
@@ -139,7 +139,7 @@ lbl_80D42A40:
 /* 80D42A60  7C 60 19 10 */	subfe r3, r0, r3
 lbl_80D42A64:
 /* 80D42A64  39 61 00 30 */	addi r11, r1, 0x30
-/* 80D42A68  4B 61 F7 C0 */	b _restgpr_29
+/* 80D42A68  4B 61 F7 C1 */	bl _restgpr_29
 /* 80D42A6C  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80D42A70  7C 08 03 A6 */	mtlr r0
 /* 80D42A74  38 21 00 30 */	addi r1, r1, 0x30

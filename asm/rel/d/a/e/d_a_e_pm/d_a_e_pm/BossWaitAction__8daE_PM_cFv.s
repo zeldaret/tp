@@ -4,8 +4,8 @@ lbl_80747F38:
 /* 80747F40  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80747F44  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80747F48  7C 7F 1B 78 */	mr r31, r3
-/* 80747F4C  3C 80 80 75 */	lis r4, lit_3910@ha
-/* 80747F50  38 C4 BF 3C */	addi r6, r4, lit_3910@l
+/* 80747F4C  3C 80 80 75 */	lis r4, lit_3910@ha /* 0x8074BF3C@ha */
+/* 80747F50  38 C4 BF 3C */	addi r6, r4, lit_3910@l /* 0x8074BF3C@l */
 /* 80747F54  88 03 06 11 */	lbz r0, 0x611(r3)
 /* 80747F58  2C 00 00 01 */	cmpwi r0, 1
 /* 80747F5C  41 82 00 5C */	beq lbl_80747FB8
@@ -35,13 +35,13 @@ lbl_80747FA8:
 /* 80747FB0  98 1F 06 11 */	stb r0, 0x611(r31)
 /* 80747FB4  48 00 00 A8 */	b lbl_8074805C
 lbl_80747FB8:
-/* 80747FB8  3C 60 80 75 */	lis r3, data_8074C3E0@ha
-/* 80747FBC  C0 23 C3 E0 */	lfs f1, data_8074C3E0@l(r3)
+/* 80747FB8  3C 60 80 75 */	lis r3, data_8074C3E0@ha /* 0x8074C3E0@ha */
+/* 80747FBC  C0 23 C3 E0 */	lfs f1, data_8074C3E0@l(r3)  /* 0x8074C3E0@l */
 /* 80747FC0  C0 06 00 30 */	lfs f0, 0x30(r6)
 /* 80747FC4  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80747FC8  40 80 00 24 */	bge lbl_80747FEC
 /* 80747FCC  38 60 00 00 */	li r3, 0
-/* 80747FD0  4B 8E 49 AC */	b getLayerNo__14dComIfG_play_cFi
+/* 80747FD0  4B 8E 49 AD */	bl getLayerNo__14dComIfG_play_cFi
 /* 80747FD4  2C 03 00 00 */	cmpwi r3, 0
 /* 80747FD8  40 82 00 14 */	bne lbl_80747FEC
 /* 80747FDC  38 00 00 02 */	li r0, 2
@@ -56,7 +56,7 @@ lbl_80747FEC:
 /* 80747FFC  28 00 00 03 */	cmplwi r0, 3
 /* 80748000  40 80 00 24 */	bge lbl_80748024
 /* 80748004  38 60 00 00 */	li r3, 0
-/* 80748008  4B 8E 49 74 */	b getLayerNo__14dComIfG_play_cFi
+/* 80748008  4B 8E 49 75 */	bl getLayerNo__14dComIfG_play_cFi
 /* 8074800C  2C 03 00 02 */	cmpwi r3, 2
 /* 80748010  40 82 00 14 */	bne lbl_80748024
 /* 80748014  38 00 00 02 */	li r0, 2
@@ -79,8 +79,8 @@ lbl_80748024:
 /* 80748054  7D 89 03 A6 */	mtctr r12
 /* 80748058  4E 80 04 21 */	bctrl 
 lbl_8074805C:
-/* 8074805C  3C 60 80 75 */	lis r3, data_8074C3E8@ha
-/* 80748060  A8 03 C3 E8 */	lha r0, data_8074C3E8@l(r3)
+/* 8074805C  3C 60 80 75 */	lis r3, data_8074C3E8@ha /* 0x8074C3E8@ha */
+/* 80748060  A8 03 C3 E8 */	lha r0, data_8074C3E8@l(r3)  /* 0x8074C3E8@l */
 /* 80748064  B0 1F 06 02 */	sth r0, 0x602(r31)
 /* 80748068  A8 1F 06 24 */	lha r0, 0x624(r31)
 /* 8074806C  2C 00 00 14 */	cmpwi r0, 0x14

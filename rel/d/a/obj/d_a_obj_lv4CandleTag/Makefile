@@ -3,19 +3,20 @@
 #
 
 M524_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleTag.plf
+M524_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleTag.lcf
+M524_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleTag.map
 
 M524_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv4CandleTag/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv4CandleTag/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv4CandleTag/d_a_obj_lv4CandleTag.cpp \
 
 M524_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleTag/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleTag/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleTag/d_a_obj_lv4CandleTag.o \
 
 M524_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleTag/libRuntime.PPCEABI.H.a \
 
 M524_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M524_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M524_LDSCRIPT) \
+	-unused -map $(M524_MAP) \
+	-w off \
 
 $(M524_TARGET): $(M524_O_FILES) $(M524_LIBS)
+	@echo [524] creating $(M524_TARGET)
 	@echo $(M524_LIBS) $(M524_O_FILES) > build/M524_ofiles
-	$(LD) -partial $(M524_LDFLAGS) -o $(M524_TARGET) @build/M524_ofiles
+	@python3 tools/lcf.py rel 524 --output $(M524_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M524_LDFLAGS) -o $(M524_TARGET) @build/M524_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4CandleTag/%.o: rel/d/a/obj/d_a_obj_lv4CandleTag/%.cpp
+	@echo [524] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M524_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M524_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv4CandleTag/libs/Runtime.PPCEABI.H/Makefile
 

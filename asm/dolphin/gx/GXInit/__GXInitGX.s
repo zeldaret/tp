@@ -6,9 +6,9 @@ lbl_80359C70:
 /* 80359C80  93 C1 00 98 */	stw r30, 0x98(r1)
 /* 80359C84  93 A1 00 94 */	stw r29, 0x94(r1)
 /* 80359C88  80 82 CB 8C */	lwz r4, lit_269(r2)
-/* 80359C8C  3C A0 80 3D */	lis r5, lit_1@ha
+/* 80359C8C  3C A0 80 3D */	lis r5, lit_1@ha /* 0x803D2040@ha */
 /* 80359C90  80 62 CB 90 */	lwz r3, lit_270(r2)
-/* 80359C94  3B E5 20 40 */	addi r31, r5, lit_1@l
+/* 80359C94  3B E5 20 40 */	addi r31, r5, lit_1@l /* 0x803D2040@l */
 /* 80359C98  80 02 CB 94 */	lwz r0, lit_271(r2)
 /* 80359C9C  90 81 00 28 */	stw r4, 0x28(r1)
 /* 80359CA0  90 61 00 24 */	stw r3, 0x24(r1)
@@ -26,28 +26,28 @@ lbl_80359CC8:
 /* 80359CCC  41 82 00 28 */	beq lbl_80359CF4
 /* 80359CD0  48 00 00 44 */	b lbl_80359D14
 lbl_80359CD4:
-/* 80359CD4  3C 60 80 3D */	lis r3, GXNtsc480IntDf@ha
-/* 80359CD8  38 03 24 48 */	addi r0, r3, GXNtsc480IntDf@l
+/* 80359CD4  3C 60 80 3D */	lis r3, GXNtsc480IntDf@ha /* 0x803D2448@ha */
+/* 80359CD8  38 03 24 48 */	addi r0, r3, GXNtsc480IntDf@l /* 0x803D2448@l */
 /* 80359CDC  7C 1E 03 78 */	mr r30, r0
 /* 80359CE0  48 00 00 40 */	b lbl_80359D20
 lbl_80359CE4:
-/* 80359CE4  3C 60 80 3D */	lis r3, GXPal528IntDf@ha
-/* 80359CE8  38 03 24 FC */	addi r0, r3, GXPal528IntDf@l
+/* 80359CE4  3C 60 80 3D */	lis r3, GXPal528IntDf@ha /* 0x803D24FC@ha */
+/* 80359CE8  38 03 24 FC */	addi r0, r3, GXPal528IntDf@l /* 0x803D24FC@l */
 /* 80359CEC  7C 1E 03 78 */	mr r30, r0
 /* 80359CF0  48 00 00 30 */	b lbl_80359D20
 lbl_80359CF4:
-/* 80359CF4  3C 60 80 3D */	lis r3, GXEurgb60Hz480IntDf@ha
-/* 80359CF8  38 03 25 38 */	addi r0, r3, GXEurgb60Hz480IntDf@l
+/* 80359CF4  3C 60 80 3D */	lis r3, GXEurgb60Hz480IntDf@ha /* 0x803D2538@ha */
+/* 80359CF8  38 03 25 38 */	addi r0, r3, GXEurgb60Hz480IntDf@l /* 0x803D2538@l */
 /* 80359CFC  7C 1E 03 78 */	mr r30, r0
 /* 80359D00  48 00 00 20 */	b lbl_80359D20
 lbl_80359D04:
-/* 80359D04  3C 60 80 3D */	lis r3, GXMpal480IntDf@ha
-/* 80359D08  38 03 24 C0 */	addi r0, r3, GXMpal480IntDf@l
+/* 80359D04  3C 60 80 3D */	lis r3, GXMpal480IntDf@ha /* 0x803D24C0@ha */
+/* 80359D08  38 03 24 C0 */	addi r0, r3, GXMpal480IntDf@l /* 0x803D24C0@l */
 /* 80359D0C  7C 1E 03 78 */	mr r30, r0
 /* 80359D10  48 00 00 10 */	b lbl_80359D20
 lbl_80359D14:
-/* 80359D14  3C 60 80 3D */	lis r3, GXNtsc480IntDf@ha
-/* 80359D18  38 03 24 48 */	addi r0, r3, GXNtsc480IntDf@l
+/* 80359D14  3C 60 80 3D */	lis r3, GXNtsc480IntDf@ha /* 0x803D2448@ha */
+/* 80359D18  38 03 24 48 */	addi r0, r3, GXNtsc480IntDf@l /* 0x803D2448@l */
 /* 80359D1C  7C 1E 03 78 */	mr r30, r0
 lbl_80359D20:
 /* 80359D20  80 01 00 28 */	lwz r0, 0x28(r1)
@@ -283,11 +283,11 @@ lbl_80359E64:
 /* 8035A0A0  90 01 00 0C */	stw r0, 0xc(r1)
 /* 8035A0A4  48 00 39 A5 */	bl GXSetChanMatColor
 /* 8035A0A8  48 00 45 BD */	bl GXInvalidateTexAll
-/* 8035A0AC  3C 60 80 36 */	lis r3, __GXDefaultTexRegionCallback@ha
-/* 8035A0B0  38 63 92 1C */	addi r3, r3, __GXDefaultTexRegionCallback@l
+/* 8035A0AC  3C 60 80 36 */	lis r3, __GXDefaultTexRegionCallback@ha /* 0x8035921C@ha */
+/* 8035A0B0  38 63 92 1C */	addi r3, r3, __GXDefaultTexRegionCallback@l /* 0x8035921C@l */
 /* 8035A0B4  48 00 45 F9 */	bl GXSetTexRegionCallback
-/* 8035A0B8  3C 60 80 36 */	lis r3, __GXDefaultTlutRegionCallback@ha
-/* 8035A0BC  38 63 93 18 */	addi r3, r3, __GXDefaultTlutRegionCallback@l
+/* 8035A0B8  3C 60 80 36 */	lis r3, __GXDefaultTlutRegionCallback@ha /* 0x80359318@ha */
+/* 8035A0BC  38 63 93 18 */	addi r3, r3, __GXDefaultTlutRegionCallback@l /* 0x80359318@l */
 /* 8035A0C0  48 00 46 01 */	bl GXSetTlutRegionCallback
 /* 8035A0C4  38 61 00 5C */	addi r3, r1, 0x5c
 /* 8035A0C8  38 9F 00 60 */	addi r4, r31, 0x60

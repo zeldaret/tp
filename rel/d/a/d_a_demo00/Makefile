@@ -3,19 +3,20 @@
 #
 
 M48_TARGET := $(BUILD_DIR)/rel/d/a/d_a_demo00.plf
+M48_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_demo00.lcf
+M48_MAP := $(BUILD_DIR)/rel/d/a/d_a_demo00.map
 
 M48_CPP_FILES := \
-	rel/d/a/d_a_demo00/executor.cpp \
-	rel/d/a/d_a_demo00/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_demo00/d_a_demo00.cpp \
 
 M48_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_demo00/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_demo00/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_demo00/d_a_demo00.o \
 
 M48_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_demo00/libRuntime.PPCEABI.H.a \
 
 M48_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M48_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M48_LDSCRIPT) \
+	-unused -map $(M48_MAP) \
+	-w off \
 
 $(M48_TARGET): $(M48_O_FILES) $(M48_LIBS)
+	@echo [ 48] creating $(M48_TARGET)
 	@echo $(M48_LIBS) $(M48_O_FILES) > build/M48_ofiles
-	$(LD) -partial $(M48_LDFLAGS) -o $(M48_TARGET) @build/M48_ofiles
+	@python3 tools/lcf.py rel 48 --output $(M48_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M48_LDFLAGS) -o $(M48_TARGET) @build/M48_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_demo00/%.o: rel/d/a/d_a_demo00/%.cpp
+	@echo [ 48] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M48_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M48_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_demo00/libs/Runtime.PPCEABI.H/Makefile
 

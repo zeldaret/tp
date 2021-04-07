@@ -55,8 +55,8 @@ lbl_8027C734:
 /* 8027C740  10 A6 01 BA */	ps_madd f5, f6, f6, f0
 /* 8027C744  10 A5 00 14 */	ps_sum0 f5, f5, f0, f0
 /* 8027C748  C0 22 B9 40 */	lfs f1, lit_2459(r2)
-/* 8027C74C  3C 60 80 45 */	lis r3, __float_epsilon@ha
-/* 8027C750  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)
+/* 8027C74C  3C 60 80 45 */	lis r3, __float_epsilon@ha /* 0x80450AEC@ha */
+/* 8027C750  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)  /* 0x80450AEC@l */
 /* 8027C754  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8027C758  FC 05 00 40 */	fcmpo cr0, f5, f0
 /* 8027C75C  4C 40 13 82 */	cror 2, 0, 2

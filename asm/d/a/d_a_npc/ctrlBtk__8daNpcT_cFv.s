@@ -10,8 +10,8 @@ lbl_801490D4:
 /* 801490F4  41 82 00 70 */	beq lbl_80149164
 /* 801490F8  A8 03 0C D6 */	lha r0, 0xcd6(r3)
 /* 801490FC  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80149100  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha
-/* 80149104  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l
+/* 80149100  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80149104  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80149108  7C 24 04 2E */	lfsx f1, r4, r0
 /* 8014910C  C0 03 0D E4 */	lfs f0, 0xde4(r3)
 /* 80149110  EC 00 00 72 */	fmuls f0, f0, f1

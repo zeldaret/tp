@@ -6,17 +6,17 @@ lbl_8024BFEC:
 /* 8024BFFC  93 C1 00 08 */	stw r30, 8(r1)
 /* 8024C000  83 ED 8A 98 */	lwz r31, m_midnaActor__9daPy_py_c(r13)
 /* 8024C004  3B C0 00 00 */	li r30, 0
-/* 8024C008  3C 60 80 3A */	lis r3, d_msg_d_msg_flow__stringBase0@ha
-/* 8024C00C  38 63 9C B0 */	addi r3, r3, d_msg_d_msg_flow__stringBase0@l
+/* 8024C008  3C 60 80 3A */	lis r3, d_msg_d_msg_flow__stringBase0@ha /* 0x80399CB0@ha */
+/* 8024C00C  38 63 9C B0 */	addi r3, r3, d_msg_d_msg_flow__stringBase0@l /* 0x80399CB0@l */
 /* 8024C010  38 63 00 10 */	addi r3, r3, 0x10
-/* 8024C014  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8024C018  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8024C014  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024C018  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024C01C  38 84 4E 00 */	addi r4, r4, 0x4e00
 /* 8024C020  48 11 C9 75 */	bl strcmp
 /* 8024C024  2C 03 00 00 */	cmpwi r3, 0
 /* 8024C028  40 82 00 28 */	bne lbl_8024C050
-/* 8024C02C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024C030  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8024C02C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024C030  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024C034  38 63 09 78 */	addi r3, r3, 0x978
 /* 8024C038  38 80 00 3C */	li r4, 0x3c
 /* 8024C03C  4B DE 8B AD */	bl isSwitch__12dSv_danBit_cCFi
@@ -36,8 +36,8 @@ lbl_8024C064:
 /* 8024C06C  3B C0 00 02 */	li r30, 2
 /* 8024C070  48 00 00 1C */	b lbl_8024C08C
 lbl_8024C074:
-/* 8024C074  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8024C078  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8024C074  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8024C078  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8024C07C  88 03 10 50 */	lbz r0, 0x1050(r3)
 /* 8024C080  54 00 06 31 */	rlwinm. r0, r0, 0, 0x18, 0x18
 /* 8024C084  41 82 00 08 */	beq lbl_8024C08C

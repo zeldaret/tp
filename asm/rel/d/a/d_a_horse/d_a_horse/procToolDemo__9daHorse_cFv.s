@@ -5,15 +5,15 @@ lbl_80843A44:
 /* 80843A50  DB E1 00 30 */	stfd f31, 0x30(r1)
 /* 80843A54  F3 E1 00 38 */	psq_st f31, 56(r1), 0, 0 /* qr0 */
 /* 80843A58  39 61 00 30 */	addi r11, r1, 0x30
-/* 80843A5C  4B B1 E7 80 */	b _savegpr_29
+/* 80843A5C  4B B1 E7 81 */	bl _savegpr_29
 /* 80843A60  7C 7D 1B 78 */	mr r29, r3
-/* 80843A64  3C 60 80 84 */	lis r3, lit_3894@ha
-/* 80843A68  3B E3 54 AC */	addi r31, r3, lit_3894@l
-/* 80843A6C  3C 60 80 45 */	lis r3, m_object__7dDemo_c@ha
-/* 80843A70  38 63 0E 20 */	addi r3, r3, m_object__7dDemo_c@l
+/* 80843A64  3C 60 80 84 */	lis r3, lit_3894@ha /* 0x808454AC@ha */
+/* 80843A68  3B E3 54 AC */	addi r31, r3, lit_3894@l /* 0x808454AC@l */
+/* 80843A6C  3C 60 80 45 */	lis r3, m_object__7dDemo_c@ha /* 0x80450E20@ha */
+/* 80843A70  38 63 0E 20 */	addi r3, r3, m_object__7dDemo_c@l /* 0x80450E20@l */
 /* 80843A74  80 63 00 00 */	lwz r3, 0(r3)
 /* 80843A78  88 9D 04 98 */	lbz r4, 0x498(r29)
-/* 80843A7C  4B 7F 56 0C */	b getActor__14dDemo_object_cFUc
+/* 80843A7C  4B 7F 56 0D */	bl getActor__14dDemo_object_cFUc
 /* 80843A80  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80843A84  38 00 00 00 */	li r0, 0
 /* 80843A88  90 1D 17 30 */	stw r0, 0x1730(r29)
@@ -80,7 +80,7 @@ lbl_80843B5C:
 /* 80843B68  38 C1 00 0C */	addi r6, r1, 0xc
 /* 80843B6C  38 E1 00 08 */	addi r7, r1, 8
 /* 80843B70  39 00 00 00 */	li r8, 0
-/* 80843B74  4B 7F 47 C4 */	b getDemoIDData__13dDemo_actor_cFPiPiPiPUsPUc
+/* 80843B74  4B 7F 47 C5 */	bl getDemoIDData__13dDemo_actor_cFPiPiPiPUsPUc
 /* 80843B78  2C 03 00 00 */	cmpwi r3, 0
 /* 80843B7C  40 82 FF 94 */	bne lbl_80843B10
 lbl_80843B80:
@@ -112,7 +112,7 @@ lbl_80843BD8:
 /* 80843BDC  E3 E1 00 38 */	psq_l f31, 56(r1), 0, 0 /* qr0 */
 /* 80843BE0  CB E1 00 30 */	lfd f31, 0x30(r1)
 /* 80843BE4  39 61 00 30 */	addi r11, r1, 0x30
-/* 80843BE8  4B B1 E6 40 */	b _restgpr_29
+/* 80843BE8  4B B1 E6 41 */	bl _restgpr_29
 /* 80843BEC  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80843BF0  7C 08 03 A6 */	mtlr r0
 /* 80843BF4  38 21 00 40 */	addi r1, r1, 0x40

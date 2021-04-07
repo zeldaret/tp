@@ -3,17 +3,15 @@
 #
 
 M712_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_Lv8Gate.plf
+M712_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_Lv8Gate.lcf
+M712_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_Lv8Gate.map
 
 M712_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_Lv8Gate/executor.cpp \
-	rel/d/a/tag/d_a_tag_Lv8Gate/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_Lv8Gate/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_Lv8Gate/d_a_tag_Lv8Gate.cpp \
 
 M712_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_Lv8Gate/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_Lv8Gate/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_Lv8Gate/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_Lv8Gate/d_a_tag_Lv8Gate.o \
 
 M712_LIBS := \
@@ -29,14 +27,21 @@ M712_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M712_LDSCRIPT) \
+	-unused -map $(M712_MAP) \
+	-w off \
 
 $(M712_TARGET): $(M712_O_FILES) $(M712_LIBS)
+	@echo [712] creating $(M712_TARGET)
 	@echo $(M712_LIBS) $(M712_O_FILES) > build/M712_ofiles
-	$(LD) -partial $(M712_LDFLAGS) -o $(M712_TARGET) @build/M712_ofiles
+	@python3 tools/lcf.py rel 712 --output $(M712_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M712_LDFLAGS) -o $(M712_TARGET) @build/M712_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_Lv8Gate/%.o: rel/d/a/tag/d_a_tag_Lv8Gate/%.cpp
+	@echo [712] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M712_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M712_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

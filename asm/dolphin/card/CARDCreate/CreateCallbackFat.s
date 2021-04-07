@@ -4,9 +4,9 @@ lbl_80358108:
 /* 80358110  94 21 FF D8 */	stwu r1, -0x28(r1)
 /* 80358114  BF 61 00 14 */	stmw r27, 0x14(r1)
 /* 80358118  3B 83 00 00 */	addi r28, r3, 0
-/* 8035811C  3C 60 80 45 */	lis r3, __CARDBlock@ha
+/* 8035811C  3C 60 80 45 */	lis r3, __CARDBlock@ha /* 0x8044CBC0@ha */
 /* 80358120  1C BC 01 10 */	mulli r5, r28, 0x110
-/* 80358124  38 03 CB C0 */	addi r0, r3, __CARDBlock@l
+/* 80358124  38 03 CB C0 */	addi r0, r3, __CARDBlock@l /* 0x8044CBC0@l */
 /* 80358128  7F E0 2A 14 */	add r31, r0, r5
 /* 8035812C  83 BF 00 D0 */	lwz r29, 0xd0(r31)
 /* 80358130  3B 60 00 00 */	li r27, 0
@@ -48,7 +48,7 @@ lbl_80358108:
 /* 803581C0  A0 1E 00 36 */	lhz r0, 0x36(r30)
 /* 803581C4  80 9F 00 C0 */	lwz r4, 0xc0(r31)
 /* 803581C8  B0 04 00 10 */	sth r0, 0x10(r4)
-/* 803581CC  80 03 00 F8 */	lwz r0, 0x00F8(r3)
+/* 803581CC  80 03 00 F8 */	lwz r0, 0x00F8(r3)  /* 0x800000F8@l */
 /* 803581D0  54 1B F0 BE */	srwi r27, r0, 2
 /* 803581D4  4B FE A5 29 */	bl OSGetTime
 /* 803581D8  38 DB 00 00 */	addi r6, r27, 0

@@ -1,8 +1,8 @@
 lbl_80667D4C:
-/* 80667D4C  3C 80 80 67 */	lis r4, lit_3662@ha
-/* 80667D50  38 A4 ED E8 */	addi r5, r4, lit_3662@l
-/* 80667D54  3C 80 80 67 */	lis r4, __vt__10daDo_HIO_c@ha
-/* 80667D58  38 04 F2 64 */	addi r0, r4, __vt__10daDo_HIO_c@l
+/* 80667D4C  3C 80 80 67 */	lis r4, lit_3662@ha /* 0x8066EDE8@ha */
+/* 80667D50  38 A4 ED E8 */	addi r5, r4, lit_3662@l /* 0x8066EDE8@l */
+/* 80667D54  3C 80 80 67 */	lis r4, __vt__10daDo_HIO_c@ha /* 0x8066F264@ha */
+/* 80667D58  38 04 F2 64 */	addi r0, r4, __vt__10daDo_HIO_c@l /* 0x8066F264@l */
 /* 80667D5C  90 03 00 00 */	stw r0, 0(r3)
 /* 80667D60  38 00 FF FF */	li r0, -1
 /* 80667D64  98 03 00 04 */	stb r0, 4(r3)

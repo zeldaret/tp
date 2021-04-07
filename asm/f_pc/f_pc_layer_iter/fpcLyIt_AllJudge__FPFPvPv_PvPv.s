@@ -8,8 +8,8 @@ lbl_80021C60:
 /* 80021C78  90 81 00 0C */	stw r4, 0xc(r1)
 /* 80021C7C  4B FF FA 61 */	bl fpcLy_RootLayer__Fv
 /* 80021C80  7C 7E 1B 78 */	mr r30, r3
-/* 80021C84  3C 60 80 26 */	lis r3, cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter@ha
-/* 80021C88  3B E3 6A B0 */	addi r31, r3, cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter@l
+/* 80021C84  3C 60 80 26 */	lis r3, cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter@ha /* 0x80266AB0@ha */
+/* 80021C88  3B E3 6A B0 */	addi r31, r3, cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter@l /* 0x80266AB0@l */
 /* 80021C8C  48 00 00 24 */	b lbl_80021CB0
 lbl_80021C90:
 /* 80021C90  38 7E 00 10 */	addi r3, r30, 0x10

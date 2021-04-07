@@ -9,8 +9,8 @@ lbl_801228F4:
 /* 80122910  39 61 00 80 */	addi r11, r1, 0x80
 /* 80122914  48 23 F8 C1 */	bl _savegpr_27
 /* 80122918  7C 7F 1B 78 */	mr r31, r3
-/* 8012291C  3C 60 80 39 */	lis r3, lit_3757@ha
-/* 80122920  3B 63 D6 58 */	addi r27, r3, lit_3757@l
+/* 8012291C  3C 60 80 39 */	lis r3, lit_3757@ha /* 0x8038D658@ha */
+/* 80122920  3B 63 D6 58 */	addi r27, r3, lit_3757@l /* 0x8038D658@l */
 /* 80122924  48 03 CA 75 */	bl checkMasterSwordEquip__9daPy_py_cFv
 /* 80122928  7C 7C 1B 79 */	or. r28, r3, r3
 /* 8012292C  41 82 00 0C */	beq lbl_80122938
@@ -24,8 +24,8 @@ lbl_8012293C:
 /* 80122944  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 80122948  FC 1F 00 40 */	fcmpo cr0, f31, f0
 /* 8012294C  40 81 01 BC */	ble lbl_80122B08
-/* 80122950  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80122954  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l
+/* 80122950  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80122954  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80122958  88 1D 00 14 */	lbz r0, 0x14(r29)
 /* 8012295C  28 00 00 3F */	cmplwi r0, 0x3f
 /* 80122960  41 82 00 8C */	beq lbl_801229EC
@@ -66,8 +66,8 @@ lbl_8012293C:
 lbl_801229EC:
 /* 801229EC  80 7F 06 B8 */	lwz r3, 0x6b8(r31)
 /* 801229F0  38 63 00 24 */	addi r3, r3, 0x24
-/* 801229F4  3C 80 80 43 */	lis r4, BaseX__4cXyz@ha
-/* 801229F8  38 84 0D 0C */	addi r4, r4, BaseX__4cXyz@l
+/* 801229F4  3C 80 80 43 */	lis r4, BaseX__4cXyz@ha /* 0x80430D0C@ha */
+/* 801229F8  38 84 0D 0C */	addi r4, r4, BaseX__4cXyz@l /* 0x80430D0C@l */
 /* 801229FC  38 A1 00 50 */	addi r5, r1, 0x50
 /* 80122A00  48 22 44 4D */	bl PSMTXMultVecSR
 /* 80122A04  80 7F 06 B8 */	lwz r3, 0x6b8(r31)
@@ -140,8 +140,8 @@ lbl_80122AF4:
 /* 80122B00  4B F9 C5 ED */	bl seStartSwordCut__9daAlink_cFUl
 /* 80122B04  48 00 00 90 */	b lbl_80122B94
 lbl_80122B08:
-/* 80122B08  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80122B0C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80122B08  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80122B0C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80122B10  80 63 5D 3C */	lwz r3, 0x5d3c(r3)
 /* 80122B14  38 63 02 10 */	addi r3, r3, 0x210
 /* 80122B18  80 9F 32 1C */	lwz r4, 0x321c(r31)

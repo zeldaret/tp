@@ -5,12 +5,12 @@ lbl_80B1D440:
 /* 80B1D44C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80B1D450  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80B1D454  41 82 00 1C */	beq lbl_80B1D470
-/* 80B1D458  3C A0 80 B2 */	lis r5, __vt__18daNpcF_ActorMngr_c@ha
-/* 80B1D45C  38 05 E5 00 */	addi r0, r5, __vt__18daNpcF_ActorMngr_c@l
+/* 80B1D458  3C A0 80 B2 */	lis r5, __vt__18daNpcF_ActorMngr_c@ha /* 0x80B1E500@ha */
+/* 80B1D45C  38 05 E5 00 */	addi r0, r5, __vt__18daNpcF_ActorMngr_c@l /* 0x80B1E500@l */
 /* 80B1D460  90 1F 00 04 */	stw r0, 4(r31)
 /* 80B1D464  7C 80 07 35 */	extsh. r0, r4
 /* 80B1D468  40 81 00 08 */	ble lbl_80B1D470
-/* 80B1D46C  4B 7B 18 D0 */	b __dl__FPv
+/* 80B1D46C  4B 7B 18 D1 */	bl __dl__FPv
 lbl_80B1D470:
 /* 80B1D470  7F E3 FB 78 */	mr r3, r31
 /* 80B1D474  83 E1 00 0C */	lwz r31, 0xc(r1)

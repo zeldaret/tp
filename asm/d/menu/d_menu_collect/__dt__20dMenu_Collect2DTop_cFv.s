@@ -5,8 +5,8 @@ lbl_801B7EB8:
 /* 801B7EC4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801B7EC8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 801B7ECC  41 82 00 1C */	beq lbl_801B7EE8
-/* 801B7ED0  3C A0 80 3C */	lis r5, __vt__20dMenu_Collect2DTop_c@ha
-/* 801B7ED4  38 05 C7 68 */	addi r0, r5, __vt__20dMenu_Collect2DTop_c@l
+/* 801B7ED0  3C A0 80 3C */	lis r5, __vt__20dMenu_Collect2DTop_c@ha /* 0x803BC768@ha */
+/* 801B7ED4  38 05 C7 68 */	addi r0, r5, __vt__20dMenu_Collect2DTop_c@l /* 0x803BC768@l */
 /* 801B7ED8  90 1F 00 00 */	stw r0, 0(r31)
 /* 801B7EDC  7C 80 07 35 */	extsh. r0, r4
 /* 801B7EE0  40 81 00 08 */	ble lbl_801B7EE8

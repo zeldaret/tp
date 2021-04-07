@@ -7,7 +7,7 @@ lbl_805CDA08:
 /* 805CDA1C  90 83 08 64 */	stw r4, 0x864(r3)
 /* 805CDA20  7C 83 23 78 */	mr r3, r4
 /* 805CDA24  38 80 03 E8 */	li r4, 0x3e8
-/* 805CDA28  4B A5 24 5C */	b fopMsgM_messageSet__FUlUl
+/* 805CDA28  4B A5 24 5D */	bl fopMsgM_messageSet__FUlUl
 /* 805CDA2C  90 7F 08 68 */	stw r3, 0x868(r31)
 /* 805CDA30  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 805CDA34  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -5,8 +5,8 @@ lbl_8002DD3C:
 /* 8002DD48  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8002DD4C  93 C1 00 08 */	stw r30, 8(r1)
 /* 8002DD50  7C 7E 1B 78 */	mr r30, r3
-/* 8002DD54  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002DD58  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002DD54  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002DD58  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002DD5C  7F C4 F3 78 */	mr r4, r30
 /* 8002DD60  48 00 4C FD */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 8002DD64  7C 7F 1B 78 */	mr r31, r3

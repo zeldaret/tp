@@ -5,7 +5,7 @@ lbl_807BFD38:
 /* 807BFD44  3C 84 00 01 */	addis r4, r4, 1
 /* 807BFD48  38 04 80 00 */	addi r0, r4, -32768
 /* 807BFD4C  B0 03 04 DE */	sth r0, 0x4de(r3)
-/* 807BFD50  3C 80 80 7C */	lis r4, lit_4796@ha
-/* 807BFD54  C0 04 20 50 */	lfs f0, lit_4796@l(r4)
+/* 807BFD50  3C 80 80 7C */	lis r4, lit_4796@ha /* 0x807C2050@ha */
+/* 807BFD54  C0 04 20 50 */	lfs f0, lit_4796@l(r4)  /* 0x807C2050@l */
 /* 807BFD58  D0 03 05 2C */	stfs f0, 0x52c(r3)
 /* 807BFD5C  4E 80 00 20 */	blr 

@@ -5,12 +5,12 @@ lbl_806CCA10:
 /* 806CCA1C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 806CCA20  7C 7F 1B 79 */	or. r31, r3, r3
 /* 806CCA24  41 82 00 1C */	beq lbl_806CCA40
-/* 806CCA28  3C A0 80 6D */	lis r5, __vt__10cCcD_GStts@ha
-/* 806CCA2C  38 05 D2 F0 */	addi r0, r5, __vt__10cCcD_GStts@l
+/* 806CCA28  3C A0 80 6D */	lis r5, __vt__10cCcD_GStts@ha /* 0x806CD2F0@ha */
+/* 806CCA2C  38 05 D2 F0 */	addi r0, r5, __vt__10cCcD_GStts@l /* 0x806CD2F0@l */
 /* 806CCA30  90 1F 00 00 */	stw r0, 0(r31)
 /* 806CCA34  7C 80 07 35 */	extsh. r0, r4
 /* 806CCA38  40 81 00 08 */	ble lbl_806CCA40
-/* 806CCA3C  4B C0 23 00 */	b __dl__FPv
+/* 806CCA3C  4B C0 23 01 */	bl __dl__FPv
 lbl_806CCA40:
 /* 806CCA40  7F E3 FB 78 */	mr r3, r31
 /* 806CCA44  83 E1 00 0C */	lwz r31, 0xc(r1)

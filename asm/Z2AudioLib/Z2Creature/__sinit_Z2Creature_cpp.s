@@ -4,8 +4,8 @@ lbl_802C3040:
 /* 802C3048  81 22 C1 DC */	lwz r9, data_80455BDC(r2)
 /* 802C304C  91 41 00 28 */	stw r10, 0x28(r1)
 /* 802C3050  91 21 00 2C */	stw r9, 0x2c(r1)
-/* 802C3054  3C 60 80 3D */	lis r3, mEnemyInfo@ha
-/* 802C3058  39 03 B2 30 */	addi r8, r3, mEnemyInfo@l
+/* 802C3054  3C 60 80 3D */	lis r3, mEnemyInfo@ha /* 0x803CB230@ha */
+/* 802C3058  39 03 B2 30 */	addi r8, r3, mEnemyInfo@l /* 0x803CB230@l */
 /* 802C305C  91 48 00 08 */	stw r10, 8(r8)
 /* 802C3060  91 28 00 0C */	stw r9, 0xc(r8)
 /* 802C3064  80 E2 C2 00 */	lwz r7, sAreaSmallFloating(r2)

@@ -47,8 +47,8 @@ lbl_8010B9D4:
 /* 8010BA14  38 BF 38 04 */	addi r5, r31, 0x3804
 /* 8010BA18  7F E6 FB 78 */	mr r6, r31
 /* 8010BA1C  4B F6 C3 49 */	bl Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c
-/* 8010BA20  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8010BA24  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8010BA20  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8010BA24  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8010BA28  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8010BA2C  38 9F 1B B8 */	addi r4, r31, 0x1bb8
 /* 8010BA30  4B F6 89 85 */	bl LineCross__4cBgSFP11cBgS_LinChk

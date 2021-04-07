@@ -53,10 +53,10 @@ lbl_80335924:
 /* 80335950  38 63 00 10 */	addi r3, r3, 0x10
 /* 80335954  38 80 00 20 */	li r4, 0x20
 /* 80335958  4B F9 93 95 */	bl __nwa__FUli
-/* 8033595C  3C 80 80 33 */	lis r4, __ct__11J3DMaterialFv@ha
-/* 80335960  38 84 66 50 */	addi r4, r4, __ct__11J3DMaterialFv@l
-/* 80335964  3C A0 80 33 */	lis r5, __dt__11J3DMaterialFv@ha
-/* 80335968  38 A5 2B 94 */	addi r5, r5, __dt__11J3DMaterialFv@l
+/* 8033595C  3C 80 80 33 */	lis r4, __ct__11J3DMaterialFv@ha /* 0x80336650@ha */
+/* 80335960  38 84 66 50 */	addi r4, r4, __ct__11J3DMaterialFv@l /* 0x80336650@l */
+/* 80335964  3C A0 80 33 */	lis r5, __dt__11J3DMaterialFv@ha /* 0x80332B94@ha */
+/* 80335968  38 A5 2B 94 */	addi r5, r5, __dt__11J3DMaterialFv@l /* 0x80332B94@l */
 /* 8033596C  38 C0 00 4C */	li r6, 0x4c
 /* 80335970  7F 87 E3 78 */	mr r7, r28
 /* 80335974  48 02 C5 A1 */	bl __construct_new_array

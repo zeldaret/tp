@@ -4,8 +4,8 @@ lbl_80051AF0:
 /* 80051AF8  90 01 00 44 */	stw r0, 0x44(r1)
 /* 80051AFC  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 80051B00  7C 7F 1B 78 */	mr r31, r3
-/* 80051B04  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80051B08  38 E3 9A 20 */	addi r7, r3, sincosTable___5JMath@l
+/* 80051B04  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80051B08  38 E3 9A 20 */	addi r7, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80051B0C  A8 1F 00 0C */	lha r0, 0xc(r31)
 /* 80051B10  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 80051B14  7C 67 02 14 */	add r3, r7, r0
@@ -89,8 +89,8 @@ lbl_80051B38:
 /* 80051C48  38 A0 00 05 */	li r5, 5
 /* 80051C4C  38 C0 00 0F */	li r6, 0xf
 /* 80051C50  48 30 DF A1 */	bl GXSetBlendMode
-/* 80051C54  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha
-/* 80051C58  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l
+/* 80051C54  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha /* 0x803A2FD8@ha */
+/* 80051C58  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l /* 0x803A2FD8@l */
 /* 80051C5C  38 80 00 00 */	li r4, 0
 /* 80051C60  48 30 E5 ED */	bl GXLoadPosMtxImm
 /* 80051C64  38 60 00 00 */	li r3, 0
@@ -101,7 +101,7 @@ lbl_80051B38:
 /* 80051C78  48 30 AA ED */	bl GXBegin
 /* 80051C7C  A8 01 00 14 */	lha r0, 0x14(r1)
 /* 80051C80  3C 80 CC 01 */	lis r4, 0xCC01 /* 0xCC008000@ha */
-/* 80051C84  B0 04 80 00 */	sth r0, 0x8000(r4)
+/* 80051C84  B0 04 80 00 */	sth r0, 0x8000(r4)  /* 0xCC008000@l */
 /* 80051C88  A8 01 00 0C */	lha r0, 0xc(r1)
 /* 80051C8C  B0 04 80 00 */	sth r0, -0x8000(r4)
 /* 80051C90  38 60 00 00 */	li r3, 0
@@ -116,8 +116,8 @@ lbl_80051B38:
 /* 80051CB4  A8 01 00 10 */	lha r0, 0x10(r1)
 /* 80051CB8  B0 04 80 00 */	sth r0, -0x8000(r4)
 /* 80051CBC  B0 64 80 00 */	sth r3, -0x8000(r4)
-/* 80051CC0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80051CC4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80051CC0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80051CC4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80051CC8  80 63 5F 50 */	lwz r3, 0x5f50(r3)
 /* 80051CCC  81 83 00 00 */	lwz r12, 0(r3)
 /* 80051CD0  81 8C 00 18 */	lwz r12, 0x18(r12)

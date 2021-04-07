@@ -5,7 +5,7 @@ lbl_80B51C10:
 /* 80B51C1C  DB E1 00 50 */	stfd f31, 0x50(r1)
 /* 80B51C20  F3 E1 00 58 */	psq_st f31, 88(r1), 0, 0 /* qr0 */
 /* 80B51C24  39 61 00 50 */	addi r11, r1, 0x50
-/* 80B51C28  4B 81 05 B0 */	b _savegpr_28
+/* 80B51C28  4B 81 05 B1 */	bl _savegpr_28
 /* 80B51C2C  7C 7F 1B 78 */	mr r31, r3
 /* 80B51C30  7C 80 23 78 */	mr r0, r4
 /* 80B51C34  7C BC 2B 78 */	mr r28, r5
@@ -18,14 +18,14 @@ lbl_80B51C10:
 /* 80B51C50  41 82 00 44 */	beq lbl_80B51C94
 /* 80B51C54  38 61 00 08 */	addi r3, r1, 8
 /* 80B51C58  7C 05 03 78 */	mr r5, r0
-/* 80B51C5C  4B 71 4E D8 */	b __mi__4cXyzCFRC3Vec
+/* 80B51C5C  4B 71 4E D9 */	bl __mi__4cXyzCFRC3Vec
 /* 80B51C60  C0 21 00 08 */	lfs f1, 8(r1)
 /* 80B51C64  D0 21 00 14 */	stfs f1, 0x14(r1)
 /* 80B51C68  C0 01 00 0C */	lfs f0, 0xc(r1)
 /* 80B51C6C  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80B51C70  C0 41 00 10 */	lfs f2, 0x10(r1)
 /* 80B51C74  D0 41 00 1C */	stfs f2, 0x1c(r1)
-/* 80B51C78  4B 71 59 FC */	b cM_atan2s__Fff
+/* 80B51C78  4B 71 59 FD */	bl cM_atan2s__Fff
 /* 80B51C7C  7C BC 18 50 */	subf r5, r28, r3
 /* 80B51C80  A8 1F 01 52 */	lha r0, 0x152(r31)
 /* 80B51C84  7C 1C 00 50 */	subf r0, r28, r0
@@ -38,12 +38,12 @@ lbl_80B51C94:
 /* 80B51C9C  7C 05 00 D0 */	neg r0, r5
 /* 80B51CA0  7C 05 07 34 */	extsh r5, r0
 lbl_80B51CA4:
-/* 80B51CA4  3C 60 80 B5 */	lis r3, lit_4489@ha
-/* 80B51CA8  C0 63 23 88 */	lfs f3, lit_4489@l(r3)
+/* 80B51CA4  3C 60 80 B5 */	lis r3, lit_4489@ha /* 0x80B52388@ha */
+/* 80B51CA8  C0 63 23 88 */	lfs f3, lit_4489@l(r3)  /* 0x80B52388@l */
 /* 80B51CAC  EC 83 F8 24 */	fdivs f4, f3, f31
 /* 80B51CB0  A8 1F 01 34 */	lha r0, 0x134(r31)
-/* 80B51CB4  3C 60 80 B5 */	lis r3, lit_4984@ha
-/* 80B51CB8  C8 43 23 B4 */	lfd f2, lit_4984@l(r3)
+/* 80B51CB4  3C 60 80 B5 */	lis r3, lit_4984@ha /* 0x80B523B4@ha */
+/* 80B51CB8  C8 43 23 B4 */	lfd f2, lit_4984@l(r3)  /* 0x80B523B4@l */
 /* 80B51CBC  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 80B51CC0  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80B51CC4  3C 60 43 30 */	lis r3, 0x4330
@@ -67,7 +67,7 @@ lbl_80B51CA4:
 /* 80B51D0C  E3 E1 00 58 */	psq_l f31, 88(r1), 0, 0 /* qr0 */
 /* 80B51D10  CB E1 00 50 */	lfd f31, 0x50(r1)
 /* 80B51D14  39 61 00 50 */	addi r11, r1, 0x50
-/* 80B51D18  4B 81 05 0C */	b _restgpr_28
+/* 80B51D18  4B 81 05 0D */	bl _restgpr_28
 /* 80B51D1C  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 80B51D20  7C 08 03 A6 */	mtlr r0
 /* 80B51D24  38 21 00 60 */	addi r1, r1, 0x60

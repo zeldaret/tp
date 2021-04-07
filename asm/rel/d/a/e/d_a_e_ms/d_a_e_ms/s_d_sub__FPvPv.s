@@ -4,7 +4,7 @@ lbl_80725FF0:
 /* 80725FF8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80725FFC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80726000  7C 7F 1B 78 */	mr r31, r3
-/* 80726004  4B 8F 2C DC */	b fopAc_IsActor__FPv
+/* 80726004  4B 8F 2C DD */	bl fopAc_IsActor__FPv
 /* 80726008  2C 03 00 00 */	cmpwi r3, 0
 /* 8072600C  41 82 00 48 */	beq lbl_80726054
 /* 80726010  A8 1F 00 08 */	lha r0, 8(r31)
@@ -13,14 +13,14 @@ lbl_80725FF0:
 /* 8072601C  88 1F 0C F0 */	lbz r0, 0xcf0(r31)
 /* 80726020  2C 00 00 05 */	cmpwi r0, 5
 /* 80726024  40 82 00 30 */	bne lbl_80726054
-/* 80726028  3C 60 80 73 */	lis r3, target_info_count@ha
-/* 8072602C  38 83 98 78 */	addi r4, r3, target_info_count@l
+/* 80726028  3C 60 80 73 */	lis r3, target_info_count@ha /* 0x80729878@ha */
+/* 8072602C  38 83 98 78 */	addi r4, r3, target_info_count@l /* 0x80729878@l */
 /* 80726030  80 A4 00 00 */	lwz r5, 0(r4)
 /* 80726034  2C 05 00 14 */	cmpwi r5, 0x14
 /* 80726038  40 80 00 1C */	bge lbl_80726054
 /* 8072603C  54 A0 10 3A */	slwi r0, r5, 2
-/* 80726040  3C 60 80 73 */	lis r3, target_info@ha
-/* 80726044  38 63 98 28 */	addi r3, r3, target_info@l
+/* 80726040  3C 60 80 73 */	lis r3, target_info@ha /* 0x80729828@ha */
+/* 80726044  38 63 98 28 */	addi r3, r3, target_info@l /* 0x80729828@l */
 /* 80726048  7F E3 01 2E */	stwx r31, r3, r0
 /* 8072604C  38 05 00 01 */	addi r0, r5, 1
 /* 80726050  90 04 00 00 */	stw r0, 0(r4)

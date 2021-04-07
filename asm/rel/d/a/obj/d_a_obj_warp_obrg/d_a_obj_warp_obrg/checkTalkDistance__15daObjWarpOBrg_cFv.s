@@ -5,10 +5,10 @@ lbl_80D2B3BC:
 /* 80D2B3C8  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80D2B3CC  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80D2B3D0  7C 7E 1B 78 */	mr r30, r3
-/* 80D2B3D4  3C 60 80 D3 */	lis r3, l_bmd_idx@ha
-/* 80D2B3D8  3B E3 B7 F8 */	addi r31, r3, l_bmd_idx@l
-/* 80D2B3DC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80D2B3E0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80D2B3D4  3C 60 80 D3 */	lis r3, l_bmd_idx@ha /* 0x80D2B7F8@ha */
+/* 80D2B3D8  3B E3 B7 F8 */	addi r31, r3, l_bmd_idx@l /* 0x80D2B7F8@l */
+/* 80D2B3DC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D2B3E0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D2B3E4  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 80D2B3E8  C0 5E 06 28 */	lfs f2, 0x628(r30)
 /* 80D2B3EC  C0 1E 06 20 */	lfs f0, 0x620(r30)
@@ -23,7 +23,7 @@ lbl_80D2B3BC:
 /* 80D2B410  D0 41 00 20 */	stfs f2, 0x20(r1)
 /* 80D2B414  38 61 00 0C */	addi r3, r1, 0xc
 /* 80D2B418  38 81 00 18 */	addi r4, r1, 0x18
-/* 80D2B41C  4B 61 BF 80 */	b PSVECSquareDistance
+/* 80D2B41C  4B 61 BF 81 */	bl PSVECSquareDistance
 /* 80D2B420  C0 1F 00 4C */	lfs f0, 0x4c(r31)
 /* 80D2B424  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80D2B428  40 81 00 58 */	ble lbl_80D2B480
@@ -52,8 +52,8 @@ lbl_80D2B480:
 /* 80D2B480  C8 1F 00 78 */	lfd f0, 0x78(r31)
 /* 80D2B484  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80D2B488  40 80 00 10 */	bge lbl_80D2B498
-/* 80D2B48C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80D2B490  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80D2B48C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80D2B490  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80D2B494  48 00 00 70 */	b lbl_80D2B504
 lbl_80D2B498:
 /* 80D2B498  D0 21 00 08 */	stfs f1, 8(r1)
@@ -87,8 +87,8 @@ lbl_80D2B4F0:
 lbl_80D2B4F4:
 /* 80D2B4F4  2C 00 00 01 */	cmpwi r0, 1
 /* 80D2B4F8  40 82 00 0C */	bne lbl_80D2B504
-/* 80D2B4FC  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80D2B500  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80D2B4FC  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80D2B500  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80D2B504:
 /* 80D2B504  C0 1F 00 5C */	lfs f0, 0x5c(r31)
 /* 80D2B508  D0 1E 06 2C */	stfs f0, 0x62c(r30)

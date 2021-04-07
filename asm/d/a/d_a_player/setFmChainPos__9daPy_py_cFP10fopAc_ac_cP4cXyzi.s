@@ -5,8 +5,8 @@ lbl_8015F478:
 /* 8015F484  7C 67 1B 78 */	mr r7, r3
 /* 8015F488  7C 80 23 78 */	mr r0, r4
 /* 8015F48C  7C A6 2B 78 */	mr r6, r5
-/* 8015F490  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8015F494  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8015F490  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015F494  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8015F498  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 8015F49C  7C E4 3B 78 */	mr r4, r7
 /* 8015F4A0  7C 05 03 78 */	mr r5, r0

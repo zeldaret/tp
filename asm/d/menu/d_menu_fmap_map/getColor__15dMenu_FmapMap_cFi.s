@@ -6,8 +6,8 @@ lbl_801CF2A0:
 /* 801CF2B0  48 19 2F 25 */	bl _savegpr_27
 /* 801CF2B4  7C 7B 1B 78 */	mr r27, r3
 /* 801CF2B8  7C 9E 23 78 */	mr r30, r4
-/* 801CF2BC  3C 80 80 39 */	lis r4, palNo@ha
-/* 801CF2C0  3B A4 61 B0 */	addi r29, r4, palNo@l
+/* 801CF2BC  3C 80 80 39 */	lis r4, palNo@ha /* 0x803961B0@ha */
+/* 801CF2C0  3B A4 61 B0 */	addi r29, r4, palNo@l /* 0x803961B0@l */
 /* 801CF2C4  3B FD 00 20 */	addi r31, r29, 0x20
 /* 801CF2C8  88 03 00 D8 */	lbz r0, 0xd8(r3)
 /* 801CF2CC  28 00 00 00 */	cmplwi r0, 0

@@ -3,19 +3,20 @@
 #
 
 M307_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grd.plf
+M307_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grd.lcf
+M307_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grd.map
 
 M307_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_grd/executor.cpp \
-	rel/d/a/npc/d_a_npc_grd/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_grd/d_a_npc_grd.cpp \
 
 M307_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_grd/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_grd/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_grd/d_a_npc_grd.o \
 
 M307_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_grd/libRuntime.PPCEABI.H.a \
 
 M307_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M307_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M307_LDSCRIPT) \
+	-unused -map $(M307_MAP) \
+	-w off \
 
 $(M307_TARGET): $(M307_O_FILES) $(M307_LIBS)
+	@echo [307] creating $(M307_TARGET)
 	@echo $(M307_LIBS) $(M307_O_FILES) > build/M307_ofiles
-	$(LD) -partial $(M307_LDFLAGS) -o $(M307_TARGET) @build/M307_ofiles
+	@python3 tools/lcf.py rel 307 --output $(M307_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M307_LDFLAGS) -o $(M307_TARGET) @build/M307_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grd/%.o: rel/d/a/npc/d_a_npc_grd/%.cpp
+	@echo [307] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M307_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M307_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_grd/libs/Runtime.PPCEABI.H/Makefile
 

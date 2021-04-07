@@ -1,6 +1,6 @@
 lbl_8001CFD8:
-/* 8001CFD8  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8001CFDC  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 8001CFD8  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8001CFDC  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8001CFE0  80 A5 5D AC */	lwz r5, 0x5dac(r5)
 /* 8001CFE4  A8 A5 04 E6 */	lha r5, 0x4e6(r5)
 /* 8001CFE8  A8 03 04 E6 */	lha r0, 0x4e6(r3)

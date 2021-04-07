@@ -5,8 +5,8 @@ lbl_80034644:
 /* 80034650  80 0D 8F 60 */	lwz r0, sRumbleSupported__10JUTGamePad(r13)
 /* 80034654  54 00 00 01 */	rlwinm. r0, r0, 0, 0, 0
 /* 80034658  41 82 00 18 */	beq lbl_80034670
-/* 8003465C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80034660  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8003465C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80034660  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80034664  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80034668  4B FF 6D 49 */	bl getNowVibration__14dComIfG_play_cFv
 /* 8003466C  48 00 00 08 */	b lbl_80034674

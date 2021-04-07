@@ -3,17 +3,15 @@
 #
 
 M237_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_th_ball.plf
+M237_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_th_ball.lcf
+M237_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_th_ball.map
 
 M237_CPP_FILES := \
-	rel/d/a/e/d_a_e_th_ball/executor.cpp \
-	rel/d/a/e/d_a_e_th_ball/unknown_translation_unit_ctors.cpp \
-	rel/d/a/e/d_a_e_th_ball/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/e/d_a_e_th_ball/d_a_e_th_ball.cpp \
 
 M237_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_th_ball/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_th_ball/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_th_ball/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_th_ball/d_a_e_th_ball.o \
 
 M237_LIBS := \
@@ -29,14 +27,21 @@ M237_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M237_LDSCRIPT) \
+	-unused -map $(M237_MAP) \
+	-w off \
 
 $(M237_TARGET): $(M237_O_FILES) $(M237_LIBS)
+	@echo [237] creating $(M237_TARGET)
 	@echo $(M237_LIBS) $(M237_O_FILES) > build/M237_ofiles
-	$(LD) -partial $(M237_LDFLAGS) -o $(M237_TARGET) @build/M237_ofiles
+	@python3 tools/lcf.py rel 237 --output $(M237_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M237_LDFLAGS) -o $(M237_TARGET) @build/M237_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_th_ball/%.o: rel/d/a/e/d_a_e_th_ball/%.cpp
+	@echo [237] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M237_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M237_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

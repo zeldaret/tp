@@ -7,7 +7,7 @@ lbl_80AD72F0:
 /* 80AD7304  41 82 00 10 */	beq lbl_80AD7314
 /* 80AD7308  7C 80 07 35 */	extsh. r0, r4
 /* 80AD730C  40 81 00 08 */	ble lbl_80AD7314
-/* 80AD7310  4B 7F 7A 2C */	b __dl__FPv
+/* 80AD7310  4B 7F 7A 2D */	bl __dl__FPv
 lbl_80AD7314:
 /* 80AD7314  7F E3 FB 78 */	mr r3, r31
 /* 80AD7318  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -5,8 +5,8 @@ lbl_8059689C:
 /* 805968A8  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 805968AC  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 805968B0  7C 7E 1B 78 */	mr r30, r3
-/* 805968B4  3C 80 80 59 */	lis r4, l_brgBmdIdx@ha
-/* 805968B8  3B E4 7D 7C */	addi r31, r4, l_brgBmdIdx@l
+/* 805968B4  3C 80 80 59 */	lis r4, l_brgBmdIdx@ha /* 0x80597D7C@ha */
+/* 805968B8  3B E4 7D 7C */	addi r31, r4, l_brgBmdIdx@l /* 0x80597D7C@l */
 /* 805968BC  38 80 00 00 */	li r4, 0
 /* 805968C0  38 A1 00 18 */	addi r5, r1, 0x18
 /* 805968C4  4B FF FF 21 */	bl getLinePosBrg__14daObjRBridge_cFiP4cXyz
@@ -15,7 +15,7 @@ lbl_8059689C:
 /* 805968D0  4B FF FE 99 */	bl getLinePosSt__14daObjRBridge_cFP4cXyz
 /* 805968D4  38 61 00 0C */	addi r3, r1, 0xc
 /* 805968D8  38 81 00 18 */	addi r4, r1, 0x18
-/* 805968DC  4B DB 0A C0 */	b PSVECSquareDistance
+/* 805968DC  4B DB 0A C1 */	bl PSVECSquareDistance
 /* 805968E0  C0 1F 00 68 */	lfs f0, 0x68(r31)
 /* 805968E4  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 805968E8  40 81 00 58 */	ble lbl_80596940
@@ -44,8 +44,8 @@ lbl_80596940:
 /* 80596940  C8 1F 00 98 */	lfd f0, 0x98(r31)
 /* 80596944  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80596948  40 80 00 10 */	bge lbl_80596958
-/* 8059694C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80596950  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8059694C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80596950  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80596954  48 00 00 70 */	b lbl_805969C4
 lbl_80596958:
 /* 80596958  D0 21 00 08 */	stfs f1, 8(r1)
@@ -79,8 +79,8 @@ lbl_805969B0:
 lbl_805969B4:
 /* 805969B4  2C 00 00 01 */	cmpwi r0, 1
 /* 805969B8  40 82 00 0C */	bne lbl_805969C4
-/* 805969BC  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 805969C0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 805969BC  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 805969C0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_805969C4:
 /* 805969C4  88 1E 0A F0 */	lbz r0, 0xaf0(r30)
 /* 805969C8  54 00 10 3A */	slwi r0, r0, 2

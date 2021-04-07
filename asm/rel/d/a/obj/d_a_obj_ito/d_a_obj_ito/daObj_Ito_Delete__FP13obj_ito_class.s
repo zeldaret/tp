@@ -5,15 +5,15 @@ lbl_8047CFB0:
 /* 8047CFBC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8047CFC0  7C 7F 1B 78 */	mr r31, r3
 /* 8047CFC4  38 7F 05 68 */	addi r3, r31, 0x568
-/* 8047CFC8  3C 80 80 48 */	lis r4, stringBase0@ha
-/* 8047CFCC  38 84 D8 D4 */	addi r4, r4, stringBase0@l
-/* 8047CFD0  4B BB 00 38 */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 8047CFC8  3C 80 80 48 */	lis r4, d_a_obj_ito__stringBase0@ha /* 0x8047D8D4@ha */
+/* 8047CFCC  38 84 D8 D4 */	addi r4, r4, d_a_obj_ito__stringBase0@l /* 0x8047D8D4@l */
+/* 8047CFD0  4B BB 00 39 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 8047CFD4  88 1F 15 0B */	lbz r0, 0x150b(r31)
 /* 8047CFD8  28 00 00 00 */	cmplwi r0, 0
 /* 8047CFDC  41 82 00 10 */	beq lbl_8047CFEC
 /* 8047CFE0  38 00 00 00 */	li r0, 0
-/* 8047CFE4  3C 60 80 48 */	lis r3, data_8047D9C8@ha
-/* 8047CFE8  98 03 D9 C8 */	stb r0, data_8047D9C8@l(r3)
+/* 8047CFE4  3C 60 80 48 */	lis r3, data_8047D9C8@ha /* 0x8047D9C8@ha */
+/* 8047CFE8  98 03 D9 C8 */	stb r0, data_8047D9C8@l(r3)  /* 0x8047D9C8@l */
 lbl_8047CFEC:
 /* 8047CFEC  80 1F 00 F0 */	lwz r0, 0xf0(r31)
 /* 8047CFF0  28 00 00 00 */	cmplwi r0, 0

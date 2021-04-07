@@ -15,10 +15,10 @@ lbl_80B4AB54:
 /* 80B4AB60  80 1F 0F 84 */	lwz r0, 0xf84(r31)
 /* 80B4AB64  28 00 00 00 */	cmplwi r0, 0
 /* 80B4AB68  40 82 00 24 */	bne lbl_80B4AB8C
-/* 80B4AB6C  3C 60 80 B5 */	lis r3, _search_Tag__13daNpc_yamiT_cFPvPv@ha
-/* 80B4AB70  38 63 A4 7C */	addi r3, r3, _search_Tag__13daNpc_yamiT_cFPvPv@l
+/* 80B4AB6C  3C 60 80 B5 */	lis r3, _search_Tag__13daNpc_yamiT_cFPvPv@ha /* 0x80B4A47C@ha */
+/* 80B4AB70  38 63 A4 7C */	addi r3, r3, _search_Tag__13daNpc_yamiT_cFPvPv@l /* 0x80B4A47C@l */
 /* 80B4AB74  7F E4 FB 78 */	mr r4, r31
-/* 80B4AB78  4B 4D 67 C0 */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80B4AB78  4B 4D 67 C1 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 80B4AB7C  90 7F 0F 84 */	stw r3, 0xf84(r31)
 /* 80B4AB80  48 00 00 0C */	b lbl_80B4AB8C
 lbl_80B4AB84:

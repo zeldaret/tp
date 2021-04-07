@@ -25,9 +25,6 @@ struct daTagMagne_c {
 // Forward References:
 //
 
-static void daTagMagne_Delete(daTagMagne_c*);
-static void daTagMagne_Create(fopAc_ac_c*);
-
 extern "C" void Create__12daTagMagne_cFv();
 extern "C" void create__12daTagMagne_cFv();
 extern "C" void _delete__12daTagMagne_cFv();
@@ -48,7 +45,7 @@ extern "C" extern u8 mTagMagne__12daTagMagne_c[4];
 // Declarations:
 //
 
-/* 805A5498-805A54DC 0044+00 s=1 e=0 z=0  None .text      Create__12daTagMagne_cFv */
+/* 805A5498-805A54DC 000078 0044+00 1/1 0/0 0/0 .text            Create__12daTagMagne_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -58,7 +55,7 @@ asm void daTagMagne_c::Create() {
 }
 #pragma pop
 
-/* 805A54DC-805A5578 009C+00 s=1 e=0 z=0  None .text      create__12daTagMagne_cFv */
+/* 805A54DC-805A5578 0000BC 009C+00 1/1 0/0 0/0 .text            create__12daTagMagne_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -68,7 +65,7 @@ asm void daTagMagne_c::create() {
 }
 #pragma pop
 
-/* 805A5578-805A558C 0014+00 s=1 e=0 z=0  None .text      _delete__12daTagMagne_cFv */
+/* 805A5578-805A558C 000158 0014+00 1/1 0/0 0/0 .text            _delete__12daTagMagne_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -78,28 +75,30 @@ asm void daTagMagne_c::_delete() {
 }
 #pragma pop
 
-/* 805A558C-805A55AC 0020+00 s=1 e=0 z=0  None .text      daTagMagne_Delete__FP12daTagMagne_c */
+/* 805A558C-805A55AC 00016C 0020+00 1/0 0/0 0/0 .text            daTagMagne_Delete__FP12daTagMagne_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagMagne_Delete(daTagMagne_c* param_0) {
+static asm void daTagMagne_Delete(daTagMagne_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_magne/d_a_tag_magne/daTagMagne_Delete__FP12daTagMagne_c.s"
 }
 #pragma pop
 
-/* 805A55AC-805A55CC 0020+00 s=1 e=0 z=0  None .text      daTagMagne_Create__FP10fopAc_ac_c */
+/* 805A55AC-805A55CC 00018C 0020+00 1/0 0/0 0/0 .text            daTagMagne_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagMagne_Create(fopAc_ac_c* param_0) {
+static asm void daTagMagne_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_magne/d_a_tag_magne/daTagMagne_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 805A55D4-805A55F4 0020+00 s=1 e=0 z=0  None .data      l_daTagMagne_Method */
+/* 805A55D4-805A55F4 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagMagne_Method */
 SECTION_DATA static void* l_daTagMagne_Method[8] = {
     (void*)daTagMagne_Create__FP10fopAc_ac_c,
     (void*)daTagMagne_Delete__FP12daTagMagne_c,
@@ -111,8 +110,8 @@ SECTION_DATA static void* l_daTagMagne_Method[8] = {
     (void*)NULL,
 };
 
-/* 805A55F4-805A5624 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_Magne */
-SECTION_DATA void* g_profile_Tag_Magne[12] = {
+/* 805A55F4-805A5624 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Magne */
+SECTION_DATA extern void* g_profile_Tag_Magne[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01620000, (void*)&g_fpcLf_Method,
     (void*)0x0000056C, (void*)NULL,

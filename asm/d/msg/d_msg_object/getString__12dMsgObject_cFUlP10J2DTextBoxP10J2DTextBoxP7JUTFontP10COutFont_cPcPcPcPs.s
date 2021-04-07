@@ -14,8 +14,8 @@ lbl_802380F4:
 /* 80238124  80 01 00 38 */	lwz r0, 0x38(r1)
 /* 80238128  91 41 00 08 */	stw r10, 8(r1)
 /* 8023812C  90 01 00 0C */	stw r0, 0xc(r1)
-/* 80238130  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80238134  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80238130  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80238134  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80238138  80 63 5D BC */	lwz r3, 0x5dbc(r3)
 /* 8023813C  7F 64 DB 78 */	mr r4, r27
 /* 80238140  7F 85 E3 78 */	mr r5, r28

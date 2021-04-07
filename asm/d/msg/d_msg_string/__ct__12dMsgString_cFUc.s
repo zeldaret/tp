@@ -7,8 +7,8 @@ lbl_80249CA0:
 /* 80249CB4  7C 7E 1B 78 */	mr r30, r3
 /* 80249CB8  7C 9F 23 78 */	mr r31, r4
 /* 80249CBC  4B FF F6 F9 */	bl __ct__16dMsgStringBase_cFv
-/* 80249CC0  3C 60 80 3C */	lis r3, __vt__12dMsgString_c@ha
-/* 80249CC4  38 03 14 98 */	addi r0, r3, __vt__12dMsgString_c@l
+/* 80249CC0  3C 60 80 3C */	lis r3, __vt__12dMsgString_c@ha /* 0x803C1498@ha */
+/* 80249CC4  38 03 14 98 */	addi r0, r3, __vt__12dMsgString_c@l /* 0x803C1498@l */
 /* 80249CC8  90 1E 00 00 */	stw r0, 0(r30)
 /* 80249CCC  9B FE 00 28 */	stb r31, 0x28(r30)
 /* 80249CD0  38 60 02 44 */	li r3, 0x244

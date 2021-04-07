@@ -1,10 +1,10 @@
 lbl_8036EC5C:
 /* 8036EC5C  94 21 FF B0 */	stwu r1, -0x50(r1)
 /* 8036EC60  7C 08 02 A6 */	mflr r0
-/* 8036EC64  3C 60 80 45 */	lis r3, IsTRKConnected@ha
+/* 8036EC64  3C 60 80 45 */	lis r3, IsTRKConnected@ha /* 0x8044F288@ha */
 /* 8036EC68  38 A0 00 40 */	li r5, 0x40
 /* 8036EC6C  90 01 00 54 */	stw r0, 0x54(r1)
-/* 8036EC70  38 83 F2 88 */	addi r4, r3, IsTRKConnected@l
+/* 8036EC70  38 83 F2 88 */	addi r4, r3, IsTRKConnected@l /* 0x8044F288@l */
 /* 8036EC74  38 00 00 01 */	li r0, 1
 /* 8036EC78  38 61 00 08 */	addi r3, r1, 8
 /* 8036EC7C  90 04 00 00 */	stw r0, 0(r4)

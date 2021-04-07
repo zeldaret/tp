@@ -661,23 +661,23 @@ lbl_8009E6FC:
 /* 8009E704  7C 00 F2 14 */	add r0, r0, r30
 /* 8009E708  7C 1B 03 78 */	mr r27, r0
 lbl_8009E70C:
-/* 8009E70C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8009E710  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8009E70C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8009E710  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8009E714  C0 21 00 6C */	lfs f1, 0x6c(r1)
 /* 8009E718  C0 41 00 70 */	lfs f2, 0x70(r1)
 /* 8009E71C  C0 61 00 74 */	lfs f3, 0x74(r1)
 /* 8009E720  48 2A 81 C9 */	bl PSMTXTrans
 /* 8009E724  38 61 00 18 */	addi r3, r1, 0x18
 /* 8009E728  4B F6 E8 55 */	bl quatM__14mDoMtx_stack_cFPC10Quaternion
-/* 8009E72C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8009E730  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8009E72C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8009E730  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8009E734  7C 64 1B 78 */	mr r4, r3
 /* 8009E738  48 2A 7E 79 */	bl PSMTXInverse
 /* 8009E73C  7F E3 FB 78 */	mr r3, r31
-/* 8009E740  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha
-/* 8009E744  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l
-/* 8009E748  3C A0 80 43 */	lis r5, mCurrentMtx__6J3DSys@ha
-/* 8009E74C  38 A5 4B E4 */	addi r5, r5, mCurrentMtx__6J3DSys@l
+/* 8009E740  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8009E744  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 8009E748  3C A0 80 43 */	lis r5, mCurrentMtx__6J3DSys@ha /* 0x80434BE4@ha */
+/* 8009E74C  38 A5 4B E4 */	addi r5, r5, mCurrentMtx__6J3DSys@l /* 0x80434BE4@l */
 /* 8009E750  48 2A 7D 95 */	bl PSMTXConcat
 /* 8009E754  7F E3 FB 78 */	mr r3, r31
 /* 8009E758  7F 64 DB 78 */	mr r4, r27
@@ -688,13 +688,13 @@ lbl_8009E70C:
 /* 8009E76C  D0 1F 00 1C */	stfs f0, 0x1c(r31)
 /* 8009E770  C0 1D 00 1C */	lfs f0, 0x1c(r29)
 /* 8009E774  D0 1F 00 2C */	stfs f0, 0x2c(r31)
-/* 8009E778  3C 60 80 43 */	lis r3, mCurrentMtx__6J3DSys@ha
-/* 8009E77C  38 63 4B E4 */	addi r3, r3, mCurrentMtx__6J3DSys@l
+/* 8009E778  3C 60 80 43 */	lis r3, mCurrentMtx__6J3DSys@ha /* 0x80434BE4@ha */
+/* 8009E77C  38 63 4B E4 */	addi r3, r3, mCurrentMtx__6J3DSys@l /* 0x80434BE4@l */
 /* 8009E780  7F E4 FB 78 */	mr r4, r31
 /* 8009E784  7C 65 1B 78 */	mr r5, r3
 /* 8009E788  48 2A 7D 5D */	bl PSMTXConcat
-/* 8009E78C  3C 60 80 43 */	lis r3, mCurrentMtx__6J3DSys@ha
-/* 8009E790  38 63 4B E4 */	addi r3, r3, mCurrentMtx__6J3DSys@l
+/* 8009E78C  3C 60 80 43 */	lis r3, mCurrentMtx__6J3DSys@ha /* 0x80434BE4@ha */
+/* 8009E790  38 63 4B E4 */	addi r3, r3, mCurrentMtx__6J3DSys@l /* 0x80434BE4@l */
 /* 8009E794  7F E4 FB 78 */	mr r4, r31
 /* 8009E798  48 2A 7D 19 */	bl PSMTXCopy
 lbl_8009E79C:

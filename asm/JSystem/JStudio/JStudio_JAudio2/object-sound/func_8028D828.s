@@ -7,8 +7,8 @@ lbl_8028D828:
 /* 8028D83C  7C 7E 1B 78 */	mr r30, r3
 /* 8028D840  7C 9F 23 78 */	mr r31, r4
 /* 8028D844  7F C5 F3 78 */	mr r5, r30
-/* 8028D848  3C 60 80 3C */	lis r3, __vt__Q27JStudio8TAdaptor@ha
-/* 8028D84C  38 03 56 10 */	addi r0, r3, __vt__Q27JStudio8TAdaptor@l
+/* 8028D848  3C 60 80 3C */	lis r3, __vt__Q27JStudio8TAdaptor@ha /* 0x803C5610@ha */
+/* 8028D84C  38 03 56 10 */	addi r0, r3, __vt__Q27JStudio8TAdaptor@l /* 0x803C5610@l */
 /* 8028D850  90 1E 00 00 */	stw r0, 0(r30)
 /* 8028D854  38 00 00 00 */	li r0, 0
 /* 8028D858  90 1E 00 04 */	stw r0, 4(r30)
@@ -16,17 +16,17 @@ lbl_8028D828:
 /* 8028D860  90 7E 00 08 */	stw r3, 8(r30)
 /* 8028D864  38 00 00 0D */	li r0, 0xd
 /* 8028D868  90 1E 00 0C */	stw r0, 0xc(r30)
-/* 8028D86C  3C 80 80 3C */	lis r4, __vt__Q27JStudio14TAdaptor_sound@ha
-/* 8028D870  38 04 53 5C */	addi r0, r4, __vt__Q27JStudio14TAdaptor_sound@l
+/* 8028D86C  3C 80 80 3C */	lis r4, __vt__Q27JStudio14TAdaptor_sound@ha /* 0x803C535C@ha */
+/* 8028D870  38 04 53 5C */	addi r0, r4, __vt__Q27JStudio14TAdaptor_sound@l /* 0x803C535C@l */
 /* 8028D874  90 1E 00 00 */	stw r0, 0(r30)
-/* 8028D878  3C 80 80 29 */	lis r4, __ct__Q27JStudio14TVariableValueFv@ha
-/* 8028D87C  38 84 B5 68 */	addi r4, r4, __ct__Q27JStudio14TVariableValueFv@l
+/* 8028D878  3C 80 80 29 */	lis r4, __ct__Q27JStudio14TVariableValueFv@ha /* 0x8028B568@ha */
+/* 8028D87C  38 84 B5 68 */	addi r4, r4, __ct__Q27JStudio14TVariableValueFv@l /* 0x8028B568@l */
 /* 8028D880  38 A0 00 00 */	li r5, 0
 /* 8028D884  38 C0 00 14 */	li r6, 0x14
 /* 8028D888  38 E0 00 0D */	li r7, 0xd
 /* 8028D88C  48 0D 44 D5 */	bl __construct_array
-/* 8028D890  3C 60 80 3C */	lis r3, __vt__Q215JStudio_JAudio214TAdaptor_sound@ha
-/* 8028D894  38 03 5A 88 */	addi r0, r3, __vt__Q215JStudio_JAudio214TAdaptor_sound@l
+/* 8028D890  3C 60 80 3C */	lis r3, __vt__Q215JStudio_JAudio214TAdaptor_sound@ha /* 0x803C5A88@ha */
+/* 8028D894  38 03 5A 88 */	addi r0, r3, __vt__Q215JStudio_JAudio214TAdaptor_sound@l /* 0x803C5A88@l */
 /* 8028D898  90 1E 00 00 */	stw r0, 0(r30)
 /* 8028D89C  93 FE 01 14 */	stw r31, 0x114(r30)
 /* 8028D8A0  38 60 00 00 */	li r3, 0

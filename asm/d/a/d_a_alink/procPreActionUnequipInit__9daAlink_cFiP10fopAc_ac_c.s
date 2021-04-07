@@ -12,8 +12,8 @@ lbl_800C2DDC:
 /* 800C2E04  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 800C2E08  D0 1D 33 98 */	stfs f0, 0x3398(r29)
 /* 800C2E0C  7F A3 EB 78 */	mr r3, r29
-/* 800C2E10  3C 80 80 39 */	lis r4, m__19daAlinkHIO_basic_c0@ha
-/* 800C2E14  38 84 D6 64 */	addi r4, r4, m__19daAlinkHIO_basic_c0@l
+/* 800C2E10  3C 80 80 39 */	lis r4, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 800C2E14  38 84 D6 64 */	addi r4, r4, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 800C2E18  C0 24 00 18 */	lfs f1, 0x18(r4)
 /* 800C2E1C  4B FE AF F9 */	bl setBlendMoveAnime__9daAlink_cFf
 /* 800C2E20  7F A3 EB 78 */	mr r3, r29

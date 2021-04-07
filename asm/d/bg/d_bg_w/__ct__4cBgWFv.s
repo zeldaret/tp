@@ -5,8 +5,8 @@ lbl_80079294:
 /* 800792A0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800792A4  7C 7F 1B 78 */	mr r31, r3
 /* 800792A8  48 00 53 01 */	bl __ct__9dBgW_BaseFv
-/* 800792AC  3C 60 80 3B */	lis r3, __vt__4cBgW@ha
-/* 800792B0  38 03 BB A8 */	addi r0, r3, __vt__4cBgW@l
+/* 800792AC  3C 60 80 3B */	lis r3, __vt__4cBgW@ha /* 0x803ABBA8@ha */
+/* 800792B0  38 03 BB A8 */	addi r0, r3, __vt__4cBgW@l /* 0x803ABBA8@l */
 /* 800792B4  90 1F 00 04 */	stw r0, 4(r31)
 /* 800792B8  38 60 00 00 */	li r3, 0
 /* 800792BC  90 7F 00 A0 */	stw r3, 0xa0(r31)

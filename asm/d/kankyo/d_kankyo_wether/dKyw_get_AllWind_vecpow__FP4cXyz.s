@@ -9,8 +9,8 @@ lbl_8005B530:
 /* 8005B54C  38 A1 00 08 */	addi r5, r1, 8
 /* 8005B550  4B FF FC ED */	bl dKyw_pntwind_get_info__FP4cXyzP4cXyzPf
 /* 8005B554  38 61 00 24 */	addi r3, r1, 0x24
-/* 8005B558  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 8005B55C  38 A4 CA 54 */	addi r5, r4, g_env_light@l
+/* 8005B558  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 8005B55C  38 A4 CA 54 */	addi r5, r4, g_env_light@l /* 0x8042CA54@l */
 /* 8005B560  38 85 0E 48 */	addi r4, r5, 0xe48
 /* 8005B564  C0 45 0E 58 */	lfs f2, 0xe58(r5)
 /* 8005B568  C0 22 86 E4 */	lfs f1, lit_4379(r2)

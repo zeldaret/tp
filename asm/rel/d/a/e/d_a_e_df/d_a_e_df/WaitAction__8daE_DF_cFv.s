@@ -14,10 +14,10 @@ lbl_806A91B4:
 lbl_806A91E4:
 /* 806A91E4  38 80 00 0A */	li r4, 0xa
 /* 806A91E8  38 A0 00 02 */	li r5, 2
-/* 806A91EC  3C C0 80 6B */	lis r6, lit_4238@ha
-/* 806A91F0  C0 26 9F C8 */	lfs f1, lit_4238@l(r6)
-/* 806A91F4  3C C0 80 6B */	lis r6, lit_3918@ha
-/* 806A91F8  C0 46 9F 38 */	lfs f2, lit_3918@l(r6)
+/* 806A91EC  3C C0 80 6B */	lis r6, lit_4238@ha /* 0x806A9FC8@ha */
+/* 806A91F0  C0 26 9F C8 */	lfs f1, lit_4238@l(r6)  /* 0x806A9FC8@l */
+/* 806A91F4  3C C0 80 6B */	lis r6, lit_3918@ha /* 0x806A9F38@ha */
+/* 806A91F8  C0 46 9F 38 */	lfs f2, lit_3918@l(r6)  /* 0x806A9F38@l */
 /* 806A91FC  4B FF E6 D9 */	bl SetAnm__8daE_DF_cFiiff
 /* 806A9200  3C 60 00 07 */	lis r3, 0x0007 /* 0x000701A1@ha */
 /* 806A9204  38 03 01 A1 */	addi r0, r3, 0x01A1 /* 0x000701A1@l */

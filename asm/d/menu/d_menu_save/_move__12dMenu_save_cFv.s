@@ -31,8 +31,8 @@ lbl_801F10B4:
 /* 801F10B4  7F E3 FB 78 */	mr r3, r31
 /* 801F10B8  88 1F 01 B2 */	lbz r0, 0x1b2(r31)
 /* 801F10BC  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801F10C0  3C 80 80 3C */	lis r4, MenuSaveProc@ha
-/* 801F10C4  38 04 E4 24 */	addi r0, r4, MenuSaveProc@l
+/* 801F10C0  3C 80 80 3C */	lis r4, MenuSaveProc@ha /* 0x803BE424@ha */
+/* 801F10C4  38 04 E4 24 */	addi r0, r4, MenuSaveProc@l /* 0x803BE424@l */
 /* 801F10C8  7D 80 2A 14 */	add r12, r0, r5
 /* 801F10CC  48 17 0F B9 */	bl __ptmf_scall
 /* 801F10D0  60 00 00 00 */	nop 

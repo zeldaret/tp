@@ -19,8 +19,8 @@ lbl_80349F64:
 /* 80349F74  4B FF F9 CD */	bl stateCheckID
 /* 80349F78  48 00 00 10 */	b lbl_80349F88
 lbl_80349F7C:
-/* 80349F7C  3C 60 80 35 */	lis r3, cbForStateGettingError@ha
-/* 80349F80  38 63 94 98 */	addi r3, r3, cbForStateGettingError@l
+/* 80349F7C  3C 60 80 35 */	lis r3, cbForStateGettingError@ha /* 0x80349498@ha */
+/* 80349F80  38 63 94 98 */	addi r3, r3, cbForStateGettingError@l /* 0x80349498@l */
 /* 80349F84  4B FF E1 1D */	bl DVDLowRequestError
 lbl_80349F88:
 /* 80349F88  80 01 00 0C */	lwz r0, 0xc(r1)

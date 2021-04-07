@@ -46,8 +46,8 @@ lbl_80100E48:
 /* 80100E48  7F E3 FB 78 */	mr r3, r31
 /* 80100E4C  38 80 00 AA */	li r4, 0xaa
 /* 80100E50  FC 20 F8 90 */	fmr f1, f31
-/* 80100E54  3C A0 80 39 */	lis r5, m__22daAlinkHIO_roofHang_c0@ha
-/* 80100E58  38 A5 EB FC */	addi r5, r5, m__22daAlinkHIO_roofHang_c0@l
+/* 80100E54  3C A0 80 39 */	lis r5, m__22daAlinkHIO_roofHang_c0@ha /* 0x8038EBFC@ha */
+/* 80100E58  38 A5 EB FC */	addi r5, r5, m__22daAlinkHIO_roofHang_c0@l /* 0x8038EBFC@l */
 /* 80100E5C  C0 45 00 2C */	lfs f2, 0x2c(r5)
 /* 80100E60  4B FA C1 81 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 80100E64  C0 22 92 C0 */	lfs f1, lit_6108(r2)
@@ -70,8 +70,8 @@ lbl_80100E90:
 /* 80100EA4  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 80100EA8  D0 1F 33 98 */	stfs f0, 0x3398(r31)
 /* 80100EAC  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
-/* 80100EB0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80100EB4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80100EB0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80100EB4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80100EB8  80 03 5F 1C */	lwz r0, 0x5f1c(r3)
 /* 80100EBC  64 00 00 10 */	oris r0, r0, 0x10
 /* 80100EC0  90 03 5F 1C */	stw r0, 0x5f1c(r3)

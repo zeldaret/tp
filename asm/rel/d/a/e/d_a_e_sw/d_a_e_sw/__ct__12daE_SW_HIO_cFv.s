@@ -1,8 +1,8 @@
 lbl_807A740C:
-/* 807A740C  3C 80 80 7B */	lis r4, lit_3909@ha
-/* 807A7410  38 A4 FD 2C */	addi r5, r4, lit_3909@l
-/* 807A7414  3C 80 80 7B */	lis r4, __vt__12daE_SW_HIO_c@ha
-/* 807A7418  38 04 01 A4 */	addi r0, r4, __vt__12daE_SW_HIO_c@l
+/* 807A740C  3C 80 80 7B */	lis r4, lit_3909@ha /* 0x807AFD2C@ha */
+/* 807A7410  38 A4 FD 2C */	addi r5, r4, lit_3909@l /* 0x807AFD2C@l */
+/* 807A7414  3C 80 80 7B */	lis r4, __vt__12daE_SW_HIO_c@ha /* 0x807B01A4@ha */
+/* 807A7418  38 04 01 A4 */	addi r0, r4, __vt__12daE_SW_HIO_c@l /* 0x807B01A4@l */
 /* 807A741C  90 03 00 00 */	stw r0, 0(r3)
 /* 807A7420  38 00 FF FF */	li r0, -1
 /* 807A7424  98 03 00 04 */	stb r0, 4(r3)

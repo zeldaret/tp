@@ -4,8 +4,8 @@ lbl_80D0D59C:
 /* 80D0D5A4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80D0D5A8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80D0D5AC  7C 7F 1B 79 */	or. r31, r3, r3
-/* 80D0D5B0  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80D0D5B4  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80D0D5B0  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D0D5B4  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D0D5B8  80 84 5D B4 */	lwz r4, 0x5db4(r4)
 /* 80D0D5BC  41 82 00 48 */	beq lbl_80D0D604
 /* 80D0D5C0  28 05 00 00 */	cmplwi r5, 0
@@ -13,8 +13,8 @@ lbl_80D0D59C:
 /* 80D0D5C8  7C 05 20 40 */	cmplw r5, r4
 /* 80D0D5CC  40 82 00 38 */	bne lbl_80D0D604
 /* 80D0D5D0  C0 24 05 2C */	lfs f1, 0x52c(r4)
-/* 80D0D5D4  3C 80 80 D1 */	lis r4, lit_3681@ha
-/* 80D0D5D8  C0 04 E5 FC */	lfs f0, lit_3681@l(r4)
+/* 80D0D5D4  3C 80 80 D1 */	lis r4, lit_3681@ha /* 0x80D0E5FC@ha */
+/* 80D0D5D8  C0 04 E5 FC */	lfs f0, lit_3681@l(r4)  /* 0x80D0E5FC@l */
 /* 80D0D5DC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80D0D5E0  40 81 00 24 */	ble lbl_80D0D604
 /* 80D0D5E4  4B FF FF 15 */	bl checkPlayerPos__FP13daObjThDoor_c

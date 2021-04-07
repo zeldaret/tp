@@ -7,13 +7,13 @@ lbl_800B9580:
 /* 800B9594  48 00 02 59 */	bl checkFastUnequip__9daAlink_cFv
 /* 800B9598  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800B959C  41 82 00 14 */	beq lbl_800B95B0
-/* 800B95A0  3C 60 80 39 */	lis r3, m__17daAlinkHIO_cut_c0@ha
-/* 800B95A4  38 63 DE 8C */	addi r3, r3, m__17daAlinkHIO_cut_c0@l
+/* 800B95A0  3C 60 80 39 */	lis r3, m__17daAlinkHIO_cut_c0@ha /* 0x8038DE8C@ha */
+/* 800B95A4  38 63 DE 8C */	addi r3, r3, m__17daAlinkHIO_cut_c0@l /* 0x8038DE8C@l */
 /* 800B95A8  C0 23 00 8C */	lfs f1, 0x8c(r3)
 /* 800B95AC  48 00 00 10 */	b lbl_800B95BC
 lbl_800B95B0:
-/* 800B95B0  3C 60 80 39 */	lis r3, m__17daAlinkHIO_cut_c0@ha
-/* 800B95B4  38 63 DE 8C */	addi r3, r3, m__17daAlinkHIO_cut_c0@l
+/* 800B95B0  3C 60 80 39 */	lis r3, m__17daAlinkHIO_cut_c0@ha /* 0x8038DE8C@ha */
+/* 800B95B4  38 63 DE 8C */	addi r3, r3, m__17daAlinkHIO_cut_c0@l /* 0x8038DE8C@l */
 /* 800B95B8  C0 23 00 18 */	lfs f1, 0x18(r3)
 lbl_800B95BC:
 /* 800B95BC  38 00 00 00 */	li r0, 0
@@ -32,8 +32,8 @@ lbl_800B95D8:
 lbl_800B95E8:
 /* 800B95E8  7F E3 FB 78 */	mr r3, r31
 /* 800B95EC  38 A0 00 02 */	li r5, 2
-/* 800B95F0  3C C0 80 39 */	lis r6, m__17daAlinkHIO_cut_c0@ha
-/* 800B95F4  38 E6 DE 8C */	addi r7, r6, m__17daAlinkHIO_cut_c0@l
+/* 800B95F0  3C C0 80 39 */	lis r6, m__17daAlinkHIO_cut_c0@ha /* 0x8038DE8C@ha */
+/* 800B95F4  38 E6 DE 8C */	addi r7, r6, m__17daAlinkHIO_cut_c0@l /* 0x8038DE8C@l */
 /* 800B95F8  C0 47 00 1C */	lfs f2, 0x1c(r7)
 /* 800B95FC  A8 C7 00 14 */	lha r6, 0x14(r7)
 /* 800B9600  C0 67 00 20 */	lfs f3, 0x20(r7)

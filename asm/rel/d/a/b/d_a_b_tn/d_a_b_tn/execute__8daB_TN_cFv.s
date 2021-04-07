@@ -54,11 +54,11 @@ lbl_8062C654:
 /* 8062C668  80 1F 0A 88 */	lwz r0, 0xa88(r31)
 /* 8062C66C  2C 00 00 00 */	cmpwi r0, 0
 /* 8062C670  40 82 00 18 */	bne lbl_8062C688
-/* 8062C674  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8062C678  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8062C674  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8062C678  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8062C67C  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 8062C680  38 80 00 1F */	li r4, 0x1f
-/* 8062C684  4B A4 37 10 */	b StopQuake__12dVibration_cFi
+/* 8062C684  4B A4 37 11 */	bl StopQuake__12dVibration_cFi
 lbl_8062C688:
 /* 8062C688  80 7F 0A 60 */	lwz r3, 0xa60(r31)
 /* 8062C68C  2C 03 00 00 */	cmpwi r3, 0
@@ -107,22 +107,22 @@ lbl_8062C710:
 /* 8062C720  80 63 00 84 */	lwz r3, 0x84(r3)
 /* 8062C724  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 8062C728  38 63 03 60 */	addi r3, r3, 0x360
-/* 8062C72C  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha
-/* 8062C730  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l
-/* 8062C734  4B D1 9D 7C */	b PSMTXCopy
-/* 8062C738  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8062C73C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8062C72C  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8062C730  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 8062C734  4B D1 9D 7D */	bl PSMTXCopy
+/* 8062C738  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8062C73C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8062C740  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 8062C744  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 8062C748  C0 03 00 1C */	lfs f0, 0x1c(r3)
 /* 8062C74C  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 8062C750  C0 03 00 2C */	lfs f0, 0x2c(r3)
 /* 8062C754  D0 01 00 1C */	stfs f0, 0x1c(r1)
-/* 8062C758  3C 60 80 63 */	lis r3, lit_9978@ha
-/* 8062C75C  C0 23 E8 C0 */	lfs f1, lit_9978@l(r3)
+/* 8062C758  3C 60 80 63 */	lis r3, lit_9978@ha /* 0x8062E8C0@ha */
+/* 8062C75C  C0 23 E8 C0 */	lfs f1, lit_9978@l(r3)  /* 0x8062E8C0@l */
 /* 8062C760  D0 21 00 08 */	stfs f1, 8(r1)
-/* 8062C764  3C 60 80 63 */	lis r3, lit_9979@ha
-/* 8062C768  C0 03 E8 C4 */	lfs f0, lit_9979@l(r3)
+/* 8062C764  3C 60 80 63 */	lis r3, lit_9979@ha /* 0x8062E8C4@ha */
+/* 8062C768  C0 03 E8 C4 */	lfs f0, lit_9979@l(r3)  /* 0x8062E8C4@l */
 /* 8062C76C  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8062C770  D0 21 00 10 */	stfs f1, 0x10(r1)
 /* 8062C774  7F E3 FB 78 */	mr r3, r31

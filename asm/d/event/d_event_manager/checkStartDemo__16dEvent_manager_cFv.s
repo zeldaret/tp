@@ -1,6 +1,6 @@
 lbl_8004882C:
-/* 8004882C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80048830  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8004882C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80048830  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80048834  88 04 4F AD */	lbz r0, 0x4fad(r4)
 /* 80048838  28 00 00 00 */	cmplwi r0, 0
 /* 8004883C  40 82 00 0C */	bne lbl_80048848

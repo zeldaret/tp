@@ -3,19 +3,20 @@
 #
 
 M670_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_treesh.plf
+M670_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_treesh.lcf
+M670_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_treesh.map
 
 M670_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_treesh/executor.cpp \
-	rel/d/a/obj/d_a_obj_treesh/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_treesh/d_a_obj_treesh.cpp \
 
 M670_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_treesh/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_treesh/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_treesh/d_a_obj_treesh.o \
 
 M670_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_treesh/libRuntime.PPCEABI.H.a \
 
 M670_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M670_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M670_LDSCRIPT) \
+	-unused -map $(M670_MAP) \
+	-w off \
 
 $(M670_TARGET): $(M670_O_FILES) $(M670_LIBS)
+	@echo [670] creating $(M670_TARGET)
 	@echo $(M670_LIBS) $(M670_O_FILES) > build/M670_ofiles
-	$(LD) -partial $(M670_LDFLAGS) -o $(M670_TARGET) @build/M670_ofiles
+	@python3 tools/lcf.py rel 670 --output $(M670_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M670_LDFLAGS) -o $(M670_TARGET) @build/M670_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_treesh/%.o: rel/d/a/obj/d_a_obj_treesh/%.cpp
+	@echo [670] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M670_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M670_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_treesh/libs/Runtime.PPCEABI.H/Makefile
 

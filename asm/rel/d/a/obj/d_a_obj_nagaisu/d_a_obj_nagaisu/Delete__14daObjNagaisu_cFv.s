@@ -3,7 +3,7 @@ lbl_80C9F7A8:
 /* 80C9F7AC  7C 08 02 A6 */	mflr r0
 /* 80C9F7B0  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80C9F7B4  39 61 00 20 */	addi r11, r1, 0x20
-/* 80C9F7B8  4B 6C 2A 20 */	b _savegpr_28
+/* 80C9F7B8  4B 6C 2A 21 */	bl _savegpr_28
 /* 80C9F7BC  7C 7C 1B 78 */	mr r28, r3
 /* 80C9F7C0  3B DC 05 B4 */	addi r30, r28, 0x5b4
 /* 80C9F7C4  3B A0 00 00 */	li r29, 0
@@ -24,7 +24,7 @@ lbl_80C9F7CC:
 /* 80C9F7FC  4E 80 04 21 */	bctrl 
 /* 80C9F800  38 60 00 01 */	li r3, 1
 /* 80C9F804  39 61 00 20 */	addi r11, r1, 0x20
-/* 80C9F808  4B 6C 2A 1C */	b _restgpr_28
+/* 80C9F808  4B 6C 2A 1D */	bl _restgpr_28
 /* 80C9F80C  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80C9F810  7C 08 03 A6 */	mtlr r0
 /* 80C9F814  38 21 00 20 */	addi r1, r1, 0x20

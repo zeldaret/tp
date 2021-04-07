@@ -29,8 +29,8 @@ lbl_8003AD08:
 /* 8003AD74  7C 7F 1B 78 */	mr r31, r3
 /* 8003AD78  D3 C3 00 1C */	stfs f30, 0x1c(r3)
 /* 8003AD7C  D3 E3 00 20 */	stfs f31, 0x20(r3)
-/* 8003AD80  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8003AD84  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8003AD80  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8003AD84  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8003AD88  C0 1E 00 00 */	lfs f0, 0(r30)
 /* 8003AD8C  FC 20 00 50 */	fneg f1, f0
 /* 8003AD90  C0 1E 00 04 */	lfs f0, 4(r30)
@@ -38,22 +38,22 @@ lbl_8003AD08:
 /* 8003AD98  C0 1E 00 08 */	lfs f0, 8(r30)
 /* 8003AD9C  FC 60 00 50 */	fneg f3, f0
 /* 8003ADA0  48 30 BB 49 */	bl PSMTXTrans
-/* 8003ADA4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8003ADA8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8003ADA4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8003ADA8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8003ADAC  88 03 5D B0 */	lbz r0, 0x5db0(r3)
 /* 8003ADB0  7C 00 07 74 */	extsb r0, r0
 /* 8003ADB4  1C 00 00 38 */	mulli r0, r0, 0x38
 /* 8003ADB8  7C 63 02 14 */	add r3, r3, r0
 /* 8003ADBC  80 63 5D 74 */	lwz r3, 0x5d74(r3)
 /* 8003ADC0  A8 83 02 32 */	lha r4, 0x232(r3)
-/* 8003ADC4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8003ADC8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8003ADC4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8003ADC8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8003ADCC  4B FD 16 69 */	bl mDoMtx_YrotM__FPA4_fs
-/* 8003ADD0  3C 60 80 38 */	lis r3, l_texMtxInfo@ha
-/* 8003ADD4  38 63 98 40 */	addi r3, r3, l_texMtxInfo@l
+/* 8003ADD0  3C 60 80 38 */	lis r3, l_texMtxInfo@ha /* 0x80379840@ha */
+/* 8003ADD4  38 63 98 40 */	addi r3, r3, l_texMtxInfo@l /* 0x80379840@l */
 /* 8003ADD8  38 63 00 24 */	addi r3, r3, 0x24
-/* 8003ADDC  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha
-/* 8003ADE0  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l
+/* 8003ADDC  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8003ADE0  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8003ADE4  38 BF 00 24 */	addi r5, r31, 0x24
 /* 8003ADE8  48 30 B6 FD */	bl PSMTXConcat
 /* 8003ADEC  E3 E1 00 28 */	psq_l f31, 40(r1), 0, 0 /* qr0 */

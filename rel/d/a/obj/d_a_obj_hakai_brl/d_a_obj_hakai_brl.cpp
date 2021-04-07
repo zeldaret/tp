@@ -32,9 +32,9 @@ struct daObjHBarrel_c {
     /* 80C17090 */ void callEmt();
 };
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct cXyz {};
 
 struct J3DModelData {};
 
@@ -59,9 +59,9 @@ struct dPa_modelEcallBack {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004C218 */ void setHitMark(u16, fopAc_ac_c*, cXyz const*, csXyz const*, cXyz const*, u32);
@@ -125,9 +125,9 @@ struct Z2SoundObjBase {
     /* 802BE4A4 */ void startCollisionSE(u32, u32, Z2SoundObjBase*);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -138,12 +138,6 @@ struct J3DModel {};
 //
 // Forward References:
 //
-
-static void daObjHBarrel_c_createHeap(fopAc_ac_c*);
-static void daObjHBarrel_create(daObjHBarrel_c*);
-static void daObjHBarrel_Delete(daObjHBarrel_c*);
-static void daObjHBarrel_execute(daObjHBarrel_c*);
-static void daObjHBarrel_draw(daObjHBarrel_c*);
 
 extern "C" static void daObjHBarrel_c_createHeap__FP10fopAc_ac_c();
 extern "C" void __ct__14daObjHBarrel_cFv();
@@ -165,25 +159,11 @@ extern "C" static void daObjHBarrel_Delete__FP14daObjHBarrel_c();
 extern "C" static void daObjHBarrel_execute__FP14daObjHBarrel_c();
 extern "C" static void daObjHBarrel_draw__FP14daObjHBarrel_c();
 extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_HBarrel[12];
+extern "C" extern char const* const d_a_obj_hakai_brl__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdate(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void fopAcM_createItemFromTable(cXyz const*, int, int, int, csXyz const*, int, cXyz const*, f32*,
-                                f32*, bool);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dComIfGp_getReverb(int);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void mDoExt_modelUpdate__FP8J3DModel();
@@ -247,68 +227,21 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 80C16738-80C16758 0020+00 s=1 e=0 z=0  None .text      daObjHBarrel_c_createHeap__FP10fopAc_ac_c
- */
+/* 80C16738-80C16758 000078 0020+00 1/1 0/0 0/0 .text daObjHBarrel_c_createHeap__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjHBarrel_c_createHeap(fopAc_ac_c* param_0) {
+static asm void daObjHBarrel_c_createHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hakai_brl/d_a_obj_hakai_brl/daObjHBarrel_c_createHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C172FC-80C17340 0044+00 s=2 e=0 z=0  None .rodata    s_CcDCyl__14daObjHBarrel_c */
-SECTION_RODATA static u8 const s_CcDCyl__14daObjHBarrel_c[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x0D, 0xD8, 0xFA, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x79,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+/* 80C1737C-80C17380 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_hakai_brl__stringBase0;
 
-/* 80C17340-80C17344 0004+00 s=1 e=0 z=0  None .rodata    @3826 */
-SECTION_RODATA static u32 const lit_3826 = 0x432A0000;
-
-/* 80C17344-80C17348 0004+00 s=1 e=0 z=0  None .rodata    @3827 */
-SECTION_RODATA static u32 const lit_3827 = 0x42B40000;
-
-/* 80C17348-80C1734C 0004+00 s=2 e=0 z=0  None .rodata    @3916 */
-SECTION_RODATA static u32 const lit_3916 = 0x3F800000;
-
-/* 80C1734C-80C17350 0004+00 s=1 e=0 z=0  None .rodata    @3917 */
-SECTION_RODATA static u32 const lit_3917 = 0xBF800000;
-
-/* 80C17350-80C17358 0006+02 s=1 e=0 z=0  None .rodata    PARTICLE_NAME$3924 */
-SECTION_RODATA static u8 const PARTICLE_NAME[6 + 2 /* padding */] = {
-    0x82,
-    0xAB,
-    0x82,
-    0xAC,
-    0x82,
-    0xAD,
-    /* padding */
-    0x00,
-    0x00,
-};
-
-/* 80C17358-80C1735C 0004+00 s=1 e=0 z=0  None .rodata    @3953 */
-SECTION_RODATA static u32 const lit_3953 = 0x3F900000;
-
-/* 80C1735C-80C1737C 0020+00 s=2 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80C1735C = "HBarrel";
-SECTION_DEAD char const* const stringBase_80C17364 = "Always";
-SECTION_DEAD char const* const stringBase_80C1736B = "BreakWoodBox.bmd";
-#pragma pop
-
-/* 80C1737C-80C17380 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80C17380-80C173A0 0020+00 s=1 e=0 z=0  None .data      daObjHBarrel_METHODS */
+/* 80C17380-80C173A0 -00001 0020+00 1/0 0/0 0/0 .data            daObjHBarrel_METHODS */
 SECTION_DATA static void* daObjHBarrel_METHODS[8] = {
     (void*)daObjHBarrel_create__FP14daObjHBarrel_c,
     (void*)daObjHBarrel_Delete__FP14daObjHBarrel_c,
@@ -320,8 +253,8 @@ SECTION_DATA static void* daObjHBarrel_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 80C173A0-80C173D0 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_HBarrel */
-SECTION_DATA void* g_profile_Obj_HBarrel[12] = {
+/* 80C173A0-80C173D0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_HBarrel */
+SECTION_DATA extern void* g_profile_Obj_HBarrel[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01A30000, (void*)&g_fpcLf_Method,
     (void*)0x00000710, (void*)NULL,
@@ -330,42 +263,42 @@ SECTION_DATA void* g_profile_Obj_HBarrel[12] = {
     (void*)0x00040180, (void*)0x030E0000,
 };
 
-/* 80C173D0-80C173DC 000C+00 s=2 e=0 z=0  None .data      __vt__14daObjHBarrel_c */
-SECTION_DATA static void* __vt__14daObjHBarrel_c[3] = {
-    (void*)NULL,
+/* 80C173D0-80C173DC 000054 000C+00 2/2 0/0 0/0 .data            __vt__14daObjHBarrel_c */
+SECTION_DATA extern void* __vt__14daObjHBarrel_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14daObjHBarrel_cFv,
 };
 
-/* 80C173DC-80C173E8 000C+00 s=3 e=0 z=0  None .data      __vt__10cCcD_GStts */
-SECTION_DATA static void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL,
+/* 80C173DC-80C173E8 000060 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
+SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__10cCcD_GSttsFv,
 };
 
-/* 80C173E8-80C173F4 000C+00 s=2 e=0 z=0  None .data      __vt__10dCcD_GStts */
-SECTION_DATA static void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL,
+/* 80C173E8-80C173F4 00006C 000C+00 2/2 0/0 0/0 .data            __vt__10dCcD_GStts */
+SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__10dCcD_GSttsFv,
 };
 
-/* 80C173F4-80C17400 000C+00 s=3 e=0 z=0  None .data      __vt__8cM3dGCyl */
-SECTION_DATA static void* __vt__8cM3dGCyl[3] = {
-    (void*)NULL,
+/* 80C173F4-80C17400 000078 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGCyl */
+SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGCylFv,
 };
 
-/* 80C17400-80C1740C 000C+00 s=3 e=0 z=0  None .data      __vt__8cM3dGAab */
-SECTION_DATA static void* __vt__8cM3dGAab[3] = {
-    (void*)NULL,
+/* 80C17400-80C1740C 000084 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGAab */
+SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGAabFv,
 };
 
-/* 80C16758-80C1682C 00D4+00 s=2 e=0 z=0  None .text      __ct__14daObjHBarrel_cFv */
+/* 80C16758-80C1682C 000098 00D4+00 2/2 0/0 0/0 .text            __ct__14daObjHBarrel_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -375,7 +308,7 @@ asm daObjHBarrel_c::daObjHBarrel_c() {
 }
 #pragma pop
 
-/* 80C1682C-80C16874 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGCylFv */
+/* 80C1682C-80C16874 00016C 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -385,7 +318,7 @@ asm cM3dGCyl::~cM3dGCyl() {
 }
 #pragma pop
 
-/* 80C16874-80C168BC 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGAabFv */
+/* 80C16874-80C168BC 0001B4 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -395,7 +328,7 @@ asm cM3dGAab::~cM3dGAab() {
 }
 #pragma pop
 
-/* 80C168BC-80C16918 005C+00 s=1 e=0 z=0  None .text      __dt__10dCcD_GSttsFv */
+/* 80C168BC-80C16918 0001FC 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -405,7 +338,7 @@ asm dCcD_GStts::~dCcD_GStts() {
 }
 #pragma pop
 
-/* 80C16918-80C16A98 0180+00 s=1 e=0 z=0  None .text      __dt__14daObjHBarrel_cFv */
+/* 80C16918-80C16A98 000258 0180+00 1/0 0/0 0/0 .text            __dt__14daObjHBarrel_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -415,7 +348,7 @@ asm daObjHBarrel_c::~daObjHBarrel_c() {
 }
 #pragma pop
 
-/* 80C16A98-80C16B08 0070+00 s=1 e=0 z=0  None .text      createHeap__14daObjHBarrel_cFv */
+/* 80C16A98-80C16B08 0003D8 0070+00 1/1 0/0 0/0 .text            createHeap__14daObjHBarrel_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -425,7 +358,7 @@ asm void daObjHBarrel_c::createHeap() {
 }
 #pragma pop
 
-/* 80C16B08-80C16BF8 00F0+00 s=1 e=0 z=0  None .text      create__14daObjHBarrel_cFv */
+/* 80C16B08-80C16BF8 000448 00F0+00 1/1 0/0 0/0 .text            create__14daObjHBarrel_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -435,7 +368,7 @@ asm void daObjHBarrel_c::create() {
 }
 #pragma pop
 
-/* 80C16BF8-80C16C44 004C+00 s=1 e=0 z=0  None .text      Delete__14daObjHBarrel_cFv */
+/* 80C16BF8-80C16C44 000538 004C+00 1/1 0/0 0/0 .text            Delete__14daObjHBarrel_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -445,7 +378,7 @@ asm void daObjHBarrel_c::Delete() {
 }
 #pragma pop
 
-/* 80C16C44-80C16CA8 0064+00 s=1 e=0 z=0  None .text      draw__14daObjHBarrel_cFv */
+/* 80C16C44-80C16CA8 000584 0064+00 1/1 0/0 0/0 .text            draw__14daObjHBarrel_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -455,7 +388,7 @@ asm void daObjHBarrel_c::draw() {
 }
 #pragma pop
 
-/* 80C16CA8-80C16D50 00A8+00 s=1 e=0 z=0  None .text      execute__14daObjHBarrel_cFv */
+/* 80C16CA8-80C16D50 0005E8 00A8+00 1/1 0/0 0/0 .text            execute__14daObjHBarrel_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -465,7 +398,32 @@ asm void daObjHBarrel_c::execute() {
 }
 #pragma pop
 
-/* 80C16D50-80C16DEC 009C+00 s=1 e=0 z=0  None .text      init__14daObjHBarrel_cFv */
+/* ############################################################################################## */
+/* 80C172FC-80C17340 000000 0044+00 2/2 0/0 0/0 .rodata          s_CcDCyl__14daObjHBarrel_c */
+SECTION_RODATA static u8 const s_CcDCyl__14daObjHBarrel_c[68] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x0D, 0xD8, 0xFA, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x79,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(80C172FC, &s_CcDCyl__14daObjHBarrel_c);
+
+/* 80C17340-80C17344 000044 0004+00 0/1 0/0 0/0 .rodata          @3826 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3826 = 170.0f;
+COMPILER_STRIP_GATE(80C17340, &lit_3826);
+#pragma pop
+
+/* 80C17344-80C17348 000048 0004+00 0/1 0/0 0/0 .rodata          @3827 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3827 = 90.0f;
+COMPILER_STRIP_GATE(80C17344, &lit_3827);
+#pragma pop
+
+/* 80C16D50-80C16DEC 000690 009C+00 1/1 0/0 0/0 .text            init__14daObjHBarrel_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -475,7 +433,7 @@ asm void daObjHBarrel_c::init() {
 }
 #pragma pop
 
-/* 80C16DEC-80C16E50 0064+00 s=2 e=0 z=0  None .text      setModelMtx__14daObjHBarrel_cFv */
+/* 80C16DEC-80C16E50 00072C 0064+00 2/2 0/0 0/0 .text            setModelMtx__14daObjHBarrel_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -485,7 +443,16 @@ asm void daObjHBarrel_c::setModelMtx() {
 }
 #pragma pop
 
-/* 80C16E50-80C17090 0240+00 s=1 e=0 z=0  None .text      hitAction__14daObjHBarrel_cFv */
+/* ############################################################################################## */
+/* 80C17348-80C1734C 00004C 0004+00 1/2 0/0 0/0 .rodata          @3916 */
+SECTION_RODATA static f32 const lit_3916 = 1.0f;
+COMPILER_STRIP_GATE(80C17348, &lit_3916);
+
+/* 80C1734C-80C17350 000050 0004+00 1/1 0/0 0/0 .rodata          @3917 */
+SECTION_RODATA static f32 const lit_3917 = -1.0f;
+COMPILER_STRIP_GATE(80C1734C, &lit_3917);
+
+/* 80C16E50-80C17090 000790 0240+00 1/1 0/0 0/0 .text            hitAction__14daObjHBarrel_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -495,7 +462,32 @@ asm void daObjHBarrel_c::hitAction() {
 }
 #pragma pop
 
-/* 80C17090-80C171F8 0168+00 s=1 e=0 z=0  None .text      callEmt__14daObjHBarrel_cFv */
+/* ############################################################################################## */
+/* 80C17350-80C17358 000054 0006+02 0/1 0/0 0/0 .rodata          PARTICLE_NAME$3924 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const PARTICLE_NAME[6 + 2 /* padding */] = {
+    0x82,
+    0xAB,
+    0x82,
+    0xAC,
+    0x82,
+    0xAD,
+    /* padding */
+    0x00,
+    0x00,
+};
+COMPILER_STRIP_GATE(80C17350, &PARTICLE_NAME);
+#pragma pop
+
+/* 80C17358-80C1735C 00005C 0004+00 0/1 0/0 0/0 .rodata          @3953 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3953 = 1.125f;
+COMPILER_STRIP_GATE(80C17358, &lit_3953);
+#pragma pop
+
+/* 80C17090-80C171F8 0009D0 0168+00 1/1 0/0 0/0 .text            callEmt__14daObjHBarrel_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -505,48 +497,47 @@ asm void daObjHBarrel_c::callEmt() {
 }
 #pragma pop
 
-/* 80C171F8-80C1724C 0054+00 s=1 e=0 z=0  None .text      daObjHBarrel_create__FP14daObjHBarrel_c */
+/* 80C171F8-80C1724C 000B38 0054+00 1/0 0/0 0/0 .text daObjHBarrel_create__FP14daObjHBarrel_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjHBarrel_create(daObjHBarrel_c* param_0) {
+static asm void daObjHBarrel_create(daObjHBarrel_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hakai_brl/d_a_obj_hakai_brl/daObjHBarrel_create__FP14daObjHBarrel_c.s"
 }
 #pragma pop
 
-/* 80C1724C-80C1726C 0020+00 s=1 e=0 z=0  None .text      daObjHBarrel_Delete__FP14daObjHBarrel_c */
+/* 80C1724C-80C1726C 000B8C 0020+00 1/0 0/0 0/0 .text daObjHBarrel_Delete__FP14daObjHBarrel_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjHBarrel_Delete(daObjHBarrel_c* param_0) {
+static asm void daObjHBarrel_Delete(daObjHBarrel_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hakai_brl/d_a_obj_hakai_brl/daObjHBarrel_Delete__FP14daObjHBarrel_c.s"
 }
 #pragma pop
 
-/* 80C1726C-80C1728C 0020+00 s=1 e=0 z=0  None .text      daObjHBarrel_execute__FP14daObjHBarrel_c
- */
+/* 80C1726C-80C1728C 000BAC 0020+00 1/0 0/0 0/0 .text daObjHBarrel_execute__FP14daObjHBarrel_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjHBarrel_execute(daObjHBarrel_c* param_0) {
+static asm void daObjHBarrel_execute(daObjHBarrel_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hakai_brl/d_a_obj_hakai_brl/daObjHBarrel_execute__FP14daObjHBarrel_c.s"
 }
 #pragma pop
 
-/* 80C1728C-80C172AC 0020+00 s=1 e=0 z=0  None .text      daObjHBarrel_draw__FP14daObjHBarrel_c */
+/* 80C1728C-80C172AC 000BCC 0020+00 1/0 0/0 0/0 .text daObjHBarrel_draw__FP14daObjHBarrel_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjHBarrel_draw(daObjHBarrel_c* param_0) {
+static asm void daObjHBarrel_draw(daObjHBarrel_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hakai_brl/d_a_obj_hakai_brl/daObjHBarrel_draw__FP14daObjHBarrel_c.s"
 }
 #pragma pop
 
-/* 80C172AC-80C172F4 0048+00 s=1 e=0 z=0  None .text      __dt__10cCcD_GSttsFv */
+/* 80C172AC-80C172F4 000BEC 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -554,4 +545,13 @@ asm cCcD_GStts::~cCcD_GStts() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_hakai_brl/d_a_obj_hakai_brl/__dt__10cCcD_GSttsFv.s"
 }
+#pragma pop
+
+/* 80C1735C-80C1737C 000060 0020+00 2/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80C1735C = "HBarrel";
+SECTION_DEAD static char const* const stringBase_80C17364 = "Always";
+SECTION_DEAD static char const* const stringBase_80C1736B = "BreakWoodBox.bmd";
 #pragma pop

@@ -5,8 +5,8 @@ lbl_8000CF7C:
 /* 8000CF88  7C 64 1B 78 */	mr r4, r3
 /* 8000CF8C  38 61 00 08 */	addi r3, r1, 8
 /* 8000CF90  48 33 9A 59 */	bl PSMTXQuat
-/* 8000CF94  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8000CF98  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8000CF94  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8000CF98  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8000CF9C  38 81 00 08 */	addi r4, r1, 8
 /* 8000CFA0  7C 65 1B 78 */	mr r5, r3
 /* 8000CFA4  48 33 95 41 */	bl PSMTXConcat

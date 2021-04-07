@@ -19,9 +19,9 @@ struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
 };
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct cXyz {};
 
 struct J3DModelData {};
 
@@ -67,36 +67,18 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void daObj_Usaku_Draw(obj_usaku_class*);
-static void daObj_Usaku_Execute(obj_usaku_class*);
-static bool daObj_Usaku_IsDelete(obj_usaku_class*);
-static void daObj_Usaku_Delete(obj_usaku_class*);
-static void useHeapInit(fopAc_ac_c*);
-static void daObj_Usaku_Create(fopAc_ac_c*);
-
 extern "C" static void daObj_Usaku_Draw__FP15obj_usaku_class();
 extern "C" static void daObj_Usaku_Execute__FP15obj_usaku_class();
 extern "C" static bool daObj_Usaku_IsDelete__FP15obj_usaku_class();
 extern "C" static void daObj_Usaku_Delete__FP15obj_usaku_class();
 extern "C" static void useHeapInit__FP10fopAc_ac_c();
 extern "C" static void daObj_Usaku_Create__FP10fopAc_ac_c();
-extern "C" extern char const* const stringBase0;
+extern "C" extern char const* const d_a_obj_usaku__stringBase0;
 extern "C" extern void* g_profile_OBJ_USAKU[12];
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fopAcM_SetMin(fopAc_ac_c*, f32, f32, f32);
-void fopAcM_SetMax(fopAc_ac_c*, f32, f32, f32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dBgS_MoveBGProc_Typical(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
-void* operator new(u32);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
@@ -131,85 +113,90 @@ extern "C" extern u8 g_env_light[4880];
 // Declarations:
 //
 
-/* 80D20F58-80D20FBC 0064+00 s=1 e=0 z=0  None .text      daObj_Usaku_Draw__FP15obj_usaku_class */
+/* 80D20F58-80D20FBC 000078 0064+00 1/0 0/0 0/0 .text daObj_Usaku_Draw__FP15obj_usaku_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Usaku_Draw(obj_usaku_class* param_0) {
+static asm void daObj_Usaku_Draw(obj_usaku_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_usaku/d_a_obj_usaku/daObj_Usaku_Draw__FP15obj_usaku_class.s"
 }
 #pragma pop
 
-/* 80D20FBC-80D21048 008C+00 s=2 e=0 z=0  None .text      daObj_Usaku_Execute__FP15obj_usaku_class
- */
+/* 80D20FBC-80D21048 0000DC 008C+00 2/1 0/0 0/0 .text daObj_Usaku_Execute__FP15obj_usaku_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Usaku_Execute(obj_usaku_class* param_0) {
+static asm void daObj_Usaku_Execute(obj_usaku_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_usaku/d_a_obj_usaku/daObj_Usaku_Execute__FP15obj_usaku_class.s"
 }
 #pragma pop
 
-/* 80D21048-80D21050 0008+00 s=1 e=0 z=0  None .text      daObj_Usaku_IsDelete__FP15obj_usaku_class
- */
+/* 80D21048-80D21050 000168 0008+00 1/0 0/0 0/0 .text daObj_Usaku_IsDelete__FP15obj_usaku_class */
 static bool daObj_Usaku_IsDelete(obj_usaku_class* param_0) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 80D212DC-80D212E0 0004+00 s=1 e=0 z=0  None .rodata    @3744 */
-SECTION_RODATA static u32 const lit_3744 = 0xC3960000;
-
-/* 80D212E0-80D212E4 0004+00 s=1 e=0 z=0  None .rodata    @3745 */
-SECTION_RODATA static u32 const lit_3745 = 0xC4160000;
-
-/* 80D212E4-80D212E8 0004+00 s=1 e=0 z=0  None .rodata    @3746 */
-SECTION_RODATA static u32 const lit_3746 = 0x43960000;
-
-/* 80D212E8-80D212EC 0004+00 s=1 e=0 z=0  None .rodata    @3747 */
-SECTION_RODATA static u32 const lit_3747 = 0x44160000;
-
-/* 80D212EC-80D212F6 000A+00 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80D212EC = "Obj_usaku";
-#pragma pop
-
-/* 80D21050-80D210A8 0058+00 s=1 e=0 z=0  None .text      daObj_Usaku_Delete__FP15obj_usaku_class */
+/* 80D21050-80D210A8 000170 0058+00 1/0 0/0 0/0 .text daObj_Usaku_Delete__FP15obj_usaku_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Usaku_Delete(obj_usaku_class* param_0) {
+static asm void daObj_Usaku_Delete(obj_usaku_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_usaku/d_a_obj_usaku/daObj_Usaku_Delete__FP15obj_usaku_class.s"
 }
 #pragma pop
 
-/* 80D210A8-80D211AC 0104+00 s=1 e=0 z=0  None .text      useHeapInit__FP10fopAc_ac_c */
+/* 80D210A8-80D211AC 0001C8 0104+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void useHeapInit(fopAc_ac_c* param_0) {
+static asm void useHeapInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_usaku/d_a_obj_usaku/useHeapInit__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D211AC-80D212D4 0128+00 s=1 e=0 z=0  None .text      daObj_Usaku_Create__FP10fopAc_ac_c */
+/* ############################################################################################## */
+/* 80D212DC-80D212E0 000000 0004+00 1/1 0/0 0/0 .rodata          @3744 */
+SECTION_RODATA static f32 const lit_3744 = -300.0f;
+COMPILER_STRIP_GATE(80D212DC, &lit_3744);
+
+/* 80D212E0-80D212E4 000004 0004+00 0/1 0/0 0/0 .rodata          @3745 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3745 = -600.0f;
+COMPILER_STRIP_GATE(80D212E0, &lit_3745);
+#pragma pop
+
+/* 80D212E4-80D212E8 000008 0004+00 0/1 0/0 0/0 .rodata          @3746 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3746 = 300.0f;
+COMPILER_STRIP_GATE(80D212E4, &lit_3746);
+#pragma pop
+
+/* 80D212E8-80D212EC 00000C 0004+00 0/1 0/0 0/0 .rodata          @3747 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3747 = 600.0f;
+COMPILER_STRIP_GATE(80D212E8, &lit_3747);
+#pragma pop
+
+/* 80D211AC-80D212D4 0002CC 0128+00 1/0 0/0 0/0 .text            daObj_Usaku_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Usaku_Create(fopAc_ac_c* param_0) {
+static asm void daObj_Usaku_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_usaku/d_a_obj_usaku/daObj_Usaku_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D212F8-80D21318 0020+00 s=1 e=0 z=0  None .data      l_daObj_Usaku_Method */
+/* 80D212F8-80D21318 -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Usaku_Method */
 SECTION_DATA static void* l_daObj_Usaku_Method[8] = {
     (void*)daObj_Usaku_Create__FP10fopAc_ac_c,
     (void*)daObj_Usaku_Delete__FP15obj_usaku_class,
@@ -221,8 +208,8 @@ SECTION_DATA static void* l_daObj_Usaku_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D21318-80D21348 0030+00 s=0 e=0 z=1  None .data      g_profile_OBJ_USAKU */
-SECTION_DATA void* g_profile_OBJ_USAKU[12] = {
+/* 80D21318-80D21348 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_USAKU */
+SECTION_DATA extern void* g_profile_OBJ_USAKU[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x012A0000, (void*)&g_fpcLf_Method,
     (void*)0x000005B4, (void*)NULL,
@@ -230,3 +217,10 @@ SECTION_DATA void* g_profile_OBJ_USAKU[12] = {
     (void*)0x004E0000, (void*)&l_daObj_Usaku_Method,
     (void*)0x00040100, (void*)0x000E0000,
 };
+
+/* 80D212EC-80D212F6 000010 000A+00 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80D212EC = "Obj_usaku";
+#pragma pop

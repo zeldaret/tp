@@ -1,8 +1,8 @@
 lbl_808731B4:
 /* 808731B4  94 21 FE B0 */	stwu r1, -0x150(r1)
 /* 808731B8  93 E1 01 4C */	stw r31, 0x14c(r1)
-/* 808731BC  3C 60 80 88 */	lis r3, __THPInfo@ha
-/* 808731C0  38 C3 9B C4 */	addi r6, r3, __THPInfo@l
+/* 808731BC  3C 60 80 88 */	lis r3, __THPInfo@ha /* 0x80879BC4@ha */
+/* 808731C0  38 C3 9B C4 */	addi r6, r3, __THPInfo@l /* 0x80879BC4@l */
 /* 808731C4  80 86 00 00 */	lwz r4, 0(r6)
 /* 808731C8  80 A4 06 9C */	lwz r5, 0x69c(r4)
 /* 808731CC  88 65 00 00 */	lbz r3, 0(r5)
@@ -11,14 +11,14 @@ lbl_808731B4:
 /* 808731D8  54 0A 04 3E */	clrlwi r10, r0, 0x10
 /* 808731DC  38 05 00 02 */	addi r0, r5, 2
 /* 808731E0  90 04 06 9C */	stw r0, 0x69c(r4)
-/* 808731E4  3C 60 80 88 */	lis r3, lit_3998@ha
-/* 808731E8  C8 83 90 C4 */	lfd f4, lit_3998@l(r3)
+/* 808731E4  3C 60 80 88 */	lis r3, lit_3998@ha /* 0x808790C4@ha */
+/* 808731E8  C8 83 90 C4 */	lfd f4, lit_3998@l(r3)  /* 0x808790C4@l */
 /* 808731EC  3C 00 43 30 */	lis r0, 0x4330
-/* 808731F0  3C 60 80 88 */	lis r3, __THPJpegNaturalOrder@ha
-/* 808731F4  38 A3 90 34 */	addi r5, r3, __THPJpegNaturalOrder@l
+/* 808731F0  3C 60 80 88 */	lis r3, __THPJpegNaturalOrder@ha /* 0x80879034@ha */
+/* 808731F4  38 A3 90 34 */	addi r5, r3, __THPJpegNaturalOrder@l /* 0x80879034@l */
 /* 808731F8  38 81 00 08 */	addi r4, r1, 8
-/* 808731FC  3C 60 80 88 */	lis r3, __THPAANScaleFactor@ha
-/* 80873200  CC 63 90 84 */	lfdu f3, __THPAANScaleFactor@l(r3)
+/* 808731FC  3C 60 80 88 */	lis r3, __THPAANScaleFactor@ha /* 0x80879084@ha */
+/* 80873200  CC 63 90 84 */	lfdu f3, __THPAANScaleFactor@l(r3)  /* 0x80879084@l */
 /* 80873204  C8 23 00 08 */	lfd f1, 8(r3)
 /* 80873208  C8 03 00 10 */	lfd f0, 0x10(r3)
 /* 8087320C  C9 43 00 18 */	lfd f10, 0x18(r3)

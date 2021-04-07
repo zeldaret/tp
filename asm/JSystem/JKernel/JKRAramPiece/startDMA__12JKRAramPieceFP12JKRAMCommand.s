@@ -23,8 +23,8 @@ lbl_802D3908:
 /* 802D3918  80 FF 00 48 */	lwz r7, 0x48(r31)
 /* 802D391C  81 1F 00 4C */	lwz r8, 0x4c(r31)
 /* 802D3920  81 3F 00 44 */	lwz r9, 0x44(r31)
-/* 802D3924  3D 40 80 2D */	lis r10, doneDMA__12JKRAramPieceFUl@ha
-/* 802D3928  39 4A 39 44 */	addi r10, r10, doneDMA__12JKRAramPieceFUl@l
+/* 802D3924  3D 40 80 2D */	lis r10, doneDMA__12JKRAramPieceFUl@ha /* 0x802D3944@ha */
+/* 802D3928  39 4A 39 44 */	addi r10, r10, doneDMA__12JKRAramPieceFUl@l /* 0x802D3944@l */
 /* 802D392C  48 07 E9 A9 */	bl ARQPostRequest
 /* 802D3930  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 802D3934  80 01 00 14 */	lwz r0, 0x14(r1)

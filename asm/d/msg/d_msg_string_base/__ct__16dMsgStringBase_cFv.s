@@ -4,8 +4,8 @@ lbl_802493B4:
 /* 802493BC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 802493C0  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 802493C4  7C 7F 1B 78 */	mr r31, r3
-/* 802493C8  3C 80 80 3C */	lis r4, __vt__16dMsgStringBase_c@ha
-/* 802493CC  38 04 14 78 */	addi r0, r4, __vt__16dMsgStringBase_c@l
+/* 802493C8  3C 80 80 3C */	lis r4, __vt__16dMsgStringBase_c@ha /* 0x803C1478@ha */
+/* 802493CC  38 04 14 78 */	addi r0, r4, __vt__16dMsgStringBase_c@l /* 0x803C1478@l */
 /* 802493D0  90 03 00 00 */	stw r0, 0(r3)
 /* 802493D4  38 00 00 00 */	li r0, 0
 /* 802493D8  B0 03 00 20 */	sth r0, 0x20(r3)

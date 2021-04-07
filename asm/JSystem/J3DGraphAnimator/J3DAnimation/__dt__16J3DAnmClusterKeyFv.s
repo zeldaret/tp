@@ -5,16 +5,16 @@ lbl_8032C044:
 /* 8032C050  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8032C054  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8032C058  41 82 00 40 */	beq lbl_8032C098
-/* 8032C05C  3C 60 80 3D */	lis r3, __vt__16J3DAnmClusterKey@ha
-/* 8032C060  38 03 ED E8 */	addi r0, r3, __vt__16J3DAnmClusterKey@l
+/* 8032C05C  3C 60 80 3D */	lis r3, __vt__16J3DAnmClusterKey@ha /* 0x803CEDE8@ha */
+/* 8032C060  38 03 ED E8 */	addi r0, r3, __vt__16J3DAnmClusterKey@l /* 0x803CEDE8@l */
 /* 8032C064  90 1F 00 00 */	stw r0, 0(r31)
 /* 8032C068  41 82 00 20 */	beq lbl_8032C088
-/* 8032C06C  3C 60 80 3D */	lis r3, __vt__13J3DAnmCluster@ha
-/* 8032C070  38 03 ED FC */	addi r0, r3, __vt__13J3DAnmCluster@l
+/* 8032C06C  3C 60 80 3D */	lis r3, __vt__13J3DAnmCluster@ha /* 0x803CEDFC@ha */
+/* 8032C070  38 03 ED FC */	addi r0, r3, __vt__13J3DAnmCluster@l /* 0x803CEDFC@l */
 /* 8032C074  90 1F 00 00 */	stw r0, 0(r31)
 /* 8032C078  41 82 00 10 */	beq lbl_8032C088
-/* 8032C07C  3C 60 80 3A */	lis r3, __vt__10J3DAnmBase@ha
-/* 8032C080  38 03 7C 38 */	addi r0, r3, __vt__10J3DAnmBase@l
+/* 8032C07C  3C 60 80 3A */	lis r3, __vt__10J3DAnmBase@ha /* 0x803A7C38@ha */
+/* 8032C080  38 03 7C 38 */	addi r0, r3, __vt__10J3DAnmBase@l /* 0x803A7C38@l */
 /* 8032C084  90 1F 00 00 */	stw r0, 0(r31)
 lbl_8032C088:
 /* 8032C088  7C 80 07 35 */	extsh. r0, r4

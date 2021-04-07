@@ -22,7 +22,7 @@ lbl_806787AC:
 /* 806787C8  38 C6 FF FF */	addi r6, r6, 0xFFFF /* 0x0000FFFF@l */
 /* 806787CC  38 E0 00 00 */	li r7, 0
 /* 806787D0  39 00 00 01 */	li r8, 1
-/* 806787D4  4B 9A 2E A8 */	b fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
+/* 806787D4  4B 9A 2E A9 */	bl fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs
 /* 806787D8  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 806787DC  60 00 00 02 */	ori r0, r0, 2
 /* 806787E0  B0 1F 00 FA */	sth r0, 0xfa(r31)

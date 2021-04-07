@@ -7,19 +7,19 @@ lbl_80057F18:
 /* 80057F2C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80057F30  7C 9F 23 78 */	mr r31, r4
 /* 80057F34  41 82 00 4C */	beq lbl_80057F80
-/* 80057F38  3C 60 80 3B */	lis r3, __vt__19dKankyo_star_Packet@ha
-/* 80057F3C  38 03 9B 38 */	addi r0, r3, __vt__19dKankyo_star_Packet@l
+/* 80057F38  3C 60 80 3B */	lis r3, __vt__19dKankyo_star_Packet@ha /* 0x803A9B38@ha */
+/* 80057F3C  38 03 9B 38 */	addi r0, r3, __vt__19dKankyo_star_Packet@l /* 0x803A9B38@l */
 /* 80057F40  90 1E 00 00 */	stw r0, 0(r30)
 /* 80057F44  38 7E 00 14 */	addi r3, r30, 0x14
-/* 80057F48  3C 80 80 05 */	lis r4, __dt__8STAR_EFFFv@ha
-/* 80057F4C  38 84 6D C8 */	addi r4, r4, __dt__8STAR_EFFFv@l
+/* 80057F48  3C 80 80 05 */	lis r4, __dt__8STAR_EFFFv@ha /* 0x80056DC8@ha */
+/* 80057F4C  38 84 6D C8 */	addi r4, r4, __dt__8STAR_EFFFv@l /* 0x80056DC8@l */
 /* 80057F50  38 A0 00 34 */	li r5, 0x34
 /* 80057F54  38 C0 00 01 */	li r6, 1
 /* 80057F58  48 30 9D 91 */	bl __destroy_arr
 /* 80057F5C  28 1E 00 00 */	cmplwi r30, 0
 /* 80057F60  41 82 00 10 */	beq lbl_80057F70
-/* 80057F64  3C 60 80 3D */	lis r3, __vt__9J3DPacket@ha
-/* 80057F68  38 03 D9 7C */	addi r0, r3, __vt__9J3DPacket@l
+/* 80057F64  3C 60 80 3D */	lis r3, __vt__9J3DPacket@ha /* 0x803CD97C@ha */
+/* 80057F68  38 03 D9 7C */	addi r0, r3, __vt__9J3DPacket@l /* 0x803CD97C@l */
 /* 80057F6C  90 1E 00 00 */	stw r0, 0(r30)
 lbl_80057F70:
 /* 80057F70  7F E0 07 35 */	extsh. r0, r31

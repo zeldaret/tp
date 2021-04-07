@@ -16,8 +16,8 @@ lbl_801B6344:
 /* 801B637C  7D 89 03 A6 */	mtctr r12
 /* 801B6380  4E 80 04 21 */	bctrl 
 /* 801B6384  48 14 A2 D5 */	bl getStringPtr__10J2DTextBoxCFv
-/* 801B6388  3C 80 80 39 */	lis r4, d_menu_d_menu_collect__stringBase0@ha
-/* 801B638C  38 84 53 30 */	addi r4, r4, d_menu_d_menu_collect__stringBase0@l
+/* 801B6388  3C 80 80 39 */	lis r4, d_menu_d_menu_collect__stringBase0@ha /* 0x80395330@ha */
+/* 801B638C  38 84 53 30 */	addi r4, r4, d_menu_d_menu_collect__stringBase0@l /* 0x80395330@l */
 /* 801B6390  38 84 00 55 */	addi r4, r4, 0x55
 /* 801B6394  48 1B 27 99 */	bl strcpy
 /* 801B6398  80 7F 00 18 */	lwz r3, 0x18(r31)
@@ -30,8 +30,8 @@ lbl_801B6344:
 /* 801B63B4  7D 89 03 A6 */	mtctr r12
 /* 801B63B8  4E 80 04 21 */	bctrl 
 /* 801B63BC  48 14 A2 9D */	bl getStringPtr__10J2DTextBoxCFv
-/* 801B63C0  3C 80 80 39 */	lis r4, d_menu_d_menu_collect__stringBase0@ha
-/* 801B63C4  38 84 53 30 */	addi r4, r4, d_menu_d_menu_collect__stringBase0@l
+/* 801B63C0  3C 80 80 39 */	lis r4, d_menu_d_menu_collect__stringBase0@ha /* 0x80395330@ha */
+/* 801B63C4  38 84 53 30 */	addi r4, r4, d_menu_d_menu_collect__stringBase0@l /* 0x80395330@l */
 /* 801B63C8  38 84 00 55 */	addi r4, r4, 0x55
 /* 801B63CC  48 1B 27 61 */	bl strcpy
 /* 801B63D0  80 7F 00 18 */	lwz r3, 0x18(r31)
@@ -44,8 +44,8 @@ lbl_801B6344:
 /* 801B63EC  7D 89 03 A6 */	mtctr r12
 /* 801B63F0  4E 80 04 21 */	bctrl 
 /* 801B63F4  48 14 A2 65 */	bl getStringPtr__10J2DTextBoxCFv
-/* 801B63F8  3C 80 80 39 */	lis r4, d_menu_d_menu_collect__stringBase0@ha
-/* 801B63FC  38 84 53 30 */	addi r4, r4, d_menu_d_menu_collect__stringBase0@l
+/* 801B63F8  3C 80 80 39 */	lis r4, d_menu_d_menu_collect__stringBase0@ha /* 0x80395330@ha */
+/* 801B63FC  38 84 53 30 */	addi r4, r4, d_menu_d_menu_collect__stringBase0@l /* 0x80395330@l */
 /* 801B6400  38 84 00 55 */	addi r4, r4, 0x55
 /* 801B6404  48 1B 27 29 */	bl strcpy
 /* 801B6408  80 7F 00 18 */	lwz r3, 0x18(r31)
@@ -58,8 +58,8 @@ lbl_801B6344:
 /* 801B6424  7D 89 03 A6 */	mtctr r12
 /* 801B6428  4E 80 04 21 */	bctrl 
 /* 801B642C  48 14 A2 2D */	bl getStringPtr__10J2DTextBoxCFv
-/* 801B6430  3C 80 80 39 */	lis r4, d_menu_d_menu_collect__stringBase0@ha
-/* 801B6434  38 84 53 30 */	addi r4, r4, d_menu_d_menu_collect__stringBase0@l
+/* 801B6430  3C 80 80 39 */	lis r4, d_menu_d_menu_collect__stringBase0@ha /* 0x80395330@ha */
+/* 801B6434  38 84 53 30 */	addi r4, r4, d_menu_d_menu_collect__stringBase0@l /* 0x80395330@l */
 /* 801B6438  38 84 00 55 */	addi r4, r4, 0x55
 /* 801B643C  48 1B 26 F1 */	bl strcpy
 /* 801B6440  83 E1 00 0C */	lwz r31, 0xc(r1)

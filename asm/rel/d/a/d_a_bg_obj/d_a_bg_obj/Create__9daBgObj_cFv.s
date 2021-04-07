@@ -4,10 +4,10 @@ lbl_8045A2B8:
 /* 8045A2C0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8045A2C4  A0 03 0C D0 */	lhz r0, 0xcd0(r3)
 /* 8045A2C8  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 8045A2CC  3C 80 80 46 */	lis r4, mCreateInitFunc__9daBgObj_c@ha
-/* 8045A2D0  38 04 CB CC */	addi r0, r4, mCreateInitFunc__9daBgObj_c@l
+/* 8045A2CC  3C 80 80 46 */	lis r4, mCreateInitFunc__9daBgObj_c@ha /* 0x8045CBCC@ha */
+/* 8045A2D0  38 04 CB CC */	addi r0, r4, mCreateInitFunc__9daBgObj_c@l /* 0x8045CBCC@l */
 /* 8045A2D4  7D 80 2A 14 */	add r12, r0, r5
-/* 8045A2D8  4B F0 7D AC */	b __ptmf_scall
+/* 8045A2D8  4B F0 7D AD */	bl __ptmf_scall
 /* 8045A2DC  60 00 00 00 */	nop 
 /* 8045A2E0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8045A2E4  7C 08 03 A6 */	mtlr r0

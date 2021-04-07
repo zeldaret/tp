@@ -3,19 +3,20 @@
 #
 
 M334_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_lud.plf
+M334_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_lud.lcf
+M334_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_lud.map
 
 M334_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_lud/executor.cpp \
-	rel/d/a/npc/d_a_npc_lud/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_lud/d_a_npc_lud.cpp \
 
 M334_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_lud/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_lud/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_lud/d_a_npc_lud.o \
 
 M334_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_lud/libRuntime.PPCEABI.H.a \
 
 M334_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M334_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M334_LDSCRIPT) \
+	-unused -map $(M334_MAP) \
+	-w off \
 
 $(M334_TARGET): $(M334_O_FILES) $(M334_LIBS)
+	@echo [334] creating $(M334_TARGET)
 	@echo $(M334_LIBS) $(M334_O_FILES) > build/M334_ofiles
-	$(LD) -partial $(M334_LDFLAGS) -o $(M334_TARGET) @build/M334_ofiles
+	@python3 tools/lcf.py rel 334 --output $(M334_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M334_LDFLAGS) -o $(M334_TARGET) @build/M334_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_lud/%.o: rel/d/a/npc/d_a_npc_lud/%.cpp
+	@echo [334] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M334_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M334_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_lud/libs/Runtime.PPCEABI.H/Makefile
 

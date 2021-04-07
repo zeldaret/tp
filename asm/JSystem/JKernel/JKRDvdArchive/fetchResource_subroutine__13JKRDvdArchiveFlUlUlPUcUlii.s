@@ -117,16 +117,16 @@ lbl_802D83E0:
 /* 802D8418  7F 43 D3 78 */	mr r3, r26
 /* 802D841C  48 00 00 40 */	b lbl_802D845C
 lbl_802D8420:
-/* 802D8420  3C 60 80 3A */	lis r3, JKRDvdArchive__stringBase0@ha
-/* 802D8424  38 63 D1 B0 */	addi r3, r3, JKRDvdArchive__stringBase0@l
+/* 802D8420  3C 60 80 3A */	lis r3, JKRDvdArchive__stringBase0@ha /* 0x8039D1B0@ha */
+/* 802D8424  38 63 D1 B0 */	addi r3, r3, JKRDvdArchive__stringBase0@l /* 0x8039D1B0@l */
 /* 802D8428  38 80 02 89 */	li r4, 0x289
 /* 802D842C  38 A3 00 12 */	addi r5, r3, 0x12
 /* 802D8430  38 C3 00 15 */	addi r6, r3, 0x15
 /* 802D8434  4C C6 31 82 */	crclr 6
 /* 802D8438  48 00 9D C5 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_802D843C:
-/* 802D843C  3C 60 80 3A */	lis r3, JKRDvdArchive__stringBase0@ha
-/* 802D8440  38 63 D1 B0 */	addi r3, r3, JKRDvdArchive__stringBase0@l
+/* 802D843C  3C 60 80 3A */	lis r3, JKRDvdArchive__stringBase0@ha /* 0x8039D1B0@ha */
+/* 802D8440  38 63 D1 B0 */	addi r3, r3, JKRDvdArchive__stringBase0@l /* 0x8039D1B0@l */
 /* 802D8444  38 80 02 8D */	li r4, 0x28d
 /* 802D8448  38 A3 00 12 */	addi r5, r3, 0x12
 /* 802D844C  38 C3 00 3A */	addi r6, r3, 0x3a

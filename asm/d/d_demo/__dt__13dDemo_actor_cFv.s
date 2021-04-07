@@ -7,8 +7,8 @@ lbl_80038098:
 /* 800380AC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 800380B0  7C 9F 23 78 */	mr r31, r4
 /* 800380B4  41 82 00 58 */	beq lbl_8003810C
-/* 800380B8  3C 80 80 3A */	lis r4, __vt__13dDemo_actor_c@ha
-/* 800380BC  38 04 7B 34 */	addi r0, r4, __vt__13dDemo_actor_c@l
+/* 800380B8  3C 80 80 3A */	lis r4, __vt__13dDemo_actor_c@ha /* 0x803A7B34@ha */
+/* 800380BC  38 04 7B 34 */	addi r0, r4, __vt__13dDemo_actor_c@l /* 0x803A7B34@l */
 /* 800380C0  90 1E 00 00 */	stw r0, 0(r30)
 /* 800380C4  48 00 00 65 */	bl getActor__13dDemo_actor_cFv
 /* 800380C8  28 03 00 00 */	cmplwi r3, 0

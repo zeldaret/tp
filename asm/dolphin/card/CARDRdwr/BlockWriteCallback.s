@@ -8,8 +8,8 @@ lbl_803552C4:
 /* 803552DC  93 A1 00 14 */	stw r29, 0x14(r1)
 /* 803552E0  3B A3 00 00 */	addi r29, r3, 0
 /* 803552E4  1C BD 01 10 */	mulli r5, r29, 0x110
-/* 803552E8  3C 60 80 45 */	lis r3, __CARDBlock@ha
-/* 803552EC  38 03 CB C0 */	addi r0, r3, __CARDBlock@l
+/* 803552E8  3C 60 80 45 */	lis r3, __CARDBlock@ha /* 0x8044CBC0@ha */
+/* 803552EC  38 03 CB C0 */	addi r0, r3, __CARDBlock@l /* 0x8044CBC0@l */
 /* 803552F0  7F E0 2A 14 */	add r31, r0, r5
 /* 803552F4  41 80 00 5C */	blt lbl_80355350
 /* 803552F8  80 7F 00 B8 */	lwz r3, 0xb8(r31)
@@ -28,8 +28,8 @@ lbl_803552C4:
 /* 8035532C  34 03 FF FF */	addic. r0, r3, -1
 /* 80355330  90 1F 00 AC */	stw r0, 0xac(r31)
 /* 80355334  40 81 00 1C */	ble lbl_80355350
-/* 80355338  3C 60 80 35 */	lis r3, BlockWriteCallback@ha
-/* 8035533C  38 83 52 C4 */	addi r4, r3, BlockWriteCallback@l
+/* 80355338  3C 60 80 35 */	lis r3, BlockWriteCallback@ha /* 0x803552C4@ha */
+/* 8035533C  38 83 52 C4 */	addi r4, r3, BlockWriteCallback@l /* 0x803552C4@l */
 /* 80355340  38 7D 00 00 */	addi r3, r29, 0
 /* 80355344  4B FF E5 39 */	bl __CARDWritePage
 /* 80355348  7C 7E 1B 79 */	or. r30, r3, r3

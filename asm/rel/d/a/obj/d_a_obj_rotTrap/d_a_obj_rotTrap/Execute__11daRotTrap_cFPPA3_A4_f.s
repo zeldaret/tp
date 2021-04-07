@@ -13,7 +13,7 @@ lbl_80CBFEC4:
 /* 80CBFEF0  7F C3 F3 78 */	mr r3, r30
 /* 80CBFEF4  4B FF FA 4D */	bl setBaseMtx__11daRotTrap_cFv
 /* 80CBFEF8  38 7E 05 D0 */	addi r3, r30, 0x5d0
-/* 80CBFEFC  4B 3C 39 34 */	b Move__10dCcD_GSttsFv
+/* 80CBFEFC  4B 3C 39 35 */	bl Move__10dCcD_GSttsFv
 /* 80CBFF00  38 60 00 01 */	li r3, 1
 /* 80CBFF04  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80CBFF08  83 C1 00 08 */	lwz r30, 8(r1)

@@ -5,7 +5,7 @@ lbl_8055CC9C:
 /* 8055CCA8  88 03 11 38 */	lbz r0, 0x1138(r3)
 /* 8055CCAC  28 00 00 00 */	cmplwi r0, 0
 /* 8055CCB0  41 82 00 14 */	beq lbl_8055CCC4
-/* 8055CCB4  4B C2 49 8C */	b dCam_getBody__Fv
+/* 8055CCB4  4B C2 49 8D */	bl dCam_getBody__Fv
 /* 8055CCB8  80 03 06 0C */	lwz r0, 0x60c(r3)
 /* 8055CCBC  64 00 40 00 */	oris r0, r0, 0x4000
 /* 8055CCC0  90 03 06 0C */	stw r0, 0x60c(r3)

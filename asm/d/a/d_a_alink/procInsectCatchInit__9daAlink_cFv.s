@@ -31,8 +31,8 @@ lbl_800E7140:
 /* 800E7168  40 81 00 28 */	ble lbl_800E7190
 /* 800E716C  7F E3 FB 78 */	mr r3, r31
 /* 800E7170  38 80 01 07 */	li r4, 0x107
-/* 800E7174  3C A0 80 39 */	lis r5, m__20daAlinkHIO_bottle_c0@ha
-/* 800E7178  38 A5 E9 0C */	addi r5, r5, m__20daAlinkHIO_bottle_c0@l
+/* 800E7174  3C A0 80 39 */	lis r5, m__20daAlinkHIO_bottle_c0@ha /* 0x8038E90C@ha */
+/* 800E7178  38 A5 E9 0C */	addi r5, r5, m__20daAlinkHIO_bottle_c0@l /* 0x8038E90C@l */
 /* 800E717C  38 A5 00 64 */	addi r5, r5, 0x64
 /* 800E7180  4B FC 5F 75 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800E7184  C0 02 93 24 */	lfs f0, lit_7450(r2)
@@ -41,8 +41,8 @@ lbl_800E7140:
 lbl_800E7190:
 /* 800E7190  7F E3 FB 78 */	mr r3, r31
 /* 800E7194  38 80 01 08 */	li r4, 0x108
-/* 800E7198  3C A0 80 39 */	lis r5, m__20daAlinkHIO_bottle_c0@ha
-/* 800E719C  38 A5 E9 0C */	addi r5, r5, m__20daAlinkHIO_bottle_c0@l
+/* 800E7198  3C A0 80 39 */	lis r5, m__20daAlinkHIO_bottle_c0@ha /* 0x8038E90C@ha */
+/* 800E719C  38 A5 E9 0C */	addi r5, r5, m__20daAlinkHIO_bottle_c0@l /* 0x8038E90C@l */
 /* 800E71A0  38 A5 00 50 */	addi r5, r5, 0x50
 /* 800E71A4  4B FC 5F 51 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800E71A8  C0 02 93 8C */	lfs f0, lit_8783(r2)

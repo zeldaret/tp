@@ -215,8 +215,8 @@ lbl_802DAD74:
 /* 802DAD74  81 9D 00 38 */	lwz r12, 0x38(r29)
 /* 802DAD78  28 0C 00 00 */	cmplwi r12, 0
 /* 802DAD7C  40 82 00 18 */	bne lbl_802DAD94
-/* 802DAD80  3C 60 80 43 */	lis r3, sDvdAramAsyncList__16JKRDvdAramRipper@ha
-/* 802DAD84  38 63 43 B4 */	addi r3, r3, sDvdAramAsyncList__16JKRDvdAramRipper@l
+/* 802DAD80  3C 60 80 43 */	lis r3, sDvdAramAsyncList__16JKRDvdAramRipper@ha /* 0x804343B4@ha */
+/* 802DAD84  38 63 43 B4 */	addi r3, r3, sDvdAramAsyncList__16JKRDvdAramRipper@l /* 0x804343B4@l */
 /* 802DAD88  7F A4 EB 78 */	mr r4, r29
 /* 802DAD8C  48 00 11 C1 */	bl append__10JSUPtrListFP10JSUPtrLink
 /* 802DAD90  48 00 00 10 */	b lbl_802DADA0

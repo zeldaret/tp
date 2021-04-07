@@ -3,17 +3,15 @@
 #
 
 M570_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mhole.plf
+M570_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mhole.lcf
+M570_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mhole.map
 
 M570_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_mhole/executor.cpp \
-	rel/d/a/obj/d_a_obj_mhole/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_mhole/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_mhole/d_a_obj_mhole.cpp \
 
 M570_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mhole/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mhole/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mhole/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mhole/d_a_obj_mhole.o \
 
 M570_LIBS := \
@@ -29,14 +27,21 @@ M570_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M570_LDSCRIPT) \
+	-unused -map $(M570_MAP) \
+	-w off \
 
 $(M570_TARGET): $(M570_O_FILES) $(M570_LIBS)
+	@echo [570] creating $(M570_TARGET)
 	@echo $(M570_LIBS) $(M570_O_FILES) > build/M570_ofiles
-	$(LD) -partial $(M570_LDFLAGS) -o $(M570_TARGET) @build/M570_ofiles
+	@python3 tools/lcf.py rel 570 --output $(M570_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M570_LDFLAGS) -o $(M570_TARGET) @build/M570_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mhole/%.o: rel/d/a/obj/d_a_obj_mhole/%.cpp
+	@echo [570] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M570_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M570_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

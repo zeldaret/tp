@@ -338,8 +338,8 @@ lbl_80366ECC:
 lbl_80366EDC:
 /* 80366EDC  28 14 00 00 */	cmplwi r20, 0
 /* 80366EE0  40 82 00 0C */	bne lbl_80366EEC
-/* 80366EE4  3C 60 80 3A */	lis r3, MSL_Common_Src_printf__stringBase0@ha
-/* 80366EE8  3A 83 23 18 */	addi r20, r3, MSL_Common_Src_printf__stringBase0@l
+/* 80366EE4  3C 60 80 3A */	lis r3, MSL_Common_Src_printf__stringBase0@ha /* 0x803A2318@ha */
+/* 80366EE8  3A 83 23 18 */	addi r20, r3, MSL_Common_Src_printf__stringBase0@l /* 0x803A2318@l */
 lbl_80366EEC:
 /* 80366EEC  88 01 00 6F */	lbz r0, 0x6f(r1)
 /* 80366EF0  28 00 00 00 */	cmplwi r0, 0

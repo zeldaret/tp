@@ -26,15 +26,15 @@ lbl_800FA8B8:
 /* 800FA8B8  C0 22 92 9C */	lfs f1, lit_5944(r2)
 lbl_800FA8BC:
 /* 800FA8BC  54 A0 04 38 */	rlwinm r0, r5, 0, 0x10, 0x1c
-/* 800FA8C0  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800FA8C4  38 A3 9A 20 */	addi r5, r3, sincosTable___5JMath@l
+/* 800FA8C0  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800FA8C4  38 A3 9A 20 */	addi r5, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800FA8C8  7C 05 04 2E */	lfsx f0, r5, r0
 /* 800FA8CC  EF E1 00 32 */	fmuls f31, f1, f0
 /* 800FA8D0  38 C5 00 04 */	addi r6, r5, 4
 /* 800FA8D4  7C 06 04 2E */	lfsx f0, r6, r0
 /* 800FA8D8  EF C1 00 32 */	fmuls f30, f1, f0
-/* 800FA8DC  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800FA8E0  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800FA8DC  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800FA8E0  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800FA8E4  90 01 00 30 */	stw r0, 0x30(r1)
 /* 800FA8E8  C0 3F 04 D8 */	lfs f1, 0x4d8(r31)
 /* 800FA8EC  C0 62 95 48 */	lfs f3, lit_23416(r2)
@@ -65,8 +65,8 @@ lbl_800FA8BC:
 /* 800FA950  EC 05 00 28 */	fsubs f0, f5, f0
 /* 800FA954  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 800FA958  3B 80 00 00 */	li r28, 0
-/* 800FA95C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800FA960  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800FA95C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800FA960  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800FA964  3B C3 0F 38 */	addi r30, r3, 0xf38
 /* 800FA968  C3 A2 93 3C */	lfs f29, lit_7808(r2)
 lbl_800FA96C:
@@ -126,8 +126,8 @@ lbl_800FAA24:
 /* 800FAA38  2C 1C 00 02 */	cmpwi r28, 2
 /* 800FAA3C  41 80 FF 30 */	blt lbl_800FA96C
 lbl_800FAA40:
-/* 800FAA40  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800FAA44  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800FAA40  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800FAA44  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800FAA48  90 01 00 30 */	stw r0, 0x30(r1)
 /* 800FAA4C  E3 E1 00 78 */	psq_l f31, 120(r1), 0, 0 /* qr0 */
 /* 800FAA50  CB E1 00 70 */	lfd f31, 0x70(r1)

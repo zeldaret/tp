@@ -3,10 +3,10 @@ lbl_805F5F3C:
 /* 805F5F40  7C 08 02 A6 */	mflr r0
 /* 805F5F44  90 01 00 24 */	stw r0, 0x24(r1)
 /* 805F5F48  39 61 00 20 */	addi r11, r1, 0x20
-/* 805F5F4C  4B D6 C2 90 */	b _savegpr_29
+/* 805F5F4C  4B D6 C2 91 */	bl _savegpr_29
 /* 805F5F50  7C 7D 1B 78 */	mr r29, r3
-/* 805F5F54  3C 60 80 60 */	lis r3, lit_3815@ha
-/* 805F5F58  3B E3 26 64 */	addi r31, r3, lit_3815@l
+/* 805F5F54  3C 60 80 60 */	lis r3, lit_3815@ha /* 0x80602664@ha */
+/* 805F5F58  3B E3 26 64 */	addi r31, r3, lit_3815@l /* 0x80602664@l */
 /* 805F5F5C  AB DD 0C 3C */	lha r30, 0xc3c(r29)
 /* 805F5F60  A8 1D 05 BC */	lha r0, 0x5bc(r29)
 /* 805F5F64  2C 00 00 01 */	cmpwi r0, 1
@@ -21,15 +21,15 @@ lbl_805F5F80:
 /* 805F5F84  40 80 00 BC */	bge lbl_805F6040
 /* 805F5F88  48 00 00 78 */	b lbl_805F6000
 lbl_805F5F8C:
-/* 805F5F8C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 805F5F90  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 805F5F8C  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 805F5F90  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 805F5F94  80 63 00 00 */	lwz r3, 0(r3)
 /* 805F5F98  38 63 03 D0 */	addi r3, r3, 0x3d0
 /* 805F5F9C  3C 80 02 00 */	lis r4, 0x0200 /* 0x0200005D@ha */
 /* 805F5FA0  38 84 00 5D */	addi r4, r4, 0x005D /* 0x0200005D@l */
 /* 805F5FA4  38 A0 00 00 */	li r5, 0
 /* 805F5FA8  38 C0 00 00 */	li r6, 0
-/* 805F5FAC  4B CB 90 64 */	b bgmStart__8Z2SeqMgrFUlUll
+/* 805F5FAC  4B CB 90 65 */	bl bgmStart__8Z2SeqMgrFUlUll
 lbl_805F5FB0:
 /* 805F5FB0  7F A3 EB 78 */	mr r3, r29
 /* 805F5FB4  38 80 00 4B */	li r4, 0x4b
@@ -57,7 +57,7 @@ lbl_805F6000:
 /* 805F6004  7F C4 F3 78 */	mr r4, r30
 /* 805F6008  38 A0 00 08 */	li r5, 8
 /* 805F600C  38 C0 02 00 */	li r6, 0x200
-/* 805F6010  4B C7 A5 F8 */	b cLib_addCalcAngleS2__FPssss
+/* 805F6010  4B C7 A5 F9 */	bl cLib_addCalcAngleS2__FPssss
 /* 805F6014  A8 1D 04 DE */	lha r0, 0x4de(r29)
 /* 805F6018  7C 00 F0 50 */	subf r0, r0, r30
 /* 805F601C  7C 00 07 34 */	extsh r0, r0
@@ -73,9 +73,9 @@ lbl_805F6040:
 /* 805F6040  38 7D 05 2C */	addi r3, r29, 0x52c
 /* 805F6044  C0 3F 00 00 */	lfs f1, 0(r31)
 /* 805F6048  C0 5F 00 84 */	lfs f2, 0x84(r31)
-/* 805F604C  4B C7 9A 34 */	b cLib_addCalc0__FPfff
+/* 805F604C  4B C7 9A 35 */	bl cLib_addCalc0__FPfff
 /* 805F6050  39 61 00 20 */	addi r11, r1, 0x20
-/* 805F6054  4B D6 C1 D4 */	b _restgpr_29
+/* 805F6054  4B D6 C1 D5 */	bl _restgpr_29
 /* 805F6058  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 805F605C  7C 08 03 A6 */	mtlr r0
 /* 805F6060  38 21 00 20 */	addi r1, r1, 0x20

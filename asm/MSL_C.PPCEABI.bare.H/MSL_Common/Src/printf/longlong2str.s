@@ -33,9 +33,9 @@ lbl_80367D8C:
 /* 80367D90  38 05 FF A8 */	addi r0, r5, -88
 /* 80367D94  28 00 00 20 */	cmplwi r0, 0x20
 /* 80367D98  41 81 00 8C */	bgt lbl_80367E24
-/* 80367D9C  3C A0 80 3D */	lis r5, lit_1248@ha
+/* 80367D9C  3C A0 80 3D */	lis r5, lit_1248@ha /* 0x803D2F18@ha */
 /* 80367DA0  54 00 10 3A */	slwi r0, r0, 2
-/* 80367DA4  38 A5 2F 18 */	addi r5, r5, lit_1248@l
+/* 80367DA4  38 A5 2F 18 */	addi r5, r5, lit_1248@l /* 0x803D2F18@l */
 /* 80367DA8  7C 05 00 2E */	lwzx r0, r5, r0
 /* 80367DAC  7C 09 03 A6 */	mtctr r0
 /* 80367DB0  4E 80 04 20 */	bctr 

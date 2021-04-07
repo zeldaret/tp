@@ -52,8 +52,8 @@ lbl_801533C0:
 /* 80153440  D8 01 00 A0 */	stfd f0, 0xa0(r1)
 /* 80153444  80 01 00 A4 */	lwz r0, 0xa4(r1)
 /* 80153448  B0 1D 09 24 */	sth r0, 0x924(r29)
-/* 8015344C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80153450  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8015344C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80153450  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80153454  38 81 00 44 */	addi r4, r1, 0x44
 /* 80153458  48 1F 30 59 */	bl PSMTXCopy
 /* 8015345C  C0 01 00 50 */	lfs f0, 0x50(r1)
@@ -84,12 +84,12 @@ lbl_801534B0:
 /* 801534BC  38 7D 09 20 */	addi r3, r29, 0x920
 /* 801534C0  4B EB 9A 85 */	bl ZXYrotM__14mDoMtx_stack_cFRC5csXyz
 lbl_801534C4:
-/* 801534C4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 801534C8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 801534C4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 801534C8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 801534CC  7C 64 1B 78 */	mr r4, r3
 /* 801534D0  48 1F 30 E1 */	bl PSMTXInverse
-/* 801534D4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 801534D8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 801534D4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 801534D8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 801534DC  38 81 00 14 */	addi r4, r1, 0x14
 /* 801534E0  48 1F 2F D1 */	bl PSMTXCopy
 /* 801534E4  38 61 00 08 */	addi r3, r1, 8
@@ -116,13 +116,13 @@ lbl_80153524:
 /* 80153530  38 7D 09 26 */	addi r3, r29, 0x926
 /* 80153534  4B EB 9A 11 */	bl ZXYrotM__14mDoMtx_stack_cFRC5csXyz
 lbl_80153538:
-/* 80153538  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8015353C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80153538  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8015353C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80153540  38 81 00 14 */	addi r4, r1, 0x14
 /* 80153544  7C 65 1B 78 */	mr r5, r3
 /* 80153548  48 1F 2F 9D */	bl PSMTXConcat
-/* 8015354C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80153550  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8015354C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80153550  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80153554  38 81 00 44 */	addi r4, r1, 0x44
 /* 80153558  7C 65 1B 78 */	mr r5, r3
 /* 8015355C  48 1F 2F 89 */	bl PSMTXConcat

@@ -7,8 +7,8 @@ lbl_8029A1B4:
 /* 8029A1C8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8029A1CC  7C 9F 23 78 */	mr r31, r4
 /* 8029A1D0  41 82 00 6C */	beq lbl_8029A23C
-/* 8029A1D4  3C 60 80 3C */	lis r3, __vt__10JASWaveArc@ha
-/* 8029A1D8  38 03 78 20 */	addi r0, r3, __vt__10JASWaveArc@l
+/* 8029A1D4  3C 60 80 3C */	lis r3, __vt__10JASWaveArc@ha /* 0x803C7820@ha */
+/* 8029A1D8  38 03 78 20 */	addi r0, r3, __vt__10JASWaveArc@l /* 0x803C7820@l */
 /* 8029A1DC  90 1E 00 00 */	stw r0, 0(r30)
 /* 8029A1E0  34 1E 00 04 */	addic. r0, r30, 4
 /* 8029A1E4  41 82 00 34 */	beq lbl_8029A218
@@ -28,8 +28,8 @@ lbl_8029A204:
 lbl_8029A218:
 /* 8029A218  28 1E 00 00 */	cmplwi r30, 0
 /* 8029A21C  41 82 00 10 */	beq lbl_8029A22C
-/* 8029A220  3C 60 80 3C */	lis r3, __vt__11JASDisposer@ha
-/* 8029A224  38 03 78 38 */	addi r0, r3, __vt__11JASDisposer@l
+/* 8029A220  3C 60 80 3C */	lis r3, __vt__11JASDisposer@ha /* 0x803C7838@ha */
+/* 8029A224  38 03 78 38 */	addi r0, r3, __vt__11JASDisposer@l /* 0x803C7838@l */
 /* 8029A228  90 1E 00 00 */	stw r0, 0(r30)
 lbl_8029A22C:
 /* 8029A22C  7F E0 07 35 */	extsh. r0, r31

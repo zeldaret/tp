@@ -4,14 +4,14 @@ lbl_804EF250:
 /* 804EF258  90 01 00 14 */	stw r0, 0x14(r1)
 /* 804EF25C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 804EF260  7C 7F 1B 78 */	mr r31, r3
-/* 804EF264  4B B2 9A 7C */	b fopAc_IsActor__FPv
+/* 804EF264  4B B2 9A 7D */	bl fopAc_IsActor__FPv
 /* 804EF268  2C 03 00 00 */	cmpwi r3, 0
 /* 804EF26C  41 82 00 18 */	beq lbl_804EF284
 /* 804EF270  A8 1F 00 08 */	lha r0, 8(r31)
 /* 804EF274  2C 00 00 26 */	cmpwi r0, 0x26
 /* 804EF278  40 82 00 0C */	bne lbl_804EF284
 /* 804EF27C  7F E3 FB 78 */	mr r3, r31
-/* 804EF280  4B B2 A9 FC */	b fopAcM_delete__FP10fopAc_ac_c
+/* 804EF280  4B B2 A9 FD */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_804EF284:
 /* 804EF284  38 60 00 00 */	li r3, 0
 /* 804EF288  83 E1 00 0C */	lwz r31, 0xc(r1)

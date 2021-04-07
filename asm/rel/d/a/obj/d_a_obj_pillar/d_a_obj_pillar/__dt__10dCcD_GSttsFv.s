@@ -5,18 +5,18 @@ lbl_80CAFAE8:
 /* 80CAFAF4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CAFAF8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80CAFAFC  41 82 00 30 */	beq lbl_80CAFB2C
-/* 80CAFB00  3C 60 80 CB */	lis r3, __vt__10dCcD_GStts@ha
-/* 80CAFB04  38 03 0B B4 */	addi r0, r3, __vt__10dCcD_GStts@l
+/* 80CAFB00  3C 60 80 CB */	lis r3, __vt__10dCcD_GStts@ha /* 0x80CB0BB4@ha */
+/* 80CAFB04  38 03 0B B4 */	addi r0, r3, __vt__10dCcD_GStts@l /* 0x80CB0BB4@l */
 /* 80CAFB08  90 1F 00 00 */	stw r0, 0(r31)
 /* 80CAFB0C  41 82 00 10 */	beq lbl_80CAFB1C
-/* 80CAFB10  3C 60 80 CB */	lis r3, __vt__10cCcD_GStts@ha
-/* 80CAFB14  38 03 0B A8 */	addi r0, r3, __vt__10cCcD_GStts@l
+/* 80CAFB10  3C 60 80 CB */	lis r3, __vt__10cCcD_GStts@ha /* 0x80CB0BA8@ha */
+/* 80CAFB14  38 03 0B A8 */	addi r0, r3, __vt__10cCcD_GStts@l /* 0x80CB0BA8@l */
 /* 80CAFB18  90 1F 00 00 */	stw r0, 0(r31)
 lbl_80CAFB1C:
 /* 80CAFB1C  7C 80 07 35 */	extsh. r0, r4
 /* 80CAFB20  40 81 00 0C */	ble lbl_80CAFB2C
 /* 80CAFB24  7F E3 FB 78 */	mr r3, r31
-/* 80CAFB28  4B 61 F2 14 */	b __dl__FPv
+/* 80CAFB28  4B 61 F2 15 */	bl __dl__FPv
 lbl_80CAFB2C:
 /* 80CAFB2C  7F E3 FB 78 */	mr r3, r31
 /* 80CAFB30  83 E1 00 0C */	lwz r31, 0xc(r1)

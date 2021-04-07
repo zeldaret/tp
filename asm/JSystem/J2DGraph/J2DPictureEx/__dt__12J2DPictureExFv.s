@@ -7,8 +7,8 @@ lbl_8030393C:
 /* 80303950  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80303954  7C 9F 23 78 */	mr r31, r4
 /* 80303958  41 82 00 58 */	beq lbl_803039B0
-/* 8030395C  3C 60 80 3D */	lis r3, __vt__12J2DPictureEx@ha
-/* 80303960  38 03 D4 B8 */	addi r0, r3, __vt__12J2DPictureEx@l
+/* 8030395C  3C 60 80 3D */	lis r3, __vt__12J2DPictureEx@ha /* 0x803CD4B8@ha */
+/* 80303960  38 03 D4 B8 */	addi r0, r3, __vt__12J2DPictureEx@l /* 0x803CD4B8@l */
 /* 80303964  90 1E 00 00 */	stw r0, 0(r30)
 /* 80303968  88 1E 01 90 */	lbz r0, 0x190(r30)
 /* 8030396C  28 00 00 00 */	cmplwi r0, 0

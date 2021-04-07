@@ -62,8 +62,8 @@ lbl_80334B8C:
 /* 80334B94  48 00 13 C9 */	bl readTextureTable__14J3DModelLoaderFPC15J3DTextureBlock
 /* 80334B98  48 00 00 14 */	b lbl_80334BAC
 lbl_80334B9C:
-/* 80334B9C  3C 60 80 3A */	lis r3, J3DModelLoader__stringBase0@ha
-/* 80334BA0  38 63 20 B0 */	addi r3, r3, J3DModelLoader__stringBase0@l
+/* 80334B9C  3C 60 80 3A */	lis r3, J3DModelLoader__stringBase0@ha /* 0x803A20B0@ha */
+/* 80334BA0  38 63 20 B0 */	addi r3, r3, J3DModelLoader__stringBase0@l /* 0x803A20B0@l */
 /* 80334BA4  4C C6 31 82 */	crclr 6
 /* 80334BA8  4B CD 1F 15 */	bl OSReport
 lbl_80334BAC:
@@ -81,8 +81,8 @@ lbl_80334BB8:
 /* 80334BD4  4B F9 A0 79 */	bl __nw__FUl
 /* 80334BD8  28 03 00 00 */	cmplwi r3, 0
 /* 80334BDC  41 82 00 20 */	beq lbl_80334BFC
-/* 80334BE0  3C 80 80 3D */	lis r4, __vt__10J3DTexture@ha
-/* 80334BE4  38 04 F1 E8 */	addi r0, r4, __vt__10J3DTexture@l
+/* 80334BE0  3C 80 80 3D */	lis r4, __vt__10J3DTexture@ha /* 0x803CF1E8@ha */
+/* 80334BE4  38 04 F1 E8 */	addi r0, r4, __vt__10J3DTexture@l /* 0x803CF1E8@l */
 /* 80334BE8  90 03 00 08 */	stw r0, 8(r3)
 /* 80334BEC  38 00 00 00 */	li r0, 0
 /* 80334BF0  B0 03 00 00 */	sth r0, 0(r3)

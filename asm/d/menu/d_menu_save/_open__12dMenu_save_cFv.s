@@ -36,8 +36,8 @@ lbl_801F09FC:
 /* 801F0A2C  38 00 00 00 */	li r0, 0
 /* 801F0A30  98 1F 01 BF */	stb r0, 0x1bf(r31)
 lbl_801F0A34:
-/* 801F0A34  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 801F0A38  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l
+/* 801F0A34  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 801F0A38  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 801F0A3C  4B E2 66 7D */	bl command_attach__15mDoMemCd_Ctrl_cFv
 /* 801F0A40  80 7F 00 08 */	lwz r3, 8(r31)
 /* 801F0A44  28 03 00 00 */	cmplwi r3, 0
@@ -85,8 +85,8 @@ lbl_801F0ACC:
 lbl_801F0AD4:
 /* 801F0AD4  38 00 00 02 */	li r0, 2
 /* 801F0AD8  98 1F 01 BA */	stb r0, 0x1ba(r31)
-/* 801F0ADC  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801F0AE0  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801F0ADC  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801F0AE0  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801F0AE4  88 03 00 DD */	lbz r0, 0xdd(r3)
 /* 801F0AE8  28 00 00 00 */	cmplwi r0, 0
 /* 801F0AEC  41 82 00 0C */	beq lbl_801F0AF8

@@ -6,8 +6,8 @@ lbl_8034337C:
 /* 8034338C  3B 43 00 00 */	addi r26, r3, 0
 /* 80343390  3B 64 00 00 */	addi r27, r4, 0
 /* 80343394  54 60 30 32 */	slwi r0, r3, 6
-/* 80343398  3C 60 80 45 */	lis r3, Ecb@ha
-/* 8034339C  3B E3 C5 70 */	addi r31, r3, Ecb@l
+/* 80343398  3C 60 80 45 */	lis r3, Ecb@ha /* 0x8044C570@ha */
+/* 8034339C  3B E3 C5 70 */	addi r31, r3, Ecb@l /* 0x8044C570@l */
 /* 803433A0  7F DF 02 14 */	add r30, r31, r0
 /* 803433A4  4B FF A3 51 */	bl OSDisableInterrupts
 /* 803433A8  7C 7C 1B 78 */	mr r28, r3

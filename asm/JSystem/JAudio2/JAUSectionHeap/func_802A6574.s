@@ -7,8 +7,8 @@ lbl_802A6574:
 /* 802A6588  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802A658C  7C 9F 23 78 */	mr r31, r4
 /* 802A6590  41 82 00 28 */	beq lbl_802A65B8
-/* 802A6594  3C 80 80 3D */	lis r4, data_803C9B14@ha
-/* 802A6598  38 04 9B 14 */	addi r0, r4, data_803C9B14@l
+/* 802A6594  3C 80 80 3D */	lis r4, data_803C9B14@ha /* 0x803C9B14@ha */
+/* 802A6598  38 04 9B 14 */	addi r0, r4, data_803C9B14@l /* 0x803C9B14@l */
 /* 802A659C  90 1E 00 00 */	stw r0, 0(r30)
 /* 802A65A0  38 80 00 00 */	li r4, 0
 /* 802A65A4  4B FF D5 35 */	bl __dt__16JAIStreamDataMgrFv

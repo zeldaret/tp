@@ -18,8 +18,8 @@ lbl_80334278:
 /* 80334280  3B 60 00 00 */	li r27, 0
 /* 80334284  3C 60 43 4C */	lis r3, 0x434C /* 0x434C5331@ha */
 /* 80334288  3B A3 53 31 */	addi r29, r3, 0x5331 /* 0x434C5331@l */
-/* 8033428C  3C 60 80 3A */	lis r3, J3DClusterLoader__stringBase0@ha
-/* 80334290  3B C3 20 98 */	addi r30, r3, J3DClusterLoader__stringBase0@l
+/* 8033428C  3C 60 80 3A */	lis r3, J3DClusterLoader__stringBase0@ha /* 0x803A2098@ha */
+/* 80334290  3B C3 20 98 */	addi r30, r3, J3DClusterLoader__stringBase0@l /* 0x803A2098@l */
 /* 80334294  83 FF 00 0C */	lwz r31, 0xc(r31)
 /* 80334298  48 00 00 3C */	b lbl_803342D4
 lbl_8033429C:

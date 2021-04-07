@@ -6,8 +6,8 @@ lbl_80024844:
 /* 80024854  48 33 D9 89 */	bl _savegpr_29
 /* 80024858  7C 9D 23 78 */	mr r29, r4
 /* 8002485C  54 7E 10 3A */	slwi r30, r3, 2
-/* 80024860  3C 60 80 3A */	lis r3, mMemoryBlock__20dStage_roomControl_c@ha
-/* 80024864  3B E3 69 20 */	addi r31, r3, mMemoryBlock__20dStage_roomControl_c@l
+/* 80024860  3C 60 80 3A */	lis r3, mMemoryBlock__20dStage_roomControl_c@ha /* 0x803A6920@ha */
+/* 80024864  3B E3 69 20 */	addi r31, r3, mMemoryBlock__20dStage_roomControl_c@l /* 0x803A6920@l */
 /* 80024868  7C 1F F0 2E */	lwzx r0, r31, r30
 /* 8002486C  28 00 00 00 */	cmplwi r0, 0
 /* 80024870  40 82 00 1C */	bne lbl_8002488C

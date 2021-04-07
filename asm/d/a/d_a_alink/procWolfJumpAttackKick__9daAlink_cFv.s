@@ -11,8 +11,8 @@ lbl_8013A8A0:
 /* 8013A8C4  7F E3 FB 78 */	mr r3, r31
 /* 8013A8C8  38 80 00 02 */	li r4, 2
 /* 8013A8CC  4B FF 3A CD */	bl procWolfBackJumpInit__9daAlink_cFi
-/* 8013A8D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8013A8D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8013A8D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8013A8D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8013A8D8  80 03 5F 1C */	lwz r0, 0x5f1c(r3)
 /* 8013A8DC  64 00 00 20 */	oris r0, r0, 0x20
 /* 8013A8E0  90 03 5F 1C */	stw r0, 0x5f1c(r3)

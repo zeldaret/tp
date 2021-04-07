@@ -6,7 +6,7 @@ lbl_80C0CF2C:
 /* 80C0CF3C  93 C1 00 08 */	stw r30, 8(r1)
 /* 80C0CF40  7C 7E 1B 78 */	mr r30, r3
 /* 80C0CF44  7C 9F 23 78 */	mr r31, r4
-/* 80C0CF48  4B 40 BD 98 */	b fopAc_IsActor__FPv
+/* 80C0CF48  4B 40 BD 99 */	bl fopAc_IsActor__FPv
 /* 80C0CF4C  2C 03 00 00 */	cmpwi r3, 0
 /* 80C0CF50  41 82 00 2C */	beq lbl_80C0CF7C
 /* 80C0CF54  A8 1E 00 08 */	lha r0, 8(r30)

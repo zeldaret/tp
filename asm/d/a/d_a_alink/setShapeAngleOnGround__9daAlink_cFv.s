@@ -26,32 +26,32 @@ lbl_800A6830:
 /* 800A6834  80 1F 31 A0 */	lwz r0, 0x31a0(r31)
 /* 800A6838  54 00 01 CF */	rlwinm. r0, r0, 0, 7, 7
 /* 800A683C  41 82 02 08 */	beq lbl_800A6A44
-/* 800A6840  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800A6844  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800A6840  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800A6844  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800A6848  90 01 00 48 */	stw r0, 0x48(r1)
 /* 800A684C  38 7F 04 D0 */	addi r3, r31, 0x4d0
 /* 800A6850  4B F6 65 15 */	bl transS__14mDoMtx_stack_cFRC4cXyz
-/* 800A6854  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800A6858  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 800A6854  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800A6858  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800A685C  A8 9F 04 E6 */	lha r4, 0x4e6(r31)
 /* 800A6860  4B F6 5B D5 */	bl mDoMtx_YrotM__FPA4_fs
-/* 800A6864  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800A6868  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
-/* 800A686C  3C 80 80 39 */	lis r4, l_crawlFrontUpOffset@ha
-/* 800A6870  38 84 FA 78 */	addi r4, r4, l_crawlFrontUpOffset@l
+/* 800A6864  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800A6868  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 800A686C  3C 80 80 39 */	lis r4, l_crawlFrontUpOffset@ha /* 0x8038FA78@ha */
+/* 800A6870  38 84 FA 78 */	addi r4, r4, l_crawlFrontUpOffset@l /* 0x8038FA78@l */
 /* 800A6874  38 A1 00 2C */	addi r5, r1, 0x2c
 /* 800A6878  48 2A 04 F5 */	bl PSMTXMultVec
-/* 800A687C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800A6880  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
-/* 800A6884  3C 80 80 39 */	lis r4, l_crawlBackUpOffset@ha
-/* 800A6888  38 84 FA 90 */	addi r4, r4, l_crawlBackUpOffset@l
+/* 800A687C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800A6880  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 800A6884  3C 80 80 39 */	lis r4, l_crawlBackUpOffset@ha /* 0x8038FA90@ha */
+/* 800A6888  38 84 FA 90 */	addi r4, r4, l_crawlBackUpOffset@l /* 0x8038FA90@l */
 /* 800A688C  38 A1 00 20 */	addi r5, r1, 0x20
 /* 800A6890  48 2A 04 DD */	bl PSMTXMultVec
 /* 800A6894  38 7F 1D 08 */	addi r3, r31, 0x1d08
 /* 800A6898  38 81 00 2C */	addi r4, r1, 0x2c
 /* 800A689C  48 1C 14 8D */	bl SetPos__11cBgS_GndChkFPC4cXyz
-/* 800A68A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800A68A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800A68A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800A68A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800A68A8  3B C3 0F 38 */	addi r30, r3, 0xf38
 /* 800A68AC  7F C3 F3 78 */	mr r3, r30
 /* 800A68B0  38 9F 1D 08 */	addi r4, r31, 0x1d08
@@ -161,8 +161,8 @@ lbl_800A69FC:
 /* 800A6A2C  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 800A6A30  B0 1F 04 E4 */	sth r0, 0x4e4(r31)
 lbl_800A6A34:
-/* 800A6A34  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800A6A38  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800A6A34  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800A6A38  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800A6A3C  90 01 00 48 */	stw r0, 0x48(r1)
 /* 800A6A40  48 00 00 3C */	b lbl_800A6A7C
 lbl_800A6A44:

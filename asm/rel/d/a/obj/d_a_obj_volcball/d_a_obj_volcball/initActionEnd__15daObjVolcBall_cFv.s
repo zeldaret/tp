@@ -7,10 +7,10 @@ lbl_80D22C6C:
 /* 80D22C80  38 00 00 00 */	li r0, 0
 /* 80D22C84  98 03 29 25 */	stb r0, 0x2925(r3)
 /* 80D22C88  98 03 29 24 */	stb r0, 0x2924(r3)
-/* 80D22C8C  3C 60 80 D2 */	lis r3, search_big_volc__FPvPv@ha
-/* 80D22C90  38 63 1B 50 */	addi r3, r3, search_big_volc__FPvPv@l
+/* 80D22C8C  3C 60 80 D2 */	lis r3, search_big_volc__FPvPv@ha /* 0x80D21B50@ha */
+/* 80D22C90  38 63 1B 50 */	addi r3, r3, search_big_volc__FPvPv@l /* 0x80D21B50@l */
 /* 80D22C94  7F E4 FB 78 */	mr r4, r31
-/* 80D22C98  4B 2F 6B 60 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 80D22C98  4B 2F 6B 61 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80D22C9C  28 03 00 00 */	cmplwi r3, 0
 /* 80D22CA0  41 82 00 18 */	beq lbl_80D22CB8
 /* 80D22CA4  41 82 00 0C */	beq lbl_80D22CB0

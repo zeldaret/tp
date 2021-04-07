@@ -11,7 +11,7 @@ lbl_80BB621C:
 /* 80BB6240  80 7F 05 70 */	lwz r3, 0x570(r31)
 /* 80BB6244  80 83 00 04 */	lwz r4, 4(r3)
 /* 80BB6248  7F E3 FB 78 */	mr r3, r31
-/* 80BB624C  4B 46 43 2C */	b fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
+/* 80BB624C  4B 46 43 2D */	bl fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
 /* 80BB6250  38 00 FF FF */	li r0, -1
 /* 80BB6254  90 1F 05 78 */	stw r0, 0x578(r31)
 /* 80BB6258  38 60 00 00 */	li r3, 0

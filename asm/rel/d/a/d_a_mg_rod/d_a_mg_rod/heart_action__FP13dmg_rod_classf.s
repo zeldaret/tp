@@ -8,12 +8,12 @@ lbl_804AEA80:
 /* 804AEA98  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 804AEA9C  7C 7E 1B 78 */	mr r30, r3
 /* 804AEAA0  FF E0 08 90 */	fmr f31, f1
-/* 804AEAA4  3C 60 80 4C */	lis r3, lit_3879@ha
-/* 804AEAA8  3B E3 B5 34 */	addi r31, r3, lit_3879@l
+/* 804AEAA4  3C 60 80 4C */	lis r3, lit_3879@ha /* 0x804BB534@ha */
+/* 804AEAA8  3B E3 B5 34 */	addi r31, r3, lit_3879@l /* 0x804BB534@l */
 /* 804AEAAC  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 804AEAB0  C0 3F 00 0C */	lfs f1, 0xc(r31)
 /* 804AEAB4  C0 5F 00 60 */	lfs f2, 0x60(r31)
-/* 804AEAB8  4B DC 0F C8 */	b cLib_addCalc0__FPfff
+/* 804AEAB8  4B DC 0F C9 */	bl cLib_addCalc0__FPfff
 /* 804AEABC  80 1E 14 F0 */	lwz r0, 0x14f0(r30)
 /* 804AEAC0  2C 00 00 00 */	cmpwi r0, 0
 /* 804AEAC4  41 82 00 DC */	beq lbl_804AEBA0
@@ -27,19 +27,19 @@ lbl_804AEA80:
 /* 804AEAE4  C0 1F 00 0C */	lfs f0, 0xc(r31)
 /* 804AEAE8  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 804AEAEC  D0 21 00 14 */	stfs f1, 0x14(r1)
-/* 804AEAF0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804AEAF4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804AEAF0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804AEAF4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804AEAF8  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 804AEAFC  38 80 00 01 */	li r4, 1
 /* 804AEB00  38 A0 00 01 */	li r5, 1
 /* 804AEB04  38 C1 00 0C */	addi r6, r1, 0xc
-/* 804AEB08  4B BC 0F 1C */	b StartShock__12dVibration_cFii4cXyz
+/* 804AEB08  4B BC 0F 1D */	bl StartShock__12dVibration_cFii4cXyz
 lbl_804AEB0C:
 /* 804AEB0C  88 1E 0F 80 */	lbz r0, 0xf80(r30)
 /* 804AEB10  2C 00 00 03 */	cmpwi r0, 3
 /* 804AEB14  40 82 00 74 */	bne lbl_804AEB88
 /* 804AEB18  C0 3F 00 E4 */	lfs f1, 0xe4(r31)
-/* 804AEB1C  4B DB 8E 38 */	b cM_rndF__Ff
+/* 804AEB1C  4B DB 8E 39 */	bl cM_rndF__Ff
 /* 804AEB20  C0 1F 01 0C */	lfs f0, 0x10c(r31)
 /* 804AEB24  EC 00 08 2A */	fadds f0, f0, f1
 /* 804AEB28  FC 00 00 1E */	fctiwz f0, f0
@@ -47,7 +47,7 @@ lbl_804AEB0C:
 /* 804AEB30  80 01 00 1C */	lwz r0, 0x1c(r1)
 /* 804AEB34  B0 1E 10 20 */	sth r0, 0x1020(r30)
 /* 804AEB38  C0 3F 00 4C */	lfs f1, 0x4c(r31)
-/* 804AEB3C  4B DB 8E 18 */	b cM_rndF__Ff
+/* 804AEB3C  4B DB 8E 19 */	bl cM_rndF__Ff
 /* 804AEB40  C0 1F 01 3C */	lfs f0, 0x13c(r31)
 /* 804AEB44  EC 00 08 2A */	fadds f0, f0, f1
 /* 804AEB48  FC 00 00 50 */	fneg f0, f0

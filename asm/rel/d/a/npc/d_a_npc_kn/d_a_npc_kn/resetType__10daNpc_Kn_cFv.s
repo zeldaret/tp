@@ -2,8 +2,8 @@ lbl_80A2BC5C:
 /* 80A2BC5C  88 03 15 AC */	lbz r0, 0x15ac(r3)
 /* 80A2BC60  28 00 00 06 */	cmplwi r0, 6
 /* 80A2BC64  41 81 00 C0 */	bgt lbl_80A2BD24
-/* 80A2BC68  3C 80 80 A4 */	lis r4, lit_6752@ha
-/* 80A2BC6C  38 84 18 08 */	addi r4, r4, lit_6752@l
+/* 80A2BC68  3C 80 80 A4 */	lis r4, lit_6752@ha /* 0x80A41808@ha */
+/* 80A2BC6C  38 84 18 08 */	addi r4, r4, lit_6752@l /* 0x80A41808@l */
 /* 80A2BC70  54 00 10 3A */	slwi r0, r0, 2
 /* 80A2BC74  7C 04 00 2E */	lwzx r0, r4, r0
 /* 80A2BC78  7C 09 03 A6 */	mtctr r0

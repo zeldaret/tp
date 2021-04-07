@@ -15,8 +15,8 @@ lbl_80357EA4:
 /* 80357ED8  54 1E 06 3E */	clrlwi r30, r0, 0x18
 /* 80357EDC  54 00 06 B5 */	rlwinm. r0, r0, 0, 0x1a, 0x1a
 /* 80357EE0  41 82 00 44 */	beq lbl_80357F24
-/* 80357EE4  3C 60 80 45 */	lis r3, __CARDDiskNone@ha
-/* 80357EE8  3B E3 CD E0 */	addi r31, r3, __CARDDiskNone@l
+/* 80357EE4  3C 60 80 45 */	lis r3, __CARDDiskNone@ha /* 0x8044CDE0@ha */
+/* 80357EE8  3B E3 CD E0 */	addi r31, r3, __CARDDiskNone@l /* 0x8044CDE0@l */
 /* 80357EEC  38 7B 00 00 */	addi r3, r27, 0
 /* 80357EF0  38 9F 00 00 */	addi r4, r31, 0
 /* 80357EF4  38 A0 00 04 */	li r5, 4
@@ -34,8 +34,8 @@ lbl_80357EA4:
 lbl_80357F24:
 /* 80357F24  57 C0 06 73 */	rlwinm. r0, r30, 0, 0x19, 0x19
 /* 80357F28  41 82 00 3C */	beq lbl_80357F64
-/* 80357F2C  3C 60 80 45 */	lis r3, __CARDDiskNone@ha
-/* 80357F30  38 83 CD E0 */	addi r4, r3, __CARDDiskNone@l
+/* 80357F2C  3C 60 80 45 */	lis r3, __CARDDiskNone@ha /* 0x8044CDE0@ha */
+/* 80357F30  38 83 CD E0 */	addi r4, r3, __CARDDiskNone@l /* 0x8044CDE0@l */
 /* 80357F34  38 7B 00 00 */	addi r3, r27, 0
 /* 80357F38  38 A0 00 04 */	li r5, 4
 /* 80357F3C  48 00 E1 51 */	bl memcmp

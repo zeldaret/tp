@@ -34,13 +34,13 @@ struct daE_Ga_HIO_c {
     /* 804FBAF8 */ ~daE_Ga_HIO_c();
 };
 
+struct dKy_tevstr_c {};
+
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
-
-struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -52,9 +52,9 @@ struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
 
-struct J3DModel {};
-
 struct J3DModelData {};
+
+struct J3DModel {};
 
 struct dComIfG_play_c {
     /* 8002CAF0 */ void addSimpleModel(J3DModelData*, int, u8);
@@ -65,16 +65,6 @@ struct dComIfG_play_c {
 //
 // Forward References:
 //
-
-static void daE_Ga_Draw(e_ga_class*);
-static void ga_fly(e_ga_class*, ga_s*);
-static void bt_fly(e_ga_class*, ga_s*);
-static void ga_control(e_ga_class*);
-static void daE_Ga_Execute(e_ga_class*);
-static bool daE_Ga_IsDelete(e_ga_class*);
-static void daE_Ga_Delete(e_ga_class*);
-static void useHeapInit(fopAc_ac_c*);
-static void daE_Ga_Create(fopAc_ac_c*);
 
 extern "C" void __ct__12daE_Ga_HIO_cFv();
 extern "C" static void daE_Ga_Draw__FP10e_ga_class();
@@ -90,27 +80,11 @@ extern "C" void __dt__4ga_sFv();
 extern "C" void __ct__4ga_sFv();
 extern "C" void __dt__12daE_Ga_HIO_cFv();
 extern "C" void __sinit_d_a_e_ga_cpp();
-extern "C" extern u8 const data_804FBBC0[4];
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_E_GA[12];
+extern "C" extern char const* const d_a_e_ga__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_XrotM(f32 (*)[4], s16);
-void mDoMtx_YrotS(f32 (*)[4], s16);
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void cM_atan2s(f32, f32);
-void cM_rndF(f32);
-void cM_rndFX(f32);
-void cLib_addCalcAngleS2(s16*, s16, s16, s16);
-void MtxPosition(cXyz*, cXyz*);
-void operator delete(void*);
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotS__FPA4_fs();
@@ -160,10 +134,11 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
-/* 804FBB90-804FBB94 0004+00 s=5 e=0 z=0  None .rodata    @3646 */
-SECTION_RODATA static u32 const lit_3646 = 0x3F800000;
+/* 804FBB90-804FBB94 000000 0004+00 5/5 0/0 0/0 .rodata          @3646 */
+SECTION_RODATA static f32 const lit_3646 = 1.0f;
+COMPILER_STRIP_GATE(804FBB90, &lit_3646);
 
-/* 804FBBE0-804FBC00 0020+00 s=1 e=0 z=0  None .data      l_daE_Ga_Method */
+/* 804FBBE0-804FBC00 -00001 0020+00 1/0 0/0 0/0 .data            l_daE_Ga_Method */
 SECTION_DATA static void* l_daE_Ga_Method[8] = {
     (void*)daE_Ga_Create__FP10fopAc_ac_c,
     (void*)daE_Ga_Delete__FP10e_ga_class,
@@ -175,8 +150,8 @@ SECTION_DATA static void* l_daE_Ga_Method[8] = {
     (void*)NULL,
 };
 
-/* 804FBC00-804FBC30 0030+00 s=0 e=0 z=1  None .data      g_profile_E_GA */
-SECTION_DATA void* g_profile_E_GA[12] = {
+/* 804FBC00-804FBC30 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_E_GA */
+SECTION_DATA extern void* g_profile_E_GA[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01C70000, (void*)&g_fpcLf_Method,
     (void*)0x00004D7C, (void*)NULL,
@@ -185,14 +160,14 @@ SECTION_DATA void* g_profile_E_GA[12] = {
     (void*)0x00044000, (void*)0x000E0000,
 };
 
-/* 804FBC30-804FBC3C 000C+00 s=2 e=0 z=0  None .data      __vt__12daE_Ga_HIO_c */
-SECTION_DATA static void* __vt__12daE_Ga_HIO_c[3] = {
-    (void*)NULL,
+/* 804FBC30-804FBC3C 000050 000C+00 2/2 0/0 0/0 .data            __vt__12daE_Ga_HIO_c */
+SECTION_DATA extern void* __vt__12daE_Ga_HIO_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12daE_Ga_HIO_cFv,
 };
 
-/* 804FB0EC-804FB110 0024+00 s=1 e=0 z=0  None .text      __ct__12daE_Ga_HIO_cFv */
+/* 804FB0EC-804FB110 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__12daE_Ga_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -202,27 +177,41 @@ asm daE_Ga_HIO_c::daE_Ga_HIO_c() {
 }
 #pragma pop
 
-/* 804FB110-804FB1B0 00A0+00 s=1 e=0 z=0  None .text      daE_Ga_Draw__FP10e_ga_class */
+/* 804FB110-804FB1B0 000110 00A0+00 1/0 0/0 0/0 .text            daE_Ga_Draw__FP10e_ga_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daE_Ga_Draw(e_ga_class* param_0) {
+static asm void daE_Ga_Draw(e_ga_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_ga/d_a_e_ga/daE_Ga_Draw__FP10e_ga_class.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804FBB94-804FBB98 0004+00 s=2 e=0 z=0  None .rodata    @3713 */
-SECTION_RODATA static u32 const lit_3713 = 0x42C80000;
+/* 804FBB94-804FBB98 000004 0004+00 0/2 0/0 0/0 .rodata          @3713 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3713 = 100.0f;
+COMPILER_STRIP_GATE(804FBB94, &lit_3713);
+#pragma pop
 
-/* 804FBB98-804FBB9C 0004+00 s=1 e=0 z=0  None .rodata    @3714 */
-SECTION_RODATA static u32 const lit_3714 = 0x41200000;
+/* 804FBB98-804FBB9C 000008 0004+00 0/1 0/0 0/0 .rodata          @3714 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3714 = 10.0f;
+COMPILER_STRIP_GATE(804FBB98, &lit_3714);
+#pragma pop
 
-/* 804FBB9C-804FBBA0 0004+00 s=2 e=0 z=0  None .rodata    @3715 */
-SECTION_RODATA static u32 const lit_3715 = 0x43480000;
+/* 804FBB9C-804FBBA0 00000C 0004+00 0/2 0/0 0/0 .rodata          @3715 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3715 = 200.0f;
+COMPILER_STRIP_GATE(804FBB9C, &lit_3715);
+#pragma pop
 
-/* 804FBBA0-804FBBA8 0004+04 s=3 e=0 z=0  None .rodata    @3716 */
+/* 804FBBA0-804FBBA8 000010 0004+04 0/3 0/0 0/0 .rodata          @3716 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_3716[4 + 4 /* padding */] = {
     0x00,
     0x00,
@@ -234,141 +223,175 @@ SECTION_RODATA static u8 const lit_3716[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(804FBBA0, &lit_3716);
+#pragma pop
 
-/* 804FBBA8-804FBBB0 0008+00 s=2 e=0 z=0  None .rodata    @3718 */
+/* 804FBBA8-804FBBB0 000018 0008+00 0/2 0/0 0/0 .rodata          @3718 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_3718[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(804FBBA8, &lit_3718);
+#pragma pop
 
-/* 804FB1B0-804FB3A8 01F8+00 s=1 e=0 z=0  None .text      ga_fly__FP10e_ga_classP4ga_s */
+/* 804FB1B0-804FB3A8 0001B0 01F8+00 1/1 0/0 0/0 .text            ga_fly__FP10e_ga_classP4ga_s */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void ga_fly(e_ga_class* param_0, ga_s* param_1) {
+static asm void ga_fly(e_ga_class* param_0, ga_s* param_1) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_ga/d_a_e_ga/ga_fly__FP10e_ga_classP4ga_s.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804FBBB0-804FBBB4 0004+00 s=1 e=0 z=0  None .rodata    @3759 */
-SECTION_RODATA static u32 const lit_3759 = 0x41400000;
+/* 804FBBB0-804FBBB4 000020 0004+00 0/1 0/0 0/0 .rodata          @3759 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3759 = 12.0f;
+COMPILER_STRIP_GATE(804FBBB0, &lit_3759);
+#pragma pop
 
-/* 804FBBB4-804FBBB8 0004+00 s=1 e=0 z=0  None .rodata    @3760 */
-SECTION_RODATA static u32 const lit_3760 = 0x40E00000;
+/* 804FBBB4-804FBBB8 000024 0004+00 0/1 0/0 0/0 .rodata          @3760 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3760 = 7.0f;
+COMPILER_STRIP_GATE(804FBBB4, &lit_3760);
+#pragma pop
 
-/* 804FB3A8-804FB5C0 0218+00 s=1 e=0 z=0  None .text      bt_fly__FP10e_ga_classP4ga_s */
+/* 804FB3A8-804FB5C0 0003A8 0218+00 1/1 0/0 0/0 .text            bt_fly__FP10e_ga_classP4ga_s */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void bt_fly(e_ga_class* param_0, ga_s* param_1) {
+static asm void bt_fly(e_ga_class* param_0, ga_s* param_1) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_ga/d_a_e_ga/bt_fly__FP10e_ga_classP4ga_s.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804FBBB8-804FBBBC 0004+00 s=1 e=0 z=0  None .rodata    @3796 */
-SECTION_RODATA static u32 const lit_3796 = 0xC1700000;
+/* 804FBBB8-804FBBBC 000028 0004+00 0/1 0/0 0/0 .rodata          @3796 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3796 = -15.0f;
+COMPILER_STRIP_GATE(804FBBB8, &lit_3796);
+#pragma pop
 
-/* 804FBBBC-804FBBC0 0004+00 s=1 e=0 z=0  None .rodata    @3797 */
-SECTION_RODATA static u32 const lit_3797 = 0xC0A00000;
+/* 804FBBBC-804FBBC0 00002C 0004+00 0/1 0/0 0/0 .rodata          @3797 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3797 = -5.0f;
+COMPILER_STRIP_GATE(804FBBBC, &lit_3797);
+#pragma pop
 
-/* 804FB5C0-804FB6F8 0138+00 s=1 e=0 z=0  None .text      ga_control__FP10e_ga_class */
+/* 804FB5C0-804FB6F8 0005C0 0138+00 1/1 0/0 0/0 .text            ga_control__FP10e_ga_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void ga_control(e_ga_class* param_0) {
+static asm void ga_control(e_ga_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_ga/d_a_e_ga/ga_control__FP10e_ga_class.s"
 }
 #pragma pop
 
-/* 804FB6F8-804FB71C 0024+00 s=2 e=0 z=0  None .text      daE_Ga_Execute__FP10e_ga_class */
+/* 804FB6F8-804FB71C 0006F8 0024+00 2/1 0/0 0/0 .text            daE_Ga_Execute__FP10e_ga_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daE_Ga_Execute(e_ga_class* param_0) {
+static asm void daE_Ga_Execute(e_ga_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_ga/d_a_e_ga/daE_Ga_Execute__FP10e_ga_class.s"
 }
 #pragma pop
 
-/* 804FB71C-804FB724 0008+00 s=1 e=0 z=0  None .text      daE_Ga_IsDelete__FP10e_ga_class */
+/* 804FB71C-804FB724 00071C 0008+00 1/0 0/0 0/0 .text            daE_Ga_IsDelete__FP10e_ga_class */
 static bool daE_Ga_IsDelete(e_ga_class* param_0) {
     return true;
 }
 
 /* ############################################################################################## */
-/* 804FBBC0-804FBBC4 0004+00 s=0 e=0 z=0  None .rodata    l_bmdidx$3809 */
-SECTION_RODATA u8 const data_804FBBC0[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x03,
-};
-
-/* 804FBBC4-804FBBC8 0004+00 s=1 e=0 z=0  None .rodata    @3912 */
-SECTION_RODATA static u32 const lit_3912 = 0x47800000;
-
-/* 804FBBC8-804FBBCC 0004+00 s=1 e=0 z=0  None .rodata    @3913 */
-SECTION_RODATA static u32 const lit_3913 = 0x3E99999A;
-
-/* 804FBBCC-804FBBD0 0004+00 s=1 e=0 z=0  None .rodata    @3914 */
-SECTION_RODATA static u32 const lit_3914 = 0x3F4CCCCD;
-
-/* 804FBBD0-804FBBD4 0004+00 s=1 e=0 z=0  None .rodata    @3915 */
-SECTION_RODATA static u32 const lit_3915 = 0x3E4CCCCD;
-
-/* 804FBBD4-804FBBDE 000A+00 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_804FBBD4 = "E_ga";
-SECTION_DEAD char const* const stringBase_804FBBD9 = "E_Ga";
-#pragma pop
-
-/* 804FBC48-804FBC4C 0004+00 s=2 e=0 z=0  None .bss       None */
+/* 804FBC48-804FBC4C 000008 0004+00 2/2 0/0 0/0 .bss             None */
 static u8 data_804FBC48[4];
 
-/* 804FB724-804FB7C4 00A0+00 s=1 e=0 z=0  None .text      daE_Ga_Delete__FP10e_ga_class */
+/* 804FB724-804FB7C4 000724 00A0+00 1/0 0/0 0/0 .text            daE_Ga_Delete__FP10e_ga_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daE_Ga_Delete(e_ga_class* param_0) {
+static asm void daE_Ga_Delete(e_ga_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_ga/d_a_e_ga/daE_Ga_Delete__FP10e_ga_class.s"
 }
 #pragma pop
 
-/* 804FB7C4-804FB874 00B0+00 s=1 e=0 z=0  None .text      useHeapInit__FP10fopAc_ac_c */
+/* 804FB7C4-804FB874 0007C4 00B0+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void useHeapInit(fopAc_ac_c* param_0) {
+static asm void useHeapInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_ga/d_a_e_ga/useHeapInit__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804FBC4C-804FBC58 000C+00 s=1 e=0 z=0  None .bss       @3641 */
+/* 804FBBC0-804FBBC4 000030 0004+00 0/0 0/0 0/0 .rodata          l_bmdidx$3809 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const l_bmdidx[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x03,
+};
+COMPILER_STRIP_GATE(804FBBC0, &l_bmdidx);
+#pragma pop
+
+/* 804FBBC4-804FBBC8 000034 0004+00 0/1 0/0 0/0 .rodata          @3912 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3912 = 65536.0f;
+COMPILER_STRIP_GATE(804FBBC4, &lit_3912);
+#pragma pop
+
+/* 804FBBC8-804FBBCC 000038 0004+00 0/1 0/0 0/0 .rodata          @3913 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3913 = 3.0f / 10.0f;
+COMPILER_STRIP_GATE(804FBBC8, &lit_3913);
+#pragma pop
+
+/* 804FBBCC-804FBBD0 00003C 0004+00 0/1 0/0 0/0 .rodata          @3914 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3914 = 4.0f / 5.0f;
+COMPILER_STRIP_GATE(804FBBCC, &lit_3914);
+#pragma pop
+
+/* 804FBBD0-804FBBD4 000040 0004+00 0/1 0/0 0/0 .rodata          @3915 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3915 = 1.0f / 5.0f;
+COMPILER_STRIP_GATE(804FBBD0, &lit_3915);
+#pragma pop
+
+/* 804FBC4C-804FBC58 00000C 000C+00 1/1 0/0 0/0 .bss             @3641 */
 static u8 lit_3641[12];
 
-/* 804FBC58-804FBC64 000C+00 s=2 e=0 z=0  None .bss       l_HIO */
+/* 804FBC58-804FBC64 000018 000C+00 2/2 0/0 0/0 .bss             l_HIO */
 static u8 l_HIO[12];
 
-/* 804FB874-804FBAB8 0244+00 s=1 e=0 z=0  None .text      daE_Ga_Create__FP10fopAc_ac_c */
+/* 804FB874-804FBAB8 000874 0244+00 1/0 0/0 0/0 .text            daE_Ga_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daE_Ga_Create(fopAc_ac_c* param_0) {
+static asm void daE_Ga_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_ga/d_a_e_ga/daE_Ga_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 804FBAB8-804FBAF4 003C+00 s=1 e=0 z=0  None .text      __dt__4ga_sFv */
+/* 804FBAB8-804FBAF4 000AB8 003C+00 1/1 0/0 0/0 .text            __dt__4ga_sFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -378,12 +401,12 @@ asm ga_s::~ga_s() {
 }
 #pragma pop
 
-/* 804FBAF4-804FBAF8 0004+00 s=1 e=0 z=0  None .text      __ct__4ga_sFv */
+/* 804FBAF4-804FBAF8 000AF4 0004+00 1/1 0/0 0/0 .text            __ct__4ga_sFv */
 ga_s::ga_s() {
     /* empty function */
 }
 
-/* 804FBAF8-804FBB40 0048+00 s=2 e=0 z=0  None .text      __dt__12daE_Ga_HIO_cFv */
+/* 804FBAF8-804FBB40 000AF8 0048+00 2/1 0/0 0/0 .text            __dt__12daE_Ga_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -393,12 +416,25 @@ asm daE_Ga_HIO_c::~daE_Ga_HIO_c() {
 }
 #pragma pop
 
-/* 804FBB40-804FBB7C 003C+00 s=0 e=1 z=0  None .text      __sinit_d_a_e_ga_cpp */
+/* 804FBB40-804FBB7C 000B40 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_e_ga_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_a_e_ga_cpp() {
+asm void __sinit_d_a_e_ga_cpp() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_ga/d_a_e_ga/__sinit_d_a_e_ga_cpp.s"
 }
+#pragma pop
+
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_804FBB40 = (void*)__sinit_d_a_e_ga_cpp;
+#pragma pop
+
+/* 804FBBD4-804FBBDE 000044 000A+00 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_804FBBD4 = "E_ga";
+SECTION_DEAD static char const* const stringBase_804FBBD9 = "E_Ga";
 #pragma pop

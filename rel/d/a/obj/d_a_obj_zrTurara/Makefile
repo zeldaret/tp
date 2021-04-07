@@ -3,19 +3,20 @@
 #
 
 M697_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zrTurara.plf
+M697_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zrTurara.lcf
+M697_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zrTurara.map
 
 M697_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_zrTurara/executor.cpp \
-	rel/d/a/obj/d_a_obj_zrTurara/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_zrTurara/d_a_obj_zrTurara.cpp \
 
 M697_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zrTurara/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zrTurara/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zrTurara/d_a_obj_zrTurara.o \
 
 M697_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_zrTurara/libRuntime.PPCEABI.H.a \
 
 M697_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M697_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M697_LDSCRIPT) \
+	-unused -map $(M697_MAP) \
+	-w off \
 
 $(M697_TARGET): $(M697_O_FILES) $(M697_LIBS)
+	@echo [697] creating $(M697_TARGET)
 	@echo $(M697_LIBS) $(M697_O_FILES) > build/M697_ofiles
-	$(LD) -partial $(M697_LDFLAGS) -o $(M697_TARGET) @build/M697_ofiles
+	@python3 tools/lcf.py rel 697 --output $(M697_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M697_LDFLAGS) -o $(M697_TARGET) @build/M697_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_zrTurara/%.o: rel/d/a/obj/d_a_obj_zrTurara/%.cpp
+	@echo [697] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M697_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M697_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_zrTurara/libs/Runtime.PPCEABI.H/Makefile
 

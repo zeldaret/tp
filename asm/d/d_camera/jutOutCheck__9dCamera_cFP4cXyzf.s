@@ -45,11 +45,11 @@ lbl_80167CD8:
 /* 80167D84  4B FF DB 3D */	bl lineBGCheck__9dCamera_cFP4cXyzP4cXyzP11dBgS_LinChkUl
 /* 80167D88  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80167D8C  41 82 00 80 */	beq lbl_80167E0C
-/* 80167D90  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 80167D94  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 80167D90  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 80167D94  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 80167D98  90 01 00 60 */	stw r0, 0x60(r1)
-/* 80167D9C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80167DA0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80167D9C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80167DA0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80167DA4  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80167DA8  38 81 00 78 */	addi r4, r1, 0x78
 /* 80167DAC  38 A1 00 50 */	addi r5, r1, 0x50
@@ -68,8 +68,8 @@ lbl_80167CD8:
 /* 80167DE0  38 81 00 08 */	addi r4, r1, 8
 /* 80167DE4  7F E5 FB 78 */	mr r5, r31
 /* 80167DE8  48 1D F2 A9 */	bl PSVECAdd
-/* 80167DEC  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 80167DF0  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 80167DEC  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 80167DF0  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 80167DF4  90 01 00 60 */	stw r0, 0x60(r1)
 /* 80167DF8  38 61 00 64 */	addi r3, r1, 0x64
 /* 80167DFC  38 80 FF FF */	li r4, -1

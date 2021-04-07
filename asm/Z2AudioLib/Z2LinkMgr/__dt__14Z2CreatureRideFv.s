@@ -7,8 +7,8 @@ lbl_802C5114:
 /* 802C5128  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802C512C  7C 9F 23 78 */	mr r31, r4
 /* 802C5130  41 82 00 A0 */	beq lbl_802C51D0
-/* 802C5134  3C 80 80 3D */	lis r4, __vt__14Z2CreatureRide@ha
-/* 802C5138  38 84 B9 24 */	addi r4, r4, __vt__14Z2CreatureRide@l
+/* 802C5134  3C 80 80 3D */	lis r4, __vt__14Z2CreatureRide@ha /* 0x803CB924@ha */
+/* 802C5138  38 84 B9 24 */	addi r4, r4, __vt__14Z2CreatureRide@l /* 0x803CB924@l */
 /* 802C513C  90 9E 00 00 */	stw r4, 0(r30)
 /* 802C5140  38 04 00 30 */	addi r0, r4, 0x30
 /* 802C5144  90 1E 00 90 */	stw r0, 0x90(r30)
@@ -18,13 +18,13 @@ lbl_802C5114:
 /* 802C5154  4E 80 04 21 */	bctrl 
 /* 802C5158  34 1E 00 90 */	addic. r0, r30, 0x90
 /* 802C515C  41 82 00 58 */	beq lbl_802C51B4
-/* 802C5160  3C 60 80 3D */	lis r3, __vt__18Z2RideSoundStarter@ha
-/* 802C5164  38 03 B9 10 */	addi r0, r3, __vt__18Z2RideSoundStarter@l
+/* 802C5160  3C 60 80 3D */	lis r3, __vt__18Z2RideSoundStarter@ha /* 0x803CB910@ha */
+/* 802C5164  38 03 B9 10 */	addi r0, r3, __vt__18Z2RideSoundStarter@l /* 0x803CB910@l */
 /* 802C5168  90 1E 00 90 */	stw r0, 0x90(r30)
 /* 802C516C  34 1E 00 90 */	addic. r0, r30, 0x90
 /* 802C5170  41 82 00 44 */	beq lbl_802C51B4
-/* 802C5174  3C 60 80 3D */	lis r3, __vt__14Z2SoundStarter@ha
-/* 802C5178  38 03 9D 80 */	addi r0, r3, __vt__14Z2SoundStarter@l
+/* 802C5174  3C 60 80 3D */	lis r3, __vt__14Z2SoundStarter@ha /* 0x803C9D80@ha */
+/* 802C5178  38 03 9D 80 */	addi r0, r3, __vt__14Z2SoundStarter@l /* 0x803C9D80@l */
 /* 802C517C  90 1E 00 90 */	stw r0, 0x90(r30)
 /* 802C5180  34 1E 00 94 */	addic. r0, r30, 0x94
 /* 802C5184  41 82 00 24 */	beq lbl_802C51A8

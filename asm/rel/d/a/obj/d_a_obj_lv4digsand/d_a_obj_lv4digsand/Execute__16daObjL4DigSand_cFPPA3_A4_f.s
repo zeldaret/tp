@@ -6,15 +6,15 @@ lbl_80C66D40:
 /* 80C66D50  93 C1 00 08 */	stw r30, 8(r1)
 /* 80C66D54  7C 7E 1B 78 */	mr r30, r3
 /* 80C66D58  7C 9F 23 78 */	mr r31, r4
-/* 80C66D5C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C66D60  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C66D5C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C66D60  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C66D64  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 80C66D68  80 03 05 74 */	lwz r0, 0x574(r3)
 /* 80C66D6C  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
 /* 80C66D70  41 82 00 24 */	beq lbl_80C66D94
 /* 80C66D74  38 60 00 B2 */	li r3, 0xb2
 /* 80C66D78  38 80 00 01 */	li r4, 1
-/* 80C66D7C  4B 43 11 64 */	b checkItemGet__FUci
+/* 80C66D7C  4B 43 11 65 */	bl checkItemGet__FUci
 /* 80C66D80  2C 03 00 00 */	cmpwi r3, 0
 /* 80C66D84  41 82 00 10 */	beq lbl_80C66D94
 /* 80C66D88  38 00 00 80 */	li r0, 0x80

@@ -9,8 +9,8 @@ lbl_800DA180:
 /* 800DA19C  7C BC 2B 78 */	mr r28, r5
 /* 800DA1A0  7C DD 33 78 */	mr r29, r6
 /* 800DA1A4  7C FE 3B 78 */	mr r30, r7
-/* 800DA1A8  3C 80 80 39 */	lis r4, lit_3757@ha
-/* 800DA1AC  3B 24 D6 58 */	addi r25, r4, lit_3757@l
+/* 800DA1A8  3C 80 80 39 */	lis r4, lit_3757@ha /* 0x8038D658@ha */
+/* 800DA1AC  3B 24 D6 58 */	addi r25, r4, lit_3757@l /* 0x8038D658@l */
 /* 800DA1B0  38 80 00 33 */	li r4, 0x33
 /* 800DA1B4  4B FE 8B F1 */	bl commonProcInitNotSameProc__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800DA1B8  2C 03 00 00 */	cmpwi r3, 0
@@ -145,8 +145,8 @@ lbl_800DA384:
 /* 800DA390  C0 02 92 B8 */	lfs f0, lit_6040(r2)
 /* 800DA394  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 800DA398  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 800DA39C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800DA3A0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800DA39C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800DA3A0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800DA3A4  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 800DA3A8  38 80 00 06 */	li r4, 6
 /* 800DA3AC  38 A0 00 1F */	li r5, 0x1f

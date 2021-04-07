@@ -3,10 +3,10 @@ lbl_805EA9AC:
 /* 805EA9B0  7C 08 02 A6 */	mflr r0
 /* 805EA9B4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 805EA9B8  39 61 00 20 */	addi r11, r1, 0x20
-/* 805EA9BC  4B D7 78 1C */	b _savegpr_28
+/* 805EA9BC  4B D7 78 1D */	bl _savegpr_28
 /* 805EA9C0  7C 7F 1B 78 */	mr r31, r3
-/* 805EA9C4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805EA9C8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805EA9C4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805EA9C8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805EA9CC  83 A3 5D AC */	lwz r29, 0x5dac(r3)
 /* 805EA9D0  A8 7F 06 5A */	lha r3, 0x65a(r31)
 /* 805EA9D4  38 03 FF FF */	addi r0, r3, -1
@@ -40,7 +40,7 @@ lbl_805EAA30:
 lbl_805EAA38:
 /* 805EAA38  38 7E 08 14 */	addi r3, r30, 0x814
 /* 805EAA3C  7C 7F 1A 14 */	add r3, r31, r3
-/* 805EAA40  4B A9 98 80 */	b ChkAtHit__12dCcD_GObjInfFv
+/* 805EAA40  4B A9 98 81 */	bl ChkAtHit__12dCcD_GObjInfFv
 /* 805EAA44  28 03 00 00 */	cmplwi r3, 0
 /* 805EAA48  41 82 00 8C */	beq lbl_805EAAD4
 /* 805EAA4C  7F A3 EB 78 */	mr r3, r29
@@ -60,13 +60,13 @@ lbl_805EAA38:
 /* 805EAA84  2C 00 00 00 */	cmpwi r0, 0
 /* 805EAA88  40 82 00 40 */	bne lbl_805EAAC8
 /* 805EAA8C  7F A3 EB 78 */	mr r3, r29
-/* 805EAA90  3C 80 80 5F */	lis r4, data_805ED730@ha
-/* 805EAA94  38 84 D7 30 */	addi r4, r4, data_805ED730@l
+/* 805EAA90  3C 80 80 5F */	lis r4, data_805ED730@ha /* 0x805ED730@ha */
+/* 805EAA94  38 84 D7 30 */	addi r4, r4, data_805ED730@l /* 0x805ED730@l */
 /* 805EAA98  A8 84 00 00 */	lha r4, 0(r4)
-/* 805EAA9C  3C A0 80 5F */	lis r5, lit_5884@ha
-/* 805EAAA0  C0 25 D2 F4 */	lfs f1, lit_5884@l(r5)
-/* 805EAAA4  3C A0 80 5F */	lis r5, lit_5784@ha
-/* 805EAAA8  C0 45 D2 E8 */	lfs f2, lit_5784@l(r5)
+/* 805EAA9C  3C A0 80 5F */	lis r5, lit_5884@ha /* 0x805ED2F4@ha */
+/* 805EAAA0  C0 25 D2 F4 */	lfs f1, lit_5884@l(r5)  /* 0x805ED2F4@l */
+/* 805EAAA4  3C A0 80 5F */	lis r5, lit_5784@ha /* 0x805ED2E8@ha */
+/* 805EAAA8  C0 45 D2 E8 */	lfs f2, lit_5784@l(r5)  /* 0x805ED2E8@l */
 /* 805EAAAC  38 A0 00 00 */	li r5, 0
 /* 805EAAB0  38 C0 00 00 */	li r6, 0
 /* 805EAAB4  38 E0 00 00 */	li r7, 0
@@ -85,7 +85,7 @@ lbl_805EAAD4:
 /* 805EAAE0  41 80 FF 58 */	blt lbl_805EAA38
 lbl_805EAAE4:
 /* 805EAAE4  39 61 00 20 */	addi r11, r1, 0x20
-/* 805EAAE8  4B D7 77 3C */	b _restgpr_28
+/* 805EAAE8  4B D7 77 3D */	bl _restgpr_28
 /* 805EAAEC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 805EAAF0  7C 08 03 A6 */	mtlr r0
 /* 805EAAF4  38 21 00 20 */	addi r1, r1, 0x20

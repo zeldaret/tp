@@ -107,9 +107,9 @@ struct cBgS {
     /* 800744A0 */ void GroundCross(cBgS_GndChk*);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -121,13 +121,6 @@ struct J3DModel {};
 //
 // Forward References:
 //
-
-static void rideCallBack(dBgW*, fopAc_ac_c*, fopAc_ac_c*);
-static void daObjBhbridge_Draw(daObjBhbridge_c*);
-static void daObjBhbridge_Execute(daObjBhbridge_c*);
-static bool daObjBhbridge_IsDelete(daObjBhbridge_c*);
-static void daObjBhbridge_Delete(daObjBhbridge_c*);
-static void daObjBhbridge_Create(fopAc_ac_c*);
 
 extern "C" void RideOn_Angle__15daObjBhbridge_cFRsfsf();
 extern "C" void Check_RideOn__15daObjBhbridge_cFv();
@@ -147,23 +140,11 @@ extern "C" void Draw__15daObjBhbridge_cFv();
 extern "C" void Delete__15daObjBhbridge_cFv();
 extern "C" static void func_80BB5EE8();
 extern "C" static void func_80BB5EF0();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_Bhbridge[12];
+extern "C" extern char const* const d_a_obj_bhbridge__stringBase0;
 
 //
 // External References:
 //
-
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
-void cLib_addCalc(f32*, f32, f32, f32, f32);
-void cLib_addCalcAngleS(s16*, s16, s16, s16, s16);
-void cLib_targetAngleY(Vec const*, Vec const*);
-void operator delete(void*);
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
@@ -226,12 +207,13 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 80BB5F00-80BB5F08 0008+00 s=5 e=0 z=0  None .rodata    @3655 */
+/* 80BB5F00-80BB5F08 000000 0008+00 5/5 0/0 0/0 .rodata          @3655 */
 SECTION_RODATA static u8 const lit_3655[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80BB5F00, &lit_3655);
 
-/* 80BB5318-80BB5380 0068+00 s=1 e=0 z=0  None .text      RideOn_Angle__15daObjBhbridge_cFRsfsf */
+/* 80BB5318-80BB5380 000078 0068+00 1/1 0/0 0/0 .text RideOn_Angle__15daObjBhbridge_cFRsfsf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -242,7 +224,9 @@ asm void daObjBhbridge_c::RideOn_Angle(s16& param_0, f32 param_1, s16 param_2, f
 #pragma pop
 
 /* ############################################################################################## */
-/* 80BB5F08-80BB5F10 0004+04 s=2 e=0 z=0  None .rodata    @3703 */
+/* 80BB5F08-80BB5F10 000008 0004+04 0/2 0/0 0/0 .rodata          @3703 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_3703[4 + 4 /* padding */] = {
     0x00,
     0x00,
@@ -254,32 +238,59 @@ SECTION_RODATA static u8 const lit_3703[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80BB5F08, &lit_3703);
+#pragma pop
 
-/* 80BB5F10-80BB5F18 0008+00 s=1 e=0 z=0  None .rodata    @3704 */
+/* 80BB5F10-80BB5F18 000010 0008+00 0/1 0/0 0/0 .rodata          @3704 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_3704[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80BB5F10, &lit_3704);
+#pragma pop
 
-/* 80BB5F18-80BB5F20 0008+00 s=1 e=0 z=0  None .rodata    @3705 */
+/* 80BB5F18-80BB5F20 000018 0008+00 0/1 0/0 0/0 .rodata          @3705 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_3705[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80BB5F18, &lit_3705);
+#pragma pop
 
-/* 80BB5F20-80BB5F28 0008+00 s=1 e=0 z=0  None .rodata    @3706 */
+/* 80BB5F20-80BB5F28 000020 0008+00 0/1 0/0 0/0 .rodata          @3706 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_3706[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80BB5F20, &lit_3706);
+#pragma pop
 
-/* 80BB5F28-80BB5F2C 0004+00 s=1 e=0 z=0  None .rodata    @3707 */
-SECTION_RODATA static u32 const lit_3707 = 0x43340000;
+/* 80BB5F28-80BB5F2C 000028 0004+00 0/1 0/0 0/0 .rodata          @3707 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3707 = 180.0f;
+COMPILER_STRIP_GATE(80BB5F28, &lit_3707);
+#pragma pop
 
-/* 80BB5F2C-80BB5F30 0004+00 s=2 e=0 z=0  None .rodata    @3708 */
-SECTION_RODATA static u32 const lit_3708 = 0x3D4CCCCD;
+/* 80BB5F2C-80BB5F30 00002C 0004+00 0/2 0/0 0/0 .rodata          @3708 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3708 = 1.0f / 20.0f;
+COMPILER_STRIP_GATE(80BB5F2C, &lit_3708);
+#pragma pop
 
-/* 80BB5F30-80BB5F34 0004+00 s=3 e=0 z=0  None .rodata    @3709 */
-SECTION_RODATA static u32 const lit_3709 = 0x42C80000;
+/* 80BB5F30-80BB5F34 000030 0004+00 0/3 0/0 0/0 .rodata          @3709 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3709 = 100.0f;
+COMPILER_STRIP_GATE(80BB5F30, &lit_3709);
+#pragma pop
 
-/* 80BB5380-80BB558C 020C+00 s=1 e=0 z=0  None .text      Check_RideOn__15daObjBhbridge_cFv */
+/* 80BB5380-80BB558C 0000E0 020C+00 1/1 0/0 0/0 .text            Check_RideOn__15daObjBhbridge_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -289,7 +300,7 @@ asm void daObjBhbridge_c::Check_RideOn() {
 }
 #pragma pop
 
-/* 80BB558C-80BB55B8 002C+00 s=1 e=0 z=0  None .text      initBaseMtx__15daObjBhbridge_cFv */
+/* 80BB558C-80BB55B8 0002EC 002C+00 1/1 0/0 0/0 .text            initBaseMtx__15daObjBhbridge_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -299,7 +310,7 @@ asm void daObjBhbridge_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80BB55B8-80BB5614 005C+00 s=2 e=0 z=0  None .text      setBaseMtx__15daObjBhbridge_cFv */
+/* 80BB55B8-80BB5614 000318 005C+00 2/2 0/0 0/0 .text            setBaseMtx__15daObjBhbridge_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -310,129 +321,81 @@ asm void daObjBhbridge_c::setBaseMtx() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80BB5F34-80BB5F38 0004+00 s=2 e=0 z=0  None .rodata    @3758 */
-SECTION_RODATA static u32 const lit_3758 = 0xBF800000;
+/* 80BB5F34-80BB5F38 000034 0004+00 1/2 0/0 0/0 .rodata          @3758 */
+SECTION_RODATA static f32 const lit_3758 = -1.0f;
+COMPILER_STRIP_GATE(80BB5F34, &lit_3758);
 
-/* 80BB5F38-80BB5F3C 0004+00 s=1 e=0 z=0  None .rodata    @3759 */
-SECTION_RODATA static u32 const lit_3759 = 0xC0C00000;
+/* 80BB5F38-80BB5F3C 000038 0004+00 1/1 0/0 0/0 .rodata          @3759 */
+SECTION_RODATA static f32 const lit_3759 = -6.0f;
+COMPILER_STRIP_GATE(80BB5F38, &lit_3759);
 
-/* 80BB5614-80BB5678 0064+00 s=1 e=0 z=0  None .text
+/* 80BB5614-80BB5678 000374 0064+00 1/1 0/0 0/0 .text
  * rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c              */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
+static asm void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bhbridge/d_a_obj_bhbridge/rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80BB5678-80BB56A4 002C+00 s=1 e=0 z=0  None .text      daObjBhbridge_Draw__FP15daObjBhbridge_c */
+/* 80BB5678-80BB56A4 0003D8 002C+00 1/0 0/0 0/0 .text daObjBhbridge_Draw__FP15daObjBhbridge_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjBhbridge_Draw(daObjBhbridge_c* param_0) {
+static asm void daObjBhbridge_Draw(daObjBhbridge_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bhbridge/d_a_obj_bhbridge/daObjBhbridge_Draw__FP15daObjBhbridge_c.s"
 }
 #pragma pop
 
-/* 80BB56A4-80BB56C4 0020+00 s=1 e=0 z=0  None .text      daObjBhbridge_Execute__FP15daObjBhbridge_c
+/* 80BB56A4-80BB56C4 000404 0020+00 1/0 0/0 0/0 .text daObjBhbridge_Execute__FP15daObjBhbridge_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjBhbridge_Execute(daObjBhbridge_c* param_0) {
+static asm void daObjBhbridge_Execute(daObjBhbridge_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bhbridge/d_a_obj_bhbridge/daObjBhbridge_Execute__FP15daObjBhbridge_c.s"
 }
 #pragma pop
 
-/* 80BB56C4-80BB56CC 0008+00 s=1 e=0 z=0  None .text daObjBhbridge_IsDelete__FP15daObjBhbridge_c
+/* 80BB56C4-80BB56CC 000424 0008+00 1/0 0/0 0/0 .text daObjBhbridge_IsDelete__FP15daObjBhbridge_c
  */
 static bool daObjBhbridge_IsDelete(daObjBhbridge_c* param_0) {
     return true;
 }
 
-/* 80BB56CC-80BB56F0 0024+00 s=1 e=0 z=0  None .text      daObjBhbridge_Delete__FP15daObjBhbridge_c
- */
+/* 80BB56CC-80BB56F0 00042C 0024+00 1/0 0/0 0/0 .text daObjBhbridge_Delete__FP15daObjBhbridge_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjBhbridge_Delete(daObjBhbridge_c* param_0) {
+static asm void daObjBhbridge_Delete(daObjBhbridge_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bhbridge/d_a_obj_bhbridge/daObjBhbridge_Delete__FP15daObjBhbridge_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80BB5F3C-80BB5F40 0004+00 s=2 e=0 z=0  None .rodata    @3833 */
-SECTION_RODATA static u32 const lit_3833 = 0x43960000;
-
-/* 80BB5F40-80BB5F44 0004+00 s=1 e=0 z=0  None .rodata    @3834 */
-SECTION_RODATA static u32 const lit_3834 = 0xCE6E6B28;
-
-/* 80BB5F44-80BB5F48 0004+00 s=1 e=0 z=0  None .rodata    @3853 */
-SECTION_RODATA static u32 const lit_3853 = 0xC3C80000;
-
-/* 80BB5F48-80BB5F4C 0004+00 s=1 e=0 z=0  None .rodata    @3854 */
-SECTION_RODATA static u32 const lit_3854 = 0xC4480000;
-
-/* 80BB5F4C-80BB5F50 0004+00 s=1 e=0 z=0  None .rodata    @3855 */
-SECTION_RODATA static u32 const lit_3855 = 0xC47A0000;
-
-/* 80BB5F50-80BB5F54 0004+00 s=1 e=0 z=0  None .rodata    @3856 */
-SECTION_RODATA static u32 const lit_3856 = 0x43C80000;
-
-/* 80BB5F54-80BB5F58 0004+00 s=1 e=0 z=0  None .rodata    @3857 */
-SECTION_RODATA static u32 const lit_3857 = 0x447A0000;
-
-/* 80BB5F58-80BB5F5C 0004+00 s=1 e=0 z=0  None .rodata    @3891 */
-SECTION_RODATA static u32 const lit_3891 = 0x3F800000;
-
-/* 80BB5F5C-80BB5F60 0004+00 s=1 e=0 z=0  None .rodata    @3892 */
-SECTION_RODATA static u32 const lit_3892 = 0x44540000;
-
-/* 80BB5F60-80BB5F64 0004+00 s=1 e=0 z=0  None .rodata    @3893 */
-SECTION_RODATA static u32 const lit_3893 = 0x40000000;
-
-/* 80BB5F64-80BB5F68 0004+00 s=1 e=0 z=0  None .rodata    @3894 */
-SECTION_RODATA static u32 const lit_3894 = 0x44000000;
-
-/* 80BB5F68-80BB5F6C 0004+00 s=1 e=0 z=0  None .rodata    @3895 */
-SECTION_RODATA static u32 const lit_3895 = 0x43800000;
-
-/* 80BB5F6C-80BB5F70 0004+00 s=1 e=0 z=0  None .rodata    @3896 */
-SECTION_RODATA static u32 const lit_3896 = 0x41300000;
-
-/* 80BB5F70-80BB5F74 0004+00 s=1 e=0 z=0  None .rodata    @3897 */
-SECTION_RODATA static u32 const lit_3897 = 0x40A00000;
-
-/* 80BB5F74-80BB5F78 0004+00 s=1 e=0 z=0  None .rodata    @3898 */
-SECTION_RODATA static u32 const lit_3898 = 0x3DCCCCCD;
-
-/* 80BB5F78-80BB5F7C 0004+00 s=1 e=0 z=0  None .rodata    @3899 */
-SECTION_RODATA static u32 const lit_3899 = 0x41700000;
-
-/* 80BB5F7C-80BB5F80 0004+00 s=1 e=0 z=0  None .rodata    @3900 */
-SECTION_RODATA static u32 const lit_3900 = 0x3F000000;
-
-/* 80BB5F80-80BB5F84 0004+00 s=1 e=0 z=0  None .rodata    @3901 */
-SECTION_RODATA static u32 const lit_3901 = 0x3E4CCCCD;
-
-/* 80BB5F84-80BB5FAB 0027+00 s=3 e=0 z=0  None .rodata    @stringBase0 */
+/* 80BB5F3C-80BB5F40 00003C 0004+00 0/2 0/0 0/0 .rodata          @3833 */
 #pragma push
 #pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80BB5F84 = "BHBridge";
-SECTION_DEAD char const* const stringBase_80BB5F8D = "M_BHbridge.dzb";
-SECTION_DEAD char const* const stringBase_80BB5F9C = "M_BHbridge.bmd";
+SECTION_RODATA static f32 const lit_3833 = 300.0f;
+COMPILER_STRIP_GATE(80BB5F3C, &lit_3833);
 #pragma pop
 
-/* 80BB5FAC-80BB5FB0 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
+/* 80BB5F40-80BB5F44 000040 0004+00 0/1 0/0 0/0 .rodata          @3834 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3834 = -1000000000.0f;
+COMPILER_STRIP_GATE(80BB5F40, &lit_3834);
+#pragma pop
 
-/* 80BB5FB0-80BB5FD0 0020+00 s=1 e=0 z=0  None .data      l_daObjBhbridge_Method */
+/* 80BB5FAC-80BB5FB0 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_bhbridge__stringBase0;
+
+/* 80BB5FB0-80BB5FD0 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjBhbridge_Method */
 SECTION_DATA static void* l_daObjBhbridge_Method[8] = {
     (void*)daObjBhbridge_Create__FP10fopAc_ac_c,
     (void*)daObjBhbridge_Delete__FP15daObjBhbridge_c,
@@ -444,8 +407,8 @@ SECTION_DATA static void* l_daObjBhbridge_Method[8] = {
     (void*)NULL,
 };
 
-/* 80BB5FD0-80BB6000 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_Bhbridge */
-SECTION_DATA void* g_profile_Obj_Bhbridge[12] = {
+/* 80BB5FD0-80BB6000 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Bhbridge */
+SECTION_DATA extern void* g_profile_Obj_Bhbridge[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00690000, (void*)&g_fpcLf_Method,
     (void*)0x00000810, (void*)NULL,
@@ -454,16 +417,22 @@ SECTION_DATA void* g_profile_Obj_Bhbridge[12] = {
     (void*)0x00040180, (void*)0x000E0000,
 };
 
-/* 80BB6000-80BB6024 0024+00 s=2 e=0 z=0  None .data      __vt__12dBgS_ObjAcch */
-SECTION_DATA static void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL, (void*)NULL, (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL, (void*)NULL, (void*)func_80BB5EF0,
-    (void*)NULL, (void*)NULL, (void*)func_80BB5EE8,
+/* 80BB6000-80BB6024 000054 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
+SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)__dt__12dBgS_ObjAcchFv,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_80BB5EF0,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_80BB5EE8,
 };
 
-/* 80BB6024-80BB604C 0028+00 s=1 e=0 z=0  None .data      __vt__15daObjBhbridge_c */
-SECTION_DATA static void* __vt__15daObjBhbridge_c[10] = {
-    (void*)NULL,
+/* 80BB6024-80BB604C 000078 0028+00 1/1 0/0 0/0 .data            __vt__15daObjBhbridge_c */
+SECTION_DATA extern void* __vt__15daObjBhbridge_c[10] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__15daObjBhbridge_cFv,
     (void*)Create__15daObjBhbridge_cFv,
@@ -475,17 +444,17 @@ SECTION_DATA static void* __vt__15daObjBhbridge_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80BB56F0-80BB58C4 01D4+00 s=1 e=0 z=0  None .text      daObjBhbridge_Create__FP10fopAc_ac_c */
+/* 80BB56F0-80BB58C4 000450 01D4+00 1/0 0/0 0/0 .text daObjBhbridge_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjBhbridge_Create(fopAc_ac_c* param_0) {
+static asm void daObjBhbridge_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bhbridge/d_a_obj_bhbridge/daObjBhbridge_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80BB58C4-80BB5934 0070+00 s=3 e=0 z=0  None .text      __dt__12dBgS_ObjAcchFv */
+/* 80BB58C4-80BB5934 000624 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -495,7 +464,7 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 }
 #pragma pop
 
-/* 80BB5934-80BB59AC 0078+00 s=1 e=0 z=0  None .text      CreateHeap__15daObjBhbridge_cFv */
+/* 80BB5934-80BB59AC 000694 0078+00 1/0 0/0 0/0 .text            CreateHeap__15daObjBhbridge_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -505,7 +474,43 @@ asm void daObjBhbridge_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80BB59AC-80BB5A14 0068+00 s=1 e=0 z=0  None .text      Create__15daObjBhbridge_cFv */
+/* ############################################################################################## */
+/* 80BB5F44-80BB5F48 000044 0004+00 0/1 0/0 0/0 .rodata          @3853 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3853 = -400.0f;
+COMPILER_STRIP_GATE(80BB5F44, &lit_3853);
+#pragma pop
+
+/* 80BB5F48-80BB5F4C 000048 0004+00 0/1 0/0 0/0 .rodata          @3854 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3854 = -800.0f;
+COMPILER_STRIP_GATE(80BB5F48, &lit_3854);
+#pragma pop
+
+/* 80BB5F4C-80BB5F50 00004C 0004+00 0/1 0/0 0/0 .rodata          @3855 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3855 = -1000.0f;
+COMPILER_STRIP_GATE(80BB5F4C, &lit_3855);
+#pragma pop
+
+/* 80BB5F50-80BB5F54 000050 0004+00 0/1 0/0 0/0 .rodata          @3856 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3856 = 400.0f;
+COMPILER_STRIP_GATE(80BB5F50, &lit_3856);
+#pragma pop
+
+/* 80BB5F54-80BB5F58 000054 0004+00 0/1 0/0 0/0 .rodata          @3857 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3857 = 1000.0f;
+COMPILER_STRIP_GATE(80BB5F54, &lit_3857);
+#pragma pop
+
+/* 80BB59AC-80BB5A14 00070C 0068+00 1/0 0/0 0/0 .text            Create__15daObjBhbridge_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -515,7 +520,85 @@ asm void daObjBhbridge_c::Create() {
 }
 #pragma pop
 
-/* 80BB5A14-80BB5E10 03FC+00 s=1 e=0 z=0  None .text      Execute__15daObjBhbridge_cFPPA3_A4_f */
+/* ############################################################################################## */
+/* 80BB5F58-80BB5F5C 000058 0004+00 0/1 0/0 0/0 .rodata          @3891 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3891 = 1.0f;
+COMPILER_STRIP_GATE(80BB5F58, &lit_3891);
+#pragma pop
+
+/* 80BB5F5C-80BB5F60 00005C 0004+00 0/1 0/0 0/0 .rodata          @3892 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3892 = 848.0f;
+COMPILER_STRIP_GATE(80BB5F5C, &lit_3892);
+#pragma pop
+
+/* 80BB5F60-80BB5F64 000060 0004+00 0/1 0/0 0/0 .rodata          @3893 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3893 = 2.0f;
+COMPILER_STRIP_GATE(80BB5F60, &lit_3893);
+#pragma pop
+
+/* 80BB5F64-80BB5F68 000064 0004+00 0/1 0/0 0/0 .rodata          @3894 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3894 = 512.0f;
+COMPILER_STRIP_GATE(80BB5F64, &lit_3894);
+#pragma pop
+
+/* 80BB5F68-80BB5F6C 000068 0004+00 0/1 0/0 0/0 .rodata          @3895 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3895 = 256.0f;
+COMPILER_STRIP_GATE(80BB5F68, &lit_3895);
+#pragma pop
+
+/* 80BB5F6C-80BB5F70 00006C 0004+00 0/1 0/0 0/0 .rodata          @3896 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3896 = 11.0f;
+COMPILER_STRIP_GATE(80BB5F6C, &lit_3896);
+#pragma pop
+
+/* 80BB5F70-80BB5F74 000070 0004+00 0/1 0/0 0/0 .rodata          @3897 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3897 = 5.0f;
+COMPILER_STRIP_GATE(80BB5F70, &lit_3897);
+#pragma pop
+
+/* 80BB5F74-80BB5F78 000074 0004+00 0/1 0/0 0/0 .rodata          @3898 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3898 = 1.0f / 10.0f;
+COMPILER_STRIP_GATE(80BB5F74, &lit_3898);
+#pragma pop
+
+/* 80BB5F78-80BB5F7C 000078 0004+00 0/1 0/0 0/0 .rodata          @3899 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3899 = 15.0f;
+COMPILER_STRIP_GATE(80BB5F78, &lit_3899);
+#pragma pop
+
+/* 80BB5F7C-80BB5F80 00007C 0004+00 0/1 0/0 0/0 .rodata          @3900 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3900 = 0.5f;
+COMPILER_STRIP_GATE(80BB5F7C, &lit_3900);
+#pragma pop
+
+/* 80BB5F80-80BB5F84 000080 0004+00 0/1 0/0 0/0 .rodata          @3901 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3901 = 1.0f / 5.0f;
+COMPILER_STRIP_GATE(80BB5F80, &lit_3901);
+#pragma pop
+
+/* 80BB5A14-80BB5E10 000774 03FC+00 1/0 0/0 0/0 .text Execute__15daObjBhbridge_cFPPA3_A4_f */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -525,7 +608,7 @@ asm void daObjBhbridge_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 80BB5E10-80BB5EB4 00A4+00 s=1 e=0 z=0  None .text      Draw__15daObjBhbridge_cFv */
+/* 80BB5E10-80BB5EB4 000B70 00A4+00 1/0 0/0 0/0 .text            Draw__15daObjBhbridge_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -535,7 +618,7 @@ asm void daObjBhbridge_c::Draw() {
 }
 #pragma pop
 
-/* 80BB5EB4-80BB5EE8 0034+00 s=1 e=0 z=0  None .text      Delete__15daObjBhbridge_cFv */
+/* 80BB5EB4-80BB5EE8 000C14 0034+00 1/0 0/0 0/0 .text            Delete__15daObjBhbridge_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -545,22 +628,31 @@ asm void daObjBhbridge_c::Delete() {
 }
 #pragma pop
 
-/* 80BB5EE8-80BB5EF0 0008+00 s=1 e=0 z=0  None .text      @36@__dt__12dBgS_ObjAcchFv */
+/* 80BB5EE8-80BB5EF0 000C48 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80BB5EE8() {
+static asm void func_80BB5EE8() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bhbridge/d_a_obj_bhbridge/func_80BB5EE8.s"
 }
 #pragma pop
 
-/* 80BB5EF0-80BB5EF8 0008+00 s=1 e=0 z=0  None .text      @20@__dt__12dBgS_ObjAcchFv */
+/* 80BB5EF0-80BB5EF8 000C50 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80BB5EF0() {
+static asm void func_80BB5EF0() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bhbridge/d_a_obj_bhbridge/func_80BB5EF0.s"
 }
+#pragma pop
+
+/* 80BB5F84-80BB5FAB 000084 0027+00 3/2 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80BB5F84 = "BHBridge";
+SECTION_DEAD static char const* const stringBase_80BB5F8D = "M_BHbridge.dzb";
+SECTION_DEAD static char const* const stringBase_80BB5F9C = "M_BHbridge.bmd";
 #pragma pop

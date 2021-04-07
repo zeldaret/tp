@@ -15,8 +15,8 @@ lbl_80164E20:
 /* 80164E54  7C FE 3B 78 */	mr r30, r7
 /* 80164E58  FF E0 08 90 */	fmr f31, f1
 /* 80164E5C  40 82 00 24 */	bne lbl_80164E80
-/* 80164E60  3C 60 80 43 */	lis r3, Zero__4cXyz@ha
-/* 80164E64  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)
+/* 80164E60  3C 60 80 43 */	lis r3, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 80164E64  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)  /* 0x80430CF4@l */
 /* 80164E68  D0 1F 00 00 */	stfs f0, 0(r31)
 /* 80164E6C  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80164E70  D0 1F 00 04 */	stfs f0, 4(r31)

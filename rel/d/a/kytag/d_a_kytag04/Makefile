@@ -3,17 +3,15 @@
 #
 
 M14_TARGET := $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag04.plf
+M14_LDSCRIPT := $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag04.lcf
+M14_MAP := $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag04.map
 
 M14_CPP_FILES := \
-	rel/d/a/kytag/d_a_kytag04/executor.cpp \
-	rel/d/a/kytag/d_a_kytag04/unknown_translation_unit_ctors.cpp \
-	rel/d/a/kytag/d_a_kytag04/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/kytag/d_a_kytag04/d_a_kytag04.cpp \
 
 M14_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag04/executor.o \
-	$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag04/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag04/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/kytag/d_a_kytag04/d_a_kytag04.o \
 
 M14_LIBS := \
@@ -29,14 +27,21 @@ M14_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M14_LDSCRIPT) \
+	-unused -map $(M14_MAP) \
+	-w off \
 
 $(M14_TARGET): $(M14_O_FILES) $(M14_LIBS)
+	@echo [ 14] creating $(M14_TARGET)
 	@echo $(M14_LIBS) $(M14_O_FILES) > build/M14_ofiles
-	$(LD) -partial $(M14_LDFLAGS) -o $(M14_TARGET) @build/M14_ofiles
+	@python3 tools/lcf.py rel 14 --output $(M14_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M14_LDFLAGS) -o $(M14_TARGET) @build/M14_ofiles
 
 $(BUILD_DIR)/rel/d/a/kytag/d_a_kytag04/%.o: rel/d/a/kytag/d_a_kytag04/%.cpp
+	@echo [ 14] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M14_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M14_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

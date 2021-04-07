@@ -7,8 +7,8 @@ lbl_8018FE18:
 /* 8018FE2C  54 00 10 3A */	slwi r0, r0, 2
 /* 8018FE30  7C 65 02 14 */	add r3, r5, r0
 /* 8018FE34  80 63 00 BC */	lwz r3, 0xbc(r3)
-/* 8018FE38  3C 80 80 43 */	lis r4, g_fsHIO@ha
-/* 8018FE3C  38 84 C9 EC */	addi r4, r4, g_fsHIO@l
+/* 8018FE38  3C 80 80 43 */	lis r4, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 8018FE3C  38 84 C9 EC */	addi r4, r4, g_fsHIO@l /* 0x8042C9EC@l */
 /* 8018FE40  88 84 00 05 */	lbz r4, 5(r4)
 /* 8018FE44  C0 25 00 C8 */	lfs f1, 0xc8(r5)
 /* 8018FE48  C0 45 00 D4 */	lfs f2, 0xd4(r5)

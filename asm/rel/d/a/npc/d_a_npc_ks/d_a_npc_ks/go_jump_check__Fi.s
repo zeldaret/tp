@@ -1,7 +1,7 @@
 lbl_80A4F1D8:
 /* 80A4F1D8  34 A3 FF FF */	addic. r5, r3, -1
-/* 80A4F1DC  3C 60 80 A6 */	lis r3, saru_p@ha
-/* 80A4F1E0  38 83 E4 78 */	addi r4, r3, saru_p@l
+/* 80A4F1DC  3C 60 80 A6 */	lis r3, saru_p@ha /* 0x80A5E478@ha */
+/* 80A4F1E0  38 83 E4 78 */	addi r4, r3, saru_p@l /* 0x80A5E478@l */
 /* 80A4F1E4  54 A3 10 3A */	slwi r3, r5, 2
 /* 80A4F1E8  38 05 00 01 */	addi r0, r5, 1
 /* 80A4F1EC  7C 09 03 A6 */	mtctr r0

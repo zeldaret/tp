@@ -10,8 +10,8 @@ lbl_8028F6C4:
 /* 8028F6E4  7C C5 33 78 */	mr r5, r6
 /* 8028F6E8  7C 06 03 78 */	mr r6, r0
 /* 8028F6EC  48 04 1F 25 */	bl __ct__9JKRThreadFP7JKRHeapUlii
-/* 8028F6F0  3C 60 80 3C */	lis r3, __vt__13JASTaskThread@ha
-/* 8028F6F4  38 03 5B 58 */	addi r0, r3, __vt__13JASTaskThread@l
+/* 8028F6F0  3C 60 80 3C */	lis r3, __vt__13JASTaskThread@ha /* 0x803C5B58@ha */
+/* 8028F6F4  38 03 5B 58 */	addi r0, r3, __vt__13JASTaskThread@l /* 0x803C5B58@l */
 /* 8028F6F8  90 1F 00 00 */	stw r0, 0(r31)
 /* 8028F6FC  38 00 00 00 */	li r0, 0
 /* 8028F700  98 1F 00 84 */	stb r0, 0x84(r31)

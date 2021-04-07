@@ -4,7 +4,7 @@ lbl_80829500:
 /* 80829508  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8082950C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80829510  7C 7F 1B 78 */	mr r31, r3
-/* 80829514  4B 7E F7 CC */	b fopAc_IsActor__FPv
+/* 80829514  4B 7E F7 CD */	bl fopAc_IsActor__FPv
 /* 80829518  2C 03 00 00 */	cmpwi r3, 0
 /* 8082951C  41 82 00 3C */	beq lbl_80829558
 /* 80829520  A8 1F 00 08 */	lha r0, 8(r31)

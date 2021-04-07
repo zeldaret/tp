@@ -122,7 +122,7 @@ extern "C" void sin();
 // Declarations:
 //
 
-/* 802E9C90-802E9CC4 0034+00 s=0 e=1 z=0  None .text      load__9J2DTexMtxFUl */
+/* 802E9C90-802E9CC4 2E45D0 0034+00 0/0 1/1 0/0 .text            load__9J2DTexMtxFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -132,7 +132,7 @@ asm void J2DTexMtx::load(u32 param_0) {
 }
 #pragma pop
 
-/* 802E9CC4-802E9D2C 0068+00 s=0 e=2 z=0  None .text      calc__9J2DTexMtxFv */
+/* 802E9CC4-802E9D2C 2E4604 0068+00 0/0 2/2 0/0 .text            calc__9J2DTexMtxFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -143,13 +143,13 @@ asm void J2DTexMtx::calc() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80456168-8045616C 0004+00 s=2 e=0 z=0  None .sdata2    @1488 */
+/* 80456168-8045616C 004768 0004+00 2/2 0/0 0/0 .sdata2          @1488 */
 SECTION_SDATA2 static f32 lit_1488 = 3.1415927410125732f;
 
-/* 8045616C-80456170 0004+00 s=2 e=0 z=0  None .sdata2    @1489 */
+/* 8045616C-80456170 00476C 0004+00 2/2 0/0 0/0 .sdata2          @1489 */
 SECTION_SDATA2 static f32 lit_1489 = 180.0f;
 
-/* 80456170-80456174 0004+00 s=2 e=0 z=0  None .sdata2    @1490 */
+/* 80456170-80456174 004770 0004+00 2/2 0/0 0/0 .sdata2          @1490 */
 SECTION_SDATA2 static u8 lit_1490[4] = {
     0x00,
     0x00,
@@ -157,10 +157,10 @@ SECTION_SDATA2 static u8 lit_1490[4] = {
     0x00,
 };
 
-/* 80456174-80456178 0004+00 s=2 e=0 z=0  None .sdata2    @1491 */
+/* 80456174-80456178 004774 0004+00 2/2 0/0 0/0 .sdata2          @1491 */
 SECTION_SDATA2 static f32 lit_1491 = 1.0f;
 
-/* 802E9D2C-802E9EBC 0190+00 s=1 e=0 z=0  None .text
+/* 802E9D2C-802E9EBC 2E466C 0190+00 1/1 0/0 0/0 .text
  * getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_f     */
 #pragma push
 #pragma optimization_level 0
@@ -173,10 +173,10 @@ asm void J2DTexMtx::getTextureMtx(J2DTextureSRTInfo const& param_0, Vec param_1,
 #pragma pop
 
 /* ############################################################################################## */
-/* 80456178-8045617C 0004+00 s=1 e=0 z=0  None .sdata2    @1507 */
+/* 80456178-8045617C 004778 0004+00 1/1 0/0 0/0 .sdata2          @1507 */
 SECTION_SDATA2 static f32 lit_1507 = 0.5f;
 
-/* 802E9EBC-802EA044 0188+00 s=1 e=0 z=0  None .text
+/* 802E9EBC-802EA044 2E47FC 0188+00 1/1 0/0 0/0 .text
  * getTextureMtxMaya__9J2DTexMtxFRC17J2DTextureSRTInfoPA4_f     */
 #pragma push
 #pragma optimization_level 0
@@ -187,7 +187,7 @@ asm void J2DTexMtx::getTextureMtxMaya(J2DTextureSRTInfo const& param_0, f32 (*pa
 }
 #pragma pop
 
-/* 802EA044-802EA098 0054+00 s=0 e=5 z=0  None .text      load__14J2DIndTevStageFUc */
+/* 802EA044-802EA098 2E4984 0054+00 0/0 5/5 0/0 .text            load__14J2DIndTevStageFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -197,7 +197,7 @@ asm void J2DIndTevStage::load(u8 param_0) {
 }
 #pragma pop
 
-/* 802EA098-802EA0CC 0034+00 s=0 e=1 z=0  None .text      load__12J2DIndTexMtxFUc */
+/* 802EA098-802EA0CC 2E49D8 0034+00 0/0 1/1 0/0 .text            load__12J2DIndTexMtxFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -207,7 +207,7 @@ asm void J2DIndTexMtx::load(u8 param_0) {
 }
 #pragma pop
 
-/* 802EA0CC-802EA0FC 0030+00 s=0 e=1 z=0  None .text      load__19J2DIndTexCoordScaleFUc */
+/* 802EA0CC-802EA0FC 2E4A0C 0030+00 0/0 1/1 0/0 .text            load__19J2DIndTexCoordScaleFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -217,7 +217,7 @@ asm void J2DIndTexCoordScale::load(u8 param_0) {
 }
 #pragma pop
 
-/* 802EA0FC-802EA12C 0030+00 s=0 e=1 z=0  None .text      load__14J2DIndTexOrderFUc */
+/* 802EA0FC-802EA12C 2E4A3C 0030+00 0/0 1/1 0/0 .text            load__14J2DIndTexOrderFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -227,42 +227,44 @@ asm void J2DIndTexOrder::load(u8 param_0) {
 }
 #pragma pop
 
-/* 802EA12C-802EA134 0008+00 s=0 e=1 z=0  None .text      getTevSwapModeTable__11J2DTevBlockFUl */
+/* 802EA12C-802EA134 2E4A6C 0008+00 0/0 1/0 0/0 .text getTevSwapModeTable__11J2DTevBlockFUl */
 bool J2DTevBlock::getTevSwapModeTable(u32 param_0) {
     return false;
 }
 
-/* 802EA134-802EA13C 0008+00 s=0 e=1 z=0  None .text      getTevStage__11J2DTevBlockFUl */
+/* 802EA134-802EA13C 2E4A74 0008+00 0/0 1/0 0/0 .text            getTevStage__11J2DTevBlockFUl */
 bool J2DTevBlock::getTevStage(u32 param_0) {
     return false;
 }
 
-/* 802EA13C-802EA144 0008+00 s=0 e=1 z=0  None .text      getTevColor__11J2DTevBlockFUl */
+/* 802EA13C-802EA144 2E4A7C 0008+00 0/0 1/0 0/0 .text            getTevColor__11J2DTevBlockFUl */
 bool J2DTevBlock::getTevColor(u32 param_0) {
     return false;
 }
 
-/* 802EA144-802EA14C 0008+00 s=0 e=1 z=0  None .text      getTevOrder__11J2DTevBlockFUl */
+/* 802EA144-802EA14C 2E4A84 0008+00 0/0 1/0 0/0 .text            getTevOrder__11J2DTevBlockFUl */
 bool J2DTevBlock::getTevOrder(u32 param_0) {
     return false;
 }
 
-/* 802EA14C-802EA154 0008+00 s=0 e=1 z=0  None .text      getTevKAlphaSel__11J2DTevBlockFUl */
+/* 802EA14C-802EA154 2E4A8C 0008+00 0/0 1/0 0/0 .text            getTevKAlphaSel__11J2DTevBlockFUl
+ */
 bool J2DTevBlock::getTevKAlphaSel(u32 param_0) {
     return false;
 }
 
-/* 802EA154-802EA15C 0008+00 s=0 e=1 z=0  None .text      getTevKColorSel__11J2DTevBlockFUl */
+/* 802EA154-802EA15C 2E4A94 0008+00 0/0 1/0 0/0 .text            getTevKColorSel__11J2DTevBlockFUl
+ */
 bool J2DTevBlock::getTevKColorSel(u32 param_0) {
     return false;
 }
 
-/* 802EA15C-802EA164 0008+00 s=0 e=1 z=0  None .text      getTevKColor__11J2DTevBlockFUl */
+/* 802EA15C-802EA164 2E4A9C 0008+00 0/0 1/0 0/0 .text            getTevKColor__11J2DTevBlockFUl */
 bool J2DTevBlock::getTevKColor(u32 param_0) {
     return false;
 }
 
-/* 802EA164-802EA170 000C+00 s=0 e=1 z=0  None .text      getFontNo__11J2DTevBlockCFv */
+/* 802EA164-802EA170 2E4AA4 000C+00 0/0 1/0 0/0 .text            getFontNo__11J2DTevBlockCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -272,7 +274,7 @@ asm void J2DTevBlock::getFontNo() const {
 }
 #pragma pop
 
-/* 802EA170-802EA17C 000C+00 s=0 e=1 z=0  None .text      getTexNo__11J2DTevBlockCFUl */
+/* 802EA170-802EA17C 2E4AB0 000C+00 0/0 1/0 0/0 .text            getTexNo__11J2DTevBlockCFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -282,87 +284,93 @@ asm void J2DTevBlock::getTexNo(u32 param_0) const {
 }
 #pragma pop
 
-/* 802EA17C-802EA184 0008+00 s=0 e=1 z=0  None .text      getTevStageNum__11J2DTevBlockCFv */
+/* 802EA17C-802EA184 2E4ABC 0008+00 0/0 1/0 0/0 .text            getTevStageNum__11J2DTevBlockCFv */
 bool J2DTevBlock::getTevStageNum() const {
     return true;
 }
 
-/* 802EA184-802EA18C 0008+00 s=0 e=1 z=0  None .text      getIndTevStage__11J2DTevBlockFUl */
+/* 802EA184-802EA18C 2E4AC4 0008+00 0/0 1/0 0/0 .text            getIndTevStage__11J2DTevBlockFUl */
 bool J2DTevBlock::getIndTevStage(u32 param_0) {
     return false;
 }
 
-/* 802EA18C-802EA194 0008+00 s=0 e=2 z=0  None .text      getIndTexCoordScale__11J2DIndBlockFUl */
+/* 802EA18C-802EA194 2E4ACC 0008+00 0/0 2/0 0/0 .text getIndTexCoordScale__11J2DIndBlockFUl */
 bool J2DIndBlock::getIndTexCoordScale(u32 param_0) {
     return false;
 }
 
-/* 802EA194-802EA19C 0008+00 s=0 e=2 z=0  None .text      getIndTexMtx__11J2DIndBlockFUl */
+/* 802EA194-802EA19C 2E4AD4 0008+00 0/0 2/0 0/0 .text            getIndTexMtx__11J2DIndBlockFUl */
 bool J2DIndBlock::getIndTexMtx(u32 param_0) {
     return false;
 }
 
-/* 802EA19C-802EA1A4 0008+00 s=0 e=2 z=0  None .text      getIndTexOrder__11J2DIndBlockFUl */
+/* 802EA19C-802EA1A4 2E4ADC 0008+00 0/0 2/0 0/0 .text            getIndTexOrder__11J2DIndBlockFUl */
 bool J2DIndBlock::getIndTexOrder(u32 param_0) {
     return false;
 }
 
-/* 802EA1A4-802EA1AC 0008+00 s=0 e=2 z=0  None .text      getIndTexStageNum__11J2DIndBlockCFv */
+/* 802EA1A4-802EA1AC 2E4AE4 0008+00 0/0 2/0 0/0 .text            getIndTexStageNum__11J2DIndBlockCFv
+ */
 bool J2DIndBlock::getIndTexStageNum() const {
     return false;
 }
 
 /* ############################################################################################## */
-/* 803A1B80-803A1BA0 0020+00 s=0 e=3 z=0  None .rodata    j2dDefaultTexCoordInfo */
-SECTION_RODATA u8 const j2dDefaultTexCoordInfo[32] = {
+/* 803A1B80-803A1BA0 02E1E0 0020+00 0/0 3/3 0/0 .rodata          j2dDefaultTexCoordInfo */
+SECTION_RODATA extern u8 const j2dDefaultTexCoordInfo[32] = {
     0x01, 0x04, 0x3C, 0x00, 0x01, 0x05, 0x3C, 0x00, 0x01, 0x06, 0x3C, 0x00, 0x01, 0x07, 0x3C, 0x00,
     0x01, 0x08, 0x3C, 0x00, 0x01, 0x09, 0x3C, 0x00, 0x01, 0x0A, 0x3C, 0x00, 0x01, 0x0B, 0x3C, 0x00,
 };
+COMPILER_STRIP_GATE(803A1B80, &j2dDefaultTexCoordInfo);
 
-/* 803A1BA0-803A1BC4 0024+00 s=0 e=3 z=0  None .rodata    j2dDefaultTexMtxInfo */
-SECTION_RODATA u8 const j2dDefaultTexMtxInfo[36] = {
+/* 803A1BA0-803A1BC4 02E200 0024+00 0/0 3/3 0/0 .rodata          j2dDefaultTexMtxInfo */
+SECTION_RODATA extern u8 const j2dDefaultTexMtxInfo[36] = {
     0x01, 0x01, 0xFF, 0xFF, 0x3F, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(803A1BA0, &j2dDefaultTexMtxInfo);
 
-/* 803A1BC4-803A1BE0 001C+00 s=0 e=3 z=0  None .rodata    j2dDefaultIndTexMtxInfo */
-SECTION_RODATA u8 const j2dDefaultIndTexMtxInfo[28] = {
+/* 803A1BC4-803A1BE0 02E224 001C+00 0/0 3/3 0/0 .rodata          j2dDefaultIndTexMtxInfo */
+SECTION_RODATA extern u8 const j2dDefaultIndTexMtxInfo[28] = {
     0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(803A1BC4, &j2dDefaultIndTexMtxInfo);
 
-/* 803A1BE0-803A1BF4 0014+00 s=0 e=1 z=0  None .rodata    j2dDefaultTevStageInfo */
-SECTION_RODATA u8 const j2dDefaultTevStageInfo[20] = {
+/* 803A1BE0-803A1BF4 02E240 0014+00 0/0 1/1 0/0 .rodata          j2dDefaultTevStageInfo */
+SECTION_RODATA extern u8 const j2dDefaultTevStageInfo[20] = {
     0x04, 0x0A, 0x0F, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
     0x05, 0x07, 0x07, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(803A1BE0, &j2dDefaultTevStageInfo);
 
-/* 803A1BF4-803A1C00 000C+00 s=0 e=7 z=0  None .rodata    j2dDefaultIndTevStageInfo */
-SECTION_RODATA u8 const j2dDefaultIndTevStageInfo[12] = {
+/* 803A1BF4-803A1C00 02E254 000C+00 0/0 7/7 0/0 .rodata          j2dDefaultIndTevStageInfo */
+SECTION_RODATA extern u8 const j2dDefaultIndTevStageInfo[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(803A1BF4, &j2dDefaultIndTevStageInfo);
 
-/* 8045617C-80456180 0004+00 s=0 e=1 z=0  None .sdata2    j2dDefaultColInfo */
-SECTION_SDATA2 u32 j2dDefaultColInfo = 0xFFFFFFFF;
+/* 8045617C-80456180 00477C 0004+00 0/0 1/1 0/0 .sdata2          j2dDefaultColInfo */
+SECTION_SDATA2 extern u32 j2dDefaultColInfo = 0xFFFFFFFF;
 
-/* 80456180-80456184 0004+00 s=0 e=7 z=0  None .sdata2    j2dDefaultTevOrderInfoNull */
-SECTION_SDATA2 u32 j2dDefaultTevOrderInfoNull = 0xFFFFFF00;
+/* 80456180-80456184 004780 0004+00 0/0 7/7 0/0 .sdata2          j2dDefaultTevOrderInfoNull */
+SECTION_SDATA2 extern u32 j2dDefaultTevOrderInfoNull = 0xFFFFFF00;
 
-/* 80456184-80456188 0002+02 s=0 e=3 z=0  None .sdata2    j2dDefaultIndTexOrderNull */
-SECTION_SDATA2 u16 j2dDefaultIndTexOrderNull[1 + 1 /* padding */] = {
+/* 80456184-80456188 004784 0002+02 0/0 3/3 0/0 .sdata2          j2dDefaultIndTexOrderNull */
+SECTION_SDATA2 extern u16 j2dDefaultIndTexOrderNull[1 + 1 /* padding */] = {
     0xFFFF,
     /* padding */
     0x0000,
 };
 
-/* 80456188-80456190 0008+00 s=0 e=5 z=0  None .sdata2    j2dDefaultTevColor */
-SECTION_SDATA2 u8 j2dDefaultTevColor[8] = {
+/* 80456188-80456190 004788 0008+00 0/0 5/5 0/0 .sdata2          j2dDefaultTevColor */
+SECTION_SDATA2 extern u8 j2dDefaultTevColor[8] = {
     0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF,
 };
 
-/* 80456190-80456194 0002+02 s=0 e=3 z=0  None .sdata2    j2dDefaultIndTexCoordScaleInfo */
-SECTION_SDATA2 u8 j2dDefaultIndTexCoordScaleInfo[2 + 2 /* padding */] = {
+/* 80456190-80456194 004790 0002+02 0/0 3/3 0/0 .sdata2          j2dDefaultIndTexCoordScaleInfo */
+SECTION_SDATA2 extern u8 j2dDefaultIndTexCoordScaleInfo[2 + 2 /* padding */] = {
     0x00,
     0x00,
     /* padding */
@@ -370,40 +378,41 @@ SECTION_SDATA2 u8 j2dDefaultIndTexCoordScaleInfo[2 + 2 /* padding */] = {
     0x00,
 };
 
-/* 80456194-80456198 0004+00 s=0 e=5 z=0  None .sdata2    j2dDefaultTevKColor */
-SECTION_SDATA2 u32 j2dDefaultTevKColor = 0xFFFFFFFF;
+/* 80456194-80456198 004794 0004+00 0/0 5/5 0/0 .sdata2          j2dDefaultTevKColor */
+SECTION_SDATA2 extern u32 j2dDefaultTevKColor = 0xFFFFFFFF;
 
-/* 80456198-8045619C 0004+00 s=0 e=2 z=0  None .sdata2    j2dDefaultTevSwapMode */
-SECTION_SDATA2 u8 j2dDefaultTevSwapMode[4] = {
+/* 80456198-8045619C 004798 0004+00 0/0 2/2 0/0 .sdata2          j2dDefaultTevSwapMode */
+SECTION_SDATA2 extern u8 j2dDefaultTevSwapMode[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
 
-/* 8045619C-804561A0 0004+00 s=0 e=6 z=0  None .sdata2    j2dDefaultTevSwapModeTable */
-SECTION_SDATA2 u32 j2dDefaultTevSwapModeTable = 0x00010203;
+/* 8045619C-804561A0 00479C 0004+00 0/0 6/6 0/0 .sdata2          j2dDefaultTevSwapModeTable */
+SECTION_SDATA2 extern u32 j2dDefaultTevSwapModeTable = 0x00010203;
 
-/* 804561A0-804561A4 0004+00 s=0 e=3 z=0  None .sdata2    j2dDefaultBlendInfo */
-SECTION_SDATA2 u32 j2dDefaultBlendInfo = 0x01040505;
+/* 804561A0-804561A4 0047A0 0004+00 0/0 3/3 0/0 .sdata2          j2dDefaultBlendInfo */
+SECTION_SDATA2 extern u32 j2dDefaultBlendInfo = 0x01040505;
 
-/* 804561A4-804561A8 0004+00 s=0 e=1 z=0  None .sdata2    None */
-SECTION_SDATA2 u8 data_804561A4[4] = {
+/* 804561A4-804561A8 0047A4 0004+00 0/0 1/1 0/0 .sdata2          None */
+SECTION_SDATA2 extern u8 data_804561A4[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
 
-/* 804561A8-804561AC 0004+00 s=0 e=3 z=0  None .sdata2    j2dDefaultColorChanInfo */
-SECTION_SDATA2 u32 j2dDefaultColorChanInfo = 0x00030000;
+/* 804561A8-804561AC 0047A8 0004+00 0/0 3/3 0/0 .sdata2          j2dDefaultColorChanInfo */
+SECTION_SDATA2 extern u32 j2dDefaultColorChanInfo = 0x00030000;
 
-/* 804561AC-804561B0 0004+00 s=0 e=4 z=0  None .sdata2    None */
+/* 804561AC-804561B0 -00001 0004+00 0/0 4/4 0/0 .sdata2          None */
+SECTION_SDATA2 extern u8 struct_804561AC[4];
 SECTION_SDATA2 u8 struct_804561AC[4] = {
-    /* 804561AC 0002 data_804561AC None */
+    /* 804561AC 0002+00 data_804561AC None */
     0x1B,
     0x00,
-    /* 804561AE 0002 data_804561AE j2dDefaultAlphaCmp */
+    /* 804561AE 0002+00 data_804561AE j2dDefaultAlphaCmp */
     0x00,
     0xE7,
 };

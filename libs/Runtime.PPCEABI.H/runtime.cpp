@@ -75,547 +75,548 @@ extern "C" void __cvt_dbl_usll();
 //
 
 /* ############################################################################################## */
-/* 803A2190-803A21A8 0018+00 s=1 e=0 z=0  None .rodata    __constants */
+/* 803A2190-803A21A8 02E7F0 0018+00 1/1 0/0 0/0 .rodata          __constants */
 SECTION_RODATA static u8 const __constants[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x41, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(803A2190, &__constants);
 
-/* 803620AC-80362108 005C+00 s=0 e=42 z=89  None .text      __cvt_fp2unsigned */
+/* 803620AC-80362108 35C9EC 005C+00 0/0 42/42 89/89 .text            __cvt_fp2unsigned */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __cvt_fp2unsigned() {
+asm void __cvt_fp2unsigned() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/__cvt_fp2unsigned.s"
 }
 #pragma pop
 
-/* 80362108-80362134 002C+00 s=0 e=0 z=0  None .text      __save_fpr */
+/* 80362108-80362134 35CA48 002C+00 0/0 0/0 0/0 .text            __save_fpr */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __save_fpr() {
+asm void __save_fpr() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/__save_fpr.s"
 }
 #pragma pop
 
-/* 80362134-80362138 0004+00 s=0 e=1 z=1  None .text      _savefpr_25 */
+/* 80362134-80362138 35CA74 0004+00 0/0 1/1 1/1 .text            _savefpr_25 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _savefpr_25() {
+asm void _savefpr_25() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_savefpr_25.s"
 }
 #pragma pop
 
-/* 80362138-8036213C 0004+00 s=0 e=1 z=0  None .text      _savefpr_26 */
+/* 80362138-8036213C 35CA78 0004+00 0/0 1/1 0/0 .text            _savefpr_26 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _savefpr_26() {
+asm void _savefpr_26() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_savefpr_26.s"
 }
 #pragma pop
 
-/* 8036213C-80362140 0004+00 s=0 e=2 z=0  None .text      _savefpr_27 */
+/* 8036213C-80362140 35CA7C 0004+00 0/0 2/2 0/0 .text            _savefpr_27 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _savefpr_27() {
+asm void _savefpr_27() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_savefpr_27.s"
 }
 #pragma pop
 
-/* 80362140-80362144 0004+00 s=0 e=2 z=0  None .text      _savefpr_28 */
+/* 80362140-80362144 35CA80 0004+00 0/0 2/2 0/0 .text            _savefpr_28 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _savefpr_28() {
+asm void _savefpr_28() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_savefpr_28.s"
 }
 #pragma pop
 
-/* 80362144-80362154 0010+00 s=0 e=3 z=1  None .text      _savefpr_29 */
+/* 80362144-80362154 35CA84 0010+00 0/0 3/3 1/1 .text            _savefpr_29 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _savefpr_29() {
+asm void _savefpr_29() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_savefpr_29.s"
 }
 #pragma pop
 
-/* 80362154-80362180 002C+00 s=0 e=0 z=0  None .text      __restore_fpr */
+/* 80362154-80362180 35CA94 002C+00 0/0 0/0 0/0 .text            __restore_fpr */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __restore_fpr() {
+asm void __restore_fpr() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/__restore_fpr.s"
 }
 #pragma pop
 
-/* 80362180-80362184 0004+00 s=0 e=1 z=1  None .text      _restfpr_25 */
+/* 80362180-80362184 35CAC0 0004+00 0/0 1/1 1/1 .text            _restfpr_25 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _restfpr_25() {
+asm void _restfpr_25() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_restfpr_25.s"
 }
 #pragma pop
 
-/* 80362184-80362188 0004+00 s=0 e=1 z=0  None .text      _restfpr_26 */
+/* 80362184-80362188 35CAC4 0004+00 0/0 1/1 0/0 .text            _restfpr_26 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _restfpr_26() {
+asm void _restfpr_26() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_restfpr_26.s"
 }
 #pragma pop
 
-/* 80362188-8036218C 0004+00 s=0 e=2 z=0  None .text      _restfpr_27 */
+/* 80362188-8036218C 35CAC8 0004+00 0/0 2/2 0/0 .text            _restfpr_27 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _restfpr_27() {
+asm void _restfpr_27() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_restfpr_27.s"
 }
 #pragma pop
 
-/* 8036218C-80362190 0004+00 s=0 e=2 z=0  None .text      _restfpr_28 */
+/* 8036218C-80362190 35CACC 0004+00 0/0 2/2 0/0 .text            _restfpr_28 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _restfpr_28() {
+asm void _restfpr_28() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_restfpr_28.s"
 }
 #pragma pop
 
-/* 80362190-803621A0 0010+00 s=0 e=3 z=1  None .text      _restfpr_29 */
+/* 80362190-803621A0 35CAD0 0010+00 0/0 3/3 1/1 .text            _restfpr_29 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _restfpr_29() {
+asm void _restfpr_29() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_restfpr_29.s"
 }
 #pragma pop
 
-/* 803621A0-803621A4 0004+00 s=0 e=22 z=13  None .text      __save_gpr */
+/* 803621A0-803621A4 35CAE0 0004+00 0/0 22/22 13/13 .text            __save_gpr */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __save_gpr() {
+asm void __save_gpr() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/__save_gpr.s"
 }
 #pragma pop
 
-/* 803621A4-803621A8 0004+00 s=0 e=5 z=6  None .text      _savegpr_15 */
+/* 803621A4-803621A8 35CAE4 0004+00 0/0 5/5 6/6 .text            _savegpr_15 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _savegpr_15() {
+asm void _savegpr_15() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_savegpr_15.s"
 }
 #pragma pop
 
-/* 803621A8-803621AC 0004+00 s=0 e=10 z=4  None .text      _savegpr_16 */
+/* 803621A8-803621AC 35CAE8 0004+00 0/0 10/10 4/4 .text            _savegpr_16 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _savegpr_16() {
+asm void _savegpr_16() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_savegpr_16.s"
 }
 #pragma pop
 
-/* 803621AC-803621B0 0004+00 s=0 e=11 z=7  None .text      _savegpr_17 */
+/* 803621AC-803621B0 35CAEC 0004+00 0/0 11/11 7/7 .text            _savegpr_17 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _savegpr_17() {
+asm void _savegpr_17() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_savegpr_17.s"
 }
 #pragma pop
 
-/* 803621B0-803621B4 0004+00 s=0 e=13 z=14  None .text      _savegpr_18 */
+/* 803621B0-803621B4 35CAF0 0004+00 0/0 13/13 14/14 .text            _savegpr_18 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _savegpr_18() {
+asm void _savegpr_18() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_savegpr_18.s"
 }
 #pragma pop
 
-/* 803621B4-803621B8 0004+00 s=0 e=22 z=86  None .text      _savegpr_19 */
+/* 803621B4-803621B8 35CAF4 0004+00 0/0 22/22 86/86 .text            _savegpr_19 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _savegpr_19() {
+asm void _savegpr_19() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_savegpr_19.s"
 }
 #pragma pop
 
-/* 803621B8-803621BC 0004+00 s=0 e=26 z=49  None .text      _savegpr_20 */
+/* 803621B8-803621BC 35CAF8 0004+00 0/0 26/26 49/49 .text            _savegpr_20 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _savegpr_20() {
+asm void _savegpr_20() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_savegpr_20.s"
 }
 #pragma pop
 
-/* 803621BC-803621C0 0004+00 s=0 e=35 z=56  None .text      _savegpr_21 */
+/* 803621BC-803621C0 35CAFC 0004+00 0/0 35/35 56/56 .text            _savegpr_21 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _savegpr_21() {
+asm void _savegpr_21() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_savegpr_21.s"
 }
 #pragma pop
 
-/* 803621C0-803621C4 0004+00 s=0 e=60 z=171  None .text      _savegpr_22 */
+/* 803621C0-803621C4 35CB00 0004+00 0/0 60/60 171/171 .text            _savegpr_22 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _savegpr_22() {
+asm void _savegpr_22() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_savegpr_22.s"
 }
 #pragma pop
 
-/* 803621C4-803621C8 0004+00 s=0 e=63 z=171  None .text      _savegpr_23 */
+/* 803621C4-803621C8 35CB04 0004+00 0/0 63/63 171/171 .text            _savegpr_23 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _savegpr_23() {
+asm void _savegpr_23() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_savegpr_23.s"
 }
 #pragma pop
 
-/* 803621C8-803621CC 0004+00 s=0 e=116 z=318  None .text      _savegpr_24 */
+/* 803621C8-803621CC 35CB08 0004+00 0/0 116/116 318/318 .text            _savegpr_24 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _savegpr_24() {
+asm void _savegpr_24() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_savegpr_24.s"
 }
 #pragma pop
 
-/* 803621CC-803621D0 0004+00 s=0 e=206 z=370  None .text      _savegpr_25 */
+/* 803621CC-803621D0 35CB0C 0004+00 0/0 206/206 370/370 .text            _savegpr_25 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _savegpr_25() {
+asm void _savegpr_25() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_savegpr_25.s"
 }
 #pragma pop
 
-/* 803621D0-803621D4 0004+00 s=0 e=308 z=595  None .text      _savegpr_26 */
+/* 803621D0-803621D4 35CB10 0004+00 0/0 308/308 595/595 .text            _savegpr_26 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _savegpr_26() {
+asm void _savegpr_26() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_savegpr_26.s"
 }
 #pragma pop
 
-/* 803621D4-803621D8 0004+00 s=0 e=480 z=812  None .text      _savegpr_27 */
+/* 803621D4-803621D8 35CB14 0004+00 0/0 480/480 812/812 .text            _savegpr_27 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _savegpr_27() {
+asm void _savegpr_27() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_savegpr_27.s"
 }
 #pragma pop
 
-/* 803621D8-803621DC 0004+00 s=0 e=644 z=1293  None .text      _savegpr_28 */
+/* 803621D8-803621DC 35CB18 0004+00 0/0 644/644 1293/1293 .text            _savegpr_28 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _savegpr_28() {
+asm void _savegpr_28() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_savegpr_28.s"
 }
 #pragma pop
 
-/* 803621DC-803621EC 0010+00 s=0 e=992 z=2067  None .text      _savegpr_29 */
+/* 803621DC-803621EC 35CB1C 0010+00 0/0 992/992 2067/2067 .text            _savegpr_29 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _savegpr_29() {
+asm void _savegpr_29() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_savegpr_29.s"
 }
 #pragma pop
 
-/* 803621EC-803621F0 0004+00 s=0 e=22 z=13  None .text      __restore_gpr */
+/* 803621EC-803621F0 35CB2C 0004+00 0/0 22/22 13/13 .text            __restore_gpr */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __restore_gpr() {
+asm void __restore_gpr() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/__restore_gpr.s"
 }
 #pragma pop
 
-/* 803621F0-803621F4 0004+00 s=0 e=5 z=6  None .text      _restgpr_15 */
+/* 803621F0-803621F4 35CB30 0004+00 0/0 5/5 6/6 .text            _restgpr_15 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _restgpr_15() {
+asm void _restgpr_15() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_restgpr_15.s"
 }
 #pragma pop
 
-/* 803621F4-803621F8 0004+00 s=0 e=10 z=4  None .text      _restgpr_16 */
+/* 803621F4-803621F8 35CB34 0004+00 0/0 10/10 4/4 .text            _restgpr_16 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _restgpr_16() {
+asm void _restgpr_16() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_restgpr_16.s"
 }
 #pragma pop
 
-/* 803621F8-803621FC 0004+00 s=0 e=11 z=7  None .text      _restgpr_17 */
+/* 803621F8-803621FC 35CB38 0004+00 0/0 11/11 7/7 .text            _restgpr_17 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _restgpr_17() {
+asm void _restgpr_17() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_restgpr_17.s"
 }
 #pragma pop
 
-/* 803621FC-80362200 0004+00 s=0 e=13 z=14  None .text      _restgpr_18 */
+/* 803621FC-80362200 35CB3C 0004+00 0/0 13/13 14/14 .text            _restgpr_18 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _restgpr_18() {
+asm void _restgpr_18() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_restgpr_18.s"
 }
 #pragma pop
 
-/* 80362200-80362204 0004+00 s=0 e=22 z=86  None .text      _restgpr_19 */
+/* 80362200-80362204 35CB40 0004+00 0/0 22/22 86/86 .text            _restgpr_19 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _restgpr_19() {
+asm void _restgpr_19() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_restgpr_19.s"
 }
 #pragma pop
 
-/* 80362204-80362208 0004+00 s=0 e=26 z=49  None .text      _restgpr_20 */
+/* 80362204-80362208 35CB44 0004+00 0/0 26/26 49/49 .text            _restgpr_20 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _restgpr_20() {
+asm void _restgpr_20() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_restgpr_20.s"
 }
 #pragma pop
 
-/* 80362208-8036220C 0004+00 s=0 e=35 z=56  None .text      _restgpr_21 */
+/* 80362208-8036220C 35CB48 0004+00 0/0 35/35 56/56 .text            _restgpr_21 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _restgpr_21() {
+asm void _restgpr_21() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_restgpr_21.s"
 }
 #pragma pop
 
-/* 8036220C-80362210 0004+00 s=0 e=60 z=171  None .text      _restgpr_22 */
+/* 8036220C-80362210 35CB4C 0004+00 0/0 60/60 171/171 .text            _restgpr_22 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _restgpr_22() {
+asm void _restgpr_22() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_restgpr_22.s"
 }
 #pragma pop
 
-/* 80362210-80362214 0004+00 s=0 e=63 z=171  None .text      _restgpr_23 */
+/* 80362210-80362214 35CB50 0004+00 0/0 63/63 171/171 .text            _restgpr_23 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _restgpr_23() {
+asm void _restgpr_23() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_restgpr_23.s"
 }
 #pragma pop
 
-/* 80362214-80362218 0004+00 s=0 e=116 z=318  None .text      _restgpr_24 */
+/* 80362214-80362218 35CB54 0004+00 0/0 116/116 318/318 .text            _restgpr_24 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _restgpr_24() {
+asm void _restgpr_24() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_restgpr_24.s"
 }
 #pragma pop
 
-/* 80362218-8036221C 0004+00 s=0 e=205 z=370  None .text      _restgpr_25 */
+/* 80362218-8036221C 35CB58 0004+00 0/0 205/205 370/370 .text            _restgpr_25 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _restgpr_25() {
+asm void _restgpr_25() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_restgpr_25.s"
 }
 #pragma pop
 
-/* 8036221C-80362220 0004+00 s=0 e=308 z=595  None .text      _restgpr_26 */
+/* 8036221C-80362220 35CB5C 0004+00 0/0 308/308 595/595 .text            _restgpr_26 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _restgpr_26() {
+asm void _restgpr_26() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_restgpr_26.s"
 }
 #pragma pop
 
-/* 80362220-80362224 0004+00 s=0 e=479 z=811  None .text      _restgpr_27 */
+/* 80362220-80362224 35CB60 0004+00 0/0 479/479 811/811 .text            _restgpr_27 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _restgpr_27() {
+asm void _restgpr_27() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_restgpr_27.s"
 }
 #pragma pop
 
-/* 80362224-80362228 0004+00 s=0 e=642 z=1293  None .text      _restgpr_28 */
+/* 80362224-80362228 35CB64 0004+00 0/0 642/642 1293/1293 .text            _restgpr_28 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _restgpr_28() {
+asm void _restgpr_28() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_restgpr_28.s"
 }
 #pragma pop
 
-/* 80362228-80362238 0010+00 s=0 e=991 z=2067  None .text      _restgpr_29 */
+/* 80362228-80362238 35CB68 0010+00 0/0 991/991 2067/2067 .text            _restgpr_29 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void _restgpr_29() {
+asm void _restgpr_29() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/_restgpr_29.s"
 }
 #pragma pop
 
-/* 80362238-80362324 00EC+00 s=0 e=2 z=0  None .text      __div2u */
+/* 80362238-80362324 35CB78 00EC+00 0/0 2/2 0/0 .text            __div2u */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __div2u() {
+asm void __div2u() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/__div2u.s"
 }
 #pragma pop
 
-/* 80362324-8036245C 0138+00 s=0 e=16 z=1  None .text      __div2i */
+/* 80362324-8036245C 35CC64 0138+00 0/0 16/16 1/1 .text            __div2i */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __div2i() {
+asm void __div2i() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/__div2i.s"
 }
 #pragma pop
 
-/* 8036245C-80362540 00E4+00 s=0 e=2 z=0  None .text      __mod2u */
+/* 8036245C-80362540 35CD9C 00E4+00 0/0 2/2 0/0 .text            __mod2u */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __mod2u() {
+asm void __mod2u() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/__mod2u.s"
 }
 #pragma pop
 
-/* 80362540-8036264C 010C+00 s=0 e=2 z=0  None .text      __mod2i */
+/* 80362540-8036264C 35CE80 010C+00 0/0 2/2 0/0 .text            __mod2i */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __mod2i() {
+asm void __mod2i() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/__mod2i.s"
 }
 #pragma pop
 
-/* 8036264C-80362670 0024+00 s=0 e=2 z=0  None .text      __shl2i */
+/* 8036264C-80362670 35CF8C 0024+00 0/0 2/2 0/0 .text            __shl2i */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __shl2i() {
+asm void __shl2i() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/__shl2i.s"
 }
 #pragma pop
 
-/* 80362670-80362694 0024+00 s=0 e=2 z=0  None .text      __shr2u */
+/* 80362670-80362694 35CFB0 0024+00 0/0 2/2 0/0 .text            __shr2u */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __shr2u() {
+asm void __shr2u() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/__shr2u.s"
 }
 #pragma pop
 
-/* 80362694-803626BC 0028+00 s=0 e=3 z=0  None .text      __shr2i */
+/* 80362694-803626BC 35CFD4 0028+00 0/0 3/3 0/0 .text            __shr2i */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __shr2i() {
+asm void __shr2i() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/__shr2i.s"
 }
 #pragma pop
 
-/* 803626BC-80362770 00B4+00 s=0 e=1 z=0  None .text      __cvt_sll_flt */
+/* 803626BC-80362770 35CFFC 00B4+00 0/0 1/1 0/0 .text            __cvt_sll_flt */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __cvt_sll_flt() {
+asm void __cvt_sll_flt() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/__cvt_sll_flt.s"
 }
 #pragma pop
 
-/* 80362770-8036283C 00CC+00 s=0 e=2 z=0  None .text      __cvt_dbl_usll */
+/* 80362770-8036283C 35D0B0 00CC+00 0/0 2/2 0/0 .text            __cvt_dbl_usll */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __cvt_dbl_usll() {
+asm void __cvt_dbl_usll() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/runtime/__cvt_dbl_usll.s"
 }

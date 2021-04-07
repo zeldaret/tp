@@ -11,15 +11,15 @@ lbl_80B20584:
 /* 80B20588  40 80 00 5C */	bge lbl_80B205E4
 /* 80B2058C  48 00 00 40 */	b lbl_80B205CC
 lbl_80B20590:
-/* 80B20590  3C 80 80 B2 */	lis r4, lit_4159@ha
-/* 80B20594  C0 04 4A AC */	lfs f0, lit_4159@l(r4)
+/* 80B20590  3C 80 80 B2 */	lis r4, lit_4159@ha /* 0x80B24AAC@ha */
+/* 80B20594  C0 04 4A AC */	lfs f0, lit_4159@l(r4)  /* 0x80B24AAC@l */
 /* 80B20598  80 83 05 78 */	lwz r4, 0x578(r3)
 /* 80B2059C  D0 04 00 18 */	stfs f0, 0x18(r4)
 /* 80B205A0  D0 03 06 50 */	stfs f0, 0x650(r3)
 /* 80B205A4  48 00 00 40 */	b lbl_80B205E4
 lbl_80B205A8:
-/* 80B205A8  3C 80 80 B2 */	lis r4, lit_4159@ha
-/* 80B205AC  C0 04 4A AC */	lfs f0, lit_4159@l(r4)
+/* 80B205A8  3C 80 80 B2 */	lis r4, lit_4159@ha /* 0x80B24AAC@ha */
+/* 80B205AC  C0 04 4A AC */	lfs f0, lit_4159@l(r4)  /* 0x80B24AAC@l */
 /* 80B205B0  80 83 05 78 */	lwz r4, 0x578(r3)
 /* 80B205B4  D0 04 00 18 */	stfs f0, 0x18(r4)
 /* 80B205B8  48 00 00 2C */	b lbl_80B205E4

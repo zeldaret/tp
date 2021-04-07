@@ -10,8 +10,8 @@ lbl_8018F580:
 /* 8018F5A0  38 03 FF FF */	addi r0, r3, -1
 /* 8018F5A4  B0 1F 03 AC */	sth r0, 0x3ac(r31)
 lbl_8018F5A8:
-/* 8018F5A8  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 8018F5AC  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l
+/* 8018F5A8  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 8018F5AC  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 8018F5B0  4B E8 77 31 */	bl SaveSync__15mDoMemCd_Ctrl_cFv
 /* 8018F5B4  90 7F 03 B4 */	stw r3, 0x3b4(r31)
 /* 8018F5B8  80 1F 03 B4 */	lwz r0, 0x3b4(r31)

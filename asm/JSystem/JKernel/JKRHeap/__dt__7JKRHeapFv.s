@@ -7,8 +7,8 @@ lbl_802CE264:
 /* 802CE278  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802CE27C  7C 9F 23 78 */	mr r31, r4
 /* 802CE280  41 82 00 DC */	beq lbl_802CE35C
-/* 802CE284  3C 60 80 3D */	lis r3, __vt__7JKRHeap@ha
-/* 802CE288  38 03 BF 70 */	addi r0, r3, __vt__7JKRHeap@l
+/* 802CE284  3C 60 80 3D */	lis r3, __vt__7JKRHeap@ha /* 0x803CBF70@ha */
+/* 802CE288  38 03 BF 70 */	addi r0, r3, __vt__7JKRHeap@l /* 0x803CBF70@l */
 /* 802CE28C  90 1E 00 00 */	stw r0, 0(r30)
 /* 802CE290  80 7E 00 50 */	lwz r3, 0x50(r30)
 /* 802CE294  34 9E 00 40 */	addic. r4, r30, 0x40

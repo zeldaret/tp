@@ -3,10 +3,10 @@ lbl_80353BB4:
 /* 80353BB8  1C C3 01 10 */	mulli r6, r3, 0x110
 /* 80353BBC  90 01 00 04 */	stw r0, 4(r1)
 /* 80353BC0  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 80353BC4  3C A0 80 45 */	lis r5, __CARDBlock@ha
+/* 80353BC4  3C A0 80 45 */	lis r5, __CARDBlock@ha /* 0x8044CBC0@ha */
 /* 80353BC8  2C 03 00 00 */	cmpwi r3, 0
 /* 80353BCC  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 80353BD0  38 05 CB C0 */	addi r0, r5, __CARDBlock@l
+/* 80353BD0  38 05 CB C0 */	addi r0, r5, __CARDBlock@l /* 0x8044CBC0@l */
 /* 80353BD4  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80353BD8  7F C0 32 14 */	add r30, r0, r6
 /* 80353BDC  93 A1 00 14 */	stw r29, 0x14(r1)

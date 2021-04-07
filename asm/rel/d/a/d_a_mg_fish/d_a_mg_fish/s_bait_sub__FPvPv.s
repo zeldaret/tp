@@ -4,7 +4,7 @@ lbl_8052A380:
 /* 8052A388  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8052A38C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8052A390  7C 7F 1B 78 */	mr r31, r3
-/* 8052A394  4B AE E9 4C */	b fopAc_IsActor__FPv
+/* 8052A394  4B AE E9 4D */	bl fopAc_IsActor__FPv
 /* 8052A398  2C 03 00 00 */	cmpwi r3, 0
 /* 8052A39C  41 82 00 38 */	beq lbl_8052A3D4
 /* 8052A3A0  A8 1F 00 08 */	lha r0, 8(r31)
@@ -14,8 +14,8 @@ lbl_8052A380:
 /* 8052A3B0  7C 00 07 75 */	extsb. r0, r0
 /* 8052A3B4  41 82 00 20 */	beq lbl_8052A3D4
 /* 8052A3B8  C0 3F 05 2C */	lfs f1, 0x52c(r31)
-/* 8052A3BC  3C 60 80 53 */	lis r3, lit_3679@ha
-/* 8052A3C0  C0 03 61 68 */	lfs f0, lit_3679@l(r3)
+/* 8052A3BC  3C 60 80 53 */	lis r3, lit_3679@ha /* 0x80536168@ha */
+/* 8052A3C0  C0 03 61 68 */	lfs f0, lit_3679@l(r3)  /* 0x80536168@l */
 /* 8052A3C4  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8052A3C8  40 81 00 0C */	ble lbl_8052A3D4
 /* 8052A3CC  7F E3 FB 78 */	mr r3, r31

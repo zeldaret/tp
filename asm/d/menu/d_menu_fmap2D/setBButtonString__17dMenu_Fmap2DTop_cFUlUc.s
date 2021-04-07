@@ -14,10 +14,10 @@ lbl_801D7210:
 lbl_801D7240:
 /* 801D7240  3B 80 00 00 */	li r28, 0
 /* 801D7244  3B E0 00 00 */	li r31, 0
-/* 801D7248  3C 60 80 39 */	lis r3, font_bt_6176@ha
-/* 801D724C  3B A3 65 30 */	addi r29, r3, font_bt_6176@l
-/* 801D7250  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801D7254  3B C3 01 88 */	addi r30, r3, g_meter2_info@l
+/* 801D7248  3C 60 80 39 */	lis r3, font_bt_6176@ha /* 0x80396530@ha */
+/* 801D724C  3B A3 65 30 */	addi r29, r3, font_bt_6176@l /* 0x80396530@l */
+/* 801D7250  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801D7254  3B C3 01 88 */	addi r30, r3, g_meter2_info@l /* 0x80430188@l */
 lbl_801D7258:
 /* 801D7258  80 79 00 08 */	lwz r3, 8(r25)
 /* 801D725C  7C 9D FA 14 */	add r4, r29, r31

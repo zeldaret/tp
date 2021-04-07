@@ -8,8 +8,8 @@ lbl_801F67F0:
 /* 801F6808  3B BB 01 D0 */	addi r29, r27, 0x1d0
 /* 801F680C  3B 80 00 00 */	li r28, 0
 /* 801F6810  3B 40 00 00 */	li r26, 0
-/* 801F6814  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801F6818  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 801F6814  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801F6818  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 lbl_801F681C:
 /* 801F681C  7F A3 EB 78 */	mr r3, r29
 /* 801F6820  4B E2 14 CD */	bl mDoMemCdRWm_TestCheckSumGameData__FPv

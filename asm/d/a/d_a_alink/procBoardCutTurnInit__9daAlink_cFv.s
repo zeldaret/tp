@@ -8,12 +8,12 @@ lbl_801075D4:
 /* 801075EC  4B FF F0 65 */	bl commonProcBoardInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 801075F0  7F E3 FB 78 */	mr r3, r31
 /* 801075F4  38 80 00 FB */	li r4, 0xfb
-/* 801075F8  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha
-/* 801075FC  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l
+/* 801075F8  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha /* 0x8038E870@ha */
+/* 801075FC  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l /* 0x8038E870@l */
 /* 80107600  38 A5 00 3C */	addi r5, r5, 0x3c
 /* 80107604  4B FA 5A F1 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
-/* 80107608  3C 60 80 39 */	lis r3, m__19daAlinkHIO_board_c0@ha
-/* 8010760C  38 63 E8 70 */	addi r3, r3, m__19daAlinkHIO_board_c0@l
+/* 80107608  3C 60 80 39 */	lis r3, m__19daAlinkHIO_board_c0@ha /* 0x8038E870@ha */
+/* 8010760C  38 63 E8 70 */	addi r3, r3, m__19daAlinkHIO_board_c0@l /* 0x8038E870@l */
 /* 80107610  C0 23 00 44 */	lfs f1, 0x44(r3)
 /* 80107614  C0 02 92 C4 */	lfs f0, lit_6109(r2)
 /* 80107618  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -23,8 +23,8 @@ lbl_801075D4:
 /* 80107628  C0 63 00 90 */	lfs f3, 0x90(r3)
 /* 8010762C  A8 1F 04 E4 */	lha r0, 0x4e4(r31)
 /* 80107630  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80107634  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80107638  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80107634  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80107638  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8010763C  7C 03 04 2E */	lfsx f0, r3, r0
 /* 80107640  C0 3F 33 98 */	lfs f1, 0x3398(r31)
 /* 80107644  FC 00 00 50 */	fneg f0, f0
@@ -68,8 +68,8 @@ lbl_801076BC:
 /* 801076C4  7F E3 FB 78 */	mr r3, r31
 /* 801076C8  38 80 00 01 */	li r4, 1
 /* 801076CC  4B FC 9D 65 */	bl resetCombo__9daAlink_cFi
-/* 801076D0  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutTurn_c0@ha
-/* 801076D4  38 63 DB 84 */	addi r3, r3, m__21daAlinkHIO_cutTurn_c0@l
+/* 801076D0  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutTurn_c0@ha /* 0x8038DB84@ha */
+/* 801076D4  38 63 DB 84 */	addi r3, r3, m__21daAlinkHIO_cutTurn_c0@l /* 0x8038DB84@l */
 /* 801076D8  C0 03 00 70 */	lfs f0, 0x70(r3)
 /* 801076DC  D0 1F 34 78 */	stfs f0, 0x3478(r31)
 /* 801076E0  C0 22 92 98 */	lfs f1, lit_5943(r2)

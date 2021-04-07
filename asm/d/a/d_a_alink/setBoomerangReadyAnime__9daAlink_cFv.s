@@ -20,8 +20,8 @@ lbl_800E059C:
 /* 800E05A0  38 80 00 54 */	li r4, 0x54
 /* 800E05A4  57 C0 06 3F */	clrlwi. r0, r30, 0x18
 /* 800E05A8  41 82 00 14 */	beq lbl_800E05BC
-/* 800E05AC  3C A0 80 39 */	lis r5, m__18daAlinkHIO_boom_c0@ha
-/* 800E05B0  38 A5 E6 C8 */	addi r5, r5, m__18daAlinkHIO_boom_c0@l
+/* 800E05AC  3C A0 80 39 */	lis r5, m__18daAlinkHIO_boom_c0@ha /* 0x8038E6C8@ha */
+/* 800E05B0  38 A5 E6 C8 */	addi r5, r5, m__18daAlinkHIO_boom_c0@l /* 0x8038E6C8@l */
 /* 800E05B4  C0 25 00 2C */	lfs f1, 0x2c(r5)
 /* 800E05B8  48 00 00 08 */	b lbl_800E05C0
 lbl_800E05BC:

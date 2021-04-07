@@ -15,7 +15,7 @@ lbl_809DC408:
 /* 809DC40C  48 00 00 20 */	b lbl_809DC42C
 lbl_809DC410:
 /* 809DC410  38 60 00 6D */	li r3, 0x6d
-/* 809DC414  4B 77 92 20 */	b daNpcF_chkEvtBit__FUl
+/* 809DC414  4B 77 92 21 */	bl daNpcF_chkEvtBit__FUl
 /* 809DC418  30 03 FF FF */	addic r0, r3, -1
 /* 809DC41C  7C 60 19 10 */	subfe r3, r0, r3
 /* 809DC420  38 63 00 01 */	addi r3, r3, 1

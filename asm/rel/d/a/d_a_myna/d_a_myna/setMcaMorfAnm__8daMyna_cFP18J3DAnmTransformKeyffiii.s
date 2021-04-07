@@ -8,8 +8,8 @@ lbl_8094983C:
 /* 80949854  80 63 05 74 */	lwz r3, 0x574(r3)
 /* 80949858  FC 20 10 90 */	fmr f1, f2
 /* 8094985C  FC 40 00 90 */	fmr f2, f0
-/* 80949860  3D 00 80 95 */	lis r8, lit_5332@ha
-/* 80949864  C8 88 B2 38 */	lfd f4, lit_5332@l(r8)
+/* 80949860  3D 00 80 95 */	lis r8, lit_5332@ha /* 0x8094B238@ha */
+/* 80949864  C8 88 B2 38 */	lfd f4, lit_5332@l(r8)  /* 0x8094B238@l */
 /* 80949868  6C C0 80 00 */	xoris r0, r6, 0x8000
 /* 8094986C  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80949870  3C C0 43 30 */	lis r6, 0x4330
@@ -21,7 +21,7 @@ lbl_8094983C:
 /* 80949888  90 C1 00 10 */	stw r6, 0x10(r1)
 /* 8094988C  C8 01 00 10 */	lfd f0, 0x10(r1)
 /* 80949890  EC 80 20 28 */	fsubs f4, f0, f4
-/* 80949894  4B 6C 75 DC */	b setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff
+/* 80949894  4B 6C 75 DD */	bl setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff
 /* 80949898  38 00 00 00 */	li r0, 0
 /* 8094989C  B0 1F 09 1E */	sth r0, 0x91e(r31)
 /* 809498A0  38 60 00 01 */	li r3, 1

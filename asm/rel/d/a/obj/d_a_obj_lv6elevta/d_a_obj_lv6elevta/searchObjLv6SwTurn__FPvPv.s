@@ -7,7 +7,7 @@ lbl_80C82FA4:
 /* 80C82FB8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80C82FBC  7C 9F 23 78 */	mr r31, r4
 /* 80C82FC0  41 82 00 4C */	beq lbl_80C8300C
-/* 80C82FC4  4B 39 5D 1C */	b fopAc_IsActor__FPv
+/* 80C82FC4  4B 39 5D 1D */	bl fopAc_IsActor__FPv
 /* 80C82FC8  2C 03 00 00 */	cmpwi r3, 0
 /* 80C82FCC  41 82 00 40 */	beq lbl_80C8300C
 /* 80C82FD0  A8 1E 00 0E */	lha r0, 0xe(r30)

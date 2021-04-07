@@ -7,8 +7,8 @@ lbl_802FA880:
 /* 802FA894  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802FA898  7C 9F 23 78 */	mr r31, r4
 /* 802FA89C  41 82 00 70 */	beq lbl_802FA90C
-/* 802FA8A0  3C 60 80 3D */	lis r3, __vt__9J2DWindow@ha
-/* 802FA8A4  38 03 D1 08 */	addi r0, r3, __vt__9J2DWindow@l
+/* 802FA8A0  3C 60 80 3D */	lis r3, __vt__9J2DWindow@ha /* 0x803CD108@ha */
+/* 802FA8A4  38 03 D1 08 */	addi r0, r3, __vt__9J2DWindow@l /* 0x803CD108@l */
 /* 802FA8A8  90 1E 00 00 */	stw r0, 0(r30)
 /* 802FA8AC  80 7E 01 00 */	lwz r3, 0x100(r30)
 /* 802FA8B0  38 80 00 01 */	li r4, 1

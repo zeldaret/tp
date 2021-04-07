@@ -1,8 +1,8 @@
 lbl_8071F9CC:
-/* 8071F9CC  3C 80 80 72 */	lis r4, lit_3789@ha
-/* 8071F9D0  38 A4 2C 3C */	addi r5, r4, lit_3789@l
-/* 8071F9D4  3C 80 80 72 */	lis r4, __vt__12daE_MM_HIO_c@ha
-/* 8071F9D8  38 04 2E 9C */	addi r0, r4, __vt__12daE_MM_HIO_c@l
+/* 8071F9CC  3C 80 80 72 */	lis r4, lit_3789@ha /* 0x80722C3C@ha */
+/* 8071F9D0  38 A4 2C 3C */	addi r5, r4, lit_3789@l /* 0x80722C3C@l */
+/* 8071F9D4  3C 80 80 72 */	lis r4, __vt__12daE_MM_HIO_c@ha /* 0x80722E9C@ha */
+/* 8071F9D8  38 04 2E 9C */	addi r0, r4, __vt__12daE_MM_HIO_c@l /* 0x80722E9C@l */
 /* 8071F9DC  90 03 00 00 */	stw r0, 0(r3)
 /* 8071F9E0  38 00 FF FF */	li r0, -1
 /* 8071F9E4  98 03 00 04 */	stb r0, 4(r3)

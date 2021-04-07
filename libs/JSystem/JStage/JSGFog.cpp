@@ -59,13 +59,10 @@ extern "C" void JSGGetEndZ__Q26JStage4TFogCFv();
 extern "C" void JSGSetEndZ__Q26JStage4TFogFf();
 extern "C" void JSGGetColor__Q26JStage4TFogCFv();
 extern "C" void JSGSetColor__Q26JStage4TFogF8_GXColor();
-extern "C" extern void* __vt__Q26JStage4TFog[23 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __dt__Q26JStage7TObjectFv();
 extern "C" bool JSGGetName__Q26JStage7TObjectCFv();
@@ -87,9 +84,9 @@ extern "C" extern u32 __float_max;
 //
 
 /* ############################################################################################## */
-/* 803C4718-803C4778 005C+04 s=1 e=1 z=0  None .data      __vt__Q26JStage4TFog */
-SECTION_DATA void* __vt__Q26JStage4TFog[23 + 1 /* padding */] = {
-    (void*)NULL,
+/* 803C4718-803C4778 021838 005C+04 1/1 1/1 0/0 .data            __vt__Q26JStage4TFog */
+SECTION_DATA extern void* __vt__Q26JStage4TFog[23 + 1 /* padding */] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)NULL,
     (void*)JSGFGetType__Q26JStage4TFogCFv,
@@ -116,7 +113,7 @@ SECTION_DATA void* __vt__Q26JStage4TFog[23 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80280C80-80280CE0 0060+00 s=0 e=1 z=0  None .text      __dt__Q26JStage4TFogFv */
+/* 80280C80-80280CE0 27B5C0 0060+00 0/0 1/1 0/0 .text            __dt__Q26JStage4TFogFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -126,24 +123,24 @@ asm JStage::TFog::~TFog() {
 }
 #pragma pop
 
-/* 80280CE0-80280CE8 0008+00 s=1 e=1 z=0  None .text      JSGFGetType__Q26JStage4TFogCFv */
+/* 80280CE0-80280CE8 27B620 0008+00 1/0 1/0 0/0 .text            JSGFGetType__Q26JStage4TFogCFv */
 s32 JStage::TFog::JSGFGetType() const {
     return 6;
 }
 
-/* 80280CE8-80280CF0 0008+00 s=1 e=1 z=0  None .text      JSGGetFogFunction__Q26JStage4TFogCFv */
+/* 80280CE8-80280CF0 27B628 0008+00 1/0 1/0 0/0 .text JSGGetFogFunction__Q26JStage4TFogCFv */
 bool JStage::TFog::JSGGetFogFunction() const {
     return false;
 }
 
-/* 80280CF0-80280CF4 0004+00 s=1 e=0 z=0  None .text
+/* 80280CF0-80280CF4 27B630 0004+00 1/0 0/0 0/0 .text
  * JSGSetFogFunction__Q26JStage4TFogF10_GXFogType               */
 void JStage::TFog::JSGSetFogFunction(_GXFogType param_0) {
     /* empty function */
 }
 
 /* ############################################################################################## */
-/* 804553E0-804553E4 0004+00 s=1 e=0 z=0  None .sdata2    @319 */
+/* 804553E0-804553E4 0039E0 0004+00 1/1 0/0 0/0 .sdata2          @319 */
 SECTION_SDATA2 static u8 lit_319[4] = {
     0x00,
     0x00,
@@ -151,7 +148,7 @@ SECTION_SDATA2 static u8 lit_319[4] = {
     0x00,
 };
 
-/* 80280CF4-80280CFC 0008+00 s=1 e=1 z=0  None .text      JSGGetStartZ__Q26JStage4TFogCFv */
+/* 80280CF4-80280CFC 27B634 0008+00 1/0 1/0 0/0 .text            JSGGetStartZ__Q26JStage4TFogCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -161,12 +158,12 @@ asm void JStage::TFog::JSGGetStartZ() const {
 }
 #pragma pop
 
-/* 80280CFC-80280D00 0004+00 s=1 e=0 z=0  None .text      JSGSetStartZ__Q26JStage4TFogFf */
+/* 80280CFC-80280D00 27B63C 0004+00 1/0 0/0 0/0 .text            JSGSetStartZ__Q26JStage4TFogFf */
 void JStage::TFog::JSGSetStartZ(f32 param_0) {
     /* empty function */
 }
 
-/* 80280D00-80280D0C 000C+00 s=1 e=1 z=0  None .text      JSGGetEndZ__Q26JStage4TFogCFv */
+/* 80280D00-80280D0C 27B640 000C+00 1/0 1/0 0/0 .text            JSGGetEndZ__Q26JStage4TFogCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -176,16 +173,16 @@ asm void JStage::TFog::JSGGetEndZ() const {
 }
 #pragma pop
 
-/* 80280D0C-80280D10 0004+00 s=1 e=0 z=0  None .text      JSGSetEndZ__Q26JStage4TFogFf */
+/* 80280D0C-80280D10 27B64C 0004+00 1/0 0/0 0/0 .text            JSGSetEndZ__Q26JStage4TFogFf */
 void JStage::TFog::JSGSetEndZ(f32 param_0) {
     /* empty function */
 }
 
 /* ############################################################################################## */
-/* 804553E4-804553E8 0004+00 s=1 e=0 z=0  None .sdata2    @336 */
+/* 804553E4-804553E8 0039E4 0004+00 1/1 0/0 0/0 .sdata2          @336 */
 SECTION_SDATA2 static u32 lit_336 = 0xFFFFFFFF;
 
-/* 80280D10-80280D24 0014+00 s=1 e=1 z=0  None .text      JSGGetColor__Q26JStage4TFogCFv */
+/* 80280D10-80280D24 27B650 0014+00 1/0 1/0 0/0 .text            JSGGetColor__Q26JStage4TFogCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -195,7 +192,7 @@ asm void JStage::TFog::JSGGetColor() const {
 }
 #pragma pop
 
-/* 80280D24-80280D28 0004+00 s=1 e=0 z=0  None .text      JSGSetColor__Q26JStage4TFogF8_GXColor */
+/* 80280D24-80280D28 27B664 0004+00 1/0 0/0 0/0 .text JSGSetColor__Q26JStage4TFogF8_GXColor */
 void JStage::TFog::JSGSetColor(_GXColor param_0) {
     /* empty function */
 }

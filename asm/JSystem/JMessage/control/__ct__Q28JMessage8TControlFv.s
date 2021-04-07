@@ -1,6 +1,6 @@
 lbl_802A7548:
-/* 802A7548  3C 80 80 3D */	lis r4, __vt__Q28JMessage8TControl@ha
-/* 802A754C  38 04 9B 60 */	addi r0, r4, __vt__Q28JMessage8TControl@l
+/* 802A7548  3C 80 80 3D */	lis r4, __vt__Q28JMessage8TControl@ha /* 0x803C9B60@ha */
+/* 802A754C  38 04 9B 60 */	addi r0, r4, __vt__Q28JMessage8TControl@l /* 0x803C9B60@l */
 /* 802A7550  90 03 00 00 */	stw r0, 0(r3)
 /* 802A7554  38 A0 00 00 */	li r5, 0
 /* 802A7558  90 A3 00 04 */	stw r5, 4(r3)

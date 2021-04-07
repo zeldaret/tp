@@ -7,8 +7,8 @@ lbl_807627E4:
 /* 807627F8  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 807627FC  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80762800  7C 7E 1B 78 */	mr r30, r3
-/* 80762804  3C 80 80 76 */	lis r4, lit_3788@ha
-/* 80762808  3B E4 4D 0C */	addi r31, r4, lit_3788@l
+/* 80762804  3C 80 80 76 */	lis r4, lit_3788@ha /* 0x80764D0C@ha */
+/* 80762808  3B E4 4D 0C */	addi r31, r4, lit_3788@l /* 0x80764D0C@l */
 /* 8076280C  A8 03 0A 44 */	lha r0, 0xa44(r3)
 /* 80762810  2C 00 00 01 */	cmpwi r0, 1
 /* 80762814  41 82 00 AC */	beq lbl_807628C0
@@ -83,7 +83,7 @@ lbl_807628FC:
 /* 80762910  38 00 00 00 */	li r0, 0
 /* 80762914  B0 1E 0A 44 */	sth r0, 0xa44(r30)
 /* 80762918  C0 3F 00 5C */	lfs f1, 0x5c(r31)
-/* 8076291C  4B B0 50 38 */	b cM_rndF__Ff
+/* 8076291C  4B B0 50 39 */	bl cM_rndF__Ff
 /* 80762920  C0 1F 00 58 */	lfs f0, 0x58(r31)
 /* 80762924  EC 00 08 2A */	fadds f0, f0, f1
 /* 80762928  FC 00 00 1E */	fctiwz f0, f0
@@ -97,14 +97,14 @@ lbl_80762938:
 /* 80762944  38 80 0F A0 */	li r4, 0xfa0
 /* 80762948  38 A0 00 01 */	li r5, 1
 /* 8076294C  38 C0 00 C8 */	li r6, 0xc8
-/* 80762950  4B B0 DC B8 */	b cLib_addCalcAngleS2__FPssss
+/* 80762950  4B B0 DC B9 */	bl cLib_addCalcAngleS2__FPssss
 /* 80762954  A8 7E 04 E6 */	lha r3, 0x4e6(r30)
 /* 80762958  A8 1E 0A 4C */	lha r0, 0xa4c(r30)
 /* 8076295C  7C 03 02 14 */	add r0, r3, r0
 /* 80762960  B0 1E 04 E6 */	sth r0, 0x4e6(r30)
 /* 80762964  38 7E 0A 20 */	addi r3, r30, 0xa20
-/* 80762968  3C 80 80 76 */	lis r4, l_HIO@ha
-/* 8076296C  38 84 4F 90 */	addi r4, r4, l_HIO@l
+/* 80762968  3C 80 80 76 */	lis r4, l_HIO@ha /* 0x80764F90@ha */
+/* 8076296C  38 84 4F 90 */	addi r4, r4, l_HIO@l /* 0x80764F90@l */
 /* 80762970  C0 24 00 0C */	lfs f1, 0xc(r4)
 /* 80762974  C0 5F 00 08 */	lfs f2, 8(r31)
 /* 80762978  FC 00 F8 1E */	fctiwz f0, f31
@@ -117,7 +117,7 @@ lbl_80762938:
 lbl_80762994:
 /* 80762994  C0 7F 00 60 */	lfs f3, 0x60(r31)
 lbl_80762998:
-/* 80762998  4B B0 D0 A4 */	b cLib_addCalc2__FPffff
+/* 80762998  4B B0 D0 A5 */	bl cLib_addCalc2__FPffff
 /* 8076299C  C0 5F 00 08 */	lfs f2, 8(r31)
 /* 807629A0  C0 3E 0A 20 */	lfs f1, 0xa20(r30)
 /* 807629A4  C0 1F 00 38 */	lfs f0, 0x38(r31)

@@ -34,7 +34,6 @@ $(BUILD_DIR)/libdvd.a: $(LIBDVD_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libdvd.a
 	@echo $(LIBDVD_A_O_FILES) > build/LIBDVD_A_ofiles
 	@$(LD) -xm l $(LIBDVD_A_LDFLAGS) -o $(BUILD_DIR)/libdvd.a @build/LIBDVD_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libdvd.a
 
 $(BUILD_DIR)/libs/dolphin/dvd/%.o: libs/dolphin/dvd/%.cpp
 	@mkdir -p $(@D)

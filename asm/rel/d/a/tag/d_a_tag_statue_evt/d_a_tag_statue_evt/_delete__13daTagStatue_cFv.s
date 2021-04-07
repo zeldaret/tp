@@ -6,19 +6,19 @@ lbl_805A7FF8:
 /* 805A8008  7C 7F 1B 78 */	mr r31, r3
 /* 805A800C  4B FF FB 19 */	bl endParticle__13daTagStatue_cFv
 /* 805A8010  38 7F 05 68 */	addi r3, r31, 0x568
-/* 805A8014  3C 80 80 5B */	lis r4, l_arcName@ha
-/* 805A8018  38 84 82 1C */	addi r4, r4, l_arcName@l
+/* 805A8014  3C 80 80 5B */	lis r4, l_arcName@ha /* 0x805A821C@ha */
+/* 805A8018  38 84 82 1C */	addi r4, r4, l_arcName@l /* 0x805A821C@l */
 /* 805A801C  80 84 00 00 */	lwz r4, 0(r4)
-/* 805A8020  4B A8 4F E8 */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 805A8020  4B A8 4F E9 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 805A8024  88 1F 05 97 */	lbz r0, 0x597(r31)
 /* 805A8028  54 00 10 3A */	slwi r0, r0, 2
-/* 805A802C  3C 60 80 5B */	lis r3, l_evArcName@ha
-/* 805A8030  38 63 82 40 */	addi r3, r3, l_evArcName@l
+/* 805A802C  3C 60 80 5B */	lis r3, l_evArcName@ha /* 0x805A8240@ha */
+/* 805A8030  38 63 82 40 */	addi r3, r3, l_evArcName@l /* 0x805A8240@l */
 /* 805A8034  7C 83 00 2E */	lwzx r4, r3, r0
 /* 805A8038  28 04 00 00 */	cmplwi r4, 0
 /* 805A803C  41 82 00 0C */	beq lbl_805A8048
 /* 805A8040  38 7F 05 70 */	addi r3, r31, 0x570
-/* 805A8044  4B A8 4F C4 */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 805A8044  4B A8 4F C5 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 lbl_805A8048:
 /* 805A8048  38 60 00 01 */	li r3, 1
 /* 805A804C  83 E1 00 0C */	lwz r31, 0xc(r1)

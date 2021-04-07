@@ -24,13 +24,13 @@ struct fopAc_ac_c {
 
 struct e_cr_egg_class {};
 
+struct dKy_tevstr_c {};
+
 struct Vec {};
 
 struct cXyz {
     /* 80266AE4 */ void operator+(Vec const&) const;
 };
-
-struct dKy_tevstr_c {};
 
 struct J3DModelData {};
 
@@ -47,9 +47,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -137,15 +137,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void daE_CR_EGG_Draw(e_cr_egg_class*);
-static void e_cr_egg_move(e_cr_egg_class*);
-static void action(e_cr_egg_class*);
-static void daE_CR_EGG_Execute(e_cr_egg_class*);
-static bool daE_CR_EGG_IsDelete(e_cr_egg_class*);
-static void daE_CR_EGG_Delete(e_cr_egg_class*);
-static void useHeapInit(fopAc_ac_c*);
-static void daE_CR_EGG_Create(fopAc_ac_c*);
-
 extern "C" static void daE_CR_EGG_Draw__FP14e_cr_egg_class();
 extern "C" static void e_cr_egg_move__FP14e_cr_egg_class();
 extern "C" static void action__FP14e_cr_egg_class();
@@ -159,28 +150,11 @@ extern "C" void __dt__8cM3dGAabFv();
 extern "C" void __dt__12dBgS_ObjAcchFv();
 extern "C" static void func_8069A8B4();
 extern "C" static void func_8069A8BC();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_E_CR_EGG[12];
+extern "C" extern char const* const d_a_e_cr_egg__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_XrotM(f32 (*)[4], s16);
-void mDoMtx_YrotS(f32 (*)[4], s16);
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dComIfGd_setSimpleShadow(cXyz*, f32, f32, cBgS_PolyInfo&, s16, f32, _GXTexObj*);
-void cM_rndF(f32);
-void cM_rndFX(f32);
-void cLib_addCalc0(f32*, f32, f32);
-void MtxPosition(cXyz*, cXyz*);
-void operator delete(void*);
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotS__FPA4_fs();
@@ -250,138 +224,179 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 8069A8CC-8069A8D0 0004+00 s=4 e=0 z=0  None .rodata    @3657 */
-SECTION_RODATA static u32 const lit_3657 = 0x41F00000;
+/* 8069A8CC-8069A8D0 000000 0004+00 4/4 0/0 0/0 .rodata          @3657 */
+SECTION_RODATA static f32 const lit_3657 = 30.0f;
+COMPILER_STRIP_GATE(8069A8CC, &lit_3657);
 
-/* 8069A8D0-8069A8D4 0004+00 s=3 e=0 z=0  None .rodata    @3658 */
-SECTION_RODATA static u32 const lit_3658 = 0x3F800000;
+/* 8069A8D0-8069A8D4 000004 0004+00 1/3 0/0 0/0 .rodata          @3658 */
+SECTION_RODATA static f32 const lit_3658 = 1.0f;
+COMPILER_STRIP_GATE(8069A8D0, &lit_3658);
 
-/* 80699F38-80699FC8 0090+00 s=1 e=0 z=0  None .text      daE_CR_EGG_Draw__FP14e_cr_egg_class */
+/* 80699F38-80699FC8 000078 0090+00 1/0 0/0 0/0 .text            daE_CR_EGG_Draw__FP14e_cr_egg_class
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daE_CR_EGG_Draw(e_cr_egg_class* param_0) {
+static asm void daE_CR_EGG_Draw(e_cr_egg_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_cr_egg/d_a_e_cr_egg/daE_CR_EGG_Draw__FP14e_cr_egg_class.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8069A8D4-8069A8E0 000C+00 s=1 e=0 z=0  None .rodata    @3676 */
+/* 8069A8D4-8069A8E0 000008 000C+00 0/1 0/0 0/0 .rodata          @3676 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_3676[12] = {
     0x00, 0x00, 0x00, 0x28, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x0A,
 };
+COMPILER_STRIP_GATE(8069A8D4, &lit_3676);
+#pragma pop
 
-/* 8069A8E0-8069A8E4 0004+00 s=1 e=0 z=0  None .rodata    @3702 */
-SECTION_RODATA static u32 const lit_3702 = 0x40A00000;
+/* 8069A8E0-8069A8E4 000014 0004+00 0/1 0/0 0/0 .rodata          @3702 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3702 = 5.0f;
+COMPILER_STRIP_GATE(8069A8E0, &lit_3702);
+#pragma pop
 
-/* 8069A8E4-8069A8E8 0004+00 s=2 e=0 z=0  None .rodata    @3703 */
-SECTION_RODATA static u32 const lit_3703 = 0x40400000;
+/* 8069A8E4-8069A8E8 000018 0004+00 0/2 0/0 0/0 .rodata          @3703 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3703 = 3.0f;
+COMPILER_STRIP_GATE(8069A8E4, &lit_3703);
+#pragma pop
 
-/* 8069A8E8-8069A8EC 0004+00 s=1 e=0 z=0  None .rodata    @3704 */
-SECTION_RODATA static u32 const lit_3704 = 0x461C4000;
+/* 8069A8E8-8069A8EC 00001C 0004+00 0/1 0/0 0/0 .rodata          @3704 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3704 = 10000.0f;
+COMPILER_STRIP_GATE(8069A8E8, &lit_3704);
+#pragma pop
 
-/* 8069A8EC-8069A8F0 0004+00 s=1 e=0 z=0  None .rodata    @3705 */
-SECTION_RODATA static u32 const lit_3705 = 0xBF000000;
+/* 8069A8EC-8069A8F0 000020 0004+00 0/1 0/0 0/0 .rodata          @3705 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3705 = -0.5f;
+COMPILER_STRIP_GATE(8069A8EC, &lit_3705);
+#pragma pop
 
-/* 8069A8F0-8069A8F4 0004+00 s=1 e=0 z=0  None .rodata    @3706 */
-SECTION_RODATA static u32 const lit_3706 = 0x45FA0000;
+/* 8069A8F0-8069A8F4 000024 0004+00 0/1 0/0 0/0 .rodata          @3706 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3706 = 8000.0f;
+COMPILER_STRIP_GATE(8069A8F0, &lit_3706);
+#pragma pop
 
-/* 8069A8F4-8069A8F8 0004+00 s=1 e=0 z=0  None .rodata    @3707 */
-SECTION_RODATA static u32 const lit_3707 = 0xBF800000;
+/* 8069A8F4-8069A8F8 000028 0004+00 0/1 0/0 0/0 .rodata          @3707 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3707 = -1.0f;
+COMPILER_STRIP_GATE(8069A8F4, &lit_3707);
+#pragma pop
 
-/* 8069A8F8-8069A8FC 0004+00 s=1 e=0 z=0  None .rodata    @3708 */
-SECTION_RODATA static u32 const lit_3708 = 0x3F000000;
+/* 8069A8F8-8069A8FC 00002C 0004+00 0/1 0/0 0/0 .rodata          @3708 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3708 = 0.5f;
+COMPILER_STRIP_GATE(8069A8F8, &lit_3708);
+#pragma pop
 
-/* 8069A914-8069A920 000C+00 s=1 e=0 z=0  None .data      spy$3662 */
+/* 8069A914-8069A920 000000 000C+00 1/1 0/0 0/0 .data            spy$3662 */
 SECTION_DATA static u8 spy[12] = {
     0x41, 0x88, 0x00, 0x00, 0x41, 0x00, 0x00, 0x00, 0x40, 0xA0, 0x00, 0x00,
 };
 
-/* 80699FC8-8069A258 0290+00 s=1 e=0 z=0  None .text      e_cr_egg_move__FP14e_cr_egg_class */
+/* 80699FC8-8069A258 000108 0290+00 1/1 0/0 0/0 .text            e_cr_egg_move__FP14e_cr_egg_class
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void e_cr_egg_move(e_cr_egg_class* param_0) {
+static asm void e_cr_egg_move(e_cr_egg_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_cr_egg/d_a_e_cr_egg/e_cr_egg_move__FP14e_cr_egg_class.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8069A8FC-8069A900 0004+00 s=1 e=0 z=0  None .rodata    @3728 */
-SECTION_RODATA static u32 const lit_3728 = 0x442F0000;
+/* 8069A8FC-8069A900 000030 0004+00 0/1 0/0 0/0 .rodata          @3728 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3728 = 700.0f;
+COMPILER_STRIP_GATE(8069A8FC, &lit_3728);
+#pragma pop
 
-/* 8069A900-8069A904 0004+00 s=2 e=0 z=0  None .rodata    @3729 */
+/* 8069A900-8069A904 000034 0004+00 0/2 0/0 0/0 .rodata          @3729 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_3729[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8069A900, &lit_3729);
+#pragma pop
 
-/* 8069A904-8069A908 0004+00 s=3 e=0 z=0  None .rodata    @3730 */
-SECTION_RODATA static u32 const lit_3730 = 0x41A00000;
+/* 8069A904-8069A908 000038 0004+00 1/3 0/0 0/0 .rodata          @3730 */
+SECTION_RODATA static f32 const lit_3730 = 20.0f;
+COMPILER_STRIP_GATE(8069A904, &lit_3730);
 
-/* 8069A258-8069A378 0120+00 s=1 e=0 z=0  None .text      action__FP14e_cr_egg_class */
+/* 8069A258-8069A378 000398 0120+00 1/1 0/0 0/0 .text            action__FP14e_cr_egg_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void action(e_cr_egg_class* param_0) {
+static asm void action(e_cr_egg_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_cr_egg/d_a_e_cr_egg/action__FP14e_cr_egg_class.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8069A908-8069A90C 0004+00 s=1 e=0 z=0  None .rodata    @3770 */
-SECTION_RODATA static u32 const lit_3770 = 0xC1A00000;
+/* 8069A908-8069A90C 00003C 0004+00 0/1 0/0 0/0 .rodata          @3770 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3770 = -20.0f;
+COMPILER_STRIP_GATE(8069A908, &lit_3770);
+#pragma pop
 
-/* 8069A378-8069A4C4 014C+00 s=2 e=0 z=0  None .text      daE_CR_EGG_Execute__FP14e_cr_egg_class */
+/* 8069A378-8069A4C4 0004B8 014C+00 2/1 0/0 0/0 .text daE_CR_EGG_Execute__FP14e_cr_egg_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daE_CR_EGG_Execute(e_cr_egg_class* param_0) {
+static asm void daE_CR_EGG_Execute(e_cr_egg_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_cr_egg/d_a_e_cr_egg/daE_CR_EGG_Execute__FP14e_cr_egg_class.s"
 }
 #pragma pop
 
-/* 8069A4C4-8069A4CC 0008+00 s=1 e=0 z=0  None .text      daE_CR_EGG_IsDelete__FP14e_cr_egg_class */
+/* 8069A4C4-8069A4CC 000604 0008+00 1/0 0/0 0/0 .text daE_CR_EGG_IsDelete__FP14e_cr_egg_class */
 static bool daE_CR_EGG_IsDelete(e_cr_egg_class* param_0) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 8069A90C-8069A911 0005+00 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_8069A90C = "E_CR";
-#pragma pop
-
-/* 8069A4CC-8069A510 0044+00 s=1 e=0 z=0  None .text      daE_CR_EGG_Delete__FP14e_cr_egg_class */
+/* 8069A4CC-8069A510 00060C 0044+00 1/0 0/0 0/0 .text daE_CR_EGG_Delete__FP14e_cr_egg_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daE_CR_EGG_Delete(e_cr_egg_class* param_0) {
+static asm void daE_CR_EGG_Delete(e_cr_egg_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_cr_egg/d_a_e_cr_egg/daE_CR_EGG_Delete__FP14e_cr_egg_class.s"
 }
 #pragma pop
 
-/* 8069A510-8069A57C 006C+00 s=1 e=0 z=0  None .text      useHeapInit__FP10fopAc_ac_c */
+/* 8069A510-8069A57C 000650 006C+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void useHeapInit(fopAc_ac_c* param_0) {
+static asm void useHeapInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_cr_egg/d_a_e_cr_egg/useHeapInit__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8069A920-8069A960 0040+00 s=1 e=0 z=0  None .data      cc_sph_src$3802 */
+/* 8069A920-8069A960 00000C 0040+00 1/1 0/0 0/0 .data            cc_sph_src$3802 */
 SECTION_DATA static u8 cc_sph_src[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D,
     0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x75, 0x00, 0x01, 0x00, 0x00,
@@ -389,7 +404,7 @@ SECTION_DATA static u8 cc_sph_src[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00,
 };
 
-/* 8069A960-8069A980 0020+00 s=1 e=0 z=0  None .data      l_daE_CR_EGG_Method */
+/* 8069A960-8069A980 -00001 0020+00 1/0 0/0 0/0 .data            l_daE_CR_EGG_Method */
 SECTION_DATA static void* l_daE_CR_EGG_Method[8] = {
     (void*)daE_CR_EGG_Create__FP10fopAc_ac_c,
     (void*)daE_CR_EGG_Delete__FP14e_cr_egg_class,
@@ -401,8 +416,8 @@ SECTION_DATA static void* l_daE_CR_EGG_Method[8] = {
     (void*)NULL,
 };
 
-/* 8069A980-8069A9B0 0030+00 s=0 e=0 z=1  None .data      g_profile_E_CR_EGG */
-SECTION_DATA void* g_profile_E_CR_EGG[12] = {
+/* 8069A980-8069A9B0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_E_CR_EGG */
+SECTION_DATA extern void* g_profile_E_CR_EGG[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01C40000, (void*)&g_fpcLf_Method,
     (void*)0x00000A0C, (void*)NULL,
@@ -411,38 +426,45 @@ SECTION_DATA void* g_profile_E_CR_EGG[12] = {
     (void*)0x00040100, (void*)0x02000000,
 };
 
-/* 8069A9B0-8069A9BC 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGSph */
-SECTION_DATA static void* __vt__8cM3dGSph[3] = {
-    (void*)NULL,
+/* 8069A9B0-8069A9BC 00009C 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGSph */
+SECTION_DATA extern void* __vt__8cM3dGSph[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGSphFv,
 };
 
-/* 8069A9BC-8069A9C8 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGAab */
-SECTION_DATA static void* __vt__8cM3dGAab[3] = {
-    (void*)NULL,
+/* 8069A9BC-8069A9C8 0000A8 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGAab */
+SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGAabFv,
 };
 
-/* 8069A9C8-8069A9EC 0024+00 s=2 e=0 z=0  None .data      __vt__12dBgS_ObjAcch */
-SECTION_DATA static void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL, (void*)NULL, (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL, (void*)NULL, (void*)func_8069A8BC,
-    (void*)NULL, (void*)NULL, (void*)func_8069A8B4,
+/* 8069A9C8-8069A9EC 0000B4 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
+SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)__dt__12dBgS_ObjAcchFv,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_8069A8BC,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_8069A8B4,
 };
 
-/* 8069A57C-8069A7B4 0238+00 s=1 e=0 z=0  None .text      daE_CR_EGG_Create__FP10fopAc_ac_c */
+/* 8069A57C-8069A7B4 0006BC 0238+00 1/0 0/0 0/0 .text            daE_CR_EGG_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daE_CR_EGG_Create(fopAc_ac_c* param_0) {
+static asm void daE_CR_EGG_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_cr_egg/d_a_e_cr_egg/daE_CR_EGG_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 8069A7B4-8069A7FC 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGSphFv */
+/* 8069A7B4-8069A7FC 0008F4 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -452,7 +474,7 @@ asm cM3dGSph::~cM3dGSph() {
 }
 #pragma pop
 
-/* 8069A7FC-8069A844 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGAabFv */
+/* 8069A7FC-8069A844 00093C 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -462,7 +484,7 @@ asm cM3dGAab::~cM3dGAab() {
 }
 #pragma pop
 
-/* 8069A844-8069A8B4 0070+00 s=3 e=0 z=0  None .text      __dt__12dBgS_ObjAcchFv */
+/* 8069A844-8069A8B4 000984 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -472,22 +494,29 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 }
 #pragma pop
 
-/* 8069A8B4-8069A8BC 0008+00 s=1 e=0 z=0  None .text      @36@__dt__12dBgS_ObjAcchFv */
+/* 8069A8B4-8069A8BC 0009F4 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_8069A8B4() {
+static asm void func_8069A8B4() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_cr_egg/d_a_e_cr_egg/func_8069A8B4.s"
 }
 #pragma pop
 
-/* 8069A8BC-8069A8C4 0008+00 s=1 e=0 z=0  None .text      @20@__dt__12dBgS_ObjAcchFv */
+/* 8069A8BC-8069A8C4 0009FC 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_8069A8BC() {
+static asm void func_8069A8BC() {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_cr_egg/d_a_e_cr_egg/func_8069A8BC.s"
 }
+#pragma pop
+
+/* 8069A90C-8069A911 000040 0005+00 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8069A90C = "E_CR";
 #pragma pop

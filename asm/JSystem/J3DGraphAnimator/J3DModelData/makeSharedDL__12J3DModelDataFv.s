@@ -6,8 +6,8 @@ lbl_80325F94:
 /* 80325FA4  48 03 C2 39 */	bl _savegpr_29
 /* 80325FA8  7C 7D 1B 78 */	mr r29, r3
 /* 80325FAC  80 03 00 6C */	lwz r0, 0x6c(r3)
-/* 80325FB0  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80325FB4  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80325FB0  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80325FB4  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80325FB8  90 03 00 58 */	stw r0, 0x58(r3)
 /* 80325FBC  A3 FD 00 5C */	lhz r31, 0x5c(r29)
 /* 80325FC0  3B C0 00 00 */	li r30, 0

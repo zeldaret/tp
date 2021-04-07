@@ -17,8 +17,8 @@ lbl_80262F28:
 /* 80262F64  48 0D F7 99 */	bl OSGetTime
 /* 80262F68  2C 1F 00 00 */	cmpwi r31, 0
 /* 80262F6C  40 82 00 28 */	bne lbl_80262F94
-/* 80262F70  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha
-/* 80262F74  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l
+/* 80262F70  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha /* 0x8039A4A0@ha */
+/* 80262F74  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l /* 0x8039A4A0@l */
 /* 80262F78  38 63 02 97 */	addi r3, r3, 0x297
 /* 80262F7C  80 9E 00 10 */	lwz r4, 0x10(r30)
 /* 80262F80  80 BE 00 14 */	lwz r5, 0x14(r30)

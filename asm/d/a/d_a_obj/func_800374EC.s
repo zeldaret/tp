@@ -13,8 +13,8 @@ lbl_800374EC:
 /* 80037518  7C BF 2B 79 */	or. r31, r5, r5
 /* 8003751C  FF C0 08 90 */	fmr f30, f1
 /* 80037520  FF E0 10 90 */	fmr f31, f2
-/* 80037524  3C 60 80 43 */	lis r3, Zero__4cXyz@ha
-/* 80037528  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)
+/* 80037524  3C 60 80 43 */	lis r3, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 80037528  C4 03 0C F4 */	lfsu f0, Zero__4cXyz@l(r3)  /* 0x80430CF4@l */
 /* 8003752C  D0 1D 00 00 */	stfs f0, 0(r29)
 /* 80037530  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80037534  D0 1D 00 04 */	stfs f0, 4(r29)

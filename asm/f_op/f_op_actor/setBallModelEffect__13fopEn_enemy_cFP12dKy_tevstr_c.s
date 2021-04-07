@@ -46,8 +46,8 @@ lbl_800195A4:
 /* 800195CC  C0 1D 00 00 */	lfs f0, 0(r29)
 /* 800195D0  D0 1D 00 08 */	stfs f0, 8(r29)
 /* 800195D4  D0 1D 00 04 */	stfs f0, 4(r29)
-/* 800195D8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800195DC  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l
+/* 800195D8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800195DC  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800195E0  80 7D 5D 3C */	lwz r3, 0x5d3c(r29)
 /* 800195E4  38 00 00 FF */	li r0, 0xff
 /* 800195E8  90 01 00 08 */	stw r0, 8(r1)

@@ -7,18 +7,18 @@ lbl_80CCD5DC:
 /* 80CCD5F0  80 03 05 B8 */	lwz r0, 0x5b8(r3)
 /* 80CCD5F4  2C 00 00 00 */	cmpwi r0, 0
 /* 80CCD5F8  41 82 00 18 */	beq lbl_80CCD610
-/* 80CCD5FC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CCD600  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80CCD5FC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CCD600  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CCD604  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 80CCD608  38 80 00 0F */	li r4, 0xf
-/* 80CCD60C  4B 3A 27 88 */	b StopQuake__12dVibration_cFi
+/* 80CCD60C  4B 3A 27 89 */	bl StopQuake__12dVibration_cFi
 lbl_80CCD610:
 /* 80CCD610  38 00 00 00 */	li r0, 0
 /* 80CCD614  B0 1F 05 B0 */	sth r0, 0x5b0(r31)
 /* 80CCD618  B0 1F 05 B2 */	sth r0, 0x5b2(r31)
 /* 80CCD61C  B0 1F 05 B4 */	sth r0, 0x5b4(r31)
-/* 80CCD620  3C 60 80 CD */	lis r3, lit_3956@ha
-/* 80CCD624  C0 03 DA 0C */	lfs f0, lit_3956@l(r3)
+/* 80CCD620  3C 60 80 CD */	lis r3, lit_3956@ha /* 0x80CCDA0C@ha */
+/* 80CCD624  C0 03 DA 0C */	lfs f0, lit_3956@l(r3)  /* 0x80CCDA0C@l */
 /* 80CCD628  D0 1F 05 BC */	stfs f0, 0x5bc(r31)
 /* 80CCD62C  38 00 00 01 */	li r0, 1
 /* 80CCD630  98 1F 05 D5 */	stb r0, 0x5d5(r31)

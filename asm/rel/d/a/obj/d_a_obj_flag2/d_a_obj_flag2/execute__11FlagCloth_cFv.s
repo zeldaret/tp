@@ -3,21 +3,21 @@ lbl_80BECD98:
 /* 80BECD9C  7C 08 02 A6 */	mflr r0
 /* 80BECDA0  90 01 00 64 */	stw r0, 0x64(r1)
 /* 80BECDA4  39 61 00 60 */	addi r11, r1, 0x60
-/* 80BECDA8  4B 77 54 28 */	b _savegpr_26
+/* 80BECDA8  4B 77 54 29 */	bl _savegpr_26
 /* 80BECDAC  7C 7A 1B 78 */	mr r26, r3
 /* 80BECDB0  80 63 09 38 */	lwz r3, 0x938(r3)
 /* 80BECDB4  38 81 00 30 */	addi r4, r1, 0x30
 /* 80BECDB8  38 A1 00 08 */	addi r5, r1, 8
-/* 80BECDBC  4B 46 E5 3C */	b dKyw_get_AllWind_vec__FP4cXyzP4cXyzPf
+/* 80BECDBC  4B 46 E5 3D */	bl dKyw_get_AllWind_vec__FP4cXyzP4cXyzPf
 /* 80BECDC0  38 61 00 18 */	addi r3, r1, 0x18
 /* 80BECDC4  38 81 00 30 */	addi r4, r1, 0x30
-/* 80BECDC8  4B 67 A1 80 */	b normalizeZP__4cXyzFv
+/* 80BECDC8  4B 67 A1 81 */	bl normalizeZP__4cXyzFv
 /* 80BECDCC  38 61 00 30 */	addi r3, r1, 0x30
 /* 80BECDD0  7C 64 1B 78 */	mr r4, r3
 /* 80BECDD4  C0 21 00 08 */	lfs f1, 8(r1)
 /* 80BECDD8  C0 1A 09 74 */	lfs f0, 0x974(r26)
 /* 80BECDDC  EC 21 00 32 */	fmuls f1, f1, f0
-/* 80BECDE0  4B 75 A2 F8 */	b PSVECScale
+/* 80BECDE0  4B 75 A2 F9 */	bl PSVECScale
 /* 80BECDE4  3B FA 05 40 */	addi r31, r26, 0x540
 /* 80BECDE8  3B DA 06 40 */	addi r30, r26, 0x640
 /* 80BECDEC  7F DD F3 78 */	mr r29, r30
@@ -40,11 +40,11 @@ lbl_80BECDF8:
 /* 80BECE2C  7F 83 E3 78 */	mr r3, r28
 /* 80BECE30  38 81 00 24 */	addi r4, r1, 0x24
 /* 80BECE34  7F 85 E3 78 */	mr r5, r28
-/* 80BECE38  4B 75 A2 58 */	b PSVECAdd
+/* 80BECE38  4B 75 A2 59 */	bl PSVECAdd
 /* 80BECE3C  7F 83 E3 78 */	mr r3, r28
 /* 80BECE40  7F 84 E3 78 */	mr r4, r28
 /* 80BECE44  C0 3A 09 78 */	lfs f1, 0x978(r26)
-/* 80BECE48  4B 75 A2 90 */	b PSVECScale
+/* 80BECE48  4B 75 A2 91 */	bl PSVECScale
 /* 80BECE4C  3B 7B 00 01 */	addi r27, r27, 1
 /* 80BECE50  2C 1B 00 15 */	cmpwi r27, 0x15
 /* 80BECE54  3B 9C 00 0C */	addi r28, r28, 0xc
@@ -55,7 +55,7 @@ lbl_80BECE64:
 /* 80BECE64  7F E3 FB 78 */	mr r3, r31
 /* 80BECE68  7F C4 F3 78 */	mr r4, r30
 /* 80BECE6C  7F E5 FB 78 */	mr r5, r31
-/* 80BECE70  4B 75 A2 20 */	b PSVECAdd
+/* 80BECE70  4B 75 A2 21 */	bl PSVECAdd
 /* 80BECE74  3B 7B 00 01 */	addi r27, r27, 1
 /* 80BECE78  2C 1B 00 15 */	cmpwi r27, 0x15
 /* 80BECE7C  3B FF 00 0C */	addi r31, r31, 0xc
@@ -92,15 +92,15 @@ lbl_80BECEBC:
 /* 80BECEF0  4B FF FD F5 */	bl setCcSphere__11FlagCloth_cFv
 /* 80BECEF4  38 7A 05 40 */	addi r3, r26, 0x540
 /* 80BECEF8  38 80 00 FC */	li r4, 0xfc
-/* 80BECEFC  4B 74 E7 3C */	b DCStoreRangeNoSync
+/* 80BECEFC  4B 74 E7 3D */	bl DCStoreRangeNoSync
 /* 80BECF00  38 7A 06 40 */	addi r3, r26, 0x640
 /* 80BECF04  38 80 00 FC */	li r4, 0xfc
-/* 80BECF08  4B 74 E7 30 */	b DCStoreRangeNoSync
+/* 80BECF08  4B 74 E7 31 */	bl DCStoreRangeNoSync
 /* 80BECF0C  38 7A 07 40 */	addi r3, r26, 0x740
 /* 80BECF10  38 80 00 FC */	li r4, 0xfc
-/* 80BECF14  4B 74 E7 24 */	b DCStoreRangeNoSync
+/* 80BECF14  4B 74 E7 25 */	bl DCStoreRangeNoSync
 /* 80BECF18  39 61 00 60 */	addi r11, r1, 0x60
-/* 80BECF1C  4B 77 53 00 */	b _restgpr_26
+/* 80BECF1C  4B 77 53 01 */	bl _restgpr_26
 /* 80BECF20  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 80BECF24  7C 08 03 A6 */	mtlr r0
 /* 80BECF28  38 21 00 60 */	addi r1, r1, 0x60

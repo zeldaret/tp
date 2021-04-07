@@ -4,9 +4,9 @@ lbl_8034B9B4:
 /* 8034B9BC  94 21 FF F8 */	stwu r1, -8(r1)
 /* 8034B9C0  4B FF 1D 35 */	bl OSDisableInterrupts
 /* 8034B9C4  38 00 00 04 */	li r0, 4
-/* 8034B9C8  3C 80 80 45 */	lis r4, WaitingQueue@ha
+/* 8034B9C8  3C 80 80 45 */	lis r4, WaitingQueue@ha /* 0x8044C998@ha */
 /* 8034B9CC  7C 09 03 A6 */	mtctr r0
-/* 8034B9D0  38 84 C9 98 */	addi r4, r4, WaitingQueue@l
+/* 8034B9D0  38 84 C9 98 */	addi r4, r4, WaitingQueue@l /* 0x8044C998@l */
 lbl_8034B9D4:
 /* 8034B9D4  80 04 00 00 */	lwz r0, 0(r4)
 /* 8034B9D8  7C 00 20 40 */	cmplw r0, r4

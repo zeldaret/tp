@@ -13,8 +13,8 @@ lbl_80023E28:
 /* 80023E54  99 23 00 10 */	stb r9, 0x10(r3)
 /* 80023E58  48 00 03 45 */	bl set__19dStage_startStage_cFPCcScsSc
 /* 80023E5C  7F E3 FB 78 */	mr r3, r31
-/* 80023E60  3C 80 80 38 */	lis r4, d_d_stage__stringBase0@ha
-/* 80023E64  38 84 8A 50 */	addi r4, r4, d_d_stage__stringBase0@l
+/* 80023E60  3C 80 80 38 */	lis r4, d_d_stage__stringBase0@ha /* 0x80378A50@ha */
+/* 80023E64  38 84 8A 50 */	addi r4, r4, d_d_stage__stringBase0@l /* 0x80378A50@l */
 /* 80023E68  48 34 4B 2D */	bl strcmp
 /* 80023E6C  2C 03 00 00 */	cmpwi r3, 0
 /* 80023E70  40 82 00 10 */	bne lbl_80023E80

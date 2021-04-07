@@ -7,8 +7,8 @@ lbl_8033168C:
 /* 803316A0  7C 7D 1B 78 */	mr r29, r3
 /* 803316A4  7C 9E 23 78 */	mr r30, r4
 /* 803316A8  7C BF 2B 78 */	mr r31, r5
-/* 803316AC  3C 80 80 3A */	lis r4, j3dDefaultTexCoordInfo@ha
-/* 803316B0  38 84 1E FC */	addi r4, r4, j3dDefaultTexCoordInfo@l
+/* 803316AC  3C 80 80 3A */	lis r4, j3dDefaultTexCoordInfo@ha /* 0x803A1EFC@ha */
+/* 803316B0  38 84 1E FC */	addi r4, r4, j3dDefaultTexCoordInfo@l /* 0x803A1EFC@l */
 /* 803316B4  80 84 00 00 */	lwz r4, 0(r4)
 /* 803316B8  90 81 00 10 */	stw r4, 0x10(r1)
 /* 803316BC  88 01 00 12 */	lbz r0, 0x12(r1)

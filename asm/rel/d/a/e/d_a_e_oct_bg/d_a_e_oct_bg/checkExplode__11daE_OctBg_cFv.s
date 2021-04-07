@@ -24,9 +24,9 @@ lbl_80736418:
 /* 80736470  39 00 00 00 */	li r8, 0
 /* 80736474  39 20 FF FF */	li r9, -1
 /* 80736478  39 40 00 00 */	li r10, 0
-/* 8073647C  4B 8E 39 88 */	b fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv
+/* 8073647C  4B 8E 39 89 */	bl fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv
 /* 80736480  7F E3 FB 78 */	mr r3, r31
-/* 80736484  4B 8E 37 F8 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 80736484  4B 8E 37 F9 */	bl fopAcM_delete__FP10fopAc_ac_c
 /* 80736488  38 60 00 01 */	li r3, 1
 /* 8073648C  48 00 00 7C */	b lbl_80736508
 lbl_80736490:
@@ -53,7 +53,7 @@ lbl_807364CC:
 /* 807364D4  3C 80 00 08 */	lis r4, 0x0008 /* 0x0008000A@ha */
 /* 807364D8  38 04 00 0A */	addi r0, r4, 0x000A /* 0x0008000A@l */
 /* 807364DC  90 01 00 10 */	stw r0, 0x10(r1)
-/* 807364E0  4B 8F 6B 8C */	b dComIfGp_getReverb__Fi
+/* 807364E0  4B 8F 6B 8D */	bl dComIfGp_getReverb__Fi
 /* 807364E4  7C 66 1B 78 */	mr r6, r3
 /* 807364E8  38 7F 05 BC */	addi r3, r31, 0x5bc
 /* 807364EC  38 81 00 10 */	addi r4, r1, 0x10

@@ -1,6 +1,6 @@
 lbl_8023E668:
-/* 8023E668  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 8023E66C  38 63 0E 40 */	addi r3, r3, cNullVec__6Z2Calc@l
+/* 8023E668  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803C0E40@ha */
+/* 8023E66C  38 63 0E 40 */	addi r3, r3, cNullVec__6Z2Calc@l /* 0x803C0E40@l */
 /* 8023E670  80 83 00 0C */	lwz r4, 0xc(r3)
 /* 8023E674  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 8023E678  90 83 00 54 */	stw r4, 0x54(r3)

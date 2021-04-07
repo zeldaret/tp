@@ -3,18 +3,16 @@
 #
 
 M64_TARGET := $(BUILD_DIR)/rel/d/a/door/d_a_door_bossl1.plf
+M64_LDSCRIPT := $(BUILD_DIR)/rel/d/a/door/d_a_door_bossl1.lcf
+M64_MAP := $(BUILD_DIR)/rel/d/a/door/d_a_door_bossl1.map
 
 M64_CPP_FILES := \
-	rel/d/a/door/d_a_door_bossl1/executor.cpp \
-	rel/d/a/door/d_a_door_bossl1/unknown_translation_unit_ctors.cpp \
-	rel/d/a/door/d_a_door_bossl1/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/door/d_a_door_bossl1/unknown_translation_unit_bss.cpp \
 	rel/d/a/door/d_a_door_bossl1/d_a_door_bossL1.cpp \
 
 M64_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_bossl1/executor.o \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_bossl1/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_bossl1/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/door/d_a_door_bossl1/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/door/d_a_door_bossl1/d_a_door_bossL1.o \
 
@@ -31,14 +29,21 @@ M64_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M64_LDSCRIPT) \
+	-unused -map $(M64_MAP) \
+	-w off \
 
 $(M64_TARGET): $(M64_O_FILES) $(M64_LIBS)
+	@echo [ 64] creating $(M64_TARGET)
 	@echo $(M64_LIBS) $(M64_O_FILES) > build/M64_ofiles
-	$(LD) -partial $(M64_LDFLAGS) -o $(M64_TARGET) @build/M64_ofiles
+	@python3 tools/lcf.py rel 64 --output $(M64_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M64_LDFLAGS) -o $(M64_TARGET) @build/M64_ofiles
 
 $(BUILD_DIR)/rel/d/a/door/d_a_door_bossl1/%.o: rel/d/a/door/d_a_door_bossl1/%.cpp
+	@echo [ 64] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M64_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M64_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -1,8 +1,8 @@
 lbl_803713A8:
-/* 803713A8  3C 40 80 44 */	lis r2, gTRKCPUState@h
-/* 803713AC  60 42 F3 38 */	ori r2, r2, gTRKCPUState@l
-/* 803713B0  3C A0 80 3D */	lis r5, gTRKRestoreFlags@h
-/* 803713B4  60 A5 32 38 */	ori r5, r5, gTRKRestoreFlags@l
+/* 803713A8  3C 40 80 44 */	lis r2, gTRKCPUState@h /* 0x8044F338@h */
+/* 803713AC  60 42 F3 38 */	ori r2, r2, gTRKCPUState@l /* 0x8044F338@l */
+/* 803713B0  3C A0 80 3D */	lis r5, gTRKRestoreFlags@h /* 0x803D3238@h */
+/* 803713B4  60 A5 32 38 */	ori r5, r5, gTRKRestoreFlags@l /* 0x803D3238@l */
 /* 803713B8  88 65 00 00 */	lbz r3, 0(r5)
 /* 803713BC  88 C5 00 01 */	lbz r6, 1(r5)
 /* 803713C0  38 00 00 00 */	li r0, 0

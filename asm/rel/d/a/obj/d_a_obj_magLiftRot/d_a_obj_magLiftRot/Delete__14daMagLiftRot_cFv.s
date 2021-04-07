@@ -6,10 +6,10 @@ lbl_80C8F970:
 /* 80C8F980  38 64 05 A0 */	addi r3, r4, 0x5a0
 /* 80C8F984  88 04 05 DC */	lbz r0, 0x5dc(r4)
 /* 80C8F988  54 00 10 3A */	slwi r0, r0, 2
-/* 80C8F98C  3C 80 80 C9 */	lis r4, l_arcName@ha
-/* 80C8F990  38 84 FB B0 */	addi r4, r4, l_arcName@l
+/* 80C8F98C  3C 80 80 C9 */	lis r4, l_arcName@ha /* 0x80C8FBB0@ha */
+/* 80C8F990  38 84 FB B0 */	addi r4, r4, l_arcName@l /* 0x80C8FBB0@l */
 /* 80C8F994  7C 84 00 2E */	lwzx r4, r4, r0
-/* 80C8F998  4B 39 D6 70 */	b dComIfG_resDelete__FP30request_of_phase_process_classPCc
+/* 80C8F998  4B 39 D6 71 */	bl dComIfG_resDelete__FP30request_of_phase_process_classPCc
 /* 80C8F99C  38 60 00 01 */	li r3, 1
 /* 80C8F9A0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80C8F9A4  7C 08 03 A6 */	mtlr r0

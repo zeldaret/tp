@@ -3,19 +3,20 @@
 #
 
 M617_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekizo.plf
+M617_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekizo.lcf
+M617_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekizo.map
 
 M617_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_sekizo/executor.cpp \
-	rel/d/a/obj/d_a_obj_sekizo/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_sekizo/d_a_obj_sekizo.cpp \
 
 M617_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekizo/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekizo/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekizo/d_a_obj_sekizo.o \
 
 M617_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekizo/libRuntime.PPCEABI.H.a \
 
 M617_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M617_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M617_LDSCRIPT) \
+	-unused -map $(M617_MAP) \
+	-w off \
 
 $(M617_TARGET): $(M617_O_FILES) $(M617_LIBS)
+	@echo [617] creating $(M617_TARGET)
 	@echo $(M617_LIBS) $(M617_O_FILES) > build/M617_ofiles
-	$(LD) -partial $(M617_LDFLAGS) -o $(M617_TARGET) @build/M617_ofiles
+	@python3 tools/lcf.py rel 617 --output $(M617_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M617_LDFLAGS) -o $(M617_TARGET) @build/M617_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekizo/%.o: rel/d/a/obj/d_a_obj_sekizo/%.cpp
+	@echo [617] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M617_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M617_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_sekizo/libs/Runtime.PPCEABI.H/Makefile
 

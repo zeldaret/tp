@@ -11,8 +11,8 @@ lbl_800314D4:
 /* 800314F8  54 00 06 3E */	clrlwi r0, r0, 0x18
 /* 800314FC  28 00 00 05 */	cmplwi r0, 5
 /* 80031500  41 82 00 8C */	beq lbl_8003158C
-/* 80031504  3C 60 80 42 */	lis r3, mData__7daSus_c@ha
-/* 80031508  38 03 3F FC */	addi r0, r3, mData__7daSus_c@l
+/* 80031504  3C 60 80 42 */	lis r3, mData__7daSus_c@ha /* 0x80423FFC@ha */
+/* 80031508  38 03 3F FC */	addi r0, r3, mData__7daSus_c@l /* 0x80423FFC@l */
 /* 8003150C  7C 1E 03 78 */	mr r30, r0
 /* 80031510  3B A0 00 00 */	li r29, 0
 /* 80031514  3B 80 00 00 */	li r28, 0

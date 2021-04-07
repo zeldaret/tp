@@ -3,19 +3,20 @@
 #
 
 M513_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lbox.plf
+M513_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lbox.lcf
+M513_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lbox.map
 
 M513_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lbox/executor.cpp \
-	rel/d/a/obj/d_a_obj_lbox/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lbox/d_a_obj_lbox.cpp \
 
 M513_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lbox/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lbox/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lbox/d_a_obj_lbox.o \
 
 M513_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lbox/libRuntime.PPCEABI.H.a \
 
 M513_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M513_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M513_LDSCRIPT) \
+	-unused -map $(M513_MAP) \
+	-w off \
 
 $(M513_TARGET): $(M513_O_FILES) $(M513_LIBS)
+	@echo [513] creating $(M513_TARGET)
 	@echo $(M513_LIBS) $(M513_O_FILES) > build/M513_ofiles
-	$(LD) -partial $(M513_LDFLAGS) -o $(M513_TARGET) @build/M513_ofiles
+	@python3 tools/lcf.py rel 513 --output $(M513_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M513_LDFLAGS) -o $(M513_TARGET) @build/M513_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lbox/%.o: rel/d/a/obj/d_a_obj_lbox/%.cpp
+	@echo [513] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M513_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M513_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lbox/libs/Runtime.PPCEABI.H/Makefile
 

@@ -1,6 +1,6 @@
 lbl_8005E8B0:
-/* 8005E8B0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8005E8B4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8005E8B0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8005E8B4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8005E8B8  80 83 5D AC */	lwz r4, 0x5dac(r3)
 /* 8005E8BC  38 60 00 00 */	li r3, 0
 /* 8005E8C0  28 04 00 00 */	cmplwi r4, 0

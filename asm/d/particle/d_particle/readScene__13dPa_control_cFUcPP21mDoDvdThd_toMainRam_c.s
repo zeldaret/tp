@@ -26,16 +26,16 @@ lbl_8004BE3C:
 /* 8004BE54  90 1D 00 10 */	stw r0, 0x10(r29)
 lbl_8004BE58:
 /* 8004BE58  9B DD 00 18 */	stb r30, 0x18(r29)
-/* 8004BE5C  3C 60 80 42 */	lis r3, jpcName@ha
-/* 8004BE60  38 63 48 AC */	addi r3, r3, jpcName@l
-/* 8004BE64  3C 80 80 38 */	lis r4, d_particle_d_particle__stringBase0@ha
-/* 8004BE68  38 84 A1 2C */	addi r4, r4, d_particle_d_particle__stringBase0@l
+/* 8004BE5C  3C 60 80 42 */	lis r3, jpcName@ha /* 0x804248AC@ha */
+/* 8004BE60  38 63 48 AC */	addi r3, r3, jpcName@l /* 0x804248AC@l */
+/* 8004BE64  3C 80 80 38 */	lis r4, d_particle_d_particle__stringBase0@ha /* 0x8037A12C@ha */
+/* 8004BE68  38 84 A1 2C */	addi r4, r4, d_particle_d_particle__stringBase0@l /* 0x8037A12C@l */
 /* 8004BE6C  38 84 00 06 */	addi r4, r4, 6
 /* 8004BE70  57 C5 06 3E */	clrlwi r5, r30, 0x18
 /* 8004BE74  4C C6 31 82 */	crclr 6
 /* 8004BE78  48 31 A6 65 */	bl sprintf
-/* 8004BE7C  3C 60 80 42 */	lis r3, jpcName@ha
-/* 8004BE80  38 63 48 AC */	addi r3, r3, jpcName@l
+/* 8004BE7C  3C 60 80 42 */	lis r3, jpcName@ha /* 0x804248AC@ha */
+/* 8004BE80  38 63 48 AC */	addi r3, r3, jpcName@l /* 0x804248AC@l */
 /* 8004BE84  38 80 00 00 */	li r4, 0
 /* 8004BE88  80 BD 00 08 */	lwz r5, 8(r29)
 /* 8004BE8C  4B FC A5 09 */	bl create__21mDoDvdThd_toMainRam_cFPCcUcP7JKRHeap

@@ -71,13 +71,6 @@ struct cXyz {
 // Forward References:
 //
 
-static void daTag_getBk(u32);
-static void daTag_Event_Draw(daTag_Event_c*);
-static void daTag_Event_Execute(daTag_Event_c*);
-static bool daTag_Event_IsDelete(daTag_Event_c*);
-static void daTag_Event_Delete(daTag_Event_c*);
-static void daTag_Event_Create(fopAc_ac_c*);
-
 extern "C" static void daTag_getBk__FUl();
 extern "C" void getEventNo__13daTag_Event_cFv();
 extern "C" void getSwbit__13daTag_Event_cFv();
@@ -107,15 +100,12 @@ extern "C" static void daTag_Event_Execute__FP13daTag_Event_c();
 extern "C" static bool daTag_Event_IsDelete__FP13daTag_Event_c();
 extern "C" static void daTag_Event_Delete__FP13daTag_Event_c();
 extern "C" static void daTag_Event_Create__FP10fopAc_ac_c();
-extern "C" extern char const* const stringBase0;
+extern "C" extern char const* const d_a_tag_event__stringBase0;
 extern "C" extern void* g_profile_TAG_EVENT[12];
 
 //
 // External References:
 //
-
-void fopAcM_orderOtherEventId(fopAc_ac_c*, s16, u8, u16, u16, u16);
-void fopAcM_searchFromName(char const*, u32, u32);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -142,42 +132,17 @@ extern "C" extern u8 struct_80450D64[4];
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 8048B830-8048B834 0004+00 s=1 e=0 z=0  None .rodata    @3814 */
-SECTION_RODATA static u32 const lit_3814 = 0x42C80000;
-
-/* 8048B834-8048B838 0004+00 s=1 e=0 z=0  None .rodata    @3815 */
-SECTION_RODATA static u32 const lit_3815 = 0x41200000;
-
-/* 8048B838-8048B83C 0004+00 s=1 e=0 z=0  None .rodata    @3954 */
-SECTION_RODATA static u32 const lit_3954 = 0x3F000000;
-
-/* 8048B83C-8048B840 0004+00 s=1 e=0 z=0  None .rodata    @3955 */
-SECTION_RODATA static u8 const lit_3955[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 8048B840-8048B843 0003+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_8048B840 = "Bk";
-#pragma pop
-
-/* 8048AD38-8048AD68 0030+00 s=1 e=0 z=0  None .text      daTag_getBk__FUl */
+/* 8048AD38-8048AD68 000078 0030+00 1/1 0/0 0/0 .text            daTag_getBk__FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_getBk(u32 param_0) {
+static asm void daTag_getBk(u32 param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_event/d_a_tag_event/daTag_getBk__FUl.s"
 }
 #pragma pop
 
-/* 8048AD68-8048AD74 000C+00 s=4 e=0 z=0  None .text      getEventNo__13daTag_Event_cFv */
+/* 8048AD68-8048AD74 0000A8 000C+00 4/4 0/0 0/0 .text            getEventNo__13daTag_Event_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -187,7 +152,7 @@ asm void daTag_Event_c::getEventNo() {
 }
 #pragma pop
 
-/* 8048AD74-8048AD80 000C+00 s=4 e=0 z=0  None .text      getSwbit__13daTag_Event_cFv */
+/* 8048AD74-8048AD80 0000B4 000C+00 4/4 0/0 0/0 .text            getSwbit__13daTag_Event_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -197,7 +162,7 @@ asm void daTag_Event_c::getSwbit() {
 }
 #pragma pop
 
-/* 8048AD80-8048AD8C 000C+00 s=1 e=0 z=0  None .text      getSwbit2__13daTag_Event_cFv */
+/* 8048AD80-8048AD8C 0000C0 000C+00 1/1 0/0 0/0 .text            getSwbit2__13daTag_Event_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -207,7 +172,7 @@ asm void daTag_Event_c::getSwbit2() {
 }
 #pragma pop
 
-/* 8048AD8C-8048AD98 000C+00 s=1 e=0 z=0  None .text      getType__13daTag_Event_cFv */
+/* 8048AD8C-8048AD98 0000CC 000C+00 1/1 0/0 0/0 .text            getType__13daTag_Event_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -217,7 +182,7 @@ asm void daTag_Event_c::getType() {
 }
 #pragma pop
 
-/* 8048AD98-8048ADA4 000C+00 s=1 e=0 z=0  None .text      getInvalidEventFlag__13daTag_Event_cFv */
+/* 8048AD98-8048ADA4 0000D8 000C+00 1/1 0/0 0/0 .text getInvalidEventFlag__13daTag_Event_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -227,7 +192,7 @@ asm void daTag_Event_c::getInvalidEventFlag() {
 }
 #pragma pop
 
-/* 8048ADA4-8048ADB0 000C+00 s=1 e=0 z=0  None .text      getAreaType__13daTag_Event_cFv */
+/* 8048ADA4-8048ADB0 0000E4 000C+00 1/1 0/0 0/0 .text            getAreaType__13daTag_Event_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -237,7 +202,7 @@ asm void daTag_Event_c::getAreaType() {
 }
 #pragma pop
 
-/* 8048ADB0-8048ADBC 000C+00 s=1 e=0 z=0  None .text      getValidEventFlag__13daTag_Event_cFv */
+/* 8048ADB0-8048ADBC 0000F0 000C+00 1/1 0/0 0/0 .text getValidEventFlag__13daTag_Event_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -247,7 +212,7 @@ asm void daTag_Event_c::getValidEventFlag() {
 }
 #pragma pop
 
-/* 8048ADBC-8048ADEC 0030+00 s=2 e=0 z=0  None .text      horseRodeo__13daTag_Event_cFv */
+/* 8048ADBC-8048ADEC 0000FC 0030+00 2/2 0/0 0/0 .text            horseRodeo__13daTag_Event_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -257,7 +222,7 @@ asm void daTag_Event_c::horseRodeo() {
 }
 #pragma pop
 
-/* 8048ADEC-8048AEEC 0100+00 s=2 e=0 z=0  None .text      arrivalTerms__13daTag_Event_cFv */
+/* 8048ADEC-8048AEEC 00012C 0100+00 2/2 0/0 0/0 .text            arrivalTerms__13daTag_Event_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -267,7 +232,7 @@ asm void daTag_Event_c::arrivalTerms() {
 }
 #pragma pop
 
-/* 8048AEEC-8048AEF8 000C+00 s=1 e=0 z=0  None .text      demoInitProc__13daTag_Event_cFv */
+/* 8048AEEC-8048AEF8 00022C 000C+00 1/1 0/0 0/0 .text            demoInitProc__13daTag_Event_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -277,17 +242,26 @@ asm void daTag_Event_c::demoInitProc() {
 }
 #pragma pop
 
-/* 8048AEF8-8048AEFC 0004+00 s=1 e=0 z=0  None .text      demoEndProc__13daTag_Event_cFv */
+/* 8048AEF8-8048AEFC 000238 0004+00 1/1 0/0 0/0 .text            demoEndProc__13daTag_Event_cFv */
 void daTag_Event_c::demoEndProc() {
     /* empty function */
 }
 
-/* 8048AEFC-8048AF00 0004+00 s=1 e=0 z=0  None .text      demoProc__13daTag_Event_cFv */
+/* 8048AEFC-8048AF00 00023C 0004+00 1/1 0/0 0/0 .text            demoProc__13daTag_Event_cFv */
 void daTag_Event_c::demoProc() {
     /* empty function */
 }
 
-/* 8048AF00-8048B0E4 01E4+00 s=1 e=0 z=0  None .text      create__13daTag_Event_cFv */
+/* ############################################################################################## */
+/* 8048B830-8048B834 000000 0004+00 1/1 0/0 0/0 .rodata          @3814 */
+SECTION_RODATA static f32 const lit_3814 = 100.0f;
+COMPILER_STRIP_GATE(8048B830, &lit_3814);
+
+/* 8048B834-8048B838 000004 0004+00 1/1 0/0 0/0 .rodata          @3815 */
+SECTION_RODATA static f32 const lit_3815 = 10.0f;
+COMPILER_STRIP_GATE(8048B834, &lit_3815);
+
+/* 8048AF00-8048B0E4 000240 01E4+00 1/1 0/0 0/0 .text            create__13daTag_Event_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -297,7 +271,7 @@ asm void daTag_Event_c::create() {
 }
 #pragma pop
 
-/* 8048B0E4-8048B1B0 00CC+00 s=1 e=0 z=0  None .text      actionNext__13daTag_Event_cFv */
+/* 8048B0E4-8048B1B0 000424 00CC+00 1/1 0/0 0/0 .text            actionNext__13daTag_Event_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -307,7 +281,7 @@ asm void daTag_Event_c::actionNext() {
 }
 #pragma pop
 
-/* 8048B1B0-8048B268 00B8+00 s=3 e=0 z=0  None .text      actionEvent__13daTag_Event_cFv */
+/* 8048B1B0-8048B268 0004F0 00B8+00 3/3 0/0 0/0 .text            actionEvent__13daTag_Event_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -317,7 +291,7 @@ asm void daTag_Event_c::actionEvent() {
 }
 #pragma pop
 
-/* 8048B268-8048B378 0110+00 s=1 e=0 z=0  None .text      actionReady__13daTag_Event_cFv */
+/* 8048B268-8048B378 0005A8 0110+00 1/1 0/0 0/0 .text            actionReady__13daTag_Event_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -327,7 +301,21 @@ asm void daTag_Event_c::actionReady() {
 }
 #pragma pop
 
-/* 8048B378-8048B514 019C+00 s=1 e=0 z=0  None .text      checkArea__13daTag_Event_cFv */
+/* ############################################################################################## */
+/* 8048B838-8048B83C 000008 0004+00 1/1 0/0 0/0 .rodata          @3954 */
+SECTION_RODATA static f32 const lit_3954 = 0.5f;
+COMPILER_STRIP_GATE(8048B838, &lit_3954);
+
+/* 8048B83C-8048B840 00000C 0004+00 1/1 0/0 0/0 .rodata          @3955 */
+SECTION_RODATA static u8 const lit_3955[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+COMPILER_STRIP_GATE(8048B83C, &lit_3955);
+
+/* 8048B378-8048B514 0006B8 019C+00 1/1 0/0 0/0 .text            checkArea__13daTag_Event_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -337,7 +325,7 @@ asm void daTag_Event_c::checkArea() {
 }
 #pragma pop
 
-/* 8048B514-8048B5C8 00B4+00 s=2 e=0 z=0  None .text      actionHunt__13daTag_Event_cFv */
+/* 8048B514-8048B5C8 000854 00B4+00 2/2 0/0 0/0 .text            actionHunt__13daTag_Event_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -347,7 +335,7 @@ asm void daTag_Event_c::actionHunt() {
 }
 #pragma pop
 
-/* 8048B5C8-8048B5F4 002C+00 s=1 e=0 z=0  None .text      actionArrival__13daTag_Event_cFv */
+/* 8048B5C8-8048B5F4 000908 002C+00 1/1 0/0 0/0 .text            actionArrival__13daTag_Event_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -357,12 +345,12 @@ asm void daTag_Event_c::actionArrival() {
 }
 #pragma pop
 
-/* 8048B5F4-8048B5FC 0008+00 s=1 e=0 z=0  None .text      actionWait__13daTag_Event_cFv */
+/* 8048B5F4-8048B5FC 000934 0008+00 1/1 0/0 0/0 .text            actionWait__13daTag_Event_cFv */
 bool daTag_Event_c::actionWait() {
     return true;
 }
 
-/* 8048B5FC-8048B6D4 00D8+00 s=1 e=0 z=0  None .text      actionHunt2__13daTag_Event_cFv */
+/* 8048B5FC-8048B6D4 00093C 00D8+00 1/1 0/0 0/0 .text            actionHunt2__13daTag_Event_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -372,7 +360,7 @@ asm void daTag_Event_c::actionHunt2() {
 }
 #pragma pop
 
-/* 8048B6D4-8048B784 00B0+00 s=1 e=0 z=0  None .text      execute__13daTag_Event_cFv */
+/* 8048B6D4-8048B784 000A14 00B0+00 1/1 0/0 0/0 .text            execute__13daTag_Event_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -382,58 +370,60 @@ asm void daTag_Event_c::execute() {
 }
 #pragma pop
 
-/* 8048B784-8048B78C 0008+00 s=1 e=0 z=0  None .text      draw__13daTag_Event_cFv */
+/* 8048B784-8048B78C 000AC4 0008+00 1/1 0/0 0/0 .text            draw__13daTag_Event_cFv */
 bool daTag_Event_c::draw() {
     return true;
 }
 
-/* 8048B78C-8048B7AC 0020+00 s=1 e=0 z=0  None .text      daTag_Event_Draw__FP13daTag_Event_c */
+/* 8048B78C-8048B7AC 000ACC 0020+00 1/0 0/0 0/0 .text            daTag_Event_Draw__FP13daTag_Event_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_Event_Draw(daTag_Event_c* param_0) {
+static asm void daTag_Event_Draw(daTag_Event_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_event/d_a_tag_event/daTag_Event_Draw__FP13daTag_Event_c.s"
 }
 #pragma pop
 
-/* 8048B7AC-8048B7D0 0024+00 s=1 e=0 z=0  None .text      daTag_Event_Execute__FP13daTag_Event_c */
+/* 8048B7AC-8048B7D0 000AEC 0024+00 1/0 0/0 0/0 .text daTag_Event_Execute__FP13daTag_Event_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_Event_Execute(daTag_Event_c* param_0) {
+static asm void daTag_Event_Execute(daTag_Event_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_event/d_a_tag_event/daTag_Event_Execute__FP13daTag_Event_c.s"
 }
 #pragma pop
 
-/* 8048B7D0-8048B7D8 0008+00 s=1 e=0 z=0  None .text      daTag_Event_IsDelete__FP13daTag_Event_c */
+/* 8048B7D0-8048B7D8 000B10 0008+00 1/0 0/0 0/0 .text daTag_Event_IsDelete__FP13daTag_Event_c */
 static bool daTag_Event_IsDelete(daTag_Event_c* param_0) {
     return true;
 }
 
-/* 8048B7D8-8048B808 0030+00 s=1 e=0 z=0  None .text      daTag_Event_Delete__FP13daTag_Event_c */
+/* 8048B7D8-8048B808 000B18 0030+00 1/0 0/0 0/0 .text daTag_Event_Delete__FP13daTag_Event_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_Event_Delete(daTag_Event_c* param_0) {
+static asm void daTag_Event_Delete(daTag_Event_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_event/d_a_tag_event/daTag_Event_Delete__FP13daTag_Event_c.s"
 }
 #pragma pop
 
-/* 8048B808-8048B828 0020+00 s=1 e=0 z=0  None .text      daTag_Event_Create__FP10fopAc_ac_c */
+/* 8048B808-8048B828 000B48 0020+00 1/0 0/0 0/0 .text            daTag_Event_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTag_Event_Create(fopAc_ac_c* param_0) {
+static asm void daTag_Event_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_event/d_a_tag_event/daTag_Event_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8048B844-8048B864 0020+00 s=1 e=0 z=0  None .data      l_daTag_Event_Method */
+/* 8048B844-8048B864 -00001 0020+00 1/0 0/0 0/0 .data            l_daTag_Event_Method */
 SECTION_DATA static void* l_daTag_Event_Method[8] = {
     (void*)daTag_Event_Create__FP10fopAc_ac_c,
     (void*)daTag_Event_Delete__FP13daTag_Event_c,
@@ -445,8 +435,8 @@ SECTION_DATA static void* l_daTag_Event_Method[8] = {
     (void*)NULL,
 };
 
-/* 8048B864-8048B894 0030+00 s=0 e=0 z=1  None .data      g_profile_TAG_EVENT */
-SECTION_DATA void* g_profile_TAG_EVENT[12] = {
+/* 8048B864-8048B894 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_EVENT */
+SECTION_DATA extern void* g_profile_TAG_EVENT[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02D10000, (void*)&g_fpcLf_Method,
     (void*)0x00000574, (void*)NULL,
@@ -454,3 +444,10 @@ SECTION_DATA void* g_profile_TAG_EVENT[12] = {
     (void*)0x01190000, (void*)&l_daTag_Event_Method,
     (void*)0x00044000, (void*)0x00060000,
 };
+
+/* 8048B840-8048B843 000010 0003+00 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8048B840 = "Bk";
+#pragma pop

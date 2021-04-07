@@ -5,8 +5,8 @@ lbl_80878758:
 /* 80878764  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80878768  93 C1 00 08 */	stw r30, 8(r1)
 /* 8087876C  7C 7F 1B 78 */	mr r31, r3
-/* 80878770  3C 60 80 88 */	lis r3, lit_1109@ha
-/* 80878774  38 63 95 A0 */	addi r3, r3, lit_1109@l
+/* 80878770  3C 60 80 88 */	lis r3, lit_1109@ha /* 0x808795A0@ha */
+/* 80878774  38 63 95 A0 */	addi r3, r3, lit_1109@l /* 0x808795A0@l */
 /* 80878778  3F C3 00 0D */	addis r30, r3, 0xd
 /* 8087877C  38 60 00 00 */	li r3, 0
 /* 80878780  4B FF EA 75 */	bl daMP_THPPlayerInit__Fl
@@ -15,11 +15,11 @@ lbl_80878758:
 /* 8087878C  4B FF EB 81 */	bl daMP_THPPlayerOpen__FPCci
 /* 80878790  2C 03 00 00 */	cmpwi r3, 0
 /* 80878794  40 82 00 20 */	bne lbl_808787B4
-/* 80878798  3C 60 80 88 */	lis r3, stringBase0@ha
-/* 8087879C  38 63 91 1C */	addi r3, r3, stringBase0@l
+/* 80878798  3C 60 80 88 */	lis r3, d_a_movie_player__stringBase0@ha /* 0x8087911C@ha */
+/* 8087879C  38 63 91 1C */	addi r3, r3, d_a_movie_player__stringBase0@l /* 0x8087911C@l */
 /* 808787A0  38 63 02 A6 */	addi r3, r3, 0x2a6
 /* 808787A4  4C C6 31 82 */	crclr 6
-/* 808787A8  4B 78 E3 14 */	b OSReport
+/* 808787A8  4B 78 E3 15 */	bl OSReport
 /* 808787AC  38 60 00 00 */	li r3, 0
 /* 808787B0  48 00 00 F4 */	b lbl_808788A4
 lbl_808787B4:
@@ -44,18 +44,18 @@ lbl_808787B4:
 /* 808787FC  90 1E C5 60 */	stw r0, -0x3aa0(r30)
 /* 80878800  4B FF EF 41 */	bl daMP_THPPlayerCalcNeedMemory__Fv
 /* 80878804  7C 7F 1B 78 */	mr r31, r3
-/* 80878808  4B 79 65 E4 */	b mDoExt_getArchiveHeap__Fv
+/* 80878808  4B 79 65 E5 */	bl mDoExt_getArchiveHeap__Fv
 /* 8087880C  7F E4 FB 78 */	mr r4, r31
 /* 80878810  38 A0 00 20 */	li r5, 0x20
-/* 80878814  4B A5 5C C0 */	b alloc__7JKRHeapFUli
+/* 80878814  4B A5 5C C1 */	bl alloc__7JKRHeapFUli
 /* 80878818  90 7E C5 64 */	stw r3, -0x3a9c(r30)
 /* 8087881C  28 03 00 00 */	cmplwi r3, 0
 /* 80878820  40 82 00 20 */	bne lbl_80878840
-/* 80878824  3C 60 80 88 */	lis r3, stringBase0@ha
-/* 80878828  38 63 91 1C */	addi r3, r3, stringBase0@l
+/* 80878824  3C 60 80 88 */	lis r3, d_a_movie_player__stringBase0@ha /* 0x8087911C@ha */
+/* 80878828  38 63 91 1C */	addi r3, r3, d_a_movie_player__stringBase0@l /* 0x8087911C@l */
 /* 8087882C  38 63 02 C1 */	addi r3, r3, 0x2c1
 /* 80878830  4C C6 31 82 */	crclr 6
-/* 80878834  4B 78 E2 88 */	b OSReport
+/* 80878834  4B 78 E2 89 */	bl OSReport
 /* 80878838  38 60 00 00 */	li r3, 0
 /* 8087883C  48 00 00 68 */	b lbl_808788A4
 lbl_80878840:
@@ -64,7 +64,7 @@ lbl_80878840:
 /* 80878848  80 1E 00 0C */	lwz r0, 0xc(r30)
 /* 8087884C  28 00 00 01 */	cmplwi r0, 1
 /* 80878850  41 82 00 1C */	beq lbl_8087886C
-/* 80878854  4B AC 9E C0 */	b OSGetTick
+/* 80878854  4B AC 9E C1 */	bl OSGetTick
 /* 80878858  80 9E 00 0C */	lwz r4, 0xc(r30)
 /* 8087885C  7C 03 23 96 */	divwu r0, r3, r4
 /* 80878860  7C 00 21 D6 */	mullw r0, r0, r4
@@ -78,11 +78,11 @@ lbl_80878870:
 /* 80878878  4B FF F7 41 */	bl daMP_THPPlayerPrepare__Flll
 /* 8087887C  2C 03 00 00 */	cmpwi r3, 0
 /* 80878880  40 82 00 20 */	bne lbl_808788A0
-/* 80878884  3C 60 80 88 */	lis r3, stringBase0@ha
-/* 80878888  38 63 91 1C */	addi r3, r3, stringBase0@l
+/* 80878884  3C 60 80 88 */	lis r3, d_a_movie_player__stringBase0@ha /* 0x8087911C@ha */
+/* 80878888  38 63 91 1C */	addi r3, r3, d_a_movie_player__stringBase0@l /* 0x8087911C@l */
 /* 8087888C  38 63 02 DB */	addi r3, r3, 0x2db
 /* 80878890  4C C6 31 82 */	crclr 6
-/* 80878894  4B 78 E2 28 */	b OSReport
+/* 80878894  4B 78 E2 29 */	bl OSReport
 /* 80878898  38 60 00 00 */	li r3, 0
 /* 8087889C  48 00 00 08 */	b lbl_808788A4
 lbl_808788A0:

@@ -3,17 +3,15 @@
 #
 
 M689_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_window.plf
+M689_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_window.lcf
+M689_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_window.map
 
 M689_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_window/executor.cpp \
-	rel/d/a/obj/d_a_obj_window/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_window/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_window/d_a_obj_window.cpp \
 
 M689_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_window/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_window/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_window/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_window/d_a_obj_window.o \
 
 M689_LIBS := \
@@ -29,14 +27,21 @@ M689_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M689_LDSCRIPT) \
+	-unused -map $(M689_MAP) \
+	-w off \
 
 $(M689_TARGET): $(M689_O_FILES) $(M689_LIBS)
+	@echo [689] creating $(M689_TARGET)
 	@echo $(M689_LIBS) $(M689_O_FILES) > build/M689_ofiles
-	$(LD) -partial $(M689_LDFLAGS) -o $(M689_TARGET) @build/M689_ofiles
+	@python3 tools/lcf.py rel 689 --output $(M689_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M689_LDFLAGS) -o $(M689_TARGET) @build/M689_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_window/%.o: rel/d/a/obj/d_a_obj_window/%.cpp
+	@echo [689] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M689_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M689_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

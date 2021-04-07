@@ -70,8 +70,8 @@ lbl_80133A34:
 /* 80133A34  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 80133A38  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80133A3C  40 80 00 10 */	bge lbl_80133A4C
-/* 80133A40  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80133A44  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)
+/* 80133A40  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80133A44  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80133A48  48 00 00 78 */	b lbl_80133AC0
 lbl_80133A4C:
 /* 80133A4C  D0 21 00 0C */	stfs f1, 0xc(r1)
@@ -105,8 +105,8 @@ lbl_80133AA4:
 lbl_80133AA8:
 /* 80133AA8  2C 00 00 01 */	cmpwi r0, 1
 /* 80133AAC  40 82 00 10 */	bne lbl_80133ABC
-/* 80133AB0  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80133AB4  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)
+/* 80133AB0  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80133AB4  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80133AB8  48 00 00 08 */	b lbl_80133AC0
 lbl_80133ABC:
 /* 80133ABC  FF C0 08 90 */	fmr f30, f1
@@ -153,8 +153,8 @@ lbl_80133B58:
 /* 80133B58  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 80133B5C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80133B60  40 80 00 10 */	bge lbl_80133B70
-/* 80133B64  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80133B68  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80133B64  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80133B68  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80133B6C  48 00 00 70 */	b lbl_80133BDC
 lbl_80133B70:
 /* 80133B70  D0 21 00 08 */	stfs f1, 8(r1)
@@ -188,8 +188,8 @@ lbl_80133BC8:
 lbl_80133BCC:
 /* 80133BCC  2C 00 00 01 */	cmpwi r0, 1
 /* 80133BD0  40 82 00 0C */	bne lbl_80133BDC
-/* 80133BD4  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80133BD8  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80133BD4  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80133BD8  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80133BDC:
 /* 80133BDC  80 1F 05 80 */	lwz r0, 0x580(r31)
 /* 80133BE0  64 00 04 00 */	oris r0, r0, 0x400

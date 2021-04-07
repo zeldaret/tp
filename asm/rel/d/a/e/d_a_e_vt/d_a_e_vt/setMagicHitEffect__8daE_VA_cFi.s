@@ -6,8 +6,8 @@ lbl_807C5258:
 /* 807C5268  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 807C526C  7C 67 1B 78 */	mr r7, r3
 /* 807C5270  7C 86 23 78 */	mr r6, r4
-/* 807C5274  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 807C5278  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 807C5274  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 807C5278  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 807C527C  80 7F 5D 3C */	lwz r3, 0x5d3c(r31)
 /* 807C5280  38 80 00 00 */	li r4, 0
 /* 807C5284  90 81 00 08 */	stw r4, 8(r1)
@@ -27,9 +27,9 @@ lbl_807C5258:
 /* 807C52BC  39 00 00 00 */	li r8, 0
 /* 807C52C0  39 20 00 00 */	li r9, 0
 /* 807C52C4  39 40 00 FF */	li r10, 0xff
-/* 807C52C8  3D 60 80 7D */	lis r11, lit_3909@ha
-/* 807C52CC  C0 2B EC B0 */	lfs f1, lit_3909@l(r11)
-/* 807C52D0  4B 88 77 C0 */	b set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 807C52C8  3D 60 80 7D */	lis r11, lit_3909@ha /* 0x807CECB0@ha */
+/* 807C52CC  C0 2B EC B0 */	lfs f1, lit_3909@l(r11)  /* 0x807CECB0@l */
+/* 807C52D0  4B 88 77 C1 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 807C52D4  80 7F 5D 3C */	lwz r3, 0x5d3c(r31)
 /* 807C52D8  38 80 00 00 */	li r4, 0
 /* 807C52DC  90 81 00 08 */	stw r4, 8(r1)
@@ -46,9 +46,9 @@ lbl_807C5258:
 /* 807C5308  39 00 00 00 */	li r8, 0
 /* 807C530C  39 20 00 00 */	li r9, 0
 /* 807C5310  39 40 00 FF */	li r10, 0xff
-/* 807C5314  3D 60 80 7D */	lis r11, lit_3909@ha
-/* 807C5318  C0 2B EC B0 */	lfs f1, lit_3909@l(r11)
-/* 807C531C  4B 88 77 74 */	b set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 807C5314  3D 60 80 7D */	lis r11, lit_3909@ha /* 0x807CECB0@ha */
+/* 807C5318  C0 2B EC B0 */	lfs f1, lit_3909@l(r11)  /* 0x807CECB0@l */
+/* 807C531C  4B 88 77 75 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 807C5320  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 807C5324  83 C1 00 28 */	lwz r30, 0x28(r1)
 /* 807C5328  80 01 00 34 */	lwz r0, 0x34(r1)

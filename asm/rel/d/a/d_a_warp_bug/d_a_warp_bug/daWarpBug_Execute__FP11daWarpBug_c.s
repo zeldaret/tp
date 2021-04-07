@@ -6,11 +6,11 @@ lbl_80D68078:
 /* 80D68088  7C 7F 1B 78 */	mr r31, r3
 /* 80D6808C  80 63 05 68 */	lwz r3, 0x568(r3)
 /* 80D68090  38 63 00 24 */	addi r3, r3, 0x24
-/* 80D68094  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha
-/* 80D68098  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l
-/* 80D6809C  4B 5D E4 14 */	b PSMTXCopy
-/* 80D680A0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80D680A4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80D68094  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80D68098  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 80D6809C  4B 5D E4 15 */	bl PSMTXCopy
+/* 80D680A0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80D680A4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80D680A8  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 80D680AC  D0 1F 04 D0 */	stfs f0, 0x4d0(r31)
 /* 80D680B0  C0 03 00 1C */	lfs f0, 0x1c(r3)

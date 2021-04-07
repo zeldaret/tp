@@ -7,7 +7,7 @@ lbl_8085BCD0:
 /* 8085BCE4  41 82 00 10 */	beq lbl_8085BCF4
 /* 8085BCE8  7C 80 07 35 */	extsh. r0, r4
 /* 8085BCEC  40 81 00 08 */	ble lbl_8085BCF4
-/* 8085BCF0  4B A7 30 4C */	b __dl__FPv
+/* 8085BCF0  4B A7 30 4D */	bl __dl__FPv
 lbl_8085BCF4:
 /* 8085BCF4  7F E3 FB 78 */	mr r3, r31
 /* 8085BCF8  83 E1 00 0C */	lwz r31, 0xc(r1)

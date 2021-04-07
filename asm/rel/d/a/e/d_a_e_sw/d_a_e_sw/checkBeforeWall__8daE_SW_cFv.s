@@ -11,7 +11,7 @@ lbl_807A7EFC:
 /* 807A7F20  A8 1F 07 34 */	lha r0, 0x734(r31)
 /* 807A7F24  7C 03 00 50 */	subf r0, r3, r0
 /* 807A7F28  7C 03 07 34 */	extsh r3, r0
-/* 807A7F2C  4B BB D1 A4 */	b abs
+/* 807A7F2C  4B BB D1 A5 */	bl abs
 /* 807A7F30  2C 03 70 00 */	cmpwi r3, 0x7000
 /* 807A7F34  40 81 00 0C */	ble lbl_807A7F40
 /* 807A7F38  38 60 00 01 */	li r3, 1
@@ -24,7 +24,7 @@ lbl_807A7F40:
 /* 807A7F50  A8 1F 07 74 */	lha r0, 0x774(r31)
 /* 807A7F54  7C 03 00 50 */	subf r0, r3, r0
 /* 807A7F58  7C 03 07 34 */	extsh r3, r0
-/* 807A7F5C  4B BB D1 74 */	b abs
+/* 807A7F5C  4B BB D1 75 */	bl abs
 /* 807A7F60  2C 03 70 00 */	cmpwi r3, 0x7000
 /* 807A7F64  40 81 00 0C */	ble lbl_807A7F70
 /* 807A7F68  38 60 00 01 */	li r3, 1

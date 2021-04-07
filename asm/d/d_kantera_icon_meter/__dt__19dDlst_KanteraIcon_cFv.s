@@ -5,8 +5,8 @@ lbl_801AED1C:
 /* 801AED28  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801AED2C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 801AED30  41 82 00 1C */	beq lbl_801AED4C
-/* 801AED34  3C A0 80 3C */	lis r5, __vt__19dDlst_KanteraIcon_c@ha
-/* 801AED38  38 05 C2 18 */	addi r0, r5, __vt__19dDlst_KanteraIcon_c@l
+/* 801AED34  3C A0 80 3C */	lis r5, __vt__19dDlst_KanteraIcon_c@ha /* 0x803BC218@ha */
+/* 801AED38  38 05 C2 18 */	addi r0, r5, __vt__19dDlst_KanteraIcon_c@l /* 0x803BC218@l */
 /* 801AED3C  90 1F 00 00 */	stw r0, 0(r31)
 /* 801AED40  7C 80 07 35 */	extsh. r0, r4
 /* 801AED44  40 81 00 08 */	ble lbl_801AED4C

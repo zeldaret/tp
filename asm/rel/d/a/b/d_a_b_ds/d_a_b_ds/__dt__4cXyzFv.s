@@ -7,7 +7,7 @@ lbl_805DC968:
 /* 805DC97C  41 82 00 10 */	beq lbl_805DC98C
 /* 805DC980  7C 80 07 35 */	extsh. r0, r4
 /* 805DC984  40 81 00 08 */	ble lbl_805DC98C
-/* 805DC988  4B CF 23 B4 */	b __dl__FPv
+/* 805DC988  4B CF 23 B5 */	bl __dl__FPv
 lbl_805DC98C:
 /* 805DC98C  7F E3 FB 78 */	mr r3, r31
 /* 805DC990  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -11,13 +11,13 @@ lbl_80CB7E98:
 /* 80CB7EBC  D0 41 00 10 */	stfs f2, 0x10(r1)
 /* 80CB7EC0  38 66 0B 98 */	addi r3, r6, 0xb98
 /* 80CB7EC4  38 81 00 08 */	addi r4, r1, 8
-/* 80CB7EC8  3C A0 80 CC */	lis r5, lit_5155@ha
-/* 80CB7ECC  C0 25 84 5C */	lfs f1, lit_5155@l(r5)
+/* 80CB7EC8  3C A0 80 CC */	lis r5, lit_5155@ha /* 0x80CB845C@ha */
+/* 80CB7ECC  C0 25 84 5C */	lfs f1, lit_5155@l(r5)  /* 0x80CB845C@l */
 /* 80CB7ED0  C0 06 0B 18 */	lfs f0, 0xb18(r6)
 /* 80CB7ED4  EC 21 00 32 */	fmuls f1, f1, f0
-/* 80CB7ED8  3C A0 80 CC */	lis r5, lit_4881@ha
-/* 80CB7EDC  C0 45 84 30 */	lfs f2, lit_4881@l(r5)
-/* 80CB7EE0  4B 36 52 2C */	b fopAcM_effHamonSet__FPUlPC4cXyzff
+/* 80CB7ED8  3C A0 80 CC */	lis r5, lit_4881@ha /* 0x80CB8430@ha */
+/* 80CB7EDC  C0 45 84 30 */	lfs f2, lit_4881@l(r5)  /* 0x80CB8430@l */
+/* 80CB7EE0  4B 36 52 2D */	bl fopAcM_effHamonSet__FPUlPC4cXyzff
 /* 80CB7EE4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80CB7EE8  7C 08 03 A6 */	mtlr r0
 /* 80CB7EEC  38 21 00 20 */	addi r1, r1, 0x20

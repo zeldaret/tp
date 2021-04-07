@@ -11,8 +11,8 @@ lbl_802956B0:
 /* 802956D4  41 82 00 1C */	beq lbl_802956F0
 /* 802956D8  38 03 FF 60 */	addi r0, r3, -160
 /* 802956DC  54 04 20 36 */	slwi r4, r0, 4
-/* 802956E0  3C 60 80 3C */	lis r3, sCmdInfo__12JASSeqParser@ha
-/* 802956E4  38 03 5E 80 */	addi r0, r3, sCmdInfo__12JASSeqParser@l
+/* 802956E0  3C 60 80 3C */	lis r3, sCmdInfo__12JASSeqParser@ha /* 0x803C5E80@ha */
+/* 802956E4  38 03 5E 80 */	addi r0, r3, sCmdInfo__12JASSeqParser@l /* 0x803C5E80@l */
 /* 802956E8  7F E0 22 14 */	add r31, r0, r4
 /* 802956EC  48 00 00 24 */	b lbl_80295710
 lbl_802956F0:
@@ -21,8 +21,8 @@ lbl_802956F0:
 /* 802956F8  90 1C 00 04 */	stw r0, 4(r28)
 /* 802956FC  88 03 00 00 */	lbz r0, 0(r3)
 /* 80295700  54 04 25 36 */	rlwinm r4, r0, 4, 0x14, 0x1b
-/* 80295704  3C 60 80 3C */	lis r3, sExtCmdInfo__12JASSeqParser@ha
-/* 80295708  38 03 64 8C */	addi r0, r3, sExtCmdInfo__12JASSeqParser@l
+/* 80295704  3C 60 80 3C */	lis r3, sExtCmdInfo__12JASSeqParser@ha /* 0x803C648C@ha */
+/* 80295708  38 03 64 8C */	addi r0, r3, sExtCmdInfo__12JASSeqParser@l /* 0x803C648C@l */
 /* 8029570C  7F E0 22 14 */	add r31, r0, r4
 lbl_80295710:
 /* 80295710  A0 1F 00 0E */	lhz r0, 0xe(r31)

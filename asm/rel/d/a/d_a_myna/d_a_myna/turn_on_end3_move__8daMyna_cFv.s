@@ -6,16 +6,16 @@ lbl_80948074:
 /* 80948084  7C 7F 1B 78 */	mr r31, r3
 /* 80948088  38 7F 04 DE */	addi r3, r31, 0x4de
 /* 8094808C  A8 9F 04 B6 */	lha r4, 0x4b6(r31)
-/* 80948090  3C A0 80 95 */	lis r5, l_HOSTIO@ha
-/* 80948094  38 E5 BA 3C */	addi r7, r5, l_HOSTIO@l
+/* 80948090  3C A0 80 95 */	lis r5, l_HOSTIO@ha /* 0x8094BA3C@ha */
+/* 80948094  38 E5 BA 3C */	addi r7, r5, l_HOSTIO@l /* 0x8094BA3C@l */
 /* 80948098  A8 A7 00 26 */	lha r5, 0x26(r7)
 /* 8094809C  A8 C7 00 28 */	lha r6, 0x28(r7)
 /* 809480A0  A8 E7 00 2A */	lha r7, 0x2a(r7)
-/* 809480A4  4B 92 84 9C */	b cLib_addCalcAngleS__FPsssss
+/* 809480A4  4B 92 84 9D */	bl cLib_addCalcAngleS__FPsssss
 /* 809480A8  A8 7F 04 B6 */	lha r3, 0x4b6(r31)
 /* 809480AC  A8 1F 04 DE */	lha r0, 0x4de(r31)
 /* 809480B0  7C 63 00 50 */	subf r3, r3, r0
-/* 809480B4  4B A1 D0 1C */	b abs
+/* 809480B4  4B A1 D0 1D */	bl abs
 /* 809480B8  2C 03 00 10 */	cmpwi r3, 0x10
 /* 809480BC  41 81 00 14 */	bgt lbl_809480D0
 /* 809480C0  A8 1F 04 B6 */	lha r0, 0x4b6(r31)

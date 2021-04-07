@@ -9,7 +9,7 @@ lbl_80D5C698:
 /* 80D5C6B4  40 82 00 1C */	bne lbl_80D5C6D0
 /* 80D5C6B8  28 1F 00 00 */	cmplwi r31, 0
 /* 80D5C6BC  41 82 00 08 */	beq lbl_80D5C6C4
-/* 80D5C6C0  4B 2B C4 A4 */	b __ct__10fopAc_ac_cFv
+/* 80D5C6C0  4B 2B C4 A5 */	bl __ct__10fopAc_ac_cFv
 lbl_80D5C6C4:
 /* 80D5C6C4  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 80D5C6C8  60 00 00 08 */	ori r0, r0, 8

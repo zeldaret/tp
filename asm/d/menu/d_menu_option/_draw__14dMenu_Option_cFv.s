@@ -8,8 +8,8 @@ lbl_801E36CC:
 /* 801E36E4  80 03 00 50 */	lwz r0, 0x50(r3)
 /* 801E36E8  28 00 00 00 */	cmplwi r0, 0
 /* 801E36EC  41 82 01 C8 */	beq lbl_801E38B4
-/* 801E36F0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801E36F4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801E36F0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801E36F4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801E36F8  83 E3 5F 50 */	lwz r31, 0x5f50(r3)
 /* 801E36FC  80 7E 00 38 */	lwz r3, 0x38(r30)
 /* 801E3700  38 80 00 FF */	li r4, 0xff
@@ -35,8 +35,8 @@ lbl_801E36CC:
 /* 801E3750  7F E4 FB 78 */	mr r4, r31
 /* 801E3754  48 11 57 81 */	bl draw__9J2DScreenFffPC14J2DGrafContext
 /* 801E3758  80 7E 00 38 */	lwz r3, 0x38(r30)
-/* 801E375C  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 801E3760  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 801E375C  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 801E3760  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 801E3764  88 04 07 25 */	lbz r0, 0x725(r4)
 /* 801E3768  C8 22 A9 40 */	lfd f1, lit_4445(r2)
 /* 801E376C  90 01 00 0C */	stw r0, 0xc(r1)

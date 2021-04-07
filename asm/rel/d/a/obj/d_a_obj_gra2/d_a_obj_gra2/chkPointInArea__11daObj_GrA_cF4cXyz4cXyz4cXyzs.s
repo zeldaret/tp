@@ -24,7 +24,7 @@ lbl_80C0F668:
 /* 80C0F6C0  38 81 00 14 */	addi r4, r1, 0x14
 /* 80C0F6C4  38 A1 00 08 */	addi r5, r1, 8
 /* 80C0F6C8  7C E6 3B 78 */	mr r6, r7
-/* 80C0F6CC  4B 54 62 9C */	b daNpcF_chkPointInArea__F4cXyz4cXyz4cXyzs
+/* 80C0F6CC  4B 54 62 9D */	bl daNpcF_chkPointInArea__F4cXyz4cXyz4cXyzs
 /* 80C0F6D0  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80C0F6D4  7C 08 03 A6 */	mtlr r0
 /* 80C0F6D8  38 21 00 30 */	addi r1, r1, 0x30

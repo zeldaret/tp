@@ -17,16 +17,16 @@ lbl_800EBD14:
 /* 800EBD18  28 00 00 02 */	cmplwi r0, 2
 /* 800EBD1C  40 82 00 18 */	bne lbl_800EBD34
 /* 800EBD20  38 00 00 01 */	li r0, 1
-/* 800EBD24  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800EBD28  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800EBD24  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800EBD28  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800EBD2C  98 03 5E 81 */	stb r0, 0x5e81(r3)
 /* 800EBD30  48 00 00 1C */	b lbl_800EBD4C
 lbl_800EBD34:
 /* 800EBD34  28 00 00 03 */	cmplwi r0, 3
 /* 800EBD38  40 82 00 14 */	bne lbl_800EBD4C
 /* 800EBD3C  38 00 00 04 */	li r0, 4
-/* 800EBD40  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800EBD44  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800EBD40  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800EBD44  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800EBD48  98 03 5E 81 */	stb r0, 0x5e81(r3)
 lbl_800EBD4C:
 /* 800EBD4C  A8 7F 30 0C */	lha r3, 0x300c(r31)
@@ -58,8 +58,8 @@ lbl_800EBD94:
 /* 800EBDA8  48 18 47 99 */	bl cLib_addCalcAngleS__FPsssss
 /* 800EBDAC  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 800EBDB0  B0 1F 04 DE */	sth r0, 0x4de(r31)
-/* 800EBDB4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800EBDB8  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 800EBDB4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800EBDB8  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800EBDBC  A8 1F 04 DE */	lha r0, 0x4de(r31)
 /* 800EBDC0  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 800EBDC4  7C 64 02 14 */	add r3, r4, r0
@@ -117,8 +117,8 @@ lbl_800EBE60:
 /* 800EBE88  48 18 46 B9 */	bl cLib_addCalcAngleS__FPsssss
 /* 800EBE8C  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 800EBE90  B0 1F 04 DE */	sth r0, 0x4de(r31)
-/* 800EBE94  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800EBE98  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 800EBE94  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800EBE98  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800EBE9C  A8 1F 04 DE */	lha r0, 0x4de(r31)
 /* 800EBEA0  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 800EBEA4  7C 64 02 14 */	add r3, r4, r0

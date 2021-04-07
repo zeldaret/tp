@@ -6,7 +6,7 @@ lbl_80998964:
 /* 80998974  7C 85 23 78 */	mr r5, r4
 /* 80998978  80 63 00 08 */	lwz r3, 8(r3)
 /* 8099897C  A0 86 00 04 */	lhz r4, 4(r6)
-/* 80998980  4B 99 25 D0 */	b getTexNo__16J3DAnmTexPatternCFUsPUs
+/* 80998980  4B 99 25 D1 */	bl getTexNo__16J3DAnmTexPatternCFUsPUs
 /* 80998984  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80998988  7C 08 03 A6 */	mtlr r0
 /* 8099898C  38 21 00 10 */	addi r1, r1, 0x10

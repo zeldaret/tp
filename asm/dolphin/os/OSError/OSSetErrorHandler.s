@@ -9,9 +9,9 @@ lbl_8033C580:
 /* 8033C59C  93 81 00 20 */	stw r28, 0x20(r1)
 /* 8033C5A0  3B 84 00 00 */	addi r28, r4, 0
 /* 8033C5A4  48 00 11 51 */	bl OSDisableInterrupts
-/* 8033C5A8  3C 80 80 45 */	lis r4, __OSErrorTable@ha
+/* 8033C5A8  3C 80 80 45 */	lis r4, __OSErrorTable@ha /* 0x8044BAD0@ha */
 /* 8033C5AC  57 A5 13 BA */	rlwinm r5, r29, 2, 0xe, 0x1d
-/* 8033C5B0  38 04 BA D0 */	addi r0, r4, __OSErrorTable@l
+/* 8033C5B0  38 04 BA D0 */	addi r0, r4, __OSErrorTable@l /* 0x8044BAD0@l */
 /* 8033C5B4  57 A6 04 3E */	clrlwi r6, r29, 0x10
 /* 8033C5B8  7C 80 2A 14 */	add r4, r0, r5
 /* 8033C5BC  83 C4 00 00 */	lwz r30, 0(r4)
@@ -28,7 +28,7 @@ lbl_8033C580:
 /* 8033C5E8  41 82 01 18 */	beq lbl_8033C700
 /* 8033C5EC  3C A0 80 00 */	lis r5, 0x8000 /* 0x800000DC@ha */
 /* 8033C5F0  3C 80 60 06 */	lis r4, 0x6006 /* 0x6005F8FF@ha */
-/* 8033C5F4  80 C5 00 DC */	lwz r6, 0x00DC(r5)
+/* 8033C5F4  80 C5 00 DC */	lwz r6, 0x00DC(r5)  /* 0x800000DC@l */
 /* 8033C5F8  38 84 F8 FF */	addi r4, r4, 0xF8FF /* 0x6005F8FF@l */
 /* 8033C5FC  48 00 00 E8 */	b lbl_8033C6E4
 lbl_8033C600:
@@ -102,7 +102,7 @@ lbl_8033C6E4:
 lbl_8033C700:
 /* 8033C700  3C A0 80 00 */	lis r5, 0x8000 /* 0x800000DC@ha */
 /* 8033C704  3C 80 60 06 */	lis r4, 0x6006 /* 0x6005F8FF@ha */
-/* 8033C708  80 C5 00 DC */	lwz r6, 0x00DC(r5)
+/* 8033C708  80 C5 00 DC */	lwz r6, 0x00DC(r5)  /* 0x800000DC@l */
 /* 8033C70C  38 84 F8 FF */	addi r4, r4, 0xF8FF /* 0x6005F8FF@l */
 /* 8033C710  38 A0 F6 FF */	li r5, -2305
 /* 8033C714  48 00 00 2C */	b lbl_8033C740

@@ -1,6 +1,6 @@
 lbl_801F9E2C:
-/* 801F9E2C  3C 80 80 3C */	lis r4, __vt__10dMw_DHIO_c@ha
-/* 801F9E30  38 04 E8 E0 */	addi r0, r4, __vt__10dMw_DHIO_c@l
+/* 801F9E2C  3C 80 80 3C */	lis r4, __vt__10dMw_DHIO_c@ha /* 0x803BE8E0@ha */
+/* 801F9E30  38 04 E8 E0 */	addi r0, r4, __vt__10dMw_DHIO_c@l /* 0x803BE8E0@l */
 /* 801F9E34  90 03 00 00 */	stw r0, 0(r3)
 /* 801F9E38  38 A0 00 00 */	li r5, 0
 /* 801F9E3C  38 00 00 20 */	li r0, 0x20

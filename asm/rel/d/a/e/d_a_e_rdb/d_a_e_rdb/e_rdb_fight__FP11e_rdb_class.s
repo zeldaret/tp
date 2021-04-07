@@ -7,8 +7,8 @@ lbl_807658E0:
 /* 807658F4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 807658F8  93 C1 00 08 */	stw r30, 8(r1)
 /* 807658FC  7C 7E 1B 78 */	mr r30, r3
-/* 80765900  3C 80 80 77 */	lis r4, lit_4007@ha
-/* 80765904  3B E4 B4 5C */	addi r31, r4, lit_4007@l
+/* 80765900  3C 80 80 77 */	lis r4, lit_4007@ha /* 0x8076B45C@ha */
+/* 80765904  3B E4 B4 5C */	addi r31, r4, lit_4007@l /* 0x8076B45C@l */
 /* 80765908  C3 FF 00 04 */	lfs f31, 4(r31)
 /* 8076590C  A8 03 05 B4 */	lha r0, 0x5b4(r3)
 /* 80765910  2C 00 00 01 */	cmpwi r0, 1
@@ -68,29 +68,29 @@ lbl_807659C0:
 /* 807659D8  C0 5F 00 08 */	lfs f2, 8(r31)
 /* 807659DC  C0 1F 00 54 */	lfs f0, 0x54(r31)
 /* 807659E0  EC 60 00 F2 */	fmuls f3, f0, f3
-/* 807659E4  4B B0 A0 58 */	b cLib_addCalc2__FPffff
+/* 807659E4  4B B0 A0 59 */	bl cLib_addCalc2__FPffff
 /* 807659E8  38 7E 05 CC */	addi r3, r30, 0x5cc
 /* 807659EC  C0 3F 00 08 */	lfs f1, 8(r31)
 /* 807659F0  FC 40 08 90 */	fmr f2, f1
 /* 807659F4  C0 7F 00 68 */	lfs f3, 0x68(r31)
-/* 807659F8  4B B0 A0 44 */	b cLib_addCalc2__FPffff
+/* 807659F8  4B B0 A0 45 */	bl cLib_addCalc2__FPffff
 /* 807659FC  38 7E 04 DE */	addi r3, r30, 0x4de
 /* 80765A00  A8 9E 06 B0 */	lha r4, 0x6b0(r30)
 /* 80765A04  38 A0 00 02 */	li r5, 2
 /* 80765A08  38 C0 02 00 */	li r6, 0x200
-/* 80765A0C  4B B0 AB FC */	b cLib_addCalcAngleS2__FPssss
+/* 80765A0C  4B B0 AB FD */	bl cLib_addCalcAngleS2__FPssss
 /* 80765A10  C3 FF 00 04 */	lfs f31, 4(r31)
 /* 80765A14  88 1E 0F CC */	lbz r0, 0xfcc(r30)
 /* 80765A18  7C 00 07 74 */	extsb r0, r0
 /* 80765A1C  2C 00 00 02 */	cmpwi r0, 2
 /* 80765A20  41 80 00 2C */	blt lbl_80765A4C
-/* 80765A24  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80765A28  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80765A24  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80765A28  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80765A2C  38 63 4E 00 */	addi r3, r3, 0x4e00
-/* 80765A30  3C 80 80 77 */	lis r4, stringBase0@ha
-/* 80765A34  38 84 B6 C4 */	addi r4, r4, stringBase0@l
+/* 80765A30  3C 80 80 77 */	lis r4, d_a_e_rdb__stringBase0@ha /* 0x8076B6C4@ha */
+/* 80765A34  38 84 B6 C4 */	addi r4, r4, d_a_e_rdb__stringBase0@l /* 0x8076B6C4@l */
 /* 80765A38  38 84 00 06 */	addi r4, r4, 6
-/* 80765A3C  4B C0 2F 58 */	b strcmp
+/* 80765A3C  4B C0 2F 59 */	bl strcmp
 /* 80765A40  2C 03 00 00 */	cmpwi r3, 0
 /* 80765A44  40 82 00 08 */	bne lbl_80765A4C
 /* 80765A48  C3 FF 00 50 */	lfs f31, 0x50(r31)

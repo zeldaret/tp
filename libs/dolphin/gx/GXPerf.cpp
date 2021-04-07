@@ -27,7 +27,7 @@ extern "C" extern void* __GXData;
 //
 
 /* ############################################################################################## */
-/* 803D2858-803D28B4 005C+00 s=1 e=0 z=0  None .data      @182 */
+/* 803D2858-803D28B4 -00001 005C+00 1/1 0/0 0/0 .data            @182 */
 SECTION_DATA static void* lit_182[23] = {
     (void*)(((char*)GXSetGPMetric) + 0x568), (void*)(((char*)GXSetGPMetric) + 0x584),
     (void*)(((char*)GXSetGPMetric) + 0x5A0), (void*)(((char*)GXSetGPMetric) + 0x5BC),
@@ -43,7 +43,7 @@ SECTION_DATA static void* lit_182[23] = {
     (void*)(((char*)GXSetGPMetric) + 0x838),
 };
 
-/* 803D28B4-803D2948 0090+04 s=1 e=0 z=0  None .data      @181 */
+/* 803D28B4-803D2948 -00001 0090+04 1/1 0/0 0/0 .data            @181 */
 SECTION_DATA static void* lit_181[36 + 1 /* padding */] = {
     (void*)(((char*)GXSetGPMetric) + 0x13C),
     (void*)(((char*)GXSetGPMetric) + 0x15C),
@@ -85,31 +85,31 @@ SECTION_DATA static void* lit_181[36 + 1 /* padding */] = {
     NULL,
 };
 
-/* 8036067C-80360EC4 0848+00 s=2 e=1 z=0  None .text      GXSetGPMetric */
+/* 8036067C-80360EC4 35AFBC 0848+00 2/0 1/1 0/0 .text            GXSetGPMetric */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetGPMetric() {
+asm void GXSetGPMetric() {
     nofralloc
 #include "asm/dolphin/gx/GXPerf/GXSetGPMetric.s"
 }
 #pragma pop
 
-/* 80360EC4-80360ED4 0010+00 s=0 e=1 z=0  None .text      GXClearGPMetric */
+/* 80360EC4-80360ED4 35B804 0010+00 0/0 1/1 0/0 .text            GXClearGPMetric */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXClearGPMetric() {
+asm void GXClearGPMetric() {
     nofralloc
 #include "asm/dolphin/gx/GXPerf/GXClearGPMetric.s"
 }
 #pragma pop
 
-/* 80360ED4-80360F98 00C4+00 s=0 e=1 z=0  None .text      GXReadXfRasMetric */
+/* 80360ED4-80360F98 35B814 00C4+00 0/0 1/1 0/0 .text            GXReadXfRasMetric */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXReadXfRasMetric() {
+asm void GXReadXfRasMetric() {
     nofralloc
 #include "asm/dolphin/gx/GXPerf/GXReadXfRasMetric.s"
 }

@@ -3,17 +3,15 @@
 #
 
 M542_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5ychndlr.plf
+M542_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5ychndlr.lcf
+M542_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5ychndlr.map
 
 M542_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv5ychndlr/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv5ychndlr/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_lv5ychndlr/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_lv5ychndlr/d_a_obj_lv5ychndlr.cpp \
 
 M542_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5ychndlr/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5ychndlr/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5ychndlr/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5ychndlr/d_a_obj_lv5ychndlr.o \
 
 M542_LIBS := \
@@ -29,14 +27,21 @@ M542_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M542_LDSCRIPT) \
+	-unused -map $(M542_MAP) \
+	-w off \
 
 $(M542_TARGET): $(M542_O_FILES) $(M542_LIBS)
+	@echo [542] creating $(M542_TARGET)
 	@echo $(M542_LIBS) $(M542_O_FILES) > build/M542_ofiles
-	$(LD) -partial $(M542_LDFLAGS) -o $(M542_TARGET) @build/M542_ofiles
+	@python3 tools/lcf.py rel 542 --output $(M542_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M542_LDFLAGS) -o $(M542_TARGET) @build/M542_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5ychndlr/%.o: rel/d/a/obj/d_a_obj_lv5ychndlr/%.cpp
+	@echo [542] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M542_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M542_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

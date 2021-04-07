@@ -158,8 +158,8 @@ lbl_8004B39C:
 /* 8004B3B0  39 01 00 10 */	addi r8, r1, 0x10
 /* 8004B3B4  FC 20 F8 90 */	fmr f1, f31
 /* 8004B3B8  48 15 E9 05 */	bl dKy_ParticleColor_get_bg__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf
-/* 8004B3BC  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8004B3C0  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8004B3BC  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8004B3C0  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8004B3C4  C0 23 12 5C */	lfs f1, 0x125c(r3)
 /* 8004B3C8  C0 02 85 88 */	lfs f0, lit_4519(r2)
 /* 8004B3CC  EC 00 08 28 */	fsubs f0, f0, f1

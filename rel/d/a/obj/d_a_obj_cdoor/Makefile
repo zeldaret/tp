@@ -3,18 +3,16 @@
 #
 
 M420_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cdoor.plf
+M420_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cdoor.lcf
+M420_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cdoor.map
 
 M420_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_cdoor/executor.cpp \
-	rel/d/a/obj/d_a_obj_cdoor/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_cdoor/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_cdoor/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_cdoor/d_a_obj_cdoor.cpp \
 
 M420_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cdoor/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cdoor/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cdoor/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cdoor/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_cdoor/d_a_obj_cdoor.o \
 
@@ -31,14 +29,21 @@ M420_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M420_LDSCRIPT) \
+	-unused -map $(M420_MAP) \
+	-w off \
 
 $(M420_TARGET): $(M420_O_FILES) $(M420_LIBS)
+	@echo [420] creating $(M420_TARGET)
 	@echo $(M420_LIBS) $(M420_O_FILES) > build/M420_ofiles
-	$(LD) -partial $(M420_LDFLAGS) -o $(M420_TARGET) @build/M420_ofiles
+	@python3 tools/lcf.py rel 420 --output $(M420_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M420_LDFLAGS) -o $(M420_TARGET) @build/M420_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_cdoor/%.o: rel/d/a/obj/d_a_obj_cdoor/%.cpp
+	@echo [420] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M420_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M420_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -13,7 +13,7 @@ lbl_804E12C8:
 /* 804E12F4  28 00 00 00 */	cmplwi r0, 0
 /* 804E12F8  41 82 00 0C */	beq lbl_804E1304
 /* 804E12FC  38 7F 09 48 */	addi r3, r31, 0x948
-/* 804E1300  4B CC 67 00 */	b dKy_efplight_cut__FP15LIGHT_INFLUENCE
+/* 804E1300  4B CC 67 01 */	bl dKy_efplight_cut__FP15LIGHT_INFLUENCE
 lbl_804E1304:
 /* 804E1304  88 1F 09 2A */	lbz r0, 0x92a(r31)
 /* 804E1308  28 00 00 22 */	cmplwi r0, 0x22
@@ -55,14 +55,14 @@ lbl_804E1388:
 /* 804E1388  7F E3 FB 78 */	mr r3, r31
 /* 804E138C  4B FF F9 25 */	bl endInsectEffect__9daDitem_cFv
 /* 804E1390  38 7F 09 A8 */	addi r3, r31, 0x9a8
-/* 804E1394  4B DD CC 64 */	b deleteObject__14Z2SoundObjBaseFv
+/* 804E1394  4B DD CC 65 */	bl deleteObject__14Z2SoundObjBaseFv
 /* 804E1398  88 1F 09 2A */	lbz r0, 0x92a(r31)
 /* 804E139C  1C 00 00 18 */	mulli r0, r0, 0x18
-/* 804E13A0  3C 60 80 3B */	lis r3, item_resource__10dItem_data@ha
-/* 804E13A4  38 63 C5 A0 */	addi r3, r3, item_resource__10dItem_data@l
+/* 804E13A0  3C 60 80 3B */	lis r3, item_resource__10dItem_data@ha /* 0x803AC5A0@ha */
+/* 804E13A4  38 63 C5 A0 */	addi r3, r3, item_resource__10dItem_data@l /* 0x803AC5A0@l */
 /* 804E13A8  7C 83 00 2E */	lwzx r4, r3, r0
 /* 804E13AC  7F E3 FB 78 */	mr r3, r31
-/* 804E13B0  4B C6 33 74 */	b DeleteBase__12daItemBase_cFPCc
+/* 804E13B0  4B C6 33 75 */	bl DeleteBase__12daItemBase_cFPCc
 /* 804E13B4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 804E13B8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 804E13BC  7C 08 03 A6 */	mtlr r0

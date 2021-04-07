@@ -80,11 +80,11 @@ lbl_802E0400:
 lbl_802E0408:
 /* 802E0408  28 1E 00 00 */	cmplwi r30, 0
 /* 802E040C  40 82 FF A0 */	bne lbl_802E03AC
-/* 802E0410  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha
-/* 802E0414  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l
+/* 802E0410  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha /* 0x803CC9E0@ha */
+/* 802E0414  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l /* 0x803CC9E0@l */
 /* 802E0418  90 01 00 0C */	stw r0, 0xc(r1)
-/* 802E041C  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha
-/* 802E0420  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l
+/* 802E041C  3C 60 80 3D */	lis r3, __vt__14J2DGrafContext@ha /* 0x803CC9B8@ha */
+/* 802E0420  38 03 C9 B8 */	addi r0, r3, __vt__14J2DGrafContext@l /* 0x803CC9B8@l */
 /* 802E0424  90 01 00 0C */	stw r0, 0xc(r1)
 lbl_802E0428:
 /* 802E0428  39 61 01 10 */	addi r11, r1, 0x110

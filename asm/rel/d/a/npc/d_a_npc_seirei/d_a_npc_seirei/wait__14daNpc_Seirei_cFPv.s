@@ -42,12 +42,12 @@ lbl_80AD6CC8:
 /* 80AD6CE8  54 00 05 EF */	rlwinm. r0, r0, 0, 0x17, 0x17
 /* 80AD6CEC  40 82 00 2C */	bne lbl_80AD6D18
 /* 80AD6CF0  7F E3 FB 78 */	mr r3, r31
-/* 80AD6CF4  4B 67 58 EC */	b daNpcT_chkDoBtnIsSpeak__FP10fopAc_ac_c
+/* 80AD6CF4  4B 67 58 ED */	bl daNpcT_chkDoBtnIsSpeak__FP10fopAc_ac_c
 /* 80AD6CF8  2C 03 00 00 */	cmpwi r3, 0
 /* 80AD6CFC  41 82 00 1C */	beq lbl_80AD6D18
 /* 80AD6D00  38 00 00 08 */	li r0, 8
-/* 80AD6D04  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80AD6D08  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80AD6D04  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80AD6D08  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80AD6D0C  98 03 5E 24 */	stb r0, 0x5e24(r3)
 /* 80AD6D10  38 00 00 00 */	li r0, 0
 /* 80AD6D14  98 03 5E 4A */	stb r0, 0x5e4a(r3)

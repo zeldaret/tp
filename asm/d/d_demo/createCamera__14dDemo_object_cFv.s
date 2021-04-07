@@ -13,14 +13,14 @@ lbl_800390D0:
 /* 800390D4  48 29 5B 79 */	bl __nw__FUl
 /* 800390D8  28 03 00 00 */	cmplwi r3, 0
 /* 800390DC  41 82 00 30 */	beq lbl_8003910C
-/* 800390E0  3C 80 80 3C */	lis r4, __vt__Q26JStage7TObject@ha
-/* 800390E4  38 04 47 E8 */	addi r0, r4, __vt__Q26JStage7TObject@l
+/* 800390E0  3C 80 80 3C */	lis r4, __vt__Q26JStage7TObject@ha /* 0x803C47E8@ha */
+/* 800390E4  38 04 47 E8 */	addi r0, r4, __vt__Q26JStage7TObject@l /* 0x803C47E8@l */
 /* 800390E8  90 03 00 00 */	stw r0, 0(r3)
-/* 800390EC  3C 80 80 3C */	lis r4, __vt__Q26JStage7TCamera@ha
-/* 800390F0  38 04 46 80 */	addi r0, r4, __vt__Q26JStage7TCamera@l
+/* 800390EC  3C 80 80 3C */	lis r4, __vt__Q26JStage7TCamera@ha /* 0x803C4680@ha */
+/* 800390F0  38 04 46 80 */	addi r0, r4, __vt__Q26JStage7TCamera@l /* 0x803C4680@l */
 /* 800390F4  90 03 00 00 */	stw r0, 0(r3)
-/* 800390F8  3C 80 80 3A */	lis r4, __vt__14dDemo_camera_c@ha
-/* 800390FC  38 04 7A A0 */	addi r0, r4, __vt__14dDemo_camera_c@l
+/* 800390F8  3C 80 80 3A */	lis r4, __vt__14dDemo_camera_c@ha /* 0x803A7AA0@ha */
+/* 800390FC  38 04 7A A0 */	addi r0, r4, __vt__14dDemo_camera_c@l /* 0x803A7AA0@l */
 /* 80039100  90 03 00 00 */	stw r0, 0(r3)
 /* 80039104  38 00 00 00 */	li r0, 0
 /* 80039108  98 03 00 04 */	stb r0, 4(r3)

@@ -11,8 +11,8 @@ lbl_80AAFB4C:
 lbl_80AAFB70:
 /* 80AAFB70  80 A3 05 78 */	lwz r5, 0x578(r3)
 /* 80AAFB74  A8 05 00 14 */	lha r0, 0x14(r5)
-/* 80AAFB78  3C 80 80 AB */	lis r4, lit_4918@ha
-/* 80AAFB7C  C8 24 20 F0 */	lfd f1, lit_4918@l(r4)
+/* 80AAFB78  3C 80 80 AB */	lis r4, lit_4918@ha /* 0x80AB20F0@ha */
+/* 80AAFB7C  C8 24 20 F0 */	lfd f1, lit_4918@l(r4)  /* 0x80AB20F0@l */
 /* 80AAFB80  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 80AAFB84  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80AAFB88  3C 80 43 30 */	lis r4, 0x4330
@@ -29,8 +29,8 @@ lbl_80AAFB70:
 /* 80AAFBB4  C8 01 00 18 */	lfd f0, 0x18(r1)
 /* 80AAFBB8  EC 00 08 28 */	fsubs f0, f0, f1
 /* 80AAFBBC  D0 05 00 1C */	stfs f0, 0x1c(r5)
-/* 80AAFBC0  3C 80 80 AB */	lis r4, lit_4742@ha
-/* 80AAFBC4  C0 04 20 D0 */	lfs f0, lit_4742@l(r4)
+/* 80AAFBC0  3C 80 80 AB */	lis r4, lit_4742@ha /* 0x80AB20D0@ha */
+/* 80AAFBC4  C0 04 20 D0 */	lfs f0, lit_4742@l(r4)  /* 0x80AB20D0@l */
 /* 80AAFBC8  80 63 05 78 */	lwz r3, 0x578(r3)
 /* 80AAFBCC  D0 03 00 18 */	stfs f0, 0x18(r3)
 lbl_80AAFBD0:

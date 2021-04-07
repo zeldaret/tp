@@ -16,8 +16,8 @@ lbl_80257910:
 /* 80257948  98 03 00 0E */	stb r0, 0xe(r3)
 /* 8025794C  88 01 00 0B */	lbz r0, 0xb(r1)
 /* 80257950  98 03 00 0F */	stb r0, 0xf(r3)
-/* 80257954  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80257958  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80257954  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80257958  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025795C  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80257960  4B DD 50 79 */	bl createParticle__14dComIfG_play_cFv
 /* 80257964  4B DB 73 ED */	bl mDoExt_getGameHeap__Fv

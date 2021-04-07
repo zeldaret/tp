@@ -36,7 +36,7 @@ isEqual__Q37JStudio6object7TIDDataFRCQ37JStudio6object7TIDDataRCQ37JStudio6objec
 // Declarations:
 //
 
-/* 80288988-80288A78 00F0+00 s=0 e=3 z=0  None .text
+/* 80288988-80288A78 2832C8 00F0+00 0/0 3/3 0/0 .text
  * isEqual__Q37JStudio6object7TIDDataFRCQ37JStudio6object7TIDDataRCQ37JStudio6object7TIDData */
 #pragma push
 #pragma optimization_level 0

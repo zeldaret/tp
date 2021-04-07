@@ -32,52 +32,52 @@ extern "C" extern u8 data_80451634[4];
 //
 
 /* ############################################################################################## */
-/* 804516A0-804516A4 0004+00 s=1 e=0 z=0  None .sbss      ResetCallback */
+/* 804516A0-804516A4 000BA0 0004+00 1/1 0/0 0/0 .sbss            ResetCallback */
 static u8 ResetCallback[4];
 
-/* 804516A4-804516A8 0004+00 s=2 e=0 z=0  None .sbss      Down */
+/* 804516A4-804516A8 000BA4 0004+00 2/2 0/0 0/0 .sbss            Down */
 static u8 Down[4];
 
-/* 804516A8-804516B0 0004+04 s=2 e=0 z=0  None .sbss      LastState */
+/* 804516A8-804516B0 000BA8 0004+04 2/2 0/0 0/0 .sbss            LastState */
 static u8 LastState[4 + 4 /* padding */];
 
-/* 804516B0-804516B4 0004+00 s=1 e=0 z=0  None .sbss      HoldUp */
+/* 804516B0-804516B4 000BB0 0004+00 1/1 0/0 0/0 .sbss            HoldUp */
 static u8 HoldUp[4];
 
-/* 804516B4-804516B8 0004+00 s=1 e=0 z=0  None .sbss      None */
+/* 804516B4-804516B8 000BB4 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_804516B4[4];
 
-/* 804516B8-804516BC 0004+00 s=2 e=0 z=0  None .sbss      HoldDown */
+/* 804516B8-804516BC 000BB8 0004+00 2/2 0/0 0/0 .sbss            HoldDown */
 static u8 HoldDown[4];
 
-/* 804516BC-804516C0 0004+00 s=2 e=0 z=0  None .sbss      None */
+/* 804516BC-804516C0 000BBC 0004+00 2/2 0/0 0/0 .sbss            None */
 static u8 data_804516BC[4];
 
-/* 8033FAE4-8033FBD8 00F4+00 s=0 e=1 z=0  None .text      __OSResetSWInterruptHandler */
+/* 8033FAE4-8033FBD8 33A424 00F4+00 0/0 1/1 0/0 .text            __OSResetSWInterruptHandler */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __OSResetSWInterruptHandler() {
+asm void __OSResetSWInterruptHandler() {
     nofralloc
 #include "asm/dolphin/os/OSResetSW/__OSResetSWInterruptHandler.s"
 }
 #pragma pop
 
-/* 8033FBD8-8033FE70 0298+00 s=1 e=0 z=0  None .text      OSGetResetButtonState */
+/* 8033FBD8-8033FE70 33A518 0298+00 1/1 0/0 0/0 .text            OSGetResetButtonState */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void OSGetResetButtonState() {
+static asm void OSGetResetButtonState() {
     nofralloc
 #include "asm/dolphin/os/OSResetSW/OSGetResetButtonState.s"
 }
 #pragma pop
 
-/* 8033FE70-8033FE90 0020+00 s=0 e=1 z=0  None .text      OSGetResetSwitchState */
+/* 8033FE70-8033FE90 33A7B0 0020+00 0/0 1/1 0/0 .text            OSGetResetSwitchState */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void OSGetResetSwitchState() {
+asm void OSGetResetSwitchState() {
     nofralloc
 #include "asm/dolphin/os/OSResetSW/OSGetResetSwitchState.s"
 }

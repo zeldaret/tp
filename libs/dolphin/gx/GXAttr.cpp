@@ -36,7 +36,7 @@ extern "C" extern void* __GXData;
 //
 
 /* ############################################################################################## */
-/* 803D2280-803D22E8 0068+00 s=1 e=0 z=0  None .data      @176 */
+/* 803D2280-803D22E8 -00001 0068+00 1/1 0/0 0/0 .data            @176 */
 SECTION_DATA static void* lit_176[26] = {
     (void*)(((char*)GXSetVtxDesc) + 0x20),  (void*)(((char*)GXSetVtxDesc) + 0x34),
     (void*)(((char*)GXSetVtxDesc) + 0x48),  (void*)(((char*)GXSetVtxDesc) + 0x5C),
@@ -53,18 +53,18 @@ SECTION_DATA static void* lit_176[26] = {
     (void*)(((char*)GXSetVtxDesc) + 0x214), (void*)(((char*)GXSetVtxDesc) + 0x11C),
 };
 
-/* 8035AEB8-8035B124 026C+00 s=1 e=70 z=6  None .text      GXSetVtxDesc */
+/* 8035AEB8-8035B124 3557F8 026C+00 1/0 70/70 6/6 .text            GXSetVtxDesc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetVtxDesc() {
+asm void GXSetVtxDesc() {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/GXSetVtxDesc.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803D22E8-803D2350 0068+00 s=1 e=0 z=0  None .data      @223 */
+/* 803D22E8-803D2350 -00001 0068+00 1/1 0/0 0/0 .data            @223 */
 SECTION_DATA static void* lit_223[26] = {
     (void*)(((char*)GXSetVtxDescv) + 0x2C),  (void*)(((char*)GXSetVtxDescv) + 0x40),
     (void*)(((char*)GXSetVtxDescv) + 0x54),  (void*)(((char*)GXSetVtxDescv) + 0x68),
@@ -81,28 +81,28 @@ SECTION_DATA static void* lit_223[26] = {
     (void*)(((char*)GXSetVtxDescv) + 0x220), (void*)(((char*)GXSetVtxDescv) + 0x128),
 };
 
-/* 8035B124-8035B3AC 0288+00 s=1 e=0 z=1  None .text      GXSetVtxDescv */
+/* 8035B124-8035B3AC 355A64 0288+00 1/0 0/0 1/1 .text            GXSetVtxDescv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetVtxDescv() {
+asm void GXSetVtxDescv() {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/GXSetVtxDescv.s"
 }
 #pragma pop
 
-/* 8035B3AC-8035B468 00BC+00 s=0 e=2 z=0  None .text      __GXSetVCD */
+/* 8035B3AC-8035B468 355CEC 00BC+00 0/0 2/2 0/0 .text            __GXSetVCD */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __GXSetVCD() {
+asm void __GXSetVCD() {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/__GXSetVCD.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450A80-80450A84 0004+00 s=1 e=0 z=0  None .sdata     tbl1$241 */
+/* 80450A80-80450A84 000500 0004+00 1/1 0/0 0/0 .sdata           tbl1$241 */
 SECTION_SDATA static u8 tbl1[4] = {
     0x00,
     0x04,
@@ -110,7 +110,7 @@ SECTION_SDATA static u8 tbl1[4] = {
     0x02,
 };
 
-/* 80450A84-80450A88 0004+00 s=1 e=0 z=0  None .sdata     tbl2$242 */
+/* 80450A84-80450A88 000504 0004+00 1/1 0/0 0/0 .sdata           tbl2$242 */
 SECTION_SDATA static u8 tbl2[4] = {
     0x00,
     0x08,
@@ -118,7 +118,7 @@ SECTION_SDATA static u8 tbl2[4] = {
     0x02,
 };
 
-/* 80450A88-80450A90 0004+04 s=1 e=0 z=0  None .sdata     tbl3$243 */
+/* 80450A88-80450A90 000508 0004+04 1/1 0/0 0/0 .sdata           tbl3$243 */
 SECTION_SDATA static u8 tbl3[4 + 4 /* padding */] = {
     0x00,
     0x0C,
@@ -131,28 +131,28 @@ SECTION_SDATA static u8 tbl3[4 + 4 /* padding */] = {
     0x00,
 };
 
-/* 8035B468-8035B58C 0124+00 s=0 e=2 z=0  None .text      __GXCalculateVLim */
+/* 8035B468-8035B58C 355DA8 0124+00 0/0 2/2 0/0 .text            __GXCalculateVLim */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __GXCalculateVLim() {
+asm void __GXCalculateVLim() {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/__GXCalculateVLim.s"
 }
 #pragma pop
 
-/* 8035B58C-8035B5C4 0038+00 s=0 e=66 z=7  None .text      GXClearVtxDesc */
+/* 8035B58C-8035B5C4 355ECC 0038+00 0/0 66/66 7/7 .text            GXClearVtxDesc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXClearVtxDesc() {
+asm void GXClearVtxDesc() {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/GXClearVtxDesc.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803D2350-803D2394 0044+00 s=1 e=0 z=0  None .data      @476 */
+/* 803D2350-803D2394 -00001 0044+00 1/1 0/0 0/0 .data            @476 */
 SECTION_DATA static void* lit_476[17] = {
     (void*)(((char*)GXSetVtxAttrFmt) + 0x3C),  (void*)(((char*)GXSetVtxAttrFmt) + 0x64),
     (void*)(((char*)GXSetVtxAttrFmt) + 0xB8),  (void*)(((char*)GXSetVtxAttrFmt) + 0xD4),
@@ -165,18 +165,18 @@ SECTION_DATA static void* lit_476[17] = {
     (void*)(((char*)GXSetVtxAttrFmt) + 0x64),
 };
 
-/* 8035B5C4-8035B820 025C+00 s=1 e=69 z=6  None .text      GXSetVtxAttrFmt */
+/* 8035B5C4-8035B820 355F04 025C+00 1/0 69/69 6/6 .text            GXSetVtxAttrFmt */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetVtxAttrFmt() {
+asm void GXSetVtxAttrFmt() {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/GXSetVtxAttrFmt.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803D2394-803D23D8 0044+00 s=1 e=0 z=0  None .data      @503 */
+/* 803D2394-803D23D8 -00001 0044+00 1/1 0/0 0/0 .data            @503 */
 SECTION_DATA static void* lit_503[17] = {
     (void*)(((char*)GXSetVtxAttrFmtv) + 0x50),  (void*)(((char*)GXSetVtxAttrFmtv) + 0x78),
     (void*)(((char*)GXSetVtxAttrFmtv) + 0xCC),  (void*)(((char*)GXSetVtxAttrFmtv) + 0xE8),
@@ -189,48 +189,48 @@ SECTION_DATA static void* lit_503[17] = {
     (void*)(((char*)GXSetVtxAttrFmtv) + 0x78),
 };
 
-/* 8035B820-8035BAA0 0280+00 s=1 e=1 z=1  None .text      GXSetVtxAttrFmtv */
+/* 8035B820-8035BAA0 356160 0280+00 1/0 1/1 1/1 .text            GXSetVtxAttrFmtv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetVtxAttrFmtv() {
+asm void GXSetVtxAttrFmtv() {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/GXSetVtxAttrFmtv.s"
 }
 #pragma pop
 
-/* 8035BAA0-8035BB28 0088+00 s=0 e=2 z=0  None .text      __GXSetVAT */
+/* 8035BAA0-8035BB28 3563E0 0088+00 0/0 2/2 0/0 .text            __GXSetVAT */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __GXSetVAT() {
+asm void __GXSetVAT() {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/__GXSetVAT.s"
 }
 #pragma pop
 
-/* 8035BB28-8035BB6C 0044+00 s=0 e=13 z=5  None .text      GXSetArray */
+/* 8035BB28-8035BB6C 356468 0044+00 0/0 13/13 5/5 .text            GXSetArray */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetArray() {
+asm void GXSetArray() {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/GXSetArray.s"
 }
 #pragma pop
 
-/* 8035BB6C-8035BB7C 0010+00 s=0 e=6 z=0  None .text      GXInvalidateVtxCache */
+/* 8035BB6C-8035BB7C 3564AC 0010+00 0/0 6/6 0/0 .text            GXInvalidateVtxCache */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXInvalidateVtxCache() {
+asm void GXInvalidateVtxCache() {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/GXInvalidateVtxCache.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803D23D8-803D23F4 001C+00 s=1 e=0 z=0  None .data      @740 */
+/* 803D23D8-803D23F4 -00001 001C+00 1/1 0/0 0/0 .data            @740 */
 SECTION_DATA static void* lit_740[7] = {
     (void*)(((char*)GXSetTexCoordGen2) + 0x1CC), (void*)(((char*)GXSetTexCoordGen2) + 0x1E0),
     (void*)(((char*)GXSetTexCoordGen2) + 0x1F4), (void*)(((char*)GXSetTexCoordGen2) + 0x208),
@@ -238,7 +238,7 @@ SECTION_DATA static void* lit_740[7] = {
     (void*)(((char*)GXSetTexCoordGen2) + 0x244),
 };
 
-/* 803D23F4-803D2448 0054+00 s=1 e=0 z=0  None .data      @739 */
+/* 803D23F4-803D2448 -00001 0054+00 1/1 0/0 0/0 .data            @739 */
 SECTION_DATA static void* lit_739[21] = {
     (void*)(((char*)GXSetTexCoordGen2) + 0x38), (void*)(((char*)GXSetTexCoordGen2) + 0x44),
     (void*)(((char*)GXSetTexCoordGen2) + 0x50), (void*)(((char*)GXSetTexCoordGen2) + 0x5C),
@@ -253,21 +253,21 @@ SECTION_DATA static void* lit_739[21] = {
     (void*)(((char*)GXSetTexCoordGen2) + 0x70),
 };
 
-/* 8035BB7C-8035BDFC 0280+00 s=2 e=46 z=5  None .text      GXSetTexCoordGen2 */
+/* 8035BB7C-8035BDFC 3564BC 0280+00 2/0 46/46 5/5 .text            GXSetTexCoordGen2 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetTexCoordGen2() {
+asm void GXSetTexCoordGen2() {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/GXSetTexCoordGen2.s"
 }
 #pragma pop
 
-/* 8035BDFC-8035BE38 003C+00 s=0 e=59 z=6  None .text      GXSetNumTexGens */
+/* 8035BDFC-8035BE38 35673C 003C+00 0/0 59/59 6/6 .text            GXSetNumTexGens */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetNumTexGens() {
+asm void GXSetNumTexGens() {
     nofralloc
 #include "asm/dolphin/gx/GXAttr/GXSetNumTexGens.s"
 }

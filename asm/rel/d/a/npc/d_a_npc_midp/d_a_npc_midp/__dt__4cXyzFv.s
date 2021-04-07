@@ -7,7 +7,7 @@ lbl_80A72BDC:
 /* 80A72BF0  41 82 00 10 */	beq lbl_80A72C00
 /* 80A72BF4  7C 80 07 35 */	extsh. r0, r4
 /* 80A72BF8  40 81 00 08 */	ble lbl_80A72C00
-/* 80A72BFC  4B 85 C1 40 */	b __dl__FPv
+/* 80A72BFC  4B 85 C1 41 */	bl __dl__FPv
 lbl_80A72C00:
 /* 80A72C00  7F E3 FB 78 */	mr r3, r31
 /* 80A72C04  83 E1 00 0C */	lwz r31, 0xc(r1)

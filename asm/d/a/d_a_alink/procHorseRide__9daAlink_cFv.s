@@ -274,8 +274,8 @@ lbl_800F017C:
 /* 800F01C4  2C 00 00 00 */	cmpwi r0, 0
 /* 800F01C8  40 82 00 78 */	bne lbl_800F0240
 /* 800F01CC  C0 3F 00 14 */	lfs f1, 0x14(r31)
-/* 800F01D0  3C 60 80 42 */	lis r3, l_horseBaseAnime@ha
-/* 800F01D4  C4 03 55 8C */	lfsu f0, l_horseBaseAnime@l(r3)
+/* 800F01D0  3C 60 80 42 */	lis r3, l_horseBaseAnime@ha /* 0x8042558C@ha */
+/* 800F01D4  C4 03 55 8C */	lfsu f0, l_horseBaseAnime@l(r3)  /* 0x8042558C@l */
 /* 800F01D8  EC 01 00 2A */	fadds f0, f1, f0
 /* 800F01DC  D0 1F 00 14 */	stfs f0, 0x14(r31)
 /* 800F01E0  C0 3F 00 18 */	lfs f1, 0x18(r31)
@@ -291,8 +291,8 @@ lbl_800F0204:
 /* 800F0204  7F C3 F3 78 */	mr r3, r30
 /* 800F0208  4B F4 7A A9 */	bl setPlayerRide__10e_wb_classFv
 /* 800F020C  C0 3F 00 14 */	lfs f1, 0x14(r31)
-/* 800F0210  3C 60 80 42 */	lis r3, l_boarBaseAnime@ha
-/* 800F0214  C4 03 55 A4 */	lfsu f0, l_boarBaseAnime@l(r3)
+/* 800F0210  3C 60 80 42 */	lis r3, l_boarBaseAnime@ha /* 0x804255A4@ha */
+/* 800F0214  C4 03 55 A4 */	lfsu f0, l_boarBaseAnime@l(r3)  /* 0x804255A4@l */
 /* 800F0218  EC 01 00 2A */	fadds f0, f1, f0
 /* 800F021C  D0 1F 00 14 */	stfs f0, 0x14(r31)
 /* 800F0220  C0 3F 00 18 */	lfs f1, 0x18(r31)
@@ -320,8 +320,8 @@ lbl_800F0240:
 /* 800F0274  41 82 00 D4 */	beq lbl_800F0348
 /* 800F0278  7F 83 E3 78 */	mr r3, r28
 /* 800F027C  38 80 00 4F */	li r4, 0x4f
-/* 800F0280  3C A0 80 39 */	lis r5, m__19daAlinkHIO_horse_c0@ha
-/* 800F0284  38 A5 E5 A4 */	addi r5, r5, m__19daAlinkHIO_horse_c0@l
+/* 800F0280  3C A0 80 39 */	lis r5, m__19daAlinkHIO_horse_c0@ha /* 0x8038E5A4@ha */
+/* 800F0284  38 A5 E5 A4 */	addi r5, r5, m__19daAlinkHIO_horse_c0@l /* 0x8038E5A4@l */
 /* 800F0288  3B C5 00 28 */	addi r30, r5, 0x28
 /* 800F028C  7F C5 F3 78 */	mr r5, r30
 /* 800F0290  4B FB CE 65 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
@@ -343,8 +343,8 @@ lbl_800F0240:
 /* 800F02D0  81 8C 01 14 */	lwz r12, 0x114(r12)
 /* 800F02D4  7D 89 03 A6 */	mtctr r12
 /* 800F02D8  4E 80 04 21 */	bctrl 
-/* 800F02DC  3C 60 80 39 */	lis r3, m__19daAlinkHIO_horse_c0@ha
-/* 800F02E0  38 63 E5 A4 */	addi r3, r3, m__19daAlinkHIO_horse_c0@l
+/* 800F02DC  3C 60 80 39 */	lis r3, m__19daAlinkHIO_horse_c0@ha /* 0x8038E5A4@ha */
+/* 800F02E0  38 63 E5 A4 */	addi r3, r3, m__19daAlinkHIO_horse_c0@l /* 0x8038E5A4@l */
 /* 800F02E4  A8 03 00 56 */	lha r0, 0x56(r3)
 /* 800F02E8  B0 1C 30 A6 */	sth r0, 0x30a6(r28)
 /* 800F02EC  A8 03 00 54 */	lha r0, 0x54(r3)

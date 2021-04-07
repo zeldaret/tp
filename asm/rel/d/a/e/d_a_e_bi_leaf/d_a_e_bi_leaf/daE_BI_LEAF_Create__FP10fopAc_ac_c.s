@@ -10,26 +10,26 @@ lbl_8068DF24:
 /* 8068DF44  40 82 00 1C */	bne lbl_8068DF60
 /* 8068DF48  28 1F 00 00 */	cmplwi r31, 0
 /* 8068DF4C  41 82 00 08 */	beq lbl_8068DF54
-/* 8068DF50  4B 98 AC 14 */	b __ct__10fopAc_ac_cFv
+/* 8068DF50  4B 98 AC 15 */	bl __ct__10fopAc_ac_cFv
 lbl_8068DF54:
 /* 8068DF54  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 8068DF58  60 00 00 08 */	ori r0, r0, 8
 /* 8068DF5C  90 1F 04 A0 */	stw r0, 0x4a0(r31)
 lbl_8068DF60:
 /* 8068DF60  38 7F 05 AC */	addi r3, r31, 0x5ac
-/* 8068DF64  3C 80 80 69 */	lis r4, stringBase0@ha
-/* 8068DF68  38 84 DF E0 */	addi r4, r4, stringBase0@l
-/* 8068DF6C  4B 99 EF 50 */	b dComIfG_resLoad__FP30request_of_phase_process_classPCc
+/* 8068DF64  3C 80 80 69 */	lis r4, d_a_e_bi_leaf__stringBase0@ha /* 0x8068DFE0@ha */
+/* 8068DF68  38 84 DF E0 */	addi r4, r4, d_a_e_bi_leaf__stringBase0@l /* 0x8068DFE0@l */
+/* 8068DF6C  4B 99 EF 51 */	bl dComIfG_resLoad__FP30request_of_phase_process_classPCc
 /* 8068DF70  7C 7E 1B 78 */	mr r30, r3
 /* 8068DF74  2C 1E 00 04 */	cmpwi r30, 4
 /* 8068DF78  40 82 00 44 */	bne lbl_8068DFBC
 /* 8068DF7C  80 1F 00 B0 */	lwz r0, 0xb0(r31)
 /* 8068DF80  98 1F 05 B4 */	stb r0, 0x5b4(r31)
 /* 8068DF84  7F E3 FB 78 */	mr r3, r31
-/* 8068DF88  3C 80 80 69 */	lis r4, useHeapInit__FP10fopAc_ac_c@ha
-/* 8068DF8C  38 84 DE A0 */	addi r4, r4, useHeapInit__FP10fopAc_ac_c@l
+/* 8068DF88  3C 80 80 69 */	lis r4, useHeapInit__FP10fopAc_ac_c@ha /* 0x8068DEA0@ha */
+/* 8068DF8C  38 84 DE A0 */	addi r4, r4, useHeapInit__FP10fopAc_ac_c@l /* 0x8068DEA0@l */
 /* 8068DF90  38 A0 0A 00 */	li r5, 0xa00
-/* 8068DF94  4B 98 C5 1C */	b fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
+/* 8068DF94  4B 98 C5 1D */	bl fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
 /* 8068DF98  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8068DF9C  40 82 00 0C */	bne lbl_8068DFA8
 /* 8068DFA0  38 60 00 05 */	li r3, 5

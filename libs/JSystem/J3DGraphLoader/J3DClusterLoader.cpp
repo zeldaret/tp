@@ -46,32 +46,20 @@ struct J3DClusterLoader {
 // Forward References:
 //
 
-static void JSUConvertOffsetToPtr__template63(void const*, void const*);
-static void JSUConvertOffsetToPtr__template64(void const*, void const*);
-static void JSUConvertOffsetToPtr__template65(void const*, void const*);
-
 extern "C" void load__24J3DClusterLoaderDataBaseFPCv();
 extern "C" void __ct__20J3DClusterLoader_v15Fv();
 extern "C" void __dt__20J3DClusterLoader_v15Fv();
 extern "C" void load__20J3DClusterLoader_v15FPCv();
 extern "C" void readCluster__20J3DClusterLoader_v15FPC15J3DClusterBlock();
 extern "C" void __dt__16J3DClusterLoaderFv();
-extern "C" static void func_80334644();
-extern "C" static void func_8033465C();
-extern "C" static void func_80334674();
+extern "C" void func_80334644(void const*, void const*);
+extern "C" void func_8033465C(void const*, void const*);
+extern "C" void func_80334674(void const*, void const*);
 extern "C" extern char const* const J3DClusterLoader__stringBase0;
 
 //
 // External References:
 //
-
-void* operator new(u32);
-void* operator new[](u32);
-void* operator new[](u32, int);
-void operator delete(void*);
-void JSUConvertOffsetToPtr__template28(void const*, void const*);
-void JSUConvertOffsetToPtr__template39(void const*, void const*);
-void JSUConvertOffsetToPtr__template41(void const*, void const*);
 
 SECTION_INIT void memcpy();
 extern "C" void OSReport();
@@ -80,9 +68,9 @@ extern "C" void* __nwa__FUl();
 extern "C" void* __nwa__FUli();
 extern "C" void __dl__FPv();
 extern "C" void __ct__10JUTNameTabFPC7ResNTAB();
-extern "C" void func_802F42C0();
-extern "C" void func_8030A530();
-extern "C" void func_8030A560();
+extern "C" void func_802F42C0(void const*, void const*);
+extern "C" void func_8030A530(void const*, void const*);
+extern "C" void func_8030A560(void const*, void const*);
 extern "C" void __ct__13J3DDeformDataFv();
 extern "C" void __ct__11J3DDeformerFP13J3DDeformData();
 extern "C" void DCStoreRange();
@@ -95,7 +83,7 @@ extern "C" void _restgpr_26();
 // Declarations:
 //
 
-/* 80334130-803341CC 009C+00 s=0 e=1 z=0  None .text      load__24J3DClusterLoaderDataBaseFPCv */
+/* 80334130-803341CC 32EA70 009C+00 0/0 1/1 0/0 .text load__24J3DClusterLoaderDataBaseFPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -106,23 +94,23 @@ asm void J3DClusterLoaderDataBase::load(void const* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CF0E8-803CF0F8 0010+00 s=2 e=0 z=0  None .data      __vt__20J3DClusterLoader_v15 */
-SECTION_DATA static void* __vt__20J3DClusterLoader_v15[4] = {
-    (void*)NULL,
+/* 803CF0E8-803CF0F8 02C208 0010+00 2/2 0/0 0/0 .data            __vt__20J3DClusterLoader_v15 */
+SECTION_DATA extern void* __vt__20J3DClusterLoader_v15[4] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)load__20J3DClusterLoader_v15FPCv,
     (void*)__dt__20J3DClusterLoader_v15Fv,
 };
 
-/* 803CF0F8-803CF108 0010+00 s=3 e=0 z=0  None .data      __vt__16J3DClusterLoader */
-SECTION_DATA static void* __vt__16J3DClusterLoader[4] = {
-    (void*)NULL,
+/* 803CF0F8-803CF108 02C218 0010+00 3/3 0/0 0/0 .data            __vt__16J3DClusterLoader */
+SECTION_DATA extern void* __vt__16J3DClusterLoader[4] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)NULL,
     (void*)__dt__16J3DClusterLoaderFv,
 };
 
-/* 803341CC-803341E8 001C+00 s=1 e=0 z=0  None .text      __ct__20J3DClusterLoader_v15Fv */
+/* 803341CC-803341E8 32EB0C 001C+00 1/1 0/0 0/0 .text            __ct__20J3DClusterLoader_v15Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -132,7 +120,7 @@ asm J3DClusterLoader_v15::J3DClusterLoader_v15() {
 }
 #pragma pop
 
-/* 803341E8-80334244 005C+00 s=2 e=0 z=0  None .text      __dt__20J3DClusterLoader_v15Fv */
+/* 803341E8-80334244 32EB28 005C+00 2/1 0/0 0/0 .text            __dt__20J3DClusterLoader_v15Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -142,17 +130,7 @@ asm J3DClusterLoader_v15::~J3DClusterLoader_v15() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 803A2098-803A20B0 0014+04 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_803A2098 = "Unknown data block\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803A20AC = "\0\0\0";
-#pragma pop
-
-/* 80334244-803342F8 00B4+00 s=2 e=0 z=0  None .text      load__20J3DClusterLoader_v15FPCv */
+/* 80334244-803342F8 32EB84 00B4+00 2/1 0/0 0/0 .text            load__20J3DClusterLoader_v15FPCv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -162,7 +140,7 @@ asm void J3DClusterLoader_v15::load(void const* param_0) {
 }
 #pragma pop
 
-/* 803342F8-803345FC 0304+00 s=1 e=0 z=0  None .text
+/* 803342F8-803345FC 32EC38 0304+00 1/1 0/0 0/0 .text
  * readCluster__20J3DClusterLoader_v15FPC15J3DClusterBlock      */
 #pragma push
 #pragma optimization_level 0
@@ -173,7 +151,7 @@ asm void J3DClusterLoader_v15::readCluster(J3DClusterBlock const* param_0) {
 }
 #pragma pop
 
-/* 803345FC-80334644 0048+00 s=1 e=0 z=0  None .text      __dt__16J3DClusterLoaderFv */
+/* 803345FC-80334644 32EF3C 0048+00 1/0 0/0 0/0 .text            __dt__16J3DClusterLoaderFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -183,35 +161,44 @@ asm J3DClusterLoader::~J3DClusterLoader() {
 }
 #pragma pop
 
-/* 80334644-8033465C 0018+00 s=1 e=0 z=0  None .text
+/* 80334644-8033465C 32EF84 0018+00 1/1 0/0 0/0 .text
  * JSUConvertOffsetToPtr<16J3DClusterVertex>__FPCvPCv           */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void JSUConvertOffsetToPtr__template63(void const* param_0, void const* param_1) {
+extern "C" asm void func_80334644(void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DClusterLoader/func_80334644.s"
 }
 #pragma pop
 
-/* 8033465C-80334674 0018+00 s=1 e=0 z=0  None .text
+/* 8033465C-80334674 32EF9C 0018+00 1/1 0/0 0/0 .text
  * JSUConvertOffsetToPtr<13J3DClusterKey>__FPCvPCv              */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void JSUConvertOffsetToPtr__template64(void const* param_0, void const* param_1) {
+extern "C" asm void func_8033465C(void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DClusterLoader/func_8033465C.s"
 }
 #pragma pop
 
-/* 80334674-8033468C 0018+00 s=1 e=0 z=0  None .text JSUConvertOffsetToPtr<10J3DCluster>__FPCvPCv
+/* 80334674-8033468C 32EFB4 0018+00 1/1 0/0 0/0 .text JSUConvertOffsetToPtr<10J3DCluster>__FPCvPCv
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void JSUConvertOffsetToPtr__template65(void const* param_0, void const* param_1) {
+extern "C" asm void func_80334674(void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DClusterLoader/func_80334674.s"
 }
+#pragma pop
+
+/* 803A2098-803A20B0 02E6F8 0014+04 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_803A2098 = "Unknown data block\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803A20AC = "\0\0\0";
 #pragma pop

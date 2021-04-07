@@ -40,8 +40,8 @@ lbl_8020A540:
 /* 8020A5D8  D0 3D 03 04 */	stfs f1, 0x304(r29)
 /* 8020A5DC  28 05 00 15 */	cmplwi r5, 0x15
 /* 8020A5E0  41 81 01 F4 */	bgt lbl_8020A7D4
-/* 8020A5E4  3C 80 80 3C */	lis r4, lit_7858@ha
-/* 8020A5E8  38 84 F2 00 */	addi r4, r4, lit_7858@l
+/* 8020A5E4  3C 80 80 3C */	lis r4, lit_7858@ha /* 0x803BF200@ha */
+/* 8020A5E8  38 84 F2 00 */	addi r4, r4, lit_7858@l /* 0x803BF200@l */
 /* 8020A5EC  54 A0 10 3A */	slwi r0, r5, 2
 /* 8020A5F0  7C 04 00 2E */	lwzx r0, r4, r0
 /* 8020A5F4  7C 09 03 A6 */	mtctr r0

@@ -4,9 +4,9 @@ lbl_80354298:
 /* 803542A0  94 21 FE E0 */	stwu r1, -0x120(r1)
 /* 803542A4  BE C1 00 F8 */	stmw r22, 0xf8(r1)
 /* 803542A8  3B 03 00 00 */	addi r24, r3, 0
-/* 803542AC  3C 60 80 45 */	lis r3, __CARDBlock@ha
+/* 803542AC  3C 60 80 45 */	lis r3, __CARDBlock@ha /* 0x8044CBC0@ha */
 /* 803542B0  1C B8 01 10 */	mulli r5, r24, 0x110
-/* 803542B4  38 03 CB C0 */	addi r0, r3, __CARDBlock@l
+/* 803542B4  38 03 CB C0 */	addi r0, r3, __CARDBlock@l /* 0x8044CBC0@l */
 /* 803542B8  7F E0 2A 14 */	add r31, r0, r5
 /* 803542BC  3A E4 00 00 */	addi r23, r4, 0
 /* 803542C0  3B DF 00 30 */	addi r30, r31, 0x30
@@ -713,19 +713,19 @@ lbl_80354D10:
 /* 80354D70  38 80 00 10 */	li r4, 0x10
 /* 80354D74  4B FE 68 39 */	bl DCFlushRange
 /* 80354D78  38 00 00 FF */	li r0, 0xff
-/* 80354D7C  3C 60 80 3D */	lis r3, CardData@ha
+/* 80354D7C  3C 60 80 3D */	lis r3, CardData@ha /* 0x803D1EA0@ha */
 /* 80354D80  90 1E 00 04 */	stw r0, 4(r30)
-/* 80354D84  38 63 1E A0 */	addi r3, r3, CardData@l
+/* 80354D84  38 63 1E A0 */	addi r3, r3, CardData@l /* 0x803D1EA0@l */
 /* 80354D88  3C 03 80 00 */	addis r0, r3, 0x8000
 /* 80354D8C  90 1E 00 0C */	stw r0, 0xc(r30)
 /* 80354D90  38 00 01 60 */	li r0, 0x160
-/* 80354D94  3C 80 80 35 */	lis r4, InitCallback@ha
+/* 80354D94  3C 80 80 35 */	lis r4, InitCallback@ha /* 0x80354DF0@ha */
 /* 80354D98  90 1E 00 10 */	stw r0, 0x10(r30)
-/* 80354D9C  3C 60 80 35 */	lis r3, DoneCallback@ha
+/* 80354D9C  3C 60 80 35 */	lis r3, DoneCallback@ha /* 0x80354E60@ha */
 /* 80354DA0  38 A0 00 10 */	li r5, 0x10
 /* 80354DA4  93 7E 00 14 */	stw r27, 0x14(r30)
-/* 80354DA8  38 84 4D F0 */	addi r4, r4, InitCallback@l
-/* 80354DAC  38 03 4E 60 */	addi r0, r3, DoneCallback@l
+/* 80354DA8  38 84 4D F0 */	addi r4, r4, InitCallback@l /* 0x80354DF0@l */
+/* 80354DAC  38 03 4E 60 */	addi r0, r3, DoneCallback@l /* 0x80354E60@l */
 /* 80354DB0  B0 BE 00 24 */	sth r5, 0x24(r30)
 /* 80354DB4  7F C3 F3 78 */	mr r3, r30
 /* 80354DB8  90 9E 00 28 */	stw r4, 0x28(r30)

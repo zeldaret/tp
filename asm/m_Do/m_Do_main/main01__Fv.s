@@ -3,8 +3,8 @@ lbl_8000628C:
 /* 80006290  7C 08 02 A6 */	mflr r0
 /* 80006294  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80006298  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 8000629C  3C 60 80 3D */	lis r3, RootHeapCheck@ha
-/* 800062A0  3B E3 32 E0 */	addi r31, r3, RootHeapCheck@l
+/* 8000629C  3C 60 80 3D */	lis r3, RootHeapCheck@ha /* 0x803D32E0@ha */
+/* 800062A0  3B E3 32 E0 */	addi r31, r3, RootHeapCheck@l /* 0x803D32E0@l */
 /* 800062A4  48 00 5A A1 */	bl mDoMch_Create__Fv
 /* 800062A8  48 00 4E CD */	bl mDoGph_Create__Fv
 /* 800062AC  48 00 16 A9 */	bl create__8mDoCPd_cFv
@@ -84,8 +84,8 @@ lbl_800063A8:
 /* 800063B0  90 03 00 40 */	stw r0, 0x40(r3)
 /* 800063B4  38 00 00 2A */	li r0, 0x2a
 /* 800063B8  90 03 00 44 */	stw r0, 0x44(r3)
-/* 800063BC  3C 60 80 00 */	lis r3, LOAD_COPYDATE__FPv@ha
-/* 800063C0  38 63 61 4C */	addi r3, r3, LOAD_COPYDATE__FPv@l
+/* 800063BC  3C 60 80 00 */	lis r3, LOAD_COPYDATE__FPv@ha /* 0x8000614C@ha */
+/* 800063C0  38 63 61 4C */	addi r3, r3, LOAD_COPYDATE__FPv@l /* 0x8000614C@l */
 /* 800063C4  38 80 00 00 */	li r4, 0
 /* 800063C8  48 00 F8 AD */	bl create__20mDoDvdThd_callback_cFPFPv_PvPv
 /* 800063CC  48 01 26 D5 */	bl fapGm_Create__Fv
@@ -99,8 +99,8 @@ lbl_800063A8:
 /* 800063EC  38 A0 00 00 */	li r5, 0
 /* 800063F0  48 2C A6 35 */	bl create__12JKRSolidHeapFUlP7JKRHeapb
 /* 800063F4  90 6D 86 3C */	stw r3, g_mDoAud_audioHeap(r13)
-/* 800063F8  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 800063FC  3B E3 AF 40 */	addi r31, r3, g_mDoMemCd_control@l
+/* 800063F8  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 800063FC  3B E3 AF 40 */	addi r31, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 lbl_80006400:
 /* 80006400  80 6D 85 B4 */	lwz r3, frame(r13)
 /* 80006404  38 63 00 01 */	addi r3, r3, 1

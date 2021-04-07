@@ -1,8 +1,8 @@
 lbl_80AD2748:
-/* 80AD2748  3C 80 80 AD */	lis r4, cNullVec__6Z2Calc@ha
-/* 80AD274C  38 C4 4B 90 */	addi r6, r4, cNullVec__6Z2Calc@l
-/* 80AD2750  3C 80 80 3A */	lis r4, __ptmf_null@ha
-/* 80AD2754  38 A4 21 80 */	addi r5, r4, __ptmf_null@l
+/* 80AD2748  3C 80 80 AD */	lis r4, cNullVec__6Z2Calc@ha /* 0x80AD4B90@ha */
+/* 80AD274C  38 C4 4B 90 */	addi r6, r4, cNullVec__6Z2Calc@l /* 0x80AD4B90@l */
+/* 80AD2750  3C 80 80 3A */	lis r4, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80AD2754  38 A4 21 80 */	addi r5, r4, __ptmf_null@l /* 0x803A2180@l */
 /* 80AD2758  80 85 00 00 */	lwz r4, 0(r5)
 /* 80AD275C  80 05 00 04 */	lwz r0, 4(r5)
 /* 80AD2760  90 83 10 CC */	stw r4, 0x10cc(r3)

@@ -20,7 +20,6 @@ $(BUILD_DIR)/libamcstubs.a: $(LIBAMCSTUBS_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libamcstubs.a
 	@echo $(LIBAMCSTUBS_A_O_FILES) > build/LIBAMCSTUBS_A_ofiles
 	@$(LD) -xm l $(LIBAMCSTUBS_A_LDFLAGS) -o $(BUILD_DIR)/libamcstubs.a @build/LIBAMCSTUBS_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libamcstubs.a
 
 $(BUILD_DIR)/libs/amcstubs/%.o: libs/amcstubs/%.cpp
 	@mkdir -p $(@D)

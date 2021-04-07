@@ -18,8 +18,8 @@ lbl_80187DE4:
 /* 80187DF4  48 00 00 B8 */	b lbl_80187EAC
 lbl_80187DF8:
 /* 80187DF8  80 7D 00 38 */	lwz r3, 0x38(r29)
-/* 80187DFC  3C 80 80 3C */	lis r4, l_tagName101@ha
-/* 80187E00  38 04 AD 20 */	addi r0, r4, l_tagName101@l
+/* 80187DFC  3C 80 80 3C */	lis r4, l_tagName101@ha /* 0x803BAD20@ha */
+/* 80187E00  38 04 AD 20 */	addi r0, r4, l_tagName101@l /* 0x803BAD20@l */
 /* 80187E04  7C 80 DA 14 */	add r4, r0, r27
 /* 80187E08  80 A4 00 00 */	lwz r5, 0(r4)
 /* 80187E0C  80 C4 00 04 */	lwz r6, 4(r4)
@@ -27,8 +27,8 @@ lbl_80187DF8:
 /* 80187E14  81 8C 00 3C */	lwz r12, 0x3c(r12)
 /* 80187E18  7D 89 03 A6 */	mtctr r12
 /* 80187E1C  4E 80 04 21 */	bctrl 
-/* 80187E20  3C 80 80 3C */	lis r4, l_numTex@ha
-/* 80187E24  38 84 AD 30 */	addi r4, r4, l_numTex@l
+/* 80187E20  3C 80 80 3C */	lis r4, l_numTex@ha /* 0x803BAD30@ha */
+/* 80187E24  38 84 AD 30 */	addi r4, r4, l_numTex@l /* 0x803BAD30@l */
 /* 80187E28  7C 84 D0 2E */	lwzx r4, r4, r26
 /* 80187E2C  38 A0 00 00 */	li r5, 0
 /* 80187E30  81 83 00 00 */	lwz r12, 0(r3)

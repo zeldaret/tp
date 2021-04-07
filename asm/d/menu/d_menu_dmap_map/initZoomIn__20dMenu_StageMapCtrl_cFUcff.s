@@ -57,8 +57,8 @@ lbl_801C1DAC:
 /* 801C1DB8  7F C3 F3 78 */	mr r3, r30
 /* 801C1DBC  88 1E 00 F5 */	lbz r0, 0xf5(r30)
 /* 801C1DC0  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801C1DC4  3C 80 80 3C */	lis r4, init_process@ha
-/* 801C1DC8  38 04 CC E4 */	addi r0, r4, init_process@l
+/* 801C1DC4  3C 80 80 3C */	lis r4, init_process@ha /* 0x803BCCE4@ha */
+/* 801C1DC8  38 04 CC E4 */	addi r0, r4, init_process@l /* 0x803BCCE4@l */
 /* 801C1DCC  7D 80 2A 14 */	add r12, r0, r5
 /* 801C1DD0  48 1A 02 B5 */	bl __ptmf_scall
 /* 801C1DD4  60 00 00 00 */	nop 

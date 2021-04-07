@@ -3,19 +3,20 @@
 #
 
 M469_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_h_saku.plf
+M469_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_h_saku.lcf
+M469_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_h_saku.map
 
 M469_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_h_saku/executor.cpp \
-	rel/d/a/obj/d_a_obj_h_saku/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_h_saku/d_a_obj_h_saku.cpp \
 
 M469_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_h_saku/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_h_saku/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_h_saku/d_a_obj_h_saku.o \
 
 M469_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_h_saku/libRuntime.PPCEABI.H.a \
 
 M469_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M469_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M469_LDSCRIPT) \
+	-unused -map $(M469_MAP) \
+	-w off \
 
 $(M469_TARGET): $(M469_O_FILES) $(M469_LIBS)
+	@echo [469] creating $(M469_TARGET)
 	@echo $(M469_LIBS) $(M469_O_FILES) > build/M469_ofiles
-	$(LD) -partial $(M469_LDFLAGS) -o $(M469_TARGET) @build/M469_ofiles
+	@python3 tools/lcf.py rel 469 --output $(M469_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M469_LDFLAGS) -o $(M469_TARGET) @build/M469_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_h_saku/%.o: rel/d/a/obj/d_a_obj_h_saku/%.cpp
+	@echo [469] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M469_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M469_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_h_saku/libs/Runtime.PPCEABI.H/Makefile
 

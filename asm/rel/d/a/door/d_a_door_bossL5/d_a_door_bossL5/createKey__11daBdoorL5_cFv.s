@@ -19,12 +19,12 @@ lbl_80671B14:
 /* 80671B58  D0 1F 04 D4 */	stfs f0, 0x4d4(r31)
 /* 80671B5C  C0 1F 04 B0 */	lfs f0, 0x4b0(r31)
 /* 80671B60  D0 1F 04 D8 */	stfs f0, 0x4d8(r31)
-/* 80671B64  3C 60 80 67 */	lis r3, lit_4015@ha
-/* 80671B68  C0 03 25 1C */	lfs f0, lit_4015@l(r3)
+/* 80671B64  3C 60 80 67 */	lis r3, lit_4015@ha /* 0x8067251C@ha */
+/* 80671B68  C0 03 25 1C */	lfs f0, lit_4015@l(r3)  /* 0x8067251C@l */
 /* 80671B6C  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80671B70  D0 01 00 14 */	stfs f0, 0x14(r1)
-/* 80671B74  3C 60 80 67 */	lis r3, lit_4110@ha
-/* 80671B78  C0 03 25 2C */	lfs f0, lit_4110@l(r3)
+/* 80671B74  3C 60 80 67 */	lis r3, lit_4110@ha /* 0x8067252C@ha */
+/* 80671B78  C0 03 25 2C */	lfs f0, lit_4110@l(r3)  /* 0x8067252C@l */
 /* 80671B7C  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80671B80  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80671B84  7C 07 07 74 */	extsb r7, r0
@@ -43,7 +43,7 @@ lbl_80671BA8:
 /* 80671BB0  39 1F 04 E4 */	addi r8, r31, 0x4e4
 /* 80671BB4  39 3F 04 EC */	addi r9, r31, 0x4ec
 /* 80671BB8  39 40 FF FF */	li r10, -1
-/* 80671BBC  4B 9A 83 BC */	b fopAcM_createChildFromOffset__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
+/* 80671BBC  4B 9A 83 BD */	bl fopAcM_createChildFromOffset__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
 /* 80671BC0  90 7F 05 8C */	stw r3, 0x58c(r31)
 /* 80671BC4  C0 01 00 1C */	lfs f0, 0x1c(r1)
 /* 80671BC8  D0 1F 04 D0 */	stfs f0, 0x4d0(r31)

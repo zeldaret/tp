@@ -37,7 +37,7 @@ lbl_8049F920:
 /* 8049F924  41 82 00 30 */	beq lbl_8049F954
 /* 8049F928  38 64 05 38 */	addi r3, r4, 0x538
 /* 8049F92C  38 9E 04 D0 */	addi r4, r30, 0x4d0
-/* 8049F930  4B EA 7A 6C */	b PSVECSquareDistance
+/* 8049F930  4B EA 7A 6D */	bl PSVECSquareDistance
 /* 8049F934  C0 1E 09 84 */	lfs f0, 0x984(r30)
 /* 8049F938  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8049F93C  40 81 00 0C */	ble lbl_8049F948

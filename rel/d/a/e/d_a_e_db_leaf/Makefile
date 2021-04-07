@@ -3,17 +3,15 @@
 #
 
 M183_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_db_leaf.plf
+M183_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_db_leaf.lcf
+M183_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_db_leaf.map
 
 M183_CPP_FILES := \
-	rel/d/a/e/d_a_e_db_leaf/executor.cpp \
-	rel/d/a/e/d_a_e_db_leaf/unknown_translation_unit_ctors.cpp \
-	rel/d/a/e/d_a_e_db_leaf/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/e/d_a_e_db_leaf/d_a_e_db_leaf.cpp \
 
 M183_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_db_leaf/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_db_leaf/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_db_leaf/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_db_leaf/d_a_e_db_leaf.o \
 
 M183_LIBS := \
@@ -29,14 +27,21 @@ M183_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M183_LDSCRIPT) \
+	-unused -map $(M183_MAP) \
+	-w off \
 
 $(M183_TARGET): $(M183_O_FILES) $(M183_LIBS)
+	@echo [183] creating $(M183_TARGET)
 	@echo $(M183_LIBS) $(M183_O_FILES) > build/M183_ofiles
-	$(LD) -partial $(M183_LDFLAGS) -o $(M183_TARGET) @build/M183_ofiles
+	@python3 tools/lcf.py rel 183 --output $(M183_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M183_LDFLAGS) -o $(M183_TARGET) @build/M183_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_db_leaf/%.o: rel/d/a/e/d_a_e_db_leaf/%.cpp
+	@echo [183] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M183_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M183_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

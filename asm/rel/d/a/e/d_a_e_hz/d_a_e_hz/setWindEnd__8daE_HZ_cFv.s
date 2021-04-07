@@ -1,12 +1,12 @@
 lbl_806ECAEC:
-/* 806ECAEC  3C 80 80 6F */	lis r4, lit_3966@ha
-/* 806ECAF0  38 A4 08 60 */	addi r5, r4, lit_3966@l
+/* 806ECAEC  3C 80 80 6F */	lis r4, lit_3966@ha /* 0x806F0860@ha */
+/* 806ECAF0  38 A4 08 60 */	addi r5, r4, lit_3966@l /* 0x806F0860@l */
 /* 806ECAF4  C0 05 00 34 */	lfs f0, 0x34(r5)
 /* 806ECAF8  D0 03 04 FC */	stfs f0, 0x4fc(r3)
 /* 806ECAFC  38 00 10 00 */	li r0, 0x1000
 /* 806ECB00  B0 03 06 B2 */	sth r0, 0x6b2(r3)
-/* 806ECB04  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 806ECB08  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 806ECB04  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806ECB08  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806ECB0C  80 84 5D AC */	lwz r4, 0x5dac(r4)
 /* 806ECB10  C0 24 04 D4 */	lfs f1, 0x4d4(r4)
 /* 806ECB14  C0 03 04 D4 */	lfs f0, 0x4d4(r3)

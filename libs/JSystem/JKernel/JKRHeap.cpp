@@ -80,16 +80,6 @@ struct JKRDisposer {
 // Forward References:
 //
 
-static void JKRDefaultMemoryErrorRoutine(void*, u32, int);
-void* operator new(u32);
-void* operator new(u32, int);
-void* operator new(u32, JKRHeap*, int);
-void* operator new[](u32);
-void* operator new[](u32, int);
-void* operator new[](u32, JKRHeap*, int);
-void operator delete(void*);
-void operator delete[](void*);
-
 extern "C" void __ct__7JKRHeapFPvUlP7JKRHeapb();
 extern "C" void __dt__7JKRHeapFv();
 extern "C" void initArena__7JKRHeapFPPcPUli();
@@ -138,15 +128,6 @@ extern "C" void state_dump__7JKRHeapCFRCQ27JKRHeap6TState();
 extern "C" bool do_changeGroupID__7JKRHeapFUc();
 extern "C" bool do_getCurrentGroupId__7JKRHeapFv();
 extern "C" extern char const* const JKRHeap__stringBase0;
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sRootHeap__7JKRHeap[4];
-extern "C" extern u8 mErrorHandler__7JKRHeap[4];
-extern "C" extern u8 mCodeStart__7JKRHeap[4];
-extern "C" extern u8 mCodeEnd__7JKRHeap[4];
-extern "C" extern u8 mUserRamStart__7JKRHeap[4];
-extern "C" extern u8 mUserRamEnd__7JKRHeap[4];
-extern "C" extern u8 mMemorySize__7JKRHeap[4];
 
 //
 // External References:
@@ -183,9 +164,9 @@ extern "C" extern u8 data_804508B0[8];
 //
 
 /* ############################################################################################## */
-/* 803CBF70-803CBFD0 0060+00 s=2 e=0 z=0  None .data      __vt__7JKRHeap */
-SECTION_DATA static void* __vt__7JKRHeap[24] = {
-    (void*)NULL,
+/* 803CBF70-803CBFD0 029090 0060+00 2/2 0/0 0/0 .data            __vt__7JKRHeap */
+SECTION_DATA extern void* __vt__7JKRHeap[24] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__7JKRHeapFv,
     (void*)callAllDisposer__7JKRHeapFv,
@@ -211,22 +192,26 @@ SECTION_DATA static void* __vt__7JKRHeap[24] = {
     (void*)state_dump__7JKRHeapCFRCQ27JKRHeap6TState,
 };
 
-/* 80451370-80451374 0004+00 s=3 e=44 z=0  None .sbss      sSystemHeap__7JKRHeap */
+/* 80451370-80451374 000870 0004+00 3/3 44/44 0/0 .sbss            sSystemHeap__7JKRHeap */
+extern u8 sSystemHeap__7JKRHeap[4];
 u8 sSystemHeap__7JKRHeap[4];
 
-/* 80451374-80451378 0004+00 s=4 e=23 z=0  None .sbss      sCurrentHeap__7JKRHeap */
+/* 80451374-80451378 000874 0004+00 4/4 23/23 0/0 .sbss            sCurrentHeap__7JKRHeap */
+extern u8 sCurrentHeap__7JKRHeap[4];
 u8 sCurrentHeap__7JKRHeap[4];
 
-/* 80451378-8045137C 0004+00 s=3 e=10 z=0  None .sbss      sRootHeap__7JKRHeap */
+/* 80451378-8045137C 000878 0004+00 3/3 10/10 0/0 .sbss            sRootHeap__7JKRHeap */
+extern u8 sRootHeap__7JKRHeap[4];
 u8 sRootHeap__7JKRHeap[4];
 
-/* 8045137C-80451380 0004+00 s=2 e=3 z=0  None .sbss      mErrorHandler__7JKRHeap */
+/* 8045137C-80451380 00087C 0004+00 2/2 3/3 0/0 .sbss            mErrorHandler__7JKRHeap */
+extern u8 mErrorHandler__7JKRHeap[4];
 u8 mErrorHandler__7JKRHeap[4];
 
-/* 80451380-80451384 0004+00 s=1 e=0 z=0  None .sbss      None */
+/* 80451380-80451384 000880 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_80451380[4];
 
-/* 802CE138-802CE264 012C+00 s=0 e=3 z=0  None .text      __ct__7JKRHeapFPvUlP7JKRHeapb */
+/* 802CE138-802CE264 2C8A78 012C+00 0/0 3/3 0/0 .text            __ct__7JKRHeapFPvUlP7JKRHeapb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -236,7 +221,7 @@ asm JKRHeap::JKRHeap(void* param_0, u32 param_1, JKRHeap* param_2, bool param_3)
 }
 #pragma pop
 
-/* 802CE264-802CE378 0114+00 s=1 e=3 z=0  None .text      __dt__7JKRHeapFv */
+/* 802CE264-802CE378 2C8BA4 0114+00 1/0 3/3 0/0 .text            __dt__7JKRHeapFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -247,22 +232,27 @@ asm JKRHeap::~JKRHeap() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451384-80451388 0004+00 s=1 e=1 z=0  None .sbss      mCodeStart__7JKRHeap */
+/* 80451384-80451388 000884 0004+00 1/1 1/1 0/0 .sbss            mCodeStart__7JKRHeap */
+extern u8 mCodeStart__7JKRHeap[4];
 u8 mCodeStart__7JKRHeap[4];
 
-/* 80451388-8045138C 0004+00 s=1 e=1 z=0  None .sbss      mCodeEnd__7JKRHeap */
+/* 80451388-8045138C 000888 0004+00 1/1 1/1 0/0 .sbss            mCodeEnd__7JKRHeap */
+extern u8 mCodeEnd__7JKRHeap[4];
 u8 mCodeEnd__7JKRHeap[4];
 
-/* 8045138C-80451390 0004+00 s=1 e=1 z=0  None .sbss      mUserRamStart__7JKRHeap */
+/* 8045138C-80451390 00088C 0004+00 1/1 1/1 0/0 .sbss            mUserRamStart__7JKRHeap */
+extern u8 mUserRamStart__7JKRHeap[4];
 u8 mUserRamStart__7JKRHeap[4];
 
-/* 80451390-80451394 0004+00 s=1 e=1 z=0  None .sbss      mUserRamEnd__7JKRHeap */
+/* 80451390-80451394 000890 0004+00 1/1 1/1 0/0 .sbss            mUserRamEnd__7JKRHeap */
+extern u8 mUserRamEnd__7JKRHeap[4];
 u8 mUserRamEnd__7JKRHeap[4];
 
-/* 80451394-80451398 0004+00 s=1 e=2 z=0  None .sbss      mMemorySize__7JKRHeap */
+/* 80451394-80451398 000894 0004+00 1/1 2/2 0/0 .sbss            mMemorySize__7JKRHeap */
+extern u8 mMemorySize__7JKRHeap[4];
 u8 mMemorySize__7JKRHeap[4];
 
-/* 802CE378-802CE428 00B0+00 s=0 e=1 z=0  None .text      initArena__7JKRHeapFPPcPUli */
+/* 802CE378-802CE428 2C8CB8 00B0+00 0/0 1/1 0/0 .text            initArena__7JKRHeapFPPcPUli */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -272,7 +262,7 @@ asm void JKRHeap::initArena(char** param_0, u32* param_1, int param_2) {
 }
 #pragma pop
 
-/* 802CE428-802CE438 0010+00 s=1 e=0 z=0  None .text      becomeSystemHeap__7JKRHeapFv */
+/* 802CE428-802CE438 2C8D68 0010+00 1/1 0/0 0/0 .text            becomeSystemHeap__7JKRHeapFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -282,7 +272,7 @@ asm void JKRHeap::becomeSystemHeap() {
 }
 #pragma pop
 
-/* 802CE438-802CE448 0010+00 s=1 e=22 z=1  None .text      becomeCurrentHeap__7JKRHeapFv */
+/* 802CE438-802CE448 2C8D78 0010+00 1/1 22/22 1/1 .text            becomeCurrentHeap__7JKRHeapFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -292,7 +282,7 @@ asm void JKRHeap::becomeCurrentHeap() {
 }
 #pragma pop
 
-/* 802CE448-802CE474 002C+00 s=0 e=5 z=1  None .text      destroy__7JKRHeapFv */
+/* 802CE448-802CE474 2C8D88 002C+00 0/0 5/5 1/1 .text            destroy__7JKRHeapFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -302,7 +292,7 @@ asm void JKRHeap::destroy() {
 }
 #pragma pop
 
-/* 802CE474-802CE4D4 0060+00 s=6 e=23 z=0  None .text      alloc__7JKRHeapFUliP7JKRHeap */
+/* 802CE474-802CE4D4 2C8DB4 0060+00 6/6 23/23 0/0 .text            alloc__7JKRHeapFUliP7JKRHeap */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -312,7 +302,7 @@ asm void JKRHeap::alloc(u32 param_0, int param_1, JKRHeap* param_2) {
 }
 #pragma pop
 
-/* 802CE4D4-802CE500 002C+00 s=1 e=30 z=1  None .text      alloc__7JKRHeapFUli */
+/* 802CE4D4-802CE500 2C8E14 002C+00 1/1 30/30 1/1 .text            alloc__7JKRHeapFUli */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -322,7 +312,7 @@ asm void JKRHeap::alloc(u32 param_0, int param_1) {
 }
 #pragma pop
 
-/* 802CE500-802CE548 0048+00 s=2 e=38 z=1  None .text      free__7JKRHeapFPvP7JKRHeap */
+/* 802CE500-802CE548 2C8E40 0048+00 2/2 38/38 1/1 .text            free__7JKRHeapFPvP7JKRHeap */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -332,7 +322,7 @@ asm void JKRHeap::free(void* param_0, JKRHeap* param_1) {
 }
 #pragma pop
 
-/* 802CE548-802CE574 002C+00 s=1 e=29 z=0  None .text      free__7JKRHeapFPv */
+/* 802CE548-802CE574 2C8E88 002C+00 1/1 29/29 0/0 .text            free__7JKRHeapFPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -342,7 +332,7 @@ asm void JKRHeap::free(void* param_0) {
 }
 #pragma pop
 
-/* 802CE574-802CE5CC 0058+00 s=1 e=5 z=0  None .text      callAllDisposer__7JKRHeapFv */
+/* 802CE574-802CE5CC 2C8EB4 0058+00 1/0 5/2 0/0 .text            callAllDisposer__7JKRHeapFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -352,7 +342,7 @@ asm void JKRHeap::callAllDisposer() {
 }
 #pragma pop
 
-/* 802CE5CC-802CE5F8 002C+00 s=0 e=12 z=0  None .text      freeAll__7JKRHeapFv */
+/* 802CE5CC-802CE5F8 2C8F0C 002C+00 0/0 12/12 0/0 .text            freeAll__7JKRHeapFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -362,7 +352,7 @@ asm void JKRHeap::freeAll() {
 }
 #pragma pop
 
-/* 802CE5F8-802CE624 002C+00 s=0 e=1 z=0  None .text      freeTail__7JKRHeapFv */
+/* 802CE5F8-802CE624 2C8F38 002C+00 0/0 1/1 0/0 .text            freeTail__7JKRHeapFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -372,7 +362,7 @@ asm void JKRHeap::freeTail() {
 }
 #pragma pop
 
-/* 802CE624-802CE684 0060+00 s=0 e=1 z=0  None .text      resize__7JKRHeapFPvUlP7JKRHeap */
+/* 802CE624-802CE684 2C8F64 0060+00 0/0 1/1 0/0 .text            resize__7JKRHeapFPvUlP7JKRHeap */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -382,7 +372,7 @@ asm void JKRHeap::resize(void* param_0, u32 param_1, JKRHeap* param_2) {
 }
 #pragma pop
 
-/* 802CE684-802CE6B0 002C+00 s=1 e=1 z=0  None .text      resize__7JKRHeapFPvUl */
+/* 802CE684-802CE6B0 2C8FC4 002C+00 1/1 1/1 0/0 .text            resize__7JKRHeapFPvUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -392,7 +382,7 @@ asm void JKRHeap::resize(void* param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802CE6B0-802CE700 0050+00 s=0 e=4 z=0  None .text      getSize__7JKRHeapFPvP7JKRHeap */
+/* 802CE6B0-802CE700 2C8FF0 0050+00 0/0 4/4 0/0 .text            getSize__7JKRHeapFPvP7JKRHeap */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -402,7 +392,7 @@ asm void JKRHeap::getSize(void* param_0, JKRHeap* param_1) {
 }
 #pragma pop
 
-/* 802CE700-802CE72C 002C+00 s=1 e=1 z=0  None .text      getSize__7JKRHeapFPv */
+/* 802CE700-802CE72C 2C9040 002C+00 1/1 1/1 0/0 .text            getSize__7JKRHeapFPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -412,7 +402,7 @@ asm void JKRHeap::getSize(void* param_0) {
 }
 #pragma pop
 
-/* 802CE72C-802CE758 002C+00 s=1 e=18 z=0  None .text      getFreeSize__7JKRHeapFv */
+/* 802CE72C-802CE758 2C906C 002C+00 1/1 18/18 0/0 .text            getFreeSize__7JKRHeapFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -422,7 +412,7 @@ asm void JKRHeap::getFreeSize() {
 }
 #pragma pop
 
-/* 802CE758-802CE784 002C+00 s=1 e=0 z=0  None .text      getMaxFreeBlock__7JKRHeapFv */
+/* 802CE758-802CE784 2C9098 002C+00 1/1 0/0 0/0 .text            getMaxFreeBlock__7JKRHeapFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -432,7 +422,7 @@ asm void JKRHeap::getMaxFreeBlock() {
 }
 #pragma pop
 
-/* 802CE784-802CE7B0 002C+00 s=0 e=32 z=0  None .text      getTotalFreeSize__7JKRHeapFv */
+/* 802CE784-802CE7B0 2C90C4 002C+00 0/0 32/32 0/0 .text            getTotalFreeSize__7JKRHeapFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -442,7 +432,7 @@ asm void JKRHeap::getTotalFreeSize() {
 }
 #pragma pop
 
-/* 802CE7B0-802CE7DC 002C+00 s=0 e=1 z=0  None .text      changeGroupID__7JKRHeapFUc */
+/* 802CE7B0-802CE7DC 2C90F0 002C+00 0/0 1/1 0/0 .text            changeGroupID__7JKRHeapFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -452,7 +442,8 @@ asm void JKRHeap::changeGroupID(u8 param_0) {
 }
 #pragma pop
 
-/* 802CE7DC-802CE83C 0060+00 s=0 e=2 z=0  None .text      getMaxAllocatableSize__7JKRHeapFi */
+/* 802CE7DC-802CE83C 2C911C 0060+00 0/0 2/2 0/0 .text            getMaxAllocatableSize__7JKRHeapFi
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -462,7 +453,7 @@ asm void JKRHeap::getMaxAllocatableSize(int param_0) {
 }
 #pragma pop
 
-/* 802CE83C-802CE894 0058+00 s=3 e=8 z=0  None .text      findFromRoot__7JKRHeapFPv */
+/* 802CE83C-802CE894 2C917C 0058+00 3/3 8/8 0/0 .text            findFromRoot__7JKRHeapFPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -472,7 +463,7 @@ asm void JKRHeap::findFromRoot(void* param_0) {
 }
 #pragma pop
 
-/* 802CE894-802CE93C 00A8+00 s=1 e=1 z=0  None .text      find__7JKRHeapCFPv */
+/* 802CE894-802CE93C 2C91D4 00A8+00 1/1 1/1 0/0 .text            find__7JKRHeapCFPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -482,7 +473,7 @@ asm void JKRHeap::find(void* param_0) const {
 }
 #pragma pop
 
-/* 802CE93C-802CE9E4 00A8+00 s=1 e=0 z=0  None .text      findAllHeap__7JKRHeapCFPv */
+/* 802CE93C-802CE9E4 2C927C 00A8+00 1/1 0/0 0/0 .text            findAllHeap__7JKRHeapCFPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -492,7 +483,8 @@ asm void JKRHeap::findAllHeap(void* param_0) const {
 }
 #pragma pop
 
-/* 802CE9E4-802CEA78 0094+00 s=2 e=0 z=0  None .text      dispose_subroutine__7JKRHeapFUlUl */
+/* 802CE9E4-802CEA78 2C9324 0094+00 2/2 0/0 0/0 .text            dispose_subroutine__7JKRHeapFUlUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -502,7 +494,7 @@ asm void JKRHeap::dispose_subroutine(u32 param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802CEA78-802CEAA0 0028+00 s=0 e=1 z=0  None .text      dispose__7JKRHeapFPvUl */
+/* 802CEA78-802CEAA0 2C93B8 0028+00 0/0 1/1 0/0 .text            dispose__7JKRHeapFPvUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -512,7 +504,7 @@ asm void JKRHeap::dispose(void* param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802CEAA0-802CEAC0 0020+00 s=0 e=1 z=0  None .text      dispose__7JKRHeapFPvPv */
+/* 802CEAA0-802CEAC0 2C93E0 0020+00 0/0 1/1 0/0 .text            dispose__7JKRHeapFPvPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -522,7 +514,7 @@ asm void JKRHeap::dispose(void* param_0, void* param_1) {
 }
 #pragma pop
 
-/* 802CEAC0-802CEB18 0058+00 s=0 e=3 z=0  None .text      dispose__7JKRHeapFv */
+/* 802CEAC0-802CEB18 2C9400 0058+00 0/0 3/3 0/0 .text            dispose__7JKRHeapFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -532,7 +524,7 @@ asm void JKRHeap::dispose() {
 }
 #pragma pop
 
-/* 802CEB18-802CEB40 0028+00 s=0 e=4 z=0  None .text      copyMemory__7JKRHeapFPvPvUl */
+/* 802CEB18-802CEB40 2C9458 0028+00 0/0 4/4 0/0 .text            copyMemory__7JKRHeapFPvPvUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -542,29 +534,17 @@ asm void JKRHeap::copyMemory(void* param_0, void* param_1, u32 param_2) {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 8039CAD8-8039CAF0 0016+02 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_8039CAD8 = "JKRHeap.cpp";
-SECTION_DEAD char const* const stringBase_8039CAE4 = "%s";
-SECTION_DEAD char const* const stringBase_8039CAE7 = "abort\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039CAEE = "\0";
-#pragma pop
-
-/* 802CEB40-802CEB78 0038+00 s=2 e=0 z=0  None .text      JKRDefaultMemoryErrorRoutine__FPvUli */
+/* 802CEB40-802CEB78 2C9480 0038+00 2/2 0/0 0/0 .text JKRDefaultMemoryErrorRoutine__FPvUli */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void JKRDefaultMemoryErrorRoutine(void* param_0, u32 param_1, int param_2) {
+static asm void JKRDefaultMemoryErrorRoutine(void* param_0, u32 param_1, int param_2) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRHeap/JKRDefaultMemoryErrorRoutine__FPvUli.s"
 }
 #pragma pop
 
-/* 802CEB78-802CEB88 0010+00 s=0 e=2 z=0  None .text      setErrorFlag__7JKRHeapFb */
+/* 802CEB78-802CEB88 2C94B8 0010+00 0/0 2/2 0/0 .text            setErrorFlag__7JKRHeapFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -574,7 +554,8 @@ asm void JKRHeap::setErrorFlag(bool param_0) {
 }
 #pragma pop
 
-/* 802CEB88-802CEBA8 0020+00 s=0 e=1 z=0  None .text      setErrorHandler__7JKRHeapFPFPvUli_v */
+/* 802CEB88-802CEBA8 2C94C8 0020+00 0/0 1/1 0/0 .text            setErrorHandler__7JKRHeapFPFPvUli_v
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -584,7 +565,7 @@ asm void JKRHeap::setErrorHandler(void (*)(void*, u32, int)) {
 }
 #pragma pop
 
-/* 802CEBA8-802CEC4C 00A4+00 s=0 e=1 z=0  None .text      isSubHeap__7JKRHeapCFP7JKRHeap */
+/* 802CEBA8-802CEC4C 2C94E8 00A4+00 0/0 1/1 0/0 .text            isSubHeap__7JKRHeapCFP7JKRHeap */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -594,7 +575,7 @@ asm void JKRHeap::isSubHeap(JKRHeap* param_0) const {
 }
 #pragma pop
 
-/* 802CEC4C-802CEC74 0028+00 s=0 e=278 z=377  None .text      __nw__FUl */
+/* 802CEC4C-802CEC74 2C958C 0028+00 0/0 278/278 377/377 .text            __nw__FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -604,7 +585,7 @@ asm void* operator new(u32 param_0) {
 }
 #pragma pop
 
-/* 802CEC74-802CEC98 0024+00 s=0 e=15 z=0  None .text      __nw__FUli */
+/* 802CEC74-802CEC98 2C95B4 0024+00 0/0 15/15 0/0 .text            __nw__FUli */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -614,7 +595,7 @@ asm void* operator new(u32 param_0, int param_1) {
 }
 #pragma pop
 
-/* 802CEC98-802CECC4 002C+00 s=0 e=47 z=0  None .text      __nw__FUlP7JKRHeapi */
+/* 802CEC98-802CECC4 2C95D8 002C+00 0/0 47/47 0/0 .text            __nw__FUlP7JKRHeapi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -624,7 +605,7 @@ asm void* operator new(u32 param_0, JKRHeap* param_1, int param_2) {
 }
 #pragma pop
 
-/* 802CECC4-802CECEC 0028+00 s=0 e=52 z=15  None .text      __nwa__FUl */
+/* 802CECC4-802CECEC 2C9604 0028+00 0/0 52/52 15/15 .text            __nwa__FUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -634,7 +615,7 @@ asm void* operator new[](u32 param_0) {
 }
 #pragma pop
 
-/* 802CECEC-802CED10 0024+00 s=0 e=29 z=0  None .text      __nwa__FUli */
+/* 802CECEC-802CED10 2C962C 0024+00 0/0 29/29 0/0 .text            __nwa__FUli */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -644,7 +625,7 @@ asm void* operator new[](u32 param_0, int param_1) {
 }
 #pragma pop
 
-/* 802CED10-802CED3C 002C+00 s=0 e=25 z=0  None .text      __nwa__FUlP7JKRHeapi */
+/* 802CED10-802CED3C 2C9650 002C+00 0/0 25/25 0/0 .text            __nwa__FUlP7JKRHeapi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -654,7 +635,7 @@ asm void* operator new[](u32 param_0, JKRHeap* param_1, int param_2) {
 }
 #pragma pop
 
-/* 802CED3C-802CED60 0024+00 s=1 e=847 z=4665  None .text      __dl__FPv */
+/* 802CED3C-802CED60 2C967C 0024+00 1/1 847/847 4665/4665 .text            __dl__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -664,7 +645,7 @@ asm void operator delete(void* param_0) {
 }
 #pragma pop
 
-/* 802CED60-802CED84 0024+00 s=0 e=20 z=3  None .text      __dla__FPv */
+/* 802CED60-802CED84 2C96A0 0024+00 0/0 20/20 3/3 .text            __dla__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -674,13 +655,13 @@ asm void operator delete[](void* param_0) {
 }
 #pragma pop
 
-/* 802CED84-802CED88 0004+00 s=1 e=1 z=0  None .text
+/* 802CED84-802CED88 2C96C4 0004+00 1/0 1/0 0/0 .text
  * state_register__7JKRHeapCFPQ27JKRHeap6TStateUl               */
 void JKRHeap::state_register(JKRHeap::TState* param_0, u32 param_1) const {
     /* empty function */
 }
 
-/* 802CED88-802CEDA0 0018+00 s=1 e=1 z=0  None .text
+/* 802CED88-802CEDA0 2C96C8 0018+00 1/0 1/0 0/0 .text
  * state_compare__7JKRHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState */
 #pragma push
 #pragma optimization_level 0
@@ -692,18 +673,28 @@ asm void JKRHeap::state_compare(JKRHeap::TState const& param_0,
 }
 #pragma pop
 
-/* 802CEDA0-802CEDA4 0004+00 s=1 e=3 z=0  None .text      state_dump__7JKRHeapCFRCQ27JKRHeap6TState
- */
+/* 802CEDA0-802CEDA4 2C96E0 0004+00 1/0 3/0 0/0 .text state_dump__7JKRHeapCFRCQ27JKRHeap6TState */
 void JKRHeap::state_dump(JKRHeap::TState const& param_0) const {
     /* empty function */
 }
 
-/* 802CEDA4-802CEDAC 0008+00 s=1 e=1 z=0  None .text      do_changeGroupID__7JKRHeapFUc */
+/* 802CEDA4-802CEDAC 2C96E4 0008+00 1/0 1/0 0/0 .text            do_changeGroupID__7JKRHeapFUc */
 bool JKRHeap::do_changeGroupID(u8 param_0) {
     return false;
 }
 
-/* 802CEDAC-802CEDB4 0008+00 s=1 e=1 z=0  None .text      do_getCurrentGroupId__7JKRHeapFv */
+/* 802CEDAC-802CEDB4 2C96EC 0008+00 1/0 1/0 0/0 .text            do_getCurrentGroupId__7JKRHeapFv */
 bool JKRHeap::do_getCurrentGroupId() {
     return false;
 }
+
+/* 8039CAD8-8039CAF0 029138 0016+02 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8039CAD8 = "JKRHeap.cpp";
+SECTION_DEAD static char const* const stringBase_8039CAE4 = "%s";
+SECTION_DEAD static char const* const stringBase_8039CAE7 = "abort\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039CAEE = "\0";
+#pragma pop

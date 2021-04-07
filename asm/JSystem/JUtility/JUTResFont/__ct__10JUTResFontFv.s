@@ -5,8 +5,8 @@ lbl_802DEF48:
 /* 802DEF54  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802DEF58  7C 7F 1B 78 */	mr r31, r3
 /* 802DEF5C  4B FF FD 9D */	bl __ct__7JUTFontFv
-/* 802DEF60  3C 60 80 3D */	lis r3, __vt__10JUTResFont@ha
-/* 802DEF64  38 03 C5 A0 */	addi r0, r3, __vt__10JUTResFont@l
+/* 802DEF60  3C 60 80 3D */	lis r3, __vt__10JUTResFont@ha /* 0x803CC5A0@ha */
+/* 802DEF64  38 03 C5 A0 */	addi r0, r3, __vt__10JUTResFont@l /* 0x803CC5A0@l */
 /* 802DEF68  90 1F 00 00 */	stw r0, 0(r31)
 /* 802DEF6C  7F E3 FB 78 */	mr r3, r31
 /* 802DEF70  48 00 01 41 */	bl initialize_state__10JUTResFontFv

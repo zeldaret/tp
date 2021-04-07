@@ -4,7 +4,7 @@ lbl_80AC801C:
 /* 80AC8024  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80AC8028  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80AC802C  7C 7F 1B 78 */	mr r31, r3
-/* 80AC8030  4B 68 11 60 */	b setMtx__8daNpcT_cFv
+/* 80AC8030  4B 68 11 61 */	bl setMtx__8daNpcT_cFv
 /* 80AC8034  C0 1F 04 D0 */	lfs f0, 0x4d0(r31)
 /* 80AC8038  D0 1F 05 38 */	stfs f0, 0x538(r31)
 /* 80AC803C  C0 1F 04 D4 */	lfs f0, 0x4d4(r31)

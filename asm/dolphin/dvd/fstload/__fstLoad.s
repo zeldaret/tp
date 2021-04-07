@@ -1,15 +1,15 @@
 lbl_8034BE04:
 /* 8034BE04  7C 08 02 A6 */	mflr r0
-/* 8034BE08  3C 60 80 3D */	lis r3, lit_38@ha
+/* 8034BE08  3C 60 80 3D */	lis r3, lit_38@ha /* 0x803D16F0@ha */
 /* 8034BE0C  90 01 00 04 */	stw r0, 4(r1)
 /* 8034BE10  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 8034BE14  93 E1 00 5C */	stw r31, 0x5c(r1)
-/* 8034BE18  3B E3 16 F0 */	addi r31, r3, lit_38@l
+/* 8034BE18  3B E3 16 F0 */	addi r31, r3, lit_38@l /* 0x803D16F0@l */
 /* 8034BE1C  93 C1 00 58 */	stw r30, 0x58(r1)
 /* 8034BE20  93 A1 00 54 */	stw r29, 0x54(r1)
 /* 8034BE24  4B FE F4 69 */	bl OSGetArenaHi
-/* 8034BE28  3C 60 80 45 */	lis r3, bb2Buf@ha
-/* 8034BE2C  38 63 C9 B8 */	addi r3, r3, bb2Buf@l
+/* 8034BE28  3C 60 80 45 */	lis r3, bb2Buf@ha /* 0x8044C9B8@ha */
+/* 8034BE2C  38 63 C9 B8 */	addi r3, r3, bb2Buf@l /* 0x8044C9B8@l */
 /* 8034BE30  38 81 00 2B */	addi r4, r1, 0x2b
 /* 8034BE34  38 03 00 1F */	addi r0, r3, 0x1f
 /* 8034BE38  54 83 00 34 */	rlwinm r3, r4, 0, 0, 0x1a
@@ -17,11 +17,11 @@ lbl_8034BE04:
 /* 8034BE40  90 6D 92 58 */	stw r3, idTmp(r13)
 /* 8034BE44  90 0D 92 54 */	stw r0, bb2(r13)
 /* 8034BE48  4B FF F2 F1 */	bl DVDReset
-/* 8034BE4C  3C 60 80 45 */	lis r3, block@ha
+/* 8034BE4C  3C 60 80 45 */	lis r3, block@ha /* 0x8044C9F8@ha */
 /* 8034BE50  80 8D 92 58 */	lwz r4, idTmp(r13)
-/* 8034BE54  3C A0 80 35 */	lis r5, cb@ha
-/* 8034BE58  38 63 C9 F8 */	addi r3, r3, block@l
-/* 8034BE5C  38 A5 BD 2C */	addi r5, r5, cb@l
+/* 8034BE54  3C A0 80 35 */	lis r5, cb@ha /* 0x8034BD2C@ha */
+/* 8034BE58  38 63 C9 F8 */	addi r3, r3, block@l /* 0x8044C9F8@l */
+/* 8034BE5C  38 A5 BD 2C */	addi r5, r5, cb@l /* 0x8034BD2C@l */
 /* 8034BE60  4B FF F0 79 */	bl DVDReadDiskID
 lbl_8034BE64:
 /* 8034BE64  4B FF F3 65 */	bl DVDGetDriveStatus
@@ -33,7 +33,7 @@ lbl_8034BE64:
 /* 8034BE7C  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 8034BE80  38 7D 00 00 */	addi r3, r29, 0x0000 /* 0x80000000@l */
 /* 8034BE84  38 A0 00 20 */	li r5, 0x20
-/* 8034BE88  90 1E 00 38 */	stw r0, 0x0038(r30)
+/* 8034BE88  90 1E 00 38 */	stw r0, 0x0038(r30)  /* 0x80000038@l */
 /* 8034BE8C  80 8D 92 54 */	lwz r4, bb2(r13)
 /* 8034BE90  80 04 00 0C */	lwz r0, 0xc(r4)
 /* 8034BE94  90 1E 00 3C */	stw r0, 0x3c(r30)

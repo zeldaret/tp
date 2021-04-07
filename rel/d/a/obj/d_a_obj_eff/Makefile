@@ -3,17 +3,15 @@
 #
 
 M94_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_eff.plf
+M94_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_eff.lcf
+M94_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_eff.map
 
 M94_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_eff/executor.cpp \
-	rel/d/a/obj/d_a_obj_eff/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_eff/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_eff/d_a_obj_eff.cpp \
 
 M94_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_eff/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_eff/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_eff/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_eff/d_a_obj_eff.o \
 
 M94_LIBS := \
@@ -29,14 +27,21 @@ M94_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M94_LDSCRIPT) \
+	-unused -map $(M94_MAP) \
+	-w off \
 
 $(M94_TARGET): $(M94_O_FILES) $(M94_LIBS)
+	@echo [ 94] creating $(M94_TARGET)
 	@echo $(M94_LIBS) $(M94_O_FILES) > build/M94_ofiles
-	$(LD) -partial $(M94_LDFLAGS) -o $(M94_TARGET) @build/M94_ofiles
+	@python3 tools/lcf.py rel 94 --output $(M94_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M94_LDFLAGS) -o $(M94_TARGET) @build/M94_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_eff/%.o: rel/d/a/obj/d_a_obj_eff/%.cpp
+	@echo [ 94] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M94_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M94_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

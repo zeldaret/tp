@@ -7,19 +7,19 @@ lbl_80057D8C:
 /* 80057DA0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80057DA4  7C 9F 23 78 */	mr r31, r4
 /* 80057DA8  41 82 00 4C */	beq lbl_80057DF4
-/* 80057DAC  3C 60 80 3B */	lis r3, __vt__20dKankyo_odour_Packet@ha
-/* 80057DB0  38 03 9A E8 */	addi r0, r3, __vt__20dKankyo_odour_Packet@l
+/* 80057DAC  3C 60 80 3B */	lis r3, __vt__20dKankyo_odour_Packet@ha /* 0x803A9AE8@ha */
+/* 80057DB0  38 03 9A E8 */	addi r0, r3, __vt__20dKankyo_odour_Packet@l /* 0x803A9AE8@l */
 /* 80057DB4  90 1E 00 00 */	stw r0, 0(r30)
 /* 80057DB8  38 7E 00 14 */	addi r3, r30, 0x14
-/* 80057DBC  3C 80 80 05 */	lis r4, __dt__12EF_ODOUR_EFFFv@ha
-/* 80057DC0  38 84 6F 8C */	addi r4, r4, __dt__12EF_ODOUR_EFFFv@l
+/* 80057DBC  3C 80 80 05 */	lis r4, __dt__12EF_ODOUR_EFFFv@ha /* 0x80056F8C@ha */
+/* 80057DC0  38 84 6F 8C */	addi r4, r4, __dt__12EF_ODOUR_EFFFv@l /* 0x80056F8C@l */
 /* 80057DC4  38 A0 00 30 */	li r5, 0x30
 /* 80057DC8  38 C0 07 D0 */	li r6, 0x7d0
 /* 80057DCC  48 30 9F 1D */	bl __destroy_arr
 /* 80057DD0  28 1E 00 00 */	cmplwi r30, 0
 /* 80057DD4  41 82 00 10 */	beq lbl_80057DE4
-/* 80057DD8  3C 60 80 3D */	lis r3, __vt__9J3DPacket@ha
-/* 80057DDC  38 03 D9 7C */	addi r0, r3, __vt__9J3DPacket@l
+/* 80057DD8  3C 60 80 3D */	lis r3, __vt__9J3DPacket@ha /* 0x803CD97C@ha */
+/* 80057DDC  38 03 D9 7C */	addi r0, r3, __vt__9J3DPacket@l /* 0x803CD97C@l */
 /* 80057DE0  90 1E 00 00 */	stw r0, 0(r30)
 lbl_80057DE4:
 /* 80057DE4  7F E0 07 35 */	extsh. r0, r31

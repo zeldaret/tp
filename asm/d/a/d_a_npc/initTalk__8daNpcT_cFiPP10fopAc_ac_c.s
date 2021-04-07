@@ -12,8 +12,8 @@ lbl_8014BBF0:
 /* 8014BC18  38 C0 00 00 */	li r6, 0
 /* 8014BC1C  48 0F E3 75 */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 /* 8014BC20  7F E3 FB 78 */	mr r3, r31
-/* 8014BC24  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8014BC28  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8014BC24  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8014BC28  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8014BC2C  80 84 5D AC */	lwz r4, 0x5dac(r4)
 /* 8014BC30  4B EC EA E1 */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 8014BC34  B0 7F 0D C8 */	sth r3, 0xdc8(r31)

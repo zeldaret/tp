@@ -11,12 +11,12 @@ lbl_80D2B6F4:
 /* 80D2B718  7F E0 FB 79 */	or. r0, r31, r31
 /* 80D2B71C  41 82 00 20 */	beq lbl_80D2B73C
 /* 80D2B720  7C 1E 03 78 */	mr r30, r0
-/* 80D2B724  4B 34 CF 00 */	b __ct__16dBgS_MoveBgActorFv
-/* 80D2B728  3C 60 80 D3 */	lis r3, __vt__15daObjWarpOBrg_c@ha
-/* 80D2B72C  38 03 BA 5C */	addi r0, r3, __vt__15daObjWarpOBrg_c@l
+/* 80D2B724  4B 34 CF 01 */	bl __ct__16dBgS_MoveBgActorFv
+/* 80D2B728  3C 60 80 D3 */	lis r3, __vt__15daObjWarpOBrg_c@ha /* 0x80D2BA5C@ha */
+/* 80D2B72C  38 03 BA 5C */	addi r0, r3, __vt__15daObjWarpOBrg_c@l /* 0x80D2BA5C@l */
 /* 80D2B730  90 1E 05 9C */	stw r0, 0x59c(r30)
 /* 80D2B734  38 7E 05 B4 */	addi r3, r30, 0x5b4
-/* 80D2B738  4B 51 E7 C8 */	b __ct__10dMsgFlow_cFv
+/* 80D2B738  4B 51 E7 C9 */	bl __ct__10dMsgFlow_cFv
 lbl_80D2B73C:
 /* 80D2B73C  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 80D2B740  60 00 00 08 */	ori r0, r0, 8

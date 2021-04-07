@@ -5,8 +5,8 @@ lbl_807AE7F4:
 /* 807AE800  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 807AE804  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 807AE808  7C 7F 1B 78 */	mr r31, r3
-/* 807AE80C  3C 80 80 7B */	lis r4, lit_3909@ha
-/* 807AE810  3B C4 FD 2C */	addi r30, r4, lit_3909@l
+/* 807AE80C  3C 80 80 7B */	lis r4, lit_3909@ha /* 0x807AFD2C@ha */
+/* 807AE810  3B C4 FD 2C */	addi r30, r4, lit_3909@l /* 0x807AFD2C@l */
 /* 807AE814  A8 03 06 80 */	lha r0, 0x680(r3)
 /* 807AE818  2C 00 00 01 */	cmpwi r0, 1
 /* 807AE81C  41 82 00 74 */	beq lbl_807AE890
@@ -28,10 +28,10 @@ lbl_807AE830:
 /* 807AE858  C0 1E 01 04 */	lfs f0, 0x104(r30)
 /* 807AE85C  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
 /* 807AE860  7F E3 FB 78 */	mr r3, r31
-/* 807AE864  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 807AE868  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 807AE864  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 807AE868  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 807AE86C  80 84 5D AC */	lwz r4, 0x5dac(r4)
-/* 807AE870  4B 86 BE A0 */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 807AE870  4B 86 BE A1 */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 807AE874  3C 63 00 01 */	addis r3, r3, 1
 /* 807AE878  38 03 80 00 */	addi r0, r3, -32768
 /* 807AE87C  B0 1F 04 DE */	sth r0, 0x4de(r31)
@@ -43,13 +43,13 @@ lbl_807AE890:
 /* 807AE890  80 7F 05 B4 */	lwz r3, 0x5b4(r31)
 /* 807AE894  38 63 00 0C */	addi r3, r3, 0xc
 /* 807AE898  C0 3E 00 60 */	lfs f1, 0x60(r30)
-/* 807AE89C  4B B7 9B 90 */	b checkPass__12J3DFrameCtrlFf
+/* 807AE89C  4B B7 9B 91 */	bl checkPass__12J3DFrameCtrlFf
 /* 807AE8A0  2C 03 00 00 */	cmpwi r3, 0
 /* 807AE8A4  40 82 00 1C */	bne lbl_807AE8C0
 /* 807AE8A8  80 7F 05 B4 */	lwz r3, 0x5b4(r31)
 /* 807AE8AC  38 63 00 0C */	addi r3, r3, 0xc
 /* 807AE8B0  C0 3E 00 F0 */	lfs f1, 0xf0(r30)
-/* 807AE8B4  4B B7 9B 78 */	b checkPass__12J3DFrameCtrlFf
+/* 807AE8B4  4B B7 9B 79 */	bl checkPass__12J3DFrameCtrlFf
 /* 807AE8B8  2C 03 00 00 */	cmpwi r3, 0
 /* 807AE8BC  41 82 00 30 */	beq lbl_807AE8EC
 lbl_807AE8C0:
@@ -79,8 +79,8 @@ lbl_807AE8EC:
 /* 807AE918  81 8C 00 14 */	lwz r12, 0x14(r12)
 /* 807AE91C  7D 89 03 A6 */	mtctr r12
 /* 807AE920  4E 80 04 21 */	bctrl 
-/* 807AE924  3C 60 80 7B */	lis r3, lit_6929@ha
-/* 807AE928  38 83 00 FC */	addi r4, r3, lit_6929@l
+/* 807AE924  3C 60 80 7B */	lis r3, lit_6929@ha /* 0x807B00FC@ha */
+/* 807AE928  38 83 00 FC */	addi r4, r3, lit_6929@l /* 0x807B00FC@l */
 /* 807AE92C  80 64 00 00 */	lwz r3, 0(r4)
 /* 807AE930  80 04 00 04 */	lwz r0, 4(r4)
 /* 807AE934  90 61 00 10 */	stw r3, 0x10(r1)

@@ -14,8 +14,8 @@ lbl_80185DE0:
 /* 80185E10  54 00 15 BA */	rlwinm r0, r0, 2, 0x16, 0x1d
 /* 80185E14  7C 7A 02 14 */	add r3, r26, r0
 /* 80185E18  80 63 01 88 */	lwz r3, 0x188(r3)
-/* 80185E1C  3C 80 80 43 */	lis r4, g_fsHIO@ha
-/* 80185E20  38 84 C9 EC */	addi r4, r4, g_fsHIO@l
+/* 80185E1C  3C 80 80 43 */	lis r4, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 80185E20  38 84 C9 EC */	addi r4, r4, g_fsHIO@l /* 0x8042C9EC@l */
 /* 80185E24  88 84 00 06 */	lbz r4, 6(r4)
 /* 80185E28  38 A0 00 FF */	li r5, 0xff
 /* 80185E2C  38 C0 00 00 */	li r6, 0
@@ -30,8 +30,8 @@ lbl_80185DE0:
 /* 80185E50  54 00 10 3A */	slwi r0, r0, 2
 /* 80185E54  7C BA 02 14 */	add r5, r26, r0
 /* 80185E58  80 85 00 E0 */	lwz r4, 0xe0(r5)
-/* 80185E5C  3C 60 80 3C */	lis r3, SelStartFrameTbl@ha
-/* 80185E60  38 63 A8 54 */	addi r3, r3, SelStartFrameTbl@l
+/* 80185E5C  3C 60 80 3C */	lis r3, SelStartFrameTbl@ha /* 0x803BA854@ha */
+/* 80185E60  38 63 A8 54 */	addi r3, r3, SelStartFrameTbl@l /* 0x803BA854@l */
 /* 80185E64  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80185E68  7C 04 00 00 */	cmpw r4, r0
 /* 80185E6C  41 82 00 7C */	beq lbl_80185EE8
@@ -75,8 +75,8 @@ lbl_80185EE8:
 /* 80185EFC  54 00 15 BA */	rlwinm r0, r0, 2, 0x16, 0x1d
 /* 80185F00  7C 7A 02 14 */	add r3, r26, r0
 /* 80185F04  80 63 01 88 */	lwz r3, 0x188(r3)
-/* 80185F08  3C 80 80 43 */	lis r4, g_fsHIO@ha
-/* 80185F0C  38 84 C9 EC */	addi r4, r4, g_fsHIO@l
+/* 80185F08  3C 80 80 43 */	lis r4, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 80185F0C  38 84 C9 EC */	addi r4, r4, g_fsHIO@l /* 0x8042C9EC@l */
 /* 80185F10  88 84 00 06 */	lbz r4, 6(r4)
 /* 80185F14  38 A0 00 00 */	li r5, 0
 /* 80185F18  38 C0 00 FF */	li r6, 0xff
@@ -87,8 +87,8 @@ lbl_80185EE8:
 /* 80185F2C  54 00 10 3A */	slwi r0, r0, 2
 /* 80185F30  7C BA 02 14 */	add r5, r26, r0
 /* 80185F34  80 85 00 E0 */	lwz r4, 0xe0(r5)
-/* 80185F38  3C 60 80 3C */	lis r3, SelEndFrameTbl@ha
-/* 80185F3C  38 63 A8 60 */	addi r3, r3, SelEndFrameTbl@l
+/* 80185F38  3C 60 80 3C */	lis r3, SelEndFrameTbl@ha /* 0x803BA860@ha */
+/* 80185F3C  38 63 A8 60 */	addi r3, r3, SelEndFrameTbl@l /* 0x803BA860@l */
 /* 80185F40  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80185F44  7C 04 00 00 */	cmpw r4, r0
 /* 80185F48  41 82 00 7C */	beq lbl_80185FC4

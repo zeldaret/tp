@@ -3,17 +3,15 @@
 #
 
 M4_TARGET := $(BUILD_DIR)/rel/d/a/d_a_bg_obj.plf
+M4_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_bg_obj.lcf
+M4_MAP := $(BUILD_DIR)/rel/d/a/d_a_bg_obj.map
 
 M4_CPP_FILES := \
-	rel/d/a/d_a_bg_obj/executor.cpp \
-	rel/d/a/d_a_bg_obj/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_bg_obj/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_bg_obj/d_a_bg_obj.cpp \
 
 M4_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_bg_obj/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_bg_obj/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_bg_obj/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_bg_obj/d_a_bg_obj.o \
 
 M4_LIBS := \
@@ -29,14 +27,21 @@ M4_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M4_LDSCRIPT) \
+	-unused -map $(M4_MAP) \
+	-w off \
 
 $(M4_TARGET): $(M4_O_FILES) $(M4_LIBS)
+	@echo [  4] creating $(M4_TARGET)
 	@echo $(M4_LIBS) $(M4_O_FILES) > build/M4_ofiles
-	$(LD) -partial $(M4_LDFLAGS) -o $(M4_TARGET) @build/M4_ofiles
+	@python3 tools/lcf.py rel 4 --output $(M4_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M4_LDFLAGS) -o $(M4_TARGET) @build/M4_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_bg_obj/%.o: rel/d/a/d_a_bg_obj/%.cpp
+	@echo [  4] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M4_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M4_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

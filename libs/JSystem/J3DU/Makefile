@@ -22,7 +22,6 @@ $(BUILD_DIR)/libJ3DU.a: $(LIBJ3DU_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libJ3DU.a
 	@echo $(LIBJ3DU_A_O_FILES) > build/LIBJ3DU_A_ofiles
 	@$(LD) -xm l $(LIBJ3DU_A_LDFLAGS) -o $(BUILD_DIR)/libJ3DU.a @build/LIBJ3DU_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libJ3DU.a
 
 $(BUILD_DIR)/libs/JSystem/J3DU/%.o: libs/JSystem/J3DU/%.cpp
 	@mkdir -p $(@D)

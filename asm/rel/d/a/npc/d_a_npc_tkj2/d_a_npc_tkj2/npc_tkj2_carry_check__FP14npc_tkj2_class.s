@@ -13,15 +13,15 @@ lbl_80B11130:
 /* 80B1115C  B0 03 06 08 */	sth r0, 0x608(r3)
 /* 80B11160  38 00 00 00 */	li r0, 0
 /* 80B11164  B0 03 06 0A */	sth r0, 0x60a(r3)
-/* 80B11168  3C 80 80 B1 */	lis r4, lit_3663@ha
-/* 80B1116C  C0 04 42 E4 */	lfs f0, lit_3663@l(r4)
+/* 80B11168  3C 80 80 B1 */	lis r4, lit_3663@ha /* 0x80B142E4@ha */
+/* 80B1116C  C0 04 42 E4 */	lfs f0, lit_3663@l(r4)  /* 0x80B142E4@l */
 /* 80B11170  D0 06 04 FC */	stfs f0, 0x4fc(r6)
 /* 80B11174  D0 06 05 2C */	stfs f0, 0x52c(r6)
 /* 80B11178  98 03 06 30 */	stb r0, 0x630(r3)
 /* 80B1117C  38 63 08 50 */	addi r3, r3, 0x850
 /* 80B11180  38 80 00 64 */	li r4, 0x64
 /* 80B11184  38 A0 00 00 */	li r5, 0
-/* 80B11188  4B 57 26 D8 */	b Init__9dCcD_SttsFiiP10fopAc_ac_c
+/* 80B11188  4B 57 26 D9 */	bl Init__9dCcD_SttsFiiP10fopAc_ac_c
 lbl_80B1118C:
 /* 80B1118C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80B11190  7C 08 03 A6 */	mtlr r0

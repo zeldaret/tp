@@ -5,12 +5,12 @@ lbl_809EF188:
 /* 809EF194  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 809EF198  7C 7F 1B 79 */	or. r31, r3, r3
 /* 809EF19C  41 82 00 1C */	beq lbl_809EF1B8
-/* 809EF1A0  3C A0 80 9F */	lis r5, __vt__17daNpc_Grz_Param_c@ha
-/* 809EF1A4  38 05 FB F4 */	addi r0, r5, __vt__17daNpc_Grz_Param_c@l
+/* 809EF1A0  3C A0 80 9F */	lis r5, __vt__17daNpc_Grz_Param_c@ha /* 0x809EFBF4@ha */
+/* 809EF1A4  38 05 FB F4 */	addi r0, r5, __vt__17daNpc_Grz_Param_c@l /* 0x809EFBF4@l */
 /* 809EF1A8  90 1F 00 00 */	stw r0, 0(r31)
 /* 809EF1AC  7C 80 07 35 */	extsh. r0, r4
 /* 809EF1B0  40 81 00 08 */	ble lbl_809EF1B8
-/* 809EF1B4  4B 8D FB 88 */	b __dl__FPv
+/* 809EF1B4  4B 8D FB 89 */	bl __dl__FPv
 lbl_809EF1B8:
 /* 809EF1B8  7F E3 FB 78 */	mr r3, r31
 /* 809EF1BC  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -22,8 +22,8 @@ lbl_801F2638:
 lbl_801F2658:
 /* 801F2658  2C 00 00 01 */	cmpwi r0, 1
 /* 801F265C  40 82 00 28 */	bne lbl_801F2684
-/* 801F2660  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 801F2664  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 801F2660  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801F2664  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801F2668  88 04 0F 19 */	lbz r0, 0xf19(r4)
 /* 801F266C  60 00 00 01 */	ori r0, r0, 1
 /* 801F2670  98 04 0F 19 */	stb r0, 0xf19(r4)

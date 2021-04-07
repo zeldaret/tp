@@ -26,9 +26,6 @@ struct dSv_info_c {
 // Forward References:
 //
 
-static void daTagGra_Create(fopAc_ac_c*);
-static void daTagGra_Delete(daTagGra_c*);
-
 extern "C" static void daTagGra_Create__FP10fopAc_ac_c();
 extern "C" static void daTagGra_Delete__FP10daTagGra_c();
 extern "C" extern void* g_profile_TAG_GRA[12];
@@ -48,28 +45,28 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 // Declarations:
 //
 
-/* 80D59658-80D596E8 0090+00 s=1 e=0 z=0  None .text      daTagGra_Create__FP10fopAc_ac_c */
+/* 80D59658-80D596E8 000078 0090+00 1/0 0/0 0/0 .text            daTagGra_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagGra_Create(fopAc_ac_c* param_0) {
+static asm void daTagGra_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_gra/d_a_tag_gra/daTagGra_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D596E8-80D59718 0030+00 s=1 e=0 z=0  None .text      daTagGra_Delete__FP10daTagGra_c */
+/* 80D596E8-80D59718 000108 0030+00 1/0 0/0 0/0 .text            daTagGra_Delete__FP10daTagGra_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagGra_Delete(daTagGra_c* param_0) {
+static asm void daTagGra_Delete(daTagGra_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_gra/d_a_tag_gra/daTagGra_Delete__FP10daTagGra_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D59720-80D59740 0020+00 s=1 e=0 z=0  None .data      l_daTagGra_Method */
+/* 80D59720-80D59740 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagGra_Method */
 SECTION_DATA static void* l_daTagGra_Method[8] = {
     (void*)daTagGra_Create__FP10fopAc_ac_c,
     (void*)daTagGra_Delete__FP10daTagGra_c,
@@ -81,8 +78,8 @@ SECTION_DATA static void* l_daTagGra_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D59740-80D59770 0030+00 s=0 e=0 z=1  None .data      g_profile_TAG_GRA */
-SECTION_DATA void* g_profile_TAG_GRA[12] = {
+/* 80D59740-80D59770 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_GRA */
+SECTION_DATA extern void* g_profile_TAG_GRA[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00220000, (void*)&g_fpcLf_Method,
     (void*)0x00000568, (void*)NULL,

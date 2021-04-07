@@ -7,8 +7,8 @@ lbl_80019934:
 /* 80019948  7C 7E 1B 78 */	mr r30, r3
 /* 8001994C  2C 04 00 00 */	cmpwi r4, 0
 /* 80019950  41 80 00 54 */	blt lbl_800199A4
-/* 80019954  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha
-/* 80019958  38 63 60 94 */	addi r3, r3, mStatus__20dStage_roomControl_c@l
+/* 80019954  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 80019958  38 63 60 94 */	addi r3, r3, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 /* 8001995C  1C 04 04 04 */	mulli r0, r4, 0x404
 /* 80019960  7C 63 02 14 */	add r3, r3, r0
 /* 80019964  80 63 03 FC */	lwz r3, 0x3fc(r3)

@@ -41,8 +41,8 @@ lbl_802D3F60:
 /* 802D3F64  38 9F 00 50 */	addi r4, r31, 0x50
 /* 802D3F68  38 A0 00 01 */	li r5, 1
 /* 802D3F6C  48 06 AA 29 */	bl OSInitMessageQueue
-/* 802D3F70  3C 60 80 3D */	lis r3, sMessageQueue__13JKRAramStream@ha
-/* 802D3F74  38 63 C1 98 */	addi r3, r3, sMessageQueue__13JKRAramStream@l
+/* 802D3F70  3C 60 80 3D */	lis r3, sMessageQueue__13JKRAramStream@ha /* 0x803CC198@ha */
+/* 802D3F74  38 63 C1 98 */	addi r3, r3, sMessageQueue__13JKRAramStream@l /* 0x803CC198@l */
 /* 802D3F78  7F E4 FB 78 */	mr r4, r31
 /* 802D3F7C  38 A0 00 01 */	li r5, 1
 /* 802D3F80  48 06 AA 75 */	bl OSSendMessage

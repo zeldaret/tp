@@ -8,8 +8,8 @@ lbl_800C66DC:
 /* 800C66F4  4B FF B8 79 */	bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800C66F8  7F E3 FB 78 */	mr r3, r31
 /* 800C66FC  38 80 01 9A */	li r4, 0x19a
-/* 800C6700  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha
-/* 800C6704  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l
+/* 800C6700  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 800C6704  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 800C6708  38 A5 00 28 */	addi r5, r5, 0x28
 /* 800C670C  4B FE 69 E9 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800C6710  7F E3 FB 78 */	mr r3, r31
@@ -19,8 +19,8 @@ lbl_800C66DC:
 /* 800C6720  7F E3 FB 78 */	mr r3, r31
 /* 800C6724  38 80 00 00 */	li r4, 0
 /* 800C6728  48 01 BE 59 */	bl setHeavyBoots__9daAlink_cFi
-/* 800C672C  3C 60 80 39 */	lis r3, m__22daAlinkHIO_autoJump_c0@ha
-/* 800C6730  38 63 E0 68 */	addi r3, r3, m__22daAlinkHIO_autoJump_c0@l
+/* 800C672C  3C 60 80 39 */	lis r3, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 800C6730  38 63 E0 68 */	addi r3, r3, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 800C6734  C0 03 00 9C */	lfs f0, 0x9c(r3)
 /* 800C6738  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
 /* 800C673C  C0 03 00 A0 */	lfs f0, 0xa0(r3)

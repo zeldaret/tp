@@ -3,17 +3,15 @@
 #
 
 M176_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_bi_leaf.plf
+M176_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_bi_leaf.lcf
+M176_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_bi_leaf.map
 
 M176_CPP_FILES := \
-	rel/d/a/e/d_a_e_bi_leaf/executor.cpp \
-	rel/d/a/e/d_a_e_bi_leaf/unknown_translation_unit_ctors.cpp \
-	rel/d/a/e/d_a_e_bi_leaf/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/e/d_a_e_bi_leaf/d_a_e_bi_leaf.cpp \
 
 M176_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_bi_leaf/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_bi_leaf/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_bi_leaf/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_bi_leaf/d_a_e_bi_leaf.o \
 
 M176_LIBS := \
@@ -29,14 +27,21 @@ M176_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M176_LDSCRIPT) \
+	-unused -map $(M176_MAP) \
+	-w off \
 
 $(M176_TARGET): $(M176_O_FILES) $(M176_LIBS)
+	@echo [176] creating $(M176_TARGET)
 	@echo $(M176_LIBS) $(M176_O_FILES) > build/M176_ofiles
-	$(LD) -partial $(M176_LDFLAGS) -o $(M176_TARGET) @build/M176_ofiles
+	@python3 tools/lcf.py rel 176 --output $(M176_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M176_LDFLAGS) -o $(M176_TARGET) @build/M176_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_bi_leaf/%.o: rel/d/a/e/d_a_e_bi_leaf/%.cpp
+	@echo [176] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M176_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M176_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

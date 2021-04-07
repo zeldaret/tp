@@ -9,8 +9,8 @@ lbl_8029C2C0:
 /* 8029C2DC  7C 7E 1B 78 */	mr r30, r3
 /* 8029C2E0  88 03 00 18 */	lbz r0, 0x18(r3)
 /* 8029C2E4  54 00 10 3A */	slwi r0, r0, 2
-/* 8029C2E8  3C 60 80 3C */	lis r3, table_list@ha
-/* 8029C2EC  38 63 78 A8 */	addi r3, r3, table_list@l
+/* 8029C2E8  3C 60 80 3C */	lis r3, table_list@ha /* 0x803C78A8@ha */
+/* 8029C2EC  38 63 78 A8 */	addi r3, r3, table_list@l /* 0x803C78A8@l */
 /* 8029C2F0  7F E3 00 2E */	lwzx r31, r3, r0
 /* 8029C2F4  C0 42 BD 10 */	lfs f2, lit_154(r2)
 /* 8029C2F8  C0 1E 00 04 */	lfs f0, 4(r30)

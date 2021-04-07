@@ -24,7 +24,7 @@ lbl_8065FE94:
 /* 8065FEA0  80 7F 0C 0C */	lwz r3, 0xc0c(r31)
 /* 8065FEA4  88 9F 0C 10 */	lbz r4, 0xc10(r31)
 /* 8065FEA8  7C 84 07 74 */	extsb r4, r4
-/* 8065FEAC  4B 9F 19 04 */	b dPath_GetPnt__FPC5dPathi
+/* 8065FEAC  4B 9F 19 05 */	bl dPath_GetPnt__FPC5dPathi
 /* 8065FEB0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8065FEB4  D0 1F 04 D0 */	stfs f0, 0x4d0(r31)
 /* 8065FEB8  C0 03 00 08 */	lfs f0, 8(r3)
@@ -37,7 +37,7 @@ lbl_8065FE94:
 /* 8065FED4  80 7F 0C 0C */	lwz r3, 0xc0c(r31)
 /* 8065FED8  88 9F 0C 10 */	lbz r4, 0xc10(r31)
 /* 8065FEDC  7C 84 07 74 */	extsb r4, r4
-/* 8065FEE0  4B 9F 18 D0 */	b dPath_GetPnt__FPC5dPathi
+/* 8065FEE0  4B 9F 18 D1 */	bl dPath_GetPnt__FPC5dPathi
 /* 8065FEE4  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8065FEE8  D0 01 00 08 */	stfs f0, 8(r1)
 /* 8065FEEC  C0 03 00 08 */	lfs f0, 8(r3)
@@ -46,19 +46,19 @@ lbl_8065FE94:
 /* 8065FEF8  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 8065FEFC  38 7F 04 D0 */	addi r3, r31, 0x4d0
 /* 8065FF00  38 81 00 08 */	addi r4, r1, 8
-/* 8065FF04  4B C1 0D 00 */	b cLib_targetAngleY__FPC3VecPC3Vec
+/* 8065FF04  4B C1 0D 01 */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 8065FF08  B0 7F 04 DE */	sth r3, 0x4de(r31)
 /* 8065FF0C  B0 7F 04 E6 */	sth r3, 0x4e6(r31)
 /* 8065FF10  B0 7F 0C 34 */	sth r3, 0xc34(r31)
 /* 8065FF14  38 00 00 00 */	li r0, 0
 /* 8065FF18  98 1F 0C 9F */	stb r0, 0xc9f(r31)
-/* 8065FF1C  3C 60 80 66 */	lis r3, lit_3998@ha
-/* 8065FF20  C0 03 2D C8 */	lfs f0, lit_3998@l(r3)
+/* 8065FF1C  3C 60 80 66 */	lis r3, lit_3998@ha /* 0x80662DC8@ha */
+/* 8065FF20  C0 03 2D C8 */	lfs f0, lit_3998@l(r3)  /* 0x80662DC8@l */
 /* 8065FF24  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 8065FF28  38 00 00 01 */	li r0, 1
 /* 8065FF2C  98 1F 0C A6 */	stb r0, 0xca6(r31)
-/* 8065FF30  3C 60 80 45 */	lis r3, g_dComIfGoat_gameInfo@ha
-/* 8065FF34  93 E3 06 18 */	stw r31, g_dComIfGoat_gameInfo@l(r3)
+/* 8065FF30  3C 60 80 45 */	lis r3, g_dComIfGoat_gameInfo@ha /* 0x80450618@ha */
+/* 8065FF34  93 E3 06 18 */	stw r31, g_dComIfGoat_gameInfo@l(r3)  /* 0x80450618@l */
 /* 8065FF38  B0 1F 0C 5C */	sth r0, 0xc5c(r31)
 /* 8065FF3C  80 1F 04 9C */	lwz r0, 0x49c(r31)
 /* 8065FF40  60 00 01 00 */	ori r0, r0, 0x100
@@ -80,34 +80,34 @@ lbl_8065FF74:
 /* 8065FF74  80 1F 04 9C */	lwz r0, 0x49c(r31)
 /* 8065FF78  60 00 40 00 */	ori r0, r0, 0x4000
 /* 8065FF7C  90 1F 04 9C */	stw r0, 0x49c(r31)
-/* 8065FF80  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8065FF84  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8065FF80  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8065FF84  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8065FF88  88 03 4F AD */	lbz r0, 0x4fad(r3)
 /* 8065FF8C  28 00 00 00 */	cmplwi r0, 0
 /* 8065FF90  41 82 00 74 */	beq lbl_80660004
 /* 8065FF94  3B C3 4F F8 */	addi r30, r3, 0x4ff8
 /* 8065FF98  7F C3 F3 78 */	mr r3, r30
-/* 8065FF9C  4B 9E 84 4C */	b getRunEventName__16dEvent_manager_cFv
-/* 8065FFA0  3C 80 80 66 */	lis r4, stringBase0@ha
-/* 8065FFA4  38 84 2F 18 */	addi r4, r4, stringBase0@l
+/* 8065FF9C  4B 9E 84 4D */	bl getRunEventName__16dEvent_manager_cFv
+/* 8065FFA0  3C 80 80 66 */	lis r4, d_a_cow__stringBase0@ha /* 0x80662F18@ha */
+/* 8065FFA4  38 84 2F 18 */	addi r4, r4, d_a_cow__stringBase0@l /* 0x80662F18@l */
 /* 8065FFA8  38 84 00 0B */	addi r4, r4, 0xb
-/* 8065FFAC  4B D0 89 E8 */	b strcmp
+/* 8065FFAC  4B D0 89 E9 */	bl strcmp
 /* 8065FFB0  2C 03 00 00 */	cmpwi r3, 0
 /* 8065FFB4  41 82 00 50 */	beq lbl_80660004
 /* 8065FFB8  7F C3 F3 78 */	mr r3, r30
-/* 8065FFBC  4B 9E 84 2C */	b getRunEventName__16dEvent_manager_cFv
-/* 8065FFC0  3C 80 80 66 */	lis r4, stringBase0@ha
-/* 8065FFC4  38 84 2F 18 */	addi r4, r4, stringBase0@l
+/* 8065FFBC  4B 9E 84 2D */	bl getRunEventName__16dEvent_manager_cFv
+/* 8065FFC0  3C 80 80 66 */	lis r4, d_a_cow__stringBase0@ha /* 0x80662F18@ha */
+/* 8065FFC4  38 84 2F 18 */	addi r4, r4, d_a_cow__stringBase0@l /* 0x80662F18@l */
 /* 8065FFC8  38 84 00 14 */	addi r4, r4, 0x14
-/* 8065FFCC  4B D0 89 C8 */	b strcmp
+/* 8065FFCC  4B D0 89 C9 */	bl strcmp
 /* 8065FFD0  2C 03 00 00 */	cmpwi r3, 0
 /* 8065FFD4  41 82 00 30 */	beq lbl_80660004
 /* 8065FFD8  7F C3 F3 78 */	mr r3, r30
-/* 8065FFDC  4B 9E 84 0C */	b getRunEventName__16dEvent_manager_cFv
-/* 8065FFE0  3C 80 80 66 */	lis r4, stringBase0@ha
-/* 8065FFE4  38 84 2F 18 */	addi r4, r4, stringBase0@l
+/* 8065FFDC  4B 9E 84 0D */	bl getRunEventName__16dEvent_manager_cFv
+/* 8065FFE0  3C 80 80 66 */	lis r4, d_a_cow__stringBase0@ha /* 0x80662F18@ha */
+/* 8065FFE4  38 84 2F 18 */	addi r4, r4, d_a_cow__stringBase0@l /* 0x80662F18@l */
 /* 8065FFE8  38 84 00 25 */	addi r4, r4, 0x25
-/* 8065FFEC  4B D0 89 A8 */	b strcmp
+/* 8065FFEC  4B D0 89 A9 */	bl strcmp
 /* 8065FFF0  2C 03 00 00 */	cmpwi r3, 0
 /* 8065FFF4  41 82 00 10 */	beq lbl_80660004
 /* 8065FFF8  80 1F 04 9C */	lwz r0, 0x49c(r31)
@@ -117,8 +117,8 @@ lbl_80660004:
 /* 80660004  88 1F 0C 9F */	lbz r0, 0xc9f(r31)
 /* 80660008  28 00 00 08 */	cmplwi r0, 8
 /* 8066000C  41 81 00 8C */	bgt lbl_80660098
-/* 80660010  3C 60 80 66 */	lis r3, lit_7039@ha
-/* 80660014  38 63 32 70 */	addi r3, r3, lit_7039@l
+/* 80660010  3C 60 80 66 */	lis r3, lit_7039@ha /* 0x80663270@ha */
+/* 80660014  38 63 32 70 */	addi r3, r3, lit_7039@l /* 0x80663270@l */
 /* 80660018  54 00 10 3A */	slwi r0, r0, 2
 /* 8066001C  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80660020  7C 09 03 A6 */	mtctr r0
@@ -177,11 +177,11 @@ lbl_806600B0:
 /* 806600C8  48 00 00 2C */	b lbl_806600F4
 lbl_806600CC:
 /* 806600CC  38 00 00 00 */	li r0, 0
-/* 806600D0  3C 60 80 45 */	lis r3, g_dComIfGoat_gameInfo@ha
-/* 806600D4  90 03 06 18 */	stw r0, g_dComIfGoat_gameInfo@l(r3)
+/* 806600D0  3C 60 80 45 */	lis r3, g_dComIfGoat_gameInfo@ha /* 0x80450618@ha */
+/* 806600D4  90 03 06 18 */	stw r0, g_dComIfGoat_gameInfo@l(r3)  /* 0x80450618@l */
 /* 806600D8  98 1F 0C A6 */	stb r0, 0xca6(r31)
-/* 806600DC  3C 60 80 66 */	lis r3, lit_3998@ha
-/* 806600E0  C0 03 2D C8 */	lfs f0, lit_3998@l(r3)
+/* 806600DC  3C 60 80 66 */	lis r3, lit_3998@ha /* 0x80662DC8@ha */
+/* 806600E0  C0 03 2D C8 */	lfs f0, lit_3998@l(r3)  /* 0x80662DC8@l */
 /* 806600E4  D0 1F 0C B0 */	stfs f0, 0xcb0(r31)
 /* 806600E8  B0 1F 0C 42 */	sth r0, 0xc42(r31)
 /* 806600EC  B0 1F 0C 3A */	sth r0, 0xc3a(r31)

@@ -1,6 +1,6 @@
 lbl_80108A90:
-/* 80108A90  3C C0 80 40 */	lis r6, g_dComIfG_gameInfo@ha
-/* 80108A94  38 C6 61 C0 */	addi r6, r6, g_dComIfG_gameInfo@l
+/* 80108A90  3C C0 80 40 */	lis r6, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80108A94  38 C6 61 C0 */	addi r6, r6, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80108A98  80 06 5F 1C */	lwz r0, 0x5f1c(r6)
 /* 80108A9C  54 00 03 DF */	rlwinm. r0, r0, 0, 0xf, 0xf
 /* 80108AA0  41 82 00 48 */	beq lbl_80108AE8

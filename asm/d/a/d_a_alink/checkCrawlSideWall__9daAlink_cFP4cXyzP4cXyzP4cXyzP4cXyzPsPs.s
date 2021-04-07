@@ -14,8 +14,8 @@ lbl_800F8700:
 /* 800F8730  4B FA 9A 69 */	bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800F8734  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800F8738  41 82 01 9C */	beq lbl_800F88D4
-/* 800F873C  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800F8740  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800F873C  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800F8740  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800F8744  90 01 00 84 */	stw r0, 0x84(r1)
 /* 800F8748  C0 1A 1B 78 */	lfs f0, 0x1b78(r26)
 /* 800F874C  D0 1B 00 00 */	stfs f0, 0(r27)
@@ -23,8 +23,8 @@ lbl_800F8700:
 /* 800F8754  D0 1B 00 04 */	stfs f0, 4(r27)
 /* 800F8758  C0 1A 1B 80 */	lfs f0, 0x1b80(r26)
 /* 800F875C  D0 1B 00 08 */	stfs f0, 8(r27)
-/* 800F8760  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800F8764  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800F8760  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800F8764  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800F8768  3B E3 0F 38 */	addi r31, r3, 0xf38
 /* 800F876C  7F E3 FB 78 */	mr r3, r31
 /* 800F8770  38 9A 1B 5C */	addi r4, r26, 0x1b5c
@@ -108,14 +108,14 @@ lbl_800F8700:
 /* 800F88A8  C0 02 95 40 */	lfs f0, lit_22609(r2)
 /* 800F88AC  FC 1F 00 40 */	fcmpo cr0, f31, f0
 /* 800F88B0  40 81 00 18 */	ble lbl_800F88C8
-/* 800F88B4  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800F88B8  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800F88B4  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800F88B8  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800F88BC  90 01 00 84 */	stw r0, 0x84(r1)
 /* 800F88C0  38 60 00 01 */	li r3, 1
 /* 800F88C4  48 00 00 14 */	b lbl_800F88D8
 lbl_800F88C8:
-/* 800F88C8  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800F88CC  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800F88C8  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800F88CC  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800F88D0  90 01 00 84 */	stw r0, 0x84(r1)
 lbl_800F88D4:
 /* 800F88D4  38 60 00 00 */	li r3, 0

@@ -1,6 +1,6 @@
 lbl_8026F2A8:
-/* 8026F2A8  3C C0 80 3A */	lis r6, __vt__8cM3dGLin@ha
-/* 8026F2AC  38 06 78 F8 */	addi r0, r6, __vt__8cM3dGLin@l
+/* 8026F2A8  3C C0 80 3A */	lis r6, __vt__8cM3dGLin@ha /* 0x803A78F8@ha */
+/* 8026F2AC  38 06 78 F8 */	addi r0, r6, __vt__8cM3dGLin@l /* 0x803A78F8@l */
 /* 8026F2B0  90 03 00 18 */	stw r0, 0x18(r3)
 /* 8026F2B4  C0 04 00 00 */	lfs f0, 0(r4)
 /* 8026F2B8  D0 03 00 00 */	stfs f0, 0(r3)

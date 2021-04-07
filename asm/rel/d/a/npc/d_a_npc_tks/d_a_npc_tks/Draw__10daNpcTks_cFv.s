@@ -11,12 +11,12 @@ lbl_80B15430:
 /* 80B15454  90 04 00 3C */	stw r0, 0x3c(r4)
 /* 80B15458  38 80 00 00 */	li r4, 0
 /* 80B1545C  38 A0 00 00 */	li r5, 0
-/* 80B15460  3C C0 80 B2 */	lis r6, m__16daNpcTks_Param_c@ha
-/* 80B15464  38 C6 DD 58 */	addi r6, r6, m__16daNpcTks_Param_c@l
+/* 80B15460  3C C0 80 B2 */	lis r6, m__16daNpcTks_Param_c@ha /* 0x80B1DD58@ha */
+/* 80B15464  38 C6 DD 58 */	addi r6, r6, m__16daNpcTks_Param_c@l /* 0x80B1DD58@l */
 /* 80B15468  C0 26 00 0C */	lfs f1, 0xc(r6)
 /* 80B1546C  38 C0 00 00 */	li r6, 0
 /* 80B15470  38 E0 00 00 */	li r7, 0
-/* 80B15474  4B 63 CE 38 */	b draw__8daNpcF_cFiifP11_GXColorS10i
+/* 80B15474  4B 63 CE 39 */	bl draw__8daNpcF_cFiifP11_GXColorS10i
 /* 80B15478  38 60 00 01 */	li r3, 1
 /* 80B1547C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80B15480  7C 08 03 A6 */	mtlr r0

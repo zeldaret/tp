@@ -5,13 +5,13 @@ lbl_80238BDC:
 /* 80238BE8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80238BEC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80238BF0  41 82 00 34 */	beq lbl_80238C24
-/* 80238BF4  3C 60 80 3C */	lis r3, __vt__16dMsgObject_HIO_c@ha
-/* 80238BF8  38 03 0B D8 */	addi r0, r3, __vt__16dMsgObject_HIO_c@l
+/* 80238BF4  3C 60 80 3C */	lis r3, __vt__16dMsgObject_HIO_c@ha /* 0x803C0BD8@ha */
+/* 80238BF8  38 03 0B D8 */	addi r0, r3, __vt__16dMsgObject_HIO_c@l /* 0x803C0BD8@l */
 /* 80238BFC  90 1F 00 00 */	stw r0, 0(r31)
 /* 80238C00  34 1F 03 5C */	addic. r0, r31, 0x35c
 /* 80238C04  41 82 00 10 */	beq lbl_80238C14
-/* 80238C08  3C 60 80 3C */	lis r3, __vt__20dMsgObject_HowlHIO_c@ha
-/* 80238C0C  38 03 0B E4 */	addi r0, r3, __vt__20dMsgObject_HowlHIO_c@l
+/* 80238C08  3C 60 80 3C */	lis r3, __vt__20dMsgObject_HowlHIO_c@ha /* 0x803C0BE4@ha */
+/* 80238C0C  38 03 0B E4 */	addi r0, r3, __vt__20dMsgObject_HowlHIO_c@l /* 0x803C0BE4@l */
 /* 80238C10  90 1F 03 5C */	stw r0, 0x35c(r31)
 lbl_80238C14:
 /* 80238C14  7C 80 07 35 */	extsh. r0, r4

@@ -7,19 +7,19 @@ lbl_805CAC3C:
 /* 805CAC50  7C 7E 1B 79 */	or. r30, r3, r3
 /* 805CAC54  7C 9F 23 78 */	mr r31, r4
 /* 805CAC58  41 82 00 38 */	beq lbl_805CAC90
-/* 805CAC5C  3C 80 80 5D */	lis r4, __vt__12dBgS_ObjAcch@ha
-/* 805CAC60  38 84 B0 04 */	addi r4, r4, __vt__12dBgS_ObjAcch@l
+/* 805CAC5C  3C 80 80 5D */	lis r4, __vt__12dBgS_ObjAcch@ha /* 0x805CB004@ha */
+/* 805CAC60  38 84 B0 04 */	addi r4, r4, __vt__12dBgS_ObjAcch@l /* 0x805CB004@l */
 /* 805CAC64  90 9E 00 10 */	stw r4, 0x10(r30)
 /* 805CAC68  38 04 00 0C */	addi r0, r4, 0xc
 /* 805CAC6C  90 1E 00 14 */	stw r0, 0x14(r30)
 /* 805CAC70  38 04 00 18 */	addi r0, r4, 0x18
 /* 805CAC74  90 1E 00 24 */	stw r0, 0x24(r30)
 /* 805CAC78  38 80 00 00 */	li r4, 0
-/* 805CAC7C  4B AA B3 18 */	b __dt__9dBgS_AcchFv
+/* 805CAC7C  4B AA B3 19 */	bl __dt__9dBgS_AcchFv
 /* 805CAC80  7F E0 07 35 */	extsh. r0, r31
 /* 805CAC84  40 81 00 0C */	ble lbl_805CAC90
 /* 805CAC88  7F C3 F3 78 */	mr r3, r30
-/* 805CAC8C  4B D0 40 B0 */	b __dl__FPv
+/* 805CAC8C  4B D0 40 B1 */	bl __dl__FPv
 lbl_805CAC90:
 /* 805CAC90  7F C3 F3 78 */	mr r3, r30
 /* 805CAC94  83 E1 00 0C */	lwz r31, 0xc(r1)

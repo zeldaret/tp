@@ -7,8 +7,8 @@ lbl_80325D24:
 /* 80325D38  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80325D3C  7C 9F 23 78 */	mr r31, r4
 /* 80325D40  41 82 00 2C */	beq lbl_80325D6C
-/* 80325D44  3C 60 80 3D */	lis r3, __vt__12J3DJointTree@ha
-/* 80325D48  38 03 EC F4 */	addi r0, r3, __vt__12J3DJointTree@l
+/* 80325D44  3C 60 80 3D */	lis r3, __vt__12J3DJointTree@ha /* 0x803CECF4@ha */
+/* 80325D48  38 03 EC F4 */	addi r0, r3, __vt__12J3DJointTree@l /* 0x803CECF4@l */
 /* 80325D4C  90 1E 00 00 */	stw r0, 0(r30)
 /* 80325D50  38 7E 00 34 */	addi r3, r30, 0x34
 /* 80325D54  38 80 FF FF */	li r4, -1

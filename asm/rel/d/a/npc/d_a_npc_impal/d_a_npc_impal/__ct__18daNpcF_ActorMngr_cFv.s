@@ -4,10 +4,10 @@ lbl_80A0BA64:
 /* 80A0BA6C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80A0BA70  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A0BA74  7C 7F 1B 78 */	mr r31, r3
-/* 80A0BA78  3C 80 80 A1 */	lis r4, __vt__18daNpcF_ActorMngr_c@ha
-/* 80A0BA7C  38 04 C8 B0 */	addi r0, r4, __vt__18daNpcF_ActorMngr_c@l
+/* 80A0BA78  3C 80 80 A1 */	lis r4, __vt__18daNpcF_ActorMngr_c@ha /* 0x80A0C8B0@ha */
+/* 80A0BA7C  38 04 C8 B0 */	addi r0, r4, __vt__18daNpcF_ActorMngr_c@l /* 0x80A0C8B0@l */
 /* 80A0BA80  90 03 00 04 */	stw r0, 4(r3)
-/* 80A0BA84  4B 74 4C 2C */	b initialize__18daNpcF_ActorMngr_cFv
+/* 80A0BA84  4B 74 4C 2D */	bl initialize__18daNpcF_ActorMngr_cFv
 /* 80A0BA88  7F E3 FB 78 */	mr r3, r31
 /* 80A0BA8C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80A0BA90  80 01 00 14 */	lwz r0, 0x14(r1)

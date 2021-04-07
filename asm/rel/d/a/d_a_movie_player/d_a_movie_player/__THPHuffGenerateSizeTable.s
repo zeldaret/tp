@@ -1,10 +1,10 @@
 lbl_8087375C:
 /* 8087375C  38 E0 00 00 */	li r7, 0
 /* 80873760  39 00 00 01 */	li r8, 1
-/* 80873764  3C 60 80 88 */	lis r3, __THPHuffmanSizeTab@ha
-/* 80873768  38 A3 9B 64 */	addi r5, r3, __THPHuffmanSizeTab@l
-/* 8087376C  3C 60 80 88 */	lis r3, __THPHuffmanBits@ha
-/* 80873770  38 C3 9B 60 */	addi r6, r3, __THPHuffmanBits@l
+/* 80873764  3C 60 80 88 */	lis r3, __THPHuffmanSizeTab@ha /* 0x80879B64@ha */
+/* 80873768  38 A3 9B 64 */	addi r5, r3, __THPHuffmanSizeTab@l /* 0x80879B64@l */
+/* 8087376C  3C 60 80 88 */	lis r3, __THPHuffmanBits@ha /* 0x80879B60@ha */
+/* 80873770  38 C3 9B 60 */	addi r6, r3, __THPHuffmanBits@l /* 0x80879B60@l */
 lbl_80873774:
 /* 80873774  80 66 00 00 */	lwz r3, 0(r6)
 /* 80873778  38 08 FF FF */	addi r0, r8, -1
@@ -55,8 +55,8 @@ lbl_80873818:
 /* 8087381C  2C 08 00 10 */	cmpwi r8, 0x10
 /* 80873820  40 81 FF 54 */	ble lbl_80873774
 /* 80873824  38 00 00 00 */	li r0, 0
-/* 80873828  3C 60 80 88 */	lis r3, __THPHuffmanSizeTab@ha
-/* 8087382C  38 63 9B 64 */	addi r3, r3, __THPHuffmanSizeTab@l
+/* 80873828  3C 60 80 88 */	lis r3, __THPHuffmanSizeTab@ha /* 0x80879B64@ha */
+/* 8087382C  38 63 9B 64 */	addi r3, r3, __THPHuffmanSizeTab@l /* 0x80879B64@l */
 /* 80873830  80 63 00 00 */	lwz r3, 0(r3)
 /* 80873834  7C 03 39 AE */	stbx r0, r3, r7
 /* 80873838  4E 80 00 20 */	blr 

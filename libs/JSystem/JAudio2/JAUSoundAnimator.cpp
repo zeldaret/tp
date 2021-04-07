@@ -34,7 +34,7 @@ extern "C" void _restgpr_28();
 // Declarations:
 //
 
-/* 802A6F70-802A7044 00D4+00 s=0 e=1 z=0  None .text      getStartSoundIndex__17JAUSoundAnimationCFf
+/* 802A6F70-802A7044 2A18B0 00D4+00 0/0 1/1 0/0 .text getStartSoundIndex__17JAUSoundAnimationCFf
  */
 #pragma push
 #pragma optimization_level 0
@@ -45,8 +45,7 @@ asm void JAUSoundAnimation::getStartSoundIndex(f32 param_0) const {
 }
 #pragma pop
 
-/* 802A7044-802A7114 00D0+00 s=0 e=1 z=0  None .text      getEndSoundIndex__17JAUSoundAnimationCFf
- */
+/* 802A7044-802A7114 2A1984 00D0+00 0/0 1/1 0/0 .text getEndSoundIndex__17JAUSoundAnimationCFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

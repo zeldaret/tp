@@ -10,8 +10,8 @@ lbl_800B14B4:
 /* 800B14D4  80 1F 05 70 */	lwz r0, 0x570(r31)
 /* 800B14D8  60 00 00 80 */	ori r0, r0, 0x80
 /* 800B14DC  90 1F 05 70 */	stw r0, 0x570(r31)
-/* 800B14E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800B14E4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800B14E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800B14E4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800B14E8  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 800B14EC  38 9F 1A F0 */	addi r4, r31, 0x1af0
 /* 800B14F0  4B FC 39 61 */	bl GetPolyAtt0__4dBgSFRC13cBgS_PolyInfo

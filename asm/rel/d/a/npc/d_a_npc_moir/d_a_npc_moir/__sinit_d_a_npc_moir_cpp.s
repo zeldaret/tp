@@ -3,19 +3,19 @@ lbl_80A83184:
 /* 80A83188  7C 08 02 A6 */	mflr r0
 /* 80A8318C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80A83190  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80A83194  3C 60 80 A8 */	lis r3, cNullVec__6Z2Calc@ha
-/* 80A83198  3B E3 38 B0 */	addi r31, r3, cNullVec__6Z2Calc@l
-/* 80A8319C  3C 60 80 A8 */	lis r3, __vt__17daNpcMoiR_Param_c@ha
-/* 80A831A0  38 03 3D 60 */	addi r0, r3, __vt__17daNpcMoiR_Param_c@l
-/* 80A831A4  3C 60 80 A8 */	lis r3, l_HIO@ha
-/* 80A831A8  94 03 3D 84 */	stwu r0, l_HIO@l(r3)
-/* 80A831AC  3C 80 80 A8 */	lis r4, __dt__17daNpcMoiR_Param_cFv@ha
-/* 80A831B0  38 84 32 40 */	addi r4, r4, __dt__17daNpcMoiR_Param_cFv@l
-/* 80A831B4  3C A0 80 A8 */	lis r5, lit_3854@ha
-/* 80A831B8  38 A5 3D 78 */	addi r5, r5, lit_3854@l
+/* 80A83194  3C 60 80 A8 */	lis r3, cNullVec__6Z2Calc@ha /* 0x80A838B0@ha */
+/* 80A83198  3B E3 38 B0 */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x80A838B0@l */
+/* 80A8319C  3C 60 80 A8 */	lis r3, __vt__17daNpcMoiR_Param_c@ha /* 0x80A83D60@ha */
+/* 80A831A0  38 03 3D 60 */	addi r0, r3, __vt__17daNpcMoiR_Param_c@l /* 0x80A83D60@l */
+/* 80A831A4  3C 60 80 A8 */	lis r3, l_HIO@ha /* 0x80A83D84@ha */
+/* 80A831A8  94 03 3D 84 */	stwu r0, l_HIO@l(r3)  /* 0x80A83D84@l */
+/* 80A831AC  3C 80 80 A8 */	lis r4, __dt__17daNpcMoiR_Param_cFv@ha /* 0x80A83240@ha */
+/* 80A831B0  38 84 32 40 */	addi r4, r4, __dt__17daNpcMoiR_Param_cFv@l /* 0x80A83240@l */
+/* 80A831B4  3C A0 80 A8 */	lis r5, lit_3854@ha /* 0x80A83D78@ha */
+/* 80A831B8  38 A5 3D 78 */	addi r5, r5, lit_3854@l /* 0x80A83D78@l */
 /* 80A831BC  4B FF 8F 3D */	bl __register_global_object
-/* 80A831C0  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 80A831C4  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 80A831C0  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80A831C4  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 80A831C8  80 64 00 00 */	lwz r3, 0(r4)
 /* 80A831CC  80 04 00 04 */	lwz r0, 4(r4)
 /* 80A831D0  90 7F 02 90 */	stw r3, 0x290(r31)

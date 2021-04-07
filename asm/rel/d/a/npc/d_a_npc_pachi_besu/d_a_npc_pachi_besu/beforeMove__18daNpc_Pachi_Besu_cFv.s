@@ -9,7 +9,7 @@ lbl_80A94220:
 /* 80A9423C  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 80A94240  28 00 00 00 */	cmplwi r0, 0
 /* 80A94244  40 82 00 1C */	bne lbl_80A94260
-/* 80A94248  4B 59 B8 0C */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80A94248  4B 59 B8 0D */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80A9424C  2C 03 00 00 */	cmpwi r3, 0
 /* 80A94250  40 82 00 14 */	bne lbl_80A94264
 /* 80A94254  88 1E 0A 89 */	lbz r0, 0xa89(r30)

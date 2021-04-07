@@ -22,8 +22,8 @@ lbl_800E6264:
 /* 800E627C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800E6280  40 81 00 50 */	ble lbl_800E62D0
 /* 800E6284  C0 3E 00 10 */	lfs f1, 0x10(r30)
-/* 800E6288  3C 60 80 39 */	lis r3, m__18daAlinkHIO_grab_c0@ha
-/* 800E628C  38 63 EC 48 */	addi r3, r3, m__18daAlinkHIO_grab_c0@l
+/* 800E6288  3C 60 80 39 */	lis r3, m__18daAlinkHIO_grab_c0@ha /* 0x8038EC48@ha */
+/* 800E628C  38 63 EC 48 */	addi r3, r3, m__18daAlinkHIO_grab_c0@l /* 0x8038EC48@l */
 /* 800E6290  C0 03 00 24 */	lfs f0, 0x24(r3)
 /* 800E6294  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800E6298  40 81 00 38 */	ble lbl_800E62D0

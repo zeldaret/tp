@@ -1,6 +1,6 @@
 lbl_80038A90:
-/* 80038A90  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80038A94  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80038A90  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80038A94  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80038A98  88 03 5D 44 */	lbz r0, 0x5d44(r3)
 /* 80038A9C  2C 00 00 00 */	cmpwi r0, 0
 /* 80038AA0  40 82 00 0C */	bne lbl_80038AAC

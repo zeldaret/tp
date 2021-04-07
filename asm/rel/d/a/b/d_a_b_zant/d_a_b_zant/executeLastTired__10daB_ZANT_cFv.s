@@ -47,11 +47,11 @@ lbl_8064A5F0:
 /* 8064A630  98 1F 07 12 */	stb r0, 0x712(r31)
 lbl_8064A634:
 /* 8064A634  38 7F 05 2C */	addi r3, r31, 0x52c
-/* 8064A638  3C 80 80 65 */	lis r4, lit_4176@ha
-/* 8064A63C  C0 24 EB 44 */	lfs f1, lit_4176@l(r4)
-/* 8064A640  3C 80 80 65 */	lis r4, lit_4169@ha
-/* 8064A644  C0 44 EB 28 */	lfs f2, lit_4169@l(r4)
-/* 8064A648  4B C2 60 F8 */	b cLib_chaseF__FPfff
+/* 8064A638  3C 80 80 65 */	lis r4, lit_4176@ha /* 0x8064EB44@ha */
+/* 8064A63C  C0 24 EB 44 */	lfs f1, lit_4176@l(r4)  /* 0x8064EB44@l */
+/* 8064A640  3C 80 80 65 */	lis r4, lit_4169@ha /* 0x8064EB28@ha */
+/* 8064A644  C0 44 EB 28 */	lfs f2, lit_4169@l(r4)  /* 0x8064EB28@l */
+/* 8064A648  4B C2 60 F9 */	bl cLib_chaseF__FPfff
 /* 8064A64C  80 1F 06 E8 */	lwz r0, 0x6e8(r31)
 /* 8064A650  2C 00 00 00 */	cmpwi r0, 0
 /* 8064A654  40 82 00 20 */	bne lbl_8064A674

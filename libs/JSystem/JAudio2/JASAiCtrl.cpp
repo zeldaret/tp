@@ -71,10 +71,10 @@ struct JASChannel {
 struct JASCalc {
     /* 8028F2E8 */ void imixcopy(s16 const*, s16 const*, s16*, u32);
     /* 8028F480 */ void bzero(void*, u32);
-    /*          */ template <typename A1, typename B1>
-    /*          */ void clamp(/* s32 */);
-    /* 8028F69C */ /* clamp<s16, s32> */
-    void clamp__template0(s32);
+    template <typename A1, typename B1>
+    void clamp(/* ... */);
+    /* 8028F69C */ /* JASCalc::clamp<s16, s32> */
+    void func_8028F69C(s32);
 };
 
 //
@@ -105,12 +105,9 @@ extern "C" extern char const* const JASAiCtrl__stringBase0;
 // External References:
 //
 
-void JASReport(char const*, ...);
-void* operator new[](u32, JKRHeap*, int);
-
 extern "C" void imixcopy__7JASCalcFPCsPCsPsUl();
 extern "C" void bzero__7JASCalcFPvUl();
-extern "C" void func_8028F69C();
+extern "C" void func_8028F69C(s32);
 extern "C" void start__8JASProbeFlPCc();
 extern "C" void stop__8JASProbeFl();
 extern "C" void JASReport__FPCce();
@@ -153,40 +150,40 @@ extern "C" extern u8 snIntCount__14JASAudioThread[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 80431C58-80431C68 000C+04 s=2 e=0 z=0  None .bss       sDmaDacBuffer__9JASDriver */
+/* 80431C58-80431C68 05E978 000C+04 2/2 0/0 0/0 .bss             sDmaDacBuffer__9JASDriver */
 static u8 sDmaDacBuffer__9JASDriver[12 + 4 /* padding */];
 
-/* 804507A8-804507AC 0004+00 s=3 e=0 z=0  None .sdata     None */
+/* 804507A8-804507AC 000228 0004+00 3/3 0/0 0/0 .sdata           None */
 SECTION_SDATA static u32 data_804507A8 = 0x03000000;
 
-/* 804512A0-804512A4 0004+00 s=3 e=0 z=0  None .sbss      sDspDacBuffer__9JASDriver */
+/* 804512A0-804512A4 0007A0 0004+00 3/3 0/0 0/0 .sbss            sDspDacBuffer__9JASDriver */
 static u8 sDspDacBuffer__9JASDriver[4];
 
-/* 804512A4-804512A8 0004+00 s=3 e=0 z=0  None .sbss      sDspDacWriteBuffer__9JASDriver */
+/* 804512A4-804512A8 0007A4 0004+00 3/3 0/0 0/0 .sbss            sDspDacWriteBuffer__9JASDriver */
 static u8 sDspDacWriteBuffer__9JASDriver[4];
 
-/* 804512A8-804512AC 0004+00 s=3 e=0 z=0  None .sbss      sDspDacReadBuffer__9JASDriver */
+/* 804512A8-804512AC 0007A8 0004+00 3/3 0/0 0/0 .sbss            sDspDacReadBuffer__9JASDriver */
 static u8 sDspDacReadBuffer__9JASDriver[4];
 
-/* 804512AC-804512B0 0004+00 s=3 e=0 z=0  None .sbss      sDspStatus__9JASDriver */
+/* 804512AC-804512B0 0007AC 0004+00 3/3 0/0 0/0 .sbss            sDspStatus__9JASDriver */
 static u8 sDspStatus__9JASDriver[4];
 
-/* 804512B0-804512B4 0004+00 s=1 e=0 z=0  None .sbss      sDspDacCallback__9JASDriver */
+/* 804512B0-804512B4 0007B0 0004+00 1/1 0/0 0/0 .sbss            sDspDacCallback__9JASDriver */
 static u8 sDspDacCallback__9JASDriver[4];
 
-/* 804512B4-804512B8 0004+00 s=1 e=0 z=0  None .sbss      lastRspMadep__9JASDriver */
+/* 804512B4-804512B8 0007B4 0004+00 1/1 0/0 0/0 .sbss            lastRspMadep__9JASDriver */
 static u8 lastRspMadep__9JASDriver[4];
 
-/* 804512B8-804512BC 0004+00 s=1 e=0 z=0  None .sbss      dacCallbackFunc__9JASDriver */
+/* 804512B8-804512BC 0007B8 0004+00 1/1 0/0 0/0 .sbss            dacCallbackFunc__9JASDriver */
 static u8 dacCallbackFunc__9JASDriver[4];
 
-/* 804512BC-804512C0 0004+00 s=2 e=0 z=0  None .sbss      extMixCallback__9JASDriver */
+/* 804512BC-804512C0 0007BC 0004+00 2/2 0/0 0/0 .sbss            extMixCallback__9JASDriver */
 static u8 extMixCallback__9JASDriver[4];
 
-/* 804512C0-804512C4 0004+00 s=2 e=0 z=0  None .sbss      sOutputRate__9JASDriver */
+/* 804512C0-804512C4 0007C0 0004+00 2/2 0/0 0/0 .sbss            sOutputRate__9JASDriver */
 static u8 sOutputRate__9JASDriver[4];
 
-/* 8029C388-8029C4E4 015C+00 s=0 e=1 z=0  None .text      initAI__9JASDriverFPFv_v */
+/* 8029C388-8029C4E4 296CC8 015C+00 0/0 1/1 0/0 .text            initAI__9JASDriverFPFv_v */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -196,7 +193,7 @@ asm void JASDriver::initAI(void (*)(void)) {
 }
 #pragma pop
 
-/* 8029C4E4-8029C504 0020+00 s=0 e=1 z=0  None .text      startDMA__9JASDriverFv */
+/* 8029C4E4-8029C504 296E24 0020+00 0/0 1/1 0/0 .text            startDMA__9JASDriverFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -206,7 +203,7 @@ asm void JASDriver::startDMA() {
 }
 #pragma pop
 
-/* 8029C504-8029C524 0020+00 s=0 e=1 z=0  None .text      stopDMA__9JASDriverFv */
+/* 8029C504-8029C524 296E44 0020+00 0/0 1/1 0/0 .text            stopDMA__9JASDriverFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -217,26 +214,25 @@ asm void JASDriver::stopDMA() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804507AC-804507B0 0004+00 s=2 e=0 z=0  None .sdata     sMixMode__9JASDriver */
+/* 804507AC-804507B0 00022C 0004+00 2/2 0/0 0/0 .sdata           sMixMode__9JASDriver */
 SECTION_SDATA static u32 sMixMode__9JASDriver = 0x00000002;
 
-/* 804507B0-804507B4 0004+00 s=2 e=0 z=0  None .sdata     sDacRate__9JASDriver */
+/* 804507B0-804507B4 000230 0004+00 2/2 0/0 0/0 .sdata           sDacRate__9JASDriver */
 SECTION_SDATA static f32 sDacRate__9JASDriver = 32028.5f;
 
-/* 804507B4-804507B8 0004+00 s=4 e=0 z=0  None .sdata     sSubFrames__9JASDriver */
+/* 804507B4-804507B8 000234 0004+00 4/4 0/0 0/0 .sdata           sSubFrames__9JASDriver */
 SECTION_SDATA static u32 sSubFrames__9JASDriver = 0x00000007;
 
-/* 80455720-80455724 0004+00 s=1 e=0 z=0  None .sdata2    @233 */
+/* 80455720-80455724 003D20 0004+00 1/1 0/0 0/0 .sdata2          @233 */
 SECTION_SDATA2 static f32 lit_233 = 32000.0f;
 
-/* 80455724-80455728 0004+00 s=1 e=0 z=0  None .sdata2    @234 */
+/* 80455724-80455728 003D24 0004+00 1/1 0/0 0/0 .sdata2          @234 */
 SECTION_SDATA2 static f32 lit_234 = 48000.0f;
 
-/* 80455728-8045572C 0004+00 s=1 e=0 z=0  None .sdata2    @235 */
+/* 80455728-8045572C 003D28 0004+00 1/1 0/0 0/0 .sdata2          @235 */
 SECTION_SDATA2 static f32 lit_235 = 1.0008896589279175f;
 
-/* 8029C524-8029C568 0044+00 s=1 e=0 z=0  None .text      setOutputRate__9JASDriverF13JASOutputRate
- */
+/* 8029C524-8029C568 296E64 0044+00 1/1 0/0 0/0 .text setOutputRate__9JASDriverF13JASOutputRate */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -247,24 +243,25 @@ asm void JASDriver::setOutputRate(JASOutputRate param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 8039B2E0-8039B2F0 0010+00 s=1 e=0 z=0  None .rodata    sMixFuncs__9JASDriver */
+/* 8039B2E0-8039B2F0 -00001 0010+00 1/1 0/0 0/0 .rodata          sMixFuncs__9JASDriver */
 SECTION_RODATA static void* const sMixFuncs__9JASDriver[4] = {
     (void*)mixMonoTrack__9JASDriverFPsUlPFl_Ps,
     (void*)mixMonoTrackWide__9JASDriverFPsUlPFl_Ps,
     (void*)mixExtraTrack__9JASDriverFPsUlPFl_Ps,
     (void*)mixInterleaveTrack__9JASDriverFPsUlPFl_Ps,
 };
+COMPILER_STRIP_GATE(8039B2E0, &sMixFuncs__9JASDriver);
 
-/* 804512C4-804512C8 0004+00 s=2 e=0 z=0  None .sbss      sSubFrameCounter__9JASDriver */
+/* 804512C4-804512C8 0007C4 0004+00 2/2 0/0 0/0 .sbss            sSubFrameCounter__9JASDriver */
 static u8 sSubFrameCounter__9JASDriver[4];
 
-/* 804512C8-804512CC 0004+00 s=1 e=0 z=0  None .sbss      dacp$239 */
+/* 804512C8-804512CC 0007C8 0004+00 1/1 0/0 0/0 .sbss            dacp$239 */
 static u8 dacp[4];
 
-/* 804512CC-804512D0 0004+00 s=1 e=0 z=0  None .sbss      None */
+/* 804512CC-804512D0 0007CC 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_804512CC[4];
 
-/* 8029C568-8029C6C4 015C+00 s=0 e=1 z=0  None .text      updateDac__9JASDriverFv */
+/* 8029C568-8029C6C4 296EA8 015C+00 0/0 1/1 0/0 .text            updateDac__9JASDriverFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -275,46 +272,33 @@ asm void JASDriver::updateDac() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 8039B2F0-8039B338 0048+00 s=5 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_8039B2F0 = "SFR-UPDATE";
-SECTION_DEAD char const* const stringBase_8039B2FB = "kill DSP channel";
-SECTION_DEAD char const* const stringBase_8039B30C = "DSP-MAIN";
-SECTION_DEAD char const* const stringBase_8039B315 = "MONO-MIX";
-SECTION_DEAD char const* const stringBase_8039B31E = "MONO(W)-MIX";
-SECTION_DEAD char const* const stringBase_8039B32A = "DSPMIX";
-SECTION_DEAD char const* const stringBase_8039B331 = "MIXING";
-#pragma pop
-
-/* 803C78B8-803C78E0 0028+00 s=1 e=0 z=0  None .data      history$267 */
+/* 803C78B8-803C78E0 0249D8 0028+00 1/1 0/0 0/0 .data            history$267 */
 SECTION_DATA static u8 history[40] = {
     0x00, 0x0F, 0x42, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 804512D0-804512D4 0004+00 s=1 e=0 z=0  None .sbss      old_time$264 */
+/* 804512D0-804512D4 0007D0 0004+00 1/1 0/0 0/0 .sbss            old_time$264 */
 static u8 old_time[4];
 
-/* 804512D4-804512D8 0004+00 s=1 e=0 z=0  None .sbss      None */
+/* 804512D4-804512D8 0007D4 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_804512D4[4];
 
-/* 8045572C-80455730 0004+00 s=1 e=0 z=0  None .sdata2    @275 */
+/* 8045572C-80455730 003D2C 0004+00 1/1 0/0 0/0 .sdata2          @275 */
 SECTION_SDATA2 static f32 lit_275 = 11.0f / 10.0f;
 
-/* 80455730-80455738 0004+04 s=1 e=0 z=0  None .sdata2    @276 */
+/* 80455730-80455738 003D30 0004+04 1/1 0/0 0/0 .sdata2          @276 */
 SECTION_SDATA2 static f32 lit_276[1 + 1 /* padding */] = {
     32028.5f,
     /* padding */
     0.0f,
 };
 
-/* 80455738-80455740 0008+00 s=1 e=0 z=0  None .sdata2    @278 */
+/* 80455738-80455740 003D38 0008+00 1/1 0/0 0/0 .sdata2          @278 */
 SECTION_SDATA2 static f64 lit_278 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 8029C6C4-8029C7E0 011C+00 s=1 e=1 z=0  None .text      updateDSP__9JASDriverFv */
+/* 8029C6C4-8029C7E0 297004 011C+00 1/1 1/1 0/0 .text            updateDSP__9JASDriverFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -324,7 +308,7 @@ asm void JASDriver::updateDSP() {
 }
 #pragma pop
 
-/* 8029C7E0-8029C900 0120+00 s=1 e=0 z=0  None .text      readDspBuffer__9JASDriverFPsUl */
+/* 8029C7E0-8029C900 297120 0120+00 1/1 0/0 0/0 .text            readDspBuffer__9JASDriverFPsUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -334,7 +318,7 @@ asm void JASDriver::readDspBuffer(s16* param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 8029C900-8029C9DC 00DC+00 s=1 e=1 z=0  None .text      finishDSPFrame__9JASDriverFv */
+/* 8029C900-8029C9DC 297240 00DC+00 1/1 1/1 0/0 .text            finishDSPFrame__9JASDriverFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -344,7 +328,7 @@ asm void JASDriver::finishDSPFrame() {
 }
 #pragma pop
 
-/* 8029C9DC-8029C9E8 000C+00 s=0 e=0 z=2  None .text
+/* 8029C9DC-8029C9E8 29731C 000C+00 0/0 0/0 2/2 .text
  * registerMixCallback__9JASDriverFPFl_Ps10JASMixMode           */
 #pragma push
 #pragma optimization_level 0
@@ -355,7 +339,7 @@ asm void JASDriver::registerMixCallback(s16* (*)(s32), JASMixMode param_1) {
 }
 #pragma pop
 
-/* 8029C9E8-8029C9F0 0008+00 s=1 e=5 z=0  None .text      getDacRate__9JASDriverFv */
+/* 8029C9E8-8029C9F0 297328 0008+00 1/1 5/5 0/0 .text            getDacRate__9JASDriverFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -365,7 +349,7 @@ asm void JASDriver::getDacRate() {
 }
 #pragma pop
 
-/* 8029C9F0-8029C9F8 0008+00 s=2 e=2 z=0  None .text      getSubFrames__9JASDriverFv */
+/* 8029C9F0-8029C9F8 297330 0008+00 2/2 2/2 0/0 .text            getSubFrames__9JASDriverFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -375,7 +359,7 @@ asm void JASDriver::getSubFrames() {
 }
 #pragma pop
 
-/* 8029C9F8-8029CA04 000C+00 s=2 e=0 z=0  None .text      getDacSize__9JASDriverFv */
+/* 8029C9F8-8029CA04 297338 000C+00 2/2 0/0 0/0 .text            getDacSize__9JASDriverFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -385,7 +369,7 @@ asm void JASDriver::getDacSize() {
 }
 #pragma pop
 
-/* 8029CA04-8029CA10 000C+00 s=3 e=0 z=0  None .text      getFrameSamples__9JASDriverFv */
+/* 8029CA04-8029CA10 297344 000C+00 3/3 0/0 0/0 .text            getFrameSamples__9JASDriverFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -395,7 +379,8 @@ asm void JASDriver::getFrameSamples() {
 }
 #pragma pop
 
-/* 8029CA10-8029CAC0 00B0+00 s=1 e=0 z=0  None .text      mixMonoTrack__9JASDriverFPsUlPFl_Ps */
+/* 8029CA10-8029CAC0 297350 00B0+00 1/0 0/0 0/0 .text            mixMonoTrack__9JASDriverFPsUlPFl_Ps
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -405,7 +390,7 @@ asm void JASDriver::mixMonoTrack(s16* param_0, u32 param_1, s16* (*)(s32)) {
 }
 #pragma pop
 
-/* 8029CAC0-8029CB70 00B0+00 s=1 e=0 z=0  None .text      mixMonoTrackWide__9JASDriverFPsUlPFl_Ps */
+/* 8029CAC0-8029CB70 297400 00B0+00 1/0 0/0 0/0 .text mixMonoTrackWide__9JASDriverFPsUlPFl_Ps */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -415,7 +400,7 @@ asm void JASDriver::mixMonoTrackWide(s16* param_0, u32 param_1, s16* (*)(s32)) {
 }
 #pragma pop
 
-/* 8029CB70-8029CC50 00E0+00 s=1 e=0 z=0  None .text      mixExtraTrack__9JASDriverFPsUlPFl_Ps */
+/* 8029CB70-8029CC50 2974B0 00E0+00 1/0 0/0 0/0 .text mixExtraTrack__9JASDriverFPsUlPFl_Ps */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -425,8 +410,7 @@ asm void JASDriver::mixExtraTrack(s16* param_0, u32 param_1, s16* (*)(s32)) {
 }
 #pragma pop
 
-/* 8029CC50-8029CCD4 0084+00 s=1 e=0 z=0  None .text      mixInterleaveTrack__9JASDriverFPsUlPFl_Ps
- */
+/* 8029CC50-8029CCD4 297590 0084+00 1/0 0/0 0/0 .text mixInterleaveTrack__9JASDriverFPsUlPFl_Ps */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -436,7 +420,7 @@ asm void JASDriver::mixInterleaveTrack(s16* param_0, u32 param_1, s16* (*)(s32))
 }
 #pragma pop
 
-/* 8029CCD4-8029CCDC 0008+00 s=0 e=1 z=0  None .text      getSubFrameCounter__9JASDriverFv */
+/* 8029CCD4-8029CCDC 297614 0008+00 0/0 1/1 0/0 .text            getSubFrameCounter__9JASDriverFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -444,4 +428,17 @@ asm void JASDriver::getSubFrameCounter() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASAiCtrl/getSubFrameCounter__9JASDriverFv.s"
 }
+#pragma pop
+
+/* 8039B2F0-8039B338 027950 0048+00 5/5 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8039B2F0 = "SFR-UPDATE";
+SECTION_DEAD static char const* const stringBase_8039B2FB = "kill DSP channel";
+SECTION_DEAD static char const* const stringBase_8039B30C = "DSP-MAIN";
+SECTION_DEAD static char const* const stringBase_8039B315 = "MONO-MIX";
+SECTION_DEAD static char const* const stringBase_8039B31E = "MONO(W)-MIX";
+SECTION_DEAD static char const* const stringBase_8039B32A = "DSPMIX";
+SECTION_DEAD static char const* const stringBase_8039B331 = "MIXING";
 #pragma pop

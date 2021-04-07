@@ -92,8 +92,6 @@ extern "C" void isTalkNow__14dMsgScrnBase_cFv();
 // External References:
 //
 
-void operator delete(void*);
-
 extern "C" void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c();
 extern "C" void getStatus__12dMsgObject_cFv();
 extern "C" void exec__14dMsgScrnBase_cFv();
@@ -127,7 +125,7 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 //
 
 /* ############################################################################################## */
-/* 803C0D08-803C0D58 0050+00 s=1 e=0 z=0  None .data      @3949 */
+/* 803C0D08-803C0D58 -00001 0050+00 1/1 0/0 0/0 .data            @3949 */
 SECTION_DATA static void* lit_3949[20] = {
     (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x38),
     (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x38),
@@ -151,9 +149,9 @@ SECTION_DATA static void* lit_3949[20] = {
     (void*)(((char*)isTalkNow__14dMsgScrnBase_cFv) + 0x38),
 };
 
-/* 803C0D58-803C0DB0 0058+00 s=2 e=0 z=0  None .data      __vt__14dMsgScrnBase_c */
-SECTION_DATA static void* __vt__14dMsgScrnBase_c[22] = {
-    (void*)NULL,
+/* 803C0D58-803C0DB0 01DE78 0058+00 2/2 0/0 0/0 .data            __vt__14dMsgScrnBase_c */
+SECTION_DATA extern void* __vt__14dMsgScrnBase_c[22] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__14dMsgScrnBase_cFv,
     (void*)__dt__14dMsgScrnBase_cFv,
@@ -177,7 +175,7 @@ SECTION_DATA static void* __vt__14dMsgScrnBase_c[22] = {
     (void*)fukiPosCalc__14dMsgScrnBase_cFUc,
 };
 
-/* 8023C0DC-8023C124 0048+00 s=0 e=9 z=0  None .text      __ct__14dMsgScrnBase_cFv */
+/* 8023C0DC-8023C124 236A1C 0048+00 0/0 9/9 0/0 .text            __ct__14dMsgScrnBase_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -187,7 +185,7 @@ asm dMsgScrnBase_c::dMsgScrnBase_c() {
 }
 #pragma pop
 
-/* 8023C124-8023C16C 0048+00 s=1 e=9 z=0  None .text      __dt__14dMsgScrnBase_cFv */
+/* 8023C124-8023C16C 236A64 0048+00 1/0 9/9 0/0 .text            __dt__14dMsgScrnBase_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -198,7 +196,7 @@ asm dMsgScrnBase_c::~dMsgScrnBase_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454BA8-80454BAC 0004+00 s=3 e=0 z=0  None .sdata2    @3820 */
+/* 80454BA8-80454BAC 0031A8 0004+00 3/3 0/0 0/0 .sdata2          @3820 */
 SECTION_SDATA2 static u8 lit_3820[4] = {
     0x00,
     0x00,
@@ -206,10 +204,10 @@ SECTION_SDATA2 static u8 lit_3820[4] = {
     0x00,
 };
 
-/* 80454BAC-80454BB0 0004+00 s=2 e=0 z=0  None .sdata2    @3821 */
+/* 80454BAC-80454BB0 0031AC 0004+00 2/2 0/0 0/0 .sdata2          @3821 */
 SECTION_SDATA2 static f32 lit_3821 = 1.0f;
 
-/* 8023C16C-8023C234 00C8+00 s=1 e=9 z=0  None .text      init__14dMsgScrnBase_cFv */
+/* 8023C16C-8023C234 236AAC 00C8+00 1/1 9/9 0/0 .text            init__14dMsgScrnBase_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -219,7 +217,7 @@ asm void dMsgScrnBase_c::init() {
 }
 #pragma pop
 
-/* 8023C234-8023C274 0040+00 s=1 e=9 z=0  None .text      multiDraw__14dMsgScrnBase_cFv */
+/* 8023C234-8023C274 236B74 0040+00 1/0 9/0 0/0 .text            multiDraw__14dMsgScrnBase_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -229,7 +227,7 @@ asm void dMsgScrnBase_c::multiDraw() {
 }
 #pragma pop
 
-/* 8023C274-8023C300 008C+00 s=1 e=7 z=0  None .text      draw__14dMsgScrnBase_cFv */
+/* 8023C274-8023C300 236BB4 008C+00 1/0 7/0 0/0 .text            draw__14dMsgScrnBase_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -239,7 +237,7 @@ asm void dMsgScrnBase_c::draw() {
 }
 #pragma pop
 
-/* 8023C300-8023C32C 002C+00 s=1 e=2 z=0  None .text      drawSelf__14dMsgScrnBase_cFv */
+/* 8023C300-8023C32C 236C40 002C+00 1/0 2/0 0/0 .text            drawSelf__14dMsgScrnBase_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -249,7 +247,8 @@ asm void dMsgScrnBase_c::drawSelf() {
 }
 #pragma pop
 
-/* 8023C32C-8023C360 0034+00 s=1 e=6 z=0  None .text      drawOutFont__14dMsgScrnBase_cFfff */
+/* 8023C32C-8023C360 236C6C 0034+00 1/1 6/6 0/0 .text            drawOutFont__14dMsgScrnBase_cFfff
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -259,7 +258,7 @@ asm void dMsgScrnBase_c::drawOutFont(f32 param_0, f32 param_1, f32 param_2) {
 }
 #pragma pop
 
-/* 8023C360-8023C3EC 008C+00 s=0 e=2 z=0  None .text      setString__14dMsgScrnBase_cFPcPc */
+/* 8023C360-8023C3EC 236CA0 008C+00 0/0 2/2 0/0 .text            setString__14dMsgScrnBase_cFPcPc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -269,7 +268,8 @@ asm void dMsgScrnBase_c::setString(char* param_0, char* param_1) {
 }
 #pragma pop
 
-/* 8023C3EC-8023C458 006C+00 s=0 e=2 z=0  None .text      setRubyString__14dMsgScrnBase_cFPc */
+/* 8023C3EC-8023C458 236D2C 006C+00 0/0 2/2 0/0 .text            setRubyString__14dMsgScrnBase_cFPc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -279,7 +279,7 @@ asm void dMsgScrnBase_c::setRubyString(char* param_0) {
 }
 #pragma pop
 
-/* 8023C458-8023C480 0028+00 s=1 e=0 z=0  None .text      fukiScale__14dMsgScrnBase_cFf */
+/* 8023C458-8023C480 236D98 0028+00 1/0 0/0 0/0 .text            fukiScale__14dMsgScrnBase_cFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -289,7 +289,7 @@ asm void dMsgScrnBase_c::fukiScale(f32 param_0) {
 }
 #pragma pop
 
-/* 8023C480-8023C4A4 0024+00 s=1 e=0 z=0  None .text      fukiTrans__14dMsgScrnBase_cFff */
+/* 8023C480-8023C4A4 236DC0 0024+00 1/0 0/0 0/0 .text            fukiTrans__14dMsgScrnBase_cFff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -299,7 +299,7 @@ asm void dMsgScrnBase_c::fukiTrans(f32 param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 8023C4A4-8023C4F4 0050+00 s=1 e=0 z=0  None .text      fukiAlpha__14dMsgScrnBase_cFf */
+/* 8023C4A4-8023C4F4 236DE4 0050+00 1/0 0/0 0/0 .text            fukiAlpha__14dMsgScrnBase_cFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -309,7 +309,7 @@ asm void dMsgScrnBase_c::fukiAlpha(f32 param_0) {
 }
 #pragma pop
 
-/* 8023C4F4-8023C574 0080+00 s=1 e=5 z=0  None .text      fontAlpha__14dMsgScrnBase_cFf */
+/* 8023C4F4-8023C574 236E34 0080+00 1/0 5/0 0/0 .text            fontAlpha__14dMsgScrnBase_cFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -319,7 +319,7 @@ asm void dMsgScrnBase_c::fontAlpha(f32 param_0) {
 }
 #pragma pop
 
-/* 8023C574-8023C5C8 0054+00 s=1 e=8 z=0  None .text      isTalkNow__14dMsgScrnBase_cFv */
+/* 8023C574-8023C5C8 236EB4 0054+00 1/0 8/8 0/0 .text            isTalkNow__14dMsgScrnBase_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

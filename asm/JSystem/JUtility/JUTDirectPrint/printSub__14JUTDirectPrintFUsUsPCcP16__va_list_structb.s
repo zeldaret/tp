@@ -33,8 +33,8 @@ lbl_802E45A4:
 lbl_802E4620:
 /* 802E4620  3B 81 00 08 */	addi r28, r1, 8
 /* 802E4624  57 5F 04 3E */	clrlwi r31, r26, 0x10
-/* 802E4628  3C 60 80 3D */	lis r3, sAsciiTable__14JUTDirectPrint@ha
-/* 802E462C  3B 03 C6 B8 */	addi r24, r3, sAsciiTable__14JUTDirectPrint@l
+/* 802E4628  3C 60 80 3D */	lis r3, sAsciiTable__14JUTDirectPrint@ha /* 0x803CC6B8@ha */
+/* 802E462C  3B 03 C6 B8 */	addi r24, r3, sAsciiTable__14JUTDirectPrint@l /* 0x803CC6B8@l */
 /* 802E4630  48 00 00 7C */	b lbl_802E46AC
 lbl_802E4634:
 /* 802E4634  88 1C 00 00 */	lbz r0, 0(r28)

@@ -7,11 +7,11 @@ lbl_806E8FEC:
 /* 806E9000  88 83 07 7C */	lbz r4, 0x77c(r3)
 /* 806E9004  28 04 00 FF */	cmplwi r4, 0xff
 /* 806E9008  41 82 00 78 */	beq lbl_806E9080
-/* 806E900C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 806E9010  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 806E900C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806E9010  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806E9014  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 806E9018  7C 05 07 74 */	extsb r5, r0
-/* 806E901C  4B 94 C3 44 */	b isSwitch__10dSv_info_cCFii
+/* 806E901C  4B 94 C3 45 */	bl isSwitch__10dSv_info_cCFii
 /* 806E9020  2C 03 00 00 */	cmpwi r3, 0
 /* 806E9024  40 82 00 5C */	bne lbl_806E9080
 /* 806E9028  38 00 00 00 */	li r0, 0
@@ -26,14 +26,14 @@ lbl_806E8FEC:
 /* 806E904C  88 1F 07 8B */	lbz r0, 0x78b(r31)
 /* 806E9050  28 00 00 00 */	cmplwi r0, 0
 /* 806E9054  40 82 00 24 */	bne lbl_806E9078
-/* 806E9058  3C 60 80 6F */	lis r3, lit_3906@ha
-/* 806E905C  C0 03 A1 F8 */	lfs f0, lit_3906@l(r3)
+/* 806E9058  3C 60 80 6F */	lis r3, lit_3906@ha /* 0x806EA1F8@ha */
+/* 806E905C  C0 03 A1 F8 */	lfs f0, lit_3906@l(r3)  /* 0x806EA1F8@l */
 /* 806E9060  D0 1F 07 90 */	stfs f0, 0x790(r31)
 /* 806E9064  38 00 00 01 */	li r0, 1
 /* 806E9068  98 1F 07 8B */	stb r0, 0x78b(r31)
 /* 806E906C  38 7F 05 C8 */	addi r3, r31, 0x5c8
 /* 806E9070  38 80 00 00 */	li r4, 0
-/* 806E9074  4B BD 8B 1C */	b setEnemyName__15Z2CreatureEnemyFPCc
+/* 806E9074  4B BD 8B 1D */	bl setEnemyName__15Z2CreatureEnemyFPCc
 lbl_806E9078:
 /* 806E9078  38 60 00 01 */	li r3, 1
 /* 806E907C  48 00 00 E0 */	b lbl_806E915C
@@ -41,7 +41,7 @@ lbl_806E9080:
 /* 806E9080  88 1F 07 8C */	lbz r0, 0x78c(r31)
 /* 806E9084  28 00 00 01 */	cmplwi r0, 1
 /* 806E9088  40 82 00 68 */	bne lbl_806E90F0
-/* 806E908C  4B AB 6A 2C */	b dKy_daynight_check__Fv
+/* 806E908C  4B AB 6A 2D */	bl dKy_daynight_check__Fv
 /* 806E9090  2C 03 00 00 */	cmpwi r3, 0
 /* 806E9094  40 82 00 5C */	bne lbl_806E90F0
 /* 806E9098  38 00 00 00 */	li r0, 0
@@ -56,14 +56,14 @@ lbl_806E9080:
 /* 806E90BC  88 1F 07 8B */	lbz r0, 0x78b(r31)
 /* 806E90C0  28 00 00 00 */	cmplwi r0, 0
 /* 806E90C4  40 82 00 24 */	bne lbl_806E90E8
-/* 806E90C8  3C 60 80 6F */	lis r3, lit_3906@ha
-/* 806E90CC  C0 03 A1 F8 */	lfs f0, lit_3906@l(r3)
+/* 806E90C8  3C 60 80 6F */	lis r3, lit_3906@ha /* 0x806EA1F8@ha */
+/* 806E90CC  C0 03 A1 F8 */	lfs f0, lit_3906@l(r3)  /* 0x806EA1F8@l */
 /* 806E90D0  D0 1F 07 90 */	stfs f0, 0x790(r31)
 /* 806E90D4  38 00 00 01 */	li r0, 1
 /* 806E90D8  98 1F 07 8B */	stb r0, 0x78b(r31)
 /* 806E90DC  38 7F 05 C8 */	addi r3, r31, 0x5c8
 /* 806E90E0  38 80 00 00 */	li r4, 0
-/* 806E90E4  4B BD 8A AC */	b setEnemyName__15Z2CreatureEnemyFPCc
+/* 806E90E4  4B BD 8A AD */	bl setEnemyName__15Z2CreatureEnemyFPCc
 lbl_806E90E8:
 /* 806E90E8  38 60 00 01 */	li r3, 1
 /* 806E90EC  48 00 00 70 */	b lbl_806E915C

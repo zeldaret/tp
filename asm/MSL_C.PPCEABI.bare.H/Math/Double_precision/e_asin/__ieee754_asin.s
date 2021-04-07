@@ -26,8 +26,8 @@ lbl_803694B0:
 /* 80369510  FC 22 00 7A */	fmadd f1, f2, f1, f0
 /* 80369514  48 00 01 A4 */	b lbl_803696B8
 lbl_80369518:
-/* 80369518  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8036951C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80369518  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8036951C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80369520  48 00 01 98 */	b lbl_803696B8
 lbl_80369524:
 /* 80369524  3C 00 3F E0 */	lis r0, 0x3fe0

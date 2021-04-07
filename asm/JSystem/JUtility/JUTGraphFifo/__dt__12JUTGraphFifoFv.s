@@ -7,8 +7,8 @@ lbl_802DEC34:
 /* 802DEC48  7C 7A 1B 79 */	or. r26, r3, r3
 /* 802DEC4C  7C 9B 23 78 */	mr r27, r4
 /* 802DEC50  41 82 00 8C */	beq lbl_802DECDC
-/* 802DEC54  3C 60 80 3D */	lis r3, __vt__12JUTGraphFifo@ha
-/* 802DEC58  38 03 C5 90 */	addi r0, r3, __vt__12JUTGraphFifo@l
+/* 802DEC54  3C 60 80 3D */	lis r3, __vt__12JUTGraphFifo@ha /* 0x803CC590@ha */
+/* 802DEC58  38 03 C5 90 */	addi r0, r3, __vt__12JUTGraphFifo@l /* 0x803CC590@l */
 /* 802DEC5C  90 1A 00 00 */	stw r0, 0(r26)
 /* 802DEC60  80 6D 8F 3C */	lwz r3, sCurrentFifo__12JUTGraphFifo(r13)
 /* 802DEC64  80 63 00 04 */	lwz r3, 4(r3)

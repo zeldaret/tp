@@ -5,8 +5,8 @@ lbl_801CDA2C:
 /* 801CDA38  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801CDA3C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 801CDA40  41 82 00 1C */	beq lbl_801CDA5C
-/* 801CDA44  3C A0 80 3C */	lis r5, __vt__9dMf_HIO_c@ha
-/* 801CDA48  38 05 D6 70 */	addi r0, r5, __vt__9dMf_HIO_c@l
+/* 801CDA44  3C A0 80 3C */	lis r5, __vt__9dMf_HIO_c@ha /* 0x803BD670@ha */
+/* 801CDA48  38 05 D6 70 */	addi r0, r5, __vt__9dMf_HIO_c@l /* 0x803BD670@l */
 /* 801CDA4C  90 1F 00 00 */	stw r0, 0(r31)
 /* 801CDA50  7C 80 07 35 */	extsh. r0, r4
 /* 801CDA54  40 81 00 08 */	ble lbl_801CDA5C

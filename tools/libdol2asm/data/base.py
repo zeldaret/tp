@@ -10,6 +10,34 @@ from .symbol import *
 class ArbitraryData(Symbol):
     data: bytes = field(default=None, repr=False)
     padding_data: bytes = field(default=None, repr=False)
+    zero_length: bool = False
+    always_extern: bool = False
+
+    @property
+    def has_body(self):
+        return not self.zero_length
+
+    @property
+    def is_static(self):
+        if self.always_extern:
+            return False
+
+        s = self.reference_count.static
+        e = self.reference_count.extern
+        r = self.reference_count.rel
+        static_by_references = (s >= 0 and e == 0 and r == 0)
+        static_by_literal = self.identifier.label.startswith("lit_")
+        return static_by_references or static_by_literal
+
+    @property
+    def requires_force_active(self):
+        return self.is_static and self.reference_count.total == 0
+
+    @property
+    def export_as_static(self):
+        if self.always_extern:
+            return False
+        return True
 
     @property
     def element_size(self):
@@ -38,6 +66,8 @@ class ArbitraryData(Symbol):
         return type
 
     def array_type(self):
+        if self.zero_length:
+            return ZeroArrayType.create(self.element_type()) 
         return PaddingArrayType.create(
             self.element_type(),
             self.size // self.element_size,
@@ -57,13 +87,13 @@ class ArbitraryData(Symbol):
         if not c_export:
             return
             
-        if self.is_static:
-            if not self.force_section and not self.require_forward_reference:
+        if self.is_static and self.export_static:
+            if not self.require_forward_reference:
                 return
 
         await self.export_section_header(builder)
 
-        if not self.is_static:
+        if not (self.is_static and self.export_static):
             await self.export_extern(builder)
 
         name = self.identifier.label
@@ -76,22 +106,43 @@ class ArbitraryData(Symbol):
         await builder.write(";")
 
     async def export_declaration_head(self, exporter, builder: AsyncBuilder):
-
-        await self.export_section(builder)
-        if self.is_static:
-            await self.export_static(builder)
-
-        name = self.identifier.label
         if self.demangled_name:
             name = self.demangled_name.to_str(specialize_templates=False,
                                               without_template=False)
+        else:
+            name = self.identifier.label
 
         decl_type = self.array_type()
+
+        # for empty symbols that should be exported, we need to double declare it.
+        # otherwise, the compiler thinks that we're not actual declaring it.
+        is_extern = not (self.is_static and self.export_as_static)
+        if not self.data and is_extern:
+            await self.export_section(builder)
+            if self.force_section:
+                await self.export_section_header(builder)
+
+            await self.export_extern(builder)
+            await builder.write_nonewline(decl_type.decl(name))
+            await builder.write(";")
+
+        await self.export_section(builder)
+        if self.force_section:
+            await self.export_section_header(builder)
+
+        if not is_extern:
+            await self.export_static(builder)
+        elif self.data and is_extern:
+            await self.export_extern(builder)
+
         await builder.write_nonewline(decl_type.decl(name))
 
     async def export_declaration_body(self, exporter, builder: AsyncBuilder):
         if self.data:
             assert self.size == len(self.data)
+            if self.alignment > 0:
+                await builder.write_nonewline(f" ALIGN_DECL({self.alignment})")
+
             await builder.write(f" = {{")
             await self.export_u8_data(builder, self.data)
 
@@ -102,7 +153,29 @@ class ArbitraryData(Symbol):
 
             await builder.write("};")
         else:
+            if self.alignment > 0:
+                await builder.write_nonewline(f" ALIGN_DECL({self.alignment})")
+
             await builder.write(";")
+
+    async def export_declaration(self, exporter, builder: AsyncBuilder):
+        if self.requires_force_active:
+            await builder.write(f"#pragma push")
+            await builder.write(f"#pragma force_active on")
+
+        await self.export_declaration_head(exporter, builder)
+        await self.export_declaration_body(exporter, builder)
+
+        if self._section == ".rodata":
+            await builder.write(f"COMPILER_STRIP_GATE({self.addr:08X}, {self.cpp_reference(None, self.addr)});")
+            #await builder.write_nonewline("SECTION_DEAD ")
+            #await builder.write_nonewline("void* const ")
+            #await builder.write_nonewline(f"cg_{self.addr:08X} = (void*)(")
+            #await builder.write_nonewline(self.cpp_reference(None, self.addr))
+            #await builder.write(f");")
+
+        if self.requires_force_active:
+            await builder.write(f"#pragma pop")
 
     @staticmethod
     def create_with_data(identifier, addr, data, padding_data):

@@ -56,8 +56,8 @@ lbl_80039E64:
 /* 80039E64  4B FF 5E A5 */	bl dComIfGs_staffroll_next_go_check__Fv
 /* 80039E68  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80039E6C  41 82 00 58 */	beq lbl_80039EC4
-/* 80039E70  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80039E74  3B E3 CA 54 */	addi r31, r3, g_env_light@l
+/* 80039E70  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80039E74  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80039E78  4B FF 5E 91 */	bl dComIfGs_staffroll_next_go_check__Fv
 /* 80039E7C  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80039E80  28 00 00 0A */	cmplwi r0, 0xa

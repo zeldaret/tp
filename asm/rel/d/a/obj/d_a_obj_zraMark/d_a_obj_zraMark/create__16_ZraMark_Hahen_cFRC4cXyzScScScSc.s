@@ -3,7 +3,7 @@ lbl_80D4347C:
 /* 80D43480  7C 08 02 A6 */	mflr r0
 /* 80D43484  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80D43488  39 61 00 20 */	addi r11, r1, 0x20
-/* 80D4348C  4B 61 ED 48 */	b _savegpr_27
+/* 80D4348C  4B 61 ED 49 */	bl _savegpr_27
 /* 80D43490  7C 7B 1B 78 */	mr r27, r3
 /* 80D43494  7C 9C 23 78 */	mr r28, r4
 /* 80D43498  7C BD 2B 78 */	mr r29, r5
@@ -27,7 +27,7 @@ lbl_80D434DC:
 /* 80D434DC  38 60 00 00 */	li r3, 0
 lbl_80D434E0:
 /* 80D434E0  39 61 00 20 */	addi r11, r1, 0x20
-/* 80D434E4  4B 61 ED 3C */	b _restgpr_27
+/* 80D434E4  4B 61 ED 3D */	bl _restgpr_27
 /* 80D434E8  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80D434EC  7C 08 03 A6 */	mtlr r0
 /* 80D434F0  38 21 00 20 */	addi r1, r1, 0x20

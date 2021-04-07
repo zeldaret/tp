@@ -3,17 +3,15 @@
 #
 
 M465_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra_rock.plf
+M465_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra_rock.lcf
+M465_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra_rock.map
 
 M465_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_gra_rock/executor.cpp \
-	rel/d/a/obj/d_a_obj_gra_rock/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_gra_rock/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_gra_rock/d_a_obj_gra_rock.cpp \
 
 M465_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra_rock/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra_rock/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra_rock/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra_rock/d_a_obj_gra_rock.o \
 
 M465_LIBS := \
@@ -29,14 +27,21 @@ M465_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M465_LDSCRIPT) \
+	-unused -map $(M465_MAP) \
+	-w off \
 
 $(M465_TARGET): $(M465_O_FILES) $(M465_LIBS)
+	@echo [465] creating $(M465_TARGET)
 	@echo $(M465_LIBS) $(M465_O_FILES) > build/M465_ofiles
-	$(LD) -partial $(M465_LDFLAGS) -o $(M465_TARGET) @build/M465_ofiles
+	@python3 tools/lcf.py rel 465 --output $(M465_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M465_LDFLAGS) -o $(M465_TARGET) @build/M465_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_gra_rock/%.o: rel/d/a/obj/d_a_obj_gra_rock/%.cpp
+	@echo [465] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M465_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M465_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

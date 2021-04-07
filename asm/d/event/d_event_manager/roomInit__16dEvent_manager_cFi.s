@@ -17,10 +17,10 @@ lbl_80046930:
 /* 8004693C  38 61 00 08 */	addi r3, r1, 8
 /* 80046940  48 32 21 ED */	bl strcpy
 /* 80046944  38 61 00 08 */	addi r3, r1, 8
-/* 80046948  3C 80 80 38 */	lis r4, data_80379F50@ha
-/* 8004694C  38 84 9F 50 */	addi r4, r4, data_80379F50@l
-/* 80046950  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80046954  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80046948  3C 80 80 38 */	lis r4, data_80379F50@ha /* 0x80379F50@ha */
+/* 8004694C  38 84 9F 50 */	addi r4, r4, data_80379F50@l /* 0x80379F50@l */
+/* 80046950  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80046954  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80046958  3C A5 00 02 */	addis r5, r5, 2
 /* 8004695C  38 A5 D4 F8 */	addi r5, r5, -11016
 /* 80046960  38 C0 00 40 */	li r6, 0x40

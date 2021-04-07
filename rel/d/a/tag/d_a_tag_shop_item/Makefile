@@ -3,17 +3,15 @@
 #
 
 M742_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_item.plf
+M742_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_item.lcf
+M742_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_item.map
 
 M742_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_shop_item/executor.cpp \
-	rel/d/a/tag/d_a_tag_shop_item/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_shop_item/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_shop_item/d_a_tag_shop_item.cpp \
 
 M742_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_item/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_item/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_item/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_item/d_a_tag_shop_item.o \
 
 M742_LIBS := \
@@ -29,14 +27,21 @@ M742_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M742_LDSCRIPT) \
+	-unused -map $(M742_MAP) \
+	-w off \
 
 $(M742_TARGET): $(M742_O_FILES) $(M742_LIBS)
+	@echo [742] creating $(M742_TARGET)
 	@echo $(M742_LIBS) $(M742_O_FILES) > build/M742_ofiles
-	$(LD) -partial $(M742_LDFLAGS) -o $(M742_TARGET) @build/M742_ofiles
+	@python3 tools/lcf.py rel 742 --output $(M742_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M742_LDFLAGS) -o $(M742_TARGET) @build/M742_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_shop_item/%.o: rel/d/a/tag/d_a_tag_shop_item/%.cpp
+	@echo [742] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M742_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M742_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -3,10 +3,10 @@ lbl_8096A81C:
 /* 8096A820  7C 08 02 A6 */	mflr r0
 /* 8096A824  90 01 00 64 */	stw r0, 0x64(r1)
 /* 8096A828  39 61 00 60 */	addi r11, r1, 0x60
-/* 8096A82C  4B 9F 79 AC */	b _savegpr_28
+/* 8096A82C  4B 9F 79 AD */	bl _savegpr_28
 /* 8096A830  7C 7C 1B 78 */	mr r28, r3
-/* 8096A834  3C 60 80 97 */	lis r3, l_cyl_src@ha
-/* 8096A838  38 83 C9 20 */	addi r4, r3, l_cyl_src@l
+/* 8096A834  3C 60 80 97 */	lis r3, l_cyl_src@ha /* 0x8096C920@ha */
+/* 8096A838  38 83 C9 20 */	addi r4, r3, l_cyl_src@l /* 0x8096C920@l */
 /* 8096A83C  38 A0 00 00 */	li r5, 0
 /* 8096A840  80 7C 05 68 */	lwz r3, 0x568(r28)
 /* 8096A844  83 E3 00 04 */	lwz r31, 4(r3)
@@ -67,8 +67,8 @@ lbl_8096A918:
 /* 8096A918  3B C0 00 01 */	li r30, 1
 /* 8096A91C  48 00 00 20 */	b lbl_8096A93C
 lbl_8096A920:
-/* 8096A920  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8096A924  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8096A920  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8096A924  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8096A928  80 A3 5D AC */	lwz r5, 0x5dac(r3)
 /* 8096A92C  2C 00 00 03 */	cmpwi r0, 3
 /* 8096A930  40 82 00 0C */	bne lbl_8096A93C
@@ -111,7 +111,7 @@ lbl_8096A994:
 /* 8096A9B4  FD 00 28 90 */	fmr f8, f5
 /* 8096A9B8  A8 9C 08 F2 */	lha r4, 0x8f2(r28)
 /* 8096A9BC  38 A1 00 24 */	addi r5, r1, 0x24
-/* 8096A9C0  4B 7E 66 F8 */	b setParam__15daNpcF_Lookat_cFffffffffffffsP4cXyz
+/* 8096A9C0  4B 7E 66 F9 */	bl setParam__15daNpcF_Lookat_cFffffffffffffsP4cXyz
 /* 8096A9C4  38 7C 0B DC */	addi r3, r28, 0xbdc
 /* 8096A9C8  7F 84 E3 78 */	mr r4, r28
 /* 8096A9CC  38 BF 00 24 */	addi r5, r31, 0x24
@@ -119,9 +119,9 @@ lbl_8096A994:
 /* 8096A9D4  7F C7 F3 78 */	mr r7, r30
 /* 8096A9D8  7F A8 EB 78 */	mr r8, r29
 /* 8096A9DC  39 20 00 00 */	li r9, 0
-/* 8096A9E0  4B 7E 69 70 */	b calc__15daNpcF_Lookat_cFP10fopAc_ac_cPA4_fPP5csXyziii
+/* 8096A9E0  4B 7E 69 71 */	bl calc__15daNpcF_Lookat_cFP10fopAc_ac_cPA4_fPP5csXyziii
 /* 8096A9E4  39 61 00 60 */	addi r11, r1, 0x60
-/* 8096A9E8  4B 9F 78 3C */	b _restgpr_28
+/* 8096A9E8  4B 9F 78 3D */	bl _restgpr_28
 /* 8096A9EC  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 8096A9F0  7C 08 03 A6 */	mtlr r0
 /* 8096A9F4  38 21 00 60 */	addi r1, r1, 0x60

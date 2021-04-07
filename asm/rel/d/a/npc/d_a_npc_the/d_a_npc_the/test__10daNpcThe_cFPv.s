@@ -18,8 +18,8 @@ lbl_80AF9164:
 /* 80AF9168  90 1F 09 38 */	stw r0, 0x938(r31)
 /* 80AF916C  48 00 00 B8 */	b lbl_80AF9224
 lbl_80AF9170:
-/* 80AF9170  3C 60 80 B0 */	lis r3, lit_4297@ha
-/* 80AF9174  C0 03 BE 88 */	lfs f0, lit_4297@l(r3)
+/* 80AF9170  3C 60 80 B0 */	lis r3, lit_4297@ha /* 0x80AFBE88@ha */
+/* 80AF9174  C0 03 BE 88 */	lfs f0, lit_4297@l(r3)  /* 0x80AFBE88@l */
 /* 80AF9178  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 80AF917C  D0 1F 04 F8 */	stfs f0, 0x4f8(r31)
 /* 80AF9180  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
@@ -32,8 +32,8 @@ lbl_80AF9198:
 /* 80AF9198  38 00 00 00 */	li r0, 0
 /* 80AF919C  90 1F 05 5C */	stw r0, 0x55c(r31)
 /* 80AF91A0  A8 1F 09 DE */	lha r0, 0x9de(r31)
-/* 80AF91A4  3C 60 80 B0 */	lis r3, m__16daNpcThe_Param_c@ha
-/* 80AF91A8  38 A3 BE 0C */	addi r5, r3, m__16daNpcThe_Param_c@l
+/* 80AF91A4  3C 60 80 B0 */	lis r3, m__16daNpcThe_Param_c@ha /* 0x80AFBE0C@ha */
+/* 80AF91A8  38 A3 BE 0C */	addi r5, r3, m__16daNpcThe_Param_c@l /* 0x80AFBE0C@l */
 /* 80AF91AC  A8 85 00 64 */	lha r4, 0x64(r5)
 /* 80AF91B0  7C 00 20 00 */	cmpw r0, r4
 /* 80AF91B4  41 82 00 1C */	beq lbl_80AF91D0
@@ -45,8 +45,8 @@ lbl_80AF9198:
 /* 80AF91CC  4E 80 04 21 */	bctrl 
 lbl_80AF91D0:
 /* 80AF91D0  7F E3 FB 78 */	mr r3, r31
-/* 80AF91D4  3C 80 80 B0 */	lis r4, m__16daNpcThe_Param_c@ha
-/* 80AF91D8  38 A4 BE 0C */	addi r5, r4, m__16daNpcThe_Param_c@l
+/* 80AF91D4  3C 80 80 B0 */	lis r4, m__16daNpcThe_Param_c@ha /* 0x80AFBE0C@ha */
+/* 80AF91D8  38 A4 BE 0C */	addi r5, r4, m__16daNpcThe_Param_c@l /* 0x80AFBE0C@l */
 /* 80AF91DC  A8 85 00 66 */	lha r4, 0x66(r5)
 /* 80AF91E0  C0 25 00 44 */	lfs f1, 0x44(r5)
 /* 80AF91E4  38 A0 00 00 */	li r5, 0
@@ -54,8 +54,8 @@ lbl_80AF91D0:
 /* 80AF91EC  81 8C 00 3C */	lwz r12, 0x3c(r12)
 /* 80AF91F0  7D 89 03 A6 */	mtctr r12
 /* 80AF91F4  4E 80 04 21 */	bctrl 
-/* 80AF91F8  3C 60 80 B0 */	lis r3, m__16daNpcThe_Param_c@ha
-/* 80AF91FC  38 63 BE 0C */	addi r3, r3, m__16daNpcThe_Param_c@l
+/* 80AF91F8  3C 60 80 B0 */	lis r3, m__16daNpcThe_Param_c@ha /* 0x80AFBE0C@ha */
+/* 80AF91FC  38 63 BE 0C */	addi r3, r3, m__16daNpcThe_Param_c@l /* 0x80AFBE0C@l */
 /* 80AF9200  A8 63 00 68 */	lha r3, 0x68(r3)
 /* 80AF9204  2C 03 00 00 */	cmpwi r3, 0
 /* 80AF9208  41 80 00 1C */	blt lbl_80AF9224

@@ -13,12 +13,12 @@
 
 struct msg_class {};
 
-struct JKRHeap {
-    /* 802CE784 */ void getTotalFreeSize();
-};
-
 struct JKRArchive {
     struct EMountMode {};
+};
+
+struct JKRHeap {
+    /* 802CE784 */ void getTotalFreeSize();
 };
 
 struct mDoDvdThd_mountXArchive_c {
@@ -80,9 +80,9 @@ struct dMsgString_c {
     /* 80249D28 */ ~dMsgString_c();
 };
 
-struct JUTFont {};
-
 struct JKRExpHeap {};
+
+struct JUTFont {};
 
 struct dMsgScrnTree_c {
     /* 80248954 */ dMsgScrnTree_c(JUTFont*, JKRExpHeap*);
@@ -382,25 +382,6 @@ struct TNodeLinkList {
 // Forward References:
 //
 
-void dMsgObject_getGroupID();
-static void dMsgObject_searchSSItem(void*, void*);
-static void dMsgObject_Draw(dMsgObject_c*);
-static void dMsgObject_Execute(dMsgObject_c*);
-static bool dMsgObject_IsDelete(dMsgObject_c*);
-static void dMsgObject_Delete(dMsgObject_c*);
-static void dMsgObject_Create(msg_class*);
-void dMsgObject_getTotalPrice();
-void dMsgObject_setTotalPrice(u16);
-void dMsgObject_addTotalPrice(s16);
-void dMsgObject_getTotalPayment();
-void dMsgObject_setTotalPayment(u16);
-static void dMsgObject_addTotalPayment(s16);
-void dMsgObject_getFundRaising();
-void dMsgObject_setFundRaising(u16);
-static void dMsgObject_addFundRaising(s16);
-void dMsgObject_getOffering();
-void dMsgObject_addOffering(s16);
-
 extern "C" void dMsgObject_getGroupID__Fv();
 extern "C" static void dMsgObject_searchSSItem__FPvPv();
 extern "C" void __ct__20dMsgObject_HowlHIO_cFv();
@@ -577,28 +558,10 @@ extern "C" void dotAnimeMove__14dMsgScrnBase_cFv();
 extern "C" void dotAnimeInit__14dMsgScrnBase_cFv();
 extern "C" void setActorPos__19jmessage_tReferenceF4cXyz();
 extern "C" extern char const* const d_msg_d_msg_object__stringBase0;
-extern "C" extern void* g_profile_MSG_OBJECT[10];
-extern "C" extern u8 g_MsgObject_HIO_c[1040];
 
 //
 // External References:
 //
-
-void mDoExt_setCurrentHeap(JKRHeap*);
-void mDoExt_getMesgFont();
-void mDoExt_getRubyFont();
-void mDoLib_project(Vec*, Vec*);
-void fopAc_IsActor(void*);
-void fopMsgM_setStageLayer(void*);
-void fopMsgM_messageSet(u32, u32);
-void fpcEx_Search(void* (*)(void*, void*), void*);
-void dComIfGs_setSelectItemIndex(int, u8);
-void dComIfGp_setHeapLockFlag(u8);
-void dComIfGp_offHeapLockFlag(int);
-void dComIfGp_getSubHeap2D(int);
-void dMeter2Info_set2DVibration();
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
 extern "C" void mDoExt_getMesgFont__Fv();
@@ -707,10 +670,10 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 804510C8-804510D0 0002+06 s=5 e=0 z=0  None .sbss      s_groupID */
+/* 804510C8-804510D0 0005C8 0002+06 5/5 0/0 0/0 .sbss            s_groupID */
 static u8 s_groupID[2 + 6 /* padding */];
 
-/* 80232A3C-80232A44 0008+00 s=0 e=1 z=0  None .text      dMsgObject_getGroupID__Fv */
+/* 80232A3C-80232A44 22D37C 0008+00 0/0 1/1 0/0 .text            dMsgObject_getGroupID__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -720,18 +683,18 @@ asm void dMsgObject_getGroupID() {
 }
 #pragma pop
 
-/* 80232A44-80232AEC 00A8+00 s=1 e=0 z=0  None .text      dMsgObject_searchSSItem__FPvPv */
+/* 80232A44-80232AEC 22D384 00A8+00 1/1 0/0 0/0 .text            dMsgObject_searchSSItem__FPvPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dMsgObject_searchSSItem(void* param_0, void* param_1) {
+static asm void dMsgObject_searchSSItem(void* param_0, void* param_1) {
     nofralloc
 #include "asm/d/msg/d_msg_object/dMsgObject_searchSSItem__FPvPv.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C0AE8-803C0B4C 0064+00 s=1 e=0 z=0  None .data      @4486 */
+/* 803C0AE8-803C0B4C -00001 0064+00 1/1 0/0 0/0 .data            @4486 */
 SECTION_DATA static void* lit_4486[25] = {
     (void*)(((char*)_execute__12dMsgObject_cFv) + 0x28C),
     (void*)(((char*)_execute__12dMsgObject_cFv) + 0x1F4),
@@ -760,7 +723,7 @@ SECTION_DATA static void* lit_4486[25] = {
     (void*)(((char*)_execute__12dMsgObject_cFv) + 0x248),
 };
 
-/* 803C0B4C-803C0B9C 0050+00 s=1 e=0 z=0  None .data      @5875 */
+/* 803C0B4C-803C0B9C -00001 0050+00 1/1 0/0 0/0 .data            @5875 */
 SECTION_DATA static void* lit_5875[20] = {
     (void*)(((char*)talkStartInit__12dMsgObject_cFv) + 0x340),
     (void*)(((char*)talkStartInit__12dMsgObject_cFv) + 0x308),
@@ -784,15 +747,15 @@ SECTION_DATA static void* lit_5875[20] = {
     (void*)(((char*)talkStartInit__12dMsgObject_cFv) + 0x2C4),
 };
 
-/* 803C0B9C-803C0BB0 0014+00 s=1 e=0 z=0  None .data      l_dMsgObject_Method */
+/* 803C0B9C-803C0BB0 -00001 0014+00 1/0 0/0 0/0 .data            l_dMsgObject_Method */
 SECTION_DATA static void* l_dMsgObject_Method[5] = {
     (void*)dMsgObject_Create__FP9msg_class,      (void*)dMsgObject_Delete__FP12dMsgObject_c,
     (void*)dMsgObject_Execute__FP12dMsgObject_c, (void*)dMsgObject_IsDelete__FP12dMsgObject_c,
     (void*)dMsgObject_Draw__FP12dMsgObject_c,
 };
 
-/* 803C0BB0-803C0BD8 0028+00 s=0 e=0 z=1  None .data      g_profile_MSG_OBJECT */
-SECTION_DATA void* g_profile_MSG_OBJECT[10] = {
+/* 803C0BB0-803C0BD8 -00001 0028+00 0/0 0/0 1/0 .data            g_profile_MSG_OBJECT */
+SECTION_DATA extern void* g_profile_MSG_OBJECT[10] = {
     (void*)0xFFFFFFFD, (void*)0x000CFFFD,
     (void*)0x03130000, (void*)&g_fpcLf_Method,
     (void*)0x000004D8, (void*)NULL,
@@ -800,42 +763,42 @@ SECTION_DATA void* g_profile_MSG_OBJECT[10] = {
     (void*)0x03020000, (void*)&l_dMsgObject_Method,
 };
 
-/* 803C0BD8-803C0BE4 000C+00 s=2 e=0 z=0  None .data      __vt__16dMsgObject_HIO_c */
-SECTION_DATA static void* __vt__16dMsgObject_HIO_c[3] = {
-    (void*)NULL,
+/* 803C0BD8-803C0BE4 01DCF8 000C+00 2/2 0/0 0/0 .data            __vt__16dMsgObject_HIO_c */
+SECTION_DATA extern void* __vt__16dMsgObject_HIO_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__16dMsgObject_HIO_cFv,
 };
 
-/* 803C0BE4-803C0BF0 000C+00 s=3 e=0 z=0  None .data      __vt__20dMsgObject_HowlHIO_c */
-SECTION_DATA static void* __vt__20dMsgObject_HowlHIO_c[3] = {
-    (void*)NULL,
+/* 803C0BE4-803C0BF0 01DD04 000C+00 3/3 0/0 0/0 .data            __vt__20dMsgObject_HowlHIO_c */
+SECTION_DATA extern void* __vt__20dMsgObject_HowlHIO_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__20dMsgObject_HowlHIO_cFv,
 };
 
-/* 80454AA0-80454AA4 0004+00 s=2 e=0 z=0  None .sdata2    @4076 */
+/* 80454AA0-80454AA4 0030A0 0004+00 2/2 0/0 0/0 .sdata2          @4076 */
 SECTION_SDATA2 static f32 lit_4076 = 0.5f;
 
-/* 80454AA4-80454AA8 0004+00 s=1 e=0 z=0  None .sdata2    @4077 */
+/* 80454AA4-80454AA8 0030A4 0004+00 1/1 0/0 0/0 .sdata2          @4077 */
 SECTION_SDATA2 static f32 lit_4077 = 1.0f / 10.0f;
 
-/* 80454AA8-80454AAC 0004+00 s=2 e=0 z=0  None .sdata2    @4078 */
+/* 80454AA8-80454AAC 0030A8 0004+00 2/2 0/0 0/0 .sdata2          @4078 */
 SECTION_SDATA2 static f32 lit_4078 = 3.0f / 10.0f;
 
-/* 80454AAC-80454AB0 0004+00 s=2 e=0 z=0  None .sdata2    @4079 */
+/* 80454AAC-80454AB0 0030AC 0004+00 2/2 0/0 0/0 .sdata2          @4079 */
 SECTION_SDATA2 static f32 lit_4079 = 2.0f / 5.0f;
 
-/* 80454AB0-80454AB4 0004+00 s=1 e=0 z=0  None .sdata2    @4080 */
+/* 80454AB0-80454AB4 0030B0 0004+00 1/1 0/0 0/0 .sdata2          @4080 */
 SECTION_SDATA2 static f32 lit_4080 = 1.0f / 20.0f;
 
-/* 80454AB4-80454AB8 0004+00 s=2 e=0 z=0  None .sdata2    @4081 */
+/* 80454AB4-80454AB8 0030B4 0004+00 2/2 0/0 0/0 .sdata2          @4081 */
 SECTION_SDATA2 static f32 lit_4081 = 1.5f;
 
-/* 80454AB8-80454ABC 0004+00 s=1 e=0 z=0  None .sdata2    @4082 */
+/* 80454AB8-80454ABC 0030B8 0004+00 1/1 0/0 0/0 .sdata2          @4082 */
 SECTION_SDATA2 static f32 lit_4082 = 2.0f;
 
-/* 80454ABC-80454AC0 0004+00 s=7 e=0 z=0  None .sdata2    @4083 */
+/* 80454ABC-80454AC0 0030BC 0004+00 7/7 0/0 0/0 .sdata2          @4083 */
 SECTION_SDATA2 static u8 lit_4083[4] = {
     0x00,
     0x00,
@@ -843,13 +806,13 @@ SECTION_SDATA2 static u8 lit_4083[4] = {
     0x00,
 };
 
-/* 80454AC0-80454AC4 0004+00 s=12 e=0 z=0  None .sdata2    @4084 */
+/* 80454AC0-80454AC4 0030C0 0004+00 12/12 0/0 0/0 .sdata2          @4084 */
 SECTION_SDATA2 static f32 lit_4084 = 1.0f;
 
-/* 80454AC4-80454AC8 0004+00 s=1 e=0 z=0  None .sdata2    @4085 */
+/* 80454AC4-80454AC8 0030C4 0004+00 1/1 0/0 0/0 .sdata2          @4085 */
 SECTION_SDATA2 static f32 lit_4085 = 11.0f / 5.0f;
 
-/* 80232AEC-80232D6C 0280+00 s=1 e=0 z=0  None .text      __ct__20dMsgObject_HowlHIO_cFv */
+/* 80232AEC-80232D6C 22D42C 0280+00 1/1 0/0 0/0 .text            __ct__20dMsgObject_HowlHIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -860,74 +823,74 @@ asm dMsgObject_HowlHIO_c::dMsgObject_HowlHIO_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454AC8-80454ACC 0004+00 s=1 e=0 z=0  None .sdata2    @4127 */
+/* 80454AC8-80454ACC 0030C8 0004+00 1/1 0/0 0/0 .sdata2          @4127 */
 SECTION_SDATA2 static f32 lit_4127 = 23.0f;
 
-/* 80454ACC-80454AD0 0004+00 s=1 e=0 z=0  None .sdata2    @4128 */
+/* 80454ACC-80454AD0 0030CC 0004+00 1/1 0/0 0/0 .sdata2          @4128 */
 SECTION_SDATA2 static f32 lit_4128 = 22.0f;
 
-/* 80454AD0-80454AD4 0004+00 s=1 e=0 z=0  None .sdata2    @4129 */
+/* 80454AD0-80454AD4 0030D0 0004+00 1/1 0/0 0/0 .sdata2          @4129 */
 SECTION_SDATA2 static f32 lit_4129 = 26.0f;
 
-/* 80454AD4-80454AD8 0004+00 s=1 e=0 z=0  None .sdata2    @4130 */
+/* 80454AD4-80454AD8 0030D4 0004+00 1/1 0/0 0/0 .sdata2          @4130 */
 SECTION_SDATA2 static f32 lit_4130 = 25.0f;
 
-/* 80454AD8-80454ADC 0004+00 s=1 e=0 z=0  None .sdata2    @4131 */
+/* 80454AD8-80454ADC 0030D8 0004+00 1/1 0/0 0/0 .sdata2          @4131 */
 SECTION_SDATA2 static f32 lit_4131 = 7.0f / 10.0f;
 
-/* 80454ADC-80454AE0 0004+00 s=1 e=0 z=0  None .sdata2    @4132 */
+/* 80454ADC-80454AE0 0030DC 0004+00 1/1 0/0 0/0 .sdata2          @4132 */
 SECTION_SDATA2 static f32 lit_4132 = 9.0f / 10.0f;
 
-/* 80454AE0-80454AE4 0004+00 s=1 e=0 z=0  None .sdata2    @4133 */
+/* 80454AE0-80454AE4 0030E0 0004+00 1/1 0/0 0/0 .sdata2          @4133 */
 SECTION_SDATA2 static f32 lit_4133 = 1.0f / 5.0f;
 
-/* 80454AE4-80454AE8 0004+00 s=1 e=0 z=0  None .sdata2    @4134 */
+/* 80454AE4-80454AE8 0030E4 0004+00 1/1 0/0 0/0 .sdata2          @4134 */
 SECTION_SDATA2 static f32 lit_4134 = 6.0f / 5.0f;
 
-/* 80454AE8-80454AEC 0004+00 s=1 e=0 z=0  None .sdata2    @4135 */
+/* 80454AE8-80454AEC 0030E8 0004+00 1/1 0/0 0/0 .sdata2          @4135 */
 SECTION_SDATA2 static f32 lit_4135 = 21.0f / 20.0f;
 
-/* 80454AEC-80454AF0 0004+00 s=1 e=0 z=0  None .sdata2    @4136 */
+/* 80454AEC-80454AF0 0030EC 0004+00 1/1 0/0 0/0 .sdata2          @4136 */
 SECTION_SDATA2 static f32 lit_4136 = 97.0f / 100.0f;
 
-/* 80454AF0-80454AF4 0004+00 s=1 e=0 z=0  None .sdata2    @4137 */
+/* 80454AF0-80454AF4 0030F0 0004+00 1/1 0/0 0/0 .sdata2          @4137 */
 SECTION_SDATA2 static f32 lit_4137 = 11.0f / 10.0f;
 
-/* 80454AF4-80454AF8 0004+00 s=1 e=0 z=0  None .sdata2    @4138 */
+/* 80454AF4-80454AF8 0030F4 0004+00 1/1 0/0 0/0 .sdata2          @4138 */
 SECTION_SDATA2 static f32 lit_4138 = 30.0f;
 
-/* 80454AF8-80454AFC 0004+00 s=1 e=0 z=0  None .sdata2    @4139 */
+/* 80454AF8-80454AFC 0030F8 0004+00 1/1 0/0 0/0 .sdata2          @4139 */
 SECTION_SDATA2 static f32 lit_4139 = 11.0f;
 
-/* 80454AFC-80454B00 0004+00 s=1 e=0 z=0  None .sdata2    @4140 */
+/* 80454AFC-80454B00 0030FC 0004+00 1/1 0/0 0/0 .sdata2          @4140 */
 SECTION_SDATA2 static f32 lit_4140 = 17.0f / 10.0f;
 
-/* 80454B00-80454B04 0004+00 s=1 e=0 z=0  None .sdata2    @4141 */
+/* 80454B00-80454B04 003100 0004+00 1/1 0/0 0/0 .sdata2          @4141 */
 SECTION_SDATA2 static f32 lit_4141 = 4.5f;
 
-/* 80454B04-80454B08 0004+00 s=1 e=0 z=0  None .sdata2    @4142 */
+/* 80454B04-80454B08 003104 0004+00 1/1 0/0 0/0 .sdata2          @4142 */
 SECTION_SDATA2 static f32 lit_4142 = -45.0f;
 
-/* 80454B08-80454B0C 0004+00 s=1 e=0 z=0  None .sdata2    @4143 */
+/* 80454B08-80454B0C 003108 0004+00 1/1 0/0 0/0 .sdata2          @4143 */
 SECTION_SDATA2 static f32 lit_4143 = 0.75f;
 
-/* 80454B0C-80454B10 0004+00 s=1 e=0 z=0  None .sdata2    @4144 */
+/* 80454B0C-80454B10 00310C 0004+00 1/1 0/0 0/0 .sdata2          @4144 */
 SECTION_SDATA2 static f32 lit_4144 = -5.0f;
 
-/* 80454B10-80454B14 0004+00 s=7 e=0 z=0  None .sdata2    @4145 */
+/* 80454B10-80454B14 003110 0004+00 7/7 0/0 0/0 .sdata2          @4145 */
 SECTION_SDATA2 static f32 lit_4145 = -1.0f;
 
-/* 80454B14-80454B18 0004+00 s=1 e=0 z=0  None .sdata2    @4146 */
+/* 80454B14-80454B18 003114 0004+00 1/1 0/0 0/0 .sdata2          @4146 */
 SECTION_SDATA2 static f32 lit_4146 = 19.0f / 20.0f;
 
-/* 80454B18-80454B20 0004+04 s=1 e=0 z=0  None .sdata2    @4147 */
+/* 80454B18-80454B20 003118 0004+04 1/1 0/0 0/0 .sdata2          @4147 */
 SECTION_SDATA2 static f32 lit_4147[1 + 1 /* padding */] = {
     -30.0f,
     /* padding */
     0.0f,
 };
 
-/* 80232D6C-80233284 0518+00 s=1 e=0 z=0  None .text      __ct__16dMsgObject_HIO_cFv */
+/* 80232D6C-80233284 22D6AC 0518+00 1/1 0/0 0/0 .text            __ct__16dMsgObject_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -937,7 +900,8 @@ asm dMsgObject_HIO_c::dMsgObject_HIO_c() {
 }
 #pragma pop
 
-/* 80233284-80233590 030C+00 s=1 e=0 z=0  None .text      _create__12dMsgObject_cFP9msg_class */
+/* 80233284-80233590 22DBC4 030C+00 1/1 0/0 0/0 .text            _create__12dMsgObject_cFP9msg_class
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -948,33 +912,14 @@ asm void dMsgObject_c::_create(msg_class* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80399660-803996E8 0087+01 s=4 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80399660 = "zel_00.bmg";
-SECTION_DEAD char const* const stringBase_8039966B = "zel_01.bmg";
-SECTION_DEAD char const* const stringBase_80399676 = "zel_02.bmg";
-SECTION_DEAD char const* const stringBase_80399681 = "zel_03.bmg";
-SECTION_DEAD char const* const stringBase_8039968C = "zel_04.bmg";
-SECTION_DEAD char const* const stringBase_80399697 = "zel_05.bmg";
-SECTION_DEAD char const* const stringBase_803996A2 = "zel_06.bmg";
-SECTION_DEAD char const* const stringBase_803996AD = "zel_07.bmg";
-SECTION_DEAD char const* const stringBase_803996B8 = "zel_08.bmg";
-SECTION_DEAD char const* const stringBase_803996C3 = "zel_99.bmg";
-SECTION_DEAD char const* const stringBase_803996CE = "";
-SECTION_DEAD char const* const stringBase_803996CF = "/res/Msgus/bmgres%d.arc";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803996E7 = "";
-#pragma pop
-
-/* 80430280-8043028C 000C+00 s=1 e=0 z=0  None .bss       @4011 */
+/* 80430280-8043028C 05CFA0 000C+00 1/1 0/0 0/0 .bss             @4011 */
 static u8 lit_4011[12];
 
-/* 8043028C-8043069C 0410+00 s=7 e=51 z=0  None .bss       g_MsgObject_HIO_c */
+/* 8043028C-8043069C 05CFAC 0410+00 7/7 51/51 0/0 .bss             g_MsgObject_HIO_c */
+extern u8 g_MsgObject_HIO_c[1040];
 u8 g_MsgObject_HIO_c[1040];
 
-/* 80233590-802339BC 042C+00 s=2 e=0 z=0  None .text      _execute__12dMsgObject_cFv */
+/* 80233590-802339BC 22DED0 042C+00 2/1 0/0 0/0 .text            _execute__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -984,7 +929,7 @@ asm void dMsgObject_c::_execute() {
 }
 #pragma pop
 
-/* 802339BC-80233AE8 012C+00 s=1 e=0 z=0  None .text      _draw__12dMsgObject_cFv */
+/* 802339BC-80233AE8 22E2FC 012C+00 1/1 0/0 0/0 .text            _draw__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -994,7 +939,7 @@ asm void dMsgObject_c::_draw() {
 }
 #pragma pop
 
-/* 80233AE8-80233D04 021C+00 s=1 e=0 z=0  None .text      _delete__12dMsgObject_cFv */
+/* 80233AE8-80233D04 22E428 021C+00 1/1 0/0 0/0 .text            _delete__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1004,7 +949,7 @@ asm void dMsgObject_c::_delete() {
 }
 #pragma pop
 
-/* 80233D04-80233E70 016C+00 s=2 e=2 z=0  None .text      setMessageIndex__12dMsgObject_cFUlUlb */
+/* 80233D04-80233E70 22E644 016C+00 2/2 2/2 0/0 .text setMessageIndex__12dMsgObject_cFUlUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1014,7 +959,7 @@ asm void dMsgObject_c::setMessageIndex(u32 param_0, u32 param_1, bool param_2) {
 }
 #pragma pop
 
-/* 80233E70-80233F84 0114+00 s=1 e=1 z=0  None .text      setMessageIndexDemo__12dMsgObject_cFUlb */
+/* 80233E70-80233F84 22E7B0 0114+00 1/1 1/1 0/0 .text setMessageIndexDemo__12dMsgObject_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1024,7 +969,8 @@ asm void dMsgObject_c::setMessageIndexDemo(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80233F84-80233FD8 0054+00 s=4 e=0 z=0  None .text      getMessageIndex__12dMsgObject_cFUl */
+/* 80233F84-80233FD8 22E8C4 0054+00 4/4 0/0 0/0 .text            getMessageIndex__12dMsgObject_cFUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1034,7 +980,7 @@ asm void dMsgObject_c::getMessageIndex(u32 param_0) {
 }
 #pragma pop
 
-/* 80233FD8-802340D4 00FC+00 s=2 e=0 z=0  None .text      getRevoMessageIndex__12dMsgObject_cFUl */
+/* 80233FD8-802340D4 22E918 00FC+00 2/2 0/0 0/0 .text getRevoMessageIndex__12dMsgObject_cFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1044,8 +990,7 @@ asm void dMsgObject_c::getRevoMessageIndex(u32 param_0) {
 }
 #pragma pop
 
-/* 802340D4-80234128 0054+00 s=3 e=0 z=0  None .text      getMessageIndexAlways__12dMsgObject_cFUl
- */
+/* 802340D4-80234128 22EA14 0054+00 3/3 0/0 0/0 .text getMessageIndexAlways__12dMsgObject_cFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1055,7 +1000,7 @@ asm void dMsgObject_c::getMessageIndexAlways(u32 param_0) {
 }
 #pragma pop
 
-/* 80234128-8023413C 0014+00 s=1 e=0 z=0  None .text      getMessageIDAlways__12dMsgObject_cFUl */
+/* 80234128-8023413C 22EA68 0014+00 1/1 0/0 0/0 .text getMessageIDAlways__12dMsgObject_cFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1065,7 +1010,8 @@ asm void dMsgObject_c::getMessageIDAlways(u32 param_0) {
 }
 #pragma pop
 
-/* 8023413C-80234150 0014+00 s=4 e=0 z=0  None .text      getMessageGroup__12dMsgObject_cFUl */
+/* 8023413C-80234150 22EA7C 0014+00 4/4 0/0 0/0 .text            getMessageGroup__12dMsgObject_cFUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1075,7 +1021,7 @@ asm void dMsgObject_c::getMessageGroup(u32 param_0) {
 }
 #pragma pop
 
-/* 80234150-80234318 01C8+00 s=1 e=0 z=0  None .text      waitProc__12dMsgObject_cFv */
+/* 80234150-80234318 22EA90 01C8+00 1/1 0/0 0/0 .text            waitProc__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1086,10 +1032,10 @@ asm void dMsgObject_c::waitProc() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454B20-80454B28 0008+00 s=6 e=0 z=0  None .sdata2    @4965 */
+/* 80454B20-80454B28 003120 0008+00 6/6 0/0 0/0 .sdata2          @4965 */
 SECTION_SDATA2 static f64 lit_4965 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 80234318-802349D8 06C0+00 s=1 e=0 z=0  None .text      openProc__12dMsgObject_cFv */
+/* 80234318-802349D8 22EC58 06C0+00 1/1 0/0 0/0 .text            openProc__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1100,10 +1046,10 @@ asm void dMsgObject_c::openProc() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454B28-80454B2C 0004+00 s=3 e=0 z=0  None .sdata2    @5044 */
+/* 80454B28-80454B2C 003128 0004+00 3/3 0/0 0/0 .sdata2          @5044 */
 SECTION_SDATA2 static f32 lit_5044 = 10.0f;
 
-/* 802349D8-80234CCC 02F4+00 s=1 e=0 z=0  None .text      outnowProc__12dMsgObject_cFv */
+/* 802349D8-80234CCC 22F318 02F4+00 1/1 0/0 0/0 .text            outnowProc__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1113,7 +1059,7 @@ asm void dMsgObject_c::outnowProc() {
 }
 #pragma pop
 
-/* 80234CCC-80234FF0 0324+00 s=1 e=0 z=0  None .text      outwaitProc__12dMsgObject_cFv */
+/* 80234CCC-80234FF0 22F60C 0324+00 1/1 0/0 0/0 .text            outwaitProc__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1123,12 +1069,12 @@ asm void dMsgObject_c::outwaitProc() {
 }
 #pragma pop
 
-/* 80234FF0-80234FF4 0004+00 s=1 e=0 z=0  None .text      stopProc__12dMsgObject_cFv */
+/* 80234FF0-80234FF4 22F930 0004+00 1/1 0/0 0/0 .text            stopProc__12dMsgObject_cFv */
 void dMsgObject_c::stopProc() {
     /* empty function */
 }
 
-/* 80234FF4-8023531C 0328+00 s=1 e=0 z=0  None .text      continueProc__12dMsgObject_cFv */
+/* 80234FF4-8023531C 22F934 0328+00 1/1 0/0 0/0 .text            continueProc__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1138,7 +1084,7 @@ asm void dMsgObject_c::continueProc() {
 }
 #pragma pop
 
-/* 8023531C-8023587C 0560+00 s=1 e=0 z=0  None .text      selectProc__12dMsgObject_cFv */
+/* 8023531C-8023587C 22FC5C 0560+00 1/1 0/0 0/0 .text            selectProc__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1148,7 +1094,7 @@ asm void dMsgObject_c::selectProc() {
 }
 #pragma pop
 
-/* 8023587C-802358D4 0058+00 s=1 e=0 z=0  None .text      selectEndProc__12dMsgObject_cFv */
+/* 8023587C-802358D4 2301BC 0058+00 1/1 0/0 0/0 .text            selectEndProc__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1158,7 +1104,7 @@ asm void dMsgObject_c::selectEndProc() {
 }
 #pragma pop
 
-/* 802358D4-80235AD4 0200+00 s=1 e=0 z=0  None .text      inputProc__12dMsgObject_cFv */
+/* 802358D4-80235AD4 230214 0200+00 1/1 0/0 0/0 .text            inputProc__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1168,7 +1114,7 @@ asm void dMsgObject_c::inputProc() {
 }
 #pragma pop
 
-/* 80235AD4-80235CC0 01EC+00 s=1 e=0 z=0  None .text      finishProc__12dMsgObject_cFv */
+/* 80235AD4-80235CC0 230414 01EC+00 1/1 0/0 0/0 .text            finishProc__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1178,7 +1124,7 @@ asm void dMsgObject_c::finishProc() {
 }
 #pragma pop
 
-/* 80235CC0-80235EBC 01FC+00 s=1 e=0 z=0  None .text      endProc__12dMsgObject_cFv */
+/* 80235CC0-80235EBC 230600 01FC+00 1/1 0/0 0/0 .text            endProc__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1188,7 +1134,7 @@ asm void dMsgObject_c::endProc() {
 }
 #pragma pop
 
-/* 80235EBC-8023609C 01E0+00 s=2 e=0 z=0  None .text      deleteProc__12dMsgObject_cFv */
+/* 80235EBC-8023609C 2307FC 01E0+00 2/2 0/0 0/0 .text            deleteProc__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1198,12 +1144,12 @@ asm void dMsgObject_c::deleteProc() {
 }
 #pragma pop
 
-/* 8023609C-802360A0 0004+00 s=1 e=0 z=0  None .text      textmodeProc__12dMsgObject_cFv */
+/* 8023609C-802360A0 2309DC 0004+00 1/1 0/0 0/0 .text            textmodeProc__12dMsgObject_cFv */
 void dMsgObject_c::textmodeProc() {
     /* empty function */
 }
 
-/* 802360A0-8023670C 066C+00 s=1 e=1 z=0  None .text      talkStartInit__12dMsgObject_cFv */
+/* 802360A0-8023670C 2309E0 066C+00 1/0 1/1 0/0 .text            talkStartInit__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1214,23 +1160,23 @@ asm void dMsgObject_c::talkStartInit() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454B2C-80454B30 0004+00 s=1 e=0 z=0  None .sdata2    @5947 */
+/* 80454B2C-80454B30 00312C 0004+00 1/1 0/0 0/0 .sdata2          @5947 */
 SECTION_SDATA2 static f32 lit_5947 = 608.0f;
 
-/* 80454B30-80454B34 0004+00 s=1 e=0 z=0  None .sdata2    @5948 */
+/* 80454B30-80454B34 003130 0004+00 1/1 0/0 0/0 .sdata2          @5948 */
 SECTION_SDATA2 static f32 lit_5948 = 448.0f;
 
-/* 80454B34-80454B38 0004+00 s=1 e=0 z=0  None .sdata2    @5949 */
+/* 80454B34-80454B38 003134 0004+00 1/1 0/0 0/0 .sdata2          @5949 */
 SECTION_SDATA2 static f32 lit_5949 = -200.0f;
 
-/* 80454B38-80454B40 0004+04 s=1 e=0 z=0  None .sdata2    @5950 */
+/* 80454B38-80454B40 003138 0004+04 1/1 0/0 0/0 .sdata2          @5950 */
 SECTION_SDATA2 static f32 lit_5950[1 + 1 /* padding */] = {
     -100.0f,
     /* padding */
     0.0f,
 };
 
-/* 8023670C-802368E4 01D8+00 s=1 e=0 z=0  None .text      fukiPosCalc__12dMsgObject_cFb */
+/* 8023670C-802368E4 23104C 01D8+00 1/1 0/0 0/0 .text            fukiPosCalc__12dMsgObject_cFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1240,7 +1186,8 @@ asm void dMsgObject_c::fukiPosCalc(bool param_0) {
 }
 #pragma pop
 
-/* 802368E4-802368F8 0014+00 s=15 e=0 z=0  None .text      setStatusLocal__12dMsgObject_cFUs */
+/* 802368E4-802368F8 231224 0014+00 15/15 0/0 0/0 .text            setStatusLocal__12dMsgObject_cFUs
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1250,7 +1197,7 @@ asm void dMsgObject_c::setStatusLocal(u16 param_0) {
 }
 #pragma pop
 
-/* 802368F8-8023690C 0014+00 s=9 e=0 z=0  None .text      getStatusLocal__12dMsgObject_cFv */
+/* 802368F8-8023690C 231238 0014+00 9/9 0/0 0/0 .text            getStatusLocal__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1260,7 +1207,7 @@ asm void dMsgObject_c::getStatusLocal() {
 }
 #pragma pop
 
-/* 8023690C-802369D8 00CC+00 s=3 e=0 z=0  None .text      delete_screen__12dMsgObject_cFb */
+/* 8023690C-802369D8 23124C 00CC+00 3/3 0/0 0/0 .text            delete_screen__12dMsgObject_cFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1270,7 +1217,7 @@ asm void dMsgObject_c::delete_screen(bool param_0) {
 }
 #pragma pop
 
-/* 802369D8-80236BF8 0220+00 s=5 e=0 z=0  None .text      isSend__12dMsgObject_cFv */
+/* 802369D8-80236BF8 231318 0220+00 5/5 0/0 0/0 .text            isSend__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1281,10 +1228,10 @@ asm void dMsgObject_c::isSend() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 8043069C-804306B8 0016+06 s=1 e=0 z=0  None .bss       arcName$6106 */
+/* 8043069C-804306B8 05D3BC 0016+06 1/1 0/0 0/0 .bss             arcName$6106 */
 static u8 arcName[22 + 6 /* padding */];
 
-/* 80236BF8-80236C90 0098+00 s=1 e=0 z=0  None .text
+/* 80236BF8-80236C90 231538 0098+00 1/1 0/0 0/0 .text
  * readMessageGroupLocal__12dMsgObject_cFPP25mDoDvdThd_mountXArchive_c */
 #pragma push
 #pragma optimization_level 0
@@ -1295,7 +1242,7 @@ asm void dMsgObject_c::readMessageGroupLocal(mDoDvdThd_mountXArchive_c** param_0
 }
 #pragma pop
 
-/* 80236C90-80236CD4 0044+00 s=1 e=0 z=0  None .text      changeFlowGroupLocal__12dMsgObject_cFl */
+/* 80236C90-80236CD4 2315D0 0044+00 1/1 0/0 0/0 .text changeFlowGroupLocal__12dMsgObject_cFl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1305,7 +1252,7 @@ asm void dMsgObject_c::changeFlowGroupLocal(s32 param_0) {
 }
 #pragma pop
 
-/* 80236CD4-80236D00 002C+00 s=1 e=0 z=0  None .text      demoMessageGroupLocal__12dMsgObject_cFv */
+/* 80236CD4-80236D00 231614 002C+00 1/1 0/0 0/0 .text demoMessageGroupLocal__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1315,7 +1262,8 @@ asm void dMsgObject_c::demoMessageGroupLocal() {
 }
 #pragma pop
 
-/* 80236D00-80236D0C 000C+00 s=1 e=0 z=0  None .text      endFlowGroupLocal__12dMsgObject_cFv */
+/* 80236D00-80236D0C 231640 000C+00 1/1 0/0 0/0 .text            endFlowGroupLocal__12dMsgObject_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1325,7 +1273,8 @@ asm void dMsgObject_c::endFlowGroupLocal() {
 }
 #pragma pop
 
-/* 80236D0C-80236DE4 00D8+00 s=1 e=0 z=0  None .text      changeGroupLocal__12dMsgObject_cFs */
+/* 80236D0C-80236DE4 23164C 00D8+00 1/1 0/0 0/0 .text            changeGroupLocal__12dMsgObject_cFs
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1335,7 +1284,7 @@ asm void dMsgObject_c::changeGroupLocal(s16 param_0) {
 }
 #pragma pop
 
-/* 80236DE4-802370A8 02C4+00 s=1 e=0 z=0  None .text
+/* 80236DE4-802370A8 231724 02C4+00 1/1 0/0 0/0 .text
  * getStringLocal__12dMsgObject_cFUlP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cPcPcPcPs */
 #pragma push
 #pragma optimization_level 0
@@ -1348,7 +1297,8 @@ asm void dMsgObject_c::getStringLocal(u32 param_0, J2DTextBox* param_1, J2DTextB
 }
 #pragma pop
 
-/* 802370A8-802370BC 0014+00 s=0 e=1 z=0  None .text      isGetItemMessage__12dMsgObject_cFv */
+/* 802370A8-802370BC 2319E8 0014+00 0/0 1/1 0/0 .text            isGetItemMessage__12dMsgObject_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1358,7 +1308,8 @@ asm void dMsgObject_c::isGetItemMessage() {
 }
 #pragma pop
 
-/* 802370BC-802370E8 002C+00 s=4 e=2 z=0  None .text      isKanbanMessage__12dMsgObject_cFv */
+/* 802370BC-802370E8 2319FC 002C+00 4/4 2/2 0/0 .text            isKanbanMessage__12dMsgObject_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1368,7 +1319,7 @@ asm void dMsgObject_c::isKanbanMessage() {
 }
 #pragma pop
 
-/* 802370E8-802370FC 0014+00 s=6 e=3 z=0  None .text      isHowlMessage__12dMsgObject_cFv */
+/* 802370E8-802370FC 231A28 0014+00 6/6 3/3 0/0 .text            isHowlMessage__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1378,7 +1329,8 @@ asm void dMsgObject_c::isHowlMessage() {
 }
 #pragma pop
 
-/* 802370FC-80237138 003C+00 s=3 e=2 z=0  None .text      isMidonaMessage__12dMsgObject_cFv */
+/* 802370FC-80237138 231A3C 003C+00 3/3 2/2 0/0 .text            isMidonaMessage__12dMsgObject_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1388,8 +1340,7 @@ asm void dMsgObject_c::isMidonaMessage() {
 }
 #pragma pop
 
-/* 80237138-802371B0 0078+00 s=1 e=0 z=0  None .text      isMidonaNormalTalkWait__12dMsgObject_cFv
- */
+/* 80237138-802371B0 231A78 0078+00 1/1 0/0 0/0 .text isMidonaNormalTalkWait__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1399,7 +1350,8 @@ asm void dMsgObject_c::isMidonaNormalTalkWait() {
 }
 #pragma pop
 
-/* 802371B0-802371E4 0034+00 s=0 e=1 z=0  None .text      isMidonaTalkWait__12dMsgObject_cFv */
+/* 802371B0-802371E4 231AF0 0034+00 0/0 1/1 0/0 .text            isMidonaTalkWait__12dMsgObject_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1409,7 +1361,7 @@ asm void dMsgObject_c::isMidonaTalkWait() {
 }
 #pragma pop
 
-/* 802371E4-802371F8 0014+00 s=4 e=3 z=2  None .text      isPlaceMessage__12dMsgObject_cFv */
+/* 802371E4-802371F8 231B24 0014+00 4/4 3/3 2/2 .text            isPlaceMessage__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1419,7 +1371,7 @@ asm void dMsgObject_c::isPlaceMessage() {
 }
 #pragma pop
 
-/* 802371F8-8023720C 0014+00 s=3 e=2 z=0  None .text      isBossMessage__12dMsgObject_cFv */
+/* 802371F8-8023720C 231B38 0014+00 3/3 2/2 0/0 .text            isBossMessage__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1429,12 +1381,12 @@ asm void dMsgObject_c::isBossMessage() {
 }
 #pragma pop
 
-/* 8023720C-80237214 0008+00 s=6 e=2 z=0  None .text      isBookMessage__12dMsgObject_cFv */
+/* 8023720C-80237214 231B4C 0008+00 6/6 2/2 0/0 .text            isBookMessage__12dMsgObject_cFv */
 bool dMsgObject_c::isBookMessage() {
     return false;
 }
 
-/* 80237214-80237228 0014+00 s=3 e=2 z=0  None .text      isStaffMessage__12dMsgObject_cFv */
+/* 80237214-80237228 231B54 0014+00 3/3 2/2 0/0 .text            isStaffMessage__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1444,7 +1396,7 @@ asm void dMsgObject_c::isStaffMessage() {
 }
 #pragma pop
 
-/* 80237228-8023723C 0014+00 s=0 e=1 z=0  None .text      isSaveMessage__12dMsgObject_cFv */
+/* 80237228-8023723C 231B68 0014+00 0/0 1/1 0/0 .text            isSaveMessage__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1454,7 +1406,7 @@ asm void dMsgObject_c::isSaveMessage() {
 }
 #pragma pop
 
-/* 8023723C-802372CC 0090+00 s=4 e=0 z=0  None .text      isTalkMessage__12dMsgObject_cFv */
+/* 8023723C-802372CC 231B7C 0090+00 4/4 0/0 0/0 .text            isTalkMessage__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1464,7 +1416,7 @@ asm void dMsgObject_c::isTalkMessage() {
 }
 #pragma pop
 
-/* 802372CC-80237334 0068+00 s=0 e=5 z=0  None .text      getSmellName__12dMsgObject_cFv */
+/* 802372CC-80237334 231C0C 0068+00 0/0 5/5 0/0 .text            getSmellName__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1474,7 +1426,7 @@ asm void dMsgObject_c::getSmellName() {
 }
 #pragma pop
 
-/* 80237334-8023738C 0058+00 s=0 e=5 z=0  None .text      getPortalName__12dMsgObject_cFv */
+/* 80237334-8023738C 231C74 0058+00 0/0 5/5 0/0 .text            getPortalName__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1484,7 +1436,7 @@ asm void dMsgObject_c::getPortalName() {
 }
 #pragma pop
 
-/* 8023738C-8023741C 0090+00 s=0 e=5 z=0  None .text      getBombName__12dMsgObject_cFv */
+/* 8023738C-8023741C 231CCC 0090+00 0/0 5/5 0/0 .text            getBombName__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1494,7 +1446,7 @@ asm void dMsgObject_c::getBombName() {
 }
 #pragma pop
 
-/* 8023741C-80237478 005C+00 s=0 e=5 z=0  None .text      getInsectName__12dMsgObject_cFv */
+/* 8023741C-80237478 231D5C 005C+00 0/0 5/5 0/0 .text            getInsectName__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1504,7 +1456,7 @@ asm void dMsgObject_c::getInsectName() {
 }
 #pragma pop
 
-/* 80237478-802374D0 0058+00 s=0 e=5 z=0  None .text      getLetterName__12dMsgObject_cFv */
+/* 80237478-802374D0 231DB8 0058+00 0/0 5/5 0/0 .text            getLetterName__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1514,7 +1466,8 @@ asm void dMsgObject_c::getLetterName() {
 }
 #pragma pop
 
-/* 802374D0-80237520 0050+00 s=1 e=5 z=0  None .text      getSelectBombNum__12dMsgObject_cFv */
+/* 802374D0-80237520 231E10 0050+00 1/1 5/5 0/0 .text            getSelectBombNum__12dMsgObject_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1524,7 +1477,7 @@ asm void dMsgObject_c::getSelectBombNum() {
 }
 #pragma pop
 
-/* 80237520-80237530 0010+00 s=1 e=0 z=0  None .text      onMsgSendControlLocal__12dMsgObject_cFv */
+/* 80237520-80237530 231E60 0010+00 1/1 0/0 0/0 .text onMsgSendControlLocal__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1534,8 +1487,7 @@ asm void dMsgObject_c::onMsgSendControlLocal() {
 }
 #pragma pop
 
-/* 80237530-80237550 0020+00 s=1 e=0 z=0  None .text      offMsgSendControlLocal__12dMsgObject_cFv
- */
+/* 80237530-80237550 231E70 0020+00 1/1 0/0 0/0 .text offMsgSendControlLocal__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1545,7 +1497,7 @@ asm void dMsgObject_c::offMsgSendControlLocal() {
 }
 #pragma pop
 
-/* 80237550-8023755C 000C+00 s=1 e=0 z=0  None .text      isMsgSendControlLocal__12dMsgObject_cFv */
+/* 80237550-8023755C 231E90 000C+00 1/1 0/0 0/0 .text isMsgSendControlLocal__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1555,7 +1507,7 @@ asm void dMsgObject_c::isMsgSendControlLocal() {
 }
 #pragma pop
 
-/* 8023755C-8023756C 0010+00 s=1 e=0 z=0  None .text      onMsgSendLocal__12dMsgObject_cFv */
+/* 8023755C-8023756C 231E9C 0010+00 1/1 0/0 0/0 .text            onMsgSendLocal__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1565,7 +1517,8 @@ asm void dMsgObject_c::onMsgSendLocal() {
 }
 #pragma pop
 
-/* 8023756C-8023757C 0010+00 s=1 e=0 z=0  None .text      offMsgSendLocal__12dMsgObject_cFv */
+/* 8023756C-8023757C 231EAC 0010+00 1/1 0/0 0/0 .text            offMsgSendLocal__12dMsgObject_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1575,7 +1528,7 @@ asm void dMsgObject_c::offMsgSendLocal() {
 }
 #pragma pop
 
-/* 8023757C-80237588 000C+00 s=1 e=0 z=0  None .text      isMsgSendLocal__12dMsgObject_cFv */
+/* 8023757C-80237588 231EBC 000C+00 1/1 0/0 0/0 .text            isMsgSendLocal__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1585,7 +1538,8 @@ asm void dMsgObject_c::isMsgSendLocal() {
 }
 #pragma pop
 
-/* 80237588-8023759C 0014+00 s=1 e=0 z=0  None .text      isMouthCheckLocal__12dMsgObject_cFv */
+/* 80237588-8023759C 231EC8 0014+00 1/1 0/0 0/0 .text            isMouthCheckLocal__12dMsgObject_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1595,7 +1549,7 @@ asm void dMsgObject_c::isMouthCheckLocal() {
 }
 #pragma pop
 
-/* 8023759C-802375E4 0048+00 s=1 e=0 z=0  None .text      getBombBuyPriceLocal__12dMsgObject_cFUc */
+/* 8023759C-802375E4 231EDC 0048+00 1/1 0/0 0/0 .text getBombBuyPriceLocal__12dMsgObject_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1605,7 +1559,8 @@ asm void dMsgObject_c::getBombBuyPriceLocal(u8 param_0) {
 }
 #pragma pop
 
-/* 802375E4-80237610 002C+00 s=0 e=1 z=0  None .text      addSelectBomBag__12dMsgObject_cFUc */
+/* 802375E4-80237610 231F24 002C+00 0/0 1/1 0/0 .text            addSelectBomBag__12dMsgObject_cFUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1615,7 +1570,8 @@ asm void dMsgObject_c::addSelectBomBag(u8 param_0) {
 }
 #pragma pop
 
-/* 80237610-8023763C 002C+00 s=1 e=1 z=0  None .text      resetSelectBomBag__12dMsgObject_cFv */
+/* 80237610-8023763C 231F50 002C+00 1/1 1/1 0/0 .text            resetSelectBomBag__12dMsgObject_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1625,8 +1581,7 @@ asm void dMsgObject_c::resetSelectBomBag() {
 }
 #pragma pop
 
-/* 8023763C-8023768C 0050+00 s=1 e=0 z=0  None .text      getSelectBombBagIDLocal__12dMsgObject_cFv
- */
+/* 8023763C-8023768C 231F7C 0050+00 1/1 0/0 0/0 .text getSelectBombBagIDLocal__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1636,8 +1591,7 @@ asm void dMsgObject_c::getSelectBombBagIDLocal() {
 }
 #pragma pop
 
-/* 8023768C-8023773C 00B0+00 s=1 e=0 z=0  None .text      getSelectBombPriceLocal__12dMsgObject_cFv
- */
+/* 8023768C-8023773C 231FCC 00B0+00 1/1 0/0 0/0 .text getSelectBombPriceLocal__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1647,7 +1601,7 @@ asm void dMsgObject_c::getSelectBombPriceLocal() {
 }
 #pragma pop
 
-/* 8023773C-80237748 000C+00 s=1 e=0 z=0  None .text      setEquipBombInfoLocal__12dMsgObject_cFv */
+/* 8023773C-80237748 23207C 000C+00 1/1 0/0 0/0 .text setEquipBombInfoLocal__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1657,7 +1611,7 @@ asm void dMsgObject_c::setEquipBombInfoLocal() {
 }
 #pragma pop
 
-/* 80237748-802378B8 0170+00 s=3 e=0 z=0  None .text      updateEquipBombInfoLocal__12dMsgObject_cFv
+/* 80237748-802378B8 232088 0170+00 3/3 0/0 0/0 .text updateEquipBombInfoLocal__12dMsgObject_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -1668,7 +1622,8 @@ asm void dMsgObject_c::updateEquipBombInfoLocal() {
 }
 #pragma pop
 
-/* 802378B8-802378CC 0014+00 s=0 e=1 z=0  None .text      setShopWaitTimer__12dMsgObject_cFUc */
+/* 802378B8-802378CC 2321F8 0014+00 0/0 1/1 0/0 .text            setShopWaitTimer__12dMsgObject_cFUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1678,8 +1633,7 @@ asm void dMsgObject_c::setShopWaitTimer(u8 param_0) {
 }
 #pragma pop
 
-/* 802378CC-802378D4 0008+00 s=1 e=0 z=0  None .text      setSelectWordFlagLocal__12dMsgObject_cFUc
- */
+/* 802378CC-802378D4 23220C 0008+00 1/1 0/0 0/0 .text setSelectWordFlagLocal__12dMsgObject_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1689,8 +1643,7 @@ asm void dMsgObject_c::setSelectWordFlagLocal(u8 param_0) {
 }
 #pragma pop
 
-/* 802378D4-80237934 0060+00 s=1 e=0 z=0  None .text      isHowlHearingModeLocal__12dMsgObject_cFv
- */
+/* 802378D4-80237934 232214 0060+00 1/1 0/0 0/0 .text isHowlHearingModeLocal__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1700,7 +1653,7 @@ asm void dMsgObject_c::isHowlHearingModeLocal() {
 }
 #pragma pop
 
-/* 80237934-80237950 001C+00 s=1 e=0 z=0  None .text      isCameraCancelFlag__12dMsgObject_cFv */
+/* 80237934-80237950 232274 001C+00 1/1 0/0 0/0 .text isCameraCancelFlag__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1710,7 +1663,7 @@ asm void dMsgObject_c::isCameraCancelFlag() {
 }
 #pragma pop
 
-/* 80237950-80237968 0018+00 s=2 e=0 z=0  None .text      onCameraCancelFlag__12dMsgObject_cFv */
+/* 80237950-80237968 232290 0018+00 2/2 0/0 0/0 .text onCameraCancelFlag__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1720,7 +1673,7 @@ asm void dMsgObject_c::onCameraCancelFlag() {
 }
 #pragma pop
 
-/* 80237968-80237980 0018+00 s=1 e=0 z=0  None .text      offCameraCancelFlag__12dMsgObject_cFv */
+/* 80237968-80237980 2322A8 0018+00 1/1 0/0 0/0 .text offCameraCancelFlag__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1730,7 +1683,8 @@ asm void dMsgObject_c::offCameraCancelFlag() {
 }
 #pragma pop
 
-/* 80237980-80237994 0014+00 s=0 e=1 z=0  None .text      isKillMessageFlag__12dMsgObject_cFv */
+/* 80237980-80237994 2322C0 0014+00 0/0 1/1 0/0 .text            isKillMessageFlag__12dMsgObject_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1740,7 +1694,8 @@ asm void dMsgObject_c::isKillMessageFlag() {
 }
 #pragma pop
 
-/* 80237994-802379AC 0018+00 s=0 e=2 z=3  None .text      onKillMessageFlag__12dMsgObject_cFv */
+/* 80237994-802379AC 2322D4 0018+00 0/0 2/2 3/3 .text            onKillMessageFlag__12dMsgObject_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1750,7 +1705,7 @@ asm void dMsgObject_c::onKillMessageFlag() {
 }
 #pragma pop
 
-/* 802379AC-802379D8 002C+00 s=0 e=2 z=0  None .text      setKillMessageFlag__12dMsgObject_cFv */
+/* 802379AC-802379D8 2322EC 002C+00 0/0 2/2 0/0 .text setKillMessageFlag__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1760,8 +1715,7 @@ asm void dMsgObject_c::setKillMessageFlag() {
 }
 #pragma pop
 
-/* 802379D8-80237A74 009C+00 s=1 e=0 z=0  None .text      setKillMessageFlagLocal__12dMsgObject_cFv
- */
+/* 802379D8-80237A74 232318 009C+00 1/1 0/0 0/0 .text setKillMessageFlagLocal__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1771,7 +1725,7 @@ asm void dMsgObject_c::setKillMessageFlagLocal() {
 }
 #pragma pop
 
-/* 80237A74-80237A88 0014+00 s=0 e=3 z=0  None .text setTalkPartner__12dMsgObject_cFP10fopAc_ac_c
+/* 80237A74-80237A88 2323B4 0014+00 0/0 3/3 0/0 .text setTalkPartner__12dMsgObject_cFP10fopAc_ac_c
  */
 #pragma push
 #pragma optimization_level 0
@@ -1782,7 +1736,8 @@ asm void dMsgObject_c::setTalkPartner(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 80237A88-80237A9C 0014+00 s=1 e=2 z=0  None .text      setNowTalkFlowNo__12dMsgObject_cFs */
+/* 80237A88-80237A9C 2323C8 0014+00 1/1 2/2 0/0 .text            setNowTalkFlowNo__12dMsgObject_cFs
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1792,7 +1747,8 @@ asm void dMsgObject_c::setNowTalkFlowNo(s16 param_0) {
 }
 #pragma pop
 
-/* 80237A9C-80237AB0 0014+00 s=0 e=0 z=1  None .text      getNowTalkFlowNo__12dMsgObject_cFv */
+/* 80237A9C-80237AB0 2323DC 0014+00 0/0 0/0 1/1 .text            getNowTalkFlowNo__12dMsgObject_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1802,7 +1758,8 @@ asm void dMsgObject_c::getNowTalkFlowNo() {
 }
 #pragma pop
 
-/* 80237AB0-80237AE0 0030+00 s=0 e=1 z=0  None .text      setDemoMessage__12dMsgObject_cFUl */
+/* 80237AB0-80237AE0 2323F0 0030+00 0/0 1/1 0/0 .text            setDemoMessage__12dMsgObject_cFUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1812,7 +1769,7 @@ asm void dMsgObject_c::setDemoMessage(u32 param_0) {
 }
 #pragma pop
 
-/* 80237AE0-80237B10 0030+00 s=0 e=8 z=0  None .text      setTalkHeap__12dMsgObject_cFPv */
+/* 80237AE0-80237B10 232420 0030+00 0/0 8/8 0/0 .text            setTalkHeap__12dMsgObject_cFPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1822,7 +1779,8 @@ asm void dMsgObject_c::setTalkHeap(void* param_0) {
 }
 #pragma pop
 
-/* 80237B10-80237B54 0044+00 s=1 e=0 z=0  None .text      setTalkHeapLocal__12dMsgObject_cFPv */
+/* 80237B10-80237B54 232450 0044+00 1/1 0/0 0/0 .text            setTalkHeapLocal__12dMsgObject_cFPv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1832,7 +1790,7 @@ asm void dMsgObject_c::setTalkHeapLocal(void* param_0) {
 }
 #pragma pop
 
-/* 80237B54-80237B68 0014+00 s=0 e=2 z=0  None .text      getTalkHeap__12dMsgObject_cFv */
+/* 80237B54-80237B68 232494 0014+00 0/0 2/2 0/0 .text            getTalkHeap__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1842,7 +1800,7 @@ asm void dMsgObject_c::getTalkHeap() {
 }
 #pragma pop
 
-/* 80237B68-80237BFC 0094+00 s=2 e=0 z=0  None .text      isDraw__12dMsgObject_cFv */
+/* 80237B68-80237BFC 2324A8 0094+00 2/2 0/0 0/0 .text            isDraw__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1852,7 +1810,7 @@ asm void dMsgObject_c::isDraw() {
 }
 #pragma pop
 
-/* 80237BFC-80237D88 018C+00 s=2 e=0 z=0  None .text      setButtonStatusLocal__12dMsgObject_cFv */
+/* 80237BFC-80237D88 23253C 018C+00 2/2 0/0 0/0 .text setButtonStatusLocal__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1862,7 +1820,7 @@ asm void dMsgObject_c::setButtonStatusLocal() {
 }
 #pragma pop
 
-/* 80237D88-80237DD8 0050+00 s=1 e=0 z=0  None .text      setDemoMessageLocal__12dMsgObject_cFUl */
+/* 80237D88-80237DD8 2326C8 0050+00 1/1 0/0 0/0 .text setDemoMessageLocal__12dMsgObject_cFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1872,7 +1830,7 @@ asm void dMsgObject_c::setDemoMessageLocal(u32 param_0) {
 }
 #pragma pop
 
-/* 80237DD8-80237E04 002C+00 s=1 e=0 z=0  None .text getSmellTypeMessageIDLocal__12dMsgObject_cFv
+/* 80237DD8-80237E04 232718 002C+00 1/1 0/0 0/0 .text getSmellTypeMessageIDLocal__12dMsgObject_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -1883,7 +1841,7 @@ asm void dMsgObject_c::getSmellTypeMessageIDLocal() {
 }
 #pragma pop
 
-/* 80237E04-80237E58 0054+00 s=1 e=0 z=0  None .text      setSmellTypeLocal__12dMsgObject_cFUc */
+/* 80237E04-80237E58 232744 0054+00 1/1 0/0 0/0 .text setSmellTypeLocal__12dMsgObject_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1893,8 +1851,7 @@ asm void dMsgObject_c::setSmellTypeLocal(u8 param_0) {
 }
 #pragma pop
 
-/* 80237E58-80237E68 0010+00 s=3 e=0 z=0  None .text      getSelectCursorPosLocal__12dMsgObject_cFv
- */
+/* 80237E58-80237E68 232798 0010+00 3/3 0/0 0/0 .text getSelectCursorPosLocal__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1904,7 +1861,7 @@ asm void dMsgObject_c::getSelectCursorPosLocal() {
 }
 #pragma pop
 
-/* 80237E68-80237F10 00A8+00 s=3 e=0 z=0  None .text      setSelectCursorPosLocal__12dMsgObject_cFUc
+/* 80237E68-80237F10 2327A8 00A8+00 3/3 0/0 0/0 .text setSelectCursorPosLocal__12dMsgObject_cFUc
  */
 #pragma push
 #pragma optimization_level 0
@@ -1915,7 +1872,7 @@ asm void dMsgObject_c::setSelectCursorPosLocal(u8 param_0) {
 }
 #pragma pop
 
-/* 80237F10-80237F18 0008+00 s=1 e=0 z=0  None .text
+/* 80237F10-80237F18 232850 0008+00 1/1 0/0 0/0 .text
  * setTalkActorLocal__12dMsgObject_cFP10fopAc_ac_c              */
 #pragma push
 #pragma optimization_level 0
@@ -1926,52 +1883,54 @@ asm void dMsgObject_c::setTalkActorLocal(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 80237F18-80237F38 0020+00 s=1 e=0 z=0  None .text      dMsgObject_Draw__FP12dMsgObject_c */
+/* 80237F18-80237F38 232858 0020+00 1/0 0/0 0/0 .text            dMsgObject_Draw__FP12dMsgObject_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dMsgObject_Draw(dMsgObject_c* param_0) {
+static asm void dMsgObject_Draw(dMsgObject_c* param_0) {
     nofralloc
 #include "asm/d/msg/d_msg_object/dMsgObject_Draw__FP12dMsgObject_c.s"
 }
 #pragma pop
 
-/* 80237F38-80237F58 0020+00 s=1 e=0 z=0  None .text      dMsgObject_Execute__FP12dMsgObject_c */
+/* 80237F38-80237F58 232878 0020+00 1/0 0/0 0/0 .text dMsgObject_Execute__FP12dMsgObject_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dMsgObject_Execute(dMsgObject_c* param_0) {
+static asm void dMsgObject_Execute(dMsgObject_c* param_0) {
     nofralloc
 #include "asm/d/msg/d_msg_object/dMsgObject_Execute__FP12dMsgObject_c.s"
 }
 #pragma pop
 
-/* 80237F58-80237F60 0008+00 s=1 e=0 z=0  None .text      dMsgObject_IsDelete__FP12dMsgObject_c */
+/* 80237F58-80237F60 232898 0008+00 1/0 0/0 0/0 .text dMsgObject_IsDelete__FP12dMsgObject_c */
 static bool dMsgObject_IsDelete(dMsgObject_c* param_0) {
     return true;
 }
 
-/* 80237F60-80237F80 0020+00 s=1 e=0 z=0  None .text      dMsgObject_Delete__FP12dMsgObject_c */
+/* 80237F60-80237F80 2328A0 0020+00 1/0 0/0 0/0 .text            dMsgObject_Delete__FP12dMsgObject_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dMsgObject_Delete(dMsgObject_c* param_0) {
+static asm void dMsgObject_Delete(dMsgObject_c* param_0) {
     nofralloc
 #include "asm/d/msg/d_msg_object/dMsgObject_Delete__FP12dMsgObject_c.s"
 }
 #pragma pop
 
-/* 80237F80-8023800C 008C+00 s=1 e=0 z=0  None .text      dMsgObject_Create__FP9msg_class */
+/* 80237F80-8023800C 2328C0 008C+00 1/0 0/0 0/0 .text            dMsgObject_Create__FP9msg_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dMsgObject_Create(msg_class* param_0) {
+static asm void dMsgObject_Create(msg_class* param_0) {
     nofralloc
 #include "asm/d/msg/d_msg_object/dMsgObject_Create__FP9msg_class.s"
 }
 #pragma pop
 
-/* 8023800C-8023803C 0030+00 s=0 e=1 z=0  None .text
+/* 8023800C-8023803C 23294C 0030+00 0/0 1/1 0/0 .text
  * readMessageGroup__12dMsgObject_cFPP25mDoDvdThd_mountXArchive_c */
 #pragma push
 #pragma optimization_level 0
@@ -1982,7 +1941,8 @@ asm void dMsgObject_c::readMessageGroup(mDoDvdThd_mountXArchive_c** param_0) {
 }
 #pragma pop
 
-/* 8023803C-8023806C 0030+00 s=0 e=3 z=0  None .text      changeFlowGroup__12dMsgObject_cFl */
+/* 8023803C-8023806C 23297C 0030+00 0/0 3/3 0/0 .text            changeFlowGroup__12dMsgObject_cFl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1992,7 +1952,8 @@ asm void dMsgObject_c::changeFlowGroup(s32 param_0) {
 }
 #pragma pop
 
-/* 8023806C-80238098 002C+00 s=0 e=1 z=0  None .text      demoMessageGroup__12dMsgObject_cFv */
+/* 8023806C-80238098 2329AC 002C+00 0/0 1/1 0/0 .text            demoMessageGroup__12dMsgObject_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2002,7 +1963,7 @@ asm void dMsgObject_c::demoMessageGroup() {
 }
 #pragma pop
 
-/* 80238098-802380C4 002C+00 s=0 e=3 z=4  None .text      endFlowGroup__12dMsgObject_cFv */
+/* 80238098-802380C4 2329D8 002C+00 0/0 3/3 4/4 .text            endFlowGroup__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2012,7 +1973,7 @@ asm void dMsgObject_c::endFlowGroup() {
 }
 #pragma pop
 
-/* 802380C4-802380F4 0030+00 s=7 e=0 z=0  None .text      changeGroup__12dMsgObject_cFs */
+/* 802380C4-802380F4 232A04 0030+00 7/7 0/0 0/0 .text            changeGroup__12dMsgObject_cFs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2022,7 +1983,7 @@ asm void dMsgObject_c::changeGroup(s16 param_0) {
 }
 #pragma pop
 
-/* 802380F4-80238174 0080+00 s=0 e=2 z=0  None .text
+/* 802380F4-80238174 232A34 0080+00 0/0 2/2 0/0 .text
  * getString__12dMsgObject_cFUlP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cPcPcPcPs */
 #pragma push
 #pragma optimization_level 0
@@ -2035,7 +1996,7 @@ asm void dMsgObject_c::getString(u32 param_0, J2DTextBox* param_1, J2DTextBox* p
 }
 #pragma pop
 
-/* 80238174-80238188 0014+00 s=0 e=1 z=0  None .text      getMsgDtPtr__12dMsgObject_cFv */
+/* 80238174-80238188 232AB4 0014+00 0/0 1/1 0/0 .text            getMsgDtPtr__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2045,7 +2006,7 @@ asm void dMsgObject_c::getMsgDtPtr() {
 }
 #pragma pop
 
-/* 80238188-8023819C 0014+00 s=0 e=0 z=1  None .text      setProcessID__12dMsgObject_cFUi */
+/* 80238188-8023819C 232AC8 0014+00 0/0 0/0 1/1 .text            setProcessID__12dMsgObject_cFUi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2055,7 +2016,7 @@ asm void dMsgObject_c::setProcessID(unsigned int param_0) {
 }
 #pragma pop
 
-/* 8023819C-802381C0 0024+00 s=0 e=5 z=5  None .text      getActor__12dMsgObject_cFv */
+/* 8023819C-802381C0 232ADC 0024+00 0/0 5/5 5/5 .text            getActor__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2065,7 +2026,7 @@ asm void dMsgObject_c::getActor() {
 }
 #pragma pop
 
-/* 802381C0-802381D4 0014+00 s=0 e=0 z=3  None .text      getpTalkActor__12dMsgObject_cFv */
+/* 802381C0-802381D4 232B00 0014+00 0/0 0/0 3/3 .text            getpTalkActor__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2075,7 +2036,7 @@ asm void dMsgObject_c::getpTalkActor() {
 }
 #pragma pop
 
-/* 802381D4-802381E8 0014+00 s=0 e=0 z=1  None .text      getIdx__12dMsgObject_cFv */
+/* 802381D4-802381E8 232B14 0014+00 0/0 0/0 1/1 .text            getIdx__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2085,7 +2046,7 @@ asm void dMsgObject_c::getIdx() {
 }
 #pragma pop
 
-/* 802381E8-802381FC 0014+00 s=0 e=0 z=1  None .text      getNodeIdx__12dMsgObject_cFv */
+/* 802381E8-802381FC 232B28 0014+00 0/0 0/0 1/1 .text            getNodeIdx__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2095,7 +2056,7 @@ asm void dMsgObject_c::getNodeIdx() {
 }
 #pragma pop
 
-/* 802381FC-8023822C 0030+00 s=0 e=1 z=3  None .text      setStatus__12dMsgObject_cFUs */
+/* 802381FC-8023822C 232B3C 0030+00 0/0 1/1 3/3 .text            setStatus__12dMsgObject_cFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2105,7 +2066,7 @@ asm void dMsgObject_c::setStatus(u16 param_0) {
 }
 #pragma pop
 
-/* 8023822C-80238258 002C+00 s=0 e=40 z=22  None .text      getStatus__12dMsgObject_cFv */
+/* 8023822C-80238258 232B6C 002C+00 0/0 40/40 22/22 .text            getStatus__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2115,7 +2076,7 @@ asm void dMsgObject_c::getStatus() {
 }
 #pragma pop
 
-/* 80238258-8023826C 0014+00 s=0 e=1 z=0  None .text      getScrnDrawPtr__12dMsgObject_cFv */
+/* 80238258-8023826C 232B98 0014+00 0/0 1/1 0/0 .text            getScrnDrawPtr__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2125,7 +2086,7 @@ asm void dMsgObject_c::getScrnDrawPtr() {
 }
 #pragma pop
 
-/* 8023826C-8023829C 0030+00 s=0 e=1 z=0  None .text      setTalkActor__12dMsgObject_cFP10fopAc_ac_c
+/* 8023826C-8023829C 232BAC 0030+00 0/0 1/1 0/0 .text setTalkActor__12dMsgObject_cFP10fopAc_ac_c
  */
 #pragma push
 #pragma optimization_level 0
@@ -2136,7 +2097,8 @@ asm void dMsgObject_c::setTalkActor(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 8023829C-802382C8 002C+00 s=1 e=0 z=0  None .text      onMsgSendControl__12dMsgObject_cFv */
+/* 8023829C-802382C8 232BDC 002C+00 1/1 0/0 0/0 .text            onMsgSendControl__12dMsgObject_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2146,7 +2108,8 @@ asm void dMsgObject_c::onMsgSendControl() {
 }
 #pragma pop
 
-/* 802382C8-802382F4 002C+00 s=2 e=2 z=2  None .text      offMsgSendControl__12dMsgObject_cFv */
+/* 802382C8-802382F4 232C08 002C+00 2/2 2/2 2/2 .text            offMsgSendControl__12dMsgObject_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2156,7 +2119,8 @@ asm void dMsgObject_c::offMsgSendControl() {
 }
 #pragma pop
 
-/* 802382F4-80238320 002C+00 s=0 e=3 z=3  None .text      isMsgSendControl__12dMsgObject_cFv */
+/* 802382F4-80238320 232C34 002C+00 0/0 3/3 3/3 .text            isMsgSendControl__12dMsgObject_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2166,7 +2130,7 @@ asm void dMsgObject_c::isMsgSendControl() {
 }
 #pragma pop
 
-/* 80238320-8023834C 002C+00 s=1 e=2 z=1  None .text      onMsgSend__12dMsgObject_cFv */
+/* 80238320-8023834C 232C60 002C+00 1/1 2/2 1/1 .text            onMsgSend__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2176,7 +2140,7 @@ asm void dMsgObject_c::onMsgSend() {
 }
 #pragma pop
 
-/* 8023834C-80238378 002C+00 s=2 e=0 z=0  None .text      offMsgSend__12dMsgObject_cFv */
+/* 8023834C-80238378 232C8C 002C+00 2/2 0/0 0/0 .text            offMsgSend__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2186,7 +2150,7 @@ asm void dMsgObject_c::offMsgSend() {
 }
 #pragma pop
 
-/* 80238378-802383A4 002C+00 s=1 e=0 z=0  None .text      isMsgSend__12dMsgObject_cFv */
+/* 80238378-802383A4 232CB8 002C+00 1/1 0/0 0/0 .text            isMsgSend__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2196,7 +2160,7 @@ asm void dMsgObject_c::isMsgSend() {
 }
 #pragma pop
 
-/* 802383A4-802383D0 002C+00 s=0 e=2 z=6  None .text      isMouthCheck__12dMsgObject_cFv */
+/* 802383A4-802383D0 232CE4 002C+00 0/0 2/2 6/6 .text            isMouthCheck__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2206,7 +2170,7 @@ asm void dMsgObject_c::isMouthCheck() {
 }
 #pragma pop
 
-/* 802383D0-802383E4 0014+00 s=0 e=9 z=0  None .text      getMessageID__12dMsgObject_cFv */
+/* 802383D0-802383E4 232D10 0014+00 0/0 9/9 0/0 .text            getMessageID__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2216,7 +2180,7 @@ asm void dMsgObject_c::getMessageID() {
 }
 #pragma pop
 
-/* 802383E4-80238410 002C+00 s=1 e=1 z=0  None .text      getSmellTypeMessageID__12dMsgObject_cFv */
+/* 802383E4-80238410 232D24 002C+00 1/1 1/1 0/0 .text getSmellTypeMessageID__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2226,7 +2190,7 @@ asm void dMsgObject_c::getSmellTypeMessageID() {
 }
 #pragma pop
 
-/* 80238410-80238440 0030+00 s=0 e=1 z=0  None .text      setSmellType__12dMsgObject_cFUc */
+/* 80238410-80238440 232D50 0030+00 0/0 1/1 0/0 .text            setSmellType__12dMsgObject_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2236,7 +2200,7 @@ asm void dMsgObject_c::setSmellType(u8 param_0) {
 }
 #pragma pop
 
-/* 80238440-8023846C 002C+00 s=4 e=0 z=7  None .text      getSelectCursorPos__12dMsgObject_cFv */
+/* 80238440-8023846C 232D80 002C+00 4/4 0/0 7/7 .text getSelectCursorPos__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2246,7 +2210,7 @@ asm void dMsgObject_c::getSelectCursorPos() {
 }
 #pragma pop
 
-/* 8023846C-8023849C 0030+00 s=0 e=1 z=0  None .text      setSelectCursorPos__12dMsgObject_cFUc */
+/* 8023846C-8023849C 232DAC 0030+00 0/0 1/1 0/0 .text setSelectCursorPos__12dMsgObject_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2256,7 +2220,7 @@ asm void dMsgObject_c::setSelectCursorPos(u8 param_0) {
 }
 #pragma pop
 
-/* 8023849C-802384B0 0014+00 s=0 e=2 z=0  None .text      setPortalMessageID__12dMsgObject_cFUs */
+/* 8023849C-802384B0 232DDC 0014+00 0/0 2/2 0/0 .text setPortalMessageID__12dMsgObject_cFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2266,7 +2230,8 @@ asm void dMsgObject_c::setPortalMessageID(u16 param_0) {
 }
 #pragma pop
 
-/* 802384B0-802384C4 0014+00 s=0 e=0 z=1  None .text      setInsectItemNo__12dMsgObject_cFUc */
+/* 802384B0-802384C4 232DF0 0014+00 0/0 0/0 1/1 .text            setInsectItemNo__12dMsgObject_cFUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2276,7 +2241,8 @@ asm void dMsgObject_c::setInsectItemNo(u8 param_0) {
 }
 #pragma pop
 
-/* 802384C4-802384D8 0014+00 s=0 e=1 z=0  None .text      setLetterNameID__12dMsgObject_cFUs */
+/* 802384C4-802384D8 232E04 0014+00 0/0 1/1 0/0 .text            setLetterNameID__12dMsgObject_cFUs
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2286,7 +2252,7 @@ asm void dMsgObject_c::setLetterNameID(u16 param_0) {
 }
 #pragma pop
 
-/* 802384D8-802384EC 0014+00 s=0 e=1 z=0  None .text      setArrowNum__12dMsgObject_cFUc */
+/* 802384D8-802384EC 232E18 0014+00 0/0 1/1 0/0 .text            setArrowNum__12dMsgObject_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2296,7 +2262,8 @@ asm void dMsgObject_c::setArrowNum(u8 param_0) {
 }
 #pragma pop
 
-/* 802384EC-80238500 0014+00 s=1 e=0 z=0  None .text      setMsgOutputType__12dMsgObject_cFUc */
+/* 802384EC-80238500 232E2C 0014+00 1/1 0/0 0/0 .text            setMsgOutputType__12dMsgObject_cFUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2306,7 +2273,8 @@ asm void dMsgObject_c::setMsgOutputType(u8 param_0) {
 }
 #pragma pop
 
-/* 80238500-80238514 0014+00 s=0 e=1 z=0  None .text      getMsgOutputType__12dMsgObject_cFv */
+/* 80238500-80238514 232E40 0014+00 0/0 1/1 0/0 .text            getMsgOutputType__12dMsgObject_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2316,7 +2284,7 @@ asm void dMsgObject_c::getMsgOutputType() {
 }
 #pragma pop
 
-/* 80238514-80238528 0014+00 s=0 e=5 z=0  None .text      getWord__12dMsgObject_cFv */
+/* 80238514-80238528 232E54 0014+00 0/0 5/5 0/0 .text            getWord__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2326,7 +2294,7 @@ asm void dMsgObject_c::getWord() {
 }
 #pragma pop
 
-/* 80238528-80238544 001C+00 s=0 e=1 z=0  None .text      getSelectWord__12dMsgObject_cFi */
+/* 80238528-80238544 232E68 001C+00 0/0 1/1 0/0 .text            getSelectWord__12dMsgObject_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2336,7 +2304,7 @@ asm void dMsgObject_c::getSelectWord(int param_0) {
 }
 #pragma pop
 
-/* 80238544-80238574 0030+00 s=0 e=1 z=0  None .text      setSelectWordFlag__12dMsgObject_cFUc */
+/* 80238544-80238574 232E84 0030+00 0/0 1/1 0/0 .text setSelectWordFlag__12dMsgObject_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2346,7 +2314,8 @@ asm void dMsgObject_c::setSelectWordFlag(u8 param_0) {
 }
 #pragma pop
 
-/* 80238574-80238588 0014+00 s=0 e=3 z=0  None .text      getSelectWordFlag__12dMsgObject_cFv */
+/* 80238574-80238588 232EB4 0014+00 0/0 3/3 0/0 .text            getSelectWordFlag__12dMsgObject_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2356,7 +2325,8 @@ asm void dMsgObject_c::getSelectWordFlag() {
 }
 #pragma pop
 
-/* 80238588-802385B4 002C+00 s=0 e=1 z=0  None .text      isHowlHearingMode__12dMsgObject_cFv */
+/* 80238588-802385B4 232EC8 002C+00 0/0 1/1 0/0 .text            isHowlHearingMode__12dMsgObject_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2366,7 +2336,7 @@ asm void dMsgObject_c::isHowlHearingMode() {
 }
 #pragma pop
 
-/* 802385B4-802385E0 002C+00 s=0 e=1 z=0  None .text      getSelectBombBagID__12dMsgObject_cFv */
+/* 802385B4-802385E0 232EF4 002C+00 0/0 1/1 0/0 .text getSelectBombBagID__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2376,7 +2346,7 @@ asm void dMsgObject_c::getSelectBombBagID() {
 }
 #pragma pop
 
-/* 802385E0-8023860C 002C+00 s=0 e=6 z=0  None .text      getSelectBombPrice__12dMsgObject_cFv */
+/* 802385E0-8023860C 232F20 002C+00 0/0 6/6 0/0 .text getSelectBombPrice__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2386,7 +2356,8 @@ asm void dMsgObject_c::getSelectBombPrice() {
 }
 #pragma pop
 
-/* 8023860C-80238638 002C+00 s=0 e=1 z=0  None .text      setEquipBombInfo__12dMsgObject_cFv */
+/* 8023860C-80238638 232F4C 002C+00 0/0 1/1 0/0 .text            setEquipBombInfo__12dMsgObject_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2396,7 +2367,7 @@ asm void dMsgObject_c::setEquipBombInfo() {
 }
 #pragma pop
 
-/* 80238638-8023864C 0014+00 s=0 e=2 z=0  None .text      getItemEquipButton__12dMsgObject_cFv */
+/* 80238638-8023864C 232F78 0014+00 0/0 2/2 0/0 .text getItemEquipButton__12dMsgObject_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2406,7 +2377,7 @@ asm void dMsgObject_c::getItemEquipButton() {
 }
 #pragma pop
 
-/* 8023864C-80238660 0014+00 s=0 e=2 z=0  None .text      setSelectCancelPos__12dMsgObject_cFUc */
+/* 8023864C-80238660 232F8C 0014+00 0/0 2/2 0/0 .text setSelectCancelPos__12dMsgObject_cFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2416,7 +2387,7 @@ asm void dMsgObject_c::setSelectCancelPos(u8 param_0) {
 }
 #pragma pop
 
-/* 80238660-802386C8 0068+00 s=1 e=0 z=3  None .text      dMsgObject_getTotalPrice__Fv */
+/* 80238660-802386C8 232FA0 0068+00 1/1 0/0 3/3 .text            dMsgObject_getTotalPrice__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2426,7 +2397,7 @@ asm void dMsgObject_getTotalPrice() {
 }
 #pragma pop
 
-/* 802386C8-80238730 0068+00 s=0 e=0 z=2  None .text      dMsgObject_setTotalPrice__FUs */
+/* 802386C8-80238730 233008 0068+00 0/0 0/0 2/2 .text            dMsgObject_setTotalPrice__FUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2436,7 +2407,7 @@ asm void dMsgObject_setTotalPrice(u16 param_0) {
 }
 #pragma pop
 
-/* 80238730-802387C4 0094+00 s=0 e=0 z=4  None .text      dMsgObject_addTotalPrice__Fs */
+/* 80238730-802387C4 233070 0094+00 0/0 0/0 4/4 .text            dMsgObject_addTotalPrice__Fs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2446,7 +2417,7 @@ asm void dMsgObject_addTotalPrice(s16 param_0) {
 }
 #pragma pop
 
-/* 802387C4-8023882C 0068+00 s=1 e=0 z=4  None .text      dMsgObject_getTotalPayment__Fv */
+/* 802387C4-8023882C 233104 0068+00 1/1 0/0 4/4 .text            dMsgObject_getTotalPayment__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2456,7 +2427,7 @@ asm void dMsgObject_getTotalPayment() {
 }
 #pragma pop
 
-/* 8023882C-80238894 0068+00 s=0 e=0 z=2  None .text      dMsgObject_setTotalPayment__FUs */
+/* 8023882C-80238894 23316C 0068+00 0/0 0/0 2/2 .text            dMsgObject_setTotalPayment__FUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2466,17 +2437,17 @@ asm void dMsgObject_setTotalPayment(u16 param_0) {
 }
 #pragma pop
 
-/* 80238894-80238928 0094+00 s=1 e=0 z=0  None .text      dMsgObject_addTotalPayment__Fs */
+/* 80238894-80238928 2331D4 0094+00 1/1 0/0 0/0 .text            dMsgObject_addTotalPayment__Fs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dMsgObject_addTotalPayment(s16 param_0) {
+static asm void dMsgObject_addTotalPayment(s16 param_0) {
     nofralloc
 #include "asm/d/msg/d_msg_object/dMsgObject_addTotalPayment__Fs.s"
 }
 #pragma pop
 
-/* 80238928-80238990 0068+00 s=2 e=4 z=0  None .text      dMsgObject_getFundRaising__Fv */
+/* 80238928-80238990 233268 0068+00 2/2 4/4 0/0 .text            dMsgObject_getFundRaising__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2486,7 +2457,7 @@ asm void dMsgObject_getFundRaising() {
 }
 #pragma pop
 
-/* 80238990-802389F8 0068+00 s=1 e=1 z=0  None .text      dMsgObject_setFundRaising__FUs */
+/* 80238990-802389F8 2332D0 0068+00 1/1 1/1 0/0 .text            dMsgObject_setFundRaising__FUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2496,17 +2467,17 @@ asm void dMsgObject_setFundRaising(u16 param_0) {
 }
 #pragma pop
 
-/* 802389F8-80238A74 007C+00 s=1 e=0 z=0  None .text      dMsgObject_addFundRaising__Fs */
+/* 802389F8-80238A74 233338 007C+00 1/1 0/0 0/0 .text            dMsgObject_addFundRaising__Fs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dMsgObject_addFundRaising(s16 param_0) {
+static asm void dMsgObject_addFundRaising(s16 param_0) {
     nofralloc
 #include "asm/d/msg/d_msg_object/dMsgObject_addFundRaising__Fs.s"
 }
 #pragma pop
 
-/* 80238A74-80238ADC 0068+00 s=1 e=1 z=0  None .text      dMsgObject_getOffering__Fv */
+/* 80238A74-80238ADC 2333B4 0068+00 1/1 1/1 0/0 .text            dMsgObject_getOffering__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2516,7 +2487,7 @@ asm void dMsgObject_getOffering() {
 }
 #pragma pop
 
-/* 80238ADC-80238B58 007C+00 s=0 e=1 z=0  None .text      dMsgObject_addOffering__Fs */
+/* 80238ADC-80238B58 23341C 007C+00 0/0 1/1 0/0 .text            dMsgObject_addOffering__Fs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2526,17 +2497,22 @@ asm void dMsgObject_addOffering(s16 param_0) {
 }
 #pragma pop
 
-/* 80238B58-80238B94 003C+00 s=0 e=1 z=0  None .text      __sinit_d_msg_object_cpp */
+/* 80238B58-80238B94 233498 003C+00 0/0 1/0 0/0 .text            __sinit_d_msg_object_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_msg_object_cpp() {
+asm void __sinit_d_msg_object_cpp() {
     nofralloc
 #include "asm/d/msg/d_msg_object/__sinit_d_msg_object_cpp.s"
 }
 #pragma pop
 
-/* 80238B94-80238BDC 0048+00 s=1 e=0 z=0  None .text      __dt__20dMsgObject_HowlHIO_cFv */
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_80238B58 = (void*)__sinit_d_msg_object_cpp;
+#pragma pop
+
+/* 80238B94-80238BDC 2334D4 0048+00 1/0 0/0 0/0 .text            __dt__20dMsgObject_HowlHIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2546,7 +2522,7 @@ asm dMsgObject_HowlHIO_c::~dMsgObject_HowlHIO_c() {
 }
 #pragma pop
 
-/* 80238BDC-80238C3C 0060+00 s=2 e=0 z=0  None .text      __dt__16dMsgObject_HIO_cFv */
+/* 80238BDC-80238C3C 23351C 0060+00 2/1 0/0 0/0 .text            __dt__16dMsgObject_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2556,71 +2532,69 @@ asm dMsgObject_HIO_c::~dMsgObject_HIO_c() {
 }
 #pragma pop
 
-/* 80238C3C-80238C40 0004+00 s=0 e=1 z=0  None .text      exec__14dMsgScrnBase_cFv */
+/* 80238C3C-80238C40 23357C 0004+00 0/0 1/0 0/0 .text            exec__14dMsgScrnBase_cFv */
 void dMsgScrnBase_c::exec() {
     /* empty function */
 }
 
-/* 80238C40-80238C44 0004+00 s=0 e=8 z=0  None .text setSelectRubyString__14dMsgScrnBase_cFPcPcPc
+/* 80238C40-80238C44 233580 0004+00 0/0 8/0 0/0 .text setSelectRubyString__14dMsgScrnBase_cFPcPcPc
  */
 void dMsgScrnBase_c::setSelectRubyString(char* param_0, char* param_1, char* param_2) {
     /* empty function */
 }
 
-/* 80238C44-80238C48 0004+00 s=0 e=8 z=0  None .text      setSelectString__14dMsgScrnBase_cFPcPcPc
- */
+/* 80238C44-80238C48 233584 0004+00 0/0 8/0 0/0 .text setSelectString__14dMsgScrnBase_cFPcPcPc */
 void dMsgScrnBase_c::setSelectString(char* param_0, char* param_1, char* param_2) {
     /* empty function */
 }
 
-/* 80238C48-80238C50 0008+00 s=0 e=8 z=0  None .text      selectAnimeMove__14dMsgScrnBase_cFUcUcb */
+/* 80238C48-80238C50 233588 0008+00 0/0 8/0 0/0 .text selectAnimeMove__14dMsgScrnBase_cFUcUcb */
 bool dMsgScrnBase_c::selectAnimeMove(u8 param_0, u8 param_1, bool param_2) {
     return true;
 }
 
-/* 80238C50-80238C54 0004+00 s=0 e=8 z=0  None .text      selectAnimeInit__14dMsgScrnBase_cFUcUcfUc
- */
+/* 80238C50-80238C54 233590 0004+00 0/0 8/0 0/0 .text selectAnimeInit__14dMsgScrnBase_cFUcUcfUc */
 void dMsgScrnBase_c::selectAnimeInit(u8 param_0, u8 param_1, f32 param_2, u8 param_3) {
     /* empty function */
 }
 
-/* 80238C54-80238C58 0004+00 s=0 e=8 z=0  None .text      arwAnimeMove__14dMsgScrnBase_cFv */
+/* 80238C54-80238C58 233594 0004+00 0/0 8/0 0/0 .text            arwAnimeMove__14dMsgScrnBase_cFv */
 void dMsgScrnBase_c::arwAnimeMove() {
     /* empty function */
 }
 
-/* 80238C58-80238C5C 0004+00 s=0 e=8 z=0  None .text      arwAnimeInit__14dMsgScrnBase_cFv */
+/* 80238C58-80238C5C 233598 0004+00 0/0 8/0 0/0 .text            arwAnimeInit__14dMsgScrnBase_cFv */
 void dMsgScrnBase_c::arwAnimeInit() {
     /* empty function */
 }
 
-/* 80238C5C-80238C60 0004+00 s=0 e=8 z=0  None .text      fukiPosCalc__14dMsgScrnBase_cFUc */
+/* 80238C5C-80238C60 23359C 0004+00 0/0 8/0 0/0 .text            fukiPosCalc__14dMsgScrnBase_cFUc */
 void dMsgScrnBase_c::fukiPosCalc(u8 param_0) {
     /* empty function */
 }
 
-/* 80238C60-80238C68 0008+00 s=0 e=8 z=0  None .text      isSelect__14dMsgScrnBase_cFv */
+/* 80238C60-80238C68 2335A0 0008+00 0/0 8/0 0/0 .text            isSelect__14dMsgScrnBase_cFv */
 bool dMsgScrnBase_c::isSelect() {
     return true;
 }
 
-/* 80238C68-80238C70 0008+00 s=0 e=8 z=0  None .text      selectAnimeEnd__14dMsgScrnBase_cFv */
+/* 80238C68-80238C70 2335A8 0008+00 0/0 8/0 0/0 .text            selectAnimeEnd__14dMsgScrnBase_cFv
+ */
 bool dMsgScrnBase_c::selectAnimeEnd() {
     return true;
 }
 
-/* 80238C70-80238C74 0004+00 s=0 e=8 z=0  None .text      dotAnimeMove__14dMsgScrnBase_cFv */
+/* 80238C70-80238C74 2335B0 0004+00 0/0 8/0 0/0 .text            dotAnimeMove__14dMsgScrnBase_cFv */
 void dMsgScrnBase_c::dotAnimeMove() {
     /* empty function */
 }
 
-/* 80238C74-80238C78 0004+00 s=0 e=8 z=0  None .text      dotAnimeInit__14dMsgScrnBase_cFv */
+/* 80238C74-80238C78 2335B4 0004+00 0/0 8/0 0/0 .text            dotAnimeInit__14dMsgScrnBase_cFv */
 void dMsgScrnBase_c::dotAnimeInit() {
     /* empty function */
 }
 
-/* 80238C78-80238C94 001C+00 s=2 e=0 z=0  None .text      setActorPos__19jmessage_tReferenceF4cXyz
- */
+/* 80238C78-80238C94 2335B8 001C+00 2/2 0/0 0/0 .text setActorPos__19jmessage_tReferenceF4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -2628,4 +2602,24 @@ asm void jmessage_tReference::setActorPos(cXyz param_0) {
     nofralloc
 #include "asm/d/msg/d_msg_object/setActorPos__19jmessage_tReferenceF4cXyz.s"
 }
+#pragma pop
+
+/* 80399660-803996E8 025CC0 0087+01 4/4 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80399660 = "zel_00.bmg";
+SECTION_DEAD static char const* const stringBase_8039966B = "zel_01.bmg";
+SECTION_DEAD static char const* const stringBase_80399676 = "zel_02.bmg";
+SECTION_DEAD static char const* const stringBase_80399681 = "zel_03.bmg";
+SECTION_DEAD static char const* const stringBase_8039968C = "zel_04.bmg";
+SECTION_DEAD static char const* const stringBase_80399697 = "zel_05.bmg";
+SECTION_DEAD static char const* const stringBase_803996A2 = "zel_06.bmg";
+SECTION_DEAD static char const* const stringBase_803996AD = "zel_07.bmg";
+SECTION_DEAD static char const* const stringBase_803996B8 = "zel_08.bmg";
+SECTION_DEAD static char const* const stringBase_803996C3 = "zel_99.bmg";
+SECTION_DEAD static char const* const stringBase_803996CE = "";
+SECTION_DEAD static char const* const stringBase_803996CF = "/res/Msgus/bmgres%d.arc";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803996E7 = "";
 #pragma pop

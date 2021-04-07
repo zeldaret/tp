@@ -3,19 +3,20 @@
 #
 
 M487_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_itamato.plf
+M487_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_itamato.lcf
+M487_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_itamato.map
 
 M487_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_itamato/executor.cpp \
-	rel/d/a/obj/d_a_obj_itamato/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_itamato/d_a_obj_itamato.cpp \
 
 M487_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_itamato/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_itamato/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_itamato/d_a_obj_itamato.o \
 
 M487_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_itamato/libRuntime.PPCEABI.H.a \
 
 M487_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M487_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M487_LDSCRIPT) \
+	-unused -map $(M487_MAP) \
+	-w off \
 
 $(M487_TARGET): $(M487_O_FILES) $(M487_LIBS)
+	@echo [487] creating $(M487_TARGET)
 	@echo $(M487_LIBS) $(M487_O_FILES) > build/M487_ofiles
-	$(LD) -partial $(M487_LDFLAGS) -o $(M487_TARGET) @build/M487_ofiles
+	@python3 tools/lcf.py rel 487 --output $(M487_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M487_LDFLAGS) -o $(M487_TARGET) @build/M487_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_itamato/%.o: rel/d/a/obj/d_a_obj_itamato/%.cpp
+	@echo [487] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M487_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M487_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_itamato/libs/Runtime.PPCEABI.H/Makefile
 

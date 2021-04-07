@@ -1,7 +1,7 @@
 lbl_80A3B074:
 /* 80A3B074  94 21 FF D0 */	stwu r1, -0x30(r1)
-/* 80A3B078  3C E0 80 A4 */	lis r7, mCcDObjData__10daNpc_Kn_c@ha
-/* 80A3B07C  38 E7 08 C8 */	addi r7, r7, mCcDObjData__10daNpc_Kn_c@l
+/* 80A3B078  3C E0 80 A4 */	lis r7, mCcDObjData__10daNpc_Kn_c@ha /* 0x80A408C8@ha */
+/* 80A3B07C  38 E7 08 C8 */	addi r7, r7, mCcDObjData__10daNpc_Kn_c@l /* 0x80A408C8@l */
 /* 80A3B080  A8 03 0E 00 */	lha r0, 0xe00(r3)
 /* 80A3B084  2C 00 00 00 */	cmpwi r0, 0
 /* 80A3B088  40 82 00 A8 */	bne lbl_80A3B130
@@ -69,8 +69,8 @@ lbl_80A3B154:
 lbl_80A3B178:
 /* 80A3B178  A8 C3 0E 00 */	lha r6, 0xe00(r3)
 /* 80A3B17C  54 C0 04 38 */	rlwinm r0, r6, 0, 0x10, 0x1c
-/* 80A3B180  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha
-/* 80A3B184  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l
+/* 80A3B180  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80A3B184  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80A3B188  7C 45 04 2E */	lfsx f2, r5, r0
 /* 80A3B18C  C8 27 00 30 */	lfd f1, 0x30(r7)
 /* 80A3B190  6D 00 80 00 */	xoris r0, r8, 0x8000

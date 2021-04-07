@@ -2,8 +2,8 @@ lbl_8009A5AC:
 /* 8009A5AC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009A5B0  7C 08 02 A6 */	mflr r0
 /* 8009A5B4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8009A5B8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8009A5BC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8009A5B8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8009A5BC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8009A5C0  38 63 00 9C */	addi r3, r3, 0x9c
 /* 8009A5C4  38 80 00 63 */	li r4, 0x63
 /* 8009A5C8  4B F9 91 19 */	bl checkBottle__17dSv_player_item_cFUc

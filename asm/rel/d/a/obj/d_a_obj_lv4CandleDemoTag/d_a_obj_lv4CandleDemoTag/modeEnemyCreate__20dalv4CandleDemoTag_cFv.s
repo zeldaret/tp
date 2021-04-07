@@ -6,7 +6,7 @@ lbl_80C5CE70:
 /* 80C5CE80  7C 7F 1B 78 */	mr r31, r3
 /* 80C5CE84  88 03 04 E2 */	lbz r0, 0x4e2(r3)
 /* 80C5CE88  7C 03 07 74 */	extsb r3, r0
-/* 80C5CE8C  4B 3B FB 90 */	b fopAcM_myRoomSearchEnemy__FSc
+/* 80C5CE8C  4B 3B FB 91 */	bl fopAcM_myRoomSearchEnemy__FSc
 /* 80C5CE90  28 03 00 00 */	cmplwi r3, 0
 /* 80C5CE94  41 82 00 0C */	beq lbl_80C5CEA0
 /* 80C5CE98  7F E3 FB 78 */	mr r3, r31

@@ -12,16 +12,16 @@ lbl_800D66C0:
 /* 800D66E8  48 00 08 F9 */	bl checkCutLandDamage__9daAlink_cFv
 /* 800D66EC  7F C3 F3 78 */	mr r3, r30
 /* 800D66F0  38 80 01 8E */	li r4, 0x18e
-/* 800D66F4  3C A0 80 39 */	lis r5, m__26daAlinkHIO_cutLargeJump_c0@ha
-/* 800D66F8  38 A5 DE 18 */	addi r5, r5, m__26daAlinkHIO_cutLargeJump_c0@l
+/* 800D66F4  3C A0 80 39 */	lis r5, m__26daAlinkHIO_cutLargeJump_c0@ha /* 0x8038DE18@ha */
+/* 800D66F8  38 A5 DE 18 */	addi r5, r5, m__26daAlinkHIO_cutLargeJump_c0@l /* 0x8038DE18@l */
 /* 800D66FC  38 A5 00 3C */	addi r5, r5, 0x3c
 /* 800D6700  4B FD 69 F5 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800D6704  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 800D6708  D0 1E 33 98 */	stfs f0, 0x3398(r30)
 /* 800D670C  38 00 00 0C */	li r0, 0xc
 /* 800D6710  98 1E 2F 99 */	stb r0, 0x2f99(r30)
-/* 800D6714  3C 60 80 42 */	lis r3, l_halfAtnWaitBaseAnime@ha
-/* 800D6718  C4 03 55 44 */	lfsu f0, l_halfAtnWaitBaseAnime@l(r3)
+/* 800D6714  3C 60 80 42 */	lis r3, l_halfAtnWaitBaseAnime@ha /* 0x80425544@ha */
+/* 800D6718  C4 03 55 44 */	lfsu f0, l_halfAtnWaitBaseAnime@l(r3)  /* 0x80425544@l */
 /* 800D671C  D0 1E 35 88 */	stfs f0, 0x3588(r30)
 /* 800D6720  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800D6724  D0 1E 35 8C */	stfs f0, 0x358c(r30)
@@ -41,8 +41,8 @@ lbl_800D66C0:
 /* 800D675C  7F C3 F3 78 */	mr r3, r30
 /* 800D6760  38 80 00 13 */	li r4, 0x13
 /* 800D6764  4B FF AD C9 */	bl setCutType__9daAlink_cFUc
-/* 800D6768  3C 60 80 39 */	lis r3, m__26daAlinkHIO_cutLargeJump_c0@ha
-/* 800D676C  38 63 DE 18 */	addi r3, r3, m__26daAlinkHIO_cutLargeJump_c0@l
+/* 800D6768  3C 60 80 39 */	lis r3, m__26daAlinkHIO_cutLargeJump_c0@ha /* 0x8038DE18@ha */
+/* 800D676C  38 63 DE 18 */	addi r3, r3, m__26daAlinkHIO_cutLargeJump_c0@l /* 0x8038DE18@l */
 /* 800D6770  C0 03 00 6C */	lfs f0, 0x6c(r3)
 /* 800D6774  D0 1E 34 78 */	stfs f0, 0x3478(r30)
 /* 800D6778  C0 02 93 04 */	lfs f0, lit_6896(r2)
@@ -55,8 +55,8 @@ lbl_800D66C0:
 /* 800D6794  C0 02 92 B8 */	lfs f0, lit_6040(r2)
 /* 800D6798  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 800D679C  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 800D67A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D67A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D67A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D67A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D67A8  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 800D67AC  38 80 00 03 */	li r4, 3
 /* 800D67B0  38 A0 00 1F */	li r5, 0x1f

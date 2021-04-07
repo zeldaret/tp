@@ -9,8 +9,8 @@ lbl_80875410:
 /* 8087542C  7C 7D 1B 78 */	mr r29, r3
 /* 80875430  7C 9E 23 78 */	mr r30, r4
 /* 80875434  7C 00 F7 EC */	dcbz 0, r30
-/* 80875438  3C 80 80 88 */	lis r4, Udchuff@ha
-/* 8087543C  38 84 9A 44 */	addi r4, r4, Udchuff@l
+/* 80875438  3C 80 80 88 */	lis r4, Udchuff@ha /* 0x80879A44@ha */
+/* 8087543C  38 84 9A 44 */	addi r4, r4, Udchuff@l /* 0x80879A44@l */
 /* 80875440  80 84 00 00 */	lwz r4, 0(r4)
 /* 80875444  4B FF FD 55 */	bl __THPHuffDecodeTab
 /* 80875448  38 00 00 20 */	li r0, 0x20
@@ -63,8 +63,8 @@ lbl_808754E8:
 /* 808754F8  B0 1D 06 8A */	sth r0, 0x68a(r29)
 /* 808754FC  B0 1E 00 00 */	sth r0, 0(r30)
 /* 80875500  3B E0 00 01 */	li r31, 1
-/* 80875504  3C 60 80 88 */	lis r3, Uachuff@ha
-/* 80875508  3B 83 9A 50 */	addi r28, r3, Uachuff@l
+/* 80875504  3C 60 80 88 */	lis r3, Uachuff@ha /* 0x80879A50@ha */
+/* 80875508  3B 83 9A 50 */	addi r28, r3, Uachuff@l /* 0x80879A50@l */
 /* 8087550C  48 00 00 C4 */	b lbl_808755D0
 lbl_80875510:
 /* 80875510  7F A3 EB 78 */	mr r3, r29
@@ -108,8 +108,8 @@ lbl_80875588:
 /* 808755A0  7C 80 22 14 */	add r4, r0, r4
 /* 808755A4  38 84 00 01 */	addi r4, r4, 1
 lbl_808755A8:
-/* 808755A8  3C 60 80 88 */	lis r3, __THPJpegNaturalOrder@ha
-/* 808755AC  38 63 90 34 */	addi r3, r3, __THPJpegNaturalOrder@l
+/* 808755A8  3C 60 80 88 */	lis r3, __THPJpegNaturalOrder@ha /* 0x80879034@ha */
+/* 808755AC  38 63 90 34 */	addi r3, r3, __THPJpegNaturalOrder@l /* 0x80879034@l */
 /* 808755B0  7C 03 F8 AE */	lbzx r0, r3, r31
 /* 808755B4  54 00 08 3C */	slwi r0, r0, 1
 /* 808755B8  7C 9E 03 2E */	sthx r4, r30, r0

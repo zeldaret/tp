@@ -122,10 +122,10 @@ lbl_8020F898:
 /* 8020F8B0  EC 19 00 32 */	fmuls f0, f25, f0
 /* 8020F8B4  EF 21 00 28 */	fsubs f25, f1, f0
 /* 8020F8B8  3B 40 00 00 */	li r26, 0
-/* 8020F8BC  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8020F8C0  3B 83 EB C8 */	addi r28, r3, g_drawHIO@l
-/* 8020F8C4  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8020F8C8  3B A3 01 88 */	addi r29, r3, g_meter2_info@l
+/* 8020F8BC  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8020F8C0  3B 83 EB C8 */	addi r28, r3, g_drawHIO@l /* 0x8042EBC8@l */
+/* 8020F8C4  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8020F8C8  3B A3 01 88 */	addi r29, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8020F8CC  C3 41 00 34 */	lfs f26, 0x34(r1)
 /* 8020F8D0  CB 62 AE 70 */	lfd f27, lit_3824(r2)
 /* 8020F8D4  3F C0 43 30 */	lis r30, 0x4330

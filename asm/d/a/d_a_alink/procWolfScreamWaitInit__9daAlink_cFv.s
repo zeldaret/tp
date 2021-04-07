@@ -15,11 +15,11 @@ lbl_80136F54:
 lbl_80136F88:
 /* 80136F88  7F E3 FB 78 */	mr r3, r31
 /* 80136F8C  38 80 00 00 */	li r4, 0
-/* 80136F90  3C A0 80 39 */	lis r5, m__23daAlinkHIO_wlMoveNoP_c0@ha
-/* 80136F94  38 A5 EF 28 */	addi r5, r5, m__23daAlinkHIO_wlMoveNoP_c0@l
+/* 80136F90  3C A0 80 39 */	lis r5, m__23daAlinkHIO_wlMoveNoP_c0@ha /* 0x8038EF28@ha */
+/* 80136F94  38 A5 EF 28 */	addi r5, r5, m__23daAlinkHIO_wlMoveNoP_c0@l /* 0x8038EF28@l */
 /* 80136F98  C0 25 00 14 */	lfs f1, 0x14(r5)
-/* 80136F9C  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlMove_c0@ha
-/* 80136FA0  38 A5 EE 28 */	addi r5, r5, m__20daAlinkHIO_wlMove_c0@l
+/* 80136F9C  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlMove_c0@ha /* 0x8038EE28@ha */
+/* 80136FA0  38 A5 EE 28 */	addi r5, r5, m__20daAlinkHIO_wlMove_c0@l /* 0x8038EE28@l */
 /* 80136FA4  C0 45 00 BC */	lfs f2, 0xbc(r5)
 /* 80136FA8  4B FF 27 31 */	bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 80136FAC  38 00 00 00 */	li r0, 0
@@ -29,8 +29,8 @@ lbl_80136FB4:
 /* 80136FB8  D0 1F 33 98 */	stfs f0, 0x3398(r31)
 /* 80136FBC  38 00 00 00 */	li r0, 0
 /* 80136FC0  B0 1F 30 0E */	sth r0, 0x300e(r31)
-/* 80136FC4  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha
-/* 80136FC8  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)
+/* 80136FC4  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha /* 0x8042561C@ha */
+/* 80136FC8  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)  /* 0x8042561C@l */
 /* 80136FCC  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 80136FD0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80136FD4  D0 1F 35 8C */	stfs f0, 0x358c(r31)

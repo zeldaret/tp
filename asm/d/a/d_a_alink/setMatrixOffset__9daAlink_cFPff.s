@@ -29,17 +29,17 @@ lbl_800A2C70:
 /* 800A2C88  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 800A2C8C  EC 01 00 28 */	fsubs f0, f1, f0
 /* 800A2C90  D0 1E 2B D4 */	stfs f0, 0x2bd4(r30)
-/* 800A2C94  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800A2C98  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 800A2C94  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800A2C98  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800A2C9C  A8 9E 04 E4 */	lha r4, 0x4e4(r30)
 /* 800A2CA0  4B F6 96 A5 */	bl mDoMtx_XrotS__FPA4_fs
-/* 800A2CA4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800A2CA8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 800A2CA4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800A2CA8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800A2CAC  38 9E 2B B8 */	addi r4, r30, 0x2bb8
 /* 800A2CB0  7C 65 1B 78 */	mr r5, r3
 /* 800A2CB4  48 2A 38 31 */	bl PSMTXConcat
-/* 800A2CB8  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800A2CBC  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 800A2CB8  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800A2CBC  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800A2CC0  38 9E 2B E8 */	addi r4, r30, 0x2be8
 /* 800A2CC4  48 2A 37 ED */	bl PSMTXCopy
 lbl_800A2CC8:

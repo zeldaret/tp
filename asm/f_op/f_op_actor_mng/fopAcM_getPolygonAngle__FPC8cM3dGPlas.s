@@ -12,8 +12,8 @@ lbl_8001DBD8:
 lbl_8001DC00:
 /* 8001DC00  48 24 95 29 */	bl atan2sX_Z__4cXyzCFv
 /* 8001DC04  7C 1F 18 50 */	subf r0, r31, r3
-/* 8001DC08  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8001DC0C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8001DC08  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8001DC0C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8001DC10  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 8001DC14  7C 63 02 14 */	add r3, r3, r0
 /* 8001DC18  C0 43 00 04 */	lfs f2, 4(r3)

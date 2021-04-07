@@ -7,8 +7,8 @@ lbl_802D7C98:
 /* 802D7CAC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802D7CB0  7C 9C 23 78 */	mr r28, r4
 /* 802D7CB4  41 82 00 E4 */	beq lbl_802D7D98
-/* 802D7CB8  3C 60 80 3D */	lis r3, __vt__13JKRDvdArchive@ha
-/* 802D7CBC  38 03 C3 98 */	addi r0, r3, __vt__13JKRDvdArchive@l
+/* 802D7CB8  3C 60 80 3D */	lis r3, __vt__13JKRDvdArchive@ha /* 0x803CC398@ha */
+/* 802D7CBC  38 03 C3 98 */	addi r0, r3, __vt__13JKRDvdArchive@l /* 0x803CC398@l */
 /* 802D7CC0  90 1F 00 00 */	stw r0, 0(r31)
 /* 802D7CC4  88 1F 00 30 */	lbz r0, 0x30(r31)
 /* 802D7CC8  28 00 00 01 */	cmplwi r0, 1
@@ -56,8 +56,8 @@ lbl_802D7D40:
 /* 802D7D5C  7D 89 03 A6 */	mtctr r12
 /* 802D7D60  4E 80 04 21 */	bctrl 
 lbl_802D7D64:
-/* 802D7D64  3C 60 80 43 */	lis r3, sVolumeList__13JKRFileLoader@ha
-/* 802D7D68  38 63 43 54 */	addi r3, r3, sVolumeList__13JKRFileLoader@l
+/* 802D7D64  3C 60 80 43 */	lis r3, sVolumeList__13JKRFileLoader@ha /* 0x80434354@ha */
+/* 802D7D68  38 63 43 54 */	addi r3, r3, sVolumeList__13JKRFileLoader@l /* 0x80434354@l */
 /* 802D7D6C  38 9F 00 18 */	addi r4, r31, 0x18
 /* 802D7D70  48 00 43 ED */	bl remove__10JSUPtrListFP10JSUPtrLink
 /* 802D7D74  38 00 00 00 */	li r0, 0

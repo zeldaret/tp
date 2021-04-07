@@ -5,8 +5,8 @@ lbl_801B71C4:
 /* 801B71D0  39 61 00 20 */	addi r11, r1, 0x20
 /* 801B71D4  48 1A B0 09 */	bl _savegpr_29
 /* 801B71D8  7C 7F 1B 78 */	mr r31, r3
-/* 801B71DC  3C 60 80 39 */	lis r3, lit_3778@ha
-/* 801B71E0  3B A3 4F 78 */	addi r29, r3, lit_3778@l
+/* 801B71DC  3C 60 80 39 */	lis r3, lit_3778@ha /* 0x80394F78@ha */
+/* 801B71E0  3B A3 4F 78 */	addi r29, r3, lit_3778@l /* 0x80394F78@l */
 /* 801B71E4  48 00 02 B9 */	bl getMirrorNum__17dMenu_Collect3D_cFv
 /* 801B71E8  54 7E 06 3F */	clrlwi. r30, r3, 0x18
 /* 801B71EC  54 67 15 BA */	rlwinm r7, r3, 2, 0x16, 0x1d
@@ -32,15 +32,15 @@ lbl_801B71C4:
 /* 801B723C  90 1F 00 20 */	stw r0, 0x20(r31)
 /* 801B7240  41 82 01 DC */	beq lbl_801B741C
 /* 801B7244  7F E3 FB 78 */	mr r3, r31
-/* 801B7248  3C 80 80 39 */	lis r4, d_menu_d_menu_collect__stringBase0@ha
-/* 801B724C  38 84 53 30 */	addi r4, r4, d_menu_d_menu_collect__stringBase0@l
+/* 801B7248  3C 80 80 39 */	lis r4, d_menu_d_menu_collect__stringBase0@ha /* 0x80395330@ha */
+/* 801B724C  38 84 53 30 */	addi r4, r4, d_menu_d_menu_collect__stringBase0@l /* 0x80395330@l */
 /* 801B7250  38 84 01 CF */	addi r4, r4, 0x1cf
-/* 801B7254  3C A0 80 3C */	lis r5, bck_name_7687@ha
-/* 801B7258  38 05 C7 3C */	addi r0, r5, bck_name_7687@l
+/* 801B7254  3C A0 80 3C */	lis r5, bck_name_7687@ha /* 0x803BC73C@ha */
+/* 801B7258  38 05 C7 3C */	addi r0, r5, bck_name_7687@l /* 0x803BC73C@l */
 /* 801B725C  7C A0 3A 14 */	add r5, r0, r7
 /* 801B7260  80 A5 FF FC */	lwz r5, -4(r5)
-/* 801B7264  3C C0 80 3C */	lis r6, brk_name_7688@ha
-/* 801B7268  38 06 C7 4C */	addi r0, r6, brk_name_7688@l
+/* 801B7264  3C C0 80 3C */	lis r6, brk_name_7688@ha /* 0x803BC74C@ha */
+/* 801B7268  38 06 C7 4C */	addi r0, r6, brk_name_7688@l /* 0x803BC74C@l */
 /* 801B726C  7C C0 3A 14 */	add r6, r0, r7
 /* 801B7270  80 C6 FF FC */	lwz r6, -4(r6)
 /* 801B7274  4B FF F7 BD */	bl setJ3D__17dMenu_Collect3D_cFPCcPCcPCc

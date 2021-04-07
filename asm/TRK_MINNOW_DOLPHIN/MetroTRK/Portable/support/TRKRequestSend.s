@@ -5,11 +5,11 @@ lbl_8036F098:
 /* 8036F0A4  38 00 FF FF */	li r0, -1
 /* 8036F0A8  BE A1 00 14 */	stmw r21, 0x14(r1)
 /* 8036F0AC  7C 96 23 78 */	mr r22, r4
-/* 8036F0B0  3C 80 80 3A */	lis r4, lit_274@ha
+/* 8036F0B0  3C 80 80 3A */	lis r4, lit_274@ha /* 0x803A2AB8@ha */
 /* 8036F0B4  7C 75 1B 78 */	mr r21, r3
 /* 8036F0B8  7C F7 3B 78 */	mr r23, r7
 /* 8036F0BC  3B 66 00 01 */	addi r27, r6, 1
-/* 8036F0C0  3B E4 2A B8 */	addi r31, r4, lit_274@l
+/* 8036F0C0  3B E4 2A B8 */	addi r31, r4, lit_274@l /* 0x803A2AB8@l */
 /* 8036F0C4  3B C0 00 00 */	li r30, 0
 /* 8036F0C8  3B 00 00 01 */	li r24, 1
 /* 8036F0CC  90 16 00 00 */	stw r0, 0(r22)

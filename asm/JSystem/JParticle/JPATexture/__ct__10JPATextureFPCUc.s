@@ -4,8 +4,8 @@ lbl_8027D7D4:
 /* 8027D7DC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8027D7E0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8027D7E4  7C 7F 1B 78 */	mr r31, r3
-/* 8027D7E8  3C 60 80 3C */	lis r3, __vt__10JPATexture@ha
-/* 8027D7EC  38 03 45 98 */	addi r0, r3, __vt__10JPATexture@l
+/* 8027D7E8  3C 60 80 3C */	lis r3, __vt__10JPATexture@ha /* 0x803C4598@ha */
+/* 8027D7EC  38 03 45 98 */	addi r0, r3, __vt__10JPATexture@l /* 0x803C4598@l */
 /* 8027D7F0  90 1F 00 00 */	stw r0, 0(r31)
 /* 8027D7F4  88 1F 00 3F */	lbz r0, 0x3f(r31)
 /* 8027D7F8  54 00 07 BC */	rlwinm r0, r0, 0, 0x1e, 0x1e

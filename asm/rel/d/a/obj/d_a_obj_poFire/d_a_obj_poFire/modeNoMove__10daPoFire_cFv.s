@@ -5,8 +5,8 @@ lbl_80CB3958:
 /* 80CB3964  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CB3968  93 C1 00 08 */	stw r30, 8(r1)
 /* 80CB396C  7C 7E 1B 78 */	mr r30, r3
-/* 80CB3970  3C 60 80 CB */	lis r3, lit_3662@ha
-/* 80CB3974  3B E3 3E EC */	addi r31, r3, lit_3662@l
+/* 80CB3970  3C 60 80 CB */	lis r3, lit_3662@ha /* 0x80CB3EEC@ha */
+/* 80CB3974  3B E3 3E EC */	addi r31, r3, lit_3662@l /* 0x80CB3EEC@l */
 /* 80CB3978  38 7E 04 D4 */	addi r3, r30, 0x4d4
 /* 80CB397C  C0 3F 00 48 */	lfs f1, 0x48(r31)
 /* 80CB3980  C0 1E 05 D0 */	lfs f0, 0x5d0(r30)
@@ -14,7 +14,7 @@ lbl_80CB3958:
 /* 80CB3988  C0 5F 00 28 */	lfs f2, 0x28(r31)
 /* 80CB398C  C0 7F 00 30 */	lfs f3, 0x30(r31)
 /* 80CB3990  FC 80 10 90 */	fmr f4, f2
-/* 80CB3994  4B 5B BF E8 */	b cLib_addCalc__FPfffff
+/* 80CB3994  4B 5B BF E9 */	bl cLib_addCalc__FPfffff
 /* 80CB3998  C0 1F 00 20 */	lfs f0, 0x20(r31)
 /* 80CB399C  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80CB39A0  40 82 00 14 */	bne lbl_80CB39B4

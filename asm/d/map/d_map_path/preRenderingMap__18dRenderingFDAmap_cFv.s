@@ -88,8 +88,8 @@ lbl_8003D188:
 /* 8003D2E0  38 61 00 0C */	addi r3, r1, 0xc
 /* 8003D2E4  38 80 00 01 */	li r4, 1
 /* 8003D2E8  48 32 2D ED */	bl GXSetProjection
-/* 8003D2EC  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha
-/* 8003D2F0  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l
+/* 8003D2EC  3C 60 80 3A */	lis r3, g_mDoMtx_identity@ha /* 0x803A2FD8@ha */
+/* 8003D2F0  38 63 2F D8 */	addi r3, r3, g_mDoMtx_identity@l /* 0x803A2FD8@l */
 /* 8003D2F4  38 80 00 00 */	li r4, 0
 /* 8003D2F8  48 32 2F 55 */	bl GXLoadPosMtxImm
 /* 8003D2FC  38 60 00 00 */	li r3, 0

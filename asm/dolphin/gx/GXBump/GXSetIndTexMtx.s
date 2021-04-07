@@ -53,7 +53,7 @@ lbl_8035ED88:
 /* 8035EDE0  38 BF 00 08 */	addi r5, r31, 8
 /* 8035EDE4  51 3E 05 7E */	rlwimi r30, r9, 0, 0x15, 0x1f
 /* 8035EDE8  39 3E 00 00 */	addi r9, r30, 0
-/* 8035EDEC  99 8B 80 00 */	stb r12, 0x8000(r11)
+/* 8035EDEC  99 8B 80 00 */	stb r12, 0x8000(r11)  /* 0xCC008000@l */
 /* 8035EDF0  50 C9 5A A8 */	rlwimi r9, r6, 0xb, 0xa, 0x14
 /* 8035EDF4  51 49 B2 12 */	rlwimi r9, r10, 0x16, 8, 9
 /* 8035EDF8  50 09 C0 0E */	rlwimi r9, r0, 0x18, 0, 7

@@ -33,12 +33,12 @@ lbl_807447F4:
 /* 807447F8  A8 9E 06 02 */	lha r4, 0x602(r30)
 /* 807447FC  38 A0 00 05 */	li r5, 5
 /* 80744800  38 C0 10 00 */	li r6, 0x1000
-/* 80744804  4B B2 BE 04 */	b cLib_addCalcAngleS2__FPssss
+/* 80744804  4B B2 BE 05 */	bl cLib_addCalcAngleS2__FPssss
 /* 80744808  38 7E 06 04 */	addi r3, r30, 0x604
 /* 8074480C  A8 9E 06 08 */	lha r4, 0x608(r30)
 /* 80744810  38 A0 00 04 */	li r5, 4
 /* 80744814  38 C0 10 00 */	li r6, 0x1000
-/* 80744818  4B B2 BD F0 */	b cLib_addCalcAngleS2__FPssss
+/* 80744818  4B B2 BD F1 */	bl cLib_addCalcAngleS2__FPssss
 /* 8074481C  88 1E 06 10 */	lbz r0, 0x610(r30)
 /* 80744820  28 00 00 00 */	cmplwi r0, 0
 /* 80744824  40 82 00 10 */	bne lbl_80744834
@@ -46,17 +46,17 @@ lbl_807447F4:
 /* 8074482C  28 00 00 00 */	cmplwi r0, 0
 /* 80744830  41 82 00 30 */	beq lbl_80744860
 lbl_80744834:
-/* 80744834  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80744838  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80744834  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80744838  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8074483C  3B E3 4E C8 */	addi r31, r3, 0x4ec8
 /* 80744840  7F E3 FB 78 */	mr r3, r31
-/* 80744844  4B 8F E1 64 */	b onSkipFade__14dEvt_control_cFv
+/* 80744844  4B 8F E1 65 */	bl onSkipFade__14dEvt_control_cFv
 /* 80744848  7F E3 FB 78 */	mr r3, r31
 /* 8074484C  7F C4 F3 78 */	mr r4, r30
-/* 80744850  3C A0 80 74 */	lis r5, DemoSkipCallBack__8daE_PM_cFPvi@ha
-/* 80744854  38 A5 20 04 */	addi r5, r5, DemoSkipCallBack__8daE_PM_cFPvi@l
+/* 80744850  3C A0 80 74 */	lis r5, DemoSkipCallBack__8daE_PM_cFPvi@ha /* 0x80742004@ha */
+/* 80744854  38 A5 20 04 */	addi r5, r5, DemoSkipCallBack__8daE_PM_cFPvi@l /* 0x80742004@l */
 /* 80744858  38 C0 00 00 */	li r6, 0
-/* 8074485C  4B 8F E0 B8 */	b setSkipProc__14dEvt_control_cFPvPFPvi_ii
+/* 8074485C  4B 8F E0 B9 */	bl setSkipProc__14dEvt_control_cFPvPFPvi_ii
 lbl_80744860:
 /* 80744860  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80744864  83 C1 00 08 */	lwz r30, 8(r1)

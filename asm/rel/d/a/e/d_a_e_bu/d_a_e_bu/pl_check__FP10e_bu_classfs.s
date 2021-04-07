@@ -2,8 +2,8 @@ lbl_806915DC:
 /* 806915DC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 806915E0  7C 08 02 A6 */	mflr r0
 /* 806915E4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 806915E8  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 806915EC  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 806915E8  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806915EC  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806915F0  80 C5 5D AC */	lwz r6, 0x5dac(r5)
 /* 806915F4  C0 03 06 88 */	lfs f0, 0x688(r3)
 /* 806915F8  FC 00 08 40 */	fcmpo cr0, f0, f1

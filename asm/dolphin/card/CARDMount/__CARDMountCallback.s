@@ -10,8 +10,8 @@ lbl_8035701C:
 /* 8035703C  93 81 00 10 */	stw r28, 0x10(r1)
 /* 80357040  3B 83 00 00 */	addi r28, r3, 0
 /* 80357044  1C BC 01 10 */	mulli r5, r28, 0x110
-/* 80357048  3C 60 80 45 */	lis r3, __CARDBlock@ha
-/* 8035704C  38 03 CB C0 */	addi r0, r3, __CARDBlock@l
+/* 80357048  3C 60 80 45 */	lis r3, __CARDBlock@ha /* 0x8044CBC0@ha */
+/* 8035704C  38 03 CB C0 */	addi r0, r3, __CARDBlock@l /* 0x8044CBC0@l */
 /* 80357050  7F E0 2A 14 */	add r31, r0, r5
 /* 80357054  41 82 00 A8 */	beq lbl_803570FC
 /* 80357058  40 80 00 10 */	bge lbl_80357068
@@ -42,11 +42,11 @@ lbl_803570A8:
 /* 803570B0  7C 7D 1B 78 */	mr r29, r3
 /* 803570B4  48 00 00 54 */	b lbl_80357108
 lbl_803570B8:
-/* 803570B8  3C 60 80 35 */	lis r3, __CARDMountCallback@ha
-/* 803570BC  38 03 70 1C */	addi r0, r3, __CARDMountCallback@l
-/* 803570C0  3C 60 80 35 */	lis r3, __CARDUnlockedHandler@ha
+/* 803570B8  3C 60 80 35 */	lis r3, __CARDMountCallback@ha /* 0x8035701C@ha */
+/* 803570BC  38 03 70 1C */	addi r0, r3, __CARDMountCallback@l /* 0x8035701C@l */
+/* 803570C0  3C 60 80 35 */	lis r3, __CARDUnlockedHandler@ha /* 0x80352D00@ha */
 /* 803570C4  90 1F 00 DC */	stw r0, 0xdc(r31)
-/* 803570C8  38 A3 2D 00 */	addi r5, r3, __CARDUnlockedHandler@l
+/* 803570C8  38 A3 2D 00 */	addi r5, r3, __CARDUnlockedHandler@l /* 0x80352D00@l */
 /* 803570CC  38 7C 00 00 */	addi r3, r28, 0
 /* 803570D0  38 80 00 00 */	li r4, 0
 /* 803570D4  4B FE CF 55 */	bl EXILock

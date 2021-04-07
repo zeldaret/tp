@@ -5,7 +5,7 @@ lbl_804D5BC0:
 /* 804D5BCC  28 03 00 00 */	cmplwi r3, 0
 /* 804D5BD0  41 82 00 0C */	beq lbl_804D5BDC
 /* 804D5BD4  38 80 00 00 */	li r4, 0
-/* 804D5BD8  4B B4 30 B4 */	b __dt__10fopAc_ac_cFv
+/* 804D5BD8  4B B4 30 B5 */	bl __dt__10fopAc_ac_cFv
 lbl_804D5BDC:
 /* 804D5BDC  38 60 00 01 */	li r3, 1
 /* 804D5BE0  80 01 00 14 */	lwz r0, 0x14(r1)

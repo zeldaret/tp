@@ -3,17 +3,15 @@
 #
 
 M687_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wflag.plf
+M687_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wflag.lcf
+M687_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wflag.map
 
 M687_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_wflag/executor.cpp \
-	rel/d/a/obj/d_a_obj_wflag/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_wflag/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_wflag/d_a_obj_wflag.cpp \
 
 M687_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wflag/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wflag/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wflag/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_wflag/d_a_obj_wflag.o \
 
 M687_LIBS := \
@@ -29,14 +27,21 @@ M687_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M687_LDSCRIPT) \
+	-unused -map $(M687_MAP) \
+	-w off \
 
 $(M687_TARGET): $(M687_O_FILES) $(M687_LIBS)
+	@echo [687] creating $(M687_TARGET)
 	@echo $(M687_LIBS) $(M687_O_FILES) > build/M687_ofiles
-	$(LD) -partial $(M687_LDFLAGS) -o $(M687_TARGET) @build/M687_ofiles
+	@python3 tools/lcf.py rel 687 --output $(M687_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M687_LDFLAGS) -o $(M687_TARGET) @build/M687_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_wflag/%.o: rel/d/a/obj/d_a_obj_wflag/%.cpp
+	@echo [687] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M687_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M687_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -3,17 +3,15 @@
 #
 
 M732_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_pachi.plf
+M732_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_pachi.lcf
+M732_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_pachi.map
 
 M732_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_pachi/executor.cpp \
-	rel/d/a/tag/d_a_tag_pachi/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_pachi/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_pachi/d_a_tag_pachi.cpp \
 
 M732_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_pachi/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_pachi/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_pachi/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_pachi/d_a_tag_pachi.o \
 
 M732_LIBS := \
@@ -29,14 +27,21 @@ M732_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M732_LDSCRIPT) \
+	-unused -map $(M732_MAP) \
+	-w off \
 
 $(M732_TARGET): $(M732_O_FILES) $(M732_LIBS)
+	@echo [732] creating $(M732_TARGET)
 	@echo $(M732_LIBS) $(M732_O_FILES) > build/M732_ofiles
-	$(LD) -partial $(M732_LDFLAGS) -o $(M732_TARGET) @build/M732_ofiles
+	@python3 tools/lcf.py rel 732 --output $(M732_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M732_LDFLAGS) -o $(M732_TARGET) @build/M732_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_pachi/%.o: rel/d/a/tag/d_a_tag_pachi/%.cpp
+	@echo [732] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M732_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M732_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

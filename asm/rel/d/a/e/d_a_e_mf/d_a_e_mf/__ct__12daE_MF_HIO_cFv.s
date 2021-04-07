@@ -1,8 +1,8 @@
 lbl_8070A70C:
-/* 8070A70C  3C 80 80 71 */	lis r4, lit_3828@ha
-/* 8070A710  38 A4 39 74 */	addi r5, r4, lit_3828@l
-/* 8070A714  3C 80 80 71 */	lis r4, __vt__12daE_MF_HIO_c@ha
-/* 8070A718  38 04 3F 14 */	addi r0, r4, __vt__12daE_MF_HIO_c@l
+/* 8070A70C  3C 80 80 71 */	lis r4, lit_3828@ha /* 0x80713974@ha */
+/* 8070A710  38 A4 39 74 */	addi r5, r4, lit_3828@l /* 0x80713974@l */
+/* 8070A714  3C 80 80 71 */	lis r4, __vt__12daE_MF_HIO_c@ha /* 0x80713F14@ha */
+/* 8070A718  38 04 3F 14 */	addi r0, r4, __vt__12daE_MF_HIO_c@l /* 0x80713F14@l */
 /* 8070A71C  90 03 00 00 */	stw r0, 0(r3)
 /* 8070A720  38 00 FF FF */	li r0, -1
 /* 8070A724  98 03 00 04 */	stb r0, 4(r3)

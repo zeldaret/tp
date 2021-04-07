@@ -3,18 +3,18 @@ lbl_8046581C:
 /* 80465820  7C 08 02 A6 */	mflr r0
 /* 80465824  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80465828  39 61 00 30 */	addi r11, r1, 0x30
-/* 8046582C  4B EF C9 B0 */	b _savegpr_29
+/* 8046582C  4B EF C9 B1 */	bl _savegpr_29
 /* 80465830  7C 7D 1B 78 */	mr r29, r3
 /* 80465834  7C 9E 23 78 */	mr r30, r4
-/* 80465838  3C 60 80 46 */	lis r3, lit_4018@ha
-/* 8046583C  3B E3 68 20 */	addi r31, r3, lit_4018@l
-/* 80465840  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80465844  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80465838  3C 60 80 46 */	lis r3, lit_4018@ha /* 0x80466820@ha */
+/* 8046583C  3B E3 68 20 */	addi r31, r3, lit_4018@l /* 0x80466820@l */
+/* 80465840  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80465844  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80465848  80 83 5D AC */	lwz r4, 0x5dac(r3)
 /* 8046584C  38 61 00 08 */	addi r3, r1, 8
 /* 80465850  38 84 04 D0 */	addi r4, r4, 0x4d0
 /* 80465854  38 BD 04 D0 */	addi r5, r29, 0x4d0
-/* 80465858  4B E0 12 DC */	b __mi__4cXyzCFRC3Vec
+/* 80465858  4B E0 12 DD */	bl __mi__4cXyzCFRC3Vec
 /* 8046585C  C0 21 00 08 */	lfs f1, 8(r1)
 /* 80465860  D0 21 00 14 */	stfs f1, 0x14(r1)
 /* 80465864  C0 01 00 0C */	lfs f0, 0xc(r1)
@@ -26,8 +26,8 @@ lbl_8046581C:
 /* 8046587C  C0 1D 06 88 */	lfs f0, 0x688(r29)
 /* 80465880  EC 02 00 32 */	fmuls f0, f2, f0
 /* 80465884  EC 21 00 2A */	fadds f1, f1, f0
-/* 80465888  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8046588C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80465888  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8046588C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80465890  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 80465894  80 03 05 74 */	lwz r0, 0x574(r3)
 /* 80465898  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
@@ -61,7 +61,7 @@ lbl_804658D4:
 /* 804658F8  EC 01 00 28 */	fsubs f0, f1, f0
 /* 804658FC  D0 1E 00 08 */	stfs f0, 8(r30)
 /* 80465900  39 61 00 30 */	addi r11, r1, 0x30
-/* 80465904  4B EF C9 24 */	b _restgpr_29
+/* 80465904  4B EF C9 25 */	bl _restgpr_29
 /* 80465908  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 8046590C  7C 08 03 A6 */	mtlr r0
 /* 80465910  38 21 00 30 */	addi r1, r1, 0x30

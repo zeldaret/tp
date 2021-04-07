@@ -27,8 +27,8 @@ lbl_800DA554:
 /* 800DA5B8  48 00 02 5C */	b lbl_800DA814
 lbl_800DA5BC:
 /* 800DA5BC  38 80 00 88 */	li r4, 0x88
-/* 800DA5C0  3C A0 80 39 */	lis r5, m__22daAlinkHIO_damLarge_c0@ha
-/* 800DA5C4  38 C5 E2 B0 */	addi r6, r5, m__22daAlinkHIO_damLarge_c0@l
+/* 800DA5C0  3C A0 80 39 */	lis r5, m__22daAlinkHIO_damLarge_c0@ha /* 0x8038E2B0@ha */
+/* 800DA5C4  38 C5 E2 B0 */	addi r6, r5, m__22daAlinkHIO_damLarge_c0@l /* 0x8038E2B0@l */
 /* 800DA5C8  C0 26 00 18 */	lfs f1, 0x18(r6)
 /* 800DA5CC  C0 42 93 34 */	lfs f2, lit_7710(r2)
 /* 800DA5D0  38 A0 FF FF */	li r5, -1
@@ -55,8 +55,8 @@ lbl_800DA5FC:
 /* 800DA620  B0 1E 30 08 */	sth r0, 0x3008(r30)
 /* 800DA624  7F C3 F3 78 */	mr r3, r30
 /* 800DA628  7F E4 FB 78 */	mr r4, r31
-/* 800DA62C  3C A0 80 39 */	lis r5, m__20daAlinkHIO_damage_c0@ha
-/* 800DA630  38 A5 E5 4C */	addi r5, r5, m__20daAlinkHIO_damage_c0@l
+/* 800DA62C  3C A0 80 39 */	lis r5, m__20daAlinkHIO_damage_c0@ha /* 0x8038E54C@ha */
+/* 800DA630  38 A5 E5 4C */	addi r5, r5, m__20daAlinkHIO_damage_c0@l /* 0x8038E54C@l */
 /* 800DA634  C0 25 00 50 */	lfs f1, 0x50(r5)
 /* 800DA638  48 02 76 BD */	bl setWaterInAnmRate__9daAlink_cFP16daPy_frameCtrl_cf
 /* 800DA63C  38 00 00 00 */	li r0, 0
@@ -94,8 +94,8 @@ lbl_800DA6A4:
 /* 800DA6B0  28 00 00 09 */	cmplwi r0, 9
 /* 800DA6B4  40 82 00 1C */	bne lbl_800DA6D0
 lbl_800DA6B8:
-/* 800DA6B8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800DA6BC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800DA6B8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800DA6BC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800DA6C0  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 800DA6C4  80 9E 31 84 */	lwz r4, 0x3184(r30)
 /* 800DA6C8  4B F6 DA B5 */	bl cutEnd__16dEvent_manager_cFi

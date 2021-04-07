@@ -23,8 +23,8 @@ lbl_800E6640:
 lbl_800E6644:
 /* 800E6644  38 7E 33 98 */	addi r3, r30, 0x3398
 /* 800E6648  C0 22 92 C0 */	lfs f1, lit_6108(r2)
-/* 800E664C  3C 80 80 39 */	lis r4, m__18daAlinkHIO_move_c0@ha
-/* 800E6650  38 84 D6 BC */	addi r4, r4, m__18daAlinkHIO_move_c0@l
+/* 800E664C  3C 80 80 39 */	lis r4, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 800E6650  38 84 D6 BC */	addi r4, r4, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 800E6654  C0 44 00 38 */	lfs f2, 0x38(r4)
 /* 800E6658  48 18 A0 E9 */	bl cLib_chaseF__FPfff
 /* 800E665C  7F E3 FB 78 */	mr r3, r31

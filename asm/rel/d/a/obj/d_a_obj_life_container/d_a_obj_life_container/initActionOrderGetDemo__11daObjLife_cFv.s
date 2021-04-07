@@ -25,11 +25,11 @@ lbl_804CD8C0:
 /* 804CD91C  7F E3 FB 78 */	mr r3, r31
 /* 804CD920  4B FF F6 8D */	bl endEffect02__11daObjLife_cFv
 /* 804CD924  7F E3 FB 78 */	mr r3, r31
-/* 804CD928  4B B6 A1 3C */	b hide__12daItemBase_cFv
+/* 804CD928  4B B6 A1 3D */	bl hide__12daItemBase_cFv
 /* 804CD92C  7F E3 FB 78 */	mr r3, r31
 /* 804CD930  38 80 00 00 */	li r4, 0
 /* 804CD934  38 A0 00 00 */	li r5, 0
-/* 804CD938  4B B4 E0 98 */	b fopAcM_orderItemEvent__FP10fopAc_ac_cUsUs
+/* 804CD938  4B B4 E0 99 */	bl fopAcM_orderItemEvent__FP10fopAc_ac_cUsUs
 /* 804CD93C  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 804CD940  60 00 00 08 */	ori r0, r0, 8
 /* 804CD944  B0 1F 00 FA */	sth r0, 0xfa(r31)
@@ -40,7 +40,7 @@ lbl_804CD8C0:
 /* 804CD958  7C 06 07 74 */	extsb r6, r0
 /* 804CD95C  38 E0 00 00 */	li r7, 0
 /* 804CD960  39 00 00 00 */	li r8, 0
-/* 804CD964  4B B4 E3 10 */	b fopAcM_createItemForTrBoxDemo__FPC4cXyziiiPC5csXyzPC4cXyz
+/* 804CD964  4B B4 E3 11 */	bl fopAcM_createItemForTrBoxDemo__FPC4cXyziiiPC5csXyzPC4cXyz
 /* 804CD968  90 7F 09 2C */	stw r3, 0x92c(r31)
 /* 804CD96C  38 00 00 01 */	li r0, 1
 /* 804CD970  98 1F 09 34 */	stb r0, 0x934(r31)

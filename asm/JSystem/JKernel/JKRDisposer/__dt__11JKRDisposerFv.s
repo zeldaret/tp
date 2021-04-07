@@ -7,8 +7,8 @@ lbl_802D14E4:
 /* 802D14F8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802D14FC  7C 9F 23 78 */	mr r31, r4
 /* 802D1500  41 82 00 4C */	beq lbl_802D154C
-/* 802D1504  3C 60 80 3D */	lis r3, __vt__11JKRDisposer@ha
-/* 802D1508  38 03 C0 F0 */	addi r0, r3, __vt__11JKRDisposer@l
+/* 802D1504  3C 60 80 3D */	lis r3, __vt__11JKRDisposer@ha /* 0x803CC0F0@ha */
+/* 802D1508  38 03 C0 F0 */	addi r0, r3, __vt__11JKRDisposer@l /* 0x803CC0F0@l */
 /* 802D150C  90 1E 00 00 */	stw r0, 0(r30)
 /* 802D1510  80 7E 00 04 */	lwz r3, 4(r30)
 /* 802D1514  28 03 00 00 */	cmplwi r3, 0

@@ -1,6 +1,6 @@
 lbl_8034B874:
-/* 8034B874  3C 60 80 45 */	lis r3, WaitingQueue@ha
-/* 8034B878  38 63 C9 98 */	addi r3, r3, WaitingQueue@l
+/* 8034B874  3C 60 80 45 */	lis r3, WaitingQueue@ha /* 0x8044C998@ha */
+/* 8034B878  38 63 C9 98 */	addi r3, r3, WaitingQueue@l /* 0x8044C998@l */
 /* 8034B87C  90 63 00 00 */	stw r3, 0(r3)
 /* 8034B880  38 A3 00 08 */	addi r5, r3, 8
 /* 8034B884  38 83 00 10 */	addi r4, r3, 0x10

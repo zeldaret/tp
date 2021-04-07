@@ -3,8 +3,8 @@ lbl_8023E558:
 /* 8023E55C  7C 08 02 A6 */	mflr r0
 /* 8023E560  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8023E564  39 40 00 00 */	li r10, 0
-/* 8023E568  3D 20 80 43 */	lis r9, g_MsgObject_HIO_c@ha
-/* 8023E56C  39 29 02 8C */	addi r9, r9, g_MsgObject_HIO_c@l
+/* 8023E568  3D 20 80 43 */	lis r9, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 8023E56C  39 29 02 8C */	addi r9, r9, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 8023E570  88 09 03 1E */	lbz r0, 0x31e(r9)
 /* 8023E574  28 00 00 00 */	cmplwi r0, 0
 /* 8023E578  41 82 00 08 */	beq lbl_8023E580

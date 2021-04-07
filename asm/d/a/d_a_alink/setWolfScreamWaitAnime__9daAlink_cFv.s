@@ -23,8 +23,8 @@ lbl_80136EC4:
 /* 80136F18  C0 02 92 B8 */	lfs f0, lit_6040(r2)
 /* 80136F1C  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80136F20  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 80136F24  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80136F28  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80136F24  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80136F28  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80136F2C  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 80136F30  38 80 00 05 */	li r4, 5
 /* 80136F34  38 A0 00 01 */	li r5, 1

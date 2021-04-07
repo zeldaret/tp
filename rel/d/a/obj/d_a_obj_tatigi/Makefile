@@ -3,17 +3,15 @@
 #
 
 M653_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tatigi.plf
+M653_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tatigi.lcf
+M653_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tatigi.map
 
 M653_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_tatigi/executor.cpp \
-	rel/d/a/obj/d_a_obj_tatigi/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_tatigi/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_tatigi/d_a_obj_tatigi.cpp \
 
 M653_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tatigi/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tatigi/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tatigi/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tatigi/d_a_obj_tatigi.o \
 
 M653_LIBS := \
@@ -29,14 +27,21 @@ M653_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M653_LDSCRIPT) \
+	-unused -map $(M653_MAP) \
+	-w off \
 
 $(M653_TARGET): $(M653_O_FILES) $(M653_LIBS)
+	@echo [653] creating $(M653_TARGET)
 	@echo $(M653_LIBS) $(M653_O_FILES) > build/M653_ofiles
-	$(LD) -partial $(M653_LDFLAGS) -o $(M653_TARGET) @build/M653_ofiles
+	@python3 tools/lcf.py rel 653 --output $(M653_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M653_LDFLAGS) -o $(M653_TARGET) @build/M653_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tatigi/%.o: rel/d/a/obj/d_a_obj_tatigi/%.cpp
+	@echo [653] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M653_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M653_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

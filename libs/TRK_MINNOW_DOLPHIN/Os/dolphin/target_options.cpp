@@ -24,21 +24,21 @@ SECTION_BSS extern u8 data_8044F828[8];
 // Declarations:
 //
 
-/* 80372180-80372190 0010+00 s=0 e=2 z=0  None .text      GetUseSerialIO */
+/* 80372180-80372190 36CAC0 0010+00 0/0 2/2 0/0 .text            GetUseSerialIO */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GetUseSerialIO() {
+asm void GetUseSerialIO() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/target_options/GetUseSerialIO.s"
 }
 #pragma pop
 
-/* 80372190-8037219C 000C+00 s=0 e=1 z=0  None .text      SetUseSerialIO */
+/* 80372190-8037219C 36CAD0 000C+00 0/0 1/1 0/0 .text            SetUseSerialIO */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void SetUseSerialIO() {
+asm void SetUseSerialIO() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/target_options/SetUseSerialIO.s"
 }

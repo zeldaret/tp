@@ -2,8 +2,8 @@ lbl_801F9FF4:
 /* 801F9FF4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F9FF8  7C 08 02 A6 */	mflr r0
 /* 801F9FFC  90 01 00 14 */	stw r0, 0x14(r1)
-/* 801FA000  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 801FA004  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 801FA000  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801FA004  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801FA008  80 03 00 34 */	lwz r0, 0x34(r3)
 /* 801FA00C  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 801FA010  41 82 00 18 */	beq lbl_801FA028

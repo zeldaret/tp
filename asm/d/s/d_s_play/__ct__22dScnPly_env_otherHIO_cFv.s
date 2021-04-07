@@ -1,6 +1,6 @@
 lbl_80259440:
-/* 80259440  3C 80 80 3C */	lis r4, __vt__22dScnPly_env_otherHIO_c@ha
-/* 80259444  38 04 32 30 */	addi r0, r4, __vt__22dScnPly_env_otherHIO_c@l
+/* 80259440  3C 80 80 3C */	lis r4, __vt__22dScnPly_env_otherHIO_c@ha /* 0x803C3230@ha */
+/* 80259444  38 04 32 30 */	addi r0, r4, __vt__22dScnPly_env_otherHIO_c@l /* 0x803C3230@l */
 /* 80259448  90 03 00 00 */	stw r0, 0(r3)
 /* 8025944C  C0 02 B5 1C */	lfs f0, lit_4055(r2)
 /* 80259450  D0 03 00 04 */	stfs f0, 4(r3)

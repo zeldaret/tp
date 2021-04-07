@@ -15,8 +15,8 @@ lbl_8021E4D8:
 lbl_8021E4E0:
 /* 8021E4E0  54 80 06 3F */	clrlwi. r0, r4, 0x18
 /* 8021E4E4  41 82 00 24 */	beq lbl_8021E508
-/* 8021E4E8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8021E4EC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8021E4E8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8021E4EC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8021E4F0  88 83 00 13 */	lbz r4, 0x13(r3)
 /* 8021E4F4  54 80 06 3E */	clrlwi r0, r4, 0x18
 /* 8021E4F8  28 00 00 FF */	cmplwi r0, 0xff
@@ -26,8 +26,8 @@ lbl_8021E4E0:
 lbl_8021E508:
 /* 8021E508  7F E3 FB 78 */	mr r3, r31
 /* 8021E50C  4B E1 09 A5 */	bl dComIfGs_setSelectEquipClothes__FUc
-/* 8021E510  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8021E514  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8021E510  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8021E514  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8021E518  9B E3 5E 74 */	stb r31, 0x5e74(r3)
 /* 8021E51C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8021E520  80 01 00 14 */	lwz r0, 0x14(r1)

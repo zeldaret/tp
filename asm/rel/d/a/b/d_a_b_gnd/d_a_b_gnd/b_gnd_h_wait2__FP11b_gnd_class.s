@@ -3,10 +3,10 @@ lbl_805F6068:
 /* 805F606C  7C 08 02 A6 */	mflr r0
 /* 805F6070  90 01 00 24 */	stw r0, 0x24(r1)
 /* 805F6074  39 61 00 20 */	addi r11, r1, 0x20
-/* 805F6078  4B D6 C1 60 */	b _savegpr_28
+/* 805F6078  4B D6 C1 61 */	bl _savegpr_28
 /* 805F607C  7C 7E 1B 78 */	mr r30, r3
-/* 805F6080  3C 60 80 60 */	lis r3, lit_3815@ha
-/* 805F6084  3B E3 26 64 */	addi r31, r3, lit_3815@l
+/* 805F6080  3C 60 80 60 */	lis r3, lit_3815@ha /* 0x80602664@ha */
+/* 805F6084  3B E3 26 64 */	addi r31, r3, lit_3815@l /* 0x80602664@l */
 /* 805F6088  C0 3E 0C 38 */	lfs f1, 0xc38(r30)
 /* 805F608C  AB BE 0C 3C */	lha r29, 0xc3c(r30)
 /* 805F6090  80 7E 05 D4 */	lwz r3, 0x5d4(r30)
@@ -36,7 +36,7 @@ lbl_805F60CC:
 /* 805F60E8  48 00 00 2C */	b lbl_805F6114
 lbl_805F60EC:
 /* 805F60EC  C0 3F 00 00 */	lfs f1, 0(r31)
-/* 805F60F0  4B C7 18 64 */	b cM_rndF__Ff
+/* 805F60F0  4B C7 18 65 */	bl cM_rndF__Ff
 /* 805F60F4  C0 1F 00 88 */	lfs f0, 0x88(r31)
 /* 805F60F8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 805F60FC  40 80 00 10 */	bge lbl_805F610C
@@ -90,12 +90,12 @@ lbl_805F619C:
 /* 805F61A8  A8 9E 05 CC */	lha r4, 0x5cc(r30)
 /* 805F61AC  38 A0 00 04 */	li r5, 4
 /* 805F61B0  A8 DE 0C 68 */	lha r6, 0xc68(r30)
-/* 805F61B4  4B C7 A4 54 */	b cLib_addCalcAngleS2__FPssss
+/* 805F61B4  4B C7 A4 55 */	bl cLib_addCalcAngleS2__FPssss
 /* 805F61B8  38 7E 0C 68 */	addi r3, r30, 0xc68
 /* 805F61BC  38 80 04 00 */	li r4, 0x400
 /* 805F61C0  38 A0 00 01 */	li r5, 1
 /* 805F61C4  38 C0 00 80 */	li r6, 0x80
-/* 805F61C8  4B C7 A4 40 */	b cLib_addCalcAngleS2__FPssss
+/* 805F61C8  4B C7 A4 41 */	bl cLib_addCalcAngleS2__FPssss
 lbl_805F61CC:
 /* 805F61CC  80 7E 05 D0 */	lwz r3, 0x5d0(r30)
 /* 805F61D0  38 80 00 01 */	li r4, 1
@@ -143,9 +143,9 @@ lbl_805F6268:
 /* 805F6268  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 805F626C  C0 3F 00 00 */	lfs f1, 0(r31)
 /* 805F6270  FC 40 08 90 */	fmr f2, f1
-/* 805F6274  4B C7 98 0C */	b cLib_addCalc0__FPfff
+/* 805F6274  4B C7 98 0D */	bl cLib_addCalc0__FPfff
 /* 805F6278  39 61 00 20 */	addi r11, r1, 0x20
-/* 805F627C  4B D6 BF A8 */	b _restgpr_28
+/* 805F627C  4B D6 BF A9 */	bl _restgpr_28
 /* 805F6280  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 805F6284  7C 08 03 A6 */	mtlr r0
 /* 805F6288  38 21 00 20 */	addi r1, r1, 0x20

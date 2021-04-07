@@ -2,8 +2,8 @@ lbl_80CC9C64:
 /* 80CC9C64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80CC9C68  7C 08 02 A6 */	mflr r0
 /* 80CC9C6C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80CC9C70  3C 80 80 45 */	lis r4, m_midnaActor__9daPy_py_c@ha
-/* 80CC9C74  38 84 10 18 */	addi r4, r4, m_midnaActor__9daPy_py_c@l
+/* 80CC9C70  3C 80 80 45 */	lis r4, m_midnaActor__9daPy_py_c@ha /* 0x80451018@ha */
+/* 80CC9C74  38 84 10 18 */	addi r4, r4, m_midnaActor__9daPy_py_c@l /* 0x80451018@l */
 /* 80CC9C78  80 84 00 00 */	lwz r4, 0(r4)
 /* 80CC9C7C  28 04 00 00 */	cmplwi r4, 0
 /* 80CC9C80  40 82 00 0C */	bne lbl_80CC9C8C

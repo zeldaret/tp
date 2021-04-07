@@ -7,8 +7,8 @@ lbl_80AC6F74:
 /* 80AC6F88  80 01 00 28 */	lwz r0, 0x28(r1)
 /* 80AC6F8C  90 01 00 08 */	stw r0, 8(r1)
 /* 80AC6F90  4B FF F7 4D */	bl __ct__8daNpcT_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc
-/* 80AC6F94  3C 60 80 AC */	lis r3, __vt__12daNpc_seiB_c@ha
-/* 80AC6F98  38 03 73 64 */	addi r0, r3, __vt__12daNpc_seiB_c@l
+/* 80AC6F94  3C 60 80 AC */	lis r3, __vt__12daNpc_seiB_c@ha /* 0x80AC7364@ha */
+/* 80AC6F98  38 03 73 64 */	addi r0, r3, __vt__12daNpc_seiB_c@l /* 0x80AC7364@l */
 /* 80AC6F9C  90 1F 0E 3C */	stw r0, 0xe3c(r31)
 /* 80AC6FA0  7F E3 FB 78 */	mr r3, r31
 /* 80AC6FA4  83 E1 00 1C */	lwz r31, 0x1c(r1)

@@ -2,10 +2,10 @@ lbl_80BAF750:
 /* 80BAF750  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80BAF754  7C 08 02 A6 */	mflr r0
 /* 80BAF758  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80BAF75C  3C 80 80 BB */	lis r4, cNullVec__6Z2Calc@ha
-/* 80BAF760  38 E4 3A 74 */	addi r7, r4, cNullVec__6Z2Calc@l
-/* 80BAF764  3C 80 80 BB */	lis r4, struct_80BB3F24+0x3@ha
-/* 80BAF768  38 C4 3F 27 */	addi r6, r4, struct_80BB3F24+0x3@l
+/* 80BAF75C  3C 80 80 BB */	lis r4, cNullVec__6Z2Calc@ha /* 0x80BB3A74@ha */
+/* 80BAF760  38 E4 3A 74 */	addi r7, r4, cNullVec__6Z2Calc@l /* 0x80BB3A74@l */
+/* 80BAF764  3C 80 80 BB */	lis r4, struct_80BB3F24+0x3@ha /* 0x80BB3F27@ha */
+/* 80BAF768  38 C4 3F 27 */	addi r6, r4, struct_80BB3F24+0x3@l /* 0x80BB3F27@l */
 /* 80BAF76C  88 06 00 00 */	lbz r0, 0(r6)
 /* 80BAF770  7C 00 07 75 */	extsb. r0, r0
 /* 80BAF774  40 82 00 70 */	bne lbl_80BAF7E4
@@ -41,7 +41,7 @@ lbl_80BAF7E4:
 /* 80BAF7E8  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 80BAF7EC  39 87 02 10 */	addi r12, r7, 0x210
 /* 80BAF7F0  7D 8C 02 14 */	add r12, r12, r0
-/* 80BAF7F4  4B 7B 28 90 */	b __ptmf_scall
+/* 80BAF7F4  4B 7B 28 91 */	bl __ptmf_scall
 /* 80BAF7F8  60 00 00 00 */	nop 
 /* 80BAF7FC  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80BAF800  7C 08 03 A6 */	mtlr r0

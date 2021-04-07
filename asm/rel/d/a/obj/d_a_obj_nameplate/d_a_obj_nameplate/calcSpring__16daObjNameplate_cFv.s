@@ -9,46 +9,46 @@ lbl_805945CC:
 /* 805945E8  7C 03 02 14 */	add r0, r3, r0
 /* 805945EC  B0 1F 07 78 */	sth r0, 0x778(r31)
 /* 805945F0  A8 1F 07 78 */	lha r0, 0x778(r31)
-/* 805945F4  3C 60 80 59 */	lis r3, lit_3791@ha
-/* 805945F8  C8 23 4F 04 */	lfd f1, lit_3791@l(r3)
+/* 805945F4  3C 60 80 59 */	lis r3, lit_3791@ha /* 0x80594F04@ha */
+/* 805945F8  C8 23 4F 04 */	lfd f1, lit_3791@l(r3)  /* 0x80594F04@l */
 /* 805945FC  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 80594600  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80594604  3C 00 43 30 */	lis r0, 0x4330
 /* 80594608  90 01 00 08 */	stw r0, 8(r1)
 /* 8059460C  C8 01 00 08 */	lfd f0, 8(r1)
 /* 80594610  EC 20 08 28 */	fsubs f1, f0, f1
-/* 80594614  3C 60 80 59 */	lis r3, M_attr__16daObjNameplate_c@ha
-/* 80594618  38 63 4E 74 */	addi r3, r3, M_attr__16daObjNameplate_c@l
+/* 80594614  3C 60 80 59 */	lis r3, M_attr__16daObjNameplate_c@ha /* 0x80594E74@ha */
+/* 80594618  38 63 4E 74 */	addi r3, r3, M_attr__16daObjNameplate_c@l /* 0x80594E74@l */
 /* 8059461C  C0 03 00 10 */	lfs f0, 0x10(r3)
 /* 80594620  EC 21 00 32 */	fmuls f1, f1, f0
 /* 80594624  A8 9F 07 7A */	lha r4, 0x77a(r31)
 /* 80594628  7C 80 07 35 */	extsh. r0, r4
 /* 8059462C  40 81 00 14 */	ble lbl_80594640
-/* 80594630  3C 60 80 59 */	lis r3, lit_3718@ha
-/* 80594634  C0 03 4E F4 */	lfs f0, lit_3718@l(r3)
+/* 80594630  3C 60 80 59 */	lis r3, lit_3718@ha /* 0x80594EF4@ha */
+/* 80594634  C0 03 4E F4 */	lfs f0, lit_3718@l(r3)  /* 0x80594EF4@l */
 /* 80594638  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8059463C  41 80 00 1C */	blt lbl_80594658
 lbl_80594640:
 /* 80594640  7C 80 07 35 */	extsh. r0, r4
 /* 80594644  40 80 00 1C */	bge lbl_80594660
-/* 80594648  3C 60 80 59 */	lis r3, lit_3718@ha
-/* 8059464C  C0 03 4E F4 */	lfs f0, lit_3718@l(r3)
+/* 80594648  3C 60 80 59 */	lis r3, lit_3718@ha /* 0x80594EF4@ha */
+/* 8059464C  C0 03 4E F4 */	lfs f0, lit_3718@l(r3)  /* 0x80594EF4@l */
 /* 80594650  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80594654  40 81 00 0C */	ble lbl_80594660
 lbl_80594658:
-/* 80594658  3C 60 80 59 */	lis r3, lit_3718@ha
-/* 8059465C  C0 23 4E F4 */	lfs f1, lit_3718@l(r3)
+/* 80594658  3C 60 80 59 */	lis r3, lit_3718@ha /* 0x80594EF4@ha */
+/* 8059465C  C0 23 4E F4 */	lfs f1, lit_3718@l(r3)  /* 0x80594EF4@l */
 lbl_80594660:
 /* 80594660  C0 1F 07 1C */	lfs f0, 0x71c(r31)
 /* 80594664  EC 20 08 2A */	fadds f1, f0, f1
-/* 80594668  3C 60 80 59 */	lis r3, M_attr__16daObjNameplate_c@ha
-/* 8059466C  38 63 4E 74 */	addi r3, r3, M_attr__16daObjNameplate_c@l
+/* 80594668  3C 60 80 59 */	lis r3, M_attr__16daObjNameplate_c@ha /* 0x80594E74@ha */
+/* 8059466C  38 63 4E 74 */	addi r3, r3, M_attr__16daObjNameplate_c@l /* 0x80594E74@l */
 /* 80594670  C0 03 00 14 */	lfs f0, 0x14(r3)
 /* 80594674  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80594678  D0 1F 07 1C */	stfs f0, 0x71c(r31)
 /* 8059467C  A8 1F 07 78 */	lha r0, 0x778(r31)
-/* 80594680  3C 60 80 59 */	lis r3, lit_3791@ha
-/* 80594684  C8 23 4F 04 */	lfd f1, lit_3791@l(r3)
+/* 80594680  3C 60 80 59 */	lis r3, lit_3791@ha /* 0x80594F04@ha */
+/* 80594684  C8 23 4F 04 */	lfd f1, lit_3791@l(r3)  /* 0x80594F04@l */
 /* 80594688  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 8059468C  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80594690  3C 00 43 30 */	lis r0, 0x4330
@@ -62,17 +62,17 @@ lbl_80594660:
 /* 805946B0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 805946B4  B0 1F 07 78 */	sth r0, 0x778(r31)
 /* 805946B8  A8 7F 07 78 */	lha r3, 0x778(r31)
-/* 805946BC  4B DD 0A 14 */	b abs
-/* 805946C0  3C 80 80 59 */	lis r4, lit_3791@ha
-/* 805946C4  C8 24 4F 04 */	lfd f1, lit_3791@l(r4)
+/* 805946BC  4B DD 0A 15 */	bl abs
+/* 805946C0  3C 80 80 59 */	lis r4, lit_3791@ha /* 0x80594F04@ha */
+/* 805946C4  C8 24 4F 04 */	lfd f1, lit_3791@l(r4)  /* 0x80594F04@l */
 /* 805946C8  6C 60 80 00 */	xoris r0, r3, 0x8000
 /* 805946CC  90 01 00 1C */	stw r0, 0x1c(r1)
 /* 805946D0  3C 00 43 30 */	lis r0, 0x4330
 /* 805946D4  90 01 00 18 */	stw r0, 0x18(r1)
 /* 805946D8  C8 01 00 18 */	lfd f0, 0x18(r1)
 /* 805946DC  EC 20 08 28 */	fsubs f1, f0, f1
-/* 805946E0  3C 60 80 59 */	lis r3, M_attr__16daObjNameplate_c@ha
-/* 805946E4  38 63 4E 74 */	addi r3, r3, M_attr__16daObjNameplate_c@l
+/* 805946E0  3C 60 80 59 */	lis r3, M_attr__16daObjNameplate_c@ha /* 0x80594E74@ha */
+/* 805946E4  38 63 4E 74 */	addi r3, r3, M_attr__16daObjNameplate_c@l /* 0x80594E74@l */
 /* 805946E8  C0 03 00 04 */	lfs f0, 4(r3)
 /* 805946EC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 805946F0  40 81 00 40 */	ble lbl_80594730

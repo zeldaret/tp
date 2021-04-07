@@ -4,17 +4,17 @@ lbl_80ACFA44:
 /* 80ACFA4C  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80ACFA50  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80ACFA54  7C 7F 1B 78 */	mr r31, r3
-/* 80ACFA58  3C 60 80 AD */	lis r3, lit_4926@ha
-/* 80ACFA5C  C8 23 FE C8 */	lfd f1, lit_4926@l(r3)
+/* 80ACFA58  3C 60 80 AD */	lis r3, lit_4926@ha /* 0x80ACFEC8@ha */
+/* 80ACFA5C  C8 23 FE C8 */	lfd f1, lit_4926@l(r3)  /* 0x80ACFEC8@l */
 /* 80ACFA60  6C 80 80 00 */	xoris r0, r4, 0x8000
 /* 80ACFA64  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80ACFA68  3C 00 43 30 */	lis r0, 0x4330
 /* 80ACFA6C  90 01 00 08 */	stw r0, 8(r1)
 /* 80ACFA70  C8 01 00 08 */	lfd f0, 8(r1)
 /* 80ACFA74  EC 20 08 28 */	fsubs f1, f0, f1
-/* 80ACFA78  4B 79 7E DC */	b cM_rndF__Ff
-/* 80ACFA7C  3C 60 80 AD */	lis r3, lit_4926@ha
-/* 80ACFA80  C8 43 FE C8 */	lfd f2, lit_4926@l(r3)
+/* 80ACFA78  4B 79 7E DD */	bl cM_rndF__Ff
+/* 80ACFA7C  3C 60 80 AD */	lis r3, lit_4926@ha /* 0x80ACFEC8@ha */
+/* 80ACFA80  C8 43 FE C8 */	lfd f2, lit_4926@l(r3)  /* 0x80ACFEC8@l */
 /* 80ACFA84  6F E0 80 00 */	xoris r0, r31, 0x8000
 /* 80ACFA88  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80ACFA8C  3C 00 43 30 */	lis r0, 0x4330

@@ -10,8 +10,8 @@ lbl_801F7D94:
 /* 801F7DB4  80 03 00 04 */	lwz r0, 4(r3)
 /* 801F7DB8  2C 00 00 01 */	cmpwi r0, 1
 /* 801F7DBC  40 82 01 50 */	bne lbl_801F7F0C
-/* 801F7DC0  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 801F7DC4  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 801F7DC0  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801F7DC4  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801F7DC8  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 801F7DCC  54 60 05 AD */	rlwinm. r0, r3, 0, 0x16, 0x16
 /* 801F7DD0  41 82 00 20 */	beq lbl_801F7DF0

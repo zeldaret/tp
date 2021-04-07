@@ -6,8 +6,8 @@ lbl_80C7FF78:
 /* 80C7FF88  B0 03 09 DA */	sth r0, 0x9da(r3)
 /* 80C7FF8C  A8 03 09 D8 */	lha r0, 0x9d8(r3)
 /* 80C7FF90  B0 03 09 DA */	sth r0, 0x9da(r3)
-/* 80C7FF94  3C 80 80 C8 */	lis r4, lit_4173@ha
-/* 80C7FF98  C0 04 1C 54 */	lfs f0, lit_4173@l(r4)
+/* 80C7FF94  3C 80 80 C8 */	lis r4, lit_4173@ha /* 0x80C81C54@ha */
+/* 80C7FF98  C0 04 1C 54 */	lfs f0, lit_4173@l(r4)  /* 0x80C81C54@l */
 /* 80C7FF9C  80 83 05 AC */	lwz r4, 0x5ac(r3)
 /* 80C7FFA0  D0 04 00 0C */	stfs f0, 0xc(r4)
 /* 80C7FFA4  80 83 05 B0 */	lwz r4, 0x5b0(r3)

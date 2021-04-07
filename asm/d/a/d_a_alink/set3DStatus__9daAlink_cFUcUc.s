@@ -1,6 +1,6 @@
 lbl_800D0164:
-/* 800D0164  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D0168  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D0164  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D0168  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D016C  98 83 5E 26 */	stb r4, 0x5e26(r3)
 /* 800D0170  98 A3 5E 2D */	stb r5, 0x5e2d(r3)
 /* 800D0174  38 00 00 00 */	li r0, 0

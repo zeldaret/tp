@@ -23,6 +23,11 @@ import hashlib
 import json
 import git
 import libdol
+import librel
+import libarc
+import yaz0
+import struct
+import io
 
 from pathlib import Path
 from rich.logging import RichHandler
@@ -46,6 +51,13 @@ logging.basicConfig(
 LOG = logging.getLogger("rich")
 LOG.setLevel(logging.INFO)
 
+loggers = [logging.getLogger(name) for name in logging.root.manager.loggerDict]
+for logger in loggers:
+    logger.setLevel(logging.INFO)
+
+DEFAULT_GAME_PATH = Path("game")
+DEFAULT_BUILD_PATH = Path("build/dolzel2")
+
 @click.group()
 @click.version_option(VERSION)
 def tp():
@@ -63,8 +75,37 @@ def progress(debug, matchning, format):
     if debug:
         LOG.setLevel(logging.DEBUG)
 
+    text = Text("--- Progress")
+    text.stylize("bold magenta")
+    CONSOLE.print(text)
+
     calculate_progress(matchning, format)
 
+@tp.command(name="check")
+@click.option('--debug/--no-debug')
+@click.option('--game-path', default=DEFAULT_GAME_PATH, required=True)
+@click.option('--build-path', default=DEFAULT_BUILD_PATH, required=True)
+def check(debug, game_path, build_path):
+    """ Compare SHA1 Checksums """
+
+    if debug:
+        LOG.setLevel(logging.DEBUG)
+
+    text = Text("--- Check")
+    text.stylize("bold magenta")
+    CONSOLE.print(text)
+
+    try:
+        check_sha1(game_path, build_path)
+        text = Text("    OK")
+        text.stylize("bold green")
+        CONSOLE.print(text)
+    except CheckException as e:
+        LOG.error(e)
+        text = Text("    ERR")
+        text.stylize("bold red")
+        CONSOLE.print(text)
+        sys.exit(1)
 
 def calculate_progress(matchning, format):
     if not matchning:
@@ -85,6 +126,15 @@ def calculate_progress(matchning, format):
     total_size = len(data)
     format_size = 0x100
 
+
+    # assume everything is decompiled
+    sections = dict([
+        (section.name, [section.aligned_size, section.aligned_size, section.addr])
+        for section in dol.sections
+        if section.data
+    ])
+
+
     init = dol.get_named_section(".init")
     assert init
     init_decompiled_size = init.size
@@ -93,16 +143,8 @@ def calculate_progress(matchning, format):
     assert text
     text_decompiled_size = text.size
 
-    data_sections = [
-        section
-        for section in dol.sections
-        if section.data and not section.addr in {init.addr, text.addr}
-    ]
-
-    data_size = sum([section.size for section in data_sections])
-
     # find all _used_ asm files
-    asm_files = find_used_asm_files(not matchning)
+    asm_files = find_used_asm_files(not matchning, use_progress_bar=(format == "FANCY"))
 
     # calculate the range each asm file occupies
     ranges = find_function_ranges(asm_files)
@@ -113,20 +155,12 @@ def calculate_progress(matchning, format):
     # substract the size of each asm function
     for function_range in ranges:
         if function_range[0] >= init.addr and function_range[1] < init.addr + init.size:
-            init_decompiled_size -= (function_range[1] - function_range[0])
+            sections[".init"][0] -= (function_range[1] - function_range[0])
         elif function_range[0] >= text.addr and function_range[1] < text.addr + text.size:
-            text_decompiled_size -= (function_range[1] - function_range[0])
+            sections[".text"][0]-= (function_range[1] - function_range[0])
 
-    # calculate the progress
-    init_result = init_decompiled_size / init.size
-    text_result = text_decompiled_size / text.size
-    total_decompiled_size = (init_decompiled_size +
-                             text_decompiled_size + data_size + format_size)
-    total_result = total_decompiled_size / total_size
-
-    init_pct = 100 * init_result
-    text_pct = 100 * text_result
-    total_pct = 100 * total_result
+    total_decompiled_size = format_size + sum([info[0] for info in sections.values()])
+    total_pct = 100 * (total_decompiled_size / total_size)
 
     if format == "FANCY":
         table = Table(title="main.dol")
@@ -138,12 +172,13 @@ def calculate_progress(matchning, format):
         table.add_column("Total (bytes)", justify="right",
                          style="bright_magenta")
 
-        table.add_row(".init", f"{init_pct:10.6f}%",
-                      f"{init_decompiled_size}", f"{init.size}")
-        table.add_row(".text", f"{text_pct:10.6f}%",
-                      f"{text_decompiled_size}", f"{text.size}")
-        table.add_row("total", f"{total_pct:10.6f}%",
-                      f"{total_decompiled_size}", f"{total_size}")
+        for name, info in sections.items():
+            pct = 100 * (info[0] / info[1])
+            table.add_row(name, f"{pct:10.6f}%", f"{info[0]}", f"{info[1]}")
+
+        table.add_row("", "", "", "")
+        table.add_row("total", f"{total_pct:10.6f}%", f"{total_decompiled_size}", f"{total_size}")
+        
         CONSOLE.print(table)
     elif format == "CSV":
         version = 1
@@ -152,8 +187,8 @@ def calculate_progress(matchning, format):
         git_hash = git_object.hexsha
         data = [
             str(version), timestamp, git_hash,
-            str(init_decompiled_size), str(init.size),
-            str(text_decompiled_size), str(text.size),
+            str(sections[".init"][0]), str(sections[".init"][1]),
+            str(sections[".text"][0]), str(sections[".text"][1]),
             str(total_decompiled_size), str(total_size),
 
         ]
@@ -167,9 +202,10 @@ def calculate_progress(matchning, format):
             "color": 'yellow',
         }))
     else:
+        init_pct = 100 * (sections[".init"][0] / sections[".init"][1])
+        text_pct = 100 * (sections[".text"][0] / sections[".text"][1])
         print(init_pct, text_pct, total_pct)
         LOG.error("unknown format: '{format}'")
-
 
 def find_function_ranges(asm_files):
     function_ranges = []
@@ -195,11 +231,12 @@ def find_function_ranges(asm_files):
 
     return function_ranges
 
-
 @tp.command(name="pull-request")
 @click.option('--debug/--no-debug')
-@click.option('--thread-count', '-j', 'thread_count', help="Thread that should be used. This option is passed forward to any 'make' command.", default=4)
-def pull_request(debug, thread_count):
+@click.option('--thread-count', '-j', 'thread_count', help="This option is passed forward to all 'make' commands.", default=4)
+@click.option('--game-path', default=DEFAULT_GAME_PATH, required=True)
+@click.option('--build-path', default=DEFAULT_BUILD_PATH, required=True)
+def pull_request(debug, thread_count, game_path, build_path):
     """ Verify that everything is OK before pull-request """
 
     if debug:
@@ -234,6 +271,23 @@ def pull_request(debug, thread_count):
         text.stylize("bold green")
         CONSOLE.print(text)
     else:
+        text = Text("    ERR")
+        text.stylize("bold red")
+        CONSOLE.print(text)
+        sys.exit(1)
+
+    #
+    text = Text("--- Check")
+    text.stylize("bold magenta")
+    CONSOLE.print(text)
+
+    try:
+        check_sha1(game_path, build_path)
+        text = Text("    OK")
+        text.stylize("bold green")
+        CONSOLE.print(text)
+    except CheckException as e:
+        LOG.error(e)
         text = Text("    ERR")
         text.stylize("bold red")
         CONSOLE.print(text)
@@ -390,22 +444,26 @@ def find_includes(lines, non_matching, ext=".s"):
     return includes
 
 
-def find_used_asm_files(non_matching):
+def find_used_asm_files(non_matching, use_progress_bar=True):
 
     cpp_files = find_all_cpp_files()
     includes = set()
 
-    with Progress(console=CONSOLE, transient=True, refresh_per_second=1) as progress:
-        task = progress.add_task(f"preprocessing...", total=len(cpp_files))
+    if use_progress_bar:
+        with Progress(console=CONSOLE, transient=True, refresh_per_second=1) as progress:
+            task = progress.add_task(f"preprocessing...", total=len(cpp_files))
 
+            for cpp_file in cpp_files:
+                with cpp_file.open("r") as file:
+                    includes.update(find_includes(file.readlines(), non_matching))
+
+                progress.update(task, advance=1)
+    else:
         for cpp_file in cpp_files:
             with cpp_file.open("r") as file:
                 includes.update(find_includes(file.readlines(), non_matching))
 
-            progress.update(task, advance=1)
-
     # TODO: NON_MATCHING
-
     LOG.debug(f"find_used_asm_files: found {len(includes)} included .s files")
 
     return includes
@@ -441,46 +499,149 @@ def clang_format(thread_count):
 
     return True
 
-
 def rebuild(thread_count):
     LOG.debug("make clean")
     with Progress(console=CONSOLE, transient=True, refresh_per_second=5) as progress:
         task = progress.add_task(f"make clean", total=1000, start=False)
 
         cmd = ["make", f"-j{thread_count}", "clean"]
-        subprocess.run(args=cmd, stdout=subprocess.PIPE,
+        result = subprocess.run(args=cmd, stdout=subprocess.PIPE,
                        stderr=subprocess.PIPE)
         LOG.debug("make clean complete")
+        if result.returncode != 0:
+            return False
 
     LOG.debug("make main.dol")
     with Progress(console=CONSOLE, transient=True, refresh_per_second=5) as progress:
         task = progress.add_task(f"make", total=1000, start=False)
 
         cmd = ["make", f"-j{thread_count}", "build/dolzel2/main.dol"]
-        subprocess.run(args=cmd, stdout=subprocess.PIPE,
+        result = subprocess.run(args=cmd, stdout=subprocess.PIPE,
                        stderr=subprocess.PIPE)
         LOG.debug("make main.dol complete")
+        if result.returncode != 0:
+            return False
 
-    dol = Path("build/dolzel2/main.dol")
-    if not dol.exists():
-        return False
+    LOG.debug("make RELs")
+    with Progress(console=CONSOLE, transient=True, refresh_per_second=5) as progress:
+        task = progress.add_task(f"make rels", total=1000, start=False)
 
-    with dol.open("rb") as file:
-        data = file.read()
+        cmd = ["make", f"-j{thread_count}", "rels"]
+        result = subprocess.run(args=cmd, stdout=subprocess.PIPE,
+                       stderr=subprocess.PIPE)
+        LOG.debug("make RELs complete")
+        if result.returncode != 0:
+            return False
 
-    # TODO: move?
-    expected = "4997D93B9692620C40E90374A0F1DBF0E4889395"
+    return True
 
+
+def sha1_from_data(data):
     sha1 = hashlib.sha1()
     sha1.update(data)
-    current = sha1.hexdigest().upper()
 
-    LOG.debug(f"expected: '{expected}'")
-    LOG.debug(f"current:  '{current}'")
+    return sha1.hexdigest().upper()
 
-    if expected != current:
-        LOG.error("main.dol is not OK!")
-        return False
+def get_files_with_ext(path, ext):
+    return [x for x in path.glob(f"**/*{ext}") if x.is_file()]
+
+class CheckException(Exception):
+    ...
+
+def check_sha1(game_path, build_path):
+        
+    dol_path = game_path.joinpath("main.dol")
+    if not dol_path.exists():
+        raise CheckException(f"File not found: '{dol_path}'")
+
+    rel_path = game_path.joinpath("rel/Final/Release")
+    if not rel_path.exists():
+        raise CheckException(f"Path not found: '{rel_path}'")
+
+    rels_path = get_files_with_ext(rel_path, ".rel")
+    rels_archive_path = game_path.joinpath("RELS.arc")
+    if not rels_archive_path.exists():
+        raise CheckException(f"File not found: '{rels_archive_path}'")
+
+    LOG.debug(f"DOL Path: '{dol_path}'")
+    LOG.debug(f"RELs Path: '{rel_path}' (found {len(rels_path)} RELs)")
+    LOG.debug(f"RELs Archive Path: '{rels_archive_path}'")
+
+    EXPECTED = {}
+    with dol_path.open('rb') as file:
+        data = file.read()
+        EXPECTED[0] = (str(dol_path), sha1_from_data(data),sha1_from_data(data),)
+
+    for rel_filepath in rels_path:
+        with rel_filepath.open('rb') as file:
+            data = bytearray(file.read())
+            yaz0_data = data
+            if struct.unpack('>I', data[:4])[0] == 0x59617A30:
+                data = yaz0.decompress(io.BytesIO(data))
+
+            rel = librel.read(data)
+            EXPECTED[rel.index] = (str(rel_filepath), sha1_from_data(yaz0_data),sha1_from_data(data),)
+
+    with rels_archive_path.open('rb') as file:
+        rarc = libarc.read(file.read())
+        for depth, file in rarc.files_and_folders:
+            if not isinstance(file, libarc.File):
+                continue
+
+            if file.name.endswith(".rel"):
+                data = file.data
+                yaz0_data = data
+                if struct.unpack('>I', data[:4])[0] == 0x59617A30:
+                    data = yaz0.decompress(io.BytesIO(data))
+
+                xxx_path = Path('build').joinpath(file.name)
+                with xxx_path.open('wb') as write_file:
+                    write_file.write(data)
+
+                rel = librel.read(data)
+                EXPECTED[rel.index] = (file.name, sha1_from_data(yaz0_data),sha1_from_data(data),)
+
+    if not build_path.exists():
+        raise CheckException(f"Path not found: '{build_path}'")
+
+    build_dol_path = build_path.joinpath("main.dol")
+    if not build_dol_path.exists():
+        raise CheckException(f"File not found: '{build_dol_path}'")
+
+    build_rels_path = get_files_with_ext(build_path, ".rel")
+
+    CURRENT = {}
+    with build_dol_path.open('rb') as file:
+        data = file.read()
+        CURRENT[0] = (str(build_dol_path), sha1_from_data(data),sha1_from_data(data),)
+
+    for rel_filepath in build_rels_path:
+        with rel_filepath.open('rb') as file:
+            data = bytearray(file.read())
+            yaz0_data = data
+            if struct.unpack('>I', data[:4])[0] == 0x59617A30:
+                data = yaz0.decompress(io.BytesIO(data))
+            
+            rel = librel.read(data)
+            CURRENT[rel.index] = (str(rel_filepath), sha1_from_data(yaz0_data),sha1_from_data(data),)
+
+    expected_keys = set(EXPECTED.keys())
+    current_keys = set(CURRENT.keys())
+    match = expected_keys - current_keys
+    if len(match) > 0:
+        raise CheckException(f"Missing RELs (expected: {len(expected_keys)}, found: {len(current_keys)})")
+
+    errors = 0
+    for key in expected_keys:
+        if key in current_keys:
+            expected = EXPECTED[key]
+            current = CURRENT[key]
+            if current[2] != expected[2]:
+                errors += 1
+                LOG.error(f"{current[2]} {expected[2]} {current[0]} ({expected[0]})")
+
+    if errors > 0:
+        raise CheckException("NO MATCH!")
 
     return True
 

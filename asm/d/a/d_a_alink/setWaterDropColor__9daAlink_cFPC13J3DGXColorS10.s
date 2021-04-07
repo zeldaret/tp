@@ -157,8 +157,8 @@ lbl_800CC490:
 /* 800CC5BC  4E 80 04 21 */	bctrl 
 /* 800CC5C0  48 00 02 04 */	b lbl_800CC7C4
 lbl_800CC5C4:
-/* 800CC5C4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800CC5C8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800CC5C4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800CC5C8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800CC5CC  88 03 00 13 */	lbz r0, 0x13(r3)
 /* 800CC5D0  28 00 00 2E */	cmplwi r0, 0x2e
 /* 800CC5D4  40 82 00 84 */	bne lbl_800CC658

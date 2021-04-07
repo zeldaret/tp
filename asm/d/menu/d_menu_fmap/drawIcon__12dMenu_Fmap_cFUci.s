@@ -7,8 +7,8 @@ lbl_801CD10C:
 /* 801CD120  7C 7A 1B 78 */	mr r26, r3
 /* 801CD124  7C 9B 23 78 */	mr r27, r4
 /* 801CD128  7C BC 2B 78 */	mr r28, r5
-/* 801CD12C  3C 80 80 3A */	lis r4, __vt__19dMenuFmapIconDisp_c@ha
-/* 801CD130  38 04 7D 74 */	addi r0, r4, __vt__19dMenuFmapIconDisp_c@l
+/* 801CD12C  3C 80 80 3A */	lis r4, __vt__19dMenuFmapIconDisp_c@ha /* 0x803A7D74@ha */
+/* 801CD130  38 04 7D 74 */	addi r0, r4, __vt__19dMenuFmapIconDisp_c@l /* 0x803A7D74@l */
 /* 801CD134  90 01 00 4C */	stw r0, 0x4c(r1)
 /* 801CD138  8B AD 87 E4 */	lbz r29, struct_80450D64+0x0(r13)
 /* 801CD13C  7F BD 07 74 */	extsb r29, r29

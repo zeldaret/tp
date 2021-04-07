@@ -85,11 +85,6 @@ extern "C" extern char const* const msg_scrn_d_msg_scrn_boss__stringBase0;
 // External References:
 //
 
-void mDoExt_getRubyFont();
-void dPaneClass_showNullPane(J2DScreen*);
-void* operator new(u32);
-void operator delete(void*);
-
 extern "C" void mDoExt_getRubyFont__Fv();
 extern "C" void setSelectRubyString__14dMsgScrnBase_cFPcPcPc();
 extern "C" void setSelectString__14dMsgScrnBase_cFPcPcPc();
@@ -132,17 +127,7 @@ extern "C" extern u8 g_MsgObject_HIO_c[1040];
 //
 
 /* ############################################################################################## */
-/* 803998F8-80399910 0015+03 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_803998F8 = "zelda_boss_name.blo";
-SECTION_DEAD char const* const stringBase_8039990C = "";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039990D = "\0\0";
-#pragma pop
-
-/* 803C0DB0-803C0DE8 0038+00 s=1 e=0 z=0  None .data      t_tag$3759 */
+/* 803C0DB0-803C0DE8 01DED0 0038+00 1/1 0/0 0/0 .data            t_tag$3759 */
 SECTION_DATA static u8 t_tag[56] = {
     0x00, 0x73, 0x66, 0x6F, 0x6E, 0x74, 0x62, 0x30, 0x00, 0x73, 0x66, 0x6F, 0x6E, 0x74,
     0x62, 0x31, 0x00, 0x73, 0x66, 0x6F, 0x6E, 0x74, 0x62, 0x32, 0x00, 0x73, 0x66, 0x6F,
@@ -150,9 +135,9 @@ SECTION_DATA static u8 t_tag[56] = {
     0x66, 0x6F, 0x6E, 0x74, 0x6C, 0x32, 0x00, 0x73, 0x66, 0x6F, 0x6E, 0x74, 0x30, 0x30,
 };
 
-/* 803C0DE8-803C0E40 0058+00 s=2 e=0 z=0  None .data      __vt__14dMsgScrnBoss_c */
-SECTION_DATA static void* __vt__14dMsgScrnBoss_c[22] = {
-    (void*)NULL,
+/* 803C0DE8-803C0E40 01DF08 0058+00 2/2 0/0 0/0 .data            __vt__14dMsgScrnBoss_c */
+SECTION_DATA extern void* __vt__14dMsgScrnBoss_c[22] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__14dMsgScrnBase_cFv,
     (void*)__dt__14dMsgScrnBoss_cFv,
@@ -176,10 +161,10 @@ SECTION_DATA static void* __vt__14dMsgScrnBoss_c[22] = {
     (void*)fukiPosCalc__14dMsgScrnBase_cFUc,
 };
 
-/* 80454BB0-80454BB4 0004+00 s=3 e=0 z=0  None .sdata2    @3854 */
+/* 80454BB0-80454BB4 0031B0 0004+00 3/3 0/0 0/0 .sdata2          @3854 */
 SECTION_SDATA2 static f32 lit_3854 = 1.0f;
 
-/* 8023C5C8-8023C928 0360+00 s=0 e=1 z=0  None .text      __ct__14dMsgScrnBoss_cFv */
+/* 8023C5C8-8023C928 236F08 0360+00 0/0 1/1 0/0 .text            __ct__14dMsgScrnBoss_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -189,7 +174,7 @@ asm dMsgScrnBoss_c::dMsgScrnBoss_c() {
 }
 #pragma pop
 
-/* 8023C928-8023CA88 0160+00 s=1 e=0 z=0  None .text      __dt__14dMsgScrnBoss_cFv */
+/* 8023C928-8023CA88 237268 0160+00 1/0 0/0 0/0 .text            __dt__14dMsgScrnBoss_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -199,7 +184,7 @@ asm dMsgScrnBoss_c::~dMsgScrnBoss_c() {
 }
 #pragma pop
 
-/* 8023CA88-8023CB98 0110+00 s=1 e=0 z=0  None .text      exec__14dMsgScrnBoss_cFv */
+/* 8023CA88-8023CB98 2373C8 0110+00 1/0 0/0 0/0 .text            exec__14dMsgScrnBoss_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -210,7 +195,7 @@ asm void dMsgScrnBoss_c::exec() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454BB4-80454BB8 0004+00 s=1 e=0 z=0  None .sdata2    @3916 */
+/* 80454BB4-80454BB8 0031B4 0004+00 1/1 0/0 0/0 .sdata2          @3916 */
 SECTION_SDATA2 static u8 lit_3916[4] = {
     0x00,
     0x00,
@@ -218,7 +203,7 @@ SECTION_SDATA2 static u8 lit_3916[4] = {
     0x00,
 };
 
-/* 8023CB98-8023CBF0 0058+00 s=1 e=0 z=0  None .text      drawSelf__14dMsgScrnBoss_cFv */
+/* 8023CB98-8023CBF0 2374D8 0058+00 1/0 0/0 0/0 .text            drawSelf__14dMsgScrnBoss_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -228,7 +213,7 @@ asm void dMsgScrnBoss_c::drawSelf() {
 }
 #pragma pop
 
-/* 8023CBF0-8023CC7C 008C+00 s=1 e=0 z=0  None .text      fukiAlpha__14dMsgScrnBoss_cFf */
+/* 8023CBF0-8023CC7C 237530 008C+00 1/0 0/0 0/0 .text            fukiAlpha__14dMsgScrnBoss_cFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -238,17 +223,27 @@ asm void dMsgScrnBoss_c::fukiAlpha(f32 param_0) {
 }
 #pragma pop
 
-/* 8023CC7C-8023CC80 0004+00 s=1 e=0 z=0  None .text      fukiScale__14dMsgScrnBoss_cFf */
+/* 8023CC7C-8023CC80 2375BC 0004+00 1/0 0/0 0/0 .text            fukiScale__14dMsgScrnBoss_cFf */
 void dMsgScrnBoss_c::fukiScale(f32 param_0) {
     /* empty function */
 }
 
-/* 8023CC80-8023CC84 0004+00 s=1 e=0 z=0  None .text      fukiTrans__14dMsgScrnBoss_cFff */
+/* 8023CC80-8023CC84 2375C0 0004+00 1/0 0/0 0/0 .text            fukiTrans__14dMsgScrnBoss_cFff */
 void dMsgScrnBoss_c::fukiTrans(f32 param_0, f32 param_1) {
     /* empty function */
 }
 
-/* 8023CC84-8023CC88 0004+00 s=1 e=0 z=0  None .text      fontAlpha__14dMsgScrnBoss_cFf */
+/* 8023CC84-8023CC88 2375C4 0004+00 1/0 0/0 0/0 .text            fontAlpha__14dMsgScrnBoss_cFf */
 void dMsgScrnBoss_c::fontAlpha(f32 param_0) {
     /* empty function */
 }
+
+/* 803998F8-80399910 025F58 0015+03 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_803998F8 = "zelda_boss_name.blo";
+SECTION_DEAD static char const* const stringBase_8039990C = "";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039990D = "\0\0";
+#pragma pop

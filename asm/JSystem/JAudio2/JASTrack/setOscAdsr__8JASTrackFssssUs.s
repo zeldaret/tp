@@ -1,6 +1,6 @@
 lbl_80292808:
-/* 80292808  3D 20 80 3A */	lis r9, sEnvOsc__8JASTrack@ha
-/* 8029280C  84 09 AF E8 */	lwzu r0, sEnvOsc__8JASTrack@l(r9)
+/* 80292808  3D 20 80 3A */	lis r9, sEnvOsc__8JASTrack@ha /* 0x8039AFE8@ha */
+/* 8029280C  84 09 AF E8 */	lwzu r0, sEnvOsc__8JASTrack@l(r9)  /* 0x8039AFE8@l */
 /* 80292810  90 03 00 E4 */	stw r0, 0xe4(r3)
 /* 80292814  C0 09 00 04 */	lfs f0, 4(r9)
 /* 80292818  D0 03 00 E8 */	stfs f0, 0xe8(r3)

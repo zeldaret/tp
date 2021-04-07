@@ -14,14 +14,14 @@ lbl_80B9BB5C:
 /* 80B9BB8C  39 1F 05 B8 */	addi r8, r31, 0x5b8
 /* 80B9BB90  39 3F 04 F8 */	addi r9, r31, 0x4f8
 /* 80B9BB94  39 40 00 00 */	li r10, 0
-/* 80B9BB98  4B 4D A6 B0 */	b Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz
+/* 80B9BB98  4B 4D A6 B1 */	bl Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz
 /* 80B9BB9C  38 7F 05 F8 */	addi r3, r31, 0x5f8
-/* 80B9BBA0  4B 4D B8 20 */	b SetGndThinCellingOff__9dBgS_AcchFv
+/* 80B9BBA0  4B 4D B8 21 */	bl SetGndThinCellingOff__9dBgS_AcchFv
 /* 80B9BBA4  38 7F 05 B8 */	addi r3, r31, 0x5b8
-/* 80B9BBA8  3C 80 80 BA */	lis r4, lit_3768@ha
-/* 80B9BBAC  C0 24 C9 28 */	lfs f1, lit_3768@l(r4)
+/* 80B9BBA8  3C 80 80 BA */	lis r4, lit_3768@ha /* 0x80B9C928@ha */
+/* 80B9BBAC  C0 24 C9 28 */	lfs f1, lit_3768@l(r4)  /* 0x80B9C928@l */
 /* 80B9BBB0  FC 40 08 90 */	fmr f2, f1
-/* 80B9BBB4  4B 4D A3 A4 */	b SetWall__12dBgS_AcchCirFff
+/* 80B9BBB4  4B 4D A3 A5 */	bl SetWall__12dBgS_AcchCirFff
 /* 80B9BBB8  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 80B9BBBC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80B9BBC0  7C 08 03 A6 */	mtlr r0

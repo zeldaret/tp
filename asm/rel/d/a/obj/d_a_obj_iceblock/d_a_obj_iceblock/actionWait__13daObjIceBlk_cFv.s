@@ -15,7 +15,7 @@ lbl_80C23B0C:
 /* 80C23B40  38 80 00 02 */	li r4, 2
 /* 80C23B44  38 A0 00 00 */	li r5, 0
 /* 80C23B48  38 C0 00 00 */	li r6, 0
-/* 80C23B4C  4B 3F 7D BC */	b fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs
+/* 80C23B4C  4B 3F 7D BD */	bl fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs
 /* 80C23B50  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 80C23B54  60 00 00 02 */	ori r0, r0, 2
 /* 80C23B58  B0 1F 00 FA */	sth r0, 0xfa(r31)

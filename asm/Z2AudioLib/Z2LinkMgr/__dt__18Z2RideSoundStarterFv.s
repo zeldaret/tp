@@ -7,12 +7,12 @@ lbl_802C5078:
 /* 802C508C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802C5090  7C 9F 23 78 */	mr r31, r4
 /* 802C5094  41 82 00 64 */	beq lbl_802C50F8
-/* 802C5098  3C 60 80 3D */	lis r3, __vt__18Z2RideSoundStarter@ha
-/* 802C509C  38 03 B9 10 */	addi r0, r3, __vt__18Z2RideSoundStarter@l
+/* 802C5098  3C 60 80 3D */	lis r3, __vt__18Z2RideSoundStarter@ha /* 0x803CB910@ha */
+/* 802C509C  38 03 B9 10 */	addi r0, r3, __vt__18Z2RideSoundStarter@l /* 0x803CB910@l */
 /* 802C50A0  90 1E 00 00 */	stw r0, 0(r30)
 /* 802C50A4  41 82 00 44 */	beq lbl_802C50E8
-/* 802C50A8  3C 60 80 3D */	lis r3, __vt__14Z2SoundStarter@ha
-/* 802C50AC  38 03 9D 80 */	addi r0, r3, __vt__14Z2SoundStarter@l
+/* 802C50A8  3C 60 80 3D */	lis r3, __vt__14Z2SoundStarter@ha /* 0x803C9D80@ha */
+/* 802C50AC  38 03 9D 80 */	addi r0, r3, __vt__14Z2SoundStarter@l /* 0x803C9D80@l */
 /* 802C50B0  90 1E 00 00 */	stw r0, 0(r30)
 /* 802C50B4  34 1E 00 04 */	addic. r0, r30, 4
 /* 802C50B8  41 82 00 24 */	beq lbl_802C50DC

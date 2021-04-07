@@ -40,41 +40,41 @@ extern "C" extern u8 __CARDBlock[544];
 // Declarations:
 //
 
-/* 80358914-80358A84 0170+00 s=1 e=0 z=0  None .text      WriteCallback */
+/* 80358914-80358A84 353254 0170+00 1/1 0/0 0/0 .text            WriteCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void WriteCallback() {
+static asm void WriteCallback() {
     nofralloc
 #include "asm/dolphin/card/CARDWrite/WriteCallback.s"
 }
 #pragma pop
 
-/* 80358A84-80358B34 00B0+00 s=2 e=0 z=0  None .text      EraseCallback */
+/* 80358A84-80358B34 3533C4 00B0+00 2/2 0/0 0/0 .text            EraseCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void EraseCallback() {
+static asm void EraseCallback() {
     nofralloc
 #include "asm/dolphin/card/CARDWrite/EraseCallback.s"
 }
 #pragma pop
 
-/* 80358B34-80358C48 0114+00 s=1 e=0 z=0  None .text      CARDWriteAsync */
+/* 80358B34-80358C48 353474 0114+00 1/1 0/0 0/0 .text            CARDWriteAsync */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void CARDWriteAsync() {
+static asm void CARDWriteAsync() {
     nofralloc
 #include "asm/dolphin/card/CARDWrite/CARDWriteAsync.s"
 }
 #pragma pop
 
-/* 80358C48-80358C90 0048+00 s=0 e=2 z=0  None .text      CARDWrite */
+/* 80358C48-80358C90 353588 0048+00 0/0 2/2 0/0 .text            CARDWrite */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void CARDWrite() {
+asm void CARDWrite() {
     nofralloc
 #include "asm/dolphin/card/CARDWrite/CARDWrite.s"
 }

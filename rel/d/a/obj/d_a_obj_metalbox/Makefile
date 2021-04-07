@@ -3,17 +3,15 @@
 #
 
 M106_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_metalbox.plf
+M106_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_metalbox.lcf
+M106_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_metalbox.map
 
 M106_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_metalbox/executor.cpp \
-	rel/d/a/obj/d_a_obj_metalbox/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_metalbox/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_metalbox/d_a_obj_metalbox.cpp \
 
 M106_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_metalbox/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_metalbox/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_metalbox/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_metalbox/d_a_obj_metalbox.o \
 
 M106_LIBS := \
@@ -29,14 +27,21 @@ M106_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M106_LDSCRIPT) \
+	-unused -map $(M106_MAP) \
+	-w off \
 
 $(M106_TARGET): $(M106_O_FILES) $(M106_LIBS)
+	@echo [106] creating $(M106_TARGET)
 	@echo $(M106_LIBS) $(M106_O_FILES) > build/M106_ofiles
-	$(LD) -partial $(M106_LDFLAGS) -o $(M106_TARGET) @build/M106_ofiles
+	@python3 tools/lcf.py rel 106 --output $(M106_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M106_LDFLAGS) -o $(M106_TARGET) @build/M106_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_metalbox/%.o: rel/d/a/obj/d_a_obj_metalbox/%.cpp
+	@echo [106] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M106_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M106_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

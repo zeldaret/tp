@@ -3,19 +3,20 @@
 #
 
 M305_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_gra.plf
+M305_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_gra.lcf
+M305_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_gra.map
 
 M305_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_gra/executor.cpp \
-	rel/d/a/npc/d_a_npc_gra/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_gra/d_a_npc_gra.cpp \
 
 M305_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gra/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gra/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gra/d_a_npc_gra.o \
 
 M305_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gra/libRuntime.PPCEABI.H.a \
 
 M305_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M305_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M305_LDSCRIPT) \
+	-unused -map $(M305_MAP) \
+	-w off \
 
 $(M305_TARGET): $(M305_O_FILES) $(M305_LIBS)
+	@echo [305] creating $(M305_TARGET)
 	@echo $(M305_LIBS) $(M305_O_FILES) > build/M305_ofiles
-	$(LD) -partial $(M305_LDFLAGS) -o $(M305_TARGET) @build/M305_ofiles
+	@python3 tools/lcf.py rel 305 --output $(M305_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M305_LDFLAGS) -o $(M305_TARGET) @build/M305_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_gra/%.o: rel/d/a/npc/d_a_npc_gra/%.cpp
+	@echo [305] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M305_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M305_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_gra/libs/Runtime.PPCEABI.H/Makefile
 

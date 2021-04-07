@@ -16,8 +16,8 @@ lbl_800BAF08:
 /* 800BAF40  40 82 00 20 */	bne lbl_800BAF60
 lbl_800BAF44:
 /* 800BAF44  80 7F 20 60 */	lwz r3, 0x2060(r31)
-/* 800BAF48  3C 80 80 39 */	lis r4, m__20daAlinkHIO_crouch_c0@ha
-/* 800BAF4C  38 84 E0 1C */	addi r4, r4, m__20daAlinkHIO_crouch_c0@l
+/* 800BAF48  3C 80 80 39 */	lis r4, m__20daAlinkHIO_crouch_c0@ha /* 0x8038E01C@ha */
+/* 800BAF4C  38 84 E0 1C */	addi r4, r4, m__20daAlinkHIO_crouch_c0@l /* 0x8038E01C@l */
 /* 800BAF50  C0 24 00 38 */	lfs f1, 0x38(r4)
 /* 800BAF54  38 80 00 00 */	li r4, 0
 /* 800BAF58  38 A0 00 23 */	li r5, 0x23

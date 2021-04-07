@@ -6,8 +6,8 @@ lbl_800AFB14:
 /* 800AFB24  93 C1 00 08 */	stw r30, 8(r1)
 /* 800AFB28  7C 7E 1B 78 */	mr r30, r3
 /* 800AFB2C  1C A4 00 0C */	mulli r5, r4, 0xc
-/* 800AFB30  3C 80 80 39 */	lis r4, m_anmDataTable__9daAlink_c@ha
-/* 800AFB34  38 04 FC A8 */	addi r0, r4, m_anmDataTable__9daAlink_c@l
+/* 800AFB30  3C 80 80 39 */	lis r4, m_anmDataTable__9daAlink_c@ha /* 0x8038FCA8@ha */
+/* 800AFB34  38 04 FC A8 */	addi r0, r4, m_anmDataTable__9daAlink_c@l /* 0x8038FCA8@l */
 /* 800AFB38  7F E0 2A 14 */	add r31, r0, r5
 /* 800AFB3C  A0 9F 00 06 */	lhz r4, 6(r31)
 /* 800AFB40  4B FF FF 69 */	bl setFacePriTexture__9daAlink_cFQ29daAlink_c13daAlink_FTANM

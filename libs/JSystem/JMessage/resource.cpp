@@ -12,11 +12,10 @@
 //
 
 namespace std {
-/*          */ template <typename A1, typename B1>
-/*          */ void lower_bound(/* u32 const*, u32 const*, u32 const& */);
-/* 802A94D4 */ /* lower_bound<u32 const*, u32> */
-void lower_bound__template0(u32 const*, u32 const*, u32 const&);
-
+template <typename A1, typename B1>
+void lower_bound(/* ... */);
+/* 802A94D4 */ /* std::lower_bound<u32 const*, u32> */
+void func_802A94D4(u32 const*, u32 const*, u32 const&);
 };  // namespace std
 
 struct JMessage {
@@ -91,14 +90,11 @@ extern "C" void parseHeader_next__Q28JMessage6TParseFPPCvPUlUl();
 extern "C" void parseBlock_next__Q28JMessage6TParseFPPCvPUlUl();
 extern "C" void parseCharacter_1Byte__Q28JMessage6localeFPPCc();
 extern "C" void parseCharacter_2Byte__Q28JMessage6localeFPPCc();
-extern "C" void func_802A94D4();
+extern "C" void func_802A94D4(u32 const*, u32 const*, u32 const&);
 
 //
 // External References:
 //
-
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void parseCharacter_ShiftJIS__Q28JMessage6localeFPPCc();
 extern "C" void parseCharacter_UTF8__Q28JMessage6localeFPPCc();
@@ -113,13 +109,13 @@ extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
 extern "C" void memcmp();
 extern "C" extern void* __vt__Q37JGadget6binary19TParse_header_block[5];
-extern "C" extern u32 ga4cSignature__Q28JMessage4data[1 + 1 /* padding */];
+extern "C" extern f32 ga4cSignature__Q28JMessage4data[1 + 1 /* padding */];
 
 //
 // Declarations:
 //
 
-/* 802A8CDC-802A8EC0 01E4+00 s=0 e=1 z=0  None .text
+/* 802A8CDC-802A8EC0 2A361C 01E4+00 0/0 1/1 0/0 .text
  * toMessageIndex_messageID__Q28JMessage9TResourceCFUlUlPb      */
 #pragma push
 #pragma optimization_level 0
@@ -132,7 +128,7 @@ asm void JMessage::TResource::toMessageIndex_messageID(u32 param_0, u32 param_1,
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C9C80-803C9C94 0014+00 s=1 e=0 z=0  None .data
+/* 803C9C80-803C9C94 -00001 0014+00 1/1 0/0 0/0 .data
  * sapfnParseCharacter___Q28JMessage18TResourceContainer        */
 SECTION_DATA static void* sapfnParseCharacter___Q28JMessage18TResourceContainer[5] = {
     (void*)NULL,
@@ -142,32 +138,32 @@ SECTION_DATA static void* sapfnParseCharacter___Q28JMessage18TResourceContainer[
     (void*)parseCharacter_UTF8__Q28JMessage6localeFPPCc,
 };
 
-/* 803C9C94-803C9CA8 0014+00 s=2 e=0 z=0  None .data      __vt__Q28JMessage6TParse */
-SECTION_DATA static void* __vt__Q28JMessage6TParse[5] = {
-    (void*)NULL,
+/* 803C9C94-803C9CA8 026DB4 0014+00 2/2 0/0 0/0 .data            __vt__Q28JMessage6TParse */
+SECTION_DATA extern void* __vt__Q28JMessage6TParse[5] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__Q28JMessage6TParseFv,
     (void*)parseHeader_next__Q28JMessage6TParseFPPCvPUlUl,
     (void*)parseBlock_next__Q28JMessage6TParseFPPCvPUlUl,
 };
 
-/* 803C9CA8-803C9CBC 0014+00 s=2 e=0 z=0  None .data
+/* 803C9CA8-803C9CBC 026DC8 0014+00 2/2 0/0 0/0 .data
  * __vt__Q38JMessage18TResourceContainer10TCResource            */
-SECTION_DATA static void* __vt__Q38JMessage18TResourceContainer10TCResource[5] = {
-    (void*)NULL,
+SECTION_DATA extern void* __vt__Q38JMessage18TResourceContainer10TCResource[5] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__Q38JMessage18TResourceContainer10TCResourceFv,
     (void*)Do_create__Q38JMessage18TResourceContainer10TCResourceFv,
     (void*)Do_destroy__Q38JMessage18TResourceContainer10TCResourceFPQ28JMessage9TResource,
 };
 
-/* 803C9CBC-803C9CD0 0014+00 s=2 e=0 z=0  None .data
+/* 803C9CBC-803C9CD0 026DDC 0014+00 2/2 0/0 0/0 .data
  * __vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0> */
-SECTION_DATA static void* data_803C9CBC[5] = {
+SECTION_DATA extern void* data_803C9CBC[5] = {
     (void*)NULL /* RTTI */, (void*)NULL, (void*)NULL, (void*)NULL, (void*)NULL,
 };
 
-/* 802A8EC0-802A8EF8 0038+00 s=1 e=0 z=0  None .text
+/* 802A8EC0-802A8EF8 2A3800 0038+00 1/1 0/0 0/0 .text
  * __ct__Q38JMessage18TResourceContainer10TCResourceFv          */
 #pragma push
 #pragma optimization_level 0
@@ -178,7 +174,7 @@ asm JMessage::TResourceContainer::TCResource::TCResource() {
 }
 #pragma pop
 
-/* 802A8EF8-802A8F6C 0074+00 s=1 e=2 z=0  None .text
+/* 802A8EF8-802A8F6C 2A3838 0074+00 1/0 2/2 0/0 .text
  * __dt__Q38JMessage18TResourceContainer10TCResourceFv          */
 #pragma push
 #pragma optimization_level 0
@@ -189,7 +185,7 @@ asm JMessage::TResourceContainer::TCResource::~TCResource() {
 }
 #pragma pop
 
-/* 802A8F6C-802A8FFC 0090+00 s=0 e=1 z=0  None .text
+/* 802A8F6C-802A8FFC 2A38AC 0090+00 0/0 1/1 0/0 .text
  * Get_groupID__Q38JMessage18TResourceContainer10TCResourceFUs  */
 #pragma push
 #pragma optimization_level 0
@@ -200,7 +196,7 @@ asm void JMessage::TResourceContainer::TCResource::Get_groupID(u16 param_0) {
 }
 #pragma pop
 
-/* 802A8FFC-802A9048 004C+00 s=1 e=0 z=0  None .text
+/* 802A8FFC-802A9048 2A393C 004C+00 1/0 0/0 0/0 .text
  * Do_create__Q38JMessage18TResourceContainer10TCResourceFv     */
 #pragma push
 #pragma optimization_level 0
@@ -211,7 +207,7 @@ asm void JMessage::TResourceContainer::TCResource::Do_create() {
 }
 #pragma pop
 
-/* 802A9048-802A906C 0024+00 s=1 e=0 z=0  None .text
+/* 802A9048-802A906C 2A3988 0024+00 1/0 0/0 0/0 .text
  * Do_destroy__Q38JMessage18TResourceContainer10TCResourceFPQ28JMessage9TResource */
 #pragma push
 #pragma optimization_level 0
@@ -222,7 +218,7 @@ asm void JMessage::TResourceContainer::TCResource::Do_destroy(JMessage::TResourc
 }
 #pragma pop
 
-/* 802A906C-802A90B8 004C+00 s=0 e=2 z=0  None .text      __ct__Q28JMessage18TResourceContainerFv */
+/* 802A906C-802A90B8 2A39AC 004C+00 0/0 2/2 0/0 .text __ct__Q28JMessage18TResourceContainerFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -232,7 +228,7 @@ asm JMessage::TResourceContainer::TResourceContainer() {
 }
 #pragma pop
 
-/* 802A90B8-802A90F0 0038+00 s=1 e=0 z=0  None .text
+/* 802A90B8-802A90F0 2A39F8 0038+00 1/1 0/0 0/0 .text
  * setEncoding__Q28JMessage18TResourceContainerFUc              */
 #pragma push
 #pragma optimization_level 0
@@ -243,7 +239,7 @@ asm void JMessage::TResourceContainer::setEncoding(u8 param_0) {
 }
 #pragma pop
 
-/* 802A90F0-802A9130 0040+00 s=1 e=0 z=0  None .text
+/* 802A90F0-802A9130 2A3A30 0040+00 1/1 0/0 0/0 .text
  * setEncoding___Q28JMessage18TResourceContainerFUc             */
 #pragma push
 #pragma optimization_level 0
@@ -254,7 +250,7 @@ asm void JMessage::TResourceContainer::setEncoding_(u8 param_0) {
 }
 #pragma pop
 
-/* 802A9130-802A9158 0028+00 s=0 e=2 z=0  None .text
+/* 802A9130-802A9158 2A3A70 0028+00 0/0 2/2 0/0 .text
  * __ct__Q28JMessage6TParseFPQ28JMessage18TResourceContainer    */
 #pragma push
 #pragma optimization_level 0
@@ -265,7 +261,7 @@ asm JMessage::TParse::TParse(JMessage::TResourceContainer* param_0) {
 }
 #pragma pop
 
-/* 802A9158-802A91B8 0060+00 s=1 e=0 z=0  None .text      __dt__Q28JMessage6TParseFv */
+/* 802A9158-802A91B8 2A3A98 0060+00 1/0 0/0 0/0 .text            __dt__Q28JMessage6TParseFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -275,7 +271,7 @@ asm JMessage::TParse::~TParse() {
 }
 #pragma pop
 
-/* 802A91B8-802A92F4 013C+00 s=1 e=0 z=0  None .text
+/* 802A91B8-802A92F4 2A3AF8 013C+00 1/0 0/0 0/0 .text
  * parseHeader_next__Q28JMessage6TParseFPPCvPUlUl               */
 #pragma push
 #pragma optimization_level 0
@@ -286,8 +282,8 @@ asm void JMessage::TParse::parseHeader_next(void const** param_0, u32* param_1, 
 }
 #pragma pop
 
-/* 802A92F4-802A9490 019C+00 s=1 e=0 z=0  None .text parseBlock_next__Q28JMessage6TParseFPPCvPUlUl
- */
+/* 802A92F4-802A9490 2A3C34 019C+00 1/0 0/0 0/0 .text
+ * parseBlock_next__Q28JMessage6TParseFPPCvPUlUl                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -297,8 +293,8 @@ asm void JMessage::TParse::parseBlock_next(void const** param_0, u32* param_1, u
 }
 #pragma pop
 
-/* 802A9490-802A94A8 0018+00 s=1 e=0 z=0  None .text parseCharacter_1Byte__Q28JMessage6localeFPPCc
- */
+/* 802A9490-802A94A8 2A3DD0 0018+00 1/0 0/0 0/0 .text
+ * parseCharacter_1Byte__Q28JMessage6localeFPPCc                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -308,8 +304,8 @@ asm void JMessage::locale::parseCharacter_1Byte(char const** param_0) {
 }
 #pragma pop
 
-/* 802A94A8-802A94D4 002C+00 s=1 e=0 z=0  None .text parseCharacter_2Byte__Q28JMessage6localeFPPCc
- */
+/* 802A94A8-802A94D4 2A3DE8 002C+00 1/0 0/0 0/0 .text
+ * parseCharacter_2Byte__Q28JMessage6localeFPPCc                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -319,11 +315,11 @@ asm void JMessage::locale::parseCharacter_2Byte(char const** param_0) {
 }
 #pragma pop
 
-/* 802A94D4-802A9528 0054+00 s=1 e=0 z=0  None .text      lower_bound<PCUl,Ul>__3stdFPCUlPCUlRCUl */
+/* 802A94D4-802A9528 2A3E14 0054+00 1/1 0/0 0/0 .text lower_bound<PCUl,Ul>__3stdFPCUlPCUlRCUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void std::lower_bound__template0(u32 const* param_0, u32 const* param_1, u32 const& param_2) {
+extern "C" asm void func_802A94D4(u32 const* param_0, u32 const* param_1, u32 const& param_2) {
     nofralloc
 #include "asm/JSystem/JMessage/resource/func_802A94D4.s"
 }

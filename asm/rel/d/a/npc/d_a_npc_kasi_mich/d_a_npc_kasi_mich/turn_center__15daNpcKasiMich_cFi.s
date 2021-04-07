@@ -18,15 +18,15 @@ lbl_80A28BA4:
 /* 80A28BA8  4B FF EF 85 */	bl setLookMode__15daNpcKasiMich_cFi
 /* 80A28BAC  7F E3 FB 78 */	mr r3, r31
 /* 80A28BB0  38 80 00 04 */	li r4, 4
-/* 80A28BB4  3C A0 80 A3 */	lis r5, lit_4249@ha
-/* 80A28BB8  C0 25 A0 D8 */	lfs f1, lit_4249@l(r5)
+/* 80A28BB4  3C A0 80 A3 */	lis r5, lit_4249@ha /* 0x80A2A0D8@ha */
+/* 80A28BB8  C0 25 A0 D8 */	lfs f1, lit_4249@l(r5)  /* 0x80A2A0D8@l */
 /* 80A28BBC  38 A0 00 00 */	li r5, 0
 /* 80A28BC0  81 9F 0B 44 */	lwz r12, 0xb44(r31)
 /* 80A28BC4  81 8C 00 3C */	lwz r12, 0x3c(r12)
 /* 80A28BC8  7D 89 03 A6 */	mtctr r12
 /* 80A28BCC  4E 80 04 21 */	bctrl 
-/* 80A28BD0  3C 60 80 A3 */	lis r3, lit_4449@ha
-/* 80A28BD4  C0 03 A0 F0 */	lfs f0, lit_4449@l(r3)
+/* 80A28BD0  3C 60 80 A3 */	lis r3, lit_4449@ha /* 0x80A2A0F0@ha */
+/* 80A28BD4  C0 03 A0 F0 */	lfs f0, lit_4449@l(r3)  /* 0x80A2A0F0@l */
 /* 80A28BD8  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 80A28BDC  38 00 00 01 */	li r0, 1
 /* 80A28BE0  B0 1F 14 04 */	sth r0, 0x1404(r31)
@@ -37,8 +37,8 @@ lbl_80A28BE8:
 /* 80A28BF0  48 00 08 B5 */	bl _turn_pos__15daNpcKasiMich_cFRC4cXyzs
 /* 80A28BF4  2C 03 00 00 */	cmpwi r3, 0
 /* 80A28BF8  41 82 00 30 */	beq lbl_80A28C28
-/* 80A28BFC  3C 60 80 A3 */	lis r3, lit_5148@ha
-/* 80A28C00  38 83 A6 24 */	addi r4, r3, lit_5148@l
+/* 80A28BFC  3C 60 80 A3 */	lis r3, lit_5148@ha /* 0x80A2A624@ha */
+/* 80A28C00  38 83 A6 24 */	addi r4, r3, lit_5148@l /* 0x80A2A624@l */
 /* 80A28C04  80 64 00 00 */	lwz r3, 0(r4)
 /* 80A28C08  80 04 00 04 */	lwz r0, 4(r4)
 /* 80A28C0C  90 61 00 08 */	stw r3, 8(r1)

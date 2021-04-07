@@ -18,8 +18,8 @@ lbl_802C5C9C:
 /* 802C5CDC  48 00 00 95 */	bl setPanDir__10Z2EnvSeDirFP3Vec
 /* 802C5CE0  48 00 00 20 */	b lbl_802C5D00
 lbl_802C5CE4:
-/* 802C5CE4  3C 60 80 3A */	lis r3, cNullVec__6Z2Calc@ha
-/* 802C5CE8  C4 03 C2 50 */	lfsu f0, cNullVec__6Z2Calc@l(r3)
+/* 802C5CE4  3C 60 80 3A */	lis r3, cNullVec__6Z2Calc@ha /* 0x8039C250@ha */
+/* 802C5CE8  C4 03 C2 50 */	lfsu f0, cNullVec__6Z2Calc@l(r3)  /* 0x8039C250@l */
 /* 802C5CEC  D0 1E 00 10 */	stfs f0, 0x10(r30)
 /* 802C5CF0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 802C5CF4  D0 1E 00 14 */	stfs f0, 0x14(r30)

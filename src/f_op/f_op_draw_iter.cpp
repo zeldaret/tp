@@ -17,10 +17,6 @@ struct create_tag_class {};
 // Forward References:
 //
 
-static void fopDwIt_GetTag();
-void fopDwIt_Begin();
-void fopDwIt_Next(create_tag_class*);
-
 extern "C" static void fopDwIt_GetTag__Fv();
 extern "C" void fopDwIt_Begin__Fv();
 extern "C" void fopDwIt_Next__FP16create_tag_class();
@@ -36,20 +32,20 @@ extern "C" extern u8 g_fopDwTg_Queue[8];
 //
 
 /* ############################################################################################## */
-/* 80450CF8-80450D00 0004+04 s=2 e=0 z=0  None .sbss      l_fopDwTg_id */
+/* 80450CF8-80450D00 0001F8 0004+04 2/2 0/0 0/0 .sbss            l_fopDwTg_id */
 static u8 l_fopDwTg_id[4 + 4 /* padding */];
 
-/* 80020400-80020444 0044+00 s=2 e=0 z=0  None .text      fopDwIt_GetTag__Fv */
+/* 80020400-80020444 01AD40 0044+00 2/2 0/0 0/0 .text            fopDwIt_GetTag__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fopDwIt_GetTag() {
+static asm void fopDwIt_GetTag() {
     nofralloc
 #include "asm/f_op/f_op_draw_iter/fopDwIt_GetTag__Fv.s"
 }
 #pragma pop
 
-/* 80020444-80020480 003C+00 s=0 e=1 z=0  None .text      fopDwIt_Begin__Fv */
+/* 80020444-80020480 01AD84 003C+00 0/0 1/1 0/0 .text            fopDwIt_Begin__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -59,7 +55,8 @@ asm void fopDwIt_Begin() {
 }
 #pragma pop
 
-/* 80020480-800204AC 002C+00 s=0 e=1 z=0  None .text      fopDwIt_Next__FP16create_tag_class */
+/* 80020480-800204AC 01ADC0 002C+00 0/0 1/1 0/0 .text            fopDwIt_Next__FP16create_tag_class
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

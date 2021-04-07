@@ -5,23 +5,23 @@ lbl_802620C8:
 /* 802620D4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802620D8  93 C1 00 08 */	stw r30, 8(r1)
 /* 802620DC  7C 7E 1B 78 */	mr r30, r3
-/* 802620E0  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 802620E4  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 802620E0  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 802620E4  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 802620E8  38 80 00 10 */	li r4, 0x10
 /* 802620EC  38 BE 00 DC */	addi r5, r30, 0xdc
 /* 802620F0  38 DE 01 4C */	addi r6, r30, 0x14c
 /* 802620F4  4B F4 16 D1 */	bl settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
-/* 802620F8  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 802620FC  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 802620F8  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 802620FC  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80262100  80 9E 00 F8 */	lwz r4, 0xf8(r30)
 /* 80262104  80 84 00 04 */	lwz r4, 4(r4)
 /* 80262108  38 BE 01 4C */	addi r5, r30, 0x14c
 /* 8026210C  4B F4 2C 95 */	bl setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
-/* 80262110  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80262114  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80262110  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80262114  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80262118  80 03 5F 6C */	lwz r0, 0x5f6c(r3)
-/* 8026211C  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80262120  3B E3 4A C8 */	addi r31, r3, j3dSys@l
+/* 8026211C  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80262120  3B E3 4A C8 */	addi r31, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80262124  90 1F 00 48 */	stw r0, 0x48(r31)
 /* 80262128  90 1F 00 4C */	stw r0, 0x4c(r31)
 /* 8026212C  80 7E 00 F8 */	lwz r3, 0xf8(r30)
@@ -43,8 +43,8 @@ lbl_802620C8:
 /* 8026216C  4B DA B6 3D */	bl entry__13mDoExt_brkAnmFP16J3DMaterialTablef
 /* 80262170  80 7E 00 F8 */	lwz r3, 0xf8(r30)
 /* 80262174  4B DA BB 51 */	bl mDoExt_modelUpdateDL__FP8J3DModel
-/* 80262178  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8026217C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80262178  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8026217C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80262180  80 03 5F 80 */	lwz r0, 0x5f80(r3)
 /* 80262184  90 1F 00 48 */	stw r0, 0x48(r31)
 /* 80262188  80 03 5F 84 */	lwz r0, 0x5f84(r3)

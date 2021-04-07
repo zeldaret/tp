@@ -3,17 +3,15 @@
 #
 
 M726_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv5soup.plf
+M726_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv5soup.lcf
+M726_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv5soup.map
 
 M726_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_lv5soup/executor.cpp \
-	rel/d/a/tag/d_a_tag_lv5soup/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_lv5soup/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_lv5soup/d_a_tag_lv5soup.cpp \
 
 M726_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv5soup/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv5soup/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv5soup/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv5soup/d_a_tag_lv5soup.o \
 
 M726_LIBS := \
@@ -29,14 +27,21 @@ M726_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M726_LDSCRIPT) \
+	-unused -map $(M726_MAP) \
+	-w off \
 
 $(M726_TARGET): $(M726_O_FILES) $(M726_LIBS)
+	@echo [726] creating $(M726_TARGET)
 	@echo $(M726_LIBS) $(M726_O_FILES) > build/M726_ofiles
-	$(LD) -partial $(M726_LDFLAGS) -o $(M726_TARGET) @build/M726_ofiles
+	@python3 tools/lcf.py rel 726 --output $(M726_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M726_LDFLAGS) -o $(M726_TARGET) @build/M726_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_lv5soup/%.o: rel/d/a/tag/d_a_tag_lv5soup/%.cpp
+	@echo [726] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M726_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M726_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

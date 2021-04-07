@@ -56,7 +56,7 @@ extern "C" void _restgpr_29();
 // Declarations:
 //
 
-/* 802DE078-802DE120 00A8+00 s=0 e=1 z=0  None .text
+/* 802DE078-802DE120 2D89B8 00A8+00 0/0 1/1 0/0 .text
  * getResource__15JUTResReferenceFP14JSUInputStreamUlP10JKRArchive */
 #pragma push
 #pragma optimization_level 0
@@ -67,7 +67,7 @@ asm void JUTResReference::getResource(JSUInputStream* param_0, u32 param_1, JKRA
 }
 #pragma pop
 
-/* 802DE120-802DE1BC 009C+00 s=0 e=2 z=0  None .text
+/* 802DE120-802DE1BC 2D8A60 009C+00 0/0 2/2 0/0 .text
  * getResource__15JUTResReferenceFPCvUlP10JKRArchive            */
 #pragma push
 #pragma optimization_level 0
@@ -78,7 +78,7 @@ asm void JUTResReference::getResource(void const* param_0, u32 param_1, JKRArchi
 }
 #pragma pop
 
-/* 802DE1BC-802DE234 0078+00 s=2 e=0 z=0  None .text
+/* 802DE1BC-802DE234 2D8AFC 0078+00 2/2 0/0 0/0 .text
  * getResource__15JUTResReferenceFUlP10JKRArchive               */
 #pragma push
 #pragma optimization_level 0

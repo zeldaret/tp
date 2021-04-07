@@ -7,8 +7,8 @@ lbl_8028D550:
 /* 8028D564  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8028D568  7C 9F 23 78 */	mr r31, r4
 /* 8028D56C  41 82 00 28 */	beq lbl_8028D594
-/* 8028D570  3C 80 80 3C */	lis r4, __vt__Q215JStudio_JAudio213TCreateObject@ha
-/* 8028D574  38 04 5A 68 */	addi r0, r4, __vt__Q215JStudio_JAudio213TCreateObject@l
+/* 8028D570  3C 80 80 3C */	lis r4, __vt__Q215JStudio_JAudio213TCreateObject@ha /* 0x803C5A68@ha */
+/* 8028D574  38 04 5A 68 */	addi r0, r4, __vt__Q215JStudio_JAudio213TCreateObject@l /* 0x803C5A68@l */
 /* 8028D578  90 1E 00 00 */	stw r0, 0(r30)
 /* 8028D57C  38 80 00 00 */	li r4, 0
 /* 8028D580  4B FF 7F 09 */	bl __dt__Q27JStudio13TCreateObjectFv

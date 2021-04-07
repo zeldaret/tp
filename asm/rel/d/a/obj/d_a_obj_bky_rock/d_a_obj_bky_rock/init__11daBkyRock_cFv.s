@@ -5,10 +5,10 @@ lbl_80BB7144:
 /* 80BB7150  DB E1 00 60 */	stfd f31, 0x60(r1)
 /* 80BB7154  F3 E1 00 68 */	psq_st f31, 104(r1), 0, 0 /* qr0 */
 /* 80BB7158  39 61 00 60 */	addi r11, r1, 0x60
-/* 80BB715C  4B 7A B0 5C */	b _savegpr_20
+/* 80BB715C  4B 7A B0 5D */	bl _savegpr_20
 /* 80BB7160  7C 7D 1B 78 */	mr r29, r3
-/* 80BB7164  3C 60 80 BB */	lis r3, VIBMODE_POWER@ha
-/* 80BB7168  3B E3 7E B0 */	addi r31, r3, VIBMODE_POWER@l
+/* 80BB7164  3C 60 80 BB */	lis r3, VIBMODE_POWER@ha /* 0x80BB7EB0@ha */
+/* 80BB7168  3B E3 7E B0 */	addi r31, r3, VIBMODE_POWER@l /* 0x80BB7EB0@l */
 /* 80BB716C  38 00 00 00 */	li r0, 0
 /* 80BB7170  98 1D 05 78 */	stb r0, 0x578(r29)
 /* 80BB7174  98 1D 05 7A */	stb r0, 0x57a(r29)
@@ -18,7 +18,7 @@ lbl_80BB7144:
 /* 80BB7184  38 80 00 FF */	li r4, 0xff
 /* 80BB7188  38 A0 00 00 */	li r5, 0
 /* 80BB718C  7F A6 EB 78 */	mr r6, r29
-/* 80BB7190  4B 4C C6 D0 */	b Init__9dCcD_SttsFiiP10fopAc_ac_c
+/* 80BB7190  4B 4C C6 D1 */	bl Init__9dCcD_SttsFiiP10fopAc_ac_c
 /* 80BB7194  3B C0 00 00 */	li r30, 0
 /* 80BB7198  3B 80 00 00 */	li r28, 0
 /* 80BB719C  3B 60 00 00 */	li r27, 0
@@ -38,7 +38,7 @@ lbl_80BB71D0:
 /* 80BB71D0  7E 9D D2 14 */	add r20, r29, r26
 /* 80BB71D4  38 74 05 EC */	addi r3, r20, 0x5ec
 /* 80BB71D8  38 9F 00 30 */	addi r4, r31, 0x30
-/* 80BB71DC  4B 4C D6 D8 */	b Set__8dCcD_CylFRC11dCcD_SrcCyl
+/* 80BB71DC  4B 4C D6 D9 */	bl Set__8dCcD_CylFRC11dCcD_SrcCyl
 /* 80BB71E0  93 14 06 30 */	stw r24, 0x630(r20)
 /* 80BB71E4  C0 3D 04 D8 */	lfs f1, 0x4d8(r29)
 /* 80BB71E8  7C 77 DA 14 */	add r3, r23, r27
@@ -56,7 +56,7 @@ lbl_80BB71D0:
 /* 80BB7218  3A 94 07 10 */	addi r20, r20, 0x710
 /* 80BB721C  7E 83 A3 78 */	mr r3, r20
 /* 80BB7220  38 81 00 08 */	addi r4, r1, 8
-/* 80BB7224  4B 6B 7F B8 */	b SetC__8cM3dGCylFRC4cXyz
+/* 80BB7224  4B 6B 7F B9 */	bl SetC__8cM3dGCylFRC4cXyz
 /* 80BB7228  7E 83 A3 78 */	mr r3, r20
 /* 80BB722C  7C 16 E0 2E */	lwzx r0, r22, r28
 /* 80BB7230  6C 00 80 00 */	xoris r0, r0, 0x8000
@@ -64,7 +64,7 @@ lbl_80BB71D0:
 /* 80BB7238  93 21 00 18 */	stw r25, 0x18(r1)
 /* 80BB723C  C8 01 00 18 */	lfd f0, 0x18(r1)
 /* 80BB7240  EC 20 F8 28 */	fsubs f1, f0, f31
-/* 80BB7244  4B 6B 7F B4 */	b SetH__8cM3dGCylFf
+/* 80BB7244  4B 6B 7F B5 */	bl SetH__8cM3dGCylFf
 /* 80BB7248  7E 83 A3 78 */	mr r3, r20
 /* 80BB724C  7C 15 E0 2E */	lwzx r0, r21, r28
 /* 80BB7250  6C 00 80 00 */	xoris r0, r0, 0x8000
@@ -72,7 +72,7 @@ lbl_80BB71D0:
 /* 80BB7258  93 21 00 20 */	stw r25, 0x20(r1)
 /* 80BB725C  C8 01 00 20 */	lfd f0, 0x20(r1)
 /* 80BB7260  EC 20 F8 28 */	fsubs f1, f0, f31
-/* 80BB7264  4B 6B 7F 9C */	b SetR__8cM3dGCylFf
+/* 80BB7264  4B 6B 7F 9D */	bl SetR__8cM3dGCylFf
 /* 80BB7268  3B DE 00 01 */	addi r30, r30, 1
 /* 80BB726C  2C 1E 00 02 */	cmpwi r30, 2
 /* 80BB7270  3B 9C 00 04 */	addi r28, r28, 4
@@ -101,11 +101,11 @@ lbl_80BB71D0:
 /* 80BB72CC  C0 9F 00 E8 */	lfs f4, 0xe8(r31)
 /* 80BB72D0  C0 BF 00 EC */	lfs f5, 0xec(r31)
 /* 80BB72D4  FC C0 20 90 */	fmr f6, f4
-/* 80BB72D8  4B 46 32 70 */	b fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff
+/* 80BB72D8  4B 46 32 71 */	bl fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff
 /* 80BB72DC  E3 E1 00 68 */	psq_l f31, 104(r1), 0, 0 /* qr0 */
 /* 80BB72E0  CB E1 00 60 */	lfd f31, 0x60(r1)
 /* 80BB72E4  39 61 00 60 */	addi r11, r1, 0x60
-/* 80BB72E8  4B 7A AF 1C */	b _restgpr_20
+/* 80BB72E8  4B 7A AF 1D */	bl _restgpr_20
 /* 80BB72EC  80 01 00 74 */	lwz r0, 0x74(r1)
 /* 80BB72F0  7C 08 03 A6 */	mtlr r0
 /* 80BB72F4  38 21 00 70 */	addi r1, r1, 0x70

@@ -35,7 +35,7 @@ lbl_8047CF3C:
 /* 8047CF5C  90 1F 05 5C */	stw r0, 0x55c(r31)
 /* 8047CF60  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 8047CF64  7C 03 07 74 */	extsb r3, r0
-/* 8047CF68  4B BB 01 04 */	b dComIfGp_getReverb__Fi
+/* 8047CF68  4B BB 01 05 */	bl dComIfGp_getReverb__Fi
 /* 8047CF6C  7C 65 1B 78 */	mr r5, r3
 /* 8047CF70  38 7F 05 7C */	addi r3, r31, 0x57c
 /* 8047CF74  38 80 00 00 */	li r4, 0

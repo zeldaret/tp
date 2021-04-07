@@ -5,13 +5,13 @@ lbl_805EF630:
 /* 805EF63C  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 805EF640  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 805EF644  7C 7E 1B 78 */	mr r30, r3
-/* 805EF648  3C 80 80 5F */	lis r4, lit_3774@ha
-/* 805EF64C  3B E4 41 88 */	addi r31, r4, lit_3774@l
+/* 805EF648  3C 80 80 5F */	lis r4, lit_3774@ha /* 0x805F4188@ha */
+/* 805EF64C  3B E4 41 88 */	addi r31, r4, lit_3774@l /* 0x805F4188@l */
 /* 805EF650  A8 03 07 20 */	lha r0, 0x720(r3)
 /* 805EF654  28 00 00 15 */	cmplwi r0, 0x15
 /* 805EF658  41 81 03 4C */	bgt lbl_805EF9A4
-/* 805EF65C  3C 80 80 5F */	lis r4, lit_4619@ha
-/* 805EF660  38 84 43 EC */	addi r4, r4, lit_4619@l
+/* 805EF65C  3C 80 80 5F */	lis r4, lit_4619@ha /* 0x805F43EC@ha */
+/* 805EF660  38 84 43 EC */	addi r4, r4, lit_4619@l /* 0x805F43EC@l */
 /* 805EF664  54 00 10 3A */	slwi r0, r0, 2
 /* 805EF668  7C 04 00 2E */	lwzx r0, r4, r0
 /* 805EF66C  7C 09 03 A6 */	mtctr r0
@@ -42,13 +42,13 @@ lbl_805EF684:
 /* 805EF6C8  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 805EF6CC  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 805EF6D0  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 805EF6D4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805EF6D8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805EF6D4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805EF6D8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805EF6DC  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 805EF6E0  38 80 00 08 */	li r4, 8
 /* 805EF6E4  38 A0 00 4F */	li r5, 0x4f
 /* 805EF6E8  38 C1 00 08 */	addi r6, r1, 8
-/* 805EF6EC  4B A8 03 38 */	b StartShock__12dVibration_cFii4cXyz
+/* 805EF6EC  4B A8 03 39 */	bl StartShock__12dVibration_cFii4cXyz
 /* 805EF6F0  38 00 00 02 */	li r0, 2
 /* 805EF6F4  B0 1E 07 20 */	sth r0, 0x720(r30)
 /* 805EF6F8  7F C3 F3 78 */	mr r3, r30
@@ -66,16 +66,16 @@ lbl_805EF684:
 /* 805EF728  C0 3F 00 0C */	lfs f1, 0xc(r31)
 /* 805EF72C  38 FE 01 0C */	addi r7, r30, 0x10c
 /* 805EF730  39 00 00 01 */	li r8, 1
-/* 805EF734  4B A2 D8 EC */	b fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci
-/* 805EF738  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 805EF73C  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 805EF734  4B A2 D8 ED */	bl fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci
+/* 805EF738  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 805EF73C  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 805EF740  80 63 00 00 */	lwz r3, 0(r3)
 /* 805EF744  38 63 03 D0 */	addi r3, r3, 0x3d0
 /* 805EF748  38 80 00 01 */	li r4, 1
-/* 805EF74C  4B CC 08 40 */	b changeBgmStatus__8Z2SeqMgrFl
+/* 805EF74C  4B CC 08 41 */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 805EF750  38 60 00 01 */	li r3, 1
 /* 805EF754  38 80 FF FF */	li r4, -1
-/* 805EF758  4B A3 E3 44 */	b dComIfGs_onOneZoneSwitch__Fii
+/* 805EF758  4B A3 E3 45 */	bl dComIfGs_onOneZoneSwitch__Fii
 /* 805EF75C  48 00 02 48 */	b lbl_805EF9A4
 lbl_805EF760:
 /* 805EF760  80 7E 05 DC */	lwz r3, 0x5dc(r30)
@@ -111,12 +111,12 @@ lbl_805EF7A8:
 /* 805EF7D0  38 A0 00 00 */	li r5, 0
 /* 805EF7D4  C0 5F 00 00 */	lfs f2, 0(r31)
 /* 805EF7D8  4B FF E2 25 */	bl anm_init__FP10b_gm_classifUcf
-/* 805EF7DC  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 805EF7E0  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 805EF7DC  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 805EF7E0  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 805EF7E4  80 63 00 00 */	lwz r3, 0(r3)
 /* 805EF7E8  38 63 03 D0 */	addi r3, r3, 0x3d0
 /* 805EF7EC  38 80 00 02 */	li r4, 2
-/* 805EF7F0  4B CC 07 9C */	b changeBgmStatus__8Z2SeqMgrFl
+/* 805EF7F0  4B CC 07 9D */	bl changeBgmStatus__8Z2SeqMgrFl
 /* 805EF7F4  48 00 01 B0 */	b lbl_805EF9A4
 lbl_805EF7F8:
 /* 805EF7F8  80 7E 05 DC */	lwz r3, 0x5dc(r30)
@@ -136,8 +136,8 @@ lbl_805EF820:
 /* 805EF82C  38 80 00 1E */	li r4, 0x1e
 /* 805EF830  C0 3F 00 1C */	lfs f1, 0x1c(r31)
 /* 805EF834  38 A0 00 02 */	li r5, 2
-/* 805EF838  3C C0 80 5F */	lis r6, l_HIO@ha
-/* 805EF83C  38 C6 47 DC */	addi r6, r6, l_HIO@l
+/* 805EF838  3C C0 80 5F */	lis r6, l_HIO@ha /* 0x805F47DC@ha */
+/* 805EF83C  38 C6 47 DC */	addi r6, r6, l_HIO@l /* 0x805F47DC@l */
 /* 805EF840  C0 46 00 20 */	lfs f2, 0x20(r6)
 /* 805EF844  4B FF E1 B9 */	bl anm_init__FP10b_gm_classifUcf
 /* 805EF848  38 00 00 00 */	li r0, 0
@@ -147,11 +147,11 @@ lbl_805EF820:
 /* 805EF858  B0 1E 07 22 */	sth r0, 0x722(r30)
 /* 805EF85C  38 00 00 04 */	li r0, 4
 /* 805EF860  B0 1E 07 20 */	sth r0, 0x720(r30)
-/* 805EF864  3C 60 80 45 */	lis r3, calc_mtx@ha
-/* 805EF868  38 63 07 68 */	addi r3, r3, calc_mtx@l
+/* 805EF864  3C 60 80 45 */	lis r3, calc_mtx@ha /* 0x80450768@ha */
+/* 805EF868  38 63 07 68 */	addi r3, r3, calc_mtx@l /* 0x80450768@l */
 /* 805EF86C  80 63 00 00 */	lwz r3, 0(r3)
 /* 805EF870  A8 9E 04 DE */	lha r4, 0x4de(r30)
-/* 805EF874  4B A1 CB 68 */	b mDoMtx_YrotS__FPA4_fs
+/* 805EF874  4B A1 CB 69 */	bl mDoMtx_YrotS__FPA4_fs
 /* 805EF878  C0 1F 00 1C */	lfs f0, 0x1c(r31)
 /* 805EF87C  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 805EF880  D0 01 00 24 */	stfs f0, 0x24(r1)
@@ -159,11 +159,11 @@ lbl_805EF820:
 /* 805EF888  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 805EF88C  38 61 00 20 */	addi r3, r1, 0x20
 /* 805EF890  38 81 00 14 */	addi r4, r1, 0x14
-/* 805EF894  4B C8 16 58 */	b MtxPosition__FP4cXyzP4cXyz
+/* 805EF894  4B C8 16 59 */	bl MtxPosition__FP4cXyzP4cXyz
 /* 805EF898  38 7E 04 D0 */	addi r3, r30, 0x4d0
 /* 805EF89C  38 81 00 14 */	addi r4, r1, 0x14
 /* 805EF8A0  7C 65 1B 78 */	mr r5, r3
-/* 805EF8A4  4B D5 77 EC */	b PSVECAdd
+/* 805EF8A4  4B D5 77 ED */	bl PSVECAdd
 /* 805EF8A8  48 00 00 FC */	b lbl_805EF9A4
 lbl_805EF8AC:
 /* 805EF8AC  38 00 00 05 */	li r0, 5
@@ -232,7 +232,7 @@ lbl_805EF978:
 /* 805EF994  C0 3F 00 A0 */	lfs f1, 0xa0(r31)
 /* 805EF998  C0 5F 00 00 */	lfs f2, 0(r31)
 /* 805EF99C  C0 7F 00 14 */	lfs f3, 0x14(r31)
-/* 805EF9A0  4B C8 00 9C */	b cLib_addCalc2__FPffff
+/* 805EF9A0  4B C8 00 9D */	bl cLib_addCalc2__FPffff
 lbl_805EF9A4:
 /* 805EF9A4  83 E1 00 3C */	lwz r31, 0x3c(r1)
 /* 805EF9A8  83 C1 00 38 */	lwz r30, 0x38(r1)

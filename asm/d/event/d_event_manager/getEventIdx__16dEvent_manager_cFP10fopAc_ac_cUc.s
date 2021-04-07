@@ -26,18 +26,18 @@ lbl_80047698:
 /* 800476F8  48 00 00 61 */	bl getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc
 /* 800476FC  48 00 00 44 */	b lbl_80047740
 lbl_80047700:
-/* 80047700  3C 60 80 42 */	lis r3, map_tool_name_4498@ha
-/* 80047704  38 63 46 B4 */	addi r3, r3, map_tool_name_4498@l
-/* 80047708  3C 80 80 38 */	lis r4, d_event_d_event_manager__stringBase0@ha
-/* 8004770C  38 84 9F 60 */	addi r4, r4, d_event_d_event_manager__stringBase0@l
+/* 80047700  3C 60 80 42 */	lis r3, map_tool_name_4498@ha /* 0x804246B4@ha */
+/* 80047704  38 63 46 B4 */	addi r3, r3, map_tool_name_4498@l /* 0x804246B4@l */
+/* 80047708  3C 80 80 38 */	lis r4, d_event_d_event_manager__stringBase0@ha /* 0x80379F60@ha */
+/* 8004770C  38 84 9F 60 */	addi r4, r4, d_event_d_event_manager__stringBase0@l /* 0x80379F60@l */
 /* 80047710  38 84 01 4F */	addi r4, r4, 0x14f
 /* 80047714  57 E5 06 3E */	clrlwi r5, r31, 0x18
 /* 80047718  4C C6 31 82 */	crclr 6
 /* 8004771C  48 31 ED C1 */	bl sprintf
 /* 80047720  7F A3 EB 78 */	mr r3, r29
 /* 80047724  7F C4 F3 78 */	mr r4, r30
-/* 80047728  3C A0 80 42 */	lis r5, map_tool_name_4498@ha
-/* 8004772C  38 A5 46 B4 */	addi r5, r5, map_tool_name_4498@l
+/* 80047728  3C A0 80 42 */	lis r5, map_tool_name_4498@ha /* 0x804246B4@ha */
+/* 8004772C  38 A5 46 B4 */	addi r5, r5, map_tool_name_4498@l /* 0x804246B4@l */
 /* 80047730  38 C0 00 FF */	li r6, 0xff
 /* 80047734  48 00 00 25 */	bl getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc
 /* 80047738  48 00 00 08 */	b lbl_80047740

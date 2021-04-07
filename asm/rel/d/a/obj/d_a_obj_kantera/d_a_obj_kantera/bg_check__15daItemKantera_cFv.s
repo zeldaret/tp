@@ -5,8 +5,8 @@ lbl_80C38F78:
 /* 80C38F84  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80C38F88  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80C38F8C  7C 7E 1B 78 */	mr r30, r3
-/* 80C38F90  3C 60 80 C4 */	lis r3, l_cyl_src@ha
-/* 80C38F94  3B E3 96 48 */	addi r31, r3, l_cyl_src@l
+/* 80C38F90  3C 60 80 C4 */	lis r3, l_cyl_src@ha /* 0x80C39648@ha */
+/* 80C38F94  3B E3 96 48 */	addi r31, r3, l_cyl_src@l /* 0x80C39648@l */
 /* 80C38F98  80 1E 05 B8 */	lwz r0, 0x5b8(r30)
 /* 80C38F9C  54 00 06 F7 */	rlwinm. r0, r0, 0, 0x1b, 0x1b
 /* 80C38FA0  41 82 00 34 */	beq lbl_80C38FD4
@@ -21,7 +21,7 @@ lbl_80C38F78:
 lbl_80C38FC4:
 /* 80C38FC4  C0 3E 04 F8 */	lfs f1, 0x4f8(r30)
 /* 80C38FC8  C0 5E 05 00 */	lfs f2, 0x500(r30)
-/* 80C38FCC  4B 62 E6 A8 */	b cM_atan2s__Fff
+/* 80C38FCC  4B 62 E6 A9 */	bl cM_atan2s__Fff
 /* 80C38FD0  B0 7E 04 DE */	sth r3, 0x4de(r30)
 lbl_80C38FD4:
 /* 80C38FD4  80 1E 05 B8 */	lwz r0, 0x5b8(r30)

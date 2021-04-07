@@ -23,17 +23,17 @@ lbl_8005686C:
 /* 8005686C  C0 02 86 28 */	lfs f0, lit_4270(r2)
 lbl_80056870:
 /* 80056870  D0 0D 89 54 */	stfs f0, mWipeRate__12dDlst_list_c(r13)
-/* 80056874  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80056878  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80056874  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80056878  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8005687C  80 A3 5D 30 */	lwz r5, 0x5d30(r3)
 /* 80056880  3C 60 54 49 */	lis r3, 0x5449 /* 0x54494D47@ha */
 /* 80056884  38 63 4D 47 */	addi r3, r3, 0x4D47 /* 0x54494D47@l */
-/* 80056888  3C 80 80 38 */	lis r4, d_d_drawlist__stringBase0@ha
-/* 8005688C  38 84 A1 B0 */	addi r4, r4, d_d_drawlist__stringBase0@l
+/* 80056888  3C 80 80 38 */	lis r4, d_d_drawlist__stringBase0@ha /* 0x8037A1B0@ha */
+/* 8005688C  38 84 A1 B0 */	addi r4, r4, d_d_drawlist__stringBase0@l /* 0x8037A1B0@l */
 /* 80056890  48 27 F2 A9 */	bl getGlbResource__10JKRArchiveFUlPCcP10JKRArchive
 /* 80056894  7C 64 1B 78 */	mr r4, r3
-/* 80056898  3C 60 80 42 */	lis r3, mWipeDlst__12dDlst_list_c@ha
-/* 8005689C  38 63 48 F0 */	addi r3, r3, mWipeDlst__12dDlst_list_c@l
+/* 80056898  3C 60 80 42 */	lis r3, mWipeDlst__12dDlst_list_c@ha /* 0x804248F0@ha */
+/* 8005689C  38 63 48 F0 */	addi r3, r3, mWipeDlst__12dDlst_list_c@l /* 0x804248F0@l */
 /* 800568A0  C0 22 86 10 */	lfs f1, lit_4074(r2)
 /* 800568A4  FC 40 08 90 */	fmr f2, f1
 /* 800568A8  C0 62 86 D0 */	lfs f3, lit_5809(r2)

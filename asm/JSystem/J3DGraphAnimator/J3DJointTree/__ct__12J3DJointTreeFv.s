@@ -4,8 +4,8 @@ lbl_80325A18:
 /* 80325A20  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80325A24  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80325A28  7C 7F 1B 78 */	mr r31, r3
-/* 80325A2C  3C 60 80 3D */	lis r3, __vt__12J3DJointTree@ha
-/* 80325A30  38 03 EC F4 */	addi r0, r3, __vt__12J3DJointTree@l
+/* 80325A2C  3C 60 80 3D */	lis r3, __vt__12J3DJointTree@ha /* 0x803CECF4@ha */
+/* 80325A30  38 03 EC F4 */	addi r0, r3, __vt__12J3DJointTree@l /* 0x803CECF4@l */
 /* 80325A34  90 1F 00 00 */	stw r0, 0(r31)
 /* 80325A38  38 00 00 00 */	li r0, 0
 /* 80325A3C  90 1F 00 04 */	stw r0, 4(r31)

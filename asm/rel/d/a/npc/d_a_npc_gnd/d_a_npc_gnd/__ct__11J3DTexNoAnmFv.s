@@ -1,6 +1,6 @@
 lbl_809BBD60:
-/* 809BBD60  3C 80 80 9C */	lis r4, __vt__11J3DTexNoAnm@ha
-/* 809BBD64  38 04 E6 D4 */	addi r0, r4, __vt__11J3DTexNoAnm@l
+/* 809BBD60  3C 80 80 9C */	lis r4, __vt__11J3DTexNoAnm@ha /* 0x809BE6D4@ha */
+/* 809BBD64  38 04 E6 D4 */	addi r0, r4, __vt__11J3DTexNoAnm@l /* 0x809BE6D4@l */
 /* 809BBD68  90 03 00 00 */	stw r0, 0(r3)
 /* 809BBD6C  38 80 00 00 */	li r4, 0
 /* 809BBD70  B0 83 00 04 */	sth r4, 4(r3)

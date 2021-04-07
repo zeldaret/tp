@@ -417,8 +417,8 @@ lbl_800929AC:
 /* 80093028  38 81 00 FC */	addi r4, r1, 0xfc
 /* 8009302C  48 00 47 C9 */	bl __ct__4cXyzFRC4cXyz
 /* 80093030  38 A1 05 3C */	addi r5, r1, 0x53c
-/* 80093034  3C 60 80 38 */	lis r3, lit_8969@ha
-/* 80093038  38 63 A8 9C */	addi r3, r3, lit_8969@l
+/* 80093034  3C 60 80 38 */	lis r3, lit_8969@ha /* 0x8037A89C@ha */
+/* 80093038  38 63 A8 9C */	addi r3, r3, lit_8969@l /* 0x8037A89C@l */
 /* 8009303C  38 83 FF FC */	addi r4, r3, -4
 /* 80093040  38 00 00 2D */	li r0, 0x2d
 /* 80093044  7C 09 03 A6 */	mtctr r0
@@ -538,8 +538,8 @@ lbl_800931E8:
 lbl_800931FC:
 /* 800931FC  7F 83 E3 78 */	mr r3, r28
 /* 80093200  38 9C 03 F0 */	addi r4, r28, 0x3f0
-/* 80093204  3C A0 80 38 */	lis r5, d_d_ev_camera__stringBase0@ha
-/* 80093208  38 A5 AA F4 */	addi r5, r5, d_d_ev_camera__stringBase0@l
+/* 80093204  3C A0 80 38 */	lis r5, d_d_ev_camera__stringBase0@ha /* 0x8037AAF4@ha */
+/* 80093208  38 A5 AA F4 */	addi r5, r5, d_d_ev_camera__stringBase0@l /* 0x8037AAF4@l */
 /* 8009320C  38 A5 01 7B */	addi r5, r5, 0x17b
 /* 80093210  38 C0 00 00 */	li r6, 0
 /* 80093214  4B FF 5E 79 */	bl getEvIntData__9dCamera_cFPiPci
@@ -625,8 +625,8 @@ lbl_800932B0:
 lbl_8009334C:
 /* 8009334C  3B C0 00 00 */	li r30, 0
 /* 80093350  3B 60 00 00 */	li r27, 0
-/* 80093354  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80093358  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 80093354  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80093358  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8009335C  48 00 01 64 */	b lbl_800934C0
 lbl_80093360:
 /* 80093360  38 61 00 C0 */	addi r3, r1, 0xc0
@@ -685,8 +685,8 @@ lbl_80093410:
 /* 80093428  41 82 00 20 */	beq lbl_80093448
 /* 8009342C  38 00 00 ED */	li r0, 0xed
 /* 80093430  B0 01 00 08 */	sth r0, 8(r1)
-/* 80093434  3C 60 80 02 */	lis r3, fpcSch_JudgeForPName__FPvPv@ha
-/* 80093438  38 63 35 78 */	addi r3, r3, fpcSch_JudgeForPName__FPvPv@l
+/* 80093434  3C 60 80 02 */	lis r3, fpcSch_JudgeForPName__FPvPv@ha /* 0x80023578@ha */
+/* 80093438  38 63 35 78 */	addi r3, r3, fpcSch_JudgeForPName__FPvPv@l /* 0x80023578@l */
 /* 8009343C  38 81 00 08 */	addi r4, r1, 8
 /* 80093440  4B F8 63 B9 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80093444  7C 7A 1B 78 */	mr r26, r3

@@ -10,8 +10,8 @@ lbl_80AD5EEC:
 /* 80AD5F0C  48 00 06 F9 */	bl selectAction__14daNpc_Seirei_cFv
 /* 80AD5F10  7F C3 F3 78 */	mr r3, r30
 /* 80AD5F14  48 00 01 3D */	bl srchActors__14daNpc_Seirei_cFv
-/* 80AD5F18  3C 60 80 AD */	lis r3, m__20daNpc_Seirei_Param_c@ha
-/* 80AD5F1C  3B E3 7C A8 */	addi r31, r3, m__20daNpc_Seirei_Param_c@l
+/* 80AD5F18  3C 60 80 AD */	lis r3, m__20daNpc_Seirei_Param_c@ha /* 0x80AD7CA8@ha */
+/* 80AD5F1C  3B E3 7C A8 */	addi r31, r3, m__20daNpc_Seirei_Param_c@l /* 0x80AD7CA8@l */
 /* 80AD5F20  C3 FF 00 90 */	lfs f31, 0x90(r31)
 /* 80AD5F24  38 60 00 28 */	li r3, 0x28
 /* 80AD5F28  48 00 01 0D */	bl getDistTable__12dAttention_cFi
@@ -33,11 +33,11 @@ lbl_80AD5EEC:
 /* 80AD5F68  54 04 A6 3E */	rlwinm r4, r0, 0x14, 0x18, 0x1f
 /* 80AD5F6C  28 04 00 FF */	cmplwi r4, 0xff
 /* 80AD5F70  41 82 00 2C */	beq lbl_80AD5F9C
-/* 80AD5F74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80AD5F78  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80AD5F74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80AD5F78  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80AD5F7C  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80AD5F80  7C 05 07 74 */	extsb r5, r0
-/* 80AD5F84  4B 55 F3 DC */	b isSwitch__10dSv_info_cCFii
+/* 80AD5F84  4B 55 F3 DD */	bl isSwitch__10dSv_info_cCFii
 /* 80AD5F88  2C 03 00 00 */	cmpwi r3, 0
 /* 80AD5F8C  41 82 00 10 */	beq lbl_80AD5F9C
 /* 80AD5F90  38 00 00 08 */	li r0, 8
@@ -47,8 +47,8 @@ lbl_80AD5F9C:
 /* 80AD5F9C  38 00 00 00 */	li r0, 0
 /* 80AD5FA0  90 1E 05 5C */	stw r0, 0x55c(r30)
 lbl_80AD5FA4:
-/* 80AD5FA4  3C 60 80 AD */	lis r3, m__20daNpc_Seirei_Param_c@ha
-/* 80AD5FA8  38 63 7C A8 */	addi r3, r3, m__20daNpc_Seirei_Param_c@l
+/* 80AD5FA4  3C 60 80 AD */	lis r3, m__20daNpc_Seirei_Param_c@ha /* 0x80AD7CA8@ha */
+/* 80AD5FA8  38 63 7C A8 */	addi r3, r3, m__20daNpc_Seirei_Param_c@l /* 0x80AD7CA8@l */
 /* 80AD5FAC  C0 03 00 10 */	lfs f0, 0x10(r3)
 /* 80AD5FB0  FC 00 00 1E */	fctiwz f0, f0
 /* 80AD5FB4  D8 01 00 08 */	stfd f0, 8(r1)
@@ -62,9 +62,9 @@ lbl_80AD5FA4:
 /* 80AD5FD4  D0 1E 0D F8 */	stfs f0, 0xdf8(r30)
 /* 80AD5FD8  38 7E 08 A0 */	addi r3, r30, 0x8a0
 /* 80AD5FDC  C0 3E 0D F0 */	lfs f1, 0xdf0(r30)
-/* 80AD5FE0  4B 59 FF 60 */	b SetWallR__12dBgS_AcchCirFf
-/* 80AD5FE4  3C 60 80 AD */	lis r3, m__20daNpc_Seirei_Param_c@ha
-/* 80AD5FE8  38 63 7C A8 */	addi r3, r3, m__20daNpc_Seirei_Param_c@l
+/* 80AD5FE0  4B 59 FF 61 */	bl SetWallR__12dBgS_AcchCirFf
+/* 80AD5FE4  3C 60 80 AD */	lis r3, m__20daNpc_Seirei_Param_c@ha /* 0x80AD7CA8@ha */
+/* 80AD5FE8  38 63 7C A8 */	addi r3, r3, m__20daNpc_Seirei_Param_c@l /* 0x80AD7CA8@l */
 /* 80AD5FEC  C0 03 00 18 */	lfs f0, 0x18(r3)
 /* 80AD5FF0  D0 1E 08 D0 */	stfs f0, 0x8d0(r30)
 /* 80AD5FF4  C0 03 00 0C */	lfs f0, 0xc(r3)

@@ -29,54 +29,54 @@ extern "C" void OSRestoreInterrupts();
 //
 
 /* ############################################################################################## */
-/* 8044C998-8044C9B8 0020+00 s=4 e=0 z=0  None .bss       WaitingQueue */
+/* 8044C998-8044C9B8 0796B8 0020+00 4/4 0/0 0/0 .bss             WaitingQueue */
 static u8 WaitingQueue[32];
 
-/* 8034B874-8034B8AC 0038+00 s=0 e=5 z=0  None .text      __DVDClearWaitingQueue */
+/* 8034B874-8034B8AC 3461B4 0038+00 0/0 5/5 0/0 .text            __DVDClearWaitingQueue */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __DVDClearWaitingQueue() {
+asm void __DVDClearWaitingQueue() {
     nofralloc
 #include "asm/dolphin/dvd/dvdqueue/__DVDClearWaitingQueue.s"
 }
 #pragma pop
 
-/* 8034B8AC-8034B914 0068+00 s=0 e=5 z=0  None .text      __DVDPushWaitingQueue */
+/* 8034B8AC-8034B914 3461EC 0068+00 0/0 5/5 0/0 .text            __DVDPushWaitingQueue */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __DVDPushWaitingQueue() {
+asm void __DVDPushWaitingQueue() {
     nofralloc
 #include "asm/dolphin/dvd/dvdqueue/__DVDPushWaitingQueue.s"
 }
 #pragma pop
 
-/* 8034B914-8034B9B4 00A0+00 s=0 e=2 z=0  None .text      __DVDPopWaitingQueue */
+/* 8034B914-8034B9B4 346254 00A0+00 0/0 2/2 0/0 .text            __DVDPopWaitingQueue */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __DVDPopWaitingQueue() {
+asm void __DVDPopWaitingQueue() {
     nofralloc
 #include "asm/dolphin/dvd/dvdqueue/__DVDPopWaitingQueue.s"
 }
 #pragma pop
 
-/* 8034B9B4-8034BA0C 0058+00 s=0 e=1 z=0  None .text      __DVDCheckWaitingQueue */
+/* 8034B9B4-8034BA0C 3462F4 0058+00 0/0 1/1 0/0 .text            __DVDCheckWaitingQueue */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __DVDCheckWaitingQueue() {
+asm void __DVDCheckWaitingQueue() {
     nofralloc
 #include "asm/dolphin/dvd/dvdqueue/__DVDCheckWaitingQueue.s"
 }
 #pragma pop
 
-/* 8034BA0C-8034BA6C 0060+00 s=0 e=1 z=0  None .text      __DVDDequeueWaitingQueue */
+/* 8034BA0C-8034BA6C 34634C 0060+00 0/0 1/1 0/0 .text            __DVDDequeueWaitingQueue */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __DVDDequeueWaitingQueue() {
+asm void __DVDDequeueWaitingQueue() {
     nofralloc
 #include "asm/dolphin/dvd/dvdqueue/__DVDDequeueWaitingQueue.s"
 }

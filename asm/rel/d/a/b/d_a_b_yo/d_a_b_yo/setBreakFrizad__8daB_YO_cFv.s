@@ -9,13 +9,13 @@ lbl_806300F4:
 /* 80630110  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 80630114  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 80630118  7C 7E 1B 78 */	mr r30, r3
-/* 8063011C  3C 60 80 64 */	lis r3, lit_3788@ha
-/* 80630120  3B E3 97 F4 */	addi r31, r3, lit_3788@l
+/* 8063011C  3C 60 80 64 */	lis r3, lit_3788@ha /* 0x806397F4@ha */
+/* 80630120  3B E3 97 F4 */	addi r31, r3, lit_3788@l /* 0x806397F4@l */
 /* 80630124  88 1E 0F A8 */	lbz r0, 0xfa8(r30)
 /* 80630128  28 00 00 03 */	cmplwi r0, 3
 /* 8063012C  41 80 00 D8 */	blt lbl_80630204
 /* 80630130  C0 3F 00 48 */	lfs f1, 0x48(r31)
-/* 80630134  4B C3 78 58 */	b cM_rndFX__Ff
+/* 80630134  4B C3 78 59 */	bl cM_rndFX__Ff
 /* 80630138  A8 1E 04 E6 */	lha r0, 0x4e6(r30)
 /* 8063013C  C8 5F 00 50 */	lfd f2, 0x50(r31)
 /* 80630140  6C 00 80 00 */	xoris r0, r0, 0x8000
@@ -33,17 +33,17 @@ lbl_806300F4:
 /* 80630170  B0 61 00 12 */	sth r3, 0x12(r1)
 /* 80630174  B0 01 00 14 */	sth r0, 0x14(r1)
 /* 80630178  C0 3F 00 4C */	lfs f1, 0x4c(r31)
-/* 8063017C  4B C3 77 D8 */	b cM_rndF__Ff
+/* 8063017C  4B C3 77 D9 */	bl cM_rndF__Ff
 /* 80630180  C0 1E 04 D8 */	lfs f0, 0x4d8(r30)
 /* 80630184  EF C0 08 2A */	fadds f30, f0, f1
 /* 80630188  C0 3F 00 3C */	lfs f1, 0x3c(r31)
-/* 8063018C  4B C3 77 C8 */	b cM_rndF__Ff
+/* 8063018C  4B C3 77 C9 */	bl cM_rndF__Ff
 /* 80630190  C0 1F 00 3C */	lfs f0, 0x3c(r31)
 /* 80630194  EC 20 08 2A */	fadds f1, f0, f1
 /* 80630198  C0 1E 04 D4 */	lfs f0, 0x4d4(r30)
 /* 8063019C  EF E0 08 2A */	fadds f31, f0, f1
 /* 806301A0  C0 3F 00 4C */	lfs f1, 0x4c(r31)
-/* 806301A4  4B C3 77 B0 */	b cM_rndF__Ff
+/* 806301A4  4B C3 77 B1 */	bl cM_rndF__Ff
 /* 806301A8  C0 1E 04 D0 */	lfs f0, 0x4d0(r30)
 /* 806301AC  EC 00 08 2A */	fadds f0, f0, f1
 /* 806301B0  D0 01 00 18 */	stfs f0, 0x18(r1)
@@ -68,7 +68,7 @@ lbl_806301E4:
 /* 806301F4  39 01 00 10 */	addi r8, r1, 0x10
 /* 806301F8  39 20 00 00 */	li r9, 0
 /* 806301FC  39 40 FF FF */	li r10, -1
-/* 80630200  4B 9E 9C F0 */	b fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
+/* 80630200  4B 9E 9C F1 */	bl fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
 lbl_80630204:
 /* 80630204  E3 E1 00 58 */	psq_l f31, 88(r1), 0, 0 /* qr0 */
 /* 80630208  CB E1 00 50 */	lfd f31, 0x50(r1)

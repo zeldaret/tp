@@ -3,10 +3,10 @@ lbl_80700638:
 /* 8070063C  7C 08 02 A6 */	mflr r0
 /* 80700640  90 01 00 54 */	stw r0, 0x54(r1)
 /* 80700644  39 61 00 50 */	addi r11, r1, 0x50
-/* 80700648  4B C6 1B 8C */	b _savegpr_27
+/* 80700648  4B C6 1B 8D */	bl _savegpr_27
 /* 8070064C  7C 7E 1B 78 */	mr r30, r3
-/* 80700650  3C 80 80 70 */	lis r4, lit_3903@ha
-/* 80700654  3B E4 5A F8 */	addi r31, r4, lit_3903@l
+/* 80700650  3C 80 80 70 */	lis r4, lit_3903@ha /* 0x80705AF8@ha */
+/* 80700654  3B E4 5A F8 */	addi r31, r4, lit_3903@l /* 0x80705AF8@l */
 /* 80700658  3B A0 00 01 */	li r29, 1
 /* 8070065C  3B 80 00 01 */	li r28, 1
 /* 80700660  38 00 00 02 */	li r0, 2
@@ -105,7 +105,7 @@ lbl_80700790:
 /* 807007B8  39 00 00 00 */	li r8, 0
 /* 807007BC  39 20 FF FF */	li r9, -1
 /* 807007C0  39 40 00 00 */	li r10, 0
-/* 807007C4  4B 91 96 40 */	b fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv
+/* 807007C4  4B 91 96 41 */	bl fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv
 /* 807007C8  28 03 00 00 */	cmplwi r3, 0
 /* 807007CC  41 82 03 00 */	beq lbl_80700ACC
 /* 807007D0  38 00 00 01 */	li r0, 1
@@ -124,7 +124,7 @@ lbl_807007FC:
 lbl_80700800:
 /* 80700800  90 1E 06 6C */	stw r0, 0x66c(r30)
 /* 80700804  38 80 00 00 */	li r4, 0
-/* 80700808  4B 91 C3 40 */	b fopAcM_setCarryNow__FP10fopAc_ac_ci
+/* 80700808  4B 91 C3 41 */	bl fopAcM_setCarryNow__FP10fopAc_ac_ci
 /* 8070080C  48 00 02 C0 */	b lbl_80700ACC
 lbl_80700810:
 /* 80700810  38 00 00 01 */	li r0, 1
@@ -207,11 +207,11 @@ lbl_80700914:
 /* 80700934  B0 1E 06 72 */	sth r0, 0x672(r30)
 /* 80700938  38 00 00 C8 */	li r0, 0xc8
 /* 8070093C  B0 1E 06 A0 */	sth r0, 0x6a0(r30)
-/* 80700940  3C 60 80 45 */	lis r3, calc_mtx@ha
-/* 80700944  38 63 07 68 */	addi r3, r3, calc_mtx@l
+/* 80700940  3C 60 80 45 */	lis r3, calc_mtx@ha /* 0x80450768@ha */
+/* 80700944  38 63 07 68 */	addi r3, r3, calc_mtx@l /* 0x80450768@l */
 /* 80700948  80 63 00 00 */	lwz r3, 0(r3)
 /* 8070094C  A8 9E 04 DE */	lha r4, 0x4de(r30)
-/* 80700950  4B 90 BA 8C */	b mDoMtx_YrotS__FPA4_fs
+/* 80700950  4B 90 BA 8D */	bl mDoMtx_YrotS__FPA4_fs
 /* 80700954  C0 1F 00 04 */	lfs f0, 4(r31)
 /* 80700958  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 8070095C  C0 1F 00 74 */	lfs f0, 0x74(r31)
@@ -220,24 +220,24 @@ lbl_80700914:
 /* 80700968  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 8070096C  38 61 00 18 */	addi r3, r1, 0x18
 /* 80700970  38 9E 06 78 */	addi r4, r30, 0x678
-/* 80700974  4B B7 05 78 */	b MtxPosition__FP4cXyzP4cXyz
+/* 80700974  4B B7 05 79 */	bl MtxPosition__FP4cXyzP4cXyz
 /* 80700978  38 7E 06 78 */	addi r3, r30, 0x678
 /* 8070097C  38 9E 04 D0 */	addi r4, r30, 0x4d0
 /* 80700980  7C 65 1B 78 */	mr r5, r3
-/* 80700984  4B C4 67 0C */	b PSVECAdd
+/* 80700984  4B C4 67 0D */	bl PSVECAdd
 /* 80700988  38 00 00 02 */	li r0, 2
 /* 8070098C  98 1E 06 70 */	stb r0, 0x670(r30)
 /* 80700990  38 00 00 00 */	li r0, 0
 /* 80700994  98 1E 06 6B */	stb r0, 0x66b(r30)
 /* 80700998  80 1E 06 6C */	lwz r0, 0x66c(r30)
 /* 8070099C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 807009A0  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 807009A4  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 807009A0  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 807009A4  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 807009A8  38 81 00 14 */	addi r4, r1, 0x14
-/* 807009AC  4B 91 8E 4C */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 807009AC  4B 91 8E 4D */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 807009B0  7C 7B 1B 79 */	or. r27, r3, r3
 /* 807009B4  41 82 00 10 */	beq lbl_807009C4
-/* 807009B8  4B 91 C1 E8 */	b fopAcM_cancelCarryNow__FP10fopAc_ac_c
+/* 807009B8  4B 91 C1 E9 */	bl fopAcM_cancelCarryNow__FP10fopAc_ac_c
 /* 807009BC  C0 1F 00 38 */	lfs f0, 0x38(r31)
 /* 807009C0  D0 1B 05 2C */	stfs f0, 0x52c(r27)
 lbl_807009C4:
@@ -256,17 +256,17 @@ lbl_807009DC:
 /* 807009EC  2C 00 00 B4 */	cmpwi r0, 0xb4
 /* 807009F0  40 82 00 0C */	bne lbl_807009FC
 /* 807009F4  7F C3 F3 78 */	mr r3, r30
-/* 807009F8  4B A5 EE EC */	b cancelBoomerangLockActor__9daPy_py_cFP10fopAc_ac_c
+/* 807009F8  4B A5 EE ED */	bl cancelBoomerangLockActor__9daPy_py_cFP10fopAc_ac_c
 lbl_807009FC:
 /* 807009FC  A8 1E 06 A0 */	lha r0, 0x6a0(r30)
 /* 80700A00  2C 00 00 96 */	cmpwi r0, 0x96
 /* 80700A04  40 82 00 3C */	bne lbl_80700A40
 /* 80700A08  80 1E 06 6C */	lwz r0, 0x66c(r30)
 /* 80700A0C  90 01 00 10 */	stw r0, 0x10(r1)
-/* 80700A10  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 80700A14  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 80700A10  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 80700A14  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 80700A18  38 81 00 10 */	addi r4, r1, 0x10
-/* 80700A1C  4B 91 8D DC */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 80700A1C  4B 91 8D DD */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80700A20  28 03 00 00 */	cmplwi r3, 0
 /* 80700A24  41 82 00 14 */	beq lbl_80700A38
 /* 80700A28  81 83 05 68 */	lwz r12, 0x568(r3)
@@ -321,7 +321,7 @@ lbl_80700ACC:
 lbl_80700ADC:
 /* 80700ADC  7F 83 E3 78 */	mr r3, r28
 /* 80700AE0  39 61 00 50 */	addi r11, r1, 0x50
-/* 80700AE4  4B C6 17 3C */	b _restgpr_27
+/* 80700AE4  4B C6 17 3D */	bl _restgpr_27
 /* 80700AE8  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 80700AEC  7C 08 03 A6 */	mtlr r0
 /* 80700AF0  38 21 00 50 */	addi r1, r1, 0x50

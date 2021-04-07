@@ -5,12 +5,12 @@ lbl_80C172AC:
 /* 80C172B8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C172BC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80C172C0  41 82 00 1C */	beq lbl_80C172DC
-/* 80C172C4  3C A0 80 C1 */	lis r5, __vt__10cCcD_GStts@ha
-/* 80C172C8  38 05 73 DC */	addi r0, r5, __vt__10cCcD_GStts@l
+/* 80C172C4  3C A0 80 C1 */	lis r5, __vt__10cCcD_GStts@ha /* 0x80C173DC@ha */
+/* 80C172C8  38 05 73 DC */	addi r0, r5, __vt__10cCcD_GStts@l /* 0x80C173DC@l */
 /* 80C172CC  90 1F 00 00 */	stw r0, 0(r31)
 /* 80C172D0  7C 80 07 35 */	extsh. r0, r4
 /* 80C172D4  40 81 00 08 */	ble lbl_80C172DC
-/* 80C172D8  4B 6B 7A 64 */	b __dl__FPv
+/* 80C172D8  4B 6B 7A 65 */	bl __dl__FPv
 lbl_80C172DC:
 /* 80C172DC  7F E3 FB 78 */	mr r3, r31
 /* 80C172E0  83 E1 00 0C */	lwz r31, 0xc(r1)

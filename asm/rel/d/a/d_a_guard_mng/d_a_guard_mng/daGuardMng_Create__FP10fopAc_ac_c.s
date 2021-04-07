@@ -9,7 +9,7 @@ lbl_80837D7C:
 /* 80837D98  40 82 00 1C */	bne lbl_80837DB4
 /* 80837D9C  28 1F 00 00 */	cmplwi r31, 0
 /* 80837DA0  41 82 00 08 */	beq lbl_80837DA8
-/* 80837DA4  4B 7E 0D C0 */	b __ct__10fopAc_ac_cFv
+/* 80837DA4  4B 7E 0D C1 */	bl __ct__10fopAc_ac_cFv
 lbl_80837DA8:
 /* 80837DA8  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 80837DAC  60 00 00 08 */	ori r0, r0, 8

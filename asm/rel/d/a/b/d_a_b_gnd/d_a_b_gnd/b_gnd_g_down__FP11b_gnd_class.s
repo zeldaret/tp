@@ -3,10 +3,10 @@ lbl_805F94A8:
 /* 805F94AC  7C 08 02 A6 */	mflr r0
 /* 805F94B0  90 01 00 44 */	stw r0, 0x44(r1)
 /* 805F94B4  39 61 00 40 */	addi r11, r1, 0x40
-/* 805F94B8  4B D6 8D 20 */	b _savegpr_28
+/* 805F94B8  4B D6 8D 21 */	bl _savegpr_28
 /* 805F94BC  7C 7C 1B 78 */	mr r28, r3
-/* 805F94C0  3C 60 80 60 */	lis r3, lit_3815@ha
-/* 805F94C4  3B C3 26 64 */	addi r30, r3, lit_3815@l
+/* 805F94C0  3C 60 80 60 */	lis r3, lit_3815@ha /* 0x80602664@ha */
+/* 805F94C4  3B C3 26 64 */	addi r30, r3, lit_3815@l /* 0x80602664@l */
 /* 805F94C8  80 7C 05 D0 */	lwz r3, 0x5d0(r28)
 /* 805F94CC  C0 03 00 1C */	lfs f0, 0x1c(r3)
 /* 805F94D0  FC 00 00 1E */	fctiwz f0, f0
@@ -14,10 +14,10 @@ lbl_805F94A8:
 /* 805F94D8  83 A1 00 2C */	lwz r29, 0x2c(r1)
 /* 805F94DC  80 1C 1F B4 */	lwz r0, 0x1fb4(r28)
 /* 805F94E0  90 01 00 08 */	stw r0, 8(r1)
-/* 805F94E4  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 805F94E8  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 805F94E4  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 805F94E8  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 805F94EC  38 81 00 08 */	addi r4, r1, 8
-/* 805F94F0  4B A2 03 08 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 805F94F0  4B A2 03 09 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 805F94F4  7C 7F 1B 78 */	mr r31, r3
 /* 805F94F8  38 00 00 0A */	li r0, 0xa
 /* 805F94FC  B0 1C 0C 58 */	sth r0, 0xc58(r28)
@@ -84,7 +84,7 @@ lbl_805F95D4:
 /* 805F95DC  38 7C 05 2C */	addi r3, r28, 0x52c
 /* 805F95E0  C0 3E 00 00 */	lfs f1, 0(r30)
 /* 805F95E4  C0 5E 00 8C */	lfs f2, 0x8c(r30)
-/* 805F95E8  4B C7 64 98 */	b cLib_addCalc0__FPfff
+/* 805F95E8  4B C7 64 99 */	bl cLib_addCalc0__FPfff
 /* 805F95EC  2C 1D 00 10 */	cmpwi r29, 0x10
 /* 805F95F0  40 82 00 B0 */	bne lbl_805F96A0
 /* 805F95F4  80 7C 05 D0 */	lwz r3, 0x5d0(r28)
@@ -92,11 +92,11 @@ lbl_805F95D4:
 /* 805F95FC  80 63 00 84 */	lwz r3, 0x84(r3)
 /* 805F9600  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 805F9604  38 63 00 30 */	addi r3, r3, 0x30
-/* 805F9608  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha
-/* 805F960C  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l
-/* 805F9610  4B D4 CE A0 */	b PSMTXCopy
-/* 805F9614  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 805F9618  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 805F9608  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 805F960C  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 805F9610  4B D4 CE A1 */	bl PSMTXCopy
+/* 805F9614  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 805F9618  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 805F961C  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 805F9620  D0 01 00 1C */	stfs f0, 0x1c(r1)
 /* 805F9624  C0 03 00 1C */	lfs f0, 0x1c(r3)
@@ -110,19 +110,19 @@ lbl_805F95D4:
 /* 805F9644  C0 3E 00 BC */	lfs f1, 0xbc(r30)
 /* 805F9648  38 FC 01 0C */	addi r7, r28, 0x10c
 /* 805F964C  39 00 00 01 */	li r8, 1
-/* 805F9650  4B A2 39 D0 */	b fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci
+/* 805F9650  4B A2 39 D1 */	bl fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci
 /* 805F9654  C0 3E 00 14 */	lfs f1, 0x14(r30)
 /* 805F9658  D0 21 00 10 */	stfs f1, 0x10(r1)
 /* 805F965C  C0 1E 00 00 */	lfs f0, 0(r30)
 /* 805F9660  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 805F9664  D0 21 00 18 */	stfs f1, 0x18(r1)
-/* 805F9668  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805F966C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805F9668  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805F966C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805F9670  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 805F9674  38 80 00 06 */	li r4, 6
 /* 805F9678  38 A0 00 1F */	li r5, 0x1f
 /* 805F967C  38 C1 00 10 */	addi r6, r1, 0x10
-/* 805F9680  4B A7 63 A4 */	b StartShock__12dVibration_cFii4cXyz
+/* 805F9680  4B A7 63 A5 */	bl StartShock__12dVibration_cFii4cXyz
 /* 805F9684  C0 1E 01 40 */	lfs f0, 0x140(r30)
 /* 805F9688  D0 1F 39 60 */	stfs f0, 0x3960(r31)
 /* 805F968C  80 1C 07 58 */	lwz r0, 0x758(r28)
@@ -179,7 +179,7 @@ lbl_805F970C:
 /* 805F9744  B0 1C 05 BC */	sth r0, 0x5bc(r28)
 /* 805F9748  38 00 00 C8 */	li r0, 0xc8
 /* 805F974C  B0 1C 0C 44 */	sth r0, 0xc44(r28)
-/* 805F9750  4B B6 5C 48 */	b checkMasterSwordEquip__9daPy_py_cFv
+/* 805F9750  4B B6 5C 49 */	bl checkMasterSwordEquip__9daPy_py_cFv
 /* 805F9754  2C 03 00 00 */	cmpwi r3, 0
 /* 805F9758  41 82 01 30 */	beq lbl_805F9888
 /* 805F975C  A0 1C 05 8E */	lhz r0, 0x58e(r28)
@@ -197,8 +197,8 @@ lbl_805F976C:
 lbl_805F9788:
 /* 805F9788  38 00 00 01 */	li r0, 1
 /* 805F978C  98 1F 39 65 */	stb r0, 0x3965(r31)
-/* 805F9790  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805F9794  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805F9790  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805F9794  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805F9798  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 805F979C  88 03 05 68 */	lbz r0, 0x568(r3)
 /* 805F97A0  28 00 00 27 */	cmplwi r0, 0x27
@@ -209,18 +209,18 @@ lbl_805F9788:
 /* 805F97B4  B0 1C 0A FE */	sth r0, 0xafe(r28)
 /* 805F97B8  38 00 00 00 */	li r0, 0
 /* 805F97BC  B0 1C 05 BC */	sth r0, 0x5bc(r28)
-/* 805F97C0  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 805F97C4  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 805F97C0  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 805F97C4  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 805F97C8  80 63 00 00 */	lwz r3, 0(r3)
 /* 805F97CC  38 63 03 D0 */	addi r3, r3, 0x3d0
 /* 805F97D0  38 80 00 1E */	li r4, 0x1e
 /* 805F97D4  38 A0 00 00 */	li r5, 0
-/* 805F97D8  4B CB 5C 30 */	b bgmStop__8Z2SeqMgrFUll
+/* 805F97D8  4B CB 5C 31 */	bl bgmStop__8Z2SeqMgrFUll
 lbl_805F97DC:
 /* 805F97DC  A8 1C 0C 44 */	lha r0, 0xc44(r28)
 /* 805F97E0  2C 00 00 00 */	cmpwi r0, 0
 /* 805F97E4  41 82 00 10 */	beq lbl_805F97F4
-/* 805F97E8  4B B6 5B B0 */	b checkMasterSwordEquip__9daPy_py_cFv
+/* 805F97E8  4B B6 5B B1 */	bl checkMasterSwordEquip__9daPy_py_cFv
 /* 805F97EC  2C 03 00 00 */	cmpwi r3, 0
 /* 805F97F0  40 82 00 98 */	bne lbl_805F9888
 lbl_805F97F4:
@@ -266,7 +266,7 @@ lbl_805F9870:
 /* 805F9884  B0 1C 05 BC */	sth r0, 0x5bc(r28)
 lbl_805F9888:
 /* 805F9888  39 61 00 40 */	addi r11, r1, 0x40
-/* 805F988C  4B D6 89 98 */	b _restgpr_28
+/* 805F988C  4B D6 89 99 */	bl _restgpr_28
 /* 805F9890  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 805F9894  7C 08 03 A6 */	mtlr r0
 /* 805F9898  38 21 00 40 */	addi r1, r1, 0x40

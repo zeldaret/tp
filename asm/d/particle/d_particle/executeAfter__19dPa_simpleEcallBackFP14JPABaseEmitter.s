@@ -20,10 +20,10 @@ lbl_8004AE5C:
 /* 8004AE60  80 1D 00 F4 */	lwz r0, 0xf4(r29)
 /* 8004AE64  54 00 00 3C */	rlwinm r0, r0, 0, 0, 0x1e
 /* 8004AE68  90 1D 00 F4 */	stw r0, 0xf4(r29)
-/* 8004AE6C  3C 60 80 3E */	lis r3, mClipper__14mDoLib_clipper@ha
-/* 8004AE70  3B 43 D8 E4 */	addi r26, r3, mClipper__14mDoLib_clipper@l
-/* 8004AE74  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8004AE78  3B 63 4A C8 */	addi r27, r3, j3dSys@l
+/* 8004AE6C  3C 60 80 3E */	lis r3, mClipper__14mDoLib_clipper@ha /* 0x803DD8E4@ha */
+/* 8004AE70  3B 43 D8 E4 */	addi r26, r3, mClipper__14mDoLib_clipper@l /* 0x803DD8E4@l */
+/* 8004AE74  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8004AE78  3B 63 4A C8 */	addi r27, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8004AE7C  48 00 00 E0 */	b lbl_8004AF5C
 lbl_8004AE80:
 /* 8004AE80  80 7E 00 00 */	lwz r3, 0(r30)

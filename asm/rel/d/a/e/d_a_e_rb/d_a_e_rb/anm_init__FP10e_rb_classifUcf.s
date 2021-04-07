@@ -13,24 +13,24 @@ lbl_807623BC:
 /* 807623E8  7C BF 2B 78 */	mr r31, r5
 /* 807623EC  FF E0 10 90 */	fmr f31, f2
 /* 807623F0  90 83 0A 34 */	stw r4, 0xa34(r3)
-/* 807623F4  3C 60 80 76 */	lis r3, stringBase0@ha
-/* 807623F8  38 63 4D D4 */	addi r3, r3, stringBase0@l
-/* 807623FC  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80762400  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 807623F4  3C 60 80 76 */	lis r3, d_a_e_rb__stringBase0@ha /* 0x80764DD4@ha */
+/* 807623F8  38 63 4D D4 */	addi r3, r3, d_a_e_rb__stringBase0@l /* 0x80764DD4@l */
+/* 807623FC  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80762400  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80762404  3C A5 00 02 */	addis r5, r5, 2
 /* 80762408  38 C0 00 80 */	li r6, 0x80
 /* 8076240C  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 80762410  4B 8D 9E DC */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 80762410  4B 8D 9E DD */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 80762414  7C 64 1B 78 */	mr r4, r3
 /* 80762418  80 7E 09 68 */	lwz r3, 0x968(r30)
 /* 8076241C  57 E5 06 3E */	clrlwi r5, r31, 0x18
 /* 80762420  FC 20 F0 90 */	fmr f1, f30
 /* 80762424  FC 40 F8 90 */	fmr f2, f31
-/* 80762428  3C C0 80 76 */	lis r6, lit_3789@ha
-/* 8076242C  C0 66 4D 10 */	lfs f3, lit_3789@l(r6)
-/* 80762430  3C C0 80 76 */	lis r6, lit_3824@ha
-/* 80762434  C0 86 4D 40 */	lfs f4, lit_3824@l(r6)
-/* 80762438  4B 8A EA 38 */	b setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff
+/* 80762428  3C C0 80 76 */	lis r6, lit_3789@ha /* 0x80764D10@ha */
+/* 8076242C  C0 66 4D 10 */	lfs f3, lit_3789@l(r6)  /* 0x80764D10@l */
+/* 80762430  3C C0 80 76 */	lis r6, lit_3824@ha /* 0x80764D40@ha */
+/* 80762434  C0 86 4D 40 */	lfs f4, lit_3824@l(r6)  /* 0x80764D40@l */
+/* 80762438  4B 8A EA 39 */	bl setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff
 /* 8076243C  E3 E1 00 28 */	psq_l f31, 40(r1), 0, 0 /* qr0 */
 /* 80762440  CB E1 00 20 */	lfd f31, 0x20(r1)
 /* 80762444  E3 C1 00 18 */	psq_l f30, 24(r1), 0, 0 /* qr0 */

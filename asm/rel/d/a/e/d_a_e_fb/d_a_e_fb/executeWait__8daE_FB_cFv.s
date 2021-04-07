@@ -5,8 +5,8 @@ lbl_806B6F40:
 /* 806B6F4C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 806B6F50  93 C1 00 08 */	stw r30, 8(r1)
 /* 806B6F54  7C 7F 1B 78 */	mr r31, r3
-/* 806B6F58  3C 60 80 6C */	lis r3, lit_3662@ha
-/* 806B6F5C  3B C3 8F 8C */	addi r30, r3, lit_3662@l
+/* 806B6F58  3C 60 80 6C */	lis r3, lit_3662@ha /* 0x806B8F8C@ha */
+/* 806B6F5C  3B C3 8F 8C */	addi r30, r3, lit_3662@l /* 0x806B8F8C@l */
 /* 806B6F60  A8 7F 06 80 */	lha r3, 0x680(r31)
 /* 806B6F64  2C 03 00 00 */	cmpwi r3, 0
 /* 806B6F68  41 82 00 0C */	beq lbl_806B6F74
@@ -25,8 +25,8 @@ lbl_806B6F90:
 /* 806B6F94  40 80 01 48 */	bge lbl_806B70DC
 /* 806B6F98  48 00 00 14 */	b lbl_806B6FAC
 lbl_806B6F9C:
-/* 806B6F9C  3C 60 80 6C */	lis r3, l_HIO@ha
-/* 806B6FA0  38 63 91 FC */	addi r3, r3, l_HIO@l
+/* 806B6F9C  3C 60 80 6C */	lis r3, l_HIO@ha /* 0x806B91FC@ha */
+/* 806B6FA0  38 63 91 FC */	addi r3, r3, l_HIO@l /* 0x806B91FC@l */
 /* 806B6FA4  A8 03 00 10 */	lha r0, 0x10(r3)
 /* 806B6FA8  B0 1F 06 80 */	sth r0, 0x680(r31)
 lbl_806B6FAC:
@@ -44,8 +44,8 @@ lbl_806B6FD4:
 /* 806B6FD4  88 1F 06 A0 */	lbz r0, 0x6a0(r31)
 /* 806B6FD8  28 00 00 01 */	cmplwi r0, 1
 /* 806B6FDC  40 82 00 7C */	bne lbl_806B7058
-/* 806B6FE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 806B6FE4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 806B6FE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806B6FE4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806B6FE8  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 806B6FEC  C0 03 04 D4 */	lfs f0, 0x4d4(r3)
 /* 806B6FF0  C0 3F 04 D4 */	lfs f1, 0x4d4(r31)
@@ -95,8 +95,8 @@ lbl_806B7058:
 lbl_806B7094:
 /* 806B7094  28 00 00 02 */	cmplwi r0, 2
 /* 806B7098  40 82 00 34 */	bne lbl_806B70CC
-/* 806B709C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 806B70A0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 806B709C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806B70A0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806B70A4  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 806B70A8  C0 03 04 D4 */	lfs f0, 0x4d4(r3)
 /* 806B70AC  C0 3F 04 D4 */	lfs f1, 0x4d4(r31)

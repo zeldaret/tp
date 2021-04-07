@@ -3,17 +3,15 @@
 #
 
 M740_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_setrestart.plf
+M740_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_setrestart.lcf
+M740_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_setrestart.map
 
 M740_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_setrestart/executor.cpp \
-	rel/d/a/tag/d_a_tag_setrestart/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_setrestart/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_setrestart/d_a_tag_setrestart.cpp \
 
 M740_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_setrestart/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_setrestart/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_setrestart/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_setrestart/d_a_tag_setrestart.o \
 
 M740_LIBS := \
@@ -29,14 +27,21 @@ M740_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M740_LDSCRIPT) \
+	-unused -map $(M740_MAP) \
+	-w off \
 
 $(M740_TARGET): $(M740_O_FILES) $(M740_LIBS)
+	@echo [740] creating $(M740_TARGET)
 	@echo $(M740_LIBS) $(M740_O_FILES) > build/M740_ofiles
-	$(LD) -partial $(M740_LDFLAGS) -o $(M740_TARGET) @build/M740_ofiles
+	@python3 tools/lcf.py rel 740 --output $(M740_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M740_LDFLAGS) -o $(M740_TARGET) @build/M740_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_setrestart/%.o: rel/d/a/tag/d_a_tag_setrestart/%.cpp
+	@echo [740] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M740_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M740_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

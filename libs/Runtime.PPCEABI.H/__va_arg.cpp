@@ -21,11 +21,11 @@ extern "C" void __va_arg();
 // Declarations:
 //
 
-/* 80361B14-80361BDC 00C8+00 s=0 e=3 z=0  None .text      __va_arg */
+/* 80361B14-80361BDC 35C454 00C8+00 0/0 3/3 0/0 .text            __va_arg */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __va_arg() {
+asm void __va_arg() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/__va_arg/__va_arg.s"
 }

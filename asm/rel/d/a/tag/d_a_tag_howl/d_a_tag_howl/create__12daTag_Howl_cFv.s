@@ -9,9 +9,9 @@ lbl_8048D958:
 /* 8048D974  40 82 00 28 */	bne lbl_8048D99C
 /* 8048D978  28 1F 00 00 */	cmplwi r31, 0
 /* 8048D97C  41 82 00 14 */	beq lbl_8048D990
-/* 8048D980  4B B8 B1 E4 */	b __ct__10fopAc_ac_cFv
-/* 8048D984  3C 60 80 49 */	lis r3, __vt__12daTag_Howl_c@ha
-/* 8048D988  38 03 DD D8 */	addi r0, r3, __vt__12daTag_Howl_c@l
+/* 8048D980  4B B8 B1 E5 */	bl __ct__10fopAc_ac_cFv
+/* 8048D984  3C 60 80 49 */	lis r3, __vt__12daTag_Howl_c@ha /* 0x8048DDD8@ha */
+/* 8048D988  38 03 DD D8 */	addi r0, r3, __vt__12daTag_Howl_c@l /* 0x8048DDD8@l */
 /* 8048D98C  90 1F 05 6C */	stw r0, 0x56c(r31)
 lbl_8048D990:
 /* 8048D990  80 1F 04 A0 */	lwz r0, 0x4a0(r31)

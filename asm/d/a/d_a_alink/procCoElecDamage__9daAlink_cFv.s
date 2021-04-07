@@ -33,8 +33,8 @@ lbl_800DB47C:
 /* 800DB490  C0 02 92 B8 */	lfs f0, lit_6040(r2)
 /* 800DB494  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 800DB498  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 800DB49C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800DB4A0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800DB49C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800DB4A0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800DB4A4  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 800DB4A8  38 80 00 05 */	li r4, 5
 /* 800DB4AC  38 A0 00 01 */	li r5, 1
@@ -59,8 +59,8 @@ lbl_800DB4DC:
 lbl_800DB4F0:
 /* 800DB4F0  7F E3 FB 78 */	mr r3, r31
 /* 800DB4F4  48 03 C7 9D */	bl resetSpecialEvent__9daAlink_cFv
-/* 800DB4F8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800DB4FC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800DB4F8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800DB4FC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800DB500  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 800DB504  38 80 00 1F */	li r4, 0x1f
 /* 800DB508  4B F9 48 8D */	bl StopQuake__12dVibration_cFi

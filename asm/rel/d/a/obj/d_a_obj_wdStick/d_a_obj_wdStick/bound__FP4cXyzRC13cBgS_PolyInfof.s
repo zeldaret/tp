@@ -10,16 +10,16 @@ lbl_80D32A70:
 /* 80D32A90  93 C1 00 68 */	stw r30, 0x68(r1)
 /* 80D32A94  7C 7F 1B 78 */	mr r31, r3
 /* 80D32A98  FF E0 08 90 */	fmr f31, f1
-/* 80D32A9C  3C 60 80 D3 */	lis r3, mCcDObjInfo__11daWdStick_c@ha
-/* 80D32AA0  3B C3 41 38 */	addi r30, r3, mCcDObjInfo__11daWdStick_c@l
-/* 80D32AA4  3C 60 80 D3 */	lis r3, __vt__8cM3dGPla@ha
-/* 80D32AA8  38 03 43 74 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 80D32A9C  3C 60 80 D3 */	lis r3, mCcDObjInfo__11daWdStick_c@ha /* 0x80D34138@ha */
+/* 80D32AA0  3B C3 41 38 */	addi r30, r3, mCcDObjInfo__11daWdStick_c@l /* 0x80D34138@l */
+/* 80D32AA4  3C 60 80 D3 */	lis r3, __vt__8cM3dGPla@ha /* 0x80D34374@ha */
+/* 80D32AA8  38 03 43 74 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x80D34374@l */
 /* 80D32AAC  90 01 00 5C */	stw r0, 0x5c(r1)
-/* 80D32AB0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80D32AB4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80D32AB0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D32AB4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D32AB8  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80D32ABC  38 A1 00 4C */	addi r5, r1, 0x4c
-/* 80D32AC0  4B 34 1C 84 */	b GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla
+/* 80D32AC0  4B 34 1C 85 */	bl GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla
 /* 80D32AC4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80D32AC8  41 82 02 6C */	beq lbl_80D32D34
 /* 80D32ACC  C0 3F 00 08 */	lfs f1, 8(r31)
@@ -29,7 +29,7 @@ lbl_80D32A70:
 /* 80D32ADC  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 80D32AE0  D0 21 00 24 */	stfs f1, 0x24(r1)
 /* 80D32AE4  38 61 00 1C */	addi r3, r1, 0x1c
-/* 80D32AE8  4B 61 46 50 */	b PSVECSquareMag
+/* 80D32AE8  4B 61 46 51 */	bl PSVECSquareMag
 /* 80D32AEC  C0 1E 00 48 */	lfs f0, 0x48(r30)
 /* 80D32AF0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80D32AF4  40 81 00 58 */	ble lbl_80D32B4C
@@ -58,8 +58,8 @@ lbl_80D32B4C:
 /* 80D32B4C  C8 1E 00 80 */	lfd f0, 0x80(r30)
 /* 80D32B50  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80D32B54  40 80 00 10 */	bge lbl_80D32B64
-/* 80D32B58  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80D32B5C  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)
+/* 80D32B58  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80D32B5C  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80D32B60  48 00 00 78 */	b lbl_80D32BD8
 lbl_80D32B64:
 /* 80D32B64  D0 21 00 0C */	stfs f1, 0xc(r1)
@@ -93,8 +93,8 @@ lbl_80D32BBC:
 lbl_80D32BC0:
 /* 80D32BC0  2C 00 00 01 */	cmpwi r0, 1
 /* 80D32BC4  40 82 00 10 */	bne lbl_80D32BD4
-/* 80D32BC8  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80D32BCC  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)
+/* 80D32BC8  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80D32BCC  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80D32BD0  48 00 00 08 */	b lbl_80D32BD8
 lbl_80D32BD4:
 /* 80D32BD4  FF C0 08 90 */	fmr f30, f1
@@ -102,15 +102,15 @@ lbl_80D32BD8:
 /* 80D32BD8  7F E3 FB 78 */	mr r3, r31
 /* 80D32BDC  38 81 00 4C */	addi r4, r1, 0x4c
 /* 80D32BE0  38 A1 00 40 */	addi r5, r1, 0x40
-/* 80D32BE4  4B 61 46 E4 */	b C_VECReflect
+/* 80D32BE4  4B 61 46 E5 */	bl C_VECReflect
 /* 80D32BE8  38 61 00 34 */	addi r3, r1, 0x34
 /* 80D32BEC  38 81 00 40 */	addi r4, r1, 0x40
 /* 80D32BF0  FC 20 F0 90 */	fmr f1, f30
-/* 80D32BF4  4B 53 3F 90 */	b __ml__4cXyzCFf
+/* 80D32BF4  4B 53 3F 91 */	bl __ml__4cXyzCFf
 /* 80D32BF8  38 61 00 28 */	addi r3, r1, 0x28
 /* 80D32BFC  38 81 00 34 */	addi r4, r1, 0x34
 /* 80D32C00  FC 20 F8 90 */	fmr f1, f31
-/* 80D32C04  4B 53 3F 80 */	b __ml__4cXyzCFf
+/* 80D32C04  4B 53 3F 81 */	bl __ml__4cXyzCFf
 /* 80D32C08  C0 01 00 28 */	lfs f0, 0x28(r1)
 /* 80D32C0C  D0 1F 00 00 */	stfs f0, 0(r31)
 /* 80D32C10  C0 01 00 2C */	lfs f0, 0x2c(r1)
@@ -124,7 +124,7 @@ lbl_80D32BD8:
 /* 80D32C30  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 80D32C34  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 80D32C38  38 61 00 10 */	addi r3, r1, 0x10
-/* 80D32C3C  4B 61 44 FC */	b PSVECSquareMag
+/* 80D32C3C  4B 61 44 FD */	bl PSVECSquareMag
 /* 80D32C40  C0 1E 00 48 */	lfs f0, 0x48(r30)
 /* 80D32C44  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80D32C48  40 81 00 58 */	ble lbl_80D32CA0
@@ -153,8 +153,8 @@ lbl_80D32CA0:
 /* 80D32CA0  C8 1E 00 80 */	lfd f0, 0x80(r30)
 /* 80D32CA4  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80D32CA8  40 80 00 10 */	bge lbl_80D32CB8
-/* 80D32CAC  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80D32CB0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80D32CAC  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80D32CB0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80D32CB4  48 00 00 70 */	b lbl_80D32D24
 lbl_80D32CB8:
 /* 80D32CB8  D0 21 00 08 */	stfs f1, 8(r1)
@@ -188,16 +188,16 @@ lbl_80D32D10:
 lbl_80D32D14:
 /* 80D32D14  2C 00 00 01 */	cmpwi r0, 1
 /* 80D32D18  40 82 00 0C */	bne lbl_80D32D24
-/* 80D32D1C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80D32D20  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80D32D1C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80D32D20  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80D32D24:
-/* 80D32D24  3C 60 80 D3 */	lis r3, __vt__8cM3dGPla@ha
-/* 80D32D28  38 03 43 74 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 80D32D24  3C 60 80 D3 */	lis r3, __vt__8cM3dGPla@ha /* 0x80D34374@ha */
+/* 80D32D28  38 03 43 74 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x80D34374@l */
 /* 80D32D2C  90 01 00 5C */	stw r0, 0x5c(r1)
 /* 80D32D30  48 00 00 14 */	b lbl_80D32D44
 lbl_80D32D34:
-/* 80D32D34  3C 60 80 D3 */	lis r3, __vt__8cM3dGPla@ha
-/* 80D32D38  38 03 43 74 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 80D32D34  3C 60 80 D3 */	lis r3, __vt__8cM3dGPla@ha /* 0x80D34374@ha */
+/* 80D32D38  38 03 43 74 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x80D34374@l */
 /* 80D32D3C  90 01 00 5C */	stw r0, 0x5c(r1)
 /* 80D32D40  C0 3E 00 48 */	lfs f1, 0x48(r30)
 lbl_80D32D44:

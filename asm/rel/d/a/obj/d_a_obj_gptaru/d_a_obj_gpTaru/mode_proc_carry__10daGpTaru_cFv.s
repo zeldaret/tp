@@ -4,8 +4,8 @@ lbl_8057E660:
 /* 8057E668  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8057E66C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8057E670  7C 7F 1B 78 */	mr r31, r3
-/* 8057E674  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8057E678  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8057E674  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8057E678  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8057E67C  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 8057E680  C0 3F 05 7C */	lfs f1, 0x57c(r31)
 /* 8057E684  C0 5F 05 84 */	lfs f2, 0x584(r31)
@@ -25,8 +25,8 @@ lbl_8057E660:
 /* 8057E6BC  48 00 09 41 */	bl mode_init_sink__10daGpTaru_cFv
 /* 8057E6C0  48 00 00 2C */	b lbl_8057E6EC
 lbl_8057E6C4:
-/* 8057E6C4  3C 60 80 58 */	lis r3, lit_3807@ha
-/* 8057E6C8  C0 23 F5 C4 */	lfs f1, lit_3807@l(r3)
+/* 8057E6C4  3C 60 80 58 */	lis r3, lit_3807@ha /* 0x8057F5C4@ha */
+/* 8057E6C8  C0 23 F5 C4 */	lfs f1, lit_3807@l(r3)  /* 0x8057F5C4@l */
 /* 8057E6CC  C0 1F 05 2C */	lfs f0, 0x52c(r31)
 /* 8057E6D0  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 8057E6D4  41 82 00 10 */	beq lbl_8057E6E4

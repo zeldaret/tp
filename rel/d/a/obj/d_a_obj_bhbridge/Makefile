@@ -3,17 +3,15 @@
 #
 
 M407_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhbridge.plf
+M407_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhbridge.lcf
+M407_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhbridge.map
 
 M407_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_bhbridge/executor.cpp \
-	rel/d/a/obj/d_a_obj_bhbridge/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_bhbridge/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_bhbridge/d_a_obj_bhbridge.cpp \
 
 M407_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhbridge/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhbridge/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhbridge/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhbridge/d_a_obj_bhbridge.o \
 
 M407_LIBS := \
@@ -29,14 +27,21 @@ M407_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M407_LDSCRIPT) \
+	-unused -map $(M407_MAP) \
+	-w off \
 
 $(M407_TARGET): $(M407_O_FILES) $(M407_LIBS)
+	@echo [407] creating $(M407_TARGET)
 	@echo $(M407_LIBS) $(M407_O_FILES) > build/M407_ofiles
-	$(LD) -partial $(M407_LDFLAGS) -o $(M407_TARGET) @build/M407_ofiles
+	@python3 tools/lcf.py rel 407 --output $(M407_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M407_LDFLAGS) -o $(M407_TARGET) @build/M407_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bhbridge/%.o: rel/d/a/obj/d_a_obj_bhbridge/%.cpp
+	@echo [407] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M407_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M407_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

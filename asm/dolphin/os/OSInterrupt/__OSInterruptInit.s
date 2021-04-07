@@ -19,8 +19,8 @@ lbl_8033D770:
 /* 8033D7B4  38 60 FF E0 */	li r3, -32
 /* 8033D7B8  90 04 00 04 */	stw r0, 4(r4)
 /* 8033D7BC  48 00 03 01 */	bl __OSMaskInterrupts
-/* 8033D7C0  3C 60 80 34 */	lis r3, ExternalInterruptHandler@ha
-/* 8033D7C4  38 83 DF 10 */	addi r4, r3, ExternalInterruptHandler@l
+/* 8033D7C0  3C 60 80 34 */	lis r3, ExternalInterruptHandler@ha /* 0x8033DF10@ha */
+/* 8033D7C4  38 83 DF 10 */	addi r4, r3, ExternalInterruptHandler@l /* 0x8033DF10@l */
 /* 8033D7C8  38 60 00 04 */	li r3, 4
 /* 8033D7CC  4B FF CF 1D */	bl __OSSetExceptionHandler
 /* 8033D7D0  80 01 00 14 */	lwz r0, 0x14(r1)

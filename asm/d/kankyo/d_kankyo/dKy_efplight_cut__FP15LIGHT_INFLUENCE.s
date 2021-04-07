@@ -9,8 +9,8 @@ lbl_801A7A00:
 /* 801A7A1C  2C 00 00 05 */	cmpwi r0, 5
 /* 801A7A20  4C 80 00 20 */	bgelr 
 /* 801A7A24  38 80 00 00 */	li r4, 0
-/* 801A7A28  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A7A2C  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801A7A28  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A7A2C  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A7A30  54 00 10 3A */	slwi r0, r0, 2
 /* 801A7A34  7C 63 02 14 */	add r3, r3, r0
 /* 801A7A38  90 83 05 88 */	stw r4, 0x588(r3)

@@ -4,8 +4,8 @@ lbl_8015F60C:
 /* 8015F614  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8015F618  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8015F61C  3B E0 00 00 */	li r31, 0
-/* 8015F620  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8015F624  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8015F620  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015F624  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8015F628  80 84 5D B4 */	lwz r4, 0x5db4(r4)
 /* 8015F62C  80 04 05 74 */	lwz r0, 0x574(r4)
 /* 8015F630  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6

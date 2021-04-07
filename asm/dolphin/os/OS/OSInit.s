@@ -6,11 +6,11 @@ lbl_80339F60:
 /* 80339F70  93 C1 00 10 */	stw r30, 0x10(r1)
 /* 80339F74  93 A1 00 0C */	stw r29, 0xc(r1)
 /* 80339F78  80 0D 90 A0 */	lwz r0, AreWeInitialized(r13)
-/* 80339F7C  3C 60 80 45 */	lis r3, DriveInfo@ha
-/* 80339F80  3B E3 BA 60 */	addi r31, r3, DriveInfo@l
+/* 80339F7C  3C 60 80 45 */	lis r3, DriveInfo@ha /* 0x8044BA60@ha */
+/* 80339F80  3B E3 BA 60 */	addi r31, r3, DriveInfo@l /* 0x8044BA60@l */
 /* 80339F84  2C 00 00 00 */	cmpwi r0, 0
-/* 80339F88  3C 60 80 3D */	lis r3, lit_1@ha
-/* 80339F8C  3B C3 F2 88 */	addi r30, r3, lit_1@l
+/* 80339F88  3C 60 80 3D */	lis r3, lit_1@ha /* 0x803CF288@ha */
+/* 80339F8C  3B C3 F2 88 */	addi r30, r3, lit_1@l /* 0x803CF288@l */
 /* 80339F90  40 82 04 94 */	bne lbl_8033A424
 /* 80339F94  38 00 00 01 */	li r0, 1
 /* 80339F98  90 0D 90 A0 */	stw r0, AreWeInitialized(r13)
@@ -39,7 +39,7 @@ lbl_80339F60:
 /* 80339FF4  90 0D 90 84 */	stw r0, BI2DebugFlag(r13)
 /* 80339FF8  90 8D 90 80 */	stw r4, BootInfo(r13)
 /* 80339FFC  90 0D 91 EC */	stw r0, __DVDLongFileNameFlag(r13)
-/* 8033A000  80 64 00 F4 */	lwz r3, 0x00F4(r4)
+/* 8033A000  80 64 00 F4 */	lwz r3, 0x00F4(r4)  /* 0x800000F4@l */
 /* 8033A004  28 03 00 00 */	cmplwi r3, 0
 /* 8033A008  41 82 00 34 */	beq lbl_8033A03C
 /* 8033A00C  38 03 00 0C */	addi r0, r3, 0xc
@@ -106,8 +106,8 @@ lbl_8033A0E0:
 /* 8033A0EC  48 00 07 B5 */	bl OSInitAlarm
 /* 8033A0F0  48 00 48 8D */	bl __OSModuleInit
 /* 8033A0F4  48 00 36 7D */	bl __OSInterruptInit
-/* 8033A0F8  3C 60 80 34 */	lis r3, __OSResetSWInterruptHandler@ha
-/* 8033A0FC  38 83 FA E4 */	addi r4, r3, __OSResetSWInterruptHandler@l
+/* 8033A0F8  3C 60 80 34 */	lis r3, __OSResetSWInterruptHandler@ha /* 0x8033FAE4@ha */
+/* 8033A0FC  38 83 FA E4 */	addi r4, r3, __OSResetSWInterruptHandler@l /* 0x8033FAE4@l */
 /* 8033A100  38 60 00 16 */	li r3, 0x16
 /* 8033A104  48 00 36 3D */	bl __OSSetInterruptHandler
 /* 8033A108  48 00 23 05 */	bl __OSContextInit
@@ -320,14 +320,14 @@ lbl_8033A3D0:
 /* 8033A3F0  3C 60 00 01 */	lis r3, 0x0001 /* 0x00009000@ha */
 /* 8033A3F4  38 03 90 00 */	addi r0, r3, 0x9000 /* 0x00009000@l */
 /* 8033A3F8  3C 60 80 00 */	lis r3, 0x8000 /* 0x800030E6@ha */
-/* 8033A3FC  B0 03 30 E6 */	sth r0, 0x30E6(r3)
+/* 8033A3FC  B0 03 30 E6 */	sth r0, 0x30E6(r3)  /* 0x800030E6@l */
 /* 8033A400  48 00 00 24 */	b lbl_8033A424
 lbl_8033A404:
 /* 8033A404  7F E3 FB 78 */	mr r3, r31
 /* 8033A408  38 80 00 20 */	li r4, 0x20
 /* 8033A40C  48 00 11 75 */	bl DCInvalidateRange
-/* 8033A410  3C 60 80 34 */	lis r3, InquiryCallback@ha
-/* 8033A414  38 A3 9F 24 */	addi r5, r3, InquiryCallback@l
+/* 8033A410  3C 60 80 34 */	lis r3, InquiryCallback@ha /* 0x80339F24@ha */
+/* 8033A414  38 A3 9F 24 */	addi r5, r3, InquiryCallback@l /* 0x80339F24@l */
 /* 8033A418  7F E4 FB 78 */	mr r4, r31
 /* 8033A41C  38 7F 00 20 */	addi r3, r31, 0x20
 /* 8033A420  48 01 0C 49 */	bl DVDInquiryAsync

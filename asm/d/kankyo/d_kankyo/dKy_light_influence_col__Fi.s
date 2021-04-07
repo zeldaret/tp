@@ -1,6 +1,6 @@
 lbl_8019E404:
-/* 8019E404  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 8019E408  38 A4 CA 54 */	addi r5, r4, g_env_light@l
+/* 8019E404  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 8019E408  38 A4 CA 54 */	addi r5, r4, g_env_light@l /* 0x8042CA54@l */
 /* 8019E40C  54 64 0F FE */	srwi r4, r3, 0x1f
 /* 8019E410  38 04 FF FF */	addi r0, r4, -1
 /* 8019E414  7C 60 00 38 */	and r0, r3, r0

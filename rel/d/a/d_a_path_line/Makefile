@@ -3,17 +3,15 @@
 #
 
 M23_TARGET := $(BUILD_DIR)/rel/d/a/d_a_path_line.plf
+M23_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_path_line.lcf
+M23_MAP := $(BUILD_DIR)/rel/d/a/d_a_path_line.map
 
 M23_CPP_FILES := \
-	rel/d/a/d_a_path_line/executor.cpp \
-	rel/d/a/d_a_path_line/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_path_line/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_path_line/d_a_path_line.cpp \
 
 M23_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_path_line/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_path_line/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_path_line/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_path_line/d_a_path_line.o \
 
 M23_LIBS := \
@@ -29,14 +27,21 @@ M23_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M23_LDSCRIPT) \
+	-unused -map $(M23_MAP) \
+	-w off \
 
 $(M23_TARGET): $(M23_O_FILES) $(M23_LIBS)
+	@echo [ 23] creating $(M23_TARGET)
 	@echo $(M23_LIBS) $(M23_O_FILES) > build/M23_ofiles
-	$(LD) -partial $(M23_LDFLAGS) -o $(M23_TARGET) @build/M23_ofiles
+	@python3 tools/lcf.py rel 23 --output $(M23_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M23_LDFLAGS) -o $(M23_TARGET) @build/M23_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_path_line/%.o: rel/d/a/d_a_path_line/%.cpp
+	@echo [ 23] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M23_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M23_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

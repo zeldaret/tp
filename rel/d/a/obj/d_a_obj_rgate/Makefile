@@ -3,17 +3,15 @@
 #
 
 M602_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rgate.plf
+M602_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rgate.lcf
+M602_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rgate.map
 
 M602_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_rgate/executor.cpp \
-	rel/d/a/obj/d_a_obj_rgate/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_rgate/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_rgate/d_a_obj_rgate.cpp \
 
 M602_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rgate/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rgate/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rgate/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_rgate/d_a_obj_rgate.o \
 
 M602_LIBS := \
@@ -29,14 +27,21 @@ M602_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M602_LDSCRIPT) \
+	-unused -map $(M602_MAP) \
+	-w off \
 
 $(M602_TARGET): $(M602_O_FILES) $(M602_LIBS)
+	@echo [602] creating $(M602_TARGET)
 	@echo $(M602_LIBS) $(M602_O_FILES) > build/M602_ofiles
-	$(LD) -partial $(M602_LDFLAGS) -o $(M602_TARGET) @build/M602_ofiles
+	@python3 tools/lcf.py rel 602 --output $(M602_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M602_LDFLAGS) -o $(M602_TARGET) @build/M602_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_rgate/%.o: rel/d/a/obj/d_a_obj_rgate/%.cpp
+	@echo [602] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M602_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M602_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

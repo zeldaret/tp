@@ -7,8 +7,8 @@ lbl_80AEADDC:
 /* 80AEADF0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80AEADF4  7C 9F 23 78 */	mr r31, r4
 /* 80AEADF8  41 82 00 40 */	beq lbl_80AEAE38
-/* 80AEADFC  3C 80 80 AF */	lis r4, __vt__14dBgS_ObjGndChk@ha
-/* 80AEAE00  38 84 BD 24 */	addi r4, r4, __vt__14dBgS_ObjGndChk@l
+/* 80AEADFC  3C 80 80 AF */	lis r4, __vt__14dBgS_ObjGndChk@ha /* 0x80AEBD24@ha */
+/* 80AEAE00  38 84 BD 24 */	addi r4, r4, __vt__14dBgS_ObjGndChk@l /* 0x80AEBD24@l */
 /* 80AEAE04  90 9E 00 10 */	stw r4, 0x10(r30)
 /* 80AEAE08  38 04 00 0C */	addi r0, r4, 0xc
 /* 80AEAE0C  90 1E 00 20 */	stw r0, 0x20(r30)
@@ -17,11 +17,11 @@ lbl_80AEADDC:
 /* 80AEAE18  38 04 00 24 */	addi r0, r4, 0x24
 /* 80AEAE1C  90 1E 00 4C */	stw r0, 0x4c(r30)
 /* 80AEAE20  38 80 00 00 */	li r4, 0
-/* 80AEAE24  4B 58 C7 CC */	b __dt__11dBgS_GndChkFv
+/* 80AEAE24  4B 58 C7 CD */	bl __dt__11dBgS_GndChkFv
 /* 80AEAE28  7F E0 07 35 */	extsh. r0, r31
 /* 80AEAE2C  40 81 00 0C */	ble lbl_80AEAE38
 /* 80AEAE30  7F C3 F3 78 */	mr r3, r30
-/* 80AEAE34  4B 7E 3F 08 */	b __dl__FPv
+/* 80AEAE34  4B 7E 3F 09 */	bl __dl__FPv
 lbl_80AEAE38:
 /* 80AEAE38  7F C3 F3 78 */	mr r3, r30
 /* 80AEAE3C  83 E1 00 0C */	lwz r31, 0xc(r1)

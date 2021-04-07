@@ -14,11 +14,11 @@ lbl_80132E88:
 /* 80132EB8  C0 23 34 7C */	lfs f1, 0x347c(r3)
 /* 80132EBC  C0 03 1F E0 */	lfs f0, 0x1fe0(r3)
 /* 80132EC0  EC 41 00 32 */	fmuls f2, f1, f0
-/* 80132EC4  3C 80 80 42 */	lis r4, l_wolfBaseAnime@ha
-/* 80132EC8  38 A4 56 1C */	addi r5, r4, l_wolfBaseAnime@l
+/* 80132EC4  3C 80 80 42 */	lis r4, l_wolfBaseAnime@ha /* 0x8042561C@ha */
+/* 80132EC8  38 A4 56 1C */	addi r5, r4, l_wolfBaseAnime@l /* 0x8042561C@l */
 /* 80132ECC  C0 25 00 00 */	lfs f1, 0(r5)
-/* 80132ED0  3C 80 80 42 */	lis r4, l_wolfRopeBaseAnime@ha
-/* 80132ED4  C4 04 56 34 */	lfsu f0, l_wolfRopeBaseAnime@l(r4)
+/* 80132ED0  3C 80 80 42 */	lis r4, l_wolfRopeBaseAnime@ha /* 0x80425634@ha */
+/* 80132ED4  C4 04 56 34 */	lfsu f0, l_wolfRopeBaseAnime@l(r4)  /* 0x80425634@l */
 /* 80132ED8  EC 01 00 2A */	fadds f0, f1, f0
 /* 80132EDC  EC 02 00 32 */	fmuls f0, f2, f0
 /* 80132EE0  EC 01 00 28 */	fsubs f0, f1, f0
@@ -56,8 +56,8 @@ lbl_80132F28:
 /* 80132F5C  C0 02 92 B8 */	lfs f0, lit_6040(r2)
 /* 80132F60  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80132F64  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 80132F68  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80132F6C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80132F68  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80132F6C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80132F70  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 80132F74  38 80 00 01 */	li r4, 1
 /* 80132F78  38 A0 00 0F */	li r5, 0xf

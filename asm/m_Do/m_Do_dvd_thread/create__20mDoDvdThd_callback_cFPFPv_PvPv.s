@@ -20,8 +20,8 @@ lbl_80015C74:
 lbl_80015CBC:
 /* 80015CBC  28 1F 00 00 */	cmplwi r31, 0
 /* 80015CC0  41 82 00 14 */	beq lbl_80015CD4
-/* 80015CC4  3C 60 80 3E */	lis r3, l_param__9mDoDvdThd@ha
-/* 80015CC8  38 63 EC 60 */	addi r3, r3, l_param__9mDoDvdThd@l
+/* 80015CC4  3C 60 80 3E */	lis r3, l_param__9mDoDvdThd@ha /* 0x803DEC60@ha */
+/* 80015CC8  38 63 EC 60 */	addi r3, r3, l_param__9mDoDvdThd@l /* 0x803DEC60@l */
 /* 80015CCC  7F E4 FB 78 */	mr r4, r31
 /* 80015CD0  4B FF FD 15 */	bl addition__17mDoDvdThd_param_cFP19mDoDvdThd_command_c
 lbl_80015CD4:

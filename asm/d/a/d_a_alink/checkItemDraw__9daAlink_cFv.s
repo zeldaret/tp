@@ -23,8 +23,8 @@ lbl_800CB630:
 /* 800CB648  48 01 45 81 */	bl checkBowGrabLeftHand__9daAlink_cCFv
 /* 800CB64C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800CB650  40 82 00 24 */	bne lbl_800CB674
-/* 800CB654  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800CB658  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800CB654  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800CB658  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800CB65C  88 03 00 15 */	lbz r0, 0x15(r3)
 /* 800CB660  28 00 00 FF */	cmplwi r0, 0xff
 /* 800CB664  41 82 00 10 */	beq lbl_800CB674

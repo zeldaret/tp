@@ -48,8 +48,6 @@ extern "C" void Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode();
 // External References:
 //
 
-void operator delete(void*);
-
 extern "C" void __dl__FPv();
 extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
@@ -62,7 +60,8 @@ extern "C" void _restgpr_29();
 // Declarations:
 //
 
-/* 802DCA1C-802DCA58 003C+00 s=1 e=6 z=0  None .text      __dt__Q27JGadget13TNodeLinkListFv */
+/* 802DCA1C-802DCA58 2D735C 003C+00 1/1 6/6 0/0 .text            __dt__Q27JGadget13TNodeLinkListFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -72,7 +71,7 @@ asm JGadget::TNodeLinkList::~TNodeLinkList() {
 }
 #pragma pop
 
-/* 802DCA58-802DCAA0 0048+00 s=0 e=2 z=0  None .text
+/* 802DCA58-802DCAA0 2D7398 0048+00 0/0 2/2 0/0 .text
  * erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iterator */
 #pragma push
 #pragma optimization_level 0
@@ -83,7 +82,7 @@ asm void JGadget::TNodeLinkList::erase(JGadget::TNodeLinkList::iterator param_0)
 }
 #pragma pop
 
-/* 802DCAA0-802DCB08 0068+00 s=1 e=0 z=0  None .text
+/* 802DCAA0-802DCB08 2D73E0 0068+00 1/1 0/0 0/0 .text
  * erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorQ37JGadget13TNodeLinkList8iterator
  */
 #pragma push
@@ -96,7 +95,7 @@ asm void JGadget::TNodeLinkList::erase(JGadget::TNodeLinkList::iterator param_0,
 }
 #pragma pop
 
-/* 802DCB08-802DCBA8 00A0+00 s=1 e=0 z=0  None .text
+/* 802DCB08-802DCBA8 2D7448 00A0+00 1/1 0/0 0/0 .text
  * splice__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorRQ27JGadget13TNodeLinkListQ37JGadget13TNodeLinkList8iterator
  */
 #pragma push
@@ -110,7 +109,7 @@ asm void JGadget::TNodeLinkList::splice(JGadget::TNodeLinkList::iterator param_0
 }
 #pragma pop
 
-/* 802DCBA8-802DCBD4 002C+00 s=1 e=7 z=0  None .text
+/* 802DCBA8-802DCBD4 2D74E8 002C+00 1/1 7/7 0/0 .text
  * Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode */
 #pragma push
 #pragma optimization_level 0
@@ -122,7 +121,7 @@ asm void JGadget::TNodeLinkList::Insert(JGadget::TNodeLinkList::iterator param_0
 }
 #pragma pop
 
-/* 802DCBD4-802DCBF8 0024+00 s=2 e=4 z=0  None .text
+/* 802DCBD4-802DCBF8 2D7514 0024+00 2/2 4/4 0/0 .text
  * Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode  */
 #pragma push
 #pragma optimization_level 0
@@ -133,7 +132,7 @@ asm void JGadget::TNodeLinkList::Erase(JGadget::TLinkListNode* param_0) {
 }
 #pragma pop
 
-/* 802DCBF8-802DCCC8 00D0+00 s=0 e=2 z=0  None .text
+/* 802DCBF8-802DCCC8 2D7538 00D0+00 0/0 2/2 0/0 .text
  * Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode */
 #pragma push
 #pragma optimization_level 0

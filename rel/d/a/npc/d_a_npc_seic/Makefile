@@ -3,19 +3,20 @@
 #
 
 M354_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seic.plf
+M354_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seic.lcf
+M354_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seic.map
 
 M354_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_seic/executor.cpp \
-	rel/d/a/npc/d_a_npc_seic/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_seic/d_a_npc_seic.cpp \
 
 M354_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seic/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seic/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seic/d_a_npc_seic.o \
 
 M354_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_seic/libRuntime.PPCEABI.H.a \
 
 M354_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M354_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M354_LDSCRIPT) \
+	-unused -map $(M354_MAP) \
+	-w off \
 
 $(M354_TARGET): $(M354_O_FILES) $(M354_LIBS)
+	@echo [354] creating $(M354_TARGET)
 	@echo $(M354_LIBS) $(M354_O_FILES) > build/M354_ofiles
-	$(LD) -partial $(M354_LDFLAGS) -o $(M354_TARGET) @build/M354_ofiles
+	@python3 tools/lcf.py rel 354 --output $(M354_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M354_LDFLAGS) -o $(M354_TARGET) @build/M354_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_seic/%.o: rel/d/a/npc/d_a_npc_seic/%.cpp
+	@echo [354] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M354_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M354_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_seic/libs/Runtime.PPCEABI.H/Makefile
 

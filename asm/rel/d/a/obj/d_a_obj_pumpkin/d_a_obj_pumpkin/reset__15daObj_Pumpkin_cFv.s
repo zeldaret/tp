@@ -8,7 +8,7 @@ lbl_80CB7968:
 /* 80CB7980  38 80 00 00 */	li r4, 0
 /* 80CB7984  38 1F 0B B4 */	addi r0, r31, 0xbb4
 /* 80CB7988  7C A3 00 50 */	subf r5, r3, r0
-/* 80CB798C  4B 34 BA CC */	b memset
+/* 80CB798C  4B 34 BA CD */	bl memset
 /* 80CB7990  80 1F 00 B0 */	lwz r0, 0xb0(r31)
 /* 80CB7994  54 03 27 3E */	srwi r3, r0, 0x1c
 /* 80CB7998  38 03 FF F1 */	addi r0, r3, -15

@@ -1,6 +1,6 @@
 lbl_80C50C1C:
-/* 80C50C1C  3C 60 80 C5 */	lis r3, cNullVec__6Z2Calc@ha
-/* 80C50C20  38 A3 0D A4 */	addi r5, r3, cNullVec__6Z2Calc@l
+/* 80C50C1C  3C 60 80 C5 */	lis r3, cNullVec__6Z2Calc@ha /* 0x80C50DA4@ha */
+/* 80C50C20  38 A3 0D A4 */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x80C50DA4@l */
 /* 80C50C24  80 65 00 24 */	lwz r3, 0x24(r5)
 /* 80C50C28  80 05 00 28 */	lwz r0, 0x28(r5)
 /* 80C50C2C  90 65 00 84 */	stw r3, 0x84(r5)

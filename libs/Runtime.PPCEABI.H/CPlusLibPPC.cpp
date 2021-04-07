@@ -21,11 +21,11 @@ extern "C" void __copy();
 // Declarations:
 //
 
-/* 80361C3C-80361C6C 0030+00 s=0 e=0 z=4  None .text      __copy */
+/* 80361C3C-80361C6C 35C57C 0030+00 0/0 0/0 4/4 .text            __copy */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __copy() {
+asm void __copy() {
     nofralloc
 #include "asm/Runtime.PPCEABI.H/CPlusLibPPC/__copy.s"
 }

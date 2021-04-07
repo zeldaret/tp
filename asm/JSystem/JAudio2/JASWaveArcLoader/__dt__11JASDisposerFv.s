@@ -5,8 +5,8 @@ lbl_8029A7B8:
 /* 8029A7C4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8029A7C8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8029A7CC  41 82 00 1C */	beq lbl_8029A7E8
-/* 8029A7D0  3C A0 80 3C */	lis r5, __vt__11JASDisposer@ha
-/* 8029A7D4  38 05 78 38 */	addi r0, r5, __vt__11JASDisposer@l
+/* 8029A7D0  3C A0 80 3C */	lis r5, __vt__11JASDisposer@ha /* 0x803C7838@ha */
+/* 8029A7D4  38 05 78 38 */	addi r0, r5, __vt__11JASDisposer@l /* 0x803C7838@l */
 /* 8029A7D8  90 1F 00 00 */	stw r0, 0(r31)
 /* 8029A7DC  7C 80 07 35 */	extsh. r0, r4
 /* 8029A7E0  40 81 00 08 */	ble lbl_8029A7E8

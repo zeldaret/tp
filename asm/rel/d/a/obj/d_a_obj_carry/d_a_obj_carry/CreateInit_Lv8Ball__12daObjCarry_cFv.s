@@ -21,13 +21,13 @@ lbl_80470AB4:
 /* 80470B00  80 1F 08 68 */	lwz r0, 0x868(r31)
 /* 80470B04  60 00 00 02 */	ori r0, r0, 2
 /* 80470B08  90 1F 08 68 */	stw r0, 0x868(r31)
-/* 80470B0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80470B10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80470B0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80470B10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80470B14  80 1F 00 B0 */	lwz r0, 0xb0(r31)
 /* 80470B18  54 04 D6 3E */	rlwinm r4, r0, 0x1a, 0x18, 0x1f
 /* 80470B1C  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 80470B20  7C 05 07 74 */	extsb r5, r0
-/* 80470B24  4B BC 48 3C */	b isSwitch__10dSv_info_cCFii
+/* 80470B24  4B BC 48 3D */	bl isSwitch__10dSv_info_cCFii
 /* 80470B28  2C 03 00 00 */	cmpwi r3, 0
 /* 80470B2C  41 82 00 10 */	beq lbl_80470B3C
 /* 80470B30  7F E3 FB 78 */	mr r3, r31

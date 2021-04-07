@@ -172,8 +172,8 @@ lbl_802659C4:
 /* 802659C4  C8 02 B6 60 */	lfd f0, lit_2765(r2)
 /* 802659C8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 802659CC  40 80 00 10 */	bge lbl_802659DC
-/* 802659D0  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 802659D4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 802659D0  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 802659D4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 802659D8  48 00 00 70 */	b lbl_80265A48
 lbl_802659DC:
 /* 802659DC  D0 21 00 08 */	stfs f1, 8(r1)
@@ -207,8 +207,8 @@ lbl_80265A34:
 lbl_80265A38:
 /* 80265A38  2C 00 00 01 */	cmpwi r0, 1
 /* 80265A3C  40 82 00 0C */	bne lbl_80265A48
-/* 80265A40  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80265A44  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80265A40  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80265A44  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80265A48:
 /* 80265A48  FC 00 0A 10 */	fabs f0, f1
 /* 80265A4C  FC 00 00 18 */	frsp f0, f0

@@ -3,19 +3,20 @@
 #
 
 M163_TARGET := $(BUILD_DIR)/rel/d/a/d_a_cow.plf
+M163_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_cow.lcf
+M163_MAP := $(BUILD_DIR)/rel/d/a/d_a_cow.map
 
 M163_CPP_FILES := \
-	rel/d/a/d_a_cow/executor.cpp \
-	rel/d/a/d_a_cow/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_cow/d_a_cow.cpp \
 
 M163_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_cow/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_cow/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_cow/d_a_cow.o \
 
 M163_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_cow/libRuntime.PPCEABI.H.a \
 
 M163_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M163_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M163_LDSCRIPT) \
+	-unused -map $(M163_MAP) \
+	-w off \
 
 $(M163_TARGET): $(M163_O_FILES) $(M163_LIBS)
+	@echo [163] creating $(M163_TARGET)
 	@echo $(M163_LIBS) $(M163_O_FILES) > build/M163_ofiles
-	$(LD) -partial $(M163_LDFLAGS) -o $(M163_TARGET) @build/M163_ofiles
+	@python3 tools/lcf.py rel 163 --output $(M163_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M163_LDFLAGS) -o $(M163_TARGET) @build/M163_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_cow/%.o: rel/d/a/d_a_cow/%.cpp
+	@echo [163] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M163_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M163_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_cow/libs/Runtime.PPCEABI.H/Makefile
 

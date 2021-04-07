@@ -10,12 +10,12 @@ lbl_80574268:
 /* 80574288  41 82 00 28 */	beq lbl_805742B0
 /* 8057428C  83 FE 0B 5C */	lwz r31, 0xb5c(r30)
 /* 80574290  38 7E 0B 50 */	addi r3, r30, 0xb50
-/* 80574294  4B BD 16 04 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80574294  4B BD 16 05 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80574298  93 FE 0B 5C */	stw r31, 0xb5c(r30)
 /* 8057429C  38 00 00 01 */	li r0, 1
 /* 805742A0  90 1E 0B 58 */	stw r0, 0xb58(r30)
-/* 805742A4  3C 60 80 57 */	lis r3, lit_4541@ha
-/* 805742A8  C0 03 66 48 */	lfs f0, lit_4541@l(r3)
+/* 805742A4  3C 60 80 57 */	lis r3, lit_4541@ha /* 0x80576648@ha */
+/* 805742A8  C0 03 66 48 */	lfs f0, lit_4541@l(r3)  /* 0x80576648@l */
 /* 805742AC  D0 1E 0B 68 */	stfs f0, 0xb68(r30)
 lbl_805742B0:
 /* 805742B0  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -15,8 +15,8 @@ lbl_8014F390:
 /* 8014F3C4  4B EB DB 81 */	bl ZXYrotM__14mDoMtx_stack_cFRC5csXyz
 /* 8014F3C8  38 7F 04 EC */	addi r3, r31, 0x4ec
 /* 8014F3CC  4B EB DA A5 */	bl scaleM__14mDoMtx_stack_cFRC4cXyz
-/* 8014F3D0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8014F3D4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8014F3D0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8014F3D4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8014F3D8  38 9E 00 24 */	addi r4, r30, 0x24
 /* 8014F3DC  48 1F 70 D5 */	bl PSMTXCopy
 /* 8014F3E0  2C 1C 00 00 */	cmpwi r28, 0

@@ -3,7 +3,7 @@ lbl_80D43370:
 /* 80D43374  7C 08 02 A6 */	mflr r0
 /* 80D43378  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80D4337C  39 61 00 20 */	addi r11, r1, 0x20
-/* 80D43380  4B 61 EE 58 */	b _savegpr_28
+/* 80D43380  4B 61 EE 59 */	bl _savegpr_28
 /* 80D43384  7C 7C 1B 78 */	mr r28, r3
 /* 80D43388  88 03 07 2C */	lbz r0, 0x72c(r3)
 /* 80D4338C  28 00 00 00 */	cmplwi r0, 0
@@ -15,7 +15,7 @@ lbl_80D43370:
 lbl_80D433A4:
 /* 80D433A4  38 7F 07 1C */	addi r3, r31, 0x71c
 /* 80D433A8  7C 7C 1A 14 */	add r3, r28, r3
-/* 80D433AC  4B 40 D3 40 */	b getActorP__18daNpcF_ActorMngr_cFv
+/* 80D433AC  4B 40 D3 41 */	bl getActorP__18daNpcF_ActorMngr_cFv
 /* 80D433B0  28 03 00 00 */	cmplwi r3, 0
 /* 80D433B4  41 82 00 14 */	beq lbl_80D433C8
 /* 80D433B8  A8 03 00 08 */	lha r0, 8(r3)
@@ -31,7 +31,7 @@ lbl_80D433D0:
 /* 80D433D8  41 80 FF CC */	blt lbl_80D433A4
 lbl_80D433DC:
 /* 80D433DC  39 61 00 20 */	addi r11, r1, 0x20
-/* 80D433E0  4B 61 EE 44 */	b _restgpr_28
+/* 80D433E0  4B 61 EE 45 */	bl _restgpr_28
 /* 80D433E4  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80D433E8  7C 08 03 A6 */	mtlr r0
 /* 80D433EC  38 21 00 20 */	addi r1, r1, 0x20

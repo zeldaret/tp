@@ -30,11 +30,11 @@ lbl_800FF818:
 /* 800FF888  40 80 00 34 */	bge lbl_800FF8BC
 /* 800FF88C  7F C3 F3 78 */	mr r3, r30
 /* 800FF890  38 80 00 A1 */	li r4, 0xa1
-/* 800FF894  3C A0 80 39 */	lis r5, m__20daAlinkHIO_ladder_c0@ha
-/* 800FF898  38 A5 EB 8C */	addi r5, r5, m__20daAlinkHIO_ladder_c0@l
+/* 800FF894  3C A0 80 39 */	lis r5, m__20daAlinkHIO_ladder_c0@ha /* 0x8038EB8C@ha */
+/* 800FF898  38 A5 EB 8C */	addi r5, r5, m__20daAlinkHIO_ladder_c0@l /* 0x8038EB8C@l */
 /* 800FF89C  4B FA D8 59 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
-/* 800FF8A0  3C 60 80 39 */	lis r3, m__20daAlinkHIO_ladder_c0@ha
-/* 800FF8A4  38 63 EB 8C */	addi r3, r3, m__20daAlinkHIO_ladder_c0@l
+/* 800FF8A0  3C 60 80 39 */	lis r3, m__20daAlinkHIO_ladder_c0@ha /* 0x8038EB8C@ha */
+/* 800FF8A4  38 63 EB 8C */	addi r3, r3, m__20daAlinkHIO_ladder_c0@l /* 0x8038EB8C@l */
 /* 800FF8A8  C0 03 00 10 */	lfs f0, 0x10(r3)
 /* 800FF8AC  D0 1E 34 78 */	stfs f0, 0x3478(r30)
 /* 800FF8B0  38 00 00 00 */	li r0, 0
@@ -43,12 +43,12 @@ lbl_800FF818:
 lbl_800FF8BC:
 /* 800FF8BC  7F C3 F3 78 */	mr r3, r30
 /* 800FF8C0  38 80 00 A7 */	li r4, 0xa7
-/* 800FF8C4  3C A0 80 39 */	lis r5, m__20daAlinkHIO_ladder_c0@ha
-/* 800FF8C8  38 A5 EB 8C */	addi r5, r5, m__20daAlinkHIO_ladder_c0@l
+/* 800FF8C4  3C A0 80 39 */	lis r5, m__20daAlinkHIO_ladder_c0@ha /* 0x8038EB8C@ha */
+/* 800FF8C8  38 A5 EB 8C */	addi r5, r5, m__20daAlinkHIO_ladder_c0@l /* 0x8038EB8C@l */
 /* 800FF8CC  38 A5 00 14 */	addi r5, r5, 0x14
 /* 800FF8D0  4B FA D8 25 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
-/* 800FF8D4  3C 60 80 39 */	lis r3, m__20daAlinkHIO_ladder_c0@ha
-/* 800FF8D8  38 63 EB 8C */	addi r3, r3, m__20daAlinkHIO_ladder_c0@l
+/* 800FF8D4  3C 60 80 39 */	lis r3, m__20daAlinkHIO_ladder_c0@ha /* 0x8038EB8C@ha */
+/* 800FF8D8  38 63 EB 8C */	addi r3, r3, m__20daAlinkHIO_ladder_c0@l /* 0x8038EB8C@l */
 /* 800FF8DC  C0 03 00 24 */	lfs f0, 0x24(r3)
 /* 800FF8E0  D0 1E 34 78 */	stfs f0, 0x3478(r30)
 /* 800FF8E4  38 00 00 01 */	li r0, 1
@@ -61,8 +61,8 @@ lbl_800FF8BC:
 /* 800FF900  7D 89 03 A6 */	mtctr r12
 /* 800FF904  4E 80 04 21 */	bctrl 
 lbl_800FF908:
-/* 800FF908  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800FF90C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800FF908  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800FF90C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800FF910  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 800FF914  60 00 00 08 */	ori r0, r0, 8
 /* 800FF918  90 03 5F 18 */	stw r0, 0x5f18(r3)
@@ -80,8 +80,8 @@ lbl_800FF908:
 /* 800FF948  C0 02 95 98 */	lfs f0, lit_25684(r2)
 /* 800FF94C  EC 01 00 28 */	fsubs f0, f1, f0
 /* 800FF950  D0 1E 04 D4 */	stfs f0, 0x4d4(r30)
-/* 800FF954  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 800FF958  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)
+/* 800FF954  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 800FF958  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)  /* 0x80425514@l */
 /* 800FF95C  D0 1E 35 88 */	stfs f0, 0x3588(r30)
 /* 800FF960  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800FF964  D0 1E 35 8C */	stfs f0, 0x358c(r30)

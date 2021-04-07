@@ -4,8 +4,8 @@ lbl_801D7A08:
 /* 801D7A10  90 01 00 24 */	stw r0, 0x24(r1)
 /* 801D7A14  39 61 00 20 */	addi r11, r1, 0x20
 /* 801D7A18  48 18 A7 BD */	bl _savegpr_27
-/* 801D7A1C  3C A0 80 43 */	lis r5, g_fmapHIO@ha
-/* 801D7A20  38 A5 FC 60 */	addi r5, r5, g_fmapHIO@l
+/* 801D7A1C  3C A0 80 43 */	lis r5, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801D7A20  38 A5 FC 60 */	addi r5, r5, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801D7A24  88 05 02 FC */	lbz r0, 0x2fc(r5)
 /* 801D7A28  28 00 00 00 */	cmplwi r0, 0
 /* 801D7A2C  41 82 00 0C */	beq lbl_801D7A38

@@ -5,12 +5,12 @@ lbl_806566A8:
 /* 806566B4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 806566B8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 806566BC  41 82 00 1C */	beq lbl_806566D8
-/* 806566C0  3C A0 80 65 */	lis r5, __vt__16daBullet_Param_c@ha
-/* 806566C4  38 05 68 A8 */	addi r0, r5, __vt__16daBullet_Param_c@l
+/* 806566C0  3C A0 80 65 */	lis r5, __vt__16daBullet_Param_c@ha /* 0x806568A8@ha */
+/* 806566C4  38 05 68 A8 */	addi r0, r5, __vt__16daBullet_Param_c@l /* 0x806568A8@l */
 /* 806566C8  90 1F 00 00 */	stw r0, 0(r31)
 /* 806566CC  7C 80 07 35 */	extsh. r0, r4
 /* 806566D0  40 81 00 08 */	ble lbl_806566D8
-/* 806566D4  4B C7 86 68 */	b __dl__FPv
+/* 806566D4  4B C7 86 69 */	bl __dl__FPv
 lbl_806566D8:
 /* 806566D8  7F E3 FB 78 */	mr r3, r31
 /* 806566DC  83 E1 00 0C */	lwz r31, 0xc(r1)

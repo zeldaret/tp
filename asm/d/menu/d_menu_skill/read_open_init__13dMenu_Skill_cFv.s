@@ -9,16 +9,16 @@ lbl_801F7F24:
 /* 801F7F40  B0 03 02 02 */	sth r0, 0x202(r3)
 /* 801F7F44  88 03 02 06 */	lbz r0, 0x206(r3)
 /* 801F7F48  54 1F 10 3A */	slwi r31, r0, 2
-/* 801F7F4C  3C 60 80 39 */	lis r3, i_id@ha
-/* 801F7F50  38 63 7A 18 */	addi r3, r3, i_id@l
+/* 801F7F4C  3C 60 80 39 */	lis r3, i_id@ha /* 0x80397A18@ha */
+/* 801F7F50  38 63 7A 18 */	addi r3, r3, i_id@l /* 0x80397A18@l */
 /* 801F7F54  7C 03 F8 2E */	lwzx r0, r3, r31
 /* 801F7F58  90 1E 01 FC */	stw r0, 0x1fc(r30)
 /* 801F7F5C  80 7E 01 7C */	lwz r3, 0x17c(r30)
 /* 801F7F60  C0 22 AA 88 */	lfs f1, lit_3808(r2)
 /* 801F7F64  48 05 D8 6D */	bl setAlphaRate__13CPaneMgrAlphaFf
 /* 801F7F68  7F C3 F3 78 */	mr r3, r30
-/* 801F7F6C  3C 80 80 39 */	lis r4, i_id1_4088@ha
-/* 801F7F70  38 84 7A 34 */	addi r4, r4, i_id1_4088@l
+/* 801F7F6C  3C 80 80 39 */	lis r4, i_id1_4088@ha /* 0x80397A34@ha */
+/* 801F7F70  38 84 7A 34 */	addi r4, r4, i_id1_4088@l /* 0x80397A34@l */
 /* 801F7F74  7C 04 F8 2E */	lwzx r0, r4, r31
 /* 801F7F78  54 04 04 3E */	clrlwi r4, r0, 0x10
 /* 801F7F7C  48 00 14 45 */	bl setNameString__13dMenu_Skill_cFUs

@@ -24,17 +24,17 @@ lbl_8002D0B4:
 /* 8002D10C  C0 02 83 00 */	lfs f0, lit_5090(r2)
 /* 8002D110  FC 00 E8 00 */	fcmpu cr0, f0, f29
 /* 8002D114  41 82 00 64 */	beq lbl_8002D178
-/* 8002D118  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 8002D11C  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 8002D118  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 8002D11C  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 8002D120  90 01 00 18 */	stw r0, 0x18(r1)
-/* 8002D124  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002D128  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002D124  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002D128  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002D12C  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8002D130  7F A4 EB 78 */	mr r4, r29
 /* 8002D134  38 A1 00 08 */	addi r5, r1, 8
 /* 8002D138  48 04 76 0D */	bl GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla
-/* 8002D13C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002D140  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002D13C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002D140  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002D144  38 63 61 C0 */	addi r3, r3, 0x61c0
 /* 8002D148  7F 84 E3 78 */	mr r4, r28
 /* 8002D14C  FC 20 E8 90 */	fmr f1, f29
@@ -44,8 +44,8 @@ lbl_8002D0B4:
 /* 8002D15C  FC 60 F8 90 */	fmr f3, f31
 /* 8002D160  7F E7 FB 78 */	mr r7, r31
 /* 8002D164  48 02 8E 21 */	bl setSimple__21dDlst_shadowControl_cFP4cXyzffP4cXyzsfP9_GXTexObj
-/* 8002D168  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha
-/* 8002D16C  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l
+/* 8002D168  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 8002D16C  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 8002D170  90 01 00 18 */	stw r0, 0x18(r1)
 /* 8002D174  48 00 00 08 */	b lbl_8002D17C
 lbl_8002D178:

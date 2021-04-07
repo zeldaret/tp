@@ -11,13 +11,13 @@ lbl_80499978:
 /* 8049999C  7F C0 F3 79 */	or. r0, r30, r30
 /* 804999A0  41 82 00 2C */	beq lbl_804999CC
 /* 804999A4  7C 1F 03 78 */	mr r31, r0
-/* 804999A8  4B B7 F1 BC */	b __ct__10fopAc_ac_cFv
-/* 804999AC  3C 60 80 4A */	lis r3, __vt__12J3DFrameCtrl@ha
-/* 804999B0  38 03 9B 68 */	addi r0, r3, __vt__12J3DFrameCtrl@l
+/* 804999A8  4B B7 F1 BD */	bl __ct__10fopAc_ac_cFv
+/* 804999AC  3C 60 80 4A */	lis r3, __vt__12J3DFrameCtrl@ha /* 0x80499B68@ha */
+/* 804999B0  38 03 9B 68 */	addi r0, r3, __vt__12J3DFrameCtrl@l /* 0x80499B68@l */
 /* 804999B4  94 1F 05 80 */	stwu r0, 0x580(r31)
 /* 804999B8  7F E3 FB 78 */	mr r3, r31
 /* 804999BC  38 80 00 00 */	li r4, 0
-/* 804999C0  4B E8 EA 3C */	b init__12J3DFrameCtrlFs
+/* 804999C0  4B E8 EA 3D */	bl init__12J3DFrameCtrlFs
 /* 804999C4  38 00 00 00 */	li r0, 0
 /* 804999C8  90 1F 00 14 */	stw r0, 0x14(r31)
 lbl_804999CC:
@@ -27,11 +27,11 @@ lbl_804999CC:
 lbl_804999D8:
 /* 804999D8  3B E0 00 04 */	li r31, 4
 /* 804999DC  7F C3 F3 78 */	mr r3, r30
-/* 804999E0  3C 80 80 4A */	lis r4, daVrbox2_solidHeapCB__FP10fopAc_ac_c@ha
-/* 804999E4  38 84 98 3C */	addi r4, r4, daVrbox2_solidHeapCB__FP10fopAc_ac_c@l
+/* 804999E0  3C 80 80 4A */	lis r4, daVrbox2_solidHeapCB__FP10fopAc_ac_c@ha /* 0x8049983C@ha */
+/* 804999E4  38 84 98 3C */	addi r4, r4, daVrbox2_solidHeapCB__FP10fopAc_ac_c@l /* 0x8049983C@l */
 /* 804999E8  3C A0 80 00 */	lis r5, 0x8000 /* 0x80004340@ha */
 /* 804999EC  38 A5 43 40 */	addi r5, r5, 0x4340 /* 0x80004340@l */
-/* 804999F0  4B B8 0A C0 */	b fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
+/* 804999F0  4B B8 0A C1 */	bl fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
 /* 804999F4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 804999F8  40 82 00 08 */	bne lbl_80499A00
 /* 804999FC  3B E0 00 05 */	li r31, 5

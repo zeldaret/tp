@@ -11,9 +11,9 @@ lbl_80BCC86C:
 /* 80BCC890  80 7F 05 A8 */	lwz r3, 0x5a8(r31)
 /* 80BCC894  80 83 00 04 */	lwz r4, 4(r3)
 /* 80BCC898  7F E3 FB 78 */	mr r3, r31
-/* 80BCC89C  4B 44 DC DC */	b fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
-/* 80BCC8A0  3C 60 80 BD */	lis r3, lit_3648@ha
-/* 80BCC8A4  C0 03 CB B4 */	lfs f0, lit_3648@l(r3)
+/* 80BCC89C  4B 44 DC DD */	bl fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
+/* 80BCC8A0  3C 60 80 BD */	lis r3, lit_3648@ha /* 0x80BCCBB4@ha */
+/* 80BCC8A4  C0 03 CB B4 */	lfs f0, lit_3648@l(r3)  /* 0x80BCCBB4@l */
 /* 80BCC8A8  D0 1F 05 20 */	stfs f0, 0x520(r31)
 /* 80BCC8AC  38 60 00 01 */	li r3, 1
 /* 80BCC8B0  83 E1 00 0C */	lwz r31, 0xc(r1)

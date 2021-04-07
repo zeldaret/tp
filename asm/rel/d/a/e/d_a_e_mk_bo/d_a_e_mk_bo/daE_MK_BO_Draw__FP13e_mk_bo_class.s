@@ -10,18 +10,18 @@ lbl_8071CCEC:
 /* 8071CD0C  38 60 00 01 */	li r3, 1
 /* 8071CD10  48 00 01 0C */	b lbl_8071CE1C
 lbl_8071CD14:
-/* 8071CD14  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8071CD18  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8071CD14  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8071CD18  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8071CD1C  38 80 00 00 */	li r4, 0
 /* 8071CD20  38 BF 04 D0 */	addi r5, r31, 0x4d0
 /* 8071CD24  38 DF 01 0C */	addi r6, r31, 0x10c
-/* 8071CD28  4B A8 6A 9C */	b settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
-/* 8071CD2C  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8071CD30  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8071CD28  4B A8 6A 9D */	bl settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
+/* 8071CD2C  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8071CD30  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8071CD34  80 9F 05 B4 */	lwz r4, 0x5b4(r31)
 /* 8071CD38  80 84 00 04 */	lwz r4, 4(r4)
 /* 8071CD3C  38 BF 01 0C */	addi r5, r31, 0x10c
-/* 8071CD40  4B A8 80 60 */	b setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
+/* 8071CD40  4B A8 80 61 */	bl setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
 /* 8071CD44  A8 1F 05 DA */	lha r0, 0x5da(r31)
 /* 8071CD48  2C 00 00 02 */	cmpwi r0, 2
 /* 8071CD4C  41 80 00 94 */	blt lbl_8071CDE0
@@ -63,7 +63,7 @@ lbl_8071CD14:
 /* 8071CDDC  B0 03 00 04 */	sth r0, 4(r3)
 lbl_8071CDE0:
 /* 8071CDE0  80 7F 05 B4 */	lwz r3, 0x5b4(r31)
-/* 8071CDE4  4B 8F 0E E0 */	b mDoExt_modelUpdateDL__FP8J3DModel
+/* 8071CDE4  4B 8F 0E E1 */	bl mDoExt_modelUpdateDL__FP8J3DModel
 /* 8071CDE8  88 1F 09 B5 */	lbz r0, 0x9b5(r31)
 /* 8071CDEC  7C 00 07 75 */	extsb. r0, r0
 /* 8071CDF0  41 82 00 28 */	beq lbl_8071CE18
@@ -73,9 +73,9 @@ lbl_8071CDE0:
 /* 8071CE00  80 7F 09 BC */	lwz r3, 0x9bc(r31)
 /* 8071CE04  C0 23 00 10 */	lfs f1, 0x10(r3)
 /* 8071CE08  38 84 00 58 */	addi r4, r4, 0x58
-/* 8071CE0C  4B 8F 08 CC */	b entry__13mDoExt_btkAnmFP16J3DMaterialTablef
+/* 8071CE0C  4B 8F 08 CD */	bl entry__13mDoExt_btkAnmFP16J3DMaterialTablef
 /* 8071CE10  80 7F 09 B8 */	lwz r3, 0x9b8(r31)
-/* 8071CE14  4B 8F 38 6C */	b entryDL__14mDoExt_McaMorfFv
+/* 8071CE14  4B 8F 38 6D */	bl entryDL__14mDoExt_McaMorfFv
 lbl_8071CE18:
 /* 8071CE18  38 60 00 01 */	li r3, 1
 lbl_8071CE1C:

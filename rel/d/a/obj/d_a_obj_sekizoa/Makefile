@@ -3,19 +3,20 @@
 #
 
 M618_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekizoa.plf
+M618_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekizoa.lcf
+M618_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekizoa.map
 
 M618_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_sekizoa/executor.cpp \
-	rel/d/a/obj/d_a_obj_sekizoa/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_sekizoa/d_a_obj_sekizoa.cpp \
 
 M618_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekizoa/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekizoa/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekizoa/d_a_obj_sekizoa.o \
 
 M618_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekizoa/libRuntime.PPCEABI.H.a \
 
 M618_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M618_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M618_LDSCRIPT) \
+	-unused -map $(M618_MAP) \
+	-w off \
 
 $(M618_TARGET): $(M618_O_FILES) $(M618_LIBS)
+	@echo [618] creating $(M618_TARGET)
 	@echo $(M618_LIBS) $(M618_O_FILES) > build/M618_ofiles
-	$(LD) -partial $(M618_LDFLAGS) -o $(M618_TARGET) @build/M618_ofiles
+	@python3 tools/lcf.py rel 618 --output $(M618_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M618_LDFLAGS) -o $(M618_TARGET) @build/M618_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sekizoa/%.o: rel/d/a/obj/d_a_obj_sekizoa/%.cpp
+	@echo [618] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M618_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M618_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_sekizoa/libs/Runtime.PPCEABI.H/Makefile
 

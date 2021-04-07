@@ -7,8 +7,8 @@ lbl_80018328:
 /* 8001833C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80018340  7C 9F 23 78 */	mr r31, r4
 /* 80018344  41 82 00 28 */	beq lbl_8001836C
-/* 80018348  3C 80 80 3A */	lis r4, __vt__24JPTraceParticleCallBack4@ha
-/* 8001834C  38 04 35 68 */	addi r0, r4, __vt__24JPTraceParticleCallBack4@l
+/* 80018348  3C 80 80 3A */	lis r4, __vt__24JPTraceParticleCallBack4@ha /* 0x803A3568@ha */
+/* 8001834C  38 04 35 68 */	addi r0, r4, __vt__24JPTraceParticleCallBack4@l /* 0x803A3568@l */
 /* 80018350  90 1E 00 00 */	stw r0, 0(r30)
 /* 80018354  38 80 00 00 */	li r4, 0
 /* 80018358  48 26 6C 4D */	bl __dt__19JPAParticleCallBackFv

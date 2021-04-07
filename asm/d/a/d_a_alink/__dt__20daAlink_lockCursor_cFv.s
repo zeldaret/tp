@@ -5,8 +5,8 @@ lbl_800CFE68:
 /* 800CFE74  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800CFE78  7C 7F 1B 79 */	or. r31, r3, r3
 /* 800CFE7C  41 82 00 1C */	beq lbl_800CFE98
-/* 800CFE80  3C A0 80 3B */	lis r5, __vt__20daAlink_lockCursor_c@ha
-/* 800CFE84  38 05 35 90 */	addi r0, r5, __vt__20daAlink_lockCursor_c@l
+/* 800CFE80  3C A0 80 3B */	lis r5, __vt__20daAlink_lockCursor_c@ha /* 0x803B3590@ha */
+/* 800CFE84  38 05 35 90 */	addi r0, r5, __vt__20daAlink_lockCursor_c@l /* 0x803B3590@l */
 /* 800CFE88  90 1F 00 00 */	stw r0, 0(r31)
 /* 800CFE8C  7C 80 07 35 */	extsh. r0, r4
 /* 800CFE90  40 81 00 08 */	ble lbl_800CFE98

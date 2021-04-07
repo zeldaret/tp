@@ -72,3 +72,25 @@ class PaddingArrayType(Type):
     @staticmethod
     def create(base: Type, size: int, padding: int) -> "PaddingArrayType":
         return PaddingArrayType(base, size, padding)
+
+@dataclass(frozen=True, eq=True)
+class ZeroArrayType(Type):    
+    """ Array Type with zero/unknown length """
+
+    base: Type
+
+    def __hash__(self):
+        return hash((self.base, "ZERO_ARRAY_TYPE"))
+
+    def type(self) -> str:
+        assert False
+
+    def dependencies(self) -> Set["Type"]:
+        assert False
+
+    def decl(self, label: str) -> str:
+        return f"{self.base.type()} {label}[]"
+
+    @staticmethod
+    def create(base: Type) -> "ZeroArrayType":
+        return ZeroArrayType(base)

@@ -11,8 +11,8 @@ lbl_8004A8DC:
 /* 8004A900  80 63 00 00 */	lwz r3, 0(r3)
 /* 8004A904  83 A3 00 58 */	lwz r29, 0x58(r3)
 /* 8004A908  3F C0 C0 00 */	lis r30, 0xc000
-/* 8004A90C  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8004A910  3B E3 4A C8 */	addi r31, r3, j3dSys@l
+/* 8004A90C  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8004A910  3B E3 4A C8 */	addi r31, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8004A914  48 00 01 00 */	b lbl_8004AA14
 lbl_8004A918:
 /* 8004A918  7F A3 EB 78 */	mr r3, r29

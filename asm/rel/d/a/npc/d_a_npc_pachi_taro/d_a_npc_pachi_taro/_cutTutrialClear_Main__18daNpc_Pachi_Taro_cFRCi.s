@@ -3,11 +3,11 @@ lbl_80A9EEBC:
 /* 80A9EEC0  7C 08 02 A6 */	mflr r0
 /* 80A9EEC4  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80A9EEC8  39 61 00 30 */	addi r11, r1, 0x30
-/* 80A9EECC  4B 8C 33 0C */	b _savegpr_28
+/* 80A9EECC  4B 8C 33 0D */	bl _savegpr_28
 /* 80A9EED0  7C 7C 1B 78 */	mr r28, r3
 /* 80A9EED4  7C 9D 23 78 */	mr r29, r4
-/* 80A9EED8  3C 60 80 AA */	lis r3, m__24daNpc_Pachi_Taro_Param_c@ha
-/* 80A9EEDC  3B E3 16 04 */	addi r31, r3, m__24daNpc_Pachi_Taro_Param_c@l
+/* 80A9EED8  3C 60 80 AA */	lis r3, m__24daNpc_Pachi_Taro_Param_c@ha /* 0x80AA1604@ha */
+/* 80A9EEDC  3B E3 16 04 */	addi r31, r3, m__24daNpc_Pachi_Taro_Param_c@l /* 0x80AA1604@l */
 /* 80A9EEE0  80 7F 01 3C */	lwz r3, 0x13c(r31)
 /* 80A9EEE4  80 1F 01 40 */	lwz r0, 0x140(r31)
 /* 80A9EEE8  90 61 00 14 */	stw r3, 0x14(r1)
@@ -16,10 +16,10 @@ lbl_80A9EEBC:
 /* 80A9EEF4  90 01 00 1C */	stw r0, 0x1c(r1)
 /* 80A9EEF8  93 81 00 14 */	stw r28, 0x14(r1)
 /* 80A9EEFC  38 7C 0F 8C */	addi r3, r28, 0xf8c
-/* 80A9EF00  4B 6A 68 08 */	b getActorP__18daNpcT_ActorMngr_cFv
+/* 80A9EF00  4B 6A 68 09 */	bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80A9EF04  90 61 00 18 */	stw r3, 0x18(r1)
 /* 80A9EF08  38 7C 0F 94 */	addi r3, r28, 0xf94
-/* 80A9EF0C  4B 6A 67 FC */	b getActorP__18daNpcT_ActorMngr_cFv
+/* 80A9EF0C  4B 6A 67 FD */	bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80A9EF10  90 61 00 1C */	stw r3, 0x1c(r1)
 /* 80A9EF14  3B C0 00 00 */	li r30, 0
 /* 80A9EF18  80 1D 00 00 */	lwz r0, 0(r29)
@@ -57,14 +57,14 @@ lbl_80A9EF80:
 /* 80A9EF88  38 A0 00 00 */	li r5, 0
 /* 80A9EF8C  38 C1 00 14 */	addi r6, r1, 0x14
 /* 80A9EF90  38 E0 00 00 */	li r7, 0
-/* 80A9EF94  4B 6A CC E4 */	b talkProc__8daNpcT_cFPiiPP10fopAc_ac_ci
+/* 80A9EF94  4B 6A CC E5 */	bl talkProc__8daNpcT_cFPiiPP10fopAc_ac_ci
 /* 80A9EF98  2C 03 00 00 */	cmpwi r3, 0
 /* 80A9EF9C  41 82 00 08 */	beq lbl_80A9EFA4
 /* 80A9EFA0  3B C0 00 01 */	li r30, 1
 lbl_80A9EFA4:
 /* 80A9EFA4  7F C3 F3 78 */	mr r3, r30
 /* 80A9EFA8  39 61 00 30 */	addi r11, r1, 0x30
-/* 80A9EFAC  4B 8C 32 78 */	b _restgpr_28
+/* 80A9EFAC  4B 8C 32 79 */	bl _restgpr_28
 /* 80A9EFB0  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80A9EFB4  7C 08 03 A6 */	mtlr r0
 /* 80A9EFB8  38 21 00 30 */	addi r1, r1, 0x30

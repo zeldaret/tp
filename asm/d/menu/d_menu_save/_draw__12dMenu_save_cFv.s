@@ -8,8 +8,8 @@ lbl_801F69B8:
 /* 801F69D0  80 63 21 8C */	lwz r3, 0x218c(r3)
 /* 801F69D4  28 03 00 00 */	cmplwi r3, 0
 /* 801F69D8  41 82 00 14 */	beq lbl_801F69EC
-/* 801F69DC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 801F69E0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 801F69DC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801F69E0  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801F69E4  80 84 5F 50 */	lwz r4, 0x5f50(r4)
 /* 801F69E8  48 04 6F 31 */	bl draw__17dMsgScrnExplain_cFP13J2DOrthoGraph
 lbl_801F69EC:

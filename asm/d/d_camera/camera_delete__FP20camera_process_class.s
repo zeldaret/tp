@@ -6,8 +6,8 @@ lbl_80182484:
 /* 80182494  38 80 FF FF */	li r4, -1
 /* 80182498  4B FD DE 6D */	bl __dt__9dCamera_cFv
 /* 8018249C  38 00 00 00 */	li r0, 0
-/* 801824A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801824A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801824A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801824A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801824A8  90 03 5D 74 */	stw r0, 0x5d74(r3)
 /* 801824AC  38 60 00 01 */	li r3, 1
 /* 801824B0  80 01 00 14 */	lwz r0, 0x14(r1)

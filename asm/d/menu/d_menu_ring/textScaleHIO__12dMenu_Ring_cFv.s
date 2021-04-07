@@ -7,8 +7,8 @@ lbl_801EEF14:
 /* 801EEF28  7C 7E 1B 78 */	mr r30, r3
 /* 801EEF2C  3B E0 00 00 */	li r31, 0
 /* 801EEF30  3B A0 00 00 */	li r29, 0
-/* 801EEF34  3C 60 80 43 */	lis r3, g_ringHIO@ha
-/* 801EEF38  3B 83 FA FC */	addi r28, r3, g_ringHIO@l
+/* 801EEF34  3C 60 80 43 */	lis r3, g_ringHIO@ha /* 0x8042FAFC@ha */
+/* 801EEF38  3B 83 FA FC */	addi r28, r3, g_ringHIO@l /* 0x8042FAFC@l */
 lbl_801EEF3C:
 /* 801EEF3C  7F 7E EA 14 */	add r27, r30, r29
 /* 801EEF40  80 1B 00 24 */	lwz r0, 0x24(r27)
@@ -17,8 +17,8 @@ lbl_801EEF3C:
 /* 801EEF4C  2C 1F 00 02 */	cmpwi r31, 2
 /* 801EEF50  41 82 01 A4 */	beq lbl_801EF0F4
 /* 801EEF54  C0 1B 05 98 */	lfs f0, 0x598(r27)
-/* 801EEF58  3C 60 80 43 */	lis r3, g_ringHIO@ha
-/* 801EEF5C  38 03 FA FC */	addi r0, r3, g_ringHIO@l
+/* 801EEF58  3C 60 80 43 */	lis r3, g_ringHIO@ha /* 0x8042FAFC@ha */
+/* 801EEF5C  38 03 FA FC */	addi r0, r3, g_ringHIO@l /* 0x8042FAFC@l */
 /* 801EEF60  7F 40 EA 14 */	add r26, r0, r29
 /* 801EEF64  C0 5A 00 54 */	lfs f2, 0x54(r26)
 /* 801EEF68  FC 00 10 00 */	fcmpu cr0, f0, f2

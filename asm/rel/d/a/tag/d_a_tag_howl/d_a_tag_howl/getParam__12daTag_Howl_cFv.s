@@ -6,8 +6,8 @@ lbl_8048DC1C:
 /* 8048DC2C  54 00 17 BE */	srwi r0, r0, 0x1e
 /* 8048DC30  98 03 05 69 */	stb r0, 0x569(r3)
 /* 8048DC34  C0 03 04 EC */	lfs f0, 0x4ec(r3)
-/* 8048DC38  3C 80 80 49 */	lis r4, lit_3752@ha
-/* 8048DC3C  C0 24 DD 84 */	lfs f1, lit_3752@l(r4)
+/* 8048DC38  3C 80 80 49 */	lis r4, lit_3752@ha /* 0x8048DD84@ha */
+/* 8048DC3C  C0 24 DD 84 */	lfs f1, lit_3752@l(r4)  /* 0x8048DD84@l */
 /* 8048DC40  EC 00 00 72 */	fmuls f0, f0, f1
 /* 8048DC44  D0 03 04 EC */	stfs f0, 0x4ec(r3)
 /* 8048DC48  C0 03 04 F0 */	lfs f0, 0x4f0(r3)

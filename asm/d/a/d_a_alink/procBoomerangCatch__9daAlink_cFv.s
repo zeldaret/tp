@@ -9,8 +9,8 @@ lbl_800E1248:
 /* 800E1264  64 00 08 00 */	oris r0, r0, 0x800
 /* 800E1268  90 1F 05 88 */	stw r0, 0x588(r31)
 /* 800E126C  C0 3F 1F E0 */	lfs f1, 0x1fe0(r31)
-/* 800E1270  3C 80 80 39 */	lis r4, m__18daAlinkHIO_boom_c0@ha
-/* 800E1274  38 84 E6 C8 */	addi r4, r4, m__18daAlinkHIO_boom_c0@l
+/* 800E1270  3C 80 80 39 */	lis r4, m__18daAlinkHIO_boom_c0@ha /* 0x8038E6C8@ha */
+/* 800E1274  38 84 E6 C8 */	addi r4, r4, m__18daAlinkHIO_boom_c0@l /* 0x8038E6C8@l */
 /* 800E1278  C0 04 00 24 */	lfs f0, 0x24(r4)
 /* 800E127C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800E1280  40 81 00 10 */	ble lbl_800E1290

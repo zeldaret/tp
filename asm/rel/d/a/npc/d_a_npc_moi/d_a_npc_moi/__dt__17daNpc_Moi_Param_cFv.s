@@ -5,12 +5,12 @@ lbl_80A7AE84:
 /* 80A7AE90  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A7AE94  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80A7AE98  41 82 00 1C */	beq lbl_80A7AEB4
-/* 80A7AE9C  3C A0 80 A8 */	lis r5, __vt__17daNpc_Moi_Param_c@ha
-/* 80A7AEA0  38 05 BF 94 */	addi r0, r5, __vt__17daNpc_Moi_Param_c@l
+/* 80A7AE9C  3C A0 80 A8 */	lis r5, __vt__17daNpc_Moi_Param_c@ha /* 0x80A7BF94@ha */
+/* 80A7AEA0  38 05 BF 94 */	addi r0, r5, __vt__17daNpc_Moi_Param_c@l /* 0x80A7BF94@l */
 /* 80A7AEA4  90 1F 00 00 */	stw r0, 0(r31)
 /* 80A7AEA8  7C 80 07 35 */	extsh. r0, r4
 /* 80A7AEAC  40 81 00 08 */	ble lbl_80A7AEB4
-/* 80A7AEB0  4B 85 3E 8C */	b __dl__FPv
+/* 80A7AEB0  4B 85 3E 8D */	bl __dl__FPv
 lbl_80A7AEB4:
 /* 80A7AEB4  7F E3 FB 78 */	mr r3, r31
 /* 80A7AEB8  83 E1 00 0C */	lwz r31, 0xc(r1)

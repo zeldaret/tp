@@ -5,8 +5,8 @@ lbl_8011EE94:
 /* 8011EEA0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8011EEA4  93 C1 00 08 */	stw r30, 8(r1)
 /* 8011EEA8  7C 7E 1B 78 */	mr r30, r3
-/* 8011EEAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011EEB0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011EEAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011EEB0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011EEB4  38 63 4E C8 */	addi r3, r3, 0x4ec8
 /* 8011EEB8  7F C4 F3 78 */	mr r4, r30
 /* 8011EEBC  38 A0 00 00 */	li r5, 0

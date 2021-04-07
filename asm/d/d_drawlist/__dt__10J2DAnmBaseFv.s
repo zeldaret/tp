@@ -5,8 +5,8 @@ lbl_80053C94:
 /* 80053CA0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80053CA4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80053CA8  41 82 00 1C */	beq lbl_80053CC4
-/* 80053CAC  3C A0 80 3B */	lis r5, __vt__10J2DAnmBase@ha
-/* 80053CB0  38 05 8E 04 */	addi r0, r5, __vt__10J2DAnmBase@l
+/* 80053CAC  3C A0 80 3B */	lis r5, __vt__10J2DAnmBase@ha /* 0x803A8E04@ha */
+/* 80053CB0  38 05 8E 04 */	addi r0, r5, __vt__10J2DAnmBase@l /* 0x803A8E04@l */
 /* 80053CB4  90 1F 00 00 */	stw r0, 0(r31)
 /* 80053CB8  7C 80 07 35 */	extsh. r0, r4
 /* 80053CBC  40 81 00 08 */	ble lbl_80053CC4

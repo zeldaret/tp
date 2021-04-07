@@ -5,7 +5,7 @@ lbl_80A963A0:
 /* 80A963AC  DB E1 00 50 */	stfd f31, 0x50(r1)
 /* 80A963B0  F3 E1 00 58 */	psq_st f31, 88(r1), 0, 0 /* qr0 */
 /* 80A963B4  39 61 00 50 */	addi r11, r1, 0x50
-/* 80A963B8  4B 8C BE 20 */	b _savegpr_28
+/* 80A963B8  4B 8C BE 21 */	bl _savegpr_28
 /* 80A963BC  7C 7F 1B 78 */	mr r31, r3
 /* 80A963C0  7C 80 23 78 */	mr r0, r4
 /* 80A963C4  7C BC 2B 78 */	mr r28, r5
@@ -18,14 +18,14 @@ lbl_80A963A0:
 /* 80A963E0  41 82 00 44 */	beq lbl_80A96424
 /* 80A963E4  38 61 00 08 */	addi r3, r1, 8
 /* 80A963E8  7C 05 03 78 */	mr r5, r0
-/* 80A963EC  4B 7D 07 48 */	b __mi__4cXyzCFRC3Vec
+/* 80A963EC  4B 7D 07 49 */	bl __mi__4cXyzCFRC3Vec
 /* 80A963F0  C0 21 00 08 */	lfs f1, 8(r1)
 /* 80A963F4  D0 21 00 14 */	stfs f1, 0x14(r1)
 /* 80A963F8  C0 01 00 0C */	lfs f0, 0xc(r1)
 /* 80A963FC  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 80A96400  C0 41 00 10 */	lfs f2, 0x10(r1)
 /* 80A96404  D0 41 00 1C */	stfs f2, 0x1c(r1)
-/* 80A96408  4B 7D 12 6C */	b cM_atan2s__Fff
+/* 80A96408  4B 7D 12 6D */	bl cM_atan2s__Fff
 /* 80A9640C  7C BC 18 50 */	subf r5, r28, r3
 /* 80A96410  A8 1F 01 52 */	lha r0, 0x152(r31)
 /* 80A96414  7C 1C 00 50 */	subf r0, r28, r0
@@ -38,12 +38,12 @@ lbl_80A96424:
 /* 80A9642C  7C 05 00 D0 */	neg r0, r5
 /* 80A96430  7C 05 07 34 */	extsh r5, r0
 lbl_80A96434:
-/* 80A96434  3C 60 80 A9 */	lis r3, lit_4497@ha
-/* 80A96438  C0 63 6B 18 */	lfs f3, lit_4497@l(r3)
+/* 80A96434  3C 60 80 A9 */	lis r3, lit_4497@ha /* 0x80A96B18@ha */
+/* 80A96438  C0 63 6B 18 */	lfs f3, lit_4497@l(r3)  /* 0x80A96B18@l */
 /* 80A9643C  EC 83 F8 24 */	fdivs f4, f3, f31
 /* 80A96440  A8 1F 01 34 */	lha r0, 0x134(r31)
-/* 80A96444  3C 60 80 A9 */	lis r3, lit_4912@ha
-/* 80A96448  C8 43 6B 34 */	lfd f2, lit_4912@l(r3)
+/* 80A96444  3C 60 80 A9 */	lis r3, lit_4912@ha /* 0x80A96B34@ha */
+/* 80A96448  C8 43 6B 34 */	lfd f2, lit_4912@l(r3)  /* 0x80A96B34@l */
 /* 80A9644C  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 80A96450  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80A96454  3C 60 43 30 */	lis r3, 0x4330
@@ -67,7 +67,7 @@ lbl_80A96434:
 /* 80A9649C  E3 E1 00 58 */	psq_l f31, 88(r1), 0, 0 /* qr0 */
 /* 80A964A0  CB E1 00 50 */	lfd f31, 0x50(r1)
 /* 80A964A4  39 61 00 50 */	addi r11, r1, 0x50
-/* 80A964A8  4B 8C BD 7C */	b _restgpr_28
+/* 80A964A8  4B 8C BD 7D */	bl _restgpr_28
 /* 80A964AC  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 80A964B0  7C 08 03 A6 */	mtlr r0
 /* 80A964B4  38 21 00 60 */	addi r1, r1, 0x60

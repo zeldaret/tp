@@ -9,7 +9,7 @@ lbl_804A8F6C:
 /* 804A8F88  B0 03 05 74 */	sth r0, 0x574(r3)
 /* 804A8F8C  48 00 00 08 */	b lbl_804A8F94
 lbl_804A8F90:
-/* 804A8F90  4B B7 0C EC */	b fopAcM_delete__FP10fopAc_ac_c
+/* 804A8F90  4B B7 0C ED */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_804A8F94:
 /* 804A8F94  38 60 00 01 */	li r3, 1
 /* 804A8F98  80 01 00 14 */	lwz r0, 0x14(r1)

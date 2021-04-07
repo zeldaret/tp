@@ -3,19 +3,20 @@
 #
 
 M563_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8UdFloor.plf
+M563_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8UdFloor.lcf
+M563_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8UdFloor.map
 
 M563_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv8UdFloor/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv8UdFloor/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv8UdFloor/d_a_obj_lv8UdFloor.cpp \
 
 M563_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8UdFloor/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8UdFloor/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8UdFloor/d_a_obj_lv8UdFloor.o \
 
 M563_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8UdFloor/libRuntime.PPCEABI.H.a \
 
 M563_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M563_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M563_LDSCRIPT) \
+	-unused -map $(M563_MAP) \
+	-w off \
 
 $(M563_TARGET): $(M563_O_FILES) $(M563_LIBS)
+	@echo [563] creating $(M563_TARGET)
 	@echo $(M563_LIBS) $(M563_O_FILES) > build/M563_ofiles
-	$(LD) -partial $(M563_LDFLAGS) -o $(M563_TARGET) @build/M563_ofiles
+	@python3 tools/lcf.py rel 563 --output $(M563_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M563_LDFLAGS) -o $(M563_TARGET) @build/M563_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv8UdFloor/%.o: rel/d/a/obj/d_a_obj_lv8UdFloor/%.cpp
+	@echo [563] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M563_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M563_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv8UdFloor/libs/Runtime.PPCEABI.H/Makefile
 

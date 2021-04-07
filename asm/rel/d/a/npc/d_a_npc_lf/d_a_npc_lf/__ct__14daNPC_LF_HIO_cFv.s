@@ -1,8 +1,8 @@
 lbl_80A69B6C:
-/* 80A69B6C  3C 80 80 A7 */	lis r4, lit_3769@ha
-/* 80A69B70  38 A4 A9 7C */	addi r5, r4, lit_3769@l
-/* 80A69B74  3C 80 80 A7 */	lis r4, __vt__14daNPC_LF_HIO_c@ha
-/* 80A69B78  38 04 AA 78 */	addi r0, r4, __vt__14daNPC_LF_HIO_c@l
+/* 80A69B6C  3C 80 80 A7 */	lis r4, lit_3769@ha /* 0x80A6A97C@ha */
+/* 80A69B70  38 A4 A9 7C */	addi r5, r4, lit_3769@l /* 0x80A6A97C@l */
+/* 80A69B74  3C 80 80 A7 */	lis r4, __vt__14daNPC_LF_HIO_c@ha /* 0x80A6AA78@ha */
+/* 80A69B78  38 04 AA 78 */	addi r0, r4, __vt__14daNPC_LF_HIO_c@l /* 0x80A6AA78@l */
 /* 80A69B7C  90 03 00 00 */	stw r0, 0(r3)
 /* 80A69B80  38 00 FF FF */	li r0, -1
 /* 80A69B84  98 03 00 04 */	stb r0, 4(r3)

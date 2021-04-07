@@ -10,8 +10,8 @@ lbl_802A8700:
 /* 802A8720  93 E3 00 0C */	stw r31, 0xc(r3)
 /* 802A8724  38 00 00 00 */	li r0, 0
 /* 802A8728  90 03 00 10 */	stw r0, 0x10(r3)
-/* 802A872C  3C 80 80 2B */	lis r4, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
-/* 802A8730  38 04 82 8C */	addi r0, r4, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
+/* 802A872C  3C 80 80 2B */	lis r4, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha /* 0x802A828C@ha */
+/* 802A8730  38 04 82 8C */	addi r0, r4, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l /* 0x802A828C@l */
 /* 802A8734  90 03 00 24 */	stw r0, 0x24(r3)
 /* 802A8738  7F E4 FB 78 */	mr r4, r31
 /* 802A873C  81 83 00 00 */	lwz r12, 0(r3)

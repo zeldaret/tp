@@ -57,8 +57,8 @@ lbl_801EC480:
 /* 801EC488  38 61 00 08 */	addi r3, r1, 8
 /* 801EC48C  7C 63 F8 2E */	lwzx r3, r3, r31
 /* 801EC490  48 11 41 C9 */	bl getStringPtr__10J2DTextBoxCFv
-/* 801EC494  3C 80 80 39 */	lis r4, d_menu_d_menu_ring__stringBase0@ha
-/* 801EC498  38 84 78 C8 */	addi r4, r4, d_menu_d_menu_ring__stringBase0@l
+/* 801EC494  3C 80 80 39 */	lis r4, d_menu_d_menu_ring__stringBase0@ha /* 0x803978C8@ha */
+/* 801EC498  38 84 78 C8 */	addi r4, r4, d_menu_d_menu_ring__stringBase0@l /* 0x803978C8@l */
 /* 801EC49C  38 84 00 2D */	addi r4, r4, 0x2d
 /* 801EC4A0  48 17 C6 8D */	bl strcpy
 /* 801EC4A4  48 00 00 34 */	b lbl_801EC4D8

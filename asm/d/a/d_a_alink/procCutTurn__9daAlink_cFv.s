@@ -5,8 +5,8 @@ lbl_800D4A74:
 /* 800D4A80  39 61 00 20 */	addi r11, r1, 0x20
 /* 800D4A84  48 28 D7 59 */	bl _savegpr_29
 /* 800D4A88  7C 7F 1B 78 */	mr r31, r3
-/* 800D4A8C  3C 80 80 39 */	lis r4, lit_3757@ha
-/* 800D4A90  3B C4 D6 58 */	addi r30, r4, lit_3757@l
+/* 800D4A8C  3C 80 80 39 */	lis r4, lit_3757@ha /* 0x8038D658@ha */
+/* 800D4A90  3B C4 D6 58 */	addi r30, r4, lit_3757@l /* 0x8038D658@l */
 /* 800D4A94  4B FE 54 BD */	bl checkGroundSpecialMode__9daAlink_cFv
 /* 800D4A98  2C 03 00 00 */	cmpwi r3, 0
 /* 800D4A9C  41 82 00 0C */	beq lbl_800D4AA8
@@ -64,8 +64,8 @@ lbl_800D4B58:
 /* 800D4B58  80 1F 06 14 */	lwz r0, 0x614(r31)
 /* 800D4B5C  28 00 00 24 */	cmplwi r0, 0x24
 /* 800D4B60  40 82 00 1C */	bne lbl_800D4B7C
-/* 800D4B64  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D4B68  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D4B64  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D4B68  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D4B6C  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 800D4B70  80 9F 31 84 */	lwz r4, 0x3184(r31)
 /* 800D4B74  4B F7 36 09 */	bl cutEnd__16dEvent_manager_cFi

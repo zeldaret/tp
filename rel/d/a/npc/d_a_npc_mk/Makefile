@@ -3,17 +3,15 @@
 #
 
 M336_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_mk.plf
+M336_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_mk.lcf
+M336_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_mk.map
 
 M336_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_mk/executor.cpp \
-	rel/d/a/npc/d_a_npc_mk/unknown_translation_unit_ctors.cpp \
-	rel/d/a/npc/d_a_npc_mk/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/npc/d_a_npc_mk/d_a_npc_mk.cpp \
 
 M336_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_mk/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_mk/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_mk/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_mk/d_a_npc_mk.o \
 
 M336_LIBS := \
@@ -29,14 +27,21 @@ M336_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M336_LDSCRIPT) \
+	-unused -map $(M336_MAP) \
+	-w off \
 
 $(M336_TARGET): $(M336_O_FILES) $(M336_LIBS)
+	@echo [336] creating $(M336_TARGET)
 	@echo $(M336_LIBS) $(M336_O_FILES) > build/M336_ofiles
-	$(LD) -partial $(M336_LDFLAGS) -o $(M336_TARGET) @build/M336_ofiles
+	@python3 tools/lcf.py rel 336 --output $(M336_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M336_LDFLAGS) -o $(M336_TARGET) @build/M336_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_mk/%.o: rel/d/a/npc/d_a_npc_mk/%.cpp
+	@echo [336] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M336_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M336_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

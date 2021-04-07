@@ -3,19 +3,20 @@
 #
 
 M306_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grc.plf
+M306_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grc.lcf
+M306_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grc.map
 
 M306_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_grc/executor.cpp \
-	rel/d/a/npc/d_a_npc_grc/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_grc/d_a_npc_grc.cpp \
 
 M306_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_grc/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_grc/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_grc/d_a_npc_grc.o \
 
 M306_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_grc/libRuntime.PPCEABI.H.a \
 
 M306_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M306_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M306_LDSCRIPT) \
+	-unused -map $(M306_MAP) \
+	-w off \
 
 $(M306_TARGET): $(M306_O_FILES) $(M306_LIBS)
+	@echo [306] creating $(M306_TARGET)
 	@echo $(M306_LIBS) $(M306_O_FILES) > build/M306_ofiles
-	$(LD) -partial $(M306_LDFLAGS) -o $(M306_TARGET) @build/M306_ofiles
+	@python3 tools/lcf.py rel 306 --output $(M306_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M306_LDFLAGS) -o $(M306_TARGET) @build/M306_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_grc/%.o: rel/d/a/npc/d_a_npc_grc/%.cpp
+	@echo [306] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M306_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M306_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_grc/libs/Runtime.PPCEABI.H/Makefile
 

@@ -12,8 +12,8 @@ lbl_80031248:
 /* 80031270  7D 09 43 78 */	mr r9, r8
 /* 80031274  A8 AD 88 0A */	lha r5, struct_80450D88+0x2(r13)
 /* 80031278  1C 85 00 24 */	mulli r4, r5, 0x24
-/* 8003127C  3C 60 80 42 */	lis r3, mData__7daSus_c@ha
-/* 80031280  38 63 3F FC */	addi r3, r3, mData__7daSus_c@l
+/* 8003127C  3C 60 80 42 */	lis r3, mData__7daSus_c@ha /* 0x80423FFC@ha */
+/* 80031280  38 63 3F FC */	addi r3, r3, mData__7daSus_c@l /* 0x80423FFC@l */
 /* 80031284  7F C3 22 14 */	add r30, r3, r4
 /* 80031288  7C BD 2B 78 */	mr r29, r5
 /* 8003128C  48 00 00 78 */	b lbl_80031304
@@ -30,8 +30,8 @@ lbl_80031290:
 /* 800312B4  4B FF FC 61 */	bl set__Q27daSus_c6data_cFScRC4cXyzRC4cXyzUcUcUc
 /* 800312B8  7F E0 07 74 */	extsb r0, r31
 /* 800312BC  54 04 10 3A */	slwi r4, r0, 2
-/* 800312C0  3C 60 80 42 */	lis r3, mRoom__7daSus_c@ha
-/* 800312C4  38 03 44 7C */	addi r0, r3, mRoom__7daSus_c@l
+/* 800312C0  3C 60 80 42 */	lis r3, mRoom__7daSus_c@ha /* 0x8042447C@ha */
+/* 800312C4  38 03 44 7C */	addi r0, r3, mRoom__7daSus_c@l /* 0x8042447C@l */
 /* 800312C8  7C 60 22 14 */	add r3, r0, r4
 /* 800312CC  7F C4 F3 78 */	mr r4, r30
 /* 800312D0  4B FF FE C1 */	bl add__Q27daSus_c6room_cFPQ27daSus_c6data_c
@@ -52,8 +52,8 @@ lbl_80031304:
 /* 80031304  7F A3 07 34 */	extsh r3, r29
 /* 80031308  2C 03 00 20 */	cmpwi r3, 0x20
 /* 8003130C  41 80 FF 84 */	blt lbl_80031290
-/* 80031310  3C 60 80 42 */	lis r3, mData__7daSus_c@ha
-/* 80031314  3B C3 3F FC */	addi r30, r3, mData__7daSus_c@l
+/* 80031310  3C 60 80 42 */	lis r3, mData__7daSus_c@ha /* 0x80423FFC@ha */
+/* 80031314  3B C3 3F FC */	addi r30, r3, mData__7daSus_c@l /* 0x80423FFC@l */
 /* 80031318  3B A0 00 00 */	li r29, 0
 /* 8003131C  48 00 00 78 */	b lbl_80031394
 lbl_80031320:
@@ -69,8 +69,8 @@ lbl_80031320:
 /* 80031344  4B FF FB D1 */	bl set__Q27daSus_c6data_cFScRC4cXyzRC4cXyzUcUcUc
 /* 80031348  7F E0 07 74 */	extsb r0, r31
 /* 8003134C  54 04 10 3A */	slwi r4, r0, 2
-/* 80031350  3C 60 80 42 */	lis r3, mRoom__7daSus_c@ha
-/* 80031354  38 03 44 7C */	addi r0, r3, mRoom__7daSus_c@l
+/* 80031350  3C 60 80 42 */	lis r3, mRoom__7daSus_c@ha /* 0x8042447C@ha */
+/* 80031354  38 03 44 7C */	addi r0, r3, mRoom__7daSus_c@l /* 0x8042447C@l */
 /* 80031358  7C 60 22 14 */	add r3, r0, r4
 /* 8003135C  7F C4 F3 78 */	mr r4, r30
 /* 80031360  4B FF FE 31 */	bl add__Q27daSus_c6room_cFPQ27daSus_c6data_c

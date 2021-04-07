@@ -7,7 +7,7 @@ lbl_80C86378:
 /* 80C8638C  7C 9E 23 78 */	mr r30, r4
 /* 80C86390  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80C86394  41 82 00 3C */	beq lbl_80C863D0
-/* 80C86398  4B 39 29 48 */	b fopAc_IsActor__FPv
+/* 80C86398  4B 39 29 49 */	bl fopAc_IsActor__FPv
 /* 80C8639C  2C 03 00 00 */	cmpwi r3, 0
 /* 80C863A0  41 82 00 30 */	beq lbl_80C863D0
 /* 80C863A4  A8 1F 00 0E */	lha r0, 0xe(r31)

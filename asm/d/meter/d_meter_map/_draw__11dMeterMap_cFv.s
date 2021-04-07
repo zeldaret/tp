@@ -6,8 +6,8 @@ lbl_8020DF1C:
 /* 8020DF2C  7C 7F 1B 78 */	mr r31, r3
 /* 8020DF30  80 63 00 08 */	lwz r3, 8(r3)
 /* 8020DF34  4B E1 CC 21 */	bl _draw__6dMap_cFv
-/* 8020DF38  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8020DF3C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8020DF38  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8020DF3C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8020DF40  38 63 5F 64 */	addi r3, r3, 0x5f64
 /* 8020DF44  38 83 01 B4 */	addi r4, r3, 0x1b4
 /* 8020DF48  38 A3 01 B8 */	addi r5, r3, 0x1b8

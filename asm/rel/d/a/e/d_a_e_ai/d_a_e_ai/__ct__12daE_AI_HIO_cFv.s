@@ -1,8 +1,8 @@
 lbl_8067916C:
-/* 8067916C  3C 80 80 68 */	lis r4, lit_3789@ha
-/* 80679170  38 A4 C3 FC */	addi r5, r4, lit_3789@l
-/* 80679174  3C 80 80 68 */	lis r4, __vt__12daE_AI_HIO_c@ha
-/* 80679178  38 04 C6 84 */	addi r0, r4, __vt__12daE_AI_HIO_c@l
+/* 8067916C  3C 80 80 68 */	lis r4, lit_3789@ha /* 0x8067C3FC@ha */
+/* 80679170  38 A4 C3 FC */	addi r5, r4, lit_3789@l /* 0x8067C3FC@l */
+/* 80679174  3C 80 80 68 */	lis r4, __vt__12daE_AI_HIO_c@ha /* 0x8067C684@ha */
+/* 80679178  38 04 C6 84 */	addi r0, r4, __vt__12daE_AI_HIO_c@l /* 0x8067C684@l */
 /* 8067917C  90 03 00 00 */	stw r0, 0(r3)
 /* 80679180  38 00 FF FF */	li r0, -1
 /* 80679184  98 03 00 04 */	stb r0, 4(r3)

@@ -2,8 +2,8 @@ lbl_80238440:
 /* 80238440  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80238444  7C 08 02 A6 */	mflr r0
 /* 80238448  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8023844C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80238450  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8023844C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80238450  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80238454  80 63 5D BC */	lwz r3, 0x5dbc(r3)
 /* 80238458  4B FF FA 01 */	bl getSelectCursorPosLocal__12dMsgObject_cFv
 /* 8023845C  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -3,17 +3,15 @@
 #
 
 M9_TARGET := $(BUILD_DIR)/rel/d/a/door/d_a_door_spiral.plf
+M9_LDSCRIPT := $(BUILD_DIR)/rel/d/a/door/d_a_door_spiral.lcf
+M9_MAP := $(BUILD_DIR)/rel/d/a/door/d_a_door_spiral.map
 
 M9_CPP_FILES := \
-	rel/d/a/door/d_a_door_spiral/executor.cpp \
-	rel/d/a/door/d_a_door_spiral/unknown_translation_unit_ctors.cpp \
-	rel/d/a/door/d_a_door_spiral/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/door/d_a_door_spiral/d_a_door_spiral.cpp \
 
 M9_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_spiral/executor.o \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_spiral/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_spiral/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/door/d_a_door_spiral/d_a_door_spiral.o \
 
 M9_LIBS := \
@@ -29,14 +27,21 @@ M9_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M9_LDSCRIPT) \
+	-unused -map $(M9_MAP) \
+	-w off \
 
 $(M9_TARGET): $(M9_O_FILES) $(M9_LIBS)
+	@echo [  9] creating $(M9_TARGET)
 	@echo $(M9_LIBS) $(M9_O_FILES) > build/M9_ofiles
-	$(LD) -partial $(M9_LDFLAGS) -o $(M9_TARGET) @build/M9_ofiles
+	@python3 tools/lcf.py rel 9 --output $(M9_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M9_LDFLAGS) -o $(M9_TARGET) @build/M9_ofiles
 
 $(BUILD_DIR)/rel/d/a/door/d_a_door_spiral/%.o: rel/d/a/door/d_a_door_spiral/%.cpp
+	@echo [  9] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M9_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M9_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

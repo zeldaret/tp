@@ -6,8 +6,8 @@ lbl_801FA964:
 /* 801FA974  7C 7F 1B 78 */	mr r31, r3
 /* 801FA978  38 80 00 0A */	li r4, 0xa
 /* 801FA97C  98 83 01 44 */	stb r4, 0x144(r3)
-/* 801FA980  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801FA984  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801FA980  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801FA984  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801FA988  88 03 00 B9 */	lbz r0, 0xb9(r3)
 /* 801FA98C  98 03 00 BA */	stb r0, 0xba(r3)
 /* 801FA990  98 83 00 B9 */	stb r4, 0xb9(r3)

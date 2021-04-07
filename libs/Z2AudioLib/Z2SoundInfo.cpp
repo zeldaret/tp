@@ -13,13 +13,13 @@
 
 struct JAISeq {};
 
-struct JAIStream {};
+struct JAISound {};
 
-struct JAISe {};
+struct JAIStream {};
 
 struct JAISoundID {};
 
-struct JAISound {};
+struct JAISe {};
 
 struct Z2SoundInfo {
     /* 802BB00C */ void getBgmSeqResourceID(JAISoundID) const;
@@ -78,13 +78,10 @@ extern "C" static void func_802BBCBC();
 extern "C" static void func_802BBCC4();
 extern "C" static void func_802BBCCC();
 extern "C" static void func_802BBCD4();
-extern "C" extern void* __vt__11Z2SoundInfo[20];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __dt__12JAISoundInfoFv();
 extern "C" void __dt__16JAIStreamDataMgrFv();
@@ -111,7 +108,7 @@ extern "C" extern u8 data_80450B58[4];
 // Declarations:
 //
 
-/* 802BB00C-802BB090 0084+00 s=2 e=0 z=0  None .text
+/* 802BB00C-802BB090 2B594C 0084+00 2/1 0/0 0/0 .text
  * getBgmSeqResourceID__11Z2SoundInfoCF10JAISoundID             */
 #pragma push
 #pragma optimization_level 0
@@ -122,8 +119,7 @@ asm void Z2SoundInfo::getBgmSeqResourceID(JAISoundID param_0) const {
 }
 #pragma pop
 
-/* 802BB090-802BB0D8 0048+00 s=1 e=0 z=0  None .text      getSoundType__11Z2SoundInfoCF10JAISoundID
- */
+/* 802BB090-802BB0D8 2B59D0 0048+00 1/0 0/0 0/0 .text getSoundType__11Z2SoundInfoCF10JAISoundID */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -133,8 +129,7 @@ asm void Z2SoundInfo::getSoundType(JAISoundID param_0) const {
 }
 #pragma pop
 
-/* 802BB0D8-802BB0E0 0008+00 s=1 e=0 z=0  None .text      getCategory__11Z2SoundInfoCF10JAISoundID
- */
+/* 802BB0D8-802BB0E0 2B5A18 0008+00 1/0 0/0 0/0 .text getCategory__11Z2SoundInfoCF10JAISoundID */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -144,8 +139,7 @@ asm void Z2SoundInfo::getCategory(JAISoundID param_0) const {
 }
 #pragma pop
 
-/* 802BB0E0-802BB158 0078+00 s=1 e=0 z=0  None .text      getPriority__11Z2SoundInfoCF10JAISoundID
- */
+/* 802BB0E0-802BB158 2B5A20 0078+00 1/0 0/0 0/0 .text getPriority__11Z2SoundInfoCF10JAISoundID */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -155,7 +149,7 @@ asm void Z2SoundInfo::getPriority(JAISoundID param_0) const {
 }
 #pragma pop
 
-/* 802BB158-802BB448 02F0+00 s=0 e=1 z=0  None .text getAudibleSwFull__11Z2SoundInfoF10JAISoundID
+/* 802BB158-802BB448 2B5A98 02F0+00 0/0 1/1 0/0 .text getAudibleSwFull__11Z2SoundInfoF10JAISoundID
  */
 #pragma push
 #pragma optimization_level 0
@@ -166,8 +160,7 @@ asm void Z2SoundInfo::getAudibleSwFull(JAISoundID param_0) {
 }
 #pragma pop
 
-/* 802BB448-802BB6DC 0294+00 s=2 e=0 z=0  None .text      getAudibleSw__11Z2SoundInfoCF10JAISoundID
- */
+/* 802BB448-802BB6DC 2B5D88 0294+00 2/1 0/0 0/0 .text getAudibleSw__11Z2SoundInfoCF10JAISoundID */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -178,22 +171,22 @@ asm void Z2SoundInfo::getAudibleSw(JAISoundID param_0) const {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455A68-80455A6C 0004+00 s=1 e=0 z=0  None .sdata2    @963 */
+/* 80455A68-80455A6C 004068 0004+00 1/1 0/0 0/0 .sdata2          @963 */
 SECTION_SDATA2 static f32 lit_963 = 8.0f;
 
-/* 80455A6C-80455A70 0004+00 s=1 e=0 z=0  None .sdata2    @964 */
+/* 80455A6C-80455A70 00406C 0004+00 1/1 0/0 0/0 .sdata2          @964 */
 SECTION_SDATA2 static f32 lit_964 = 15.0f;
 
-/* 80455A70-80455A74 0004+00 s=1 e=0 z=0  None .sdata2    @965 */
+/* 80455A70-80455A74 004070 0004+00 1/1 0/0 0/0 .sdata2          @965 */
 SECTION_SDATA2 static f32 lit_965 = 16.0f;
 
-/* 80455A74-80455A78 0004+00 s=1 e=0 z=0  None .sdata2    @966 */
+/* 80455A74-80455A78 004074 0004+00 1/1 0/0 0/0 .sdata2          @966 */
 SECTION_SDATA2 static f32 lit_966 = 24.0f;
 
-/* 80455A78-80455A7C 0004+00 s=1 e=0 z=0  None .sdata2    @967 */
+/* 80455A78-80455A7C 004078 0004+00 1/1 0/0 0/0 .sdata2          @967 */
 SECTION_SDATA2 static f32 lit_967 = 48.0f;
 
-/* 80455A7C-80455A80 0004+00 s=2 e=0 z=0  None .sdata2    @968 */
+/* 80455A7C-80455A80 00407C 0004+00 2/2 0/0 0/0 .sdata2          @968 */
 SECTION_SDATA2 static u8 lit_968[4] = {
     0x00,
     0x00,
@@ -201,18 +194,18 @@ SECTION_SDATA2 static u8 lit_968[4] = {
     0x00,
 };
 
-/* 80455A80-80455A88 0004+04 s=2 e=0 z=0  None .sdata2    @969 */
+/* 80455A80-80455A88 004080 0004+04 2/2 0/0 0/0 .sdata2          @969 */
 SECTION_SDATA2 static f32 lit_969[1 + 1 /* padding */] = {
     1.0f,
     /* padding */
     0.0f,
 };
 
-/* 80455A88-80455A90 0008+00 s=2 e=0 z=0  None .sdata2    @973 */
+/* 80455A88-80455A90 004088 0008+00 2/2 0/0 0/0 .sdata2          @973 */
 SECTION_SDATA2 static f64 lit_973 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 802BB6DC-802BB8B4 01D8+00 s=1 e=0 z=0  None .text getSeInfo__11Z2SoundInfoCF10JAISoundIDP5JAISe
- */
+/* 802BB6DC-802BB8B4 2B601C 01D8+00 1/0 0/0 0/0 .text
+ * getSeInfo__11Z2SoundInfoCF10JAISoundIDP5JAISe                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -222,7 +215,7 @@ asm void Z2SoundInfo::getSeInfo(JAISoundID param_0, JAISe* param_1) const {
 }
 #pragma pop
 
-/* 802BB8B4-802BB8E0 002C+00 s=1 e=0 z=0  None .text
+/* 802BB8B4-802BB8E0 2B61F4 002C+00 1/0 0/0 0/0 .text
  * getSeqInfo__11Z2SoundInfoCF10JAISoundIDP6JAISeq              */
 #pragma push
 #pragma optimization_level 0
@@ -234,13 +227,13 @@ asm void Z2SoundInfo::getSeqInfo(JAISoundID param_0, JAISeq* param_1) const {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455A90-80455A94 0004+00 s=1 e=0 z=0  None .sdata2    STRM_CH_SHIFT__20JAUStdSoundTableType */
+/* 80455A90-80455A94 004090 0004+00 1/1 0/0 0/0 .sdata2 STRM_CH_SHIFT__20JAUStdSoundTableType */
 SECTION_SDATA2 static u32 STRM_CH_SHIFT__20JAUStdSoundTableType = 0x00000002;
 
-/* 80455A94-80455A98 0004+00 s=1 e=0 z=0  None .sdata2    @1010 */
+/* 80455A94-80455A98 004094 0004+00 1/1 0/0 0/0 .sdata2          @1010 */
 SECTION_SDATA2 static f32 lit_1010 = 0.5f;
 
-/* 802BB8E0-802BBA10 0130+00 s=1 e=0 z=0  None .text
+/* 802BB8E0-802BBA10 2B6220 0130+00 1/0 0/0 0/0 .text
  * getStreamInfo__11Z2SoundInfoCF10JAISoundIDP9JAIStream        */
 #pragma push
 #pragma optimization_level 0
@@ -251,8 +244,8 @@ asm void Z2SoundInfo::getStreamInfo(JAISoundID param_0, JAIStream* param_1) cons
 }
 #pragma pop
 
-/* 802BBA10-802BBA88 0078+00 s=1 e=0 z=0  None .text getStreamFilePath__11Z2SoundInfoF10JAISoundID
- */
+/* 802BBA10-802BBA88 2B6350 0078+00 1/1 0/0 0/0 .text
+ * getStreamFilePath__11Z2SoundInfoF10JAISoundID                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -262,7 +255,7 @@ asm void Z2SoundInfo::getStreamFilePath(JAISoundID param_0) {
 }
 #pragma pop
 
-/* 802BBA88-802BBAC8 0040+00 s=2 e=0 z=0  None .text
+/* 802BBA88-802BBAC8 2B63C8 0040+00 2/1 0/0 0/0 .text
  * getStreamFileEntry__11Z2SoundInfoF10JAISoundID               */
 #pragma push
 #pragma optimization_level 0
@@ -273,7 +266,7 @@ asm void Z2SoundInfo::getStreamFileEntry(JAISoundID param_0) {
 }
 #pragma pop
 
-/* 802BBAC8-802BBB48 0080+00 s=3 e=4 z=0  None .text      getSwBit__11Z2SoundInfoCF10JAISoundID */
+/* 802BBAC8-802BBB48 2B6408 0080+00 3/3 4/4 0/0 .text getSwBit__11Z2SoundInfoCF10JAISoundID */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -284,14 +277,14 @@ asm void Z2SoundInfo::getSwBit(JAISoundID param_0) const {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455A98-80455AA0 0004+04 s=1 e=0 z=0  None .sdata2    @1070 */
+/* 80455A98-80455AA0 004098 0004+04 1/1 0/0 0/0 .sdata2          @1070 */
 SECTION_SDATA2 static f32 lit_1070[1 + 1 /* padding */] = {
     1.0f / 127.0f,
     /* padding */
     0.0f,
 };
 
-/* 802BBB48-802BBBE0 0098+00 s=3 e=0 z=0  None .text
+/* 802BBB48-802BBBE0 2B6488 0098+00 3/3 0/0 0/0 .text
  * getSoundInfo___11Z2SoundInfoCF10JAISoundIDP8JAISound         */
 #pragma push
 #pragma optimization_level 0
@@ -303,9 +296,9 @@ asm void Z2SoundInfo::getSoundInfo_(JAISoundID param_0, JAISound* param_1) const
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CAC48-803CAC98 0050+00 s=1 e=2 z=0  None .data      __vt__11Z2SoundInfo */
-SECTION_DATA void* __vt__11Z2SoundInfo[20] = {
-    (void*)NULL,
+/* 803CAC48-803CAC98 027D68 0050+00 1/1 2/2 0/0 .data            __vt__11Z2SoundInfo */
+SECTION_DATA extern void* __vt__11Z2SoundInfo[20] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)getSoundType__11Z2SoundInfoCF10JAISoundID,
     (void*)getCategory__11Z2SoundInfoCF10JAISoundID,
@@ -327,7 +320,7 @@ SECTION_DATA void* __vt__11Z2SoundInfo[20] = {
     (void*)getStreamFileEntry__11Z2SoundInfoF10JAISoundID,
 };
 
-/* 802BBBE0-802BBCBC 00DC+00 s=2 e=0 z=0  None .text      __dt__11Z2SoundInfoFv */
+/* 802BBBE0-802BBCBC 2B6520 00DC+00 2/1 0/0 0/0 .text            __dt__11Z2SoundInfoFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -337,44 +330,44 @@ asm Z2SoundInfo::~Z2SoundInfo() {
 }
 #pragma pop
 
-/* 802BBCBC-802BBCC4 0008+00 s=1 e=0 z=0  None .text
+/* 802BBCBC-802BBCC4 2B65FC 0008+00 1/0 0/0 0/0 .text
  * @4@getBgmSeqResourceID__11Z2SoundInfoCF10JAISoundID          */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_802BBCBC() {
+static asm void func_802BBCBC() {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundInfo/func_802BBCBC.s"
 }
 #pragma pop
 
-/* 802BBCC4-802BBCCC 0008+00 s=1 e=0 z=0  None .text @4@getAudibleSw__11Z2SoundInfoCF10JAISoundID
+/* 802BBCC4-802BBCCC 2B6604 0008+00 1/0 0/0 0/0 .text @4@getAudibleSw__11Z2SoundInfoCF10JAISoundID
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_802BBCC4() {
+static asm void func_802BBCC4() {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundInfo/func_802BBCC4.s"
 }
 #pragma pop
 
-/* 802BBCCC-802BBCD4 0008+00 s=1 e=0 z=0  None .text      @8@__dt__11Z2SoundInfoFv */
+/* 802BBCCC-802BBCD4 2B660C 0008+00 1/0 0/0 0/0 .text            @8@__dt__11Z2SoundInfoFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_802BBCCC() {
+static asm void func_802BBCCC() {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundInfo/func_802BBCCC.s"
 }
 #pragma pop
 
-/* 802BBCD4-802BBCDC 0008+00 s=1 e=0 z=0  None .text
+/* 802BBCD4-802BBCDC 2B6614 0008+00 1/0 0/0 0/0 .text
  * @8@getStreamFileEntry__11Z2SoundInfoF10JAISoundID            */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_802BBCD4() {
+static asm void func_802BBCD4() {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundInfo/func_802BBCD4.s"
 }

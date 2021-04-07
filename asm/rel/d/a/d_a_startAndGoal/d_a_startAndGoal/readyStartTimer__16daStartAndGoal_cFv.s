@@ -6,17 +6,17 @@ lbl_80D4DB30:
 /* 80D4DB40  7C 7F 1B 78 */	mr r31, r3
 /* 80D4DB44  88 03 0B 99 */	lbz r0, 0xb99(r3)
 /* 80D4DB48  54 00 18 38 */	slwi r0, r0, 3
-/* 80D4DB4C  3C 60 80 D5 */	lis r3, l_timerType@ha
-/* 80D4DB50  38 63 DE CC */	addi r3, r3, l_timerType@l
+/* 80D4DB4C  3C 60 80 D5 */	lis r3, l_timerType@ha /* 0x80D4DECC@ha */
+/* 80D4DB50  38 63 DE CC */	addi r3, r3, l_timerType@l /* 0x80D4DECC@l */
 /* 80D4DB54  7C 63 00 2E */	lwzx r3, r3, r0
 /* 80D4DB58  38 80 00 00 */	li r4, 0
-/* 80D4DB5C  4B 2E 19 D0 */	b dComIfG_TimerStart__Fis
+/* 80D4DB5C  4B 2E 19 D1 */	bl dComIfG_TimerStart__Fis
 /* 80D4DB60  2C 03 00 00 */	cmpwi r3, 0
 /* 80D4DB64  41 82 00 30 */	beq lbl_80D4DB94
 /* 80D4DB68  38 00 00 01 */	li r0, 1
 /* 80D4DB6C  90 1F 0B 9C */	stw r0, 0xb9c(r31)
-/* 80D4DB70  3C 60 80 D5 */	lis r3, l_timerType@ha
-/* 80D4DB74  38 63 DE CC */	addi r3, r3, l_timerType@l
+/* 80D4DB70  3C 60 80 D5 */	lis r3, l_timerType@ha /* 0x80D4DECC@ha */
+/* 80D4DB74  38 63 DE CC */	addi r3, r3, l_timerType@l /* 0x80D4DECC@l */
 /* 80D4DB78  88 1F 0B 99 */	lbz r0, 0xb99(r31)
 /* 80D4DB7C  54 00 18 38 */	slwi r0, r0, 3
 /* 80D4DB80  7C 63 02 14 */	add r3, r3, r0

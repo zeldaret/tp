@@ -26,15 +26,15 @@ lbl_80276480:
 lbl_80276484:
 /* 80276484  38 60 00 09 */	li r3, 9
 /* 80276488  1C A0 00 6C */	mulli r5, r0, 0x6c
-/* 8027648C  3C 80 80 3C */	lis r4, jpa_pos@ha
-/* 80276490  38 04 40 C0 */	addi r0, r4, jpa_pos@l
+/* 8027648C  3C 80 80 3C */	lis r4, jpa_pos@ha /* 0x803C40C0@ha */
+/* 80276490  38 04 40 C0 */	addi r0, r4, jpa_pos@l /* 0x803C40C0@l */
 /* 80276494  7C 85 02 14 */	add r4, r5, r0
 /* 80276498  38 A0 00 03 */	li r5, 3
 /* 8027649C  38 84 00 30 */	addi r4, r4, 0x30
 /* 802764A0  48 0E 56 89 */	bl GXSetArray
 /* 802764A4  38 60 00 0D */	li r3, 0xd
-/* 802764A8  3C 80 80 3C */	lis r4, jpa_crd@ha
-/* 802764AC  38 84 42 20 */	addi r4, r4, jpa_crd@l
+/* 802764A8  3C 80 80 3C */	lis r4, jpa_crd@ha /* 0x803C4220@ha */
+/* 802764AC  38 84 42 20 */	addi r4, r4, jpa_crd@l /* 0x803C4220@l */
 /* 802764B0  38 A0 00 02 */	li r5, 2
 /* 802764B4  48 0E 56 75 */	bl GXSetArray
 /* 802764B8  38 60 00 00 */	li r3, 0

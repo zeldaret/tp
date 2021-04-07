@@ -64,15 +64,15 @@ lbl_80108B34:
 /* 80108C2C  48 1C 60 21 */	bl __nw__FUl
 /* 80108C30  28 03 00 00 */	cmplwi r3, 0
 /* 80108C34  41 82 00 2C */	beq lbl_80108C60
-/* 80108C38  3C 80 80 3D */	lis r4, __vt__9J3DPacket@ha
-/* 80108C3C  38 04 D9 7C */	addi r0, r4, __vt__9J3DPacket@l
+/* 80108C38  3C 80 80 3D */	lis r4, __vt__9J3DPacket@ha /* 0x803CD97C@ha */
+/* 80108C3C  38 04 D9 7C */	addi r0, r4, __vt__9J3DPacket@l /* 0x803CD97C@l */
 /* 80108C40  90 03 00 00 */	stw r0, 0(r3)
 /* 80108C44  38 00 00 00 */	li r0, 0
 /* 80108C48  90 03 00 04 */	stw r0, 4(r3)
 /* 80108C4C  90 03 00 08 */	stw r0, 8(r3)
 /* 80108C50  90 03 00 0C */	stw r0, 0xc(r3)
-/* 80108C54  3C 80 80 3B */	lis r4, __vt__Q29daAlink_c14hsChainShape_c@ha
-/* 80108C58  38 04 35 EC */	addi r0, r4, __vt__Q29daAlink_c14hsChainShape_c@l
+/* 80108C54  3C 80 80 3B */	lis r4, __vt__Q29daAlink_c14hsChainShape_c@ha /* 0x803B35EC@ha */
+/* 80108C58  38 04 35 EC */	addi r0, r4, __vt__Q29daAlink_c14hsChainShape_c@l /* 0x803B35EC@l */
 /* 80108C5C  90 03 00 00 */	stw r0, 0(r3)
 lbl_80108C60:
 /* 80108C60  90 7E 07 70 */	stw r3, 0x770(r30)
@@ -146,8 +146,8 @@ lbl_80108D24:
 /* 80108D64  80 1E 12 2C */	lwz r0, 0x122c(r30)
 /* 80108D68  60 00 00 01 */	ori r0, r0, 1
 /* 80108D6C  90 1E 12 2C */	stw r0, 0x122c(r30)
-/* 80108D70  3C 60 80 11 */	lis r3, daAlink_hookshotAtHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf@ha
-/* 80108D74  38 03 85 9C */	addi r0, r3, daAlink_hookshotAtHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf@l
+/* 80108D70  3C 60 80 11 */	lis r3, daAlink_hookshotAtHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf@ha /* 0x8010859C@ha */
+/* 80108D74  38 03 85 9C */	addi r0, r3, daAlink_hookshotAtHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf@l /* 0x8010859C@l */
 /* 80108D78  90 1E 12 8C */	stw r0, 0x128c(r30)
 /* 80108D7C  98 9E 12 A1 */	stb r4, 0x12a1(r30)
 /* 80108D80  80 7E 07 6C */	lwz r3, 0x76c(r30)

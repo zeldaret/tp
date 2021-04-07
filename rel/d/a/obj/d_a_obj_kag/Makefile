@@ -3,19 +3,20 @@
 #
 
 M489_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kag.plf
+M489_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kag.lcf
+M489_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kag.map
 
 M489_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_kag/executor.cpp \
-	rel/d/a/obj/d_a_obj_kag/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_kag/d_a_obj_kag.cpp \
 
 M489_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kag/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kag/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kag/d_a_obj_kag.o \
 
 M489_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kag/libRuntime.PPCEABI.H.a \
 
 M489_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M489_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M489_LDSCRIPT) \
+	-unused -map $(M489_MAP) \
+	-w off \
 
 $(M489_TARGET): $(M489_O_FILES) $(M489_LIBS)
+	@echo [489] creating $(M489_TARGET)
 	@echo $(M489_LIBS) $(M489_O_FILES) > build/M489_ofiles
-	$(LD) -partial $(M489_LDFLAGS) -o $(M489_TARGET) @build/M489_ofiles
+	@python3 tools/lcf.py rel 489 --output $(M489_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M489_LDFLAGS) -o $(M489_TARGET) @build/M489_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kag/%.o: rel/d/a/obj/d_a_obj_kag/%.cpp
+	@echo [489] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M489_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M489_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_kag/libs/Runtime.PPCEABI.H/Makefile
 

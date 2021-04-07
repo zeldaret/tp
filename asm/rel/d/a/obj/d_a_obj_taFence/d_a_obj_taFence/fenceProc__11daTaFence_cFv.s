@@ -5,10 +5,10 @@ lbl_80D055A0:
 /* 80D055AC  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 80D055B0  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 80D055B4  7C 7E 1B 78 */	mr r30, r3
-/* 80D055B8  3C 60 80 D0 */	lis r3, cNullVec__6Z2Calc@ha
-/* 80D055BC  38 C3 61 A4 */	addi r6, r3, cNullVec__6Z2Calc@l
-/* 80D055C0  3C 60 80 D0 */	lis r3, data_80D063B0@ha
-/* 80D055C4  38 A3 63 B0 */	addi r5, r3, data_80D063B0@l
+/* 80D055B8  3C 60 80 D0 */	lis r3, cNullVec__6Z2Calc@ha /* 0x80D061A4@ha */
+/* 80D055BC  38 C3 61 A4 */	addi r6, r3, cNullVec__6Z2Calc@l /* 0x80D061A4@l */
+/* 80D055C0  3C 60 80 D0 */	lis r3, data_80D063B0@ha /* 0x80D063B0@ha */
+/* 80D055C4  38 A3 63 B0 */	addi r5, r3, data_80D063B0@l /* 0x80D063B0@l */
 /* 80D055C8  88 05 00 00 */	lbz r0, 0(r5)
 /* 80D055CC  7C 00 07 75 */	extsb. r0, r0
 /* 80D055D0  40 82 00 70 */	bne lbl_80D05640
@@ -45,17 +45,17 @@ lbl_80D05640:
 /* 80D05648  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 80D0564C  39 86 00 94 */	addi r12, r6, 0x94
 /* 80D05650  7D 8C 02 14 */	add r12, r12, r0
-/* 80D05654  4B 65 CA 30 */	b __ptmf_scall
+/* 80D05654  4B 65 CA 31 */	bl __ptmf_scall
 /* 80D05658  60 00 00 00 */	nop 
-/* 80D0565C  3C 60 80 D0 */	lis r3, lit_3903@ha
-/* 80D05660  C0 23 61 74 */	lfs f1, lit_3903@l(r3)
+/* 80D0565C  3C 60 80 D0 */	lis r3, lit_3903@ha /* 0x80D06174@ha */
+/* 80D05660  C0 23 61 74 */	lfs f1, lit_3903@l(r3)  /* 0x80D06174@l */
 /* 80D05664  C0 1E 13 9C */	lfs f0, 0x139c(r30)
 /* 80D05668  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80D0566C  FC 00 00 1E */	fctiwz f0, f0
 /* 80D05670  D8 01 00 08 */	stfd f0, 8(r1)
 /* 80D05674  80 01 00 0C */	lwz r0, 0xc(r1)
-/* 80D05678  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80D0567C  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 80D05678  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80D0567C  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80D05680  3B E4 00 04 */	addi r31, r4, 4
 /* 80D05684  80 7E 13 88 */	lwz r3, 0x1388(r30)
 /* 80D05688  7C 00 07 34 */	extsh r0, r0
@@ -85,14 +85,14 @@ lbl_80D05640:
 /* 80D056E8  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80D056EC  B0 1E 13 8E */	sth r0, 0x138e(r30)
 /* 80D056F0  38 7E 13 94 */	addi r3, r30, 0x1394
-/* 80D056F4  3C 80 80 D0 */	lis r4, lit_3651@ha
-/* 80D056F8  C0 24 60 E0 */	lfs f1, lit_3651@l(r4)
+/* 80D056F4  3C 80 80 D0 */	lis r4, lit_3651@ha /* 0x80D060E0@ha */
+/* 80D056F8  C0 24 60 E0 */	lfs f1, lit_3651@l(r4)  /* 0x80D060E0@l */
 /* 80D056FC  C0 5E 13 A0 */	lfs f2, 0x13a0(r30)
 /* 80D05700  C0 7E 13 A4 */	lfs f3, 0x13a4(r30)
 /* 80D05704  C0 9E 13 A8 */	lfs f4, 0x13a8(r30)
-/* 80D05708  4B 56 A2 74 */	b cLib_addCalc__FPfffff
-/* 80D0570C  3C 60 80 D0 */	lis r3, lit_3903@ha
-/* 80D05710  C0 23 61 74 */	lfs f1, lit_3903@l(r3)
+/* 80D05708  4B 56 A2 75 */	bl cLib_addCalc__FPfffff
+/* 80D0570C  3C 60 80 D0 */	lis r3, lit_3903@ha /* 0x80D06174@ha */
+/* 80D05710  C0 23 61 74 */	lfs f1, lit_3903@l(r3)  /* 0x80D06174@l */
 /* 80D05714  C0 1E 13 B8 */	lfs f0, 0x13b8(r30)
 /* 80D05718  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80D0571C  FC 00 00 1E */	fctiwz f0, f0
@@ -115,19 +115,19 @@ lbl_80D05640:
 /* 80D05760  7C 00 07 34 */	extsh r0, r0
 /* 80D05764  7C 03 01 D6 */	mullw r0, r3, r0
 /* 80D05768  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80D0576C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80D05770  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80D0576C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80D05770  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80D05774  7C 23 04 2E */	lfsx f1, r3, r0
 /* 80D05778  C0 1E 13 C0 */	lfs f0, 0x13c0(r30)
 /* 80D0577C  EC 00 00 72 */	fmuls f0, f0, f1
 /* 80D05780  D0 1E 13 B0 */	stfs f0, 0x13b0(r30)
 /* 80D05784  38 7E 13 C0 */	addi r3, r30, 0x13c0
-/* 80D05788  3C 80 80 D0 */	lis r4, lit_3651@ha
-/* 80D0578C  C0 24 60 E0 */	lfs f1, lit_3651@l(r4)
+/* 80D05788  3C 80 80 D0 */	lis r4, lit_3651@ha /* 0x80D060E0@ha */
+/* 80D0578C  C0 24 60 E0 */	lfs f1, lit_3651@l(r4)  /* 0x80D060E0@l */
 /* 80D05790  C0 5E 13 C4 */	lfs f2, 0x13c4(r30)
 /* 80D05794  C0 7E 13 C8 */	lfs f3, 0x13c8(r30)
 /* 80D05798  C0 9E 13 CC */	lfs f4, 0x13cc(r30)
-/* 80D0579C  4B 56 A1 E0 */	b cLib_addCalc__FPfffff
+/* 80D0579C  4B 56 A1 E1 */	bl cLib_addCalc__FPfffff
 /* 80D057A0  80 7E 13 88 */	lwz r3, 0x1388(r30)
 /* 80D057A4  38 03 00 01 */	addi r0, r3, 1
 /* 80D057A8  90 1E 13 88 */	stw r0, 0x1388(r30)

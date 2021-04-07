@@ -3,19 +3,20 @@
 #
 
 M398_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ari.plf
+M398_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ari.lcf
+M398_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ari.map
 
 M398_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_ari/executor.cpp \
-	rel/d/a/obj/d_a_obj_ari/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_ari/d_a_obj_ari.cpp \
 
 M398_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ari/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ari/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ari/d_a_obj_ari.o \
 
 M398_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ari/libRuntime.PPCEABI.H.a \
 
 M398_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M398_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M398_LDSCRIPT) \
+	-unused -map $(M398_MAP) \
+	-w off \
 
 $(M398_TARGET): $(M398_O_FILES) $(M398_LIBS)
+	@echo [398] creating $(M398_TARGET)
 	@echo $(M398_LIBS) $(M398_O_FILES) > build/M398_ofiles
-	$(LD) -partial $(M398_LDFLAGS) -o $(M398_TARGET) @build/M398_ofiles
+	@python3 tools/lcf.py rel 398 --output $(M398_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M398_LDFLAGS) -o $(M398_TARGET) @build/M398_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ari/%.o: rel/d/a/obj/d_a_obj_ari/%.cpp
+	@echo [398] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M398_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M398_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_ari/libs/Runtime.PPCEABI.H/Makefile
 

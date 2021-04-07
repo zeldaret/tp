@@ -7,7 +7,7 @@ lbl_80D36F54:
 /* 80D36F68  41 82 00 10 */	beq lbl_80D36F78
 /* 80D36F6C  7C 80 07 35 */	extsh. r0, r4
 /* 80D36F70  40 81 00 08 */	ble lbl_80D36F78
-/* 80D36F74  4B 59 7D C8 */	b __dl__FPv
+/* 80D36F74  4B 59 7D C9 */	bl __dl__FPv
 lbl_80D36F78:
 /* 80D36F78  7F E3 FB 78 */	mr r3, r31
 /* 80D36F7C  83 E1 00 0C */	lwz r31, 0xc(r1)

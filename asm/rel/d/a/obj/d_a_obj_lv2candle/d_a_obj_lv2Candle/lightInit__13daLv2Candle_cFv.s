@@ -1,6 +1,6 @@
 lbl_8058E678:
-/* 8058E678  3C 80 80 59 */	lis r4, lit_3637@ha
-/* 8058E67C  38 C4 F1 30 */	addi r6, r4, lit_3637@l
+/* 8058E678  3C 80 80 59 */	lis r4, lit_3637@ha /* 0x8058F130@ha */
+/* 8058E67C  38 C4 F1 30 */	addi r6, r4, lit_3637@l /* 0x8058F130@l */
 /* 8058E680  C0 03 06 EC */	lfs f0, 0x6ec(r3)
 /* 8058E684  D0 03 07 00 */	stfs f0, 0x700(r3)
 /* 8058E688  C0 03 06 F0 */	lfs f0, 0x6f0(r3)
@@ -13,8 +13,8 @@ lbl_8058E678:
 /* 8058E6A4  D0 03 07 04 */	stfs f0, 0x704(r3)
 /* 8058E6A8  38 00 00 00 */	li r0, 0
 /* 8058E6AC  98 03 07 0E */	stb r0, 0x70e(r3)
-/* 8058E6B0  3C 80 80 59 */	lis r4, l_HIO@ha
-/* 8058E6B4  38 A4 F2 AC */	addi r5, r4, l_HIO@l
+/* 8058E6B0  3C 80 80 59 */	lis r4, l_HIO@ha /* 0x8058F2AC@ha */
+/* 8058E6B4  38 A4 F2 AC */	addi r5, r4, l_HIO@l /* 0x8058F2AC@l */
 /* 8058E6B8  88 03 07 0E */	lbz r0, 0x70e(r3)
 /* 8058E6BC  7C 85 02 14 */	add r4, r5, r0
 /* 8058E6C0  88 04 00 28 */	lbz r0, 0x28(r4)

@@ -7,8 +7,8 @@ lbl_8007749C:
 /* 800774B0  48 00 18 B5 */	bl __ct__16dBgS_PolyPassChkFv
 /* 800774B4  38 7F 00 10 */	addi r3, r31, 0x10
 /* 800774B8  48 00 06 E9 */	bl __ct__15dBgS_GrpPassChkFv
-/* 800774BC  3C 60 80 3B */	lis r3, __vt__8dBgS_Chk@ha
-/* 800774C0  38 63 B6 70 */	addi r3, r3, __vt__8dBgS_Chk@l
+/* 800774BC  3C 60 80 3B */	lis r3, __vt__8dBgS_Chk@ha /* 0x803AB670@ha */
+/* 800774C0  38 63 B6 70 */	addi r3, r3, __vt__8dBgS_Chk@l /* 0x803AB670@l */
 /* 800774C4  90 7F 00 00 */	stw r3, 0(r31)
 /* 800774C8  38 03 00 0C */	addi r0, r3, 0xc
 /* 800774CC  90 1F 00 10 */	stw r0, 0x10(r31)

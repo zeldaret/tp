@@ -16,8 +16,8 @@ lbl_80120474:
 /* 801204AC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 801204B0  41 80 00 20 */	blt lbl_801204D0
 lbl_801204B4:
-/* 801204B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801204B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801204B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801204B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801204BC  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 801204C0  80 84 31 84 */	lwz r4, 0x3184(r4)
 /* 801204C4  4B F2 7C B9 */	bl cutEnd__16dEvent_manager_cFi

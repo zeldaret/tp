@@ -5,8 +5,8 @@ lbl_80028DF4:
 /* 80028E00  39 61 00 20 */	addi r11, r1, 0x20
 /* 80028E04  48 33 93 D9 */	bl _savegpr_29
 /* 80028E08  7C 9D 23 78 */	mr r29, r4
-/* 80028E0C  3C 80 80 38 */	lis r4, l_iconSize@ha
-/* 80028E10  3B E4 8E 48 */	addi r31, r4, l_iconSize@l
+/* 80028E0C  3C 80 80 38 */	lis r4, l_iconSize@ha /* 0x80378E48@ha */
+/* 80028E10  3B E4 8E 48 */	addi r31, r4, l_iconSize@l /* 0x80378E48@l */
 /* 80028E14  3B DF 00 44 */	addi r30, r31, 0x44
 /* 80028E18  88 03 00 8E */	lbz r0, 0x8e(r3)
 /* 80028E1C  28 00 00 02 */	cmplwi r0, 2

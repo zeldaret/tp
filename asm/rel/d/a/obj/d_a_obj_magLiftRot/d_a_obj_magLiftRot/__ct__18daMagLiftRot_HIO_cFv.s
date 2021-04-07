@@ -1,11 +1,11 @@
 lbl_80C8E94C:
-/* 80C8E94C  3C 80 80 C9 */	lis r4, lit_3627@ha
-/* 80C8E950  38 A4 FA E8 */	addi r5, r4, lit_3627@l
-/* 80C8E954  3C 80 80 C9 */	lis r4, __vt__14mDoHIO_entry_c@ha
-/* 80C8E958  38 04 FC AC */	addi r0, r4, __vt__14mDoHIO_entry_c@l
+/* 80C8E94C  3C 80 80 C9 */	lis r4, lit_3627@ha /* 0x80C8FAE8@ha */
+/* 80C8E950  38 A4 FA E8 */	addi r5, r4, lit_3627@l /* 0x80C8FAE8@l */
+/* 80C8E954  3C 80 80 C9 */	lis r4, __vt__14mDoHIO_entry_c@ha /* 0x80C8FCAC@ha */
+/* 80C8E958  38 04 FC AC */	addi r0, r4, __vt__14mDoHIO_entry_c@l /* 0x80C8FCAC@l */
 /* 80C8E95C  90 03 00 00 */	stw r0, 0(r3)
-/* 80C8E960  3C 80 80 C9 */	lis r4, __vt__18daMagLiftRot_HIO_c@ha
-/* 80C8E964  38 04 FC A0 */	addi r0, r4, __vt__18daMagLiftRot_HIO_c@l
+/* 80C8E960  3C 80 80 C9 */	lis r4, __vt__18daMagLiftRot_HIO_c@ha /* 0x80C8FCA0@ha */
+/* 80C8E964  38 04 FC A0 */	addi r0, r4, __vt__18daMagLiftRot_HIO_c@l /* 0x80C8FCA0@l */
 /* 80C8E968  90 03 00 00 */	stw r0, 0(r3)
 /* 80C8E96C  38 00 00 3C */	li r0, 0x3c
 /* 80C8E970  98 03 00 04 */	stb r0, 4(r3)

@@ -13,7 +13,7 @@ lbl_80C8E31C:
 /* 80C8E348  88 7E 05 AE */	lbz r3, 0x5ae(r30)
 /* 80C8E34C  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80C8E350  7C 04 07 74 */	extsb r4, r0
-/* 80C8E354  4B 3C 34 98 */	b dPath_GetRoomPath__Fii
+/* 80C8E354  4B 3C 34 99 */	bl dPath_GetRoomPath__Fii
 /* 80C8E358  88 03 00 05 */	lbz r0, 5(r3)
 /* 80C8E35C  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 80C8E360  41 82 00 30 */	beq lbl_80C8E390

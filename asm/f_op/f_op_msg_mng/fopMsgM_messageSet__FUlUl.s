@@ -6,13 +6,13 @@ lbl_8001FE84:
 /* 8001FE94  48 34 23 49 */	bl _savegpr_29
 /* 8001FE98  7C 7D 1B 78 */	mr r29, r3
 /* 8001FE9C  7C 9E 23 78 */	mr r30, r4
-/* 8001FEA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8001FEA4  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 8001FEA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8001FEA4  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8001FEA8  88 1F 5E 8F */	lbz r0, 0x5e8f(r31)
 /* 8001FEAC  28 00 00 08 */	cmplwi r0, 8
 /* 8001FEB0  40 82 00 14 */	bne lbl_8001FEC4
-/* 8001FEB4  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8001FEB8  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8001FEB4  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8001FEB8  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8001FEBC  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 8001FEC0  48 1F F8 2D */	bl emphasisButtonDelete__9dMeter2_cFv
 lbl_8001FEC4:

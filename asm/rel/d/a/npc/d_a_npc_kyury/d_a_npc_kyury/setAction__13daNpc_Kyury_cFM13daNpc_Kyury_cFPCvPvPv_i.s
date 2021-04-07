@@ -9,13 +9,13 @@ lbl_80A61A2C:
 /* 80A61A48  38 00 00 03 */	li r0, 3
 /* 80A61A4C  B0 03 0E 22 */	sth r0, 0xe22(r3)
 /* 80A61A50  38 7E 0F C8 */	addi r3, r30, 0xfc8
-/* 80A61A54  4B 90 05 C4 */	b __ptmf_test
+/* 80A61A54  4B 90 05 C5 */	bl __ptmf_test
 /* 80A61A58  2C 03 00 00 */	cmpwi r3, 0
 /* 80A61A5C  41 82 00 18 */	beq lbl_80A61A74
 /* 80A61A60  7F C3 F3 78 */	mr r3, r30
 /* 80A61A64  38 80 00 00 */	li r4, 0
 /* 80A61A68  39 9E 0F C8 */	addi r12, r30, 0xfc8
-/* 80A61A6C  4B 90 06 18 */	b __ptmf_scall
+/* 80A61A6C  4B 90 06 19 */	bl __ptmf_scall
 /* 80A61A70  60 00 00 00 */	nop 
 lbl_80A61A74:
 /* 80A61A74  38 00 00 00 */	li r0, 0
@@ -27,13 +27,13 @@ lbl_80A61A74:
 /* 80A61A8C  80 1F 00 08 */	lwz r0, 8(r31)
 /* 80A61A90  90 1E 0F D0 */	stw r0, 0xfd0(r30)
 /* 80A61A94  38 7E 0F C8 */	addi r3, r30, 0xfc8
-/* 80A61A98  4B 90 05 80 */	b __ptmf_test
+/* 80A61A98  4B 90 05 81 */	bl __ptmf_test
 /* 80A61A9C  2C 03 00 00 */	cmpwi r3, 0
 /* 80A61AA0  41 82 00 18 */	beq lbl_80A61AB8
 /* 80A61AA4  7F C3 F3 78 */	mr r3, r30
 /* 80A61AA8  38 80 00 00 */	li r4, 0
 /* 80A61AAC  39 9E 0F C8 */	addi r12, r30, 0xfc8
-/* 80A61AB0  4B 90 05 D4 */	b __ptmf_scall
+/* 80A61AB0  4B 90 05 D5 */	bl __ptmf_scall
 /* 80A61AB4  60 00 00 00 */	nop 
 lbl_80A61AB8:
 /* 80A61AB8  38 60 00 01 */	li r3, 1

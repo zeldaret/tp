@@ -3,17 +3,15 @@
 #
 
 M484_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ikada.plf
+M484_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ikada.lcf
+M484_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ikada.map
 
 M484_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_ikada/executor.cpp \
-	rel/d/a/obj/d_a_obj_ikada/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_ikada/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_ikada/d_a_obj_ikada.cpp \
 
 M484_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ikada/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ikada/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ikada/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ikada/d_a_obj_ikada.o \
 
 M484_LIBS := \
@@ -29,14 +27,21 @@ M484_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M484_LDSCRIPT) \
+	-unused -map $(M484_MAP) \
+	-w off \
 
 $(M484_TARGET): $(M484_O_FILES) $(M484_LIBS)
+	@echo [484] creating $(M484_TARGET)
 	@echo $(M484_LIBS) $(M484_O_FILES) > build/M484_ofiles
-	$(LD) -partial $(M484_LDFLAGS) -o $(M484_TARGET) @build/M484_ofiles
+	@python3 tools/lcf.py rel 484 --output $(M484_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M484_LDFLAGS) -o $(M484_TARGET) @build/M484_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ikada/%.o: rel/d/a/obj/d_a_obj_ikada/%.cpp
+	@echo [484] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M484_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M484_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

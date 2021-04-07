@@ -4,10 +4,10 @@ lbl_80675414:
 /* 8067541C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80675420  80 03 05 F4 */	lwz r0, 0x5f4(r3)
 /* 80675424  90 01 00 08 */	stw r0, 8(r1)
-/* 80675428  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 8067542C  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 80675428  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 8067542C  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 80675430  38 81 00 08 */	addi r4, r1, 8
-/* 80675434  4B 9A 43 C4 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 80675434  4B 9A 43 C5 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80675438  28 03 00 00 */	cmplwi r3, 0
 /* 8067543C  41 82 00 10 */	beq lbl_8067544C
 /* 80675440  88 03 2C A4 */	lbz r0, 0x2ca4(r3)

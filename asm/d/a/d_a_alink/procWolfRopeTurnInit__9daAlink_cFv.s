@@ -8,8 +8,8 @@ lbl_80132D68:
 /* 80132D80  4B F8 F1 ED */	bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80132D84  7F E3 FB 78 */	mr r3, r31
 /* 80132D88  38 80 00 24 */	li r4, 0x24
-/* 80132D8C  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlRope_c0@ha
-/* 80132D90  38 A5 F4 6C */	addi r5, r5, m__20daAlinkHIO_wlRope_c0@l
+/* 80132D8C  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlRope_c0@ha /* 0x8038F46C@ha */
+/* 80132D90  38 A5 F4 6C */	addi r5, r5, m__20daAlinkHIO_wlRope_c0@l /* 0x8038F46C@l */
 /* 80132D94  4B FF 6A B5 */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 80132D98  7F E3 FB 78 */	mr r3, r31
 /* 80132D9C  3C 80 00 01 */	lis r4, 0x0001 /* 0x00010033@ha */
@@ -33,8 +33,8 @@ lbl_80132D68:
 /* 80132DE4  3C 63 00 01 */	addis r3, r3, 1
 /* 80132DE8  38 03 80 00 */	addi r0, r3, -32768
 /* 80132DEC  B0 1F 04 DE */	sth r0, 0x4de(r31)
-/* 80132DF0  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha
-/* 80132DF4  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)
+/* 80132DF0  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha /* 0x8042561C@ha */
+/* 80132DF4  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)  /* 0x8042561C@l */
 /* 80132DF8  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 80132DFC  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80132E00  D0 1F 35 8C */	stfs f0, 0x358c(r31)

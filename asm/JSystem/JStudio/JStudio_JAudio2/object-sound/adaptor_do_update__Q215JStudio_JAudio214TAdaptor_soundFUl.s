@@ -8,8 +8,8 @@ lbl_8028DA78:
 /* 8028DA90  80 83 00 04 */	lwz r4, 4(r3)
 /* 8028DA94  83 C4 00 14 */	lwz r30, 0x14(r4)
 /* 8028DA98  38 81 00 18 */	addi r4, r1, 0x18
-/* 8028DA9C  3C A0 80 3A */	lis r5, sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound@ha
-/* 8028DAA0  38 A5 AB 6C */	addi r5, r5, sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound@l
+/* 8028DA9C  3C A0 80 3A */	lis r5, sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound@ha /* 0x8039AB6C@ha */
+/* 8028DAA0  38 A5 AB 6C */	addi r5, r5, sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound@l /* 0x8039AB6C@l */
 /* 8028DAA4  4B FF 87 D1 */	bl adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl
 /* 8028DAA8  88 1F 01 44 */	lbz r0, 0x144(r31)
 /* 8028DAAC  28 00 00 00 */	cmplwi r0, 0

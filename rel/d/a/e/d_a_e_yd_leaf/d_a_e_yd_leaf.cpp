@@ -39,9 +39,9 @@ struct fopAc_ac_c {
 
 struct e_yd_leaf_class {};
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -58,36 +58,18 @@ struct dRes_control_c {
 // Forward References:
 //
 
-static void daE_YD_LEAF_Draw(e_yd_leaf_class*);
-static void daE_YD_LEAF_Execute(e_yd_leaf_class*);
-static bool daE_YD_LEAF_IsDelete(e_yd_leaf_class*);
-static void daE_YD_LEAF_Delete(e_yd_leaf_class*);
-static void useHeapInit(fopAc_ac_c*);
-static void daE_YD_LEAF_Create(fopAc_ac_c*);
-
 extern "C" static void daE_YD_LEAF_Draw__FP15e_yd_leaf_class();
 extern "C" static void daE_YD_LEAF_Execute__FP15e_yd_leaf_class();
 extern "C" static bool daE_YD_LEAF_IsDelete__FP15e_yd_leaf_class();
 extern "C" static void daE_YD_LEAF_Delete__FP15e_yd_leaf_class();
 extern "C" static void useHeapInit__FP10fopAc_ac_c();
 extern "C" static void daE_YD_LEAF_Create__FP10fopAc_ac_c();
-extern "C" extern char const* const stringBase0;
+extern "C" extern char const* const d_a_e_yd_leaf__stringBase0;
 extern "C" extern void* g_profile_E_YD_LEAF[12];
 
 //
 // External References:
 //
-
-void mDoMtx_XrotM(f32 (*)[4], s16);
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void fopAcIt_Judge(void* (*)(void*, void*), void*);
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fpcSch_JudgeByID(void*, void*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void cLib_addCalc0(f32*, f32, f32);
-void* operator new(u32);
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
@@ -123,83 +105,83 @@ extern "C" extern u8 j3dSys[284];
 // Declarations:
 //
 
-/* 807F7E18-807F7EC0 00A8+00 s=1 e=0 z=0  None .text      daE_YD_LEAF_Draw__FP15e_yd_leaf_class */
+/* 807F7E18-807F7EC0 000078 00A8+00 1/0 0/0 0/0 .text daE_YD_LEAF_Draw__FP15e_yd_leaf_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daE_YD_LEAF_Draw(e_yd_leaf_class* param_0) {
+static asm void daE_YD_LEAF_Draw(e_yd_leaf_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yd_leaf/d_a_e_yd_leaf/daE_YD_LEAF_Draw__FP15e_yd_leaf_class.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 807F81E8-807F81EC 0004+00 s=3 e=0 z=0  None .rodata    @3707 */
-SECTION_RODATA static u32 const lit_3707 = 0x3F800000;
+/* 807F81E8-807F81EC 000000 0004+00 3/3 0/0 0/0 .rodata          @3707 */
+SECTION_RODATA static f32 const lit_3707 = 1.0f;
+COMPILER_STRIP_GATE(807F81E8, &lit_3707);
 
-/* 807F81EC-807F81F0 0004+00 s=1 e=0 z=0  None .rodata    @3708 */
-SECTION_RODATA static u32 const lit_3708 = 0x3DA3D70A;
+/* 807F81EC-807F81F0 000004 0004+00 0/1 0/0 0/0 .rodata          @3708 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3708 = 2.0f / 25.0f;
+COMPILER_STRIP_GATE(807F81EC, &lit_3708);
+#pragma pop
 
-/* 807F81F0-807F81F4 0004+00 s=1 e=0 z=0  None .rodata    @3709 */
-SECTION_RODATA static u32 const lit_3709 = 0x3C23D70A;
+/* 807F81F0-807F81F4 000008 0004+00 0/1 0/0 0/0 .rodata          @3709 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3709 = 1.0f / 100.0f;
+COMPILER_STRIP_GATE(807F81F0, &lit_3709);
+#pragma pop
 
-/* 807F7EC0-807F7FEC 012C+00 s=2 e=0 z=0  None .text      daE_YD_LEAF_Execute__FP15e_yd_leaf_class
- */
+/* 807F7EC0-807F7FEC 000120 012C+00 2/1 0/0 0/0 .text daE_YD_LEAF_Execute__FP15e_yd_leaf_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daE_YD_LEAF_Execute(e_yd_leaf_class* param_0) {
+static asm void daE_YD_LEAF_Execute(e_yd_leaf_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yd_leaf/d_a_e_yd_leaf/daE_YD_LEAF_Execute__FP15e_yd_leaf_class.s"
 }
 #pragma pop
 
-/* 807F7FEC-807F7FF4 0008+00 s=1 e=0 z=0  None .text      daE_YD_LEAF_IsDelete__FP15e_yd_leaf_class
- */
+/* 807F7FEC-807F7FF4 00024C 0008+00 1/0 0/0 0/0 .text daE_YD_LEAF_IsDelete__FP15e_yd_leaf_class */
 static bool daE_YD_LEAF_IsDelete(e_yd_leaf_class* param_0) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 807F81F4-807F81F9 0005+00 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_807F81F4 = "E_YD";
-#pragma pop
-
-/* 807F7FF4-807F8024 0030+00 s=1 e=0 z=0  None .text      daE_YD_LEAF_Delete__FP15e_yd_leaf_class */
+/* 807F7FF4-807F8024 000254 0030+00 1/0 0/0 0/0 .text daE_YD_LEAF_Delete__FP15e_yd_leaf_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daE_YD_LEAF_Delete(e_yd_leaf_class* param_0) {
+static asm void daE_YD_LEAF_Delete(e_yd_leaf_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yd_leaf/d_a_e_yd_leaf/daE_YD_LEAF_Delete__FP15e_yd_leaf_class.s"
 }
 #pragma pop
 
-/* 807F8024-807F8124 0100+00 s=1 e=0 z=0  None .text      useHeapInit__FP10fopAc_ac_c */
+/* 807F8024-807F8124 000284 0100+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void useHeapInit(fopAc_ac_c* param_0) {
+static asm void useHeapInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yd_leaf/d_a_e_yd_leaf/useHeapInit__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 807F8124-807F81E0 00BC+00 s=1 e=0 z=0  None .text      daE_YD_LEAF_Create__FP10fopAc_ac_c */
+/* 807F8124-807F81E0 000384 00BC+00 1/0 0/0 0/0 .text            daE_YD_LEAF_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daE_YD_LEAF_Create(fopAc_ac_c* param_0) {
+static asm void daE_YD_LEAF_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_yd_leaf/d_a_e_yd_leaf/daE_YD_LEAF_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 807F81FC-807F821C 0020+00 s=1 e=0 z=0  None .data      l_daE_YD_LEAF_Method */
+/* 807F81FC-807F821C -00001 0020+00 1/0 0/0 0/0 .data            l_daE_YD_LEAF_Method */
 SECTION_DATA static void* l_daE_YD_LEAF_Method[8] = {
     (void*)daE_YD_LEAF_Create__FP10fopAc_ac_c,
     (void*)daE_YD_LEAF_Delete__FP15e_yd_leaf_class,
@@ -211,8 +193,8 @@ SECTION_DATA static void* l_daE_YD_LEAF_Method[8] = {
     (void*)NULL,
 };
 
-/* 807F821C-807F824C 0030+00 s=0 e=0 z=1  None .data      g_profile_E_YD_LEAF */
-SECTION_DATA void* g_profile_E_YD_LEAF[12] = {
+/* 807F821C-807F824C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_E_YD_LEAF */
+SECTION_DATA extern void* g_profile_E_YD_LEAF[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01CE0000, (void*)&g_fpcLf_Method,
     (void*)0x000005C0, (void*)NULL,
@@ -220,3 +202,10 @@ SECTION_DATA void* g_profile_E_YD_LEAF[12] = {
     (void*)0x00910000, (void*)&l_daE_YD_LEAF_Method,
     (void*)0x00040000, (void*)NULL,
 };
+
+/* 807F81F4-807F81F9 00000C 0005+00 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_807F81F4 = "E_YD";
+#pragma pop

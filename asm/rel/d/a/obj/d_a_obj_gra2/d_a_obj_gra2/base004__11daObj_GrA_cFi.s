@@ -16,8 +16,8 @@ lbl_80C03C48:
 /* 80C03C50  88 04 00 11 */	lbz r0, 0x11(r4)
 /* 80C03C54  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 80C03C58  40 82 00 1C */	bne lbl_80C03C74
-/* 80C03C5C  3C 60 80 C1 */	lis r3, lit_4333@ha
-/* 80C03C60  C0 23 FB 98 */	lfs f1, lit_4333@l(r3)
+/* 80C03C5C  3C 60 80 C1 */	lis r3, lit_4333@ha /* 0x80C0FB98@ha */
+/* 80C03C60  C0 23 FB 98 */	lfs f1, lit_4333@l(r3)  /* 0x80C0FB98@l */
 /* 80C03C64  C0 04 00 18 */	lfs f0, 0x18(r4)
 /* 80C03C68  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 80C03C6C  41 82 00 08 */	beq lbl_80C03C74
@@ -27,8 +27,8 @@ lbl_80C03C74:
 /* 80C03C78  41 82 00 2C */	beq lbl_80C03CA4
 /* 80C03C7C  7F E3 FB 78 */	mr r3, r31
 /* 80C03C80  38 80 00 00 */	li r4, 0
-/* 80C03C84  3C A0 80 C1 */	lis r5, m__17daObj_GrA_Param_c@ha
-/* 80C03C88  38 A5 FA 7C */	addi r5, r5, m__17daObj_GrA_Param_c@l
+/* 80C03C84  3C A0 80 C1 */	lis r5, m__17daObj_GrA_Param_c@ha /* 0x80C0FA7C@ha */
+/* 80C03C88  38 A5 FA 7C */	addi r5, r5, m__17daObj_GrA_Param_c@l /* 0x80C0FA7C@l */
 /* 80C03C8C  C0 25 00 0C */	lfs f1, 0xc(r5)
 /* 80C03C90  4B FF DA FD */	bl setBaseMotion__11daObj_GrA_cFif
 /* 80C03C94  7F E3 FB 78 */	mr r3, r31

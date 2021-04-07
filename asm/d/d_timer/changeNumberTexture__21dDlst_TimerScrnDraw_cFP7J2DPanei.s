@@ -13,8 +13,8 @@ lbl_8025EE24:
 lbl_8025EE50:
 /* 8025EE50  3B C0 00 00 */	li r30, 0
 lbl_8025EE54:
-/* 8025EE54  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025EE58  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8025EE54  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025EE58  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025EE5C  83 E3 5D 30 */	lwz r31, 0x5d30(r3)
 /* 8025EE60  7F 83 E3 78 */	mr r3, r28
 /* 8025EE64  7F C4 F3 78 */	mr r4, r30

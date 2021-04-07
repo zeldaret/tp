@@ -4,7 +4,7 @@ lbl_8073905C:
 /* 80739064  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80739068  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8073906C  7C 7F 1B 78 */	mr r31, r3
-/* 80739070  4B 8D F2 38 */	b cDmrNowMidnaTalk__Fv
+/* 80739070  4B 8D F2 39 */	bl cDmrNowMidnaTalk__Fv
 /* 80739074  2C 03 00 00 */	cmpwi r3, 0
 /* 80739078  41 82 00 0C */	beq lbl_80739084
 /* 8073907C  38 60 00 01 */	li r3, 1

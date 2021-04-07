@@ -3,28 +3,28 @@ lbl_8078E868:
 /* 8078E86C  7C 08 02 A6 */	mflr r0
 /* 8078E870  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8078E874  39 61 00 30 */	addi r11, r1, 0x30
-/* 8078E878  4B BD 39 60 */	b _savegpr_28
+/* 8078E878  4B BD 39 61 */	bl _savegpr_28
 /* 8078E87C  7C 7F 1B 78 */	mr r31, r3
 /* 8078E880  A8 03 06 A0 */	lha r0, 0x6a0(r3)
 /* 8078E884  2C 00 00 00 */	cmpwi r0, 0
 /* 8078E888  40 82 01 B8 */	bne lbl_8078EA40
 /* 8078E88C  38 7F 08 FC */	addi r3, r31, 0x8fc
-/* 8078E890  4B 8F 4F A0 */	b Move__10dCcD_GSttsFv
+/* 8078E890  4B 8F 4F A1 */	bl Move__10dCcD_GSttsFv
 /* 8078E894  3B 80 00 00 */	li r28, 0
 /* 8078E898  3B C0 00 00 */	li r30, 0
 lbl_8078E89C:
 /* 8078E89C  3B BE 09 1C */	addi r29, r30, 0x91c
 /* 8078E8A0  7F BF EA 14 */	add r29, r31, r29
 /* 8078E8A4  7F A3 EB 78 */	mr r3, r29
-/* 8078E8A8  4B 8F 5B B8 */	b ChkTgHit__12dCcD_GObjInfFv
+/* 8078E8A8  4B 8F 5B B9 */	bl ChkTgHit__12dCcD_GObjInfFv
 /* 8078E8AC  28 03 00 00 */	cmplwi r3, 0
 /* 8078E8B0  41 82 01 80 */	beq lbl_8078EA30
 /* 8078E8B4  7F A3 EB 78 */	mr r3, r29
-/* 8078E8B8  4B 8F 5C 40 */	b GetTgHitObj__12dCcD_GObjInfFv
+/* 8078E8B8  4B 8F 5C 41 */	bl GetTgHitObj__12dCcD_GObjInfFv
 /* 8078E8BC  90 7F 0C C4 */	stw r3, 0xcc4(r31)
 /* 8078E8C0  7F E3 FB 78 */	mr r3, r31
 /* 8078E8C4  38 9F 0C C4 */	addi r4, r31, 0xcc4
-/* 8078E8C8  4B 8F 93 3C */	b cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo
+/* 8078E8C8  4B 8F 93 3D */	bl cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo
 /* 8078E8CC  80 7F 0C C4 */	lwz r3, 0xcc4(r31)
 /* 8078E8D0  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 8078E8D4  74 00 D8 00 */	andis. r0, r0, 0xd800
@@ -66,8 +66,8 @@ lbl_8078E8F0:
 /* 8078E95C  81 8C 00 14 */	lwz r12, 0x14(r12)
 /* 8078E960  7D 89 03 A6 */	mtctr r12
 /* 8078E964  4E 80 04 21 */	bctrl 
-/* 8078E968  3C 60 80 79 */	lis r3, lit_4144@ha
-/* 8078E96C  C0 03 1D C8 */	lfs f0, lit_4144@l(r3)
+/* 8078E968  3C 60 80 79 */	lis r3, lit_4144@ha /* 0x80791DC8@ha */
+/* 8078E96C  C0 03 1D C8 */	lfs f0, lit_4144@l(r3)  /* 0x80791DC8@l */
 /* 8078E970  D0 1F 06 A4 */	stfs f0, 0x6a4(r31)
 /* 8078E974  48 00 00 80 */	b lbl_8078E9F4
 lbl_8078E978:
@@ -75,8 +75,8 @@ lbl_8078E978:
 /* 8078E97C  88 1F 0C E4 */	lbz r0, 0xce4(r31)
 /* 8078E980  28 00 00 10 */	cmplwi r0, 0x10
 /* 8078E984  40 82 00 3C */	bne lbl_8078E9C0
-/* 8078E988  3C 60 80 79 */	lis r3, lit_4145@ha
-/* 8078E98C  C0 03 1D CC */	lfs f0, lit_4145@l(r3)
+/* 8078E988  3C 60 80 79 */	lis r3, lit_4145@ha /* 0x80791DCC@ha */
+/* 8078E98C  C0 03 1D CC */	lfs f0, lit_4145@l(r3)  /* 0x80791DCC@l */
 /* 8078E990  D0 1F 06 A4 */	stfs f0, 0x6a4(r31)
 /* 8078E994  3C 60 00 07 */	lis r3, 0x0007 /* 0x000700A1@ha */
 /* 8078E998  38 03 00 A1 */	addi r0, r3, 0x00A1 /* 0x000700A1@l */
@@ -90,8 +90,8 @@ lbl_8078E978:
 /* 8078E9B8  4E 80 04 21 */	bctrl 
 /* 8078E9BC  48 00 00 38 */	b lbl_8078E9F4
 lbl_8078E9C0:
-/* 8078E9C0  3C 60 80 79 */	lis r3, lit_4144@ha
-/* 8078E9C4  C0 03 1D C8 */	lfs f0, lit_4144@l(r3)
+/* 8078E9C0  3C 60 80 79 */	lis r3, lit_4144@ha /* 0x80791DC8@ha */
+/* 8078E9C4  C0 03 1D C8 */	lfs f0, lit_4144@l(r3)  /* 0x80791DC8@l */
 /* 8078E9C8  D0 1F 06 A4 */	stfs f0, 0x6a4(r31)
 /* 8078E9CC  3C 60 00 07 */	lis r3, 0x0007 /* 0x000700A1@ha */
 /* 8078E9D0  38 03 00 A1 */	addi r0, r3, 0x00A1 /* 0x000700A1@l */
@@ -105,10 +105,10 @@ lbl_8078E9C0:
 /* 8078E9F0  4E 80 04 21 */	bctrl 
 lbl_8078E9F4:
 /* 8078E9F4  7F E3 FB 78 */	mr r3, r31
-/* 8078E9F8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8078E9FC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8078E9F8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8078E9FC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8078EA00  80 84 5D AC */	lwz r4, 0x5dac(r4)
-/* 8078EA04  4B 88 BD 0C */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 8078EA04  4B 88 BD 0D */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 8078EA08  B0 7F 06 A8 */	sth r3, 0x6a8(r31)
 /* 8078EA0C  A8 1F 05 62 */	lha r0, 0x562(r31)
 /* 8078EA10  2C 00 00 01 */	cmpwi r0, 1
@@ -126,7 +126,7 @@ lbl_8078EA30:
 /* 8078EA3C  41 80 FE 60 */	blt lbl_8078E89C
 lbl_8078EA40:
 /* 8078EA40  39 61 00 30 */	addi r11, r1, 0x30
-/* 8078EA44  4B BD 37 E0 */	b _restgpr_28
+/* 8078EA44  4B BD 37 E1 */	bl _restgpr_28
 /* 8078EA48  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 8078EA4C  7C 08 03 A6 */	mtlr r0
 /* 8078EA50  38 21 00 30 */	addi r1, r1, 0x30

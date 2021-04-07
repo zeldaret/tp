@@ -3,17 +3,15 @@
 #
 
 M537_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prwall.plf
+M537_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prwall.lcf
+M537_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prwall.map
 
 M537_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv4prwall/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv4prwall/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_lv4prwall/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_lv4prwall/d_a_obj_lv4prwall.cpp \
 
 M537_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prwall/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prwall/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prwall/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prwall/d_a_obj_lv4prwall.o \
 
 M537_LIBS := \
@@ -29,14 +27,21 @@ M537_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M537_LDSCRIPT) \
+	-unused -map $(M537_MAP) \
+	-w off \
 
 $(M537_TARGET): $(M537_O_FILES) $(M537_LIBS)
+	@echo [537] creating $(M537_TARGET)
 	@echo $(M537_LIBS) $(M537_O_FILES) > build/M537_ofiles
-	$(LD) -partial $(M537_LDFLAGS) -o $(M537_TARGET) @build/M537_ofiles
+	@python3 tools/lcf.py rel 537 --output $(M537_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M537_LDFLAGS) -o $(M537_TARGET) @build/M537_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prwall/%.o: rel/d/a/obj/d_a_obj_lv4prwall/%.cpp
+	@echo [537] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M537_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M537_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

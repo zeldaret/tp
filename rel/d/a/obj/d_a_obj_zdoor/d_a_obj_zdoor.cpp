@@ -27,13 +27,13 @@ struct daZdoor_c {
     /* 80D3FD8C */ void Delete();
 };
 
+struct dKy_tevstr_c {};
+
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
-
-struct dKy_tevstr_c {};
 
 struct J3DModelData {};
 
@@ -80,9 +80,9 @@ struct dBgS_ObjAcch {
     /* 80D400F8 */ ~dBgS_ObjAcch();
 };
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -136,14 +136,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void checkPlayerPos(daZdoor_c*);
-static void doorCoHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
-static void doorTgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
-static void daZdoor_create1st(daZdoor_c*);
-static void daZdoor_MoveBGDelete(daZdoor_c*);
-static void daZdoor_MoveBGExecute(daZdoor_c*);
-static void daZdoor_MoveBGDraw(daZdoor_c*);
-
 extern "C" static void checkPlayerPos__FP9daZdoor_c();
 extern "C" static void
 doorCoHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf();
@@ -169,23 +161,11 @@ extern "C" static void daZdoor_MoveBGExecute__FP9daZdoor_c();
 extern "C" static void daZdoor_MoveBGDraw__FP9daZdoor_c();
 extern "C" static void func_80D401D4();
 extern "C" static void func_80D401DC();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_ZDoor[12];
+extern "C" extern char const* const d_a_obj_zdoor__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotS(f32 (*)[4], s16);
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dComIfGp_getReverb(int);
-void cLib_addCalcAngleS(s16*, s16, s16, s16, s16);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotS__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
@@ -251,23 +231,27 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 80D401EC-80D40228 003C+00 s=3 e=0 z=0  None .rodata    l_cyl_data */
+/* 80D401EC-80D40228 000000 003C+00 3/3 0/0 0/0 .rodata          l_cyl_data */
 SECTION_RODATA static u8 const l_cyl_data[60] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x0C, 0x00,
     0x00, 0x43, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x43, 0xAF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80D401EC, &l_cyl_data);
 
-/* 80D40228-80D40264 003C+00 s=1 e=0 z=0  None .rodata    l_cyl_data2 */
+/* 80D40228-80D40264 00003C 003C+00 1/1 0/0 0/0 .rodata          l_cyl_data2 */
 SECTION_RODATA static u8 const l_cyl_data2[60] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0xA0, 0x00,
     0x00, 0x43, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x42, 0xA0, 0x00, 0x00, 0x43, 0xAF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80D40228, &l_cyl_data2);
 
-/* 80D40264-80D4026C 0006+02 s=1 e=0 z=0  None .rodata    l_open_limit_max */
+/* 80D40264-80D4026C 000078 0006+02 0/1 0/0 0/0 .rodata          l_open_limit_max */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const l_open_limit_max[6 + 2 /* padding */] = {
     0x4E,
     0x20,
@@ -279,8 +263,12 @@ SECTION_RODATA static u8 const l_open_limit_max[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80D40264, &l_open_limit_max);
+#pragma pop
 
-/* 80D4026C-80D40274 0006+02 s=1 e=0 z=0  None .rodata    l_open_limit_min */
+/* 80D4026C-80D40274 000080 0006+02 0/1 0/0 0/0 .rodata          l_open_limit_min */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const l_open_limit_min[6 + 2 /* padding */] = {
     0x13,
     0x88,
@@ -292,8 +280,10 @@ SECTION_RODATA static u8 const l_open_limit_min[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80D4026C, &l_open_limit_min);
+#pragma pop
 
-/* 80D40274-80D4027C 0006+02 s=2 e=0 z=0  None .rodata    l_open_speed */
+/* 80D40274-80D4027C 000088 0006+02 2/2 0/0 0/0 .rodata          l_open_speed */
 SECTION_RODATA static u8 const l_open_speed[6 + 2 /* padding */] = {
     0x00,
     0xFA,
@@ -305,35 +295,38 @@ SECTION_RODATA static u8 const l_open_speed[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80D40274, &l_open_speed);
 
-/* 80D4027C-80D40280 0004+00 s=2 e=0 z=0  None .rodata    @3658 */
+/* 80D4027C-80D40280 000090 0004+00 1/2 0/0 0/0 .rodata          @3658 */
 SECTION_RODATA static u8 const lit_3658[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80D4027C, &lit_3658);
 
-/* 80D3F438-80D3F4DC 00A4+00 s=2 e=0 z=0  None .text      checkPlayerPos__FP9daZdoor_c */
+/* 80D3F438-80D3F4DC 000078 00A4+00 2/2 0/0 0/0 .text            checkPlayerPos__FP9daZdoor_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void checkPlayerPos(daZdoor_c* param_0) {
+static asm void checkPlayerPos(daZdoor_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zdoor/d_a_obj_zdoor/checkPlayerPos__FP9daZdoor_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D40280-80D40284 0004+00 s=1 e=0 z=0  None .rodata    @3679 */
-SECTION_RODATA static u32 const lit_3679 = 0x40400000;
+/* 80D40280-80D40284 000094 0004+00 1/1 0/0 0/0 .rodata          @3679 */
+SECTION_RODATA static f32 const lit_3679 = 3.0f;
+COMPILER_STRIP_GATE(80D40280, &lit_3679);
 
-/* 80D3F4DC-80D3F570 0094+00 s=1 e=0 z=0  None .text
+/* 80D3F4DC-80D3F570 00011C 0094+00 1/1 0/0 0/0 .text
  * doorCoHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void doorCoHitCallBack(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, fopAc_ac_c* param_2,
+static asm void doorCoHitCallBack(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, fopAc_ac_c* param_2,
                                   dCcD_GObjInf* param_3) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zdoor/d_a_obj_zdoor/func_80D3F4DC.s"
@@ -341,24 +334,26 @@ asm static void doorCoHitCallBack(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, fo
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D40284-80D4028C 0004+04 s=1 e=0 z=0  None .rodata    @3712 */
-SECTION_RODATA static u32 const lit_3712[1 + 1 /* padding */] = {
-    0x40000000,
+/* 80D40284-80D4028C 000098 0004+04 1/1 0/0 0/0 .rodata          @3712 */
+SECTION_RODATA static f32 const lit_3712[1 + 1 /* padding */] = {
+    2.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
+COMPILER_STRIP_GATE(80D40284, &lit_3712);
 
-/* 80D4028C-80D40294 0008+00 s=1 e=0 z=0  None .rodata    @3714 */
+/* 80D4028C-80D40294 0000A0 0008+00 1/1 0/0 0/0 .rodata          @3714 */
 SECTION_RODATA static u8 const lit_3714[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80D4028C, &lit_3714);
 
-/* 80D3F570-80D3F65C 00EC+00 s=1 e=0 z=0  None .text
+/* 80D3F570-80D3F65C 0001B0 00EC+00 1/1 0/0 0/0 .text
  * doorTgHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void doorTgHitCallBack(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, fopAc_ac_c* param_2,
+static asm void doorTgHitCallBack(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, fopAc_ac_c* param_2,
                                   dCcD_GObjInf* param_3) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zdoor/d_a_obj_zdoor/func_80D3F570.s"
@@ -366,7 +361,7 @@ asm static void doorTgHitCallBack(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, fo
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D40310-80D40354 0044+00 s=1 e=0 z=0  None .data      l_cyl_src */
+/* 80D40310-80D40354 000000 0044+00 1/1 0/0 0/0 .data            l_cyl_src */
 SECTION_DATA static u8 l_cyl_src[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x19,
@@ -375,7 +370,7 @@ SECTION_DATA static u8 l_cyl_src[68] = {
     0x00, 0x00, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x43, 0xC8, 0x00, 0x00,
 };
 
-/* 80D40354-80D40398 0044+00 s=1 e=0 z=0  None .data      l_cyl_src2 */
+/* 80D40354-80D40398 000044 0044+00 1/1 0/0 0/0 .data            l_cyl_src2 */
 SECTION_DATA static u8 l_cyl_src2[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79,
@@ -384,7 +379,7 @@ SECTION_DATA static u8 l_cyl_src2[68] = {
     0x00, 0x00, 0x00, 0x00, 0x42, 0xA0, 0x00, 0x00, 0x43, 0xC8, 0x00, 0x00,
 };
 
-/* 80D3F65C-80D3F740 00E4+00 s=1 e=0 z=0  None .text      init_cyl__9daZdoor_cFv */
+/* 80D3F65C-80D3F740 00029C 00E4+00 1/1 0/0 0/0 .text            init_cyl__9daZdoor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -395,19 +390,35 @@ asm void daZdoor_c::init_cyl() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D40294-80D40298 0004+00 s=1 e=0 z=0  None .rodata    @3796 */
-SECTION_RODATA static u32 const lit_3796 = 0x42700000;
+/* 80D40294-80D40298 0000A8 0004+00 0/1 0/0 0/0 .rodata          @3796 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3796 = 60.0f;
+COMPILER_STRIP_GATE(80D40294, &lit_3796);
+#pragma pop
 
-/* 80D40298-80D4029C 0004+00 s=1 e=0 z=0  None .rodata    @3797 */
-SECTION_RODATA static u32 const lit_3797 = 0x42F00000;
+/* 80D40298-80D4029C 0000AC 0004+00 0/1 0/0 0/0 .rodata          @3797 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3797 = 120.0f;
+COMPILER_STRIP_GATE(80D40298, &lit_3797);
+#pragma pop
 
-/* 80D4029C-80D402A0 0004+00 s=1 e=0 z=0  None .rodata    @3798 */
-SECTION_RODATA static u32 const lit_3798 = 0x43340000;
+/* 80D4029C-80D402A0 0000B0 0004+00 0/1 0/0 0/0 .rodata          @3798 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3798 = 180.0f;
+COMPILER_STRIP_GATE(80D4029C, &lit_3798);
+#pragma pop
 
-/* 80D402A0-80D402A4 0004+00 s=1 e=0 z=0  None .rodata    @3799 */
-SECTION_RODATA static u32 const lit_3799 = 0x43700000;
+/* 80D402A0-80D402A4 0000B4 0004+00 0/1 0/0 0/0 .rodata          @3799 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3799 = 240.0f;
+COMPILER_STRIP_GATE(80D402A0, &lit_3799);
+#pragma pop
 
-/* 80D3F740-80D3F884 0144+00 s=1 e=0 z=0  None .text      set_cyl__9daZdoor_cFv */
+/* 80D3F740-80D3F884 000380 0144+00 1/1 0/0 0/0 .text            set_cyl__9daZdoor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -417,7 +428,7 @@ asm void daZdoor_c::set_cyl() {
 }
 #pragma pop
 
-/* 80D3F884-80D3F8F8 0074+00 s=2 e=0 z=0  None .text      setBaseMtx__9daZdoor_cFv */
+/* 80D3F884-80D3F8F8 0004C4 0074+00 2/2 0/0 0/0 .text            setBaseMtx__9daZdoor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -427,7 +438,7 @@ asm void daZdoor_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 80D3F8F8-80D3F970 0078+00 s=1 e=0 z=0  None .text      Create__9daZdoor_cFv */
+/* 80D3F8F8-80D3F970 000538 0078+00 1/0 0/0 0/0 .text            Create__9daZdoor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -438,67 +449,21 @@ asm void daZdoor_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D402A4-80D402A8 0004+00 s=1 e=0 z=0  None .rodata    estimateSizeTbl$3848 */
-SECTION_RODATA static u8 const estimateSizeTbl[4] = {
-    0x0C,
-    0xF0,
-    0x0D,
-    0x30,
-};
-
-/* 80D402A8-80D402AC 0004+00 s=1 e=0 z=0  None .rodata    @3906 */
-SECTION_RODATA static u32 const lit_3906 = 0x3F800000;
-
-/* 80D402AC-80D402B0 0004+00 s=1 e=0 z=0  None .rodata    @3907 */
-SECTION_RODATA static u32 const lit_3907 = 0xBF800000;
-
-/* 80D402B0-80D402B8 0008+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80D402B0 = "J_Zdoor";
-#pragma pop
-
-/* 80D402B8-80D402C0 0008+00 s=1 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const data_80D402B8[8] = {
-    0x4A, 0x5F, 0x52, 0x64, 0x6F, 0x6F, 0x72, 0x00,
-};
-
-/* 80D402C0-80D402C8 0008+00 s=1 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const data_80D402C0[8] = {
-    0x4A, 0x5F, 0x53, 0x54, 0x64, 0x6F, 0x61, 0x00,
-};
-
-/* 80D402C8-80D402D4 000C+00 s=1 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const data_80D402C8[12] = {
-    0x4A, 0x5F, 0x5A, 0x64, 0x6F, 0x6F, 0x72, 0x2E, 0x62, 0x6D, 0x64, 0x00,
-};
-
-/* 80D402D4-80D402E0 000C+00 s=1 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const data_80D402D4[12] = {
-    0x4A, 0x5F, 0x52, 0x64, 0x6F, 0x6F, 0x72, 0x2E, 0x62, 0x6D, 0x64, 0x00,
-};
-
-/* 80D402E0-80D402EC 000C+00 s=1 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const data_80D402E0[12] = {
-    0x4A, 0x5F, 0x53, 0x54, 0x64, 0x6F, 0x61, 0x2E, 0x62, 0x6D, 0x64, 0x00,
-};
-
-/* 80D40398-80D403A4 000C+00 s=3 e=0 z=0  None .data      l_arcName */
+/* 80D40398-80D403A4 -00001 000C+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName[3] = {
-    (void*)&stringBase0,
-    (void*)&data_80D402B8,
-    (void*)&data_80D402C0,
+    (void*)&d_a_obj_zdoor__stringBase0,
+    (void*)(((char*)&d_a_obj_zdoor__stringBase0) + 0x8),
+    (void*)(((char*)&d_a_obj_zdoor__stringBase0) + 0x10),
 };
 
-/* 80D403A4-80D403B0 000C+00 s=1 e=0 z=0  None .data      l_bmdName */
+/* 80D403A4-80D403B0 -00001 000C+00 1/1 0/0 0/0 .data            l_bmdName */
 SECTION_DATA static void* l_bmdName[3] = {
-    (void*)&data_80D402C8,
-    (void*)&data_80D402D4,
-    (void*)&data_80D402E0,
+    (void*)(((char*)&d_a_obj_zdoor__stringBase0) + 0x18),
+    (void*)(((char*)&d_a_obj_zdoor__stringBase0) + 0x24),
+    (void*)(((char*)&d_a_obj_zdoor__stringBase0) + 0x30),
 };
 
-/* 80D3F970-80D3F9F0 0080+00 s=1 e=0 z=0  None .text      CreateHeap__9daZdoor_cFv */
+/* 80D3F970-80D3F9F0 0005B0 0080+00 1/0 0/0 0/0 .text            CreateHeap__9daZdoor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -509,29 +474,23 @@ asm void daZdoor_c::CreateHeap() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D402EC-80D402F8 000C+00 s=1 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const data_80D402EC[12] = {
-    0x4A, 0x5F, 0x5A, 0x64, 0x6F, 0x6F, 0x72, 0x2E, 0x64, 0x7A, 0x62, 0x00,
+/* 80D402A4-80D402A8 0000B8 0004+00 1/1 0/0 0/0 .rodata          estimateSizeTbl$3848 */
+SECTION_RODATA static u8 const estimateSizeTbl[4] = {
+    0x0C,
+    0xF0,
+    0x0D,
+    0x30,
 };
+COMPILER_STRIP_GATE(80D402A4, &estimateSizeTbl);
 
-/* 80D402F8-80D40304 000C+00 s=1 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const data_80D402F8[12] = {
-    0x4A, 0x5F, 0x52, 0x64, 0x6F, 0x6F, 0x72, 0x2E, 0x64, 0x7A, 0x62, 0x00,
-};
-
-/* 80D40304-80D40310 000C+00 s=1 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const data_80D40304[12] = {
-    0x4A, 0x5F, 0x53, 0x54, 0x64, 0x6F, 0x61, 0x2E, 0x64, 0x7A, 0x62, 0x00,
-};
-
-/* 80D403B0-80D403BC 000C+00 s=1 e=0 z=0  None .data      l_dzbName */
+/* 80D403B0-80D403BC -00001 000C+00 1/1 0/0 0/0 .data            l_dzbName */
 SECTION_DATA static void* l_dzbName[3] = {
-    (void*)&data_80D402EC,
-    (void*)&data_80D402F8,
-    (void*)&data_80D40304,
+    (void*)(((char*)&d_a_obj_zdoor__stringBase0) + 0x3C),
+    (void*)(((char*)&d_a_obj_zdoor__stringBase0) + 0x48),
+    (void*)(((char*)&d_a_obj_zdoor__stringBase0) + 0x54),
 };
 
-/* 80D3F9F0-80D3FACC 00DC+00 s=1 e=0 z=0  None .text      create1st__9daZdoor_cFv */
+/* 80D3F9F0-80D3FACC 000630 00DC+00 1/1 0/0 0/0 .text            create1st__9daZdoor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -541,7 +500,22 @@ asm void daZdoor_c::create1st() {
 }
 #pragma pop
 
-/* 80D3FACC-80D3FCE8 021C+00 s=1 e=0 z=0  None .text      Execute__9daZdoor_cFPPA3_A4_f */
+/* ############################################################################################## */
+/* 80D402A8-80D402AC 0000BC 0004+00 0/1 0/0 0/0 .rodata          @3906 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3906 = 1.0f;
+COMPILER_STRIP_GATE(80D402A8, &lit_3906);
+#pragma pop
+
+/* 80D402AC-80D402B0 0000C0 0004+00 0/1 0/0 0/0 .rodata          @3907 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3907 = -1.0f;
+COMPILER_STRIP_GATE(80D402AC, &lit_3907);
+#pragma pop
+
+/* 80D3FACC-80D3FCE8 00070C 021C+00 1/0 0/0 0/0 .text            Execute__9daZdoor_cFPPA3_A4_f */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -551,7 +525,7 @@ asm void daZdoor_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 80D3FCE8-80D3FD8C 00A4+00 s=1 e=0 z=0  None .text      Draw__9daZdoor_cFv */
+/* 80D3FCE8-80D3FD8C 000928 00A4+00 1/0 0/0 0/0 .text            Draw__9daZdoor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -561,7 +535,7 @@ asm void daZdoor_c::Draw() {
 }
 #pragma pop
 
-/* 80D3FD8C-80D3FDCC 0040+00 s=1 e=0 z=0  None .text      Delete__9daZdoor_cFv */
+/* 80D3FD8C-80D3FDCC 0009CC 0040+00 1/0 0/0 0/0 .text            Delete__9daZdoor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -572,7 +546,7 @@ asm void daZdoor_c::Delete() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D403BC-80D403DC 0020+00 s=1 e=0 z=0  None .data      daZdoor_METHODS */
+/* 80D403BC-80D403DC -00001 0020+00 1/0 0/0 0/0 .data            daZdoor_METHODS */
 SECTION_DATA static void* daZdoor_METHODS[8] = {
     (void*)daZdoor_create1st__FP9daZdoor_c,
     (void*)daZdoor_MoveBGDelete__FP9daZdoor_c,
@@ -584,8 +558,8 @@ SECTION_DATA static void* daZdoor_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 80D403DC-80D4040C 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_ZDoor */
-SECTION_DATA void* g_profile_Obj_ZDoor[12] = {
+/* 80D403DC-80D4040C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_ZDoor */
+SECTION_DATA extern void* g_profile_Obj_ZDoor[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00320000, (void*)&g_fpcLf_Method,
     (void*)0x00000E34, (void*)NULL,
@@ -594,30 +568,36 @@ SECTION_DATA void* g_profile_Obj_ZDoor[12] = {
     (void*)0x00040100, (void*)0x000E0000,
 };
 
-/* 80D4040C-80D40418 000C+00 s=4 e=0 z=0  None .data      __vt__8cM3dGCyl */
-SECTION_DATA static void* __vt__8cM3dGCyl[3] = {
-    (void*)NULL,
+/* 80D4040C-80D40418 0000FC 000C+00 4/4 0/0 0/0 .data            __vt__8cM3dGCyl */
+SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGCylFv,
 };
 
-/* 80D40418-80D40424 000C+00 s=4 e=0 z=0  None .data      __vt__8cM3dGAab */
-SECTION_DATA static void* __vt__8cM3dGAab[3] = {
-    (void*)NULL,
+/* 80D40418-80D40424 000108 000C+00 4/4 0/0 0/0 .data            __vt__8cM3dGAab */
+SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGAabFv,
 };
 
-/* 80D40424-80D40448 0024+00 s=2 e=0 z=0  None .data      __vt__12dBgS_ObjAcch */
-SECTION_DATA static void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL, (void*)NULL, (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL, (void*)NULL, (void*)func_80D401DC,
-    (void*)NULL, (void*)NULL, (void*)func_80D401D4,
+/* 80D40424-80D40448 000114 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
+SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)__dt__12dBgS_ObjAcchFv,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_80D401DC,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_80D401D4,
 };
 
-/* 80D40448-80D40470 0028+00 s=1 e=0 z=0  None .data      __vt__9daZdoor_c */
-SECTION_DATA static void* __vt__9daZdoor_c[10] = {
-    (void*)NULL,
+/* 80D40448-80D40470 000138 0028+00 1/1 0/0 0/0 .data            __vt__9daZdoor_c */
+SECTION_DATA extern void* __vt__9daZdoor_c[10] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__9daZdoor_cFv,
     (void*)Create__9daZdoor_cFv,
@@ -629,17 +609,17 @@ SECTION_DATA static void* __vt__9daZdoor_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80D3FDCC-80D3FF18 014C+00 s=1 e=0 z=0  None .text      daZdoor_create1st__FP9daZdoor_c */
+/* 80D3FDCC-80D3FF18 000A0C 014C+00 1/0 0/0 0/0 .text            daZdoor_create1st__FP9daZdoor_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daZdoor_create1st(daZdoor_c* param_0) {
+static asm void daZdoor_create1st(daZdoor_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zdoor/d_a_obj_zdoor/daZdoor_create1st__FP9daZdoor_c.s"
 }
 #pragma pop
 
-/* 80D3FF18-80D3FF60 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGCylFv */
+/* 80D3FF18-80D3FF60 000B58 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -649,7 +629,7 @@ asm cM3dGCyl::~cM3dGCyl() {
 }
 #pragma pop
 
-/* 80D3FF60-80D3FFA8 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGAabFv */
+/* 80D3FF60-80D3FFA8 000BA0 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -659,7 +639,7 @@ asm cM3dGAab::~cM3dGAab() {
 }
 #pragma pop
 
-/* 80D3FFA8-80D40074 00CC+00 s=1 e=0 z=0  None .text      __dt__8dCcD_CylFv */
+/* 80D3FFA8-80D40074 000BE8 00CC+00 1/1 0/0 0/0 .text            __dt__8dCcD_CylFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -669,7 +649,7 @@ asm dCcD_Cyl::~dCcD_Cyl() {
 }
 #pragma pop
 
-/* 80D40074-80D400F8 0084+00 s=1 e=0 z=0  None .text      __ct__8dCcD_CylFv */
+/* 80D40074-80D400F8 000CB4 0084+00 1/1 0/0 0/0 .text            __ct__8dCcD_CylFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -679,7 +659,7 @@ asm dCcD_Cyl::dCcD_Cyl() {
 }
 #pragma pop
 
-/* 80D400F8-80D40168 0070+00 s=3 e=0 z=0  None .text      __dt__12dBgS_ObjAcchFv */
+/* 80D400F8-80D40168 000D38 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -689,52 +669,69 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 }
 #pragma pop
 
-/* 80D40168-80D40188 0020+00 s=1 e=0 z=0  None .text      daZdoor_MoveBGDelete__FP9daZdoor_c */
+/* 80D40168-80D40188 000DA8 0020+00 1/0 0/0 0/0 .text            daZdoor_MoveBGDelete__FP9daZdoor_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daZdoor_MoveBGDelete(daZdoor_c* param_0) {
+static asm void daZdoor_MoveBGDelete(daZdoor_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zdoor/d_a_obj_zdoor/daZdoor_MoveBGDelete__FP9daZdoor_c.s"
 }
 #pragma pop
 
-/* 80D40188-80D401A8 0020+00 s=1 e=0 z=0  None .text      daZdoor_MoveBGExecute__FP9daZdoor_c */
+/* 80D40188-80D401A8 000DC8 0020+00 1/0 0/0 0/0 .text            daZdoor_MoveBGExecute__FP9daZdoor_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daZdoor_MoveBGExecute(daZdoor_c* param_0) {
+static asm void daZdoor_MoveBGExecute(daZdoor_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zdoor/d_a_obj_zdoor/daZdoor_MoveBGExecute__FP9daZdoor_c.s"
 }
 #pragma pop
 
-/* 80D401A8-80D401D4 002C+00 s=1 e=0 z=0  None .text      daZdoor_MoveBGDraw__FP9daZdoor_c */
+/* 80D401A8-80D401D4 000DE8 002C+00 1/0 0/0 0/0 .text            daZdoor_MoveBGDraw__FP9daZdoor_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daZdoor_MoveBGDraw(daZdoor_c* param_0) {
+static asm void daZdoor_MoveBGDraw(daZdoor_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zdoor/d_a_obj_zdoor/daZdoor_MoveBGDraw__FP9daZdoor_c.s"
 }
 #pragma pop
 
-/* 80D401D4-80D401DC 0008+00 s=1 e=0 z=0  None .text      @36@__dt__12dBgS_ObjAcchFv */
+/* 80D401D4-80D401DC 000E14 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80D401D4() {
+static asm void func_80D401D4() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zdoor/d_a_obj_zdoor/func_80D401D4.s"
 }
 #pragma pop
 
-/* 80D401DC-80D401E4 0008+00 s=1 e=0 z=0  None .text      @20@__dt__12dBgS_ObjAcchFv */
+/* 80D401DC-80D401E4 000E1C 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80D401DC() {
+static asm void func_80D401DC() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zdoor/d_a_obj_zdoor/func_80D401DC.s"
 }
+#pragma pop
+
+/* 80D402B0-80D40310 0000C4 0060+00 3/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80D402B0 = "J_Zdoor";
+SECTION_DEAD static char const* const stringBase_80D402B8 = "J_Rdoor";
+SECTION_DEAD static char const* const stringBase_80D402C0 = "J_STdoa";
+SECTION_DEAD static char const* const stringBase_80D402C8 = "J_Zdoor.bmd";
+SECTION_DEAD static char const* const stringBase_80D402D4 = "J_Rdoor.bmd";
+SECTION_DEAD static char const* const stringBase_80D402E0 = "J_STdoa.bmd";
+SECTION_DEAD static char const* const stringBase_80D402EC = "J_Zdoor.dzb";
+SECTION_DEAD static char const* const stringBase_80D402F8 = "J_Rdoor.dzb";
+SECTION_DEAD static char const* const stringBase_80D40304 = "J_STdoa.dzb";
 #pragma pop

@@ -21,8 +21,8 @@ lbl_802D18A4:
 /* 802D18F0  90 7E 00 2C */	stw r3, 0x2c(r30)
 /* 802D18F4  80 FE 00 5C */	lwz r7, 0x5c(r30)
 /* 802D18F8  80 7E 00 2C */	lwz r3, 0x2c(r30)
-/* 802D18FC  3C 80 80 2D */	lis r4, start__9JKRThreadFPv@ha
-/* 802D1900  38 84 19 34 */	addi r4, r4, start__9JKRThreadFPv@l
+/* 802D18FC  3C 80 80 2D */	lis r4, start__9JKRThreadFPv@ha /* 0x802D1934@ha */
+/* 802D1900  38 84 19 34 */	addi r4, r4, start__9JKRThreadFPv@l /* 0x802D1934@l */
 /* 802D1904  7F C5 F3 78 */	mr r5, r30
 /* 802D1908  80 1E 00 58 */	lwz r0, 0x58(r30)
 /* 802D190C  7C C0 3A 14 */	add r6, r0, r7

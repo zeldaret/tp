@@ -28,8 +28,8 @@ lbl_8034D9C8:
 lbl_8034D9CC:
 /* 8034D9CC  7F C3 F3 78 */	mr r3, r30
 /* 8034D9D0  4B FE FD 4D */	bl OSRestoreInterrupts
-/* 8034D9D4  3C 60 80 45 */	lis r3, HorVer@ha
-/* 8034D9D8  38 63 CB 18 */	addi r3, r3, HorVer@l
+/* 8034D9D4  3C 60 80 45 */	lis r3, HorVer@ha /* 0x8044CB18@ha */
+/* 8034D9D8  38 63 CB 18 */	addi r3, r3, HorVer@l /* 0x8044CB18@l */
 /* 8034D9DC  A0 03 00 0A */	lhz r0, 0xa(r3)
 /* 8034D9E0  6B E3 00 01 */	xori r3, r31, 1
 /* 8034D9E4  54 00 07 FE */	clrlwi r0, r0, 0x1f

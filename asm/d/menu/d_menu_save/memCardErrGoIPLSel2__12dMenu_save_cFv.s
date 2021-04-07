@@ -14,8 +14,8 @@ lbl_801F1EE0:
 /* 801F1F10  41 82 00 54 */	beq lbl_801F1F64
 /* 801F1F14  38 00 00 01 */	li r0, 1
 /* 801F1F18  98 1F 01 BF */	stb r0, 0x1bf(r31)
-/* 801F1F1C  3C 60 80 43 */	lis r3, g_msHIO@ha
-/* 801F1F20  38 63 E8 4C */	addi r3, r3, g_msHIO@l
+/* 801F1F1C  3C 60 80 43 */	lis r3, g_msHIO@ha /* 0x8042E84C@ha */
+/* 801F1F20  38 63 E8 4C */	addi r3, r3, g_msHIO@l /* 0x8042E84C@l */
 /* 801F1F24  88 03 00 0B */	lbz r0, 0xb(r3)
 /* 801F1F28  98 1F 01 BD */	stb r0, 0x1bd(r31)
 /* 801F1F2C  88 9F 01 BD */	lbz r4, 0x1bd(r31)

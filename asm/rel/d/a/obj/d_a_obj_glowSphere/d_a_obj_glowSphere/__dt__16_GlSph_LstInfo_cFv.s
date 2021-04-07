@@ -7,7 +7,7 @@ lbl_80BFA900:
 /* 80BFA914  41 82 00 10 */	beq lbl_80BFA924
 /* 80BFA918  7C 80 07 35 */	extsh. r0, r4
 /* 80BFA91C  40 81 00 08 */	ble lbl_80BFA924
-/* 80BFA920  4B 6D 44 1C */	b __dl__FPv
+/* 80BFA920  4B 6D 44 1D */	bl __dl__FPv
 lbl_80BFA924:
 /* 80BFA924  7F E3 FB 78 */	mr r3, r31
 /* 80BFA928  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -5,8 +5,8 @@ lbl_80687B38:
 /* 80687B44  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80687B48  93 C1 00 08 */	stw r30, 8(r1)
 /* 80687B4C  7C 7E 1B 78 */	mr r30, r3
-/* 80687B50  3C 80 80 69 */	lis r4, lit_3768@ha
-/* 80687B54  3B E4 A2 44 */	addi r31, r4, lit_3768@l
+/* 80687B50  3C 80 80 69 */	lis r4, lit_3768@ha /* 0x8068A244@ha */
+/* 80687B54  3B E4 A2 44 */	addi r31, r4, lit_3768@l /* 0x8068A244@l */
 /* 80687B58  38 00 00 A0 */	li r0, 0xa0
 /* 80687B5C  90 03 06 94 */	stw r0, 0x694(r3)
 /* 80687B60  80 03 06 74 */	lwz r0, 0x674(r3)
@@ -48,7 +48,7 @@ lbl_80687BE8:
 /* 80687BE8  38 7E 06 88 */	addi r3, r30, 0x688
 /* 80687BEC  C0 3F 00 20 */	lfs f1, 0x20(r31)
 /* 80687BF0  C0 5F 00 88 */	lfs f2, 0x88(r31)
-/* 80687BF4  4B BE 8B 4C */	b cLib_chaseF__FPfff
+/* 80687BF4  4B BE 8B 4D */	bl cLib_chaseF__FPfff
 /* 80687BF8  A8 7E 04 E6 */	lha r3, 0x4e6(r30)
 /* 80687BFC  A8 1E 06 9A */	lha r0, 0x69a(r30)
 /* 80687C00  7C 03 02 14 */	add r0, r3, r0
@@ -63,18 +63,18 @@ lbl_80687BE8:
 /* 80687C24  38 7E 06 9A */	addi r3, r30, 0x69a
 /* 80687C28  38 80 00 00 */	li r4, 0
 /* 80687C2C  38 A0 00 80 */	li r5, 0x80
-/* 80687C30  4B BE 8F 60 */	b cLib_chaseAngleS__FPsss
+/* 80687C30  4B BE 8F 61 */	bl cLib_chaseAngleS__FPsss
 /* 80687C34  48 00 00 14 */	b lbl_80687C48
 lbl_80687C38:
 /* 80687C38  38 7E 06 9A */	addi r3, r30, 0x69a
 /* 80687C3C  38 80 01 00 */	li r4, 0x100
 /* 80687C40  38 A0 00 60 */	li r5, 0x60
-/* 80687C44  4B BE 8F 4C */	b cLib_chaseAngleS__FPsss
+/* 80687C44  4B BE 8F 4D */	bl cLib_chaseAngleS__FPsss
 lbl_80687C48:
 /* 80687C48  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 80687C4C  C0 3F 00 20 */	lfs f1, 0x20(r31)
 /* 80687C50  C0 5F 00 60 */	lfs f2, 0x60(r31)
-/* 80687C54  4B BE 8A EC */	b cLib_chaseF__FPfff
+/* 80687C54  4B BE 8A ED */	bl cLib_chaseF__FPfff
 /* 80687C58  C0 3E 05 2C */	lfs f1, 0x52c(r30)
 /* 80687C5C  C0 1F 00 88 */	lfs f0, 0x88(r31)
 /* 80687C60  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -103,7 +103,7 @@ lbl_80687CA0:
 /* 80687CB4  4B FF DF 61 */	bl setActionMode__8daE_BG_cFii
 lbl_80687CB8:
 /* 80687CB8  80 7E 05 B8 */	lwz r3, 0x5b8(r30)
-/* 80687CBC  4B 98 57 6C */	b play__14mDoExt_baseAnmFv
+/* 80687CBC  4B 98 57 6D */	bl play__14mDoExt_baseAnmFv
 lbl_80687CC0:
 /* 80687CC0  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80687CC4  83 C1 00 08 */	lwz r30, 8(r1)

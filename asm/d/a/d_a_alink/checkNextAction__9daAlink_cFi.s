@@ -8,8 +8,8 @@ lbl_800BA0D0:
 /* 800BA0E8  48 2A 80 ED */	bl _savegpr_27
 /* 800BA0EC  7C 7C 1B 78 */	mr r28, r3
 /* 800BA0F0  7C 9D 23 78 */	mr r29, r4
-/* 800BA0F4  3C 80 80 39 */	lis r4, lit_3757@ha
-/* 800BA0F8  3B C4 D6 58 */	addi r30, r4, lit_3757@l
+/* 800BA0F4  3C 80 80 39 */	lis r4, lit_3757@ha /* 0x8038D658@ha */
+/* 800BA0F8  3B C4 D6 58 */	addi r30, r4, lit_3757@l /* 0x8038D658@l */
 /* 800BA0FC  C3 E3 05 94 */	lfs f31, 0x594(r3)
 /* 800BA100  38 80 00 01 */	li r4, 1
 /* 800BA104  48 05 EC 79 */	bl checkDeadAction__9daAlink_cFi

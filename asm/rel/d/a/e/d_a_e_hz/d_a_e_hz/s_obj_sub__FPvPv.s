@@ -3,14 +3,14 @@ lbl_806EA9B8:
 /* 806EA9BC  7C 08 02 A6 */	mflr r0
 /* 806EA9C0  90 01 00 24 */	stw r0, 0x24(r1)
 /* 806EA9C4  39 61 00 20 */	addi r11, r1, 0x20
-/* 806EA9C8  4B C7 78 10 */	b _savegpr_28
+/* 806EA9C8  4B C7 78 11 */	bl _savegpr_28
 /* 806EA9CC  7C 7C 1B 78 */	mr r28, r3
 /* 806EA9D0  7C 9D 23 78 */	mr r29, r4
-/* 806EA9D4  3C 80 80 6F */	lis r4, lit_1109@ha
-/* 806EA9D8  3B C4 0B 30 */	addi r30, r4, lit_1109@l
-/* 806EA9DC  3C 80 80 6F */	lis r4, lit_3966@ha
-/* 806EA9E0  3B E4 08 60 */	addi r31, r4, lit_3966@l
-/* 806EA9E4  4B 92 E2 FC */	b fopAc_IsActor__FPv
+/* 806EA9D4  3C 80 80 6F */	lis r4, lit_1109@ha /* 0x806F0B30@ha */
+/* 806EA9D8  3B C4 0B 30 */	addi r30, r4, lit_1109@l /* 0x806F0B30@l */
+/* 806EA9DC  3C 80 80 6F */	lis r4, lit_3966@ha /* 0x806F0860@ha */
+/* 806EA9E0  3B E4 08 60 */	addi r31, r4, lit_3966@l /* 0x806F0860@l */
+/* 806EA9E4  4B 92 E2 FD */	bl fopAc_IsActor__FPv
 /* 806EA9E8  2C 03 00 00 */	cmpwi r3, 0
 /* 806EA9EC  41 82 00 D4 */	beq lbl_806EAAC0
 /* 806EA9F0  28 1C 00 00 */	cmplwi r28, 0
@@ -20,7 +20,7 @@ lbl_806EA9B8:
 lbl_806EAA00:
 /* 806EAA00  38 60 FF FF */	li r3, -1
 lbl_806EAA04:
-/* 806EAA04  4B 93 77 34 */	b fpcM_IsCreating__FUi
+/* 806EAA04  4B 93 77 35 */	bl fpcM_IsCreating__FUi
 /* 806EAA08  2C 03 00 00 */	cmpwi r3, 0
 /* 806EAA0C  40 82 00 B4 */	bne lbl_806EAAC0
 /* 806EAA10  80 1C 04 9C */	lwz r0, 0x49c(r28)
@@ -28,7 +28,7 @@ lbl_806EAA04:
 /* 806EAA18  40 82 00 A8 */	bne lbl_806EAAC0
 /* 806EAA1C  7F 83 E3 78 */	mr r3, r28
 /* 806EAA20  7F A4 EB 78 */	mr r4, r29
-/* 806EAA24  4B 92 FD BC */	b fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 806EAA24  4B 92 FD BD */	bl fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 806EAA28  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 806EAA2C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 806EAA30  40 80 00 40 */	bge lbl_806EAA70
@@ -74,7 +74,7 @@ lbl_806EAA94:
 lbl_806EAAC0:
 /* 806EAAC0  38 60 00 00 */	li r3, 0
 /* 806EAAC4  39 61 00 20 */	addi r11, r1, 0x20
-/* 806EAAC8  4B C7 77 5C */	b _restgpr_28
+/* 806EAAC8  4B C7 77 5D */	bl _restgpr_28
 /* 806EAACC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 806EAAD0  7C 08 03 A6 */	mtlr r0
 /* 806EAAD4  38 21 00 20 */	addi r1, r1, 0x20

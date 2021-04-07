@@ -3,11 +3,11 @@ lbl_8050EBF8:
 /* 8050EBFC  7C 08 02 A6 */	mflr r0
 /* 8050EC00  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8050EC04  39 61 00 20 */	addi r11, r1, 0x20
-/* 8050EC08  4B E5 35 D4 */	b _savegpr_29
+/* 8050EC08  4B E5 35 D5 */	bl _savegpr_29
 /* 8050EC0C  7C 7D 1B 78 */	mr r29, r3
 /* 8050EC10  7C 9E 23 78 */	mr r30, r4
-/* 8050EC14  3C 60 80 52 */	lis r3, lit_4208@ha
-/* 8050EC18  3B E3 85 84 */	addi r31, r3, lit_4208@l
+/* 8050EC14  3C 60 80 52 */	lis r3, lit_4208@ha /* 0x80518584@ha */
+/* 8050EC18  3B E3 85 84 */	addi r31, r3, lit_4208@l /* 0x80518584@l */
 /* 8050EC1C  A8 1D 09 72 */	lha r0, 0x972(r29)
 /* 8050EC20  2C 00 00 14 */	cmpwi r0, 0x14
 /* 8050EC24  41 82 00 08 */	beq lbl_8050EC2C
@@ -76,7 +76,7 @@ lbl_8050ED00:
 /* 8050ED08  A8 1D 12 46 */	lha r0, 0x1246(r29)
 /* 8050ED0C  B0 1D 09 F4 */	sth r0, 0x9f4(r29)
 /* 8050ED10  39 61 00 20 */	addi r11, r1, 0x20
-/* 8050ED14  4B E5 35 14 */	b _restgpr_29
+/* 8050ED14  4B E5 35 15 */	bl _restgpr_29
 /* 8050ED18  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8050ED1C  7C 08 03 A6 */	mtlr r0
 /* 8050ED20  38 21 00 20 */	addi r1, r1, 0x20

@@ -4,13 +4,13 @@ lbl_80345CF8:
 /* 80345D00  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 80345D04  BF 41 00 18 */	stmw r26, 0x18(r1)
 /* 80345D08  3B 63 00 00 */	addi r27, r3, 0
-/* 80345D0C  3C 60 80 3D */	lis r3, Type@ha
-/* 80345D10  38 03 12 10 */	addi r0, r3, Type@l
+/* 80345D0C  3C 60 80 3D */	lis r3, Type@ha /* 0x803D1210@ha */
+/* 80345D10  38 03 12 10 */	addi r0, r3, Type@l /* 0x803D1210@l */
 /* 80345D14  57 7D 10 3A */	slwi r29, r27, 2
 /* 80345D18  7F C0 EA 14 */	add r30, r0, r29
-/* 80345D1C  3C 60 80 45 */	lis r3, Packet@ha
+/* 80345D1C  3C 60 80 45 */	lis r3, Packet@ha /* 0x8044C630@ha */
 /* 80345D20  3B 44 00 00 */	addi r26, r4, 0
-/* 80345D24  3B E3 C6 30 */	addi r31, r3, Packet@l
+/* 80345D24  3B E3 C6 30 */	addi r31, r3, Packet@l /* 0x8044C630@l */
 /* 80345D28  80 1E 00 00 */	lwz r0, 0(r30)
 /* 80345D2C  54 00 06 6E */	rlwinm r0, r0, 0, 0x19, 0x17
 /* 80345D30  90 1E 00 00 */	stw r0, 0(r30)
@@ -79,9 +79,9 @@ lbl_80345DF0:
 /* 80345E1C  7C 9F EA 14 */	add r4, r31, r29
 /* 80345E20  94 04 01 F0 */	stwu r0, 0x1f0(r4)
 /* 80345E24  38 00 00 80 */	li r0, 0x80
-/* 80345E28  3C 60 80 34 */	lis r3, GetTypeCallback@ha
+/* 80345E28  3C 60 80 34 */	lis r3, GetTypeCallback@ha /* 0x80345CF8@ha */
 /* 80345E2C  90 1E 00 00 */	stw r0, 0(r30)
-/* 80345E30  39 03 5C F8 */	addi r8, r3, GetTypeCallback@l
+/* 80345E30  39 03 5C F8 */	addi r8, r3, GetTypeCallback@l /* 0x80345CF8@l */
 /* 80345E34  38 7B 00 00 */	addi r3, r27, 0
 /* 80345E38  38 DE 00 00 */	addi r6, r30, 0
 /* 80345E3C  38 A0 00 03 */	li r5, 3
@@ -110,9 +110,9 @@ lbl_80345E8C:
 /* 80345E90  7C 9F EA 14 */	add r4, r31, r29
 /* 80345E94  94 04 01 F0 */	stwu r0, 0x1f0(r4)
 /* 80345E98  38 00 00 80 */	li r0, 0x80
-/* 80345E9C  3C 60 80 34 */	lis r3, GetTypeCallback@ha
+/* 80345E9C  3C 60 80 34 */	lis r3, GetTypeCallback@ha /* 0x80345CF8@ha */
 /* 80345EA0  90 1E 00 00 */	stw r0, 0(r30)
-/* 80345EA4  39 03 5C F8 */	addi r8, r3, GetTypeCallback@l
+/* 80345EA4  39 03 5C F8 */	addi r8, r3, GetTypeCallback@l /* 0x80345CF8@l */
 /* 80345EA8  38 7B 00 00 */	addi r3, r27, 0
 /* 80345EAC  38 DE 00 00 */	addi r6, r30, 0
 /* 80345EB0  38 A0 00 03 */	li r5, 3
@@ -135,9 +135,9 @@ lbl_80345EC8:
 /* 80345EF0  7C 9F EA 14 */	add r4, r31, r29
 /* 80345EF4  94 04 01 F0 */	stwu r0, 0x1f0(r4)
 /* 80345EF8  38 00 00 80 */	li r0, 0x80
-/* 80345EFC  3C 60 80 34 */	lis r3, GetTypeCallback@ha
+/* 80345EFC  3C 60 80 34 */	lis r3, GetTypeCallback@ha /* 0x80345CF8@ha */
 /* 80345F00  90 1E 00 00 */	stw r0, 0(r30)
-/* 80345F04  39 03 5C F8 */	addi r8, r3, GetTypeCallback@l
+/* 80345F04  39 03 5C F8 */	addi r8, r3, GetTypeCallback@l /* 0x80345CF8@l */
 /* 80345F08  38 7B 00 00 */	addi r3, r27, 0
 /* 80345F0C  38 DE 00 00 */	addi r6, r30, 0
 /* 80345F10  38 A0 00 03 */	li r5, 3

@@ -6,7 +6,7 @@ lbl_8077B274:
 /* 8077B284  93 C1 00 08 */	stw r30, 8(r1)
 /* 8077B288  7C 7E 1B 78 */	mr r30, r3
 /* 8077B28C  7C 9F 23 78 */	mr r31, r4
-/* 8077B290  4B 89 DA 50 */	b fopAc_IsActor__FPv
+/* 8077B290  4B 89 DA 51 */	bl fopAc_IsActor__FPv
 /* 8077B294  2C 03 00 00 */	cmpwi r3, 0
 /* 8077B298  41 82 00 64 */	beq lbl_8077B2FC
 /* 8077B29C  A8 1E 00 08 */	lha r0, 8(r30)
@@ -18,8 +18,8 @@ lbl_8077B274:
 /* 8077B2B4  88 1F 05 B6 */	lbz r0, 0x5b6(r31)
 /* 8077B2B8  7C 03 00 40 */	cmplw r3, r0
 /* 8077B2BC  40 82 00 40 */	bne lbl_8077B2FC
-/* 8077B2C0  3C 60 80 78 */	lis r3, same_id@ha
-/* 8077B2C4  38 83 14 B8 */	addi r4, r3, same_id@l
+/* 8077B2C0  3C 60 80 78 */	lis r3, same_id@ha /* 0x807814B8@ha */
+/* 8077B2C4  38 83 14 B8 */	addi r4, r3, same_id@l /* 0x807814B8@l */
 /* 8077B2C8  80 64 00 00 */	lwz r3, 0(r4)
 /* 8077B2CC  38 03 00 01 */	addi r0, r3, 1
 /* 8077B2D0  90 04 00 00 */	stw r0, 0(r4)
@@ -29,8 +29,8 @@ lbl_8077B274:
 /* 8077B2E0  2C 00 00 09 */	cmpwi r0, 9
 /* 8077B2E4  40 82 00 18 */	bne lbl_8077B2FC
 lbl_8077B2E8:
-/* 8077B2E8  3C 60 80 78 */	lis r3, fail_id@ha
-/* 8077B2EC  38 83 14 BC */	addi r4, r3, fail_id@l
+/* 8077B2E8  3C 60 80 78 */	lis r3, fail_id@ha /* 0x807814BC@ha */
+/* 8077B2EC  38 83 14 BC */	addi r4, r3, fail_id@l /* 0x807814BC@l */
 /* 8077B2F0  80 64 00 00 */	lwz r3, 0(r4)
 /* 8077B2F4  38 03 00 01 */	addi r0, r3, 1
 /* 8077B2F8  90 04 00 00 */	stw r0, 0(r4)

@@ -3,19 +3,20 @@
 #
 
 M85_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolin.plf
+M85_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolin.lcf
+M85_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolin.map
 
 M85_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_kolin/executor.cpp \
-	rel/d/a/npc/d_a_npc_kolin/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_kolin/d_a_npc_kolin.cpp \
 
 M85_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolin/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolin/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolin/d_a_npc_kolin.o \
 
 M85_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolin/libRuntime.PPCEABI.H.a \
 
 M85_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M85_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M85_LDSCRIPT) \
+	-unused -map $(M85_MAP) \
+	-w off \
 
 $(M85_TARGET): $(M85_O_FILES) $(M85_LIBS)
+	@echo [ 85] creating $(M85_TARGET)
 	@echo $(M85_LIBS) $(M85_O_FILES) > build/M85_ofiles
-	$(LD) -partial $(M85_LDFLAGS) -o $(M85_TARGET) @build/M85_ofiles
+	@python3 tools/lcf.py rel 85 --output $(M85_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M85_LDFLAGS) -o $(M85_TARGET) @build/M85_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kolin/%.o: rel/d/a/npc/d_a_npc_kolin/%.cpp
+	@echo [ 85] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M85_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M85_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_kolin/libs/Runtime.PPCEABI.H/Makefile
 

@@ -46,8 +46,6 @@ extern "C" void SetCallback__13cBgS_ShdwDrawFPFP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP
 // External References:
 //
 
-void operator delete(void*);
-
 extern "C" void __ct__8cBgS_ChkFv();
 extern "C" void __dt__8cBgS_ChkFv();
 extern "C" void Set__8cM3dGAabFPC4cXyzPC4cXyz();
@@ -59,16 +57,16 @@ extern "C" extern void* __vt__8cM3dGAab[3];
 //
 
 /* ############################################################################################## */
-/* 803C3FC0-803C3FD0 000C+04 s=2 e=0 z=0  None .data      __vt__13cBgS_ShdwDraw */
-SECTION_DATA static void* __vt__13cBgS_ShdwDraw[3 + 1 /* padding */] = {
-    (void*)NULL,
+/* 803C3FC0-803C3FD0 0210E0 000C+04 2/2 0/0 0/0 .data            __vt__13cBgS_ShdwDraw */
+SECTION_DATA extern void* __vt__13cBgS_ShdwDraw[3 + 1 /* padding */] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__13cBgS_ShdwDrawFv,
     /* padding */
     NULL,
 };
 
-/* 80267F88-80267FD0 0048+00 s=0 e=1 z=0  None .text      __ct__13cBgS_ShdwDrawFv */
+/* 80267F88-80267FD0 2628C8 0048+00 0/0 1/1 0/0 .text            __ct__13cBgS_ShdwDrawFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -78,7 +76,7 @@ asm cBgS_ShdwDraw::cBgS_ShdwDraw() {
 }
 #pragma pop
 
-/* 80267FD0-80268048 0078+00 s=1 e=2 z=0  None .text      __dt__13cBgS_ShdwDrawFv */
+/* 80267FD0-80268048 262910 0078+00 1/0 2/2 0/0 .text            __dt__13cBgS_ShdwDrawFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -88,7 +86,8 @@ asm cBgS_ShdwDraw::~cBgS_ShdwDraw() {
 }
 #pragma pop
 
-/* 80268048-8026806C 0024+00 s=0 e=1 z=0  None .text      Set__13cBgS_ShdwDrawFR4cXyzR4cXyz */
+/* 80268048-8026806C 262988 0024+00 0/0 1/1 0/0 .text            Set__13cBgS_ShdwDrawFR4cXyzR4cXyz
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -98,7 +97,7 @@ asm void cBgS_ShdwDraw::Set(cXyz& param_0, cXyz& param_1) {
 }
 #pragma pop
 
-/* 8026806C-80268074 0008+00 s=0 e=1 z=0  None .text
+/* 8026806C-80268074 2629AC 0008+00 0/0 1/1 0/0 .text
  * SetCallback__13cBgS_ShdwDrawFPFP13cBgS_ShdwDrawP10cBgD_Vtx_tiiiP8cM3dGPla_i */
 #pragma push
 #pragma optimization_level 0

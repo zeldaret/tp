@@ -8,8 +8,8 @@ lbl_80743524:
 /* 8074353C  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80743540  7C 7E 1B 78 */	mr r30, r3
 /* 80743544  FF E0 08 90 */	fmr f31, f1
-/* 80743548  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8074354C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80743548  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8074354C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80743550  88 03 5D B0 */	lbz r0, 0x5db0(r3)
 /* 80743554  7C 00 07 74 */	extsb r0, r0
 /* 80743558  1C 00 00 38 */	mulli r0, r0, 0x38
@@ -17,17 +17,17 @@ lbl_80743524:
 /* 80743560  83 E3 5D 74 */	lwz r31, 0x5d74(r3)
 /* 80743564  38 7E 06 8C */	addi r3, r30, 0x68c
 /* 80743568  38 9E 06 A4 */	addi r4, r30, 0x6a4
-/* 8074356C  3C A0 80 75 */	lis r5, lit_3911@ha
-/* 80743570  C0 65 BF 40 */	lfs f3, lit_3911@l(r5)
-/* 80743574  4B B2 C5 44 */	b cLib_addCalcPos__FP4cXyzRC4cXyzfff
+/* 8074356C  3C A0 80 75 */	lis r5, lit_3911@ha /* 0x8074BF40@ha */
+/* 80743570  C0 65 BF 40 */	lfs f3, lit_3911@l(r5)  /* 0x8074BF40@l */
+/* 80743574  4B B2 C5 45 */	bl cLib_addCalcPos__FP4cXyzRC4cXyzfff
 /* 80743578  38 7E 06 98 */	addi r3, r30, 0x698
 /* 8074357C  38 9E 06 B0 */	addi r4, r30, 0x6b0
 /* 80743580  FC 20 F8 90 */	fmr f1, f31
-/* 80743584  3C A0 80 75 */	lis r5, lit_3910@ha
-/* 80743588  C0 45 BF 3C */	lfs f2, lit_3910@l(r5)
-/* 8074358C  3C A0 80 75 */	lis r5, lit_3911@ha
-/* 80743590  C0 65 BF 40 */	lfs f3, lit_3911@l(r5)
-/* 80743594  4B B2 C5 24 */	b cLib_addCalcPos__FP4cXyzRC4cXyzfff
+/* 80743584  3C A0 80 75 */	lis r5, lit_3910@ha /* 0x8074BF3C@ha */
+/* 80743588  C0 45 BF 3C */	lfs f2, lit_3910@l(r5)  /* 0x8074BF3C@l */
+/* 8074358C  3C A0 80 75 */	lis r5, lit_3911@ha /* 0x8074BF40@ha */
+/* 80743590  C0 65 BF 40 */	lfs f3, lit_3911@l(r5)  /* 0x8074BF40@l */
+/* 80743594  4B B2 C5 25 */	bl cLib_addCalcPos__FP4cXyzRC4cXyzfff
 /* 80743598  C0 1E 06 8C */	lfs f0, 0x68c(r30)
 /* 8074359C  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 807435A0  C0 1E 06 90 */	lfs f0, 0x690(r30)
@@ -45,7 +45,7 @@ lbl_80743524:
 /* 807435D0  38 A1 00 08 */	addi r5, r1, 8
 /* 807435D4  C0 3E 06 D4 */	lfs f1, 0x6d4(r30)
 /* 807435D8  38 C0 00 00 */	li r6, 0
-/* 807435DC  4B A3 D5 04 */	b Set__9dCamera_cF4cXyz4cXyzfs
+/* 807435DC  4B A3 D5 05 */	bl Set__9dCamera_cF4cXyz4cXyzfs
 /* 807435E0  E3 E1 00 38 */	psq_l f31, 56(r1), 0, 0 /* qr0 */
 /* 807435E4  CB E1 00 30 */	lfd f31, 0x30(r1)
 /* 807435E8  83 E1 00 2C */	lwz r31, 0x2c(r1)

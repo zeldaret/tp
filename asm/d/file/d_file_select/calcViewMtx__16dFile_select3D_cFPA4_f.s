@@ -13,8 +13,8 @@ lbl_801910D4:
 /* 80191100  D0 21 00 10 */	stfs f1, 0x10(r1)
 /* 80191104  7C 83 23 78 */	mr r3, r4
 /* 80191108  38 81 00 14 */	addi r4, r1, 0x14
-/* 8019110C  3C A0 80 43 */	lis r5, Zero__4cXyz@ha
-/* 80191110  38 A5 0C F4 */	addi r5, r5, Zero__4cXyz@l
+/* 8019110C  3C A0 80 43 */	lis r5, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 80191110  38 A5 0C F4 */	addi r5, r5, Zero__4cXyz@l /* 0x80430CF4@l */
 /* 80191114  38 C1 00 08 */	addi r6, r1, 8
 /* 80191118  38 E0 00 00 */	li r7, 0
 /* 8019111C  4B E7 B5 F5 */	bl mDoMtx_lookAt__FPA4_fPC3VecPC3VecPC3Vecs

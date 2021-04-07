@@ -21,11 +21,11 @@ lbl_80A94D80:
 /* 80A94D84  2C 00 00 00 */	cmpwi r0, 0
 /* 80A94D88  41 82 00 28 */	beq lbl_80A94DB0
 /* 80A94D8C  38 7E 0B A8 */	addi r3, r30, 0xba8
-/* 80A94D90  4B 6B 09 6C */	b remove__18daNpcT_ActorMngr_cFv
+/* 80A94D90  4B 6B 09 6D */	bl remove__18daNpcT_ActorMngr_cFv
 /* 80A94D94  38 00 00 00 */	li r0, 0
 /* 80A94D98  90 1E 0B C8 */	stw r0, 0xbc8(r30)
-/* 80A94D9C  3C 60 80 A9 */	lis r3, lit_4347@ha
-/* 80A94DA0  C0 03 6B 0C */	lfs f0, lit_4347@l(r3)
+/* 80A94D9C  3C 60 80 A9 */	lis r3, lit_4347@ha /* 0x80A96B0C@ha */
+/* 80A94DA0  C0 03 6B 0C */	lfs f0, lit_4347@l(r3)  /* 0x80A96B0C@l */
 /* 80A94DA4  D0 1E 0C F4 */	stfs f0, 0xcf4(r30)
 /* 80A94DA8  98 1E 0C FF */	stb r0, 0xcff(r30)
 /* 80A94DAC  90 1E 0C E0 */	stw r0, 0xce0(r30)
@@ -39,12 +39,12 @@ lbl_80A94DBC:
 /* 80A94DC4  41 82 00 28 */	beq lbl_80A94DEC
 /* 80A94DC8  83 FE 0B 80 */	lwz r31, 0xb80(r30)
 /* 80A94DCC  38 7E 0B 74 */	addi r3, r30, 0xb74
-/* 80A94DD0  4B 6B 0A C8 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80A94DD0  4B 6B 0A C9 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80A94DD4  93 FE 0B 80 */	stw r31, 0xb80(r30)
 /* 80A94DD8  38 00 00 03 */	li r0, 3
 /* 80A94DDC  90 1E 0B 7C */	stw r0, 0xb7c(r30)
-/* 80A94DE0  3C 60 80 A9 */	lis r3, lit_4732@ha
-/* 80A94DE4  C0 03 6B 20 */	lfs f0, lit_4732@l(r3)
+/* 80A94DE0  3C 60 80 A9 */	lis r3, lit_4732@ha /* 0x80A96B20@ha */
+/* 80A94DE4  C0 03 6B 20 */	lfs f0, lit_4732@l(r3)  /* 0x80A96B20@l */
 /* 80A94DE8  D0 1E 0B 8C */	stfs f0, 0xb8c(r30)
 lbl_80A94DEC:
 /* 80A94DEC  80 1E 0B 58 */	lwz r0, 0xb58(r30)
@@ -52,12 +52,12 @@ lbl_80A94DEC:
 /* 80A94DF4  41 82 00 28 */	beq lbl_80A94E1C
 /* 80A94DF8  83 FE 0B 5C */	lwz r31, 0xb5c(r30)
 /* 80A94DFC  38 7E 0B 50 */	addi r3, r30, 0xb50
-/* 80A94E00  4B 6B 0A 98 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80A94E00  4B 6B 0A 99 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80A94E04  93 FE 0B 5C */	stw r31, 0xb5c(r30)
 /* 80A94E08  38 00 00 02 */	li r0, 2
 /* 80A94E0C  90 1E 0B 58 */	stw r0, 0xb58(r30)
-/* 80A94E10  3C 60 80 A9 */	lis r3, lit_4732@ha
-/* 80A94E14  C0 03 6B 20 */	lfs f0, lit_4732@l(r3)
+/* 80A94E10  3C 60 80 A9 */	lis r3, lit_4732@ha /* 0x80A96B20@ha */
+/* 80A94E14  C0 03 6B 20 */	lfs f0, lit_4732@l(r3)  /* 0x80A96B20@l */
 /* 80A94E18  D0 1E 0B 68 */	stfs f0, 0xb68(r30)
 lbl_80A94E1C:
 /* 80A94E1C  38 60 00 01 */	li r3, 1

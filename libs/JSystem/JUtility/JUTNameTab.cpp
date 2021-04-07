@@ -46,7 +46,7 @@ extern "C" extern void* __vt__10JUTNameTab[3];
 // Declarations:
 //
 
-/* 802DE9A0-802DE9E0 0040+00 s=0 e=5 z=0  None .text      __ct__10JUTNameTabFv */
+/* 802DE9A0-802DE9E0 2D92E0 0040+00 0/0 5/5 0/0 .text            __ct__10JUTNameTabFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -56,7 +56,7 @@ asm JUTNameTab::JUTNameTab() {
 }
 #pragma pop
 
-/* 802DE9E0-802DEA1C 003C+00 s=0 e=12 z=0  None .text      __ct__10JUTNameTabFPC7ResNTAB */
+/* 802DE9E0-802DEA1C 2D9320 003C+00 0/0 12/12 0/0 .text            __ct__10JUTNameTabFPC7ResNTAB */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -66,7 +66,7 @@ asm JUTNameTab::JUTNameTab(ResNTAB const* param_0) {
 }
 #pragma pop
 
-/* 802DEA1C-802DEA58 003C+00 s=2 e=10 z=0  None .text      setResource__10JUTNameTabFPC7ResNTAB */
+/* 802DEA1C-802DEA58 2D935C 003C+00 2/2 10/10 0/0 .text setResource__10JUTNameTabFPC7ResNTAB */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -76,7 +76,7 @@ asm void JUTNameTab::setResource(ResNTAB const* param_0) {
 }
 #pragma pop
 
-/* 802DEA58-802DEAF8 00A0+00 s=0 e=9 z=2  None .text      getIndex__10JUTNameTabCFPCc */
+/* 802DEA58-802DEAF8 2D9398 00A0+00 0/0 9/9 2/2 .text            getIndex__10JUTNameTabCFPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -86,7 +86,7 @@ asm void JUTNameTab::getIndex(char const* param_0) const {
 }
 #pragma pop
 
-/* 802DEAF8-802DEB28 0030+00 s=0 e=14 z=23  None .text      getName__10JUTNameTabCFUs */
+/* 802DEAF8-802DEB28 2D9438 0030+00 0/0 14/14 23/23 .text            getName__10JUTNameTabCFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -96,7 +96,7 @@ asm void JUTNameTab::getName(u16 param_0) const {
 }
 #pragma pop
 
-/* 802DEB28-802DEB58 0030+00 s=1 e=0 z=0  None .text      calcKeyCode__10JUTNameTabCFPCc */
+/* 802DEB28-802DEB58 2D9468 0030+00 1/1 0/0 0/0 .text            calcKeyCode__10JUTNameTabCFPCc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

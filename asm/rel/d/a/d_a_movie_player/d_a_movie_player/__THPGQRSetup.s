@@ -1,10 +1,10 @@
 lbl_80873D48:
 /* 80873D48  7C 15 E2 A6 */	mfspr r0, 0x395
 /* 80873D4C  7C B6 E2 A6 */	mfspr r5, 0x396
-/* 80873D50  3C 80 80 88 */	lis r4, __THPOldGQR5@ha
-/* 80873D54  90 04 9B A0 */	stw r0, __THPOldGQR5@l(r4)
-/* 80873D58  3C 80 80 88 */	lis r4, __THPOldGQR6@ha
-/* 80873D5C  90 A4 9B A4 */	stw r5, __THPOldGQR6@l(r4)
+/* 80873D50  3C 80 80 88 */	lis r4, __THPOldGQR5@ha /* 0x80879BA0@ha */
+/* 80873D54  90 04 9B A0 */	stw r0, __THPOldGQR5@l(r4)  /* 0x80879BA0@l */
+/* 80873D58  3C 80 80 88 */	lis r4, __THPOldGQR6@ha /* 0x80879BA4@ha */
+/* 80873D5C  90 A4 9B A4 */	stw r5, __THPOldGQR6@l(r4)  /* 0x80879BA4@l */
 /* 80873D60  38 60 00 07 */	li r3, 7
 /* 80873D64  64 63 00 07 */	oris r3, r3, 7
 /* 80873D68  7C 75 E3 A6 */	mtspr 0x395, r3

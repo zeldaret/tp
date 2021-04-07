@@ -1,6 +1,6 @@
 lbl_801C05C4:
-/* 801C05C4  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 801C05C8  38 63 C7 E0 */	addi r3, r3, cNullVec__6Z2Calc@l
+/* 801C05C4  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803BC7E0@ha */
+/* 801C05C8  38 63 C7 E0 */	addi r3, r3, cNullVec__6Z2Calc@l /* 0x803BC7E0@l */
 /* 801C05CC  80 83 00 0C */	lwz r4, 0xc(r3)
 /* 801C05D0  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 801C05D4  90 83 00 48 */	stw r4, 0x48(r3)

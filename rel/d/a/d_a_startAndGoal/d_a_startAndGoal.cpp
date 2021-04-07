@@ -65,12 +65,6 @@ struct Z2SeqMgr {
 // Forward References:
 //
 
-static void daStartAndGoal_Execute(daStartAndGoal_c*);
-static void daStartAndGoal_Draw(daStartAndGoal_c*);
-static bool daStartAndGoal_IsDelete(daStartAndGoal_c*);
-static void daStartAndGoal_Delete(daStartAndGoal_c*);
-static void daStartAndGoal_create(fopAc_ac_c*);
-
 extern "C" void chkPassed2__21daStartAndGoal_Path_cF4cXyz();
 extern "C" void getType__16daStartAndGoal_cFv();
 extern "C" void Create__16daStartAndGoal_cFv();
@@ -90,19 +84,10 @@ extern "C" static void daStartAndGoal_Delete__FP16daStartAndGoal_c();
 extern "C" static void daStartAndGoal_create__FP10fopAc_ac_c();
 extern "C" void __dt__13daNpcF_Path_cFv();
 extern "C" void __dt__16daNpcF_SPCurve_cFv();
-extern "C" extern void* g_profile_START_AND_GOAL[12];
 
 //
 // External References:
 //
-
-void dComIfG_TimerStart(int, s16);
-void dComIfG_TimerEnd(int, int);
-void dComIfG_TimerDeleteRequest(int);
-void dTimer_createTimer(s32, u32, u8, u8, f32, f32, f32, f32);
-void dTimer_isStart();
-void dTimer_isReadyFlag();
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void getTimerNowTimeMs__14dComIfG_play_cFv();
@@ -134,8 +119,7 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 80D4D7B8-80D4D84C 0094+00 s=1 e=0 z=0  None .text      chkPassed2__21daStartAndGoal_Path_cF4cXyz
- */
+/* 80D4D7B8-80D4D84C 000078 0094+00 1/1 0/0 0/0 .text chkPassed2__21daStartAndGoal_Path_cF4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -145,7 +129,7 @@ asm void daStartAndGoal_Path_c::chkPassed2(cXyz param_0) {
 }
 #pragma pop
 
-/* 80D4D84C-80D4D884 0038+00 s=1 e=0 z=0  None .text      getType__16daStartAndGoal_cFv */
+/* 80D4D84C-80D4D884 00010C 0038+00 1/1 0/0 0/0 .text            getType__16daStartAndGoal_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -156,13 +140,13 @@ asm void daStartAndGoal_c::getType() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D4DECC-80D4DEE4 0018+00 s=4 e=0 z=0  None .data      l_timerType */
+/* 80D4DECC-80D4DEE4 000000 0018+00 4/4 0/0 0/0 .data            l_timerType */
 SECTION_DATA static u8 l_timerType[24] = {
     0x00, 0x00, 0x00, 0x03, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04,
     0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x01, 0x01, 0x00, 0x00,
 };
 
-/* 80D4DEE4-80D4DF04 0020+00 s=1 e=0 z=0  None .data      l_daStartAndGoal_Method */
+/* 80D4DEE4-80D4DF04 -00001 0020+00 1/0 0/0 0/0 .data            l_daStartAndGoal_Method */
 SECTION_DATA static void* l_daStartAndGoal_Method[8] = {
     (void*)daStartAndGoal_create__FP10fopAc_ac_c,
     (void*)daStartAndGoal_Delete__FP16daStartAndGoal_c,
@@ -174,8 +158,8 @@ SECTION_DATA static void* l_daStartAndGoal_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D4DF04-80D4DF34 0030+00 s=0 e=0 z=1  None .data      g_profile_START_AND_GOAL */
-SECTION_DATA void* g_profile_START_AND_GOAL[12] = {
+/* 80D4DF04-80D4DF34 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_START_AND_GOAL */
+SECTION_DATA extern void* g_profile_START_AND_GOAL[12] = {
     (void*)0xFFFFFFFD, (void*)0x0009FFFD,
     (void*)0x03060000, (void*)&g_fpcLf_Method,
     (void*)0x00000BA4, (void*)NULL,
@@ -184,28 +168,28 @@ SECTION_DATA void* g_profile_START_AND_GOAL[12] = {
     (void*)0x00044000, (void*)0x000E0000,
 };
 
-/* 80D4DF34-80D4DF40 000C+00 s=2 e=0 z=0  None .data      __vt__21daStartAndGoal_Path_c */
-SECTION_DATA static void* __vt__21daStartAndGoal_Path_c[3] = {
-    (void*)NULL,
+/* 80D4DF34-80D4DF40 000068 000C+00 2/2 0/0 0/0 .data            __vt__21daStartAndGoal_Path_c */
+SECTION_DATA extern void* __vt__21daStartAndGoal_Path_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__21daStartAndGoal_Path_cFv,
 };
 
-/* 80D4DF40-80D4DF4C 000C+00 s=4 e=0 z=0  None .data      __vt__16daNpcF_SPCurve_c */
-SECTION_DATA static void* __vt__16daNpcF_SPCurve_c[3] = {
-    (void*)NULL,
+/* 80D4DF40-80D4DF4C 000074 000C+00 4/4 0/0 0/0 .data            __vt__16daNpcF_SPCurve_c */
+SECTION_DATA extern void* __vt__16daNpcF_SPCurve_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__16daNpcF_SPCurve_cFv,
 };
 
-/* 80D4DF4C-80D4DF58 000C+00 s=3 e=0 z=0  None .data      __vt__13daNpcF_Path_c */
-SECTION_DATA static void* __vt__13daNpcF_Path_c[3] = {
-    (void*)NULL,
+/* 80D4DF4C-80D4DF58 000080 000C+00 3/3 0/0 0/0 .data            __vt__13daNpcF_Path_c */
+SECTION_DATA extern void* __vt__13daNpcF_Path_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__13daNpcF_Path_cFv,
 };
 
-/* 80D4D884-80D4D928 00A4+00 s=1 e=0 z=0  None .text      Create__16daStartAndGoal_cFv */
+/* 80D4D884-80D4D928 000144 00A4+00 1/1 0/0 0/0 .text            Create__16daStartAndGoal_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -215,7 +199,7 @@ asm void daStartAndGoal_c::Create() {
 }
 #pragma pop
 
-/* 80D4D928-80D4D998 0070+00 s=1 e=0 z=0  None .text      __dt__21daStartAndGoal_Path_cFv */
+/* 80D4D928-80D4D998 0001E8 0070+00 1/0 0/0 0/0 .text            __dt__21daStartAndGoal_Path_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -226,7 +210,7 @@ asm daStartAndGoal_Path_c::~daStartAndGoal_Path_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D4DEB8-80D4DEBC 0001+03 s=1 e=0 z=0  None .rodata    l_DATA */
+/* 80D4DEB8-80D4DEBC 000000 0001+03 1/1 0/0 0/0 .rodata          l_DATA */
 SECTION_RODATA static u8 const l_DATA[1 + 3 /* padding */] = {
     0x00,
     /* padding */
@@ -234,20 +218,37 @@ SECTION_RODATA static u8 const l_DATA[1 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80D4DEB8, &l_DATA);
 
-/* 80D4DEBC-80D4DEC0 0004+00 s=1 e=0 z=0  None .rodata    @3913 */
-SECTION_RODATA static u32 const lit_3913 = 0x43520000;
+/* 80D4DEBC-80D4DEC0 000004 0004+00 0/1 0/0 0/0 .rodata          @3913 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3913 = 210.0f;
+COMPILER_STRIP_GATE(80D4DEBC, &lit_3913);
+#pragma pop
 
-/* 80D4DEC0-80D4DEC4 0004+00 s=1 e=0 z=0  None .rodata    @3914 */
-SECTION_RODATA static u32 const lit_3914 = 0x43CD0000;
+/* 80D4DEC0-80D4DEC4 000008 0004+00 0/1 0/0 0/0 .rodata          @3914 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3914 = 410.0f;
+COMPILER_STRIP_GATE(80D4DEC0, &lit_3914);
+#pragma pop
 
-/* 80D4DEC4-80D4DEC8 0004+00 s=1 e=0 z=0  None .rodata    @3915 */
-SECTION_RODATA static u32 const lit_3915 = 0x42000000;
+/* 80D4DEC4-80D4DEC8 00000C 0004+00 0/1 0/0 0/0 .rodata          @3915 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3915 = 32.0f;
+COMPILER_STRIP_GATE(80D4DEC4, &lit_3915);
+#pragma pop
 
-/* 80D4DEC8-80D4DECC 0004+00 s=1 e=0 z=0  None .rodata    @3916 */
-SECTION_RODATA static u32 const lit_3916 = 0x43D18000;
+/* 80D4DEC8-80D4DECC 000010 0004+00 0/1 0/0 0/0 .rodata          @3916 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3916 = 419.0f;
+COMPILER_STRIP_GATE(80D4DEC8, &lit_3916);
+#pragma pop
 
-/* 80D4D998-80D4DA68 00D0+00 s=1 e=0 z=0  None .text      init__16daStartAndGoal_cFv */
+/* 80D4D998-80D4DA68 000258 00D0+00 1/1 0/0 0/0 .text            init__16daStartAndGoal_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -257,7 +258,8 @@ asm void daStartAndGoal_c::init() {
 }
 #pragma pop
 
-/* 80D4DA68-80D4DB30 00C8+00 s=1 e=0 z=0  None .text      actorPosCheck__16daStartAndGoal_cFv */
+/* 80D4DA68-80D4DB30 000328 00C8+00 1/1 0/0 0/0 .text            actorPosCheck__16daStartAndGoal_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -267,7 +269,7 @@ asm void daStartAndGoal_c::actorPosCheck() {
 }
 #pragma pop
 
-/* 80D4DB30-80D4DBAC 007C+00 s=0 e=0 z=2  None .text      readyStartTimer__16daStartAndGoal_cFv */
+/* 80D4DB30-80D4DBAC 0003F0 007C+00 0/0 0/0 2/2 .text readyStartTimer__16daStartAndGoal_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -277,7 +279,8 @@ asm void daStartAndGoal_c::readyStartTimer() {
 }
 #pragma pop
 
-/* 80D4DBAC-80D4DBD0 0024+00 s=1 e=0 z=2  None .text      isStartCheck__16daStartAndGoal_cFv */
+/* 80D4DBAC-80D4DBD0 00046C 0024+00 1/1 0/0 2/2 .text            isStartCheck__16daStartAndGoal_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -287,7 +290,8 @@ asm void daStartAndGoal_c::isStartCheck() {
 }
 #pragma pop
 
-/* 80D4DBD0-80D4DC50 0080+00 s=1 e=0 z=0  None .text      isReadyCheck__16daStartAndGoal_cFv */
+/* 80D4DBD0-80D4DC50 000490 0080+00 1/1 0/0 0/0 .text            isReadyCheck__16daStartAndGoal_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -297,7 +301,7 @@ asm void daStartAndGoal_c::isReadyCheck() {
 }
 #pragma pop
 
-/* 80D4DC50-80D4DCF4 00A4+00 s=1 e=0 z=0  None .text      Execute__16daStartAndGoal_cFv */
+/* 80D4DC50-80D4DCF4 000510 00A4+00 1/1 0/0 0/0 .text            Execute__16daStartAndGoal_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -307,12 +311,12 @@ asm void daStartAndGoal_c::Execute() {
 }
 #pragma pop
 
-/* 80D4DCF4-80D4DCFC 0008+00 s=1 e=0 z=0  None .text      Draw__16daStartAndGoal_cFv */
+/* 80D4DCF4-80D4DCFC 0005B4 0008+00 1/1 0/0 0/0 .text            Draw__16daStartAndGoal_cFv */
 bool daStartAndGoal_c::Draw() {
     return true;
 }
 
-/* 80D4DCFC-80D4DD80 0084+00 s=1 e=0 z=0  None .text      Delete__16daStartAndGoal_cFv */
+/* 80D4DCFC-80D4DD80 0005BC 0084+00 1/1 0/0 0/0 .text            Delete__16daStartAndGoal_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -322,56 +326,55 @@ asm void daStartAndGoal_c::Delete() {
 }
 #pragma pop
 
-/* 80D4DD80-80D4DDA0 0020+00 s=1 e=0 z=0  None .text daStartAndGoal_Execute__FP16daStartAndGoal_c
+/* 80D4DD80-80D4DDA0 000640 0020+00 1/0 0/0 0/0 .text daStartAndGoal_Execute__FP16daStartAndGoal_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daStartAndGoal_Execute(daStartAndGoal_c* param_0) {
+static asm void daStartAndGoal_Execute(daStartAndGoal_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_startAndGoal/d_a_startAndGoal/daStartAndGoal_Execute__FP16daStartAndGoal_c.s"
 }
 #pragma pop
 
-/* 80D4DDA0-80D4DDC0 0020+00 s=1 e=0 z=0  None .text      daStartAndGoal_Draw__FP16daStartAndGoal_c
- */
+/* 80D4DDA0-80D4DDC0 000660 0020+00 1/0 0/0 0/0 .text daStartAndGoal_Draw__FP16daStartAndGoal_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daStartAndGoal_Draw(daStartAndGoal_c* param_0) {
+static asm void daStartAndGoal_Draw(daStartAndGoal_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_startAndGoal/d_a_startAndGoal/daStartAndGoal_Draw__FP16daStartAndGoal_c.s"
 }
 #pragma pop
 
-/* 80D4DDC0-80D4DDC8 0008+00 s=1 e=0 z=0  None .text daStartAndGoal_IsDelete__FP16daStartAndGoal_c
- */
+/* 80D4DDC0-80D4DDC8 000680 0008+00 1/0 0/0 0/0 .text
+ * daStartAndGoal_IsDelete__FP16daStartAndGoal_c                */
 static bool daStartAndGoal_IsDelete(daStartAndGoal_c* param_0) {
     return true;
 }
 
-/* 80D4DDC8-80D4DDE8 0020+00 s=1 e=0 z=0  None .text daStartAndGoal_Delete__FP16daStartAndGoal_c
+/* 80D4DDC8-80D4DDE8 000688 0020+00 1/0 0/0 0/0 .text daStartAndGoal_Delete__FP16daStartAndGoal_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daStartAndGoal_Delete(daStartAndGoal_c* param_0) {
+static asm void daStartAndGoal_Delete(daStartAndGoal_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_startAndGoal/d_a_startAndGoal/daStartAndGoal_Delete__FP16daStartAndGoal_c.s"
 }
 #pragma pop
 
-/* 80D4DDE8-80D4DE08 0020+00 s=1 e=0 z=0  None .text      daStartAndGoal_create__FP10fopAc_ac_c */
+/* 80D4DDE8-80D4DE08 0006A8 0020+00 1/0 0/0 0/0 .text daStartAndGoal_create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daStartAndGoal_create(fopAc_ac_c* param_0) {
+static asm void daStartAndGoal_create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_startAndGoal/d_a_startAndGoal/daStartAndGoal_create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D4DE08-80D4DE68 0060+00 s=1 e=0 z=0  None .text      __dt__13daNpcF_Path_cFv */
+/* 80D4DE08-80D4DE68 0006C8 0060+00 1/0 0/0 0/0 .text            __dt__13daNpcF_Path_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -381,7 +384,7 @@ asm daNpcF_Path_c::~daNpcF_Path_c() {
 }
 #pragma pop
 
-/* 80D4DE68-80D4DEB0 0048+00 s=1 e=0 z=0  None .text      __dt__16daNpcF_SPCurve_cFv */
+/* 80D4DE68-80D4DEB0 000728 0048+00 1/0 0/0 0/0 .text            __dt__16daNpcF_SPCurve_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

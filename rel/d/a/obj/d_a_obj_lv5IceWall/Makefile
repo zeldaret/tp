@@ -3,19 +3,20 @@
 #
 
 M540_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5IceWall.plf
+M540_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5IceWall.lcf
+M540_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5IceWall.map
 
 M540_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv5IceWall/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv5IceWall/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv5IceWall/d_a_obj_lv5IceWall.cpp \
 
 M540_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5IceWall/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5IceWall/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5IceWall/d_a_obj_lv5IceWall.o \
 
 M540_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5IceWall/libRuntime.PPCEABI.H.a \
 
 M540_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M540_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M540_LDSCRIPT) \
+	-unused -map $(M540_MAP) \
+	-w off \
 
 $(M540_TARGET): $(M540_O_FILES) $(M540_LIBS)
+	@echo [540] creating $(M540_TARGET)
 	@echo $(M540_LIBS) $(M540_O_FILES) > build/M540_ofiles
-	$(LD) -partial $(M540_LDFLAGS) -o $(M540_TARGET) @build/M540_ofiles
+	@python3 tools/lcf.py rel 540 --output $(M540_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M540_LDFLAGS) -o $(M540_TARGET) @build/M540_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv5IceWall/%.o: rel/d/a/obj/d_a_obj_lv5IceWall/%.cpp
+	@echo [540] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M540_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M540_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv5IceWall/libs/Runtime.PPCEABI.H/Makefile
 

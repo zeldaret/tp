@@ -3,19 +3,19 @@ lbl_805A56B8:
 /* 805A56BC  7C 08 02 A6 */	mflr r0
 /* 805A56C0  90 01 00 24 */	stw r0, 0x24(r1)
 /* 805A56C4  39 61 00 20 */	addi r11, r1, 0x20
-/* 805A56C8  4B DB CB 14 */	b _savegpr_29
+/* 805A56C8  4B DB CB 15 */	bl _savegpr_29
 /* 805A56CC  7C 7E 1B 78 */	mr r30, r3
-/* 805A56D0  3C 80 80 5A */	lis r4, lit_3741@ha
-/* 805A56D4  3B E4 60 34 */	addi r31, r4, lit_3741@l
+/* 805A56D0  3C 80 80 5A */	lis r4, lit_3741@ha /* 0x805A6034@ha */
+/* 805A56D4  3B E4 60 34 */	addi r31, r4, lit_3741@l /* 0x805A6034@l */
 /* 805A56D8  80 03 04 A0 */	lwz r0, 0x4a0(r3)
 /* 805A56DC  54 00 07 39 */	rlwinm. r0, r0, 0, 0x1c, 0x1c
 /* 805A56E0  40 82 00 28 */	bne lbl_805A5708
 /* 805A56E4  7F C0 F3 79 */	or. r0, r30, r30
 /* 805A56E8  41 82 00 14 */	beq lbl_805A56FC
 /* 805A56EC  7C 1D 03 78 */	mr r29, r0
-/* 805A56F0  4B A7 34 74 */	b __ct__10fopAc_ac_cFv
+/* 805A56F0  4B A7 34 75 */	bl __ct__10fopAc_ac_cFv
 /* 805A56F4  38 7D 05 80 */	addi r3, r29, 0x580
-/* 805A56F8  4B CA 48 08 */	b __ct__10dMsgFlow_cFv
+/* 805A56F8  4B CA 48 09 */	bl __ct__10dMsgFlow_cFv
 lbl_805A56FC:
 /* 805A56FC  80 1E 04 A0 */	lwz r0, 0x4a0(r30)
 /* 805A5700  60 00 00 08 */	ori r0, r0, 8
@@ -45,8 +45,8 @@ lbl_805A5754:
 /* 805A5754  80 1E 00 B0 */	lwz r0, 0xb0(r30)
 /* 805A5758  54 00 1F FE */	rlwinm r0, r0, 3, 0x1f, 0x1f
 /* 805A575C  98 1E 05 6B */	stb r0, 0x56b(r30)
-/* 805A5760  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805A5764  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805A5760  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805A5764  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805A5768  80 83 5D AC */	lwz r4, 0x5dac(r3)
 /* 805A576C  28 04 00 00 */	cmplwi r4, 0
 /* 805A5770  41 82 00 2C */	beq lbl_805A579C
@@ -76,12 +76,12 @@ lbl_805A57A4:
 /* 805A57C0  A8 1E 04 E6 */	lha r0, 0x4e6(r30)
 /* 805A57C4  54 00 C6 3E */	rlwinm r0, r0, 0x18, 0x18, 0x1f
 /* 805A57C8  98 1E 05 6C */	stb r0, 0x56c(r30)
-/* 805A57CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805A57D0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805A57CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805A57D0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805A57D4  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 805A57D8  7F C4 F3 78 */	mr r4, r30
 /* 805A57DC  88 BE 05 6C */	lbz r5, 0x56c(r30)
-/* 805A57E0  4B AA 1E B8 */	b getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc
+/* 805A57E0  4B AA 1E B9 */	bl getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc
 /* 805A57E4  B0 7E 05 76 */	sth r3, 0x576(r30)
 /* 805A57E8  80 1E 00 B0 */	lwz r0, 0xb0(r30)
 /* 805A57EC  54 00 17 FF */	rlwinm. r0, r0, 2, 0x1f, 0x1f
@@ -111,14 +111,14 @@ lbl_805A5810:
 /* 805A5848  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 805A584C  7C 1D 07 74 */	extsb r29, r0
 /* 805A5850  7F A3 EB 78 */	mr r3, r29
-/* 805A5854  4B A8 7A 08 */	b dComIfGp_getRoomCamera__Fi
+/* 805A5854  4B A8 7A 09 */	bl dComIfGp_getRoomCamera__Fi
 /* 805A5858  80 63 00 04 */	lwz r3, 4(r3)
 /* 805A585C  1C 1F 00 18 */	mulli r0, r31, 0x18
 /* 805A5860  7C 63 02 14 */	add r3, r3, r0
 /* 805A5864  88 03 00 10 */	lbz r0, 0x10(r3)
 /* 805A5868  1F E0 00 14 */	mulli r31, r0, 0x14
 /* 805A586C  7F A3 EB 78 */	mr r3, r29
-/* 805A5870  4B A8 7A 3C */	b dComIfGp_getRoomArrow__Fi
+/* 805A5870  4B A8 7A 3D */	bl dComIfGp_getRoomArrow__Fi
 /* 805A5874  80 03 00 04 */	lwz r0, 4(r3)
 /* 805A5878  7C 60 FA 14 */	add r3, r0, r31
 /* 805A587C  C0 43 00 08 */	lfs f2, 8(r3)
@@ -136,7 +136,7 @@ lbl_805A5810:
 lbl_805A58AC:
 /* 805A58AC  38 60 00 04 */	li r3, 4
 /* 805A58B0  39 61 00 20 */	addi r11, r1, 0x20
-/* 805A58B4  4B DB C9 74 */	b _restgpr_29
+/* 805A58B4  4B DB C9 75 */	bl _restgpr_29
 /* 805A58B8  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 805A58BC  7C 08 03 A6 */	mtlr r0
 /* 805A58C0  38 21 00 20 */	addi r1, r1, 0x20

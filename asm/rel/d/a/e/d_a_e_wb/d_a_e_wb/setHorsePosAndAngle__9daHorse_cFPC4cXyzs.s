@@ -3,7 +3,7 @@ lbl_807E28E0:
 /* 807E28E4  7C 08 02 A6 */	mflr r0
 /* 807E28E8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 807E28EC  39 83 18 E0 */	addi r12, r3, 0x18e0
-/* 807E28F0  4B B7 F7 94 */	b __ptmf_scall
+/* 807E28F0  4B B7 F7 95 */	bl __ptmf_scall
 /* 807E28F4  60 00 00 00 */	nop 
 /* 807E28F8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 807E28FC  7C 08 03 A6 */	mtlr r0

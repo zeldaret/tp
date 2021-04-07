@@ -10,15 +10,15 @@ lbl_80C4F8E0:
 /* 80C4F900  54 00 06 6E */	rlwinm r0, r0, 0, 0x19, 0x17
 /* 80C4F904  90 03 04 9C */	stw r0, 0x49c(r3)
 /* 80C4F908  80 63 04 A4 */	lwz r3, 0x4a4(r3)
-/* 80C4F90C  4B 3D 1A 4C */	b fpcEx_SearchByID__FUi
+/* 80C4F90C  4B 3D 1A 4D */	bl fpcEx_SearchByID__FUi
 /* 80C4F910  28 03 00 00 */	cmplwi r3, 0
 /* 80C4F914  41 82 00 10 */	beq lbl_80C4F924
 /* 80C4F918  38 9F 04 F8 */	addi r4, r31, 0x4f8
 /* 80C4F91C  80 BF 00 B0 */	lwz r5, 0xb0(r31)
-/* 80C4F920  4B FE D3 20 */	b getFirstVec__15daObjKazeNeko_cFP4cXyzi
+/* 80C4F920  4B FE D3 21 */	bl getFirstVec__15daObjKazeNeko_cFP4cXyzi
 lbl_80C4F924:
-/* 80C4F924  3C 60 80 C5 */	lis r3, M_attr__14daObjKznkarm_c@ha
-/* 80C4F928  38 63 0D 08 */	addi r3, r3, M_attr__14daObjKznkarm_c@l
+/* 80C4F924  3C 60 80 C5 */	lis r3, M_attr__14daObjKznkarm_c@ha /* 0x80C50D08@ha */
+/* 80C4F928  38 63 0D 08 */	addi r3, r3, M_attr__14daObjKznkarm_c@l /* 0x80C50D08@l */
 /* 80C4F92C  A8 03 00 30 */	lha r0, 0x30(r3)
 /* 80C4F930  B0 1F 07 A8 */	sth r0, 0x7a8(r31)
 /* 80C4F934  A8 03 00 32 */	lha r0, 0x32(r3)

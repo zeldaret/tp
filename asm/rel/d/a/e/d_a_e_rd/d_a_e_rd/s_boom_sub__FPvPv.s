@@ -4,7 +4,7 @@ lbl_8050E8F0:
 /* 8050E8F8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8050E8FC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8050E900  7C 7F 1B 78 */	mr r31, r3
-/* 8050E904  4B B0 A3 DC */	b fopAc_IsActor__FPv
+/* 8050E904  4B B0 A3 DD */	bl fopAc_IsActor__FPv
 /* 8050E908  2C 03 00 00 */	cmpwi r3, 0
 /* 8050E90C  41 82 00 24 */	beq lbl_8050E930
 /* 8050E910  A8 1F 00 08 */	lha r0, 8(r31)

@@ -67,8 +67,8 @@ lbl_8011F544:
 lbl_8011F554:
 /* 8011F554  A8 1E 30 0C */	lha r0, 0x300c(r30)
 /* 8011F558  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 8011F55C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8011F560  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8011F55C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8011F560  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8011F564  7C 23 04 2E */	lfsx f1, r3, r0
 /* 8011F568  A8 7E 04 E6 */	lha r3, 0x4e6(r30)
 /* 8011F56C  C0 02 96 2C */	lfs f0, lit_34190(r2)

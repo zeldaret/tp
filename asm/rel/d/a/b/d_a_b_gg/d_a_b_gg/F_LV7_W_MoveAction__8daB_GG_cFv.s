@@ -3,12 +3,12 @@ lbl_805E3CAC:
 /* 805E3CB0  7C 08 02 A6 */	mflr r0
 /* 805E3CB4  90 01 00 44 */	stw r0, 0x44(r1)
 /* 805E3CB8  39 61 00 40 */	addi r11, r1, 0x40
-/* 805E3CBC  4B D7 E5 1C */	b _savegpr_28
+/* 805E3CBC  4B D7 E5 1D */	bl _savegpr_28
 /* 805E3CC0  7C 7D 1B 78 */	mr r29, r3
-/* 805E3CC4  3C 80 80 5F */	lis r4, lit_1109@ha
-/* 805E3CC8  3B C4 D6 C0 */	addi r30, r4, lit_1109@l
-/* 805E3CCC  3C 80 80 5F */	lis r4, lit_3911@ha
-/* 805E3CD0  3B E4 D0 60 */	addi r31, r4, lit_3911@l
+/* 805E3CC4  3C 80 80 5F */	lis r4, lit_1109@ha /* 0x805ED6C0@ha */
+/* 805E3CC8  3B C4 D6 C0 */	addi r30, r4, lit_1109@l /* 0x805ED6C0@l */
+/* 805E3CCC  3C 80 80 5F */	lis r4, lit_3911@ha /* 0x805ED060@ha */
+/* 805E3CD0  3B E4 D0 60 */	addi r31, r4, lit_3911@l /* 0x805ED060@l */
 /* 805E3CD4  88 03 05 C7 */	lbz r0, 0x5c7(r3)
 /* 805E3CD8  2C 00 00 01 */	cmpwi r0, 1
 /* 805E3CDC  41 82 00 64 */	beq lbl_805E3D40
@@ -22,7 +22,7 @@ lbl_805E3CF0:
 /* 805E3CF8  48 00 00 EC */	b lbl_805E3DE4
 lbl_805E3CFC:
 /* 805E3CFC  C0 3F 01 78 */	lfs f1, 0x178(r31)
-/* 805E3D00  4B C8 3C 54 */	b cM_rndF__Ff
+/* 805E3D00  4B C8 3C 55 */	bl cM_rndF__Ff
 /* 805E3D04  C0 1F 01 78 */	lfs f0, 0x178(r31)
 /* 805E3D08  EC 00 08 2A */	fadds f0, f0, f1
 /* 805E3D0C  FC 00 00 1E */	fctiwz f0, f0
@@ -40,17 +40,17 @@ lbl_805E3CFC:
 /* 805E3D3C  48 00 01 00 */	b lbl_805E3E3C
 lbl_805E3D40:
 /* 805E3D40  4B FF F4 A5 */	bl F_FookChk__8daB_GG_cFv
-/* 805E3D44  3C 60 80 5F */	lis r3, stringBase0@ha
-/* 805E3D48  38 63 D3 D4 */	addi r3, r3, stringBase0@l
+/* 805E3D44  3C 60 80 5F */	lis r3, d_a_b_gg__stringBase0@ha /* 0x805ED3D4@ha */
+/* 805E3D48  38 63 D3 D4 */	addi r3, r3, d_a_b_gg__stringBase0@l /* 0x805ED3D4@l */
 /* 805E3D4C  38 63 00 05 */	addi r3, r3, 5
-/* 805E3D50  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 805E3D54  3B 84 61 C0 */	addi r28, r4, g_dComIfG_gameInfo@l
+/* 805E3D50  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805E3D54  3B 84 61 C0 */	addi r28, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805E3D58  38 9C 4E 00 */	addi r4, r28, 0x4e00
-/* 805E3D5C  4B D8 4C 38 */	b strcmp
+/* 805E3D5C  4B D8 4C 39 */	bl strcmp
 /* 805E3D60  2C 03 00 00 */	cmpwi r3, 0
 /* 805E3D64  40 82 00 2C */	bne lbl_805E3D90
-/* 805E3D68  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805E3D6C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805E3D68  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805E3D6C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805E3D70  88 03 4E 0A */	lbz r0, 0x4e0a(r3)
 /* 805E3D74  2C 00 00 0F */	cmpwi r0, 0xf
 /* 805E3D78  40 82 00 18 */	bne lbl_805E3D90
@@ -108,12 +108,12 @@ lbl_805E3E28:
 /* 805E3E2C  38 80 00 00 */	li r4, 0
 /* 805E3E30  38 A0 00 01 */	li r5, 1
 /* 805E3E34  38 C0 01 00 */	li r6, 0x100
-/* 805E3E38  4B C8 C7 D0 */	b cLib_addCalcAngleS2__FPssss
+/* 805E3E38  4B C8 C7 D1 */	bl cLib_addCalcAngleS2__FPssss
 lbl_805E3E3C:
 /* 805E3E3C  38 61 00 08 */	addi r3, r1, 8
 /* 805E3E40  80 9E 00 6C */	lwz r4, 0x6c(r30)
 /* 805E3E44  38 BD 04 D0 */	addi r5, r29, 0x4d0
-/* 805E3E48  4B C8 2C EC */	b __mi__4cXyzCFRC3Vec
+/* 805E3E48  4B C8 2C ED */	bl __mi__4cXyzCFRC3Vec
 /* 805E3E4C  C0 21 00 08 */	lfs f1, 8(r1)
 /* 805E3E50  D0 21 00 14 */	stfs f1, 0x14(r1)
 /* 805E3E54  C0 01 00 0C */	lfs f0, 0xc(r1)
@@ -130,23 +130,23 @@ lbl_805E3E3C:
 /* 805E3E80  EC 40 00 B2 */	fmuls f2, f0, f2
 lbl_805E3E84:
 /* 805E3E84  C0 21 00 18 */	lfs f1, 0x18(r1)
-/* 805E3E88  4B C8 37 EC */	b cM_atan2s__Fff
+/* 805E3E88  4B C8 37 ED */	bl cM_atan2s__Fff
 /* 805E3E8C  7C 03 00 D0 */	neg r0, r3
 /* 805E3E90  7C 04 07 34 */	extsh r4, r0
 /* 805E3E94  38 7D 06 C4 */	addi r3, r29, 0x6c4
 /* 805E3E98  38 A0 00 10 */	li r5, 0x10
 /* 805E3E9C  38 C0 06 00 */	li r6, 0x600
-/* 805E3EA0  4B C8 C7 68 */	b cLib_addCalcAngleS2__FPssss
+/* 805E3EA0  4B C8 C7 69 */	bl cLib_addCalcAngleS2__FPssss
 /* 805E3EA4  38 7D 04 D0 */	addi r3, r29, 0x4d0
 /* 805E3EA8  80 9E 00 6C */	lwz r4, 0x6c(r30)
-/* 805E3EAC  4B C8 CD 58 */	b cLib_targetAngleY__FPC3VecPC3Vec
+/* 805E3EAC  4B C8 CD 59 */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 805E3EB0  A8 1D 04 E6 */	lha r0, 0x4e6(r29)
 /* 805E3EB4  7C 00 18 50 */	subf r0, r0, r3
 /* 805E3EB8  7C 04 07 34 */	extsh r4, r0
 /* 805E3EBC  38 7D 06 BE */	addi r3, r29, 0x6be
 /* 805E3EC0  38 A0 00 10 */	li r5, 0x10
 /* 805E3EC4  38 C0 01 00 */	li r6, 0x100
-/* 805E3EC8  4B C8 C7 40 */	b cLib_addCalcAngleS2__FPssss
+/* 805E3EC8  4B C8 C7 41 */	bl cLib_addCalcAngleS2__FPssss
 /* 805E3ECC  A8 1D 06 BE */	lha r0, 0x6be(r29)
 /* 805E3ED0  2C 00 20 00 */	cmpwi r0, 0x2000
 /* 805E3ED4  40 81 00 10 */	ble lbl_805E3EE4
@@ -160,7 +160,7 @@ lbl_805E3EE4:
 /* 805E3EF0  B0 1D 06 BE */	sth r0, 0x6be(r29)
 lbl_805E3EF4:
 /* 805E3EF4  39 61 00 40 */	addi r11, r1, 0x40
-/* 805E3EF8  4B D7 E3 2C */	b _restgpr_28
+/* 805E3EF8  4B D7 E3 2D */	bl _restgpr_28
 /* 805E3EFC  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 805E3F00  7C 08 03 A6 */	mtlr r0
 /* 805E3F04  38 21 00 40 */	addi r1, r1, 0x40

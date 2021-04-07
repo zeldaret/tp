@@ -4,13 +4,13 @@ lbl_80591764:
 /* 8059176C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80591770  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80591774  7C 7F 1B 78 */	mr r31, r3
-/* 80591778  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8059177C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80591778  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8059177C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80591780  80 1F 00 B0 */	lwz r0, 0xb0(r31)
 /* 80591784  54 04 06 3E */	clrlwi r4, r0, 0x18
 /* 80591788  88 1F 04 BA */	lbz r0, 0x4ba(r31)
 /* 8059178C  7C 05 07 74 */	extsb r5, r0
-/* 80591790  4B AA 3B D0 */	b isSwitch__10dSv_info_cCFii
+/* 80591790  4B AA 3B D1 */	bl isSwitch__10dSv_info_cCFii
 /* 80591794  2C 03 00 00 */	cmpwi r3, 0
 /* 80591798  41 82 00 0C */	beq lbl_805917A4
 /* 8059179C  7F E3 FB 78 */	mr r3, r31

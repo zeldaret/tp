@@ -7,8 +7,8 @@ lbl_8018FEF4:
 /* 8018FF08  7C 7B 1B 78 */	mr r27, r3
 /* 8018FF0C  3B 80 00 00 */	li r28, 0
 /* 8018FF10  3B C0 00 00 */	li r30, 0
-/* 8018FF14  3C 60 80 43 */	lis r3, g_fsHIO@ha
-/* 8018FF18  3B A3 C9 EC */	addi r29, r3, g_fsHIO@l
+/* 8018FF14  3C 60 80 43 */	lis r3, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 8018FF18  3B A3 C9 EC */	addi r29, r3, g_fsHIO@l /* 0x8042C9EC@l */
 /* 8018FF1C  3B E1 00 08 */	addi r31, r1, 8
 lbl_8018FF20:
 /* 8018FF20  7C BB F2 14 */	add r5, r27, r30

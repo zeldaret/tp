@@ -30,8 +30,8 @@ lbl_800E1124:
 /* 800E1160  41 82 00 40 */	beq lbl_800E11A0
 /* 800E1164  38 00 00 03 */	li r0, 3
 /* 800E1168  98 1F 2F 98 */	stb r0, 0x2f98(r31)
-/* 800E116C  3C 60 80 39 */	lis r3, m__19daAlinkHIO_basic_c0@ha
-/* 800E1170  38 63 D6 64 */	addi r3, r3, m__19daAlinkHIO_basic_c0@l
+/* 800E116C  3C 60 80 39 */	lis r3, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 800E1170  38 63 D6 64 */	addi r3, r3, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 800E1174  C3 E3 00 18 */	lfs f31, 0x18(r3)
 /* 800E1178  48 00 00 28 */	b lbl_800E11A0
 lbl_800E117C:

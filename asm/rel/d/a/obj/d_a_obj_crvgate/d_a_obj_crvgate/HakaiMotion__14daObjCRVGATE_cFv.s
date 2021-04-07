@@ -17,7 +17,7 @@ lbl_80BD2214:
 /* 80BD221C  38 A0 00 06 */	li r5, 6
 /* 80BD2220  38 C0 20 00 */	li r6, 0x2000
 /* 80BD2224  38 E0 00 50 */	li r7, 0x50
-/* 80BD2228  4B 69 E3 18 */	b cLib_addCalcAngleS__FPsssss
+/* 80BD2228  4B 69 E3 19 */	bl cLib_addCalcAngleS__FPsssss
 /* 80BD222C  80 7F 05 B4 */	lwz r3, 0x5b4(r31)
 /* 80BD2230  38 63 06 46 */	addi r3, r3, 0x646
 /* 80BD2234  A8 1F 06 48 */	lha r0, 0x648(r31)
@@ -26,7 +26,7 @@ lbl_80BD2214:
 /* 80BD2240  38 A0 00 06 */	li r5, 6
 /* 80BD2244  38 C0 20 00 */	li r6, 0x2000
 /* 80BD2248  38 E0 00 50 */	li r7, 0x50
-/* 80BD224C  4B 69 E2 F4 */	b cLib_addCalcAngleS__FPsssss
+/* 80BD224C  4B 69 E2 F5 */	bl cLib_addCalcAngleS__FPsssss
 /* 80BD2250  C0 3F 05 E4 */	lfs f1, 0x5e4(r31)
 /* 80BD2254  C0 1F 06 18 */	lfs f0, 0x618(r31)
 /* 80BD2258  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -48,8 +48,8 @@ lbl_80BD2214:
 /* 80BD2298  4B FF E8 E5 */	bl SetOpen__14daObjCRVGATE_cFv
 /* 80BD229C  48 00 00 18 */	b lbl_80BD22B4
 lbl_80BD22A0:
-/* 80BD22A0  3C 60 80 BD */	lis r3, lit_4663@ha
-/* 80BD22A4  C0 23 31 7C */	lfs f1, lit_4663@l(r3)
+/* 80BD22A0  3C 60 80 BD */	lis r3, lit_4663@ha /* 0x80BD317C@ha */
+/* 80BD22A4  C0 23 31 7C */	lfs f1, lit_4663@l(r3)  /* 0x80BD317C@l */
 /* 80BD22A8  C0 1F 05 F0 */	lfs f0, 0x5f0(r31)
 /* 80BD22AC  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80BD22B0  D0 1F 05 F0 */	stfs f0, 0x5f0(r31)

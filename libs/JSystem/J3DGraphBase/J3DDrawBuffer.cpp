@@ -58,16 +58,11 @@ extern "C" void draw__13J3DDrawBufferCFv();
 extern "C" void drawHead__13J3DDrawBufferCFv();
 extern "C" void drawTail__13J3DDrawBufferCFv();
 extern "C" void __sinit_J3DDrawBuffer_cpp();
-extern "C" extern u8 sortFuncTable__13J3DDrawBuffer[72];
 extern "C" extern u8 entryNum__13J3DDrawBuffer[4 + 4 /* padding */];
 
 //
 // External References:
 //
-
-void* operator new[](u32, int);
-void operator delete(void*);
-void operator delete[](void*);
 
 extern "C" void* __nwa__FUli();
 extern "C" void __dl__FPv();
@@ -88,16 +83,16 @@ extern "C" extern u8 j3dSys[284];
 //
 
 /* ############################################################################################## */
-/* 80456400-80456404 0004+00 s=2 e=0 z=0  None .sdata2    @781 */
+/* 80456400-80456404 004A00 0004+00 2/2 0/0 0/0 .sdata2          @781 */
 SECTION_SDATA2 static f32 lit_781 = 1.0f;
 
-/* 80456404-80456408 0004+00 s=1 e=0 z=0  None .sdata2    @782 */
+/* 80456404-80456408 004A04 0004+00 1/1 0/0 0/0 .sdata2          @782 */
 SECTION_SDATA2 static f32 lit_782 = 10000.0f;
 
-/* 80456408-80456410 0008+00 s=2 e=0 z=0  None .sdata2    @784 */
+/* 80456408-80456410 004A08 0008+00 2/2 0/0 0/0 .sdata2          @784 */
 SECTION_SDATA2 static f64 lit_784 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 80324F08-80324F70 0068+00 s=0 e=1 z=0  None .text      initialize__13J3DDrawBufferFv */
+/* 80324F08-80324F70 31F848 0068+00 0/0 1/1 0/0 .text            initialize__13J3DDrawBufferFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -107,7 +102,7 @@ asm void J3DDrawBuffer::initialize() {
 }
 #pragma pop
 
-/* 80324F70-80325008 0098+00 s=0 e=1 z=0  None .text      allocBuffer__13J3DDrawBufferFUl */
+/* 80324F70-80325008 31F8B0 0098+00 0/0 1/1 0/0 .text            allocBuffer__13J3DDrawBufferFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -117,7 +112,7 @@ asm void J3DDrawBuffer::allocBuffer(u32 param_0) {
 }
 #pragma pop
 
-/* 80325008-80325068 0060+00 s=0 e=2 z=0  None .text      __dt__13J3DDrawBufferFv */
+/* 80325008-80325068 31F948 0060+00 0/0 2/2 0/0 .text            __dt__13J3DDrawBufferFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -127,7 +122,7 @@ asm J3DDrawBuffer::~J3DDrawBuffer() {
 }
 #pragma pop
 
-/* 80325068-8032509C 0034+00 s=2 e=1 z=0  None .text      frameInit__13J3DDrawBufferFv */
+/* 80325068-8032509C 31F9A8 0034+00 2/2 1/1 0/0 .text            frameInit__13J3DDrawBufferFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -137,8 +132,8 @@ asm void J3DDrawBuffer::frameInit() {
 }
 #pragma pop
 
-/* 8032509C-803251E4 0148+00 s=2 e=0 z=0  None .text entryMatSort__13J3DDrawBufferFP12J3DMatPacket
- */
+/* 8032509C-803251E4 31F9DC 0148+00 2/1 0/0 0/0 .text
+ * entryMatSort__13J3DDrawBufferFP12J3DMatPacket                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -148,7 +143,7 @@ asm void J3DDrawBuffer::entryMatSort(J3DMatPacket* param_0) {
 }
 #pragma pop
 
-/* 803251E4-8032529C 00B8+00 s=1 e=0 z=0  None .text
+/* 803251E4-8032529C 31FB24 00B8+00 1/0 0/0 0/0 .text
  * entryMatAnmSort__13J3DDrawBufferFP12J3DMatPacket             */
 #pragma push
 #pragma optimization_level 0
@@ -159,7 +154,7 @@ asm void J3DDrawBuffer::entryMatAnmSort(J3DMatPacket* param_0) {
 }
 #pragma pop
 
-/* 8032529C-803253B4 0118+00 s=1 e=0 z=0  None .text entryZSort__13J3DDrawBufferFP12J3DMatPacket
+/* 8032529C-803253B4 31FBDC 0118+00 1/0 0/0 0/0 .text entryZSort__13J3DDrawBufferFP12J3DMatPacket
  */
 #pragma push
 #pragma optimization_level 0
@@ -170,7 +165,7 @@ asm void J3DDrawBuffer::entryZSort(J3DMatPacket* param_0) {
 }
 #pragma pop
 
-/* 803253B4-80325404 0050+00 s=1 e=0 z=0  None .text
+/* 803253B4-80325404 31FCF4 0050+00 1/0 0/0 0/0 .text
  * entryModelSort__13J3DDrawBufferFP12J3DMatPacket              */
 #pragma push
 #pragma optimization_level 0
@@ -181,7 +176,7 @@ asm void J3DDrawBuffer::entryModelSort(J3DMatPacket* param_0) {
 }
 #pragma pop
 
-/* 80325404-80325458 0054+00 s=1 e=0 z=0  None .text
+/* 80325404-80325458 31FD44 0054+00 1/0 0/0 0/0 .text
  * entryInvalidSort__13J3DDrawBufferFP12J3DMatPacket            */
 #pragma push
 #pragma optimization_level 0
@@ -192,8 +187,8 @@ asm void J3DDrawBuffer::entryInvalidSort(J3DMatPacket* param_0) {
 }
 #pragma pop
 
-/* 80325458-8032548C 0034+00 s=1 e=0 z=0  None .text entryNonSort__13J3DDrawBufferFP12J3DMatPacket
- */
+/* 80325458-8032548C 31FD98 0034+00 1/0 0/0 0/0 .text
+ * entryNonSort__13J3DDrawBufferFP12J3DMatPacket                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -203,7 +198,7 @@ asm void J3DDrawBuffer::entryNonSort(J3DMatPacket* param_0) {
 }
 #pragma pop
 
-/* 8032548C-803254AC 0020+00 s=0 e=8 z=9  None .text      entryImm__13J3DDrawBufferFP9J3DPacketUs */
+/* 8032548C-803254AC 31FDCC 0020+00 0/0 8/8 9/9 .text entryImm__13J3DDrawBufferFP9J3DPacketUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -214,50 +209,65 @@ asm void J3DDrawBuffer::entryImm(J3DPacket* param_0, u16 param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CEBE8-803CEBF4 000C+00 s=1 e=0 z=0  None .data      @992 */
+/* 803CEBE8-803CEBF4 -00001 000C+00 1/1 0/0 0/0 .data            @992 */
 SECTION_DATA static void* lit_992[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)entryMatSort__13J3DDrawBufferFP12J3DMatPacket,
 };
 
-/* 803CEBF4-803CEC00 000C+00 s=1 e=0 z=0  None .data      @993 */
+/* 803CEBF4-803CEC00 -00001 000C+00 0/1 0/0 0/0 .data            @993 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_993[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)entryMatAnmSort__13J3DDrawBufferFP12J3DMatPacket,
 };
+#pragma pop
 
-/* 803CEC00-803CEC0C 000C+00 s=1 e=0 z=0  None .data      @994 */
+/* 803CEC00-803CEC0C -00001 000C+00 0/1 0/0 0/0 .data            @994 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_994[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)entryZSort__13J3DDrawBufferFP12J3DMatPacket,
 };
+#pragma pop
 
-/* 803CEC0C-803CEC18 000C+00 s=1 e=0 z=0  None .data      @995 */
+/* 803CEC0C-803CEC18 -00001 000C+00 0/1 0/0 0/0 .data            @995 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_995[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)entryModelSort__13J3DDrawBufferFP12J3DMatPacket,
 };
+#pragma pop
 
-/* 803CEC18-803CEC24 000C+00 s=1 e=0 z=0  None .data      @996 */
+/* 803CEC18-803CEC24 -00001 000C+00 0/1 0/0 0/0 .data            @996 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_996[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)entryInvalidSort__13J3DDrawBufferFP12J3DMatPacket,
 };
+#pragma pop
 
-/* 803CEC24-803CEC30 000C+00 s=1 e=0 z=0  None .data      @997 */
+/* 803CEC24-803CEC30 -00001 000C+00 0/1 0/0 0/0 .data            @997 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_997[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)entryNonSort__13J3DDrawBufferFP12J3DMatPacket,
 };
+#pragma pop
 
-/* 803CEC30-803CEC78 0048+00 s=1 e=1 z=0  None .data      sortFuncTable__13J3DDrawBuffer */
-SECTION_DATA u8 sortFuncTable__13J3DDrawBuffer[72] = {
+/* 803CEC30-803CEC78 02BD50 0048+00 0/1 1/1 0/0 .data            sortFuncTable__13J3DDrawBuffer */
+SECTION_DATA extern u8 sortFuncTable__13J3DDrawBuffer[72] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -265,27 +275,33 @@ SECTION_DATA u8 sortFuncTable__13J3DDrawBuffer[72] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803CEC78-803CEC84 000C+00 s=1 e=0 z=0  None .data      @998 */
+/* 803CEC78-803CEC84 -00001 000C+00 0/1 0/0 0/0 .data            @998 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_998[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)drawHead__13J3DDrawBufferCFv,
 };
+#pragma pop
 
-/* 803CEC84-803CEC90 000C+00 s=1 e=0 z=0  None .data      @999 */
+/* 803CEC84-803CEC90 -00001 000C+00 0/1 0/0 0/0 .data            @999 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_999[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)drawTail__13J3DDrawBufferCFv,
 };
+#pragma pop
 
-/* 803CEC90-803CECA8 0018+00 s=2 e=0 z=0  None .data      drawFuncTable__13J3DDrawBuffer */
+/* 803CEC90-803CECA8 02BDB0 0018+00 1/2 0/0 0/0 .data            drawFuncTable__13J3DDrawBuffer */
 SECTION_DATA static u8 drawFuncTable__13J3DDrawBuffer[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803254AC-80325500 0054+00 s=0 e=2 z=0  None .text      draw__13J3DDrawBufferCFv */
+/* 803254AC-80325500 31FDEC 0054+00 0/0 2/2 0/0 .text            draw__13J3DDrawBufferCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -295,7 +311,7 @@ asm void J3DDrawBuffer::draw() const {
 }
 #pragma pop
 
-/* 80325500-80325578 0078+00 s=1 e=0 z=0  None .text      drawHead__13J3DDrawBufferCFv */
+/* 80325500-80325578 31FE40 0078+00 1/0 0/0 0/0 .text            drawHead__13J3DDrawBufferCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -305,7 +321,7 @@ asm void J3DDrawBuffer::drawHead() const {
 }
 #pragma pop
 
-/* 80325578-803255F0 0078+00 s=1 e=0 z=0  None .text      drawTail__13J3DDrawBufferCFv */
+/* 80325578-803255F0 31FEB8 0078+00 1/0 0/0 0/0 .text            drawTail__13J3DDrawBufferCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -315,16 +331,22 @@ asm void J3DDrawBuffer::drawTail() const {
 }
 #pragma pop
 
-/* 803255F0-803256C4 00D4+00 s=0 e=1 z=0  None .text      __sinit_J3DDrawBuffer_cpp */
+/* 803255F0-803256C4 31FF30 00D4+00 0/0 1/0 0/0 .text            __sinit_J3DDrawBuffer_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_J3DDrawBuffer_cpp() {
+asm void __sinit_J3DDrawBuffer_cpp() {
     nofralloc
 #include "asm/JSystem/J3DGraphBase/J3DDrawBuffer/__sinit_J3DDrawBuffer_cpp.s"
 }
 #pragma pop
 
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_803255F0 = (void*)__sinit_J3DDrawBuffer_cpp;
+#pragma pop
+
 /* ############################################################################################## */
-/* 804515E0-804515E8 0004+04 s=0 e=1 z=0  None .sbss      entryNum__13J3DDrawBuffer */
+/* 804515E0-804515E8 000AE0 0004+04 0/0 1/1 0/0 .sbss            entryNum__13J3DDrawBuffer */
+extern u8 entryNum__13J3DDrawBuffer[4 + 4 /* padding */];
 u8 entryNum__13J3DDrawBuffer[4 + 4 /* padding */];

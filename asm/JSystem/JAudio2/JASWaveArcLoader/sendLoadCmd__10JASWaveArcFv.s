@@ -25,8 +25,8 @@ lbl_8029A404:
 /* 8029A460  38 03 00 01 */	addi r0, r3, 1
 /* 8029A464  B0 1F 00 5A */	sth r0, 0x5a(r31)
 /* 8029A468  4B FF 5A 95 */	bl getThreadPointer__6JASDvdFv
-/* 8029A46C  3C 80 80 2A */	lis r4, loadToAramCallback__10JASWaveArcFPv@ha
-/* 8029A470  38 84 A3 78 */	addi r4, r4, loadToAramCallback__10JASWaveArcFPv@l
+/* 8029A46C  3C 80 80 2A */	lis r4, loadToAramCallback__10JASWaveArcFPv@ha /* 0x8029A378@ha */
+/* 8029A470  38 84 A3 78 */	addi r4, r4, loadToAramCallback__10JASWaveArcFPv@l /* 0x8029A378@l */
 /* 8029A474  38 A1 00 0C */	addi r5, r1, 0xc
 /* 8029A478  38 C0 00 10 */	li r6, 0x10
 /* 8029A47C  4B FF 56 E1 */	bl sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl

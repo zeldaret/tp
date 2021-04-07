@@ -20,7 +20,7 @@ lbl_809822A0:
 /* 809822E8  54 1E 06 3F */	clrlwi. r30, r0, 0x18
 /* 809822EC  40 82 00 88 */	bne lbl_80982374
 /* 809822F0  80 7F 05 68 */	lwz r3, 0x568(r31)
-/* 809822F4  4B 68 F0 1C */	b stopZelAnime__16mDoExt_McaMorfSOFv
+/* 809822F4  4B 68 F0 1D */	bl stopZelAnime__16mDoExt_McaMorfSOFv
 /* 809822F8  48 00 00 7C */	b lbl_80982374
 lbl_809822FC:
 /* 809822FC  88 1F 0E 51 */	lbz r0, 0xe51(r31)
@@ -29,15 +29,15 @@ lbl_809822FC:
 /* 80982308  88 1F 0E 10 */	lbz r0, 0xe10(r31)
 /* 8098230C  2C 00 00 10 */	cmpwi r0, 0x10
 /* 80982310  40 80 00 1C */	bge lbl_8098232C
-/* 80982314  3C 60 80 99 */	lis r3, a_prmTbl_M@ha
-/* 80982318  38 63 98 D4 */	addi r3, r3, a_prmTbl_M@l
+/* 80982314  3C 60 80 99 */	lis r3, a_prmTbl_M@ha /* 0x809898D4@ha */
+/* 80982318  38 63 98 D4 */	addi r3, r3, a_prmTbl_M@l /* 0x809898D4@l */
 /* 8098231C  54 00 30 32 */	slwi r0, r0, 6
 /* 80982320  7C 63 02 14 */	add r3, r3, r0
 /* 80982324  C0 23 00 18 */	lfs f1, 0x18(r3)
 /* 80982328  48 00 00 18 */	b lbl_80982340
 lbl_8098232C:
-/* 8098232C  3C 60 80 99 */	lis r3, a_prmTbl_W@ha
-/* 80982330  38 63 B3 CC */	addi r3, r3, a_prmTbl_W@l
+/* 8098232C  3C 60 80 99 */	lis r3, a_prmTbl_W@ha /* 0x8098B3CC@ha */
+/* 80982330  38 63 B3 CC */	addi r3, r3, a_prmTbl_W@l /* 0x8098B3CC@l */
 /* 80982334  54 00 30 32 */	slwi r0, r0, 6
 /* 80982338  7C 63 02 14 */	add r3, r3, r0
 /* 8098233C  C0 23 FC 18 */	lfs f1, -0x3e8(r3)
@@ -50,7 +50,7 @@ lbl_80982340:
 /* 80982354  54 1E 06 3F */	clrlwi. r30, r0, 0x18
 /* 80982358  40 82 00 1C */	bne lbl_80982374
 /* 8098235C  80 7F 05 68 */	lwz r3, 0x568(r31)
-/* 80982360  4B 68 EF B0 */	b stopZelAnime__16mDoExt_McaMorfSOFv
+/* 80982360  4B 68 EF B1 */	bl stopZelAnime__16mDoExt_McaMorfSOFv
 /* 80982364  48 00 00 10 */	b lbl_80982374
 lbl_80982368:
 /* 80982368  38 00 00 00 */	li r0, 0
@@ -59,8 +59,8 @@ lbl_80982368:
 lbl_80982374:
 /* 80982374  7F E3 FB 78 */	mr r3, r31
 /* 80982378  38 80 00 01 */	li r4, 1
-/* 8098237C  3C A0 80 98 */	lis r5, lit_4922@ha
-/* 80982380  C0 25 6F 54 */	lfs f1, lit_4922@l(r5)
+/* 8098237C  3C A0 80 98 */	lis r5, lit_4922@ha /* 0x80986F54@ha */
+/* 80982380  C0 25 6F 54 */	lfs f1, lit_4922@l(r5)  /* 0x80986F54@l */
 /* 80982384  38 A0 00 00 */	li r5, 0
 /* 80982388  81 9F 0B 44 */	lwz r12, 0xb44(r31)
 /* 8098238C  81 8C 00 3C */	lwz r12, 0x3c(r12)

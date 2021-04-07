@@ -3,20 +3,20 @@ lbl_80B0D5A4:
 /* 80B0D5A8  7C 08 02 A6 */	mflr r0
 /* 80B0D5AC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80B0D5B0  39 61 00 20 */	addi r11, r1, 0x20
-/* 80B0D5B4  4B 85 4C 28 */	b _savegpr_29
+/* 80B0D5B4  4B 85 4C 29 */	bl _savegpr_29
 /* 80B0D5B8  7C 7E 1B 78 */	mr r30, r3
 /* 80B0D5BC  7C 9F 23 78 */	mr r31, r4
-/* 80B0D5C0  3C 80 80 B1 */	lis r4, l_arcName@ha
-/* 80B0D5C4  38 84 0A B8 */	addi r4, r4, l_arcName@l
+/* 80B0D5C0  3C 80 80 B1 */	lis r4, l_arcName@ha /* 0x80B10AB8@ha */
+/* 80B0D5C4  38 84 0A B8 */	addi r4, r4, l_arcName@l /* 0x80B10AB8@l */
 /* 80B0D5C8  80 84 00 00 */	lwz r4, 0(r4)
 /* 80B0D5CC  57 FD 18 38 */	slwi r29, r31, 3
-/* 80B0D5D0  3C A0 80 B1 */	lis r5, l_btpGetParamList@ha
-/* 80B0D5D4  38 A5 0A 98 */	addi r5, r5, l_btpGetParamList@l
+/* 80B0D5D0  3C A0 80 B1 */	lis r5, l_btpGetParamList@ha /* 0x80B10A98@ha */
+/* 80B0D5D4  38 A5 0A 98 */	addi r5, r5, l_btpGetParamList@l /* 0x80B10A98@l */
 /* 80B0D5D8  7C A5 E8 2E */	lwzx r5, r5, r29
-/* 80B0D5DC  4B 64 55 8C */	b getTexPtrnAnmP__8daNpcF_cFPci
+/* 80B0D5DC  4B 64 55 8D */	bl getTexPtrnAnmP__8daNpcF_cFPci
 /* 80B0D5E0  7C 64 1B 79 */	or. r4, r3, r3
-/* 80B0D5E4  3C 60 80 B1 */	lis r3, l_btpGetParamList@ha
-/* 80B0D5E8  38 03 0A 98 */	addi r0, r3, l_btpGetParamList@l
+/* 80B0D5E4  3C 60 80 B1 */	lis r3, l_btpGetParamList@ha /* 0x80B10A98@ha */
+/* 80B0D5E8  38 03 0A 98 */	addi r0, r3, l_btpGetParamList@l /* 0x80B10A98@l */
 /* 80B0D5EC  7C 60 EA 14 */	add r3, r0, r29
 /* 80B0D5F0  80 C3 00 04 */	lwz r6, 4(r3)
 /* 80B0D5F4  80 7E 09 9C */	lwz r3, 0x99c(r30)
@@ -31,9 +31,9 @@ lbl_80B0D610:
 /* 80B0D614  80 63 00 04 */	lwz r3, 4(r3)
 /* 80B0D618  80 A3 00 04 */	lwz r5, 4(r3)
 /* 80B0D61C  7F C3 F3 78 */	mr r3, r30
-/* 80B0D620  3C E0 80 B1 */	lis r7, lit_4358@ha
-/* 80B0D624  C0 27 09 64 */	lfs f1, lit_4358@l(r7)
-/* 80B0D628  4B 64 56 9C */	b setBtpAnm__8daNpcF_cFP16J3DAnmTexPatternP12J3DModelDatafi
+/* 80B0D620  3C E0 80 B1 */	lis r7, lit_4358@ha /* 0x80B10964@ha */
+/* 80B0D624  C0 27 09 64 */	lfs f1, lit_4358@l(r7)  /* 0x80B10964@l */
+/* 80B0D628  4B 64 56 9D */	bl setBtpAnm__8daNpcF_cFP16J3DAnmTexPatternP12J3DModelDatafi
 /* 80B0D62C  2C 03 00 00 */	cmpwi r3, 0
 /* 80B0D630  41 82 00 2C */	beq lbl_80B0D65C
 /* 80B0D634  80 1E 09 9C */	lwz r0, 0x99c(r30)
@@ -51,7 +51,7 @@ lbl_80B0D65C:
 /* 80B0D65C  38 60 00 00 */	li r3, 0
 lbl_80B0D660:
 /* 80B0D660  39 61 00 20 */	addi r11, r1, 0x20
-/* 80B0D664  4B 85 4B C4 */	b _restgpr_29
+/* 80B0D664  4B 85 4B C5 */	bl _restgpr_29
 /* 80B0D668  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80B0D66C  7C 08 03 A6 */	mtlr r0
 /* 80B0D670  38 21 00 20 */	addi r1, r1, 0x20

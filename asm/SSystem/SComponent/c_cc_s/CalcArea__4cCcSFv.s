@@ -5,8 +5,8 @@ lbl_80265BB4:
 /* 80265BC0  39 61 00 40 */	addi r11, r1, 0x40
 /* 80265BC4  48 0F C6 19 */	bl _savegpr_29
 /* 80265BC8  7C 7F 1B 78 */	mr r31, r3
-/* 80265BCC  3C 60 80 3A */	lis r3, __vt__8cM3dGAab@ha
-/* 80265BD0  38 03 72 18 */	addi r0, r3, __vt__8cM3dGAab@l
+/* 80265BCC  3C 60 80 3A */	lis r3, __vt__8cM3dGAab@ha /* 0x803A7218@ha */
+/* 80265BD0  38 03 72 18 */	addi r0, r3, __vt__8cM3dGAab@l /* 0x803A7218@l */
 /* 80265BD4  90 01 00 20 */	stw r0, 0x20(r1)
 /* 80265BD8  38 61 00 08 */	addi r3, r1, 8
 /* 80265BDC  48 00 91 1D */	bl ClearForMinMax__8cM3dGAabFv
@@ -66,8 +66,8 @@ lbl_80265C90:
 /* 80265C9C  7C 1F 02 14 */	add r0, r31, r0
 /* 80265CA0  7C 1D 00 40 */	cmplw r29, r0
 /* 80265CA4  41 80 FF B0 */	blt lbl_80265C54
-/* 80265CA8  3C 60 80 3A */	lis r3, __vt__8cM3dGAab@ha
-/* 80265CAC  38 03 72 18 */	addi r0, r3, __vt__8cM3dGAab@l
+/* 80265CA8  3C 60 80 3A */	lis r3, __vt__8cM3dGAab@ha /* 0x803A7218@ha */
+/* 80265CAC  38 03 72 18 */	addi r0, r3, __vt__8cM3dGAab@l /* 0x803A7218@l */
 /* 80265CB0  90 01 00 20 */	stw r0, 0x20(r1)
 /* 80265CB4  39 61 00 40 */	addi r11, r1, 0x40
 /* 80265CB8  48 0F C5 71 */	bl _restgpr_29

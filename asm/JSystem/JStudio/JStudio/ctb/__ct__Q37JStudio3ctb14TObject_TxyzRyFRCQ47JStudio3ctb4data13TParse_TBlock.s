@@ -12,14 +12,14 @@ lbl_80280F60:
 lbl_80280F88:
 /* 80280F88  90 03 00 00 */	stw r0, 0(r3)
 /* 80280F8C  90 83 00 04 */	stw r4, 4(r3)
-/* 80280F90  3C 80 80 3C */	lis r4, __vt__Q37JStudio3ctb7TObject@ha
-/* 80280F94  38 04 48 D0 */	addi r0, r4, __vt__Q37JStudio3ctb7TObject@l
+/* 80280F90  3C 80 80 3C */	lis r4, __vt__Q37JStudio3ctb7TObject@ha /* 0x803C48D0@ha */
+/* 80280F94  38 04 48 D0 */	addi r0, r4, __vt__Q37JStudio3ctb7TObject@l /* 0x803C48D0@l */
 /* 80280F98  90 03 00 08 */	stw r0, 8(r3)
 /* 80280F9C  38 00 00 00 */	li r0, 0
 /* 80280FA0  90 03 00 0C */	stw r0, 0xc(r3)
 /* 80280FA4  90 03 00 10 */	stw r0, 0x10(r3)
 /* 80280FA8  90 A3 00 14 */	stw r5, 0x14(r3)
-/* 80280FAC  3C 80 80 3C */	lis r4, __vt__Q37JStudio3ctb14TObject_TxyzRy@ha
-/* 80280FB0  38 04 48 C0 */	addi r0, r4, __vt__Q37JStudio3ctb14TObject_TxyzRy@l
+/* 80280FAC  3C 80 80 3C */	lis r4, __vt__Q37JStudio3ctb14TObject_TxyzRy@ha /* 0x803C48C0@ha */
+/* 80280FB0  38 04 48 C0 */	addi r0, r4, __vt__Q37JStudio3ctb14TObject_TxyzRy@l /* 0x803C48C0@l */
 /* 80280FB4  90 03 00 08 */	stw r0, 8(r3)
 /* 80280FB8  4E 80 00 20 */	blr 

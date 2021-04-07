@@ -41,31 +41,31 @@ extern "C" extern u8 __CARDBlock[544];
 // Declarations:
 //
 
-/* 80358108-80358238 0130+00 s=1 e=0 z=0  None .text      CreateCallbackFat */
+/* 80358108-80358238 352A48 0130+00 1/1 0/0 0/0 .text            CreateCallbackFat */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void CreateCallbackFat() {
+static asm void CreateCallbackFat() {
     nofralloc
 #include "asm/dolphin/card/CARDCreate/CreateCallbackFat.s"
 }
 #pragma pop
 
-/* 80358238-80358458 0220+00 s=1 e=0 z=0  None .text      CARDCreateAsync */
+/* 80358238-80358458 352B78 0220+00 1/1 0/0 0/0 .text            CARDCreateAsync */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void CARDCreateAsync() {
+static asm void CARDCreateAsync() {
     nofralloc
 #include "asm/dolphin/card/CARDCreate/CARDCreateAsync.s"
 }
 #pragma pop
 
-/* 80358458-803584A0 0048+00 s=0 e=1 z=0  None .text      CARDCreate */
+/* 80358458-803584A0 352D98 0048+00 0/0 1/1 0/0 .text            CARDCreate */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void CARDCreate() {
+asm void CARDCreate() {
     nofralloc
 #include "asm/dolphin/card/CARDCreate/CARDCreate.s"
 }

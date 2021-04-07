@@ -3,19 +3,20 @@
 #
 
 M588_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_onsenTaru.plf
+M588_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_onsenTaru.lcf
+M588_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_onsenTaru.map
 
 M588_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_onsenTaru/executor.cpp \
-	rel/d/a/obj/d_a_obj_onsenTaru/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_onsenTaru/d_a_obj_onsenTaru.cpp \
 
 M588_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_onsenTaru/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_onsenTaru/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_onsenTaru/d_a_obj_onsenTaru.o \
 
 M588_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_onsenTaru/libRuntime.PPCEABI.H.a \
 
 M588_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M588_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M588_LDSCRIPT) \
+	-unused -map $(M588_MAP) \
+	-w off \
 
 $(M588_TARGET): $(M588_O_FILES) $(M588_LIBS)
+	@echo [588] creating $(M588_TARGET)
 	@echo $(M588_LIBS) $(M588_O_FILES) > build/M588_ofiles
-	$(LD) -partial $(M588_LDFLAGS) -o $(M588_TARGET) @build/M588_ofiles
+	@python3 tools/lcf.py rel 588 --output $(M588_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M588_LDFLAGS) -o $(M588_TARGET) @build/M588_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_onsenTaru/%.o: rel/d/a/obj/d_a_obj_onsenTaru/%.cpp
+	@echo [588] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M588_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M588_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_onsenTaru/libs/Runtime.PPCEABI.H/Makefile
 

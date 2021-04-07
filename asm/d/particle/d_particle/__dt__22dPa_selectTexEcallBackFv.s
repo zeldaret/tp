@@ -7,12 +7,12 @@ lbl_8004FF8C:
 /* 8004FFA0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8004FFA4  7C 9F 23 78 */	mr r31, r4
 /* 8004FFA8  41 82 00 4C */	beq lbl_8004FFF4
-/* 8004FFAC  3C 80 80 3B */	lis r4, __vt__22dPa_selectTexEcallBack@ha
-/* 8004FFB0  38 04 84 64 */	addi r0, r4, __vt__22dPa_selectTexEcallBack@l
+/* 8004FFAC  3C 80 80 3B */	lis r4, __vt__22dPa_selectTexEcallBack@ha /* 0x803A8464@ha */
+/* 8004FFB0  38 04 84 64 */	addi r0, r4, __vt__22dPa_selectTexEcallBack@l /* 0x803A8464@l */
 /* 8004FFB4  90 1E 00 00 */	stw r0, 0(r30)
 /* 8004FFB8  41 82 00 2C */	beq lbl_8004FFE4
-/* 8004FFBC  3C 80 80 3B */	lis r4, __vt__18dPa_levelEcallBack@ha
-/* 8004FFC0  38 04 85 54 */	addi r0, r4, __vt__18dPa_levelEcallBack@l
+/* 8004FFBC  3C 80 80 3B */	lis r4, __vt__18dPa_levelEcallBack@ha /* 0x803A8554@ha */
+/* 8004FFC0  38 04 85 54 */	addi r0, r4, __vt__18dPa_levelEcallBack@l /* 0x803A8554@l */
 /* 8004FFC4  90 1E 00 00 */	stw r0, 0(r30)
 /* 8004FFC8  81 83 00 00 */	lwz r12, 0(r3)
 /* 8004FFCC  81 8C 00 20 */	lwz r12, 0x20(r12)

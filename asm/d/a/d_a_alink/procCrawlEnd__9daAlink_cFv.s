@@ -28,8 +28,8 @@ lbl_800F9F30:
 /* 800F9F98  48 00 00 28 */	b lbl_800F9FC0
 lbl_800F9F9C:
 /* 800F9F9C  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 800F9FA0  3C 60 80 39 */	lis r3, m__20daAlinkHIO_crouch_c0@ha
-/* 800F9FA4  38 63 E0 1C */	addi r3, r3, m__20daAlinkHIO_crouch_c0@l
+/* 800F9FA0  3C 60 80 39 */	lis r3, m__20daAlinkHIO_crouch_c0@ha /* 0x8038E01C@ha */
+/* 800F9FA4  38 63 E0 1C */	addi r3, r3, m__20daAlinkHIO_crouch_c0@l /* 0x8038E01C@l */
 /* 800F9FA8  C0 03 00 24 */	lfs f0, 0x24(r3)
 /* 800F9FAC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800F9FB0  40 80 00 10 */	bge lbl_800F9FC0

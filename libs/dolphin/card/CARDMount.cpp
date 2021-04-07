@@ -64,104 +64,104 @@ extern "C" extern u8 struct_80450A70[8];
 //
 
 /* ############################################################################################## */
-/* 803D2000-803D2020 0020+00 s=3 e=0 z=0  None .data      SectorSizeTable */
+/* 803D2000-803D2020 02F120 0020+00 3/3 0/0 0/0 .data            SectorSizeTable */
 SECTION_DATA static u8 SectorSizeTable[32] = {
     0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x80, 0x00, 0x00, 0x01, 0x00, 0x00,
     0x00, 0x02, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80356948-80356A14 00CC+00 s=2 e=0 z=0  None .text      IsCard */
+/* 80356948-80356A14 351288 00CC+00 2/2 0/0 0/0 .text            IsCard */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void IsCard() {
+static asm void IsCard() {
     nofralloc
 #include "asm/dolphin/card/CARDMount/IsCard.s"
 }
 #pragma pop
 
-/* 80356A14-80356A4C 0038+00 s=0 e=1 z=0  None .text      CARDProbe */
+/* 80356A14-80356A4C 351354 0038+00 0/0 1/1 0/0 .text            CARDProbe */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void CARDProbe() {
+asm void CARDProbe() {
     nofralloc
 #include "asm/dolphin/card/CARDMount/CARDProbe.s"
 }
 #pragma pop
 
-/* 80356A4C-80356BC8 017C+00 s=0 e=1 z=0  None .text      CARDProbeEx */
+/* 80356A4C-80356BC8 35138C 017C+00 0/0 1/1 0/0 .text            CARDProbeEx */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void CARDProbeEx() {
+asm void CARDProbeEx() {
     nofralloc
 #include "asm/dolphin/card/CARDMount/CARDProbeEx.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803D2020-803D2040 0020+00 s=1 e=0 z=0  None .data      LatencyTable */
+/* 803D2020-803D2040 02F140 0020+00 1/1 0/0 0/0 .data            LatencyTable */
 SECTION_DATA static u8 LatencyTable[32] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x20,
     0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x80, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00,
 };
 
-/* 80356BC8-8035701C 0454+00 s=2 e=0 z=0  None .text      DoMount */
+/* 80356BC8-8035701C 351508 0454+00 2/2 0/0 0/0 .text            DoMount */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void DoMount() {
+static asm void DoMount() {
     nofralloc
 #include "asm/dolphin/card/CARDMount/DoMount.s"
 }
 #pragma pop
 
-/* 8035701C-80357154 0138+00 s=2 e=1 z=0  None .text      __CARDMountCallback */
+/* 8035701C-80357154 35195C 0138+00 2/2 1/1 0/0 .text            __CARDMountCallback */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __CARDMountCallback() {
+asm void __CARDMountCallback() {
     nofralloc
 #include "asm/dolphin/card/CARDMount/__CARDMountCallback.s"
 }
 #pragma pop
 
-/* 80357154-803572F4 01A0+00 s=1 e=0 z=0  None .text      CARDMountAsync */
+/* 80357154-803572F4 351A94 01A0+00 1/1 0/0 0/0 .text            CARDMountAsync */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void CARDMountAsync() {
+static asm void CARDMountAsync() {
     nofralloc
 #include "asm/dolphin/card/CARDMount/CARDMountAsync.s"
 }
 #pragma pop
 
-/* 803572F4-8035733C 0048+00 s=0 e=1 z=0  None .text      CARDMount */
+/* 803572F4-8035733C 351C34 0048+00 0/0 1/1 0/0 .text            CARDMount */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void CARDMount() {
+asm void CARDMount() {
     nofralloc
 #include "asm/dolphin/card/CARDMount/CARDMount.s"
 }
 #pragma pop
 
-/* 8035733C-803573D8 009C+00 s=2 e=0 z=0  None .text      DoUnmount */
+/* 8035733C-803573D8 351C7C 009C+00 2/2 0/0 0/0 .text            DoUnmount */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void DoUnmount() {
+static asm void DoUnmount() {
     nofralloc
 #include "asm/dolphin/card/CARDMount/DoUnmount.s"
 }
 #pragma pop
 
-/* 803573D8-80357484 00AC+00 s=0 e=2 z=0  None .text      CARDUnmount */
+/* 803573D8-80357484 351D18 00AC+00 0/0 2/2 0/0 .text            CARDUnmount */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void CARDUnmount() {
+asm void CARDUnmount() {
     nofralloc
 #include "asm/dolphin/card/CARDMount/CARDUnmount.s"
 }

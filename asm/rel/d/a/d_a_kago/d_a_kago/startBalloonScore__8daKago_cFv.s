@@ -12,7 +12,7 @@ lbl_8084AFB0:
 /* 8084AFD8  40 82 00 38 */	bne lbl_8084B010
 /* 8084AFDC  80 7F 06 1C */	lwz r3, 0x61c(r31)
 /* 8084AFE0  38 81 00 08 */	addi r4, r1, 8
-/* 8084AFE4  4B 7C E9 D8 */	b fopAcM_SearchByID__FUiPP10fopAc_ac_c
+/* 8084AFE4  4B 7C E9 D9 */	bl fopAcM_SearchByID__FUiPP10fopAc_ac_c
 /* 8084AFE8  80 61 00 08 */	lwz r3, 8(r1)
 /* 8084AFEC  28 03 00 00 */	cmplwi r3, 0
 /* 8084AFF0  41 82 00 20 */	beq lbl_8084B010
@@ -20,7 +20,7 @@ lbl_8084AFB0:
 /* 8084AFF8  98 03 07 46 */	stb r0, 0x746(r3)
 /* 8084AFFC  80 61 00 08 */	lwz r3, 8(r1)
 /* 8084B000  38 80 00 00 */	li r4, 0
-/* 8084B004  4B E0 8F BC */	b setScoreCount__13daBalloon2D_cFUl
+/* 8084B004  4B E0 8F BD */	bl setScoreCount__13daBalloon2D_cFUl
 /* 8084B008  38 00 00 02 */	li r0, 2
 /* 8084B00C  98 1F 06 E9 */	stb r0, 0x6e9(r31)
 lbl_8084B010:

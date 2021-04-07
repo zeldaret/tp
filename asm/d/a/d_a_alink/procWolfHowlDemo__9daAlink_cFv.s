@@ -9,8 +9,8 @@ lbl_80130BC4:
 /* 80130BE0  7C 7F 1B 78 */	mr r31, r3
 /* 80130BE4  3B BF 1F D0 */	addi r29, r31, 0x1fd0
 /* 80130BE8  83 83 28 10 */	lwz r28, 0x2810(r3)
-/* 80130BEC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80130BF0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80130BEC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80130BF0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80130BF4  3B C3 4E C8 */	addi r30, r3, 0x4ec8
 /* 80130BF8  A0 03 4F A2 */	lhz r0, 0x4fa2(r3)
 /* 80130BFC  54 03 07 38 */	rlwinm r3, r0, 0, 0x1c, 0x1c
@@ -91,8 +91,8 @@ lbl_80130CC8:
 lbl_80130D10:
 /* 80130D10  7F E3 FB 78 */	mr r3, r31
 /* 80130D14  38 80 00 0E */	li r4, 0xe
-/* 80130D18  3C A0 80 39 */	lis r5, m__19daAlinkHIO_wlLie_c0@ha
-/* 80130D1C  38 A5 F1 38 */	addi r5, r5, m__19daAlinkHIO_wlLie_c0@l
+/* 80130D18  3C A0 80 39 */	lis r5, m__19daAlinkHIO_wlLie_c0@ha /* 0x8038F138@ha */
+/* 80130D1C  38 A5 F1 38 */	addi r5, r5, m__19daAlinkHIO_wlLie_c0@l /* 0x8038F138@l */
 /* 80130D20  C0 25 00 44 */	lfs f1, 0x44(r5)
 /* 80130D24  C0 45 00 48 */	lfs f2, 0x48(r5)
 /* 80130D28  4B FF 89 B1 */	bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
@@ -109,8 +109,8 @@ lbl_80130D38:
 /* 80130D4C  D0 1F 34 7C */	stfs f0, 0x347c(r31)
 /* 80130D50  48 00 05 54 */	b lbl_801312A4
 lbl_80130D54:
-/* 80130D54  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 80130D58  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 80130D54  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 80130D58  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 80130D5C  80 03 00 30 */	lwz r0, 0x30(r3)
 /* 80130D60  54 1A C7 FE */	rlwinm r26, r0, 0x18, 0x1f, 0x1f
 /* 80130D64  A8 1F 30 10 */	lha r0, 0x3010(r31)
@@ -130,8 +130,8 @@ lbl_80130D80:
 /* 80130D98  40 82 01 B8 */	bne lbl_80130F50
 /* 80130D9C  7F C3 F3 78 */	mr r3, r30
 /* 80130DA0  7F E4 FB 78 */	mr r4, r31
-/* 80130DA4  3C A0 80 04 */	lis r5, dEv_noFinishSkipProc__FPvi@ha
-/* 80130DA8  38 A5 28 DC */	addi r5, r5, dEv_noFinishSkipProc__FPvi@l
+/* 80130DA4  3C A0 80 04 */	lis r5, dEv_noFinishSkipProc__FPvi@ha /* 0x800428DC@ha */
+/* 80130DA8  38 A5 28 DC */	addi r5, r5, dEv_noFinishSkipProc__FPvi@l /* 0x800428DC@l */
 /* 80130DAC  38 C0 00 00 */	li r6, 0
 /* 80130DB0  4B F1 1B 65 */	bl setSkipProc__14dEvt_control_cFPvPFPvi_ii
 /* 80130DB4  48 00 01 9C */	b lbl_80130F50
@@ -145,8 +145,8 @@ lbl_80130DB8:
 /* 80130DD0  40 82 01 80 */	bne lbl_80130F50
 /* 80130DD4  7F C3 F3 78 */	mr r3, r30
 /* 80130DD8  7F E4 FB 78 */	mr r4, r31
-/* 80130DDC  3C A0 80 04 */	lis r5, dEv_noFinishSkipProc__FPvi@ha
-/* 80130DE0  38 A5 28 DC */	addi r5, r5, dEv_noFinishSkipProc__FPvi@l
+/* 80130DDC  3C A0 80 04 */	lis r5, dEv_noFinishSkipProc__FPvi@ha /* 0x800428DC@ha */
+/* 80130DE0  38 A5 28 DC */	addi r5, r5, dEv_noFinishSkipProc__FPvi@l /* 0x800428DC@l */
 /* 80130DE4  38 C0 00 00 */	li r6, 0
 /* 80130DE8  4B F1 1B 2D */	bl setSkipProc__14dEvt_control_cFPvPFPvi_ii
 /* 80130DEC  48 00 01 64 */	b lbl_80130F50
@@ -173,8 +173,8 @@ lbl_80130E30:
 /* 80130E34  B0 1F 30 0A */	sth r0, 0x300a(r31)
 /* 80130E38  7F E3 FB 78 */	mr r3, r31
 /* 80130E3C  38 80 00 5D */	li r4, 0x5d
-/* 80130E40  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlHowl_c0@ha
-/* 80130E44  38 A5 F0 48 */	addi r5, r5, m__20daAlinkHIO_wlHowl_c0@l
+/* 80130E40  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlHowl_c0@ha /* 0x8038F048@ha */
+/* 80130E44  38 A5 F0 48 */	addi r5, r5, m__20daAlinkHIO_wlHowl_c0@l /* 0x8038F048@l */
 /* 80130E48  38 A5 00 14 */	addi r5, r5, 0x14
 /* 80130E4C  4B FF 89 FD */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 80130E50  48 00 01 00 */	b lbl_80130F50
@@ -242,15 +242,15 @@ lbl_80130F24:
 /* 80130F30  41 82 00 20 */	beq lbl_80130F50
 /* 80130F34  7F E3 FB 78 */	mr r3, r31
 /* 80130F38  38 80 00 0E */	li r4, 0xe
-/* 80130F3C  3C A0 80 39 */	lis r5, m__19daAlinkHIO_wlLie_c0@ha
-/* 80130F40  38 A5 F1 38 */	addi r5, r5, m__19daAlinkHIO_wlLie_c0@l
+/* 80130F3C  3C A0 80 39 */	lis r5, m__19daAlinkHIO_wlLie_c0@ha /* 0x8038F138@ha */
+/* 80130F40  38 A5 F1 38 */	addi r5, r5, m__19daAlinkHIO_wlLie_c0@l /* 0x8038F138@l */
 /* 80130F44  C0 25 00 44 */	lfs f1, 0x44(r5)
 /* 80130F48  C0 45 00 48 */	lfs f2, 0x48(r5)
 /* 80130F4C  4B FF 87 8D */	bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 lbl_80130F50:
 /* 80130F50  AB 3F 30 0E */	lha r25, 0x300e(r31)
-/* 80130F54  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 80130F58  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 80130F54  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 80130F58  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 80130F5C  C3 E3 00 04 */	lfs f31, 4(r3)
 /* 80130F60  38 7F 2D 84 */	addi r3, r31, 0x2d84
 /* 80130F64  C0 22 92 C0 */	lfs f1, lit_6108(r2)
@@ -298,8 +298,8 @@ lbl_80130FF8:
 /* 80130FFC  90 01 00 08 */	stw r0, 8(r1)
 /* 80131000  28 1C 00 00 */	cmplwi r28, 0
 /* 80131004  40 82 00 18 */	bne lbl_8013101C
-/* 80131008  3C 60 80 13 */	lis r3, daAlink_searchWolfHowl__FP10fopAc_ac_cPv@ha
-/* 8013100C  38 63 05 80 */	addi r3, r3, daAlink_searchWolfHowl__FP10fopAc_ac_cPv@l
+/* 80131008  3C 60 80 13 */	lis r3, daAlink_searchWolfHowl__FP10fopAc_ac_cPv@ha /* 0x80130580@ha */
+/* 8013100C  38 63 05 80 */	addi r3, r3, daAlink_searchWolfHowl__FP10fopAc_ac_cPv@l /* 0x80130580@l */
 /* 80131010  38 81 00 08 */	addi r4, r1, 8
 /* 80131014  4B EE 87 A9 */	bl fopAcIt_Executor__FPFPvPv_iPv
 /* 80131018  48 00 00 08 */	b lbl_80131020
@@ -474,8 +474,8 @@ lbl_80131264:
 lbl_80131274:
 /* 80131274  7F C3 F3 78 */	mr r3, r30
 /* 80131278  7F E4 FB 78 */	mr r4, r31
-/* 8013127C  3C A0 80 04 */	lis r5, dEv_noFinishSkipProc__FPvi@ha
-/* 80131280  38 A5 28 DC */	addi r5, r5, dEv_noFinishSkipProc__FPvi@l
+/* 8013127C  3C A0 80 04 */	lis r5, dEv_noFinishSkipProc__FPvi@ha /* 0x800428DC@ha */
+/* 80131280  38 A5 28 DC */	addi r5, r5, dEv_noFinishSkipProc__FPvi@l /* 0x800428DC@l */
 /* 80131284  38 C0 00 00 */	li r6, 0
 /* 80131288  4B F1 16 8D */	bl setSkipProc__14dEvt_control_cFPvPFPvi_ii
 lbl_8013128C:

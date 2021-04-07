@@ -7,8 +7,8 @@ lbl_801C4D98:
 /* 801C4DAC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801C4DB0  7C 9F 23 78 */	mr r31, r4
 /* 801C4DB4  41 82 02 7C */	beq lbl_801C5030
-/* 801C4DB8  3C 60 80 3C */	lis r3, __vt__15dMenu_Fishing_c@ha
-/* 801C4DBC  38 03 D0 74 */	addi r0, r3, __vt__15dMenu_Fishing_c@l
+/* 801C4DB8  3C 60 80 3C */	lis r3, __vt__15dMenu_Fishing_c@ha /* 0x803BD074@ha */
+/* 801C4DBC  38 03 D0 74 */	addi r0, r3, __vt__15dMenu_Fishing_c@l /* 0x803BD074@l */
 /* 801C4DC0  90 1E 00 00 */	stw r0, 0(r30)
 /* 801C4DC4  80 7E 01 F4 */	lwz r3, 0x1f4(r30)
 /* 801C4DC8  38 80 00 01 */	li r4, 1

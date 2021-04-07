@@ -7,7 +7,7 @@ lbl_8045FBF8:
 /* 8045FC0C  7C 7E 1B 78 */	mr r30, r3
 /* 8045FC10  7C 9F 23 78 */	mr r31, r4
 /* 8045FC14  38 7E 05 7C */	addi r3, r30, 0x57c
-/* 8045FC18  4B BA D8 10 */	b play__14mDoExt_baseAnmFv
+/* 8045FC18  4B BA D8 11 */	bl play__14mDoExt_baseAnmFv
 /* 8045FC1C  2C 03 00 00 */	cmpwi r3, 0
 /* 8045FC20  41 82 00 0C */	beq lbl_8045FC2C
 /* 8045FC24  38 60 00 01 */	li r3, 1
@@ -19,13 +19,13 @@ lbl_8045FC2C:
 /* 8045FC38  40 82 00 50 */	bne lbl_8045FC88
 lbl_8045FC3C:
 /* 8045FC3C  38 7E 05 7C */	addi r3, r30, 0x57c
-/* 8045FC40  3C 80 80 46 */	lis r4, lit_4377@ha
-/* 8045FC44  C0 24 06 B8 */	lfs f1, lit_4377@l(r4)
-/* 8045FC48  4B EC 87 E4 */	b checkPass__12J3DFrameCtrlFf
+/* 8045FC40  3C 80 80 46 */	lis r4, lit_4377@ha /* 0x804606B8@ha */
+/* 8045FC44  C0 24 06 B8 */	lfs f1, lit_4377@l(r4)  /* 0x804606B8@l */
+/* 8045FC48  4B EC 87 E5 */	bl checkPass__12J3DFrameCtrlFf
 /* 8045FC4C  2C 03 00 00 */	cmpwi r3, 0
 /* 8045FC50  41 82 00 38 */	beq lbl_8045FC88
-/* 8045FC54  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8045FC58  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8045FC54  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8045FC58  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8045FC5C  83 E3 5D AC */	lwz r31, 0x5dac(r3)
 /* 8045FC60  7F C3 F3 78 */	mr r3, r30
 /* 8045FC64  4B FF EC 19 */	bl getExitNo__12knob_param_cFP10fopAc_ac_c

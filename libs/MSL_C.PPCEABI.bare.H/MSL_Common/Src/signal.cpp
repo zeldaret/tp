@@ -26,14 +26,14 @@ extern "C" void __begin_critical_region();
 //
 
 /* ############################################################################################## */
-/* 8044D878-8044D890 0018+00 s=1 e=0 z=0  None .bss       signal_funcs */
+/* 8044D878-8044D890 07A598 0018+00 1/1 0/0 0/0 .bss             signal_funcs */
 static u8 signal_funcs[24];
 
-/* 8036881C-803688DC 00C0+00 s=0 e=1 z=0  None .text      raise */
+/* 8036881C-803688DC 36315C 00C0+00 0/0 1/1 0/0 .text            raise */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void raise() {
+asm void raise() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/signal/raise.s"
 }

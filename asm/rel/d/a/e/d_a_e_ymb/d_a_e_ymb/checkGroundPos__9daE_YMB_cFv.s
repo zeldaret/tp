@@ -10,23 +10,23 @@ lbl_80817164:
 /* 80817184  D0 21 00 0C */	stfs f1, 0xc(r1)
 /* 80817188  C0 03 04 D8 */	lfs f0, 0x4d8(r3)
 /* 8081718C  D0 01 00 10 */	stfs f0, 0x10(r1)
-/* 80817190  3C 60 80 82 */	lis r3, lit_4304@ha
-/* 80817194  C0 03 19 14 */	lfs f0, lit_4304@l(r3)
+/* 80817190  3C 60 80 82 */	lis r3, lit_4304@ha /* 0x80821914@ha */
+/* 80817194  C0 03 19 14 */	lfs f0, lit_4304@l(r3)  /* 0x80821914@l */
 /* 80817198  EC 01 00 2A */	fadds f0, f1, f0
 /* 8081719C  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 808171A0  C0 1F 06 CC */	lfs f0, 0x6cc(r31)
 /* 808171A4  D0 1F 06 D0 */	stfs f0, 0x6d0(r31)
 /* 808171A8  38 7F 07 9C */	addi r3, r31, 0x79c
 /* 808171AC  38 81 00 08 */	addi r4, r1, 8
-/* 808171B0  4B A5 0B 78 */	b SetPos__11cBgS_GndChkFPC4cXyz
-/* 808171B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 808171B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 808171B0  4B A5 0B 79 */	bl SetPos__11cBgS_GndChkFPC4cXyz
+/* 808171B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 808171B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 808171BC  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 808171C0  38 9F 07 9C */	addi r4, r31, 0x79c
-/* 808171C4  4B 85 D2 DC */	b GroundCross__4cBgSFP11cBgS_GndChk
+/* 808171C4  4B 85 D2 DD */	bl GroundCross__4cBgSFP11cBgS_GndChk
 /* 808171C8  D0 3F 06 D4 */	stfs f1, 0x6d4(r31)
-/* 808171CC  3C 60 80 82 */	lis r3, lit_4290@ha
-/* 808171D0  C0 03 19 0C */	lfs f0, lit_4290@l(r3)
+/* 808171CC  3C 60 80 82 */	lis r3, lit_4290@ha /* 0x8082190C@ha */
+/* 808171D0  C0 03 19 0C */	lfs f0, lit_4290@l(r3)  /* 0x8082190C@l */
 /* 808171D4  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 808171D8  41 82 00 14 */	beq lbl_808171EC
 /* 808171DC  C0 1F 06 D0 */	lfs f0, 0x6d0(r31)

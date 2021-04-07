@@ -5,8 +5,8 @@ lbl_801AED64:
 /* 801AED70  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801AED74  7C 7F 1B 79 */	or. r31, r3, r3
 /* 801AED78  41 82 00 1C */	beq lbl_801AED94
-/* 801AED7C  3C A0 80 3C */	lis r5, __vt__19dMenu_Calibration_c@ha
-/* 801AED80  38 05 C3 64 */	addi r0, r5, __vt__19dMenu_Calibration_c@l
+/* 801AED7C  3C A0 80 3C */	lis r5, __vt__19dMenu_Calibration_c@ha /* 0x803BC364@ha */
+/* 801AED80  38 05 C3 64 */	addi r0, r5, __vt__19dMenu_Calibration_c@l /* 0x803BC364@l */
 /* 801AED84  90 1F 00 00 */	stw r0, 0(r31)
 /* 801AED88  7C 80 07 35 */	extsh. r0, r4
 /* 801AED8C  40 81 00 08 */	ble lbl_801AED94

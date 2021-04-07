@@ -4,15 +4,15 @@ lbl_8028B198:
 /* 8028B1A0  90 01 01 04 */	stw r0, 0x104(r1)
 /* 8028B1A4  39 61 01 00 */	addi r11, r1, 0x100
 /* 8028B1A8  48 0D 70 2D */	bl _savegpr_27
-/* 8028B1AC  3C 60 80 3C */	lis r3, lit_890@ha
-/* 8028B1B0  3B C3 57 30 */	addi r30, r3, lit_890@l
-/* 8028B1B4  3C 60 80 43 */	lis r3, lit_1087@ha
-/* 8028B1B8  3B E3 11 88 */	addi r31, r3, lit_1087@l
-/* 8028B1BC  3C 60 80 3C */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
-/* 8028B1C0  39 43 56 40 */	addi r10, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
+/* 8028B1AC  3C 60 80 3C */	lis r3, lit_890@ha /* 0x803C5730@ha */
+/* 8028B1B0  3B C3 57 30 */	addi r30, r3, lit_890@l /* 0x803C5730@l */
+/* 8028B1B4  3C 60 80 43 */	lis r3, lit_1087@ha /* 0x80431188@ha */
+/* 8028B1B8  3B E3 11 88 */	addi r31, r3, lit_1087@l /* 0x80431188@l */
+/* 8028B1BC  3C 60 80 3C */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha /* 0x803C5640@ha */
+/* 8028B1C0  39 43 56 40 */	addi r10, r3, __vt__Q37JStudio14TVariableValue7TOutput@l /* 0x803C5640@l */
 /* 8028B1C4  91 41 00 34 */	stw r10, 0x34(r1)
-/* 8028B1C8  3C 60 80 3C */	lis r3, data_803C5864@ha
-/* 8028B1CC  38 63 58 64 */	addi r3, r3, data_803C5864@l
+/* 8028B1C8  3C 60 80 3C */	lis r3, data_803C5864@ha /* 0x803C5864@ha */
+/* 8028B1CC  38 63 58 64 */	addi r3, r3, data_803C5864@l /* 0x803C5864@l */
 /* 8028B1D0  90 61 00 34 */	stw r3, 0x34(r1)
 /* 8028B1D4  39 20 00 01 */	li r9, 1
 /* 8028B1D8  91 21 00 38 */	stw r9, 0x38(r1)
@@ -38,26 +38,26 @@ lbl_8028B198:
 /* 8028B228  90 A3 00 14 */	stw r5, 0x14(r3)
 /* 8028B22C  90 83 00 18 */	stw r4, 0x18(r3)
 /* 8028B230  90 03 00 1C */	stw r0, 0x1c(r3)
-/* 8028B234  3C 80 80 29 */	lis r4, func_8028B580@ha
-/* 8028B238  38 84 B5 80 */	addi r4, r4, func_8028B580@l
+/* 8028B234  3C 80 80 29 */	lis r4, func_8028B580@ha /* 0x8028B580@ha */
+/* 8028B238  38 84 B5 80 */	addi r4, r4, func_8028B580@l /* 0x8028B580@l */
 /* 8028B23C  38 BF 00 00 */	addi r5, r31, 0
 /* 8028B240  48 0D 69 E5 */	bl __register_global_object
-/* 8028B244  3C 60 80 3C */	lis r3, data_803C5864@ha
-/* 8028B248  38 03 58 64 */	addi r0, r3, data_803C5864@l
+/* 8028B244  3C 60 80 3C */	lis r3, data_803C5864@ha /* 0x803C5864@ha */
+/* 8028B248  38 03 58 64 */	addi r0, r3, data_803C5864@l /* 0x803C5864@l */
 /* 8028B24C  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8028B250  38 61 00 34 */	addi r3, r1, 0x34
 /* 8028B254  38 80 00 00 */	li r4, 0
 /* 8028B258  4B FF AB B5 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
-/* 8028B25C  3C 60 80 3C */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
-/* 8028B260  39 03 56 40 */	addi r8, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
+/* 8028B25C  3C 60 80 3C */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha /* 0x803C5640@ha */
+/* 8028B260  39 03 56 40 */	addi r8, r3, __vt__Q37JStudio14TVariableValue7TOutput@l /* 0x803C5640@l */
 /* 8028B264  91 01 00 14 */	stw r8, 0x14(r1)
-/* 8028B268  3C 60 80 3C */	lis r3, data_803C5864@ha
-/* 8028B26C  38 E3 58 64 */	addi r7, r3, data_803C5864@l
+/* 8028B268  3C 60 80 3C */	lis r3, data_803C5864@ha /* 0x803C5864@ha */
+/* 8028B26C  38 E3 58 64 */	addi r7, r3, data_803C5864@l /* 0x803C5864@l */
 /* 8028B270  90 E1 00 14 */	stw r7, 0x14(r1)
 /* 8028B274  38 C0 FF FF */	li r6, -1
 /* 8028B278  90 C1 00 18 */	stw r6, 0x18(r1)
-/* 8028B27C  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 8028B280  84 A3 21 80 */	lwzu r5, __ptmf_null@l(r3)
+/* 8028B27C  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 8028B280  84 A3 21 80 */	lwzu r5, __ptmf_null@l(r3)  /* 0x803A2180@l */
 /* 8028B284  80 83 00 04 */	lwz r4, 4(r3)
 /* 8028B288  90 A1 00 1C */	stw r5, 0x1c(r1)
 /* 8028B28C  90 81 00 20 */	stw r4, 0x20(r1)
@@ -77,18 +77,18 @@ lbl_8028B198:
 /* 8028B2C4  90 83 00 38 */	stw r4, 0x38(r3)
 /* 8028B2C8  90 03 00 3C */	stw r0, 0x3c(r3)
 /* 8028B2CC  38 63 00 20 */	addi r3, r3, 0x20
-/* 8028B2D0  3C 80 80 29 */	lis r4, func_8028B580@ha
-/* 8028B2D4  38 84 B5 80 */	addi r4, r4, func_8028B580@l
+/* 8028B2D0  3C 80 80 29 */	lis r4, func_8028B580@ha /* 0x8028B580@ha */
+/* 8028B2D4  38 84 B5 80 */	addi r4, r4, func_8028B580@l /* 0x8028B580@l */
 /* 8028B2D8  38 BF 00 0C */	addi r5, r31, 0xc
 /* 8028B2DC  48 0D 69 49 */	bl __register_global_object
-/* 8028B2E0  3C 60 80 3C */	lis r3, data_803C5864@ha
-/* 8028B2E4  38 03 58 64 */	addi r0, r3, data_803C5864@l
+/* 8028B2E0  3C 60 80 3C */	lis r3, data_803C5864@ha /* 0x803C5864@ha */
+/* 8028B2E4  38 03 58 64 */	addi r0, r3, data_803C5864@l /* 0x803C5864@l */
 /* 8028B2E8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8028B2EC  38 61 00 14 */	addi r3, r1, 0x14
 /* 8028B2F0  38 80 00 00 */	li r4, 0
 /* 8028B2F4  4B FF AB 19 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
-/* 8028B2F8  3C 60 80 3C */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
-/* 8028B2FC  3B 83 56 40 */	addi r28, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
+/* 8028B2F8  3C 60 80 3C */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha /* 0x803C5640@ha */
+/* 8028B2FC  3B 83 56 40 */	addi r28, r3, __vt__Q37JStudio14TVariableValue7TOutput@l /* 0x803C5640@l */
 /* 8028B300  93 81 00 B4 */	stw r28, 0xb4(r1)
 /* 8028B304  38 7E 00 84 */	addi r3, r30, 0x84
 /* 8028B308  90 61 00 B4 */	stw r3, 0xb4(r1)
@@ -128,8 +128,8 @@ lbl_8028B198:
 /* 8028B390  90 A3 00 24 */	stw r5, 0x24(r3)
 /* 8028B394  90 83 00 28 */	stw r4, 0x28(r3)
 /* 8028B398  90 03 00 2C */	stw r0, 0x2c(r3)
-/* 8028B39C  3C 80 80 29 */	lis r4, __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@ha
-/* 8028B3A0  38 84 B1 38 */	addi r4, r4, __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@l
+/* 8028B39C  3C 80 80 29 */	lis r4, __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@ha /* 0x8028B138@ha */
+/* 8028B3A0  38 84 B1 38 */	addi r4, r4, __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@l /* 0x8028B138@l */
 /* 8028B3A4  38 BF 00 58 */	addi r5, r31, 0x58
 /* 8028B3A8  48 0D 68 7D */	bl __register_global_object
 /* 8028B3AC  38 1E 00 84 */	addi r0, r30, 0x84
@@ -137,8 +137,8 @@ lbl_8028B198:
 /* 8028B3B4  38 61 00 B4 */	addi r3, r1, 0xb4
 /* 8028B3B8  38 80 00 00 */	li r4, 0
 /* 8028B3BC  4B FF AA 51 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
-/* 8028B3C0  3C 60 80 3C */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
-/* 8028B3C4  3B 63 56 40 */	addi r27, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
+/* 8028B3C0  3C 60 80 3C */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha /* 0x803C5640@ha */
+/* 8028B3C4  3B 63 56 40 */	addi r27, r3, __vt__Q37JStudio14TVariableValue7TOutput@l /* 0x803C5640@l */
 /* 8028B3C8  93 61 00 84 */	stw r27, 0x84(r1)
 /* 8028B3CC  3B 9E 00 84 */	addi r28, r30, 0x84
 /* 8028B3D0  93 81 00 84 */	stw r28, 0x84(r1)
@@ -179,8 +179,8 @@ lbl_8028B198:
 /* 8028B45C  90 83 00 58 */	stw r4, 0x58(r3)
 /* 8028B460  90 03 00 5C */	stw r0, 0x5c(r3)
 /* 8028B464  38 63 00 30 */	addi r3, r3, 0x30
-/* 8028B468  3C 80 80 29 */	lis r4, __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@ha
-/* 8028B46C  38 84 B1 38 */	addi r4, r4, __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@l
+/* 8028B468  3C 80 80 29 */	lis r4, __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@ha /* 0x8028B138@ha */
+/* 8028B46C  38 84 B1 38 */	addi r4, r4, __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@l /* 0x8028B138@l */
 /* 8028B470  38 BF 00 64 */	addi r5, r31, 0x64
 /* 8028B474  48 0D 67 B1 */	bl __register_global_object
 /* 8028B478  7F 80 E3 78 */	mr r0, r28
@@ -188,8 +188,8 @@ lbl_8028B198:
 /* 8028B480  38 61 00 84 */	addi r3, r1, 0x84
 /* 8028B484  38 80 00 00 */	li r4, 0
 /* 8028B488  4B FF A9 85 */	bl __dt__Q37JStudio14TVariableValue7TOutputFv
-/* 8028B48C  3C 60 80 3C */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
-/* 8028B490  39 23 56 40 */	addi r9, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
+/* 8028B48C  3C 60 80 3C */	lis r3, __vt__Q37JStudio14TVariableValue7TOutput@ha /* 0x803C5640@ha */
+/* 8028B490  39 23 56 40 */	addi r9, r3, __vt__Q37JStudio14TVariableValue7TOutput@l /* 0x803C5640@l */
 /* 8028B494  91 21 00 54 */	stw r9, 0x54(r1)
 /* 8028B498  7F 88 E3 78 */	mr r8, r28
 /* 8028B49C  91 01 00 54 */	stw r8, 0x54(r1)
@@ -197,8 +197,8 @@ lbl_8028B198:
 /* 8028B4A4  90 E1 00 58 */	stw r7, 0x58(r1)
 /* 8028B4A8  38 C0 00 00 */	li r6, 0
 /* 8028B4AC  90 C1 00 5C */	stw r6, 0x5c(r1)
-/* 8028B4B0  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 8028B4B4  84 A3 21 80 */	lwzu r5, __ptmf_null@l(r3)
+/* 8028B4B0  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 8028B4B4  84 A3 21 80 */	lwzu r5, __ptmf_null@l(r3)  /* 0x803A2180@l */
 /* 8028B4B8  80 83 00 04 */	lwz r4, 4(r3)
 /* 8028B4BC  90 A1 00 60 */	stw r5, 0x60(r1)
 /* 8028B4C0  90 81 00 64 */	stw r4, 0x64(r1)
@@ -228,8 +228,8 @@ lbl_8028B198:
 /* 8028B520  90 83 00 88 */	stw r4, 0x88(r3)
 /* 8028B524  90 03 00 8C */	stw r0, 0x8c(r3)
 /* 8028B528  38 63 00 60 */	addi r3, r3, 0x60
-/* 8028B52C  3C 80 80 29 */	lis r4, __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@ha
-/* 8028B530  38 84 B1 38 */	addi r4, r4, __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@l
+/* 8028B52C  3C 80 80 29 */	lis r4, __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@ha /* 0x8028B138@ha */
+/* 8028B530  38 84 B1 38 */	addi r4, r4, __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@l /* 0x8028B138@l */
 /* 8028B534  38 BF 00 70 */	addi r5, r31, 0x70
 /* 8028B538  48 0D 66 ED */	bl __register_global_object
 /* 8028B53C  7F 80 E3 78 */	mr r0, r28

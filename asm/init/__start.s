@@ -39,8 +39,8 @@ lbl_800031BC:
 /* 800031E0  4B FF FF 61 */	bl __set_debug_bba
 /* 800031E4  48 00 00 14 */	b lbl_800031F8
 lbl_800031E8:
-/* 800031E8  3C C0 80 37 */	lis r6, InitMetroTRK@ha
-/* 800031EC  38 C6 15 60 */	addi r6, r6, InitMetroTRK@l
+/* 800031E8  3C C0 80 37 */	lis r6, InitMetroTRK@ha /* 0x80371560@ha */
+/* 800031EC  38 C6 15 60 */	addi r6, r6, InitMetroTRK@l /* 0x80371560@l */
 /* 800031F0  7C C8 03 A6 */	mtlr r6
 /* 800031F4  4E 80 00 21 */	blrl 
 lbl_800031F8:

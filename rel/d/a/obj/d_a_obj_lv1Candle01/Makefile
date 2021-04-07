@@ -3,19 +3,20 @@
 #
 
 M516_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv1Candle01.plf
+M516_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv1Candle01.lcf
+M516_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv1Candle01.map
 
 M516_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv1Candle01/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv1Candle01/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv1Candle01/d_a_obj_lv1Candle01.cpp \
 
 M516_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv1Candle01/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv1Candle01/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv1Candle01/d_a_obj_lv1Candle01.o \
 
 M516_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv1Candle01/libRuntime.PPCEABI.H.a \
 
 M516_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M516_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M516_LDSCRIPT) \
+	-unused -map $(M516_MAP) \
+	-w off \
 
 $(M516_TARGET): $(M516_O_FILES) $(M516_LIBS)
+	@echo [516] creating $(M516_TARGET)
 	@echo $(M516_LIBS) $(M516_O_FILES) > build/M516_ofiles
-	$(LD) -partial $(M516_LDFLAGS) -o $(M516_TARGET) @build/M516_ofiles
+	@python3 tools/lcf.py rel 516 --output $(M516_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M516_LDFLAGS) -o $(M516_TARGET) @build/M516_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv1Candle01/%.o: rel/d/a/obj/d_a_obj_lv1Candle01/%.cpp
+	@echo [516] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M516_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M516_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv1Candle01/libs/Runtime.PPCEABI.H/Makefile
 

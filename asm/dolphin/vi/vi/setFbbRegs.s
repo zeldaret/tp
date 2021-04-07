@@ -1,7 +1,7 @@
 lbl_8034CA18:
 /* 8034CA18  94 21 FF B8 */	stwu r1, -0x48(r1)
-/* 8034CA1C  3D 20 80 45 */	lis r9, regs@ha
-/* 8034CA20  39 29 CA 28 */	addi r9, r9, regs@l
+/* 8034CA1C  3D 20 80 45 */	lis r9, regs@ha /* 0x8044CA28@ha */
+/* 8034CA20  39 29 CA 28 */	addi r9, r9, regs@l /* 0x8044CA28@l */
 /* 8034CA24  93 E1 00 44 */	stw r31, 0x44(r1)
 /* 8034CA28  89 03 00 2C */	lbz r8, 0x2c(r3)
 /* 8034CA2C  A0 03 00 0E */	lhz r0, 0xe(r3)

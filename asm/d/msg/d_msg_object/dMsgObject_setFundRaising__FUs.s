@@ -5,8 +5,8 @@ lbl_80238990:
 /* 8023899C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802389A0  93 C1 00 08 */	stw r30, 8(r1)
 /* 802389A4  7C 60 1B 78 */	mr r0, r3
-/* 802389A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 802389AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 802389A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 802389AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 802389B0  3B C3 07 F0 */	addi r30, r3, 0x7f0
 /* 802389B4  7F C3 F3 78 */	mr r3, r30
 /* 802389B8  3C 80 00 01 */	lis r4, 0x0001 /* 0x0000F9FF@ha */

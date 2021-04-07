@@ -5,12 +5,12 @@ lbl_8053DDB8:
 /* 8053DDC4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8053DDC8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8053DDCC  41 82 00 1C */	beq lbl_8053DDE8
-/* 8053DDD0  3C A0 80 54 */	lis r5, __vt__22daNpcT_MotionSeqMngr_c@ha
-/* 8053DDD4  38 05 FD 5C */	addi r0, r5, __vt__22daNpcT_MotionSeqMngr_c@l
+/* 8053DDD0  3C A0 80 54 */	lis r5, __vt__22daNpcT_MotionSeqMngr_c@ha /* 0x8053FD5C@ha */
+/* 8053DDD4  38 05 FD 5C */	addi r0, r5, __vt__22daNpcT_MotionSeqMngr_c@l /* 0x8053FD5C@l */
 /* 8053DDD8  90 1F 00 20 */	stw r0, 0x20(r31)
 /* 8053DDDC  7C 80 07 35 */	extsh. r0, r4
 /* 8053DDE0  40 81 00 08 */	ble lbl_8053DDE8
-/* 8053DDE4  4B D9 0F 58 */	b __dl__FPv
+/* 8053DDE4  4B D9 0F 59 */	bl __dl__FPv
 lbl_8053DDE8:
 /* 8053DDE8  7F E3 FB 78 */	mr r3, r31
 /* 8053DDEC  83 E1 00 0C */	lwz r31, 0xc(r1)

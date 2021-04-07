@@ -5,11 +5,11 @@ lbl_806BBDF4:
 /* 806BBE00  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 806BBE04  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 806BBE08  7C 7E 1B 78 */	mr r30, r3
-/* 806BBE0C  3C 60 80 6C */	lis r3, lit_3917@ha
-/* 806BBE10  3B E3 E4 8C */	addi r31, r3, lit_3917@l
+/* 806BBE0C  3C 60 80 6C */	lis r3, lit_3917@ha /* 0x806BE48C@ha */
+/* 806BBE10  3B E3 E4 8C */	addi r31, r3, lit_3917@l /* 0x806BE48C@l */
 /* 806BBE14  80 7E 04 A4 */	lwz r3, 0x4a4(r30)
 /* 806BBE18  38 81 00 10 */	addi r4, r1, 0x10
-/* 806BBE1C  4B 95 DB A0 */	b fopAcM_SearchByID__FUiPP10fopAc_ac_c
+/* 806BBE1C  4B 95 DB A1 */	bl fopAcM_SearchByID__FUiPP10fopAc_ac_c
 /* 806BBE20  A8 1E 06 80 */	lha r0, 0x680(r30)
 /* 806BBE24  2C 00 00 01 */	cmpwi r0, 1
 /* 806BBE28  41 82 00 DC */	beq lbl_806BBF04
@@ -125,7 +125,7 @@ lbl_806BBFAC:
 /* 806BBFAC  80 7E 05 D0 */	lwz r3, 0x5d0(r30)
 /* 806BBFB0  38 63 00 0C */	addi r3, r3, 0xc
 /* 806BBFB4  C0 3F 00 4C */	lfs f1, 0x4c(r31)
-/* 806BBFB8  4B C6 C4 74 */	b checkPass__12J3DFrameCtrlFf
+/* 806BBFB8  4B C6 C4 75 */	bl checkPass__12J3DFrameCtrlFf
 /* 806BBFBC  2C 03 00 00 */	cmpwi r3, 0
 /* 806BBFC0  41 82 00 30 */	beq lbl_806BBFF0
 /* 806BBFC4  3C 60 00 07 */	lis r3, 0x0007 /* 0x000700D9@ha */
@@ -172,8 +172,8 @@ lbl_806BC030:
 /* 806BC05C  40 81 00 34 */	ble lbl_806BC090
 /* 806BC060  A8 1E 05 C6 */	lha r0, 0x5c6(r30)
 /* 806BC064  B0 1E 04 DE */	sth r0, 0x4de(r30)
-/* 806BC068  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 806BC06C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 806BC068  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806BC06C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806BC070  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 806BC074  C0 23 05 2C */	lfs f1, 0x52c(r3)
 /* 806BC078  38 7E 05 2C */	addi r3, r30, 0x52c
@@ -181,7 +181,7 @@ lbl_806BC030:
 /* 806BC080  EC 20 00 72 */	fmuls f1, f0, f1
 /* 806BC084  C0 5F 00 08 */	lfs f2, 8(r31)
 /* 806BC088  C0 7F 00 58 */	lfs f3, 0x58(r31)
-/* 806BC08C  4B BB 39 B0 */	b cLib_addCalc2__FPffff
+/* 806BC08C  4B BB 39 B1 */	bl cLib_addCalc2__FPffff
 lbl_806BC090:
 /* 806BC090  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 806BC094  83 C1 00 18 */	lwz r30, 0x18(r1)

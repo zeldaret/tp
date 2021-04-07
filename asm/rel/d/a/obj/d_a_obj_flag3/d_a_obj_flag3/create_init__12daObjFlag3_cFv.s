@@ -5,18 +5,18 @@ lbl_80BEFBC4:
 /* 80BEFBD0  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80BEFBD4  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80BEFBD8  7C 7E 1B 78 */	mr r30, r3
-/* 80BEFBDC  3C 80 80 BF */	lis r4, M_attr__12daObjFlag3_c@ha
-/* 80BEFBE0  3B E4 04 58 */	addi r31, r4, M_attr__12daObjFlag3_c@l
-/* 80BEFBE4  4B 44 1C 8C */	b getArcName__12daSetBgObj_cFP10fopAc_ac_c
-/* 80BEFBE8  3C 80 80 BF */	lis r4, stringBase0@ha
-/* 80BEFBEC  38 84 05 54 */	addi r4, r4, stringBase0@l
+/* 80BEFBDC  3C 80 80 BF */	lis r4, M_attr__12daObjFlag3_c@ha /* 0x80BF0458@ha */
+/* 80BEFBE0  3B E4 04 58 */	addi r31, r4, M_attr__12daObjFlag3_c@l /* 0x80BF0458@l */
+/* 80BEFBE4  4B 44 1C 8D */	bl getArcName__12daSetBgObj_cFP10fopAc_ac_c
+/* 80BEFBE8  3C 80 80 BF */	lis r4, d_a_obj_flag3__stringBase0@ha /* 0x80BF0554@ha */
+/* 80BEFBEC  38 84 05 54 */	addi r4, r4, d_a_obj_flag3__stringBase0@l /* 0x80BF0554@l */
 /* 80BEFBF0  38 84 00 2D */	addi r4, r4, 0x2d
-/* 80BEFBF4  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80BEFBF8  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80BEFBF4  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BEFBF8  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BEFBFC  3C A5 00 02 */	addis r5, r5, 2
 /* 80BEFC00  38 C0 00 80 */	li r6, 0x80
 /* 80BEFC04  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 80BEFC08  4B 44 C7 74 */	b getRes__14dRes_control_cFPCcPCcP11dRes_info_ci
+/* 80BEFC08  4B 44 C7 75 */	bl getRes__14dRes_control_cFPCcPCcP11dRes_info_ci
 /* 80BEFC0C  80 03 00 00 */	lwz r0, 0(r3)
 /* 80BEFC10  54 00 04 3E */	clrlwi r0, r0, 0x10
 /* 80BEFC14  C8 3F 00 E8 */	lfd f1, 0xe8(r31)
@@ -39,7 +39,7 @@ lbl_80BEFBC4:
 /* 80BEFC58  C0 9F 00 DC */	lfs f4, 0xdc(r31)
 /* 80BEFC5C  C0 BF 00 E0 */	lfs f5, 0xe0(r31)
 /* 80BEFC60  FC C0 20 90 */	fmr f6, f4
-/* 80BEFC64  4B 42 A8 E4 */	b fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff
+/* 80BEFC64  4B 42 A8 E5 */	bl fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff
 /* 80BEFC68  38 61 00 08 */	addi r3, r1, 8
 /* 80BEFC6C  38 9E 05 80 */	addi r4, r30, 0x580
 /* 80BEFC70  48 00 07 C5 */	bl getTargetPos__12FlagCloth2_cFv
@@ -65,12 +65,12 @@ lbl_80BEFBC4:
 /* 80BEFCC0  C0 03 00 10 */	lfs f0, 0x10(r3)
 /* 80BEFCC4  D0 1E 13 14 */	stfs f0, 0x1314(r30)
 /* 80BEFCC8  38 7E 04 D0 */	addi r3, r30, 0x4d0
-/* 80BEFCCC  4B 41 D0 98 */	b transS__14mDoMtx_stack_cFRC4cXyz
-/* 80BEFCD0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80BEFCD4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80BEFCCC  4B 41 D0 99 */	bl transS__14mDoMtx_stack_cFRC4cXyz
+/* 80BEFCD0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80BEFCD4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80BEFCD8  80 9E 05 68 */	lwz r4, 0x568(r30)
 /* 80BEFCDC  38 84 00 24 */	addi r4, r4, 0x24
-/* 80BEFCE0  4B 75 67 D0 */	b PSMTXCopy
+/* 80BEFCE0  4B 75 67 D1 */	bl PSMTXCopy
 /* 80BEFCE4  80 7E 05 68 */	lwz r3, 0x568(r30)
 /* 80BEFCE8  38 03 00 24 */	addi r0, r3, 0x24
 /* 80BEFCEC  90 1E 05 04 */	stw r0, 0x504(r30)

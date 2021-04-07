@@ -17,8 +17,8 @@ lbl_801372B4:
 /* 801372F0  40 82 00 20 */	bne lbl_80137310
 lbl_801372F4:
 /* 801372F4  80 7F 20 60 */	lwz r3, 0x2060(r31)
-/* 801372F8  3C 80 80 39 */	lis r4, m__19daAlinkHIO_wlLie_c0@ha
-/* 801372FC  38 84 F1 38 */	addi r4, r4, m__19daAlinkHIO_wlLie_c0@l
+/* 801372F8  3C 80 80 39 */	lis r4, m__19daAlinkHIO_wlLie_c0@ha /* 0x8038F138@ha */
+/* 801372FC  38 84 F1 38 */	addi r4, r4, m__19daAlinkHIO_wlLie_c0@l /* 0x8038F138@l */
 /* 80137300  C0 24 00 30 */	lfs f1, 0x30(r4)
 /* 80137304  38 80 00 00 */	li r4, 0
 /* 80137308  38 A0 00 28 */	li r5, 0x28

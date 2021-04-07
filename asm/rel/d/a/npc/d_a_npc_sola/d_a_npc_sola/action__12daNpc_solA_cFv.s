@@ -5,18 +5,18 @@ lbl_80AED6D0:
 /* 80AED6DC  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80AED6E0  7C 7F 1B 78 */	mr r31, r3
 /* 80AED6E4  38 7F 0F 84 */	addi r3, r31, 0xf84
-/* 80AED6E8  4B 87 49 30 */	b __ptmf_test
+/* 80AED6E8  4B 87 49 31 */	bl __ptmf_test
 /* 80AED6EC  2C 03 00 00 */	cmpwi r3, 0
 /* 80AED6F0  41 82 00 54 */	beq lbl_80AED744
 /* 80AED6F4  38 7F 0F 90 */	addi r3, r31, 0xf90
 /* 80AED6F8  38 9F 0F 84 */	addi r4, r31, 0xf84
-/* 80AED6FC  4B 87 49 4C */	b __ptmf_cmpr
+/* 80AED6FC  4B 87 49 4D */	bl __ptmf_cmpr
 /* 80AED700  2C 03 00 00 */	cmpwi r3, 0
 /* 80AED704  40 82 00 1C */	bne lbl_80AED720
 /* 80AED708  7F E3 FB 78 */	mr r3, r31
 /* 80AED70C  38 80 00 00 */	li r4, 0
 /* 80AED710  39 9F 0F 90 */	addi r12, r31, 0xf90
-/* 80AED714  4B 87 49 70 */	b __ptmf_scall
+/* 80AED714  4B 87 49 71 */	bl __ptmf_scall
 /* 80AED718  60 00 00 00 */	nop 
 /* 80AED71C  48 00 00 28 */	b lbl_80AED744
 lbl_80AED720:

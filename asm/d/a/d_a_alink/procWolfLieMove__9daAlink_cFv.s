@@ -7,8 +7,8 @@ lbl_801377F0:
 /* 80137804  39 61 00 80 */	addi r11, r1, 0x80
 /* 80137808  48 22 A9 C1 */	bl _savegpr_24
 /* 8013780C  7C 79 1B 78 */	mr r25, r3
-/* 80137810  3C 80 80 39 */	lis r4, lit_3757@ha
-/* 80137814  3B 84 D6 58 */	addi r28, r4, lit_3757@l
+/* 80137810  3C 80 80 39 */	lis r4, lit_3757@ha /* 0x8038D658@ha */
+/* 80137814  3B 84 D6 58 */	addi r28, r4, lit_3757@l /* 0x8038D658@l */
 /* 80137818  3B 79 1F D0 */	addi r27, r25, 0x1fd0
 /* 8013781C  38 00 00 0D */	li r0, 0xd
 /* 80137820  98 03 2F 99 */	stb r0, 0x2f99(r3)
@@ -87,14 +87,14 @@ lbl_80137938:
 /* 80137938  80 19 06 14 */	lwz r0, 0x614(r25)
 /* 8013793C  28 00 00 2C */	cmplwi r0, 0x2c
 /* 80137940  40 82 00 18 */	bne lbl_80137958
-/* 80137944  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80137948  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80137944  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80137948  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8013794C  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 80137950  80 99 31 84 */	lwz r4, 0x3184(r25)
 /* 80137954  4B F1 08 29 */	bl cutEnd__16dEvent_manager_cFi
 lbl_80137958:
-/* 80137958  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 8013795C  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 80137958  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 8013795C  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 80137960  90 01 00 54 */	stw r0, 0x54(r1)
 /* 80137964  7F 23 CB 78 */	mr r3, r25
 /* 80137968  38 80 00 00 */	li r4, 0
@@ -224,8 +224,8 @@ lbl_80137AF4:
 /* 80137B24  4B FC 03 25 */	bl changeCrawlAutoMoveProc__9daAlink_cFP4cXyz
 /* 80137B28  2C 03 00 00 */	cmpwi r3, 0
 /* 80137B2C  41 82 00 18 */	beq lbl_80137B44
-/* 80137B30  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 80137B34  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 80137B30  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 80137B34  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 80137B38  90 01 00 54 */	stw r0, 0x54(r1)
 /* 80137B3C  38 60 00 01 */	li r3, 1
 /* 80137B40  48 00 01 30 */	b lbl_80137C70
@@ -311,8 +311,8 @@ lbl_80137C4C:
 /* 80137C58  38 80 00 01 */	li r4, 1
 /* 80137C5C  4B F7 FF 9D */	bl orderTalk__9daAlink_cFi
 lbl_80137C60:
-/* 80137C60  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 80137C64  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 80137C60  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 80137C64  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 80137C68  90 01 00 54 */	stw r0, 0x54(r1)
 /* 80137C6C  38 60 00 01 */	li r3, 1
 lbl_80137C70:

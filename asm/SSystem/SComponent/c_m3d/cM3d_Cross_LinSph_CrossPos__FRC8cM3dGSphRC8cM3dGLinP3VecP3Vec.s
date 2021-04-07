@@ -120,8 +120,8 @@ lbl_8026B6AC:
 /* 8026B6AC  C8 22 B7 30 */	lfd f1, lit_2259(r2)
 /* 8026B6B0  FC 00 08 40 */	fcmpo cr0, f0, f1
 /* 8026B6B4  40 80 00 10 */	bge lbl_8026B6C4
-/* 8026B6B8  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8026B6BC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8026B6B8  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8026B6BC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8026B6C0  48 00 00 78 */	b lbl_8026B738
 lbl_8026B6C4:
 /* 8026B6C4  D0 01 00 0C */	stfs f0, 0xc(r1)
@@ -155,8 +155,8 @@ lbl_8026B71C:
 lbl_8026B720:
 /* 8026B720  2C 00 00 01 */	cmpwi r0, 1
 /* 8026B724  40 82 00 10 */	bne lbl_8026B734
-/* 8026B728  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8026B72C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8026B728  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8026B72C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8026B730  48 00 00 08 */	b lbl_8026B738
 lbl_8026B734:
 /* 8026B734  FC 20 00 90 */	fmr f1, f0
@@ -192,8 +192,8 @@ lbl_8026B7A4:
 /* 8026B7A4  C8 42 B7 30 */	lfd f2, lit_2259(r2)
 /* 8026B7A8  FC 00 10 40 */	fcmpo cr0, f0, f2
 /* 8026B7AC  40 80 00 10 */	bge lbl_8026B7BC
-/* 8026B7B0  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8026B7B4  C3 A3 0A E0 */	lfs f29, __float_nan@l(r3)
+/* 8026B7B0  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8026B7B4  C3 A3 0A E0 */	lfs f29, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8026B7B8  48 00 00 78 */	b lbl_8026B830
 lbl_8026B7BC:
 /* 8026B7BC  D0 01 00 08 */	stfs f0, 8(r1)
@@ -227,8 +227,8 @@ lbl_8026B814:
 lbl_8026B818:
 /* 8026B818  2C 00 00 01 */	cmpwi r0, 1
 /* 8026B81C  40 82 00 10 */	bne lbl_8026B82C
-/* 8026B820  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8026B824  C3 A3 0A E0 */	lfs f29, __float_nan@l(r3)
+/* 8026B820  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8026B824  C3 A3 0A E0 */	lfs f29, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8026B828  48 00 00 08 */	b lbl_8026B830
 lbl_8026B82C:
 /* 8026B82C  FF A0 00 90 */	fmr f29, f0

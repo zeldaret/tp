@@ -5,8 +5,8 @@ lbl_80770CF8:
 /* 80770D04  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80770D08  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80770D0C  7C 7E 1B 78 */	mr r30, r3
-/* 80770D10  3C 60 80 78 */	lis r3, lit_4018@ha
-/* 80770D14  3B E3 9D FC */	addi r31, r3, lit_4018@l
+/* 80770D10  3C 60 80 78 */	lis r3, lit_4018@ha /* 0x80779DFC@ha */
+/* 80770D14  3B E3 9D FC */	addi r31, r3, lit_4018@l /* 0x80779DFC@l */
 /* 80770D18  A8 1E 05 B4 */	lha r0, 0x5b4(r30)
 /* 80770D1C  2C 00 00 01 */	cmpwi r0, 1
 /* 80770D20  41 82 00 74 */	beq lbl_80770D94
@@ -24,10 +24,10 @@ lbl_80770D34:
 /* 80770D4C  41 82 00 D4 */	beq lbl_80770E20
 /* 80770D50  80 1E 0A 5C */	lwz r0, 0xa5c(r30)
 /* 80770D54  90 01 00 08 */	stw r0, 8(r1)
-/* 80770D58  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 80770D5C  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 80770D58  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 80770D5C  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 80770D60  38 81 00 08 */	addi r4, r1, 8
-/* 80770D64  4B 8A 8A 94 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 80770D64  4B 8A 8A 95 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80770D68  28 03 00 00 */	cmplwi r3, 0
 /* 80770D6C  41 82 00 14 */	beq lbl_80770D80
 /* 80770D70  88 83 06 B0 */	lbz r4, 0x6b0(r3)
@@ -85,7 +85,7 @@ lbl_80770E20:
 /* 80770E20  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 80770E24  C0 3F 00 08 */	lfs f1, 8(r31)
 /* 80770E28  C0 5F 00 4C */	lfs f2, 0x4c(r31)
-/* 80770E2C  4B AF EC 54 */	b cLib_addCalc0__FPfff
+/* 80770E2C  4B AF EC 55 */	bl cLib_addCalc0__FPfff
 /* 80770E30  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 80770E34  83 C1 00 18 */	lwz r30, 0x18(r1)
 /* 80770E38  80 01 00 24 */	lwz r0, 0x24(r1)

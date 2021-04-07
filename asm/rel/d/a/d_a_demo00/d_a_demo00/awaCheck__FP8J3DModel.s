@@ -3,7 +3,7 @@ lbl_804A4D48:
 /* 804A4D4C  7C 08 02 A6 */	mflr r0
 /* 804A4D50  90 01 00 34 */	stw r0, 0x34(r1)
 /* 804A4D54  39 61 00 30 */	addi r11, r1, 0x30
-/* 804A4D58  4B EB D4 74 */	b _savegpr_25
+/* 804A4D58  4B EB D4 75 */	bl _savegpr_25
 /* 804A4D5C  7C 7A 1B 78 */	mr r26, r3
 /* 804A4D60  83 C3 00 04 */	lwz r30, 4(r3)
 /* 804A4D64  83 BE 00 6C */	lwz r29, 0x6c(r30)
@@ -13,31 +13,31 @@ lbl_804A4D48:
 /* 804A4D74  28 1C 00 00 */	cmplwi r28, 0
 /* 804A4D78  41 82 01 C0 */	beq lbl_804A4F38
 /* 804A4D7C  3B 60 00 00 */	li r27, 0
-/* 804A4D80  3C 60 80 4B */	lis r3, stringBase0@ha
-/* 804A4D84  3B E3 89 98 */	addi r31, r3, stringBase0@l
+/* 804A4D80  3C 60 80 4B */	lis r3, d_a_demo00__stringBase0@ha /* 0x804A8998@ha */
+/* 804A4D84  3B E3 89 98 */	addi r31, r3, d_a_demo00__stringBase0@l /* 0x804A8998@l */
 /* 804A4D88  48 00 01 A0 */	b lbl_804A4F28
 lbl_804A4D8C:
 /* 804A4D8C  7F 83 E3 78 */	mr r3, r28
 /* 804A4D90  7F 64 DB 78 */	mr r4, r27
-/* 804A4D94  4B E3 9D 64 */	b getName__10JUTNameTabCFUs
+/* 804A4D94  4B E3 9D 65 */	bl getName__10JUTNameTabCFUs
 /* 804A4D98  7C 79 1B 78 */	mr r25, r3
 /* 804A4D9C  38 9F 00 0F */	addi r4, r31, 0xf
-/* 804A4DA0  4B EC 3B F4 */	b strcmp
+/* 804A4DA0  4B EC 3B F5 */	bl strcmp
 /* 804A4DA4  2C 03 00 00 */	cmpwi r3, 0
 /* 804A4DA8  41 82 00 20 */	beq lbl_804A4DC8
 /* 804A4DAC  7F 23 CB 78 */	mr r3, r25
-/* 804A4DB0  3C 80 80 4B */	lis r4, stringBase0@ha
-/* 804A4DB4  38 84 89 98 */	addi r4, r4, stringBase0@l
+/* 804A4DB0  3C 80 80 4B */	lis r4, d_a_demo00__stringBase0@ha /* 0x804A8998@ha */
+/* 804A4DB4  38 84 89 98 */	addi r4, r4, d_a_demo00__stringBase0@l /* 0x804A8998@l */
 /* 804A4DB8  38 84 00 17 */	addi r4, r4, 0x17
-/* 804A4DBC  4B EC 3B D8 */	b strcmp
+/* 804A4DBC  4B EC 3B D9 */	bl strcmp
 /* 804A4DC0  2C 03 00 00 */	cmpwi r3, 0
 /* 804A4DC4  40 82 01 60 */	bne lbl_804A4F24
 lbl_804A4DC8:
 /* 804A4DC8  38 60 00 28 */	li r3, 0x28
-/* 804A4DCC  4B E2 9E 80 */	b __nw__FUl
+/* 804A4DCC  4B E2 9E 81 */	bl __nw__FUl
 /* 804A4DD0  7C 64 1B 79 */	or. r4, r3, r3
 /* 804A4DD4  41 82 00 0C */	beq lbl_804A4DE0
-/* 804A4DD8  4B E8 7B 94 */	b __ct__13J3DSkinDeformFv
+/* 804A4DD8  4B E8 7B 95 */	bl __ct__13J3DSkinDeformFv
 /* 804A4DDC  7C 64 1B 78 */	mr r4, r3
 lbl_804A4DE0:
 /* 804A4DE0  28 04 00 00 */	cmplwi r4, 0
@@ -47,21 +47,21 @@ lbl_804A4DE0:
 lbl_804A4DF0:
 /* 804A4DF0  7F 43 D3 78 */	mr r3, r26
 /* 804A4DF4  38 A0 00 01 */	li r5, 1
-/* 804A4DF8  4B E8 2C A8 */	b setSkinDeform__8J3DModelFP13J3DSkinDeformUl
+/* 804A4DF8  4B E8 2C A9 */	bl setSkinDeform__8J3DModelFP13J3DSkinDeformUl
 /* 804A4DFC  2C 03 00 00 */	cmpwi r3, 0
 /* 804A4E00  41 82 00 0C */	beq lbl_804A4E0C
 /* 804A4E04  38 60 00 00 */	li r3, 0
 /* 804A4E08  48 00 01 34 */	b lbl_804A4F3C
 lbl_804A4E0C:
 /* 804A4E0C  7F 23 CB 78 */	mr r3, r25
-/* 804A4E10  3C 80 80 4B */	lis r4, stringBase0@ha
-/* 804A4E14  38 84 89 98 */	addi r4, r4, stringBase0@l
+/* 804A4E10  3C 80 80 4B */	lis r4, d_a_demo00__stringBase0@ha /* 0x804A8998@ha */
+/* 804A4E14  38 84 89 98 */	addi r4, r4, d_a_demo00__stringBase0@l /* 0x804A8998@l */
 /* 804A4E18  38 84 00 0F */	addi r4, r4, 0xf
-/* 804A4E1C  4B EC 3B 78 */	b strcmp
+/* 804A4E1C  4B EC 3B 79 */	bl strcmp
 /* 804A4E20  2C 03 00 00 */	cmpwi r3, 0
 /* 804A4E24  40 82 01 00 */	bne lbl_804A4F24
-/* 804A4E28  3C 60 80 45 */	lis r3, mFrameBufferTimg__13mDoGph_gInf_c@ha
-/* 804A4E2C  80 83 0B CC */	lwz r4, mFrameBufferTimg__13mDoGph_gInf_c@l(r3)
+/* 804A4E28  3C 60 80 45 */	lis r3, mFrameBufferTimg__13mDoGph_gInf_c@ha /* 0x80450BCC@ha */
+/* 804A4E2C  80 83 0B CC */	lwz r4, mFrameBufferTimg__13mDoGph_gInf_c@l(r3)  /* 0x80450BCC@l */
 /* 804A4E30  80 7D 00 04 */	lwz r3, 4(r29)
 /* 804A4E34  57 60 2A F4 */	rlwinm r0, r27, 5, 0xb, 0x1a
 /* 804A4E38  7C 63 02 14 */	add r3, r3, r0
@@ -122,7 +122,7 @@ lbl_804A4E0C:
 /* 804A4F14  7C 03 00 50 */	subf r0, r3, r0
 /* 804A4F18  90 03 00 0C */	stw r0, 0xc(r3)
 /* 804A4F1C  7F C3 F3 78 */	mr r3, r30
-/* 804A4F20  4B B6 8B F0 */	b mDoExt_modelTexturePatch__FP12J3DModelData
+/* 804A4F20  4B B6 8B F1 */	bl mDoExt_modelTexturePatch__FP12J3DModelData
 lbl_804A4F24:
 /* 804A4F24  3B 7B 00 01 */	addi r27, r27, 1
 lbl_804A4F28:
@@ -134,7 +134,7 @@ lbl_804A4F38:
 /* 804A4F38  38 60 00 01 */	li r3, 1
 lbl_804A4F3C:
 /* 804A4F3C  39 61 00 30 */	addi r11, r1, 0x30
-/* 804A4F40  4B EB D2 D8 */	b _restgpr_25
+/* 804A4F40  4B EB D2 D9 */	bl _restgpr_25
 /* 804A4F44  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 804A4F48  7C 08 03 A6 */	mtlr r0
 /* 804A4F4C  38 21 00 30 */	addi r1, r1, 0x30

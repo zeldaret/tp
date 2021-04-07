@@ -27,8 +27,8 @@ lbl_800F2058:
 /* 800F2088  EC 23 00 32 */	fmuls f1, f3, f0
 /* 800F208C  48 17 55 59 */	bl cM_rad2s__Ff
 /* 800F2090  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
-/* 800F2094  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800F2098  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800F2094  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800F2098  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800F209C  7C 43 04 2E */	lfsx f2, r3, r0
 /* 800F20A0  A8 1F 30 10 */	lha r0, 0x3010(r31)
 /* 800F20A4  C8 22 92 B0 */	lfd f1, lit_6025(r2)

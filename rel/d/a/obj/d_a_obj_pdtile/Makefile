@@ -3,17 +3,15 @@
 #
 
 M590_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdtile.plf
+M590_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdtile.lcf
+M590_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdtile.map
 
 M590_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_pdtile/executor.cpp \
-	rel/d/a/obj/d_a_obj_pdtile/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_pdtile/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_pdtile/d_a_obj_pdtile.cpp \
 
 M590_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdtile/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdtile/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdtile/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdtile/d_a_obj_pdtile.o \
 
 M590_LIBS := \
@@ -29,14 +27,21 @@ M590_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M590_LDSCRIPT) \
+	-unused -map $(M590_MAP) \
+	-w off \
 
 $(M590_TARGET): $(M590_O_FILES) $(M590_LIBS)
+	@echo [590] creating $(M590_TARGET)
 	@echo $(M590_LIBS) $(M590_O_FILES) > build/M590_ofiles
-	$(LD) -partial $(M590_LDFLAGS) -o $(M590_TARGET) @build/M590_ofiles
+	@python3 tools/lcf.py rel 590 --output $(M590_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M590_LDFLAGS) -o $(M590_TARGET) @build/M590_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_pdtile/%.o: rel/d/a/obj/d_a_obj_pdtile/%.cpp
+	@echo [590] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M590_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M590_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

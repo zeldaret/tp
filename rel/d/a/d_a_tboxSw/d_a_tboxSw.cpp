@@ -35,11 +35,6 @@ struct dSv_info_c {
 // Forward References:
 //
 
-static void daTboxSw_Draw(daTboxSw_c*);
-static void daTboxSw_Execute(daTboxSw_c*);
-static void daTboxSw_Delete(daTboxSw_c*);
-static void daTboxSw_Create(fopAc_ac_c*);
-
 extern "C" bool Create__10daTboxSw_cFv();
 extern "C" void create__10daTboxSw_cFv();
 extern "C" void execute__10daTboxSw_cFv();
@@ -55,8 +50,6 @@ extern "C" extern void* g_profile_TBOX_SW[12];
 // External References:
 //
 
-void fopAcM_delete(fopAc_ac_c*);
-
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void fopAcM_delete__FP10fopAc_ac_c();
 extern "C" void isTbox__12dSv_memBit_cCFi();
@@ -69,12 +62,12 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 // Declarations:
 //
 
-/* 80D66858-80D66860 0008+00 s=1 e=0 z=0  None .text      Create__10daTboxSw_cFv */
+/* 80D66858-80D66860 000078 0008+00 1/1 0/0 0/0 .text            Create__10daTboxSw_cFv */
 bool daTboxSw_c::Create() {
     return true;
 }
 
-/* 80D66860-80D668C8 0068+00 s=1 e=0 z=0  None .text      create__10daTboxSw_cFv */
+/* 80D66860-80D668C8 000080 0068+00 1/1 0/0 0/0 .text            create__10daTboxSw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -84,7 +77,7 @@ asm void daTboxSw_c::create() {
 }
 #pragma pop
 
-/* 80D668C8-80D66938 0070+00 s=1 e=0 z=0  None .text      execute__10daTboxSw_cFv */
+/* 80D668C8-80D66938 0000E8 0070+00 1/1 0/0 0/0 .text            execute__10daTboxSw_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -94,58 +87,58 @@ asm void daTboxSw_c::execute() {
 }
 #pragma pop
 
-/* 80D66938-80D66940 0008+00 s=1 e=0 z=0  None .text      draw__10daTboxSw_cFv */
+/* 80D66938-80D66940 000158 0008+00 1/1 0/0 0/0 .text            draw__10daTboxSw_cFv */
 bool daTboxSw_c::draw() {
     return true;
 }
 
-/* 80D66940-80D66948 0008+00 s=1 e=0 z=0  None .text      _delete__10daTboxSw_cFv */
+/* 80D66940-80D66948 000160 0008+00 1/1 0/0 0/0 .text            _delete__10daTboxSw_cFv */
 bool daTboxSw_c::_delete() {
     return true;
 }
 
-/* 80D66948-80D66968 0020+00 s=1 e=0 z=0  None .text      daTboxSw_Draw__FP10daTboxSw_c */
+/* 80D66948-80D66968 000168 0020+00 1/0 0/0 0/0 .text            daTboxSw_Draw__FP10daTboxSw_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTboxSw_Draw(daTboxSw_c* param_0) {
+static asm void daTboxSw_Draw(daTboxSw_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_tboxSw/d_a_tboxSw/daTboxSw_Draw__FP10daTboxSw_c.s"
 }
 #pragma pop
 
-/* 80D66968-80D66988 0020+00 s=1 e=0 z=0  None .text      daTboxSw_Execute__FP10daTboxSw_c */
+/* 80D66968-80D66988 000188 0020+00 1/0 0/0 0/0 .text            daTboxSw_Execute__FP10daTboxSw_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTboxSw_Execute(daTboxSw_c* param_0) {
+static asm void daTboxSw_Execute(daTboxSw_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_tboxSw/d_a_tboxSw/daTboxSw_Execute__FP10daTboxSw_c.s"
 }
 #pragma pop
 
-/* 80D66988-80D669A8 0020+00 s=1 e=0 z=0  None .text      daTboxSw_Delete__FP10daTboxSw_c */
+/* 80D66988-80D669A8 0001A8 0020+00 1/0 0/0 0/0 .text            daTboxSw_Delete__FP10daTboxSw_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTboxSw_Delete(daTboxSw_c* param_0) {
+static asm void daTboxSw_Delete(daTboxSw_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_tboxSw/d_a_tboxSw/daTboxSw_Delete__FP10daTboxSw_c.s"
 }
 #pragma pop
 
-/* 80D669A8-80D669C8 0020+00 s=1 e=0 z=0  None .text      daTboxSw_Create__FP10fopAc_ac_c */
+/* 80D669A8-80D669C8 0001C8 0020+00 1/0 0/0 0/0 .text            daTboxSw_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTboxSw_Create(fopAc_ac_c* param_0) {
+static asm void daTboxSw_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_tboxSw/d_a_tboxSw/daTboxSw_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D669D0-80D669F0 0020+00 s=1 e=0 z=0  None .data      l_daTboxSw_Method */
+/* 80D669D0-80D669F0 -00001 0020+00 1/0 0/0 0/0 .data            l_daTboxSw_Method */
 SECTION_DATA static void* l_daTboxSw_Method[8] = {
     (void*)daTboxSw_Create__FP10fopAc_ac_c,
     (void*)daTboxSw_Delete__FP10daTboxSw_c,
@@ -157,8 +150,8 @@ SECTION_DATA static void* l_daTboxSw_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D669F0-80D66A20 0030+00 s=0 e=0 z=1  None .data      g_profile_TBOX_SW */
-SECTION_DATA void* g_profile_TBOX_SW[12] = {
+/* 80D669F0-80D66A20 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TBOX_SW */
+SECTION_DATA extern void* g_profile_TBOX_SW[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x016E0000, (void*)&g_fpcLf_Method,
     (void*)0x00000568, (void*)NULL,

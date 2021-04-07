@@ -16,7 +16,7 @@ lbl_8035ECC0:
 /* 8035ECF8  53 EB 9B 18 */	rlwimi r11, r31, 0x13, 0xc, 0xc
 /* 8035ECFC  38 00 00 61 */	li r0, 0x61
 /* 8035ED00  3C A0 CC 01 */	lis r5, 0xCC01 /* 0xCC008000@ha */
-/* 8035ED04  98 05 80 00 */	stb r0, 0x8000(r5)
+/* 8035ED04  98 05 80 00 */	stb r0, 0x8000(r5)  /* 0xCC008000@l */
 /* 8035ED08  38 03 00 10 */	addi r0, r3, 0x10
 /* 8035ED0C  51 4B A2 D6 */	rlwimi r11, r10, 0x14, 0xb, 0xb
 /* 8035ED10  50 0B C0 0E */	rlwimi r11, r0, 0x18, 0, 7

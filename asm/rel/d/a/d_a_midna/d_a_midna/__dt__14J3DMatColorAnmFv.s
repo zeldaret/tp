@@ -7,7 +7,7 @@ lbl_804BD200:
 /* 804BD214  41 82 00 10 */	beq lbl_804BD224
 /* 804BD218  7C 80 07 35 */	extsh. r0, r4
 /* 804BD21C  40 81 00 08 */	ble lbl_804BD224
-/* 804BD220  4B E1 1B 1C */	b __dl__FPv
+/* 804BD220  4B E1 1B 1D */	bl __dl__FPv
 lbl_804BD224:
 /* 804BD224  7F E3 FB 78 */	mr r3, r31
 /* 804BD228  83 E1 00 0C */	lwz r31, 0xc(r1)

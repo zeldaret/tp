@@ -34,8 +34,8 @@ lbl_8014F580:
 /* 8014F58C  41 82 00 58 */	beq lbl_8014F5E4
 /* 8014F590  80 6D 8A 60 */	lwz r3, m_name__23daBaseNpc_moveBgActor_c(r13)
 /* 8014F594  80 8D 8A 64 */	lwz r4, m_dzb_id__23daBaseNpc_moveBgActor_c(r13)
-/* 8014F598  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8014F59C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 8014F598  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8014F59C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8014F5A0  3C A5 00 02 */	addis r5, r5, 2
 /* 8014F5A4  38 C0 00 80 */	li r6, 0x80
 /* 8014F5A8  38 A5 C2 F8 */	addi r5, r5, -15624

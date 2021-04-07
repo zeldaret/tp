@@ -4,7 +4,7 @@ lbl_8052B148:
 /* 8052B150  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8052B154  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8052B158  7C 7F 1B 78 */	mr r31, r3
-/* 8052B15C  4B AE DB 84 */	b fopAc_IsActor__FPv
+/* 8052B15C  4B AE DB 85 */	bl fopAc_IsActor__FPv
 /* 8052B160  2C 03 00 00 */	cmpwi r3, 0
 /* 8052B164  41 82 00 24 */	beq lbl_8052B188
 /* 8052B168  A8 1F 00 08 */	lha r0, 8(r31)

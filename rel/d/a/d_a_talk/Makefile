@@ -3,17 +3,15 @@
 #
 
 M754_TARGET := $(BUILD_DIR)/rel/d/a/d_a_talk.plf
+M754_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_talk.lcf
+M754_MAP := $(BUILD_DIR)/rel/d/a/d_a_talk.map
 
 M754_CPP_FILES := \
-	rel/d/a/d_a_talk/executor.cpp \
-	rel/d/a/d_a_talk/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_talk/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_talk/d_a_talk.cpp \
 
 M754_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_talk/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_talk/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_talk/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_talk/d_a_talk.o \
 
 M754_LIBS := \
@@ -29,14 +27,21 @@ M754_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M754_LDSCRIPT) \
+	-unused -map $(M754_MAP) \
+	-w off \
 
 $(M754_TARGET): $(M754_O_FILES) $(M754_LIBS)
+	@echo [754] creating $(M754_TARGET)
 	@echo $(M754_LIBS) $(M754_O_FILES) > build/M754_ofiles
-	$(LD) -partial $(M754_LDFLAGS) -o $(M754_TARGET) @build/M754_ofiles
+	@python3 tools/lcf.py rel 754 --output $(M754_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M754_LDFLAGS) -o $(M754_TARGET) @build/M754_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_talk/%.o: rel/d/a/d_a_talk/%.cpp
+	@echo [754] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M754_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M754_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

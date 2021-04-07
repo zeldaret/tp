@@ -1,9 +1,9 @@
 lbl_80D1F0CC:
-/* 80D1F0CC  3C 80 80 D2 */	lis r4, __vt__14mDoHIO_entry_c@ha
-/* 80D1F0D0  38 04 F9 7C */	addi r0, r4, __vt__14mDoHIO_entry_c@l
+/* 80D1F0CC  3C 80 80 D2 */	lis r4, __vt__14mDoHIO_entry_c@ha /* 0x80D1F97C@ha */
+/* 80D1F0D0  38 04 F9 7C */	addi r0, r4, __vt__14mDoHIO_entry_c@l /* 0x80D1F97C@l */
 /* 80D1F0D4  90 03 00 00 */	stw r0, 0(r3)
-/* 80D1F0D8  3C 80 80 D2 */	lis r4, __vt__14daTreeSh_HIO_c@ha
-/* 80D1F0DC  38 04 F9 70 */	addi r0, r4, __vt__14daTreeSh_HIO_c@l
+/* 80D1F0D8  3C 80 80 D2 */	lis r4, __vt__14daTreeSh_HIO_c@ha /* 0x80D1F970@ha */
+/* 80D1F0DC  38 04 F9 70 */	addi r0, r4, __vt__14daTreeSh_HIO_c@l /* 0x80D1F970@l */
 /* 80D1F0E0  90 03 00 00 */	stw r0, 0(r3)
 /* 80D1F0E4  38 00 03 20 */	li r0, 0x320
 /* 80D1F0E8  B0 03 00 04 */	sth r0, 4(r3)

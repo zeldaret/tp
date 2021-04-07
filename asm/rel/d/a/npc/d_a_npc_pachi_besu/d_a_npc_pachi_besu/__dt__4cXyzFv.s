@@ -7,7 +7,7 @@ lbl_80A95B40:
 /* 80A95B54  41 82 00 10 */	beq lbl_80A95B64
 /* 80A95B58  7C 80 07 35 */	extsh. r0, r4
 /* 80A95B5C  40 81 00 08 */	ble lbl_80A95B64
-/* 80A95B60  4B 83 91 DC */	b __dl__FPv
+/* 80A95B60  4B 83 91 DD */	bl __dl__FPv
 lbl_80A95B64:
 /* 80A95B64  7F E3 FB 78 */	mr r3, r31
 /* 80A95B68  83 E1 00 0C */	lwz r31, 0xc(r1)

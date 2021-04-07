@@ -5,11 +5,11 @@ lbl_8048F954:
 /* 8048F960  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8048F964  7C 7F 1B 78 */	mr r31, r3
 /* 8048F968  38 60 00 04 */	li r3, 4
-/* 8048F96C  4B E3 F2 E0 */	b __nw__FUl
+/* 8048F96C  4B E3 F2 E1 */	bl __nw__FUl
 /* 8048F970  28 03 00 00 */	cmplwi r3, 0
 /* 8048F974  41 82 00 10 */	beq lbl_8048F984
-/* 8048F978  3C 80 80 49 */	lis r4, __vt__17daTag_Msg_Param_c@ha
-/* 8048F97C  38 04 02 28 */	addi r0, r4, __vt__17daTag_Msg_Param_c@l
+/* 8048F978  3C 80 80 49 */	lis r4, __vt__17daTag_Msg_Param_c@ha /* 0x80490228@ha */
+/* 8048F97C  38 04 02 28 */	addi r0, r4, __vt__17daTag_Msg_Param_c@l /* 0x80490228@l */
 /* 8048F980  90 03 00 00 */	stw r0, 0(r3)
 lbl_8048F984:
 /* 8048F984  90 7F 05 D8 */	stw r3, 0x5d8(r31)

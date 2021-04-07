@@ -7,7 +7,7 @@ lbl_80AF537C:
 /* 80AF5390  41 82 00 10 */	beq lbl_80AF53A0
 /* 80AF5394  7C 80 07 35 */	extsh. r0, r4
 /* 80AF5398  40 81 00 08 */	ble lbl_80AF53A0
-/* 80AF539C  4B 7D 99 A0 */	b __dl__FPv
+/* 80AF539C  4B 7D 99 A1 */	bl __dl__FPv
 lbl_80AF53A0:
 /* 80AF53A0  7F E3 FB 78 */	mr r3, r31
 /* 80AF53A4  83 E1 00 0C */	lwz r31, 0xc(r1)

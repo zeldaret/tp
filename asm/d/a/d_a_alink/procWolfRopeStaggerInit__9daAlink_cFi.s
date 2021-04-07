@@ -22,8 +22,8 @@ lbl_801330A0:
 /* 801330A0  7F C3 F3 78 */	mr r3, r30
 /* 801330A4  38 80 00 26 */	li r4, 0x26
 /* 801330A8  4B FF 65 D1 */	bl setSingleAnimeWolfBase__9daAlink_cFQ29daAlink_c12daAlink_WANM
-/* 801330AC  3C 60 80 42 */	lis r3, l_wolfRopeBaseAnime@ha
-/* 801330B0  C4 03 56 34 */	lfsu f0, l_wolfRopeBaseAnime@l(r3)
+/* 801330AC  3C 60 80 42 */	lis r3, l_wolfRopeBaseAnime@ha /* 0x80425634@ha */
+/* 801330B0  C4 03 56 34 */	lfsu f0, l_wolfRopeBaseAnime@l(r3)  /* 0x80425634@l */
 /* 801330B4  D0 1E 35 88 */	stfs f0, 0x3588(r30)
 /* 801330B8  C0 03 00 04 */	lfs f0, 4(r3)
 /* 801330BC  D0 1E 35 8C */	stfs f0, 0x358c(r30)

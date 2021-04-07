@@ -5,8 +5,8 @@ lbl_800FD4A8:
 /* 800FD4B4  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 800FD4B8  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 800FD4BC  7C 7E 1B 78 */	mr r30, r3
-/* 800FD4C0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800FD4C4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800FD4C0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800FD4C4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800FD4C8  3B E3 0F 38 */	addi r31, r3, 0xf38
 /* 800FD4CC  7F E3 FB 78 */	mr r3, r31
 /* 800FD4D0  38 9E 1E 1C */	addi r4, r30, 0x1e1c
@@ -33,8 +33,8 @@ lbl_800FD4A8:
 /* 800FD524  39 00 00 00 */	li r8, 0
 /* 800FD528  4B F7 83 59 */	bl MoveBgTransPos__4dBgSFRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz
 lbl_800FD52C:
-/* 800FD52C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800FD530  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 800FD52C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800FD530  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800FD534  A8 1E 04 DE */	lha r0, 0x4de(r30)
 /* 800FD538  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 800FD53C  7C 64 02 14 */	add r3, r4, r0
@@ -65,8 +65,8 @@ lbl_800FD52C:
 lbl_800FD5A0:
 /* 800FD5A0  7F C3 F3 78 */	mr r3, r30
 /* 800FD5A4  38 80 00 01 */	li r4, 1
-/* 800FD5A8  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha
-/* 800FD5AC  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l
+/* 800FD5A8  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 800FD5AC  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 800FD5B0  C0 25 00 70 */	lfs f1, 0x70(r5)
 /* 800FD5B4  4B FC 94 95 */	bl procFallInit__9daAlink_cFif
 /* 800FD5B8  48 00 00 14 */	b lbl_800FD5CC

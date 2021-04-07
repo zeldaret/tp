@@ -23,11 +23,11 @@ extern "C" void __ieee754_asin();
 // Declarations:
 //
 
-/* 8036C700-8036C720 0020+00 s=0 e=2 z=0  None .text      asin */
+/* 8036C700-8036C720 367040 0020+00 0/0 2/2 0/0 .text            asin */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void asin() {
+asm void asin() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/Math/Double_precision/w_asin/asin.s"
 }

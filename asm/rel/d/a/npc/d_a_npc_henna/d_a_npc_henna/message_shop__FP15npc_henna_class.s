@@ -4,8 +4,8 @@ lbl_80543844:
 /* 8054384C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80543850  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80543854  7C 7F 1B 78 */	mr r31, r3
-/* 80543858  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8054385C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80543858  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8054385C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80543860  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 80543864  A8 03 04 E6 */	lha r0, 0x4e6(r3)
 /* 80543868  A8 9F 06 20 */	lha r4, 0x620(r31)
@@ -23,8 +23,8 @@ lbl_80543844:
 /* 80543898  28 00 A8 00 */	cmplwi r0, 0xa800
 /* 8054389C  41 81 00 18 */	bgt lbl_805438B4
 /* 805438A0  C0 3F 06 1C */	lfs f1, 0x61c(r31)
-/* 805438A4  3C 60 80 55 */	lis r3, lit_4330@ha
-/* 805438A8  C0 03 A9 CC */	lfs f0, lit_4330@l(r3)
+/* 805438A4  3C 60 80 55 */	lis r3, lit_4330@ha /* 0x8054A9CC@ha */
+/* 805438A8  C0 03 A9 CC */	lfs f0, lit_4330@l(r3)  /* 0x8054A9CC@l */
 /* 805438AC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 805438B0  40 81 00 0C */	ble lbl_805438BC
 lbl_805438B4:
@@ -52,8 +52,8 @@ lbl_805438E8:
 /* 80543900  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 80543904  60 00 00 01 */	ori r0, r0, 1
 /* 80543908  B0 1F 00 FA */	sth r0, 0xfa(r31)
-/* 8054390C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80543910  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8054390C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80543910  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80543914  88 03 4F AD */	lbz r0, 0x4fad(r3)
 /* 80543918  28 00 00 00 */	cmplwi r0, 0
 /* 8054391C  41 82 00 2C */	beq lbl_80543948
@@ -64,7 +64,7 @@ lbl_805438E8:
 /* 80543930  28 00 00 01 */	cmplwi r0, 1
 /* 80543934  40 82 00 14 */	bne lbl_80543948
 /* 80543938  38 63 4E C8 */	addi r3, r3, 0x4ec8
-/* 8054393C  4B AF EB 2C */	b reset__14dEvt_control_cFv
+/* 8054393C  4B AF EB 2D */	bl reset__14dEvt_control_cFv
 /* 80543940  38 00 00 0A */	li r0, 0xa
 /* 80543944  B0 1F 07 52 */	sth r0, 0x752(r31)
 lbl_80543948:

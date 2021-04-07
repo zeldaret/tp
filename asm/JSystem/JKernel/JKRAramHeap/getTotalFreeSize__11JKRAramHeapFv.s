@@ -8,8 +8,8 @@ lbl_802D31AC:
 /* 802D31C4  3B E0 00 00 */	li r31, 0
 /* 802D31C8  38 7E 00 18 */	addi r3, r30, 0x18
 /* 802D31CC  48 06 BE 75 */	bl OSLockMutex
-/* 802D31D0  3C 60 80 43 */	lis r3, sAramList__11JKRAramHeap@ha
-/* 802D31D4  80 83 43 0C */	lwz r4, sAramList__11JKRAramHeap@l(r3)
+/* 802D31D0  3C 60 80 43 */	lis r3, sAramList__11JKRAramHeap@ha /* 0x8043430C@ha */
+/* 802D31D4  80 83 43 0C */	lwz r4, sAramList__11JKRAramHeap@l(r3)  /* 0x8043430C@l */
 /* 802D31D8  48 00 00 14 */	b lbl_802D31EC
 lbl_802D31DC:
 /* 802D31DC  80 64 00 00 */	lwz r3, 0(r4)

@@ -4,11 +4,11 @@ lbl_8005CC5C:
 /* 8005CC64  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8005CC68  39 61 00 20 */	addi r11, r1, 0x20
 /* 8005CC6C  48 30 55 71 */	bl _savegpr_29
-/* 8005CC70  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8005CC74  38 A3 61 C0 */	addi r5, r3, g_dComIfG_gameInfo@l
+/* 8005CC70  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8005CC74  38 A3 61 C0 */	addi r5, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8005CC78  83 A5 5D 74 */	lwz r29, 0x5d74(r5)
-/* 8005CC7C  3C 60 80 38 */	lis r3, d_kankyo_d_kankyo_rain__stringBase0@ha
-/* 8005CC80  38 63 A5 78 */	addi r3, r3, d_kankyo_d_kankyo_rain__stringBase0@l
+/* 8005CC7C  3C 60 80 38 */	lis r3, d_kankyo_d_kankyo_rain__stringBase0@ha /* 0x8037A578@ha */
+/* 8005CC80  38 63 A5 78 */	addi r3, r3, d_kankyo_d_kankyo_rain__stringBase0@l /* 0x8037A578@l */
 /* 8005CC84  38 63 00 10 */	addi r3, r3, 0x10
 /* 8005CC88  38 80 00 4A */	li r4, 0x4a
 /* 8005CC8C  3F C5 00 02 */	addis r30, r5, 2
@@ -16,12 +16,12 @@ lbl_8005CC5C:
 /* 8005CC94  7F C5 F3 78 */	mr r5, r30
 /* 8005CC98  38 C0 00 80 */	li r6, 0x80
 /* 8005CC9C  4B FD F6 51 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
-/* 8005CCA0  3C 80 80 43 */	lis r4, g_env_light@ha
-/* 8005CCA4  3B E4 CA 54 */	addi r31, r4, g_env_light@l
+/* 8005CCA0  3C 80 80 43 */	lis r4, g_env_light@ha /* 0x8042CA54@ha */
+/* 8005CCA4  3B E4 CA 54 */	addi r31, r4, g_env_light@l /* 0x8042CA54@l */
 /* 8005CCA8  80 9F 0E 84 */	lwz r4, 0xe84(r31)
 /* 8005CCAC  90 64 00 10 */	stw r3, 0x10(r4)
-/* 8005CCB0  3C 60 80 38 */	lis r3, d_kankyo_d_kankyo_rain__stringBase0@ha
-/* 8005CCB4  38 63 A5 78 */	addi r3, r3, d_kankyo_d_kankyo_rain__stringBase0@l
+/* 8005CCB0  3C 60 80 38 */	lis r3, d_kankyo_d_kankyo_rain__stringBase0@ha /* 0x8037A578@ha */
+/* 8005CCB4  38 63 A5 78 */	addi r3, r3, d_kankyo_d_kankyo_rain__stringBase0@l /* 0x8037A578@l */
 /* 8005CCB8  38 63 00 10 */	addi r3, r3, 0x10
 /* 8005CCBC  38 80 00 57 */	li r4, 0x57
 /* 8005CCC0  7F C5 F3 78 */	mr r5, r30

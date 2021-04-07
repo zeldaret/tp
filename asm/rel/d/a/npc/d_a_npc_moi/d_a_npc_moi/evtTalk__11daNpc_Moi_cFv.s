@@ -4,8 +4,8 @@ lbl_80A75664:
 /* 80A7566C  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80A75670  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80A75674  7C 7F 1B 78 */	mr r31, r3
-/* 80A75678  3C 80 80 A8 */	lis r4, lit_4883@ha
-/* 80A7567C  38 A4 BD 50 */	addi r5, r4, lit_4883@l
+/* 80A75678  3C 80 80 A8 */	lis r4, lit_4883@ha /* 0x80A7BD50@ha */
+/* 80A7567C  38 A4 BD 50 */	addi r5, r4, lit_4883@l /* 0x80A7BD50@l */
 /* 80A75680  80 85 00 00 */	lwz r4, 0(r5)
 /* 80A75684  80 05 00 04 */	lwz r0, 4(r5)
 /* 80A75688  90 81 00 14 */	stw r4, 0x14(r1)
@@ -19,12 +19,12 @@ lbl_80A75664:
 /* 80A756A8  7F E3 FB 78 */	mr r3, r31
 /* 80A756AC  38 80 00 00 */	li r4, 0
 /* 80A756B0  39 9F 16 1C */	addi r12, r31, 0x161c
-/* 80A756B4  4B 8E C9 D0 */	b __ptmf_scall
+/* 80A756B4  4B 8E C9 D1 */	bl __ptmf_scall
 /* 80A756B8  60 00 00 00 */	nop 
 /* 80A756BC  48 00 00 30 */	b lbl_80A756EC
 lbl_80A756C0:
-/* 80A756C0  3C 60 80 A8 */	lis r3, lit_4888@ha
-/* 80A756C4  38 83 BD 5C */	addi r4, r3, lit_4888@l
+/* 80A756C0  3C 60 80 A8 */	lis r3, lit_4888@ha /* 0x80A7BD5C@ha */
+/* 80A756C4  38 83 BD 5C */	addi r4, r3, lit_4888@l /* 0x80A7BD5C@l */
 /* 80A756C8  80 64 00 00 */	lwz r3, 0(r4)
 /* 80A756CC  80 04 00 04 */	lwz r0, 4(r4)
 /* 80A756D0  90 61 00 08 */	stw r3, 8(r1)

@@ -10,7 +10,7 @@ lbl_806BEB04:
 /* 806BEB24  7C 03 00 50 */	subf r0, r3, r0
 /* 806BEB28  7C 1F 07 34 */	extsh r31, r0
 /* 806BEB2C  7F E3 FB 78 */	mr r3, r31
-/* 806BEB30  4B CA 65 A0 */	b abs
+/* 806BEB30  4B CA 65 A1 */	bl abs
 /* 806BEB34  2C 03 48 00 */	cmpwi r3, 0x4800
 /* 806BEB38  40 81 00 24 */	ble lbl_806BEB5C
 /* 806BEB3C  A8 7E 04 DE */	lha r3, 0x4de(r30)

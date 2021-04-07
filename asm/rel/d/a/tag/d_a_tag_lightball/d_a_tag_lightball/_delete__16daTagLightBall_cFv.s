@@ -8,7 +8,7 @@ lbl_80D5ABA8:
 /* 80D5ABC0  28 00 00 00 */	cmplwi r0, 0
 /* 80D5ABC4  41 82 00 14 */	beq lbl_80D5ABD8
 /* 80D5ABC8  38 7F 05 68 */	addi r3, r31, 0x568
-/* 80D5ABCC  4B 44 CC 9C */	b dKy_dalkmist_inf_cut__FP18DALKMIST_INFLUENCE
+/* 80D5ABCC  4B 44 CC 9D */	bl dKy_dalkmist_inf_cut__FP18DALKMIST_INFLUENCE
 /* 80D5ABD0  38 00 00 00 */	li r0, 0
 /* 80D5ABD4  98 1F 05 7D */	stb r0, 0x57d(r31)
 lbl_80D5ABD8:

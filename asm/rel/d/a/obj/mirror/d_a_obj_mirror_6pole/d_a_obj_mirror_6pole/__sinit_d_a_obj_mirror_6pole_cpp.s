@@ -1,6 +1,6 @@
 lbl_80C96494:
-/* 80C96494  3C 60 80 C9 */	lis r3, cNullVec__6Z2Calc@ha
-/* 80C96498  38 A3 65 2C */	addi r5, r3, cNullVec__6Z2Calc@l
+/* 80C96494  3C 60 80 C9 */	lis r3, cNullVec__6Z2Calc@ha /* 0x80C9652C@ha */
+/* 80C96498  38 A3 65 2C */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x80C9652C@l */
 /* 80C9649C  80 65 00 24 */	lwz r3, 0x24(r5)
 /* 80C964A0  80 05 00 28 */	lwz r0, 0x28(r5)
 /* 80C964A4  90 65 00 54 */	stw r3, 0x54(r5)

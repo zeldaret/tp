@@ -5,15 +5,15 @@ lbl_8080CEE0:
 /* 8080CEEC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8080CEF0  93 C1 00 08 */	stw r30, 8(r1)
 /* 8080CEF4  7C 7E 1B 78 */	mr r30, r3
-/* 8080CEF8  3C 60 80 81 */	lis r3, lit_3925@ha
-/* 8080CEFC  3B E3 59 94 */	addi r31, r3, lit_3925@l
+/* 8080CEF8  3C 60 80 81 */	lis r3, lit_3925@ha /* 0x80815994@ha */
+/* 8080CEFC  3B E3 59 94 */	addi r31, r3, lit_3925@l /* 0x80815994@l */
 /* 8080CF00  88 1E 06 A0 */	lbz r0, 0x6a0(r30)
 /* 8080CF04  28 00 00 01 */	cmplwi r0, 1
 /* 8080CF08  41 82 00 14 */	beq lbl_8080CF1C
 /* 8080CF0C  38 7E 04 FC */	addi r3, r30, 0x4fc
 /* 8080CF10  C0 3F 00 88 */	lfs f1, 0x88(r31)
 /* 8080CF14  C0 5F 00 80 */	lfs f2, 0x80(r31)
-/* 8080CF18  4B A6 38 28 */	b cLib_chaseF__FPfff
+/* 8080CF18  4B A6 38 29 */	bl cLib_chaseF__FPfff
 lbl_8080CF1C:
 /* 8080CF1C  80 1E 06 98 */	lwz r0, 0x698(r30)
 /* 8080CF20  2C 00 00 01 */	cmpwi r0, 1
@@ -40,7 +40,7 @@ lbl_8080CF6C:
 /* 8080CF6C  38 7E 04 E6 */	addi r3, r30, 0x4e6
 /* 8080CF70  A8 9E 06 EA */	lha r4, 0x6ea(r30)
 /* 8080CF74  38 A0 04 00 */	li r5, 0x400
-/* 8080CF78  4B A6 3C 18 */	b cLib_chaseAngleS__FPsss
+/* 8080CF78  4B A6 3C 19 */	bl cLib_chaseAngleS__FPsss
 /* 8080CF7C  A8 1E 04 E6 */	lha r0, 0x4e6(r30)
 /* 8080CF80  B0 1E 04 DE */	sth r0, 0x4de(r30)
 /* 8080CF84  7F C3 F3 78 */	mr r3, r30

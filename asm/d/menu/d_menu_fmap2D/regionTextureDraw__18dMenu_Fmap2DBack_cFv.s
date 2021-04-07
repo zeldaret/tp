@@ -46,8 +46,8 @@ lbl_801D2DA8:
 lbl_801D2E58:
 /* 801D2E58  7F BF EB 78 */	mr r31, r29
 lbl_801D2E5C:
-/* 801D2E5C  3C 60 80 43 */	lis r3, g_fmapHIO@ha
-/* 801D2E60  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l
+/* 801D2E5C  3C 60 80 43 */	lis r3, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801D2E60  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801D2E64  88 03 03 02 */	lbz r0, 0x302(r3)
 /* 801D2E68  28 00 00 00 */	cmplwi r0, 0
 /* 801D2E6C  41 82 02 00 */	beq lbl_801D306C

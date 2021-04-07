@@ -3,19 +3,20 @@
 #
 
 M416_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bubblePilar.plf
+M416_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bubblePilar.lcf
+M416_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bubblePilar.map
 
 M416_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_bubblePilar/executor.cpp \
-	rel/d/a/obj/d_a_obj_bubblePilar/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_bubblePilar/d_a_obj_bubblePilar.cpp \
 
 M416_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bubblePilar/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bubblePilar/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bubblePilar/d_a_obj_bubblePilar.o \
 
 M416_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_bubblePilar/libRuntime.PPCEABI.H.a \
 
 M416_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M416_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M416_LDSCRIPT) \
+	-unused -map $(M416_MAP) \
+	-w off \
 
 $(M416_TARGET): $(M416_O_FILES) $(M416_LIBS)
+	@echo [416] creating $(M416_TARGET)
 	@echo $(M416_LIBS) $(M416_O_FILES) > build/M416_ofiles
-	$(LD) -partial $(M416_LDFLAGS) -o $(M416_TARGET) @build/M416_ofiles
+	@python3 tools/lcf.py rel 416 --output $(M416_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M416_LDFLAGS) -o $(M416_TARGET) @build/M416_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_bubblePilar/%.o: rel/d/a/obj/d_a_obj_bubblePilar/%.cpp
+	@echo [416] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M416_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M416_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_bubblePilar/libs/Runtime.PPCEABI.H/Makefile
 

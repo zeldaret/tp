@@ -84,8 +84,8 @@ lbl_802BA37C:
 /* 802BA3C0  38 84 FF F7 */	addi r4, r4, -9
 /* 802BA3C4  28 04 00 56 */	cmplwi r4, 0x56
 /* 802BA3C8  41 81 01 6C */	bgt lbl_802BA534
-/* 802BA3CC  3C 60 80 3D */	lis r3, lit_5852@ha
-/* 802BA3D0  38 63 A9 BC */	addi r3, r3, lit_5852@l
+/* 802BA3CC  3C 60 80 3D */	lis r3, lit_5852@ha /* 0x803CA9BC@ha */
+/* 802BA3D0  38 63 A9 BC */	addi r3, r3, lit_5852@l /* 0x803CA9BC@l */
 /* 802BA3D4  54 84 10 3A */	slwi r4, r4, 2
 /* 802BA3D8  7C 03 20 2E */	lwzx r0, r3, r4
 /* 802BA3DC  7C 09 03 A6 */	mtctr r0

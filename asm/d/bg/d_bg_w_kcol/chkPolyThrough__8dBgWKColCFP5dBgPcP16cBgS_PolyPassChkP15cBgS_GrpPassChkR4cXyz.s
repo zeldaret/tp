@@ -132,8 +132,8 @@ lbl_8007ED94:
 /* 8007ED94  88 1F 00 0C */	lbz r0, 0xc(r31)
 /* 8007ED98  28 00 00 00 */	cmplwi r0, 0
 /* 8007ED9C  41 82 00 38 */	beq lbl_8007EDD4
-/* 8007EDA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8007EDA4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8007EDA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8007EDA4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8007EDA8  80 63 5D B8 */	lwz r3, 0x5db8(r3)
 /* 8007EDAC  28 03 00 00 */	cmplwi r3, 0
 /* 8007EDB0  41 82 00 24 */	beq lbl_8007EDD4

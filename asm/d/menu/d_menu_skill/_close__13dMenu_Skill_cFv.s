@@ -6,8 +6,8 @@ lbl_801F7C1C:
 /* 801F7C2C  F3 E1 00 28 */	psq_st f31, 40(r1), 0, 0 /* qr0 */
 /* 801F7C30  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 801F7C34  7C 7F 1B 78 */	mr r31, r3
-/* 801F7C38  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 801F7C3C  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 801F7C38  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 801F7C3C  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 801F7C40  A8 A3 0A 68 */	lha r5, 0xa68(r3)
 /* 801F7C44  38 60 00 00 */	li r3, 0
 /* 801F7C48  B0 7F 02 00 */	sth r3, 0x200(r31)

@@ -28,20 +28,20 @@ lbl_80235350:
 lbl_80235380:
 /* 80235380  80 7F 01 18 */	lwz r3, 0x118(r31)
 /* 80235384  4B FF 3D E5 */	bl selectMessage__19jmessage_tReferenceFv
-/* 80235388  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8023538C  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 80235388  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8023538C  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 80235390  88 03 00 BD */	lbz r0, 0xbd(r3)
 /* 80235394  28 00 00 00 */	cmplwi r0, 0
 /* 80235398  41 82 00 1C */	beq lbl_802353B4
 /* 8023539C  38 00 00 2A */	li r0, 0x2a
-/* 802353A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 802353A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 802353A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 802353A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 802353A8  98 03 5E 35 */	stb r0, 0x5e35(r3)
 /* 802353AC  38 00 00 00 */	li r0, 0
 /* 802353B0  98 03 5E 50 */	stb r0, 0x5e50(r3)
 lbl_802353B4:
-/* 802353B4  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 802353B8  3B C3 D2 E8 */	addi r30, r3, m_cpadInfo__8mDoCPd_c@l
+/* 802353B4  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 802353B8  3B C3 D2 E8 */	addi r30, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 802353BC  80 7E 00 34 */	lwz r3, 0x34(r30)
 /* 802353C0  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 802353C4  41 82 00 24 */	beq lbl_802353E8

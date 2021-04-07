@@ -7,8 +7,8 @@ lbl_80010888:
 /* 8001089C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 800108A0  7C 9F 23 78 */	mr r31, r4
 /* 800108A4  41 82 00 30 */	beq lbl_800108D4
-/* 800108A8  3C 80 80 3A */	lis r4, __vt__16mDoExt_McaMorfSO@ha
-/* 800108AC  38 04 32 B0 */	addi r0, r4, __vt__16mDoExt_McaMorfSO@l
+/* 800108A8  3C 80 80 3A */	lis r4, __vt__16mDoExt_McaMorfSO@ha /* 0x803A32B0@ha */
+/* 800108AC  38 04 32 B0 */	addi r0, r4, __vt__16mDoExt_McaMorfSO@l /* 0x803A32B0@l */
 /* 800108B0  90 1E 00 00 */	stw r0, 0(r30)
 /* 800108B4  48 00 0A 5D */	bl stopZelAnime__16mDoExt_McaMorfSOFv
 /* 800108B8  7F C3 F3 78 */	mr r3, r30

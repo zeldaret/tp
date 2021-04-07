@@ -12,8 +12,8 @@ lbl_800199BC:
 /* 800199E4  90 1F 00 00 */	stw r0, 0(r31)
 /* 800199E8  48 00 00 2C */	b lbl_80019A14
 lbl_800199EC:
-/* 800199EC  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 800199F0  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 800199EC  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 800199F0  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 800199F4  38 81 00 08 */	addi r4, r1, 8
 /* 800199F8  4B FF FE 01 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800199FC  90 7F 00 00 */	stw r3, 0(r31)

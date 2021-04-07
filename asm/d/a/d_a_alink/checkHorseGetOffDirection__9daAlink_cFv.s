@@ -28,8 +28,8 @@ lbl_800EF1F0:
 lbl_800EF1FC:
 /* 800EF1FC  C0 25 04 D8 */	lfs f1, 0x4d8(r5)
 /* 800EF200  C0 42 94 D8 */	lfs f2, lit_18997(r2)
-/* 800EF204  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800EF208  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 800EF204  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800EF208  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800EF20C  57 80 04 38 */	rlwinm r0, r28, 0, 0x10, 0x1c
 /* 800EF210  7C 64 02 14 */	add r3, r4, r0
 /* 800EF214  C0 03 00 04 */	lfs f0, 4(r3)
@@ -43,8 +43,8 @@ lbl_800EF1FC:
 /* 800EF234  C0 01 00 24 */	lfs f0, 0x24(r1)
 /* 800EF238  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 800EF23C  D0 61 00 1C */	stfs f3, 0x1c(r1)
-/* 800EF240  3C 60 80 39 */	lis r3, lit_18938@ha
-/* 800EF244  38 83 19 78 */	addi r4, r3, lit_18938@l
+/* 800EF240  3C 60 80 39 */	lis r3, lit_18938@ha /* 0x80391978@ha */
+/* 800EF244  38 83 19 78 */	addi r4, r3, lit_18938@l /* 0x80391978@l */
 /* 800EF248  80 64 00 00 */	lwz r3, 0(r4)
 /* 800EF24C  80 04 00 04 */	lwz r0, 4(r4)
 /* 800EF250  90 61 00 08 */	stw r3, 8(r1)

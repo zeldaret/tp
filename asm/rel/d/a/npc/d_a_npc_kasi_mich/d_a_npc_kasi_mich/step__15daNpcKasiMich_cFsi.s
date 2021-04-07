@@ -30,10 +30,10 @@ lbl_80A27D98:
 /* 80A27D98  2C 00 00 01 */	cmpwi r0, 1
 /* 80A27D9C  40 82 00 58 */	bne lbl_80A27DF4
 /* 80A27DA0  A8 9F 09 96 */	lha r4, 0x996(r31)
-/* 80A27DA4  3C A0 80 A3 */	lis r5, lit_4448@ha
-/* 80A27DA8  C0 25 A0 EC */	lfs f1, lit_4448@l(r5)
+/* 80A27DA4  3C A0 80 A3 */	lis r5, lit_4448@ha /* 0x80A2A0EC@ha */
+/* 80A27DA8  C0 25 A0 EC */	lfs f1, lit_4448@l(r5)  /* 0x80A2A0EC@l */
 /* 80A27DAC  38 A0 00 00 */	li r5, 0
-/* 80A27DB0  4B 72 C1 44 */	b turn__8daNpcF_cFsfi
+/* 80A27DB0  4B 72 C1 45 */	bl turn__8daNpcF_cFsfi
 /* 80A27DB4  2C 03 00 00 */	cmpwi r3, 0
 /* 80A27DB8  41 82 00 2C */	beq lbl_80A27DE4
 /* 80A27DBC  A8 1F 04 DE */	lha r0, 0x4de(r31)

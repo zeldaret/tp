@@ -27,8 +27,8 @@ lbl_8012F2AC:
 /* 8012F2D8  40 82 00 24 */	bne lbl_8012F2FC
 /* 8012F2DC  7F C3 F3 78 */	mr r3, r30
 /* 8012F2E0  38 80 00 0B */	li r4, 0xb
-/* 8012F2E4  3C A0 80 39 */	lis r5, m__19daAlinkHIO_wlLie_c0@ha
-/* 8012F2E8  38 A5 F1 38 */	addi r5, r5, m__19daAlinkHIO_wlLie_c0@l
+/* 8012F2E4  3C A0 80 39 */	lis r5, m__19daAlinkHIO_wlLie_c0@ha /* 0x8038F138@ha */
+/* 8012F2E8  38 A5 F1 38 */	addi r5, r5, m__19daAlinkHIO_wlLie_c0@l /* 0x8038F138@l */
 /* 8012F2EC  4B FF A5 5D */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8012F2F0  38 00 00 00 */	li r0, 0
 /* 8012F2F4  90 1E 31 98 */	stw r0, 0x3198(r30)
@@ -43,8 +43,8 @@ lbl_8012F2FC:
 /* 8012F314  40 82 00 20 */	bne lbl_8012F334
 /* 8012F318  7F C3 F3 78 */	mr r3, r30
 /* 8012F31C  38 80 00 0E */	li r4, 0xe
-/* 8012F320  3C A0 80 39 */	lis r5, m__19daAlinkHIO_wlLie_c0@ha
-/* 8012F324  38 A5 F1 38 */	addi r5, r5, m__19daAlinkHIO_wlLie_c0@l
+/* 8012F320  3C A0 80 39 */	lis r5, m__19daAlinkHIO_wlLie_c0@ha /* 0x8038F138@ha */
+/* 8012F324  38 A5 F1 38 */	addi r5, r5, m__19daAlinkHIO_wlLie_c0@l /* 0x8038F138@l */
 /* 8012F328  C0 25 00 44 */	lfs f1, 0x44(r5)
 /* 8012F32C  C0 45 00 48 */	lfs f2, 0x48(r5)
 /* 8012F330  4B FF A3 A9 */	bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff

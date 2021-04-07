@@ -14,8 +14,8 @@ lbl_801C90A8:
 /* 801C90D8  28 00 00 00 */	cmplwi r0, 0
 /* 801C90DC  40 82 00 D0 */	bne lbl_801C91AC
 /* 801C90E0  48 00 E5 E1 */	bl deleteExplain__17dMenu_Fmap2DTop_cFv
-/* 801C90E4  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801C90E8  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801C90E4  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801C90E8  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801C90EC  88 03 00 C0 */	lbz r0, 0xc0(r3)
 /* 801C90F0  28 00 00 03 */	cmplwi r0, 3
 /* 801C90F4  40 82 00 90 */	bne lbl_801C9184

@@ -1,8 +1,8 @@
 lbl_8034B550:
 /* 8034B550  7C 08 02 A6 */	mflr r0
-/* 8034B554  3C 80 80 35 */	lis r4, cbForCancelSync@ha
+/* 8034B554  3C 80 80 35 */	lis r4, cbForCancelSync@ha /* 0x8034B5FC@ha */
 /* 8034B558  90 01 00 04 */	stw r0, 4(r1)
-/* 8034B55C  38 84 B5 FC */	addi r4, r4, cbForCancelSync@l
+/* 8034B55C  38 84 B5 FC */	addi r4, r4, cbForCancelSync@l /* 0x8034B5FC@l */
 /* 8034B560  94 21 FF E8 */	stwu r1, -0x18(r1)
 /* 8034B564  93 E1 00 14 */	stw r31, 0x14(r1)
 /* 8034B568  93 C1 00 10 */	stw r30, 0x10(r1)

@@ -5,11 +5,11 @@ lbl_80C00D74:
 /* 80C00D80  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C00D84  80 03 00 B0 */	lwz r0, 0xb0(r3)
 /* 80C00D88  54 1F 27 BE */	rlwinm r31, r0, 4, 0x1e, 0x1f
-/* 80C00D8C  3C 80 80 C1 */	lis r4, stringBase0@ha
-/* 80C00D90  38 84 FE 14 */	addi r4, r4, stringBase0@l
+/* 80C00D8C  3C 80 80 C1 */	lis r4, d_a_obj_gra2__stringBase0@ha /* 0x80C0FE14@ha */
+/* 80C00D90  38 84 FE 14 */	addi r4, r4, d_a_obj_gra2__stringBase0@l /* 0x80C0FE14@l */
 /* 80C00D94  38 84 00 44 */	addi r4, r4, 0x44
 /* 80C00D98  38 63 07 44 */	addi r3, r3, 0x744
-/* 80C00D9C  4B 76 7D 90 */	b strcpy
+/* 80C00D9C  4B 76 7D 91 */	bl strcpy
 /* 80C00DA0  2C 1F 00 02 */	cmpwi r31, 2
 /* 80C00DA4  41 82 00 2C */	beq lbl_80C00DD0
 /* 80C00DA8  40 80 00 14 */	bge lbl_80C00DBC

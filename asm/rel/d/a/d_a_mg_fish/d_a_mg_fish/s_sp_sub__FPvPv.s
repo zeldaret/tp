@@ -4,7 +4,7 @@ lbl_8052B1A0:
 /* 8052B1A8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8052B1AC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8052B1B0  7C 7F 1B 78 */	mr r31, r3
-/* 8052B1B4  4B AE DB 2C */	b fopAc_IsActor__FPv
+/* 8052B1B4  4B AE DB 2D */	bl fopAc_IsActor__FPv
 /* 8052B1B8  2C 03 00 00 */	cmpwi r3, 0
 /* 8052B1BC  41 82 00 24 */	beq lbl_8052B1E0
 /* 8052B1C0  A8 1F 00 08 */	lha r0, 8(r31)

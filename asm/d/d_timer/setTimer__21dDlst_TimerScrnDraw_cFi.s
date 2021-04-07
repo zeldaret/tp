@@ -5,8 +5,8 @@ lbl_8025EEF0:
 /* 8025EEFC  39 61 00 40 */	addi r11, r1, 0x40
 /* 8025EF00  48 10 32 C1 */	bl _savegpr_22
 /* 8025EF04  7C 79 1B 78 */	mr r25, r3
-/* 8025EF08  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8025EF0C  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8025EF08  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8025EF0C  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8025EF10  90 83 00 84 */	stw r4, 0x84(r3)
 /* 8025EF14  38 00 03 E8 */	li r0, 0x3e8
 /* 8025EF18  7C A4 03 D6 */	divw r5, r4, r0
@@ -87,8 +87,8 @@ lbl_8025F014:
 /* 8025F024  80 79 00 18 */	lwz r3, 0x18(r25)
 /* 8025F028  28 03 00 00 */	cmplwi r3, 0
 /* 8025F02C  41 82 01 3C */	beq lbl_8025F168
-/* 8025F030  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8025F034  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8025F030  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025F034  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025F038  88 04 4F AC */	lbz r0, 0x4fac(r4)
 /* 8025F03C  28 00 00 01 */	cmplwi r0, 1
 /* 8025F040  40 82 00 10 */	bne lbl_8025F050
@@ -122,8 +122,8 @@ lbl_8025F05C:
 /* 8025F0A8  C0 02 B5 48 */	lfs f0, lit_4050(r2)
 /* 8025F0AC  EC 41 00 24 */	fdivs f2, f1, f0
 /* 8025F0B0  C0 39 03 B0 */	lfs f1, 0x3b0(r25)
-/* 8025F0B4  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8025F0B8  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 8025F0B4  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025F0B8  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025F0BC  88 19 03 DD */	lbz r0, 0x3dd(r25)
 /* 8025F0C0  54 00 10 3A */	slwi r0, r0, 2
 /* 8025F0C4  7C 84 02 14 */	add r4, r4, r0
@@ -157,8 +157,8 @@ lbl_8025F0E4:
 /* 8025F130  C0 02 B5 48 */	lfs f0, lit_4050(r2)
 /* 8025F134  EC 41 00 24 */	fdivs f2, f1, f0
 /* 8025F138  C0 39 03 B0 */	lfs f1, 0x3b0(r25)
-/* 8025F13C  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8025F140  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 8025F13C  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025F140  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025F144  88 19 03 DD */	lbz r0, 0x3dd(r25)
 /* 8025F148  54 00 10 3A */	slwi r0, r0, 2
 /* 8025F14C  7C 84 02 14 */	add r4, r4, r0

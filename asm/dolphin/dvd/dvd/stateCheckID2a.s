@@ -1,8 +1,8 @@
 lbl_80349A54:
 /* 80349A54  7C 08 02 A6 */	mflr r0
-/* 80349A58  3C 60 80 35 */	lis r3, cbForStateCheckID2a@ha
+/* 80349A58  3C 60 80 35 */	lis r3, cbForStateCheckID2a@ha /* 0x80349A88@ha */
 /* 80349A5C  90 01 00 04 */	stw r0, 4(r1)
-/* 80349A60  38 A3 9A 88 */	addi r5, r3, cbForStateCheckID2a@l
+/* 80349A60  38 A3 9A 88 */	addi r5, r3, cbForStateCheckID2a@l /* 0x80349A88@l */
 /* 80349A64  94 21 FF F8 */	stwu r1, -8(r1)
 /* 80349A68  80 8D 91 FC */	lwz r4, IDShouldBe(r13)
 /* 80349A6C  88 64 00 08 */	lbz r3, 8(r4)

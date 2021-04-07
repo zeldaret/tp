@@ -9,22 +9,22 @@ lbl_80CF7978:
 /* 80CF7994  38 00 00 00 */	li r0, 0
 /* 80CF7998  98 03 0A E6 */	stb r0, 0xae6(r3)
 /* 80CF799C  38 7F 07 30 */	addi r3, r31, 0x730
-/* 80CF79A0  4B 38 CA C0 */	b ChkTgHit__12dCcD_GObjInfFv
+/* 80CF79A0  4B 38 CA C1 */	bl ChkTgHit__12dCcD_GObjInfFv
 /* 80CF79A4  28 03 00 00 */	cmplwi r3, 0
 /* 80CF79A8  41 82 00 50 */	beq lbl_80CF79F8
 /* 80CF79AC  38 7F 07 30 */	addi r3, r31, 0x730
-/* 80CF79B0  4B 38 CB 48 */	b GetTgHitObj__12dCcD_GObjInfFv
+/* 80CF79B0  4B 38 CB 49 */	bl GetTgHitObj__12dCcD_GObjInfFv
 /* 80CF79B4  28 03 00 00 */	cmplwi r3, 0
 /* 80CF79B8  41 82 00 40 */	beq lbl_80CF79F8
 /* 80CF79BC  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 80CF79C0  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 80CF79C4  41 82 00 34 */	beq lbl_80CF79F8
 /* 80CF79C8  38 7F 07 30 */	addi r3, r31, 0x730
-/* 80CF79CC  4B 38 CB 7C */	b GetTgHitGObj__12dCcD_GObjInfFv
+/* 80CF79CC  4B 38 CB 7D */	bl GetTgHitGObj__12dCcD_GObjInfFv
 /* 80CF79D0  28 03 00 00 */	cmplwi r3, 0
 /* 80CF79D4  41 82 00 24 */	beq lbl_80CF79F8
 /* 80CF79D8  38 7F 07 30 */	addi r3, r31, 0x730
-/* 80CF79DC  4B 38 CB 6C */	b GetTgHitGObj__12dCcD_GObjInfFv
+/* 80CF79DC  4B 38 CB 6D */	bl GetTgHitGObj__12dCcD_GObjInfFv
 /* 80CF79E0  88 03 00 75 */	lbz r0, 0x75(r3)
 /* 80CF79E4  28 00 00 04 */	cmplwi r0, 4
 /* 80CF79E8  40 82 00 10 */	bne lbl_80CF79F8
@@ -33,22 +33,22 @@ lbl_80CF7978:
 /* 80CF79F4  98 1F 0A E6 */	stb r0, 0xae6(r31)
 lbl_80CF79F8:
 /* 80CF79F8  38 7F 08 68 */	addi r3, r31, 0x868
-/* 80CF79FC  4B 38 CA 64 */	b ChkTgHit__12dCcD_GObjInfFv
+/* 80CF79FC  4B 38 CA 65 */	bl ChkTgHit__12dCcD_GObjInfFv
 /* 80CF7A00  28 03 00 00 */	cmplwi r3, 0
 /* 80CF7A04  41 82 00 50 */	beq lbl_80CF7A54
 /* 80CF7A08  38 7F 08 68 */	addi r3, r31, 0x868
-/* 80CF7A0C  4B 38 CA EC */	b GetTgHitObj__12dCcD_GObjInfFv
+/* 80CF7A0C  4B 38 CA ED */	bl GetTgHitObj__12dCcD_GObjInfFv
 /* 80CF7A10  28 03 00 00 */	cmplwi r3, 0
 /* 80CF7A14  41 82 00 40 */	beq lbl_80CF7A54
 /* 80CF7A18  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 80CF7A1C  54 00 05 AD */	rlwinm. r0, r0, 0, 0x16, 0x16
 /* 80CF7A20  41 82 00 34 */	beq lbl_80CF7A54
 /* 80CF7A24  38 7F 08 68 */	addi r3, r31, 0x868
-/* 80CF7A28  4B 38 CB 20 */	b GetTgHitGObj__12dCcD_GObjInfFv
+/* 80CF7A28  4B 38 CB 21 */	bl GetTgHitGObj__12dCcD_GObjInfFv
 /* 80CF7A2C  28 03 00 00 */	cmplwi r3, 0
 /* 80CF7A30  41 82 00 24 */	beq lbl_80CF7A54
 /* 80CF7A34  38 7F 08 68 */	addi r3, r31, 0x868
-/* 80CF7A38  4B 38 CB 10 */	b GetTgHitGObj__12dCcD_GObjInfFv
+/* 80CF7A38  4B 38 CB 11 */	bl GetTgHitGObj__12dCcD_GObjInfFv
 /* 80CF7A3C  88 03 00 75 */	lbz r0, 0x75(r3)
 /* 80CF7A40  28 00 00 04 */	cmplwi r0, 4
 /* 80CF7A44  40 82 00 10 */	bne lbl_80CF7A54

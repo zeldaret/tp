@@ -5,12 +5,12 @@ lbl_80B1C480:
 /* 80B1C48C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80B1C490  93 C1 00 08 */	stw r30, 8(r1)
 /* 80B1C494  7C 7E 1B 78 */	mr r30, r3
-/* 80B1C498  3C 60 80 B2 */	lis r3, m__16daNpcTks_Param_c@ha
-/* 80B1C49C  3B E3 DD 58 */	addi r31, r3, m__16daNpcTks_Param_c@l
+/* 80B1C498  3C 60 80 B2 */	lis r3, m__16daNpcTks_Param_c@ha /* 0x80B1DD58@ha */
+/* 80B1C49C  3B E3 DD 58 */	addi r31, r3, m__16daNpcTks_Param_c@l /* 0x80B1DD58@l */
 /* 80B1C4A0  38 7E 07 E4 */	addi r3, r30, 0x7e4
 /* 80B1C4A4  38 9F 00 00 */	addi r4, r31, 0
 /* 80B1C4A8  C0 24 00 1C */	lfs f1, 0x1c(r4)
-/* 80B1C4AC  4B 55 9A 94 */	b SetWallR__12dBgS_AcchCirFf
+/* 80B1C4AC  4B 55 9A 95 */	bl SetWallR__12dBgS_AcchCirFf
 /* 80B1C4B0  38 7F 00 00 */	addi r3, r31, 0
 /* 80B1C4B4  C0 03 00 18 */	lfs f0, 0x18(r3)
 /* 80B1C4B8  D0 1E 08 14 */	stfs f0, 0x814(r30)

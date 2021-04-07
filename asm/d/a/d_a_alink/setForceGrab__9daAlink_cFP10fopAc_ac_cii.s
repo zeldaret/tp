@@ -70,8 +70,8 @@ lbl_800E3B70:
 /* 800E3B8C  C0 02 93 94 */	lfs f0, lit_8785(r2)
 /* 800E3B90  D0 1D 33 E4 */	stfs f0, 0x33e4(r29)
 /* 800E3B94  7F A3 EB 78 */	mr r3, r29
-/* 800E3B98  3C 80 80 39 */	lis r4, m__19daAlinkHIO_basic_c0@ha
-/* 800E3B9C  38 84 D6 64 */	addi r4, r4, m__19daAlinkHIO_basic_c0@l
+/* 800E3B98  3C 80 80 39 */	lis r4, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 800E3B9C  38 84 D6 64 */	addi r4, r4, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 800E3BA0  C0 24 00 18 */	lfs f1, 0x18(r4)
 /* 800E3BA4  48 00 02 19 */	bl setGrabUpperAnime__9daAlink_cFf
 /* 800E3BA8  38 60 00 01 */	li r3, 1

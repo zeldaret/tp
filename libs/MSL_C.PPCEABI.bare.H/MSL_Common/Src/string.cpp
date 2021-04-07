@@ -30,81 +30,81 @@ extern "C" void _epilog();
 // Declarations:
 //
 
-/* 803688DC-80368924 0048+00 s=0 e=1 z=0  None .text      strrchr */
+/* 803688DC-80368924 36321C 0048+00 0/0 1/1 0/0 .text            strrchr */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void strrchr() {
+asm void strrchr() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/string/strrchr.s"
 }
 #pragma pop
 
-/* 80368924-80368954 0030+00 s=0 e=3 z=0  None .text      strchr */
+/* 80368924-80368954 363264 0030+00 0/0 3/3 0/0 .text            strchr */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void strchr() {
+asm void strchr() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/string/strchr.s"
 }
 #pragma pop
 
-/* 80368954-80368994 0040+00 s=0 e=6 z=0  None .text      strncmp */
+/* 80368954-80368994 363294 0040+00 0/0 6/6 0/0 .text            strncmp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void strncmp() {
+asm void strncmp() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/string/strncmp.s"
 }
 #pragma pop
 
-/* 80368994-80368ABC 0128+00 s=0 e=155 z=279  None .text      strcmp */
+/* 80368994-80368ABC 3632D4 0128+00 0/0 155/155 279/279 .text            strcmp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void strcmp() {
+asm void strcmp() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/string/strcmp.s"
 }
 #pragma pop
 
-/* 80368ABC-80368AE8 002C+00 s=0 e=20 z=8  None .text      strcat */
+/* 80368ABC-80368AE8 3633FC 002C+00 0/0 20/20 8/8 .text            strcat */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void strcat() {
+asm void strcat() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/string/strcat.s"
 }
 #pragma pop
 
-/* 80368AE8-80368B2C 0044+00 s=0 e=9 z=1  None .text      strncpy */
+/* 80368AE8-80368B2C 363428 0044+00 0/0 9/9 1/1 .text            strncpy */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void strncpy() {
+asm void strncpy() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/string/strncpy.s"
 }
 #pragma pop
 
-/* 80368B2C-80368BE4 00B8+00 s=0 e=131 z=13  None .text      strcpy */
+/* 80368B2C-80368BE4 36346C 00B8+00 0/0 131/131 13/13 .text            strcpy */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void strcpy() {
+asm void strcpy() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/string/strcpy.s"
 }
 #pragma pop
 
-/* 80368BE4-80368C00 001C+00 s=0 e=28 z=8  None .text      strlen */
+/* 80368BE4-80368C00 363524 001C+00 0/0 28/28 8/8 .text            strlen */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void strlen() {
+asm void strlen() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/string/strlen.s"
 }

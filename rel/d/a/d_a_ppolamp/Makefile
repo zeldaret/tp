@@ -3,17 +3,15 @@
 #
 
 M704_TARGET := $(BUILD_DIR)/rel/d/a/d_a_ppolamp.plf
+M704_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_ppolamp.lcf
+M704_MAP := $(BUILD_DIR)/rel/d/a/d_a_ppolamp.map
 
 M704_CPP_FILES := \
-	rel/d/a/d_a_ppolamp/executor.cpp \
-	rel/d/a/d_a_ppolamp/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_ppolamp/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_ppolamp/d_a_ppolamp.cpp \
 
 M704_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_ppolamp/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_ppolamp/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_ppolamp/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_ppolamp/d_a_ppolamp.o \
 
 M704_LIBS := \
@@ -29,14 +27,21 @@ M704_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M704_LDSCRIPT) \
+	-unused -map $(M704_MAP) \
+	-w off \
 
 $(M704_TARGET): $(M704_O_FILES) $(M704_LIBS)
+	@echo [704] creating $(M704_TARGET)
 	@echo $(M704_LIBS) $(M704_O_FILES) > build/M704_ofiles
-	$(LD) -partial $(M704_LDFLAGS) -o $(M704_TARGET) @build/M704_ofiles
+	@python3 tools/lcf.py rel 704 --output $(M704_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M704_LDFLAGS) -o $(M704_TARGET) @build/M704_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_ppolamp/%.o: rel/d/a/d_a_ppolamp/%.cpp
+	@echo [704] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M704_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M704_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

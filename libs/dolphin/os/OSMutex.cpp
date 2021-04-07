@@ -19,7 +19,7 @@ extern "C" void OSTryLockMutex();
 extern "C" void OSInitCond();
 extern "C" void OSWaitCond();
 extern "C" void OSSignalCond();
-extern "C" static void __OSCheckMutex();
+extern "C" void __OSCheckMutex();
 extern "C" void __OSCheckDeadLock();
 extern "C" void __OSCheckMutexes();
 
@@ -42,111 +42,111 @@ extern "C" void OSWakeupThread();
 // Declarations:
 //
 
-/* 8033F008-8033F040 0038+00 s=0 e=12 z=0  None .text      OSInitMutex */
+/* 8033F008-8033F040 339948 0038+00 0/0 12/12 0/0 .text            OSInitMutex */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void OSInitMutex() {
+asm void OSInitMutex() {
     nofralloc
 #include "asm/dolphin/os/OSMutex/OSInitMutex.s"
 }
 #pragma pop
 
-/* 8033F040-8033F11C 00DC+00 s=1 e=62 z=0  None .text      OSLockMutex */
+/* 8033F040-8033F11C 339980 00DC+00 1/1 62/62 0/0 .text            OSLockMutex */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void OSLockMutex() {
+asm void OSLockMutex() {
     nofralloc
 #include "asm/dolphin/os/OSMutex/OSLockMutex.s"
 }
 #pragma pop
 
-/* 8033F11C-8033F1E4 00C8+00 s=0 e=71 z=0  None .text      OSUnlockMutex */
+/* 8033F11C-8033F1E4 339A5C 00C8+00 0/0 71/71 0/0 .text            OSUnlockMutex */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void OSUnlockMutex() {
+asm void OSUnlockMutex() {
     nofralloc
 #include "asm/dolphin/os/OSMutex/OSUnlockMutex.s"
 }
 #pragma pop
 
-/* 8033F1E4-8033F254 0070+00 s=0 e=2 z=0  None .text      __OSUnlockAllMutex */
+/* 8033F1E4-8033F254 339B24 0070+00 0/0 2/2 0/0 .text            __OSUnlockAllMutex */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __OSUnlockAllMutex() {
+asm void __OSUnlockAllMutex() {
     nofralloc
 #include "asm/dolphin/os/OSMutex/__OSUnlockAllMutex.s"
 }
 #pragma pop
 
-/* 8033F254-8033F310 00BC+00 s=0 e=9 z=0  None .text      OSTryLockMutex */
+/* 8033F254-8033F310 339B94 00BC+00 0/0 9/9 0/0 .text            OSTryLockMutex */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void OSTryLockMutex() {
+asm void OSTryLockMutex() {
     nofralloc
 #include "asm/dolphin/os/OSMutex/OSTryLockMutex.s"
 }
 #pragma pop
 
-/* 8033F310-8033F330 0020+00 s=0 e=1 z=0  None .text      OSInitCond */
+/* 8033F310-8033F330 339C50 0020+00 0/0 1/1 0/0 .text            OSInitCond */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void OSInitCond() {
+asm void OSInitCond() {
     nofralloc
 #include "asm/dolphin/os/OSMutex/OSInitCond.s"
 }
 #pragma pop
 
-/* 8033F330-8033F404 00D4+00 s=0 e=1 z=0  None .text      OSWaitCond */
+/* 8033F330-8033F404 339C70 00D4+00 0/0 1/1 0/0 .text            OSWaitCond */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void OSWaitCond() {
+asm void OSWaitCond() {
     nofralloc
 #include "asm/dolphin/os/OSMutex/OSWaitCond.s"
 }
 #pragma pop
 
-/* 8033F404-8033F424 0020+00 s=0 e=5 z=0  None .text      OSSignalCond */
+/* 8033F404-8033F424 339D44 0020+00 0/0 5/5 0/0 .text            OSSignalCond */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void OSSignalCond() {
+asm void OSSignalCond() {
     nofralloc
 #include "asm/dolphin/os/OSMutex/OSSignalCond.s"
 }
 #pragma pop
 
-/* 8033F424-8033F524 0100+00 s=1 e=0 z=0  None .text      __OSCheckMutex */
+/* 8033F424-8033F524 339D64 0100+00 1/1 0/0 0/0 .text            __OSCheckMutex */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void __OSCheckMutex() {
+asm void __OSCheckMutex() {
     nofralloc
 #include "asm/dolphin/os/OSMutex/__OSCheckMutex.s"
 }
 #pragma pop
 
-/* 8033F524-8033F55C 0038+00 s=0 e=1 z=0  None .text      __OSCheckDeadLock */
+/* 8033F524-8033F55C 339E64 0038+00 0/0 1/1 0/0 .text            __OSCheckDeadLock */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __OSCheckDeadLock() {
+asm void __OSCheckDeadLock() {
     nofralloc
 #include "asm/dolphin/os/OSMutex/__OSCheckDeadLock.s"
 }
 #pragma pop
 
-/* 8033F55C-8033F5D0 0074+00 s=0 e=1 z=0  None .text      __OSCheckMutexes */
+/* 8033F55C-8033F5D0 339E9C 0074+00 0/0 1/1 0/0 .text            __OSCheckMutexes */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __OSCheckMutexes() {
+asm void __OSCheckMutexes() {
     nofralloc
 #include "asm/dolphin/os/OSMutex/__OSCheckMutexes.s"
 }

@@ -1,12 +1,12 @@
 lbl_80341F00:
 /* 80341F00  7C 08 02 A6 */	mflr r0
-/* 80341F04  3C 80 80 3D */	lis r4, lit_831@ha
+/* 80341F04  3C 80 80 3D */	lis r4, lit_831@ha /* 0x803D0838@ha */
 /* 80341F08  90 01 00 04 */	stw r0, 4(r1)
-/* 80341F0C  3C 60 80 45 */	lis r3, RunQueue@ha
+/* 80341F0C  3C 60 80 45 */	lis r3, RunQueue@ha /* 0x8044BB78@ha */
 /* 80341F10  94 21 FF C8 */	stwu r1, -0x38(r1)
 /* 80341F14  BF 41 00 20 */	stmw r26, 0x20(r1)
-/* 80341F18  3B C4 08 38 */	addi r30, r4, lit_831@l
-/* 80341F1C  3B E3 BB 78 */	addi r31, r3, RunQueue@l
+/* 80341F18  3B C4 08 38 */	addi r30, r4, lit_831@l /* 0x803D0838@l */
+/* 80341F1C  3B E3 BB 78 */	addi r31, r3, RunQueue@l /* 0x8044BB78@l */
 /* 80341F20  3B 80 00 00 */	li r28, 0
 /* 80341F24  4B FF B7 D1 */	bl OSDisableInterrupts
 /* 80341F28  3B 63 00 00 */	addi r27, r3, 0
@@ -73,7 +73,7 @@ lbl_80341FFC:
 /* 80342004  3B BD 00 08 */	addi r29, r29, 8
 /* 80342008  40 81 FF 2C */	ble lbl_80341F34
 /* 8034200C  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000DC@ha */
-/* 80342010  80 63 00 DC */	lwz r3, 0x00DC(r3)
+/* 80342010  80 63 00 DC */	lwz r3, 0x00DC(r3)  /* 0x800000DC@l */
 /* 80342014  28 03 00 00 */	cmplwi r3, 0
 /* 80342018  41 82 00 34 */	beq lbl_8034204C
 /* 8034201C  80 03 03 00 */	lwz r0, 0x300(r3)
@@ -108,7 +108,7 @@ lbl_8034204C:
 /* 8034208C  4B CC 4D F1 */	bl OSPanic
 lbl_80342090:
 /* 80342090  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000DC@ha */
-/* 80342094  83 A3 00 DC */	lwz r29, 0x00DC(r3)
+/* 80342094  83 A3 00 DC */	lwz r29, 0x00DC(r3)  /* 0x800000DC@l */
 /* 80342098  48 00 05 90 */	b lbl_80342628
 lbl_8034209C:
 /* 8034209C  80 7D 02 FC */	lwz r3, 0x2fc(r29)

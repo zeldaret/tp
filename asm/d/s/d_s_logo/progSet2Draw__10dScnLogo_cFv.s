@@ -4,8 +4,8 @@ lbl_80256AC0:
 /* 80256AC8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80256ACC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80256AD0  7C 7F 1B 78 */	mr r31, r3
-/* 80256AD4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80256AD8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80256AD4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80256AD8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80256ADC  38 63 5F 64 */	addi r3, r3, 0x5f64
 /* 80256AE0  38 83 01 B4 */	addi r4, r3, 0x1b4
 /* 80256AE4  38 A3 01 B8 */	addi r5, r3, 0x1b8

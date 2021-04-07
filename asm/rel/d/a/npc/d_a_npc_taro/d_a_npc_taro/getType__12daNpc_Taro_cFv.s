@@ -3,8 +3,8 @@ lbl_80566CCC:
 /* 80566CD0  54 00 06 3E */	clrlwi r0, r0, 0x18
 /* 80566CD4  28 00 00 0F */	cmplwi r0, 0xf
 /* 80566CD8  41 81 00 9C */	bgt lbl_80566D74
-/* 80566CDC  3C 60 80 57 */	lis r3, lit_4989@ha
-/* 80566CE0  38 63 2B F0 */	addi r3, r3, lit_4989@l
+/* 80566CDC  3C 60 80 57 */	lis r3, lit_4989@ha /* 0x80572BF0@ha */
+/* 80566CE0  38 63 2B F0 */	addi r3, r3, lit_4989@l /* 0x80572BF0@l */
 /* 80566CE4  54 00 10 3A */	slwi r0, r0, 2
 /* 80566CE8  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80566CEC  7C 09 03 A6 */	mtctr r0

@@ -21,11 +21,11 @@ lbl_80104C7C:
 /* 80104C98  40 82 00 28 */	bne lbl_80104CC0
 /* 80104C9C  7F E3 FB 78 */	mr r3, r31
 /* 80104CA0  38 80 00 14 */	li r4, 0x14
-/* 80104CA4  3C A0 80 39 */	lis r5, m__18daAlinkHIO_swim_c0@ha
-/* 80104CA8  38 A5 ED 2C */	addi r5, r5, m__18daAlinkHIO_swim_c0@l
+/* 80104CA4  3C A0 80 39 */	lis r5, m__18daAlinkHIO_swim_c0@ha /* 0x8038ED2C@ha */
+/* 80104CA8  38 A5 ED 2C */	addi r5, r5, m__18daAlinkHIO_swim_c0@l /* 0x8038ED2C@l */
 /* 80104CAC  C0 25 00 90 */	lfs f1, 0x90(r5)
-/* 80104CB0  3C A0 80 39 */	lis r5, m__22daAlinkHIO_hookshot_c0@ha
-/* 80104CB4  38 A5 E9 C0 */	addi r5, r5, m__22daAlinkHIO_hookshot_c0@l
+/* 80104CB0  3C A0 80 39 */	lis r5, m__22daAlinkHIO_hookshot_c0@ha /* 0x8038E9C0@ha */
+/* 80104CB4  38 A5 E9 C0 */	addi r5, r5, m__22daAlinkHIO_hookshot_c0@l /* 0x8038E9C0@l */
 /* 80104CB8  C0 45 00 44 */	lfs f2, 0x44(r5)
 /* 80104CBC  4B FA 83 25 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 lbl_80104CC0:
@@ -57,8 +57,8 @@ lbl_80104D10:
 /* 80104D1C  7F E3 FB 78 */	mr r3, r31
 /* 80104D20  4B FF CC F9 */	bl getSwimFrontMaxSpeed__9daAlink_cCFv
 /* 80104D24  D0 3F 05 94 */	stfs f1, 0x594(r31)
-/* 80104D28  3C 60 80 39 */	lis r3, m__18daAlinkHIO_swim_c0@ha
-/* 80104D2C  38 63 ED 2C */	addi r3, r3, m__18daAlinkHIO_swim_c0@l
+/* 80104D28  3C 60 80 39 */	lis r3, m__18daAlinkHIO_swim_c0@ha /* 0x8038ED2C@ha */
+/* 80104D2C  38 63 ED 2C */	addi r3, r3, m__18daAlinkHIO_swim_c0@l /* 0x8038ED2C@l */
 /* 80104D30  C0 03 00 60 */	lfs f0, 0x60(r3)
 /* 80104D34  D0 1F 34 80 */	stfs f0, 0x3480(r31)
 /* 80104D38  38 00 00 00 */	li r0, 0
@@ -66,8 +66,8 @@ lbl_80104D10:
 /* 80104D40  B0 1F 30 D0 */	sth r0, 0x30d0(r31)
 /* 80104D44  7F E3 FB 78 */	mr r3, r31
 /* 80104D48  48 00 43 29 */	bl setHookshotReadyMaterial__9daAlink_cFv
-/* 80104D4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80104D50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80104D4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80104D50  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80104D54  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 80104D58  64 00 00 10 */	oris r0, r0, 0x10
 /* 80104D5C  60 00 40 00 */	ori r0, r0, 0x4000

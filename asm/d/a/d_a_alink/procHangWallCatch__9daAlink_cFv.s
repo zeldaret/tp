@@ -21,16 +21,16 @@ lbl_800FC118:
 /* 800FC120  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800FC124  41 82 00 3C */	beq lbl_800FC160
 /* 800FC128  7F E3 FB 78 */	mr r3, r31
-/* 800FC12C  3C 80 80 39 */	lis r4, m__23daAlinkHIO_wallCatch_c0@ha
-/* 800FC130  38 84 E1 64 */	addi r4, r4, m__23daAlinkHIO_wallCatch_c0@l
+/* 800FC12C  3C 80 80 39 */	lis r4, m__23daAlinkHIO_wallCatch_c0@ha /* 0x8038E164@ha */
+/* 800FC130  38 84 E1 64 */	addi r4, r4, m__23daAlinkHIO_wallCatch_c0@l /* 0x8038E164@l */
 /* 800FC134  C0 24 00 50 */	lfs f1, 0x50(r4)
 /* 800FC138  4B FF FA 91 */	bl procHangClimbInit__9daAlink_cFf
 /* 800FC13C  2C 03 00 00 */	cmpwi r3, 0
 /* 800FC140  40 82 00 20 */	bne lbl_800FC160
 /* 800FC144  7F E3 FB 78 */	mr r3, r31
 /* 800FC148  38 80 00 01 */	li r4, 1
-/* 800FC14C  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha
-/* 800FC150  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l
+/* 800FC14C  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 800FC150  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 800FC154  C0 25 00 70 */	lfs f1, 0x70(r5)
 /* 800FC158  4B FC A8 F1 */	bl procFallInit__9daAlink_cFif
 /* 800FC15C  48 00 00 08 */	b lbl_800FC164

@@ -21,13 +21,13 @@ struct mDoMtx_stack_c {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
+struct J3DAnmTransform {};
+
 struct Z2Creature {};
 
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack1_c {};
-
-struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -70,12 +70,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void daDmidna_createHeap(fopAc_ac_c*);
-static void daDmidna_Create(fopAc_ac_c*);
-static void daDmidna_Delete(daDmidna_c*);
-static void daDmidna_Execute(daDmidna_c*);
-static void daDmidna_Draw(daDmidna_c*);
-
 extern "C" void createHeap__10daDmidna_cFv();
 extern "C" static void daDmidna_createHeap__FP10fopAc_ac_c();
 extern "C" void create__10daDmidna_cFv();
@@ -92,14 +86,6 @@ extern "C" extern void* g_profile_DMIDNA[12];
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelEntryDL(J3DModel*);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
@@ -132,7 +118,7 @@ extern "C" extern u8 g_env_light[4880];
 //
 
 /* ############################################################################################## */
-/* 8045D290-8045D298 0007+01 s=3 e=0 z=0  None .rodata    l_arcName */
+/* 8045D290-8045D298 000000 0007+01 3/3 0/0 0/0 .rodata          l_arcName */
 SECTION_RODATA static u8 const l_arcName[7 + 1 /* padding */] = {
     0x44,
     0x6D,
@@ -144,11 +130,13 @@ SECTION_RODATA static u8 const l_arcName[7 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
+COMPILER_STRIP_GATE(8045D290, &l_arcName);
 
-/* 8045D298-8045D29C 0004+00 s=1 e=0 z=0  None .rodata    @3769 */
-SECTION_RODATA static u32 const lit_3769 = 0x3F800000;
+/* 8045D298-8045D29C 000008 0004+00 1/1 0/0 0/0 .rodata          @3769 */
+SECTION_RODATA static f32 const lit_3769 = 1.0f;
+COMPILER_STRIP_GATE(8045D298, &lit_3769);
 
-/* 8045CED8-8045CFC4 00EC+00 s=1 e=0 z=0  None .text      createHeap__10daDmidna_cFv */
+/* 8045CED8-8045CFC4 000078 00EC+00 1/1 0/0 0/0 .text            createHeap__10daDmidna_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -158,17 +146,18 @@ asm void daDmidna_c::createHeap() {
 }
 #pragma pop
 
-/* 8045CFC4-8045CFE4 0020+00 s=1 e=0 z=0  None .text      daDmidna_createHeap__FP10fopAc_ac_c */
+/* 8045CFC4-8045CFE4 000164 0020+00 1/1 0/0 0/0 .text            daDmidna_createHeap__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daDmidna_createHeap(fopAc_ac_c* param_0) {
+static asm void daDmidna_createHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_dmidna/d_a_dmidna/daDmidna_createHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 8045CFE4-8045D094 00B0+00 s=1 e=0 z=0  None .text      create__10daDmidna_cFv */
+/* 8045CFE4-8045D094 000184 00B0+00 1/1 0/0 0/0 .text            create__10daDmidna_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -178,17 +167,17 @@ asm void daDmidna_c::create() {
 }
 #pragma pop
 
-/* 8045D094-8045D0B4 0020+00 s=1 e=0 z=0  None .text      daDmidna_Create__FP10fopAc_ac_c */
+/* 8045D094-8045D0B4 000234 0020+00 1/0 0/0 0/0 .text            daDmidna_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daDmidna_Create(fopAc_ac_c* param_0) {
+static asm void daDmidna_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_dmidna/d_a_dmidna/daDmidna_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 8045D0B4-8045D11C 0068+00 s=1 e=0 z=0  None .text      __dt__10daDmidna_cFv */
+/* 8045D0B4-8045D11C 000254 0068+00 1/1 0/0 0/0 .text            __dt__10daDmidna_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -198,17 +187,17 @@ asm daDmidna_c::~daDmidna_c() {
 }
 #pragma pop
 
-/* 8045D11C-8045D144 0028+00 s=1 e=0 z=0  None .text      daDmidna_Delete__FP10daDmidna_c */
+/* 8045D11C-8045D144 0002BC 0028+00 1/0 0/0 0/0 .text            daDmidna_Delete__FP10daDmidna_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daDmidna_Delete(daDmidna_c* param_0) {
+static asm void daDmidna_Delete(daDmidna_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_dmidna/d_a_dmidna/daDmidna_Delete__FP10daDmidna_c.s"
 }
 #pragma pop
 
-/* 8045D144-8045D1A0 005C+00 s=2 e=0 z=0  None .text      setMatrix__10daDmidna_cFv */
+/* 8045D144-8045D1A0 0002E4 005C+00 2/2 0/0 0/0 .text            setMatrix__10daDmidna_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -218,7 +207,7 @@ asm void daDmidna_c::setMatrix() {
 }
 #pragma pop
 
-/* 8045D1A0-8045D1E4 0044+00 s=1 e=0 z=0  None .text      execute__10daDmidna_cFv */
+/* 8045D1A0-8045D1E4 000340 0044+00 1/1 0/0 0/0 .text            execute__10daDmidna_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -228,17 +217,17 @@ asm void daDmidna_c::execute() {
 }
 #pragma pop
 
-/* 8045D1E4-8045D204 0020+00 s=1 e=0 z=0  None .text      daDmidna_Execute__FP10daDmidna_c */
+/* 8045D1E4-8045D204 000384 0020+00 1/0 0/0 0/0 .text            daDmidna_Execute__FP10daDmidna_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daDmidna_Execute(daDmidna_c* param_0) {
+static asm void daDmidna_Execute(daDmidna_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_dmidna/d_a_dmidna/daDmidna_Execute__FP10daDmidna_c.s"
 }
 #pragma pop
 
-/* 8045D204-8045D268 0064+00 s=1 e=0 z=0  None .text      draw__10daDmidna_cFv */
+/* 8045D204-8045D268 0003A4 0064+00 1/1 0/0 0/0 .text            draw__10daDmidna_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -248,18 +237,18 @@ asm void daDmidna_c::draw() {
 }
 #pragma pop
 
-/* 8045D268-8045D288 0020+00 s=1 e=0 z=0  None .text      daDmidna_Draw__FP10daDmidna_c */
+/* 8045D268-8045D288 000408 0020+00 1/0 0/0 0/0 .text            daDmidna_Draw__FP10daDmidna_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daDmidna_Draw(daDmidna_c* param_0) {
+static asm void daDmidna_Draw(daDmidna_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_dmidna/d_a_dmidna/daDmidna_Draw__FP10daDmidna_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8045D29C-8045D2BC 0020+00 s=1 e=0 z=0  None .data      l_daDmidna_Method */
+/* 8045D29C-8045D2BC -00001 0020+00 1/0 0/0 0/0 .data            l_daDmidna_Method */
 SECTION_DATA static void* l_daDmidna_Method[8] = {
     (void*)daDmidna_Create__FP10fopAc_ac_c,
     (void*)daDmidna_Delete__FP10daDmidna_c,
@@ -271,8 +260,8 @@ SECTION_DATA static void* l_daDmidna_Method[8] = {
     (void*)NULL,
 };
 
-/* 8045D2BC-8045D2EC 0030+00 s=0 e=0 z=1  None .data      g_profile_DMIDNA */
-SECTION_DATA void* g_profile_DMIDNA[12] = {
+/* 8045D2BC-8045D2EC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_DMIDNA */
+SECTION_DATA extern void* g_profile_DMIDNA[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02D80000, (void*)&g_fpcLf_Method,
     (void*)0x00000578, (void*)NULL,

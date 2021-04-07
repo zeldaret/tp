@@ -15,8 +15,8 @@ lbl_80118654:
 /* 80118688  28 00 00 48 */	cmplwi r0, 0x48
 /* 8011868C  40 82 00 30 */	bne lbl_801186BC
 lbl_80118690:
-/* 80118690  3C 80 80 39 */	lis r4, m__18daAlinkHIO_move_c0@ha
-/* 80118694  38 84 D6 BC */	addi r4, r4, m__18daAlinkHIO_move_c0@l
+/* 80118690  3C 80 80 39 */	lis r4, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 80118694  38 84 D6 BC */	addi r4, r4, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 80118698  C0 44 00 1C */	lfs f2, 0x1c(r4)
 /* 8011869C  C0 22 92 C0 */	lfs f1, lit_6108(r2)
 /* 801186A0  FC 60 10 90 */	fmr f3, f2

@@ -5,8 +5,8 @@ lbl_80ADB428:
 /* 80ADB434  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80ADB438  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80ADB43C  7C 7F 1B 78 */	mr r31, r3
-/* 80ADB440  3C 80 80 AE */	lis r4, m__17daNpcShad_Param_c@ha
-/* 80ADB444  3B C4 1F DC */	addi r30, r4, m__17daNpcShad_Param_c@l
+/* 80ADB440  3C 80 80 AE */	lis r4, m__17daNpcShad_Param_c@ha /* 0x80AE1FDC@ha */
+/* 80ADB444  3B C4 1F DC */	addi r30, r4, m__17daNpcShad_Param_c@l /* 0x80AE1FDC@l */
 /* 80ADB448  A0 03 0E 1A */	lhz r0, 0xe1a(r3)
 /* 80ADB44C  2C 00 00 02 */	cmpwi r0, 2
 /* 80ADB450  41 82 00 A4 */	beq lbl_80ADB4F4
@@ -35,10 +35,10 @@ lbl_80ADB468:
 /* 80ADB4A8  C0 1E 00 90 */	lfs f0, 0x90(r30)
 /* 80ADB4AC  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 80ADB4B0  38 7F 0C 80 */	addi r3, r31, 0xc80
-/* 80ADB4B4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80ADB4B8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80ADB4B4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80ADB4B8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80ADB4BC  80 84 5D AC */	lwz r4, 0x5dac(r4)
-/* 80ADB4C0  4B 67 51 FC */	b entry__18daNpcF_ActorMngr_cFP10fopAc_ac_c
+/* 80ADB4C0  4B 67 51 FD */	bl entry__18daNpcF_ActorMngr_cFP10fopAc_ac_c
 /* 80ADB4C4  A8 1F 0E 18 */	lha r0, 0xe18(r31)
 /* 80ADB4C8  2C 00 00 00 */	cmpwi r0, 0
 /* 80ADB4CC  40 82 00 10 */	bne lbl_80ADB4DC
@@ -63,7 +63,7 @@ lbl_80ADB4F4:
 /* 80ADB50C  48 00 01 00 */	b lbl_80ADB60C
 lbl_80ADB510:
 /* 80ADB510  38 60 00 76 */	li r3, 0x76
-/* 80ADB514  4B 67 A1 A0 */	b daNpcF_chkTmpBit__FUl
+/* 80ADB514  4B 67 A1 A1 */	bl daNpcF_chkTmpBit__FUl
 /* 80ADB518  2C 03 00 00 */	cmpwi r3, 0
 /* 80ADB51C  41 82 00 F0 */	beq lbl_80ADB60C
 /* 80ADB520  C0 1E 04 68 */	lfs f0, 0x468(r30)
@@ -80,18 +80,18 @@ lbl_80ADB510:
 /* 80ADB54C  D0 1F 04 C4 */	stfs f0, 0x4c4(r31)
 /* 80ADB550  7F E3 FB 78 */	mr r3, r31
 /* 80ADB554  38 80 A0 00 */	li r4, -24576
-/* 80ADB558  4B 67 8C F8 */	b setAngle__8daNpcF_cFs
+/* 80ADB558  4B 67 8C F9 */	bl setAngle__8daNpcF_cFs
 /* 80ADB55C  80 7F 0E 10 */	lwz r3, 0xe10(r31)
 /* 80ADB560  38 03 00 01 */	addi r0, r3, 1
 /* 80ADB564  90 1F 0E 10 */	stw r0, 0xe10(r31)
 /* 80ADB568  48 00 00 A4 */	b lbl_80ADB60C
 lbl_80ADB56C:
 /* 80ADB56C  38 60 00 74 */	li r3, 0x74
-/* 80ADB570  4B 67 A1 44 */	b daNpcF_chkTmpBit__FUl
+/* 80ADB570  4B 67 A1 45 */	bl daNpcF_chkTmpBit__FUl
 /* 80ADB574  2C 03 00 00 */	cmpwi r3, 0
 /* 80ADB578  41 82 00 94 */	beq lbl_80ADB60C
-/* 80ADB57C  3C 60 80 AE */	lis r3, lit_5565@ha
-/* 80ADB580  38 83 2B 30 */	addi r4, r3, lit_5565@l
+/* 80ADB57C  3C 60 80 AE */	lis r3, lit_5565@ha /* 0x80AE2B30@ha */
+/* 80ADB580  38 83 2B 30 */	addi r4, r3, lit_5565@l /* 0x80AE2B30@l */
 /* 80ADB584  80 64 00 00 */	lwz r3, 0(r4)
 /* 80ADB588  80 04 00 04 */	lwz r0, 4(r4)
 /* 80ADB58C  90 61 00 08 */	stw r3, 8(r1)
@@ -101,13 +101,13 @@ lbl_80ADB56C:
 /* 80ADB59C  38 00 00 03 */	li r0, 3
 /* 80ADB5A0  B0 1F 0E 1A */	sth r0, 0xe1a(r31)
 /* 80ADB5A4  38 7F 0D EC */	addi r3, r31, 0xdec
-/* 80ADB5A8  4B 88 6A 70 */	b __ptmf_test
+/* 80ADB5A8  4B 88 6A 71 */	bl __ptmf_test
 /* 80ADB5AC  2C 03 00 00 */	cmpwi r3, 0
 /* 80ADB5B0  41 82 00 18 */	beq lbl_80ADB5C8
 /* 80ADB5B4  7F E3 FB 78 */	mr r3, r31
 /* 80ADB5B8  38 80 00 00 */	li r4, 0
 /* 80ADB5BC  39 9F 0D EC */	addi r12, r31, 0xdec
-/* 80ADB5C0  4B 88 6A C4 */	b __ptmf_scall
+/* 80ADB5C0  4B 88 6A C5 */	bl __ptmf_scall
 /* 80ADB5C4  60 00 00 00 */	nop 
 lbl_80ADB5C8:
 /* 80ADB5C8  38 00 00 00 */	li r0, 0
@@ -119,13 +119,13 @@ lbl_80ADB5C8:
 /* 80ADB5E0  80 01 00 10 */	lwz r0, 0x10(r1)
 /* 80ADB5E4  90 1F 0D F4 */	stw r0, 0xdf4(r31)
 /* 80ADB5E8  38 7F 0D EC */	addi r3, r31, 0xdec
-/* 80ADB5EC  4B 88 6A 2C */	b __ptmf_test
+/* 80ADB5EC  4B 88 6A 2D */	bl __ptmf_test
 /* 80ADB5F0  2C 03 00 00 */	cmpwi r3, 0
 /* 80ADB5F4  41 82 00 18 */	beq lbl_80ADB60C
 /* 80ADB5F8  7F E3 FB 78 */	mr r3, r31
 /* 80ADB5FC  38 80 00 00 */	li r4, 0
 /* 80ADB600  39 9F 0D EC */	addi r12, r31, 0xdec
-/* 80ADB604  4B 88 6A 80 */	b __ptmf_scall
+/* 80ADB604  4B 88 6A 81 */	bl __ptmf_scall
 /* 80ADB608  60 00 00 00 */	nop 
 lbl_80ADB60C:
 /* 80ADB60C  38 60 00 01 */	li r3, 1

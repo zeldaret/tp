@@ -11,6 +11,10 @@ from .reference_array import *
 
 @dataclass(eq=False)
 class VirtualTable(ReferenceArray):
+    @property
+    def is_static(self):
+        return False
+
     def export_reference_value(self, symbol_table, index, addr) -> str:
         base = super().export_reference_value(symbol_table,index,  addr)
         if index == 0:

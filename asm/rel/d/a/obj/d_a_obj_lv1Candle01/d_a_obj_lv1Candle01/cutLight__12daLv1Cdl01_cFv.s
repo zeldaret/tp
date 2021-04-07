@@ -6,7 +6,7 @@ lbl_80C57194:
 /* 80C571A4  28 00 00 00 */	cmplwi r0, 0
 /* 80C571A8  41 82 00 0C */	beq lbl_80C571B4
 /* 80C571AC  38 63 07 48 */	addi r3, r3, 0x748
-/* 80C571B0  4B 55 07 7C */	b dKy_plight_cut__FP15LIGHT_INFLUENCE
+/* 80C571B0  4B 55 07 7D */	bl dKy_plight_cut__FP15LIGHT_INFLUENCE
 lbl_80C571B4:
 /* 80C571B4  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80C571B8  7C 08 03 A6 */	mtlr r0

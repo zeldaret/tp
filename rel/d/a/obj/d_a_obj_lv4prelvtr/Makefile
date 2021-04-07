@@ -3,17 +3,15 @@
 #
 
 M536_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prelvtr.plf
+M536_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prelvtr.lcf
+M536_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prelvtr.map
 
 M536_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv4prelvtr/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv4prelvtr/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_lv4prelvtr/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_lv4prelvtr/d_a_obj_lv4prelvtr.cpp \
 
 M536_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prelvtr/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prelvtr/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prelvtr/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prelvtr/d_a_obj_lv4prelvtr.o \
 
 M536_LIBS := \
@@ -29,14 +27,21 @@ M536_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M536_LDSCRIPT) \
+	-unused -map $(M536_MAP) \
+	-w off \
 
 $(M536_TARGET): $(M536_O_FILES) $(M536_LIBS)
+	@echo [536] creating $(M536_TARGET)
 	@echo $(M536_LIBS) $(M536_O_FILES) > build/M536_ofiles
-	$(LD) -partial $(M536_LDFLAGS) -o $(M536_TARGET) @build/M536_ofiles
+	@python3 tools/lcf.py rel 536 --output $(M536_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M536_LDFLAGS) -o $(M536_TARGET) @build/M536_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4prelvtr/%.o: rel/d/a/obj/d_a_obj_lv4prelvtr/%.cpp
+	@echo [536] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M536_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M536_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

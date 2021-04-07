@@ -11,9 +11,9 @@ lbl_80D663E4:
 /* 80D66408  7F C0 F3 79 */	or. r0, r30, r30
 /* 80D6640C  41 82 00 14 */	beq lbl_80D66420
 /* 80D66410  7C 1F 03 78 */	mr r31, r0
-/* 80D66414  4B 2B 27 50 */	b __ct__10fopAc_ac_cFv
+/* 80D66414  4B 2B 27 51 */	bl __ct__10fopAc_ac_cFv
 /* 80D66418  38 7F 05 68 */	addi r3, r31, 0x568
-/* 80D6641C  4B 4E 3A E4 */	b __ct__10dMsgFlow_cFv
+/* 80D6641C  4B 4E 3A E5 */	bl __ct__10dMsgFlow_cFv
 lbl_80D66420:
 /* 80D66420  80 1E 04 A0 */	lwz r0, 0x4a0(r30)
 /* 80D66424  60 00 00 08 */	ori r0, r0, 8
@@ -27,12 +27,12 @@ lbl_80D6642C:
 /* 80D66440  38 60 00 05 */	li r3, 5
 /* 80D66444  48 00 00 50 */	b lbl_80D66494
 lbl_80D66448:
-/* 80D66448  4B 4D 1D 78 */	b getpTalkActor__12dMsgObject_cFv
+/* 80D66448  4B 4D 1D 79 */	bl getpTalkActor__12dMsgObject_cFv
 /* 80D6644C  3B E3 05 44 */	addi r31, r3, 0x544
 /* 80D66450  38 7E 05 44 */	addi r3, r30, 0x544
 /* 80D66454  7F E4 FB 78 */	mr r4, r31
 /* 80D66458  38 A0 00 09 */	li r5, 9
-/* 80D6645C  4B 5F B7 E0 */	b __copy
+/* 80D6645C  4B 5F B7 E1 */	bl __copy
 /* 80D66460  A8 1F 00 0A */	lha r0, 0xa(r31)
 /* 80D66464  B0 1E 05 4E */	sth r0, 0x54e(r30)
 /* 80D66468  C0 1F 00 0C */	lfs f0, 0xc(r31)

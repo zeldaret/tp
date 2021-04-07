@@ -1,6 +1,6 @@
 lbl_80284668:
-/* 80284668  3C 80 80 3C */	lis r4, __vt__Q37JStudio3fvb8TControl@ha
-/* 8028466C  38 04 4A 44 */	addi r0, r4, __vt__Q37JStudio3fvb8TControl@l
+/* 80284668  3C 80 80 3C */	lis r4, __vt__Q37JStudio3fvb8TControl@ha /* 0x803C4A44@ha */
+/* 8028466C  38 04 4A 44 */	addi r0, r4, __vt__Q37JStudio3fvb8TControl@l /* 0x803C4A44@l */
 /* 80284670  90 03 00 00 */	stw r0, 0(r3)
 /* 80284674  38 00 00 00 */	li r0, 0
 /* 80284678  90 03 00 04 */	stw r0, 4(r3)

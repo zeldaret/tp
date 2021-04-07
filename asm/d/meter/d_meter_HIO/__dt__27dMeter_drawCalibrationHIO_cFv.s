@@ -5,8 +5,8 @@ lbl_80200E78:
 /* 80200E84  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80200E88  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80200E8C  41 82 00 1C */	beq lbl_80200EA8
-/* 80200E90  3C A0 80 3C */	lis r5, __vt__27dMeter_drawCalibrationHIO_c@ha
-/* 80200E94  38 05 F1 54 */	addi r0, r5, __vt__27dMeter_drawCalibrationHIO_c@l
+/* 80200E90  3C A0 80 3C */	lis r5, __vt__27dMeter_drawCalibrationHIO_c@ha /* 0x803BF154@ha */
+/* 80200E94  38 05 F1 54 */	addi r0, r5, __vt__27dMeter_drawCalibrationHIO_c@l /* 0x803BF154@l */
 /* 80200E98  90 1F 00 00 */	stw r0, 0(r31)
 /* 80200E9C  7C 80 07 35 */	extsh. r0, r4
 /* 80200EA0  40 81 00 08 */	ble lbl_80200EA8

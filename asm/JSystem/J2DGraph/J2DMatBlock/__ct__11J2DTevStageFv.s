@@ -4,8 +4,8 @@ lbl_802F1940:
 /* 802F1948  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802F194C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802F1950  7C 7F 1B 78 */	mr r31, r3
-/* 802F1954  3C 80 80 3A */	lis r4, j2dDefaultTevStageInfo@ha
-/* 802F1958  38 84 1B E0 */	addi r4, r4, j2dDefaultTevStageInfo@l
+/* 802F1954  3C 80 80 3A */	lis r4, j2dDefaultTevStageInfo@ha /* 0x803A1BE0@ha */
+/* 802F1958  38 84 1B E0 */	addi r4, r4, j2dDefaultTevStageInfo@l /* 0x803A1BE0@l */
 /* 802F195C  48 00 00 4D */	bl setTevStageInfo__11J2DTevStageFRC15J2DTevStageInfo
 /* 802F1960  88 1F 00 07 */	lbz r0, 7(r31)
 /* 802F1964  54 04 07 B6 */	rlwinm r4, r0, 0, 0x1e, 0x1b

@@ -54,8 +54,6 @@ extern "C" static void func_80078D5C();
 // External References:
 //
 
-void operator delete(void*);
-
 extern "C" void __ct__8dBgS_ChkFv();
 extern "C" void __dt__8dBgS_ChkFv();
 extern "C" void GetPolyPassChkInfo__8dBgS_ChkFv();
@@ -71,7 +69,7 @@ extern "C" void __dl__FPv();
 // Declarations:
 //
 
-/* 80078B90-80078BB0 0020+00 s=0 e=2 z=3  None .text      Set__14dBgS_SplGrpChkFR4cXyzf */
+/* 80078B90-80078BB0 0734D0 0020+00 0/0 2/2 3/3 .text            Set__14dBgS_SplGrpChkFR4cXyzf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -82,15 +80,23 @@ asm void dBgS_SplGrpChk::Set(cXyz& param_0, f32 param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803ABA08-803ABA38 0030+00 s=2 e=0 z=0  None .data      __vt__14dBgS_SplGrpChk */
-SECTION_DATA static void* __vt__14dBgS_SplGrpChk[12] = {
-    (void*)NULL, (void*)NULL, (void*)__dt__14dBgS_SplGrpChkFv,
-    (void*)NULL, (void*)NULL, (void*)func_80078D4C,
-    (void*)NULL, (void*)NULL, (void*)func_80078D5C,
-    (void*)NULL, (void*)NULL, (void*)func_80078D54,
+/* 803ABA08-803ABA38 008B28 0030+00 2/2 0/0 0/0 .data            __vt__14dBgS_SplGrpChk */
+SECTION_DATA extern void* __vt__14dBgS_SplGrpChk[12] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)__dt__14dBgS_SplGrpChkFv,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_80078D4C,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_80078D5C,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_80078D54,
 };
 
-/* 804526E8-804526EC 0004+00 s=1 e=0 z=0  None .sdata2    @319 */
+/* 804526E8-804526EC 000CE8 0004+00 1/1 0/0 0/0 .sdata2          @319 */
 SECTION_SDATA2 static u8 lit_319[4] = {
     0x00,
     0x00,
@@ -98,10 +104,10 @@ SECTION_SDATA2 static u8 lit_319[4] = {
     0x00,
 };
 
-/* 804526EC-804526F0 0004+00 s=1 e=0 z=0  None .sdata2    @320 */
+/* 804526EC-804526F0 000CEC 0004+00 1/1 0/0 0/0 .sdata2          @320 */
 SECTION_SDATA2 static f32 lit_320 = 1000000000.0f;
 
-/* 80078BB0-80078C78 00C8+00 s=0 e=1 z=0  None .text      __ct__14dBgS_SplGrpChkFv */
+/* 80078BB0-80078C78 0734F0 00C8+00 0/0 1/1 0/0 .text            __ct__14dBgS_SplGrpChkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -111,7 +117,7 @@ asm dBgS_SplGrpChk::dBgS_SplGrpChk() {
 }
 #pragma pop
 
-/* 80078C78-80078D0C 0094+00 s=4 e=2 z=4  None .text      __dt__14dBgS_SplGrpChkFv */
+/* 80078C78-80078D0C 0735B8 0094+00 4/3 2/2 4/4 .text            __dt__14dBgS_SplGrpChkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -121,7 +127,7 @@ asm dBgS_SplGrpChk::~dBgS_SplGrpChk() {
 }
 #pragma pop
 
-/* 80078D0C-80078D4C 0040+00 s=0 e=1 z=0  None .text      Init__14dBgS_SplGrpChkFv */
+/* 80078D0C-80078D4C 07364C 0040+00 0/0 1/1 0/0 .text            Init__14dBgS_SplGrpChkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -131,31 +137,31 @@ asm void dBgS_SplGrpChk::Init() {
 }
 #pragma pop
 
-/* 80078D4C-80078D54 0008+00 s=1 e=0 z=0  None .text      @16@__dt__14dBgS_SplGrpChkFv */
+/* 80078D4C-80078D54 07368C 0008+00 1/0 0/0 0/0 .text            @16@__dt__14dBgS_SplGrpChkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80078D4C() {
+static asm void func_80078D4C() {
     nofralloc
 #include "asm/d/bg/d_bg_s_spl_grp_chk/func_80078D4C.s"
 }
 #pragma pop
 
-/* 80078D54-80078D5C 0008+00 s=1 e=0 z=0  None .text      @52@__dt__14dBgS_SplGrpChkFv */
+/* 80078D54-80078D5C 073694 0008+00 1/0 0/0 0/0 .text            @52@__dt__14dBgS_SplGrpChkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80078D54() {
+static asm void func_80078D54() {
     nofralloc
 #include "asm/d/bg/d_bg_s_spl_grp_chk/func_80078D54.s"
 }
 #pragma pop
 
-/* 80078D5C-80078D64 0008+00 s=1 e=0 z=0  None .text      @36@__dt__14dBgS_SplGrpChkFv */
+/* 80078D5C-80078D64 07369C 0008+00 1/0 0/0 0/0 .text            @36@__dt__14dBgS_SplGrpChkFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80078D5C() {
+static asm void func_80078D5C() {
     nofralloc
 #include "asm/d/bg/d_bg_s_spl_grp_chk/func_80078D5C.s"
 }

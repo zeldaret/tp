@@ -23,8 +23,8 @@ lbl_801EB2B4:
 /* 801EB308  48 00 ED 49 */	bl dMw_B_TRIGGER__Fv
 /* 801EB30C  2C 03 00 00 */	cmpwi r3, 0
 /* 801EB310  40 82 00 2C */	bne lbl_801EB33C
-/* 801EB314  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801EB318  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801EB314  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801EB318  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801EB31C  88 03 00 C0 */	lbz r0, 0xc0(r3)
 /* 801EB320  28 00 00 02 */	cmplwi r0, 2
 /* 801EB324  41 82 00 18 */	beq lbl_801EB33C

@@ -4,8 +4,8 @@ lbl_804912EC:
 /* 804912F4  90 01 00 34 */	stw r0, 0x34(r1)
 /* 804912F8  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 804912FC  7C 7F 1B 78 */	mr r31, r3
-/* 80491300  3C 60 80 49 */	lis r3, l_light_offset@ha
-/* 80491304  C4 03 68 E4 */	lfsu f0, l_light_offset@l(r3)
+/* 80491300  3C 60 80 49 */	lis r3, l_light_offset@ha /* 0x804968E4@ha */
+/* 80491304  C4 03 68 E4 */	lfsu f0, l_light_offset@l(r3)  /* 0x804968E4@l */
 /* 80491308  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 8049130C  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80491310  D0 01 00 18 */	stfs f0, 0x18(r1)
@@ -15,7 +15,7 @@ lbl_804912EC:
 /* 80491320  38 9F 04 D0 */	addi r4, r31, 0x4d0
 /* 80491324  A8 BF 04 DE */	lha r5, 0x4de(r31)
 /* 80491328  38 C1 00 14 */	addi r6, r1, 0x14
-/* 8049132C  4B DD FA 94 */	b cLib_offsetPos__FP4cXyzPC4cXyzsPC4cXyz
+/* 8049132C  4B DD FA 95 */	bl cLib_offsetPos__FP4cXyzPC4cXyzsPC4cXyz
 /* 80491330  C0 41 00 10 */	lfs f2, 0x10(r1)
 /* 80491334  C0 21 00 0C */	lfs f1, 0xc(r1)
 /* 80491338  C0 01 00 08 */	lfs f0, 8(r1)

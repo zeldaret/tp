@@ -1,6 +1,6 @@
 lbl_80C918E4:
-/* 80C918E4  3C 60 80 C9 */	lis r3, cNullVec__6Z2Calc@ha
-/* 80C918E8  38 A3 19 7C */	addi r5, r3, cNullVec__6Z2Calc@l
+/* 80C918E4  3C 60 80 C9 */	lis r3, cNullVec__6Z2Calc@ha /* 0x80C9197C@ha */
+/* 80C918E8  38 A3 19 7C */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x80C9197C@l */
 /* 80C918EC  80 65 00 24 */	lwz r3, 0x24(r5)
 /* 80C918F0  80 05 00 28 */	lwz r0, 0x28(r5)
 /* 80C918F4  90 65 00 3C */	stw r3, 0x3c(r5)

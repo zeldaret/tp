@@ -2,8 +2,8 @@ lbl_806F5E38:
 /* 806F5E38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 806F5E3C  7C 08 02 A6 */	mflr r0
 /* 806F5E40  90 01 00 14 */	stw r0, 0x14(r1)
-/* 806F5E44  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 806F5E48  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 806F5E44  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806F5E48  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806F5E4C  80 C5 5D AC */	lwz r6, 0x5dac(r5)
 /* 806F5E50  C0 03 06 A8 */	lfs f0, 0x6a8(r3)
 /* 806F5E54  FC 00 08 40 */	fcmpo cr0, f0, f1
@@ -20,7 +20,7 @@ lbl_806F5E38:
 /* 806F5E80  7C 05 00 00 */	cmpw r5, r0
 /* 806F5E84  40 81 00 1C */	ble lbl_806F5EA0
 /* 806F5E88  7C C4 33 78 */	mr r4, r6
-/* 806F5E8C  4B 92 6F 70 */	b fopAcM_otherBgCheck__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 806F5E8C  4B 92 6F 71 */	bl fopAcM_otherBgCheck__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 806F5E90  2C 03 00 00 */	cmpwi r3, 0
 /* 806F5E94  40 82 00 0C */	bne lbl_806F5EA0
 /* 806F5E98  38 60 00 01 */	li r3, 1

@@ -7,7 +7,7 @@ lbl_80C89A78:
 /* 80C89A8C  88 63 05 C6 */	lbz r3, 0x5c6(r3)
 /* 80C89A90  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80C89A94  7C 04 07 74 */	extsb r4, r0
-/* 80C89A98  4B 3C 7D 54 */	b dPath_GetRoomPath__Fii
+/* 80C89A98  4B 3C 7D 55 */	bl dPath_GetRoomPath__Fii
 /* 80C89A9C  80 63 00 08 */	lwz r3, 8(r3)
 /* 80C89AA0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80C89AA4  D0 1F 04 D0 */	stfs f0, 0x4d0(r31)

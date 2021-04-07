@@ -8,8 +8,8 @@ lbl_8024F88C:
 /* 8024F8A4  3B 80 00 00 */	li r28, 0
 /* 8024F8A8  3B E0 00 00 */	li r31, 0
 /* 8024F8AC  3B C0 00 00 */	li r30, 0
-/* 8024F8B0  3C 60 80 3A */	lis r3, d_d_name__stringBase0@ha
-/* 8024F8B4  3B A3 9C C8 */	addi r29, r3, d_d_name__stringBase0@l
+/* 8024F8B0  3C 60 80 3A */	lis r3, d_d_name__stringBase0@ha /* 0x80399CC8@ha */
+/* 8024F8B4  3B A3 9C C8 */	addi r29, r3, d_d_name__stringBase0@l /* 0x80399CC8@l */
 lbl_8024F8B8:
 /* 8024F8B8  7C 7B F2 14 */	add r3, r27, r30
 /* 8024F8BC  88 03 02 CF */	lbz r0, 0x2cf(r3)

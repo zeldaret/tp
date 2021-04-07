@@ -1,9 +1,9 @@
 lbl_80347B98:
 /* 80347B98  7C 08 02 A6 */	mflr r0
-/* 80347B9C  3C E0 80 45 */	lis r7, CommandList@ha
+/* 80347B9C  3C E0 80 45 */	lis r7, CommandList@ha /* 0x8044C830@ha */
 /* 80347BA0  90 01 00 04 */	stw r0, 4(r1)
 /* 80347BA4  54 A8 00 21 */	rlwinm. r8, r5, 0, 0, 0x10
-/* 80347BA8  39 27 C8 30 */	addi r9, r7, CommandList@l
+/* 80347BA8  39 27 C8 30 */	addi r9, r7, CommandList@l /* 0x8044C830@l */
 /* 80347BAC  94 21 FF F8 */	stwu r1, -8(r1)
 /* 80347BB0  40 82 00 0C */	bne lbl_80347BBC
 /* 80347BB4  39 40 00 00 */	li r10, 0

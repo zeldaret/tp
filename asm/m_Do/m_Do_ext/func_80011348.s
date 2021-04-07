@@ -19,8 +19,8 @@ lbl_80011348:
 /* 8001138C  83 C1 00 60 */	lwz r30, 0x60(r1)
 /* 80011390  83 E1 00 64 */	lwz r31, 0x64(r1)
 /* 80011394  4B FF E5 BD */	bl __ct__13mDoExt_morf_cFv
-/* 80011398  3C 60 80 3A */	lis r3, __vt__15mDoExt_McaMorf2@ha
-/* 8001139C  38 03 32 84 */	addi r0, r3, __vt__15mDoExt_McaMorf2@l
+/* 80011398  3C 60 80 3A */	lis r3, __vt__15mDoExt_McaMorf2@ha /* 0x803A3284@ha */
+/* 8001139C  38 03 32 84 */	addi r0, r3, __vt__15mDoExt_McaMorf2@l /* 0x803A3284@l */
 /* 800113A0  90 14 00 00 */	stw r0, 0(r20)
 /* 800113A4  93 81 00 08 */	stw r28, 8(r1)
 /* 800113A8  93 A1 00 0C */	stw r29, 0xc(r1)

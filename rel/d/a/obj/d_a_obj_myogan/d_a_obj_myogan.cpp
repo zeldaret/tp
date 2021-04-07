@@ -52,9 +52,9 @@ struct dSv_memBit_c {
     /* 80034934 */ void isDungeonItem(int) const;
 };
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct cXyz {};
 
 struct J3DModelData {};
 
@@ -105,14 +105,6 @@ struct J3DFrameCtrl {
 // Forward References:
 //
 
-static void daObj_Myogan_Draw(obj_myogan_class*);
-static void action(obj_myogan_class*);
-static void daObj_Myogan_Execute(obj_myogan_class*);
-static bool daObj_Myogan_IsDelete(obj_myogan_class*);
-static void daObj_Myogan_Delete(obj_myogan_class*);
-static void useHeapInit(fopAc_ac_c*);
-static void daObj_Myogan_Create(fopAc_ac_c*);
-
 extern "C" void __ct__18daObj_Myogan_HIO_cFv();
 extern "C" static void daObj_Myogan_Draw__FP16obj_myogan_class();
 extern "C" static void action__FP16obj_myogan_class();
@@ -124,24 +116,11 @@ extern "C" void __dt__12J3DFrameCtrlFv();
 extern "C" static void daObj_Myogan_Create__FP10fopAc_ac_c();
 extern "C" void __dt__18daObj_Myogan_HIO_cFv();
 extern "C" void __sinit_d_a_obj_myogan_cpp();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_OBJ_MYOGAN[12];
+extern "C" extern char const* const d_a_obj_myogan__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dBgS_MoveBGProc_Typical(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
-void cM_rndF(f32);
-void cLib_addCalc2(f32*, f32, f32, f32);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void scaleM__14mDoMtx_stack_cFfff();
@@ -187,18 +166,20 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
-/* 80C9F288-80C9F28C 0004+00 s=2 e=0 z=0  None .rodata    @3762 */
-SECTION_RODATA static u32 const lit_3762 = 0x3F800000;
+/* 80C9F288-80C9F28C 000000 0004+00 2/2 0/0 0/0 .rodata          @3762 */
+SECTION_RODATA static f32 const lit_3762 = 1.0f;
+COMPILER_STRIP_GATE(80C9F288, &lit_3762);
 
-/* 80C9F28C-80C9F290 0004+00 s=1 e=0 z=0  None .rodata    @3763 */
+/* 80C9F28C-80C9F290 000004 0004+00 1/1 0/0 0/0 .rodata          @3763 */
 SECTION_RODATA static u8 const lit_3763[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80C9F28C, &lit_3763);
 
-/* 80C9F2A8-80C9F2C8 0020+00 s=1 e=0 z=0  None .data      l_daObj_Myogan_Method */
+/* 80C9F2A8-80C9F2C8 -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Myogan_Method */
 SECTION_DATA static void* l_daObj_Myogan_Method[8] = {
     (void*)daObj_Myogan_Create__FP10fopAc_ac_c,
     (void*)daObj_Myogan_Delete__FP16obj_myogan_class,
@@ -210,8 +191,8 @@ SECTION_DATA static void* l_daObj_Myogan_Method[8] = {
     (void*)NULL,
 };
 
-/* 80C9F2C8-80C9F2F8 0030+00 s=0 e=0 z=1  None .data      g_profile_OBJ_MYOGAN */
-SECTION_DATA void* g_profile_OBJ_MYOGAN[12] = {
+/* 80C9F2C8-80C9F2F8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_MYOGAN */
+SECTION_DATA extern void* g_profile_OBJ_MYOGAN[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x007C0000, (void*)&g_fpcLf_Method,
     (void*)0x000005C4, (void*)NULL,
@@ -220,21 +201,21 @@ SECTION_DATA void* g_profile_OBJ_MYOGAN[12] = {
     (void*)0x00044000, (void*)0x000E0000,
 };
 
-/* 80C9F2F8-80C9F304 000C+00 s=2 e=0 z=0  None .data      __vt__12J3DFrameCtrl */
-SECTION_DATA static void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL,
+/* 80C9F2F8-80C9F304 000050 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
+SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12J3DFrameCtrlFv,
 };
 
-/* 80C9F304-80C9F310 000C+00 s=2 e=0 z=0  None .data      __vt__18daObj_Myogan_HIO_c */
-SECTION_DATA static void* __vt__18daObj_Myogan_HIO_c[3] = {
-    (void*)NULL,
+/* 80C9F304-80C9F310 00005C 000C+00 2/2 0/0 0/0 .data            __vt__18daObj_Myogan_HIO_c */
+SECTION_DATA extern void* __vt__18daObj_Myogan_HIO_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__18daObj_Myogan_HIO_cFv,
 };
 
-/* 80C9EBAC-80C9EBDC 0030+00 s=1 e=0 z=0  None .text      __ct__18daObj_Myogan_HIO_cFv */
+/* 80C9EBAC-80C9EBDC 0000EC 0030+00 1/1 0/0 0/0 .text            __ct__18daObj_Myogan_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -244,95 +225,82 @@ asm daObj_Myogan_HIO_c::daObj_Myogan_HIO_c() {
 }
 #pragma pop
 
-/* 80C9EBDC-80C9EC70 0094+00 s=1 e=0 z=0  None .text      daObj_Myogan_Draw__FP16obj_myogan_class */
+/* 80C9EBDC-80C9EC70 00011C 0094+00 1/0 0/0 0/0 .text daObj_Myogan_Draw__FP16obj_myogan_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Myogan_Draw(obj_myogan_class* param_0) {
+static asm void daObj_Myogan_Draw(obj_myogan_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_myogan/d_a_obj_myogan/daObj_Myogan_Draw__FP16obj_myogan_class.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C9F290-80C9F294 0004+00 s=1 e=0 z=0  None .rodata    @3823 */
-SECTION_RODATA static u32 const lit_3823 = 0x3D4CCCCD;
+/* 80C9F290-80C9F294 000008 0004+00 1/1 0/0 0/0 .rodata          @3823 */
+SECTION_RODATA static f32 const lit_3823 = 1.0f / 20.0f;
+COMPILER_STRIP_GATE(80C9F290, &lit_3823);
 
-/* 80C9F294-80C9F298 0004+00 s=1 e=0 z=0  None .rodata    @3824 */
-SECTION_RODATA static u32 const lit_3824 = 0x41200000;
+/* 80C9F294-80C9F298 00000C 0004+00 1/1 0/0 0/0 .rodata          @3824 */
+SECTION_RODATA static f32 const lit_3824 = 10.0f;
+COMPILER_STRIP_GATE(80C9F294, &lit_3824);
 
-/* 80C9F318-80C9F31C 0004+00 s=2 e=0 z=0  None .bss       None */
+/* 80C9F318-80C9F31C 000008 0004+00 2/2 0/0 0/0 .bss             None */
 static u8 data_80C9F318[4];
 
-/* 80C9F31C-80C9F328 000C+00 s=1 e=0 z=0  None .bss       @3757 */
+/* 80C9F31C-80C9F328 00000C 000C+00 1/1 0/0 0/0 .bss             @3757 */
 static u8 lit_3757[12];
 
-/* 80C9F328-80C9F338 0010+00 s=3 e=0 z=0  None .bss       l_HIO */
+/* 80C9F328-80C9F338 000018 0010+00 3/3 0/0 0/0 .bss             l_HIO */
 static u8 l_HIO[16];
 
-/* 80C9EC70-80C9ED5C 00EC+00 s=1 e=0 z=0  None .text      action__FP16obj_myogan_class */
+/* 80C9EC70-80C9ED5C 0001B0 00EC+00 1/1 0/0 0/0 .text            action__FP16obj_myogan_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void action(obj_myogan_class* param_0) {
+static asm void action(obj_myogan_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_myogan/d_a_obj_myogan/action__FP16obj_myogan_class.s"
 }
 #pragma pop
 
-/* 80C9ED5C-80C9EDB8 005C+00 s=2 e=0 z=0  None .text      daObj_Myogan_Execute__FP16obj_myogan_class
+/* 80C9ED5C-80C9EDB8 00029C 005C+00 2/1 0/0 0/0 .text daObj_Myogan_Execute__FP16obj_myogan_class
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Myogan_Execute(obj_myogan_class* param_0) {
+static asm void daObj_Myogan_Execute(obj_myogan_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_myogan/d_a_obj_myogan/daObj_Myogan_Execute__FP16obj_myogan_class.s"
 }
 #pragma pop
 
-/* 80C9EDB8-80C9EDC0 0008+00 s=1 e=0 z=0  None .text daObj_Myogan_IsDelete__FP16obj_myogan_class
+/* 80C9EDB8-80C9EDC0 0002F8 0008+00 1/0 0/0 0/0 .text daObj_Myogan_IsDelete__FP16obj_myogan_class
  */
 static bool daObj_Myogan_IsDelete(obj_myogan_class* param_0) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 80C9F298-80C9F29C 0004+00 s=1 e=0 z=0  None .rodata    @3966 */
-SECTION_RODATA static u32 const lit_3966 = 0x47800000;
-
-/* 80C9F29C-80C9F2A0 0004+00 s=1 e=0 z=0  None .rodata    @3967 */
-SECTION_RODATA static u32 const lit_3967 = 0x448FC000;
-
-/* 80C9F2A0-80C9F2A8 0008+00 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80C9F2A0 = "S_YOGAN";
-#pragma pop
-
-/* 80C9EDC0-80C9EE28 0068+00 s=1 e=0 z=0  None .text      daObj_Myogan_Delete__FP16obj_myogan_class
- */
+/* 80C9EDC0-80C9EE28 000300 0068+00 1/0 0/0 0/0 .text daObj_Myogan_Delete__FP16obj_myogan_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Myogan_Delete(obj_myogan_class* param_0) {
+static asm void daObj_Myogan_Delete(obj_myogan_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_myogan/d_a_obj_myogan/daObj_Myogan_Delete__FP16obj_myogan_class.s"
 }
 #pragma pop
 
-/* 80C9EE28-80C9F064 023C+00 s=1 e=0 z=0  None .text      useHeapInit__FP10fopAc_ac_c */
+/* 80C9EE28-80C9F064 000368 023C+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void useHeapInit(fopAc_ac_c* param_0) {
+static asm void useHeapInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_myogan/d_a_obj_myogan/useHeapInit__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80C9F064-80C9F0AC 0048+00 s=1 e=0 z=0  None .text      __dt__12J3DFrameCtrlFv */
+/* 80C9F064-80C9F0AC 0005A4 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -342,17 +310,27 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 }
 #pragma pop
 
-/* 80C9F0AC-80C9F1F0 0144+00 s=1 e=0 z=0  None .text      daObj_Myogan_Create__FP10fopAc_ac_c */
+/* ############################################################################################## */
+/* 80C9F298-80C9F29C 000010 0004+00 1/1 0/0 0/0 .rodata          @3966 */
+SECTION_RODATA static f32 const lit_3966 = 65536.0f;
+COMPILER_STRIP_GATE(80C9F298, &lit_3966);
+
+/* 80C9F29C-80C9F2A0 000014 0004+00 1/1 0/0 0/0 .rodata          @3967 */
+SECTION_RODATA static f32 const lit_3967 = 1150.0f;
+COMPILER_STRIP_GATE(80C9F29C, &lit_3967);
+
+/* 80C9F0AC-80C9F1F0 0005EC 0144+00 1/0 0/0 0/0 .text            daObj_Myogan_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Myogan_Create(fopAc_ac_c* param_0) {
+static asm void daObj_Myogan_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_myogan/d_a_obj_myogan/daObj_Myogan_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80C9F1F0-80C9F238 0048+00 s=2 e=0 z=0  None .text      __dt__18daObj_Myogan_HIO_cFv */
+/* 80C9F1F0-80C9F238 000730 0048+00 2/1 0/0 0/0 .text            __dt__18daObj_Myogan_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -362,12 +340,24 @@ asm daObj_Myogan_HIO_c::~daObj_Myogan_HIO_c() {
 }
 #pragma pop
 
-/* 80C9F238-80C9F274 003C+00 s=0 e=1 z=0  None .text      __sinit_d_a_obj_myogan_cpp */
+/* 80C9F238-80C9F274 000778 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_myogan_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_a_obj_myogan_cpp() {
+asm void __sinit_d_a_obj_myogan_cpp() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_myogan/d_a_obj_myogan/__sinit_d_a_obj_myogan_cpp.s"
 }
+#pragma pop
+
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_80C9F238 = (void*)__sinit_d_a_obj_myogan_cpp;
+#pragma pop
+
+/* 80C9F2A0-80C9F2A8 000018 0008+00 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80C9F2A0 = "S_YOGAN";
 #pragma pop

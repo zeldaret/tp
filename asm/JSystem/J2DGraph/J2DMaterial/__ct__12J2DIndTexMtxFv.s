@@ -1,8 +1,8 @@
 lbl_802EB320:
 /* 802EB320  38 E0 00 00 */	li r7, 0
 /* 802EB324  38 80 00 00 */	li r4, 0
-/* 802EB328  3C A0 80 3A */	lis r5, j2dDefaultIndTexMtxInfo@ha
-/* 802EB32C  38 A5 1B C4 */	addi r5, r5, j2dDefaultIndTexMtxInfo@l
+/* 802EB328  3C A0 80 3A */	lis r5, j2dDefaultIndTexMtxInfo@ha /* 0x803A1BC4@ha */
+/* 802EB32C  38 A5 1B C4 */	addi r5, r5, j2dDefaultIndTexMtxInfo@l /* 0x803A1BC4@l */
 lbl_802EB330:
 /* 802EB330  38 C0 00 00 */	li r6, 0
 /* 802EB334  7D 05 22 14 */	add r8, r5, r4
@@ -18,8 +18,8 @@ lbl_802EB344:
 /* 802EB358  2C 07 00 02 */	cmpwi r7, 2
 /* 802EB35C  38 84 00 0C */	addi r4, r4, 0xc
 /* 802EB360  41 80 FF D0 */	blt lbl_802EB330
-/* 802EB364  3C 80 80 3A */	lis r4, j2dDefaultIndTexMtxInfo@ha
-/* 802EB368  38 84 1B C4 */	addi r4, r4, j2dDefaultIndTexMtxInfo@l
+/* 802EB364  3C 80 80 3A */	lis r4, j2dDefaultIndTexMtxInfo@ha /* 0x803A1BC4@ha */
+/* 802EB368  38 84 1B C4 */	addi r4, r4, j2dDefaultIndTexMtxInfo@l /* 0x803A1BC4@l */
 /* 802EB36C  88 04 00 18 */	lbz r0, 0x18(r4)
 /* 802EB370  98 03 00 18 */	stb r0, 0x18(r3)
 /* 802EB374  4E 80 00 20 */	blr 

@@ -25,11 +25,11 @@ extern "C" extern void* __GXData;
 // Declarations:
 //
 
-/* 8035FEF0-8035FF60 0070+00 s=0 e=20 z=4  None .text      GXCallDisplayList */
+/* 8035FEF0-8035FF60 35A830 0070+00 0/0 20/20 4/4 .text            GXCallDisplayList */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXCallDisplayList() {
+asm void GXCallDisplayList() {
     nofralloc
 #include "asm/dolphin/gx/GXDisplayList/GXCallDisplayList.s"
 }

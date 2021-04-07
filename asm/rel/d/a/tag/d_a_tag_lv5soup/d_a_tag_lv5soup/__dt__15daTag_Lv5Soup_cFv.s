@@ -7,15 +7,15 @@ lbl_80D5B0F4:
 /* 80D5B108  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80D5B10C  7C 9F 23 78 */	mr r31, r4
 /* 80D5B110  41 82 00 28 */	beq lbl_80D5B138
-/* 80D5B114  3C 80 80 D6 */	lis r4, __vt__15daTag_Lv5Soup_c@ha
-/* 80D5B118  38 04 B1 DC */	addi r0, r4, __vt__15daTag_Lv5Soup_c@l
+/* 80D5B114  3C 80 80 D6 */	lis r4, __vt__15daTag_Lv5Soup_c@ha /* 0x80D5B1DC@ha */
+/* 80D5B118  38 04 B1 DC */	addi r0, r4, __vt__15daTag_Lv5Soup_c@l /* 0x80D5B1DC@l */
 /* 80D5B11C  90 1E 05 68 */	stw r0, 0x568(r30)
 /* 80D5B120  38 80 00 00 */	li r4, 0
-/* 80D5B124  4B 2B DB 68 */	b __dt__10fopAc_ac_cFv
+/* 80D5B124  4B 2B DB 69 */	bl __dt__10fopAc_ac_cFv
 /* 80D5B128  7F E0 07 35 */	extsh. r0, r31
 /* 80D5B12C  40 81 00 0C */	ble lbl_80D5B138
 /* 80D5B130  7F C3 F3 78 */	mr r3, r30
-/* 80D5B134  4B 57 3C 08 */	b __dl__FPv
+/* 80D5B134  4B 57 3C 09 */	bl __dl__FPv
 lbl_80D5B138:
 /* 80D5B138  7F C3 F3 78 */	mr r3, r30
 /* 80D5B13C  83 E1 00 0C */	lwz r31, 0xc(r1)

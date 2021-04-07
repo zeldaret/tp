@@ -1,8 +1,8 @@
 lbl_805BAE6C:
-/* 805BAE6C  3C 80 80 5C */	lis r4, lit_3800@ha
-/* 805BAE70  38 A4 6C 74 */	addi r5, r4, lit_3800@l
-/* 805BAE74  3C 80 80 5C */	lis r4, __vt__12daB_DR_HIO_c@ha
-/* 805BAE78  38 04 78 AC */	addi r0, r4, __vt__12daB_DR_HIO_c@l
+/* 805BAE6C  3C 80 80 5C */	lis r4, lit_3800@ha /* 0x805C6C74@ha */
+/* 805BAE70  38 A4 6C 74 */	addi r5, r4, lit_3800@l /* 0x805C6C74@l */
+/* 805BAE74  3C 80 80 5C */	lis r4, __vt__12daB_DR_HIO_c@ha /* 0x805C78AC@ha */
+/* 805BAE78  38 04 78 AC */	addi r0, r4, __vt__12daB_DR_HIO_c@l /* 0x805C78AC@l */
 /* 805BAE7C  90 03 00 00 */	stw r0, 0(r3)
 /* 805BAE80  38 00 FF FF */	li r0, -1
 /* 805BAE84  98 03 00 04 */	stb r0, 4(r3)

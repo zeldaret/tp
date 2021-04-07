@@ -61,8 +61,8 @@ lbl_8030DBEC:
 /* 8030DBEC  38 03 FF F7 */	addi r0, r3, -9
 /* 8030DBF0  28 00 00 10 */	cmplwi r0, 0x10
 /* 8030DBF4  41 81 01 3C */	bgt lbl_8030DD30
-/* 8030DBF8  3C 60 80 3D */	lis r3, lit_899@ha
-/* 8030DBFC  38 63 D7 E8 */	addi r3, r3, lit_899@l
+/* 8030DBF8  3C 60 80 3D */	lis r3, lit_899@ha /* 0x803CD7E8@ha */
+/* 8030DBFC  38 63 D7 E8 */	addi r3, r3, lit_899@l /* 0x803CD7E8@l */
 /* 8030DC00  54 00 10 3A */	slwi r0, r0, 2
 /* 8030DC04  7C 03 00 2E */	lwzx r0, r3, r0
 /* 8030DC08  7C 09 03 A6 */	mtctr r0

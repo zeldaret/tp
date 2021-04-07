@@ -25,8 +25,8 @@ lbl_80215718:
 /* 80215734  EC 20 08 28 */	fsubs f1, f0, f1
 /* 80215738  C0 02 AE BC */	lfs f0, lit_6210(r2)
 /* 8021573C  EC 21 00 24 */	fdivs f1, f1, f0
-/* 80215740  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 80215744  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 80215740  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80215744  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80215748  C0 04 00 18 */	lfs f0, 0x18(r4)
 /* 8021574C  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80215750  D0 03 06 00 */	stfs f0, 0x600(r3)

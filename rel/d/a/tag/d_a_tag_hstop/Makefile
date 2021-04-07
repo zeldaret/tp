@@ -3,19 +3,20 @@
 #
 
 M127_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_hstop.plf
+M127_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_hstop.lcf
+M127_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_hstop.map
 
 M127_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_hstop/executor.cpp \
-	rel/d/a/tag/d_a_tag_hstop/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop.cpp \
 
 M127_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_hstop/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_hstop/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop.o \
 
 M127_LIBS := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_hstop/libRuntime.PPCEABI.H.a \
 
 M127_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M127_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M127_LDSCRIPT) \
+	-unused -map $(M127_MAP) \
+	-w off \
 
 $(M127_TARGET): $(M127_O_FILES) $(M127_LIBS)
+	@echo [127] creating $(M127_TARGET)
 	@echo $(M127_LIBS) $(M127_O_FILES) > build/M127_ofiles
-	$(LD) -partial $(M127_LDFLAGS) -o $(M127_TARGET) @build/M127_ofiles
+	@python3 tools/lcf.py rel 127 --output $(M127_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M127_LDFLAGS) -o $(M127_TARGET) @build/M127_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_hstop/%.o: rel/d/a/tag/d_a_tag_hstop/%.cpp
+	@echo [127] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M127_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M127_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/tag/d_a_tag_hstop/libs/Runtime.PPCEABI.H/Makefile
 

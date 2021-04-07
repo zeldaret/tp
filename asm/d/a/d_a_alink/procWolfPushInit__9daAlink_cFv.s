@@ -37,8 +37,8 @@ lbl_8013D980:
 /* 8013D9B4  B0 7F 04 E6 */	sth r3, 0x4e6(r31)
 /* 8013D9B8  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 8013D9BC  B0 1F 04 DE */	sth r0, 0x4de(r31)
-/* 8013D9C0  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha
-/* 8013D9C4  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)
+/* 8013D9C0  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha /* 0x8042561C@ha */
+/* 8013D9C4  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)  /* 0x8042561C@l */
 /* 8013D9C8  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 8013D9CC  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8013D9D0  D0 1F 35 8C */	stfs f0, 0x358c(r31)
@@ -54,8 +54,8 @@ lbl_8013D980:
 /* 8013D9F8  D0 1F 34 DC */	stfs f0, 0x34dc(r31)
 /* 8013D9FC  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 8013DA00  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 8013DA04  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8013DA08  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8013DA04  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8013DA08  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8013DA0C  7C 03 04 2E */	lfsx f0, r3, r0
 /* 8013DA10  C0 3F 04 D0 */	lfs f1, 0x4d0(r31)
 /* 8013DA14  C0 42 93 00 */	lfs f2, lit_6895(r2)

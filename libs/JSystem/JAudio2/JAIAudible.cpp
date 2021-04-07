@@ -20,13 +20,10 @@ struct JAIAudible {
 //
 
 extern "C" void __dt__10JAIAudibleFv();
-extern "C" extern void* __vt__10JAIAudible[5 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __dl__FPv();
 
@@ -35,9 +32,9 @@ extern "C" void __dl__FPv();
 //
 
 /* ############################################################################################## */
-/* 803C9820-803C9838 0014+04 s=1 e=1 z=0  None .data      __vt__10JAIAudible */
-SECTION_DATA void* __vt__10JAIAudible[5 + 1 /* padding */] = {
-    (void*)NULL,
+/* 803C9820-803C9838 026940 0014+04 1/1 1/1 0/0 .data            __vt__10JAIAudible */
+SECTION_DATA extern void* __vt__10JAIAudible[5 + 1 /* padding */] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__10JAIAudibleFv,
     (void*)NULL,
@@ -46,7 +43,7 @@ SECTION_DATA void* __vt__10JAIAudible[5 + 1 /* padding */] = {
     NULL,
 };
 
-/* 8029EFAC-8029EFF4 0048+00 s=1 e=1 z=0  None .text      __dt__10JAIAudibleFv */
+/* 8029EFAC-8029EFF4 2998EC 0048+00 1/0 1/1 0/0 .text            __dt__10JAIAudibleFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

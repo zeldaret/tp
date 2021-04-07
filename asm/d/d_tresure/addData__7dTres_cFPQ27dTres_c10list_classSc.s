@@ -6,8 +6,8 @@ lbl_8009BCB4:
 /* 8009BCC4  48 2C 65 0D */	bl _savegpr_26
 /* 8009BCC8  7C 7B 1B 78 */	mr r27, r3
 /* 8009BCCC  7C 9C 23 78 */	mr r28, r4
-/* 8009BCD0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8009BCD4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8009BCD0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8009BCD4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8009BCD8  85 83 4E 20 */	lwzu r12, 0x4e20(r3)
 /* 8009BCDC  81 8C 00 BC */	lwz r12, 0xbc(r12)
 /* 8009BCE0  7D 89 03 A6 */	mtctr r12
@@ -23,8 +23,8 @@ lbl_8009BCB4:
 /* 8009BD08  1C 00 00 1C */	mulli r0, r0, 0x1c
 /* 8009BD0C  7F C3 02 14 */	add r30, r3, r0
 /* 8009BD10  3B A0 00 00 */	li r29, 0
-/* 8009BD14  3C 60 80 42 */	lis r3, mTypeGroupListAll__7dTres_c@ha
-/* 8009BD18  3B 43 54 38 */	addi r26, r3, mTypeGroupListAll__7dTres_c@l
+/* 8009BD14  3C 60 80 42 */	lis r3, mTypeGroupListAll__7dTres_c@ha /* 0x80425438@ha */
+/* 8009BD18  3B 43 54 38 */	addi r26, r3, mTypeGroupListAll__7dTres_c@l /* 0x80425438@l */
 /* 8009BD1C  48 00 00 E8 */	b lbl_8009BE04
 lbl_8009BD20:
 /* 8009BD20  88 1F 00 00 */	lbz r0, 0(r31)

@@ -14,8 +14,8 @@ lbl_800D1268:
 /* 800D1298  48 1E 4B ED */	bl bgmSetSwordUsing__8Z2SeqMgrFl
 /* 800D129C  38 00 00 00 */	li r0, 0
 /* 800D12A0  98 1F 2F 94 */	stb r0, 0x2f94(r31)
-/* 800D12A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D12A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D12A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D12A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D12AC  88 03 00 14 */	lbz r0, 0x14(r3)
 /* 800D12B0  28 00 00 3F */	cmplwi r0, 0x3f
 /* 800D12B4  40 82 00 28 */	bne lbl_800D12DC

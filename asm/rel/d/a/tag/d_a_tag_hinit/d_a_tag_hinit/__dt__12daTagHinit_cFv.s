@@ -8,11 +8,11 @@ lbl_805A3820:
 /* 805A3838  7C 9F 23 78 */	mr r31, r4
 /* 805A383C  41 82 00 1C */	beq lbl_805A3858
 /* 805A3840  38 80 00 00 */	li r4, 0
-/* 805A3844  4B A7 54 48 */	b __dt__10fopAc_ac_cFv
+/* 805A3844  4B A7 54 49 */	bl __dt__10fopAc_ac_cFv
 /* 805A3848  7F E0 07 35 */	extsh. r0, r31
 /* 805A384C  40 81 00 0C */	ble lbl_805A3858
 /* 805A3850  7F C3 F3 78 */	mr r3, r30
-/* 805A3854  4B D2 B4 E8 */	b __dl__FPv
+/* 805A3854  4B D2 B4 E9 */	bl __dl__FPv
 lbl_805A3858:
 /* 805A3858  7F C3 F3 78 */	mr r3, r30
 /* 805A385C  83 E1 00 0C */	lwz r31, 0xc(r1)

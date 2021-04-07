@@ -9,7 +9,7 @@ lbl_80D66860:
 /* 80D6687C  40 82 00 1C */	bne lbl_80D66898
 /* 80D66880  28 1F 00 00 */	cmplwi r31, 0
 /* 80D66884  41 82 00 08 */	beq lbl_80D6688C
-/* 80D66888  4B 2B 22 DC */	b __ct__10fopAc_ac_cFv
+/* 80D66888  4B 2B 22 DD */	bl __ct__10fopAc_ac_cFv
 lbl_80D6688C:
 /* 80D6688C  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 80D66890  60 00 00 08 */	ori r0, r0, 8

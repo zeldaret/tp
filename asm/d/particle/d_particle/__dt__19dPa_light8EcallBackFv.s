@@ -7,12 +7,12 @@ lbl_8005015C:
 /* 80050170  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80050174  7C 9F 23 78 */	mr r31, r4
 /* 80050178  41 82 00 4C */	beq lbl_800501C4
-/* 8005017C  3C 80 80 3B */	lis r4, __vt__19dPa_light8EcallBack@ha
-/* 80050180  38 04 85 08 */	addi r0, r4, __vt__19dPa_light8EcallBack@l
+/* 8005017C  3C 80 80 3B */	lis r4, __vt__19dPa_light8EcallBack@ha /* 0x803A8508@ha */
+/* 80050180  38 04 85 08 */	addi r0, r4, __vt__19dPa_light8EcallBack@l /* 0x803A8508@l */
 /* 80050184  90 1E 00 00 */	stw r0, 0(r30)
 /* 80050188  41 82 00 2C */	beq lbl_800501B4
-/* 8005018C  3C 80 80 3B */	lis r4, __vt__18dPa_levelEcallBack@ha
-/* 80050190  38 04 85 54 */	addi r0, r4, __vt__18dPa_levelEcallBack@l
+/* 8005018C  3C 80 80 3B */	lis r4, __vt__18dPa_levelEcallBack@ha /* 0x803A8554@ha */
+/* 80050190  38 04 85 54 */	addi r0, r4, __vt__18dPa_levelEcallBack@l /* 0x803A8554@l */
 /* 80050194  90 1E 00 00 */	stw r0, 0(r30)
 /* 80050198  81 83 00 00 */	lwz r12, 0(r3)
 /* 8005019C  81 8C 00 20 */	lwz r12, 0x20(r12)

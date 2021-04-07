@@ -5,10 +5,10 @@ lbl_80539994:
 /* 805399A0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 805399A4  93 C1 00 08 */	stw r30, 8(r1)
 /* 805399A8  7C 7E 1B 78 */	mr r30, r3
-/* 805399AC  3C 60 80 54 */	lis r3, cNullVec__6Z2Calc@ha
-/* 805399B0  3B E3 EB 5C */	addi r31, r3, cNullVec__6Z2Calc@l
-/* 805399B4  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 805399B8  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 805399AC  3C 60 80 54 */	lis r3, cNullVec__6Z2Calc@ha /* 0x8053EB5C@ha */
+/* 805399B0  3B E3 EB 5C */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x8053EB5C@l */
+/* 805399B4  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 805399B8  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 805399BC  80 64 00 00 */	lwz r3, 0(r4)
 /* 805399C0  80 04 00 04 */	lwz r0, 4(r4)
 /* 805399C4  90 7E 11 00 */	stw r3, 0x1100(r30)
@@ -52,7 +52,7 @@ lbl_80539A38:
 /* 80539A4C  90 1E 11 08 */	stw r0, 0x1108(r30)
 /* 80539A50  48 00 00 60 */	b lbl_80539AB0
 lbl_80539A54:
-/* 80539A54  4B AF 7B F4 */	b daNpcKakashi_chkSwdTutorialStage__Fv
+/* 80539A54  4B AF 7B F5 */	bl daNpcKakashi_chkSwdTutorialStage__Fv
 /* 80539A58  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80539A5C  41 82 00 20 */	beq lbl_80539A7C
 /* 80539A60  80 7F 10 7C */	lwz r3, 0x107c(r31)

@@ -12,10 +12,10 @@ lbl_80CFF398:
 /* 80CFF398  80 1F 05 C8 */	lwz r0, 0x5c8(r31)
 /* 80CFF39C  2C 00 00 02 */	cmpwi r0, 2
 /* 80CFF3A0  40 82 00 14 */	bne lbl_80CFF3B4
-/* 80CFF3A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CFF3A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80CFF3A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CFF3A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CFF3AC  38 63 4E C8 */	addi r3, r3, 0x4ec8
-/* 80CFF3B0  4B 34 30 B8 */	b reset__14dEvt_control_cFv
+/* 80CFF3B0  4B 34 30 B9 */	bl reset__14dEvt_control_cFv
 lbl_80CFF3B4:
 /* 80CFF3B4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80CFF3B8  80 01 00 14 */	lwz r0, 0x14(r1)

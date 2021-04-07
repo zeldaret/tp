@@ -1,6 +1,6 @@
 lbl_80280FC4:
-/* 80280FC4  3C 80 80 3C */	lis r4, __vt__Q37JStudio3ctb8TControl@ha
-/* 80280FC8  38 04 48 B4 */	addi r0, r4, __vt__Q37JStudio3ctb8TControl@l
+/* 80280FC4  3C 80 80 3C */	lis r4, __vt__Q37JStudio3ctb8TControl@ha /* 0x803C48B4@ha */
+/* 80280FC8  38 04 48 B4 */	addi r0, r4, __vt__Q37JStudio3ctb8TControl@l /* 0x803C48B4@l */
 /* 80280FCC  90 03 00 00 */	stw r0, 0(r3)
 /* 80280FD0  38 00 00 00 */	li r0, 0
 /* 80280FD4  90 03 00 04 */	stw r0, 4(r3)

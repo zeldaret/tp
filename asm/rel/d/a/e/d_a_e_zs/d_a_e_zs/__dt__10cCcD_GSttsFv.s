@@ -5,12 +5,12 @@ lbl_80834D94:
 /* 80834DA0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80834DA4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80834DA8  41 82 00 1C */	beq lbl_80834DC4
-/* 80834DAC  3C A0 80 83 */	lis r5, __vt__10cCcD_GStts@ha
-/* 80834DB0  38 05 54 38 */	addi r0, r5, __vt__10cCcD_GStts@l
+/* 80834DAC  3C A0 80 83 */	lis r5, __vt__10cCcD_GStts@ha /* 0x80835438@ha */
+/* 80834DB0  38 05 54 38 */	addi r0, r5, __vt__10cCcD_GStts@l /* 0x80835438@l */
 /* 80834DB4  90 1F 00 00 */	stw r0, 0(r31)
 /* 80834DB8  7C 80 07 35 */	extsh. r0, r4
 /* 80834DBC  40 81 00 08 */	ble lbl_80834DC4
-/* 80834DC0  4B A9 9F 7C */	b __dl__FPv
+/* 80834DC0  4B A9 9F 7D */	bl __dl__FPv
 lbl_80834DC4:
 /* 80834DC4  7F E3 FB 78 */	mr r3, r31
 /* 80834DC8  83 E1 00 0C */	lwz r31, 0xc(r1)

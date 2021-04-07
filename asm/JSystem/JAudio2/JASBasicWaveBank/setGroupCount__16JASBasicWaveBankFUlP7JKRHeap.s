@@ -8,8 +8,8 @@ lbl_80298664:
 /* 8029867C  7C 9E 23 78 */	mr r30, r4
 /* 80298680  7C BF 2B 78 */	mr r31, r5
 /* 80298684  80 63 00 20 */	lwz r3, 0x20(r3)
-/* 80298688  3C 80 80 2A */	lis r4, __dt__Q216JASBasicWaveBank10TWaveGroupFv@ha
-/* 8029868C  38 84 8A 0C */	addi r4, r4, __dt__Q216JASBasicWaveBank10TWaveGroupFv@l
+/* 80298688  3C 80 80 2A */	lis r4, __dt__Q216JASBasicWaveBank10TWaveGroupFv@ha /* 0x80298A0C@ha */
+/* 8029868C  38 84 8A 0C */	addi r4, r4, __dt__Q216JASBasicWaveBank10TWaveGroupFv@l /* 0x80298A0C@l */
 /* 80298690  48 0C 95 DD */	bl __destroy_new_array
 /* 80298694  B3 DD 00 26 */	sth r30, 0x26(r29)
 /* 80298698  57 C3 38 30 */	slwi r3, r30, 7
@@ -17,10 +17,10 @@ lbl_80298664:
 /* 802986A0  7F E4 FB 78 */	mr r4, r31
 /* 802986A4  38 A0 00 00 */	li r5, 0
 /* 802986A8  48 03 66 69 */	bl __nwa__FUlP7JKRHeapi
-/* 802986AC  3C 80 80 2A */	lis r4, __ct__Q216JASBasicWaveBank10TWaveGroupFv@ha
-/* 802986B0  38 84 89 C0 */	addi r4, r4, __ct__Q216JASBasicWaveBank10TWaveGroupFv@l
-/* 802986B4  3C A0 80 2A */	lis r5, __dt__Q216JASBasicWaveBank10TWaveGroupFv@ha
-/* 802986B8  38 A5 8A 0C */	addi r5, r5, __dt__Q216JASBasicWaveBank10TWaveGroupFv@l
+/* 802986AC  3C 80 80 2A */	lis r4, __ct__Q216JASBasicWaveBank10TWaveGroupFv@ha /* 0x802989C0@ha */
+/* 802986B0  38 84 89 C0 */	addi r4, r4, __ct__Q216JASBasicWaveBank10TWaveGroupFv@l /* 0x802989C0@l */
+/* 802986B4  3C A0 80 2A */	lis r5, __dt__Q216JASBasicWaveBank10TWaveGroupFv@ha /* 0x80298A0C@ha */
+/* 802986B8  38 A5 8A 0C */	addi r5, r5, __dt__Q216JASBasicWaveBank10TWaveGroupFv@l /* 0x80298A0C@l */
 /* 802986BC  38 C0 00 80 */	li r6, 0x80
 /* 802986C0  7F C7 F3 78 */	mr r7, r30
 /* 802986C4  48 0C 98 51 */	bl __construct_new_array

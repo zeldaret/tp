@@ -22,7 +22,6 @@ $(BUILD_DIR)/libJFramework.a: $(LIBJFRAMEWORK_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libJFramework.a
 	@echo $(LIBJFRAMEWORK_A_O_FILES) > build/LIBJFRAMEWORK_A_ofiles
 	@$(LD) -xm l $(LIBJFRAMEWORK_A_LDFLAGS) -o $(BUILD_DIR)/libJFramework.a @build/LIBJFRAMEWORK_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libJFramework.a
 
 $(BUILD_DIR)/libs/JSystem/JFramework/%.o: libs/JSystem/JFramework/%.cpp
 	@mkdir -p $(@D)

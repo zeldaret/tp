@@ -14,8 +14,8 @@ lbl_80026940:
 /* 80026970  4E 80 04 21 */	bctrl 
 /* 80026974  7F C3 F3 78 */	mr r3, r30
 /* 80026978  7F E4 FB 78 */	mr r4, r31
-/* 8002697C  3C A0 80 3A */	lis r5, l_funcTable_5136@ha
-/* 80026980  38 A5 66 38 */	addi r5, r5, l_funcTable_5136@l
+/* 8002697C  3C A0 80 3A */	lis r5, l_funcTable_5136@ha /* 0x803A6638@ha */
+/* 80026980  38 A5 66 38 */	addi r5, r5, l_funcTable_5136@l /* 0x803A6638@l */
 /* 80026984  38 C0 00 01 */	li r6, 1
 /* 80026988  4B FF F7 2D */	bl dStage_dt_c_decode__FPvP11dStage_dt_cP9FuncTablei
 /* 8002698C  7F C3 F3 78 */	mr r3, r30

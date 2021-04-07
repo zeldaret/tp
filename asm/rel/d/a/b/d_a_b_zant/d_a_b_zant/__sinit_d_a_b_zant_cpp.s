@@ -4,14 +4,14 @@ lbl_8064E9DC:
 /* 8064E9E4  90 01 00 44 */	stw r0, 0x44(r1)
 /* 8064E9E8  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 8064E9EC  93 C1 00 38 */	stw r30, 0x38(r1)
-/* 8064E9F0  3C 60 80 65 */	lis r3, lit_1109@ha
-/* 8064E9F4  3B C3 F5 B8 */	addi r30, r3, lit_1109@l
-/* 8064E9F8  3C 60 80 65 */	lis r3, lit_3757@ha
-/* 8064E9FC  3B E3 EB 1C */	addi r31, r3, lit_3757@l
+/* 8064E9F0  3C 60 80 65 */	lis r3, lit_1109@ha /* 0x8064F5B8@ha */
+/* 8064E9F4  3B C3 F5 B8 */	addi r30, r3, lit_1109@l /* 0x8064F5B8@l */
+/* 8064E9F8  3C 60 80 65 */	lis r3, lit_3757@ha /* 0x8064EB1C@ha */
+/* 8064E9FC  3B E3 EB 1C */	addi r31, r3, lit_3757@l /* 0x8064EB1C@l */
 /* 8064EA00  38 7E 00 4C */	addi r3, r30, 0x4c
 /* 8064EA04  4B FE F7 09 */	bl __ct__14daB_ZANT_HIO_cFv
-/* 8064EA08  3C 80 80 65 */	lis r4, __dt__14daB_ZANT_HIO_cFv@ha
-/* 8064EA0C  38 84 E9 94 */	addi r4, r4, __dt__14daB_ZANT_HIO_cFv@l
+/* 8064EA08  3C 80 80 65 */	lis r4, __dt__14daB_ZANT_HIO_cFv@ha /* 0x8064E994@ha */
+/* 8064EA0C  38 84 E9 94 */	addi r4, r4, __dt__14daB_ZANT_HIO_cFv@l /* 0x8064E994@l */
 /* 8064EA10  38 BE 00 40 */	addi r5, r30, 0x40
 /* 8064EA14  4B FE F6 85 */	bl __register_global_object
 /* 8064EA18  C0 5F 00 28 */	lfs f2, 0x28(r31)
@@ -24,8 +24,8 @@ lbl_8064E9DC:
 /* 8064EA34  38 7E 00 B4 */	addi r3, r30, 0xb4
 /* 8064EA38  D0 23 00 04 */	stfs f1, 4(r3)
 /* 8064EA3C  D0 03 00 08 */	stfs f0, 8(r3)
-/* 8064EA40  3C 80 80 64 */	lis r4, __dt__4cXyzFv@ha
-/* 8064EA44  38 84 E5 68 */	addi r4, r4, __dt__4cXyzFv@l
+/* 8064EA40  3C 80 80 64 */	lis r4, __dt__4cXyzFv@ha /* 0x8063E568@ha */
+/* 8064EA44  38 84 E5 68 */	addi r4, r4, __dt__4cXyzFv@l /* 0x8063E568@l */
 /* 8064EA48  38 BE 00 90 */	addi r5, r30, 0x90
 /* 8064EA4C  4B FE F6 4D */	bl __register_global_object
 /* 8064EA50  C0 5F 01 BC */	lfs f2, 0x1bc(r31)
@@ -39,8 +39,8 @@ lbl_8064E9DC:
 /* 8064EA70  D0 23 00 10 */	stfs f1, 0x10(r3)
 /* 8064EA74  D0 03 00 14 */	stfs f0, 0x14(r3)
 /* 8064EA78  38 63 00 0C */	addi r3, r3, 0xc
-/* 8064EA7C  3C 80 80 64 */	lis r4, __dt__4cXyzFv@ha
-/* 8064EA80  38 84 E5 68 */	addi r4, r4, __dt__4cXyzFv@l
+/* 8064EA7C  3C 80 80 64 */	lis r4, __dt__4cXyzFv@ha /* 0x8063E568@ha */
+/* 8064EA80  38 84 E5 68 */	addi r4, r4, __dt__4cXyzFv@l /* 0x8063E568@l */
 /* 8064EA84  38 BE 00 9C */	addi r5, r30, 0x9c
 /* 8064EA88  4B FE F6 11 */	bl __register_global_object
 /* 8064EA8C  C0 5F 02 A8 */	lfs f2, 0x2a8(r31)
@@ -54,8 +54,8 @@ lbl_8064E9DC:
 /* 8064EAAC  D0 23 00 1C */	stfs f1, 0x1c(r3)
 /* 8064EAB0  D0 03 00 20 */	stfs f0, 0x20(r3)
 /* 8064EAB4  38 63 00 18 */	addi r3, r3, 0x18
-/* 8064EAB8  3C 80 80 64 */	lis r4, __dt__4cXyzFv@ha
-/* 8064EABC  38 84 E5 68 */	addi r4, r4, __dt__4cXyzFv@l
+/* 8064EAB8  3C 80 80 64 */	lis r4, __dt__4cXyzFv@ha /* 0x8063E568@ha */
+/* 8064EABC  38 84 E5 68 */	addi r4, r4, __dt__4cXyzFv@l /* 0x8063E568@l */
 /* 8064EAC0  38 BE 00 A8 */	addi r5, r30, 0xa8
 /* 8064EAC4  4B FE F5 D5 */	bl __register_global_object
 /* 8064EAC8  83 E1 00 3C */	lwz r31, 0x3c(r1)

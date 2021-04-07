@@ -7,8 +7,8 @@ lbl_802FCFF0:
 /* 802FD004  7C 7B 1B 79 */	or. r27, r3, r3
 /* 802FD008  7C 9C 23 78 */	mr r28, r4
 /* 802FD00C  41 82 00 70 */	beq lbl_802FD07C
-/* 802FD010  3C 60 80 3D */	lis r3, __vt__10J2DPicture@ha
-/* 802FD014  38 03 D1 D8 */	addi r0, r3, __vt__10J2DPicture@l
+/* 802FD010  3C 60 80 3D */	lis r3, __vt__10J2DPicture@ha /* 0x803CD1D8@ha */
+/* 802FD014  38 03 D1 D8 */	addi r0, r3, __vt__10J2DPicture@l /* 0x803CD1D8@l */
 /* 802FD018  90 1B 00 00 */	stw r0, 0(r27)
 /* 802FD01C  3B A0 00 00 */	li r29, 0
 /* 802FD020  3B E0 00 00 */	li r31, 0

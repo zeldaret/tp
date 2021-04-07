@@ -107,8 +107,8 @@ lbl_800B5A64:
 /* 800B5A68  48 03 AF 19 */	bl procHorseWaitInit__9daAlink_cFv
 /* 800B5A6C  48 00 01 40 */	b lbl_800B5BAC
 lbl_800B5A70:
-/* 800B5A70  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800B5A74  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800B5A70  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800B5A74  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800B5A78  80 63 5F 1C */	lwz r3, 0x5f1c(r3)
 /* 800B5A7C  54 60 03 DF */	rlwinm. r0, r3, 0, 0xf, 0xf
 /* 800B5A80  41 82 00 1C */	beq lbl_800B5A9C

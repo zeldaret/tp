@@ -11,8 +11,8 @@ lbl_80043500:
 /* 80043524  38 60 00 00 */	li r3, 0
 /* 80043528  48 00 00 CC */	b lbl_800435F4
 lbl_8004352C:
-/* 8004352C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80043530  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 8004352C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80043530  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80043534  38 7F 4E C4 */	addi r3, r31, 0x4ec4
 /* 80043538  4B FE 0E 4D */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 8004353C  28 03 00 00 */	cmplwi r3, 0

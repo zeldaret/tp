@@ -6,8 +6,8 @@ lbl_801A7868:
 /* 801A7878  2C 00 00 0A */	cmpwi r0, 0xa
 /* 801A787C  4C 80 00 20 */	bgelr 
 /* 801A7880  38 80 00 00 */	li r4, 0
-/* 801A7884  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A7888  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801A7884  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A7888  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A788C  54 00 10 3A */	slwi r0, r0, 2
 /* 801A7890  7C 63 02 14 */	add r3, r3, r0
 /* 801A7894  90 83 09 90 */	stw r4, 0x990(r3)

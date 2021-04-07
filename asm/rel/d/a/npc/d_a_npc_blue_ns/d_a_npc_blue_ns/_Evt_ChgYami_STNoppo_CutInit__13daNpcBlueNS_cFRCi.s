@@ -21,8 +21,8 @@ lbl_8096BD7C:
 /* 8096BD84  48 00 00 3C */	b lbl_8096BDC0
 lbl_8096BD88:
 /* 8096BD88  80 9F 0E 0C */	lwz r4, 0xe0c(r31)
-/* 8096BD8C  3C A0 80 97 */	lis r5, lit_4307@ha
-/* 8096BD90  C0 25 C9 EC */	lfs f1, lit_4307@l(r5)
+/* 8096BD8C  3C A0 80 97 */	lis r5, lit_4307@ha /* 0x8096C9EC@ha */
+/* 8096BD90  C0 25 C9 EC */	lfs f1, lit_4307@l(r5)  /* 0x8096C9EC@l */
 /* 8096BD94  38 A0 00 00 */	li r5, 0
 /* 8096BD98  81 83 0B 44 */	lwz r12, 0xb44(r3)
 /* 8096BD9C  81 8C 00 3C */	lwz r12, 0x3c(r12)

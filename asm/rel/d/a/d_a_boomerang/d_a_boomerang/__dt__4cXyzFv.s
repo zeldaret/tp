@@ -7,7 +7,7 @@ lbl_8049EE8C:
 /* 8049EEA0  41 82 00 10 */	beq lbl_8049EEB0
 /* 8049EEA4  7C 80 07 35 */	extsh. r0, r4
 /* 8049EEA8  40 81 00 08 */	ble lbl_8049EEB0
-/* 8049EEAC  4B E2 FE 90 */	b __dl__FPv
+/* 8049EEAC  4B E2 FE 91 */	bl __dl__FPv
 lbl_8049EEB0:
 /* 8049EEB0  7F E3 FB 78 */	mr r3, r31
 /* 8049EEB4  83 E1 00 0C */	lwz r31, 0xc(r1)

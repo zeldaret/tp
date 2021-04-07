@@ -22,8 +22,8 @@ lbl_80340E30:
 /* 80340E30  7F E3 FB 78 */	mr r3, r31
 /* 80340E34  4B FF FF 11 */	bl UnsetRun
 /* 80340E38  93 DF 02 D0 */	stw r30, 0x2d0(r31)
-/* 80340E3C  3C 60 80 45 */	lis r3, RunQueue@ha
-/* 80340E40  38 03 BB 78 */	addi r0, r3, RunQueue@l
+/* 80340E3C  3C 60 80 45 */	lis r3, RunQueue@ha /* 0x8044BB78@ha */
+/* 80340E40  38 03 BB 78 */	addi r0, r3, RunQueue@l /* 0x8044BB78@l */
 /* 80340E44  80 7F 02 D0 */	lwz r3, 0x2d0(r31)
 /* 80340E48  54 63 18 38 */	slwi r3, r3, 3
 /* 80340E4C  7C 00 1A 14 */	add r0, r0, r3

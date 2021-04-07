@@ -54,9 +54,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -116,9 +116,9 @@ struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -129,11 +129,6 @@ struct J3DModel {};
 //
 // Forward References:
 //
-
-static void daObjBBox_create1st(daObjBBox_c*);
-static void daObjBBox_MoveBGDelete(daObjBBox_c*);
-static void daObjBBox_MoveBGExecute(daObjBBox_c*);
-static void daObjBBox_MoveBGDraw(daObjBBox_c*);
 
 extern "C" void initBaseMtx__11daObjBBox_cFv();
 extern "C" void setBaseMtx__11daObjBBox_cFv();
@@ -149,22 +144,11 @@ extern "C" static void daObjBBox_create1st__FP11daObjBBox_c();
 extern "C" static void daObjBBox_MoveBGDelete__FP11daObjBBox_c();
 extern "C" static void daObjBBox_MoveBGExecute__FP11daObjBBox_c();
 extern "C" static void daObjBBox_MoveBGDraw__FP11daObjBBox_c();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_BBox[12];
+extern "C" extern char const* const d_a_obj_bbox__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dComIfGp_getReverb(int);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
@@ -220,7 +204,7 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 80BACD38-80BACD74 003C+00 s=1 e=0 z=0  None .text      initBaseMtx__11daObjBBox_cFv */
+/* 80BACD38-80BACD74 000078 003C+00 1/1 0/0 0/0 .text            initBaseMtx__11daObjBBox_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -230,7 +214,7 @@ asm void daObjBBox_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80BACD74-80BACDD8 0064+00 s=2 e=0 z=0  None .text      setBaseMtx__11daObjBBox_cFv */
+/* 80BACD74-80BACDD8 0000B4 0064+00 2/2 0/0 0/0 .text            setBaseMtx__11daObjBBox_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -241,7 +225,7 @@ asm void daObjBBox_c::setBaseMtx() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80BAD474-80BAD4B8 0044+00 s=2 e=0 z=0  None .rodata    l_cyl_src */
+/* 80BAD474-80BAD4B8 000000 0044+00 2/2 0/0 0/0 .rodata          l_cyl_src */
 SECTION_RODATA static u8 const l_cyl_src[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x1F, 0xD8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x78,
@@ -249,8 +233,9 @@ SECTION_RODATA static u8 const l_cyl_src[68] = {
     0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x42, 0xB4, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80BAD474, &l_cyl_src);
 
-/* 80BACDD8-80BACE50 0078+00 s=1 e=0 z=0  None .text      Create__11daObjBBox_cFv */
+/* 80BACDD8-80BACE50 000118 0078+00 1/0 0/0 0/0 .text            Create__11daObjBBox_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -261,7 +246,104 @@ asm void daObjBBox_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80BAD4B8-80BAD4C4 000A+02 s=1 e=0 z=0  None .rodata    particle_id$3793 */
+/* 80BAD4D4-80BAD4D8 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_bbox__stringBase0;
+
+/* 80BACE50-80BACEC0 000190 0070+00 1/0 0/0 0/0 .text            CreateHeap__11daObjBBox_cFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void daObjBBox_c::CreateHeap() {
+    nofralloc
+#include "asm/rel/d/a/obj/d_a_obj_bbox/d_a_obj_bbox/CreateHeap__11daObjBBox_cFv.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80BAD4D8-80BAD4F8 -00001 0020+00 1/0 0/0 0/0 .data            daObjBBox_METHODS */
+SECTION_DATA static void* daObjBBox_METHODS[8] = {
+    (void*)daObjBBox_create1st__FP11daObjBBox_c,
+    (void*)daObjBBox_MoveBGDelete__FP11daObjBBox_c,
+    (void*)daObjBBox_MoveBGExecute__FP11daObjBBox_c,
+    (void*)NULL,
+    (void*)daObjBBox_MoveBGDraw__FP11daObjBBox_c,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)NULL,
+};
+
+/* 80BAD4F8-80BAD528 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_BBox */
+SECTION_DATA extern void* g_profile_Obj_BBox[12] = {
+    (void*)0xFFFFFFFD, (void*)0x0003FFFD,
+    (void*)0x007A0000, (void*)&g_fpcLf_Method,
+    (void*)0x00000724, (void*)NULL,
+    (void*)NULL,       (void*)&g_fopAc_Method,
+    (void*)0x01F30000, (void*)&daObjBBox_METHODS,
+    (void*)0x00040100, (void*)0x000E0000,
+};
+
+/* 80BAD528-80BAD534 000054 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGCyl */
+SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)__dt__8cM3dGCylFv,
+};
+
+/* 80BAD534-80BAD540 000060 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGAab */
+SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)__dt__8cM3dGAabFv,
+};
+
+/* 80BAD540-80BAD568 00006C 0028+00 2/2 0/0 0/0 .data            __vt__11daObjBBox_c */
+SECTION_DATA extern void* __vt__11daObjBBox_c[10] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)CreateHeap__11daObjBBox_cFv,
+    (void*)Create__11daObjBBox_cFv,
+    (void*)Execute__11daObjBBox_cFPPA3_A4_f,
+    (void*)Draw__11daObjBBox_cFv,
+    (void*)Delete__11daObjBBox_cFv,
+    (void*)IsDelete__16dBgS_MoveBgActorFv,
+    (void*)ToFore__16dBgS_MoveBgActorFv,
+    (void*)ToBack__16dBgS_MoveBgActorFv,
+};
+
+/* 80BACEC0-80BAD030 000200 0170+00 1/1 0/0 0/0 .text            create1st__11daObjBBox_cFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm void daObjBBox_c::create1st() {
+    nofralloc
+#include "asm/rel/d/a/obj/d_a_obj_bbox/d_a_obj_bbox/create1st__11daObjBBox_cFv.s"
+}
+#pragma pop
+
+/* 80BAD030-80BAD078 000370 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm cM3dGCyl::~cM3dGCyl() {
+    nofralloc
+#include "asm/rel/d/a/obj/d_a_obj_bbox/d_a_obj_bbox/__dt__8cM3dGCylFv.s"
+}
+#pragma pop
+
+/* 80BAD078-80BAD0C0 0003B8 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
+#pragma push
+#pragma optimization_level 0
+#pragma optimizewithasm off
+asm cM3dGAab::~cM3dGAab() {
+    nofralloc
+#include "asm/rel/d/a/obj/d_a_obj_bbox/d_a_obj_bbox/__dt__8cM3dGAabFv.s"
+}
+#pragma pop
+
+/* ############################################################################################## */
+/* 80BAD4B8-80BAD4C4 000044 000A+02 0/1 0/0 0/0 .rodata          particle_id$3793 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const particle_id[10 + 2 /* padding */] = {
     0x83,
     0xB0,
@@ -277,115 +359,24 @@ SECTION_RODATA static u8 const particle_id[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80BAD4B8, &particle_id);
+#pragma pop
 
-/* 80BAD4C4-80BAD4C8 0004+00 s=1 e=0 z=0  None .rodata    @3821 */
-SECTION_RODATA static u32 const lit_3821 = 0x3F800000;
-
-/* 80BAD4C8-80BAD4CC 0004+00 s=1 e=0 z=0  None .rodata    @3822 */
-SECTION_RODATA static u32 const lit_3822 = 0xBF800000;
-
-/* 80BAD4CC-80BAD4D3 0007+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
+/* 80BAD4C4-80BAD4C8 000050 0004+00 0/1 0/0 0/0 .rodata          @3821 */
 #pragma push
 #pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80BAD4CC = "M_BBox";
+SECTION_RODATA static f32 const lit_3821 = 1.0f;
+COMPILER_STRIP_GATE(80BAD4C4, &lit_3821);
 #pragma pop
 
-/* 80BAD4D4-80BAD4D8 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80BACE50-80BACEC0 0070+00 s=1 e=0 z=0  None .text      CreateHeap__11daObjBBox_cFv */
+/* 80BAD4C8-80BAD4CC 000054 0004+00 0/1 0/0 0/0 .rodata          @3822 */
 #pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjBBox_c::CreateHeap() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_bbox/d_a_obj_bbox/CreateHeap__11daObjBBox_cFv.s"
-}
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3822 = -1.0f;
+COMPILER_STRIP_GATE(80BAD4C8, &lit_3822);
 #pragma pop
 
-/* ############################################################################################## */
-/* 80BAD4D8-80BAD4F8 0020+00 s=1 e=0 z=0  None .data      daObjBBox_METHODS */
-SECTION_DATA static void* daObjBBox_METHODS[8] = {
-    (void*)daObjBBox_create1st__FP11daObjBBox_c,
-    (void*)daObjBBox_MoveBGDelete__FP11daObjBBox_c,
-    (void*)daObjBBox_MoveBGExecute__FP11daObjBBox_c,
-    (void*)NULL,
-    (void*)daObjBBox_MoveBGDraw__FP11daObjBBox_c,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-};
-
-/* 80BAD4F8-80BAD528 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_BBox */
-SECTION_DATA void* g_profile_Obj_BBox[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0003FFFD,
-    (void*)0x007A0000, (void*)&g_fpcLf_Method,
-    (void*)0x00000724, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x01F30000, (void*)&daObjBBox_METHODS,
-    (void*)0x00040100, (void*)0x000E0000,
-};
-
-/* 80BAD528-80BAD534 000C+00 s=3 e=0 z=0  None .data      __vt__8cM3dGCyl */
-SECTION_DATA static void* __vt__8cM3dGCyl[3] = {
-    (void*)NULL,
-    (void*)NULL,
-    (void*)__dt__8cM3dGCylFv,
-};
-
-/* 80BAD534-80BAD540 000C+00 s=3 e=0 z=0  None .data      __vt__8cM3dGAab */
-SECTION_DATA static void* __vt__8cM3dGAab[3] = {
-    (void*)NULL,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 80BAD540-80BAD568 0028+00 s=2 e=0 z=0  None .data      __vt__11daObjBBox_c */
-SECTION_DATA static void* __vt__11daObjBBox_c[10] = {
-    (void*)NULL,
-    (void*)NULL,
-    (void*)CreateHeap__11daObjBBox_cFv,
-    (void*)Create__11daObjBBox_cFv,
-    (void*)Execute__11daObjBBox_cFPPA3_A4_f,
-    (void*)Draw__11daObjBBox_cFv,
-    (void*)Delete__11daObjBBox_cFv,
-    (void*)IsDelete__16dBgS_MoveBgActorFv,
-    (void*)ToFore__16dBgS_MoveBgActorFv,
-    (void*)ToBack__16dBgS_MoveBgActorFv,
-};
-
-/* 80BACEC0-80BAD030 0170+00 s=1 e=0 z=0  None .text      create1st__11daObjBBox_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daObjBBox_c::create1st() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_bbox/d_a_obj_bbox/create1st__11daObjBBox_cFv.s"
-}
-#pragma pop
-
-/* 80BAD030-80BAD078 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGCylFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cM3dGCyl::~cM3dGCyl() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_bbox/d_a_obj_bbox/__dt__8cM3dGCylFv.s"
-}
-#pragma pop
-
-/* 80BAD078-80BAD0C0 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGAabFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cM3dGAab::~cM3dGAab() {
-    nofralloc
-#include "asm/rel/d/a/obj/d_a_obj_bbox/d_a_obj_bbox/__dt__8cM3dGAabFv.s"
-}
-#pragma pop
-
-/* 80BAD0C0-80BAD234 0174+00 s=1 e=0 z=0  None .text      Execute__11daObjBBox_cFPPA3_A4_f */
+/* 80BAD0C0-80BAD234 000400 0174+00 1/0 0/0 0/0 .text            Execute__11daObjBBox_cFPPA3_A4_f */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -395,7 +386,7 @@ asm void daObjBBox_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 80BAD234-80BAD2D8 00A4+00 s=1 e=0 z=0  None .text      Draw__11daObjBBox_cFv */
+/* 80BAD234-80BAD2D8 000574 00A4+00 1/0 0/0 0/0 .text            Draw__11daObjBBox_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -405,7 +396,7 @@ asm void daObjBBox_c::Draw() {
 }
 #pragma pop
 
-/* 80BAD2D8-80BAD30C 0034+00 s=1 e=0 z=0  None .text      Delete__11daObjBBox_cFv */
+/* 80BAD2D8-80BAD30C 000618 0034+00 1/0 0/0 0/0 .text            Delete__11daObjBBox_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -415,43 +406,49 @@ asm void daObjBBox_c::Delete() {
 }
 #pragma pop
 
-/* 80BAD30C-80BAD400 00F4+00 s=1 e=0 z=0  None .text      daObjBBox_create1st__FP11daObjBBox_c */
+/* 80BAD30C-80BAD400 00064C 00F4+00 1/0 0/0 0/0 .text daObjBBox_create1st__FP11daObjBBox_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjBBox_create1st(daObjBBox_c* param_0) {
+static asm void daObjBBox_create1st(daObjBBox_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bbox/d_a_obj_bbox/daObjBBox_create1st__FP11daObjBBox_c.s"
 }
 #pragma pop
 
-/* 80BAD400-80BAD420 0020+00 s=1 e=0 z=0  None .text      daObjBBox_MoveBGDelete__FP11daObjBBox_c */
+/* 80BAD400-80BAD420 000740 0020+00 1/0 0/0 0/0 .text daObjBBox_MoveBGDelete__FP11daObjBBox_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjBBox_MoveBGDelete(daObjBBox_c* param_0) {
+static asm void daObjBBox_MoveBGDelete(daObjBBox_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bbox/d_a_obj_bbox/daObjBBox_MoveBGDelete__FP11daObjBBox_c.s"
 }
 #pragma pop
 
-/* 80BAD420-80BAD440 0020+00 s=1 e=0 z=0  None .text      daObjBBox_MoveBGExecute__FP11daObjBBox_c
- */
+/* 80BAD420-80BAD440 000760 0020+00 1/0 0/0 0/0 .text daObjBBox_MoveBGExecute__FP11daObjBBox_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjBBox_MoveBGExecute(daObjBBox_c* param_0) {
+static asm void daObjBBox_MoveBGExecute(daObjBBox_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bbox/d_a_obj_bbox/daObjBBox_MoveBGExecute__FP11daObjBBox_c.s"
 }
 #pragma pop
 
-/* 80BAD440-80BAD46C 002C+00 s=1 e=0 z=0  None .text      daObjBBox_MoveBGDraw__FP11daObjBBox_c */
+/* 80BAD440-80BAD46C 000780 002C+00 1/0 0/0 0/0 .text daObjBBox_MoveBGDraw__FP11daObjBBox_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjBBox_MoveBGDraw(daObjBBox_c* param_0) {
+static asm void daObjBBox_MoveBGDraw(daObjBBox_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bbox/d_a_obj_bbox/daObjBBox_MoveBGDraw__FP11daObjBBox_c.s"
 }
+#pragma pop
+
+/* 80BAD4CC-80BAD4D3 000058 0007+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80BAD4CC = "M_BBox";
 #pragma pop

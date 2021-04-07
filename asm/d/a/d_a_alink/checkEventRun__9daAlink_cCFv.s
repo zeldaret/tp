@@ -1,7 +1,7 @@
 lbl_80115C20:
 /* 80115C20  38 A0 00 00 */	li r5, 0
-/* 80115C24  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80115C28  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80115C24  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80115C28  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80115C2C  88 04 4F AD */	lbz r0, 0x4fad(r4)
 /* 80115C30  28 00 00 00 */	cmplwi r0, 0
 /* 80115C34  40 82 00 10 */	bne lbl_80115C44

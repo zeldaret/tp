@@ -3,17 +3,15 @@
 #
 
 M479_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ice_l.plf
+M479_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ice_l.lcf
+M479_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ice_l.map
 
 M479_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_ice_l/executor.cpp \
-	rel/d/a/obj/d_a_obj_ice_l/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_ice_l/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_ice_l/d_a_obj_ice_l.cpp \
 
 M479_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ice_l/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ice_l/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ice_l/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ice_l/d_a_obj_ice_l.o \
 
 M479_LIBS := \
@@ -29,14 +27,21 @@ M479_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M479_LDSCRIPT) \
+	-unused -map $(M479_MAP) \
+	-w off \
 
 $(M479_TARGET): $(M479_O_FILES) $(M479_LIBS)
+	@echo [479] creating $(M479_TARGET)
 	@echo $(M479_LIBS) $(M479_O_FILES) > build/M479_ofiles
-	$(LD) -partial $(M479_LDFLAGS) -o $(M479_TARGET) @build/M479_ofiles
+	@python3 tools/lcf.py rel 479 --output $(M479_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M479_LDFLAGS) -o $(M479_TARGET) @build/M479_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ice_l/%.o: rel/d/a/obj/d_a_obj_ice_l/%.cpp
+	@echo [479] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M479_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M479_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

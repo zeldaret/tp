@@ -6,8 +6,8 @@ lbl_80129B44:
 /* 80129B54  48 23 86 89 */	bl _savegpr_29
 /* 80129B58  7C 7D 1B 78 */	mr r29, r3
 /* 80129B5C  7C 9E 23 78 */	mr r30, r4
-/* 80129B60  3C 80 80 39 */	lis r4, lit_3757@ha
-/* 80129B64  3B E4 D6 58 */	addi r31, r4, lit_3757@l
+/* 80129B60  3C 80 80 39 */	lis r4, lit_3757@ha /* 0x8038D658@ha */
+/* 80129B64  3B E4 D6 58 */	addi r31, r4, lit_3757@l /* 0x8038D658@l */
 /* 80129B68  38 80 00 01 */	li r4, 1
 /* 80129B6C  4B FE F2 11 */	bl checkDeadAction__9daAlink_cFi
 /* 80129B70  2C 03 00 00 */	cmpwi r3, 0

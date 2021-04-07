@@ -13,18 +13,18 @@ lbl_806C838C:
 /* 806C839C  48 00 00 54 */	b lbl_806C83F0
 lbl_806C83A0:
 /* 806C83A0  A8 03 0B 8E */	lha r0, 0xb8e(r3)
-/* 806C83A4  3C 60 80 6D */	lis r3, lit_4168@ha
-/* 806C83A8  C8 23 D0 70 */	lfd f1, lit_4168@l(r3)
+/* 806C83A4  3C 60 80 6D */	lis r3, lit_4168@ha /* 0x806CD070@ha */
+/* 806C83A8  C8 23 D0 70 */	lfd f1, lit_4168@l(r3)  /* 0x806CD070@l */
 /* 806C83AC  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 806C83B0  90 01 00 0C */	stw r0, 0xc(r1)
 /* 806C83B4  3C 00 43 30 */	lis r0, 0x4330
 /* 806C83B8  90 01 00 08 */	stw r0, 8(r1)
 /* 806C83BC  C8 01 00 08 */	lfd f0, 8(r1)
 /* 806C83C0  EC 40 08 28 */	fsubs f2, f0, f1
-/* 806C83C4  3C 60 80 6D */	lis r3, lit_4166@ha
-/* 806C83C8  C0 23 D0 68 */	lfs f1, lit_4166@l(r3)
-/* 806C83CC  3C 60 80 6D */	lis r3, l_HIO@ha
-/* 806C83D0  38 63 D3 68 */	addi r3, r3, l_HIO@l
+/* 806C83C4  3C 60 80 6D */	lis r3, lit_4166@ha /* 0x806CD068@ha */
+/* 806C83C8  C0 23 D0 68 */	lfs f1, lit_4166@l(r3)  /* 0x806CD068@l */
+/* 806C83CC  3C 60 80 6D */	lis r3, l_HIO@ha /* 0x806CD368@ha */
+/* 806C83D0  38 63 D3 68 */	addi r3, r3, l_HIO@l /* 0x806CD368@l */
 /* 806C83D4  C0 03 00 30 */	lfs f0, 0x30(r3)
 /* 806C83D8  EC 01 00 28 */	fsubs f0, f1, f0
 /* 806C83DC  FC 02 00 40 */	fcmpo cr0, f2, f0

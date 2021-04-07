@@ -15,46 +15,46 @@ lbl_8051F03C:
 /* 8051F070  DB 41 00 E0 */	stfd f26, 0xe0(r1)
 /* 8051F074  F3 41 00 E8 */	psq_st f26, 232(r1), 0, 0 /* qr0 */
 /* 8051F078  39 61 00 E0 */	addi r11, r1, 0xe0
-/* 8051F07C  4B E4 31 34 */	b _savegpr_18
+/* 8051F07C  4B E4 31 35 */	bl _savegpr_18
 /* 8051F080  7C 74 1B 78 */	mr r20, r3
-/* 8051F084  3C 60 80 52 */	lis r3, cNullVec__6Z2Calc@ha
-/* 8051F088  3B 83 31 D8 */	addi r28, r3, cNullVec__6Z2Calc@l
-/* 8051F08C  3C 60 80 52 */	lis r3, lit_3999@ha
-/* 8051F090  3B A3 30 28 */	addi r29, r3, lit_3999@l
-/* 8051F094  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8051F098  3B C3 CA 54 */	addi r30, r3, g_env_light@l
-/* 8051F09C  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8051F0A0  38 63 4A C8 */	addi r3, r3, j3dSys@l
-/* 8051F0A4  4B DF 16 98 */	b reinitGX__6J3DSysFv
+/* 8051F084  3C 60 80 52 */	lis r3, cNullVec__6Z2Calc@ha /* 0x805231D8@ha */
+/* 8051F088  3B 83 31 D8 */	addi r28, r3, cNullVec__6Z2Calc@l /* 0x805231D8@l */
+/* 8051F08C  3C 60 80 52 */	lis r3, lit_3999@ha /* 0x80523028@ha */
+/* 8051F090  3B A3 30 28 */	addi r29, r3, lit_3999@l /* 0x80523028@l */
+/* 8051F094  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8051F098  3B C3 CA 54 */	addi r30, r3, g_env_light@l /* 0x8042CA54@l */
+/* 8051F09C  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8051F0A0  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
+/* 8051F0A4  4B DF 16 99 */	bl reinitGX__6J3DSysFv
 /* 8051F0A8  38 60 00 00 */	li r3, 0
-/* 8051F0AC  4B E4 00 28 */	b GXSetNumIndStages
-/* 8051F0B0  4B C8 85 10 */	b dKy_setLight_again__Fv
-/* 8051F0B4  4B E3 C4 D8 */	b GXClearVtxDesc
+/* 8051F0AC  4B E4 00 29 */	bl GXSetNumIndStages
+/* 8051F0B0  4B C8 85 11 */	bl dKy_setLight_again__Fv
+/* 8051F0B4  4B E3 C4 D9 */	bl GXClearVtxDesc
 /* 8051F0B8  38 7C 19 74 */	addi r3, r28, 0x1974
-/* 8051F0BC  4B E3 C0 68 */	b GXSetVtxDescv
+/* 8051F0BC  4B E3 C0 69 */	bl GXSetVtxDescv
 /* 8051F0C0  38 60 00 00 */	li r3, 0
 /* 8051F0C4  38 9C 19 9C */	addi r4, r28, 0x199c
-/* 8051F0C8  4B E3 C7 58 */	b GXSetVtxAttrFmtv
+/* 8051F0C8  4B E3 C7 59 */	bl GXSetVtxAttrFmtv
 /* 8051F0CC  38 60 00 09 */	li r3, 9
 /* 8051F0D0  3C 94 00 02 */	addis r4, r20, 2
 /* 8051F0D4  80 84 D6 E4 */	lwz r4, -0x291c(r4)
 /* 8051F0D8  38 A0 00 0C */	li r5, 0xc
-/* 8051F0DC  4B E3 CA 4C */	b GXSetArray
+/* 8051F0DC  4B E3 CA 4D */	bl GXSetArray
 /* 8051F0E0  38 60 00 0A */	li r3, 0xa
 /* 8051F0E4  3C 94 00 02 */	addis r4, r20, 2
 /* 8051F0E8  80 84 D6 E8 */	lwz r4, -0x2918(r4)
 /* 8051F0EC  38 A0 00 0C */	li r5, 0xc
-/* 8051F0F0  4B E3 CA 38 */	b GXSetArray
+/* 8051F0F0  4B E3 CA 39 */	bl GXSetArray
 /* 8051F0F4  38 60 00 0B */	li r3, 0xb
 /* 8051F0F8  3C 94 00 02 */	addis r4, r20, 2
 /* 8051F0FC  80 84 D6 EC */	lwz r4, -0x2914(r4)
 /* 8051F100  38 A0 00 04 */	li r5, 4
-/* 8051F104  4B E3 CA 24 */	b GXSetArray
+/* 8051F104  4B E3 CA 25 */	bl GXSetArray
 /* 8051F108  38 60 00 0D */	li r3, 0xd
 /* 8051F10C  3C 94 00 02 */	addis r4, r20, 2
 /* 8051F110  80 84 D6 F0 */	lwz r4, -0x2910(r4)
 /* 8051F114  38 A0 00 08 */	li r5, 8
-/* 8051F118  4B E3 CA 10 */	b GXSetArray
+/* 8051F118  4B E3 CA 11 */	bl GXSetArray
 /* 8051F11C  80 7D 00 74 */	lwz r3, 0x74(r29)
 /* 8051F120  80 1D 00 78 */	lwz r0, 0x78(r29)
 /* 8051F124  90 61 00 50 */	stw r3, 0x50(r1)
@@ -64,10 +64,10 @@ lbl_8051F03C:
 /* 8051F134  90 61 00 48 */	stw r3, 0x48(r1)
 /* 8051F138  90 01 00 4C */	stw r0, 0x4c(r1)
 /* 8051F13C  3F 14 00 02 */	addis r24, r20, 2
-/* 8051F140  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8051F144  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8051F140  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8051F144  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8051F148  3B 18 D5 E4 */	addi r24, r24, -10780
-/* 8051F14C  4B C8 08 BC */	b getDaytime__18dScnKy_env_light_cFv
+/* 8051F14C  4B C8 08 BD */	bl getDaytime__18dScnKy_env_light_cFv
 /* 8051F150  C0 1D 00 84 */	lfs f0, 0x84(r29)
 /* 8051F154  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8051F158  4C 41 13 82 */	cror 2, 1, 2
@@ -144,10 +144,10 @@ lbl_8051F260:
 lbl_8051F264:
 /* 8051F264  3A E0 00 00 */	li r23, 0
 /* 8051F268  3A 60 00 00 */	li r19, 0
-/* 8051F26C  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8051F270  3B E3 CA 54 */	addi r31, r3, g_env_light@l
-/* 8051F274  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8051F278  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8051F26C  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8051F270  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
+/* 8051F274  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8051F278  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8051F27C  3B 43 4E 00 */	addi r26, r3, 0x4e00
 /* 8051F280  3B 23 4E C4 */	addi r25, r3, 0x4ec4
 lbl_8051F284:
@@ -155,8 +155,8 @@ lbl_8051F284:
 /* 8051F288  7E 56 93 78 */	mr r22, r18
 /* 8051F28C  28 12 00 00 */	cmplwi r18, 0
 /* 8051F290  41 82 07 C4 */	beq lbl_8051FA54
-/* 8051F294  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha
-/* 8051F298  38 03 60 94 */	addi r0, r3, mStatus__20dStage_roomControl_c@l
+/* 8051F294  3C 60 80 3F */	lis r3, mStatus__20dStage_roomControl_c@ha /* 0x803F6094@ha */
+/* 8051F298  38 03 60 94 */	addi r0, r3, mStatus__20dStage_roomControl_c@l /* 0x803F6094@l */
 /* 8051F29C  7C 60 9A 14 */	add r3, r0, r19
 /* 8051F2A0  88 03 03 F4 */	lbz r0, 0x3f4(r3)
 /* 8051F2A4  54 00 06 F7 */	rlwinm. r0, r0, 0, 0x1b, 0x1b
@@ -208,10 +208,10 @@ lbl_8051F284:
 /* 8051F35C  80 01 00 8C */	lwz r0, 0x8c(r1)
 /* 8051F360  B0 01 00 4E */	sth r0, 0x4e(r1)
 /* 8051F364  7F 43 D3 78 */	mr r3, r26
-/* 8051F368  3C 80 80 52 */	lis r4, stringBase0@ha
-/* 8051F36C  38 84 31 C0 */	addi r4, r4, stringBase0@l
+/* 8051F368  3C 80 80 52 */	lis r4, d_a_grass__stringBase0@ha /* 0x805231C0@ha */
+/* 8051F36C  38 84 31 C0 */	addi r4, r4, d_a_grass__stringBase0@l /* 0x805231C0@l */
 /* 8051F370  38 A0 00 06 */	li r5, 6
-/* 8051F374  4B E4 6D 18 */	b memcmp
+/* 8051F374  4B E4 6D 19 */	bl memcmp
 /* 8051F378  2C 03 00 00 */	cmpwi r3, 0
 /* 8051F37C  40 82 00 24 */	bne lbl_8051F3A0
 /* 8051F380  38 00 00 00 */	li r0, 0
@@ -229,22 +229,22 @@ lbl_8051F3A0:
 /* 8051F3AC  90 01 00 44 */	stw r0, 0x44(r1)
 /* 8051F3B0  38 60 00 02 */	li r3, 2
 /* 8051F3B4  38 81 00 40 */	addi r4, r1, 0x40
-/* 8051F3B8  4B DA ED 18 */	b GFSetTevColorS10__F11_GXTevRegID11_GXColorS10
+/* 8051F3B8  4B DA ED 19 */	bl GFSetTevColorS10__F11_GXTevRegID11_GXColorS10
 /* 8051F3BC  7F 23 CB 78 */	mr r3, r25
 /* 8051F3C0  7E E4 BB 78 */	mr r4, r23
-/* 8051F3C4  4B B0 4F C0 */	b getStatusRoomDt__20dStage_roomControl_cFi
+/* 8051F3C4  4B B0 4F C1 */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 8051F3C8  28 03 00 00 */	cmplwi r3, 0
 /* 8051F3CC  41 82 00 24 */	beq lbl_8051F3F0
 /* 8051F3D0  7F 23 CB 78 */	mr r3, r25
 /* 8051F3D4  7E E4 BB 78 */	mr r4, r23
-/* 8051F3D8  4B B0 4F AC */	b getStatusRoomDt__20dStage_roomControl_cFi
+/* 8051F3D8  4B B0 4F AD */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 8051F3DC  81 83 00 00 */	lwz r12, 0(r3)
 /* 8051F3E0  81 8C 00 B4 */	lwz r12, 0xb4(r12)
 /* 8051F3E4  7D 89 03 A6 */	mtctr r12
 /* 8051F3E8  4E 80 04 21 */	bctrl 
 /* 8051F3EC  7C 75 1B 78 */	mr r21, r3
 lbl_8051F3F0:
-/* 8051F3F0  4B C8 CD 78 */	b dKy_SunMoon_Light_Check__Fv
+/* 8051F3F0  4B C8 CD 79 */	bl dKy_SunMoon_Light_Check__Fv
 /* 8051F3F4  2C 03 00 01 */	cmpwi r3, 1
 /* 8051F3F8  40 82 00 10 */	bne lbl_8051F408
 /* 8051F3FC  2C 15 00 02 */	cmpwi r21, 2
@@ -274,18 +274,18 @@ lbl_8051F444:
 /* 8051F44C  3C 94 00 02 */	addis r4, r20, 2
 /* 8051F450  80 64 D6 FC */	lwz r3, -0x2904(r4)
 /* 8051F454  80 84 D7 00 */	lwz r4, -0x2900(r4)
-/* 8051F458  4B E4 0A 98 */	b GXCallDisplayList
+/* 8051F458  4B E4 0A 99 */	bl GXCallDisplayList
 /* 8051F45C  48 00 00 24 */	b lbl_8051F480
 lbl_8051F460:
 /* 8051F460  3C 94 00 02 */	addis r4, r20, 2
 /* 8051F464  80 64 D6 F4 */	lwz r3, -0x290c(r4)
 /* 8051F468  80 84 D6 F8 */	lwz r4, -0x2908(r4)
-/* 8051F46C  4B E4 0A 84 */	b GXCallDisplayList
+/* 8051F46C  4B E4 0A 85 */	bl GXCallDisplayList
 /* 8051F470  48 00 00 10 */	b lbl_8051F480
 lbl_8051F474:
 /* 8051F474  38 7C 17 40 */	addi r3, r28, 0x1740
 /* 8051F478  38 80 00 A0 */	li r4, 0xa0
-/* 8051F47C  4B E4 0A 74 */	b GXCallDisplayList
+/* 8051F47C  4B E4 0A 75 */	bl GXCallDisplayList
 lbl_8051F480:
 /* 8051F480  80 61 00 50 */	lwz r3, 0x50(r1)
 /* 8051F484  80 01 00 54 */	lwz r0, 0x54(r1)
@@ -293,15 +293,15 @@ lbl_8051F480:
 /* 8051F48C  90 01 00 3C */	stw r0, 0x3c(r1)
 /* 8051F490  38 60 00 03 */	li r3, 3
 /* 8051F494  38 81 00 38 */	addi r4, r1, 0x38
-/* 8051F498  4B DA EC 38 */	b GFSetTevColorS10__F11_GXTevRegID11_GXColorS10
+/* 8051F498  4B DA EC 39 */	bl GFSetTevColorS10__F11_GXTevRegID11_GXColorS10
 /* 8051F49C  7F 63 DB 78 */	mr r3, r27
-/* 8051F4A0  4B C8 81 40 */	b dKy_Global_amb_set__FP12dKy_tevstr_c
+/* 8051F4A0  4B C8 81 41 */	bl dKy_Global_amb_set__FP12dKy_tevstr_c
 /* 8051F4A4  7F 63 DB 78 */	mr r3, r27
-/* 8051F4A8  4B C8 92 50 */	b dKy_GfFog_tevstr_set__FP12dKy_tevstr_c
+/* 8051F4A8  4B C8 92 51 */	bl dKy_GfFog_tevstr_set__FP12dKy_tevstr_c
 /* 8051F4AC  88 1B 03 80 */	lbz r0, 0x380(r27)
 /* 8051F4B0  7C 03 07 74 */	extsb r3, r0
 /* 8051F4B4  C0 3D 00 04 */	lfs f1, 4(r29)
-/* 8051F4B8  4B C8 77 A0 */	b dKy_setLight_nowroom_grass__Fcf
+/* 8051F4B8  4B C8 77 A1 */	bl dKy_setLight_nowroom_grass__Fcf
 /* 8051F4BC  C3 7D 00 68 */	lfs f27, 0x68(r29)
 /* 8051F4C0  CB 9D 00 38 */	lfd f28, 0x38(r29)
 /* 8051F4C4  3E 40 43 30 */	lis r18, 0x4330
@@ -321,18 +321,18 @@ lbl_8051F4EC:
 /* 8051F4F4  3C 94 00 02 */	addis r4, r20, 2
 /* 8051F4F8  80 64 D6 FC */	lwz r3, -0x2904(r4)
 /* 8051F4FC  80 84 D7 00 */	lwz r4, -0x2900(r4)
-/* 8051F500  4B E4 09 F0 */	b GXCallDisplayList
+/* 8051F500  4B E4 09 F1 */	bl GXCallDisplayList
 /* 8051F504  48 00 00 24 */	b lbl_8051F528
 lbl_8051F508:
 /* 8051F508  3C 94 00 02 */	addis r4, r20, 2
 /* 8051F50C  80 64 D6 F4 */	lwz r3, -0x290c(r4)
 /* 8051F510  80 84 D6 F8 */	lwz r4, -0x2908(r4)
-/* 8051F514  4B E4 09 DC */	b GXCallDisplayList
+/* 8051F514  4B E4 09 DD */	bl GXCallDisplayList
 /* 8051F518  48 00 00 10 */	b lbl_8051F528
 lbl_8051F51C:
 /* 8051F51C  38 7C 17 40 */	addi r3, r28, 0x1740
 /* 8051F520  38 80 00 A0 */	li r4, 0xa0
-/* 8051F524  4B E4 09 CC */	b GXCallDisplayList
+/* 8051F524  4B E4 09 CD */	bl GXCallDisplayList
 lbl_8051F528:
 /* 8051F528  88 16 00 02 */	lbz r0, 2(r22)
 /* 8051F52C  7C 00 07 74 */	extsb r0, r0
@@ -353,7 +353,7 @@ lbl_8051F554:
 /* 8051F560  90 01 00 34 */	stw r0, 0x34(r1)
 /* 8051F564  38 60 00 02 */	li r3, 2
 /* 8051F568  38 81 00 30 */	addi r4, r1, 0x30
-/* 8051F56C  4B DA EB 64 */	b GFSetTevColorS10__F11_GXTevRegID11_GXColorS10
+/* 8051F56C  4B DA EB 65 */	bl GFSetTevColorS10__F11_GXTevRegID11_GXColorS10
 /* 8051F570  A8 76 00 08 */	lha r3, 8(r22)
 /* 8051F574  54 60 0E BC */	rlwinm r0, r3, 1, 0x1a, 0x1e
 /* 8051F578  98 01 00 0C */	stb r0, 0xc(r1)
@@ -361,7 +361,7 @@ lbl_8051F554:
 /* 8051F580  98 01 00 0D */	stb r0, 0xd(r1)
 /* 8051F584  54 60 BE BC */	rlwinm r0, r3, 0x17, 0x1a, 0x1e
 /* 8051F588  98 01 00 0E */	stb r0, 0xe(r1)
-/* 8051F58C  4B C3 FE 98 */	b checkNowWolfEyeUp__9daPy_py_cFv
+/* 8051F58C  4B C3 FE 99 */	bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 8051F590  2C 03 00 00 */	cmpwi r3, 0
 /* 8051F594  41 82 01 08 */	beq lbl_8051F69C
 /* 8051F598  A8 1F 11 08 */	lha r0, 0x1108(r31)
@@ -557,17 +557,17 @@ lbl_8051F86C:
 /* 8051F870  90 01 00 08 */	stw r0, 8(r1)
 /* 8051F874  38 60 00 04 */	li r3, 4
 /* 8051F878  38 81 00 08 */	addi r4, r1, 8
-/* 8051F87C  4B E3 E0 E4 */	b GXSetChanAmbColor
+/* 8051F87C  4B E3 E0 E5 */	bl GXSetChanAmbColor
 /* 8051F880  88 16 00 01 */	lbz r0, 1(r22)
 /* 8051F884  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 8051F888  40 82 01 C0 */	bne lbl_8051FA48
 /* 8051F88C  38 76 00 18 */	addi r3, r22, 0x18
 /* 8051F890  38 80 00 00 */	li r4, 0
-/* 8051F894  4B E4 09 B8 */	b GXLoadPosMtxImm
-/* 8051F898  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8051F89C  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8051F894  4B E4 09 B9 */	bl GXLoadPosMtxImm
+/* 8051F898  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8051F89C  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8051F8A0  38 80 00 00 */	li r4, 0
-/* 8051F8A4  4B E4 09 F8 */	b GXLoadNrmMtxImm
+/* 8051F8A4  4B E4 09 F9 */	bl GXLoadNrmMtxImm
 /* 8051F8A8  88 16 00 05 */	lbz r0, 5(r22)
 /* 8051F8AC  28 00 00 03 */	cmplwi r0, 3
 /* 8051F8B0  40 81 00 0C */	ble lbl_8051F8BC
@@ -589,7 +589,7 @@ lbl_8051F8BC:
 /* 8051F8EC  90 01 00 2C */	stw r0, 0x2c(r1)
 /* 8051F8F0  38 60 00 03 */	li r3, 3
 /* 8051F8F4  38 81 00 28 */	addi r4, r1, 0x28
-/* 8051F8F8  4B DA E7 D8 */	b GFSetTevColorS10__F11_GXTevRegID11_GXColorS10
+/* 8051F8F8  4B DA E7 D9 */	bl GFSetTevColorS10__F11_GXTevRegID11_GXColorS10
 /* 8051F8FC  88 16 00 02 */	lbz r0, 2(r22)
 /* 8051F900  7C 00 07 74 */	extsb r0, r0
 /* 8051F904  2C 00 FF FE */	cmpwi r0, -2
@@ -597,13 +597,13 @@ lbl_8051F8BC:
 /* 8051F90C  3C 94 00 02 */	addis r4, r20, 2
 /* 8051F910  80 64 D7 04 */	lwz r3, -0x28fc(r4)
 /* 8051F914  80 84 D7 08 */	lwz r4, -0x28f8(r4)
-/* 8051F918  4B E4 05 D8 */	b GXCallDisplayList
+/* 8051F918  4B E4 05 D9 */	bl GXCallDisplayList
 /* 8051F91C  48 00 00 14 */	b lbl_8051F930
 lbl_8051F920:
 /* 8051F920  3C 94 00 02 */	addis r4, r20, 2
 /* 8051F924  80 64 D7 0C */	lwz r3, -0x28f4(r4)
 /* 8051F928  80 84 D7 10 */	lwz r4, -0x28f0(r4)
-/* 8051F92C  4B E4 05 C4 */	b GXCallDisplayList
+/* 8051F92C  4B E4 05 C5 */	bl GXCallDisplayList
 lbl_8051F930:
 /* 8051F930  38 00 00 00 */	li r0, 0
 /* 8051F934  B0 01 00 56 */	sth r0, 0x56(r1)
@@ -613,7 +613,7 @@ lbl_8051F930:
 /* 8051F944  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8051F948  38 60 00 03 */	li r3, 3
 /* 8051F94C  38 81 00 20 */	addi r4, r1, 0x20
-/* 8051F950  4B DA E7 80 */	b GFSetTevColorS10__F11_GXTevRegID11_GXColorS10
+/* 8051F950  4B DA E7 81 */	bl GFSetTevColorS10__F11_GXTevRegID11_GXColorS10
 /* 8051F954  48 00 00 F4 */	b lbl_8051FA48
 lbl_8051F958:
 /* 8051F958  7C 60 07 75 */	extsb. r0, r3
@@ -621,13 +621,13 @@ lbl_8051F958:
 /* 8051F960  3C 94 00 02 */	addis r4, r20, 2
 /* 8051F964  80 64 D7 04 */	lwz r3, -0x28fc(r4)
 /* 8051F968  80 84 D7 08 */	lwz r4, -0x28f8(r4)
-/* 8051F96C  4B E4 05 84 */	b GXCallDisplayList
+/* 8051F96C  4B E4 05 85 */	bl GXCallDisplayList
 /* 8051F970  48 00 00 D8 */	b lbl_8051FA48
 lbl_8051F974:
 /* 8051F974  3C 94 00 02 */	addis r4, r20, 2
 /* 8051F978  80 64 D7 0C */	lwz r3, -0x28f4(r4)
 /* 8051F97C  80 84 D7 10 */	lwz r4, -0x28f0(r4)
-/* 8051F980  4B E4 05 70 */	b GXCallDisplayList
+/* 8051F980  4B E4 05 71 */	bl GXCallDisplayList
 /* 8051F984  48 00 00 C4 */	b lbl_8051FA48
 lbl_8051F988:
 /* 8051F988  88 76 00 02 */	lbz r3, 2(r22)
@@ -645,20 +645,20 @@ lbl_8051F988:
 /* 8051F9B8  90 01 00 1C */	stw r0, 0x1c(r1)
 /* 8051F9BC  38 60 00 03 */	li r3, 3
 /* 8051F9C0  38 81 00 18 */	addi r4, r1, 0x18
-/* 8051F9C4  4B DA E7 0C */	b GFSetTevColorS10__F11_GXTevRegID11_GXColorS10
+/* 8051F9C4  4B DA E7 0D */	bl GFSetTevColorS10__F11_GXTevRegID11_GXColorS10
 /* 8051F9C8  88 16 00 02 */	lbz r0, 2(r22)
 /* 8051F9CC  7C 00 07 74 */	extsb r0, r0
 /* 8051F9D0  2C 00 FF FE */	cmpwi r0, -2
 /* 8051F9D4  41 82 00 14 */	beq lbl_8051F9E8
 /* 8051F9D8  38 7C 16 60 */	addi r3, r28, 0x1660
 /* 8051F9DC  38 80 00 C0 */	li r4, 0xc0
-/* 8051F9E0  4B E4 05 10 */	b GXCallDisplayList
+/* 8051F9E0  4B E4 05 11 */	bl GXCallDisplayList
 /* 8051F9E4  48 00 00 14 */	b lbl_8051F9F8
 lbl_8051F9E8:
 /* 8051F9E8  3C 94 00 02 */	addis r4, r20, 2
 /* 8051F9EC  80 64 D7 0C */	lwz r3, -0x28f4(r4)
 /* 8051F9F0  80 84 D7 10 */	lwz r4, -0x28f0(r4)
-/* 8051F9F4  4B E4 04 FC */	b GXCallDisplayList
+/* 8051F9F4  4B E4 04 FD */	bl GXCallDisplayList
 lbl_8051F9F8:
 /* 8051F9F8  38 00 00 00 */	li r0, 0
 /* 8051F9FC  B0 01 00 56 */	sth r0, 0x56(r1)
@@ -668,20 +668,20 @@ lbl_8051F9F8:
 /* 8051FA0C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8051FA10  38 60 00 03 */	li r3, 3
 /* 8051FA14  38 81 00 10 */	addi r4, r1, 0x10
-/* 8051FA18  4B DA E6 B8 */	b GFSetTevColorS10__F11_GXTevRegID11_GXColorS10
+/* 8051FA18  4B DA E6 B9 */	bl GFSetTevColorS10__F11_GXTevRegID11_GXColorS10
 /* 8051FA1C  48 00 00 2C */	b lbl_8051FA48
 lbl_8051FA20:
 /* 8051FA20  7C 60 07 75 */	extsb. r0, r3
 /* 8051FA24  41 80 00 14 */	blt lbl_8051FA38
 /* 8051FA28  38 7C 16 60 */	addi r3, r28, 0x1660
 /* 8051FA2C  38 80 00 C0 */	li r4, 0xc0
-/* 8051FA30  4B E4 04 C0 */	b GXCallDisplayList
+/* 8051FA30  4B E4 04 C1 */	bl GXCallDisplayList
 /* 8051FA34  48 00 00 14 */	b lbl_8051FA48
 lbl_8051FA38:
 /* 8051FA38  3C 94 00 02 */	addis r4, r20, 2
 /* 8051FA3C  80 64 D7 0C */	lwz r3, -0x28f4(r4)
 /* 8051FA40  80 84 D7 10 */	lwz r4, -0x28f0(r4)
-/* 8051FA44  4B E4 04 AC */	b GXCallDisplayList
+/* 8051FA44  4B E4 04 AD */	bl GXCallDisplayList
 lbl_8051FA48:
 /* 8051FA48  82 D6 00 48 */	lwz r22, 0x48(r22)
 lbl_8051FA4C:
@@ -694,8 +694,8 @@ lbl_8051FA54:
 /* 8051FA60  3A 73 04 04 */	addi r19, r19, 0x404
 /* 8051FA64  41 80 F8 20 */	blt lbl_8051F284
 /* 8051FA68  38 00 00 00 */	li r0, 0
-/* 8051FA6C  3C 60 80 45 */	lis r3, sOldVcdVatCmd__8J3DShape@ha
-/* 8051FA70  90 03 15 D0 */	stw r0, sOldVcdVatCmd__8J3DShape@l(r3)
+/* 8051FA6C  3C 60 80 45 */	lis r3, sOldVcdVatCmd__8J3DShape@ha /* 0x804515D0@ha */
+/* 8051FA70  90 03 15 D0 */	stw r0, sOldVcdVatCmd__8J3DShape@l(r3)  /* 0x804515D0@l */
 /* 8051FA74  E3 E1 01 38 */	psq_l f31, 312(r1), 0, 0 /* qr0 */
 /* 8051FA78  CB E1 01 30 */	lfd f31, 0x130(r1)
 /* 8051FA7C  E3 C1 01 28 */	psq_l f30, 296(r1), 0, 0 /* qr0 */
@@ -709,7 +709,7 @@ lbl_8051FA54:
 /* 8051FA9C  E3 41 00 E8 */	psq_l f26, 232(r1), 0, 0 /* qr0 */
 /* 8051FAA0  CB 41 00 E0 */	lfd f26, 0xe0(r1)
 /* 8051FAA4  39 61 00 E0 */	addi r11, r1, 0xe0
-/* 8051FAA8  4B E4 27 54 */	b _restgpr_18
+/* 8051FAA8  4B E4 27 55 */	bl _restgpr_18
 /* 8051FAAC  80 01 01 44 */	lwz r0, 0x144(r1)
 /* 8051FAB0  7C 08 03 A6 */	mtlr r0
 /* 8051FAB4  38 21 01 40 */	addi r1, r1, 0x140

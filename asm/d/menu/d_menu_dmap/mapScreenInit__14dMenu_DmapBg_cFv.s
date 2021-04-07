@@ -7,10 +7,10 @@ lbl_801B8110:
 /* 801B8124  7C 7D 1B 78 */	mr r29, r3
 /* 801B8128  3B 40 00 00 */	li r26, 0
 /* 801B812C  3B C0 00 00 */	li r30, 0
-/* 801B8130  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 801B8134  3B E4 61 C0 */	addi r31, r4, g_dComIfG_gameInfo@l
-/* 801B8138  3C 80 80 39 */	lis r4, d_menu_d_menu_dmap__stringBase0@ha
-/* 801B813C  3B 84 57 60 */	addi r28, r4, d_menu_d_menu_dmap__stringBase0@l
+/* 801B8130  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801B8134  3B E4 61 C0 */	addi r31, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
+/* 801B8138  3C 80 80 39 */	lis r4, d_menu_d_menu_dmap__stringBase0@ha /* 0x80395760@ha */
+/* 801B813C  3B 84 57 60 */	addi r28, r4, d_menu_d_menu_dmap__stringBase0@l /* 0x80395760@l */
 lbl_801B8140:
 /* 801B8140  38 60 01 18 */	li r3, 0x118
 /* 801B8144  48 11 6B 09 */	bl __nw__FUl
@@ -242,8 +242,8 @@ lbl_801B84B4:
 /* 801B84C0  2C 1A 00 02 */	cmpwi r26, 2
 /* 801B84C4  3B DE 00 04 */	addi r30, r30, 4
 /* 801B84C8  41 80 FF BC */	blt lbl_801B8484
-/* 801B84CC  3C 80 80 39 */	lis r4, d_menu_d_menu_dmap__stringBase0@ha
-/* 801B84D0  38 84 57 60 */	addi r4, r4, d_menu_d_menu_dmap__stringBase0@l
+/* 801B84CC  3C 80 80 39 */	lis r4, d_menu_d_menu_dmap__stringBase0@ha /* 0x80395760@ha */
+/* 801B84D0  38 84 57 60 */	addi r4, r4, d_menu_d_menu_dmap__stringBase0@l /* 0x80395760@l */
 /* 801B84D4  38 64 00 33 */	addi r3, r4, 0x33
 /* 801B84D8  80 9F 5C C0 */	lwz r4, 0x5cc0(r31)
 /* 801B84DC  48 11 BD 95 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader

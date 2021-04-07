@@ -55,8 +55,8 @@ lbl_8015436C:
 /* 80154440  80 18 09 38 */	lwz r0, 0x938(r24)
 /* 80154444  2C 00 00 00 */	cmpwi r0, 0
 /* 80154448  41 82 00 68 */	beq lbl_801544B0
-/* 8015444C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80154450  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8015444C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80154450  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80154454  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 80154458  81 83 06 28 */	lwz r12, 0x628(r3)
 /* 8015445C  81 8C 00 FC */	lwz r12, 0xfc(r12)
@@ -90,8 +90,8 @@ lbl_801544B0:
 /* 801544C4  2C 19 00 00 */	cmpwi r25, 0
 /* 801544C8  41 82 00 1C */	beq lbl_801544E4
 /* 801544CC  7F 03 C3 78 */	mr r3, r24
-/* 801544D0  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 801544D4  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 801544D0  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801544D4  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801544D8  80 84 5D AC */	lwz r4, 0x5dac(r4)
 /* 801544DC  4B EC 64 89 */	bl fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 801544E0  FF 60 08 90 */	fmr f27, f1
@@ -103,8 +103,8 @@ lbl_801544E4:
 /* 801544F4  4B EC CE 45 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 801544F8  3A 80 00 00 */	li r20, 0
 /* 801544FC  3B 40 00 00 */	li r26, 0
-/* 80154500  3C 60 80 42 */	lis r3, mFindActorPList__8daNpcF_c@ha
-/* 80154504  3A C3 57 E8 */	addi r22, r3, mFindActorPList__8daNpcF_c@l
+/* 80154500  3C 60 80 42 */	lis r3, mFindActorPList__8daNpcF_c@ha /* 0x804257E8@ha */
+/* 80154504  3A C3 57 E8 */	addi r22, r3, mFindActorPList__8daNpcF_c@l /* 0x804257E8@l */
 /* 80154508  48 00 00 E0 */	b lbl_801545E8
 lbl_8015450C:
 /* 8015450C  38 61 00 18 */	addi r3, r1, 0x18
@@ -175,8 +175,8 @@ lbl_801545E8:
 /* 801545FC  40 82 00 34 */	bne lbl_80154630
 /* 80154600  2C 19 00 00 */	cmpwi r25, 0
 /* 80154604  41 82 00 2C */	beq lbl_80154630
-/* 80154608  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8015460C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80154608  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015460C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80154610  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 80154614  81 83 06 28 */	lwz r12, 0x628(r3)
 /* 80154618  81 8C 00 FC */	lwz r12, 0xfc(r12)

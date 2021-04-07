@@ -5,8 +5,8 @@ lbl_8002B2C8:
 /* 8002B2D4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8002B2D8  93 C1 00 08 */	stw r30, 8(r1)
 /* 8002B2DC  7C 7E 1B 78 */	mr r30, r3
-/* 8002B2E0  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8002B2E4  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8002B2E0  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8002B2E4  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8002B2E8  48 1F 0B 81 */	bl init__13dMeter2Info_cFv
 /* 8002B2EC  83 FE 4F 84 */	lwz r31, 0x4f84(r30)
 /* 8002B2F0  38 7E 4E 84 */	addi r3, r30, 0x4e84
@@ -31,8 +31,8 @@ lbl_8002B330:
 lbl_8002B338:
 /* 8002B338  38 00 00 07 */	li r0, 7
 /* 8002B33C  98 1E 4F 4C */	stb r0, 0x4f4c(r30)
-/* 8002B340  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002B344  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002B340  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002B344  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002B348  38 63 01 E0 */	addi r3, r3, 0x1e0
 /* 8002B34C  48 00 93 49 */	bl getVibration__19dSv_player_config_cFv
 /* 8002B350  98 7E 4F 5A */	stb r3, 0x4f5a(r30)

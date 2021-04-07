@@ -7,16 +7,16 @@ lbl_801974E4:
 /* 801974F8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 801974FC  7C 9F 23 78 */	mr r31, r4
 /* 80197500  41 82 00 A4 */	beq lbl_801975A4
-/* 80197504  3C 80 80 3C */	lis r4, __vt__13dShopSystem_c@ha
-/* 80197508  38 04 BA 7C */	addi r0, r4, __vt__13dShopSystem_c@l
+/* 80197504  3C 80 80 3C */	lis r4, __vt__13dShopSystem_c@ha /* 0x803BBA7C@ha */
+/* 80197508  38 04 BA 7C */	addi r0, r4, __vt__13dShopSystem_c@l /* 0x803BBA7C@l */
 /* 8019750C  90 1E 0E 3C */	stw r0, 0xe3c(r30)
 /* 80197510  48 00 30 55 */	bl deleteObject__13dShopSystem_cFv
 /* 80197514  38 E0 00 00 */	li r7, 0
 /* 80197518  98 ED 8A D8 */	stb r7, data_80451058(r13)
 /* 8019751C  98 ED 8A E0 */	stb r7, data_80451060(r13)
 /* 80197520  7C E4 3B 78 */	mr r4, r7
-/* 80197524  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha
-/* 80197528  38 C3 B8 A4 */	addi r6, r3, dShopSystem_itemActor@l
+/* 80197524  3C 60 80 3C */	lis r3, dShopSystem_itemActor@ha /* 0x803BB8A4@ha */
+/* 80197528  38 C3 B8 A4 */	addi r6, r3, dShopSystem_itemActor@l /* 0x803BB8A4@l */
 /* 8019752C  38 A0 00 FF */	li r5, 0xff
 /* 80197530  38 6D 81 68 */	la r3, dShopSystem_itemNo(r13) /* 804506E8-_SDA_BASE_ */
 /* 80197534  38 00 00 07 */	li r0, 7

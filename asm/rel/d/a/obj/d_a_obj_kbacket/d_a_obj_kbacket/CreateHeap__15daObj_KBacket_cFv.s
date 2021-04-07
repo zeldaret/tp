@@ -12,36 +12,36 @@ lbl_80586604:
 /* 8058662C  40 80 00 08 */	bge lbl_80586634
 /* 80586630  48 00 00 7C */	b lbl_805866AC
 lbl_80586634:
-/* 80586634  3C 60 80 58 */	lis r3, l_bmdData@ha
-/* 80586638  38 83 7E 98 */	addi r4, r3, l_bmdData@l
+/* 80586634  3C 60 80 58 */	lis r3, l_bmdData@ha /* 0x80587E98@ha */
+/* 80586638  38 83 7E 98 */	addi r4, r3, l_bmdData@l /* 0x80587E98@l */
 /* 8058663C  80 04 00 04 */	lwz r0, 4(r4)
 /* 80586640  54 00 10 3A */	slwi r0, r0, 2
-/* 80586644  3C 60 80 58 */	lis r3, l_resNameList@ha
-/* 80586648  38 63 7E A8 */	addi r3, r3, l_resNameList@l
+/* 80586644  3C 60 80 58 */	lis r3, l_resNameList@ha /* 0x80587EA8@ha */
+/* 80586648  38 63 7E A8 */	addi r3, r3, l_resNameList@l /* 0x80587EA8@l */
 /* 8058664C  7C 63 00 2E */	lwzx r3, r3, r0
 /* 80586650  80 84 00 00 */	lwz r4, 0(r4)
-/* 80586654  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80586658  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80586654  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80586658  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8058665C  3C A5 00 02 */	addis r5, r5, 2
 /* 80586660  38 C0 00 80 */	li r6, 0x80
 /* 80586664  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 80586668  4B AB 5C 84 */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 80586668  4B AB 5C 85 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8058666C  48 00 00 44 */	b lbl_805866B0
 lbl_80586670:
-/* 80586670  3C 60 80 58 */	lis r3, l_bmdData@ha
-/* 80586674  38 83 7E 98 */	addi r4, r3, l_bmdData@l
+/* 80586670  3C 60 80 58 */	lis r3, l_bmdData@ha /* 0x80587E98@ha */
+/* 80586674  38 83 7E 98 */	addi r4, r3, l_bmdData@l /* 0x80587E98@l */
 /* 80586678  80 04 00 0C */	lwz r0, 0xc(r4)
 /* 8058667C  54 00 10 3A */	slwi r0, r0, 2
-/* 80586680  3C 60 80 58 */	lis r3, l_resNameList@ha
-/* 80586684  38 63 7E A8 */	addi r3, r3, l_resNameList@l
+/* 80586680  3C 60 80 58 */	lis r3, l_resNameList@ha /* 0x80587EA8@ha */
+/* 80586684  38 63 7E A8 */	addi r3, r3, l_resNameList@l /* 0x80587EA8@l */
 /* 80586688  7C 63 00 2E */	lwzx r3, r3, r0
 /* 8058668C  80 84 00 08 */	lwz r4, 8(r4)
-/* 80586690  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80586694  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80586690  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80586694  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80586698  3C A5 00 02 */	addis r5, r5, 2
 /* 8058669C  38 C0 00 80 */	li r6, 0x80
 /* 805866A0  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 805866A4  4B AB 5C 48 */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 805866A4  4B AB 5C 49 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 805866A8  48 00 00 08 */	b lbl_805866B0
 lbl_805866AC:
 /* 805866AC  38 60 00 00 */	li r3, 0
@@ -51,7 +51,7 @@ lbl_805866B0:
 /* 805866B8  3C 80 00 08 */	lis r4, 8
 /* 805866BC  3C A0 11 00 */	lis r5, 0x1100 /* 0x11000084@ha */
 /* 805866C0  38 A5 00 84 */	addi r5, r5, 0x0084 /* 0x11000084@l */
-/* 805866C4  4B A8 E5 90 */	b mDoExt_J3DModel__create__FP12J3DModelDataUlUl
+/* 805866C4  4B A8 E5 91 */	bl mDoExt_J3DModel__create__FP12J3DModelDataUlUl
 /* 805866C8  90 7F 05 74 */	stw r3, 0x574(r31)
 /* 805866CC  48 00 00 0C */	b lbl_805866D8
 lbl_805866D0:

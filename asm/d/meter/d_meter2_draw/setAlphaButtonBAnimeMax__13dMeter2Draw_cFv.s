@@ -7,8 +7,8 @@ lbl_80219474:
 /* 80219488  7C 7B 1B 78 */	mr r27, r3
 /* 8021948C  80 63 03 04 */	lwz r3, 0x304(r3)
 /* 80219490  48 03 C3 99 */	bl getAlphaRate__13CPaneMgrAlphaFv
-/* 80219494  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 80219498  3B C3 EB C8 */	addi r30, r3, g_drawHIO@l
+/* 80219494  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 80219498  3B C3 EB C8 */	addi r30, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8021949C  C0 7E 00 F0 */	lfs f3, 0xf0(r30)
 /* 802194A0  C0 5E 00 18 */	lfs f2, 0x18(r30)
 /* 802194A4  C0 1E 00 84 */	lfs f0, 0x84(r30)

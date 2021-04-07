@@ -3,19 +3,20 @@
 #
 
 M349_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_prayer.plf
+M349_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_prayer.lcf
+M349_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_prayer.map
 
 M349_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_prayer/executor.cpp \
-	rel/d/a/npc/d_a_npc_prayer/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_prayer/d_a_npc_prayer.cpp \
 
 M349_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_prayer/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_prayer/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_prayer/d_a_npc_prayer.o \
 
 M349_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_prayer/libRuntime.PPCEABI.H.a \
 
 M349_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M349_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M349_LDSCRIPT) \
+	-unused -map $(M349_MAP) \
+	-w off \
 
 $(M349_TARGET): $(M349_O_FILES) $(M349_LIBS)
+	@echo [349] creating $(M349_TARGET)
 	@echo $(M349_LIBS) $(M349_O_FILES) > build/M349_ofiles
-	$(LD) -partial $(M349_LDFLAGS) -o $(M349_TARGET) @build/M349_ofiles
+	@python3 tools/lcf.py rel 349 --output $(M349_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M349_LDFLAGS) -o $(M349_TARGET) @build/M349_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_prayer/%.o: rel/d/a/npc/d_a_npc_prayer/%.cpp
+	@echo [349] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M349_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M349_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_prayer/libs/Runtime.PPCEABI.H/Makefile
 

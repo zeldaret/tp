@@ -33,8 +33,8 @@ lbl_80107108:
 /* 80107154  C8 01 00 08 */	lfd f0, 8(r1)
 /* 80107158  EC 00 10 28 */	fsubs f0, f0, f2
 /* 8010715C  EC 41 00 2A */	fadds f2, f1, f0
-/* 80107160  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha
-/* 80107164  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l
+/* 80107160  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha /* 0x8038E870@ha */
+/* 80107164  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l /* 0x8038E870@l */
 /* 80107168  A8 A5 00 14 */	lha r5, 0x14(r5)
 /* 8010716C  C0 62 92 BC */	lfs f3, lit_6041(r2)
 /* 80107170  4B FA 5E 9D */	bl setSingleAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMffsf

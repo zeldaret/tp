@@ -6,8 +6,8 @@ lbl_802CCFB8:
 /* 802CCFC8  7C 7F 1B 78 */	mr r31, r3
 /* 802CCFCC  38 80 00 00 */	li r4, 0
 /* 802CCFD0  4B FD DB C5 */	bl __ct__14Z2SoundStarterFb
-/* 802CCFD4  3C 60 80 3D */	lis r3, __vt__15Z2SpeechStarter@ha
-/* 802CCFD8  38 03 BF 24 */	addi r0, r3, __vt__15Z2SpeechStarter@l
+/* 802CCFD4  3C 60 80 3D */	lis r3, __vt__15Z2SpeechStarter@ha /* 0x803CBF24@ha */
+/* 802CCFD8  38 03 BF 24 */	addi r0, r3, __vt__15Z2SpeechStarter@l /* 0x803CBF24@l */
 /* 802CCFDC  90 1F 00 00 */	stw r0, 0(r31)
 /* 802CCFE0  7F E3 FB 78 */	mr r3, r31
 /* 802CCFE4  83 E1 00 0C */	lwz r31, 0xc(r1)

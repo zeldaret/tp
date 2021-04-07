@@ -1,6 +1,6 @@
 lbl_801614F4:
-/* 801614F4  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 801614F8  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 801614F4  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801614F8  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801614FC  80 05 51 84 */	lwz r0, 0x5184(r5)
 /* 80161500  2C 00 00 00 */	cmpwi r0, 0
 /* 80161504  40 82 00 10 */	bne lbl_80161514

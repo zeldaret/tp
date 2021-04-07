@@ -5,8 +5,8 @@ lbl_804750C8:
 /* 804750D4  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 804750D8  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 804750DC  7C 7E 1B 78 */	mr r30, r3
-/* 804750E0  3C 80 80 48 */	lis r4, l_cyl_info@ha
-/* 804750E4  3B E4 99 0C */	addi r31, r4, l_cyl_info@l
+/* 804750E0  3C 80 80 48 */	lis r4, l_cyl_info@ha /* 0x8047990C@ha */
+/* 804750E4  3B E4 99 0C */	addi r31, r4, l_cyl_info@l /* 0x8047990C@l */
 /* 804750E8  C0 03 04 EC */	lfs f0, 0x4ec(r3)
 /* 804750EC  D0 01 00 08 */	stfs f0, 8(r1)
 /* 804750F0  4B FF A5 B5 */	bl data__12daObjCarry_cFv
@@ -15,7 +15,7 @@ lbl_804750C8:
 /* 804750FC  C0 5F 0B 04 */	lfs f2, 0xb04(r31)
 /* 80475100  C0 7F 0B 34 */	lfs f3, 0xb34(r31)
 /* 80475104  C0 9F 0B 58 */	lfs f4, 0xb58(r31)
-/* 80475108  4B DF A8 74 */	b cLib_addCalc__FPfffff
+/* 80475108  4B DF A8 75 */	bl cLib_addCalc__FPfffff
 /* 8047510C  C0 01 00 08 */	lfs f0, 8(r1)
 /* 80475110  D0 1E 04 EC */	stfs f0, 0x4ec(r30)
 /* 80475114  D0 1E 04 F0 */	stfs f0, 0x4f0(r30)

@@ -48,8 +48,8 @@ lbl_80119E20:
 /* 80119E3C  2C 1E 00 00 */	cmpwi r30, 0
 /* 80119E40  40 82 00 1C */	bne lbl_80119E5C
 /* 80119E44  7F E3 FB 78 */	mr r3, r31
-/* 80119E48  3C 80 80 39 */	lis r4, m__20daAlinkHIO_wlMove_c0@ha
-/* 80119E4C  38 84 EE 28 */	addi r4, r4, m__20daAlinkHIO_wlMove_c0@l
+/* 80119E48  3C 80 80 39 */	lis r4, m__20daAlinkHIO_wlMove_c0@ha /* 0x8038EE28@ha */
+/* 80119E4C  38 84 EE 28 */	addi r4, r4, m__20daAlinkHIO_wlMove_c0@l /* 0x8038EE28@l */
 /* 80119E50  C0 24 00 BC */	lfs f1, 0xbc(r4)
 /* 80119E54  48 00 E9 F1 */	bl setBlendWolfMoveAnime__9daAlink_cFf
 /* 80119E58  48 00 00 D4 */	b lbl_80119F2C
@@ -60,8 +60,8 @@ lbl_80119E5C:
 /* 80119E68  98 1F 2F 99 */	stb r0, 0x2f99(r31)
 /* 80119E6C  7F E3 FB 78 */	mr r3, r31
 /* 80119E70  38 80 00 0D */	li r4, 0xd
-/* 80119E74  3C A0 80 39 */	lis r5, m__19daAlinkHIO_wlLie_c0@ha
-/* 80119E78  38 A5 F1 38 */	addi r5, r5, m__19daAlinkHIO_wlLie_c0@l
+/* 80119E74  3C A0 80 39 */	lis r5, m__19daAlinkHIO_wlLie_c0@ha /* 0x8038F138@ha */
+/* 80119E78  38 A5 F1 38 */	addi r5, r5, m__19daAlinkHIO_wlLie_c0@l /* 0x8038F138@l */
 /* 80119E7C  C0 45 00 40 */	lfs f2, 0x40(r5)
 /* 80119E80  48 00 F8 59 */	bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 /* 80119E84  48 00 00 64 */	b lbl_80119EE8
@@ -93,8 +93,8 @@ lbl_80119EC0:
 /* 80119EE0  38 A0 00 28 */	li r5, 0x28
 /* 80119EE4  4B EF 59 65 */	bl initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs
 lbl_80119EE8:
-/* 80119EE8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80119EEC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80119EE8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80119EEC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80119EF0  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 80119EF4  64 00 08 00 */	oris r0, r0, 0x800
 /* 80119EF8  90 03 5F 18 */	stw r0, 0x5f18(r3)
@@ -114,8 +114,8 @@ lbl_80119F00:
 lbl_80119F2C:
 /* 80119F2C  38 00 00 1E */	li r0, 0x1e
 /* 80119F30  B0 1F 30 08 */	sth r0, 0x3008(r31)
-/* 80119F34  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80119F38  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80119F34  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80119F38  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80119F3C  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 80119F40  60 00 00 10 */	ori r0, r0, 0x10
 /* 80119F44  90 03 5F 18 */	stw r0, 0x5f18(r3)

@@ -14,8 +14,8 @@ lbl_800D4228:
 /* 800D4228  3B FE 1F D0 */	addi r31, r30, 0x1fd0
 /* 800D422C  38 7E 33 98 */	addi r3, r30, 0x3398
 /* 800D4230  C0 22 92 C0 */	lfs f1, lit_6108(r2)
-/* 800D4234  3C 80 80 39 */	lis r4, m__17daAlinkHIO_cut_c0@ha
-/* 800D4238  38 84 DE 8C */	addi r4, r4, m__17daAlinkHIO_cut_c0@l
+/* 800D4234  3C 80 80 39 */	lis r4, m__17daAlinkHIO_cut_c0@ha /* 0x8038DE8C@ha */
+/* 800D4238  38 84 DE 8C */	addi r4, r4, m__17daAlinkHIO_cut_c0@l /* 0x8038DE8C@l */
 /* 800D423C  C0 44 00 68 */	lfs f2, 0x68(r4)
 /* 800D4240  48 19 C5 01 */	bl cLib_chaseF__FPfff
 /* 800D4244  A8 1E 30 0C */	lha r0, 0x300c(r30)

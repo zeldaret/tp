@@ -6,8 +6,8 @@ lbl_8028E850:
 /* 8028E860  7C 00 07 75 */	extsb. r0, r0
 /* 8028E864  40 82 00 FC */	bne lbl_8028E960
 /* 8028E868  38 00 00 00 */	li r0, 0
-/* 8028E86C  3C 80 80 43 */	lis r4, aoData@ha
-/* 8028E870  38 C4 15 40 */	addi r6, r4, aoData@l
+/* 8028E86C  3C 80 80 43 */	lis r4, aoData@ha /* 0x80431540@ha */
+/* 8028E870  38 C4 15 40 */	addi r6, r4, aoData@l /* 0x80431540@l */
 /* 8028E874  90 06 00 00 */	stw r0, 0(r6)
 /* 8028E878  C0 02 BB 20 */	lfs f0, lit_1361(r2)
 /* 8028E87C  D0 06 00 04 */	stfs f0, 4(r6)
@@ -61,15 +61,15 @@ lbl_8028E850:
 /* 8028E93C  38 00 00 10 */	li r0, 0x10
 /* 8028E940  90 06 00 80 */	stw r0, 0x80(r6)
 /* 8028E944  D0 06 00 84 */	stfs f0, 0x84(r6)
-/* 8028E948  3C 80 80 45 */	lis r4, __float_nan@ha
-/* 8028E94C  C0 04 0A E0 */	lfs f0, __float_nan@l(r4)
+/* 8028E948  3C 80 80 45 */	lis r4, __float_nan@ha /* 0x80450AE0@ha */
+/* 8028E94C  C0 04 0A E0 */	lfs f0, __float_nan@l(r4)  /* 0x80450AE0@l */
 /* 8028E950  38 00 FF FF */	li r0, -1
 /* 8028E954  90 06 00 88 */	stw r0, 0x88(r6)
 /* 8028E958  D0 06 00 8C */	stfs f0, 0x8c(r6)
 /* 8028E95C  98 AD 8C 80 */	stb r5, data_80451200(r13)
 lbl_8028E960:
-/* 8028E960  3C 80 80 43 */	lis r4, aoData@ha
-/* 8028E964  38 84 15 40 */	addi r4, r4, aoData@l
+/* 8028E960  3C 80 80 43 */	lis r4, aoData@ha /* 0x80431540@ha */
+/* 8028E964  38 84 15 40 */	addi r4, r4, aoData@l /* 0x80431540@l */
 /* 8028E968  4B FF 78 59 */	bl adaptor_setVariableValue_immediate__Q27JStudio8TAdaptorFPCQ37JStudio8TAdaptor27TSetVariableValue_immediate
 /* 8028E96C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8028E970  7C 08 03 A6 */	mtlr r0

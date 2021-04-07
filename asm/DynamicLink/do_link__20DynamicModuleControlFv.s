@@ -39,8 +39,8 @@ lbl_80262C98:
 /* 80262CEC  48 06 B7 89 */	bl alloc__7JKRHeapFUliP7JKRHeap
 /* 80262CF0  7C 64 1B 79 */	or. r4, r3, r3
 /* 80262CF4  40 82 00 1C */	bne lbl_80262D10
-/* 80262CF8  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha
-/* 80262CFC  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l
+/* 80262CF8  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha /* 0x8039A4A0@ha */
+/* 80262CFC  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l /* 0x8039A4A0@l */
 /* 80262D00  38 63 02 42 */	addi r3, r3, 0x242
 /* 80262D04  4C C6 31 82 */	crclr 6
 /* 80262D08  4B DA 3F 05 */	bl OSReport_Error
@@ -51,8 +51,8 @@ lbl_80262D10:
 /* 80262D18  48 0D B7 F9 */	bl OSLink
 /* 80262D1C  2C 03 00 00 */	cmpwi r3, 0
 /* 80262D20  40 82 01 64 */	bne lbl_80262E84
-/* 80262D24  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha
-/* 80262D28  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l
+/* 80262D24  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha /* 0x8039A4A0@ha */
+/* 80262D28  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l /* 0x8039A4A0@l */
 /* 80262D2C  38 63 02 55 */	addi r3, r3, 0x255
 /* 80262D30  4C C6 31 82 */	crclr 6
 /* 80262D34  4B DA 3E D9 */	bl OSReport_Error
@@ -68,8 +68,8 @@ lbl_80262D3C:
 /* 80262D58  48 0D B7 DD */	bl OSLinkFixed
 /* 80262D5C  2C 03 00 00 */	cmpwi r3, 0
 /* 80262D60  40 82 00 1C */	bne lbl_80262D7C
-/* 80262D64  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha
-/* 80262D68  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l
+/* 80262D64  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha /* 0x8039A4A0@ha */
+/* 80262D68  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l /* 0x8039A4A0@l */
 /* 80262D6C  38 63 02 55 */	addi r3, r3, 0x255
 /* 80262D70  4C C6 31 82 */	crclr 6
 /* 80262D74  4B DA 3E 99 */	bl OSReport_Error
@@ -82,8 +82,8 @@ lbl_80262D7C:
 /* 80262D8C  48 06 B8 99 */	bl resize__7JKRHeapFPvUlP7JKRHeap
 /* 80262D90  2C 03 00 00 */	cmpwi r3, 0
 /* 80262D94  40 80 00 F0 */	bge lbl_80262E84
-/* 80262D98  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha
-/* 80262D9C  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l
+/* 80262D98  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha /* 0x8039A4A0@ha */
+/* 80262D9C  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l /* 0x8039A4A0@l */
 /* 80262DA0  38 63 02 61 */	addi r3, r3, 0x261
 /* 80262DA4  4C C6 31 82 */	crclr 6
 /* 80262DA8  4B DA 3E 65 */	bl OSReport_Error
@@ -99,8 +99,8 @@ lbl_80262DB0:
 /* 80262DCC  48 0D B7 69 */	bl OSLinkFixed
 /* 80262DD0  2C 03 00 00 */	cmpwi r3, 0
 /* 80262DD4  40 82 00 B0 */	bne lbl_80262E84
-/* 80262DD8  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha
-/* 80262DDC  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l
+/* 80262DD8  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha /* 0x8039A4A0@ha */
+/* 80262DDC  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l /* 0x8039A4A0@l */
 /* 80262DE0  38 63 02 55 */	addi r3, r3, 0x255
 /* 80262DE4  4C C6 31 82 */	crclr 6
 /* 80262DE8  4B DA 3E 25 */	bl OSReport_Error
@@ -113,8 +113,8 @@ lbl_80262DF0:
 /* 80262E00  48 06 B6 75 */	bl alloc__7JKRHeapFUliP7JKRHeap
 /* 80262E04  7C 64 1B 79 */	or. r4, r3, r3
 /* 80262E08  40 82 00 24 */	bne lbl_80262E2C
-/* 80262E0C  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha
-/* 80262E10  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l
+/* 80262E0C  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha /* 0x8039A4A0@ha */
+/* 80262E10  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l /* 0x8039A4A0@l */
 /* 80262E14  38 63 02 7F */	addi r3, r3, 0x27f
 /* 80262E18  80 9F 00 10 */	lwz r4, 0x10(r31)
 /* 80262E1C  80 84 00 20 */	lwz r4, 0x20(r4)
@@ -127,8 +127,8 @@ lbl_80262E2C:
 /* 80262E34  48 0D B7 01 */	bl OSLinkFixed
 /* 80262E38  2C 03 00 00 */	cmpwi r3, 0
 /* 80262E3C  40 82 00 1C */	bne lbl_80262E58
-/* 80262E40  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha
-/* 80262E44  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l
+/* 80262E40  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha /* 0x8039A4A0@ha */
+/* 80262E44  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l /* 0x8039A4A0@l */
 /* 80262E48  38 63 02 55 */	addi r3, r3, 0x255
 /* 80262E4C  4C C6 31 82 */	crclr 6
 /* 80262E50  4B DA 3D BD */	bl OSReport_Error
@@ -140,8 +140,8 @@ lbl_80262E58:
 /* 80262E64  48 06 B7 C1 */	bl resize__7JKRHeapFPvUlP7JKRHeap
 /* 80262E68  2C 03 00 00 */	cmpwi r3, 0
 /* 80262E6C  40 80 00 18 */	bge lbl_80262E84
-/* 80262E70  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha
-/* 80262E74  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l
+/* 80262E70  3C 60 80 3A */	lis r3, DynamicLink__stringBase0@ha /* 0x8039A4A0@ha */
+/* 80262E74  38 63 A4 A0 */	addi r3, r3, DynamicLink__stringBase0@l /* 0x8039A4A0@l */
 /* 80262E78  38 63 02 61 */	addi r3, r3, 0x261
 /* 80262E7C  4C C6 31 82 */	crclr 6
 /* 80262E80  4B DA 3D 8D */	bl OSReport_Error

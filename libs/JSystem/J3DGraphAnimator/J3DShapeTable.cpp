@@ -51,7 +51,7 @@ extern "C" void _restgpr_27();
 // Declarations:
 //
 
-/* 803258A0-803258D8 0038+00 s=0 e=0 z=6  None .text      hide__13J3DShapeTableFv */
+/* 803258A0-803258D8 3201E0 0038+00 0/0 0/0 6/6 .text            hide__13J3DShapeTableFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -61,7 +61,7 @@ asm void J3DShapeTable::hide() {
 }
 #pragma pop
 
-/* 803258D8-80325910 0038+00 s=0 e=0 z=6  None .text      show__13J3DShapeTableFv */
+/* 803258D8-80325910 320218 0038+00 0/0 0/0 6/6 .text            show__13J3DShapeTableFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -71,7 +71,7 @@ asm void J3DShapeTable::show() {
 }
 #pragma pop
 
-/* 80325910-8032597C 006C+00 s=0 e=2 z=0  None .text
+/* 80325910-8032597C 320250 006C+00 0/0 2/2 0/0 .text
  * initShapeNodes__13J3DShapeTableFP14J3DDrawMtxDataP13J3DVertexData */
 #pragma push
 #pragma optimization_level 0
@@ -82,7 +82,7 @@ asm void J3DShapeTable::initShapeNodes(J3DDrawMtxData* param_0, J3DVertexData* p
 }
 #pragma pop
 
-/* 8032597C-80325A18 009C+00 s=0 e=2 z=0  None .text      sortVcdVatCmd__13J3DShapeTableFv */
+/* 8032597C-80325A18 3202BC 009C+00 0/0 2/2 0/0 .text            sortVcdVatCmd__13J3DShapeTableFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

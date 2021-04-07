@@ -1,17 +1,17 @@
 lbl_8036CD34:
 /* 8036CD34  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8036CD38  7C 08 02 A6 */	mflr r0
-/* 8036CD3C  3C 80 80 45 */	lis r4, gTRKEventQueue@ha
+/* 8036CD3C  3C 80 80 45 */	lis r4, gTRKEventQueue@ha /* 0x8044D890@ha */
 /* 8036CD40  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8036CD44  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8036CD48  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8036CD4C  3B C0 00 00 */	li r30, 0
 /* 8036CD50  93 A1 00 14 */	stw r29, 0x14(r1)
 /* 8036CD54  7C 7D 1B 78 */	mr r29, r3
-/* 8036CD58  38 64 D8 90 */	addi r3, r4, gTRKEventQueue@l
+/* 8036CD58  38 64 D8 90 */	addi r3, r4, gTRKEventQueue@l /* 0x8044D890@l */
 /* 8036CD5C  48 00 27 45 */	bl TRKAcquireMutex
-/* 8036CD60  3C 60 80 45 */	lis r3, gTRKEventQueue@ha
-/* 8036CD64  3B E3 D8 90 */	addi r31, r3, gTRKEventQueue@l
+/* 8036CD60  3C 60 80 45 */	lis r3, gTRKEventQueue@ha /* 0x8044D890@ha */
+/* 8036CD64  3B E3 D8 90 */	addi r31, r3, gTRKEventQueue@l /* 0x8044D890@l */
 /* 8036CD68  80 1F 00 04 */	lwz r0, 4(r31)
 /* 8036CD6C  2C 00 00 00 */	cmpwi r0, 0
 /* 8036CD70  40 81 00 4C */	ble lbl_8036CDBC
@@ -35,8 +35,8 @@ lbl_8036CD34:
 lbl_8036CDB8:
 /* 8036CDB8  3B C0 00 01 */	li r30, 1
 lbl_8036CDBC:
-/* 8036CDBC  3C 60 80 45 */	lis r3, gTRKEventQueue@ha
-/* 8036CDC0  38 63 D8 90 */	addi r3, r3, gTRKEventQueue@l
+/* 8036CDBC  3C 60 80 45 */	lis r3, gTRKEventQueue@ha /* 0x8044D890@ha */
+/* 8036CDC0  38 63 D8 90 */	addi r3, r3, gTRKEventQueue@l /* 0x8044D890@l */
 /* 8036CDC4  48 00 26 D5 */	bl TRKReleaseMutex
 /* 8036CDC8  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8036CDCC  7F C3 F3 78 */	mr r3, r30

@@ -28,8 +28,8 @@ lbl_800C7324:
 /* 800C7334  40 80 00 20 */	bge lbl_800C7354
 /* 800C7338  7F E3 FB 78 */	mr r3, r31
 /* 800C733C  38 80 00 02 */	li r4, 2
-/* 800C7340  3C A0 80 39 */	lis r5, m__23daAlinkHIO_smallJump_c0@ha
-/* 800C7344  38 A5 E1 1C */	addi r5, r5, m__23daAlinkHIO_smallJump_c0@l
+/* 800C7340  3C A0 80 39 */	lis r5, m__23daAlinkHIO_smallJump_c0@ha /* 0x8038E11C@ha */
+/* 800C7344  38 A5 E1 1C */	addi r5, r5, m__23daAlinkHIO_smallJump_c0@l /* 0x8038E11C@l */
 /* 800C7348  C0 25 00 44 */	lfs f1, 0x44(r5)
 /* 800C734C  4B FF F6 FD */	bl procFallInit__9daAlink_cFif
 /* 800C7350  48 00 01 6C */	b lbl_800C74BC
@@ -45,8 +45,8 @@ lbl_800C7360:
 /* 800C7370  41 82 01 20 */	beq lbl_800C7490
 /* 800C7374  7F E3 FB 78 */	mr r3, r31
 /* 800C7378  4B FE D5 59 */	bl setJumpMode__9daAlink_cFv
-/* 800C737C  3C 60 80 39 */	lis r3, m__23daAlinkHIO_smallJump_c0@ha
-/* 800C7380  38 63 E1 1C */	addi r3, r3, m__23daAlinkHIO_smallJump_c0@l
+/* 800C737C  3C 60 80 39 */	lis r3, m__23daAlinkHIO_smallJump_c0@ha /* 0x8038E11C@ha */
+/* 800C7380  38 63 E1 1C */	addi r3, r3, m__23daAlinkHIO_smallJump_c0@l /* 0x8038E11C@l */
 /* 800C7384  C0 03 00 3C */	lfs f0, 0x3c(r3)
 /* 800C7388  D0 1F 33 98 */	stfs f0, 0x3398(r31)
 /* 800C738C  7F E3 FB 78 */	mr r3, r31
@@ -59,8 +59,8 @@ lbl_800C7360:
 /* 800C73A8  54 00 02 11 */	rlwinm. r0, r0, 0, 8, 8
 /* 800C73AC  40 82 00 58 */	bne lbl_800C7404
 /* 800C73B0  C0 62 93 14 */	lfs f3, lit_7307(r2)
-/* 800C73B4  3C 60 80 39 */	lis r3, m__23daAlinkHIO_smallJump_c0@ha
-/* 800C73B8  38 63 E1 1C */	addi r3, r3, m__23daAlinkHIO_smallJump_c0@l
+/* 800C73B4  3C 60 80 39 */	lis r3, m__23daAlinkHIO_smallJump_c0@ha /* 0x8038E11C@ha */
+/* 800C73B8  38 63 E1 1C */	addi r3, r3, m__23daAlinkHIO_smallJump_c0@l /* 0x8038E11C@l */
 /* 800C73BC  C0 43 00 40 */	lfs f2, 0x40(r3)
 /* 800C73C0  C0 3F 34 78 */	lfs f1, 0x3478(r31)
 /* 800C73C4  C0 1F 04 D4 */	lfs f0, 0x4d4(r31)
@@ -84,8 +84,8 @@ lbl_800C7404:
 /* 800C7404  C0 82 93 14 */	lfs f4, lit_7307(r2)
 /* 800C7408  C0 1F 05 30 */	lfs f0, 0x530(r31)
 /* 800C740C  FC 60 00 50 */	fneg f3, f0
-/* 800C7410  3C 60 80 39 */	lis r3, m__23daAlinkHIO_smallJump_c0@ha
-/* 800C7414  38 63 E1 1C */	addi r3, r3, m__23daAlinkHIO_smallJump_c0@l
+/* 800C7410  3C 60 80 39 */	lis r3, m__23daAlinkHIO_smallJump_c0@ha /* 0x8038E11C@ha */
+/* 800C7414  38 63 E1 1C */	addi r3, r3, m__23daAlinkHIO_smallJump_c0@l /* 0x8038E11C@l */
 /* 800C7418  C0 43 00 40 */	lfs f2, 0x40(r3)
 /* 800C741C  C0 3F 34 78 */	lfs f1, 0x3478(r31)
 /* 800C7420  C0 1F 04 D4 */	lfs f0, 0x4d4(r31)

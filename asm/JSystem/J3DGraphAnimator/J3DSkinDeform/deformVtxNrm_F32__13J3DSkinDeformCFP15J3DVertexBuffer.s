@@ -26,9 +26,9 @@ lbl_8032DE0C:
 /* 8032DE14  7C 03 22 2E */	lhzx r0, r3, r4
 /* 8032DE18  1C 00 00 24 */	mulli r0, r0, 0x24
 /* 8032DE1C  7D 07 02 14 */	add r8, r7, r0
-/* 8032DE20  3C C0 80 3D */	lis r6, PSMulUnit01@ha
+/* 8032DE20  3C C0 80 3D */	lis r6, PSMulUnit01@ha /* 0x803CD8F8@ha */
 /* 8032DE24  E0 09 00 00 */	psq_l f0, 0(r9), 0, 0 /* qr0 */
-/* 8032DE28  38 C6 D8 F8 */	addi r6, r6, PSMulUnit01@l
+/* 8032DE28  38 C6 D8 F8 */	addi r6, r6, PSMulUnit01@l /* 0x803CD8F8@l */
 /* 8032DE2C  E0 48 00 00 */	psq_l f2, 0(r8), 0, 0 /* qr0 */
 /* 8032DE30  E1 A6 00 00 */	psq_l f13, 0(r6), 0, 0 /* qr0 */
 /* 8032DE34  E0 29 80 08 */	psq_l f1, 8(r9), 1, 0 /* qr0 */

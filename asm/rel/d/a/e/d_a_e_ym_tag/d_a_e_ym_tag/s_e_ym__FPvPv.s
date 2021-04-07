@@ -6,7 +6,7 @@ lbl_80815E00:
 /* 80815E10  93 C1 00 08 */	stw r30, 8(r1)
 /* 80815E14  7C 7E 1B 78 */	mr r30, r3
 /* 80815E18  7C 9F 23 78 */	mr r31, r4
-/* 80815E1C  4B 80 2E C4 */	b fopAc_IsActor__FPv
+/* 80815E1C  4B 80 2E C5 */	bl fopAc_IsActor__FPv
 /* 80815E20  2C 03 00 00 */	cmpwi r3, 0
 /* 80815E24  41 82 00 4C */	beq lbl_80815E70
 /* 80815E28  A8 1E 00 08 */	lha r0, 8(r30)
@@ -19,7 +19,7 @@ lbl_80815E00:
 lbl_80815E44:
 /* 80815E44  38 60 FF FF */	li r3, -1
 lbl_80815E48:
-/* 80815E48  4B 80 C2 F0 */	b fpcM_IsCreating__FUi
+/* 80815E48  4B 80 C2 F1 */	bl fpcM_IsCreating__FUi
 /* 80815E4C  2C 03 00 00 */	cmpwi r3, 0
 /* 80815E50  40 82 00 20 */	bne lbl_80815E70
 /* 80815E54  88 7E 06 C8 */	lbz r3, 0x6c8(r30)

@@ -3,17 +3,15 @@
 #
 
 M713_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_TWgate.plf
+M713_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_TWgate.lcf
+M713_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_TWgate.map
 
 M713_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_TWgate/executor.cpp \
-	rel/d/a/tag/d_a_tag_TWgate/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_TWgate/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate.cpp \
 
 M713_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_TWgate/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_TWgate/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_TWgate/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate.o \
 
 M713_LIBS := \
@@ -29,14 +27,21 @@ M713_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M713_LDSCRIPT) \
+	-unused -map $(M713_MAP) \
+	-w off \
 
 $(M713_TARGET): $(M713_O_FILES) $(M713_LIBS)
+	@echo [713] creating $(M713_TARGET)
 	@echo $(M713_LIBS) $(M713_O_FILES) > build/M713_ofiles
-	$(LD) -partial $(M713_LDFLAGS) -o $(M713_TARGET) @build/M713_ofiles
+	@python3 tools/lcf.py rel 713 --output $(M713_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M713_LDFLAGS) -o $(M713_TARGET) @build/M713_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_TWgate/%.o: rel/d/a/tag/d_a_tag_TWgate/%.cpp
+	@echo [713] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M713_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M713_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

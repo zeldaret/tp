@@ -5,19 +5,19 @@ lbl_8047DAEC:
 /* 8047DAF8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8047DAFC  7C 7F 1B 78 */	mr r31, r3
 /* 8047DB00  38 7F 00 64 */	addi r3, r31, 0x64
-/* 8047DB04  3C 80 80 48 */	lis r4, __ct__4cXyzFv@ha
-/* 8047DB08  38 84 DB EC */	addi r4, r4, __ct__4cXyzFv@l
-/* 8047DB0C  3C A0 80 48 */	lis r5, __dt__4cXyzFv@ha
-/* 8047DB10  38 A5 DB B0 */	addi r5, r5, __dt__4cXyzFv@l
+/* 8047DB04  3C 80 80 48 */	lis r4, __ct__4cXyzFv@ha /* 0x8047DBEC@ha */
+/* 8047DB08  38 84 DB EC */	addi r4, r4, __ct__4cXyzFv@l /* 0x8047DBEC@l */
+/* 8047DB0C  3C A0 80 48 */	lis r5, __dt__4cXyzFv@ha /* 0x8047DBB0@ha */
+/* 8047DB10  38 A5 DB B0 */	addi r5, r5, __dt__4cXyzFv@l /* 0x8047DBB0@l */
 /* 8047DB14  38 C0 00 0C */	li r6, 0xc
 /* 8047DB18  38 E0 00 17 */	li r7, 0x17
-/* 8047DB1C  4B EE 42 44 */	b __construct_array
+/* 8047DB1C  4B EE 42 45 */	bl __construct_array
 /* 8047DB20  38 60 00 00 */	li r3, 0
 /* 8047DB24  38 80 00 00 */	li r4, 0
-/* 8047DB28  3C A0 80 43 */	lis r5, Zero__4cXyz@ha
-/* 8047DB2C  38 C5 0C F4 */	addi r6, r5, Zero__4cXyz@l
-/* 8047DB30  3C A0 80 48 */	lis r5, lit_3687@ha
-/* 8047DB34  C0 25 10 E8 */	lfs f1, lit_3687@l(r5)
+/* 8047DB28  3C A0 80 43 */	lis r5, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 8047DB2C  38 C5 0C F4 */	addi r6, r5, Zero__4cXyz@l /* 0x80430CF4@l */
+/* 8047DB30  3C A0 80 48 */	lis r5, lit_3687@ha /* 0x804810E8@ha */
+/* 8047DB34  C0 25 10 E8 */	lfs f1, lit_3687@l(r5)  /* 0x804810E8@l */
 /* 8047DB38  38 00 00 17 */	li r0, 0x17
 /* 8047DB3C  7C 09 03 A6 */	mtctr r0
 lbl_8047DB40:
@@ -35,11 +35,11 @@ lbl_8047DB40:
 /* 8047DB6C  38 00 FF FF */	li r0, -1
 /* 8047DB70  90 1F 00 5C */	stw r0, 0x5c(r31)
 /* 8047DB74  90 1F 01 78 */	stw r0, 0x178(r31)
-/* 8047DB78  3C 60 80 45 */	lis r3, __float_max@ha
-/* 8047DB7C  C0 03 0A E8 */	lfs f0, __float_max@l(r3)
+/* 8047DB78  3C 60 80 45 */	lis r3, __float_max@ha /* 0x80450AE8@ha */
+/* 8047DB7C  C0 03 0A E8 */	lfs f0, __float_max@l(r3)  /* 0x80450AE8@l */
 /* 8047DB80  D0 1F 01 7C */	stfs f0, 0x17c(r31)
-/* 8047DB84  3C 60 80 48 */	lis r3, lit_3687@ha
-/* 8047DB88  C0 03 10 E8 */	lfs f0, lit_3687@l(r3)
+/* 8047DB84  3C 60 80 48 */	lis r3, lit_3687@ha /* 0x804810E8@ha */
+/* 8047DB88  C0 03 10 E8 */	lfs f0, lit_3687@l(r3)  /* 0x804810E8@l */
 /* 8047DB8C  D0 1F 00 60 */	stfs f0, 0x60(r31)
 /* 8047DB90  38 00 00 00 */	li r0, 0
 /* 8047DB94  90 1F 01 80 */	stw r0, 0x180(r31)

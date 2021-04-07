@@ -9,7 +9,7 @@ lbl_80AF465C:
 /* 80AF4678  38 9F 0C 94 */	addi r4, r31, 0xc94
 /* 80AF467C  38 A0 00 01 */	li r5, 1
 /* 80AF4680  38 C0 00 00 */	li r6, 0
-/* 80AF4684  4B 65 EE F4 */	b hitChk2__8daNpcF_cFP8dCcD_Cylii
+/* 80AF4684  4B 65 EE F5 */	bl hitChk2__8daNpcF_cFP8dCcD_Cylii
 /* 80AF4688  2C 03 00 00 */	cmpwi r3, 0
 /* 80AF468C  41 82 00 44 */	beq lbl_80AF46D0
 /* 80AF4690  7F E3 FB 78 */	mr r3, r31
@@ -19,13 +19,13 @@ lbl_80AF465C:
 /* 80AF46A0  38 80 00 14 */	li r4, 0x14
 /* 80AF46A4  48 00 00 10 */	b lbl_80AF46B4
 lbl_80AF46A8:
-/* 80AF46A8  3C 80 80 AF */	lis r4, m__22daNpc_SoldierB_Param_c@ha
-/* 80AF46AC  38 84 5A D4 */	addi r4, r4, m__22daNpc_SoldierB_Param_c@l
+/* 80AF46A8  3C 80 80 AF */	lis r4, m__22daNpc_SoldierB_Param_c@ha /* 0x80AF5AD4@ha */
+/* 80AF46AC  38 84 5A D4 */	addi r4, r4, m__22daNpc_SoldierB_Param_c@l /* 0x80AF5AD4@l */
 /* 80AF46B0  A8 84 00 62 */	lha r4, 0x62(r4)
 lbl_80AF46B4:
 /* 80AF46B4  38 A0 FF FF */	li r5, -1
 /* 80AF46B8  38 C0 00 00 */	li r6, 0
-/* 80AF46BC  4B 65 EF 9C */	b setDamage__8daNpcF_cFiii
+/* 80AF46BC  4B 65 EF 9D */	bl setDamage__8daNpcF_cFiii
 /* 80AF46C0  7F E3 FB 78 */	mr r3, r31
 /* 80AF46C4  38 80 00 01 */	li r4, 1
 /* 80AF46C8  48 00 03 1D */	bl setLookMode__16daNpc_SoldierB_cFi
@@ -44,18 +44,18 @@ lbl_80AF46F4:
 /* 80AF46F4  38 00 00 00 */	li r0, 0
 /* 80AF46F8  B0 1F 09 E6 */	sth r0, 0x9e6(r31)
 /* 80AF46FC  38 7F 0D D0 */	addi r3, r31, 0xdd0
-/* 80AF4700  4B 86 D9 18 */	b __ptmf_test
+/* 80AF4700  4B 86 D9 19 */	bl __ptmf_test
 /* 80AF4704  2C 03 00 00 */	cmpwi r3, 0
 /* 80AF4708  41 82 00 54 */	beq lbl_80AF475C
 /* 80AF470C  38 7F 0D DC */	addi r3, r31, 0xddc
 /* 80AF4710  38 9F 0D D0 */	addi r4, r31, 0xdd0
-/* 80AF4714  4B 86 D9 34 */	b __ptmf_cmpr
+/* 80AF4714  4B 86 D9 35 */	bl __ptmf_cmpr
 /* 80AF4718  2C 03 00 00 */	cmpwi r3, 0
 /* 80AF471C  40 82 00 1C */	bne lbl_80AF4738
 /* 80AF4720  7F E3 FB 78 */	mr r3, r31
 /* 80AF4724  38 80 00 00 */	li r4, 0
 /* 80AF4728  39 9F 0D DC */	addi r12, r31, 0xddc
-/* 80AF472C  4B 86 D9 58 */	b __ptmf_scall
+/* 80AF472C  4B 86 D9 59 */	bl __ptmf_scall
 /* 80AF4730  60 00 00 00 */	nop 
 /* 80AF4734  48 00 00 28 */	b lbl_80AF475C
 lbl_80AF4738:

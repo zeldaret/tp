@@ -8,23 +8,23 @@ lbl_801B6454:
 /* 801B646C  7C 9B 23 78 */	mr r27, r4
 /* 801B6470  7C BC 2B 78 */	mr r28, r5
 /* 801B6474  7C DD 33 78 */	mr r29, r6
-/* 801B6478  3C 60 80 3C */	lis r3, __vt__17dMenu_Collect3D_c@ha
-/* 801B647C  38 03 C7 90 */	addi r0, r3, __vt__17dMenu_Collect3D_c@l
+/* 801B6478  3C 60 80 3C */	lis r3, __vt__17dMenu_Collect3D_c@ha /* 0x803BC790@ha */
+/* 801B647C  38 03 C7 90 */	addi r0, r3, __vt__17dMenu_Collect3D_c@l /* 0x803BC790@l */
 /* 801B6480  90 1F 00 00 */	stw r0, 0(r31)
 /* 801B6484  3B DF 00 28 */	addi r30, r31, 0x28
 /* 801B6488  7F C3 F3 78 */	mr r3, r30
-/* 801B648C  3C 80 80 3A */	lis r4, j3dDefaultLightInfo@ha
-/* 801B6490  38 84 1E C8 */	addi r4, r4, j3dDefaultLightInfo@l
+/* 801B648C  3C 80 80 3A */	lis r4, j3dDefaultLightInfo@ha /* 0x803A1EC8@ha */
+/* 801B6490  38 84 1E C8 */	addi r4, r4, j3dDefaultLightInfo@l /* 0x803A1EC8@l */
 /* 801B6494  48 16 F2 31 */	bl __as__12J3DLightInfoFRC12J3DLightInfo
 /* 801B6498  38 7E 00 74 */	addi r3, r30, 0x74
-/* 801B649C  3C 80 80 02 */	lis r4, __ct__11J3DLightObjFv@ha
-/* 801B64A0  38 84 8C 0C */	addi r4, r4, __ct__11J3DLightObjFv@l
+/* 801B649C  3C 80 80 02 */	lis r4, __ct__11J3DLightObjFv@ha /* 0x80018C0C@ha */
+/* 801B64A0  38 84 8C 0C */	addi r4, r4, __ct__11J3DLightObjFv@l /* 0x80018C0C@l */
 /* 801B64A4  38 A0 00 00 */	li r5, 0
 /* 801B64A8  38 C0 00 74 */	li r6, 0x74
 /* 801B64AC  38 E0 00 06 */	li r7, 6
 /* 801B64B0  48 1A B8 B1 */	bl __construct_array
-/* 801B64B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801B64B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801B64B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801B64B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801B64BC  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 801B64C0  80 03 05 74 */	lwz r0, 0x574(r3)
 /* 801B64C4  54 00 01 8C */	rlwinm r0, r0, 0, 6, 6

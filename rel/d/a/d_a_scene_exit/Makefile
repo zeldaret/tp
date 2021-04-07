@@ -3,17 +3,15 @@
 #
 
 M24_TARGET := $(BUILD_DIR)/rel/d/a/d_a_scene_exit.plf
+M24_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_scene_exit.lcf
+M24_MAP := $(BUILD_DIR)/rel/d/a/d_a_scene_exit.map
 
 M24_CPP_FILES := \
-	rel/d/a/d_a_scene_exit/executor.cpp \
-	rel/d/a/d_a_scene_exit/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_scene_exit/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_scene_exit/d_a_scene_exit.cpp \
 
 M24_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_scene_exit/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_scene_exit/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_scene_exit/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_scene_exit/d_a_scene_exit.o \
 
 M24_LIBS := \
@@ -29,14 +27,21 @@ M24_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M24_LDSCRIPT) \
+	-unused -map $(M24_MAP) \
+	-w off \
 
 $(M24_TARGET): $(M24_O_FILES) $(M24_LIBS)
+	@echo [ 24] creating $(M24_TARGET)
 	@echo $(M24_LIBS) $(M24_O_FILES) > build/M24_ofiles
-	$(LD) -partial $(M24_LDFLAGS) -o $(M24_TARGET) @build/M24_ofiles
+	@python3 tools/lcf.py rel 24 --output $(M24_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M24_LDFLAGS) -o $(M24_TARGET) @build/M24_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_scene_exit/%.o: rel/d/a/d_a_scene_exit/%.cpp
+	@echo [ 24] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M24_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M24_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

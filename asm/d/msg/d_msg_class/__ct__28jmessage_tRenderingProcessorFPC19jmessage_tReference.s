@@ -5,8 +5,8 @@ lbl_8022CCB0:
 /* 8022CCBC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8022CCC0  7C 7F 1B 78 */	mr r31, r3
 /* 8022CCC4  48 07 BD C1 */	bl __ct__Q28JMessage19TRenderingProcessorFPCQ28JMessage10TReference
-/* 8022CCC8  3C 60 80 3C */	lis r3, __vt__28jmessage_tRenderingProcessor@ha
-/* 8022CCCC  38 03 09 FC */	addi r0, r3, __vt__28jmessage_tRenderingProcessor@l
+/* 8022CCC8  3C 60 80 3C */	lis r3, __vt__28jmessage_tRenderingProcessor@ha /* 0x803C09FC@ha */
+/* 8022CCCC  38 03 09 FC */	addi r0, r3, __vt__28jmessage_tRenderingProcessor@l /* 0x803C09FC@l */
 /* 8022CCD0  90 1F 00 00 */	stw r0, 0(r31)
 /* 8022CCD4  38 60 00 00 */	li r3, 0
 /* 8022CCD8  90 7F 00 38 */	stw r3, 0x38(r31)

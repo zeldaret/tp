@@ -1,7 +1,7 @@
 lbl_8030FD68:
 /* 8030FD68  39 40 00 61 */	li r10, 0x61
 /* 8030FD6C  3D 20 CC 01 */	lis r9, 0xCC01 /* 0xCC008000@ha */
-/* 8030FD70  99 49 80 00 */	stb r10, 0x8000(r9)
+/* 8030FD70  99 49 80 00 */	stb r10, 0x8000(r9)  /* 0xCC008000@l */
 /* 8030FD74  39 0D 83 BC */	la r8, J3DTexImage1Ids(r13) /* 8045093C-_SDA_BASE_ */
 /* 8030FD78  7C 08 18 AE */	lbzx r0, r8, r3
 /* 8030FD7C  54 08 C0 0E */	slwi r8, r0, 0x18

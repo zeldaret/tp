@@ -7,13 +7,13 @@ lbl_801B7F20:
 /* 801B7F34  7C 7F 1B 78 */	mr r31, r3
 /* 801B7F38  7C 9D 23 78 */	mr r29, r4
 /* 801B7F3C  7C BE 2B 78 */	mr r30, r5
-/* 801B7F40  3C 60 80 3A */	lis r3, __vt__12dDlst_base_c@ha
-/* 801B7F44  38 03 6F 88 */	addi r0, r3, __vt__12dDlst_base_c@l
+/* 801B7F40  3C 60 80 3A */	lis r3, __vt__12dDlst_base_c@ha /* 0x803A6F88@ha */
+/* 801B7F44  38 03 6F 88 */	addi r0, r3, __vt__12dDlst_base_c@l /* 0x803A6F88@l */
 /* 801B7F48  90 1F 00 00 */	stw r0, 0(r31)
 /* 801B7F4C  38 7F 00 04 */	addi r3, r31, 4
 /* 801B7F50  48 00 A7 C9 */	bl __ct__16dMenuMapCommon_cFv
-/* 801B7F54  3C 60 80 3C */	lis r3, __vt__14dMenu_DmapBg_c@ha
-/* 801B7F58  38 63 CB 38 */	addi r3, r3, __vt__14dMenu_DmapBg_c@l
+/* 801B7F54  3C 60 80 3C */	lis r3, __vt__14dMenu_DmapBg_c@ha /* 0x803BCB38@ha */
+/* 801B7F58  38 63 CB 38 */	addi r3, r3, __vt__14dMenu_DmapBg_c@l /* 0x803BCB38@l */
 /* 801B7F5C  90 7F 00 00 */	stw r3, 0(r31)
 /* 801B7F60  38 03 00 0C */	addi r0, r3, 0xc
 /* 801B7F64  90 1F 00 04 */	stw r0, 4(r31)
@@ -71,20 +71,20 @@ lbl_801B8018:
 /* 801B802C  7F E3 FB 78 */	mr r3, r31
 /* 801B8030  48 00 00 E1 */	bl mapScreenInit__14dMenu_DmapBg_cFv
 /* 801B8034  38 61 00 10 */	addi r3, r1, 0x10
-/* 801B8038  3C 80 80 39 */	lis r4, d_menu_d_menu_dmap__stringBase0@ha
-/* 801B803C  38 84 57 60 */	addi r4, r4, d_menu_d_menu_dmap__stringBase0@l
+/* 801B8038  3C 80 80 39 */	lis r4, d_menu_d_menu_dmap__stringBase0@ha /* 0x80395760@ha */
+/* 801B803C  38 84 57 60 */	addi r4, r4, d_menu_d_menu_dmap__stringBase0@l /* 0x80395760@l */
 /* 801B8040  48 1B 0A ED */	bl strcpy
 /* 801B8044  38 61 00 08 */	addi r3, r1, 8
-/* 801B8048  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 801B804C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 801B8048  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801B804C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801B8050  38 84 4E 00 */	addi r4, r4, 0x4e00
 /* 801B8054  48 1B 0A D9 */	bl strcpy
 /* 801B8058  88 01 00 0C */	lbz r0, 0xc(r1)
 /* 801B805C  98 01 00 22 */	stb r0, 0x22(r1)
 /* 801B8060  88 01 00 0D */	lbz r0, 0xd(r1)
 /* 801B8064  98 01 00 23 */	stb r0, 0x23(r1)
-/* 801B8068  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801B806C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801B8068  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801B806C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801B8070  3B C3 09 58 */	addi r30, r3, 0x958
 /* 801B8074  7F C3 F3 78 */	mr r3, r30
 /* 801B8078  38 80 00 00 */	li r4, 0

@@ -3,7 +3,7 @@ lbl_80BEA98C:
 /* 80BEA990  7C 08 02 A6 */	mflr r0
 /* 80BEA994  90 01 00 44 */	stw r0, 0x44(r1)
 /* 80BEA998  39 61 00 40 */	addi r11, r1, 0x40
-/* 80BEA99C  4B 77 78 30 */	b _savegpr_25
+/* 80BEA99C  4B 77 78 31 */	bl _savegpr_25
 /* 80BEA9A0  7C 7F 1B 78 */	mr r31, r3
 /* 80BEA9A4  A0 03 09 7A */	lhz r0, 0x97a(r3)
 /* 80BEA9A8  54 00 E7 3F */	rlwinm. r0, r0, 0x1c, 0x1c, 0x1f
@@ -11,12 +11,12 @@ lbl_80BEA98C:
 /* 80BEA9B0  3B 20 00 00 */	li r25, 0
 /* 80BEA9B4  3B C0 00 00 */	li r30, 0
 /* 80BEA9B8  3B A0 00 00 */	li r29, 0
-/* 80BEA9BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BEA9C0  3B 43 61 C0 */	addi r26, r3, g_dComIfG_gameInfo@l
-/* 80BEA9C4  3C 60 80 BF */	lis r3, l_pipe_fire_id@ha
-/* 80BEA9C8  3B 83 B5 F8 */	addi r28, r3, l_pipe_fire_id@l
-/* 80BEA9CC  3C 60 80 BF */	lis r3, lit_3656@ha
-/* 80BEA9D0  3B 63 B4 C4 */	addi r27, r3, lit_3656@l
+/* 80BEA9BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BEA9C0  3B 43 61 C0 */	addi r26, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
+/* 80BEA9C4  3C 60 80 BF */	lis r3, l_pipe_fire_id@ha /* 0x80BEB5F8@ha */
+/* 80BEA9C8  3B 83 B5 F8 */	addi r28, r3, l_pipe_fire_id@l /* 0x80BEB5F8@l */
+/* 80BEA9CC  3C 60 80 BF */	lis r3, lit_3656@ha /* 0x80BEB4C4@ha */
+/* 80BEA9D0  3B 63 B4 C4 */	addi r27, r3, lit_3656@l /* 0x80BEB4C4@l */
 lbl_80BEA9D4:
 /* 80BEA9D4  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80BEA9D8  7C 04 07 74 */	extsb r4, r0
@@ -35,7 +35,7 @@ lbl_80BEA9D4:
 /* 80BEAA0C  39 20 00 00 */	li r9, 0
 /* 80BEAA10  39 40 00 FF */	li r10, 0xff
 /* 80BEAA14  C0 3B 00 00 */	lfs f1, 0(r27)
-/* 80BEAA18  4B 46 20 78 */	b set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 80BEAA18  4B 46 20 79 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 80BEAA1C  38 1E 09 88 */	addi r0, r30, 0x988
 /* 80BEAA20  7C 7F 01 2E */	stwx r3, r31, r0
 /* 80BEAA24  3B 39 00 01 */	addi r25, r25, 1
@@ -49,12 +49,12 @@ lbl_80BEAA3C:
 /* 80BEAA40  40 82 00 7C */	bne lbl_80BEAABC
 /* 80BEAA44  3B 20 00 00 */	li r25, 0
 /* 80BEAA48  3B C0 00 00 */	li r30, 0
-/* 80BEAA4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BEAA50  3B 63 61 C0 */	addi r27, r3, g_dComIfG_gameInfo@l
-/* 80BEAA54  3C 60 80 BF */	lis r3, l_yogan_foot_id@ha
-/* 80BEAA58  3B 83 B6 00 */	addi r28, r3, l_yogan_foot_id@l
-/* 80BEAA5C  3C 60 80 BF */	lis r3, lit_3656@ha
-/* 80BEAA60  3B A3 B4 C4 */	addi r29, r3, lit_3656@l
+/* 80BEAA4C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BEAA50  3B 63 61 C0 */	addi r27, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
+/* 80BEAA54  3C 60 80 BF */	lis r3, l_yogan_foot_id@ha /* 0x80BEB600@ha */
+/* 80BEAA58  3B 83 B6 00 */	addi r28, r3, l_yogan_foot_id@l /* 0x80BEB600@l */
+/* 80BEAA5C  3C 60 80 BF */	lis r3, lit_3656@ha /* 0x80BEB4C4@ha */
+/* 80BEAA60  3B A3 B4 C4 */	addi r29, r3, lit_3656@l /* 0x80BEB4C4@l */
 lbl_80BEAA64:
 /* 80BEAA64  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80BEAA68  7C 04 07 74 */	extsb r4, r0
@@ -73,7 +73,7 @@ lbl_80BEAA64:
 /* 80BEAA9C  39 3F 09 B0 */	addi r9, r31, 0x9b0
 /* 80BEAAA0  39 40 00 FF */	li r10, 0xff
 /* 80BEAAA4  C0 3D 00 00 */	lfs f1, 0(r29)
-/* 80BEAAA8  4B 46 1F E8 */	b set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 80BEAAA8  4B 46 1F E9 */	bl set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 80BEAAAC  3B 39 00 01 */	addi r25, r25, 1
 /* 80BEAAB0  2C 19 00 03 */	cmpwi r25, 3
 /* 80BEAAB4  3B DE 00 02 */	addi r30, r30, 2
@@ -84,7 +84,7 @@ lbl_80BEAABC:
 /* 80BEAAC4  38 00 00 01 */	li r0, 1
 /* 80BEAAC8  98 1F 09 7F */	stb r0, 0x97f(r31)
 /* 80BEAACC  39 61 00 40 */	addi r11, r1, 0x40
-/* 80BEAAD0  4B 77 77 48 */	b _restgpr_25
+/* 80BEAAD0  4B 77 77 49 */	bl _restgpr_25
 /* 80BEAAD4  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 80BEAAD8  7C 08 03 A6 */	mtlr r0
 /* 80BEAADC  38 21 00 40 */	addi r1, r1, 0x40

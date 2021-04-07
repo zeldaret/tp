@@ -5,8 +5,8 @@ lbl_801821E0:
 /* 801821EC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801821F0  7C 7F 1B 78 */	mr r31, r3
 /* 801821F4  4B E9 C1 15 */	bl fopCamM_GetParam__FP12camera_class
-/* 801821F8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 801821FC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 801821F8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801821FC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80182200  1C 03 00 38 */	mulli r0, r3, 0x38
 /* 80182204  7C 64 02 14 */	add r3, r4, r0
 /* 80182208  93 E3 5D 74 */	stw r31, 0x5d74(r3)

@@ -5,8 +5,8 @@ lbl_80D4E054:
 /* 80D4E060  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80D4E064  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80D4E068  7C 7E 1B 78 */	mr r30, r3
-/* 80D4E06C  3C A0 80 D5 */	lis r5, lit_3718@ha
-/* 80D4E070  3B E5 E9 98 */	addi r31, r5, lit_3718@l
+/* 80D4E06C  3C A0 80 D5 */	lis r5, lit_3718@ha /* 0x80D4E998@ha */
+/* 80D4E070  3B E5 E9 98 */	addi r31, r5, lit_3718@l /* 0x80D4E998@l */
 /* 80D4E074  80 03 00 B0 */	lwz r0, 0xb0(r3)
 /* 80D4E078  54 00 47 3F */	rlwinm. r0, r0, 8, 0x1c, 0x1f
 /* 80D4E07C  40 82 00 58 */	bne lbl_80D4E0D4
@@ -23,7 +23,7 @@ lbl_80D4E054:
 /* 80D4E0A8  EC 02 00 2A */	fadds f0, f2, f0
 /* 80D4E0AC  FC 03 00 40 */	fcmpo cr0, f3, f0
 /* 80D4E0B0  40 80 00 C8 */	bge lbl_80D4E178
-/* 80D4E0B4  4B 2C C8 B0 */	b fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 80D4E0B4  4B 2C C8 B1 */	bl fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 80D4E0B8  C0 5F 00 04 */	lfs f2, 4(r31)
 /* 80D4E0BC  C0 1E 04 EC */	lfs f0, 0x4ec(r30)
 /* 80D4E0C0  EC 02 00 32 */	fmuls f0, f2, f0
@@ -68,7 +68,7 @@ lbl_80D4E0D4:
 /* 80D4E158  7F C4 F3 78 */	mr r4, r30
 /* 80D4E15C  38 A1 00 14 */	addi r5, r1, 0x14
 /* 80D4E160  38 C1 00 08 */	addi r6, r1, 8
-/* 80D4E164  4B 2E 44 F0 */	b dLib_checkActorInRectangle__FP10fopAc_ac_cP10fopAc_ac_cPC4cXyzPC4cXyz
+/* 80D4E164  4B 2E 44 F1 */	bl dLib_checkActorInRectangle__FP10fopAc_ac_cP10fopAc_ac_cPC4cXyzPC4cXyz
 /* 80D4E168  2C 03 00 00 */	cmpwi r3, 0
 /* 80D4E16C  41 82 00 0C */	beq lbl_80D4E178
 /* 80D4E170  38 60 00 01 */	li r3, 1

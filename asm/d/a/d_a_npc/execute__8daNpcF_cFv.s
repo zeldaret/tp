@@ -20,8 +20,8 @@ lbl_80152014:
 /* 8015205C  38 9F 07 A8 */	addi r4, r31, 0x7a8
 /* 80152060  4B EC 86 6D */	bl fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
 /* 80152064  38 7F 05 D0 */	addi r3, r31, 0x5d0
-/* 80152068  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8015206C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80152068  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015206C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80152070  38 84 0F 38 */	addi r4, r4, 0xf38
 /* 80152074  4B F2 4A 39 */	bl CrrPos__9dBgS_AcchFR4dBgS
 /* 80152078  80 1F 06 AC */	lwz r0, 0x6ac(r31)

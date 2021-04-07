@@ -17,11 +17,11 @@ lbl_80A46214:
 lbl_80A46220:
 /* 80A46220  3B E0 00 00 */	li r31, 0
 /* 80A46224  38 60 00 55 */	li r3, 0x55
-/* 80A46228  4B 70 68 84 */	b daNpcT_chkEvtBit__FUl
+/* 80A46228  4B 70 68 85 */	bl daNpcT_chkEvtBit__FUl
 /* 80A4622C  2C 03 00 00 */	cmpwi r3, 0
 /* 80A46230  41 82 00 14 */	beq lbl_80A46244
 /* 80A46234  38 60 00 40 */	li r3, 0x40
-/* 80A46238  4B 70 68 74 */	b daNpcT_chkEvtBit__FUl
+/* 80A46238  4B 70 68 75 */	bl daNpcT_chkEvtBit__FUl
 /* 80A4623C  2C 03 00 00 */	cmpwi r3, 0
 /* 80A46240  41 82 00 08 */	beq lbl_80A46248
 lbl_80A46244:
@@ -32,11 +32,11 @@ lbl_80A46248:
 lbl_80A46250:
 /* 80A46250  3B E0 00 00 */	li r31, 0
 /* 80A46254  38 60 00 40 */	li r3, 0x40
-/* 80A46258  4B 70 68 54 */	b daNpcT_chkEvtBit__FUl
+/* 80A46258  4B 70 68 55 */	bl daNpcT_chkEvtBit__FUl
 /* 80A4625C  2C 03 00 00 */	cmpwi r3, 0
 /* 80A46260  41 82 00 14 */	beq lbl_80A46274
 /* 80A46264  38 60 00 44 */	li r3, 0x44
-/* 80A46268  4B 70 68 44 */	b daNpcT_chkEvtBit__FUl
+/* 80A46268  4B 70 68 45 */	bl daNpcT_chkEvtBit__FUl
 /* 80A4626C  2C 03 00 00 */	cmpwi r3, 0
 /* 80A46270  41 82 00 08 */	beq lbl_80A46278
 lbl_80A46274:
@@ -47,11 +47,11 @@ lbl_80A46278:
 lbl_80A46280:
 /* 80A46280  3B E0 00 00 */	li r31, 0
 /* 80A46284  38 60 00 44 */	li r3, 0x44
-/* 80A46288  4B 70 68 24 */	b daNpcT_chkEvtBit__FUl
+/* 80A46288  4B 70 68 25 */	bl daNpcT_chkEvtBit__FUl
 /* 80A4628C  2C 03 00 00 */	cmpwi r3, 0
 /* 80A46290  41 82 00 14 */	beq lbl_80A462A4
 /* 80A46294  38 60 01 08 */	li r3, 0x108
-/* 80A46298  4B 70 68 14 */	b daNpcT_chkEvtBit__FUl
+/* 80A46298  4B 70 68 15 */	bl daNpcT_chkEvtBit__FUl
 /* 80A4629C  2C 03 00 00 */	cmpwi r3, 0
 /* 80A462A0  41 82 00 08 */	beq lbl_80A462A8
 lbl_80A462A4:

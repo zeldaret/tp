@@ -22,16 +22,16 @@ lbl_800E210C:
 lbl_800E2114:
 /* 800E2114  7F E3 FB 78 */	mr r3, r31
 /* 800E2118  38 80 01 79 */	li r4, 0x179
-/* 800E211C  3C A0 80 39 */	lis r5, m__21daAlinkHIO_copyRod_c0@ha
-/* 800E2120  38 A5 EA FC */	addi r5, r5, m__21daAlinkHIO_copyRod_c0@l
+/* 800E211C  3C A0 80 39 */	lis r5, m__21daAlinkHIO_copyRod_c0@ha /* 0x8038EAFC@ha */
+/* 800E2120  38 A5 EA FC */	addi r5, r5, m__21daAlinkHIO_copyRod_c0@l /* 0x8038EAFC@l */
 /* 800E2124  38 A5 00 14 */	addi r5, r5, 0x14
 /* 800E2128  4B FC AF CD */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800E212C  C0 02 93 84 */	lfs f0, lit_8781(r2)
 /* 800E2130  D0 1F 34 78 */	stfs f0, 0x3478(r31)
 /* 800E2134  C0 02 93 F0 */	lfs f0, lit_13382(r2)
 /* 800E2138  D0 1F 34 7C */	stfs f0, 0x347c(r31)
-/* 800E213C  3C 60 80 39 */	lis r3, m__21daAlinkHIO_copyRod_c0@ha
-/* 800E2140  38 63 EA FC */	addi r3, r3, m__21daAlinkHIO_copyRod_c0@l
+/* 800E213C  3C 60 80 39 */	lis r3, m__21daAlinkHIO_copyRod_c0@ha /* 0x8038EAFC@ha */
+/* 800E2140  38 63 EA FC */	addi r3, r3, m__21daAlinkHIO_copyRod_c0@l /* 0x8038EAFC@l */
 /* 800E2144  C0 03 00 24 */	lfs f0, 0x24(r3)
 /* 800E2148  D0 1F 34 80 */	stfs f0, 0x3480(r31)
 /* 800E214C  C0 02 93 38 */	lfs f0, lit_7807(r2)
@@ -40,15 +40,15 @@ lbl_800E2114:
 lbl_800E2158:
 /* 800E2158  7F E3 FB 78 */	mr r3, r31
 /* 800E215C  38 80 01 78 */	li r4, 0x178
-/* 800E2160  3C A0 80 39 */	lis r5, m__21daAlinkHIO_copyRod_c0@ha
-/* 800E2164  38 A5 EA FC */	addi r5, r5, m__21daAlinkHIO_copyRod_c0@l
+/* 800E2160  3C A0 80 39 */	lis r5, m__21daAlinkHIO_copyRod_c0@ha /* 0x8038EAFC@ha */
+/* 800E2164  38 A5 EA FC */	addi r5, r5, m__21daAlinkHIO_copyRod_c0@l /* 0x8038EAFC@l */
 /* 800E2168  4B FC AF 8D */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800E216C  C0 02 93 24 */	lfs f0, lit_7450(r2)
 /* 800E2170  D0 1F 34 78 */	stfs f0, 0x3478(r31)
 /* 800E2174  C0 02 93 8C */	lfs f0, lit_8783(r2)
 /* 800E2178  D0 1F 34 7C */	stfs f0, 0x347c(r31)
-/* 800E217C  3C 60 80 39 */	lis r3, m__21daAlinkHIO_copyRod_c0@ha
-/* 800E2180  38 63 EA FC */	addi r3, r3, m__21daAlinkHIO_copyRod_c0@l
+/* 800E217C  3C 60 80 39 */	lis r3, m__21daAlinkHIO_copyRod_c0@ha /* 0x8038EAFC@ha */
+/* 800E2180  38 63 EA FC */	addi r3, r3, m__21daAlinkHIO_copyRod_c0@l /* 0x8038EAFC@l */
 /* 800E2184  C0 03 00 10 */	lfs f0, 0x10(r3)
 /* 800E2188  D0 1F 34 80 */	stfs f0, 0x3480(r31)
 /* 800E218C  C0 02 93 48 */	lfs f0, lit_8130(r2)

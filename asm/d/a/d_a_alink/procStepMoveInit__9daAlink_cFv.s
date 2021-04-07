@@ -8,8 +8,8 @@ lbl_800C74D4:
 /* 800C74EC  4B FF AA 81 */	bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 800C74F0  7F E3 FB 78 */	mr r3, r31
 /* 800C74F4  38 80 01 27 */	li r4, 0x127
-/* 800C74F8  3C A0 80 39 */	lis r5, m__23daAlinkHIO_smallJump_c0@ha
-/* 800C74FC  38 A5 E1 1C */	addi r5, r5, m__23daAlinkHIO_smallJump_c0@l
+/* 800C74F8  3C A0 80 39 */	lis r5, m__23daAlinkHIO_smallJump_c0@ha /* 0x8038E11C@ha */
+/* 800C74FC  38 A5 E1 1C */	addi r5, r5, m__23daAlinkHIO_smallJump_c0@l /* 0x8038E11C@l */
 /* 800C7500  38 A5 00 14 */	addi r5, r5, 0x14
 /* 800C7504  4B FE 5B F1 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800C7508  C0 22 92 98 */	lfs f1, lit_5943(r2)
@@ -20,8 +20,8 @@ lbl_800C74D4:
 /* 800C751C  D0 1F 33 98 */	stfs f0, 0x3398(r31)
 /* 800C7520  38 00 00 00 */	li r0, 0
 /* 800C7524  B0 1F 30 0C */	sth r0, 0x300c(r31)
-/* 800C7528  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 800C752C  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)
+/* 800C7528  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 800C752C  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)  /* 0x80425514@l */
 /* 800C7530  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 800C7534  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800C7538  D0 1F 35 8C */	stfs f0, 0x358c(r31)

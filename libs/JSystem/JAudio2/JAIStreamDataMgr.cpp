@@ -25,14 +25,10 @@ struct JAIStreamAramMgr {
 
 extern "C" void __dt__16JAIStreamDataMgrFv();
 extern "C" void __dt__16JAIStreamAramMgrFv();
-extern "C" extern void* __vt__16JAIStreamAramMgr[5];
-extern "C" extern void* __vt__16JAIStreamDataMgr[4 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __dl__FPv();
 
@@ -41,14 +37,18 @@ extern "C" void __dl__FPv();
 //
 
 /* ############################################################################################## */
-/* 803C9A08-803C9A1C 0014+00 s=1 e=1 z=0  None .data      __vt__16JAIStreamAramMgr */
-SECTION_DATA void* __vt__16JAIStreamAramMgr[5] = {
-    (void*)NULL, (void*)NULL, (void*)NULL, (void*)NULL, (void*)__dt__16JAIStreamAramMgrFv,
+/* 803C9A08-803C9A1C 026B28 0014+00 1/1 1/1 0/0 .data            __vt__16JAIStreamAramMgr */
+SECTION_DATA extern void* __vt__16JAIStreamAramMgr[5] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)__dt__16JAIStreamAramMgrFv,
 };
 
-/* 803C9A1C-803C9A30 0010+04 s=1 e=2 z=0  None .data      __vt__16JAIStreamDataMgr */
-SECTION_DATA void* __vt__16JAIStreamDataMgr[4 + 1 /* padding */] = {
-    (void*)NULL,
+/* 803C9A1C-803C9A30 026B3C 0010+04 1/1 2/2 0/0 .data            __vt__16JAIStreamDataMgr */
+SECTION_DATA extern void* __vt__16JAIStreamDataMgr[4 + 1 /* padding */] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)NULL,
     (void*)__dt__16JAIStreamDataMgrFv,
@@ -56,7 +56,7 @@ SECTION_DATA void* __vt__16JAIStreamDataMgr[4 + 1 /* padding */] = {
     NULL,
 };
 
-/* 802A3AD8-802A3B20 0048+00 s=1 e=4 z=0  None .text      __dt__16JAIStreamDataMgrFv */
+/* 802A3AD8-802A3B20 29E418 0048+00 1/0 4/4 0/0 .text            __dt__16JAIStreamDataMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -66,7 +66,7 @@ asm JAIStreamDataMgr::~JAIStreamDataMgr() {
 }
 #pragma pop
 
-/* 802A3B20-802A3B68 0048+00 s=1 e=2 z=0  None .text      __dt__16JAIStreamAramMgrFv */
+/* 802A3B20-802A3B68 29E460 0048+00 1/0 2/2 0/0 .text            __dt__16JAIStreamAramMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

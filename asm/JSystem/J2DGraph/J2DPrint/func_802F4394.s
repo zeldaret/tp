@@ -4,8 +4,8 @@ lbl_802F4394:
 /* 802F439C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 802F43A0  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 802F43A4  7C 7F 1B 78 */	mr r31, r3
-/* 802F43A8  3D 20 80 3D */	lis r9, __vt__8J2DPrint@ha
-/* 802F43AC  38 09 CF A0 */	addi r0, r9, __vt__8J2DPrint@l
+/* 802F43A8  3D 20 80 3D */	lis r9, __vt__8J2DPrint@ha /* 0x803CCFA0@ha */
+/* 802F43AC  38 09 CF A0 */	addi r0, r9, __vt__8J2DPrint@l /* 0x803CCFA0@l */
 /* 802F43B0  90 03 00 00 */	stw r0, 0(r3)
 /* 802F43B4  38 00 FF FF */	li r0, -1
 /* 802F43B8  90 03 00 08 */	stw r0, 8(r3)

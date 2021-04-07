@@ -5,8 +5,8 @@ lbl_8025ABC4:
 /* 8025ABD0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8025ABD4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8025ABD8  41 82 00 1C */	beq lbl_8025ABF4
-/* 8025ABDC  3C A0 80 3C */	lis r5, __vt__22dScnPly_env_debugHIO_c@ha
-/* 8025ABE0  38 05 32 24 */	addi r0, r5, __vt__22dScnPly_env_debugHIO_c@l
+/* 8025ABDC  3C A0 80 3C */	lis r5, __vt__22dScnPly_env_debugHIO_c@ha /* 0x803C3224@ha */
+/* 8025ABE0  38 05 32 24 */	addi r0, r5, __vt__22dScnPly_env_debugHIO_c@l /* 0x803C3224@l */
 /* 8025ABE4  90 1F 00 00 */	stw r0, 0(r31)
 /* 8025ABE8  7C 80 07 35 */	extsh. r0, r4
 /* 8025ABEC  40 81 00 08 */	ble lbl_8025ABF4

@@ -21,7 +21,7 @@ lbl_80C390A0:
 /* 80C390EC  D0 03 05 54 */	stfs f0, 0x554(r3)
 /* 80C390F0  C0 03 04 D8 */	lfs f0, 0x4d8(r3)
 /* 80C390F4  D0 03 05 58 */	stfs f0, 0x558(r3)
-/* 80C390F8  4B 3F E9 7C */	b show__12daItemBase_cFv
+/* 80C390F8  4B 3F E9 7D */	bl show__12daItemBase_cFv
 /* 80C390FC  38 00 00 01 */	li r0, 1
 /* 80C39100  98 1F 09 34 */	stb r0, 0x934(r31)
 /* 80C39104  38 60 00 01 */	li r3, 1

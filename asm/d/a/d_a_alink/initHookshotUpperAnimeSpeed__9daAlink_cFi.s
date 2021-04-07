@@ -20,8 +20,8 @@ lbl_801090EC:
 lbl_80109134:
 /* 80109134  7F C3 F3 78 */	mr r3, r30
 /* 80109138  38 9E 20 48 */	addi r4, r30, 0x2048
-/* 8010913C  3C A0 80 39 */	lis r5, m__22daAlinkHIO_hookshot_c0@ha
-/* 80109140  38 A5 E9 C0 */	addi r5, r5, m__22daAlinkHIO_hookshot_c0@l
+/* 8010913C  3C A0 80 39 */	lis r5, m__22daAlinkHIO_hookshot_c0@ha /* 0x8038E9C0@ha */
+/* 80109140  38 A5 E9 C0 */	addi r5, r5, m__22daAlinkHIO_hookshot_c0@l /* 0x8038E9C0@l */
 /* 80109144  C0 25 00 40 */	lfs f1, 0x40(r5)
 /* 80109148  4B FF 8B AD */	bl setWaterInAnmRate__9daAlink_cFP16daPy_frameCtrl_cf
 lbl_8010914C:

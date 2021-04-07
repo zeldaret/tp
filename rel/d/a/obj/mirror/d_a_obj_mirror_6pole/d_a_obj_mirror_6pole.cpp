@@ -79,12 +79,6 @@ struct J3DFrameCtrl {
 // Forward References:
 //
 
-static void daObjMirror6Pole_Create(fopAc_ac_c*);
-static void daObjMirror6Pole_Delete(daObjMirror6Pole_c*);
-static void daObjMirror6Pole_Execute(daObjMirror6Pole_c*);
-static void daObjMirror6Pole_Draw(daObjMirror6Pole_c*);
-static bool daObjMirror6Pole_IsDelete(daObjMirror6Pole_c*);
-
 extern "C" void initWait__18daObjMirror6Pole_cFv();
 extern "C" void executeWait__18daObjMirror6Pole_cFv();
 extern "C" void initDemo__18daObjMirror6Pole_cFv();
@@ -99,22 +93,11 @@ extern "C" static void daObjMirror6Pole_Execute__FP18daObjMirror6Pole_c();
 extern "C" static void daObjMirror6Pole_Draw__FP18daObjMirror6Pole_c();
 extern "C" static bool daObjMirror6Pole_IsDelete__FP18daObjMirror6Pole_c();
 extern "C" void __sinit_d_a_obj_mirror_6pole_cpp();
-extern "C" extern char const* const stringBase0;
-extern "C" extern u32 lit_1787[1 + 4 /* padding */];
-extern "C" extern void* g_profile_Obj_Mirror6Pole[12];
+extern "C" extern char const* const d_a_obj_mirror_6pole__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
@@ -153,15 +136,16 @@ extern "C" extern u8 j3dSys[284];
 //
 
 /* ############################################################################################## */
-/* 80C96510-80C96514 0004+00 s=2 e=0 z=0  None .rodata    @3630 */
+/* 80C96510-80C96514 000000 0004+00 2/2 0/0 0/0 .rodata          @3630 */
 SECTION_RODATA static u8 const lit_3630[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80C96510, &lit_3630);
 
-/* 80C95E18-80C95E2C 0014+00 s=1 e=0 z=0  None .text      initWait__18daObjMirror6Pole_cFv */
+/* 80C95E18-80C95E2C 000078 0014+00 1/0 0/0 0/0 .text            initWait__18daObjMirror6Pole_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -172,28 +156,15 @@ asm void daObjMirror6Pole_c::initWait() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C96514-80C96518 0004+00 s=1 e=0 z=0  None .rodata    @3755 */
-SECTION_RODATA static u32 const lit_3755 = 0x3F800000;
-
-/* 80C96518-80C96520 0008+00 s=1 e=0 z=0  None .rodata    @3757 */
-SECTION_RODATA static u8 const lit_3757[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-
-/* 80C96520-80C96529 0009+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80C96520 = "MR-6Pole";
-#pragma pop
-
-/* 80C9652C-80C96538 000C+00 s=1 e=0 z=0  None .data      cNullVec__6Z2Calc */
+/* 80C9652C-80C96538 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80C96538-80C9654C 0004+10 s=0 e=0 z=0  None .data      @1787 */
-SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
+/* 80C96538-80C9654C 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
+#pragma push
+#pragma force_active on
+SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
     0x02000201,
     /* padding */
     0x40080000,
@@ -201,46 +172,61 @@ SECTION_DATA u32 lit_1787[1 + 4 /* padding */] = {
     0x3FE00000,
     0x00000000,
 };
+#pragma pop
 
-/* 80C9654C-80C96550 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
+/* 80C9654C-80C96550 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_mirror_6pole__stringBase0;
 
-/* 80C96550-80C9655C 000C+00 s=1 e=0 z=0  None .data      @3617 */
+/* 80C96550-80C9655C -00001 000C+00 0/1 0/0 0/0 .data            @3617 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3617[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)initWait__18daObjMirror6Pole_cFv,
 };
+#pragma pop
 
-/* 80C9655C-80C96568 000C+00 s=1 e=0 z=0  None .data      @3618 */
+/* 80C9655C-80C96568 -00001 000C+00 0/1 0/0 0/0 .data            @3618 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3618[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)executeWait__18daObjMirror6Pole_cFv,
 };
+#pragma pop
 
-/* 80C96568-80C96574 000C+00 s=1 e=0 z=0  None .data      @3619 */
+/* 80C96568-80C96574 -00001 000C+00 0/1 0/0 0/0 .data            @3619 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3619[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)initDemo__18daObjMirror6Pole_cFv,
 };
+#pragma pop
 
-/* 80C96574-80C96580 000C+00 s=1 e=0 z=0  None .data      @3620 */
+/* 80C96574-80C96580 -00001 000C+00 0/1 0/0 0/0 .data            @3620 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3620[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)executeDemo__18daObjMirror6Pole_cFv,
 };
+#pragma pop
 
-/* 80C96580-80C965B0 0030+00 s=4 e=0 z=0  None .data      ActionTable__18daObjMirror6Pole_c */
+/* 80C96580-80C965B0 000054 0030+00 3/4 0/0 0/0 .data            ActionTable__18daObjMirror6Pole_c
+ */
 SECTION_DATA static u8 ActionTable__18daObjMirror6Pole_c[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80C95E2C-80C95E88 005C+00 s=1 e=0 z=0  None .text      executeWait__18daObjMirror6Pole_cFv */
+/* 80C95E2C-80C95E88 00008C 005C+00 1/0 0/0 0/0 .text            executeWait__18daObjMirror6Pole_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -250,12 +236,13 @@ asm void daObjMirror6Pole_c::executeWait() {
 }
 #pragma pop
 
-/* 80C95E88-80C95E8C 0004+00 s=1 e=0 z=0  None .text      initDemo__18daObjMirror6Pole_cFv */
+/* 80C95E88-80C95E8C 0000E8 0004+00 1/0 0/0 0/0 .text            initDemo__18daObjMirror6Pole_cFv */
 void daObjMirror6Pole_c::initDemo() {
     /* empty function */
 }
 
-/* 80C95E8C-80C95EFC 0070+00 s=1 e=0 z=0  None .text      executeDemo__18daObjMirror6Pole_cFv */
+/* 80C95E8C-80C95EFC 0000EC 0070+00 1/0 0/0 0/0 .text            executeDemo__18daObjMirror6Pole_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -265,7 +252,8 @@ asm void daObjMirror6Pole_c::executeDemo() {
 }
 #pragma pop
 
-/* 80C95EFC-80C95F50 0054+00 s=1 e=0 z=0  None .text      setBaseMtx__18daObjMirror6Pole_cFv */
+/* 80C95EFC-80C95F50 00015C 0054+00 1/1 0/0 0/0 .text            setBaseMtx__18daObjMirror6Pole_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -275,7 +263,7 @@ asm void daObjMirror6Pole_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 80C95F50-80C95F70 0020+00 s=1 e=0 z=0  None .text
+/* 80C95F50-80C95F70 0001B0 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__18daObjMirror6Pole_cFP10fopAc_ac_c       */
 #pragma push
 #pragma optimization_level 0
@@ -287,7 +275,17 @@ asm void daObjMirror6Pole_c::createHeapCallBack(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C965B0-80C965D0 0020+00 s=1 e=0 z=0  None .data      l_daObjMirror6Pole_Method */
+/* 80C96514-80C96518 000004 0004+00 1/1 0/0 0/0 .rodata          @3755 */
+SECTION_RODATA static f32 const lit_3755 = 1.0f;
+COMPILER_STRIP_GATE(80C96514, &lit_3755);
+
+/* 80C96518-80C96520 000008 0008+00 1/1 0/0 0/0 .rodata          @3757 */
+SECTION_RODATA static u8 const lit_3757[8] = {
+    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(80C96518, &lit_3757);
+
+/* 80C965B0-80C965D0 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjMirror6Pole_Method */
 SECTION_DATA static void* l_daObjMirror6Pole_Method[8] = {
     (void*)daObjMirror6Pole_Create__FP10fopAc_ac_c,
     (void*)daObjMirror6Pole_Delete__FP18daObjMirror6Pole_c,
@@ -299,8 +297,8 @@ SECTION_DATA static void* l_daObjMirror6Pole_Method[8] = {
     (void*)NULL,
 };
 
-/* 80C965D0-80C96600 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_Mirror6Pole */
-SECTION_DATA void* g_profile_Obj_Mirror6Pole[12] = {
+/* 80C965D0-80C96600 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Mirror6Pole */
+SECTION_DATA extern void* g_profile_Obj_Mirror6Pole[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00B20000, (void*)&g_fpcLf_Method,
     (void*)0x00000580, (void*)NULL,
@@ -309,14 +307,15 @@ SECTION_DATA void* g_profile_Obj_Mirror6Pole[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80C96600-80C9660C 000C+00 s=2 e=0 z=0  None .data      __vt__12J3DFrameCtrl */
-SECTION_DATA static void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL,
+/* 80C96600-80C9660C 0000D4 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
+SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12J3DFrameCtrlFv,
 };
 
-/* 80C95F70-80C961D8 0268+00 s=1 e=0 z=0  None .text      CreateHeap__18daObjMirror6Pole_cFv */
+/* 80C95F70-80C961D8 0001D0 0268+00 1/1 0/0 0/0 .text            CreateHeap__18daObjMirror6Pole_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -326,7 +325,7 @@ asm void daObjMirror6Pole_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80C961D8-80C96220 0048+00 s=1 e=0 z=0  None .text      __dt__12J3DFrameCtrlFv */
+/* 80C961D8-80C96220 000438 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -336,61 +335,73 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 }
 #pragma pop
 
-/* 80C96220-80C96328 0108+00 s=1 e=0 z=0  None .text      daObjMirror6Pole_Create__FP10fopAc_ac_c */
+/* 80C96220-80C96328 000480 0108+00 1/0 0/0 0/0 .text daObjMirror6Pole_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjMirror6Pole_Create(fopAc_ac_c* param_0) {
+static asm void daObjMirror6Pole_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/mirror/d_a_obj_mirror_6pole/d_a_obj_mirror_6pole/daObjMirror6Pole_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80C96328-80C96378 0050+00 s=1 e=0 z=0  None .text
+/* 80C96328-80C96378 000588 0050+00 1/0 0/0 0/0 .text
  * daObjMirror6Pole_Delete__FP18daObjMirror6Pole_c              */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjMirror6Pole_Delete(daObjMirror6Pole_c* param_0) {
+static asm void daObjMirror6Pole_Delete(daObjMirror6Pole_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/mirror/d_a_obj_mirror_6pole/d_a_obj_mirror_6pole/daObjMirror6Pole_Delete__FP18daObjMirror6Pole_c.s"
 }
 #pragma pop
 
-/* 80C96378-80C963BC 0044+00 s=1 e=0 z=0  None .text
+/* 80C96378-80C963BC 0005D8 0044+00 1/0 0/0 0/0 .text
  * daObjMirror6Pole_Execute__FP18daObjMirror6Pole_c             */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjMirror6Pole_Execute(daObjMirror6Pole_c* param_0) {
+static asm void daObjMirror6Pole_Execute(daObjMirror6Pole_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/mirror/d_a_obj_mirror_6pole/d_a_obj_mirror_6pole/daObjMirror6Pole_Execute__FP18daObjMirror6Pole_c.s"
 }
 #pragma pop
 
-/* 80C963BC-80C9648C 00D0+00 s=1 e=0 z=0  None .text daObjMirror6Pole_Draw__FP18daObjMirror6Pole_c
- */
+/* 80C963BC-80C9648C 00061C 00D0+00 1/0 0/0 0/0 .text
+ * daObjMirror6Pole_Draw__FP18daObjMirror6Pole_c                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjMirror6Pole_Draw(daObjMirror6Pole_c* param_0) {
+static asm void daObjMirror6Pole_Draw(daObjMirror6Pole_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/mirror/d_a_obj_mirror_6pole/d_a_obj_mirror_6pole/daObjMirror6Pole_Draw__FP18daObjMirror6Pole_c.s"
 }
 #pragma pop
 
-/* 80C9648C-80C96494 0008+00 s=1 e=0 z=0  None .text
+/* 80C9648C-80C96494 0006EC 0008+00 1/0 0/0 0/0 .text
  * daObjMirror6Pole_IsDelete__FP18daObjMirror6Pole_c            */
 static bool daObjMirror6Pole_IsDelete(daObjMirror6Pole_c* param_0) {
     return true;
 }
 
-/* 80C96494-80C96504 0070+00 s=0 e=1 z=0  None .text      __sinit_d_a_obj_mirror_6pole_cpp */
+/* 80C96494-80C96504 0006F4 0070+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_mirror_6pole_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_a_obj_mirror_6pole_cpp() {
+asm void __sinit_d_a_obj_mirror_6pole_cpp() {
     nofralloc
 #include "asm/rel/d/a/obj/mirror/d_a_obj_mirror_6pole/d_a_obj_mirror_6pole/__sinit_d_a_obj_mirror_6pole_cpp.s"
 }
+#pragma pop
+
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_80C96494 = (void*)__sinit_d_a_obj_mirror_6pole_cpp;
+#pragma pop
+
+/* 80C96520-80C96529 000010 0009+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80C96520 = "MR-6Pole";
 #pragma pop

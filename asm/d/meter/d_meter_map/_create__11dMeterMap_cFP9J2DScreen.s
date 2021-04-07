@@ -89,8 +89,8 @@ lbl_8020DB08:
 /* 8020DB28  7C 60 1B 78 */	mr r0, r3
 lbl_8020DB2C:
 /* 8020DB2C  90 1F 00 04 */	stw r0, 4(r31)
-/* 8020DB30  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8020DB34  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8020DB30  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8020DB34  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8020DB38  3B C3 09 58 */	addi r30, r3, 0x958
 /* 8020DB3C  7F C3 F3 78 */	mr r3, r30
 /* 8020DB40  38 80 00 01 */	li r4, 1
@@ -133,8 +133,8 @@ lbl_8020DBB0:
 /* 8020DBC8  4B FF FC 1D */	bl getDispPosInside_OffsetX__11dMeterMap_cFv
 /* 8020DBCC  B0 7F 00 28 */	sth r3, 0x28(r31)
 /* 8020DBD0  38 00 00 01 */	li r0, 1
-/* 8020DBD4  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8020DBD8  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8020DBD4  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8020DBD8  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8020DBDC  98 03 00 BF */	stb r0, 0xbf(r3)
 /* 8020DBE0  48 00 00 28 */	b lbl_8020DC08
 lbl_8020DBE4:
@@ -144,19 +144,19 @@ lbl_8020DBE4:
 /* 8020DBF0  4B FF FB FD */	bl getDispPosOutSide_OffsetX__11dMeterMap_cFv
 /* 8020DBF4  B0 7F 00 28 */	sth r3, 0x28(r31)
 /* 8020DBF8  38 00 00 00 */	li r0, 0
-/* 8020DBFC  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8020DC00  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8020DBFC  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8020DC00  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8020DC04  98 03 00 BF */	stb r0, 0xbf(r3)
 lbl_8020DC08:
 /* 8020DC08  38 00 00 00 */	li r0, 0
 /* 8020DC0C  98 1F 00 2E */	stb r0, 0x2e(r31)
 /* 8020DC10  B0 1F 00 28 */	sth r0, 0x28(r31)
 /* 8020DC14  90 1F 00 30 */	stw r0, 0x30(r31)
-/* 8020DC18  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8020DC1C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8020DC18  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8020DC1C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8020DC20  38 63 07 F0 */	addi r3, r3, 0x7f0
-/* 8020DC24  3C 80 80 3A */	lis r4, saveBitLabels__16dSv_event_flag_c@ha
-/* 8020DC28  38 84 72 88 */	addi r4, r4, saveBitLabels__16dSv_event_flag_c@l
+/* 8020DC24  3C 80 80 3A */	lis r4, saveBitLabels__16dSv_event_flag_c@ha /* 0x803A7288@ha */
+/* 8020DC28  38 84 72 88 */	addi r4, r4, saveBitLabels__16dSv_event_flag_c@l /* 0x803A7288@l */
 /* 8020DC2C  A0 84 00 EC */	lhz r4, 0xec(r4)
 /* 8020DC30  4B E2 6D 8D */	bl isEventBit__11dSv_event_cCFUs
 /* 8020DC34  98 7F 00 2B */	stb r3, 0x2b(r31)

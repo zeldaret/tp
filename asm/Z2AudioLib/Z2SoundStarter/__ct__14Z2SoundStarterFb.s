@@ -15,8 +15,8 @@ lbl_802AAB94:
 lbl_802AABC8:
 /* 802AABC8  90 6D 85 F4 */	stw r3, data_80450B74(r13)
 lbl_802AABCC:
-/* 802AABCC  3C 60 80 3D */	lis r3, __vt__14Z2SoundStarter@ha
-/* 802AABD0  38 03 9D 80 */	addi r0, r3, __vt__14Z2SoundStarter@l
+/* 802AABCC  3C 60 80 3D */	lis r3, __vt__14Z2SoundStarter@ha /* 0x803C9D80@ha */
+/* 802AABD0  38 03 9D 80 */	addi r0, r3, __vt__14Z2SoundStarter@l /* 0x803C9D80@l */
 /* 802AABD4  90 1E 00 00 */	stw r0, 0(r30)
 /* 802AABD8  7F C3 F3 78 */	mr r3, r30
 /* 802AABDC  83 E1 00 0C */	lwz r31, 0xc(r1)

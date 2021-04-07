@@ -9,8 +9,8 @@ lbl_8012E0AC:
 /* 8012E0C8  40 82 00 38 */	bne lbl_8012E100
 /* 8012E0CC  38 7F 04 E6 */	addi r3, r31, 0x4e6
 /* 8012E0D0  A8 9F 30 0C */	lha r4, 0x300c(r31)
-/* 8012E0D4  3C A0 80 39 */	lis r5, m__23daAlinkHIO_wlAtnMove_c0@ha
-/* 8012E0D8  38 E5 EF 70 */	addi r7, r5, m__23daAlinkHIO_wlAtnMove_c0@l
+/* 8012E0D4  3C A0 80 39 */	lis r5, m__23daAlinkHIO_wlAtnMove_c0@ha /* 0x8038EF70@ha */
+/* 8012E0D8  38 E5 EF 70 */	addi r7, r5, m__23daAlinkHIO_wlAtnMove_c0@l /* 0x8038EF70@l */
 /* 8012E0DC  A8 A7 00 04 */	lha r5, 4(r7)
 /* 8012E0E0  A8 C7 00 00 */	lha r6, 0(r7)
 /* 8012E0E4  A8 E7 00 02 */	lha r7, 2(r7)
@@ -61,8 +61,8 @@ lbl_8012E180:
 /* 8012E188  41 82 00 40 */	beq lbl_8012E1C8
 /* 8012E18C  C0 5F 04 D4 */	lfs f2, 0x4d4(r31)
 /* 8012E190  C0 3F 34 FC */	lfs f1, 0x34fc(r31)
-/* 8012E194  3C 60 80 39 */	lis r3, m__24daAlinkHIO_wlSideStep_c0@ha
-/* 8012E198  38 A3 EF A8 */	addi r5, r3, m__24daAlinkHIO_wlSideStep_c0@l
+/* 8012E194  3C 60 80 39 */	lis r3, m__24daAlinkHIO_wlSideStep_c0@ha /* 0x8038EFA8@ha */
+/* 8012E198  38 A3 EF A8 */	addi r5, r3, m__24daAlinkHIO_wlSideStep_c0@l /* 0x8038EFA8@l */
 /* 8012E19C  C0 05 00 60 */	lfs f0, 0x60(r5)
 /* 8012E1A0  EC 01 00 28 */	fsubs f0, f1, f0
 /* 8012E1A4  FC 02 00 40 */	fcmpo cr0, f2, f0

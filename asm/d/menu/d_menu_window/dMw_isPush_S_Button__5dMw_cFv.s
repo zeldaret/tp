@@ -7,8 +7,8 @@ lbl_801FCD24:
 /* 801FCD38  80 03 00 04 */	lwz r0, 4(r3)
 /* 801FCD3C  2C 00 00 01 */	cmpwi r0, 1
 /* 801FCD40  40 82 00 80 */	bne lbl_801FCDC0
-/* 801FCD44  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801FCD48  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 801FCD44  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801FCD48  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801FCD4C  80 7F 5D B4 */	lwz r3, 0x5db4(r31)
 /* 801FCD50  81 83 06 28 */	lwz r12, 0x628(r3)
 /* 801FCD54  81 8C 02 6C */	lwz r12, 0x26c(r12)

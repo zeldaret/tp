@@ -22,8 +22,8 @@ lbl_803692C0:
 /* 803692C0  C8 22 CC 80 */	lfd f1, lit_84(r2)
 /* 803692C4  48 00 01 D4 */	b lbl_80369498
 lbl_803692C8:
-/* 803692C8  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 803692CC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 803692C8  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 803692CC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 803692D0  48 00 01 C8 */	b lbl_80369498
 lbl_803692D4:
 /* 803692D4  3C 00 3F E0 */	lis r0, 0x3fe0

@@ -3,19 +3,20 @@
 #
 
 M507_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kuwagata.plf
+M507_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kuwagata.lcf
+M507_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kuwagata.map
 
 M507_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_kuwagata/executor.cpp \
-	rel/d/a/obj/d_a_obj_kuwagata/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_kuwagata/d_a_obj_kuwagata.cpp \
 
 M507_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kuwagata/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kuwagata/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kuwagata/d_a_obj_kuwagata.o \
 
 M507_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kuwagata/libRuntime.PPCEABI.H.a \
 
 M507_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M507_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M507_LDSCRIPT) \
+	-unused -map $(M507_MAP) \
+	-w off \
 
 $(M507_TARGET): $(M507_O_FILES) $(M507_LIBS)
+	@echo [507] creating $(M507_TARGET)
 	@echo $(M507_LIBS) $(M507_O_FILES) > build/M507_ofiles
-	$(LD) -partial $(M507_LDFLAGS) -o $(M507_TARGET) @build/M507_ofiles
+	@python3 tools/lcf.py rel 507 --output $(M507_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M507_LDFLAGS) -o $(M507_TARGET) @build/M507_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kuwagata/%.o: rel/d/a/obj/d_a_obj_kuwagata/%.cpp
+	@echo [507] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M507_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M507_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_kuwagata/libs/Runtime.PPCEABI.H/Makefile
 

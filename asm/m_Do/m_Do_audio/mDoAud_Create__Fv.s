@@ -6,8 +6,8 @@ lbl_80006FC0:
 /* 80006FD0  80 0D 86 40 */	lwz r0, l_affCommand(r13)
 /* 80006FD4  28 00 00 00 */	cmplwi r0, 0
 /* 80006FD8  40 82 00 24 */	bne lbl_80006FFC
-/* 80006FDC  3C 60 80 37 */	lis r3, m_Do_m_Do_audio__stringBase0@ha
-/* 80006FE0  38 63 3D 68 */	addi r3, r3, m_Do_m_Do_audio__stringBase0@l
+/* 80006FDC  3C 60 80 37 */	lis r3, m_Do_m_Do_audio__stringBase0@ha /* 0x80373D68@ha */
+/* 80006FE0  38 63 3D 68 */	addi r3, r3, m_Do_m_Do_audio__stringBase0@l /* 0x80373D68@l */
 /* 80006FE4  38 80 00 02 */	li r4, 2
 /* 80006FE8  38 A0 00 00 */	li r5, 0
 /* 80006FEC  48 00 F3 A9 */	bl create__21mDoDvdThd_toMainRam_cFPCcUcP7JKRHeap
@@ -18,8 +18,8 @@ lbl_80006FFC:
 /* 80006FFC  80 0D 86 44 */	lwz r0, l_arcCommand(r13)
 /* 80007000  28 00 00 00 */	cmplwi r0, 0
 /* 80007004  40 82 00 2C */	bne lbl_80007030
-/* 80007008  3C 60 80 37 */	lis r3, m_Do_m_Do_audio__stringBase0@ha
-/* 8000700C  38 63 3D 68 */	addi r3, r3, m_Do_m_Do_audio__stringBase0@l
+/* 80007008  3C 60 80 37 */	lis r3, m_Do_m_Do_audio__stringBase0@ha /* 0x80373D68@ha */
+/* 8000700C  38 63 3D 68 */	addi r3, r3, m_Do_m_Do_audio__stringBase0@l /* 0x80373D68@l */
 /* 80007010  38 63 00 16 */	addi r3, r3, 0x16
 /* 80007014  38 80 00 00 */	li r4, 0
 /* 80007018  38 A0 00 03 */	li r5, 3
@@ -48,8 +48,8 @@ lbl_80007030:
 /* 80007070  80 E3 00 1C */	lwz r7, 0x1c(r3)
 /* 80007074  80 6D 86 40 */	lwz r3, l_affCommand(r13)
 /* 80007078  80 C3 00 1C */	lwz r6, 0x1c(r3)
-/* 8000707C  3C 60 80 3E */	lis r3, g_mDoAud_zelAudio@ha
-/* 80007080  38 63 BF 4C */	addi r3, r3, g_mDoAud_zelAudio@l
+/* 8000707C  3C 60 80 3E */	lis r3, g_mDoAud_zelAudio@ha /* 0x803DBF4C@ha */
+/* 80007080  38 63 BF 4C */	addi r3, r3, g_mDoAud_zelAudio@l /* 0x803DBF4C@l */
 /* 80007084  80 8D 86 3C */	lwz r4, g_mDoAud_audioHeap(r13)
 /* 80007088  3C A0 00 A0 */	lis r5, 0xa0
 /* 8000708C  48 2C 62 C1 */	bl init__10Z2AudioMgrFP12JKRSolidHeapUlPvP10JKRArchive
@@ -60,21 +60,21 @@ lbl_80007030:
 /* 800070A0  48 2C 9B 55 */	bl adjustSize__12JKRSolidHeapFv
 /* 800070A4  48 00 00 18 */	b lbl_800070BC
 lbl_800070A8:
-/* 800070A8  3C 60 80 37 */	lis r3, m_Do_m_Do_audio__stringBase0@ha
-/* 800070AC  38 63 3D 68 */	addi r3, r3, m_Do_m_Do_audio__stringBase0@l
+/* 800070A8  3C 60 80 37 */	lis r3, m_Do_m_Do_audio__stringBase0@ha /* 0x80373D68@ha */
+/* 800070AC  38 63 3D 68 */	addi r3, r3, m_Do_m_Do_audio__stringBase0@l /* 0x80373D68@l */
 /* 800070B0  38 63 00 35 */	addi r3, r3, 0x35
 /* 800070B4  4C C6 31 82 */	crclr 6
 /* 800070B8  4B FF FB 55 */	bl OSReport_Error
 lbl_800070BC:
-/* 800070BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800070C0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800070BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800070C0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800070C4  38 83 07 F0 */	addi r4, r3, 0x7f0
-/* 800070C8  3C 60 80 3E */	lis r3, g_mDoAud_zelAudio@ha
-/* 800070CC  38 63 BF 4C */	addi r3, r3, g_mDoAud_zelAudio@l
+/* 800070C8  3C 60 80 3E */	lis r3, g_mDoAud_zelAudio@ha /* 0x803DBF4C@ha */
+/* 800070CC  38 63 BF 4C */	addi r3, r3, g_mDoAud_zelAudio@l /* 0x803DBF4C@l */
 /* 800070D0  38 63 04 C4 */	addi r3, r3, 0x4c4
 /* 800070D4  48 2A F6 85 */	bl setEventBit__11Z2StatusMgrFPv
-/* 800070D8  3C 60 80 3E */	lis r3, g_mDoAud_zelAudio@ha
-/* 800070DC  38 63 BF 4C */	addi r3, r3, g_mDoAud_zelAudio@l
+/* 800070D8  3C 60 80 3E */	lis r3, g_mDoAud_zelAudio@ha /* 0x803DBF4C@ha */
+/* 800070DC  38 63 BF 4C */	addi r3, r3, g_mDoAud_zelAudio@l /* 0x803DBF4C@l */
 /* 800070E0  4B FF FE D5 */	bl reset__17mDoAud_zelAudio_cFv
 /* 800070E4  48 33 94 AD */	bl OSGetSoundMode
 /* 800070E8  7C 64 1B 78 */	mr r4, r3

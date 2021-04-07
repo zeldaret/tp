@@ -1,8 +1,8 @@
 lbl_806DF46C:
-/* 806DF46C  3C 80 80 6E */	lis r4, lit_3646@ha
-/* 806DF470  38 A4 FD F4 */	addi r5, r4, lit_3646@l
-/* 806DF474  3C 80 80 6E */	lis r4, __vt__12daE_GS_HIO_c@ha
-/* 806DF478  38 04 FE 84 */	addi r0, r4, __vt__12daE_GS_HIO_c@l
+/* 806DF46C  3C 80 80 6E */	lis r4, lit_3646@ha /* 0x806DFDF4@ha */
+/* 806DF470  38 A4 FD F4 */	addi r5, r4, lit_3646@l /* 0x806DFDF4@l */
+/* 806DF474  3C 80 80 6E */	lis r4, __vt__12daE_GS_HIO_c@ha /* 0x806DFE84@ha */
+/* 806DF478  38 04 FE 84 */	addi r0, r4, __vt__12daE_GS_HIO_c@l /* 0x806DFE84@l */
 /* 806DF47C  90 03 00 00 */	stw r0, 0(r3)
 /* 806DF480  38 00 FF FF */	li r0, -1
 /* 806DF484  98 03 00 04 */	stb r0, 4(r3)

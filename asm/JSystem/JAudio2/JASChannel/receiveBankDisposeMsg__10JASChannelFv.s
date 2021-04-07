@@ -6,10 +6,10 @@ lbl_8029BC48:
 /* 8029BC58  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8029BC5C  38 00 00 00 */	li r0, 0
 /* 8029BC60  90 0D 8D 18 */	stw r0, sBankDisposeListSize__10JASChannel(r13)
-/* 8029BC64  3C 60 80 43 */	lis r3, sBankDisposeList__10JASChannel@ha
-/* 8029BC68  3B C3 1B F0 */	addi r30, r3, sBankDisposeList__10JASChannel@l
-/* 8029BC6C  3C 60 80 43 */	lis r3, sBankDisposeMsgQ__10JASChannel@ha
-/* 8029BC70  3B E3 1B 90 */	addi r31, r3, sBankDisposeMsgQ__10JASChannel@l
+/* 8029BC64  3C 60 80 43 */	lis r3, sBankDisposeList__10JASChannel@ha /* 0x80431BF0@ha */
+/* 8029BC68  3B C3 1B F0 */	addi r30, r3, sBankDisposeList__10JASChannel@l /* 0x80431BF0@l */
+/* 8029BC6C  3C 60 80 43 */	lis r3, sBankDisposeMsgQ__10JASChannel@ha /* 0x80431B90@ha */
+/* 8029BC70  3B E3 1B 90 */	addi r31, r3, sBankDisposeMsgQ__10JASChannel@l /* 0x80431B90@l */
 /* 8029BC74  48 00 00 1C */	b lbl_8029BC90
 lbl_8029BC78:
 /* 8029BC78  80 81 00 08 */	lwz r4, 8(r1)

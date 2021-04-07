@@ -8,8 +8,8 @@ lbl_80028418:
 /* 80028430  7C 9F 23 78 */	mr r31, r4
 /* 80028434  41 82 00 2C */	beq lbl_80028460
 /* 80028438  38 7E 00 04 */	addi r3, r30, 4
-/* 8002843C  3C 80 80 03 */	lis r4, __dt__21stage_tgsc_data_classFv@ha
-/* 80028440  38 84 84 7C */	addi r4, r4, __dt__21stage_tgsc_data_classFv@l
+/* 8002843C  3C 80 80 03 */	lis r4, __dt__21stage_tgsc_data_classFv@ha /* 0x8002847C@ha */
+/* 80028440  38 84 84 7C */	addi r4, r4, __dt__21stage_tgsc_data_classFv@l /* 0x8002847C@l */
 /* 80028444  38 A0 00 24 */	li r5, 0x24
 /* 80028448  38 C0 00 40 */	li r6, 0x40
 /* 8002844C  48 33 98 9D */	bl __destroy_arr

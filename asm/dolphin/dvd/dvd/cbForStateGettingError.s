@@ -21,13 +21,13 @@ lbl_803494D8:
 /* 803494E0  3C 60 01 23 */	lis r3, 0x0123 /* 0x01234567@ha */
 /* 803494E4  38 63 45 67 */	addi r3, r3, 0x4567 /* 0x01234567@l */
 /* 803494E8  48 00 26 A1 */	bl __DVDStoreErrorCode
-/* 803494EC  3C 60 80 35 */	lis r3, cbForStateError@ha
-/* 803494F0  38 63 92 DC */	addi r3, r3, cbForStateError@l
+/* 803494EC  3C 60 80 35 */	lis r3, cbForStateError@ha /* 0x803492DC@ha */
+/* 803494F0  38 63 92 DC */	addi r3, r3, cbForStateError@l /* 0x803492DC@l */
 /* 803494F4  4B FF EB 21 */	bl DVDLowStopMotor
 /* 803494F8  48 00 01 E4 */	b lbl_803496DC
 lbl_803494FC:
 /* 803494FC  3C 60 CC 00 */	lis r3, 0xCC00 /* 0xCC006020@ha */
-/* 80349500  83 A3 60 20 */	lwz r29, 0x6020(r3)
+/* 80349500  83 A3 60 20 */	lwz r29, 0x6020(r3)  /* 0xCC006020@l */
 /* 80349504  38 7D 00 00 */	addi r3, r29, 0
 /* 80349508  57 BC 00 0E */	rlwinm r28, r29, 0, 0, 7
 /* 8034950C  4B FF FE D9 */	bl CategorizeError
@@ -36,8 +36,8 @@ lbl_803494FC:
 /* 80349518  40 82 00 1C */	bne lbl_80349534
 /* 8034951C  7F A3 EB 78 */	mr r3, r29
 /* 80349520  48 00 26 69 */	bl __DVDStoreErrorCode
-/* 80349524  3C 60 80 35 */	lis r3, cbForStateError@ha
-/* 80349528  38 63 92 DC */	addi r3, r3, cbForStateError@l
+/* 80349524  3C 60 80 35 */	lis r3, cbForStateError@ha /* 0x803492DC@ha */
+/* 80349528  38 63 92 DC */	addi r3, r3, cbForStateError@l /* 0x803492DC@l */
 /* 8034952C  4B FF EA E9 */	bl DVDLowStopMotor
 /* 80349530  48 00 01 AC */	b lbl_803496DC
 lbl_80349534:
@@ -70,11 +70,11 @@ lbl_80349588:
 /* 80349588  80 0D 92 18 */	lwz r0, Canceling(r13)
 /* 8034958C  28 00 00 00 */	cmplwi r0, 0
 /* 80349590  41 82 00 6C */	beq lbl_803495FC
-/* 80349594  3C 60 80 45 */	lis r3, DummyCommandBlock@ha
+/* 80349594  3C 60 80 45 */	lis r3, DummyCommandBlock@ha /* 0x8044C940@ha */
 /* 80349598  90 8D 92 20 */	stw r4, ResumeFromHere(r13)
 /* 8034959C  38 00 00 00 */	li r0, 0
 /* 803495A0  83 CD 91 F8 */	lwz r30, executing(r13)
-/* 803495A4  38 63 C9 40 */	addi r3, r3, DummyCommandBlock@l
+/* 803495A4  38 63 C9 40 */	addi r3, r3, DummyCommandBlock@l /* 0x8044C940@l */
 /* 803495A8  90 0D 92 18 */	stw r0, Canceling(r13)
 /* 803495AC  38 00 00 0A */	li r0, 0xa
 /* 803495B0  90 6D 91 F8 */	stw r3, executing(r13)
@@ -117,8 +117,8 @@ lbl_80349620:
 /* 80349630  28 00 11 00 */	cmplwi r0, 0x1100
 /* 80349634  40 82 00 1C */	bne lbl_80349650
 /* 80349638  80 AD 91 F8 */	lwz r5, executing(r13)
-/* 8034963C  3C 60 80 35 */	lis r3, cbForUnrecoveredError@ha
-/* 80349640  38 83 96 FC */	addi r4, r3, cbForUnrecoveredError@l
+/* 8034963C  3C 60 80 35 */	lis r3, cbForUnrecoveredError@ha /* 0x803496FC@ha */
+/* 80349640  38 83 96 FC */	addi r4, r3, cbForUnrecoveredError@l /* 0x803496FC@l */
 /* 80349644  80 65 00 10 */	lwz r3, 0x10(r5)
 /* 80349648  4B FF E8 69 */	bl DVDLowSeek
 /* 8034964C  48 00 00 90 */	b lbl_803496DC
@@ -159,8 +159,8 @@ lbl_803496C4:
 /* 803496C4  3C 60 01 23 */	lis r3, 0x0123 /* 0x01234567@ha */
 /* 803496C8  38 63 45 67 */	addi r3, r3, 0x4567 /* 0x01234567@l */
 /* 803496CC  48 00 24 BD */	bl __DVDStoreErrorCode
-/* 803496D0  3C 60 80 35 */	lis r3, cbForStateError@ha
-/* 803496D4  38 63 92 DC */	addi r3, r3, cbForStateError@l
+/* 803496D0  3C 60 80 35 */	lis r3, cbForStateError@ha /* 0x803492DC@ha */
+/* 803496D4  38 63 92 DC */	addi r3, r3, cbForStateError@l /* 0x803492DC@l */
 /* 803496D8  4B FF E9 3D */	bl DVDLowStopMotor
 lbl_803496DC:
 /* 803496DC  80 01 00 24 */	lwz r0, 0x24(r1)

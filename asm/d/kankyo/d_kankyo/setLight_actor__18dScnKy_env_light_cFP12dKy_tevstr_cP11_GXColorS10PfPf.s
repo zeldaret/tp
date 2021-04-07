@@ -9,8 +9,8 @@ lbl_801A16C0:
 /* 801A16DC  7C B8 2B 78 */	mr r24, r5
 /* 801A16E0  7C D9 33 78 */	mr r25, r6
 /* 801A16E4  7C FA 3B 78 */	mr r26, r7
-/* 801A16E8  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A16EC  38 83 CA 54 */	addi r4, r3, g_env_light@l
+/* 801A16E8  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A16EC  38 83 CA 54 */	addi r4, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A16F0  88 04 12 C2 */	lbz r0, 0x12c2(r4)
 /* 801A16F4  98 17 03 7F */	stb r0, 0x37f(r23)
 /* 801A16F8  88 04 12 C3 */	lbz r0, 0x12c3(r4)
@@ -65,8 +65,8 @@ lbl_801A17A4:
 /* 801A17B0  42 00 FF F4 */	bdnz lbl_801A17A4
 /* 801A17B4  48 00 05 98 */	b lbl_801A1D4C
 lbl_801A17B8:
-/* 801A17B8  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A17BC  39 23 CA 54 */	addi r9, r3, g_env_light@l
+/* 801A17B8  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A17BC  39 23 CA 54 */	addi r9, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A17C0  80 69 00 04 */	lwz r3, 4(r9)
 /* 801A17C4  1C 00 00 34 */	mulli r0, r0, 0x34
 /* 801A17C8  7F C3 02 14 */	add r30, r3, r0
@@ -101,8 +101,8 @@ lbl_801A1810:
 /* 801A1838  C0 57 03 70 */	lfs f2, 0x370(r23)
 /* 801A183C  39 01 00 80 */	addi r8, r1, 0x80
 /* 801A1840  C0 77 03 74 */	lfs f3, 0x374(r23)
-/* 801A1844  3D 20 80 43 */	lis r9, g_env_light@ha
-/* 801A1848  39 29 CA 54 */	addi r9, r9, g_env_light@l
+/* 801A1844  3D 20 80 43 */	lis r9, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A1848  39 29 CA 54 */	addi r9, r9, g_env_light@l /* 0x8042CA54@l */
 /* 801A184C  C0 09 11 FC */	lfs f0, 0x11fc(r9)
 /* 801A1850  EC 00 00 32 */	fmuls f0, f0, f0
 /* 801A1854  EC 63 00 32 */	fmuls f3, f3, f0
@@ -139,8 +139,8 @@ lbl_801A18C0:
 /* 801A18C4  3A A0 00 00 */	li r21, 0
 /* 801A18C8  3A 80 00 00 */	li r20, 0
 /* 801A18CC  7F F3 FB 78 */	mr r19, r31
-/* 801A18D0  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A18D4  3A 43 CA 54 */	addi r18, r3, g_env_light@l
+/* 801A18D0  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A18D4  3A 43 CA 54 */	addi r18, r3, g_env_light@l /* 0x8042CA54@l */
 lbl_801A18D8:
 /* 801A18D8  3A 13 00 74 */	addi r16, r19, 0x74
 /* 801A18DC  7E 17 82 14 */	add r16, r23, r16
@@ -365,8 +365,8 @@ lbl_801A1BE4:
 /* 801A1C20  C0 21 00 3C */	lfs f1, 0x3c(r1)
 /* 801A1C24  C0 57 03 70 */	lfs f2, 0x370(r23)
 /* 801A1C28  39 01 00 40 */	addi r8, r1, 0x40
-/* 801A1C2C  3D 20 80 43 */	lis r9, g_env_light@ha
-/* 801A1C30  39 29 CA 54 */	addi r9, r9, g_env_light@l
+/* 801A1C2C  3D 20 80 43 */	lis r9, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A1C30  39 29 CA 54 */	addi r9, r9, g_env_light@l /* 0x8042CA54@l */
 /* 801A1C34  C0 69 12 04 */	lfs f3, 0x1204(r9)
 /* 801A1C38  4B FF E7 09 */	bl dKy_calc_color_set__FP11_GXColorS10P15color_RGB_classP15color_RGB_classP15color_RGB_classP15color_RGB_classff11_GXColorS10f
 /* 801A1C3C  88 17 03 7A */	lbz r0, 0x37a(r23)
@@ -386,8 +386,8 @@ lbl_801A1C60:
 /* 801A1C6C  C0 9C 00 24 */	lfs f4, 0x24(r28)
 /* 801A1C70  C0 BB 00 24 */	lfs f5, 0x24(r27)
 /* 801A1C74  C0 D7 03 70 */	lfs f6, 0x370(r23)
-/* 801A1C78  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A1C7C  3A 03 CA 54 */	addi r16, r3, g_env_light@l
+/* 801A1C78  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A1C7C  3A 03 CA 54 */	addi r16, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A1C80  C0 F0 11 EC */	lfs f7, 0x11ec(r16)
 /* 801A1C84  C1 10 11 F4 */	lfs f8, 0x11f4(r16)
 /* 801A1C88  4B FF BB 19 */	bl float_kankyo_color_ratio_set__Fffffffff
@@ -398,8 +398,8 @@ lbl_801A1C60:
 /* 801A1C9C  C0 9C 00 28 */	lfs f4, 0x28(r28)
 /* 801A1CA0  C0 BB 00 28 */	lfs f5, 0x28(r27)
 /* 801A1CA4  C0 D7 03 70 */	lfs f6, 0x370(r23)
-/* 801A1CA8  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A1CAC  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801A1CA8  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A1CAC  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A1CB0  C0 E3 11 F0 */	lfs f7, 0x11f0(r3)
 /* 801A1CB4  C1 10 11 F4 */	lfs f8, 0x11f4(r16)
 /* 801A1CB8  4B FF BA E9 */	bl float_kankyo_color_ratio_set__Fffffffff
@@ -412,8 +412,8 @@ lbl_801A1CC4:
 /* 801A1CD0  C0 9C 00 24 */	lfs f4, 0x24(r28)
 /* 801A1CD4  C0 BB 00 24 */	lfs f5, 0x24(r27)
 /* 801A1CD8  C0 D7 03 70 */	lfs f6, 0x370(r23)
-/* 801A1CDC  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A1CE0  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801A1CDC  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A1CE0  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A1CE4  C0 E3 11 EC */	lfs f7, 0x11ec(r3)
 /* 801A1CE8  C1 02 A2 0C */	lfs f8, lit_4409(r2)
 /* 801A1CEC  4B FF BA B5 */	bl float_kankyo_color_ratio_set__Fffffffff
@@ -424,8 +424,8 @@ lbl_801A1CC4:
 /* 801A1D00  C0 9C 00 28 */	lfs f4, 0x28(r28)
 /* 801A1D04  C0 BB 00 28 */	lfs f5, 0x28(r27)
 /* 801A1D08  C0 D7 03 70 */	lfs f6, 0x370(r23)
-/* 801A1D0C  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A1D10  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801A1D0C  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A1D10  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A1D14  C0 E3 11 F0 */	lfs f7, 0x11f0(r3)
 /* 801A1D18  C1 02 A2 0C */	lfs f8, lit_4409(r2)
 /* 801A1D1C  4B FF BA 85 */	bl float_kankyo_color_ratio_set__Fffffffff

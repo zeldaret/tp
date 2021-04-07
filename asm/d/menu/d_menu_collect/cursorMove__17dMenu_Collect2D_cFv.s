@@ -163,16 +163,16 @@ lbl_801B21FC:
 /* 801B2208  88 1D 02 58 */	lbz r0, 0x258(r29)
 /* 801B220C  28 00 00 02 */	cmplwi r0, 2
 /* 801B2210  40 82 00 A0 */	bne lbl_801B22B0
-/* 801B2214  3C 60 80 39 */	lis r3, lit_5343@ha
-/* 801B2218  38 83 50 38 */	addi r4, r3, lit_5343@l
+/* 801B2214  3C 60 80 39 */	lis r3, lit_5343@ha /* 0x80395038@ha */
+/* 801B2218  38 83 50 38 */	addi r4, r3, lit_5343@l /* 0x80395038@l */
 /* 801B221C  80 64 00 00 */	lwz r3, 0(r4)
 /* 801B2220  80 04 00 04 */	lwz r0, 4(r4)
 /* 801B2224  90 61 00 2C */	stw r3, 0x2c(r1)
 /* 801B2228  90 01 00 30 */	stw r0, 0x30(r1)
 /* 801B222C  88 04 00 08 */	lbz r0, 8(r4)
 /* 801B2230  98 01 00 34 */	stb r0, 0x34(r1)
-/* 801B2234  3C 60 80 39 */	lis r3, lit_5344@ha
-/* 801B2238  38 83 50 44 */	addi r4, r3, lit_5344@l
+/* 801B2234  3C 60 80 39 */	lis r3, lit_5344@ha /* 0x80395044@ha */
+/* 801B2238  38 83 50 44 */	addi r4, r3, lit_5344@l /* 0x80395044@l */
 /* 801B223C  80 64 00 00 */	lwz r3, 0(r4)
 /* 801B2240  80 04 00 04 */	lwz r0, 4(r4)
 /* 801B2244  90 61 00 20 */	stw r3, 0x20(r1)
@@ -452,8 +452,8 @@ lbl_801B2604:
 /* 801B2618  48 00 3B A5 */	bl setItemNameString__17dMenu_Collect2D_cFUcUc
 lbl_801B261C:
 /* 801B261C  C0 1D 00 44 */	lfs f0, 0x44(r29)
-/* 801B2620  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 801B2624  3B 83 EB C8 */	addi r28, r3, g_drawHIO@l
+/* 801B2620  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 801B2624  3B 83 EB C8 */	addi r28, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 801B2628  C0 5C 06 20 */	lfs f2, 0x620(r28)
 /* 801B262C  FC 00 10 00 */	fcmpu cr0, f0, f2
 /* 801B2630  40 82 00 34 */	bne lbl_801B2664
@@ -471,8 +471,8 @@ lbl_801B261C:
 /* 801B2660  41 82 01 74 */	beq lbl_801B27D4
 lbl_801B2664:
 /* 801B2664  D0 5D 00 44 */	stfs f2, 0x44(r29)
-/* 801B2668  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 801B266C  3B 63 EB C8 */	addi r27, r3, g_drawHIO@l
+/* 801B2668  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 801B266C  3B 63 EB C8 */	addi r27, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 801B2670  C0 1B 06 24 */	lfs f0, 0x624(r27)
 /* 801B2674  D0 1D 00 48 */	stfs f0, 0x48(r29)
 /* 801B2678  C0 1B 06 28 */	lfs f0, 0x628(r27)

@@ -21,7 +21,7 @@ extern "C" bool Hu_IsStub();
 // Declarations:
 //
 
-/* 803737AC-803737B4 0008+00 s=0 e=1 z=0  None .text      Hu_IsStub */
-extern "C" bool Hu_IsStub() {
+/* 803737AC-803737B4 36E0EC 0008+00 0/0 1/1 0/0 .text            Hu_IsStub */
+bool Hu_IsStub() {
     return false;
 }

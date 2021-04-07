@@ -1,11 +1,11 @@
 lbl_8058E04C:
-/* 8058E04C  3C 80 80 59 */	lis r4, lit_3637@ha
-/* 8058E050  38 A4 F1 30 */	addi r5, r4, lit_3637@l
-/* 8058E054  3C 80 80 59 */	lis r4, __vt__14mDoHIO_entry_c@ha
-/* 8058E058  38 04 F2 8C */	addi r0, r4, __vt__14mDoHIO_entry_c@l
+/* 8058E04C  3C 80 80 59 */	lis r4, lit_3637@ha /* 0x8058F130@ha */
+/* 8058E050  38 A4 F1 30 */	addi r5, r4, lit_3637@l /* 0x8058F130@l */
+/* 8058E054  3C 80 80 59 */	lis r4, __vt__14mDoHIO_entry_c@ha /* 0x8058F28C@ha */
+/* 8058E058  38 04 F2 8C */	addi r0, r4, __vt__14mDoHIO_entry_c@l /* 0x8058F28C@l */
 /* 8058E05C  90 03 00 00 */	stw r0, 0(r3)
-/* 8058E060  3C 80 80 59 */	lis r4, __vt__17daLv2Candle_HIO_c@ha
-/* 8058E064  38 04 F2 80 */	addi r0, r4, __vt__17daLv2Candle_HIO_c@l
+/* 8058E060  3C 80 80 59 */	lis r4, __vt__17daLv2Candle_HIO_c@ha /* 0x8058F280@ha */
+/* 8058E064  38 04 F2 80 */	addi r0, r4, __vt__17daLv2Candle_HIO_c@l /* 0x8058F280@l */
 /* 8058E068  90 03 00 00 */	stw r0, 0(r3)
 /* 8058E06C  38 00 00 1E */	li r0, 0x1e
 /* 8058E070  98 03 00 04 */	stb r0, 4(r3)

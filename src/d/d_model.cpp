@@ -62,17 +62,10 @@ extern "C" void remove__10dMdl_mng_cFv();
 extern "C" void reset__10dMdl_mng_cFv();
 extern "C" void entry__10dMdl_mng_cFP12J3DModelDataUsi();
 extern "C" void __ct__6dMdl_cFv();
-extern "C" extern void* __vt__6dMdl_c[5 + 1 /* padding */];
 
 //
 // External References:
 //
-
-void dKy_setLight_nowroom_actor(dKy_tevstr_c*);
-void dKy_setLight_again();
-void dKy_GxFog_tevstr_set(dKy_tevstr_c*);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void dKy_setLight_nowroom_actor__FP12dKy_tevstr_c();
 extern "C" void dKy_setLight_again__Fv();
@@ -105,10 +98,10 @@ extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
 //
 
 /* ############################################################################################## */
-/* 80456B70-80456B78 0004+04 s=1 e=0 z=0  None .sbss2     @3621 */
+/* 80456B70-80456B78 000010 0004+04 1/1 0/0 0/0 .sbss2           @3621 */
 SECTION_SBSS2 static u8 lit_3621[4 + 4 /* padding */];
 
-/* 8009C4FC-8009C650 0154+00 s=1 e=0 z=0  None .text      draw__6dMdl_cFv */
+/* 8009C4FC-8009C650 096E3C 0154+00 1/0 0/0 0/0 .text            draw__6dMdl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -118,7 +111,7 @@ asm void dMdl_c::draw() {
 }
 #pragma pop
 
-/* 8009C650-8009C668 0018+00 s=1 e=0 z=1  None .text
+/* 8009C650-8009C668 096F90 0018+00 1/1 0/0 1/1 .text
  * create__6dMdl_cFP12J3DModelDataUsP12dKy_tevstr_c             */
 #pragma push
 #pragma optimization_level 0
@@ -129,7 +122,7 @@ asm void dMdl_c::create(J3DModelData* param_0, u16 param_1, dKy_tevstr_c* param_
 }
 #pragma pop
 
-/* 8009C668-8009C6DC 0074+00 s=0 e=0 z=5  None .text      entryObj__6dMdl_cFP10dMdl_obj_c */
+/* 8009C668-8009C6DC 096FA8 0074+00 0/0 0/0 5/5 .text            entryObj__6dMdl_cFP10dMdl_obj_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -139,7 +132,7 @@ asm void dMdl_c::entryObj(dMdl_obj_c* param_0) {
 }
 #pragma pop
 
-/* 8009C6DC-8009C724 0048+00 s=1 e=0 z=0  None .text
+/* 8009C6DC-8009C724 09701C 0048+00 1/1 0/0 0/0 .text
  * search__10dMdl_mng_cFP12J3DModelDataUsP12dKy_tevstr_c        */
 #pragma push
 #pragma optimization_level 0
@@ -150,7 +143,7 @@ asm void dMdl_mng_c::search(J3DModelData* param_0, u16 param_1, dKy_tevstr_c* pa
 }
 #pragma pop
 
-/* 8009C724-8009C7AC 0088+00 s=1 e=0 z=0  None .text
+/* 8009C724-8009C7AC 097064 0088+00 1/1 0/0 0/0 .text
  * entry__10dMdl_mng_cFP12J3DModelDataUsP12dKy_tevstr_c         */
 #pragma push
 #pragma optimization_level 0
@@ -162,10 +155,10 @@ asm void dMdl_mng_c::entry(J3DModelData* param_0, u16 param_1, dKy_tevstr_c* par
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450FA0-80450FA8 0004+04 s=4 e=0 z=0  None .sbss      m_myObj__10dMdl_mng_c */
+/* 80450FA0-80450FA8 0004A0 0004+04 4/4 0/0 0/0 .sbss            m_myObj__10dMdl_mng_c */
 static u8 m_myObj__10dMdl_mng_c[4 + 4 /* padding */];
 
-/* 8009C7AC-8009C808 005C+00 s=0 e=1 z=0  None .text      create__10dMdl_mng_cFv */
+/* 8009C7AC-8009C808 0970EC 005C+00 0/0 1/1 0/0 .text            create__10dMdl_mng_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -176,9 +169,9 @@ asm void dMdl_mng_c::create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803AF978-803AF990 0014+04 s=2 e=0 z=1  None .data      __vt__6dMdl_c */
-SECTION_DATA void* __vt__6dMdl_c[5 + 1 /* padding */] = {
-    (void*)NULL,
+/* 803AF978-803AF990 00CA98 0014+04 2/2 0/0 1/1 .data            __vt__6dMdl_c */
+SECTION_DATA extern void* __vt__6dMdl_c[5 + 1 /* padding */] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)entry__9J3DPacketFP13J3DDrawBuffer,
     (void*)draw__6dMdl_cFv,
@@ -187,7 +180,7 @@ SECTION_DATA void* __vt__6dMdl_c[5 + 1 /* padding */] = {
     NULL,
 };
 
-/* 8009C808-8009C864 005C+00 s=3 e=0 z=0  None .text      __dt__6dMdl_cFv */
+/* 8009C808-8009C864 097148 005C+00 3/2 0/0 0/0 .text            __dt__6dMdl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -197,7 +190,7 @@ asm dMdl_c::~dMdl_c() {
 }
 #pragma pop
 
-/* 8009C864-8009C8C0 005C+00 s=0 e=1 z=0  None .text      remove__10dMdl_mng_cFv */
+/* 8009C864-8009C8C0 0971A4 005C+00 0/0 1/1 0/0 .text            remove__10dMdl_mng_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -207,7 +200,7 @@ asm void dMdl_mng_c::remove() {
 }
 #pragma pop
 
-/* 8009C8C0-8009C8D8 0018+00 s=0 e=1 z=0  None .text      reset__10dMdl_mng_cFv */
+/* 8009C8C0-8009C8D8 097200 0018+00 0/0 1/1 0/0 .text            reset__10dMdl_mng_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -217,7 +210,7 @@ asm void dMdl_mng_c::reset() {
 }
 #pragma pop
 
-/* 8009C8D8-8009C930 0058+00 s=0 e=0 z=4  None .text      entry__10dMdl_mng_cFP12J3DModelDataUsi */
+/* 8009C8D8-8009C930 097218 0058+00 0/0 0/0 4/4 .text entry__10dMdl_mng_cFP12J3DModelDataUsi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -227,7 +220,7 @@ asm void dMdl_mng_c::entry(J3DModelData* param_0, u16 param_1, int param_2) {
 }
 #pragma pop
 
-/* 8009C930-8009C964 0034+00 s=1 e=0 z=0  None .text      __ct__6dMdl_cFv */
+/* 8009C930-8009C964 097270 0034+00 1/1 0/0 0/0 .text            __ct__6dMdl_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

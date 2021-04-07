@@ -20,12 +20,12 @@ lbl_80192AE0:
 /* 80192AE4  3A E0 00 00 */	li r23, 0
 /* 80192AE8  3A C0 00 00 */	li r22, 0
 /* 80192AEC  57 64 10 3A */	slwi r4, r27, 2
-/* 80192AF0  3C 60 80 3C */	lis r3, amariheartTex@ha
-/* 80192AF4  38 03 B5 48 */	addi r0, r3, amariheartTex@l
+/* 80192AF0  3C 60 80 3C */	lis r3, amariheartTex@ha /* 0x803BB548@ha */
+/* 80192AF4  38 03 B5 48 */	addi r0, r3, amariheartTex@l /* 0x803BB548@l */
 /* 80192AF8  7C 60 22 14 */	add r3, r0, r4
 /* 80192AFC  3B C3 FF FC */	addi r30, r3, -4
-/* 80192B00  3C 60 80 3C */	lis r3, l_htag@ha
-/* 80192B04  3B E3 B4 A8 */	addi r31, r3, l_htag@l
+/* 80192B00  3C 60 80 3C */	lis r3, l_htag@ha /* 0x803BB4A8@ha */
+/* 80192B04  3B E3 B4 A8 */	addi r31, r3, l_htag@l /* 0x803BB4A8@l */
 /* 80192B08  3B A1 00 08 */	addi r29, r1, 8
 lbl_80192B0C:
 /* 80192B0C  80 78 00 0C */	lwz r3, 0xc(r24)
@@ -60,8 +60,8 @@ lbl_80192B0C:
 /* 80192B80  4E 80 04 21 */	bctrl 
 /* 80192B84  48 00 00 58 */	b lbl_80192BDC
 lbl_80192B88:
-/* 80192B88  3C 80 80 39 */	lis r4, d_file_d_file_sel_info__stringBase0@ha
-/* 80192B8C  38 84 48 B8 */	addi r4, r4, d_file_d_file_sel_info__stringBase0@l
+/* 80192B88  3C 80 80 39 */	lis r4, d_file_d_file_sel_info__stringBase0@ha /* 0x803948B8@ha */
+/* 80192B8C  38 84 48 B8 */	addi r4, r4, d_file_d_file_sel_info__stringBase0@l /* 0x803948B8@l */
 /* 80192B90  38 84 00 21 */	addi r4, r4, 0x21
 /* 80192B94  38 A0 00 00 */	li r5, 0
 /* 80192B98  81 83 00 00 */	lwz r12, 0(r3)
@@ -70,8 +70,8 @@ lbl_80192B88:
 /* 80192BA4  4E 80 04 21 */	bctrl 
 /* 80192BA8  48 00 00 34 */	b lbl_80192BDC
 lbl_80192BAC:
-/* 80192BAC  3C 80 80 39 */	lis r4, d_file_d_file_sel_info__stringBase0@ha
-/* 80192BB0  38 84 48 B8 */	addi r4, r4, d_file_d_file_sel_info__stringBase0@l
+/* 80192BAC  3C 80 80 39 */	lis r4, d_file_d_file_sel_info__stringBase0@ha /* 0x803948B8@ha */
+/* 80192BB0  38 84 48 B8 */	addi r4, r4, d_file_d_file_sel_info__stringBase0@l /* 0x803948B8@l */
 /* 80192BB4  38 84 00 21 */	addi r4, r4, 0x21
 /* 80192BB8  38 A0 00 00 */	li r5, 0
 /* 80192BBC  81 83 00 00 */	lwz r12, 0(r3)

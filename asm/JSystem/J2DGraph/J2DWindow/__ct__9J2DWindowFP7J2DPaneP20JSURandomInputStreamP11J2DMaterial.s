@@ -9,8 +9,8 @@ lbl_802F9C10:
 /* 802F9C2C  7C BC 2B 78 */	mr r28, r5
 /* 802F9C30  7C DD 33 78 */	mr r29, r6
 /* 802F9C34  4B FF BF C5 */	bl __ct__7J2DPaneFv
-/* 802F9C38  3C 60 80 3D */	lis r3, __vt__9J2DWindow@ha
-/* 802F9C3C  38 03 D1 08 */	addi r0, r3, __vt__9J2DWindow@l
+/* 802F9C38  3C 60 80 3D */	lis r3, __vt__9J2DWindow@ha /* 0x803CD108@ha */
+/* 802F9C3C  38 03 D1 08 */	addi r0, r3, __vt__9J2DWindow@l /* 0x803CD108@l */
 /* 802F9C40  90 1B 00 00 */	stw r0, 0(r27)
 /* 802F9C44  38 00 00 00 */	li r0, 0
 /* 802F9C48  90 1B 01 00 */	stw r0, 0x100(r27)
@@ -62,8 +62,8 @@ lbl_802F9C10:
 /* 802F9D00  38 81 00 64 */	addi r4, r1, 0x64
 /* 802F9D04  38 A0 00 40 */	li r5, 0x40
 /* 802F9D08  4B FE 25 91 */	bl read__14JSUInputStreamFPvl
-/* 802F9D0C  3C 60 80 3A */	lis r3, lit_1831@ha
-/* 802F9D10  38 83 1C 10 */	addi r4, r3, lit_1831@l
+/* 802F9D0C  3C 60 80 3A */	lis r3, lit_1831@ha /* 0x803A1C10@ha */
+/* 802F9D10  38 83 1C 10 */	addi r4, r3, lit_1831@l /* 0x803A1C10@l */
 /* 802F9D14  80 64 00 00 */	lwz r3, 0(r4)
 /* 802F9D18  80 04 00 04 */	lwz r0, 4(r4)
 /* 802F9D1C  90 61 00 54 */	stw r3, 0x54(r1)
@@ -249,8 +249,8 @@ lbl_802F9EA0:
 /* 802F9FDC  88 01 00 0B */	lbz r0, 0xb(r1)
 /* 802F9FE0  98 1B 01 3B */	stb r0, 0x13b(r27)
 lbl_802F9FE4:
-/* 802F9FE4  3C 60 80 3A */	lis r3, lit_1849@ha
-/* 802F9FE8  38 83 1C 20 */	addi r4, r3, lit_1849@l
+/* 802F9FE4  3C 60 80 3A */	lis r3, lit_1849@ha /* 0x803A1C20@ha */
+/* 802F9FE8  38 83 1C 20 */	addi r4, r3, lit_1849@l /* 0x803A1C20@l */
 /* 802F9FEC  80 64 00 00 */	lwz r3, 0(r4)
 /* 802F9FF0  80 04 00 04 */	lwz r0, 4(r4)
 /* 802F9FF4  90 61 00 34 */	stw r3, 0x34(r1)

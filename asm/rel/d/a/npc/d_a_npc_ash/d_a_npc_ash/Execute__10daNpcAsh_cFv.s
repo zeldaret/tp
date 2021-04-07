@@ -2,7 +2,7 @@ lbl_809590F8:
 /* 809590F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 809590FC  7C 08 02 A6 */	mflr r0
 /* 80959100  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80959104  4B 7F 8F 10 */	b execute__8daNpcF_cFv
+/* 80959104  4B 7F 8F 11 */	bl execute__8daNpcF_cFv
 /* 80959108  38 60 00 01 */	li r3, 1
 /* 8095910C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80959110  7C 08 03 A6 */	mtlr r0

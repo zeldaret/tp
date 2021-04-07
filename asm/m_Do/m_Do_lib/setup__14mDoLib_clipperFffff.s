@@ -5,8 +5,8 @@ lbl_8001528C:
 /* 80015298  DB E1 00 10 */	stfd f31, 0x10(r1)
 /* 8001529C  F3 E1 00 18 */	psq_st f31, 24(r1), 0, 0 /* qr0 */
 /* 800152A0  FF E0 08 90 */	fmr f31, f1
-/* 800152A4  3C 60 80 3E */	lis r3, mClipper__14mDoLib_clipper@ha
-/* 800152A8  38 63 D8 E4 */	addi r3, r3, mClipper__14mDoLib_clipper@l
+/* 800152A4  3C 60 80 3E */	lis r3, mClipper__14mDoLib_clipper@ha /* 0x803DD8E4@ha */
+/* 800152A8  38 63 D8 E4 */	addi r3, r3, mClipper__14mDoLib_clipper@l /* 0x803DD8E4@l */
 /* 800152AC  D3 E3 00 4C */	stfs f31, 0x4c(r3)
 /* 800152B0  D0 43 00 50 */	stfs f2, 0x50(r3)
 /* 800152B4  D0 63 00 54 */	stfs f3, 0x54(r3)
@@ -19,8 +19,8 @@ lbl_8001528C:
 /* 800152D0  D8 01 00 08 */	stfd f0, 8(r1)
 /* 800152D4  80 01 00 0C */	lwz r0, 0xc(r1)
 /* 800152D8  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 800152DC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800152E0  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 800152DC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800152E0  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800152E4  7C 64 02 14 */	add r3, r4, r0
 /* 800152E8  C0 23 00 04 */	lfs f1, 4(r3)
 /* 800152EC  7C 04 04 2E */	lfsx f0, r4, r0

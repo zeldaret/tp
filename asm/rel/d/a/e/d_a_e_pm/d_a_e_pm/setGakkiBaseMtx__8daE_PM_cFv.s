@@ -12,14 +12,14 @@ lbl_8074ABA8:
 /* 8074ABD0  80 9F 07 08 */	lwz r4, 0x708(r31)
 /* 8074ABD4  80 84 00 04 */	lwz r4, 4(r4)
 /* 8074ABD8  38 84 00 24 */	addi r4, r4, 0x24
-/* 8074ABDC  4B BF B8 D4 */	b PSMTXCopy
+/* 8074ABDC  4B BF B8 D5 */	bl PSMTXCopy
 /* 8074ABE0  80 7F 07 08 */	lwz r3, 0x708(r31)
 /* 8074ABE4  38 80 00 00 */	li r4, 0
 /* 8074ABE8  38 A0 00 00 */	li r5, 0
 /* 8074ABEC  38 C0 00 00 */	li r6, 0
-/* 8074ABF0  4B 8C 59 D8 */	b play__14mDoExt_McaMorfFP3VecUlSc
+/* 8074ABF0  4B 8C 59 D9 */	bl play__14mDoExt_McaMorfFP3VecUlSc
 /* 8074ABF4  80 7F 07 08 */	lwz r3, 0x708(r31)
-/* 8074ABF8  4B 8C 5A B4 */	b modelCalc__14mDoExt_McaMorfFv
+/* 8074ABF8  4B 8C 5A B5 */	bl modelCalc__14mDoExt_McaMorfFv
 /* 8074ABFC  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8074AC00  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8074AC04  7C 08 03 A6 */	mtlr r0

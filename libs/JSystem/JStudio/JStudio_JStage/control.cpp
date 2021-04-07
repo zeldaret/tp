@@ -11,20 +11,6 @@
 // Types:
 //
 
-struct JStage {
-    struct TSystem {};
-
-    struct TActor {};
-
-    struct TAmbientLight {};
-
-    struct TCamera {};
-
-    struct TFog {};
-
-    struct TLight {};
-};
-
 namespace JStudio {
 struct TObject {};
 
@@ -76,6 +62,20 @@ struct TObject_light {
 
 };  // namespace JStudio
 
+struct JStage {
+    struct TSystem {};
+
+    struct TActor {};
+
+    struct TAmbientLight {};
+
+    struct TCamera {};
+
+    struct TFog {};
+
+    struct TLight {};
+};
+
 struct JStudio_JStage {
     struct TCreateObject {
         /* 80289B00 */ ~TCreateObject();
@@ -116,14 +116,10 @@ extern "C" static void func_80289DE8();
 extern "C" static void func_80289EEC();
 extern "C" static void func_80289FF0();
 extern "C" static void func_8028A0F4();
-extern "C" extern void* __vt__Q214JStudio_JStage13TCreateObject[4];
 
 //
 // External References:
 //
-
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void __dt__Q27JStudio13TCreateObjectFv();
 extern "C" void
@@ -152,17 +148,16 @@ extern "C" void _restgpr_28();
 //
 
 /* ############################################################################################## */
-/* 803C5720-803C5730 0010+00 s=1 e=1 z=0  None .data      __vt__Q214JStudio_JStage13TCreateObject */
-SECTION_DATA void* __vt__Q214JStudio_JStage13TCreateObject[4] = {
-    (void*)NULL,
+/* 803C5720-803C5730 022840 0010+00 1/1 1/1 0/0 .data __vt__Q214JStudio_JStage13TCreateObject */
+SECTION_DATA extern void* __vt__Q214JStudio_JStage13TCreateObject[4] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__Q214JStudio_JStage13TCreateObjectFv,
     (void*)
         create__Q214JStudio_JStage13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object,
 };
 
-/* 80289B00-80289B60 0060+00 s=1 e=0 z=0  None .text      __dt__Q214JStudio_JStage13TCreateObjectFv
- */
+/* 80289B00-80289B60 284440 0060+00 1/0 0/0 0/0 .text __dt__Q214JStudio_JStage13TCreateObjectFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -172,7 +167,7 @@ asm JStudio_JStage::TCreateObject::~TCreateObject() {
 }
 #pragma pop
 
-/* 80289B60-80289CE4 0184+00 s=1 e=0 z=0  None .text
+/* 80289B60-80289CE4 2844A0 0184+00 1/0 0/0 0/0 .text
  * create__Q214JStudio_JStage13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
  */
 #pragma push
@@ -186,61 +181,61 @@ JStudio_JStage::TCreateObject::create(JStudio::TObject** param_0,
 }
 #pragma pop
 
-/* 80289CE4-80289DE8 0104+00 s=1 e=0 z=0  None .text
+/* 80289CE4-80289DE8 284624 0104+00 1/1 0/0 0/0 .text
  * createObject_JSG_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80289CE4() {
+static asm void func_80289CE4() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio_JStage/control/func_80289CE4.s"
 }
 #pragma pop
 
-/* 80289DE8-80289EEC 0104+00 s=1 e=0 z=0  None .text
+/* 80289DE8-80289EEC 284728 0104+00 1/1 0/0 0/0 .text
  * createObject_JSG_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80289DE8() {
+static asm void func_80289DE8() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio_JStage/control/func_80289DE8.s"
 }
 #pragma pop
 
-/* 80289EEC-80289FF0 0104+00 s=1 e=0 z=0  None .text
+/* 80289EEC-80289FF0 28482C 0104+00 1/1 0/0 0/0 .text
  * createObject_JSG_<Q214JStudio_JStage21TAdaptor_ambientLight,Q26JStage13TAmbientLight>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80289EEC() {
+static asm void func_80289EEC() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio_JStage/control/func_80289EEC.s"
 }
 #pragma pop
 
-/* 80289FF0-8028A0F4 0104+00 s=1 e=0 z=0  None .text
+/* 80289FF0-8028A0F4 284930 0104+00 1/1 0/0 0/0 .text
  * createObject_JSG_<Q214JStudio_JStage14TAdaptor_light,Q26JStage6TLight>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80289FF0() {
+static asm void func_80289FF0() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio_JStage/control/func_80289FF0.s"
 }
 #pragma pop
 
-/* 8028A0F4-8028A1F8 0104+00 s=1 e=0 z=0  None .text
+/* 8028A0F4-8028A1F8 284A34 0104+00 1/1 0/0 0/0 .text
  * createObject_JSG_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>__Q214JStudio_JStage21@unnamed@control_cpp@FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_8028A0F4() {
+static asm void func_8028A0F4() {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio_JStage/control/func_8028A0F4.s"
 }

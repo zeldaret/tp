@@ -32,8 +32,8 @@ lbl_80049934:
 /* 800499AC  48 11 5A 79 */	bl checkNowWolfEyeUp__9daPy_py_cFv
 /* 800499B0  2C 03 00 00 */	cmpwi r3, 0
 /* 800499B4  41 82 01 00 */	beq lbl_80049AB4
-/* 800499B8  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 800499BC  38 83 CA 54 */	addi r4, r3, g_env_light@l
+/* 800499B8  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 800499BC  38 83 CA 54 */	addi r4, r3, g_env_light@l /* 0x8042CA54@l */
 /* 800499C0  A8 04 11 08 */	lha r0, 0x1108(r4)
 /* 800499C4  C8 82 85 48 */	lfd f4, lit_3883(r2)
 /* 800499C8  6C 00 80 00 */	xoris r0, r0, 0x8000

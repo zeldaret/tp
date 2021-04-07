@@ -9,8 +9,8 @@ lbl_80138DC0:
 /* 80138DDC  7C 7E 1B 78 */	mr r30, r3
 /* 80138DE0  38 62 92 90 */	la r3, l_arcName(r2) /* 80452C90-_SDA2_BASE_ */
 /* 80138DE4  38 80 00 25 */	li r4, 0x25
-/* 80138DE8  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80138DEC  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80138DE8  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80138DEC  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80138DF0  3F E5 00 02 */	addis r31, r5, 2
 /* 80138DF4  3B FF C2 F8 */	addi r31, r31, -15624
 /* 80138DF8  7F E5 FB 78 */	mr r5, r31

@@ -5,20 +5,20 @@ lbl_8095BF6C:
 /* 8095BF78  93 E1 00 AC */	stw r31, 0xac(r1)
 /* 8095BF7C  93 C1 00 A8 */	stw r30, 0xa8(r1)
 /* 8095BF80  7C 7E 1B 78 */	mr r30, r3
-/* 8095BF84  3C 60 80 96 */	lis r3, m__16daNpcAsh_Param_c@ha
-/* 8095BF88  3B E3 D6 40 */	addi r31, r3, m__16daNpcAsh_Param_c@l
+/* 8095BF84  3C 60 80 96 */	lis r3, m__16daNpcAsh_Param_c@ha /* 0x8095D640@ha */
+/* 8095BF88  3B E3 D6 40 */	addi r31, r3, m__16daNpcAsh_Param_c@l /* 0x8095D640@l */
 /* 8095BF8C  38 7E 0F 30 */	addi r3, r30, 0xf30
-/* 8095BF90  4B A0 60 88 */	b __ptmf_test
+/* 8095BF90  4B A0 60 89 */	bl __ptmf_test
 /* 8095BF94  2C 03 00 00 */	cmpwi r3, 0
 /* 8095BF98  41 82 00 18 */	beq lbl_8095BFB0
 /* 8095BF9C  7F C3 F3 78 */	mr r3, r30
 /* 8095BFA0  38 80 00 00 */	li r4, 0
 /* 8095BFA4  39 9E 0F 30 */	addi r12, r30, 0xf30
-/* 8095BFA8  4B A0 60 DC */	b __ptmf_scall
+/* 8095BFA8  4B A0 60 DD */	bl __ptmf_scall
 /* 8095BFAC  60 00 00 00 */	nop 
 lbl_8095BFB0:
-/* 8095BFB0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8095BFB4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8095BFB0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8095BFB4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8095BFB8  88 03 4F AD */	lbz r0, 0x4fad(r3)
 /* 8095BFBC  28 00 00 00 */	cmplwi r0, 0
 /* 8095BFC0  41 82 00 30 */	beq lbl_8095BFF0
@@ -30,7 +30,7 @@ lbl_8095BFB0:
 /* 8095BFD8  28 00 FF FF */	cmplwi r0, 0xffff
 /* 8095BFDC  41 82 00 14 */	beq lbl_8095BFF0
 /* 8095BFE0  38 63 4E C8 */	addi r3, r3, 0x4ec8
-/* 8095BFE4  4B 6E 77 08 */	b setPtI_Id__14dEvt_control_cFUi
+/* 8095BFE4  4B 6E 77 09 */	bl setPtI_Id__14dEvt_control_cFUi
 /* 8095BFE8  38 00 FF FF */	li r0, -1
 /* 8095BFEC  90 1E 0F 4C */	stw r0, 0xf4c(r30)
 lbl_8095BFF0:
@@ -157,7 +157,7 @@ lbl_8095C168:
 /* 8095C1CC  40 80 00 10 */	bge lbl_8095C1DC
 /* 8095C1D0  7F C3 F3 78 */	mr r3, r30
 /* 8095C1D4  38 81 00 88 */	addi r4, r1, 0x88
-/* 8095C1D8  4B 7F 6F 78 */	b playExpressionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
+/* 8095C1D8  4B 7F 6F 79 */	bl playExpressionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
 lbl_8095C1DC:
 /* 8095C1DC  7F C3 F3 78 */	mr r3, r30
 /* 8095C1E0  48 00 00 21 */	bl playMotion__10daNpcAsh_cFv

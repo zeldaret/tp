@@ -17,7 +17,7 @@ lbl_8058A550:
 /* 8058A58C  7F C3 F3 78 */	mr r3, r30
 /* 8058A590  4B FF DC ED */	bl setBaseMtx__12daObjKGate_cFv
 /* 8058A594  80 7E 0A E4 */	lwz r3, 0xae4(r30)
-/* 8058A598  4B AF 14 28 */	b Move__4dBgWFv
+/* 8058A598  4B AF 14 29 */	bl Move__4dBgWFv
 /* 8058A59C  38 60 00 01 */	li r3, 1
 /* 8058A5A0  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8058A5A4  83 C1 00 08 */	lwz r30, 8(r1)

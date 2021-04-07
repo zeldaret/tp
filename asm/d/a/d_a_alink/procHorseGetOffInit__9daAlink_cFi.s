@@ -45,14 +45,14 @@ lbl_800F0414:
 /* 800F042C  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 800F0430  B0 1E 30 0E */	sth r0, 0x300e(r30)
 /* 800F0434  9B BE 2F C0 */	stb r29, 0x2fc0(r30)
-/* 800F0438  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800F043C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 800F0438  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800F043C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800F0440  C0 3F 04 D0 */	lfs f1, 0x4d0(r31)
 /* 800F0444  C0 5F 04 D4 */	lfs f2, 0x4d4(r31)
 /* 800F0448  C0 7F 04 D8 */	lfs f3, 0x4d8(r31)
 /* 800F044C  48 25 64 9D */	bl PSMTXTrans
-/* 800F0450  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800F0454  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 800F0450  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800F0454  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800F0458  A8 9F 04 E6 */	lha r4, 0x4e6(r31)
 /* 800F045C  4B F1 BF D9 */	bl mDoMtx_YrotM__FPA4_fs
 /* 800F0460  88 1E 2F C0 */	lbz r0, 0x2fc0(r30)
@@ -69,10 +69,10 @@ lbl_800F0414:
 /* 800F048C  38 00 00 40 */	li r0, 0x40
 lbl_800F0490:
 /* 800F0490  7C 1D 03 78 */	mr r29, r0
-/* 800F0494  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800F0498  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
-/* 800F049C  3C 80 80 39 */	lis r4, leftOffset@ha
-/* 800F04A0  38 84 19 90 */	addi r4, r4, leftOffset@l
+/* 800F0494  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800F0498  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 800F049C  3C 80 80 39 */	lis r4, leftOffset@ha /* 0x80391990@ha */
+/* 800F04A0  38 84 19 90 */	addi r4, r4, leftOffset@l /* 0x80391990@l */
 /* 800F04A4  38 A1 00 08 */	addi r5, r1, 8
 /* 800F04A8  48 25 68 C5 */	bl PSMTXMultVec
 /* 800F04AC  48 00 00 44 */	b lbl_800F04F0
@@ -88,10 +88,10 @@ lbl_800F04B0:
 /* 800F04D0  38 00 00 41 */	li r0, 0x41
 lbl_800F04D4:
 /* 800F04D4  7C 1D 03 78 */	mr r29, r0
-/* 800F04D8  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800F04DC  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
-/* 800F04E0  3C 80 80 39 */	lis r4, rightOffset@ha
-/* 800F04E4  38 84 19 9C */	addi r4, r4, rightOffset@l
+/* 800F04D8  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800F04DC  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 800F04E0  3C 80 80 39 */	lis r4, rightOffset@ha /* 0x8039199C@ha */
+/* 800F04E4  38 84 19 9C */	addi r4, r4, rightOffset@l /* 0x8039199C@l */
 /* 800F04E8  38 A1 00 08 */	addi r5, r1, 8
 /* 800F04EC  48 25 68 81 */	bl PSMTXMultVec
 lbl_800F04F0:
@@ -102,8 +102,8 @@ lbl_800F04F0:
 /* 800F0500  38 7E 1D 08 */	addi r3, r30, 0x1d08
 /* 800F0504  38 81 00 08 */	addi r4, r1, 8
 /* 800F0508  48 17 78 21 */	bl SetPos__11cBgS_GndChkFPC4cXyz
-/* 800F050C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800F0510  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800F050C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800F0510  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800F0514  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 800F0518  38 9E 1D 08 */	addi r4, r30, 0x1d08
 /* 800F051C  4B F8 3F 85 */	bl GroundCross__4cBgSFP11cBgS_GndChk
@@ -141,8 +141,8 @@ lbl_800F0560:
 /* 800F0594  88 1E 2F C0 */	lbz r0, 0x2fc0(r30)
 /* 800F0598  28 00 00 00 */	cmplwi r0, 0
 /* 800F059C  40 82 00 24 */	bne lbl_800F05C0
-/* 800F05A0  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 800F05A4  38 63 55 14 */	addi r3, r3, l_waitBaseAnime@l
+/* 800F05A0  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 800F05A4  38 63 55 14 */	addi r3, r3, l_waitBaseAnime@l /* 0x80425514@l */
 /* 800F05A8  C0 03 00 08 */	lfs f0, 8(r3)
 /* 800F05AC  FC 00 00 50 */	fneg f0, f0
 /* 800F05B0  D0 1E 37 C8 */	stfs f0, 0x37c8(r30)
@@ -150,16 +150,16 @@ lbl_800F0560:
 /* 800F05B8  D0 1E 37 D0 */	stfs f0, 0x37d0(r30)
 /* 800F05BC  48 00 00 20 */	b lbl_800F05DC
 lbl_800F05C0:
-/* 800F05C0  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 800F05C4  38 63 55 14 */	addi r3, r3, l_waitBaseAnime@l
+/* 800F05C0  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 800F05C4  38 63 55 14 */	addi r3, r3, l_waitBaseAnime@l /* 0x80425514@l */
 /* 800F05C8  C0 03 00 08 */	lfs f0, 8(r3)
 /* 800F05CC  D0 1E 37 C8 */	stfs f0, 0x37c8(r30)
 /* 800F05D0  C0 03 00 00 */	lfs f0, 0(r3)
 /* 800F05D4  FC 00 00 50 */	fneg f0, f0
 /* 800F05D8  D0 1E 37 D0 */	stfs f0, 0x37d0(r30)
 lbl_800F05DC:
-/* 800F05DC  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 800F05E0  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)
+/* 800F05DC  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 800F05E0  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)  /* 0x80425514@l */
 /* 800F05E4  D0 1E 35 88 */	stfs f0, 0x3588(r30)
 /* 800F05E8  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800F05EC  D0 1E 35 8C */	stfs f0, 0x358c(r30)

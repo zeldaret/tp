@@ -60,8 +60,8 @@ lbl_8012CDF8:
 /* 8012CE00  41 82 00 24 */	beq lbl_8012CE24
 /* 8012CE04  7F E3 FB 78 */	mr r3, r31
 /* 8012CE08  38 80 00 0E */	li r4, 0xe
-/* 8012CE0C  3C A0 80 39 */	lis r5, m__19daAlinkHIO_wlLie_c0@ha
-/* 8012CE10  38 A5 F1 38 */	addi r5, r5, m__19daAlinkHIO_wlLie_c0@l
+/* 8012CE0C  3C A0 80 39 */	lis r5, m__19daAlinkHIO_wlLie_c0@ha /* 0x8038F138@ha */
+/* 8012CE10  38 A5 F1 38 */	addi r5, r5, m__19daAlinkHIO_wlLie_c0@l /* 0x8038F138@l */
 /* 8012CE14  C0 25 00 44 */	lfs f1, 0x44(r5)
 /* 8012CE18  C0 45 00 48 */	lfs f2, 0x48(r5)
 /* 8012CE1C  4B FF C8 BD */	bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff

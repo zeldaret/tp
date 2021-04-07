@@ -18,8 +18,8 @@ lbl_80151A54:
 /* 80151A94  3B 00 00 00 */	li r24, 0
 /* 80151A98  3A E0 00 00 */	li r23, 0
 /* 80151A9C  3A C0 00 00 */	li r22, 0
-/* 80151AA0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80151AA4  3B E3 D4 70 */	addi r31, r3, now__14mDoMtx_stack_c@l
+/* 80151AA0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80151AA4  3B E3 D4 70 */	addi r31, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80151AA8  7F F4 FB 78 */	mr r20, r31
 /* 80151AAC  C3 E2 99 D8 */	lfs f31, lit_4116(r2)
 /* 80151AB0  7F F5 FB 78 */	mr r21, r31

@@ -3,19 +3,20 @@
 #
 
 M72_TARGET := $(BUILD_DIR)/rel/d/a/d_a_fr.plf
+M72_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_fr.lcf
+M72_MAP := $(BUILD_DIR)/rel/d/a/d_a_fr.map
 
 M72_CPP_FILES := \
-	rel/d/a/d_a_fr/executor.cpp \
-	rel/d/a/d_a_fr/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_fr/d_a_fr.cpp \
 
 M72_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_fr/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_fr/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_fr/d_a_fr.o \
 
 M72_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_fr/libRuntime.PPCEABI.H.a \
 
 M72_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M72_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M72_LDSCRIPT) \
+	-unused -map $(M72_MAP) \
+	-w off \
 
 $(M72_TARGET): $(M72_O_FILES) $(M72_LIBS)
+	@echo [ 72] creating $(M72_TARGET)
 	@echo $(M72_LIBS) $(M72_O_FILES) > build/M72_ofiles
-	$(LD) -partial $(M72_LDFLAGS) -o $(M72_TARGET) @build/M72_ofiles
+	@python3 tools/lcf.py rel 72 --output $(M72_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M72_LDFLAGS) -o $(M72_TARGET) @build/M72_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_fr/%.o: rel/d/a/d_a_fr/%.cpp
+	@echo [ 72] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M72_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M72_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_fr/libs/Runtime.PPCEABI.H/Makefile
 

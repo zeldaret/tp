@@ -23,8 +23,8 @@ lbl_800C5240:
 /* 800C5294  48 00 00 78 */	b lbl_800C530C
 lbl_800C5298:
 /* 800C5298  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 800C529C  3C 60 80 39 */	lis r3, m__23daAlinkHIO_frontRoll_c0@ha
-/* 800C52A0  38 63 D7 BC */	addi r3, r3, m__23daAlinkHIO_frontRoll_c0@l
+/* 800C529C  3C 60 80 39 */	lis r3, m__23daAlinkHIO_frontRoll_c0@ha /* 0x8038D7BC@ha */
+/* 800C52A0  38 63 D7 BC */	addi r3, r3, m__23daAlinkHIO_frontRoll_c0@l /* 0x8038D7BC@l */
 /* 800C52A4  C0 03 00 38 */	lfs f0, 0x38(r3)
 /* 800C52A8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800C52AC  40 81 00 28 */	ble lbl_800C52D4

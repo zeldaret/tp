@@ -6,7 +6,7 @@ lbl_80982B04:
 /* 80982B14  93 C1 00 08 */	stw r30, 8(r1)
 /* 80982B18  7C 7E 1B 78 */	mr r30, r3
 /* 80982B1C  7C 9F 23 78 */	mr r31, r4
-/* 80982B20  4B 69 61 C0 */	b fopAc_IsActor__FPv
+/* 80982B20  4B 69 61 C1 */	bl fopAc_IsActor__FPv
 /* 80982B24  2C 03 00 00 */	cmpwi r3, 0
 /* 80982B28  41 82 00 1C */	beq lbl_80982B44
 /* 80982B2C  A8 1E 00 08 */	lha r0, 8(r30)

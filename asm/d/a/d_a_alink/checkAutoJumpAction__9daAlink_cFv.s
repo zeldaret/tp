@@ -17,8 +17,8 @@ lbl_800B607C:
 /* 800B60B8  39 61 00 60 */	addi r11, r1, 0x60
 /* 800B60BC  48 2A C1 15 */	bl _savegpr_26
 /* 800B60C0  7C 7A 1B 78 */	mr r26, r3
-/* 800B60C4  3C 80 80 39 */	lis r4, lit_3757@ha
-/* 800B60C8  3B C4 D6 58 */	addi r30, r4, lit_3757@l
+/* 800B60C4  3C 80 80 39 */	lis r4, lit_3757@ha /* 0x8038D658@ha */
+/* 800B60C8  3B C4 D6 58 */	addi r30, r4, lit_3757@l /* 0x8038D658@l */
 /* 800B60CC  48 02 CE BD */	bl checkMagneBootsFly__9daAlink_cFv
 /* 800B60D0  2C 03 00 00 */	cmpwi r3, 0
 /* 800B60D4  41 82 00 0C */	beq lbl_800B60E0
@@ -187,11 +187,11 @@ lbl_800B62C0:
 /* 800B632C  38 7A 1D 08 */	addi r3, r26, 0x1d08
 /* 800B6330  38 81 00 14 */	addi r4, r1, 0x14
 /* 800B6334  48 1B 19 F5 */	bl SetPos__11cBgS_GndChkFPC4cXyz
-/* 800B6338  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800B633C  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800B6338  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800B633C  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800B6340  90 01 00 44 */	stw r0, 0x44(r1)
-/* 800B6344  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800B6348  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800B6344  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800B6348  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800B634C  3B A3 0F 38 */	addi r29, r3, 0xf38
 /* 800B6350  7F A3 EB 78 */	mr r3, r29
 /* 800B6354  38 9A 1D 08 */	addi r4, r26, 0x1d08
@@ -228,8 +228,8 @@ lbl_800B638C:
 /* 800B63C8  D0 01 00 08 */	stfs f0, 8(r1)
 /* 800B63CC  D0 81 00 0C */	stfs f4, 0xc(r1)
 /* 800B63D0  D0 61 00 10 */	stfs f3, 0x10(r1)
-/* 800B63D4  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800B63D8  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800B63D4  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800B63D8  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800B63DC  90 01 00 30 */	stw r0, 0x30(r1)
 /* 800B63E0  7F 43 D3 78 */	mr r3, r26
 /* 800B63E4  38 81 00 14 */	addi r4, r1, 0x14
@@ -301,8 +301,8 @@ lbl_800B64C4:
 lbl_800B64CC:
 /* 800B64CC  C3 62 93 B4 */	lfs f27, lit_10040(r2)
 lbl_800B64D0:
-/* 800B64D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800B64D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800B64D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800B64D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800B64D8  A0 03 00 02 */	lhz r0, 2(r3)
 /* 800B64DC  28 00 00 00 */	cmplwi r0, 0
 /* 800B64E0  40 82 00 18 */	bne lbl_800B64F8
@@ -378,8 +378,8 @@ lbl_800B65D4:
 /* 800B65E0  7F 43 D3 78 */	mr r3, r26
 /* 800B65E4  38 80 00 00 */	li r4, 0
 /* 800B65E8  48 07 83 E1 */	bl procWolfAutoJumpInit__9daAlink_cFi
-/* 800B65EC  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha
-/* 800B65F0  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l
+/* 800B65EC  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800B65F0  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800B65F4  90 01 00 30 */	stw r0, 0x30(r1)
 /* 800B65F8  90 01 00 44 */	stw r0, 0x44(r1)
 /* 800B65FC  48 00 03 88 */	b lbl_800B6984
@@ -393,8 +393,8 @@ lbl_800B6600:
 /* 800B6618  40 82 00 20 */	bne lbl_800B6638
 /* 800B661C  7F 43 D3 78 */	mr r3, r26
 /* 800B6620  48 01 00 BD */	bl procDiveJumpInit__9daAlink_cFv
-/* 800B6624  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha
-/* 800B6628  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l
+/* 800B6624  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800B6628  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800B662C  90 01 00 30 */	stw r0, 0x30(r1)
 /* 800B6630  90 01 00 44 */	stw r0, 0x44(r1)
 /* 800B6634  48 00 03 50 */	b lbl_800B6984
@@ -402,8 +402,8 @@ lbl_800B6638:
 /* 800B6638  7F 43 D3 78 */	mr r3, r26
 /* 800B663C  38 80 00 00 */	li r4, 0
 /* 800B6640  48 00 F8 29 */	bl procAutoJumpInit__9daAlink_cFi
-/* 800B6644  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha
-/* 800B6648  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l
+/* 800B6644  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800B6648  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800B664C  90 01 00 30 */	stw r0, 0x30(r1)
 /* 800B6650  90 01 00 44 */	stw r0, 0x44(r1)
 /* 800B6654  48 00 03 30 */	b lbl_800B6984
@@ -472,8 +472,8 @@ lbl_800B6704:
 /* 800B6748  7C 64 1B 78 */	mr r4, r3
 /* 800B674C  7F 43 D3 78 */	mr r3, r26
 /* 800B6750  48 04 90 C9 */	bl procClimbDownStartInit__9daAlink_cFs
-/* 800B6754  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha
-/* 800B6758  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l
+/* 800B6754  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800B6758  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800B675C  90 01 00 30 */	stw r0, 0x30(r1)
 /* 800B6760  90 01 00 44 */	stw r0, 0x44(r1)
 /* 800B6764  48 00 02 20 */	b lbl_800B6984
@@ -496,8 +496,8 @@ lbl_800B6788:
 /* 800B67A0  2C 03 00 00 */	cmpwi r3, 0
 /* 800B67A4  41 82 00 1C */	beq lbl_800B67C0
 lbl_800B67A8:
-/* 800B67A8  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800B67AC  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800B67A8  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800B67AC  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800B67B0  90 01 00 30 */	stw r0, 0x30(r1)
 /* 800B67B4  90 01 00 44 */	stw r0, 0x44(r1)
 /* 800B67B8  38 60 00 01 */	li r3, 1
@@ -541,8 +541,8 @@ lbl_800B67F8:
 /* 800B683C  41 80 00 4C */	blt lbl_800B6888
 /* 800B6840  A8 1A 04 E6 */	lha r0, 0x4e6(r26)
 /* 800B6844  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 800B6848  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800B684C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800B6848  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800B684C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800B6850  7C 03 04 2E */	lfsx f0, r3, r0
 /* 800B6854  C0 3A 04 D0 */	lfs f1, 0x4d0(r26)
 /* 800B6858  C0 42 94 80 */	lfs f2, lit_16036(r2)
@@ -558,8 +558,8 @@ lbl_800B67F8:
 /* 800B6880  EC 01 00 28 */	fsubs f0, f1, f0
 /* 800B6884  D0 1A 04 D8 */	stfs f0, 0x4d8(r26)
 lbl_800B6888:
-/* 800B6888  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800B688C  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800B6888  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800B688C  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800B6890  90 01 00 30 */	stw r0, 0x30(r1)
 /* 800B6894  90 01 00 44 */	stw r0, 0x44(r1)
 /* 800B6898  48 00 00 0C */	b lbl_800B68A4

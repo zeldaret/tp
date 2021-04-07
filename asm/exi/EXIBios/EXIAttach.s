@@ -6,8 +6,8 @@ lbl_803436A0:
 /* 803436B0  3B 63 00 00 */	addi r27, r3, 0
 /* 803436B4  3B 84 00 00 */	addi r28, r4, 0
 /* 803436B8  54 64 30 32 */	slwi r4, r3, 6
-/* 803436BC  3C 60 80 45 */	lis r3, Ecb@ha
-/* 803436C0  38 03 C5 70 */	addi r0, r3, Ecb@l
+/* 803436BC  3C 60 80 45 */	lis r3, Ecb@ha /* 0x8044C570@ha */
+/* 803436C0  38 03 C5 70 */	addi r0, r3, Ecb@l /* 0x8044C570@l */
 /* 803436C4  7F C0 22 14 */	add r30, r0, r4
 /* 803436C8  38 7B 00 00 */	addi r3, r27, 0
 /* 803436CC  4B FF FD 2D */	bl __EXIProbe

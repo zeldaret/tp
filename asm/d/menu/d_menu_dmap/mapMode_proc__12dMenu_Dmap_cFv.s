@@ -20,8 +20,8 @@ lbl_801BFA24:
 /* 801BFA24  7F C3 F3 78 */	mr r3, r30
 /* 801BFA28  88 1E 01 7D */	lbz r0, 0x17d(r30)
 /* 801BFA2C  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801BFA30  3C 80 80 3C */	lis r4, floor_move_process@ha
-/* 801BFA34  38 04 C9 9C */	addi r0, r4, floor_move_process@l
+/* 801BFA30  3C 80 80 3C */	lis r4, floor_move_process@ha /* 0x803BC99C@ha */
+/* 801BFA34  38 04 C9 9C */	addi r0, r4, floor_move_process@l /* 0x803BC99C@l */
 /* 801BFA38  7D 80 2A 14 */	add r12, r0, r5
 /* 801BFA3C  48 1A 26 49 */	bl __ptmf_scall
 /* 801BFA40  60 00 00 00 */	nop 
@@ -30,8 +30,8 @@ lbl_801BFA24:
 /* 801BFA4C  41 82 00 20 */	beq lbl_801BFA6C
 /* 801BFA50  7F C3 F3 78 */	mr r3, r30
 /* 801BFA54  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801BFA58  3C 80 80 3C */	lis r4, floor_init_process@ha
-/* 801BFA5C  38 04 C9 6C */	addi r0, r4, floor_init_process@l
+/* 801BFA58  3C 80 80 3C */	lis r4, floor_init_process@ha /* 0x803BC96C@ha */
+/* 801BFA5C  38 04 C9 6C */	addi r0, r4, floor_init_process@l /* 0x803BC96C@l */
 /* 801BFA60  7D 80 2A 14 */	add r12, r0, r5
 /* 801BFA64  48 1A 26 21 */	bl __ptmf_scall
 /* 801BFA68  60 00 00 00 */	nop 

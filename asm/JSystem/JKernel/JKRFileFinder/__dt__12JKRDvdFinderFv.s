@@ -7,8 +7,8 @@ lbl_802D47F4:
 /* 802D4808  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802D480C  7C 9F 23 78 */	mr r31, r4
 /* 802D4810  41 82 00 48 */	beq lbl_802D4858
-/* 802D4814  3C 60 80 3D */	lis r3, __vt__12JKRDvdFinder@ha
-/* 802D4818  38 03 C2 08 */	addi r0, r3, __vt__12JKRDvdFinder@l
+/* 802D4814  3C 60 80 3D */	lis r3, __vt__12JKRDvdFinder@ha /* 0x803CC208@ha */
+/* 802D4818  38 03 C2 08 */	addi r0, r3, __vt__12JKRDvdFinder@l /* 0x803CC208@l */
 /* 802D481C  90 1E 00 0C */	stw r0, 0xc(r30)
 /* 802D4820  88 1E 00 20 */	lbz r0, 0x20(r30)
 /* 802D4824  28 00 00 00 */	cmplwi r0, 0
@@ -18,8 +18,8 @@ lbl_802D47F4:
 lbl_802D4834:
 /* 802D4834  28 1E 00 00 */	cmplwi r30, 0
 /* 802D4838  41 82 00 10 */	beq lbl_802D4848
-/* 802D483C  3C 60 80 3D */	lis r3, __vt__13JKRFileFinder@ha
-/* 802D4840  38 03 C2 28 */	addi r0, r3, __vt__13JKRFileFinder@l
+/* 802D483C  3C 60 80 3D */	lis r3, __vt__13JKRFileFinder@ha /* 0x803CC228@ha */
+/* 802D4840  38 03 C2 28 */	addi r0, r3, __vt__13JKRFileFinder@l /* 0x803CC228@l */
 /* 802D4844  90 1E 00 0C */	stw r0, 0xc(r30)
 lbl_802D4848:
 /* 802D4848  7F E0 07 35 */	extsh. r0, r31

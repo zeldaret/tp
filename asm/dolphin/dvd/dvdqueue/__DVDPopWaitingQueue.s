@@ -5,9 +5,9 @@ lbl_8034B914:
 /* 8034B920  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8034B924  4B FF 1D D1 */	bl OSDisableInterrupts
 /* 8034B928  38 00 00 04 */	li r0, 4
-/* 8034B92C  3C 80 80 45 */	lis r4, WaitingQueue@ha
+/* 8034B92C  3C 80 80 45 */	lis r4, WaitingQueue@ha /* 0x8044C998@ha */
 /* 8034B930  7C 09 03 A6 */	mtctr r0
-/* 8034B934  38 84 C9 98 */	addi r4, r4, WaitingQueue@l
+/* 8034B934  38 84 C9 98 */	addi r4, r4, WaitingQueue@l /* 0x8044C998@l */
 /* 8034B938  3B E0 00 00 */	li r31, 0
 lbl_8034B93C:
 /* 8034B93C  80 04 00 00 */	lwz r0, 0(r4)
@@ -15,9 +15,9 @@ lbl_8034B93C:
 /* 8034B944  41 82 00 48 */	beq lbl_8034B98C
 /* 8034B948  4B FF 1D D5 */	bl OSRestoreInterrupts
 /* 8034B94C  4B FF 1D A9 */	bl OSDisableInterrupts
-/* 8034B950  3C 80 80 45 */	lis r4, WaitingQueue@ha
+/* 8034B950  3C 80 80 45 */	lis r4, WaitingQueue@ha /* 0x8044C998@ha */
 /* 8034B954  57 E5 18 38 */	slwi r5, r31, 3
-/* 8034B958  38 04 C9 98 */	addi r0, r4, WaitingQueue@l
+/* 8034B958  38 04 C9 98 */	addi r0, r4, WaitingQueue@l /* 0x8044C998@l */
 /* 8034B95C  7C A0 2A 14 */	add r5, r0, r5
 /* 8034B960  83 E5 00 00 */	lwz r31, 0(r5)
 /* 8034B964  80 1F 00 00 */	lwz r0, 0(r31)

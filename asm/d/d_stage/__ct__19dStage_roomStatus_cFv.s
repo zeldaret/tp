@@ -5,20 +5,20 @@ lbl_8002839C:
 /* 800283A8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800283AC  93 C1 00 08 */	stw r30, 8(r1)
 /* 800283B0  7C 7E 1B 78 */	mr r30, r3
-/* 800283B4  3C 60 80 3A */	lis r3, __vt__11dStage_dt_c@ha
-/* 800283B8  38 03 6D 94 */	addi r0, r3, __vt__11dStage_dt_c@l
+/* 800283B4  3C 60 80 3A */	lis r3, __vt__11dStage_dt_c@ha /* 0x803A6D94@ha */
+/* 800283B8  38 03 6D 94 */	addi r0, r3, __vt__11dStage_dt_c@l /* 0x803A6D94@l */
 /* 800283BC  90 1E 00 00 */	stw r0, 0(r30)
-/* 800283C0  3C 60 80 3A */	lis r3, __vt__15dStage_roomDt_c@ha
-/* 800283C4  38 03 6A AC */	addi r0, r3, __vt__15dStage_roomDt_c@l
+/* 800283C0  3C 60 80 3A */	lis r3, __vt__15dStage_roomDt_c@ha /* 0x803A6AAC@ha */
+/* 800283C4  38 03 6A AC */	addi r0, r3, __vt__15dStage_roomDt_c@l /* 0x803A6AAC@l */
 /* 800283C8  90 1E 00 00 */	stw r0, 0(r30)
 /* 800283CC  3B FE 00 6C */	addi r31, r30, 0x6c
 /* 800283D0  7F E3 FB 78 */	mr r3, r31
-/* 800283D4  3C 80 80 3A */	lis r4, j3dDefaultLightInfo@ha
-/* 800283D8  38 84 1E C8 */	addi r4, r4, j3dDefaultLightInfo@l
+/* 800283D4  3C 80 80 3A */	lis r4, j3dDefaultLightInfo@ha /* 0x803A1EC8@ha */
+/* 800283D8  38 84 1E C8 */	addi r4, r4, j3dDefaultLightInfo@l /* 0x803A1EC8@l */
 /* 800283DC  48 2F D2 E9 */	bl __as__12J3DLightInfoFRC12J3DLightInfo
 /* 800283E0  38 7F 00 74 */	addi r3, r31, 0x74
-/* 800283E4  3C 80 80 02 */	lis r4, __ct__11J3DLightObjFv@ha
-/* 800283E8  38 84 8C 0C */	addi r4, r4, __ct__11J3DLightObjFv@l
+/* 800283E4  3C 80 80 02 */	lis r4, __ct__11J3DLightObjFv@ha /* 0x80018C0C@ha */
+/* 800283E8  38 84 8C 0C */	addi r4, r4, __ct__11J3DLightObjFv@l /* 0x80018C0C@l */
 /* 800283EC  38 A0 00 00 */	li r5, 0
 /* 800283F0  38 C0 00 74 */	li r6, 0x74
 /* 800283F4  38 E0 00 06 */	li r7, 6

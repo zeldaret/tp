@@ -11,14 +11,14 @@ lbl_8025DBE0:
 /* 8025DC04  41 82 00 BC */	beq lbl_8025DCC0
 /* 8025DC08  88 1E 03 DD */	lbz r0, 0x3dd(r30)
 /* 8025DC0C  54 05 10 3A */	slwi r5, r0, 2
-/* 8025DC10  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8025DC14  38 04 EB C8 */	addi r0, r4, g_drawHIO@l
+/* 8025DC10  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025DC14  38 04 EB C8 */	addi r0, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025DC18  7C 80 2A 14 */	add r4, r0, r5
 /* 8025DC1C  C0 24 0A A4 */	lfs f1, 0xaa4(r4)
 /* 8025DC20  C0 44 0A B0 */	lfs f2, 0xab0(r4)
 /* 8025DC24  48 00 1D DD */	bl setParentPos__21dDlst_TimerScrnDraw_cFff
-/* 8025DC28  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8025DC2C  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8025DC28  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025DC2C  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025DC30  88 1E 03 DD */	lbz r0, 0x3dd(r30)
 /* 8025DC34  54 00 10 3A */	slwi r0, r0, 2
 /* 8025DC38  7C 63 02 14 */	add r3, r3, r0
@@ -38,8 +38,8 @@ lbl_8025DBE0:
 /* 8025DC70  28 00 00 00 */	cmplwi r0, 0
 /* 8025DC74  41 82 00 4C */	beq lbl_8025DCC0
 /* 8025DC78  C0 1E 03 B0 */	lfs f0, 0x3b0(r30)
-/* 8025DC7C  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8025DC80  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8025DC7C  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025DC80  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025DC84  3B A3 0A BC */	addi r29, r3, 0xabc
 /* 8025DC88  88 1E 03 DD */	lbz r0, 0x3dd(r30)
 /* 8025DC8C  54 00 10 3A */	slwi r0, r0, 2
@@ -67,8 +67,8 @@ lbl_8025DCC0:
 /* 8025DCDC  28 00 00 00 */	cmplwi r0, 0
 /* 8025DCE0  40 82 00 20 */	bne lbl_8025DD00
 /* 8025DCE4  7F C3 F3 78 */	mr r3, r30
-/* 8025DCE8  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8025DCEC  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 8025DCE8  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025DCEC  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025DCF0  C0 24 0B 84 */	lfs f1, 0xb84(r4)
 /* 8025DCF4  C0 44 0B 88 */	lfs f2, 0xb88(r4)
 /* 8025DCF8  48 00 1D 35 */	bl setTimerPos__21dDlst_TimerScrnDraw_cFff
@@ -77,8 +77,8 @@ lbl_8025DD00:
 /* 8025DD00  88 1E 03 DD */	lbz r0, 0x3dd(r30)
 /* 8025DD04  54 05 10 3A */	slwi r5, r0, 2
 /* 8025DD08  7F C3 F3 78 */	mr r3, r30
-/* 8025DD0C  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8025DD10  38 04 EB C8 */	addi r0, r4, g_drawHIO@l
+/* 8025DD0C  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025DD10  38 04 EB C8 */	addi r0, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025DD14  7C 80 2A 14 */	add r4, r0, r5
 /* 8025DD18  C0 24 0A E0 */	lfs f1, 0xae0(r4)
 /* 8025DD1C  C0 44 0A EC */	lfs f2, 0xaec(r4)
@@ -90,8 +90,8 @@ lbl_8025DD24:
 /* 8025DD30  88 1E 03 DD */	lbz r0, 0x3dd(r30)
 /* 8025DD34  28 00 00 00 */	cmplwi r0, 0
 /* 8025DD38  40 82 00 38 */	bne lbl_8025DD70
-/* 8025DD3C  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8025DD40  38 83 EB C8 */	addi r4, r3, g_drawHIO@l
+/* 8025DD3C  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025DD40  38 83 EB C8 */	addi r4, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025DD44  C0 24 0B 80 */	lfs f1, 0xb80(r4)
 /* 8025DD48  80 7E 00 18 */	lwz r3, 0x18(r30)
 /* 8025DD4C  80 63 00 04 */	lwz r3, 4(r3)
@@ -104,8 +104,8 @@ lbl_8025DD24:
 /* 8025DD68  4E 80 04 21 */	bctrl 
 /* 8025DD6C  48 00 00 40 */	b lbl_8025DDAC
 lbl_8025DD70:
-/* 8025DD70  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8025DD74  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8025DD70  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025DD74  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025DD78  88 1E 03 DD */	lbz r0, 0x3dd(r30)
 /* 8025DD7C  54 00 10 3A */	slwi r0, r0, 2
 /* 8025DD80  7C 83 02 14 */	add r4, r3, r0
@@ -124,8 +124,8 @@ lbl_8025DDAC:
 /* 8025DDB0  28 00 00 00 */	cmplwi r0, 0
 /* 8025DDB4  41 82 00 58 */	beq lbl_8025DE0C
 /* 8025DDB8  C0 1E 03 B4 */	lfs f0, 0x3b4(r30)
-/* 8025DDBC  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8025DDC0  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8025DDBC  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025DDC0  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025DDC4  3B A3 0A F8 */	addi r29, r3, 0xaf8
 /* 8025DDC8  88 1E 03 DD */	lbz r0, 0x3dd(r30)
 /* 8025DDCC  54 00 10 3A */	slwi r0, r0, 2
@@ -153,14 +153,14 @@ lbl_8025DE0C:
 /* 8025DE18  88 1E 03 DD */	lbz r0, 0x3dd(r30)
 /* 8025DE1C  54 05 10 3A */	slwi r5, r0, 2
 /* 8025DE20  7F C3 F3 78 */	mr r3, r30
-/* 8025DE24  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8025DE28  38 04 EB C8 */	addi r0, r4, g_drawHIO@l
+/* 8025DE24  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025DE28  38 04 EB C8 */	addi r0, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025DE2C  7C 80 2A 14 */	add r4, r0, r5
 /* 8025DE30  C0 24 0B 1C */	lfs f1, 0xb1c(r4)
 /* 8025DE34  C0 44 0B 28 */	lfs f2, 0xb28(r4)
 /* 8025DE38  48 00 1C 35 */	bl setCounterPos__21dDlst_TimerScrnDraw_cFff
-/* 8025DE3C  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8025DE40  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8025DE3C  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025DE40  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025DE44  88 1E 03 DD */	lbz r0, 0x3dd(r30)
 /* 8025DE48  54 00 10 3A */	slwi r0, r0, 2
 /* 8025DE4C  7C 83 02 14 */	add r4, r3, r0
@@ -178,8 +178,8 @@ lbl_8025DE0C:
 /* 8025DE7C  28 00 00 00 */	cmplwi r0, 0
 /* 8025DE80  41 82 00 58 */	beq lbl_8025DED8
 /* 8025DE84  C0 1E 03 B8 */	lfs f0, 0x3b8(r30)
-/* 8025DE88  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8025DE8C  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8025DE88  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025DE8C  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025DE90  3B A3 0B 34 */	addi r29, r3, 0xb34
 /* 8025DE94  88 1E 03 DD */	lbz r0, 0x3dd(r30)
 /* 8025DE98  54 00 10 3A */	slwi r0, r0, 2
@@ -207,14 +207,14 @@ lbl_8025DED8:
 /* 8025DEE4  88 1E 03 DD */	lbz r0, 0x3dd(r30)
 /* 8025DEE8  54 05 10 3A */	slwi r5, r0, 2
 /* 8025DEEC  7F C3 F3 78 */	mr r3, r30
-/* 8025DEF0  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8025DEF4  38 04 EB C8 */	addi r0, r4, g_drawHIO@l
+/* 8025DEF0  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025DEF4  38 04 EB C8 */	addi r0, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025DEF8  7C 80 2A 14 */	add r4, r0, r5
 /* 8025DEFC  C0 24 0B 58 */	lfs f1, 0xb58(r4)
 /* 8025DF00  C0 44 0B 64 */	lfs f2, 0xb64(r4)
 /* 8025DF04  48 00 1B 95 */	bl setImagePos__21dDlst_TimerScrnDraw_cFff
-/* 8025DF08  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8025DF0C  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8025DF08  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025DF0C  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025DF10  88 1E 03 DD */	lbz r0, 0x3dd(r30)
 /* 8025DF14  54 00 10 3A */	slwi r0, r0, 2
 /* 8025DF18  7C 83 02 14 */	add r4, r3, r0
@@ -232,8 +232,8 @@ lbl_8025DED8:
 /* 8025DF48  28 00 00 00 */	cmplwi r0, 0
 /* 8025DF4C  41 82 00 58 */	beq lbl_8025DFA4
 /* 8025DF50  C0 1E 03 BC */	lfs f0, 0x3bc(r30)
-/* 8025DF54  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 8025DF58  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 8025DF54  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8025DF58  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8025DF5C  3B A3 0B 70 */	addi r29, r3, 0xb70
 /* 8025DF60  88 1E 03 DD */	lbz r0, 0x3dd(r30)
 /* 8025DF64  54 00 10 3A */	slwi r0, r0, 2

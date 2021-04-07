@@ -5,16 +5,16 @@ lbl_8032C2AC:
 /* 8032C2B8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8032C2BC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8032C2C0  41 82 00 40 */	beq lbl_8032C300
-/* 8032C2C4  3C 60 80 3D */	lis r3, __vt__19J3DAnmTransformFull@ha
-/* 8032C2C8  38 03 EE 48 */	addi r0, r3, __vt__19J3DAnmTransformFull@l
+/* 8032C2C4  3C 60 80 3D */	lis r3, __vt__19J3DAnmTransformFull@ha /* 0x803CEE48@ha */
+/* 8032C2C8  38 03 EE 48 */	addi r0, r3, __vt__19J3DAnmTransformFull@l /* 0x803CEE48@l */
 /* 8032C2CC  90 1F 00 00 */	stw r0, 0(r31)
 /* 8032C2D0  41 82 00 20 */	beq lbl_8032C2F0
-/* 8032C2D4  3C 60 80 3A */	lis r3, __vt__15J3DAnmTransform@ha
-/* 8032C2D8  38 03 7C 48 */	addi r0, r3, __vt__15J3DAnmTransform@l
+/* 8032C2D4  3C 60 80 3A */	lis r3, __vt__15J3DAnmTransform@ha /* 0x803A7C48@ha */
+/* 8032C2D8  38 03 7C 48 */	addi r0, r3, __vt__15J3DAnmTransform@l /* 0x803A7C48@l */
 /* 8032C2DC  90 1F 00 00 */	stw r0, 0(r31)
 /* 8032C2E0  41 82 00 10 */	beq lbl_8032C2F0
-/* 8032C2E4  3C 60 80 3A */	lis r3, __vt__10J3DAnmBase@ha
-/* 8032C2E8  38 03 7C 38 */	addi r0, r3, __vt__10J3DAnmBase@l
+/* 8032C2E4  3C 60 80 3A */	lis r3, __vt__10J3DAnmBase@ha /* 0x803A7C38@ha */
+/* 8032C2E8  38 03 7C 38 */	addi r0, r3, __vt__10J3DAnmBase@l /* 0x803A7C38@l */
 /* 8032C2EC  90 1F 00 00 */	stw r0, 0(r31)
 lbl_8032C2F0:
 /* 8032C2F0  7C 80 07 35 */	extsh. r0, r4

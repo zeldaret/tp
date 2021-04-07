@@ -3,8 +3,8 @@ lbl_80554A90:
 /* 80554A94  54 00 06 3E */	clrlwi r0, r0, 0x18
 /* 80554A98  28 00 00 0D */	cmplwi r0, 0xd
 /* 80554A9C  41 81 00 8C */	bgt lbl_80554B28
-/* 80554AA0  3C 60 80 56 */	lis r3, lit_4528@ha
-/* 80554AA4  38 63 B0 E0 */	addi r3, r3, lit_4528@l
+/* 80554AA0  3C 60 80 56 */	lis r3, lit_4528@ha /* 0x8055B0E0@ha */
+/* 80554AA4  38 63 B0 E0 */	addi r3, r3, lit_4528@l /* 0x8055B0E0@l */
 /* 80554AA8  54 00 10 3A */	slwi r0, r0, 2
 /* 80554AAC  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80554AB0  7C 09 03 A6 */	mtctr r0

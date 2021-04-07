@@ -7,8 +7,8 @@ lbl_8015BA3C:
 /* 8015BA50  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8015BA54  7C 9F 23 78 */	mr r31, r4
 /* 8015BA58  41 82 00 28 */	beq lbl_8015BA80
-/* 8015BA5C  3C 80 80 3D */	lis r4, __vt__16Z2SoundObjSimple@ha
-/* 8015BA60  38 04 AD 10 */	addi r0, r4, __vt__16Z2SoundObjSimple@l
+/* 8015BA5C  3C 80 80 3D */	lis r4, __vt__16Z2SoundObjSimple@ha /* 0x803CAD10@ha */
+/* 8015BA60  38 04 AD 10 */	addi r0, r4, __vt__16Z2SoundObjSimple@l /* 0x803CAD10@l */
 /* 8015BA64  90 1E 00 10 */	stw r0, 0x10(r30)
 /* 8015BA68  38 80 00 00 */	li r4, 0
 /* 8015BA6C  48 16 24 DD */	bl __dt__14Z2SoundObjBaseFv

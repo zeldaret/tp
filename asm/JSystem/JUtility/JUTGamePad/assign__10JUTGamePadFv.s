@@ -6,8 +6,8 @@ lbl_802E0BBC:
 /* 802E0BCC  7C 7F 1B 78 */	mr r31, r3
 /* 802E0BD0  39 00 00 00 */	li r8, 0
 /* 802E0BD4  38 80 00 00 */	li r4, 0
-/* 802E0BD8  3C 60 80 43 */	lis r3, mPadStatus__10JUTGamePad@ha
-/* 802E0BDC  38 C3 43 F0 */	addi r6, r3, mPadStatus__10JUTGamePad@l
+/* 802E0BD8  3C 60 80 43 */	lis r3, mPadStatus__10JUTGamePad@ha /* 0x804343F0@ha */
+/* 802E0BDC  38 C3 43 F0 */	addi r6, r3, mPadStatus__10JUTGamePad@l /* 0x804343F0@l */
 /* 802E0BE0  38 ED 8F 54 */	la r7, mPadAssign__10JUTGamePad(r13) /* 804514D4-_SDA_BASE_ */
 /* 802E0BE4  7C E3 3B 78 */	mr r3, r7
 /* 802E0BE8  38 00 00 04 */	li r0, 4
@@ -24,8 +24,8 @@ lbl_802E0BF0:
 /* 802E0C10  38 00 00 01 */	li r0, 1
 /* 802E0C14  7C 07 41 AE */	stbx r0, r7, r8
 /* 802E0C18  1C 88 00 30 */	mulli r4, r8, 0x30
-/* 802E0C1C  3C 60 80 43 */	lis r3, mPadButton__10JUTGamePad@ha
-/* 802E0C20  38 03 44 20 */	addi r0, r3, mPadButton__10JUTGamePad@l
+/* 802E0C1C  3C 60 80 43 */	lis r3, mPadButton__10JUTGamePad@ha /* 0x80434420@ha */
+/* 802E0C20  38 03 44 20 */	addi r0, r3, mPadButton__10JUTGamePad@l /* 0x80434420@l */
 /* 802E0C24  7C 60 22 14 */	add r3, r0, r4
 /* 802E0C28  80 9F 00 3C */	lwz r4, 0x3c(r31)
 /* 802E0C2C  80 BF 00 40 */	lwz r5, 0x40(r31)

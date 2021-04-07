@@ -24,7 +24,7 @@ lbl_80630EE4:
 /* 80630F00  48 00 00 14 */	b lbl_80630F14
 lbl_80630F04:
 /* 80630F04  80 7F 0F DC */	lwz r3, 0xfdc(r31)
-/* 80630F08  4B 9E EB 1C */	b fopMsgM_SearchByID__FUi
+/* 80630F08  4B 9E EB 1D */	bl fopMsgM_SearchByID__FUi
 /* 80630F0C  90 7F 0F E0 */	stw r3, 0xfe0(r31)
 lbl_80630F10:
 /* 80630F10  38 60 00 00 */	li r3, 0

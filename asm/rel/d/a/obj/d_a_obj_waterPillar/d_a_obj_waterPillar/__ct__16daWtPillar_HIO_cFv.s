@@ -1,11 +1,11 @@
 lbl_80D2C6CC:
-/* 80D2C6CC  3C 80 80 D3 */	lis r4, lit_3645@ha
-/* 80D2C6D0  38 A4 E7 70 */	addi r5, r4, lit_3645@l
-/* 80D2C6D4  3C 80 80 D3 */	lis r4, __vt__14mDoHIO_entry_c@ha
-/* 80D2C6D8  38 04 EB 1C */	addi r0, r4, __vt__14mDoHIO_entry_c@l
+/* 80D2C6CC  3C 80 80 D3 */	lis r4, lit_3645@ha /* 0x80D2E770@ha */
+/* 80D2C6D0  38 A4 E7 70 */	addi r5, r4, lit_3645@l /* 0x80D2E770@l */
+/* 80D2C6D4  3C 80 80 D3 */	lis r4, __vt__14mDoHIO_entry_c@ha /* 0x80D2EB1C@ha */
+/* 80D2C6D8  38 04 EB 1C */	addi r0, r4, __vt__14mDoHIO_entry_c@l /* 0x80D2EB1C@l */
 /* 80D2C6DC  90 03 00 00 */	stw r0, 0(r3)
-/* 80D2C6E0  3C 80 80 D3 */	lis r4, __vt__16daWtPillar_HIO_c@ha
-/* 80D2C6E4  38 04 EB 10 */	addi r0, r4, __vt__16daWtPillar_HIO_c@l
+/* 80D2C6E0  3C 80 80 D3 */	lis r4, __vt__16daWtPillar_HIO_c@ha /* 0x80D2EB10@ha */
+/* 80D2C6E4  38 04 EB 10 */	addi r0, r4, __vt__16daWtPillar_HIO_c@l /* 0x80D2EB10@l */
 /* 80D2C6E8  90 03 00 00 */	stw r0, 0(r3)
 /* 80D2C6EC  C0 05 00 00 */	lfs f0, 0(r5)
 /* 80D2C6F0  D0 03 00 04 */	stfs f0, 4(r3)

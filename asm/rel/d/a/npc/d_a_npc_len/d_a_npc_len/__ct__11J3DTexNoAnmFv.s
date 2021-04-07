@@ -1,6 +1,6 @@
 lbl_80A64B14:
-/* 80A64B14  3C 80 80 A7 */	lis r4, __vt__11J3DTexNoAnm@ha
-/* 80A64B18  38 04 98 D4 */	addi r0, r4, __vt__11J3DTexNoAnm@l
+/* 80A64B14  3C 80 80 A7 */	lis r4, __vt__11J3DTexNoAnm@ha /* 0x80A698D4@ha */
+/* 80A64B18  38 04 98 D4 */	addi r0, r4, __vt__11J3DTexNoAnm@l /* 0x80A698D4@l */
 /* 80A64B1C  90 03 00 00 */	stw r0, 0(r3)
 /* 80A64B20  38 80 00 00 */	li r4, 0
 /* 80A64B24  B0 83 00 04 */	sth r4, 4(r3)

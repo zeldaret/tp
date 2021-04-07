@@ -17,8 +17,6 @@ struct STRUCT_DSP_TASK {};
 // Forward References:
 //
 
-void DSPAddPriorTask(STRUCT_DSP_TASK*);
-
 extern "C" void DSPAddTask();
 extern "C" void DSPAddPriorTask__FP15STRUCT_DSP_TASK();
 
@@ -38,7 +36,7 @@ extern "C" extern u8 DSP_prior_task[4];
 //
 
 /* ############################################################################################## */
-/* 8039B8B8-8039B8D4 001A+02 s=1 e=0 z=0  None .rodata    @81 */
+/* 8039B8B8-8039B8D4 027F18 001A+02 1/1 0/0 0/0 .rodata          @81 */
 SECTION_RODATA static u8 const lit_81[26 + 2 /* padding */] = {
     0x50,
     0x72,
@@ -70,20 +68,21 @@ SECTION_RODATA static u8 const lit_81[26 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8039B8B8, &lit_81);
 
-/* 8029EA00-8029EA84 0084+00 s=0 e=1 z=0  None .text      DSPAddTask */
+/* 8029EA00-8029EA84 299340 0084+00 0/0 1/1 0/0 .text            DSPAddTask */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
 #pragma function_align 32
-extern "C" asm void DSPAddTask() {
+asm void DSPAddTask() {
     nofralloc
 #include "asm/JSystem/JAudio2/osdsp/DSPAddTask.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8039B8D4-8039B8F8 001F+05 s=1 e=0 z=0  None .rodata    @88 */
+/* 8039B8D4-8039B8F8 027F34 001F+05 1/1 0/0 0/0 .rodata          @88 */
 SECTION_RODATA static u8 const lit_88[31 + 5 /* padding */] = {
     0x41,
     0x6C,
@@ -123,8 +122,9 @@ SECTION_RODATA static u8 const lit_88[31 + 5 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8039B8D4, &lit_88);
 
-/* 8029EAA0-8029EB1C 007C+00 s=0 e=1 z=0  None .text      DSPAddPriorTask__FP15STRUCT_DSP_TASK */
+/* 8029EAA0-8029EB1C 2993E0 007C+00 0/0 1/1 0/0 .text DSPAddPriorTask__FP15STRUCT_DSP_TASK */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

@@ -3,19 +3,20 @@
 #
 
 M544_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6ChangeGate.plf
+M544_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6ChangeGate.lcf
+M544_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6ChangeGate.map
 
 M544_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv6ChangeGate/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv6ChangeGate/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv6ChangeGate/d_a_obj_lv6ChangeGate.cpp \
 
 M544_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6ChangeGate/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6ChangeGate/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6ChangeGate/d_a_obj_lv6ChangeGate.o \
 
 M544_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6ChangeGate/libRuntime.PPCEABI.H.a \
 
 M544_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M544_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M544_LDSCRIPT) \
+	-unused -map $(M544_MAP) \
+	-w off \
 
 $(M544_TARGET): $(M544_O_FILES) $(M544_LIBS)
+	@echo [544] creating $(M544_TARGET)
 	@echo $(M544_LIBS) $(M544_O_FILES) > build/M544_ofiles
-	$(LD) -partial $(M544_LDFLAGS) -o $(M544_TARGET) @build/M544_ofiles
+	@python3 tools/lcf.py rel 544 --output $(M544_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M544_LDFLAGS) -o $(M544_TARGET) @build/M544_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6ChangeGate/%.o: rel/d/a/obj/d_a_obj_lv6ChangeGate/%.cpp
+	@echo [544] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M544_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M544_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv6ChangeGate/libs/Runtime.PPCEABI.H/Makefile
 

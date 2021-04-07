@@ -76,8 +76,8 @@ lbl_800ED880:
 /* 800ED894  38 00 00 60 */	li r0, 0x60
 /* 800ED898  98 1F 2F 99 */	stb r0, 0x2f99(r31)
 /* 800ED89C  7F C3 F3 78 */	mr r3, r30
-/* 800ED8A0  3C 80 80 42 */	lis r4, l_localBoarRidePos@ha
-/* 800ED8A4  38 84 55 D4 */	addi r4, r4, l_localBoarRidePos@l
+/* 800ED8A0  3C 80 80 42 */	lis r4, l_localBoarRidePos@ha /* 0x804255D4@ha */
+/* 800ED8A4  38 84 55 D4 */	addi r4, r4, l_localBoarRidePos@l /* 0x804255D4@l */
 /* 800ED8A8  38 BF 04 D0 */	addi r5, r31, 0x4d0
 /* 800ED8AC  48 25 94 C1 */	bl PSMTXMultVec
 /* 800ED8B0  7F C3 F3 78 */	mr r3, r30

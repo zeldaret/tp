@@ -28,14 +28,14 @@ lbl_8025D950:
 /* 8025D984  7C 83 20 10 */	subfc r4, r3, r4
 /* 8025D988  7C 60 29 10 */	subfe r3, r0, r5
 /* 8025D98C  3C A0 80 00 */	lis r5, 0x8000 /* 0x800000F8@ha */
-/* 8025D990  80 05 00 F8 */	lwz r0, 0x00F8(r5)
+/* 8025D990  80 05 00 F8 */	lwz r0, 0x00F8(r5)  /* 0x800000F8@l */
 /* 8025D994  54 05 F0 BE */	srwi r5, r0, 2
 /* 8025D998  38 00 03 E8 */	li r0, 0x3e8
 /* 8025D99C  7C C5 03 96 */	divwu r6, r5, r0
 /* 8025D9A0  38 A0 00 00 */	li r5, 0
 /* 8025D9A4  48 10 49 81 */	bl __div2i
-/* 8025D9A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025D9AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8025D9A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025D9AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025D9B0  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8025D9B4  4B DC F1 E1 */	bl setTimerNowTimeMs__14dComIfG_play_cFi
 /* 8025D9B8  2C 1F FF FF */	cmpwi r31, -1

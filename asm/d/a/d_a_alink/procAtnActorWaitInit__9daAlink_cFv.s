@@ -30,15 +30,15 @@ lbl_800C3928:
 /* 800C3930  2C 03 00 00 */	cmpwi r3, 0
 /* 800C3934  41 82 00 1C */	beq lbl_800C3950
 /* 800C3938  7F E3 FB 78 */	mr r3, r31
-/* 800C393C  3C 80 80 39 */	lis r4, m__19daAlinkHIO_basic_c0@ha
-/* 800C3940  38 84 D6 64 */	addi r4, r4, m__19daAlinkHIO_basic_c0@l
+/* 800C393C  3C 80 80 39 */	lis r4, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 800C3940  38 84 D6 64 */	addi r4, r4, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 800C3944  C0 24 00 18 */	lfs f1, 0x18(r4)
 /* 800C3948  4B FE B1 29 */	bl setBlendAtnMoveAnime__9daAlink_cFf
 /* 800C394C  48 00 00 18 */	b lbl_800C3964
 lbl_800C3950:
 /* 800C3950  7F E3 FB 78 */	mr r3, r31
-/* 800C3954  3C 80 80 39 */	lis r4, m__19daAlinkHIO_basic_c0@ha
-/* 800C3958  38 84 D6 64 */	addi r4, r4, m__19daAlinkHIO_basic_c0@l
+/* 800C3954  3C 80 80 39 */	lis r4, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 800C3958  38 84 D6 64 */	addi r4, r4, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 800C395C  C0 24 00 18 */	lfs f1, 0x18(r4)
 /* 800C3960  4B FE A4 B5 */	bl setBlendMoveAnime__9daAlink_cFf
 lbl_800C3964:

@@ -24,13 +24,13 @@ struct dMsgString_c {
     /* 80249D28 */ ~dMsgString_c();
 };
 
-struct COutFont_c {
-    /* 80225C94 */ COutFont_c(u8);
-};
-
 struct J2DTextBox {
     /* 80300658 */ void getStringPtr() const;
     /* 8030074C */ void setString(s16, char const*, ...);
+};
+
+struct COutFont_c {
+    /* 80225C94 */ COutFont_c(u8);
 };
 
 struct JUTFont {};
@@ -50,9 +50,7 @@ struct dMsgObject_c {
     /* 80238258 */ void getScrnDrawPtr();
 };
 
-struct J2DPane {
-    /* 802F7100 */ void getBounds();
-};
+struct JKRExpHeap {};
 
 struct J2DGrafContext {};
 
@@ -64,7 +62,9 @@ struct J2DScreen {
     /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
 };
 
-struct JKRExpHeap {};
+struct J2DPane {
+    /* 802F7100 */ void getBounds();
+};
 
 struct CPaneMgr {
     /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
@@ -181,15 +181,15 @@ struct dMeter2Info_c {
                                         J2DPicture*, void*, J2DPicture*, int);
 };
 
+struct JUtility {
+    struct TColor {};
+};
+
 struct CPaneMgrAlpha {
     /* 802555C8 */ void show();
     /* 80255608 */ void hide();
     /* 802557D0 */ void setAlphaRate(f32);
     /* 80255828 */ void getAlphaRate();
-};
-
-struct JUtility {
-    struct TColor {};
 };
 
 struct dMeter2Draw_c {
@@ -203,9 +203,9 @@ struct dComIfG_play_c {
     /* 8002C97C */ void getLayerNo(int);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -317,14 +317,6 @@ extern "C" extern char const* const d_meter_d_meter_button__stringBase0;
 // External References:
 //
 
-void mDoExt_getCurrentHeap();
-void mDoExt_getMesgFont();
-void dComIfGs_isOneZoneSwitch(int, int);
-void dPaneClass_showNullPane(J2DScreen*);
-void cLib_addCalc2(f32*, f32, f32, f32);
-void* operator new(u32);
-void operator delete(void*);
-
 extern "C" void mDoExt_getCurrentHeap__Fv();
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void getLayerNo__14dComIfG_play_cFi();
@@ -407,7 +399,7 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 803BF1A8-803BF200 0058+00 s=1 e=0 z=0  None .data      @7807 */
+/* 803BF1A8-803BF200 -00001 0058+00 1/1 0/0 0/0 .data            @7807 */
 SECTION_DATA static void* lit_7807[22] = {
     (void*)(((char*)getCenterPosCalc__14dMeterButton_cFUcPci) + 0x12C),
     (void*)(((char*)getCenterPosCalc__14dMeterButton_cFUcPci) + 0x178),
@@ -433,7 +425,7 @@ SECTION_DATA static void* lit_7807[22] = {
     (void*)(((char*)getCenterPosCalc__14dMeterButton_cFUcPci) + 0x6D0),
 };
 
-/* 803BF200-803BF258 0058+00 s=1 e=0 z=0  None .data      @7858 */
+/* 803BF200-803BF258 -00001 0058+00 1/1 0/0 0/0 .data            @7858 */
 SECTION_DATA static void* lit_7858[22] = {
     (void*)(((char*)trans_button__14dMeterButton_cFif) + 0xBC),
     (void*)(((char*)trans_button__14dMeterButton_cFif) + 0xE4),
@@ -459,15 +451,15 @@ SECTION_DATA static void* lit_7858[22] = {
     (void*)(((char*)trans_button__14dMeterButton_cFif) + 0x268),
 };
 
-/* 803BF258-803BF268 0010+00 s=2 e=0 z=0  None .data      __vt__14dMeterButton_c */
-SECTION_DATA static void* __vt__14dMeterButton_c[4] = {
-    (void*)NULL,
+/* 803BF258-803BF268 01C378 0010+00 2/2 0/0 0/0 .data            __vt__14dMeterButton_c */
+SECTION_DATA extern void* __vt__14dMeterButton_c[4] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__14dMeterButton_cFv,
     (void*)__dt__14dMeterButton_cFv,
 };
 
-/* 80201328-80201370 0048+00 s=0 e=1 z=1  None .text      __ct__14dMeterButton_cFv */
+/* 80201328-80201370 1FBC68 0048+00 0/0 1/1 1/1 .text            __ct__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -477,7 +469,7 @@ asm dMeterButton_c::dMeterButton_c() {
 }
 #pragma pop
 
-/* 80201370-802013CC 005C+00 s=1 e=0 z=0  None .text      __dt__14dMeterButton_cFv */
+/* 80201370-802013CC 1FBCB0 005C+00 1/0 0/0 0/0 .text            __dt__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -487,7 +479,7 @@ asm dMeterButton_c::~dMeterButton_c() {
 }
 #pragma pop
 
-/* 802013CC-80201404 0038+00 s=1 e=0 z=0  None .text      _create__14dMeterButton_cFv */
+/* 802013CC-80201404 1FBD0C 0038+00 1/1 0/0 0/0 .text            _create__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -498,7 +490,7 @@ asm void dMeterButton_c::_create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454748-8045474C 0004+00 s=36 e=0 z=0  None .sdata2    @4146 */
+/* 80454748-8045474C 002D48 0004+00 36/36 0/0 0/0 .sdata2          @4146 */
 SECTION_SDATA2 static u8 lit_4146[4] = {
     0x00,
     0x00,
@@ -506,16 +498,16 @@ SECTION_SDATA2 static u8 lit_4146[4] = {
     0x00,
 };
 
-/* 8045474C-80454750 0004+00 s=30 e=0 z=0  None .sdata2    @4147 */
+/* 8045474C-80454750 002D4C 0004+00 30/30 0/0 0/0 .sdata2          @4147 */
 SECTION_SDATA2 static f32 lit_4147 = 1.0f;
 
-/* 80454750-80454754 0004+00 s=2 e=0 z=0  None .sdata2    @4148 */
+/* 80454750-80454754 002D50 0004+00 2/2 0/0 0/0 .sdata2          @4148 */
 SECTION_SDATA2 static f32 lit_4148 = 10.0f;
 
-/* 80454754-80454758 0004+00 s=1 e=0 z=0  None .sdata2    @4149 */
+/* 80454754-80454758 002D54 0004+00 1/1 0/0 0/0 .sdata2          @4149 */
 SECTION_SDATA2 static f32 lit_4149 = 1.0f / 10.0f;
 
-/* 80201404-80202240 0E3C+00 s=0 e=1 z=0  None .text
+/* 80201404-80202240 1FBD44 0E3C+00 0/0 1/1 0/0 .text
  * _execute__14dMeterButton_cFUlbbbbbbbbbbbbbbbbbbbbbb          */
 #pragma push
 #pragma optimization_level 0
@@ -532,23 +524,23 @@ asm void dMeterButton_c::_execute(u32 param_0, bool param_1, bool param_2, bool 
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454758-8045475C 0004+00 s=23 e=0 z=0  None .sdata2    @4513 */
+/* 80454758-8045475C 002D58 0004+00 23/23 0/0 0/0 .sdata2          @4513 */
 SECTION_SDATA2 static f32 lit_4513 = -1.0f;
 
-/* 8045475C-80454760 0004+00 s=2 e=0 z=0  None .sdata2    @4514 */
+/* 8045475C-80454760 002D5C 0004+00 2/2 0/0 0/0 .sdata2          @4514 */
 SECTION_SDATA2 static f32 lit_4514 = 18.0f;
 
-/* 80454760-80454768 0004+04 s=1 e=0 z=0  None .sdata2    @4515 */
+/* 80454760-80454768 002D60 0004+04 1/1 0/0 0/0 .sdata2          @4515 */
 SECTION_SDATA2 static f32 lit_4515[1 + 1 /* padding */] = {
     9.0f / 5.0f,
     /* padding */
     0.0f,
 };
 
-/* 80454768-80454770 0008+00 s=3 e=0 z=0  None .sdata2    @4517 */
+/* 80454768-80454770 002D68 0008+00 3/3 0/0 0/0 .sdata2          @4517 */
 SECTION_SDATA2 static f64 lit_4517 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 80202240-80202A9C 085C+00 s=1 e=0 z=0  None .text      draw__14dMeterButton_cFv */
+/* 80202240-80202A9C 1FCB80 085C+00 1/0 0/0 0/0 .text            draw__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -558,7 +550,7 @@ asm void dMeterButton_c::draw() {
 }
 #pragma pop
 
-/* 80202A9C-802032C4 0828+00 s=1 e=0 z=0  None .text      _delete__14dMeterButton_cFv */
+/* 80202A9C-802032C4 1FD3DC 0828+00 1/1 0/0 0/0 .text            _delete__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -568,7 +560,7 @@ asm void dMeterButton_c::_delete() {
 }
 #pragma pop
 
-/* 802032C4-8020339C 00D8+00 s=1 e=0 z=0  None .text      alphaAnimeButtonA__14dMeterButton_cFUlb */
+/* 802032C4-8020339C 1FDC04 00D8+00 1/1 0/0 0/0 .text alphaAnimeButtonA__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -578,7 +570,7 @@ asm void dMeterButton_c::alphaAnimeButtonA(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 8020339C-802034A8 010C+00 s=1 e=0 z=0  None .text      alphaAnimeButtonB__14dMeterButton_cFUlb */
+/* 8020339C-802034A8 1FDCDC 010C+00 1/1 0/0 0/0 .text alphaAnimeButtonB__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -588,7 +580,7 @@ asm void dMeterButton_c::alphaAnimeButtonB(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 802034A8-802035AC 0104+00 s=1 e=0 z=0  None .text      alphaAnimeButtonR__14dMeterButton_cFUlb */
+/* 802034A8-802035AC 1FDDE8 0104+00 1/1 0/0 0/0 .text alphaAnimeButtonR__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -598,7 +590,7 @@ asm void dMeterButton_c::alphaAnimeButtonR(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 802035AC-802036C0 0114+00 s=1 e=0 z=0  None .text      alphaAnimeButtonZ__14dMeterButton_cFUlb */
+/* 802035AC-802036C0 1FDEEC 0114+00 1/1 0/0 0/0 .text alphaAnimeButtonZ__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -608,8 +600,7 @@ asm void dMeterButton_c::alphaAnimeButtonZ(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 802036C0-802037B8 00F8+00 s=1 e=0 z=0  None .text      alphaAnimeButton3D__14dMeterButton_cFUlb
- */
+/* 802036C0-802037B8 1FE000 00F8+00 1/1 0/0 0/0 .text alphaAnimeButton3D__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -619,7 +610,7 @@ asm void dMeterButton_c::alphaAnimeButton3D(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 802037B8-80203878 00C0+00 s=1 e=0 z=0  None .text      alphaAnimeButtonC__14dMeterButton_cFUlb */
+/* 802037B8-80203878 1FE0F8 00C0+00 1/1 0/0 0/0 .text alphaAnimeButtonC__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -629,7 +620,7 @@ asm void dMeterButton_c::alphaAnimeButtonC(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80203878-802038F4 007C+00 s=1 e=0 z=0  None .text      alphaAnimeButtonS__14dMeterButton_cFUlb */
+/* 80203878-802038F4 1FE1B8 007C+00 1/1 0/0 0/0 .text alphaAnimeButtonS__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -639,7 +630,7 @@ asm void dMeterButton_c::alphaAnimeButtonS(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 802038F4-80203A08 0114+00 s=1 e=0 z=0  None .text      alphaAnimeButtonX__14dMeterButton_cFUlb */
+/* 802038F4-80203A08 1FE234 0114+00 1/1 0/0 0/0 .text alphaAnimeButtonX__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -649,7 +640,7 @@ asm void dMeterButton_c::alphaAnimeButtonX(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80203A08-80203B1C 0114+00 s=1 e=0 z=0  None .text      alphaAnimeButtonY__14dMeterButton_cFUlb */
+/* 80203A08-80203B1C 1FE348 0114+00 1/1 0/0 0/0 .text alphaAnimeButtonY__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -659,8 +650,7 @@ asm void dMeterButton_c::alphaAnimeButtonY(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80203B1C-80203C30 0114+00 s=1 e=0 z=0  None .text      alphaAnimeButtonNun__14dMeterButton_cFUlb
- */
+/* 80203B1C-80203C30 1FE45C 0114+00 1/1 0/0 0/0 .text alphaAnimeButtonNun__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -670,7 +660,7 @@ asm void dMeterButton_c::alphaAnimeButtonNun(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80203C30-80203D44 0114+00 s=1 e=0 z=0  None .text      alphaAnimeButtonRemo__14dMeterButton_cFUlb
+/* 80203C30-80203D44 1FE570 0114+00 1/1 0/0 0/0 .text alphaAnimeButtonRemo__14dMeterButton_cFUlb
  */
 #pragma push
 #pragma optimization_level 0
@@ -681,7 +671,7 @@ asm void dMeterButton_c::alphaAnimeButtonRemo(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80203D44-80203E58 0114+00 s=1 e=0 z=0  None .text alphaAnimeButtonRemo2__14dMeterButton_cFUlb
+/* 80203D44-80203E58 1FE684 0114+00 1/1 0/0 0/0 .text alphaAnimeButtonRemo2__14dMeterButton_cFUlb
  */
 #pragma push
 #pragma optimization_level 0
@@ -692,8 +682,7 @@ asm void dMeterButton_c::alphaAnimeButtonRemo2(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80203E58-80203F60 0108+00 s=1 e=0 z=0  None .text      alphaAnimeButtonAR__14dMeterButton_cFUlb
- */
+/* 80203E58-80203F60 1FE798 0108+00 1/1 0/0 0/0 .text alphaAnimeButtonAR__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -703,8 +692,7 @@ asm void dMeterButton_c::alphaAnimeButtonAR(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80203F60-80204068 0108+00 s=1 e=0 z=0  None .text      alphaAnimeButton3DB__14dMeterButton_cFUlb
- */
+/* 80203F60-80204068 1FE8A0 0108+00 1/1 0/0 0/0 .text alphaAnimeButton3DB__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -714,7 +702,7 @@ asm void dMeterButton_c::alphaAnimeButton3DB(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80204068-80204170 0108+00 s=1 e=0 z=0  None .text      alphaAnimeButtonNURE__14dMeterButton_cFUlb
+/* 80204068-80204170 1FE9A8 0108+00 1/1 0/0 0/0 .text alphaAnimeButtonNURE__14dMeterButton_cFUlb
  */
 #pragma push
 #pragma optimization_level 0
@@ -725,7 +713,7 @@ asm void dMeterButton_c::alphaAnimeButtonNURE(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80204170-80204278 0108+00 s=1 e=0 z=0  None .text      alphaAnimeButtonReel__14dMeterButton_cFUlb
+/* 80204170-80204278 1FEAB0 0108+00 1/1 0/0 0/0 .text alphaAnimeButtonReel__14dMeterButton_cFUlb
  */
 #pragma push
 #pragma optimization_level 0
@@ -736,7 +724,7 @@ asm void dMeterButton_c::alphaAnimeButtonReel(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80204278-80204368 00F0+00 s=1 e=0 z=0  None .text alphaAnimeButtonReel2__14dMeterButton_cFUlb
+/* 80204278-80204368 1FEBB8 00F0+00 1/1 0/0 0/0 .text alphaAnimeButtonReel2__14dMeterButton_cFUlb
  */
 #pragma push
 #pragma optimization_level 0
@@ -747,8 +735,7 @@ asm void dMeterButton_c::alphaAnimeButtonReel2(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80204368-80204458 00F0+00 s=1 e=0 z=0  None .text      alphaAnimeButtonAB__14dMeterButton_cFUlb
- */
+/* 80204368-80204458 1FECA8 00F0+00 1/1 0/0 0/0 .text alphaAnimeButtonAB__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -758,7 +745,7 @@ asm void dMeterButton_c::alphaAnimeButtonAB(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80204458-80204548 00F0+00 s=1 e=0 z=0  None .text      alphaAnimeButtonTate__14dMeterButton_cFUlb
+/* 80204458-80204548 1FED98 00F0+00 1/1 0/0 0/0 .text alphaAnimeButtonTate__14dMeterButton_cFUlb
  */
 #pragma push
 #pragma optimization_level 0
@@ -769,7 +756,7 @@ asm void dMeterButton_c::alphaAnimeButtonTate(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80204548-80204620 00D8+00 s=1 e=0 z=0  None .text      alphaAnimeButtonNunZ__14dMeterButton_cFUlb
+/* 80204548-80204620 1FEE88 00D8+00 1/1 0/0 0/0 .text alphaAnimeButtonNunZ__14dMeterButton_cFUlb
  */
 #pragma push
 #pragma optimization_level 0
@@ -780,7 +767,7 @@ asm void dMeterButton_c::alphaAnimeButtonNunZ(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 80204620-802046F8 00D8+00 s=1 e=0 z=0  None .text      alphaAnimeButtonNunC__14dMeterButton_cFUlb
+/* 80204620-802046F8 1FEF60 00D8+00 1/1 0/0 0/0 .text alphaAnimeButtonNunC__14dMeterButton_cFUlb
  */
 #pragma push
 #pragma optimization_level 0
@@ -791,8 +778,7 @@ asm void dMeterButton_c::alphaAnimeButtonNunC(u32 param_0, bool param_1) {
 }
 #pragma pop
 
-/* 802046F8-802047E8 00F0+00 s=1 e=0 z=0  None .text      alphaAnimeButtonBin__14dMeterButton_cFUlb
- */
+/* 802046F8-802047E8 1FF038 00F0+00 1/1 0/0 0/0 .text alphaAnimeButtonBin__14dMeterButton_cFUlb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -803,7 +789,7 @@ asm void dMeterButton_c::alphaAnimeButtonBin(u32 param_0, bool param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80398048-80398098 0050+00 s=1 e=0 z=0  None .rodata    text_tag$5461 */
+/* 80398048-80398098 0246A8 0050+00 1/1 0/0 0/0 .rodata          text_tag$5461 */
 SECTION_RODATA static u8 const text_tag[80] = {
     0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x30, 0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x31,
     0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x32, 0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x33,
@@ -811,8 +797,9 @@ SECTION_RODATA static u8 const text_tag[80] = {
     0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x36, 0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x37,
     0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x38, 0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x39,
 };
+COMPILER_STRIP_GATE(80398048, &text_tag);
 
-/* 80398098-803980E8 0050+00 s=1 e=0 z=0  None .rodata    ftext_tag$5462 */
+/* 80398098-803980E8 0246F8 0050+00 1/1 0/0 0/0 .rodata          ftext_tag$5462 */
 SECTION_RODATA static u8 const ftext_tag[80] = {
     0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x30, 0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x31,
     0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x32, 0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x33,
@@ -820,49 +807,36 @@ SECTION_RODATA static u8 const ftext_tag[80] = {
     0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x36, 0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x37,
     0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x38, 0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x39,
 };
+COMPILER_STRIP_GATE(80398098, &ftext_tag);
 
-/* 803980E8-80398158 006C+04 s=4 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_803980E8 = "zelda_game_image_button_info.blo";
-SECTION_DEAD char const* const stringBase_80398109 = "";
-SECTION_DEAD char const* const stringBase_8039810A = "zelda_message_window_new.blo";
-SECTION_DEAD char const* const stringBase_80398127 = "zelda_message_window_text.blo";
-SECTION_DEAD char const* const stringBase_80398145 = "F_SP00";
-SECTION_DEAD char const* const stringBase_8039814C = "R_SP161";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80398154 = "\0\0\0";
-#pragma pop
-
-/* 80454770-80454774 0004+00 s=4 e=0 z=0  None .sdata2    @5628 */
+/* 80454770-80454774 002D70 0004+00 4/4 0/0 0/0 .sdata2          @5628 */
 SECTION_SDATA2 static f32 lit_5628 = 0.5f;
 
-/* 80454774-80454778 0004+00 s=2 e=0 z=0  None .sdata2    @5629 */
+/* 80454774-80454778 002D74 0004+00 2/2 0/0 0/0 .sdata2          @5629 */
 SECTION_SDATA2 static f32 lit_5629 = 304.0f;
 
-/* 80454778-8045477C 0004+00 s=1 e=0 z=0  None .sdata2    @5630 */
+/* 80454778-8045477C 002D78 0004+00 1/1 0/0 0/0 .sdata2          @5630 */
 SECTION_SDATA2 static f32 lit_5630 = 8.0f;
 
-/* 8045477C-80454780 0004+00 s=1 e=0 z=0  None .sdata2    @5631 */
+/* 8045477C-80454780 002D7C 0004+00 1/1 0/0 0/0 .sdata2          @5631 */
 SECTION_SDATA2 static f32 lit_5631 = 307.25f;
 
-/* 80454780-80454784 0004+00 s=1 e=0 z=0  None .sdata2    @5632 */
+/* 80454780-80454784 002D80 0004+00 1/1 0/0 0/0 .sdata2          @5632 */
 SECTION_SDATA2 static f32 lit_5632 = 307.75f;
 
-/* 80454784-80454788 0004+00 s=1 e=0 z=0  None .sdata2    @5633 */
+/* 80454784-80454788 002D84 0004+00 1/1 0/0 0/0 .sdata2          @5633 */
 SECTION_SDATA2 static f32 lit_5633 = 300.0f;
 
-/* 80454788-8045478C 0004+00 s=1 e=0 z=0  None .sdata2    @5634 */
+/* 80454788-8045478C 002D88 0004+00 1/1 0/0 0/0 .sdata2          @5634 */
 SECTION_SDATA2 static f32 lit_5634 = 304.5f;
 
-/* 8045478C-80454790 0004+00 s=1 e=0 z=0  None .sdata2    @5635 */
+/* 8045478C-80454790 002D8C 0004+00 1/1 0/0 0/0 .sdata2          @5635 */
 SECTION_SDATA2 static f32 lit_5635 = 347.5f;
 
-/* 80454790-80454794 0004+00 s=1 e=0 z=0  None .sdata2    @5636 */
+/* 80454790-80454794 002D90 0004+00 1/1 0/0 0/0 .sdata2          @5636 */
 SECTION_SDATA2 static f32 lit_5636 = 367.25f;
 
-/* 802047E8-80205834 104C+00 s=1 e=0 z=0  None .text      screenInitButton__14dMeterButton_cFv */
+/* 802047E8-80205834 1FF128 104C+00 1/1 0/0 0/0 .text screenInitButton__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -872,7 +846,8 @@ asm void dMeterButton_c::screenInitButton() {
 }
 #pragma pop
 
-/* 80205834-80205CA0 046C+00 s=1 e=0 z=0  None .text      screenInitText__14dMeterButton_cFv */
+/* 80205834-80205CA0 200174 046C+00 1/1 0/0 0/0 .text            screenInitText__14dMeterButton_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -883,25 +858,25 @@ asm void dMeterButton_c::screenInitText() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454794-80454798 0004+00 s=1 e=0 z=0  None .sdata2    @6012 */
+/* 80454794-80454798 002D94 0004+00 1/1 0/0 0/0 .sdata2          @6012 */
 SECTION_SDATA2 static f32 lit_6012 = -25.0f;
 
-/* 80454798-8045479C 0004+00 s=1 e=0 z=0  None .sdata2    @6013 */
+/* 80454798-8045479C 002D98 0004+00 1/1 0/0 0/0 .sdata2          @6013 */
 SECTION_SDATA2 static f32 lit_6013 = 4.0f / 5.0f;
 
-/* 8045479C-804547A0 0004+00 s=1 e=0 z=0  None .sdata2    @6014 */
+/* 8045479C-804547A0 002D9C 0004+00 1/1 0/0 0/0 .sdata2          @6014 */
 SECTION_SDATA2 static f32 lit_6014 = -10.0f;
 
-/* 804547A0-804547A4 0004+00 s=1 e=0 z=0  None .sdata2    @6015 */
+/* 804547A0-804547A4 002DA0 0004+00 1/1 0/0 0/0 .sdata2          @6015 */
 SECTION_SDATA2 static f32 lit_6015 = 25.0f;
 
-/* 804547A4-804547A8 0004+00 s=1 e=0 z=0  None .sdata2    @6016 */
+/* 804547A4-804547A8 002DA4 0004+00 1/1 0/0 0/0 .sdata2          @6016 */
 SECTION_SDATA2 static f32 lit_6016 = 9.0f / 10.0f;
 
-/* 804547A8-804547AC 0004+00 s=2 e=0 z=0  None .sdata2    @6017 */
+/* 804547A8-804547AC 002DA8 0004+00 2/2 0/0 0/0 .sdata2          @6017 */
 SECTION_SDATA2 static f32 lit_6017 = 2.0f;
 
-/* 80205CA0-80206978 0CD8+00 s=2 e=0 z=0  None .text      updateButton__14dMeterButton_cFv */
+/* 80205CA0-80206978 2005E0 0CD8+00 2/2 0/0 0/0 .text            updateButton__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -911,7 +886,7 @@ asm void dMeterButton_c::updateButton() {
 }
 #pragma pop
 
-/* 80206978-80206CE0 0368+00 s=1 e=0 z=0  None .text      updateText__14dMeterButton_cFUl */
+/* 80206978-80206CE0 2012B8 0368+00 1/1 0/0 0/0 .text            updateText__14dMeterButton_cFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -921,7 +896,7 @@ asm void dMeterButton_c::updateText(u32 param_0) {
 }
 #pragma pop
 
-/* 80206CE0-80206D70 0090+00 s=1 e=0 z=0  None .text setAlphaButtonAAnimeMin__14dMeterButton_cFv
+/* 80206CE0-80206D70 201620 0090+00 1/1 0/0 0/0 .text setAlphaButtonAAnimeMin__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -932,7 +907,7 @@ asm void dMeterButton_c::setAlphaButtonAAnimeMin() {
 }
 #pragma pop
 
-/* 80206D70-80207060 02F0+00 s=5 e=0 z=0  None .text      isFastSet__14dMeterButton_cFi */
+/* 80206D70-80207060 2016B0 02F0+00 5/5 0/0 0/0 .text            isFastSet__14dMeterButton_cFi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -942,7 +917,7 @@ asm void dMeterButton_c::isFastSet(int param_0) {
 }
 #pragma pop
 
-/* 80207060-8020714C 00EC+00 s=1 e=0 z=0  None .text setAlphaButtonAAnimeMax__14dMeterButton_cFv
+/* 80207060-8020714C 2019A0 00EC+00 1/1 0/0 0/0 .text setAlphaButtonAAnimeMax__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -953,7 +928,7 @@ asm void dMeterButton_c::setAlphaButtonAAnimeMax() {
 }
 #pragma pop
 
-/* 8020714C-802071DC 0090+00 s=1 e=0 z=0  None .text setAlphaButtonBAnimeMin__14dMeterButton_cFv
+/* 8020714C-802071DC 201A8C 0090+00 1/1 0/0 0/0 .text setAlphaButtonBAnimeMin__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -964,7 +939,7 @@ asm void dMeterButton_c::setAlphaButtonBAnimeMin() {
 }
 #pragma pop
 
-/* 802071DC-802072C8 00EC+00 s=1 e=0 z=0  None .text setAlphaButtonBAnimeMax__14dMeterButton_cFv
+/* 802071DC-802072C8 201B1C 00EC+00 1/1 0/0 0/0 .text setAlphaButtonBAnimeMax__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -975,7 +950,7 @@ asm void dMeterButton_c::setAlphaButtonBAnimeMax() {
 }
 #pragma pop
 
-/* 802072C8-80207358 0090+00 s=1 e=0 z=0  None .text setAlphaButtonRAnimeMin__14dMeterButton_cFv
+/* 802072C8-80207358 201C08 0090+00 1/1 0/0 0/0 .text setAlphaButtonRAnimeMin__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -986,7 +961,7 @@ asm void dMeterButton_c::setAlphaButtonRAnimeMin() {
 }
 #pragma pop
 
-/* 80207358-80207444 00EC+00 s=1 e=0 z=0  None .text setAlphaButtonRAnimeMax__14dMeterButton_cFv
+/* 80207358-80207444 201C98 00EC+00 1/1 0/0 0/0 .text setAlphaButtonRAnimeMax__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -997,7 +972,7 @@ asm void dMeterButton_c::setAlphaButtonRAnimeMax() {
 }
 #pragma pop
 
-/* 80207444-802074D4 0090+00 s=1 e=0 z=0  None .text setAlphaButtonZAnimeMin__14dMeterButton_cFv
+/* 80207444-802074D4 201D84 0090+00 1/1 0/0 0/0 .text setAlphaButtonZAnimeMin__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -1008,7 +983,7 @@ asm void dMeterButton_c::setAlphaButtonZAnimeMin() {
 }
 #pragma pop
 
-/* 802074D4-802075C0 00EC+00 s=1 e=0 z=0  None .text setAlphaButtonZAnimeMax__14dMeterButton_cFv
+/* 802074D4-802075C0 201E14 00EC+00 1/1 0/0 0/0 .text setAlphaButtonZAnimeMax__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -1019,7 +994,7 @@ asm void dMeterButton_c::setAlphaButtonZAnimeMax() {
 }
 #pragma pop
 
-/* 802075C0-80207654 0094+00 s=1 e=0 z=0  None .text setAlphaButton3DAnimeMin__14dMeterButton_cFv
+/* 802075C0-80207654 201F00 0094+00 1/1 0/0 0/0 .text setAlphaButton3DAnimeMin__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -1030,7 +1005,7 @@ asm void dMeterButton_c::setAlphaButton3DAnimeMin() {
 }
 #pragma pop
 
-/* 80207654-80207740 00EC+00 s=1 e=0 z=0  None .text setAlphaButton3DAnimeMax__14dMeterButton_cFv
+/* 80207654-80207740 201F94 00EC+00 1/1 0/0 0/0 .text setAlphaButton3DAnimeMax__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -1041,19 +1016,19 @@ asm void dMeterButton_c::setAlphaButton3DAnimeMax() {
 }
 #pragma pop
 
-/* 80207740-80207744 0004+00 s=1 e=0 z=0  None .text setAlphaButton3DVAnimeMin__14dMeterButton_cFv
- */
+/* 80207740-80207744 202080 0004+00 1/1 0/0 0/0 .text
+ * setAlphaButton3DVAnimeMin__14dMeterButton_cFv                */
 void dMeterButton_c::setAlphaButton3DVAnimeMin() {
     /* empty function */
 }
 
-/* 80207744-80207748 0004+00 s=1 e=0 z=0  None .text setAlphaButton3DVAnimeMax__14dMeterButton_cFv
- */
+/* 80207744-80207748 202084 0004+00 1/1 0/0 0/0 .text
+ * setAlphaButton3DVAnimeMax__14dMeterButton_cFv                */
 void dMeterButton_c::setAlphaButton3DVAnimeMax() {
     /* empty function */
 }
 
-/* 80207748-802077EC 00A4+00 s=1 e=0 z=0  None .text setAlphaButtonCAnimeMin__14dMeterButton_cFv
+/* 80207748-802077EC 202088 00A4+00 1/1 0/0 0/0 .text setAlphaButtonCAnimeMin__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -1064,7 +1039,7 @@ asm void dMeterButton_c::setAlphaButtonCAnimeMin() {
 }
 #pragma pop
 
-/* 802077EC-80207A28 023C+00 s=1 e=0 z=0  None .text setAlphaButtonCAnimeMax__14dMeterButton_cFv
+/* 802077EC-80207A28 20212C 023C+00 1/1 0/0 0/0 .text setAlphaButtonCAnimeMax__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -1075,7 +1050,7 @@ asm void dMeterButton_c::setAlphaButtonCAnimeMax() {
 }
 #pragma pop
 
-/* 80207A28-80207AB8 0090+00 s=1 e=0 z=0  None .text setAlphaButtonSAnimeMin__14dMeterButton_cFv
+/* 80207A28-80207AB8 202368 0090+00 1/1 0/0 0/0 .text setAlphaButtonSAnimeMin__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -1086,7 +1061,7 @@ asm void dMeterButton_c::setAlphaButtonSAnimeMin() {
 }
 #pragma pop
 
-/* 80207AB8-80207BA4 00EC+00 s=1 e=0 z=0  None .text setAlphaButtonSAnimeMax__14dMeterButton_cFv
+/* 80207AB8-80207BA4 2023F8 00EC+00 1/1 0/0 0/0 .text setAlphaButtonSAnimeMax__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -1097,7 +1072,7 @@ asm void dMeterButton_c::setAlphaButtonSAnimeMax() {
 }
 #pragma pop
 
-/* 80207BA4-80207C34 0090+00 s=1 e=0 z=0  None .text setAlphaButtonXAnimeMin__14dMeterButton_cFv
+/* 80207BA4-80207C34 2024E4 0090+00 1/1 0/0 0/0 .text setAlphaButtonXAnimeMin__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -1108,7 +1083,7 @@ asm void dMeterButton_c::setAlphaButtonXAnimeMin() {
 }
 #pragma pop
 
-/* 80207C34-80207D20 00EC+00 s=1 e=0 z=0  None .text setAlphaButtonXAnimeMax__14dMeterButton_cFv
+/* 80207C34-80207D20 202574 00EC+00 1/1 0/0 0/0 .text setAlphaButtonXAnimeMax__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -1119,7 +1094,7 @@ asm void dMeterButton_c::setAlphaButtonXAnimeMax() {
 }
 #pragma pop
 
-/* 80207D20-80207DB0 0090+00 s=1 e=0 z=0  None .text setAlphaButtonYAnimeMin__14dMeterButton_cFv
+/* 80207D20-80207DB0 202660 0090+00 1/1 0/0 0/0 .text setAlphaButtonYAnimeMin__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -1130,7 +1105,7 @@ asm void dMeterButton_c::setAlphaButtonYAnimeMin() {
 }
 #pragma pop
 
-/* 80207DB0-80207E9C 00EC+00 s=1 e=0 z=0  None .text setAlphaButtonYAnimeMax__14dMeterButton_cFv
+/* 80207DB0-80207E9C 2026F0 00EC+00 1/1 0/0 0/0 .text setAlphaButtonYAnimeMax__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -1141,8 +1116,8 @@ asm void dMeterButton_c::setAlphaButtonYAnimeMax() {
 }
 #pragma pop
 
-/* 80207E9C-80207F34 0098+00 s=1 e=0 z=0  None .text setAlphaButtonNunAnimeMin__14dMeterButton_cFv
- */
+/* 80207E9C-80207F34 2027DC 0098+00 1/1 0/0 0/0 .text
+ * setAlphaButtonNunAnimeMin__14dMeterButton_cFv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1152,8 +1127,8 @@ asm void dMeterButton_c::setAlphaButtonNunAnimeMin() {
 }
 #pragma pop
 
-/* 80207F34-80208028 00F4+00 s=1 e=0 z=0  None .text setAlphaButtonNunAnimeMax__14dMeterButton_cFv
- */
+/* 80207F34-80208028 202874 00F4+00 1/1 0/0 0/0 .text
+ * setAlphaButtonNunAnimeMax__14dMeterButton_cFv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1163,7 +1138,7 @@ asm void dMeterButton_c::setAlphaButtonNunAnimeMax() {
 }
 #pragma pop
 
-/* 80208028-802080C0 0098+00 s=1 e=0 z=0  None .text
+/* 80208028-802080C0 202968 0098+00 1/1 0/0 0/0 .text
  * setAlphaButtonRemoAnimeMin__14dMeterButton_cFv               */
 #pragma push
 #pragma optimization_level 0
@@ -1174,7 +1149,7 @@ asm void dMeterButton_c::setAlphaButtonRemoAnimeMin() {
 }
 #pragma pop
 
-/* 802080C0-802081B4 00F4+00 s=1 e=0 z=0  None .text
+/* 802080C0-802081B4 202A00 00F4+00 1/1 0/0 0/0 .text
  * setAlphaButtonRemoAnimeMax__14dMeterButton_cFv               */
 #pragma push
 #pragma optimization_level 0
@@ -1185,7 +1160,7 @@ asm void dMeterButton_c::setAlphaButtonRemoAnimeMax() {
 }
 #pragma pop
 
-/* 802081B4-8020824C 0098+00 s=1 e=0 z=0  None .text
+/* 802081B4-8020824C 202AF4 0098+00 1/1 0/0 0/0 .text
  * setAlphaButtonRemo2AnimeMin__14dMeterButton_cFv              */
 #pragma push
 #pragma optimization_level 0
@@ -1196,7 +1171,7 @@ asm void dMeterButton_c::setAlphaButtonRemo2AnimeMin() {
 }
 #pragma pop
 
-/* 8020824C-80208340 00F4+00 s=1 e=0 z=0  None .text
+/* 8020824C-80208340 202B8C 00F4+00 1/1 0/0 0/0 .text
  * setAlphaButtonRemo2AnimeMax__14dMeterButton_cFv              */
 #pragma push
 #pragma optimization_level 0
@@ -1207,7 +1182,7 @@ asm void dMeterButton_c::setAlphaButtonRemo2AnimeMax() {
 }
 #pragma pop
 
-/* 80208340-802083D8 0098+00 s=1 e=0 z=0  None .text setAlphaButtonARAnimeMin__14dMeterButton_cFv
+/* 80208340-802083D8 202C80 0098+00 1/1 0/0 0/0 .text setAlphaButtonARAnimeMin__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -1218,7 +1193,7 @@ asm void dMeterButton_c::setAlphaButtonARAnimeMin() {
 }
 #pragma pop
 
-/* 802083D8-802084D8 0100+00 s=1 e=0 z=0  None .text setAlphaButtonARAnimeMax__14dMeterButton_cFv
+/* 802083D8-802084D8 202D18 0100+00 1/1 0/0 0/0 .text setAlphaButtonARAnimeMax__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -1229,8 +1204,8 @@ asm void dMeterButton_c::setAlphaButtonARAnimeMax() {
 }
 #pragma pop
 
-/* 802084D8-80208570 0098+00 s=1 e=0 z=0  None .text setAlphaButton3DBAnimeMin__14dMeterButton_cFv
- */
+/* 802084D8-80208570 202E18 0098+00 1/1 0/0 0/0 .text
+ * setAlphaButton3DBAnimeMin__14dMeterButton_cFv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1240,8 +1215,8 @@ asm void dMeterButton_c::setAlphaButton3DBAnimeMin() {
 }
 #pragma pop
 
-/* 80208570-80208670 0100+00 s=1 e=0 z=0  None .text setAlphaButton3DBAnimeMax__14dMeterButton_cFv
- */
+/* 80208570-80208670 202EB0 0100+00 1/1 0/0 0/0 .text
+ * setAlphaButton3DBAnimeMax__14dMeterButton_cFv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1251,7 +1226,7 @@ asm void dMeterButton_c::setAlphaButton3DBAnimeMax() {
 }
 #pragma pop
 
-/* 80208670-80208708 0098+00 s=1 e=0 z=0  None .text
+/* 80208670-80208708 202FB0 0098+00 1/1 0/0 0/0 .text
  * setAlphaButtonNUREAnimeMin__14dMeterButton_cFv               */
 #pragma push
 #pragma optimization_level 0
@@ -1262,7 +1237,7 @@ asm void dMeterButton_c::setAlphaButtonNUREAnimeMin() {
 }
 #pragma pop
 
-/* 80208708-80208808 0100+00 s=1 e=0 z=0  None .text
+/* 80208708-80208808 203048 0100+00 1/1 0/0 0/0 .text
  * setAlphaButtonNUREAnimeMax__14dMeterButton_cFv               */
 #pragma push
 #pragma optimization_level 0
@@ -1273,7 +1248,7 @@ asm void dMeterButton_c::setAlphaButtonNUREAnimeMax() {
 }
 #pragma pop
 
-/* 80208808-802088A0 0098+00 s=1 e=0 z=0  None .text
+/* 80208808-802088A0 203148 0098+00 1/1 0/0 0/0 .text
  * setAlphaButtonReelAnimeMin__14dMeterButton_cFv               */
 #pragma push
 #pragma optimization_level 0
@@ -1284,7 +1259,7 @@ asm void dMeterButton_c::setAlphaButtonReelAnimeMin() {
 }
 #pragma pop
 
-/* 802088A0-802089A0 0100+00 s=1 e=0 z=0  None .text
+/* 802088A0-802089A0 2031E0 0100+00 1/1 0/0 0/0 .text
  * setAlphaButtonReelAnimeMax__14dMeterButton_cFv               */
 #pragma push
 #pragma optimization_level 0
@@ -1295,7 +1270,7 @@ asm void dMeterButton_c::setAlphaButtonReelAnimeMax() {
 }
 #pragma pop
 
-/* 802089A0-80208A38 0098+00 s=1 e=0 z=0  None .text
+/* 802089A0-80208A38 2032E0 0098+00 1/1 0/0 0/0 .text
  * setAlphaButtonReel2AnimeMin__14dMeterButton_cFv              */
 #pragma push
 #pragma optimization_level 0
@@ -1306,7 +1281,7 @@ asm void dMeterButton_c::setAlphaButtonReel2AnimeMin() {
 }
 #pragma pop
 
-/* 80208A38-80208AEC 00B4+00 s=1 e=0 z=0  None .text
+/* 80208A38-80208AEC 203378 00B4+00 1/1 0/0 0/0 .text
  * setAlphaButtonReel2AnimeMax__14dMeterButton_cFv              */
 #pragma push
 #pragma optimization_level 0
@@ -1317,7 +1292,7 @@ asm void dMeterButton_c::setAlphaButtonReel2AnimeMax() {
 }
 #pragma pop
 
-/* 80208AEC-80208B84 0098+00 s=1 e=0 z=0  None .text setAlphaButtonABAnimeMin__14dMeterButton_cFv
+/* 80208AEC-80208B84 20342C 0098+00 1/1 0/0 0/0 .text setAlphaButtonABAnimeMin__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -1328,7 +1303,7 @@ asm void dMeterButton_c::setAlphaButtonABAnimeMin() {
 }
 #pragma pop
 
-/* 80208B84-80208C38 00B4+00 s=1 e=0 z=0  None .text setAlphaButtonABAnimeMax__14dMeterButton_cFv
+/* 80208B84-80208C38 2034C4 00B4+00 1/1 0/0 0/0 .text setAlphaButtonABAnimeMax__14dMeterButton_cFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -1339,7 +1314,7 @@ asm void dMeterButton_c::setAlphaButtonABAnimeMax() {
 }
 #pragma pop
 
-/* 80208C38-80208CD0 0098+00 s=1 e=0 z=0  None .text
+/* 80208C38-80208CD0 203578 0098+00 1/1 0/0 0/0 .text
  * setAlphaButtonTateAnimeMin__14dMeterButton_cFv               */
 #pragma push
 #pragma optimization_level 0
@@ -1350,7 +1325,7 @@ asm void dMeterButton_c::setAlphaButtonTateAnimeMin() {
 }
 #pragma pop
 
-/* 80208CD0-80208D84 00B4+00 s=1 e=0 z=0  None .text
+/* 80208CD0-80208D84 203610 00B4+00 1/1 0/0 0/0 .text
  * setAlphaButtonTateAnimeMax__14dMeterButton_cFv               */
 #pragma push
 #pragma optimization_level 0
@@ -1361,7 +1336,7 @@ asm void dMeterButton_c::setAlphaButtonTateAnimeMax() {
 }
 #pragma pop
 
-/* 80208D84-80208E1C 0098+00 s=1 e=0 z=0  None .text
+/* 80208D84-80208E1C 2036C4 0098+00 1/1 0/0 0/0 .text
  * setAlphaButtonNunZAnimeMin__14dMeterButton_cFv               */
 #pragma push
 #pragma optimization_level 0
@@ -1372,7 +1347,7 @@ asm void dMeterButton_c::setAlphaButtonNunZAnimeMin() {
 }
 #pragma pop
 
-/* 80208E1C-80208F1C 0100+00 s=1 e=0 z=0  None .text
+/* 80208E1C-80208F1C 20375C 0100+00 1/1 0/0 0/0 .text
  * setAlphaButtonNunZAnimeMax__14dMeterButton_cFv               */
 #pragma push
 #pragma optimization_level 0
@@ -1383,7 +1358,7 @@ asm void dMeterButton_c::setAlphaButtonNunZAnimeMax() {
 }
 #pragma pop
 
-/* 80208F1C-80208FB4 0098+00 s=1 e=0 z=0  None .text
+/* 80208F1C-80208FB4 20385C 0098+00 1/1 0/0 0/0 .text
  * setAlphaButtonNunCAnimeMin__14dMeterButton_cFv               */
 #pragma push
 #pragma optimization_level 0
@@ -1394,7 +1369,7 @@ asm void dMeterButton_c::setAlphaButtonNunCAnimeMin() {
 }
 #pragma pop
 
-/* 80208FB4-802090B4 0100+00 s=1 e=0 z=0  None .text
+/* 80208FB4-802090B4 2038F4 0100+00 1/1 0/0 0/0 .text
  * setAlphaButtonNunCAnimeMax__14dMeterButton_cFv               */
 #pragma push
 #pragma optimization_level 0
@@ -1405,8 +1380,8 @@ asm void dMeterButton_c::setAlphaButtonNunCAnimeMax() {
 }
 #pragma pop
 
-/* 802090B4-8020914C 0098+00 s=1 e=0 z=0  None .text setAlphaButtonBinAnimeMin__14dMeterButton_cFv
- */
+/* 802090B4-8020914C 2039F4 0098+00 1/1 0/0 0/0 .text
+ * setAlphaButtonBinAnimeMin__14dMeterButton_cFv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1416,8 +1391,8 @@ asm void dMeterButton_c::setAlphaButtonBinAnimeMin() {
 }
 #pragma pop
 
-/* 8020914C-8020924C 0100+00 s=1 e=0 z=0  None .text setAlphaButtonBinAnimeMax__14dMeterButton_cFv
- */
+/* 8020914C-8020924C 203A8C 0100+00 1/1 0/0 0/0 .text
+ * setAlphaButtonBinAnimeMax__14dMeterButton_cFv                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1427,7 +1402,7 @@ asm void dMeterButton_c::setAlphaButtonBinAnimeMax() {
 }
 #pragma pop
 
-/* 8020924C-802092C0 0074+00 s=1 e=0 z=0  None .text setAlphaButtonOAnimeMin__14dMeterButton_cFi
+/* 8020924C-802092C0 203B8C 0074+00 1/1 0/0 0/0 .text setAlphaButtonOAnimeMin__14dMeterButton_cFi
  */
 #pragma push
 #pragma optimization_level 0
@@ -1438,7 +1413,7 @@ asm void dMeterButton_c::setAlphaButtonOAnimeMin(int param_0) {
 }
 #pragma pop
 
-/* 802092C0-80209368 00A8+00 s=1 e=0 z=0  None .text setAlphaButtonOAnimeMax__14dMeterButton_cFi
+/* 802092C0-80209368 203C00 00A8+00 1/1 0/0 0/0 .text setAlphaButtonOAnimeMax__14dMeterButton_cFi
  */
 #pragma push
 #pragma optimization_level 0
@@ -1449,8 +1424,7 @@ asm void dMeterButton_c::setAlphaButtonOAnimeMax(int param_0) {
 }
 #pragma pop
 
-/* 80209368-802093D8 0070+00 s=1 e=0 z=0  None .text      setAlphaIconAnimeMin__14dMeterButton_cFv
- */
+/* 80209368-802093D8 203CA8 0070+00 1/1 0/0 0/0 .text setAlphaIconAnimeMin__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1460,8 +1434,7 @@ asm void dMeterButton_c::setAlphaIconAnimeMin() {
 }
 #pragma pop
 
-/* 802093D8-80209474 009C+00 s=1 e=0 z=0  None .text      setAlphaIconAnimeMax__14dMeterButton_cFv
- */
+/* 802093D8-80209474 203D18 009C+00 1/1 0/0 0/0 .text setAlphaIconAnimeMax__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1471,7 +1444,7 @@ asm void dMeterButton_c::setAlphaIconAnimeMax() {
 }
 #pragma pop
 
-/* 80209474-802095C0 014C+00 s=0 e=1 z=0  None .text      isClose__14dMeterButton_cFv */
+/* 80209474-802095C0 203DB4 014C+00 0/0 1/1 0/0 .text            isClose__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1481,7 +1454,7 @@ asm void dMeterButton_c::isClose() {
 }
 #pragma pop
 
-/* 802095C0-80209CEC 072C+00 s=0 e=1 z=0  None .text      setString__14dMeterButton_cFPcUcUcUc */
+/* 802095C0-80209CEC 203F00 072C+00 0/0 1/1 0/0 .text setString__14dMeterButton_cFPcUcUcUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1491,7 +1464,7 @@ asm void dMeterButton_c::setString(char* param_0, u8 param_1, u8 param_2, u8 par
 }
 #pragma pop
 
-/* 80209CEC-80209D7C 0090+00 s=0 e=1 z=0  None .text      hideAll__14dMeterButton_cFv */
+/* 80209CEC-80209D7C 20462C 0090+00 0/0 1/1 0/0 .text            hideAll__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1501,8 +1474,7 @@ asm void dMeterButton_c::hideAll() {
 }
 #pragma pop
 
-/* 80209D7C-8020A540 07C4+00 s=2 e=0 z=0  None .text      getCenterPosCalc__14dMeterButton_cFUcPci
- */
+/* 80209D7C-8020A540 2046BC 07C4+00 2/1 0/0 0/0 .text getCenterPosCalc__14dMeterButton_cFUcPci */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1513,10 +1485,11 @@ asm void dMeterButton_c::getCenterPosCalc(u8 param_0, char* param_1, int param_2
 #pragma pop
 
 /* ############################################################################################## */
-/* 804547AC-804547B0 0004+00 s=1 e=0 z=0  None .sdata2    @7857 */
+/* 804547AC-804547B0 002DAC 0004+00 1/1 0/0 0/0 .sdata2          @7857 */
 SECTION_SDATA2 static f32 lit_7857 = 20.0f;
 
-/* 8020A540-8020A94C 040C+00 s=2 e=0 z=0  None .text      trans_button__14dMeterButton_cFif */
+/* 8020A540-8020A94C 204E80 040C+00 2/1 0/0 0/0 .text            trans_button__14dMeterButton_cFif
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1526,7 +1499,8 @@ asm void dMeterButton_c::trans_button(int param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 8020A94C-8020AA84 0138+00 s=23 e=0 z=0  None .text      hide_button__14dMeterButton_cFUc */
+/* 8020A94C-8020AA84 20528C 0138+00 23/23 0/0 0/0 .text            hide_button__14dMeterButton_cFUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1536,7 +1510,7 @@ asm void dMeterButton_c::hide_button(u8 param_0) {
 }
 #pragma pop
 
-/* 8020AA84-8020AE68 03E4+00 s=1 e=0 z=0  None .text      pikariCheck__14dMeterButton_cFv */
+/* 8020AA84-8020AE68 2053C4 03E4+00 1/1 0/0 0/0 .text            pikariCheck__14dMeterButton_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1546,7 +1520,7 @@ asm void dMeterButton_c::pikariCheck() {
 }
 #pragma pop
 
-/* 8020AE68-8020AE8C 0024+00 s=3 e=0 z=0  None .text      paneTrans__14dMeterButton_cFP8CPaneMgrffUc
+/* 8020AE68-8020AE8C 2057A8 0024+00 3/3 0/0 0/0 .text paneTrans__14dMeterButton_cFP8CPaneMgrffUc
  */
 #pragma push
 #pragma optimization_level 0
@@ -1555,4 +1529,18 @@ asm void dMeterButton_c::paneTrans(CPaneMgr* param_0, f32 param_1, f32 param_2, 
     nofralloc
 #include "asm/d/meter/d_meter_button/paneTrans__14dMeterButton_cFP8CPaneMgrffUc.s"
 }
+#pragma pop
+
+/* 803980E8-80398158 024748 006C+04 4/4 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_803980E8 = "zelda_game_image_button_info.blo";
+SECTION_DEAD static char const* const stringBase_80398109 = "";
+SECTION_DEAD static char const* const stringBase_8039810A = "zelda_message_window_new.blo";
+SECTION_DEAD static char const* const stringBase_80398127 = "zelda_message_window_text.blo";
+SECTION_DEAD static char const* const stringBase_80398145 = "F_SP00";
+SECTION_DEAD static char const* const stringBase_8039814C = "R_SP161";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80398154 = "\0\0\0";
 #pragma pop

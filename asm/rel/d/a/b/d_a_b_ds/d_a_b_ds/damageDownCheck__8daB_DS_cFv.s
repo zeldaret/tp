@@ -3,10 +3,10 @@ lbl_805D0584:
 /* 805D0588  7C 08 02 A6 */	mflr r0
 /* 805D058C  90 01 00 64 */	stw r0, 0x64(r1)
 /* 805D0590  39 61 00 60 */	addi r11, r1, 0x60
-/* 805D0594  4B D9 1C 34 */	b _savegpr_24
+/* 805D0594  4B D9 1C 35 */	bl _savegpr_24
 /* 805D0598  7C 7E 1B 78 */	mr r30, r3
-/* 805D059C  3C 60 80 5E */	lis r3, lit_3932@ha
-/* 805D05A0  3B E3 CA 54 */	addi r31, r3, lit_3932@l
+/* 805D059C  3C 60 80 5E */	lis r3, lit_3932@ha /* 0x805DCA54@ha */
+/* 805D05A0  3B E3 CA 54 */	addi r31, r3, lit_3932@l /* 0x805DCA54@l */
 /* 805D05A4  C0 1F 00 08 */	lfs f0, 8(r31)
 /* 805D05A8  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 805D05AC  D0 01 00 2C */	stfs f0, 0x2c(r1)
@@ -28,7 +28,7 @@ lbl_805D05D8:
 /* 805D05E8  80 7E 05 B4 */	lwz r3, 0x5b4(r30)
 /* 805D05EC  38 63 00 0C */	addi r3, r3, 0xc
 /* 805D05F0  C0 3F 02 BC */	lfs f1, 0x2bc(r31)
-/* 805D05F4  4B D5 7E 38 */	b checkPass__12J3DFrameCtrlFf
+/* 805D05F4  4B D5 7E 39 */	bl checkPass__12J3DFrameCtrlFf
 /* 805D05F8  2C 03 00 00 */	cmpwi r3, 0
 /* 805D05FC  41 82 00 10 */	beq lbl_805D060C
 /* 805D0600  7F C3 F3 78 */	mr r3, r30
@@ -38,7 +38,7 @@ lbl_805D060C:
 /* 805D060C  80 7E 05 B4 */	lwz r3, 0x5b4(r30)
 /* 805D0610  38 63 00 0C */	addi r3, r3, 0xc
 /* 805D0614  C0 3F 02 F0 */	lfs f1, 0x2f0(r31)
-/* 805D0618  4B D5 7E 14 */	b checkPass__12J3DFrameCtrlFf
+/* 805D0618  4B D5 7E 15 */	bl checkPass__12J3DFrameCtrlFf
 /* 805D061C  2C 03 00 00 */	cmpwi r3, 0
 /* 805D0620  41 82 00 10 */	beq lbl_805D0630
 /* 805D0624  7F C3 F3 78 */	mr r3, r30
@@ -51,7 +51,7 @@ lbl_805D0638:
 /* 805D0638  80 7E 05 B4 */	lwz r3, 0x5b4(r30)
 /* 805D063C  38 63 00 0C */	addi r3, r3, 0xc
 /* 805D0640  C0 3F 02 F4 */	lfs f1, 0x2f4(r31)
-/* 805D0644  4B D5 7D E8 */	b checkPass__12J3DFrameCtrlFf
+/* 805D0644  4B D5 7D E9 */	bl checkPass__12J3DFrameCtrlFf
 /* 805D0648  2C 03 00 00 */	cmpwi r3, 0
 /* 805D064C  41 82 00 10 */	beq lbl_805D065C
 /* 805D0650  7F C3 F3 78 */	mr r3, r30
@@ -61,7 +61,7 @@ lbl_805D065C:
 /* 805D065C  80 7E 05 B4 */	lwz r3, 0x5b4(r30)
 /* 805D0660  38 63 00 0C */	addi r3, r3, 0xc
 /* 805D0664  C0 3F 02 F8 */	lfs f1, 0x2f8(r31)
-/* 805D0668  4B D5 7D C4 */	b checkPass__12J3DFrameCtrlFf
+/* 805D0668  4B D5 7D C5 */	bl checkPass__12J3DFrameCtrlFf
 /* 805D066C  2C 03 00 00 */	cmpwi r3, 0
 /* 805D0670  41 82 00 10 */	beq lbl_805D0680
 /* 805D0674  7F C3 F3 78 */	mr r3, r30
@@ -77,16 +77,16 @@ lbl_805D0680:
 /* 805D0698  90 01 00 38 */	stw r0, 0x38(r1)
 /* 805D069C  C8 01 00 38 */	lfd f0, 0x38(r1)
 /* 805D06A0  EC 20 08 28 */	fsubs f1, f0, f1
-/* 805D06A4  4B D5 7D 88 */	b checkPass__12J3DFrameCtrlFf
+/* 805D06A4  4B D5 7D 89 */	bl checkPass__12J3DFrameCtrlFf
 /* 805D06A8  2C 03 00 00 */	cmpwi r3, 0
 /* 805D06AC  41 82 00 88 */	beq lbl_805D0734
 /* 805D06B0  3B 00 00 00 */	li r24, 0
 /* 805D06B4  3B A0 00 00 */	li r29, 0
 /* 805D06B8  3B 80 00 00 */	li r28, 0
-/* 805D06BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805D06C0  3B 43 61 C0 */	addi r26, r3, g_dComIfG_gameInfo@l
-/* 805D06C4  3C 60 80 5E */	lis r3, eff_smoke_id@ha
-/* 805D06C8  3B 63 D4 70 */	addi r27, r3, eff_smoke_id@l
+/* 805D06BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805D06C0  3B 43 61 C0 */	addi r26, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
+/* 805D06C4  3C 60 80 5E */	lis r3, eff_smoke_id@ha /* 0x805DD470@ha */
+/* 805D06C8  3B 63 D4 70 */	addi r27, r3, eff_smoke_id@l /* 0x805DD470@l */
 lbl_805D06CC:
 /* 805D06CC  80 7A 5D 3C */	lwz r3, 0x5d3c(r26)
 /* 805D06D0  38 00 00 FF */	li r0, 0xff
@@ -107,7 +107,7 @@ lbl_805D06CC:
 /* 805D070C  39 21 00 20 */	addi r9, r1, 0x20
 /* 805D0710  39 41 00 28 */	addi r10, r1, 0x28
 /* 805D0714  C0 3F 00 08 */	lfs f1, 8(r31)
-/* 805D0718  4B A7 CD B4 */	b set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 805D0718  4B A7 CD B5 */	bl set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 805D071C  7C 7E C9 2E */	stwx r3, r30, r25
 /* 805D0720  3B 18 00 01 */	addi r24, r24, 1
 /* 805D0724  2C 18 00 02 */	cmpwi r24, 2
@@ -116,7 +116,7 @@ lbl_805D06CC:
 /* 805D0730  41 80 FF 9C */	blt lbl_805D06CC
 lbl_805D0734:
 /* 805D0734  39 61 00 60 */	addi r11, r1, 0x60
-/* 805D0738  4B D9 1A DC */	b _restgpr_24
+/* 805D0738  4B D9 1A DD */	bl _restgpr_24
 /* 805D073C  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 805D0740  7C 08 03 A6 */	mtlr r0
 /* 805D0744  38 21 00 60 */	addi r1, r1, 0x60

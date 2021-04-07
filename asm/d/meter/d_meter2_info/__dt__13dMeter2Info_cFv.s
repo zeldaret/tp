@@ -5,8 +5,8 @@ lbl_8021BE20:
 /* 8021BE2C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8021BE30  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8021BE34  41 82 00 1C */	beq lbl_8021BE50
-/* 8021BE38  3C A0 80 3C */	lis r5, __vt__13dMeter2Info_c@ha
-/* 8021BE3C  38 05 FA 1C */	addi r0, r5, __vt__13dMeter2Info_c@l
+/* 8021BE38  3C A0 80 3C */	lis r5, __vt__13dMeter2Info_c@ha /* 0x803BFA1C@ha */
+/* 8021BE3C  38 05 FA 1C */	addi r0, r5, __vt__13dMeter2Info_c@l /* 0x803BFA1C@l */
 /* 8021BE40  90 1F 00 00 */	stw r0, 0(r31)
 /* 8021BE44  7C 80 07 35 */	extsh. r0, r4
 /* 8021BE48  40 81 00 08 */	ble lbl_8021BE50

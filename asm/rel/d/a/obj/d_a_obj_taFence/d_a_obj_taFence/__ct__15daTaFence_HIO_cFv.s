@@ -1,11 +1,11 @@
 lbl_80D04E6C:
-/* 80D04E6C  3C 80 80 D0 */	lis r4, lit_3651@ha
-/* 80D04E70  38 A4 60 E0 */	addi r5, r4, lit_3651@l
-/* 80D04E74  3C 80 80 D0 */	lis r4, __vt__14mDoHIO_entry_c@ha
-/* 80D04E78  38 04 63 1C */	addi r0, r4, __vt__14mDoHIO_entry_c@l
+/* 80D04E6C  3C 80 80 D0 */	lis r4, lit_3651@ha /* 0x80D060E0@ha */
+/* 80D04E70  38 A4 60 E0 */	addi r5, r4, lit_3651@l /* 0x80D060E0@l */
+/* 80D04E74  3C 80 80 D0 */	lis r4, __vt__14mDoHIO_entry_c@ha /* 0x80D0631C@ha */
+/* 80D04E78  38 04 63 1C */	addi r0, r4, __vt__14mDoHIO_entry_c@l /* 0x80D0631C@l */
 /* 80D04E7C  90 03 00 00 */	stw r0, 0(r3)
-/* 80D04E80  3C 80 80 D0 */	lis r4, __vt__15daTaFence_HIO_c@ha
-/* 80D04E84  38 04 63 10 */	addi r0, r4, __vt__15daTaFence_HIO_c@l
+/* 80D04E80  3C 80 80 D0 */	lis r4, __vt__15daTaFence_HIO_c@ha /* 0x80D06310@ha */
+/* 80D04E84  38 04 63 10 */	addi r0, r4, __vt__15daTaFence_HIO_c@l /* 0x80D06310@l */
 /* 80D04E88  90 03 00 00 */	stw r0, 0(r3)
 /* 80D04E8C  C0 05 00 00 */	lfs f0, 0(r5)
 /* 80D04E90  D0 03 00 04 */	stfs f0, 4(r3)

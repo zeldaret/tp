@@ -3,19 +3,20 @@
 #
 
 M286_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_bans.plf
+M286_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_bans.lcf
+M286_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_bans.map
 
 M286_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_bans/executor.cpp \
-	rel/d/a/npc/d_a_npc_bans/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_bans/d_a_npc_bans.cpp \
 
 M286_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_bans/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_bans/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_bans/d_a_npc_bans.o \
 
 M286_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_bans/libRuntime.PPCEABI.H.a \
 
 M286_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M286_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M286_LDSCRIPT) \
+	-unused -map $(M286_MAP) \
+	-w off \
 
 $(M286_TARGET): $(M286_O_FILES) $(M286_LIBS)
+	@echo [286] creating $(M286_TARGET)
 	@echo $(M286_LIBS) $(M286_O_FILES) > build/M286_ofiles
-	$(LD) -partial $(M286_LDFLAGS) -o $(M286_TARGET) @build/M286_ofiles
+	@python3 tools/lcf.py rel 286 --output $(M286_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M286_LDFLAGS) -o $(M286_TARGET) @build/M286_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_bans/%.o: rel/d/a/npc/d_a_npc_bans/%.cpp
+	@echo [286] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M286_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M286_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_bans/libs/Runtime.PPCEABI.H/Makefile
 

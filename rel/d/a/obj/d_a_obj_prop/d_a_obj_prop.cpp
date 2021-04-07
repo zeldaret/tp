@@ -30,9 +30,9 @@ struct daObjProp_c {
     /* 80CB54F4 */ void setModelMtx();
 };
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct cXyz {};
 
 struct J3DModelData {};
 
@@ -53,12 +53,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void daObjProp_c_createHeap(fopAc_ac_c*);
-static void daObjProp_create(daObjProp_c*);
-static void daObjProp_Delete(daObjProp_c*);
-static void daObjProp_execute(daObjProp_c*);
-static void daObjProp_draw(daObjProp_c*);
-
 extern "C" static void daObjProp_c_createHeap__FP10fopAc_ac_c();
 extern "C" void __ct__11daObjProp_cFv();
 extern "C" void __dt__11daObjProp_cFv();
@@ -73,21 +67,11 @@ extern "C" static void daObjProp_create__FP11daObjProp_c();
 extern "C" static void daObjProp_Delete__FP11daObjProp_c();
 extern "C" static void daObjProp_execute__FP11daObjProp_c();
 extern "C" static void daObjProp_draw__FP11daObjProp_c();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_Prop[12];
+extern "C" extern char const* const d_a_obj_prop__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdate(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void mDoExt_modelUpdate__FP8J3DModel();
@@ -114,41 +98,21 @@ extern "C" extern u8 g_env_light[4880];
 // Declarations:
 //
 
-/* 80CB51D8-80CB51F8 0020+00 s=1 e=0 z=0  None .text      daObjProp_c_createHeap__FP10fopAc_ac_c */
+/* 80CB51D8-80CB51F8 000078 0020+00 1/1 0/0 0/0 .text daObjProp_c_createHeap__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjProp_c_createHeap(fopAc_ac_c* param_0) {
+static asm void daObjProp_c_createHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_prop/d_a_obj_prop/daObjProp_c_createHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80CB5614-80CB561C 0008+00 s=1 e=0 z=0  None .rodata    BMD_IDX$3638 */
-SECTION_RODATA static u8 const BMD_IDX[8] = {
-    0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04,
-};
+/* 80CB5628-80CB562C -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_prop__stringBase0;
 
-/* 80CB561C-80CB5620 0004+00 s=1 e=0 z=0  None .rodata    ADD_ANGLE$3689 */
-SECTION_RODATA static u8 const ADD_ANGLE[4] = {
-    0x18,
-    0x00,
-    0xE8,
-    0x00,
-};
-
-/* 80CB5620-80CB5627 0007+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80CB5620 = "L7Prop";
-#pragma pop
-
-/* 80CB5628-80CB562C 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80CB562C-80CB564C 0020+00 s=1 e=0 z=0  None .data      daObjProp_METHODS */
+/* 80CB562C-80CB564C -00001 0020+00 1/0 0/0 0/0 .data            daObjProp_METHODS */
 SECTION_DATA static void* daObjProp_METHODS[8] = {
     (void*)daObjProp_create__FP11daObjProp_c,
     (void*)daObjProp_Delete__FP11daObjProp_c,
@@ -160,8 +124,8 @@ SECTION_DATA static void* daObjProp_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 80CB564C-80CB567C 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_Prop */
-SECTION_DATA void* g_profile_Obj_Prop[12] = {
+/* 80CB564C-80CB567C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Prop */
+SECTION_DATA extern void* g_profile_Obj_Prop[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01970000, (void*)&g_fpcLf_Method,
     (void*)0x0000057C, (void*)NULL,
@@ -170,14 +134,14 @@ SECTION_DATA void* g_profile_Obj_Prop[12] = {
     (void*)0x00040000, (void*)0x030E0000,
 };
 
-/* 80CB567C-80CB5688 000C+00 s=2 e=0 z=0  None .data      __vt__11daObjProp_c */
-SECTION_DATA static void* __vt__11daObjProp_c[3] = {
-    (void*)NULL,
+/* 80CB567C-80CB5688 000054 000C+00 2/2 0/0 0/0 .data            __vt__11daObjProp_c */
+SECTION_DATA extern void* __vt__11daObjProp_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__11daObjProp_cFv,
 };
 
-/* 80CB51F8-80CB5234 003C+00 s=2 e=0 z=0  None .text      __ct__11daObjProp_cFv */
+/* 80CB51F8-80CB5234 000098 003C+00 2/2 0/0 0/0 .text            __ct__11daObjProp_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -187,7 +151,7 @@ asm daObjProp_c::daObjProp_c() {
 }
 #pragma pop
 
-/* 80CB5234-80CB52B4 0080+00 s=1 e=0 z=0  None .text      __dt__11daObjProp_cFv */
+/* 80CB5234-80CB52B4 0000D4 0080+00 1/0 0/0 0/0 .text            __dt__11daObjProp_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -197,7 +161,14 @@ asm daObjProp_c::~daObjProp_c() {
 }
 #pragma pop
 
-/* 80CB52B4-80CB5334 0080+00 s=1 e=0 z=0  None .text      createHeap__11daObjProp_cFv */
+/* ############################################################################################## */
+/* 80CB5614-80CB561C 000000 0008+00 1/1 0/0 0/0 .rodata          BMD_IDX$3638 */
+SECTION_RODATA static u8 const BMD_IDX[8] = {
+    0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04,
+};
+COMPILER_STRIP_GATE(80CB5614, &BMD_IDX);
+
+/* 80CB52B4-80CB5334 000154 0080+00 1/1 0/0 0/0 .text            createHeap__11daObjProp_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -207,7 +178,7 @@ asm void daObjProp_c::createHeap() {
 }
 #pragma pop
 
-/* 80CB5334-80CB5408 00D4+00 s=1 e=0 z=0  None .text      create__11daObjProp_cFv */
+/* 80CB5334-80CB5408 0001D4 00D4+00 1/1 0/0 0/0 .text            create__11daObjProp_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -217,7 +188,7 @@ asm void daObjProp_c::create() {
 }
 #pragma pop
 
-/* 80CB5408-80CB543C 0034+00 s=1 e=0 z=0  None .text      Delete__11daObjProp_cFv */
+/* 80CB5408-80CB543C 0002A8 0034+00 1/1 0/0 0/0 .text            Delete__11daObjProp_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -227,7 +198,7 @@ asm void daObjProp_c::Delete() {
 }
 #pragma pop
 
-/* 80CB543C-80CB54A0 0064+00 s=1 e=0 z=0  None .text      draw__11daObjProp_cFv */
+/* 80CB543C-80CB54A0 0002DC 0064+00 1/1 0/0 0/0 .text            draw__11daObjProp_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -237,7 +208,17 @@ asm void daObjProp_c::draw() {
 }
 #pragma pop
 
-/* 80CB54A0-80CB54E4 0044+00 s=1 e=0 z=0  None .text      execute__11daObjProp_cFv */
+/* ############################################################################################## */
+/* 80CB561C-80CB5620 000008 0004+00 1/1 0/0 0/0 .rodata          ADD_ANGLE$3689 */
+SECTION_RODATA static u8 const ADD_ANGLE[4] = {
+    0x18,
+    0x00,
+    0xE8,
+    0x00,
+};
+COMPILER_STRIP_GATE(80CB561C, &ADD_ANGLE);
+
+/* 80CB54A0-80CB54E4 000340 0044+00 1/1 0/0 0/0 .text            execute__11daObjProp_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -247,7 +228,7 @@ asm void daObjProp_c::execute() {
 }
 #pragma pop
 
-/* 80CB54E4-80CB54F4 0010+00 s=1 e=0 z=0  None .text      init__11daObjProp_cFv */
+/* 80CB54E4-80CB54F4 000384 0010+00 1/1 0/0 0/0 .text            init__11daObjProp_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -257,7 +238,7 @@ asm void daObjProp_c::init() {
 }
 #pragma pop
 
-/* 80CB54F4-80CB5558 0064+00 s=2 e=0 z=0  None .text      setModelMtx__11daObjProp_cFv */
+/* 80CB54F4-80CB5558 000394 0064+00 2/2 0/0 0/0 .text            setModelMtx__11daObjProp_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -267,42 +248,52 @@ asm void daObjProp_c::setModelMtx() {
 }
 #pragma pop
 
-/* 80CB5558-80CB55AC 0054+00 s=1 e=0 z=0  None .text      daObjProp_create__FP11daObjProp_c */
+/* 80CB5558-80CB55AC 0003F8 0054+00 1/0 0/0 0/0 .text            daObjProp_create__FP11daObjProp_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjProp_create(daObjProp_c* param_0) {
+static asm void daObjProp_create(daObjProp_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_prop/d_a_obj_prop/daObjProp_create__FP11daObjProp_c.s"
 }
 #pragma pop
 
-/* 80CB55AC-80CB55CC 0020+00 s=1 e=0 z=0  None .text      daObjProp_Delete__FP11daObjProp_c */
+/* 80CB55AC-80CB55CC 00044C 0020+00 1/0 0/0 0/0 .text            daObjProp_Delete__FP11daObjProp_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjProp_Delete(daObjProp_c* param_0) {
+static asm void daObjProp_Delete(daObjProp_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_prop/d_a_obj_prop/daObjProp_Delete__FP11daObjProp_c.s"
 }
 #pragma pop
 
-/* 80CB55CC-80CB55EC 0020+00 s=1 e=0 z=0  None .text      daObjProp_execute__FP11daObjProp_c */
+/* 80CB55CC-80CB55EC 00046C 0020+00 1/0 0/0 0/0 .text            daObjProp_execute__FP11daObjProp_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjProp_execute(daObjProp_c* param_0) {
+static asm void daObjProp_execute(daObjProp_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_prop/d_a_obj_prop/daObjProp_execute__FP11daObjProp_c.s"
 }
 #pragma pop
 
-/* 80CB55EC-80CB560C 0020+00 s=1 e=0 z=0  None .text      daObjProp_draw__FP11daObjProp_c */
+/* 80CB55EC-80CB560C 00048C 0020+00 1/0 0/0 0/0 .text            daObjProp_draw__FP11daObjProp_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjProp_draw(daObjProp_c* param_0) {
+static asm void daObjProp_draw(daObjProp_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_prop/d_a_obj_prop/daObjProp_draw__FP11daObjProp_c.s"
 }
+#pragma pop
+
+/* 80CB5620-80CB5627 00000C 0007+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80CB5620 = "L7Prop";
 #pragma pop

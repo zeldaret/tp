@@ -39,13 +39,26 @@ class Structure(ArbitraryData):
         for member in self.members:
             member.set_mlts(module, library, translation_unit, section)
 
+    async def export_declaration_head(self, exporter, builder: AsyncBuilder):
+        has_data = any([ not not x.data for x in self.members ])
+        if not has_data:
+            for field in self.members:
+                await builder.write(f"\t/* {field.addr:08X} {field.size:04X}+{field.padding:02X} {field.identifier.label} {field.identifier.name} */")
+
+        await super().export_declaration_head(exporter, builder)
+
     async def export_declaration_body(self, exporter, builder: AsyncBuilder):
         has_data = any([ not not x.data for x in self.members ])
         if has_data:
             await builder.write(f" = {{")
             for field in self.members:
-                await builder.write(f"\t/* {field.addr:08X} {field.size:04X} {field.identifier.label} {field.identifier.name} */")
+                await builder.write(f"\t/* {field.addr:08X} {field.size:04X}+{field.padding:02X} {field.identifier.label} {field.identifier.name} */")
                 await self.export_u8_data(builder, field.data)
+                
+                if field.padding_data:
+                    assert field.padding == len(field.padding_data)
+                    await builder.write("\t/* padding */")
+                    await self.export_u8_data(builder, field.padding_data)
 
             if self.padding_data:
                 assert self.padding == len(self.padding_data)

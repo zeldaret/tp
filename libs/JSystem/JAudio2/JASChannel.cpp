@@ -30,7 +30,7 @@ template <typename A0>
 struct JASMemPool_MultiThreaded {};
 /* JASMemPool_MultiThreaded<JASChannel> */
 struct JASMemPool_MultiThreaded__template2 {
-    /* 802978DC */ ~JASMemPool_MultiThreaded__template2();
+    /* 802978DC */ void func_802978DC();
 };
 
 struct JASLfo {
@@ -131,8 +131,6 @@ extern "C" void free__10JASChannelFv();
 extern "C" void initBankDisposeMsgQueue__10JASChannelFv();
 extern "C" void receiveBankDisposeMsg__10JASChannelFv();
 extern "C" void checkBankDispose__10JASChannelCFv();
-extern "C" extern u8 sBankDisposeList__10JASChannel[64];
-extern "C" extern u8 lit_556[12 + 4 /* padding */];
 
 //
 // External References:
@@ -192,10 +190,10 @@ extern "C" extern u8 struct_80451260[8];
 //
 
 /* ############################################################################################## */
-/* 80455680-80455684 0004+00 s=6 e=0 z=0  None .sdata2    @544 */
+/* 80455680-80455684 003C80 0004+00 6/6 0/0 0/0 .sdata2          @544 */
 SECTION_SDATA2 static f32 lit_544 = 1.0f;
 
-/* 80455684-80455688 0004+00 s=7 e=0 z=0  None .sdata2    @545 */
+/* 80455684-80455688 003C84 0004+00 7/7 0/0 0/0 .sdata2          @545 */
 SECTION_SDATA2 static u8 lit_545[4] = {
     0x00,
     0x00,
@@ -203,14 +201,14 @@ SECTION_SDATA2 static u8 lit_545[4] = {
     0x00,
 };
 
-/* 80455688-80455690 0004+04 s=6 e=0 z=0  None .sdata2    @546 */
+/* 80455688-80455690 003C88 0004+04 6/6 0/0 0/0 .sdata2          @546 */
 SECTION_SDATA2 static f32 lit_546[1 + 1 /* padding */] = {
     0.5f,
     /* padding */
     0.0f,
 };
 
-/* 8029A800-8029A918 0118+00 s=0 e=3 z=0  None .text
+/* 8029A800-8029A918 295140 0118+00 0/0 3/3 0/0 .text
  * __ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv */
 #pragma push
 #pragma optimization_level 0
@@ -222,19 +220,19 @@ asm JASChannel::JASChannel(void (*)(u32, JASChannel*, JASDsp::TChannel*, void*),
 #pragma pop
 
 /* ############################################################################################## */
-/* 80431B90-80431BB0 0020+00 s=2 e=0 z=0  None .bss       sBankDisposeMsgQ__10JASChannel */
+/* 80431B90-80431BB0 05E8B0 0020+00 2/2 0/0 0/0 .bss             sBankDisposeMsgQ__10JASChannel */
 static u8 sBankDisposeMsgQ__10JASChannel[32];
 
-/* 80431BB0-80431BF0 0040+00 s=1 e=0 z=0  None .bss       sBankDisposeMsg__10JASChannel */
+/* 80431BB0-80431BF0 05E8D0 0040+00 1/1 0/0 0/0 .bss             sBankDisposeMsg__10JASChannel */
 static u8 sBankDisposeMsg__10JASChannel[64];
 
-/* 80431BF0-80431C30 0040+00 s=2 e=3 z=0  None .bss       sBankDisposeList__10JASChannel */
-u8 sBankDisposeList__10JASChannel[64];
+/* 80431BF0-80431C30 05E910 0040+00 2/2 0/3 0/0 .bss             sBankDisposeList__10JASChannel */
+static u8 sBankDisposeList__10JASChannel[64];
 
-/* 80431C30-80431C40 000C+04 s=1 e=2 z=0  None .bss       @556 */
-u8 lit_556[12 + 4 /* padding */];
+/* 80431C30-80431C40 05E950 000C+04 1/1 0/2 0/0 .bss             @556 */
+static u8 lit_556[12 + 4 /* padding */];
 
-/* 8029A918-8029A9F0 00D8+00 s=5 e=0 z=0  None .text      __dt__10JASChannelFv */
+/* 8029A918-8029A9F0 295258 00D8+00 5/5 0/0 0/0 .text            __dt__10JASChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -244,7 +242,7 @@ asm JASChannel::~JASChannel() {
 }
 #pragma pop
 
-/* 8029A9F0-8029AA60 0070+00 s=0 e=2 z=0  None .text      play__10JASChannelFv */
+/* 8029A9F0-8029AA60 295330 0070+00 0/0 2/2 0/0 .text            play__10JASChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -254,7 +252,7 @@ asm void JASChannel::play() {
 }
 #pragma pop
 
-/* 8029AA60-8029AAD0 0070+00 s=0 e=1 z=0  None .text      playForce__10JASChannelFv */
+/* 8029AA60-8029AAD0 2953A0 0070+00 0/0 1/1 0/0 .text            playForce__10JASChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -264,7 +262,7 @@ asm void JASChannel::playForce() {
 }
 #pragma pop
 
-/* 8029AAD0-8029AB64 0094+00 s=0 e=4 z=0  None .text      release__10JASChannelFUs */
+/* 8029AAD0-8029AB64 295410 0094+00 0/0 4/4 0/0 .text            release__10JASChannelFUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -274,7 +272,7 @@ asm void JASChannel::release(u16 param_0) {
 }
 #pragma pop
 
-/* 8029AB64-8029AB98 0034+00 s=0 e=4 z=0  None .text
+/* 8029AB64-8029AB98 2954A4 0034+00 0/0 4/4 0/0 .text
  * setOscInit__10JASChannelFUlPCQ213JASOscillator4Data          */
 #pragma push
 #pragma optimization_level 0
@@ -285,7 +283,7 @@ asm void JASChannel::setOscInit(u32 param_0, JASOscillator::Data const* param_1)
 }
 #pragma pop
 
-/* 8029AB98-8029ABA8 0010+00 s=0 e=2 z=0  None .text      setMixConfig__10JASChannelFUlUs */
+/* 8029AB98-8029ABA8 2954D8 0010+00 0/0 2/2 0/0 .text            setMixConfig__10JASChannelFUlUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -295,7 +293,7 @@ asm void JASChannel::setMixConfig(u32 param_0, u16 param_1) {
 }
 #pragma pop
 
-/* 8029ABA8-8029ABC0 0018+00 s=1 e=0 z=0  None .text
+/* 8029ABA8-8029ABC0 2954E8 0018+00 1/1 0/0 0/0 .text
  * calcEffect__10JASChannelFPCQ210JASChannel9PanVector          */
 #pragma push
 #pragma optimization_level 0
@@ -306,7 +304,7 @@ asm void JASChannel::calcEffect(JASChannel::PanVector const* param_0) {
 }
 #pragma pop
 
-/* 8029ABC0-8029ABEC 002C+00 s=1 e=0 z=0  None .text
+/* 8029ABC0-8029ABEC 295500 002C+00 1/1 0/0 0/0 .text
  * calcPan__10JASChannelFPCQ210JASChannel9PanVector             */
 #pragma push
 #pragma optimization_level 0
@@ -318,7 +316,7 @@ asm void JASChannel::calcPan(JASChannel::PanVector const* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C7848-803C7864 001C+00 s=1 e=0 z=0  None .data      @662 */
+/* 803C7848-803C7864 -00001 001C+00 1/1 0/0 0/0 .data            @662 */
 SECTION_DATA static void* lit_662[7] = {
     (void*)(((char*)effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams) + 0x68),
     (void*)(((char*)effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams) + 0x58),
@@ -329,10 +327,10 @@ SECTION_DATA static void* lit_662[7] = {
     (void*)(((char*)effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams) + 0xC4),
 };
 
-/* 80455690-80455698 0008+00 s=1 e=0 z=0  None .sdata2    @661 */
+/* 80455690-80455698 003C90 0008+00 1/1 0/0 0/0 .sdata2          @661 */
 SECTION_SDATA2 static f64 lit_661 = 0.5;
 
-/* 8029ABEC-8029ACD4 00E8+00 s=3 e=0 z=0  None .text
+/* 8029ABEC-8029ACD4 29552C 00E8+00 3/2 0/0 0/0 .text
  * effectOsc__10JASChannelFUlPQ213JASOscillator12EffectParams   */
 #pragma push
 #pragma optimization_level 0
@@ -344,10 +342,11 @@ asm void JASChannel::effectOsc(u32 param_0, JASOscillator::EffectParams* param_1
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455698-804556A0 0008+00 s=3 e=0 z=0  None .sdata2    @685 */
+/* 80455698-804556A0 003C98 0008+00 3/3 0/0 0/0 .sdata2          @685 */
 SECTION_SDATA2 static f64 lit_685 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 8029ACD4-8029AD38 0064+00 s=0 e=1 z=0  None .text      setKeySweepTarget__10JASChannelFlUl */
+/* 8029ACD4-8029AD38 295614 0064+00 0/0 1/1 0/0 .text            setKeySweepTarget__10JASChannelFlUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -358,17 +357,17 @@ asm void JASChannel::setKeySweepTarget(s32 param_0, u32 param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804556A0-804556A8 0004+04 s=1 e=0 z=0  None .sdata2    @711 */
+/* 804556A0-804556A8 003CA0 0004+04 1/1 0/0 0/0 .sdata2          @711 */
 SECTION_SDATA2 static f32 lit_711[1 + 1 /* padding */] = {
     127.0f,
     /* padding */
     0.0f,
 };
 
-/* 804556A8-804556B0 0008+00 s=4 e=0 z=0  None .sdata2    @714 */
+/* 804556A8-804556B0 003CA8 0008+00 4/4 0/0 0/0 .sdata2          @714 */
 SECTION_SDATA2 static f64 lit_714 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 8029AD38-8029AF78 0240+00 s=2 e=0 z=0  None .text
+/* 8029AD38-8029AF78 295678 0240+00 2/2 0/0 0/0 .text
  * updateEffectorParam__10JASChannelFPQ26JASDsp8TChannelPUsRCQ213JASOscillator12EffectParams */
 #pragma push
 #pragma optimization_level 0
@@ -380,7 +379,7 @@ asm void JASChannel::updateEffectorParam(JASDsp::TChannel* param_0, u16* param_1
 }
 #pragma pop
 
-/* 8029AF78-8029B004 008C+00 s=2 e=0 z=0  None .text
+/* 8029AF78-8029B004 2958B8 008C+00 2/2 0/0 0/0 .text
  * dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv      */
 #pragma push
 #pragma optimization_level 0
@@ -392,13 +391,13 @@ asm void JASChannel::dspUpdateCallback(u32 param_0, JASDsp::TChannel* param_1, v
 #pragma pop
 
 /* ############################################################################################## */
-/* 804556B0-804556B4 0004+00 s=2 e=0 z=0  None .sdata2    @775 */
+/* 804556B0-804556B4 003CB0 0004+00 2/2 0/0 0/0 .sdata2          @775 */
 SECTION_SDATA2 static f32 lit_775 = 12.0f;
 
-/* 804556B4-804556B8 0004+00 s=2 e=0 z=0  None .sdata2    @776 */
+/* 804556B4-804556B8 003CB4 0004+00 2/2 0/0 0/0 .sdata2          @776 */
 SECTION_SDATA2 static f32 lit_776 = 4096.0f;
 
-/* 8029B004-8029B324 0320+00 s=1 e=0 z=0  None .text
+/* 8029B004-8029B324 295944 0320+00 1/1 0/0 0/0 .text
  * initialUpdateDSPChannel__10JASChannelFPQ26JASDsp8TChannel    */
 #pragma push
 #pragma optimization_level 0
@@ -410,13 +409,13 @@ asm void JASChannel::initialUpdateDSPChannel(JASDsp::TChannel* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804556B8-804556BC 0004+00 s=1 e=0 z=0  None .sdata2    @832 */
+/* 804556B8-804556BC 003CB8 0004+00 1/1 0/0 0/0 .sdata2          @832 */
 SECTION_SDATA2 static f32 lit_832 = 32028.5f;
 
-/* 804556BC-804556C0 0004+00 s=1 e=0 z=0  None .sdata2    @833 */
+/* 804556BC-804556C0 003CBC 0004+00 1/1 0/0 0/0 .sdata2          @833 */
 SECTION_SDATA2 static f32 lit_833 = 48000.0f;
 
-/* 8029B324-8029B6A0 037C+00 s=1 e=0 z=0  None .text
+/* 8029B324-8029B6A0 295C64 037C+00 1/1 0/0 0/0 .text
  * updateDSPChannel__10JASChannelFPQ26JASDsp8TChannel           */
 #pragma push
 #pragma optimization_level 0
@@ -428,13 +427,13 @@ asm void JASChannel::updateDSPChannel(JASDsp::TChannel* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804556C0-804556C4 0004+00 s=1 e=0 z=0  None .sdata2    @846 */
+/* 804556C0-804556C4 003CC0 0004+00 1/1 0/0 0/0 .sdata2          @846 */
 SECTION_SDATA2 static f32 lit_846 = 0.7070000171661377f;
 
-/* 804556C4-804556C8 0004+00 s=1 e=0 z=0  None .sdata2    @847 */
+/* 804556C4-804556C8 003CC4 0004+00 1/1 0/0 0/0 .sdata2          @847 */
 SECTION_SDATA2 static f32 lit_847 = 127.5f;
 
-/* 8029B6A0-8029B7D8 0138+00 s=1 e=0 z=0  None .text
+/* 8029B6A0-8029B7D8 295FE0 0138+00 1/1 0/0 0/0 .text
  * updateAutoMixer__10JASChannelFPQ26JASDsp8TChannelffff        */
 #pragma push
 #pragma optimization_level 0
@@ -447,7 +446,7 @@ asm void JASChannel::updateAutoMixer(JASDsp::TChannel* param_0, f32 param_1, f32
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C7864-803C7884 0020+00 s=1 e=0 z=0  None .data      @977 */
+/* 803C7864-803C7884 -00001 0020+00 1/1 0/0 0/0 .data            @977 */
 SECTION_DATA static void* lit_977[8] = {
     (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x210),
     (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x1E4),
@@ -459,7 +458,7 @@ SECTION_DATA static void* lit_977[8] = {
     (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x20C),
 };
 
-/* 803C7884-803C78A8 0020+04 s=1 e=0 z=0  None .data      @974 */
+/* 803C7884-803C78A8 -00001 0020+04 1/1 0/0 0/0 .data            @974 */
 SECTION_DATA static void* lit_974[8 + 1 /* padding */] = {
     (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0x114),
     (void*)(((char*)updateMixer__10JASChannelFffffPUs) + 0xE8),
@@ -473,26 +472,27 @@ SECTION_DATA static void* lit_974[8 + 1 /* padding */] = {
     NULL,
 };
 
-/* 804556C8-804556CC 0004+00 s=1 e=0 z=0  None .sdata2    @969 */
+/* 804556C8-804556CC 003CC8 0004+00 1/1 0/0 0/0 .sdata2          @969 */
 SECTION_SDATA2 static f32 lit_969 = -1303.7972412109375f;
 
-/* 804556CC-804556D0 0004+00 s=1 e=0 z=0  None .sdata2    @970 */
+/* 804556CC-804556D0 003CCC 0004+00 1/1 0/0 0/0 .sdata2          @970 */
 SECTION_SDATA2 static f32 lit_970 = 1303.7972412109375f;
 
-/* 804556D0-804556D4 0004+00 s=1 e=0 z=0  None .sdata2    @971 */
+/* 804556D0-804556D4 003CD0 0004+00 1/1 0/0 0/0 .sdata2          @971 */
 SECTION_SDATA2 static f32 lit_971 = 3.1415927410125732f;
 
-/* 804556D4-804556D8 0004+00 s=1 e=0 z=0  None .sdata2    @972 */
+/* 804556D4-804556D8 003CD4 0004+00 1/1 0/0 0/0 .sdata2          @972 */
 SECTION_SDATA2 static f32 lit_972 = 0.326119989156723f;
 
-/* 804556D8-804556E0 0004+04 s=1 e=0 z=0  None .sdata2    @973 */
+/* 804556D8-804556E0 003CD8 0004+04 1/1 0/0 0/0 .sdata2          @973 */
 SECTION_SDATA2 static f32 lit_973[1 + 1 /* padding */] = {
     0.34775999188423157f,
     /* padding */
     0.0f,
 };
 
-/* 8029B7D8-8029BBFC 0424+00 s=3 e=0 z=0  None .text      updateMixer__10JASChannelFffffPUs */
+/* 8029B7D8-8029BBFC 296118 0424+00 3/1 0/0 0/0 .text            updateMixer__10JASChannelFffffPUs
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -502,7 +502,7 @@ asm void JASChannel::updateMixer(f32 param_0, f32 param_1, f32 param_2, f32 para
 }
 #pragma pop
 
-/* 8029BBFC-8029BC0C 0010+00 s=0 e=3 z=0  None .text      free__10JASChannelFv */
+/* 8029BBFC-8029BC0C 29653C 0010+00 0/0 3/3 0/0 .text            free__10JASChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -513,10 +513,11 @@ asm void JASChannel::free() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451298-804512A0 0004+04 s=3 e=0 z=0  None .sbss      sBankDisposeListSize__10JASChannel */
+/* 80451298-804512A0 000798 0004+04 3/3 0/0 0/0 .sbss            sBankDisposeListSize__10JASChannel
+ */
 static u8 sBankDisposeListSize__10JASChannel[4 + 4 /* padding */];
 
-/* 8029BC0C-8029BC48 003C+00 s=0 e=1 z=0  None .text      initBankDisposeMsgQueue__10JASChannelFv */
+/* 8029BC0C-8029BC48 29654C 003C+00 0/0 1/1 0/0 .text initBankDisposeMsgQueue__10JASChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -526,7 +527,7 @@ asm void JASChannel::initBankDisposeMsgQueue() {
 }
 #pragma pop
 
-/* 8029BC48-8029BCC0 0078+00 s=0 e=1 z=0  None .text      receiveBankDisposeMsg__10JASChannelFv */
+/* 8029BC48-8029BCC0 296588 0078+00 0/0 1/1 0/0 .text receiveBankDisposeMsg__10JASChannelFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -536,7 +537,8 @@ asm void JASChannel::receiveBankDisposeMsg() {
 }
 #pragma pop
 
-/* 8029BCC0-8029BD14 0054+00 s=2 e=0 z=0  None .text      checkBankDispose__10JASChannelCFv */
+/* 8029BCC0-8029BD14 296600 0054+00 2/2 0/0 0/0 .text            checkBankDispose__10JASChannelCFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

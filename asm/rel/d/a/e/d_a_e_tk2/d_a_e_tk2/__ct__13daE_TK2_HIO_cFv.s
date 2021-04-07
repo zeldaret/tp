@@ -1,8 +1,8 @@
 lbl_807BA56C:
-/* 807BA56C  3C 80 80 7C */	lis r4, lit_3762@ha
-/* 807BA570  38 A4 BD A8 */	addi r5, r4, lit_3762@l
-/* 807BA574  3C 80 80 7C */	lis r4, __vt__13daE_TK2_HIO_c@ha
-/* 807BA578  38 04 BF 28 */	addi r0, r4, __vt__13daE_TK2_HIO_c@l
+/* 807BA56C  3C 80 80 7C */	lis r4, lit_3762@ha /* 0x807BBDA8@ha */
+/* 807BA570  38 A4 BD A8 */	addi r5, r4, lit_3762@l /* 0x807BBDA8@l */
+/* 807BA574  3C 80 80 7C */	lis r4, __vt__13daE_TK2_HIO_c@ha /* 0x807BBF28@ha */
+/* 807BA578  38 04 BF 28 */	addi r0, r4, __vt__13daE_TK2_HIO_c@l /* 0x807BBF28@l */
 /* 807BA57C  90 03 00 00 */	stw r0, 0(r3)
 /* 807BA580  38 00 FF FF */	li r0, -1
 /* 807BA584  98 03 00 04 */	stb r0, 4(r3)

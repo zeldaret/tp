@@ -45,13 +45,13 @@ lbl_8064DADC:
 /* 8064DADC  38 60 00 0A */	li r3, 0xa
 /* 8064DAE0  38 80 00 00 */	li r4, 0
 /* 8064DAE4  C0 3F 06 C8 */	lfs f1, 0x6c8(r31)
-/* 8064DAE8  4B B5 AD 24 */	b dKy_custom_colset__FUcUcf
+/* 8064DAE8  4B B5 AD 25 */	bl dKy_custom_colset__FUcUcf
 /* 8064DAEC  48 00 00 14 */	b lbl_8064DB00
 lbl_8064DAF0:
 /* 8064DAF0  38 60 00 00 */	li r3, 0
 /* 8064DAF4  38 80 00 0A */	li r4, 0xa
 /* 8064DAF8  C0 3F 06 C8 */	lfs f1, 0x6c8(r31)
-/* 8064DAFC  4B B5 AD 10 */	b dKy_custom_colset__FUcUcf
+/* 8064DAFC  4B B5 AD 11 */	bl dKy_custom_colset__FUcUcf
 lbl_8064DB00:
 /* 8064DB00  7F E3 FB 78 */	mr r3, r31
 /* 8064DB04  4B FF EA A5 */	bl action__10daB_ZANT_cFv

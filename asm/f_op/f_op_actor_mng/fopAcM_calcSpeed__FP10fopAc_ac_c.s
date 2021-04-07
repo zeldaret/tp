@@ -3,8 +3,8 @@ lbl_8001A60C:
 /* 8001A610  C0 43 05 30 */	lfs f2, 0x530(r3)
 /* 8001A614  A8 03 04 DE */	lha r0, 0x4de(r3)
 /* 8001A618  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 8001A61C  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha
-/* 8001A620  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l
+/* 8001A61C  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8001A620  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8001A624  7C 04 04 2E */	lfsx f0, r4, r0
 /* 8001A628  EC 61 00 32 */	fmuls f3, f1, f0
 /* 8001A62C  C0 03 04 FC */	lfs f0, 0x4fc(r3)

@@ -53,8 +53,8 @@ lbl_802C8CE0:
 /* 802C8D08  88 1F 02 14 */	lbz r0, 0x214(r31)
 /* 802C8D0C  28 00 00 1F */	cmplwi r0, 0x1f
 /* 802C8D10  41 81 05 5C */	bgt lbl_802C926C
-/* 802C8D14  3C 60 80 3D */	lis r3, lit_4839@ha
-/* 802C8D18  38 63 BB 10 */	addi r3, r3, lit_4839@l
+/* 802C8D14  3C 60 80 3D */	lis r3, lit_4839@ha /* 0x803CBB10@ha */
+/* 802C8D18  38 63 BB 10 */	addi r3, r3, lit_4839@l /* 0x803CBB10@l */
 /* 802C8D1C  54 00 10 3A */	slwi r0, r0, 2
 /* 802C8D20  7C 03 00 2E */	lwzx r0, r3, r0
 /* 802C8D24  7C 09 03 A6 */	mtctr r0

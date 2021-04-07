@@ -3,19 +3,20 @@
 #
 
 M339_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_myna2.plf
+M339_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_myna2.lcf
+M339_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_myna2.map
 
 M339_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_myna2/executor.cpp \
-	rel/d/a/npc/d_a_npc_myna2/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_myna2/d_a_npc_myna2.cpp \
 
 M339_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_myna2/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_myna2/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_myna2/d_a_npc_myna2.o \
 
 M339_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_myna2/libRuntime.PPCEABI.H.a \
 
 M339_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M339_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M339_LDSCRIPT) \
+	-unused -map $(M339_MAP) \
+	-w off \
 
 $(M339_TARGET): $(M339_O_FILES) $(M339_LIBS)
+	@echo [339] creating $(M339_TARGET)
 	@echo $(M339_LIBS) $(M339_O_FILES) > build/M339_ofiles
-	$(LD) -partial $(M339_LDFLAGS) -o $(M339_TARGET) @build/M339_ofiles
+	@python3 tools/lcf.py rel 339 --output $(M339_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M339_LDFLAGS) -o $(M339_TARGET) @build/M339_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_myna2/%.o: rel/d/a/npc/d_a_npc_myna2/%.cpp
+	@echo [339] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M339_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M339_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_myna2/libs/Runtime.PPCEABI.H/Makefile
 

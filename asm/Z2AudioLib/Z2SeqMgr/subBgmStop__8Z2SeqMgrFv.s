@@ -17,16 +17,16 @@ lbl_802AF8B4:
 /* 802AF8B8  38 84 FF F6 */	addi r4, r4, -10
 /* 802AF8BC  28 04 00 9E */	cmplwi r4, 0x9e
 /* 802AF8C0  41 81 00 F4 */	bgt lbl_802AF9B4
-/* 802AF8C4  3C 60 80 3D */	lis r3, lit_3988@ha
-/* 802AF8C8  38 63 A0 8C */	addi r3, r3, lit_3988@l
+/* 802AF8C4  3C 60 80 3D */	lis r3, lit_3988@ha /* 0x803CA08C@ha */
+/* 802AF8C8  38 63 A0 8C */	addi r3, r3, lit_3988@l /* 0x803CA08C@l */
 /* 802AF8CC  54 84 10 3A */	slwi r4, r4, 2
 /* 802AF8D0  7C 03 20 2E */	lwzx r0, r3, r4
 /* 802AF8D4  7C 09 03 A6 */	mtctr r0
 /* 802AF8D8  4E 80 04 20 */	bctr 
 /* 802AF8DC  48 00 00 E0 */	b lbl_802AF9BC
 /* 802AF8E0  80 6D 85 FC */	lwz r3, data_80450B7C(r13)
-/* 802AF8E4  3C 80 80 3A */	lis r4, Z2SeqMgr__stringBase0@ha
-/* 802AF8E8  38 84 BA 08 */	addi r4, r4, Z2SeqMgr__stringBase0@l
+/* 802AF8E4  3C 80 80 3A */	lis r4, Z2SeqMgr__stringBase0@ha /* 0x8039BA08@ha */
+/* 802AF8E8  38 84 BA 08 */	addi r4, r4, Z2SeqMgr__stringBase0@l /* 0x8039BA08@l */
 /* 802AF8EC  38 84 02 76 */	addi r4, r4, 0x276
 /* 802AF8F0  48 00 68 F9 */	bl setDemoName__11Z2StatusMgrFPc
 /* 802AF8F4  38 00 00 00 */	li r0, 0

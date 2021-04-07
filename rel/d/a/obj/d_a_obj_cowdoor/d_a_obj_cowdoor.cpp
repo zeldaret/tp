@@ -25,9 +25,9 @@ struct daCowdoor_c {
     /* 80BCCAEC */ void Delete();
 };
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct cXyz {};
 
 struct J3DModelData {};
 
@@ -45,9 +45,9 @@ struct dRes_control_c {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -68,11 +68,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void daCowdoor_Draw(daCowdoor_c*);
-static void daCowdoor_Execute(daCowdoor_c*);
-static void daCowdoor_Delete(daCowdoor_c*);
-static void daCowdoor_Create(fopAc_ac_c*);
-
 extern "C" void setBaseMtx__11daCowdoor_cFv();
 extern "C" void Create__11daCowdoor_cFv();
 extern "C" void CreateHeap__11daCowdoor_cFv();
@@ -84,19 +79,11 @@ extern "C" static void daCowdoor_Draw__FP11daCowdoor_c();
 extern "C" static void daCowdoor_Execute__FP11daCowdoor_c();
 extern "C" static void daCowdoor_Delete__FP11daCowdoor_c();
 extern "C" static void daCowdoor_Create__FP10fopAc_ac_c();
-extern "C" extern void* g_profile_Obj_Cowdoor[12];
+extern "C" extern char const* const d_a_obj_cowdoor__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
@@ -130,7 +117,7 @@ extern "C" extern u8 j3dSys[284];
 // Declarations:
 //
 
-/* 80BCC7F8-80BCC86C 0074+00 s=2 e=0 z=0  None .text      setBaseMtx__11daCowdoor_cFv */
+/* 80BCC7F8-80BCC86C 000078 0074+00 2/2 0/0 0/0 .text            setBaseMtx__11daCowdoor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -141,10 +128,11 @@ asm void daCowdoor_c::setBaseMtx() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80BCCBB4-80BCCBB8 0004+00 s=1 e=0 z=0  None .rodata    @3648 */
-SECTION_RODATA static u32 const lit_3648 = 0x40A00000;
+/* 80BCCBB4-80BCCBB8 000000 0004+00 1/1 0/0 0/0 .rodata          @3648 */
+SECTION_RODATA static f32 const lit_3648 = 5.0f;
+COMPILER_STRIP_GATE(80BCCBB4, &lit_3648);
 
-/* 80BCC86C-80BCC8C4 0058+00 s=1 e=0 z=0  None .text      Create__11daCowdoor_cFv */
+/* 80BCC86C-80BCC8C4 0000EC 0058+00 1/0 0/0 0/0 .text            Create__11daCowdoor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -155,56 +143,13 @@ asm void daCowdoor_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80BCCBB8-80BCCBDC 0024+00 s=3 e=0 z=0  None .rodata    None */
-SECTION_RODATA static u8 const struct_80BCCBB8[36] = {
-    /* 80BCCBB8 0009 stringBase_80BCCBB8 @stringBase0 */
-    0x41,
-    0x5F,
-    0x55,
-    0x48,
-    0x44,
-    0x6F,
-    0x6F,
-    0x72,
-    0x00,
-    /* 80BCCBC1 000D data_80BCCBC1 None */
-    0x41,
-    0x5F,
-    0x55,
-    0x48,
-    0x44,
-    0x6F,
-    0x6F,
-    0x72,
-    0x2E,
-    0x62,
-    0x6D,
-    0x64,
-    0x00,
-    /* 80BCCBCE 000E data_80BCCBCE None */
-    0x41,
-    0x5F,
-    0x55,
-    0x48,
-    0x44,
-    0x6F,
-    0x6F,
-    0x72,
-    0x2E,
-    0x64,
-    0x7A,
-    0x62,
-    0x00,
-    0x00,
-};
+/* 80BCCBDC-80BCCBE0 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_cowdoor__stringBase0;
 
-/* 80BCCBDC-80BCCBE0 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)(((char*)&struct_80BCCBB8) + 0x0) /* @stringBase0 */;
+/* 80BCCBE0-80BCCBE4 -00001 0004+00 1/1 0/0 0/0 .data            l_bmdName */
+SECTION_DATA static void* l_bmdName = (void*)(((char*)&d_a_obj_cowdoor__stringBase0) + 0x9);
 
-/* 80BCCBE0-80BCCBE4 0004+00 s=1 e=0 z=0  None .data      l_bmdName */
-SECTION_DATA static void* l_bmdName = (void*)(((char*)&struct_80BCCBB8) + 0x9) /* None */;
-
-/* 80BCC8C4-80BCC93C 0078+00 s=1 e=0 z=0  None .text      CreateHeap__11daCowdoor_cFv */
+/* 80BCC8C4-80BCC93C 000144 0078+00 1/0 0/0 0/0 .text            CreateHeap__11daCowdoor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -215,10 +160,10 @@ asm void daCowdoor_c::CreateHeap() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80BCCBE4-80BCCBE8 0004+00 s=1 e=0 z=0  None .data      l_dzbName */
-SECTION_DATA static void* l_dzbName = (void*)(((char*)&struct_80BCCBB8) + 0x16) /* None */;
+/* 80BCCBE4-80BCCBE8 -00001 0004+00 1/1 0/0 0/0 .data            l_dzbName */
+SECTION_DATA static void* l_dzbName = (void*)(((char*)&d_a_obj_cowdoor__stringBase0) + 0x16);
 
-/* 80BCCBE8-80BCCC08 0020+00 s=1 e=0 z=0  None .data      l_daCowdoor_Method */
+/* 80BCCBE8-80BCCC08 -00001 0020+00 1/0 0/0 0/0 .data            l_daCowdoor_Method */
 SECTION_DATA static void* l_daCowdoor_Method[8] = {
     (void*)daCowdoor_Create__FP10fopAc_ac_c,
     (void*)daCowdoor_Delete__FP11daCowdoor_c,
@@ -230,8 +175,8 @@ SECTION_DATA static void* l_daCowdoor_Method[8] = {
     (void*)NULL,
 };
 
-/* 80BCCC08-80BCCC38 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_Cowdoor */
-SECTION_DATA void* g_profile_Obj_Cowdoor[12] = {
+/* 80BCCC08-80BCCC38 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Cowdoor */
+SECTION_DATA extern void* g_profile_Obj_Cowdoor[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x005D0000, (void*)&g_fpcLf_Method,
     (void*)0x000005AC, (void*)NULL,
@@ -240,9 +185,9 @@ SECTION_DATA void* g_profile_Obj_Cowdoor[12] = {
     (void*)0x00040100, (void*)0x000E0000,
 };
 
-/* 80BCCC38-80BCCC60 0028+00 s=1 e=0 z=0  None .data      __vt__11daCowdoor_c */
-SECTION_DATA static void* __vt__11daCowdoor_c[10] = {
-    (void*)NULL,
+/* 80BCCC38-80BCCC60 00005C 0028+00 1/1 0/0 0/0 .data            __vt__11daCowdoor_c */
+SECTION_DATA extern void* __vt__11daCowdoor_c[10] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__11daCowdoor_cFv,
     (void*)Create__11daCowdoor_cFv,
@@ -254,7 +199,7 @@ SECTION_DATA static void* __vt__11daCowdoor_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80BCC93C-80BCCA1C 00E0+00 s=1 e=0 z=0  None .text      create__11daCowdoor_cFv */
+/* 80BCC93C-80BCCA1C 0001BC 00E0+00 1/1 0/0 0/0 .text            create__11daCowdoor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -264,7 +209,7 @@ asm void daCowdoor_c::create() {
 }
 #pragma pop
 
-/* 80BCCA1C-80BCCA48 002C+00 s=1 e=0 z=0  None .text      Execute__11daCowdoor_cFPPA3_A4_f */
+/* 80BCCA1C-80BCCA48 00029C 002C+00 1/0 0/0 0/0 .text            Execute__11daCowdoor_cFPPA3_A4_f */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -274,7 +219,7 @@ asm void daCowdoor_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 80BCCA48-80BCCAEC 00A4+00 s=1 e=0 z=0  None .text      Draw__11daCowdoor_cFv */
+/* 80BCCA48-80BCCAEC 0002C8 00A4+00 1/0 0/0 0/0 .text            Draw__11daCowdoor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -284,7 +229,7 @@ asm void daCowdoor_c::Draw() {
 }
 #pragma pop
 
-/* 80BCCAEC-80BCCB20 0034+00 s=1 e=0 z=0  None .text      Delete__11daCowdoor_cFv */
+/* 80BCCAEC-80BCCB20 00036C 0034+00 1/0 0/0 0/0 .text            Delete__11daCowdoor_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -294,42 +239,53 @@ asm void daCowdoor_c::Delete() {
 }
 #pragma pop
 
-/* 80BCCB20-80BCCB4C 002C+00 s=1 e=0 z=0  None .text      daCowdoor_Draw__FP11daCowdoor_c */
+/* 80BCCB20-80BCCB4C 0003A0 002C+00 1/0 0/0 0/0 .text            daCowdoor_Draw__FP11daCowdoor_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daCowdoor_Draw(daCowdoor_c* param_0) {
+static asm void daCowdoor_Draw(daCowdoor_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_cowdoor/d_a_obj_cowdoor/daCowdoor_Draw__FP11daCowdoor_c.s"
 }
 #pragma pop
 
-/* 80BCCB4C-80BCCB6C 0020+00 s=1 e=0 z=0  None .text      daCowdoor_Execute__FP11daCowdoor_c */
+/* 80BCCB4C-80BCCB6C 0003CC 0020+00 1/0 0/0 0/0 .text            daCowdoor_Execute__FP11daCowdoor_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daCowdoor_Execute(daCowdoor_c* param_0) {
+static asm void daCowdoor_Execute(daCowdoor_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_cowdoor/d_a_obj_cowdoor/daCowdoor_Execute__FP11daCowdoor_c.s"
 }
 #pragma pop
 
-/* 80BCCB6C-80BCCB8C 0020+00 s=1 e=0 z=0  None .text      daCowdoor_Delete__FP11daCowdoor_c */
+/* 80BCCB6C-80BCCB8C 0003EC 0020+00 1/0 0/0 0/0 .text            daCowdoor_Delete__FP11daCowdoor_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daCowdoor_Delete(daCowdoor_c* param_0) {
+static asm void daCowdoor_Delete(daCowdoor_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_cowdoor/d_a_obj_cowdoor/daCowdoor_Delete__FP11daCowdoor_c.s"
 }
 #pragma pop
 
-/* 80BCCB8C-80BCCBAC 0020+00 s=1 e=0 z=0  None .text      daCowdoor_Create__FP10fopAc_ac_c */
+/* 80BCCB8C-80BCCBAC 00040C 0020+00 1/0 0/0 0/0 .text            daCowdoor_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daCowdoor_Create(fopAc_ac_c* param_0) {
+static asm void daCowdoor_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_cowdoor/d_a_obj_cowdoor/daCowdoor_Create__FP10fopAc_ac_c.s"
 }
+#pragma pop
+
+/* 80BCCBB8-80BCCBDB 000004 0023+00 3/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80BCCBB8 = "A_UHDoor";
+SECTION_DEAD static char const* const stringBase_80BCCBC1 = "A_UHDoor.bmd";
+SECTION_DEAD static char const* const stringBase_80BCCBCE = "A_UHDoor.dzb";
 #pragma pop

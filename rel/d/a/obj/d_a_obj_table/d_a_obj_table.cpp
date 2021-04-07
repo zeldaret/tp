@@ -81,9 +81,9 @@ struct dComIfG_play_c {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -102,12 +102,6 @@ struct dBgS_MoveBgActor {
 // Forward References:
 //
 
-static void daObjTable_Draw(daObjTable_c*);
-static void daObjTable_Execute(daObjTable_c*);
-static bool daObjTable_IsDelete(daObjTable_c*);
-static void daObjTable_Delete(daObjTable_c*);
-static void daObjTable_Create(fopAc_ac_c*);
-
 extern "C" static void daObjTable_Draw__FP12daObjTable_c();
 extern "C" static void daObjTable_Execute__FP12daObjTable_c();
 extern "C" static bool daObjTable_IsDelete__FP12daObjTable_c();
@@ -118,22 +112,11 @@ extern "C" void Create__12daObjTable_cFv();
 extern "C" void Execute__12daObjTable_cFPPA3_A4_f();
 extern "C" void Draw__12daObjTable_cFv();
 extern "C" void Delete__12daObjTable_cFv();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_Table[12];
+extern "C" extern char const* const d_a_obj_table__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_setCullSizeBox2(fopAc_ac_c*, J3DModelData*);
-void fopAcM_orderChangeEventId(fopAc_ac_c*, s16, u16, u16);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dComIfGs_isStageSwitch(int, int);
-void dKy_darkworld_check();
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
@@ -184,60 +167,48 @@ extern "C" extern u8 j3dSys[284];
 // Declarations:
 //
 
-/* 80D06438-80D06464 002C+00 s=1 e=0 z=0  None .text      daObjTable_Draw__FP12daObjTable_c */
+/* 80D06438-80D06464 000078 002C+00 1/0 0/0 0/0 .text            daObjTable_Draw__FP12daObjTable_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjTable_Draw(daObjTable_c* param_0) {
+static asm void daObjTable_Draw(daObjTable_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_table/d_a_obj_table/daObjTable_Draw__FP12daObjTable_c.s"
 }
 #pragma pop
 
-/* 80D06464-80D06484 0020+00 s=1 e=0 z=0  None .text      daObjTable_Execute__FP12daObjTable_c */
+/* 80D06464-80D06484 0000A4 0020+00 1/0 0/0 0/0 .text daObjTable_Execute__FP12daObjTable_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjTable_Execute(daObjTable_c* param_0) {
+static asm void daObjTable_Execute(daObjTable_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_table/d_a_obj_table/daObjTable_Execute__FP12daObjTable_c.s"
 }
 #pragma pop
 
-/* 80D06484-80D0648C 0008+00 s=1 e=0 z=0  None .text      daObjTable_IsDelete__FP12daObjTable_c */
+/* 80D06484-80D0648C 0000C4 0008+00 1/0 0/0 0/0 .text daObjTable_IsDelete__FP12daObjTable_c */
 static bool daObjTable_IsDelete(daObjTable_c* param_0) {
     return true;
 }
 
-/* 80D0648C-80D064B0 0024+00 s=1 e=0 z=0  None .text      daObjTable_Delete__FP12daObjTable_c */
+/* 80D0648C-80D064B0 0000CC 0024+00 1/0 0/0 0/0 .text            daObjTable_Delete__FP12daObjTable_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjTable_Delete(daObjTable_c* param_0) {
+static asm void daObjTable_Delete(daObjTable_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_table/d_a_obj_table/daObjTable_Delete__FP12daObjTable_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D06C04-80D06C08 0004+00 s=2 e=0 z=0  None .rodata    @4017 */
-SECTION_RODATA static u32 const lit_4017 = 0x42C80000;
+/* 80D06C1C-80D06C20 -00001 0004+00 4/4 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_table__stringBase0;
 
-/* 80D06C08-80D06C0C 0004+00 s=1 e=0 z=0  None .rodata    @4077 */
-SECTION_RODATA static u32 const lit_4077 = 0x43FA0000;
-
-/* 80D06C0C-80D06C1C 0010+00 s=2 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80D06C0C = "Table";
-SECTION_DEAD char const* const stringBase_80D06C12 = "TABLE_MAP";
-#pragma pop
-
-/* 80D06C1C-80D06C20 0004+00 s=4 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80D06C20-80D06C40 0020+00 s=1 e=0 z=0  None .data      l_daObjTable_Method */
+/* 80D06C20-80D06C40 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjTable_Method */
 SECTION_DATA static void* l_daObjTable_Method[8] = {
     (void*)daObjTable_Create__FP10fopAc_ac_c,
     (void*)daObjTable_Delete__FP12daObjTable_c,
@@ -249,8 +220,8 @@ SECTION_DATA static void* l_daObjTable_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D06C40-80D06C70 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_Table */
-SECTION_DATA void* g_profile_Obj_Table[12] = {
+/* 80D06C40-80D06C70 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Table */
+SECTION_DATA extern void* g_profile_Obj_Table[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00B80000, (void*)&g_fpcLf_Method,
     (void*)0x00000600, (void*)NULL,
@@ -259,9 +230,9 @@ SECTION_DATA void* g_profile_Obj_Table[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80D06C70-80D06C98 0028+00 s=1 e=0 z=0  None .data      __vt__12daObjTable_c */
-SECTION_DATA static void* __vt__12daObjTable_c[10] = {
-    (void*)NULL,
+/* 80D06C70-80D06C98 000054 0028+00 1/1 0/0 0/0 .data            __vt__12daObjTable_c */
+SECTION_DATA extern void* __vt__12daObjTable_c[10] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__12daObjTable_cFv,
     (void*)Create__12daObjTable_cFv,
@@ -273,17 +244,18 @@ SECTION_DATA static void* __vt__12daObjTable_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80D064B0-80D06560 00B0+00 s=1 e=0 z=0  None .text      daObjTable_Create__FP10fopAc_ac_c */
+/* 80D064B0-80D06560 0000F0 00B0+00 1/0 0/0 0/0 .text            daObjTable_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjTable_Create(fopAc_ac_c* param_0) {
+static asm void daObjTable_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_table/d_a_obj_table/daObjTable_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D06560-80D065D0 0070+00 s=1 e=0 z=0  None .text      CreateHeap__12daObjTable_cFv */
+/* 80D06560-80D065D0 0001A0 0070+00 1/0 0/0 0/0 .text            CreateHeap__12daObjTable_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -293,7 +265,12 @@ asm void daObjTable_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80D065D0-80D0695C 038C+00 s=1 e=0 z=0  None .text      Create__12daObjTable_cFv */
+/* ############################################################################################## */
+/* 80D06C04-80D06C08 000000 0004+00 2/2 0/0 0/0 .rodata          @4017 */
+SECTION_RODATA static f32 const lit_4017 = 100.0f;
+COMPILER_STRIP_GATE(80D06C04, &lit_4017);
+
+/* 80D065D0-80D0695C 000210 038C+00 1/0 0/0 0/0 .text            Create__12daObjTable_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -303,7 +280,8 @@ asm void daObjTable_c::Create() {
 }
 #pragma pop
 
-/* 80D0695C-80D06AD8 017C+00 s=1 e=0 z=0  None .text      Execute__12daObjTable_cFPPA3_A4_f */
+/* 80D0695C-80D06AD8 00059C 017C+00 1/0 0/0 0/0 .text            Execute__12daObjTable_cFPPA3_A4_f
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -313,7 +291,12 @@ asm void daObjTable_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 80D06AD8-80D06BC8 00F0+00 s=1 e=0 z=0  None .text      Draw__12daObjTable_cFv */
+/* ############################################################################################## */
+/* 80D06C08-80D06C0C 000004 0004+00 1/1 0/0 0/0 .rodata          @4077 */
+SECTION_RODATA static f32 const lit_4077 = 500.0f;
+COMPILER_STRIP_GATE(80D06C08, &lit_4077);
+
+/* 80D06AD8-80D06BC8 000718 00F0+00 1/0 0/0 0/0 .text            Draw__12daObjTable_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -323,7 +306,7 @@ asm void daObjTable_c::Draw() {
 }
 #pragma pop
 
-/* 80D06BC8-80D06BFC 0034+00 s=1 e=0 z=0  None .text      Delete__12daObjTable_cFv */
+/* 80D06BC8-80D06BFC 000808 0034+00 1/0 0/0 0/0 .text            Delete__12daObjTable_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -331,4 +314,12 @@ asm void daObjTable_c::Delete() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_table/d_a_obj_table/Delete__12daObjTable_cFv.s"
 }
+#pragma pop
+
+/* 80D06C0C-80D06C1C 000008 0010+00 2/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80D06C0C = "Table";
+SECTION_DEAD static char const* const stringBase_80D06C12 = "TABLE_MAP";
 #pragma pop

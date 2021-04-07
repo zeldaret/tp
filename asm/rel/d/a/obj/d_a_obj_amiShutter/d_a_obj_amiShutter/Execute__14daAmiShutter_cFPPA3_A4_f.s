@@ -7,7 +7,7 @@ lbl_80BA182C:
 /* 80BA1840  7C 7E 1B 78 */	mr r30, r3
 /* 80BA1844  7C 9F 23 78 */	mr r31, r4
 /* 80BA1848  38 7E 05 A8 */	addi r3, r30, 0x5a8
-/* 80BA184C  4B 4A 70 20 */	b eventUpdate__17dEvLib_callback_cFv
+/* 80BA184C  4B 4A 70 21 */	bl eventUpdate__17dEvLib_callback_cFv
 /* 80BA1850  7F C3 F3 78 */	mr r3, r30
 /* 80BA1854  48 00 00 35 */	bl moveShutter__14daAmiShutter_cFv
 /* 80BA1858  80 7E 05 C0 */	lwz r3, 0x5c0(r30)

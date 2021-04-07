@@ -49,8 +49,8 @@ lbl_8024A1E0:
 /* 8024A1E4  A0 E5 00 02 */	lhz r7, 2(r5)
 /* 8024A1E8  28 07 00 19 */	cmplwi r7, 0x19
 /* 8024A1EC  41 81 00 20 */	bgt lbl_8024A20C
-/* 8024A1F0  3C 60 80 3C */	lis r3, lit_4645@ha
-/* 8024A1F4  38 63 15 1C */	addi r3, r3, lit_4645@l
+/* 8024A1F0  3C 60 80 3C */	lis r3, lit_4645@ha /* 0x803C151C@ha */
+/* 8024A1F4  38 63 15 1C */	addi r3, r3, lit_4645@l /* 0x803C151C@l */
 /* 8024A1F8  54 E0 10 3A */	slwi r0, r7, 2
 /* 8024A1FC  7C 03 00 2E */	lwzx r0, r3, r0
 /* 8024A200  7C 09 03 A6 */	mtctr r0
@@ -62,8 +62,8 @@ lbl_8024A20C:
 /* 8024A214  7F 65 DB 78 */	mr r5, r27
 /* 8024A218  38 C0 00 00 */	li r6, 0
 /* 8024A21C  1D 07 00 0C */	mulli r8, r7, 0xc
-/* 8024A220  3C E0 80 3C */	lis r7, mQueryList__10dMsgFlow_c@ha
-/* 8024A224  38 07 18 4C */	addi r0, r7, mQueryList__10dMsgFlow_c@l
+/* 8024A220  3C E0 80 3C */	lis r7, mQueryList__10dMsgFlow_c@ha /* 0x803C184C@ha */
+/* 8024A224  38 07 18 4C */	addi r0, r7, mQueryList__10dMsgFlow_c@l /* 0x803C184C@l */
 /* 8024A228  7D 80 42 14 */	add r12, r0, r8
 /* 8024A22C  48 11 7E 59 */	bl __ptmf_scall
 /* 8024A230  60 00 00 00 */	nop 
@@ -78,8 +78,8 @@ lbl_8024A24C:
 /* 8024A250  38 04 FF F8 */	addi r0, r4, -8
 /* 8024A254  28 00 00 15 */	cmplwi r0, 0x15
 /* 8024A258  41 81 00 2C */	bgt lbl_8024A284
-/* 8024A25C  3C 80 80 3C */	lis r4, lit_4646@ha
-/* 8024A260  38 84 14 C4 */	addi r4, r4, lit_4646@l
+/* 8024A25C  3C 80 80 3C */	lis r4, lit_4646@ha /* 0x803C14C4@ha */
+/* 8024A260  38 84 14 C4 */	addi r4, r4, lit_4646@l /* 0x803C14C4@l */
 /* 8024A264  54 00 10 3A */	slwi r0, r0, 2
 /* 8024A268  7C 04 00 2E */	lwzx r0, r4, r0
 /* 8024A26C  7C 09 03 A6 */	mtctr r0

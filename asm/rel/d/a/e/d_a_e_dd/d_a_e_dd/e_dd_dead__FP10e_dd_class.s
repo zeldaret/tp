@@ -5,12 +5,12 @@ lbl_806A4A58:
 /* 806A4A64  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 806A4A68  93 C1 00 08 */	stw r30, 8(r1)
 /* 806A4A6C  7C 7E 1B 78 */	mr r30, r3
-/* 806A4A70  3C 60 80 6A */	lis r3, lit_3903@ha
-/* 806A4A74  3B E3 71 C4 */	addi r31, r3, lit_3903@l
+/* 806A4A70  3C 60 80 6A */	lis r3, lit_3903@ha /* 0x806A71C4@ha */
+/* 806A4A74  3B E3 71 C4 */	addi r31, r3, lit_3903@l /* 0x806A71C4@l */
 /* 806A4A78  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 806A4A7C  C0 3F 00 08 */	lfs f1, 8(r31)
 /* 806A4A80  C0 5F 00 64 */	lfs f2, 0x64(r31)
-/* 806A4A84  4B BC AF FC */	b cLib_addCalc0__FPfff
+/* 806A4A84  4B BC AF FD */	bl cLib_addCalc0__FPfff
 /* 806A4A88  38 00 00 05 */	li r0, 5
 /* 806A4A8C  B0 1E 06 B2 */	sth r0, 0x6b2(r30)
 /* 806A4A90  A8 1E 06 8C */	lha r0, 0x68c(r30)

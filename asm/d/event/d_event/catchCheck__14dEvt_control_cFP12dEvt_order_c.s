@@ -26,8 +26,8 @@ lbl_80041CD4:
 lbl_80041CE8:
 /* 80041CE8  7F E3 FB 78 */	mr r3, r31
 /* 80041CEC  4B FF FB 19 */	bl setParam__14dEvt_control_cFP12dEvt_order_c
-/* 80041CF0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80041CF4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80041CF0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80041CF4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80041CF8  88 03 5B 68 */	lbz r0, 0x5b68(r3)
 /* 80041CFC  98 1F 00 EE */	stb r0, 0xee(r31)
 /* 80041D00  38 00 00 02 */	li r0, 2

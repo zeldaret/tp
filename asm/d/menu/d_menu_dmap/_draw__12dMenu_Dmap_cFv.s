@@ -182,8 +182,8 @@ lbl_801BE928:
 /* 801BEAA8  38 80 FF FF */	li r4, -1
 /* 801BEAAC  48 09 4F 6D */	bl __dt__8CPaneMgrFv
 lbl_801BEAB0:
-/* 801BEAB0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801BEAB4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801BEAB0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801BEAB4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801BEAB8  38 63 5F 64 */	addi r3, r3, 0x5f64
 /* 801BEABC  38 83 01 B4 */	addi r4, r3, 0x1b4
 /* 801BEAC0  38 A3 01 B8 */	addi r5, r3, 0x1b8

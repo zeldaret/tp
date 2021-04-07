@@ -1,8 +1,8 @@
 lbl_805F4A4C:
-/* 805F4A4C  3C 80 80 60 */	lis r4, lit_3815@ha
-/* 805F4A50  38 A4 26 64 */	addi r5, r4, lit_3815@l
-/* 805F4A54  3C 80 80 60 */	lis r4, __vt__13daB_GND_HIO_c@ha
-/* 805F4A58  38 04 2F 54 */	addi r0, r4, __vt__13daB_GND_HIO_c@l
+/* 805F4A4C  3C 80 80 60 */	lis r4, lit_3815@ha /* 0x80602664@ha */
+/* 805F4A50  38 A4 26 64 */	addi r5, r4, lit_3815@l /* 0x80602664@l */
+/* 805F4A54  3C 80 80 60 */	lis r4, __vt__13daB_GND_HIO_c@ha /* 0x80602F54@ha */
+/* 805F4A58  38 04 2F 54 */	addi r0, r4, __vt__13daB_GND_HIO_c@l /* 0x80602F54@l */
 /* 805F4A5C  90 03 00 00 */	stw r0, 0(r3)
 /* 805F4A60  38 00 FF FF */	li r0, -1
 /* 805F4A64  98 03 00 04 */	stb r0, 4(r3)

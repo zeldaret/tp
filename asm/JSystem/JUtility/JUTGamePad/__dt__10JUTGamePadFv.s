@@ -7,8 +7,8 @@ lbl_802E07B0:
 /* 802E07C4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802E07C8  7C 9F 23 78 */	mr r31, r4
 /* 802E07CC  41 82 00 74 */	beq lbl_802E0840
-/* 802E07D0  3C 60 80 3D */	lis r3, __vt__10JUTGamePad@ha
-/* 802E07D4  38 03 C6 10 */	addi r0, r3, __vt__10JUTGamePad@l
+/* 802E07D0  3C 60 80 3D */	lis r3, __vt__10JUTGamePad@ha /* 0x803CC610@ha */
+/* 802E07D4  38 03 C6 10 */	addi r0, r3, __vt__10JUTGamePad@l /* 0x803CC610@l */
 /* 802E07D8  90 1E 00 00 */	stw r0, 0(r30)
 /* 802E07DC  A8 BE 00 7C */	lha r5, 0x7c(r30)
 /* 802E07E0  7C A0 07 35 */	extsh. r0, r5
@@ -20,8 +20,8 @@ lbl_802E07B0:
 /* 802E07F8  38 00 FF FF */	li r0, -1
 /* 802E07FC  B0 1E 00 7C */	sth r0, 0x7c(r30)
 lbl_802E0800:
-/* 802E0800  3C 60 80 43 */	lis r3, mPadList__10JUTGamePad@ha
-/* 802E0804  38 63 43 E4 */	addi r3, r3, mPadList__10JUTGamePad@l
+/* 802E0800  3C 60 80 43 */	lis r3, mPadList__10JUTGamePad@ha /* 0x804343E4@ha */
+/* 802E0804  38 63 43 E4 */	addi r3, r3, mPadList__10JUTGamePad@l /* 0x804343E4@l */
 /* 802E0808  38 9E 00 80 */	addi r4, r30, 0x80
 /* 802E080C  4B FF B9 51 */	bl remove__10JSUPtrListFP10JSUPtrLink
 /* 802E0810  34 1E 00 80 */	addic. r0, r30, 0x80

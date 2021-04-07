@@ -5,7 +5,7 @@ lbl_80D21B50:
 /* 80D21B5C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80D21B60  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80D21B64  41 82 00 24 */	beq lbl_80D21B88
-/* 80D21B68  4B 2F 71 78 */	b fopAc_IsActor__FPv
+/* 80D21B68  4B 2F 71 79 */	bl fopAc_IsActor__FPv
 /* 80D21B6C  2C 03 00 00 */	cmpwi r3, 0
 /* 80D21B70  41 82 00 18 */	beq lbl_80D21B88
 /* 80D21B74  A8 1F 00 0E */	lha r0, 0xe(r31)

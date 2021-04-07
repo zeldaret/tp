@@ -5,8 +5,8 @@ lbl_80B833C8:
 /* 80B833D4  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80B833D8  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80B833DC  7C 7F 1B 78 */	mr r31, r3
-/* 80B833E0  3C 60 80 B9 */	lis r3, m__17daNpc_zrA_Param_c@ha
-/* 80B833E4  3B C3 C4 58 */	addi r30, r3, m__17daNpc_zrA_Param_c@l
+/* 80B833E0  3C 60 80 B9 */	lis r3, m__17daNpc_zrA_Param_c@ha /* 0x80B8C458@ha */
+/* 80B833E4  3B C3 C4 58 */	addi r30, r3, m__17daNpc_zrA_Param_c@l /* 0x80B8C458@l */
 /* 80B833E8  A0 1F 14 E6 */	lhz r0, 0x14e6(r31)
 /* 80B833EC  2C 00 00 02 */	cmpwi r0, 2
 /* 80B833F0  41 82 00 E8 */	beq lbl_80B834D8
@@ -79,8 +79,8 @@ lbl_80B834D8:
 /* 80B834F4  41 82 00 38 */	beq lbl_80B8352C
 /* 80B834F8  38 00 00 01 */	li r0, 1
 /* 80B834FC  98 1F 15 94 */	stb r0, 0x1594(r31)
-/* 80B83500  3C 60 80 B9 */	lis r3, lit_8299@ha
-/* 80B83504  38 83 D7 5C */	addi r4, r3, lit_8299@l
+/* 80B83500  3C 60 80 B9 */	lis r3, lit_8299@ha /* 0x80B8D75C@ha */
+/* 80B83504  38 83 D7 5C */	addi r4, r3, lit_8299@l /* 0x80B8D75C@l */
 /* 80B83508  80 64 00 00 */	lwz r3, 0(r4)
 /* 80B8350C  80 04 00 04 */	lwz r0, 4(r4)
 /* 80B83510  90 61 00 08 */	stw r3, 8(r1)

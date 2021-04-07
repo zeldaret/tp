@@ -13,8 +13,8 @@ lbl_8068F15C:
 /* 8068F188  48 00 00 6C */	b lbl_8068F1F4
 lbl_8068F18C:
 /* 8068F18C  38 80 00 06 */	li r4, 6
-/* 8068F190  3C A0 80 69 */	lis r5, lit_3790@ha
-/* 8068F194  C0 25 0D E0 */	lfs f1, lit_3790@l(r5)
+/* 8068F190  3C A0 80 69 */	lis r5, lit_3790@ha /* 0x80690DE0@ha */
+/* 8068F194  C0 25 0D E0 */	lfs f1, lit_3790@l(r5)  /* 0x80690DE0@l */
 /* 8068F198  38 A0 00 00 */	li r5, 0
 /* 8068F19C  FC 40 08 90 */	fmr f2, f1
 /* 8068F1A0  4B FF F0 55 */	bl anm_init__FP10e_bs_classifUcf
@@ -27,8 +27,8 @@ lbl_8068F1B0:
 /* 8068F1B8  88 04 00 11 */	lbz r0, 0x11(r4)
 /* 8068F1BC  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 8068F1C0  40 82 00 1C */	bne lbl_8068F1DC
-/* 8068F1C4  3C 60 80 69 */	lis r3, lit_3789@ha
-/* 8068F1C8  C0 23 0D DC */	lfs f1, lit_3789@l(r3)
+/* 8068F1C4  3C 60 80 69 */	lis r3, lit_3789@ha /* 0x80690DDC@ha */
+/* 8068F1C8  C0 23 0D DC */	lfs f1, lit_3789@l(r3)  /* 0x80690DDC@l */
 /* 8068F1CC  C0 04 00 18 */	lfs f0, 0x18(r4)
 /* 8068F1D0  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 8068F1D4  41 82 00 08 */	beq lbl_8068F1DC

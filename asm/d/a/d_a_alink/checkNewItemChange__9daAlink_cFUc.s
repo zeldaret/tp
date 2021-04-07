@@ -41,8 +41,8 @@ lbl_800C0B20:
 /* 800C0B30  4E 80 04 21 */	bctrl 
 /* 800C0B34  28 03 00 00 */	cmplwi r3, 0
 /* 800C0B38  41 82 00 1C */	beq lbl_800C0B54
-/* 800C0B3C  3C 60 80 39 */	lis r3, d_a_d_a_alink__stringBase0@ha
-/* 800C0B40  38 63 20 94 */	addi r3, r3, d_a_d_a_alink__stringBase0@l
+/* 800C0B3C  3C 60 80 39 */	lis r3, d_a_d_a_alink__stringBase0@ha /* 0x80392094@ha */
+/* 800C0B40  38 63 20 94 */	addi r3, r3, d_a_d_a_alink__stringBase0@l /* 0x80392094@l */
 /* 800C0B44  38 63 00 7E */	addi r3, r3, 0x7e
 /* 800C0B48  4B FD CF 19 */	bl checkStageName__9daAlink_cFPCc
 /* 800C0B4C  54 60 06 3F */	clrlwi. r0, r3, 0x18
@@ -141,22 +141,22 @@ lbl_800C0C90:
 /* 800C0C98  48 05 E1 A9 */	bl checkLv7DungeonShop__9daAlink_cFv
 /* 800C0C9C  2C 03 00 00 */	cmpwi r3, 0
 /* 800C0CA0  40 82 00 BC */	bne lbl_800C0D5C
-/* 800C0CA4  3C 60 80 39 */	lis r3, d_a_d_a_alink__stringBase0@ha
-/* 800C0CA8  38 63 20 94 */	addi r3, r3, d_a_d_a_alink__stringBase0@l
+/* 800C0CA4  3C 60 80 39 */	lis r3, d_a_d_a_alink__stringBase0@ha /* 0x80392094@ha */
+/* 800C0CA8  38 63 20 94 */	addi r3, r3, d_a_d_a_alink__stringBase0@l /* 0x80392094@l */
 /* 800C0CAC  38 63 01 15 */	addi r3, r3, 0x115
 /* 800C0CB0  4B FD CD B1 */	bl checkStageName__9daAlink_cFPCc
 /* 800C0CB4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800C0CB8  41 82 00 44 */	beq lbl_800C0CFC
-/* 800C0CBC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800C0CC0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800C0CBC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800C0CC0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800C0CC4  38 80 00 4D */	li r4, 0x4d
 /* 800C0CC8  88 1C 04 BA */	lbz r0, 0x4ba(r28)
 /* 800C0CCC  7C 05 07 74 */	extsb r5, r0
 /* 800C0CD0  4B F7 46 91 */	bl isSwitch__10dSv_info_cCFii
 /* 800C0CD4  2C 03 00 00 */	cmpwi r3, 0
 /* 800C0CD8  41 82 00 24 */	beq lbl_800C0CFC
-/* 800C0CDC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800C0CE0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800C0CDC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800C0CE0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800C0CE4  38 80 00 18 */	li r4, 0x18
 /* 800C0CE8  88 1C 04 BA */	lbz r0, 0x4ba(r28)
 /* 800C0CEC  7C 05 07 74 */	extsb r5, r0
@@ -164,8 +164,8 @@ lbl_800C0C90:
 /* 800C0CF4  2C 03 00 00 */	cmpwi r3, 0
 /* 800C0CF8  41 82 00 64 */	beq lbl_800C0D5C
 lbl_800C0CFC:
-/* 800C0CFC  3C 60 80 39 */	lis r3, d_a_d_a_alink__stringBase0@ha
-/* 800C0D00  38 63 20 94 */	addi r3, r3, d_a_d_a_alink__stringBase0@l
+/* 800C0CFC  3C 60 80 39 */	lis r3, d_a_d_a_alink__stringBase0@ha /* 0x80392094@ha */
+/* 800C0D00  38 63 20 94 */	addi r3, r3, d_a_d_a_alink__stringBase0@l /* 0x80392094@l */
 /* 800C0D04  38 63 00 96 */	addi r3, r3, 0x96
 /* 800C0D08  4B FD CD 59 */	bl checkStageName__9daAlink_cFPCc
 /* 800C0D0C  54 60 06 3F */	clrlwi. r0, r3, 0x18
@@ -331,8 +331,8 @@ lbl_800C0EF8:
 /* 800C0F4C  3B C0 00 00 */	li r30, 0
 /* 800C0F50  3B E0 00 00 */	li r31, 0
 /* 800C0F54  C3 E2 95 50 */	lfs f31, lit_23595(r2)
-/* 800C0F58  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800C0F5C  3B A3 9A 20 */	addi r29, r3, sincosTable___5JMath@l
+/* 800C0F58  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800C0F5C  3B A3 9A 20 */	addi r29, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 lbl_800C0F60:
 /* 800C0F60  C0 21 00 38 */	lfs f1, 0x38(r1)
 /* 800C0F64  57 C0 04 38 */	rlwinm r0, r30, 0, 0x10, 0x1c

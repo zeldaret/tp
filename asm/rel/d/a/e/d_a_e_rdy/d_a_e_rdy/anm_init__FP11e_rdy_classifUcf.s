@@ -7,21 +7,21 @@ lbl_8076BE80:
 /* 8076BE94  DB C1 00 30 */	stfd f30, 0x30(r1)
 /* 8076BE98  F3 C1 00 38 */	psq_st f30, 56(r1), 0, 0 /* qr0 */
 /* 8076BE9C  39 61 00 30 */	addi r11, r1, 0x30
-/* 8076BEA0  4B BF 63 38 */	b _savegpr_28
+/* 8076BEA0  4B BF 63 39 */	bl _savegpr_28
 /* 8076BEA4  7C 7C 1B 78 */	mr r28, r3
 /* 8076BEA8  7C 9D 23 78 */	mr r29, r4
 /* 8076BEAC  FF C0 08 90 */	fmr f30, f1
 /* 8076BEB0  7C BE 2B 78 */	mr r30, r5
 /* 8076BEB4  FF E0 10 90 */	fmr f31, f2
-/* 8076BEB8  3C 60 80 78 */	lis r3, lit_4018@ha
-/* 8076BEBC  3B E3 9D FC */	addi r31, r3, lit_4018@l
+/* 8076BEB8  3C 60 80 78 */	lis r3, lit_4018@ha /* 0x80779DFC@ha */
+/* 8076BEBC  3B E3 9D FC */	addi r31, r3, lit_4018@l /* 0x80779DFC@l */
 /* 8076BEC0  80 7C 06 74 */	lwz r3, 0x674(r28)
-/* 8076BEC4  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8076BEC8  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 8076BEC4  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8076BEC8  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8076BECC  3C A5 00 02 */	addis r5, r5, 2
 /* 8076BED0  38 C0 00 80 */	li r6, 0x80
 /* 8076BED4  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 8076BED8  4B 8D 04 14 */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 8076BED8  4B 8D 04 15 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8076BEDC  7C 64 1B 78 */	mr r4, r3
 /* 8076BEE0  80 7C 05 CC */	lwz r3, 0x5cc(r28)
 /* 8076BEE4  57 C5 06 3E */	clrlwi r5, r30, 0x18
@@ -29,12 +29,12 @@ lbl_8076BE80:
 /* 8076BEEC  FC 40 F8 90 */	fmr f2, f31
 /* 8076BEF0  C0 7F 00 04 */	lfs f3, 4(r31)
 /* 8076BEF4  C0 9F 00 60 */	lfs f4, 0x60(r31)
-/* 8076BEF8  4B 8A 4F 78 */	b setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff
+/* 8076BEF8  4B 8A 4F 79 */	bl setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff
 /* 8076BEFC  93 BC 06 78 */	stw r29, 0x678(r28)
 /* 8076BF00  2C 1D 00 1E */	cmpwi r29, 0x1e
 /* 8076BF04  40 82 00 40 */	bne lbl_8076BF44
 /* 8076BF08  C0 3F 00 64 */	lfs f1, 0x64(r31)
-/* 8076BF0C  4B AF BA 48 */	b cM_rndF__Ff
+/* 8076BF0C  4B AF BA 49 */	bl cM_rndF__Ff
 /* 8076BF10  FC 00 08 1E */	fctiwz f0, f1
 /* 8076BF14  D8 01 00 08 */	stfd f0, 8(r1)
 /* 8076BF18  80 01 00 0C */	lwz r0, 0xc(r1)
@@ -54,7 +54,7 @@ lbl_8076BF44:
 /* 8076BF4C  E3 C1 00 38 */	psq_l f30, 56(r1), 0, 0 /* qr0 */
 /* 8076BF50  CB C1 00 30 */	lfd f30, 0x30(r1)
 /* 8076BF54  39 61 00 30 */	addi r11, r1, 0x30
-/* 8076BF58  4B BF 62 CC */	b _restgpr_28
+/* 8076BF58  4B BF 62 CD */	bl _restgpr_28
 /* 8076BF5C  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 8076BF60  7C 08 03 A6 */	mtlr r0
 /* 8076BF64  38 21 00 50 */	addi r1, r1, 0x50

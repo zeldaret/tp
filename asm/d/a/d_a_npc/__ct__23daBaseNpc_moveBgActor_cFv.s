@@ -5,8 +5,8 @@ lbl_8014F4B4:
 /* 8014F4C0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8014F4C4  7C 7F 1B 78 */	mr r31, r3
 /* 8014F4C8  4B FF F2 01 */	bl __ct__11daBaseNpc_cFv
-/* 8014F4CC  3C 60 80 3B */	lis r3, __vt__23daBaseNpc_moveBgActor_c@ha
-/* 8014F4D0  38 03 39 48 */	addi r0, r3, __vt__23daBaseNpc_moveBgActor_c@l
+/* 8014F4CC  3C 60 80 3B */	lis r3, __vt__23daBaseNpc_moveBgActor_c@ha /* 0x803B3948@ha */
+/* 8014F4D0  38 03 39 48 */	addi r0, r3, __vt__23daBaseNpc_moveBgActor_c@l /* 0x803B3948@l */
 /* 8014F4D4  90 1F 05 68 */	stw r0, 0x568(r31)
 /* 8014F4D8  38 00 00 00 */	li r0, 0
 /* 8014F4DC  90 1F 0A 14 */	stw r0, 0xa14(r31)

@@ -5,8 +5,8 @@ lbl_806E1AA0:
 /* 806E1AAC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 806E1AB0  93 C1 00 08 */	stw r30, 8(r1)
 /* 806E1AB4  7C 7E 1B 78 */	mr r30, r3
-/* 806E1AB8  3C 80 80 6E */	lis r4, lit_3791@ha
-/* 806E1ABC  3B E4 59 20 */	addi r31, r4, lit_3791@l
+/* 806E1AB8  3C 80 80 6E */	lis r4, lit_3791@ha /* 0x806E5920@ha */
+/* 806E1ABC  3B E4 59 20 */	addi r31, r4, lit_3791@l /* 0x806E5920@l */
 /* 806E1AC0  A8 03 05 D6 */	lha r0, 0x5d6(r3)
 /* 806E1AC4  2C 00 00 01 */	cmpwi r0, 1
 /* 806E1AC8  41 82 00 48 */	beq lbl_806E1B10
@@ -32,7 +32,7 @@ lbl_806E1B10:
 /* 806E1B10  38 7E 05 F4 */	addi r3, r30, 0x5f4
 /* 806E1B14  C0 3F 00 08 */	lfs f1, 8(r31)
 /* 806E1B18  C0 5F 00 FC */	lfs f2, 0xfc(r31)
-/* 806E1B1C  4B B8 EC 24 */	b cLib_chaseF__FPfff
+/* 806E1B1C  4B B8 EC 25 */	bl cLib_chaseF__FPfff
 /* 806E1B20  C0 3F 00 08 */	lfs f1, 8(r31)
 /* 806E1B24  C0 1E 05 F4 */	lfs f0, 0x5f4(r30)
 /* 806E1B28  FC 01 00 00 */	fcmpu cr0, f1, f0

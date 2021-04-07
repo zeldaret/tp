@@ -7,7 +7,7 @@ lbl_80C6F2BC:
 /* 80C6F2D0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80C6F2D4  7C 9F 23 78 */	mr r31, r4
 /* 80C6F2D8  41 82 00 44 */	beq lbl_80C6F31C
-/* 80C6F2DC  4B 3A 9A 04 */	b fopAc_IsActor__FPv
+/* 80C6F2DC  4B 3A 9A 05 */	bl fopAc_IsActor__FPv
 /* 80C6F2E0  2C 03 00 00 */	cmpwi r3, 0
 /* 80C6F2E4  41 82 00 38 */	beq lbl_80C6F31C
 /* 80C6F2E8  A8 1E 00 0E */	lha r0, 0xe(r30)

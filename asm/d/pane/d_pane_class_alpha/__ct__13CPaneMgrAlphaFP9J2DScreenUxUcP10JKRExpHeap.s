@@ -7,8 +7,8 @@ lbl_802553FC:
 /* 80255410  7C 7D 1B 78 */	mr r29, r3
 /* 80255414  7C FE 3B 78 */	mr r30, r7
 /* 80255418  7D 1F 43 78 */	mr r31, r8
-/* 8025541C  3C 60 80 3C */	lis r3, __vt__13CPaneMgrAlpha@ha
-/* 80255420  38 03 2E 28 */	addi r0, r3, __vt__13CPaneMgrAlpha@l
+/* 8025541C  3C 60 80 3C */	lis r3, __vt__13CPaneMgrAlpha@ha /* 0x803C2E28@ha */
+/* 80255420  38 03 2E 28 */	addi r0, r3, __vt__13CPaneMgrAlpha@l /* 0x803C2E28@l */
 /* 80255424  90 1D 00 00 */	stw r0, 0(r29)
 /* 80255428  7C 83 23 78 */	mr r3, r4
 /* 8025542C  81 84 00 00 */	lwz r12, 0(r4)

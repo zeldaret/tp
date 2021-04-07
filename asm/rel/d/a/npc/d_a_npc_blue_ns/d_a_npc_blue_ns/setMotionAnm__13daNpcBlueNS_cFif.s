@@ -9,19 +9,19 @@ lbl_8096A238:
 /* 8096A254  7C 7F 1B 78 */	mr r31, r3
 /* 8096A258  FF E0 08 90 */	fmr f31, f1
 /* 8096A25C  1F C4 00 0C */	mulli r30, r4, 0xc
-/* 8096A260  3C 80 80 97 */	lis r4, l_bckGetParamList@ha
-/* 8096A264  38 A4 CB C0 */	addi r5, r4, l_bckGetParamList@l
+/* 8096A260  3C 80 80 97 */	lis r4, l_bckGetParamList@ha /* 0x8096CBC0@ha */
+/* 8096A264  38 A4 CB C0 */	addi r5, r4, l_bckGetParamList@l /* 0x8096CBC0@l */
 /* 8096A268  7C 85 F2 14 */	add r4, r5, r30
 /* 8096A26C  80 04 00 08 */	lwz r0, 8(r4)
 /* 8096A270  54 00 10 3A */	slwi r0, r0, 2
-/* 8096A274  3C 80 80 97 */	lis r4, l_arcNames@ha
-/* 8096A278  38 84 CC 2C */	addi r4, r4, l_arcNames@l
+/* 8096A274  3C 80 80 97 */	lis r4, l_arcNames@ha /* 0x8096CC2C@ha */
+/* 8096A278  38 84 CC 2C */	addi r4, r4, l_arcNames@l /* 0x8096CC2C@l */
 /* 8096A27C  7C 84 00 2E */	lwzx r4, r4, r0
 /* 8096A280  7C A5 F0 2E */	lwzx r5, r5, r30
-/* 8096A284  4B 7E 88 A8 */	b getTrnsfrmKeyAnmP__8daNpcF_cFPci
+/* 8096A284  4B 7E 88 A9 */	bl getTrnsfrmKeyAnmP__8daNpcF_cFPci
 /* 8096A288  7C 64 1B 79 */	or. r4, r3, r3
-/* 8096A28C  3C 60 80 97 */	lis r3, l_bckGetParamList@ha
-/* 8096A290  38 03 CB C0 */	addi r0, r3, l_bckGetParamList@l
+/* 8096A28C  3C 60 80 97 */	lis r3, l_bckGetParamList@ha /* 0x8096CBC0@ha */
+/* 8096A290  38 03 CB C0 */	addi r0, r3, l_bckGetParamList@l /* 0x8096CBC0@l */
 /* 8096A294  7C 60 F2 14 */	add r3, r0, r30
 /* 8096A298  80 A3 00 04 */	lwz r5, 4(r3)
 /* 8096A29C  80 7F 09 9C */	lwz r3, 0x99c(r31)
@@ -30,12 +30,12 @@ lbl_8096A238:
 /* 8096A2A8  90 1F 09 9C */	stw r0, 0x99c(r31)
 /* 8096A2AC  41 82 00 3C */	beq lbl_8096A2E8
 /* 8096A2B0  7F E3 FB 78 */	mr r3, r31
-/* 8096A2B4  3C C0 80 97 */	lis r6, lit_4306@ha
-/* 8096A2B8  C0 26 C9 E8 */	lfs f1, lit_4306@l(r6)
+/* 8096A2B4  3C C0 80 97 */	lis r6, lit_4306@ha /* 0x8096C9E8@ha */
+/* 8096A2B8  C0 26 C9 E8 */	lfs f1, lit_4306@l(r6)  /* 0x8096C9E8@l */
 /* 8096A2BC  FC 40 F8 90 */	fmr f2, f31
 /* 8096A2C0  38 C0 00 00 */	li r6, 0
 /* 8096A2C4  38 E0 FF FF */	li r7, -1
-/* 8096A2C8  4B 7E 89 54 */	b setMcaMorfAnm__8daNpcF_cFP18J3DAnmTransformKeyffiii
+/* 8096A2C8  4B 7E 89 55 */	bl setMcaMorfAnm__8daNpcF_cFP18J3DAnmTransformKeyffiii
 /* 8096A2CC  2C 03 00 00 */	cmpwi r3, 0
 /* 8096A2D0  41 82 00 18 */	beq lbl_8096A2E8
 /* 8096A2D4  80 1F 09 9C */	lwz r0, 0x99c(r31)

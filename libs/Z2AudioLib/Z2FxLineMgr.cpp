@@ -11,16 +11,16 @@
 // Types:
 //
 
-struct JKRArchive {
-    /* 802D5D38 */ void getResource(u16);
-    /* 802D610C */ void countResource() const;
-};
+struct Z2FxLineConfig {};
 
 struct JKRHeap {
     /* 802CE500 */ void free(void*, JKRHeap*);
 };
 
-struct Z2FxLineConfig {};
+struct JKRArchive {
+    /* 802D5D38 */ void getResource(u16);
+    /* 802D610C */ void countResource() const;
+};
 
 struct Z2FxLineMgr {
     /* 802BA7DC */ Z2FxLineMgr();
@@ -63,8 +63,6 @@ extern "C" void setSceneFx__11Z2FxLineMgrFl();
 // External References:
 //
 
-void* operator new[](u32, JKRHeap*, int);
-
 extern "C" void setFXLine__6JASDspFUcPsPQ26JASDsp13FxlineConfig_();
 extern "C" void free__7JKRHeapFPvP7JKRHeap();
 extern "C" void* __nwa__FUlP7JKRHeapi();
@@ -88,7 +86,7 @@ extern "C" extern u8 data_80450B80[4];
 // Declarations:
 //
 
-/* 802BA7DC-802BA7FC 0020+00 s=0 e=1 z=0  None .text      __ct__11Z2FxLineMgrFv */
+/* 802BA7DC-802BA7FC 2B511C 0020+00 0/0 1/1 0/0 .text            __ct__11Z2FxLineMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -98,7 +96,7 @@ asm Z2FxLineMgr::Z2FxLineMgr() {
 }
 #pragma pop
 
-/* 802BA7FC-802BAC28 042C+00 s=0 e=1 z=0  None .text
+/* 802BA7FC-802BAC28 2B513C 042C+00 0/0 1/1 0/0 .text
  * initDataArc__11Z2FxLineMgrFP10JKRArchiveP7JKRHeap            */
 #pragma push
 #pragma optimization_level 0
@@ -109,7 +107,7 @@ asm void Z2FxLineMgr::initDataArc(JKRArchive* param_0, JKRHeap* param_1) {
 }
 #pragma pop
 
-/* 802BAC28-802BAC74 004C+00 s=4 e=0 z=0  None .text      setLineID__11Z2FxLineMgrFScbb */
+/* 802BAC28-802BAC74 2B5568 004C+00 4/4 0/0 0/0 .text            setLineID__11Z2FxLineMgrFScbb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -119,7 +117,7 @@ asm void Z2FxLineMgr::setLineID(s8 param_0, bool param_1, bool param_2) {
 }
 #pragma pop
 
-/* 802BAC74-802BAE1C 01A8+00 s=1 e=0 z=0  None .text      setLine__11Z2FxLineMgrFP14Z2FxLineConfigbb
+/* 802BAC74-802BAE1C 2B55B4 01A8+00 1/1 0/0 0/0 .text setLine__11Z2FxLineMgrFP14Z2FxLineConfigbb
  */
 #pragma push
 #pragma optimization_level 0
@@ -130,7 +128,7 @@ asm void Z2FxLineMgr::setLine(Z2FxLineConfig* param_0, bool param_1, bool param_
 }
 #pragma pop
 
-/* 802BAE1C-802BAE48 002C+00 s=0 e=1 z=0  None .text      setFxForceOff__11Z2FxLineMgrFb */
+/* 802BAE1C-802BAE48 2B575C 002C+00 0/0 1/1 0/0 .text            setFxForceOff__11Z2FxLineMgrFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -140,7 +138,7 @@ asm void Z2FxLineMgr::setFxForceOff(bool param_0) {
 }
 #pragma pop
 
-/* 802BAE48-802BAEB8 0070+00 s=0 e=1 z=0  None .text      setUnderWaterFx__11Z2FxLineMgrFb */
+/* 802BAE48-802BAEB8 2B5788 0070+00 0/0 1/1 0/0 .text            setUnderWaterFx__11Z2FxLineMgrFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -151,7 +149,7 @@ asm void Z2FxLineMgr::setUnderWaterFx(bool param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CAB18-803CAC48 0130+00 s=1 e=0 z=0  None .data      @3566 */
+/* 803CAB18-803CAC48 -00001 0130+00 1/1 0/0 0/0 .data            @3566 */
 SECTION_DATA static void* lit_3566[76] = {
     (void*)(((char*)setSceneFx__11Z2FxLineMgrFl) + 0x88),
     (void*)(((char*)setSceneFx__11Z2FxLineMgrFl) + 0x134),
@@ -231,7 +229,7 @@ SECTION_DATA static void* lit_3566[76] = {
     (void*)(((char*)setSceneFx__11Z2FxLineMgrFl) + 0x7C),
 };
 
-/* 802BAEB8-802BB00C 0154+00 s=2 e=1 z=0  None .text      setSceneFx__11Z2FxLineMgrFl */
+/* 802BAEB8-802BB00C 2B57F8 0154+00 2/1 1/1 0/0 .text            setSceneFx__11Z2FxLineMgrFl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

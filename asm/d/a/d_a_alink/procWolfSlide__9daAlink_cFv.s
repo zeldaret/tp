@@ -5,8 +5,8 @@ lbl_8012FFA4:
 /* 8012FFB0  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 8012FFB4  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 8012FFB8  7C 7F 1B 78 */	mr r31, r3
-/* 8012FFBC  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha
-/* 8012FFC0  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l
+/* 8012FFBC  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 8012FFC0  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 8012FFC4  90 01 00 18 */	stw r0, 0x18(r1)
 /* 8012FFC8  38 81 00 08 */	addi r4, r1, 8
 /* 8012FFCC  4B F8 20 0D */	bl getSlidePolygon__9daAlink_cFP8cM3dGPla
@@ -30,16 +30,16 @@ lbl_8012FFA4:
 /* 80130014  38 C0 10 00 */	li r6, 0x1000
 /* 80130018  38 E0 04 00 */	li r7, 0x400
 /* 8013001C  48 14 05 25 */	bl cLib_addCalcAngleS__FPsssss
-/* 80130020  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80130024  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80130020  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80130024  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80130028  A8 1F 04 DE */	lha r0, 0x4de(r31)
 /* 8013002C  7C 1E 00 50 */	subf r0, r30, r0
 /* 80130030  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 80130034  7C 63 02 14 */	add r3, r3, r0
 /* 80130038  C0 A3 00 04 */	lfs f5, 4(r3)
 /* 8013003C  C0 9F 33 98 */	lfs f4, 0x3398(r31)
-/* 80130040  3C 60 80 39 */	lis r3, m__21daAlinkHIO_wlSlide_c0@ha
-/* 80130044  38 63 F3 F0 */	addi r3, r3, m__21daAlinkHIO_wlSlide_c0@l
+/* 80130040  3C 60 80 39 */	lis r3, m__21daAlinkHIO_wlSlide_c0@ha /* 0x8038F3F0@ha */
+/* 80130044  38 63 F3 F0 */	addi r3, r3, m__21daAlinkHIO_wlSlide_c0@l /* 0x8038F3F0@l */
 /* 80130048  C0 63 00 58 */	lfs f3, 0x58(r3)
 /* 8013004C  C0 42 92 B8 */	lfs f2, lit_6040(r2)
 /* 80130050  C0 22 92 98 */	lfs f1, lit_5943(r2)
@@ -68,8 +68,8 @@ lbl_801300A4:
 /* 801300A4  7F E3 FB 78 */	mr r3, r31
 /* 801300A8  48 00 00 2D */	bl procWolfSlideLandInit__9daAlink_cFv
 lbl_801300AC:
-/* 801300AC  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 801300B0  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 801300AC  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 801300B0  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 801300B4  90 01 00 18 */	stw r0, 0x18(r1)
 /* 801300B8  38 60 00 01 */	li r3, 1
 /* 801300BC  83 E1 00 2C */	lwz r31, 0x2c(r1)

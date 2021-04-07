@@ -3,18 +3,16 @@
 #
 
 M439_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_drop.plf
+M439_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_drop.lcf
+M439_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_drop.map
 
 M439_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_drop/executor.cpp \
-	rel/d/a/obj/d_a_obj_drop/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_drop/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_drop/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_drop/d_a_obj_drop.cpp \
 
 M439_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_drop/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_drop/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_drop/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_drop/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_drop/d_a_obj_drop.o \
 
@@ -31,14 +29,21 @@ M439_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M439_LDSCRIPT) \
+	-unused -map $(M439_MAP) \
+	-w off \
 
 $(M439_TARGET): $(M439_O_FILES) $(M439_LIBS)
+	@echo [439] creating $(M439_TARGET)
 	@echo $(M439_LIBS) $(M439_O_FILES) > build/M439_ofiles
-	$(LD) -partial $(M439_LDFLAGS) -o $(M439_TARGET) @build/M439_ofiles
+	@python3 tools/lcf.py rel 439 --output $(M439_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M439_LDFLAGS) -o $(M439_TARGET) @build/M439_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_drop/%.o: rel/d/a/obj/d_a_obj_drop/%.cpp
+	@echo [439] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M439_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M439_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

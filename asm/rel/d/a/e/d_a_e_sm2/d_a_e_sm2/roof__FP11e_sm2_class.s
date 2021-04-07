@@ -3,10 +3,10 @@ lbl_80799DAC:
 /* 80799DB0  7C 08 02 A6 */	mflr r0
 /* 80799DB4  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80799DB8  39 61 00 30 */	addi r11, r1, 0x30
-/* 80799DBC  4B BC 84 20 */	b _savegpr_29
+/* 80799DBC  4B BC 84 21 */	bl _savegpr_29
 /* 80799DC0  7C 7E 1B 78 */	mr r30, r3
-/* 80799DC4  3C 60 80 7A */	lis r3, lit_3790@ha
-/* 80799DC8  3B E3 D5 B0 */	addi r31, r3, lit_3790@l
+/* 80799DC4  3C 60 80 7A */	lis r3, lit_3790@ha /* 0x8079D5B0@ha */
+/* 80799DC8  3B E3 D5 B0 */	addi r31, r3, lit_3790@l /* 0x8079D5B0@l */
 /* 80799DCC  3B A0 00 00 */	li r29, 0
 /* 80799DD0  38 00 3F 00 */	li r0, 0x3f00
 /* 80799DD4  B0 1E 04 E4 */	sth r0, 0x4e4(r30)
@@ -69,17 +69,17 @@ lbl_80799E7C:
 /* 80799EA8  80 9E 05 B8 */	lwz r4, 0x5b8(r30)
 /* 80799EAC  2C 04 00 00 */	cmpwi r4, 0
 /* 80799EB0  41 82 00 58 */	beq lbl_80799F08
-/* 80799EB4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80799EB8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80799EB4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80799EB8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80799EBC  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80799EC0  7C 05 07 74 */	extsb r5, r0
-/* 80799EC4  4B 89 B4 9C */	b isSwitch__10dSv_info_cCFii
+/* 80799EC4  4B 89 B4 9D */	bl isSwitch__10dSv_info_cCFii
 /* 80799EC8  2C 03 00 00 */	cmpwi r3, 0
 /* 80799ECC  41 82 02 E4 */	beq lbl_8079A1B0
 /* 80799ED0  38 00 00 02 */	li r0, 2
 /* 80799ED4  B0 1E 06 84 */	sth r0, 0x684(r30)
 /* 80799ED8  C0 3F 00 30 */	lfs f1, 0x30(r31)
-/* 80799EDC  4B AC DA 78 */	b cM_rndF__Ff
+/* 80799EDC  4B AC DA 79 */	bl cM_rndF__Ff
 /* 80799EE0  C0 1F 00 94 */	lfs f0, 0x94(r31)
 /* 80799EE4  EC 00 08 2A */	fadds f0, f0, f1
 /* 80799EE8  FC 00 00 1E */	fctiwz f0, f0
@@ -92,10 +92,10 @@ lbl_80799E7C:
 /* 80799F04  48 00 02 AC */	b lbl_8079A1B0
 lbl_80799F08:
 /* 80799F08  7F C3 F3 78 */	mr r3, r30
-/* 80799F0C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80799F10  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80799F0C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80799F10  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80799F14  80 84 5D AC */	lwz r4, 0x5dac(r4)
-/* 80799F18  4B 88 0A 4C */	b fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 80799F18  4B 88 0A 4D */	bl fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 80799F1C  C0 7F 00 00 */	lfs f3, 0(r31)
 /* 80799F20  88 1E 05 B6 */	lbz r0, 0x5b6(r30)
 /* 80799F24  C8 5F 00 B8 */	lfd f2, 0xb8(r31)
@@ -109,16 +109,16 @@ lbl_80799F08:
 /* 80799F44  40 80 02 6C */	bge lbl_8079A1B0
 /* 80799F48  38 00 00 02 */	li r0, 2
 /* 80799F4C  B0 1E 06 84 */	sth r0, 0x684(r30)
-/* 80799F50  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80799F54  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80799F50  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80799F54  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80799F58  38 63 4E 00 */	addi r3, r3, 0x4e00
-/* 80799F5C  3C 80 80 7A */	lis r4, stringBase0@ha
-/* 80799F60  38 84 D7 18 */	addi r4, r4, stringBase0@l
-/* 80799F64  4B BC EA 30 */	b strcmp
+/* 80799F5C  3C 80 80 7A */	lis r4, d_a_e_sm2__stringBase0@ha /* 0x8079D718@ha */
+/* 80799F60  38 84 D7 18 */	addi r4, r4, d_a_e_sm2__stringBase0@l /* 0x8079D718@l */
+/* 80799F64  4B BC EA 31 */	bl strcmp
 /* 80799F68  2C 03 00 00 */	cmpwi r3, 0
 /* 80799F6C  40 82 00 28 */	bne lbl_80799F94
 /* 80799F70  C0 3F 00 30 */	lfs f1, 0x30(r31)
-/* 80799F74  4B AC D9 E0 */	b cM_rndF__Ff
+/* 80799F74  4B AC D9 E1 */	bl cM_rndF__Ff
 /* 80799F78  C0 1F 00 94 */	lfs f0, 0x94(r31)
 /* 80799F7C  EC 00 08 2A */	fadds f0, f0, f1
 /* 80799F80  FC 00 00 1E */	fctiwz f0, f0
@@ -183,7 +183,7 @@ lbl_8079A048:
 /* 8079A058  C0 3F 00 A8 */	lfs f1, 0xa8(r31)
 /* 8079A05C  C0 5F 00 08 */	lfs f2, 8(r31)
 /* 8079A060  C0 7E 08 38 */	lfs f3, 0x838(r30)
-/* 8079A064  4B AD 59 D8 */	b cLib_addCalc2__FPffff
+/* 8079A064  4B AD 59 D9 */	bl cLib_addCalc2__FPffff
 /* 8079A068  A8 1E 06 88 */	lha r0, 0x688(r30)
 /* 8079A06C  2C 00 00 00 */	cmpwi r0, 0
 /* 8079A070  40 82 00 18 */	bne lbl_8079A088
@@ -191,7 +191,7 @@ lbl_8079A048:
 /* 8079A078  C0 3F 00 AC */	lfs f1, 0xac(r31)
 /* 8079A07C  C0 5F 00 08 */	lfs f2, 8(r31)
 /* 8079A080  C0 7F 00 B0 */	lfs f3, 0xb0(r31)
-/* 8079A084  4B AD 59 B8 */	b cLib_addCalc2__FPffff
+/* 8079A084  4B AD 59 B9 */	bl cLib_addCalc2__FPffff
 lbl_8079A088:
 /* 8079A088  C0 3E 08 30 */	lfs f1, 0x830(r30)
 /* 8079A08C  C0 1F 00 B4 */	lfs f0, 0xb4(r31)
@@ -215,7 +215,7 @@ lbl_8079A0BC:
 /* 8079A0CC  B0 1E 06 82 */	sth r0, 0x682(r30)
 /* 8079A0D0  B0 1E 06 84 */	sth r0, 0x684(r30)
 /* 8079A0D4  C0 3F 00 3C */	lfs f1, 0x3c(r31)
-/* 8079A0D8  4B AC D8 7C */	b cM_rndF__Ff
+/* 8079A0D8  4B AC D8 7D */	bl cM_rndF__Ff
 /* 8079A0DC  C0 1F 00 88 */	lfs f0, 0x88(r31)
 /* 8079A0E0  EC 00 08 2A */	fadds f0, f0, f1
 /* 8079A0E4  FC 00 00 1E */	fctiwz f0, f0
@@ -239,7 +239,7 @@ lbl_8079A120:
 /* 8079A128  38 63 00 04 */	addi r3, r3, 4
 /* 8079A12C  42 00 FF F4 */	bdnz lbl_8079A120
 /* 8079A130  C0 3F 00 4C */	lfs f1, 0x4c(r31)
-/* 8079A134  4B AC D8 20 */	b cM_rndF__Ff
+/* 8079A134  4B AC D8 21 */	bl cM_rndF__Ff
 /* 8079A138  FC 00 08 1E */	fctiwz f0, f1
 /* 8079A13C  D8 01 00 18 */	stfd f0, 0x18(r1)
 /* 8079A140  80 01 00 1C */	lwz r0, 0x1c(r1)
@@ -274,7 +274,7 @@ lbl_8079A184:
 lbl_8079A1B0:
 /* 8079A1B0  7F A3 EB 78 */	mr r3, r29
 /* 8079A1B4  39 61 00 30 */	addi r11, r1, 0x30
-/* 8079A1B8  4B BC 80 70 */	b _restgpr_29
+/* 8079A1B8  4B BC 80 71 */	bl _restgpr_29
 /* 8079A1BC  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 8079A1C0  7C 08 03 A6 */	mtlr r0
 /* 8079A1C4  38 21 00 30 */	addi r1, r1, 0x30

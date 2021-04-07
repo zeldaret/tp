@@ -27,8 +27,8 @@ lbl_802DA714:
 /* 802DA734  40 81 00 08 */	ble lbl_802DA73C
 /* 802DA738  7C 1E 03 78 */	mr r30, r0
 lbl_802DA73C:
-/* 802DA73C  3C 60 80 2E */	lis r3, isErrorRetry__12JKRDvdRipperFv@ha
-/* 802DA740  3B E3 A7 D4 */	addi r31, r3, isErrorRetry__12JKRDvdRipperFv@l
+/* 802DA73C  3C 60 80 2E */	lis r3, isErrorRetry__12JKRDvdRipperFv@ha /* 0x802DA7D4@ha */
+/* 802DA740  3B E3 A7 D4 */	addi r31, r3, isErrorRetry__12JKRDvdRipperFv@l /* 0x802DA7D4@l */
 lbl_802DA744:
 /* 802DA744  80 6D 8E C8 */	lwz r3, srcFile(r13)
 /* 802DA748  38 63 00 5C */	addi r3, r3, 0x5c

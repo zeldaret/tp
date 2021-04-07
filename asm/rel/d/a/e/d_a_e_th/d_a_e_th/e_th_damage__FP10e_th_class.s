@@ -5,8 +5,8 @@ lbl_807B1670:
 /* 807B167C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 807B1680  93 C1 00 08 */	stw r30, 8(r1)
 /* 807B1684  7C 7E 1B 78 */	mr r30, r3
-/* 807B1688  3C 60 80 7B */	lis r3, lit_3906@ha
-/* 807B168C  3B E3 44 9C */	addi r31, r3, lit_3906@l
+/* 807B1688  3C 60 80 7B */	lis r3, lit_3906@ha /* 0x807B449C@ha */
+/* 807B168C  3B E3 44 9C */	addi r31, r3, lit_3906@l /* 0x807B449C@l */
 /* 807B1690  A8 1E 05 B4 */	lha r0, 0x5b4(r30)
 /* 807B1694  2C 00 00 01 */	cmpwi r0, 1
 /* 807B1698  41 82 00 68 */	beq lbl_807B1700
@@ -18,7 +18,7 @@ lbl_807B16AC:
 /* 807B16AC  38 00 00 01 */	li r0, 1
 /* 807B16B0  B0 1E 05 B4 */	sth r0, 0x5b4(r30)
 /* 807B16B4  C0 3F 00 08 */	lfs f1, 8(r31)
-/* 807B16B8  4B AB 62 9C */	b cM_rndF__Ff
+/* 807B16B8  4B AB 62 9D */	bl cM_rndF__Ff
 /* 807B16BC  C0 1F 00 84 */	lfs f0, 0x84(r31)
 /* 807B16C0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 807B16C4  40 80 00 20 */	bge lbl_807B16E4

@@ -5,7 +5,7 @@ lbl_80490B90:
 /* 80490B9C  28 03 00 00 */	cmplwi r3, 0
 /* 80490BA0  41 82 00 0C */	beq lbl_80490BAC
 /* 80490BA4  38 80 00 00 */	li r4, 0
-/* 80490BA8  4B B8 80 E4 */	b __dt__10fopAc_ac_cFv
+/* 80490BA8  4B B8 80 E5 */	bl __dt__10fopAc_ac_cFv
 lbl_80490BAC:
 /* 80490BAC  38 60 00 01 */	li r3, 1
 /* 80490BB0  80 01 00 14 */	lwz r0, 0x14(r1)

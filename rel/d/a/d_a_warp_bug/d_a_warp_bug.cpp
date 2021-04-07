@@ -54,13 +54,6 @@ struct J3DFrameCtrl {
 // Forward References:
 //
 
-static void createSolidHeap(fopAc_ac_c*);
-static void daWarpBug_Draw(daWarpBug_c*);
-static void daWarpBug_Execute(daWarpBug_c*);
-static bool daWarpBug_IsDelete(daWarpBug_c*);
-static void daWarpBug_Delete(daWarpBug_c*);
-static void daWarpBug_Create(fopAc_ac_c*);
-
 extern "C" void create_init__11daWarpBug_cFv();
 extern "C" static void createSolidHeap__FP10fopAc_ac_c();
 extern "C" void __dt__12J3DFrameCtrlFv();
@@ -70,19 +63,11 @@ extern "C" static void daWarpBug_Execute__FP11daWarpBug_c();
 extern "C" static bool daWarpBug_IsDelete__FP11daWarpBug_c();
 extern "C" static void daWarpBug_Delete__FP11daWarpBug_c();
 extern "C" static void daWarpBug_Create__FP10fopAc_ac_c();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_WarpBug[12];
+extern "C" extern char const* const d_a_warp_bug__stringBase0;
 
 //
 // External References:
 //
-
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
 extern "C" void init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss();
@@ -108,29 +93,20 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 // Declarations:
 //
 
-/* 80D67E38-80D67E3C 0004+00 s=1 e=0 z=0  None .text      create_init__11daWarpBug_cFv */
+/* 80D67E38-80D67E3C 000078 0004+00 1/1 0/0 0/0 .text            create_init__11daWarpBug_cFv */
 void daWarpBug_c::create_init() {
     /* empty function */
 }
 
 /* ############################################################################################## */
-/* 80D681DC-80D681E0 0004+00 s=1 e=0 z=0  None .rodata    @3709 */
-SECTION_RODATA static u32 const lit_3709 = 0x3F800000;
+/* 80D681DC-80D681E0 000000 0004+00 1/1 0/0 0/0 .rodata          @3709 */
+SECTION_RODATA static f32 const lit_3709 = 1.0f;
+COMPILER_STRIP_GATE(80D681DC, &lit_3709);
 
-/* 80D681E0-80D68206 0026+00 s=2 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80D681E0 = "WarpBug";
-SECTION_DEAD char const* const stringBase_80D681E8 = "kisei.bmd";
-SECTION_DEAD char const* const stringBase_80D681F2 = "kisei.brk";
-SECTION_DEAD char const* const stringBase_80D681FC = "kisei.btk";
-#pragma pop
+/* 80D68208-80D6820C -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_warp_bug__stringBase0;
 
-/* 80D68208-80D6820C 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80D6820C-80D6822C 0020+00 s=1 e=0 z=0  None .data      l_daWarpBug_Method */
+/* 80D6820C-80D6822C -00001 0020+00 1/0 0/0 0/0 .data            l_daWarpBug_Method */
 SECTION_DATA static void* l_daWarpBug_Method[8] = {
     (void*)daWarpBug_Create__FP10fopAc_ac_c,
     (void*)daWarpBug_Delete__FP11daWarpBug_c,
@@ -142,8 +118,8 @@ SECTION_DATA static void* l_daWarpBug_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D6822C-80D6825C 0030+00 s=0 e=0 z=1  None .data      g_profile_WarpBug */
-SECTION_DATA void* g_profile_WarpBug[12] = {
+/* 80D6822C-80D6825C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_WarpBug */
+SECTION_DATA extern void* g_profile_WarpBug[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x01560000, (void*)&g_fpcLf_Method,
     (void*)0x00000580, (void*)NULL,
@@ -152,24 +128,24 @@ SECTION_DATA void* g_profile_WarpBug[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80D6825C-80D68268 000C+00 s=2 e=0 z=0  None .data      __vt__12J3DFrameCtrl */
-SECTION_DATA static void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL,
+/* 80D6825C-80D68268 000054 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
+SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12J3DFrameCtrlFv,
 };
 
-/* 80D67E3C-80D68000 01C4+00 s=1 e=0 z=0  None .text      createSolidHeap__FP10fopAc_ac_c */
+/* 80D67E3C-80D68000 00007C 01C4+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void createSolidHeap(fopAc_ac_c* param_0) {
+static asm void createSolidHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_warp_bug/d_a_warp_bug/createSolidHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D68000-80D68048 0048+00 s=1 e=0 z=0  None .text      __dt__12J3DFrameCtrlFv */
+/* 80D68000-80D68048 000240 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -179,17 +155,17 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 }
 #pragma pop
 
-/* 80D68048-80D68068 0020+00 s=1 e=0 z=0  None .text      daWarpBug_Draw__FP11daWarpBug_c */
+/* 80D68048-80D68068 000288 0020+00 1/0 0/0 0/0 .text            daWarpBug_Draw__FP11daWarpBug_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daWarpBug_Draw(daWarpBug_c* param_0) {
+static asm void daWarpBug_Draw(daWarpBug_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_warp_bug/d_a_warp_bug/daWarpBug_Draw__FP11daWarpBug_c.s"
 }
 #pragma pop
 
-/* 80D68068-80D68078 0010+00 s=1 e=0 z=0  None .text      draw__11daWarpBug_cFv */
+/* 80D68068-80D68078 0002A8 0010+00 1/1 0/0 0/0 .text            draw__11daWarpBug_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -199,37 +175,50 @@ asm void daWarpBug_c::draw() {
 }
 #pragma pop
 
-/* 80D68078-80D680D8 0060+00 s=1 e=0 z=0  None .text      daWarpBug_Execute__FP11daWarpBug_c */
+/* 80D68078-80D680D8 0002B8 0060+00 1/0 0/0 0/0 .text            daWarpBug_Execute__FP11daWarpBug_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daWarpBug_Execute(daWarpBug_c* param_0) {
+static asm void daWarpBug_Execute(daWarpBug_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_warp_bug/d_a_warp_bug/daWarpBug_Execute__FP11daWarpBug_c.s"
 }
 #pragma pop
 
-/* 80D680D8-80D680E0 0008+00 s=1 e=0 z=0  None .text      daWarpBug_IsDelete__FP11daWarpBug_c */
+/* 80D680D8-80D680E0 000318 0008+00 1/0 0/0 0/0 .text            daWarpBug_IsDelete__FP11daWarpBug_c
+ */
 static bool daWarpBug_IsDelete(daWarpBug_c* param_0) {
     return true;
 }
 
-/* 80D680E0-80D68130 0050+00 s=1 e=0 z=0  None .text      daWarpBug_Delete__FP11daWarpBug_c */
+/* 80D680E0-80D68130 000320 0050+00 1/0 0/0 0/0 .text            daWarpBug_Delete__FP11daWarpBug_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daWarpBug_Delete(daWarpBug_c* param_0) {
+static asm void daWarpBug_Delete(daWarpBug_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_warp_bug/d_a_warp_bug/daWarpBug_Delete__FP11daWarpBug_c.s"
 }
 #pragma pop
 
-/* 80D68130-80D681D4 00A4+00 s=1 e=0 z=0  None .text      daWarpBug_Create__FP10fopAc_ac_c */
+/* 80D68130-80D681D4 000370 00A4+00 1/0 0/0 0/0 .text            daWarpBug_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daWarpBug_Create(fopAc_ac_c* param_0) {
+static asm void daWarpBug_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_warp_bug/d_a_warp_bug/daWarpBug_Create__FP10fopAc_ac_c.s"
 }
+#pragma pop
+
+/* 80D681E0-80D68206 000004 0026+00 2/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80D681E0 = "WarpBug";
+SECTION_DEAD static char const* const stringBase_80D681E8 = "kisei.bmd";
+SECTION_DEAD static char const* const stringBase_80D681F2 = "kisei.brk";
+SECTION_DEAD static char const* const stringBase_80D681FC = "kisei.btk";
 #pragma pop

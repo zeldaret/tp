@@ -7,8 +7,8 @@ lbl_8000FD10:
 /* 8000FD24  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8000FD28  7C 9F 23 78 */	mr r31, r4
 /* 8000FD2C  41 82 00 4C */	beq lbl_8000FD78
-/* 8000FD30  3C 60 80 3A */	lis r3, __vt__14mDoExt_McaMorf@ha
-/* 8000FD34  38 03 32 FC */	addi r0, r3, __vt__14mDoExt_McaMorf@l
+/* 8000FD30  3C 60 80 3A */	lis r3, __vt__14mDoExt_McaMorf@ha /* 0x803A32FC@ha */
+/* 8000FD34  38 03 32 FC */	addi r0, r3, __vt__14mDoExt_McaMorf@l /* 0x803A32FC@l */
 /* 8000FD38  90 1E 00 00 */	stw r0, 0(r30)
 /* 8000FD3C  88 1E 00 50 */	lbz r0, 0x50(r30)
 /* 8000FD40  28 00 00 00 */	cmplwi r0, 0

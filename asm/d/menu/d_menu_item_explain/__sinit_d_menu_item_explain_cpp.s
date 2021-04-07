@@ -1,6 +1,6 @@
 lbl_801DCC8C:
-/* 801DCC8C  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 801DCC90  38 63 D8 C8 */	addi r3, r3, cNullVec__6Z2Calc@l
+/* 801DCC8C  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803BD8C8@ha */
+/* 801DCC90  38 63 D8 C8 */	addi r3, r3, cNullVec__6Z2Calc@l /* 0x803BD8C8@l */
 /* 801DCC94  80 83 00 0C */	lwz r4, 0xc(r3)
 /* 801DCC98  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 801DCC9C  90 83 00 54 */	stw r4, 0x54(r3)

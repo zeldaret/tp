@@ -7,14 +7,14 @@ lbl_80CCB9E0:
 /* 80CCB9F4  80 63 05 94 */	lwz r3, 0x594(r3)
 /* 80CCB9F8  28 03 00 00 */	cmplwi r3, 0
 /* 80CCB9FC  41 82 00 24 */	beq lbl_80CCBA20
-/* 80CCBA00  4B 59 C7 D4 */	b ChkUsed__9cBgW_BgIdCFv
+/* 80CCBA00  4B 59 C7 D5 */	bl ChkUsed__9cBgW_BgIdCFv
 /* 80CCBA04  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80CCBA08  41 82 00 18 */	beq lbl_80CCBA20
-/* 80CCBA0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CCBA10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80CCBA0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CCBA10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CCBA14  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80CCBA18  80 9F 05 94 */	lwz r4, 0x594(r31)
-/* 80CCBA1C  4B 3A 88 34 */	b Release__4cBgSFP9dBgW_Base
+/* 80CCBA1C  4B 3A 88 35 */	bl Release__4cBgSFP9dBgW_Base
 lbl_80CCBA20:
 /* 80CCBA20  7F E3 FB 78 */	mr r3, r31
 /* 80CCBA24  48 00 0F 59 */	bl delEmtAll__17daObjSCannonTen_cFv

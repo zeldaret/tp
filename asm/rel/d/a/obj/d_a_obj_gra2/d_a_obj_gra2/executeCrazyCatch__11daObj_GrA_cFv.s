@@ -5,8 +5,8 @@ lbl_80C0C478:
 /* 80C0C484  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80C0C488  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80C0C48C  7C 7F 1B 78 */	mr r31, r3
-/* 80C0C490  3C 80 80 C1 */	lis r4, m__17daObj_GrA_Param_c@ha
-/* 80C0C494  3B C4 FA 7C */	addi r30, r4, m__17daObj_GrA_Param_c@l
+/* 80C0C490  3C 80 80 C1 */	lis r4, m__17daObj_GrA_Param_c@ha /* 0x80C0FA7C@ha */
+/* 80C0C494  3B C4 FA 7C */	addi r30, r4, m__17daObj_GrA_Param_c@l /* 0x80C0FA7C@l */
 /* 80C0C498  88 03 1F F4 */	lbz r0, 0x1ff4(r3)
 /* 80C0C49C  2C 00 00 01 */	cmpwi r0, 1
 /* 80C0C4A0  41 82 00 88 */	beq lbl_80C0C528
@@ -15,8 +15,8 @@ lbl_80C0C478:
 /* 80C0C4AC  40 80 00 08 */	bge lbl_80C0C4B4
 /* 80C0C4B0  48 00 00 84 */	b lbl_80C0C534
 lbl_80C0C4B4:
-/* 80C0C4B4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80C0C4B8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80C0C4B4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C0C4B8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C0C4BC  80 84 5D AC */	lwz r4, 0x5dac(r4)
 /* 80C0C4C0  C0 24 05 2C */	lfs f1, 0x52c(r4)
 /* 80C0C4C4  C0 1E 01 1C */	lfs f0, 0x11c(r30)
@@ -32,13 +32,13 @@ lbl_80C0C4B4:
 /* 80C0C4EC  C0 1E 01 18 */	lfs f0, 0x118(r30)
 /* 80C0C4F0  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 80C0C4F4  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 80C0C4F8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C0C4FC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C0C4F8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C0C4FC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C0C500  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 80C0C504  38 80 00 01 */	li r4, 1
 /* 80C0C508  38 A0 00 0F */	li r5, 0xf
 /* 80C0C50C  38 C1 00 08 */	addi r6, r1, 8
-/* 80C0C510  4B 46 36 00 */	b StartQuake__12dVibration_cFii4cXyz
+/* 80C0C510  4B 46 36 01 */	bl StartQuake__12dVibration_cFii4cXyz
 /* 80C0C514  48 00 00 20 */	b lbl_80C0C534
 lbl_80C0C518:
 /* 80C0C518  C0 3E 03 04 */	lfs f1, 0x304(r30)
@@ -81,8 +81,8 @@ lbl_80C0C580:
 lbl_80C0C598:
 /* 80C0C598  54 60 07 7B */	rlwinm. r0, r3, 0, 0x1d, 0x1d
 /* 80C0C59C  41 82 00 34 */	beq lbl_80C0C5D0
-/* 80C0C5A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80C0C5A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80C0C5A0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80C0C5A4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80C0C5A8  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 80C0C5AC  C0 23 05 2C */	lfs f1, 0x52c(r3)
 /* 80C0C5B0  C0 1E 01 1C */	lfs f0, 0x11c(r30)

@@ -7,8 +7,8 @@ lbl_8023293C:
 /* 80232950  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80232954  7C 9F 23 78 */	mr r31, r4
 /* 80232958  41 82 00 28 */	beq lbl_80232980
-/* 8023295C  3C 80 80 3C */	lis r4, __vt__28jmessage_tRenderingProcessor@ha
-/* 80232960  38 04 09 FC */	addi r0, r4, __vt__28jmessage_tRenderingProcessor@l
+/* 8023295C  3C 80 80 3C */	lis r4, __vt__28jmessage_tRenderingProcessor@ha /* 0x803C09FC@ha */
+/* 80232960  38 04 09 FC */	addi r0, r4, __vt__28jmessage_tRenderingProcessor@l /* 0x803C09FC@l */
 /* 80232964  90 1E 00 00 */	stw r0, 0(r30)
 /* 80232968  38 80 00 00 */	li r4, 0
 /* 8023296C  48 07 61 55 */	bl __dt__Q28JMessage19TRenderingProcessorFv

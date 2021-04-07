@@ -3,7 +3,7 @@ lbl_809FA88C:
 /* 809FA890  7C 08 02 A6 */	mflr r0
 /* 809FA894  90 01 00 54 */	stw r0, 0x54(r1)
 /* 809FA898  39 61 00 50 */	addi r11, r1, 0x50
-/* 809FA89C  4B 96 79 34 */	b _savegpr_26
+/* 809FA89C  4B 96 79 35 */	bl _savegpr_26
 /* 809FA8A0  7C 7C 1B 78 */	mr r28, r3
 /* 809FA8A4  80 03 04 9C */	lwz r0, 0x49c(r3)
 /* 809FA8A8  54 00 01 46 */	rlwinm r0, r0, 0, 5, 3
@@ -12,7 +12,7 @@ lbl_809FA88C:
 /* 809FA8B4  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 809FA8B8  28 00 00 00 */	cmplwi r0, 0
 /* 809FA8BC  40 82 00 1C */	bne lbl_809FA8D8
-/* 809FA8C0  4B 63 51 94 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 809FA8C0  4B 63 51 95 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 809FA8C4  2C 03 00 00 */	cmpwi r3, 0
 /* 809FA8C8  40 82 00 14 */	bne lbl_809FA8DC
 /* 809FA8CC  88 1C 0A 89 */	lbz r0, 0xa89(r28)
@@ -31,7 +31,7 @@ lbl_809FA8F0:
 /* 809FA8F4  88 1C 0E 25 */	lbz r0, 0xe25(r28)
 /* 809FA8F8  28 00 00 00 */	cmplwi r0, 0
 /* 809FA8FC  40 82 00 1C */	bne lbl_809FA918
-/* 809FA900  4B 63 51 54 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 809FA900  4B 63 51 55 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 809FA904  2C 03 00 00 */	cmpwi r3, 0
 /* 809FA908  40 82 00 14 */	bne lbl_809FA91C
 /* 809FA90C  88 1C 0A 89 */	lbz r0, 0xa89(r28)
@@ -51,8 +51,8 @@ lbl_809FA930:
 lbl_809FA938:
 /* 809FA938  3B A0 00 00 */	li r29, 0
 /* 809FA93C  3B 60 00 00 */	li r27, 0
-/* 809FA940  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 809FA944  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 809FA940  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 809FA944  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 809FA948  3B E3 0F 38 */	addi r31, r3, 0xf38
 lbl_809FA94C:
 /* 809FA94C  7F DC DA 14 */	add r30, r28, r27
@@ -72,8 +72,8 @@ lbl_809FA974:
 /* 809FA97C  C0 1E 12 78 */	lfs f0, 0x1278(r30)
 /* 809FA980  FC 00 02 10 */	fabs f0, f0
 /* 809FA984  FC 20 00 18 */	frsp f1, f0
-/* 809FA988  3C 60 80 45 */	lis r3, G_CM3D_F_ABS_MIN@ha
-/* 809FA98C  C0 03 11 80 */	lfs f0, G_CM3D_F_ABS_MIN@l(r3)
+/* 809FA988  3C 60 80 45 */	lis r3, G_CM3D_F_ABS_MIN@ha /* 0x80451180@ha */
+/* 809FA98C  C0 03 11 80 */	lfs f0, G_CM3D_F_ABS_MIN@l(r3)  /* 0x80451180@l */
 /* 809FA990  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 809FA994  7C 00 00 26 */	mfcr r0
 /* 809FA998  54 00 0F FF */	rlwinm. r0, r0, 1, 0x1f, 0x1f
@@ -101,19 +101,19 @@ lbl_809FA974:
 /* 809FA9F0  38 81 00 2C */	addi r4, r1, 0x2c
 /* 809FA9F4  38 A1 00 20 */	addi r5, r1, 0x20
 /* 809FA9F8  7F 86 E3 78 */	mr r6, r28
-/* 809FA9FC  4B 67 D3 68 */	b Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c
+/* 809FA9FC  4B 67 D3 69 */	bl Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c
 /* 809FAA00  7F E3 FB 78 */	mr r3, r31
 /* 809FAA04  38 9C 0A E0 */	addi r4, r28, 0xae0
-/* 809FAA08  4B 67 99 AC */	b LineCross__4cBgSFP11cBgS_LinChk
+/* 809FAA08  4B 67 99 AD */	bl LineCross__4cBgSFP11cBgS_LinChk
 /* 809FAA0C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 809FAA10  40 82 00 14 */	bne lbl_809FAA24
 /* 809FAA14  38 7A 00 30 */	addi r3, r26, 0x30
-/* 809FAA18  4B 68 9C 40 */	b ChkCoHit__12dCcD_GObjInfFv
+/* 809FAA18  4B 68 9C 41 */	bl ChkCoHit__12dCcD_GObjInfFv
 /* 809FAA1C  28 03 00 00 */	cmplwi r3, 0
 /* 809FAA20  41 82 00 60 */	beq lbl_809FAA80
 lbl_809FAA24:
-/* 809FAA24  3C 60 80 A0 */	lis r3, lit_4141@ha
-/* 809FAA28  C0 23 06 FC */	lfs f1, lit_4141@l(r3)
+/* 809FAA24  3C 60 80 A0 */	lis r3, lit_4141@ha /* 0x80A006FC@ha */
+/* 809FAA28  C0 23 06 FC */	lfs f1, lit_4141@l(r3)  /* 0x80A006FC@l */
 /* 809FAA2C  D0 3E 11 20 */	stfs f1, 0x1120(r30)
 /* 809FAA30  D0 3E 11 24 */	stfs f1, 0x1124(r30)
 /* 809FAA34  D0 3E 11 28 */	stfs f1, 0x1128(r30)
@@ -131,8 +131,8 @@ lbl_809FAA24:
 /* 809FAA64  B0 1E 11 3A */	sth r0, 0x113a(r30)
 /* 809FAA68  B0 1E 11 3C */	sth r0, 0x113c(r30)
 /* 809FAA6C  D0 3E 12 78 */	stfs f1, 0x1278(r30)
-/* 809FAA70  3C 60 80 A0 */	lis r3, lit_4212@ha
-/* 809FAA74  C0 03 07 04 */	lfs f0, lit_4212@l(r3)
+/* 809FAA70  3C 60 80 A0 */	lis r3, lit_4212@ha /* 0x80A00704@ha */
+/* 809FAA74  C0 03 07 04 */	lfs f0, lit_4212@l(r3)  /* 0x80A00704@l */
 /* 809FAA78  D0 1E 12 7C */	stfs f0, 0x127c(r30)
 /* 809FAA7C  90 1E 12 80 */	stw r0, 0x1280(r30)
 lbl_809FAA80:
@@ -147,7 +147,7 @@ lbl_809FAA80:
 /* 809FAAA0  48 00 11 9D */	bl dive__13daNpc_Hanjo_cFv
 lbl_809FAAA4:
 /* 809FAAA4  39 61 00 50 */	addi r11, r1, 0x50
-/* 809FAAA8  4B 96 77 74 */	b _restgpr_26
+/* 809FAAA8  4B 96 77 75 */	bl _restgpr_26
 /* 809FAAAC  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 809FAAB0  7C 08 03 A6 */	mtlr r0
 /* 809FAAB4  38 21 00 50 */	addi r1, r1, 0x50

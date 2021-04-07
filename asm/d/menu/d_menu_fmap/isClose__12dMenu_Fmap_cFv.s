@@ -7,8 +7,8 @@ lbl_801CB038:
 /* 801CB04C  7C 7D 1B 78 */	mr r29, r3
 /* 801CB050  3B E0 00 01 */	li r31, 1
 /* 801CB054  3B C0 00 00 */	li r30, 0
-/* 801CB058  3C 60 80 43 */	lis r3, g_fmapHIO@ha
-/* 801CB05C  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l
+/* 801CB058  3C 60 80 43 */	lis r3, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801CB05C  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801CB060  A8 83 00 96 */	lha r4, 0x96(r3)
 /* 801CB064  A8 1D 02 12 */	lha r0, 0x212(r29)
 /* 801CB068  7C 00 20 00 */	cmpw r0, r4

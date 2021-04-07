@@ -2,8 +2,8 @@ lbl_8025BAF8:
 /* 8025BAF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8025BAFC  7C 08 02 A6 */	mflr r0
 /* 8025BB00  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8025BB04  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8025BB08  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8025BB04  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025BB08  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025BB0C  80 04 5D AC */	lwz r0, 0x5dac(r4)
 /* 8025BB10  28 00 00 00 */	cmplwi r0, 0
 /* 8025BB14  40 82 00 0C */	bne lbl_8025BB20

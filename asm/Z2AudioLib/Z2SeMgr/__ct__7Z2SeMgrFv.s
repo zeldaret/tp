@@ -5,10 +5,10 @@ lbl_802AB64C:
 /* 802AB658  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802AB65C  7C 7F 1B 78 */	mr r31, r3
 /* 802AB660  93 ED 86 08 */	stw r31, data_80450B88(r13)
-/* 802AB664  3C 80 80 2A */	lis r4, __ct__14JAISoundHandleFv@ha
-/* 802AB668  38 84 4A C4 */	addi r4, r4, __ct__14JAISoundHandleFv@l
-/* 802AB66C  3C A0 80 00 */	lis r5, __dt__14JAISoundHandleFv@ha
-/* 802AB670  38 A5 78 38 */	addi r5, r5, __dt__14JAISoundHandleFv@l
+/* 802AB664  3C 80 80 2A */	lis r4, __ct__14JAISoundHandleFv@ha /* 0x802A4AC4@ha */
+/* 802AB668  38 84 4A C4 */	addi r4, r4, __ct__14JAISoundHandleFv@l /* 0x802A4AC4@l */
+/* 802AB66C  3C A0 80 00 */	lis r5, __dt__14JAISoundHandleFv@ha /* 0x80007838@ha */
+/* 802AB670  38 A5 78 38 */	addi r5, r5, __dt__14JAISoundHandleFv@l /* 0x80007838@l */
 /* 802AB674  38 C0 00 04 */	li r6, 4
 /* 802AB678  38 E0 00 18 */	li r7, 0x18
 /* 802AB67C  48 0B 66 E5 */	bl __construct_array
@@ -16,18 +16,18 @@ lbl_802AB64C:
 /* 802AB684  38 00 00 18 */	li r0, 0x18
 /* 802AB688  90 1F 00 64 */	stw r0, 0x64(r31)
 /* 802AB68C  38 7F 00 68 */	addi r3, r31, 0x68
-/* 802AB690  3C 80 80 2B */	lis r4, __ct__12Z2MultiSeObjFv@ha
-/* 802AB694  38 84 B7 10 */	addi r4, r4, __ct__12Z2MultiSeObjFv@l
-/* 802AB698  3C A0 80 00 */	lis r5, __dt__12Z2MultiSeObjFv@ha
-/* 802AB69C  38 A5 78 88 */	addi r5, r5, __dt__12Z2MultiSeObjFv@l
+/* 802AB690  3C 80 80 2B */	lis r4, __ct__12Z2MultiSeObjFv@ha /* 0x802AB710@ha */
+/* 802AB694  38 84 B7 10 */	addi r4, r4, __ct__12Z2MultiSeObjFv@l /* 0x802AB710@l */
+/* 802AB698  3C A0 80 00 */	lis r5, __dt__12Z2MultiSeObjFv@ha /* 0x80007888@ha */
+/* 802AB69C  38 A5 78 88 */	addi r5, r5, __dt__12Z2MultiSeObjFv@l /* 0x80007888@l */
 /* 802AB6A0  38 C0 00 24 */	li r6, 0x24
 /* 802AB6A4  38 E0 00 0A */	li r7, 0xa
 /* 802AB6A8  48 0B 66 B9 */	bl __construct_array
 /* 802AB6AC  38 7F 01 D4 */	addi r3, r31, 0x1d4
-/* 802AB6B0  3C 80 80 2B */	lis r4, __ct__12Z2MultiSeObjFv@ha
-/* 802AB6B4  38 84 B7 10 */	addi r4, r4, __ct__12Z2MultiSeObjFv@l
-/* 802AB6B8  3C A0 80 00 */	lis r5, __dt__12Z2MultiSeObjFv@ha
-/* 802AB6BC  38 A5 78 88 */	addi r5, r5, __dt__12Z2MultiSeObjFv@l
+/* 802AB6B0  3C 80 80 2B */	lis r4, __ct__12Z2MultiSeObjFv@ha /* 0x802AB710@ha */
+/* 802AB6B4  38 84 B7 10 */	addi r4, r4, __ct__12Z2MultiSeObjFv@l /* 0x802AB710@l */
+/* 802AB6B8  3C A0 80 00 */	lis r5, __dt__12Z2MultiSeObjFv@ha /* 0x80007888@ha */
+/* 802AB6BC  38 A5 78 88 */	addi r5, r5, __dt__12Z2MultiSeObjFv@l /* 0x80007888@l */
 /* 802AB6C0  38 C0 00 24 */	li r6, 0x24
 /* 802AB6C4  38 E0 00 0A */	li r7, 0xa
 /* 802AB6C8  48 0B 66 99 */	bl __construct_array

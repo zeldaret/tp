@@ -7,8 +7,8 @@ lbl_80312B74:
 /* 80312B88  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80312B8C  7C 9F 23 78 */	mr r31, r4
 /* 80312B90  41 82 00 28 */	beq lbl_80312BB8
-/* 80312B94  3C 80 80 3D */	lis r4, __vt__14J3DShapePacket@ha
-/* 80312B98  38 04 D9 40 */	addi r0, r4, __vt__14J3DShapePacket@l
+/* 80312B94  3C 80 80 3D */	lis r4, __vt__14J3DShapePacket@ha /* 0x803CD940@ha */
+/* 80312B98  38 04 D9 40 */	addi r0, r4, __vt__14J3DShapePacket@l /* 0x803CD940@l */
 /* 80312B9C  90 1E 00 00 */	stw r0, 0(r30)
 /* 80312BA0  38 80 00 00 */	li r4, 0
 /* 80312BA4  4B FF FC 0D */	bl __dt__13J3DDrawPacketFv

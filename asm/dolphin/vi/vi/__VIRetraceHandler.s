@@ -3,12 +3,12 @@ lbl_8034BF6C:
 /* 8034BF70  3C 60 CC 00 */	lis r3, 0xCC00 /* 0xCC002000@ha */
 /* 8034BF74  90 01 00 04 */	stw r0, 4(r1)
 /* 8034BF78  38 A3 20 00 */	addi r5, r3, 0x2000 /* 0xCC002000@l */
-/* 8034BF7C  3C 60 80 45 */	lis r3, regs@ha
+/* 8034BF7C  3C 60 80 45 */	lis r3, regs@ha /* 0x8044CA28@ha */
 /* 8034BF80  94 21 FD 08 */	stwu r1, -0x2f8(r1)
 /* 8034BF84  38 E0 00 00 */	li r7, 0
 /* 8034BF88  BF 61 02 E4 */	stmw r27, 0x2e4(r1)
 /* 8034BF8C  3B C4 00 00 */	addi r30, r4, 0
-/* 8034BF90  3B E3 CA 28 */	addi r31, r3, regs@l
+/* 8034BF90  3B E3 CA 28 */	addi r31, r3, regs@l /* 0x8044CA28@l */
 /* 8034BF94  A4 C5 00 30 */	lhzu r6, 0x30(r5)
 /* 8034BF98  54 C0 04 21 */	rlwinm. r0, r6, 0, 0x10, 0x10
 /* 8034BF9C  41 82 00 10 */	beq lbl_8034BFAC
@@ -17,7 +17,7 @@ lbl_8034BF6C:
 /* 8034BFA8  60 E7 00 01 */	ori r7, r7, 1
 lbl_8034BFAC:
 /* 8034BFAC  3C 60 CC 00 */	lis r3, 0xCC00 /* 0xCC002034@ha */
-/* 8034BFB0  A4 83 20 34 */	lhzu r4, 0x2034(r3)
+/* 8034BFB0  A4 83 20 34 */	lhzu r4, 0x2034(r3)  /* 0xCC002034@l */
 /* 8034BFB4  54 80 04 21 */	rlwinm. r0, r4, 0, 0x10, 0x10
 /* 8034BFB8  41 82 00 10 */	beq lbl_8034BFC8
 /* 8034BFBC  54 80 04 5E */	rlwinm r0, r4, 0, 0x11, 0xf
@@ -25,7 +25,7 @@ lbl_8034BFAC:
 /* 8034BFC4  60 E7 00 02 */	ori r7, r7, 2
 lbl_8034BFC8:
 /* 8034BFC8  3C 60 CC 00 */	lis r3, 0xCC00 /* 0xCC002038@ha */
-/* 8034BFCC  A4 83 20 38 */	lhzu r4, 0x2038(r3)
+/* 8034BFCC  A4 83 20 38 */	lhzu r4, 0x2038(r3)  /* 0xCC002038@l */
 /* 8034BFD0  54 80 04 21 */	rlwinm. r0, r4, 0, 0x10, 0x10
 /* 8034BFD4  41 82 00 10 */	beq lbl_8034BFE4
 /* 8034BFD8  54 80 04 5E */	rlwinm r0, r4, 0, 0x11, 0xf
@@ -33,7 +33,7 @@ lbl_8034BFC8:
 /* 8034BFE0  60 E7 00 04 */	ori r7, r7, 4
 lbl_8034BFE4:
 /* 8034BFE4  3C 60 CC 00 */	lis r3, 0xCC00 /* 0xCC00203C@ha */
-/* 8034BFE8  A4 83 20 3C */	lhzu r4, 0x203C(r3)
+/* 8034BFE8  A4 83 20 3C */	lhzu r4, 0x203C(r3)  /* 0xCC00203C@l */
 /* 8034BFEC  54 80 04 21 */	rlwinm. r0, r4, 0, 0x10, 0x10
 /* 8034BFF0  41 82 00 10 */	beq lbl_8034C000
 /* 8034BFF4  54 80 04 5E */	rlwinm r0, r4, 0, 0x11, 0xf

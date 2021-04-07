@@ -10,8 +10,8 @@ lbl_80029874:
 /* 80029894  7C DD 33 78 */	mr r29, r6
 /* 80029898  7C FE 3B 78 */	mr r30, r7
 /* 8002989C  48 00 15 D1 */	bl __ct__15renderingAmap_cFv
-/* 800298A0  3C 60 80 3A */	lis r3, __vt__6dMap_c@ha
-/* 800298A4  38 03 70 30 */	addi r0, r3, __vt__6dMap_c@l
+/* 800298A0  3C 60 80 3A */	lis r3, __vt__6dMap_c@ha /* 0x803A7030@ha */
+/* 800298A4  38 03 70 30 */	addi r0, r3, __vt__6dMap_c@l /* 0x803A7030@l */
 /* 800298A8  90 1F 00 00 */	stw r0, 0(r31)
 /* 800298AC  38 60 00 00 */	li r3, 0
 /* 800298B0  90 7F 00 40 */	stw r3, 0x40(r31)
@@ -48,11 +48,11 @@ lbl_80029874:
 /* 8002992C  90 7F 00 44 */	stw r3, 0x44(r31)
 /* 80029930  80 1F 00 44 */	lwz r0, 0x44(r31)
 /* 80029934  90 0D 88 00 */	stw r0, m_res__22dMap_HIO_prm_res_dst_s(r13)
-/* 80029938  3C 60 80 38 */	lis r3, d_map_d_map__stringBase0@ha
-/* 8002993C  38 63 8F 24 */	addi r3, r3, d_map_d_map__stringBase0@l
+/* 80029938  3C 60 80 38 */	lis r3, d_map_d_map__stringBase0@ha /* 0x80378F24@ha */
+/* 8002993C  38 63 8F 24 */	addi r3, r3, d_map_d_map__stringBase0@l /* 0x80378F24@l */
 /* 80029940  38 80 00 45 */	li r4, 0x45
-/* 80029944  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80029948  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80029944  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80029948  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002994C  3C A5 00 02 */	addis r5, r5, 2
 /* 80029950  38 C0 00 80 */	li r6, 0x80
 /* 80029954  38 A5 C2 F8 */	addi r5, r5, -15624

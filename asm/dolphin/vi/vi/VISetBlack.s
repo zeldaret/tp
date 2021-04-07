@@ -1,10 +1,10 @@
 lbl_8034D840:
 /* 8034D840  7C 08 02 A6 */	mflr r0
-/* 8034D844  3C 80 80 45 */	lis r4, regs@ha
+/* 8034D844  3C 80 80 45 */	lis r4, regs@ha /* 0x8044CA28@ha */
 /* 8034D848  90 01 00 04 */	stw r0, 4(r1)
 /* 8034D84C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8034D850  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 8034D854  3B E4 CA 28 */	addi r31, r4, regs@l
+/* 8034D854  3B E4 CA 28 */	addi r31, r4, regs@l /* 0x8044CA28@l */
 /* 8034D858  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8034D85C  3B C3 00 00 */	addi r30, r3, 0
 /* 8034D860  4B FE FE 95 */	bl OSDisableInterrupts

@@ -31,8 +31,8 @@ lbl_800DDF90:
 /* 800DDF9C  48 00 00 50 */	b lbl_800DDFEC
 lbl_800DDFA0:
 /* 800DDFA0  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 800DDFA4  3C 60 80 39 */	lis r3, m__19daAlinkHIO_guard_c0@ha
-/* 800DDFA8  38 63 DF 9C */	addi r3, r3, m__19daAlinkHIO_guard_c0@l
+/* 800DDFA4  3C 60 80 39 */	lis r3, m__19daAlinkHIO_guard_c0@ha /* 0x8038DF9C@ha */
+/* 800DDFA8  38 63 DF 9C */	addi r3, r3, m__19daAlinkHIO_guard_c0@l /* 0x8038DF9C@l */
 /* 800DDFAC  C0 03 00 4C */	lfs f0, 0x4c(r3)
 /* 800DDFB0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800DDFB4  40 81 00 38 */	ble lbl_800DDFEC

@@ -5,7 +5,7 @@ lbl_80D59B48:
 /* 80D59B54  28 03 00 00 */	cmplwi r3, 0
 /* 80D59B58  41 82 00 0C */	beq lbl_80D59B64
 /* 80D59B5C  38 80 00 00 */	li r4, 0
-/* 80D59B60  4B 2B F1 2C */	b __dt__10fopAc_ac_cFv
+/* 80D59B60  4B 2B F1 2D */	bl __dt__10fopAc_ac_cFv
 lbl_80D59B64:
 /* 80D59B64  38 60 00 01 */	li r3, 1
 /* 80D59B68  80 01 00 14 */	lwz r0, 0x14(r1)

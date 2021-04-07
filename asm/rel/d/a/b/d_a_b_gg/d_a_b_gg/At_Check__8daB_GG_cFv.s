@@ -3,13 +3,13 @@ lbl_805EA74C:
 /* 805EA750  7C 08 02 A6 */	mflr r0
 /* 805EA754  90 01 00 24 */	stw r0, 0x24(r1)
 /* 805EA758  39 61 00 20 */	addi r11, r1, 0x20
-/* 805EA75C  4B D7 7A 78 */	b _savegpr_27
+/* 805EA75C  4B D7 7A 79 */	bl _savegpr_27
 /* 805EA760  7C 7D 1B 78 */	mr r29, r3
-/* 805EA764  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805EA768  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805EA764  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805EA768  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 805EA76C  83 E3 5D AC */	lwz r31, 0x5dac(r3)
 /* 805EA770  38 7D 11 44 */	addi r3, r29, 0x1144
-/* 805EA774  4B A9 D2 E4 */	b at_power_check__FP11dCcU_AtInfo
+/* 805EA774  4B A9 D2 E5 */	bl at_power_check__FP11dCcU_AtInfo
 /* 805EA778  90 7D 11 48 */	stw r3, 0x1148(r29)
 /* 805EA77C  80 1D 11 48 */	lwz r0, 0x1148(r29)
 /* 805EA780  28 00 00 00 */	cmplwi r0, 0
@@ -30,7 +30,7 @@ lbl_805EA7A4:
 lbl_805EA7B8:
 /* 805EA7B8  54 60 07 BD */	rlwinm. r0, r3, 0, 0x1e, 0x1e
 /* 805EA7BC  41 82 00 1C */	beq lbl_805EA7D8
-/* 805EA7C0  4B B7 4B D8 */	b checkMasterSwordEquip__9daPy_py_cFv
+/* 805EA7C0  4B B7 4B D9 */	bl checkMasterSwordEquip__9daPy_py_cFv
 /* 805EA7C4  2C 03 00 00 */	cmpwi r3, 0
 /* 805EA7C8  41 82 00 10 */	beq lbl_805EA7D8
 /* 805EA7CC  A0 1D 11 60 */	lhz r0, 0x1160(r29)
@@ -87,7 +87,7 @@ lbl_805EA868:
 /* 805EA878  28 1C 00 00 */	cmplwi r28, 0
 /* 805EA87C  41 82 00 2C */	beq lbl_805EA8A8
 /* 805EA880  38 80 00 00 */	li r4, 0
-/* 805EA884  4B A9 9D 2C */	b getHitSeID__12dCcD_GObjInfFUci
+/* 805EA884  4B A9 9D 2D */	bl getHitSeID__12dCcD_GObjInfFUci
 /* 805EA888  7C 64 1B 78 */	mr r4, r3
 /* 805EA88C  80 7D 11 4C */	lwz r3, 0x114c(r29)
 /* 805EA890  7F 85 E3 78 */	mr r5, r28
@@ -98,7 +98,7 @@ lbl_805EA868:
 /* 805EA8A4  48 00 00 28 */	b lbl_805EA8CC
 lbl_805EA8A8:
 /* 805EA8A8  38 80 00 00 */	li r4, 0
-/* 805EA8AC  4B A9 9D 04 */	b getHitSeID__12dCcD_GObjInfFUci
+/* 805EA8AC  4B A9 9D 05 */	bl getHitSeID__12dCcD_GObjInfFUci
 /* 805EA8B0  7C 64 1B 78 */	mr r4, r3
 /* 805EA8B4  80 7D 11 4C */	lwz r3, 0x114c(r29)
 /* 805EA8B8  7F 65 DB 78 */	mr r5, r27
@@ -128,11 +128,11 @@ lbl_805EA8E8:
 /* 805EA910  41 82 00 08 */	beq lbl_805EA918
 /* 805EA914  3B C0 00 04 */	li r30, 4
 lbl_805EA918:
-/* 805EA918  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha
-/* 805EA91C  9B C3 11 25 */	stb r30, struct_80451124+0x1@l(r3)
+/* 805EA918  3C 60 80 45 */	lis r3, struct_80451124+0x1@ha /* 0x80451125@ha */
+/* 805EA91C  9B C3 11 25 */	stb r30, struct_80451124+0x1@l(r3)  /* 0x80451125@l */
 lbl_805EA920:
 /* 805EA920  39 61 00 20 */	addi r11, r1, 0x20
-/* 805EA924  4B D7 78 FC */	b _restgpr_27
+/* 805EA924  4B D7 78 FD */	bl _restgpr_27
 /* 805EA928  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 805EA92C  7C 08 03 A6 */	mtlr r0
 /* 805EA930  38 21 00 20 */	addi r1, r1, 0x20

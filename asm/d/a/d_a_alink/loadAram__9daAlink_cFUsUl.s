@@ -10,8 +10,8 @@ lbl_800BFF04:
 /* 800BFF24  38 80 00 20 */	li r4, 0x20
 /* 800BFF28  48 20 ED C5 */	bl __nwa__FUli
 /* 800BFF2C  7C 7F 1B 78 */	mr r31, r3
-/* 800BFF30  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800BFF34  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800BFF30  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800BFF34  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800BFF38  80 63 5C AC */	lwz r3, 0x5cac(r3)
 /* 800BFF3C  7F E4 FB 78 */	mr r4, r31
 /* 800BFF40  7F C5 F3 78 */	mr r5, r30

@@ -12,25 +12,25 @@ lbl_8051994C:
 /* 80519974  FF C0 08 90 */	fmr f30, f1
 /* 80519978  7C BF 2B 78 */	mr r31, r5
 /* 8051997C  FF E0 10 90 */	fmr f31, f2
-/* 80519980  3C 60 80 52 */	lis r3, stringBase0@ha
-/* 80519984  38 63 BA 88 */	addi r3, r3, stringBase0@l
-/* 80519988  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8051998C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80519980  3C 60 80 52 */	lis r3, d_a_fr__stringBase0@ha /* 0x8051BA88@ha */
+/* 80519984  38 63 BA 88 */	addi r3, r3, d_a_fr__stringBase0@l /* 0x8051BA88@l */
+/* 80519988  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8051998C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80519990  3C A5 00 02 */	addis r5, r5, 2
 /* 80519994  38 C0 00 80 */	li r6, 0x80
 /* 80519998  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 8051999C  4B B2 29 50 */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 8051999C  4B B2 29 51 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 805199A0  7C 64 1B 78 */	mr r4, r3
 /* 805199A4  80 7E 05 C4 */	lwz r3, 0x5c4(r30)
 /* 805199A8  57 E5 06 3E */	clrlwi r5, r31, 0x18
 /* 805199AC  FC 20 F0 90 */	fmr f1, f30
 /* 805199B0  FC 40 F8 90 */	fmr f2, f31
-/* 805199B4  3C C0 80 52 */	lis r6, lit_3669@ha
-/* 805199B8  C0 66 B9 E4 */	lfs f3, lit_3669@l(r6)
-/* 805199BC  3C C0 80 52 */	lis r6, lit_3670@ha
-/* 805199C0  C0 86 B9 E8 */	lfs f4, lit_3670@l(r6)
+/* 805199B4  3C C0 80 52 */	lis r6, lit_3669@ha /* 0x8051B9E4@ha */
+/* 805199B8  C0 66 B9 E4 */	lfs f3, lit_3669@l(r6)  /* 0x8051B9E4@l */
+/* 805199BC  3C C0 80 52 */	lis r6, lit_3670@ha /* 0x8051B9E8@ha */
+/* 805199C0  C0 86 B9 E8 */	lfs f4, lit_3670@l(r6)  /* 0x8051B9E8@l */
 /* 805199C4  38 C0 00 00 */	li r6, 0
-/* 805199C8  4B AF 69 B4 */	b setAnm__14mDoExt_McaMorfFP15J3DAnmTransformiffffPv
+/* 805199C8  4B AF 69 B5 */	bl setAnm__14mDoExt_McaMorfFP15J3DAnmTransformiffffPv
 /* 805199CC  E3 E1 00 28 */	psq_l f31, 40(r1), 0, 0 /* qr0 */
 /* 805199D0  CB E1 00 20 */	lfd f31, 0x20(r1)
 /* 805199D4  E3 C1 00 18 */	psq_l f30, 24(r1), 0, 0 /* qr0 */

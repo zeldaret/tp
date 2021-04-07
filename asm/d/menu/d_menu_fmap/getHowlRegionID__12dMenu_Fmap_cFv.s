@@ -1,6 +1,6 @@
 lbl_801CD8B4:
-/* 801CD8B4  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801CD8B8  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801CD8B4  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801CD8B8  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801CD8BC  88 03 00 E2 */	lbz r0, 0xe2(r3)
 /* 801CD8C0  2C 00 00 05 */	cmpwi r0, 5
 /* 801CD8C4  41 82 00 48 */	beq lbl_801CD90C

@@ -16,8 +16,8 @@ lbl_802D98C4:
 /* 802D98FC  88 1F 00 18 */	lbz r0, 0x18(r31)
 /* 802D9900  28 00 00 00 */	cmplwi r0, 0
 /* 802D9904  41 82 00 1C */	beq lbl_802D9920
-/* 802D9908  3C 60 80 43 */	lis r3, sDvdList__10JKRDvdFile@ha
-/* 802D990C  38 63 43 6C */	addi r3, r3, sDvdList__10JKRDvdFile@l
+/* 802D9908  3C 60 80 43 */	lis r3, sDvdList__10JKRDvdFile@ha /* 0x8043436C@ha */
+/* 802D990C  38 63 43 6C */	addi r3, r3, sDvdList__10JKRDvdFile@l /* 0x8043436C@l */
 /* 802D9910  38 9F 00 E4 */	addi r4, r31, 0xe4
 /* 802D9914  48 00 26 39 */	bl append__10JSUPtrListFP10JSUPtrLink
 /* 802D9918  38 7F 00 5C */	addi r3, r31, 0x5c

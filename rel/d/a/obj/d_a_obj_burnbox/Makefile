@@ -3,17 +3,15 @@
 #
 
 M17_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_burnbox.plf
+M17_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_burnbox.lcf
+M17_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_burnbox.map
 
 M17_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_burnbox/executor.cpp \
-	rel/d/a/obj/d_a_obj_burnbox/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_burnbox/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_burnbox/d_a_obj_burnbox.cpp \
 
 M17_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_burnbox/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_burnbox/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_burnbox/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_burnbox/d_a_obj_burnbox.o \
 
 M17_LIBS := \
@@ -29,14 +27,21 @@ M17_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M17_LDSCRIPT) \
+	-unused -map $(M17_MAP) \
+	-w off \
 
 $(M17_TARGET): $(M17_O_FILES) $(M17_LIBS)
+	@echo [ 17] creating $(M17_TARGET)
 	@echo $(M17_LIBS) $(M17_O_FILES) > build/M17_ofiles
-	$(LD) -partial $(M17_LDFLAGS) -o $(M17_TARGET) @build/M17_ofiles
+	@python3 tools/lcf.py rel 17 --output $(M17_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M17_LDFLAGS) -o $(M17_TARGET) @build/M17_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_burnbox/%.o: rel/d/a/obj/d_a_obj_burnbox/%.cpp
+	@echo [ 17] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M17_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M17_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

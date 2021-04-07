@@ -3,19 +3,20 @@
 #
 
 M331_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kyury.plf
+M331_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kyury.lcf
+M331_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kyury.map
 
 M331_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_kyury/executor.cpp \
-	rel/d/a/npc/d_a_npc_kyury/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_kyury/d_a_npc_kyury.cpp \
 
 M331_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kyury/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kyury/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kyury/d_a_npc_kyury.o \
 
 M331_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_kyury/libRuntime.PPCEABI.H.a \
 
 M331_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M331_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M331_LDSCRIPT) \
+	-unused -map $(M331_MAP) \
+	-w off \
 
 $(M331_TARGET): $(M331_O_FILES) $(M331_LIBS)
+	@echo [331] creating $(M331_TARGET)
 	@echo $(M331_LIBS) $(M331_O_FILES) > build/M331_ofiles
-	$(LD) -partial $(M331_LDFLAGS) -o $(M331_TARGET) @build/M331_ofiles
+	@python3 tools/lcf.py rel 331 --output $(M331_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M331_LDFLAGS) -o $(M331_TARGET) @build/M331_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_kyury/%.o: rel/d/a/npc/d_a_npc_kyury/%.cpp
+	@echo [331] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M331_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M331_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_kyury/libs/Runtime.PPCEABI.H/Makefile
 

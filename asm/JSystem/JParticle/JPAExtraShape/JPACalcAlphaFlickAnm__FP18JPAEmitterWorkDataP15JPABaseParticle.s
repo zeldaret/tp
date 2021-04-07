@@ -45,8 +45,8 @@ lbl_8027ACF4:
 /* 8027AD38  D8 01 00 18 */	stfd f0, 0x18(r1)
 /* 8027AD3C  80 01 00 1C */	lwz r0, 0x1c(r1)
 /* 8027AD40  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 8027AD44  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8027AD48  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8027AD44  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8027AD48  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8027AD4C  7C 03 04 2E */	lfsx f0, r3, r0
 /* 8027AD50  C0 62 B8 F4 */	lfs f3, lit_2390(r2)
 /* 8027AD54  C0 42 B8 FC */	lfs f2, lit_2434(r2)

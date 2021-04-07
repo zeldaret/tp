@@ -3,8 +3,8 @@ lbl_80058290:
 /* 80058294  7C 08 02 A6 */	mflr r0
 /* 80058298  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8005829C  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 800582A0  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 800582A4  3B E3 CA 54 */	addi r31, r3, g_env_light@l
+/* 800582A0  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 800582A4  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
 /* 800582A8  88 1F 0E D4 */	lbz r0, 0xed4(r31)
 /* 800582AC  2C 00 00 01 */	cmpwi r0, 1
 /* 800582B0  41 82 00 30 */	beq lbl_800582E0

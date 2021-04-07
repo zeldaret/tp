@@ -1,7 +1,7 @@
 lbl_80324194:
 /* 80324194  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 80324198  3C 60 80 3A */	lis r3, lit_1197@ha
-/* 8032419C  38 83 1F F8 */	addi r4, r3, lit_1197@l
+/* 80324198  3C 60 80 3A */	lis r3, lit_1197@ha /* 0x803A1FF8@ha */
+/* 8032419C  38 83 1F F8 */	addi r4, r3, lit_1197@l /* 0x803A1FF8@l */
 /* 803241A0  80 64 00 00 */	lwz r3, 0(r4)
 /* 803241A4  80 04 00 04 */	lwz r0, 4(r4)
 /* 803241A8  90 61 00 08 */	stw r3, 8(r1)
@@ -10,8 +10,8 @@ lbl_80324194:
 /* 803241B4  B0 01 00 10 */	sth r0, 0x10(r1)
 /* 803241B8  88 04 00 0A */	lbz r0, 0xa(r4)
 /* 803241BC  98 01 00 12 */	stb r0, 0x12(r1)
-/* 803241C0  3C 60 80 43 */	lis r3, j3dTexCoordTable@ha
-/* 803241C4  38 C3 4C 98 */	addi r6, r3, j3dTexCoordTable@l
+/* 803241C0  3C 60 80 43 */	lis r3, j3dTexCoordTable@ha /* 0x80434C98@ha */
+/* 803241C4  38 C3 4C 98 */	addi r6, r3, j3dTexCoordTable@l /* 0x80434C98@l */
 /* 803241C8  39 20 00 00 */	li r9, 0
 /* 803241CC  38 60 00 00 */	li r3, 0
 lbl_803241D0:

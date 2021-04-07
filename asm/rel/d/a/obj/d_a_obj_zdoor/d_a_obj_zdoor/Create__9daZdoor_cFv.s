@@ -13,7 +13,7 @@ lbl_80D3F8F8:
 /* 80D3F924  80 7F 05 A8 */	lwz r3, 0x5a8(r31)
 /* 80D3F928  80 83 00 04 */	lwz r4, 4(r3)
 /* 80D3F92C  7F E3 FB 78 */	mr r3, r31
-/* 80D3F930  4B 2D AC 48 */	b fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
+/* 80D3F930  4B 2D AC 49 */	bl fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
 /* 80D3F934  A8 1F 04 B8 */	lha r0, 0x4b8(r31)
 /* 80D3F938  B0 1F 04 B6 */	sth r0, 0x4b6(r31)
 /* 80D3F93C  38 00 00 00 */	li r0, 0

@@ -5,13 +5,13 @@ lbl_801D5BD0:
 /* 801D5BDC  39 61 00 30 */	addi r11, r1, 0x30
 /* 801D5BE0  48 18 C5 E9 */	bl _savegpr_24
 /* 801D5BE4  7C 7F 1B 78 */	mr r31, r3
-/* 801D5BE8  3C A0 80 39 */	lis r5, cur_tag_3868@ha
-/* 801D5BEC  3B C5 62 48 */	addi r30, r5, cur_tag_3868@l
-/* 801D5BF0  3C A0 80 3A */	lis r5, __vt__12dDlst_base_c@ha
-/* 801D5BF4  38 05 6F 88 */	addi r0, r5, __vt__12dDlst_base_c@l
+/* 801D5BE8  3C A0 80 39 */	lis r5, cur_tag_3868@ha /* 0x80396248@ha */
+/* 801D5BEC  3B C5 62 48 */	addi r30, r5, cur_tag_3868@l /* 0x80396248@l */
+/* 801D5BF0  3C A0 80 3A */	lis r5, __vt__12dDlst_base_c@ha /* 0x803A6F88@ha */
+/* 801D5BF4  38 05 6F 88 */	addi r0, r5, __vt__12dDlst_base_c@l /* 0x803A6F88@l */
 /* 801D5BF8  90 03 00 00 */	stw r0, 0(r3)
-/* 801D5BFC  3C A0 80 3C */	lis r5, __vt__17dMenu_Fmap2DTop_c@ha
-/* 801D5C00  38 05 D7 50 */	addi r0, r5, __vt__17dMenu_Fmap2DTop_c@l
+/* 801D5BFC  3C A0 80 3C */	lis r5, __vt__17dMenu_Fmap2DTop_c@ha /* 0x803BD750@ha */
+/* 801D5C00  38 05 D7 50 */	addi r0, r5, __vt__17dMenu_Fmap2DTop_c@l /* 0x803BD750@l */
 /* 801D5C04  90 03 00 00 */	stw r0, 0(r3)
 /* 801D5C08  90 83 00 04 */	stw r4, 4(r3)
 /* 801D5C0C  C0 02 A7 D0 */	lfs f0, lit_3970(r2)
@@ -29,12 +29,12 @@ lbl_801D5BD0:
 lbl_801D5C3C:
 /* 801D5C3C  90 1F 00 08 */	stw r0, 8(r31)
 /* 801D5C40  80 7F 00 08 */	lwz r3, 8(r31)
-/* 801D5C44  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap2D__stringBase0@ha
-/* 801D5C48  38 84 65 D0 */	addi r4, r4, d_menu_d_menu_fmap2D__stringBase0@l
+/* 801D5C44  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap2D__stringBase0@ha /* 0x803965D0@ha */
+/* 801D5C48  38 84 65 D0 */	addi r4, r4, d_menu_d_menu_fmap2D__stringBase0@l /* 0x803965D0@l */
 /* 801D5C4C  38 84 00 85 */	addi r4, r4, 0x85
 /* 801D5C50  3C A0 01 02 */	lis r5, 0x102
-/* 801D5C54  3C C0 80 40 */	lis r6, g_dComIfG_gameInfo@ha
-/* 801D5C58  3B A6 61 C0 */	addi r29, r6, g_dComIfG_gameInfo@l
+/* 801D5C54  3C C0 80 40 */	lis r6, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801D5C58  3B A6 61 C0 */	addi r29, r6, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801D5C5C  80 DD 5C BC */	lwz r6, 0x5cbc(r29)
 /* 801D5C60  48 12 29 E9 */	bl setPriority__9J2DScreenFPCcUlP10JKRArchive
 /* 801D5C64  80 7F 00 08 */	lwz r3, 8(r31)
@@ -314,8 +314,8 @@ lbl_801D6038:
 /* 801D606C  7C 60 1B 78 */	mr r0, r3
 lbl_801D6070:
 /* 801D6070  90 1F 00 54 */	stw r0, 0x54(r31)
-/* 801D6074  3C 80 80 43 */	lis r4, g_meter2_info@ha
-/* 801D6078  38 84 01 88 */	addi r4, r4, g_meter2_info@l
+/* 801D6074  3C 80 80 43 */	lis r4, g_meter2_info@ha /* 0x80430188@ha */
+/* 801D6078  38 84 01 88 */	addi r4, r4, g_meter2_info@l /* 0x80430188@l */
 /* 801D607C  88 04 00 BF */	lbz r0, 0xbf(r4)
 /* 801D6080  28 00 00 09 */	cmplwi r0, 9
 /* 801D6084  40 82 00 14 */	bne lbl_801D6098
@@ -367,8 +367,8 @@ lbl_801D60C8:
 /* 801D6134  38 60 00 07 */	li r3, 7
 /* 801D6138  64 63 00 07 */	oris r3, r3, 7
 /* 801D613C  7C 75 E3 A6 */	mtspr 0x395, r3
-/* 801D6140  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap2D__stringBase0@ha
-/* 801D6144  38 84 65 D0 */	addi r4, r4, d_menu_d_menu_fmap2D__stringBase0@l
+/* 801D6140  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap2D__stringBase0@ha /* 0x803965D0@ha */
+/* 801D6144  38 84 65 D0 */	addi r4, r4, d_menu_d_menu_fmap2D__stringBase0@l /* 0x803965D0@l */
 /* 801D6148  38 64 00 A0 */	addi r3, r4, 0xa0
 /* 801D614C  80 9D 5C BC */	lwz r4, 0x5cbc(r29)
 /* 801D6150  48 0F E1 21 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
@@ -384,8 +384,8 @@ lbl_801D60C8:
 /* 801D6178  D0 1F 00 74 */	stfs f0, 0x74(r31)
 /* 801D617C  3B 00 00 00 */	li r24, 0
 /* 801D6180  3B A0 00 00 */	li r29, 0
-/* 801D6184  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap2D__stringBase0@ha
-/* 801D6188  3B 64 65 D0 */	addi r27, r4, d_menu_d_menu_fmap2D__stringBase0@l
+/* 801D6184  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap2D__stringBase0@ha /* 0x803965D0@ha */
+/* 801D6188  3B 64 65 D0 */	addi r27, r4, d_menu_d_menu_fmap2D__stringBase0@l /* 0x803965D0@l */
 /* 801D618C  3B 5E 00 40 */	addi r26, r30, 0x40
 lbl_801D6190:
 /* 801D6190  4B E3 E9 75 */	bl mDoExt_getRubyFont__Fv
@@ -431,8 +431,8 @@ lbl_801D6190:
 /* 801D6230  41 80 FF 60 */	blt lbl_801D6190
 /* 801D6234  3B 00 00 00 */	li r24, 0
 /* 801D6238  3B A0 00 00 */	li r29, 0
-/* 801D623C  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap2D__stringBase0@ha
-/* 801D6240  3B 64 65 D0 */	addi r27, r4, d_menu_d_menu_fmap2D__stringBase0@l
+/* 801D623C  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap2D__stringBase0@ha /* 0x803965D0@ha */
+/* 801D6240  3B 64 65 D0 */	addi r27, r4, d_menu_d_menu_fmap2D__stringBase0@l /* 0x803965D0@l */
 /* 801D6244  3B 5E 00 70 */	addi r26, r30, 0x70
 lbl_801D6248:
 /* 801D6248  4B E3 E8 BD */	bl mDoExt_getRubyFont__Fv
@@ -481,8 +481,8 @@ lbl_801D6248:
 /* 801D62F4  48 00 0C 45 */	bl setTitleNameString__17dMenu_Fmap2DTop_cFUl
 /* 801D62F8  3B 00 00 00 */	li r24, 0
 /* 801D62FC  3B A0 00 00 */	li r29, 0
-/* 801D6300  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap2D__stringBase0@ha
-/* 801D6304  3B 64 65 D0 */	addi r27, r4, d_menu_d_menu_fmap2D__stringBase0@l
+/* 801D6300  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap2D__stringBase0@ha /* 0x803965D0@ha */
+/* 801D6304  3B 64 65 D0 */	addi r27, r4, d_menu_d_menu_fmap2D__stringBase0@l /* 0x803965D0@l */
 /* 801D6308  3B 5E 00 E0 */	addi r26, r30, 0xe0
 lbl_801D630C:
 /* 801D630C  4B E3 E6 E5 */	bl mDoExt_getMesgFont__Fv
@@ -532,8 +532,8 @@ lbl_801D630C:
 /* 801D63BC  48 00 0D 2D */	bl setZButtonString__17dMenu_Fmap2DTop_cFUlUc
 /* 801D63C0  3B 00 00 00 */	li r24, 0
 /* 801D63C4  3B A0 00 00 */	li r29, 0
-/* 801D63C8  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap2D__stringBase0@ha
-/* 801D63CC  3B 64 65 D0 */	addi r27, r4, d_menu_d_menu_fmap2D__stringBase0@l
+/* 801D63C8  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap2D__stringBase0@ha /* 0x803965D0@ha */
+/* 801D63CC  3B 64 65 D0 */	addi r27, r4, d_menu_d_menu_fmap2D__stringBase0@l /* 0x803965D0@l */
 /* 801D63D0  3B 5E 01 30 */	addi r26, r30, 0x130
 lbl_801D63D4:
 /* 801D63D4  4B E3 E6 1D */	bl mDoExt_getMesgFont__Fv
@@ -583,8 +583,8 @@ lbl_801D63D4:
 /* 801D6484  48 00 0D 8D */	bl setBButtonString__17dMenu_Fmap2DTop_cFUlUc
 /* 801D6488  3B 00 00 00 */	li r24, 0
 /* 801D648C  3B A0 00 00 */	li r29, 0
-/* 801D6490  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap2D__stringBase0@ha
-/* 801D6494  3B 64 65 D0 */	addi r27, r4, d_menu_d_menu_fmap2D__stringBase0@l
+/* 801D6490  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap2D__stringBase0@ha /* 0x803965D0@ha */
+/* 801D6494  3B 64 65 D0 */	addi r27, r4, d_menu_d_menu_fmap2D__stringBase0@l /* 0x803965D0@l */
 /* 801D6498  3B 5E 01 80 */	addi r26, r30, 0x180
 lbl_801D649C:
 /* 801D649C  4B E3 E5 55 */	bl mDoExt_getMesgFont__Fv
@@ -634,8 +634,8 @@ lbl_801D649C:
 /* 801D654C  48 00 0D 89 */	bl setAButtonString__17dMenu_Fmap2DTop_cFUlUc
 /* 801D6550  3B 00 00 00 */	li r24, 0
 /* 801D6554  3B A0 00 00 */	li r29, 0
-/* 801D6558  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap2D__stringBase0@ha
-/* 801D655C  3B 64 65 D0 */	addi r27, r4, d_menu_d_menu_fmap2D__stringBase0@l
+/* 801D6558  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap2D__stringBase0@ha /* 0x803965D0@ha */
+/* 801D655C  3B 64 65 D0 */	addi r27, r4, d_menu_d_menu_fmap2D__stringBase0@l /* 0x803965D0@l */
 /* 801D6560  3B 5E 01 D0 */	addi r26, r30, 0x1d0
 lbl_801D6564:
 /* 801D6564  4B E3 E4 8D */	bl mDoExt_getMesgFont__Fv
@@ -684,8 +684,8 @@ lbl_801D6564:
 /* 801D6610  48 00 0D 89 */	bl setCrossLRString__17dMenu_Fmap2DTop_cFUl
 /* 801D6614  3B 00 00 00 */	li r24, 0
 /* 801D6618  3B A0 00 00 */	li r29, 0
-/* 801D661C  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap2D__stringBase0@ha
-/* 801D6620  3B 64 65 D0 */	addi r27, r4, d_menu_d_menu_fmap2D__stringBase0@l
+/* 801D661C  3C 80 80 39 */	lis r4, d_menu_d_menu_fmap2D__stringBase0@ha /* 0x803965D0@ha */
+/* 801D6620  3B 64 65 D0 */	addi r27, r4, d_menu_d_menu_fmap2D__stringBase0@l /* 0x803965D0@l */
 /* 801D6624  3B 9E 02 20 */	addi r28, r30, 0x220
 lbl_801D6628:
 /* 801D6628  4B E3 E3 C9 */	bl mDoExt_getMesgFont__Fv

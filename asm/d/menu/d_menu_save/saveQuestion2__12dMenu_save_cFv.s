@@ -13,8 +13,8 @@ lbl_801F1558:
 /* 801F1584  88 1F 01 BC */	lbz r0, 0x1bc(r31)
 /* 801F1588  28 00 00 04 */	cmplwi r0, 4
 /* 801F158C  40 82 00 4C */	bne lbl_801F15D8
-/* 801F1590  3C 60 80 43 */	lis r3, g_msHIO@ha
-/* 801F1594  38 63 E8 4C */	addi r3, r3, g_msHIO@l
+/* 801F1590  3C 60 80 43 */	lis r3, g_msHIO@ha /* 0x8042E84C@ha */
+/* 801F1594  38 63 E8 4C */	addi r3, r3, g_msHIO@l /* 0x8042E84C@l */
 /* 801F1598  88 03 00 0B */	lbz r0, 0xb(r3)
 /* 801F159C  98 1F 01 BD */	stb r0, 0x1bd(r31)
 /* 801F15A0  88 9F 01 BD */	lbz r4, 0x1bd(r31)

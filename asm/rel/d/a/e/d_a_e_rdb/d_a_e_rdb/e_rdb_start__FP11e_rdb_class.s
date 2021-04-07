@@ -7,8 +7,8 @@ lbl_80766A1C:
 /* 80766A30  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 80766A34  93 C1 00 38 */	stw r30, 0x38(r1)
 /* 80766A38  7C 7E 1B 78 */	mr r30, r3
-/* 80766A3C  3C 80 80 77 */	lis r4, lit_4007@ha
-/* 80766A40  3B E4 B4 5C */	addi r31, r4, lit_4007@l
+/* 80766A3C  3C 80 80 77 */	lis r4, lit_4007@ha /* 0x8076B45C@ha */
+/* 80766A40  3B E4 B4 5C */	addi r31, r4, lit_4007@l /* 0x8076B45C@l */
 /* 80766A44  80 83 05 C8 */	lwz r4, 0x5c8(r3)
 /* 80766A48  C0 04 00 1C */	lfs f0, 0x1c(r4)
 /* 80766A4C  FC 00 00 1E */	fctiwz f0, f0
@@ -20,8 +20,8 @@ lbl_80766A1C:
 /* 80766A64  A8 03 05 B4 */	lha r0, 0x5b4(r3)
 /* 80766A68  28 00 00 0D */	cmplwi r0, 0xd
 /* 80766A6C  41 81 03 24 */	bgt lbl_80766D90
-/* 80766A70  3C 80 80 77 */	lis r4, lit_4730@ha
-/* 80766A74  38 84 B7 98 */	addi r4, r4, lit_4730@l
+/* 80766A70  3C 80 80 77 */	lis r4, lit_4730@ha /* 0x8076B798@ha */
+/* 80766A74  38 84 B7 98 */	addi r4, r4, lit_4730@l /* 0x8076B798@l */
 /* 80766A78  54 00 10 3A */	slwi r0, r0, 2
 /* 80766A7C  7C 04 00 2E */	lwzx r0, r4, r0
 /* 80766A80  7C 09 03 A6 */	mtctr r0
@@ -114,10 +114,10 @@ lbl_80766BA4:
 /* 80766BAC  EC 01 00 2A */	fadds f0, f1, f0
 /* 80766BB0  D0 1E 04 D4 */	stfs f0, 0x4d4(r30)
 /* 80766BB4  D3 FE 04 FC */	stfs f31, 0x4fc(r30)
-/* 80766BB8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80766BBC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80766BB8  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80766BBC  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80766BC0  80 84 5D AC */	lwz r4, 0x5dac(r4)
-/* 80766BC4  4B 8B 3D A0 */	b fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 80766BC4  4B 8B 3D A1 */	bl fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 80766BC8  C0 1F 00 9C */	lfs f0, 0x9c(r31)
 /* 80766BCC  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80766BD0  40 80 01 C0 */	bge lbl_80766D90
@@ -173,18 +173,18 @@ lbl_80766C3C:
 /* 80766C94  C0 1F 00 08 */	lfs f0, 8(r31)
 /* 80766C98  D0 01 00 1C */	stfs f0, 0x1c(r1)
 /* 80766C9C  D0 21 00 20 */	stfs f1, 0x20(r1)
-/* 80766CA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80766CA4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80766CA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80766CA4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80766CA8  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 80766CAC  38 80 00 08 */	li r4, 8
 /* 80766CB0  38 A0 00 4F */	li r5, 0x4f
 /* 80766CB4  38 C1 00 18 */	addi r6, r1, 0x18
-/* 80766CB8  4B 90 8D 6C */	b StartShock__12dVibration_cFii4cXyz
+/* 80766CB8  4B 90 8D 6D */	bl StartShock__12dVibration_cFii4cXyz
 /* 80766CBC  3C 60 00 08 */	lis r3, 0x0008 /* 0x00080163@ha */
 /* 80766CC0  38 03 01 63 */	addi r0, r3, 0x0163 /* 0x00080163@l */
 /* 80766CC4  90 01 00 08 */	stw r0, 8(r1)
-/* 80766CC8  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80766CCC  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80766CC8  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80766CCC  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80766CD0  80 63 00 00 */	lwz r3, 0(r3)
 /* 80766CD4  38 81 00 08 */	addi r4, r1, 8
 /* 80766CD8  38 A0 00 00 */	li r5, 0
@@ -195,7 +195,7 @@ lbl_80766C3C:
 /* 80766CEC  C0 7F 00 30 */	lfs f3, 0x30(r31)
 /* 80766CF0  FC 80 18 90 */	fmr f4, f3
 /* 80766CF4  39 00 00 00 */	li r8, 0
-/* 80766CF8  4B B4 4C 8C */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80766CF8  4B B4 4C 8D */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 80766CFC  3C 60 00 07 */	lis r3, 0x0007 /* 0x0007028A@ha */
 /* 80766D00  38 03 02 8A */	addi r0, r3, 0x028A /* 0x0007028A@l */
 /* 80766D04  90 01 00 0C */	stw r0, 0xc(r1)
@@ -214,7 +214,7 @@ lbl_80766C3C:
 /* 80766D38  C0 3F 00 A4 */	lfs f1, 0xa4(r31)
 /* 80766D3C  38 FE 01 0C */	addi r7, r30, 0x10c
 /* 80766D40  39 00 00 01 */	li r8, 1
-/* 80766D44  4B 8B 62 DC */	b fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci
+/* 80766D44  4B 8B 62 DD */	bl fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci
 /* 80766D48  48 00 00 48 */	b lbl_80766D90
 lbl_80766D4C:
 /* 80766D4C  80 7E 05 C8 */	lwz r3, 0x5c8(r30)

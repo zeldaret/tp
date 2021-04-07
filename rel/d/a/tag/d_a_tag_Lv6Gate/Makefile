@@ -3,17 +3,15 @@
 #
 
 M710_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_Lv6Gate.plf
+M710_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_Lv6Gate.lcf
+M710_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_Lv6Gate.map
 
 M710_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_Lv6Gate/executor.cpp \
-	rel/d/a/tag/d_a_tag_Lv6Gate/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_Lv6Gate/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_Lv6Gate/d_a_tag_Lv6Gate.cpp \
 
 M710_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_Lv6Gate/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_Lv6Gate/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_Lv6Gate/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_Lv6Gate/d_a_tag_Lv6Gate.o \
 
 M710_LIBS := \
@@ -29,14 +27,21 @@ M710_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M710_LDSCRIPT) \
+	-unused -map $(M710_MAP) \
+	-w off \
 
 $(M710_TARGET): $(M710_O_FILES) $(M710_LIBS)
+	@echo [710] creating $(M710_TARGET)
 	@echo $(M710_LIBS) $(M710_O_FILES) > build/M710_ofiles
-	$(LD) -partial $(M710_LDFLAGS) -o $(M710_TARGET) @build/M710_ofiles
+	@python3 tools/lcf.py rel 710 --output $(M710_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M710_LDFLAGS) -o $(M710_TARGET) @build/M710_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_Lv6Gate/%.o: rel/d/a/tag/d_a_tag_Lv6Gate/%.cpp
+	@echo [710] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M710_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M710_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

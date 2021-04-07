@@ -62,8 +62,8 @@ lbl_8015E148:
 /* 8015E158  3C 04 00 01 */	addis r0, r4, 1
 /* 8015E15C  28 00 FF FF */	cmplwi r0, 0xffff
 /* 8015E160  41 82 00 14 */	beq lbl_8015E174
-/* 8015E164  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8015E168  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8015E164  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015E168  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8015E16C  38 63 4E C8 */	addi r3, r3, 0x4ec8
 /* 8015E170  4B EE 55 7D */	bl setPtI_Id__14dEvt_control_cFUi
 lbl_8015E174:
@@ -81,23 +81,23 @@ lbl_8015E188:
 /* 8015E19C  B0 1F 00 FA */	sth r0, 0xfa(r31)
 /* 8015E1A0  48 00 00 B4 */	b lbl_8015E254
 lbl_8015E1A4:
-/* 8015E1A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8015E1A8  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
+/* 8015E1A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015E1A8  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8015E1AC  38 7E 4F F8 */	addi r3, r30, 0x4ff8
-/* 8015E1B0  3C 80 80 39 */	lis r4, d_d_insect__stringBase0@ha
-/* 8015E1B4  38 84 3D 98 */	addi r4, r4, d_d_insect__stringBase0@l
+/* 8015E1B0  3C 80 80 39 */	lis r4, d_d_insect__stringBase0@ha /* 0x80393D98@ha */
+/* 8015E1B4  38 84 3D 98 */	addi r4, r4, d_d_insect__stringBase0@l /* 0x80393D98@l */
 /* 8015E1B8  4B EE 99 25 */	bl endCheckOld__16dEvent_manager_cFPCc
 /* 8015E1BC  2C 03 00 00 */	cmpwi r3, 0
 /* 8015E1C0  41 82 00 94 */	beq lbl_8015E254
 /* 8015E1C4  38 7E 4E C8 */	addi r3, r30, 0x4ec8
 /* 8015E1C8  4B EE 42 A1 */	bl reset__14dEvt_control_cFv
-/* 8015E1CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8015E1D0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8015E1CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015E1D0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8015E1D4  38 63 07 F0 */	addi r3, r3, 0x7f0
 /* 8015E1D8  A8 1F 05 82 */	lha r0, 0x582(r31)
 /* 8015E1DC  54 00 08 3C */	slwi r0, r0, 1
-/* 8015E1E0  3C 80 80 3A */	lis r4, saveBitLabels__16dSv_event_flag_c@ha
-/* 8015E1E4  38 84 72 88 */	addi r4, r4, saveBitLabels__16dSv_event_flag_c@l
+/* 8015E1E0  3C 80 80 3A */	lis r4, saveBitLabels__16dSv_event_flag_c@ha /* 0x803A7288@ha */
+/* 8015E1E4  38 84 72 88 */	addi r4, r4, saveBitLabels__16dSv_event_flag_c@l /* 0x803A7288@l */
 /* 8015E1E8  7C 84 02 2E */	lhzx r4, r4, r0
 /* 8015E1EC  4B ED 67 D1 */	bl isEventBit__11dSv_event_cCFUs
 /* 8015E1F0  2C 03 00 00 */	cmpwi r3, 0

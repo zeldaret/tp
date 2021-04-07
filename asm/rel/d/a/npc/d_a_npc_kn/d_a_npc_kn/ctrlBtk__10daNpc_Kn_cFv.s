@@ -10,11 +10,11 @@ lbl_80A3949C:
 /* 80A394BC  41 82 00 70 */	beq lbl_80A3952C
 /* 80A394C0  A8 03 0D 0A */	lha r0, 0xd0a(r3)
 /* 80A394C4  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80A394C8  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha
-/* 80A394CC  38 A4 9A 20 */	addi r5, r4, sincosTable___5JMath@l
+/* 80A394C8  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80A394CC  38 A4 9A 20 */	addi r5, r4, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80A394D0  7C 05 04 2E */	lfsx f0, r5, r0
-/* 80A394D4  3C 80 80 A4 */	lis r4, lit_4561@ha
-/* 80A394D8  C0 24 09 10 */	lfs f1, lit_4561@l(r4)
+/* 80A394D4  3C 80 80 A4 */	lis r4, lit_4561@ha /* 0x80A40910@ha */
+/* 80A394D8  C0 24 09 10 */	lfs f1, lit_4561@l(r4)  /* 0x80A40910@l */
 /* 80A394DC  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80A394E0  D0 06 00 FC */	stfs f0, 0xfc(r6)
 /* 80A394E4  A8 03 0D 08 */	lha r0, 0xd08(r3)

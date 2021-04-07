@@ -3,10 +3,10 @@ lbl_80786524:
 /* 80786528  7C 08 02 A6 */	mflr r0
 /* 8078652C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80786530  39 61 00 20 */	addi r11, r1, 0x20
-/* 80786534  4B BD BC A8 */	b _savegpr_29
+/* 80786534  4B BD BC A9 */	bl _savegpr_29
 /* 80786538  7C 7D 1B 78 */	mr r29, r3
-/* 8078653C  3C 80 80 79 */	lis r4, lit_3908@ha
-/* 80786540  3B E4 9C 38 */	addi r31, r4, lit_3908@l
+/* 8078653C  3C 80 80 79 */	lis r4, lit_3908@ha /* 0x80789C38@ha */
+/* 80786540  3B E4 9C 38 */	addi r31, r4, lit_3908@l /* 0x80789C38@l */
 /* 80786544  38 00 00 01 */	li r0, 1
 /* 80786548  98 03 06 AB */	stb r0, 0x6ab(r3)
 /* 8078654C  98 03 06 AE */	stb r0, 0x6ae(r3)
@@ -51,7 +51,7 @@ lbl_807865C8:
 /* 807865DC  38 7D 05 2C */	addi r3, r29, 0x52c
 /* 807865E0  C0 3F 00 08 */	lfs f1, 8(r31)
 /* 807865E4  C0 5F 00 38 */	lfs f2, 0x38(r31)
-/* 807865E8  4B AE 94 98 */	b cLib_addCalc0__FPfff
+/* 807865E8  4B AE 94 99 */	bl cLib_addCalc0__FPfff
 lbl_807865EC:
 /* 807865EC  80 7D 05 D4 */	lwz r3, 0x5d4(r29)
 /* 807865F0  C0 23 00 1C */	lfs f1, 0x1c(r3)
@@ -70,18 +70,18 @@ lbl_8078661C:
 /* 80786620  A8 9D 06 90 */	lha r4, 0x690(r29)
 /* 80786624  38 A0 00 02 */	li r5, 2
 /* 80786628  38 C0 08 00 */	li r6, 0x800
-/* 8078662C  4B AE 9F DC */	b cLib_addCalcAngleS2__FPssss
+/* 8078662C  4B AE 9F DD */	bl cLib_addCalcAngleS2__FPssss
 /* 80786630  48 00 00 AC */	b lbl_807866DC
 lbl_80786634:
-/* 80786634  4B 90 0D A0 */	b cc_pl_cut_bit_get__Fv
+/* 80786634  4B 90 0D A1 */	bl cc_pl_cut_bit_get__Fv
 /* 80786638  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 8078663C  28 00 01 00 */	cmplwi r0, 0x100
 /* 80786640  41 82 00 24 */	beq lbl_80786664
-/* 80786644  4B 90 0D 90 */	b cc_pl_cut_bit_get__Fv
+/* 80786644  4B 90 0D 91 */	bl cc_pl_cut_bit_get__Fv
 /* 80786648  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 8078664C  28 00 00 80 */	cmplwi r0, 0x80
 /* 80786650  41 82 00 14 */	beq lbl_80786664
-/* 80786654  4B 90 0D 80 */	b cc_pl_cut_bit_get__Fv
+/* 80786654  4B 90 0D 81 */	bl cc_pl_cut_bit_get__Fv
 /* 80786658  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 8078665C  28 00 04 00 */	cmplwi r0, 0x400
 /* 80786660  40 82 00 10 */	bne lbl_80786670
@@ -124,7 +124,7 @@ lbl_807866D8:
 lbl_807866DC:
 /* 807866DC  7F C3 F3 78 */	mr r3, r30
 /* 807866E0  39 61 00 20 */	addi r11, r1, 0x20
-/* 807866E4  4B BD BB 44 */	b _restgpr_29
+/* 807866E4  4B BD BB 45 */	bl _restgpr_29
 /* 807866E8  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 807866EC  7C 08 03 A6 */	mtlr r0
 /* 807866F0  38 21 00 20 */	addi r1, r1, 0x20

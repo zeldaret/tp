@@ -1,6 +1,6 @@
 lbl_8016E448:
-/* 8016E448  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8016E44C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8016E448  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8016E44C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8016E450  38 83 5E E8 */	addi r4, r3, 0x5ee8
 /* 8016E454  38 60 00 00 */	li r3, 0
 /* 8016E458  80 A4 00 04 */	lwz r5, 4(r4)

@@ -13,10 +13,10 @@ lbl_806E3690:
 /* 806E36BC  38 00 00 00 */	li r0, 0
 /* 806E36C0  90 1F 05 BC */	stw r0, 0x5bc(r31)
 lbl_806E36C4:
-/* 806E36C4  3C 60 80 6E */	lis r3, data_806E5C44@ha
-/* 806E36C8  C0 23 5C 44 */	lfs f1, data_806E5C44@l(r3)
-/* 806E36CC  3C 60 80 6E */	lis r3, lit_5266@ha
-/* 806E36D0  C0 03 5A 5C */	lfs f0, lit_5266@l(r3)
+/* 806E36C4  3C 60 80 6E */	lis r3, data_806E5C44@ha /* 0x806E5C44@ha */
+/* 806E36C8  C0 23 5C 44 */	lfs f1, data_806E5C44@l(r3)  /* 0x806E5C44@l */
+/* 806E36CC  3C 60 80 6E */	lis r3, lit_5266@ha /* 0x806E5A5C@ha */
+/* 806E36D0  C0 03 5A 5C */	lfs f0, lit_5266@l(r3)  /* 0x806E5A5C@l */
 /* 806E36D4  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 806E36D8  40 80 00 30 */	bge lbl_806E3708
 /* 806E36DC  80 1F 05 BC */	lwz r0, 0x5bc(r31)

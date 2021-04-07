@@ -5,7 +5,7 @@ lbl_80A9E3E4:
 /* 80A9E3F0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A9E3F4  7C 7F 1B 78 */	mr r31, r3
 /* 80A9E3F8  38 7F 0F 9C */	addi r3, r31, 0xf9c
-/* 80A9E3FC  4B 6A 73 0C */	b getActorP__18daNpcT_ActorMngr_cFv
+/* 80A9E3FC  4B 6A 73 0D */	bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80A9E400  28 03 00 00 */	cmplwi r3, 0
 /* 80A9E404  41 82 00 18 */	beq lbl_80A9E41C
 /* 80A9E408  80 03 06 E4 */	lwz r0, 0x6e4(r3)
@@ -15,7 +15,7 @@ lbl_80A9E3E4:
 /* 80A9E418  48 00 00 2C */	b lbl_80A9E444
 lbl_80A9E41C:
 /* 80A9E41C  38 7F 0F A4 */	addi r3, r31, 0xfa4
-/* 80A9E420  4B 6A 72 E8 */	b getActorP__18daNpcT_ActorMngr_cFv
+/* 80A9E420  4B 6A 72 E9 */	bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80A9E424  28 03 00 00 */	cmplwi r3, 0
 /* 80A9E428  41 82 00 18 */	beq lbl_80A9E440
 /* 80A9E42C  80 03 06 E4 */	lwz r0, 0x6e4(r3)

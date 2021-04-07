@@ -20,8 +20,8 @@ lbl_800F2720:
 /* 800F2738  48 01 69 B5 */	bl initHookshotUpperAnimeSpeed__9daAlink_cFi
 /* 800F273C  7F E3 FB 78 */	mr r3, r31
 /* 800F2740  48 01 69 31 */	bl setHookshotReadyMaterial__9daAlink_cFv
-/* 800F2744  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800F2748  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800F2744  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800F2748  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800F274C  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 800F2750  60 00 40 00 */	ori r0, r0, 0x4000
 /* 800F2754  90 03 5F 18 */	stw r0, 0x5f18(r3)

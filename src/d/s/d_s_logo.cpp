@@ -116,9 +116,9 @@ struct cDylPhs {
     /* 8001884C */ void Link(request_of_phase_process_class*, s16);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -153,17 +153,6 @@ struct J2DPicture {
 //
 // Forward References:
 //
-
-static void phase_0(dScnLogo_c*);
-static void phase_1(dScnLogo_c*);
-static void phase_2(dScnLogo_c*);
-static void resLoad(request_of_phase_process_class*, dScnLogo_c*);
-static void dScnLogo_Create(scene_class*);
-static void dScnLogo_Execute(dScnLogo_c*);
-static void dScnLogo_Draw(dScnLogo_c*);
-static void dScnLogo_Delete(dScnLogo_c*);
-static bool dScnLogo_IsDelete(dScnLogo_c*);
-static void cLib_calcTimer__template5(u16*);
 
 extern "C" void __ct__10dLog_HIO_cFv();
 extern "C" void preLoad_dyl_create__10dScnLogo_cFv();
@@ -205,32 +194,13 @@ extern "C" void getProgressiveMode__10dScnLogo_cFv();
 extern "C" void isProgressiveMode__10dScnLogo_cFv();
 extern "C" void setRenderMode__10dScnLogo_cFv();
 extern "C" void __dt__10dLog_HIO_cFv();
-extern "C" static void func_802585A4();
+extern "C" void func_802585A4(u16*);
 extern "C" void __sinit_d_s_logo_cpp();
 extern "C" extern char const* const d_s_d_s_logo__stringBase0;
-extern "C" extern void* g_profile_LOGO_SCENE[10];
 
 //
 // External References:
 //
-
-void mDoExt_getGameHeap();
-void mDoExt_getJ2dHeap();
-void mDoExt_setCurrentHeap(JKRHeap*);
-void mDoExt_getMesgFont();
-void mDoExt_getRubyFont();
-void mDoExt_getSubFont();
-void mDoExt_setAraCacheSize(u32);
-void mDoRst_reset(int, u32, int);
-void mDoRst_resetCallBack(int, void*);
-void cDyl_InitAsyncIsDone();
-void fopScnM_ChangeReq(scene_class*, s16, s16, u16);
-void dComIfG_changeOpeningScene(scene_class*, s16);
-void dComLbG_PhaseHandler(request_of_phase_process_class*, int (**)(void*), void*);
-void* operator new(u32);
-void* operator new[](u32);
-void operator delete(void*);
-void operator delete[](void*);
 
 SECTION_INIT void memset();
 extern "C" void mDoExt_getGameHeap__Fv();
@@ -315,124 +285,172 @@ extern "C" extern u8 struct_80451500[4];
 //
 
 /* ############################################################################################## */
-/* 803C2E38-803C2E44 000C+00 s=1 e=0 z=0  None .data      cNullVec__6Z2Calc */
+/* 803C2E38-803C2E44 01FF58 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803C2E44-803C2E50 000C+00 s=1 e=0 z=0  None .data      @3737 */
+/* 803C2E44-803C2E50 -00001 000C+00 0/1 0/0 0/0 .data            @3737 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3737[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)warningInDraw__10dScnLogo_cFv,
 };
+#pragma pop
 
-/* 803C2E50-803C2E5C 000C+00 s=1 e=0 z=0  None .data      @3738 */
+/* 803C2E50-803C2E5C -00001 000C+00 0/1 0/0 0/0 .data            @3738 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3738[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)warningDispDraw__10dScnLogo_cFv,
 };
+#pragma pop
 
-/* 803C2E5C-803C2E68 000C+00 s=1 e=0 z=0  None .data      @3739 */
+/* 803C2E5C-803C2E68 -00001 000C+00 0/1 0/0 0/0 .data            @3739 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3739[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)warningOutDraw__10dScnLogo_cFv,
 };
+#pragma pop
 
-/* 803C2E68-803C2E74 000C+00 s=1 e=0 z=0  None .data      @3740 */
+/* 803C2E68-803C2E74 -00001 000C+00 0/1 0/0 0/0 .data            @3740 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3740[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)nintendoInDraw__10dScnLogo_cFv,
 };
+#pragma pop
 
-/* 803C2E74-803C2E80 000C+00 s=1 e=0 z=0  None .data      @3741 */
+/* 803C2E74-803C2E80 -00001 000C+00 0/1 0/0 0/0 .data            @3741 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3741[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)nintendoOutDraw__10dScnLogo_cFv,
 };
+#pragma pop
 
-/* 803C2E80-803C2E8C 000C+00 s=1 e=0 z=0  None .data      @3742 */
+/* 803C2E80-803C2E8C -00001 000C+00 0/1 0/0 0/0 .data            @3742 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3742[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)dolbyInDraw__10dScnLogo_cFv,
 };
+#pragma pop
 
-/* 803C2E8C-803C2E98 000C+00 s=1 e=0 z=0  None .data      @3743 */
+/* 803C2E8C-803C2E98 -00001 000C+00 0/1 0/0 0/0 .data            @3743 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3743[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)dolbyOutDraw__10dScnLogo_cFv,
 };
+#pragma pop
 
-/* 803C2E98-803C2EA4 000C+00 s=1 e=0 z=0  None .data      @3744 */
+/* 803C2E98-803C2EA4 -00001 000C+00 0/1 0/0 0/0 .data            @3744 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3744[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)dolbyOutDraw2__10dScnLogo_cFv,
 };
+#pragma pop
 
-/* 803C2EA4-803C2EB0 000C+00 s=1 e=0 z=0  None .data      @3745 */
+/* 803C2EA4-803C2EB0 -00001 000C+00 0/1 0/0 0/0 .data            @3745 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3745[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)progInDraw__10dScnLogo_cFv,
 };
+#pragma pop
 
-/* 803C2EB0-803C2EBC 000C+00 s=1 e=0 z=0  None .data      @3746 */
+/* 803C2EB0-803C2EBC -00001 000C+00 0/1 0/0 0/0 .data            @3746 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3746[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)progSelDraw__10dScnLogo_cFv,
 };
+#pragma pop
 
-/* 803C2EBC-803C2EC8 000C+00 s=1 e=0 z=0  None .data      @3747 */
+/* 803C2EBC-803C2EC8 -00001 000C+00 0/1 0/0 0/0 .data            @3747 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3747[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)progOutDraw__10dScnLogo_cFv,
 };
+#pragma pop
 
-/* 803C2EC8-803C2ED4 000C+00 s=1 e=0 z=0  None .data      @3748 */
+/* 803C2EC8-803C2ED4 -00001 000C+00 0/1 0/0 0/0 .data            @3748 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3748[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)progSetDraw__10dScnLogo_cFv,
 };
+#pragma pop
 
-/* 803C2ED4-803C2EE0 000C+00 s=1 e=0 z=0  None .data      @3749 */
+/* 803C2ED4-803C2EE0 -00001 000C+00 0/1 0/0 0/0 .data            @3749 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3749[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)progSet2Draw__10dScnLogo_cFv,
 };
+#pragma pop
 
-/* 803C2EE0-803C2EEC 000C+00 s=1 e=0 z=0  None .data      @3750 */
+/* 803C2EE0-803C2EEC -00001 000C+00 0/1 0/0 0/0 .data            @3750 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3750[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)progChangeDraw__10dScnLogo_cFv,
 };
+#pragma pop
 
-/* 803C2EEC-803C2EF8 000C+00 s=1 e=0 z=0  None .data      @3751 */
+/* 803C2EEC-803C2EF8 -00001 000C+00 0/1 0/0 0/0 .data            @3751 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3751[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)dvdWaitDraw__10dScnLogo_cFv,
 };
+#pragma pop
 
-/* 803C2EF8-803C2F04 000C+00 s=1 e=0 z=0  None .data      @3752 */
+/* 803C2EF8-803C2F04 -00001 000C+00 0/1 0/0 0/0 .data            @3752 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3752[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)nextSceneChange__10dScnLogo_cFv,
 };
+#pragma pop
 
-/* 803C2F04-803C2FC4 00C0+00 s=2 e=0 z=0  None .data      l_execFunc */
+/* 803C2F04-803C2FC4 020024 00C0+00 1/2 0/0 0/0 .data            l_execFunc */
 SECTION_DATA static u8 l_execFunc[192] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -448,22 +466,22 @@ SECTION_DATA static u8 l_execFunc[192] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803C2FC4-803C2FD0 000C+00 s=1 e=0 z=0  None .data      l_method$4611 */
+/* 803C2FC4-803C2FD0 -00001 000C+00 1/1 0/0 0/0 .data            l_method$4611 */
 SECTION_DATA static void* l_method[3] = {
     (void*)phase_0__FP10dScnLogo_c,
     (void*)phase_1__FP10dScnLogo_c,
     (void*)phase_2__FP10dScnLogo_c,
 };
 
-/* 803C2FD0-803C2FE4 0014+00 s=1 e=0 z=0  None .data      l_dScnLogo_Method */
+/* 803C2FD0-803C2FE4 -00001 0014+00 1/0 0/0 0/0 .data            l_dScnLogo_Method */
 SECTION_DATA static void* l_dScnLogo_Method[5] = {
     (void*)dScnLogo_Create__FP11scene_class, (void*)dScnLogo_Delete__FP10dScnLogo_c,
     (void*)dScnLogo_Execute__FP10dScnLogo_c, (void*)dScnLogo_IsDelete__FP10dScnLogo_c,
     (void*)dScnLogo_Draw__FP10dScnLogo_c,
 };
 
-/* 803C2FE4-803C300C 0028+00 s=0 e=0 z=1  None .data      g_profile_LOGO_SCENE */
-SECTION_DATA void* g_profile_LOGO_SCENE[10] = {
+/* 803C2FE4-803C300C -00001 0028+00 0/0 0/0 1/0 .data            g_profile_LOGO_SCENE */
+SECTION_DATA extern void* g_profile_LOGO_SCENE[10] = {
     (void*)NULL,
     (void*)0x0001FFFD,
     (void*)0x00090000,
@@ -476,14 +494,14 @@ SECTION_DATA void* g_profile_LOGO_SCENE[10] = {
     (void*)NULL,
 };
 
-/* 803C300C-803C3018 000C+00 s=2 e=0 z=0  None .data      __vt__10dLog_HIO_c */
-SECTION_DATA static void* __vt__10dLog_HIO_c[3] = {
-    (void*)NULL,
+/* 803C300C-803C3018 02012C 000C+00 2/2 0/0 0/0 .data            __vt__10dLog_HIO_c */
+SECTION_DATA extern void* __vt__10dLog_HIO_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__10dLog_HIO_cFv,
 };
 
-/* 802560A4-802560B4 0010+00 s=1 e=0 z=0  None .text      __ct__10dLog_HIO_cFv */
+/* 802560A4-802560B4 2509E4 0010+00 1/1 0/0 0/0 .text            __ct__10dLog_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -493,7 +511,8 @@ asm dLog_HIO_c::dLog_HIO_c() {
 }
 #pragma pop
 
-/* 802560B4-802560F8 0044+00 s=1 e=0 z=0  None .text      preLoad_dyl_create__10dScnLogo_cFv */
+/* 802560B4-802560F8 2509F4 0044+00 1/1 0/0 0/0 .text            preLoad_dyl_create__10dScnLogo_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -503,7 +522,8 @@ asm void dScnLogo_c::preLoad_dyl_create() {
 }
 #pragma pop
 
-/* 802560F8-8025611C 0024+00 s=1 e=0 z=0  None .text      preLoad_dyl_remove__10dScnLogo_cFv */
+/* 802560F8-8025611C 250A38 0024+00 1/1 0/0 0/0 .text            preLoad_dyl_remove__10dScnLogo_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -514,13 +534,14 @@ asm void dScnLogo_c::preLoad_dyl_remove() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80399FE0-80399FFC 001C+00 s=1 e=0 z=0  None .rodata    l_preLoad_dylKeyTbl */
+/* 80399FE0-80399FFC 026640 001C+00 1/1 0/0 0/0 .rodata          l_preLoad_dylKeyTbl */
 SECTION_RODATA static u8 const l_preLoad_dylKeyTbl[28] = {
     0x02, 0xDC, 0x02, 0xCE, 0x02, 0x21, 0x00, 0xF2, 0x02, 0x1B, 0x02, 0xF4, 0x01, 0x39,
     0x01, 0x5A, 0x02, 0xE4, 0x00, 0xFE, 0x03, 0x08, 0x03, 0x0F, 0x00, 0xFF, 0x01, 0x3F,
 };
+COMPILER_STRIP_GATE(80399FE0, &l_preLoad_dylKeyTbl);
 
-/* 8025611C-80256198 007C+00 s=2 e=0 z=0  None .text      preLoad_dyl__10dScnLogo_cFv */
+/* 8025611C-80256198 250A5C 007C+00 2/2 0/0 0/0 .text            preLoad_dyl__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -530,7 +551,7 @@ asm void dScnLogo_c::preLoad_dyl() {
 }
 #pragma pop
 
-/* 80256198-80256210 0078+00 s=1 e=0 z=0  None .text      checkProgSelect__10dScnLogo_cFv */
+/* 80256198-80256210 250AD8 0078+00 1/1 0/0 0/0 .text            checkProgSelect__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -540,7 +561,7 @@ asm void dScnLogo_c::checkProgSelect() {
 }
 #pragma pop
 
-/* 80256210-80256264 0054+00 s=1 e=0 z=0  None .text      draw__10dScnLogo_cFv */
+/* 80256210-80256264 250B50 0054+00 1/1 0/0 0/0 .text            draw__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -550,7 +571,7 @@ asm void dScnLogo_c::draw() {
 }
 #pragma pop
 
-/* 80256264-8025631C 00B8+00 s=1 e=0 z=0  None .text      progInDraw__10dScnLogo_cFv */
+/* 80256264-8025631C 250BA4 00B8+00 1/0 0/0 0/0 .text            progInDraw__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -561,28 +582,28 @@ asm void dScnLogo_c::progInDraw() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454ED8-80454EDC 0004+00 s=1 e=0 z=0  None .sdata2    @3933 */
+/* 80454ED8-80454EDC 0034D8 0004+00 1/1 0/0 0/0 .sdata2          @3933 */
 SECTION_SDATA2 static f32 lit_3933 = 0.5f;
 
-/* 80454EDC-80454EE0 0004+00 s=2 e=0 z=0  None .sdata2    @3934 */
+/* 80454EDC-80454EE0 0034DC 0004+00 2/2 0/0 0/0 .sdata2          @3934 */
 SECTION_SDATA2 static f32 lit_3934 = 1.0f;
 
-/* 80454EE0-80454EE4 0004+00 s=1 e=0 z=0  None .sdata2    @3935 */
+/* 80454EE0-80454EE4 0034E0 0004+00 1/1 0/0 0/0 .sdata2          @3935 */
 SECTION_SDATA2 static f32 lit_3935 = -1.0f;
 
-/* 80454EE4-80454EE8 0004+00 s=1 e=0 z=0  None .sdata2    @3936 */
+/* 80454EE4-80454EE8 0034E4 0004+00 1/1 0/0 0/0 .sdata2          @3936 */
 SECTION_SDATA2 static f32 lit_3936 = -0.5f;
 
-/* 80454EE8-80454EEC 0004+00 s=2 e=0 z=0  None .sdata2    @3937 */
+/* 80454EE8-80454EEC 0034E8 0004+00 2/2 0/0 0/0 .sdata2          @3937 */
 SECTION_SDATA2 static f32 lit_3937 = 255.0f;
 
-/* 80454EEC-80454EF0 0004+00 s=1 e=0 z=0  None .sdata2    @3938 */
+/* 80454EEC-80454EF0 0034EC 0004+00 1/1 0/0 0/0 .sdata2          @3938 */
 SECTION_SDATA2 static f32 lit_3938 = 200.0f;
 
-/* 80454EF0-80454EF8 0008+00 s=2 e=0 z=0  None .sdata2    @3940 */
+/* 80454EF0-80454EF8 0034F0 0008+00 2/2 0/0 0/0 .sdata2          @3940 */
 SECTION_SDATA2 static f64 lit_3940 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 8025631C-802568E0 05C4+00 s=1 e=0 z=0  None .text      progSelDraw__10dScnLogo_cFv */
+/* 8025631C-802568E0 250C5C 05C4+00 1/0 0/0 0/0 .text            progSelDraw__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -592,7 +613,7 @@ asm void dScnLogo_c::progSelDraw() {
 }
 #pragma pop
 
-/* 802568E0-80256A3C 015C+00 s=1 e=0 z=0  None .text      progOutDraw__10dScnLogo_cFv */
+/* 802568E0-80256A3C 251220 015C+00 1/0 0/0 0/0 .text            progOutDraw__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -602,7 +623,7 @@ asm void dScnLogo_c::progOutDraw() {
 }
 #pragma pop
 
-/* 80256A3C-80256AC0 0084+00 s=1 e=0 z=0  None .text      progSetDraw__10dScnLogo_cFv */
+/* 80256A3C-80256AC0 25137C 0084+00 1/0 0/0 0/0 .text            progSetDraw__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -612,7 +633,7 @@ asm void dScnLogo_c::progSetDraw() {
 }
 #pragma pop
 
-/* 80256AC0-80256B3C 007C+00 s=1 e=0 z=0  None .text      progSet2Draw__10dScnLogo_cFv */
+/* 80256AC0-80256B3C 251400 007C+00 1/0 0/0 0/0 .text            progSet2Draw__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -622,7 +643,7 @@ asm void dScnLogo_c::progSet2Draw() {
 }
 #pragma pop
 
-/* 80256B3C-80256BF4 00B8+00 s=1 e=0 z=0  None .text      progChangeDraw__10dScnLogo_cFv */
+/* 80256B3C-80256BF4 25147C 00B8+00 1/0 0/0 0/0 .text            progChangeDraw__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -632,7 +653,7 @@ asm void dScnLogo_c::progChangeDraw() {
 }
 #pragma pop
 
-/* 80256BF4-80256C68 0074+00 s=1 e=0 z=0  None .text      warningInDraw__10dScnLogo_cFv */
+/* 80256BF4-80256C68 251534 0074+00 1/0 0/0 0/0 .text            warningInDraw__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -642,7 +663,7 @@ asm void dScnLogo_c::warningInDraw() {
 }
 #pragma pop
 
-/* 80256C68-80256DC4 015C+00 s=1 e=0 z=0  None .text      warningDispDraw__10dScnLogo_cFv */
+/* 80256C68-80256DC4 2515A8 015C+00 1/0 0/0 0/0 .text            warningDispDraw__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -652,7 +673,7 @@ asm void dScnLogo_c::warningDispDraw() {
 }
 #pragma pop
 
-/* 80256DC4-80256E48 0084+00 s=1 e=0 z=0  None .text      warningOutDraw__10dScnLogo_cFv */
+/* 80256DC4-80256E48 251704 0084+00 1/0 0/0 0/0 .text            warningOutDraw__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -662,7 +683,7 @@ asm void dScnLogo_c::warningOutDraw() {
 }
 #pragma pop
 
-/* 80256E48-80256ECC 0084+00 s=1 e=0 z=0  None .text      nintendoInDraw__10dScnLogo_cFv */
+/* 80256E48-80256ECC 251788 0084+00 1/0 0/0 0/0 .text            nintendoInDraw__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -672,7 +693,7 @@ asm void dScnLogo_c::nintendoInDraw() {
 }
 #pragma pop
 
-/* 80256ECC-80256F50 0084+00 s=1 e=0 z=0  None .text      nintendoOutDraw__10dScnLogo_cFv */
+/* 80256ECC-80256F50 25180C 0084+00 1/0 0/0 0/0 .text            nintendoOutDraw__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -682,7 +703,7 @@ asm void dScnLogo_c::nintendoOutDraw() {
 }
 #pragma pop
 
-/* 80256F50-80256FD4 0084+00 s=1 e=0 z=0  None .text      dolbyInDraw__10dScnLogo_cFv */
+/* 80256F50-80256FD4 251890 0084+00 1/0 0/0 0/0 .text            dolbyInDraw__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -692,7 +713,7 @@ asm void dScnLogo_c::dolbyInDraw() {
 }
 #pragma pop
 
-/* 80256FD4-80257058 0084+00 s=1 e=0 z=0  None .text      dolbyOutDraw__10dScnLogo_cFv */
+/* 80256FD4-80257058 251914 0084+00 1/0 0/0 0/0 .text            dolbyOutDraw__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -702,7 +723,7 @@ asm void dScnLogo_c::dolbyOutDraw() {
 }
 #pragma pop
 
-/* 80257058-80257070 0018+00 s=1 e=0 z=0  None .text      dolbyOutDraw2__10dScnLogo_cFv */
+/* 80257058-80257070 251998 0018+00 1/0 0/0 0/0 .text            dolbyOutDraw2__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -712,7 +733,7 @@ asm void dScnLogo_c::dolbyOutDraw2() {
 }
 #pragma pop
 
-/* 80257070-80257284 0214+00 s=1 e=0 z=0  None .text      dvdWaitDraw__10dScnLogo_cFv */
+/* 80257070-80257284 2519B0 0214+00 1/0 0/0 0/0 .text            dvdWaitDraw__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -722,7 +743,7 @@ asm void dScnLogo_c::dvdWaitDraw() {
 }
 #pragma pop
 
-/* 80257284-802572B8 0034+00 s=1 e=0 z=0  None .text      nextSceneChange__10dScnLogo_cFv */
+/* 80257284-802572B8 251BC4 0034+00 1/0 0/0 0/0 .text            nextSceneChange__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -732,46 +753,7 @@ asm void dScnLogo_c::nextSceneChange() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80399FFC-8039A2A8 02AA+02 s=4 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80399FFC = "LogoUs";
-SECTION_DEAD char const* const stringBase_8039A003 = "Always";
-SECTION_DEAD char const* const stringBase_8039A00A = "/res/Object/";
-SECTION_DEAD char const* const stringBase_8039A017 = "Alink";
-SECTION_DEAD char const* const stringBase_8039A01D = "/res/FieldMap/Field0.arc";
-SECTION_DEAD char const* const stringBase_8039A036 = "/res/Object/AlAnm.arc";
-SECTION_DEAD char const* const stringBase_8039A04C = "/res/Layout/fmapres.arc";
-SECTION_DEAD char const* const stringBase_8039A064 = "/res/Layout/dmapres.arc";
-SECTION_DEAD char const* const stringBase_8039A07C = "/res/Layout/clctres.arc";
-SECTION_DEAD char const* const stringBase_8039A094 = "/res/Layout/itemicon.arc";
-SECTION_DEAD char const* const stringBase_8039A0AD = "/res/Layout/ringres.arc";
-SECTION_DEAD char const* const stringBase_8039A0C5 = "/res/Layout/playerName.arc";
-SECTION_DEAD char const* const stringBase_8039A0E0 = "/res/Layout/itmInfRes.arc";
-SECTION_DEAD char const* const stringBase_8039A0FA = "/res/Layout/button.arc";
-SECTION_DEAD char const* const stringBase_8039A111 = "/res/CardIcon/cardicon.arc";
-SECTION_DEAD char const* const stringBase_8039A12C = "/res/Msgus/bmgres.arc";
-SECTION_DEAD char const* const stringBase_8039A142 = "/res/Layout/msgcom.arc";
-SECTION_DEAD char const* const stringBase_8039A159 = "/res/Layout/msgres00.arc";
-SECTION_DEAD char const* const stringBase_8039A172 = "/res/Layout/msgres01.arc";
-SECTION_DEAD char const* const stringBase_8039A18B = "/res/Layout/msgres02.arc";
-SECTION_DEAD char const* const stringBase_8039A1A4 = "/res/Layout/msgres03.arc";
-SECTION_DEAD char const* const stringBase_8039A1BD = "/res/Layout/msgres04F.arc";
-SECTION_DEAD char const* const stringBase_8039A1D7 = "/res/Layout/msgres05.arc";
-SECTION_DEAD char const* const stringBase_8039A1F0 = "/res/Layout/msgres06.arc";
-SECTION_DEAD char const* const stringBase_8039A209 = "/res/Layout/main2D.arc";
-SECTION_DEAD char const* const stringBase_8039A220 = "/res/Fontus/fontres.arc";
-SECTION_DEAD char const* const stringBase_8039A238 = "/res/Fontus/rubyres.arc";
-SECTION_DEAD char const* const stringBase_8039A250 = "/res/Particle/common.jpc";
-SECTION_DEAD char const* const stringBase_8039A269 = "/res/ItemTable/item_table.bin";
-SECTION_DEAD char const* const stringBase_8039A287 = "/res/ItemTable/enemy_table.bin";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039A2A6 = "\0";
-#pragma pop
-
-/* 802572B8-80257910 0658+00 s=1 e=0 z=0  None .text      __dt__10dScnLogo_cFv */
+/* 802572B8-80257910 251BF8 0658+00 1/1 0/0 0/0 .text            __dt__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -781,48 +763,48 @@ asm dScnLogo_c::~dScnLogo_c() {
 }
 #pragma pop
 
-/* 80257910-802579BC 00AC+00 s=1 e=0 z=0  None .text      phase_0__FP10dScnLogo_c */
+/* 80257910-802579BC 252250 00AC+00 1/0 0/0 0/0 .text            phase_0__FP10dScnLogo_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void phase_0(dScnLogo_c* param_0) {
+static asm void phase_0(dScnLogo_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_logo/phase_0__FP10dScnLogo_c.s"
 }
 #pragma pop
 
-/* 802579BC-80257A70 00B4+00 s=1 e=0 z=0  None .text      phase_1__FP10dScnLogo_c */
+/* 802579BC-80257A70 2522FC 00B4+00 1/0 0/0 0/0 .text            phase_1__FP10dScnLogo_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void phase_1(dScnLogo_c* param_0) {
+static asm void phase_1(dScnLogo_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_logo/phase_1__FP10dScnLogo_c.s"
 }
 #pragma pop
 
-/* 80257A70-80257AB4 0044+00 s=1 e=0 z=0  None .text      phase_2__FP10dScnLogo_c */
+/* 80257A70-80257AB4 2523B0 0044+00 1/0 0/0 0/0 .text            phase_2__FP10dScnLogo_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void phase_2(dScnLogo_c* param_0) {
+static asm void phase_2(dScnLogo_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_logo/phase_2__FP10dScnLogo_c.s"
 }
 #pragma pop
 
-/* 80257AB4-80257AE0 002C+00 s=1 e=0 z=0  None .text
+/* 80257AB4-80257AE0 2523F4 002C+00 1/1 0/0 0/0 .text
  * resLoad__FP30request_of_phase_process_classP10dScnLogo_c     */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void resLoad(request_of_phase_process_class* param_0, dScnLogo_c* param_1) {
+static asm void resLoad(request_of_phase_process_class* param_0, dScnLogo_c* param_1) {
     nofralloc
 #include "asm/d/s/d_s_logo/resLoad__FP30request_of_phase_process_classP10dScnLogo_c.s"
 }
 #pragma pop
 
-/* 80257AE0-80257C64 0184+00 s=1 e=0 z=0  None .text      create__10dScnLogo_cFv */
+/* 80257AE0-80257C64 252420 0184+00 1/1 0/0 0/0 .text            create__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -832,7 +814,7 @@ asm void dScnLogo_c::create() {
 }
 #pragma pop
 
-/* 80257C64-80257FEC 0388+00 s=1 e=0 z=0  None .text      logoInitGC__10dScnLogo_cFv */
+/* 80257C64-80257FEC 2525A4 0388+00 1/1 0/0 0/0 .text            logoInitGC__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -842,7 +824,7 @@ asm void dScnLogo_c::logoInitGC() {
 }
 #pragma pop
 
-/* 80257FEC-80258420 0434+00 s=1 e=0 z=0  None .text      dvdDataLoad__10dScnLogo_cFv */
+/* 80257FEC-80258420 25292C 0434+00 1/1 0/0 0/0 .text            dvdDataLoad__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -852,52 +834,54 @@ asm void dScnLogo_c::dvdDataLoad() {
 }
 #pragma pop
 
-/* 80258420-80258444 0024+00 s=1 e=0 z=0  None .text      dScnLogo_Create__FP11scene_class */
+/* 80258420-80258444 252D60 0024+00 1/0 0/0 0/0 .text            dScnLogo_Create__FP11scene_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dScnLogo_Create(scene_class* param_0) {
+static asm void dScnLogo_Create(scene_class* param_0) {
     nofralloc
 #include "asm/d/s/d_s_logo/dScnLogo_Create__FP11scene_class.s"
 }
 #pragma pop
 
-/* 80258444-80258484 0040+00 s=1 e=0 z=0  None .text      dScnLogo_Execute__FP10dScnLogo_c */
+/* 80258444-80258484 252D84 0040+00 1/0 0/0 0/0 .text            dScnLogo_Execute__FP10dScnLogo_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dScnLogo_Execute(dScnLogo_c* param_0) {
+static asm void dScnLogo_Execute(dScnLogo_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_logo/dScnLogo_Execute__FP10dScnLogo_c.s"
 }
 #pragma pop
 
-/* 80258484-802584A8 0024+00 s=1 e=0 z=0  None .text      dScnLogo_Draw__FP10dScnLogo_c */
+/* 80258484-802584A8 252DC4 0024+00 1/0 0/0 0/0 .text            dScnLogo_Draw__FP10dScnLogo_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dScnLogo_Draw(dScnLogo_c* param_0) {
+static asm void dScnLogo_Draw(dScnLogo_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_logo/dScnLogo_Draw__FP10dScnLogo_c.s"
 }
 #pragma pop
 
-/* 802584A8-802584D0 0028+00 s=1 e=0 z=0  None .text      dScnLogo_Delete__FP10dScnLogo_c */
+/* 802584A8-802584D0 252DE8 0028+00 1/0 0/0 0/0 .text            dScnLogo_Delete__FP10dScnLogo_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dScnLogo_Delete(dScnLogo_c* param_0) {
+static asm void dScnLogo_Delete(dScnLogo_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_logo/dScnLogo_Delete__FP10dScnLogo_c.s"
 }
 #pragma pop
 
-/* 802584D0-802584D8 0008+00 s=1 e=0 z=0  None .text      dScnLogo_IsDelete__FP10dScnLogo_c */
+/* 802584D0-802584D8 252E10 0008+00 1/0 0/0 0/0 .text            dScnLogo_IsDelete__FP10dScnLogo_c
+ */
 static bool dScnLogo_IsDelete(dScnLogo_c* param_0) {
     return true;
 }
 
-/* 802584D8-802584FC 0024+00 s=1 e=0 z=0  None .text      setProgressiveMode__10dScnLogo_cFUc */
+/* 802584D8-802584FC 252E18 0024+00 1/1 0/0 0/0 .text            setProgressiveMode__10dScnLogo_cFUc
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -907,7 +891,8 @@ asm void dScnLogo_c::setProgressiveMode(u8 param_0) {
 }
 #pragma pop
 
-/* 802584FC-80258520 0024+00 s=3 e=0 z=0  None .text      getProgressiveMode__10dScnLogo_cFv */
+/* 802584FC-80258520 252E3C 0024+00 3/3 0/0 0/0 .text            getProgressiveMode__10dScnLogo_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -917,7 +902,8 @@ asm void dScnLogo_c::getProgressiveMode() {
 }
 #pragma pop
 
-/* 80258520-8025854C 002C+00 s=1 e=0 z=0  None .text      isProgressiveMode__10dScnLogo_cFv */
+/* 80258520-8025854C 252E60 002C+00 1/1 0/0 0/0 .text            isProgressiveMode__10dScnLogo_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -927,7 +913,7 @@ asm void dScnLogo_c::isProgressiveMode() {
 }
 #pragma pop
 
-/* 8025854C-8025855C 0010+00 s=1 e=0 z=0  None .text      setRenderMode__10dScnLogo_cFv */
+/* 8025854C-8025855C 252E8C 0010+00 1/1 0/0 0/0 .text            setRenderMode__10dScnLogo_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -937,7 +923,7 @@ asm void dScnLogo_c::setRenderMode() {
 }
 #pragma pop
 
-/* 8025855C-802585A4 0048+00 s=2 e=0 z=0  None .text      __dt__10dLog_HIO_cFv */
+/* 8025855C-802585A4 252E9C 0048+00 2/1 0/0 0/0 .text            __dt__10dLog_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -947,29 +933,72 @@ asm dLog_HIO_c::~dLog_HIO_c() {
 }
 #pragma pop
 
-/* 802585A4-802585C0 001C+00 s=1 e=0 z=0  None .text      cLib_calcTimer<Us>__FPUs */
+/* 802585A4-802585C0 252EE4 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<Us>__FPUs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void cLib_calcTimer__template5(u16* param_0) {
+extern "C" asm void func_802585A4(u16* param_0) {
     nofralloc
 #include "asm/d/s/d_s_logo/func_802585A4.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80430758-80430768 000C+04 s=1 e=0 z=0  None .bss       @3702 */
+/* 80430758-80430768 05D478 000C+04 1/1 0/0 0/0 .bss             @3702 */
 static u8 lit_3702[12 + 4 /* padding */];
 
-/* 804510E8-804510F0 0008+00 s=1 e=0 z=0  None .sbss      g_LogHIO */
+/* 804510E8-804510F0 0005E8 0008+00 1/1 0/0 0/0 .sbss            g_LogHIO */
 static u8 g_LogHIO[8];
 
-/* 802585C0-8025878C 01CC+00 s=0 e=1 z=0  None .text      __sinit_d_s_logo_cpp */
+/* 802585C0-8025878C 252F00 01CC+00 0/0 1/0 0/0 .text            __sinit_d_s_logo_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_s_logo_cpp() {
+asm void __sinit_d_s_logo_cpp() {
     nofralloc
 #include "asm/d/s/d_s_logo/__sinit_d_s_logo_cpp.s"
 }
+#pragma pop
+
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_802585C0 = (void*)__sinit_d_s_logo_cpp;
+#pragma pop
+
+/* 80399FFC-8039A2A8 02665C 02AA+02 4/4 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80399FFC = "LogoUs";
+SECTION_DEAD static char const* const stringBase_8039A003 = "Always";
+SECTION_DEAD static char const* const stringBase_8039A00A = "/res/Object/";
+SECTION_DEAD static char const* const stringBase_8039A017 = "Alink";
+SECTION_DEAD static char const* const stringBase_8039A01D = "/res/FieldMap/Field0.arc";
+SECTION_DEAD static char const* const stringBase_8039A036 = "/res/Object/AlAnm.arc";
+SECTION_DEAD static char const* const stringBase_8039A04C = "/res/Layout/fmapres.arc";
+SECTION_DEAD static char const* const stringBase_8039A064 = "/res/Layout/dmapres.arc";
+SECTION_DEAD static char const* const stringBase_8039A07C = "/res/Layout/clctres.arc";
+SECTION_DEAD static char const* const stringBase_8039A094 = "/res/Layout/itemicon.arc";
+SECTION_DEAD static char const* const stringBase_8039A0AD = "/res/Layout/ringres.arc";
+SECTION_DEAD static char const* const stringBase_8039A0C5 = "/res/Layout/playerName.arc";
+SECTION_DEAD static char const* const stringBase_8039A0E0 = "/res/Layout/itmInfRes.arc";
+SECTION_DEAD static char const* const stringBase_8039A0FA = "/res/Layout/button.arc";
+SECTION_DEAD static char const* const stringBase_8039A111 = "/res/CardIcon/cardicon.arc";
+SECTION_DEAD static char const* const stringBase_8039A12C = "/res/Msgus/bmgres.arc";
+SECTION_DEAD static char const* const stringBase_8039A142 = "/res/Layout/msgcom.arc";
+SECTION_DEAD static char const* const stringBase_8039A159 = "/res/Layout/msgres00.arc";
+SECTION_DEAD static char const* const stringBase_8039A172 = "/res/Layout/msgres01.arc";
+SECTION_DEAD static char const* const stringBase_8039A18B = "/res/Layout/msgres02.arc";
+SECTION_DEAD static char const* const stringBase_8039A1A4 = "/res/Layout/msgres03.arc";
+SECTION_DEAD static char const* const stringBase_8039A1BD = "/res/Layout/msgres04F.arc";
+SECTION_DEAD static char const* const stringBase_8039A1D7 = "/res/Layout/msgres05.arc";
+SECTION_DEAD static char const* const stringBase_8039A1F0 = "/res/Layout/msgres06.arc";
+SECTION_DEAD static char const* const stringBase_8039A209 = "/res/Layout/main2D.arc";
+SECTION_DEAD static char const* const stringBase_8039A220 = "/res/Fontus/fontres.arc";
+SECTION_DEAD static char const* const stringBase_8039A238 = "/res/Fontus/rubyres.arc";
+SECTION_DEAD static char const* const stringBase_8039A250 = "/res/Particle/common.jpc";
+SECTION_DEAD static char const* const stringBase_8039A269 = "/res/ItemTable/item_table.bin";
+SECTION_DEAD static char const* const stringBase_8039A287 = "/res/ItemTable/enemy_table.bin";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039A2A6 = "\0";
 #pragma pop

@@ -28,8 +28,8 @@ lbl_801EEDC4:
 /* 801EEDE8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801EEDEC  40 82 00 50 */	bne lbl_801EEE3C
 /* 801EEDF0  C0 22 AA 1C */	lfs f1, lit_6308(r2)
-/* 801EEDF4  3C 60 80 43 */	lis r3, g_ringHIO@ha
-/* 801EEDF8  38 63 FA FC */	addi r3, r3, g_ringHIO@l
+/* 801EEDF4  3C 60 80 43 */	lis r3, g_ringHIO@ha /* 0x8042FAFC@ha */
+/* 801EEDF8  38 63 FA FC */	addi r3, r3, g_ringHIO@l /* 0x8042FAFC@l */
 /* 801EEDFC  C0 03 00 E0 */	lfs f0, 0xe0(r3)
 /* 801EEE00  EC 01 00 28 */	fsubs f0, f1, f0
 /* 801EEE04  D0 1F 05 70 */	stfs f0, 0x570(r31)
@@ -73,8 +73,8 @@ lbl_801EEE6C:
 /* 801EEE90  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801EEE94  40 82 00 50 */	bne lbl_801EEEE4
 /* 801EEE98  C0 22 AA 1C */	lfs f1, lit_6308(r2)
-/* 801EEE9C  3C 60 80 43 */	lis r3, g_ringHIO@ha
-/* 801EEEA0  38 63 FA FC */	addi r3, r3, g_ringHIO@l
+/* 801EEE9C  3C 60 80 43 */	lis r3, g_ringHIO@ha /* 0x8042FAFC@ha */
+/* 801EEEA0  38 63 FA FC */	addi r3, r3, g_ringHIO@l /* 0x8042FAFC@l */
 /* 801EEEA4  C0 03 00 E0 */	lfs f0, 0xe0(r3)
 /* 801EEEA8  EC 01 00 28 */	fsubs f0, f1, f0
 /* 801EEEAC  D0 1F 05 70 */	stfs f0, 0x570(r31)

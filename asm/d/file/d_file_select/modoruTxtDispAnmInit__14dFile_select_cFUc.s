@@ -24,8 +24,8 @@ lbl_8018D3E0:
 /* 8018D3F0  B0 03 00 16 */	sth r0, 0x16(r3)
 /* 8018D3F4  4E 80 00 20 */	blr 
 lbl_8018D3F8:
-/* 8018D3F8  3C 80 80 43 */	lis r4, g_fsHIO@ha
-/* 8018D3FC  38 A4 C9 EC */	addi r5, r4, g_fsHIO@l
+/* 8018D3F8  3C 80 80 43 */	lis r4, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 8018D3FC  38 A4 C9 EC */	addi r5, r4, g_fsHIO@l /* 0x8042C9EC@l */
 /* 8018D400  88 05 00 07 */	lbz r0, 7(r5)
 /* 8018D404  80 83 02 40 */	lwz r4, 0x240(r3)
 /* 8018D408  B0 04 00 16 */	sth r0, 0x16(r4)

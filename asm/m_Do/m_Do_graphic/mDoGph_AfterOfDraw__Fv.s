@@ -2,8 +2,8 @@ lbl_80008474:
 /* 80008474  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80008478  7C 08 02 A6 */	mflr r0
 /* 8000847C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80008480  3C 60 80 3F */	lis r3, g_HIO@ha
-/* 80008484  38 A3 1B BC */	addi r5, r3, g_HIO@l
+/* 80008480  3C 60 80 3F */	lis r3, g_HIO@ha /* 0x803F1BBC@ha */
+/* 80008484  38 A3 1B BC */	addi r5, r3, g_HIO@l /* 0x803F1BBC@l */
 /* 80008488  88 C5 00 16 */	lbz r6, 0x16(r5)
 /* 8000848C  54 C0 07 BD */	rlwinm. r0, r6, 0, 0x1e, 0x1e
 /* 80008490  41 82 00 28 */	beq lbl_800084B8
@@ -19,8 +19,8 @@ lbl_80008474:
 lbl_800084B8:
 /* 800084B8  80 6D 8C 38 */	lwz r3, systemConsole__9JFWSystem(r13)
 /* 800084BC  88 83 00 68 */	lbz r4, 0x68(r3)
-/* 800084C0  3C 60 80 43 */	lis r3, mPadStatus__10JUTGamePad@ha
-/* 800084C4  38 63 43 F0 */	addi r3, r3, mPadStatus__10JUTGamePad@l
+/* 800084C0  3C 60 80 43 */	lis r3, mPadStatus__10JUTGamePad@ha /* 0x804343F0@ha */
+/* 800084C4  38 63 43 F0 */	addi r3, r3, mPadStatus__10JUTGamePad@l /* 0x804343F0@l */
 /* 800084C8  88 03 00 22 */	lbz r0, 0x22(r3)
 /* 800084CC  7C 00 07 74 */	extsb r0, r0
 /* 800084D0  7C 00 00 34 */	cntlzw r0, r0

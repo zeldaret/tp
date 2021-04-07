@@ -17,8 +17,8 @@ lbl_803490F0:
 /* 8034912C  3C 00 80 00 */	lis r0, 0x8000
 /* 80349130  3B E0 00 00 */	li r31, 0
 /* 80349134  90 0D 92 00 */	stw r0, bootInfo(r13)
-/* 80349138  3C 60 80 34 */	lis r3, __DVDInterruptHandler@ha
-/* 8034913C  38 83 76 B4 */	addi r4, r3, __DVDInterruptHandler@l
+/* 80349138  3C 60 80 34 */	lis r3, __DVDInterruptHandler@ha /* 0x803476B4@ha */
+/* 8034913C  38 83 76 B4 */	addi r4, r3, __DVDInterruptHandler@l /* 0x803476B4@l */
 /* 80349140  93 ED 92 38 */	stw r31, MotorState(r13)
 /* 80349144  38 60 00 15 */	li r3, 0x15
 /* 80349148  90 0D 91 FC */	stw r0, IDShouldBe(r13)
@@ -29,7 +29,7 @@ lbl_803490F0:
 /* 8034915C  4B FF 7B 19 */	bl OSInitThreadQueue
 /* 80349160  3C 60 CC 00 */	lis r3, 0xCC00 /* 0xCC006000@ha */
 /* 80349164  38 00 00 2A */	li r0, 0x2a
-/* 80349168  90 03 60 00 */	stw r0, 0x6000(r3)
+/* 80349168  90 03 60 00 */	stw r0, 0x6000(r3)  /* 0xCC006000@l */
 /* 8034916C  93 E3 60 04 */	stw r31, 0x6004(r3)
 /* 80349170  80 6D 92 00 */	lwz r3, bootInfo(r13)
 /* 80349174  38 63 00 20 */	addi r3, r3, 0x20
@@ -37,9 +37,9 @@ lbl_803490F0:
 /* 8034917C  3C 03 1A E0 */	addis r0, r3, 0x1ae0
 /* 80349180  28 00 7C 22 */	cmplwi r0, 0x7c22
 /* 80349184  40 82 00 1C */	bne lbl_803491A0
-/* 80349188  3C 60 80 3D */	lis r3, lit_18@ha
+/* 80349188  3C 60 80 3D */	lis r3, lit_18@ha /* 0x803D1568@ha */
 /* 8034918C  4C C6 31 82 */	crclr 6
-/* 80349190  38 63 15 68 */	addi r3, r3, lit_18@l
+/* 80349190  38 63 15 68 */	addi r3, r3, lit_18@l /* 0x803D1568@l */
 /* 80349194  4B CB D9 29 */	bl OSReport
 /* 80349198  48 00 2C 6D */	bl __fstLoad
 /* 8034919C  48 00 00 14 */	b lbl_803491B0

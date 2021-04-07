@@ -7,7 +7,7 @@ lbl_80B6F4FC:
 /* 80B6F510  41 82 00 10 */	beq lbl_80B6F520
 /* 80B6F514  7C 80 07 35 */	extsh. r0, r4
 /* 80B6F518  40 81 00 08 */	ble lbl_80B6F520
-/* 80B6F51C  4B 75 F8 20 */	b __dl__FPv
+/* 80B6F51C  4B 75 F8 21 */	bl __dl__FPv
 lbl_80B6F520:
 /* 80B6F520  7F E3 FB 78 */	mr r3, r31
 /* 80B6F524  83 E1 00 0C */	lwz r31, 0xc(r1)

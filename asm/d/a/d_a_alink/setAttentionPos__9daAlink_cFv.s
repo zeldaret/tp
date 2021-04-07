@@ -7,8 +7,8 @@ lbl_800A87F8:
 /* 800A880C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 800A8810  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 800A8814  7C 7F 1B 78 */	mr r31, r3
-/* 800A8818  3C 60 80 39 */	lis r3, lit_3757@ha
-/* 800A881C  38 83 D6 58 */	addi r4, r3, lit_3757@l
+/* 800A8818  3C 60 80 39 */	lis r3, lit_3757@ha /* 0x8038D658@ha */
+/* 800A881C  38 83 D6 58 */	addi r4, r3, lit_3757@l /* 0x8038D658@l */
 /* 800A8820  A0 BF 2F E8 */	lhz r5, 0x2fe8(r31)
 /* 800A8824  28 05 01 4D */	cmplwi r5, 0x14d
 /* 800A8828  40 82 00 20 */	bne lbl_800A8848
@@ -76,8 +76,8 @@ lbl_800A88F4:
 /* 800A890C  4E 80 04 21 */	bctrl 
 /* 800A8910  28 03 00 00 */	cmplwi r3, 0
 /* 800A8914  41 82 00 84 */	beq lbl_800A8998
-/* 800A8918  3C 60 80 42 */	lis r3, l_canoeBaseAnime@ha
-/* 800A891C  38 63 55 EC */	addi r3, r3, l_canoeBaseAnime@l
+/* 800A8918  3C 60 80 42 */	lis r3, l_canoeBaseAnime@ha /* 0x804255EC@ha */
+/* 800A891C  38 63 55 EC */	addi r3, r3, l_canoeBaseAnime@l /* 0x804255EC@l */
 /* 800A8920  C0 83 00 08 */	lfs f4, 8(r3)
 /* 800A8924  80 1E 00 B0 */	lwz r0, 0xb0(r30)
 /* 800A8928  28 00 00 02 */	cmplwi r0, 2
@@ -85,8 +85,8 @@ lbl_800A88F4:
 /* 800A8930  C0 02 95 18 */	lfs f0, lit_20824(r2)
 /* 800A8934  EC 84 00 2A */	fadds f4, f4, f0
 lbl_800A8938:
-/* 800A8938  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800A893C  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 800A8938  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800A893C  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800A8940  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 800A8944  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 800A8948  7C 64 02 14 */	add r3, r4, r0
@@ -96,8 +96,8 @@ lbl_800A8938:
 /* 800A8958  EC 61 00 2A */	fadds f3, f1, f0
 /* 800A895C  C0 42 93 00 */	lfs f2, lit_6895(r2)
 /* 800A8960  C0 3E 04 D4 */	lfs f1, 0x4d4(r30)
-/* 800A8964  3C 60 80 42 */	lis r3, l_canoeBaseAnime@ha
-/* 800A8968  38 63 55 EC */	addi r3, r3, l_canoeBaseAnime@l
+/* 800A8964  3C 60 80 42 */	lis r3, l_canoeBaseAnime@ha /* 0x804255EC@ha */
+/* 800A8968  38 63 55 EC */	addi r3, r3, l_canoeBaseAnime@l /* 0x804255EC@l */
 /* 800A896C  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800A8970  EC 01 00 2A */	fadds f0, f1, f0
 /* 800A8974  EC 42 00 2A */	fadds f2, f2, f0
@@ -189,13 +189,13 @@ lbl_800A8A8C:
 /* 800A8AA8  D0 1F 05 58 */	stfs f0, 0x558(r31)
 /* 800A8AAC  48 00 01 F8 */	b lbl_800A8CA4
 lbl_800A8AB0:
-/* 800A8AB0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800A8AB4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800A8AB0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800A8AB4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800A8AB8  80 63 5F 1C */	lwz r3, 0x5f1c(r3)
 /* 800A8ABC  54 60 01 8D */	rlwinm. r0, r3, 0, 6, 6
 /* 800A8AC0  41 82 00 58 */	beq lbl_800A8B18
-/* 800A8AC4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800A8AC8  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 800A8AC4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800A8AC8  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800A8ACC  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 800A8AD0  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 800A8AD4  7C 64 02 14 */	add r3, r4, r0

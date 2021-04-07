@@ -38,8 +38,8 @@ lbl_80107360:
 /* 80107388  40 80 00 30 */	bge lbl_801073B8
 /* 8010738C  7F E3 FB 78 */	mr r3, r31
 /* 80107390  38 80 00 F7 */	li r4, 0xf7
-/* 80107394  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha
-/* 80107398  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l
+/* 80107394  3C A0 80 39 */	lis r5, m__19daAlinkHIO_board_c0@ha /* 0x8038E870@ha */
+/* 80107398  38 A5 E8 70 */	addi r5, r5, m__19daAlinkHIO_board_c0@l /* 0x8038E870@l */
 /* 8010739C  C0 25 00 18 */	lfs f1, 0x18(r5)
 /* 801073A0  C0 45 00 1C */	lfs f2, 0x1c(r5)
 /* 801073A4  A8 A5 00 14 */	lha r5, 0x14(r5)

@@ -16,10 +16,10 @@ lbl_8004AF98:
 /* 8004AFD0  1C 7F 00 14 */	mulli r3, r31, 0x14
 /* 8004AFD4  38 63 00 10 */	addi r3, r3, 0x10
 /* 8004AFD8  48 28 3C ED */	bl __nwa__FUl
-/* 8004AFDC  3C 80 80 05 */	lis r4, __ct__16dPa_simpleData_cFv@ha
-/* 8004AFE0  38 84 B0 60 */	addi r4, r4, __ct__16dPa_simpleData_cFv@l
-/* 8004AFE4  3C A0 80 05 */	lis r5, __dt__16dPa_simpleData_cFv@ha
-/* 8004AFE8  38 A5 B0 24 */	addi r5, r5, __dt__16dPa_simpleData_cFv@l
+/* 8004AFDC  3C 80 80 05 */	lis r4, __ct__16dPa_simpleData_cFv@ha /* 0x8004B060@ha */
+/* 8004AFE0  38 84 B0 60 */	addi r4, r4, __ct__16dPa_simpleData_cFv@l /* 0x8004B060@l */
+/* 8004AFE4  3C A0 80 05 */	lis r5, __dt__16dPa_simpleData_cFv@ha /* 0x8004B024@ha */
+/* 8004AFE8  38 A5 B0 24 */	addi r5, r5, __dt__16dPa_simpleData_cFv@l /* 0x8004B024@l */
 /* 8004AFEC  38 C0 00 14 */	li r6, 0x14
 /* 8004AFF0  7F E7 FB 78 */	mr r7, r31
 /* 8004AFF4  48 31 6F 21 */	bl __construct_new_array

@@ -7,7 +7,7 @@ lbl_80CF8B00:
 /* 80CF8B14  41 82 00 10 */	beq lbl_80CF8B24
 /* 80CF8B18  7C 80 07 35 */	extsh. r0, r4
 /* 80CF8B1C  40 81 00 08 */	ble lbl_80CF8B24
-/* 80CF8B20  4B 5D 62 1C */	b __dl__FPv
+/* 80CF8B20  4B 5D 62 1D */	bl __dl__FPv
 lbl_80CF8B24:
 /* 80CF8B24  7F E3 FB 78 */	mr r3, r31
 /* 80CF8B28  83 E1 00 0C */	lwz r31, 0xc(r1)

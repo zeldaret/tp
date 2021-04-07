@@ -8,8 +8,8 @@ lbl_80D24B18:
 /* 80D24B30  7F E3 FB 78 */	mr r3, r31
 /* 80D24B34  48 00 06 45 */	bl clrDzb__14daObjVolcBom_cFv
 /* 80D24B38  C0 3F 04 D4 */	lfs f1, 0x4d4(r31)
-/* 80D24B3C  3C 60 80 D2 */	lis r3, lit_3958@ha
-/* 80D24B40  C0 03 6B 90 */	lfs f0, lit_3958@l(r3)
+/* 80D24B3C  3C 60 80 D2 */	lis r3, lit_3958@ha /* 0x80D26B90@ha */
+/* 80D24B40  C0 03 6B 90 */	lfs f0, lit_3958@l(r3)  /* 0x80D26B90@l */
 /* 80D24B44  EC 01 00 2A */	fadds f0, f1, f0
 /* 80D24B48  D0 1F 04 D4 */	stfs f0, 0x4d4(r31)
 /* 80D24B4C  38 00 00 00 */	li r0, 0

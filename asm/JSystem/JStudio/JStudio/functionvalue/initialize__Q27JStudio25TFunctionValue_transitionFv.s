@@ -8,8 +8,8 @@ lbl_80282484:
 /* 8028249C  4B FF F4 7D */	bl range_initialize__Q27JStudio29TFunctionValueAttribute_rangeFv
 /* 802824A0  38 00 00 00 */	li r0, 0
 /* 802824A4  90 1F 00 40 */	stw r0, 0x40(r31)
-/* 802824A8  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 802824AC  C0 03 0A E0 */	lfs f0, __float_nan@l(r3)
+/* 802824A8  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 802824AC  C0 03 0A E0 */	lfs f0, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 802824B0  D8 1F 00 48 */	stfd f0, 0x48(r31)
 /* 802824B4  C8 1F 00 48 */	lfd f0, 0x48(r31)
 /* 802824B8  D8 1F 00 50 */	stfd f0, 0x50(r31)

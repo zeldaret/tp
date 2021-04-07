@@ -34,8 +34,8 @@ lbl_8031ADC0:
 /* 8031ADDC  4B FF 43 2D */	bl J3DGDSetTevOrder__F13_GXTevStageID13_GXTexCoordID11_GXTexMapID12_GXChannelID13_GXTexCoordID11_GXTexMapID12_GXChannelID
 /* 8031ADE0  88 1F 00 0B */	lbz r0, 0xb(r31)
 /* 8031ADE4  54 04 1E B8 */	rlwinm r4, r0, 3, 0x1a, 0x1c
-/* 8031ADE8  3C 60 80 43 */	lis r3, sTexCoordScaleTable__6J3DSys@ha
-/* 8031ADEC  38 03 4C 2C */	addi r0, r3, sTexCoordScaleTable__6J3DSys@l
+/* 8031ADE8  3C 60 80 43 */	lis r3, sTexCoordScaleTable__6J3DSys@ha /* 0x80434C2C@ha */
+/* 8031ADEC  38 03 4C 2C */	addi r0, r3, sTexCoordScaleTable__6J3DSys@l /* 0x80434C2C@l */
 /* 8031ADF0  7D 00 22 14 */	add r8, r0, r4
 /* 8031ADF4  88 7F 00 0A */	lbz r3, 0xa(r31)
 /* 8031ADF8  A0 88 00 00 */	lhz r4, 0(r8)

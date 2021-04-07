@@ -1,6 +1,6 @@
 lbl_8047EBEC:
-/* 8047EBEC  3C 60 80 48 */	lis r3, M_lin5__Q212daObjMovebox5Bgc_c@ha
-/* 8047EBF0  38 63 0F 28 */	addi r3, r3, M_lin5__Q212daObjMovebox5Bgc_c@l
+/* 8047EBEC  3C 60 80 48 */	lis r3, M_lin5__Q212daObjMovebox5Bgc_c@ha /* 0x80480F28@ha */
+/* 8047EBF0  38 63 0F 28 */	addi r3, r3, M_lin5__Q212daObjMovebox5Bgc_c@l /* 0x80480F28@l */
 /* 8047EBF4  80 04 05 AC */	lwz r0, 0x5ac(r4)
 /* 8047EBF8  2C 00 00 02 */	cmpwi r0, 2
 /* 8047EBFC  40 82 00 F8 */	bne lbl_8047ECF4

@@ -32,8 +32,8 @@ lbl_80021474:
 /* 80021488  2C 03 00 00 */	cmpwi r3, 0
 /* 8002148C  41 82 00 18 */	beq lbl_800214A4
 /* 80021490  38 7F 00 BC */	addi r3, r31, 0xbc
-/* 80021494  3C 80 80 02 */	lis r4, fpcEx_ToLineQ__FP18base_process_class@ha
-/* 80021498  38 84 14 18 */	addi r4, r4, fpcEx_ToLineQ__FP18base_process_class@l
+/* 80021494  3C 80 80 02 */	lis r4, fpcEx_ToLineQ__FP18base_process_class@ha /* 0x80021418@ha */
+/* 80021498  38 84 14 18 */	addi r4, r4, fpcEx_ToLineQ__FP18base_process_class@l /* 0x80021418@l */
 /* 8002149C  7F E5 FB 78 */	mr r5, r31
 /* 800214A0  48 00 06 E9 */	bl fpcLyIt_OnlyHere__FP11layer_classPFPvPv_iPv
 lbl_800214A4:

@@ -4,8 +4,8 @@ lbl_8098FE28:
 /* 8098FE30  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8098FE34  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8098FE38  7C 7F 1B 78 */	mr r31, r3
-/* 8098FE3C  3C A0 80 99 */	lis r5, sLoadResPat_Normal@ha
-/* 8098FE40  38 E5 18 F8 */	addi r7, r5, sLoadResPat_Normal@l
+/* 8098FE3C  3C A0 80 99 */	lis r5, sLoadResPat_Normal@ha /* 0x809918F8@ha */
+/* 8098FE40  38 E5 18 F8 */	addi r7, r5, sLoadResPat_Normal@l /* 0x809918F8@l */
 /* 8098FE44  80 04 00 00 */	lwz r0, 0(r4)
 /* 8098FE48  2C 00 00 14 */	cmpwi r0, 0x14
 /* 8098FE4C  41 82 00 40 */	beq lbl_8098FE8C
@@ -44,8 +44,8 @@ lbl_8098FEA4:
 lbl_8098FEC0:
 /* 8098FEC0  2C 00 00 02 */	cmpwi r0, 2
 /* 8098FEC4  40 82 00 14 */	bne lbl_8098FED8
-/* 8098FEC8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8098FECC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8098FEC8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8098FECC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8098FED0  80 03 09 44 */	lwz r0, 0x944(r3)
 /* 8098FED4  90 1F 0E 10 */	stw r0, 0xe10(r31)
 lbl_8098FED8:
@@ -57,14 +57,14 @@ lbl_8098FED8:
 /* 8098FEEC  C0 47 04 3C */	lfs f2, 0x43c(r7)
 /* 8098FEF0  C0 67 04 40 */	lfs f3, 0x440(r7)
 /* 8098FEF4  C0 87 04 44 */	lfs f4, 0x444(r7)
-/* 8098FEF8  4B 8D 10 94 */	b dTimer_createTimer__FlUlUcUcffff
-/* 8098FEFC  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 8098FF00  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 8098FEF8  4B 8D 10 95 */	bl dTimer_createTimer__FlUlUcUcffff
+/* 8098FEFC  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 8098FF00  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 8098FF04  80 63 00 00 */	lwz r3, 0(r3)
 /* 8098FF08  38 63 03 D0 */	addi r3, r3, 0x3d0
 /* 8098FF0C  3C 80 01 00 */	lis r4, 0x0100 /* 0x01000078@ha */
 /* 8098FF10  38 84 00 78 */	addi r4, r4, 0x0078 /* 0x01000078@l */
-/* 8098FF14  4B 91 F5 88 */	b subBgmStart__8Z2SeqMgrFUl
+/* 8098FF14  4B 91 F5 89 */	bl subBgmStart__8Z2SeqMgrFUl
 lbl_8098FF18:
 /* 8098FF18  38 60 00 01 */	li r3, 1
 /* 8098FF1C  83 E1 00 0C */	lwz r31, 0xc(r1)

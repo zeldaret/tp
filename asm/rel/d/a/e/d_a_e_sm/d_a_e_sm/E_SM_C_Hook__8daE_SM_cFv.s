@@ -3,12 +3,12 @@ lbl_80795E64:
 /* 80795E68  7C 08 02 A6 */	mflr r0
 /* 80795E6C  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80795E70  39 61 00 30 */	addi r11, r1, 0x30
-/* 80795E74  4B BC C3 68 */	b _savegpr_29
+/* 80795E74  4B BC C3 69 */	bl _savegpr_29
 /* 80795E78  7C 7E 1B 78 */	mr r30, r3
-/* 80795E7C  3C 60 80 7A */	lis r3, lit_3920@ha
-/* 80795E80  3B E3 85 E0 */	addi r31, r3, lit_3920@l
-/* 80795E84  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80795E88  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l
+/* 80795E7C  3C 60 80 7A */	lis r3, lit_3920@ha /* 0x807985E0@ha */
+/* 80795E80  3B E3 85 E0 */	addi r31, r3, lit_3920@l /* 0x807985E0@l */
+/* 80795E84  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80795E88  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80795E8C  80 7D 5D AC */	lwz r3, 0x5dac(r29)
 /* 80795E90  81 83 06 28 */	lwz r12, 0x628(r3)
 /* 80795E94  81 8C 02 4C */	lwz r12, 0x24c(r12)
@@ -46,13 +46,13 @@ lbl_80795EB4:
 /* 80795F10  98 1E 06 AC */	stb r0, 0x6ac(r30)
 /* 80795F14  48 00 01 34 */	b lbl_80796048
 lbl_80795F18:
-/* 80795F18  3C 60 80 7A */	lis r3, stringBase0@ha
-/* 80795F1C  38 63 87 80 */	addi r3, r3, stringBase0@l
+/* 80795F18  3C 60 80 7A */	lis r3, d_a_e_sm__stringBase0@ha /* 0x80798780@ha */
+/* 80795F1C  38 63 87 80 */	addi r3, r3, d_a_e_sm__stringBase0@l /* 0x80798780@l */
 /* 80795F20  38 63 00 05 */	addi r3, r3, 5
-/* 80795F24  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80795F28  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80795F24  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80795F28  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80795F2C  38 84 4E 00 */	addi r4, r4, 0x4e00
-/* 80795F30  4B BD 2A 64 */	b strcmp
+/* 80795F30  4B BD 2A 65 */	bl strcmp
 /* 80795F34  2C 03 00 00 */	cmpwi r3, 0
 /* 80795F38  40 82 00 7C */	bne lbl_80795FB4
 /* 80795F3C  C0 5E 04 D4 */	lfs f2, 0x4d4(r30)
@@ -128,7 +128,7 @@ lbl_80796028:
 /* 80796044  4B FF C2 1D */	bl SetAnm__8daE_SM_cFiiff
 lbl_80796048:
 /* 80796048  39 61 00 30 */	addi r11, r1, 0x30
-/* 8079604C  4B BC C1 DC */	b _restgpr_29
+/* 8079604C  4B BC C1 DD */	bl _restgpr_29
 /* 80796050  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80796054  7C 08 03 A6 */	mtlr r0
 /* 80796058  38 21 00 30 */	addi r1, r1, 0x30

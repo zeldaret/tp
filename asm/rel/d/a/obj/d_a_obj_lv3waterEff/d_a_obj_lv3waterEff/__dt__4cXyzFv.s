@@ -7,7 +7,7 @@ lbl_80C5C670:
 /* 80C5C684  41 82 00 10 */	beq lbl_80C5C694
 /* 80C5C688  7C 80 07 35 */	extsh. r0, r4
 /* 80C5C68C  40 81 00 08 */	ble lbl_80C5C694
-/* 80C5C690  4B 67 26 AC */	b __dl__FPv
+/* 80C5C690  4B 67 26 AD */	bl __dl__FPv
 lbl_80C5C694:
 /* 80C5C694  7F E3 FB 78 */	mr r3, r31
 /* 80C5C698  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -1,8 +1,8 @@
 lbl_80347994:
 /* 80347994  7C 08 02 A6 */	mflr r0
-/* 80347998  3C 60 80 45 */	lis r3, CommandList@ha
+/* 80347998  3C 60 80 45 */	lis r3, CommandList@ha /* 0x8044C830@ha */
 /* 8034799C  90 01 00 04 */	stw r0, 4(r1)
-/* 803479A0  38 83 C8 30 */	addi r4, r3, CommandList@l
+/* 803479A0  38 83 C8 30 */	addi r4, r3, CommandList@l /* 0x8044C830@l */
 /* 803479A4  94 21 FF F8 */	stwu r1, -8(r1)
 /* 803479A8  80 0D 91 D4 */	lwz r0, NextCommandNumber(r13)
 /* 803479AC  1C 00 00 14 */	mulli r0, r0, 0x14

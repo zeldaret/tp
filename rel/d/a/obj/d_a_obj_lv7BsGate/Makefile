@@ -3,19 +3,20 @@
 #
 
 M557_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7BsGate.plf
+M557_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7BsGate.lcf
+M557_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7BsGate.map
 
 M557_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv7BsGate/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv7BsGate/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv7BsGate/d_a_obj_lv7BsGate.cpp \
 
 M557_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7BsGate/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7BsGate/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7BsGate/d_a_obj_lv7BsGate.o \
 
 M557_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7BsGate/libRuntime.PPCEABI.H.a \
 
 M557_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M557_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M557_LDSCRIPT) \
+	-unused -map $(M557_MAP) \
+	-w off \
 
 $(M557_TARGET): $(M557_O_FILES) $(M557_LIBS)
+	@echo [557] creating $(M557_TARGET)
 	@echo $(M557_LIBS) $(M557_O_FILES) > build/M557_ofiles
-	$(LD) -partial $(M557_LDFLAGS) -o $(M557_TARGET) @build/M557_ofiles
+	@python3 tools/lcf.py rel 557 --output $(M557_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M557_LDFLAGS) -o $(M557_TARGET) @build/M557_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv7BsGate/%.o: rel/d/a/obj/d_a_obj_lv7BsGate/%.cpp
+	@echo [557] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M557_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M557_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv7BsGate/libs/Runtime.PPCEABI.H/Makefile
 

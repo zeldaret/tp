@@ -7,7 +7,7 @@ lbl_80BBCCFC:
 /* 80BBCD10  41 82 00 10 */	beq lbl_80BBCD20
 /* 80BBCD14  7C 80 07 35 */	extsh. r0, r4
 /* 80BBCD18  40 81 00 08 */	ble lbl_80BBCD20
-/* 80BBCD1C  4B 71 20 20 */	b __dl__FPv
+/* 80BBCD1C  4B 71 20 21 */	bl __dl__FPv
 lbl_80BBCD20:
 /* 80BBCD20  7F E3 FB 78 */	mr r3, r31
 /* 80BBCD24  83 E1 00 0C */	lwz r31, 0xc(r1)

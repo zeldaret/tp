@@ -17,8 +17,8 @@ lbl_800238D4:
 /* 80023910  2C 03 00 00 */	cmpwi r3, 0
 /* 80023914  41 82 00 18 */	beq lbl_8002392C
 /* 80023918  38 7E 00 BC */	addi r3, r30, 0xbc
-/* 8002391C  3C 80 80 02 */	lis r4, fpcPause_Disable__FPvUc@ha
-/* 80023920  38 84 38 D4 */	addi r4, r4, fpcPause_Disable__FPvUc@l
+/* 8002391C  3C 80 80 02 */	lis r4, fpcPause_Disable__FPvUc@ha /* 0x800238D4@ha */
+/* 80023920  38 84 38 D4 */	addi r4, r4, fpcPause_Disable__FPvUc@l /* 0x800238D4@l */
 /* 80023924  57 E5 06 3E */	clrlwi r5, r31, 0x18
 /* 80023928  4B FF E2 61 */	bl fpcLyIt_OnlyHere__FP11layer_classPFPvPv_iPv
 lbl_8002392C:

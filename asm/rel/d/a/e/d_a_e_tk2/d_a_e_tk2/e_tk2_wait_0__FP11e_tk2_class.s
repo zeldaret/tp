@@ -20,8 +20,8 @@ lbl_807BA980:
 /* 807BA980  A8 1F 06 8C */	lha r0, 0x68c(r31)
 /* 807BA984  2C 00 00 00 */	cmpwi r0, 0
 /* 807BA988  40 82 00 30 */	bne lbl_807BA9B8
-/* 807BA98C  3C 80 80 7C */	lis r4, l_HIO@ha
-/* 807BA990  38 84 BF 50 */	addi r4, r4, l_HIO@l
+/* 807BA98C  3C 80 80 7C */	lis r4, l_HIO@ha /* 0x807BBF50@ha */
+/* 807BA990  38 84 BF 50 */	addi r4, r4, l_HIO@l /* 0x807BBF50@l */
 /* 807BA994  C0 24 00 10 */	lfs f1, 0x10(r4)
 /* 807BA998  38 80 40 00 */	li r4, 0x4000
 /* 807BA99C  4B FF FE 0D */	bl pl_check__FP11e_tk2_classfs
@@ -38,7 +38,7 @@ lbl_807BA9B8:
 /* 807BA9C4  A8 9F 06 7C */	lha r4, 0x67c(r31)
 /* 807BA9C8  38 A0 00 10 */	li r5, 0x10
 /* 807BA9CC  38 C0 04 00 */	li r6, 0x400
-/* 807BA9D0  4B AB 5C 38 */	b cLib_addCalcAngleS2__FPssss
+/* 807BA9D0  4B AB 5C 39 */	bl cLib_addCalcAngleS2__FPssss
 /* 807BA9D4  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 807BA9D8  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 807BA9DC  7C 08 03 A6 */	mtlr r0

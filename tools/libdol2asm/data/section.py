@@ -14,6 +14,7 @@ class ExecutableSection:
     relocations: Dict[int, "relib.Relocation"] = field(default_factory=dict,repr=False)
     first_padding: int = 0
     offset_padding: int = 0
+    alignment: int = 4
 
     @property
     def start(self):
@@ -42,6 +43,7 @@ class Section:
     base_addr: int = None
     index: int = None
     offset: int = None
+    alignment: int = 4
 
     @property
     def start(self):

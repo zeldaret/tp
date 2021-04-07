@@ -67,8 +67,8 @@ lbl_8014B57C:
 lbl_8014B5A0:
 /* 8014B5A0  A8 C3 0D DA */	lha r6, 0xdda(r3)
 /* 8014B5A4  54 C0 04 38 */	rlwinm r0, r6, 0, 0x10, 0x1c
-/* 8014B5A8  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha
-/* 8014B5AC  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l
+/* 8014B5A8  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8014B5AC  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8014B5B0  7C 45 04 2E */	lfsx f2, r5, r0
 /* 8014B5B4  C8 22 99 E0 */	lfd f1, lit_4142(r2)
 /* 8014B5B8  6C E0 80 00 */	xoris r0, r7, 0x8000

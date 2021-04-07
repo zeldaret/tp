@@ -1,6 +1,6 @@
 lbl_801B7B14:
-/* 801B7B14  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 801B7B18  38 83 C3 80 */	addi r4, r3, cNullVec__6Z2Calc@l
+/* 801B7B14  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803BC380@ha */
+/* 801B7B18  38 83 C3 80 */	addi r4, r3, cNullVec__6Z2Calc@l /* 0x803BC380@l */
 /* 801B7B1C  80 64 00 0C */	lwz r3, 0xc(r4)
 /* 801B7B20  80 04 00 10 */	lwz r0, 0x10(r4)
 /* 801B7B24  90 64 00 F0 */	stw r3, 0xf0(r4)

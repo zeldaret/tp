@@ -41,8 +41,8 @@ lbl_8027E6EC:
 /* 8027E788  10 A4 01 3A */	ps_madd f5, f4, f4, f0
 /* 8027E78C  10 A5 00 14 */	ps_sum0 f5, f5, f0, f0
 /* 8027E790  C0 22 B9 70 */	lfs f1, lit_2440(r2)
-/* 8027E794  3C 60 80 45 */	lis r3, __float_epsilon@ha
-/* 8027E798  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)
+/* 8027E794  3C 60 80 45 */	lis r3, __float_epsilon@ha /* 0x80450AEC@ha */
+/* 8027E798  C0 03 0A EC */	lfs f0, __float_epsilon@l(r3)  /* 0x80450AEC@l */
 /* 8027E79C  EC 01 00 32 */	fmuls f0, f1, f0
 /* 8027E7A0  FC 05 00 40 */	fcmpo cr0, f5, f0
 /* 8027E7A4  4C 40 13 82 */	cror 2, 0, 2

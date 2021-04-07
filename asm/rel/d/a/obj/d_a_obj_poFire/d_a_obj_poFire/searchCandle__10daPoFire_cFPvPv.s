@@ -7,7 +7,7 @@ lbl_80CB2F68:
 /* 80CB2F7C  7C 9E 23 78 */	mr r30, r4
 /* 80CB2F80  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80CB2F84  41 82 00 34 */	beq lbl_80CB2FB8
-/* 80CB2F88  4B 36 5D 58 */	b fopAc_IsActor__FPv
+/* 80CB2F88  4B 36 5D 59 */	bl fopAc_IsActor__FPv
 /* 80CB2F8C  2C 03 00 00 */	cmpwi r3, 0
 /* 80CB2F90  41 82 00 28 */	beq lbl_80CB2FB8
 /* 80CB2F94  A8 1F 00 0E */	lha r0, 0xe(r31)

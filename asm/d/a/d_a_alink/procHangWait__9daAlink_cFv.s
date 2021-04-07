@@ -20,8 +20,8 @@ lbl_800FB570:
 /* 800FB588  4B FF F0 41 */	bl checkHangFootWall__9daAlink_cFv
 /* 800FB58C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800FB590  40 82 00 3C */	bne lbl_800FB5CC
-/* 800FB594  3C 60 80 39 */	lis r3, m__23daAlinkHIO_wallCatch_c0@ha
-/* 800FB598  A8 A3 E1 64 */	lha r5, m__23daAlinkHIO_wallCatch_c0@l(r3)
+/* 800FB594  3C 60 80 39 */	lis r3, m__23daAlinkHIO_wallCatch_c0@ha /* 0x8038E164@ha */
+/* 800FB598  A8 A3 E1 64 */	lha r5, m__23daAlinkHIO_wallCatch_c0@l(r3)  /* 0x8038E164@l */
 /* 800FB59C  7F A3 EB 78 */	mr r3, r29
 /* 800FB5A0  38 80 00 92 */	li r4, 0x92
 /* 800FB5A4  C0 22 92 C0 */	lfs f1, lit_6108(r2)
@@ -44,8 +44,8 @@ lbl_800FB5CC:
 /* 800FB5E4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 800FB5E8  40 82 00 1C */	bne lbl_800FB604
 /* 800FB5EC  7F A3 EB 78 */	mr r3, r29
-/* 800FB5F0  3C 80 80 39 */	lis r4, m__23daAlinkHIO_wallCatch_c0@ha
-/* 800FB5F4  38 84 E1 64 */	addi r4, r4, m__23daAlinkHIO_wallCatch_c0@l
+/* 800FB5F0  3C 80 80 39 */	lis r4, m__23daAlinkHIO_wallCatch_c0@ha /* 0x8038E164@ha */
+/* 800FB5F4  38 84 E1 64 */	addi r4, r4, m__23daAlinkHIO_wallCatch_c0@l /* 0x8038E164@l */
 /* 800FB5F8  C0 24 00 30 */	lfs f1, 0x30(r4)
 /* 800FB5FC  48 00 05 CD */	bl procHangClimbInit__9daAlink_cFf
 /* 800FB600  48 00 00 38 */	b lbl_800FB638

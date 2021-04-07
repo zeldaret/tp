@@ -4,8 +4,8 @@ lbl_80037C24:
 /* 80037C2C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80037C30  88 03 09 64 */	lbz r0, 0x964(r3)
 /* 80037C34  1C A0 00 30 */	mulli r5, r0, 0x30
-/* 80037C38  3C 80 80 38 */	lis r4, mData__12daShopItem_c@ha
-/* 80037C3C  38 84 92 E8 */	addi r4, r4, mData__12daShopItem_c@l
+/* 80037C38  3C 80 80 38 */	lis r4, mData__12daShopItem_c@ha /* 0x803792E8@ha */
+/* 80037C3C  38 84 92 E8 */	addi r4, r4, mData__12daShopItem_c@l /* 0x803792E8@l */
 /* 80037C40  7D 44 2A 14 */	add r10, r4, r5
 /* 80037C44  A8 0A 00 10 */	lha r0, 0x10(r10)
 /* 80037C48  90 01 00 08 */	stw r0, 8(r1)

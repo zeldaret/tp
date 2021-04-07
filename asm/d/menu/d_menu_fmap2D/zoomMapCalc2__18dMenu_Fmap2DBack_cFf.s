@@ -115,8 +115,8 @@ lbl_801D1600:
 /* 801D161C  FF E0 08 90 */	fmr f31, f1
 /* 801D1620  7F E3 FB 78 */	mr r3, r31
 /* 801D1624  48 00 10 A5 */	bl getMapAreaGlobalCenterPosY__18dMenu_Fmap2DBack_cFv
-/* 801D1628  3C 60 80 43 */	lis r3, g_fmapHIO@ha
-/* 801D162C  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l
+/* 801D1628  3C 60 80 43 */	lis r3, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801D162C  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801D1630  88 03 03 08 */	lbz r0, 0x308(r3)
 /* 801D1634  28 00 00 00 */	cmplwi r0, 0
 /* 801D1638  40 82 00 64 */	bne lbl_801D169C

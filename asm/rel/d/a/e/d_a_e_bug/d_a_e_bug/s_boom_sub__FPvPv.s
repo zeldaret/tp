@@ -4,24 +4,24 @@ lbl_80697160:
 /* 80697168  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8069716C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80697170  7C 7F 1B 78 */	mr r31, r3
-/* 80697174  4B 98 1B 6C */	b fopAc_IsActor__FPv
+/* 80697174  4B 98 1B 6D */	bl fopAc_IsActor__FPv
 /* 80697178  2C 03 00 00 */	cmpwi r3, 0
 /* 8069717C  41 82 00 58 */	beq lbl_806971D4
 /* 80697180  A8 1F 00 08 */	lha r0, 8(r31)
 /* 80697184  2C 00 00 FE */	cmpwi r0, 0xfe
 /* 80697188  40 82 00 4C */	bne lbl_806971D4
-/* 8069718C  4B AC 87 10 */	b checkBoomerangCharge__9daPy_py_cFv
+/* 8069718C  4B AC 87 11 */	bl checkBoomerangCharge__9daPy_py_cFv
 /* 80697190  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80697194  41 82 00 40 */	beq lbl_806971D4
 /* 80697198  80 1F 00 B0 */	lwz r0, 0xb0(r31)
 /* 8069719C  28 00 00 01 */	cmplwi r0, 1
 /* 806971A0  40 82 00 34 */	bne lbl_806971D4
 /* 806971A4  38 00 00 01 */	li r0, 1
-/* 806971A8  3C 60 80 69 */	lis r3, struct_80697E8C+0x1@ha
-/* 806971AC  98 03 7E 8D */	stb r0, struct_80697E8C+0x1@l(r3)
+/* 806971A8  3C 60 80 69 */	lis r3, struct_80697E8C+0x1@ha /* 0x80697E8D@ha */
+/* 806971AC  98 03 7E 8D */	stb r0, struct_80697E8C+0x1@l(r3)  /* 0x80697E8D@l */
 /* 806971B0  C0 1F 04 D0 */	lfs f0, 0x4d0(r31)
-/* 806971B4  3C 60 80 69 */	lis r3, at_pos@ha
-/* 806971B8  D4 03 7E 9C */	stfsu f0, at_pos@l(r3)
+/* 806971B4  3C 60 80 69 */	lis r3, at_pos@ha /* 0x80697E9C@ha */
+/* 806971B8  D4 03 7E 9C */	stfsu f0, at_pos@l(r3)  /* 0x80697E9C@l */
 /* 806971BC  C0 1F 04 D4 */	lfs f0, 0x4d4(r31)
 /* 806971C0  D0 03 00 04 */	stfs f0, 4(r3)
 /* 806971C4  C0 1F 04 D8 */	lfs f0, 0x4d8(r31)

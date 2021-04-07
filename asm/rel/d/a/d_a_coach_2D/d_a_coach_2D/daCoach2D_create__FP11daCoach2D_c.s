@@ -9,15 +9,15 @@ lbl_8065764C:
 /* 80657668  40 82 00 50 */	bne lbl_806576B8
 /* 8065766C  28 1F 00 00 */	cmplwi r31, 0
 /* 80657670  41 82 00 3C */	beq lbl_806576AC
-/* 80657674  4B 9C 14 F0 */	b __ct__10fopAc_ac_cFv
-/* 80657678  3C 60 80 65 */	lis r3, __vt__11daCoach2D_c@ha
-/* 8065767C  38 03 7A 54 */	addi r0, r3, __vt__11daCoach2D_c@l
+/* 80657674  4B 9C 14 F1 */	bl __ct__10fopAc_ac_cFv
+/* 80657678  3C 60 80 65 */	lis r3, __vt__11daCoach2D_c@ha /* 0x80657A54@ha */
+/* 8065767C  38 03 7A 54 */	addi r0, r3, __vt__11daCoach2D_c@l /* 0x80657A54@l */
 /* 80657680  90 1F 05 70 */	stw r0, 0x570(r31)
-/* 80657684  3C 60 80 65 */	lis r3, __vt__12dDlst_base_c@ha
-/* 80657688  38 03 7A 48 */	addi r0, r3, __vt__12dDlst_base_c@l
+/* 80657684  3C 60 80 65 */	lis r3, __vt__12dDlst_base_c@ha /* 0x80657A48@ha */
+/* 80657688  38 03 7A 48 */	addi r0, r3, __vt__12dDlst_base_c@l /* 0x80657A48@l */
 /* 8065768C  90 1F 07 70 */	stw r0, 0x770(r31)
-/* 80657690  3C 60 80 65 */	lis r3, __vt__Q211daCoach2D_c6c_list@ha
-/* 80657694  38 03 7A 60 */	addi r0, r3, __vt__Q211daCoach2D_c6c_list@l
+/* 80657690  3C 60 80 65 */	lis r3, __vt__Q211daCoach2D_c6c_list@ha /* 0x80657A60@ha */
+/* 80657694  38 03 7A 60 */	addi r0, r3, __vt__Q211daCoach2D_c6c_list@l /* 0x80657A60@l */
 /* 80657698  90 1F 07 70 */	stw r0, 0x770(r31)
 /* 8065769C  38 00 00 00 */	li r0, 0
 /* 806576A0  90 1F 07 74 */	stw r0, 0x774(r31)

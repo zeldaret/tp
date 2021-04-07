@@ -20,8 +20,8 @@ lbl_800E5EF4:
 /* 800E5F0C  41 82 00 40 */	beq lbl_800E5F4C
 /* 800E5F10  7F E3 FB 78 */	mr r3, r31
 /* 800E5F14  38 80 00 B3 */	li r4, 0xb3
-/* 800E5F18  3C A0 80 39 */	lis r5, m__18daAlinkHIO_grab_c0@ha
-/* 800E5F1C  38 C5 EC 48 */	addi r6, r5, m__18daAlinkHIO_grab_c0@l
+/* 800E5F18  3C A0 80 39 */	lis r5, m__18daAlinkHIO_grab_c0@ha /* 0x8038EC48@ha */
+/* 800E5F1C  38 C5 EC 48 */	addi r6, r5, m__18daAlinkHIO_grab_c0@l /* 0x8038EC48@l */
 /* 800E5F20  C0 26 00 7C */	lfs f1, 0x7c(r6)
 /* 800E5F24  C0 46 00 80 */	lfs f2, 0x80(r6)
 /* 800E5F28  C0 06 00 88 */	lfs f0, 0x88(r6)
@@ -44,8 +44,8 @@ lbl_800E5F58:
 /* 800E5F64  7F E3 FB 78 */	mr r3, r31
 /* 800E5F68  C0 5F 34 7C */	lfs f2, 0x347c(r31)
 /* 800E5F6C  C0 3F 1F E0 */	lfs f1, 0x1fe0(r31)
-/* 800E5F70  3C 80 80 39 */	lis r4, m__18daAlinkHIO_grab_c0@ha
-/* 800E5F74  38 84 EC 48 */	addi r4, r4, m__18daAlinkHIO_grab_c0@l
+/* 800E5F70  3C 80 80 39 */	lis r4, m__18daAlinkHIO_grab_c0@ha /* 0x8038EC48@ha */
+/* 800E5F74  38 84 EC 48 */	addi r4, r4, m__18daAlinkHIO_grab_c0@l /* 0x8038EC48@l */
 /* 800E5F78  C0 04 00 94 */	lfs f0, 0x94(r4)
 /* 800E5F7C  EC 01 00 28 */	fsubs f0, f1, f0
 /* 800E5F80  EC 22 00 32 */	fmuls f1, f2, f0
@@ -57,8 +57,8 @@ lbl_800E5F90:
 /* 800E5F94  C0 22 92 C0 */	lfs f1, lit_6108(r2)
 /* 800E5F98  C0 7F 34 7C */	lfs f3, 0x347c(r31)
 /* 800E5F9C  C0 5F 1F E0 */	lfs f2, 0x1fe0(r31)
-/* 800E5FA0  3C 80 80 39 */	lis r4, m__18daAlinkHIO_grab_c0@ha
-/* 800E5FA4  38 84 EC 48 */	addi r4, r4, m__18daAlinkHIO_grab_c0@l
+/* 800E5FA0  3C 80 80 39 */	lis r4, m__18daAlinkHIO_grab_c0@ha /* 0x8038EC48@ha */
+/* 800E5FA4  38 84 EC 48 */	addi r4, r4, m__18daAlinkHIO_grab_c0@l /* 0x8038EC48@l */
 /* 800E5FA8  C0 04 00 08 */	lfs f0, 8(r4)
 /* 800E5FAC  EC 02 00 28 */	fsubs f0, f2, f0
 /* 800E5FB0  EC 43 00 32 */	fmuls f2, f3, f0

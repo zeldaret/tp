@@ -7,8 +7,8 @@ lbl_802EB998:
 /* 802EB9AC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802EB9B0  7C 9F 23 78 */	mr r31, r4
 /* 802EB9B4  41 82 00 80 */	beq lbl_802EBA34
-/* 802EB9B8  3C 60 80 3D */	lis r3, __vt__12J2DTevBlock1@ha
-/* 802EB9BC  38 03 CD B8 */	addi r0, r3, __vt__12J2DTevBlock1@l
+/* 802EB9B8  3C 60 80 3D */	lis r3, __vt__12J2DTevBlock1@ha /* 0x803CCDB8@ha */
+/* 802EB9BC  38 03 CD B8 */	addi r0, r3, __vt__12J2DTevBlock1@l /* 0x803CCDB8@l */
 /* 802EB9C0  90 1E 00 00 */	stw r0, 0(r30)
 /* 802EB9C4  88 1E 00 5C */	lbz r0, 0x5c(r30)
 /* 802EB9C8  54 00 07 FF */	clrlwi. r0, r0, 0x1f
@@ -33,8 +33,8 @@ lbl_802EB9DC:
 lbl_802EBA10:
 /* 802EBA10  28 1E 00 00 */	cmplwi r30, 0
 /* 802EBA14  41 82 00 10 */	beq lbl_802EBA24
-/* 802EBA18  3C 60 80 3D */	lis r3, __vt__11J2DTevBlock@ha
-/* 802EBA1C  38 03 CE 74 */	addi r0, r3, __vt__11J2DTevBlock@l
+/* 802EBA18  3C 60 80 3D */	lis r3, __vt__11J2DTevBlock@ha /* 0x803CCE74@ha */
+/* 802EBA1C  38 03 CE 74 */	addi r0, r3, __vt__11J2DTevBlock@l /* 0x803CCE74@l */
 /* 802EBA20  90 1E 00 00 */	stw r0, 0(r30)
 lbl_802EBA24:
 /* 802EBA24  7F E0 07 35 */	extsh. r0, r31

@@ -15,16 +15,16 @@ lbl_80C8B2C4:
 /* 80C8B2C8  28 00 00 00 */	cmplwi r0, 0
 /* 80C8B2CC  41 82 00 14 */	beq lbl_80C8B2E0
 /* 80C8B2D0  38 7F 05 F4 */	addi r3, r31, 0x5f4
-/* 80C8B2D4  4B 51 C6 58 */	b dKy_plight_cut__FP15LIGHT_INFLUENCE
+/* 80C8B2D4  4B 51 C6 59 */	bl dKy_plight_cut__FP15LIGHT_INFLUENCE
 /* 80C8B2D8  38 00 00 00 */	li r0, 0
 /* 80C8B2DC  98 1F 06 14 */	stb r0, 0x614(r31)
 lbl_80C8B2E0:
-/* 80C8B2E0  3C 60 80 C9 */	lis r3, l_HIO@ha
-/* 80C8B2E4  38 63 BB EC */	addi r3, r3, l_HIO@l
+/* 80C8B2E0  3C 60 80 C9 */	lis r3, l_HIO@ha /* 0x80C8BBEC@ha */
+/* 80C8B2E4  38 63 BB EC */	addi r3, r3, l_HIO@l /* 0x80C8BBEC@l */
 /* 80C8B2E8  88 03 00 04 */	lbz r0, 4(r3)
 /* 80C8B2EC  98 1F 05 EA */	stb r0, 0x5ea(r31)
-/* 80C8B2F0  3C 60 80 C9 */	lis r3, lit_3902@ha
-/* 80C8B2F4  C0 03 BA 00 */	lfs f0, lit_3902@l(r3)
+/* 80C8B2F0  3C 60 80 C9 */	lis r3, lit_3902@ha /* 0x80C8BA00@ha */
+/* 80C8B2F4  C0 03 BA 00 */	lfs f0, lit_3902@l(r3)  /* 0x80C8BA00@l */
 /* 80C8B2F8  D0 1F 05 B8 */	stfs f0, 0x5b8(r31)
 /* 80C8B2FC  38 00 00 06 */	li r0, 6
 /* 80C8B300  98 1F 05 E8 */	stb r0, 0x5e8(r31)

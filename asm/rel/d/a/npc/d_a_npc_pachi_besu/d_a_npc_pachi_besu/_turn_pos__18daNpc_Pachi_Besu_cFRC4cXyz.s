@@ -5,7 +5,7 @@ lbl_80A94B24:
 /* 80A94B30  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A94B34  7C 7F 1B 78 */	mr r31, r3
 /* 80A94B38  38 7F 04 D0 */	addi r3, r31, 0x4d0
-/* 80A94B3C  4B 7D C0 C8 */	b cLib_targetAngleY__FPC3VecPC3Vec
+/* 80A94B3C  4B 7D C0 C9 */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 80A94B40  B0 7F 0D 7A */	sth r3, 0xd7a(r31)
 /* 80A94B44  B0 7F 04 DE */	sth r3, 0x4de(r31)
 /* 80A94B48  B0 7F 04 E6 */	sth r3, 0x4e6(r31)

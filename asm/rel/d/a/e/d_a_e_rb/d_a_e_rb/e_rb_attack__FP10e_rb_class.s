@@ -9,8 +9,8 @@ lbl_80762C4C:
 /* 80762C68  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80762C6C  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80762C70  7C 7E 1B 78 */	mr r30, r3
-/* 80762C74  3C 80 80 76 */	lis r4, lit_3788@ha
-/* 80762C78  3B E4 4D 0C */	addi r31, r4, lit_3788@l
+/* 80762C74  3C 80 80 76 */	lis r4, lit_3788@ha /* 0x80764D0C@ha */
+/* 80762C78  3B E4 4D 0C */	addi r31, r4, lit_3788@l /* 0x80764D0C@l */
 /* 80762C7C  C3 FF 00 04 */	lfs f31, 4(r31)
 /* 80762C80  C3 DF 00 08 */	lfs f30, 8(r31)
 /* 80762C84  A8 03 0A 44 */	lha r0, 0xa44(r3)
@@ -66,7 +66,7 @@ lbl_80762D34:
 /* 80762D38  A8 9E 0A 48 */	lha r4, 0xa48(r30)
 /* 80762D3C  38 A0 00 04 */	li r5, 4
 /* 80762D40  38 C0 04 00 */	li r6, 0x400
-/* 80762D44  4B B0 D8 C4 */	b cLib_addCalcAngleS2__FPssss
+/* 80762D44  4B B0 D8 C5 */	bl cLib_addCalcAngleS2__FPssss
 /* 80762D48  C3 FF 00 74 */	lfs f31, 0x74(r31)
 /* 80762D4C  C3 DF 00 78 */	lfs f30, 0x78(r31)
 /* 80762D50  A8 1E 0A 38 */	lha r0, 0xa38(r30)
@@ -86,7 +86,7 @@ lbl_80762D68:
 /* 80762D84  38 00 00 04 */	li r0, 4
 /* 80762D88  B0 1E 0A 4A */	sth r0, 0xa4a(r30)
 /* 80762D8C  38 7E 08 0C */	addi r3, r30, 0x80c
-/* 80762D90  4B 92 15 30 */	b ChkAtHit__12dCcD_GObjInfFv
+/* 80762D90  4B 92 15 31 */	bl ChkAtHit__12dCcD_GObjInfFv
 /* 80762D94  28 03 00 00 */	cmplwi r3, 0
 /* 80762D98  41 82 00 10 */	beq lbl_80762DA8
 /* 80762D9C  C0 1F 00 4C */	lfs f0, 0x4c(r31)
@@ -126,7 +126,7 @@ lbl_80762E10:
 /* 80762E14  FC 20 F8 90 */	fmr f1, f31
 /* 80762E18  C0 5F 00 08 */	lfs f2, 8(r31)
 /* 80762E1C  FC 60 F0 90 */	fmr f3, f30
-/* 80762E20  4B B0 CC 1C */	b cLib_addCalc2__FPffff
+/* 80762E20  4B B0 CC 1D */	bl cLib_addCalc2__FPffff
 /* 80762E24  A8 7E 04 E6 */	lha r3, 0x4e6(r30)
 /* 80762E28  A8 1E 0A 4C */	lha r0, 0xa4c(r30)
 /* 80762E2C  7C 03 02 14 */	add r0, r3, r0
@@ -135,7 +135,7 @@ lbl_80762E10:
 /* 80762E38  38 03 04 64 */	addi r0, r3, 0x0464 /* 0x00070464@l */
 /* 80762E3C  90 01 00 08 */	stw r0, 8(r1)
 /* 80762E40  C0 3E 05 2C */	lfs f1, 0x52c(r30)
-/* 80762E44  4B BF F2 68 */	b __cvt_fp2unsigned
+/* 80762E44  4B BF F2 69 */	bl __cvt_fp2unsigned
 /* 80762E48  7C 65 1B 78 */	mr r5, r3
 /* 80762E4C  38 7E 09 6C */	addi r3, r30, 0x96c
 /* 80762E50  38 81 00 08 */	addi r4, r1, 8

@@ -3,19 +3,20 @@
 #
 
 M255_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_ymb.plf
+M255_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_ymb.lcf
+M255_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_ymb.map
 
 M255_CPP_FILES := \
-	rel/d/a/e/d_a_e_ymb/executor.cpp \
-	rel/d/a/e/d_a_e_ymb/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_ymb/d_a_e_ymb.cpp \
 
 M255_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_ymb/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_ymb/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_ymb/d_a_e_ymb.o \
 
 M255_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_ymb/libRuntime.PPCEABI.H.a \
 
 M255_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M255_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M255_LDSCRIPT) \
+	-unused -map $(M255_MAP) \
+	-w off \
 
 $(M255_TARGET): $(M255_O_FILES) $(M255_LIBS)
+	@echo [255] creating $(M255_TARGET)
 	@echo $(M255_LIBS) $(M255_O_FILES) > build/M255_ofiles
-	$(LD) -partial $(M255_LDFLAGS) -o $(M255_TARGET) @build/M255_ofiles
+	@python3 tools/lcf.py rel 255 --output $(M255_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M255_LDFLAGS) -o $(M255_TARGET) @build/M255_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_ymb/%.o: rel/d/a/e/d_a_e_ymb/%.cpp
+	@echo [255] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M255_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M255_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_ymb/libs/Runtime.PPCEABI.H/Makefile
 

@@ -9,13 +9,13 @@ lbl_80AB3F54:
 /* 80AB3F70  38 00 00 03 */	li r0, 3
 /* 80AB3F74  B0 03 0E 0C */	sth r0, 0xe0c(r3)
 /* 80AB3F78  38 7E 0D DC */	addi r3, r30, 0xddc
-/* 80AB3F7C  4B 8A E0 9C */	b __ptmf_test
+/* 80AB3F7C  4B 8A E0 9D */	bl __ptmf_test
 /* 80AB3F80  2C 03 00 00 */	cmpwi r3, 0
 /* 80AB3F84  41 82 00 18 */	beq lbl_80AB3F9C
 /* 80AB3F88  7F C3 F3 78 */	mr r3, r30
 /* 80AB3F8C  38 80 00 00 */	li r4, 0
 /* 80AB3F90  39 9E 0D DC */	addi r12, r30, 0xddc
-/* 80AB3F94  4B 8A E0 F0 */	b __ptmf_scall
+/* 80AB3F94  4B 8A E0 F1 */	bl __ptmf_scall
 /* 80AB3F98  60 00 00 00 */	nop 
 lbl_80AB3F9C:
 /* 80AB3F9C  38 00 00 00 */	li r0, 0
@@ -27,13 +27,13 @@ lbl_80AB3F9C:
 /* 80AB3FB4  80 1F 00 08 */	lwz r0, 8(r31)
 /* 80AB3FB8  90 1E 0D E4 */	stw r0, 0xde4(r30)
 /* 80AB3FBC  38 7E 0D DC */	addi r3, r30, 0xddc
-/* 80AB3FC0  4B 8A E0 58 */	b __ptmf_test
+/* 80AB3FC0  4B 8A E0 59 */	bl __ptmf_test
 /* 80AB3FC4  2C 03 00 00 */	cmpwi r3, 0
 /* 80AB3FC8  41 82 00 18 */	beq lbl_80AB3FE0
 /* 80AB3FCC  7F C3 F3 78 */	mr r3, r30
 /* 80AB3FD0  38 80 00 00 */	li r4, 0
 /* 80AB3FD4  39 9E 0D DC */	addi r12, r30, 0xddc
-/* 80AB3FD8  4B 8A E0 AC */	b __ptmf_scall
+/* 80AB3FD8  4B 8A E0 AD */	bl __ptmf_scall
 /* 80AB3FDC  60 00 00 00 */	nop 
 lbl_80AB3FE0:
 /* 80AB3FE0  38 60 00 01 */	li r3, 1

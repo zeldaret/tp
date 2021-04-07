@@ -1,8 +1,8 @@
 lbl_806E03EC:
-/* 806E03EC  3C 80 80 6E */	lis r4, lit_3791@ha
-/* 806E03F0  38 A4 59 20 */	addi r5, r4, lit_3791@l
-/* 806E03F4  3C 80 80 6E */	lis r4, __vt__12daE_HM_HIO_c@ha
-/* 806E03F8  38 04 5B C4 */	addi r0, r4, __vt__12daE_HM_HIO_c@l
+/* 806E03EC  3C 80 80 6E */	lis r4, lit_3791@ha /* 0x806E5920@ha */
+/* 806E03F0  38 A4 59 20 */	addi r5, r4, lit_3791@l /* 0x806E5920@l */
+/* 806E03F4  3C 80 80 6E */	lis r4, __vt__12daE_HM_HIO_c@ha /* 0x806E5BC4@ha */
+/* 806E03F8  38 04 5B C4 */	addi r0, r4, __vt__12daE_HM_HIO_c@l /* 0x806E5BC4@l */
 /* 806E03FC  90 03 00 00 */	stw r0, 0(r3)
 /* 806E0400  38 00 FF FF */	li r0, -1
 /* 806E0404  98 03 00 04 */	stb r0, 4(r3)

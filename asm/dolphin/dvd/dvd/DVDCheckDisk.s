@@ -22,8 +22,8 @@ lbl_8034B664:
 /* 8034B670  38 80 00 00 */	li r4, 0
 /* 8034B674  48 00 00 20 */	b lbl_8034B694
 lbl_8034B678:
-/* 8034B678  3C 80 80 45 */	lis r4, DummyCommandBlock@ha
-/* 8034B67C  38 04 C9 40 */	addi r0, r4, DummyCommandBlock@l
+/* 8034B678  3C 80 80 45 */	lis r4, DummyCommandBlock@ha /* 0x8044C940@ha */
+/* 8034B67C  38 04 C9 40 */	addi r0, r4, DummyCommandBlock@l /* 0x8044C940@l */
 /* 8034B680  7C 05 00 40 */	cmplw r5, r0
 /* 8034B684  40 82 00 0C */	bne lbl_8034B690
 /* 8034B688  38 80 00 00 */	li r4, 0
@@ -34,8 +34,8 @@ lbl_8034B694:
 /* 8034B694  38 04 00 01 */	addi r0, r4, 1
 /* 8034B698  28 00 00 0C */	cmplwi r0, 0xc
 /* 8034B69C  41 81 00 68 */	bgt lbl_8034B704
-/* 8034B6A0  3C 80 80 3D */	lis r4, lit_1060@ha
-/* 8034B6A4  38 84 16 70 */	addi r4, r4, lit_1060@l
+/* 8034B6A0  3C 80 80 3D */	lis r4, lit_1060@ha /* 0x803D1670@ha */
+/* 8034B6A4  38 84 16 70 */	addi r4, r4, lit_1060@l /* 0x803D1670@l */
 /* 8034B6A8  54 00 10 3A */	slwi r0, r0, 2
 /* 8034B6AC  7C 04 00 2E */	lwzx r0, r4, r0
 /* 8034B6B0  7C 09 03 A6 */	mtctr r0

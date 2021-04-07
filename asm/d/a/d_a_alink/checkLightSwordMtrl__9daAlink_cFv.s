@@ -4,8 +4,8 @@ lbl_800D0E08:
 /* 800D0E10  90 01 00 14 */	stw r0, 0x14(r1)
 /* 800D0E14  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800D0E18  7C 7F 1B 78 */	mr r31, r3
-/* 800D0E1C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D0E20  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D0E1C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D0E20  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D0E24  88 03 00 14 */	lbz r0, 0x14(r3)
 /* 800D0E28  28 00 00 49 */	cmplwi r0, 0x49
 /* 800D0E2C  40 82 00 4C */	bne lbl_800D0E78
@@ -17,8 +17,8 @@ lbl_800D0E08:
 /* 800D0E44  54 00 FE FE */	rlwinm r0, r0, 0x1f, 0x1b, 0x1f
 /* 800D0E48  2C 00 00 17 */	cmpwi r0, 0x17
 /* 800D0E4C  41 82 00 1C */	beq lbl_800D0E68
-/* 800D0E50  3C 60 80 0D */	lis r3, daAlink_searchNightStalker__FP10fopAc_ac_cPv@ha
-/* 800D0E54  38 63 0D 38 */	addi r3, r3, daAlink_searchNightStalker__FP10fopAc_ac_cPv@l
+/* 800D0E50  3C 60 80 0D */	lis r3, daAlink_searchNightStalker__FP10fopAc_ac_cPv@ha /* 0x800D0D38@ha */
+/* 800D0E54  38 63 0D 38 */	addi r3, r3, daAlink_searchNightStalker__FP10fopAc_ac_cPv@l /* 0x800D0D38@l */
 /* 800D0E58  38 80 00 00 */	li r4, 0
 /* 800D0E5C  4B F4 89 9D */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800D0E60  28 03 00 00 */	cmplwi r3, 0

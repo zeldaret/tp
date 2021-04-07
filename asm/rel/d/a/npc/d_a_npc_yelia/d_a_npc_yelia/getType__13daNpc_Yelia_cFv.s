@@ -3,8 +3,8 @@ lbl_80B4DD80:
 /* 80B4DD84  54 00 06 3E */	clrlwi r0, r0, 0x18
 /* 80B4DD88  28 00 00 08 */	cmplwi r0, 8
 /* 80B4DD8C  41 81 00 64 */	bgt lbl_80B4DDF0
-/* 80B4DD90  3C 60 80 B5 */	lis r3, lit_4570@ha
-/* 80B4DD94  38 63 31 00 */	addi r3, r3, lit_4570@l
+/* 80B4DD90  3C 60 80 B5 */	lis r3, lit_4570@ha /* 0x80B53100@ha */
+/* 80B4DD94  38 63 31 00 */	addi r3, r3, lit_4570@l /* 0x80B53100@l */
 /* 80B4DD98  54 00 10 3A */	slwi r0, r0, 2
 /* 80B4DD9C  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80B4DDA0  7C 09 03 A6 */	mtctr r0

@@ -42,8 +42,8 @@ lbl_800196E4:
 /* 80019738  C0 5D 05 6C */	lfs f2, 0x56c(r29)
 /* 8001973C  C0 7D 05 70 */	lfs f3, 0x570(r29)
 /* 80019740  48 32 D1 A9 */	bl PSMTXTrans
-/* 80019744  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80019748  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 80019744  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80019748  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8001974C  80 9D 05 80 */	lwz r4, 0x580(r29)
 /* 80019750  80 84 00 04 */	lwz r4, 4(r4)
 /* 80019754  7F C5 F3 78 */	mr r5, r30

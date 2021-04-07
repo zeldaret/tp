@@ -10,8 +10,8 @@ lbl_802D2040:
 /* 802D2060  38 80 0C 00 */	li r4, 0xc00
 /* 802D2064  38 A0 00 10 */	li r5, 0x10
 /* 802D2068  4B FF F5 01 */	bl __ct__9JKRThreadFUlii
-/* 802D206C  3C 60 80 3D */	lis r3, __vt__7JKRAram@ha
-/* 802D2070  38 03 C1 58 */	addi r0, r3, __vt__7JKRAram@l
+/* 802D206C  3C 60 80 3D */	lis r3, __vt__7JKRAram@ha /* 0x803CC158@ha */
+/* 802D2070  38 03 C1 58 */	addi r0, r3, __vt__7JKRAram@l /* 0x803CC158@l */
 /* 802D2074  90 1C 00 00 */	stw r0, 0(r28)
 /* 802D2078  38 7C 00 98 */	addi r3, r28, 0x98
 /* 802D207C  38 80 00 03 */	li r4, 3

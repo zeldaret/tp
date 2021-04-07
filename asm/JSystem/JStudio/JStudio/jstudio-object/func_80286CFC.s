@@ -5,8 +5,8 @@ lbl_80286CFC:
 /* 80286D08  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80286D0C  7C 7F 1B 78 */	mr r31, r3
 /* 80286D10  4B FF FB 55 */	bl __ct__Q27JStudio7TObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ27JStudio8TAdaptor
-/* 80286D14  3C 60 80 3C */	lis r3, __vt__Q27JStudio20TObject_ambientLight@ha
-/* 80286D18  38 03 55 40 */	addi r0, r3, __vt__Q27JStudio20TObject_ambientLight@l
+/* 80286D14  3C 60 80 3C */	lis r3, __vt__Q27JStudio20TObject_ambientLight@ha /* 0x803C5540@ha */
+/* 80286D18  38 03 55 40 */	addi r0, r3, __vt__Q27JStudio20TObject_ambientLight@l /* 0x803C5540@l */
 /* 80286D1C  90 1F 00 08 */	stw r0, 8(r31)
 /* 80286D20  7F E3 FB 78 */	mr r3, r31
 /* 80286D24  83 E1 00 0C */	lwz r31, 0xc(r1)

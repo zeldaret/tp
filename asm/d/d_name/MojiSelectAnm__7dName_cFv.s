@@ -12,8 +12,8 @@ lbl_8024F0E0:
 /* 8024F108  7C 7F 02 14 */	add r3, r31, r0
 /* 8024F10C  80 63 00 74 */	lwz r3, 0x74(r3)
 /* 8024F110  88 9F 02 A4 */	lbz r4, 0x2a4(r31)
-/* 8024F114  3C A0 80 43 */	lis r5, g_nmHIO@ha
-/* 8024F118  38 A5 07 34 */	addi r5, r5, g_nmHIO@l
+/* 8024F114  3C A0 80 43 */	lis r5, g_nmHIO@ha /* 0x80430734@ha */
+/* 8024F118  38 A5 07 34 */	addi r5, r5, g_nmHIO@l /* 0x80430734@l */
 /* 8024F11C  C0 25 00 0C */	lfs f1, 0xc(r5)
 /* 8024F120  C0 42 B3 C0 */	lfs f2, lit_3820(r2)
 /* 8024F124  38 A0 00 00 */	li r5, 0

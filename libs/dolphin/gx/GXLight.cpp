@@ -34,18 +34,18 @@ extern "C" extern void* __GXData;
 // Declarations:
 //
 
-/* 8035D630-8035D64C 001C+00 s=0 e=1 z=0  None .text      GXInitLightAttn */
+/* 8035D630-8035D64C 357F70 001C+00 0/0 1/1 0/0 .text            GXInitLightAttn */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXInitLightAttn() {
+asm void GXInitLightAttn() {
     nofralloc
 #include "asm/dolphin/gx/GXLight/GXInitLightAttn.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803D2578-803D2598 001C+04 s=1 e=0 z=0  None .data      @145 */
+/* 803D2578-803D2598 -00001 001C+04 1/1 0/0 0/0 .data            @145 */
 SECTION_DATA static void* lit_145[7 + 1 /* padding */] = {
     (void*)(((char*)GXInitLightSpot) + 0x160),
     (void*)(((char*)GXInitLightSpot) + 0x70),
@@ -58,7 +58,7 @@ SECTION_DATA static void* lit_145[7 + 1 /* padding */] = {
     NULL,
 };
 
-/* 804565B8-804565BC 0004+00 s=2 e=0 z=0  None .sdata2    @134 */
+/* 804565B8-804565BC 004BB8 0004+00 2/2 0/0 0/0 .sdata2          @134 */
 SECTION_SDATA2 static u8 lit_134[4] = {
     0x00,
     0x00,
@@ -66,135 +66,135 @@ SECTION_SDATA2 static u8 lit_134[4] = {
     0x00,
 };
 
-/* 804565BC-804565C0 0004+00 s=1 e=0 z=0  None .sdata2    @135 */
+/* 804565BC-804565C0 004BBC 0004+00 1/1 0/0 0/0 .sdata2          @135 */
 SECTION_SDATA2 static f32 lit_135 = 90.0f;
 
-/* 804565C0-804565C4 0004+00 s=1 e=0 z=0  None .sdata2    @136 */
+/* 804565C0-804565C4 004BC0 0004+00 1/1 0/0 0/0 .sdata2          @136 */
 SECTION_SDATA2 static f32 lit_136 = 3.1415927410125732f;
 
-/* 804565C4-804565C8 0004+00 s=1 e=0 z=0  None .sdata2    @137 */
+/* 804565C4-804565C8 004BC4 0004+00 1/1 0/0 0/0 .sdata2          @137 */
 SECTION_SDATA2 static f32 lit_137 = 180.0f;
 
-/* 804565C8-804565CC 0004+00 s=1 e=0 z=0  None .sdata2    @138 */
+/* 804565C8-804565CC 004BC8 0004+00 1/1 0/0 0/0 .sdata2          @138 */
 SECTION_SDATA2 static f32 lit_138 = -1000.0f;
 
-/* 804565CC-804565D0 0004+00 s=1 e=0 z=0  None .sdata2    @139 */
+/* 804565CC-804565D0 004BCC 0004+00 1/1 0/0 0/0 .sdata2          @139 */
 SECTION_SDATA2 static f32 lit_139 = 1000.0f;
 
-/* 804565D0-804565D4 0004+00 s=2 e=0 z=0  None .sdata2    @140 */
+/* 804565D0-804565D4 004BD0 0004+00 2/2 0/0 0/0 .sdata2          @140 */
 SECTION_SDATA2 static f32 lit_140 = 1.0f;
 
-/* 804565D4-804565D8 0004+00 s=1 e=0 z=0  None .sdata2    @141 */
+/* 804565D4-804565D8 004BD4 0004+00 1/1 0/0 0/0 .sdata2          @141 */
 SECTION_SDATA2 static f32 lit_141 = 2.0f;
 
-/* 804565D8-804565DC 0004+00 s=1 e=0 z=0  None .sdata2    @142 */
+/* 804565D8-804565DC 004BD8 0004+00 1/1 0/0 0/0 .sdata2          @142 */
 SECTION_SDATA2 static f32 lit_142 = -4.0f;
 
-/* 804565DC-804565E0 0004+00 s=1 e=0 z=0  None .sdata2    @143 */
+/* 804565DC-804565E0 004BDC 0004+00 1/1 0/0 0/0 .sdata2          @143 */
 SECTION_SDATA2 static f32 lit_143 = 4.0f;
 
-/* 804565E0-804565E4 0004+00 s=1 e=0 z=0  None .sdata2    @144 */
+/* 804565E0-804565E4 004BE0 0004+00 1/1 0/0 0/0 .sdata2          @144 */
 SECTION_SDATA2 static f32 lit_144 = -2.0f;
 
-/* 8035D64C-8035D7DC 0190+00 s=1 e=2 z=0  None .text      GXInitLightSpot */
+/* 8035D64C-8035D7DC 357F8C 0190+00 1/0 2/2 0/0 .text            GXInitLightSpot */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXInitLightSpot() {
+asm void GXInitLightSpot() {
     nofralloc
 #include "asm/dolphin/gx/GXLight/GXInitLightSpot.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 804565E4-804565E8 0004+00 s=1 e=0 z=0  None .sdata2    @160 */
+/* 804565E4-804565E8 004BE4 0004+00 1/1 0/0 0/0 .sdata2          @160 */
 SECTION_SDATA2 static f32 lit_160 = 0.5f;
 
-/* 8035D7DC-8035D8AC 00D0+00 s=0 e=2 z=0  None .text      GXInitLightDistAttn */
+/* 8035D7DC-8035D8AC 35811C 00D0+00 0/0 2/2 0/0 .text            GXInitLightDistAttn */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXInitLightDistAttn() {
+asm void GXInitLightDistAttn() {
     nofralloc
 #include "asm/dolphin/gx/GXLight/GXInitLightDistAttn.s"
 }
 #pragma pop
 
-/* 8035D8AC-8035D8BC 0010+00 s=0 e=3 z=0  None .text      GXInitLightPos */
+/* 8035D8AC-8035D8BC 3581EC 0010+00 0/0 3/3 0/0 .text            GXInitLightPos */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXInitLightPos() {
+asm void GXInitLightPos() {
     nofralloc
 #include "asm/dolphin/gx/GXLight/GXInitLightPos.s"
 }
 #pragma pop
 
-/* 8035D8BC-8035D8D8 001C+00 s=0 e=3 z=0  None .text      GXInitLightDir */
+/* 8035D8BC-8035D8D8 3581FC 001C+00 0/0 3/3 0/0 .text            GXInitLightDir */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXInitLightDir() {
+asm void GXInitLightDir() {
     nofralloc
 #include "asm/dolphin/gx/GXLight/GXInitLightDir.s"
 }
 #pragma pop
 
-/* 8035D8D8-8035D8E4 000C+00 s=0 e=3 z=0  None .text      GXInitLightColor */
+/* 8035D8D8-8035D8E4 358218 000C+00 0/0 3/3 0/0 .text            GXInitLightColor */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXInitLightColor() {
+asm void GXInitLightColor() {
     nofralloc
 #include "asm/dolphin/gx/GXLight/GXInitLightColor.s"
 }
 #pragma pop
 
-/* 8035D8E4-8035D960 007C+00 s=0 e=4 z=2  None .text      GXLoadLightObjImm */
+/* 8035D8E4-8035D960 358224 007C+00 0/0 4/4 2/2 .text            GXLoadLightObjImm */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXLoadLightObjImm() {
+asm void GXLoadLightObjImm() {
     nofralloc
 #include "asm/dolphin/gx/GXLight/GXLoadLightObjImm.s"
 }
 #pragma pop
 
-/* 8035D960-8035DA48 00E8+00 s=0 e=7 z=4  None .text      GXSetChanAmbColor */
+/* 8035D960-8035DA48 3582A0 00E8+00 0/0 7/7 4/4 .text            GXSetChanAmbColor */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetChanAmbColor() {
+asm void GXSetChanAmbColor() {
     nofralloc
 #include "asm/dolphin/gx/GXLight/GXSetChanAmbColor.s"
 }
 #pragma pop
 
-/* 8035DA48-8035DB30 00E8+00 s=0 e=20 z=2  None .text      GXSetChanMatColor */
+/* 8035DA48-8035DB30 358388 00E8+00 0/0 20/20 2/2 .text            GXSetChanMatColor */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetChanMatColor() {
+asm void GXSetChanMatColor() {
     nofralloc
 #include "asm/dolphin/gx/GXLight/GXSetChanMatColor.s"
 }
 #pragma pop
 
-/* 8035DB30-8035DB6C 003C+00 s=0 e=51 z=6  None .text      GXSetNumChans */
+/* 8035DB30-8035DB6C 358470 003C+00 0/0 51/51 6/6 .text            GXSetNumChans */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetNumChans() {
+asm void GXSetNumChans() {
     nofralloc
 #include "asm/dolphin/gx/GXLight/GXSetNumChans.s"
 }
 #pragma pop
 
-/* 8035DB6C-8035DC1C 00B0+00 s=0 e=34 z=4  None .text      GXSetChanCtrl */
+/* 8035DB6C-8035DC1C 3584AC 00B0+00 0/0 34/34 4/4 .text            GXSetChanCtrl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GXSetChanCtrl() {
+asm void GXSetChanCtrl() {
     nofralloc
 #include "asm/dolphin/gx/GXLight/GXSetChanCtrl.s"
 }

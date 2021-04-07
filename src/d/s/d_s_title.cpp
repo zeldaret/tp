@@ -26,15 +26,15 @@ extern "C" extern void* g_fpcNd_Method[5 + 1 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 803C32B0-803C32D8 0028+00 s=0 e=0 z=1  None .data      g_profile_WARNING_SCENE */
-SECTION_DATA void* g_profile_WARNING_SCENE[10] = {
+/* 803C32B0-803C32D8 -00001 0028+00 0/0 0/0 1/0 .data            g_profile_WARNING_SCENE */
+SECTION_DATA extern void* g_profile_WARNING_SCENE[10] = {
     (void*)NULL,       (void*)0x0001FFFD, (void*)0x000F0000, (void*)&g_fpcNd_Method,
     (void*)0x00000204, (void*)NULL,       (void*)NULL,       (void*)&g_fopScn_Method,
     (void*)NULL,       (void*)NULL,
 };
 
-/* 803C32D8-803C3300 0028+00 s=0 e=0 z=1  None .data      g_profile_WARNING2_SCENE */
-SECTION_DATA void* g_profile_WARNING2_SCENE[10] = {
+/* 803C32D8-803C3300 -00001 0028+00 0/0 0/0 1/0 .data            g_profile_WARNING2_SCENE */
+SECTION_DATA extern void* g_profile_WARNING2_SCENE[10] = {
     (void*)NULL,       (void*)0x0001FFFD, (void*)0x00100000, (void*)&g_fpcNd_Method,
     (void*)0x00000204, (void*)NULL,       (void*)NULL,       (void*)&g_fopScn_Method,
     (void*)NULL,       (void*)NULL,

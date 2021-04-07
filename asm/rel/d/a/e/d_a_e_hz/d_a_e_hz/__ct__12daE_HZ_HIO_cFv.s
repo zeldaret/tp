@@ -1,8 +1,8 @@
 lbl_806EA60C:
-/* 806EA60C  3C 80 80 6F */	lis r4, lit_3966@ha
-/* 806EA610  38 A4 08 60 */	addi r5, r4, lit_3966@l
-/* 806EA614  3C 80 80 6F */	lis r4, __vt__12daE_HZ_HIO_c@ha
-/* 806EA618  38 04 0B 18 */	addi r0, r4, __vt__12daE_HZ_HIO_c@l
+/* 806EA60C  3C 80 80 6F */	lis r4, lit_3966@ha /* 0x806F0860@ha */
+/* 806EA610  38 A4 08 60 */	addi r5, r4, lit_3966@l /* 0x806F0860@l */
+/* 806EA614  3C 80 80 6F */	lis r4, __vt__12daE_HZ_HIO_c@ha /* 0x806F0B18@ha */
+/* 806EA618  38 04 0B 18 */	addi r0, r4, __vt__12daE_HZ_HIO_c@l /* 0x806F0B18@l */
 /* 806EA61C  90 03 00 00 */	stw r0, 0(r3)
 /* 806EA620  38 00 FF FF */	li r0, -1
 /* 806EA624  98 03 00 04 */	stb r0, 4(r3)

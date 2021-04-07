@@ -3,18 +3,16 @@
 #
 
 M447_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_firepillar.plf
+M447_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_firepillar.lcf
+M447_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_firepillar.map
 
 M447_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_firepillar/executor.cpp \
-	rel/d/a/obj/d_a_obj_firepillar/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_firepillar/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_firepillar/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_firepillar/d_a_obj_firepillar.cpp \
 
 M447_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_firepillar/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_firepillar/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_firepillar/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_firepillar/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_firepillar/d_a_obj_firepillar.o \
 
@@ -31,14 +29,21 @@ M447_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M447_LDSCRIPT) \
+	-unused -map $(M447_MAP) \
+	-w off \
 
 $(M447_TARGET): $(M447_O_FILES) $(M447_LIBS)
+	@echo [447] creating $(M447_TARGET)
 	@echo $(M447_LIBS) $(M447_O_FILES) > build/M447_ofiles
-	$(LD) -partial $(M447_LDFLAGS) -o $(M447_TARGET) @build/M447_ofiles
+	@python3 tools/lcf.py rel 447 --output $(M447_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M447_LDFLAGS) -o $(M447_TARGET) @build/M447_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_firepillar/%.o: rel/d/a/obj/d_a_obj_firepillar/%.cpp
+	@echo [447] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M447_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M447_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

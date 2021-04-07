@@ -7,8 +7,8 @@ lbl_802A20F0:
 /* 802A2104  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802A2108  7C 9F 23 78 */	mr r31, r4
 /* 802A210C  41 82 00 5C */	beq lbl_802A2168
-/* 802A2110  3C 60 80 3D */	lis r3, __vt__9JAISeqMgr@ha
-/* 802A2114  38 03 99 58 */	addi r0, r3, __vt__9JAISeqMgr@l
+/* 802A2110  3C 60 80 3D */	lis r3, __vt__9JAISeqMgr@ha /* 0x803C9958@ha */
+/* 802A2114  38 03 99 58 */	addi r0, r3, __vt__9JAISeqMgr@l /* 0x803C9958@l */
 /* 802A2118  90 1E 00 00 */	stw r0, 0(r30)
 /* 802A211C  34 1E 00 64 */	addic. r0, r30, 0x64
 /* 802A2120  41 82 00 10 */	beq lbl_802A2130

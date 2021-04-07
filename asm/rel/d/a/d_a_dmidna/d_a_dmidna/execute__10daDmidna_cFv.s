@@ -7,7 +7,7 @@ lbl_8045D1A0:
 /* 8045D1B4  80 63 05 74 */	lwz r3, 0x574(r3)
 /* 8045D1B8  38 80 00 00 */	li r4, 0
 /* 8045D1BC  38 A0 00 00 */	li r5, 0
-/* 8045D1C0  4B BB 3E F0 */	b play__16mDoExt_McaMorfSOFUlSc
+/* 8045D1C0  4B BB 3E F1 */	bl play__16mDoExt_McaMorfSOFUlSc
 /* 8045D1C4  7F E3 FB 78 */	mr r3, r31
 /* 8045D1C8  4B FF FF 7D */	bl setMatrix__10daDmidna_cFv
 /* 8045D1CC  38 60 00 01 */	li r3, 1

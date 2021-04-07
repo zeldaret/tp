@@ -3,17 +3,15 @@
 #
 
 M636_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_suisya.plf
+M636_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_suisya.lcf
+M636_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_suisya.map
 
 M636_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_suisya/executor.cpp \
-	rel/d/a/obj/d_a_obj_suisya/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_suisya/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_suisya/d_a_obj_suisya.cpp \
 
 M636_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_suisya/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_suisya/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_suisya/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_suisya/d_a_obj_suisya.o \
 
 M636_LIBS := \
@@ -29,14 +27,21 @@ M636_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M636_LDSCRIPT) \
+	-unused -map $(M636_MAP) \
+	-w off \
 
 $(M636_TARGET): $(M636_O_FILES) $(M636_LIBS)
+	@echo [636] creating $(M636_TARGET)
 	@echo $(M636_LIBS) $(M636_O_FILES) > build/M636_ofiles
-	$(LD) -partial $(M636_LDFLAGS) -o $(M636_TARGET) @build/M636_ofiles
+	@python3 tools/lcf.py rel 636 --output $(M636_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M636_LDFLAGS) -o $(M636_TARGET) @build/M636_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_suisya/%.o: rel/d/a/obj/d_a_obj_suisya/%.cpp
+	@echo [636] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M636_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M636_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

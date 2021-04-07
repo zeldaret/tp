@@ -5,8 +5,8 @@ lbl_806A7E30:
 /* 806A7E3C  7C 60 1B 78 */	mr r0, r3
 /* 806A7E40  2C 04 00 00 */	cmpwi r4, 0
 /* 806A7E44  40 82 00 24 */	bne lbl_806A7E68
-/* 806A7E48  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 806A7E4C  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 806A7E48  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 806A7E4C  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 806A7E50  80 A3 00 38 */	lwz r5, 0x38(r3)
 /* 806A7E54  80 65 00 14 */	lwz r3, 0x14(r5)
 /* 806A7E58  28 03 00 00 */	cmplwi r3, 0

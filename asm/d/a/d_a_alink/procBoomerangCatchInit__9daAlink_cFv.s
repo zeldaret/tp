@@ -13,8 +13,8 @@ lbl_800E11D8:
 lbl_800E1204:
 /* 800E1204  7F E3 FB 78 */	mr r3, r31
 /* 800E1208  38 80 00 BB */	li r4, 0xbb
-/* 800E120C  3C A0 80 39 */	lis r5, m__18daAlinkHIO_boom_c0@ha
-/* 800E1210  38 A5 E6 C8 */	addi r5, r5, m__18daAlinkHIO_boom_c0@l
+/* 800E120C  3C A0 80 39 */	lis r5, m__18daAlinkHIO_boom_c0@ha /* 0x8038E6C8@ha */
+/* 800E1210  38 A5 E6 C8 */	addi r5, r5, m__18daAlinkHIO_boom_c0@l /* 0x8038E6C8@l */
 /* 800E1214  38 A5 00 14 */	addi r5, r5, 0x14
 /* 800E1218  4B FC BE DD */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800E121C  7F E3 FB 78 */	mr r3, r31

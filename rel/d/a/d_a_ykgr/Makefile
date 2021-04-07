@@ -3,19 +3,20 @@
 #
 
 M134_TARGET := $(BUILD_DIR)/rel/d/a/d_a_ykgr.plf
+M134_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_ykgr.lcf
+M134_MAP := $(BUILD_DIR)/rel/d/a/d_a_ykgr.map
 
 M134_CPP_FILES := \
-	rel/d/a/d_a_ykgr/executor.cpp \
-	rel/d/a/d_a_ykgr/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_ykgr/d_a_ykgr.cpp \
 
 M134_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_ykgr/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_ykgr/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_ykgr/d_a_ykgr.o \
 
 M134_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_ykgr/libRuntime.PPCEABI.H.a \
 
 M134_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M134_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M134_LDSCRIPT) \
+	-unused -map $(M134_MAP) \
+	-w off \
 
 $(M134_TARGET): $(M134_O_FILES) $(M134_LIBS)
+	@echo [134] creating $(M134_TARGET)
 	@echo $(M134_LIBS) $(M134_O_FILES) > build/M134_ofiles
-	$(LD) -partial $(M134_LDFLAGS) -o $(M134_TARGET) @build/M134_ofiles
+	@python3 tools/lcf.py rel 134 --output $(M134_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M134_LDFLAGS) -o $(M134_TARGET) @build/M134_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_ykgr/%.o: rel/d/a/d_a_ykgr/%.cpp
+	@echo [134] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M134_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M134_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_ykgr/libs/Runtime.PPCEABI.H/Makefile
 

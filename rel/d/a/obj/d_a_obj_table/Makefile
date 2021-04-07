@@ -3,17 +3,15 @@
 #
 
 M651_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_table.plf
+M651_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_table.lcf
+M651_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_table.map
 
 M651_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_table/executor.cpp \
-	rel/d/a/obj/d_a_obj_table/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_table/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_table/d_a_obj_table.cpp \
 
 M651_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_table/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_table/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_table/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_table/d_a_obj_table.o \
 
 M651_LIBS := \
@@ -29,14 +27,21 @@ M651_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M651_LDSCRIPT) \
+	-unused -map $(M651_MAP) \
+	-w off \
 
 $(M651_TARGET): $(M651_O_FILES) $(M651_LIBS)
+	@echo [651] creating $(M651_TARGET)
 	@echo $(M651_LIBS) $(M651_O_FILES) > build/M651_ofiles
-	$(LD) -partial $(M651_LDFLAGS) -o $(M651_TARGET) @build/M651_ofiles
+	@python3 tools/lcf.py rel 651 --output $(M651_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M651_LDFLAGS) -o $(M651_TARGET) @build/M651_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_table/%.o: rel/d/a/obj/d_a_obj_table/%.cpp
+	@echo [651] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M651_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M651_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

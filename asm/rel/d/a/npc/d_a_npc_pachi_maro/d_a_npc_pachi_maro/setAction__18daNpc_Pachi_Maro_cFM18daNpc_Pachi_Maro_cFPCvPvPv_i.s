@@ -9,13 +9,13 @@ lbl_80A9955C:
 /* 80A99578  38 00 00 03 */	li r0, 3
 /* 80A9957C  B0 03 0E 22 */	sth r0, 0xe22(r3)
 /* 80A99580  38 7E 0F BC */	addi r3, r30, 0xfbc
-/* 80A99584  4B 8C 8A 94 */	b __ptmf_test
+/* 80A99584  4B 8C 8A 95 */	bl __ptmf_test
 /* 80A99588  2C 03 00 00 */	cmpwi r3, 0
 /* 80A9958C  41 82 00 18 */	beq lbl_80A995A4
 /* 80A99590  7F C3 F3 78 */	mr r3, r30
 /* 80A99594  38 80 00 00 */	li r4, 0
 /* 80A99598  39 9E 0F BC */	addi r12, r30, 0xfbc
-/* 80A9959C  4B 8C 8A E8 */	b __ptmf_scall
+/* 80A9959C  4B 8C 8A E9 */	bl __ptmf_scall
 /* 80A995A0  60 00 00 00 */	nop 
 lbl_80A995A4:
 /* 80A995A4  38 00 00 00 */	li r0, 0
@@ -27,13 +27,13 @@ lbl_80A995A4:
 /* 80A995BC  80 1F 00 08 */	lwz r0, 8(r31)
 /* 80A995C0  90 1E 0F C4 */	stw r0, 0xfc4(r30)
 /* 80A995C4  38 7E 0F BC */	addi r3, r30, 0xfbc
-/* 80A995C8  4B 8C 8A 50 */	b __ptmf_test
+/* 80A995C8  4B 8C 8A 51 */	bl __ptmf_test
 /* 80A995CC  2C 03 00 00 */	cmpwi r3, 0
 /* 80A995D0  41 82 00 18 */	beq lbl_80A995E8
 /* 80A995D4  7F C3 F3 78 */	mr r3, r30
 /* 80A995D8  38 80 00 00 */	li r4, 0
 /* 80A995DC  39 9E 0F BC */	addi r12, r30, 0xfbc
-/* 80A995E0  4B 8C 8A A4 */	b __ptmf_scall
+/* 80A995E0  4B 8C 8A A5 */	bl __ptmf_scall
 /* 80A995E4  60 00 00 00 */	nop 
 lbl_80A995E8:
 /* 80A995E8  38 60 00 01 */	li r3, 1

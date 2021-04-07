@@ -409,42 +409,63 @@ float cAngle_NS_Adjust(float f1, float f2, float f3) {
 }
 
 /* ############################################################################################## */
-/* 80430F98-80430FA4 000C+00 s=1 e=0 z=0  None .bss       @2401 */
+/* 80430F98-80430FA4 05DCB8 000C+00 1/1 0/0 0/0 .bss             @2401 */
 static u8 lit_2401[12];
 
-/* 80430FA4-80430FB0 000C+00 s=1 e=0 z=0  None .bss       @2402 */
+/* 80430FA4-80430FB0 05DCC4 000C+00 0/1 0/0 0/0 .bss             @2402 */
+#pragma push
+#pragma force_active on
 static u8 lit_2402[12];
+#pragma pop
 
-/* 80430FB0-80430FBC 000C+00 s=1 e=0 z=0  None .bss       @2403 */
+/* 80430FB0-80430FBC 05DCD0 000C+00 0/1 0/0 0/0 .bss             @2403 */
+#pragma push
+#pragma force_active on
 static u8 lit_2403[12];
+#pragma pop
 
-/* 80430FBC-80430FC8 000C+00 s=1 e=0 z=0  None .bss       @2404 */
+/* 80430FBC-80430FC8 05DCDC 000C+00 0/1 0/0 0/0 .bss             @2404 */
+#pragma push
+#pragma force_active on
 static u8 lit_2404[12];
+#pragma pop
 
-/* 80430FC8-80430FD8 000C+04 s=1 e=0 z=0  None .bss       @2405 */
+/* 80430FC8-80430FD8 05DCE8 000C+04 0/1 0/0 0/0 .bss             @2405 */
+#pragma push
+#pragma force_active on
 static u8 lit_2405[12 + 4 /* padding */];
+#pragma pop
 
-/* 80451188-8045118C 0002+02 s=1 e=22 z=0  None .sbss      _0__7cSAngle */
+/* 80451188-8045118C 000688 0002+02 1/1 22/22 0/0 .sbss            _0__7cSAngle */
+extern u8 _0__7cSAngle[2 + 2 /* padding */];
 u8 _0__7cSAngle[2 + 2 /* padding */];
 
-/* 8045118C-80451190 0002+02 s=1 e=0 z=0  None .sbss      _1__7cSAngle */
+/* 8045118C-80451190 00068C 0002+02 1/1 0/0 0/0 .sbss            _1__7cSAngle */
 static u8 _1__7cSAngle[2 + 2 /* padding */];
 
-/* 80451190-80451194 0002+02 s=1 e=6 z=0  None .sbss      _90__7cSAngle */
+/* 80451190-80451194 000690 0002+02 1/1 6/6 0/0 .sbss            _90__7cSAngle */
+extern u8 _90__7cSAngle[2 + 2 /* padding */];
 u8 _90__7cSAngle[2 + 2 /* padding */];
 
-/* 80451194-80451198 0002+02 s=1 e=2 z=0  None .sbss      _180__7cSAngle */
+/* 80451194-80451198 000694 0002+02 1/1 2/2 0/0 .sbss            _180__7cSAngle */
+extern u8 _180__7cSAngle[2 + 2 /* padding */];
 u8 _180__7cSAngle[2 + 2 /* padding */];
 
-/* 80451198-804511A0 0002+06 s=1 e=3 z=0  None .sbss      _270__7cSAngle */
+/* 80451198-804511A0 000698 0002+06 1/1 3/3 0/0 .sbss            _270__7cSAngle */
+extern u8 _270__7cSAngle[2 + 6 /* padding */];
 u8 _270__7cSAngle[2 + 6 /* padding */];
 
-/* 80271BD4-80271C8C 00B8+00 s=0 e=1 z=0  None .text      __sinit_c_angle_cpp */
+/* 80271BD4-80271C8C 26C514 00B8+00 0/0 1/0 0/0 .text            __sinit_c_angle_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_c_angle_cpp() {
+asm void __sinit_c_angle_cpp() {
     nofralloc
 #include "asm/SSystem/SComponent/c_angle/__sinit_c_angle_cpp.s"
 }
+#pragma pop
+
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_80271BD4 = (void*)__sinit_c_angle_cpp;
 #pragma pop

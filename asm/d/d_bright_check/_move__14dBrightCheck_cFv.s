@@ -4,8 +4,8 @@ lbl_801934D0:
 /* 801934D8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 801934DC  88 03 00 18 */	lbz r0, 0x18(r3)
 /* 801934E0  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801934E4  3C 80 80 3C */	lis r4, brightChackProc@ha
-/* 801934E8  38 04 B5 D4 */	addi r0, r4, brightChackProc@l
+/* 801934E4  3C 80 80 3C */	lis r4, brightChackProc@ha /* 0x803BB5D4@ha */
+/* 801934E8  38 04 B5 D4 */	addi r0, r4, brightChackProc@l /* 0x803BB5D4@l */
 /* 801934EC  7D 80 2A 14 */	add r12, r0, r5
 /* 801934F0  48 1C EB 95 */	bl __ptmf_scall
 /* 801934F4  60 00 00 00 */	nop 

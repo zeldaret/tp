@@ -12,8 +12,8 @@ lbl_801A5E54:
 /* 801A5E7C  48 1B C3 45 */	bl _savegpr_22
 /* 801A5E80  38 A0 00 00 */	li r5, 0
 /* 801A5E84  38 C0 00 00 */	li r6, 0
-/* 801A5E88  3C 60 80 3C */	lis r3, lightStatusBase@ha
-/* 801A5E8C  38 E3 BD C4 */	addi r7, r3, lightStatusBase@l
+/* 801A5E88  3C 60 80 3C */	lis r3, lightStatusBase@ha /* 0x803BBDC4@ha */
+/* 801A5E8C  38 E3 BD C4 */	addi r7, r3, lightStatusBase@l /* 0x803BBDC4@l */
 /* 801A5E90  80 67 00 00 */	lwz r3, 0(r7)
 /* 801A5E94  80 07 00 04 */	lwz r0, 4(r7)
 /* 801A5E98  90 61 00 24 */	stw r3, 0x24(r1)
@@ -56,8 +56,8 @@ lbl_801A5F20:
 /* 801A5F28  91 0A 00 04 */	stw r8, 4(r10)
 /* 801A5F2C  94 EA 00 08 */	stwu r7, 8(r10)
 /* 801A5F30  42 00 FF F0 */	bdnz lbl_801A5F20
-/* 801A5F34  3C E0 80 3C */	lis r7, lightStatusBase@ha
-/* 801A5F38  38 E7 BD C4 */	addi r7, r7, lightStatusBase@l
+/* 801A5F34  3C E0 80 3C */	lis r7, lightStatusBase@ha /* 0x803BBDC4@ha */
+/* 801A5F38  38 E7 BD C4 */	addi r7, r7, lightStatusBase@l /* 0x803BBDC4@l */
 /* 801A5F3C  C1 27 00 88 */	lfs f9, 0x88(r7)
 /* 801A5F40  C1 47 00 8C */	lfs f10, 0x8c(r7)
 /* 801A5F44  C1 67 00 90 */	lfs f11, 0x90(r7)
@@ -72,14 +72,14 @@ lbl_801A5F5C:
 /* 801A5F64  91 0A 00 04 */	stw r8, 4(r10)
 /* 801A5F68  94 EA 00 08 */	stwu r7, 8(r10)
 /* 801A5F6C  42 00 FF F0 */	bdnz lbl_801A5F5C
-/* 801A5F70  3C E0 80 3C */	lis r7, lightStatusBase@ha
-/* 801A5F74  38 E7 BD C4 */	addi r7, r7, lightStatusBase@l
+/* 801A5F70  3C E0 80 3C */	lis r7, lightStatusBase@ha /* 0x803BBDC4@ha */
+/* 801A5F74  38 E7 BD C4 */	addi r7, r7, lightStatusBase@l /* 0x803BBDC4@l */
 /* 801A5F78  C1 A7 00 D8 */	lfs f13, 0xd8(r7)
 /* 801A5F7C  C3 E7 00 DC */	lfs f31, 0xdc(r7)
 /* 801A5F80  C3 C7 00 E0 */	lfs f30, 0xe0(r7)
 /* 801A5F84  C3 A7 00 E4 */	lfs f29, 0xe4(r7)
-/* 801A5F88  3C E0 80 43 */	lis r7, lightStatusData@ha
-/* 801A5F8C  3A E7 E0 7C */	addi r23, r7, lightStatusData@l
+/* 801A5F88  3C E0 80 43 */	lis r7, lightStatusData@ha /* 0x8042E07C@ha */
+/* 801A5F8C  3A E7 E0 7C */	addi r23, r7, lightStatusData@l /* 0x8042E07C@l */
 /* 801A5F90  83 01 00 24 */	lwz r24, 0x24(r1)
 /* 801A5F94  83 21 00 28 */	lwz r25, 0x28(r1)
 /* 801A5F98  83 41 00 2C */	lwz r26, 0x2c(r1)

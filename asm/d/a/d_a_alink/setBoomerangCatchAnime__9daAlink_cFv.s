@@ -6,8 +6,8 @@ lbl_800E0630:
 /* 800E0640  7C 7F 1B 78 */	mr r31, r3
 /* 800E0644  38 80 00 52 */	li r4, 0x52
 /* 800E0648  38 A0 00 02 */	li r5, 2
-/* 800E064C  3C C0 80 39 */	lis r6, m__18daAlinkHIO_boom_c0@ha
-/* 800E0650  38 C6 E6 C8 */	addi r6, r6, m__18daAlinkHIO_boom_c0@l
+/* 800E064C  3C C0 80 39 */	lis r6, m__18daAlinkHIO_boom_c0@ha /* 0x8038E6C8@ha */
+/* 800E0650  38 C6 E6 C8 */	addi r6, r6, m__18daAlinkHIO_boom_c0@l /* 0x8038E6C8@l */
 /* 800E0654  38 C6 00 14 */	addi r6, r6, 0x14
 /* 800E0658  4B FC D0 99 */	bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 800E065C  7F E3 FB 78 */	mr r3, r31

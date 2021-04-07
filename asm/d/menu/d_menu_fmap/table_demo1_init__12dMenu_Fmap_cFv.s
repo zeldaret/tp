@@ -7,8 +7,8 @@ lbl_801CA874:
 /* 801CA888  7C 7F 1B 78 */	mr r31, r3
 /* 801CA88C  38 00 FF F6 */	li r0, -10
 /* 801CA890  B0 03 02 14 */	sth r0, 0x214(r3)
-/* 801CA894  3C 80 80 43 */	lis r4, g_meter2_info@ha
-/* 801CA898  38 84 01 88 */	addi r4, r4, g_meter2_info@l
+/* 801CA894  3C 80 80 43 */	lis r4, g_meter2_info@ha /* 0x80430188@ha */
+/* 801CA898  38 84 01 88 */	addi r4, r4, g_meter2_info@l /* 0x80430188@l */
 /* 801CA89C  88 04 00 E1 */	lbz r0, 0xe1(r4)
 /* 801CA8A0  80 83 00 14 */	lwz r4, 0x14(r3)
 /* 801CA8A4  98 04 12 27 */	stb r0, 0x1227(r4)
@@ -21,8 +21,8 @@ lbl_801CA874:
 /* 801CA8C0  38 80 00 00 */	li r4, 0
 /* 801CA8C4  38 A0 00 FF */	li r5, 0xff
 /* 801CA8C8  48 00 CA 0D */	bl setAButtonString__17dMenu_Fmap2DTop_cFUlUc
-/* 801CA8CC  3C 60 80 3A */	lis r3, __vt__19dMenuFmapIconDisp_c@ha
-/* 801CA8D0  38 03 7D 74 */	addi r0, r3, __vt__19dMenuFmapIconDisp_c@l
+/* 801CA8CC  3C 60 80 3A */	lis r3, __vt__19dMenuFmapIconDisp_c@ha /* 0x803A7D74@ha */
+/* 801CA8D0  38 03 7D 74 */	addi r0, r3, __vt__19dMenuFmapIconDisp_c@l /* 0x803A7D74@l */
 /* 801CA8D4  90 01 00 4C */	stw r0, 0x4c(r1)
 /* 801CA8D8  3B A0 00 00 */	li r29, 0
 /* 801CA8DC  3B C0 00 00 */	li r30, 0

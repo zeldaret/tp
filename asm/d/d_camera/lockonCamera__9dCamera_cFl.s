@@ -147,8 +147,8 @@ lbl_8016C384:
 /* 8016C5C8  2C 03 00 00 */	cmpwi r3, 0
 /* 8016C5CC  41 82 00 24 */	beq lbl_8016C5F0
 /* 8016C5D0  7F C3 F3 78 */	mr r3, r30
-/* 8016C5D4  3C 80 80 39 */	lis r4, d_d_camera__stringBase0@ha
-/* 8016C5D8  38 84 3F 68 */	addi r4, r4, d_d_camera__stringBase0@l
+/* 8016C5D4  3C 80 80 39 */	lis r4, d_d_camera__stringBase0@ha /* 0x80393F68@ha */
+/* 8016C5D8  38 84 3F 68 */	addi r4, r4, d_d_camera__stringBase0@l /* 0x80393F68@l */
 /* 8016C5DC  38 84 01 A6 */	addi r4, r4, 0x1a6
 /* 8016C5E0  4B F1 CE E5 */	bl getEvActor__9dCamera_cFPc
 /* 8016C5E4  28 03 00 00 */	cmplwi r3, 0
@@ -290,8 +290,8 @@ lbl_8016C7BC:
 /* 8016C7EC  90 7E 04 24 */	stw r3, 0x424(r30)
 lbl_8016C7F0:
 /* 8016C7F0  80 9E 06 8C */	lwz r4, 0x68c(r30)
-/* 8016C7F4  3C 60 80 43 */	lis r3, data_8042C8F8@ha
-/* 8016C7F8  38 63 C8 F8 */	addi r3, r3, data_8042C8F8@l
+/* 8016C7F4  3C 60 80 43 */	lis r3, data_8042C8F8@ha /* 0x8042C8F8@ha */
+/* 8016C7F8  38 63 C8 F8 */	addi r3, r3, data_8042C8F8@l /* 0x8042C8F8@l */
 /* 8016C7FC  80 03 00 A0 */	lwz r0, 0xa0(r3)
 /* 8016C800  7C 04 00 00 */	cmpw r4, r0
 /* 8016C804  40 82 00 90 */	bne lbl_8016C894
@@ -349,8 +349,8 @@ lbl_8016C8AC:
 /* 8016C8C4  28 00 FF FF */	cmplwi r0, 0xffff
 /* 8016C8C8  41 82 00 44 */	beq lbl_8016C90C
 /* 8016C8CC  90 61 01 50 */	stw r3, 0x150(r1)
-/* 8016C8D0  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 8016C8D4  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 8016C8D0  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 8016C8D4  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 8016C8D8  38 81 01 50 */	addi r4, r1, 0x150
 /* 8016C8DC  4B EA CF 1D */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8016C8E0  90 7E 01 84 */	stw r3, 0x184(r30)
@@ -374,8 +374,8 @@ lbl_8016C90C:
 /* 8016C920  28 00 FF FF */	cmplwi r0, 0xffff
 /* 8016C924  41 82 00 1C */	beq lbl_8016C940
 /* 8016C928  90 61 01 4C */	stw r3, 0x14c(r1)
-/* 8016C92C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 8016C930  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 8016C92C  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 8016C930  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 8016C934  38 81 01 4C */	addi r4, r1, 0x14c
 /* 8016C938  4B EA CE C1 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8016C93C  90 7E 01 84 */	stw r3, 0x184(r30)
@@ -390,8 +390,8 @@ lbl_8016C940:
 /* 8016C95C  48 00 00 34 */	b lbl_8016C990
 lbl_8016C960:
 /* 8016C960  80 9E 06 8C */	lwz r4, 0x68c(r30)
-/* 8016C964  3C 60 80 43 */	lis r3, data_8042C8F8@ha
-/* 8016C968  38 63 C8 F8 */	addi r3, r3, data_8042C8F8@l
+/* 8016C964  3C 60 80 43 */	lis r3, data_8042C8F8@ha /* 0x8042C8F8@ha */
+/* 8016C968  38 63 C8 F8 */	addi r3, r3, data_8042C8F8@l /* 0x8042C8F8@l */
 /* 8016C96C  80 03 00 94 */	lwz r0, 0x94(r3)
 /* 8016C970  7C 04 00 00 */	cmpw r4, r0
 /* 8016C974  40 82 00 0C */	bne lbl_8016C980
@@ -406,8 +406,8 @@ lbl_8016C990:
 /* 8016C990  88 1E 03 8D */	lbz r0, 0x38d(r30)
 /* 8016C994  28 00 00 00 */	cmplwi r0, 0
 /* 8016C998  41 82 00 28 */	beq lbl_8016C9C0
-/* 8016C99C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8016C9A0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8016C99C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8016C9A0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8016C9A4  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8016C9A8  38 9E 03 40 */	addi r4, r30, 0x340
 /* 8016C9AC  38 A0 00 01 */	li r5, 1
@@ -1266,8 +1266,8 @@ lbl_8016D62C:
 /* 8016D630  41 82 00 8C */	beq lbl_8016D6BC
 /* 8016D634  38 61 02 D0 */	addi r3, r1, 0x2d0
 /* 8016D638  4B FD 3B B9 */	bl __ct__8cM3dGPlaFv
-/* 8016D63C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8016D640  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8016D63C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8016D640  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8016D644  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8016D648  38 81 03 68 */	addi r4, r1, 0x368
 /* 8016D64C  38 A1 02 D0 */	addi r5, r1, 0x2d0

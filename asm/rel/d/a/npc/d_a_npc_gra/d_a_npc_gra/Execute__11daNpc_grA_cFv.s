@@ -5,7 +5,7 @@ lbl_809BF44C:
 /* 809BF458  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 809BF45C  93 C1 00 08 */	stw r30, 8(r1)
 /* 809BF460  7C 7E 1B 78 */	mr r30, r3
-/* 809BF464  4B 79 2B B0 */	b execute__8daNpcF_cFv
+/* 809BF464  4B 79 2B B1 */	bl execute__8daNpcF_cFv
 /* 809BF468  7C 7F 1B 78 */	mr r31, r3
 /* 809BF46C  7F C3 F3 78 */	mr r3, r30
 /* 809BF470  48 00 42 3D */	bl setPrtcl__11daNpc_grA_cFv

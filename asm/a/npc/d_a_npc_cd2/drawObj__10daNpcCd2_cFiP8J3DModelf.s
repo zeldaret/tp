@@ -27,8 +27,8 @@ lbl_80159044:
 /* 8015904C  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80159050  7C 05 00 34 */	cntlzw r5, r0
 /* 80159054  57 C4 18 38 */	slwi r4, r30, 3
-/* 80159058  3C 60 80 39 */	lis r3, a_jntNumTbl@ha
-/* 8015905C  38 03 3B 08 */	addi r0, r3, a_jntNumTbl@l
+/* 80159058  3C 60 80 39 */	lis r3, a_jntNumTbl@ha /* 0x80393B08@ha */
+/* 8015905C  38 03 3B 08 */	addi r0, r3, a_jntNumTbl@l /* 0x80393B08@l */
 /* 80159060  7C 60 22 14 */	add r3, r0, r4
 /* 80159064  54 A0 E8 FA */	rlwinm r0, r5, 0x1d, 3, 0x1d
 /* 80159068  7F C3 00 2E */	lwzx r30, r3, r0
@@ -36,8 +36,8 @@ lbl_80159044:
 /* 80159070  41 82 00 6C */	beq lbl_801590DC
 /* 80159074  2C 1E 00 00 */	cmpwi r30, 0
 /* 80159078  41 80 00 64 */	blt lbl_801590DC
-/* 8015907C  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80159080  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8015907C  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80159080  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80159084  80 9F 00 04 */	lwz r4, 4(r31)
 /* 80159088  38 BD 01 0C */	addi r5, r29, 0x10c
 /* 8015908C  48 04 BD 15 */	bl setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
@@ -47,15 +47,15 @@ lbl_80159044:
 /* 8015909C  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 801590A0  1C 1E 00 30 */	mulli r0, r30, 0x30
 /* 801590A4  7C 63 02 14 */	add r3, r3, r0
-/* 801590A8  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha
-/* 801590AC  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l
+/* 801590A8  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 801590AC  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 801590B0  48 1E D4 01 */	bl PSMTXCopy
 /* 801590B4  FC 20 F8 90 */	fmr f1, f31
 /* 801590B8  FC 40 F8 90 */	fmr f2, f31
 /* 801590BC  FC 60 F8 90 */	fmr f3, f31
 /* 801590C0  4B EB 3D 79 */	bl scaleM__14mDoMtx_stack_cFfff
-/* 801590C4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 801590C8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 801590C4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 801590C8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 801590CC  38 9F 00 24 */	addi r4, r31, 0x24
 /* 801590D0  48 1E D3 E1 */	bl PSMTXCopy
 /* 801590D4  7F E3 FB 78 */	mr r3, r31

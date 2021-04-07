@@ -3,10 +3,10 @@ lbl_80A6BBA8:
 /* 80A6BBAC  7C 08 02 A6 */	mflr r0
 /* 80A6BBB0  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80A6BBB4  39 61 00 20 */	addi r11, r1, 0x20
-/* 80A6BBB8  4B 8F 66 20 */	b _savegpr_28
+/* 80A6BBB8  4B 8F 66 21 */	bl _savegpr_28
 /* 80A6BBBC  7C 7F 1B 78 */	mr r31, r3
-/* 80A6BBC0  3C 80 80 A7 */	lis r4, m__17daNpc_Lud_Param_c@ha
-/* 80A6BBC4  3B C4 FD 7C */	addi r30, r4, m__17daNpc_Lud_Param_c@l
+/* 80A6BBC0  3C 80 80 A7 */	lis r4, m__17daNpc_Lud_Param_c@ha /* 0x80A6FD7C@ha */
+/* 80A6BBC4  3B C4 FD 7C */	addi r30, r4, m__17daNpc_Lud_Param_c@l /* 0x80A6FD7C@l */
 /* 80A6BBC8  48 00 11 69 */	bl selectAction__11daNpc_Lud_cFv
 /* 80A6BBCC  7F E3 FB 78 */	mr r3, r31
 /* 80A6BBD0  48 00 03 15 */	bl srchActors__11daNpc_Lud_cFv
@@ -46,13 +46,13 @@ lbl_80A6BC3C:
 lbl_80A6BC44:
 /* 80A6BC44  7C 83 07 34 */	extsh r3, r4
 /* 80A6BC48  7C A4 07 34 */	extsh r4, r5
-/* 80A6BC4C  4B 6E 0D CC */	b daNpcT_getDistTableIdx__Fii
+/* 80A6BC4C  4B 6E 0D CD */	bl daNpcT_getDistTableIdx__Fii
 /* 80A6BC50  98 7F 05 44 */	stb r3, 0x544(r31)
 /* 80A6BC54  88 1F 05 44 */	lbz r0, 0x544(r31)
 /* 80A6BC58  98 1F 05 45 */	stb r0, 0x545(r31)
 /* 80A6BC5C  7F A3 07 34 */	extsh r3, r29
 /* 80A6BC60  7F 84 07 34 */	extsh r4, r28
-/* 80A6BC64  4B 6E 0D B4 */	b daNpcT_getDistTableIdx__Fii
+/* 80A6BC64  4B 6E 0D B5 */	bl daNpcT_getDistTableIdx__Fii
 /* 80A6BC68  98 7F 05 47 */	stb r3, 0x547(r31)
 /* 80A6BC6C  38 00 00 0A */	li r0, 0xa
 /* 80A6BC70  90 1F 05 5C */	stw r0, 0x55c(r31)
@@ -81,7 +81,7 @@ lbl_80A6BCC0:
 /* 80A6BCC8  D0 1F 0D F8 */	stfs f0, 0xdf8(r31)
 /* 80A6BCCC  38 7F 08 A0 */	addi r3, r31, 0x8a0
 /* 80A6BCD0  C0 3F 0D F0 */	lfs f1, 0xdf0(r31)
-/* 80A6BCD4  4B 60 A2 6C */	b SetWallR__12dBgS_AcchCirFf
+/* 80A6BCD4  4B 60 A2 6D */	bl SetWallR__12dBgS_AcchCirFf
 /* 80A6BCD8  38 7E 00 00 */	addi r3, r30, 0
 /* 80A6BCDC  C0 03 00 18 */	lfs f0, 0x18(r3)
 /* 80A6BCE0  D0 1F 08 D0 */	stfs f0, 0x8d0(r31)
@@ -106,7 +106,7 @@ lbl_80A6BD10:
 /* 80A6BD24  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80A6BD28  D0 1F 05 30 */	stfs f0, 0x530(r31)
 /* 80A6BD2C  39 61 00 20 */	addi r11, r1, 0x20
-/* 80A6BD30  4B 8F 64 F4 */	b _restgpr_28
+/* 80A6BD30  4B 8F 64 F5 */	bl _restgpr_28
 /* 80A6BD34  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80A6BD38  7C 08 03 A6 */	mtlr r0
 /* 80A6BD3C  38 21 00 20 */	addi r1, r1, 0x20

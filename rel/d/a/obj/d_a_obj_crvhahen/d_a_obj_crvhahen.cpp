@@ -87,13 +87,6 @@ struct Vec {};
 // Forward References:
 //
 
-static void useHeapInit(fopAc_ac_c*);
-static void daObjCRVHAHEN_Create(fopAc_ac_c*);
-static void daObjCRVHAHEN_Delete(daObjCRVHAHEN_c*);
-static void daObjCRVHAHEN_Draw(daObjCRVHAHEN_c*);
-static void daObjCRVHAHEN_Execute(daObjCRVHAHEN_c*);
-static bool daObjCRVHAHEN_IsDelete(daObjCRVHAHEN_c*);
-
 extern "C" static void useHeapInit__FP10fopAc_ac_c();
 extern "C" static void daObjCRVHAHEN_Create__FP10fopAc_ac_c();
 extern "C" static void daObjCRVHAHEN_Delete__FP15daObjCRVHAHEN_c();
@@ -113,23 +106,12 @@ extern "C" void __dt__5csXyzFv();
 extern "C" void __ct__5csXyzFv();
 extern "C" void __ct__4cXyzFv();
 extern "C" static bool daObjCRVHAHEN_IsDelete__FP15daObjCRVHAHEN_c();
-extern "C" extern char const* const stringBase0;
+extern "C" extern char const* const d_a_obj_crvhahen__stringBase0;
 extern "C" extern void* g_profile_Obj_CRVHAHEN[12];
 
 //
 // External References:
 //
-
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void mDoLib_project(Vec*, Vec*);
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void cM_rndF(f32);
-void cM_rndFX(f32);
-void operator delete(void*);
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void scaleM__14mDoMtx_stack_cFRC4cXyz();
@@ -183,119 +165,66 @@ extern "C" extern u32 __float_nan;
 //
 
 /* ############################################################################################## */
-/* 80BD3FF0-80BD3FF4 0004+00 s=5 e=0 z=0  None .rodata    @3703 */
-SECTION_RODATA static u32 const lit_3703 = 0x3F000000;
+/* 80BD4064-80BD4068 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_crvhahen__stringBase0;
 
-/* 80BD3FF4-80BD3FF8 0004+00 s=1 e=0 z=0  None .rodata    @3704 */
-SECTION_RODATA static u32 const lit_3704 = 0x3F800000;
-
-/* 80BD3FF8-80BD3FFC 0004+00 s=1 e=0 z=0  None .rodata    @3705 */
-SECTION_RODATA static u32 const lit_3705 = 0x459C4000;
-
-/* 80BD3FFC-80BD4000 0004+00 s=1 e=0 z=0  None .rodata    @3706 */
-SECTION_RODATA static u32 const lit_3706 = 0x47800000;
-
-/* 80BD4000-80BD4004 0004+00 s=2 e=0 z=0  None .rodata    @3773 */
-SECTION_RODATA static u32 const lit_3773 = 0xC1100000;
-
-/* 80BD4004-80BD4008 0004+00 s=1 e=0 z=0  None .rodata    @3774 */
-SECTION_RODATA static u32 const lit_3774 = 0x41500000;
-
-/* 80BD4008-80BD400C 0004+00 s=1 e=0 z=0  None .rodata    @3775 */
-SECTION_RODATA static u32 const lit_3775 = 0xBF19999A;
-
-/* 80BD400C-80BD4010 0004+00 s=1 e=0 z=0  None .rodata    @3776 */
-SECTION_RODATA static u32 const lit_3776 = 0x3F4CCCCD;
-
-/* 80BD4010-80BD4018 0004+04 s=2 e=0 z=0  None .rodata    @3836 */
-SECTION_RODATA static u8 const lit_3836[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80BD4018-80BD4020 0008+00 s=1 e=0 z=0  None .rodata    @3837 */
-SECTION_RODATA static u8 const lit_3837[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80BD4020-80BD4028 0008+00 s=1 e=0 z=0  None .rodata    @3838 */
-SECTION_RODATA static u8 const lit_3838[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80BD4028-80BD4030 0008+00 s=1 e=0 z=0  None .rodata    @3839 */
-SECTION_RODATA static u8 const lit_3839[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80BD4030-80BD4034 0004+00 s=1 e=0 z=0  None .rodata    @3852 */
-SECTION_RODATA static u32 const lit_3852 = 0x44180000;
-
-/* 80BD4034-80BD4038 0004+00 s=1 e=0 z=0  None .rodata    @3853 */
-SECTION_RODATA static u32 const lit_3853 = 0x43E00000;
-
-/* 80BD4038-80BD403C 0004+00 s=1 e=0 z=0  None .rodata    @3993 */
-SECTION_RODATA static u32 const lit_3993 = 0xC47A0000;
-
-/* 80BD403C-80BD4040 0004+00 s=1 e=0 z=0  None .rodata    @3994 */
-SECTION_RODATA static u32 const lit_3994 = 0xC3FA0000;
-
-/* 80BD4040-80BD4044 0004+00 s=1 e=0 z=0  None .rodata    @3995 */
-SECTION_RODATA static u32 const lit_3995 = 0x447A0000;
-
-/* 80BD4044-80BD4048 0004+00 s=1 e=0 z=0  None .rodata    @3996 */
-SECTION_RODATA static u32 const lit_3996 = 0x43FA0000;
-
-/* 80BD4048-80BD4062 001A+00 s=4 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80BD4048 = "CrvFence";
-SECTION_DEAD char const* const stringBase_80BD4051 = "CaravanPiece.bmd";
-#pragma pop
-
-/* 80BD4064-80BD4068 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80BD3338-80BD33E8 00B0+00 s=1 e=0 z=0  None .text      useHeapInit__FP10fopAc_ac_c */
+/* 80BD3338-80BD33E8 000078 00B0+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void useHeapInit(fopAc_ac_c* param_0) {
+static asm void useHeapInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crvhahen/d_a_obj_crvhahen/useHeapInit__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80BD33E8-80BD3408 0020+00 s=1 e=0 z=0  None .text      daObjCRVHAHEN_Create__FP10fopAc_ac_c */
+/* 80BD33E8-80BD3408 000128 0020+00 1/0 0/0 0/0 .text daObjCRVHAHEN_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjCRVHAHEN_Create(fopAc_ac_c* param_0) {
+static asm void daObjCRVHAHEN_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crvhahen/d_a_obj_crvhahen/daObjCRVHAHEN_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80BD3408-80BD342C 0024+00 s=1 e=0 z=0  None .text      daObjCRVHAHEN_Delete__FP15daObjCRVHAHEN_c
- */
+/* 80BD3408-80BD342C 000148 0024+00 1/0 0/0 0/0 .text daObjCRVHAHEN_Delete__FP15daObjCRVHAHEN_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjCRVHAHEN_Delete(daObjCRVHAHEN_c* param_0) {
+static asm void daObjCRVHAHEN_Delete(daObjCRVHAHEN_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crvhahen/d_a_obj_crvhahen/daObjCRVHAHEN_Delete__FP15daObjCRVHAHEN_c.s"
 }
 #pragma pop
 
-/* 80BD342C-80BD3628 01FC+00 s=0 e=0 z=2  None .text
+/* ############################################################################################## */
+/* 80BD3FF0-80BD3FF4 000000 0004+00 5/5 0/0 0/0 .rodata          @3703 */
+SECTION_RODATA static f32 const lit_3703 = 0.5f;
+COMPILER_STRIP_GATE(80BD3FF0, &lit_3703);
+
+/* 80BD3FF4-80BD3FF8 000004 0004+00 0/1 0/0 0/0 .rodata          @3704 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3704 = 1.0f;
+COMPILER_STRIP_GATE(80BD3FF4, &lit_3704);
+#pragma pop
+
+/* 80BD3FF8-80BD3FFC 000008 0004+00 0/1 0/0 0/0 .rodata          @3705 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3705 = 5000.0f;
+COMPILER_STRIP_GATE(80BD3FF8, &lit_3705);
+#pragma pop
+
+/* 80BD3FFC-80BD4000 00000C 0004+00 0/1 0/0 0/0 .rodata          @3706 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3706 = 65536.0f;
+COMPILER_STRIP_GATE(80BD3FFC, &lit_3706);
+#pragma pop
+
+/* 80BD342C-80BD3628 00016C 01FC+00 0/0 0/0 2/2 .text
  * HahenSet__15daObjCRVHAHEN_cF4cXyz4cXyz4cXyz4cXyzf            */
 #pragma push
 #pragma optimization_level 0
@@ -307,8 +236,7 @@ asm void daObjCRVHAHEN_c::HahenSet(cXyz param_0, cXyz param_1, cXyz param_2, cXy
 }
 #pragma pop
 
-/* 80BD3628-80BD36E4 00BC+00 s=1 e=0 z=0  None .text      Wall_Check__15daObjCRVHAHEN_cF4cXyz4cXyz
- */
+/* 80BD3628-80BD36E4 000368 00BC+00 1/1 0/0 0/0 .text Wall_Check__15daObjCRVHAHEN_cF4cXyz4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -318,7 +246,7 @@ asm void daObjCRVHAHEN_c::Wall_Check(cXyz param_0, cXyz param_1) {
 }
 #pragma pop
 
-/* 80BD36E4-80BD3720 003C+00 s=1 e=0 z=0  None .text      __dt__4cXyzFv */
+/* 80BD36E4-80BD3720 000424 003C+00 1/1 0/0 0/0 .text            __dt__4cXyzFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -328,7 +256,37 @@ asm cXyz::~cXyz() {
 }
 #pragma pop
 
-/* 80BD3720-80BD38DC 01BC+00 s=1 e=0 z=0  None .text      Hahen_Hakai__15daObjCRVHAHEN_cFii */
+/* ############################################################################################## */
+/* 80BD4000-80BD4004 000010 0004+00 0/2 0/0 0/0 .rodata          @3773 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3773 = -9.0f;
+COMPILER_STRIP_GATE(80BD4000, &lit_3773);
+#pragma pop
+
+/* 80BD4004-80BD4008 000014 0004+00 0/1 0/0 0/0 .rodata          @3774 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3774 = 13.0f;
+COMPILER_STRIP_GATE(80BD4004, &lit_3774);
+#pragma pop
+
+/* 80BD4008-80BD400C 000018 0004+00 0/1 0/0 0/0 .rodata          @3775 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3775 = -3.0f / 5.0f;
+COMPILER_STRIP_GATE(80BD4008, &lit_3775);
+#pragma pop
+
+/* 80BD400C-80BD4010 00001C 0004+00 0/1 0/0 0/0 .rodata          @3776 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3776 = 4.0f / 5.0f;
+COMPILER_STRIP_GATE(80BD400C, &lit_3776);
+#pragma pop
+
+/* 80BD3720-80BD38DC 000460 01BC+00 1/1 0/0 0/0 .text            Hahen_Hakai__15daObjCRVHAHEN_cFii
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -338,7 +296,52 @@ asm void daObjCRVHAHEN_c::Hahen_Hakai(int param_0, int param_1) {
 }
 #pragma pop
 
-/* 80BD38DC-80BD3A9C 01C0+00 s=1 e=0 z=0  None .text      CheckCull__15daObjCRVHAHEN_cFv */
+/* ############################################################################################## */
+/* 80BD4010-80BD4018 000020 0004+04 0/2 0/0 0/0 .rodata          @3836 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3836[4 + 4 /* padding */] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    /* padding */
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+COMPILER_STRIP_GATE(80BD4010, &lit_3836);
+#pragma pop
+
+/* 80BD4018-80BD4020 000028 0008+00 0/1 0/0 0/0 .rodata          @3837 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3837[8] = {
+    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(80BD4018, &lit_3837);
+#pragma pop
+
+/* 80BD4020-80BD4028 000030 0008+00 0/1 0/0 0/0 .rodata          @3838 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3838[8] = {
+    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(80BD4020, &lit_3838);
+#pragma pop
+
+/* 80BD4028-80BD4030 000038 0008+00 0/1 0/0 0/0 .rodata          @3839 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3839[8] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(80BD4028, &lit_3839);
+#pragma pop
+
+/* 80BD38DC-80BD3A9C 00061C 01C0+00 1/1 0/0 0/0 .text            CheckCull__15daObjCRVHAHEN_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -348,7 +351,22 @@ asm void daObjCRVHAHEN_c::CheckCull() {
 }
 #pragma pop
 
-/* 80BD3A9C-80BD3B20 0084+00 s=1 e=0 z=0  None .text      checkViewArea__15daObjCRVHAHEN_cFP4cXyz */
+/* ############################################################################################## */
+/* 80BD4030-80BD4034 000040 0004+00 0/1 0/0 0/0 .rodata          @3852 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3852 = 608.0f;
+COMPILER_STRIP_GATE(80BD4030, &lit_3852);
+#pragma pop
+
+/* 80BD4034-80BD4038 000044 0004+00 0/1 0/0 0/0 .rodata          @3853 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3853 = 448.0f;
+COMPILER_STRIP_GATE(80BD4034, &lit_3853);
+#pragma pop
+
+/* 80BD3A9C-80BD3B20 0007DC 0084+00 1/1 0/0 0/0 .text checkViewArea__15daObjCRVHAHEN_cFP4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -358,7 +376,7 @@ asm void daObjCRVHAHEN_c::checkViewArea(cXyz* param_0) {
 }
 #pragma pop
 
-/* 80BD3B20-80BD3B74 0054+00 s=1 e=0 z=0  None .text      Execute__15daObjCRVHAHEN_cFv */
+/* 80BD3B20-80BD3B74 000860 0054+00 1/1 0/0 0/0 .text            Execute__15daObjCRVHAHEN_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -368,7 +386,7 @@ asm void daObjCRVHAHEN_c::Execute() {
 }
 #pragma pop
 
-/* 80BD3B74-80BD3C0C 0098+00 s=1 e=0 z=0  None .text      Delete__15daObjCRVHAHEN_cFv */
+/* 80BD3B74-80BD3C0C 0008B4 0098+00 1/1 0/0 0/0 .text            Delete__15daObjCRVHAHEN_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -378,7 +396,7 @@ asm void daObjCRVHAHEN_c::Delete() {
 }
 #pragma pop
 
-/* 80BD3C0C-80BD3CA0 0094+00 s=1 e=0 z=0  None .text      setBaseMtx__15daObjCRVHAHEN_cFv */
+/* 80BD3C0C-80BD3CA0 00094C 0094+00 1/1 0/0 0/0 .text            setBaseMtx__15daObjCRVHAHEN_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -388,28 +406,57 @@ asm void daObjCRVHAHEN_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 80BD3CA0-80BD3D9C 00FC+00 s=1 e=0 z=0  None .text      daObjCRVHAHEN_Draw__FP15daObjCRVHAHEN_c */
+/* 80BD3CA0-80BD3D9C 0009E0 00FC+00 1/0 0/0 0/0 .text daObjCRVHAHEN_Draw__FP15daObjCRVHAHEN_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjCRVHAHEN_Draw(daObjCRVHAHEN_c* param_0) {
+static asm void daObjCRVHAHEN_Draw(daObjCRVHAHEN_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crvhahen/d_a_obj_crvhahen/daObjCRVHAHEN_Draw__FP15daObjCRVHAHEN_c.s"
 }
 #pragma pop
 
-/* 80BD3D9C-80BD3DBC 0020+00 s=2 e=0 z=0  None .text      daObjCRVHAHEN_Execute__FP15daObjCRVHAHEN_c
+/* 80BD3D9C-80BD3DBC 000ADC 0020+00 2/1 0/0 0/0 .text daObjCRVHAHEN_Execute__FP15daObjCRVHAHEN_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjCRVHAHEN_Execute(daObjCRVHAHEN_c* param_0) {
+static asm void daObjCRVHAHEN_Execute(daObjCRVHAHEN_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crvhahen/d_a_obj_crvhahen/daObjCRVHAHEN_Execute__FP15daObjCRVHAHEN_c.s"
 }
 #pragma pop
 
-/* 80BD3DBC-80BD3F9C 01E0+00 s=1 e=0 z=0  None .text      create__15daObjCRVHAHEN_cFv */
+/* ############################################################################################## */
+/* 80BD4038-80BD403C 000048 0004+00 0/1 0/0 0/0 .rodata          @3993 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3993 = -1000.0f;
+COMPILER_STRIP_GATE(80BD4038, &lit_3993);
+#pragma pop
+
+/* 80BD403C-80BD4040 00004C 0004+00 0/1 0/0 0/0 .rodata          @3994 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3994 = -500.0f;
+COMPILER_STRIP_GATE(80BD403C, &lit_3994);
+#pragma pop
+
+/* 80BD4040-80BD4044 000050 0004+00 0/1 0/0 0/0 .rodata          @3995 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3995 = 1000.0f;
+COMPILER_STRIP_GATE(80BD4040, &lit_3995);
+#pragma pop
+
+/* 80BD4044-80BD4048 000054 0004+00 0/1 0/0 0/0 .rodata          @3996 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3996 = 500.0f;
+COMPILER_STRIP_GATE(80BD4044, &lit_3996);
+#pragma pop
+
+/* 80BD3DBC-80BD3F9C 000AFC 01E0+00 1/1 0/0 0/0 .text            create__15daObjCRVHAHEN_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -419,7 +466,7 @@ asm void daObjCRVHAHEN_c::create() {
 }
 #pragma pop
 
-/* 80BD3F9C-80BD3FD8 003C+00 s=1 e=0 z=0  None .text      __dt__5csXyzFv */
+/* 80BD3F9C-80BD3FD8 000CDC 003C+00 1/1 0/0 0/0 .text            __dt__5csXyzFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -429,24 +476,24 @@ asm csXyz::~csXyz() {
 }
 #pragma pop
 
-/* 80BD3FD8-80BD3FDC 0004+00 s=1 e=0 z=0  None .text      __ct__5csXyzFv */
+/* 80BD3FD8-80BD3FDC 000D18 0004+00 1/1 0/0 0/0 .text            __ct__5csXyzFv */
 csXyz::csXyz() {
     /* empty function */
 }
 
-/* 80BD3FDC-80BD3FE0 0004+00 s=1 e=0 z=0  None .text      __ct__4cXyzFv */
+/* 80BD3FDC-80BD3FE0 000D1C 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
 cXyz::cXyz() {
     /* empty function */
 }
 
-/* 80BD3FE0-80BD3FE8 0008+00 s=1 e=0 z=0  None .text daObjCRVHAHEN_IsDelete__FP15daObjCRVHAHEN_c
+/* 80BD3FE0-80BD3FE8 000D20 0008+00 1/0 0/0 0/0 .text daObjCRVHAHEN_IsDelete__FP15daObjCRVHAHEN_c
  */
 static bool daObjCRVHAHEN_IsDelete(daObjCRVHAHEN_c* param_0) {
     return true;
 }
 
 /* ############################################################################################## */
-/* 80BD4068-80BD4088 0020+00 s=1 e=0 z=0  None .data      l_daObjCRVHAHEN_Method */
+/* 80BD4068-80BD4088 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjCRVHAHEN_Method */
 SECTION_DATA static void* l_daObjCRVHAHEN_Method[8] = {
     (void*)daObjCRVHAHEN_Create__FP10fopAc_ac_c,
     (void*)daObjCRVHAHEN_Delete__FP15daObjCRVHAHEN_c,
@@ -458,8 +505,8 @@ SECTION_DATA static void* l_daObjCRVHAHEN_Method[8] = {
     (void*)NULL,
 };
 
-/* 80BD4088-80BD40B8 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_CRVHAHEN */
-SECTION_DATA void* g_profile_Obj_CRVHAHEN[12] = {
+/* 80BD4088-80BD40B8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_CRVHAHEN */
+SECTION_DATA extern void* g_profile_Obj_CRVHAHEN[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00710000, (void*)&g_fpcLf_Method,
     (void*)0x00000794, (void*)NULL,
@@ -467,3 +514,11 @@ SECTION_DATA void* g_profile_Obj_CRVHAHEN[12] = {
     (void*)0x01D40000, (void*)&l_daObjCRVHAHEN_Method,
     (void*)0x00040000, (void*)0x000E0000,
 };
+
+/* 80BD4048-80BD4062 000058 001A+00 4/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80BD4048 = "CrvFence";
+SECTION_DEAD static char const* const stringBase_80BD4051 = "CaravanPiece.bmd";
+#pragma pop

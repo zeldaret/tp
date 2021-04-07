@@ -4,11 +4,11 @@ lbl_802A0994:
 /* 802A099C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802A09A0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802A09A4  7C 7F 1B 78 */	mr r31, r3
-/* 802A09A8  3C 60 80 3D */	lis r3, __vt__14JAISeqDataUser@ha
-/* 802A09AC  38 03 99 40 */	addi r0, r3, __vt__14JAISeqDataUser@l
+/* 802A09A8  3C 60 80 3D */	lis r3, __vt__14JAISeqDataUser@ha /* 0x803C9940@ha */
+/* 802A09AC  38 03 99 40 */	addi r0, r3, __vt__14JAISeqDataUser@l /* 0x803C9940@l */
 /* 802A09B0  90 1F 00 00 */	stw r0, 0(r31)
-/* 802A09B4  3C 60 80 3D */	lis r3, __vt__16JAISeCategoryMgr@ha
-/* 802A09B8  38 03 98 C4 */	addi r0, r3, __vt__16JAISeCategoryMgr@l
+/* 802A09B4  3C 60 80 3D */	lis r3, __vt__16JAISeCategoryMgr@ha /* 0x803C98C4@ha */
+/* 802A09B8  38 03 98 C4 */	addi r0, r3, __vt__16JAISeCategoryMgr@l /* 0x803C98C4@l */
 /* 802A09BC  90 1F 00 00 */	stw r0, 0(r31)
 /* 802A09C0  C0 02 BD 8C */	lfs f0, lit_1040(r2)
 /* 802A09C4  D0 1F 00 08 */	stfs f0, 8(r31)

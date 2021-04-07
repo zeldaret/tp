@@ -6,8 +6,8 @@ lbl_80023188:
 /* 80023198  93 C1 00 08 */	stw r30, 8(r1)
 /* 8002319C  7C 7E 1B 78 */	mr r30, r3
 /* 800231A0  83 E3 00 30 */	lwz r31, 0x30(r3)
-/* 800231A4  3C 60 80 3F */	lis r3, l_fpcPi_Queue@ha
-/* 800231A8  38 63 4E 58 */	addi r3, r3, l_fpcPi_Queue@l
+/* 800231A4  3C 60 80 3F */	lis r3, l_fpcPi_Queue@ha /* 0x803F4E58@ha */
+/* 800231A8  38 63 4E 58 */	addi r3, r3, l_fpcPi_Queue@l /* 0x803F4E58@l */
 /* 800231AC  7F C4 F3 78 */	mr r4, r30
 /* 800231B0  48 24 38 35 */	bl cTg_Addition__FP15node_list_classP16create_tag_class
 /* 800231B4  2C 03 00 00 */	cmpwi r3, 0

@@ -60,8 +60,8 @@ lbl_800B7414:
 /* 800B7468  30 00 FF FF */	addic r0, r0, -1
 /* 800B746C  7C 80 01 10 */	subfe r4, r0, r0
 /* 800B7470  38 84 00 40 */	addi r4, r4, 0x40
-/* 800B7474  3C A0 80 39 */	lis r5, m__21daAlinkHIO_atnMove_c0@ha
-/* 800B7478  38 A5 D7 14 */	addi r5, r5, m__21daAlinkHIO_atnMove_c0@l
+/* 800B7474  3C A0 80 39 */	lis r5, m__21daAlinkHIO_atnMove_c0@ha /* 0x8038D714@ha */
+/* 800B7478  38 A5 D7 14 */	addi r5, r5, m__21daAlinkHIO_atnMove_c0@l /* 0x8038D714@l */
 /* 800B747C  C0 25 00 08 */	lfs f1, 8(r5)
 /* 800B7480  C0 42 92 C4 */	lfs f2, lit_6109(r2)
 /* 800B7484  4B FF 5F 25 */	bl setUpperAnimeBaseSpeed__9daAlink_cFUsff

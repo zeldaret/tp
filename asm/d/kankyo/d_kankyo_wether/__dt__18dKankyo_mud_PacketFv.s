@@ -7,19 +7,19 @@ lbl_80057D08:
 /* 80057D1C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80057D20  7C 9F 23 78 */	mr r31, r4
 /* 80057D24  41 82 00 4C */	beq lbl_80057D70
-/* 80057D28  3C 60 80 3B */	lis r3, __vt__18dKankyo_mud_Packet@ha
-/* 80057D2C  38 03 9A D4 */	addi r0, r3, __vt__18dKankyo_mud_Packet@l
+/* 80057D28  3C 60 80 3B */	lis r3, __vt__18dKankyo_mud_Packet@ha /* 0x803A9AD4@ha */
+/* 80057D2C  38 03 9A D4 */	addi r0, r3, __vt__18dKankyo_mud_Packet@l /* 0x803A9AD4@l */
 /* 80057D30  90 1E 00 00 */	stw r0, 0(r30)
 /* 80057D34  38 7E 00 18 */	addi r3, r30, 0x18
-/* 80057D38  3C 80 80 05 */	lis r4, __dt__10EF_MUD_EFFFv@ha
-/* 80057D3C  38 84 6F FC */	addi r4, r4, __dt__10EF_MUD_EFFFv@l
+/* 80057D38  3C 80 80 05 */	lis r4, __dt__10EF_MUD_EFFFv@ha /* 0x80056FFC@ha */
+/* 80057D3C  38 84 6F FC */	addi r4, r4, __dt__10EF_MUD_EFFFv@l /* 0x80056FFC@l */
 /* 80057D40  38 A0 00 48 */	li r5, 0x48
 /* 80057D44  38 C0 00 64 */	li r6, 0x64
 /* 80057D48  48 30 9F A1 */	bl __destroy_arr
 /* 80057D4C  28 1E 00 00 */	cmplwi r30, 0
 /* 80057D50  41 82 00 10 */	beq lbl_80057D60
-/* 80057D54  3C 60 80 3D */	lis r3, __vt__9J3DPacket@ha
-/* 80057D58  38 03 D9 7C */	addi r0, r3, __vt__9J3DPacket@l
+/* 80057D54  3C 60 80 3D */	lis r3, __vt__9J3DPacket@ha /* 0x803CD97C@ha */
+/* 80057D58  38 03 D9 7C */	addi r0, r3, __vt__9J3DPacket@l /* 0x803CD97C@l */
 /* 80057D5C  90 1E 00 00 */	stw r0, 0(r30)
 lbl_80057D60:
 /* 80057D60  7F E0 07 35 */	extsh. r0, r31

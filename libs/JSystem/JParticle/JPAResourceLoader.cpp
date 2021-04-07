@@ -71,9 +71,6 @@ extern "C" void load_jpc__17JPAResourceLoaderFPCUcP18JPAResourceManager();
 // External References:
 //
 
-void* operator new(u32, JKRHeap*, int);
-void* operator new[](u32, JKRHeap*, int);
-
 extern "C" void registRes__18JPAResourceManagerFP11JPAResource();
 extern "C" void registTex__18JPAResourceManagerFP10JPATexture();
 extern "C" void __ct__11JPAResourceFv();
@@ -95,7 +92,7 @@ extern "C" void _restgpr_18();
 // Declarations:
 //
 
-/* 8027D8A0-8027D8E0 0040+00 s=0 e=1 z=0  None .text
+/* 8027D8A0-8027D8E0 2781E0 0040+00 0/0 1/1 0/0 .text
  * __ct__17JPAResourceLoaderFPCUcP18JPAResourceManager          */
 #pragma push
 #pragma optimization_level 0
@@ -106,7 +103,7 @@ asm JPAResourceLoader::JPAResourceLoader(u8 const* param_0, JPAResourceManager* 
 }
 #pragma pop
 
-/* 8027D8E0-8027DCA0 03C0+00 s=1 e=0 z=0  None .text
+/* 8027D8E0-8027DCA0 278220 03C0+00 1/1 0/0 0/0 .text
  * load_jpc__17JPAResourceLoaderFPCUcP18JPAResourceManager      */
 #pragma push
 #pragma optimization_level 0

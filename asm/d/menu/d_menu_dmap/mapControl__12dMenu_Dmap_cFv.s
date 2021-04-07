@@ -44,8 +44,8 @@ lbl_801BDFC8:
 /* 801BE010  48 00 02 D8 */	b lbl_801BE2E8
 lbl_801BE014:
 /* 801BE014  1C BD 00 0C */	mulli r5, r29, 0xc
-/* 801BE018  3C 80 80 3C */	lis r4, map_move_process@ha
-/* 801BE01C  38 04 CA 20 */	addi r0, r4, map_move_process@l
+/* 801BE018  3C 80 80 3C */	lis r4, map_move_process@ha /* 0x803BCA20@ha */
+/* 801BE01C  38 04 CA 20 */	addi r0, r4, map_move_process@l /* 0x803BCA20@l */
 /* 801BE020  7D 80 2A 14 */	add r12, r0, r5
 /* 801BE024  48 1A 40 61 */	bl __ptmf_scall
 /* 801BE028  60 00 00 00 */	nop 
@@ -54,14 +54,14 @@ lbl_801BE014:
 /* 801BE034  41 82 00 20 */	beq lbl_801BE054
 /* 801BE038  7F C3 F3 78 */	mr r3, r30
 /* 801BE03C  1C A0 00 0C */	mulli r5, r0, 0xc
-/* 801BE040  3C 80 80 3C */	lis r4, map_init_process@ha
-/* 801BE044  38 04 C9 D8 */	addi r0, r4, map_init_process@l
+/* 801BE040  3C 80 80 3C */	lis r4, map_init_process@ha /* 0x803BC9D8@ha */
+/* 801BE044  38 04 C9 D8 */	addi r0, r4, map_init_process@l /* 0x803BC9D8@l */
 /* 801BE048  7D 80 2A 14 */	add r12, r0, r5
 /* 801BE04C  48 1A 40 39 */	bl __ptmf_scall
 /* 801BE050  60 00 00 00 */	nop 
 lbl_801BE054:
-/* 801BE054  3C 60 80 43 */	lis r3, g_fmapHIO@ha
-/* 801BE058  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l
+/* 801BE054  3C 60 80 43 */	lis r3, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801BE058  38 63 FC 60 */	addi r3, r3, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801BE05C  C3 63 00 E0 */	lfs f27, 0xe0(r3)
 /* 801BE060  C0 03 00 E4 */	lfs f0, 0xe4(r3)
 /* 801BE064  FC 1B 00 40 */	fcmpo cr0, f27, f0
@@ -108,20 +108,20 @@ lbl_801BE088:
 lbl_801BE0F8:
 /* 801BE0F8  FC 1F D8 40 */	fcmpo cr0, f31, f27
 /* 801BE0FC  40 80 00 14 */	bge lbl_801BE110
-/* 801BE100  3C 80 80 43 */	lis r4, g_fmapHIO@ha
-/* 801BE104  38 84 FC 60 */	addi r4, r4, g_fmapHIO@l
+/* 801BE100  3C 80 80 43 */	lis r4, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801BE104  38 84 FC 60 */	addi r4, r4, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801BE108  C0 24 00 DC */	lfs f1, 0xdc(r4)
 /* 801BE10C  48 00 00 10 */	b lbl_801BE11C
 lbl_801BE110:
-/* 801BE110  3C 80 80 43 */	lis r4, g_fmapHIO@ha
-/* 801BE114  38 84 FC 60 */	addi r4, r4, g_fmapHIO@l
+/* 801BE110  3C 80 80 43 */	lis r4, g_fmapHIO@ha /* 0x8042FC60@ha */
+/* 801BE114  38 84 FC 60 */	addi r4, r4, g_fmapHIO@l /* 0x8042FC60@l */
 /* 801BE118  C0 24 00 CC */	lfs f1, 0xcc(r4)
 lbl_801BE11C:
 /* 801BE11C  C0 02 A6 58 */	lfs f0, lit_6180(r2)
 /* 801BE120  EC 01 00 24 */	fdivs f0, f1, f0
 /* 801BE124  EC 20 00 B2 */	fmuls f1, f0, f2
-/* 801BE128  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha
-/* 801BE12C  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l
+/* 801BE128  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 801BE12C  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 801BE130  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
 /* 801BE134  7C 64 02 14 */	add r3, r4, r0
 /* 801BE138  C0 03 00 04 */	lfs f0, 4(r3)

@@ -7,8 +7,8 @@ lbl_802A8AC0:
 /* 802A8AD4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802A8AD8  7C 9F 23 78 */	mr r31, r4
 /* 802A8ADC  41 82 00 28 */	beq lbl_802A8B04
-/* 802A8AE0  3C 80 80 3D */	lis r4, __vt__Q28JMessage19TRenderingProcessor@ha
-/* 802A8AE4  38 04 9B 94 */	addi r0, r4, __vt__Q28JMessage19TRenderingProcessor@l
+/* 802A8AE0  3C 80 80 3D */	lis r4, __vt__Q28JMessage19TRenderingProcessor@ha /* 0x803C9B94@ha */
+/* 802A8AE4  38 04 9B 94 */	addi r0, r4, __vt__Q28JMessage19TRenderingProcessor@l /* 0x803C9B94@l */
 /* 802A8AE8  90 1E 00 00 */	stw r0, 0(r30)
 /* 802A8AEC  38 80 00 00 */	li r4, 0
 /* 802A8AF0  4B FF F0 59 */	bl __dt__Q28JMessage10TProcessorFv

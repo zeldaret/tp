@@ -4,34 +4,34 @@ lbl_802EA1AC:
 /* 802EA1B4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802EA1B8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802EA1BC  7C 7F 1B 78 */	mr r31, r3
-/* 802EA1C0  3C 60 80 3D */	lis r3, __vt__11J2DMaterial@ha
-/* 802EA1C4  38 03 CA 78 */	addi r0, r3, __vt__11J2DMaterial@l
+/* 802EA1C0  3C 60 80 3D */	lis r3, __vt__11J2DMaterial@ha /* 0x803CCA78@ha */
+/* 802EA1C4  38 03 CA 78 */	addi r0, r3, __vt__11J2DMaterial@l /* 0x803CCA78@l */
 /* 802EA1C8  90 1F 00 00 */	stw r0, 0(r31)
-/* 802EA1CC  3C 60 80 3D */	lis r3, __vt__13J2DColorBlock@ha
-/* 802EA1D0  38 03 CA 84 */	addi r0, r3, __vt__13J2DColorBlock@l
+/* 802EA1CC  3C 60 80 3D */	lis r3, __vt__13J2DColorBlock@ha /* 0x803CCA84@ha */
+/* 802EA1D0  38 03 CA 84 */	addi r0, r3, __vt__13J2DColorBlock@l /* 0x803CCA84@l */
 /* 802EA1D4  90 1F 00 24 */	stw r0, 0x24(r31)
 /* 802EA1D8  38 7F 00 10 */	addi r3, r31, 0x10
-/* 802EA1DC  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha
-/* 802EA1E0  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l
+/* 802EA1DC  3C 80 80 19 */	lis r4, __ct__Q28JUtility6TColorFv@ha /* 0x80193960@ha */
+/* 802EA1E0  38 84 39 60 */	addi r4, r4, __ct__Q28JUtility6TColorFv@l /* 0x80193960@l */
 /* 802EA1E4  38 A0 00 00 */	li r5, 0
 /* 802EA1E8  38 C0 00 04 */	li r6, 4
 /* 802EA1EC  38 E0 00 02 */	li r7, 2
 /* 802EA1F0  48 07 7B 71 */	bl __construct_array
 /* 802EA1F4  38 7F 00 1A */	addi r3, r31, 0x1a
-/* 802EA1F8  3C 80 80 2F */	lis r4, __ct__12J2DColorChanFv@ha
-/* 802EA1FC  38 84 B2 80 */	addi r4, r4, __ct__12J2DColorChanFv@l
+/* 802EA1F8  3C 80 80 2F */	lis r4, __ct__12J2DColorChanFv@ha /* 0x802EB280@ha */
+/* 802EA1FC  38 84 B2 80 */	addi r4, r4, __ct__12J2DColorChanFv@l /* 0x802EB280@l */
 /* 802EA200  38 A0 00 00 */	li r5, 0
 /* 802EA204  38 C0 00 02 */	li r6, 2
 /* 802EA208  38 E0 00 04 */	li r7, 4
 /* 802EA20C  48 07 7B 55 */	bl __construct_array
 /* 802EA210  38 7F 00 10 */	addi r3, r31, 0x10
 /* 802EA214  48 00 11 81 */	bl initialize__13J2DColorBlockFv
-/* 802EA218  3C 60 80 3D */	lis r3, __vt__14J2DTexGenBlock@ha
-/* 802EA21C  38 03 CF 30 */	addi r0, r3, __vt__14J2DTexGenBlock@l
+/* 802EA218  3C 60 80 3D */	lis r3, __vt__14J2DTexGenBlock@ha /* 0x803CCF30@ha */
+/* 802EA21C  38 03 CF 30 */	addi r0, r3, __vt__14J2DTexGenBlock@l /* 0x803CCF30@l */
 /* 802EA220  90 1F 00 6C */	stw r0, 0x6c(r31)
 /* 802EA224  38 7F 00 2C */	addi r3, r31, 0x2c
-/* 802EA228  3C 80 80 2F */	lis r4, __ct__11J2DTexCoordFv@ha
-/* 802EA22C  38 84 B2 60 */	addi r4, r4, __ct__11J2DTexCoordFv@l
+/* 802EA228  3C 80 80 2F */	lis r4, __ct__11J2DTexCoordFv@ha /* 0x802EB260@ha */
+/* 802EA22C  38 84 B2 60 */	addi r4, r4, __ct__11J2DTexCoordFv@l /* 0x802EB260@l */
 /* 802EA230  38 A0 00 00 */	li r5, 0
 /* 802EA234  38 C0 00 04 */	li r6, 4
 /* 802EA238  38 E0 00 08 */	li r7, 8

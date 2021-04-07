@@ -10,8 +10,8 @@ lbl_802F5D40:
 /* 802F5D60  7C FE 3B 78 */	mr r30, r7
 /* 802F5D64  7D 1D 43 78 */	mr r29, r8
 /* 802F5D68  7D 3F 4B 78 */	mr r31, r9
-/* 802F5D6C  3C 60 80 3D */	lis r3, __vt__7J2DPane@ha
-/* 802F5D70  38 03 CF D0 */	addi r0, r3, __vt__7J2DPane@l
+/* 802F5D6C  3C 60 80 3D */	lis r3, __vt__7J2DPane@ha /* 0x803CCFD0@ha */
+/* 802F5D70  38 03 CF D0 */	addi r0, r3, __vt__7J2DPane@l /* 0x803CCFD0@l */
 /* 802F5D74  90 19 00 00 */	stw r0, 0(r25)
 /* 802F5D78  3B 59 00 DC */	addi r26, r25, 0xdc
 /* 802F5D7C  7F 43 D3 78 */	mr r3, r26

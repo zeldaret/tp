@@ -7,8 +7,8 @@ lbl_80079090:
 /* 800790A4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 800790A8  7C 9F 23 78 */	mr r31, r4
 /* 800790AC  41 82 00 5C */	beq lbl_80079108
-/* 800790B0  3C 60 80 3B */	lis r3, __vt__12dBgS_RoofChk@ha
-/* 800790B4  38 63 BA 50 */	addi r3, r3, __vt__12dBgS_RoofChk@l
+/* 800790B0  3C 60 80 3B */	lis r3, __vt__12dBgS_RoofChk@ha /* 0x803ABA50@ha */
+/* 800790B4  38 63 BA 50 */	addi r3, r3, __vt__12dBgS_RoofChk@l /* 0x803ABA50@l */
 /* 800790B8  90 7E 00 0C */	stw r3, 0xc(r30)
 /* 800790BC  38 03 00 0C */	addi r0, r3, 0xc
 /* 800790C0  90 1E 00 20 */	stw r0, 0x20(r30)

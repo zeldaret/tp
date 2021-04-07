@@ -51,11 +51,11 @@ lbl_80BE41D0:
 /* 80BE41DC  88 1F 05 E4 */	lbz r0, 0x5e4(r31)
 /* 80BE41E0  28 00 00 00 */	cmplwi r0, 0
 /* 80BE41E4  40 82 00 20 */	bne lbl_80BE4204
-/* 80BE41E8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80BE41EC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80BE41E8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BE41EC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BE41F0  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 80BE41F4  38 80 00 1F */	li r4, 0x1f
-/* 80BE41F8  4B 48 BB 9C */	b StopQuake__12dVibration_cFi
+/* 80BE41F8  4B 48 BB 9D */	bl StopQuake__12dVibration_cFi
 /* 80BE41FC  38 00 00 00 */	li r0, 0
 /* 80BE4200  98 1F 05 F1 */	stb r0, 0x5f1(r31)
 lbl_80BE4204:

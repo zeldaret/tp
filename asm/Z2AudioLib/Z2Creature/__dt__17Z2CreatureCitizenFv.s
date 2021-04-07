@@ -7,8 +7,8 @@ lbl_802C0C6C:
 /* 802C0C80  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802C0C84  7C 9F 23 78 */	mr r31, r4
 /* 802C0C88  41 82 00 40 */	beq lbl_802C0CC8
-/* 802C0C8C  3C 60 80 3D */	lis r3, __vt__17Z2CreatureCitizen@ha
-/* 802C0C90  38 03 B8 90 */	addi r0, r3, __vt__17Z2CreatureCitizen@l
+/* 802C0C8C  3C 60 80 3D */	lis r3, __vt__17Z2CreatureCitizen@ha /* 0x803CB890@ha */
+/* 802C0C90  38 03 B8 90 */	addi r0, r3, __vt__17Z2CreatureCitizen@l /* 0x803CB890@l */
 /* 802C0C94  90 1E 00 00 */	stw r0, 0(r30)
 /* 802C0C98  34 1E 00 90 */	addic. r0, r30, 0x90
 /* 802C0C9C  41 82 00 10 */	beq lbl_802C0CAC

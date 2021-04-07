@@ -25,8 +25,8 @@ extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 80485780-804857B4 0034+00 s=0 e=0 z=1  None .data      g_profile_PATH_LINE */
-SECTION_DATA void* g_profile_PATH_LINE[13] = {
+/* 80485780-804857B4 -00001 0034+00 0/0 0/0 1/0 .data            g_profile_PATH_LINE */
+SECTION_DATA extern void* g_profile_PATH_LINE[13] = {
     (void*)0xFFFFFFFD, (void*)0x0009FFFD, (void*)0x03090000, (void*)&g_fpcLf_Method,
     (void*)0x00000574, (void*)NULL,       (void*)NULL,       (void*)&g_fopAc_Method,
     (void*)0x02F60000, (void*)NULL,       (void*)0x00060000, (void*)0x05000000,

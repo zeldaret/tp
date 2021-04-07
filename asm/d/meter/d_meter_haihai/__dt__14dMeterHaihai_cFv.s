@@ -7,8 +7,8 @@ lbl_8020AEF0:
 /* 8020AF04  7C 7E 1B 79 */	or. r30, r3, r3
 /* 8020AF08  7C 9F 23 78 */	mr r31, r4
 /* 8020AF0C  41 82 00 44 */	beq lbl_8020AF50
-/* 8020AF10  3C 80 80 3C */	lis r4, __vt__14dMeterHaihai_c@ha
-/* 8020AF14  38 04 F2 68 */	addi r0, r4, __vt__14dMeterHaihai_c@l
+/* 8020AF10  3C 80 80 3C */	lis r4, __vt__14dMeterHaihai_c@ha /* 0x803BF268@ha */
+/* 8020AF14  38 04 F2 68 */	addi r0, r4, __vt__14dMeterHaihai_c@l /* 0x803BF268@l */
 /* 8020AF18  90 1E 00 00 */	stw r0, 0(r30)
 /* 8020AF1C  81 83 00 00 */	lwz r12, 0(r3)
 /* 8020AF20  81 8C 00 18 */	lwz r12, 0x18(r12)
@@ -16,8 +16,8 @@ lbl_8020AEF0:
 /* 8020AF28  4E 80 04 21 */	bctrl 
 /* 8020AF2C  28 1E 00 00 */	cmplwi r30, 0
 /* 8020AF30  41 82 00 10 */	beq lbl_8020AF40
-/* 8020AF34  3C 60 80 3C */	lis r3, __vt__11dMeterSub_c@ha
-/* 8020AF38  38 03 B6 D4 */	addi r0, r3, __vt__11dMeterSub_c@l
+/* 8020AF34  3C 60 80 3C */	lis r3, __vt__11dMeterSub_c@ha /* 0x803BB6D4@ha */
+/* 8020AF38  38 03 B6 D4 */	addi r0, r3, __vt__11dMeterSub_c@l /* 0x803BB6D4@l */
 /* 8020AF3C  90 1E 00 00 */	stw r0, 0(r30)
 lbl_8020AF40:
 /* 8020AF40  7F E0 07 35 */	extsh. r0, r31

@@ -40,7 +40,7 @@ extern "C" void MWTRACE();
 //
 
 /* ############################################################################################## */
-/* 803A2890-803A28AC 0019+03 s=1 e=0 z=0  None .rodata    @126 */
+/* 803A2890-803A28AC 02EEF0 0019+03 1/1 0/0 0/0 .rodata          @126 */
 SECTION_RODATA static u8 const lit_126[25 + 3 /* padding */] = {
     0x44,
     0x69,
@@ -72,8 +72,9 @@ SECTION_RODATA static u8 const lit_126[25 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(803A2890, &lit_126);
 
-/* 803A28AC-803A28D0 001D+07 s=1 e=0 z=0  None .rodata    @127 */
+/* 803A28AC-803A28D0 02EF0C 001D+07 1/1 0/0 0/0 .rodata          @127 */
 SECTION_RODATA static u8 const lit_127[29 + 7 /* padding */] = {
     0x44,
     0x69,
@@ -113,8 +114,9 @@ SECTION_RODATA static u8 const lit_127[29 + 7 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(803A28AC, &lit_127);
 
-/* 803D3190-803D3200 006C+04 s=1 e=0 z=0  None .data      @128 */
+/* 803D3190-803D3200 -00001 006C+04 1/1 0/0 0/0 .data            @128 */
 SECTION_DATA static void* lit_128[27 + 1 /* padding */] = {
     (void*)(((char*)TRKDispatchMessage) + 0x13C),
     (void*)(((char*)TRKDispatchMessage) + 0x60),
@@ -147,17 +149,17 @@ SECTION_DATA static void* lit_128[27 + 1 /* padding */] = {
     NULL,
 };
 
-/* 8036DB9C-8036DD0C 0170+00 s=1 e=1 z=0  None .text      TRKDispatchMessage */
+/* 8036DB9C-8036DD0C 3684DC 0170+00 1/0 1/1 0/0 .text            TRKDispatchMessage */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKDispatchMessage() {
+asm void TRKDispatchMessage() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/MetroTRK/Portable/dispatch/TRKDispatchMessage.s"
 }
 #pragma pop
 
-/* 8036DD0C-8036DD14 0008+00 s=0 e=1 z=0  None .text      TRKInitializeDispatcher */
-extern "C" bool TRKInitializeDispatcher() {
+/* 8036DD0C-8036DD14 36864C 0008+00 0/0 1/1 0/0 .text            TRKInitializeDispatcher */
+bool TRKInitializeDispatcher() {
     return false;
 }

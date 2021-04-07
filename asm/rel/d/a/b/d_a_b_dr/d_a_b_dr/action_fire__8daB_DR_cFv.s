@@ -13,7 +13,7 @@ lbl_805C40E0:
 /* 805C410C  B0 1F 04 E8 */	sth r0, 0x4e8(r31)
 /* 805C4110  7F E3 FB 78 */	mr r3, r31
 /* 805C4114  38 9F 0A 08 */	addi r4, r31, 0xa08
-/* 805C4118  4B A5 65 48 */	b fopAcM_posMove__FP10fopAc_ac_cPC4cXyz
+/* 805C4118  4B A5 65 49 */	bl fopAcM_posMove__FP10fopAc_ac_cPC4cXyz
 /* 805C411C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 805C4120  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 805C4124  7C 08 03 A6 */	mtlr r0

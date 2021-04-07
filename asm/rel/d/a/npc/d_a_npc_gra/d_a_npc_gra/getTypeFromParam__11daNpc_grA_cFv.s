@@ -8,8 +8,8 @@ lbl_809C116C:
 /* 809C1184  54 00 27 3E */	srwi r0, r0, 0x1c
 /* 809C1188  28 00 00 08 */	cmplwi r0, 8
 /* 809C118C  41 81 00 94 */	bgt lbl_809C1220
-/* 809C1190  3C 80 80 9D */	lis r4, lit_5559@ha
-/* 809C1194  38 84 AD 9C */	addi r4, r4, lit_5559@l
+/* 809C1190  3C 80 80 9D */	lis r4, lit_5559@ha /* 0x809CAD9C@ha */
+/* 809C1194  38 84 AD 9C */	addi r4, r4, lit_5559@l /* 0x809CAD9C@l */
 /* 809C1198  54 00 10 3A */	slwi r0, r0, 2
 /* 809C119C  7C 04 00 2E */	lwzx r0, r4, r0
 /* 809C11A0  7C 09 03 A6 */	mtctr r0

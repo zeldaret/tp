@@ -9,10 +9,10 @@ lbl_8050651C:
 /* 80506538  90 7F 09 8C */	stw r3, 0x98c(r31)
 /* 8050653C  80 1F 09 8C */	lwz r0, 0x98c(r31)
 /* 80506540  90 01 00 08 */	stw r0, 8(r1)
-/* 80506544  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 80506548  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 80506544  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 80506548  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 8050654C  38 81 00 08 */	addi r4, r1, 8
-/* 80506550  4B B1 32 A8 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 80506550  4B B1 32 A9 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80506554  28 03 00 00 */	cmplwi r3, 0
 /* 80506558  41 82 00 64 */	beq lbl_805065BC
 /* 8050655C  38 00 00 0C */	li r0, 0xc

@@ -9,8 +9,8 @@ lbl_80289068:
 /* 80289084  38 80 FF FF */	li r4, -1
 /* 80289088  7C 05 03 78 */	mr r5, r0
 /* 8028908C  4B FF F9 ED */	bl __ct__Q37JStudio3stb7TObjectFUlPCvUl
-/* 80289090  3C 60 80 3C */	lis r3, __vt__Q37JStudio3stb15TObject_control@ha
-/* 80289094  38 03 56 E0 */	addi r0, r3, __vt__Q37JStudio3stb15TObject_control@l
+/* 80289090  3C 60 80 3C */	lis r3, __vt__Q37JStudio3stb15TObject_control@ha /* 0x803C56E0@ha */
+/* 80289094  38 03 56 E0 */	addi r0, r3, __vt__Q37JStudio3stb15TObject_control@l /* 0x803C56E0@l */
 /* 80289098  90 1F 00 08 */	stw r0, 8(r31)
 /* 8028909C  7F E3 FB 78 */	mr r3, r31
 /* 802890A0  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -27,8 +27,8 @@ lbl_8000D0AC:
 /* 8000D110  FC 00 00 18 */	frsp f0, f0
 /* 8000D114  FC 00 08 40 */	fcmpo cr0, f0, f1
 /* 8000D118  40 80 00 2C */	bge lbl_8000D144
-/* 8000D11C  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8000D120  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8000D11C  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8000D120  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8000D124  80 63 00 38 */	lwz r3, 0x38(r3)
 /* 8000D128  38 80 00 01 */	li r4, 1
 /* 8000D12C  80 63 00 84 */	lwz r3, 0x84(r3)
@@ -38,8 +38,8 @@ lbl_8000D0AC:
 /* 8000D13C  38 00 00 01 */	li r0, 1
 /* 8000D140  48 00 00 28 */	b lbl_8000D168
 lbl_8000D144:
-/* 8000D144  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8000D148  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8000D144  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8000D148  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8000D14C  80 63 00 38 */	lwz r3, 0x38(r3)
 /* 8000D150  38 80 00 00 */	li r4, 0
 /* 8000D154  80 63 00 84 */	lwz r3, 0x84(r3)
@@ -87,8 +87,8 @@ lbl_8000D168:
 /* 8000D1F8  EC 00 00 72 */	fmuls f0, f0, f1
 /* 8000D1FC  D0 06 00 28 */	stfs f0, 0x28(r6)
 lbl_8000D200:
-/* 8000D200  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8000D204  3B A3 4A C8 */	addi r29, r3, j3dSys@l
+/* 8000D200  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8000D204  3B A3 4A C8 */	addi r29, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8000D208  80 7D 00 38 */	lwz r3, 0x38(r29)
 /* 8000D20C  80 63 00 04 */	lwz r3, 4(r3)
 /* 8000D210  80 63 00 28 */	lwz r3, 0x28(r3)
@@ -98,8 +98,8 @@ lbl_8000D200:
 /* 8000D220  28 00 00 01 */	cmplwi r0, 1
 /* 8000D224  40 82 00 90 */	bne lbl_8000D2B4
 /* 8000D228  C0 22 81 18 */	lfs f1, lit_3847(r2)
-/* 8000D22C  3C 60 80 43 */	lis r3, mParentS__6J3DSys@ha
-/* 8000D230  C4 03 4C 20 */	lfsu f0, mParentS__6J3DSys@l(r3)
+/* 8000D22C  3C 60 80 43 */	lis r3, mParentS__6J3DSys@ha /* 0x80434C20@ha */
+/* 8000D230  C4 03 4C 20 */	lfsu f0, mParentS__6J3DSys@l(r3)  /* 0x80434C20@l */
 /* 8000D234  EC 41 00 24 */	fdivs f2, f1, f0
 /* 8000D238  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8000D23C  EC 61 00 24 */	fdivs f3, f1, f0
@@ -133,14 +133,14 @@ lbl_8000D200:
 /* 8000D2AC  EC 00 00 72 */	fmuls f0, f0, f1
 /* 8000D2B0  D0 06 00 28 */	stfs f0, 0x28(r6)
 lbl_8000D2B4:
-/* 8000D2B4  3C 60 80 43 */	lis r3, mCurrentMtx__6J3DSys@ha
-/* 8000D2B8  38 63 4B E4 */	addi r3, r3, mCurrentMtx__6J3DSys@l
+/* 8000D2B4  3C 60 80 43 */	lis r3, mCurrentMtx__6J3DSys@ha /* 0x80434BE4@ha */
+/* 8000D2B8  38 63 4B E4 */	addi r3, r3, mCurrentMtx__6J3DSys@l /* 0x80434BE4@l */
 /* 8000D2BC  7C C4 33 78 */	mr r4, r6
 /* 8000D2C0  7C 65 1B 78 */	mr r5, r3
 /* 8000D2C4  48 33 92 21 */	bl PSMTXConcat
 /* 8000D2C8  80 9D 00 38 */	lwz r4, 0x38(r29)
-/* 8000D2CC  3C 60 80 43 */	lis r3, mCurrentMtx__6J3DSys@ha
-/* 8000D2D0  38 63 4B E4 */	addi r3, r3, mCurrentMtx__6J3DSys@l
+/* 8000D2CC  3C 60 80 43 */	lis r3, mCurrentMtx__6J3DSys@ha /* 0x80434BE4@ha */
+/* 8000D2D0  38 63 4B E4 */	addi r3, r3, mCurrentMtx__6J3DSys@l /* 0x80434BE4@l */
 /* 8000D2D4  80 84 00 84 */	lwz r4, 0x84(r4)
 /* 8000D2D8  80 84 00 0C */	lwz r4, 0xc(r4)
 /* 8000D2DC  57 E0 04 3E */	clrlwi r0, r31, 0x10
@@ -148,8 +148,8 @@ lbl_8000D2B4:
 /* 8000D2E4  7C 84 02 14 */	add r4, r4, r0
 /* 8000D2E8  48 33 91 C9 */	bl PSMTXCopy
 /* 8000D2EC  C0 1E 00 00 */	lfs f0, 0(r30)
-/* 8000D2F0  3C 60 80 43 */	lis r3, mParentS__6J3DSys@ha
-/* 8000D2F4  D4 03 4C 20 */	stfsu f0, mParentS__6J3DSys@l(r3)
+/* 8000D2F0  3C 60 80 43 */	lis r3, mParentS__6J3DSys@ha /* 0x80434C20@ha */
+/* 8000D2F4  D4 03 4C 20 */	stfsu f0, mParentS__6J3DSys@l(r3)  /* 0x80434C20@l */
 /* 8000D2F8  C0 1E 00 04 */	lfs f0, 4(r30)
 /* 8000D2FC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8000D300  C0 1E 00 08 */	lfs f0, 8(r30)

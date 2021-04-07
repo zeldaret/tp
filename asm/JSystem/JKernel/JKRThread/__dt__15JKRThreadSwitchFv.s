@@ -5,8 +5,8 @@ lbl_802D1E4C:
 /* 802D1E58  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802D1E5C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802D1E60  41 82 00 1C */	beq lbl_802D1E7C
-/* 802D1E64  3C A0 80 3D */	lis r5, __vt__15JKRThreadSwitch@ha
-/* 802D1E68  38 05 C1 00 */	addi r0, r5, __vt__15JKRThreadSwitch@l
+/* 802D1E64  3C A0 80 3D */	lis r5, __vt__15JKRThreadSwitch@ha /* 0x803CC100@ha */
+/* 802D1E68  38 05 C1 00 */	addi r0, r5, __vt__15JKRThreadSwitch@l /* 0x803CC100@l */
 /* 802D1E6C  90 1F 00 00 */	stw r0, 0(r31)
 /* 802D1E70  7C 80 07 35 */	extsh. r0, r4
 /* 802D1E74  40 81 00 08 */	ble lbl_802D1E7C

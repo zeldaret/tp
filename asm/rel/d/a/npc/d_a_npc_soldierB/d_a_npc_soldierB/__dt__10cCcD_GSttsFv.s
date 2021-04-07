@@ -5,12 +5,12 @@ lbl_80AF5998:
 /* 80AF59A4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80AF59A8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80AF59AC  41 82 00 1C */	beq lbl_80AF59C8
-/* 80AF59B0  3C A0 80 AF */	lis r5, __vt__10cCcD_GStts@ha
-/* 80AF59B4  38 05 5D C4 */	addi r0, r5, __vt__10cCcD_GStts@l
+/* 80AF59B0  3C A0 80 AF */	lis r5, __vt__10cCcD_GStts@ha /* 0x80AF5DC4@ha */
+/* 80AF59B4  38 05 5D C4 */	addi r0, r5, __vt__10cCcD_GStts@l /* 0x80AF5DC4@l */
 /* 80AF59B8  90 1F 00 00 */	stw r0, 0(r31)
 /* 80AF59BC  7C 80 07 35 */	extsh. r0, r4
 /* 80AF59C0  40 81 00 08 */	ble lbl_80AF59C8
-/* 80AF59C4  4B 7D 93 78 */	b __dl__FPv
+/* 80AF59C4  4B 7D 93 79 */	bl __dl__FPv
 lbl_80AF59C8:
 /* 80AF59C8  7F E3 FB 78 */	mr r3, r31
 /* 80AF59CC  83 E1 00 0C */	lwz r31, 0xc(r1)

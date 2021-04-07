@@ -12,7 +12,7 @@ lbl_80AEB780:
 /* 80AEB7A8  7F E4 FB 78 */	mr r4, r31
 /* 80AEB7AC  38 C0 00 00 */	li r6, 0
 /* 80AEB7B0  38 E0 00 00 */	li r7, 0
-/* 80AEB7B4  4B 75 E7 DC */	b init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
+/* 80AEB7B4  4B 75 E7 DD */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 /* 80AEB7B8  38 60 00 00 */	li r3, 0
 /* 80AEB7BC  48 00 00 20 */	b lbl_80AEB7DC
 lbl_80AEB7C0:
@@ -20,7 +20,7 @@ lbl_80AEB7C0:
 /* 80AEB7C4  7F E4 FB 78 */	mr r4, r31
 /* 80AEB7C8  38 A0 00 00 */	li r5, 0
 /* 80AEB7CC  38 C0 00 00 */	li r6, 0
-/* 80AEB7D0  4B 75 EB 08 */	b doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
+/* 80AEB7D0  4B 75 EB 09 */	bl doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci
 /* 80AEB7D4  30 03 FF FF */	addic r0, r3, -1
 /* 80AEB7D8  7C 60 19 10 */	subfe r3, r0, r3
 lbl_80AEB7DC:

@@ -4,7 +4,7 @@ lbl_80519B14:
 /* 80519B1C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80519B20  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80519B24  7C 7F 1B 78 */	mr r31, r3
-/* 80519B28  4B AF F1 B8 */	b fopAc_IsActor__FPv
+/* 80519B28  4B AF F1 B9 */	bl fopAc_IsActor__FPv
 /* 80519B2C  2C 03 00 00 */	cmpwi r3, 0
 /* 80519B30  41 82 00 18 */	beq lbl_80519B48
 /* 80519B34  A8 1F 00 08 */	lha r0, 8(r31)

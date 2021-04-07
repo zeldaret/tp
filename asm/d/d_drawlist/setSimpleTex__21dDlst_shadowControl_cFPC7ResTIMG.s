@@ -2,8 +2,8 @@ lbl_80055FE8:
 /* 80055FE8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80055FEC  7C 08 02 A6 */	mflr r0
 /* 80055FF0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80055FF4  3C 80 80 42 */	lis r4, mSimpleTexObj__21dDlst_shadowControl_c@ha
-/* 80055FF8  38 84 48 D0 */	addi r4, r4, mSimpleTexObj__21dDlst_shadowControl_c@l
+/* 80055FF4  3C 80 80 42 */	lis r4, mSimpleTexObj__21dDlst_shadowControl_c@ha /* 0x804248D0@ha */
+/* 80055FF8  38 84 48 D0 */	addi r4, r4, mSimpleTexObj__21dDlst_shadowControl_c@l /* 0x804248D0@l */
 /* 80055FFC  38 A0 00 00 */	li r5, 0
 /* 80056000  38 C0 00 00 */	li r6, 0
 /* 80056004  4B FB F1 39 */	bl mDoLib_setResTimgObj__FPC7ResTIMGP9_GXTexObjUlP10_GXTlutObj

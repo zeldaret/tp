@@ -7,8 +7,8 @@ lbl_802EB620:
 /* 802EB634  7C 7C 1B 79 */	or. r28, r3, r3
 /* 802EB638  7C 9D 23 78 */	mr r29, r4
 /* 802EB63C  41 82 00 4C */	beq lbl_802EB688
-/* 802EB640  3C 60 80 3D */	lis r3, __vt__14J2DTexGenBlock@ha
-/* 802EB644  38 03 CF 30 */	addi r0, r3, __vt__14J2DTexGenBlock@l
+/* 802EB640  3C 60 80 3D */	lis r3, __vt__14J2DTexGenBlock@ha /* 0x803CCF30@ha */
+/* 802EB644  38 03 CF 30 */	addi r0, r3, __vt__14J2DTexGenBlock@l /* 0x803CCF30@l */
 /* 802EB648  90 1C 00 44 */	stw r0, 0x44(r28)
 /* 802EB64C  3B C0 00 00 */	li r30, 0
 /* 802EB650  3B E0 00 00 */	li r31, 0

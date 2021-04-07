@@ -18,14 +18,14 @@ lbl_80BE425C:
 /* 80BE4264  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80BE4268  41 82 00 3C */	beq lbl_80BE42A4
 /* 80BE426C  90 61 00 08 */	stw r3, 8(r1)
-/* 80BE4270  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 80BE4274  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 80BE4270  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 80BE4274  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 80BE4278  38 81 00 08 */	addi r4, r1, 8
-/* 80BE427C  4B 43 55 7C */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 80BE427C  4B 43 55 7D */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80BE4280  28 03 00 00 */	cmplwi r3, 0
 /* 80BE4284  41 82 00 20 */	beq lbl_80BE42A4
-/* 80BE4288  3C 80 80 BE */	lis r4, lit_3677@ha
-/* 80BE428C  C0 24 4A B0 */	lfs f1, lit_3677@l(r4)
+/* 80BE4288  3C 80 80 BE */	lis r4, lit_3677@ha /* 0x80BE4AB0@ha */
+/* 80BE428C  C0 24 4A B0 */	lfs f1, lit_3677@l(r4)  /* 0x80BE4AB0@l */
 /* 80BE4290  C0 03 04 FC */	lfs f0, 0x4fc(r3)
 /* 80BE4294  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 80BE4298  41 82 00 0C */	beq lbl_80BE42A4

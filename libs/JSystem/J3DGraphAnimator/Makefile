@@ -40,7 +40,6 @@ $(BUILD_DIR)/libJ3DGraphAnimator.a: $(LIBJ3DGRAPHANIMATOR_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libJ3DGraphAnimator.a
 	@echo $(LIBJ3DGRAPHANIMATOR_A_O_FILES) > build/LIBJ3DGRAPHANIMATOR_A_ofiles
 	@$(LD) -xm l $(LIBJ3DGRAPHANIMATOR_A_LDFLAGS) -o $(BUILD_DIR)/libJ3DGraphAnimator.a @build/LIBJ3DGRAPHANIMATOR_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libJ3DGraphAnimator.a
 
 $(BUILD_DIR)/libs/JSystem/J3DGraphAnimator/%.o: libs/JSystem/J3DGraphAnimator/%.cpp
 	@mkdir -p $(@D)

@@ -3,19 +3,20 @@
 #
 
 M206_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_kr.plf
+M206_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_kr.lcf
+M206_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_kr.map
 
 M206_CPP_FILES := \
-	rel/d/a/e/d_a_e_kr/executor.cpp \
-	rel/d/a/e/d_a_e_kr/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/e/d_a_e_kr/d_a_e_kr.cpp \
 
 M206_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_kr/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_kr/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_kr/d_a_e_kr.o \
 
 M206_LIBS := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_kr/libRuntime.PPCEABI.H.a \
 
 M206_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M206_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M206_LDSCRIPT) \
+	-unused -map $(M206_MAP) \
+	-w off \
 
 $(M206_TARGET): $(M206_O_FILES) $(M206_LIBS)
+	@echo [206] creating $(M206_TARGET)
 	@echo $(M206_LIBS) $(M206_O_FILES) > build/M206_ofiles
-	$(LD) -partial $(M206_LDFLAGS) -o $(M206_TARGET) @build/M206_ofiles
+	@python3 tools/lcf.py rel 206 --output $(M206_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M206_LDFLAGS) -o $(M206_TARGET) @build/M206_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_kr/%.o: rel/d/a/e/d_a_e_kr/%.cpp
+	@echo [206] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M206_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M206_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/e/d_a_e_kr/libs/Runtime.PPCEABI.H/Makefile
 

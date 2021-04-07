@@ -3,10 +3,10 @@ lbl_806FBE98:
 /* 806FBE9C  7C 08 02 A6 */	mflr r0
 /* 806FBEA0  90 01 00 44 */	stw r0, 0x44(r1)
 /* 806FBEA4  39 61 00 40 */	addi r11, r1, 0x40
-/* 806FBEA8  4B C6 63 34 */	b _savegpr_29
+/* 806FBEA8  4B C6 63 35 */	bl _savegpr_29
 /* 806FBEAC  7C 7E 1B 78 */	mr r30, r3
-/* 806FBEB0  3C 80 80 70 */	lis r4, lit_3792@ha
-/* 806FBEB4  3B E4 F5 E8 */	addi r31, r4, lit_3792@l
+/* 806FBEB0  3C 80 80 70 */	lis r4, lit_3792@ha /* 0x806FF5E8@ha */
+/* 806FBEB4  3B E4 F5 E8 */	addi r31, r4, lit_3792@l /* 0x806FF5E8@l */
 /* 806FBEB8  80 03 06 64 */	lwz r0, 0x664(r3)
 /* 806FBEBC  2C 00 00 02 */	cmpwi r0, 2
 /* 806FBEC0  41 82 00 E0 */	beq lbl_806FBFA0
@@ -31,32 +31,32 @@ lbl_806FBEE8:
 /* 806FBF04  4B FF EB 65 */	bl setBck__8daE_KK_cFiUcff
 lbl_806FBF08:
 /* 806FBF08  7F C3 F3 78 */	mr r3, r30
-/* 806FBF0C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 806FBF10  3B A4 61 C0 */	addi r29, r4, g_dComIfG_gameInfo@l
+/* 806FBF0C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806FBF10  3B A4 61 C0 */	addi r29, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806FBF14  80 9D 5D AC */	lwz r4, 0x5dac(r29)
-/* 806FBF18  4B 91 E7 F8 */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 806FBF18  4B 91 E7 F9 */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 806FBF1C  7C 64 1B 78 */	mr r4, r3
 /* 806FBF20  38 7E 04 DE */	addi r3, r30, 0x4de
 /* 806FBF24  38 A0 00 04 */	li r5, 4
 /* 806FBF28  38 C0 05 00 */	li r6, 0x500
-/* 806FBF2C  4B B7 46 DC */	b cLib_addCalcAngleS2__FPssss
+/* 806FBF2C  4B B7 46 DD */	bl cLib_addCalcAngleS2__FPssss
 /* 806FBF30  A8 1E 04 DE */	lha r0, 0x4de(r30)
 /* 806FBF34  B0 1E 04 E6 */	sth r0, 0x4e6(r30)
 /* 806FBF38  7F C3 F3 78 */	mr r3, r30
 /* 806FBF3C  80 9D 5D AC */	lwz r4, 0x5dac(r29)
-/* 806FBF40  4B 91 E7 D0 */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 806FBF40  4B 91 E7 D1 */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 806FBF44  A8 1E 04 E6 */	lha r0, 0x4e6(r30)
 /* 806FBF48  7C 03 00 50 */	subf r0, r3, r0
 /* 806FBF4C  7C 03 07 34 */	extsh r3, r0
-/* 806FBF50  4B C6 91 80 */	b abs
+/* 806FBF50  4B C6 91 81 */	bl abs
 /* 806FBF54  2C 03 01 00 */	cmpwi r3, 0x100
 /* 806FBF58  41 81 03 9C */	bgt lbl_806FC2F4
 lbl_806FBF5C:
 /* 806FBF5C  7F C3 F3 78 */	mr r3, r30
-/* 806FBF60  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 806FBF64  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 806FBF60  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806FBF64  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806FBF68  80 84 5D AC */	lwz r4, 0x5dac(r4)
-/* 806FBF6C  4B 91 E7 A4 */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 806FBF6C  4B 91 E7 A5 */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 806FBF70  B0 7E 04 DE */	sth r3, 0x4de(r30)
 /* 806FBF74  B0 7E 04 E6 */	sth r3, 0x4e6(r30)
 /* 806FBF78  7F C3 F3 78 */	mr r3, r30
@@ -70,22 +70,22 @@ lbl_806FBF5C:
 /* 806FBF98  90 1E 06 64 */	stw r0, 0x664(r30)
 /* 806FBF9C  48 00 03 58 */	b lbl_806FC2F4
 lbl_806FBFA0:
-/* 806FBFA0  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 806FBFA4  3B A4 61 C0 */	addi r29, r4, g_dComIfG_gameInfo@l
+/* 806FBFA0  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806FBFA4  3B A4 61 C0 */	addi r29, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806FBFA8  88 1D 4F AD */	lbz r0, 0x4fad(r29)
 /* 806FBFAC  28 00 00 00 */	cmplwi r0, 0
 /* 806FBFB0  40 82 00 B8 */	bne lbl_806FC068
 /* 806FBFB4  80 9D 5D AC */	lwz r4, 0x5dac(r29)
-/* 806FBFB8  4B 91 E8 28 */	b fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
-/* 806FBFBC  3C 60 80 70 */	lis r3, l_HIO@ha
-/* 806FBFC0  38 63 F8 90 */	addi r3, r3, l_HIO@l
+/* 806FBFB8  4B 91 E8 29 */	bl fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 806FBFBC  3C 60 80 70 */	lis r3, l_HIO@ha /* 0x806FF890@ha */
+/* 806FBFC0  38 63 F8 90 */	addi r3, r3, l_HIO@l /* 0x806FF890@l */
 /* 806FBFC4  C0 03 00 10 */	lfs f0, 0x10(r3)
 /* 806FBFC8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 806FBFCC  4C 40 13 82 */	cror 2, 0, 2
 /* 806FBFD0  40 82 00 98 */	bne lbl_806FC068
 /* 806FBFD4  7F C3 F3 78 */	mr r3, r30
 /* 806FBFD8  80 9D 5D AC */	lwz r4, 0x5dac(r29)
-/* 806FBFDC  4B 92 0E 20 */	b fopAcM_otherBgCheck__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 806FBFDC  4B 92 0E 21 */	bl fopAcM_otherBgCheck__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 806FBFE0  2C 03 00 00 */	cmpwi r3, 0
 /* 806FBFE4  40 82 00 84 */	bne lbl_806FC068
 /* 806FBFE8  80 7E 05 B4 */	lwz r3, 0x5b4(r30)
@@ -98,15 +98,15 @@ lbl_806FBFA0:
 /* 806FC004  88 1D 4F AD */	lbz r0, 0x4fad(r29)
 /* 806FC008  28 00 00 00 */	cmplwi r0, 0
 /* 806FC00C  40 82 00 5C */	bne lbl_806FC068
-/* 806FC010  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 806FC014  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 806FC010  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806FC014  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806FC018  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 806FC01C  54 00 05 EF */	rlwinm. r0, r0, 0, 0x17, 0x17
 /* 806FC020  40 82 00 48 */	bne lbl_806FC068
 /* 806FC024  83 BD 5D AC */	lwz r29, 0x5dac(r29)
 /* 806FC028  7F C3 F3 78 */	mr r3, r30
 /* 806FC02C  7F A4 EB 78 */	mr r4, r29
-/* 806FC030  4B 92 0D CC */	b fopAcM_otherBgCheck__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 806FC030  4B 92 0D CD */	bl fopAcM_otherBgCheck__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 806FC034  2C 03 00 00 */	cmpwi r3, 0
 /* 806FC038  40 82 00 30 */	bne lbl_806FC068
 /* 806FC03C  C0 3F 00 4C */	lfs f1, 0x4c(r31)
@@ -146,7 +146,7 @@ lbl_806FC0AC:
 /* 806FC0B8  39 1E 04 E4 */	addi r8, r30, 0x4e4
 /* 806FC0BC  39 20 00 00 */	li r9, 0
 /* 806FC0C0  39 40 FF FF */	li r10, -1
-/* 806FC0C4  4B 91 DE 2C */	b fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
+/* 806FC0C4  4B 91 DE 2D */	bl fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
 /* 806FC0C8  38 00 00 01 */	li r0, 1
 /* 806FC0CC  98 1E 06 7D */	stb r0, 0x67d(r30)
 /* 806FC0D0  80 1E 0A 60 */	lwz r0, 0xa60(r30)
@@ -325,7 +325,7 @@ lbl_806FC32C:
 /* 806FC354  4E 80 04 21 */	bctrl 
 lbl_806FC358:
 /* 806FC358  39 61 00 40 */	addi r11, r1, 0x40
-/* 806FC35C  4B C6 5E CC */	b _restgpr_29
+/* 806FC35C  4B C6 5E CD */	bl _restgpr_29
 /* 806FC360  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 806FC364  7C 08 03 A6 */	mtlr r0
 /* 806FC368  38 21 00 40 */	addi r1, r1, 0x40

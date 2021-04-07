@@ -2,8 +2,8 @@ lbl_802A7EDC:
 /* 802A7EDC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802A7EE0  7C 08 02 A6 */	mflr r0
 /* 802A7EE4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 802A7EE8  3C 80 80 2B */	lis r4, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
-/* 802A7EEC  38 04 82 8C */	addi r0, r4, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
+/* 802A7EE8  3C 80 80 2B */	lis r4, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha /* 0x802A828C@ha */
+/* 802A7EEC  38 04 82 8C */	addi r0, r4, process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l /* 0x802A828C@l */
 /* 802A7EF0  90 03 00 24 */	stw r0, 0x24(r3)
 /* 802A7EF4  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 802A7EF8  54 00 10 3A */	slwi r0, r0, 2

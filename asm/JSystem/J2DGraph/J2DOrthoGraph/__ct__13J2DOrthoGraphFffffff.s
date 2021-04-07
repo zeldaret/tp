@@ -17,8 +17,8 @@ lbl_802E96D0:
 /* 802E970C  FF C0 28 90 */	fmr f30, f5
 /* 802E9710  FF E0 30 90 */	fmr f31, f6
 /* 802E9714  4B FF F3 F5 */	bl __ct__14J2DGrafContextFffff
-/* 802E9718  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha
-/* 802E971C  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l
+/* 802E9718  3C 60 80 3D */	lis r3, __vt__13J2DOrthoGraph@ha /* 0x803CC9E0@ha */
+/* 802E971C  38 03 C9 E0 */	addi r0, r3, __vt__13J2DOrthoGraph@l /* 0x803CC9E0@l */
 /* 802E9720  90 1F 00 00 */	stw r0, 0(r31)
 /* 802E9724  C0 02 C7 60 */	lfs f0, lit_522(r2)
 /* 802E9728  D0 01 00 08 */	stfs f0, 8(r1)

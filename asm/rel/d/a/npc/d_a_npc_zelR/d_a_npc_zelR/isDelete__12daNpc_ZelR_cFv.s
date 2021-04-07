@@ -13,7 +13,7 @@ lbl_80B6F85C:
 /* 80B6F864  48 00 00 1C */	b lbl_80B6F880
 lbl_80B6F868:
 /* 80B6F868  38 60 00 2D */	li r3, 0x2d
-/* 80B6F86C  4B 5D D2 40 */	b daNpcT_chkEvtBit__FUl
+/* 80B6F86C  4B 5D D2 41 */	bl daNpcT_chkEvtBit__FUl
 /* 80B6F870  30 03 FF FF */	addic r0, r3, -1
 /* 80B6F874  7C 00 19 10 */	subfe r0, r0, r3
 /* 80B6F878  54 03 06 3E */	clrlwi r3, r0, 0x18

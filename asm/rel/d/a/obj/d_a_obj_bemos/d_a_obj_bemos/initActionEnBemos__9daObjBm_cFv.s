@@ -7,7 +7,7 @@ lbl_80BAF328:
 /* 80BAF33C  80 63 05 68 */	lwz r3, 0x568(r3)
 /* 80BAF340  28 03 00 00 */	cmplwi r3, 0
 /* 80BAF344  41 82 00 1C */	beq lbl_80BAF360
-/* 80BAF348  4B 6B 8E 8C */	b ChkUsed__9cBgW_BgIdCFv
+/* 80BAF348  4B 6B 8E 8D */	bl ChkUsed__9cBgW_BgIdCFv
 /* 80BAF34C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80BAF350  41 82 00 10 */	beq lbl_80BAF360
 /* 80BAF354  38 00 00 00 */	li r0, 0

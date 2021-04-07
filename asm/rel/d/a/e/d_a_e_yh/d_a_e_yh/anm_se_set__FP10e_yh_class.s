@@ -4,15 +4,15 @@ lbl_80802C30:
 /* 80802C38  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80802C3C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80802C40  7C 7F 1B 78 */	mr r31, r3
-/* 80802C44  3C 60 80 80 */	lis r3, lit_3902@ha
-/* 80802C48  38 83 42 7C */	addi r4, r3, lit_3902@l
+/* 80802C44  3C 60 80 80 */	lis r3, lit_3902@ha /* 0x8080427C@ha */
+/* 80802C48  38 83 42 7C */	addi r4, r3, lit_3902@l /* 0x8080427C@l */
 /* 80802C4C  80 1F 06 64 */	lwz r0, 0x664(r31)
 /* 80802C50  2C 00 00 06 */	cmpwi r0, 6
 /* 80802C54  40 82 00 4C */	bne lbl_80802CA0
 /* 80802C58  80 7F 05 B8 */	lwz r3, 0x5b8(r31)
 /* 80802C5C  38 63 00 0C */	addi r3, r3, 0xc
 /* 80802C60  C0 24 01 38 */	lfs f1, 0x138(r4)
-/* 80802C64  4B B2 57 C8 */	b checkPass__12J3DFrameCtrlFf
+/* 80802C64  4B B2 57 C9 */	bl checkPass__12J3DFrameCtrlFf
 /* 80802C68  2C 03 00 00 */	cmpwi r3, 0
 /* 80802C6C  41 82 01 18 */	beq lbl_80802D84
 /* 80802C70  3C 60 00 07 */	lis r3, 0x0007 /* 0x0007008B@ha */
@@ -33,7 +33,7 @@ lbl_80802CA0:
 /* 80802CA8  80 7F 05 B8 */	lwz r3, 0x5b8(r31)
 /* 80802CAC  38 63 00 0C */	addi r3, r3, 0xc
 /* 80802CB0  C0 24 01 3C */	lfs f1, 0x13c(r4)
-/* 80802CB4  4B B2 57 78 */	b checkPass__12J3DFrameCtrlFf
+/* 80802CB4  4B B2 57 79 */	bl checkPass__12J3DFrameCtrlFf
 /* 80802CB8  2C 03 00 00 */	cmpwi r3, 0
 /* 80802CBC  41 82 00 C8 */	beq lbl_80802D84
 /* 80802CC0  3C 60 00 07 */	lis r3, 0x0007 /* 0x00070082@ha */
@@ -54,7 +54,7 @@ lbl_80802CF0:
 /* 80802CF8  80 7F 05 B8 */	lwz r3, 0x5b8(r31)
 /* 80802CFC  38 63 00 0C */	addi r3, r3, 0xc
 /* 80802D00  C0 24 00 80 */	lfs f1, 0x80(r4)
-/* 80802D04  4B B2 57 28 */	b checkPass__12J3DFrameCtrlFf
+/* 80802D04  4B B2 57 29 */	bl checkPass__12J3DFrameCtrlFf
 /* 80802D08  2C 03 00 00 */	cmpwi r3, 0
 /* 80802D0C  41 82 00 78 */	beq lbl_80802D84
 /* 80802D10  3C 60 00 07 */	lis r3, 0x0007 /* 0x00070089@ha */
@@ -74,7 +74,7 @@ lbl_80802D3C:
 /* 80802D44  80 7F 05 B8 */	lwz r3, 0x5b8(r31)
 /* 80802D48  38 63 00 0C */	addi r3, r3, 0xc
 /* 80802D4C  C0 24 00 D8 */	lfs f1, 0xd8(r4)
-/* 80802D50  4B B2 56 DC */	b checkPass__12J3DFrameCtrlFf
+/* 80802D50  4B B2 56 DD */	bl checkPass__12J3DFrameCtrlFf
 /* 80802D54  2C 03 00 00 */	cmpwi r3, 0
 /* 80802D58  41 82 00 2C */	beq lbl_80802D84
 /* 80802D5C  3C 60 00 07 */	lis r3, 0x0007 /* 0x00070081@ha */

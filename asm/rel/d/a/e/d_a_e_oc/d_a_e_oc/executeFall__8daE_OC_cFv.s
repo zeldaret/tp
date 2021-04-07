@@ -5,14 +5,14 @@ lbl_807331CC:
 /* 807331D8  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 807331DC  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 807331E0  7C 7E 1B 78 */	mr r30, r3
-/* 807331E4  3C 60 80 73 */	lis r3, lit_3911@ha
-/* 807331E8  3B E3 5B 28 */	addi r31, r3, lit_3911@l
+/* 807331E4  3C 60 80 73 */	lis r3, lit_3911@ha /* 0x80735B28@ha */
+/* 807331E8  3B E3 5B 28 */	addi r31, r3, lit_3911@l /* 0x80735B28@l */
 /* 807331EC  A8 1E 04 E6 */	lha r0, 0x4e6(r30)
 /* 807331F0  B0 1E 06 D4 */	sth r0, 0x6d4(r30)
 /* 807331F4  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 807331F8  C0 3F 00 04 */	lfs f1, 4(r31)
 /* 807331FC  C0 5F 00 E8 */	lfs f2, 0xe8(r31)
-/* 80733200  4B B3 D5 40 */	b cLib_chaseF__FPfff
+/* 80733200  4B B3 D5 41 */	bl cLib_chaseF__FPfff
 /* 80733204  80 1E 06 B0 */	lwz r0, 0x6b0(r30)
 /* 80733208  2C 00 00 01 */	cmpwi r0, 1
 /* 8073320C  41 82 00 44 */	beq lbl_80733250
@@ -58,7 +58,7 @@ lbl_80733250:
 /* 807332A0  C0 3F 01 38 */	lfs f1, 0x138(r31)
 /* 807332A4  38 FE 01 0C */	addi r7, r30, 0x10c
 /* 807332A8  39 00 00 01 */	li r8, 1
-/* 807332AC  4B 8E 9D 74 */	b fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci
+/* 807332AC  4B 8E 9D 75 */	bl fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci
 /* 807332B0  7F C3 F3 78 */	mr r3, r30
 /* 807332B4  38 80 00 12 */	li r4, 0x12
 /* 807332B8  38 A0 00 00 */	li r5, 0

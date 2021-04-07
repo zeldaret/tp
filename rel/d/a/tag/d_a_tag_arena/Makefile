@@ -3,17 +3,15 @@
 #
 
 M714_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_arena.plf
+M714_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_arena.lcf
+M714_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_arena.map
 
 M714_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_arena/executor.cpp \
-	rel/d/a/tag/d_a_tag_arena/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_arena/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_arena/d_a_tag_arena.cpp \
 
 M714_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_arena/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_arena/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_arena/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_arena/d_a_tag_arena.o \
 
 M714_LIBS := \
@@ -29,14 +27,21 @@ M714_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M714_LDSCRIPT) \
+	-unused -map $(M714_MAP) \
+	-w off \
 
 $(M714_TARGET): $(M714_O_FILES) $(M714_LIBS)
+	@echo [714] creating $(M714_TARGET)
 	@echo $(M714_LIBS) $(M714_O_FILES) > build/M714_ofiles
-	$(LD) -partial $(M714_LDFLAGS) -o $(M714_TARGET) @build/M714_ofiles
+	@python3 tools/lcf.py rel 714 --output $(M714_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M714_LDFLAGS) -o $(M714_TARGET) @build/M714_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_arena/%.o: rel/d/a/tag/d_a_tag_arena/%.cpp
+	@echo [714] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M714_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M714_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

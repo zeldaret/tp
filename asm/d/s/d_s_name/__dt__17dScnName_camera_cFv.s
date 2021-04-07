@@ -5,8 +5,8 @@ lbl_80259294:
 /* 802592A0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802592A4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 802592A8  41 82 00 1C */	beq lbl_802592C4
-/* 802592AC  3C A0 80 3C */	lis r5, __vt__17dScnName_camera_c@ha
-/* 802592B0  38 05 31 40 */	addi r0, r5, __vt__17dScnName_camera_c@l
+/* 802592AC  3C A0 80 3C */	lis r5, __vt__17dScnName_camera_c@ha /* 0x803C3140@ha */
+/* 802592B0  38 05 31 40 */	addi r0, r5, __vt__17dScnName_camera_c@l /* 0x803C3140@l */
 /* 802592B4  90 1F 02 3C */	stw r0, 0x23c(r31)
 /* 802592B8  7C 80 07 35 */	extsh. r0, r4
 /* 802592BC  40 81 00 08 */	ble lbl_802592C4

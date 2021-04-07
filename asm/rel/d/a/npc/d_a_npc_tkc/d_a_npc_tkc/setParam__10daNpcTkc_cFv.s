@@ -9,14 +9,14 @@ lbl_80B0FA5C:
 /* 80B0FA78  28 00 FF FF */	cmplwi r0, 0xffff
 /* 80B0FA7C  41 82 00 40 */	beq lbl_80B0FABC
 /* 80B0FA80  90 61 00 08 */	stw r3, 8(r1)
-/* 80B0FA84  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 80B0FA88  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 80B0FA84  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 80B0FA88  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 80B0FA8C  38 81 00 08 */	addi r4, r1, 8
-/* 80B0FA90  4B 50 9D 68 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 80B0FA90  4B 50 9D 69 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80B0FA94  C0 43 04 D8 */	lfs f2, 0x4d8(r3)
 /* 80B0FA98  C0 23 04 D4 */	lfs f1, 0x4d4(r3)
-/* 80B0FA9C  3C 80 80 B1 */	lis r4, m__16daNpcTkc_Param_c@ha
-/* 80B0FAA0  38 84 08 B4 */	addi r4, r4, m__16daNpcTkc_Param_c@l
+/* 80B0FA9C  3C 80 80 B1 */	lis r4, m__16daNpcTkc_Param_c@ha /* 0x80B108B4@ha */
+/* 80B0FAA0  38 84 08 B4 */	addi r4, r4, m__16daNpcTkc_Param_c@l /* 0x80B108B4@l */
 /* 80B0FAA4  C0 04 00 8C */	lfs f0, 0x8c(r4)
 /* 80B0FAA8  EC 21 00 2A */	fadds f1, f1, f0
 /* 80B0FAAC  C0 03 04 D0 */	lfs f0, 0x4d0(r3)

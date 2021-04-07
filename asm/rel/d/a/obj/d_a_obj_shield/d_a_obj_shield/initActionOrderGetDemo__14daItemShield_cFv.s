@@ -13,11 +13,11 @@ lbl_80CD7C68:
 /* 80CD7C94  80 03 08 0C */	lwz r0, 0x80c(r3)
 /* 80CD7C98  54 00 00 3C */	rlwinm r0, r0, 0, 0, 0x1e
 /* 80CD7C9C  90 03 08 0C */	stw r0, 0x80c(r3)
-/* 80CD7CA0  4B 35 FD C4 */	b hide__12daItemBase_cFv
+/* 80CD7CA0  4B 35 FD C5 */	bl hide__12daItemBase_cFv
 /* 80CD7CA4  7F E3 FB 78 */	mr r3, r31
 /* 80CD7CA8  38 80 00 00 */	li r4, 0
 /* 80CD7CAC  38 A0 00 00 */	li r5, 0
-/* 80CD7CB0  4B 34 3D 20 */	b fopAcM_orderItemEvent__FP10fopAc_ac_cUsUs
+/* 80CD7CB0  4B 34 3D 21 */	bl fopAcM_orderItemEvent__FP10fopAc_ac_cUsUs
 /* 80CD7CB4  A0 1F 00 FA */	lhz r0, 0xfa(r31)
 /* 80CD7CB8  60 00 00 08 */	ori r0, r0, 8
 /* 80CD7CBC  B0 1F 00 FA */	sth r0, 0xfa(r31)
@@ -28,7 +28,7 @@ lbl_80CD7C68:
 /* 80CD7CD0  7C 06 07 74 */	extsb r6, r0
 /* 80CD7CD4  38 E0 00 00 */	li r7, 0
 /* 80CD7CD8  39 00 00 00 */	li r8, 0
-/* 80CD7CDC  4B 34 3F 98 */	b fopAcM_createItemForTrBoxDemo__FPC4cXyziiiPC5csXyzPC4cXyz
+/* 80CD7CDC  4B 34 3F 99 */	bl fopAcM_createItemForTrBoxDemo__FPC4cXyziiiPC5csXyzPC4cXyz
 /* 80CD7CE0  90 7F 09 2C */	stw r3, 0x92c(r31)
 /* 80CD7CE4  38 00 00 02 */	li r0, 2
 /* 80CD7CE8  98 1F 09 34 */	stb r0, 0x934(r31)

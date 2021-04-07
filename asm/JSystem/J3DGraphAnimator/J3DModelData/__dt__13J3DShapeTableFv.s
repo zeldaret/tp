@@ -5,8 +5,8 @@ lbl_80326134:
 /* 80326140  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80326144  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80326148  41 82 00 1C */	beq lbl_80326164
-/* 8032614C  3C A0 80 3D */	lis r5, __vt__13J3DShapeTable@ha
-/* 80326150  38 05 ED 08 */	addi r0, r5, __vt__13J3DShapeTable@l
+/* 8032614C  3C A0 80 3D */	lis r5, __vt__13J3DShapeTable@ha /* 0x803CED08@ha */
+/* 80326150  38 05 ED 08 */	addi r0, r5, __vt__13J3DShapeTable@l /* 0x803CED08@l */
 /* 80326154  90 1F 00 00 */	stw r0, 0(r31)
 /* 80326158  7C 80 07 35 */	extsh. r0, r4
 /* 8032615C  40 81 00 08 */	ble lbl_80326164

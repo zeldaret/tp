@@ -5,11 +5,11 @@ lbl_80947794:
 /* 809477A0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 809477A4  93 C1 00 08 */	stw r30, 8(r1)
 /* 809477A8  7C 7F 1B 78 */	mr r31, r3
-/* 809477AC  4B 8F 10 18 */	b dMsgObject_getTotalPayment__Fv
+/* 809477AC  4B 8F 10 19 */	bl dMsgObject_getTotalPayment__Fv
 /* 809477B0  54 63 04 3E */	clrlwi r3, r3, 0x10
 /* 809477B4  A8 1F 09 22 */	lha r0, 0x922(r31)
 /* 809477B8  7F C0 18 50 */	subf r30, r0, r3
-/* 809477BC  4B 8F 0E A4 */	b dMsgObject_getTotalPrice__Fv
+/* 809477BC  4B 8F 0E A5 */	bl dMsgObject_getTotalPrice__Fv
 /* 809477C0  54 63 04 3E */	clrlwi r3, r3, 0x10
 /* 809477C4  A8 1F 09 20 */	lha r0, 0x920(r31)
 /* 809477C8  7C 00 18 50 */	subf r0, r0, r3
@@ -60,12 +60,12 @@ lbl_8094785C:
 /* 8094785C  88 1F 09 33 */	lbz r0, 0x933(r31)
 /* 80947860  28 00 00 00 */	cmplwi r0, 0
 /* 80947864  40 82 00 3C */	bne lbl_809478A0
-/* 80947868  4B 8F 0F 5C */	b dMsgObject_getTotalPayment__Fv
+/* 80947868  4B 8F 0F 5D */	bl dMsgObject_getTotalPayment__Fv
 /* 8094786C  B0 7F 09 22 */	sth r3, 0x922(r31)
-/* 80947870  4B 8F 0D F0 */	b dMsgObject_getTotalPrice__Fv
+/* 80947870  4B 8F 0D F1 */	bl dMsgObject_getTotalPrice__Fv
 /* 80947874  B0 7F 09 20 */	sth r3, 0x920(r31)
-/* 80947878  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8094787C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80947878  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8094787C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80947880  80 83 5D BC */	lwz r4, 0x5dbc(r3)
 /* 80947884  38 00 00 00 */	li r0, 0
 /* 80947888  B0 04 01 7A */	sth r0, 0x17a(r4)
@@ -80,7 +80,7 @@ lbl_809478A0:
 /* 809478A8  A0 BF 09 1C */	lhz r5, 0x91c(r31)
 /* 809478AC  38 C0 00 00 */	li r6, 0
 /* 809478B0  38 E0 00 00 */	li r7, 0
-/* 809478B4  4B 90 26 DC */	b init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
+/* 809478B4  4B 90 26 DD */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 /* 809478B8  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 809478BC  83 C1 00 08 */	lwz r30, 8(r1)
 /* 809478C0  80 01 00 14 */	lwz r0, 0x14(r1)

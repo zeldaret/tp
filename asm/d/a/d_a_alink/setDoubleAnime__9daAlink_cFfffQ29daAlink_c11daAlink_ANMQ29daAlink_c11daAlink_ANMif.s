@@ -20,8 +20,8 @@ lbl_800ACA14:
 /* 800ACA5C  7C BD 2B 78 */	mr r29, r5
 /* 800ACA60  7C DE 33 78 */	mr r30, r6
 /* 800ACA64  FF E0 20 90 */	fmr f31, f4
-/* 800ACA68  3C A0 80 39 */	lis r5, lit_3757@ha
-/* 800ACA6C  3B E5 D6 58 */	addi r31, r5, lit_3757@l
+/* 800ACA68  3C A0 80 39 */	lis r5, lit_3757@ha /* 0x8038D658@ha */
+/* 800ACA6C  3B E5 D6 58 */	addi r31, r5, lit_3757@l /* 0x8038D658@l */
 /* 800ACA70  38 A1 00 14 */	addi r5, r1, 0x14
 /* 800ACA74  38 C1 00 10 */	addi r6, r1, 0x10
 /* 800ACA78  38 E0 00 00 */	li r7, 0

@@ -100,7 +100,7 @@ extern "C" extern u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 802BF920-802BF980 0060+00 s=0 e=1 z=0  None .text      __ct__13Z2SoundObjMgrFv */
+/* 802BF920-802BF980 2BA260 0060+00 0/0 1/1 0/0 .text            __ct__13Z2SoundObjMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -110,7 +110,7 @@ asm Z2SoundObjMgr::Z2SoundObjMgr() {
 }
 #pragma pop
 
-/* 802BF980-802BF994 0014+00 s=1 e=3 z=3  None .text setForceBattleArea__13Z2SoundObjMgrFbUsUsUs
+/* 802BF980-802BF994 2BA2C0 0014+00 1/1 3/3 3/3 .text setForceBattleArea__13Z2SoundObjMgrFbUsUsUs
  */
 #pragma push
 #pragma optimization_level 0
@@ -122,7 +122,7 @@ asm void Z2SoundObjMgr::setForceBattleArea(bool param_0, u16 param_1, u16 param_
 #pragma pop
 
 /* ############################################################################################## */
-/* 8039C240-8039C250 000C+04 s=1 e=0 z=0  None .rodata    @3380 */
+/* 8039C240-8039C250 0288A0 000C+04 1/1 0/0 0/0 .rodata          @3380 */
 SECTION_RODATA static u8 const lit_3380[12 + 4 /* padding */] = {
     0x00,
     0x00,
@@ -142,8 +142,9 @@ SECTION_RODATA static u8 const lit_3380[12 + 4 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8039C240, &lit_3380);
 
-/* 803CAD70-803CB170 0400+00 s=3 e=0 z=0  None .data      mEnemyInfo */
+/* 803CAD70-803CB170 027E90 0400+00 3/3 0/0 0/0 .data            mEnemyInfo */
 SECTION_DATA static u8 mEnemyInfo[1024] = {
     0x44, 0x75, 0x6D, 0x6D, 0x79, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x45, 0x5F, 0x73, 0x31, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x02, 0xBC, 0x04, 0xB0, 0x07, 0xD0,
@@ -211,7 +212,7 @@ SECTION_DATA static u8 mEnemyInfo[1024] = {
     0x42, 0x5F, 0x74, 0x6E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803CB170-803CB230 00C0+00 s=1 e=0 z=0  None .data      @3704 */
+/* 803CB170-803CB230 -00001 00C0+00 1/1 0/0 0/0 .data            @3704 */
 SECTION_DATA static void* lit_3704[48] = {
     (void*)(((char*)searchEnemy__13Z2SoundObjMgrFv) + 0x1E4),
     (void*)(((char*)searchEnemy__13Z2SoundObjMgrFv) + 0x1E4),
@@ -263,43 +264,43 @@ SECTION_DATA static void* lit_3704[48] = {
     (void*)(((char*)searchEnemy__13Z2SoundObjMgrFv) + 0x1D0),
 };
 
-/* 80455B80-80455B84 0004+00 s=1 e=0 z=0  None .sdata2    sAreaDefault */
+/* 80455B80-80455B84 004180 0004+00 1/1 0/0 0/0 .sdata2          sAreaDefault */
 SECTION_SDATA2 static u32 sAreaDefault = 0x010002BC;
 
-/* 80455B84-80455B88 0004+00 s=1 e=0 z=0  None .sdata2    None */
+/* 80455B84-80455B88 004184 0004+00 1/1 0/0 0/0 .sdata2          None */
 SECTION_SDATA2 static u32 data_80455B84 = 0x044C05DC;
 
-/* 80455B88-80455B8C 0004+00 s=1 e=0 z=0  None .sdata2    sAreaFloating */
+/* 80455B88-80455B8C 004188 0004+00 1/1 0/0 0/0 .sdata2          sAreaFloating */
 SECTION_SDATA2 static u32 sAreaFloating = 0x000002BC;
 
-/* 80455B8C-80455B90 0004+00 s=1 e=0 z=0  None .sdata2    None */
+/* 80455B8C-80455B90 00418C 0004+00 1/1 0/0 0/0 .sdata2          None */
 SECTION_SDATA2 static u32 data_80455B8C = 0x044C05DC;
 
-/* 80455B90-80455B94 0004+00 s=1 e=0 z=0  None .sdata2    sAreaWide */
+/* 80455B90-80455B94 004190 0004+00 1/1 0/0 0/0 .sdata2          sAreaWide */
 SECTION_SDATA2 static u32 sAreaWide = 0x010002BC;
 
-/* 80455B94-80455B98 0004+00 s=1 e=0 z=0  None .sdata2    None */
+/* 80455B94-80455B98 004194 0004+00 1/1 0/0 0/0 .sdata2          None */
 SECTION_SDATA2 static u32 data_80455B94 = 0x05DC0CE4;
 
-/* 80455B98-80455B9C 0004+00 s=1 e=0 z=0  None .sdata2    sAreaWideFloating */
+/* 80455B98-80455B9C 004198 0004+00 1/1 0/0 0/0 .sdata2          sAreaWideFloating */
 SECTION_SDATA2 static u32 sAreaWideFloating = 0x000002BC;
 
-/* 80455B9C-80455BA0 0004+00 s=1 e=0 z=0  None .sdata2    None */
+/* 80455B9C-80455BA0 00419C 0004+00 1/1 0/0 0/0 .sdata2          None */
 SECTION_SDATA2 static u32 data_80455B9C = 0x05DC0CE4;
 
-/* 80455BA0-80455BA4 0004+00 s=1 e=0 z=0  None .sdata2    sAreaSmall */
+/* 80455BA0-80455BA4 0041A0 0004+00 1/1 0/0 0/0 .sdata2          sAreaSmall */
 SECTION_SDATA2 static u32 sAreaSmall = 0x0100012C;
 
-/* 80455BA4-80455BA8 0004+00 s=1 e=0 z=0  None .sdata2    None */
+/* 80455BA4-80455BA8 0041A4 0004+00 1/1 0/0 0/0 .sdata2          None */
 SECTION_SDATA2 static u32 data_80455BA4 = 0x02BC03E8;
 
-/* 80455BA8-80455BAC 0004+00 s=1 e=0 z=0  None .sdata2    sAreaSmallFloating */
+/* 80455BA8-80455BAC 0041A8 0004+00 1/1 0/0 0/0 .sdata2          sAreaSmallFloating */
 SECTION_SDATA2 static u32 sAreaSmallFloating = 0x000001F4;
 
-/* 80455BAC-80455BB0 0004+00 s=1 e=0 z=0  None .sdata2    None */
+/* 80455BAC-80455BB0 0041AC 0004+00 1/1 0/0 0/0 .sdata2          None */
 SECTION_SDATA2 static u32 data_80455BAC = 0x032004B0;
 
-/* 80455BB0-80455BB4 0004+00 s=1 e=0 z=0  None .sdata2    @3694 */
+/* 80455BB0-80455BB4 0041B0 0004+00 1/1 0/0 0/0 .sdata2          @3694 */
 SECTION_SDATA2 static u8 lit_3694[4] = {
     0x00,
     0x00,
@@ -307,31 +308,31 @@ SECTION_SDATA2 static u8 lit_3694[4] = {
     0x00,
 };
 
-/* 80455BB4-80455BB8 0004+00 s=1 e=0 z=0  None .sdata2    @3695 */
+/* 80455BB4-80455BB8 0041B4 0004+00 1/1 0/0 0/0 .sdata2          @3695 */
 SECTION_SDATA2 static f32 lit_3695 = 100.0f;
 
-/* 80455BB8-80455BBC 0004+00 s=1 e=0 z=0  None .sdata2    @3696 */
+/* 80455BB8-80455BBC 0041B8 0004+00 1/1 0/0 0/0 .sdata2          @3696 */
 SECTION_SDATA2 static f32 lit_3696 = 3.0f / 10.0f;
 
-/* 80455BBC-80455BC0 0004+00 s=1 e=0 z=0  None .sdata2    @3697 */
+/* 80455BBC-80455BC0 0041BC 0004+00 1/1 0/0 0/0 .sdata2          @3697 */
 SECTION_SDATA2 static f32 lit_3697 = 1.0f;
 
-/* 80455BC0-80455BC4 0004+00 s=1 e=0 z=0  None .sdata2    @3698 */
+/* 80455BC0-80455BC4 0041C0 0004+00 1/1 0/0 0/0 .sdata2          @3698 */
 SECTION_SDATA2 static f32 lit_3698 = 2.5f;
 
-/* 80455BC4-80455BC8 0004+00 s=1 e=0 z=0  None .sdata2    @3699 */
+/* 80455BC4-80455BC8 0041C4 0004+00 1/1 0/0 0/0 .sdata2          @3699 */
 SECTION_SDATA2 static f32 lit_3699 = 5000.0f;
 
-/* 80455BC8-80455BCC 0004+00 s=1 e=0 z=0  None .sdata2    @3700 */
+/* 80455BC8-80455BCC 0041C8 0004+00 1/1 0/0 0/0 .sdata2          @3700 */
 SECTION_SDATA2 static f32 lit_3700 = 2.0f;
 
-/* 80455BCC-80455BD0 0004+00 s=1 e=0 z=0  None .sdata2    @3701 */
+/* 80455BCC-80455BD0 0041CC 0004+00 1/1 0/0 0/0 .sdata2          @3701 */
 SECTION_SDATA2 static f32 lit_3701 = 4.0f;
 
-/* 80455BD0-80455BD8 0008+00 s=1 e=0 z=0  None .sdata2    @3703 */
+/* 80455BD0-80455BD8 0041D0 0008+00 1/1 0/0 0/0 .sdata2          @3703 */
 SECTION_SDATA2 static f64 lit_3703 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 802BF994-802BFFEC 0658+00 s=1 e=1 z=0  None .text      searchEnemy__13Z2SoundObjMgrFv */
+/* 802BF994-802BFFEC 2BA2D4 0658+00 1/0 1/1 0/0 .text            searchEnemy__13Z2SoundObjMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -341,7 +342,7 @@ asm void Z2SoundObjMgr::searchEnemy() {
 }
 #pragma pop
 
-/* 802BFFEC-802C0074 0088+00 s=1 e=2 z=0  None .text      setGhostEnemyState__13Z2SoundObjMgrFUc */
+/* 802BFFEC-802C0074 2BA92C 0088+00 1/1 2/2 0/0 .text setGhostEnemyState__13Z2SoundObjMgrFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -351,7 +352,7 @@ asm void Z2SoundObjMgr::setGhostEnemyState(u8 param_0) {
 }
 #pragma pop
 
-/* 802C0074-802C0100 008C+00 s=0 e=1 z=0  None .text
+/* 802C0074-802C0100 2BA9B4 008C+00 0/0 1/1 0/0 .text
  * getEnemyID__13Z2SoundObjMgrFPCcP26JSULink<15Z2CreatureEnemy> */
 #pragma push
 #pragma optimization_level 0
@@ -362,7 +363,7 @@ asm void Z2SoundObjMgr::getEnemyID(char const* param_0, JSULink<Z2CreatureEnemy>
 }
 #pragma pop
 
-/* 802C0100-802C0120 0020+00 s=1 e=1 z=0  None .text      setBattleInit__13Z2SoundObjMgrFv */
+/* 802C0100-802C0120 2BAA40 0020+00 1/1 1/1 0/0 .text            setBattleInit__13Z2SoundObjMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -372,7 +373,7 @@ asm void Z2SoundObjMgr::setBattleInit() {
 }
 #pragma pop
 
-/* 802C0120-802C013C 001C+00 s=0 e=1 z=0  None .text      checkBattleFinish__13Z2SoundObjMgrFv */
+/* 802C0120-802C013C 2BAA60 001C+00 0/0 1/1 0/0 .text checkBattleFinish__13Z2SoundObjMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -382,7 +383,8 @@ asm void Z2SoundObjMgr::checkBattleFinish() {
 }
 #pragma pop
 
-/* 802C013C-802C0190 0054+00 s=0 e=1 z=0  None .text      deleteEnemyAll__13Z2SoundObjMgrFv */
+/* 802C013C-802C0190 2BAA7C 0054+00 0/0 1/1 0/0 .text            deleteEnemyAll__13Z2SoundObjMgrFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -392,7 +394,7 @@ asm void Z2SoundObjMgr::deleteEnemyAll() {
 }
 #pragma pop
 
-/* 802C0190-802C01E4 0054+00 s=0 e=2 z=0  None .text
+/* 802C0190-802C01E4 2BAAD0 0054+00 0/0 2/2 0/0 .text
  * removeEnemy__13Z2SoundObjMgrFP26JSULink<15Z2CreatureEnemy>   */
 #pragma push
 #pragma optimization_level 0
@@ -403,7 +405,8 @@ asm void Z2SoundObjMgr::removeEnemy(JSULink<Z2CreatureEnemy>* param_0) {
 }
 #pragma pop
 
-/* 802C01E4-802C01EC 0008+00 s=0 e=4 z=0  None .text      isTwilightBattle__13Z2SoundObjMgrFv */
+/* 802C01E4-802C01EC 2BAB24 0008+00 0/0 4/4 0/0 .text            isTwilightBattle__13Z2SoundObjMgrFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -413,12 +416,17 @@ asm void Z2SoundObjMgr::isTwilightBattle() {
 }
 #pragma pop
 
-/* 802C01EC-802C03C8 01DC+00 s=0 e=1 z=0  None .text      __sinit_Z2SoundObjMgr_cpp */
+/* 802C01EC-802C03C8 2BAB2C 01DC+00 0/0 1/0 0/0 .text            __sinit_Z2SoundObjMgr_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_Z2SoundObjMgr_cpp() {
+asm void __sinit_Z2SoundObjMgr_cpp() {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundObjMgr/__sinit_Z2SoundObjMgr_cpp.s"
 }
+#pragma pop
+
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_802C01EC = (void*)__sinit_Z2SoundObjMgr_cpp;
 #pragma pop

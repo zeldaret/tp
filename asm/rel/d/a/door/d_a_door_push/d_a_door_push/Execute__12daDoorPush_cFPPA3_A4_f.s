@@ -12,7 +12,7 @@ lbl_8067839C:
 /* 806783C4  7F E3 FB 78 */	mr r3, r31
 /* 806783C8  4B FF FB 71 */	bl setBaseMtx__12daDoorPush_cFv
 /* 806783CC  80 7F 05 B0 */	lwz r3, 0x5b0(r31)
-/* 806783D0  4B A0 35 F0 */	b Move__4dBgWFv
+/* 806783D0  4B A0 35 F1 */	bl Move__4dBgWFv
 /* 806783D4  38 80 00 00 */	li r4, 0
 /* 806783D8  38 60 00 00 */	li r3, 0
 /* 806783DC  38 00 00 02 */	li r0, 2

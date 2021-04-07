@@ -3,7 +3,7 @@ lbl_80878534:
 /* 80878538  7C 08 02 A6 */	mflr r0
 /* 8087853C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80878540  FC 20 08 50 */	fneg f1, f1
-/* 80878544  4B 78 FB 8C */	b fadeOut__13mDoGph_gInf_cFf
+/* 80878544  4B 78 FB 8D */	bl fadeOut__13mDoGph_gInf_cFf
 /* 80878548  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8087854C  7C 08 03 A6 */	mtlr r0
 /* 80878550  38 21 00 10 */	addi r1, r1, 0x10

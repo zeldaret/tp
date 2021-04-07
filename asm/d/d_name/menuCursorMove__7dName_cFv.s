@@ -7,8 +7,8 @@ lbl_80250284:
 /* 80250298  7C 7D 1B 78 */	mr r29, r3
 /* 8025029C  88 83 02 AF */	lbz r4, 0x2af(r3)
 /* 802502A0  48 00 0D A9 */	bl getMenuPosIdx__7dName_cFUc
-/* 802502A4  3C 80 80 43 */	lis r4, g_nmHIO@ha
-/* 802502A8  38 84 07 34 */	addi r4, r4, g_nmHIO@l
+/* 802502A4  3C 80 80 43 */	lis r4, g_nmHIO@ha /* 0x80430734@ha */
+/* 802502A8  38 84 07 34 */	addi r4, r4, g_nmHIO@l /* 0x80430734@l */
 /* 802502AC  C0 04 00 08 */	lfs f0, 8(r4)
 /* 802502B0  54 7F 10 3A */	slwi r31, r3, 2
 /* 802502B4  7F DD FA 14 */	add r30, r29, r31

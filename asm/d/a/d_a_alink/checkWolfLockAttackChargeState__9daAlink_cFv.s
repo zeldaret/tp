@@ -10,8 +10,8 @@ lbl_801397A4:
 /* 801397C4  80 03 05 70 */	lwz r0, 0x570(r3)
 /* 801397C8  54 00 07 7B */	rlwinm. r0, r0, 0, 0x1d, 0x1d
 /* 801397CC  41 82 00 24 */	beq lbl_801397F0
-/* 801397D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801397D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801397D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801397D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801397D8  38 63 07 F0 */	addi r3, r3, 0x7f0
 /* 801397DC  38 80 05 01 */	li r4, 0x501
 /* 801397E0  4B EF B1 DD */	bl isEventBit__11dSv_event_cCFUs
@@ -22,15 +22,15 @@ lbl_801397F0:
 /* 801397F0  57 A0 06 3F */	clrlwi. r0, r29, 0x18
 /* 801397F4  41 82 00 50 */	beq lbl_80139844
 /* 801397F8  3B A0 00 00 */	li r29, 0
-/* 801397FC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80139800  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801397FC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80139800  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80139804  38 63 00 28 */	addi r3, r3, 0x28
 /* 80139808  38 80 00 03 */	li r4, 3
 /* 8013980C  4B EF 93 E1 */	bl isTransformLV__21dSv_player_status_b_cCFi
 /* 80139810  2C 03 00 00 */	cmpwi r3, 0
 /* 80139814  41 82 00 24 */	beq lbl_80139838
-/* 80139818  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8013981C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80139818  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8013981C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80139820  38 63 07 F0 */	addi r3, r3, 0x7f0
 /* 80139824  38 80 1E 08 */	li r4, 0x1e08
 /* 80139828  4B EF B1 95 */	bl isEventBit__11dSv_event_cCFUs
@@ -49,8 +49,8 @@ lbl_80139844:
 /* 80139854  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 80139858  28 00 00 01 */	cmplwi r0, 1
 /* 8013985C  41 82 00 24 */	beq lbl_80139880
-/* 80139860  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80139864  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80139860  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80139864  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80139868  38 63 00 28 */	addi r3, r3, 0x28
 /* 8013986C  38 80 00 03 */	li r4, 3
 /* 80139870  4B EF 93 7D */	bl isTransformLV__21dSv_player_status_b_cCFi

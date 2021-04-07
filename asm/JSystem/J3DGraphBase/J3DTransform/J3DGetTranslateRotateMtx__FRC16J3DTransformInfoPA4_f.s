@@ -1,8 +1,8 @@
 lbl_80311964:
 /* 80311964  A8 03 00 0C */	lha r0, 0xc(r3)
 /* 80311968  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 8031196C  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha
-/* 80311970  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l
+/* 8031196C  3C A0 80 44 */	lis r5, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80311970  38 A5 9A 20 */	addi r5, r5, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80311974  7C 25 04 2E */	lfsx f1, r5, r0
 /* 80311978  38 C5 00 04 */	addi r6, r5, 4
 /* 8031197C  7C 46 04 2E */	lfsx f2, r6, r0

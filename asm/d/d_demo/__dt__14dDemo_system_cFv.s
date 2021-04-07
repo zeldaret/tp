@@ -7,8 +7,8 @@ lbl_80039AAC:
 /* 80039AC0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80039AC4  7C 9F 23 78 */	mr r31, r4
 /* 80039AC8  41 82 00 28 */	beq lbl_80039AF0
-/* 80039ACC  3C 80 80 3A */	lis r4, __vt__14dDemo_system_c@ha
-/* 80039AD0  38 04 79 44 */	addi r0, r4, __vt__14dDemo_system_c@l
+/* 80039ACC  3C 80 80 3A */	lis r4, __vt__14dDemo_system_c@ha /* 0x803A7944@ha */
+/* 80039AD0  38 04 79 44 */	addi r0, r4, __vt__14dDemo_system_c@l /* 0x803A7944@l */
 /* 80039AD4  90 1E 00 00 */	stw r0, 0(r30)
 /* 80039AD8  38 80 00 00 */	li r4, 0
 /* 80039ADC  48 24 73 B5 */	bl __dt__Q26JStage7TSystemFv

@@ -5,10 +5,10 @@ lbl_80C337B0:
 /* 80C337BC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C337C0  93 C1 00 08 */	stw r30, 8(r1)
 /* 80C337C4  7C 7E 1B 78 */	mr r30, r3
-/* 80C337C8  3C 60 80 C3 */	lis r3, lit_1109@ha
-/* 80C337CC  3B E3 3F 00 */	addi r31, r3, lit_1109@l
-/* 80C337D0  3C 60 80 C3 */	lis r3, m__18daObj_Kago_Param_c@ha
-/* 80C337D4  38 83 3C 80 */	addi r4, r3, m__18daObj_Kago_Param_c@l
+/* 80C337C8  3C 60 80 C3 */	lis r3, lit_1109@ha /* 0x80C33F00@ha */
+/* 80C337CC  3B E3 3F 00 */	addi r31, r3, lit_1109@l /* 0x80C33F00@l */
+/* 80C337D0  3C 60 80 C3 */	lis r3, m__18daObj_Kago_Param_c@ha /* 0x80C33C80@ha */
+/* 80C337D4  38 83 3C 80 */	addi r4, r3, m__18daObj_Kago_Param_c@l /* 0x80C33C80@l */
 /* 80C337D8  88 1F 00 5C */	lbz r0, 0x5c(r31)
 /* 80C337DC  7C 00 07 75 */	extsb. r0, r0
 /* 80C337E0  40 82 00 38 */	bne lbl_80C33818
@@ -19,8 +19,8 @@ lbl_80C337B0:
 /* 80C337F4  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80C337F8  C0 04 01 10 */	lfs f0, 0x110(r4)
 /* 80C337FC  D0 03 00 08 */	stfs f0, 8(r3)
-/* 80C33800  3C 80 80 C3 */	lis r4, __dt__4cXyzFv@ha
-/* 80C33804  38 84 23 24 */	addi r4, r4, __dt__4cXyzFv@l
+/* 80C33800  3C 80 80 C3 */	lis r4, __dt__4cXyzFv@ha /* 0x80C32324@ha */
+/* 80C33804  38 84 23 24 */	addi r4, r4, __dt__4cXyzFv@l /* 0x80C32324@l */
 /* 80C33808  38 BF 00 50 */	addi r5, r31, 0x50
 /* 80C3380C  4B FF E2 6D */	bl __register_global_object
 /* 80C33810  38 00 00 01 */	li r0, 1

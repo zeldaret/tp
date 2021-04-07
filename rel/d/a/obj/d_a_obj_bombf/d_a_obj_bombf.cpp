@@ -27,9 +27,9 @@ struct daObjBombf_c {
     /* 80BBADF8 */ void draw();
 };
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct cXyz {};
 
 struct J3DModelData {};
 
@@ -56,12 +56,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void daObjBombf_createHeap(fopAc_ac_c*);
-static void daObjBombf_Create(fopAc_ac_c*);
-static void daObjBombf_Delete(daObjBombf_c*);
-static void daObjBombf_Execute(daObjBombf_c*);
-static void daObjBombf_Draw(daObjBombf_c*);
-
 extern "C" void createHeap__12daObjBombf_cFv();
 extern "C" static void daObjBombf_createHeap__FP10fopAc_ac_c();
 extern "C" void create__12daObjBombf_cFv();
@@ -78,20 +72,6 @@ extern "C" extern void* g_profile_Obj_Bombf[12];
 //
 // External References:
 //
-
-void mDoMtx_ZXYrotM(f32 (*)[4], s16, s16, s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcIt_Judge(void* (*)(void*, void*), void*);
-void fopAcM_fastCreate(s16, u32, cXyz const*, int, csXyz const*, cXyz const*, s8, int (*)(void*),
-                       void*);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void fopAcM_SetMin(fopAc_ac_c*, f32, f32, f32);
-void fopAcM_SetMax(fopAc_ac_c*, f32, f32, f32);
-void fpcSch_JudgeByID(void*, void*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void operator delete(void*);
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
@@ -127,7 +107,7 @@ extern "C" extern u8 g_env_light[4880];
 //
 
 /* ############################################################################################## */
-/* 80BBAE84-80BBAE8C 0006+02 s=3 e=0 z=0  None .rodata    l_arcName */
+/* 80BBAE84-80BBAE8C 000000 0006+02 3/3 0/0 0/0 .rodata          l_arcName */
 SECTION_RODATA static u8 const l_arcName[6 + 2 /* padding */] = {
     0x42,
     0x6F,
@@ -139,8 +119,9 @@ SECTION_RODATA static u8 const l_arcName[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80BBAE84, &l_arcName);
 
-/* 80BBA9F8-80BBAA64 006C+00 s=1 e=0 z=0  None .text      createHeap__12daObjBombf_cFv */
+/* 80BBA9F8-80BBAA64 000078 006C+00 1/1 0/0 0/0 .text            createHeap__12daObjBombf_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -150,35 +131,51 @@ asm void daObjBombf_c::createHeap() {
 }
 #pragma pop
 
-/* 80BBAA64-80BBAA84 0020+00 s=1 e=0 z=0  None .text      daObjBombf_createHeap__FP10fopAc_ac_c */
+/* 80BBAA64-80BBAA84 0000E4 0020+00 1/1 0/0 0/0 .text daObjBombf_createHeap__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjBombf_createHeap(fopAc_ac_c* param_0) {
+static asm void daObjBombf_createHeap(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bombf/d_a_obj_bombf/daObjBombf_createHeap__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80BBAE8C-80BBAE90 0004+00 s=1 e=0 z=0  None .rodata    @3687 */
-SECTION_RODATA static u32 const lit_3687 = 0xC2960000;
+/* 80BBAE8C-80BBAE90 000008 0004+00 0/1 0/0 0/0 .rodata          @3687 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3687 = -75.0f;
+COMPILER_STRIP_GATE(80BBAE8C, &lit_3687);
+#pragma pop
 
-/* 80BBAE90-80BBAE94 0004+00 s=1 e=0 z=0  None .rodata    @3688 */
+/* 80BBAE90-80BBAE94 00000C 0004+00 0/1 0/0 0/0 .rodata          @3688 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_3688[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80BBAE90, &lit_3688);
+#pragma pop
 
-/* 80BBAE94-80BBAE98 0004+00 s=1 e=0 z=0  None .rodata    @3689 */
-SECTION_RODATA static u32 const lit_3689 = 0x42960000;
+/* 80BBAE94-80BBAE98 000010 0004+00 0/1 0/0 0/0 .rodata          @3689 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3689 = 75.0f;
+COMPILER_STRIP_GATE(80BBAE94, &lit_3689);
+#pragma pop
 
-/* 80BBAE98-80BBAE9C 0004+00 s=1 e=0 z=0  None .rodata    @3690 */
-SECTION_RODATA static u32 const lit_3690 = 0x41F00000;
+/* 80BBAE98-80BBAE9C 000014 0004+00 0/1 0/0 0/0 .rodata          @3690 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3690 = 30.0f;
+COMPILER_STRIP_GATE(80BBAE98, &lit_3690);
+#pragma pop
 
-/* 80BBAA84-80BBAB9C 0118+00 s=1 e=0 z=0  None .text      create__12daObjBombf_cFv */
+/* 80BBAA84-80BBAB9C 000104 0118+00 1/1 0/0 0/0 .text            create__12daObjBombf_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -188,17 +185,18 @@ asm void daObjBombf_c::create() {
 }
 #pragma pop
 
-/* 80BBAB9C-80BBABBC 0020+00 s=1 e=0 z=0  None .text      daObjBombf_Create__FP10fopAc_ac_c */
+/* 80BBAB9C-80BBABBC 00021C 0020+00 1/0 0/0 0/0 .text            daObjBombf_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjBombf_Create(fopAc_ac_c* param_0) {
+static asm void daObjBombf_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bombf/d_a_obj_bombf/daObjBombf_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80BBABBC-80BBAC24 0068+00 s=1 e=0 z=0  None .text      __dt__12daObjBombf_cFv */
+/* 80BBABBC-80BBAC24 00023C 0068+00 1/1 0/0 0/0 .text            __dt__12daObjBombf_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -208,17 +206,18 @@ asm daObjBombf_c::~daObjBombf_c() {
 }
 #pragma pop
 
-/* 80BBAC24-80BBAC4C 0028+00 s=1 e=0 z=0  None .text      daObjBombf_Delete__FP12daObjBombf_c */
+/* 80BBAC24-80BBAC4C 0002A4 0028+00 1/0 0/0 0/0 .text            daObjBombf_Delete__FP12daObjBombf_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjBombf_Delete(daObjBombf_c* param_0) {
+static asm void daObjBombf_Delete(daObjBombf_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bombf/d_a_obj_bombf/daObjBombf_Delete__FP12daObjBombf_c.s"
 }
 #pragma pop
 
-/* 80BBAC4C-80BBACC0 0074+00 s=2 e=0 z=0  None .text      setMatrix__12daObjBombf_cFv */
+/* 80BBAC4C-80BBACC0 0002CC 0074+00 2/2 0/0 0/0 .text            setMatrix__12daObjBombf_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -229,12 +228,13 @@ asm void daObjBombf_c::setMatrix() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80BBAE9C-80BBAEA8 000C+00 s=1 e=0 z=0  None .rodata    bombOffset$3727 */
+/* 80BBAE9C-80BBAEA8 000018 000C+00 1/1 0/0 0/0 .rodata          bombOffset$3727 */
 SECTION_RODATA static u8 const bombOffset[12] = {
     0x00, 0x00, 0x00, 0x00, 0x40, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80BBAE9C, &bombOffset);
 
-/* 80BBACC0-80BBADD8 0118+00 s=1 e=0 z=0  None .text      execute__12daObjBombf_cFv */
+/* 80BBACC0-80BBADD8 000340 0118+00 1/1 0/0 0/0 .text            execute__12daObjBombf_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -244,17 +244,17 @@ asm void daObjBombf_c::execute() {
 }
 #pragma pop
 
-/* 80BBADD8-80BBADF8 0020+00 s=1 e=0 z=0  None .text      daObjBombf_Execute__FP12daObjBombf_c */
+/* 80BBADD8-80BBADF8 000458 0020+00 1/0 0/0 0/0 .text daObjBombf_Execute__FP12daObjBombf_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjBombf_Execute(daObjBombf_c* param_0) {
+static asm void daObjBombf_Execute(daObjBombf_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bombf/d_a_obj_bombf/daObjBombf_Execute__FP12daObjBombf_c.s"
 }
 #pragma pop
 
-/* 80BBADF8-80BBAE5C 0064+00 s=1 e=0 z=0  None .text      draw__12daObjBombf_cFv */
+/* 80BBADF8-80BBAE5C 000478 0064+00 1/1 0/0 0/0 .text            draw__12daObjBombf_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -264,18 +264,19 @@ asm void daObjBombf_c::draw() {
 }
 #pragma pop
 
-/* 80BBAE5C-80BBAE7C 0020+00 s=1 e=0 z=0  None .text      daObjBombf_Draw__FP12daObjBombf_c */
+/* 80BBAE5C-80BBAE7C 0004DC 0020+00 1/0 0/0 0/0 .text            daObjBombf_Draw__FP12daObjBombf_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjBombf_Draw(daObjBombf_c* param_0) {
+static asm void daObjBombf_Draw(daObjBombf_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bombf/d_a_obj_bombf/daObjBombf_Draw__FP12daObjBombf_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80BBAEA8-80BBAEC8 0020+00 s=1 e=0 z=0  None .data      l_daObjBombf_Method */
+/* 80BBAEA8-80BBAEC8 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjBombf_Method */
 SECTION_DATA static void* l_daObjBombf_Method[8] = {
     (void*)daObjBombf_Create__FP10fopAc_ac_c,
     (void*)daObjBombf_Delete__FP12daObjBombf_c,
@@ -287,8 +288,8 @@ SECTION_DATA static void* l_daObjBombf_Method[8] = {
     (void*)NULL,
 };
 
-/* 80BBAEC8-80BBAEF8 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_Bombf */
-SECTION_DATA void* g_profile_Obj_Bombf[12] = {
+/* 80BBAEC8-80BBAEF8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Bombf */
+SECTION_DATA extern void* g_profile_Obj_Bombf[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02BF0000, (void*)&g_fpcLf_Method,
     (void*)0x00000588, (void*)NULL,

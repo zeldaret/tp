@@ -29,9 +29,9 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct cXyz {};
 
 struct J3DModelData {};
 
@@ -48,9 +48,9 @@ struct dRes_control_c {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -73,11 +73,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void daTagHjump_Create(fopAc_ac_c*);
-static void daTagHjump_Delete(daTagHjump_c*);
-static void daTagHjump_Execute(daTagHjump_c*);
-static void daTagHjump_Draw(daTagHjump_c*);
-
 extern "C" void CreateHeap__12daTagHjump_cFv();
 extern "C" void create__12daTagHjump_cFv();
 extern "C" static void daTagHjump_Create__FP10fopAc_ac_c();
@@ -87,21 +82,10 @@ extern "C" void execute__12daTagHjump_cFv();
 extern "C" static void daTagHjump_Execute__FP12daTagHjump_c();
 extern "C" void Draw__12daTagHjump_cFv();
 extern "C" static void daTagHjump_Draw__FP12daTagHjump_c();
-extern "C" extern void* g_profile_Tag_Hjump[12];
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_SetMin(fopAc_ac_c*, f32, f32, f32);
-void fopAcM_SetMax(fopAc_ac_c*, f32, f32, f32);
-void fpoAcM_relativePos(fopAc_ac_c const*, cXyz const*, cXyz*);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
@@ -149,7 +133,7 @@ extern "C" extern u8 sincosTable___5JMath[65536];
 //
 
 /* ############################################################################################## */
-/* 805A4238-805A4240 0007+01 s=4 e=0 z=0  None .rodata    l_arcName */
+/* 805A4238-805A4240 000000 0007+01 4/4 0/0 0/0 .rodata          l_arcName */
 SECTION_RODATA static u8 const l_arcName[7 + 1 /* padding */] = {
     0x48,
     0x66,
@@ -161,8 +145,9 @@ SECTION_RODATA static u8 const l_arcName[7 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
+COMPILER_STRIP_GATE(805A4238, &l_arcName);
 
-/* 805A3AB8-805A3B24 006C+00 s=1 e=0 z=0  None .text      CreateHeap__12daTagHjump_cFv */
+/* 805A3AB8-805A3B24 000078 006C+00 1/0 0/0 0/0 .text            CreateHeap__12daTagHjump_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -173,39 +158,75 @@ asm void daTagHjump_c::CreateHeap() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 805A4240-805A4244 0004+00 s=1 e=0 z=0  None .rodata    @3747 */
-SECTION_RODATA static u32 const lit_3747 = 0x42C80000;
+/* 805A4240-805A4244 000008 0004+00 0/1 0/0 0/0 .rodata          @3747 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3747 = 100.0f;
+COMPILER_STRIP_GATE(805A4240, &lit_3747);
+#pragma pop
 
-/* 805A4244-805A4248 0004+00 s=1 e=0 z=0  None .rodata    @3748 */
-SECTION_RODATA static u32 const lit_3748 = 0x437A0000;
+/* 805A4244-805A4248 00000C 0004+00 0/1 0/0 0/0 .rodata          @3748 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3748 = 250.0f;
+COMPILER_STRIP_GATE(805A4244, &lit_3748);
+#pragma pop
 
-/* 805A4248-805A424C 0004+00 s=1 e=0 z=0  None .rodata    @3749 */
-SECTION_RODATA static u32 const lit_3749 = 0x43AF0000;
+/* 805A4248-805A424C 000010 0004+00 0/1 0/0 0/0 .rodata          @3749 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3749 = 350.0f;
+COMPILER_STRIP_GATE(805A4248, &lit_3749);
+#pragma pop
 
-/* 805A424C-805A4250 0004+00 s=1 e=0 z=0  None .rodata    @3750 */
-SECTION_RODATA static u32 const lit_3750 = 0x43C80000;
+/* 805A424C-805A4250 000014 0004+00 0/1 0/0 0/0 .rodata          @3750 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3750 = 400.0f;
+COMPILER_STRIP_GATE(805A424C, &lit_3750);
+#pragma pop
 
-/* 805A4250-805A4254 0004+00 s=1 e=0 z=0  None .rodata    @3751 */
-SECTION_RODATA static u32 const lit_3751 = 0x43480000;
+/* 805A4250-805A4254 000018 0004+00 0/1 0/0 0/0 .rodata          @3751 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3751 = 200.0f;
+COMPILER_STRIP_GATE(805A4250, &lit_3751);
+#pragma pop
 
-/* 805A4254-805A4258 0004+00 s=2 e=0 z=0  None .rodata    @3752 */
+/* 805A4254-805A4258 00001C 0004+00 0/2 0/0 0/0 .rodata          @3752 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_3752[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(805A4254, &lit_3752);
+#pragma pop
 
-/* 805A4258-805A425C 0004+00 s=1 e=0 z=0  None .rodata    @3753 */
-SECTION_RODATA static u32 const lit_3753 = 0xC2480000;
+/* 805A4258-805A425C 000020 0004+00 0/1 0/0 0/0 .rodata          @3753 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3753 = -50.0f;
+COMPILER_STRIP_GATE(805A4258, &lit_3753);
+#pragma pop
 
-/* 805A425C-805A4260 0004+00 s=1 e=0 z=0  None .rodata    @3754 */
-SECTION_RODATA static u32 const lit_3754 = 0x42480000;
+/* 805A425C-805A4260 000024 0004+00 0/1 0/0 0/0 .rodata          @3754 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3754 = 50.0f;
+COMPILER_STRIP_GATE(805A425C, &lit_3754);
+#pragma pop
 
-/* 805A4260-805A4264 0004+00 s=1 e=0 z=0  None .rodata    @3755 */
-SECTION_RODATA static u32 const lit_3755 = 0x40A00000;
+/* 805A4260-805A4264 000028 0004+00 0/1 0/0 0/0 .rodata          @3755 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3755 = 5.0f;
+COMPILER_STRIP_GATE(805A4260, &lit_3755);
+#pragma pop
 
-/* 805A426C-805A428C 0020+00 s=1 e=0 z=0  None .data      l_daTagHjump_Method */
+/* 805A426C-805A428C -00001 0020+00 1/0 0/0 0/0 .data            l_daTagHjump_Method */
 SECTION_DATA static void* l_daTagHjump_Method[8] = {
     (void*)daTagHjump_Create__FP10fopAc_ac_c,
     (void*)daTagHjump_Delete__FP12daTagHjump_c,
@@ -217,8 +238,8 @@ SECTION_DATA static void* l_daTagHjump_Method[8] = {
     (void*)NULL,
 };
 
-/* 805A428C-805A42BC 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_Hjump */
-SECTION_DATA void* g_profile_Tag_Hjump[12] = {
+/* 805A428C-805A42BC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Hjump */
+SECTION_DATA extern void* g_profile_Tag_Hjump[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00EA0000, (void*)&g_fpcLf_Method,
     (void*)0x000005BC, (void*)NULL,
@@ -227,9 +248,9 @@ SECTION_DATA void* g_profile_Tag_Hjump[12] = {
     (void*)0x00044100, (void*)0x030E0000,
 };
 
-/* 805A42BC-805A42E4 0028+00 s=2 e=0 z=0  None .data      __vt__12daTagHjump_c */
-SECTION_DATA static void* __vt__12daTagHjump_c[10] = {
-    (void*)NULL,
+/* 805A42BC-805A42E4 000050 0028+00 2/2 0/0 0/0 .data            __vt__12daTagHjump_c */
+SECTION_DATA extern void* __vt__12daTagHjump_c[10] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__12daTagHjump_cFv,
     (void*)Create__16dBgS_MoveBgActorFv,
@@ -241,7 +262,7 @@ SECTION_DATA static void* __vt__12daTagHjump_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 805A3B24-805A3D80 025C+00 s=1 e=0 z=0  None .text      create__12daTagHjump_cFv */
+/* 805A3B24-805A3D80 0000E4 025C+00 1/1 0/0 0/0 .text            create__12daTagHjump_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -251,17 +272,18 @@ asm void daTagHjump_c::create() {
 }
 #pragma pop
 
-/* 805A3D80-805A3DA0 0020+00 s=1 e=0 z=0  None .text      daTagHjump_Create__FP10fopAc_ac_c */
+/* 805A3D80-805A3DA0 000340 0020+00 1/0 0/0 0/0 .text            daTagHjump_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagHjump_Create(fopAc_ac_c* param_0) {
+static asm void daTagHjump_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_hjump/d_a_tag_hjump/daTagHjump_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 805A3DA0-805A3E34 0094+00 s=1 e=0 z=0  None .text      __dt__12daTagHjump_cFv */
+/* 805A3DA0-805A3E34 000360 0094+00 1/1 0/0 0/0 .text            __dt__12daTagHjump_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -271,24 +293,33 @@ asm daTagHjump_c::~daTagHjump_c() {
 }
 #pragma pop
 
-/* 805A3E34-805A3E70 003C+00 s=1 e=0 z=0  None .text      daTagHjump_Delete__FP12daTagHjump_c */
+/* 805A3E34-805A3E70 0003F4 003C+00 1/0 0/0 0/0 .text            daTagHjump_Delete__FP12daTagHjump_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagHjump_Delete(daTagHjump_c* param_0) {
+static asm void daTagHjump_Delete(daTagHjump_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_hjump/d_a_tag_hjump/daTagHjump_Delete__FP12daTagHjump_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 805A4264-805A4268 0004+00 s=1 e=0 z=0  None .rodata    @3904 */
-SECTION_RODATA static u32 const lit_3904 = 0x3F4CCCCD;
+/* 805A4264-805A4268 00002C 0004+00 0/1 0/0 0/0 .rodata          @3904 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3904 = 4.0f / 5.0f;
+COMPILER_STRIP_GATE(805A4264, &lit_3904);
+#pragma pop
 
-/* 805A4268-805A426C 0004+00 s=1 e=0 z=0  None .rodata    @3905 */
-SECTION_RODATA static u32 const lit_3905 = 0x3F000000;
+/* 805A4268-805A426C 000030 0004+00 0/1 0/0 0/0 .rodata          @3905 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3905 = 0.5f;
+COMPILER_STRIP_GATE(805A4268, &lit_3905);
+#pragma pop
 
-/* 805A3E70-805A4134 02C4+00 s=1 e=0 z=0  None .text      execute__12daTagHjump_cFv */
+/* 805A3E70-805A4134 000430 02C4+00 1/1 0/0 0/0 .text            execute__12daTagHjump_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -298,17 +329,17 @@ asm void daTagHjump_c::execute() {
 }
 #pragma pop
 
-/* 805A4134-805A4154 0020+00 s=1 e=0 z=0  None .text      daTagHjump_Execute__FP12daTagHjump_c */
+/* 805A4134-805A4154 0006F4 0020+00 1/0 0/0 0/0 .text daTagHjump_Execute__FP12daTagHjump_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagHjump_Execute(daTagHjump_c* param_0) {
+static asm void daTagHjump_Execute(daTagHjump_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_hjump/d_a_tag_hjump/daTagHjump_Execute__FP12daTagHjump_c.s"
 }
 #pragma pop
 
-/* 805A4154-805A4204 00B0+00 s=1 e=0 z=0  None .text      Draw__12daTagHjump_cFv */
+/* 805A4154-805A4204 000714 00B0+00 1/0 0/0 0/0 .text            Draw__12daTagHjump_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -318,11 +349,12 @@ asm void daTagHjump_c::Draw() {
 }
 #pragma pop
 
-/* 805A4204-805A4230 002C+00 s=1 e=0 z=0  None .text      daTagHjump_Draw__FP12daTagHjump_c */
+/* 805A4204-805A4230 0007C4 002C+00 1/0 0/0 0/0 .text            daTagHjump_Draw__FP12daTagHjump_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagHjump_Draw(daTagHjump_c* param_0) {
+static asm void daTagHjump_Draw(daTagHjump_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_hjump/d_a_tag_hjump/daTagHjump_Draw__FP12daTagHjump_c.s"
 }

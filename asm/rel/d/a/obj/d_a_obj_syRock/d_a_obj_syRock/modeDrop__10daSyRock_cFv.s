@@ -5,12 +5,12 @@ lbl_80D03384:
 /* 80D03390  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80D03394  7C 7F 1B 78 */	mr r31, r3
 /* 80D03398  38 9F 05 CC */	addi r4, r31, 0x5cc
-/* 80D0339C  4B 31 73 30 */	b fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
+/* 80D0339C  4B 31 73 31 */	bl fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
 /* 80D033A0  38 7F 07 BC */	addi r3, r31, 0x7bc
-/* 80D033A4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80D033A8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80D033A4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D033A8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D033AC  38 84 0F 38 */	addi r4, r4, 0xf38
-/* 80D033B0  4B 37 36 FC */	b CrrPos__9dBgS_AcchFR4dBgS
+/* 80D033B0  4B 37 36 FD */	bl CrrPos__9dBgS_AcchFR4dBgS
 /* 80D033B4  7F E3 FB 78 */	mr r3, r31
 /* 80D033B8  48 00 03 25 */	bl bgCheck__10daSyRock_cFv
 /* 80D033BC  83 E1 00 0C */	lwz r31, 0xc(r1)

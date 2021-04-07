@@ -7,8 +7,8 @@ lbl_802BD1FC:
 /* 802BD210  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802BD214  7C 9F 23 78 */	mr r31, r4
 /* 802BD218  41 82 00 54 */	beq lbl_802BD26C
-/* 802BD21C  3C 60 80 3D */	lis r3, __vt__10Z2Audience@ha
-/* 802BD220  38 03 AC 98 */	addi r0, r3, __vt__10Z2Audience@l
+/* 802BD21C  3C 60 80 3D */	lis r3, __vt__10Z2Audience@ha /* 0x803CAC98@ha */
+/* 802BD220  38 03 AC 98 */	addi r0, r3, __vt__10Z2Audience@l /* 0x803CAC98@l */
 /* 802BD224  90 1E 00 00 */	stw r0, 0(r30)
 /* 802BD228  34 1E 00 04 */	addic. r0, r30, 4
 /* 802BD22C  41 82 00 24 */	beq lbl_802BD250

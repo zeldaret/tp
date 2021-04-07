@@ -1,6 +1,6 @@
 lbl_80537848:
-/* 80537848  3C 80 80 54 */	lis r4, __vt__11J3DTexNoAnm@ha
-/* 8053784C  38 04 FC FC */	addi r0, r4, __vt__11J3DTexNoAnm@l
+/* 80537848  3C 80 80 54 */	lis r4, __vt__11J3DTexNoAnm@ha /* 0x8053FCFC@ha */
+/* 8053784C  38 04 FC FC */	addi r0, r4, __vt__11J3DTexNoAnm@l /* 0x8053FCFC@l */
 /* 80537850  90 03 00 00 */	stw r0, 0(r3)
 /* 80537854  38 80 00 00 */	li r4, 0
 /* 80537858  B0 83 00 04 */	sth r4, 4(r3)

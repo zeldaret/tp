@@ -3,19 +3,20 @@
 #
 
 M648_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_syRock.plf
+M648_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_syRock.lcf
+M648_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_syRock.map
 
 M648_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_syRock/executor.cpp \
-	rel/d/a/obj/d_a_obj_syRock/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_syRock/d_a_obj_syRock.cpp \
 
 M648_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_syRock/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_syRock/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_syRock/d_a_obj_syRock.o \
 
 M648_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_syRock/libRuntime.PPCEABI.H.a \
 
 M648_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M648_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M648_LDSCRIPT) \
+	-unused -map $(M648_MAP) \
+	-w off \
 
 $(M648_TARGET): $(M648_O_FILES) $(M648_LIBS)
+	@echo [648] creating $(M648_TARGET)
 	@echo $(M648_LIBS) $(M648_O_FILES) > build/M648_ofiles
-	$(LD) -partial $(M648_LDFLAGS) -o $(M648_TARGET) @build/M648_ofiles
+	@python3 tools/lcf.py rel 648 --output $(M648_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M648_LDFLAGS) -o $(M648_TARGET) @build/M648_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_syRock/%.o: rel/d/a/obj/d_a_obj_syRock/%.cpp
+	@echo [648] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M648_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M648_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_syRock/libs/Runtime.PPCEABI.H/Makefile
 

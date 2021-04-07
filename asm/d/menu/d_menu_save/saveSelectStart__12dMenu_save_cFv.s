@@ -21,11 +21,11 @@ lbl_801F3A94:
 /* 801F3AE0  88 1D 00 54 */	lbz r0, 0x54(r29)
 /* 801F3AE4  54 00 10 3A */	slwi r0, r0, 2
 /* 801F3AE8  7F A3 EB 78 */	mr r3, r29
-/* 801F3AEC  3C 80 80 3C */	lis r4, SelOpenStartFrameTbl@ha
-/* 801F3AF0  38 84 DF 9C */	addi r4, r4, SelOpenStartFrameTbl@l
+/* 801F3AEC  3C 80 80 3C */	lis r4, SelOpenStartFrameTbl@ha /* 0x803BDF9C@ha */
+/* 801F3AF0  38 84 DF 9C */	addi r4, r4, SelOpenStartFrameTbl@l /* 0x803BDF9C@l */
 /* 801F3AF4  7C 84 00 2E */	lwzx r4, r4, r0
-/* 801F3AF8  3C A0 80 3C */	lis r5, SelOpenEndFrameTbl@ha
-/* 801F3AFC  38 A5 DF A8 */	addi r5, r5, SelOpenEndFrameTbl@l
+/* 801F3AF8  3C A0 80 3C */	lis r5, SelOpenEndFrameTbl@ha /* 0x803BDFA8@ha */
+/* 801F3AFC  38 A5 DF A8 */	addi r5, r5, SelOpenEndFrameTbl@l /* 0x803BDFA8@l */
 /* 801F3B00  7C A5 00 2E */	lwzx r5, r5, r0
 /* 801F3B04  48 00 1A 05 */	bl selectDataMoveAnmInitSet__12dMenu_save_cFii
 /* 801F3B08  80 7D 00 2C */	lwz r3, 0x2c(r29)
@@ -35,8 +35,8 @@ lbl_801F3A94:
 /* 801F3B18  88 9D 00 54 */	lbz r4, 0x54(r29)
 /* 801F3B1C  38 A0 00 FF */	li r5, 0xff
 /* 801F3B20  38 C0 00 00 */	li r6, 0
-/* 801F3B24  3C E0 80 43 */	lis r7, g_msHIO@ha
-/* 801F3B28  38 E7 E8 4C */	addi r7, r7, g_msHIO@l
+/* 801F3B24  3C E0 80 43 */	lis r7, g_msHIO@ha /* 0x8042E84C@ha */
+/* 801F3B28  38 E7 E8 4C */	addi r7, r7, g_msHIO@l /* 0x8042E84C@l */
 /* 801F3B2C  88 E7 00 0A */	lbz r7, 0xa(r7)
 /* 801F3B30  48 00 28 25 */	bl selectWakuAlpahAnmInit__12dMenu_save_cFUcUcUcUc
 /* 801F3B34  88 1D 00 54 */	lbz r0, 0x54(r29)

@@ -6,7 +6,7 @@ lbl_80A9E910:
 /* 80A9E920  93 C1 00 08 */	stw r30, 8(r1)
 /* 80A9E924  7C 7E 1B 78 */	mr r30, r3
 /* 80A9E928  38 7E 0F 8C */	addi r3, r30, 0xf8c
-/* 80A9E92C  4B 6A 6D DC */	b getActorP__18daNpcT_ActorMngr_cFv
+/* 80A9E92C  4B 6A 6D DD */	bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80A9E930  7C 7F 1B 78 */	mr r31, r3
 /* 80A9E934  7F C3 F3 78 */	mr r3, r30
 /* 80A9E938  4B FF F9 D5 */	bl talk_cancel__18daNpc_Pachi_Taro_cFv
@@ -15,8 +15,8 @@ lbl_80A9E910:
 /* 80A9E944  A0 1E 0F DC */	lhz r0, 0xfdc(r30)
 /* 80A9E948  28 00 00 09 */	cmplwi r0, 9
 /* 80A9E94C  41 81 00 70 */	bgt lbl_80A9E9BC
-/* 80A9E950  3C 60 80 AA */	lis r3, lit_5480@ha
-/* 80A9E954  38 63 27 FC */	addi r3, r3, lit_5480@l
+/* 80A9E950  3C 60 80 AA */	lis r3, lit_5480@ha /* 0x80AA27FC@ha */
+/* 80A9E954  38 63 27 FC */	addi r3, r3, lit_5480@l /* 0x80AA27FC@l */
 /* 80A9E958  54 00 10 3A */	slwi r0, r0, 2
 /* 80A9E95C  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80A9E960  7C 09 03 A6 */	mtctr r0
@@ -38,7 +38,7 @@ lbl_80A9E994:
 /* 80A9E994  A0 1E 0E 30 */	lhz r0, 0xe30(r30)
 /* 80A9E998  B0 1E 0F DC */	sth r0, 0xfdc(r30)
 /* 80A9E99C  7F C3 F3 78 */	mr r3, r30
-/* 80A9E9A0  4B 6A B8 84 */	b evtChange__8daNpcT_cFv
+/* 80A9E9A0  4B 6A B8 85 */	bl evtChange__8daNpcT_cFv
 /* 80A9E9A4  48 00 00 28 */	b lbl_80A9E9CC
 lbl_80A9E9A8:
 /* 80A9E9A8  38 00 00 02 */	li r0, 2
@@ -46,7 +46,7 @@ lbl_80A9E9A8:
 /* 80A9E9B0  48 00 00 1C */	b lbl_80A9E9CC
 lbl_80A9E9B4:
 /* 80A9E9B4  38 60 02 60 */	li r3, 0x260
-/* 80A9E9B8  4B 6A E0 74 */	b daNpcT_onEvtBit__FUl
+/* 80A9E9B8  4B 6A E0 75 */	bl daNpcT_onEvtBit__FUl
 lbl_80A9E9BC:
 /* 80A9E9BC  38 00 00 01 */	li r0, 1
 /* 80A9E9C0  98 1E 0F E2 */	stb r0, 0xfe2(r30)

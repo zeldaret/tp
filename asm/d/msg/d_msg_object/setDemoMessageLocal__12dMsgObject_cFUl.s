@@ -7,8 +7,8 @@ lbl_80237D88:
 /* 80237D9C  38 00 00 01 */	li r0, 1
 /* 80237DA0  98 03 04 CC */	stb r0, 0x4cc(r3)
 /* 80237DA4  4B FF FB AD */	bl onCameraCancelFlag__12dMsgObject_cFv
-/* 80237DA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80237DAC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80237DA8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80237DAC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80237DB0  80 63 5D BC */	lwz r3, 0x5dbc(r3)
 /* 80237DB4  7F E4 FB 78 */	mr r4, r31
 /* 80237DB8  4B FF C3 71 */	bl getMessageIDAlways__12dMsgObject_cFUl

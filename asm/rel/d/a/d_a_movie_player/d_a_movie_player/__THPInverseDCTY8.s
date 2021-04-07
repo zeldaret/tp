@@ -12,10 +12,10 @@ lbl_80873FBC:
 /* 80873FE4  F3 61 00 28 */	psq_st f27, 40(r1), 0, 0 /* qr0 */
 /* 80873FE8  DB 41 00 10 */	stfd f26, 0x10(r1)
 /* 80873FEC  F3 41 00 18 */	psq_st f26, 24(r1), 0, 0 /* qr0 */
-/* 80873FF0  3C A0 80 88 */	lis r5, __THPJpegNaturalOrder@ha
-/* 80873FF4  38 C5 90 34 */	addi r6, r5, __THPJpegNaturalOrder@l
-/* 80873FF8  3C A0 80 88 */	lis r5, lit_1109@ha
-/* 80873FFC  38 A5 95 A0 */	addi r5, r5, lit_1109@l
+/* 80873FF0  3C A0 80 88 */	lis r5, __THPJpegNaturalOrder@ha /* 0x80879034@ha */
+/* 80873FF4  38 C5 90 34 */	addi r6, r5, __THPJpegNaturalOrder@l /* 0x80879034@l */
+/* 80873FF8  3C A0 80 88 */	lis r5, lit_1109@ha /* 0x808795A0@ha */
+/* 80873FFC  38 A5 95 A0 */	addi r5, r5, lit_1109@l /* 0x808795A0@l */
 /* 80874000  C3 C6 00 98 */	lfs f30, 0x98(r6)
 /* 80874004  C3 A6 00 9C */	lfs f29, 0x9c(r6)
 /* 80874008  C3 86 00 A0 */	lfs f28, 0xa0(r6)

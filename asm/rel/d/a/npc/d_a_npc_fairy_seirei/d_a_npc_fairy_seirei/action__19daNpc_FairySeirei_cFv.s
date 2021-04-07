@@ -5,18 +5,18 @@ lbl_80540784:
 /* 80540790  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80540794  7C 7F 1B 78 */	mr r31, r3
 /* 80540798  38 7F 0F 84 */	addi r3, r31, 0xf84
-/* 8054079C  4B E2 18 7C */	b __ptmf_test
+/* 8054079C  4B E2 18 7D */	bl __ptmf_test
 /* 805407A0  2C 03 00 00 */	cmpwi r3, 0
 /* 805407A4  41 82 00 54 */	beq lbl_805407F8
 /* 805407A8  38 7F 0F 90 */	addi r3, r31, 0xf90
 /* 805407AC  38 9F 0F 84 */	addi r4, r31, 0xf84
-/* 805407B0  4B E2 18 98 */	b __ptmf_cmpr
+/* 805407B0  4B E2 18 99 */	bl __ptmf_cmpr
 /* 805407B4  2C 03 00 00 */	cmpwi r3, 0
 /* 805407B8  40 82 00 1C */	bne lbl_805407D4
 /* 805407BC  7F E3 FB 78 */	mr r3, r31
 /* 805407C0  38 80 00 00 */	li r4, 0
 /* 805407C4  39 9F 0F 90 */	addi r12, r31, 0xf90
-/* 805407C8  4B E2 18 BC */	b __ptmf_scall
+/* 805407C8  4B E2 18 BD */	bl __ptmf_scall
 /* 805407CC  60 00 00 00 */	nop 
 /* 805407D0  48 00 00 28 */	b lbl_805407F8
 lbl_805407D4:

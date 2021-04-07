@@ -10,8 +10,8 @@ lbl_800E91C4:
 /* 800E91E4  40 82 00 1C */	bne lbl_800E9200
 /* 800E91E8  38 00 00 01 */	li r0, 1
 /* 800E91EC  B0 03 30 12 */	sth r0, 0x3012(r3)
-/* 800E91F0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800E91F4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800E91F0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800E91F4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800E91F8  38 63 4E C8 */	addi r3, r3, 0x4ec8
 /* 800E91FC  4B F5 92 6D */	bl reset__14dEvt_control_cFv
 lbl_800E9200:

@@ -60,26 +60,26 @@ lbl_80D1A33C:
 /* 80D1A34C  C0 1F 05 00 */	lfs f0, 0x500(r31)
 /* 80D1A350  EC 00 00 32 */	fmuls f0, f0, f0
 /* 80D1A354  EC 41 00 2A */	fadds f2, f1, f0
-/* 80D1A358  3C 60 80 D2 */	lis r3, lit_3942@ha
-/* 80D1A35C  C0 03 B7 30 */	lfs f0, lit_3942@l(r3)
+/* 80D1A358  3C 60 80 D2 */	lis r3, lit_3942@ha /* 0x80D1B730@ha */
+/* 80D1A35C  C0 03 B7 30 */	lfs f0, lit_3942@l(r3)  /* 0x80D1B730@l */
 /* 80D1A360  FC 02 00 40 */	fcmpo cr0, f2, f0
 /* 80D1A364  40 81 00 0C */	ble lbl_80D1A370
 /* 80D1A368  FC 00 10 34 */	frsqrte f0, f2
 /* 80D1A36C  EC 40 00 B2 */	fmuls f2, f0, f2
 lbl_80D1A370:
 /* 80D1A370  C0 3F 07 20 */	lfs f1, 0x720(r31)
-/* 80D1A374  4B 54 D3 00 */	b cM_atan2s__Fff
+/* 80D1A374  4B 54 D3 01 */	bl cM_atan2s__Fff
 /* 80D1A378  7C 60 07 34 */	extsh r0, r3
-/* 80D1A37C  3C 60 80 D2 */	lis r3, lit_4212@ha
-/* 80D1A380  C8 23 B7 98 */	lfd f1, lit_4212@l(r3)
+/* 80D1A37C  3C 60 80 D2 */	lis r3, lit_4212@ha /* 0x80D1B798@ha */
+/* 80D1A380  C8 23 B7 98 */	lfd f1, lit_4212@l(r3)  /* 0x80D1B798@l */
 /* 80D1A384  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 80D1A388  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80D1A38C  3C 00 43 30 */	lis r0, 0x4330
 /* 80D1A390  90 01 00 08 */	stw r0, 8(r1)
 /* 80D1A394  C8 01 00 08 */	lfd f0, 8(r1)
 /* 80D1A398  EC 20 08 28 */	fsubs f1, f0, f1
-/* 80D1A39C  3C 60 80 D2 */	lis r3, lit_4210@ha
-/* 80D1A3A0  C0 03 B7 94 */	lfs f0, lit_4210@l(r3)
+/* 80D1A39C  3C 60 80 D2 */	lis r3, lit_4210@ha /* 0x80D1B794@ha */
+/* 80D1A3A0  C0 03 B7 94 */	lfs f0, lit_4210@l(r3)  /* 0x80D1B794@l */
 /* 80D1A3A4  EC 00 00 72 */	fmuls f0, f0, f1
 /* 80D1A3A8  FC 00 00 1E */	fctiwz f0, f0
 /* 80D1A3AC  D8 01 00 10 */	stfd f0, 0x10(r1)
@@ -87,14 +87,14 @@ lbl_80D1A370:
 /* 80D1A3B4  38 7F 04 E4 */	addi r3, r31, 0x4e4
 /* 80D1A3B8  38 A0 00 02 */	li r5, 2
 /* 80D1A3BC  38 C0 06 00 */	li r6, 0x600
-/* 80D1A3C0  4B 55 62 48 */	b cLib_addCalcAngleS2__FPssss
+/* 80D1A3C0  4B 55 62 49 */	bl cLib_addCalcAngleS2__FPssss
 /* 80D1A3C4  48 00 00 0C */	b lbl_80D1A3D0
 lbl_80D1A3C8:
 /* 80D1A3C8  7F E3 FB 78 */	mr r3, r31
 /* 80D1A3CC  4B FF FA 7D */	bl LinkAction__12daObjTOMBO_cFv
 lbl_80D1A3D0:
 /* 80D1A3D0  7F E3 FB 78 */	mr r3, r31
-/* 80D1A3D4  4B 44 3C A4 */	b Insect_GetDemoMain__9dInsect_cFv
+/* 80D1A3D4  4B 44 3C A5 */	bl Insect_GetDemoMain__9dInsect_cFv
 /* 80D1A3D8  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 80D1A3DC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80D1A3E0  7C 08 03 A6 */	mtlr r0

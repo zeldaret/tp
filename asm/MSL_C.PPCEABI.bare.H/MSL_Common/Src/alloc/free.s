@@ -9,17 +9,17 @@ lbl_80362B58:
 /* 80362B74  88 0D 94 20 */	lbz r0, data_804519A0(r13)
 /* 80362B78  28 00 00 00 */	cmplwi r0, 0
 /* 80362B7C  40 82 00 20 */	bne lbl_80362B9C
-/* 80362B80  3C 60 80 45 */	lis r3, protopool@ha
+/* 80362B80  3C 60 80 45 */	lis r3, protopool@ha /* 0x8044D540@ha */
 /* 80362B84  38 80 00 00 */	li r4, 0
-/* 80362B88  38 63 D5 40 */	addi r3, r3, protopool@l
+/* 80362B88  38 63 D5 40 */	addi r3, r3, protopool@l /* 0x8044D540@l */
 /* 80362B8C  38 A0 00 34 */	li r5, 0x34
 /* 80362B90  4B CA 08 C9 */	bl memset
 /* 80362B94  38 00 00 01 */	li r0, 1
 /* 80362B98  98 0D 94 20 */	stb r0, data_804519A0(r13)
 lbl_80362B9C:
-/* 80362B9C  3C 60 80 45 */	lis r3, protopool@ha
+/* 80362B9C  3C 60 80 45 */	lis r3, protopool@ha /* 0x8044D540@ha */
 /* 80362BA0  7F E4 FB 78 */	mr r4, r31
-/* 80362BA4  38 63 D5 40 */	addi r3, r3, protopool@l
+/* 80362BA4  38 63 D5 40 */	addi r3, r3, protopool@l /* 0x8044D540@l */
 /* 80362BA8  48 00 00 21 */	bl __pool_free
 /* 80362BAC  38 60 00 01 */	li r3, 1
 /* 80362BB0  48 00 28 B5 */	bl __end_critical_region

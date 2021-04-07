@@ -1,6 +1,6 @@
 lbl_80280734:
-/* 80280734  3C E0 80 44 */	lis r7, sincosTable___5JMath@ha
-/* 80280738  38 E7 9A 20 */	addi r7, r7, sincosTable___5JMath@l
+/* 80280734  3C E0 80 44 */	lis r7, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80280738  38 E7 9A 20 */	addi r7, r7, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8028073C  39 07 00 04 */	addi r8, r7, 4
 /* 80280740  54 60 04 38 */	rlwinm r0, r3, 0, 0x10, 0x1c
 /* 80280744  7C 28 04 2E */	lfsx f1, r8, r0

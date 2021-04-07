@@ -5,10 +5,10 @@ lbl_80B54BD0:
 /* 80B54BDC  DB E1 00 20 */	stfd f31, 0x20(r1)
 /* 80B54BE0  F3 E1 00 28 */	psq_st f31, 40(r1), 0, 0 /* qr0 */
 /* 80B54BE4  39 61 00 20 */	addi r11, r1, 0x20
-/* 80B54BE8  4B 80 D5 F0 */	b _savegpr_28
+/* 80B54BE8  4B 80 D5 F1 */	bl _savegpr_28
 /* 80B54BEC  7C 7E 1B 78 */	mr r30, r3
-/* 80B54BF0  3C 80 80 B6 */	lis r4, m__17daNpc_ykM_Param_c@ha
-/* 80B54BF4  3B E4 D7 94 */	addi r31, r4, m__17daNpc_ykM_Param_c@l
+/* 80B54BF0  3C 80 80 B6 */	lis r4, m__17daNpc_ykM_Param_c@ha /* 0x80B5D794@ha */
+/* 80B54BF4  3B E4 D7 94 */	addi r31, r4, m__17daNpc_ykM_Param_c@l /* 0x80B5D794@l */
 /* 80B54BF8  48 00 1C 15 */	bl selectAction__11daNpc_ykM_cFv
 /* 80B54BFC  7F C3 F3 78 */	mr r3, r30
 /* 80B54C00  48 00 04 A5 */	bl srchActors__11daNpc_ykM_cFv
@@ -90,8 +90,8 @@ lbl_80B54CFC:
 /* 80B54D20  98 1E 05 45 */	stb r0, 0x545(r30)
 /* 80B54D24  38 00 00 46 */	li r0, 0x46
 /* 80B54D28  98 1E 05 47 */	stb r0, 0x547(r30)
-/* 80B54D2C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80B54D30  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80B54D2C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80B54D30  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80B54D34  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 80B54D38  80 03 05 74 */	lwz r0, 0x574(r3)
 /* 80B54D3C  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
@@ -122,7 +122,7 @@ lbl_80B54D58:
 /* 80B54D94  D0 1E 0D F8 */	stfs f0, 0xdf8(r30)
 /* 80B54D98  38 7E 08 A0 */	addi r3, r30, 0x8a0
 /* 80B54D9C  C0 3E 0D F0 */	lfs f1, 0xdf0(r30)
-/* 80B54DA0  4B 52 11 A0 */	b SetWallR__12dBgS_AcchCirFf
+/* 80B54DA0  4B 52 11 A1 */	bl SetWallR__12dBgS_AcchCirFf
 /* 80B54DA4  38 7F 00 00 */	addi r3, r31, 0
 /* 80B54DA8  C0 03 00 18 */	lfs f0, 0x18(r3)
 /* 80B54DAC  D0 1E 08 D0 */	stfs f0, 0x8d0(r30)
@@ -161,7 +161,7 @@ lbl_80B54DFC:
 /* 80B54E28  E3 E1 00 28 */	psq_l f31, 40(r1), 0, 0 /* qr0 */
 /* 80B54E2C  CB E1 00 20 */	lfd f31, 0x20(r1)
 /* 80B54E30  39 61 00 20 */	addi r11, r1, 0x20
-/* 80B54E34  4B 80 D3 F0 */	b _restgpr_28
+/* 80B54E34  4B 80 D3 F1 */	bl _restgpr_28
 /* 80B54E38  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80B54E3C  7C 08 03 A6 */	mtlr r0
 /* 80B54E40  38 21 00 30 */	addi r1, r1, 0x30

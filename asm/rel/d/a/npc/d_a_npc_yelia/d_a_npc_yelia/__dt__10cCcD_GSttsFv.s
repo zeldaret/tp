@@ -5,12 +5,12 @@ lbl_80B50F98:
 /* 80B50FA4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80B50FA8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80B50FAC  41 82 00 1C */	beq lbl_80B50FC8
-/* 80B50FB0  3C A0 80 B5 */	lis r5, __vt__10cCcD_GStts@ha
-/* 80B50FB4  38 05 32 B8 */	addi r0, r5, __vt__10cCcD_GStts@l
+/* 80B50FB0  3C A0 80 B5 */	lis r5, __vt__10cCcD_GStts@ha /* 0x80B532B8@ha */
+/* 80B50FB4  38 05 32 B8 */	addi r0, r5, __vt__10cCcD_GStts@l /* 0x80B532B8@l */
 /* 80B50FB8  90 1F 00 00 */	stw r0, 0(r31)
 /* 80B50FBC  7C 80 07 35 */	extsh. r0, r4
 /* 80B50FC0  40 81 00 08 */	ble lbl_80B50FC8
-/* 80B50FC4  4B 77 DD 78 */	b __dl__FPv
+/* 80B50FC4  4B 77 DD 79 */	bl __dl__FPv
 lbl_80B50FC8:
 /* 80B50FC8  7F E3 FB 78 */	mr r3, r31
 /* 80B50FCC  83 E1 00 0C */	lwz r31, 0xc(r1)

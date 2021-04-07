@@ -3,8 +3,8 @@ lbl_80310998:
 /* 8031099C  7C 08 02 A6 */	mflr r0
 /* 803109A0  90 01 00 34 */	stw r0, 0x34(r1)
 /* 803109A4  38 61 00 08 */	addi r3, r1, 8
-/* 803109A8  3C 80 80 3D */	lis r4, NullTexData@ha
-/* 803109AC  38 84 D8 A0 */	addi r4, r4, NullTexData@l
+/* 803109A8  3C 80 80 3D */	lis r4, NullTexData@ha /* 0x803CD8A0@ha */
+/* 803109AC  38 84 D8 A0 */	addi r4, r4, NullTexData@l /* 0x803CD8A0@l */
 /* 803109B0  38 A0 00 04 */	li r5, 4
 /* 803109B4  38 C0 00 04 */	li r6, 4
 /* 803109B8  38 E0 00 03 */	li r7, 3

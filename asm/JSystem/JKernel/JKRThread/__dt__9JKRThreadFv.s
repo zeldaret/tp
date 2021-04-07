@@ -7,11 +7,11 @@ lbl_802D1758:
 /* 802D176C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802D1770  7C 9F 23 78 */	mr r31, r4
 /* 802D1774  41 82 00 A0 */	beq lbl_802D1814
-/* 802D1778  3C 60 80 3D */	lis r3, __vt__9JKRThread@ha
-/* 802D177C  38 03 C1 14 */	addi r0, r3, __vt__9JKRThread@l
+/* 802D1778  3C 60 80 3D */	lis r3, __vt__9JKRThread@ha /* 0x803CC114@ha */
+/* 802D177C  38 03 C1 14 */	addi r0, r3, __vt__9JKRThread@l /* 0x803CC114@l */
 /* 802D1780  90 1E 00 00 */	stw r0, 0(r30)
-/* 802D1784  3C 60 80 43 */	lis r3, sThreadList__9JKRThread@ha
-/* 802D1788  38 63 42 8C */	addi r3, r3, sThreadList__9JKRThread@l
+/* 802D1784  3C 60 80 43 */	lis r3, sThreadList__9JKRThread@ha /* 0x8043428C@ha */
+/* 802D1788  38 63 42 8C */	addi r3, r3, sThreadList__9JKRThread@l /* 0x8043428C@l */
 /* 802D178C  38 9E 00 18 */	addi r4, r30, 0x18
 /* 802D1790  48 00 A9 CD */	bl remove__10JSUPtrListFP10JSUPtrLink
 /* 802D1794  80 1E 00 28 */	lwz r0, 0x28(r30)

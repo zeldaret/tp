@@ -6,8 +6,8 @@ lbl_80229A28:
 /* 80229A38  93 C1 00 08 */	stw r30, 8(r1)
 /* 80229A3C  7C 7E 1B 78 */	mr r30, r3
 /* 80229A40  48 07 F0 45 */	bl __ct__Q28JMessage19TRenderingProcessorFPCQ28JMessage10TReference
-/* 80229A44  3C 60 80 3C */	lis r3, __vt__26jmessage_tMeasureProcessor@ha
-/* 80229A48  38 03 0A 94 */	addi r0, r3, __vt__26jmessage_tMeasureProcessor@l
+/* 80229A44  3C 60 80 3C */	lis r3, __vt__26jmessage_tMeasureProcessor@ha /* 0x803C0A94@ha */
+/* 80229A48  38 03 0A 94 */	addi r0, r3, __vt__26jmessage_tMeasureProcessor@l /* 0x803C0A94@l */
 /* 80229A4C  90 1E 00 00 */	stw r0, 0(r30)
 /* 80229A50  83 FE 00 04 */	lwz r31, 4(r30)
 /* 80229A54  7F E3 FB 78 */	mr r3, r31

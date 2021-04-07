@@ -19,27 +19,27 @@ lbl_80C91FA8:
 /* 80C91FB4  28 00 00 00 */	cmplwi r0, 0
 /* 80C91FB8  41 82 00 50 */	beq lbl_80C92008
 /* 80C91FBC  38 7F 06 FC */	addi r3, r31, 0x6fc
-/* 80C91FC0  3C 80 80 C9 */	lis r4, lit_3900@ha
-/* 80C91FC4  C0 24 2C 70 */	lfs f1, lit_3900@l(r4)
-/* 80C91FC8  3C 80 80 C9 */	lis r4, lit_3901@ha
-/* 80C91FCC  C0 44 2C 74 */	lfs f2, lit_3901@l(r4)
-/* 80C91FD0  4B 5D E7 70 */	b cLib_chaseF__FPfff
+/* 80C91FC0  3C 80 80 C9 */	lis r4, lit_3900@ha /* 0x80C92C70@ha */
+/* 80C91FC4  C0 24 2C 70 */	lfs f1, lit_3900@l(r4)  /* 0x80C92C70@l */
+/* 80C91FC8  3C 80 80 C9 */	lis r4, lit_3901@ha /* 0x80C92C74@ha */
+/* 80C91FCC  C0 44 2C 74 */	lfs f2, lit_3901@l(r4)  /* 0x80C92C74@l */
+/* 80C91FD0  4B 5D E7 71 */	bl cLib_chaseF__FPfff
 /* 80C91FD4  38 7F 07 00 */	addi r3, r31, 0x700
-/* 80C91FD8  3C 80 80 C9 */	lis r4, lit_3900@ha
-/* 80C91FDC  C0 24 2C 70 */	lfs f1, lit_3900@l(r4)
-/* 80C91FE0  3C 80 80 C9 */	lis r4, lit_3901@ha
-/* 80C91FE4  C0 44 2C 74 */	lfs f2, lit_3901@l(r4)
-/* 80C91FE8  4B 5D E7 58 */	b cLib_chaseF__FPfff
+/* 80C91FD8  3C 80 80 C9 */	lis r4, lit_3900@ha /* 0x80C92C70@ha */
+/* 80C91FDC  C0 24 2C 70 */	lfs f1, lit_3900@l(r4)  /* 0x80C92C70@l */
+/* 80C91FE0  3C 80 80 C9 */	lis r4, lit_3901@ha /* 0x80C92C74@ha */
+/* 80C91FE4  C0 44 2C 74 */	lfs f2, lit_3901@l(r4)  /* 0x80C92C74@l */
+/* 80C91FE8  4B 5D E7 59 */	bl cLib_chaseF__FPfff
 /* 80C91FEC  38 7F 07 04 */	addi r3, r31, 0x704
-/* 80C91FF0  3C 80 80 C9 */	lis r4, lit_3900@ha
-/* 80C91FF4  C0 24 2C 70 */	lfs f1, lit_3900@l(r4)
-/* 80C91FF8  3C 80 80 C9 */	lis r4, lit_3901@ha
-/* 80C91FFC  C0 44 2C 74 */	lfs f2, lit_3901@l(r4)
-/* 80C92000  4B 5D E7 40 */	b cLib_chaseF__FPfff
+/* 80C91FF0  3C 80 80 C9 */	lis r4, lit_3900@ha /* 0x80C92C70@ha */
+/* 80C91FF4  C0 24 2C 70 */	lfs f1, lit_3900@l(r4)  /* 0x80C92C70@l */
+/* 80C91FF8  3C 80 80 C9 */	lis r4, lit_3901@ha /* 0x80C92C74@ha */
+/* 80C91FFC  C0 44 2C 74 */	lfs f2, lit_3901@l(r4)  /* 0x80C92C74@l */
+/* 80C92000  4B 5D E7 41 */	bl cLib_chaseF__FPfff
 /* 80C92004  48 00 00 2C */	b lbl_80C92030
 lbl_80C92008:
-/* 80C92008  3C 80 80 C9 */	lis r4, lit_3891@ha
-/* 80C9200C  38 C4 2D 38 */	addi r6, r4, lit_3891@l
+/* 80C92008  3C 80 80 C9 */	lis r4, lit_3891@ha /* 0x80C92D38@ha */
+/* 80C9200C  38 C4 2D 38 */	addi r6, r4, lit_3891@l /* 0x80C92D38@l */
 /* 80C92010  80 86 00 00 */	lwz r4, 0(r6)
 /* 80C92014  80 06 00 04 */	lwz r0, 4(r6)
 /* 80C92018  90 81 00 08 */	stw r4, 8(r1)

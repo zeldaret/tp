@@ -5,8 +5,8 @@ lbl_80CFC550:
 /* 80CFC55C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CFC560  93 C1 00 08 */	stw r30, 8(r1)
 /* 80CFC564  7C 7F 1B 78 */	mr r31, r3
-/* 80CFC568  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80CFC56C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80CFC568  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CFC56C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CFC570  83 C4 5D AC */	lwz r30, 0x5dac(r4)
 /* 80CFC574  38 00 00 00 */	li r0, 0
 /* 80CFC578  B0 03 07 80 */	sth r0, 0x780(r3)

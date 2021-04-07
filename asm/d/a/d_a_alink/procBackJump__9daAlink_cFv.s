@@ -45,8 +45,8 @@ lbl_800C59F8:
 /* 800C5A00  41 82 00 34 */	beq lbl_800C5A34
 /* 800C5A04  C0 5F 04 D4 */	lfs f2, 0x4d4(r31)
 /* 800C5A08  C0 3F 34 FC */	lfs f1, 0x34fc(r31)
-/* 800C5A0C  3C 60 80 39 */	lis r3, m__22daAlinkHIO_backJump_c0@ha
-/* 800C5A10  38 A3 D8 2C */	addi r5, r3, m__22daAlinkHIO_backJump_c0@l
+/* 800C5A0C  3C 60 80 39 */	lis r3, m__22daAlinkHIO_backJump_c0@ha /* 0x8038D82C@ha */
+/* 800C5A10  38 A3 D8 2C */	addi r5, r3, m__22daAlinkHIO_backJump_c0@l /* 0x8038D82C@l */
 /* 800C5A14  C0 05 00 30 */	lfs f0, 0x30(r5)
 /* 800C5A18  EC 01 00 28 */	fsubs f0, f1, f0
 /* 800C5A1C  FC 02 00 40 */	fcmpo cr0, f2, f0

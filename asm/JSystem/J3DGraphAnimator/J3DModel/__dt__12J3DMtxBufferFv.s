@@ -5,8 +5,8 @@ lbl_803283B4:
 /* 803283C0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 803283C4  7C 7F 1B 79 */	or. r31, r3, r3
 /* 803283C8  41 82 00 1C */	beq lbl_803283E4
-/* 803283CC  3C A0 80 3D */	lis r5, __vt__12J3DMtxBuffer@ha
-/* 803283D0  38 05 ED 44 */	addi r0, r5, __vt__12J3DMtxBuffer@l
+/* 803283CC  3C A0 80 3D */	lis r5, __vt__12J3DMtxBuffer@ha /* 0x803CED44@ha */
+/* 803283D0  38 05 ED 44 */	addi r0, r5, __vt__12J3DMtxBuffer@l /* 0x803CED44@l */
 /* 803283D4  90 1F 00 38 */	stw r0, 0x38(r31)
 /* 803283D8  7C 80 07 35 */	extsh. r0, r4
 /* 803283DC  40 81 00 08 */	ble lbl_803283E4

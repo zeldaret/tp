@@ -78,8 +78,8 @@ lbl_80072700:
 /* 80072708  40 82 00 80 */	bne lbl_80072788
 /* 8007270C  80 1F 00 0C */	lwz r0, 0xc(r31)
 /* 80072710  54 04 30 32 */	slwi r4, r0, 6
-/* 80072714  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 80072718  38 03 D2 E8 */	addi r0, r3, m_cpadInfo__8mDoCPd_c@l
+/* 80072714  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 80072718  38 03 D2 E8 */	addi r0, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 8007271C  7C 60 22 14 */	add r3, r0, r4
 /* 80072720  C0 23 00 04 */	lfs f1, 4(r3)
 /* 80072724  C0 02 8C 34 */	lfs f0, lit_4064(r2)

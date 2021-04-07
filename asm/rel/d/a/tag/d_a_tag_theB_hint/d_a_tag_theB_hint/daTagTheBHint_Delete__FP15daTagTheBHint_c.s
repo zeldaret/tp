@@ -5,7 +5,7 @@ lbl_80D63D4C:
 /* 80D63D58  28 03 00 00 */	cmplwi r3, 0
 /* 80D63D5C  41 82 00 0C */	beq lbl_80D63D68
 /* 80D63D60  38 80 00 00 */	li r4, 0
-/* 80D63D64  4B 2B 4F 28 */	b __dt__10fopAc_ac_cFv
+/* 80D63D64  4B 2B 4F 29 */	bl __dt__10fopAc_ac_cFv
 lbl_80D63D68:
 /* 80D63D68  38 60 00 01 */	li r3, 1
 /* 80D63D6C  80 01 00 14 */	lwz r0, 0x14(r1)

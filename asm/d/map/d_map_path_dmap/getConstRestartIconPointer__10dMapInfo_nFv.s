@@ -4,15 +4,15 @@ lbl_8003EF70:
 /* 8003EF78  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8003EF7C  39 61 00 20 */	addi r11, r1, 0x20
 /* 8003EF80  48 32 32 59 */	bl _savegpr_28
-/* 8003EF84  3C 60 80 42 */	lis r3, mTypeGroupListAll__7dTres_c@ha
-/* 8003EF88  38 63 54 38 */	addi r3, r3, mTypeGroupListAll__7dTres_c@l
+/* 8003EF84  3C 60 80 42 */	lis r3, mTypeGroupListAll__7dTres_c@ha /* 0x80425438@ha */
+/* 8003EF88  38 63 54 38 */	addi r3, r3, mTypeGroupListAll__7dTres_c@l /* 0x80425438@l */
 /* 8003EF8C  8B C3 00 5C */	lbz r30, 0x5c(r3)
 /* 8003EF90  38 60 00 07 */	li r3, 7
 /* 8003EF94  48 05 D3 CD */	bl getFirstData__7dTres_cFUc
 /* 8003EF98  7C 7D 1B 78 */	mr r29, r3
 /* 8003EF9C  3B 80 00 00 */	li r28, 0
-/* 8003EFA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8003EFA4  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 8003EFA0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8003EFA4  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8003EFA8  48 00 00 58 */	b lbl_8003F000
 lbl_8003EFAC:
 /* 8003EFAC  88 1D 00 01 */	lbz r0, 1(r29)
@@ -27,8 +27,8 @@ lbl_8003EFAC:
 /* 8003EFD0  54 04 06 3E */	clrlwi r4, r0, 0x18
 /* 8003EFD4  28 04 00 FF */	cmplwi r4, 0xff
 /* 8003EFD8  41 82 00 18 */	beq lbl_8003EFF0
-/* 8003EFDC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8003EFE0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8003EFDC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8003EFE0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8003EFE4  4B FF 63 7D */	bl isSwitch__10dSv_info_cCFii
 /* 8003EFE8  2C 03 00 00 */	cmpwi r3, 0
 /* 8003EFEC  40 82 00 24 */	bne lbl_8003F010

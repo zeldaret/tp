@@ -5,19 +5,19 @@ lbl_80BB0E0C:
 /* 80BB0E18  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80BB0E1C  7C 7F 1B 78 */	mr r31, r3
 /* 80BB0E20  38 7F 00 64 */	addi r3, r31, 0x64
-/* 80BB0E24  3C 80 80 BB */	lis r4, __ct__4cXyzFv@ha
-/* 80BB0E28  38 84 0E D0 */	addi r4, r4, __ct__4cXyzFv@l
-/* 80BB0E2C  3C A0 80 BB */	lis r5, __dt__4cXyzFv@ha
-/* 80BB0E30  38 A5 F8 BC */	addi r5, r5, __dt__4cXyzFv@l
+/* 80BB0E24  3C 80 80 BB */	lis r4, __ct__4cXyzFv@ha /* 0x80BB0ED0@ha */
+/* 80BB0E28  38 84 0E D0 */	addi r4, r4, __ct__4cXyzFv@l /* 0x80BB0ED0@l */
+/* 80BB0E2C  3C A0 80 BB */	lis r5, __dt__4cXyzFv@ha /* 0x80BAF8BC@ha */
+/* 80BB0E30  38 A5 F8 BC */	addi r5, r5, __dt__4cXyzFv@l /* 0x80BAF8BC@l */
 /* 80BB0E34  38 C0 00 0C */	li r6, 0xc
 /* 80BB0E38  38 E0 00 17 */	li r7, 0x17
-/* 80BB0E3C  4B 7B 0F 24 */	b __construct_array
+/* 80BB0E3C  4B 7B 0F 25 */	bl __construct_array
 /* 80BB0E40  38 60 00 00 */	li r3, 0
 /* 80BB0E44  38 80 00 00 */	li r4, 0
-/* 80BB0E48  3C A0 80 43 */	lis r5, Zero__4cXyz@ha
-/* 80BB0E4C  38 C5 0C F4 */	addi r6, r5, Zero__4cXyz@l
-/* 80BB0E50  3C A0 80 BB */	lis r5, lit_4250@ha
-/* 80BB0E54  C0 25 38 30 */	lfs f1, lit_4250@l(r5)
+/* 80BB0E48  3C A0 80 43 */	lis r5, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 80BB0E4C  38 C5 0C F4 */	addi r6, r5, Zero__4cXyz@l /* 0x80430CF4@l */
+/* 80BB0E50  3C A0 80 BB */	lis r5, lit_4250@ha /* 0x80BB3830@ha */
+/* 80BB0E54  C0 25 38 30 */	lfs f1, lit_4250@l(r5)  /* 0x80BB3830@l */
 /* 80BB0E58  38 00 00 17 */	li r0, 0x17
 /* 80BB0E5C  7C 09 03 A6 */	mtctr r0
 lbl_80BB0E60:
@@ -35,11 +35,11 @@ lbl_80BB0E60:
 /* 80BB0E8C  38 00 FF FF */	li r0, -1
 /* 80BB0E90  90 1F 00 5C */	stw r0, 0x5c(r31)
 /* 80BB0E94  90 1F 01 78 */	stw r0, 0x178(r31)
-/* 80BB0E98  3C 60 80 45 */	lis r3, __float_max@ha
-/* 80BB0E9C  C0 03 0A E8 */	lfs f0, __float_max@l(r3)
+/* 80BB0E98  3C 60 80 45 */	lis r3, __float_max@ha /* 0x80450AE8@ha */
+/* 80BB0E9C  C0 03 0A E8 */	lfs f0, __float_max@l(r3)  /* 0x80450AE8@l */
 /* 80BB0EA0  D0 1F 01 7C */	stfs f0, 0x17c(r31)
-/* 80BB0EA4  3C 60 80 BB */	lis r3, lit_4250@ha
-/* 80BB0EA8  C0 03 38 30 */	lfs f0, lit_4250@l(r3)
+/* 80BB0EA4  3C 60 80 BB */	lis r3, lit_4250@ha /* 0x80BB3830@ha */
+/* 80BB0EA8  C0 03 38 30 */	lfs f0, lit_4250@l(r3)  /* 0x80BB3830@l */
 /* 80BB0EAC  D0 1F 00 60 */	stfs f0, 0x60(r31)
 /* 80BB0EB0  38 00 00 00 */	li r0, 0
 /* 80BB0EB4  90 1F 01 80 */	stw r0, 0x180(r31)

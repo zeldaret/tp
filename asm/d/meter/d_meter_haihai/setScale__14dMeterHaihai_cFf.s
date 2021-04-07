@@ -7,8 +7,8 @@ lbl_8020BC20:
 /* 8020BC34  40 82 00 60 */	bne lbl_8020BC94
 /* 8020BC38  C0 62 AD E8 */	lfs f3, lit_4116(r2)
 /* 8020BC3C  C0 42 AD EC */	lfs f2, lit_4117(r2)
-/* 8020BC40  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8020BC44  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 8020BC40  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8020BC44  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8020BC48  C0 04 04 FC */	lfs f0, 0x4fc(r4)
 /* 8020BC4C  EC 02 00 32 */	fmuls f0, f2, f0
 /* 8020BC50  EC 03 00 32 */	fmuls f0, f3, f0
@@ -32,8 +32,8 @@ lbl_8020BC94:
 /* 8020BC94  28 00 00 02 */	cmplwi r0, 2
 /* 8020BC98  40 82 00 4C */	bne lbl_8020BCE4
 /* 8020BC9C  C0 42 AD EC */	lfs f2, lit_4117(r2)
-/* 8020BCA0  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8020BCA4  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 8020BCA0  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8020BCA4  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8020BCA8  C0 04 04 FC */	lfs f0, 0x4fc(r4)
 /* 8020BCAC  EC 02 00 32 */	fmuls f0, f2, f0
 /* 8020BCB0  EC 60 00 72 */	fmuls f3, f0, f1
@@ -52,8 +52,8 @@ lbl_8020BC94:
 lbl_8020BCE4:
 /* 8020BCE4  28 00 00 03 */	cmplwi r0, 3
 /* 8020BCE8  40 82 00 38 */	bne lbl_8020BD20
-/* 8020BCEC  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8020BCF0  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 8020BCEC  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8020BCF0  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8020BCF4  C0 04 06 C0 */	lfs f0, 0x6c0(r4)
 /* 8020BCF8  EC 00 00 72 */	fmuls f0, f0, f1
 /* 8020BCFC  80 63 00 08 */	lwz r3, 8(r3)
@@ -68,8 +68,8 @@ lbl_8020BCE4:
 lbl_8020BD20:
 /* 8020BD20  28 00 00 04 */	cmplwi r0, 4
 /* 8020BD24  40 82 00 40 */	bne lbl_8020BD64
-/* 8020BD28  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8020BD2C  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 8020BD28  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8020BD2C  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8020BD30  C0 04 05 2C */	lfs f0, 0x52c(r4)
 /* 8020BD34  EC 40 00 72 */	fmuls f2, f0, f1
 /* 8020BD38  80 63 00 08 */	lwz r3, 8(r3)
@@ -84,8 +84,8 @@ lbl_8020BD20:
 /* 8020BD5C  4E 80 04 21 */	bctrl 
 /* 8020BD60  48 00 00 3C */	b lbl_8020BD9C
 lbl_8020BD64:
-/* 8020BD64  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8020BD68  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 8020BD64  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8020BD68  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 8020BD6C  C0 04 04 FC */	lfs f0, 0x4fc(r4)
 /* 8020BD70  EC 40 00 72 */	fmuls f2, f0, f1
 /* 8020BD74  80 63 00 08 */	lwz r3, 8(r3)

@@ -10,8 +10,8 @@ lbl_801A4C10:
 /* 801A4C30  83 C3 00 64 */	lwz r30, 0x64(r3)
 /* 801A4C34  A0 63 00 5C */	lhz r3, 0x5c(r3)
 /* 801A4C38  3B 83 FF FF */	addi r28, r3, -1
-/* 801A4C3C  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801A4C40  3B E3 CA 54 */	addi r31, r3, g_env_light@l
+/* 801A4C3C  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A4C40  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801A4C44  48 00 01 3C */	b lbl_801A4D80
 lbl_801A4C48:
 /* 801A4C48  80 79 00 60 */	lwz r3, 0x60(r25)

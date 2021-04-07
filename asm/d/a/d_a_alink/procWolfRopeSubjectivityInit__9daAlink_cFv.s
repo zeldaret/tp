@@ -14,8 +14,8 @@ lbl_8013384C:
 /* 8013387C  7F E3 FB 78 */	mr r3, r31
 /* 80133880  38 80 00 21 */	li r4, 0x21
 /* 80133884  C0 22 92 C0 */	lfs f1, lit_6108(r2)
-/* 80133888  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlRope_c0@ha
-/* 8013388C  38 A5 F4 6C */	addi r5, r5, m__20daAlinkHIO_wlRope_c0@l
+/* 80133888  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlRope_c0@ha /* 0x8038F46C@ha */
+/* 8013388C  38 A5 F4 6C */	addi r5, r5, m__20daAlinkHIO_wlRope_c0@l /* 0x8038F46C@l */
 /* 80133890  C0 45 00 20 */	lfs f2, 0x20(r5)
 /* 80133894  4B FF 5E 45 */	bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff
 lbl_80133898:

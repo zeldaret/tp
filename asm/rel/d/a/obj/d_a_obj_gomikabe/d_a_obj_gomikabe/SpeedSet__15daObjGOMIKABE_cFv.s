@@ -5,10 +5,10 @@ lbl_80BFEB90:
 /* 80BFEB9C  DB E1 00 40 */	stfd f31, 0x40(r1)
 /* 80BFEBA0  F3 E1 00 48 */	psq_st f31, 72(r1), 0, 0 /* qr0 */
 /* 80BFEBA4  39 61 00 40 */	addi r11, r1, 0x40
-/* 80BFEBA8  4B 76 36 20 */	b _savegpr_24
+/* 80BFEBA8  4B 76 36 21 */	bl _savegpr_24
 /* 80BFEBAC  7C 7E 1B 78 */	mr r30, r3
-/* 80BFEBB0  3C 60 80 C0 */	lis r3, ccSphSrc@ha
-/* 80BFEBB4  3B 43 FC 1C */	addi r26, r3, ccSphSrc@l
+/* 80BFEBB0  3C 60 80 C0 */	lis r3, ccSphSrc@ha /* 0x80BFFC1C@ha */
+/* 80BFEBB4  3B 43 FC 1C */	addi r26, r3, ccSphSrc@l /* 0x80BFFC1C@l */
 /* 80BFEBB8  3B E0 00 00 */	li r31, 0
 /* 80BFEBBC  3B A0 00 00 */	li r29, 0
 /* 80BFEBC0  3B 80 00 00 */	li r28, 0
@@ -30,12 +30,12 @@ lbl_80BFEBCC:
 /* 80BFEBFC  D0 21 00 18 */	stfs f1, 0x18(r1)
 /* 80BFEC00  D0 41 00 1C */	stfs f2, 0x1c(r1)
 /* 80BFEC04  38 61 00 14 */	addi r3, r1, 0x14
-/* 80BFEC08  4B 41 F1 7C */	b waterCheck__11fopAcM_wt_cFPC4cXyz
+/* 80BFEC08  4B 41 F1 7D */	bl waterCheck__11fopAcM_wt_cFPC4cXyz
 /* 80BFEC0C  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80BFEC10  41 82 00 BC */	beq lbl_80BFECCC
 /* 80BFEC14  C0 59 05 B4 */	lfs f2, 0x5b4(r25)
-/* 80BFEC18  3C 60 80 45 */	lis r3, mWaterY__11fopAcM_wt_c@ha
-/* 80BFEC1C  C0 23 0C D8 */	lfs f1, mWaterY__11fopAcM_wt_c@l(r3)
+/* 80BFEC18  3C 60 80 45 */	lis r3, mWaterY__11fopAcM_wt_c@ha /* 0x80450CD8@ha */
+/* 80BFEC1C  C0 23 0C D8 */	lfs f1, mWaterY__11fopAcM_wt_c@l(r3)  /* 0x80450CD8@l */
 /* 80BFEC20  C0 1A 00 A8 */	lfs f0, 0xa8(r26)
 /* 80BFEC24  EC 01 00 28 */	fsubs f0, f1, f0
 /* 80BFEC28  FC 02 00 40 */	fcmpo cr0, f2, f0
@@ -102,7 +102,7 @@ lbl_80BFECEC:
 /* 80BFED0C  7C 9E EA 14 */	add r4, r30, r29
 /* 80BFED10  38 64 06 10 */	addi r3, r4, 0x610
 /* 80BFED14  38 84 06 88 */	addi r4, r4, 0x688
-/* 80BFED18  4B 66 87 44 */	b __apl__5csXyzFR5csXyz
+/* 80BFED18  4B 66 87 45 */	bl __apl__5csXyzFR5csXyz
 /* 80BFED1C  3B FF 00 01 */	addi r31, r31, 1
 /* 80BFED20  2C 1F 00 04 */	cmpwi r31, 4
 /* 80BFED24  3B BD 00 06 */	addi r29, r29, 6
@@ -112,7 +112,7 @@ lbl_80BFECEC:
 /* 80BFED34  E3 E1 00 48 */	psq_l f31, 72(r1), 0, 0 /* qr0 */
 /* 80BFED38  CB E1 00 40 */	lfd f31, 0x40(r1)
 /* 80BFED3C  39 61 00 40 */	addi r11, r1, 0x40
-/* 80BFED40  4B 76 34 D4 */	b _restgpr_24
+/* 80BFED40  4B 76 34 D5 */	bl _restgpr_24
 /* 80BFED44  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 80BFED48  7C 08 03 A6 */	mtlr r0
 /* 80BFED4C  38 21 00 50 */	addi r1, r1, 0x50

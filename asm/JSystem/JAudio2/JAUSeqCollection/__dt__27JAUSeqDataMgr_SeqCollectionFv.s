@@ -7,8 +7,8 @@ lbl_802A6894:
 /* 802A68A8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802A68AC  7C 9F 23 78 */	mr r31, r4
 /* 802A68B0  41 82 00 28 */	beq lbl_802A68D8
-/* 802A68B4  3C 80 80 3D */	lis r4, __vt__27JAUSeqDataMgr_SeqCollection@ha
-/* 802A68B8  38 04 9B 38 */	addi r0, r4, __vt__27JAUSeqDataMgr_SeqCollection@l
+/* 802A68B4  3C 80 80 3D */	lis r4, __vt__27JAUSeqDataMgr_SeqCollection@ha /* 0x803C9B38@ha */
+/* 802A68B8  38 04 9B 38 */	addi r0, r4, __vt__27JAUSeqDataMgr_SeqCollection@l /* 0x803C9B38@l */
 /* 802A68BC  90 1E 00 00 */	stw r0, 0(r30)
 /* 802A68C0  38 80 00 00 */	li r4, 0
 /* 802A68C4  4B FF AE F9 */	bl __dt__13JAISeqDataMgrFv

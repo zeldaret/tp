@@ -90,12 +90,12 @@ lbl_803428E8:
 lbl_8034291C:
 /* 8034291C  2C 07 00 00 */	cmpwi r7, 0
 /* 80342920  41 82 00 10 */	beq lbl_80342930
-/* 80342924  3C 60 80 3D */	lis r3, LeapYearDays@ha
-/* 80342928  38 C3 10 78 */	addi r6, r3, LeapYearDays@l
+/* 80342924  3C 60 80 3D */	lis r3, LeapYearDays@ha /* 0x803D1078@ha */
+/* 80342928  38 C3 10 78 */	addi r6, r3, LeapYearDays@l /* 0x803D1078@l */
 /* 8034292C  48 00 00 0C */	b lbl_80342938
 lbl_80342930:
-/* 80342930  3C 60 80 3D */	lis r3, YearDays@ha
-/* 80342934  38 C3 10 48 */	addi r6, r3, YearDays@l
+/* 80342930  3C 60 80 3D */	lis r3, YearDays@ha /* 0x803D1048@ha */
+/* 80342934  38 C3 10 48 */	addi r6, r3, YearDays@l /* 0x803D1048@l */
 lbl_80342938:
 /* 80342938  38 E0 00 0C */	li r7, 0xc
 /* 8034293C  38 60 00 30 */	li r3, 0x30

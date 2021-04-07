@@ -11,8 +11,8 @@ lbl_800AB878:
 /* 800AB89C  80 63 00 84 */	lwz r3, 0x84(r3)
 /* 800AB8A0  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 800AB8A4  38 63 00 C0 */	addi r3, r3, 0xc0
-/* 800AB8A8  3C 80 80 39 */	lis r4, localHead@ha
-/* 800AB8AC  38 84 20 34 */	addi r4, r4, localHead@l
+/* 800AB8A8  3C 80 80 39 */	lis r4, localHead@ha /* 0x80392034@ha */
+/* 800AB8AC  38 84 20 34 */	addi r4, r4, localHead@l /* 0x80392034@l */
 /* 800AB8B0  38 A1 00 44 */	addi r5, r1, 0x44
 /* 800AB8B4  48 29 B4 B9 */	bl PSMTXMultVec
 /* 800AB8B8  38 7F 0F B8 */	addi r3, r31, 0xfb8

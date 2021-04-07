@@ -23,8 +23,8 @@ lbl_80133F3C:
 /* 80133F3C  38 60 00 00 */	li r3, 0
 /* 80133F40  48 00 00 AC */	b lbl_80133FEC
 lbl_80133F44:
-/* 80133F44  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80133F48  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80133F44  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80133F48  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80133F4C  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 80133F50  4B EE 7B C5 */	bl fopAcM_getTalkEventPartner__FPC10fopAc_ac_c
 /* 80133F54  38 A0 00 00 */	li r5, 0

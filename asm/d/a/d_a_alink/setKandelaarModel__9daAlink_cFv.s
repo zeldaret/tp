@@ -38,8 +38,8 @@ lbl_80110E84:
 /* 80110F14  D0 03 36 28 */	stfs f0, 0x3628(r3)
 /* 80110F18  C0 03 36 14 */	lfs f0, 0x3614(r3)
 /* 80110F1C  D0 03 36 2C */	stfs f0, 0x362c(r3)
-/* 80110F20  3C 80 80 43 */	lis r4, Zero__4cXyz@ha
-/* 80110F24  C4 04 0C F4 */	lfsu f0, Zero__4cXyz@l(r4)
+/* 80110F20  3C 80 80 43 */	lis r4, Zero__4cXyz@ha /* 0x80430CF4@ha */
+/* 80110F24  C4 04 0C F4 */	lfsu f0, Zero__4cXyz@l(r4)  /* 0x80430CF4@l */
 /* 80110F28  D0 03 36 18 */	stfs f0, 0x3618(r3)
 /* 80110F2C  C0 04 00 04 */	lfs f0, 4(r4)
 /* 80110F30  D0 03 36 1C */	stfs f0, 0x361c(r3)

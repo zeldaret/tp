@@ -11,8 +11,8 @@ lbl_8018ADA0:
 /* 8018ADC4  39 61 00 B0 */	addi r11, r1, 0xb0
 /* 8018ADC8  48 1D 73 F9 */	bl _savegpr_22
 /* 8018ADCC  7C 7F 1B 78 */	mr r31, r3
-/* 8018ADD0  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 8018ADD4  3B C3 A8 48 */	addi r30, r3, cNullVec__6Z2Calc@l
+/* 8018ADD0  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803BA848@ha */
+/* 8018ADD4  3B C3 A8 48 */	addi r30, r3, cNullVec__6Z2Calc@l /* 0x803BA848@l */
 /* 8018ADD8  38 60 01 18 */	li r3, 0x118
 /* 8018ADDC  48 14 3E 71 */	bl __nw__FUl
 /* 8018ADE0  7C 60 1B 79 */	or. r0, r3, r3
@@ -22,16 +22,16 @@ lbl_8018ADA0:
 lbl_8018ADF0:
 /* 8018ADF0  90 1F 00 14 */	stw r0, 0x14(r31)
 /* 8018ADF4  80 7F 00 14 */	lwz r3, 0x14(r31)
-/* 8018ADF8  3C 80 80 39 */	lis r4, d_file_d_file_select__stringBase0@ha
-/* 8018ADFC  38 84 43 88 */	addi r4, r4, d_file_d_file_select__stringBase0@l
+/* 8018ADF8  3C 80 80 39 */	lis r4, d_file_d_file_select__stringBase0@ha /* 0x80394388@ha */
+/* 8018ADFC  38 84 43 88 */	addi r4, r4, d_file_d_file_select__stringBase0@l /* 0x80394388@l */
 /* 8018AE00  38 84 00 3F */	addi r4, r4, 0x3f
 /* 8018AE04  3C A0 01 10 */	lis r5, 0x110
 /* 8018AE08  80 DF 00 08 */	lwz r6, 8(r31)
 /* 8018AE0C  48 16 D8 3D */	bl setPriority__9J2DScreenFPCcUlP10JKRArchive
 /* 8018AE10  80 7F 00 14 */	lwz r3, 0x14(r31)
 /* 8018AE14  48 0C A2 D5 */	bl dPaneClass_showNullPane__FP9J2DScreen
-/* 8018AE18  3C 60 80 39 */	lis r3, d_file_d_file_select__stringBase0@ha
-/* 8018AE1C  38 63 43 88 */	addi r3, r3, d_file_d_file_select__stringBase0@l
+/* 8018AE18  3C 60 80 39 */	lis r3, d_file_d_file_select__stringBase0@ha /* 0x80394388@ha */
+/* 8018AE1C  38 63 43 88 */	addi r3, r3, d_file_d_file_select__stringBase0@l /* 0x80394388@l */
 /* 8018AE20  38 63 00 55 */	addi r3, r3, 0x55
 /* 8018AE24  80 9F 00 08 */	lwz r4, 8(r31)
 /* 8018AE28  48 14 94 49 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
@@ -233,8 +233,8 @@ lbl_8018B090:
 /* 8018B11C  80 7F 02 40 */	lwz r3, 0x240(r31)
 /* 8018B120  80 63 00 04 */	lwz r3, 4(r3)
 /* 8018B124  38 80 00 20 */	li r4, 0x20
-/* 8018B128  3C A0 80 39 */	lis r5, d_file_d_file_select__stringBase0@ha
-/* 8018B12C  38 A5 43 88 */	addi r5, r5, d_file_d_file_select__stringBase0@l
+/* 8018B128  3C A0 80 39 */	lis r5, d_file_d_file_select__stringBase0@ha /* 0x80394388@ha */
+/* 8018B12C  38 A5 43 88 */	addi r5, r5, d_file_d_file_select__stringBase0@l /* 0x80394388@l */
 /* 8018B130  38 A5 00 6B */	addi r5, r5, 0x6b
 /* 8018B134  4C C6 31 82 */	crclr 6
 /* 8018B138  48 17 56 15 */	bl setString__10J2DTextBoxFsPCce
@@ -255,8 +255,8 @@ lbl_8018B090:
 /* 8018B174  38 81 00 58 */	addi r4, r1, 0x58
 /* 8018B178  4C C6 31 82 */	crclr 6
 /* 8018B17C  48 17 54 E5 */	bl setString__10J2DTextBoxFPCce
-/* 8018B180  3C 60 80 39 */	lis r3, d_file_d_file_select__stringBase0@ha
-/* 8018B184  38 63 43 88 */	addi r3, r3, d_file_d_file_select__stringBase0@l
+/* 8018B180  3C 60 80 39 */	lis r3, d_file_d_file_select__stringBase0@ha /* 0x80394388@ha */
+/* 8018B184  38 63 43 88 */	addi r3, r3, d_file_d_file_select__stringBase0@l /* 0x80394388@l */
 /* 8018B188  38 63 00 6C */	addi r3, r3, 0x6c
 /* 8018B18C  80 9F 00 08 */	lwz r4, 8(r31)
 /* 8018B190  48 14 90 E1 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
@@ -271,8 +271,8 @@ lbl_8018B090:
 /* 8018B1B4  4E 80 04 21 */	bctrl 
 /* 8018B1B8  38 00 00 00 */	li r0, 0
 /* 8018B1BC  90 1F 01 CC */	stw r0, 0x1cc(r31)
-/* 8018B1C0  3C 60 80 39 */	lis r3, d_file_d_file_select__stringBase0@ha
-/* 8018B1C4  38 63 43 88 */	addi r3, r3, d_file_d_file_select__stringBase0@l
+/* 8018B1C0  3C 60 80 39 */	lis r3, d_file_d_file_select__stringBase0@ha /* 0x80394388@ha */
+/* 8018B1C4  38 63 43 88 */	addi r3, r3, d_file_d_file_select__stringBase0@l /* 0x80394388@l */
 /* 8018B1C8  38 63 00 82 */	addi r3, r3, 0x82
 /* 8018B1CC  80 9F 00 08 */	lwz r4, 8(r31)
 /* 8018B1D0  48 14 90 A1 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
@@ -385,8 +385,8 @@ lbl_8018B2B0:
 /* 8018B36C  81 8C 00 0C */	lwz r12, 0xc(r12)
 /* 8018B370  7D 89 03 A6 */	mtctr r12
 /* 8018B374  4E 80 04 21 */	bctrl 
-/* 8018B378  3C 60 80 39 */	lis r3, d_file_d_file_select__stringBase0@ha
-/* 8018B37C  38 63 43 88 */	addi r3, r3, d_file_d_file_select__stringBase0@l
+/* 8018B378  3C 60 80 39 */	lis r3, d_file_d_file_select__stringBase0@ha /* 0x80394388@ha */
+/* 8018B37C  38 63 43 88 */	addi r3, r3, d_file_d_file_select__stringBase0@l /* 0x80394388@l */
 /* 8018B380  38 63 00 9B */	addi r3, r3, 0x9b
 /* 8018B384  80 9F 00 08 */	lwz r4, 8(r31)
 /* 8018B388  48 14 8E E9 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
@@ -398,8 +398,8 @@ lbl_8018B2B0:
 /* 8018B3A0  81 8C 00 0C */	lwz r12, 0xc(r12)
 /* 8018B3A4  7D 89 03 A6 */	mtctr r12
 /* 8018B3A8  4E 80 04 21 */	bctrl 
-/* 8018B3AC  3C 60 80 39 */	lis r3, d_file_d_file_select__stringBase0@ha
-/* 8018B3B0  38 63 43 88 */	addi r3, r3, d_file_d_file_select__stringBase0@l
+/* 8018B3AC  3C 60 80 39 */	lis r3, d_file_d_file_select__stringBase0@ha /* 0x80394388@ha */
+/* 8018B3B0  38 63 43 88 */	addi r3, r3, d_file_d_file_select__stringBase0@l /* 0x80394388@l */
 /* 8018B3B4  38 63 00 B1 */	addi r3, r3, 0xb1
 /* 8018B3B8  80 9F 00 08 */	lwz r4, 8(r31)
 /* 8018B3BC  48 14 8E B5 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
@@ -534,8 +534,8 @@ lbl_8018B4D8:
 /* 8018B5B4  3B 40 00 00 */	li r26, 0
 /* 8018B5B8  3B 60 00 00 */	li r27, 0
 /* 8018B5BC  3B 80 00 00 */	li r28, 0
-/* 8018B5C0  3C 60 80 39 */	lis r3, d_file_d_file_select__stringBase0@ha
-/* 8018B5C4  3B 03 43 88 */	addi r24, r3, d_file_d_file_select__stringBase0@l
+/* 8018B5C0  3C 60 80 39 */	lis r3, d_file_d_file_select__stringBase0@ha /* 0x80394388@ha */
+/* 8018B5C4  3B 03 43 88 */	addi r24, r3, d_file_d_file_select__stringBase0@l /* 0x80394388@l */
 /* 8018B5C8  C3 A2 9F 74 */	lfs f29, lit_6867(r2)
 /* 8018B5CC  C3 E2 9F 78 */	lfs f31, lit_6868(r2)
 /* 8018B5D0  C3 C2 9F 48 */	lfs f30, lit_4778(r2)
@@ -602,8 +602,8 @@ lbl_8018B608:
 /* 8018B6BC  4E 80 04 21 */	bctrl 
 /* 8018B6C0  38 00 00 00 */	li r0, 0
 /* 8018B6C4  98 1F 02 1C */	stb r0, 0x21c(r31)
-/* 8018B6C8  3C 60 80 39 */	lis r3, d_file_d_file_select__stringBase0@ha
-/* 8018B6CC  38 63 43 88 */	addi r3, r3, d_file_d_file_select__stringBase0@l
+/* 8018B6C8  3C 60 80 39 */	lis r3, d_file_d_file_select__stringBase0@ha /* 0x80394388@ha */
+/* 8018B6CC  38 63 43 88 */	addi r3, r3, d_file_d_file_select__stringBase0@l /* 0x80394388@l */
 /* 8018B6D0  38 63 00 C7 */	addi r3, r3, 0xc7
 /* 8018B6D4  80 9F 00 08 */	lwz r4, 8(r31)
 /* 8018B6D8  48 14 8B 99 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
@@ -615,8 +615,8 @@ lbl_8018B608:
 /* 8018B6F0  81 8C 00 0C */	lwz r12, 0xc(r12)
 /* 8018B6F4  7D 89 03 A6 */	mtctr r12
 /* 8018B6F8  4E 80 04 21 */	bctrl 
-/* 8018B6FC  3C 60 80 39 */	lis r3, d_file_d_file_select__stringBase0@ha
-/* 8018B700  38 63 43 88 */	addi r3, r3, d_file_d_file_select__stringBase0@l
+/* 8018B6FC  3C 60 80 39 */	lis r3, d_file_d_file_select__stringBase0@ha /* 0x80394388@ha */
+/* 8018B700  38 63 43 88 */	addi r3, r3, d_file_d_file_select__stringBase0@l /* 0x80394388@l */
 /* 8018B704  38 63 00 E0 */	addi r3, r3, 0xe0
 /* 8018B708  80 9F 00 08 */	lwz r4, 8(r31)
 /* 8018B70C  48 14 8B 65 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
@@ -748,8 +748,8 @@ lbl_8018B7BC:
 /* 8018B8F8  3B 40 00 00 */	li r26, 0
 /* 8018B8FC  3B 80 00 00 */	li r28, 0
 /* 8018B900  3B A0 00 00 */	li r29, 0
-/* 8018B904  3C 60 80 39 */	lis r3, d_file_d_file_select__stringBase0@ha
-/* 8018B908  3B 63 43 88 */	addi r27, r3, d_file_d_file_select__stringBase0@l
+/* 8018B904  3C 60 80 39 */	lis r3, d_file_d_file_select__stringBase0@ha /* 0x80394388@ha */
+/* 8018B908  3B 63 43 88 */	addi r27, r3, d_file_d_file_select__stringBase0@l /* 0x80394388@l */
 /* 8018B90C  C3 C2 9F 84 */	lfs f30, lit_6871(r2)
 /* 8018B910  C3 E2 9F 40 */	lfs f31, lit_4611(r2)
 lbl_8018B914:
@@ -1070,13 +1070,13 @@ lbl_8018BD60:
 /* 8018BDDC  98 01 00 1F */	stb r0, 0x1f(r1)
 /* 8018BDE0  38 00 00 FF */	li r0, 0xff
 /* 8018BDE4  98 01 00 1B */	stb r0, 0x1b(r1)
-/* 8018BDE8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8018BDEC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8018BDE8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8018BDEC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8018BDF0  80 63 5D 30 */	lwz r3, 0x5d30(r3)
 /* 8018BDF4  3C 80 54 49 */	lis r4, 0x5449 /* 0x54494D47@ha */
 /* 8018BDF8  38 84 4D 47 */	addi r4, r4, 0x4D47 /* 0x54494D47@l */
-/* 8018BDFC  3C A0 80 39 */	lis r5, d_file_d_file_select__stringBase0@ha
-/* 8018BE00  38 A5 43 88 */	addi r5, r5, d_file_d_file_select__stringBase0@l
+/* 8018BDFC  3C A0 80 39 */	lis r5, d_file_d_file_select__stringBase0@ha /* 0x80394388@ha */
+/* 8018BE00  38 A5 43 88 */	addi r5, r5, d_file_d_file_select__stringBase0@l /* 0x80394388@l */
 /* 8018BE04  38 A5 00 F9 */	addi r5, r5, 0xf9
 /* 8018BE08  81 83 00 00 */	lwz r12, 0(r3)
 /* 8018BE0C  81 8C 00 18 */	lwz r12, 0x18(r12)

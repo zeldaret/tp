@@ -30,10 +30,10 @@ lbl_80AB4268:
 /* 80AB4268  2C 00 00 01 */	cmpwi r0, 1
 /* 80AB426C  40 82 00 58 */	bne lbl_80AB42C4
 /* 80AB4270  A8 9F 09 96 */	lha r4, 0x996(r31)
-/* 80AB4274  3C A0 80 AB */	lis r5, lit_4392@ha
-/* 80AB4278  C0 25 58 A0 */	lfs f1, lit_4392@l(r5)
+/* 80AB4274  3C A0 80 AB */	lis r5, lit_4392@ha /* 0x80AB58A0@ha */
+/* 80AB4278  C0 25 58 A0 */	lfs f1, lit_4392@l(r5)  /* 0x80AB58A0@l */
 /* 80AB427C  38 A0 00 00 */	li r5, 0
-/* 80AB4280  4B 69 FC 74 */	b turn__8daNpcF_cFsfi
+/* 80AB4280  4B 69 FC 75 */	bl turn__8daNpcF_cFsfi
 /* 80AB4284  2C 03 00 00 */	cmpwi r3, 0
 /* 80AB4288  41 82 00 2C */	beq lbl_80AB42B4
 /* 80AB428C  A8 1F 04 DE */	lha r0, 0x4de(r31)

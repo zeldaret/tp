@@ -3,17 +3,15 @@
 #
 
 M504_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kkanban.plf
+M504_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kkanban.lcf
+M504_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kkanban.map
 
 M504_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_kkanban/executor.cpp \
-	rel/d/a/obj/d_a_obj_kkanban/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_kkanban/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_kkanban/d_a_obj_kkanban.cpp \
 
 M504_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kkanban/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kkanban/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kkanban/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_kkanban/d_a_obj_kkanban.o \
 
 M504_LIBS := \
@@ -29,14 +27,21 @@ M504_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M504_LDSCRIPT) \
+	-unused -map $(M504_MAP) \
+	-w off \
 
 $(M504_TARGET): $(M504_O_FILES) $(M504_LIBS)
+	@echo [504] creating $(M504_TARGET)
 	@echo $(M504_LIBS) $(M504_O_FILES) > build/M504_ofiles
-	$(LD) -partial $(M504_LDFLAGS) -o $(M504_TARGET) @build/M504_ofiles
+	@python3 tools/lcf.py rel 504 --output $(M504_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M504_LDFLAGS) -o $(M504_TARGET) @build/M504_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_kkanban/%.o: rel/d/a/obj/d_a_obj_kkanban/%.cpp
+	@echo [504] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M504_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M504_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

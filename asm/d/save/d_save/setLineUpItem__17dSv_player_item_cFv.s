@@ -9,8 +9,8 @@ lbl_8003330C:
 /* 80033310  7C 83 01 AE */	stbx r4, r3, r0
 /* 80033314  38 C6 00 01 */	addi r6, r6, 1
 /* 80033318  42 00 FF F4 */	bdnz lbl_8003330C
-/* 8003331C  3C 80 80 3A */	lis r4, i_item_lst@ha
-/* 80033320  38 84 72 70 */	addi r4, r4, i_item_lst@l
+/* 8003331C  3C 80 80 3A */	lis r4, i_item_lst@ha /* 0x803A7270@ha */
+/* 80033320  38 84 72 70 */	addi r4, r4, i_item_lst@l /* 0x803A7270@l */
 /* 80033324  38 00 00 17 */	li r0, 0x17
 /* 80033328  7C 09 03 A6 */	mtctr r0
 lbl_8003332C:

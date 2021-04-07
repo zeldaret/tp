@@ -86,11 +86,6 @@ struct cCcD_GStts {
 // Forward References:
 //
 
-static void daTagSppath_Create(fopAc_ac_c*);
-static void daTagSppath_Delete(daTagSppath_c*);
-static void daTagSppath_Execute(daTagSppath_c*);
-static bool daTagSppath_Draw(daTagSppath_c*);
-
 extern "C" void create__13daTagSppath_cFv();
 extern "C" void __dt__10dCcD_GSttsFv();
 extern "C" void __dt__8cM3dGCylFv();
@@ -104,17 +99,11 @@ extern "C" void execute__13daTagSppath_cFv();
 extern "C" static void daTagSppath_Execute__FP13daTagSppath_c();
 extern "C" static bool daTagSppath_Draw__FP13daTagSppath_c();
 extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Tag_Sppath[12];
+extern "C" extern char const* const d_a_tag_sppath__stringBase0;
 
 //
 // External References:
 //
-
-void dPath_GetRoomPath(int, int);
-void dPath_GetNextRoomPath(dPath const*, int);
-void cM3d_Len3dSqPntAndSegLine(cM3dGLin const*, Vec const*, Vec*, f32*);
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -161,57 +150,15 @@ extern "C" extern u32 __float_max;
 //
 
 /* ############################################################################################## */
-/* 80D62C18-80D62C1C 0004+00 s=2 e=0 z=0  None .rodata    @3694 */
-SECTION_RODATA static u32 const lit_3694 = 0x44160000;
+/* 80D62C18-80D62C1C 000000 0004+00 2/2 0/0 0/0 .rodata          @3694 */
+SECTION_RODATA static f32 const lit_3694 = 600.0f;
+COMPILER_STRIP_GATE(80D62C18, &lit_3694);
 
-/* 80D62C1C-80D62C20 0004+00 s=1 e=0 z=0  None .rodata    @3695 */
-SECTION_RODATA static u32 const lit_3695 = 0x42C80000;
+/* 80D62C1C-80D62C20 000004 0004+00 1/1 0/0 0/0 .rodata          @3695 */
+SECTION_RODATA static f32 const lit_3695 = 100.0f;
+COMPILER_STRIP_GATE(80D62C1C, &lit_3695);
 
-/* 80D62C20-80D62C28 0004+04 s=1 e=0 z=0  None .rodata    @4100 */
-SECTION_RODATA static u8 const lit_4100[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80D62C28-80D62C30 0008+00 s=1 e=0 z=0  None .rodata    @4101 */
-SECTION_RODATA static u8 const lit_4101[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80D62C30-80D62C38 0008+00 s=1 e=0 z=0  None .rodata    @4102 */
-SECTION_RODATA static u8 const lit_4102[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80D62C38-80D62C40 0008+00 s=1 e=0 z=0  None .rodata    @4103 */
-SECTION_RODATA static u8 const lit_4103[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80D62C40-80D62C44 0004+00 s=1 e=0 z=0  None .rodata    @4104 */
-SECTION_RODATA static u32 const lit_4104 = 0x3A83126F;
-
-/* 80D62C44-80D62C48 0004+00 s=1 e=0 z=0  None .rodata    @4105 */
-SECTION_RODATA static u32 const lit_4105 = 0x41F00000;
-
-/* 80D62C48-80D62C4C 0004+00 s=1 e=0 z=0  None .rodata    @4167 */
-SECTION_RODATA static u32 const lit_4167 = 0x3F000000;
-
-/* 80D62C4C-80D62C54 0008+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80D62C4C = "D_MN10A";
-#pragma pop
-
-/* 80D62C54-80D62C98 0044+00 s=1 e=0 z=0  None .data      l_cylSrc */
+/* 80D62C54-80D62C98 000000 0044+00 1/1 0/0 0/0 .data            l_cylSrc */
 SECTION_DATA static u8 l_cylSrc[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00,
@@ -220,7 +167,7 @@ SECTION_DATA static u8 l_cylSrc[68] = {
     0x00, 0x00, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
 };
 
-/* 80D62C98-80D62CB8 0020+00 s=1 e=0 z=0  None .data      l_daTagSppath_Method */
+/* 80D62C98-80D62CB8 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagSppath_Method */
 SECTION_DATA static void* l_daTagSppath_Method[8] = {
     (void*)daTagSppath_Create__FP10fopAc_ac_c,
     (void*)daTagSppath_Delete__FP13daTagSppath_c,
@@ -232,8 +179,8 @@ SECTION_DATA static void* l_daTagSppath_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D62CB8-80D62CE8 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_Sppath */
-SECTION_DATA void* g_profile_Tag_Sppath[12] = {
+/* 80D62CB8-80D62CE8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Sppath */
+SECTION_DATA extern void* g_profile_Tag_Sppath[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02C60000, (void*)&g_fpcLf_Method,
     (void*)0x000006F4, (void*)NULL,
@@ -242,42 +189,42 @@ SECTION_DATA void* g_profile_Tag_Sppath[12] = {
     (void*)0x00044000, (void*)0x030E0000,
 };
 
-/* 80D62CE8-80D62CF4 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGLin */
-SECTION_DATA static void* __vt__8cM3dGLin[3] = {
-    (void*)NULL,
+/* 80D62CE8-80D62CF4 000094 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGLin */
+SECTION_DATA extern void* __vt__8cM3dGLin[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGLinFv,
 };
 
-/* 80D62CF4-80D62D00 000C+00 s=3 e=0 z=0  None .data      __vt__10cCcD_GStts */
-SECTION_DATA static void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL,
+/* 80D62CF4-80D62D00 0000A0 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
+SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__10cCcD_GSttsFv,
 };
 
-/* 80D62D00-80D62D0C 000C+00 s=2 e=0 z=0  None .data      __vt__10dCcD_GStts */
-SECTION_DATA static void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL,
+/* 80D62D00-80D62D0C 0000AC 000C+00 2/2 0/0 0/0 .data            __vt__10dCcD_GStts */
+SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__10dCcD_GSttsFv,
 };
 
-/* 80D62D0C-80D62D18 000C+00 s=3 e=0 z=0  None .data      __vt__8cM3dGCyl */
-SECTION_DATA static void* __vt__8cM3dGCyl[3] = {
-    (void*)NULL,
+/* 80D62D0C-80D62D18 0000B8 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGCyl */
+SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGCylFv,
 };
 
-/* 80D62D18-80D62D24 000C+00 s=3 e=0 z=0  None .data      __vt__8cM3dGAab */
-SECTION_DATA static void* __vt__8cM3dGAab[3] = {
-    (void*)NULL,
+/* 80D62D18-80D62D24 0000C4 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGAab */
+SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGAabFv,
 };
 
-/* 80D61C18-80D61DB8 01A0+00 s=1 e=0 z=0  None .text      create__13daTagSppath_cFv */
+/* 80D61C18-80D61DB8 000078 01A0+00 1/1 0/0 0/0 .text            create__13daTagSppath_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -287,7 +234,7 @@ asm void daTagSppath_c::create() {
 }
 #pragma pop
 
-/* 80D61DB8-80D61E14 005C+00 s=1 e=0 z=0  None .text      __dt__10dCcD_GSttsFv */
+/* 80D61DB8-80D61E14 000218 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -297,7 +244,7 @@ asm dCcD_GStts::~dCcD_GStts() {
 }
 #pragma pop
 
-/* 80D61E14-80D61E5C 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGCylFv */
+/* 80D61E14-80D61E5C 000274 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -307,7 +254,7 @@ asm cM3dGCyl::~cM3dGCyl() {
 }
 #pragma pop
 
-/* 80D61E5C-80D61EA4 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGAabFv */
+/* 80D61E5C-80D61EA4 0002BC 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -317,17 +264,18 @@ asm cM3dGAab::~cM3dGAab() {
 }
 #pragma pop
 
-/* 80D61EA4-80D61EC4 0020+00 s=1 e=0 z=0  None .text      daTagSppath_Create__FP10fopAc_ac_c */
+/* 80D61EA4-80D61EC4 000304 0020+00 1/0 0/0 0/0 .text            daTagSppath_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagSppath_Create(fopAc_ac_c* param_0) {
+static asm void daTagSppath_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_sppath/d_a_tag_sppath/daTagSppath_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D61EC4-80D61FFC 0138+00 s=1 e=0 z=0  None .text      __dt__13daTagSppath_cFv */
+/* 80D61EC4-80D61FFC 000324 0138+00 1/1 0/0 0/0 .text            __dt__13daTagSppath_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -337,18 +285,77 @@ asm daTagSppath_c::~daTagSppath_c() {
 }
 #pragma pop
 
-/* 80D61FFC-80D62024 0028+00 s=1 e=0 z=0  None .text      daTagSppath_Delete__FP13daTagSppath_c */
+/* 80D61FFC-80D62024 00045C 0028+00 1/0 0/0 0/0 .text daTagSppath_Delete__FP13daTagSppath_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagSppath_Delete(daTagSppath_c* param_0) {
+static asm void daTagSppath_Delete(daTagSppath_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_sppath/d_a_tag_sppath/daTagSppath_Delete__FP13daTagSppath_c.s"
 }
 #pragma pop
 
-/* 80D62024-80D62978 0954+00 s=1 e=0 z=1  None .text getNearPathPos__13daTagSppath_cFP4cXyzP5dPath
- */
+/* ############################################################################################## */
+/* 80D62C20-80D62C28 000008 0004+04 0/1 0/0 0/0 .rodata          @4100 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_4100[4 + 4 /* padding */] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    /* padding */
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+COMPILER_STRIP_GATE(80D62C20, &lit_4100);
+#pragma pop
+
+/* 80D62C28-80D62C30 000010 0008+00 0/1 0/0 0/0 .rodata          @4101 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_4101[8] = {
+    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(80D62C28, &lit_4101);
+#pragma pop
+
+/* 80D62C30-80D62C38 000018 0008+00 0/1 0/0 0/0 .rodata          @4102 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_4102[8] = {
+    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(80D62C30, &lit_4102);
+#pragma pop
+
+/* 80D62C38-80D62C40 000020 0008+00 0/1 0/0 0/0 .rodata          @4103 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_4103[8] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(80D62C38, &lit_4103);
+#pragma pop
+
+/* 80D62C40-80D62C44 000028 0004+00 0/1 0/0 0/0 .rodata          @4104 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4104 = 0x3A83126F;
+COMPILER_STRIP_GATE(80D62C40, &lit_4104);
+#pragma pop
+
+/* 80D62C44-80D62C48 00002C 0004+00 0/1 0/0 0/0 .rodata          @4105 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4105 = 30.0f;
+COMPILER_STRIP_GATE(80D62C44, &lit_4105);
+#pragma pop
+
+/* 80D62024-80D62978 000484 0954+00 1/1 0/0 0/1 .text
+ * getNearPathPos__13daTagSppath_cFP4cXyzP5dPath                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -358,7 +365,7 @@ asm void daTagSppath_c::getNearPathPos(cXyz* param_0, dPath* param_1) {
 }
 #pragma pop
 
-/* 80D62978-80D629C0 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGLinFv */
+/* 80D62978-80D629C0 000DD8 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGLinFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -368,7 +375,12 @@ asm cM3dGLin::~cM3dGLin() {
 }
 #pragma pop
 
-/* 80D629C0-80D62BA0 01E0+00 s=1 e=0 z=0  None .text      execute__13daTagSppath_cFv */
+/* ############################################################################################## */
+/* 80D62C48-80D62C4C 000030 0004+00 1/1 0/0 0/0 .rodata          @4167 */
+SECTION_RODATA static f32 const lit_4167 = 0.5f;
+COMPILER_STRIP_GATE(80D62C48, &lit_4167);
+
+/* 80D629C0-80D62BA0 000E20 01E0+00 1/1 0/0 0/0 .text            execute__13daTagSppath_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -378,22 +390,23 @@ asm void daTagSppath_c::execute() {
 }
 #pragma pop
 
-/* 80D62BA0-80D62BC0 0020+00 s=1 e=0 z=0  None .text      daTagSppath_Execute__FP13daTagSppath_c */
+/* 80D62BA0-80D62BC0 001000 0020+00 1/0 0/0 0/0 .text daTagSppath_Execute__FP13daTagSppath_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagSppath_Execute(daTagSppath_c* param_0) {
+static asm void daTagSppath_Execute(daTagSppath_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_sppath/d_a_tag_sppath/daTagSppath_Execute__FP13daTagSppath_c.s"
 }
 #pragma pop
 
-/* 80D62BC0-80D62BC8 0008+00 s=1 e=0 z=0  None .text      daTagSppath_Draw__FP13daTagSppath_c */
+/* 80D62BC0-80D62BC8 001020 0008+00 1/0 0/0 0/0 .text            daTagSppath_Draw__FP13daTagSppath_c
+ */
 static bool daTagSppath_Draw(daTagSppath_c* param_0) {
     return true;
 }
 
-/* 80D62BC8-80D62C10 0048+00 s=1 e=0 z=0  None .text      __dt__10cCcD_GSttsFv */
+/* 80D62BC8-80D62C10 001028 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -401,4 +414,11 @@ asm cCcD_GStts::~cCcD_GStts() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_sppath/d_a_tag_sppath/__dt__10cCcD_GSttsFv.s"
 }
+#pragma pop
+
+/* 80D62C4C-80D62C54 000034 0008+00 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80D62C4C = "D_MN10A";
 #pragma pop

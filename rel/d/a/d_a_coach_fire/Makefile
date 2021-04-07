@@ -3,17 +3,15 @@
 #
 
 M162_TARGET := $(BUILD_DIR)/rel/d/a/d_a_coach_fire.plf
+M162_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_coach_fire.lcf
+M162_MAP := $(BUILD_DIR)/rel/d/a/d_a_coach_fire.map
 
 M162_CPP_FILES := \
-	rel/d/a/d_a_coach_fire/executor.cpp \
-	rel/d/a/d_a_coach_fire/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_coach_fire/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_coach_fire/d_a_coach_fire.cpp \
 
 M162_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_coach_fire/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_coach_fire/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_coach_fire/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_coach_fire/d_a_coach_fire.o \
 
 M162_LIBS := \
@@ -29,14 +27,21 @@ M162_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M162_LDSCRIPT) \
+	-unused -map $(M162_MAP) \
+	-w off \
 
 $(M162_TARGET): $(M162_O_FILES) $(M162_LIBS)
+	@echo [162] creating $(M162_TARGET)
 	@echo $(M162_LIBS) $(M162_O_FILES) > build/M162_ofiles
-	$(LD) -partial $(M162_LDFLAGS) -o $(M162_TARGET) @build/M162_ofiles
+	@python3 tools/lcf.py rel 162 --output $(M162_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M162_LDFLAGS) -o $(M162_TARGET) @build/M162_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_coach_fire/%.o: rel/d/a/d_a_coach_fire/%.cpp
+	@echo [162] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M162_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M162_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

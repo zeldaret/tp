@@ -1,7 +1,7 @@
 lbl_80C9F944:
 /* 80C9F944  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 80C9F948  3C 80 80 CA */	lis r4, REMOVE_ISU_IDX__14daObjNagaisu_c@ha
-/* 80C9F94C  38 A4 03 5C */	addi r5, r4, REMOVE_ISU_IDX__14daObjNagaisu_c@l
+/* 80C9F948  3C 80 80 CA */	lis r4, REMOVE_ISU_IDX__14daObjNagaisu_c@ha /* 0x80CA035C@ha */
+/* 80C9F94C  38 A4 03 5C */	addi r5, r4, REMOVE_ISU_IDX__14daObjNagaisu_c@l /* 0x80CA035C@l */
 /* 80C9F950  38 C3 05 B4 */	addi r6, r3, 0x5b4
 /* 80C9F954  C0 43 04 D0 */	lfs f2, 0x4d0(r3)
 /* 80C9F958  C0 23 04 D8 */	lfs f1, 0x4d8(r3)

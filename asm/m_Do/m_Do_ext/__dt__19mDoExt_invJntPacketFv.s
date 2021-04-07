@@ -5,12 +5,12 @@ lbl_8000E5F8:
 /* 8000E604  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8000E608  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8000E60C  41 82 00 30 */	beq lbl_8000E63C
-/* 8000E610  3C 60 80 3A */	lis r3, __vt__19mDoExt_invJntPacket@ha
-/* 8000E614  38 03 32 70 */	addi r0, r3, __vt__19mDoExt_invJntPacket@l
+/* 8000E610  3C 60 80 3A */	lis r3, __vt__19mDoExt_invJntPacket@ha /* 0x803A3270@ha */
+/* 8000E614  38 03 32 70 */	addi r0, r3, __vt__19mDoExt_invJntPacket@l /* 0x803A3270@l */
 /* 8000E618  90 1F 00 00 */	stw r0, 0(r31)
 /* 8000E61C  41 82 00 10 */	beq lbl_8000E62C
-/* 8000E620  3C 60 80 3D */	lis r3, __vt__9J3DPacket@ha
-/* 8000E624  38 03 D9 7C */	addi r0, r3, __vt__9J3DPacket@l
+/* 8000E620  3C 60 80 3D */	lis r3, __vt__9J3DPacket@ha /* 0x803CD97C@ha */
+/* 8000E624  38 03 D9 7C */	addi r0, r3, __vt__9J3DPacket@l /* 0x803CD97C@l */
 /* 8000E628  90 1F 00 00 */	stw r0, 0(r31)
 lbl_8000E62C:
 /* 8000E62C  7C 80 07 35 */	extsh. r0, r4

@@ -5,8 +5,8 @@ lbl_806AF848:
 /* 806AF854  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 806AF858  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 806AF85C  7C 7E 1B 78 */	mr r30, r3
-/* 806AF860  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 806AF864  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 806AF860  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806AF864  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806AF868  80 7F 5D 3C */	lwz r3, 0x5d3c(r31)
 /* 806AF86C  38 00 00 FF */	li r0, 0xff
 /* 806AF870  90 01 00 08 */	stw r0, 8(r1)
@@ -25,14 +25,14 @@ lbl_806AF848:
 /* 806AF8A4  39 1E 01 0C */	addi r8, r30, 0x10c
 /* 806AF8A8  39 3E 04 E4 */	addi r9, r30, 0x4e4
 /* 806AF8AC  39 40 00 00 */	li r10, 0
-/* 806AF8B0  3D 60 80 6B */	lis r11, lit_3868@ha
-/* 806AF8B4  C0 2B 5C FC */	lfs f1, lit_3868@l(r11)
-/* 806AF8B8  4B 99 DC 14 */	b set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
+/* 806AF8B0  3D 60 80 6B */	lis r11, lit_3868@ha /* 0x806B5CFC@ha */
+/* 806AF8B4  C0 2B 5C FC */	lfs f1, lit_3868@l(r11)  /* 0x806B5CFC@l */
+/* 806AF8B8  4B 99 DC 15 */	bl set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
 /* 806AF8BC  90 7E 11 5C */	stw r3, 0x115c(r30)
 /* 806AF8C0  80 7F 5D 3C */	lwz r3, 0x5d3c(r31)
 /* 806AF8C4  38 63 02 10 */	addi r3, r3, 0x210
 /* 806AF8C8  80 9E 11 5C */	lwz r4, 0x115c(r30)
-/* 806AF8CC  4B 99 C0 4C */	b getEmitter__Q213dPa_control_c7level_cFUl
+/* 806AF8CC  4B 99 C0 4D */	bl getEmitter__Q213dPa_control_c7level_cFUl
 /* 806AF8D0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 806AF8D4  41 82 00 38 */	beq lbl_806AF90C
 /* 806AF8D8  80 7E 05 D0 */	lwz r3, 0x5d0(r30)
@@ -43,7 +43,7 @@ lbl_806AF848:
 /* 806AF8EC  38 9F 00 68 */	addi r4, r31, 0x68
 /* 806AF8F0  38 BF 00 98 */	addi r5, r31, 0x98
 /* 806AF8F4  38 DF 00 A4 */	addi r6, r31, 0xa4
-/* 806AF8F8  4B BD 0F 10 */	b func_80280808
+/* 806AF8F8  4B BD 0F 11 */	bl func_80280808
 /* 806AF8FC  C0 3F 00 9C */	lfs f1, 0x9c(r31)
 /* 806AF900  C0 1F 00 98 */	lfs f0, 0x98(r31)
 /* 806AF904  D0 1F 00 B0 */	stfs f0, 0xb0(r31)

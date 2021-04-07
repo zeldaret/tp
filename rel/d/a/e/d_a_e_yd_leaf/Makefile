@@ -3,17 +3,15 @@
 #
 
 M249_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_yd_leaf.plf
+M249_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_yd_leaf.lcf
+M249_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_yd_leaf.map
 
 M249_CPP_FILES := \
-	rel/d/a/e/d_a_e_yd_leaf/executor.cpp \
-	rel/d/a/e/d_a_e_yd_leaf/unknown_translation_unit_ctors.cpp \
-	rel/d/a/e/d_a_e_yd_leaf/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/e/d_a_e_yd_leaf/d_a_e_yd_leaf.cpp \
 
 M249_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_yd_leaf/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_yd_leaf/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_yd_leaf/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_yd_leaf/d_a_e_yd_leaf.o \
 
 M249_LIBS := \
@@ -29,14 +27,21 @@ M249_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M249_LDSCRIPT) \
+	-unused -map $(M249_MAP) \
+	-w off \
 
 $(M249_TARGET): $(M249_O_FILES) $(M249_LIBS)
+	@echo [249] creating $(M249_TARGET)
 	@echo $(M249_LIBS) $(M249_O_FILES) > build/M249_ofiles
-	$(LD) -partial $(M249_LDFLAGS) -o $(M249_TARGET) @build/M249_ofiles
+	@python3 tools/lcf.py rel 249 --output $(M249_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M249_LDFLAGS) -o $(M249_TARGET) @build/M249_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_yd_leaf/%.o: rel/d/a/e/d_a_e_yd_leaf/%.cpp
+	@echo [249] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M249_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M249_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

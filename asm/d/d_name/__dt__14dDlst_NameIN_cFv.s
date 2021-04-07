@@ -5,8 +5,8 @@ lbl_8025115C:
 /* 80251168  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8025116C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80251170  41 82 00 1C */	beq lbl_8025118C
-/* 80251174  3C A0 80 3C */	lis r5, __vt__14dDlst_NameIN_c@ha
-/* 80251178  38 05 2B 38 */	addi r0, r5, __vt__14dDlst_NameIN_c@l
+/* 80251174  3C A0 80 3C */	lis r5, __vt__14dDlst_NameIN_c@ha /* 0x803C2B38@ha */
+/* 80251178  38 05 2B 38 */	addi r0, r5, __vt__14dDlst_NameIN_c@l /* 0x803C2B38@l */
 /* 8025117C  90 1F 00 00 */	stw r0, 0(r31)
 /* 80251180  7C 80 07 35 */	extsh. r0, r4
 /* 80251184  40 81 00 08 */	ble lbl_8025118C

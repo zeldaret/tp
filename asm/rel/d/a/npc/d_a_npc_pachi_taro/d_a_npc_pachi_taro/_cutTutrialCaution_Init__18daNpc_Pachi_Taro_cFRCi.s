@@ -12,7 +12,7 @@ lbl_80AA0040:
 lbl_80AA0068:
 /* 80AA0068  38 80 00 4E */	li r4, 0x4e
 /* 80AA006C  38 A0 00 00 */	li r5, 0
-/* 80AA0070  4B 6A BB 80 */	b initTalk__8daNpcT_cFiPP10fopAc_ac_c
+/* 80AA0070  4B 6A BB 81 */	bl initTalk__8daNpcT_cFiPP10fopAc_ac_c
 lbl_80AA0074:
 /* 80AA0074  38 60 00 01 */	li r3, 1
 /* 80AA0078  80 01 00 14 */	lwz r0, 0x14(r1)

@@ -7,7 +7,7 @@ lbl_807CEC40:
 /* 807CEC54  41 82 00 10 */	beq lbl_807CEC64
 /* 807CEC58  7C 80 07 35 */	extsh. r0, r4
 /* 807CEC5C  40 81 00 08 */	ble lbl_807CEC64
-/* 807CEC60  4B B0 00 DC */	b __dl__FPv
+/* 807CEC60  4B B0 00 DD */	bl __dl__FPv
 lbl_807CEC64:
 /* 807CEC64  7F E3 FB 78 */	mr r3, r31
 /* 807CEC68  83 E1 00 0C */	lwz r31, 0xc(r1)

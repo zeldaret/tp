@@ -4,17 +4,17 @@ lbl_809E5DD4:
 /* 809E5DDC  90 01 00 14 */	stw r0, 0x14(r1)
 /* 809E5DE0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 809E5DE4  7C 7F 1B 78 */	mr r31, r3
-/* 809E5DE8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 809E5DEC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 809E5DE8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 809E5DEC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 809E5DF0  38 63 4E 00 */	addi r3, r3, 0x4e00
-/* 809E5DF4  3C 80 80 9E */	lis r4, stringBase0@ha
-/* 809E5DF8  38 84 7F 9C */	addi r4, r4, stringBase0@l
+/* 809E5DF4  3C 80 80 9E */	lis r4, d_a_npc_grs__stringBase0@ha /* 0x809E7F9C@ha */
+/* 809E5DF8  38 84 7F 9C */	addi r4, r4, d_a_npc_grs__stringBase0@l /* 0x809E7F9C@l */
 /* 809E5DFC  38 84 00 0D */	addi r4, r4, 0xd
-/* 809E5E00  4B 98 2B 94 */	b strcmp
+/* 809E5E00  4B 98 2B 95 */	bl strcmp
 /* 809E5E04  2C 03 00 00 */	cmpwi r3, 0
 /* 809E5E08  40 82 00 1C */	bne lbl_809E5E24
 /* 809E5E0C  38 60 00 40 */	li r3, 0x40
-/* 809E5E10  4B 76 F8 24 */	b daNpcF_chkEvtBit__FUl
+/* 809E5E10  4B 76 F8 25 */	bl daNpcF_chkEvtBit__FUl
 /* 809E5E14  2C 03 00 00 */	cmpwi r3, 0
 /* 809E5E18  41 82 00 0C */	beq lbl_809E5E24
 /* 809E5E1C  38 60 00 01 */	li r3, 1

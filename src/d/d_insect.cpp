@@ -62,14 +62,6 @@ extern "C" extern char const* const d_d_insect__stringBase0;
 // External References:
 //
 
-void mDoLib_project(Vec*, Vec*);
-void mDoLib_pos2camera(Vec*, Vec*);
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_orderItemEvent(fopAc_ac_c*, u16, u16);
-void fopAcM_createItemForTrBoxDemo(cXyz const*, int, int, int, csXyz const*, cXyz const*);
-void fopAcM_createItem(cXyz const*, int, int, int, csXyz const*, cXyz const*, int);
-void fopAcM_cancelCarryNow(fopAc_ac_c*);
-
 extern "C" void mDoLib_project__FP3VecP3Vec();
 extern "C" void mDoLib_pos2camera__FP3VecP3Vec();
 extern "C" void __ct__10fopAc_ac_cFv();
@@ -93,16 +85,16 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 //
 
 /* ############################################################################################## */
-/* 803BA078-803BA088 000C+04 s=1 e=0 z=0  None .data      __vt__9dInsect_c */
-SECTION_DATA static void* __vt__9dInsect_c[3 + 1 /* padding */] = {
-    (void*)NULL,
+/* 803BA078-803BA088 017198 000C+04 1/1 0/0 0/0 .data            __vt__9dInsect_c */
+SECTION_DATA extern void* __vt__9dInsect_c[3 + 1 /* padding */] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)Insect_Release__9dInsect_cFv,
     /* padding */
     NULL,
 };
 
-/* 8015E010-8015E078 0068+00 s=0 e=0 z=13  None .text      __ct__9dInsect_cFv */
+/* 8015E010-8015E078 158950 0068+00 0/0 0/0 13/13 .text            __ct__9dInsect_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -112,15 +104,8 @@ asm dInsect_c::dInsect_c() {
 }
 #pragma pop
 
-/* ############################################################################################## */
-/* 80393D98-80393DA8 0010+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80393D98 = "DEFAULT_GETITEM";
-#pragma pop
-
-/* 8015E078-8015E26C 01F4+00 s=0 e=0 z=24  None .text      Insect_GetDemoMain__9dInsect_cFv */
+/* 8015E078-8015E26C 1589B8 01F4+00 0/0 0/0 24/24 .text            Insect_GetDemoMain__9dInsect_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -131,10 +116,10 @@ asm void dInsect_c::Insect_GetDemoMain() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804535E0-804535E4 0004+00 s=1 e=0 z=0  None .sdata2    @3871 */
+/* 804535E0-804535E4 001BE0 0004+00 1/1 0/0 0/0 .sdata2          @3871 */
 SECTION_SDATA2 static f32 lit_3871 = 20.0f;
 
-/* 804535E4-804535E8 0004+00 s=1 e=0 z=0  None .sdata2    @3872 */
+/* 804535E4-804535E8 001BE4 0004+00 1/1 0/0 0/0 .sdata2          @3872 */
 SECTION_SDATA2 static u8 lit_3872[4] = {
     0x00,
     0x00,
@@ -142,26 +127,26 @@ SECTION_SDATA2 static u8 lit_3872[4] = {
     0x00,
 };
 
-/* 804535E8-804535EC 0004+00 s=1 e=0 z=0  None .sdata2    @3873 */
+/* 804535E8-804535EC 001BE8 0004+00 1/1 0/0 0/0 .sdata2          @3873 */
 SECTION_SDATA2 static f32 lit_3873 = 608.0f;
 
-/* 804535EC-804535F0 0004+00 s=1 e=0 z=0  None .sdata2    @3874 */
+/* 804535EC-804535F0 001BEC 0004+00 1/1 0/0 0/0 .sdata2          @3874 */
 SECTION_SDATA2 static f32 lit_3874 = 448.0f;
 
-/* 804535F0-804535F4 0004+00 s=1 e=0 z=0  None .sdata2    @3875 */
+/* 804535F0-804535F4 001BF0 0004+00 1/1 0/0 0/0 .sdata2          @3875 */
 SECTION_SDATA2 static f32 lit_3875 = -10.0f;
 
-/* 804535F4-804535F8 0004+00 s=1 e=0 z=0  None .sdata2    @3876 */
+/* 804535F4-804535F8 001BF4 0004+00 1/1 0/0 0/0 .sdata2          @3876 */
 SECTION_SDATA2 static f32 lit_3876 = 16777215.0f;
 
-/* 804535F8-80453600 0004+04 s=1 e=0 z=0  None .sdata2    @3877 */
+/* 804535F8-80453600 001BF8 0004+04 1/1 0/0 0/0 .sdata2          @3877 */
 SECTION_SDATA2 static f32 lit_3877[1 + 1 /* padding */] = {
     1.0f,
     /* padding */
     0.0f,
 };
 
-/* 8015E26C-8015E3F8 018C+00 s=0 e=0 z=3  None .text      CalcZBuffer__9dInsect_cFf */
+/* 8015E26C-8015E3F8 158BAC 018C+00 0/0 0/0 3/3 .text            CalcZBuffer__9dInsect_cFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -169,4 +154,11 @@ asm void dInsect_c::CalcZBuffer(f32 param_0) {
     nofralloc
 #include "asm/d/d_insect/CalcZBuffer__9dInsect_cFf.s"
 }
+#pragma pop
+
+/* 80393D98-80393DA8 0203F8 0010+00 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80393D98 = "DEFAULT_GETITEM";
 #pragma pop

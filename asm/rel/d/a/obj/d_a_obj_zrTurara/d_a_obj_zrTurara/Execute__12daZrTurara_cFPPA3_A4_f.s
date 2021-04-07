@@ -15,7 +15,7 @@ lbl_80D40C08:
 /* 80D40C3C  80 7E 07 2C */	lwz r3, 0x72c(r30)
 /* 80D40C40  28 03 00 00 */	cmplwi r3, 0
 /* 80D40C44  41 82 00 08 */	beq lbl_80D40C4C
-/* 80D40C48  4B 33 AD 78 */	b Move__4dBgWFv
+/* 80D40C48  4B 33 AD 79 */	bl Move__4dBgWFv
 lbl_80D40C4C:
 /* 80D40C4C  38 60 00 01 */	li r3, 1
 /* 80D40C50  83 E1 00 0C */	lwz r31, 0xc(r1)

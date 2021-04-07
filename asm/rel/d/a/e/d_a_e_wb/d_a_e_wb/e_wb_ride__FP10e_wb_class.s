@@ -13,11 +13,11 @@ lbl_807D40A8:
 /* 807D40D4  48 00 00 28 */	b lbl_807D40FC
 lbl_807D40D8:
 /* 807D40D8  38 80 00 1F */	li r4, 0x1f
-/* 807D40DC  3C A0 80 7E */	lis r5, lit_5242@ha
-/* 807D40E0  C0 25 2A 64 */	lfs f1, lit_5242@l(r5)
+/* 807D40DC  3C A0 80 7E */	lis r5, lit_5242@ha /* 0x807E2A64@ha */
+/* 807D40E0  C0 25 2A 64 */	lfs f1, lit_5242@l(r5)  /* 0x807E2A64@l */
 /* 807D40E4  38 A0 00 00 */	li r5, 0
-/* 807D40E8  3C C0 80 7E */	lis r6, lit_4642@ha
-/* 807D40EC  C0 46 29 EC */	lfs f2, lit_4642@l(r6)
+/* 807D40E8  3C C0 80 7E */	lis r6, lit_4642@ha /* 0x807E29EC@ha */
+/* 807D40EC  C0 46 29 EC */	lfs f2, lit_4642@l(r6)  /* 0x807E29EC@l */
 /* 807D40F0  4B FF E4 59 */	bl anm_init__FP10e_wb_classifUcf
 /* 807D40F4  38 00 00 01 */	li r0, 1
 /* 807D40F8  B0 1F 05 B4 */	sth r0, 0x5b4(r31)

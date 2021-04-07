@@ -3,18 +3,16 @@
 #
 
 M481_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_iceblock.plf
+M481_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_iceblock.lcf
+M481_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_iceblock.map
 
 M481_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_iceblock/executor.cpp \
-	rel/d/a/obj/d_a_obj_iceblock/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_iceblock/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_iceblock/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_iceblock/d_a_obj_iceblock.cpp \
 
 M481_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_iceblock/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_iceblock/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_iceblock/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_iceblock/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_iceblock/d_a_obj_iceblock.o \
 
@@ -31,14 +29,21 @@ M481_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M481_LDSCRIPT) \
+	-unused -map $(M481_MAP) \
+	-w off \
 
 $(M481_TARGET): $(M481_O_FILES) $(M481_LIBS)
+	@echo [481] creating $(M481_TARGET)
 	@echo $(M481_LIBS) $(M481_O_FILES) > build/M481_ofiles
-	$(LD) -partial $(M481_LDFLAGS) -o $(M481_TARGET) @build/M481_ofiles
+	@python3 tools/lcf.py rel 481 --output $(M481_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M481_LDFLAGS) -o $(M481_TARGET) @build/M481_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_iceblock/%.o: rel/d/a/obj/d_a_obj_iceblock/%.cpp
+	@echo [481] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M481_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M481_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

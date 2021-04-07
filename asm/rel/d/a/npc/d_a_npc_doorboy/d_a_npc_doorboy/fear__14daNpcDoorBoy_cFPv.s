@@ -5,8 +5,8 @@ lbl_809AC064:
 /* 809AC070  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 809AC074  93 C1 00 08 */	stw r30, 8(r1)
 /* 809AC078  7C 7E 1B 78 */	mr r30, r3
-/* 809AC07C  3C 80 80 9B */	lis r4, m__20daNpcDoorBoy_Param_c@ha
-/* 809AC080  3B E4 D9 A8 */	addi r31, r4, m__20daNpcDoorBoy_Param_c@l
+/* 809AC07C  3C 80 80 9B */	lis r4, m__20daNpcDoorBoy_Param_c@ha /* 0x809AD9A8@ha */
+/* 809AC080  3B E4 D9 A8 */	addi r31, r4, m__20daNpcDoorBoy_Param_c@l /* 0x809AD9A8@l */
 /* 809AC084  A0 03 0E 04 */	lhz r0, 0xe04(r3)
 /* 809AC088  2C 00 00 02 */	cmpwi r0, 2
 /* 809AC08C  41 82 00 48 */	beq lbl_809AC0D4
@@ -32,12 +32,12 @@ lbl_809AC0D4:
 /* 809AC0D4  80 7E 05 68 */	lwz r3, 0x568(r30)
 /* 809AC0D8  38 63 00 0C */	addi r3, r3, 0xc
 /* 809AC0DC  C0 3F 00 7C */	lfs f1, 0x7c(r31)
-/* 809AC0E0  4B 97 C3 4C */	b checkPass__12J3DFrameCtrlFf
+/* 809AC0E0  4B 97 C3 4D */	bl checkPass__12J3DFrameCtrlFf
 /* 809AC0E4  2C 03 00 00 */	cmpwi r3, 0
 /* 809AC0E8  41 82 00 10 */	beq lbl_809AC0F8
 /* 809AC0EC  38 7E 0B 48 */	addi r3, r30, 0xb48
 /* 809AC0F0  38 80 00 02 */	li r4, 2
-/* 809AC0F4  4B 91 4D 24 */	b playVoice__17Z2CreatureCitizenFi
+/* 809AC0F4  4B 91 4D 25 */	bl playVoice__17Z2CreatureCitizenFi
 lbl_809AC0F8:
 /* 809AC0F8  38 60 00 01 */	li r3, 1
 /* 809AC0FC  83 E1 00 0C */	lwz r31, 0xc(r1)

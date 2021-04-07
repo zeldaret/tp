@@ -156,8 +156,8 @@ lbl_8001919C:
 /* 800192B0  88 8D 87 E4 */	lbz r4, struct_80450D64+0x0(r13)
 /* 800192B4  7C 84 07 75 */	extsb. r4, r4
 /* 800192B8  41 80 00 24 */	blt lbl_800192DC
-/* 800192BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800192C0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800192BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800192C0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800192C4  38 63 4E C4 */	addi r3, r3, 0x4ec4
 /* 800192C8  48 00 B0 BD */	bl getStatusRoomDt__20dStage_roomControl_cFi
 /* 800192CC  81 83 00 00 */	lwz r12, 0(r3)
@@ -169,8 +169,8 @@ lbl_800192DC:
 /* 800192E0  88 9F 04 BA */	lbz r4, 0x4ba(r31)
 /* 800192E4  7C 80 07 75 */	extsb. r0, r4
 /* 800192E8  41 80 00 28 */	blt lbl_80019310
-/* 800192EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800192F0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800192EC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800192F0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800192F4  38 63 4E C4 */	addi r3, r3, 0x4ec4
 /* 800192F8  7C 84 07 74 */	extsb r4, r4
 /* 800192FC  48 00 B0 89 */	bl getStatusRoomDt__20dStage_roomControl_cFi
@@ -187,8 +187,8 @@ lbl_80019310:
 /* 80019324  88 83 00 1B */	lbz r4, 0x1b(r3)
 /* 80019328  28 04 00 FF */	cmplwi r4, 0xff
 /* 8001932C  41 82 00 70 */	beq lbl_8001939C
-/* 80019330  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80019334  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80019330  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80019334  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80019338  88 BF 04 BA */	lbz r5, 0x4ba(r31)
 /* 8001933C  7C A5 07 74 */	extsb r5, r5
 /* 80019340  48 01 C0 21 */	bl isSwitch__10dSv_info_cCFii
@@ -203,8 +203,8 @@ lbl_80019360:
 /* 80019360  88 83 00 1B */	lbz r4, 0x1b(r3)
 /* 80019364  28 04 00 FF */	cmplwi r4, 0xff
 /* 80019368  41 82 00 34 */	beq lbl_8001939C
-/* 8001936C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80019370  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8001936C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80019370  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80019374  88 BF 04 BA */	lbz r5, 0x4ba(r31)
 /* 80019378  7C A5 07 74 */	extsb r5, r5
 /* 8001937C  48 01 BF E5 */	bl isSwitch__10dSv_info_cCFii

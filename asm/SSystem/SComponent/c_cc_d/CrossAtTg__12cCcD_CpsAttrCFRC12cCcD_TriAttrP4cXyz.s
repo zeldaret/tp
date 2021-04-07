@@ -2,8 +2,8 @@ lbl_80263E04:
 /* 80263E04  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 80263E08  7C 08 02 A6 */	mflr r0
 /* 80263E0C  90 01 00 44 */	stw r0, 0x44(r1)
-/* 80263E10  3C C0 80 3A */	lis r6, __vt__8cM3dGPla@ha
-/* 80263E14  38 06 37 C0 */	addi r0, r6, __vt__8cM3dGPla@l
+/* 80263E10  3C C0 80 3A */	lis r6, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 80263E14  38 06 37 C0 */	addi r0, r6, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 80263E18  90 01 00 18 */	stw r0, 0x18(r1)
 /* 80263E1C  C0 04 00 20 */	lfs f0, 0x20(r4)
 /* 80263E20  D0 01 00 08 */	stfs f0, 8(r1)
@@ -13,8 +13,8 @@ lbl_80263E04:
 /* 80263E30  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 80263E34  C0 04 00 2C */	lfs f0, 0x2c(r4)
 /* 80263E38  D0 01 00 14 */	stfs f0, 0x14(r1)
-/* 80263E3C  3C C0 80 3B */	lis r6, __vt__8cM3dGTri@ha
-/* 80263E40  38 06 BB 84 */	addi r0, r6, __vt__8cM3dGTri@l
+/* 80263E3C  3C C0 80 3B */	lis r6, __vt__8cM3dGTri@ha /* 0x803ABB84@ha */
+/* 80263E40  38 06 BB 84 */	addi r0, r6, __vt__8cM3dGTri@l /* 0x803ABB84@l */
 /* 80263E44  90 01 00 18 */	stw r0, 0x18(r1)
 /* 80263E48  80 C4 00 34 */	lwz r6, 0x34(r4)
 /* 80263E4C  80 04 00 38 */	lwz r0, 0x38(r4)
@@ -37,11 +37,11 @@ lbl_80263E04:
 /* 80263E90  38 63 00 20 */	addi r3, r3, 0x20
 /* 80263E94  38 81 00 08 */	addi r4, r1, 8
 /* 80263E98  48 00 A2 95 */	bl cM3d_Cross_CpsTri__FRC8cM3dGCps8cM3dGTriP3Vec
-/* 80263E9C  3C 80 80 3B */	lis r4, __vt__8cM3dGTri@ha
-/* 80263EA0  38 04 BB 84 */	addi r0, r4, __vt__8cM3dGTri@l
+/* 80263E9C  3C 80 80 3B */	lis r4, __vt__8cM3dGTri@ha /* 0x803ABB84@ha */
+/* 80263EA0  38 04 BB 84 */	addi r0, r4, __vt__8cM3dGTri@l /* 0x803ABB84@l */
 /* 80263EA4  90 01 00 18 */	stw r0, 0x18(r1)
-/* 80263EA8  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha
-/* 80263EAC  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l
+/* 80263EA8  3C 80 80 3A */	lis r4, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 80263EAC  38 04 37 C0 */	addi r0, r4, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 80263EB0  90 01 00 18 */	stw r0, 0x18(r1)
 /* 80263EB4  54 63 06 3E */	clrlwi r3, r3, 0x18
 /* 80263EB8  30 03 FF FF */	addic r0, r3, -1

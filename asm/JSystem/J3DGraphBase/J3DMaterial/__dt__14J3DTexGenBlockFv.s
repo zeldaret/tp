@@ -5,8 +5,8 @@ lbl_803171DC:
 /* 803171E8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 803171EC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 803171F0  41 82 00 1C */	beq lbl_8031720C
-/* 803171F4  3C A0 80 3D */	lis r5, __vt__14J3DTexGenBlock@ha
-/* 803171F8  38 05 DE 34 */	addi r0, r5, __vt__14J3DTexGenBlock@l
+/* 803171F4  3C A0 80 3D */	lis r5, __vt__14J3DTexGenBlock@ha /* 0x803CDE34@ha */
+/* 803171F8  38 05 DE 34 */	addi r0, r5, __vt__14J3DTexGenBlock@l /* 0x803CDE34@l */
 /* 803171FC  90 1F 00 00 */	stw r0, 0(r31)
 /* 80317200  7C 80 07 35 */	extsh. r0, r4
 /* 80317204  40 81 00 08 */	ble lbl_8031720C

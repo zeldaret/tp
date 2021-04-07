@@ -5,8 +5,8 @@ lbl_8008858C:
 /* 80088598  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8008859C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 800885A0  41 82 00 1C */	beq lbl_800885BC
-/* 800885A4  3C A0 80 3B */	lis r5, __vt__11dCamParam_c@ha
-/* 800885A8  38 05 C5 0C */	addi r0, r5, __vt__11dCamParam_c@l
+/* 800885A4  3C A0 80 3B */	lis r5, __vt__11dCamParam_c@ha /* 0x803AC50C@ha */
+/* 800885A8  38 05 C5 0C */	addi r0, r5, __vt__11dCamParam_c@l /* 0x803AC50C@l */
 /* 800885AC  90 1F 00 1C */	stw r0, 0x1c(r31)
 /* 800885B0  7C 80 07 35 */	extsh. r0, r4
 /* 800885B4  40 81 00 08 */	ble lbl_800885BC

@@ -4,8 +4,8 @@ lbl_800BFDFC:
 /* 800BFE04  80 03 05 74 */	lwz r0, 0x574(r3)
 /* 800BFE08  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6
 /* 800BFE0C  40 82 00 1C */	bne lbl_800BFE28
-/* 800BFE10  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 800BFE14  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 800BFE10  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800BFE14  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800BFE18  88 04 00 13 */	lbz r0, 0x13(r4)
 /* 800BFE1C  28 00 00 30 */	cmplwi r0, 0x30
 /* 800BFE20  40 82 00 08 */	bne lbl_800BFE28

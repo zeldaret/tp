@@ -14,8 +14,8 @@ lbl_8006E6B0:
 /* 8006E6E0  48 2F 3A E1 */	bl _savegpr_22
 /* 8006E6E4  7C 78 1B 78 */	mr r24, r3
 /* 8006E6E8  7C 99 23 78 */	mr r25, r4
-/* 8006E6EC  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8006E6F0  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 8006E6EC  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8006E6F0  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8006E6F4  83 83 10 58 */	lwz r28, 0x1058(r3)
 /* 8006E6F8  88 0D 89 CC */	lbz r0, data_80450F4C(r13)
 /* 8006E6FC  7C 00 07 75 */	extsb. r0, r0
@@ -25,22 +25,22 @@ lbl_8006E6B0:
 /* 8006E70C  38 00 00 01 */	li r0, 1
 /* 8006E710  98 0D 89 CC */	stb r0, data_80450F4C(r13)
 lbl_8006E714:
-/* 8006E714  3C 60 80 43 */	lis r3, g_Counter@ha
-/* 8006E718  80 03 0C D8 */	lwz r0, g_Counter@l(r3)
+/* 8006E714  3C 60 80 43 */	lis r3, g_Counter@ha /* 0x80430CD8@ha */
+/* 8006E718  80 03 0C D8 */	lwz r0, g_Counter@l(r3)  /* 0x80430CD8@l */
 /* 8006E71C  1C 00 00 28 */	mulli r0, r0, 0x28
 /* 8006E720  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 8006E724  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8006E728  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8006E724  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8006E728  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8006E72C  7C 03 04 2E */	lfsx f0, r3, r0
 /* 8006E730  FC 00 02 10 */	fabs f0, f0
 /* 8006E734  FF E0 00 18 */	frsp f31, f0
 /* 8006E738  28 1C 00 00 */	cmplwi r28, 0
 /* 8006E73C  41 82 09 EC */	beq lbl_8006F128
-/* 8006E740  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8006E744  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8006E740  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8006E744  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8006E748  48 2A 1F F5 */	bl reinitGX__6J3DSysFv
-/* 8006E74C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8006E750  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l
+/* 8006E74C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8006E750  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8006E754  80 7D 61 B0 */	lwz r3, 0x61b0(r29)
 /* 8006E758  28 03 00 00 */	cmplwi r3, 0
 /* 8006E75C  41 82 09 CC */	beq lbl_8006F128
@@ -193,18 +193,18 @@ lbl_8006E774:
 /* 8006E9A4  48 2F 1C 2D */	bl GXSetClipMode
 /* 8006E9A8  38 60 00 00 */	li r3, 0
 /* 8006E9AC  48 2F 07 29 */	bl GXSetNumIndStages
-/* 8006E9B0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8006E9B4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8006E9B0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8006E9B4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8006E9B8  38 63 4B 88 */	addi r3, r3, 0x4b88
 /* 8006E9BC  48 01 6C D5 */	bl Prepare__12dCcMassS_MngFv
 /* 8006E9C0  3B 60 00 00 */	li r27, 0
 /* 8006E9C4  3A E0 00 00 */	li r23, 0
-/* 8006E9C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8006E9CC  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
+/* 8006E9C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8006E9CC  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8006E9D0  C0 02 88 DC */	lfs f0, lit_5118(r2)
 /* 8006E9D4  FF C0 00 50 */	fneg f30, f0
-/* 8006E9D8  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 8006E9DC  3B E3 CA 54 */	addi r31, r3, g_env_light@l
+/* 8006E9D8  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 8006E9DC  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8006E9E0  48 00 07 14 */	b lbl_8006F0F4
 lbl_8006E9E4:
 /* 8006E9E4  3B 57 00 1C */	addi r26, r23, 0x1c
@@ -279,8 +279,8 @@ lbl_8006EAF0:
 /* 8006EAF0  C8 02 87 B0 */	lfd f0, lit_3953(r2)
 /* 8006EAF4  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8006EAF8  40 80 00 10 */	bge lbl_8006EB08
-/* 8006EAFC  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8006EB00  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8006EAFC  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8006EB00  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8006EB04  48 00 00 70 */	b lbl_8006EB74
 lbl_8006EB08:
 /* 8006EB08  D0 21 00 08 */	stfs f1, 8(r1)
@@ -314,8 +314,8 @@ lbl_8006EB60:
 lbl_8006EB64:
 /* 8006EB64  2C 00 00 01 */	cmpwi r0, 1
 /* 8006EB68  40 82 00 0C */	bne lbl_8006EB74
-/* 8006EB6C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8006EB70  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8006EB6C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8006EB70  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_8006EB74:
 /* 8006EB74  C0 02 88 A4 */	lfs f0, lit_5104(r2)
 /* 8006EB78  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -374,14 +374,14 @@ lbl_8006EBDC:
 /* 8006EC38  C0 02 8A 44 */	lfs f0, lit_6952(r2)
 /* 8006EC3C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8006EC40  40 80 00 54 */	bge lbl_8006EC94
-/* 8006EC44  3C 60 80 43 */	lis r3, g_Counter@ha
-/* 8006EC48  80 83 0C D8 */	lwz r4, g_Counter@l(r3)
+/* 8006EC44  3C 60 80 43 */	lis r3, g_Counter@ha /* 0x80430CD8@ha */
+/* 8006EC48  80 83 0C D8 */	lwz r4, g_Counter@l(r3)  /* 0x80430CD8@l */
 /* 8006EC4C  57 63 07 7E */	clrlwi r3, r27, 0x1d
 /* 8006EC50  38 03 02 59 */	addi r0, r3, 0x259
 /* 8006EC54  7C 04 01 D6 */	mullw r0, r4, r0
 /* 8006EC58  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 8006EC5C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8006EC60  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8006EC5C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8006EC60  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8006EC64  7C 43 04 2E */	lfsx f2, r3, r0
 /* 8006EC68  FC 40 12 10 */	fabs f2, f2
 /* 8006EC6C  FC A0 10 18 */	frsp f5, f2
@@ -649,7 +649,7 @@ lbl_8006EECC:
 /* 8006F05C  48 2E D7 09 */	bl GXBegin
 /* 8006F060  C0 01 00 98 */	lfs f0, 0x98(r1)
 /* 8006F064  3C 80 CC 01 */	lis r4, 0xCC01 /* 0xCC008000@ha */
-/* 8006F068  D0 04 80 00 */	stfs f0, 0x8000(r4)
+/* 8006F068  D0 04 80 00 */	stfs f0, 0x8000(r4)  /* 0xCC008000@l */
 /* 8006F06C  C0 01 00 9C */	lfs f0, 0x9c(r1)
 /* 8006F070  D0 04 80 00 */	stfs f0, -0x8000(r4)
 /* 8006F074  C0 01 00 A0 */	lfs f0, 0xa0(r1)

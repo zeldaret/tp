@@ -5,18 +5,18 @@ lbl_80BA2004:
 /* 80BA2010  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80BA2014  93 C1 00 08 */	stw r30, 8(r1)
 /* 80BA2018  7C 7E 1B 78 */	mr r30, r3
-/* 80BA201C  3C 60 80 BA */	lis r3, lit_3655@ha
-/* 80BA2020  3B E3 23 90 */	addi r31, r3, lit_3655@l
+/* 80BA201C  3C 60 80 BA */	lis r3, lit_3655@ha /* 0x80BA2390@ha */
+/* 80BA2020  3B E3 23 90 */	addi r31, r3, lit_3655@l /* 0x80BA2390@l */
 /* 80BA2024  38 7E 04 D8 */	addi r3, r30, 0x4d8
 /* 80BA2028  C0 3E 05 C8 */	lfs f1, 0x5c8(r30)
 /* 80BA202C  C0 1F 00 0C */	lfs f0, 0xc(r31)
 /* 80BA2030  EC 21 00 28 */	fsubs f1, f1, f0
 /* 80BA2034  C0 5F 00 40 */	lfs f2, 0x40(r31)
-/* 80BA2038  3C 80 80 BA */	lis r4, l_HIO@ha
-/* 80BA203C  38 84 25 6C */	addi r4, r4, l_HIO@l
+/* 80BA2038  3C 80 80 BA */	lis r4, l_HIO@ha /* 0x80BA256C@ha */
+/* 80BA203C  38 84 25 6C */	addi r4, r4, l_HIO@l /* 0x80BA256C@l */
 /* 80BA2040  C0 64 00 08 */	lfs f3, 8(r4)
 /* 80BA2044  C0 9F 00 34 */	lfs f4, 0x34(r31)
-/* 80BA2048  4B 6C D9 34 */	b cLib_addCalc__FPfffff
+/* 80BA2048  4B 6C D9 35 */	bl cLib_addCalc__FPfffff
 /* 80BA204C  C0 1F 00 10 */	lfs f0, 0x10(r31)
 /* 80BA2050  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80BA2054  40 82 00 14 */	bne lbl_80BA2068

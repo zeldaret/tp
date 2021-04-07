@@ -9,8 +9,8 @@ lbl_80292F90:
 /* 80292FAC  88 03 00 0C */	lbz r0, 0xc(r3)
 /* 80292FB0  28 00 00 00 */	cmplwi r0, 0
 /* 80292FB4  40 82 00 24 */	bne lbl_80292FD8
-/* 80292FB8  3C 60 80 29 */	lis r3, cbSeqMain__Q28JASTrack5TListFPv@ha
-/* 80292FBC  38 63 2F 6C */	addi r3, r3, cbSeqMain__Q28JASTrack5TListFPv@l
+/* 80292FB8  3C 60 80 29 */	lis r3, cbSeqMain__Q28JASTrack5TListFPv@ha /* 0x80292F6C@ha */
+/* 80292FBC  38 63 2F 6C */	addi r3, r3, cbSeqMain__Q28JASTrack5TListFPv@l /* 0x80292F6C@l */
 /* 80292FC0  7F C4 F3 78 */	mr r4, r30
 /* 80292FC4  48 00 B2 B1 */	bl registerSubFrameCallback__9JASDriverFPFPv_lPv
 /* 80292FC8  54 60 06 3F */	clrlwi. r0, r3, 0x18

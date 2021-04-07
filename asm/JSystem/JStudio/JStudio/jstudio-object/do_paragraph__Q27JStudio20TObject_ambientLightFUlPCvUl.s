@@ -37,14 +37,14 @@ lbl_80286DB0:
 /* 80286DB0  38 A0 00 03 */	li r5, 3
 /* 80286DB4  48 00 00 30 */	b lbl_80286DE4
 lbl_80286DB8:
-/* 80286DB8  3C 60 80 3A */	lis r3, sauVariableValue_3_COLOR_RGB__Q27JStudio21TAdaptor_ambientLight@ha
-/* 80286DBC  38 03 AA 8C */	addi r0, r3, sauVariableValue_3_COLOR_RGB__Q27JStudio21TAdaptor_ambientLight@l
+/* 80286DB8  3C 60 80 3A */	lis r3, sauVariableValue_3_COLOR_RGB__Q27JStudio21TAdaptor_ambientLight@ha /* 0x8039AA8C@ha */
+/* 80286DBC  38 03 AA 8C */	addi r0, r3, sauVariableValue_3_COLOR_RGB__Q27JStudio21TAdaptor_ambientLight@l /* 0x8039AA8C@l */
 /* 80286DC0  7C 05 03 78 */	mr r5, r0
 /* 80286DC4  38 C0 00 03 */	li r6, 3
 /* 80286DC8  48 00 00 38 */	b lbl_80286E00
 lbl_80286DCC:
-/* 80286DCC  3C 60 80 3A */	lis r3, sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight@ha
-/* 80286DD0  38 03 AA 98 */	addi r0, r3, sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight@l
+/* 80286DCC  3C 60 80 3A */	lis r3, sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight@ha /* 0x8039AA98@ha */
+/* 80286DD0  38 03 AA 98 */	addi r0, r3, sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight@l /* 0x8039AA98@l */
 /* 80286DD4  7C 05 03 78 */	mr r5, r0
 /* 80286DD8  38 C0 00 04 */	li r6, 4
 /* 80286DDC  48 00 00 24 */	b lbl_80286E00

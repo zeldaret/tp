@@ -10,25 +10,25 @@ lbl_8045CFE4:
 /* 8045D004  40 82 00 1C */	bne lbl_8045D020
 /* 8045D008  28 1E 00 00 */	cmplwi r30, 0
 /* 8045D00C  41 82 00 08 */	beq lbl_8045D014
-/* 8045D010  4B BB BB 54 */	b __ct__10fopAc_ac_cFv
+/* 8045D010  4B BB BB 55 */	bl __ct__10fopAc_ac_cFv
 lbl_8045D014:
 /* 8045D014  80 1E 04 A0 */	lwz r0, 0x4a0(r30)
 /* 8045D018  60 00 00 08 */	ori r0, r0, 8
 /* 8045D01C  90 1E 04 A0 */	stw r0, 0x4a0(r30)
 lbl_8045D020:
 /* 8045D020  38 7E 05 68 */	addi r3, r30, 0x568
-/* 8045D024  3C 80 80 46 */	lis r4, l_arcName@ha
-/* 8045D028  38 84 D2 90 */	addi r4, r4, l_arcName@l
-/* 8045D02C  4B BC FE 90 */	b dComIfG_resLoad__FP30request_of_phase_process_classPCc
+/* 8045D024  3C 80 80 46 */	lis r4, l_arcName@ha /* 0x8045D290@ha */
+/* 8045D028  38 84 D2 90 */	addi r4, r4, l_arcName@l /* 0x8045D290@l */
+/* 8045D02C  4B BC FE 91 */	bl dComIfG_resLoad__FP30request_of_phase_process_classPCc
 /* 8045D030  7C 7F 1B 78 */	mr r31, r3
 /* 8045D034  2C 1F 00 04 */	cmpwi r31, 4
 /* 8045D038  40 82 00 40 */	bne lbl_8045D078
 /* 8045D03C  7F C3 F3 78 */	mr r3, r30
-/* 8045D040  3C 80 80 46 */	lis r4, daDmidna_createHeap__FP10fopAc_ac_c@ha
-/* 8045D044  38 84 CF C4 */	addi r4, r4, daDmidna_createHeap__FP10fopAc_ac_c@l
+/* 8045D040  3C 80 80 46 */	lis r4, daDmidna_createHeap__FP10fopAc_ac_c@ha /* 0x8045CFC4@ha */
+/* 8045D044  38 84 CF C4 */	addi r4, r4, daDmidna_createHeap__FP10fopAc_ac_c@l /* 0x8045CFC4@l */
 /* 8045D048  3C A0 00 01 */	lis r5, 0x0001 /* 0x0000AEE0@ha */
 /* 8045D04C  38 A5 AE E0 */	addi r5, r5, 0xAEE0 /* 0x0000AEE0@l */
-/* 8045D050  4B BB D4 60 */	b fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
+/* 8045D050  4B BB D4 61 */	bl fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl
 /* 8045D054  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8045D058  40 82 00 0C */	bne lbl_8045D064
 /* 8045D05C  38 60 00 05 */	li r3, 5

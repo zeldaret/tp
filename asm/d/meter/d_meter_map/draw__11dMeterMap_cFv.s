@@ -18,8 +18,8 @@ lbl_8020DF68:
 /* 8020DFA8  88 03 00 31 */	lbz r0, 0x31(r3)
 /* 8020DFAC  28 00 00 00 */	cmplwi r0, 0
 /* 8020DFB0  41 82 00 8C */	beq lbl_8020E03C
-/* 8020DFB4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8020DFB8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8020DFB4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8020DFB8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8020DFBC  80 63 5F 50 */	lwz r3, 0x5f50(r3)
 /* 8020DFC0  81 83 00 00 */	lwz r12, 0(r3)
 /* 8020DFC4  81 8C 00 18 */	lwz r12, 0x18(r12)

@@ -3,16 +3,16 @@ lbl_804C0F24:
 /* 804C0F28  7C 08 02 A6 */	mflr r0
 /* 804C0F2C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 804C0F30  39 61 00 20 */	addi r11, r1, 0x20
-/* 804C0F34  4B EA 12 A8 */	b _savegpr_29
+/* 804C0F34  4B EA 12 A9 */	bl _savegpr_29
 /* 804C0F38  7C 7E 1B 78 */	mr r30, r3
 /* 804C0F3C  7C 9D 23 78 */	mr r29, r4
-/* 804C0F40  3C 60 80 4C */	lis r3, lit_3777@ha
-/* 804C0F44  3B E3 64 C8 */	addi r31, r3, lit_3777@l
+/* 804C0F40  3C 60 80 4C */	lis r3, lit_3777@ha /* 0x804C64C8@ha */
+/* 804C0F44  3B E3 64 C8 */	addi r31, r3, lit_3777@l /* 0x804C64C8@l */
 /* 804C0F48  80 7E 05 78 */	lwz r3, 0x578(r30)
 /* 804C0F4C  C0 5F 00 BC */	lfs f2, 0xbc(r31)
 /* 804C0F50  C0 7F 00 B8 */	lfs f3, 0xb8(r31)
 /* 804C0F54  C0 9F 03 98 */	lfs f4, 0x398(r31)
-/* 804C0F58  4B B4 FF 18 */	b setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff
+/* 804C0F58  4B B4 FF 19 */	bl setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff
 /* 804C0F5C  A0 1E 05 E8 */	lhz r0, 0x5e8(r30)
 /* 804C0F60  28 00 FF FF */	cmplwi r0, 0xffff
 /* 804C0F64  41 82 00 34 */	beq lbl_804C0F98
@@ -66,10 +66,10 @@ lbl_804C0FD8:
 /* 804C1014  4C 41 13 82 */	cror 2, 1, 2
 /* 804C1018  7C 00 00 26 */	mfcr r0
 /* 804C101C  54 05 1F FE */	rlwinm r5, r0, 3, 0x1f, 0x1f
-/* 804C1020  4B DF F6 08 */	b initAnime__10Z2CreatureFPvbff
+/* 804C1020  4B DF F6 09 */	bl initAnime__10Z2CreatureFPvbff
 lbl_804C1024:
 /* 804C1024  39 61 00 20 */	addi r11, r1, 0x20
-/* 804C1028  4B EA 12 00 */	b _restgpr_29
+/* 804C1028  4B EA 12 01 */	bl _restgpr_29
 /* 804C102C  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 804C1030  7C 08 03 A6 */	mtlr r0
 /* 804C1034  38 21 00 20 */	addi r1, r1, 0x20

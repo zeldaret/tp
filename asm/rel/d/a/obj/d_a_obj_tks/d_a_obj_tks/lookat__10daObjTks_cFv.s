@@ -3,10 +3,10 @@ lbl_80D11CB4:
 /* 80D11CB8  7C 08 02 A6 */	mflr r0
 /* 80D11CBC  90 01 00 64 */	stw r0, 0x64(r1)
 /* 80D11CC0  39 61 00 60 */	addi r11, r1, 0x60
-/* 80D11CC4  4B 65 05 14 */	b _savegpr_28
+/* 80D11CC4  4B 65 05 15 */	bl _savegpr_28
 /* 80D11CC8  7C 7C 1B 78 */	mr r28, r3
-/* 80D11CCC  3C 60 80 D1 */	lis r3, m__16daObjTks_Param_c@ha
-/* 80D11CD0  38 83 27 3C */	addi r4, r3, m__16daObjTks_Param_c@l
+/* 80D11CCC  3C 60 80 D1 */	lis r3, m__16daObjTks_Param_c@ha /* 0x80D1273C@ha */
+/* 80D11CD0  38 83 27 3C */	addi r4, r3, m__16daObjTks_Param_c@l /* 0x80D1273C@l */
 /* 80D11CD4  38 A0 00 00 */	li r5, 0
 /* 80D11CD8  80 7C 05 68 */	lwz r3, 0x568(r28)
 /* 80D11CDC  83 E3 00 04 */	lwz r31, 4(r3)
@@ -67,8 +67,8 @@ lbl_80D11DB0:
 /* 80D11DB0  3B C0 00 01 */	li r30, 1
 /* 80D11DB4  48 00 00 20 */	b lbl_80D11DD4
 lbl_80D11DB8:
-/* 80D11DB8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80D11DBC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80D11DB8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D11DBC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D11DC0  80 A3 5D AC */	lwz r5, 0x5dac(r3)
 /* 80D11DC4  2C 00 00 03 */	cmpwi r0, 3
 /* 80D11DC8  40 82 00 0C */	bne lbl_80D11DD4
@@ -111,7 +111,7 @@ lbl_80D11E2C:
 /* 80D11E4C  FD 00 28 90 */	fmr f8, f5
 /* 80D11E50  A8 9C 08 F2 */	lha r4, 0x8f2(r28)
 /* 80D11E54  38 A1 00 24 */	addi r5, r1, 0x24
-/* 80D11E58  4B 43 F2 60 */	b setParam__15daNpcF_Lookat_cFffffffffffffsP4cXyz
+/* 80D11E58  4B 43 F2 61 */	bl setParam__15daNpcF_Lookat_cFffffffffffffsP4cXyz
 /* 80D11E5C  38 7C 0B DC */	addi r3, r28, 0xbdc
 /* 80D11E60  7F 84 E3 78 */	mr r4, r28
 /* 80D11E64  38 BF 00 24 */	addi r5, r31, 0x24
@@ -119,9 +119,9 @@ lbl_80D11E2C:
 /* 80D11E6C  7F C7 F3 78 */	mr r7, r30
 /* 80D11E70  7F A8 EB 78 */	mr r8, r29
 /* 80D11E74  39 20 00 00 */	li r9, 0
-/* 80D11E78  4B 43 F4 D8 */	b calc__15daNpcF_Lookat_cFP10fopAc_ac_cPA4_fPP5csXyziii
+/* 80D11E78  4B 43 F4 D9 */	bl calc__15daNpcF_Lookat_cFP10fopAc_ac_cPA4_fPP5csXyziii
 /* 80D11E7C  39 61 00 60 */	addi r11, r1, 0x60
-/* 80D11E80  4B 65 03 A4 */	b _restgpr_28
+/* 80D11E80  4B 65 03 A5 */	bl _restgpr_28
 /* 80D11E84  80 01 00 64 */	lwz r0, 0x64(r1)
 /* 80D11E88  7C 08 03 A6 */	mtlr r0
 /* 80D11E8C  38 21 00 60 */	addi r1, r1, 0x60

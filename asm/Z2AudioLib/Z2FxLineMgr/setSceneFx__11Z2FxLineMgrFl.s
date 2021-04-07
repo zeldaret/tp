@@ -15,8 +15,8 @@ lbl_802BAEE8:
 /* 802BAEE8  38 04 FF FB */	addi r0, r4, -5
 /* 802BAEEC  28 00 00 4B */	cmplwi r0, 0x4b
 /* 802BAEF0  41 81 00 FC */	bgt lbl_802BAFEC
-/* 802BAEF4  3C 80 80 3D */	lis r4, lit_3566@ha
-/* 802BAEF8  38 84 AB 18 */	addi r4, r4, lit_3566@l
+/* 802BAEF4  3C 80 80 3D */	lis r4, lit_3566@ha /* 0x803CAB18@ha */
+/* 802BAEF8  38 84 AB 18 */	addi r4, r4, lit_3566@l /* 0x803CAB18@l */
 /* 802BAEFC  54 00 10 3A */	slwi r0, r0, 2
 /* 802BAF00  7C 04 00 2E */	lwzx r0, r4, r0
 /* 802BAF04  7C 09 03 A6 */	mtctr r0

@@ -3,17 +3,15 @@
 #
 
 M672_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_udoor.plf
+M672_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_udoor.lcf
+M672_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_udoor.map
 
 M672_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_udoor/executor.cpp \
-	rel/d/a/obj/d_a_obj_udoor/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_udoor/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_udoor/d_a_obj_udoor.cpp \
 
 M672_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_udoor/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_udoor/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_udoor/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_udoor/d_a_obj_udoor.o \
 
 M672_LIBS := \
@@ -29,14 +27,21 @@ M672_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M672_LDSCRIPT) \
+	-unused -map $(M672_MAP) \
+	-w off \
 
 $(M672_TARGET): $(M672_O_FILES) $(M672_LIBS)
+	@echo [672] creating $(M672_TARGET)
 	@echo $(M672_LIBS) $(M672_O_FILES) > build/M672_ofiles
-	$(LD) -partial $(M672_LDFLAGS) -o $(M672_TARGET) @build/M672_ofiles
+	@python3 tools/lcf.py rel 672 --output $(M672_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M672_LDFLAGS) -o $(M672_TARGET) @build/M672_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_udoor/%.o: rel/d/a/obj/d_a_obj_udoor/%.cpp
+	@echo [672] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M672_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M672_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

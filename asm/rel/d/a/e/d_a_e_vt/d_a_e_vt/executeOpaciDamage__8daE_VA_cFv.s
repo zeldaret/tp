@@ -5,8 +5,8 @@ lbl_807C9A40:
 /* 807C9A4C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 807C9A50  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 807C9A54  7C 7E 1B 78 */	mr r30, r3
-/* 807C9A58  3C 80 80 7D */	lis r4, lit_3907@ha
-/* 807C9A5C  3B E4 EC A8 */	addi r31, r4, lit_3907@l
+/* 807C9A58  3C 80 80 7D */	lis r4, lit_3907@ha /* 0x807CECA8@ha */
+/* 807C9A5C  3B E4 EC A8 */	addi r31, r4, lit_3907@l /* 0x807CECA8@l */
 /* 807C9A60  80 03 13 20 */	lwz r0, 0x1320(r3)
 /* 807C9A64  2C 00 00 02 */	cmpwi r0, 2
 /* 807C9A68  41 82 01 4C */	beq lbl_807C9BB4

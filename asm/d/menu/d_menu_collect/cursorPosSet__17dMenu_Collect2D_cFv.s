@@ -6,8 +6,8 @@ lbl_801B27EC:
 /* 801B27FC  48 1A F9 DD */	bl _savegpr_28
 /* 801B2800  7C 7F 1B 78 */	mr r31, r3
 /* 801B2804  3B A0 00 00 */	li r29, 0
-/* 801B2808  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 801B280C  3B C3 EB C8 */	addi r30, r3, g_drawHIO@l
+/* 801B2808  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 801B280C  3B C3 EB C8 */	addi r30, r3, g_drawHIO@l /* 0x8042EBC8@l */
 lbl_801B2810:
 /* 801B2810  3B 80 00 00 */	li r28, 0
 lbl_801B2814:

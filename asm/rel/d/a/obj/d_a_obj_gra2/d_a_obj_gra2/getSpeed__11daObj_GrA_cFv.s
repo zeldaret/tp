@@ -4,13 +4,13 @@ lbl_80C07CF0:
 /* 80C07CF8  54 00 96 BE */	rlwinm r0, r0, 0x12, 0x1a, 0x1f
 /* 80C07CFC  28 00 00 3F */	cmplwi r0, 0x3f
 /* 80C07D00  40 82 00 14 */	bne lbl_80C07D14
-/* 80C07D04  3C 60 80 C1 */	lis r3, m__17daObj_GrA_Param_c@ha
-/* 80C07D08  38 63 FA 7C */	addi r3, r3, m__17daObj_GrA_Param_c@l
+/* 80C07D04  3C 60 80 C1 */	lis r3, m__17daObj_GrA_Param_c@ha /* 0x80C0FA7C@ha */
+/* 80C07D08  38 63 FA 7C */	addi r3, r3, m__17daObj_GrA_Param_c@l /* 0x80C0FA7C@l */
 /* 80C07D0C  C0 23 00 84 */	lfs f1, 0x84(r3)
 /* 80C07D10  48 00 00 20 */	b lbl_80C07D30
 lbl_80C07D14:
-/* 80C07D14  3C 60 80 C1 */	lis r3, lit_7443@ha
-/* 80C07D18  C8 23 FD 2C */	lfd f1, lit_7443@l(r3)
+/* 80C07D14  3C 60 80 C1 */	lis r3, lit_7443@ha /* 0x80C0FD2C@ha */
+/* 80C07D18  C8 23 FD 2C */	lfd f1, lit_7443@l(r3)  /* 0x80C0FD2C@l */
 /* 80C07D1C  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80C07D20  3C 00 43 30 */	lis r0, 0x4330
 /* 80C07D24  90 01 00 08 */	stw r0, 8(r1)

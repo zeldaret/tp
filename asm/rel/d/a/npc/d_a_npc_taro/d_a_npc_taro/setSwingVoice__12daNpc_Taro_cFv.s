@@ -11,23 +11,23 @@ lbl_805688FC:
 /* 80568920  41 82 00 F8 */	beq lbl_80568A18
 /* 80568924  28 00 00 0D */	cmplwi r0, 0xd
 /* 80568928  41 82 00 F0 */	beq lbl_80568A18
-/* 8056892C  3C 80 80 57 */	lis r4, l_motionAnmData@ha
-/* 80568930  38 A4 20 E8 */	addi r5, r4, l_motionAnmData@l
+/* 8056892C  3C 80 80 57 */	lis r4, l_motionAnmData@ha /* 0x805720E8@ha */
+/* 80568930  38 A4 20 E8 */	addi r5, r4, l_motionAnmData@l /* 0x805720E8@l */
 /* 80568934  80 05 02 1C */	lwz r0, 0x21c(r5)
 /* 80568938  54 00 10 3A */	slwi r0, r0, 2
-/* 8056893C  3C 80 80 57 */	lis r4, l_resNameList@ha
-/* 80568940  38 84 1C F4 */	addi r4, r4, l_resNameList@l
+/* 8056893C  3C 80 80 57 */	lis r4, l_resNameList@ha /* 0x80571CF4@ha */
+/* 80568940  38 84 1C F4 */	addi r4, r4, l_resNameList@l /* 0x80571CF4@l */
 /* 80568944  7C 84 00 2E */	lwzx r4, r4, r0
 /* 80568948  80 A5 02 14 */	lwz r5, 0x214(r5)
-/* 8056894C  4B BD F7 0C */	b getTrnsfrmAnmP__8daNpcT_cFPCci
+/* 8056894C  4B BD F7 0D */	bl getTrnsfrmAnmP__8daNpcT_cFPCci
 /* 80568950  80 9F 05 78 */	lwz r4, 0x578(r31)
 /* 80568954  80 04 00 08 */	lwz r0, 8(r4)
 /* 80568958  7C 03 00 40 */	cmplw r3, r0
 /* 8056895C  40 82 00 44 */	bne lbl_805689A0
 /* 80568960  38 64 00 0C */	addi r3, r4, 0xc
-/* 80568964  3C 80 80 57 */	lis r4, lit_5760@ha
-/* 80568968  C0 24 18 1C */	lfs f1, lit_5760@l(r4)
-/* 8056896C  4B DB FA C0 */	b checkPass__12J3DFrameCtrlFf
+/* 80568964  3C 80 80 57 */	lis r4, lit_5760@ha /* 0x8057181C@ha */
+/* 80568968  C0 24 18 1C */	lfs f1, lit_5760@l(r4)  /* 0x8057181C@l */
+/* 8056896C  4B DB FA C1 */	bl checkPass__12J3DFrameCtrlFf
 /* 80568970  2C 03 00 00 */	cmpwi r3, 0
 /* 80568974  41 82 00 2C */	beq lbl_805689A0
 /* 80568978  3C 60 00 05 */	lis r3, 0x0005 /* 0x000500D6@ha */
@@ -42,23 +42,23 @@ lbl_805688FC:
 /* 8056899C  4E 80 04 21 */	bctrl 
 lbl_805689A0:
 /* 805689A0  7F E3 FB 78 */	mr r3, r31
-/* 805689A4  3C 80 80 57 */	lis r4, l_motionAnmData@ha
-/* 805689A8  38 A4 20 E8 */	addi r5, r4, l_motionAnmData@l
+/* 805689A4  3C 80 80 57 */	lis r4, l_motionAnmData@ha /* 0x805720E8@ha */
+/* 805689A8  38 A4 20 E8 */	addi r5, r4, l_motionAnmData@l /* 0x805720E8@l */
 /* 805689AC  80 05 02 38 */	lwz r0, 0x238(r5)
 /* 805689B0  54 00 10 3A */	slwi r0, r0, 2
-/* 805689B4  3C 80 80 57 */	lis r4, l_resNameList@ha
-/* 805689B8  38 84 1C F4 */	addi r4, r4, l_resNameList@l
+/* 805689B4  3C 80 80 57 */	lis r4, l_resNameList@ha /* 0x80571CF4@ha */
+/* 805689B8  38 84 1C F4 */	addi r4, r4, l_resNameList@l /* 0x80571CF4@l */
 /* 805689BC  7C 84 00 2E */	lwzx r4, r4, r0
 /* 805689C0  80 A5 02 30 */	lwz r5, 0x230(r5)
-/* 805689C4  4B BD F6 94 */	b getTrnsfrmAnmP__8daNpcT_cFPCci
+/* 805689C4  4B BD F6 95 */	bl getTrnsfrmAnmP__8daNpcT_cFPCci
 /* 805689C8  80 9F 05 78 */	lwz r4, 0x578(r31)
 /* 805689CC  80 04 00 08 */	lwz r0, 8(r4)
 /* 805689D0  7C 03 00 40 */	cmplw r3, r0
 /* 805689D4  40 82 00 44 */	bne lbl_80568A18
 /* 805689D8  38 64 00 0C */	addi r3, r4, 0xc
-/* 805689DC  3C 80 80 57 */	lis r4, lit_5761@ha
-/* 805689E0  C0 24 18 20 */	lfs f1, lit_5761@l(r4)
-/* 805689E4  4B DB FA 48 */	b checkPass__12J3DFrameCtrlFf
+/* 805689DC  3C 80 80 57 */	lis r4, lit_5761@ha /* 0x80571820@ha */
+/* 805689E0  C0 24 18 20 */	lfs f1, lit_5761@l(r4)  /* 0x80571820@l */
+/* 805689E4  4B DB FA 49 */	bl checkPass__12J3DFrameCtrlFf
 /* 805689E8  2C 03 00 00 */	cmpwi r3, 0
 /* 805689EC  41 82 00 2C */	beq lbl_80568A18
 /* 805689F0  3C 60 00 05 */	lis r3, 0x0005 /* 0x000500D7@ha */

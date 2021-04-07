@@ -1,8 +1,8 @@
 lbl_806D126C:
-/* 806D126C  3C 80 80 6D */	lis r4, lit_3906@ha
-/* 806D1270  38 A4 79 A0 */	addi r5, r4, lit_3906@l
-/* 806D1274  3C 80 80 6D */	lis r4, __vt__12daE_GM_HIO_c@ha
-/* 806D1278  38 04 7E 64 */	addi r0, r4, __vt__12daE_GM_HIO_c@l
+/* 806D126C  3C 80 80 6D */	lis r4, lit_3906@ha /* 0x806D79A0@ha */
+/* 806D1270  38 A4 79 A0 */	addi r5, r4, lit_3906@l /* 0x806D79A0@l */
+/* 806D1274  3C 80 80 6D */	lis r4, __vt__12daE_GM_HIO_c@ha /* 0x806D7E64@ha */
+/* 806D1278  38 04 7E 64 */	addi r0, r4, __vt__12daE_GM_HIO_c@l /* 0x806D7E64@l */
 /* 806D127C  90 03 00 00 */	stw r0, 0(r3)
 /* 806D1280  38 00 FF FF */	li r0, -1
 /* 806D1284  98 03 00 04 */	stb r0, 4(r3)

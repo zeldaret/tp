@@ -1,6 +1,6 @@
 lbl_801AF710:
-/* 801AF710  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 801AF714  38 A4 61 C0 */	addi r5, r4, g_dComIfG_gameInfo@l
+/* 801AF710  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801AF714  38 A4 61 C0 */	addi r5, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801AF718  80 83 00 E8 */	lwz r4, 0xe8(r3)
 /* 801AF71C  98 85 01 E8 */	stb r4, 0x1e8(r5)
 /* 801AF720  A0 03 00 F4 */	lhz r0, 0xf4(r3)

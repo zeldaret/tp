@@ -1,8 +1,8 @@
 lbl_804D6C4C:
-/* 804D6C4C  3C 80 80 4E */	lis r4, lit_3942@ha
-/* 804D6C50  38 A4 9E 64 */	addi r5, r4, lit_3942@l
-/* 804D6C54  3C 80 80 4E */	lis r4, __vt__10daBd_HIO_c@ha
-/* 804D6C58  38 04 A3 0C */	addi r0, r4, __vt__10daBd_HIO_c@l
+/* 804D6C4C  3C 80 80 4E */	lis r4, lit_3942@ha /* 0x804D9E64@ha */
+/* 804D6C50  38 A4 9E 64 */	addi r5, r4, lit_3942@l /* 0x804D9E64@l */
+/* 804D6C54  3C 80 80 4E */	lis r4, __vt__10daBd_HIO_c@ha /* 0x804DA30C@ha */
+/* 804D6C58  38 04 A3 0C */	addi r0, r4, __vt__10daBd_HIO_c@l /* 0x804DA30C@l */
 /* 804D6C5C  90 03 00 00 */	stw r0, 0(r3)
 /* 804D6C60  38 00 FF FF */	li r0, -1
 /* 804D6C64  98 03 00 04 */	stb r0, 4(r3)

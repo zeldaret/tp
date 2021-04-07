@@ -3,13 +3,13 @@ lbl_80874B38:
 /* 80874B3C  7C 08 02 A6 */	mflr r0
 /* 80874B40  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80874B44  39 61 00 30 */	addi r11, r1, 0x30
-/* 80874B48  4B AE D6 84 */	b _savegpr_25
-/* 80874B4C  3C 60 80 88 */	lis r3, lit_1109@ha
-/* 80874B50  3B E3 95 A0 */	addi r31, r3, lit_1109@l
+/* 80874B48  4B AE D6 85 */	bl _savegpr_25
+/* 80874B4C  3C 60 80 88 */	lis r3, lit_1109@ha /* 0x808795A0@ha */
+/* 80874B50  3B E3 95 A0 */	addi r31, r3, lit_1109@l /* 0x808795A0@l */
 /* 80874B54  80 7F 06 24 */	lwz r3, 0x624(r31)
 /* 80874B58  A3 43 06 92 */	lhz r26, 0x692(r3)
 /* 80874B5C  38 60 00 03 */	li r3, 3
-/* 80874B60  4B AC 6D 84 */	b LCQueueWait
+/* 80874B60  4B AC 6D 85 */	bl LCQueueWait
 /* 80874B64  3B 60 00 00 */	li r27, 0
 /* 80874B68  3B DF 06 0C */	addi r30, r31, 0x60c
 /* 80874B6C  3B 9F 05 F4 */	addi r28, r31, 0x5f4
@@ -122,18 +122,18 @@ lbl_80874CEC:
 /* 80874D08  57 59 E1 3E */	srwi r25, r26, 4
 /* 80874D0C  57 5A 20 2E */	rlwinm r26, r26, 4, 0, 0x17
 /* 80874D10  7F 45 D3 78 */	mr r5, r26
-/* 80874D14  4B AC 6B 24 */	b LCStoreData
+/* 80874D14  4B AC 6B 25 */	bl LCStoreData
 /* 80874D18  80 7F 06 24 */	lwz r3, 0x624(r31)
 /* 80874D1C  80 63 06 B4 */	lwz r3, 0x6b4(r3)
 /* 80874D20  80 9C 00 04 */	lwz r4, 4(r28)
 /* 80874D24  57 39 30 32 */	slwi r25, r25, 6
 /* 80874D28  7F 25 CB 78 */	mr r5, r25
-/* 80874D2C  4B AC 6B 0C */	b LCStoreData
+/* 80874D2C  4B AC 6B 0D */	bl LCStoreData
 /* 80874D30  80 7F 06 24 */	lwz r3, 0x624(r31)
 /* 80874D34  80 63 06 B8 */	lwz r3, 0x6b8(r3)
 /* 80874D38  80 9C 00 08 */	lwz r4, 8(r28)
 /* 80874D3C  7F 25 CB 78 */	mr r5, r25
-/* 80874D40  4B AC 6A F8 */	b LCStoreData
+/* 80874D40  4B AC 6A F9 */	bl LCStoreData
 /* 80874D44  80 7F 06 24 */	lwz r3, 0x624(r31)
 /* 80874D48  80 03 06 B0 */	lwz r0, 0x6b0(r3)
 /* 80874D4C  7C 00 D2 14 */	add r0, r0, r26
@@ -147,7 +147,7 @@ lbl_80874CEC:
 /* 80874D6C  7C 00 CA 14 */	add r0, r0, r25
 /* 80874D70  90 03 06 B8 */	stw r0, 0x6b8(r3)
 /* 80874D74  39 61 00 30 */	addi r11, r1, 0x30
-/* 80874D78  4B AE D4 A0 */	b _restgpr_25
+/* 80874D78  4B AE D4 A1 */	bl _restgpr_25
 /* 80874D7C  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80874D80  7C 08 03 A6 */	mtlr r0
 /* 80874D84  38 21 00 30 */	addi r1, r1, 0x30

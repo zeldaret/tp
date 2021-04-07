@@ -5,10 +5,10 @@ lbl_80CA9184:
 /* 80CA9190  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CA9194  93 C1 00 08 */	stw r30, 8(r1)
 /* 80CA9198  7C 7E 1B 78 */	mr r30, r3
-/* 80CA919C  3C 60 80 CB */	lis r3, cNullVec__6Z2Calc@ha
-/* 80CA91A0  3B E3 9C 18 */	addi r31, r3, cNullVec__6Z2Calc@l
-/* 80CA91A4  3C 60 80 CB */	lis r3, data_80CA9E04@ha
-/* 80CA91A8  38 A3 9E 04 */	addi r5, r3, data_80CA9E04@l
+/* 80CA919C  3C 60 80 CB */	lis r3, cNullVec__6Z2Calc@ha /* 0x80CA9C18@ha */
+/* 80CA91A0  3B E3 9C 18 */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x80CA9C18@l */
+/* 80CA91A4  3C 60 80 CB */	lis r3, data_80CA9E04@ha /* 0x80CA9E04@ha */
+/* 80CA91A8  38 A3 9E 04 */	addi r5, r3, data_80CA9E04@l /* 0x80CA9E04@l */
 /* 80CA91AC  88 05 00 00 */	lbz r0, 0(r5)
 /* 80CA91B0  7C 00 07 75 */	extsb. r0, r0
 /* 80CA91B4  40 82 00 88 */	bne lbl_80CA923C
@@ -60,7 +60,7 @@ lbl_80CA925C:
 /* 80CA9264  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 80CA9268  39 9F 00 A0 */	addi r12, r31, 0xa0
 /* 80CA926C  7D 8C 02 14 */	add r12, r12, r0
-/* 80CA9270  4B 6B 8E 14 */	b __ptmf_scall
+/* 80CA9270  4B 6B 8E 15 */	bl __ptmf_scall
 /* 80CA9274  60 00 00 00 */	nop 
 /* 80CA9278  80 1E 04 9C */	lwz r0, 0x49c(r30)
 /* 80CA927C  54 00 9F FE */	rlwinm r0, r0, 0x13, 0x1f, 0x1f

@@ -5,8 +5,8 @@ lbl_804F16C4:
 /* 804F16D0  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 804F16D4  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 804F16D8  7C 7E 1B 78 */	mr r30, r3
-/* 804F16DC  3C 60 80 50 */	lis r3, lit_3777@ha
-/* 804F16E0  3B E3 A6 BC */	addi r31, r3, lit_3777@l
+/* 804F16DC  3C 60 80 50 */	lis r3, lit_3777@ha /* 0x804FA6BC@ha */
+/* 804F16E0  3B E3 A6 BC */	addi r31, r3, lit_3777@l /* 0x804FA6BC@l */
 /* 804F16E4  38 00 00 06 */	li r0, 6
 /* 804F16E8  B0 1E 07 B4 */	sth r0, 0x7b4(r30)
 /* 804F16EC  A8 1E 07 A4 */	lha r0, 0x7a4(r30)
@@ -33,13 +33,13 @@ lbl_804F1708:
 /* 804F173C  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 804F1740  D0 01 00 1C */	stfs f0, 0x1c(r1)
 /* 804F1744  D0 21 00 20 */	stfs f1, 0x20(r1)
-/* 804F1748  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804F174C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804F1748  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804F174C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804F1750  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 804F1754  38 80 00 05 */	li r4, 5
 /* 804F1758  38 A0 00 01 */	li r5, 1
 /* 804F175C  38 C1 00 18 */	addi r6, r1, 0x18
-/* 804F1760  4B B7 E3 B0 */	b StartQuake__12dVibration_cFii4cXyz
+/* 804F1760  4B B7 E3 B1 */	bl StartQuake__12dVibration_cFii4cXyz
 /* 804F1764  48 00 00 0C */	b lbl_804F1770
 lbl_804F1768:
 /* 804F1768  38 00 00 14 */	li r0, 0x14
@@ -53,18 +53,18 @@ lbl_804F1770:
 /* 804F1784  C0 1F 00 00 */	lfs f0, 0(r31)
 /* 804F1788  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 804F178C  D0 21 00 14 */	stfs f1, 0x14(r1)
-/* 804F1790  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804F1794  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804F1790  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804F1794  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804F1798  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 804F179C  38 80 00 03 */	li r4, 3
 /* 804F17A0  38 A0 00 01 */	li r5, 1
 /* 804F17A4  38 C1 00 0C */	addi r6, r1, 0xc
-/* 804F17A8  4B B7 E3 68 */	b StartQuake__12dVibration_cFii4cXyz
+/* 804F17A8  4B B7 E3 69 */	bl StartQuake__12dVibration_cFii4cXyz
 lbl_804F17AC:
 /* 804F17AC  A8 BE 08 06 */	lha r5, 0x806(r30)
 /* 804F17B0  54 A0 04 38 */	rlwinm r0, r5, 0, 0x10, 0x1c
-/* 804F17B4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 804F17B8  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 804F17B4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 804F17B8  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 804F17BC  7C 44 04 2E */	lfsx f2, r4, r0
 /* 804F17C0  38 05 0B B8 */	addi r0, r5, 0xbb8
 /* 804F17C4  B0 1E 08 06 */	sth r0, 0x806(r30)
@@ -107,11 +107,11 @@ lbl_804F1854:
 /* 804F1854  A8 1E 07 AC */	lha r0, 0x7ac(r30)
 /* 804F1858  2C 00 00 00 */	cmpwi r0, 0
 /* 804F185C  40 82 00 94 */	bne lbl_804F18F0
-/* 804F1860  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804F1864  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804F1860  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804F1864  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804F1868  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 804F186C  38 80 00 1F */	li r4, 0x1f
-/* 804F1870  4B B7 E5 24 */	b StopQuake__12dVibration_cFi
+/* 804F1870  4B B7 E5 25 */	bl StopQuake__12dVibration_cFi
 /* 804F1874  38 00 00 09 */	li r0, 9
 /* 804F1878  B0 1E 07 A2 */	sth r0, 0x7a2(r30)
 /* 804F187C  38 80 00 00 */	li r4, 0
@@ -135,8 +135,8 @@ lbl_804F1854:
 /* 804F18C4  38 00 00 03 */	li r0, 3
 /* 804F18C8  B0 03 AF F2 */	sth r0, -0x500e(r3)
 /* 804F18CC  B0 83 AF F4 */	sth r4, -0x500c(r3)
-/* 804F18D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804F18D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804F18D0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804F18D4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804F18D8  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 804F18DC  38 00 00 01 */	li r0, 1
 /* 804F18E0  90 03 06 14 */	stw r0, 0x614(r3)
@@ -147,7 +147,7 @@ lbl_804F18F0:
 /* 804F18F0  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 804F18F4  C0 3F 00 00 */	lfs f1, 0(r31)
 /* 804F18F8  FC 40 08 90 */	fmr f2, f1
-/* 804F18FC  4B D7 E1 84 */	b cLib_addCalc0__FPfff
+/* 804F18FC  4B D7 E1 85 */	bl cLib_addCalc0__FPfff
 /* 804F1900  83 E1 00 2C */	lwz r31, 0x2c(r1)
 /* 804F1904  83 C1 00 28 */	lwz r30, 0x28(r1)
 /* 804F1908  80 01 00 34 */	lwz r0, 0x34(r1)

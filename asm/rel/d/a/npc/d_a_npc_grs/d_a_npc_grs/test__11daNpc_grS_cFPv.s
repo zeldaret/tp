@@ -13,8 +13,8 @@ lbl_809E721C:
 /* 809E7248  48 00 00 A0 */	b lbl_809E72E8
 /* 809E724C  48 00 00 9C */	b lbl_809E72E8
 lbl_809E7250:
-/* 809E7250  3C 60 80 9E */	lis r3, lit_4491@ha
-/* 809E7254  C0 03 7E 4C */	lfs f0, lit_4491@l(r3)
+/* 809E7250  3C 60 80 9E */	lis r3, lit_4491@ha /* 0x809E7E4C@ha */
+/* 809E7254  C0 03 7E 4C */	lfs f0, lit_4491@l(r3)  /* 0x809E7E4C@l */
 /* 809E7258  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 809E725C  D0 1F 04 F8 */	stfs f0, 0x4f8(r31)
 /* 809E7260  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
@@ -22,8 +22,8 @@ lbl_809E7250:
 /* 809E7268  38 00 00 02 */	li r0, 2
 /* 809E726C  B0 1F 0E 12 */	sth r0, 0xe12(r31)
 lbl_809E7270:
-/* 809E7270  3C 60 80 9E */	lis r3, m__17daNpc_grS_Param_c@ha
-/* 809E7274  38 A3 7D CC */	addi r5, r3, m__17daNpc_grS_Param_c@l
+/* 809E7270  3C 60 80 9E */	lis r3, m__17daNpc_grS_Param_c@ha /* 0x809E7DCC@ha */
+/* 809E7274  38 A3 7D CC */	addi r5, r3, m__17daNpc_grS_Param_c@l /* 0x809E7DCC@l */
 /* 809E7278  A8 85 00 64 */	lha r4, 0x64(r5)
 /* 809E727C  A8 1F 09 DE */	lha r0, 0x9de(r31)
 /* 809E7280  7C 04 00 00 */	cmpw r4, r0
@@ -36,8 +36,8 @@ lbl_809E7270:
 /* 809E729C  4E 80 04 21 */	bctrl 
 lbl_809E72A0:
 /* 809E72A0  7F E3 FB 78 */	mr r3, r31
-/* 809E72A4  3C 80 80 9E */	lis r4, m__17daNpc_grS_Param_c@ha
-/* 809E72A8  38 A4 7D CC */	addi r5, r4, m__17daNpc_grS_Param_c@l
+/* 809E72A4  3C 80 80 9E */	lis r4, m__17daNpc_grS_Param_c@ha /* 0x809E7DCC@ha */
+/* 809E72A8  38 A4 7D CC */	addi r5, r4, m__17daNpc_grS_Param_c@l /* 0x809E7DCC@l */
 /* 809E72AC  A8 85 00 66 */	lha r4, 0x66(r5)
 /* 809E72B0  C0 25 00 44 */	lfs f1, 0x44(r5)
 /* 809E72B4  38 A0 00 00 */	li r5, 0
@@ -46,8 +46,8 @@ lbl_809E72A0:
 /* 809E72C0  7D 89 03 A6 */	mtctr r12
 /* 809E72C4  4E 80 04 21 */	bctrl 
 /* 809E72C8  7F E3 FB 78 */	mr r3, r31
-/* 809E72CC  3C 80 80 9E */	lis r4, m__17daNpc_grS_Param_c@ha
-/* 809E72D0  38 84 7D CC */	addi r4, r4, m__17daNpc_grS_Param_c@l
+/* 809E72CC  3C 80 80 9E */	lis r4, m__17daNpc_grS_Param_c@ha /* 0x809E7DCC@ha */
+/* 809E72D0  38 84 7D CC */	addi r4, r4, m__17daNpc_grS_Param_c@l /* 0x809E7DCC@l */
 /* 809E72D4  A8 84 00 68 */	lha r4, 0x68(r4)
 /* 809E72D8  4B FF F5 7D */	bl setLookMode__11daNpc_grS_cFi
 /* 809E72DC  38 00 00 00 */	li r0, 0

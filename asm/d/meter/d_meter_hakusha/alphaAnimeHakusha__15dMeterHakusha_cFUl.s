@@ -27,11 +27,11 @@ lbl_8020CC58:
 /* 8020CCBC  40 82 00 5C */	bne lbl_8020CD18
 /* 8020CCC0  54 80 01 8D */	rlwinm. r0, r4, 0, 6, 6
 /* 8020CCC4  41 82 00 54 */	beq lbl_8020CD18
-/* 8020CCC8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8020CCCC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8020CCC8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8020CCCC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8020CCD0  38 63 4E 00 */	addi r3, r3, 0x4e00
-/* 8020CCD4  3C 80 80 3A */	lis r4, d_meter_d_meter_hakusha__stringBase0@ha
-/* 8020CCD8  38 84 81 B0 */	addi r4, r4, d_meter_d_meter_hakusha__stringBase0@l
+/* 8020CCD4  3C 80 80 3A */	lis r4, d_meter_d_meter_hakusha__stringBase0@ha /* 0x803981B0@ha */
+/* 8020CCD8  38 84 81 B0 */	addi r4, r4, d_meter_d_meter_hakusha__stringBase0@l /* 0x803981B0@l */
 /* 8020CCDC  38 84 00 4E */	addi r4, r4, 0x4e
 /* 8020CCE0  48 15 BC B5 */	bl strcmp
 /* 8020CCE4  2C 03 00 00 */	cmpwi r3, 0
@@ -41,8 +41,8 @@ lbl_8020CC58:
 /* 8020CCF4  2C 03 00 04 */	cmpwi r3, 4
 /* 8020CCF8  41 82 00 20 */	beq lbl_8020CD18
 lbl_8020CCFC:
-/* 8020CCFC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8020CD00  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
+/* 8020CCFC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8020CD00  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8020CD04  88 1E 5E 24 */	lbz r0, 0x5e24(r30)
 /* 8020CD08  28 00 00 09 */	cmplwi r0, 9
 /* 8020CD0C  41 82 00 20 */	beq lbl_8020CD2C

@@ -29,10 +29,10 @@ lbl_80CEC210:
 /* 80CEC210  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80CEC214  40 82 00 18 */	bne lbl_80CEC22C
 /* 80CEC218  38 7E 05 74 */	addi r3, r30, 0x574
-/* 80CEC21C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80CEC220  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80CEC21C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CEC220  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CEC224  38 84 0F 38 */	addi r4, r4, 0xf38
-/* 80CEC228  4B 38 A8 84 */	b CrrPos__9dBgS_AcchFR4dBgS
+/* 80CEC228  4B 38 A8 85 */	bl CrrPos__9dBgS_AcchFR4dBgS
 lbl_80CEC22C:
 /* 80CEC22C  57 E0 06 3F */	clrlwi. r0, r31, 0x18
 /* 80CEC230  41 82 00 1C */	beq lbl_80CEC24C

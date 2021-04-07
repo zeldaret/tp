@@ -35,11 +35,6 @@ struct cXyz {};
 // Forward References:
 //
 
-void dPath_GetPnt(dPath const*, int);
-void dPath_GetRoomPath(int, int);
-void dPath_GetNextRoomPath(dPath const*, int);
-void dPath_GetPolyRoomPathVec(cBgS_PolyInfo const&, cXyz*, int*);
-
 extern "C" void dPath_GetPnt__FPC5dPathi();
 extern "C" void dPath_GetRoomPath__Fii();
 extern "C" void dPath_GetNextRoomPath__FPC5dPathi();
@@ -62,7 +57,7 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 // Declarations:
 //
 
-/* 800517B0-800517EC 003C+00 s=0 e=7 z=63  None .text      dPath_GetPnt__FPC5dPathi */
+/* 800517B0-800517EC 04C0F0 003C+00 0/0 7/7 63/63 .text            dPath_GetPnt__FPC5dPathi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -72,7 +67,7 @@ asm void dPath_GetPnt(dPath const* param_0, int param_1) {
 }
 #pragma pop
 
-/* 800517EC-80051898 00AC+00 s=1 e=12 z=82  None .text      dPath_GetRoomPath__Fii */
+/* 800517EC-80051898 04C12C 00AC+00 1/1 12/12 82/82 .text            dPath_GetRoomPath__Fii */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -82,7 +77,8 @@ asm void dPath_GetRoomPath(int param_0, int param_1) {
 }
 #pragma pop
 
-/* 80051898-8005195C 00C4+00 s=0 e=1 z=3  None .text      dPath_GetNextRoomPath__FPC5dPathi */
+/* 80051898-8005195C 04C1D8 00C4+00 0/0 1/1 3/3 .text            dPath_GetNextRoomPath__FPC5dPathi
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -93,14 +89,14 @@ asm void dPath_GetNextRoomPath(dPath const* param_0, int param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80452000-80452008 0004+04 s=1 e=0 z=0  None .sdata2    @3685 */
+/* 80452000-80452008 000600 0004+04 1/1 0/0 0/0 .sdata2          @3685 */
 SECTION_SDATA2 static f32 lit_3685[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 8005195C-80051AC0 0164+00 s=0 e=1 z=4  None .text
+/* 8005195C-80051AC0 04C29C 0164+00 0/0 1/1 4/4 .text
  * dPath_GetPolyRoomPathVec__FRC13cBgS_PolyInfoP4cXyzPi         */
 #pragma push
 #pragma optimization_level 0

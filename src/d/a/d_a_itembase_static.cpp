@@ -28,9 +28,6 @@ struct daItemBase_c {
 // Forward References:
 //
 
-void CheckItemCreateHeap(fopAc_ac_c*);
-void CheckFieldItemCreateHeap(fopAc_ac_c*);
-
 extern "C" void getItemNo__12daItemBase_cFv();
 extern "C" void hide__12daItemBase_cFv();
 extern "C" void show__12daItemBase_cFv();
@@ -54,7 +51,7 @@ extern "C" extern void* field_item_res__10dItem_data[1020];
 // Declarations:
 //
 
-/* 80037A5C-80037A64 0008+00 s=2 e=2 z=2  None .text      getItemNo__12daItemBase_cFv */
+/* 80037A5C-80037A64 03239C 0008+00 2/2 2/2 2/2 .text            getItemNo__12daItemBase_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -64,7 +61,7 @@ asm void daItemBase_c::getItemNo() {
 }
 #pragma pop
 
-/* 80037A64-80037A74 0010+00 s=1 e=5 z=12  None .text      hide__12daItemBase_cFv */
+/* 80037A64-80037A74 0323A4 0010+00 1/1 5/5 12/12 .text            hide__12daItemBase_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -74,7 +71,7 @@ asm void daItemBase_c::hide() {
 }
 #pragma pop
 
-/* 80037A74-80037A84 0010+00 s=1 e=7 z=13  None .text      show__12daItemBase_cFv */
+/* 80037A74-80037A84 0323B4 0010+00 1/1 7/7 13/13 .text            show__12daItemBase_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -84,7 +81,7 @@ asm void daItemBase_c::show() {
 }
 #pragma pop
 
-/* 80037A84-80037ACC 0048+00 s=0 e=1 z=0  None .text      changeDraw__12daItemBase_cFv */
+/* 80037A84-80037ACC 0323C4 0048+00 0/0 1/1 0/0 .text            changeDraw__12daItemBase_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -94,7 +91,7 @@ asm void daItemBase_c::changeDraw() {
 }
 #pragma pop
 
-/* 80037ACC-80037AE4 0018+00 s=1 e=1 z=9  None .text      chkDraw__12daItemBase_cFv */
+/* 80037ACC-80037AE4 03240C 0018+00 1/1 1/1 9/9 .text            chkDraw__12daItemBase_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -104,7 +101,7 @@ asm void daItemBase_c::chkDraw() {
 }
 #pragma pop
 
-/* 80037AE4-80037AF4 0010+00 s=0 e=3 z=0  None .text      dead__12daItemBase_cFv */
+/* 80037AE4-80037AF4 032424 0010+00 0/0 3/3 0/0 .text            dead__12daItemBase_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -114,7 +111,7 @@ asm void daItemBase_c::dead() {
 }
 #pragma pop
 
-/* 80037AF4-80037B0C 0018+00 s=0 e=0 z=1  None .text      chkDead__12daItemBase_cFv */
+/* 80037AF4-80037B0C 032434 0018+00 0/0 0/0 1/1 .text            chkDead__12daItemBase_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -124,7 +121,8 @@ asm void daItemBase_c::chkDead() {
 }
 #pragma pop
 
-/* 80037B0C-80037B78 006C+00 s=0 e=0 z=1  None .text      CheckItemCreateHeap__FP10fopAc_ac_c */
+/* 80037B0C-80037B78 03244C 006C+00 0/0 0/0 1/1 .text            CheckItemCreateHeap__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -134,8 +132,7 @@ asm void CheckItemCreateHeap(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 80037B78-80037BE0 0068+00 s=0 e=1 z=7  None .text      CheckFieldItemCreateHeap__FP10fopAc_ac_c
- */
+/* 80037B78-80037BE0 0324B8 0068+00 0/0 1/1 7/7 .text CheckFieldItemCreateHeap__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -146,10 +143,11 @@ asm void CheckFieldItemCreateHeap(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803792B0-803792E8 0038+00 s=0 e=1 z=0  None .rodata    m_data__12daItemBase_c */
-SECTION_RODATA u8 const m_data__12daItemBase_c[56] = {
+/* 803792B0-803792E8 005910 0038+00 0/0 1/1 0/0 .rodata          m_data__12daItemBase_c */
+SECTION_RODATA extern u8 const m_data__12daItemBase_c[56] = {
     0xC0, 0x90, 0x00, 0x00, 0x3F, 0x1E, 0xB8, 0x52, 0x42, 0x34, 0x00, 0x00, 0x41, 0x20,
     0x00, 0x00, 0x40, 0xC0, 0x00, 0x00, 0x00, 0x01, 0x00, 0xF0, 0x00, 0x3C, 0x0F, 0xA0,
     0x00, 0x78, 0x00, 0x00, 0xC0, 0x80, 0x00, 0x00, 0x40, 0x60, 0x00, 0x00, 0x04, 0x4C,
     0x0B, 0xB8, 0x41, 0xB8, 0x00, 0x00, 0xC0, 0xC0, 0x00, 0x00, 0x00, 0x0D, 0x00, 0x0A,
 };
+COMPILER_STRIP_GATE(803792B0, &m_data__12daItemBase_c);

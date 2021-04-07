@@ -8,8 +8,8 @@ lbl_802D2E44:
 /* 802D2E5C  7C 9E 23 78 */	mr r30, r4
 /* 802D2E60  7C BF 2B 78 */	mr r31, r5
 /* 802D2E64  4B FF E6 19 */	bl __ct__11JKRDisposerFv
-/* 802D2E68  3C 60 80 3D */	lis r3, __vt__11JKRAramHeap@ha
-/* 802D2E6C  38 03 C1 68 */	addi r0, r3, __vt__11JKRAramHeap@l
+/* 802D2E68  3C 60 80 3D */	lis r3, __vt__11JKRAramHeap@ha /* 0x803CC168@ha */
+/* 802D2E6C  38 03 C1 68 */	addi r0, r3, __vt__11JKRAramHeap@l /* 0x803CC168@l */
 /* 802D2E70  90 1D 00 00 */	stw r0, 0(r29)
 /* 802D2E74  38 7D 00 18 */	addi r3, r29, 0x18
 /* 802D2E78  48 06 C1 91 */	bl OSInitMutex
@@ -41,8 +41,8 @@ lbl_802D2E44:
 /* 802D2EE0  48 00 04 25 */	bl __ct__12JKRAramBlockFUlUlUlUcb
 /* 802D2EE4  7C 64 1B 78 */	mr r4, r3
 lbl_802D2EE8:
-/* 802D2EE8  3C 60 80 43 */	lis r3, sAramList__11JKRAramHeap@ha
-/* 802D2EEC  38 63 43 0C */	addi r3, r3, sAramList__11JKRAramHeap@l
+/* 802D2EE8  3C 60 80 43 */	lis r3, sAramList__11JKRAramHeap@ha /* 0x8043430C@ha */
+/* 802D2EEC  38 63 43 0C */	addi r3, r3, sAramList__11JKRAramHeap@l /* 0x8043430C@l */
 /* 802D2EF0  38 84 00 04 */	addi r4, r4, 4
 /* 802D2EF4  48 00 90 59 */	bl append__10JSUPtrListFP10JSUPtrLink
 /* 802D2EF8  7F A3 EB 78 */	mr r3, r29

@@ -1,6 +1,6 @@
 lbl_80196914:
-/* 80196914  3C 80 80 3C */	lis r4, __vt__15dShopItemCtrl_c@ha
-/* 80196918  38 04 B8 88 */	addi r0, r4, __vt__15dShopItemCtrl_c@l
+/* 80196914  3C 80 80 3C */	lis r4, __vt__15dShopItemCtrl_c@ha /* 0x803BB888@ha */
+/* 80196918  38 04 B8 88 */	addi r0, r4, __vt__15dShopItemCtrl_c@l /* 0x803BB888@l */
 /* 8019691C  90 03 00 00 */	stw r0, 0(r3)
 /* 80196920  38 80 00 00 */	li r4, 0
 /* 80196924  38 A0 00 00 */	li r5, 0

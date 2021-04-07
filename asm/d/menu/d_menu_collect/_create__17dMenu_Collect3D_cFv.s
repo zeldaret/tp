@@ -14,8 +14,8 @@ lbl_801B65A8:
 /* 801B65D8  90 7F 00 08 */	stw r3, 8(r31)
 /* 801B65DC  80 7F 00 08 */	lwz r3, 8(r31)
 /* 801B65E0  4B E5 8B ED */	bl mDoExt_setCurrentHeap__FP7JKRHeap
-/* 801B65E4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801B65E8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801B65E4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801B65E8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801B65EC  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 801B65F0  28 03 00 00 */	cmplwi r3, 0
 /* 801B65F4  41 82 00 08 */	beq lbl_801B65FC

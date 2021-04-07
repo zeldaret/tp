@@ -7,8 +7,8 @@ lbl_802BDF48:
 /* 802BDF5C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802BDF60  7C 9F 23 78 */	mr r31, r4
 /* 802BDF64  41 82 00 30 */	beq lbl_802BDF94
-/* 802BDF68  3C 80 80 3D */	lis r4, __vt__14Z2SoundObjBase@ha
-/* 802BDF6C  38 04 AD 50 */	addi r0, r4, __vt__14Z2SoundObjBase@l
+/* 802BDF68  3C 80 80 3D */	lis r4, __vt__14Z2SoundObjBase@ha /* 0x803CAD50@ha */
+/* 802BDF6C  38 04 AD 50 */	addi r0, r4, __vt__14Z2SoundObjBase@l /* 0x803CAD50@l */
 /* 802BDF70  90 1E 00 10 */	stw r0, 0x10(r30)
 /* 802BDF74  48 00 00 85 */	bl deleteObject__14Z2SoundObjBaseFv
 /* 802BDF78  7F C3 F3 78 */	mr r3, r30

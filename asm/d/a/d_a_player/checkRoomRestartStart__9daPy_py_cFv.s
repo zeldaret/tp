@@ -1,6 +1,6 @@
 lbl_8015F660:
-/* 8015F660  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8015F664  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8015F660  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015F664  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8015F668  80 03 0D D0 */	lwz r0, 0xdd0(r3)
 /* 8015F66C  54 00 07 3E */	clrlwi r0, r0, 0x1c
 /* 8015F670  28 00 00 04 */	cmplwi r0, 4

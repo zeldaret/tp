@@ -5,8 +5,8 @@ lbl_807499C0:
 /* 807499CC  93 E1 00 4C */	stw r31, 0x4c(r1)
 /* 807499D0  93 C1 00 48 */	stw r30, 0x48(r1)
 /* 807499D4  7C 7F 1B 78 */	mr r31, r3
-/* 807499D8  3C 80 80 75 */	lis r4, lit_3910@ha
-/* 807499DC  3B C4 BF 3C */	addi r30, r4, lit_3910@l
+/* 807499D8  3C 80 80 75 */	lis r4, lit_3910@ha /* 0x8074BF3C@ha */
+/* 807499DC  3B C4 BF 3C */	addi r30, r4, lit_3910@l /* 0x8074BF3C@l */
 /* 807499E0  88 03 06 11 */	lbz r0, 0x611(r3)
 /* 807499E4  2C 00 00 01 */	cmpwi r0, 1
 /* 807499E8  41 82 00 7C */	beq lbl_80749A64
@@ -86,11 +86,11 @@ lbl_80749ABC:
 /* 80749B00  D0 01 00 2C */	stfs f0, 0x2c(r1)
 /* 80749B04  38 61 00 18 */	addi r3, r1, 0x18
 /* 80749B08  38 81 00 30 */	addi r4, r1, 0x30
-/* 80749B0C  3C A0 80 75 */	lis r5, data_8074C3E8@ha
-/* 80749B10  38 A5 C3 E8 */	addi r5, r5, data_8074C3E8@l
+/* 80749B0C  3C A0 80 75 */	lis r5, data_8074C3E8@ha /* 0x8074C3E8@ha */
+/* 80749B10  38 A5 C3 E8 */	addi r5, r5, data_8074C3E8@l /* 0x8074C3E8@l */
 /* 80749B14  A8 A5 00 00 */	lha r5, 0(r5)
 /* 80749B18  38 C1 00 24 */	addi r6, r1, 0x24
-/* 80749B1C  4B B2 72 A4 */	b cLib_offsetPos__FP4cXyzPC4cXyzsPC4cXyz
+/* 80749B1C  4B B2 72 A5 */	bl cLib_offsetPos__FP4cXyzPC4cXyzsPC4cXyz
 /* 80749B20  C0 01 00 18 */	lfs f0, 0x18(r1)
 /* 80749B24  D0 1F 06 B0 */	stfs f0, 0x6b0(r31)
 /* 80749B28  C0 01 00 1C */	lfs f0, 0x1c(r1)
@@ -125,8 +125,8 @@ lbl_80749B74:
 /* 80749B94  88 1F 06 13 */	lbz r0, 0x613(r31)
 /* 80749B98  28 00 00 01 */	cmplwi r0, 1
 /* 80749B9C  40 82 00 38 */	bne lbl_80749BD4
-/* 80749BA0  3C 60 80 75 */	lis r3, l_HIO@ha
-/* 80749BA4  38 63 C3 94 */	addi r3, r3, l_HIO@l
+/* 80749BA0  3C 60 80 75 */	lis r3, l_HIO@ha /* 0x8074C394@ha */
+/* 80749BA4  38 63 C3 94 */	addi r3, r3, l_HIO@l /* 0x8074C394@l */
 /* 80749BA8  A8 03 00 22 */	lha r0, 0x22(r3)
 /* 80749BAC  B0 1F 06 26 */	sth r0, 0x626(r31)
 /* 80749BB0  38 60 00 00 */	li r3, 0
@@ -145,8 +145,8 @@ lbl_80749BD4:
 /* 80749BE0  98 1F 06 11 */	stb r0, 0x611(r31)
 /* 80749BE4  98 1F 06 12 */	stb r0, 0x612(r31)
 lbl_80749BE8:
-/* 80749BE8  3C 60 80 75 */	lis r3, data_8074C3E8@ha
-/* 80749BEC  A8 03 C3 E8 */	lha r0, data_8074C3E8@l(r3)
+/* 80749BE8  3C 60 80 75 */	lis r3, data_8074C3E8@ha /* 0x8074C3E8@ha */
+/* 80749BEC  A8 03 C3 E8 */	lha r0, data_8074C3E8@l(r3)  /* 0x8074C3E8@l */
 /* 80749BF0  B0 1F 06 02 */	sth r0, 0x602(r31)
 /* 80749BF4  83 E1 00 4C */	lwz r31, 0x4c(r1)
 /* 80749BF8  83 C1 00 48 */	lwz r30, 0x48(r1)

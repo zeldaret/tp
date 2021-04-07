@@ -98,12 +98,6 @@ extern "C" extern char const* const msg_scrn_d_msg_scrn_kanban__stringBase0;
 // External References:
 //
 
-void mDoExt_getMesgFont();
-void dComIfGp_getSubHeap2D(int);
-void dPaneClass_showNullPane(J2DScreen*);
-void* operator new(u32);
-void operator delete(void*);
-
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void dComIfGp_getSubHeap2D__Fi();
 extern "C" void setSelectRubyString__14dMsgScrnBase_cFPcPcPc();
@@ -151,26 +145,16 @@ extern "C" extern u8 g_MsgObject_HIO_c[1040];
 //
 
 /* ############################################################################################## */
-/* 80399AA0-80399AB8 0018+00 s=1 e=0 z=0  None .rodata    t_tag$3768 */
+/* 80399AA0-80399AB8 026100 0018+00 1/1 0/0 0/0 .rodata          t_tag$3768 */
 SECTION_RODATA static u8 const t_tag[24] = {
     0x6D, 0x67, 0x5F, 0x65, 0x34, 0x6C, 0x69, 0x6E, 0x00, 0x00, 0x00, 0x00,
     0x66, 0x34, 0x5F, 0x77, 0x00, 0x00, 0x00, 0x00, 0x74, 0x34, 0x5F, 0x73,
 };
+COMPILER_STRIP_GATE(80399AA0, &t_tag);
 
-/* 80399AB8-80399B08 004B+05 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80399AB8 = "zelda_kanban_stone_a.blo";
-SECTION_DEAD char const* const stringBase_80399AD1 = "zelda_kanban_stone_a.bck";
-SECTION_DEAD char const* const stringBase_80399AEA = "zelda_kanban_stone_a.btk";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80399B03 = "\0\0\0\0";
-#pragma pop
-
-/* 803C1240-803C1298 0058+00 s=2 e=0 z=0  None .data      __vt__16dMsgScrnKanban_c */
-SECTION_DATA static void* __vt__16dMsgScrnKanban_c[22] = {
-    (void*)NULL,
+/* 803C1240-803C1298 01E360 0058+00 2/2 0/0 0/0 .data            __vt__16dMsgScrnKanban_c */
+SECTION_DATA extern void* __vt__16dMsgScrnKanban_c[22] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__16dMsgScrnKanban_cFv,
     (void*)__dt__16dMsgScrnKanban_cFv,
@@ -194,7 +178,7 @@ SECTION_DATA static void* __vt__16dMsgScrnKanban_c[22] = {
     (void*)fukiPosCalc__14dMsgScrnBase_cFUc,
 };
 
-/* 80454CC0-80454CC4 0004+00 s=2 e=0 z=0  None .sdata2    @3944 */
+/* 80454CC0-80454CC4 0032C0 0004+00 2/2 0/0 0/0 .sdata2          @3944 */
 SECTION_SDATA2 static u8 lit_3944[4] = {
     0x00,
     0x00,
@@ -202,17 +186,17 @@ SECTION_SDATA2 static u8 lit_3944[4] = {
     0x00,
 };
 
-/* 80454CC4-80454CC8 0004+00 s=3 e=0 z=0  None .sdata2    @3945 */
+/* 80454CC4-80454CC8 0032C4 0004+00 3/3 0/0 0/0 .sdata2          @3945 */
 SECTION_SDATA2 static f32 lit_3945 = 1.0f;
 
-/* 80454CC8-80454CD0 0004+04 s=1 e=0 z=0  None .sdata2    @3946 */
+/* 80454CC8-80454CD0 0032C8 0004+04 1/1 0/0 0/0 .sdata2          @3946 */
 SECTION_SDATA2 static f32 lit_3946[1 + 1 /* padding */] = {
     6.0f / 5.0f,
     /* padding */
     0.0f,
 };
 
-/* 80244E38-8024534C 0514+00 s=0 e=1 z=0  None .text      __ct__16dMsgScrnKanban_cFP10JKRExpHeap */
+/* 80244E38-8024534C 23F778 0514+00 0/0 1/1 0/0 .text __ct__16dMsgScrnKanban_cFP10JKRExpHeap */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -222,7 +206,7 @@ asm dMsgScrnKanban_c::dMsgScrnKanban_c(JKRExpHeap* param_0) {
 }
 #pragma pop
 
-/* 8024534C-80245528 01DC+00 s=1 e=0 z=0  None .text      __dt__16dMsgScrnKanban_cFv */
+/* 8024534C-80245528 23FC8C 01DC+00 1/0 0/0 0/0 .text            __dt__16dMsgScrnKanban_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -233,10 +217,10 @@ asm dMsgScrnKanban_c::~dMsgScrnKanban_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80454CD0-80454CD8 0008+00 s=1 e=0 z=0  None .sdata2    @4033 */
+/* 80454CD0-80454CD8 0032D0 0008+00 1/1 0/0 0/0 .sdata2          @4033 */
 SECTION_SDATA2 static f64 lit_4033 = 4503601774854144.0 /* cast s32 to float */;
 
-/* 80245528-80245618 00F0+00 s=1 e=0 z=0  None .text      exec__16dMsgScrnKanban_cFv */
+/* 80245528-80245618 23FE68 00F0+00 1/0 0/0 0/0 .text            exec__16dMsgScrnKanban_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -246,7 +230,7 @@ asm void dMsgScrnKanban_c::exec() {
 }
 #pragma pop
 
-/* 80245618-802456A0 0088+00 s=1 e=0 z=0  None .text      draw__16dMsgScrnKanban_cFv */
+/* 80245618-802456A0 23FF58 0088+00 1/0 0/0 0/0 .text            draw__16dMsgScrnKanban_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -256,7 +240,7 @@ asm void dMsgScrnKanban_c::draw() {
 }
 #pragma pop
 
-/* 802456A0-80245754 00B4+00 s=1 e=0 z=0  None .text      fukiAlpha__16dMsgScrnKanban_cFf */
+/* 802456A0-80245754 23FFE0 00B4+00 1/0 0/0 0/0 .text            fukiAlpha__16dMsgScrnKanban_cFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -266,12 +250,23 @@ asm void dMsgScrnKanban_c::fukiAlpha(f32 param_0) {
 }
 #pragma pop
 
-/* 80245754-80245758 0004+00 s=1 e=0 z=0  None .text      fukiScale__16dMsgScrnKanban_cFf */
+/* 80245754-80245758 240094 0004+00 1/0 0/0 0/0 .text            fukiScale__16dMsgScrnKanban_cFf */
 void dMsgScrnKanban_c::fukiScale(f32 param_0) {
     /* empty function */
 }
 
-/* 80245758-8024575C 0004+00 s=1 e=0 z=0  None .text      fukiTrans__16dMsgScrnKanban_cFff */
+/* 80245758-8024575C 240098 0004+00 1/0 0/0 0/0 .text            fukiTrans__16dMsgScrnKanban_cFff */
 void dMsgScrnKanban_c::fukiTrans(f32 param_0, f32 param_1) {
     /* empty function */
 }
+
+/* 80399AB8-80399B08 026118 004B+05 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80399AB8 = "zelda_kanban_stone_a.blo";
+SECTION_DEAD static char const* const stringBase_80399AD1 = "zelda_kanban_stone_a.bck";
+SECTION_DEAD static char const* const stringBase_80399AEA = "zelda_kanban_stone_a.btk";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80399B03 = "\0\0\0\0";
+#pragma pop

@@ -1,7 +1,7 @@
 lbl_802FBE60:
 /* 802FBE60  94 21 FF E0 */	stwu r1, -0x20(r1)
-/* 802FBE64  3C C0 80 3A */	lis r6, lit_3028@ha
-/* 802FBE68  38 E6 1C 30 */	addi r7, r6, lit_3028@l
+/* 802FBE64  3C C0 80 3A */	lis r6, lit_3028@ha /* 0x803A1C30@ha */
+/* 802FBE68  38 E6 1C 30 */	addi r7, r6, lit_3028@l /* 0x803A1C30@l */
 /* 802FBE6C  80 C7 00 00 */	lwz r6, 0(r7)
 /* 802FBE70  80 07 00 04 */	lwz r0, 4(r7)
 /* 802FBE74  90 C1 00 08 */	stw r6, 8(r1)

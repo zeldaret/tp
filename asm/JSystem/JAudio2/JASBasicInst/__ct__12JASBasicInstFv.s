@@ -4,11 +4,11 @@ lbl_80298014:
 /* 8029801C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80298020  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80298024  7C 7F 1B 78 */	mr r31, r3
-/* 80298028  3C 60 80 3C */	lis r3, __vt__7JASInst@ha
-/* 8029802C  38 03 76 FC */	addi r0, r3, __vt__7JASInst@l
+/* 80298028  3C 60 80 3C */	lis r3, __vt__7JASInst@ha /* 0x803C76FC@ha */
+/* 8029802C  38 03 76 FC */	addi r0, r3, __vt__7JASInst@l /* 0x803C76FC@l */
 /* 80298030  90 1F 00 00 */	stw r0, 0(r31)
-/* 80298034  3C 60 80 3C */	lis r3, __vt__12JASBasicInst@ha
-/* 80298038  38 03 76 E8 */	addi r0, r3, __vt__12JASBasicInst@l
+/* 80298034  3C 60 80 3C */	lis r3, __vt__12JASBasicInst@ha /* 0x803C76E8@ha */
+/* 80298038  38 03 76 E8 */	addi r0, r3, __vt__12JASBasicInst@l /* 0x803C76E8@l */
 /* 8029803C  90 1F 00 00 */	stw r0, 0(r31)
 /* 80298040  C0 02 BC 40 */	lfs f0, lit_187(r2)
 /* 80298044  D0 1F 00 04 */	stfs f0, 4(r31)

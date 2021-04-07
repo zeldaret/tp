@@ -1,6 +1,6 @@
 lbl_80C1D2AC:
-/* 80C1D2AC  3C 80 80 C2 */	lis r4, l_HIO@ha
-/* 80C1D2B0  38 84 DC 54 */	addi r4, r4, l_HIO@l
+/* 80C1D2AC  3C 80 80 C2 */	lis r4, l_HIO@ha /* 0x80C1DC54@ha */
+/* 80C1D2B0  38 84 DC 54 */	addi r4, r4, l_HIO@l /* 0x80C1DC54@l */
 /* 80C1D2B4  88 04 00 33 */	lbz r0, 0x33(r4)
 /* 80C1D2B8  98 03 05 C4 */	stb r0, 0x5c4(r3)
 /* 80C1D2BC  C0 04 00 18 */	lfs f0, 0x18(r4)

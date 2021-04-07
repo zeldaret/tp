@@ -37,8 +37,8 @@ lbl_801375A8:
 /* 801375C0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 801375C4  40 82 00 1C */	bne lbl_801375E0
 /* 801375C8  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 801375CC  3C 60 80 39 */	lis r3, m__19daAlinkHIO_wlLie_c0@ha
-/* 801375D0  38 63 F1 38 */	addi r3, r3, m__19daAlinkHIO_wlLie_c0@l
+/* 801375CC  3C 60 80 39 */	lis r3, m__19daAlinkHIO_wlLie_c0@ha /* 0x8038F138@ha */
+/* 801375D0  38 63 F1 38 */	addi r3, r3, m__19daAlinkHIO_wlLie_c0@l /* 0x8038F138@l */
 /* 801375D4  C0 03 00 24 */	lfs f0, 0x24(r3)
 /* 801375D8  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 801375DC  40 81 00 14 */	ble lbl_801375F0

@@ -8,18 +8,18 @@ lbl_80837BEC:
 /* 80837C04  7C 9F 23 78 */	mr r31, r4
 /* 80837C08  7F E3 FB 78 */	mr r3, r31
 /* 80837C0C  38 81 00 08 */	addi r4, r1, 8
-/* 80837C10  48 52 1B E8 */	b getAppearPoint__12daTagGuard_cFP3Vec
+/* 80837C10  48 52 1B E9 */	bl getAppearPoint__12daTagGuard_cFP3Vec
 /* 80837C14  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80837C18  41 82 00 3C */	beq lbl_80837C54
-/* 80837C1C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80837C20  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80837C1C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80837C20  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80837C24  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 80837C28  38 83 04 D0 */	addi r4, r3, 0x4d0
 /* 80837C2C  38 61 00 08 */	addi r3, r1, 8
 /* 80837C30  7C 65 1B 78 */	mr r5, r3
-/* 80837C34  4B B0 F4 80 */	b PSVECSubtract
+/* 80837C34  4B B0 F4 81 */	bl PSVECSubtract
 /* 80837C38  38 61 00 08 */	addi r3, r1, 8
-/* 80837C3C  4B B0 F4 FC */	b PSVECSquareMag
+/* 80837C3C  4B B0 F4 FD */	bl PSVECSquareMag
 /* 80837C40  C0 1E 05 6C */	lfs f0, 0x56c(r30)
 /* 80837C44  FC 00 08 40 */	fcmpo cr0, f0, f1
 /* 80837C48  40 81 00 0C */	ble lbl_80837C54

@@ -3,8 +3,8 @@ lbl_809CEB50:
 /* 809CEB54  7C 08 02 A6 */	mflr r0
 /* 809CEB58  90 01 00 34 */	stw r0, 0x34(r1)
 /* 809CEB5C  7C 6B 1B 78 */	mr r11, r3
-/* 809CEB60  3C 60 80 9D */	lis r3, lit_4454@ha
-/* 809CEB64  C0 23 F5 98 */	lfs f1, lit_4454@l(r3)
+/* 809CEB60  3C 60 80 9D */	lis r3, lit_4454@ha /* 0x809CF598@ha */
+/* 809CEB64  C0 23 F5 98 */	lfs f1, lit_4454@l(r3)  /* 0x809CF598@l */
 /* 809CEB68  D0 21 00 1C */	stfs f1, 0x1c(r1)
 /* 809CEB6C  D0 21 00 20 */	stfs f1, 0x20(r1)
 /* 809CEB70  D0 21 00 24 */	stfs f1, 0x24(r1)
@@ -29,7 +29,7 @@ lbl_809CEB50:
 /* 809CEBBC  39 20 00 00 */	li r9, 0
 /* 809CEBC0  39 41 00 1C */	addi r10, r1, 0x1c
 /* 809CEBC4  C0 4B 05 2C */	lfs f2, 0x52c(r11)
-/* 809CEBC8  4B 68 24 40 */	b setEffectCenter__7dPaPo_cFPC12dKy_tevstr_cPC4cXyzUlUlPC4cXyzPC5csXyzPC4cXyzScff
+/* 809CEBC8  4B 68 24 41 */	bl setEffectCenter__7dPaPo_cFPC12dKy_tevstr_cPC4cXyzUlUlPC4cXyzPC5csXyzPC4cXyzScff
 /* 809CEBCC  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 809CEBD0  7C 08 03 A6 */	mtlr r0
 /* 809CEBD4  38 21 00 30 */	addi r1, r1, 0x30

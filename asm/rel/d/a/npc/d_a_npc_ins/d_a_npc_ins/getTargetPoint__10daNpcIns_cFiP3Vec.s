@@ -7,7 +7,7 @@ lbl_80A12480:
 /* 80A12494  80 63 0E 04 */	lwz r3, 0xe04(r3)
 /* 80A12498  28 03 00 00 */	cmplwi r3, 0
 /* 80A1249C  41 82 00 20 */	beq lbl_80A124BC
-/* 80A124A0  4B 63 F3 10 */	b dPath_GetPnt__FPC5dPathi
+/* 80A124A0  4B 63 F3 11 */	bl dPath_GetPnt__FPC5dPathi
 /* 80A124A4  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80A124A8  D0 1F 00 00 */	stfs f0, 0(r31)
 /* 80A124AC  C0 03 00 08 */	lfs f0, 8(r3)

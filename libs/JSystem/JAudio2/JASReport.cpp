@@ -11,8 +11,6 @@
 // Forward References:
 //
 
-void JASReport(char const*, ...);
-
 extern "C" void JASReport__FPCce();
 extern "C" extern u8 struct_80451230[8];
 
@@ -29,22 +27,22 @@ extern "C" void vsnprintf();
 //
 
 /* ############################################################################################## */
-/* 80431660-80431678 0018+00 s=1 e=0 z=0  None .bss       sMutex */
+/* 80431660-80431678 05E380 0018+00 1/1 0/0 0/0 .bss             sMutex */
 static u8 sMutex[24];
 
-/* 80451220-80451224 0004+00 s=1 e=0 z=0  None .sbss      sBuffer */
+/* 80451220-80451224 000720 0004+00 1/1 0/0 0/0 .sbss            sBuffer */
 static u8 sBuffer[4];
 
-/* 80451224-80451228 0004+00 s=1 e=0 z=0  None .sbss      sLineMax */
+/* 80451224-80451228 000724 0004+00 1/1 0/0 0/0 .sbss            sLineMax */
 static u8 sLineMax[4];
 
-/* 80451228-8045122C 0004+00 s=1 e=0 z=0  None .sbss      sLineCount */
+/* 80451228-8045122C 000728 0004+00 1/1 0/0 0/0 .sbss            sLineCount */
 static u8 sLineCount[4];
 
-/* 8045122C-80451230 0004+00 s=1 e=0 z=0  None .sbss      sTop */
+/* 8045122C-80451230 00072C 0004+00 1/1 0/0 0/0 .sbss            sTop */
 static u8 sTop[4];
 
-/* 80290F64-80291060 00FC+00 s=0 e=5 z=0  None .text      JASReport__FPCce */
+/* 80290F64-80291060 28B8A4 00FC+00 0/0 5/5 0/0 .text            JASReport__FPCce */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -55,5 +53,8 @@ asm void JASReport(char const* param_0, ...) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451230-80451238 0008+00 s=0 e=6 z=0  None .sbss      None */
+/* 80451230-80451238 -00001 0008+00 0/0 6/6 0/0 .sbss            None */
+/* 80451230 0001+00 data_80451230 None */
+/* 80451231 0007+00 data_80451231 None */
+extern u8 struct_80451230[8];
 u8 struct_80451230[8];

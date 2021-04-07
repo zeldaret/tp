@@ -14,8 +14,8 @@ lbl_80277F70:
 /* 80277FA0  48 0C ED CD */	bl PSMTXMultVec
 /* 80277FA4  A0 1F 00 88 */	lhz r0, 0x88(r31)
 /* 80277FA8  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80277FAC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 80277FB0  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80277FAC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80277FB0  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80277FB4  7C 43 04 2E */	lfsx f2, r3, r0
 /* 80277FB8  7C 63 02 14 */	add r3, r3, r0
 /* 80277FBC  C0 63 00 04 */	lfs f3, 4(r3)
@@ -54,13 +54,13 @@ lbl_80277F70:
 /* 80278040  38 81 00 14 */	addi r4, r1, 0x14
 /* 80278044  80 1E 02 10 */	lwz r0, 0x210(r30)
 /* 80278048  54 00 10 3A */	slwi r0, r0, 2
-/* 8027804C  3C A0 80 3C */	lis r5, p_prj@ha
-/* 80278050  38 A5 43 20 */	addi r5, r5, p_prj@l
+/* 8027804C  3C A0 80 3C */	lis r5, p_prj@ha /* 0x803C4320@ha */
+/* 80278050  38 A5 43 20 */	addi r5, r5, p_prj@l /* 0x803C4320@l */
 /* 80278054  7D 85 00 2E */	lwzx r12, r5, r0
 /* 80278058  7D 89 03 A6 */	mtctr r12
 /* 8027805C  4E 80 04 21 */	bctrl 
-/* 80278060  3C 60 80 3C */	lis r3, jpa_dl@ha
-/* 80278064  38 63 42 E0 */	addi r3, r3, jpa_dl@l
+/* 80278060  3C 60 80 3C */	lis r3, jpa_dl@ha /* 0x803C42E0@ha */
+/* 80278064  38 63 42 E0 */	addi r3, r3, jpa_dl@l /* 0x803C42E0@l */
 /* 80278068  38 80 00 20 */	li r4, 0x20
 /* 8027806C  48 0E 7E 85 */	bl GXCallDisplayList
 lbl_80278070:

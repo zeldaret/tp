@@ -3,19 +3,20 @@
 #
 
 M461_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_goGate.plf
+M461_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_goGate.lcf
+M461_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_goGate.map
 
 M461_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_goGate/executor.cpp \
-	rel/d/a/obj/d_a_obj_goGate/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_goGate/d_a_obj_goGate.cpp \
 
 M461_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_goGate/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_goGate/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_goGate/d_a_obj_goGate.o \
 
 M461_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_goGate/libRuntime.PPCEABI.H.a \
 
 M461_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M461_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M461_LDSCRIPT) \
+	-unused -map $(M461_MAP) \
+	-w off \
 
 $(M461_TARGET): $(M461_O_FILES) $(M461_LIBS)
+	@echo [461] creating $(M461_TARGET)
 	@echo $(M461_LIBS) $(M461_O_FILES) > build/M461_ofiles
-	$(LD) -partial $(M461_LDFLAGS) -o $(M461_TARGET) @build/M461_ofiles
+	@python3 tools/lcf.py rel 461 --output $(M461_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M461_LDFLAGS) -o $(M461_TARGET) @build/M461_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_goGate/%.o: rel/d/a/obj/d_a_obj_goGate/%.cpp
+	@echo [461] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M461_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M461_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_goGate/libs/Runtime.PPCEABI.H/Makefile
 

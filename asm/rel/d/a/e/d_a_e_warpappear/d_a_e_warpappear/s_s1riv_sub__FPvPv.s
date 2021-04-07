@@ -5,16 +5,16 @@ lbl_807CFA74:
 /* 807CFA80  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 807CFA84  93 C1 00 08 */	stw r30, 8(r1)
 /* 807CFA88  7C 7E 1B 78 */	mr r30, r3
-/* 807CFA8C  3C 80 80 7D */	lis r4, lit_3864@ha
-/* 807CFA90  3B E4 20 88 */	addi r31, r4, lit_3864@l
-/* 807CFA94  4B 84 92 4C */	b fopAc_IsActor__FPv
+/* 807CFA8C  3C 80 80 7D */	lis r4, lit_3864@ha /* 0x807D2088@ha */
+/* 807CFA90  3B E4 20 88 */	addi r31, r4, lit_3864@l /* 0x807D2088@l */
+/* 807CFA94  4B 84 92 4D */	bl fopAc_IsActor__FPv
 /* 807CFA98  2C 03 00 00 */	cmpwi r3, 0
 /* 807CFA9C  41 82 00 C0 */	beq lbl_807CFB5C
 /* 807CFAA0  A8 1E 00 08 */	lha r0, 8(r30)
 /* 807CFAA4  2C 00 01 B4 */	cmpwi r0, 0x1b4
 /* 807CFAA8  40 82 00 B4 */	bne lbl_807CFB5C
-/* 807CFAAC  3C 60 80 7D */	lis r3, master_ns@ha
-/* 807CFAB0  38 83 23 78 */	addi r4, r3, master_ns@l
+/* 807CFAAC  3C 60 80 7D */	lis r3, master_ns@ha /* 0x807D2378@ha */
+/* 807CFAB0  38 83 23 78 */	addi r4, r3, master_ns@l /* 0x807D2378@l */
 /* 807CFAB4  80 64 00 00 */	lwz r3, 0(r4)
 /* 807CFAB8  C0 03 04 A8 */	lfs f0, 0x4a8(r3)
 /* 807CFABC  D0 1E 04 D0 */	stfs f0, 0x4d0(r30)

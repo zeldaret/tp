@@ -32,9 +32,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct cXyz {};
 
 struct J3DModelData {};
 
@@ -52,9 +52,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -124,12 +124,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void daObjGrzRock_Draw(daObjGrzRock_c*);
-static void daObjGrzRock_Execute(daObjGrzRock_c*);
-static bool daObjGrzRock_IsDelete(daObjGrzRock_c*);
-static void daObjGrzRock_Delete(daObjGrzRock_c*);
-static void daObjGrzRock_create(fopAc_ac_c*);
-
 extern "C" void setBaseMtx__14daObjGrzRock_cFv();
 extern "C" void setEnvTevColor__14daObjGrzRock_cFv();
 extern "C" void setRoomNo__14daObjGrzRock_cFv();
@@ -148,22 +142,11 @@ extern "C" static void daObjGrzRock_Delete__FP14daObjGrzRock_c();
 extern "C" static void daObjGrzRock_create__FP10fopAc_ac_c();
 extern "C" static void func_80C15348();
 extern "C" static void func_80C15350();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_GrzRock[12];
+extern "C" extern char const* const d_a_obj_grz_rock__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_ZXYrotM(f32 (*)[4], s16, s16, s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
-void operator delete(void*);
 
 extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
 extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
@@ -218,7 +201,7 @@ extern "C" extern u8 j3dSys[284];
 // Declarations:
 //
 
-/* 80C14BD8-80C14C54 007C+00 s=2 e=0 z=0  None .text      setBaseMtx__14daObjGrzRock_cFv */
+/* 80C14BD8-80C14C54 000078 007C+00 2/2 0/0 0/0 .text            setBaseMtx__14daObjGrzRock_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -228,7 +211,8 @@ asm void daObjGrzRock_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 80C14C54-80C14CB0 005C+00 s=1 e=0 z=0  None .text      setEnvTevColor__14daObjGrzRock_cFv */
+/* 80C14C54-80C14CB0 0000F4 005C+00 1/1 0/0 0/0 .text            setEnvTevColor__14daObjGrzRock_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -238,7 +222,7 @@ asm void daObjGrzRock_c::setEnvTevColor() {
 }
 #pragma pop
 
-/* 80C14CB0-80C14CF0 0040+00 s=1 e=0 z=0  None .text      setRoomNo__14daObjGrzRock_cFv */
+/* 80C14CB0-80C14CF0 000150 0040+00 1/1 0/0 0/0 .text            setRoomNo__14daObjGrzRock_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -249,18 +233,27 @@ asm void daObjGrzRock_c::setRoomNo() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C15360-80C1536C 000C+00 s=1 e=0 z=0  None .rodata    l_prticles_id$3832 */
+/* 80C15360-80C1536C 000000 000C+00 1/1 0/0 0/0 .rodata          l_prticles_id$3832 */
 SECTION_RODATA static u8 const l_prticles_id[12] = {
     0x89, 0xC2, 0x89, 0xC3, 0x89, 0xC4, 0x89, 0xC5, 0x89, 0xC6, 0x89, 0xC7,
 };
+COMPILER_STRIP_GATE(80C15360, &l_prticles_id);
 
-/* 80C1536C-80C15370 0004+00 s=1 e=0 z=0  None .rodata    @3849 */
-SECTION_RODATA static u32 const lit_3849 = 0x3F59999A;
+/* 80C1536C-80C15370 00000C 0004+00 0/1 0/0 0/0 .rodata          @3849 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3849 = 17.0f / 20.0f;
+COMPILER_STRIP_GATE(80C1536C, &lit_3849);
+#pragma pop
 
-/* 80C15370-80C15374 0004+00 s=1 e=0 z=0  None .rodata    @3850 */
-SECTION_RODATA static u32 const lit_3850 = 0x3F800000;
+/* 80C15370-80C15374 000010 0004+00 0/1 0/0 0/0 .rodata          @3850 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3850 = 1.0f;
+COMPILER_STRIP_GATE(80C15370, &lit_3850);
+#pragma pop
 
-/* 80C14CF0-80C14DA0 00B0+00 s=1 e=0 z=0  None .text      setPrtcl__14daObjGrzRock_cFv */
+/* 80C14CF0-80C14DA0 000190 00B0+00 1/1 0/0 0/0 .text            setPrtcl__14daObjGrzRock_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -271,15 +264,16 @@ asm void daObjGrzRock_c::setPrtcl() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C15374-80C15378 0004+00 s=1 e=0 z=0  None .rodata    @3886 */
+/* 80C15374-80C15378 000014 0004+00 1/1 0/0 0/0 .rodata          @3886 */
 SECTION_RODATA static u8 const lit_3886[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80C15374, &lit_3886);
 
-/* 80C14DA0-80C14EE0 0140+00 s=1 e=0 z=0  None .text      Create__14daObjGrzRock_cFv */
+/* 80C14DA0-80C14EE0 000240 0140+00 1/0 0/0 0/0 .text            Create__14daObjGrzRock_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -290,18 +284,10 @@ asm void daObjGrzRock_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C15378-80C1538C 0014+00 s=2 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80C15378 = "grZRock";
-SECTION_DEAD char const* const stringBase_80C15380 = "grZRock.dzb";
-#pragma pop
+/* 80C1538C-80C15390 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_grz_rock__stringBase0;
 
-/* 80C1538C-80C15390 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80C14EE0-80C14F50 0070+00 s=1 e=0 z=0  None .text      CreateHeap__14daObjGrzRock_cFv */
+/* 80C14EE0-80C14F50 000380 0070+00 1/0 0/0 0/0 .text            CreateHeap__14daObjGrzRock_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -312,7 +298,7 @@ asm void daObjGrzRock_c::CreateHeap() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C15390-80C153B0 0020+00 s=1 e=0 z=0  None .data      l_daObjGrzRock_Method */
+/* 80C15390-80C153B0 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjGrzRock_Method */
 SECTION_DATA static void* l_daObjGrzRock_Method[8] = {
     (void*)daObjGrzRock_create__FP10fopAc_ac_c,
     (void*)daObjGrzRock_Delete__FP14daObjGrzRock_c,
@@ -324,8 +310,8 @@ SECTION_DATA static void* l_daObjGrzRock_Method[8] = {
     (void*)NULL,
 };
 
-/* 80C153B0-80C153E0 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_GrzRock */
-SECTION_DATA void* g_profile_Obj_GrzRock[12] = {
+/* 80C153B0-80C153E0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_GrzRock */
+SECTION_DATA extern void* g_profile_Obj_GrzRock[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x008A0000, (void*)&g_fpcLf_Method,
     (void*)0x00000804, (void*)NULL,
@@ -334,16 +320,22 @@ SECTION_DATA void* g_profile_Obj_GrzRock[12] = {
     (void*)0x00044100, (void*)0x000E0000,
 };
 
-/* 80C153E0-80C15404 0024+00 s=2 e=0 z=0  None .data      __vt__12dBgS_ObjAcch */
-SECTION_DATA static void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL, (void*)NULL, (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL, (void*)NULL, (void*)func_80C15350,
-    (void*)NULL, (void*)NULL, (void*)func_80C15348,
+/* 80C153E0-80C15404 000054 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
+SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)__dt__12dBgS_ObjAcchFv,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_80C15350,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_80C15348,
 };
 
-/* 80C15404-80C1542C 0028+00 s=1 e=0 z=0  None .data      __vt__14daObjGrzRock_c */
-SECTION_DATA static void* __vt__14daObjGrzRock_c[10] = {
-    (void*)NULL,
+/* 80C15404-80C1542C 000078 0028+00 1/1 0/0 0/0 .data            __vt__14daObjGrzRock_c */
+SECTION_DATA extern void* __vt__14daObjGrzRock_c[10] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__14daObjGrzRock_cFv,
     (void*)Create__14daObjGrzRock_cFv,
@@ -355,7 +347,7 @@ SECTION_DATA static void* __vt__14daObjGrzRock_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80C14F50-80C150DC 018C+00 s=1 e=0 z=0  None .text      create__14daObjGrzRock_cFv */
+/* 80C14F50-80C150DC 0003F0 018C+00 1/1 0/0 0/0 .text            create__14daObjGrzRock_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -365,7 +357,7 @@ asm void daObjGrzRock_c::create() {
 }
 #pragma pop
 
-/* 80C150DC-80C1514C 0070+00 s=3 e=0 z=0  None .text      __dt__12dBgS_ObjAcchFv */
+/* 80C150DC-80C1514C 00057C 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -375,7 +367,8 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 }
 #pragma pop
 
-/* 80C1514C-80C151A4 0058+00 s=1 e=0 z=0  None .text      Execute__14daObjGrzRock_cFPPA3_A4_f */
+/* 80C1514C-80C151A4 0005EC 0058+00 1/0 0/0 0/0 .text            Execute__14daObjGrzRock_cFPPA3_A4_f
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -385,7 +378,7 @@ asm void daObjGrzRock_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 80C151A4-80C15248 00A4+00 s=1 e=0 z=0  None .text      Draw__14daObjGrzRock_cFv */
+/* 80C151A4-80C15248 000644 00A4+00 1/0 0/0 0/0 .text            Draw__14daObjGrzRock_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -395,7 +388,7 @@ asm void daObjGrzRock_c::Draw() {
 }
 #pragma pop
 
-/* 80C15248-80C152B4 006C+00 s=1 e=0 z=0  None .text      Delete__14daObjGrzRock_cFv */
+/* 80C15248-80C152B4 0006E8 006C+00 1/0 0/0 0/0 .text            Delete__14daObjGrzRock_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -405,69 +398,76 @@ asm void daObjGrzRock_c::Delete() {
 }
 #pragma pop
 
-/* 80C152B4-80C152E0 002C+00 s=1 e=0 z=0  None .text      daObjGrzRock_Draw__FP14daObjGrzRock_c */
+/* 80C152B4-80C152E0 000754 002C+00 1/0 0/0 0/0 .text daObjGrzRock_Draw__FP14daObjGrzRock_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjGrzRock_Draw(daObjGrzRock_c* param_0) {
+static asm void daObjGrzRock_Draw(daObjGrzRock_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_grz_rock/d_a_obj_grz_rock/daObjGrzRock_Draw__FP14daObjGrzRock_c.s"
 }
 #pragma pop
 
-/* 80C152E0-80C15300 0020+00 s=1 e=0 z=0  None .text      daObjGrzRock_Execute__FP14daObjGrzRock_c
- */
+/* 80C152E0-80C15300 000780 0020+00 1/0 0/0 0/0 .text daObjGrzRock_Execute__FP14daObjGrzRock_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjGrzRock_Execute(daObjGrzRock_c* param_0) {
+static asm void daObjGrzRock_Execute(daObjGrzRock_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_grz_rock/d_a_obj_grz_rock/daObjGrzRock_Execute__FP14daObjGrzRock_c.s"
 }
 #pragma pop
 
-/* 80C15300-80C15308 0008+00 s=1 e=0 z=0  None .text      daObjGrzRock_IsDelete__FP14daObjGrzRock_c
- */
+/* 80C15300-80C15308 0007A0 0008+00 1/0 0/0 0/0 .text daObjGrzRock_IsDelete__FP14daObjGrzRock_c */
 static bool daObjGrzRock_IsDelete(daObjGrzRock_c* param_0) {
     return true;
 }
 
-/* 80C15308-80C15328 0020+00 s=1 e=0 z=0  None .text      daObjGrzRock_Delete__FP14daObjGrzRock_c */
+/* 80C15308-80C15328 0007A8 0020+00 1/0 0/0 0/0 .text daObjGrzRock_Delete__FP14daObjGrzRock_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjGrzRock_Delete(daObjGrzRock_c* param_0) {
+static asm void daObjGrzRock_Delete(daObjGrzRock_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_grz_rock/d_a_obj_grz_rock/daObjGrzRock_Delete__FP14daObjGrzRock_c.s"
 }
 #pragma pop
 
-/* 80C15328-80C15348 0020+00 s=1 e=0 z=0  None .text      daObjGrzRock_create__FP10fopAc_ac_c */
+/* 80C15328-80C15348 0007C8 0020+00 1/0 0/0 0/0 .text            daObjGrzRock_create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjGrzRock_create(fopAc_ac_c* param_0) {
+static asm void daObjGrzRock_create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_grz_rock/d_a_obj_grz_rock/daObjGrzRock_create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80C15348-80C15350 0008+00 s=1 e=0 z=0  None .text      @36@__dt__12dBgS_ObjAcchFv */
+/* 80C15348-80C15350 0007E8 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80C15348() {
+static asm void func_80C15348() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_grz_rock/d_a_obj_grz_rock/func_80C15348.s"
 }
 #pragma pop
 
-/* 80C15350-80C15358 0008+00 s=1 e=0 z=0  None .text      @20@__dt__12dBgS_ObjAcchFv */
+/* 80C15350-80C15358 0007F0 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80C15350() {
+static asm void func_80C15350() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_grz_rock/d_a_obj_grz_rock/func_80C15350.s"
 }
+#pragma pop
+
+/* 80C15378-80C1538C 000018 0014+00 2/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80C15378 = "grZRock";
+SECTION_DEAD static char const* const stringBase_80C15380 = "grZRock.dzb";
 #pragma pop

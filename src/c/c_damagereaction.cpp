@@ -13,9 +13,9 @@
 
 struct fopAc_ac_c {};
 
-struct JPABaseParticle {};
-
 struct JPABaseEmitter {};
+
+struct JPABaseParticle {};
 
 struct JPTraceParticleCallBack4 {
     /* 8001817C */ void execute(JPABaseEmitter*, JPABaseParticle*);
@@ -33,8 +33,6 @@ struct JPAParticleCallBack {
 // Forward References:
 //
 
-void cDmrNowMidnaTalk();
-
 extern "C" void execute__24JPTraceParticleCallBack4FP14JPABaseEmitterP15JPABaseParticle();
 extern "C" void draw__24JPTraceParticleCallBack4FP14JPABaseEmitterP15JPABaseParticle();
 extern "C" void cDmrNowMidnaTalk__Fv();
@@ -42,16 +40,10 @@ extern "C" void __dt__24JPTraceParticleCallBack4Fv();
 extern "C" void __sinit_c_damagereaction_cpp();
 extern "C" void execute__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle();
 extern "C" void draw__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle();
-extern "C" extern void* __vt__19JPAParticleCallBack[5];
-extern "C" extern u8 data_80450CA0[4];
-extern "C" extern u8 JPTracePCB4[4];
 
 //
 // External References:
 //
-
-void fopAcM_getTalkEventPartner(fopAc_ac_c const*);
-void operator delete(void*);
 
 extern "C" void fopAcM_getTalkEventPartner__FPC10fopAc_ac_c();
 extern "C" void __dt__19JPAParticleCallBackFv();
@@ -64,10 +56,10 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 //
 
 /* ############################################################################################## */
-/* 80451BA8-80451BAC 0004+00 s=1 e=0 z=0  None .sdata2    @3731 */
+/* 80451BA8-80451BAC 0001A8 0004+00 1/1 0/0 0/0 .sdata2          @3731 */
 SECTION_SDATA2 static f32 lit_3731 = 25.0f;
 
-/* 80451BAC-80451BB0 0004+00 s=1 e=0 z=0  None .sdata2    @3732 */
+/* 80451BAC-80451BB0 0001AC 0004+00 1/1 0/0 0/0 .sdata2          @3732 */
 SECTION_SDATA2 static u8 lit_3732[4] = {
     0x00,
     0x00,
@@ -75,16 +67,16 @@ SECTION_SDATA2 static u8 lit_3732[4] = {
     0x00,
 };
 
-/* 80451BB0-80451BB4 0004+00 s=1 e=0 z=0  None .sdata2    @3733 */
+/* 80451BB0-80451BB4 0001B0 0004+00 1/1 0/0 0/0 .sdata2          @3733 */
 SECTION_SDATA2 static f32 lit_3733 = 3.0f / 10.0f;
 
-/* 80451BB4-80451BB8 0004+00 s=1 e=0 z=0  None .sdata2    @3734 */
+/* 80451BB4-80451BB8 0001B4 0004+00 1/1 0/0 0/0 .sdata2          @3734 */
 SECTION_SDATA2 static f32 lit_3734 = 0.5f;
 
-/* 80451BB8-80451BC0 0008+00 s=1 e=0 z=0  None .sdata2    @3736 */
+/* 80451BB8-80451BC0 0001B8 0008+00 1/1 0/0 0/0 .sdata2          @3736 */
 SECTION_SDATA2 static f64 lit_3736 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 8001817C-800182A4 0128+00 s=1 e=0 z=0  None .text
+/* 8001817C-800182A4 012ABC 0128+00 1/0 0/0 0/0 .text
  * execute__24JPTraceParticleCallBack4FP14JPABaseEmitterP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -95,13 +87,13 @@ asm void JPTraceParticleCallBack4::execute(JPABaseEmitter* param_0, JPABaseParti
 }
 #pragma pop
 
-/* 800182A4-800182A8 0004+00 s=1 e=0 z=0  None .text
+/* 800182A4-800182A8 012BE4 0004+00 1/0 0/0 0/0 .text
  * draw__24JPTraceParticleCallBack4FP14JPABaseEmitterP15JPABaseParticle */
 void JPTraceParticleCallBack4::draw(JPABaseEmitter* param_0, JPABaseParticle* param_1) {
     /* empty function */
 }
 
-/* 800182A8-80018328 0080+00 s=0 e=0 z=22  None .text      cDmrNowMidnaTalk__Fv */
+/* 800182A8-80018328 012BE8 0080+00 0/0 0/0 22/22 .text            cDmrNowMidnaTalk__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -112,16 +104,17 @@ asm void cDmrNowMidnaTalk() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A3568-803A357C 0014+00 s=2 e=0 z=0  None .data      __vt__24JPTraceParticleCallBack4 */
-SECTION_DATA static void* __vt__24JPTraceParticleCallBack4[5] = {
-    (void*)NULL,
+/* 803A3568-803A357C 000688 0014+00 2/2 0/0 0/0 .data            __vt__24JPTraceParticleCallBack4 */
+SECTION_DATA extern void* __vt__24JPTraceParticleCallBack4[5] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__24JPTraceParticleCallBack4Fv,
     (void*)execute__24JPTraceParticleCallBack4FP14JPABaseEmitterP15JPABaseParticle,
     (void*)draw__24JPTraceParticleCallBack4FP14JPABaseEmitterP15JPABaseParticle,
 };
 
-/* 80018328-80018388 0060+00 s=2 e=0 z=0  None .text      __dt__24JPTraceParticleCallBack4Fv */
+/* 80018328-80018388 012C68 0060+00 2/1 0/0 0/0 .text            __dt__24JPTraceParticleCallBack4Fv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -132,41 +125,48 @@ asm JPTraceParticleCallBack4::~JPTraceParticleCallBack4() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A357C-803A3590 0014+00 s=1 e=3 z=0  None .data      __vt__19JPAParticleCallBack */
-SECTION_DATA void* __vt__19JPAParticleCallBack[5] = {
-    (void*)NULL,
+/* 803A357C-803A3590 00069C 0014+00 1/1 3/3 0/0 .data            __vt__19JPAParticleCallBack */
+SECTION_DATA extern void* __vt__19JPAParticleCallBack[5] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)NULL,
     (void*)execute__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle,
     (void*)draw__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle,
 };
 
-/* 803F0F40-803F0F50 000C+04 s=1 e=0 z=0  None .bss       @3741 */
+/* 803F0F40-803F0F50 01DC60 000C+04 1/1 0/0 0/0 .bss             @3741 */
 static u8 lit_3741[12 + 4 /* padding */];
 
-/* 80450CA0-80450CA4 0004+00 s=0 e=0 z=2  None .sbss      None */
+/* 80450CA0-80450CA4 0001A0 0004+00 0/0 0/0 2/2 .sbss            None */
+extern u8 data_80450CA0[4];
 u8 data_80450CA0[4];
 
-/* 80450CA4-80450CA8 0004+00 s=1 e=1 z=1  None .sbss      JPTracePCB4 */
+/* 80450CA4-80450CA8 0001A4 0004+00 1/1 1/1 1/1 .sbss            JPTracePCB4 */
+extern u8 JPTracePCB4[4];
 u8 JPTracePCB4[4];
 
-/* 80018388-800183D4 004C+00 s=0 e=1 z=0  None .text      __sinit_c_damagereaction_cpp */
+/* 80018388-800183D4 012CC8 004C+00 0/0 1/0 0/0 .text            __sinit_c_damagereaction_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_c_damagereaction_cpp() {
+asm void __sinit_c_damagereaction_cpp() {
     nofralloc
 #include "asm/c/c_damagereaction/__sinit_c_damagereaction_cpp.s"
 }
 #pragma pop
 
-/* 800183D4-800183D8 0004+00 s=1 e=1 z=0  None .text
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_80018388 = (void*)__sinit_c_damagereaction_cpp;
+#pragma pop
+
+/* 800183D4-800183D8 012D14 0004+00 1/0 1/0 0/0 .text
  * execute__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle */
 void JPAParticleCallBack::execute(JPABaseEmitter* param_0, JPABaseParticle* param_1) {
     /* empty function */
 }
 
-/* 800183D8-800183DC 0004+00 s=1 e=4 z=0  None .text
+/* 800183D8-800183DC 012D18 0004+00 1/0 4/0 0/0 .text
  * draw__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle */
 void JPAParticleCallBack::draw(JPABaseEmitter* param_0, JPABaseParticle* param_1) {
     /* empty function */

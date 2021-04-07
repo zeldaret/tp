@@ -147,8 +147,8 @@ lbl_8031FBB4:
 /* 8031FBD8  38 03 00 01 */	addi r0, r3, 1
 /* 8031FBDC  90 04 00 08 */	stw r0, 8(r4)
 /* 8031FBE0  98 A3 00 00 */	stb r5, 0(r3)
-/* 8031FBE4  3C 60 80 43 */	lis r3, j3dZModeTable@ha
-/* 8031FBE8  38 83 71 60 */	addi r4, r3, j3dZModeTable@l
+/* 8031FBE4  3C 60 80 43 */	lis r3, j3dZModeTable@ha /* 0x80437160@ha */
+/* 8031FBE8  38 83 71 60 */	addi r4, r3, j3dZModeTable@l /* 0x80437160@l */
 /* 8031FBEC  A0 1F 00 38 */	lhz r0, 0x38(r31)
 /* 8031FBF0  1C 00 00 03 */	mulli r0, r0, 3
 /* 8031FBF4  7C 64 02 14 */	add r3, r4, r0

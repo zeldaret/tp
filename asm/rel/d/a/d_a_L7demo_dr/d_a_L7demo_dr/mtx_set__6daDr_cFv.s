@@ -10,11 +10,11 @@ lbl_805A9304:
 /* 805A9324  80 7F 00 84 */	lwz r3, 0x84(r31)
 /* 805A9328  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 805A932C  38 63 00 30 */	addi r3, r3, 0x30
-/* 805A9330  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha
-/* 805A9334  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l
-/* 805A9338  4B D9 D1 78 */	b PSMTXCopy
-/* 805A933C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 805A9340  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 805A9330  3C 80 80 3E */	lis r4, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 805A9334  38 84 D4 70 */	addi r4, r4, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 805A9338  4B D9 D1 79 */	bl PSMTXCopy
+/* 805A933C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 805A9340  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 805A9344  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 805A9348  D0 1E 06 18 */	stfs f0, 0x618(r30)
 /* 805A934C  C0 03 00 1C */	lfs f0, 0x1c(r3)
@@ -22,21 +22,21 @@ lbl_805A9304:
 /* 805A9354  C0 03 00 2C */	lfs f0, 0x2c(r3)
 /* 805A9358  D0 1E 06 20 */	stfs f0, 0x620(r30)
 /* 805A935C  38 7E 04 D0 */	addi r3, r30, 0x4d0
-/* 805A9360  4B A6 3A 04 */	b transS__14mDoMtx_stack_cFRC4cXyz
+/* 805A9360  4B A6 3A 05 */	bl transS__14mDoMtx_stack_cFRC4cXyz
 /* 805A9364  38 7E 04 DC */	addi r3, r30, 0x4dc
-/* 805A9368  4B A6 3B DC */	b ZXYrotM__14mDoMtx_stack_cFRC5csXyz
+/* 805A9368  4B A6 3B DD */	bl ZXYrotM__14mDoMtx_stack_cFRC5csXyz
 /* 805A936C  C0 1E 04 EC */	lfs f0, 0x4ec(r30)
 /* 805A9370  D0 1F 00 18 */	stfs f0, 0x18(r31)
 /* 805A9374  C0 1E 04 F0 */	lfs f0, 0x4f0(r30)
 /* 805A9378  D0 1F 00 1C */	stfs f0, 0x1c(r31)
 /* 805A937C  C0 1E 04 F4 */	lfs f0, 0x4f4(r30)
 /* 805A9380  D0 1F 00 20 */	stfs f0, 0x20(r31)
-/* 805A9384  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 805A9388  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 805A9384  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 805A9388  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 805A938C  38 9F 00 24 */	addi r4, r31, 0x24
-/* 805A9390  4B D9 D1 20 */	b PSMTXCopy
+/* 805A9390  4B D9 D1 21 */	bl PSMTXCopy
 /* 805A9394  80 7E 05 70 */	lwz r3, 0x570(r30)
-/* 805A9398  4B A6 7E 54 */	b modelCalc__16mDoExt_McaMorfSOFv
+/* 805A9398  4B A6 7E 55 */	bl modelCalc__16mDoExt_McaMorfSOFv
 /* 805A939C  38 1F 00 24 */	addi r0, r31, 0x24
 /* 805A93A0  90 1E 05 04 */	stw r0, 0x504(r30)
 /* 805A93A4  C0 1E 06 18 */	lfs f0, 0x618(r30)

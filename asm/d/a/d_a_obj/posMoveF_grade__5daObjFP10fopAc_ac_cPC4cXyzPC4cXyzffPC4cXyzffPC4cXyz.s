@@ -29,8 +29,8 @@ lbl_80037620:
 /* 8003768C  C0 BC 05 30 */	lfs f5, 0x530(r28)
 /* 80037690  A8 1C 04 DE */	lha r0, 0x4de(r28)
 /* 80037694  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 80037698  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8003769C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 80037698  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8003769C  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800376A0  7C 03 04 2E */	lfsx f0, r3, r0
 /* 800376A4  C0 41 00 08 */	lfs f2, 8(r1)
 /* 800376A8  C0 21 00 14 */	lfs f1, 0x14(r1)

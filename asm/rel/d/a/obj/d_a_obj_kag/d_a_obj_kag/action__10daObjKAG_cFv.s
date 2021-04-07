@@ -5,7 +5,7 @@ lbl_80C303C4:
 /* 80C303D0  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C303D4  7C 7F 1B 78 */	mr r31, r3
 /* 80C303D8  39 9F 08 24 */	addi r12, r31, 0x824
-/* 80C303DC  4B 73 1C A8 */	b __ptmf_scall
+/* 80C303DC  4B 73 1C A9 */	bl __ptmf_scall
 /* 80C303E0  60 00 00 00 */	nop 
 /* 80C303E4  A8 1F 04 DC */	lha r0, 0x4dc(r31)
 /* 80C303E8  B0 1F 04 E4 */	sth r0, 0x4e4(r31)
@@ -17,7 +17,7 @@ lbl_80C303C4:
 /* 80C30400  28 00 00 00 */	cmplwi r0, 0
 /* 80C30404  40 82 00 0C */	bne lbl_80C30410
 /* 80C30408  7F E3 FB 78 */	mr r3, r31
-/* 80C3040C  4B 52 DC 6C */	b Insect_GetDemoMain__9dInsect_cFv
+/* 80C3040C  4B 52 DC 6D */	bl Insect_GetDemoMain__9dInsect_cFv
 lbl_80C30410:
 /* 80C30410  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80C30414  80 01 00 14 */	lwz r0, 0x14(r1)

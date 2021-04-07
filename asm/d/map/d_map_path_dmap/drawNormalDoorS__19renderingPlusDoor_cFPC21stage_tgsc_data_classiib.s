@@ -49,24 +49,24 @@ lbl_800408C4:
 /* 800408E8  38 81 00 18 */	addi r4, r1, 0x18
 /* 800408EC  4B FF E4 75 */	bl correctionOriginPos__10dMapInfo_nFScP3Vec
 lbl_800408F0:
-/* 800408F0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 800408F4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 800408F0  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 800408F4  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 800408F8  C0 21 00 18 */	lfs f1, 0x18(r1)
 /* 800408FC  C0 41 00 20 */	lfs f2, 0x20(r1)
 /* 80040900  C0 62 84 28 */	lfs f3, lit_3796(r2)
 /* 80040904  48 30 5F E5 */	bl PSMTXTrans
-/* 80040908  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8004090C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80040908  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8004090C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80040910  A8 9D 00 1A */	lha r4, 0x1a(r29)
 /* 80040914  4B FC BB B9 */	bl mDoMtx_ZrotM__FPA4_fs
 /* 80040918  C0 22 84 70 */	lfs f1, lit_4484(r2)
 /* 8004091C  FC 40 08 90 */	fmr f2, f1
 /* 80040920  C0 62 84 38 */	lfs f3, lit_4202(r2)
 /* 80040924  4B FC C5 15 */	bl scaleM__14mDoMtx_stack_cFfff
-/* 80040928  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8004092C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
-/* 80040930  3C 80 80 38 */	lis r4, l_100x100BoxVertexList@ha
-/* 80040934  38 84 9C 58 */	addi r4, r4, l_100x100BoxVertexList@l
+/* 80040928  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8004092C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
+/* 80040930  3C 80 80 38 */	lis r4, l_100x100BoxVertexList@ha /* 0x80379C58@ha */
+/* 80040934  38 84 9C 58 */	addi r4, r4, l_100x100BoxVertexList@l /* 0x80379C58@l */
 /* 80040938  38 A1 00 24 */	addi r5, r1, 0x24
 /* 8004093C  38 C0 00 04 */	li r6, 4
 /* 80040940  48 30 64 81 */	bl PSMTXMultVecArray

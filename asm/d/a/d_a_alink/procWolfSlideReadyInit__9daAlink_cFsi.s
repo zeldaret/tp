@@ -14,8 +14,8 @@ lbl_8012FC38:
 /* 8012FC68  B3 DD 04 DE */	sth r30, 0x4de(r29)
 /* 8012FC6C  7F A3 EB 78 */	mr r3, r29
 /* 8012FC70  38 80 00 20 */	li r4, 0x20
-/* 8012FC74  3C A0 80 39 */	lis r5, m__21daAlinkHIO_wlSlide_c0@ha
-/* 8012FC78  38 A5 F3 F0 */	addi r5, r5, m__21daAlinkHIO_wlSlide_c0@l
+/* 8012FC74  3C A0 80 39 */	lis r5, m__21daAlinkHIO_wlSlide_c0@ha /* 0x8038F3F0@ha */
+/* 8012FC78  38 A5 F3 F0 */	addi r5, r5, m__21daAlinkHIO_wlSlide_c0@l /* 0x8038F3F0@l */
 /* 8012FC7C  4B FF 9B CD */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8012FC80  7F A3 EB 78 */	mr r3, r29
 /* 8012FC84  3C 80 00 01 */	lis r4, 0x0001 /* 0x000100B0@ha */
@@ -26,12 +26,12 @@ lbl_8012FC38:
 /* 8012FC98  4E 80 04 21 */	bctrl 
 /* 8012FC9C  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 8012FCA0  D0 1D 33 98 */	stfs f0, 0x3398(r29)
-/* 8012FCA4  3C 60 80 39 */	lis r3, m__21daAlinkHIO_wlSlide_c0@ha
-/* 8012FCA8  38 63 F3 F0 */	addi r3, r3, m__21daAlinkHIO_wlSlide_c0@l
+/* 8012FCA4  3C 60 80 39 */	lis r3, m__21daAlinkHIO_wlSlide_c0@ha /* 0x8038F3F0@ha */
+/* 8012FCA8  38 63 F3 F0 */	addi r3, r3, m__21daAlinkHIO_wlSlide_c0@l /* 0x8038F3F0@l */
 /* 8012FCAC  C0 03 00 54 */	lfs f0, 0x54(r3)
 /* 8012FCB0  D0 1D 05 94 */	stfs f0, 0x594(r29)
-/* 8012FCB4  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha
-/* 8012FCB8  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)
+/* 8012FCB4  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha /* 0x8042561C@ha */
+/* 8012FCB8  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)  /* 0x8042561C@l */
 /* 8012FCBC  D0 1D 35 88 */	stfs f0, 0x3588(r29)
 /* 8012FCC0  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8012FCC4  D0 1D 35 8C */	stfs f0, 0x358c(r29)

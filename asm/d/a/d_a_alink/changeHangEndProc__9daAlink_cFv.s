@@ -7,8 +7,8 @@ lbl_800FA78C:
 /* 800FA7A0  4B FF FF 45 */	bl setHangGroundY__9daAlink_cFv
 /* 800FA7A4  C0 5F 04 D4 */	lfs f2, 0x4d4(r31)
 /* 800FA7A8  C0 7F 33 D8 */	lfs f3, 0x33d8(r31)
-/* 800FA7AC  3C 60 80 39 */	lis r3, m__22daAlinkHIO_wallHang_c0@ha
-/* 800FA7B0  38 63 E1 F4 */	addi r3, r3, m__22daAlinkHIO_wallHang_c0@l
+/* 800FA7AC  3C 60 80 39 */	lis r3, m__22daAlinkHIO_wallHang_c0@ha /* 0x8038E1F4@ha */
+/* 800FA7B0  38 63 E1 F4 */	addi r3, r3, m__22daAlinkHIO_wallHang_c0@l /* 0x8038E1F4@l */
 /* 800FA7B4  C0 03 00 18 */	lfs f0, 0x18(r3)
 /* 800FA7B8  EC 23 00 2A */	fadds f1, f3, f0
 /* 800FA7BC  C0 02 92 B8 */	lfs f0, lit_6040(r2)
@@ -42,8 +42,8 @@ lbl_800FA808:
 /* 800FA824  D0 1F 04 FC */	stfs f0, 0x4fc(r31)
 /* 800FA828  7F E3 FB 78 */	mr r3, r31
 /* 800FA82C  38 80 00 01 */	li r4, 1
-/* 800FA830  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha
-/* 800FA834  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l
+/* 800FA830  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 800FA834  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 800FA838  C0 25 00 70 */	lfs f1, 0x70(r5)
 /* 800FA83C  4B FC C2 0D */	bl procFallInit__9daAlink_cFif
 /* 800FA840  48 00 00 08 */	b lbl_800FA848

@@ -9,8 +9,8 @@ lbl_80D2781C:
 /* 80D27838  80 03 00 B0 */	lwz r0, 0xb0(r3)
 /* 80D2783C  54 00 0F FF */	rlwinm. r0, r0, 1, 0x1f, 0x1f
 /* 80D27840  40 82 00 1C */	bne lbl_80D2785C
-/* 80D27844  3C 60 80 45 */	lis r3, m_midnaActor__9daPy_py_c@ha
-/* 80D27848  80 03 10 18 */	lwz r0, m_midnaActor__9daPy_py_c@l(r3)
+/* 80D27844  3C 60 80 45 */	lis r3, m_midnaActor__9daPy_py_c@ha /* 0x80451018@ha */
+/* 80D27848  80 03 10 18 */	lwz r0, m_midnaActor__9daPy_py_c@l(r3)  /* 0x80451018@l */
 /* 80D2784C  28 00 00 00 */	cmplwi r0, 0
 /* 80D27850  40 82 00 0C */	bne lbl_80D2785C
 /* 80D27854  38 60 00 01 */	li r3, 1

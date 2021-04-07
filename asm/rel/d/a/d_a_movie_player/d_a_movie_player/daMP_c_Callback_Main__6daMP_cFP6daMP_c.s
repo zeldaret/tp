@@ -2,8 +2,8 @@ lbl_80878F38:
 /* 80878F38  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80878F3C  7C 08 02 A6 */	mflr r0
 /* 80878F40  90 01 00 14 */	stw r0, 0x14(r1)
-/* 80878F44  3C 80 80 94 */	lis r4, daMP_Fail_alloc@ha
-/* 80878F48  80 04 5B 08 */	lwz r0, daMP_Fail_alloc@l(r4)
+/* 80878F44  3C 80 80 94 */	lis r4, daMP_Fail_alloc@ha /* 0x80945B08@ha */
+/* 80878F48  80 04 5B 08 */	lwz r0, daMP_Fail_alloc@l(r4)  /* 0x80945B08@l */
 /* 80878F4C  2C 00 00 00 */	cmpwi r0, 0
 /* 80878F50  41 82 00 0C */	beq lbl_80878F5C
 /* 80878F54  38 60 00 01 */	li r3, 1

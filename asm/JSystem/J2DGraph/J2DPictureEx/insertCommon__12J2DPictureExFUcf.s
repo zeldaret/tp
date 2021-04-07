@@ -99,8 +99,8 @@ lbl_80304230:
 lbl_80304254:
 /* 80304254  7C 19 E8 00 */	cmpw r25, r29
 /* 80304258  41 81 FF D8 */	bgt lbl_80304230
-/* 8030425C  3C 60 80 3A */	lis r3, j2dDefaultTexMtxInfo@ha
-/* 80304260  38 63 1B A0 */	addi r3, r3, j2dDefaultTexMtxInfo@l
+/* 8030425C  3C 60 80 3A */	lis r3, j2dDefaultTexMtxInfo@ha /* 0x803A1BA0@ha */
+/* 80304260  38 63 1B A0 */	addi r3, r3, j2dDefaultTexMtxInfo@l /* 0x803A1BA0@l */
 /* 80304264  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80304268  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 8030426C  C0 03 00 08 */	lfs f0, 8(r3)

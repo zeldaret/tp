@@ -7,8 +7,8 @@ lbl_802854D0:
 /* 802854E4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802854E8  7C 9F 23 78 */	mr r31, r4
 /* 802854EC  41 82 00 58 */	beq lbl_80285544
-/* 802854F0  3C 60 80 3C */	lis r3, __vt__Q27JStudio8TFactory@ha
-/* 802854F4  38 03 4A E0 */	addi r0, r3, __vt__Q27JStudio8TFactory@l
+/* 802854F0  3C 60 80 3C */	lis r3, __vt__Q27JStudio8TFactory@ha /* 0x803C4AE0@ha */
+/* 802854F4  38 03 4A E0 */	addi r0, r3, __vt__Q27JStudio8TFactory@l /* 0x803C4AE0@l */
 /* 802854F8  90 1E 00 00 */	stw r0, 0(r30)
 /* 802854FC  38 7E 00 14 */	addi r3, r30, 0x14
 /* 80285500  38 80 FF FF */	li r4, -1

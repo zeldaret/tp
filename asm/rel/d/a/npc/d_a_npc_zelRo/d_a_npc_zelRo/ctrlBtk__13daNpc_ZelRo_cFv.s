@@ -15,13 +15,13 @@ lbl_80B72C18:
 /* 80B72C4C  54 00 04 3E */	clrlwi r0, r0, 0x10
 /* 80B72C50  7C 00 1E 70 */	srawi r0, r0, 3
 /* 80B72C54  54 00 18 38 */	slwi r0, r0, 3
-/* 80B72C58  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha
-/* 80B72C5C  38 A4 9A 20 */	addi r5, r4, sincosTable___5JMath@l
+/* 80B72C58  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 80B72C5C  38 A4 9A 20 */	addi r5, r4, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 80B72C60  7C 05 04 2E */	lfsx f0, r5, r0
-/* 80B72C64  3C 80 80 B7 */	lis r4, lit_4557@ha
-/* 80B72C68  C0 44 4D 0C */	lfs f2, lit_4557@l(r4)
-/* 80B72C6C  3C 80 80 B7 */	lis r4, lit_4184@ha
-/* 80B72C70  C0 24 4D 00 */	lfs f1, lit_4184@l(r4)
+/* 80B72C64  3C 80 80 B7 */	lis r4, lit_4557@ha /* 0x80B74D0C@ha */
+/* 80B72C68  C0 44 4D 0C */	lfs f2, lit_4557@l(r4)  /* 0x80B74D0C@l */
+/* 80B72C6C  3C 80 80 B7 */	lis r4, lit_4184@ha /* 0x80B74D00@ha */
+/* 80B72C70  C0 24 4D 00 */	lfs f1, lit_4184@l(r4)  /* 0x80B74D00@l */
 /* 80B72C74  EC 01 00 32 */	fmuls f0, f1, f0
 /* 80B72C78  EC 02 00 32 */	fmuls f0, f2, f0
 /* 80B72C7C  D0 06 00 FC */	stfs f0, 0xfc(r6)

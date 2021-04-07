@@ -3,23 +3,23 @@ lbl_8060DAC0:
 /* 8060DAC4  7C 08 02 A6 */	mflr r0
 /* 8060DAC8  90 01 00 44 */	stw r0, 0x44(r1)
 /* 8060DACC  39 61 00 40 */	addi r11, r1, 0x40
-/* 8060DAD0  4B D5 47 0C */	b _savegpr_29
+/* 8060DAD0  4B D5 47 0D */	bl _savegpr_29
 /* 8060DAD4  7C 7E 1B 78 */	mr r30, r3
-/* 8060DAD8  3C 60 80 61 */	lis r3, lit_3928@ha
-/* 8060DADC  3B E3 FD E0 */	addi r31, r3, lit_3928@l
+/* 8060DAD8  3C 60 80 61 */	lis r3, lit_3928@ha /* 0x8060FDE0@ha */
+/* 8060DADC  3B E3 FD E0 */	addi r31, r3, lit_3928@l /* 0x8060FDE0@l */
 /* 8060DAE0  88 1E 0B 0B */	lbz r0, 0xb0b(r30)
 /* 8060DAE4  28 00 00 02 */	cmplwi r0, 2
 /* 8060DAE8  41 80 00 5C */	blt lbl_8060DB44
 /* 8060DAEC  38 60 00 07 */	li r3, 7
 /* 8060DAF0  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 8060DAF4  7C 04 07 74 */	extsb r4, r0
-/* 8060DAF8  4B A2 00 6C */	b dComIfGs_isOneZoneSwitch__Fii
+/* 8060DAF8  4B A2 00 6D */	bl dComIfGs_isOneZoneSwitch__Fii
 /* 8060DAFC  2C 03 00 00 */	cmpwi r3, 0
 /* 8060DB00  40 82 00 14 */	bne lbl_8060DB14
 /* 8060DB04  38 60 00 07 */	li r3, 7
 /* 8060DB08  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 8060DB0C  7C 04 07 74 */	extsb r4, r0
-/* 8060DB10  4B A1 FF 8C */	b dComIfGs_onOneZoneSwitch__Fii
+/* 8060DB10  4B A1 FF 8D */	bl dComIfGs_onOneZoneSwitch__Fii
 lbl_8060DB14:
 /* 8060DB14  48 00 22 A1 */	bl checkNowWolf__9daPy_py_cFv
 /* 8060DB18  28 03 00 00 */	cmplwi r3, 0
@@ -27,13 +27,13 @@ lbl_8060DB14:
 /* 8060DB20  38 60 00 08 */	li r3, 8
 /* 8060DB24  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 8060DB28  7C 04 07 74 */	extsb r4, r0
-/* 8060DB2C  4B A1 FF 70 */	b dComIfGs_onOneZoneSwitch__Fii
+/* 8060DB2C  4B A1 FF 71 */	bl dComIfGs_onOneZoneSwitch__Fii
 /* 8060DB30  48 00 00 14 */	b lbl_8060DB44
 lbl_8060DB34:
 /* 8060DB34  38 60 00 08 */	li r3, 8
 /* 8060DB38  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 8060DB3C  7C 04 07 74 */	extsb r4, r0
-/* 8060DB40  4B A1 FF C0 */	b dComIfGs_offOneZoneSwitch__Fii
+/* 8060DB40  4B A1 FF C1 */	bl dComIfGs_offOneZoneSwitch__Fii
 lbl_8060DB44:
 /* 8060DB44  88 1E 0A FF */	lbz r0, 0xaff(r30)
 /* 8060DB48  28 00 00 04 */	cmplwi r0, 4
@@ -47,10 +47,10 @@ lbl_8060DB44:
 /* 8060DB68  88 1E 0A F9 */	lbz r0, 0xaf9(r30)
 /* 8060DB6C  28 00 00 0A */	cmplwi r0, 0xa
 /* 8060DB70  41 82 02 18 */	beq lbl_8060DD88
-/* 8060DB74  3C 60 80 60 */	lis r3, s_obj_sub__FPvPv@ha
-/* 8060DB78  38 63 5C AC */	addi r3, r3, s_obj_sub__FPvPv@l
+/* 8060DB74  3C 60 80 60 */	lis r3, s_obj_sub__FPvPv@ha /* 0x80605CAC@ha */
+/* 8060DB78  38 63 5C AC */	addi r3, r3, s_obj_sub__FPvPv@l /* 0x80605CAC@l */
 /* 8060DB7C  7F C4 F3 78 */	mr r4, r30
-/* 8060DB80  4B A1 37 B8 */	b fpcEx_Search__FPFPvPv_PvPv
+/* 8060DB80  4B A1 37 B9 */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 8060DB84  28 03 00 00 */	cmplwi r3, 0
 /* 8060DB88  41 82 00 2C */	beq lbl_8060DBB4
 /* 8060DB8C  88 7E 0B 0B */	lbz r3, 0xb0b(r30)
@@ -65,8 +65,8 @@ lbl_8060DBA0:
 /* 8060DBAC  4B FF 9E 81 */	bl setActionMode__9daB_MGN_cFii
 /* 8060DBB0  48 00 01 D8 */	b lbl_8060DD88
 lbl_8060DBB4:
-/* 8060DBB4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8060DBB8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8060DBB4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8060DBB8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8060DBBC  83 A3 5D AC */	lwz r29, 0x5dac(r3)
 /* 8060DBC0  7F A3 EB 78 */	mr r3, r29
 /* 8060DBC4  81 9D 06 28 */	lwz r12, 0x628(r29)
@@ -75,8 +75,8 @@ lbl_8060DBB4:
 /* 8060DBD0  4E 80 04 21 */	bctrl 
 /* 8060DBD4  28 03 00 00 */	cmplwi r3, 0
 /* 8060DBD8  41 82 01 B0 */	beq lbl_8060DD88
-/* 8060DBDC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8060DBE0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8060DBDC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8060DBE0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8060DBE4  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 8060DBE8  54 00 05 6B */	rlwinm. r0, r0, 0, 0x15, 0x15
 /* 8060DBEC  40 82 01 9C */	bne lbl_8060DD88
@@ -98,7 +98,7 @@ lbl_8060DBB4:
 /* 8060DC2C  D0 41 00 20 */	stfs f2, 0x20(r1)
 /* 8060DC30  38 61 00 0C */	addi r3, r1, 0xc
 /* 8060DC34  38 81 00 18 */	addi r4, r1, 0x18
-/* 8060DC38  4B D3 97 64 */	b PSVECSquareDistance
+/* 8060DC38  4B D3 97 65 */	bl PSVECSquareDistance
 /* 8060DC3C  C0 1F 00 04 */	lfs f0, 4(r31)
 /* 8060DC40  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8060DC44  40 81 00 58 */	ble lbl_8060DC9C
@@ -127,8 +127,8 @@ lbl_8060DC9C:
 /* 8060DC9C  C8 1F 00 20 */	lfd f0, 0x20(r31)
 /* 8060DCA0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8060DCA4  40 80 00 10 */	bge lbl_8060DCB4
-/* 8060DCA8  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8060DCAC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8060DCA8  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8060DCAC  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8060DCB0  48 00 00 70 */	b lbl_8060DD20
 lbl_8060DCB4:
 /* 8060DCB4  D0 21 00 08 */	stfs f1, 8(r1)
@@ -162,8 +162,8 @@ lbl_8060DD0C:
 lbl_8060DD10:
 /* 8060DD10  2C 00 00 01 */	cmpwi r0, 1
 /* 8060DD14  40 82 00 0C */	bne lbl_8060DD20
-/* 8060DD18  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8060DD1C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8060DD18  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8060DD1C  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_8060DD20:
 /* 8060DD20  C0 1F 00 44 */	lfs f0, 0x44(r31)
 /* 8060DD24  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -175,11 +175,11 @@ lbl_8060DD20:
 /* 8060DD3C  4E 80 04 21 */	bctrl 
 /* 8060DD40  7C 64 1B 78 */	mr r4, r3
 /* 8060DD44  38 7E 04 D0 */	addi r3, r30, 0x4d0
-/* 8060DD48  4B C6 2E BC */	b cLib_targetAngleY__FPC3VecPC3Vec
+/* 8060DD48  4B C6 2E BD */	bl cLib_targetAngleY__FPC3VecPC3Vec
 /* 8060DD4C  A8 1E 04 DE */	lha r0, 0x4de(r30)
 /* 8060DD50  7C 03 00 50 */	subf r0, r3, r0
 /* 8060DD54  7C 03 07 34 */	extsh r3, r0
-/* 8060DD58  4B D5 73 78 */	b abs
+/* 8060DD58  4B D5 73 79 */	bl abs
 /* 8060DD5C  2C 03 20 00 */	cmpwi r3, 0x2000
 /* 8060DD60  40 80 00 28 */	bge lbl_8060DD88
 /* 8060DD64  88 7E 0B 0B */	lbz r3, 0xb0b(r30)
@@ -194,7 +194,7 @@ lbl_8060DD78:
 /* 8060DD84  4B FF 9C A9 */	bl setActionMode__9daB_MGN_cFii
 lbl_8060DD88:
 /* 8060DD88  39 61 00 40 */	addi r11, r1, 0x40
-/* 8060DD8C  4B D5 44 9C */	b _restgpr_29
+/* 8060DD8C  4B D5 44 9D */	bl _restgpr_29
 /* 8060DD90  80 01 00 44 */	lwz r0, 0x44(r1)
 /* 8060DD94  7C 08 03 A6 */	mtlr r0
 /* 8060DD98  38 21 00 40 */	addi r1, r1, 0x40

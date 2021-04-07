@@ -3,19 +3,20 @@
 #
 
 M401_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_balloon.plf
+M401_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_balloon.lcf
+M401_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_balloon.map
 
 M401_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_balloon/executor.cpp \
-	rel/d/a/obj/d_a_obj_balloon/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_balloon/d_a_obj_balloon.cpp \
 
 M401_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_balloon/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_balloon/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_balloon/d_a_obj_balloon.o \
 
 M401_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_balloon/libRuntime.PPCEABI.H.a \
 
 M401_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M401_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M401_LDSCRIPT) \
+	-unused -map $(M401_MAP) \
+	-w off \
 
 $(M401_TARGET): $(M401_O_FILES) $(M401_LIBS)
+	@echo [401] creating $(M401_TARGET)
 	@echo $(M401_LIBS) $(M401_O_FILES) > build/M401_ofiles
-	$(LD) -partial $(M401_LDFLAGS) -o $(M401_TARGET) @build/M401_ofiles
+	@python3 tools/lcf.py rel 401 --output $(M401_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M401_LDFLAGS) -o $(M401_TARGET) @build/M401_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_balloon/%.o: rel/d/a/obj/d_a_obj_balloon/%.cpp
+	@echo [401] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M401_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M401_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_balloon/libs/Runtime.PPCEABI.H/Makefile
 

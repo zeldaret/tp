@@ -3,20 +3,20 @@ lbl_80C0F17C:
 /* 80C0F180  7C 08 02 A6 */	mflr r0
 /* 80C0F184  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80C0F188  39 61 00 30 */	addi r11, r1, 0x30
-/* 80C0F18C  4B 75 30 50 */	b _savegpr_29
+/* 80C0F18C  4B 75 30 51 */	bl _savegpr_29
 /* 80C0F190  7C 7D 1B 78 */	mr r29, r3
 /* 80C0F194  7C 9E 23 78 */	mr r30, r4
 /* 80C0F198  7C DF 33 78 */	mr r31, r6
 /* 80C0F19C  80 03 1F CC */	lwz r0, 0x1fcc(r3)
 /* 80C0F1A0  2C 00 00 00 */	cmpwi r0, 0
 /* 80C0F1A4  40 82 00 EC */	bne lbl_80C0F290
-/* 80C0F1A8  3C 80 80 C1 */	lis r4, lit_10292@ha
-/* 80C0F1AC  C0 44 FD E0 */	lfs f2, lit_10292@l(r4)
+/* 80C0F1A8  3C 80 80 C1 */	lis r4, lit_10292@ha /* 0x80C0FDE0@ha */
+/* 80C0F1AC  C0 44 FD E0 */	lfs f2, lit_10292@l(r4)  /* 0x80C0FDE0@l */
 /* 80C0F1B0  A8 1D 09 1C */	lha r0, 0x91c(r29)
 /* 80C0F1B4  7C 00 F0 50 */	subf r0, r0, r30
 /* 80C0F1B8  7C 00 07 34 */	extsh r0, r0
-/* 80C0F1BC  3C 80 80 C1 */	lis r4, lit_4501@ha
-/* 80C0F1C0  C8 24 FB AC */	lfd f1, lit_4501@l(r4)
+/* 80C0F1BC  3C 80 80 C1 */	lis r4, lit_4501@ha /* 0x80C0FBAC@ha */
+/* 80C0F1C0  C8 24 FB AC */	lfd f1, lit_4501@l(r4)  /* 0x80C0FBAC@l */
 /* 80C0F1C4  6C 00 80 00 */	xoris r0, r0, 0x8000
 /* 80C0F1C8  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80C0F1CC  3C 00 43 30 */	lis r0, 0x4330
@@ -37,8 +37,8 @@ lbl_80C0F17C:
 /* 80C0F208  7C 00 28 00 */	cmpw r0, r5
 /* 80C0F20C  41 82 00 14 */	beq lbl_80C0F220
 /* 80C0F210  7C A4 2B 78 */	mr r4, r5
-/* 80C0F214  3C A0 80 C1 */	lis r5, lit_7003@ha
-/* 80C0F218  C0 25 FD 10 */	lfs f1, lit_7003@l(r5)
+/* 80C0F214  3C A0 80 C1 */	lis r5, lit_7003@ha /* 0x80C0FD10@ha */
+/* 80C0F218  C0 25 FD 10 */	lfs f1, lit_7003@l(r5)  /* 0x80C0FD10@l */
 /* 80C0F21C  4B FF 25 91 */	bl setFaceMotion__11daObj_GrA_cFif
 lbl_80C0F220:
 /* 80C0F220  2C 1F 00 00 */	cmpwi r31, 0
@@ -48,8 +48,8 @@ lbl_80C0F220:
 /* 80C0F230  41 82 00 18 */	beq lbl_80C0F248
 /* 80C0F234  7F A3 EB 78 */	mr r3, r29
 /* 80C0F238  7F E4 FB 78 */	mr r4, r31
-/* 80C0F23C  3C A0 80 C1 */	lis r5, lit_7003@ha
-/* 80C0F240  C0 25 FD 10 */	lfs f1, lit_7003@l(r5)
+/* 80C0F23C  3C A0 80 C1 */	lis r5, lit_7003@ha /* 0x80C0FD10@ha */
+/* 80C0F240  C0 25 FD 10 */	lfs f1, lit_7003@l(r5)  /* 0x80C0FD10@l */
 /* 80C0F244  4B FF 25 49 */	bl setBaseMotion__11daObj_GrA_cFif
 lbl_80C0F248:
 /* 80C0F248  B3 DD 1F D6 */	sth r30, 0x1fd6(r29)
@@ -75,8 +75,8 @@ lbl_80C0F290:
 /* 80C0F290  2C 00 00 01 */	cmpwi r0, 1
 /* 80C0F294  40 82 00 68 */	bne lbl_80C0F2FC
 /* 80C0F298  A8 9D 1F D6 */	lha r4, 0x1fd6(r29)
-/* 80C0F29C  3C A0 80 C1 */	lis r5, lit_4501@ha
-/* 80C0F2A0  C8 25 FB AC */	lfd f1, lit_4501@l(r5)
+/* 80C0F29C  3C A0 80 C1 */	lis r5, lit_4501@ha /* 0x80C0FBAC@ha */
+/* 80C0F2A0  C8 25 FB AC */	lfd f1, lit_4501@l(r5)  /* 0x80C0FBAC@l */
 /* 80C0F2A4  6C E0 80 00 */	xoris r0, r7, 0x8000
 /* 80C0F2A8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80C0F2AC  3C 00 43 30 */	lis r0, 0x4330
@@ -109,7 +109,7 @@ lbl_80C0F2FC:
 /* 80C0F310  7C 00 18 50 */	subf r0, r0, r3
 /* 80C0F314  54 03 0F FE */	srwi r3, r0, 0x1f
 /* 80C0F318  39 61 00 30 */	addi r11, r1, 0x30
-/* 80C0F31C  4B 75 2F 0C */	b _restgpr_29
+/* 80C0F31C  4B 75 2F 0D */	bl _restgpr_29
 /* 80C0F320  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80C0F324  7C 08 03 A6 */	mtlr r0
 /* 80C0F328  38 21 00 30 */	addi r1, r1, 0x30

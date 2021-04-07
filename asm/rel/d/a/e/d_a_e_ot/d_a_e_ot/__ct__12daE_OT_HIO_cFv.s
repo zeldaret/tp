@@ -1,8 +1,8 @@
 lbl_8073A2CC:
-/* 8073A2CC  3C 80 80 74 */	lis r4, lit_3910@ha
-/* 8073A2D0  38 A4 CE A8 */	addi r5, r4, lit_3910@l
-/* 8073A2D4  3C 80 80 74 */	lis r4, __vt__12daE_OT_HIO_c@ha
-/* 8073A2D8  38 04 D2 58 */	addi r0, r4, __vt__12daE_OT_HIO_c@l
+/* 8073A2CC  3C 80 80 74 */	lis r4, lit_3910@ha /* 0x8073CEA8@ha */
+/* 8073A2D0  38 A4 CE A8 */	addi r5, r4, lit_3910@l /* 0x8073CEA8@l */
+/* 8073A2D4  3C 80 80 74 */	lis r4, __vt__12daE_OT_HIO_c@ha /* 0x8073D258@ha */
+/* 8073A2D8  38 04 D2 58 */	addi r0, r4, __vt__12daE_OT_HIO_c@l /* 0x8073D258@l */
 /* 8073A2DC  90 03 00 00 */	stw r0, 0(r3)
 /* 8073A2E0  38 00 FF FF */	li r0, -1
 /* 8073A2E4  98 03 00 04 */	stb r0, 4(r3)

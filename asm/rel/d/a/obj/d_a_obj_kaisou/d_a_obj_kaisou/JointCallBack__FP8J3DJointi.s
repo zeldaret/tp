@@ -5,8 +5,8 @@ lbl_80C34288:
 /* 80C34294  7C 60 1B 78 */	mr r0, r3
 /* 80C34298  2C 04 00 00 */	cmpwi r4, 0
 /* 80C3429C  40 82 00 24 */	bne lbl_80C342C0
-/* 80C342A0  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80C342A4  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80C342A0  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80C342A4  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80C342A8  80 A3 00 38 */	lwz r5, 0x38(r3)
 /* 80C342AC  80 65 00 14 */	lwz r3, 0x14(r5)
 /* 80C342B0  28 03 00 00 */	cmplwi r3, 0

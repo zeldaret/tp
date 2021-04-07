@@ -5,12 +5,12 @@ lbl_8027D678:
 /* 8027D684  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8027D688  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8027D68C  41 82 00 30 */	beq lbl_8027D6BC
-/* 8027D690  3C 60 80 3C */	lis r3, __vt__11JPAFieldAir@ha
-/* 8027D694  38 03 45 6C */	addi r0, r3, __vt__11JPAFieldAir@l
+/* 8027D690  3C 60 80 3C */	lis r3, __vt__11JPAFieldAir@ha /* 0x803C456C@ha */
+/* 8027D694  38 03 45 6C */	addi r0, r3, __vt__11JPAFieldAir@l /* 0x803C456C@l */
 /* 8027D698  90 1F 00 00 */	stw r0, 0(r31)
 /* 8027D69C  41 82 00 10 */	beq lbl_8027D6AC
-/* 8027D6A0  3C 60 80 3C */	lis r3, __vt__12JPAFieldBase@ha
-/* 8027D6A4  38 03 44 CC */	addi r0, r3, __vt__12JPAFieldBase@l
+/* 8027D6A0  3C 60 80 3C */	lis r3, __vt__12JPAFieldBase@ha /* 0x803C44CC@ha */
+/* 8027D6A4  38 03 44 CC */	addi r0, r3, __vt__12JPAFieldBase@l /* 0x803C44CC@l */
 /* 8027D6A8  90 1F 00 00 */	stw r0, 0(r31)
 lbl_8027D6AC:
 /* 8027D6AC  7C 80 07 35 */	extsh. r0, r4

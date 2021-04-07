@@ -81,14 +81,10 @@ extern "C" void emitter_create__Q217JStudio_JParticle13TCreateObjectFUl();
 extern "C" void emitter_destroy__Q217JStudio_JParticle13TCreateObjectFP14JPABaseEmitter();
 extern "C" void
 createObject_JPA_PARTICLE___Q217JStudio_JParticle13TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ217JStudio_JParticle13TCreateObject();
-extern "C" extern void* __vt__Q217JStudio_JParticle13TCreateObject[6];
 
 //
 // External References:
 //
-
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void func_8027DEBC();
 extern "C" void forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter();
@@ -107,10 +103,10 @@ extern "C" void _restgpr_29();
 //
 
 /* ############################################################################################## */
-/* 803C5AD8-803C5AF0 0018+00 s=1 e=1 z=0  None .data      __vt__Q217JStudio_JParticle13TCreateObject
+/* 803C5AD8-803C5AF0 022BF8 0018+00 1/1 1/1 0/0 .data __vt__Q217JStudio_JParticle13TCreateObject
  */
-SECTION_DATA void* __vt__Q217JStudio_JParticle13TCreateObject[6] = {
-    (void*)NULL,
+SECTION_DATA extern void* __vt__Q217JStudio_JParticle13TCreateObject[6] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__Q217JStudio_JParticle13TCreateObjectFv,
     (void*)
@@ -119,7 +115,7 @@ SECTION_DATA void* __vt__Q217JStudio_JParticle13TCreateObject[6] = {
     (void*)emitter_destroy__Q217JStudio_JParticle13TCreateObjectFP14JPABaseEmitter,
 };
 
-/* 8028E3A0-8028E400 0060+00 s=1 e=1 z=0  None .text __dt__Q217JStudio_JParticle13TCreateObjectFv
+/* 8028E3A0-8028E400 288CE0 0060+00 1/0 1/1 0/0 .text __dt__Q217JStudio_JParticle13TCreateObjectFv
  */
 #pragma push
 #pragma optimization_level 0
@@ -130,7 +126,7 @@ asm JStudio_JParticle::TCreateObject::~TCreateObject() {
 }
 #pragma pop
 
-/* 8028E400-8028E474 0074+00 s=1 e=1 z=0  None .text
+/* 8028E400-8028E474 288D40 0074+00 1/0 1/0 0/0 .text
  * create__Q217JStudio_JParticle13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
  */
 #pragma push
@@ -145,7 +141,7 @@ JStudio_JParticle::TCreateObject::create(JStudio::TObject** param_0,
 #pragma pop
 
 /* ############################################################################################## */
-/* 8039ABA8-8039ABB8 000C+04 s=1 e=0 z=0  None .rodata    @1172 */
+/* 8039ABA8-8039ABB8 027208 000C+04 1/1 0/0 0/0 .rodata          @1172 */
 SECTION_RODATA static u8 const lit_1172[12 + 4 /* padding */] = {
     0x00,
     0x00,
@@ -165,8 +161,9 @@ SECTION_RODATA static u8 const lit_1172[12 + 4 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(8039ABA8, &lit_1172);
 
-/* 8028E474-8028E4E4 0070+00 s=1 e=0 z=0  None .text
+/* 8028E474-8028E4E4 288DB4 0070+00 1/0 0/0 0/0 .text
  * emitter_create__Q217JStudio_JParticle13TCreateObjectFUl      */
 #pragma push
 #pragma optimization_level 0
@@ -177,7 +174,7 @@ asm void JStudio_JParticle::TCreateObject::emitter_create(u32 param_0) {
 }
 #pragma pop
 
-/* 8028E4E4-8028E508 0024+00 s=1 e=1 z=0  None .text
+/* 8028E4E4-8028E508 288E24 0024+00 1/0 1/0 0/0 .text
  * emitter_destroy__Q217JStudio_JParticle13TCreateObjectFP14JPABaseEmitter */
 #pragma push
 #pragma optimization_level 0
@@ -188,7 +185,7 @@ asm void JStudio_JParticle::TCreateObject::emitter_destroy(JPABaseEmitter* param
 }
 #pragma pop
 
-/* 8028E508-8028E60C 0104+00 s=1 e=0 z=0  None .text
+/* 8028E508-8028E60C 288E48 0104+00 1/1 0/0 0/0 .text
  * createObject_JPA_PARTICLE___Q217JStudio_JParticle13TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_objectPQ217JStudio_JParticle13TCreateObject
  */
 #pragma push

@@ -5,8 +5,8 @@ lbl_80C03F14:
 /* 80C03F20  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80C03F24  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80C03F28  7C 7E 1B 78 */	mr r30, r3
-/* 80C03F2C  3C A0 80 C1 */	lis r5, m__17daObj_GrA_Param_c@ha
-/* 80C03F30  3B E5 FA 7C */	addi r31, r5, m__17daObj_GrA_Param_c@l
+/* 80C03F2C  3C A0 80 C1 */	lis r5, m__17daObj_GrA_Param_c@ha /* 0x80C0FA7C@ha */
+/* 80C03F30  3B E5 FA 7C */	addi r31, r5, m__17daObj_GrA_Param_c@l /* 0x80C0FA7C@l */
 /* 80C03F34  2C 04 00 00 */	cmpwi r4, 0
 /* 80C03F38  41 82 00 10 */	beq lbl_80C03F48
 /* 80C03F3C  38 80 00 03 */	li r4, 3

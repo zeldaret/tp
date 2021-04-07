@@ -3,18 +3,16 @@
 #
 
 M531_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4bridge.plf
+M531_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4bridge.lcf
+M531_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4bridge.map
 
 M531_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv4bridge/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv4bridge/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_lv4bridge/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_lv4bridge/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_lv4bridge/d_a_obj_lv4bridge.cpp \
 
 M531_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4bridge/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4bridge/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4bridge/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4bridge/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4bridge/d_a_obj_lv4bridge.o \
 
@@ -31,14 +29,21 @@ M531_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M531_LDSCRIPT) \
+	-unused -map $(M531_MAP) \
+	-w off \
 
 $(M531_TARGET): $(M531_O_FILES) $(M531_LIBS)
+	@echo [531] creating $(M531_TARGET)
 	@echo $(M531_LIBS) $(M531_O_FILES) > build/M531_ofiles
-	$(LD) -partial $(M531_LDFLAGS) -o $(M531_TARGET) @build/M531_ofiles
+	@python3 tools/lcf.py rel 531 --output $(M531_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M531_LDFLAGS) -o $(M531_TARGET) @build/M531_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4bridge/%.o: rel/d/a/obj/d_a_obj_lv4bridge/%.cpp
+	@echo [531] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M531_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M531_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

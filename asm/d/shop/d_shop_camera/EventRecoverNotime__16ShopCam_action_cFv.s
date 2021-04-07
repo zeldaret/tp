@@ -8,8 +8,8 @@ lbl_8019635C:
 /* 80196374  B0 03 00 D8 */	sth r0, 0xd8(r3)
 /* 80196378  4B FE B2 C9 */	bl dCam_getBody__Fv
 /* 8019637C  4B FE A6 C5 */	bl EventRecoverNotime__9dCamera_cFv
-/* 80196380  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 80196384  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 80196380  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80196384  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 80196388  80 64 00 00 */	lwz r3, 0(r4)
 /* 8019638C  80 04 00 04 */	lwz r0, 4(r4)
 /* 80196390  90 7F 00 00 */	stw r3, 0(r31)

@@ -3,19 +3,20 @@
 #
 
 M138_TARGET := $(BUILD_DIR)/rel/d/a/b/d_a_b_bh.plf
+M138_LDSCRIPT := $(BUILD_DIR)/rel/d/a/b/d_a_b_bh.lcf
+M138_MAP := $(BUILD_DIR)/rel/d/a/b/d_a_b_bh.map
 
 M138_CPP_FILES := \
-	rel/d/a/b/d_a_b_bh/executor.cpp \
-	rel/d/a/b/d_a_b_bh/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/b/d_a_b_bh/d_a_b_bh.cpp \
 
 M138_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_bh/executor.o \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_bh/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/b/d_a_b_bh/d_a_b_bh.o \
 
 M138_LIBS := \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_bh/libRuntime.PPCEABI.H.a \
 
 M138_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M138_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M138_LDSCRIPT) \
+	-unused -map $(M138_MAP) \
+	-w off \
 
 $(M138_TARGET): $(M138_O_FILES) $(M138_LIBS)
+	@echo [138] creating $(M138_TARGET)
 	@echo $(M138_LIBS) $(M138_O_FILES) > build/M138_ofiles
-	$(LD) -partial $(M138_LDFLAGS) -o $(M138_TARGET) @build/M138_ofiles
+	@python3 tools/lcf.py rel 138 --output $(M138_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M138_LDFLAGS) -o $(M138_TARGET) @build/M138_ofiles
 
 $(BUILD_DIR)/rel/d/a/b/d_a_b_bh/%.o: rel/d/a/b/d_a_b_bh/%.cpp
+	@echo [138] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M138_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M138_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/b/d_a_b_bh/libs/Runtime.PPCEABI.H/Makefile
 

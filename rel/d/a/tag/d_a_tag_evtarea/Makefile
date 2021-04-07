@@ -3,17 +3,15 @@
 #
 
 M32_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtarea.plf
+M32_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtarea.lcf
+M32_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtarea.map
 
 M32_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_evtarea/executor.cpp \
-	rel/d/a/tag/d_a_tag_evtarea/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_evtarea/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_evtarea/d_a_tag_evtarea.cpp \
 
 M32_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtarea/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtarea/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtarea/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtarea/d_a_tag_evtarea.o \
 
 M32_LIBS := \
@@ -29,14 +27,21 @@ M32_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M32_LDSCRIPT) \
+	-unused -map $(M32_MAP) \
+	-w off \
 
 $(M32_TARGET): $(M32_O_FILES) $(M32_LIBS)
+	@echo [ 32] creating $(M32_TARGET)
 	@echo $(M32_LIBS) $(M32_O_FILES) > build/M32_ofiles
-	$(LD) -partial $(M32_LDFLAGS) -o $(M32_TARGET) @build/M32_ofiles
+	@python3 tools/lcf.py rel 32 --output $(M32_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M32_LDFLAGS) -o $(M32_TARGET) @build/M32_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_evtarea/%.o: rel/d/a/tag/d_a_tag_evtarea/%.cpp
+	@echo [ 32] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M32_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M32_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

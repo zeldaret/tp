@@ -10,17 +10,17 @@ lbl_8059E230:
 /* 8059E250  40 82 00 1C */	bne lbl_8059E26C
 /* 8059E254  28 1E 00 00 */	cmplwi r30, 0
 /* 8059E258  41 82 00 08 */	beq lbl_8059E260
-/* 8059E25C  4B A7 A9 08 */	b __ct__10fopAc_ac_cFv
+/* 8059E25C  4B A7 A9 09 */	bl __ct__10fopAc_ac_cFv
 lbl_8059E260:
 /* 8059E260  80 1E 04 A0 */	lwz r0, 0x4a0(r30)
 /* 8059E264  60 00 00 08 */	ori r0, r0, 8
 /* 8059E268  90 1E 04 A0 */	stw r0, 0x4a0(r30)
 lbl_8059E26C:
 /* 8059E26C  38 7E 05 68 */	addi r3, r30, 0x568
-/* 8059E270  3C 80 80 5A */	lis r4, l_arcName@ha
-/* 8059E274  38 84 E8 58 */	addi r4, r4, l_arcName@l
+/* 8059E270  3C 80 80 5A */	lis r4, l_arcName@ha /* 0x8059E858@ha */
+/* 8059E274  38 84 E8 58 */	addi r4, r4, l_arcName@l /* 0x8059E858@l */
 /* 8059E278  80 84 00 00 */	lwz r4, 0(r4)
-/* 8059E27C  4B A8 EC 40 */	b dComIfG_resLoad__FP30request_of_phase_process_classPCc
+/* 8059E27C  4B A8 EC 41 */	bl dComIfG_resLoad__FP30request_of_phase_process_classPCc
 /* 8059E280  7C 7F 1B 78 */	mr r31, r3
 /* 8059E284  2C 1F 00 04 */	cmpwi r31, 4
 /* 8059E288  40 82 00 1C */	bne lbl_8059E2A4

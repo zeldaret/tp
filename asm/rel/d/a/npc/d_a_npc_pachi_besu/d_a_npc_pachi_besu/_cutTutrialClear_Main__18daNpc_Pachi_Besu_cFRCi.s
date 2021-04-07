@@ -3,8 +3,8 @@ lbl_80A94E38:
 /* 80A94E3C  7C 08 02 A6 */	mflr r0
 /* 80A94E40  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80A94E44  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 80A94E48  3C A0 80 A9 */	lis r5, m__24daNpc_Pachi_Besu_Param_c@ha
-/* 80A94E4C  38 A5 6A 6C */	addi r5, r5, m__24daNpc_Pachi_Besu_Param_c@l
+/* 80A94E48  3C A0 80 A9 */	lis r5, m__24daNpc_Pachi_Besu_Param_c@ha /* 0x80A96A6C@ha */
+/* 80A94E4C  38 A5 6A 6C */	addi r5, r5, m__24daNpc_Pachi_Besu_Param_c@l /* 0x80A96A6C@l */
 /* 80A94E50  3B E0 00 00 */	li r31, 0
 /* 80A94E54  80 04 00 00 */	lwz r0, 0(r4)
 /* 80A94E58  2C 00 00 0A */	cmpwi r0, 0xa

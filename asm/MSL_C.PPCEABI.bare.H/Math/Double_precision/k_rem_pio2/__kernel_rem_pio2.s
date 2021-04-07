@@ -8,11 +8,11 @@ lbl_8036AB9C:
 /* 8036ABB4  3D 20 2A AB */	lis r9, 0x2AAB /* 0x2AAAAAAB@ha */
 /* 8036ABB8  7C F7 3B 78 */	mr r23, r7
 /* 8036ABBC  38 05 FF FD */	addi r0, r5, -3
-/* 8036ABC0  3D 40 80 3A */	lis r10, init_jk@ha
+/* 8036ABC0  3D 40 80 3A */	lis r10, init_jk@ha /* 0x803A2538@ha */
 /* 8036ABC4  38 E9 AA AB */	addi r7, r9, 0xAAAB /* 0x2AAAAAAB@l */
 /* 8036ABC8  56 E9 10 3A */	slwi r9, r23, 2
 /* 8036ABCC  7C 07 00 96 */	mulhw r0, r7, r0
-/* 8036ABD0  38 EA 25 38 */	addi r7, r10, init_jk@l
+/* 8036ABD0  38 EA 25 38 */	addi r7, r10, init_jk@l /* 0x803A2538@l */
 /* 8036ABD4  7F 87 48 2E */	lwzx r28, r7, r9
 /* 8036ABD8  7C 75 1B 78 */	mr r21, r3
 /* 8036ABDC  7C 96 23 78 */	mr r22, r4
@@ -646,11 +646,11 @@ lbl_8036B4C4:
 /* 8036B4EC  38 E7 FF F8 */	addi r7, r7, -8
 /* 8036B4F0  42 00 FF D4 */	bdnz lbl_8036B4C4
 lbl_8036B4F4:
-/* 8036B4F4  3C 60 80 3A */	lis r3, PIo2@ha
+/* 8036B4F4  3C 60 80 3A */	lis r3, PIo2@ha /* 0x803A2548@ha */
 /* 8036B4F8  38 1F 00 01 */	addi r0, r31, 1
 /* 8036B4FC  7F E9 FB 78 */	mr r9, r31
 /* 8036B500  38 81 00 58 */	addi r4, r1, 0x58
-/* 8036B504  38 A3 25 48 */	addi r5, r3, PIo2@l
+/* 8036B504  38 A3 25 48 */	addi r5, r3, PIo2@l /* 0x803A2548@l */
 /* 8036B508  38 61 00 F8 */	addi r3, r1, 0xf8
 /* 8036B50C  7C 09 03 A6 */	mtctr r0
 /* 8036B510  2C 1F 00 00 */	cmpwi r31, 0

@@ -7,7 +7,7 @@ lbl_80B4A638:
 /* 80B4A64C  7C 7E 1B 78 */	mr r30, r3
 /* 80B4A650  3B E0 FF FF */	li r31, -1
 /* 80B4A654  38 60 02 3A */	li r3, 0x23a
-/* 80B4A658  4B 60 24 54 */	b daNpcT_chkEvtBit__FUl
+/* 80B4A658  4B 60 24 55 */	bl daNpcT_chkEvtBit__FUl
 /* 80B4A65C  2C 03 00 00 */	cmpwi r3, 0
 /* 80B4A660  41 82 00 0C */	beq lbl_80B4A66C
 /* 80B4A664  3B E0 03 26 */	li r31, 0x326

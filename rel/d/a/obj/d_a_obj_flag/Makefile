@@ -3,17 +3,15 @@
 #
 
 M449_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag.plf
+M449_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag.lcf
+M449_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag.map
 
 M449_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_flag/executor.cpp \
-	rel/d/a/obj/d_a_obj_flag/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_flag/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_flag/d_a_obj_flag.cpp \
 
 M449_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag/d_a_obj_flag.o \
 
 M449_LIBS := \
@@ -29,14 +27,21 @@ M449_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M449_LDSCRIPT) \
+	-unused -map $(M449_MAP) \
+	-w off \
 
 $(M449_TARGET): $(M449_O_FILES) $(M449_LIBS)
+	@echo [449] creating $(M449_TARGET)
 	@echo $(M449_LIBS) $(M449_O_FILES) > build/M449_ofiles
-	$(LD) -partial $(M449_LDFLAGS) -o $(M449_TARGET) @build/M449_ofiles
+	@python3 tools/lcf.py rel 449 --output $(M449_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M449_LDFLAGS) -o $(M449_TARGET) @build/M449_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_flag/%.o: rel/d/a/obj/d_a_obj_flag/%.cpp
+	@echo [449] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M449_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M449_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

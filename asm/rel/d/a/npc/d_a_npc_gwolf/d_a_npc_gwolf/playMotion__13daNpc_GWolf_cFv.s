@@ -5,8 +5,8 @@ lbl_809F520C:
 /* 809F5218  93 E1 00 EC */	stw r31, 0xec(r1)
 /* 809F521C  93 C1 00 E8 */	stw r30, 0xe8(r1)
 /* 809F5220  7C 7E 1B 78 */	mr r30, r3
-/* 809F5224  3C 60 80 A0 */	lis r3, m__19daNpc_GWolf_Param_c@ha
-/* 809F5228  3B E3 84 F4 */	addi r31, r3, m__19daNpc_GWolf_Param_c@l
+/* 809F5224  3C 60 80 A0 */	lis r3, m__19daNpc_GWolf_Param_c@ha /* 0x809F84F4@ha */
+/* 809F5228  3B E3 84 F4 */	addi r31, r3, m__19daNpc_GWolf_Param_c@l /* 0x809F84F4@l */
 /* 809F522C  80 7F 00 E8 */	lwz r3, 0xe8(r31)
 /* 809F5230  80 1F 00 EC */	lwz r0, 0xec(r31)
 /* 809F5234  90 61 00 B8 */	stw r3, 0xb8(r1)
@@ -162,7 +162,7 @@ lbl_809F5414:
 /* 809F5488  40 80 00 10 */	bge lbl_809F5498
 /* 809F548C  7F C3 F3 78 */	mr r3, r30
 /* 809F5490  38 81 00 C4 */	addi r4, r1, 0xc4
-/* 809F5494  4B 75 DD D0 */	b playMotionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
+/* 809F5494  4B 75 DD D1 */	bl playMotionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData
 lbl_809F5498:
 /* 809F5498  88 1E 09 F2 */	lbz r0, 0x9f2(r30)
 /* 809F549C  28 00 00 01 */	cmplwi r0, 1

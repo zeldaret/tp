@@ -3,19 +3,20 @@
 #
 
 M319_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_impal.plf
+M319_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_impal.lcf
+M319_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_impal.map
 
 M319_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_impal/executor.cpp \
-	rel/d/a/npc/d_a_npc_impal/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_impal/d_a_npc_impal.cpp \
 
 M319_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_impal/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_impal/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_impal/d_a_npc_impal.o \
 
 M319_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_impal/libRuntime.PPCEABI.H.a \
 
 M319_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M319_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M319_LDSCRIPT) \
+	-unused -map $(M319_MAP) \
+	-w off \
 
 $(M319_TARGET): $(M319_O_FILES) $(M319_LIBS)
+	@echo [319] creating $(M319_TARGET)
 	@echo $(M319_LIBS) $(M319_O_FILES) > build/M319_ofiles
-	$(LD) -partial $(M319_LDFLAGS) -o $(M319_TARGET) @build/M319_ofiles
+	@python3 tools/lcf.py rel 319 --output $(M319_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M319_LDFLAGS) -o $(M319_TARGET) @build/M319_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_impal/%.o: rel/d/a/npc/d_a_npc_impal/%.cpp
+	@echo [319] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M319_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M319_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_impal/libs/Runtime.PPCEABI.H/Makefile
 

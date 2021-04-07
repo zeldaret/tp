@@ -2,8 +2,8 @@ lbl_8005AB64:
 /* 8005AB64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005AB68  7C 08 02 A6 */	mflr r0
 /* 8005AB6C  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8005AB70  3C C0 80 43 */	lis r6, g_env_light@ha
-/* 8005AB74  38 E6 CA 54 */	addi r7, r6, g_env_light@l
+/* 8005AB70  3C C0 80 43 */	lis r6, g_env_light@ha /* 0x8042CA54@ha */
+/* 8005AB74  38 E6 CA 54 */	addi r7, r6, g_env_light@l /* 0x8042CA54@l */
 /* 8005AB78  38 C0 00 00 */	li r6, 0
 /* 8005AB7C  38 00 00 05 */	li r0, 5
 /* 8005AB80  7C 09 03 A6 */	mtctr r0
@@ -24,8 +24,8 @@ lbl_8005AB84:
 /* 8005ABB8  D0 08 08 5C */	stfs f0, 0x85c(r8)
 /* 8005ABBC  C0 03 00 08 */	lfs f0, 8(r3)
 /* 8005ABC0  D0 08 08 60 */	stfs f0, 0x860(r8)
-/* 8005ABC4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8005ABC8  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8005ABC4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8005ABC8  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8005ABCC  38 C3 00 04 */	addi r6, r3, 4
 /* 8005ABD0  54 80 04 38 */	rlwinm r0, r4, 0, 0x10, 0x1c
 /* 8005ABD4  7C 46 04 2E */	lfsx f2, r6, r0

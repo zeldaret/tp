@@ -22,21 +22,21 @@ extern "C" void abs();
 // Declarations:
 //
 
-/* 80365078-803650D0 0058+00 s=0 e=1 z=0  None .text      div */
+/* 80365078-803650D0 35F9B8 0058+00 0/0 1/1 0/0 .text            div */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void div() {
+asm void div() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/arith/div.s"
 }
 #pragma pop
 
-/* 803650D0-803650E0 0010+00 s=0 e=66 z=225  None .text      abs */
+/* 803650D0-803650E0 35FA10 0010+00 0/0 66/66 225/225 .text            abs */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void abs() {
+asm void abs() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/arith/abs.s"
 }

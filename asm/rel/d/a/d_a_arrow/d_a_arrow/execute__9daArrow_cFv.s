@@ -5,10 +5,10 @@ lbl_8049CEA0:
 /* 8049CEAC  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8049CEB0  7C 7F 1B 78 */	mr r31, r3
 /* 8049CEB4  38 7F 0A 08 */	addi r3, r31, 0xa08
-/* 8049CEB8  4B CC 1D 90 */	b setActor__16daPy_actorKeep_cFv
+/* 8049CEB8  4B CC 1D 91 */	bl setActor__16daPy_actorKeep_cFv
 /* 8049CEBC  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 8049CEC0  7C 03 07 74 */	extsb r3, r0
-/* 8049CEC4  4B B9 01 A8 */	b dComIfGp_getReverb__Fi
+/* 8049CEC4  4B B9 01 A9 */	bl dComIfGp_getReverb__Fi
 /* 8049CEC8  98 7F 09 48 */	stb r3, 0x948(r31)
 /* 8049CECC  88 1F 09 45 */	lbz r0, 0x945(r31)
 /* 8049CED0  28 00 00 00 */	cmplwi r0, 0
@@ -36,13 +36,13 @@ lbl_8049CF14:
 /* 8049CF24  38 80 00 01 */	li r4, 1
 /* 8049CF28  4B FF D2 C5 */	bl setLightChargeEffect__9daArrow_cFi
 /* 8049CF2C  7F E3 FB 78 */	mr r3, r31
-/* 8049CF30  4B B7 CD 4C */	b fopAcM_delete__FP10fopAc_ac_c
+/* 8049CF30  4B B7 CD 4D */	bl fopAcM_delete__FP10fopAc_ac_c
 /* 8049CF34  38 60 00 01 */	li r3, 1
 /* 8049CF38  48 00 01 60 */	b lbl_8049D098
 lbl_8049CF3C:
 /* 8049CF3C  A8 9F 09 4E */	lha r4, 0x94e(r31)
-/* 8049CF40  3C 60 80 45 */	lis r3, struct_80450D88+0x0@ha
-/* 8049CF44  A8 03 0D 88 */	lha r0, struct_80450D88+0x0@l(r3)
+/* 8049CF40  3C 60 80 45 */	lis r3, struct_80450D88+0x0@ha /* 0x80450D88@ha */
+/* 8049CF44  A8 03 0D 88 */	lha r0, struct_80450D88+0x0@l(r3)  /* 0x80450D88@l */
 /* 8049CF48  7C 04 00 00 */	cmpw r4, r0
 /* 8049CF4C  40 82 00 0C */	bne lbl_8049CF58
 /* 8049CF50  38 00 00 01 */	li r0, 1
@@ -56,7 +56,7 @@ lbl_8049CF58:
 lbl_8049CF6C:
 /* 8049CF6C  7F E3 FB 78 */	mr r3, r31
 /* 8049CF70  39 9F 0A 28 */	addi r12, r31, 0xa28
-/* 8049CF74  4B EC 51 10 */	b __ptmf_scall
+/* 8049CF74  4B EC 51 11 */	bl __ptmf_scall
 /* 8049CF78  60 00 00 00 */	nop 
 /* 8049CF7C  88 1F 09 3C */	lbz r0, 0x93c(r31)
 /* 8049CF80  28 00 00 01 */	cmplwi r0, 1
@@ -71,14 +71,14 @@ lbl_8049CF6C:
 /* 8049CFA4  B0 1F 09 50 */	sth r0, 0x950(r31)
 /* 8049CFA8  48 00 00 80 */	b lbl_8049D028
 lbl_8049CFAC:
-/* 8049CFAC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8049CFB0  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 8049CFAC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8049CFB0  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8049CFB4  38 A4 00 04 */	addi r5, r4, 4
 /* 8049CFB8  A8 1F 04 DC */	lha r0, 0x4dc(r31)
 /* 8049CFBC  54 06 04 38 */	rlwinm r6, r0, 0, 0x10, 0x1c
 /* 8049CFC0  7C 05 34 2E */	lfsx f0, r5, r6
-/* 8049CFC4  3C 60 80 4A */	lis r3, lit_4868@ha
-/* 8049CFC8  C0 43 DD BC */	lfs f2, lit_4868@l(r3)
+/* 8049CFC4  3C 60 80 4A */	lis r3, lit_4868@ha /* 0x8049DDBC@ha */
+/* 8049CFC8  C0 43 DD BC */	lfs f2, lit_4868@l(r3)  /* 0x8049DDBC@l */
 /* 8049CFCC  EC 82 00 32 */	fmuls f4, f2, f0
 /* 8049CFD0  A8 1F 04 DE */	lha r0, 0x4de(r31)
 /* 8049CFD4  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c

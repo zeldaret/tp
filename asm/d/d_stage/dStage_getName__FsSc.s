@@ -4,8 +4,8 @@ lbl_80024E30:
 /* 80024E38  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80024E3C  7C 68 1B 78 */	mr r8, r3
 /* 80024E40  7C 87 23 78 */	mr r7, r4
-/* 80024E44  3C 60 80 3A */	lis r3, l_objectName@ha
-/* 80024E48  38 03 3B 18 */	addi r0, r3, l_objectName@l
+/* 80024E44  3C 60 80 3A */	lis r3, l_objectName@ha /* 0x803A3B18@ha */
+/* 80024E48  38 03 3B 18 */	addi r0, r3, l_objectName@l /* 0x803A3B18@l */
 /* 80024E4C  7C 03 03 78 */	mr r3, r0
 /* 80024E50  38 C0 00 00 */	li r6, 0
 /* 80024E54  7C E4 07 74 */	extsb r4, r7
@@ -32,8 +32,8 @@ lbl_80024E90:
 /* 80024E9C  40 82 00 2C */	bne lbl_80024EC8
 /* 80024EA0  38 6D 87 D8 */	la r3, tmp_name(r13) /* 80450D58-_SDA_BASE_ */
 /* 80024EA4  38 80 00 08 */	li r4, 8
-/* 80024EA8  3C A0 80 38 */	lis r5, d_d_stage__stringBase0@ha
-/* 80024EAC  38 A5 8A 50 */	addi r5, r5, d_d_stage__stringBase0@l
+/* 80024EA8  3C A0 80 38 */	lis r5, d_d_stage__stringBase0@ha /* 0x80378A50@ha */
+/* 80024EAC  38 A5 8A 50 */	addi r5, r5, d_d_stage__stringBase0@l /* 0x80378A50@l */
 /* 80024EB0  38 A5 00 D4 */	addi r5, r5, 0xd4
 /* 80024EB4  7D 06 07 34 */	extsh r6, r8
 /* 80024EB8  7C E7 07 74 */	extsb r7, r7

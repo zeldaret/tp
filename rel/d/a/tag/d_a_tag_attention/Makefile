@@ -3,17 +3,15 @@
 #
 
 M57_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_attention.plf
+M57_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_attention.lcf
+M57_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_attention.map
 
 M57_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_attention/executor.cpp \
-	rel/d/a/tag/d_a_tag_attention/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_attention/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_attention/d_a_tag_attention.cpp \
 
 M57_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_attention/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_attention/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_attention/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_attention/d_a_tag_attention.o \
 
 M57_LIBS := \
@@ -29,14 +27,21 @@ M57_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M57_LDSCRIPT) \
+	-unused -map $(M57_MAP) \
+	-w off \
 
 $(M57_TARGET): $(M57_O_FILES) $(M57_LIBS)
+	@echo [ 57] creating $(M57_TARGET)
 	@echo $(M57_LIBS) $(M57_O_FILES) > build/M57_ofiles
-	$(LD) -partial $(M57_LDFLAGS) -o $(M57_TARGET) @build/M57_ofiles
+	@python3 tools/lcf.py rel 57 --output $(M57_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M57_LDFLAGS) -o $(M57_TARGET) @build/M57_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_attention/%.o: rel/d/a/tag/d_a_tag_attention/%.cpp
+	@echo [ 57] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M57_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M57_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

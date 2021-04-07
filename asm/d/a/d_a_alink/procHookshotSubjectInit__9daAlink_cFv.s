@@ -21,13 +21,13 @@ lbl_8010BAD4:
 /* 8010BAF0  7F E3 FB 78 */	mr r3, r31
 /* 8010BAF4  38 80 00 10 */	li r4, 0x10
 /* 8010BAF8  C0 22 92 C0 */	lfs f1, lit_6108(r2)
-/* 8010BAFC  3C A0 80 39 */	lis r5, m__22daAlinkHIO_hookshot_c0@ha
-/* 8010BB00  38 A5 E9 C0 */	addi r5, r5, m__22daAlinkHIO_hookshot_c0@l
+/* 8010BAFC  3C A0 80 39 */	lis r5, m__22daAlinkHIO_hookshot_c0@ha /* 0x8038E9C0@ha */
+/* 8010BB00  38 A5 E9 C0 */	addi r5, r5, m__22daAlinkHIO_hookshot_c0@l /* 0x8038E9C0@l */
 /* 8010BB04  C0 45 00 44 */	lfs f2, 0x44(r5)
 /* 8010BB08  4B FA 14 D9 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 lbl_8010BB0C:
-/* 8010BB0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8010BB10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8010BB0C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8010BB10  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8010BB14  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 8010BB18  60 00 40 00 */	ori r0, r0, 0x4000
 /* 8010BB1C  90 03 5F 18 */	stw r0, 0x5f18(r3)

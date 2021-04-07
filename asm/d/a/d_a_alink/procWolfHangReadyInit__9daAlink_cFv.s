@@ -8,8 +8,8 @@ lbl_801355EC:
 /* 80135604  4B F8 C9 69 */	bl commonProcInit__9daAlink_cFQ29daAlink_c12daAlink_PROC
 /* 80135608  7F E3 FB 78 */	mr r3, r31
 /* 8013560C  38 80 00 10 */	li r4, 0x10
-/* 80135610  3C A0 80 39 */	lis r5, m__24daAlinkHIO_wlWallHang_c0@ha
-/* 80135614  38 C5 F1 A0 */	addi r6, r5, m__24daAlinkHIO_wlWallHang_c0@l
+/* 80135610  3C A0 80 39 */	lis r5, m__24daAlinkHIO_wlWallHang_c0@ha /* 0x8038F1A0@ha */
+/* 80135614  38 C5 F1 A0 */	addi r6, r5, m__24daAlinkHIO_wlWallHang_c0@l /* 0x8038F1A0@l */
 /* 80135618  C0 26 00 04 */	lfs f1, 4(r6)
 /* 8013561C  C0 46 00 08 */	lfs f2, 8(r6)
 /* 80135620  38 A0 00 0C */	li r5, 0xc

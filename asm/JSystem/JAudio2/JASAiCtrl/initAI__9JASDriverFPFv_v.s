@@ -14,8 +14,8 @@ lbl_8029C388:
 /* 8029C3B8  7C 1C 03 78 */	mr r28, r0
 /* 8029C3BC  7C 1A 03 78 */	mr r26, r0
 /* 8029C3C0  7C 1B 03 78 */	mr r27, r0
-/* 8029C3C4  3C 60 80 43 */	lis r3, sDmaDacBuffer__9JASDriver@ha
-/* 8029C3C8  3B A3 1C 58 */	addi r29, r3, sDmaDacBuffer__9JASDriver@l
+/* 8029C3C4  3C 60 80 43 */	lis r3, sDmaDacBuffer__9JASDriver@ha /* 0x80431C58@ha */
+/* 8029C3C8  3B A3 1C 58 */	addi r29, r3, sDmaDacBuffer__9JASDriver@l /* 0x80431C58@l */
 lbl_8029C3CC:
 /* 8029C3CC  7F 83 E3 78 */	mr r3, r28
 /* 8029C3D0  80 8D 8C 90 */	lwz r4, JASDram(r13)
@@ -71,8 +71,8 @@ lbl_8029C470:
 /* 8029C490  4B FF F7 7D */	bl initBankDisposeMsgQueue__10JASChannelFv
 /* 8029C494  38 60 00 00 */	li r3, 0
 /* 8029C498  48 0B 3B ED */	bl AIInit
-/* 8029C49C  3C 60 80 43 */	lis r3, sDmaDacBuffer__9JASDriver@ha
-/* 8029C4A0  38 63 1C 58 */	addi r3, r3, sDmaDacBuffer__9JASDriver@l
+/* 8029C49C  3C 60 80 43 */	lis r3, sDmaDacBuffer__9JASDriver@ha /* 0x80431C58@ha */
+/* 8029C4A0  38 63 1C 58 */	addi r3, r3, sDmaDacBuffer__9JASDriver@l /* 0x80431C58@l */
 /* 8029C4A4  80 63 00 08 */	lwz r3, 8(r3)
 /* 8029C4A8  7F 44 D3 78 */	mr r4, r26
 /* 8029C4AC  48 0B 38 09 */	bl AIInitDMA

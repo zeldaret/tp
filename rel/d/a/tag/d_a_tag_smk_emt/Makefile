@@ -3,17 +3,15 @@
 #
 
 M743_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_smk_emt.plf
+M743_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_smk_emt.lcf
+M743_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_smk_emt.map
 
 M743_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_smk_emt/executor.cpp \
-	rel/d/a/tag/d_a_tag_smk_emt/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_smk_emt/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_smk_emt/d_a_tag_smk_emt.cpp \
 
 M743_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_smk_emt/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_smk_emt/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_smk_emt/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_smk_emt/d_a_tag_smk_emt.o \
 
 M743_LIBS := \
@@ -29,14 +27,21 @@ M743_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M743_LDSCRIPT) \
+	-unused -map $(M743_MAP) \
+	-w off \
 
 $(M743_TARGET): $(M743_O_FILES) $(M743_LIBS)
+	@echo [743] creating $(M743_TARGET)
 	@echo $(M743_LIBS) $(M743_O_FILES) > build/M743_ofiles
-	$(LD) -partial $(M743_LDFLAGS) -o $(M743_TARGET) @build/M743_ofiles
+	@python3 tools/lcf.py rel 743 --output $(M743_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M743_LDFLAGS) -o $(M743_TARGET) @build/M743_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_smk_emt/%.o: rel/d/a/tag/d_a_tag_smk_emt/%.cpp
+	@echo [743] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M743_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M743_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

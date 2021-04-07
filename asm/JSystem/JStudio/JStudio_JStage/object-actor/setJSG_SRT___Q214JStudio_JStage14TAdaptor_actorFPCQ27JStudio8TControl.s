@@ -7,18 +7,18 @@ lbl_8028AD38:
 /* 8028AD4C  7C 7F 1B 78 */	mr r31, r3
 /* 8028AD50  7C 9E 23 78 */	mr r30, r4
 /* 8028AD54  38 81 00 5C */	addi r4, r1, 0x5c
-/* 8028AD58  3C A0 80 3A */	lis r5, sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@ha
-/* 8028AD5C  38 A5 AA 68 */	addi r5, r5, sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@l
+/* 8028AD58  3C A0 80 3A */	lis r5, sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@ha /* 0x8039AA68@ha */
+/* 8028AD5C  38 A5 AA 68 */	addi r5, r5, sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@l /* 0x8039AA68@l */
 /* 8028AD60  4B FF B5 15 */	bl adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl
 /* 8028AD64  7F E3 FB 78 */	mr r3, r31
 /* 8028AD68  38 81 00 68 */	addi r4, r1, 0x68
-/* 8028AD6C  3C A0 80 3A */	lis r5, sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor@ha
-/* 8028AD70  38 A5 AA 74 */	addi r5, r5, sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor@l
+/* 8028AD6C  3C A0 80 3A */	lis r5, sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor@ha /* 0x8039AA74@ha */
+/* 8028AD70  38 A5 AA 74 */	addi r5, r5, sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor@l /* 0x8039AA74@l */
 /* 8028AD74  4B FF B5 01 */	bl adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl
 /* 8028AD78  7F E3 FB 78 */	mr r3, r31
 /* 8028AD7C  38 81 00 74 */	addi r4, r1, 0x74
-/* 8028AD80  3C A0 80 3A */	lis r5, sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor@ha
-/* 8028AD84  38 A5 AA 80 */	addi r5, r5, sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor@l
+/* 8028AD80  3C A0 80 3A */	lis r5, sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor@ha /* 0x8039AA80@ha */
+/* 8028AD84  38 A5 AA 80 */	addi r5, r5, sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor@l /* 0x8039AA80@l */
 /* 8028AD88  4B FF B4 ED */	bl adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl
 /* 8028AD8C  88 1F 01 44 */	lbz r0, 0x144(r31)
 /* 8028AD90  28 00 00 00 */	cmplwi r0, 0

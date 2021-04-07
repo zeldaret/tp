@@ -14,11 +14,11 @@ lbl_809D19D8:
 /* 809D19D8  28 00 00 00 */	cmplwi r0, 0
 /* 809D19DC  40 82 00 2C */	bne lbl_809D1A08
 /* 809D19E0  38 60 01 0B */	li r3, 0x10b
-/* 809D19E4  4B 78 3C 50 */	b daNpcF_chkEvtBit__FUl
+/* 809D19E4  4B 78 3C 51 */	bl daNpcF_chkEvtBit__FUl
 /* 809D19E8  2C 03 00 00 */	cmpwi r3, 0
 /* 809D19EC  41 82 00 1C */	beq lbl_809D1A08
 /* 809D19F0  38 60 01 20 */	li r3, 0x120
-/* 809D19F4  4B 78 3C 40 */	b daNpcF_chkEvtBit__FUl
+/* 809D19F4  4B 78 3C 41 */	bl daNpcF_chkEvtBit__FUl
 /* 809D19F8  2C 03 00 00 */	cmpwi r3, 0
 /* 809D19FC  40 82 00 0C */	bne lbl_809D1A08
 /* 809D1A00  38 60 00 00 */	li r3, 0

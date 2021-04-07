@@ -4,8 +4,8 @@ lbl_802C03C8:
 /* 802C03D0  90 01 00 14 */	stw r0, 0x14(r1)
 /* 802C03D4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802C03D8  7C 7F 1B 78 */	mr r31, r3
-/* 802C03DC  3C 60 80 3D */	lis r3, __vt__10Z2Creature@ha
-/* 802C03E0  38 03 B8 C0 */	addi r0, r3, __vt__10Z2Creature@l
+/* 802C03DC  3C 60 80 3D */	lis r3, __vt__10Z2Creature@ha /* 0x803CB8C0@ha */
+/* 802C03E0  38 03 B8 C0 */	addi r0, r3, __vt__10Z2Creature@l /* 0x803CB8C0@l */
 /* 802C03E4  90 1F 00 00 */	stw r0, 0(r31)
 /* 802C03E8  38 7F 00 08 */	addi r3, r31, 8
 /* 802C03EC  4B FF E7 A9 */	bl __ct__15Z2SoundObjAnimeFv

@@ -36,8 +36,6 @@ extern "C" void setSoldOut__14daObj_SSBase_cFv();
 // External References:
 //
 
-void operator delete(void*);
-
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
 extern "C" void __dl__FPv();
@@ -47,9 +45,9 @@ extern "C" void __dl__FPv();
 //
 
 /* ############################################################################################## */
-/* 803BA088-803BA0A0 0014+04 s=2 e=0 z=0  None .data      __vt__14daObj_SSBase_c */
-SECTION_DATA static void* __vt__14daObj_SSBase_c[5 + 1 /* padding */] = {
-    (void*)NULL,
+/* 803BA088-803BA0A0 0171A8 0014+04 2/2 0/0 0/0 .data            __vt__14daObj_SSBase_c */
+SECTION_DATA extern void* __vt__14daObj_SSBase_c[5 + 1 /* padding */] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14daObj_SSBase_cFv,
     (void*)setSoldOut__14daObj_SSBase_cFv,
@@ -58,7 +56,7 @@ SECTION_DATA static void* __vt__14daObj_SSBase_c[5 + 1 /* padding */] = {
     NULL,
 };
 
-/* 8015E3F8-8015E450 0058+00 s=0 e=0 z=3  None .text      __ct__14daObj_SSBase_cFv */
+/* 8015E3F8-8015E450 158D38 0058+00 0/0 0/0 3/3 .text            __ct__14daObj_SSBase_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -68,7 +66,7 @@ asm daObj_SSBase_c::daObj_SSBase_c() {
 }
 #pragma pop
 
-/* 8015E450-8015E4B0 0060+00 s=1 e=0 z=3  None .text      __dt__14daObj_SSBase_cFv */
+/* 8015E450-8015E4B0 158D90 0060+00 1/0 0/0 3/3 .text            __dt__14daObj_SSBase_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -78,7 +76,7 @@ asm daObj_SSBase_c::~daObj_SSBase_c() {
 }
 #pragma pop
 
-/* 8015E4B0-8015E4C8 0018+00 s=1 e=0 z=2  None .text      getProcessID__14daObj_SSBase_cFv */
+/* 8015E4B0-8015E4C8 158DF0 0018+00 1/0 0/0 2/0 .text            getProcessID__14daObj_SSBase_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -88,7 +86,7 @@ asm void daObj_SSBase_c::getProcessID() {
 }
 #pragma pop
 
-/* 8015E4C8-8015E4CC 0004+00 s=1 e=0 z=0  None .text      setSoldOut__14daObj_SSBase_cFv */
+/* 8015E4C8-8015E4CC 158E08 0004+00 1/0 0/0 0/0 .text            setSoldOut__14daObj_SSBase_cFv */
 void daObj_SSBase_c::setSoldOut() {
     /* empty function */
 }

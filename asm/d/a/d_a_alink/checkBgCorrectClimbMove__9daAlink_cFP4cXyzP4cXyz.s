@@ -9,11 +9,11 @@ lbl_800FEB90:
 /* 800FEBAC  4B FA 35 ED */	bl commonLineCheck__9daAlink_cFP4cXyzP4cXyz
 /* 800FEBB0  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 800FEBB4  41 82 00 A0 */	beq lbl_800FEC54
-/* 800FEBB8  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800FEBBC  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800FEBB8  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800FEBBC  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800FEBC0  90 01 00 24 */	stw r0, 0x24(r1)
-/* 800FEBC4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800FEBC8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800FEBC4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800FEBC8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800FEBCC  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 800FEBD0  38 9E 1B 5C */	addi r4, r30, 0x1b5c
 /* 800FEBD4  38 A1 00 14 */	addi r5, r1, 0x14
@@ -41,14 +41,14 @@ lbl_800FEC14:
 /* 800FEC28  38 81 00 08 */	addi r4, r1, 8
 /* 800FEC2C  7C 65 1B 78 */	mr r5, r3
 /* 800FEC30  48 24 84 61 */	bl PSVECAdd
-/* 800FEC34  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800FEC38  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800FEC34  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800FEC38  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800FEC3C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 800FEC40  38 60 00 01 */	li r3, 1
 /* 800FEC44  48 00 00 14 */	b lbl_800FEC58
 lbl_800FEC48:
-/* 800FEC48  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 800FEC4C  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 800FEC48  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 800FEC4C  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 800FEC50  90 01 00 24 */	stw r0, 0x24(r1)
 lbl_800FEC54:
 /* 800FEC54  38 60 00 00 */	li r3, 0

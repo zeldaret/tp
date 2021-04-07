@@ -3,19 +3,20 @@
 #
 
 M80_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fairy_seirei.plf
+M80_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fairy_seirei.lcf
+M80_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fairy_seirei.map
 
 M80_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_fairy_seirei/executor.cpp \
-	rel/d/a/npc/d_a_npc_fairy_seirei/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_fairy_seirei/d_a_npc_fairy_seirei.cpp \
 
 M80_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_fairy_seirei/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_fairy_seirei/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_fairy_seirei/d_a_npc_fairy_seirei.o \
 
 M80_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_fairy_seirei/libRuntime.PPCEABI.H.a \
 
 M80_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M80_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M80_LDSCRIPT) \
+	-unused -map $(M80_MAP) \
+	-w off \
 
 $(M80_TARGET): $(M80_O_FILES) $(M80_LIBS)
+	@echo [ 80] creating $(M80_TARGET)
 	@echo $(M80_LIBS) $(M80_O_FILES) > build/M80_ofiles
-	$(LD) -partial $(M80_LDFLAGS) -o $(M80_TARGET) @build/M80_ofiles
+	@python3 tools/lcf.py rel 80 --output $(M80_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M80_LDFLAGS) -o $(M80_TARGET) @build/M80_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_fairy_seirei/%.o: rel/d/a/npc/d_a_npc_fairy_seirei/%.cpp
+	@echo [ 80] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M80_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M80_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_fairy_seirei/libs/Runtime.PPCEABI.H/Makefile
 

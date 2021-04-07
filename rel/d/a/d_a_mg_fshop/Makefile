@@ -3,19 +3,20 @@
 #
 
 M278_TARGET := $(BUILD_DIR)/rel/d/a/d_a_mg_fshop.plf
+M278_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_mg_fshop.lcf
+M278_MAP := $(BUILD_DIR)/rel/d/a/d_a_mg_fshop.map
 
 M278_CPP_FILES := \
-	rel/d/a/d_a_mg_fshop/executor.cpp \
-	rel/d/a/d_a_mg_fshop/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_mg_fshop/d_a_mg_fshop.cpp \
 
 M278_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_mg_fshop/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_mg_fshop/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_mg_fshop/d_a_mg_fshop.o \
 
 M278_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_mg_fshop/libRuntime.PPCEABI.H.a \
 
 M278_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M278_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M278_LDSCRIPT) \
+	-unused -map $(M278_MAP) \
+	-w off \
 
 $(M278_TARGET): $(M278_O_FILES) $(M278_LIBS)
+	@echo [278] creating $(M278_TARGET)
 	@echo $(M278_LIBS) $(M278_O_FILES) > build/M278_ofiles
-	$(LD) -partial $(M278_LDFLAGS) -o $(M278_TARGET) @build/M278_ofiles
+	@python3 tools/lcf.py rel 278 --output $(M278_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M278_LDFLAGS) -o $(M278_TARGET) @build/M278_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_mg_fshop/%.o: rel/d/a/d_a_mg_fshop/%.cpp
+	@echo [278] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M278_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M278_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_mg_fshop/libs/Runtime.PPCEABI.H/Makefile
 

@@ -8,22 +8,22 @@ lbl_801905A8:
 /* 801905C0  80 03 00 08 */	lwz r0, 8(r3)
 /* 801905C4  28 00 00 00 */	cmplwi r0, 0
 /* 801905C8  41 82 00 7C */	beq lbl_80190644
-/* 801905CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801905D0  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 801905CC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801905D0  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801905D4  80 04 5F 98 */	lwz r0, 0x5f98(r4)
-/* 801905D8  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 801905DC  3B E3 4A C8 */	addi r31, r3, j3dSys@l
+/* 801905D8  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 801905DC  3B E3 4A C8 */	addi r31, r3, j3dSys@l /* 0x80434AC8@l */
 /* 801905E0  90 1F 00 48 */	stw r0, 0x48(r31)
 /* 801905E4  80 04 5F 9C */	lwz r0, 0x5f9c(r4)
 /* 801905E8  90 1F 00 4C */	stw r0, 0x4c(r31)
-/* 801905EC  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801905F0  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801905EC  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801905F0  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801905F4  38 80 00 0D */	li r4, 0xd
 /* 801905F8  38 BE 03 A4 */	addi r5, r30, 0x3a4
 /* 801905FC  38 DE 00 14 */	addi r6, r30, 0x14
 /* 80190600  48 01 31 C5 */	bl settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c
-/* 80190604  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80190608  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 80190604  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80190608  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 8019060C  80 9E 00 08 */	lwz r4, 8(r30)
 /* 80190610  80 84 00 04 */	lwz r4, 4(r4)
 /* 80190614  38 BE 00 14 */	addi r5, r30, 0x14
@@ -32,8 +32,8 @@ lbl_801905A8:
 /* 80190620  48 00 05 25 */	bl animeEntry__16dFile_select3D_cFv
 /* 80190624  80 7E 00 08 */	lwz r3, 8(r30)
 /* 80190628  4B E7 D6 9D */	bl mDoExt_modelUpdateDL__FP8J3DModel
-/* 8019062C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80190630  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8019062C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80190630  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80190634  80 03 5F 80 */	lwz r0, 0x5f80(r3)
 /* 80190638  90 1F 00 48 */	stw r0, 0x48(r31)
 /* 8019063C  80 03 5F 84 */	lwz r0, 0x5f84(r3)

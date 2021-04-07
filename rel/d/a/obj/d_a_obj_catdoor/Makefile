@@ -3,17 +3,15 @@
 #
 
 M417_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_catdoor.plf
+M417_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_catdoor.lcf
+M417_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_catdoor.map
 
 M417_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_catdoor/executor.cpp \
-	rel/d/a/obj/d_a_obj_catdoor/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_catdoor/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_catdoor/d_a_obj_catdoor.cpp \
 
 M417_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_catdoor/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_catdoor/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_catdoor/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_catdoor/d_a_obj_catdoor.o \
 
 M417_LIBS := \
@@ -29,14 +27,21 @@ M417_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M417_LDSCRIPT) \
+	-unused -map $(M417_MAP) \
+	-w off \
 
 $(M417_TARGET): $(M417_O_FILES) $(M417_LIBS)
+	@echo [417] creating $(M417_TARGET)
 	@echo $(M417_LIBS) $(M417_O_FILES) > build/M417_ofiles
-	$(LD) -partial $(M417_LDFLAGS) -o $(M417_TARGET) @build/M417_ofiles
+	@python3 tools/lcf.py rel 417 --output $(M417_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M417_LDFLAGS) -o $(M417_TARGET) @build/M417_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_catdoor/%.o: rel/d/a/obj/d_a_obj_catdoor/%.cpp
+	@echo [417] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M417_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M417_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

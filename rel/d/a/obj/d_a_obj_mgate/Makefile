@@ -3,17 +3,15 @@
 #
 
 M107_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mgate.plf
+M107_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mgate.lcf
+M107_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mgate.map
 
 M107_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_mgate/executor.cpp \
-	rel/d/a/obj/d_a_obj_mgate/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_mgate/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_mgate/d_a_obj_mgate.cpp \
 
 M107_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mgate/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mgate/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mgate/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mgate/d_a_obj_mgate.o \
 
 M107_LIBS := \
@@ -29,14 +27,21 @@ M107_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M107_LDSCRIPT) \
+	-unused -map $(M107_MAP) \
+	-w off \
 
 $(M107_TARGET): $(M107_O_FILES) $(M107_LIBS)
+	@echo [107] creating $(M107_TARGET)
 	@echo $(M107_LIBS) $(M107_O_FILES) > build/M107_ofiles
-	$(LD) -partial $(M107_LDFLAGS) -o $(M107_TARGET) @build/M107_ofiles
+	@python3 tools/lcf.py rel 107 --output $(M107_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M107_LDFLAGS) -o $(M107_TARGET) @build/M107_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mgate/%.o: rel/d/a/obj/d_a_obj_mgate/%.cpp
+	@echo [107] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M107_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M107_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

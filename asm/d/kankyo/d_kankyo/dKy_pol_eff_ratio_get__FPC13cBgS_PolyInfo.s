@@ -5,11 +5,11 @@ lbl_801ABD4C:
 /* 801ABD58  39 61 00 30 */	addi r11, r1, 0x30
 /* 801ABD5C  48 1B 64 79 */	bl _savegpr_27
 /* 801ABD60  7C 7F 1B 79 */	or. r31, r3, r3
-/* 801ABD64  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801ABD68  3B C3 CA 54 */	addi r30, r3, g_env_light@l
+/* 801ABD64  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801ABD68  3B C3 CA 54 */	addi r30, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801ABD6C  41 82 00 14 */	beq lbl_801ABD80
-/* 801ABD70  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801ABD74  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801ABD70  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801ABD74  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801ABD78  37 A3 0F 38 */	addic. r29, r3, 0xf38
 /* 801ABD7C  40 82 00 0C */	bne lbl_801ABD88
 lbl_801ABD80:
@@ -22,14 +22,14 @@ lbl_801ABD88:
 /* 801ABD94  7C 7B 1B 78 */	mr r27, r3
 /* 801ABD98  3B 9D 3E C8 */	addi r28, r29, 0x3ec8
 /* 801ABD9C  7F 83 E3 78 */	mr r3, r28
-/* 801ABDA0  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha
-/* 801ABDA4  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l
+/* 801ABDA0  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha /* 0x80394C6C@ha */
+/* 801ABDA4  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l /* 0x80394C6C@l */
 /* 801ABDA8  38 84 01 7A */	addi r4, r4, 0x17a
 /* 801ABDAC  48 1B CB E9 */	bl strcmp
 /* 801ABDB0  2C 03 00 00 */	cmpwi r3, 0
 /* 801ABDB4  40 82 00 28 */	bne lbl_801ABDDC
-/* 801ABDB8  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 801ABDBC  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 801ABDB8  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 801ABDBC  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 801ABDC0  88 03 12 FE */	lbz r0, 0x12fe(r3)
 /* 801ABDC4  28 00 00 04 */	cmplwi r0, 4
 /* 801ABDC8  40 82 00 14 */	bne lbl_801ABDDC
@@ -39,14 +39,14 @@ lbl_801ABD88:
 /* 801ABDD8  48 00 00 48 */	b lbl_801ABE20
 lbl_801ABDDC:
 /* 801ABDDC  7F 83 E3 78 */	mr r3, r28
-/* 801ABDE0  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha
-/* 801ABDE4  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l
+/* 801ABDE0  3C 80 80 39 */	lis r4, d_kankyo_d_kankyo__stringBase0@ha /* 0x80394C6C@ha */
+/* 801ABDE4  38 84 4C 6C */	addi r4, r4, d_kankyo_d_kankyo__stringBase0@l /* 0x80394C6C@l */
 /* 801ABDE8  38 84 02 61 */	addi r4, r4, 0x261
 /* 801ABDEC  48 1B CB A9 */	bl strcmp
 /* 801ABDF0  2C 03 00 00 */	cmpwi r3, 0
 /* 801ABDF4  40 82 00 2C */	bne lbl_801ABE20
-/* 801ABDF8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801ABDFC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801ABDF8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801ABDFC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801ABE00  38 63 09 58 */	addi r3, r3, 0x958
 /* 801ABE04  38 80 00 03 */	li r4, 3
 /* 801ABE08  4B E8 8B 2D */	bl isDungeonItem__12dSv_memBit_cCFi

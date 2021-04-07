@@ -22,19 +22,19 @@ extern "C" void ceil();
 //
 
 /* ############################################################################################## */
-/* 80456AE0-80456AE8 0008+00 s=1 e=0 z=0  None .sdata2    @124 */
+/* 80456AE0-80456AE8 0050E0 0008+00 1/1 0/0 0/0 .sdata2          @124 */
 SECTION_SDATA2 static f64 lit_124 = 1e+300;
 
-/* 80456AE8-80456AF0 0008+00 s=1 e=0 z=0  None .sdata2    @125 */
+/* 80456AE8-80456AF0 0050E8 0008+00 1/1 0/0 0/0 .sdata2          @125 */
 SECTION_SDATA2 static u8 lit_125[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 8036BEBC-8036C000 0144+00 s=0 e=2 z=0  None .text      ceil */
+/* 8036BEBC-8036C000 3667FC 0144+00 0/0 2/2 0/0 .text            ceil */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void ceil() {
+asm void ceil() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/Math/Double_precision/s_ceil/ceil.s"
 }

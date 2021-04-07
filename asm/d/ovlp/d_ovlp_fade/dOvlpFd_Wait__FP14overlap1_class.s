@@ -5,8 +5,8 @@ lbl_802522C8:
 /* 802522D4  4B DC C2 31 */	bl fopOvlpM_IsOutReq__FP18overlap_task_class
 /* 802522D8  2C 03 00 00 */	cmpwi r3, 0
 /* 802522DC  41 82 00 10 */	beq lbl_802522EC
-/* 802522E0  3C 60 80 25 */	lis r3, dOvlpFd_FadeOut__FP14overlap1_class@ha
-/* 802522E4  38 03 21 F4 */	addi r0, r3, dOvlpFd_FadeOut__FP14overlap1_class@l
+/* 802522E0  3C 60 80 25 */	lis r3, dOvlpFd_FadeOut__FP14overlap1_class@ha /* 0x802521F4@ha */
+/* 802522E4  38 03 21 F4 */	addi r0, r3, dOvlpFd_FadeOut__FP14overlap1_class@l /* 0x802521F4@l */
 /* 802522E8  90 0D 8B 60 */	stw r0, dOvlpFd_execute_f(r13)
 lbl_802522EC:
 /* 802522EC  38 60 00 01 */	li r3, 1

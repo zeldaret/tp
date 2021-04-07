@@ -3,17 +3,15 @@
 #
 
 M731_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_myna_light.plf
+M731_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_myna_light.lcf
+M731_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_myna_light.map
 
 M731_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_myna_light/executor.cpp \
-	rel/d/a/tag/d_a_tag_myna_light/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_myna_light/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_myna_light/d_a_tag_myna_light.cpp \
 
 M731_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_myna_light/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_myna_light/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_myna_light/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_myna_light/d_a_tag_myna_light.o \
 
 M731_LIBS := \
@@ -29,14 +27,21 @@ M731_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M731_LDSCRIPT) \
+	-unused -map $(M731_MAP) \
+	-w off \
 
 $(M731_TARGET): $(M731_O_FILES) $(M731_LIBS)
+	@echo [731] creating $(M731_TARGET)
 	@echo $(M731_LIBS) $(M731_O_FILES) > build/M731_ofiles
-	$(LD) -partial $(M731_LDFLAGS) -o $(M731_TARGET) @build/M731_ofiles
+	@python3 tools/lcf.py rel 731 --output $(M731_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M731_LDFLAGS) -o $(M731_TARGET) @build/M731_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_myna_light/%.o: rel/d/a/tag/d_a_tag_myna_light/%.cpp
+	@echo [731] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M731_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M731_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -24,8 +24,6 @@ extern "C" void EnableEXI2Interrupts();
 extern "C" void TRKInitializeIntDrivenUART();
 extern "C" void InitMetroTRKCommTable();
 extern "C" static void TRKEXICallBack();
-SECTION_BSS u8 data_8044F820[4];
-SECTION_BSS extern u8 _MetroTRK_Has_Framing[4];
 SECTION_BSS extern u8 data_8044F828[8];
 
 //
@@ -75,138 +73,142 @@ extern "C" bool Hu_IsStub();
 // Declarations:
 //
 
-/* 80371BF4-80371C7C 0088+00 s=1 e=0 z=0  None .text      TRKLoadContext */
+/* 80371BF4-80371C7C 36C534 0088+00 1/1 0/0 0/0 .text            TRKLoadContext */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void TRKLoadContext() {
+static asm void TRKLoadContext() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/TRKLoadContext.s"
 }
 #pragma pop
 
-/* 80371C7C-80371C80 0004+00 s=0 e=1 z=0  None .text      TRKUARTInterruptHandler */
-extern "C" void TRKUARTInterruptHandler() {
+/* 80371C7C-80371C80 36C5BC 0004+00 0/0 1/1 0/0 .text            TRKUARTInterruptHandler */
+void TRKUARTInterruptHandler() {
     /* empty function */
 }
 
 /* ############################################################################################## */
-/* 803A2C08-803A2C0C 0004+00 s=2 e=0 z=0  None .rodata    EndofProgramInstruction$162 */
+/* 803A2C08-803A2C0C 02F268 0004+00 2/2 0/0 0/0 .rodata          EndofProgramInstruction$162 */
 SECTION_RODATA static u8 const EndofProgramInstruction[4] = {
     0x00,
     0x45,
     0x4E,
     0x44,
 };
+COMPILER_STRIP_GATE(803A2C08, &EndofProgramInstruction);
 
-/* 80371C80-80371CD8 0058+00 s=0 e=1 z=0  None .text      InitializeProgramEndTrap */
+/* 80371C80-80371CD8 36C5C0 0058+00 0/0 1/1 0/0 .text            InitializeProgramEndTrap */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void InitializeProgramEndTrap() {
+asm void InitializeProgramEndTrap() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/InitializeProgramEndTrap.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A2C0C-803A2C10 0004+00 s=1 e=0 z=0  None .rodata    @165 */
+/* 803A2C0C-803A2C10 02F26C 0004+00 1/1 0/0 0/0 .rodata          @165 */
 SECTION_RODATA static u32 const lit_165 = 0x25730A00;
+COMPILER_STRIP_GATE(803A2C0C, &lit_165);
 
-/* 80371CD8-80371D08 0030+00 s=0 e=1 z=0  None .text      TRK_board_display */
+/* 80371CD8-80371D08 36C618 0030+00 0/0 1/1 0/0 .text            TRK_board_display */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRK_board_display() {
+asm void TRK_board_display() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/TRK_board_display.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803D32A8-803D32D0 0028+00 s=8 e=0 z=0  None .data      gDBCommTable */
+/* 803D32A8-803D32D0 0303C8 0028+00 8/8 0/0 0/0 .data            gDBCommTable */
 SECTION_DATA static u8 gDBCommTable[40] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80371D08-80371D38 0030+00 s=0 e=1 z=0  None .text      UnreserveEXI2Port */
+/* 80371D08-80371D38 36C648 0030+00 0/0 1/1 0/0 .text            UnreserveEXI2Port */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void UnreserveEXI2Port() {
+asm void UnreserveEXI2Port() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/UnreserveEXI2Port.s"
 }
 #pragma pop
 
-/* 80371D38-80371D68 0030+00 s=0 e=1 z=0  None .text      ReserveEXI2Port */
+/* 80371D38-80371D68 36C678 0030+00 0/0 1/1 0/0 .text            ReserveEXI2Port */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void ReserveEXI2Port() {
+asm void ReserveEXI2Port() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/ReserveEXI2Port.s"
 }
 #pragma pop
 
-/* 80371D68-80371DA4 003C+00 s=0 e=13 z=0  None .text      TRKWriteUARTN */
+/* 80371D68-80371DA4 36C6A8 003C+00 0/0 13/13 0/0 .text            TRKWriteUARTN */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKWriteUARTN() {
+asm void TRKWriteUARTN() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/TRKWriteUARTN.s"
 }
 #pragma pop
 
-/* 80371DA4-80371DE0 003C+00 s=0 e=1 z=0  None .text      TRKReadUARTN */
+/* 80371DA4-80371DE0 36C6E4 003C+00 0/0 1/1 0/0 .text            TRKReadUARTN */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKReadUARTN() {
+asm void TRKReadUARTN() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/TRKReadUARTN.s"
 }
 #pragma pop
 
-/* 80371DE0-80371E10 0030+00 s=0 e=1 z=0  None .text      TRKPollUART */
+/* 80371DE0-80371E10 36C720 0030+00 0/0 1/1 0/0 .text            TRKPollUART */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKPollUART() {
+asm void TRKPollUART() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/TRKPollUART.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8044F820-8044F824 0004+00 s=2 e=0 z=0  .bss .bss       None */
-static u8 data_8044F820[4];
+/* 8044F820-8044F824 07C540 0004+00 2/2 0/0 0/0 .bss             None */
+SECTION_BSS static u8 data_8044F820[4];
 
-/* 80371E10-80371E58 0048+00 s=0 e=1 z=0  None .text      EnableEXI2Interrupts */
+/* 80371E10-80371E58 36C750 0048+00 0/0 1/1 0/0 .text            EnableEXI2Interrupts */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void EnableEXI2Interrupts() {
+asm void EnableEXI2Interrupts() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/EnableEXI2Interrupts.s"
 }
 #pragma pop
 
-/* 80371E58-80371EA8 0050+00 s=0 e=1 z=0  None .text      TRKInitializeIntDrivenUART */
+/* 80371E58-80371EA8 36C798 0050+00 0/0 1/1 0/0 .text            TRKInitializeIntDrivenUART */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void TRKInitializeIntDrivenUART() {
+asm void TRKInitializeIntDrivenUART() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/TRKInitializeIntDrivenUART.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A2C10-803A2C28 0015+03 s=1 e=0 z=0  None .rodata    @215 */
+/* 803A2C10-803A2C28 02F270 0015+03 0/1 0/0 0/0 .rodata          @215 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_215[21 + 3 /* padding */] = {
     0x44,
     0x65,
@@ -234,8 +236,12 @@ SECTION_RODATA static u8 const lit_215[21 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(803A2C10, &lit_215);
+#pragma pop
 
-/* 803A2C28-803A2C40 0017+01 s=1 e=0 z=0  None .rodata    @216 */
+/* 803A2C28-803A2C40 02F288 0017+01 0/1 0/0 0/0 .rodata          @216 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_216[23 + 1 /* padding */] = {
     0x4D,
     0x65,
@@ -263,8 +269,12 @@ SECTION_RODATA static u8 const lit_216[23 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
+COMPILER_STRIP_GATE(803A2C28, &lit_216);
+#pragma pop
 
-/* 803A2C40-803A2C64 0021+03 s=1 e=0 z=0  None .rodata    @217 */
+/* 803A2C40-803A2C64 02F2A0 0021+03 0/1 0/0 0/0 .rodata          @217 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_217[33 + 3 /* padding */] = {
     0x4D,
     0x65,
@@ -304,15 +314,23 @@ SECTION_RODATA static u8 const lit_217[33 + 3 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(803A2C40, &lit_217);
+#pragma pop
 
-/* 803A2C64-803A2C88 0024+00 s=1 e=0 z=0  None .rodata    @218 */
+/* 803A2C64-803A2C88 02F2C4 0024+00 0/1 0/0 0/0 .rodata          @218 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_218[36] = {
     0x4D, 0x65, 0x74, 0x72, 0x6F, 0x54, 0x52, 0x4B, 0x20, 0x3A, 0x20, 0x53,
     0x65, 0x74, 0x20, 0x74, 0x6F, 0x20, 0x41, 0x4D, 0x43, 0x20, 0x44, 0x44,
     0x48, 0x20, 0x68, 0x61, 0x72, 0x64, 0x77, 0x61, 0x72, 0x65, 0x0A, 0x00,
 };
+COMPILER_STRIP_GATE(803A2C64, &lit_218);
+#pragma pop
 
-/* 803A2C88-803A2CB4 002B+01 s=1 e=0 z=0  None .rodata    @219 */
+/* 803A2C88-803A2CB4 02F2E8 002B+01 0/1 0/0 0/0 .rodata          @219 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_219[43 + 1 /* padding */] = {
     0x4D,
     0x65,
@@ -360,8 +378,12 @@ SECTION_RODATA static u8 const lit_219[43 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
+COMPILER_STRIP_GATE(803A2C88, &lit_219);
+#pragma pop
 
-/* 803A2CB4-803A2CE4 002F+01 s=1 e=0 z=0  None .rodata    @220 */
+/* 803A2CB4-803A2CE4 02F314 002F+01 0/1 0/0 0/0 .rodata          @220 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_220[47 + 1 /* padding */] = {
     0x4D,
     0x65,
@@ -413,8 +435,12 @@ SECTION_RODATA static u8 const lit_220[47 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
+COMPILER_STRIP_GATE(803A2CB4, &lit_220);
+#pragma pop
 
-/* 803A2CE4-803A2D10 0028+04 s=1 e=0 z=0  None .rodata    @221 */
+/* 803A2CE4-803A2D10 02F344 0028+04 0/1 0/0 0/0 .rodata          @221 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_221[40 + 4 /* padding */] = {
     0x4D,
     0x65,
@@ -462,30 +488,36 @@ SECTION_RODATA static u8 const lit_221[40 + 4 /* padding */] = {
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(803A2CE4, &lit_221);
+#pragma pop
 
-/* 80371EA8-80372114 026C+00 s=0 e=2 z=0  None .text      InitMetroTRKCommTable */
+/* 80371EA8-80372114 36C7E8 026C+00 0/0 2/2 0/0 .text            InitMetroTRKCommTable */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void InitMetroTRKCommTable() {
+asm void InitMetroTRKCommTable() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/InitMetroTRKCommTable.s"
 }
 #pragma pop
 
-/* 80372114-8037214C 0038+00 s=1 e=0 z=0  None .text      TRKEXICallBack */
+/* 80372114-8037214C 36CA54 0038+00 1/1 0/0 0/0 .text            TRKEXICallBack */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void TRKEXICallBack() {
+static asm void TRKEXICallBack() {
     nofralloc
 #include "asm/TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue/TRKEXICallBack.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 8044F824-8044F828 0004+00 s=0 e=0 z=0  .bss .bss       _MetroTRK_Has_Framing */
-u8 _MetroTRK_Has_Framing[4];
+/* 8044F824-8044F828 07C544 0004+00 0/0 0/0 0/0 .bss             _MetroTRK_Has_Framing */
+#pragma push
+#pragma force_active on
+SECTION_BSS static u8 _MetroTRK_Has_Framing[4];
+#pragma pop
 
-/* 8044F828-8044F830 0008+00 s=0 e=2 z=0  .bss .bss       None */
-u8 data_8044F828[8];
+/* 8044F828-8044F830 07C548 0008+00 0/0 2/2 0/0 .bss             None */
+SECTION_BSS extern u8 data_8044F828[8];
+SECTION_BSS u8 data_8044F828[8];

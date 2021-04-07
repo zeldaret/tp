@@ -14,8 +14,8 @@ lbl_80260F8C:
 /* 80260FBC  FF A0 10 90 */	fmr f29, f2
 /* 80260FC0  FF C0 18 90 */	fmr f30, f3
 /* 80260FC4  FF E0 20 90 */	fmr f31, f4
-/* 80260FC8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80260FCC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80260FC8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80260FCC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80260FD0  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80260FD4  4B DC BB E9 */	bl getTimerMode__14dComIfG_play_cFv
 /* 80260FD8  2C 03 FF FF */	cmpwi r3, -1

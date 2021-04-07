@@ -3,8 +3,8 @@ lbl_80AE1550:
 /* 80AE1554  7C 08 02 A6 */	mflr r0
 /* 80AE1558  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80AE155C  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80AE1560  3C 60 80 AE */	lis r3, cNullVec__6Z2Calc@ha
-/* 80AE1564  3B E3 26 20 */	addi r31, r3, cNullVec__6Z2Calc@l
+/* 80AE1560  3C 60 80 AE */	lis r3, cNullVec__6Z2Calc@ha /* 0x80AE2620@ha */
+/* 80AE1564  3B E3 26 20 */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x80AE2620@l */
 /* 80AE1568  80 1F 02 C0 */	lwz r0, 0x2c0(r31)
 /* 80AE156C  38 7F 03 08 */	addi r3, r31, 0x308
 /* 80AE1570  90 03 00 0C */	stw r0, 0xc(r3)
@@ -16,17 +16,17 @@ lbl_80AE1550:
 /* 80AE1588  90 03 00 24 */	stw r0, 0x24(r3)
 /* 80AE158C  90 03 00 28 */	stw r0, 0x28(r3)
 /* 80AE1590  90 03 00 30 */	stw r0, 0x30(r3)
-/* 80AE1594  3C 60 80 AE */	lis r3, __vt__17daNpcShad_Param_c@ha
-/* 80AE1598  38 03 2C A4 */	addi r0, r3, __vt__17daNpcShad_Param_c@l
-/* 80AE159C  3C 60 80 AE */	lis r3, l_HIO@ha
-/* 80AE15A0  94 03 2C C4 */	stwu r0, l_HIO@l(r3)
-/* 80AE15A4  3C 80 80 AE */	lis r4, __dt__17daNpcShad_Param_cFv@ha
-/* 80AE15A8  38 84 1F 70 */	addi r4, r4, __dt__17daNpcShad_Param_cFv@l
-/* 80AE15AC  3C A0 80 AE */	lis r5, lit_3931@ha
-/* 80AE15B0  38 A5 2C B8 */	addi r5, r5, lit_3931@l
+/* 80AE1594  3C 60 80 AE */	lis r3, __vt__17daNpcShad_Param_c@ha /* 0x80AE2CA4@ha */
+/* 80AE1598  38 03 2C A4 */	addi r0, r3, __vt__17daNpcShad_Param_c@l /* 0x80AE2CA4@l */
+/* 80AE159C  3C 60 80 AE */	lis r3, l_HIO@ha /* 0x80AE2CC4@ha */
+/* 80AE15A0  94 03 2C C4 */	stwu r0, l_HIO@l(r3)  /* 0x80AE2CC4@l */
+/* 80AE15A4  3C 80 80 AE */	lis r4, __dt__17daNpcShad_Param_cFv@ha /* 0x80AE1F70@ha */
+/* 80AE15A8  38 84 1F 70 */	addi r4, r4, __dt__17daNpcShad_Param_cFv@l /* 0x80AE1F70@l */
+/* 80AE15AC  3C A0 80 AE */	lis r5, lit_3931@ha /* 0x80AE2CB8@ha */
+/* 80AE15B0  38 A5 2C B8 */	addi r5, r5, lit_3931@l /* 0x80AE2CB8@l */
 /* 80AE15B4  4B FF 6B E5 */	bl __register_global_object
-/* 80AE15B8  3C 60 80 3A */	lis r3, __ptmf_null@ha
-/* 80AE15BC  38 83 21 80 */	addi r4, r3, __ptmf_null@l
+/* 80AE15B8  3C 60 80 3A */	lis r3, __ptmf_null@ha /* 0x803A2180@ha */
+/* 80AE15BC  38 83 21 80 */	addi r4, r3, __ptmf_null@l /* 0x803A2180@l */
 /* 80AE15C0  80 64 00 00 */	lwz r3, 0(r4)
 /* 80AE15C4  80 04 00 04 */	lwz r0, 4(r4)
 /* 80AE15C8  90 7F 03 E0 */	stw r3, 0x3e0(r31)

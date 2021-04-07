@@ -3,17 +3,15 @@
 #
 
 M440_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_dust.plf
+M440_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_dust.lcf
+M440_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_dust.map
 
 M440_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_dust/executor.cpp \
-	rel/d/a/obj/d_a_obj_dust/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_dust/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_dust/d_a_obj_dust.cpp \
 
 M440_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_dust/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_dust/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_dust/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_dust/d_a_obj_dust.o \
 
 M440_LIBS := \
@@ -29,14 +27,21 @@ M440_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M440_LDSCRIPT) \
+	-unused -map $(M440_MAP) \
+	-w off \
 
 $(M440_TARGET): $(M440_O_FILES) $(M440_LIBS)
+	@echo [440] creating $(M440_TARGET)
 	@echo $(M440_LIBS) $(M440_O_FILES) > build/M440_ofiles
-	$(LD) -partial $(M440_LDFLAGS) -o $(M440_TARGET) @build/M440_ofiles
+	@python3 tools/lcf.py rel 440 --output $(M440_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M440_LDFLAGS) -o $(M440_TARGET) @build/M440_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_dust/%.o: rel/d/a/obj/d_a_obj_dust/%.cpp
+	@echo [440] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M440_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M440_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -5,8 +5,8 @@ lbl_8014D0C0:
 /* 8014D0CC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8014D0D0  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8014D0D4  41 82 00 1C */	beq lbl_8014D0F0
-/* 8014D0D8  3C A0 80 3B */	lis r5, __vt__22daNpcT_MotionSeqMngr_c@ha
-/* 8014D0DC  38 05 3B 3C */	addi r0, r5, __vt__22daNpcT_MotionSeqMngr_c@l
+/* 8014D0D8  3C A0 80 3B */	lis r5, __vt__22daNpcT_MotionSeqMngr_c@ha /* 0x803B3B3C@ha */
+/* 8014D0DC  38 05 3B 3C */	addi r0, r5, __vt__22daNpcT_MotionSeqMngr_c@l /* 0x803B3B3C@l */
 /* 8014D0E0  90 1F 00 20 */	stw r0, 0x20(r31)
 /* 8014D0E4  7C 80 07 35 */	extsh. r0, r4
 /* 8014D0E8  40 81 00 08 */	ble lbl_8014D0F0

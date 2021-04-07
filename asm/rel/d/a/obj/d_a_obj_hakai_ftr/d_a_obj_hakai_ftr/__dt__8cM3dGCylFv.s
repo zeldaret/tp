@@ -5,12 +5,12 @@ lbl_80C1768C:
 /* 80C17698  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C1769C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80C176A0  41 82 00 1C */	beq lbl_80C176BC
-/* 80C176A4  3C A0 80 C2 */	lis r5, __vt__8cM3dGCyl@ha
-/* 80C176A8  38 05 82 08 */	addi r0, r5, __vt__8cM3dGCyl@l
+/* 80C176A4  3C A0 80 C2 */	lis r5, __vt__8cM3dGCyl@ha /* 0x80C18208@ha */
+/* 80C176A8  38 05 82 08 */	addi r0, r5, __vt__8cM3dGCyl@l /* 0x80C18208@l */
 /* 80C176AC  90 1F 00 14 */	stw r0, 0x14(r31)
 /* 80C176B0  7C 80 07 35 */	extsh. r0, r4
 /* 80C176B4  40 81 00 08 */	ble lbl_80C176BC
-/* 80C176B8  4B 6B 76 84 */	b __dl__FPv
+/* 80C176B8  4B 6B 76 85 */	bl __dl__FPv
 lbl_80C176BC:
 /* 80C176BC  7F E3 FB 78 */	mr r3, r31
 /* 80C176C0  83 E1 00 0C */	lwz r31, 0xc(r1)

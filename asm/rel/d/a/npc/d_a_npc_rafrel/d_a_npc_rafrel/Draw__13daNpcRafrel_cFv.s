@@ -14,12 +14,12 @@ lbl_80ABA3D8:
 /* 80ABA408  90 04 00 3C */	stw r0, 0x3c(r4)
 /* 80ABA40C  38 80 00 00 */	li r4, 0
 /* 80ABA410  38 A0 00 00 */	li r5, 0
-/* 80ABA414  3C C0 80 AC */	lis r6, m__19daNpcRafrel_Param_c@ha
-/* 80ABA418  38 C6 F9 E0 */	addi r6, r6, m__19daNpcRafrel_Param_c@l
+/* 80ABA414  3C C0 80 AC */	lis r6, m__19daNpcRafrel_Param_c@ha /* 0x80ABF9E0@ha */
+/* 80ABA418  38 C6 F9 E0 */	addi r6, r6, m__19daNpcRafrel_Param_c@l /* 0x80ABF9E0@l */
 /* 80ABA41C  C0 26 00 0C */	lfs f1, 0xc(r6)
 /* 80ABA420  38 C0 00 00 */	li r6, 0
 /* 80ABA424  38 E0 00 00 */	li r7, 0
-/* 80ABA428  4B 69 7E 84 */	b draw__8daNpcF_cFiifP11_GXColorS10i
+/* 80ABA428  4B 69 7E 85 */	bl draw__8daNpcF_cFiifP11_GXColorS10i
 /* 80ABA42C  80 9F 0B D8 */	lwz r4, 0xbd8(r31)
 /* 80ABA430  28 04 00 00 */	cmplwi r4, 0
 /* 80ABA434  41 82 00 58 */	beq lbl_80ABA48C
@@ -29,11 +29,11 @@ lbl_80ABA3D8:
 /* 80ABA444  40 82 00 08 */	bne lbl_80ABA44C
 /* 80ABA448  3B C0 00 14 */	li r30, 0x14
 lbl_80ABA44C:
-/* 80ABA44C  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80ABA450  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 80ABA44C  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80ABA450  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80ABA454  80 84 00 04 */	lwz r4, 4(r4)
 /* 80ABA458  38 BF 01 0C */	addi r5, r31, 0x10c
-/* 80ABA45C  4B 6E A9 44 */	b setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
+/* 80ABA45C  4B 6E A9 45 */	bl setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c
 /* 80ABA460  80 7F 05 68 */	lwz r3, 0x568(r31)
 /* 80ABA464  80 63 00 04 */	lwz r3, 4(r3)
 /* 80ABA468  80 63 00 84 */	lwz r3, 0x84(r3)
@@ -42,9 +42,9 @@ lbl_80ABA44C:
 /* 80ABA474  7C 63 02 14 */	add r3, r3, r0
 /* 80ABA478  80 9F 0B D8 */	lwz r4, 0xbd8(r31)
 /* 80ABA47C  38 84 00 24 */	addi r4, r4, 0x24
-/* 80ABA480  4B 88 C0 30 */	b PSMTXCopy
+/* 80ABA480  4B 88 C0 31 */	bl PSMTXCopy
 /* 80ABA484  80 7F 0B D8 */	lwz r3, 0xbd8(r31)
-/* 80ABA488  4B 55 38 3C */	b mDoExt_modelUpdateDL__FP8J3DModel
+/* 80ABA488  4B 55 38 3D */	bl mDoExt_modelUpdateDL__FP8J3DModel
 lbl_80ABA48C:
 /* 80ABA48C  38 60 00 01 */	li r3, 1
 /* 80ABA490  83 E1 00 0C */	lwz r31, 0xc(r1)

@@ -9,8 +9,8 @@ lbl_800BF500:
 /* 800BF51C  7C 7D 1B 78 */	mr r29, r3
 /* 800BF520  FF E0 08 90 */	fmr f31, f1
 /* 800BF524  7C 9E 23 78 */	mr r30, r4
-/* 800BF528  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800BF52C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800BF528  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800BF52C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800BF530  80 1D 31 7C */	lwz r0, 0x317c(r29)
 /* 800BF534  1C 00 00 38 */	mulli r0, r0, 0x38
 /* 800BF538  7C 63 02 14 */	add r3, r3, r0
@@ -45,8 +45,8 @@ lbl_800BF59C:
 /* 800BF5A0  A8 1D 05 9E */	lha r0, 0x59e(r29)
 /* 800BF5A4  7C 03 02 14 */	add r0, r3, r0
 /* 800BF5A8  7C 05 07 34 */	extsh r5, r0
-/* 800BF5AC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800BF5B0  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800BF5AC  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800BF5B0  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800BF5B4  38 83 00 04 */	addi r4, r3, 4
 /* 800BF5B8  A8 1D 05 9C */	lha r0, 0x59c(r29)
 /* 800BF5BC  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
@@ -92,8 +92,8 @@ lbl_800BF608:
 /* 800BF658  38 BD 37 E0 */	addi r5, r29, 0x37e0
 /* 800BF65C  7F A6 EB 78 */	mr r6, r29
 /* 800BF660  4B FB 87 05 */	bl Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c
-/* 800BF664  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800BF668  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800BF664  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800BF668  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800BF66C  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 800BF670  38 9D 1B B8 */	addi r4, r29, 0x1bb8
 /* 800BF674  4B FB 4D 41 */	bl LineCross__4cBgSFP11cBgS_LinChk
@@ -153,8 +153,8 @@ lbl_800BF728:
 /* 800BF730  7F C5 F3 78 */	mr r5, r30
 /* 800BF734  7F A6 EB 78 */	mr r6, r29
 /* 800BF738  4B FB 86 2D */	bl Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c
-/* 800BF73C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800BF740  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800BF73C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800BF740  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800BF744  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 800BF748  7F 84 E3 78 */	mr r4, r28
 /* 800BF74C  4B FB 4C 69 */	bl LineCross__4cBgSFP11cBgS_LinChk

@@ -5,20 +5,20 @@ lbl_809F07F8:
 /* 809F0804  DB E1 00 20 */	stfd f31, 0x20(r1)
 /* 809F0808  F3 E1 00 28 */	psq_st f31, 40(r1), 0, 0 /* qr0 */
 /* 809F080C  39 61 00 20 */	addi r11, r1, 0x20
-/* 809F0810  4B 97 19 CC */	b _savegpr_29
+/* 809F0810  4B 97 19 CD */	bl _savegpr_29
 /* 809F0814  7C 7D 1B 78 */	mr r29, r3
-/* 809F0818  3C 80 80 9F */	lis r4, lit_3900@ha
-/* 809F081C  3B C4 2C 50 */	addi r30, r4, lit_3900@l
-/* 809F0820  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 809F0824  3B E4 61 C0 */	addi r31, r4, g_dComIfG_gameInfo@l
+/* 809F0818  3C 80 80 9F */	lis r4, lit_3900@ha /* 0x809F2C50@ha */
+/* 809F081C  3B C4 2C 50 */	addi r30, r4, lit_3900@l /* 0x809F2C50@l */
+/* 809F0820  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 809F0824  3B E4 61 C0 */	addi r31, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 809F0828  80 9F 5D AC */	lwz r4, 0x5dac(r31)
-/* 809F082C  4B 62 9E E4 */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 809F082C  4B 62 9E E5 */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 809F0830  B0 7D 0D A0 */	sth r3, 0xda0(r29)
 /* 809F0834  38 7D 04 E6 */	addi r3, r29, 0x4e6
 /* 809F0838  A8 9D 0D A0 */	lha r4, 0xda0(r29)
 /* 809F083C  38 A0 00 03 */	li r5, 3
 /* 809F0840  38 C0 06 00 */	li r6, 0x600
-/* 809F0844  4B 87 FD C4 */	b cLib_addCalcAngleS2__FPssss
+/* 809F0844  4B 87 FD C5 */	bl cLib_addCalcAngleS2__FPssss
 /* 809F0848  7F A3 EB 78 */	mr r3, r29
 /* 809F084C  48 00 05 89 */	bl setAngle__12daNpcGuard_cFv
 /* 809F0850  80 7D 05 8C */	lwz r3, 0x58c(r29)
@@ -40,11 +40,11 @@ lbl_809F0878:
 lbl_809F088C:
 /* 809F088C  C8 3E 00 08 */	lfd f1, 8(r30)
 /* 809F0890  C8 5E 00 10 */	lfd f2, 0x10(r30)
-/* 809F0894  4B 97 BE EC */	b pow
+/* 809F0894  4B 97 BE ED */	bl pow
 /* 809F0898  FF E0 08 18 */	frsp f31, f1
 /* 809F089C  7F A3 EB 78 */	mr r3, r29
 /* 809F08A0  80 9F 5D AC */	lwz r4, 0x5dac(r31)
-/* 809F08A4  4B 62 A1 F0 */	b fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 809F08A4  4B 62 A1 F1 */	bl fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 809F08A8  FC 01 F8 40 */	fcmpo cr0, f1, f31
 /* 809F08AC  40 81 00 10 */	ble lbl_809F08BC
 /* 809F08B0  7F A3 EB 78 */	mr r3, r29
@@ -54,7 +54,7 @@ lbl_809F08BC:
 /* 809F08BC  E3 E1 00 28 */	psq_l f31, 40(r1), 0, 0 /* qr0 */
 /* 809F08C0  CB E1 00 20 */	lfd f31, 0x20(r1)
 /* 809F08C4  39 61 00 20 */	addi r11, r1, 0x20
-/* 809F08C8  4B 97 19 60 */	b _restgpr_29
+/* 809F08C8  4B 97 19 61 */	bl _restgpr_29
 /* 809F08CC  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 809F08D0  7C 08 03 A6 */	mtlr r0
 /* 809F08D4  38 21 00 30 */	addi r1, r1, 0x30

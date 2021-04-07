@@ -19,8 +19,8 @@ lbl_800D5FC8:
 /* 800D600C  40 82 01 08 */	bne lbl_800D6114
 /* 800D6010  7F C3 F3 78 */	mr r3, r30
 /* 800D6014  38 80 00 7D */	li r4, 0x7d
-/* 800D6018  3C A0 80 39 */	lis r5, m__21daAlinkHIO_cutHead_c0@ha
-/* 800D601C  38 A5 DD B8 */	addi r5, r5, m__21daAlinkHIO_cutHead_c0@l
+/* 800D6018  3C A0 80 39 */	lis r5, m__21daAlinkHIO_cutHead_c0@ha /* 0x8038DDB8@ha */
+/* 800D601C  38 A5 DD B8 */	addi r5, r5, m__21daAlinkHIO_cutHead_c0@l /* 0x8038DDB8@l */
 /* 800D6020  38 A5 00 14 */	addi r5, r5, 0x14
 /* 800D6024  4B FD 70 D1 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
 /* 800D6028  C0 22 92 C0 */	lfs f1, lit_6108(r2)
@@ -50,8 +50,8 @@ lbl_800D6068:
 /* 800D6084  48 25 23 A9 */	bl checkPass__12J3DFrameCtrlFf
 /* 800D6088  2C 03 00 00 */	cmpwi r3, 0
 /* 800D608C  41 82 00 24 */	beq lbl_800D60B0
-/* 800D6090  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutHead_c0@ha
-/* 800D6094  38 63 DD B8 */	addi r3, r3, m__21daAlinkHIO_cutHead_c0@l
+/* 800D6090  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutHead_c0@ha /* 0x8038DDB8@ha */
+/* 800D6094  38 63 DD B8 */	addi r3, r3, m__21daAlinkHIO_cutHead_c0@l /* 0x8038DDB8@l */
 /* 800D6098  C0 03 00 48 */	lfs f0, 0x48(r3)
 /* 800D609C  D0 1E 04 FC */	stfs f0, 0x4fc(r30)
 /* 800D60A0  C0 03 00 4C */	lfs f0, 0x4c(r3)
@@ -60,8 +60,8 @@ lbl_800D6068:
 /* 800D60AC  4B FE 55 99 */	bl initGravity__9daAlink_cFv
 lbl_800D60B0:
 /* 800D60B0  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 800D60B4  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutHead_c0@ha
-/* 800D60B8  38 63 DD B8 */	addi r3, r3, m__21daAlinkHIO_cutHead_c0@l
+/* 800D60B4  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutHead_c0@ha /* 0x8038DDB8@ha */
+/* 800D60B8  38 63 DD B8 */	addi r3, r3, m__21daAlinkHIO_cutHead_c0@l /* 0x8038DDB8@l */
 /* 800D60BC  C0 03 00 50 */	lfs f0, 0x50(r3)
 /* 800D60C0  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800D60C4  4C 41 13 82 */	cror 2, 1, 2

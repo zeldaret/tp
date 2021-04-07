@@ -3,19 +3,20 @@
 #
 
 M304_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_gnd.plf
+M304_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_gnd.lcf
+M304_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_gnd.map
 
 M304_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_gnd/executor.cpp \
-	rel/d/a/npc/d_a_npc_gnd/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_gnd/d_a_npc_gnd.cpp \
 
 M304_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gnd/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gnd/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gnd/d_a_npc_gnd.o \
 
 M304_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_gnd/libRuntime.PPCEABI.H.a \
 
 M304_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M304_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M304_LDSCRIPT) \
+	-unused -map $(M304_MAP) \
+	-w off \
 
 $(M304_TARGET): $(M304_O_FILES) $(M304_LIBS)
+	@echo [304] creating $(M304_TARGET)
 	@echo $(M304_LIBS) $(M304_O_FILES) > build/M304_ofiles
-	$(LD) -partial $(M304_LDFLAGS) -o $(M304_TARGET) @build/M304_ofiles
+	@python3 tools/lcf.py rel 304 --output $(M304_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M304_LDFLAGS) -o $(M304_TARGET) @build/M304_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_gnd/%.o: rel/d/a/npc/d_a_npc_gnd/%.cpp
+	@echo [304] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M304_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M304_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_gnd/libs/Runtime.PPCEABI.H/Makefile
 

@@ -18,8 +18,8 @@ lbl_80042014:
 /* 80042054  48 00 12 99 */	bl convPId__14dEvt_control_cFUi
 /* 80042058  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8004205C  41 82 00 18 */	beq lbl_80042074
-/* 80042060  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80042064  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80042060  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80042064  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80042068  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 8004206C  80 9F 01 00 */	lwz r4, 0x100(r31)
 /* 80042070  48 00 47 91 */	bl setObjectArchive__16dEvent_manager_cFPc
@@ -37,8 +37,8 @@ lbl_80042098:
 /* 80042098  A8 9D 00 DE */	lha r4, 0xde(r29)
 /* 8004209C  2C 04 FF FF */	cmpwi r4, -1
 /* 800420A0  41 82 00 30 */	beq lbl_800420D0
-/* 800420A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800420A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800420A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800420A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800420AC  3B E3 4F F8 */	addi r31, r3, 0x4ff8
 /* 800420B0  7F E3 FB 78 */	mr r3, r31
 /* 800420B4  48 00 54 09 */	bl getEventData__16dEvent_manager_cFs

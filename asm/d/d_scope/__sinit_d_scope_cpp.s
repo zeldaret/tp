@@ -1,6 +1,6 @@
 lbl_80194140:
-/* 80194140  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 80194144  38 A3 B6 18 */	addi r5, r3, cNullVec__6Z2Calc@l
+/* 80194140  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803BB618@ha */
+/* 80194144  38 A3 B6 18 */	addi r5, r3, cNullVec__6Z2Calc@l /* 0x803BB618@l */
 /* 80194148  80 65 00 0C */	lwz r3, 0xc(r5)
 /* 8019414C  80 05 00 10 */	lwz r0, 0x10(r5)
 /* 80194150  90 65 00 30 */	stw r3, 0x30(r5)

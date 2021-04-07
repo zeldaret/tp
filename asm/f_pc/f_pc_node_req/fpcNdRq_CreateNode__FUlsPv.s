@@ -23,8 +23,8 @@ lbl_80022F88:
 /* 80022F8C  4B FF FD 11 */	bl fpcNdRq_Create__FUl
 /* 80022F90  28 03 00 00 */	cmplwi r3, 0
 /* 80022F94  41 82 00 3C */	beq lbl_80022FD0
-/* 80022F98  3C 80 80 3A */	lis r4, methods_2397@ha
-/* 80022F9C  38 04 3A D0 */	addi r0, r4, methods_2397@l
+/* 80022F98  3C 80 80 3A */	lis r4, methods_2397@ha /* 0x803A3AD0@ha */
+/* 80022F9C  38 04 3A D0 */	addi r0, r4, methods_2397@l /* 0x803A3AD0@l */
 /* 80022FA0  90 03 00 38 */	stw r0, 0x38(r3)
 /* 80022FA4  80 1F 00 0C */	lwz r0, 0xc(r31)
 /* 80022FA8  28 00 00 00 */	cmplwi r0, 0

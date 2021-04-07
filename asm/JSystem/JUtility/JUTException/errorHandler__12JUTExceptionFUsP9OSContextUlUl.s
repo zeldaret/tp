@@ -42,15 +42,15 @@ lbl_802E1FCC:
 /* 802E206C  48 05 CC A9 */	bl OSProtectRange
 lbl_802E2070:
 /* 802E2070  80 0D 8F 8C */	lwz r0, sPreUserCallback__12JUTException(r13)
-/* 802E2074  3C 60 80 43 */	lis r3, exCallbackObject@ha
-/* 802E2078  38 83 45 78 */	addi r4, r3, exCallbackObject@l
+/* 802E2074  3C 60 80 43 */	lis r3, exCallbackObject@ha /* 0x80434578@ha */
+/* 802E2078  38 83 45 78 */	addi r4, r3, exCallbackObject@l /* 0x80434578@l */
 /* 802E207C  90 04 00 00 */	stw r0, 0(r4)
 /* 802E2080  B3 84 00 04 */	sth r28, 4(r4)
 /* 802E2084  93 A4 00 08 */	stw r29, 8(r4)
 /* 802E2088  93 C4 00 0C */	stw r30, 0xc(r4)
 /* 802E208C  93 E4 00 10 */	stw r31, 0x10(r4)
-/* 802E2090  3C 60 80 3D */	lis r3, sMessageQueue__12JUTException@ha
-/* 802E2094  38 63 C6 20 */	addi r3, r3, sMessageQueue__12JUTException@l
+/* 802E2090  3C 60 80 3D */	lis r3, sMessageQueue__12JUTException@ha /* 0x803CC620@ha */
+/* 802E2094  38 63 C6 20 */	addi r3, r3, sMessageQueue__12JUTException@l /* 0x803CC620@l */
 /* 802E2098  38 A0 00 01 */	li r5, 1
 /* 802E209C  48 05 C9 59 */	bl OSSendMessage
 /* 802E20A0  48 05 EC 65 */	bl OSEnableScheduler

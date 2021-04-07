@@ -7,8 +7,8 @@ lbl_8028717C:
 /* 80287190  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80287194  7C 9F 23 78 */	mr r31, r4
 /* 80287198  41 82 00 28 */	beq lbl_802871C0
-/* 8028719C  3C 80 80 3C */	lis r4, __vt__Q27JStudio12TAdaptor_fog@ha
-/* 802871A0  38 04 54 C4 */	addi r0, r4, __vt__Q27JStudio12TAdaptor_fog@l
+/* 8028719C  3C 80 80 3C */	lis r4, __vt__Q27JStudio12TAdaptor_fog@ha /* 0x803C54C4@ha */
+/* 802871A0  38 04 54 C4 */	addi r0, r4, __vt__Q27JStudio12TAdaptor_fog@l /* 0x803C54C4@l */
 /* 802871A4  90 1E 00 00 */	stw r0, 0(r30)
 /* 802871A8  38 80 00 00 */	li r4, 0
 /* 802871AC  4B FF EE 25 */	bl __dt__Q27JStudio8TAdaptorFv

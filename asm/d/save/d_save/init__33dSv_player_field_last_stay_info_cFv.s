@@ -5,8 +5,8 @@ lbl_80032D60:
 /* 80032D6C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80032D70  7C 7F 1B 78 */	mr r31, r3
 /* 80032D74  38 7F 00 0E */	addi r3, r31, 0xe
-/* 80032D78  3C 80 80 38 */	lis r4, d_save_d_save__stringBase0@ha
-/* 80032D7C  38 84 92 34 */	addi r4, r4, d_save_d_save__stringBase0@l
+/* 80032D78  3C 80 80 38 */	lis r4, d_save_d_save__stringBase0@ha /* 0x80379234@ha */
+/* 80032D7C  38 84 92 34 */	addi r4, r4, d_save_d_save__stringBase0@l /* 0x80379234@l */
 /* 80032D80  48 33 5D AD */	bl strcpy
 /* 80032D84  C0 02 83 5C */	lfs f0, lit_3813(r2)
 /* 80032D88  D0 1F 00 00 */	stfs f0, 0(r31)

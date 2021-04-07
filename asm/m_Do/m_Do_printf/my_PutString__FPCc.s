@@ -2,8 +2,8 @@ lbl_800067C8:
 /* 800067C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800067CC  7C 08 02 A6 */	mflr r0
 /* 800067D0  90 01 00 14 */	stw r0, 0x14(r1)
-/* 800067D4  3C 80 80 3D */	lis r4, __files@ha
-/* 800067D8  38 84 29 B0 */	addi r4, r4, __files@l
+/* 800067D4  3C 80 80 3D */	lis r4, __files@ha /* 0x803D29B0@ha */
+/* 800067D8  38 84 29 B0 */	addi r4, r4, __files@l /* 0x803D29B0@l */
 /* 800067DC  38 84 00 50 */	addi r4, r4, 0x50
 /* 800067E0  48 35 E9 F9 */	bl fputs
 /* 800067E4  80 01 00 14 */	lwz r0, 0x14(r1)

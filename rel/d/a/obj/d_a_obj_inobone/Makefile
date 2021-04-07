@@ -3,17 +3,15 @@
 #
 
 M485_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_inobone.plf
+M485_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_inobone.lcf
+M485_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_inobone.map
 
 M485_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_inobone/executor.cpp \
-	rel/d/a/obj/d_a_obj_inobone/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_inobone/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_inobone/d_a_obj_inobone.cpp \
 
 M485_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_inobone/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_inobone/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_inobone/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_inobone/d_a_obj_inobone.o \
 
 M485_LIBS := \
@@ -29,14 +27,21 @@ M485_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M485_LDSCRIPT) \
+	-unused -map $(M485_MAP) \
+	-w off \
 
 $(M485_TARGET): $(M485_O_FILES) $(M485_LIBS)
+	@echo [485] creating $(M485_TARGET)
 	@echo $(M485_LIBS) $(M485_O_FILES) > build/M485_ofiles
-	$(LD) -partial $(M485_LDFLAGS) -o $(M485_TARGET) @build/M485_ofiles
+	@python3 tools/lcf.py rel 485 --output $(M485_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M485_LDFLAGS) -o $(M485_TARGET) @build/M485_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_inobone/%.o: rel/d/a/obj/d_a_obj_inobone/%.cpp
+	@echo [485] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M485_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M485_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

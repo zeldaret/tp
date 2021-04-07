@@ -43,8 +43,8 @@ lbl_801E5020:
 /* 801E5050  40 82 00 78 */	bne lbl_801E50C8
 /* 801E5054  38 00 00 03 */	li r0, 3
 /* 801E5058  98 1F 03 EC */	stb r0, 0x3ec(r31)
-/* 801E505C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801E5060  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801E505C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801E5060  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801E5064  3B C3 01 E0 */	addi r30, r3, 0x1e0
 /* 801E5068  88 1F 03 E4 */	lbz r0, 0x3e4(r31)
 /* 801E506C  98 03 01 E2 */	stb r0, 0x1e2(r3)
@@ -59,8 +59,8 @@ lbl_801E508C:
 /* 801E508C  7F C3 F3 78 */	mr r3, r30
 /* 801E5090  88 9F 03 E9 */	lbz r4, 0x3e9(r31)
 /* 801E5094  4B E4 F5 F9 */	bl setSound__19dSv_player_config_cFUc
-/* 801E5098  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801E509C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801E5098  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801E509C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801E50A0  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 801E50A4  88 9F 03 EA */	lbz r4, 0x3ea(r31)
 /* 801E50A8  4B E4 63 01 */	bl setNowVibration__14dComIfG_play_cFUc
@@ -88,8 +88,8 @@ lbl_801E50F0:
 /* 801E50F8  40 82 00 88 */	bne lbl_801E5180
 /* 801E50FC  38 00 00 03 */	li r0, 3
 /* 801E5100  98 1F 03 EC */	stb r0, 0x3ec(r31)
-/* 801E5104  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801E5108  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801E5104  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801E5108  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801E510C  3B C3 01 E0 */	addi r30, r3, 0x1e0
 /* 801E5110  7F C3 F3 78 */	mr r3, r30
 /* 801E5114  4B E4 F5 71 */	bl getSound__19dSv_player_config_cFv
@@ -103,15 +103,15 @@ lbl_801E50F0:
 /* 801E5134  80 6D 8D E8 */	lwz r3, mAudioMgrPtr__10Z2AudioMgr(r13)
 /* 801E5138  88 1F 03 E9 */	lbz r0, 0x3e9(r31)
 /* 801E513C  54 00 10 3A */	slwi r0, r0, 2
-/* 801E5140  3C 80 80 39 */	lis r4, dMo_soundMode@ha
-/* 801E5144  38 84 6E A8 */	addi r4, r4, dMo_soundMode@l
+/* 801E5140  3C 80 80 39 */	lis r4, dMo_soundMode@ha /* 0x80396EA8@ha */
+/* 801E5144  38 84 6E A8 */	addi r4, r4, dMo_soundMode@l /* 0x80396EA8@l */
 /* 801E5148  7C 84 00 2E */	lwzx r4, r4, r0
 /* 801E514C  48 0E 87 3D */	bl setOutputMode__10Z2AudioMgrFUl
 /* 801E5150  7F E3 FB 78 */	mr r3, r31
 /* 801E5154  88 1F 03 E9 */	lbz r0, 0x3e9(r31)
 /* 801E5158  54 00 10 3A */	slwi r0, r0, 2
-/* 801E515C  3C 80 80 39 */	lis r4, dMo_soundMode@ha
-/* 801E5160  38 84 6E A8 */	addi r4, r4, dMo_soundMode@l
+/* 801E515C  3C 80 80 39 */	lis r4, dMo_soundMode@ha /* 0x80396EA8@ha */
+/* 801E5160  38 84 6E A8 */	addi r4, r4, dMo_soundMode@l /* 0x80396EA8@l */
 /* 801E5164  7C 84 00 2E */	lwzx r4, r4, r0
 /* 801E5168  48 00 1E 55 */	bl setSoundMode__14dMenu_Option_cFUl
 lbl_801E516C:

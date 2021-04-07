@@ -1,11 +1,11 @@
 lbl_803476B4:
 /* 803476B4  7C 08 02 A6 */	mflr r0
-/* 803476B8  3C 60 80 45 */	lis r3, CommandList@ha
+/* 803476B8  3C 60 80 45 */	lis r3, CommandList@ha /* 0x8044C830@ha */
 /* 803476BC  90 01 00 04 */	stw r0, 4(r1)
 /* 803476C0  94 21 FD 10 */	stwu r1, -0x2f0(r1)
 /* 803476C4  BF 61 02 DC */	stmw r27, 0x2dc(r1)
 /* 803476C8  3B 84 00 00 */	addi r28, r4, 0
-/* 803476CC  3B C3 C8 30 */	addi r30, r3, CommandList@l
+/* 803476CC  3B C3 C8 30 */	addi r30, r3, CommandList@l /* 0x8044C830@l */
 /* 803476D0  3B A0 00 00 */	li r29, 0
 /* 803476D4  80 0D 91 D0 */	lwz r0, LastCommandWasRead(r13)
 /* 803476D8  2C 00 00 00 */	cmpwi r0, 0
@@ -30,7 +30,7 @@ lbl_8034771C:
 /* 80347720  90 0D 91 D0 */	stw r0, LastCommandWasRead(r13)
 /* 80347724  3C 60 CC 00 */	lis r3, 0xCC00 /* 0xCC006000@ha */
 /* 80347728  90 0D 91 90 */	stw r0, StopAtNextInt(r13)
-/* 8034772C  80 03 60 00 */	lwz r0, 0x6000(r3)
+/* 8034772C  80 03 60 00 */	lwz r0, 0x6000(r3)  /* 0xCC006000@l */
 /* 80347730  70 1F 00 2A */	andi. r31, r0, 0x2a
 /* 80347734  70 03 00 54 */	andi. r3, r0, 0x54
 /* 80347738  57 E0 08 3C */	slwi r0, r31, 1
@@ -56,14 +56,14 @@ lbl_80347764:
 lbl_8034777C:
 /* 8034777C  7F 60 FB 78 */	or r0, r27, r31
 /* 80347780  3F E0 CC 00 */	lis r31, 0xCC00 /* 0xCC006000@ha */
-/* 80347784  90 1F 60 00 */	stw r0, 0x6000(r31)
+/* 80347784  90 1F 60 00 */	stw r0, 0x6000(r31)  /* 0xCC006000@l */
 /* 80347788  80 0D 91 A8 */	lwz r0, ResetOccurred(r13)
 /* 8034778C  28 00 00 00 */	cmplwi r0, 0
 /* 80347790  41 82 00 A0 */	beq lbl_80347830
 /* 80347794  4B FF AF 89 */	bl __OSGetSystemTime
 /* 80347798  3C A0 80 00 */	lis r5, 0x8000 /* 0x800000F8@ha */
 /* 8034779C  80 ED 91 A0 */	lwz r7, LastResetEnd(r13)
-/* 803477A0  80 C5 00 F8 */	lwz r6, 0x00F8(r5)
+/* 803477A0  80 C5 00 F8 */	lwz r6, 0x00F8(r5)  /* 0x800000F8@l */
 /* 803477A4  3C A0 10 62 */	lis r5, 0x1062 /* 0x10624DD3@ha */
 /* 803477A8  38 A5 4D D3 */	addi r5, r5, 0x4DD3 /* 0x10624DD3@l */
 /* 803477AC  81 0D 91 A4 */	lwz r8, data_80451724(r13)
@@ -124,7 +124,7 @@ lbl_80347864:
 lbl_80347878:
 /* 80347878  3C 60 CC 00 */	lis r3, 0xCC00 /* 0xCC006004@ha */
 /* 8034787C  38 00 00 00 */	li r0, 0
-/* 80347880  90 03 60 04 */	stw r0, 0x6004(r3)
+/* 80347880  90 03 60 04 */	stw r0, 0x6004(r3)  /* 0xCC006004@l */
 lbl_80347884:
 /* 80347884  57 A0 07 39 */	rlwinm. r0, r29, 0, 0x1c, 0x1c
 /* 80347888  41 82 00 14 */	beq lbl_8034789C

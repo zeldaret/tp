@@ -3,19 +3,20 @@
 #
 
 M369_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_theB.plf
+M369_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_theB.lcf
+M369_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_theB.map
 
 M369_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_theB/executor.cpp \
-	rel/d/a/npc/d_a_npc_theB/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_theB/d_a_npc_theB.cpp \
 
 M369_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_theB/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_theB/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_theB/d_a_npc_theB.o \
 
 M369_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_theB/libRuntime.PPCEABI.H.a \
 
 M369_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M369_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M369_LDSCRIPT) \
+	-unused -map $(M369_MAP) \
+	-w off \
 
 $(M369_TARGET): $(M369_O_FILES) $(M369_LIBS)
+	@echo [369] creating $(M369_TARGET)
 	@echo $(M369_LIBS) $(M369_O_FILES) > build/M369_ofiles
-	$(LD) -partial $(M369_LDFLAGS) -o $(M369_TARGET) @build/M369_ofiles
+	@python3 tools/lcf.py rel 369 --output $(M369_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M369_LDFLAGS) -o $(M369_TARGET) @build/M369_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_theB/%.o: rel/d/a/npc/d_a_npc_theB/%.cpp
+	@echo [369] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M369_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M369_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_theB/libs/Runtime.PPCEABI.H/Makefile
 

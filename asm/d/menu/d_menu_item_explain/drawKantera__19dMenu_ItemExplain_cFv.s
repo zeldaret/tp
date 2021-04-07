@@ -29,8 +29,8 @@ lbl_801DB744:
 /* 801DB7B0  C0 22 A8 C4 */	lfs f1, lit_4348(r2)
 /* 801DB7B4  FC 40 08 90 */	fmr f2, f1
 /* 801DB7B8  4B FD 34 3D */	bl setScale__15dKantera_icon_cFff
-/* 801DB7BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801DB7C0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801DB7BC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801DB7C0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801DB7C4  A0 A3 00 08 */	lhz r5, 8(r3)
 /* 801DB7C8  A0 83 00 06 */	lhz r4, 6(r3)
 /* 801DB7CC  80 7F 00 6C */	lwz r3, 0x6c(r31)

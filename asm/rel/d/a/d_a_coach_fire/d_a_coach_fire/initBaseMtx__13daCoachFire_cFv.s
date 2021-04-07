@@ -5,7 +5,7 @@ lbl_80657C48:
 /* 80657C54  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80657C58  7C 7F 1B 78 */	mr r31, r3
 /* 80657C5C  80 63 04 A4 */	lwz r3, 0x4a4(r3)
-/* 80657C60  4B 9C 96 F8 */	b fpcEx_SearchByID__FUi
+/* 80657C60  4B 9C 96 F9 */	bl fpcEx_SearchByID__FUi
 /* 80657C64  28 03 00 00 */	cmplwi r3, 0
 /* 80657C68  41 82 00 24 */	beq lbl_80657C8C
 /* 80657C6C  C0 1F 04 D0 */	lfs f0, 0x4d0(r31)

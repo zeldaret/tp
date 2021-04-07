@@ -10,8 +10,8 @@ lbl_802CE138:
 /* 802CE158  7C DD 33 78 */	mr r29, r6
 /* 802CE15C  7C FE 3B 78 */	mr r30, r7
 /* 802CE160  48 00 33 1D */	bl __ct__11JKRDisposerFv
-/* 802CE164  3C 60 80 3D */	lis r3, __vt__7JKRHeap@ha
-/* 802CE168  38 03 BF 70 */	addi r0, r3, __vt__7JKRHeap@l
+/* 802CE164  3C 60 80 3D */	lis r3, __vt__7JKRHeap@ha /* 0x803CBF70@ha */
+/* 802CE168  38 03 BF 70 */	addi r0, r3, __vt__7JKRHeap@l /* 0x803CBF70@l */
 /* 802CE16C  90 1F 00 00 */	stw r0, 0(r31)
 /* 802CE170  3B 5F 00 40 */	addi r26, r31, 0x40
 /* 802CE174  7F 43 D3 78 */	mr r3, r26
@@ -62,8 +62,8 @@ lbl_802CE208:
 /* 802CE218  80 0D 8D FC */	lwz r0, mErrorHandler__7JKRHeap(r13)
 /* 802CE21C  28 00 00 00 */	cmplwi r0, 0
 /* 802CE220  40 82 00 10 */	bne lbl_802CE230
-/* 802CE224  3C 60 80 2D */	lis r3, JKRDefaultMemoryErrorRoutine__FPvUli@ha
-/* 802CE228  38 03 EB 40 */	addi r0, r3, JKRDefaultMemoryErrorRoutine__FPvUli@l
+/* 802CE224  3C 60 80 2D */	lis r3, JKRDefaultMemoryErrorRoutine__FPvUli@ha /* 0x802CEB40@ha */
+/* 802CE228  38 03 EB 40 */	addi r0, r3, JKRDefaultMemoryErrorRoutine__FPvUli@l /* 0x802CEB40@l */
 /* 802CE22C  90 0D 8D FC */	stw r0, mErrorHandler__7JKRHeap(r13)
 lbl_802CE230:
 /* 802CE230  88 0D 83 30 */	lbz r0, data_804508B0(r13)

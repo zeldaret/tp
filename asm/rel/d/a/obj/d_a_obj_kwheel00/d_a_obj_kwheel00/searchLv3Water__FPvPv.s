@@ -7,7 +7,7 @@ lbl_80C4D7A8:
 /* 80C4D7BC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80C4D7C0  7C 9F 23 78 */	mr r31, r4
 /* 80C4D7C4  41 82 00 8C */	beq lbl_80C4D850
-/* 80C4D7C8  4B 3C B5 18 */	b fopAc_IsActor__FPv
+/* 80C4D7C8  4B 3C B5 19 */	bl fopAc_IsActor__FPv
 /* 80C4D7CC  2C 03 00 00 */	cmpwi r3, 0
 /* 80C4D7D0  41 82 00 80 */	beq lbl_80C4D850
 /* 80C4D7D4  A8 1E 00 0E */	lha r0, 0xe(r30)

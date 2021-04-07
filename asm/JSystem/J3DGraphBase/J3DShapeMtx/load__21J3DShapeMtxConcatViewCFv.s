@@ -5,8 +5,8 @@ lbl_80313C54:
 /* 80313C60  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80313C64  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80313C68  7C 7F 1B 78 */	mr r31, r3
-/* 80313C6C  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80313C70  3B C3 4A C8 */	addi r30, r3, j3dSys@l
+/* 80313C6C  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80313C70  3B C3 4A C8 */	addi r30, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80313C74  80 DE 00 38 */	lwz r6, 0x38(r30)
 /* 80313C78  80 66 00 84 */	lwz r3, 0x84(r6)
 /* 80313C7C  80 03 00 34 */	lwz r0, 0x34(r3)
@@ -16,8 +16,8 @@ lbl_80313C54:
 /* 80313C8C  90 05 00 04 */	stw r0, 4(r5)
 /* 80313C90  80 0D 90 28 */	lwz r0, sCurrentPipeline__11J3DShapeMtx(r13)
 /* 80313C94  1C 80 00 0C */	mulli r4, r0, 0xc
-/* 80313C98  3C 60 80 3D */	lis r3, sMtxLoadPipeline__21J3DShapeMtxConcatView@ha
-/* 80313C9C  38 03 DA 20 */	addi r0, r3, sMtxLoadPipeline__21J3DShapeMtxConcatView@l
+/* 80313C98  3C 60 80 3D */	lis r3, sMtxLoadPipeline__21J3DShapeMtxConcatView@ha /* 0x803CDA20@ha */
+/* 80313C9C  38 03 DA 20 */	addi r0, r3, sMtxLoadPipeline__21J3DShapeMtxConcatView@l /* 0x803CDA20@l */
 /* 80313CA0  7C 80 22 14 */	add r4, r0, r4
 /* 80313CA4  80 64 00 00 */	lwz r3, 0(r4)
 /* 80313CA8  80 04 00 04 */	lwz r0, 4(r4)

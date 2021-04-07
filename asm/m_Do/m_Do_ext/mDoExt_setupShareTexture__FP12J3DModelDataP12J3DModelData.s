@@ -113,12 +113,12 @@ lbl_8000E9CC:
 /* 8000E9D8  41 80 FE 90 */	blt lbl_8000E868
 /* 8000E9DC  56 C0 06 3F */	clrlwi. r0, r22, 0x18
 /* 8000E9E0  41 82 00 88 */	beq lbl_8000EA68
-/* 8000E9E4  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 8000E9E8  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 8000E9E4  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 8000E9E8  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 8000E9EC  93 E3 00 58 */	stw r31, 0x58(r3)
 /* 8000E9F0  3A C0 00 00 */	li r22, 0
-/* 8000E9F4  3C 60 80 43 */	lis r3, sGDLObj__17J3DDisplayListObj@ha
-/* 8000E9F8  3B 23 4C 70 */	addi r25, r3, sGDLObj__17J3DDisplayListObj@l
+/* 8000E9F4  3C 60 80 43 */	lis r3, sGDLObj__17J3DDisplayListObj@ha /* 0x80434C70@ha */
+/* 8000E9F8  3B 23 4C 70 */	addi r25, r3, sGDLObj__17J3DDisplayListObj@l /* 0x80434C70@l */
 /* 8000E9FC  48 00 00 5C */	b lbl_8000EA58
 lbl_8000EA00:
 /* 8000EA00  80 78 00 60 */	lwz r3, 0x60(r24)

@@ -5,11 +5,11 @@ lbl_80472D8C:
 /* 80472D98  DB E1 00 20 */	stfd f31, 0x20(r1)
 /* 80472D9C  F3 E1 00 28 */	psq_st f31, 40(r1), 0, 0 /* qr0 */
 /* 80472DA0  39 61 00 20 */	addi r11, r1, 0x20
-/* 80472DA4  4B EE F4 34 */	b _savegpr_28
+/* 80472DA4  4B EE F4 35 */	bl _savegpr_28
 /* 80472DA8  7C 7C 1B 78 */	mr r28, r3
 /* 80472DAC  7C 9D 23 78 */	mr r29, r4
-/* 80472DB0  3C 80 80 48 */	lis r4, l_cyl_info@ha
-/* 80472DB4  3B E4 99 0C */	addi r31, r4, l_cyl_info@l
+/* 80472DB0  3C 80 80 48 */	lis r4, l_cyl_info@ha /* 0x8047990C@ha */
+/* 80472DB4  3B E4 99 0C */	addi r31, r4, l_cyl_info@l /* 0x8047990C@l */
 /* 80472DB8  3B C0 00 00 */	li r30, 0
 /* 80472DBC  C3 E3 07 40 */	lfs f31, 0x740(r3)
 /* 80472DC0  C0 1F 0A 48 */	lfs f0, 0xa48(r31)
@@ -48,7 +48,7 @@ lbl_80472E38:
 /* 80472E3C  E3 E1 00 28 */	psq_l f31, 40(r1), 0, 0 /* qr0 */
 /* 80472E40  CB E1 00 20 */	lfd f31, 0x20(r1)
 /* 80472E44  39 61 00 20 */	addi r11, r1, 0x20
-/* 80472E48  4B EE F3 DC */	b _restgpr_28
+/* 80472E48  4B EE F3 DD */	bl _restgpr_28
 /* 80472E4C  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80472E50  7C 08 03 A6 */	mtlr r0
 /* 80472E54  38 21 00 30 */	addi r1, r1, 0x30

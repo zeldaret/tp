@@ -1,6 +1,6 @@
 lbl_80A49054:
-/* 80A49054  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80A49058  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 80A49054  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80A49058  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80A4905C  80 64 5D AC */	lwz r3, 0x5dac(r4)
 /* 80A49060  A0 03 00 F8 */	lhz r0, 0xf8(r3)
 /* 80A49064  28 00 00 03 */	cmplwi r0, 3

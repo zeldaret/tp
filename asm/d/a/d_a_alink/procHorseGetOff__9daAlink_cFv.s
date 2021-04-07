@@ -162,8 +162,8 @@ lbl_800F0804:
 /* 800F087C  C0 02 92 B8 */	lfs f0, lit_6040(r2)
 /* 800F0880  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 800F0884  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 800F0888  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800F088C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800F0888  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800F088C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800F0890  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 800F0894  38 80 00 01 */	li r4, 1
 /* 800F0898  38 A0 00 0F */	li r5, 0xf
@@ -188,8 +188,8 @@ lbl_800F08D4:
 /* 800F08DC  FC 02 00 40 */	fcmpo cr0, f2, f0
 /* 800F08E0  40 80 00 48 */	bge lbl_800F0928
 /* 800F08E4  EC 62 00 24 */	fdivs f3, f2, f0
-/* 800F08E8  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 800F08EC  C4 23 55 14 */	lfsu f1, l_waitBaseAnime@l(r3)
+/* 800F08E8  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 800F08EC  C4 23 55 14 */	lfsu f1, l_waitBaseAnime@l(r3)  /* 0x80425514@l */
 /* 800F08F0  C0 02 92 B8 */	lfs f0, lit_6040(r2)
 /* 800F08F4  EC 40 18 28 */	fsubs f2, f0, f3
 /* 800F08F8  EC 21 00 B2 */	fmuls f1, f1, f2

@@ -9,8 +9,8 @@ lbl_8011D8F8:
 /* 8011D914  A8 03 30 0E */	lha r0, 0x300e(r3)
 /* 8011D918  2C 00 00 00 */	cmpwi r0, 0
 /* 8011D91C  41 82 00 20 */	beq lbl_8011D93C
-/* 8011D920  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011D924  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011D920  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011D924  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011D928  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 8011D92C  80 9E 31 84 */	lwz r4, 0x3184(r30)
 /* 8011D930  4B F2 A8 4D */	bl cutEnd__16dEvent_manager_cFi
@@ -44,8 +44,8 @@ lbl_8011D950:
 /* 8011D998  40 80 00 08 */	bge lbl_8011D9A0
 /* 8011D99C  FC 20 00 90 */	fmr f1, f0
 lbl_8011D9A0:
-/* 8011D9A0  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha
-/* 8011D9A4  3B A3 56 1C */	addi r29, r3, l_wolfBaseAnime@l
+/* 8011D9A0  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha /* 0x8042561C@ha */
+/* 8011D9A4  3B A3 56 1C */	addi r29, r3, l_wolfBaseAnime@l /* 0x8042561C@l */
 /* 8011D9A8  C0 1D 00 00 */	lfs f0, 0(r29)
 /* 8011D9AC  EC 00 00 72 */	fmuls f0, f0, f1
 /* 8011D9B0  D0 1E 35 88 */	stfs f0, 0x3588(r30)
@@ -76,11 +76,11 @@ lbl_8011D9A0:
 /* 8011DA14  B0 1E 30 0C */	sth r0, 0x300c(r30)
 /* 8011DA18  7F C3 F3 78 */	mr r3, r30
 /* 8011DA1C  38 80 00 20 */	li r4, 0x20
-/* 8011DA20  3C A0 80 39 */	lis r5, m__21daAlinkHIO_wlSlide_c0@ha
-/* 8011DA24  38 A5 F3 F0 */	addi r5, r5, m__21daAlinkHIO_wlSlide_c0@l
+/* 8011DA20  3C A0 80 39 */	lis r5, m__21daAlinkHIO_wlSlide_c0@ha /* 0x8038F3F0@ha */
+/* 8011DA24  38 A5 F3 F0 */	addi r5, r5, m__21daAlinkHIO_wlSlide_c0@l /* 0x8038F3F0@l */
 /* 8011DA28  48 00 BE 21 */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
-/* 8011DA2C  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha
-/* 8011DA30  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)
+/* 8011DA2C  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha /* 0x8042561C@ha */
+/* 8011DA30  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)  /* 0x8042561C@l */
 /* 8011DA34  D0 1E 35 88 */	stfs f0, 0x3588(r30)
 /* 8011DA38  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8011DA3C  D0 1E 35 8C */	stfs f0, 0x358c(r30)
@@ -110,8 +110,8 @@ lbl_8011D9A0:
 lbl_8011DA9C:
 /* 8011DA9C  7F C3 F3 78 */	mr r3, r30
 /* 8011DAA0  38 80 00 00 */	li r4, 0
-/* 8011DAA4  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlMove_c0@ha
-/* 8011DAA8  38 A5 EE 28 */	addi r5, r5, m__20daAlinkHIO_wlMove_c0@l
+/* 8011DAA4  3C A0 80 39 */	lis r5, m__20daAlinkHIO_wlMove_c0@ha /* 0x8038EE28@ha */
+/* 8011DAA8  38 A5 EE 28 */	addi r5, r5, m__20daAlinkHIO_wlMove_c0@l /* 0x8038EE28@l */
 /* 8011DAAC  C0 25 00 70 */	lfs f1, 0x70(r5)
 /* 8011DAB0  C0 42 92 C4 */	lfs f2, lit_6109(r2)
 /* 8011DAB4  48 00 BC 25 */	bl setSingleAnimeWolfBaseSpeed__9daAlink_cFQ29daAlink_c12daAlink_WANMff

@@ -43,8 +43,8 @@ lbl_800EA33C:
 lbl_800EA344:
 /* 800EA344  A8 1F 04 E6 */	lha r0, 0x4e6(r31)
 /* 800EA348  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 800EA34C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800EA350  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 800EA34C  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800EA350  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800EA354  7C 04 04 2E */	lfsx f0, r4, r0
 /* 800EA358  80 7F 27 F4 */	lwz r3, 0x27f4(r31)
 /* 800EA35C  C0 23 04 D0 */	lfs f1, 0x4d0(r3)

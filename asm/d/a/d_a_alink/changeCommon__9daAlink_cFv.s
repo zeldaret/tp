@@ -101,8 +101,8 @@ lbl_80126818:
 /* 801268C0  B3 DF 32 AA */	sth r30, 0x32aa(r31)
 /* 801268C4  B3 DF 32 AC */	sth r30, 0x32ac(r31)
 /* 801268C8  9B DF 2F C4 */	stb r30, 0x2fc4(r31)
-/* 801268CC  3C 60 80 39 */	lis r3, m__19daAlinkHIO_basic_c0@ha
-/* 801268D0  38 63 D6 64 */	addi r3, r3, m__19daAlinkHIO_basic_c0@l
+/* 801268CC  3C 60 80 39 */	lis r3, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 801268D0  38 63 D6 64 */	addi r3, r3, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 801268D4  A8 03 00 0A */	lha r0, 0xa(r3)
 /* 801268D8  98 1F 2F BA */	stb r0, 0x2fba(r31)
 /* 801268DC  38 00 00 10 */	li r0, 0x10

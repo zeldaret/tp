@@ -22,29 +22,29 @@ lbl_801455E0:
 /* 801455F0  54 00 06 3E */	clrlwi r0, r0, 0x18
 /* 801455F4  7C 00 07 75 */	extsb. r0, r0
 /* 801455F8  40 80 00 1C */	bge lbl_80145614
-/* 801455FC  3C 60 80 39 */	lis r3, d_a_d_a_no_chg_room__stringBase0@ha
-/* 80145600  38 63 26 40 */	addi r3, r3, d_a_d_a_no_chg_room__stringBase0@l
+/* 801455FC  3C 60 80 39 */	lis r3, d_a_d_a_no_chg_room__stringBase0@ha /* 0x80392640@ha */
+/* 80145600  38 63 26 40 */	addi r3, r3, d_a_d_a_no_chg_room__stringBase0@l /* 0x80392640@l */
 /* 80145604  4C C6 31 82 */	crclr 6
 /* 80145608  4B EC 16 E5 */	bl OSReport_Warning
 /* 8014560C  38 60 00 05 */	li r3, 5
 /* 80145610  48 00 00 80 */	b lbl_80145690
 lbl_80145614:
-/* 80145614  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80145618  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80145614  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80145618  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8014561C  C0 3F 04 D0 */	lfs f1, 0x4d0(r31)
 /* 80145620  C0 5F 04 D4 */	lfs f2, 0x4d4(r31)
 /* 80145624  C0 7F 04 D8 */	lfs f3, 0x4d8(r31)
 /* 80145628  48 20 12 C1 */	bl PSMTXTrans
-/* 8014562C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80145630  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8014562C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80145630  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80145634  A8 9F 04 E6 */	lha r4, 0x4e6(r31)
 /* 80145638  4B EC 6D FD */	bl mDoMtx_YrotM__FPA4_fs
-/* 8014563C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80145640  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8014563C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80145640  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80145644  38 9F 05 68 */	addi r4, r31, 0x568
 /* 80145648  48 20 0E 69 */	bl PSMTXCopy
-/* 8014564C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80145650  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8014564C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80145650  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80145654  38 9F 05 98 */	addi r4, r31, 0x598
 /* 80145658  48 20 0F 59 */	bl PSMTXInverse
 /* 8014565C  38 7F 04 EC */	addi r3, r31, 0x4ec

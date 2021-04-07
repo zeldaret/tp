@@ -1,8 +1,8 @@
 lbl_802EB510:
 /* 802EB510  38 A0 00 00 */	li r5, 0
 /* 802EB514  90 A3 00 00 */	stw r5, 0(r3)
-/* 802EB518  3C 80 80 3A */	lis r4, j2dDefaultTexCoordInfo@ha
-/* 802EB51C  38 84 1B 80 */	addi r4, r4, j2dDefaultTexCoordInfo@l
+/* 802EB518  3C 80 80 3A */	lis r4, j2dDefaultTexCoordInfo@ha /* 0x803A1B80@ha */
+/* 802EB51C  38 84 1B 80 */	addi r4, r4, j2dDefaultTexCoordInfo@l /* 0x803A1B80@l */
 /* 802EB520  38 00 00 08 */	li r0, 8
 /* 802EB524  7C 09 03 A6 */	mtctr r0
 lbl_802EB528:

@@ -3,19 +3,20 @@
 #
 
 M45_TARGET := $(BUILD_DIR)/rel/d/a/d_a_arrow.plf
+M45_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_arrow.lcf
+M45_MAP := $(BUILD_DIR)/rel/d/a/d_a_arrow.map
 
 M45_CPP_FILES := \
-	rel/d/a/d_a_arrow/executor.cpp \
-	rel/d/a/d_a_arrow/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_arrow/d_a_arrow.cpp \
 
 M45_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_arrow/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_arrow/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_arrow/d_a_arrow.o \
 
 M45_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_arrow/libRuntime.PPCEABI.H.a \
 
 M45_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M45_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M45_LDSCRIPT) \
+	-unused -map $(M45_MAP) \
+	-w off \
 
 $(M45_TARGET): $(M45_O_FILES) $(M45_LIBS)
+	@echo [ 45] creating $(M45_TARGET)
 	@echo $(M45_LIBS) $(M45_O_FILES) > build/M45_ofiles
-	$(LD) -partial $(M45_LDFLAGS) -o $(M45_TARGET) @build/M45_ofiles
+	@python3 tools/lcf.py rel 45 --output $(M45_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M45_LDFLAGS) -o $(M45_TARGET) @build/M45_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_arrow/%.o: rel/d/a/d_a_arrow/%.cpp
+	@echo [ 45] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M45_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M45_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_arrow/libs/Runtime.PPCEABI.H/Makefile
 

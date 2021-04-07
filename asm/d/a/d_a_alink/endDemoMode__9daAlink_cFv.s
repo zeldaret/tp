@@ -47,8 +47,8 @@ lbl_80117DA0:
 /* 80117DA0  80 1C 05 70 */	lwz r0, 0x570(r28)
 /* 80117DA4  54 00 03 14 */	rlwinm r0, r0, 0, 0xc, 0xa
 /* 80117DA8  90 1C 05 70 */	stw r0, 0x570(r28)
-/* 80117DAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80117DB0  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 80117DAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80117DB0  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80117DB4  80 1F 5F 18 */	lwz r0, 0x5f18(r31)
 /* 80117DB8  54 00 07 34 */	rlwinm r0, r0, 0, 0x1c, 0x1a
 /* 80117DBC  90 1F 5F 18 */	stw r0, 0x5f18(r31)
@@ -171,16 +171,16 @@ lbl_80117F4C:
 /* 80117F60  28 00 00 F2 */	cmplwi r0, 0xf2
 /* 80117F64  40 82 00 64 */	bne lbl_80117FC8
 lbl_80117F68:
-/* 80117F68  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 80117F6C  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 80117F68  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 80117F6C  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 80117F70  C0 03 00 08 */	lfs f0, 8(r3)
 /* 80117F74  D0 1C 33 A8 */	stfs f0, 0x33a8(r28)
 /* 80117F78  A8 63 00 0C */	lha r3, 0xc(r3)
 /* 80117F7C  3C 63 00 01 */	addis r3, r3, 1
 /* 80117F80  38 03 80 00 */	addi r0, r3, -32768
 /* 80117F84  B0 1C 2F E0 */	sth r0, 0x2fe0(r28)
-/* 80117F88  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80117F8C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80117F88  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80117F8C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80117F90  80 1C 31 7C */	lwz r0, 0x317c(r28)
 /* 80117F94  1C 00 00 38 */	mulli r0, r0, 0x38
 /* 80117F98  7C 63 02 14 */	add r3, r3, r0
@@ -256,8 +256,8 @@ lbl_80118088:
 /* 8011808C  40 82 00 20 */	bne lbl_801180AC
 /* 80118090  7F 83 E3 78 */	mr r3, r28
 /* 80118094  38 80 00 01 */	li r4, 1
-/* 80118098  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha
-/* 8011809C  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l
+/* 80118098  3C A0 80 39 */	lis r5, m__22daAlinkHIO_autoJump_c0@ha /* 0x8038E068@ha */
+/* 8011809C  38 A5 E0 68 */	addi r5, r5, m__22daAlinkHIO_autoJump_c0@l /* 0x8038E068@l */
 /* 801180A0  C0 25 00 70 */	lfs f1, 0x70(r5)
 /* 801180A4  4B FA E9 A5 */	bl procFallInit__9daAlink_cFif
 /* 801180A8  48 00 00 2C */	b lbl_801180D4

@@ -88,8 +88,8 @@ lbl_801C778C:
 /* 801C7798  7C 84 00 38 */	and r4, r4, r0
 /* 801C779C  80 7F 00 14 */	lwz r3, 0x14(r31)
 /* 801C77A0  98 83 12 39 */	stb r4, 0x1239(r3)
-/* 801C77A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801C77A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801C77A4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801C77A8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801C77AC  3B C3 5F 64 */	addi r30, r3, 0x5f64
 /* 801C77B0  7F C3 F3 78 */	mr r3, r30
 /* 801C77B4  38 9E 01 B4 */	addi r4, r30, 0x1b4

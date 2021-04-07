@@ -6,8 +6,8 @@ lbl_8030E064:
 /* 8030E074  38 E0 00 00 */	li r7, 0
 /* 8030E078  28 04 00 14 */	cmplwi r4, 0x14
 /* 8030E07C  41 81 00 D0 */	bgt lbl_8030E14C
-/* 8030E080  3C A0 80 3D */	lis r5, lit_951@ha
-/* 8030E084  38 A5 D8 2C */	addi r5, r5, lit_951@l
+/* 8030E080  3C A0 80 3D */	lis r5, lit_951@ha /* 0x803CD82C@ha */
+/* 8030E084  38 A5 D8 2C */	addi r5, r5, lit_951@l /* 0x803CD82C@l */
 /* 8030E088  54 80 10 3A */	slwi r0, r4, 2
 /* 8030E08C  7C 05 00 2E */	lwzx r0, r5, r0
 /* 8030E090  7C 09 03 A6 */	mtctr r0

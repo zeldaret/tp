@@ -1,6 +1,6 @@
 lbl_801FA538:
-/* 801FA538  3C 80 80 43 */	lis r4, g_meter2_info@ha
-/* 801FA53C  38 84 01 88 */	addi r4, r4, g_meter2_info@l
+/* 801FA538  3C 80 80 43 */	lis r4, g_meter2_info@ha /* 0x80430188@ha */
+/* 801FA53C  38 84 01 88 */	addi r4, r4, g_meter2_info@l /* 0x80430188@l */
 /* 801FA540  88 04 00 B9 */	lbz r0, 0xb9(r4)
 /* 801FA544  98 04 00 BA */	stb r0, 0xba(r4)
 /* 801FA548  38 00 00 04 */	li r0, 4

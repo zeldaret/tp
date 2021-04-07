@@ -3,19 +3,20 @@
 #
 
 M41_TARGET := $(BUILD_DIR)/rel/d/a/d_a_tbox.plf
+M41_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_tbox.lcf
+M41_MAP := $(BUILD_DIR)/rel/d/a/d_a_tbox.map
 
 M41_CPP_FILES := \
-	rel/d/a/d_a_tbox/executor.cpp \
-	rel/d/a/d_a_tbox/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_tbox/d_a_tbox.cpp \
 
 M41_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_tbox/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_tbox/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_tbox/d_a_tbox.o \
 
 M41_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_tbox/libRuntime.PPCEABI.H.a \
 
 M41_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M41_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M41_LDSCRIPT) \
+	-unused -map $(M41_MAP) \
+	-w off \
 
 $(M41_TARGET): $(M41_O_FILES) $(M41_LIBS)
+	@echo [ 41] creating $(M41_TARGET)
 	@echo $(M41_LIBS) $(M41_O_FILES) > build/M41_ofiles
-	$(LD) -partial $(M41_LDFLAGS) -o $(M41_TARGET) @build/M41_ofiles
+	@python3 tools/lcf.py rel 41 --output $(M41_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M41_LDFLAGS) -o $(M41_TARGET) @build/M41_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_tbox/%.o: rel/d/a/d_a_tbox/%.cpp
+	@echo [ 41] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M41_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M41_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_tbox/libs/Runtime.PPCEABI.H/Makefile
 

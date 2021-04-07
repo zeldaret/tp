@@ -6,8 +6,8 @@ lbl_80136064:
 /* 80136074  7C 7F 1B 78 */	mr r31, r3
 /* 80136078  38 80 02 A7 */	li r4, 0x2a7
 /* 8013607C  38 A0 00 02 */	li r5, 2
-/* 80136080  3C C0 80 39 */	lis r6, m__22daAlinkHIO_wlDamage_c0@ha
-/* 80136084  38 C6 F3 C4 */	addi r6, r6, m__22daAlinkHIO_wlDamage_c0@l
+/* 80136080  3C C0 80 39 */	lis r6, m__22daAlinkHIO_wlDamage_c0@ha /* 0x8038F3C4@ha */
+/* 80136084  38 C6 F3 C4 */	addi r6, r6, m__22daAlinkHIO_wlDamage_c0@l /* 0x8038F3C4@l */
 /* 80136088  4B F7 76 69 */	bl setUpperAnimeParam__9daAlink_cFUsQ29daAlink_c13daAlink_UPPERPC16daAlinkHIO_anm_c
 /* 8013608C  7F E3 FB 78 */	mr r3, r31
 /* 80136090  3C 80 00 02 */	lis r4, 0x0002 /* 0x00020014@ha */

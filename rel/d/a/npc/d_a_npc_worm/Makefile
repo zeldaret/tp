@@ -3,17 +3,15 @@
 #
 
 M377_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_worm.plf
+M377_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_worm.lcf
+M377_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_worm.map
 
 M377_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_worm/executor.cpp \
-	rel/d/a/npc/d_a_npc_worm/unknown_translation_unit_ctors.cpp \
-	rel/d/a/npc/d_a_npc_worm/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/npc/d_a_npc_worm/d_a_npc_worm.cpp \
 
 M377_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_worm/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_worm/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_worm/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_worm/d_a_npc_worm.o \
 
 M377_LIBS := \
@@ -29,14 +27,21 @@ M377_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M377_LDSCRIPT) \
+	-unused -map $(M377_MAP) \
+	-w off \
 
 $(M377_TARGET): $(M377_O_FILES) $(M377_LIBS)
+	@echo [377] creating $(M377_TARGET)
 	@echo $(M377_LIBS) $(M377_O_FILES) > build/M377_ofiles
-	$(LD) -partial $(M377_LDFLAGS) -o $(M377_TARGET) @build/M377_ofiles
+	@python3 tools/lcf.py rel 377 --output $(M377_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M377_LDFLAGS) -o $(M377_TARGET) @build/M377_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_worm/%.o: rel/d/a/npc/d_a_npc_worm/%.cpp
+	@echo [377] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M377_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M377_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -5,7 +5,7 @@ lbl_80D5B410:
 /* 80D5B41C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80D5B420  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80D5B424  41 82 00 24 */	beq lbl_80D5B448
-/* 80D5B428  4B 2B D8 B8 */	b fopAc_IsActor__FPv
+/* 80D5B428  4B 2B D8 B9 */	bl fopAc_IsActor__FPv
 /* 80D5B42C  2C 03 00 00 */	cmpwi r3, 0
 /* 80D5B430  41 82 00 18 */	beq lbl_80D5B448
 /* 80D5B434  A8 1F 00 0E */	lha r0, 0xe(r31)

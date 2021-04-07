@@ -1,6 +1,6 @@
 lbl_801FE4EC:
-/* 801FE4EC  3C 80 80 3C */	lis r4, __vt__22dMeter_drawOptionHIO_c@ha
-/* 801FE4F0  38 04 F1 84 */	addi r0, r4, __vt__22dMeter_drawOptionHIO_c@l
+/* 801FE4EC  3C 80 80 3C */	lis r4, __vt__22dMeter_drawOptionHIO_c@ha /* 0x803BF184@ha */
+/* 801FE4F0  38 04 F1 84 */	addi r0, r4, __vt__22dMeter_drawOptionHIO_c@l /* 0x803BF184@l */
 /* 801FE4F4  90 03 00 00 */	stw r0, 0(r3)
 /* 801FE4F8  38 00 FF FF */	li r0, -1
 /* 801FE4FC  90 03 00 0C */	stw r0, 0xc(r3)

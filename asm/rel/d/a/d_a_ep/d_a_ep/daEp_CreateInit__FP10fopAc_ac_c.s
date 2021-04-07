@@ -9,17 +9,17 @@ lbl_8046A858:
 /* 8046A874  98 03 06 0D */	stb r0, 0x60d(r3)
 /* 8046A878  38 1F 05 70 */	addi r0, r31, 0x570
 /* 8046A87C  90 03 05 04 */	stw r0, 0x504(r3)
-/* 8046A880  3C 80 80 47 */	lis r4, lit_4639@ha
-/* 8046A884  C0 24 B0 AC */	lfs f1, lit_4639@l(r4)
+/* 8046A880  3C 80 80 47 */	lis r4, lit_4639@ha /* 0x8046B0AC@ha */
+/* 8046A884  C0 24 B0 AC */	lfs f1, lit_4639@l(r4)  /* 0x8046B0AC@l */
 /* 8046A888  FC 40 08 90 */	fmr f2, f1
 /* 8046A88C  FC 60 08 90 */	fmr f3, f1
-/* 8046A890  4B BA FC 98 */	b fopAcM_SetMin__FP10fopAc_ac_cfff
+/* 8046A890  4B BA FC 99 */	bl fopAcM_SetMin__FP10fopAc_ac_cfff
 /* 8046A894  7F E3 FB 78 */	mr r3, r31
-/* 8046A898  3C 80 80 47 */	lis r4, lit_4640@ha
-/* 8046A89C  C0 24 B0 B0 */	lfs f1, lit_4640@l(r4)
+/* 8046A898  3C 80 80 47 */	lis r4, lit_4640@ha /* 0x8046B0B0@ha */
+/* 8046A89C  C0 24 B0 B0 */	lfs f1, lit_4640@l(r4)  /* 0x8046B0B0@l */
 /* 8046A8A0  FC 40 08 90 */	fmr f2, f1
 /* 8046A8A4  FC 60 08 90 */	fmr f3, f1
-/* 8046A8A8  4B BA FC 90 */	b fopAcM_SetMax__FP10fopAc_ac_cfff
+/* 8046A8A8  4B BA FC 91 */	bl fopAcM_SetMax__FP10fopAc_ac_cfff
 /* 8046A8AC  7F E3 FB 78 */	mr r3, r31
 /* 8046A8B0  4B FF F6 2D */	bl daEp_set_mtx__FP8ep_class
 /* 8046A8B4  38 00 00 00 */	li r0, 0

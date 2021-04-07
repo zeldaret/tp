@@ -37,8 +37,8 @@ lbl_800128E8:
 lbl_800128FC:
 /* 800128FC  B0 92 00 14 */	sth r4, 0x14(r18)
 lbl_80012900:
-/* 80012900  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80012904  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80012900  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80012904  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80012908  83 E3 61 B0 */	lwz r31, 0x61b0(r3)
 /* 8001290C  83 B2 00 18 */	lwz r29, 0x18(r18)
 /* 80012910  54 C0 04 3F */	clrlwi. r0, r6, 0x10

@@ -5,27 +5,27 @@ lbl_80D4ED80:
 /* 80D4ED8C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80D4ED90  7C 7F 1B 78 */	mr r31, r3
 /* 80D4ED94  38 A0 00 00 */	li r5, 0
-/* 80D4ED98  3C 60 80 D5 */	lis r3, l_target_info_count@ha
-/* 80D4ED9C  90 A3 F5 A8 */	stw r5, l_target_info_count@l(r3)
+/* 80D4ED98  3C 60 80 D5 */	lis r3, l_target_info_count@ha /* 0x80D4F5A8@ha */
+/* 80D4ED9C  90 A3 F5 A8 */	stw r5, l_target_info_count@l(r3)  /* 0x80D4F5A8@l */
 /* 80D4EDA0  7C A3 2B 78 */	mr r3, r5
-/* 80D4EDA4  3C 80 80 D5 */	lis r4, l_target_info@ha
-/* 80D4EDA8  38 84 F5 A0 */	addi r4, r4, l_target_info@l
+/* 80D4EDA4  3C 80 80 D5 */	lis r4, l_target_info@ha /* 0x80D4F5A0@ha */
+/* 80D4EDA8  38 84 F5 A0 */	addi r4, r4, l_target_info@l /* 0x80D4F5A0@l */
 /* 80D4EDAC  38 00 00 02 */	li r0, 2
 /* 80D4EDB0  7C 09 03 A6 */	mtctr r0
 lbl_80D4EDB4:
 /* 80D4EDB4  7C A4 19 2E */	stwx r5, r4, r3
 /* 80D4EDB8  38 63 00 04 */	addi r3, r3, 4
 /* 80D4EDBC  42 00 FF F8 */	bdnz lbl_80D4EDB4
-/* 80D4EDC0  3C 60 80 D5 */	lis r3, s_lb_sub__FPvPv@ha
-/* 80D4EDC4  38 63 EA F8 */	addi r3, r3, s_lb_sub__FPvPv@l
+/* 80D4EDC0  3C 60 80 D5 */	lis r3, s_lb_sub__FPvPv@ha /* 0x80D4EAF8@ha */
+/* 80D4EDC4  38 63 EA F8 */	addi r3, r3, s_lb_sub__FPvPv@l /* 0x80D4EAF8@l */
 /* 80D4EDC8  7F E4 FB 78 */	mr r4, r31
-/* 80D4EDCC  4B 2D 25 6C */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80D4EDCC  4B 2D 25 6D */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 80D4EDD0  39 40 00 00 */	li r10, 0
 /* 80D4EDD4  38 60 00 00 */	li r3, 0
-/* 80D4EDD8  3C 80 80 D5 */	lis r4, l_target_info@ha
-/* 80D4EDDC  38 E4 F5 A0 */	addi r7, r4, l_target_info@l
-/* 80D4EDE0  3C 80 80 D5 */	lis r4, l_target_info_count@ha
-/* 80D4EDE4  38 A4 F5 A8 */	addi r5, r4, l_target_info_count@l
+/* 80D4EDD8  3C 80 80 D5 */	lis r4, l_target_info@ha /* 0x80D4F5A0@ha */
+/* 80D4EDDC  38 E4 F5 A0 */	addi r7, r4, l_target_info@l /* 0x80D4F5A0@l */
+/* 80D4EDE0  3C 80 80 D5 */	lis r4, l_target_info_count@ha /* 0x80D4F5A8@ha */
+/* 80D4EDE4  38 A4 F5 A8 */	addi r5, r4, l_target_info_count@l /* 0x80D4F5A8@l */
 /* 80D4EDE8  48 00 00 A4 */	b lbl_80D4EE8C
 lbl_80D4EDEC:
 /* 80D4EDEC  7C 87 18 2E */	lwzx r4, r7, r3

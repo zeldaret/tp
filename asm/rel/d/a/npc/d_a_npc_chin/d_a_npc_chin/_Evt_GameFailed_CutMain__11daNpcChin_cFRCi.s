@@ -20,13 +20,13 @@ lbl_809901B4:
 /* 809901B4  38 80 00 00 */	li r4, 0
 /* 809901B8  38 A0 00 01 */	li r5, 1
 /* 809901BC  38 C0 00 00 */	li r6, 0
-/* 809901C0  4B 7C 3B C4 */	b talkProc__8daNpcF_cFPiiPP10fopAc_ac_c
+/* 809901C0  4B 7C 3B C5 */	bl talkProc__8daNpcF_cFPiiPP10fopAc_ac_c
 /* 809901C4  2C 03 00 00 */	cmpwi r3, 0
 /* 809901C8  41 82 00 2C */	beq lbl_809901F4
 /* 809901CC  7F C3 F3 78 */	mr r3, r30
 /* 809901D0  38 80 00 0E */	li r4, 0xe
-/* 809901D4  3C A0 80 99 */	lis r5, lit_4627@ha
-/* 809901D8  C0 25 19 A4 */	lfs f1, lit_4627@l(r5)
+/* 809901D4  3C A0 80 99 */	lis r5, lit_4627@ha /* 0x809919A4@ha */
+/* 809901D8  C0 25 19 A4 */	lfs f1, lit_4627@l(r5)  /* 0x809919A4@l */
 /* 809901DC  81 9E 0B 44 */	lwz r12, 0xb44(r30)
 /* 809901E0  81 8C 00 34 */	lwz r12, 0x34(r12)
 /* 809901E4  7D 89 03 A6 */	mtctr r12

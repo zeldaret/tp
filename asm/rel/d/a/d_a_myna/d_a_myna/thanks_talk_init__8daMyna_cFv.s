@@ -4,8 +4,8 @@ lbl_809476A0:
 /* 809476A8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 809476AC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 809476B0  7C 7F 1B 78 */	mr r31, r3
-/* 809476B4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 809476B8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 809476B4  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 809476B8  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 809476BC  80 84 5D BC */	lwz r4, 0x5dbc(r4)
 /* 809476C0  A8 04 01 7C */	lha r0, 0x17c(r4)
 /* 809476C4  A8 84 01 7A */	lha r4, 0x17a(r4)
@@ -31,7 +31,7 @@ lbl_80947700:
 /* 80947708  A0 BF 09 1C */	lhz r5, 0x91c(r31)
 /* 8094770C  38 C0 00 00 */	li r6, 0
 /* 80947710  38 E0 00 00 */	li r7, 0
-/* 80947714  4B 90 28 7C */	b init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
+/* 80947714  4B 90 28 7D */	bl init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c
 /* 80947718  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8094771C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80947720  7C 08 03 A6 */	mtlr r0

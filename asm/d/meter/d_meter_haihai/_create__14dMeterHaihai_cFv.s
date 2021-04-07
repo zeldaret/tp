@@ -14,11 +14,11 @@ lbl_8020AF6C:
 lbl_8020AF9C:
 /* 8020AF9C  90 1F 00 04 */	stw r0, 4(r31)
 /* 8020AFA0  80 7F 00 04 */	lwz r3, 4(r31)
-/* 8020AFA4  3C 80 80 3A */	lis r4, d_meter_d_meter_haihai__stringBase0@ha
-/* 8020AFA8  38 84 81 58 */	addi r4, r4, d_meter_d_meter_haihai__stringBase0@l
+/* 8020AFA4  3C 80 80 3A */	lis r4, d_meter_d_meter_haihai__stringBase0@ha /* 0x80398158@ha */
+/* 8020AFA8  38 84 81 58 */	addi r4, r4, d_meter_d_meter_haihai__stringBase0@l /* 0x80398158@l */
 /* 8020AFAC  3C A0 00 02 */	lis r5, 2
-/* 8020AFB0  3C C0 80 40 */	lis r6, g_dComIfG_gameInfo@ha
-/* 8020AFB4  3B C6 61 C0 */	addi r30, r6, g_dComIfG_gameInfo@l
+/* 8020AFB0  3C C0 80 40 */	lis r6, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8020AFB4  3B C6 61 C0 */	addi r30, r6, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8020AFB8  80 DE 5D 30 */	lwz r6, 0x5d30(r30)
 /* 8020AFBC  48 0E D6 8D */	bl setPriority__9J2DScreenFPCcUlP10JKRArchive
 /* 8020AFC0  80 7F 00 04 */	lwz r3, 4(r31)
@@ -49,8 +49,8 @@ lbl_8020AFF8:
 /* 8020B020  38 60 00 07 */	li r3, 7
 /* 8020B024  64 63 00 07 */	oris r3, r3, 7
 /* 8020B028  7C 75 E3 A6 */	mtspr 0x395, r3
-/* 8020B02C  3C 80 80 3A */	lis r4, d_meter_d_meter_haihai__stringBase0@ha
-/* 8020B030  38 84 81 58 */	addi r4, r4, d_meter_d_meter_haihai__stringBase0@l
+/* 8020B02C  3C 80 80 3A */	lis r4, d_meter_d_meter_haihai__stringBase0@ha /* 0x80398158@ha */
+/* 8020B030  38 84 81 58 */	addi r4, r4, d_meter_d_meter_haihai__stringBase0@l /* 0x80398158@l */
 /* 8020B034  38 64 00 16 */	addi r3, r4, 0x16
 /* 8020B038  80 9E 5D 30 */	lwz r4, 0x5d30(r30)
 /* 8020B03C  48 0C 92 35 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
@@ -58,8 +58,8 @@ lbl_8020AFF8:
 /* 8020B044  90 7F 00 0C */	stw r3, 0xc(r31)
 /* 8020B048  C0 02 AD B0 */	lfs f0, lit_3742(r2)
 /* 8020B04C  D0 1F 00 18 */	stfs f0, 0x18(r31)
-/* 8020B050  3C 80 80 3A */	lis r4, d_meter_d_meter_haihai__stringBase0@ha
-/* 8020B054  38 84 81 58 */	addi r4, r4, d_meter_d_meter_haihai__stringBase0@l
+/* 8020B050  3C 80 80 3A */	lis r4, d_meter_d_meter_haihai__stringBase0@ha /* 0x80398158@ha */
+/* 8020B054  38 84 81 58 */	addi r4, r4, d_meter_d_meter_haihai__stringBase0@l /* 0x80398158@l */
 /* 8020B058  38 64 00 2C */	addi r3, r4, 0x2c
 /* 8020B05C  80 9E 5D 30 */	lwz r4, 0x5d30(r30)
 /* 8020B060  48 0C 92 11 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
@@ -73,8 +73,8 @@ lbl_8020AFF8:
 /* 8020B080  4E 80 04 21 */	bctrl 
 /* 8020B084  C0 02 AD B0 */	lfs f0, lit_3742(r2)
 /* 8020B088  D0 1F 00 1C */	stfs f0, 0x1c(r31)
-/* 8020B08C  3C 80 80 3A */	lis r4, d_meter_d_meter_haihai__stringBase0@ha
-/* 8020B090  38 84 81 58 */	addi r4, r4, d_meter_d_meter_haihai__stringBase0@l
+/* 8020B08C  3C 80 80 3A */	lis r4, d_meter_d_meter_haihai__stringBase0@ha /* 0x80398158@ha */
+/* 8020B090  38 84 81 58 */	addi r4, r4, d_meter_d_meter_haihai__stringBase0@l /* 0x80398158@l */
 /* 8020B094  38 64 00 42 */	addi r3, r4, 0x42
 /* 8020B098  80 9E 5D 30 */	lwz r4, 0x5d30(r30)
 /* 8020B09C  48 0C 91 D5 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader

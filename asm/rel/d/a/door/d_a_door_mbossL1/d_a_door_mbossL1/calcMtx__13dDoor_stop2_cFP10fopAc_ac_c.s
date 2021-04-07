@@ -20,28 +20,28 @@ lbl_806728EC:
 /* 806728F8  D0 41 00 0C */	stfs f2, 0xc(r1)
 /* 806728FC  C0 7F 04 D8 */	lfs f3, 0x4d8(r31)
 /* 80672900  D0 61 00 10 */	stfs f3, 0x10(r1)
-/* 80672904  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80672908  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80672904  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80672908  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8067290C  C0 1E 00 04 */	lfs f0, 4(r30)
 /* 80672910  EC 42 00 2A */	fadds f2, f2, f0
-/* 80672914  4B CD 3F D4 */	b PSMTXTrans
-/* 80672918  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 8067291C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80672914  4B CD 3F D5 */	bl PSMTXTrans
+/* 80672918  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 8067291C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80672920  A8 9F 04 DE */	lha r4, 0x4de(r31)
-/* 80672924  4B 99 9B 10 */	b mDoMtx_YrotM__FPA4_fs
+/* 80672924  4B 99 9B 11 */	bl mDoMtx_YrotM__FPA4_fs
 /* 80672928  88 1E 00 09 */	lbz r0, 9(r30)
 /* 8067292C  28 00 00 01 */	cmplwi r0, 1
 /* 80672930  40 82 00 14 */	bne lbl_80672944
-/* 80672934  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80672938  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80672934  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80672938  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8067293C  38 80 7F FF */	li r4, 0x7fff
-/* 80672940  4B 99 9A F4 */	b mDoMtx_YrotM__FPA4_fs
+/* 80672940  4B 99 9A F5 */	bl mDoMtx_YrotM__FPA4_fs
 lbl_80672944:
-/* 80672944  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80672948  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 80672944  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80672948  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 8067294C  80 9E 00 00 */	lwz r4, 0(r30)
 /* 80672950  38 84 00 24 */	addi r4, r4, 0x24
-/* 80672954  4B CD 3B 5C */	b PSMTXCopy
+/* 80672954  4B CD 3B 5D */	bl PSMTXCopy
 lbl_80672958:
 /* 80672958  83 E1 00 1C */	lwz r31, 0x1c(r1)
 /* 8067295C  83 C1 00 18 */	lwz r30, 0x18(r1)

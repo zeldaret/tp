@@ -29,41 +29,41 @@ extern "C" void __copy_longs_aligned();
 // Declarations:
 //
 
-/* 8036608C-803660D8 004C+00 s=0 e=19 z=5  None .text      memcmp */
+/* 8036608C-803660D8 3609CC 004C+00 0/0 19/19 5/5 .text            memcmp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void memcmp() {
+asm void memcmp() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/mem/memcmp.s"
 }
 #pragma pop
 
-/* 803660D8-80366104 002C+00 s=0 e=1 z=0  None .text      __memrchr */
+/* 803660D8-80366104 360A18 002C+00 0/0 1/1 0/0 .text            __memrchr */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __memrchr() {
+asm void __memrchr() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/mem/__memrchr.s"
 }
 #pragma pop
 
-/* 80366104-80366130 002C+00 s=0 e=1 z=0  None .text      memchr */
+/* 80366104-80366130 360A44 002C+00 0/0 1/1 0/0 .text            memchr */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void memchr() {
+asm void memchr() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/mem/memchr.s"
 }
 #pragma pop
 
-/* 80366130-803661FC 00CC+00 s=0 e=2 z=0  None .text      memmove */
+/* 80366130-803661FC 360A70 00CC+00 0/0 2/2 0/0 .text            memmove */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void memmove() {
+asm void memmove() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/MSL_Common/Src/mem/memmove.s"
 }

@@ -3,17 +3,15 @@
 #
 
 M569_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mato.plf
+M569_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mato.lcf
+M569_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mato.map
 
 M569_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_mato/executor.cpp \
-	rel/d/a/obj/d_a_obj_mato/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_mato/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_mato/d_a_obj_mato.cpp \
 
 M569_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mato/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mato/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mato/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_mato/d_a_obj_mato.o \
 
 M569_LIBS := \
@@ -29,14 +27,21 @@ M569_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M569_LDSCRIPT) \
+	-unused -map $(M569_MAP) \
+	-w off \
 
 $(M569_TARGET): $(M569_O_FILES) $(M569_LIBS)
+	@echo [569] creating $(M569_TARGET)
 	@echo $(M569_LIBS) $(M569_O_FILES) > build/M569_ofiles
-	$(LD) -partial $(M569_LDFLAGS) -o $(M569_TARGET) @build/M569_ofiles
+	@python3 tools/lcf.py rel 569 --output $(M569_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M569_LDFLAGS) -o $(M569_TARGET) @build/M569_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_mato/%.o: rel/d/a/obj/d_a_obj_mato/%.cpp
+	@echo [569] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M569_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M569_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

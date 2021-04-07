@@ -9,8 +9,8 @@ lbl_8035733C:
 /* 80357358  93 81 00 10 */	stw r28, 0x10(r1)
 /* 8035735C  3B 83 00 00 */	addi r28, r3, 0
 /* 80357360  1C BC 01 10 */	mulli r5, r28, 0x110
-/* 80357364  3C 60 80 45 */	lis r3, __CARDBlock@ha
-/* 80357368  38 03 CB C0 */	addi r0, r3, __CARDBlock@l
+/* 80357364  3C 60 80 45 */	lis r3, __CARDBlock@ha /* 0x8044CBC0@ha */
+/* 80357368  38 03 CB C0 */	addi r0, r3, __CARDBlock@l /* 0x8044CBC0@l */
 /* 8035736C  7F E0 2A 14 */	add r31, r0, r5
 /* 80357370  4B FE 63 85 */	bl OSDisableInterrupts
 /* 80357374  80 1F 00 00 */	lwz r0, 0(r31)

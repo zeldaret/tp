@@ -4,8 +4,8 @@ lbl_807BAED0:
 /* 807BAED8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 807BAEDC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 807BAEE0  7C 7F 1B 78 */	mr r31, r3
-/* 807BAEE4  3C 80 80 7C */	lis r4, lit_3762@ha
-/* 807BAEE8  38 C4 BD A8 */	addi r6, r4, lit_3762@l
+/* 807BAEE4  3C 80 80 7C */	lis r4, lit_3762@ha /* 0x807BBDA8@ha */
+/* 807BAEE8  38 C4 BD A8 */	addi r6, r4, lit_3762@l /* 0x807BBDA8@l */
 /* 807BAEEC  A8 03 06 6C */	lha r0, 0x66c(r3)
 /* 807BAEF0  2C 00 00 01 */	cmpwi r0, 1
 /* 807BAEF4  41 82 00 34 */	beq lbl_807BAF28

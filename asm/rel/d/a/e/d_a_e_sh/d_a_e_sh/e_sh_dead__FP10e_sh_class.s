@@ -4,8 +4,8 @@ lbl_8078FCC0:
 /* 8078FCC8  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8078FCCC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8078FCD0  7C 7F 1B 78 */	mr r31, r3
-/* 8078FCD4  3C 80 80 79 */	lis r4, lit_3902@ha
-/* 8078FCD8  38 C4 1D 70 */	addi r6, r4, lit_3902@l
+/* 8078FCD4  3C 80 80 79 */	lis r4, lit_3902@ha /* 0x80791D70@ha */
+/* 8078FCD8  38 C4 1D 70 */	addi r6, r4, lit_3902@l /* 0x80791D70@l */
 /* 8078FCDC  38 00 00 06 */	li r0, 6
 /* 8078FCE0  B0 03 06 A0 */	sth r0, 0x6a0(r3)
 /* 8078FCE4  C0 26 00 04 */	lfs f1, 4(r6)
@@ -56,9 +56,9 @@ lbl_8078FD74:
 /* 8078FD84  38 A0 00 0A */	li r5, 0xa
 /* 8078FD88  38 C0 00 00 */	li r6, 0
 /* 8078FD8C  38 E0 00 2A */	li r7, 0x2a
-/* 8078FD90  4B 88 CD 48 */	b fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc
+/* 8078FD90  4B 88 CD 49 */	bl fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc
 /* 8078FD94  7F E3 FB 78 */	mr r3, r31
-/* 8078FD98  4B 88 9E E4 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 8078FD98  4B 88 9E E5 */	bl fopAcM_delete__FP10fopAc_ac_c
 lbl_8078FD9C:
 /* 8078FD9C  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 8078FDA0  80 01 00 14 */	lwz r0, 0x14(r1)

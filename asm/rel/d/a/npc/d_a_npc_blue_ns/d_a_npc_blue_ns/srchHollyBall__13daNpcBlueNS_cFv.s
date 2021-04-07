@@ -7,19 +7,19 @@ lbl_80969C90:
 /* 80969CA4  80 03 0D F0 */	lwz r0, 0xdf0(r3)
 /* 80969CA8  28 00 00 00 */	cmplwi r0, 0
 /* 80969CAC  40 82 00 18 */	bne lbl_80969CC4
-/* 80969CB0  3C 60 80 97 */	lis r3, _search_HollyBall_Y__13daNpcBlueNS_cFPvPv@ha
-/* 80969CB4  38 63 9D E4 */	addi r3, r3, _search_HollyBall_Y__13daNpcBlueNS_cFPvPv@l
+/* 80969CB0  3C 60 80 97 */	lis r3, _search_HollyBall_Y__13daNpcBlueNS_cFPvPv@ha /* 0x80969DE4@ha */
+/* 80969CB4  38 63 9D E4 */	addi r3, r3, _search_HollyBall_Y__13daNpcBlueNS_cFPvPv@l /* 0x80969DE4@l */
 /* 80969CB8  7F E4 FB 78 */	mr r4, r31
-/* 80969CBC  4B 6B 76 7C */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80969CBC  4B 6B 76 7D */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 80969CC0  90 7F 0D F0 */	stw r3, 0xdf0(r31)
 lbl_80969CC4:
 /* 80969CC4  80 1F 0D F4 */	lwz r0, 0xdf4(r31)
 /* 80969CC8  28 00 00 00 */	cmplwi r0, 0
 /* 80969CCC  40 82 00 18 */	bne lbl_80969CE4
-/* 80969CD0  3C 60 80 97 */	lis r3, _search_HollyBall_G__13daNpcBlueNS_cFPvPv@ha
-/* 80969CD4  38 63 9E 9C */	addi r3, r3, _search_HollyBall_G__13daNpcBlueNS_cFPvPv@l
+/* 80969CD0  3C 60 80 97 */	lis r3, _search_HollyBall_G__13daNpcBlueNS_cFPvPv@ha /* 0x80969E9C@ha */
+/* 80969CD4  38 63 9E 9C */	addi r3, r3, _search_HollyBall_G__13daNpcBlueNS_cFPvPv@l /* 0x80969E9C@l */
 /* 80969CD8  7F E4 FB 78 */	mr r4, r31
-/* 80969CDC  4B 6B 76 5C */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80969CDC  4B 6B 76 5D */	bl fpcEx_Search__FPFPvPv_PvPv
 /* 80969CE0  90 7F 0D F4 */	stw r3, 0xdf4(r31)
 lbl_80969CE4:
 /* 80969CE4  83 E1 00 0C */	lwz r31, 0xc(r1)

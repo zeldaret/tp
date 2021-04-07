@@ -33,8 +33,8 @@ lbl_8013EDAC:
 lbl_8013EDB8:
 /* 8013EDB8  2C 1F 00 00 */	cmpwi r31, 0
 /* 8013EDBC  41 82 00 3C */	beq lbl_8013EDF8
-/* 8013EDC0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8013EDC4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8013EDC0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8013EDC4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8013EDC8  38 63 4E C8 */	addi r3, r3, 0x4ec8
 /* 8013EDCC  7F C4 F3 78 */	mr r4, r30
 /* 8013EDD0  38 A0 00 00 */	li r5, 0
@@ -120,8 +120,8 @@ lbl_8013EEE4:
 /* 8013EEEC  B0 1E 04 DE */	sth r0, 0x4de(r30)
 /* 8013EEF0  A8 1E 04 E6 */	lha r0, 0x4e6(r30)
 /* 8013EEF4  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 8013EEF8  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8013EEFC  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 8013EEF8  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8013EEFC  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8013EF00  7C 03 04 2E */	lfsx f0, r3, r0
 /* 8013EF04  C0 3F 04 D0 */	lfs f1, 0x4d0(r31)
 /* 8013EF08  C0 42 93 00 */	lfs f2, lit_6895(r2)
@@ -171,8 +171,8 @@ lbl_8013EFA8:
 /* 8013EFA8  38 7E 28 0C */	addi r3, r30, 0x280c
 /* 8013EFAC  48 01 FD 51 */	bl clearData__16daPy_actorKeep_cFv
 lbl_8013EFB0:
-/* 8013EFB0  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 8013EFB4  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 8013EFB0  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8013EFB4  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8013EFB8  A8 1E 04 E6 */	lha r0, 0x4e6(r30)
 /* 8013EFBC  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 8013EFC0  7C 64 02 14 */	add r3, r4, r0
@@ -213,8 +213,8 @@ lbl_8013F024:
 /* 8013F040  48 02 3F E9 */	bl SetTrimTypeForce__9dCamera_cFl
 /* 8013F044  48 00 00 18 */	b lbl_8013F05C
 lbl_8013F048:
-/* 8013F048  3C 60 80 39 */	lis r3, m__21daAlinkHIO_wlChain_c0@ha
-/* 8013F04C  38 63 F8 58 */	addi r3, r3, m__21daAlinkHIO_wlChain_c0@l
+/* 8013F048  3C 60 80 39 */	lis r3, m__21daAlinkHIO_wlChain_c0@ha /* 0x8038F858@ha */
+/* 8013F04C  38 63 F8 58 */	addi r3, r3, m__21daAlinkHIO_wlChain_c0@l /* 0x8038F858@l */
 /* 8013F050  AB A3 00 14 */	lha r29, 0x14(r3)
 /* 8013F054  C0 02 97 D4 */	lfs f0, lit_53012(r2)
 /* 8013F058  D0 1E 34 78 */	stfs f0, 0x3478(r30)
@@ -230,16 +230,16 @@ lbl_8013F070:
 lbl_8013F078:
 /* 8013F078  7F C3 F3 78 */	mr r3, r30
 /* 8013F07C  38 80 00 68 */	li r4, 0x68
-/* 8013F080  3C A0 80 39 */	lis r5, m__21daAlinkHIO_wlChain_c0@ha
-/* 8013F084  38 C5 F8 58 */	addi r6, r5, m__21daAlinkHIO_wlChain_c0@l
+/* 8013F080  3C A0 80 39 */	lis r5, m__21daAlinkHIO_wlChain_c0@ha /* 0x8038F858@ha */
+/* 8013F084  38 C5 F8 58 */	addi r6, r5, m__21daAlinkHIO_wlChain_c0@l /* 0x8038F858@l */
 /* 8013F088  C0 26 00 18 */	lfs f1, 0x18(r6)
 /* 8013F08C  7F A5 EB 78 */	mr r5, r29
 /* 8013F090  C0 66 00 20 */	lfs f3, 0x20(r6)
 /* 8013F094  4B FE A6 71 */	bl setSingleAnimeWolf__9daAlink_cFQ29daAlink_c12daAlink_WANMffsf
 /* 8013F098  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 8013F09C  D0 1E 33 98 */	stfs f0, 0x3398(r30)
-/* 8013F0A0  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha
-/* 8013F0A4  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)
+/* 8013F0A0  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha /* 0x8042561C@ha */
+/* 8013F0A4  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)  /* 0x8042561C@l */
 /* 8013F0A8  D0 1E 35 88 */	stfs f0, 0x3588(r30)
 /* 8013F0AC  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8013F0B0  D0 1E 35 8C */	stfs f0, 0x358c(r30)
@@ -258,8 +258,8 @@ lbl_8013F078:
 /* 8013F0E4  38 7E 1D 08 */	addi r3, r30, 0x1d08
 /* 8013F0E8  38 81 00 08 */	addi r4, r1, 8
 /* 8013F0EC  48 12 8C 3D */	bl SetPos__11cBgS_GndChkFPC4cXyz
-/* 8013F0F0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8013F0F4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8013F0F0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8013F0F4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8013F0F8  3B E3 0F 38 */	addi r31, r3, 0xf38
 /* 8013F0FC  7F E3 FB 78 */	mr r3, r31
 /* 8013F100  38 9E 1D 08 */	addi r4, r30, 0x1d08
@@ -291,8 +291,8 @@ lbl_8013F140:
 /* 8013F160  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8013F164  41 82 00 4C */	beq lbl_8013F1B0
 /* 8013F168  7F E3 FB 78 */	mr r3, r31
-/* 8013F16C  3C 80 80 3F */	lis r4, mWaterCheck__11fopAcM_wt_c@ha
-/* 8013F170  38 84 1D 80 */	addi r4, r4, mWaterCheck__11fopAcM_wt_c@l
+/* 8013F16C  3C 80 80 3F */	lis r4, mWaterCheck__11fopAcM_wt_c@ha /* 0x803F1D80@ha */
+/* 8013F170  38 84 1D 80 */	addi r4, r4, mWaterCheck__11fopAcM_wt_c@l /* 0x803F1D80@l */
 /* 8013F174  4B F3 5C DD */	bl GetPolyAtt0__4dBgSFRC13cBgS_PolyInfo
 /* 8013F178  2C 03 00 06 */	cmpwi r3, 6
 /* 8013F17C  41 82 00 34 */	beq lbl_8013F1B0
@@ -304,8 +304,8 @@ lbl_8013F140:
 /* 8013F194  38 00 00 07 */	li r0, 7
 /* 8013F198  90 1E 31 98 */	stw r0, 0x3198(r30)
 /* 8013F19C  38 7E 1E 2C */	addi r3, r30, 0x1e2c
-/* 8013F1A0  3C 80 80 3F */	lis r4, mWaterCheck__11fopAcM_wt_c@ha
-/* 8013F1A4  38 84 1D 80 */	addi r4, r4, mWaterCheck__11fopAcM_wt_c@l
+/* 8013F1A0  3C 80 80 3F */	lis r4, mWaterCheck__11fopAcM_wt_c@ha /* 0x803F1D80@ha */
+/* 8013F1A4  38 84 1D 80 */	addi r4, r4, mWaterCheck__11fopAcM_wt_c@l /* 0x803F1D80@l */
 /* 8013F1A8  48 12 8F A1 */	bl SetPolyInfo__13cBgS_PolyInfoFRC13cBgS_PolyInfo
 /* 8013F1AC  48 00 00 14 */	b lbl_8013F1C0
 lbl_8013F1B0:

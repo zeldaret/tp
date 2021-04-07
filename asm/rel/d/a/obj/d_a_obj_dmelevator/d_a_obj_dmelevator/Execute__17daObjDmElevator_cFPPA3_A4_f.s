@@ -20,7 +20,7 @@ lbl_80BDE500:
 /* 80BDE548  7F C3 F3 78 */	mr r3, r30
 /* 80BDE54C  4B FF F8 45 */	bl setBaseMtx__17daObjDmElevator_cFv
 /* 80BDE550  80 7E 05 E8 */	lwz r3, 0x5e8(r30)
-/* 80BDE554  4B 49 D4 6C */	b Move__4dBgWFv
+/* 80BDE554  4B 49 D4 6D */	bl Move__4dBgWFv
 /* 80BDE558  88 1E 06 2F */	lbz r0, 0x62f(r30)
 /* 80BDE55C  98 1E 06 30 */	stb r0, 0x630(r30)
 /* 80BDE560  38 60 00 00 */	li r3, 0
@@ -32,12 +32,12 @@ lbl_80BDE500:
 /* 80BDE578  98 1E 06 35 */	stb r0, 0x635(r30)
 /* 80BDE57C  98 7E 06 34 */	stb r3, 0x634(r30)
 /* 80BDE580  A8 9E 05 E4 */	lha r4, 0x5e4(r30)
-/* 80BDE584  3C 60 80 BE */	lis r3, lit_3987@ha
-/* 80BDE588  C0 23 F8 C8 */	lfs f1, lit_3987@l(r3)
+/* 80BDE584  3C 60 80 BE */	lis r3, lit_3987@ha /* 0x80BDF8C8@ha */
+/* 80BDE588  C0 23 F8 C8 */	lfs f1, lit_3987@l(r3)  /* 0x80BDF8C8@l */
 /* 80BDE58C  C0 1E 05 2C */	lfs f0, 0x52c(r30)
 /* 80BDE590  EC 21 00 32 */	fmuls f1, f1, f0
-/* 80BDE594  3C 60 80 BE */	lis r3, lit_3988@ha
-/* 80BDE598  C0 03 F8 CC */	lfs f0, lit_3988@l(r3)
+/* 80BDE594  3C 60 80 BE */	lis r3, lit_3988@ha /* 0x80BDF8CC@ha */
+/* 80BDE598  C0 03 F8 CC */	lfs f0, lit_3988@l(r3)  /* 0x80BDF8CC@l */
 /* 80BDE59C  EC 01 00 24 */	fdivs f0, f1, f0
 /* 80BDE5A0  FC 00 00 1E */	fctiwz f0, f0
 /* 80BDE5A4  D8 01 00 08 */	stfd f0, 8(r1)
@@ -46,7 +46,7 @@ lbl_80BDE500:
 /* 80BDE5B0  B0 1E 05 E4 */	sth r0, 0x5e4(r30)
 /* 80BDE5B4  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80BDE5B8  7C 03 07 74 */	extsb r3, r0
-/* 80BDE5BC  4B 44 EA B0 */	b dComIfGp_getReverb__Fi
+/* 80BDE5BC  4B 44 EA B1 */	bl dComIfGp_getReverb__Fi
 /* 80BDE5C0  7C 65 1B 78 */	mr r5, r3
 /* 80BDE5C4  38 7E 05 B8 */	addi r3, r30, 0x5b8
 /* 80BDE5C8  38 80 00 00 */	li r4, 0

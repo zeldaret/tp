@@ -5,8 +5,8 @@ lbl_802F85A8:
 /* 802F85B4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802F85B8  7C 7F 1B 78 */	mr r31, r3
 /* 802F85BC  80 63 01 04 */	lwz r3, 0x104(r3)
-/* 802F85C0  3C 80 80 2F */	lis r4, __dt__11J2DMaterialFv@ha
-/* 802F85C4  38 84 A2 CC */	addi r4, r4, __dt__11J2DMaterialFv@l
+/* 802F85C0  3C 80 80 2F */	lis r4, __dt__11J2DMaterialFv@ha /* 0x802EA2CC@ha */
+/* 802F85C4  38 84 A2 CC */	addi r4, r4, __dt__11J2DMaterialFv@l /* 0x802EA2CC@l */
 /* 802F85C8  48 06 96 A5 */	bl __destroy_new_array
 /* 802F85CC  38 00 00 00 */	li r0, 0
 /* 802F85D0  B0 1F 01 02 */	sth r0, 0x102(r31)

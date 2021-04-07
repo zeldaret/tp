@@ -5,8 +5,8 @@ lbl_8075CB80:
 /* 8075CB8C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8075CB90  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8075CB94  7C 7F 1B 78 */	mr r31, r3
-/* 8075CB98  3C 80 80 76 */	lis r4, lit_3906@ha
-/* 8075CB9C  3B C4 14 FC */	addi r30, r4, lit_3906@l
+/* 8075CB98  3C 80 80 76 */	lis r4, lit_3906@ha /* 0x807614FC@ha */
+/* 8075CB9C  3B C4 14 FC */	addi r30, r4, lit_3906@l /* 0x807614FC@l */
 /* 8075CBA0  80 03 06 84 */	lwz r0, 0x684(r3)
 /* 8075CBA4  2C 00 00 02 */	cmpwi r0, 2
 /* 8075CBA8  41 82 00 88 */	beq lbl_8075CC30
@@ -26,8 +26,8 @@ lbl_8075CBD0:
 /* 8075CBD8  C0 3E 00 34 */	lfs f1, 0x34(r30)
 /* 8075CBDC  C0 5E 00 08 */	lfs f2, 8(r30)
 /* 8075CBE0  4B FF BC 21 */	bl setBck__8daE_PZ_cFiUcff
-/* 8075CBE4  3C 60 80 76 */	lis r3, struct_80761E0C+0x0@ha
-/* 8075CBE8  38 63 1E 0C */	addi r3, r3, struct_80761E0C+0x0@l
+/* 8075CBE4  3C 60 80 76 */	lis r3, struct_80761E0C+0x0@ha /* 0x80761E0C@ha */
+/* 8075CBE8  38 63 1E 0C */	addi r3, r3, struct_80761E0C+0x0@l /* 0x80761E0C@l */
 /* 8075CBEC  C0 03 00 08 */	lfs f0, 8(r3)
 /* 8075CBF0  D0 1F 07 9C */	stfs f0, 0x79c(r31)
 /* 8075CBF4  D0 1F 07 A0 */	stfs f0, 0x7a0(r31)
@@ -72,8 +72,8 @@ lbl_8075CC68:
 /* 8075CC84  81 8C 00 1C */	lwz r12, 0x1c(r12)
 /* 8075CC88  7D 89 03 A6 */	mtctr r12
 /* 8075CC8C  4E 80 04 21 */	bctrl 
-/* 8075CC90  3C 60 80 76 */	lis r3, struct_80761E0C+0x0@ha
-/* 8075CC94  38 63 1E 0C */	addi r3, r3, struct_80761E0C+0x0@l
+/* 8075CC90  3C 60 80 76 */	lis r3, struct_80761E0C+0x0@ha /* 0x80761E0C@ha */
+/* 8075CC94  38 63 1E 0C */	addi r3, r3, struct_80761E0C+0x0@l /* 0x80761E0C@l */
 /* 8075CC98  C0 03 00 08 */	lfs f0, 8(r3)
 /* 8075CC9C  D0 1F 07 9C */	stfs f0, 0x79c(r31)
 /* 8075CCA0  D0 1F 07 A0 */	stfs f0, 0x7a0(r31)
@@ -98,8 +98,8 @@ lbl_8075CCD8:
 /* 8075CCE4  C0 5E 00 08 */	lfs f2, 8(r30)
 /* 8075CCE8  4B FF BB 19 */	bl setBck__8daE_PZ_cFiUcff
 lbl_8075CCEC:
-/* 8075CCEC  3C 60 80 76 */	lis r3, struct_80761E0C+0x0@ha
-/* 8075CCF0  38 63 1E 0C */	addi r3, r3, struct_80761E0C+0x0@l
+/* 8075CCEC  3C 60 80 76 */	lis r3, struct_80761E0C+0x0@ha /* 0x80761E0C@ha */
+/* 8075CCF0  38 63 1E 0C */	addi r3, r3, struct_80761E0C+0x0@l /* 0x80761E0C@l */
 /* 8075CCF4  C0 03 00 08 */	lfs f0, 8(r3)
 /* 8075CCF8  D0 1F 07 9C */	stfs f0, 0x79c(r31)
 /* 8075CCFC  D0 1F 07 A0 */	stfs f0, 0x7a0(r31)
@@ -161,7 +161,7 @@ lbl_8075CDCC:
 /* 8075CDCC  38 7F 05 2C */	addi r3, r31, 0x52c
 /* 8075CDD0  C0 3E 00 44 */	lfs f1, 0x44(r30)
 /* 8075CDD4  C0 5E 00 50 */	lfs f2, 0x50(r30)
-/* 8075CDD8  4B B1 2C A8 */	b cLib_addCalc0__FPfff
+/* 8075CDD8  4B B1 2C A9 */	bl cLib_addCalc0__FPfff
 /* 8075CDDC  88 1F 07 D0 */	lbz r0, 0x7d0(r31)
 /* 8075CDE0  28 00 00 00 */	cmplwi r0, 0
 /* 8075CDE4  40 82 00 6C */	bne lbl_8075CE50

@@ -3,17 +3,15 @@
 #
 
 M661_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tmoon.plf
+M661_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tmoon.lcf
+M661_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tmoon.map
 
 M661_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_tmoon/executor.cpp \
-	rel/d/a/obj/d_a_obj_tmoon/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_tmoon/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_tmoon/d_a_obj_tmoon.cpp \
 
 M661_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tmoon/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tmoon/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tmoon/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_tmoon/d_a_obj_tmoon.o \
 
 M661_LIBS := \
@@ -29,14 +27,21 @@ M661_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M661_LDSCRIPT) \
+	-unused -map $(M661_MAP) \
+	-w off \
 
 $(M661_TARGET): $(M661_O_FILES) $(M661_LIBS)
+	@echo [661] creating $(M661_TARGET)
 	@echo $(M661_LIBS) $(M661_O_FILES) > build/M661_ofiles
-	$(LD) -partial $(M661_LDFLAGS) -o $(M661_TARGET) @build/M661_ofiles
+	@python3 tools/lcf.py rel 661 --output $(M661_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M661_LDFLAGS) -o $(M661_TARGET) @build/M661_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_tmoon/%.o: rel/d/a/obj/d_a_obj_tmoon/%.cpp
+	@echo [661] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M661_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M661_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

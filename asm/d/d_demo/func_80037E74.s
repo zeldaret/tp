@@ -7,8 +7,8 @@ lbl_80037E74:
 /* 80037E88  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80037E8C  7C 9F 23 78 */	mr r31, r4
 /* 80037E90  41 82 00 28 */	beq lbl_80037EB8
-/* 80037E94  3C 80 80 3A */	lis r4, data_803A7BE4@ha
-/* 80037E98  38 04 7B E4 */	addi r0, r4, data_803A7BE4@l
+/* 80037E94  3C 80 80 3A */	lis r4, data_803A7BE4@ha /* 0x803A7BE4@ha */
+/* 80037E98  38 04 7B E4 */	addi r0, r4, data_803A7BE4@l /* 0x803A7BE4@l */
 /* 80037E9C  90 1E 00 00 */	stw r0, 0(r30)
 /* 80037EA0  38 80 00 00 */	li r4, 0
 /* 80037EA4  48 24 D5 E5 */	bl __dt__Q27JStudio13TCreateObjectFv

@@ -5,7 +5,7 @@ lbl_80475238:
 /* 80475244  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80475248  7C 7F 1B 78 */	mr r31, r3
 /* 8047524C  38 7F 05 74 */	addi r3, r31, 0x574
-/* 80475250  4B C0 21 54 */	b ClrMoveBGOnly__9dBgS_AcchFv
+/* 80475250  4B C0 21 55 */	bl ClrMoveBGOnly__9dBgS_AcchFv
 /* 80475254  80 1F 05 A0 */	lwz r0, 0x5a0(r31)
 /* 80475258  54 00 07 FA */	rlwinm r0, r0, 0, 0x1f, 0x1d
 /* 8047525C  90 1F 05 A0 */	stw r0, 0x5a0(r31)
@@ -29,23 +29,23 @@ lbl_80475238:
 /* 804752A4  7F E3 FB 78 */	mr r3, r31
 /* 804752A8  4B FF DB B5 */	bl calc_gravity__12daObjCarry_cFv
 /* 804752AC  D0 3F 05 30 */	stfs f1, 0x530(r31)
-/* 804752B0  3C 60 80 48 */	lis r3, lit_6043@ha
-/* 804752B4  C0 03 A4 34 */	lfs f0, lit_6043@l(r3)
+/* 804752B0  3C 60 80 48 */	lis r3, lit_6043@ha /* 0x8047A434@ha */
+/* 804752B4  C0 03 A4 34 */	lfs f0, lit_6043@l(r3)  /* 0x8047A434@l */
 /* 804752B8  D0 1F 05 34 */	stfs f0, 0x534(r31)
 /* 804752BC  7F E3 FB 78 */	mr r3, r31
 /* 804752C0  4B FF A3 E5 */	bl data__12daObjCarry_cFv
 /* 804752C4  88 03 00 36 */	lbz r0, 0x36(r3)
 /* 804752C8  98 1F 07 A0 */	stb r0, 0x7a0(r31)
 /* 804752CC  38 7F 07 C8 */	addi r3, r31, 0x7c8
-/* 804752D0  4B C0 F2 78 */	b GetTgHitGObj__12dCcD_GObjInfFv
+/* 804752D0  4B C0 F2 79 */	bl GetTgHitGObj__12dCcD_GObjInfFv
 /* 804752D4  38 7F 0D 28 */	addi r3, r31, 0xd28
 /* 804752D8  38 9F 04 D0 */	addi r4, r31, 0x4d0
-/* 804752DC  4B CE 92 D4 */	b initOffset__20daPy_boomerangMove_cFPC4cXyz
+/* 804752DC  4B CE 92 D5 */	bl initOffset__20daPy_boomerangMove_cFPC4cXyz
 /* 804752E0  88 7F 0C F0 */	lbz r3, 0xcf0(r31)
 /* 804752E4  2C 03 00 03 */	cmpwi r3, 3
 /* 804752E8  40 82 00 10 */	bne lbl_804752F8
 /* 804752EC  38 7F 05 88 */	addi r3, r31, 0x588
-/* 804752F0  4B C0 3C B0 */	b ClrIronBall__16dBgS_PolyPassChkFv
+/* 804752F0  4B C0 3C B1 */	bl ClrIronBall__16dBgS_PolyPassChkFv
 /* 804752F4  48 00 00 44 */	b lbl_80475338
 lbl_804752F8:
 /* 804752F8  38 00 00 00 */	li r0, 0
@@ -66,7 +66,7 @@ lbl_80475320:
 /* 80475328  38 84 00 09 */	addi r4, r4, 0x0009 /* 0x00040009@l */
 /* 8047532C  38 A0 00 00 */	li r5, 0
 /* 80475330  38 C0 00 00 */	li r6, 0
-/* 80475334  4B E4 91 70 */	b startCollisionSE__14Z2SoundObjBaseFUlUlP14Z2SoundObjBase
+/* 80475334  4B E4 91 71 */	bl startCollisionSE__14Z2SoundObjBaseFUlUlP14Z2SoundObjBase
 lbl_80475338:
 /* 80475338  38 00 00 0C */	li r0, 0xc
 /* 8047533C  98 1F 0C F1 */	stb r0, 0xcf1(r31)

@@ -13,8 +13,8 @@ lbl_80072BD4:
 /* 80072C00  98 1F 03 13 */	stb r0, 0x313(r31)
 /* 80072C04  48 00 01 64 */	b lbl_80072D68
 lbl_80072C08:
-/* 80072C08  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80072C0C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80072C08  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80072C0C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80072C10  80 63 61 B0 */	lwz r3, 0x61b0(r3)
 /* 80072C14  38 63 01 E0 */	addi r3, r3, 0x1e0
 /* 80072C18  38 81 00 0C */	addi r4, r1, 0xc
@@ -23,8 +23,8 @@ lbl_80072C08:
 /* 80072C24  38 80 00 00 */	li r4, 0
 /* 80072C28  48 00 09 15 */	bl LockonTarget__12dAttention_cFl
 /* 80072C2C  7C 7E 1B 78 */	mr r30, r3
-/* 80072C30  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80072C34  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80072C30  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80072C34  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80072C38  88 03 4F AD */	lbz r0, 0x4fad(r3)
 /* 80072C3C  28 00 00 00 */	cmplwi r0, 0
 /* 80072C40  40 82 01 28 */	bne lbl_80072D68
@@ -86,8 +86,8 @@ lbl_80072D00:
 /* 80072D08  40 81 00 60 */	ble lbl_80072D68
 /* 80072D0C  80 1F 03 18 */	lwz r0, 0x318(r31)
 /* 80072D10  90 01 00 08 */	stw r0, 8(r1)
-/* 80072D14  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 80072D18  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 80072D14  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 80072D18  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 80072D1C  38 81 00 08 */	addi r4, r1, 8
 /* 80072D20  4B FA 6A D9 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80072D24  7C 7E 1B 79 */	or. r30, r3, r3

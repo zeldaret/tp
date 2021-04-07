@@ -23,8 +23,8 @@ lbl_8011CC00:
 /* 8011CC24  98 1F 2F 93 */	stb r0, 0x2f93(r31)
 /* 8011CC28  38 00 00 0D */	li r0, 0xd
 /* 8011CC2C  98 1F 2F 99 */	stb r0, 0x2f99(r31)
-/* 8011CC30  3C 60 80 42 */	lis r3, l_halfAtnWaitBaseAnime@ha
-/* 8011CC34  38 63 55 44 */	addi r3, r3, l_halfAtnWaitBaseAnime@l
+/* 8011CC30  3C 60 80 42 */	lis r3, l_halfAtnWaitBaseAnime@ha /* 0x80425544@ha */
+/* 8011CC34  38 63 55 44 */	addi r3, r3, l_halfAtnWaitBaseAnime@l /* 0x80425544@l */
 /* 8011CC38  C0 03 00 08 */	lfs f0, 8(r3)
 /* 8011CC3C  FC 40 00 50 */	fneg f2, f0
 /* 8011CC40  C0 23 00 04 */	lfs f1, 4(r3)

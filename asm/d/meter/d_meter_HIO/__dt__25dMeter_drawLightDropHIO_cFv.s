@@ -5,8 +5,8 @@ lbl_80200D58:
 /* 80200D64  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80200D68  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80200D6C  41 82 00 1C */	beq lbl_80200D88
-/* 80200D70  3C A0 80 3C */	lis r5, __vt__25dMeter_drawLightDropHIO_c@ha
-/* 80200D74  38 05 F1 24 */	addi r0, r5, __vt__25dMeter_drawLightDropHIO_c@l
+/* 80200D70  3C A0 80 3C */	lis r5, __vt__25dMeter_drawLightDropHIO_c@ha /* 0x803BF124@ha */
+/* 80200D74  38 05 F1 24 */	addi r0, r5, __vt__25dMeter_drawLightDropHIO_c@l /* 0x803BF124@l */
 /* 80200D78  90 1F 00 00 */	stw r0, 0(r31)
 /* 80200D7C  7C 80 07 35 */	extsh. r0, r4
 /* 80200D80  40 81 00 08 */	ble lbl_80200D88

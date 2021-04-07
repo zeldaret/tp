@@ -7,7 +7,7 @@ lbl_80735AD8:
 /* 80735AEC  41 82 00 10 */	beq lbl_80735AFC
 /* 80735AF0  7C 80 07 35 */	extsh. r0, r4
 /* 80735AF4  40 81 00 08 */	ble lbl_80735AFC
-/* 80735AF8  4B B9 92 44 */	b __dl__FPv
+/* 80735AF8  4B B9 92 45 */	bl __dl__FPv
 lbl_80735AFC:
 /* 80735AFC  7F E3 FB 78 */	mr r3, r31
 /* 80735B00  83 E1 00 0C */	lwz r31, 0xc(r1)

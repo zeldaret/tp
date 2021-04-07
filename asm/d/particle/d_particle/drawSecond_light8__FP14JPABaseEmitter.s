@@ -35,8 +35,8 @@ lbl_80049C44:
 /* 80049CC8  48 31 5F 29 */	bl GXSetBlendMode
 /* 80049CCC  38 60 00 01 */	li r3, 1
 /* 80049CD0  48 31 3E 61 */	bl GXSetNumChans
-/* 80049CD4  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80049CD8  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 80049CD4  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80049CD8  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80049CDC  A8 03 11 08 */	lha r0, 0x1108(r3)
 /* 80049CE0  98 01 00 08 */	stb r0, 8(r1)
 /* 80049CE4  A8 03 11 0A */	lha r0, 0x110a(r3)

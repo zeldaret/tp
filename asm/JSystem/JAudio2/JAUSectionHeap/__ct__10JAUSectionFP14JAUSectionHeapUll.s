@@ -12,8 +12,8 @@ lbl_802A5060:
 /* 802A5088  38 7C 00 18 */	addi r3, r28, 0x18
 /* 802A508C  7F 84 E3 78 */	mr r4, r28
 /* 802A5090  48 03 6D 6D */	bl __ct__10JSUPtrLinkFPv
-/* 802A5094  3C 60 80 3D */	lis r3, __vt__10JAUSection@ha
-/* 802A5098  38 03 9B 24 */	addi r0, r3, __vt__10JAUSection@l
+/* 802A5094  3C 60 80 3D */	lis r3, __vt__10JAUSection@ha /* 0x803C9B24@ha */
+/* 802A5098  38 03 9B 24 */	addi r0, r3, __vt__10JAUSection@l /* 0x803C9B24@l */
 /* 802A509C  90 1C 00 00 */	stw r0, 0(r28)
 /* 802A50A0  93 DC 00 28 */	stw r30, 0x28(r28)
 /* 802A50A4  93 BC 00 30 */	stw r29, 0x30(r28)

@@ -3,17 +3,15 @@
 #
 
 M750_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_watchge.plf
+M750_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_watchge.lcf
+M750_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_watchge.map
 
 M750_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_watchge/executor.cpp \
-	rel/d/a/tag/d_a_tag_watchge/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_watchge/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_watchge/d_a_tag_watchge.cpp \
 
 M750_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_watchge/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_watchge/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_watchge/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_watchge/d_a_tag_watchge.o \
 
 M750_LIBS := \
@@ -29,14 +27,21 @@ M750_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M750_LDSCRIPT) \
+	-unused -map $(M750_MAP) \
+	-w off \
 
 $(M750_TARGET): $(M750_O_FILES) $(M750_LIBS)
+	@echo [750] creating $(M750_TARGET)
 	@echo $(M750_LIBS) $(M750_O_FILES) > build/M750_ofiles
-	$(LD) -partial $(M750_LDFLAGS) -o $(M750_TARGET) @build/M750_ofiles
+	@python3 tools/lcf.py rel 750 --output $(M750_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M750_LDFLAGS) -o $(M750_TARGET) @build/M750_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_watchge/%.o: rel/d/a/tag/d_a_tag_watchge/%.cpp
+	@echo [750] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M750_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M750_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

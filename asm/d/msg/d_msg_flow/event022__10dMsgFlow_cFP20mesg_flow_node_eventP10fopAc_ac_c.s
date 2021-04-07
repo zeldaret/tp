@@ -8,8 +8,8 @@ lbl_8024CDAC:
 /* 8024CDC4  40 82 00 08 */	bne lbl_8024CDCC
 /* 8024CDC8  38 60 00 64 */	li r3, 0x64
 lbl_8024CDCC:
-/* 8024CDCC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8024CDD0  38 C4 61 C0 */	addi r6, r4, g_dComIfG_gameInfo@l
+/* 8024CDCC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024CDD0  38 C4 61 C0 */	addi r6, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024CDD4  A0 A6 00 06 */	lhz r5, 6(r6)
 /* 8024CDD8  80 86 5D D4 */	lwz r4, 0x5dd4(r6)
 /* 8024CDDC  C8 22 B3 A0 */	lfd f1, lit_6040(r2)

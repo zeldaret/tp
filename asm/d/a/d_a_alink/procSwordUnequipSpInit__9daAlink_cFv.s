@@ -13,15 +13,15 @@ lbl_800D698C:
 lbl_800D69B8:
 /* 800D69B8  7F E3 FB 78 */	mr r3, r31
 /* 800D69BC  38 80 00 8E */	li r4, 0x8e
-/* 800D69C0  3C A0 80 39 */	lis r5, m__17daAlinkHIO_cut_c0@ha
-/* 800D69C4  38 A5 DE 8C */	addi r5, r5, m__17daAlinkHIO_cut_c0@l
+/* 800D69C0  3C A0 80 39 */	lis r5, m__17daAlinkHIO_cut_c0@ha /* 0x8038DE8C@ha */
+/* 800D69C4  38 A5 DE 8C */	addi r5, r5, m__17daAlinkHIO_cut_c0@l /* 0x8038DE8C@l */
 /* 800D69C8  C0 25 00 6C */	lfs f1, 0x6c(r5)
 /* 800D69CC  C0 42 92 C4 */	lfs f2, lit_6109(r2)
 /* 800D69D0  4B FD 66 11 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 800D69D4  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 800D69D8  D0 1F 33 98 */	stfs f0, 0x3398(r31)
-/* 800D69DC  3C 60 80 42 */	lis r3, l_halfAtnWaitBaseAnime@ha
-/* 800D69E0  C4 03 55 44 */	lfsu f0, l_halfAtnWaitBaseAnime@l(r3)
+/* 800D69DC  3C 60 80 42 */	lis r3, l_halfAtnWaitBaseAnime@ha /* 0x80425544@ha */
+/* 800D69E0  C4 03 55 44 */	lfsu f0, l_halfAtnWaitBaseAnime@l(r3)  /* 0x80425544@l */
 /* 800D69E4  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 800D69E8  C0 03 00 04 */	lfs f0, 4(r3)
 /* 800D69EC  D0 1F 35 8C */	stfs f0, 0x358c(r31)

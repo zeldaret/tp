@@ -74,8 +74,8 @@ lbl_802EBB38:
 /* 802EBB64  7C 83 01 AE */	stbx r4, r3, r0
 /* 802EBB68  39 29 00 01 */	addi r9, r9, 1
 /* 802EBB6C  42 00 FF CC */	bdnz lbl_802EBB38
-/* 802EBB70  3C 80 80 3A */	lis r4, j2dDefaultIndTevStageInfo@ha
-/* 802EBB74  38 A4 1B F4 */	addi r5, r4, j2dDefaultIndTevStageInfo@l
+/* 802EBB70  3C 80 80 3A */	lis r4, j2dDefaultIndTevStageInfo@ha /* 0x803A1BF4@ha */
+/* 802EBB74  38 A4 1B F4 */	addi r5, r4, j2dDefaultIndTevStageInfo@l /* 0x803A1BF4@l */
 /* 802EBB78  80 85 00 00 */	lwz r4, 0(r5)
 /* 802EBB7C  80 05 00 04 */	lwz r0, 4(r5)
 /* 802EBB80  90 81 00 10 */	stw r4, 0x10(r1)

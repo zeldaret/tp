@@ -49,8 +49,8 @@ lbl_80231DC0:
 /* 80231E28  80 C1 00 1C */	lwz r6, 0x1c(r1)
 /* 80231E2C  38 61 00 08 */	addi r3, r1, 8
 /* 80231E30  38 80 00 0F */	li r4, 0xf
-/* 80231E34  3C A0 80 3A */	lis r5, d_msg_d_msg_class__stringBase0@ha
-/* 80231E38  38 A5 96 10 */	addi r5, r5, d_msg_d_msg_class__stringBase0@l
+/* 80231E34  3C A0 80 3A */	lis r5, d_msg_d_msg_class__stringBase0@ha /* 0x80399610@ha */
+/* 80231E38  38 A5 96 10 */	addi r5, r5, d_msg_d_msg_class__stringBase0@l /* 0x80399610@l */
 /* 80231E3C  38 A5 00 42 */	addi r5, r5, 0x42
 /* 80231E40  4C C6 31 82 */	crclr 6
 /* 80231E44  48 13 47 79 */	bl snprintf
@@ -82,8 +82,8 @@ lbl_80231E54:
 /* 80231EA8  41 82 00 2C */	beq lbl_80231ED4
 /* 80231EAC  38 61 00 08 */	addi r3, r1, 8
 /* 80231EB0  38 80 00 0F */	li r4, 0xf
-/* 80231EB4  3C A0 80 3A */	lis r5, d_msg_d_msg_class__stringBase0@ha
-/* 80231EB8  38 A5 96 10 */	addi r5, r5, d_msg_d_msg_class__stringBase0@l
+/* 80231EB4  3C A0 80 3A */	lis r5, d_msg_d_msg_class__stringBase0@ha /* 0x80399610@ha */
+/* 80231EB8  38 A5 96 10 */	addi r5, r5, d_msg_d_msg_class__stringBase0@l /* 0x80399610@l */
 /* 80231EBC  38 A5 00 08 */	addi r5, r5, 8
 /* 80231EC0  4C C6 31 82 */	crclr 6
 /* 80231EC4  48 13 46 F9 */	bl snprintf

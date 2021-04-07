@@ -11,15 +11,15 @@ lbl_80A61060:
 /* 80A61084  48 00 00 2C */	b lbl_80A610B0
 lbl_80A61088:
 /* 80A61088  38 7F 0F 8C */	addi r3, r31, 0xf8c
-/* 80A6108C  4B 6E 46 7C */	b getActorP__18daNpcT_ActorMngr_cFv
+/* 80A6108C  4B 6E 46 7D */	bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80A61090  28 03 00 00 */	cmplwi r3, 0
 /* 80A61094  40 82 00 1C */	bne lbl_80A610B0
 /* 80A61098  7F E3 FB 78 */	mr r3, r31
 /* 80A6109C  38 80 02 1C */	li r4, 0x21c
-/* 80A610A0  4B 6E AD 8C */	b getNearestActorP__8daNpcT_cFs
+/* 80A610A0  4B 6E AD 8D */	bl getNearestActorP__8daNpcT_cFs
 /* 80A610A4  7C 64 1B 78 */	mr r4, r3
 /* 80A610A8  38 7F 0F 8C */	addi r3, r31, 0xf8c
-/* 80A610AC  4B 6E 46 34 */	b entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c
+/* 80A610AC  4B 6E 46 35 */	bl entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c
 lbl_80A610B0:
 /* 80A610B0  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80A610B4  80 01 00 14 */	lwz r0, 0x14(r1)

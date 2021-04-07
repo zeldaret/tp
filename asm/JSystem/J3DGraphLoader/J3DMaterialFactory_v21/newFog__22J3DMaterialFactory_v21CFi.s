@@ -8,8 +8,8 @@ lbl_80333E04:
 /* 80333E1C  7C 9D 23 78 */	mr r29, r4
 /* 80333E20  7C BE 2B 78 */	mr r30, r5
 /* 80333E24  38 61 00 34 */	addi r3, r1, 0x34
-/* 80333E28  3C 80 80 3A */	lis r4, j3dDefaultFogInfo@ha
-/* 80333E2C  38 84 1F BC */	addi r4, r4, j3dDefaultFogInfo@l
+/* 80333E28  3C 80 80 3A */	lis r4, j3dDefaultFogInfo@ha /* 0x803A1FBC@ha */
+/* 80333E2C  38 84 1F BC */	addi r4, r4, j3dDefaultFogInfo@l /* 0x803A1FBC@l */
 /* 80333E30  4B FF 19 D1 */	bl __as__10J3DFogInfoFRC10J3DFogInfo
 /* 80333E34  80 9D 00 04 */	lwz r4, 4(r29)
 /* 80333E38  80 7D 00 08 */	lwz r3, 8(r29)

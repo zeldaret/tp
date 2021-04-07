@@ -19,8 +19,8 @@ lbl_802CC758:
 lbl_802CC778:
 /* 802CC778  A0 03 03 FC */	lhz r0, 0x3fc(r3)
 /* 802CC77C  1D 00 00 0C */	mulli r8, r0, 0xc
-/* 802CC780  3C C0 80 3A */	lis r6, sPrm__8Z2MdnPrm@ha
-/* 802CC784  38 06 C9 8C */	addi r0, r6, sPrm__8Z2MdnPrm@l
+/* 802CC780  3C C0 80 3A */	lis r6, sPrm__8Z2MdnPrm@ha /* 0x8039C98C@ha */
+/* 802CC784  38 06 C9 8C */	addi r0, r6, sPrm__8Z2MdnPrm@l /* 0x8039C98C@l */
 /* 802CC788  7C C0 42 14 */	add r6, r0, r8
 /* 802CC78C  88 C6 00 09 */	lbz r6, 9(r6)
 /* 802CC790  81 23 00 08 */	lwz r9, 8(r3)
@@ -52,8 +52,8 @@ lbl_802CC778:
 lbl_802CC7F8:
 /* 802CC7F8  A0 03 03 FC */	lhz r0, 0x3fc(r3)
 /* 802CC7FC  1C 00 00 0C */	mulli r0, r0, 0xc
-/* 802CC800  3C C0 80 3A */	lis r6, sPrm__8Z2MdnPrm@ha
-/* 802CC804  39 66 C9 8C */	addi r11, r6, sPrm__8Z2MdnPrm@l
+/* 802CC800  3C C0 80 3A */	lis r6, sPrm__8Z2MdnPrm@ha /* 0x8039C98C@ha */
+/* 802CC804  39 66 C9 8C */	addi r11, r6, sPrm__8Z2MdnPrm@l /* 0x8039C98C@l */
 /* 802CC808  7C CB 02 14 */	add r6, r11, r0
 /* 802CC80C  88 C6 00 0A */	lbz r6, 0xa(r6)
 /* 802CC810  81 23 00 08 */	lwz r9, 8(r3)
@@ -109,8 +109,8 @@ lbl_802CC8C4:
 /* 802CC8C8  40 82 FE 90 */	bne lbl_802CC758
 /* 802CC8CC  A0 E3 03 FC */	lhz r7, 0x3fc(r3)
 /* 802CC8D0  1D 07 00 0C */	mulli r8, r7, 0xc
-/* 802CC8D4  3C E0 80 3A */	lis r7, sPrm__8Z2MdnPrm@ha
-/* 802CC8D8  38 E7 C9 8C */	addi r7, r7, sPrm__8Z2MdnPrm@l
+/* 802CC8D4  3C E0 80 3A */	lis r7, sPrm__8Z2MdnPrm@ha /* 0x8039C98C@ha */
+/* 802CC8D8  38 E7 C9 8C */	addi r7, r7, sPrm__8Z2MdnPrm@l /* 0x8039C98C@l */
 /* 802CC8DC  7D 07 42 14 */	add r8, r7, r8
 /* 802CC8E0  80 E8 00 00 */	lwz r7, 0(r8)
 /* 802CC8E4  38 E7 00 01 */	addi r7, r7, 1
@@ -165,8 +165,8 @@ lbl_802CC998:
 /* 802CC998  38 84 00 02 */	addi r4, r4, 2
 /* 802CC99C  42 00 FF DC */	bdnz lbl_802CC978
 lbl_802CC9A0:
-/* 802CC9A0  3C 80 80 3A */	lis r4, sPrm__8Z2MdnPrm@ha
-/* 802CC9A4  38 84 C9 8C */	addi r4, r4, sPrm__8Z2MdnPrm@l
+/* 802CC9A0  3C 80 80 3A */	lis r4, sPrm__8Z2MdnPrm@ha /* 0x8039C98C@ha */
+/* 802CC9A4  38 84 C9 8C */	addi r4, r4, sPrm__8Z2MdnPrm@l /* 0x8039C98C@l */
 /* 802CC9A8  A0 03 03 FC */	lhz r0, 0x3fc(r3)
 /* 802CC9AC  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 802CC9B0  7C 84 02 14 */	add r4, r4, r0

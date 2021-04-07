@@ -120,8 +120,8 @@ lbl_802C6E28:
 /* 802C6E28  57 E0 06 3E */	clrlwi r0, r31, 0x18
 /* 802C6E2C  28 00 00 0B */	cmplwi r0, 0xb
 /* 802C6E30  41 81 02 7C */	bgt lbl_802C70AC
-/* 802C6E34  3C 60 80 3D */	lis r3, lit_4025@ha
-/* 802C6E38  38 63 B9 C8 */	addi r3, r3, lit_4025@l
+/* 802C6E34  3C 60 80 3D */	lis r3, lit_4025@ha /* 0x803CB9C8@ha */
+/* 802C6E38  38 63 B9 C8 */	addi r3, r3, lit_4025@l /* 0x803CB9C8@l */
 /* 802C6E3C  54 00 10 3A */	slwi r0, r0, 2
 /* 802C6E40  7C 03 00 2E */	lwzx r0, r3, r0
 /* 802C6E44  7C 09 03 A6 */	mtctr r0

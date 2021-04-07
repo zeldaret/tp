@@ -9,14 +9,14 @@ lbl_805A54DC:
 /* 805A54F8  40 82 00 1C */	bne lbl_805A5514
 /* 805A54FC  28 1F 00 00 */	cmplwi r31, 0
 /* 805A5500  41 82 00 08 */	beq lbl_805A5508
-/* 805A5504  4B A7 36 60 */	b __ct__10fopAc_ac_cFv
+/* 805A5504  4B A7 36 61 */	bl __ct__10fopAc_ac_cFv
 lbl_805A5508:
 /* 805A5508  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 805A550C  60 00 00 08 */	ori r0, r0, 8
 /* 805A5510  90 1F 04 A0 */	stw r0, 0x4a0(r31)
 lbl_805A5514:
-/* 805A5514  3C 60 80 45 */	lis r3, mTagMagne__12daTagMagne_c@ha
-/* 805A5518  38 63 0D BC */	addi r3, r3, mTagMagne__12daTagMagne_c@l
+/* 805A5514  3C 60 80 45 */	lis r3, mTagMagne__12daTagMagne_c@ha /* 0x80450DBC@ha */
+/* 805A5518  38 63 0D BC */	addi r3, r3, mTagMagne__12daTagMagne_c@l /* 0x80450DBC@l */
 /* 805A551C  80 63 00 00 */	lwz r3, 0(r3)
 /* 805A5520  28 03 00 00 */	cmplwi r3, 0
 /* 805A5524  41 82 00 24 */	beq lbl_805A5548

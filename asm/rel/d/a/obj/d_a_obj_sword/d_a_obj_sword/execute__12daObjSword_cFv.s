@@ -4,10 +4,10 @@ lbl_80CFDC1C:
 /* 80CFDC24  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80CFDC28  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CFDC2C  7C 7F 1B 78 */	mr r31, r3
-/* 80CFDC30  3C 60 80 D0 */	lis r3, cNullVec__6Z2Calc@ha
-/* 80CFDC34  38 C3 DE 94 */	addi r6, r3, cNullVec__6Z2Calc@l
-/* 80CFDC38  3C 60 80 D0 */	lis r3, data_80CFE008@ha
-/* 80CFDC3C  38 A3 E0 08 */	addi r5, r3, data_80CFE008@l
+/* 80CFDC30  3C 60 80 D0 */	lis r3, cNullVec__6Z2Calc@ha /* 0x80CFDE94@ha */
+/* 80CFDC34  38 C3 DE 94 */	addi r6, r3, cNullVec__6Z2Calc@l /* 0x80CFDE94@l */
+/* 80CFDC38  3C 60 80 D0 */	lis r3, data_80CFE008@ha /* 0x80CFE008@ha */
+/* 80CFDC3C  38 A3 E0 08 */	addi r5, r3, data_80CFE008@l /* 0x80CFE008@l */
 /* 80CFDC40  88 05 00 00 */	lbz r0, 0(r5)
 /* 80CFDC44  7C 00 07 75 */	extsb. r0, r0
 /* 80CFDC48  40 82 00 58 */	bne lbl_80CFDCA0
@@ -41,7 +41,7 @@ lbl_80CFDCA0:
 /* 80CFDCB4  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 80CFDCB8  39 86 00 5C */	addi r12, r6, 0x5c
 /* 80CFDCBC  7D 8C 02 14 */	add r12, r12, r0
-/* 80CFDCC0  4B 66 43 C4 */	b __ptmf_scall
+/* 80CFDCC0  4B 66 43 C5 */	bl __ptmf_scall
 /* 80CFDCC4  60 00 00 00 */	nop 
 /* 80CFDCC8  C0 1F 04 D0 */	lfs f0, 0x4d0(r31)
 /* 80CFDCCC  D0 1F 05 50 */	stfs f0, 0x550(r31)

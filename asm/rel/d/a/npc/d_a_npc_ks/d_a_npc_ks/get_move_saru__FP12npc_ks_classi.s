@@ -3,8 +3,8 @@ lbl_80A4FD7C:
 /* 80A4FD80  7C 00 07 75 */	extsb. r0, r0
 /* 80A4FD84  40 82 00 60 */	bne lbl_80A4FDE4
 /* 80A4FD88  38 80 00 00 */	li r4, 0
-/* 80A4FD8C  3C A0 80 A6 */	lis r5, saru_p@ha
-/* 80A4FD90  38 E5 E4 78 */	addi r7, r5, saru_p@l
+/* 80A4FD8C  3C A0 80 A6 */	lis r5, saru_p@ha /* 0x80A5E478@ha */
+/* 80A4FD90  38 E5 E4 78 */	addi r7, r5, saru_p@l /* 0x80A5E478@l */
 /* 80A4FD94  38 00 00 02 */	li r0, 2
 /* 80A4FD98  7C 09 03 A6 */	mtctr r0
 lbl_80A4FD9C:
@@ -30,8 +30,8 @@ lbl_80A4FDD8:
 /* 80A4FDE0  48 00 00 64 */	b lbl_80A4FE44
 lbl_80A4FDE4:
 /* 80A4FDE4  38 A0 00 00 */	li r5, 0
-/* 80A4FDE8  3C C0 80 A6 */	lis r6, saru_p@ha
-/* 80A4FDEC  38 C6 E4 78 */	addi r6, r6, saru_p@l
+/* 80A4FDE8  3C C0 80 A6 */	lis r6, saru_p@ha /* 0x80A5E478@ha */
+/* 80A4FDEC  38 C6 E4 78 */	addi r6, r6, saru_p@l /* 0x80A5E478@l */
 /* 80A4FDF0  7C 89 03 A6 */	mtctr r4
 /* 80A4FDF4  2C 04 00 00 */	cmpwi r4, 0
 /* 80A4FDF8  40 81 00 4C */	ble lbl_80A4FE44

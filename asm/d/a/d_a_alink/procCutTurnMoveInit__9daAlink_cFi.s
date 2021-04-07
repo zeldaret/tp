@@ -37,18 +37,18 @@ lbl_800D4E60:
 /* 800D4E60  7F C3 F3 78 */	mr r3, r30
 /* 800D4E64  38 80 00 76 */	li r4, 0x76
 /* 800D4E68  C0 22 92 C0 */	lfs f1, lit_6108(r2)
-/* 800D4E6C  3C A0 80 39 */	lis r5, m__21daAlinkHIO_cutTurn_c0@ha
-/* 800D4E70  38 A5 DB 84 */	addi r5, r5, m__21daAlinkHIO_cutTurn_c0@l
+/* 800D4E6C  3C A0 80 39 */	lis r5, m__21daAlinkHIO_cutTurn_c0@ha /* 0x8038DB84@ha */
+/* 800D4E70  38 A5 DB 84 */	addi r5, r5, m__21daAlinkHIO_cutTurn_c0@l /* 0x8038DB84@l */
 /* 800D4E74  C0 45 00 50 */	lfs f2, 0x50(r5)
 /* 800D4E78  4B FD 81 69 */	bl setSingleAnimeBaseSpeed__9daAlink_cFQ29daAlink_c11daAlink_ANMff
 /* 800D4E7C  38 00 00 00 */	li r0, 0
 /* 800D4E80  98 1E 2F 98 */	stb r0, 0x2f98(r30)
-/* 800D4E84  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutTurn_c0@ha
-/* 800D4E88  38 63 DB 84 */	addi r3, r3, m__21daAlinkHIO_cutTurn_c0@l
+/* 800D4E84  3C 60 80 39 */	lis r3, m__21daAlinkHIO_cutTurn_c0@ha /* 0x8038DB84@ha */
+/* 800D4E88  38 63 DB 84 */	addi r3, r3, m__21daAlinkHIO_cutTurn_c0@l /* 0x8038DB84@l */
 /* 800D4E8C  C0 03 00 5C */	lfs f0, 0x5c(r3)
 /* 800D4E90  D0 1E 05 94 */	stfs f0, 0x594(r30)
-/* 800D4E94  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D4E98  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D4E94  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D4E98  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D4E9C  88 03 00 14 */	lbz r0, 0x14(r3)
 /* 800D4EA0  28 00 00 3F */	cmplwi r0, 0x3f
 /* 800D4EA4  41 82 00 10 */	beq lbl_800D4EB4
@@ -63,8 +63,8 @@ lbl_800D4EBC:
 /* 800D4EC0  80 1E 05 74 */	lwz r0, 0x574(r30)
 /* 800D4EC4  64 00 10 00 */	oris r0, r0, 0x1000
 /* 800D4EC8  90 1E 05 74 */	stw r0, 0x574(r30)
-/* 800D4ECC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D4ED0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D4ECC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D4ED0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D4ED4  80 03 5F 18 */	lwz r0, 0x5f18(r3)
 /* 800D4ED8  64 00 40 00 */	oris r0, r0, 0x4000
 /* 800D4EDC  90 03 5F 18 */	stw r0, 0x5f18(r3)

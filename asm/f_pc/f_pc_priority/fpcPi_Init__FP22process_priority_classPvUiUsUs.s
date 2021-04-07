@@ -31,8 +31,8 @@ lbl_80023504:
 /* 8002352C  7F 84 E3 78 */	mr r4, r28
 /* 80023530  48 24 35 05 */	bl cTg_Create__FP16create_tag_classPv
 /* 80023534  38 7B 00 14 */	addi r3, r27, 0x14
-/* 80023538  3C 80 80 02 */	lis r4, fpcPi_Delete__FP22process_priority_class@ha
-/* 8002353C  38 84 32 68 */	addi r4, r4, fpcPi_Delete__FP22process_priority_class@l
+/* 80023538  3C 80 80 02 */	lis r4, fpcPi_Delete__FP22process_priority_class@ha /* 0x80023268@ha */
+/* 8002353C  38 84 32 68 */	addi r4, r4, fpcPi_Delete__FP22process_priority_class@l /* 0x80023268@l */
 /* 80023540  7F 65 DB 78 */	mr r5, r27
 /* 80023544  48 00 02 B5 */	bl fpcMtdTg_Init__FP24process_method_tag_classPFPv_iPv
 /* 80023548  38 60 00 01 */	li r3, 1

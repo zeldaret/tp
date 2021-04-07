@@ -37,14 +37,14 @@ lbl_8018759C:
 /* 80187628  38 A0 00 01 */	li r5, 1
 /* 8018762C  38 C0 00 01 */	li r6, 1
 /* 80187630  48 00 5A B5 */	bl headerTxtSet__14dFile_select_cFUsUcUc
-/* 80187634  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 80187638  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 80187634  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 80187638  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8018763C  38 80 03 83 */	li r4, 0x383
 /* 80187640  38 A1 00 08 */	addi r5, r1, 8
 /* 80187644  38 C0 00 00 */	li r6, 0
 /* 80187648  48 09 4C 09 */	bl getString__13dMeter2Info_cFUlPcP14JMSMesgEntry_c
-/* 8018764C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80187650  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 8018764C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80187650  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80187654  38 7F 01 C5 */	addi r3, r31, 0x1c5
 /* 80187658  38 81 00 08 */	addi r4, r1, 8
 /* 8018765C  48 1E 14 D1 */	bl strcpy

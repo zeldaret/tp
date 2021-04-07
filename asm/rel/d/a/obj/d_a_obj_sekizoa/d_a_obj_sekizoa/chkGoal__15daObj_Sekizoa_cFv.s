@@ -5,7 +5,7 @@ lbl_80CD5B84:
 /* 80CD5B90  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80CD5B94  7C 7F 1B 78 */	mr r31, r3
 /* 80CD5B98  38 7F 10 F4 */	addi r3, r31, 0x10f4
-/* 80CD5B9C  4B 46 FB 6C */	b getActorP__18daNpcT_ActorMngr_cFv
+/* 80CD5B9C  4B 46 FB 6D */	bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80CD5BA0  C0 1F 04 D0 */	lfs f0, 0x4d0(r31)
 /* 80CD5BA4  D0 01 00 14 */	stfs f0, 0x14(r1)
 /* 80CD5BA8  C0 1F 04 D4 */	lfs f0, 0x4d4(r31)
@@ -20,7 +20,7 @@ lbl_80CD5B84:
 /* 80CD5BCC  48 00 00 50 */	b lbl_80CD5C1C
 lbl_80CD5BD0:
 /* 80CD5BD0  38 7F 10 FC */	addi r3, r31, 0x10fc
-/* 80CD5BD4  4B 46 FB 34 */	b getActorP__18daNpcT_ActorMngr_cFv
+/* 80CD5BD4  4B 46 FB 35 */	bl getActorP__18daNpcT_ActorMngr_cFv
 /* 80CD5BD8  C0 1F 04 D0 */	lfs f0, 0x4d0(r31)
 /* 80CD5BDC  D0 01 00 08 */	stfs f0, 8(r1)
 /* 80CD5BE0  C0 1F 04 D4 */	lfs f0, 0x4d4(r31)

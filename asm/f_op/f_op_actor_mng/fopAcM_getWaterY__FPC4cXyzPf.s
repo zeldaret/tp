@@ -7,11 +7,11 @@ lbl_8001D890:
 /* 8001D8A4  48 00 04 E1 */	bl waterCheck__11fopAcM_wt_cFPC4cXyz
 /* 8001D8A8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8001D8AC  41 82 00 34 */	beq lbl_8001D8E0
-/* 8001D8B0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8001D8B4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8001D8B0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8001D8B4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8001D8B8  38 63 0F 38 */	addi r3, r3, 0xf38
-/* 8001D8BC  3C 80 80 3F */	lis r4, mWaterCheck__11fopAcM_wt_c@ha
-/* 8001D8C0  38 84 1D 80 */	addi r4, r4, mWaterCheck__11fopAcM_wt_c@l
+/* 8001D8BC  3C 80 80 3F */	lis r4, mWaterCheck__11fopAcM_wt_c@ha /* 0x803F1D80@ha */
+/* 8001D8C0  38 84 1D 80 */	addi r4, r4, mWaterCheck__11fopAcM_wt_c@l /* 0x803F1D80@l */
 /* 8001D8C4  48 05 75 8D */	bl GetPolyAtt0__4dBgSFRC13cBgS_PolyInfo
 /* 8001D8C8  2C 03 00 06 */	cmpwi r3, 6
 /* 8001D8CC  41 82 00 14 */	beq lbl_8001D8E0

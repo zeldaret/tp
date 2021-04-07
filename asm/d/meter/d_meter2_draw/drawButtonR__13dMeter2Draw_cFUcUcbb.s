@@ -24,8 +24,8 @@ lbl_8021764C:
 /* 802176A4  38 A0 00 01 */	li r5, 1
 /* 802176A8  38 DE 07 6A */	addi r6, r30, 0x76a
 /* 802176AC  48 00 2C 49 */	bl getActionString__13dMeter2Draw_cFUcUcPUc
-/* 802176B0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 802176B4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 802176B0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 802176B4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 802176B8  88 63 5E 42 */	lbz r3, 0x5e42(r3)
 /* 802176BC  54 60 FF FF */	rlwinm. r0, r3, 0x1f, 0x1f, 0x1f
 /* 802176C0  40 82 00 0C */	bne lbl_802176CC

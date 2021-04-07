@@ -7,7 +7,7 @@ lbl_8047DBB0:
 /* 8047DBC4  41 82 00 10 */	beq lbl_8047DBD4
 /* 8047DBC8  7C 80 07 35 */	extsh. r0, r4
 /* 8047DBCC  40 81 00 08 */	ble lbl_8047DBD4
-/* 8047DBD0  4B E5 11 6C */	b __dl__FPv
+/* 8047DBD0  4B E5 11 6D */	bl __dl__FPv
 lbl_8047DBD4:
 /* 8047DBD4  7F E3 FB 78 */	mr r3, r31
 /* 8047DBD8  83 E1 00 0C */	lwz r31, 0xc(r1)

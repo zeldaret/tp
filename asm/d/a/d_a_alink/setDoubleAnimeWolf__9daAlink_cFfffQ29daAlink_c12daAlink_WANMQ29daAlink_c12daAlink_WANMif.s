@@ -22,8 +22,8 @@ lbl_8012948C:
 /* 801294DC  FF E0 20 90 */	fmr f31, f4
 /* 801294E0  38 9B 1F 58 */	addi r4, r27, 0x1f58
 /* 801294E4  57 9F 18 38 */	slwi r31, r28, 3
-/* 801294E8  3C A0 80 39 */	lis r5, m_wlAnmDataTable__9daAlink_c@ha
-/* 801294EC  38 A5 10 10 */	addi r5, r5, m_wlAnmDataTable__9daAlink_c@l
+/* 801294E8  3C A0 80 39 */	lis r5, m_wlAnmDataTable__9daAlink_c@ha /* 0x80391010@ha */
+/* 801294EC  38 A5 10 10 */	addi r5, r5, m_wlAnmDataTable__9daAlink_c@l /* 0x80391010@l */
 /* 801294F0  7C A5 FA 2E */	lhzx r5, r5, r31
 /* 801294F4  38 C0 2C 00 */	li r6, 0x2c00
 /* 801294F8  4B F7 A8 15 */	bl getAnimeResource__9daAlink_cFP14daPy_anmHeap_cUsUl
@@ -38,8 +38,8 @@ lbl_80129514:
 /* 80129514  7F 63 DB 78 */	mr r3, r27
 /* 80129518  38 9B 1F 6C */	addi r4, r27, 0x1f6c
 /* 8012951C  57 A0 18 38 */	slwi r0, r29, 3
-/* 80129520  3C A0 80 39 */	lis r5, m_wlAnmDataTable__9daAlink_c@ha
-/* 80129524  38 A5 10 10 */	addi r5, r5, m_wlAnmDataTable__9daAlink_c@l
+/* 80129520  3C A0 80 39 */	lis r5, m_wlAnmDataTable__9daAlink_c@ha /* 0x80391010@ha */
+/* 80129524  38 A5 10 10 */	addi r5, r5, m_wlAnmDataTable__9daAlink_c@l /* 0x80391010@l */
 /* 80129528  7C A5 02 2E */	lhzx r5, r5, r0
 /* 8012952C  38 C0 2C 00 */	li r6, 0x2c00
 /* 80129530  4B F7 A7 DD */	bl getAnimeResource__9daAlink_cFP14daPy_anmHeap_cUsUl
@@ -57,8 +57,8 @@ lbl_80129550:
 /* 80129558  C0 02 92 C0 */	lfs f0, lit_6108(r2)
 /* 8012955C  FC 1F 00 40 */	fcmpo cr0, f31, f0
 /* 80129560  40 80 00 10 */	bge lbl_80129570
-/* 80129564  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlMove_c0@ha
-/* 80129568  38 63 EE 28 */	addi r3, r3, m__20daAlinkHIO_wlMove_c0@l
+/* 80129564  3C 60 80 39 */	lis r3, m__20daAlinkHIO_wlMove_c0@ha /* 0x8038EE28@ha */
+/* 80129568  38 63 EE 28 */	addi r3, r3, m__20daAlinkHIO_wlMove_c0@l /* 0x8038EE28@l */
 /* 8012956C  C3 E3 00 94 */	lfs f31, 0x94(r3)
 lbl_80129570:
 /* 80129570  7F 63 DB 78 */	mr r3, r27
@@ -91,8 +91,8 @@ lbl_801295B8:
 /* 801295D8  98 1B 2F 9B */	stb r0, 0x2f9b(r27)
 /* 801295DC  48 00 00 18 */	b lbl_801295F4
 lbl_801295E0:
-/* 801295E0  3C 60 80 39 */	lis r3, m_wlAnmDataTable__9daAlink_c@ha
-/* 801295E4  38 03 10 10 */	addi r0, r3, m_wlAnmDataTable__9daAlink_c@l
+/* 801295E0  3C 60 80 39 */	lis r3, m_wlAnmDataTable__9daAlink_c@ha /* 0x80391010@ha */
+/* 801295E4  38 03 10 10 */	addi r0, r3, m_wlAnmDataTable__9daAlink_c@l /* 0x80391010@l */
 /* 801295E8  7C 60 FA 14 */	add r3, r0, r31
 /* 801295EC  88 03 00 02 */	lbz r0, 2(r3)
 /* 801295F0  98 1B 2F 9B */	stb r0, 0x2f9b(r27)
@@ -110,8 +110,8 @@ lbl_80129610:
 /* 80129618  7F A0 EB 78 */	mr r0, r29
 lbl_8012961C:
 /* 8012961C  54 04 18 38 */	slwi r4, r0, 3
-/* 80129620  3C 60 80 39 */	lis r3, m_wlAnmDataTable__9daAlink_c@ha
-/* 80129624  38 03 10 10 */	addi r0, r3, m_wlAnmDataTable__9daAlink_c@l
+/* 80129620  3C 60 80 39 */	lis r3, m_wlAnmDataTable__9daAlink_c@ha /* 0x80391010@ha */
+/* 80129624  38 03 10 10 */	addi r0, r3, m_wlAnmDataTable__9daAlink_c@l /* 0x80391010@l */
 /* 80129628  7C 60 22 14 */	add r3, r0, r4
 /* 8012962C  38 03 00 04 */	addi r0, r3, 4
 /* 80129630  90 1B 21 60 */	stw r0, 0x2160(r27)

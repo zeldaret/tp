@@ -37,7 +37,7 @@ extern "C" void read__16JASRegisterParamFQ216JASRegisterParam5RegID();
 // Declarations:
 //
 
-/* 80293644-80293664 0020+00 s=0 e=1 z=0  None .text      __ct__16JASRegisterParamFv */
+/* 80293644-80293664 28DF84 0020+00 0/0 1/1 0/0 .text            __ct__16JASRegisterParamFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -47,7 +47,7 @@ asm JASRegisterParam::JASRegisterParam() {
 }
 #pragma pop
 
-/* 80293664-80293684 0020+00 s=0 e=1 z=0  None .text      init__16JASRegisterParamFv */
+/* 80293664-80293684 28DFA4 0020+00 0/0 1/1 0/0 .text            init__16JASRegisterParamFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -58,7 +58,7 @@ asm void JASRegisterParam::init() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C5B90-803C5BB8 0028+00 s=1 e=0 z=0  None .data      @56 */
+/* 803C5B90-803C5BB8 -00001 0028+00 1/1 0/0 0/0 .data            @56 */
 SECTION_DATA static void* lit_56[10] = {
     (void*)(((char*)write__16JASRegisterParamFQ216JASRegisterParam5RegIDUl) + 0x50),
     (void*)(((char*)write__16JASRegisterParamFQ216JASRegisterParam5RegIDUl) + 0x64),
@@ -72,7 +72,7 @@ SECTION_DATA static void* lit_56[10] = {
     (void*)(((char*)write__16JASRegisterParamFQ216JASRegisterParam5RegIDUl) + 0x124),
 };
 
-/* 80293684-802937B8 0134+00 s=1 e=4 z=0  None .text
+/* 80293684-802937B8 28DFC4 0134+00 1/0 4/4 0/0 .text
  * write__16JASRegisterParamFQ216JASRegisterParam5RegIDUl       */
 #pragma push
 #pragma optimization_level 0
@@ -84,7 +84,7 @@ asm void JASRegisterParam::write(JASRegisterParam::RegID param_0, u32 param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C5BB8-803C5BE0 0028+00 s=1 e=0 z=0  None .data      @87 */
+/* 803C5BB8-803C5BE0 -00001 0028+00 1/1 0/0 0/0 .data            @87 */
 SECTION_DATA static void* lit_87[10] = {
     (void*)(((char*)read__16JASRegisterParamFQ216JASRegisterParam5RegID) + 0x3C),
     (void*)(((char*)read__16JASRegisterParamFQ216JASRegisterParam5RegID) + 0x54),
@@ -98,7 +98,7 @@ SECTION_DATA static void* lit_87[10] = {
     (void*)(((char*)read__16JASRegisterParamFQ216JASRegisterParam5RegID) + 0xEC),
 };
 
-/* 802937B8-802938BC 0104+00 s=1 e=1 z=0  None .text
+/* 802937B8-802938BC 28E0F8 0104+00 1/0 1/1 0/0 .text
  * read__16JASRegisterParamFQ216JASRegisterParam5RegID          */
 #pragma push
 #pragma optimization_level 0

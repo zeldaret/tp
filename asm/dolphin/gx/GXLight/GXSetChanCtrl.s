@@ -22,7 +22,7 @@ lbl_8035DB94:
 /* 8035DBB8  50 EA 16 BA */	rlwimi r10, r7, 2, 0x1a, 0x1d
 /* 8035DBBC  38 A0 00 10 */	li r5, 0x10
 /* 8035DBC0  3C 80 CC 01 */	lis r4, 0xCC01 /* 0xCC008000@ha */
-/* 8035DBC4  98 A4 80 00 */	stb r5, 0x8000(r4)
+/* 8035DBC4  98 A4 80 00 */	stb r5, 0x8000(r4)  /* 0xCC008000@l */
 /* 8035DBC8  38 0B 10 0E */	addi r0, r11, 0x100e
 /* 8035DBCC  50 EA 3C 68 */	rlwimi r10, r7, 7, 0x11, 0x14
 /* 8035DBD0  90 04 80 00 */	stw r0, -0x8000(r4)

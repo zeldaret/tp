@@ -3,14 +3,14 @@ lbl_80CB7AE4:
 /* 80CB7AE8  7C 08 02 A6 */	mflr r0
 /* 80CB7AEC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80CB7AF0  39 61 00 20 */	addi r11, r1, 0x20
-/* 80CB7AF4  4B 6A A6 E8 */	b _savegpr_29
+/* 80CB7AF4  4B 6A A6 E9 */	bl _savegpr_29
 /* 80CB7AF8  7C BD 2B 78 */	mr r29, r5
 /* 80CB7AFC  7C 80 07 35 */	extsh. r0, r4
 /* 80CB7B00  41 82 00 68 */	beq lbl_80CB7B68
 /* 80CB7B04  54 9F 04 3E */	clrlwi r31, r4, 0x10
 /* 80CB7B08  7F DF E8 50 */	subf r30, r31, r29
 /* 80CB7B0C  7F C3 F3 78 */	mr r3, r30
-/* 80CB7B10  4B 6A D5 C0 */	b abs
+/* 80CB7B10  4B 6A D5 C1 */	bl abs
 /* 80CB7B14  2C 03 00 04 */	cmpwi r3, 4
 /* 80CB7B18  40 81 00 44 */	ble lbl_80CB7B5C
 /* 80CB7B1C  7F C0 16 70 */	srawi r0, r30, 2
@@ -40,7 +40,7 @@ lbl_80CB7B68:
 /* 80CB7B68  38 60 00 00 */	li r3, 0
 lbl_80CB7B6C:
 /* 80CB7B6C  39 61 00 20 */	addi r11, r1, 0x20
-/* 80CB7B70  4B 6A A6 B8 */	b _restgpr_29
+/* 80CB7B70  4B 6A A6 B9 */	bl _restgpr_29
 /* 80CB7B74  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80CB7B78  7C 08 03 A6 */	mtlr r0
 /* 80CB7B7C  38 21 00 20 */	addi r1, r1, 0x20

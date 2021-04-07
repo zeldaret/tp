@@ -3,8 +3,8 @@ lbl_8033A780:
 /* 8033A784  80 80 00 D4 */	lwz r4, 0xd4(r0)
 /* 8033A788  54 A5 07 BD */	rlwinm. r5, r5, 0, 0x1e, 0x1e
 /* 8033A78C  40 82 00 14 */	bne lbl_8033A7A0
-/* 8033A790  3C A0 80 34 */	lis r5, OSDefaultExceptionHandler@ha
-/* 8033A794  38 A5 A7 B4 */	addi r5, r5, OSDefaultExceptionHandler@l
+/* 8033A790  3C A0 80 34 */	lis r5, OSDefaultExceptionHandler@ha /* 0x8033A7B4@ha */
+/* 8033A794  38 A5 A7 B4 */	addi r5, r5, OSDefaultExceptionHandler@l /* 0x8033A7B4@l */
 /* 8033A798  7C BA 03 A6 */	mtspr 0x1a, r5
 /* 8033A79C  4C 00 00 64 */	rfi 
 lbl_8033A7A0:

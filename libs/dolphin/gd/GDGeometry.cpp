@@ -27,7 +27,7 @@ extern "C" extern u8 __GDCurrentDL[4];
 //
 
 /* ############################################################################################## */
-/* 803D2948-803D29B0 0068+00 s=1 e=0 z=0  None .data      @121 */
+/* 803D2948-803D29B0 -00001 0068+00 1/1 0/0 0/0 .data            @121 */
 SECTION_DATA static void* lit_121[26] = {
     (void*)(((char*)GDSetVtxDescv) + 0x78),  (void*)(((char*)GDSetVtxDescv) + 0x80),
     (void*)(((char*)GDSetVtxDescv) + 0x90),  (void*)(((char*)GDSetVtxDescv) + 0xA4),
@@ -44,31 +44,31 @@ SECTION_DATA static void* lit_121[26] = {
     (void*)(((char*)GDSetVtxDescv) + 0x268), (void*)(((char*)GDSetVtxDescv) + 0x13C),
 };
 
-/* 80361104-80361700 05FC+00 s=1 e=1 z=0  None .text      GDSetVtxDescv */
+/* 80361104-80361700 35BA44 05FC+00 1/0 1/1 0/0 .text            GDSetVtxDescv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GDSetVtxDescv() {
+asm void GDSetVtxDescv() {
     nofralloc
 #include "asm/dolphin/gd/GDGeometry/GDSetVtxDescv.s"
 }
 #pragma pop
 
-/* 80361700-8036190C 020C+00 s=0 e=1 z=0  None .text      GDSetArray */
+/* 80361700-8036190C 35C040 020C+00 0/0 1/1 0/0 .text            GDSetArray */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GDSetArray() {
+asm void GDSetArray() {
     nofralloc
 #include "asm/dolphin/gd/GDGeometry/GDSetArray.s"
 }
 #pragma pop
 
-/* 8036190C-80361B14 0208+00 s=0 e=1 z=0  None .text      GDSetArrayRaw */
+/* 8036190C-80361B14 35C24C 0208+00 0/0 1/1 0/0 .text            GDSetArrayRaw */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GDSetArrayRaw() {
+asm void GDSetArrayRaw() {
     nofralloc
 #include "asm/dolphin/gd/GDGeometry/GDSetArrayRaw.s"
 }

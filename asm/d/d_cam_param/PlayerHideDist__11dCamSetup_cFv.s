@@ -1,6 +1,6 @@
 lbl_80088988:
-/* 80088988  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8008898C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80088988  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8008898C  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80088990  80 84 5D B4 */	lwz r4, 0x5db4(r4)
 /* 80088994  80 04 05 74 */	lwz r0, 0x574(r4)
 /* 80088998  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6

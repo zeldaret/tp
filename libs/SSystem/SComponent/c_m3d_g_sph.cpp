@@ -45,9 +45,6 @@ extern "C" void GetMinMaxCube__8cM3dGSphCFR4cXyzR4cXyz();
 // External References:
 //
 
-void cM3d_Cross_CylSph(cM3dGCyl const*, cM3dGSph const*, Vec*, f32*);
-void cM3d_Cross_SphSph(cM3dGSph const*, cM3dGSph const*, Vec*);
-
 extern "C" void cM3d_Cross_CylSph__FPC8cM3dGCylPC8cM3dGSphP3VecPf();
 extern "C" void cM3d_Cross_SphSph__FPC8cM3dGSphPC8cM3dGSphP3Vec();
 
@@ -55,7 +52,7 @@ extern "C" void cM3d_Cross_SphSph__FPC8cM3dGSphPC8cM3dGSphP3Vec();
 // Declarations:
 //
 
-/* 8026F648-8026F664 001C+00 s=2 e=5 z=254  None .text      SetC__8cM3dGSphFRC4cXyz */
+/* 8026F648-8026F664 269F88 001C+00 2/2 5/5 254/254 .text            SetC__8cM3dGSphFRC4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -65,7 +62,7 @@ asm void cM3dGSph::SetC(cXyz const& param_0) {
 }
 #pragma pop
 
-/* 8026F664-8026F6A8 0044+00 s=0 e=3 z=2  None .text      Set__8cM3dGSphFRC4cXyzf */
+/* 8026F664-8026F6A8 269FA4 0044+00 0/0 3/3 2/2 .text            Set__8cM3dGSphFRC4cXyzf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -75,7 +72,7 @@ asm void cM3dGSph::Set(cXyz const& param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 8026F6A8-8026F708 0060+00 s=0 e=2 z=0  None .text      Set__8cM3dGSphFRC9cM3dGSphS */
+/* 8026F6A8-8026F708 269FE8 0060+00 0/0 2/2 0/0 .text            Set__8cM3dGSphFRC9cM3dGSphS */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -85,7 +82,7 @@ asm void cM3dGSph::Set(cM3dGSphS const& param_0) {
 }
 #pragma pop
 
-/* 8026F708-8026F710 0008+00 s=2 e=10 z=197  None .text      SetR__8cM3dGSphFf */
+/* 8026F708-8026F710 26A048 0008+00 2/2 10/10 197/197 .text            SetR__8cM3dGSphFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -95,7 +92,8 @@ asm void cM3dGSph::SetR(f32 param_0) {
 }
 #pragma pop
 
-/* 8026F710-8026F73C 002C+00 s=0 e=1 z=0  None .text      cross__8cM3dGSphCFPC8cM3dGSphP4cXyz */
+/* 8026F710-8026F73C 26A050 002C+00 0/0 1/1 0/0 .text            cross__8cM3dGSphCFPC8cM3dGSphP4cXyz
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -105,7 +103,8 @@ asm void cM3dGSph::cross(cM3dGSph const* param_0, cXyz* param_1) const {
 }
 #pragma pop
 
-/* 8026F73C-8026F76C 0030+00 s=0 e=1 z=0  None .text      cross__8cM3dGSphCFPC8cM3dGCylP4cXyz */
+/* 8026F73C-8026F76C 26A07C 0030+00 0/0 1/1 0/0 .text            cross__8cM3dGSphCFPC8cM3dGCylP4cXyz
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -115,7 +114,7 @@ asm void cM3dGSph::cross(cM3dGCyl const* param_0, cXyz* param_1) const {
 }
 #pragma pop
 
-/* 8026F76C-8026F7B0 0044+00 s=0 e=1 z=0  None .text      GetMinMaxCube__8cM3dGSphCFR4cXyzR4cXyz */
+/* 8026F76C-8026F7B0 26A0AC 0044+00 0/0 1/1 0/0 .text GetMinMaxCube__8cM3dGSphCFR4cXyzR4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

@@ -3,17 +3,15 @@
 #
 
 M715_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_assistance.plf
+M715_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_assistance.lcf
+M715_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_assistance.map
 
 M715_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_assistance/executor.cpp \
-	rel/d/a/tag/d_a_tag_assistance/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_assistance/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_assistance/d_a_tag_assistance.cpp \
 
 M715_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_assistance/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_assistance/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_assistance/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_assistance/d_a_tag_assistance.o \
 
 M715_LIBS := \
@@ -29,14 +27,21 @@ M715_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M715_LDSCRIPT) \
+	-unused -map $(M715_MAP) \
+	-w off \
 
 $(M715_TARGET): $(M715_O_FILES) $(M715_LIBS)
+	@echo [715] creating $(M715_TARGET)
 	@echo $(M715_LIBS) $(M715_O_FILES) > build/M715_ofiles
-	$(LD) -partial $(M715_LDFLAGS) -o $(M715_TARGET) @build/M715_ofiles
+	@python3 tools/lcf.py rel 715 --output $(M715_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M715_LDFLAGS) -o $(M715_TARGET) @build/M715_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_assistance/%.o: rel/d/a/tag/d_a_tag_assistance/%.cpp
+	@echo [715] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M715_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M715_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

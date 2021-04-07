@@ -3,18 +3,16 @@
 #
 
 M534_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4floor.plf
+M534_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4floor.lcf
+M534_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4floor.map
 
 M534_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv4floor/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv4floor/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_lv4floor/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_lv4floor/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_lv4floor/d_a_obj_lv4floor.cpp \
 
 M534_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4floor/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4floor/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4floor/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4floor/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4floor/d_a_obj_lv4floor.o \
 
@@ -31,14 +29,21 @@ M534_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M534_LDSCRIPT) \
+	-unused -map $(M534_MAP) \
+	-w off \
 
 $(M534_TARGET): $(M534_O_FILES) $(M534_LIBS)
+	@echo [534] creating $(M534_TARGET)
 	@echo $(M534_LIBS) $(M534_O_FILES) > build/M534_ofiles
-	$(LD) -partial $(M534_LDFLAGS) -o $(M534_TARGET) @build/M534_ofiles
+	@python3 tools/lcf.py rel 534 --output $(M534_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M534_LDFLAGS) -o $(M534_TARGET) @build/M534_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4floor/%.o: rel/d/a/obj/d_a_obj_lv4floor/%.cpp
+	@echo [534] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M534_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M534_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

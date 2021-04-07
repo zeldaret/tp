@@ -3,10 +3,10 @@ lbl_806E29B8:
 /* 806E29BC  7C 08 02 A6 */	mflr r0
 /* 806E29C0  90 01 00 34 */	stw r0, 0x34(r1)
 /* 806E29C4  39 61 00 30 */	addi r11, r1, 0x30
-/* 806E29C8  4B C7 F8 14 */	b _savegpr_29
+/* 806E29C8  4B C7 F8 15 */	bl _savegpr_29
 /* 806E29CC  7C 7F 1B 78 */	mr r31, r3
-/* 806E29D0  3C 60 80 6E */	lis r3, lit_3791@ha
-/* 806E29D4  3B C3 59 20 */	addi r30, r3, lit_3791@l
+/* 806E29D0  3C 60 80 6E */	lis r3, lit_3791@ha /* 0x806E5920@ha */
+/* 806E29D4  3B C3 59 20 */	addi r30, r3, lit_3791@l /* 0x806E5920@l */
 /* 806E29D8  A8 1F 05 D6 */	lha r0, 0x5d6(r31)
 /* 806E29DC  2C 00 00 01 */	cmpwi r0, 1
 /* 806E29E0  41 82 00 84 */	beq lbl_806E2A64
@@ -53,9 +53,9 @@ lbl_806E2A64:
 /* 806E2A7C  38 7F 05 F8 */	addi r3, r31, 0x5f8
 /* 806E2A80  C0 3E 01 10 */	lfs f1, 0x110(r30)
 /* 806E2A84  C0 5E 00 D0 */	lfs f2, 0xd0(r30)
-/* 806E2A88  4B B8 DC B8 */	b cLib_chaseF__FPfff
-/* 806E2A8C  3C 60 80 6E */	lis r3, l_HIO@ha
-/* 806E2A90  38 63 5C 24 */	addi r3, r3, l_HIO@l
+/* 806E2A88  4B B8 DC B9 */	bl cLib_chaseF__FPfff
+/* 806E2A8C  3C 60 80 6E */	lis r3, l_HIO@ha /* 0x806E5C24@ha */
+/* 806E2A90  38 63 5C 24 */	addi r3, r3, l_HIO@l /* 0x806E5C24@l */
 /* 806E2A94  C0 03 00 1C */	lfs f0, 0x1c(r3)
 /* 806E2A98  FC 00 00 1E */	fctiwz f0, f0
 /* 806E2A9C  D8 01 00 10 */	stfd f0, 0x10(r1)
@@ -75,7 +75,7 @@ lbl_806E2ACC:
 /* 806E2ACC  38 7F 05 F8 */	addi r3, r31, 0x5f8
 /* 806E2AD0  C0 3E 00 08 */	lfs f1, 8(r30)
 /* 806E2AD4  C0 5E 01 18 */	lfs f2, 0x118(r30)
-/* 806E2AD8  4B B8 DC 68 */	b cLib_chaseF__FPfff
+/* 806E2AD8  4B B8 DC 69 */	bl cLib_chaseF__FPfff
 /* 806E2ADC  80 1F 05 B8 */	lwz r0, 0x5b8(r31)
 /* 806E2AE0  2C 00 00 00 */	cmpwi r0, 0
 /* 806E2AE4  40 82 00 14 */	bne lbl_806E2AF8
@@ -115,7 +115,7 @@ lbl_806E2B20:
 /* 806E2B64  90 1F 09 28 */	stw r0, 0x928(r31)
 lbl_806E2B68:
 /* 806E2B68  39 61 00 30 */	addi r11, r1, 0x30
-/* 806E2B6C  4B C7 F6 BC */	b _restgpr_29
+/* 806E2B6C  4B C7 F6 BD */	bl _restgpr_29
 /* 806E2B70  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 806E2B74  7C 08 03 A6 */	mtlr r0
 /* 806E2B78  38 21 00 30 */	addi r1, r1, 0x30

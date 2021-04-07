@@ -38,17 +38,17 @@ lbl_804723A4:
 /* 804723BC  54 00 06 BE */	clrlwi r0, r0, 0x1a
 /* 804723C0  7C 04 03 78 */	mr r4, r0
 lbl_804723C4:
-/* 804723C4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804723C8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804723C4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804723C8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804723CC  38 63 4E C4 */	addi r3, r3, 0x4ec4
-/* 804723D0  4B BB 21 18 */	b checkRoomDisp__20dStage_roomControl_cCFi
+/* 804723D0  4B BB 21 19 */	bl checkRoomDisp__20dStage_roomControl_cCFi
 /* 804723D4  2C 03 00 00 */	cmpwi r3, 0
 /* 804723D8  40 82 00 0C */	bne lbl_804723E4
 /* 804723DC  38 60 00 01 */	li r3, 1
 /* 804723E0  48 00 00 68 */	b lbl_80472448
 lbl_804723E4:
 /* 804723E4  7F C3 F3 78 */	mr r3, r30
-/* 804723E8  4B CE D2 24 */	b wolfGrabSubjectNoDraw__9daPy_py_cFP10fopAc_ac_c
+/* 804723E8  4B CE D2 25 */	bl wolfGrabSubjectNoDraw__9daPy_py_cFP10fopAc_ac_c
 /* 804723EC  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 804723F0  41 82 00 08 */	beq lbl_804723F8
 /* 804723F4  3B E0 00 01 */	li r31, 1
@@ -65,11 +65,11 @@ lbl_80472408:
 /* 80472418  54 04 D6 3E */	rlwinm r4, r0, 0x1a, 0x18, 0x1f
 /* 8047241C  28 04 00 FF */	cmplwi r4, 0xff
 /* 80472420  41 82 00 24 */	beq lbl_80472444
-/* 80472424  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80472428  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80472424  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80472428  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8047242C  88 1E 04 BA */	lbz r0, 0x4ba(r30)
 /* 80472430  7C 05 07 74 */	extsb r5, r0
-/* 80472434  4B BC 2F 2C */	b isSwitch__10dSv_info_cCFii
+/* 80472434  4B BC 2F 2D */	bl isSwitch__10dSv_info_cCFii
 /* 80472438  2C 03 00 00 */	cmpwi r3, 0
 /* 8047243C  40 82 00 08 */	bne lbl_80472444
 /* 80472440  3B E0 00 01 */	li r31, 1

@@ -75,8 +75,8 @@ lbl_8011E174:
 /* 8011E174  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 8011E178  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8011E17C  40 80 00 10 */	bge lbl_8011E18C
-/* 8011E180  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8011E184  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8011E180  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8011E184  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 8011E188  48 00 00 70 */	b lbl_8011E1F8
 lbl_8011E18C:
 /* 8011E18C  D0 21 00 08 */	stfs f1, 8(r1)
@@ -110,8 +110,8 @@ lbl_8011E1E4:
 lbl_8011E1E8:
 /* 8011E1E8  2C 00 00 01 */	cmpwi r0, 1
 /* 8011E1EC  40 82 00 0C */	bne lbl_8011E1F8
-/* 8011E1F0  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 8011E1F4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 8011E1F0  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 8011E1F4  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_8011E1F8:
 /* 8011E1F8  C0 02 93 E4 */	lfs f0, lit_12328(r2)
 /* 8011E1FC  FC 01 00 40 */	fcmpo cr0, f1, f0
@@ -164,8 +164,8 @@ lbl_8011E294:
 /* 8011E2A8  80 1F 06 0C */	lwz r0, 0x60c(r31)
 /* 8011E2AC  2C 00 00 01 */	cmpwi r0, 1
 /* 8011E2B0  40 82 00 1C */	bne lbl_8011E2CC
-/* 8011E2B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011E2B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011E2B4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011E2B8  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011E2BC  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 8011E2C0  80 9F 31 84 */	lwz r4, 0x3184(r31)
 /* 8011E2C4  4B F2 9E B9 */	bl cutEnd__16dEvent_manager_cFi
@@ -215,8 +215,8 @@ lbl_8011E350:
 /* 8011E360  60 00 01 00 */	ori r0, r0, 0x100
 /* 8011E364  90 1F 05 84 */	stw r0, 0x584(r31)
 lbl_8011E368:
-/* 8011E368  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8011E36C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8011E368  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8011E36C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8011E370  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 8011E374  80 9F 31 84 */	lwz r4, 0x3184(r31)
 /* 8011E378  4B F2 9E 05 */	bl cutEnd__16dEvent_manager_cFi

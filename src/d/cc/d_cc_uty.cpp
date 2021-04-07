@@ -34,15 +34,6 @@ struct Z2Creature {};
 // Forward References:
 //
 
-void pl_cut_LRC(int);
-void cc_pl_cut_bit_get();
-static void getMapInfo(s8);
-static void getHitId(cCcD_Obj*, int);
-void def_se_set(Z2Creature*, cCcD_Obj*, u32, fopAc_ac_c*);
-static void at_power_get(dCcU_AtInfo*);
-void at_power_check(dCcU_AtInfo*);
-void cc_at_check(fopAc_ac_c*, dCcU_AtInfo*);
-
 extern "C" void pl_cut_LRC__Fi();
 extern "C" void cc_pl_cut_bit_get__Fv();
 extern "C" static void getMapInfo__FSc();
@@ -56,10 +47,6 @@ extern "C" bool checkCutJumpCancelTurn__9daPy_py_cCFv();
 //
 // External References:
 //
-
-void dCcD_GetGObjInf(cCcD_Obj*);
-void cM_atan2s(f32, f32);
-void cM_rndFX(f32);
 
 extern "C" void getHitSeID__12dCcD_GObjInfFUci();
 extern "C" void dCcD_GetGObjInf__FP8cCcD_Obj();
@@ -79,7 +66,7 @@ extern "C" extern u8 struct_80451124[4];
 //
 
 /* ############################################################################################## */
-/* 803AC418-803AC500 00E8+00 s=1 e=0 z=0  None .data      plCutLRC */
+/* 803AC418-803AC500 009538 00E8+00 1/1 0/0 0/0 .data            plCutLRC */
 SECTION_DATA static u8 plCutLRC[232] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01,
     0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01,
@@ -98,7 +85,7 @@ SECTION_DATA static u8 plCutLRC[232] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 800873B0-800873D4 0024+00 s=0 e=0 z=3  None .text      pl_cut_LRC__Fi */
+/* 800873B0-800873D4 081CF0 0024+00 0/0 0/0 3/3 .text            pl_cut_LRC__Fi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -108,7 +95,7 @@ asm void pl_cut_LRC(int param_0) {
 }
 #pragma pop
 
-/* 800873D4-800874C4 00F0+00 s=1 e=0 z=14  None .text      cc_pl_cut_bit_get__Fv */
+/* 800873D4-800874C4 081D14 00F0+00 1/1 0/0 14/14 .text            cc_pl_cut_bit_get__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -118,27 +105,27 @@ asm void cc_pl_cut_bit_get() {
 }
 #pragma pop
 
-/* 800874C4-800874F0 002C+00 s=1 e=0 z=0  None .text      getMapInfo__FSc */
+/* 800874C4-800874F0 081E04 002C+00 1/1 0/0 0/0 .text            getMapInfo__FSc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void getMapInfo(s8 param_0) {
+static asm void getMapInfo(s8 param_0) {
     nofralloc
 #include "asm/d/cc/d_cc_uty/getMapInfo__FSc.s"
 }
 #pragma pop
 
-/* 800874F0-80087514 0024+00 s=2 e=0 z=0  None .text      getHitId__FP8cCcD_Obji */
+/* 800874F0-80087514 081E30 0024+00 2/2 0/0 0/0 .text            getHitId__FP8cCcD_Obji */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void getHitId(cCcD_Obj* param_0, int param_1) {
+static asm void getHitId(cCcD_Obj* param_0, int param_1) {
     nofralloc
 #include "asm/d/cc/d_cc_uty/getHitId__FP8cCcD_Obji.s"
 }
 #pragma pop
 
-/* 80087514-80087594 0080+00 s=0 e=0 z=47  None .text
+/* 80087514-80087594 081E54 0080+00 0/0 0/0 47/47 .text
  * def_se_set__FP10Z2CreatureP8cCcD_ObjUlP10fopAc_ac_c          */
 #pragma push
 #pragma optimization_level 0
@@ -149,17 +136,18 @@ asm void def_se_set(Z2Creature* param_0, cCcD_Obj* param_1, u32 param_2, fopAc_a
 }
 #pragma pop
 
-/* 80087594-80087A58 04C4+00 s=1 e=0 z=0  None .text      at_power_get__FP11dCcU_AtInfo */
+/* 80087594-80087A58 081ED4 04C4+00 1/1 0/0 0/0 .text            at_power_get__FP11dCcU_AtInfo */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void at_power_get(dCcU_AtInfo* param_0) {
+static asm void at_power_get(dCcU_AtInfo* param_0) {
     nofralloc
 #include "asm/d/cc/d_cc_uty/at_power_get__FP11dCcU_AtInfo.s"
 }
 #pragma pop
 
-/* 80087A58-80087C04 01AC+00 s=1 e=0 z=38  None .text      at_power_check__FP11dCcU_AtInfo */
+/* 80087A58-80087C04 082398 01AC+00 1/1 0/0 38/38 .text            at_power_check__FP11dCcU_AtInfo
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -170,38 +158,38 @@ asm void at_power_check(dCcU_AtInfo* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80452798-804527A0 0004+04 s=1 e=0 z=0  None .sdata2    @4212 */
+/* 80452798-804527A0 000D98 0004+04 1/1 0/0 0/0 .sdata2          @4212 */
 SECTION_SDATA2 static f32 lit_4212[1 + 1 /* padding */] = {
     0.0f,
     /* padding */
     0.0f,
 };
 
-/* 804527A0-804527A8 0008+00 s=1 e=0 z=0  None .sdata2    @4213 */
+/* 804527A0-804527A8 000DA0 0008+00 1/1 0/0 0/0 .sdata2          @4213 */
 SECTION_SDATA2 static f64 lit_4213 = 0.5;
 
-/* 804527A8-804527B0 0008+00 s=1 e=0 z=0  None .sdata2    @4214 */
+/* 804527A8-804527B0 000DA8 0008+00 1/1 0/0 0/0 .sdata2          @4214 */
 SECTION_SDATA2 static f64 lit_4214 = 3.0;
 
-/* 804527B0-804527B8 0008+00 s=1 e=0 z=0  None .sdata2    @4215 */
+/* 804527B0-804527B8 000DB0 0008+00 1/1 0/0 0/0 .sdata2          @4215 */
 SECTION_SDATA2 static u8 lit_4215[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 804527B8-804527BC 0004+00 s=1 e=0 z=0  None .sdata2    @4216 */
+/* 804527B8-804527BC 000DB8 0004+00 1/1 0/0 0/0 .sdata2          @4216 */
 SECTION_SDATA2 static f32 lit_4216 = 100.0f;
 
-/* 804527BC-804527C0 0004+00 s=1 e=0 z=0  None .sdata2    @4217 */
+/* 804527BC-804527C0 000DBC 0004+00 1/1 0/0 0/0 .sdata2          @4217 */
 SECTION_SDATA2 static f32 lit_4217 = 4000.0f;
 
-/* 804527C0-804527C8 0004+04 s=1 e=0 z=0  None .sdata2    @4218 */
+/* 804527C0-804527C8 000DC0 0004+04 1/1 0/0 0/0 .sdata2          @4218 */
 SECTION_SDATA2 static f32 lit_4218[1 + 1 /* padding */] = {
     10000.0f,
     /* padding */
     0.0f,
 };
 
-/* 80087C04-80088134 0530+00 s=0 e=0 z=84  None .text      cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo
+/* 80087C04-80088134 082544 0530+00 0/0 0/0 84/84 .text cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo
  */
 #pragma push
 #pragma optimization_level 0
@@ -212,7 +200,7 @@ asm void cc_at_check(fopAc_ac_c* param_0, dCcU_AtInfo* param_1) {
 }
 #pragma pop
 
-/* 80088134-8008813C 0008+00 s=0 e=1 z=0  None .text      checkCutJumpCancelTurn__9daPy_py_cCFv */
+/* 80088134-8008813C 082A74 0008+00 0/0 1/0 0/0 .text checkCutJumpCancelTurn__9daPy_py_cCFv */
 bool daPy_py_c::checkCutJumpCancelTurn() const {
     return false;
 }

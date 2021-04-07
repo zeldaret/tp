@@ -63,8 +63,8 @@ lbl_8013B8D4:
 /* 8013B8F4  41 82 00 54 */	beq lbl_8013B948
 /* 8013B8F8  7F C3 F3 78 */	mr r3, r30
 /* 8013B8FC  38 80 00 63 */	li r4, 0x63
-/* 8013B900  3C A0 80 39 */	lis r5, m__22daAlinkHIO_wlAtDown_c0@ha
-/* 8013B904  38 A5 F6 58 */	addi r5, r5, m__22daAlinkHIO_wlAtDown_c0@l
+/* 8013B900  3C A0 80 39 */	lis r5, m__22daAlinkHIO_wlAtDown_c0@ha /* 0x8038F658@ha */
+/* 8013B904  38 A5 F6 58 */	addi r5, r5, m__22daAlinkHIO_wlAtDown_c0@l /* 0x8038F658@l */
 /* 8013B908  38 A5 00 14 */	addi r5, r5, 0x14
 /* 8013B90C  4B FE DF 3D */	bl setSingleAnimeWolfParam__9daAlink_cFQ29daAlink_c12daAlink_WANMPC16daAlinkHIO_anm_c
 /* 8013B910  A8 1E 04 DE */	lha r0, 0x4de(r30)

@@ -4,12 +4,12 @@ lbl_80C04F74:
 /* 80C04F7C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80C04F80  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C04F84  93 C1 00 08 */	stw r30, 8(r1)
-/* 80C04F88  3C 60 80 C1 */	lis r3, lit_1109@ha
-/* 80C04F8C  3B C3 08 A0 */	addi r30, r3, lit_1109@l
-/* 80C04F90  3C 60 80 C1 */	lis r3, m__17daObj_GrA_Param_c@ha
-/* 80C04F94  38 83 FA 7C */	addi r4, r3, m__17daObj_GrA_Param_c@l
-/* 80C04F98  3C 60 80 C1 */	lis r3, cNullVec__6Z2Calc@ha
-/* 80C04F9C  3B E3 FE 68 */	addi r31, r3, cNullVec__6Z2Calc@l
+/* 80C04F88  3C 60 80 C1 */	lis r3, lit_1109@ha /* 0x80C108A0@ha */
+/* 80C04F8C  3B C3 08 A0 */	addi r30, r3, lit_1109@l /* 0x80C108A0@l */
+/* 80C04F90  3C 60 80 C1 */	lis r3, m__17daObj_GrA_Param_c@ha /* 0x80C0FA7C@ha */
+/* 80C04F94  38 83 FA 7C */	addi r4, r3, m__17daObj_GrA_Param_c@l /* 0x80C0FA7C@l */
+/* 80C04F98  3C 60 80 C1 */	lis r3, cNullVec__6Z2Calc@ha /* 0x80C0FE68@ha */
+/* 80C04F9C  3B E3 FE 68 */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x80C0FE68@l */
 /* 80C04FA0  C0 04 01 1C */	lfs f0, 0x11c(r4)
 /* 80C04FA4  D0 1E 00 4C */	stfs f0, 0x4c(r30)
 /* 80C04FA8  C0 04 03 90 */	lfs f0, 0x390(r4)
@@ -17,16 +17,16 @@ lbl_80C04F74:
 /* 80C04FB0  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80C04FB4  C0 04 03 94 */	lfs f0, 0x394(r4)
 /* 80C04FB8  D0 03 00 08 */	stfs f0, 8(r3)
-/* 80C04FBC  3C 80 80 C0 */	lis r4, __dt__4cXyzFv@ha
-/* 80C04FC0  38 84 4C 40 */	addi r4, r4, __dt__4cXyzFv@l
+/* 80C04FBC  3C 80 80 C0 */	lis r4, __dt__4cXyzFv@ha /* 0x80C04C40@ha */
+/* 80C04FC0  38 84 4C 40 */	addi r4, r4, __dt__4cXyzFv@l /* 0x80C04C40@l */
 /* 80C04FC4  38 BE 00 40 */	addi r5, r30, 0x40
 /* 80C04FC8  4B FF AE D1 */	bl __register_global_object
-/* 80C04FCC  3C 60 80 C1 */	lis r3, __vt__17daObj_GrA_Param_c@ha
-/* 80C04FD0  38 03 08 88 */	addi r0, r3, __vt__17daObj_GrA_Param_c@l
+/* 80C04FCC  3C 60 80 C1 */	lis r3, __vt__17daObj_GrA_Param_c@ha /* 0x80C10888@ha */
+/* 80C04FD0  38 03 08 88 */	addi r0, r3, __vt__17daObj_GrA_Param_c@l /* 0x80C10888@l */
 /* 80C04FD4  90 1E 00 64 */	stw r0, 0x64(r30)
 /* 80C04FD8  38 7E 00 64 */	addi r3, r30, 0x64
-/* 80C04FDC  3C 80 80 C0 */	lis r4, __dt__17daObj_GrA_Param_cFv@ha
-/* 80C04FE0  38 84 4B 1C */	addi r4, r4, __dt__17daObj_GrA_Param_cFv@l
+/* 80C04FDC  3C 80 80 C0 */	lis r4, __dt__17daObj_GrA_Param_cFv@ha /* 0x80C04B1C@ha */
+/* 80C04FE0  38 84 4B 1C */	addi r4, r4, __dt__17daObj_GrA_Param_cFv@l /* 0x80C04B1C@l */
 /* 80C04FE4  38 BE 00 58 */	addi r5, r30, 0x58
 /* 80C04FE8  4B FF AE B1 */	bl __register_global_object
 /* 80C04FEC  80 7F 05 6C */	lwz r3, 0x56c(r31)

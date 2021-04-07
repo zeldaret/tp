@@ -5,12 +5,12 @@ lbl_80AAC304:
 /* 80AAC310  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80AAC314  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80AAC318  41 82 00 1C */	beq lbl_80AAC334
-/* 80AAC31C  3C A0 80 AB */	lis r5, __vt__18daNpcT_ActorMngr_c@ha
-/* 80AAC320  38 05 DA D8 */	addi r0, r5, __vt__18daNpcT_ActorMngr_c@l
+/* 80AAC31C  3C A0 80 AB */	lis r5, __vt__18daNpcT_ActorMngr_c@ha /* 0x80AADAD8@ha */
+/* 80AAC320  38 05 DA D8 */	addi r0, r5, __vt__18daNpcT_ActorMngr_c@l /* 0x80AADAD8@l */
 /* 80AAC324  90 1F 00 04 */	stw r0, 4(r31)
 /* 80AAC328  7C 80 07 35 */	extsh. r0, r4
 /* 80AAC32C  40 81 00 08 */	ble lbl_80AAC334
-/* 80AAC330  4B 82 2A 0C */	b __dl__FPv
+/* 80AAC330  4B 82 2A 0D */	bl __dl__FPv
 lbl_80AAC334:
 /* 80AAC334  7F E3 FB 78 */	mr r3, r31
 /* 80AAC338  83 E1 00 0C */	lwz r31, 0xc(r1)

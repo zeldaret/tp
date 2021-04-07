@@ -31,8 +31,8 @@ lbl_800CEBD8:
 /* 800CEC4C  80 1E 05 88 */	lwz r0, 0x588(r30)
 /* 800CEC50  54 00 00 01 */	rlwinm. r0, r0, 0, 0, 0
 /* 800CEC54  40 82 00 24 */	bne lbl_800CEC78
-/* 800CEC58  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800CEC5C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800CEC58  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800CEC5C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800CEC60  80 1E 31 7C */	lwz r0, 0x317c(r30)
 /* 800CEC64  1C 00 00 38 */	mulli r0, r0, 0x38
 /* 800CEC68  7C 63 02 14 */	add r3, r3, r0

@@ -5,8 +5,8 @@ lbl_80A8EA78:
 /* 80A8EA84  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A8EA88  93 C1 00 08 */	stw r30, 8(r1)
 /* 80A8EA8C  7C 7E 1B 78 */	mr r30, r3
-/* 80A8EA90  3C 80 80 A9 */	lis r4, lit_3990@ha
-/* 80A8EA94  3B E4 24 1C */	addi r31, r4, lit_3990@l
+/* 80A8EA90  3C 80 80 A9 */	lis r4, lit_3990@ha /* 0x80A9241C@ha */
+/* 80A8EA94  3B E4 24 1C */	addi r31, r4, lit_3990@l /* 0x80A9241C@l */
 /* 80A8EA98  A8 83 06 46 */	lha r4, 0x646(r3)
 /* 80A8EA9C  2C 04 00 01 */	cmpwi r4, 1
 /* 80A8EAA0  41 82 00 44 */	beq lbl_80A8EAE4

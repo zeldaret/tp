@@ -14,11 +14,11 @@ lbl_80B8FC8C:
 /* 80B8FCBC  28 00 00 02 */	cmplwi r0, 2
 /* 80B8FCC0  40 82 00 24 */	bne lbl_80B8FCE4
 /* 80B8FCC4  38 60 01 08 */	li r3, 0x108
-/* 80B8FCC8  4B 5C 59 6C */	b daNpcF_chkEvtBit__FUl
+/* 80B8FCC8  4B 5C 59 6D */	bl daNpcF_chkEvtBit__FUl
 /* 80B8FCCC  2C 03 00 00 */	cmpwi r3, 0
 /* 80B8FCD0  41 82 00 14 */	beq lbl_80B8FCE4
 /* 80B8FCD4  38 60 01 0A */	li r3, 0x10a
-/* 80B8FCD8  4B 5C 59 5C */	b daNpcF_chkEvtBit__FUl
+/* 80B8FCD8  4B 5C 59 5D */	bl daNpcF_chkEvtBit__FUl
 /* 80B8FCDC  2C 03 00 00 */	cmpwi r3, 0
 /* 80B8FCE0  41 82 00 10 */	beq lbl_80B8FCF0
 lbl_80B8FCE4:

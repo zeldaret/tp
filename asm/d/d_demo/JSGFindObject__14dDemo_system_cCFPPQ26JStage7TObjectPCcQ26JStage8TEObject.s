@@ -28,8 +28,8 @@ lbl_80039570:
 /* 80039588  2C 1E 00 02 */	cmpwi r30, 2
 /* 8003958C  40 82 00 60 */	bne lbl_800395EC
 /* 80039590  7F A3 EB 78 */	mr r3, r29
-/* 80039594  3C 80 80 38 */	lis r4, d_d_demo__stringBase0@ha
-/* 80039598  38 84 97 F8 */	addi r4, r4, d_d_demo__stringBase0@l
+/* 80039594  3C 80 80 38 */	lis r4, d_d_demo__stringBase0@ha /* 0x803797F8@ha */
+/* 80039598  38 84 97 F8 */	addi r4, r4, d_d_demo__stringBase0@l /* 0x803797F8@l */
 /* 8003959C  38 84 00 02 */	addi r4, r4, 2
 /* 800395A0  38 A0 00 05 */	li r5, 5
 /* 800395A4  48 32 F3 B1 */	bl strncmp

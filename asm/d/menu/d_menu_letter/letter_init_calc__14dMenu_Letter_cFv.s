@@ -7,8 +7,8 @@ lbl_801DD95C:
 /* 801DD970  48 00 3D 09 */	bl getLetterNum__14dMenu_Letter_cFv
 /* 801DD974  98 7F 03 75 */	stb r3, 0x375(r31)
 /* 801DD978  38 C0 00 00 */	li r6, 0
-/* 801DD97C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801DD980  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801DD97C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801DD980  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801DD984  38 A3 01 1C */	addi r5, r3, 0x11c
 /* 801DD988  38 60 00 FF */	li r3, 0xff
 /* 801DD98C  38 00 00 36 */	li r0, 0x36

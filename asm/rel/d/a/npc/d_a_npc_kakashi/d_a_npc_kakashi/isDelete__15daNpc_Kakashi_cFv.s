@@ -17,11 +17,11 @@ lbl_8054BC3C:
 /* 8054BC48  48 00 00 2C */	b lbl_8054BC74
 lbl_8054BC4C:
 /* 8054BC4C  38 60 00 12 */	li r3, 0x12
-/* 8054BC50  4B C0 0E 5C */	b daNpcT_chkEvtBit__FUl
+/* 8054BC50  4B C0 0E 5D */	bl daNpcT_chkEvtBit__FUl
 /* 8054BC54  48 00 00 34 */	b lbl_8054BC88
 lbl_8054BC58:
 /* 8054BC58  38 60 00 12 */	li r3, 0x12
-/* 8054BC5C  4B C0 0E 50 */	b daNpcT_chkEvtBit__FUl
+/* 8054BC5C  4B C0 0E 51 */	bl daNpcT_chkEvtBit__FUl
 /* 8054BC60  7C 60 00 34 */	cntlzw r0, r3
 /* 8054BC64  54 03 DE 3E */	rlwinm r3, r0, 0x1b, 0x18, 0x1f
 /* 8054BC68  48 00 00 20 */	b lbl_8054BC88

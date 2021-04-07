@@ -3,17 +3,15 @@
 #
 
 M724_TARGET := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_kago_fall.plf
+M724_LDSCRIPT := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_kago_fall.lcf
+M724_MAP := $(BUILD_DIR)/rel/d/a/tag/d_a_tag_kago_fall.map
 
 M724_CPP_FILES := \
-	rel/d/a/tag/d_a_tag_kago_fall/executor.cpp \
-	rel/d/a/tag/d_a_tag_kago_fall/unknown_translation_unit_ctors.cpp \
-	rel/d/a/tag/d_a_tag_kago_fall/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall.cpp \
 
 M724_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_kago_fall/executor.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_kago_fall/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_kago_fall/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/tag/d_a_tag_kago_fall/d_a_tag_kago_fall.o \
 
 M724_LIBS := \
@@ -29,14 +27,21 @@ M724_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M724_LDSCRIPT) \
+	-unused -map $(M724_MAP) \
+	-w off \
 
 $(M724_TARGET): $(M724_O_FILES) $(M724_LIBS)
+	@echo [724] creating $(M724_TARGET)
 	@echo $(M724_LIBS) $(M724_O_FILES) > build/M724_ofiles
-	$(LD) -partial $(M724_LDFLAGS) -o $(M724_TARGET) @build/M724_ofiles
+	@python3 tools/lcf.py rel 724 --output $(M724_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M724_LDFLAGS) -o $(M724_TARGET) @build/M724_ofiles
 
 $(BUILD_DIR)/rel/d/a/tag/d_a_tag_kago_fall/%.o: rel/d/a/tag/d_a_tag_kago_fall/%.cpp
+	@echo [724] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M724_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M724_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

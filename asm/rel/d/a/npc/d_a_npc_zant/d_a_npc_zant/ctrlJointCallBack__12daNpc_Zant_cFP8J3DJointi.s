@@ -5,8 +5,8 @@ lbl_80B6C808:
 /* 80B6C814  7C 60 1B 78 */	mr r0, r3
 /* 80B6C818  2C 04 00 00 */	cmpwi r4, 0
 /* 80B6C81C  40 82 00 30 */	bne lbl_80B6C84C
-/* 80B6C820  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80B6C824  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80B6C820  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80B6C824  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80B6C828  80 A3 00 38 */	lwz r5, 0x38(r3)
 /* 80B6C82C  80 65 00 14 */	lwz r3, 0x14(r5)
 /* 80B6C830  28 03 00 00 */	cmplwi r3, 0

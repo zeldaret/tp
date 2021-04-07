@@ -6,26 +6,26 @@ lbl_80B56A28:
 /* 80B56A38  28 00 00 01 */	cmplwi r0, 1
 /* 80B56A3C  40 82 00 64 */	bne lbl_80B56AA0
 /* 80B56A40  38 60 00 0B */	li r3, 0xb
-/* 80B56A44  4B 5F 60 68 */	b daNpcT_chkEvtBit__FUl
+/* 80B56A44  4B 5F 60 69 */	bl daNpcT_chkEvtBit__FUl
 /* 80B56A48  2C 03 00 00 */	cmpwi r3, 0
 /* 80B56A4C  41 82 00 54 */	beq lbl_80B56AA0
 /* 80B56A50  38 60 00 04 */	li r3, 4
-/* 80B56A54  4B 5F 60 58 */	b daNpcT_chkEvtBit__FUl
+/* 80B56A54  4B 5F 60 59 */	bl daNpcT_chkEvtBit__FUl
 /* 80B56A58  2C 03 00 00 */	cmpwi r3, 0
 /* 80B56A5C  41 82 00 1C */	beq lbl_80B56A78
 /* 80B56A60  38 60 00 08 */	li r3, 8
-/* 80B56A64  4B 5F 60 48 */	b daNpcT_chkEvtBit__FUl
+/* 80B56A64  4B 5F 60 49 */	bl daNpcT_chkEvtBit__FUl
 /* 80B56A68  2C 03 00 00 */	cmpwi r3, 0
 /* 80B56A6C  41 82 00 0C */	beq lbl_80B56A78
 /* 80B56A70  38 60 00 01 */	li r3, 1
 /* 80B56A74  48 00 00 30 */	b lbl_80B56AA4
 lbl_80B56A78:
 /* 80B56A78  38 60 00 03 */	li r3, 3
-/* 80B56A7C  4B 5F 60 30 */	b daNpcT_chkEvtBit__FUl
+/* 80B56A7C  4B 5F 60 31 */	bl daNpcT_chkEvtBit__FUl
 /* 80B56A80  2C 03 00 00 */	cmpwi r3, 0
 /* 80B56A84  41 82 00 1C */	beq lbl_80B56AA0
 /* 80B56A88  38 60 00 07 */	li r3, 7
-/* 80B56A8C  4B 5F 60 20 */	b daNpcT_chkEvtBit__FUl
+/* 80B56A8C  4B 5F 60 21 */	bl daNpcT_chkEvtBit__FUl
 /* 80B56A90  2C 03 00 00 */	cmpwi r3, 0
 /* 80B56A94  41 82 00 0C */	beq lbl_80B56AA0
 /* 80B56A98  38 60 00 01 */	li r3, 1

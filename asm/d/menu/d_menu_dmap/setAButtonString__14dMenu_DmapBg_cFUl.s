@@ -12,8 +12,8 @@ lbl_801B8E08:
 /* 801B8E08  28 1D 00 00 */	cmplwi r29, 0
 /* 801B8E0C  40 82 00 44 */	bne lbl_801B8E50
 /* 801B8E10  80 7C 0C B4 */	lwz r3, 0xcb4(r28)
-/* 801B8E14  3C 80 80 39 */	lis r4, cont_at_4196@ha
-/* 801B8E18  38 04 55 C8 */	addi r0, r4, cont_at_4196@l
+/* 801B8E14  3C 80 80 39 */	lis r4, cont_at_4196@ha /* 0x803955C8@ha */
+/* 801B8E18  38 04 55 C8 */	addi r0, r4, cont_at_4196@l /* 0x803955C8@l */
 /* 801B8E1C  7C 80 FA 14 */	add r4, r0, r31
 /* 801B8E20  80 A4 00 00 */	lwz r5, 0(r4)
 /* 801B8E24  80 C4 00 04 */	lwz r6, 4(r4)
@@ -22,15 +22,15 @@ lbl_801B8E08:
 /* 801B8E30  7D 89 03 A6 */	mtctr r12
 /* 801B8E34  4E 80 04 21 */	bctrl 
 /* 801B8E38  48 14 78 21 */	bl getStringPtr__10J2DTextBoxCFv
-/* 801B8E3C  3C 80 80 39 */	lis r4, d_menu_d_menu_dmap__stringBase0@ha
-/* 801B8E40  38 84 57 60 */	addi r4, r4, d_menu_d_menu_dmap__stringBase0@l
+/* 801B8E3C  3C 80 80 39 */	lis r4, d_menu_d_menu_dmap__stringBase0@ha /* 0x80395760@ha */
+/* 801B8E40  38 84 57 60 */	addi r4, r4, d_menu_d_menu_dmap__stringBase0@l /* 0x80395760@l */
 /* 801B8E44  38 84 00 6F */	addi r4, r4, 0x6f
 /* 801B8E48  48 1A FC E5 */	bl strcpy
 /* 801B8E4C  48 00 00 48 */	b lbl_801B8E94
 lbl_801B8E50:
 /* 801B8E50  80 7C 0C B4 */	lwz r3, 0xcb4(r28)
-/* 801B8E54  3C 80 80 39 */	lis r4, cont_at_4196@ha
-/* 801B8E58  38 04 55 C8 */	addi r0, r4, cont_at_4196@l
+/* 801B8E54  3C 80 80 39 */	lis r4, cont_at_4196@ha /* 0x803955C8@ha */
+/* 801B8E58  38 04 55 C8 */	addi r0, r4, cont_at_4196@l /* 0x803955C8@l */
 /* 801B8E5C  7C 80 FA 14 */	add r4, r0, r31
 /* 801B8E60  80 A4 00 00 */	lwz r5, 0(r4)
 /* 801B8E64  80 C4 00 04 */	lwz r6, 4(r4)
@@ -40,8 +40,8 @@ lbl_801B8E50:
 /* 801B8E74  4E 80 04 21 */	bctrl 
 /* 801B8E78  48 14 77 E1 */	bl getStringPtr__10J2DTextBoxCFv
 /* 801B8E7C  7C 65 1B 78 */	mr r5, r3
-/* 801B8E80  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801B8E84  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801B8E80  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801B8E84  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801B8E88  7F A4 EB 78 */	mr r4, r29
 /* 801B8E8C  38 C0 00 00 */	li r6, 0
 /* 801B8E90  48 06 36 B5 */	bl getStringKanji__13dMeter2Info_cFUlPcP14JMSMesgEntry_c

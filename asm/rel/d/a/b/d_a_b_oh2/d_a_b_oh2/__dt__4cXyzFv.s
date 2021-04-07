@@ -7,7 +7,7 @@ lbl_8061E19C:
 /* 8061E1B0  41 82 00 10 */	beq lbl_8061E1C0
 /* 8061E1B4  7C 80 07 35 */	extsh. r0, r4
 /* 8061E1B8  40 81 00 08 */	ble lbl_8061E1C0
-/* 8061E1BC  4B CB 0B 80 */	b __dl__FPv
+/* 8061E1BC  4B CB 0B 81 */	bl __dl__FPv
 lbl_8061E1C0:
 /* 8061E1C0  7F E3 FB 78 */	mr r3, r31
 /* 8061E1C4  83 E1 00 0C */	lwz r31, 0xc(r1)

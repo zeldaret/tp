@@ -5,8 +5,8 @@ lbl_800ECF9C:
 /* 800ECFA8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 800ECFAC  7C 7F 1B 78 */	mr r31, r3
 /* 800ECFB0  38 80 00 CC */	li r4, 0xcc
-/* 800ECFB4  3C A0 80 39 */	lis r5, m__19daAlinkHIO_horse_c0@ha
-/* 800ECFB8  38 A5 E5 A4 */	addi r5, r5, m__19daAlinkHIO_horse_c0@l
+/* 800ECFB4  3C A0 80 39 */	lis r5, m__19daAlinkHIO_horse_c0@ha /* 0x8038E5A4@ha */
+/* 800ECFB8  38 A5 E5 A4 */	addi r5, r5, m__19daAlinkHIO_horse_c0@l /* 0x8038E5A4@l */
 /* 800ECFBC  C0 25 00 5C */	lfs f1, 0x5c(r5)
 /* 800ECFC0  C0 45 00 60 */	lfs f2, 0x60(r5)
 /* 800ECFC4  4B FC 03 E5 */	bl setUpperAnimeBaseSpeed__9daAlink_cFUsff

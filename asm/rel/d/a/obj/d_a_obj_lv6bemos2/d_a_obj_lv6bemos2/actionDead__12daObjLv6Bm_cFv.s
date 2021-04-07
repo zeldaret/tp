@@ -5,13 +5,13 @@ lbl_80C81154:
 /* 80C81160  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80C81164  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80C81168  7C 7E 1B 78 */	mr r30, r3
-/* 80C8116C  3C 60 80 C8 */	lis r3, l_eye_offset@ha
-/* 80C81170  3B E3 1C 2C */	addi r31, r3, l_eye_offset@l
+/* 80C8116C  3C 60 80 C8 */	lis r3, l_eye_offset@ha /* 0x80C81C2C@ha */
+/* 80C81170  3B E3 1C 2C */	addi r31, r3, l_eye_offset@l /* 0x80C81C2C@l */
 /* 80C81174  88 1E 0A 16 */	lbz r0, 0xa16(r30)
 /* 80C81178  28 00 00 06 */	cmplwi r0, 6
 /* 80C8117C  41 81 02 4C */	bgt lbl_80C813C8
-/* 80C81180  3C 60 80 C8 */	lis r3, lit_5281@ha
-/* 80C81184  38 63 1E FC */	addi r3, r3, lit_5281@l
+/* 80C81180  3C 60 80 C8 */	lis r3, lit_5281@ha /* 0x80C81EFC@ha */
+/* 80C81184  38 63 1E FC */	addi r3, r3, lit_5281@l /* 0x80C81EFC@l */
 /* 80C81188  54 00 10 3A */	slwi r0, r0, 2
 /* 80C8118C  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80C81190  7C 09 03 A6 */	mtctr r0
@@ -66,7 +66,7 @@ lbl_80C81238:
 /* 80C81240  38 A0 00 5A */	li r5, 0x5a
 /* 80C81244  38 C0 00 0A */	li r6, 0xa
 /* 80C81248  38 E0 00 05 */	li r7, 5
-/* 80C8124C  4B 5E F2 F4 */	b cLib_addCalcAngleS__FPsssss
+/* 80C8124C  4B 5E F2 F5 */	bl cLib_addCalcAngleS__FPsssss
 /* 80C81250  A8 7E 09 C2 */	lha r3, 0x9c2(r30)
 /* 80C81254  A8 1E 09 C4 */	lha r0, 0x9c4(r30)
 /* 80C81258  7C 03 00 00 */	cmpw r3, r0
@@ -79,13 +79,13 @@ lbl_80C81238:
 /* 80C81274  98 1E 0A 16 */	stb r0, 0xa16(r30)
 /* 80C81278  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80C8127C  7C 03 07 74 */	extsb r3, r0
-/* 80C81280  4B 3A BD EC */	b dComIfGp_getReverb__Fi
+/* 80C81280  4B 3A BD ED */	bl dComIfGp_getReverb__Fi
 /* 80C81284  7C 67 1B 78 */	mr r7, r3
 /* 80C81288  3C 60 00 07 */	lis r3, 0x0007 /* 0x00070228@ha */
 /* 80C8128C  38 03 02 28 */	addi r0, r3, 0x0228 /* 0x00070228@l */
 /* 80C81290  90 01 00 0C */	stw r0, 0xc(r1)
-/* 80C81294  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80C81298  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80C81294  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80C81298  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80C8129C  80 63 00 00 */	lwz r3, 0(r3)
 /* 80C812A0  38 81 00 0C */	addi r4, r1, 0xc
 /* 80C812A4  38 BE 05 38 */	addi r5, r30, 0x538
@@ -95,7 +95,7 @@ lbl_80C81238:
 /* 80C812B4  C0 7F 00 40 */	lfs f3, 0x40(r31)
 /* 80C812B8  FC 80 18 90 */	fmr f4, f3
 /* 80C812BC  39 00 00 00 */	li r8, 0
-/* 80C812C0  4B 62 A6 C4 */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80C812C0  4B 62 A6 C5 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 /* 80C812C4  48 00 01 04 */	b lbl_80C813C8
 lbl_80C812C8:
 /* 80C812C8  38 00 00 14 */	li r0, 0x14
@@ -131,13 +131,13 @@ lbl_80C81304:
 /* 80C81338  40 82 00 50 */	bne lbl_80C81388
 /* 80C8133C  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80C81340  7C 03 07 74 */	extsb r3, r0
-/* 80C81344  4B 3A BD 28 */	b dComIfGp_getReverb__Fi
+/* 80C81344  4B 3A BD 29 */	bl dComIfGp_getReverb__Fi
 /* 80C81348  7C 67 1B 78 */	mr r7, r3
 /* 80C8134C  3C 60 00 07 */	lis r3, 0x0007 /* 0x000701DD@ha */
 /* 80C81350  38 03 01 DD */	addi r0, r3, 0x01DD /* 0x000701DD@l */
 /* 80C81354  90 01 00 08 */	stw r0, 8(r1)
-/* 80C81358  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80C8135C  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80C81358  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80C8135C  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80C81360  80 63 00 00 */	lwz r3, 0(r3)
 /* 80C81364  38 81 00 08 */	addi r4, r1, 8
 /* 80C81368  38 BE 05 38 */	addi r5, r30, 0x538
@@ -147,7 +147,7 @@ lbl_80C81304:
 /* 80C81378  C0 7F 00 40 */	lfs f3, 0x40(r31)
 /* 80C8137C  FC 80 18 90 */	fmr f4, f3
 /* 80C81380  39 00 00 00 */	li r8, 0
-/* 80C81384  4B 62 A6 00 */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80C81384  4B 62 A6 01 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 lbl_80C81388:
 /* 80C81388  80 7E 05 B0 */	lwz r3, 0x5b0(r30)
 /* 80C8138C  38 80 00 01 */	li r4, 1

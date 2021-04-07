@@ -1,16 +1,16 @@
 lbl_809E1FE4:
-/* 809E1FE4  3C 80 80 9E */	lis r4, cNullVec__6Z2Calc@ha
-/* 809E1FE8  38 C4 3B F0 */	addi r6, r4, cNullVec__6Z2Calc@l
-/* 809E1FEC  3C 80 80 3A */	lis r4, __ptmf_null@ha
-/* 809E1FF0  38 A4 21 80 */	addi r5, r4, __ptmf_null@l
+/* 809E1FE4  3C 80 80 9E */	lis r4, cNullVec__6Z2Calc@ha /* 0x809E3BF0@ha */
+/* 809E1FE8  38 C4 3B F0 */	addi r6, r4, cNullVec__6Z2Calc@l /* 0x809E3BF0@l */
+/* 809E1FEC  3C 80 80 3A */	lis r4, __ptmf_null@ha /* 0x803A2180@ha */
+/* 809E1FF0  38 A4 21 80 */	addi r5, r4, __ptmf_null@l /* 0x803A2180@l */
 /* 809E1FF4  80 85 00 00 */	lwz r4, 0(r5)
 /* 809E1FF8  80 05 00 04 */	lwz r0, 4(r5)
 /* 809E1FFC  90 83 0D C8 */	stw r4, 0xdc8(r3)
 /* 809E2000  90 03 0D CC */	stw r0, 0xdcc(r3)
 /* 809E2004  80 05 00 08 */	lwz r0, 8(r5)
 /* 809E2008  90 03 0D D0 */	stw r0, 0xdd0(r3)
-/* 809E200C  3C 80 80 9E */	lis r4, m__17daNpc_grR_Param_c@ha
-/* 809E2010  38 84 38 D8 */	addi r4, r4, m__17daNpc_grR_Param_c@l
+/* 809E200C  3C 80 80 9E */	lis r4, m__17daNpc_grR_Param_c@ha /* 0x809E38D8@ha */
+/* 809E2010  38 84 38 D8 */	addi r4, r4, m__17daNpc_grR_Param_c@l /* 0x809E38D8@l */
 /* 809E2014  88 04 00 6A */	lbz r0, 0x6a(r4)
 /* 809E2018  28 00 00 00 */	cmplwi r0, 0
 /* 809E201C  41 82 00 20 */	beq lbl_809E203C

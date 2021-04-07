@@ -5,8 +5,8 @@ lbl_8067A2CC:
 /* 8067A2D8  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 8067A2DC  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 8067A2E0  7C 7E 1B 78 */	mr r30, r3
-/* 8067A2E4  3C 60 80 68 */	lis r3, lit_3789@ha
-/* 8067A2E8  3B E3 C3 FC */	addi r31, r3, lit_3789@l
+/* 8067A2E4  3C 60 80 68 */	lis r3, lit_3789@ha /* 0x8067C3FC@ha */
+/* 8067A2E8  3B E3 C3 FC */	addi r31, r3, lit_3789@l /* 0x8067C3FC@l */
 /* 8067A2EC  C0 1F 00 04 */	lfs f0, 4(r31)
 /* 8067A2F0  D0 1E 05 2C */	stfs f0, 0x52c(r30)
 /* 8067A2F4  38 7E 04 DE */	addi r3, r30, 0x4de
@@ -15,7 +15,7 @@ lbl_8067A2CC:
 /* 8067A300  7C 04 07 34 */	extsh r4, r0
 /* 8067A304  38 A0 00 02 */	li r5, 2
 /* 8067A308  38 C0 04 00 */	li r6, 0x400
-/* 8067A30C  4B BF 62 FC */	b cLib_addCalcAngleS2__FPssss
+/* 8067A30C  4B BF 62 FD */	bl cLib_addCalcAngleS2__FPssss
 /* 8067A310  A8 1E 06 90 */	lha r0, 0x690(r30)
 /* 8067A314  2C 00 00 01 */	cmpwi r0, 1
 /* 8067A318  41 82 00 C4 */	beq lbl_8067A3DC
@@ -68,7 +68,7 @@ lbl_8067A3BC:
 /* 8067A3C8  7C 04 07 34 */	extsh r4, r0
 /* 8067A3CC  38 A0 00 01 */	li r5, 1
 /* 8067A3D0  38 C0 08 00 */	li r6, 0x800
-/* 8067A3D4  4B BF 62 34 */	b cLib_addCalcAngleS2__FPssss
+/* 8067A3D4  4B BF 62 35 */	bl cLib_addCalcAngleS2__FPssss
 /* 8067A3D8  48 00 01 5C */	b lbl_8067A534
 lbl_8067A3DC:
 /* 8067A3DC  38 00 00 01 */	li r0, 1
@@ -96,13 +96,13 @@ lbl_8067A3DC:
 /* 8067A434  C0 1F 00 08 */	lfs f0, 8(r31)
 /* 8067A438  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 8067A43C  D0 21 00 1C */	stfs f1, 0x1c(r1)
-/* 8067A440  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8067A444  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8067A440  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8067A444  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8067A448  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 8067A44C  38 80 00 05 */	li r4, 5
 /* 8067A450  38 A0 00 0F */	li r5, 0xf
 /* 8067A454  38 C1 00 14 */	addi r6, r1, 0x14
-/* 8067A458  4B 9F 55 CC */	b StartShock__12dVibration_cFii4cXyz
+/* 8067A458  4B 9F 55 CD */	bl StartShock__12dVibration_cFii4cXyz
 /* 8067A45C  38 00 00 02 */	li r0, 2
 /* 8067A460  98 1E 06 7C */	stb r0, 0x67c(r30)
 lbl_8067A464:

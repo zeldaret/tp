@@ -53,8 +53,8 @@ lbl_80243C80:
 /* 80243CA4  EC 02 00 32 */	fmuls f0, f2, f0
 /* 80243CA8  EC 01 00 2A */	fadds f0, f1, f0
 /* 80243CAC  EC 20 18 28 */	fsubs f1, f0, f3
-/* 80243CB0  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha
-/* 80243CB4  3B C4 02 8C */	addi r30, r4, g_MsgObject_HIO_c@l
+/* 80243CB0  3C 80 80 43 */	lis r4, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 80243CB4  3B C4 02 8C */	addi r30, r4, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 80243CB8  C0 1E 04 04 */	lfs f0, 0x404(r30)
 /* 80243CBC  EC 61 00 28 */	fsubs f3, f1, f0
 /* 80243CC0  FC 1E F8 40 */	fcmpo cr0, f30, f31

@@ -47,9 +47,9 @@ struct csXyz {};
 
 struct cXyz {};
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -59,11 +59,6 @@ struct Z2SeMgr {
 //
 // Forward References:
 //
-
-static void daTagMstop_Create(fopAc_ac_c*);
-static void daTagMstop_Delete(daTagMstop_c*);
-static void daTagMstop_Execute(daTagMstop_c*);
-static bool daTagMstop_Draw(daTagMstop_c*);
 
 extern "C" void create__12daTagMstop_cFv();
 extern "C" static void daTagMstop_Create__FP10fopAc_ac_c();
@@ -78,17 +73,6 @@ extern "C" extern void* g_profile_Tag_Mstop[12];
 //
 // External References:
 //
-
-void fopAcM_delete(fopAc_ac_c*);
-void fopAcM_searchActorAngleY(fopAc_ac_c const*, fopAc_ac_c const*);
-void fopAcM_searchActorDistanceXZ2(fopAc_ac_c const*, fopAc_ac_c const*);
-void fopAcM_orderSpeakEvent(fopAc_ac_c*, u16, u16);
-void fopAcM_orderPotentialEvent(fopAc_ac_c*, u16, u16, u16);
-void dComIfGp_getReverb(int);
-void dComIfGp_getRoomCamera(int);
-void dComIfGp_getRoomArrow(int);
-void daNpcF_getPlayerInfoFromPlayerList(int, int, cXyz&, csXyz&);
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -129,13 +113,15 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 805A696C-805A6970 0004+00 s=2 e=0 z=0  None .rodata    @3863 */
-SECTION_RODATA static u32 const lit_3863 = 0x461C4000;
+/* 805A696C-805A6970 000000 0004+00 2/2 0/0 0/0 .rodata          @3863 */
+SECTION_RODATA static f32 const lit_3863 = 10000.0f;
+COMPILER_STRIP_GATE(805A696C, &lit_3863);
 
-/* 805A6970-805A6974 0004+00 s=1 e=0 z=0  None .rodata    @3864 */
-SECTION_RODATA static u32 const lit_3864 = 0x42C80000;
+/* 805A6970-805A6974 000004 0004+00 1/1 0/0 0/0 .rodata          @3864 */
+SECTION_RODATA static f32 const lit_3864 = 100.0f;
+COMPILER_STRIP_GATE(805A6970, &lit_3864);
 
-/* 805A6138-805A6318 01E0+00 s=1 e=0 z=0  None .text      create__12daTagMstop_cFv */
+/* 805A6138-805A6318 000078 01E0+00 1/1 0/0 0/0 .text            create__12daTagMstop_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -145,17 +131,18 @@ asm void daTagMstop_c::create() {
 }
 #pragma pop
 
-/* 805A6318-805A6338 0020+00 s=1 e=0 z=0  None .text      daTagMstop_Create__FP10fopAc_ac_c */
+/* 805A6318-805A6338 000258 0020+00 1/0 0/0 0/0 .text            daTagMstop_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagMstop_Create(fopAc_ac_c* param_0) {
+static asm void daTagMstop_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_mstop/d_a_tag_mstop/daTagMstop_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 805A6338-805A639C 0064+00 s=1 e=0 z=0  None .text      __dt__12daTagMstop_cFv */
+/* 805A6338-805A639C 000278 0064+00 1/1 0/0 0/0 .text            __dt__12daTagMstop_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -165,17 +152,18 @@ asm daTagMstop_c::~daTagMstop_c() {
 }
 #pragma pop
 
-/* 805A639C-805A63C4 0028+00 s=1 e=0 z=0  None .text      daTagMstop_Delete__FP12daTagMstop_c */
+/* 805A639C-805A63C4 0002DC 0028+00 1/0 0/0 0/0 .text            daTagMstop_Delete__FP12daTagMstop_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagMstop_Delete(daTagMstop_c* param_0) {
+static asm void daTagMstop_Delete(daTagMstop_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_mstop/d_a_tag_mstop/daTagMstop_Delete__FP12daTagMstop_c.s"
 }
 #pragma pop
 
-/* 805A63C4-805A63F8 0034+00 s=1 e=0 z=0  None .text      eventOrder__12daTagMstop_cFv */
+/* 805A63C4-805A63F8 000304 0034+00 1/1 0/0 0/0 .text            eventOrder__12daTagMstop_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -186,24 +174,40 @@ asm void daTagMstop_c::eventOrder() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 805A6974-805A6978 0004+00 s=1 e=0 z=0  None .rodata    @4056 */
-SECTION_RODATA static u32 const lit_4056 = 0x3F800000;
+/* 805A6974-805A6978 000008 0004+00 0/1 0/0 0/0 .rodata          @4056 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4056 = 1.0f;
+COMPILER_STRIP_GATE(805A6974, &lit_4056);
+#pragma pop
 
-/* 805A6978-805A697C 0004+00 s=1 e=0 z=0  None .rodata    @4057 */
-SECTION_RODATA static u32 const lit_4057 = 0xBF800000;
+/* 805A6978-805A697C 00000C 0004+00 0/1 0/0 0/0 .rodata          @4057 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4057 = -1.0f;
+COMPILER_STRIP_GATE(805A6978, &lit_4057);
+#pragma pop
 
-/* 805A697C-805A6980 0004+00 s=1 e=0 z=0  None .rodata    @4058 */
-SECTION_RODATA static u32 const lit_4058 = 0x451C4000;
+/* 805A697C-805A6980 000010 0004+00 0/1 0/0 0/0 .rodata          @4058 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4058 = 2500.0f;
+COMPILER_STRIP_GATE(805A697C, &lit_4058);
+#pragma pop
 
-/* 805A6980-805A6984 0004+00 s=1 e=0 z=0  None .rodata    @4059 */
+/* 805A6980-805A6984 000014 0004+00 0/1 0/0 0/0 .rodata          @4059 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_4059[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(805A6980, &lit_4059);
+#pragma pop
 
-/* 805A63F8-805A693C 0544+00 s=1 e=0 z=0  None .text      execute__12daTagMstop_cFv */
+/* 805A63F8-805A693C 000338 0544+00 1/1 0/0 0/0 .text            execute__12daTagMstop_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -213,23 +217,24 @@ asm void daTagMstop_c::execute() {
 }
 #pragma pop
 
-/* 805A693C-805A695C 0020+00 s=1 e=0 z=0  None .text      daTagMstop_Execute__FP12daTagMstop_c */
+/* 805A693C-805A695C 00087C 0020+00 1/0 0/0 0/0 .text daTagMstop_Execute__FP12daTagMstop_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagMstop_Execute(daTagMstop_c* param_0) {
+static asm void daTagMstop_Execute(daTagMstop_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_mstop/d_a_tag_mstop/daTagMstop_Execute__FP12daTagMstop_c.s"
 }
 #pragma pop
 
-/* 805A695C-805A6964 0008+00 s=1 e=0 z=0  None .text      daTagMstop_Draw__FP12daTagMstop_c */
+/* 805A695C-805A6964 00089C 0008+00 1/0 0/0 0/0 .text            daTagMstop_Draw__FP12daTagMstop_c
+ */
 static bool daTagMstop_Draw(daTagMstop_c* param_0) {
     return true;
 }
 
 /* ############################################################################################## */
-/* 805A6984-805A69A4 0020+00 s=1 e=0 z=0  None .data      l_daTagMstop_Method */
+/* 805A6984-805A69A4 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagMstop_Method */
 SECTION_DATA static void* l_daTagMstop_Method[8] = {
     (void*)daTagMstop_Create__FP10fopAc_ac_c,
     (void*)daTagMstop_Delete__FP12daTagMstop_c,
@@ -241,8 +246,8 @@ SECTION_DATA static void* l_daTagMstop_Method[8] = {
     (void*)NULL,
 };
 
-/* 805A69A4-805A69D4 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_Mstop */
-SECTION_DATA void* g_profile_Tag_Mstop[12] = {
+/* 805A69A4-805A69D4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Mstop */
+SECTION_DATA extern void* g_profile_Tag_Mstop[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02C40000, (void*)&g_fpcLf_Method,
     (void*)0x000005D4, (void*)NULL,

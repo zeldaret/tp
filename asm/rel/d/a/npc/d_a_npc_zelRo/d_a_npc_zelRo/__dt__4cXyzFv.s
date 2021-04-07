@@ -7,7 +7,7 @@ lbl_80B73E18:
 /* 80B73E2C  41 82 00 10 */	beq lbl_80B73E3C
 /* 80B73E30  7C 80 07 35 */	extsh. r0, r4
 /* 80B73E34  40 81 00 08 */	ble lbl_80B73E3C
-/* 80B73E38  4B 75 AF 04 */	b __dl__FPv
+/* 80B73E38  4B 75 AF 05 */	bl __dl__FPv
 lbl_80B73E3C:
 /* 80B73E3C  7F E3 FB 78 */	mr r3, r31
 /* 80B73E40  83 E1 00 0C */	lwz r31, 0xc(r1)

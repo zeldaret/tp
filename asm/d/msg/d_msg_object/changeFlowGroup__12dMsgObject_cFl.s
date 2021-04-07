@@ -3,8 +3,8 @@ lbl_8023803C:
 /* 80238040  7C 08 02 A6 */	mflr r0
 /* 80238044  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80238048  7C 64 1B 78 */	mr r4, r3
-/* 8023804C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80238050  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8023804C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80238050  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80238054  80 63 5D BC */	lwz r3, 0x5dbc(r3)
 /* 80238058  4B FF EC 39 */	bl changeFlowGroupLocal__12dMsgObject_cFl
 /* 8023805C  80 01 00 14 */	lwz r0, 0x14(r1)

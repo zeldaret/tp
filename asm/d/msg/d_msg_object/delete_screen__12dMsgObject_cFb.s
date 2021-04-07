@@ -33,8 +33,8 @@ lbl_80236978:
 /* 8023697C  90 1E 01 04 */	stw r0, 0x104(r30)
 /* 80236980  57 E0 06 3F */	clrlwi. r0, r31, 0x18
 /* 80236984  41 82 00 20 */	beq lbl_802369A4
-/* 80236988  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8023698C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80236988  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8023698C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80236990  88 03 5E 8F */	lbz r0, 0x5e8f(r3)
 /* 80236994  28 00 00 05 */	cmplwi r0, 5
 /* 80236998  40 82 00 0C */	bne lbl_802369A4

@@ -4,7 +4,7 @@ lbl_80D3B428:
 /* 80D3B430  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80D3B434  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80D3B438  7C 7F 1B 78 */	mr r31, r3
-/* 80D3B43C  4B 2F C6 90 */	b chkDraw__12daItemBase_cFv
+/* 80D3B43C  4B 2F C6 91 */	bl chkDraw__12daItemBase_cFv
 /* 80D3B440  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80D3B444  40 82 00 0C */	bne lbl_80D3B450
 /* 80D3B448  38 60 00 01 */	li r3, 1

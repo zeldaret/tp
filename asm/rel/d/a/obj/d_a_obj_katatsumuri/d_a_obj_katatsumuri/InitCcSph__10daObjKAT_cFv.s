@@ -8,16 +8,16 @@ lbl_80C39994:
 /* 80C399AC  38 80 00 01 */	li r4, 1
 /* 80C399B0  38 A0 00 00 */	li r5, 0
 /* 80C399B4  7F E6 FB 78 */	mr r6, r31
-/* 80C399B8  4B 44 9E A8 */	b Init__9dCcD_SttsFiiP10fopAc_ac_c
+/* 80C399B8  4B 44 9E A9 */	bl Init__9dCcD_SttsFiiP10fopAc_ac_c
 /* 80C399BC  38 7F 08 4C */	addi r3, r31, 0x84c
-/* 80C399C0  3C 80 80 C4 */	lis r4, ccSphSrc@ha
-/* 80C399C4  38 84 C6 7C */	addi r4, r4, ccSphSrc@l
-/* 80C399C8  4B 44 B0 6C */	b Set__8dCcD_SphFRC11dCcD_SrcSph
+/* 80C399C0  3C 80 80 C4 */	lis r4, ccSphSrc@ha /* 0x80C3C67C@ha */
+/* 80C399C4  38 84 C6 7C */	addi r4, r4, ccSphSrc@l /* 0x80C3C67C@l */
+/* 80C399C8  4B 44 B0 6D */	bl Set__8dCcD_SphFRC11dCcD_SrcSph
 /* 80C399CC  38 1F 08 10 */	addi r0, r31, 0x810
 /* 80C399D0  90 1F 08 90 */	stw r0, 0x890(r31)
 /* 80C399D4  38 7F 09 70 */	addi r3, r31, 0x970
 /* 80C399D8  38 9F 04 D0 */	addi r4, r31, 0x4d0
-/* 80C399DC  4B 63 5C 6C */	b SetC__8cM3dGSphFRC4cXyz
+/* 80C399DC  4B 63 5C 6D */	bl SetC__8cM3dGSphFRC4cXyz
 /* 80C399E0  80 1F 08 E8 */	lwz r0, 0x8e8(r31)
 /* 80C399E4  60 00 00 04 */	ori r0, r0, 4
 /* 80C399E8  90 1F 08 E8 */	stw r0, 0x8e8(r31)

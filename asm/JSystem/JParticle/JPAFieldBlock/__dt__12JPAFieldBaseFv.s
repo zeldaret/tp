@@ -5,8 +5,8 @@ lbl_8027D3AC:
 /* 8027D3B8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8027D3BC  7C 7F 1B 79 */	or. r31, r3, r3
 /* 8027D3C0  41 82 00 1C */	beq lbl_8027D3DC
-/* 8027D3C4  3C A0 80 3C */	lis r5, __vt__12JPAFieldBase@ha
-/* 8027D3C8  38 05 44 CC */	addi r0, r5, __vt__12JPAFieldBase@l
+/* 8027D3C4  3C A0 80 3C */	lis r5, __vt__12JPAFieldBase@ha /* 0x803C44CC@ha */
+/* 8027D3C8  38 05 44 CC */	addi r0, r5, __vt__12JPAFieldBase@l /* 0x803C44CC@l */
 /* 8027D3CC  90 1F 00 00 */	stw r0, 0(r31)
 /* 8027D3D0  7C 80 07 35 */	extsh. r0, r4
 /* 8027D3D4  40 81 00 08 */	ble lbl_8027D3DC

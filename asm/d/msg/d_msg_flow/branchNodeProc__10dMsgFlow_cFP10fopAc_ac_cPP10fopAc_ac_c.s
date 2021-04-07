@@ -16,8 +16,8 @@ lbl_8024AD54:
 /* 8024AD8C  38 C0 00 01 */	li r6, 1
 /* 8024AD90  A0 1F 00 02 */	lhz r0, 2(r31)
 /* 8024AD94  1D 00 00 0C */	mulli r8, r0, 0xc
-/* 8024AD98  3C E0 80 3C */	lis r7, mQueryList__10dMsgFlow_c@ha
-/* 8024AD9C  38 07 18 4C */	addi r0, r7, mQueryList__10dMsgFlow_c@l
+/* 8024AD98  3C E0 80 3C */	lis r7, mQueryList__10dMsgFlow_c@ha /* 0x803C184C@ha */
+/* 8024AD9C  38 07 18 4C */	addi r0, r7, mQueryList__10dMsgFlow_c@l /* 0x803C184C@l */
 /* 8024ADA0  7D 80 42 14 */	add r12, r0, r8
 /* 8024ADA4  48 11 72 E1 */	bl __ptmf_scall
 /* 8024ADA8  60 00 00 00 */	nop 

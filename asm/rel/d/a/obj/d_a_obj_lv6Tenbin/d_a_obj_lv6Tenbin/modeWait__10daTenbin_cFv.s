@@ -9,8 +9,8 @@ lbl_80C77470:
 /* 80C7748C  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80C77490  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80C77494  7C 7E 1B 78 */	mr r30, r3
-/* 80C77498  3C 80 80 C7 */	lis r4, lit_3668@ha
-/* 80C7749C  3B E4 79 B0 */	addi r31, r4, lit_3668@l
+/* 80C77498  3C 80 80 C7 */	lis r4, lit_3668@ha /* 0x80C779B0@ha */
+/* 80C7749C  3B E4 79 B0 */	addi r31, r4, lit_3668@l /* 0x80C779B0@l */
 /* 80C774A0  48 00 01 C9 */	bl balanceCheck__10daTenbin_cFv
 /* 80C774A4  88 1E 05 CC */	lbz r0, 0x5cc(r30)
 /* 80C774A8  28 00 00 00 */	cmplwi r0, 0
@@ -20,14 +20,14 @@ lbl_80C77470:
 /* 80C774B8  C0 5F 00 3C */	lfs f2, 0x3c(r31)
 /* 80C774BC  C0 7F 00 40 */	lfs f3, 0x40(r31)
 /* 80C774C0  C0 9F 00 44 */	lfs f4, 0x44(r31)
-/* 80C774C4  4B 5F 84 B8 */	b cLib_addCalc__FPfffff
+/* 80C774C4  4B 5F 84 B9 */	bl cLib_addCalc__FPfffff
 /* 80C774C8  FF C0 08 90 */	fmr f30, f1
 /* 80C774CC  38 7E 05 C0 */	addi r3, r30, 0x5c0
 /* 80C774D0  C0 3E 05 C8 */	lfs f1, 0x5c8(r30)
 /* 80C774D4  C0 5F 00 3C */	lfs f2, 0x3c(r31)
 /* 80C774D8  C0 7F 00 40 */	lfs f3, 0x40(r31)
 /* 80C774DC  C0 9F 00 44 */	lfs f4, 0x44(r31)
-/* 80C774E0  4B 5F 84 9C */	b cLib_addCalc__FPfffff
+/* 80C774E0  4B 5F 84 9D */	bl cLib_addCalc__FPfffff
 /* 80C774E4  FF E0 08 90 */	fmr f31, f1
 /* 80C774E8  C0 1F 00 08 */	lfs f0, 8(r31)
 /* 80C774EC  FC 00 F0 00 */	fcmpu cr0, f0, f30
@@ -37,13 +37,13 @@ lbl_80C77470:
 lbl_80C774FC:
 /* 80C774FC  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80C77500  7C 03 07 74 */	extsb r3, r0
-/* 80C77504  4B 3B 5B 68 */	b dComIfGp_getReverb__Fi
+/* 80C77504  4B 3B 5B 69 */	bl dComIfGp_getReverb__Fi
 /* 80C77508  7C 67 1B 78 */	mr r7, r3
 /* 80C7750C  3C 60 00 08 */	lis r3, 0x0008 /* 0x000801F4@ha */
 /* 80C77510  38 03 01 F4 */	addi r0, r3, 0x01F4 /* 0x000801F4@l */
 /* 80C77514  90 01 00 0C */	stw r0, 0xc(r1)
-/* 80C77518  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80C7751C  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80C77518  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80C7751C  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80C77520  80 63 00 00 */	lwz r3, 0(r3)
 /* 80C77524  38 81 00 0C */	addi r4, r1, 0xc
 /* 80C77528  38 BE 04 D0 */	addi r5, r30, 0x4d0
@@ -53,7 +53,7 @@ lbl_80C774FC:
 /* 80C77538  C0 7F 00 48 */	lfs f3, 0x48(r31)
 /* 80C7753C  FC 80 18 90 */	fmr f4, f3
 /* 80C77540  39 00 00 00 */	li r8, 0
-/* 80C77544  4B 63 4F C8 */	b seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80C77544  4B 63 4F C9 */	bl seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
 lbl_80C77548:
 /* 80C77548  C0 3F 00 08 */	lfs f1, 8(r31)
 /* 80C7754C  FC 01 F0 00 */	fcmpu cr0, f1, f30
@@ -68,13 +68,13 @@ lbl_80C77548:
 /* 80C77570  40 82 00 C0 */	bne lbl_80C77630
 /* 80C77574  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80C77578  7C 03 07 74 */	extsb r3, r0
-/* 80C7757C  4B 3B 5A F0 */	b dComIfGp_getReverb__Fi
+/* 80C7757C  4B 3B 5A F1 */	bl dComIfGp_getReverb__Fi
 /* 80C77580  7C 67 1B 78 */	mr r7, r3
 /* 80C77584  3C 60 00 08 */	lis r3, 0x0008 /* 0x000801F5@ha */
 /* 80C77588  38 03 01 F5 */	addi r0, r3, 0x01F5 /* 0x000801F5@l */
 /* 80C7758C  90 01 00 08 */	stw r0, 8(r1)
-/* 80C77590  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 80C77594  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 80C77590  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 80C77594  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 80C77598  80 63 00 00 */	lwz r3, 0(r3)
 /* 80C7759C  38 81 00 08 */	addi r4, r1, 8
 /* 80C775A0  38 BE 04 D0 */	addi r5, r30, 0x4d0
@@ -84,9 +84,9 @@ lbl_80C77548:
 /* 80C775B0  C0 7F 00 48 */	lfs f3, 0x48(r31)
 /* 80C775B4  FC 80 18 90 */	fmr f4, f3
 /* 80C775B8  39 00 00 00 */	li r8, 0
-/* 80C775BC  4B 63 43 C8 */	b seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
-/* 80C775C0  3C 60 80 C7 */	lis r3, l_HIO@ha
-/* 80C775C4  38 63 7A DC */	addi r3, r3, l_HIO@l
+/* 80C775BC  4B 63 43 C9 */	bl seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc
+/* 80C775C0  3C 60 80 C7 */	lis r3, l_HIO@ha /* 0x80C77ADC@ha */
+/* 80C775C4  38 63 7A DC */	addi r3, r3, l_HIO@l /* 0x80C77ADC@l */
 /* 80C775C8  C0 03 00 10 */	lfs f0, 0x10(r3)
 /* 80C775CC  D0 1E 05 DC */	stfs f0, 0x5dc(r30)
 /* 80C775D0  C0 03 00 14 */	lfs f0, 0x14(r3)

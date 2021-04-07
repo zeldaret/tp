@@ -2,7 +2,7 @@ lbl_8030FCD0:
 /* 8030FCD0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8030FCD4  38 00 00 10 */	li r0, 0x10
 /* 8030FCD8  3C A0 CC 01 */	lis r5, 0xCC01 /* 0xCC008000@ha */
-/* 8030FCDC  98 05 80 00 */	stb r0, 0x8000(r5)
+/* 8030FCDC  98 05 80 00 */	stb r0, 0x8000(r5)  /* 0xCC008000@l */
 /* 8030FCE0  38 00 00 0B */	li r0, 0xb
 /* 8030FCE4  B0 05 80 00 */	sth r0, -0x8000(r5)
 /* 8030FCE8  54 80 14 3A */	rlwinm r0, r4, 2, 0x10, 0x1d

@@ -5,12 +5,12 @@ lbl_80297F0C:
 /* 80297F18  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80297F1C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80297F20  41 82 00 30 */	beq lbl_80297F50
-/* 80297F24  3C 60 80 3C */	lis r3, __vt__12JASBasicBank@ha
-/* 80297F28  38 03 76 A8 */	addi r0, r3, __vt__12JASBasicBank@l
+/* 80297F24  3C 60 80 3C */	lis r3, __vt__12JASBasicBank@ha /* 0x803C76A8@ha */
+/* 80297F28  38 03 76 A8 */	addi r0, r3, __vt__12JASBasicBank@l /* 0x803C76A8@l */
 /* 80297F2C  90 1F 00 00 */	stw r0, 0(r31)
 /* 80297F30  41 82 00 10 */	beq lbl_80297F40
-/* 80297F34  3C 60 80 3C */	lis r3, __vt__7JASBank@ha
-/* 80297F38  38 03 76 BC */	addi r0, r3, __vt__7JASBank@l
+/* 80297F34  3C 60 80 3C */	lis r3, __vt__7JASBank@ha /* 0x803C76BC@ha */
+/* 80297F38  38 03 76 BC */	addi r0, r3, __vt__7JASBank@l /* 0x803C76BC@l */
 /* 80297F3C  90 1F 00 00 */	stw r0, 0(r31)
 lbl_80297F40:
 /* 80297F40  7C 80 07 35 */	extsh. r0, r4

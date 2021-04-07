@@ -11,8 +11,8 @@ lbl_800D96DC:
 /* 800D9700  7C F9 3B 78 */	mr r25, r7
 /* 800D9704  7D 1D 43 78 */	mr r29, r8
 /* 800D9708  7D 3A 4B 78 */	mr r26, r9
-/* 800D970C  3C 60 80 39 */	lis r3, lit_3757@ha
-/* 800D9710  3B E3 D6 58 */	addi r31, r3, lit_3757@l
+/* 800D970C  3C 60 80 39 */	lis r3, lit_3757@ha /* 0x8038D658@ha */
+/* 800D9710  3B E3 D6 58 */	addi r31, r3, lit_3757@l /* 0x8038D658@l */
 /* 800D9714  38 00 00 00 */	li r0, 0
 /* 800D9718  88 75 2F AA */	lbz r3, 0x2faa(r21)
 /* 800D971C  28 03 00 01 */	cmplwi r3, 1
@@ -56,8 +56,8 @@ lbl_800D9764:
 /* 800D97A4  C0 02 92 B8 */	lfs f0, lit_6040(r2)
 /* 800D97A8  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 800D97AC  D0 21 00 10 */	stfs f1, 0x10(r1)
-/* 800D97B0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D97B4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D97B0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D97B4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D97B8  38 63 5B D4 */	addi r3, r3, 0x5bd4
 /* 800D97BC  38 80 00 06 */	li r4, 6
 /* 800D97C0  38 A0 00 1F */	li r5, 0x1f
@@ -368,8 +368,8 @@ lbl_800D9BEC:
 /* 800D9BF4  80 15 05 78 */	lwz r0, 0x578(r21)
 /* 800D9BF8  54 00 01 D1 */	rlwinm. r0, r0, 0, 7, 8
 /* 800D9BFC  41 82 00 40 */	beq lbl_800D9C3C
-/* 800D9C00  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D9C04  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D9C00  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D9C04  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D9C08  80 63 5D B8 */	lwz r3, 0x5db8(r3)
 /* 800D9C0C  28 03 00 00 */	cmplwi r3, 0
 /* 800D9C10  41 82 00 2C */	beq lbl_800D9C3C
@@ -491,8 +491,8 @@ lbl_800D9DA8:
 lbl_800D9DB0:
 /* 800D9DB0  A8 15 04 DE */	lha r0, 0x4de(r21)
 /* 800D9DB4  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
-/* 800D9DB8  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800D9DBC  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800D9DB8  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800D9DBC  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800D9DC0  7C 03 04 2E */	lfsx f0, r3, r0
 /* 800D9DC4  C0 35 04 D0 */	lfs f1, 0x4d0(r21)
 /* 800D9DC8  C0 42 93 BC */	lfs f2, lit_10042(r2)

@@ -12,7 +12,7 @@ lbl_8096E7E0:
 /* 8096E808  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 8096E80C  28 00 00 00 */	cmplwi r0, 0
 /* 8096E810  40 82 00 1C */	bne lbl_8096E82C
-/* 8096E814  4B 6C 12 40 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 8096E814  4B 6C 12 41 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 8096E818  2C 03 00 00 */	cmpwi r3, 0
 /* 8096E81C  40 82 00 14 */	bne lbl_8096E830
 /* 8096E820  88 1E 0A 89 */	lbz r0, 0xa89(r30)
@@ -31,7 +31,7 @@ lbl_8096E844:
 /* 8096E848  88 1E 0E 25 */	lbz r0, 0xe25(r30)
 /* 8096E84C  28 00 00 00 */	cmplwi r0, 0
 /* 8096E850  40 82 00 1C */	bne lbl_8096E86C
-/* 8096E854  4B 6C 12 00 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 8096E854  4B 6C 12 01 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 8096E858  2C 03 00 00 */	cmpwi r3, 0
 /* 8096E85C  40 82 00 14 */	bne lbl_8096E870
 /* 8096E860  88 1E 0A 89 */	lbz r0, 0xa89(r30)

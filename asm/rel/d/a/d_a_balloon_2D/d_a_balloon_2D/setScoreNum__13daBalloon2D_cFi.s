@@ -3,7 +3,7 @@ lbl_80654258:
 /* 8065425C  7C 08 02 A6 */	mflr r0
 /* 80654260  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80654264  39 61 00 20 */	addi r11, r1, 0x20
-/* 80654268  4B D0 DF 70 */	b _savegpr_28
+/* 80654268  4B D0 DF 71 */	bl _savegpr_28
 /* 8065426C  7C 7F 1B 78 */	mr r31, r3
 /* 80654270  3C 60 00 02 */	lis r3, 0x0002 /* 0x0001869F@ha */
 /* 80654274  38 03 86 9F */	addi r0, r3, 0x869F /* 0x0001869F@l */
@@ -16,10 +16,10 @@ lbl_80654284:
 /* 8065428C  7C 64 03 D6 */	divw r3, r4, r0
 /* 80654290  7C 03 01 D6 */	mullw r0, r3, r0
 /* 80654294  7F 80 20 50 */	subf r28, r0, r4
-/* 80654298  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8065429C  3B C4 61 C0 */	addi r30, r4, g_dComIfG_gameInfo@l
+/* 80654298  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8065429C  3B C4 61 C0 */	addi r30, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806542A0  83 BE 5D 30 */	lwz r29, 0x5d30(r30)
-/* 806542A4  4B BC A0 24 */	b dMeter2Info_getNumberTextureName__Fi
+/* 806542A4  4B BC A0 25 */	bl dMeter2Info_getNumberTextureName__Fi
 /* 806542A8  7C 65 1B 78 */	mr r5, r3
 /* 806542AC  7F A3 EB 78 */	mr r3, r29
 /* 806542B0  3C 80 54 49 */	lis r4, 0x5449 /* 0x54494D47@ha */
@@ -40,7 +40,7 @@ lbl_80654284:
 /* 806542EC  7C 03 01 D6 */	mullw r0, r3, r0
 /* 806542F0  7F 80 E0 50 */	subf r28, r0, r28
 /* 806542F4  83 BE 5D 30 */	lwz r29, 0x5d30(r30)
-/* 806542F8  4B BC 9F D0 */	b dMeter2Info_getNumberTextureName__Fi
+/* 806542F8  4B BC 9F D1 */	bl dMeter2Info_getNumberTextureName__Fi
 /* 806542FC  7C 65 1B 78 */	mr r5, r3
 /* 80654300  7F A3 EB 78 */	mr r3, r29
 /* 80654304  3C 80 54 49 */	lis r4, 0x5449 /* 0x54494D47@ha */
@@ -61,7 +61,7 @@ lbl_80654284:
 /* 80654340  7C 03 01 D6 */	mullw r0, r3, r0
 /* 80654344  7F 80 E0 50 */	subf r28, r0, r28
 /* 80654348  83 BE 5D 30 */	lwz r29, 0x5d30(r30)
-/* 8065434C  4B BC 9F 7C */	b dMeter2Info_getNumberTextureName__Fi
+/* 8065434C  4B BC 9F 7D */	bl dMeter2Info_getNumberTextureName__Fi
 /* 80654350  7C 65 1B 78 */	mr r5, r3
 /* 80654354  7F A3 EB 78 */	mr r3, r29
 /* 80654358  3C 80 54 49 */	lis r4, 0x5449 /* 0x54494D47@ha */
@@ -82,7 +82,7 @@ lbl_80654284:
 /* 80654394  7C 03 01 D6 */	mullw r0, r3, r0
 /* 80654398  7F 80 E0 50 */	subf r28, r0, r28
 /* 8065439C  83 BE 5D 30 */	lwz r29, 0x5d30(r30)
-/* 806543A0  4B BC 9F 28 */	b dMeter2Info_getNumberTextureName__Fi
+/* 806543A0  4B BC 9F 29 */	bl dMeter2Info_getNumberTextureName__Fi
 /* 806543A4  7C 65 1B 78 */	mr r5, r3
 /* 806543A8  7F A3 EB 78 */	mr r3, r29
 /* 806543AC  3C 80 54 49 */	lis r4, 0x5449 /* 0x54494D47@ha */
@@ -100,7 +100,7 @@ lbl_80654284:
 /* 806543DC  4E 80 04 21 */	bctrl 
 /* 806543E0  83 BE 5D 30 */	lwz r29, 0x5d30(r30)
 /* 806543E4  7F 83 E3 78 */	mr r3, r28
-/* 806543E8  4B BC 9E E0 */	b dMeter2Info_getNumberTextureName__Fi
+/* 806543E8  4B BC 9E E1 */	bl dMeter2Info_getNumberTextureName__Fi
 /* 806543EC  7C 65 1B 78 */	mr r5, r3
 /* 806543F0  7F A3 EB 78 */	mr r3, r29
 /* 806543F4  3C 80 54 49 */	lis r4, 0x5449 /* 0x54494D47@ha */
@@ -117,7 +117,7 @@ lbl_80654284:
 /* 80654420  7D 89 03 A6 */	mtctr r12
 /* 80654424  4E 80 04 21 */	bctrl 
 /* 80654428  39 61 00 20 */	addi r11, r1, 0x20
-/* 8065442C  4B D0 DD F8 */	b _restgpr_28
+/* 8065442C  4B D0 DD F9 */	bl _restgpr_28
 /* 80654430  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80654434  7C 08 03 A6 */	mtlr r0
 /* 80654438  38 21 00 20 */	addi r1, r1, 0x20

@@ -9,27 +9,27 @@ lbl_80469658:
 /* 80469674  A0 03 00 F8 */	lhz r0, 0xf8(r3)
 /* 80469678  28 00 00 02 */	cmplwi r0, 2
 /* 8046967C  41 82 00 24 */	beq lbl_804696A0
-/* 80469680  3C 80 80 47 */	lis r4, struct_8046B0D0+0x0@ha
-/* 80469684  38 84 B0 D0 */	addi r4, r4, struct_8046B0D0+0x0@l
+/* 80469680  3C 80 80 47 */	lis r4, d_a_ep__stringBase0@ha /* 0x8046B0D0@ha */
+/* 80469684  38 84 B0 D0 */	addi r4, r4, d_a_ep__stringBase0@l /* 0x8046B0D0@l */
 /* 80469688  3C A0 00 01 */	lis r5, 0x0001 /* 0x0000FFFF@ha */
 /* 8046968C  38 A5 FF FF */	addi r5, r5, 0xFFFF /* 0x0000FFFF@l */
 /* 80469690  38 C0 00 01 */	li r6, 1
 /* 80469694  38 E0 00 00 */	li r7, 0
-/* 80469698  4B BB 1D 34 */	b fopAcM_orderOtherEvent__FP10fopAc_ac_cPCcUsUsUs
+/* 80469698  4B BB 1D 35 */	bl fopAcM_orderOtherEvent__FP10fopAc_ac_cPCcUsUsUs
 /* 8046969C  48 00 00 48 */	b lbl_804696E4
 lbl_804696A0:
 /* 804696A0  A0 1E 00 FA */	lhz r0, 0xfa(r30)
 /* 804696A4  60 00 00 02 */	ori r0, r0, 2
 /* 804696A8  B0 1E 00 FA */	sth r0, 0xfa(r30)
-/* 804696AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 804696B0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 804696AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 804696B0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 804696B4  38 63 4F F8 */	addi r3, r3, 0x4ff8
-/* 804696B8  3C 80 80 47 */	lis r4, struct_8046B0D0+0x0@ha
-/* 804696BC  38 84 B0 D0 */	addi r4, r4, struct_8046B0D0+0x0@l
+/* 804696B8  3C 80 80 47 */	lis r4, d_a_ep__stringBase0@ha /* 0x8046B0D0@ha */
+/* 804696BC  38 84 B0 D0 */	addi r4, r4, d_a_ep__stringBase0@l /* 0x8046B0D0@l */
 /* 804696C0  38 84 00 10 */	addi r4, r4, 0x10
 /* 804696C4  38 A0 00 00 */	li r5, 0
 /* 804696C8  38 C0 00 00 */	li r6, 0
-/* 804696CC  4B BD E4 50 */	b getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci
+/* 804696CC  4B BD E4 51 */	bl getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci
 /* 804696D0  7C 7F 1B 78 */	mr r31, r3
 /* 804696D4  2C 03 FF FF */	cmpwi r3, -1
 /* 804696D8  40 82 00 0C */	bne lbl_804696E4

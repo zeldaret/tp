@@ -9,10 +9,10 @@ lbl_80D23034:
 /* 80D23050  DB A1 00 20 */	stfd f29, 0x20(r1)
 /* 80D23054  F3 A1 00 28 */	psq_st f29, 40(r1), 0, 0 /* qr0 */
 /* 80D23058  39 61 00 20 */	addi r11, r1, 0x20
-/* 80D2305C  4B 63 F1 80 */	b _savegpr_29
+/* 80D2305C  4B 63 F1 81 */	bl _savegpr_29
 /* 80D23060  7C 7D 1B 78 */	mr r29, r3
-/* 80D23064  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80D23068  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80D23064  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80D23068  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80D2306C  83 E4 5D AC */	lwz r31, 0x5dac(r4)
 /* 80D23070  3B C0 00 00 */	li r30, 0
 /* 80D23074  88 03 28 82 */	lbz r0, 0x2882(r3)
@@ -23,7 +23,7 @@ lbl_80D23034:
 /* 80D23088  7F A3 EB 78 */	mr r3, r29
 /* 80D2308C  4B FF EA 8D */	bl getData__15daObjVolcBall_cFv
 /* 80D23090  C0 23 00 44 */	lfs f1, 0x44(r3)
-/* 80D23094  4B 54 48 F8 */	b cM_rndFX__Ff
+/* 80D23094  4B 54 48 F9 */	bl cM_rndFX__Ff
 /* 80D23098  FF E0 08 90 */	fmr f31, f1
 /* 80D2309C  7F A3 EB 78 */	mr r3, r29
 /* 80D230A0  4B FF EA 79 */	bl getData__15daObjVolcBall_cFv
@@ -32,9 +32,9 @@ lbl_80D23034:
 /* 80D230AC  7F A3 EB 78 */	mr r3, r29
 /* 80D230B0  4B FF EA 69 */	bl getData__15daObjVolcBall_cFv
 /* 80D230B4  C3 A3 00 48 */	lfs f29, 0x48(r3)
-/* 80D230B8  3C 60 80 D2 */	lis r3, lit_4031@ha
-/* 80D230BC  C0 23 3E 24 */	lfs f1, lit_4031@l(r3)
-/* 80D230C0  4B 54 48 94 */	b cM_rndF__Ff
+/* 80D230B8  3C 60 80 D2 */	lis r3, lit_4031@ha /* 0x80D23E24@ha */
+/* 80D230BC  C0 23 3E 24 */	lfs f1, lit_4031@l(r3)  /* 0x80D23E24@l */
+/* 80D230C0  4B 54 48 95 */	bl cM_rndF__Ff
 /* 80D230C4  FC 01 F0 40 */	fcmpo cr0, f1, f30
 /* 80D230C8  40 80 00 78 */	bge lbl_80D23140
 /* 80D230CC  38 00 00 01 */	li r0, 1
@@ -50,8 +50,8 @@ lbl_80D23034:
 /* 80D230F4  D0 1D 25 14 */	stfs f0, 0x2514(r29)
 /* 80D230F8  C0 1D 25 14 */	lfs f0, 0x2514(r29)
 /* 80D230FC  D0 1D 25 58 */	stfs f0, 0x2558(r29)
-/* 80D23100  3C 60 80 D2 */	lis r3, lit_3717@ha
-/* 80D23104  C0 03 3E 14 */	lfs f0, lit_3717@l(r3)
+/* 80D23100  3C 60 80 D2 */	lis r3, lit_3717@ha /* 0x80D23E14@ha */
+/* 80D23104  C0 03 3E 14 */	lfs f0, lit_3717@l(r3)  /* 0x80D23E14@l */
 /* 80D23108  D0 1D 25 28 */	stfs f0, 0x2528(r29)
 /* 80D2310C  D0 1D 25 2C */	stfs f0, 0x252c(r29)
 /* 80D23110  D0 1D 25 30 */	stfs f0, 0x2530(r29)
@@ -81,7 +81,7 @@ lbl_80D23154:
 /* 80D23168  E3 A1 00 28 */	psq_l f29, 40(r1), 0, 0 /* qr0 */
 /* 80D2316C  CB A1 00 20 */	lfd f29, 0x20(r1)
 /* 80D23170  39 61 00 20 */	addi r11, r1, 0x20
-/* 80D23174  4B 63 F0 B4 */	b _restgpr_29
+/* 80D23174  4B 63 F0 B5 */	bl _restgpr_29
 /* 80D23178  80 01 00 54 */	lwz r0, 0x54(r1)
 /* 80D2317C  7C 08 03 A6 */	mtlr r0
 /* 80D23180  38 21 00 50 */	addi r1, r1, 0x50

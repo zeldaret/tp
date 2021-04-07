@@ -1,6 +1,6 @@
 lbl_80088434:
-/* 80088434  3C 80 80 3B */	lis r4, __vt__9dCstick_c@ha
-/* 80088438  38 04 C5 18 */	addi r0, r4, __vt__9dCstick_c@l
+/* 80088434  3C 80 80 3B */	lis r4, __vt__9dCstick_c@ha /* 0x803AC518@ha */
+/* 80088438  38 04 C5 18 */	addi r0, r4, __vt__9dCstick_c@l /* 0x803AC518@l */
 /* 8008843C  90 03 00 10 */	stw r0, 0x10(r3)
 /* 80088440  C0 02 8E 18 */	lfs f0, lit_3991(r2)
 /* 80088444  D0 03 00 00 */	stfs f0, 0(r3)

@@ -7,17 +7,17 @@ lbl_80590364:
 /* 80590378  7C 7E 1B 78 */	mr r30, r3
 /* 8059037C  80 03 0A 18 */	lwz r0, 0xa18(r3)
 /* 80590380  90 01 00 08 */	stw r0, 8(r1)
-/* 80590384  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 80590388  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 80590384  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 80590388  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 8059038C  38 81 00 08 */	addi r4, r1, 8
-/* 80590390  4B A8 94 68 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 80590390  4B A8 94 69 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 80590394  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80590398  41 82 00 AC */	beq lbl_80590444
 /* 8059039C  38 61 00 0C */	addi r3, r1, 0xc
 /* 805903A0  38 80 00 00 */	li r4, 0
 /* 805903A4  38 A0 00 00 */	li r5, 0
 /* 805903A8  38 C0 00 00 */	li r6, 0
-/* 805903AC  4B CD 70 48 */	b __ct__5csXyzFsss
+/* 805903AC  4B CD 70 49 */	bl __ct__5csXyzFsss
 /* 805903B0  A8 01 00 0C */	lha r0, 0xc(r1)
 /* 805903B4  B0 1F 04 B4 */	sth r0, 0x4b4(r31)
 /* 805903B8  A8 01 00 0E */	lha r0, 0xe(r1)
@@ -36,20 +36,20 @@ lbl_80590364:
 /* 805903EC  B0 1F 04 E6 */	sth r0, 0x4e6(r31)
 /* 805903F0  A8 01 00 10 */	lha r0, 0x10(r1)
 /* 805903F4  B0 1F 04 E8 */	sth r0, 0x4e8(r31)
-/* 805903F8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 805903FC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 805903F8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 805903FC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80590400  80 1E 00 B0 */	lwz r0, 0xb0(r30)
 /* 80590404  54 04 06 3E */	clrlwi r4, r0, 0x18
 /* 80590408  88 1E 04 BA */	lbz r0, 0x4ba(r30)
 /* 8059040C  7C 05 07 74 */	extsb r5, r0
-/* 80590410  4B AA 4F 50 */	b isSwitch__10dSv_info_cCFii
+/* 80590410  4B AA 4F 51 */	bl isSwitch__10dSv_info_cCFii
 /* 80590414  2C 03 00 00 */	cmpwi r3, 0
 /* 80590418  41 82 00 0C */	beq lbl_80590424
 /* 8059041C  38 00 00 01 */	li r0, 1
 /* 80590420  98 1F 07 00 */	stb r0, 0x700(r31)
 lbl_80590424:
-/* 80590424  3C 60 80 59 */	lis r3, lit_3876@ha
-/* 80590428  C0 03 29 08 */	lfs f0, lit_3876@l(r3)
+/* 80590424  3C 60 80 59 */	lis r3, lit_3876@ha /* 0x80592908@ha */
+/* 80590428  C0 03 29 08 */	lfs f0, lit_3876@l(r3)  /* 0x80592908@l */
 /* 8059042C  D0 1F 05 20 */	stfs f0, 0x520(r31)
 /* 80590430  88 7E 0A 1C */	lbz r3, 0xa1c(r30)
 /* 80590434  38 03 00 01 */	addi r0, r3, 1

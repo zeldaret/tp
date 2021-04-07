@@ -27,9 +27,9 @@ struct daObjKKanban_c {
     /* 80C46CC0 */ void Delete();
 };
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct cXyz {};
 
 struct J3DModelData {};
 
@@ -65,9 +65,9 @@ struct dCcD_GObjInf {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -115,12 +115,6 @@ struct J3DJoint {};
 // Forward References:
 //
 
-static void nodeCallBack(J3DJoint*, int);
-static void daObjKKanban_create1st(daObjKKanban_c*);
-static void daObjKKanban_MoveBGDelete(daObjKKanban_c*);
-static void daObjKKanban_MoveBGExecute(daObjKKanban_c*);
-static void daObjKKanban_MoveBGDraw(daObjKKanban_c*);
-
 extern "C" static void nodeCallBack__FP8J3DJointi();
 extern "C" void initBaseMtx__14daObjKKanban_cFv();
 extern "C" void setBaseMtx__14daObjKKanban_cFv();
@@ -138,24 +132,11 @@ extern "C" void __dt__8cM3dGAabFv();
 extern "C" static void daObjKKanban_MoveBGDelete__FP14daObjKKanban_c();
 extern "C" static void daObjKKanban_MoveBGExecute__FP14daObjKKanban_c();
 extern "C" static void daObjKKanban_MoveBGDraw__FP14daObjKKanban_c();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_KKanban[12];
+extern "C" extern char const* const d_a_obj_kkanban__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_XrotM(f32 (*)[4], s16);
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoMtx_ZrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void cLib_addCalc0(f32*, f32, f32);
-void cLib_addCalcAngleS2(s16*, s16, s16, s16);
-void operator delete(void*);
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
@@ -215,17 +196,17 @@ extern "C" extern u8 sincosTable___5JMath[65536];
 // Declarations:
 //
 
-/* 80C46698-80C46768 00D0+00 s=1 e=0 z=0  None .text      nodeCallBack__FP8J3DJointi */
+/* 80C46698-80C46768 000078 00D0+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void nodeCallBack(J3DJoint* param_0, int param_1) {
+static asm void nodeCallBack(J3DJoint* param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kkanban/d_a_obj_kkanban/nodeCallBack__FP8J3DJointi.s"
 }
 #pragma pop
 
-/* 80C46768-80C467A4 003C+00 s=1 e=0 z=0  None .text      initBaseMtx__14daObjKKanban_cFv */
+/* 80C46768-80C467A4 000148 003C+00 1/1 0/0 0/0 .text            initBaseMtx__14daObjKKanban_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -235,7 +216,7 @@ asm void daObjKKanban_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80C467A4-80C46808 0064+00 s=2 e=0 z=0  None .text      setBaseMtx__14daObjKKanban_cFv */
+/* 80C467A4-80C46808 000184 0064+00 2/2 0/0 0/0 .text            setBaseMtx__14daObjKKanban_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -246,62 +227,49 @@ asm void daObjKKanban_c::setBaseMtx() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C46F54-80C46F58 0004+00 s=3 e=0 z=0  None .rodata    @3715 */
-SECTION_RODATA static u32 const lit_3715 = 0xC46D8000;
+/* 80C46F54-80C46F58 000000 0004+00 3/3 0/0 0/0 .rodata          @3715 */
+SECTION_RODATA static f32 const lit_3715 = -950.0f;
+COMPILER_STRIP_GATE(80C46F54, &lit_3715);
 
-/* 80C46F58-80C46F5C 0004+00 s=1 e=0 z=0  None .rodata    @3716 */
-SECTION_RODATA static u32 const lit_3716 = 0xC5066000;
-
-/* 80C46F5C-80C46F60 0004+00 s=1 e=0 z=0  None .rodata    @3717 */
-SECTION_RODATA static u32 const lit_3717 = 0xC4FA0000;
-
-/* 80C46F60-80C46F64 0004+00 s=2 e=0 z=0  None .rodata    @3718 */
-SECTION_RODATA static u32 const lit_3718 = 0x42C80000;
-
-/* 80C46F64-80C46F68 0004+00 s=2 e=0 z=0  None .rodata    @3719 */
-SECTION_RODATA static u32 const lit_3719 = 0x42480000;
-
-/* 80C46F68-80C46F6C 0004+00 s=1 e=0 z=0  None .rodata    @3720 */
-SECTION_RODATA static u32 const lit_3720 = 0x44480000;
-
-/* 80C46F6C-80C46F70 0004+00 s=1 e=0 z=0  None .rodata    @3747 */
-SECTION_RODATA static u8 const lit_3747[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80C46F70-80C46F74 0004+00 s=1 e=0 z=0  None .rodata    @3748 */
-SECTION_RODATA static u32 const lit_3748 = 0xC3FA0000;
-
-/* 80C46F74-80C46F78 0004+00 s=1 e=0 z=0  None .rodata    @3749 */
-SECTION_RODATA static u32 const lit_3749 = 0xC4960000;
-
-/* 80C46F78-80C46F7C 0004+00 s=1 e=0 z=0  None .rodata    @3750 */
-SECTION_RODATA static u32 const lit_3750 = 0x443E0000;
-
-/* 80C46F7C-80C46F80 0004+00 s=1 e=0 z=0  None .rodata    @3784 */
-SECTION_RODATA static u32 const lit_3784 = 0x3D4CCCCD;
-
-/* 80C46F80-80C46F84 0004+00 s=1 e=0 z=0  None .rodata    @3785 */
-SECTION_RODATA static u32 const lit_3785 = 0x41200000;
-
-/* 80C46F84-80C46F88 0004+00 s=1 e=0 z=0  None .rodata    @3786 */
-SECTION_RODATA static u32 const lit_3786 = 0x44FA0000;
-
-/* 80C46F88-80C46F97 000F+00 s=2 e=0 z=0  None .rodata    @stringBase0 */
+/* 80C46F58-80C46F5C 000004 0004+00 0/1 0/0 0/0 .rodata          @3716 */
 #pragma push
 #pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80C46F88 = "H_KKanban";
-SECTION_DEAD char const* const stringBase_80C46F92 = "move";
+SECTION_RODATA static f32 const lit_3716 = -2150.0f;
+COMPILER_STRIP_GATE(80C46F58, &lit_3716);
 #pragma pop
 
-/* 80C46F98-80C46F9C 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
+/* 80C46F5C-80C46F60 000008 0004+00 0/1 0/0 0/0 .rodata          @3717 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3717 = -2000.0f;
+COMPILER_STRIP_GATE(80C46F5C, &lit_3717);
+#pragma pop
 
-/* 80C46F9C-80C46FF0 0054+00 s=1 e=0 z=0  None .data      l_tri_src */
+/* 80C46F60-80C46F64 00000C 0004+00 0/2 0/0 0/0 .rodata          @3718 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3718 = 100.0f;
+COMPILER_STRIP_GATE(80C46F60, &lit_3718);
+#pragma pop
+
+/* 80C46F64-80C46F68 000010 0004+00 0/2 0/0 0/0 .rodata          @3719 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3719 = 50.0f;
+COMPILER_STRIP_GATE(80C46F64, &lit_3719);
+#pragma pop
+
+/* 80C46F68-80C46F6C 000014 0004+00 0/1 0/0 0/0 .rodata          @3720 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3720 = 800.0f;
+COMPILER_STRIP_GATE(80C46F68, &lit_3720);
+#pragma pop
+
+/* 80C46F98-80C46F9C -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_kkanban__stringBase0;
+
+/* 80C46F9C-80C46FF0 000004 0054+00 1/1 0/0 0/0 .data            l_tri_src */
 SECTION_DATA static u8 l_tri_src[84] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00,
@@ -311,7 +279,7 @@ SECTION_DATA static u8 l_tri_src[84] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80C46808-80C46928 0120+00 s=1 e=0 z=0  None .text      Create__14daObjKKanban_cFv */
+/* 80C46808-80C46928 0001E8 0120+00 1/0 0/0 0/0 .text            Create__14daObjKKanban_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -321,7 +289,41 @@ asm void daObjKKanban_c::Create() {
 }
 #pragma pop
 
-/* 80C46928-80C469F4 00CC+00 s=1 e=0 z=0  None .text      setTG__14daObjKKanban_cFv */
+/* ############################################################################################## */
+/* 80C46F6C-80C46F70 000018 0004+00 0/1 0/0 0/0 .rodata          @3747 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3747[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+COMPILER_STRIP_GATE(80C46F6C, &lit_3747);
+#pragma pop
+
+/* 80C46F70-80C46F74 00001C 0004+00 0/1 0/0 0/0 .rodata          @3748 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3748 = -500.0f;
+COMPILER_STRIP_GATE(80C46F70, &lit_3748);
+#pragma pop
+
+/* 80C46F74-80C46F78 000020 0004+00 0/1 0/0 0/0 .rodata          @3749 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3749 = -1200.0f;
+COMPILER_STRIP_GATE(80C46F74, &lit_3749);
+#pragma pop
+
+/* 80C46F78-80C46F7C 000024 0004+00 0/1 0/0 0/0 .rodata          @3750 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3750 = 760.0f;
+COMPILER_STRIP_GATE(80C46F78, &lit_3750);
+#pragma pop
+
+/* 80C46928-80C469F4 000308 00CC+00 1/1 0/0 0/0 .text            setTG__14daObjKKanban_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -331,7 +333,7 @@ asm void daObjKKanban_c::setTG() {
 }
 #pragma pop
 
-/* 80C469F4-80C46A64 0070+00 s=1 e=0 z=0  None .text      CreateHeap__14daObjKKanban_cFv */
+/* 80C469F4-80C46A64 0003D4 0070+00 1/0 0/0 0/0 .text            CreateHeap__14daObjKKanban_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -341,7 +343,7 @@ asm void daObjKKanban_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80C46A64-80C46AE4 0080+00 s=1 e=0 z=0  None .text      create1st__14daObjKKanban_cFv */
+/* 80C46A64-80C46AE4 000444 0080+00 1/1 0/0 0/0 .text            create1st__14daObjKKanban_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -351,7 +353,30 @@ asm void daObjKKanban_c::create1st() {
 }
 #pragma pop
 
-/* 80C46AE4-80C46C1C 0138+00 s=1 e=0 z=0  None .text      Execute__14daObjKKanban_cFPPA3_A4_f */
+/* ############################################################################################## */
+/* 80C46F7C-80C46F80 000028 0004+00 0/1 0/0 0/0 .rodata          @3784 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3784 = 1.0f / 20.0f;
+COMPILER_STRIP_GATE(80C46F7C, &lit_3784);
+#pragma pop
+
+/* 80C46F80-80C46F84 00002C 0004+00 0/1 0/0 0/0 .rodata          @3785 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3785 = 10.0f;
+COMPILER_STRIP_GATE(80C46F80, &lit_3785);
+#pragma pop
+
+/* 80C46F84-80C46F88 000030 0004+00 0/1 0/0 0/0 .rodata          @3786 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3786 = 2000.0f;
+COMPILER_STRIP_GATE(80C46F84, &lit_3786);
+#pragma pop
+
+/* 80C46AE4-80C46C1C 0004C4 0138+00 1/0 0/0 0/0 .text            Execute__14daObjKKanban_cFPPA3_A4_f
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -361,7 +386,7 @@ asm void daObjKKanban_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 80C46C1C-80C46CC0 00A4+00 s=1 e=0 z=0  None .text      Draw__14daObjKKanban_cFv */
+/* 80C46C1C-80C46CC0 0005FC 00A4+00 1/0 0/0 0/0 .text            Draw__14daObjKKanban_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -371,7 +396,7 @@ asm void daObjKKanban_c::Draw() {
 }
 #pragma pop
 
-/* 80C46CC0-80C46CF4 0034+00 s=1 e=0 z=0  None .text      Delete__14daObjKKanban_cFv */
+/* 80C46CC0-80C46CF4 0006A0 0034+00 1/0 0/0 0/0 .text            Delete__14daObjKKanban_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -382,7 +407,7 @@ asm void daObjKKanban_c::Delete() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C46FF0-80C47010 0020+00 s=1 e=0 z=0  None .data      daObjKKanban_METHODS */
+/* 80C46FF0-80C47010 -00001 0020+00 1/0 0/0 0/0 .data            daObjKKanban_METHODS */
 SECTION_DATA static void* daObjKKanban_METHODS[8] = {
     (void*)daObjKKanban_create1st__FP14daObjKKanban_c,
     (void*)daObjKKanban_MoveBGDelete__FP14daObjKKanban_c,
@@ -394,8 +419,8 @@ SECTION_DATA static void* daObjKKanban_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 80C47010-80C47040 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_KKanban */
-SECTION_DATA void* g_profile_Obj_KKanban[12] = {
+/* 80C47010-80C47040 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_KKanban */
+SECTION_DATA extern void* g_profile_Obj_KKanban[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00E30000, (void*)&g_fpcLf_Method,
     (void*)0x00000754, (void*)NULL,
@@ -404,30 +429,30 @@ SECTION_DATA void* g_profile_Obj_KKanban[12] = {
     (void*)0x00040100, (void*)0x000E0000,
 };
 
-/* 80C47040-80C4704C 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGTri */
-SECTION_DATA static void* __vt__8cM3dGTri[3] = {
-    (void*)NULL,
+/* 80C47040-80C4704C 0000A8 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGTri */
+SECTION_DATA extern void* __vt__8cM3dGTri[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGTriFv,
 };
 
-/* 80C4704C-80C47058 000C+00 s=3 e=0 z=0  None .data      __vt__8cM3dGPla */
-SECTION_DATA static void* __vt__8cM3dGPla[3] = {
-    (void*)NULL,
+/* 80C4704C-80C47058 0000B4 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGPla */
+SECTION_DATA extern void* __vt__8cM3dGPla[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGPlaFv,
 };
 
-/* 80C47058-80C47064 000C+00 s=2 e=0 z=0  None .data      __vt__8cM3dGAab */
-SECTION_DATA static void* __vt__8cM3dGAab[3] = {
-    (void*)NULL,
+/* 80C47058-80C47064 0000C0 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGAab */
+SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGAabFv,
 };
 
-/* 80C47064-80C4708C 0028+00 s=1 e=0 z=0  None .data      __vt__14daObjKKanban_c */
-SECTION_DATA static void* __vt__14daObjKKanban_c[10] = {
-    (void*)NULL,
+/* 80C47064-80C4708C 0000CC 0028+00 1/1 0/0 0/0 .data            __vt__14daObjKKanban_c */
+SECTION_DATA extern void* __vt__14daObjKKanban_c[10] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__14daObjKKanban_cFv,
     (void*)Create__14daObjKKanban_cFv,
@@ -439,18 +464,18 @@ SECTION_DATA static void* __vt__14daObjKKanban_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80C46CF4-80C46DF4 0100+00 s=1 e=0 z=0  None .text      daObjKKanban_create1st__FP14daObjKKanban_c
+/* 80C46CF4-80C46DF4 0006D4 0100+00 1/0 0/0 0/0 .text daObjKKanban_create1st__FP14daObjKKanban_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjKKanban_create1st(daObjKKanban_c* param_0) {
+static asm void daObjKKanban_create1st(daObjKKanban_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kkanban/d_a_obj_kkanban/daObjKKanban_create1st__FP14daObjKKanban_c.s"
 }
 #pragma pop
 
-/* 80C46DF4-80C46E50 005C+00 s=1 e=0 z=0  None .text      __dt__8cM3dGTriFv */
+/* 80C46DF4-80C46E50 0007D4 005C+00 1/0 0/0 0/0 .text            __dt__8cM3dGTriFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -460,7 +485,7 @@ asm cM3dGTri::~cM3dGTri() {
 }
 #pragma pop
 
-/* 80C46E50-80C46E98 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGPlaFv */
+/* 80C46E50-80C46E98 000830 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGPlaFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -470,7 +495,7 @@ asm cM3dGPla::~cM3dGPla() {
 }
 #pragma pop
 
-/* 80C46E98-80C46EE0 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGAabFv */
+/* 80C46E98-80C46EE0 000878 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -480,35 +505,43 @@ asm cM3dGAab::~cM3dGAab() {
 }
 #pragma pop
 
-/* 80C46EE0-80C46F00 0020+00 s=1 e=0 z=0  None .text daObjKKanban_MoveBGDelete__FP14daObjKKanban_c
- */
+/* 80C46EE0-80C46F00 0008C0 0020+00 1/0 0/0 0/0 .text
+ * daObjKKanban_MoveBGDelete__FP14daObjKKanban_c                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjKKanban_MoveBGDelete(daObjKKanban_c* param_0) {
+static asm void daObjKKanban_MoveBGDelete(daObjKKanban_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kkanban/d_a_obj_kkanban/daObjKKanban_MoveBGDelete__FP14daObjKKanban_c.s"
 }
 #pragma pop
 
-/* 80C46F00-80C46F20 0020+00 s=1 e=0 z=0  None .text
+/* 80C46F00-80C46F20 0008E0 0020+00 1/0 0/0 0/0 .text
  * daObjKKanban_MoveBGExecute__FP14daObjKKanban_c               */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjKKanban_MoveBGExecute(daObjKKanban_c* param_0) {
+static asm void daObjKKanban_MoveBGExecute(daObjKKanban_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kkanban/d_a_obj_kkanban/daObjKKanban_MoveBGExecute__FP14daObjKKanban_c.s"
 }
 #pragma pop
 
-/* 80C46F20-80C46F4C 002C+00 s=1 e=0 z=0  None .text daObjKKanban_MoveBGDraw__FP14daObjKKanban_c
+/* 80C46F20-80C46F4C 000900 002C+00 1/0 0/0 0/0 .text daObjKKanban_MoveBGDraw__FP14daObjKKanban_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjKKanban_MoveBGDraw(daObjKKanban_c* param_0) {
+static asm void daObjKKanban_MoveBGDraw(daObjKKanban_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_kkanban/d_a_obj_kkanban/daObjKKanban_MoveBGDraw__FP14daObjKKanban_c.s"
 }
+#pragma pop
+
+/* 80C46F88-80C46F97 000034 000F+00 2/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80C46F88 = "H_KKanban";
+SECTION_DEAD static char const* const stringBase_80C46F92 = "move";
 #pragma pop

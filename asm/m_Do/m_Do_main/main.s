@@ -6,8 +6,8 @@ lbl_80006454:
 /* 80006464  93 C1 00 08 */	stw r30, 8(r1)
 /* 80006468  48 33 A8 1D */	bl OSGetCurrentThread
 /* 8000646C  7C 7E 1B 78 */	mr r30, r3
-/* 80006470  3C 60 80 3D */	lis r3, mainThreadStack@ha
-/* 80006474  3B E3 34 20 */	addi r31, r3, mainThreadStack@l
+/* 80006470  3C 60 80 3D */	lis r3, mainThreadStack@ha /* 0x803D3420@ha */
+/* 80006474  3B E3 34 20 */	addi r31, r3, mainThreadStack@l /* 0x803D3420@l */
 /* 80006478  48 33 C2 85 */	bl OSGetTime
 /* 8000647C  90 8D 85 8C */	stw r4, data_80450B0C(r13)
 /* 80006480  90 6D 85 88 */	stw r3, sPowerOnTime__7mDoMain(r13)
@@ -50,8 +50,8 @@ lbl_800064A8:
 /* 8000650C  80 6D 86 F8 */	lwz r3, mResetData__6mDoRst(r13)
 /* 80006510  98 83 00 11 */	stb r4, 0x11(r3)
 lbl_80006514:
-/* 80006514  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80006518  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80006514  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80006518  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8000651C  48 02 66 C9 */	bl ct__13dComIfG_inf_cFv
 /* 80006520  88 0D 80 00 */	lbz r0, data_80450580(r13)
 /* 80006524  7C 00 07 75 */	extsb. r0, r0
@@ -77,10 +77,10 @@ lbl_80006568:
 /* 80006568  7F C3 F3 78 */	mr r3, r30
 /* 8000656C  48 33 B8 F1 */	bl OSGetThreadPriority
 /* 80006570  7C 68 1B 78 */	mr r8, r3
-/* 80006574  3C 60 80 3E */	lis r3, mainThread@ha
-/* 80006578  38 63 B4 20 */	addi r3, r3, mainThread@l
-/* 8000657C  3C 80 80 00 */	lis r4, main01__Fv@ha
-/* 80006580  38 84 62 8C */	addi r4, r4, main01__Fv@l
+/* 80006574  3C 60 80 3E */	lis r3, mainThread@ha /* 0x803DB420@ha */
+/* 80006578  38 63 B4 20 */	addi r3, r3, mainThread@l /* 0x803DB420@l */
+/* 8000657C  3C 80 80 00 */	lis r4, main01__Fv@ha /* 0x8000628C@ha */
+/* 80006580  38 84 62 8C */	addi r4, r4, main01__Fv@l /* 0x8000628C@l */
 /* 80006584  38 A0 00 00 */	li r5, 0
 /* 80006588  3C DF 00 01 */	addis r6, r31, 1
 /* 8000658C  3C E0 00 01 */	lis r7, 0x0001 /* 0x00008000@ha */
@@ -88,8 +88,8 @@ lbl_80006568:
 /* 80006594  39 20 00 00 */	li r9, 0
 /* 80006598  38 C6 80 00 */	addi r6, r6, -32768
 /* 8000659C  48 33 AC F1 */	bl OSCreateThread
-/* 800065A0  3C 60 80 3E */	lis r3, mainThread@ha
-/* 800065A4  38 63 B4 20 */	addi r3, r3, mainThread@l
+/* 800065A0  3C 60 80 3E */	lis r3, mainThread@ha /* 0x803DB420@ha */
+/* 800065A4  38 63 B4 20 */	addi r3, r3, mainThread@l /* 0x803DB420@l */
 /* 800065A8  48 33 B2 0D */	bl OSResumeThread
 /* 800065AC  7F C3 F3 78 */	mr r3, r30
 /* 800065B0  38 80 00 1F */	li r4, 0x1f

@@ -27,20 +27,20 @@ extern "C" void __TRK_write_console();
 // Declarations:
 //
 
-/* 8036919C-803691A4 0008+00 s=0 e=1 z=0  None .text      __close_console */
-extern "C" bool __close_console() {
+/* 8036919C-803691A4 363ADC 0008+00 0/0 1/0 0/0 .text            __close_console */
+bool __close_console() {
     return false;
 }
 
 /* ############################################################################################## */
-/* 804519B0-804519B8 0004+04 s=1 e=0 z=0  None .sbss      initialized$60 */
+/* 804519B0-804519B8 000EB0 0004+04 1/1 0/0 0/0 .sbss            initialized$60 */
 static u8 initialized[4 + 4 /* padding */];
 
-/* 803691A4-80369274 00D0+00 s=0 e=1 z=0  None .text      __write_console */
+/* 803691A4-80369274 363AE4 00D0+00 0/0 1/0 0/0 .text            __write_console */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __write_console() {
+asm void __write_console() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/PPC_EABI/SRC/uart_console_io_gcn/__write_console.s"
 }

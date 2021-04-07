@@ -2,10 +2,10 @@ lbl_8045E1EC:
 /* 8045E1EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045E1F0  7C 08 02 A6 */	mflr r0
 /* 8045E1F4  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8045E1F8  3C 80 80 46 */	lis r4, cNullVec__6Z2Calc@ha
-/* 8045E1FC  38 84 E6 64 */	addi r4, r4, cNullVec__6Z2Calc@l
-/* 8045E200  3C A0 80 46 */	lis r5, data_8045E7D0@ha
-/* 8045E204  38 E5 E7 D0 */	addi r7, r5, data_8045E7D0@l
+/* 8045E1F8  3C 80 80 46 */	lis r4, cNullVec__6Z2Calc@ha /* 0x8045E664@ha */
+/* 8045E1FC  38 84 E6 64 */	addi r4, r4, cNullVec__6Z2Calc@l /* 0x8045E664@l */
+/* 8045E200  3C A0 80 46 */	lis r5, data_8045E7D0@ha /* 0x8045E7D0@ha */
+/* 8045E204  38 E5 E7 D0 */	addi r7, r5, data_8045E7D0@l /* 0x8045E7D0@l */
 /* 8045E208  88 07 00 00 */	lbz r0, 0(r7)
 /* 8045E20C  7C 00 07 75 */	extsb. r0, r0
 /* 8045E210  40 82 00 A0 */	bne lbl_8045E2B0
@@ -53,7 +53,7 @@ lbl_8045E2B0:
 /* 8045E2B4  1C 00 00 0C */	mulli r0, r0, 0xc
 /* 8045E2B8  39 84 00 B4 */	addi r12, r4, 0xb4
 /* 8045E2BC  7D 8C 02 14 */	add r12, r12, r0
-/* 8045E2C0  4B F0 3D C4 */	b __ptmf_scall
+/* 8045E2C0  4B F0 3D C5 */	bl __ptmf_scall
 /* 8045E2C4  60 00 00 00 */	nop 
 /* 8045E2C8  38 60 00 01 */	li r3, 1
 /* 8045E2CC  80 01 00 14 */	lwz r0, 0x14(r1)

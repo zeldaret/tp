@@ -5,8 +5,8 @@ lbl_8048B378:
 /* 8048B384  93 E1 00 4C */	stw r31, 0x4c(r1)
 /* 8048B388  93 C1 00 48 */	stw r30, 0x48(r1)
 /* 8048B38C  7C 7E 1B 78 */	mr r30, r3
-/* 8048B390  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8048B394  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8048B390  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8048B394  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8048B398  83 E4 5D B4 */	lwz r31, 0x5db4(r4)
 /* 8048B39C  4B FF FA 09 */	bl getAreaType__13daTag_Event_cFv
 /* 8048B3A0  54 60 04 3E */	clrlwi r0, r3, 0x10
@@ -19,8 +19,8 @@ lbl_8048B378:
 /* 8048B3BC  C0 5F 04 D8 */	lfs f2, 0x4d8(r31)
 /* 8048B3C0  D0 41 00 40 */	stfs f2, 0x40(r1)
 /* 8048B3C4  C0 FE 04 D8 */	lfs f7, 0x4d8(r30)
-/* 8048B3C8  3C 60 80 49 */	lis r3, lit_3954@ha
-/* 8048B3CC  C0 23 B8 38 */	lfs f1, lit_3954@l(r3)
+/* 8048B3C8  3C 60 80 49 */	lis r3, lit_3954@ha /* 0x8048B838@ha */
+/* 8048B3CC  C0 23 B8 38 */	lfs f1, lit_3954@l(r3)  /* 0x8048B838@l */
 /* 8048B3D0  C0 1E 04 F4 */	lfs f0, 0x4f4(r30)
 /* 8048B3D4  EC C1 00 32 */	fmuls f6, f1, f0
 /* 8048B3D8  EC A7 30 28 */	fsubs f5, f7, f6
@@ -63,15 +63,15 @@ lbl_8048B468:
 /* 8048B468  38 61 00 14 */	addi r3, r1, 0x14
 /* 8048B46C  38 9F 04 D0 */	addi r4, r31, 0x4d0
 /* 8048B470  38 BE 04 D0 */	addi r5, r30, 0x4d0
-/* 8048B474  4B DD B6 C0 */	b __mi__4cXyzCFRC3Vec
+/* 8048B474  4B DD B6 C1 */	bl __mi__4cXyzCFRC3Vec
 /* 8048B478  C0 01 00 14 */	lfs f0, 0x14(r1)
 /* 8048B47C  D0 01 00 38 */	stfs f0, 0x38(r1)
 /* 8048B480  C0 21 00 18 */	lfs f1, 0x18(r1)
 /* 8048B484  D0 21 00 3C */	stfs f1, 0x3c(r1)
 /* 8048B488  C0 01 00 1C */	lfs f0, 0x1c(r1)
 /* 8048B48C  D0 01 00 40 */	stfs f0, 0x40(r1)
-/* 8048B490  3C 60 80 49 */	lis r3, lit_3955@ha
-/* 8048B494  C0 03 B8 3C */	lfs f0, lit_3955@l(r3)
+/* 8048B490  3C 60 80 49 */	lis r3, lit_3955@ha /* 0x8048B83C@ha */
+/* 8048B494  C0 03 B8 3C */	lfs f0, lit_3955@l(r3)  /* 0x8048B83C@l */
 /* 8048B498  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8048B49C  40 80 00 0C */	bge lbl_8048B4A8
 /* 8048B4A0  FC 00 08 50 */	fneg f0, f1
@@ -79,13 +79,13 @@ lbl_8048B468:
 lbl_8048B4A8:
 /* 8048B4A8  C0 01 00 38 */	lfs f0, 0x38(r1)
 /* 8048B4AC  D0 01 00 08 */	stfs f0, 8(r1)
-/* 8048B4B0  3C 60 80 49 */	lis r3, lit_3955@ha
-/* 8048B4B4  C0 03 B8 3C */	lfs f0, lit_3955@l(r3)
+/* 8048B4B0  3C 60 80 49 */	lis r3, lit_3955@ha /* 0x8048B83C@ha */
+/* 8048B4B4  C0 03 B8 3C */	lfs f0, lit_3955@l(r3)  /* 0x8048B83C@l */
 /* 8048B4B8  D0 01 00 0C */	stfs f0, 0xc(r1)
 /* 8048B4BC  C0 01 00 40 */	lfs f0, 0x40(r1)
 /* 8048B4C0  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 8048B4C4  38 61 00 08 */	addi r3, r1, 8
-/* 8048B4C8  4B EB BC 70 */	b PSVECSquareMag
+/* 8048B4C8  4B EB BC 71 */	bl PSVECSquareMag
 /* 8048B4CC  C0 1E 04 EC */	lfs f0, 0x4ec(r30)
 /* 8048B4D0  EC 00 00 32 */	fmuls f0, f0, f0
 /* 8048B4D4  FC 01 00 40 */	fcmpo cr0, f1, f0

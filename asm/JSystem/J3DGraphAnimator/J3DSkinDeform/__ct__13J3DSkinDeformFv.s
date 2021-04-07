@@ -1,6 +1,6 @@
 lbl_8032C96C:
-/* 8032C96C  3C 80 80 3D */	lis r4, __vt__13J3DSkinDeform@ha
-/* 8032C970  38 04 EE 70 */	addi r0, r4, __vt__13J3DSkinDeform@l
+/* 8032C96C  3C 80 80 3D */	lis r4, __vt__13J3DSkinDeform@ha /* 0x803CEE70@ha */
+/* 8032C970  38 04 EE 70 */	addi r0, r4, __vt__13J3DSkinDeform@l /* 0x803CEE70@l */
 /* 8032C974  90 03 00 00 */	stw r0, 0(r3)
 /* 8032C978  38 80 00 00 */	li r4, 0
 /* 8032C97C  90 83 00 04 */	stw r4, 4(r3)

@@ -11,8 +11,8 @@ lbl_80032FB8:
 /* 80032FDC  48 00 03 1D */	bl setLineUpItem__17dSv_player_item_cFv
 lbl_80032FE0:
 /* 80032FE0  3B C0 00 00 */	li r30, 0
-/* 80032FE4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80032FE8  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 80032FE4  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80032FE8  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 lbl_80032FEC:
 /* 80032FEC  7F E3 FB 78 */	mr r3, r31
 /* 80032FF0  7F C4 F3 78 */	mr r4, r30

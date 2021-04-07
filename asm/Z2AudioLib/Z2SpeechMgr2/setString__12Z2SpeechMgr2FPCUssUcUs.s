@@ -5,8 +5,8 @@ lbl_802CBD88:
 /* 802CBD94  54 C0 06 3E */	clrlwi r0, r6, 0x18
 /* 802CBD98  28 00 00 71 */	cmplwi r0, 0x71
 /* 802CBD9C  41 81 00 AC */	bgt lbl_802CBE48
-/* 802CBDA0  3C C0 80 3D */	lis r6, lit_3729@ha
-/* 802CBDA4  38 C6 BD 08 */	addi r6, r6, lit_3729@l
+/* 802CBDA0  3C C0 80 3D */	lis r6, lit_3729@ha /* 0x803CBD08@ha */
+/* 802CBDA4  38 C6 BD 08 */	addi r6, r6, lit_3729@l /* 0x803CBD08@l */
 /* 802CBDA8  54 00 10 3A */	slwi r0, r0, 2
 /* 802CBDAC  7C 06 00 2E */	lwzx r0, r6, r0
 /* 802CBDB0  7C 09 03 A6 */	mtctr r0

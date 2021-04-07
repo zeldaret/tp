@@ -11,14 +11,14 @@
 // Types:
 //
 
-struct JAISoundID {};
-
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
 };
+
+struct JAISoundID {};
 
 struct Z2SoundHandles {
     /* 802AB07C */ Z2SoundHandles();
@@ -50,7 +50,7 @@ template <typename A0>
 struct JASMemPool {};
 /* JASMemPool<Z2SoundHandlePool> */
 struct JASMemPool__template4 {
-    /* 802AB200 */ ~JASMemPool__template4();
+    /* 802AB200 */ void func_802AB200();
 };
 
 struct JASGenericMemPool {
@@ -84,13 +84,10 @@ extern "C" void getLowPrioSound__14Z2SoundHandlesF10JAISoundID();
 extern "C" void stopAllSounds__14Z2SoundHandlesFUl();
 extern "C" void isActive__14Z2SoundHandlesCFv();
 extern "C" void func_802AB538();
-extern "C" extern u8 data_804341C4[16 + 4 /* padding */];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void __ct__17JASGenericMemPoolFv();
 extern "C" void __dt__17JASGenericMemPoolFv();
@@ -117,7 +114,7 @@ extern "C" extern u8 data_80451348[8];
 // Declarations:
 //
 
-/* 802AB07C-802AB0B4 0038+00 s=0 e=1 z=0  None .text      __ct__14Z2SoundHandlesFv */
+/* 802AB07C-802AB0B4 2A59BC 0038+00 0/0 1/1 0/0 .text            __ct__14Z2SoundHandlesFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -127,7 +124,7 @@ asm Z2SoundHandles::Z2SoundHandles() {
 }
 #pragma pop
 
-/* 802AB0B4-802AB118 0064+00 s=0 e=1 z=0  None .text      __dt__14Z2SoundHandlesFv */
+/* 802AB0B4-802AB118 2A59F4 0064+00 0/0 1/1 0/0 .text            __dt__14Z2SoundHandlesFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -137,7 +134,7 @@ asm Z2SoundHandles::~Z2SoundHandles() {
 }
 #pragma pop
 
-/* 802AB118-802AB120 0008+00 s=0 e=1 z=0  None .text      initHandlesPool__14Z2SoundHandlesFUc */
+/* 802AB118-802AB120 2A5A58 0008+00 0/0 1/1 0/0 .text initHandlesPool__14Z2SoundHandlesFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -148,14 +145,15 @@ asm void Z2SoundHandles::initHandlesPool(u8 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804341B8-804341C4 000C+00 s=3 e=0 z=0  None .bss       @632 */
+/* 804341B8-804341C4 060ED8 000C+00 3/3 0/0 0/0 .bss             @632 */
 static u8 lit_632[12];
 
-/* 804341C4-804341D8 0010+04 s=3 e=1 z=0  None .bss
+/* 804341C4-804341D8 060EE4 0010+04 3/3 1/1 0/0 .bss
  * memPool_$localstatic3$getMemPool___39JASPoolAllocObject<17Z2SoundHandlePool>Fv */
+extern u8 data_804341C4[16 + 4 /* padding */];
 u8 data_804341C4[16 + 4 /* padding */];
 
-/* 802AB120-802AB200 00E0+00 s=1 e=1 z=0  None .text      deleteHandlesPool__14Z2SoundHandlesFv */
+/* 802AB120-802AB200 2A5A60 00E0+00 1/1 1/1 0/0 .text deleteHandlesPool__14Z2SoundHandlesFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -165,18 +163,17 @@ asm void Z2SoundHandles::deleteHandlesPool() {
 }
 #pragma pop
 
-/* 802AB200-802AB254 0054+00 s=3 e=1 z=0  None .text      __dt__31JASMemPool<17Z2SoundHandlePool>Fv
- */
+/* 802AB200-802AB254 2A5B40 0054+00 3/3 1/1 0/0 .text __dt__31JASMemPool<17Z2SoundHandlePool>Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JASMemPool__template4::~JASMemPool__template4() {
+extern "C" asm void func_802AB200() {
     nofralloc
 #include "asm/Z2AudioLib/Z2SoundHandles/func_802AB200.s"
 }
 #pragma pop
 
-/* 802AB254-802AB2A0 004C+00 s=0 e=6 z=0  None .text
+/* 802AB254-802AB2A0 2A5B94 004C+00 0/0 6/6 0/0 .text
  * getHandleSoundID__14Z2SoundHandlesF10JAISoundID              */
 #pragma push
 #pragma optimization_level 0
@@ -187,7 +184,7 @@ asm void Z2SoundHandles::getHandleSoundID(JAISoundID param_0) {
 }
 #pragma pop
 
-/* 802AB2A0-802AB2D8 0038+00 s=0 e=1 z=0  None .text      getHandleUserData__14Z2SoundHandlesFUl */
+/* 802AB2A0-802AB2D8 2A5BE0 0038+00 0/0 1/1 0/0 .text getHandleUserData__14Z2SoundHandlesFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -197,7 +194,8 @@ asm void Z2SoundHandles::getHandleUserData(u32 param_0) {
 }
 #pragma pop
 
-/* 802AB2D8-802AB3D0 00F8+00 s=0 e=3 z=0  None .text      getFreeHandle__14Z2SoundHandlesFv */
+/* 802AB2D8-802AB3D0 2A5C18 00F8+00 0/0 3/3 0/0 .text            getFreeHandle__14Z2SoundHandlesFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -207,7 +205,7 @@ asm void Z2SoundHandles::getFreeHandle() {
 }
 #pragma pop
 
-/* 802AB3D0-802AB4A0 00D0+00 s=0 e=2 z=0  None .text
+/* 802AB3D0-802AB4A0 2A5D10 00D0+00 0/0 2/2 0/0 .text
  * getLowPrioSound__14Z2SoundHandlesF10JAISoundID               */
 #pragma push
 #pragma optimization_level 0
@@ -218,7 +216,8 @@ asm void Z2SoundHandles::getLowPrioSound(JAISoundID param_0) {
 }
 #pragma pop
 
-/* 802AB4A0-802AB504 0064+00 s=0 e=1 z=0  None .text      stopAllSounds__14Z2SoundHandlesFUl */
+/* 802AB4A0-802AB504 2A5DE0 0064+00 0/0 1/1 0/0 .text            stopAllSounds__14Z2SoundHandlesFUl
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -228,7 +227,7 @@ asm void Z2SoundHandles::stopAllSounds(u32 param_0) {
 }
 #pragma pop
 
-/* 802AB504-802AB538 0034+00 s=0 e=1 z=0  None .text      isActive__14Z2SoundHandlesCFv */
+/* 802AB504-802AB538 2A5E44 0034+00 0/0 1/1 0/0 .text            isActive__14Z2SoundHandlesCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -238,7 +237,7 @@ asm void Z2SoundHandles::isActive() const {
 }
 #pragma pop
 
-/* 802AB538-802AB64C 0114+00 s=0 e=1 z=0  None .text
+/* 802AB538-802AB64C 2A5E78 0114+00 0/0 1/1 0/0 .text
  * setPos__14Z2SoundHandlesFRCQ29JGeometry8TVec3<f>             */
 #pragma push
 #pragma optimization_level 0

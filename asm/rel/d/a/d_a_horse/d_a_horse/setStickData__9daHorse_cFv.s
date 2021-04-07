@@ -5,8 +5,8 @@ lbl_8083B600:
 /* 8083B60C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8083B610  93 C1 00 08 */	stw r30, 8(r1)
 /* 8083B614  7C 7F 1B 78 */	mr r31, r3
-/* 8083B618  3C 60 80 84 */	lis r3, lit_3894@ha
-/* 8083B61C  38 A3 54 AC */	addi r5, r3, lit_3894@l
+/* 8083B618  3C 60 80 84 */	lis r3, lit_3894@ha /* 0x808454AC@ha */
+/* 8083B61C  38 A3 54 AC */	addi r5, r3, lit_3894@l /* 0x808454AC@l */
 /* 8083B620  80 1F 17 44 */	lwz r0, 0x1744(r31)
 /* 8083B624  74 00 90 00 */	andis. r0, r0, 0x9000
 /* 8083B628  41 82 00 10 */	beq lbl_8083B638
@@ -17,8 +17,8 @@ lbl_8083B638:
 /* 8083B638  A8 05 00 20 */	lha r0, 0x20(r5)
 /* 8083B63C  B0 1F 16 C2 */	sth r0, 0x16c2(r31)
 lbl_8083B640:
-/* 8083B640  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8083B644  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l
+/* 8083B640  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8083B644  38 83 61 C0 */	addi r4, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8083B648  88 04 4F AD */	lbz r0, 0x4fad(r4)
 /* 8083B64C  28 00 00 00 */	cmplwi r0, 0
 /* 8083B650  41 82 00 CC */	beq lbl_8083B71C
@@ -95,13 +95,13 @@ lbl_8083B734:
 /* 8083B744  80 1F 17 44 */	lwz r0, 0x1744(r31)
 /* 8083B748  64 00 00 40 */	oris r0, r0, 0x40
 /* 8083B74C  90 1F 17 44 */	stw r0, 0x1744(r31)
-/* 8083B750  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha
-/* 8083B754  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l
+/* 8083B750  3C 60 80 45 */	lis r3, mAudioMgrPtr__10Z2AudioMgr@ha /* 0x80451368@ha */
+/* 8083B754  38 63 13 68 */	addi r3, r3, mAudioMgrPtr__10Z2AudioMgr@l /* 0x80451368@l */
 /* 8083B758  80 63 00 00 */	lwz r3, 0(r3)
 /* 8083B75C  38 63 03 D0 */	addi r3, r3, 0x3d0
 /* 8083B760  3C 80 01 00 */	lis r4, 0x0100 /* 0x01000029@ha */
 /* 8083B764  38 84 00 29 */	addi r4, r4, 0x0029 /* 0x01000029@l */
-/* 8083B768  4B A7 3D 34 */	b subBgmStart__8Z2SeqMgrFUl
+/* 8083B768  4B A7 3D 35 */	bl subBgmStart__8Z2SeqMgrFUl
 lbl_8083B76C:
 /* 8083B76C  7F E3 FB 78 */	mr r3, r31
 /* 8083B770  4B FF F1 21 */	bl setStickRodeoMove__9daHorse_cFv
@@ -117,8 +117,8 @@ lbl_8083B778:
 /* 8083B794  41 82 00 4C */	beq lbl_8083B7E0
 /* 8083B798  54 60 03 DF */	rlwinm. r0, r3, 0, 0xf, 0xf
 /* 8083B79C  40 82 00 44 */	bne lbl_8083B7E0
-/* 8083B7A0  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 8083B7A4  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 8083B7A0  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 8083B7A4  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 8083B7A8  C0 03 00 08 */	lfs f0, 8(r3)
 /* 8083B7AC  D0 1F 17 58 */	stfs f0, 0x1758(r31)
 /* 8083B7B0  AB C3 00 0C */	lha r30, 0xc(r3)
@@ -127,7 +127,7 @@ lbl_8083B778:
 /* 8083B7BC  1C 00 00 38 */	mulli r0, r0, 0x38
 /* 8083B7C0  7C 64 02 14 */	add r3, r4, r0
 /* 8083B7C4  80 63 5D 74 */	lwz r3, 0x5d74(r3)
-/* 8083B7C8  4B 94 5E 4C */	b dCam_getControledAngleY__FP12camera_class
+/* 8083B7C8  4B 94 5E 4D */	bl dCam_getControledAngleY__FP12camera_class
 /* 8083B7CC  3C 03 00 01 */	addis r0, r3, 1
 /* 8083B7D0  7C 60 F2 14 */	add r3, r0, r30
 /* 8083B7D4  38 03 80 00 */	addi r0, r3, -32768

@@ -5,12 +5,12 @@ lbl_80A883C8:
 /* 80A883D4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A883D8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80A883DC  41 82 00 1C */	beq lbl_80A883F8
-/* 80A883E0  3C A0 80 A9 */	lis r5, __vt__19daNpc_myna2_Param_c@ha
-/* 80A883E4  38 05 8A E0 */	addi r0, r5, __vt__19daNpc_myna2_Param_c@l
+/* 80A883E0  3C A0 80 A9 */	lis r5, __vt__19daNpc_myna2_Param_c@ha /* 0x80A88AE0@ha */
+/* 80A883E4  38 05 8A E0 */	addi r0, r5, __vt__19daNpc_myna2_Param_c@l /* 0x80A88AE0@l */
 /* 80A883E8  90 1F 00 00 */	stw r0, 0(r31)
 /* 80A883EC  7C 80 07 35 */	extsh. r0, r4
 /* 80A883F0  40 81 00 08 */	ble lbl_80A883F8
-/* 80A883F4  4B 84 69 48 */	b __dl__FPv
+/* 80A883F4  4B 84 69 49 */	bl __dl__FPv
 lbl_80A883F8:
 /* 80A883F8  7F E3 FB 78 */	mr r3, r31
 /* 80A883FC  83 E1 00 0C */	lwz r31, 0xc(r1)

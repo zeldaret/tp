@@ -3,17 +3,15 @@
 #
 
 M532_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4chandelier.plf
+M532_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4chandelier.lcf
+M532_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4chandelier.map
 
 M532_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv4chandelier/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv4chandelier/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_lv4chandelier/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_lv4chandelier/d_a_obj_lv4chandelier.cpp \
 
 M532_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4chandelier/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4chandelier/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4chandelier/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4chandelier/d_a_obj_lv4chandelier.o \
 
 M532_LIBS := \
@@ -29,14 +27,21 @@ M532_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M532_LDSCRIPT) \
+	-unused -map $(M532_MAP) \
+	-w off \
 
 $(M532_TARGET): $(M532_O_FILES) $(M532_LIBS)
+	@echo [532] creating $(M532_TARGET)
 	@echo $(M532_LIBS) $(M532_O_FILES) > build/M532_ofiles
-	$(LD) -partial $(M532_LDFLAGS) -o $(M532_TARGET) @build/M532_ofiles
+	@python3 tools/lcf.py rel 532 --output $(M532_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M532_LDFLAGS) -o $(M532_TARGET) @build/M532_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv4chandelier/%.o: rel/d/a/obj/d_a_obj_lv4chandelier/%.cpp
+	@echo [532] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M532_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M532_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

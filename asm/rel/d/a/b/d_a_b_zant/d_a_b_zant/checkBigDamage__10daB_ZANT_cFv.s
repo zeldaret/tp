@@ -3,17 +3,17 @@ lbl_8063E6F8:
 /* 8063E6FC  7C 08 02 A6 */	mflr r0
 /* 8063E700  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8063E704  39 61 00 20 */	addi r11, r1, 0x20
-/* 8063E708  4B D2 3A D4 */	b _savegpr_29
+/* 8063E708  4B D2 3A D5 */	bl _savegpr_29
 /* 8063E70C  7C 7D 1B 78 */	mr r29, r3
-/* 8063E710  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8063E714  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8063E710  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8063E714  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8063E718  83 E3 5D AC */	lwz r31, 0x5dac(r3)
 /* 8063E71C  3B C0 00 00 */	li r30, 0
 /* 8063E720  80 7D 0C 50 */	lwz r3, 0xc50(r29)
 /* 8063E724  80 03 00 10 */	lwz r0, 0x10(r3)
 /* 8063E728  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 8063E72C  41 82 00 4C */	beq lbl_8063E778
-/* 8063E730  4B B2 0C 68 */	b checkMasterSwordEquip__9daPy_py_cFv
+/* 8063E730  4B B2 0C 69 */	bl checkMasterSwordEquip__9daPy_py_cFv
 /* 8063E734  2C 03 00 00 */	cmpwi r3, 0
 /* 8063E738  41 82 00 40 */	beq lbl_8063E778
 /* 8063E73C  80 7D 0C 50 */	lwz r3, 0xc50(r29)
@@ -38,7 +38,7 @@ lbl_8063E778:
 /* 8063E77C  7C 00 F1 10 */	subfe r0, r0, r30
 /* 8063E780  54 03 06 3E */	clrlwi r3, r0, 0x18
 /* 8063E784  39 61 00 20 */	addi r11, r1, 0x20
-/* 8063E788  4B D2 3A A0 */	b _restgpr_29
+/* 8063E788  4B D2 3A A1 */	bl _restgpr_29
 /* 8063E78C  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8063E790  7C 08 03 A6 */	mtlr r0
 /* 8063E794  38 21 00 20 */	addi r1, r1, 0x20

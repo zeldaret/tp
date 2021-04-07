@@ -4,7 +4,7 @@ lbl_80A44024:
 /* 80A4402C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80A44030  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A44034  7C 7F 1B 78 */	mr r31, r3
-/* 80A44038  4B 70 51 58 */	b setMtx__8daNpcT_cFv
+/* 80A44038  4B 70 51 59 */	bl setMtx__8daNpcT_cFv
 /* 80A4403C  C0 1F 04 D0 */	lfs f0, 0x4d0(r31)
 /* 80A44040  D0 1F 05 38 */	stfs f0, 0x538(r31)
 /* 80A44044  C0 1F 04 D4 */	lfs f0, 0x4d4(r31)

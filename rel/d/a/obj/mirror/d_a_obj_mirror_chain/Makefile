@@ -3,17 +3,15 @@
 #
 
 M573_TARGET := $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_chain.plf
+M573_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_chain.lcf
+M573_MAP := $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_chain.map
 
 M573_CPP_FILES := \
-	rel/d/a/obj/mirror/d_a_obj_mirror_chain/executor.cpp \
-	rel/d/a/obj/mirror/d_a_obj_mirror_chain/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/mirror/d_a_obj_mirror_chain/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/mirror/d_a_obj_mirror_chain/d_a_obj_mirror_chain.cpp \
 
 M573_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_chain/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_chain/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_chain/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_chain/d_a_obj_mirror_chain.o \
 
 M573_LIBS := \
@@ -29,14 +27,21 @@ M573_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M573_LDSCRIPT) \
+	-unused -map $(M573_MAP) \
+	-w off \
 
 $(M573_TARGET): $(M573_O_FILES) $(M573_LIBS)
+	@echo [573] creating $(M573_TARGET)
 	@echo $(M573_LIBS) $(M573_O_FILES) > build/M573_ofiles
-	$(LD) -partial $(M573_LDFLAGS) -o $(M573_TARGET) @build/M573_ofiles
+	@python3 tools/lcf.py rel 573 --output $(M573_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M573_LDFLAGS) -o $(M573_TARGET) @build/M573_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/mirror/d_a_obj_mirror_chain/%.o: rel/d/a/obj/mirror/d_a_obj_mirror_chain/%.cpp
+	@echo [573] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M573_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M573_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

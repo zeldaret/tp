@@ -6,7 +6,7 @@ lbl_8050D1F4:
 /* 8050D204  93 C1 00 08 */	stw r30, 8(r1)
 /* 8050D208  7C 7E 1B 78 */	mr r30, r3
 /* 8050D20C  7C 9F 23 78 */	mr r31, r4
-/* 8050D210  4B B0 BA D0 */	b fopAc_IsActor__FPv
+/* 8050D210  4B B0 BA D1 */	bl fopAc_IsActor__FPv
 /* 8050D214  2C 03 00 00 */	cmpwi r3, 0
 /* 8050D218  41 82 00 2C */	beq lbl_8050D244
 /* 8050D21C  A8 1E 00 08 */	lha r0, 8(r30)

@@ -23,15 +23,15 @@ lbl_801F28E4:
 /* 801F2938  38 03 FF FF */	addi r0, r3, -1
 /* 801F293C  98 1F 01 BD */	stb r0, 0x1bd(r31)
 lbl_801F2940:
-/* 801F2940  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha
-/* 801F2944  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l
+/* 801F2940  3C 60 80 3F */	lis r3, g_mDoMemCd_control@ha /* 0x803EAF40@ha */
+/* 801F2944  38 63 AF 40 */	addi r3, r3, g_mDoMemCd_control@l /* 0x803EAF40@l */
 /* 801F2948  4B E2 43 99 */	bl SaveSync__15mDoMemCd_Ctrl_cFv
 /* 801F294C  90 7F 21 98 */	stw r3, 0x2198(r31)
 /* 801F2950  80 9F 21 98 */	lwz r4, 0x2198(r31)
 /* 801F2954  2C 04 00 00 */	cmpwi r4, 0
 /* 801F2958  41 82 00 20 */	beq lbl_801F2978
-/* 801F295C  3C 60 80 39 */	lis r3, d_menu_d_menu_save__stringBase0@ha
-/* 801F2960  38 63 79 60 */	addi r3, r3, d_menu_d_menu_save__stringBase0@l
+/* 801F295C  3C 60 80 39 */	lis r3, d_menu_d_menu_save__stringBase0@ha /* 0x80397960@ha */
+/* 801F2960  38 63 79 60 */	addi r3, r3, d_menu_d_menu_save__stringBase0@l /* 0x80397960@l */
 /* 801F2964  38 63 00 A6 */	addi r3, r3, 0xa6
 /* 801F2968  4C C6 31 82 */	crclr 6
 /* 801F296C  48 17 3F 11 */	bl printf

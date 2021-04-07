@@ -19,12 +19,12 @@ lbl_804E3FF8:
 /* 804E403C  D0 1F 04 D4 */	stfs f0, 0x4d4(r31)
 /* 804E4040  C0 1F 04 B0 */	lfs f0, 0x4b0(r31)
 /* 804E4044  D0 1F 04 D8 */	stfs f0, 0x4d8(r31)
-/* 804E4048  3C 60 80 4E */	lis r3, lit_3919@ha
-/* 804E404C  C0 03 4A 54 */	lfs f0, lit_3919@l(r3)
+/* 804E4048  3C 60 80 4E */	lis r3, lit_3919@ha /* 0x804E4A54@ha */
+/* 804E404C  C0 03 4A 54 */	lfs f0, lit_3919@l(r3)  /* 0x804E4A54@l */
 /* 804E4050  D0 01 00 10 */	stfs f0, 0x10(r1)
 /* 804E4054  D0 01 00 14 */	stfs f0, 0x14(r1)
-/* 804E4058  3C 60 80 4E */	lis r3, lit_4706@ha
-/* 804E405C  C0 03 4A BC */	lfs f0, lit_4706@l(r3)
+/* 804E4058  3C 60 80 4E */	lis r3, lit_4706@ha /* 0x804E4ABC@ha */
+/* 804E405C  C0 03 4A BC */	lfs f0, lit_4706@l(r3)  /* 0x804E4ABC@l */
 /* 804E4060  D0 01 00 18 */	stfs f0, 0x18(r1)
 /* 804E4064  4B FF DD 35 */	bl getNowLevel__Fv
 /* 804E4068  38 A0 FF 00 */	li r5, -256
@@ -45,7 +45,7 @@ lbl_804E4098:
 /* 804E409C  39 00 00 00 */	li r8, 0
 /* 804E40A0  39 3F 04 EC */	addi r9, r31, 0x4ec
 /* 804E40A4  39 40 FF FF */	li r10, -1
-/* 804E40A8  4B B3 5E D0 */	b fopAcM_createChildFromOffset__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
+/* 804E40A8  4B B3 5E D1 */	bl fopAcM_createChildFromOffset__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i
 /* 804E40AC  90 7F 05 94 */	stw r3, 0x594(r31)
 /* 804E40B0  C0 01 00 1C */	lfs f0, 0x1c(r1)
 /* 804E40B4  D0 1F 04 D0 */	stfs f0, 0x4d0(r31)

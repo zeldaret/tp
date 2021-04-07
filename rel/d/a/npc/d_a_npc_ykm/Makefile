@@ -3,19 +3,20 @@
 #
 
 M383_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykm.plf
+M383_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykm.lcf
+M383_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykm.map
 
 M383_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_ykm/executor.cpp \
-	rel/d/a/npc/d_a_npc_ykm/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_ykm/d_a_npc_ykm.cpp \
 
 M383_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykm/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykm/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykm/d_a_npc_ykm.o \
 
 M383_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykm/libRuntime.PPCEABI.H.a \
 
 M383_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M383_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M383_LDSCRIPT) \
+	-unused -map $(M383_MAP) \
+	-w off \
 
 $(M383_TARGET): $(M383_O_FILES) $(M383_LIBS)
+	@echo [383] creating $(M383_TARGET)
 	@echo $(M383_LIBS) $(M383_O_FILES) > build/M383_ofiles
-	$(LD) -partial $(M383_LDFLAGS) -o $(M383_TARGET) @build/M383_ofiles
+	@python3 tools/lcf.py rel 383 --output $(M383_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M383_LDFLAGS) -o $(M383_TARGET) @build/M383_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_ykm/%.o: rel/d/a/npc/d_a_npc_ykm/%.cpp
+	@echo [383] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M383_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M383_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_ykm/libs/Runtime.PPCEABI.H/Makefile
 

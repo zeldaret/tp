@@ -4,7 +4,7 @@ lbl_80B8424C:
 /* 80B84254  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80B84258  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80B8425C  7C 7F 1B 78 */	mr r31, r3
-/* 80B84260  4B 49 4A 80 */	b fopAc_IsActor__FPv
+/* 80B84260  4B 49 4A 81 */	bl fopAc_IsActor__FPv
 /* 80B84264  2C 03 00 00 */	cmpwi r3, 0
 /* 80B84268  41 82 00 18 */	beq lbl_80B84280
 /* 80B8426C  A8 1F 00 08 */	lha r0, 8(r31)

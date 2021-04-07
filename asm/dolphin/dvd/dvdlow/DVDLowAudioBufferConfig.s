@@ -19,15 +19,15 @@ lbl_80348318:
 /* 8034832C  38 00 00 01 */	li r0, 1
 /* 80348330  3C 80 80 00 */	lis r4, 0x8000 /* 0x800000F8@ha */
 /* 80348334  90 03 00 1C */	stw r0, 0x1c(r3)
-/* 80348338  3C 60 80 45 */	lis r3, AlarmForTimeout@ha
-/* 8034833C  3B E3 C8 98 */	addi r31, r3, AlarmForTimeout@l
-/* 80348340  80 04 00 F8 */	lwz r0, 0x00F8(r4)
+/* 80348338  3C 60 80 45 */	lis r3, AlarmForTimeout@ha /* 0x8044C898@ha */
+/* 8034833C  3B E3 C8 98 */	addi r31, r3, AlarmForTimeout@l /* 0x8044C898@l */
+/* 80348340  80 04 00 F8 */	lwz r0, 0x00F8(r4)  /* 0x800000F8@l */
 /* 80348344  38 7F 00 00 */	addi r3, r31, 0
 /* 80348348  54 00 F0 BE */	srwi r0, r0, 2
 /* 8034834C  1F C0 00 0A */	mulli r30, r0, 0xa
 /* 80348350  4B FF 25 A9 */	bl OSCreateAlarm
-/* 80348354  3C 60 80 34 */	lis r3, AlarmHandlerForTimeout@ha
-/* 80348358  38 E3 7A 18 */	addi r7, r3, AlarmHandlerForTimeout@l
+/* 80348354  3C 60 80 34 */	lis r3, AlarmHandlerForTimeout@ha /* 0x80347A18@ha */
+/* 80348358  38 E3 7A 18 */	addi r7, r3, AlarmHandlerForTimeout@l /* 0x80347A18@l */
 /* 8034835C  38 7F 00 00 */	addi r3, r31, 0
 /* 80348360  38 DE 00 00 */	addi r6, r30, 0
 /* 80348364  38 A0 00 00 */	li r5, 0

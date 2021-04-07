@@ -113,8 +113,8 @@ lbl_80251D10:
 /* 80251D10  C8 02 B4 00 */	lfd f0, lit_3868(r2)
 /* 80251D14  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80251D18  40 80 00 10 */	bge lbl_80251D28
-/* 80251D1C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80251D20  C0 43 0A E0 */	lfs f2, __float_nan@l(r3)
+/* 80251D1C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80251D20  C0 43 0A E0 */	lfs f2, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80251D24  48 00 00 78 */	b lbl_80251D9C
 lbl_80251D28:
 /* 80251D28  D0 21 00 0C */	stfs f1, 0xc(r1)
@@ -148,8 +148,8 @@ lbl_80251D80:
 lbl_80251D84:
 /* 80251D84  2C 00 00 01 */	cmpwi r0, 1
 /* 80251D88  40 82 00 10 */	bne lbl_80251D98
-/* 80251D8C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80251D90  C0 43 0A E0 */	lfs f2, __float_nan@l(r3)
+/* 80251D8C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80251D90  C0 43 0A E0 */	lfs f2, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80251D94  48 00 00 08 */	b lbl_80251D9C
 lbl_80251D98:
 /* 80251D98  FC 40 08 90 */	fmr f2, f1
@@ -191,8 +191,8 @@ lbl_80251E20:
 /* 80251E20  C8 02 B4 00 */	lfd f0, lit_3868(r2)
 /* 80251E24  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80251E28  40 80 00 10 */	bge lbl_80251E38
-/* 80251E2C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80251E30  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80251E2C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80251E30  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80251E34  48 00 00 70 */	b lbl_80251EA4
 lbl_80251E38:
 /* 80251E38  D0 21 00 08 */	stfs f1, 8(r1)
@@ -226,8 +226,8 @@ lbl_80251E90:
 lbl_80251E94:
 /* 80251E94  2C 00 00 01 */	cmpwi r0, 1
 /* 80251E98  40 82 00 0C */	bne lbl_80251EA4
-/* 80251E9C  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 80251EA0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)
+/* 80251E9C  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 80251EA0  C0 23 0A E0 */	lfs f1, __float_nan@l(r3)  /* 0x80450AE0@l */
 lbl_80251EA4:
 /* 80251EA4  38 1B 00 AC */	addi r0, r27, 0xac
 /* 80251EA8  7C 3C 05 2E */	stfsx f1, r28, r0

@@ -16,11 +16,11 @@ lbl_801B1C3C:
 /* 801B1C74  38 60 00 07 */	li r3, 7
 /* 801B1C78  64 63 00 07 */	oris r3, r3, 7
 /* 801B1C7C  7C 75 E3 A6 */	mtspr 0x395, r3
-/* 801B1C80  3C 80 80 39 */	lis r4, d_menu_d_menu_collect__stringBase0@ha
-/* 801B1C84  38 84 53 30 */	addi r4, r4, d_menu_d_menu_collect__stringBase0@l
+/* 801B1C80  3C 80 80 39 */	lis r4, d_menu_d_menu_collect__stringBase0@ha /* 0x80395330@ha */
+/* 801B1C84  38 84 53 30 */	addi r4, r4, d_menu_d_menu_collect__stringBase0@l /* 0x80395330@l */
 /* 801B1C88  38 64 00 56 */	addi r3, r4, 0x56
-/* 801B1C8C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 801B1C90  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 801B1C8C  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801B1C90  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801B1C94  80 84 5C B8 */	lwz r4, 0x5cb8(r4)
 /* 801B1C98  48 12 25 D9 */	bl getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
 /* 801B1C9C  48 15 6D D1 */	bl load__20J2DAnmLoaderDataBaseFPCv

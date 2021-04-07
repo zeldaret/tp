@@ -12,8 +12,8 @@ lbl_800C39EC:
 /* 800C3A14  48 00 00 1C */	b lbl_800C3A30
 lbl_800C3A18:
 /* 800C3A18  7F E3 FB 78 */	mr r3, r31
-/* 800C3A1C  3C 80 80 39 */	lis r4, m__19daAlinkHIO_basic_c0@ha
-/* 800C3A20  38 84 D6 64 */	addi r4, r4, m__19daAlinkHIO_basic_c0@l
+/* 800C3A1C  3C 80 80 39 */	lis r4, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 800C3A20  38 84 D6 64 */	addi r4, r4, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 800C3A24  C0 24 00 18 */	lfs f1, 0x18(r4)
 /* 800C3A28  4B FE B0 49 */	bl setBlendAtnMoveAnime__9daAlink_cFf
 /* 800C3A2C  38 60 00 01 */	li r3, 1

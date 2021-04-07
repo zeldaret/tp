@@ -7,12 +7,12 @@ lbl_80D220C4:
 /* 80D220D8  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80D220DC  7C 9F 23 78 */	mr r31, r4
 /* 80D220E0  41 82 00 4C */	beq lbl_80D2212C
-/* 80D220E4  3C 80 80 3B */	lis r4, __vt__19dPa_followEcallBack@ha
-/* 80D220E8  38 04 85 2C */	addi r0, r4, __vt__19dPa_followEcallBack@l
+/* 80D220E4  3C 80 80 3B */	lis r4, __vt__19dPa_followEcallBack@ha /* 0x803A852C@ha */
+/* 80D220E8  38 04 85 2C */	addi r0, r4, __vt__19dPa_followEcallBack@l /* 0x803A852C@l */
 /* 80D220EC  90 1E 00 00 */	stw r0, 0(r30)
 /* 80D220F0  41 82 00 2C */	beq lbl_80D2211C
-/* 80D220F4  3C 80 80 D2 */	lis r4, __vt__18dPa_levelEcallBack@ha
-/* 80D220F8  38 04 40 84 */	addi r0, r4, __vt__18dPa_levelEcallBack@l
+/* 80D220F4  3C 80 80 D2 */	lis r4, __vt__18dPa_levelEcallBack@ha /* 0x80D24084@ha */
+/* 80D220F8  38 04 40 84 */	addi r0, r4, __vt__18dPa_levelEcallBack@l /* 0x80D24084@l */
 /* 80D220FC  90 1E 00 00 */	stw r0, 0(r30)
 /* 80D22100  81 83 00 00 */	lwz r12, 0(r3)
 /* 80D22104  81 8C 00 20 */	lwz r12, 0x20(r12)
@@ -20,12 +20,12 @@ lbl_80D220C4:
 /* 80D2210C  4E 80 04 21 */	bctrl 
 /* 80D22110  7F C3 F3 78 */	mr r3, r30
 /* 80D22114  38 80 00 00 */	li r4, 0
-/* 80D22118  4B 55 C5 8C */	b __dt__18JPAEmitterCallBackFv
+/* 80D22118  4B 55 C5 8D */	bl __dt__18JPAEmitterCallBackFv
 lbl_80D2211C:
 /* 80D2211C  7F E0 07 35 */	extsh. r0, r31
 /* 80D22120  40 81 00 0C */	ble lbl_80D2212C
 /* 80D22124  7F C3 F3 78 */	mr r3, r30
-/* 80D22128  4B 5A CC 14 */	b __dl__FPv
+/* 80D22128  4B 5A CC 15 */	bl __dl__FPv
 lbl_80D2212C:
 /* 80D2212C  7F C3 F3 78 */	mr r3, r30
 /* 80D22130  83 E1 00 0C */	lwz r31, 0xc(r1)

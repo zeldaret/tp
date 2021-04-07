@@ -3,10 +3,10 @@ lbl_80A30D44:
 /* 80A30D48  7C 08 02 A6 */	mflr r0
 /* 80A30D4C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80A30D50  39 61 00 20 */	addi r11, r1, 0x20
-/* 80A30D54  4B 93 14 88 */	b _savegpr_29
+/* 80A30D54  4B 93 14 89 */	bl _savegpr_29
 /* 80A30D58  7C 7F 1B 78 */	mr r31, r3
-/* 80A30D5C  3C 60 80 A4 */	lis r3, mCcDObjData__10daNpc_Kn_c@ha
-/* 80A30D60  3B C3 08 C8 */	addi r30, r3, mCcDObjData__10daNpc_Kn_c@l
+/* 80A30D5C  3C 60 80 A4 */	lis r3, mCcDObjData__10daNpc_Kn_c@ha /* 0x80A408C8@ha */
+/* 80A30D60  3B C3 08 C8 */	addi r30, r3, mCcDObjData__10daNpc_Kn_c@l /* 0x80A408C8@l */
 /* 80A30D64  A0 1F 0E 2A */	lhz r0, 0xe2a(r31)
 /* 80A30D68  2C 00 00 02 */	cmpwi r0, 2
 /* 80A30D6C  41 82 00 40 */	beq lbl_80A30DAC
@@ -68,7 +68,7 @@ lbl_80A30DFC:
 /* 80A30E3C  41 82 00 50 */	beq lbl_80A30E8C
 /* 80A30E40  83 BF 0B B4 */	lwz r29, 0xbb4(r31)
 /* 80A30E44  38 7F 0B A8 */	addi r3, r31, 0xba8
-/* 80A30E48  4B 71 4A 50 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80A30E48  4B 71 4A 51 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80A30E4C  93 BF 0B B4 */	stw r29, 0xbb4(r31)
 /* 80A30E50  38 00 00 13 */	li r0, 0x13
 /* 80A30E54  90 1F 0B B0 */	stw r0, 0xbb0(r31)
@@ -80,7 +80,7 @@ lbl_80A30E64:
 /* 80A30E68  41 82 00 24 */	beq lbl_80A30E8C
 /* 80A30E6C  83 BF 0B B4 */	lwz r29, 0xbb4(r31)
 /* 80A30E70  38 7F 0B A8 */	addi r3, r31, 0xba8
-/* 80A30E74  4B 71 4A 24 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80A30E74  4B 71 4A 25 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80A30E78  93 BF 0B B4 */	stw r29, 0xbb4(r31)
 /* 80A30E7C  38 00 00 0F */	li r0, 0xf
 /* 80A30E80  90 1F 0B B0 */	stw r0, 0xbb0(r31)
@@ -92,7 +92,7 @@ lbl_80A30E8C:
 /* 80A30E94  41 82 00 24 */	beq lbl_80A30EB8
 /* 80A30E98  83 BF 0B 90 */	lwz r29, 0xb90(r31)
 /* 80A30E9C  38 7F 0B 84 */	addi r3, r31, 0xb84
-/* 80A30EA0  4B 71 49 F8 */	b initialize__22daNpcT_MotionSeqMngr_cFv
+/* 80A30EA0  4B 71 49 F9 */	bl initialize__22daNpcT_MotionSeqMngr_cFv
 /* 80A30EA4  93 BF 0B 90 */	stw r29, 0xb90(r31)
 /* 80A30EA8  38 00 00 01 */	li r0, 1
 /* 80A30EAC  90 1F 0B 8C */	stw r0, 0xb8c(r31)
@@ -104,7 +104,7 @@ lbl_80A30EB8:
 lbl_80A30EC0:
 /* 80A30EC0  38 60 00 01 */	li r3, 1
 /* 80A30EC4  39 61 00 20 */	addi r11, r1, 0x20
-/* 80A30EC8  4B 93 13 60 */	b _restgpr_29
+/* 80A30EC8  4B 93 13 61 */	bl _restgpr_29
 /* 80A30ECC  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 80A30ED0  7C 08 03 A6 */	mtlr r0
 /* 80A30ED4  38 21 00 20 */	addi r1, r1, 0x20

@@ -1,8 +1,8 @@
 lbl_8035AEB8:
 /* 8035AEB8  28 03 00 19 */	cmplwi r3, 0x19
 /* 8035AEBC  41 81 02 10 */	bgt lbl_8035B0CC
-/* 8035AEC0  3C A0 80 3D */	lis r5, lit_176@ha
-/* 8035AEC4  38 A5 22 80 */	addi r5, r5, lit_176@l
+/* 8035AEC0  3C A0 80 3D */	lis r5, lit_176@ha /* 0x803D2280@ha */
+/* 8035AEC4  38 A5 22 80 */	addi r5, r5, lit_176@l /* 0x803D2280@l */
 /* 8035AEC8  54 60 10 3A */	slwi r0, r3, 2
 /* 8035AECC  7C 05 00 2E */	lwzx r0, r5, r0
 /* 8035AED0  7C 09 03 A6 */	mtctr r0

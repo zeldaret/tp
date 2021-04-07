@@ -7,8 +7,8 @@ lbl_80077848:
 /* 8007785C  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80077860  7C 9F 23 78 */	mr r31, r4
 /* 80077864  41 82 00 68 */	beq lbl_800778CC
-/* 80077868  3C 80 80 3B */	lis r4, __vt__18dBgS_ObjGndChk_Spl@ha
-/* 8007786C  38 84 B7 18 */	addi r4, r4, __vt__18dBgS_ObjGndChk_Spl@l
+/* 80077868  3C 80 80 3B */	lis r4, __vt__18dBgS_ObjGndChk_Spl@ha /* 0x803AB718@ha */
+/* 8007786C  38 84 B7 18 */	addi r4, r4, __vt__18dBgS_ObjGndChk_Spl@l /* 0x803AB718@l */
 /* 80077870  90 9E 00 10 */	stw r4, 0x10(r30)
 /* 80077874  38 04 00 0C */	addi r0, r4, 0xc
 /* 80077878  90 1E 00 20 */	stw r0, 0x20(r30)
@@ -17,8 +17,8 @@ lbl_80077848:
 /* 80077884  38 04 00 24 */	addi r0, r4, 0x24
 /* 80077888  90 1E 00 4C */	stw r0, 0x4c(r30)
 /* 8007788C  41 82 00 30 */	beq lbl_800778BC
-/* 80077890  3C 80 80 3A */	lis r4, __vt__14dBgS_ObjGndChk@ha
-/* 80077894  38 84 38 2C */	addi r4, r4, __vt__14dBgS_ObjGndChk@l
+/* 80077890  3C 80 80 3A */	lis r4, __vt__14dBgS_ObjGndChk@ha /* 0x803A382C@ha */
+/* 80077894  38 84 38 2C */	addi r4, r4, __vt__14dBgS_ObjGndChk@l /* 0x803A382C@l */
 /* 80077898  90 9E 00 10 */	stw r4, 0x10(r30)
 /* 8007789C  38 04 00 0C */	addi r0, r4, 0xc
 /* 800778A0  90 1E 00 20 */	stw r0, 0x20(r30)

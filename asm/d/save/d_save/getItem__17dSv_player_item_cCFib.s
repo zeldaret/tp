@@ -11,8 +11,8 @@ lbl_80033030:
 /* 80033054  54 A0 06 3F */	clrlwi. r0, r5, 0x18
 /* 80033058  41 82 02 7C */	beq lbl_800332D4
 /* 8003305C  3B C0 00 00 */	li r30, 0
-/* 80033060  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80033064  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 80033060  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80033064  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 lbl_80033068:
 /* 80033068  7F E3 FB 78 */	mr r3, r31
 /* 8003306C  7F C4 F3 78 */	mr r4, r30
@@ -31,8 +31,8 @@ lbl_80033094:
 /* 8003309C  54 60 06 3E */	clrlwi r0, r3, 0x18
 /* 800330A0  28 00 00 FF */	cmplwi r0, 0xff
 /* 800330A4  41 82 02 24 */	beq lbl_800332C8
-/* 800330A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800330AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800330A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800330AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800330B0  7F C4 F3 78 */	mr r4, r30
 /* 800330B4  4B FF F9 A9 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 800330B8  54 60 06 3E */	clrlwi r0, r3, 0x18
@@ -163,8 +163,8 @@ lbl_80033254:
 lbl_8003325C:
 /* 8003325C  2C 1E 00 03 */	cmpwi r30, 3
 /* 80033260  40 82 00 4C */	bne lbl_800332AC
-/* 80033264  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80033268  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80033264  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80033268  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8003326C  7F C4 F3 78 */	mr r4, r30
 /* 80033270  4B FF F7 ED */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 80033274  54 60 06 3F */	clrlwi. r0, r3, 0x18
@@ -182,8 +182,8 @@ lbl_8003325C:
 /* 800332A4  38 60 00 FF */	li r3, 0xff
 /* 800332A8  48 00 00 38 */	b lbl_800332E0
 lbl_800332AC:
-/* 800332AC  3C 60 80 38 */	lis r3, d_save_d_save__stringBase0@ha
-/* 800332B0  38 63 92 34 */	addi r3, r3, d_save_d_save__stringBase0@l
+/* 800332AC  3C 60 80 38 */	lis r3, d_save_d_save__stringBase0@ha /* 0x80379234@ha */
+/* 800332B0  38 63 92 34 */	addi r3, r3, d_save_d_save__stringBase0@l /* 0x80379234@l */
 /* 800332B4  38 63 00 09 */	addi r3, r3, 9
 /* 800332B8  57 A4 06 3E */	clrlwi r4, r29, 0x18
 /* 800332BC  57 85 06 3E */	clrlwi r5, r28, 0x18

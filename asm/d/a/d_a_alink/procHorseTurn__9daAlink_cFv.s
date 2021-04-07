@@ -5,8 +5,8 @@ lbl_800F0CE4:
 /* 800F0CF0  39 61 00 20 */	addi r11, r1, 0x20
 /* 800F0CF4  48 27 14 E9 */	bl _savegpr_29
 /* 800F0CF8  7C 7E 1B 78 */	mr r30, r3
-/* 800F0CFC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 800F0D00  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 800F0CFC  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800F0D00  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800F0D04  83 E4 5D B8 */	lwz r31, 0x5db8(r4)
 /* 800F0D08  4B FF CD 1D */	bl setSyncRidePos__9daAlink_cFv
 /* 800F0D0C  2C 03 00 00 */	cmpwi r3, 0
@@ -103,8 +103,8 @@ lbl_800F0E3C:
 /* 800F0E58  4B FF C2 1D */	bl checkHorseNoUpperAnime__9daAlink_cCFv
 /* 800F0E5C  2C 03 00 00 */	cmpwi r3, 0
 /* 800F0E60  41 82 00 70 */	beq lbl_800F0ED0
-/* 800F0E64  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800F0E68  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800F0E64  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800F0E68  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800F0E6C  88 03 00 15 */	lbz r0, 0x15(r3)
 /* 800F0E70  28 00 00 FF */	cmplwi r0, 0xff
 /* 800F0E74  41 82 00 14 */	beq lbl_800F0E88

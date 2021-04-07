@@ -4,7 +4,7 @@ lbl_8094C240:
 /* 8094C248  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8094C24C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8094C250  7C 7F 1B 78 */	mr r31, r3
-/* 8094C254  4B 6C CA 8C */	b fopAc_IsActor__FPv
+/* 8094C254  4B 6C CA 8D */	bl fopAc_IsActor__FPv
 /* 8094C258  2C 03 00 00 */	cmpwi r3, 0
 /* 8094C25C  41 82 00 24 */	beq lbl_8094C280
 /* 8094C260  A8 1F 00 08 */	lha r0, 8(r31)

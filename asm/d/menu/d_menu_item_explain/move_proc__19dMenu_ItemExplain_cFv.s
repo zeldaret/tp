@@ -15,8 +15,8 @@ lbl_801DBB7C:
 /* 801DBBB0  41 82 00 08 */	beq lbl_801DBBB8
 /* 801DBBB4  48 06 02 DD */	bl arwAnimeMove__15dMsgScrnArrow_cFv
 lbl_801DBBB8:
-/* 801DBBB8  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 801DBBBC  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 801DBBB8  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801DBBBC  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801DBBC0  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 801DBBC4  54 64 05 EF */	rlwinm. r4, r3, 0, 0x17, 0x17
 /* 801DBBC8  40 82 00 34 */	bne lbl_801DBBFC

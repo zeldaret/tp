@@ -4,7 +4,7 @@ lbl_80B951AC:
 /* 80B951B4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80B951B8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80B951BC  7C 7F 1B 78 */	mr r31, r3
-/* 80B951C0  4B 48 3B 20 */	b fopAc_IsActor__FPv
+/* 80B951C0  4B 48 3B 21 */	bl fopAc_IsActor__FPv
 /* 80B951C4  2C 03 00 00 */	cmpwi r3, 0
 /* 80B951C8  41 82 00 18 */	beq lbl_80B951E0
 /* 80B951CC  A8 1F 00 08 */	lha r0, 8(r31)

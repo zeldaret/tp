@@ -8,8 +8,8 @@ lbl_8029D3C8:
 /* 8029D3E0  80 8D 8C 90 */	lwz r4, JASDram(r13)
 /* 8029D3E4  38 A0 00 20 */	li r5, 0x20
 /* 8029D3E8  48 03 19 29 */	bl __nwa__FUlP7JKRHeapi
-/* 8029D3EC  3C 80 80 2A */	lis r4, __ct__13JASDSPChannelFv@ha
-/* 8029D3F0  38 84 D2 F4 */	addi r4, r4, __ct__13JASDSPChannelFv@l
+/* 8029D3EC  3C 80 80 2A */	lis r4, __ct__13JASDSPChannelFv@ha /* 0x8029D2F4@ha */
+/* 8029D3F0  38 84 D2 F4 */	addi r4, r4, __ct__13JASDSPChannelFv@l /* 0x8029D2F4@l */
 /* 8029D3F4  38 A0 00 00 */	li r5, 0
 /* 8029D3F8  38 C0 00 1C */	li r6, 0x1c
 /* 8029D3FC  38 E0 00 40 */	li r7, 0x40

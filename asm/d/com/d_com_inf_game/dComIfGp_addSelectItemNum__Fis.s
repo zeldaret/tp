@@ -19,8 +19,8 @@ lbl_8002E878:
 /* 8002E87C  4B FF F4 C1 */	bl dComIfGs_getSelectMixItemNoArrowIndex__Fi
 /* 8002E880  38 03 FF F1 */	addi r0, r3, -15
 /* 8002E884  54 04 06 3E */	clrlwi r4, r0, 0x18
-/* 8002E888  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002E88C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002E888  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002E88C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002E890  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8002E894  7F E5 FB 78 */	mr r5, r31
 /* 8002E898  4B FF CA D5 */	bl setItemBombNumCount__14dComIfG_play_cFUcs
@@ -28,8 +28,8 @@ lbl_8002E878:
 lbl_8002E8A0:
 /* 8002E8A0  28 00 00 4B */	cmplwi r0, 0x4b
 /* 8002E8A4  40 82 00 1C */	bne lbl_8002E8C0
-/* 8002E8A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002E8AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002E8A8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002E8AC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002E8B0  A8 03 5D F6 */	lha r0, 0x5df6(r3)
 /* 8002E8B4  7C 00 FA 14 */	add r0, r0, r31
 /* 8002E8B8  B0 03 5D F6 */	sth r0, 0x5df6(r3)
@@ -37,13 +37,13 @@ lbl_8002E8A0:
 lbl_8002E8C0:
 /* 8002E8C0  28 00 00 76 */	cmplwi r0, 0x76
 /* 8002E8C4  40 82 00 34 */	bne lbl_8002E8F8
-/* 8002E8C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002E8CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002E8C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002E8CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002E8D0  7F C4 F3 78 */	mr r4, r30
 /* 8002E8D4  48 00 41 89 */	bl getSelectItemIndex__21dSv_player_status_a_cCFi
 /* 8002E8D8  7C 64 1B 78 */	mr r4, r3
-/* 8002E8DC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002E8E0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002E8DC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002E8E0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002E8E4  38 63 00 EC */	addi r3, r3, 0xec
 /* 8002E8E8  38 04 FF F5 */	addi r0, r4, -11
 /* 8002E8EC  54 04 06 3E */	clrlwi r4, r0, 0x18

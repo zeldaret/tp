@@ -246,8 +246,8 @@ lbl_802DA040:
 /* 802DA064  48 00 01 81 */	bl JKRDecompressFromDVD__FP10JKRDvdFilePvUlUlUlUlPUl
 /* 802DA068  48 00 00 20 */	b lbl_802DA088
 lbl_802DA06C:
-/* 802DA06C  3C 60 80 3A */	lis r3, JKRDvdRipper__stringBase0@ha
-/* 802DA070  38 63 D2 90 */	addi r3, r3, JKRDvdRipper__stringBase0@l
+/* 802DA06C  3C 60 80 3A */	lis r3, JKRDvdRipper__stringBase0@ha /* 0x8039D290@ha */
+/* 802DA070  38 63 D2 90 */	addi r3, r3, JKRDvdRipper__stringBase0@l /* 0x8039D290@l */
 /* 802DA074  38 80 01 43 */	li r4, 0x143
 /* 802DA078  38 A3 00 11 */	addi r5, r3, 0x11
 /* 802DA07C  38 C3 00 14 */	addi r6, r3, 0x14
@@ -261,8 +261,8 @@ lbl_802DA090:
 /* 802DA094  40 82 00 D0 */	bne lbl_802DA164
 /* 802DA098  28 1E 00 00 */	cmplwi r30, 0
 /* 802DA09C  41 82 00 20 */	beq lbl_802DA0BC
-/* 802DA0A0  3C 60 80 3A */	lis r3, JKRDvdRipper__stringBase0@ha
-/* 802DA0A4  38 63 D2 90 */	addi r3, r3, JKRDvdRipper__stringBase0@l
+/* 802DA0A0  3C 60 80 3A */	lis r3, JKRDvdRipper__stringBase0@ha /* 0x8039D290@ha */
+/* 802DA0A4  38 63 D2 90 */	addi r3, r3, JKRDvdRipper__stringBase0@l /* 0x8039D290@l */
 /* 802DA0A8  38 80 01 4D */	li r4, 0x14d
 /* 802DA0AC  38 A3 00 11 */	addi r5, r3, 0x11
 /* 802DA0B0  38 C3 00 38 */	addi r6, r3, 0x38

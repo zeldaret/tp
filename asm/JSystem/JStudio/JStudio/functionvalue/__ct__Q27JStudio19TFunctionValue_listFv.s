@@ -9,13 +9,13 @@ lbl_802826BC:
 /* 802826D8  4B FF F6 41 */	bl __ct__Q27JStudio29TFunctionValueAttribute_rangeFv
 /* 802826DC  38 80 00 00 */	li r4, 0
 /* 802826E0  90 9F 00 40 */	stw r4, 0x40(r31)
-/* 802826E4  3C 60 80 3C */	lis r3, __vt__Q27JStudio19TFunctionValue_list@ha
-/* 802826E8  38 03 49 20 */	addi r0, r3, __vt__Q27JStudio19TFunctionValue_list@l
+/* 802826E4  3C 60 80 3C */	lis r3, __vt__Q27JStudio19TFunctionValue_list@ha /* 0x803C4920@ha */
+/* 802826E8  38 03 49 20 */	addi r0, r3, __vt__Q27JStudio19TFunctionValue_list@l /* 0x803C4920@l */
 /* 802826EC  90 1F 00 00 */	stw r0, 0(r31)
 /* 802826F0  90 9F 00 44 */	stw r4, 0x44(r31)
 /* 802826F4  90 9F 00 48 */	stw r4, 0x48(r31)
-/* 802826F8  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 802826FC  C0 03 0A E0 */	lfs f0, __float_nan@l(r3)
+/* 802826F8  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 802826FC  C0 03 0A E0 */	lfs f0, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 80282700  D8 1F 00 50 */	stfd f0, 0x50(r31)
 /* 80282704  90 9F 00 58 */	stw r4, 0x58(r31)
 /* 80282708  7F E3 FB 78 */	mr r3, r31

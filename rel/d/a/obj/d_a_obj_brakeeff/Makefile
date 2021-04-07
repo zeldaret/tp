@@ -3,17 +3,15 @@
 #
 
 M16_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_brakeeff.plf
+M16_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_brakeeff.lcf
+M16_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_brakeeff.map
 
 M16_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_brakeeff/executor.cpp \
-	rel/d/a/obj/d_a_obj_brakeeff/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_brakeeff/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_brakeeff/d_a_obj_brakeeff.cpp \
 
 M16_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_brakeeff/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_brakeeff/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_brakeeff/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_brakeeff/d_a_obj_brakeeff.o \
 
 M16_LIBS := \
@@ -29,14 +27,21 @@ M16_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M16_LDSCRIPT) \
+	-unused -map $(M16_MAP) \
+	-w off \
 
 $(M16_TARGET): $(M16_O_FILES) $(M16_LIBS)
+	@echo [ 16] creating $(M16_TARGET)
 	@echo $(M16_LIBS) $(M16_O_FILES) > build/M16_ofiles
-	$(LD) -partial $(M16_LDFLAGS) -o $(M16_TARGET) @build/M16_ofiles
+	@python3 tools/lcf.py rel 16 --output $(M16_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M16_LDFLAGS) -o $(M16_TARGET) @build/M16_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_brakeeff/%.o: rel/d/a/obj/d_a_obj_brakeeff/%.cpp
+	@echo [ 16] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M16_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M16_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -52,11 +52,6 @@ struct dEvt_control_c {
 // Forward References:
 //
 
-static void daTagHstop_Create(fopAc_ac_c*);
-static void daTagHstop_Delete(daTagHstop_c*);
-static void daTagHstop_Execute(daTagHstop_c*);
-static bool daTagHstop_Draw(daTagHstop_c*);
-
 extern "C" void create__12daTagHstop_cFv();
 extern "C" static void daTagHstop_Create__FP10fopAc_ac_c();
 extern "C" void __dt__12daTagHstop_cFv();
@@ -71,9 +66,6 @@ extern "C" extern void* g_profile_Tag_Hstop[12];
 //
 // External References:
 //
-
-void fopAcM_orderSpeakEvent(fopAc_ac_c*, u16, u16);
-void operator delete(void*);
 
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" void __dt__10fopAc_ac_cFv();
@@ -101,10 +93,11 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
-/* 805A4B20-805A4B24 0004+00 s=1 e=0 z=0  None .rodata    @3782 */
-SECTION_RODATA static u32 const lit_3782 = 0x42C80000;
+/* 805A4B20-805A4B24 000000 0004+00 1/1 0/0 0/0 .rodata          @3782 */
+SECTION_RODATA static f32 const lit_3782 = 100.0f;
+COMPILER_STRIP_GATE(805A4B20, &lit_3782);
 
-/* 805A43EC-805A45D8 01EC+00 s=1 e=0 z=0  None .text      create__12daTagHstop_cFv */
+/* 805A43EC-805A45D8 0000EC 01EC+00 1/1 0/0 0/0 .text            create__12daTagHstop_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -114,17 +107,18 @@ asm void daTagHstop_c::create() {
 }
 #pragma pop
 
-/* 805A45D8-805A45F8 0020+00 s=1 e=0 z=0  None .text      daTagHstop_Create__FP10fopAc_ac_c */
+/* 805A45D8-805A45F8 0002D8 0020+00 1/0 0/0 0/0 .text            daTagHstop_Create__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagHstop_Create(fopAc_ac_c* param_0) {
+static asm void daTagHstop_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop/daTagHstop_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 805A45F8-805A4690 0098+00 s=1 e=0 z=0  None .text      __dt__12daTagHstop_cFv */
+/* 805A45F8-805A4690 0002F8 0098+00 1/1 0/0 0/0 .text            __dt__12daTagHstop_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -134,17 +128,18 @@ asm daTagHstop_c::~daTagHstop_c() {
 }
 #pragma pop
 
-/* 805A4690-805A46B8 0028+00 s=1 e=0 z=0  None .text      daTagHstop_Delete__FP12daTagHstop_c */
+/* 805A4690-805A46B8 000390 0028+00 1/0 0/0 0/0 .text            daTagHstop_Delete__FP12daTagHstop_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagHstop_Delete(daTagHstop_c* param_0) {
+static asm void daTagHstop_Delete(daTagHstop_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop/daTagHstop_Delete__FP12daTagHstop_c.s"
 }
 #pragma pop
 
-/* 805A46B8-805A475C 00A4+00 s=2 e=0 z=0  None .text      setActive__12daTagHstop_cFv */
+/* 805A46B8-805A475C 0003B8 00A4+00 2/2 0/0 0/0 .text            setActive__12daTagHstop_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -155,13 +150,13 @@ asm void daTagHstop_c::setActive() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 805A4B80-805A4B8C 000C+00 s=1 e=0 z=0  None .bss       @3686 */
+/* 805A4B80-805A4B8C 000008 000C+00 1/1 0/0 0/0 .bss             @3686 */
 static u8 lit_3686[12];
 
-/* 805A4B8C-805A4BD8 004C+00 s=2 e=0 z=0  None .bss       m_msgFlow__12daTagHstop_c */
+/* 805A4B8C-805A4BD8 000014 004C+00 2/2 0/0 0/0 .bss             m_msgFlow__12daTagHstop_c */
 static u8 m_msgFlow__12daTagHstop_c[76];
 
-/* 805A475C-805A4AA8 034C+00 s=1 e=0 z=0  None .text      execute__12daTagHstop_cFv */
+/* 805A475C-805A4AA8 00045C 034C+00 1/1 0/0 0/0 .text            execute__12daTagHstop_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -171,33 +166,39 @@ asm void daTagHstop_c::execute() {
 }
 #pragma pop
 
-/* 805A4AA8-805A4AC8 0020+00 s=1 e=0 z=0  None .text      daTagHstop_Execute__FP12daTagHstop_c */
+/* 805A4AA8-805A4AC8 0007A8 0020+00 1/0 0/0 0/0 .text daTagHstop_Execute__FP12daTagHstop_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagHstop_Execute(daTagHstop_c* param_0) {
+static asm void daTagHstop_Execute(daTagHstop_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop/daTagHstop_Execute__FP12daTagHstop_c.s"
 }
 #pragma pop
 
-/* 805A4AC8-805A4AD0 0008+00 s=1 e=0 z=0  None .text      daTagHstop_Draw__FP12daTagHstop_c */
+/* 805A4AC8-805A4AD0 0007C8 0008+00 1/0 0/0 0/0 .text            daTagHstop_Draw__FP12daTagHstop_c
+ */
 static bool daTagHstop_Draw(daTagHstop_c* param_0) {
     return true;
 }
 
-/* 805A4AD0-805A4B0C 003C+00 s=0 e=1 z=0  None .text      __sinit_d_a_tag_hstop_cpp */
+/* 805A4AD0-805A4B0C 0007D0 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_tag_hstop_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_a_tag_hstop_cpp() {
+asm void __sinit_d_a_tag_hstop_cpp() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_hstop/d_a_tag_hstop/__sinit_d_a_tag_hstop_cpp.s"
 }
 #pragma pop
 
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_805A4AD0 = (void*)__sinit_d_a_tag_hstop_cpp;
+#pragma pop
+
 /* ############################################################################################## */
-/* 805A4B24-805A4B44 0020+00 s=1 e=0 z=0  None .data      l_daTagHstop_Method */
+/* 805A4B24-805A4B44 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagHstop_Method */
 SECTION_DATA static void* l_daTagHstop_Method[8] = {
     (void*)daTagHstop_Create__FP10fopAc_ac_c,
     (void*)daTagHstop_Delete__FP12daTagHstop_c,
@@ -209,8 +210,8 @@ SECTION_DATA static void* l_daTagHstop_Method[8] = {
     (void*)NULL,
 };
 
-/* 805A4B44-805A4B74 0030+00 s=0 e=0 z=1  None .data      g_profile_Tag_Hstop */
-SECTION_DATA void* g_profile_Tag_Hstop[12] = {
+/* 805A4B44-805A4B74 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Tag_Hstop */
+SECTION_DATA extern void* g_profile_Tag_Hstop[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00EC0000, (void*)&g_fpcLf_Method,
     (void*)0x00000578, (void*)NULL,

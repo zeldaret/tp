@@ -3,17 +3,15 @@
 #
 
 M62_TARGET := $(BUILD_DIR)/rel/d/a/d_a_cstaf.plf
+M62_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_cstaf.lcf
+M62_MAP := $(BUILD_DIR)/rel/d/a/d_a_cstaf.map
 
 M62_CPP_FILES := \
-	rel/d/a/d_a_cstaf/executor.cpp \
-	rel/d/a/d_a_cstaf/unknown_translation_unit_ctors.cpp \
-	rel/d/a/d_a_cstaf/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/d_a_cstaf/d_a_cstaF.cpp \
 
 M62_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_cstaf/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_cstaf/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/d_a_cstaf/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/d_a_cstaf/d_a_cstaF.o \
 
 M62_LIBS := \
@@ -29,14 +27,21 @@ M62_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M62_LDSCRIPT) \
+	-unused -map $(M62_MAP) \
+	-w off \
 
 $(M62_TARGET): $(M62_O_FILES) $(M62_LIBS)
+	@echo [ 62] creating $(M62_TARGET)
 	@echo $(M62_LIBS) $(M62_O_FILES) > build/M62_ofiles
-	$(LD) -partial $(M62_LDFLAGS) -o $(M62_TARGET) @build/M62_ofiles
+	@python3 tools/lcf.py rel 62 --output $(M62_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M62_LDFLAGS) -o $(M62_TARGET) @build/M62_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_cstaf/%.o: rel/d/a/d_a_cstaf/%.cpp
+	@echo [ 62] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M62_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M62_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

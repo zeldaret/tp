@@ -5,12 +5,12 @@ lbl_80A19A8C:
 /* 80A19A98  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A19A9C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80A19AA0  41 82 00 1C */	beq lbl_80A19ABC
-/* 80A19AA4  3C A0 80 A2 */	lis r5, __vt__22daNpcT_MotionSeqMngr_c@ha
-/* 80A19AA8  38 05 AC C0 */	addi r0, r5, __vt__22daNpcT_MotionSeqMngr_c@l
+/* 80A19AA4  3C A0 80 A2 */	lis r5, __vt__22daNpcT_MotionSeqMngr_c@ha /* 0x80A1ACC0@ha */
+/* 80A19AA8  38 05 AC C0 */	addi r0, r5, __vt__22daNpcT_MotionSeqMngr_c@l /* 0x80A1ACC0@l */
 /* 80A19AAC  90 1F 00 20 */	stw r0, 0x20(r31)
 /* 80A19AB0  7C 80 07 35 */	extsh. r0, r4
 /* 80A19AB4  40 81 00 08 */	ble lbl_80A19ABC
-/* 80A19AB8  4B 8B 52 84 */	b __dl__FPv
+/* 80A19AB8  4B 8B 52 85 */	bl __dl__FPv
 lbl_80A19ABC:
 /* 80A19ABC  7F E3 FB 78 */	mr r3, r31
 /* 80A19AC0  83 E1 00 0C */	lwz r31, 0xc(r1)

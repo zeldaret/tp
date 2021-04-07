@@ -9,8 +9,8 @@ lbl_8015EF84:
 /* 8015EFA0  A0 03 00 04 */	lhz r0, 4(r3)
 /* 8015EFA4  28 00 FF FF */	cmplwi r0, 0xffff
 /* 8015EFA8  40 82 00 4C */	bne lbl_8015EFF4
-/* 8015EFAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8015EFB0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8015EFAC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015EFB0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8015EFB4  80 63 5C AC */	lwz r3, 0x5cac(r3)
 /* 8015EFB8  80 9E 00 0C */	lwz r4, 0xc(r30)
 /* 8015EFBC  80 BE 00 08 */	lwz r5, 8(r30)
@@ -30,24 +30,24 @@ lbl_8015EF84:
 lbl_8015EFF4:
 /* 8015EFF4  28 00 00 00 */	cmplwi r0, 0
 /* 8015EFF8  40 82 00 28 */	bne lbl_8015F020
-/* 8015EFFC  3C 60 80 40 */	lis r3, mDemoArcName__20dStage_roomControl_c@ha
-/* 8015F000  38 63 61 94 */	addi r3, r3, mDemoArcName__20dStage_roomControl_c@l
-/* 8015F004  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8015F008  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 8015EFFC  3C 60 80 40 */	lis r3, mDemoArcName__20dStage_roomControl_c@ha /* 0x80406194@ha */
+/* 8015F000  38 63 61 94 */	addi r3, r3, mDemoArcName__20dStage_roomControl_c@l /* 0x80406194@l */
+/* 8015F004  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015F008  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8015F00C  3C A5 00 02 */	addis r5, r5, 2
 /* 8015F010  38 C0 00 80 */	li r6, 0x80
 /* 8015F014  38 A5 C2 F8 */	addi r5, r5, -15624
 /* 8015F018  4B ED D3 E9 */	bl getIDRes__14dRes_control_cFPCcUsP11dRes_info_ci
 /* 8015F01C  48 00 00 34 */	b lbl_8015F050
 lbl_8015F020:
-/* 8015F020  3C 60 80 3C */	lis r3, arcName@ha
-/* 8015F024  38 63 A0 A0 */	addi r3, r3, arcName@l
+/* 8015F020  3C 60 80 3C */	lis r3, arcName@ha /* 0x803BA0A0@ha */
+/* 8015F024  38 63 A0 A0 */	addi r3, r3, arcName@l /* 0x803BA0A0@l */
 /* 8015F028  54 00 13 BA */	rlwinm r0, r0, 2, 0xe, 0x1d
 /* 8015F02C  7C 63 02 14 */	add r3, r3, r0
 /* 8015F030  80 63 FF FC */	lwz r3, -4(r3)
 /* 8015F034  54 C4 04 3E */	clrlwi r4, r6, 0x10
-/* 8015F038  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8015F03C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 8015F038  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015F03C  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8015F040  3C A5 00 02 */	addis r5, r5, 2
 /* 8015F044  38 C0 00 80 */	li r6, 0x80
 /* 8015F048  38 A5 C2 F8 */	addi r5, r5, -15624

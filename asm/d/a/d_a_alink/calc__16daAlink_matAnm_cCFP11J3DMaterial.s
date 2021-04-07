@@ -7,8 +7,8 @@ lbl_8009D90C:
 /* 8009D920  7C 7E 1B 78 */	mr r30, r3
 /* 8009D924  7C 9F 23 78 */	mr r31, r4
 /* 8009D928  48 28 EA 9D */	bl calc__14J3DMaterialAnmCFP11J3DMaterial
-/* 8009D92C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8009D930  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8009D92C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8009D930  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8009D934  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 8009D938  80 03 05 78 */	lwz r0, 0x578(r3)
 /* 8009D93C  54 00 02 53 */	rlwinm. r0, r0, 0, 9, 9

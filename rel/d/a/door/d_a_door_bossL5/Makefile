@@ -3,18 +3,16 @@
 #
 
 M167_TARGET := $(BUILD_DIR)/rel/d/a/door/d_a_door_bossL5.plf
+M167_LDSCRIPT := $(BUILD_DIR)/rel/d/a/door/d_a_door_bossL5.lcf
+M167_MAP := $(BUILD_DIR)/rel/d/a/door/d_a_door_bossL5.map
 
 M167_CPP_FILES := \
-	rel/d/a/door/d_a_door_bossL5/executor.cpp \
-	rel/d/a/door/d_a_door_bossL5/unknown_translation_unit_ctors.cpp \
-	rel/d/a/door/d_a_door_bossL5/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/door/d_a_door_bossL5/unknown_translation_unit_bss.cpp \
 	rel/d/a/door/d_a_door_bossL5/d_a_door_bossL5.cpp \
 
 M167_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_bossL5/executor.o \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_bossL5/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/door/d_a_door_bossL5/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/door/d_a_door_bossL5/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/door/d_a_door_bossL5/d_a_door_bossL5.o \
 
@@ -31,14 +29,21 @@ M167_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M167_LDSCRIPT) \
+	-unused -map $(M167_MAP) \
+	-w off \
 
 $(M167_TARGET): $(M167_O_FILES) $(M167_LIBS)
+	@echo [167] creating $(M167_TARGET)
 	@echo $(M167_LIBS) $(M167_O_FILES) > build/M167_ofiles
-	$(LD) -partial $(M167_LDFLAGS) -o $(M167_TARGET) @build/M167_ofiles
+	@python3 tools/lcf.py rel 167 --output $(M167_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M167_LDFLAGS) -o $(M167_TARGET) @build/M167_ofiles
 
 $(BUILD_DIR)/rel/d/a/door/d_a_door_bossL5/%.o: rel/d/a/door/d_a_door_bossL5/%.cpp
+	@echo [167] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M167_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M167_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

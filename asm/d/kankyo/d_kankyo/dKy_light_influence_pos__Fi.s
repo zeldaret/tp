@@ -3,8 +3,8 @@ lbl_801A76D8:
 /* 801A76DC  40 80 00 08 */	bge lbl_801A76E4
 /* 801A76E0  38 80 00 00 */	li r4, 0
 lbl_801A76E4:
-/* 801A76E4  3C A0 80 43 */	lis r5, g_env_light@ha
-/* 801A76E8  38 A5 CA 54 */	addi r5, r5, g_env_light@l
+/* 801A76E4  3C A0 80 43 */	lis r5, g_env_light@ha /* 0x8042CA54@ha */
+/* 801A76E8  38 A5 CA 54 */	addi r5, r5, g_env_light@l /* 0x8042CA54@l */
 /* 801A76EC  54 80 10 3A */	slwi r0, r4, 2
 /* 801A76F0  7C 85 02 14 */	add r4, r5, r0
 /* 801A76F4  80 84 03 F8 */	lwz r4, 0x3f8(r4)

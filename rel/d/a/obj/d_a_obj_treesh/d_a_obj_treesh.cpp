@@ -58,12 +58,12 @@ struct dRes_control_c {
 
 struct dBgW {};
 
+struct cBgS_PolyInfo {};
+
 struct csXyz {
     /* 80D1F10C */ ~csXyz();
     /* 80D1F7AC */ csXyz();
 };
-
-struct cBgS_PolyInfo {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -86,12 +86,6 @@ struct J3DJoint {};
 // Forward References:
 //
 
-static void nodeCallBack(J3DJoint*, int);
-static void daTreeSh_create1st(daTreeSh_c*);
-static void daTreeSh_MoveBGDelete(daTreeSh_c*);
-static void daTreeSh_MoveBGExecute(daTreeSh_c*);
-static void daTreeSh_MoveBGDraw(daTreeSh_c*);
-
 extern "C" void __ct__14daTreeSh_HIO_cFv();
 extern "C" void __dt__5csXyzFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
@@ -111,23 +105,11 @@ extern "C" static void daTreeSh_MoveBGExecute__FP10daTreeSh_c();
 extern "C" static void daTreeSh_MoveBGDraw__FP10daTreeSh_c();
 extern "C" void __dt__14daTreeSh_HIO_cFv();
 extern "C" void __sinit_d_a_obj_treesh_cpp();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_TREESH[12];
+extern "C" extern char const* const d_a_obj_treesh__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dKyw_get_wind_pow();
-void cM_rndF(f32);
-void cM_rndFX(f32);
-void operator delete(void*);
 
 extern "C" void mDoMtx_YrotM__FPA4_fs();
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
@@ -172,41 +154,10 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
-/* 80D1F8C8-80D1F8CC 0004+00 s=1 e=0 z=0  None .rodata    @3767 */
-SECTION_RODATA static u32 const lit_3767 = 0x41700000;
+/* 80D1F8F4-80D1F8F8 -00001 0004+00 4/4 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_treesh__stringBase0;
 
-/* 80D1F8CC-80D1F8D0 0004+00 s=1 e=0 z=0  None .rodata    @3768 */
-SECTION_RODATA static u32 const lit_3768 = 0x41F00000;
-
-/* 80D1F8D0-80D1F8D4 0004+00 s=1 e=0 z=0  None .rodata    @3769 */
-SECTION_RODATA static u32 const lit_3769 = 0x3F800000;
-
-/* 80D1F8D4-80D1F8D8 0004+00 s=1 e=0 z=0  None .rodata    @3770 */
-SECTION_RODATA static u32 const lit_3770 = 0x3E99999A;
-
-/* 80D1F8D8-80D1F8E0 0004+04 s=1 e=0 z=0  None .rodata    @3771 */
-SECTION_RODATA static u32 const lit_3771[1 + 1 /* padding */] = {
-    0x3E4CCCCD,
-    /* padding */
-    0x00000000,
-};
-
-/* 80D1F8E0-80D1F8E8 0008+00 s=1 e=0 z=0  None .rodata    @3774 */
-SECTION_RODATA static u8 const lit_3774[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-
-/* 80D1F8E8-80D1F8F1 0009+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80D1F8E8 = "M_TreeSh";
-#pragma pop
-
-/* 80D1F8F4-80D1F8F8 0004+00 s=4 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80D1F8F8-80D1F918 0020+00 s=1 e=0 z=0  None .data      daTreeSh_METHODS */
+/* 80D1F8F8-80D1F918 -00001 0020+00 1/0 0/0 0/0 .data            daTreeSh_METHODS */
 SECTION_DATA static void* daTreeSh_METHODS[8] = {
     (void*)daTreeSh_create1st__FP10daTreeSh_c,
     (void*)daTreeSh_MoveBGDelete__FP10daTreeSh_c,
@@ -218,8 +169,8 @@ SECTION_DATA static void* daTreeSh_METHODS[8] = {
     (void*)NULL,
 };
 
-/* 80D1F918-80D1F948 0030+00 s=0 e=0 z=1  None .data      g_profile_TREESH */
-SECTION_DATA void* g_profile_TREESH[12] = {
+/* 80D1F918-80D1F948 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TREESH */
+SECTION_DATA extern void* g_profile_TREESH[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00310000, (void*)&g_fpcLf_Method,
     (void*)0x000005CC, (void*)NULL,
@@ -228,9 +179,9 @@ SECTION_DATA void* g_profile_TREESH[12] = {
     (void*)0x00040180, (void*)0x000E0000,
 };
 
-/* 80D1F948-80D1F970 0028+00 s=1 e=0 z=0  None .data      __vt__10daTreeSh_c */
-SECTION_DATA static void* __vt__10daTreeSh_c[10] = {
-    (void*)NULL,
+/* 80D1F948-80D1F970 000054 0028+00 1/1 0/0 0/0 .data            __vt__10daTreeSh_c */
+SECTION_DATA extern void* __vt__10daTreeSh_c[10] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__10daTreeSh_cFv,
     (void*)Create__10daTreeSh_cFv,
@@ -242,21 +193,21 @@ SECTION_DATA static void* __vt__10daTreeSh_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80D1F970-80D1F97C 000C+00 s=2 e=0 z=0  None .data      __vt__14daTreeSh_HIO_c */
-SECTION_DATA static void* __vt__14daTreeSh_HIO_c[3] = {
-    (void*)NULL,
+/* 80D1F970-80D1F97C 00007C 000C+00 2/2 0/0 0/0 .data            __vt__14daTreeSh_HIO_c */
+SECTION_DATA extern void* __vt__14daTreeSh_HIO_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14daTreeSh_HIO_cFv,
 };
 
-/* 80D1F97C-80D1F988 000C+00 s=3 e=0 z=0  None .data      __vt__14mDoHIO_entry_c */
-SECTION_DATA static void* __vt__14mDoHIO_entry_c[3] = {
-    (void*)NULL,
+/* 80D1F97C-80D1F988 000088 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
+SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14mDoHIO_entry_cFv,
 };
 
-/* 80D1F0CC-80D1F10C 0040+00 s=1 e=0 z=0  None .text      __ct__14daTreeSh_HIO_cFv */
+/* 80D1F0CC-80D1F10C 0000EC 0040+00 1/1 0/0 0/0 .text            __ct__14daTreeSh_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -266,7 +217,7 @@ asm daTreeSh_HIO_c::daTreeSh_HIO_c() {
 }
 #pragma pop
 
-/* 80D1F10C-80D1F148 003C+00 s=1 e=0 z=0  None .text      __dt__5csXyzFv */
+/* 80D1F10C-80D1F148 00012C 003C+00 1/1 0/0 0/0 .text            __dt__5csXyzFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -276,7 +227,7 @@ asm csXyz::~csXyz() {
 }
 #pragma pop
 
-/* 80D1F148-80D1F190 0048+00 s=1 e=0 z=0  None .text      __dt__14mDoHIO_entry_cFv */
+/* 80D1F148-80D1F190 000168 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -286,17 +237,17 @@ asm mDoHIO_entry_c::~mDoHIO_entry_c() {
 }
 #pragma pop
 
-/* 80D1F190-80D1F258 00C8+00 s=1 e=0 z=0  None .text      nodeCallBack__FP8J3DJointi */
+/* 80D1F190-80D1F258 0001B0 00C8+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void nodeCallBack(J3DJoint* param_0, int param_1) {
+static asm void nodeCallBack(J3DJoint* param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_treesh/d_a_obj_treesh/nodeCallBack__FP8J3DJointi.s"
 }
 #pragma pop
 
-/* 80D1F258-80D1F294 003C+00 s=1 e=0 z=0  None .text      initBaseMtx__10daTreeSh_cFv */
+/* 80D1F258-80D1F294 000278 003C+00 1/1 0/0 0/0 .text            initBaseMtx__10daTreeSh_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -306,7 +257,7 @@ asm void daTreeSh_c::initBaseMtx() {
 }
 #pragma pop
 
-/* 80D1F294-80D1F2E8 0054+00 s=1 e=0 z=0  None .text      setBaseMtx__10daTreeSh_cFv */
+/* 80D1F294-80D1F2E8 0002B4 0054+00 1/1 0/0 0/0 .text            setBaseMtx__10daTreeSh_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -316,7 +267,7 @@ asm void daTreeSh_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 80D1F2E8-80D1F358 0070+00 s=1 e=0 z=0  None .text      CreateHeap__10daTreeSh_cFv */
+/* 80D1F2E8-80D1F358 000308 0070+00 1/0 0/0 0/0 .text            CreateHeap__10daTreeSh_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -326,7 +277,7 @@ asm void daTreeSh_c::CreateHeap() {
 }
 #pragma pop
 
-/* 80D1F358-80D1F414 00BC+00 s=1 e=0 z=0  None .text      Create__10daTreeSh_cFv */
+/* 80D1F358-80D1F414 000378 00BC+00 1/0 0/0 0/0 .text            Create__10daTreeSh_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -336,7 +287,7 @@ asm void daTreeSh_c::Create() {
 }
 #pragma pop
 
-/* 80D1F414-80D1F49C 0088+00 s=1 e=0 z=0  None .text      create1st__10daTreeSh_cFv */
+/* 80D1F414-80D1F49C 000434 0088+00 1/1 0/0 0/0 .text            create1st__10daTreeSh_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -347,13 +298,58 @@ asm void daTreeSh_c::create1st() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D1F990-80D1F99C 000C+00 s=1 e=0 z=0  None .bss       @3618 */
+/* 80D1F8C8-80D1F8CC 000000 0004+00 1/1 0/0 0/0 .rodata          @3767 */
+SECTION_RODATA static f32 const lit_3767 = 15.0f;
+COMPILER_STRIP_GATE(80D1F8C8, &lit_3767);
+
+/* 80D1F8CC-80D1F8D0 000004 0004+00 0/1 0/0 0/0 .rodata          @3768 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3768 = 30.0f;
+COMPILER_STRIP_GATE(80D1F8CC, &lit_3768);
+#pragma pop
+
+/* 80D1F8D0-80D1F8D4 000008 0004+00 0/1 0/0 0/0 .rodata          @3769 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3769 = 1.0f;
+COMPILER_STRIP_GATE(80D1F8D0, &lit_3769);
+#pragma pop
+
+/* 80D1F8D4-80D1F8D8 00000C 0004+00 0/1 0/0 0/0 .rodata          @3770 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3770 = 3.0f / 10.0f;
+COMPILER_STRIP_GATE(80D1F8D4, &lit_3770);
+#pragma pop
+
+/* 80D1F8D8-80D1F8E0 000010 0004+04 0/1 0/0 0/0 .rodata          @3771 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3771[1 + 1 /* padding */] = {
+    1.0f / 5.0f,
+    /* padding */
+    0.0f,
+};
+COMPILER_STRIP_GATE(80D1F8D8, &lit_3771);
+#pragma pop
+
+/* 80D1F8E0-80D1F8E8 000018 0008+00 0/1 0/0 0/0 .rodata          @3774 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3774[8] = {
+    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
+};
+COMPILER_STRIP_GATE(80D1F8E0, &lit_3774);
+#pragma pop
+
+/* 80D1F990-80D1F99C 000008 000C+00 1/1 0/0 0/0 .bss             @3618 */
 static u8 lit_3618[12];
 
-/* 80D1F99C-80D1F9AC 0010+00 s=2 e=0 z=0  None .bss       l_HIO */
+/* 80D1F99C-80D1F9AC 000014 0010+00 2/2 0/0 0/0 .bss             l_HIO */
 static u8 l_HIO[16];
 
-/* 80D1F49C-80D1F648 01AC+00 s=1 e=0 z=0  None .text      Execute__10daTreeSh_cFPPA3_A4_f */
+/* 80D1F49C-80D1F648 0004BC 01AC+00 1/0 0/0 0/0 .text            Execute__10daTreeSh_cFPPA3_A4_f */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -363,7 +359,7 @@ asm void daTreeSh_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 80D1F648-80D1F6EC 00A4+00 s=1 e=0 z=0  None .text      Draw__10daTreeSh_cFv */
+/* 80D1F648-80D1F6EC 000668 00A4+00 1/0 0/0 0/0 .text            Draw__10daTreeSh_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -373,7 +369,7 @@ asm void daTreeSh_c::Draw() {
 }
 #pragma pop
 
-/* 80D1F6EC-80D1F720 0034+00 s=1 e=0 z=0  None .text      Delete__10daTreeSh_cFv */
+/* 80D1F6EC-80D1F720 00070C 0034+00 1/0 0/0 0/0 .text            Delete__10daTreeSh_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -383,52 +379,54 @@ asm void daTreeSh_c::Delete() {
 }
 #pragma pop
 
-/* 80D1F720-80D1F7AC 008C+00 s=1 e=0 z=0  None .text      daTreeSh_create1st__FP10daTreeSh_c */
+/* 80D1F720-80D1F7AC 000740 008C+00 1/0 0/0 0/0 .text            daTreeSh_create1st__FP10daTreeSh_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTreeSh_create1st(daTreeSh_c* param_0) {
+static asm void daTreeSh_create1st(daTreeSh_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_treesh/d_a_obj_treesh/daTreeSh_create1st__FP10daTreeSh_c.s"
 }
 #pragma pop
 
-/* 80D1F7AC-80D1F7B0 0004+00 s=1 e=0 z=0  None .text      __ct__5csXyzFv */
+/* 80D1F7AC-80D1F7B0 0007CC 0004+00 1/1 0/0 0/0 .text            __ct__5csXyzFv */
 csXyz::csXyz() {
     /* empty function */
 }
 
-/* 80D1F7B0-80D1F7D0 0020+00 s=1 e=0 z=0  None .text      daTreeSh_MoveBGDelete__FP10daTreeSh_c */
+/* 80D1F7B0-80D1F7D0 0007D0 0020+00 1/0 0/0 0/0 .text daTreeSh_MoveBGDelete__FP10daTreeSh_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTreeSh_MoveBGDelete(daTreeSh_c* param_0) {
+static asm void daTreeSh_MoveBGDelete(daTreeSh_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_treesh/d_a_obj_treesh/daTreeSh_MoveBGDelete__FP10daTreeSh_c.s"
 }
 #pragma pop
 
-/* 80D1F7D0-80D1F7F0 0020+00 s=1 e=0 z=0  None .text      daTreeSh_MoveBGExecute__FP10daTreeSh_c */
+/* 80D1F7D0-80D1F7F0 0007F0 0020+00 1/0 0/0 0/0 .text daTreeSh_MoveBGExecute__FP10daTreeSh_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTreeSh_MoveBGExecute(daTreeSh_c* param_0) {
+static asm void daTreeSh_MoveBGExecute(daTreeSh_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_treesh/d_a_obj_treesh/daTreeSh_MoveBGExecute__FP10daTreeSh_c.s"
 }
 #pragma pop
 
-/* 80D1F7F0-80D1F81C 002C+00 s=1 e=0 z=0  None .text      daTreeSh_MoveBGDraw__FP10daTreeSh_c */
+/* 80D1F7F0-80D1F81C 000810 002C+00 1/0 0/0 0/0 .text            daTreeSh_MoveBGDraw__FP10daTreeSh_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTreeSh_MoveBGDraw(daTreeSh_c* param_0) {
+static asm void daTreeSh_MoveBGDraw(daTreeSh_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_treesh/d_a_obj_treesh/daTreeSh_MoveBGDraw__FP10daTreeSh_c.s"
 }
 #pragma pop
 
-/* 80D1F81C-80D1F878 005C+00 s=2 e=0 z=0  None .text      __dt__14daTreeSh_HIO_cFv */
+/* 80D1F81C-80D1F878 00083C 005C+00 2/1 0/0 0/0 .text            __dt__14daTreeSh_HIO_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -438,12 +436,24 @@ asm daTreeSh_HIO_c::~daTreeSh_HIO_c() {
 }
 #pragma pop
 
-/* 80D1F878-80D1F8B4 003C+00 s=0 e=1 z=0  None .text      __sinit_d_a_obj_treesh_cpp */
+/* 80D1F878-80D1F8B4 000898 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_treesh_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_a_obj_treesh_cpp() {
+asm void __sinit_d_a_obj_treesh_cpp() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_treesh/d_a_obj_treesh/__sinit_d_a_obj_treesh_cpp.s"
 }
+#pragma pop
+
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_80D1F878 = (void*)__sinit_d_a_obj_treesh_cpp;
+#pragma pop
+
+/* 80D1F8E8-80D1F8F1 000020 0009+00 1/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80D1F8E8 = "M_TreeSh";
 #pragma pop

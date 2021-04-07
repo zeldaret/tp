@@ -4,8 +4,8 @@ lbl_80ACC818:
 /* 80ACC820  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80ACC824  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80ACC828  7C 7F 1B 78 */	mr r31, r3
-/* 80ACC82C  3C 80 80 AD */	lis r4, lit_4679@ha
-/* 80ACC830  38 A4 07 24 */	addi r5, r4, lit_4679@l
+/* 80ACC82C  3C 80 80 AD */	lis r4, lit_4679@ha /* 0x80AD0724@ha */
+/* 80ACC830  38 A4 07 24 */	addi r5, r4, lit_4679@l /* 0x80AD0724@l */
 /* 80ACC834  80 85 00 00 */	lwz r4, 0(r5)
 /* 80ACC838  80 05 00 04 */	lwz r0, 4(r5)
 /* 80ACC83C  90 81 00 08 */	stw r4, 8(r1)
@@ -24,7 +24,7 @@ lbl_80ACC818:
 /* 80ACC870  48 00 00 38 */	b lbl_80ACC8A8
 lbl_80ACC874:
 /* 80ACC874  38 60 02 4D */	li r3, 0x24d
-/* 80ACC878  4B 68 02 34 */	b daNpcT_chkEvtBit__FUl
+/* 80ACC878  4B 68 02 35 */	bl daNpcT_chkEvtBit__FUl
 /* 80ACC87C  2C 03 00 00 */	cmpwi r3, 0
 /* 80ACC880  41 82 00 10 */	beq lbl_80ACC890
 /* 80ACC884  38 00 00 03 */	li r0, 3
@@ -35,7 +35,7 @@ lbl_80ACC890:
 /* 80ACC894  B0 1F 0E 30 */	sth r0, 0xe30(r31)
 lbl_80ACC898:
 /* 80ACC898  7F E3 FB 78 */	mr r3, r31
-/* 80ACC89C  4B 67 D9 88 */	b evtChange__8daNpcT_cFv
+/* 80ACC89C  4B 67 D9 89 */	bl evtChange__8daNpcT_cFv
 /* 80ACC8A0  38 60 00 01 */	li r3, 1
 /* 80ACC8A4  48 00 00 08 */	b lbl_80ACC8AC
 lbl_80ACC8A8:

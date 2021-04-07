@@ -1,8 +1,8 @@
 lbl_8069800C:
-/* 8069800C  3C 80 80 6A */	lis r4, lit_3788@ha
-/* 80698010  38 A4 9C B0 */	addi r5, r4, lit_3788@l
-/* 80698014  3C 80 80 6A */	lis r4, __vt__12daE_CR_HIO_c@ha
-/* 80698018  38 04 9E 74 */	addi r0, r4, __vt__12daE_CR_HIO_c@l
+/* 8069800C  3C 80 80 6A */	lis r4, lit_3788@ha /* 0x80699CB0@ha */
+/* 80698010  38 A4 9C B0 */	addi r5, r4, lit_3788@l /* 0x80699CB0@l */
+/* 80698014  3C 80 80 6A */	lis r4, __vt__12daE_CR_HIO_c@ha /* 0x80699E74@ha */
+/* 80698018  38 04 9E 74 */	addi r0, r4, __vt__12daE_CR_HIO_c@l /* 0x80699E74@l */
 /* 8069801C  90 03 00 00 */	stw r0, 0(r3)
 /* 80698020  38 00 FF FF */	li r0, -1
 /* 80698024  98 03 00 04 */	stb r0, 4(r3)

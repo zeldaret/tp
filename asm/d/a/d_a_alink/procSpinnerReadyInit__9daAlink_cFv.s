@@ -30,8 +30,8 @@ lbl_8010DCBC:
 /* 8010DCD0  48 05 0F E9 */	bl setData__16daPy_actorKeep_cFP10fopAc_ac_c
 /* 8010DCD4  7F C3 F3 78 */	mr r3, r30
 /* 8010DCD8  38 80 00 D7 */	li r4, 0xd7
-/* 8010DCDC  3C A0 80 39 */	lis r5, m__23daAlinkHIO_smallJump_c0@ha
-/* 8010DCE0  38 C5 E1 1C */	addi r6, r5, m__23daAlinkHIO_smallJump_c0@l
+/* 8010DCDC  3C A0 80 39 */	lis r5, m__23daAlinkHIO_smallJump_c0@ha /* 0x8038E11C@ha */
+/* 8010DCE0  38 C5 E1 1C */	addi r6, r5, m__23daAlinkHIO_smallJump_c0@l /* 0x8038E11C@l */
 /* 8010DCE4  C0 26 00 04 */	lfs f1, 4(r6)
 /* 8010DCE8  C0 42 93 44 */	lfs f2, lit_7977(r2)
 /* 8010DCEC  A8 A6 00 00 */	lha r5, 0(r6)
@@ -66,8 +66,8 @@ lbl_8010DCBC:
 /* 8010DD60  4B FB 35 7D */	bl deleteEquipItem__9daAlink_cFii
 /* 8010DD64  A8 1E 04 E6 */	lha r0, 0x4e6(r30)
 /* 8010DD68  B0 1E 04 DE */	sth r0, 0x4de(r30)
-/* 8010DD6C  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha
-/* 8010DD70  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)
+/* 8010DD6C  3C 60 80 42 */	lis r3, l_waitBaseAnime@ha /* 0x80425514@ha */
+/* 8010DD70  C4 03 55 14 */	lfsu f0, l_waitBaseAnime@l(r3)  /* 0x80425514@l */
 /* 8010DD74  D0 1E 35 88 */	stfs f0, 0x3588(r30)
 /* 8010DD78  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8010DD7C  D0 1E 35 8C */	stfs f0, 0x358c(r30)

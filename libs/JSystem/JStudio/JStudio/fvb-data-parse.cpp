@@ -53,7 +53,7 @@ parseVariableUInt_16_32_following__Q27JGadget6binaryFPCvPUlPUlPQ37JGadget6binary
 // Declarations:
 //
 
-/* 802850AC-80285114 0068+00 s=0 e=1 z=0  None .text
+/* 802850AC-80285114 27F9EC 0068+00 0/0 1/1 0/0 .text
  * getData__Q47JStudio3fvb4data17TParse_TParagraphCFPQ57JStudio3fvb4data17TParse_TParagraph5TData */
 #pragma push
 #pragma optimization_level 0

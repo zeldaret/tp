@@ -6,8 +6,8 @@ lbl_801B7434:
 /* 801B7444  48 1A AD 99 */	bl _savegpr_29
 /* 801B7448  3B C0 00 00 */	li r30, 0
 /* 801B744C  3B A0 00 00 */	li r29, 0
-/* 801B7450  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801B7454  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801B7450  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801B7454  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801B7458  3B E3 01 00 */	addi r31, r3, 0x100
 lbl_801B745C:
 /* 801B745C  7F E3 FB 78 */	mr r3, r31

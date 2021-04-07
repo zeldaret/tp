@@ -19,8 +19,8 @@ lbl_8014B3EC:
 /* 8014B430  C0 01 00 0C */	lfs f0, 0xc(r1)
 /* 8014B434  EC 00 08 28 */	fsubs f0, f0, f1
 /* 8014B438  D0 01 00 0C */	stfs f0, 0xc(r1)
-/* 8014B43C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8014B440  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8014B43C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8014B440  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8014B444  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 8014B448  80 03 05 74 */	lwz r0, 0x574(r3)
 /* 8014B44C  54 00 01 8D */	rlwinm. r0, r0, 0, 6, 6

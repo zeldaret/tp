@@ -32,7 +32,7 @@ extern "C" void combine__14JASSoundParamsFRC14JASSoundParamsRC14JASSoundParams()
 //
 
 /* ############################################################################################## */
-/* 80455760-80455764 0004+00 s=1 e=0 z=0  None .sdata2    @299 */
+/* 80455760-80455764 003D60 0004+00 1/1 0/0 0/0 .sdata2          @299 */
 SECTION_SDATA2 static u8 lit_299[4] = {
     0x00,
     0x00,
@@ -40,13 +40,13 @@ SECTION_SDATA2 static u8 lit_299[4] = {
     0x00,
 };
 
-/* 80455764-80455768 0004+00 s=1 e=0 z=0  None .sdata2    @300 */
+/* 80455764-80455768 003D64 0004+00 1/1 0/0 0/0 .sdata2          @300 */
 SECTION_SDATA2 static f32 lit_300 = 1.0f;
 
-/* 80455768-8045576C 0004+00 s=1 e=0 z=0  None .sdata2    @301 */
+/* 80455768-8045576C 003D68 0004+00 1/1 0/0 0/0 .sdata2          @301 */
 SECTION_SDATA2 static f32 lit_301 = 8.0f;
 
-/* 8029E3B0-8029E47C 00CC+00 s=0 e=2 z=0  None .text      clamp__14JASSoundParamsFv */
+/* 8029E3B0-8029E47C 298CF0 00CC+00 0/0 2/2 0/0 .text            clamp__14JASSoundParamsFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -57,10 +57,10 @@ asm void JASSoundParams::clamp() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 8045576C-80455770 0004+00 s=1 e=0 z=0  None .sdata2    @311 */
+/* 8045576C-80455770 003D6C 0004+00 1/1 0/0 0/0 .sdata2          @311 */
 SECTION_SDATA2 static f32 lit_311 = 0.5f;
 
-/* 8029E47C-8029E4D8 005C+00 s=0 e=2 z=0  None .text
+/* 8029E47C-8029E4D8 298DBC 005C+00 0/0 2/2 0/0 .text
  * combine__14JASSoundParamsFRC14JASSoundParamsRC14JASSoundParams */
 #pragma push
 #pragma optimization_level 0

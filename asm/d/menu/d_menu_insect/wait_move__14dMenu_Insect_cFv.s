@@ -8,8 +8,8 @@ lbl_801D8CCC:
 /* 801D8CE4  80 04 00 04 */	lwz r0, 4(r4)
 /* 801D8CE8  2C 00 00 01 */	cmpwi r0, 1
 /* 801D8CEC  40 82 01 00 */	bne lbl_801D8DEC
-/* 801D8CF0  3C 80 80 3E */	lis r4, m_cpadInfo__8mDoCPd_c@ha
-/* 801D8CF4  38 84 D2 E8 */	addi r4, r4, m_cpadInfo__8mDoCPd_c@l
+/* 801D8CF0  3C 80 80 3E */	lis r4, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801D8CF4  38 84 D2 E8 */	addi r4, r4, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801D8CF8  80 A4 00 34 */	lwz r5, 0x34(r4)
 /* 801D8CFC  54 A4 05 AD */	rlwinm. r4, r5, 0, 0x16, 0x16
 /* 801D8D00  40 82 00 10 */	bne lbl_801D8D10
@@ -23,8 +23,8 @@ lbl_801D8D10:
 /* 801D8D1C  28 00 00 01 */	cmplwi r0, 1
 /* 801D8D20  40 82 00 14 */	bne lbl_801D8D34
 /* 801D8D24  38 00 00 00 */	li r0, 0
-/* 801D8D28  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 801D8D2C  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 801D8D28  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 801D8D2C  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 801D8D30  98 03 00 C3 */	stb r0, 0xc3(r3)
 lbl_801D8D34:
 /* 801D8D34  38 00 00 03 */	li r0, 3

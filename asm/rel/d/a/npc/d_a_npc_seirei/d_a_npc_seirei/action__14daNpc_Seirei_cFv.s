@@ -5,18 +5,18 @@ lbl_80AD621C:
 /* 80AD6228  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80AD622C  7C 7F 1B 78 */	mr r31, r3
 /* 80AD6230  38 7F 0E 48 */	addi r3, r31, 0xe48
-/* 80AD6234  4B 88 BD E4 */	b __ptmf_test
+/* 80AD6234  4B 88 BD E5 */	bl __ptmf_test
 /* 80AD6238  2C 03 00 00 */	cmpwi r3, 0
 /* 80AD623C  41 82 00 54 */	beq lbl_80AD6290
 /* 80AD6240  38 7F 0E 54 */	addi r3, r31, 0xe54
 /* 80AD6244  38 9F 0E 48 */	addi r4, r31, 0xe48
-/* 80AD6248  4B 88 BE 00 */	b __ptmf_cmpr
+/* 80AD6248  4B 88 BE 01 */	bl __ptmf_cmpr
 /* 80AD624C  2C 03 00 00 */	cmpwi r3, 0
 /* 80AD6250  40 82 00 1C */	bne lbl_80AD626C
 /* 80AD6254  7F E3 FB 78 */	mr r3, r31
 /* 80AD6258  38 80 00 00 */	li r4, 0
 /* 80AD625C  39 9F 0E 54 */	addi r12, r31, 0xe54
-/* 80AD6260  4B 88 BE 24 */	b __ptmf_scall
+/* 80AD6260  4B 88 BE 25 */	bl __ptmf_scall
 /* 80AD6264  60 00 00 00 */	nop 
 /* 80AD6268  48 00 00 28 */	b lbl_80AD6290
 lbl_80AD626C:

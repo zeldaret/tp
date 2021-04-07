@@ -6,8 +6,8 @@ lbl_8025FAC4:
 /* 8025FAD4  93 C1 00 08 */	stw r30, 8(r1)
 /* 8025FAD8  7C 7E 1B 78 */	mr r30, r3
 /* 8025FADC  7C 9F 23 78 */	mr r31, r4
-/* 8025FAE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025FAE4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8025FAE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025FAE4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025FAE8  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8025FAEC  4B DC D0 D9 */	bl setTimerType__14dComIfG_play_cFUc
 /* 8025FAF0  80 7E 00 18 */	lwz r3, 0x18(r30)

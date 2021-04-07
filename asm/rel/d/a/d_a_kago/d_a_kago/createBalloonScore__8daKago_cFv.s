@@ -18,7 +18,7 @@ lbl_8084AF40:
 /* 8084AF80  38 E0 00 00 */	li r7, 0
 /* 8084AF84  39 00 00 00 */	li r8, 0
 /* 8084AF88  39 20 FF FF */	li r9, -1
-/* 8084AF8C  4B 7C EE 0C */	b fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
+/* 8084AF8C  4B 7C EE 0D */	bl fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc
 /* 8084AF90  90 7F 06 1C */	stw r3, 0x61c(r31)
 /* 8084AF94  38 00 00 01 */	li r0, 1
 /* 8084AF98  98 1F 06 E9 */	stb r0, 0x6e9(r31)

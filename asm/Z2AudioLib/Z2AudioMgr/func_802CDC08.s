@@ -8,11 +8,11 @@ lbl_802CDC08:
 /* 802CDC20  7C 98 23 78 */	mr r24, r4
 /* 802CDC24  3B 20 00 00 */	li r25, 0
 /* 802CDC28  3B C0 00 00 */	li r30, 0
-/* 802CDC2C  3C 60 80 3D */	lis r3, __files@ha
-/* 802CDC30  38 63 29 B0 */	addi r3, r3, __files@l
+/* 802CDC2C  3C 60 80 3D */	lis r3, __files@ha /* 0x803D29B0@ha */
+/* 802CDC30  38 63 29 B0 */	addi r3, r3, __files@l /* 0x803D29B0@l */
 /* 802CDC34  3B 63 00 A0 */	addi r27, r3, 0xa0
-/* 802CDC38  3C 60 80 3A */	lis r3, Z2AudioMgr__stringBase0@ha
-/* 802CDC3C  3B 83 CA 58 */	addi r28, r3, Z2AudioMgr__stringBase0@l
+/* 802CDC38  3C 60 80 3A */	lis r3, Z2AudioMgr__stringBase0@ha /* 0x8039CA58@ha */
+/* 802CDC3C  3B 83 CA 58 */	addi r28, r3, Z2AudioMgr__stringBase0@l /* 0x8039CA58@l */
 /* 802CDC40  3B A0 00 01 */	li r29, 1
 /* 802CDC44  48 00 00 80 */	b lbl_802CDCC4
 lbl_802CDC48:
@@ -35,8 +35,8 @@ lbl_802CDC64:
 /* 802CDC84  28 19 00 01 */	cmplwi r25, 1
 /* 802CDC88  41 80 00 20 */	blt lbl_802CDCA8
 /* 802CDC8C  7F 63 DB 78 */	mr r3, r27
-/* 802CDC90  3C 80 80 3A */	lis r4, Z2AudioMgr__stringBase0@ha
-/* 802CDC94  38 84 CA 58 */	addi r4, r4, Z2AudioMgr__stringBase0@l
+/* 802CDC90  3C 80 80 3A */	lis r4, Z2AudioMgr__stringBase0@ha /* 0x8039CA58@ha */
+/* 802CDC94  38 84 CA 58 */	addi r4, r4, Z2AudioMgr__stringBase0@l /* 0x8039CA58@l */
 /* 802CDC98  38 84 00 10 */	addi r4, r4, 0x10
 /* 802CDC9C  4C C6 31 82 */	crclr 6
 /* 802CDCA0  48 09 8A FD */	bl fprintf

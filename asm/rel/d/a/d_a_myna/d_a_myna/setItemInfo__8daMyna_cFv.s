@@ -3,10 +3,10 @@ lbl_80949408:
 /* 8094940C  7C 08 02 A6 */	mflr r0
 /* 80949410  90 01 00 34 */	stw r0, 0x34(r1)
 /* 80949414  39 61 00 30 */	addi r11, r1, 0x30
-/* 80949418  4B A1 8D B0 */	b _savegpr_24
+/* 80949418  4B A1 8D B1 */	bl _savegpr_24
 /* 8094941C  7C 7E 1B 78 */	mr r30, r3
-/* 80949420  3C 60 80 95 */	lis r3, lit_1109@ha
-/* 80949424  3B E3 B9 F0 */	addi r31, r3, lit_1109@l
+/* 80949420  3C 60 80 95 */	lis r3, lit_1109@ha /* 0x8094B9F0@ha */
+/* 80949424  3B E3 B9 F0 */	addi r31, r3, lit_1109@l /* 0x8094B9F0@l */
 /* 80949428  80 7F 00 D4 */	lwz r3, 0xd4(r31)
 /* 8094942C  2C 03 FF FF */	cmpwi r3, -1
 /* 80949430  41 82 00 28 */	beq lbl_80949458
@@ -15,18 +15,18 @@ lbl_80949408:
 /* 8094943C  40 81 00 1C */	ble lbl_80949458
 /* 80949440  38 00 00 00 */	li r0, 0
 /* 80949444  90 1F 00 D4 */	stw r0, 0xd4(r31)
-/* 80949448  3C 60 80 94 */	lis r3, daMyna_searchSSItem__FPvPv@ha
-/* 8094944C  38 63 5C D8 */	addi r3, r3, daMyna_searchSSItem__FPvPv@l
+/* 80949448  3C 60 80 94 */	lis r3, daMyna_searchSSItem__FPvPv@ha /* 0x80945CD8@ha */
+/* 8094944C  38 63 5C D8 */	addi r3, r3, daMyna_searchSSItem__FPvPv@l /* 0x80945CD8@l */
 /* 80949450  7F C4 F3 78 */	mr r4, r30
-/* 80949454  4B 6D 7E E4 */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80949454  4B 6D 7E E5 */	bl fpcEx_Search__FPFPvPv_PvPv
 lbl_80949458:
 /* 80949458  80 1F 00 D8 */	lwz r0, 0xd8(r31)
 /* 8094945C  28 00 00 00 */	cmplwi r0, 0
 /* 80949460  40 82 00 14 */	bne lbl_80949474
-/* 80949464  3C 60 80 94 */	lis r3, daMyna_searchEvtTag__FPvPv@ha
-/* 80949468  38 63 5E 0C */	addi r3, r3, daMyna_searchEvtTag__FPvPv@l
+/* 80949464  3C 60 80 94 */	lis r3, daMyna_searchEvtTag__FPvPv@ha /* 0x80945E0C@ha */
+/* 80949468  38 63 5E 0C */	addi r3, r3, daMyna_searchEvtTag__FPvPv@l /* 0x80945E0C@l */
 /* 8094946C  7F C4 F3 78 */	mr r4, r30
-/* 80949470  4B 6D 7E C8 */	b fpcEx_Search__FPFPvPv_PvPv
+/* 80949470  4B 6D 7E C9 */	bl fpcEx_Search__FPFPvPv_PvPv
 lbl_80949474:
 /* 80949474  80 7F 00 D4 */	lwz r3, 0xd4(r31)
 /* 80949478  2C 03 FF FF */	cmpwi r3, -1
@@ -82,7 +82,7 @@ lbl_80949518:
 /* 80949528  90 1F 00 D4 */	stw r0, 0xd4(r31)
 lbl_8094952C:
 /* 8094952C  39 61 00 30 */	addi r11, r1, 0x30
-/* 80949530  4B A1 8C E4 */	b _restgpr_24
+/* 80949530  4B A1 8C E5 */	bl _restgpr_24
 /* 80949534  80 01 00 34 */	lwz r0, 0x34(r1)
 /* 80949538  7C 08 03 A6 */	mtlr r0
 /* 8094953C  38 21 00 30 */	addi r1, r1, 0x30

@@ -1,8 +1,8 @@
 lbl_8075856C:
-/* 8075856C  3C 80 80 76 */	lis r4, lit_3906@ha
-/* 80758570  38 A4 14 FC */	addi r5, r4, lit_3906@l
-/* 80758574  3C 80 80 76 */	lis r4, __vt__12daE_PZ_HIO_c@ha
-/* 80758578  38 04 1D A8 */	addi r0, r4, __vt__12daE_PZ_HIO_c@l
+/* 8075856C  3C 80 80 76 */	lis r4, lit_3906@ha /* 0x807614FC@ha */
+/* 80758570  38 A4 14 FC */	addi r5, r4, lit_3906@l /* 0x807614FC@l */
+/* 80758574  3C 80 80 76 */	lis r4, __vt__12daE_PZ_HIO_c@ha /* 0x80761DA8@ha */
+/* 80758578  38 04 1D A8 */	addi r0, r4, __vt__12daE_PZ_HIO_c@l /* 0x80761DA8@l */
 /* 8075857C  90 03 00 00 */	stw r0, 0(r3)
 /* 80758580  38 00 FF FF */	li r0, -1
 /* 80758584  98 03 00 04 */	stb r0, 4(r3)

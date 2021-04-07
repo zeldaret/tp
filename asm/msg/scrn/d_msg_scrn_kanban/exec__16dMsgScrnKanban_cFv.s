@@ -44,8 +44,8 @@ lbl_80245598:
 /* 802455CC  7D 89 03 A6 */	mtctr r12
 /* 802455D0  4E 80 04 21 */	bctrl 
 lbl_802455D4:
-/* 802455D4  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha
-/* 802455D8  38 83 02 8C */	addi r4, r3, g_MsgObject_HIO_c@l
+/* 802455D4  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 802455D8  38 83 02 8C */	addi r4, r3, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 802455DC  C0 24 00 AC */	lfs f1, 0xac(r4)
 /* 802455E0  80 7F 00 08 */	lwz r3, 8(r31)
 /* 802455E4  80 63 00 04 */	lwz r3, 4(r3)

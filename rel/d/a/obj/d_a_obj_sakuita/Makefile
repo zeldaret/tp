@@ -3,17 +3,15 @@
 #
 
 M611_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita.plf
+M611_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita.lcf
+M611_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita.map
 
 M611_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_sakuita/executor.cpp \
-	rel/d/a/obj/d_a_obj_sakuita/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_sakuita/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_sakuita/d_a_obj_sakuita.cpp \
 
 M611_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita/d_a_obj_sakuita.o \
 
 M611_LIBS := \
@@ -29,14 +27,21 @@ M611_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M611_LDSCRIPT) \
+	-unused -map $(M611_MAP) \
+	-w off \
 
 $(M611_TARGET): $(M611_O_FILES) $(M611_LIBS)
+	@echo [611] creating $(M611_TARGET)
 	@echo $(M611_LIBS) $(M611_O_FILES) > build/M611_ofiles
-	$(LD) -partial $(M611_LDFLAGS) -o $(M611_TARGET) @build/M611_ofiles
+	@python3 tools/lcf.py rel 611 --output $(M611_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M611_LDFLAGS) -o $(M611_TARGET) @build/M611_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_sakuita/%.o: rel/d/a/obj/d_a_obj_sakuita/%.cpp
+	@echo [611] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M611_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M611_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

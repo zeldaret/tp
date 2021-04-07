@@ -6,7 +6,7 @@ lbl_80BFC7D0:
 /* 80BFC7E0  93 C1 00 08 */	stw r30, 8(r1)
 /* 80BFC7E4  7C 7E 1B 78 */	mr r30, r3
 /* 80BFC7E8  7C 9F 23 78 */	mr r31, r4
-/* 80BFC7EC  4B 41 C4 F4 */	b fopAc_IsActor__FPv
+/* 80BFC7EC  4B 41 C4 F5 */	bl fopAc_IsActor__FPv
 /* 80BFC7F0  2C 03 00 00 */	cmpwi r3, 0
 /* 80BFC7F4  41 82 00 4C */	beq lbl_80BFC840
 /* 80BFC7F8  A8 1E 00 08 */	lha r0, 8(r30)
@@ -21,8 +21,8 @@ lbl_80BFC7D0:
 /* 80BFC81C  EC 22 00 B2 */	fmuls f1, f2, f2
 /* 80BFC820  EC 00 00 32 */	fmuls f0, f0, f0
 /* 80BFC824  EC 21 00 2A */	fadds f1, f1, f0
-/* 80BFC828  3C 60 80 C0 */	lis r3, lit_4229@ha
-/* 80BFC82C  C0 03 D3 A8 */	lfs f0, lit_4229@l(r3)
+/* 80BFC828  3C 60 80 C0 */	lis r3, lit_4229@ha /* 0x80BFD3A8@ha */
+/* 80BFC82C  C0 03 D3 A8 */	lfs f0, lit_4229@l(r3)  /* 0x80BFD3A8@l */
 /* 80BFC830  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80BFC834  40 80 00 0C */	bge lbl_80BFC840
 /* 80BFC838  7F C3 F3 78 */	mr r3, r30

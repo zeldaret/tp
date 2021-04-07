@@ -4,7 +4,7 @@ lbl_80CF5C7C:
 /* 80CF5C84  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80CF5C88  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CF5C8C  7C 7F 1B 78 */	mr r31, r3
-/* 80CF5C90  4B 32 30 50 */	b fopAc_IsActor__FPv
+/* 80CF5C90  4B 32 30 51 */	bl fopAc_IsActor__FPv
 /* 80CF5C94  2C 03 00 00 */	cmpwi r3, 0
 /* 80CF5C98  41 82 00 24 */	beq lbl_80CF5CBC
 /* 80CF5C9C  A8 1F 00 08 */	lha r0, 8(r31)

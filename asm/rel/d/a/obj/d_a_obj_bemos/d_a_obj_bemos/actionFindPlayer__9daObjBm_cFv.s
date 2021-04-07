@@ -17,10 +17,10 @@ lbl_80BB1848:
 /* 80BB184C  40 80 00 FC */	bge lbl_80BB1948
 /* 80BB1850  48 00 00 C8 */	b lbl_80BB1918
 lbl_80BB1854:
-/* 80BB1854  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80BB1858  3B C4 61 C0 */	addi r30, r4, g_dComIfG_gameInfo@l
+/* 80BB1854  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80BB1858  3B C4 61 C0 */	addi r30, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80BB185C  80 9E 5D AC */	lwz r4, 0x5dac(r30)
-/* 80BB1860  4B 46 8E B0 */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 80BB1860  4B 46 8E B1 */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 80BB1864  A8 1F 04 B6 */	lha r0, 0x4b6(r31)
 /* 80BB1868  7C 00 18 50 */	subf r0, r0, r3
 /* 80BB186C  B0 1F 0F 98 */	sth r0, 0xf98(r31)
@@ -42,13 +42,13 @@ lbl_80BB1854:
 /* 80BB18AC  B0 1F 0F A8 */	sth r0, 0xfa8(r31)
 /* 80BB18B0  7F E3 FB 78 */	mr r3, r31
 /* 80BB18B4  80 9E 5D AC */	lwz r4, 0x5dac(r30)
-/* 80BB18B8  4B 46 8E 58 */	b fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 80BB18B8  4B 46 8E 59 */	bl fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 80BB18BC  A8 9F 04 B6 */	lha r4, 0x4b6(r31)
 /* 80BB18C0  A8 1F 0F 96 */	lha r0, 0xf96(r31)
 /* 80BB18C4  7C 00 18 50 */	subf r0, r0, r3
 /* 80BB18C8  7C 04 00 50 */	subf r0, r4, r0
 /* 80BB18CC  7C 03 07 34 */	extsh r3, r0
-/* 80BB18D0  4B 7B 38 00 */	b abs
+/* 80BB18D0  4B 7B 38 01 */	bl abs
 /* 80BB18D4  7C 60 07 34 */	extsh r0, r3
 /* 80BB18D8  2C 00 07 D0 */	cmpwi r0, 0x7d0
 /* 80BB18DC  40 80 00 6C */	bge lbl_80BB1948
@@ -61,8 +61,8 @@ lbl_80BB18EC:
 /* 80BB18F4  38 00 00 00 */	li r0, 0
 /* 80BB18F8  B0 1F 0F AC */	sth r0, 0xfac(r31)
 /* 80BB18FC  B0 1F 0F AA */	sth r0, 0xfaa(r31)
-/* 80BB1900  3C 60 80 BB */	lis r3, lit_4516@ha
-/* 80BB1904  C0 03 38 48 */	lfs f0, lit_4516@l(r3)
+/* 80BB1900  3C 60 80 BB */	lis r3, lit_4516@ha /* 0x80BB3848@ha */
+/* 80BB1904  C0 03 38 48 */	lfs f0, lit_4516@l(r3)  /* 0x80BB3848@l */
 /* 80BB1908  D0 1F 10 00 */	stfs f0, 0x1000(r31)
 /* 80BB190C  38 00 00 02 */	li r0, 2
 /* 80BB1910  98 1F 0F EA */	stb r0, 0xfea(r31)
@@ -73,8 +73,8 @@ lbl_80BB1918:
 /* 80BB1920  38 00 00 00 */	li r0, 0
 /* 80BB1924  B0 1F 0F AC */	sth r0, 0xfac(r31)
 /* 80BB1928  B0 1F 0F AA */	sth r0, 0xfaa(r31)
-/* 80BB192C  3C 80 80 BB */	lis r4, lit_4250@ha
-/* 80BB1930  C0 24 38 30 */	lfs f1, lit_4250@l(r4)
+/* 80BB192C  3C 80 80 BB */	lis r4, lit_4250@ha /* 0x80BB3830@ha */
+/* 80BB1930  C0 24 38 30 */	lfs f1, lit_4250@l(r4)  /* 0x80BB3830@l */
 /* 80BB1934  C0 1F 10 00 */	lfs f0, 0x1000(r31)
 /* 80BB1938  FC 01 00 00 */	fcmpu cr0, f1, f0
 /* 80BB193C  40 82 00 0C */	bne lbl_80BB1948

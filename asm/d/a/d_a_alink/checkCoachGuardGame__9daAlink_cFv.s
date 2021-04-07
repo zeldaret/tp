@@ -7,8 +7,8 @@ lbl_800BE26C:
 /* 800BE280  80 03 05 78 */	lwz r0, 0x578(r3)
 /* 800BE284  54 00 01 D1 */	rlwinm. r0, r0, 0, 7, 8
 /* 800BE288  40 82 00 20 */	bne lbl_800BE2A8
-/* 800BE28C  3C 60 80 0F */	lis r3, daAlink_searchCoach__FP10fopAc_ac_cPv@ha
-/* 800BE290  38 63 C7 58 */	addi r3, r3, daAlink_searchCoach__FP10fopAc_ac_cPv@l
+/* 800BE28C  3C 60 80 0F */	lis r3, daAlink_searchCoach__FP10fopAc_ac_cPv@ha /* 0x800EC758@ha */
+/* 800BE290  38 63 C7 58 */	addi r3, r3, daAlink_searchCoach__FP10fopAc_ac_cPv@l /* 0x800EC758@l */
 /* 800BE294  38 80 00 00 */	li r4, 0
 /* 800BE298  4B F5 B5 61 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 800BE29C  28 03 00 00 */	cmplwi r3, 0

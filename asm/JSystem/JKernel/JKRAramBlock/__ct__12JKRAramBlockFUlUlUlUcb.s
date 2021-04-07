@@ -10,8 +10,8 @@ lbl_802D3304:
 /* 802D3324  7C DD 33 78 */	mr r29, r6
 /* 802D3328  7C FE 3B 78 */	mr r30, r7
 /* 802D332C  7D 1F 43 78 */	mr r31, r8
-/* 802D3330  3C 60 80 3D */	lis r3, __vt__12JKRAramBlock@ha
-/* 802D3334  38 03 C1 78 */	addi r0, r3, __vt__12JKRAramBlock@l
+/* 802D3330  3C 60 80 3D */	lis r3, __vt__12JKRAramBlock@ha /* 0x803CC178@ha */
+/* 802D3334  38 03 C1 78 */	addi r0, r3, __vt__12JKRAramBlock@l /* 0x803CC178@l */
 /* 802D3338  90 1A 00 00 */	stw r0, 0(r26)
 /* 802D333C  38 7A 00 04 */	addi r3, r26, 4
 /* 802D3340  7F 44 D3 78 */	mr r4, r26

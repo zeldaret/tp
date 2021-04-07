@@ -10,8 +10,8 @@ lbl_8021901C:
 /* 8021903C  FC 00 08 00 */	fcmpu cr0, f0, f1
 /* 80219040  41 82 00 54 */	beq lbl_80219094
 /* 80219044  80 7F 02 F8 */	lwz r3, 0x2f8(r31)
-/* 80219048  3C 80 80 43 */	lis r4, g_drawHIO@ha
-/* 8021904C  38 84 EB C8 */	addi r4, r4, g_drawHIO@l
+/* 80219048  3C 80 80 43 */	lis r4, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 8021904C  38 84 EB C8 */	addi r4, r4, g_drawHIO@l /* 0x8042EBC8@l */
 /* 80219050  C0 24 00 18 */	lfs f1, 0x18(r4)
 /* 80219054  C0 04 00 84 */	lfs f0, 0x84(r4)
 /* 80219058  EC 21 00 32 */	fmuls f1, f1, f0

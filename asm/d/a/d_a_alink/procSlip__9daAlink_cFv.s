@@ -6,8 +6,8 @@ lbl_800C5CA4:
 /* 800C5CB4  7C 7F 1B 78 */	mr r31, r3
 /* 800C5CB8  38 7F 33 98 */	addi r3, r31, 0x3398
 /* 800C5CBC  C0 22 92 C0 */	lfs f1, lit_6108(r2)
-/* 800C5CC0  3C 80 80 39 */	lis r4, m__18daAlinkHIO_move_c0@ha
-/* 800C5CC4  38 84 D6 BC */	addi r4, r4, m__18daAlinkHIO_move_c0@l
+/* 800C5CC0  3C 80 80 39 */	lis r4, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 800C5CC4  38 84 D6 BC */	addi r4, r4, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 800C5CC8  C0 44 00 44 */	lfs f2, 0x44(r4)
 /* 800C5CCC  48 1A AA 75 */	bl cLib_chaseF__FPfff
 /* 800C5CD0  7F E3 FB 78 */	mr r3, r31
@@ -76,8 +76,8 @@ lbl_800C5DA0:
 /* 800C5DB8  C0 02 93 D8 */	lfs f0, lit_11470(r2)
 /* 800C5DBC  EC 41 00 2A */	fadds f2, f1, f0
 /* 800C5DC0  D0 41 00 18 */	stfs f2, 0x18(r1)
-/* 800C5DC4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800C5DC8  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l
+/* 800C5DC4  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800C5DC8  38 83 9A 20 */	addi r4, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800C5DCC  A8 1F 04 DE */	lha r0, 0x4de(r31)
 /* 800C5DD0  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 800C5DD4  7C 64 02 14 */	add r3, r4, r0

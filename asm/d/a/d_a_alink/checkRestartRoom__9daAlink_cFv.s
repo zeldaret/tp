@@ -43,8 +43,8 @@ lbl_800BE46C:
 /* 800BE480  C0 3D 33 B4 */	lfs f1, 0x33b4(r29)
 /* 800BE484  C0 1D 04 D4 */	lfs f0, 0x4d4(r29)
 /* 800BE488  EC 21 00 28 */	fsubs f1, f1, f0
-/* 800BE48C  3C 60 80 39 */	lis r3, m__18daAlinkHIO_swim_c0@ha
-/* 800BE490  38 63 ED 2C */	addi r3, r3, m__18daAlinkHIO_swim_c0@l
+/* 800BE48C  3C 60 80 39 */	lis r3, m__18daAlinkHIO_swim_c0@ha /* 0x8038ED2C@ha */
+/* 800BE490  38 63 ED 2C */	addi r3, r3, m__18daAlinkHIO_swim_c0@l /* 0x8038ED2C@l */
 /* 800BE494  C0 03 00 60 */	lfs f0, 0x60(r3)
 /* 800BE498  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800BE49C  40 81 00 34 */	ble lbl_800BE4D0
@@ -52,8 +52,8 @@ lbl_800BE4A0:
 /* 800BE4A0  88 1D 04 E2 */	lbz r0, 0x4e2(r29)
 /* 800BE4A4  7C 00 07 75 */	extsb. r0, r0
 /* 800BE4A8  40 82 00 28 */	bne lbl_800BE4D0
-/* 800BE4AC  3C 60 80 39 */	lis r3, d_a_d_a_alink__stringBase0@ha
-/* 800BE4B0  38 63 20 94 */	addi r3, r3, d_a_d_a_alink__stringBase0@l
+/* 800BE4AC  3C 60 80 39 */	lis r3, d_a_d_a_alink__stringBase0@ha /* 0x80392094@ha */
+/* 800BE4B0  38 63 20 94 */	addi r3, r3, d_a_d_a_alink__stringBase0@l /* 0x80392094@l */
 /* 800BE4B4  38 63 05 26 */	addi r3, r3, 0x526
 /* 800BE4B8  4B FD F5 A9 */	bl checkStageName__9daAlink_cFPCc
 /* 800BE4BC  54 60 06 3F */	clrlwi. r0, r3, 0x18
@@ -93,8 +93,8 @@ lbl_800BE534:
 /* 800BE538  C0 1D 04 D4 */	lfs f0, 0x4d4(r29)
 /* 800BE53C  EF E1 00 28 */	fsubs f31, f1, f0
 lbl_800BE540:
-/* 800BE540  3C 60 80 39 */	lis r3, d_a_d_a_alink__stringBase0@ha
-/* 800BE544  38 63 20 94 */	addi r3, r3, d_a_d_a_alink__stringBase0@l
+/* 800BE540  3C 60 80 39 */	lis r3, d_a_d_a_alink__stringBase0@ha /* 0x80392094@ha */
+/* 800BE544  38 63 20 94 */	addi r3, r3, d_a_d_a_alink__stringBase0@l /* 0x80392094@l */
 /* 800BE548  38 63 05 26 */	addi r3, r3, 0x526
 /* 800BE54C  4B FD F5 15 */	bl checkStageName__9daAlink_cFPCc
 /* 800BE550  54 60 06 3F */	clrlwi. r0, r3, 0x18
@@ -178,8 +178,8 @@ lbl_800BE64C:
 /* 800BE660  3B C0 FF FF */	li r30, -1
 /* 800BE664  48 00 00 24 */	b lbl_800BE688
 lbl_800BE668:
-/* 800BE668  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800BE66C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800BE668  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800BE66C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800BE670  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 800BE674  38 9D 1A 60 */	addi r4, r29, 0x1a60
 /* 800BE678  4B FB 65 21 */	bl GetExitId__4dBgSFRC13cBgS_PolyInfo
@@ -219,8 +219,8 @@ lbl_800BE6E8:
 /* 800BE6F0  80 1D 05 70 */	lwz r0, 0x570(r29)
 /* 800BE6F4  54 00 04 63 */	rlwinm. r0, r0, 0, 0x11, 0x11
 /* 800BE6F8  40 82 01 48 */	bne lbl_800BE840
-/* 800BE6FC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800BE700  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800BE6FC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800BE700  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800BE704  38 63 4E C8 */	addi r3, r3, 0x4ec8
 /* 800BE708  7F A4 EB 78 */	mr r4, r29
 /* 800BE70C  38 A0 00 00 */	li r5, 0
@@ -352,8 +352,8 @@ lbl_800BE8C4:
 /* 800BE8E4  2C 03 00 00 */	cmpwi r3, 0
 /* 800BE8E8  41 82 00 24 */	beq lbl_800BE90C
 /* 800BE8EC  C0 5D 33 B4 */	lfs f2, 0x33b4(r29)
-/* 800BE8F0  3C 60 80 39 */	lis r3, m__19daAlinkHIO_basic_c0@ha
-/* 800BE8F4  38 63 D6 64 */	addi r3, r3, m__19daAlinkHIO_basic_c0@l
+/* 800BE8F0  3C 60 80 39 */	lis r3, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 800BE8F4  38 63 D6 64 */	addi r3, r3, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 800BE8F8  C0 23 00 38 */	lfs f1, 0x38(r3)
 /* 800BE8FC  C0 1D 1A 08 */	lfs f0, 0x1a08(r29)
 /* 800BE900  EC 01 00 2A */	fadds f0, f1, f0
@@ -374,8 +374,8 @@ lbl_800BE90C:
 /* 800BE938  54 00 06 73 */	rlwinm. r0, r0, 0, 0x19, 0x19
 /* 800BE93C  41 82 00 74 */	beq lbl_800BE9B0
 /* 800BE940  C0 3D 33 D8 */	lfs f1, 0x33d8(r29)
-/* 800BE944  3C 60 80 39 */	lis r3, m__19daAlinkHIO_basic_c0@ha
-/* 800BE948  38 63 D6 64 */	addi r3, r3, m__19daAlinkHIO_basic_c0@l
+/* 800BE944  3C 60 80 39 */	lis r3, m__19daAlinkHIO_basic_c0@ha /* 0x8038D664@ha */
+/* 800BE948  38 63 D6 64 */	addi r3, r3, m__19daAlinkHIO_basic_c0@l /* 0x8038D664@l */
 /* 800BE94C  C0 03 00 38 */	lfs f0, 0x38(r3)
 /* 800BE950  EC 01 00 2A */	fadds f0, f1, f0
 /* 800BE954  FC 02 00 40 */	fcmpo cr0, f2, f0

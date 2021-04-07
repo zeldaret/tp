@@ -5,22 +5,22 @@ lbl_80A76A20:
 /* 80A76A2C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80A76A30  93 C1 00 08 */	stw r30, 8(r1)
 /* 80A76A34  7C 7E 1B 78 */	mr r30, r3
-/* 80A76A38  3C 80 80 A8 */	lis r4, m__17daNpc_Moi_Param_c@ha
-/* 80A76A3C  3B E4 AE F0 */	addi r31, r4, m__17daNpc_Moi_Param_c@l
+/* 80A76A38  3C 80 80 A8 */	lis r4, m__17daNpc_Moi_Param_c@ha /* 0x80A7AEF0@ha */
+/* 80A76A3C  3B E4 AE F0 */	addi r31, r4, m__17daNpc_Moi_Param_c@l /* 0x80A7AEF0@l */
 /* 80A76A40  38 00 00 00 */	li r0, 0
 /* 80A76A44  98 03 16 6A */	stb r0, 0x166a(r3)
 /* 80A76A48  88 03 15 C4 */	lbz r0, 0x15c4(r3)
 /* 80A76A4C  28 00 00 02 */	cmplwi r0, 2
 /* 80A76A50  40 82 00 94 */	bne lbl_80A76AE4
-/* 80A76A54  3C 80 80 A8 */	lis r4, l_motionAnmData@ha
-/* 80A76A58  38 A4 B4 58 */	addi r5, r4, l_motionAnmData@l
+/* 80A76A54  3C 80 80 A8 */	lis r4, l_motionAnmData@ha /* 0x80A7B458@ha */
+/* 80A76A58  38 A4 B4 58 */	addi r5, r4, l_motionAnmData@l /* 0x80A7B458@l */
 /* 80A76A5C  80 05 02 A8 */	lwz r0, 0x2a8(r5)
 /* 80A76A60  54 00 10 3A */	slwi r0, r0, 2
-/* 80A76A64  3C 80 80 A8 */	lis r4, l_resNameList@ha
-/* 80A76A68  38 84 B1 DC */	addi r4, r4, l_resNameList@l
+/* 80A76A64  3C 80 80 A8 */	lis r4, l_resNameList@ha /* 0x80A7B1DC@ha */
+/* 80A76A68  38 84 B1 DC */	addi r4, r4, l_resNameList@l /* 0x80A7B1DC@l */
 /* 80A76A6C  7C 84 00 2E */	lwzx r4, r4, r0
 /* 80A76A70  80 A5 02 A0 */	lwz r5, 0x2a0(r5)
-/* 80A76A74  4B 6D 15 E4 */	b getTrnsfrmAnmP__8daNpcT_cFPCci
+/* 80A76A74  4B 6D 15 E5 */	bl getTrnsfrmAnmP__8daNpcT_cFPCci
 /* 80A76A78  80 9E 05 78 */	lwz r4, 0x578(r30)
 /* 80A76A7C  80 04 00 08 */	lwz r0, 8(r4)
 /* 80A76A80  7C 03 00 40 */	cmplw r3, r0

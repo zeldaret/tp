@@ -16,8 +16,8 @@ lbl_801DEBD8:
 /* 801DEC10  38 03 FF FF */	addi r0, r3, -1
 /* 801DEC14  3B C0 00 00 */	li r30, 0
 /* 801DEC18  54 04 1D 78 */	rlwinm r4, r0, 3, 0x15, 0x1c
-/* 801DEC1C  3C 60 80 3C */	lis r3, letter_data__12dMenu_Letter@ha
-/* 801DEC20  38 03 F8 1C */	addi r0, r3, letter_data__12dMenu_Letter@l
+/* 801DEC1C  3C 60 80 3C */	lis r3, letter_data__12dMenu_Letter@ha /* 0x803BF81C@ha */
+/* 801DEC20  38 03 F8 1C */	addi r0, r3, letter_data__12dMenu_Letter@l /* 0x803BF81C@l */
 /* 801DEC24  7C 60 22 14 */	add r3, r0, r4
 /* 801DEC28  3B 83 00 04 */	addi r28, r3, 4
 lbl_801DEC2C:
@@ -49,8 +49,8 @@ lbl_801DEC44:
 /* 801DEC8C  3B FF 00 04 */	addi r31, r31, 4
 /* 801DEC90  41 80 FF 9C */	blt lbl_801DEC2C
 /* 801DEC94  38 61 00 10 */	addi r3, r1, 0x10
-/* 801DEC98  3C 80 80 39 */	lis r4, d_menu_d_menu_letter__stringBase0@ha
-/* 801DEC9C  38 84 6D C0 */	addi r4, r4, d_menu_d_menu_letter__stringBase0@l
+/* 801DEC98  3C 80 80 39 */	lis r4, d_menu_d_menu_letter__stringBase0@ha /* 0x80396DC0@ha */
+/* 801DEC9C  38 84 6D C0 */	addi r4, r4, d_menu_d_menu_letter__stringBase0@l /* 0x80396DC0@l */
 /* 801DECA0  38 84 00 17 */	addi r4, r4, 0x17
 /* 801DECA4  88 BD 03 E3 */	lbz r5, 0x3e3(r29)
 /* 801DECA8  88 DD 03 E2 */	lbz r6, 0x3e2(r29)

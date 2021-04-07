@@ -3,19 +3,20 @@
 #
 
 M453_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fw.plf
+M453_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fw.lcf
+M453_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fw.map
 
 M453_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_fw/executor.cpp \
-	rel/d/a/obj/d_a_obj_fw/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_fw/d_a_obj_fw.cpp \
 
 M453_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fw/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fw/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fw/d_a_obj_fw.o \
 
 M453_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fw/libRuntime.PPCEABI.H.a \
 
 M453_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M453_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M453_LDSCRIPT) \
+	-unused -map $(M453_MAP) \
+	-w off \
 
 $(M453_TARGET): $(M453_O_FILES) $(M453_LIBS)
+	@echo [453] creating $(M453_TARGET)
 	@echo $(M453_LIBS) $(M453_O_FILES) > build/M453_ofiles
-	$(LD) -partial $(M453_LDFLAGS) -o $(M453_TARGET) @build/M453_ofiles
+	@python3 tools/lcf.py rel 453 --output $(M453_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M453_LDFLAGS) -o $(M453_TARGET) @build/M453_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fw/%.o: rel/d/a/obj/d_a_obj_fw/%.cpp
+	@echo [453] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M453_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M453_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_fw/libs/Runtime.PPCEABI.H/Makefile
 

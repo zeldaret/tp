@@ -19,19 +19,19 @@ lbl_8098FF6C:
 /* 8098FF6C  38 60 00 01 */	li r3, 1
 /* 8098FF70  48 00 00 4C */	b lbl_8098FFBC
 lbl_8098FF74:
-/* 8098FF74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8098FF78  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8098FF74  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8098FF78  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8098FF7C  38 63 0F 38 */	addi r3, r3, 0xf38
-/* 8098FF80  4B 69 CC 5C */	b getTimerPtr__14dComIfG_play_cFv
+/* 8098FF80  4B 69 CC 5D */	bl getTimerPtr__14dComIfG_play_cFv
 /* 8098FF84  28 03 00 00 */	cmplwi r3, 0
 /* 8098FF88  41 82 00 30 */	beq lbl_8098FFB8
 /* 8098FF8C  38 60 00 06 */	li r3, 6
 /* 8098FF90  38 80 00 00 */	li r4, 0
-/* 8098FF94  4B 69 F5 98 */	b dComIfG_TimerStart__Fis
+/* 8098FF94  4B 69 F5 99 */	bl dComIfG_TimerStart__Fis
 /* 8098FF98  3B E0 00 01 */	li r31, 1
 /* 8098FF9C  48 00 00 1C */	b lbl_8098FFB8
 lbl_8098FFA0:
-/* 8098FFA0  4B 8D 12 50 */	b dTimer_isStart__Fv
+/* 8098FFA0  4B 8D 12 51 */	bl dTimer_isStart__Fv
 /* 8098FFA4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8098FFA8  41 82 00 10 */	beq lbl_8098FFB8
 /* 8098FFAC  3B E0 00 01 */	li r31, 1

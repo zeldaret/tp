@@ -36,9 +36,9 @@ struct dSv_memBit_c {
     /* 80034934 */ void isDungeonItem(int) const;
 };
 
-struct cXyz {};
-
 struct dKy_tevstr_c {};
+
+struct cXyz {};
 
 struct J3DModelData {
     /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
@@ -91,14 +91,6 @@ struct J3DFrameCtrl {
 // Forward References:
 //
 
-static void daObj_Lv3waterB_Draw(obj_lv3WaterB_class*);
-static void action(obj_lv3WaterB_class*);
-static void daObj_Lv3waterB_Execute(obj_lv3WaterB_class*);
-static bool daObj_Lv3waterB_IsDelete(obj_lv3WaterB_class*);
-static void daObj_Lv3waterB_Delete(obj_lv3WaterB_class*);
-static void useHeapInit(fopAc_ac_c*);
-static void daObj_Lv3waterB_Create(fopAc_ac_c*);
-
 extern "C" static void daObj_Lv3waterB_Draw__FP19obj_lv3WaterB_class();
 extern "C" static void action__FP19obj_lv3WaterB_class();
 extern "C" static void daObj_Lv3waterB_Execute__FP19obj_lv3WaterB_class();
@@ -107,22 +99,11 @@ extern "C" static void daObj_Lv3waterB_Delete__FP19obj_lv3WaterB_class();
 extern "C" static void useHeapInit__FP10fopAc_ac_c();
 extern "C" void __dt__12J3DFrameCtrlFv();
 extern "C" static void daObj_Lv3waterB_Create__FP10fopAc_ac_c();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_OBJ_LV3WATERB[12];
+extern "C" extern char const* const d_a_obj_lv3WaterB__stringBase0;
 
 //
 // External References:
 //
-
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dKy_custom_colset(u8, u8, f32);
-void cLib_addCalc2(f32*, f32, f32, f32);
-void* operator new(u32);
-void operator delete(void*);
 
 extern "C" void play__14mDoExt_baseAnmFv();
 extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
@@ -169,96 +150,110 @@ extern "C" extern u8 j3dSys[284];
 //
 
 /* ############################################################################################## */
-/* 80C5BD50-80C5BD54 0004+00 s=3 e=0 z=0  None .rodata    @3724 */
-SECTION_RODATA static u32 const lit_3724 = 0x3F800000;
+/* 80C5BD50-80C5BD54 000000 0004+00 3/3 0/0 0/0 .rodata          @3724 */
+SECTION_RODATA static f32 const lit_3724 = 1.0f;
+COMPILER_STRIP_GATE(80C5BD50, &lit_3724);
 
-/* 80C5BD54-80C5BD58 0004+00 s=1 e=0 z=0  None .rodata    @3725 */
+/* 80C5BD54-80C5BD58 000004 0004+00 0/1 0/0 0/0 .rodata          @3725 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u32 const lit_3725 = 0xBC75C28F;
+COMPILER_STRIP_GATE(80C5BD54, &lit_3725);
+#pragma pop
 
-/* 80C5BD58-80C5BD5C 0004+00 s=2 e=0 z=0  None .rodata    @3726 */
+/* 80C5BD58-80C5BD5C 000008 0004+00 0/2 0/0 0/0 .rodata          @3726 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_3726[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80C5BD58, &lit_3726);
+#pragma pop
 
-/* 80C5B578-80C5B71C 01A4+00 s=1 e=0 z=0  None .text daObj_Lv3waterB_Draw__FP19obj_lv3WaterB_class
- */
+/* 80C5B578-80C5B71C 000078 01A4+00 1/0 0/0 0/0 .text
+ * daObj_Lv3waterB_Draw__FP19obj_lv3WaterB_class                */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Lv3waterB_Draw(obj_lv3WaterB_class* param_0) {
+static asm void daObj_Lv3waterB_Draw(obj_lv3WaterB_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv3WaterB/d_a_obj_lv3WaterB/daObj_Lv3waterB_Draw__FP19obj_lv3WaterB_class.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C5BD5C-80C5BD60 0004+00 s=1 e=0 z=0  None .rodata    @3751 */
-SECTION_RODATA static u32 const lit_3751 = 0x457A0000;
+/* 80C5BD5C-80C5BD60 00000C 0004+00 0/1 0/0 0/0 .rodata          @3751 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3751 = 4000.0f;
+COMPILER_STRIP_GATE(80C5BD5C, &lit_3751);
+#pragma pop
 
-/* 80C5BD60-80C5BD64 0004+00 s=2 e=0 z=0  None .rodata    @3752 */
-SECTION_RODATA static u32 const lit_3752 = 0x43200000;
+/* 80C5BD60-80C5BD64 000010 0004+00 1/2 0/0 0/0 .rodata          @3752 */
+SECTION_RODATA static f32 const lit_3752 = 160.0f;
+COMPILER_STRIP_GATE(80C5BD60, &lit_3752);
 
-/* 80C5BD64-80C5BD68 0004+00 s=2 e=0 z=0  None .rodata    @3753 */
-SECTION_RODATA static u32 const lit_3753 = 0x4661C800;
+/* 80C5BD64-80C5BD68 000014 0004+00 1/2 0/0 0/0 .rodata          @3753 */
+SECTION_RODATA static f32 const lit_3753 = 14450.0f;
+COMPILER_STRIP_GATE(80C5BD64, &lit_3753);
 
-/* 80C5BD68-80C5BD6C 0004+00 s=1 e=0 z=0  None .rodata    @3754 */
-SECTION_RODATA static u32 const lit_3754 = 0x3D4CCCCD;
+/* 80C5BD68-80C5BD6C 000018 0004+00 0/1 0/0 0/0 .rodata          @3754 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3754 = 1.0f / 20.0f;
+COMPILER_STRIP_GATE(80C5BD68, &lit_3754);
+#pragma pop
 
-/* 80C5BD6C-80C5BD70 0004+00 s=1 e=0 z=0  None .rodata    @3755 */
-SECTION_RODATA static u32 const lit_3755 = 0x41200000;
+/* 80C5BD6C-80C5BD70 00001C 0004+00 0/1 0/0 0/0 .rodata          @3755 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3755 = 10.0f;
+COMPILER_STRIP_GATE(80C5BD6C, &lit_3755);
+#pragma pop
 
-/* 80C5B71C-80C5B89C 0180+00 s=1 e=0 z=0  None .text      action__FP19obj_lv3WaterB_class */
+/* 80C5B71C-80C5B89C 00021C 0180+00 1/1 0/0 0/0 .text            action__FP19obj_lv3WaterB_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void action(obj_lv3WaterB_class* param_0) {
+static asm void action(obj_lv3WaterB_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv3WaterB/d_a_obj_lv3WaterB/action__FP19obj_lv3WaterB_class.s"
 }
 #pragma pop
 
-/* 80C5B89C-80C5B8C0 0024+00 s=2 e=0 z=0  None .text
+/* 80C5B89C-80C5B8C0 00039C 0024+00 2/1 0/0 0/0 .text
  * daObj_Lv3waterB_Execute__FP19obj_lv3WaterB_class             */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Lv3waterB_Execute(obj_lv3WaterB_class* param_0) {
+static asm void daObj_Lv3waterB_Execute(obj_lv3WaterB_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv3WaterB/d_a_obj_lv3WaterB/daObj_Lv3waterB_Execute__FP19obj_lv3WaterB_class.s"
 }
 #pragma pop
 
-/* 80C5B8C0-80C5B8C8 0008+00 s=1 e=0 z=0  None .text
+/* 80C5B8C0-80C5B8C8 0003C0 0008+00 1/0 0/0 0/0 .text
  * daObj_Lv3waterB_IsDelete__FP19obj_lv3WaterB_class            */
 static bool daObj_Lv3waterB_IsDelete(obj_lv3WaterB_class* param_0) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 80C5BD70-80C5BD84 0014+00 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80C5BD70 = "L3_bwater";
-SECTION_DEAD char const* const stringBase_80C5BD7A = "S_octhibi";
-#pragma pop
-
-/* 80C5B8C8-80C5B94C 0084+00 s=1 e=0 z=0  None .text
+/* 80C5B8C8-80C5B94C 0003C8 0084+00 1/0 0/0 0/0 .text
  * daObj_Lv3waterB_Delete__FP19obj_lv3WaterB_class              */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Lv3waterB_Delete(obj_lv3WaterB_class* param_0) {
+static asm void daObj_Lv3waterB_Delete(obj_lv3WaterB_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv3WaterB/d_a_obj_lv3WaterB/daObj_Lv3waterB_Delete__FP19obj_lv3WaterB_class.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80C5BD84-80C5BDA4 0020+00 s=1 e=0 z=0  None .data      l_daObj_Lv3waterB_Method */
+/* 80C5BD84-80C5BDA4 -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Lv3waterB_Method */
 SECTION_DATA static void* l_daObj_Lv3waterB_Method[8] = {
     (void*)daObj_Lv3waterB_Create__FP10fopAc_ac_c,
     (void*)daObj_Lv3waterB_Delete__FP19obj_lv3WaterB_class,
@@ -270,8 +265,8 @@ SECTION_DATA static void* l_daObj_Lv3waterB_Method[8] = {
     (void*)NULL,
 };
 
-/* 80C5BDA4-80C5BDD4 0030+00 s=0 e=0 z=1  None .data      g_profile_OBJ_LV3WATERB */
-SECTION_DATA void* g_profile_OBJ_LV3WATERB[12] = {
+/* 80C5BDA4-80C5BDD4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_LV3WATERB */
+SECTION_DATA extern void* g_profile_OBJ_LV3WATERB[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00D70000, (void*)&g_fpcLf_Method,
     (void*)0x000005F8, (void*)NULL,
@@ -280,24 +275,24 @@ SECTION_DATA void* g_profile_OBJ_LV3WATERB[12] = {
     (void*)0x00044000, (void*)0x000E0000,
 };
 
-/* 80C5BDD4-80C5BDE0 000C+00 s=2 e=0 z=0  None .data      __vt__12J3DFrameCtrl */
-SECTION_DATA static void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL,
+/* 80C5BDD4-80C5BDE0 000050 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
+SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12J3DFrameCtrlFv,
 };
 
-/* 80C5B94C-80C5BB8C 0240+00 s=1 e=0 z=0  None .text      useHeapInit__FP10fopAc_ac_c */
+/* 80C5B94C-80C5BB8C 00044C 0240+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void useHeapInit(fopAc_ac_c* param_0) {
+static asm void useHeapInit(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv3WaterB/d_a_obj_lv3WaterB/useHeapInit__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80C5BB8C-80C5BBD4 0048+00 s=1 e=0 z=0  None .text      __dt__12J3DFrameCtrlFv */
+/* 80C5BB8C-80C5BBD4 00068C 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -307,12 +302,20 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 }
 #pragma pop
 
-/* 80C5BBD4-80C5BD48 0174+00 s=1 e=0 z=0  None .text      daObj_Lv3waterB_Create__FP10fopAc_ac_c */
+/* 80C5BBD4-80C5BD48 0006D4 0174+00 1/0 0/0 0/0 .text daObj_Lv3waterB_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObj_Lv3waterB_Create(fopAc_ac_c* param_0) {
+static asm void daObj_Lv3waterB_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv3WaterB/d_a_obj_lv3WaterB/daObj_Lv3waterB_Create__FP10fopAc_ac_c.s"
 }
+#pragma pop
+
+/* 80C5BD70-80C5BD84 000020 0014+00 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80C5BD70 = "L3_bwater";
+SECTION_DEAD static char const* const stringBase_80C5BD7A = "S_octhibi";
 #pragma pop

@@ -5,7 +5,7 @@ lbl_8048AA20:
 /* 8048AA2C  28 03 00 00 */	cmplwi r3, 0
 /* 8048AA30  41 82 00 0C */	beq lbl_8048AA3C
 /* 8048AA34  38 80 00 00 */	li r4, 0
-/* 8048AA38  4B B8 E2 54 */	b __dt__10fopAc_ac_cFv
+/* 8048AA38  4B B8 E2 55 */	bl __dt__10fopAc_ac_cFv
 lbl_8048AA3C:
 /* 8048AA3C  38 60 00 01 */	li r3, 1
 /* 8048AA40  80 01 00 14 */	lwz r0, 0x14(r1)

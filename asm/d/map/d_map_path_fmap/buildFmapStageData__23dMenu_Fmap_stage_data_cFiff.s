@@ -21,8 +21,8 @@ lbl_8003D9D8:
 /* 8003DA24  FF 40 08 90 */	fmr f26, f1
 /* 8003DA28  FF 60 10 90 */	fmr f27, f2
 /* 8003DA2C  83 E3 00 0C */	lwz r31, 0xc(r3)
-/* 8003DA30  3C 60 80 45 */	lis r3, __float_max@ha
-/* 8003DA34  C0 03 0A E8 */	lfs f0, __float_max@l(r3)
+/* 8003DA30  3C 60 80 45 */	lis r3, __float_max@ha /* 0x80450AE8@ha */
+/* 8003DA34  C0 03 0A E8 */	lfs f0, __float_max@l(r3)  /* 0x80450AE8@l */
 /* 8003DA38  FF E0 00 90 */	fmr f31, f0
 /* 8003DA3C  FF C0 00 90 */	fmr f30, f0
 /* 8003DA40  FC 00 00 50 */	fneg f0, f0

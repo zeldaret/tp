@@ -1,8 +1,8 @@
 lbl_8061EBEC:
-/* 8061EBEC  3C 80 80 63 */	lis r4, lit_3920@ha
-/* 8061EBF0  38 A4 E6 34 */	addi r5, r4, lit_3920@l
-/* 8061EBF4  3C 80 80 63 */	lis r4, __vt__12daB_TN_HIO_c@ha
-/* 8061EBF8  38 04 EF CC */	addi r0, r4, __vt__12daB_TN_HIO_c@l
+/* 8061EBEC  3C 80 80 63 */	lis r4, lit_3920@ha /* 0x8062E634@ha */
+/* 8061EBF0  38 A4 E6 34 */	addi r5, r4, lit_3920@l /* 0x8062E634@l */
+/* 8061EBF4  3C 80 80 63 */	lis r4, __vt__12daB_TN_HIO_c@ha /* 0x8062EFCC@ha */
+/* 8061EBF8  38 04 EF CC */	addi r0, r4, __vt__12daB_TN_HIO_c@l /* 0x8062EFCC@l */
 /* 8061EBFC  90 03 00 00 */	stw r0, 0(r3)
 /* 8061EC00  38 00 FF FF */	li r0, -1
 /* 8061EC04  98 03 00 04 */	stb r0, 4(r3)

@@ -5,9 +5,9 @@ lbl_8029E560:
 /* 8029E56C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8029E570  54 60 04 3E */	clrlwi r0, r3, 0x10
 /* 8029E574  64 09 81 00 */	oris r9, r0, 0x8100
-/* 8029E578  3C 60 80 2A */	lis r3, setup_callback__FUs@ha
+/* 8029E578  3C 60 80 2A */	lis r3, setup_callback__FUs@ha /* 0x8029E540@ha */
 /* 8029E57C  90 81 00 0C */	stw r4, 0xc(r1)
-/* 8029E580  38 03 E5 40 */	addi r0, r3, setup_callback__FUs@l
+/* 8029E580  38 03 E5 40 */	addi r0, r3, setup_callback__FUs@l /* 0x8029E540@l */
 /* 8029E584  38 61 00 08 */	addi r3, r1, 8
 /* 8029E588  38 80 00 05 */	li r4, 5
 /* 8029E58C  90 A1 00 10 */	stw r5, 0x10(r1)

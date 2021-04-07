@@ -5,15 +5,15 @@ lbl_80C3DA18:
 /* 80C3DA24  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80C3DA28  93 C1 00 08 */	stw r30, 8(r1)
 /* 80C3DA2C  7C 7E 1B 78 */	mr r30, r3
-/* 80C3DA30  3C 60 80 C4 */	lis r3, lit_3648@ha
-/* 80C3DA34  3B E3 F0 58 */	addi r31, r3, lit_3648@l
+/* 80C3DA30  3C 60 80 C4 */	lis r3, lit_3648@ha /* 0x80C3F058@ha */
+/* 80C3DA34  3B E3 F0 58 */	addi r31, r3, lit_3648@l /* 0x80C3F058@l */
 /* 80C3DA38  80 1E 08 40 */	lwz r0, 0x840(r30)
 /* 80C3DA3C  60 00 00 01 */	ori r0, r0, 1
 /* 80C3DA40  90 1E 08 40 */	stw r0, 0x840(r30)
 /* 80C3DA44  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 80C3DA48  C0 3F 00 18 */	lfs f1, 0x18(r31)
 /* 80C3DA4C  C0 5F 00 00 */	lfs f2, 0(r31)
-/* 80C3DA50  4B 63 20 30 */	b cLib_addCalc0__FPfff
+/* 80C3DA50  4B 63 20 31 */	bl cLib_addCalc0__FPfff
 /* 80C3DA54  80 1E 05 5C */	lwz r0, 0x55c(r30)
 /* 80C3DA58  60 00 00 10 */	ori r0, r0, 0x10
 /* 80C3DA5C  90 1E 05 5C */	stw r0, 0x55c(r30)

@@ -31,8 +31,8 @@ lbl_8027B9F8:
 /* 8027BA6C  C0 23 00 34 */	lfs f1, 0x34(r3)
 /* 8027BA70  C0 03 00 38 */	lfs f0, 0x38(r3)
 /* 8027BA74  EC 81 00 32 */	fmuls f4, f1, f0
-/* 8027BA78  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha
-/* 8027BA7C  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l
+/* 8027BA78  3C 80 80 44 */	lis r4, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 8027BA7C  38 84 9A 20 */	addi r4, r4, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 8027BA80  38 A4 00 04 */	addi r5, r4, 4
 /* 8027BA84  54 E6 04 38 */	rlwinm r6, r7, 0, 0x10, 0x1c
 /* 8027BA88  7C 05 34 2E */	lfsx f0, r5, r6

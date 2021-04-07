@@ -3,8 +3,8 @@ lbl_8020E620:
 /* 8020E624  7C 08 02 A6 */	mflr r0
 /* 8020E628  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8020E62C  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 8020E630  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8020E634  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8020E630  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8020E634  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8020E638  3B E3 4E 20 */	addi r31, r3, 0x4e20
 /* 8020E63C  7F E3 FB 78 */	mr r3, r31
 /* 8020E640  81 9F 00 00 */	lwz r12, 0(r31)

@@ -9,8 +9,8 @@ lbl_800B3358:
 /* 800B3374  48 27 50 B9 */	bl checkPass__12J3DFrameCtrlFf
 /* 800B3378  2C 03 00 00 */	cmpwi r3, 0
 /* 800B337C  41 82 00 54 */	beq lbl_800B33D0
-/* 800B3380  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800B3384  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800B3380  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800B3384  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800B3388  A0 03 00 02 */	lhz r0, 2(r3)
 /* 800B338C  28 00 00 02 */	cmplwi r0, 2
 /* 800B3390  41 81 00 24 */	bgt lbl_800B33B4

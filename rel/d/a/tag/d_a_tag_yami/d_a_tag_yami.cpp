@@ -89,10 +89,6 @@ struct cCcD_GStts {
 // Forward References:
 //
 
-static void daTagYami_Create(fopAc_ac_c*);
-static void daTagYami_Execute(fopAc_ac_c*);
-static void daTagYami_Delete(daTagYami_c*);
-
 extern "C" void create__11daTagYami_cFv();
 extern "C" void Execute__11daTagYami_cFv();
 extern "C" void calcCoC__11daTagYami_cFR4cXyz();
@@ -109,13 +105,10 @@ extern "C" void setCoC__11daTagYami_cF4cXyz();
 extern "C" void __dt__10dCcD_GSttsFv();
 extern "C" void __dt__8cM3dGCylFv();
 extern "C" void __dt__8cM3dGAabFv();
-extern "C" extern void* g_profile_TAG_YAMI[12];
 
 //
 // External References:
 //
-
-void operator delete(void*);
 
 extern "C" void ZXYrotS__14mDoMtx_stack_cFRC5csXyz();
 extern "C" void __ct__10fopAc_ac_cFv();
@@ -154,7 +147,7 @@ extern "C" extern u32 __float_nan;
 //
 
 /* ############################################################################################## */
-/* 80D66210-80D66254 0044+00 s=2 e=0 z=0  None .rodata    l_sph_src */
+/* 80D66210-80D66254 000000 0044+00 2/2 0/0 0/0 .rodata          l_sph_src */
 SECTION_RODATA static u8 const l_sph_src[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x19,
@@ -162,14 +155,23 @@ SECTION_RODATA static u8 const l_sph_src[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80D66210, &l_sph_src);
 
-/* 80D66254-80D66258 0004+00 s=1 e=0 z=0  None .rodata    @3726 */
-SECTION_RODATA static u32 const lit_3726 = 0x442F0000;
+/* 80D66254-80D66258 000044 0004+00 0/1 0/0 0/0 .rodata          @3726 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3726 = 700.0f;
+COMPILER_STRIP_GATE(80D66254, &lit_3726);
+#pragma pop
 
-/* 80D66258-80D6625C 0004+00 s=1 e=0 z=0  None .rodata    @3727 */
-SECTION_RODATA static u32 const lit_3727 = 0x43960000;
+/* 80D66258-80D6625C 000048 0004+00 0/1 0/0 0/0 .rodata          @3727 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3727 = 300.0f;
+COMPILER_STRIP_GATE(80D66258, &lit_3727);
+#pragma pop
 
-/* 80D66280-80D662A0 0020+00 s=1 e=0 z=0  None .data      l_daTagYami_Method */
+/* 80D66280-80D662A0 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagYami_Method */
 SECTION_DATA static void* l_daTagYami_Method[8] = {
     (void*)daTagYami_Create__FP10fopAc_ac_c,
     (void*)daTagYami_Delete__FP11daTagYami_c,
@@ -181,8 +183,8 @@ SECTION_DATA static void* l_daTagYami_Method[8] = {
     (void*)NULL,
 };
 
-/* 80D662A0-80D662D0 0030+00 s=0 e=0 z=1  None .data      g_profile_TAG_YAMI */
-SECTION_DATA void* g_profile_TAG_YAMI[12] = {
+/* 80D662A0-80D662D0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_TAG_YAMI */
+SECTION_DATA extern void* g_profile_TAG_YAMI[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00230000, (void*)&g_fpcLf_Method,
     (void*)0x00000704, (void*)NULL,
@@ -191,35 +193,35 @@ SECTION_DATA void* g_profile_TAG_YAMI[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80D662D0-80D662DC 000C+00 s=3 e=0 z=0  None .data      __vt__10cCcD_GStts */
-SECTION_DATA static void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL,
+/* 80D662D0-80D662DC 000050 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
+SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__10cCcD_GSttsFv,
 };
 
-/* 80D662DC-80D662E8 000C+00 s=2 e=0 z=0  None .data      __vt__10dCcD_GStts */
-SECTION_DATA static void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL,
+/* 80D662DC-80D662E8 00005C 000C+00 2/2 0/0 0/0 .data            __vt__10dCcD_GStts */
+SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__10dCcD_GSttsFv,
 };
 
-/* 80D662E8-80D662F4 000C+00 s=3 e=0 z=0  None .data      __vt__8cM3dGCyl */
-SECTION_DATA static void* __vt__8cM3dGCyl[3] = {
-    (void*)NULL,
+/* 80D662E8-80D662F4 000068 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGCyl */
+SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGCylFv,
 };
 
-/* 80D662F4-80D66300 000C+00 s=3 e=0 z=0  None .data      __vt__8cM3dGAab */
-SECTION_DATA static void* __vt__8cM3dGAab[3] = {
-    (void*)NULL,
+/* 80D662F4-80D66300 000074 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGAab */
+SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__8cM3dGAabFv,
 };
 
-/* 80D659F8-80D65C24 022C+00 s=1 e=0 z=0  None .text      create__11daTagYami_cFv */
+/* 80D659F8-80D65C24 000078 022C+00 1/1 0/0 0/0 .text            create__11daTagYami_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -229,7 +231,7 @@ asm void daTagYami_c::create() {
 }
 #pragma pop
 
-/* 80D65C24-80D65C60 003C+00 s=1 e=0 z=0  None .text      Execute__11daTagYami_cFv */
+/* 80D65C24-80D65C60 0002A4 003C+00 1/1 0/0 0/0 .text            Execute__11daTagYami_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -240,22 +242,24 @@ asm void daTagYami_c::Execute() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D6625C-80D66260 0004+00 s=2 e=0 z=0  None .rodata    @3820 */
+/* 80D6625C-80D66260 00004C 0004+00 1/2 0/0 0/0 .rodata          @3820 */
 SECTION_RODATA static u8 const lit_3820[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80D6625C, &lit_3820);
 
-/* 80D66260-80D66268 0004+04 s=1 e=0 z=0  None .rodata    @3821 */
-SECTION_RODATA static u32 const lit_3821[1 + 1 /* padding */] = {
-    0x43D70000,
+/* 80D66260-80D66268 000050 0004+04 1/1 0/0 0/0 .rodata          @3821 */
+SECTION_RODATA static f32 const lit_3821[1 + 1 /* padding */] = {
+    430.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
+COMPILER_STRIP_GATE(80D66260, &lit_3821);
 
-/* 80D65C60-80D65D08 00A8+00 s=1 e=0 z=0  None .text      calcCoC__11daTagYami_cFR4cXyz */
+/* 80D65C60-80D65D08 0002E0 00A8+00 1/1 0/0 0/0 .text            calcCoC__11daTagYami_cFR4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -265,12 +269,12 @@ asm void daTagYami_c::calcCoC(cXyz& param_0) {
 }
 #pragma pop
 
-/* 80D65D08-80D65D0C 0004+00 s=1 e=0 z=0  None .text      col_set__11daTagYami_cFv */
+/* 80D65D08-80D65D0C 000388 0004+00 1/1 0/0 0/0 .text            col_set__11daTagYami_cFv */
 void daTagYami_c::col_set() {
     /* empty function */
 }
 
-/* 80D65D0C-80D65D60 0054+00 s=1 e=0 z=0  None .text      chk_CoHit__11daTagYami_cFv */
+/* 80D65D0C-80D65D60 00038C 0054+00 1/1 0/0 0/0 .text            chk_CoHit__11daTagYami_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -281,22 +285,34 @@ asm void daTagYami_c::chk_CoHit() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80D66268-80D66270 0008+00 s=1 e=0 z=0  None .rodata    @3889 */
+/* 80D66268-80D66270 000058 0008+00 0/1 0/0 0/0 .rodata          @3889 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_3889[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80D66268, &lit_3889);
+#pragma pop
 
-/* 80D66270-80D66278 0008+00 s=1 e=0 z=0  None .rodata    @3890 */
+/* 80D66270-80D66278 000060 0008+00 0/1 0/0 0/0 .rodata          @3890 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_3890[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80D66270, &lit_3890);
+#pragma pop
 
-/* 80D66278-80D66280 0008+00 s=1 e=0 z=0  None .rodata    @3891 */
+/* 80D66278-80D66280 000068 0008+00 0/1 0/0 0/0 .rodata          @3891 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const lit_3891[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+COMPILER_STRIP_GATE(80D66278, &lit_3891);
+#pragma pop
 
-/* 80D65D60-80D65EEC 018C+00 s=1 e=0 z=0  None .text      getPlDist__11daTagYami_cFv */
+/* 80D65D60-80D65EEC 0003E0 018C+00 1/1 0/0 0/0 .text            getPlDist__11daTagYami_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -306,7 +322,7 @@ asm void daTagYami_c::getPlDist() {
 }
 #pragma pop
 
-/* 80D65EEC-80D65F24 0038+00 s=0 e=0 z=1  None .text      onMidnaTagSw__11daTagYami_cFv */
+/* 80D65EEC-80D65F24 00056C 0038+00 0/0 0/0 1/1 .text            onMidnaTagSw__11daTagYami_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -316,7 +332,7 @@ asm void daTagYami_c::onMidnaTagSw() {
 }
 #pragma pop
 
-/* 80D65F24-80D65F5C 0038+00 s=0 e=0 z=1  None .text      offMidnaTagSw2__11daTagYami_cFv */
+/* 80D65F24-80D65F5C 0005A4 0038+00 0/0 0/0 1/1 .text            offMidnaTagSw2__11daTagYami_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -326,37 +342,39 @@ asm void daTagYami_c::offMidnaTagSw2() {
 }
 #pragma pop
 
-/* 80D65F5C-80D65F7C 0020+00 s=1 e=0 z=0  None .text      daTagYami_Create__FP10fopAc_ac_c */
+/* 80D65F5C-80D65F7C 0005DC 0020+00 1/0 0/0 0/0 .text            daTagYami_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagYami_Create(fopAc_ac_c* param_0) {
+static asm void daTagYami_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_yami/d_a_tag_yami/daTagYami_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D65F7C-80D65F9C 0020+00 s=1 e=0 z=0  None .text      daTagYami_Execute__FP10fopAc_ac_c */
+/* 80D65F7C-80D65F9C 0005FC 0020+00 1/0 0/0 0/0 .text            daTagYami_Execute__FP10fopAc_ac_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagYami_Execute(fopAc_ac_c* param_0) {
+static asm void daTagYami_Execute(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_yami/d_a_tag_yami/daTagYami_Execute__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80D65F9C-80D660B8 011C+00 s=1 e=0 z=0  None .text      daTagYami_Delete__FP11daTagYami_c */
+/* 80D65F9C-80D660B8 00061C 011C+00 1/0 0/0 0/0 .text            daTagYami_Delete__FP11daTagYami_c
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daTagYami_Delete(daTagYami_c* param_0) {
+static asm void daTagYami_Delete(daTagYami_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_yami/d_a_tag_yami/daTagYami_Delete__FP11daTagYami_c.s"
 }
 #pragma pop
 
-/* 80D660B8-80D66100 0048+00 s=1 e=0 z=0  None .text      __dt__10cCcD_GSttsFv */
+/* 80D660B8-80D66100 000738 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -366,7 +384,7 @@ asm cCcD_GStts::~cCcD_GStts() {
 }
 #pragma pop
 
-/* 80D66100-80D6611C 001C+00 s=1 e=0 z=0  None .text      setCoC__11daTagYami_cF4cXyz */
+/* 80D66100-80D6611C 000780 001C+00 1/1 0/0 0/0 .text            setCoC__11daTagYami_cF4cXyz */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -376,7 +394,7 @@ asm void daTagYami_c::setCoC(cXyz param_0) {
 }
 #pragma pop
 
-/* 80D6611C-80D66178 005C+00 s=1 e=0 z=0  None .text      __dt__10dCcD_GSttsFv */
+/* 80D6611C-80D66178 00079C 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -386,7 +404,7 @@ asm dCcD_GStts::~dCcD_GStts() {
 }
 #pragma pop
 
-/* 80D66178-80D661C0 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGCylFv */
+/* 80D66178-80D661C0 0007F8 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -396,7 +414,7 @@ asm cM3dGCyl::~cM3dGCyl() {
 }
 #pragma pop
 
-/* 80D661C0-80D66208 0048+00 s=1 e=0 z=0  None .text      __dt__8cM3dGAabFv */
+/* 80D661C0-80D66208 000840 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

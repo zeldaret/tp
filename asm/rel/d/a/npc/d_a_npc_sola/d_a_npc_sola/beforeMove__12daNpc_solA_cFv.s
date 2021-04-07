@@ -9,7 +9,7 @@ lbl_80AED758:
 /* 80AED774  88 03 0E 25 */	lbz r0, 0xe25(r3)
 /* 80AED778  28 00 00 00 */	cmplwi r0, 0
 /* 80AED77C  40 82 00 1C */	bne lbl_80AED798
-/* 80AED780  4B 54 22 D4 */	b dComIfGs_wolfeye_effect_check__Fv
+/* 80AED780  4B 54 22 D5 */	bl dComIfGs_wolfeye_effect_check__Fv
 /* 80AED784  2C 03 00 00 */	cmpwi r3, 0
 /* 80AED788  40 82 00 14 */	bne lbl_80AED79C
 /* 80AED78C  88 1E 0A 89 */	lbz r0, 0xa89(r30)

@@ -5,11 +5,11 @@ lbl_801D8114:
 /* 801D8120  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 801D8124  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 801D8128  7C 7F 1B 78 */	mr r31, r3
-/* 801D812C  3C 60 80 3A */	lis r3, __vt__12dDlst_base_c@ha
-/* 801D8130  38 03 6F 88 */	addi r0, r3, __vt__12dDlst_base_c@l
+/* 801D812C  3C 60 80 3A */	lis r3, __vt__12dDlst_base_c@ha /* 0x803A6F88@ha */
+/* 801D8130  38 03 6F 88 */	addi r0, r3, __vt__12dDlst_base_c@l /* 0x803A6F88@l */
 /* 801D8134  90 1F 00 00 */	stw r0, 0(r31)
-/* 801D8138  3C 60 80 3C */	lis r3, __vt__14dMenu_Insect_c@ha
-/* 801D813C  38 03 D8 AC */	addi r0, r3, __vt__14dMenu_Insect_c@l
+/* 801D8138  3C 60 80 3C */	lis r3, __vt__14dMenu_Insect_c@ha /* 0x803BD8AC@ha */
+/* 801D813C  38 03 D8 AC */	addi r0, r3, __vt__14dMenu_Insect_c@l /* 0x803BD8AC@l */
 /* 801D8140  90 1F 00 00 */	stw r0, 0(r31)
 /* 801D8144  90 9F 00 04 */	stw r4, 4(r31)
 /* 801D8148  38 00 00 00 */	li r0, 0
@@ -30,13 +30,13 @@ lbl_801D8114:
 /* 801D8184  98 1F 00 FA */	stb r0, 0xfa(r31)
 /* 801D8188  98 1F 00 FB */	stb r0, 0xfb(r31)
 /* 801D818C  98 7F 00 F7 */	stb r3, 0xf7(r31)
-/* 801D8190  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 801D8194  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 801D8190  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 801D8194  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 801D8198  80 63 5D 30 */	lwz r3, 0x5d30(r3)
 /* 801D819C  3C 80 54 49 */	lis r4, 0x5449 /* 0x54494D47@ha */
 /* 801D81A0  38 84 4D 47 */	addi r4, r4, 0x4D47 /* 0x54494D47@l */
-/* 801D81A4  3C A0 80 39 */	lis r5, d_menu_d_menu_insect__stringBase0@ha
-/* 801D81A8  38 A5 68 C0 */	addi r5, r5, d_menu_d_menu_insect__stringBase0@l
+/* 801D81A4  3C A0 80 39 */	lis r5, d_menu_d_menu_insect__stringBase0@ha /* 0x803968C0@ha */
+/* 801D81A8  38 A5 68 C0 */	addi r5, r5, d_menu_d_menu_insect__stringBase0@l /* 0x803968C0@l */
 /* 801D81AC  81 83 00 00 */	lwz r12, 0(r3)
 /* 801D81B0  81 8C 00 18 */	lwz r12, 0x18(r12)
 /* 801D81B4  7D 89 03 A6 */	mtctr r12

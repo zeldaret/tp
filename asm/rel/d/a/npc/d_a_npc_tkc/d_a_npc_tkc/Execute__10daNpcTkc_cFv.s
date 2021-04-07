@@ -8,7 +8,7 @@ lbl_80B0D1B4:
 /* 80B0D1CC  38 60 00 01 */	li r3, 1
 /* 80B0D1D0  48 00 00 0C */	b lbl_80B0D1DC
 lbl_80B0D1D4:
-/* 80B0D1D4  4B 64 4E 40 */	b execute__8daNpcF_cFv
+/* 80B0D1D4  4B 64 4E 41 */	bl execute__8daNpcF_cFv
 /* 80B0D1D8  38 60 00 01 */	li r3, 1
 lbl_80B0D1DC:
 /* 80B0D1DC  80 01 00 14 */	lwz r0, 0x14(r1)

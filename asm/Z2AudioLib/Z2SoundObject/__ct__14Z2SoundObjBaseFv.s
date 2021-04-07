@@ -5,8 +5,8 @@ lbl_802BDEF0:
 /* 802BDEFC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802BDF00  7C 7F 1B 78 */	mr r31, r3
 /* 802BDF04  4B FE D1 79 */	bl __ct__14Z2SoundHandlesFv
-/* 802BDF08  3C 60 80 3D */	lis r3, __vt__14Z2SoundObjBase@ha
-/* 802BDF0C  38 03 AD 50 */	addi r0, r3, __vt__14Z2SoundObjBase@l
+/* 802BDF08  3C 60 80 3D */	lis r3, __vt__14Z2SoundObjBase@ha /* 0x803CAD50@ha */
+/* 802BDF0C  38 03 AD 50 */	addi r0, r3, __vt__14Z2SoundObjBase@l /* 0x803CAD50@l */
 /* 802BDF10  90 1F 00 10 */	stw r0, 0x10(r31)
 /* 802BDF14  38 60 00 00 */	li r3, 0
 /* 802BDF18  90 7F 00 18 */	stw r3, 0x18(r31)

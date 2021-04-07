@@ -5,14 +5,14 @@ lbl_8076CF1C:
 /* 8076CF28  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8076CF2C  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8076CF30  7C 7E 1B 78 */	mr r30, r3
-/* 8076CF34  3C 60 80 78 */	lis r3, lit_4018@ha
-/* 8076CF38  3B E3 9D FC */	addi r31, r3, lit_4018@l
+/* 8076CF34  3C 60 80 78 */	lis r3, lit_4018@ha /* 0x80779DFC@ha */
+/* 8076CF38  3B E3 9D FC */	addi r31, r3, lit_4018@l /* 0x80779DFC@l */
 /* 8076CF3C  80 1E 0A 5C */	lwz r0, 0xa5c(r30)
 /* 8076CF40  90 01 00 08 */	stw r0, 8(r1)
-/* 8076CF44  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 8076CF48  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 8076CF44  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 8076CF48  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 8076CF4C  38 81 00 08 */	addi r4, r1, 8
-/* 8076CF50  4B 8A C8 A8 */	b fopAcIt_Judge__FPFPvPv_PvPv
+/* 8076CF50  4B 8A C8 A9 */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8076CF54  28 03 00 00 */	cmplwi r3, 0
 /* 8076CF58  41 82 00 1C */	beq lbl_8076CF74
 /* 8076CF5C  38 00 00 00 */	li r0, 0
@@ -29,12 +29,12 @@ lbl_8076CF74:
 /* 8076CF84  41 82 00 50 */	beq lbl_8076CFD4
 /* 8076CF88  80 7E 06 74 */	lwz r3, 0x674(r30)
 /* 8076CF8C  38 80 00 0B */	li r4, 0xb
-/* 8076CF90  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 8076CF94  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 8076CF90  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8076CF94  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8076CF98  3C A5 00 02 */	addis r5, r5, 2
 /* 8076CF9C  38 C0 00 80 */	li r6, 0x80
 /* 8076CFA0  38 A5 C2 F8 */	addi r5, r5, -15624
-/* 8076CFA4  4B 8C F3 48 */	b getRes__14dRes_control_cFPCclP11dRes_info_ci
+/* 8076CFA4  4B 8C F3 49 */	bl getRes__14dRes_control_cFPCclP11dRes_info_ci
 /* 8076CFA8  7C 64 1B 78 */	mr r4, r3
 /* 8076CFAC  80 7E 06 94 */	lwz r3, 0x694(r30)
 /* 8076CFB0  38 A0 00 00 */	li r5, 0
@@ -42,7 +42,7 @@ lbl_8076CF74:
 /* 8076CFB8  FC 40 08 90 */	fmr f2, f1
 /* 8076CFBC  C0 7F 00 04 */	lfs f3, 4(r31)
 /* 8076CFC0  C0 9F 00 60 */	lfs f4, 0x60(r31)
-/* 8076CFC4  4B 8A 3E AC */	b setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff
+/* 8076CFC4  4B 8A 3E AD */	bl setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff
 /* 8076CFC8  C0 1F 00 58 */	lfs f0, 0x58(r31)
 /* 8076CFCC  80 7E 06 94 */	lwz r3, 0x694(r30)
 /* 8076CFD0  D0 03 00 1C */	stfs f0, 0x1c(r3)

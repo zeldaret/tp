@@ -17,8 +17,8 @@ lbl_800D3858:
 /* 800D3864  4B FE 7A 4D */	bl setBodyAngleXReadyAnime__9daAlink_cFi
 /* 800D3868  38 7E 33 98 */	addi r3, r30, 0x3398
 /* 800D386C  C0 22 92 C0 */	lfs f1, lit_6108(r2)
-/* 800D3870  3C 80 80 39 */	lis r4, m__18daAlinkHIO_move_c0@ha
-/* 800D3874  38 84 D6 BC */	addi r4, r4, m__18daAlinkHIO_move_c0@l
+/* 800D3870  3C 80 80 39 */	lis r4, m__18daAlinkHIO_move_c0@ha /* 0x8038D6BC@ha */
+/* 800D3874  38 84 D6 BC */	addi r4, r4, m__18daAlinkHIO_move_c0@l /* 0x8038D6BC@l */
 /* 800D3878  C0 44 00 38 */	lfs f2, 0x38(r4)
 /* 800D387C  48 19 CE C5 */	bl cLib_chaseF__FPfff
 /* 800D3880  80 1E 05 88 */	lwz r0, 0x588(r30)
@@ -104,8 +104,8 @@ lbl_800D3998:
 /* 800D39A4  28 00 00 54 */	cmplwi r0, 0x54
 /* 800D39A8  40 82 00 1C */	bne lbl_800D39C4
 lbl_800D39AC:
-/* 800D39AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800D39B0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800D39AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800D39B0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800D39B4  38 63 4F F8 */	addi r3, r3, 0x4ff8
 /* 800D39B8  80 9E 31 84 */	lwz r4, 0x3184(r30)
 /* 800D39BC  4B F7 47 C1 */	bl cutEnd__16dEvent_manager_cFi

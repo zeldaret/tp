@@ -51,7 +51,7 @@ extern "C" void skip__20JSURandomInputStreamFl();
 // Declarations:
 //
 
-/* 802DC520-802DC534 0014+00 s=0 e=3 z=0  None .text      setBuffer__20JSUMemoryInputStreamFPCvl */
+/* 802DC520-802DC534 2D6E60 0014+00 0/0 3/3 0/0 .text setBuffer__20JSUMemoryInputStreamFPCvl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -61,7 +61,7 @@ asm void JSUMemoryInputStream::setBuffer(void const* param_0, s32 param_1) {
 }
 #pragma pop
 
-/* 802DC534-802DC5AC 0078+00 s=1 e=0 z=0  None .text      readData__20JSUMemoryInputStreamFPvl */
+/* 802DC534-802DC5AC 2D6E74 0078+00 1/0 0/0 0/0 .text readData__20JSUMemoryInputStreamFPvl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -71,7 +71,7 @@ asm void JSUMemoryInputStream::readData(void* param_0, s32 param_1) {
 }
 #pragma pop
 
-/* 802DC5AC-802DC628 007C+00 s=1 e=0 z=0  None .text
+/* 802DC5AC-802DC628 2D6EEC 007C+00 1/0 0/0 0/0 .text
  * seekPos__20JSUMemoryInputStreamFl17JSUStreamSeekFrom         */
 #pragma push
 #pragma optimization_level 0
@@ -82,7 +82,7 @@ asm void JSUMemoryInputStream::seekPos(s32 param_0, JSUStreamSeekFrom param_1) {
 }
 #pragma pop
 
-/* 802DC628-802DC630 0008+00 s=1 e=0 z=0  None .text      getLength__20JSUMemoryInputStreamCFv */
+/* 802DC628-802DC630 2D6F68 0008+00 1/0 0/0 0/0 .text getLength__20JSUMemoryInputStreamCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -92,7 +92,7 @@ asm void JSUMemoryInputStream::getLength() const {
 }
 #pragma pop
 
-/* 802DC630-802DC638 0008+00 s=1 e=0 z=0  None .text      getPosition__20JSUMemoryInputStreamCFv */
+/* 802DC630-802DC638 2D6F70 0008+00 1/0 0/0 0/0 .text getPosition__20JSUMemoryInputStreamCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -103,9 +103,9 @@ asm void JSUMemoryInputStream::getPosition() const {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CC4F0-803CC518 0024+04 s=0 e=4 z=0  None .data      __vt__20JSUMemoryInputStream */
-SECTION_DATA void* __vt__20JSUMemoryInputStream[9 + 1 /* padding */] = {
-    (void*)NULL,
+/* 803CC4F0-803CC518 029610 0024+04 0/0 4/4 0/0 .data            __vt__20JSUMemoryInputStream */
+SECTION_DATA extern void* __vt__20JSUMemoryInputStream[9 + 1 /* padding */] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__20JSUMemoryInputStreamFv,
     (void*)getAvailable__20JSURandomInputStreamCFv,

@@ -25,64 +25,64 @@ extern "C" extern u32 __float_nan;
 //
 
 /* ############################################################################################## */
-/* 80456678-80456680 0008+00 s=1 e=0 z=0  None .sdata2    @83 */
+/* 80456678-80456680 004C78 0008+00 1/1 0/0 0/0 .sdata2          @83 */
 SECTION_SDATA2 static u8 lit_83[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 80456680-80456688 0008+00 s=1 e=0 z=0  None .sdata2    @84 */
+/* 80456680-80456688 004C80 0008+00 1/1 0/0 0/0 .sdata2          @84 */
 SECTION_SDATA2 static f64 lit_84 = 3.141592653589793;
 
-/* 80456688-80456690 0008+00 s=1 e=0 z=0  None .sdata2    @85 */
+/* 80456688-80456690 004C88 0008+00 1/1 0/0 0/0 .sdata2          @85 */
 SECTION_SDATA2 static f64 lit_85 = 1.5707963267948966;
 
-/* 80456690-80456698 0008+00 s=1 e=0 z=0  None .sdata2    @86 */
+/* 80456690-80456698 004C90 0008+00 1/1 0/0 0/0 .sdata2          @86 */
 SECTION_SDATA2 static f64 lit_86 = 6.123233995736766e-17;
 
-/* 80456698-804566A0 0008+00 s=1 e=0 z=0  None .sdata2    @87 */
+/* 80456698-804566A0 004C98 0008+00 1/1 0/0 0/0 .sdata2          @87 */
 SECTION_SDATA2 static f64 lit_87 = 1.0 / 6.0;
 
-/* 804566A0-804566A8 0008+00 s=1 e=0 z=0  None .sdata2    @88 */
+/* 804566A0-804566A8 004CA0 0008+00 1/1 0/0 0/0 .sdata2          @88 */
 SECTION_SDATA2 static f64 lit_88 = -0.3255658186224009;
 
-/* 804566A8-804566B0 0008+00 s=1 e=0 z=0  None .sdata2    @89 */
+/* 804566A8-804566B0 004CA8 0008+00 1/1 0/0 0/0 .sdata2          @89 */
 SECTION_SDATA2 static f64 lit_89 = 0.20121253213486293;
 
-/* 804566B0-804566B8 0008+00 s=1 e=0 z=0  None .sdata2    @90 */
+/* 804566B0-804566B8 004CB0 0008+00 1/1 0/0 0/0 .sdata2          @90 */
 SECTION_SDATA2 static f64 lit_90 = -0.04005553450067941;
 
-/* 804566B8-804566C0 0008+00 s=1 e=0 z=0  None .sdata2    @91 */
+/* 804566B8-804566C0 004CB8 0008+00 1/1 0/0 0/0 .sdata2          @91 */
 SECTION_SDATA2 static f64 lit_91 = 0.0007915349942898145;
 
-/* 804566C0-804566C8 0008+00 s=1 e=0 z=0  None .sdata2    @92 */
+/* 804566C0-804566C8 004CC0 0008+00 1/1 0/0 0/0 .sdata2          @92 */
 SECTION_SDATA2 static f64 lit_92 = 3.479331075960212e-05;
 
-/* 804566C8-804566D0 0008+00 s=1 e=0 z=0  None .sdata2    @93 */
+/* 804566C8-804566D0 004CC8 0008+00 1/1 0/0 0/0 .sdata2          @93 */
 SECTION_SDATA2 static f64 lit_93 = 1.0;
 
-/* 804566D0-804566D8 0008+00 s=1 e=0 z=0  None .sdata2    @94 */
+/* 804566D0-804566D8 004CD0 0008+00 1/1 0/0 0/0 .sdata2          @94 */
 SECTION_SDATA2 static f64 lit_94 = -2.403394911734414;
 
-/* 804566D8-804566E0 0008+00 s=1 e=0 z=0  None .sdata2    @95 */
+/* 804566D8-804566E0 004CD8 0008+00 1/1 0/0 0/0 .sdata2          @95 */
 SECTION_SDATA2 static f64 lit_95 = 2.0209457602335057;
 
-/* 804566E0-804566E8 0008+00 s=1 e=0 z=0  None .sdata2    @96 */
+/* 804566E0-804566E8 004CE0 0008+00 1/1 0/0 0/0 .sdata2          @96 */
 SECTION_SDATA2 static f64 lit_96 = -0.6882839716054533;
 
-/* 804566E8-804566F0 0008+00 s=1 e=0 z=0  None .sdata2    @97 */
+/* 804566E8-804566F0 004CE8 0008+00 1/1 0/0 0/0 .sdata2          @97 */
 SECTION_SDATA2 static f64 lit_97 = 0.07703815055590194;
 
-/* 804566F0-804566F8 0008+00 s=1 e=0 z=0  None .sdata2    @98 */
+/* 804566F0-804566F8 004CF0 0008+00 1/1 0/0 0/0 .sdata2          @98 */
 SECTION_SDATA2 static f64 lit_98 = 0.5;
 
-/* 804566F8-80456700 0008+00 s=1 e=0 z=0  None .sdata2    @99 */
+/* 804566F8-80456700 004CF8 0008+00 1/1 0/0 0/0 .sdata2          @99 */
 SECTION_SDATA2 static f64 lit_99 = 2.0;
 
-/* 80369274-803694B0 023C+00 s=0 e=1 z=0  None .text      __ieee754_acos */
+/* 80369274-803694B0 363BB4 023C+00 0/0 1/1 0/0 .text            __ieee754_acos */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __ieee754_acos() {
+asm void __ieee754_acos() {
     nofralloc
 #include "asm/MSL_C.PPCEABI.bare.H/Math/Double_precision/e_acos/__ieee754_acos.s"
 }

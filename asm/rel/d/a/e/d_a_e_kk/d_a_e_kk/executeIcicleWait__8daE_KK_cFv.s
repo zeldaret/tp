@@ -5,8 +5,8 @@ lbl_806FB908:
 /* 806FB914  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 806FB918  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 806FB91C  7C 7E 1B 78 */	mr r30, r3
-/* 806FB920  3C 80 80 70 */	lis r4, lit_3792@ha
-/* 806FB924  3B E4 F5 E8 */	addi r31, r4, lit_3792@l
+/* 806FB920  3C 80 80 70 */	lis r4, lit_3792@ha /* 0x806FF5E8@ha */
+/* 806FB924  3B E4 F5 E8 */	addi r31, r4, lit_3792@l /* 0x806FF5E8@l */
 /* 806FB928  80 03 06 64 */	lwz r0, 0x664(r3)
 /* 806FB92C  2C 00 00 01 */	cmpwi r0, 1
 /* 806FB930  41 82 00 6C */	beq lbl_806FB99C

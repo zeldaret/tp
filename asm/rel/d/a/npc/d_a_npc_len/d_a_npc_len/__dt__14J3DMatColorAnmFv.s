@@ -7,7 +7,7 @@ lbl_80A64B8C:
 /* 80A64BA0  41 82 00 10 */	beq lbl_80A64BB0
 /* 80A64BA4  7C 80 07 35 */	extsh. r0, r4
 /* 80A64BA8  40 81 00 08 */	ble lbl_80A64BB0
-/* 80A64BAC  4B 86 A1 90 */	b __dl__FPv
+/* 80A64BAC  4B 86 A1 91 */	bl __dl__FPv
 lbl_80A64BB0:
 /* 80A64BB0  7F E3 FB 78 */	mr r3, r31
 /* 80A64BB4  83 E1 00 0C */	lwz r31, 0xc(r1)

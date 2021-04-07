@@ -5,8 +5,8 @@ lbl_801F9E98:
 /* 801F9EA4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 801F9EA8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 801F9EAC  41 82 00 1C */	beq lbl_801F9EC8
-/* 801F9EB0  3C A0 80 3C */	lis r5, __vt__10dMw_DHIO_c@ha
-/* 801F9EB4  38 05 E8 E0 */	addi r0, r5, __vt__10dMw_DHIO_c@l
+/* 801F9EB0  3C A0 80 3C */	lis r5, __vt__10dMw_DHIO_c@ha /* 0x803BE8E0@ha */
+/* 801F9EB4  38 05 E8 E0 */	addi r0, r5, __vt__10dMw_DHIO_c@l /* 0x803BE8E0@l */
 /* 801F9EB8  90 1F 00 00 */	stw r0, 0(r31)
 /* 801F9EBC  7C 80 07 35 */	extsh. r0, r4
 /* 801F9EC0  40 81 00 08 */	ble lbl_801F9EC8

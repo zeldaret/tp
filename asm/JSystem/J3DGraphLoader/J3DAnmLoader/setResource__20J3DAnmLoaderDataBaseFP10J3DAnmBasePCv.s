@@ -212,8 +212,8 @@ lbl_80338418:
 /* 80338438  48 00 00 4D */	bl __dt__20J3DAnmFullLoader_v15Fv
 /* 8033843C  48 00 00 14 */	b lbl_80338450
 lbl_80338440:
-/* 80338440  3C 60 80 3A */	lis r3, J3DAnmLoader__stringBase0@ha
-/* 80338444  38 63 21 30 */	addi r3, r3, J3DAnmLoader__stringBase0@l
+/* 80338440  3C 60 80 3A */	lis r3, J3DAnmLoader__stringBase0@ha /* 0x803A2130@ha */
+/* 80338444  38 63 21 30 */	addi r3, r3, J3DAnmLoader__stringBase0@l /* 0x803A2130@l */
 /* 80338448  4C C6 31 82 */	crclr 6
 /* 8033844C  4B CC E6 71 */	bl OSReport
 lbl_80338450:

@@ -3,17 +3,15 @@
 #
 
 M592_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_picture.plf
+M592_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_picture.lcf
+M592_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_picture.map
 
 M592_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_picture/executor.cpp \
-	rel/d/a/obj/d_a_obj_picture/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_picture/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_picture/d_a_obj_picture.cpp \
 
 M592_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_picture/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_picture/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_picture/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_picture/d_a_obj_picture.o \
 
 M592_LIBS := \
@@ -29,14 +27,21 @@ M592_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M592_LDSCRIPT) \
+	-unused -map $(M592_MAP) \
+	-w off \
 
 $(M592_TARGET): $(M592_O_FILES) $(M592_LIBS)
+	@echo [592] creating $(M592_TARGET)
 	@echo $(M592_LIBS) $(M592_O_FILES) > build/M592_ofiles
-	$(LD) -partial $(M592_LDFLAGS) -o $(M592_TARGET) @build/M592_ofiles
+	@python3 tools/lcf.py rel 592 --output $(M592_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M592_LDFLAGS) -o $(M592_TARGET) @build/M592_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_picture/%.o: rel/d/a/obj/d_a_obj_picture/%.cpp
+	@echo [592] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M592_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M592_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

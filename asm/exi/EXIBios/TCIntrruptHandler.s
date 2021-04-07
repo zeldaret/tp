@@ -15,8 +15,8 @@ lbl_80343B6C:
 /* 80343BA0  54 60 0F FE */	srwi r0, r3, 0x1f
 /* 80343BA4  7F C3 02 14 */	add r30, r3, r0
 /* 80343BA8  57 C4 30 32 */	slwi r4, r30, 6
-/* 80343BAC  3C 60 80 45 */	lis r3, Ecb@ha
-/* 80343BB0  38 03 C5 70 */	addi r0, r3, Ecb@l
+/* 80343BAC  3C 60 80 45 */	lis r3, Ecb@ha /* 0x8044C570@ha */
+/* 80343BB0  38 03 C5 70 */	addi r0, r3, Ecb@l /* 0x8044C570@l */
 /* 80343BB4  7F E0 22 14 */	add r31, r0, r4
 /* 80343BB8  3C 00 80 00 */	lis r0, 0x8000
 /* 80343BBC  7C 03 2C 30 */	srw r3, r0, r5

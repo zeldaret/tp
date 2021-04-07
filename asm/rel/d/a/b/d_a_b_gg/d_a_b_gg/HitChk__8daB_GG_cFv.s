@@ -6,8 +6,8 @@ lbl_805E92A0:
 /* 805E92B0  28 00 00 02 */	cmplwi r0, 2
 /* 805E92B4  4C 82 00 20 */	bnelr 
 /* 805E92B8  A8 A3 04 E6 */	lha r5, 0x4e6(r3)
-/* 805E92BC  3C 80 80 5F */	lis r4, data_805ED730@ha
-/* 805E92C0  A8 04 D7 30 */	lha r0, data_805ED730@l(r4)
+/* 805E92BC  3C 80 80 5F */	lis r4, data_805ED730@ha /* 0x805ED730@ha */
+/* 805E92C0  A8 04 D7 30 */	lha r0, data_805ED730@l(r4)  /* 0x805ED730@l */
 /* 805E92C4  7C 05 00 50 */	subf r0, r5, r0
 /* 805E92C8  2C 00 30 00 */	cmpwi r0, 0x3000
 /* 805E92CC  40 80 00 28 */	bge lbl_805E92F4

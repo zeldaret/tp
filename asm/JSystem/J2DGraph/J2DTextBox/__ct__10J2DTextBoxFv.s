@@ -5,8 +5,8 @@ lbl_802FF660:
 /* 802FF66C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 802FF670  7C 7F 1B 78 */	mr r31, r3
 /* 802FF674  4B FF 65 85 */	bl __ct__7J2DPaneFv
-/* 802FF678  3C 60 80 3D */	lis r3, __vt__10J2DTextBox@ha
-/* 802FF67C  38 03 D3 28 */	addi r0, r3, __vt__10J2DTextBox@l
+/* 802FF678  3C 60 80 3D */	lis r3, __vt__10J2DTextBox@ha /* 0x803CD328@ha */
+/* 802FF67C  38 03 D3 28 */	addi r0, r3, __vt__10J2DTextBox@l /* 0x803CD328@l */
 /* 802FF680  90 1F 00 00 */	stw r0, 0(r31)
 /* 802FF684  38 60 00 00 */	li r3, 0
 /* 802FF688  90 7F 01 00 */	stw r3, 0x100(r31)

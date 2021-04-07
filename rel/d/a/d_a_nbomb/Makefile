@@ -3,19 +3,20 @@
 #
 
 M52_TARGET := $(BUILD_DIR)/rel/d/a/d_a_nbomb.plf
+M52_LDSCRIPT := $(BUILD_DIR)/rel/d/a/d_a_nbomb.lcf
+M52_MAP := $(BUILD_DIR)/rel/d/a/d_a_nbomb.map
 
 M52_CPP_FILES := \
-	rel/d/a/d_a_nbomb/executor.cpp \
-	rel/d/a/d_a_nbomb/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/d_a_nbomb/d_a_nbomb.cpp \
 
 M52_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/d_a_nbomb/executor.o \
-	$(BUILD_DIR)/rel/d/a/d_a_nbomb/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/d_a_nbomb/d_a_nbomb.o \
 
 M52_LIBS := \
-	$(BUILD_DIR)/rel/d/a/d_a_nbomb/libRuntime.PPCEABI.H.a \
 
 M52_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M52_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M52_LDSCRIPT) \
+	-unused -map $(M52_MAP) \
+	-w off \
 
 $(M52_TARGET): $(M52_O_FILES) $(M52_LIBS)
+	@echo [ 52] creating $(M52_TARGET)
 	@echo $(M52_LIBS) $(M52_O_FILES) > build/M52_ofiles
-	$(LD) -partial $(M52_LDFLAGS) -o $(M52_TARGET) @build/M52_ofiles
+	@python3 tools/lcf.py rel 52 --output $(M52_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M52_LDFLAGS) -o $(M52_TARGET) @build/M52_ofiles
 
 $(BUILD_DIR)/rel/d/a/d_a_nbomb/%.o: rel/d/a/d_a_nbomb/%.cpp
+	@echo [ 52] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M52_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M52_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/d_a_nbomb/libs/Runtime.PPCEABI.H/Makefile
 

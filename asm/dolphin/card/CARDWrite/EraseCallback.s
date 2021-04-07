@@ -9,13 +9,13 @@ lbl_80358A84:
 /* 80358AA0  93 81 00 10 */	stw r28, 0x10(r1)
 /* 80358AA4  3B 83 00 00 */	addi r28, r3, 0
 /* 80358AA8  1C BC 01 10 */	mulli r5, r28, 0x110
-/* 80358AAC  3C 60 80 45 */	lis r3, __CARDBlock@ha
-/* 80358AB0  38 03 CB C0 */	addi r0, r3, __CARDBlock@l
+/* 80358AAC  3C 60 80 45 */	lis r3, __CARDBlock@ha /* 0x8044CBC0@ha */
+/* 80358AB0  38 03 CB C0 */	addi r0, r3, __CARDBlock@l /* 0x8044CBC0@l */
 /* 80358AB4  7F E0 2A 14 */	add r31, r0, r5
 /* 80358AB8  41 80 00 30 */	blt lbl_80358AE8
 /* 80358ABC  80 9F 00 C0 */	lwz r4, 0xc0(r31)
-/* 80358AC0  3C 60 80 36 */	lis r3, WriteCallback@ha
-/* 80358AC4  38 E3 89 14 */	addi r7, r3, WriteCallback@l
+/* 80358AC0  3C 60 80 36 */	lis r3, WriteCallback@ha /* 0x80358914@ha */
+/* 80358AC4  38 E3 89 14 */	addi r7, r3, WriteCallback@l /* 0x80358914@l */
 /* 80358AC8  80 BF 00 0C */	lwz r5, 0xc(r31)
 /* 80358ACC  A0 04 00 10 */	lhz r0, 0x10(r4)
 /* 80358AD0  80 DF 00 B4 */	lwz r6, 0xb4(r31)

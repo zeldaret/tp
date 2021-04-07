@@ -6,8 +6,8 @@ lbl_801D92DC:
 /* 801D92EC  7C 7F 1B 78 */	mr r31, r3
 /* 801D92F0  80 63 00 0C */	lwz r3, 0xc(r3)
 /* 801D92F4  4B E5 8E A9 */	bl checkTrigger__9STControlFv
-/* 801D92F8  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha
-/* 801D92FC  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l
+/* 801D92F8  3C 60 80 3E */	lis r3, m_cpadInfo__8mDoCPd_c@ha /* 0x803DD2E8@ha */
+/* 801D92FC  38 63 D2 E8 */	addi r3, r3, m_cpadInfo__8mDoCPd_c@l /* 0x803DD2E8@l */
 /* 801D9300  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 801D9304  54 60 05 EF */	rlwinm. r0, r3, 0, 0x17, 0x17
 /* 801D9308  41 82 00 8C */	beq lbl_801D9394

@@ -57,8 +57,8 @@ lbl_80243964:
 /* 80243964  88 1F 27 98 */	lbz r0, 0x2798(r31)
 /* 80243968  28 00 00 03 */	cmplwi r0, 3
 /* 8024396C  41 82 00 74 */	beq lbl_802439E0
-/* 80243970  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80243974  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l
+/* 80243970  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80243974  3B C3 61 C0 */	addi r30, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80243978  80 7E 5D B4 */	lwz r3, 0x5db4(r30)
 /* 8024397C  38 63 2D 84 */	addi r3, r3, 0x2d84
 /* 80243980  48 08 7C D1 */	bl getOnLineNum__13Z2WolfHowlMgrFv
@@ -87,8 +87,8 @@ lbl_802439D0:
 /* 802439D8  7C 7F 02 14 */	add r3, r31, r0
 /* 802439DC  98 83 24 98 */	stb r4, 0x2498(r3)
 lbl_802439E0:
-/* 802439E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 802439E4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 802439E0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 802439E4  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 802439E8  80 63 5D B4 */	lwz r3, 0x5db4(r3)
 /* 802439EC  81 83 06 28 */	lwz r12, 0x628(r3)
 /* 802439F0  81 8C 02 98 */	lwz r12, 0x298(r12)
@@ -102,8 +102,8 @@ lbl_802439E0:
 /* 80243A10  54 00 10 3A */	slwi r0, r0, 2
 /* 80243A14  7C 7F 02 14 */	add r3, r31, r0
 /* 80243A18  D0 23 01 80 */	stfs f1, 0x180(r3)
-/* 80243A1C  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha
-/* 80243A20  38 63 02 8C */	addi r3, r3, g_MsgObject_HIO_c@l
+/* 80243A1C  3C 60 80 43 */	lis r3, g_MsgObject_HIO_c@ha /* 0x8043028C@ha */
+/* 80243A20  38 63 02 8C */	addi r3, r3, g_MsgObject_HIO_c@l /* 0x8043028C@l */
 /* 80243A24  A8 83 04 0C */	lha r4, 0x40c(r3)
 /* 80243A28  A8 1F 21 32 */	lha r0, 0x2132(r31)
 /* 80243A2C  54 00 08 3C */	slwi r0, r0, 1

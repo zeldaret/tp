@@ -108,7 +108,7 @@ template <typename A0>
 struct JSUList {};
 /* JSUList<JAIStream> */
 struct JSUList__template2 {
-    /* 802B9994 */ void getFirst() const;
+    /* 802B9994 */ void func_802B9994() /* const */;
 };
 
 struct JAUSoundTable {
@@ -139,9 +139,6 @@ struct JAISound {
 //
 // Forward References:
 //
-
-static void dComIfGs_getStartPoint();
-static void dComIfGs_isSaveSwitch(int);
 
 extern "C" void __ct__10Z2SceneMgrFv();
 extern "C" void setInDarkness__10Z2SceneMgrFb();
@@ -183,9 +180,6 @@ extern "C" extern char const* const Z2SceneMgr__stringBase0;
 //
 // External References:
 //
-
-void dComIfGs_isStageSwitch(int, int);
-void dComIfGs_isEventBit(u16);
 
 extern "C" void dComIfGs_isStageSwitch__Fii();
 extern "C" void isSwitch__12dSv_memBit_cCFi();
@@ -245,7 +239,7 @@ extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* 802B6840-802B68B0 0070+00 s=0 e=1 z=0  None .text      __ct__10Z2SceneMgrFv */
+/* 802B6840-802B68B0 2B1180 0070+00 0/0 1/1 0/0 .text            __ct__10Z2SceneMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -255,7 +249,7 @@ asm Z2SceneMgr::Z2SceneMgr() {
 }
 #pragma pop
 
-/* 802B68B0-802B68E0 0030+00 s=0 e=1 z=0  None .text      setInDarkness__10Z2SceneMgrFb */
+/* 802B68B0-802B68E0 2B11F0 0030+00 0/0 1/1 0/0 .text            setInDarkness__10Z2SceneMgrFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -266,7 +260,7 @@ asm void Z2SceneMgr::setInDarkness(bool param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455A38-80455A3C 0004+00 s=8 e=0 z=0  None .sdata2    @3511 */
+/* 80455A38-80455A3C 004038 0004+00 8/8 0/0 0/0 .sdata2          @3511 */
 SECTION_SDATA2 static u8 lit_3511[4] = {
     0x00,
     0x00,
@@ -274,10 +268,10 @@ SECTION_SDATA2 static u8 lit_3511[4] = {
     0x00,
 };
 
-/* 80455A3C-80455A40 0004+00 s=6 e=0 z=0  None .sdata2    @3512 */
+/* 80455A3C-80455A40 00403C 0004+00 6/6 0/0 0/0 .sdata2          @3512 */
 SECTION_SDATA2 static f32 lit_3512 = 1.0f;
 
-/* 802B68E0-802B697C 009C+00 s=3 e=2 z=2  None .text      setSceneExist__10Z2SceneMgrFb */
+/* 802B68E0-802B697C 2B1220 009C+00 3/3 2/2 2/2 .text            setSceneExist__10Z2SceneMgrFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -288,17 +282,17 @@ asm void Z2SceneMgr::setSceneExist(bool param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455A40-80455A48 0004+04 s=1 e=0 z=0  None .sdata2    @3529 */
+/* 80455A40-80455A48 004040 0004+04 1/1 0/0 0/0 .sdata2          @3529 */
 SECTION_SDATA2 static f32 lit_3529[1 + 1 /* padding */] = {
     3.0f / 10.0f,
     /* padding */
     0.0f,
 };
 
-/* 80455A48-80455A50 0008+00 s=5 e=0 z=0  None .sdata2    @3531 */
+/* 80455A48-80455A50 004048 0008+00 5/5 0/0 0/0 .sdata2          @3531 */
 SECTION_SDATA2 static f64 lit_3531 = 4503599627370496.0 /* cast u32 to float */;
 
-/* 802B697C-802B6A18 009C+00 s=0 e=1 z=0  None .text      setFadeOutStart__10Z2SceneMgrFUc */
+/* 802B697C-802B6A18 2B12BC 009C+00 0/0 1/1 0/0 .text            setFadeOutStart__10Z2SceneMgrFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -308,7 +302,7 @@ asm void Z2SceneMgr::setFadeOutStart(u8 param_0) {
 }
 #pragma pop
 
-/* 802B6A18-802B6AF8 00E0+00 s=0 e=1 z=0  None .text      setFadeInStart__10Z2SceneMgrFUc */
+/* 802B6A18-802B6AF8 2B1358 00E0+00 0/0 1/1 0/0 .text            setFadeInStart__10Z2SceneMgrFUc */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -319,97 +313,7 @@ asm void Z2SceneMgr::setFadeInStart(u8 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 8039BFA8-8039C220 0274+04 s=2 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_8039BFA8 = "F_SP00";
-SECTION_DEAD char const* const stringBase_8039BFAF = "F_SP103";
-SECTION_DEAD char const* const stringBase_8039BFB7 = "R_SP01";
-SECTION_DEAD char const* const stringBase_8039BFBE = "F_SP104";
-SECTION_DEAD char const* const stringBase_8039BFC6 = "R_SP107";
-SECTION_DEAD char const* const stringBase_8039BFCE = "F_SP108";
-SECTION_DEAD char const* const stringBase_8039BFD6 = "R_SP108";
-SECTION_DEAD char const* const stringBase_8039BFDE = "F_SP117";
-SECTION_DEAD char const* const stringBase_8039BFE6 = "F_SP109";
-SECTION_DEAD char const* const stringBase_8039BFEE = "R_SP109";
-SECTION_DEAD char const* const stringBase_8039BFF6 = "R_SP209";
-SECTION_DEAD char const* const stringBase_8039BFFE = "F_SP110";
-SECTION_DEAD char const* const stringBase_8039C006 = "R_SP110";
-SECTION_DEAD char const* const stringBase_8039C00E = "F_SP111";
-SECTION_DEAD char const* const stringBase_8039C016 = "F_SP128";
-SECTION_DEAD char const* const stringBase_8039C01E = "R_SP128";
-SECTION_DEAD char const* const stringBase_8039C026 = "F_SP115";
-SECTION_DEAD char const* const stringBase_8039C02E = "F_SP112";
-SECTION_DEAD char const* const stringBase_8039C036 = "F_SP126";
-SECTION_DEAD char const* const stringBase_8039C03E = "F_SP127";
-SECTION_DEAD char const* const stringBase_8039C046 = "R_SP127";
-SECTION_DEAD char const* const stringBase_8039C04E = "F_SP113";
-SECTION_DEAD char const* const stringBase_8039C056 = "F_SP116";
-SECTION_DEAD char const* const stringBase_8039C05E = "R_SP116";
-SECTION_DEAD char const* const stringBase_8039C066 = "R_SP160";
-SECTION_DEAD char const* const stringBase_8039C06E = "R_SP161";
-SECTION_DEAD char const* const stringBase_8039C076 = "F_SP114";
-SECTION_DEAD char const* const stringBase_8039C07E = "F_SP118";
-SECTION_DEAD char const* const stringBase_8039C086 = "F_SP124";
-SECTION_DEAD char const* const stringBase_8039C08E = "F_SP125";
-SECTION_DEAD char const* const stringBase_8039C096 = "F_SP121";
-SECTION_DEAD char const* const stringBase_8039C09E = "F_SP122";
-SECTION_DEAD char const* const stringBase_8039C0A6 = "F_SP123";
-SECTION_DEAD char const* const stringBase_8039C0AE = "F_SP200";
-SECTION_DEAD char const* const stringBase_8039C0B6 = "F_SP102";
-SECTION_DEAD char const* const stringBase_8039C0BE = "";
-SECTION_DEAD char const* const stringBase_8039C0BF = "R_SP300";
-SECTION_DEAD char const* const stringBase_8039C0C7 = "R_SP301";
-SECTION_DEAD char const* const stringBase_8039C0CF = "T_ENEMY";
-SECTION_DEAD char const* const stringBase_8039C0D7 = "D_MN54";
-SECTION_DEAD char const* const stringBase_8039C0DE = "D_MN05";
-SECTION_DEAD char const* const stringBase_8039C0E5 = "D_MN05B";
-SECTION_DEAD char const* const stringBase_8039C0ED = "D_MN05A";
-SECTION_DEAD char const* const stringBase_8039C0F5 = "D_MN04";
-SECTION_DEAD char const* const stringBase_8039C0FC = "D_MN04B";
-SECTION_DEAD char const* const stringBase_8039C104 = "D_MN04A";
-SECTION_DEAD char const* const stringBase_8039C10C = "D_MN01";
-SECTION_DEAD char const* const stringBase_8039C113 = "D_MN01B";
-SECTION_DEAD char const* const stringBase_8039C11B = "D_MN01A";
-SECTION_DEAD char const* const stringBase_8039C123 = "D_MN10";
-SECTION_DEAD char const* const stringBase_8039C12A = "D_MN10B";
-SECTION_DEAD char const* const stringBase_8039C132 = "D_MN10A";
-SECTION_DEAD char const* const stringBase_8039C13A = "D_MN11";
-SECTION_DEAD char const* const stringBase_8039C141 = "D_MN11B";
-SECTION_DEAD char const* const stringBase_8039C149 = "D_MN11A";
-SECTION_DEAD char const* const stringBase_8039C151 = "D_MN06";
-SECTION_DEAD char const* const stringBase_8039C158 = "D_MN06B";
-SECTION_DEAD char const* const stringBase_8039C160 = "D_MN06A";
-SECTION_DEAD char const* const stringBase_8039C168 = "D_MN07";
-SECTION_DEAD char const* const stringBase_8039C16F = "D_MN07B";
-SECTION_DEAD char const* const stringBase_8039C177 = "D_MN07A";
-SECTION_DEAD char const* const stringBase_8039C17F = "D_MN08";
-SECTION_DEAD char const* const stringBase_8039C186 = "D_MN08B";
-SECTION_DEAD char const* const stringBase_8039C18E = "D_MN08C";
-SECTION_DEAD char const* const stringBase_8039C196 = "D_MN08A";
-SECTION_DEAD char const* const stringBase_8039C19E = "D_MN08D";
-SECTION_DEAD char const* const stringBase_8039C1A6 = "D_MN09";
-SECTION_DEAD char const* const stringBase_8039C1AD = "D_MN09A";
-SECTION_DEAD char const* const stringBase_8039C1B5 = "D_MN09B";
-SECTION_DEAD char const* const stringBase_8039C1BD = "D_MN09C";
-SECTION_DEAD char const* const stringBase_8039C1C5 = "D_SB00";
-SECTION_DEAD char const* const stringBase_8039C1CC = "D_SB01";
-SECTION_DEAD char const* const stringBase_8039C1D3 = "D_SB02";
-SECTION_DEAD char const* const stringBase_8039C1DA = "D_SB03";
-SECTION_DEAD char const* const stringBase_8039C1E1 = "D_SB04";
-SECTION_DEAD char const* const stringBase_8039C1E8 = "D_SB05";
-SECTION_DEAD char const* const stringBase_8039C1EF = "D_SB06";
-SECTION_DEAD char const* const stringBase_8039C1F6 = "D_SB07";
-SECTION_DEAD char const* const stringBase_8039C1FD = "D_SB08";
-SECTION_DEAD char const* const stringBase_8039C204 = "D_SB09";
-SECTION_DEAD char const* const stringBase_8039C20B = "D_SB10";
-SECTION_DEAD char const* const stringBase_8039C212 = "force_end";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039C21C = "\0\0\0";
-#pragma pop
-
-/* 803CA5C0-803CA704 0144+00 s=1 e=0 z=0  None .data      sSpotName */
+/* 803CA5C0-803CA704 -00001 0144+00 1/1 0/0 0/0 .data            sSpotName */
 SECTION_DATA static void* sSpotName[81] = {
     (void*)&Z2SceneMgr__stringBase0,
     (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x7),
@@ -494,7 +398,7 @@ SECTION_DATA static void* sSpotName[81] = {
     (void*)(((char*)&Z2SceneMgr__stringBase0) + 0x263),
 };
 
-/* 803CA704-803CA744 0040+00 s=1 e=0 z=0  None .data      @5354 */
+/* 803CA704-803CA744 -00001 0040+00 1/1 0/0 0/0 .data            @5354 */
 SECTION_DATA static void* lit_5354[16] = {
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BDC),
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BE4),
@@ -514,7 +418,7 @@ SECTION_DATA static void* lit_5354[16] = {
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BE4),
 };
 
-/* 803CA744-803CA784 0040+00 s=1 e=0 z=0  None .data      @5353 */
+/* 803CA744-803CA784 -00001 0040+00 1/1 0/0 0/0 .data            @5353 */
 SECTION_DATA static void* lit_5353[16] = {
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BA0),
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BB8),
@@ -534,7 +438,7 @@ SECTION_DATA static void* lit_5353[16] = {
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1BB8),
 };
 
-/* 803CA784-803CA7BC 0038+00 s=1 e=0 z=0  None .data      @5352 */
+/* 803CA784-803CA7BC -00001 0038+00 1/1 0/0 0/0 .data            @5352 */
 SECTION_DATA static void* lit_5352[14] = {
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xC48),
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xC78),
@@ -552,7 +456,7 @@ SECTION_DATA static void* lit_5352[14] = {
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xC3C),
 };
 
-/* 803CA7BC-803CA7F4 0038+00 s=1 e=0 z=0  None .data      @5351 */
+/* 803CA7BC-803CA7F4 -00001 0038+00 1/1 0/0 0/0 .data            @5351 */
 SECTION_DATA static void* lit_5351[14] = {
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xB48),
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xAF4),
@@ -570,7 +474,7 @@ SECTION_DATA static void* lit_5351[14] = {
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0xAEC),
 };
 
-/* 803CA7F4-803CA824 0030+00 s=1 e=0 z=0  None .data      @5350 */
+/* 803CA7F4-803CA824 -00001 0030+00 1/1 0/0 0/0 .data            @5350 */
 SECTION_DATA static void* lit_5350[12] = {
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x7B0),
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x72C),
@@ -586,7 +490,7 @@ SECTION_DATA static void* lit_5350[12] = {
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x7A8),
 };
 
-/* 803CA824-803CA844 0020+00 s=1 e=0 z=0  None .data      @5349 */
+/* 803CA824-803CA844 -00001 0020+00 1/1 0/0 0/0 .data            @5349 */
 SECTION_DATA static void* lit_5349[8] = {
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x430),
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x45C),
@@ -598,7 +502,7 @@ SECTION_DATA static void* lit_5349[8] = {
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x604),
 };
 
-/* 803CA844-803CA878 0034+00 s=1 e=0 z=0  None .data      @5348 */
+/* 803CA844-803CA878 -00001 0034+00 1/1 0/0 0/0 .data            @5348 */
 SECTION_DATA static void* lit_5348[13] = {
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x3E4),
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2E0),
@@ -615,7 +519,7 @@ SECTION_DATA static void* lit_5348[13] = {
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x328),
 };
 
-/* 803CA878-803CA9BC 0144+00 s=1 e=0 z=0  None .data      @5347 */
+/* 803CA878-803CA9BC -00001 0144+00 1/1 0/0 0/0 .data            @5347 */
 SECTION_DATA static void* lit_5347[81] = {
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x150),
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x1E0),
@@ -700,25 +604,25 @@ SECTION_DATA static void* lit_5347[81] = {
     (void*)(((char*)setSceneName__10Z2SceneMgrFPcll) + 0x2B6C),
 };
 
-/* 80455A50-80455A54 0004+00 s=1 e=0 z=0  None .sdata2    @5341 */
+/* 80455A50-80455A54 004050 0004+00 1/1 0/0 0/0 .sdata2          @5341 */
 SECTION_SDATA2 static f32 lit_5341 = -1.0f;
 
-/* 80455A54-80455A58 0004+00 s=2 e=0 z=0  None .sdata2    @5342 */
+/* 80455A54-80455A58 004054 0004+00 2/2 0/0 0/0 .sdata2          @5342 */
 SECTION_SDATA2 static f32 lit_5342 = 0.5f;
 
-/* 80455A58-80455A5C 0004+00 s=1 e=0 z=0  None .sdata2    @5343 */
+/* 80455A58-80455A5C 004058 0004+00 1/1 0/0 0/0 .sdata2          @5343 */
 SECTION_SDATA2 static f32 lit_5343 = 7.0f / 10.0f;
 
-/* 80455A5C-80455A60 0004+00 s=1 e=0 z=0  None .sdata2    @5344 */
+/* 80455A5C-80455A60 00405C 0004+00 1/1 0/0 0/0 .sdata2          @5344 */
 SECTION_SDATA2 static f32 lit_5344 = 4.0f / 5.0f;
 
-/* 80455A60-80455A64 0004+00 s=1 e=0 z=0  None .sdata2    @5345 */
+/* 80455A60-80455A64 004060 0004+00 1/1 0/0 0/0 .sdata2          @5345 */
 SECTION_SDATA2 static f32 lit_5345 = 1.0f / 10.0f;
 
-/* 80455A64-80455A68 0004+00 s=1 e=0 z=0  None .sdata2    @5346 */
+/* 80455A64-80455A68 004064 0004+00 1/1 0/0 0/0 .sdata2          @5346 */
 SECTION_SDATA2 static f32 lit_5346 = 2.0f / 25.0f;
 
-/* 802B6AF8-802B995C 2E64+00 s=8 e=1 z=0  None .text      setSceneName__10Z2SceneMgrFPcll */
+/* 802B6AF8-802B995C 2B1438 2E64+00 8/0 1/1 0/0 .text            setSceneName__10Z2SceneMgrFPcll */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -728,7 +632,8 @@ asm void Z2SceneMgr::setSceneName(char* param_0, s32 param_1, s32 param_2) {
 }
 #pragma pop
 
-/* 802B995C-802B9968 000C+00 s=1 e=0 z=0  None .text      __ct__10JAISoundIDFRC10JAISoundID */
+/* 802B995C-802B9968 2B429C 000C+00 1/1 0/0 0/0 .text            __ct__10JAISoundIDFRC10JAISoundID
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -738,7 +643,7 @@ asm JAISoundID::JAISoundID(JAISoundID const& param_0) {
 }
 #pragma pop
 
-/* 802B9968-802B9978 0010+00 s=1 e=0 z=0  None .text      setFieldBgmPlay__8Z2SeqMgrFb */
+/* 802B9968-802B9978 2B42A8 0010+00 1/1 0/0 0/0 .text            setFieldBgmPlay__8Z2SeqMgrFb */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -748,7 +653,7 @@ asm void Z2SeqMgr::setFieldBgmPlay(bool param_0) {
 }
 #pragma pop
 
-/* 802B9978-802B9988 0010+00 s=1 e=0 z=0  None .text      isActive__12JAIStreamMgrCFv */
+/* 802B9978-802B9988 2B42B8 0010+00 1/1 0/0 0/0 .text            isActive__12JAIStreamMgrCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -758,7 +663,7 @@ asm void JAIStreamMgr::isActive() const {
 }
 #pragma pop
 
-/* 802B9988-802B9994 000C+00 s=1 e=0 z=0  None .text      getID__8JAISoundCFv */
+/* 802B9988-802B9994 2B42C8 000C+00 1/1 0/0 0/0 .text            getID__8JAISoundCFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -768,27 +673,28 @@ asm void JAISound::getID() const {
 }
 #pragma pop
 
-/* 802B9994-802B999C 0008+00 s=1 e=0 z=0  None .text      getFirst__19JSUList<9JAIStream>CFv */
+/* 802B9994-802B999C 2B42D4 0008+00 1/1 0/0 0/0 .text            getFirst__19JSUList<9JAIStream>CFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JSUList__template2::getFirst() const {
+extern "C" asm void func_802B9994() /* const */ {
     nofralloc
 #include "asm/Z2AudioLib/Z2SceneMgr/func_802B9994.s"
 }
 #pragma pop
 
-/* 802B999C-802B99AC 0010+00 s=1 e=0 z=0  None .text      dComIfGs_getStartPoint__Fv */
+/* 802B999C-802B99AC 2B42DC 0010+00 1/1 0/0 0/0 .text            dComIfGs_getStartPoint__Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dComIfGs_getStartPoint() {
+static asm void dComIfGs_getStartPoint() {
     nofralloc
 #include "asm/Z2AudioLib/Z2SceneMgr/dComIfGs_getStartPoint__Fv.s"
 }
 #pragma pop
 
-/* 802B99AC-802B9A24 0078+00 s=1 e=0 z=0  None .text      unMuteSceneBgm__8Z2SeqMgrFUl */
+/* 802B99AC-802B9A24 2B42EC 0078+00 1/1 0/0 0/0 .text            unMuteSceneBgm__8Z2SeqMgrFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -798,7 +704,7 @@ asm void Z2SeqMgr::unMuteSceneBgm(u32 param_0) {
 }
 #pragma pop
 
-/* 802B9A24-802B9A88 0064+00 s=1 e=0 z=0  None .text      muteSceneBgm__8Z2SeqMgrFUlf */
+/* 802B9A24-802B9A88 2B4364 0064+00 1/1 0/0 0/0 .text            muteSceneBgm__8Z2SeqMgrFUlf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -808,7 +714,8 @@ asm void Z2SeqMgr::muteSceneBgm(u32 param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 802B9A88-802B9A94 000C+00 s=1 e=0 z=0  None .text      __as__10JAISoundIDFRC10JAISoundID */
+/* 802B9A88-802B9A94 2B43C8 000C+00 1/1 0/0 0/0 .text            __as__10JAISoundIDFRC10JAISoundID
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -818,17 +725,17 @@ asm void JAISoundID::operator=(JAISoundID const& param_0) {
 }
 #pragma pop
 
-/* 802B9A94-802B9AC4 0030+00 s=1 e=0 z=0  None .text      dComIfGs_isSaveSwitch__Fi */
+/* 802B9A94-802B9AC4 2B43D4 0030+00 1/1 0/0 0/0 .text            dComIfGs_isSaveSwitch__Fi */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void dComIfGs_isSaveSwitch(int param_0) {
+static asm void dComIfGs_isSaveSwitch(int param_0) {
     nofralloc
 #include "asm/Z2AudioLib/Z2SceneMgr/dComIfGs_isSaveSwitch__Fi.s"
 }
 #pragma pop
 
-/* 802B9AC4-802B9AD0 000C+00 s=1 e=0 z=0  None .text      resetCrowdSize__7Z2SeMgrFv */
+/* 802B9AC4-802B9AD0 2B4404 000C+00 1/1 0/0 0/0 .text            resetCrowdSize__7Z2SeMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -838,7 +745,7 @@ asm void Z2SeMgr::resetCrowdSize() {
 }
 #pragma pop
 
-/* 802B9AD0-802B9AFC 002C+00 s=1 e=0 z=0  None .text      setTwilightGateVol__8Z2SeqMgrFf */
+/* 802B9AD0-802B9AFC 2B4410 002C+00 1/1 0/0 0/0 .text            setTwilightGateVol__8Z2SeqMgrFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -848,7 +755,7 @@ asm void Z2SeqMgr::setTwilightGateVol(f32 param_0) {
 }
 #pragma pop
 
-/* 802B9AFC-802B9B60 0064+00 s=1 e=0 z=0  None .text      setWindStoneVol__8Z2SeqMgrFfUl */
+/* 802B9AFC-802B9B60 2B443C 0064+00 1/1 0/0 0/0 .text            setWindStoneVol__8Z2SeqMgrFfUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -858,7 +765,7 @@ asm void Z2SeqMgr::setWindStoneVol(f32 param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802B9B60-802B9B68 0008+00 s=1 e=0 z=0  None .text      __ct__10JAISoundIDFUl */
+/* 802B9B60-802B9B68 2B44A0 0008+00 1/1 0/0 0/0 .text            __ct__10JAISoundIDFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -868,7 +775,7 @@ asm JAISoundID::JAISoundID(u32 param_0) {
 }
 #pragma pop
 
-/* 802B9B68-802B9C50 00E8+00 s=1 e=0 z=0  None .text
+/* 802B9B68-802B9C50 2B44A8 00E8+00 1/1 0/0 0/0 .text
  * sceneChange__10Z2SceneMgrF10JAISoundIDUcUcUcUcUcb            */
 #pragma push
 #pragma optimization_level 0
@@ -880,7 +787,7 @@ asm void Z2SceneMgr::sceneChange(JAISoundID param_0, u8 param_1, u8 param_2, u8 
 }
 #pragma pop
 
-/* 802B9C50-802B9D40 00F0+00 s=0 e=1 z=0  None .text      framework__10Z2SceneMgrFv */
+/* 802B9C50-802B9D40 2B4590 00F0+00 0/0 1/1 0/0 .text            framework__10Z2SceneMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -890,7 +797,8 @@ asm void Z2SceneMgr::framework() {
 }
 #pragma pop
 
-/* 802B9D40-802B9D98 0058+00 s=0 e=1 z=0  None .text      load1stDynamicWave__10Z2SceneMgrFv */
+/* 802B9D40-802B9D98 2B4680 0058+00 0/0 1/1 0/0 .text            load1stDynamicWave__10Z2SceneMgrFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -900,7 +808,8 @@ asm void Z2SceneMgr::load1stDynamicWave() {
 }
 #pragma pop
 
-/* 802B9D98-802B9FC8 0230+00 s=2 e=0 z=0  None .text      _load1stWaveInner_1__10Z2SceneMgrFv */
+/* 802B9D98-802B9FC8 2B46D8 0230+00 2/2 0/0 0/0 .text            _load1stWaveInner_1__10Z2SceneMgrFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -910,7 +819,8 @@ asm void Z2SceneMgr::_load1stWaveInner_1() {
 }
 #pragma pop
 
-/* 802B9FC8-802BA09C 00D4+00 s=2 e=0 z=0  None .text      _load1stWaveInner_2__10Z2SceneMgrFv */
+/* 802B9FC8-802BA09C 2B4908 00D4+00 2/2 0/0 0/0 .text            _load1stWaveInner_2__10Z2SceneMgrFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -920,7 +830,8 @@ asm void Z2SceneMgr::_load1stWaveInner_2() {
 }
 #pragma pop
 
-/* 802BA09C-802BA120 0084+00 s=0 e=1 z=0  None .text      check1stDynamicWave__10Z2SceneMgrFv */
+/* 802BA09C-802BA120 2B49DC 0084+00 0/0 1/1 0/0 .text            check1stDynamicWave__10Z2SceneMgrFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -930,7 +841,8 @@ asm void Z2SceneMgr::check1stDynamicWave() {
 }
 #pragma pop
 
-/* 802BA120-802BA294 0174+00 s=0 e=2 z=0  None .text      load2ndDynamicWave__10Z2SceneMgrFv */
+/* 802BA120-802BA294 2B4A60 0174+00 0/0 2/2 0/0 .text            load2ndDynamicWave__10Z2SceneMgrFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -941,7 +853,7 @@ asm void Z2SceneMgr::load2ndDynamicWave() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803CA9BC-803CAB18 015C+00 s=1 e=0 z=0  None .data      @5852 */
+/* 803CA9BC-803CAB18 -00001 015C+00 1/1 0/0 0/0 .data            @5852 */
 SECTION_DATA static void* lit_5852[87] = {
     (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x150),
     (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x2A0),
@@ -1032,7 +944,7 @@ SECTION_DATA static void* lit_5852[87] = {
     (void*)(((char*)sceneBgmStart__10Z2SceneMgrFv) + 0x1B8),
 };
 
-/* 802BA294-802BA56C 02D8+00 s=1 e=2 z=0  None .text      sceneBgmStart__10Z2SceneMgrFv */
+/* 802BA294-802BA56C 2B4BD4 02D8+00 1/0 2/2 0/0 .text            sceneBgmStart__10Z2SceneMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1042,7 +954,7 @@ asm void Z2SceneMgr::sceneBgmStart() {
 }
 #pragma pop
 
-/* 802BA56C-802BA5C0 0054+00 s=0 e=1 z=0  None .text      loadStaticWaves__10Z2SceneMgrFv */
+/* 802BA56C-802BA5C0 2B4EAC 0054+00 0/0 1/1 0/0 .text            loadStaticWaves__10Z2SceneMgrFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1052,12 +964,12 @@ asm void Z2SceneMgr::loadStaticWaves() {
 }
 #pragma pop
 
-/* 802BA5C0-802BA5C8 0008+00 s=0 e=1 z=0  None .text      checkFirstWaves__10Z2SceneMgrFv */
+/* 802BA5C0-802BA5C8 2B4F00 0008+00 0/0 1/1 0/0 .text            checkFirstWaves__10Z2SceneMgrFv */
 bool Z2SceneMgr::checkFirstWaves() {
     return false;
 }
 
-/* 802BA5C8-802BA630 0068+00 s=2 e=0 z=0  None .text      eraseSeWave__10Z2SceneMgrFUl */
+/* 802BA5C8-802BA630 2B4F08 0068+00 2/2 0/0 0/0 .text            eraseSeWave__10Z2SceneMgrFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1067,7 +979,7 @@ asm void Z2SceneMgr::eraseSeWave(u32 param_0) {
 }
 #pragma pop
 
-/* 802BA630-802BA698 0068+00 s=2 e=0 z=0  None .text      eraseBgmWave__10Z2SceneMgrFUl */
+/* 802BA630-802BA698 2B4F70 0068+00 2/2 0/0 0/0 .text            eraseBgmWave__10Z2SceneMgrFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1077,7 +989,7 @@ asm void Z2SceneMgr::eraseBgmWave(u32 param_0) {
 }
 #pragma pop
 
-/* 802BA698-802BA704 006C+00 s=1 e=0 z=0  None .text      getWaveLoadStatus__10Z2SceneMgrFUlUl */
+/* 802BA698-802BA704 2B4FD8 006C+00 1/1 0/0 0/0 .text getWaveLoadStatus__10Z2SceneMgrFUlUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1087,7 +999,7 @@ asm void Z2SceneMgr::getWaveLoadStatus(u32 param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802BA704-802BA770 006C+00 s=3 e=0 z=0  None .text      loadSeWave__10Z2SceneMgrFUl */
+/* 802BA704-802BA770 2B5044 006C+00 3/3 0/0 0/0 .text            loadSeWave__10Z2SceneMgrFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1097,7 +1009,7 @@ asm void Z2SceneMgr::loadSeWave(u32 param_0) {
 }
 #pragma pop
 
-/* 802BA770-802BA7DC 006C+00 s=3 e=0 z=0  None .text      loadBgmWave__10Z2SceneMgrFUl */
+/* 802BA770-802BA7DC 2B50B0 006C+00 3/3 0/0 0/0 .text            loadBgmWave__10Z2SceneMgrFUl */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -1105,4 +1017,94 @@ asm void Z2SceneMgr::loadBgmWave(u32 param_0) {
     nofralloc
 #include "asm/Z2AudioLib/Z2SceneMgr/loadBgmWave__10Z2SceneMgrFUl.s"
 }
+#pragma pop
+
+/* 8039BFA8-8039C220 028608 0274+04 2/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_8039BFA8 = "F_SP00";
+SECTION_DEAD static char const* const stringBase_8039BFAF = "F_SP103";
+SECTION_DEAD static char const* const stringBase_8039BFB7 = "R_SP01";
+SECTION_DEAD static char const* const stringBase_8039BFBE = "F_SP104";
+SECTION_DEAD static char const* const stringBase_8039BFC6 = "R_SP107";
+SECTION_DEAD static char const* const stringBase_8039BFCE = "F_SP108";
+SECTION_DEAD static char const* const stringBase_8039BFD6 = "R_SP108";
+SECTION_DEAD static char const* const stringBase_8039BFDE = "F_SP117";
+SECTION_DEAD static char const* const stringBase_8039BFE6 = "F_SP109";
+SECTION_DEAD static char const* const stringBase_8039BFEE = "R_SP109";
+SECTION_DEAD static char const* const stringBase_8039BFF6 = "R_SP209";
+SECTION_DEAD static char const* const stringBase_8039BFFE = "F_SP110";
+SECTION_DEAD static char const* const stringBase_8039C006 = "R_SP110";
+SECTION_DEAD static char const* const stringBase_8039C00E = "F_SP111";
+SECTION_DEAD static char const* const stringBase_8039C016 = "F_SP128";
+SECTION_DEAD static char const* const stringBase_8039C01E = "R_SP128";
+SECTION_DEAD static char const* const stringBase_8039C026 = "F_SP115";
+SECTION_DEAD static char const* const stringBase_8039C02E = "F_SP112";
+SECTION_DEAD static char const* const stringBase_8039C036 = "F_SP126";
+SECTION_DEAD static char const* const stringBase_8039C03E = "F_SP127";
+SECTION_DEAD static char const* const stringBase_8039C046 = "R_SP127";
+SECTION_DEAD static char const* const stringBase_8039C04E = "F_SP113";
+SECTION_DEAD static char const* const stringBase_8039C056 = "F_SP116";
+SECTION_DEAD static char const* const stringBase_8039C05E = "R_SP116";
+SECTION_DEAD static char const* const stringBase_8039C066 = "R_SP160";
+SECTION_DEAD static char const* const stringBase_8039C06E = "R_SP161";
+SECTION_DEAD static char const* const stringBase_8039C076 = "F_SP114";
+SECTION_DEAD static char const* const stringBase_8039C07E = "F_SP118";
+SECTION_DEAD static char const* const stringBase_8039C086 = "F_SP124";
+SECTION_DEAD static char const* const stringBase_8039C08E = "F_SP125";
+SECTION_DEAD static char const* const stringBase_8039C096 = "F_SP121";
+SECTION_DEAD static char const* const stringBase_8039C09E = "F_SP122";
+SECTION_DEAD static char const* const stringBase_8039C0A6 = "F_SP123";
+SECTION_DEAD static char const* const stringBase_8039C0AE = "F_SP200";
+SECTION_DEAD static char const* const stringBase_8039C0B6 = "F_SP102";
+SECTION_DEAD static char const* const stringBase_8039C0BE = "";
+SECTION_DEAD static char const* const stringBase_8039C0BF = "R_SP300";
+SECTION_DEAD static char const* const stringBase_8039C0C7 = "R_SP301";
+SECTION_DEAD static char const* const stringBase_8039C0CF = "T_ENEMY";
+SECTION_DEAD static char const* const stringBase_8039C0D7 = "D_MN54";
+SECTION_DEAD static char const* const stringBase_8039C0DE = "D_MN05";
+SECTION_DEAD static char const* const stringBase_8039C0E5 = "D_MN05B";
+SECTION_DEAD static char const* const stringBase_8039C0ED = "D_MN05A";
+SECTION_DEAD static char const* const stringBase_8039C0F5 = "D_MN04";
+SECTION_DEAD static char const* const stringBase_8039C0FC = "D_MN04B";
+SECTION_DEAD static char const* const stringBase_8039C104 = "D_MN04A";
+SECTION_DEAD static char const* const stringBase_8039C10C = "D_MN01";
+SECTION_DEAD static char const* const stringBase_8039C113 = "D_MN01B";
+SECTION_DEAD static char const* const stringBase_8039C11B = "D_MN01A";
+SECTION_DEAD static char const* const stringBase_8039C123 = "D_MN10";
+SECTION_DEAD static char const* const stringBase_8039C12A = "D_MN10B";
+SECTION_DEAD static char const* const stringBase_8039C132 = "D_MN10A";
+SECTION_DEAD static char const* const stringBase_8039C13A = "D_MN11";
+SECTION_DEAD static char const* const stringBase_8039C141 = "D_MN11B";
+SECTION_DEAD static char const* const stringBase_8039C149 = "D_MN11A";
+SECTION_DEAD static char const* const stringBase_8039C151 = "D_MN06";
+SECTION_DEAD static char const* const stringBase_8039C158 = "D_MN06B";
+SECTION_DEAD static char const* const stringBase_8039C160 = "D_MN06A";
+SECTION_DEAD static char const* const stringBase_8039C168 = "D_MN07";
+SECTION_DEAD static char const* const stringBase_8039C16F = "D_MN07B";
+SECTION_DEAD static char const* const stringBase_8039C177 = "D_MN07A";
+SECTION_DEAD static char const* const stringBase_8039C17F = "D_MN08";
+SECTION_DEAD static char const* const stringBase_8039C186 = "D_MN08B";
+SECTION_DEAD static char const* const stringBase_8039C18E = "D_MN08C";
+SECTION_DEAD static char const* const stringBase_8039C196 = "D_MN08A";
+SECTION_DEAD static char const* const stringBase_8039C19E = "D_MN08D";
+SECTION_DEAD static char const* const stringBase_8039C1A6 = "D_MN09";
+SECTION_DEAD static char const* const stringBase_8039C1AD = "D_MN09A";
+SECTION_DEAD static char const* const stringBase_8039C1B5 = "D_MN09B";
+SECTION_DEAD static char const* const stringBase_8039C1BD = "D_MN09C";
+SECTION_DEAD static char const* const stringBase_8039C1C5 = "D_SB00";
+SECTION_DEAD static char const* const stringBase_8039C1CC = "D_SB01";
+SECTION_DEAD static char const* const stringBase_8039C1D3 = "D_SB02";
+SECTION_DEAD static char const* const stringBase_8039C1DA = "D_SB03";
+SECTION_DEAD static char const* const stringBase_8039C1E1 = "D_SB04";
+SECTION_DEAD static char const* const stringBase_8039C1E8 = "D_SB05";
+SECTION_DEAD static char const* const stringBase_8039C1EF = "D_SB06";
+SECTION_DEAD static char const* const stringBase_8039C1F6 = "D_SB07";
+SECTION_DEAD static char const* const stringBase_8039C1FD = "D_SB08";
+SECTION_DEAD static char const* const stringBase_8039C204 = "D_SB09";
+SECTION_DEAD static char const* const stringBase_8039C20B = "D_SB10";
+SECTION_DEAD static char const* const stringBase_8039C212 = "force_end";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039C21C = "\0\0\0";
 #pragma pop

@@ -3,17 +3,15 @@
 #
 
 M240_TARGET := $(BUILD_DIR)/rel/d/a/e/d_a_e_tk_ball.plf
+M240_LDSCRIPT := $(BUILD_DIR)/rel/d/a/e/d_a_e_tk_ball.lcf
+M240_MAP := $(BUILD_DIR)/rel/d/a/e/d_a_e_tk_ball.map
 
 M240_CPP_FILES := \
-	rel/d/a/e/d_a_e_tk_ball/executor.cpp \
-	rel/d/a/e/d_a_e_tk_ball/unknown_translation_unit_ctors.cpp \
-	rel/d/a/e/d_a_e_tk_ball/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/e/d_a_e_tk_ball/d_a_e_tk_ball.cpp \
 
 M240_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_tk_ball/executor.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_tk_ball/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/e/d_a_e_tk_ball/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/e/d_a_e_tk_ball/d_a_e_tk_ball.o \
 
 M240_LIBS := \
@@ -29,14 +27,21 @@ M240_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M240_LDSCRIPT) \
+	-unused -map $(M240_MAP) \
+	-w off \
 
 $(M240_TARGET): $(M240_O_FILES) $(M240_LIBS)
+	@echo [240] creating $(M240_TARGET)
 	@echo $(M240_LIBS) $(M240_O_FILES) > build/M240_ofiles
-	$(LD) -partial $(M240_LDFLAGS) -o $(M240_TARGET) @build/M240_ofiles
+	@python3 tools/lcf.py rel 240 --output $(M240_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M240_LDFLAGS) -o $(M240_TARGET) @build/M240_ofiles
 
 $(BUILD_DIR)/rel/d/a/e/d_a_e_tk_ball/%.o: rel/d/a/e/d_a_e_tk_ball/%.cpp
+	@echo [240] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M240_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M240_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -57,15 +57,6 @@ struct J3DFrameCtrl {
 // Forward References:
 //
 
-static void texScrollCheck(f32&);
-static void daVrbox2_Draw(vrbox2_class*);
-static void daVrbox2_color_set(vrbox2_class*);
-static void daVrbox2_Execute(vrbox2_class*);
-static bool daVrbox2_IsDelete(vrbox2_class*);
-static bool daVrbox2_Delete(vrbox2_class*);
-static void daVrbox2_solidHeapCB(fopAc_ac_c*);
-static void daVrbox2_Create(fopAc_ac_c*);
-
 extern "C" static void texScrollCheck__FRf();
 extern "C" static void daVrbox2_Draw__FP12vrbox2_class();
 extern "C" static void daVrbox2_color_set__FP12vrbox2_class();
@@ -75,31 +66,11 @@ extern "C" static bool daVrbox2_Delete__FP12vrbox2_class();
 extern "C" static void daVrbox2_solidHeapCB__FP10fopAc_ac_c();
 extern "C" static void daVrbox2_Create__FP10fopAc_ac_c();
 extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_VRBOX2[12];
+extern "C" extern char const* const d_a_vrbox2__stringBase0;
 
 //
 // External References:
 //
-
-void mDoMtx_XrotM(f32 (*)[4], s16);
-void mDoMtx_YrotM(f32 (*)[4], s16);
-void mDoMtx_ZrotM(f32 (*)[4], s16);
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_entrySolidHeap(fopAc_ac_c*, int (*)(fopAc_ac_c*), u32);
-void dComIfG_getStageRes(char const*);
-void dKyw_get_wind_vec();
-void dKyw_get_wind_pow();
-void dKyr_get_vectle_calc(cXyz*, cXyz*, cXyz*);
-void dKy_get_parcent(f32, f32, f32);
-void dKy_GxFog_set();
-void cM_rndF(f32);
-void cM3d_VectorProduct2d(f32, f32, f32, f32, f32, f32);
-void cLib_addCalc(f32*, f32, f32, f32, f32);
-void cLib_targetAngleY(Vec const*, Vec const*);
-void cLib_targetAngleX(cXyz const*, cXyz const*);
-void operator delete(void*);
 
 extern "C" void mDoMtx_XrotM__FPA4_fs();
 extern "C" void mDoMtx_YrotM__FPA4_fs();
@@ -147,156 +118,226 @@ extern "C" extern u8 struct_80450D64[4];
 //
 
 /* ############################################################################################## */
-/* 80499A6C-80499A70 0004+00 s=4 e=0 z=0  None .rodata    @3627 */
-SECTION_RODATA static u32 const lit_3627 = 0x3F800000;
+/* 80499A6C-80499A70 000000 0004+00 4/4 0/0 0/0 .rodata          @3627 */
+SECTION_RODATA static f32 const lit_3627 = 1.0f;
+COMPILER_STRIP_GATE(80499A6C, &lit_3627);
 
-/* 80499A70-80499A74 0004+00 s=3 e=0 z=0  None .rodata    @3628 */
+/* 80499A70-80499A74 000004 0004+00 1/3 0/0 0/0 .rodata          @3628 */
 SECTION_RODATA static u8 const lit_3628[4] = {
     0x00,
     0x00,
     0x00,
     0x00,
 };
+COMPILER_STRIP_GATE(80499A70, &lit_3628);
 
-/* 80498A78-80498ACC 0054+00 s=1 e=0 z=0  None .text      texScrollCheck__FRf */
+/* 80498A78-80498ACC 000078 0054+00 1/1 0/0 0/0 .text            texScrollCheck__FRf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void texScrollCheck(f32& param_0) {
+static asm void texScrollCheck(f32& param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_vrbox2/d_a_vrbox2/texScrollCheck__FRf.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80499A74-80499A78 0004+00 s=1 e=0 z=0  None .rodata    @3835 */
-SECTION_RODATA static u32 const lit_3835 = 0x3DB851EC;
-
-/* 80499A78-80499A7C 0004+00 s=1 e=0 z=0  None .rodata    @3836 */
-SECTION_RODATA static u32 const lit_3836 = 0x45FA0000;
-
-/* 80499A7C-80499A80 0004+00 s=3 e=0 z=0  None .rodata    @3837 */
-SECTION_RODATA static u32 const lit_3837 = 0x437F0000;
-
-/* 80499A80-80499A84 0004+00 s=1 e=0 z=0  None .rodata    @3838 */
-SECTION_RODATA static u32 const lit_3838 = 0x3ECCCCCD;
-
-/* 80499A84-80499A88 0004+00 s=1 e=0 z=0  None .rodata    @3839 */
-SECTION_RODATA static u32 const lit_3839 = 0x43870000;
-
-/* 80499A88-80499A8C 0004+00 s=1 e=0 z=0  None .rodata    @3840 */
-SECTION_RODATA static u32 const lit_3840 = 0x43700000;
-
-/* 80499A8C-80499A90 0004+00 s=2 e=0 z=0  None .rodata    @3841 */
-SECTION_RODATA static u32 const lit_3841 = 0x3E4CCCCD;
-
-/* 80499A90-80499A94 0004+00 s=1 e=0 z=0  None .rodata    @3842 */
-SECTION_RODATA static u32 const lit_3842 = 0x43960000;
-
-/* 80499A94-80499A98 0004+00 s=1 e=0 z=0  None .rodata    @3843 */
-SECTION_RODATA static u32 const lit_3843 = 0x3F59999A;
-
-/* 80499A98-80499A9C 0004+00 s=1 e=0 z=0  None .rodata    @3844 */
-SECTION_RODATA static u32 const lit_3844 = 0x3E19999A;
-
-/* 80499A9C-80499AA0 0004+00 s=1 e=0 z=0  None .rodata    @3845 */
-SECTION_RODATA static u32 const lit_3845 = 0x43F18000;
-
-/* 80499AA0-80499AA4 0004+00 s=1 e=0 z=0  None .rodata    @3846 */
-SECTION_RODATA static u32 const lit_3846 = 0x42C80000;
-
-/* 80499AA4-80499AA8 0004+00 s=1 e=0 z=0  None .rodata    @4069 */
-SECTION_RODATA static u32 const lit_4069 = 0x3A03126F;
-
-/* 80499AA8-80499AAC 0004+00 s=1 e=0 z=0  None .rodata    @4070 */
-SECTION_RODATA static u32 const lit_4070 = 0x3E99999A;
-
-/* 80499AAC-80499AB0 0004+00 s=1 e=0 z=0  None .rodata    @4071 */
-SECTION_RODATA static u32 const lit_4071 = 0x3FE00000;
-
-/* 80499AB0-80499AB4 0004+00 s=1 e=0 z=0  None .rodata    @4072 */
-SECTION_RODATA static u32 const lit_4072 = 0x408CCCCD;
-
-/* 80499AB4-80499AB8 0004+00 s=1 e=0 z=0  None .rodata    @4073 */
-SECTION_RODATA static u32 const lit_4073 = 0x400CCCCD;
-
-/* 80499AB8-80499ABC 0004+00 s=1 e=0 z=0  None .rodata    @4074 */
-SECTION_RODATA static u32 const lit_4074 = 0x42C30000;
-
-/* 80499ABC-80499AC0 0004+00 s=1 e=0 z=0  None .rodata    @4075 */
-SECTION_RODATA static u32 const lit_4075 = 0x3DCCCCCD;
-
-/* 80499AC0-80499AC4 0004+00 s=1 e=0 z=0  None .rodata    @4076 */
-SECTION_RODATA static u32 const lit_4076 = 0x38D1B717;
-
-/* 80499AC4-80499B18 0054+00 s=3 e=0 z=0  None .rodata    @stringBase0 */
+/* 80499A74-80499A78 000008 0004+00 0/1 0/0 0/0 .rodata          @3835 */
 #pragma push
 #pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80499AC4 = "F_SP102";
-SECTION_DEAD char const* const stringBase_80499ACC = "F_SP127";
-SECTION_DEAD char const* const stringBase_80499AD4 = "R_SP30";
-SECTION_DEAD char const* const stringBase_80499ADB = "vrbox_kumo.bmd";
-SECTION_DEAD char const* const stringBase_80499AEA = "vrbox_sun.bmd";
-SECTION_DEAD char const* const stringBase_80499AF8 = "vrbox_sun.btk";
-SECTION_DEAD char const* const stringBase_80499B06 = "vrbox_kasumiM.bmd";
+SECTION_RODATA static f32 const lit_3835 = 9.0f / 100.0f;
+COMPILER_STRIP_GATE(80499A74, &lit_3835);
 #pragma pop
 
-/* 80499B78-80499B7C 0002+02 s=1 e=0 z=0  None .bss       mangZ$3688 */
+/* 80499A78-80499A7C 00000C 0004+00 0/1 0/0 0/0 .rodata          @3836 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3836 = 8000.0f;
+COMPILER_STRIP_GATE(80499A78, &lit_3836);
+#pragma pop
+
+/* 80499A7C-80499A80 000010 0004+00 1/3 0/0 0/0 .rodata          @3837 */
+SECTION_RODATA static f32 const lit_3837 = 255.0f;
+COMPILER_STRIP_GATE(80499A7C, &lit_3837);
+
+/* 80499A80-80499A84 000014 0004+00 0/1 0/0 0/0 .rodata          @3838 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3838 = 2.0f / 5.0f;
+COMPILER_STRIP_GATE(80499A80, &lit_3838);
+#pragma pop
+
+/* 80499A84-80499A88 000018 0004+00 0/1 0/0 0/0 .rodata          @3839 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3839 = 270.0f;
+COMPILER_STRIP_GATE(80499A84, &lit_3839);
+#pragma pop
+
+/* 80499A88-80499A8C 00001C 0004+00 0/1 0/0 0/0 .rodata          @3840 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3840 = 240.0f;
+COMPILER_STRIP_GATE(80499A88, &lit_3840);
+#pragma pop
+
+/* 80499A8C-80499A90 000020 0004+00 0/2 0/0 0/0 .rodata          @3841 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3841 = 1.0f / 5.0f;
+COMPILER_STRIP_GATE(80499A8C, &lit_3841);
+#pragma pop
+
+/* 80499A90-80499A94 000024 0004+00 0/1 0/0 0/0 .rodata          @3842 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3842 = 300.0f;
+COMPILER_STRIP_GATE(80499A90, &lit_3842);
+#pragma pop
+
+/* 80499A94-80499A98 000028 0004+00 0/1 0/0 0/0 .rodata          @3843 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3843 = 17.0f / 20.0f;
+COMPILER_STRIP_GATE(80499A94, &lit_3843);
+#pragma pop
+
+/* 80499A98-80499A9C 00002C 0004+00 0/1 0/0 0/0 .rodata          @3844 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3844 = 3.0f / 20.0f;
+COMPILER_STRIP_GATE(80499A98, &lit_3844);
+#pragma pop
+
+/* 80499A9C-80499AA0 000030 0004+00 0/1 0/0 0/0 .rodata          @3845 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3845 = 483.0f;
+COMPILER_STRIP_GATE(80499A9C, &lit_3845);
+#pragma pop
+
+/* 80499AA0-80499AA4 000034 0004+00 0/1 0/0 0/0 .rodata          @3846 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3846 = 100.0f;
+COMPILER_STRIP_GATE(80499AA0, &lit_3846);
+#pragma pop
+
+/* 80499B78-80499B7C 000000 0002+02 1/1 0/0 0/0 .bss             mangZ$3688 */
 static u8 mangZ[2 + 2 /* padding */];
 
-/* 80498ACC-804990DC 0610+00 s=1 e=0 z=0  None .text      daVrbox2_Draw__FP12vrbox2_class */
+/* 80498ACC-804990DC 0000CC 0610+00 1/0 0/0 0/0 .text            daVrbox2_Draw__FP12vrbox2_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daVrbox2_Draw(vrbox2_class* param_0) {
+static asm void daVrbox2_Draw(vrbox2_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_vrbox2/d_a_vrbox2/daVrbox2_Draw__FP12vrbox2_class.s"
 }
 #pragma pop
 
-/* 804990DC-804997E8 070C+00 s=1 e=0 z=0  None .text      daVrbox2_color_set__FP12vrbox2_class */
+/* ############################################################################################## */
+/* 80499AA4-80499AA8 000038 0004+00 0/1 0/0 0/0 .rodata          @4069 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4069 = 0x3A03126F;
+COMPILER_STRIP_GATE(80499AA4, &lit_4069);
+#pragma pop
+
+/* 80499AA8-80499AAC 00003C 0004+00 0/1 0/0 0/0 .rodata          @4070 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4070 = 3.0f / 10.0f;
+COMPILER_STRIP_GATE(80499AA8, &lit_4070);
+#pragma pop
+
+/* 80499AAC-80499AB0 000040 0004+00 0/1 0/0 0/0 .rodata          @4071 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4071 = 1.75f;
+COMPILER_STRIP_GATE(80499AAC, &lit_4071);
+#pragma pop
+
+/* 80499AB0-80499AB4 000044 0004+00 0/1 0/0 0/0 .rodata          @4072 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4072 = 22.0f / 5.0f;
+COMPILER_STRIP_GATE(80499AB0, &lit_4072);
+#pragma pop
+
+/* 80499AB4-80499AB8 000048 0004+00 0/1 0/0 0/0 .rodata          @4073 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4073 = 11.0f / 5.0f;
+COMPILER_STRIP_GATE(80499AB4, &lit_4073);
+#pragma pop
+
+/* 80499AB8-80499ABC 00004C 0004+00 0/1 0/0 0/0 .rodata          @4074 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4074 = 97.5f;
+COMPILER_STRIP_GATE(80499AB8, &lit_4074);
+#pragma pop
+
+/* 80499ABC-80499AC0 000050 0004+00 0/1 0/0 0/0 .rodata          @4075 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_4075 = 1.0f / 10.0f;
+COMPILER_STRIP_GATE(80499ABC, &lit_4075);
+#pragma pop
+
+/* 80499AC0-80499AC4 000054 0004+00 0/1 0/0 0/0 .rodata          @4076 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u32 const lit_4076 = 0x38D1B717;
+COMPILER_STRIP_GATE(80499AC0, &lit_4076);
+#pragma pop
+
+/* 804990DC-804997E8 0006DC 070C+00 1/1 0/0 0/0 .text daVrbox2_color_set__FP12vrbox2_class */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daVrbox2_color_set(vrbox2_class* param_0) {
+static asm void daVrbox2_color_set(vrbox2_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_vrbox2/d_a_vrbox2/daVrbox2_color_set__FP12vrbox2_class.s"
 }
 #pragma pop
 
-/* 804997E8-8049982C 0044+00 s=1 e=0 z=0  None .text      daVrbox2_Execute__FP12vrbox2_class */
+/* 804997E8-8049982C 000DE8 0044+00 1/0 0/0 0/0 .text            daVrbox2_Execute__FP12vrbox2_class
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daVrbox2_Execute(vrbox2_class* param_0) {
+static asm void daVrbox2_Execute(vrbox2_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_vrbox2/d_a_vrbox2/daVrbox2_Execute__FP12vrbox2_class.s"
 }
 #pragma pop
 
-/* 8049982C-80499834 0008+00 s=1 e=0 z=0  None .text      daVrbox2_IsDelete__FP12vrbox2_class */
+/* 8049982C-80499834 000E2C 0008+00 1/0 0/0 0/0 .text            daVrbox2_IsDelete__FP12vrbox2_class
+ */
 static bool daVrbox2_IsDelete(vrbox2_class* param_0) {
     return true;
 }
 
-/* 80499834-8049983C 0008+00 s=1 e=0 z=0  None .text      daVrbox2_Delete__FP12vrbox2_class */
+/* 80499834-8049983C 000E34 0008+00 1/0 0/0 0/0 .text            daVrbox2_Delete__FP12vrbox2_class
+ */
 static bool daVrbox2_Delete(vrbox2_class* param_0) {
     return true;
 }
 
-/* 8049983C-80499978 013C+00 s=1 e=0 z=0  None .text      daVrbox2_solidHeapCB__FP10fopAc_ac_c */
+/* 8049983C-80499978 000E3C 013C+00 1/1 0/0 0/0 .text daVrbox2_solidHeapCB__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daVrbox2_solidHeapCB(fopAc_ac_c* param_0) {
+static asm void daVrbox2_solidHeapCB(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_vrbox2/d_a_vrbox2/daVrbox2_solidHeapCB__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80499B18-80499B38 0020+00 s=1 e=0 z=0  None .data      l_daVrbox2_Method */
+/* 80499B18-80499B38 -00001 0020+00 1/0 0/0 0/0 .data            l_daVrbox2_Method */
 SECTION_DATA static void* l_daVrbox2_Method[8] = {
     (void*)daVrbox2_Create__FP10fopAc_ac_c,
     (void*)daVrbox2_Delete__FP12vrbox2_class,
@@ -308,8 +349,8 @@ SECTION_DATA static void* l_daVrbox2_Method[8] = {
     (void*)NULL,
 };
 
-/* 80499B38-80499B68 0030+00 s=0 e=0 z=1  None .data      g_profile_VRBOX2 */
-SECTION_DATA void* g_profile_VRBOX2[12] = {
+/* 80499B38-80499B68 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_VRBOX2 */
+SECTION_DATA extern void* g_profile_VRBOX2[12] = {
     (void*)0xFFFFFFFD, (void*)0x0007FFFD,
     (void*)0x02DB0000, (void*)&g_fpcLf_Method,
     (void*)0x000005A0, (void*)NULL,
@@ -318,24 +359,24 @@ SECTION_DATA void* g_profile_VRBOX2[12] = {
     (void*)0x00044000, (void*)NULL,
 };
 
-/* 80499B68-80499B74 000C+00 s=2 e=0 z=0  None .data      __vt__12J3DFrameCtrl */
-SECTION_DATA static void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL,
+/* 80499B68-80499B74 000050 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
+SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12J3DFrameCtrlFv,
 };
 
-/* 80499978-80499A1C 00A4+00 s=1 e=0 z=0  None .text      daVrbox2_Create__FP10fopAc_ac_c */
+/* 80499978-80499A1C 000F78 00A4+00 1/0 0/0 0/0 .text            daVrbox2_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daVrbox2_Create(fopAc_ac_c* param_0) {
+static asm void daVrbox2_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_vrbox2/d_a_vrbox2/daVrbox2_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80499A1C-80499A64 0048+00 s=1 e=0 z=0  None .text      __dt__12J3DFrameCtrlFv */
+/* 80499A1C-80499A64 00101C 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -343,4 +384,17 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
     nofralloc
 #include "asm/rel/d/a/d_a_vrbox2/d_a_vrbox2/__dt__12J3DFrameCtrlFv.s"
 }
+#pragma pop
+
+/* 80499AC4-80499B18 000058 0054+00 3/3 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80499AC4 = "F_SP102";
+SECTION_DEAD static char const* const stringBase_80499ACC = "F_SP127";
+SECTION_DEAD static char const* const stringBase_80499AD4 = "R_SP30";
+SECTION_DEAD static char const* const stringBase_80499ADB = "vrbox_kumo.bmd";
+SECTION_DEAD static char const* const stringBase_80499AEA = "vrbox_sun.bmd";
+SECTION_DEAD static char const* const stringBase_80499AF8 = "vrbox_sun.btk";
+SECTION_DEAD static char const* const stringBase_80499B06 = "vrbox_kasumiM.bmd";
 #pragma pop

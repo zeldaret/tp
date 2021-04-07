@@ -4,8 +4,8 @@ lbl_80117B90:
 /* 80117B98  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80117B9C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80117BA0  7C 7F 1B 78 */	mr r31, r3
-/* 80117BA4  3C 80 80 39 */	lis r4, lit_3757@ha
-/* 80117BA8  38 C4 D6 58 */	addi r6, r4, lit_3757@l
+/* 80117BA4  3C 80 80 39 */	lis r4, lit_3757@ha /* 0x8038D658@ha */
+/* 80117BA8  38 C4 D6 58 */	addi r6, r4, lit_3757@l /* 0x8038D658@l */
 /* 80117BAC  3C 80 00 01 */	lis r4, 0x0001 /* 0x0000FFFF@ha */
 /* 80117BB0  38 04 FF FF */	addi r0, r4, 0xFFFF /* 0x0000FFFF@l */
 /* 80117BB4  B0 03 21 44 */	sth r0, 0x2144(r3)

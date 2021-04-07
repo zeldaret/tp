@@ -11,12 +11,12 @@ lbl_8068EF2C:
 /* 8068EF50  48 00 00 28 */	b lbl_8068EF78
 lbl_8068EF54:
 /* 8068EF54  38 7F 0B 9C */	addi r3, r31, 0xb9c
-/* 8068EF58  4B 9F 53 68 */	b ChkAtHit__12dCcD_GObjInfFv
+/* 8068EF58  4B 9F 53 69 */	bl ChkAtHit__12dCcD_GObjInfFv
 /* 8068EF5C  28 03 00 00 */	cmplwi r3, 0
 /* 8068EF60  41 82 00 14 */	beq lbl_8068EF74
 /* 8068EF64  38 7F 0B 9C */	addi r3, r31, 0xb9c
-/* 8068EF68  4B 9F 53 F0 */	b GetAtHitObj__12dCcD_GObjInfFv
-/* 8068EF6C  4B BD 4A DC */	b GetAc__8cCcD_ObjFv
+/* 8068EF68  4B 9F 53 F1 */	bl GetAtHitObj__12dCcD_GObjInfFv
+/* 8068EF6C  4B BD 4A DD */	bl GetAc__8cCcD_ObjFv
 /* 8068EF70  48 00 00 08 */	b lbl_8068EF78
 lbl_8068EF74:
 /* 8068EF74  38 60 00 00 */	li r3, 0

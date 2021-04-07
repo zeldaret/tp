@@ -39,9 +39,9 @@ struct dBrightCheck_c {
     /* 80193594 */ void _draw();
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -79,11 +79,6 @@ extern "C" extern char const* const d_d_bright_check__stringBase0;
 // External References:
 //
 
-void mDoExt_getMesgFont();
-void mDoExt_getRubyFont();
-void* operator new(u32);
-void operator delete(void*);
-
 extern "C" void mDoExt_getMesgFont__Fv();
 extern "C" void mDoExt_getRubyFont__Fv();
 extern "C" void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c();
@@ -109,42 +104,48 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 803BB5B0-803BB5BC 000C+00 s=1 e=0 z=0  None .data      cNullVec__6Z2Calc */
+/* 803BB5B0-803BB5BC 0186D0 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803BB5BC-803BB5C8 000C+00 s=1 e=0 z=0  None .data      @3797 */
+/* 803BB5BC-803BB5C8 -00001 000C+00 0/1 0/0 0/0 .data            @3797 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3797[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)modeWait__14dBrightCheck_cFv,
 };
+#pragma pop
 
-/* 803BB5C8-803BB5D4 000C+00 s=1 e=0 z=0  None .data      @3798 */
+/* 803BB5C8-803BB5D4 -00001 000C+00 0/1 0/0 0/0 .data            @3798 */
+#pragma push
+#pragma force_active on
 SECTION_DATA static void* lit_3798[3] = {
     (void*)NULL,
     (void*)0xFFFFFFFF,
     (void*)modeMove__14dBrightCheck_cFv,
 };
+#pragma pop
 
-/* 803BB5D4-803BB5EC 0018+00 s=2 e=0 z=0  None .data      brightChackProc */
+/* 803BB5D4-803BB5EC 0186F4 0018+00 1/2 0/0 0/0 .data            brightChackProc */
 SECTION_DATA static u8 brightChackProc[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-/* 803BB5EC-803BB5FC 0010+00 s=3 e=0 z=0  None .data      __vt__19dDlst_BrightCheck_c */
-SECTION_DATA static void* __vt__19dDlst_BrightCheck_c[4] = {
-    (void*)NULL,
+/* 803BB5EC-803BB5FC 01870C 0010+00 3/3 0/0 0/0 .data            __vt__19dDlst_BrightCheck_c */
+SECTION_DATA extern void* __vt__19dDlst_BrightCheck_c[4] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)draw__19dDlst_BrightCheck_cFv,
     (void*)__dt__19dDlst_BrightCheck_cFv,
 };
 
-/* 803BB5FC-803BB618 000C+10 s=2 e=0 z=0  None .data      __vt__14dBrightCheck_c */
-SECTION_DATA static void* __vt__14dBrightCheck_c[3 + 4 /* padding */] = {
-    (void*)NULL,
+/* 803BB5FC-803BB618 01871C 000C+10 2/2 0/0 0/0 .data            __vt__14dBrightCheck_c */
+SECTION_DATA extern void* __vt__14dBrightCheck_c[3 + 4 /* padding */] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14dBrightCheck_cFv,
     /* padding */
@@ -154,7 +155,7 @@ SECTION_DATA static void* __vt__14dBrightCheck_c[3 + 4 /* padding */] = {
     NULL,
 };
 
-/* 80192F10-80192F98 0088+00 s=0 e=1 z=0  None .text      __ct__14dBrightCheck_cFP10JKRArchive */
+/* 80192F10-80192F98 18D850 0088+00 0/0 1/1 0/0 .text __ct__14dBrightCheck_cFP10JKRArchive */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -164,7 +165,7 @@ asm dBrightCheck_c::dBrightCheck_c(JKRArchive* param_0) {
 }
 #pragma pop
 
-/* 80192F98-80193030 0098+00 s=1 e=0 z=0  None .text      __dt__14dBrightCheck_cFv */
+/* 80192F98-80193030 18D8D8 0098+00 1/0 0/0 0/0 .text            __dt__14dBrightCheck_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -175,21 +176,28 @@ asm dBrightCheck_c::~dBrightCheck_c() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80394910-80394938 0028+00 s=1 e=0 z=0  None .rodata    tv_btnA$3744 */
+/* 80394910-80394938 020F70 0028+00 1/1 0/0 0/0 .rodata          tv_btnA$3744 */
 SECTION_RODATA static u8 const tv_btnA[40] = {
     0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x31, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x61,
     0x74, 0x32, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x33, 0x63, 0x6F, 0x6E, 0x74,
     0x5F, 0x61, 0x74, 0x34, 0x00, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74,
 };
+COMPILER_STRIP_GATE(80394910, &tv_btnA);
 
-/* 80394938-80394960 0028+00 s=1 e=0 z=0  None .rodata    ftv_btnA$3745 */
+/* 80394938-80394960 020F98 0028+00 0/1 0/0 0/0 .rodata          ftv_btnA$3745 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const ftv_btnA[40] = {
     0x00, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x31, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x61,
     0x74, 0x32, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x33, 0x66, 0x6F, 0x6E, 0x74,
     0x5F, 0x61, 0x74, 0x34, 0x00, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74,
 };
+COMPILER_STRIP_GATE(80394938, &ftv_btnA);
+#pragma pop
 
-/* 80394960-803949B0 0050+00 s=1 e=0 z=0  None .rodata    txTV$3751 */
+/* 80394960-803949B0 020FC0 0050+00 0/1 0/0 0/0 .rodata          txTV$3751 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const txTV[80] = {
     0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x36, 0x31, 0x00, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x32,
     0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x39, 0x31, 0x00, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x31,
@@ -197,23 +205,21 @@ SECTION_RODATA static u8 const txTV[80] = {
     0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x37, 0x31, 0x00, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x33,
     0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x38, 0x31, 0x00, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x34,
 };
+COMPILER_STRIP_GATE(80394960, &txTV);
+#pragma pop
 
-/* 803949B0-803949D8 0028+00 s=1 e=0 z=0  None .rodata    txTVhide$3752 */
+/* 803949B0-803949D8 021010 0028+00 0/1 0/0 0/0 .rodata          txTVhide$3752 */
+#pragma push
+#pragma force_active on
 SECTION_RODATA static u8 const txTVhide[40] = {
     0x00, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x36, 0x6E, 0x00, 0x6D, 0x65, 0x6E, 0x75, 0x5F,
     0x39, 0x6E, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x31, 0x30, 0x6E, 0x00, 0x6D, 0x65, 0x6E,
     0x75, 0x5F, 0x37, 0x6E, 0x00, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x38, 0x6E,
 };
-
-/* 803949D8-803949F0 0018+00 s=1 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_803949D8 = "zelda_option_check.blo";
-SECTION_DEAD char const* const stringBase_803949EF = "";
+COMPILER_STRIP_GATE(803949B0, &txTVhide);
 #pragma pop
 
-/* 80453A00-80453A04 0004+00 s=2 e=0 z=0  None .sdata2    @3792 */
+/* 80453A00-80453A04 002000 0004+00 2/2 0/0 0/0 .sdata2          @3792 */
 SECTION_SDATA2 static u8 lit_3792[4] = {
     0x00,
     0x00,
@@ -221,7 +227,7 @@ SECTION_SDATA2 static u8 lit_3792[4] = {
     0x00,
 };
 
-/* 80193030-801934D0 04A0+00 s=1 e=0 z=0  None .text      screenSet__14dBrightCheck_cFv */
+/* 80193030-801934D0 18D970 04A0+00 1/1 0/0 0/0 .text            screenSet__14dBrightCheck_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -231,7 +237,7 @@ asm void dBrightCheck_c::screenSet() {
 }
 #pragma pop
 
-/* 801934D0-80193508 0038+00 s=0 e=1 z=0  None .text      _move__14dBrightCheck_cFv */
+/* 801934D0-80193508 18DE10 0038+00 0/0 1/1 0/0 .text            _move__14dBrightCheck_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -241,23 +247,23 @@ asm void dBrightCheck_c::_move() {
 }
 #pragma pop
 
-/* 80193508-8019350C 0004+00 s=1 e=0 z=0  None .text      modeWait__14dBrightCheck_cFv */
+/* 80193508-8019350C 18DE48 0004+00 1/0 0/0 0/0 .text            modeWait__14dBrightCheck_cFv */
 void dBrightCheck_c::modeWait() {
     /* empty function */
 }
 
 /* ############################################################################################## */
-/* 80453A04-80453A08 0004+00 s=1 e=0 z=0  None .sdata2    @3821 */
+/* 80453A04-80453A08 002004 0004+00 1/1 0/0 0/0 .sdata2          @3821 */
 SECTION_SDATA2 static f32 lit_3821 = 1.0f;
 
-/* 80453A08-80453A10 0004+04 s=1 e=0 z=0  None .sdata2    @3822 */
+/* 80453A08-80453A10 002008 0004+04 1/1 0/0 0/0 .sdata2          @3822 */
 SECTION_SDATA2 static f32 lit_3822[1 + 1 /* padding */] = {
     -1.0f,
     /* padding */
     0.0f,
 };
 
-/* 8019350C-80193594 0088+00 s=1 e=0 z=0  None .text      modeMove__14dBrightCheck_cFv */
+/* 8019350C-80193594 18DE4C 0088+00 1/0 0/0 0/0 .text            modeMove__14dBrightCheck_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -267,7 +273,7 @@ asm void dBrightCheck_c::modeMove() {
 }
 #pragma pop
 
-/* 80193594-801935D0 003C+00 s=0 e=1 z=0  None .text      _draw__14dBrightCheck_cFv */
+/* 80193594-801935D0 18DED4 003C+00 0/0 1/1 0/0 .text            _draw__14dBrightCheck_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -277,7 +283,7 @@ asm void dBrightCheck_c::_draw() {
 }
 #pragma pop
 
-/* 801935D0-80193608 0038+00 s=1 e=0 z=0  None .text      draw__19dDlst_BrightCheck_cFv */
+/* 801935D0-80193608 18DF10 0038+00 1/0 0/0 0/0 .text            draw__19dDlst_BrightCheck_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -287,17 +293,22 @@ asm void dDlst_BrightCheck_c::draw() {
 }
 #pragma pop
 
-/* 80193608-80193648 0040+00 s=0 e=1 z=0  None .text      __sinit_d_bright_check_cpp */
+/* 80193608-80193648 18DF48 0040+00 0/0 1/0 0/0 .text            __sinit_d_bright_check_cpp */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void __sinit_d_bright_check_cpp() {
+asm void __sinit_d_bright_check_cpp() {
     nofralloc
 #include "asm/d/d_bright_check/__sinit_d_bright_check_cpp.s"
 }
 #pragma pop
 
-/* 80193648-80193690 0048+00 s=1 e=0 z=0  None .text      __dt__19dDlst_BrightCheck_cFv */
+#pragma push
+#pragma force_active on
+SECTION_CTORS void* const _ctors_80193608 = (void*)__sinit_d_bright_check_cpp;
+#pragma pop
+
+/* 80193648-80193690 18DF88 0048+00 1/0 0/0 0/0 .text            __dt__19dDlst_BrightCheck_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -305,4 +316,12 @@ asm dDlst_BrightCheck_c::~dDlst_BrightCheck_c() {
     nofralloc
 #include "asm/d/d_bright_check/__dt__19dDlst_BrightCheck_cFv.s"
 }
+#pragma pop
+
+/* 803949D8-803949F0 021038 0018+00 1/1 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_803949D8 = "zelda_option_check.blo";
+SECTION_DEAD static char const* const stringBase_803949EF = "";
 #pragma pop

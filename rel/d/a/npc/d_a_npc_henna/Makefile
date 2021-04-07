@@ -3,19 +3,20 @@
 #
 
 M82_TARGET := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_henna.plf
+M82_LDSCRIPT := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_henna.lcf
+M82_MAP := $(BUILD_DIR)/rel/d/a/npc/d_a_npc_henna.map
 
 M82_CPP_FILES := \
-	rel/d/a/npc/d_a_npc_henna/executor.cpp \
-	rel/d/a/npc/d_a_npc_henna/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/npc/d_a_npc_henna/d_a_npc_henna.cpp \
 
 M82_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_henna/executor.o \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_henna/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_henna/d_a_npc_henna.o \
 
 M82_LIBS := \
-	$(BUILD_DIR)/rel/d/a/npc/d_a_npc_henna/libRuntime.PPCEABI.H.a \
 
 M82_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M82_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M82_LDSCRIPT) \
+	-unused -map $(M82_MAP) \
+	-w off \
 
 $(M82_TARGET): $(M82_O_FILES) $(M82_LIBS)
+	@echo [ 82] creating $(M82_TARGET)
 	@echo $(M82_LIBS) $(M82_O_FILES) > build/M82_ofiles
-	$(LD) -partial $(M82_LDFLAGS) -o $(M82_TARGET) @build/M82_ofiles
+	@python3 tools/lcf.py rel 82 --output $(M82_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M82_LDFLAGS) -o $(M82_TARGET) @build/M82_ofiles
 
 $(BUILD_DIR)/rel/d/a/npc/d_a_npc_henna/%.o: rel/d/a/npc/d_a_npc_henna/%.cpp
+	@echo [ 82] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M82_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M82_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/npc/d_a_npc_henna/libs/Runtime.PPCEABI.H/Makefile
 

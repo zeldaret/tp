@@ -7,8 +7,8 @@ lbl_807428A8:
 /* 807428BC  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 807428C0  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 807428C4  7C 7E 1B 78 */	mr r30, r3
-/* 807428C8  3C 60 80 75 */	lis r3, lit_4239@ha
-/* 807428CC  CB E3 BF DC */	lfd f31, lit_4239@l(r3)
+/* 807428C8  3C 60 80 75 */	lis r3, lit_4239@ha /* 0x8074BFDC@ha */
+/* 807428CC  CB E3 BF DC */	lfd f31, lit_4239@l(r3)  /* 0x8074BFDC@l */
 /* 807428D0  3F E0 43 30 */	lis r31, 0x4330
 lbl_807428D4:
 /* 807428D4  80 7E 05 E0 */	lwz r3, 0x5e0(r30)
@@ -19,7 +19,7 @@ lbl_807428D4:
 /* 807428E8  93 E1 00 08 */	stw r31, 8(r1)
 /* 807428EC  C8 01 00 08 */	lfd f0, 8(r1)
 /* 807428F0  EC 20 F8 28 */	fsubs f1, f0, f31
-/* 807428F4  4B B2 50 60 */	b cM_rndF__Ff
+/* 807428F4  4B B2 50 61 */	bl cM_rndF__Ff
 /* 807428F8  FC 00 08 1E */	fctiwz f0, f1
 /* 807428FC  D8 01 00 10 */	stfd f0, 0x10(r1)
 /* 80742900  80 61 00 14 */	lwz r3, 0x14(r1)
@@ -29,7 +29,7 @@ lbl_807428D4:
 /* 80742910  90 7E 05 F4 */	stw r3, 0x5f4(r30)
 /* 80742914  80 7E 05 E0 */	lwz r3, 0x5e0(r30)
 /* 80742918  80 9E 05 F4 */	lwz r4, 0x5f4(r30)
-/* 8074291C  4B 90 EE 94 */	b dPath_GetPnt__FPC5dPathi
+/* 8074291C  4B 90 EE 95 */	bl dPath_GetPnt__FPC5dPathi
 /* 80742920  C0 03 00 04 */	lfs f0, 4(r3)
 /* 80742924  D0 1E 05 E4 */	stfs f0, 0x5e4(r30)
 /* 80742928  C0 03 00 08 */	lfs f0, 8(r3)

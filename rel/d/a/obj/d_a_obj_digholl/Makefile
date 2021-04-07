@@ -3,17 +3,15 @@
 #
 
 M436_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_digholl.plf
+M436_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_digholl.lcf
+M436_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_digholl.map
 
 M436_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_digholl/executor.cpp \
-	rel/d/a/obj/d_a_obj_digholl/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_digholl/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_digholl/d_a_obj_digholl.cpp \
 
 M436_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_digholl/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_digholl/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_digholl/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_digholl/d_a_obj_digholl.o \
 
 M436_LIBS := \
@@ -29,14 +27,21 @@ M436_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M436_LDSCRIPT) \
+	-unused -map $(M436_MAP) \
+	-w off \
 
 $(M436_TARGET): $(M436_O_FILES) $(M436_LIBS)
+	@echo [436] creating $(M436_TARGET)
 	@echo $(M436_LIBS) $(M436_O_FILES) > build/M436_ofiles
-	$(LD) -partial $(M436_LDFLAGS) -o $(M436_TARGET) @build/M436_ofiles
+	@python3 tools/lcf.py rel 436 --output $(M436_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M436_LDFLAGS) -o $(M436_TARGET) @build/M436_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_digholl/%.o: rel/d/a/obj/d_a_obj_digholl/%.cpp
+	@echo [436] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M436_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M436_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -3,17 +3,15 @@
 #
 
 M442_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fallobj.plf
+M442_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fallobj.lcf
+M442_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fallobj.map
 
 M442_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_fallobj/executor.cpp \
-	rel/d/a/obj/d_a_obj_fallobj/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_fallobj/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_fallobj/d_a_obj_fallobj.cpp \
 
 M442_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fallobj/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fallobj/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fallobj/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_fallobj/d_a_obj_fallobj.o \
 
 M442_LIBS := \
@@ -29,14 +27,21 @@ M442_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M442_LDSCRIPT) \
+	-unused -map $(M442_MAP) \
+	-w off \
 
 $(M442_TARGET): $(M442_O_FILES) $(M442_LIBS)
+	@echo [442] creating $(M442_TARGET)
 	@echo $(M442_LIBS) $(M442_O_FILES) > build/M442_ofiles
-	$(LD) -partial $(M442_LDFLAGS) -o $(M442_TARGET) @build/M442_ofiles
+	@python3 tools/lcf.py rel 442 --output $(M442_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M442_LDFLAGS) -o $(M442_TARGET) @build/M442_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_fallobj/%.o: rel/d/a/obj/d_a_obj_fallobj/%.cpp
+	@echo [442] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M442_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M442_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

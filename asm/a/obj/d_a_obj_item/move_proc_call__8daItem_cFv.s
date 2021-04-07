@@ -5,8 +5,8 @@ lbl_8015CAB8:
 /* 8015CAC4  39 61 00 20 */	addi r11, r1, 0x20
 /* 8015CAC8  48 20 57 15 */	bl _savegpr_29
 /* 8015CACC  7C 7E 1B 78 */	mr r30, r3
-/* 8015CAD0  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha
-/* 8015CAD4  3B E3 9D A0 */	addi r31, r3, cNullVec__6Z2Calc@l
+/* 8015CAD0  3C 60 80 3C */	lis r3, cNullVec__6Z2Calc@ha /* 0x803B9DA0@ha */
+/* 8015CAD4  3B E3 9D A0 */	addi r31, r3, cNullVec__6Z2Calc@l /* 0x803B9DA0@l */
 /* 8015CAD8  88 0D 8A 90 */	lbz r0, data_80451010(r13)
 /* 8015CADC  7C 00 07 75 */	extsb. r0, r0
 /* 8015CAE0  40 82 00 40 */	bne lbl_8015CB20
@@ -44,8 +44,8 @@ lbl_8015CB44:
 /* 8015CB58  40 82 00 74 */	bne lbl_8015CBCC
 /* 8015CB5C  54 60 06 F7 */	rlwinm. r0, r3, 0, 0x1b, 0x1b
 /* 8015CB60  40 82 00 6C */	bne lbl_8015CBCC
-/* 8015CB64  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8015CB68  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8015CB64  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8015CB68  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8015CB6C  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8015CB70  38 9E 06 7C */	addi r4, r30, 0x67c
 /* 8015CB74  4B F1 7F CD */	bl ChkMoveBG_NoDABg__4dBgSFRC13cBgS_PolyInfo

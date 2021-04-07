@@ -1,8 +1,8 @@
 lbl_80725B8C:
-/* 80725B8C  3C 80 80 73 */	lis r4, lit_3800@ha
-/* 80725B90  38 A4 95 04 */	addi r5, r4, lit_3800@l
-/* 80725B94  3C 80 80 73 */	lis r4, __vt__12daE_MS_HIO_c@ha
-/* 80725B98  38 04 97 AC */	addi r0, r4, __vt__12daE_MS_HIO_c@l
+/* 80725B8C  3C 80 80 73 */	lis r4, lit_3800@ha /* 0x80729504@ha */
+/* 80725B90  38 A4 95 04 */	addi r5, r4, lit_3800@l /* 0x80729504@l */
+/* 80725B94  3C 80 80 73 */	lis r4, __vt__12daE_MS_HIO_c@ha /* 0x807297AC@ha */
+/* 80725B98  38 04 97 AC */	addi r0, r4, __vt__12daE_MS_HIO_c@l /* 0x807297AC@l */
 /* 80725B9C  90 03 00 00 */	stw r0, 0(r3)
 /* 80725BA0  38 00 FF FF */	li r0, -1
 /* 80725BA4  98 03 00 04 */	stb r0, 4(r3)

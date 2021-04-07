@@ -7,8 +7,8 @@ lbl_802398CC:
 /* 802398E0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 802398E4  7C 9F 23 78 */	mr r31, r4
 /* 802398E8  41 82 02 DC */	beq lbl_80239BC4
-/* 802398EC  3C 60 80 3C */	lis r3, __vt__17dMsgScrn3Select_c@ha
-/* 802398F0  38 03 0C E8 */	addi r0, r3, __vt__17dMsgScrn3Select_c@l
+/* 802398EC  3C 60 80 3C */	lis r3, __vt__17dMsgScrn3Select_c@ha /* 0x803C0CE8@ha */
+/* 802398F0  38 03 0C E8 */	addi r0, r3, __vt__17dMsgScrn3Select_c@l /* 0x803C0CE8@l */
 /* 802398F4  90 1E 00 00 */	stw r0, 0(r30)
 /* 802398F8  80 7E 00 04 */	lwz r3, 4(r30)
 /* 802398FC  28 03 00 00 */	cmplwi r3, 0

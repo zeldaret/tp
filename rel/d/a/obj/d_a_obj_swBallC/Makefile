@@ -3,18 +3,16 @@
 #
 
 M640_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallC.plf
+M640_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallC.lcf
+M640_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallC.map
 
 M640_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_swBallC/executor.cpp \
-	rel/d/a/obj/d_a_obj_swBallC/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_swBallC/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_swBallC/unknown_translation_unit_bss.cpp \
 	rel/d/a/obj/d_a_obj_swBallC/d_a_obj_swBallC.cpp \
 
 M640_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallC/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallC/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallC/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallC/unknown_translation_unit_bss.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallC/d_a_obj_swBallC.o \
 
@@ -31,14 +29,21 @@ M640_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M640_LDSCRIPT) \
+	-unused -map $(M640_MAP) \
+	-w off \
 
 $(M640_TARGET): $(M640_O_FILES) $(M640_LIBS)
+	@echo [640] creating $(M640_TARGET)
 	@echo $(M640_LIBS) $(M640_O_FILES) > build/M640_ofiles
-	$(LD) -partial $(M640_LDFLAGS) -o $(M640_TARGET) @build/M640_ofiles
+	@python3 tools/lcf.py rel 640 --output $(M640_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M640_LDFLAGS) -o $(M640_TARGET) @build/M640_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_swBallC/%.o: rel/d/a/obj/d_a_obj_swBallC/%.cpp
+	@echo [640] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M640_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M640_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

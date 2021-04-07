@@ -28,8 +28,8 @@ lbl_8025C1F8:
 /* 8025C260  4B FF FE 75 */	bl init__26dSvBit_childTransformHIO_cFv
 /* 8025C264  38 7F 04 8C */	addi r3, r31, 0x48c
 /* 8025C268  4B FF FF 11 */	bl init__22dSvBit_childOtherHIO_cFv
-/* 8025C26C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8025C270  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8025C26C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8025C270  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8025C274  38 63 07 F0 */	addi r3, r3, 0x7f0
 /* 8025C278  38 80 0D 04 */	li r4, 0xd04
 /* 8025C27C  4B DD 87 41 */	bl isEventBit__11dSv_event_cCFUs

@@ -7,8 +7,8 @@ lbl_802C333C:
 /* 802C3350  4B FF D0 79 */	bl __ct__10Z2CreatureFv
 /* 802C3354  38 7F 00 90 */	addi r3, r31, 0x90
 /* 802C3358  48 00 15 91 */	bl __ct__18Z2LinkSoundStarterFv
-/* 802C335C  3C 60 80 3D */	lis r3, __vt__14Z2CreatureLink@ha
-/* 802C3360  38 63 B9 80 */	addi r3, r3, __vt__14Z2CreatureLink@l
+/* 802C335C  3C 60 80 3D */	lis r3, __vt__14Z2CreatureLink@ha /* 0x803CB980@ha */
+/* 802C3360  38 63 B9 80 */	addi r3, r3, __vt__14Z2CreatureLink@l /* 0x803CB980@l */
 /* 802C3364  90 7F 00 00 */	stw r3, 0(r31)
 /* 802C3368  38 03 00 30 */	addi r0, r3, 0x30
 /* 802C336C  90 1F 00 90 */	stw r0, 0x90(r31)

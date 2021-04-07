@@ -3,8 +3,8 @@ lbl_80058B00:
 /* 80058B04  7C 08 02 A6 */	mflr r0
 /* 80058B08  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80058B0C  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80058B10  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80058B14  3B E3 CA 54 */	addi r31, r3, g_env_light@l
+/* 80058B10  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80058B14  3B E3 CA 54 */	addi r31, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80058B18  88 1F 0E 88 */	lbz r0, 0xe88(r31)
 /* 80058B1C  2C 00 00 01 */	cmpwi r0, 1
 /* 80058B20  41 82 00 54 */	beq lbl_80058B74
@@ -21,8 +21,8 @@ lbl_80058B34:
 /* 80058B48  41 82 00 30 */	beq lbl_80058B78
 lbl_80058B4C:
 /* 80058B4C  48 00 70 91 */	bl dKyr_snow_init__Fv
-/* 80058B50  3C 60 80 43 */	lis r3, g_env_light@ha
-/* 80058B54  38 63 CA 54 */	addi r3, r3, g_env_light@l
+/* 80058B50  3C 60 80 43 */	lis r3, g_env_light@ha /* 0x8042CA54@ha */
+/* 80058B54  38 63 CA 54 */	addi r3, r3, g_env_light@l /* 0x8042CA54@l */
 /* 80058B58  80 03 0E 94 */	lwz r0, 0xe94(r3)
 /* 80058B5C  28 00 00 00 */	cmplwi r0, 0
 /* 80058B60  41 82 00 18 */	beq lbl_80058B78

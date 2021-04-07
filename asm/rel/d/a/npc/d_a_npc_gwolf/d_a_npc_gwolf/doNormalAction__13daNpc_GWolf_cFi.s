@@ -9,7 +9,7 @@ lbl_809F5770:
 /* 809F578C  38 9F 0C 8C */	addi r4, r31, 0xc8c
 /* 809F5790  38 A0 00 01 */	li r5, 1
 /* 809F5794  38 C0 00 00 */	li r6, 0
-/* 809F5798  4B 75 DD E0 */	b hitChk2__8daNpcF_cFP8dCcD_Cylii
+/* 809F5798  4B 75 DD E1 */	bl hitChk2__8daNpcF_cFP8dCcD_Cylii
 /* 809F579C  2C 03 00 00 */	cmpwi r3, 0
 /* 809F57A0  41 82 00 44 */	beq lbl_809F57E4
 /* 809F57A4  7F E3 FB 78 */	mr r3, r31
@@ -19,13 +19,13 @@ lbl_809F5770:
 /* 809F57B4  38 80 00 14 */	li r4, 0x14
 /* 809F57B8  48 00 00 10 */	b lbl_809F57C8
 lbl_809F57BC:
-/* 809F57BC  3C 80 80 A0 */	lis r4, m__19daNpc_GWolf_Param_c@ha
-/* 809F57C0  38 84 84 F4 */	addi r4, r4, m__19daNpc_GWolf_Param_c@l
+/* 809F57BC  3C 80 80 A0 */	lis r4, m__19daNpc_GWolf_Param_c@ha /* 0x809F84F4@ha */
+/* 809F57C0  38 84 84 F4 */	addi r4, r4, m__19daNpc_GWolf_Param_c@l /* 0x809F84F4@l */
 /* 809F57C4  A8 84 00 62 */	lha r4, 0x62(r4)
 lbl_809F57C8:
 /* 809F57C8  38 A0 FF FF */	li r5, -1
 /* 809F57CC  38 C0 00 00 */	li r6, 0
-/* 809F57D0  4B 75 DE 88 */	b setDamage__8daNpcF_cFiii
+/* 809F57D0  4B 75 DE 89 */	bl setDamage__8daNpcF_cFiii
 /* 809F57D4  7F E3 FB 78 */	mr r3, r31
 /* 809F57D8  38 80 00 01 */	li r4, 1
 /* 809F57DC  48 00 03 85 */	bl setLookMode__13daNpc_GWolf_cFi
@@ -44,18 +44,18 @@ lbl_809F5808:
 /* 809F5808  38 00 00 00 */	li r0, 0
 /* 809F580C  B0 1F 09 E6 */	sth r0, 0x9e6(r31)
 /* 809F5810  38 7F 0D C8 */	addi r3, r31, 0xdc8
-/* 809F5814  4B 96 C8 04 */	b __ptmf_test
+/* 809F5814  4B 96 C8 05 */	bl __ptmf_test
 /* 809F5818  2C 03 00 00 */	cmpwi r3, 0
 /* 809F581C  41 82 00 54 */	beq lbl_809F5870
 /* 809F5820  38 7F 0D D4 */	addi r3, r31, 0xdd4
 /* 809F5824  38 9F 0D C8 */	addi r4, r31, 0xdc8
-/* 809F5828  4B 96 C8 20 */	b __ptmf_cmpr
+/* 809F5828  4B 96 C8 21 */	bl __ptmf_cmpr
 /* 809F582C  2C 03 00 00 */	cmpwi r3, 0
 /* 809F5830  40 82 00 1C */	bne lbl_809F584C
 /* 809F5834  7F E3 FB 78 */	mr r3, r31
 /* 809F5838  38 80 00 00 */	li r4, 0
 /* 809F583C  39 9F 0D D4 */	addi r12, r31, 0xdd4
-/* 809F5840  4B 96 C8 44 */	b __ptmf_scall
+/* 809F5840  4B 96 C8 45 */	bl __ptmf_scall
 /* 809F5844  60 00 00 00 */	nop 
 /* 809F5848  48 00 00 28 */	b lbl_809F5870
 lbl_809F584C:

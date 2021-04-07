@@ -5,8 +5,8 @@ lbl_80A1FBC4:
 /* 80A1FBD0  93 E1 00 2C */	stw r31, 0x2c(r1)
 /* 80A1FBD4  93 C1 00 28 */	stw r30, 0x28(r1)
 /* 80A1FBD8  7C 7E 1B 78 */	mr r30, r3
-/* 80A1FBDC  3C A0 80 A2 */	lis r5, lit_3908@ha
-/* 80A1FBE0  38 A5 10 80 */	addi r5, r5, lit_3908@l
+/* 80A1FBDC  3C A0 80 A2 */	lis r5, lit_3908@ha /* 0x80A21080@ha */
+/* 80A1FBE0  38 A5 10 80 */	addi r5, r5, lit_3908@l /* 0x80A21080@l */
 /* 80A1FBE4  3B E0 00 00 */	li r31, 0
 /* 80A1FBE8  80 04 00 00 */	lwz r0, 0(r4)
 /* 80A1FBEC  2C 00 00 15 */	cmpwi r0, 0x15
@@ -36,7 +36,7 @@ lbl_80A1FC40:
 /* 80A1FC40  38 80 00 00 */	li r4, 0
 /* 80A1FC44  38 A0 00 01 */	li r5, 1
 /* 80A1FC48  38 C0 00 00 */	li r6, 0
-/* 80A1FC4C  4B 73 41 38 */	b talkProc__8daNpcF_cFPiiPP10fopAc_ac_c
+/* 80A1FC4C  4B 73 41 39 */	bl talkProc__8daNpcF_cFPiiPP10fopAc_ac_c
 /* 80A1FC50  2C 03 00 00 */	cmpwi r3, 0
 /* 80A1FC54  41 82 00 F4 */	beq lbl_80A1FD48
 /* 80A1FC58  3B E0 00 01 */	li r31, 1

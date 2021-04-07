@@ -9,8 +9,8 @@ lbl_8015EC48:
 /* 8015EC64  28 00 FF FF */	cmplwi r0, 0xffff
 /* 8015EC68  41 82 00 34 */	beq lbl_8015EC9C
 /* 8015EC6C  90 61 00 08 */	stw r3, 8(r1)
-/* 8015EC70  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha
-/* 8015EC74  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l
+/* 8015EC70  3C 60 80 02 */	lis r3, fpcSch_JudgeByID__FPvPv@ha /* 0x80023590@ha */
+/* 8015EC74  38 63 35 90 */	addi r3, r3, fpcSch_JudgeByID__FPvPv@l /* 0x80023590@l */
 /* 8015EC78  38 81 00 08 */	addi r4, r1, 8
 /* 8015EC7C  4B EB AB 7D */	bl fopAcIt_Judge__FPFPvPv_PvPv
 /* 8015EC80  90 7F 00 04 */	stw r3, 4(r31)

@@ -8,7 +8,7 @@ lbl_80848058:
 /* 80848070  38 00 00 02 */	li r0, 2
 /* 80848074  90 04 00 B0 */	stw r0, 0xb0(r4)
 /* 80848078  38 63 06 C4 */	addi r3, r3, 0x6c4
-/* 8084807C  4B 91 6C 80 */	b clearData__16daPy_actorKeep_cFv
+/* 8084807C  4B 91 6C 81 */	bl clearData__16daPy_actorKeep_cFv
 lbl_80848080:
 /* 80848080  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80848084  7C 08 03 A6 */	mtlr r0

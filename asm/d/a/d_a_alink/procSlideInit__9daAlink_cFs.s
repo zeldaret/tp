@@ -39,11 +39,11 @@ lbl_800C43FC:
 /* 800C4400  90 1F 31 98 */	stw r0, 0x3198(r31)
 /* 800C4404  7F E3 FB 78 */	mr r3, r31
 /* 800C4408  38 80 00 BD */	li r4, 0xbd
-/* 800C440C  3C A0 80 39 */	lis r5, m__19daAlinkHIO_slide_c0@ha
-/* 800C4410  38 A5 D8 CC */	addi r5, r5, m__19daAlinkHIO_slide_c0@l
+/* 800C440C  3C A0 80 39 */	lis r5, m__19daAlinkHIO_slide_c0@ha /* 0x8038D8CC@ha */
+/* 800C4410  38 A5 D8 CC */	addi r5, r5, m__19daAlinkHIO_slide_c0@l /* 0x8038D8CC@l */
 /* 800C4414  4B FE 8C E1 */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
-/* 800C4418  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800C441C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800C4418  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800C441C  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800C4420  80 03 5F 1C */	lwz r0, 0x5f1c(r3)
 /* 800C4424  60 00 01 00 */	ori r0, r0, 0x100
 /* 800C4428  90 03 5F 1C */	stw r0, 0x5f1c(r3)
@@ -76,12 +76,12 @@ lbl_800C448C:
 /* 800C4490  90 1F 31 98 */	stw r0, 0x3198(r31)
 /* 800C4494  7F E3 FB 78 */	mr r3, r31
 /* 800C4498  38 80 00 BE */	li r4, 0xbe
-/* 800C449C  3C A0 80 39 */	lis r5, m__19daAlinkHIO_slide_c0@ha
-/* 800C44A0  38 A5 D8 CC */	addi r5, r5, m__19daAlinkHIO_slide_c0@l
+/* 800C449C  3C A0 80 39 */	lis r5, m__19daAlinkHIO_slide_c0@ha /* 0x8038D8CC@ha */
+/* 800C44A0  38 A5 D8 CC */	addi r5, r5, m__19daAlinkHIO_slide_c0@l /* 0x8038D8CC@l */
 /* 800C44A4  38 A5 00 14 */	addi r5, r5, 0x14
 /* 800C44A8  4B FE 8C 4D */	bl setSingleAnimeParam__9daAlink_cFQ29daAlink_c11daAlink_ANMPC16daAlinkHIO_anm_c
-/* 800C44AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 800C44B0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 800C44AC  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 800C44B0  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 800C44B4  80 03 5F 1C */	lwz r0, 0x5f1c(r3)
 /* 800C44B8  60 00 02 00 */	ori r0, r0, 0x200
 /* 800C44BC  90 03 5F 1C */	stw r0, 0x5f1c(r3)
@@ -91,8 +91,8 @@ lbl_800C448C:
 /* 800C44CC  38 80 00 01 */	li r4, 1
 /* 800C44D0  48 05 CC F1 */	bl setFootEffectProcType__9daAlink_cFi
 lbl_800C44D4:
-/* 800C44D4  3C 60 80 39 */	lis r3, m__19daAlinkHIO_slide_c0@ha
-/* 800C44D8  38 63 D8 CC */	addi r3, r3, m__19daAlinkHIO_slide_c0@l
+/* 800C44D4  3C 60 80 39 */	lis r3, m__19daAlinkHIO_slide_c0@ha /* 0x8038D8CC@ha */
+/* 800C44D8  38 63 D8 CC */	addi r3, r3, m__19daAlinkHIO_slide_c0@l /* 0x8038D8CC@l */
 /* 800C44DC  C0 03 00 50 */	lfs f0, 0x50(r3)
 /* 800C44E0  D0 1F 05 94 */	stfs f0, 0x594(r31)
 /* 800C44E4  C0 02 92 C0 */	lfs f0, lit_6108(r2)

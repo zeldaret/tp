@@ -15,7 +15,6 @@ extern "C" void GDInitGDLObj();
 extern "C" void GDFlushCurrToMem();
 extern "C" void GDPadCurr32();
 extern "C" void GDOverflowed();
-extern "C" extern u8 __GDCurrentDL[4];
 
 //
 // External References:
@@ -27,49 +26,50 @@ extern "C" void DCFlushRange();
 // Declarations:
 //
 
-/* 80360F98-80360FB0 0018+00 s=0 e=6 z=0  None .text      GDInitGDLObj */
+/* 80360F98-80360FB0 35B8D8 0018+00 0/0 6/6 0/0 .text            GDInitGDLObj */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GDInitGDLObj() {
+asm void GDInitGDLObj() {
     nofralloc
 #include "asm/dolphin/gd/GDBase/GDInitGDLObj.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451980-80451984 0004+00 s=2 e=100 z=0  None .sbss      __GDCurrentDL */
+/* 80451980-80451984 000E80 0004+00 2/2 100/100 0/0 .sbss            __GDCurrentDL */
+extern u8 __GDCurrentDL[4];
 u8 __GDCurrentDL[4];
 
-/* 80360FB0-80360FDC 002C+00 s=0 e=2 z=0  None .text      GDFlushCurrToMem */
+/* 80360FB0-80360FDC 35B8F0 002C+00 0/0 2/2 0/0 .text            GDFlushCurrToMem */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GDFlushCurrToMem() {
+asm void GDFlushCurrToMem() {
     nofralloc
 #include "asm/dolphin/gd/GDBase/GDFlushCurrToMem.s"
 }
 #pragma pop
 
-/* 80360FDC-803610D4 00F8+00 s=0 e=2 z=0  None .text      GDPadCurr32 */
+/* 80360FDC-803610D4 35B91C 00F8+00 0/0 2/2 0/0 .text            GDPadCurr32 */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GDPadCurr32() {
+asm void GDPadCurr32() {
     nofralloc
 #include "asm/dolphin/gd/GDBase/GDPadCurr32.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451984-80451988 0004+00 s=1 e=0 z=0  None .sbss      overflowcb */
+/* 80451984-80451988 000E84 0004+00 1/1 0/0 0/0 .sbss            overflowcb */
 static u8 overflowcb[4];
 
-/* 803610D4-80361104 0030+00 s=0 e=41 z=0  None .text      GDOverflowed */
+/* 803610D4-80361104 35BA14 0030+00 0/0 41/41 0/0 .text            GDOverflowed */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void GDOverflowed() {
+asm void GDOverflowed() {
     nofralloc
 #include "asm/dolphin/gd/GDBase/GDOverflowed.s"
 }

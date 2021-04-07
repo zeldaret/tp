@@ -4,10 +4,10 @@ lbl_8059E6CC:
 /* 8059E6D4  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8059E6D8  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8059E6DC  7C 7F 1B 78 */	mr r31, r3
-/* 8059E6E0  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 8059E6E4  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 8059E6E0  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8059E6E4  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8059E6E8  80 84 5D AC */	lwz r4, 0x5dac(r4)
-/* 8059E6EC  4B A7 C2 78 */	b fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c
+/* 8059E6EC  4B A7 C2 79 */	bl fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c
 /* 8059E6F0  C0 1F 05 74 */	lfs f0, 0x574(r31)
 /* 8059E6F4  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 8059E6F8  7C 00 00 26 */	mfcr r0

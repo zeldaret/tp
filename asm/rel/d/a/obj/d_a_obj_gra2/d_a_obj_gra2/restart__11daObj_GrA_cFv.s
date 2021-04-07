@@ -5,8 +5,8 @@ lbl_80C00EFC:
 /* 80C00F08  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80C00F0C  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80C00F10  7C 7E 1B 78 */	mr r30, r3
-/* 80C00F14  3C 80 80 C1 */	lis r4, m__17daObj_GrA_Param_c@ha
-/* 80C00F18  3B E4 FA 7C */	addi r31, r4, m__17daObj_GrA_Param_c@l
+/* 80C00F14  3C 80 80 C1 */	lis r4, m__17daObj_GrA_Param_c@ha /* 0x80C0FA7C@ha */
+/* 80C00F18  3B E4 FA 7C */	addi r31, r4, m__17daObj_GrA_Param_c@l /* 0x80C0FA7C@l */
 /* 80C00F1C  A8 03 04 B6 */	lha r0, 0x4b6(r3)
 /* 80C00F20  38 80 00 00 */	li r4, 0
 /* 80C00F24  B0 83 04 DC */	sth r4, 0x4dc(r3)
@@ -45,8 +45,8 @@ lbl_80C00FA4:
 /* 80C00FA4  38 80 00 01 */	li r4, 1
 /* 80C00FA8  48 00 1B 2D */	bl setLookMode__11daObj_GrA_cFi
 lbl_80C00FAC:
-/* 80C00FAC  3C 60 80 C1 */	lis r3, lit_4591@ha
-/* 80C00FB0  38 83 00 5C */	addi r4, r3, lit_4591@l
+/* 80C00FAC  3C 60 80 C1 */	lis r3, lit_4591@ha /* 0x80C1005C@ha */
+/* 80C00FB0  38 83 00 5C */	addi r4, r3, lit_4591@l /* 0x80C1005C@l */
 /* 80C00FB4  80 64 00 00 */	lwz r3, 0(r4)
 /* 80C00FB8  80 04 00 04 */	lwz r0, 4(r4)
 /* 80C00FBC  90 61 00 08 */	stw r3, 8(r1)
@@ -111,7 +111,7 @@ lbl_80C01058:
 /* 80C010A4  48 00 07 09 */	bl setFaceMotion__11daObj_GrA_cFif
 /* 80C010A8  38 7E 20 4C */	addi r3, r30, 0x204c
 /* 80C010AC  38 80 00 00 */	li r4, 0
-/* 80C010B0  4B 54 C7 6C */	b entry__18daBaseNpc_acMngr_cFP10fopAc_ac_c
+/* 80C010B0  4B 54 C7 6D */	bl entry__18daBaseNpc_acMngr_cFP10fopAc_ac_c
 /* 80C010B4  38 00 00 00 */	li r0, 0
 /* 80C010B8  90 1E 20 9C */	stw r0, 0x209c(r30)
 /* 80C010BC  83 E1 00 1C */	lwz r31, 0x1c(r1)

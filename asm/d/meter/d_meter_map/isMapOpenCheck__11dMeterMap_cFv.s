@@ -2,8 +2,8 @@ lbl_8020D900:
 /* 8020D900  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8020D904  7C 08 02 A6 */	mflr r0
 /* 8020D908  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8020D90C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8020D910  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8020D90C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8020D910  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8020D914  85 83 4E 20 */	lwzu r12, 0x4e20(r3)
 /* 8020D918  81 8C 00 BC */	lwz r12, 0xbc(r12)
 /* 8020D91C  7D 89 03 A6 */	mtctr r12

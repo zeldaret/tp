@@ -10,10 +10,10 @@ lbl_80079668:
 /* 80079688  1C 7F 00 18 */	mulli r3, r31, 0x18
 /* 8007968C  38 63 00 10 */	addi r3, r3, 0x10
 /* 80079690  48 25 56 35 */	bl __nwa__FUl
-/* 80079694  3C 80 80 08 */	lis r4, __ct__11cBgW_TriElmFv@ha
-/* 80079698  38 84 97 54 */	addi r4, r4, __ct__11cBgW_TriElmFv@l
-/* 8007969C  3C A0 80 08 */	lis r5, __dt__11cBgW_TriElmFv@ha
-/* 800796A0  38 A5 96 F8 */	addi r5, r5, __dt__11cBgW_TriElmFv@l
+/* 80079694  3C 80 80 08 */	lis r4, __ct__11cBgW_TriElmFv@ha /* 0x80079754@ha */
+/* 80079698  38 84 97 54 */	addi r4, r4, __ct__11cBgW_TriElmFv@l /* 0x80079754@l */
+/* 8007969C  3C A0 80 08 */	lis r5, __dt__11cBgW_TriElmFv@ha /* 0x800796F8@ha */
+/* 800796A0  38 A5 96 F8 */	addi r5, r5, __dt__11cBgW_TriElmFv@l /* 0x800796F8@l */
 /* 800796A4  38 C0 00 18 */	li r6, 0x18
 /* 800796A8  7F E7 FB 78 */	mr r7, r31
 /* 800796AC  48 2E 88 69 */	bl __construct_new_array

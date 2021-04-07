@@ -31,8 +31,8 @@ lbl_80100B28:
 /* 80100B50  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80100B54  40 81 00 28 */	ble lbl_80100B7C
 /* 80100B58  C0 3F 00 10 */	lfs f1, 0x10(r31)
-/* 80100B5C  3C 60 80 39 */	lis r3, m__22daAlinkHIO_roofHang_c0@ha
-/* 80100B60  38 63 EB FC */	addi r3, r3, m__22daAlinkHIO_roofHang_c0@l
+/* 80100B5C  3C 60 80 39 */	lis r3, m__22daAlinkHIO_roofHang_c0@ha /* 0x8038EBFC@ha */
+/* 80100B60  38 63 EB FC */	addi r3, r3, m__22daAlinkHIO_roofHang_c0@l /* 0x8038EBFC@l */
 /* 80100B64  C0 03 00 10 */	lfs f0, 0x10(r3)
 /* 80100B68  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80100B6C  40 81 00 10 */	ble lbl_80100B7C

@@ -13,9 +13,9 @@ lbl_8034927C:
 /* 80349284  3B E0 00 00 */	li r31, 0
 /* 80349288  93 ED 92 2C */	stw r31, NumInternalRetry(r13)
 /* 8034928C  4B FF F2 65 */	bl __DVDFSInit
-/* 80349290  3C 60 80 45 */	lis r3, DummyCommandBlock@ha
+/* 80349290  3C 60 80 45 */	lis r3, DummyCommandBlock@ha /* 0x8044C940@ha */
 /* 80349294  80 8D 91 F8 */	lwz r4, executing(r13)
-/* 80349298  38 03 C9 40 */	addi r0, r3, DummyCommandBlock@l
+/* 80349298  38 03 C9 40 */	addi r0, r3, DummyCommandBlock@l /* 0x8044C940@l */
 /* 8034929C  90 0D 91 F8 */	stw r0, executing(r13)
 /* 803492A0  93 E4 00 0C */	stw r31, 0xc(r4)
 /* 803492A4  81 84 00 28 */	lwz r12, 0x28(r4)

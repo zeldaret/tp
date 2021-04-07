@@ -3,17 +3,15 @@
 #
 
 M521_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3saka00.plf
+M521_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3saka00.lcf
+M521_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3saka00.map
 
 M521_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv3saka00/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv3saka00/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_lv3saka00/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_lv3saka00/d_a_obj_lv3saka00.cpp \
 
 M521_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3saka00/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3saka00/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3saka00/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3saka00/d_a_obj_lv3saka00.o \
 
 M521_LIBS := \
@@ -29,14 +27,21 @@ M521_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M521_LDSCRIPT) \
+	-unused -map $(M521_MAP) \
+	-w off \
 
 $(M521_TARGET): $(M521_O_FILES) $(M521_LIBS)
+	@echo [521] creating $(M521_TARGET)
 	@echo $(M521_LIBS) $(M521_O_FILES) > build/M521_ofiles
-	$(LD) -partial $(M521_LDFLAGS) -o $(M521_TARGET) @build/M521_ofiles
+	@python3 tools/lcf.py rel 521 --output $(M521_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M521_LDFLAGS) -o $(M521_TARGET) @build/M521_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv3saka00/%.o: rel/d/a/obj/d_a_obj_lv3saka00/%.cpp
+	@echo [521] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M521_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M521_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

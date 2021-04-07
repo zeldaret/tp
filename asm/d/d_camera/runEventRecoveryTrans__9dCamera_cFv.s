@@ -67,8 +67,8 @@ lbl_80180788:
 /* 80180838  D0 01 00 94 */	stfs f0, 0x94(r1)
 /* 8018083C  38 61 00 AC */	addi r3, r1, 0xac
 /* 80180840  4B EF 75 65 */	bl __ct__14dBgS_CamLinChkFv
-/* 80180844  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 80180848  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 80180844  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 80180848  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 8018084C  90 01 00 A8 */	stw r0, 0xa8(r1)
 /* 80180850  80 1F 00 88 */	lwz r0, 0x88(r31)
 /* 80180854  70 00 00 B7 */	andi. r0, r0, 0xb7
@@ -81,8 +81,8 @@ lbl_80180788:
 /* 80180870  4B FE 50 51 */	bl lineBGCheck__9dCamera_cFP4cXyzP4cXyzP11dBgS_LinChkUl
 /* 80180874  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80180878  41 82 00 54 */	beq lbl_801808CC
-/* 8018087C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80180880  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8018087C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80180880  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80180884  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 80180888  38 81 00 C0 */	addi r4, r1, 0xc0
 /* 8018088C  38 A1 00 98 */	addi r5, r1, 0x98
@@ -131,8 +131,8 @@ lbl_801808CC:
 /* 80180934  4B FE 4F 8D */	bl lineBGCheck__9dCamera_cFP4cXyzP4cXyzP11dBgS_LinChkUl
 /* 80180938  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8018093C  41 82 00 54 */	beq lbl_80180990
-/* 80180940  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80180944  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80180940  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80180944  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80180948  38 63 0F 38 */	addi r3, r3, 0xf38
 /* 8018094C  38 81 00 C0 */	addi r4, r1, 0xc0
 /* 80180950  38 A1 00 98 */	addi r5, r1, 0x98
@@ -179,8 +179,8 @@ lbl_80180990:
 /* 801809F0  48 0F 07 85 */	bl __pl__7cSAngleCFRC7cSAngle
 /* 801809F4  A8 01 00 08 */	lha r0, 8(r1)
 /* 801809F8  B0 1F 00 54 */	sth r0, 0x54(r31)
-/* 801809FC  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha
-/* 80180A00  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l
+/* 801809FC  3C 60 80 3A */	lis r3, __vt__8cM3dGPla@ha /* 0x803A37C0@ha */
+/* 80180A00  38 03 37 C0 */	addi r0, r3, __vt__8cM3dGPla@l /* 0x803A37C0@l */
 /* 80180A04  90 01 00 A8 */	stw r0, 0xa8(r1)
 /* 80180A08  38 61 00 AC */	addi r3, r1, 0xac
 /* 80180A0C  38 80 FF FF */	li r4, -1

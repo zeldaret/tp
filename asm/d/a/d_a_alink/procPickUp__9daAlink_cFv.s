@@ -66,8 +66,8 @@ lbl_800E7534:
 /* 800E7550  48 00 00 80 */	b lbl_800E75D0
 lbl_800E7554:
 /* 800E7554  C0 3E 00 10 */	lfs f1, 0x10(r30)
-/* 800E7558  3C 60 80 39 */	lis r3, m__20daAlinkHIO_pickUp_c0@ha
-/* 800E755C  38 63 E8 40 */	addi r3, r3, m__20daAlinkHIO_pickUp_c0@l
+/* 800E7558  3C 60 80 39 */	lis r3, m__20daAlinkHIO_pickUp_c0@ha /* 0x8038E840@ha */
+/* 800E755C  38 63 E8 40 */	addi r3, r3, m__20daAlinkHIO_pickUp_c0@l /* 0x8038E840@l */
 /* 800E7560  C0 03 00 10 */	lfs f0, 0x10(r3)
 /* 800E7564  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800E7568  40 81 00 20 */	ble lbl_800E7588

@@ -5,8 +5,8 @@ lbl_8002F5C0:
 /* 8002F5CC  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8002F5D0  93 C1 00 08 */	stw r30, 8(r1)
 /* 8002F5D4  7C 7E 1B 78 */	mr r30, r3
-/* 8002F5D8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8002F5DC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8002F5D8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8002F5DC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8002F5E0  3B E3 0F 38 */	addi r31, r3, 0xf38
 /* 8002F5E4  7F E3 FB 78 */	mr r3, r31
 /* 8002F5E8  4B FF D5 D5 */	bl getTimerMode__14dComIfG_play_cFv

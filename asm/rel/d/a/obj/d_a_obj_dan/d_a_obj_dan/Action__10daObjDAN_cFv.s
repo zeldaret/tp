@@ -36,7 +36,7 @@ lbl_80BDB050:
 /* 80BDB054  4B FF FB BD */	bl DamageAction__10daObjDAN_cFv
 lbl_80BDB058:
 /* 80BDB058  7F E3 FB 78 */	mr r3, r31
-/* 80BDB05C  4B 58 30 1C */	b Insect_GetDemoMain__9dInsect_cFv
+/* 80BDB05C  4B 58 30 1D */	bl Insect_GetDemoMain__9dInsect_cFv
 /* 80BDB060  83 E1 00 0C */	lwz r31, 0xc(r1)
 /* 80BDB064  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80BDB068  7C 08 03 A6 */	mtlr r0

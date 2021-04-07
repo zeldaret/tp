@@ -14,8 +14,8 @@ lbl_802F1678:
 /* 802F1690  42 00 FF E8 */	bdnz lbl_802F1678
 /* 802F1694  39 80 00 00 */	li r12, 0
 /* 802F1698  38 80 00 00 */	li r4, 0
-/* 802F169C  3C A0 80 3A */	lis r5, j2dDefaultIndTexMtxInfo@ha
-/* 802F16A0  38 E5 1B C4 */	addi r7, r5, j2dDefaultIndTexMtxInfo@l
+/* 802F169C  3C A0 80 3A */	lis r5, j2dDefaultIndTexMtxInfo@ha /* 0x803A1BC4@ha */
+/* 802F16A0  38 E5 1B C4 */	addi r7, r5, j2dDefaultIndTexMtxInfo@l /* 0x803A1BC4@l */
 lbl_802F16A4:
 /* 802F16A4  39 00 00 00 */	li r8, 0
 /* 802F16A8  38 A0 00 00 */	li r5, 0

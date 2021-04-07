@@ -7,7 +7,7 @@ lbl_80D577C0:
 /* 80D577D4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80D577D8  7C 9F 23 78 */	mr r31, r4
 /* 80D577DC  41 82 00 48 */	beq lbl_80D57824
-/* 80D577E0  4B 2C 15 00 */	b fopAc_IsActor__FPv
+/* 80D577E0  4B 2C 15 01 */	bl fopAc_IsActor__FPv
 /* 80D577E4  2C 03 00 00 */	cmpwi r3, 0
 /* 80D577E8  41 82 00 3C */	beq lbl_80D57824
 /* 80D577EC  A8 1E 00 0E */	lha r0, 0xe(r30)

@@ -8,8 +8,8 @@ lbl_8024B32C:
 /* 8024B344  48 11 6E 91 */	bl _savegpr_27
 /* 8024B348  7C BF 2B 78 */	mr r31, r5
 /* 8024B34C  A3 C4 00 04 */	lhz r30, 4(r4)
-/* 8024B350  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024B354  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l
+/* 8024B350  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024B354  3B A3 61 C0 */	addi r29, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024B358  80 7D 5D AC */	lwz r3, 0x5dac(r29)
 /* 8024B35C  C0 03 05 50 */	lfs f0, 0x550(r3)
 /* 8024B360  D0 01 00 20 */	stfs f0, 0x20(r1)
@@ -56,8 +56,8 @@ lbl_8024B3E8:
 /* 8024B400  7F 63 DB 78 */	mr r3, r27
 /* 8024B404  4B EF FC 0D */	bl getDistTable__12dAttention_cFi
 /* 8024B408  7C 67 1B 78 */	mr r7, r3
-/* 8024B40C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8024B410  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8024B40C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8024B410  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8024B414  38 63 56 B8 */	addi r3, r3, 0x56b8
 /* 8024B418  38 81 00 20 */	addi r4, r1, 0x20
 /* 8024B41C  7F 85 E3 78 */	mr r5, r28

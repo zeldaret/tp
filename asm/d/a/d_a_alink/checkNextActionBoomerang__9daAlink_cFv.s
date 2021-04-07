@@ -9,8 +9,8 @@ lbl_800E0BE4:
 /* 800E0C00  28 00 00 52 */	cmplwi r0, 0x52
 /* 800E0C04  40 82 00 20 */	bne lbl_800E0C24
 /* 800E0C08  C0 3F 20 58 */	lfs f1, 0x2058(r31)
-/* 800E0C0C  3C 60 80 39 */	lis r3, m__18daAlinkHIO_boom_c0@ha
-/* 800E0C10  38 63 E6 C8 */	addi r3, r3, m__18daAlinkHIO_boom_c0@l
+/* 800E0C0C  3C 60 80 39 */	lis r3, m__18daAlinkHIO_boom_c0@ha /* 0x8038E6C8@ha */
+/* 800E0C10  38 63 E6 C8 */	addi r3, r3, m__18daAlinkHIO_boom_c0@l /* 0x8038E6C8@l */
 /* 800E0C14  C0 03 00 24 */	lfs f0, 0x24(r3)
 /* 800E0C18  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800E0C1C  4C 40 13 82 */	cror 2, 0, 2

@@ -8,10 +8,10 @@ lbl_80D41F10:
 /* 80D41F28  7F E3 FB 78 */	mr r3, r31
 /* 80D41F2C  4B FF FA 09 */	bl setBaseMtx__12daZrTuraRc_cFv
 /* 80D41F30  38 7F 05 84 */	addi r3, r31, 0x584
-/* 80D41F34  4B 34 18 FC */	b Move__10dCcD_GSttsFv
+/* 80D41F34  4B 34 18 FD */	bl Move__10dCcD_GSttsFv
 /* 80D41F38  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 80D41F3C  7C 03 07 74 */	extsb r3, r0
-/* 80D41F40  4B 2E B1 2C */	b dComIfGp_getReverb__Fi
+/* 80D41F40  4B 2E B1 2D */	bl dComIfGp_getReverb__Fi
 /* 80D41F44  7C 65 1B 78 */	mr r5, r3
 /* 80D41F48  38 7F 09 18 */	addi r3, r31, 0x918
 /* 80D41F4C  38 80 00 00 */	li r4, 0

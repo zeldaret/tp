@@ -3,8 +3,8 @@ lbl_80CDC610:
 /* 80CDC614  7C 08 02 A6 */	mflr r0
 /* 80CDC618  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80CDC61C  7C 64 1B 78 */	mr r4, r3
-/* 80CDC620  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80CDC624  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80CDC620  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CDC624  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CDC628  80 63 5D AC */	lwz r3, 0x5dac(r3)
 /* 80CDC62C  80 04 00 B0 */	lwz r0, 0xb0(r4)
 /* 80CDC630  54 04 A6 3E */	rlwinm r4, r0, 0x14, 0x18, 0x1f

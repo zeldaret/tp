@@ -6,8 +6,8 @@ lbl_8013ADF0:
 /* 8013AE00  48 22 73 D9 */	bl _savegpr_28
 /* 8013AE04  7C 7F 1B 78 */	mr r31, r3
 /* 8013AE08  7C 9D 23 78 */	mr r29, r4
-/* 8013AE0C  3C 80 80 39 */	lis r4, lit_3757@ha
-/* 8013AE10  3B C4 D6 58 */	addi r30, r4, lit_3757@l
+/* 8013AE0C  3C 80 80 39 */	lis r4, lit_3757@ha /* 0x8038D658@ha */
+/* 8013AE10  3B C4 D6 58 */	addi r30, r4, lit_3757@l /* 0x8038D658@l */
 /* 8013AE14  57 A0 18 38 */	slwi r0, r29, 3
 /* 8013AE18  3B 9E 48 48 */	addi r28, r30, 0x4848
 /* 8013AE1C  7F 9C 02 14 */	add r28, r28, r0
@@ -102,8 +102,8 @@ lbl_8013AF28:
 /* 8013AF68  38 7E 21 4C */	addi r3, r30, 0x214c
 /* 8013AF6C  A8 03 00 16 */	lha r0, 0x16(r3)
 /* 8013AF70  B0 1F 30 7E */	sth r0, 0x307e(r31)
-/* 8013AF74  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha
-/* 8013AF78  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)
+/* 8013AF74  3C 60 80 42 */	lis r3, l_wolfBaseAnime@ha /* 0x8042561C@ha */
+/* 8013AF78  C4 03 56 1C */	lfsu f0, l_wolfBaseAnime@l(r3)  /* 0x8042561C@l */
 /* 8013AF7C  D0 1F 35 88 */	stfs f0, 0x3588(r31)
 /* 8013AF80  C0 03 00 04 */	lfs f0, 4(r3)
 /* 8013AF84  D0 1F 35 8C */	stfs f0, 0x358c(r31)

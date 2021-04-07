@@ -11,16 +11,16 @@
 // Types:
 //
 
+struct JPABaseParticle {};
+
+struct JPAEmitterWorkData {};
+
 struct JKRHeap {};
 
 struct JPAFieldBlock {
     /* 8027D088 */ JPAFieldBlock(u8 const*, JKRHeap*);
     /* 8027D0C0 */ void init(JKRHeap*);
 };
-
-struct JPAEmitterWorkData {};
-
-struct JPABaseParticle {};
 
 struct JPAFieldVortex {
     /* 8027C56C */ void prepare(JPAEmitterWorkData*, JPAFieldBlock*);
@@ -121,9 +121,6 @@ extern "C" void __dt__15JPAFieldGravityFv();
 // External References:
 //
 
-void* operator new(u32, JKRHeap*, int);
-void operator delete(void*);
-
 extern "C" void prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock();
 extern "C" void* __nw__FUlP7JKRHeapi();
 extern "C" void __dl__FPv();
@@ -139,7 +136,7 @@ extern "C" extern u32 __float_epsilon;
 // Declarations:
 //
 
-/* 8027BDEC-8027BF18 012C+00 s=8 e=0 z=0  None .text
+/* 8027BDEC-8027BF18 27672C 012C+00 8/8 0/0 0/0 .text
  * calcAffect__12JPAFieldBaseFP13JPAFieldBlockP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -151,10 +148,10 @@ asm void JPAFieldBase::calcAffect(JPAFieldBlock* param_0, JPABaseParticle* param
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455338-8045533C 0004+00 s=6 e=0 z=0  None .sdata2    @2353 */
+/* 80455338-8045533C 003938 0004+00 6/6 0/0 0/0 .sdata2          @2353 */
 SECTION_SDATA2 static f32 lit_2353 = 1.0f;
 
-/* 8045533C-80455340 0004+00 s=11 e=0 z=0  None .sdata2    @2354 */
+/* 8045533C-80455340 00393C 0004+00 11/11 0/0 0/0 .sdata2          @2354 */
 SECTION_SDATA2 static u8 lit_2354[4] = {
     0x00,
     0x00,
@@ -162,7 +159,7 @@ SECTION_SDATA2 static u8 lit_2354[4] = {
     0x00,
 };
 
-/* 8027BF18-8027BFB4 009C+00 s=2 e=0 z=0  None .text
+/* 8027BF18-8027BFB4 276858 009C+00 2/2 0/0 0/0 .text
  * calcFadeAffect__12JPAFieldBaseCFP13JPAFieldBlockf            */
 #pragma push
 #pragma optimization_level 0
@@ -173,7 +170,7 @@ asm void JPAFieldBase::calcFadeAffect(JPAFieldBlock* param_0, f32 param_1) const
 }
 #pragma pop
 
-/* 8027BFB4-8027C054 00A0+00 s=1 e=0 z=0  None .text
+/* 8027BFB4-8027C054 2768F4 00A0+00 1/0 0/0 0/0 .text
  * prepare__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlock */
 #pragma push
 #pragma optimization_level 0
@@ -184,7 +181,7 @@ asm void JPAFieldGravity::prepare(JPAEmitterWorkData* param_0, JPAFieldBlock* pa
 }
 #pragma pop
 
-/* 8027C054-8027C07C 0028+00 s=1 e=0 z=0  None .text
+/* 8027C054-8027C07C 276994 0028+00 1/0 0/0 0/0 .text
  * calc__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -197,16 +194,16 @@ asm void JPAFieldGravity::calc(JPAEmitterWorkData* param_0, JPAFieldBlock* param
 #pragma pop
 
 /* ############################################################################################## */
-/* 80455340-80455344 0004+00 s=8 e=0 z=0  None .sdata2    @2459 */
+/* 80455340-80455344 003940 0004+00 8/8 0/0 0/0 .sdata2          @2459 */
 SECTION_SDATA2 static f32 lit_2459 = 32.0f;
 
-/* 80455344-80455348 0004+00 s=9 e=0 z=0  None .sdata2    @2460 */
+/* 80455344-80455348 003944 0004+00 9/9 0/0 0/0 .sdata2          @2460 */
 SECTION_SDATA2 static f32 lit_2460 = 0.5f;
 
-/* 80455348-8045534C 0004+00 s=8 e=0 z=0  None .sdata2    @2461 */
+/* 80455348-8045534C 003948 0004+00 8/8 0/0 0/0 .sdata2          @2461 */
 SECTION_SDATA2 static f32 lit_2461 = 3.0f;
 
-/* 8027C07C-8027C1B8 013C+00 s=1 e=0 z=0  None .text
+/* 8027C07C-8027C1B8 2769BC 013C+00 1/0 0/0 0/0 .text
  * prepare__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlock */
 #pragma push
 #pragma optimization_level 0
@@ -217,7 +214,7 @@ asm void JPAFieldAir::prepare(JPAEmitterWorkData* param_0, JPAFieldBlock* param_
 }
 #pragma pop
 
-/* 8027C1B8-8027C24C 0094+00 s=1 e=0 z=0  None .text
+/* 8027C1B8-8027C24C 276AF8 0094+00 1/0 0/0 0/0 .text
  * calc__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -229,7 +226,7 @@ asm void JPAFieldAir::calc(JPAEmitterWorkData* param_0, JPAFieldBlock* param_1,
 }
 #pragma pop
 
-/* 8027C24C-8027C29C 0050+00 s=1 e=0 z=0  None .text
+/* 8027C24C-8027C29C 276B8C 0050+00 1/0 0/0 0/0 .text
  * prepare__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlock */
 #pragma push
 #pragma optimization_level 0
@@ -240,7 +237,7 @@ asm void JPAFieldMagnet::prepare(JPAEmitterWorkData* param_0, JPAFieldBlock* par
 }
 #pragma pop
 
-/* 8027C29C-8027C36C 00D0+00 s=1 e=0 z=0  None .text
+/* 8027C29C-8027C36C 276BDC 00D0+00 1/0 0/0 0/0 .text
  * calc__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -252,7 +249,7 @@ asm void JPAFieldMagnet::calc(JPAEmitterWorkData* param_0, JPAFieldBlock* param_
 }
 #pragma pop
 
-/* 8027C36C-8027C3E0 0074+00 s=1 e=0 z=0  None .text
+/* 8027C36C-8027C3E0 276CAC 0074+00 1/0 0/0 0/0 .text
  * prepare__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlock */
 #pragma push
 #pragma optimization_level 0
@@ -264,10 +261,10 @@ asm void JPAFieldNewton::prepare(JPAEmitterWorkData* param_0, JPAFieldBlock* par
 #pragma pop
 
 /* ############################################################################################## */
-/* 8045534C-80455350 0004+00 s=1 e=0 z=0  None .sdata2    @2656 */
+/* 8045534C-80455350 00394C 0004+00 1/1 0/0 0/0 .sdata2          @2656 */
 SECTION_SDATA2 static f32 lit_2656 = 10.0f;
 
-/* 8027C3E0-8027C56C 018C+00 s=1 e=0 z=0  None .text
+/* 8027C3E0-8027C56C 276D20 018C+00 1/0 0/0 0/0 .text
  * calc__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -279,7 +276,7 @@ asm void JPAFieldNewton::calc(JPAEmitterWorkData* param_0, JPAFieldBlock* param_
 }
 #pragma pop
 
-/* 8027C56C-8027C674 0108+00 s=1 e=0 z=0  None .text
+/* 8027C56C-8027C674 276EAC 0108+00 1/0 0/0 0/0 .text
  * prepare__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlock */
 #pragma push
 #pragma optimization_level 0
@@ -290,7 +287,7 @@ asm void JPAFieldVortex::prepare(JPAEmitterWorkData* param_0, JPAFieldBlock* par
 }
 #pragma pop
 
-/* 8027C674-8027C814 01A0+00 s=1 e=0 z=0  None .text
+/* 8027C674-8027C814 276FB4 01A0+00 1/0 0/0 0/0 .text
  * calc__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -302,7 +299,7 @@ asm void JPAFieldVortex::calc(JPAEmitterWorkData* param_0, JPAFieldBlock* param_
 }
 #pragma pop
 
-/* 8027C814-8027CA94 0280+00 s=1 e=0 z=0  None .text
+/* 8027C814-8027CA94 277154 0280+00 1/0 0/0 0/0 .text
  * prepare__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlock */
 #pragma push
 #pragma optimization_level 0
@@ -313,7 +310,7 @@ asm void JPAFieldConvection::prepare(JPAEmitterWorkData* param_0, JPAFieldBlock*
 }
 #pragma pop
 
-/* 8027CA94-8027CCCC 0238+00 s=1 e=0 z=0  None .text
+/* 8027CA94-8027CCCC 2773D4 0238+00 1/0 0/0 0/0 .text
  * calc__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -325,7 +322,7 @@ asm void JPAFieldConvection::calc(JPAEmitterWorkData* param_0, JPAFieldBlock* pa
 }
 #pragma pop
 
-/* 8027CCCC-8027CDE4 0118+00 s=1 e=0 z=0  None .text
+/* 8027CCCC-8027CDE4 27760C 0118+00 1/0 0/0 0/0 .text
  * calc__14JPAFieldRandomFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -337,7 +334,7 @@ asm void JPAFieldRandom::calc(JPAEmitterWorkData* param_0, JPAFieldBlock* param_
 }
 #pragma pop
 
-/* 8027CDE4-8027CE64 0080+00 s=1 e=0 z=0  None .text
+/* 8027CDE4-8027CE64 277724 0080+00 1/0 0/0 0/0 .text
  * calc__12JPAFieldDragFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -349,7 +346,7 @@ asm void JPAFieldDrag::calc(JPAEmitterWorkData* param_0, JPAFieldBlock* param_1,
 }
 #pragma pop
 
-/* 8027CE64-8027CFA8 0144+00 s=1 e=0 z=0  None .text
+/* 8027CE64-8027CFA8 2777A4 0144+00 1/0 0/0 0/0 .text
  * prepare__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlock */
 #pragma push
 #pragma optimization_level 0
@@ -360,7 +357,7 @@ asm void JPAFieldSpin::prepare(JPAEmitterWorkData* param_0, JPAFieldBlock* param
 }
 #pragma pop
 
-/* 8027CFA8-8027D088 00E0+00 s=1 e=0 z=0  None .text
+/* 8027CFA8-8027D088 2778E8 00E0+00 1/0 0/0 0/0 .text
  * calc__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle */
 #pragma push
 #pragma optimization_level 0
@@ -372,7 +369,8 @@ asm void JPAFieldSpin::calc(JPAEmitterWorkData* param_0, JPAFieldBlock* param_1,
 }
 #pragma pop
 
-/* 8027D088-8027D0C0 0038+00 s=0 e=1 z=0  None .text      __ct__13JPAFieldBlockFPCUcP7JKRHeap */
+/* 8027D088-8027D0C0 2779C8 0038+00 0/0 1/1 0/0 .text            __ct__13JPAFieldBlockFPCUcP7JKRHeap
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -383,7 +381,7 @@ asm JPAFieldBlock::JPAFieldBlock(u8 const* param_0, JKRHeap* param_1) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 803C44A8-803C44CC 0024+00 s=1 e=0 z=0  None .data      @3259 */
+/* 803C44A8-803C44CC -00001 0024+00 1/1 0/0 0/0 .data            @3259 */
 SECTION_DATA static void* lit_3259[9] = {
     (void*)(((char*)init__13JPAFieldBlockFP7JKRHeap) + 0xFC),
     (void*)(((char*)init__13JPAFieldBlockFP7JKRHeap) + 0x130),
@@ -396,90 +394,90 @@ SECTION_DATA static void* lit_3259[9] = {
     (void*)(((char*)init__13JPAFieldBlockFP7JKRHeap) + 0x29C),
 };
 
-/* 803C44CC-803C44E0 0014+00 s=11 e=0 z=0  None .data      __vt__12JPAFieldBase */
-SECTION_DATA static void* __vt__12JPAFieldBase[5] = {
-    (void*)NULL,
+/* 803C44CC-803C44E0 0215EC 0014+00 11/11 0/0 0/0 .data            __vt__12JPAFieldBase */
+SECTION_DATA extern void* __vt__12JPAFieldBase[5] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12JPAFieldBaseFv,
     (void*)prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock,
     (void*)NULL,
 };
 
-/* 803C44E0-803C44F4 0014+00 s=2 e=0 z=0  None .data      __vt__12JPAFieldSpin */
-SECTION_DATA static void* __vt__12JPAFieldSpin[5] = {
-    (void*)NULL,
+/* 803C44E0-803C44F4 021600 0014+00 2/2 0/0 0/0 .data            __vt__12JPAFieldSpin */
+SECTION_DATA extern void* __vt__12JPAFieldSpin[5] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12JPAFieldSpinFv,
     (void*)prepare__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlock,
     (void*)calc__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle,
 };
 
-/* 803C44F4-803C4508 0014+00 s=2 e=0 z=0  None .data      __vt__12JPAFieldDrag */
-SECTION_DATA static void* __vt__12JPAFieldDrag[5] = {
-    (void*)NULL,
+/* 803C44F4-803C4508 021614 0014+00 2/2 0/0 0/0 .data            __vt__12JPAFieldDrag */
+SECTION_DATA extern void* __vt__12JPAFieldDrag[5] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__12JPAFieldDragFv,
     (void*)prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock,
     (void*)calc__12JPAFieldDragFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle,
 };
 
-/* 803C4508-803C451C 0014+00 s=2 e=0 z=0  None .data      __vt__14JPAFieldRandom */
-SECTION_DATA static void* __vt__14JPAFieldRandom[5] = {
-    (void*)NULL,
+/* 803C4508-803C451C 021628 0014+00 2/2 0/0 0/0 .data            __vt__14JPAFieldRandom */
+SECTION_DATA extern void* __vt__14JPAFieldRandom[5] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14JPAFieldRandomFv,
     (void*)prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock,
     (void*)calc__14JPAFieldRandomFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle,
 };
 
-/* 803C451C-803C4530 0014+00 s=2 e=0 z=0  None .data      __vt__18JPAFieldConvection */
-SECTION_DATA static void* __vt__18JPAFieldConvection[5] = {
-    (void*)NULL,
+/* 803C451C-803C4530 02163C 0014+00 2/2 0/0 0/0 .data            __vt__18JPAFieldConvection */
+SECTION_DATA extern void* __vt__18JPAFieldConvection[5] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__18JPAFieldConvectionFv,
     (void*)prepare__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlock,
     (void*)calc__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle,
 };
 
-/* 803C4530-803C4544 0014+00 s=2 e=0 z=0  None .data      __vt__14JPAFieldVortex */
-SECTION_DATA static void* __vt__14JPAFieldVortex[5] = {
-    (void*)NULL,
+/* 803C4530-803C4544 021650 0014+00 2/2 0/0 0/0 .data            __vt__14JPAFieldVortex */
+SECTION_DATA extern void* __vt__14JPAFieldVortex[5] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14JPAFieldVortexFv,
     (void*)prepare__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlock,
     (void*)calc__14JPAFieldVortexFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle,
 };
 
-/* 803C4544-803C4558 0014+00 s=2 e=0 z=0  None .data      __vt__14JPAFieldNewton */
-SECTION_DATA static void* __vt__14JPAFieldNewton[5] = {
-    (void*)NULL,
+/* 803C4544-803C4558 021664 0014+00 2/2 0/0 0/0 .data            __vt__14JPAFieldNewton */
+SECTION_DATA extern void* __vt__14JPAFieldNewton[5] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14JPAFieldNewtonFv,
     (void*)prepare__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlock,
     (void*)calc__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle,
 };
 
-/* 803C4558-803C456C 0014+00 s=2 e=0 z=0  None .data      __vt__14JPAFieldMagnet */
-SECTION_DATA static void* __vt__14JPAFieldMagnet[5] = {
-    (void*)NULL,
+/* 803C4558-803C456C 021678 0014+00 2/2 0/0 0/0 .data            __vt__14JPAFieldMagnet */
+SECTION_DATA extern void* __vt__14JPAFieldMagnet[5] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__14JPAFieldMagnetFv,
     (void*)prepare__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlock,
     (void*)calc__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle,
 };
 
-/* 803C456C-803C4580 0014+00 s=2 e=0 z=0  None .data      __vt__11JPAFieldAir */
-SECTION_DATA static void* __vt__11JPAFieldAir[5] = {
-    (void*)NULL,
+/* 803C456C-803C4580 02168C 0014+00 2/2 0/0 0/0 .data            __vt__11JPAFieldAir */
+SECTION_DATA extern void* __vt__11JPAFieldAir[5] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__11JPAFieldAirFv,
     (void*)prepare__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlock,
     (void*)calc__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle,
 };
 
-/* 803C4580-803C4598 0014+04 s=2 e=0 z=0  None .data      __vt__15JPAFieldGravity */
-SECTION_DATA static void* __vt__15JPAFieldGravity[5 + 1 /* padding */] = {
-    (void*)NULL,
+/* 803C4580-803C4598 0216A0 0014+04 2/2 0/0 0/0 .data            __vt__15JPAFieldGravity */
+SECTION_DATA extern void* __vt__15JPAFieldGravity[5 + 1 /* padding */] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)__dt__15JPAFieldGravityFv,
     (void*)prepare__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlock,
@@ -488,7 +486,7 @@ SECTION_DATA static void* __vt__15JPAFieldGravity[5 + 1 /* padding */] = {
     NULL,
 };
 
-/* 8027D0C0-8027D3AC 02EC+00 s=2 e=0 z=0  None .text      init__13JPAFieldBlockFP7JKRHeap */
+/* 8027D0C0-8027D3AC 277A00 02EC+00 2/1 0/0 0/0 .text            init__13JPAFieldBlockFP7JKRHeap */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -498,7 +496,7 @@ asm void JPAFieldBlock::init(JKRHeap* param_0) {
 }
 #pragma pop
 
-/* 8027D3AC-8027D3F4 0048+00 s=1 e=0 z=0  None .text      __dt__12JPAFieldBaseFv */
+/* 8027D3AC-8027D3F4 277CEC 0048+00 1/0 0/0 0/0 .text            __dt__12JPAFieldBaseFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -508,7 +506,7 @@ asm JPAFieldBase::~JPAFieldBase() {
 }
 #pragma pop
 
-/* 8027D3F4-8027D450 005C+00 s=1 e=0 z=0  None .text      __dt__12JPAFieldSpinFv */
+/* 8027D3F4-8027D450 277D34 005C+00 1/0 0/0 0/0 .text            __dt__12JPAFieldSpinFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -518,7 +516,7 @@ asm JPAFieldSpin::~JPAFieldSpin() {
 }
 #pragma pop
 
-/* 8027D450-8027D4AC 005C+00 s=1 e=0 z=0  None .text      __dt__12JPAFieldDragFv */
+/* 8027D450-8027D4AC 277D90 005C+00 1/0 0/0 0/0 .text            __dt__12JPAFieldDragFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -528,7 +526,7 @@ asm JPAFieldDrag::~JPAFieldDrag() {
 }
 #pragma pop
 
-/* 8027D4AC-8027D508 005C+00 s=1 e=0 z=0  None .text      __dt__14JPAFieldRandomFv */
+/* 8027D4AC-8027D508 277DEC 005C+00 1/0 0/0 0/0 .text            __dt__14JPAFieldRandomFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -538,7 +536,7 @@ asm JPAFieldRandom::~JPAFieldRandom() {
 }
 #pragma pop
 
-/* 8027D508-8027D564 005C+00 s=1 e=0 z=0  None .text      __dt__18JPAFieldConvectionFv */
+/* 8027D508-8027D564 277E48 005C+00 1/0 0/0 0/0 .text            __dt__18JPAFieldConvectionFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -548,7 +546,7 @@ asm JPAFieldConvection::~JPAFieldConvection() {
 }
 #pragma pop
 
-/* 8027D564-8027D5C0 005C+00 s=1 e=0 z=0  None .text      __dt__14JPAFieldVortexFv */
+/* 8027D564-8027D5C0 277EA4 005C+00 1/0 0/0 0/0 .text            __dt__14JPAFieldVortexFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -558,7 +556,7 @@ asm JPAFieldVortex::~JPAFieldVortex() {
 }
 #pragma pop
 
-/* 8027D5C0-8027D61C 005C+00 s=1 e=0 z=0  None .text      __dt__14JPAFieldNewtonFv */
+/* 8027D5C0-8027D61C 277F00 005C+00 1/0 0/0 0/0 .text            __dt__14JPAFieldNewtonFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -568,7 +566,7 @@ asm JPAFieldNewton::~JPAFieldNewton() {
 }
 #pragma pop
 
-/* 8027D61C-8027D678 005C+00 s=1 e=0 z=0  None .text      __dt__14JPAFieldMagnetFv */
+/* 8027D61C-8027D678 277F5C 005C+00 1/0 0/0 0/0 .text            __dt__14JPAFieldMagnetFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -578,7 +576,7 @@ asm JPAFieldMagnet::~JPAFieldMagnet() {
 }
 #pragma pop
 
-/* 8027D678-8027D6D4 005C+00 s=1 e=0 z=0  None .text      __dt__11JPAFieldAirFv */
+/* 8027D678-8027D6D4 277FB8 005C+00 1/0 0/0 0/0 .text            __dt__11JPAFieldAirFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -588,7 +586,7 @@ asm JPAFieldAir::~JPAFieldAir() {
 }
 #pragma pop
 
-/* 8027D6D4-8027D730 005C+00 s=1 e=0 z=0  None .text      __dt__15JPAFieldGravityFv */
+/* 8027D6D4-8027D730 278014 005C+00 1/0 0/0 0/0 .text            __dt__15JPAFieldGravityFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off

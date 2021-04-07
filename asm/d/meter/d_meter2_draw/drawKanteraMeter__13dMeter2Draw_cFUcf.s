@@ -67,8 +67,8 @@ lbl_8021AFE0:
 /* 8021B078  C0 22 AE E4 */	lfs f1, lit_8775(r2)
 /* 8021B07C  FC 40 08 90 */	fmr f2, f1
 /* 8021B080  4B F9 3B 75 */	bl setScale__15dKantera_icon_cFff
-/* 8021B084  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8021B088  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 8021B084  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8021B088  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8021B08C  A0 A3 00 08 */	lhz r5, 8(r3)
 /* 8021B090  A0 83 00 06 */	lhz r4, 6(r3)
 /* 8021B094  80 7F 00 AC */	lwz r3, 0xac(r31)

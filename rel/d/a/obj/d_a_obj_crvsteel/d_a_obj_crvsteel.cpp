@@ -104,12 +104,6 @@ struct J3DModel {};
 // Forward References:
 //
 
-static void daObjCRVSTEEL_Create(fopAc_ac_c*);
-static void daObjCRVSTEEL_Delete(daObjCRVSTEEL_c*);
-static void daObjCRVSTEEL_Draw(daObjCRVSTEEL_c*);
-static void daObjCRVSTEEL_Execute(daObjCRVSTEEL_c*);
-static bool daObjCRVSTEEL_IsDelete(daObjCRVSTEEL_c*);
-
 extern "C" static void daObjCRVSTEEL_Create__FP10fopAc_ac_c();
 extern "C" static void daObjCRVSTEEL_Delete__FP15daObjCRVSTEEL_c();
 extern "C" void OpenSet__15daObjCRVSTEEL_cFff();
@@ -130,21 +124,11 @@ extern "C" void Draw__15daObjCRVSTEEL_cFv();
 extern "C" void Delete__15daObjCRVSTEEL_cFv();
 extern "C" static void func_80BD61F0();
 extern "C" static void func_80BD61F8();
-extern "C" extern char const* const stringBase0;
-extern "C" extern void* g_profile_Obj_CRVSTEEL[12];
+extern "C" extern char const* const d_a_obj_crvsteel__stringBase0;
 
 //
 // External References:
 //
-
-void mDoExt_modelUpdateDL(J3DModel*);
-void mDoExt_J3DModel__create(J3DModelData*, u32, u32);
-void fopAcM_setCullSizeBox(fopAc_ac_c*, f32, f32, f32, f32, f32, f32);
-void fopAcM_effSmokeSet1(u32*, u32*, cXyz const*, csXyz const*, f32, dKy_tevstr_c const*, int);
-void dComIfG_resLoad(request_of_phase_process_class*, char const*);
-void dComIfG_resDelete(request_of_phase_process_class*, char const*);
-void dBgS_MoveBGProc_TypicalRotY(dBgW*, void*, cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*);
-void operator delete(void*);
 
 extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
 extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
@@ -192,28 +176,27 @@ extern "C" extern f32 mGroundY__11fopAcM_gc_c;
 // Declarations:
 //
 
-/* 80BD5BB8-80BD5BD8 0020+00 s=1 e=0 z=0  None .text      daObjCRVSTEEL_Create__FP10fopAc_ac_c */
+/* 80BD5BB8-80BD5BD8 000078 0020+00 1/0 0/0 0/0 .text daObjCRVSTEEL_Create__FP10fopAc_ac_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjCRVSTEEL_Create(fopAc_ac_c* param_0) {
+static asm void daObjCRVSTEEL_Create(fopAc_ac_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crvsteel/d_a_obj_crvsteel/daObjCRVSTEEL_Create__FP10fopAc_ac_c.s"
 }
 #pragma pop
 
-/* 80BD5BD8-80BD5BFC 0024+00 s=1 e=0 z=0  None .text      daObjCRVSTEEL_Delete__FP15daObjCRVSTEEL_c
- */
+/* 80BD5BD8-80BD5BFC 000098 0024+00 1/0 0/0 0/0 .text daObjCRVSTEEL_Delete__FP15daObjCRVSTEEL_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjCRVSTEEL_Delete(daObjCRVSTEEL_c* param_0) {
+static asm void daObjCRVSTEEL_Delete(daObjCRVSTEEL_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crvsteel/d_a_obj_crvsteel/daObjCRVSTEEL_Delete__FP15daObjCRVSTEEL_c.s"
 }
 #pragma pop
 
-/* 80BD5BFC-80BD5C18 001C+00 s=0 e=0 z=1  None .text      OpenSet__15daObjCRVSTEEL_cFff */
+/* 80BD5BFC-80BD5C18 0000BC 001C+00 0/0 0/0 1/1 .text            OpenSet__15daObjCRVSTEEL_cFff */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -223,7 +206,7 @@ asm void daObjCRVSTEEL_c::OpenSet(f32 param_0, f32 param_1) {
 }
 #pragma pop
 
-/* 80BD5C18-80BD5C28 0010+00 s=0 e=0 z=1  None .text      CloseSet__15daObjCRVSTEEL_cFf */
+/* 80BD5C18-80BD5C28 0000D8 0010+00 0/0 0/0 1/1 .text            CloseSet__15daObjCRVSTEEL_cFf */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -234,10 +217,12 @@ asm void daObjCRVSTEEL_c::CloseSet(f32 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80BD6208-80BD620C 0004+00 s=3 e=0 z=0  None .rodata    @3789 */
-SECTION_RODATA static u32 const lit_3789 = 0x40A00000;
+/* 80BD6208-80BD620C 000000 0004+00 3/3 0/0 0/0 .rodata          @3789 */
+SECTION_RODATA static f32 const lit_3789 = 5.0f;
+COMPILER_STRIP_GATE(80BD6208, &lit_3789);
 
-/* 80BD5C28-80BD5CA0 0078+00 s=1 e=0 z=0  None .text      CloseExecute__15daObjCRVSTEEL_cFv */
+/* 80BD5C28-80BD5CA0 0000E8 0078+00 1/1 0/0 0/0 .text            CloseExecute__15daObjCRVSTEEL_cFv
+ */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -247,7 +232,7 @@ asm void daObjCRVSTEEL_c::CloseExecute() {
 }
 #pragma pop
 
-/* 80BD5CA0-80BD5CC8 0028+00 s=1 e=0 z=0  None .text      OpenExecute__15daObjCRVSTEEL_cFv */
+/* 80BD5CA0-80BD5CC8 000160 0028+00 1/1 0/0 0/0 .text            OpenExecute__15daObjCRVSTEEL_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -257,7 +242,7 @@ asm void daObjCRVSTEEL_c::OpenExecute() {
 }
 #pragma pop
 
-/* 80BD5CC8-80BD5D10 0048+00 s=1 e=0 z=0  None .text      Action__15daObjCRVSTEEL_cFv */
+/* 80BD5CC8-80BD5D10 000188 0048+00 1/1 0/0 0/0 .text            Action__15daObjCRVSTEEL_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -267,7 +252,7 @@ asm void daObjCRVSTEEL_c::Action() {
 }
 #pragma pop
 
-/* 80BD5D10-80BD5D6C 005C+00 s=1 e=0 z=0  None .text      setBaseMtx__15daObjCRVSTEEL_cFv */
+/* 80BD5D10-80BD5D6C 0001D0 005C+00 1/1 0/0 0/0 .text            setBaseMtx__15daObjCRVSTEEL_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -277,82 +262,32 @@ asm void daObjCRVSTEEL_c::setBaseMtx() {
 }
 #pragma pop
 
-/* 80BD5D6C-80BD5D98 002C+00 s=1 e=0 z=0  None .text      daObjCRVSTEEL_Draw__FP15daObjCRVSTEEL_c */
+/* 80BD5D6C-80BD5D98 00022C 002C+00 1/0 0/0 0/0 .text daObjCRVSTEEL_Draw__FP15daObjCRVSTEEL_c */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjCRVSTEEL_Draw(daObjCRVSTEEL_c* param_0) {
+static asm void daObjCRVSTEEL_Draw(daObjCRVSTEEL_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crvsteel/d_a_obj_crvsteel/daObjCRVSTEEL_Draw__FP15daObjCRVSTEEL_c.s"
 }
 #pragma pop
 
-/* 80BD5D98-80BD5DB8 0020+00 s=2 e=0 z=0  None .text      daObjCRVSTEEL_Execute__FP15daObjCRVSTEEL_c
+/* 80BD5D98-80BD5DB8 000258 0020+00 2/1 0/0 0/0 .text daObjCRVSTEEL_Execute__FP15daObjCRVSTEEL_c
  */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void daObjCRVSTEEL_Execute(daObjCRVSTEEL_c* param_0) {
+static asm void daObjCRVSTEEL_Execute(daObjCRVSTEEL_c* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crvsteel/d_a_obj_crvsteel/daObjCRVSTEEL_Execute__FP15daObjCRVSTEEL_c.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80BD620C-80BD6210 0004+00 s=1 e=0 z=0  None .rodata    @3900 */
-SECTION_RODATA static u32 const lit_3900 = 0xC1100000;
+/* 80BD626C-80BD6270 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+SECTION_DATA static void* l_arcName = (void*)&d_a_obj_crvsteel__stringBase0;
 
-/* 80BD6210-80BD6214 0004+00 s=1 e=0 z=0  None .rodata    @3901 */
-SECTION_RODATA static u32 const lit_3901 = 0x42C80000;
-
-/* 80BD6214-80BD6218 0004+00 s=1 e=0 z=0  None .rodata    @3902 */
-SECTION_RODATA static u32 const lit_3902 = 0xC3C80000;
-
-/* 80BD6218-80BD621C 0004+00 s=1 e=0 z=0  None .rodata    @3903 */
-SECTION_RODATA static u8 const lit_3903[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-
-/* 80BD621C-80BD6220 0004+00 s=1 e=0 z=0  None .rodata    @3904 */
-SECTION_RODATA static u32 const lit_3904 = 0xC2480000;
-
-/* 80BD6220-80BD6224 0004+00 s=1 e=0 z=0  None .rodata    @3905 */
-SECTION_RODATA static u32 const lit_3905 = 0x43C80000;
-
-/* 80BD6224-80BD6228 0004+00 s=1 e=0 z=0  None .rodata    @3906 */
-SECTION_RODATA static u32 const lit_3906 = 0x44610000;
-
-/* 80BD6228-80BD622C 0004+00 s=1 e=0 z=0  None .rodata    @3907 */
-SECTION_RODATA static u32 const lit_3907 = 0x42480000;
-
-/* 80BD622C-80BD6230 0004+00 s=1 e=0 z=0  None .rodata    @3947 */
-SECTION_RODATA static u32 const lit_3947 = 0xC47A0000;
-
-/* 80BD6230-80BD6234 0004+00 s=1 e=0 z=0  None .rodata    @3948 */
-SECTION_RODATA static u32 const lit_3948 = 0xC3FA0000;
-
-/* 80BD6234-80BD6238 0004+00 s=1 e=0 z=0  None .rodata    @3949 */
-SECTION_RODATA static u32 const lit_3949 = 0x447A0000;
-
-/* 80BD6238-80BD623C 0004+00 s=1 e=0 z=0  None .rodata    @3950 */
-SECTION_RODATA static u32 const lit_3950 = 0x43FA0000;
-
-/* 80BD623C-80BD626B 002F+00 s=3 e=0 z=0  None .rodata    @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD char const* const stringBase_80BD623C = "CrvSteel";
-SECTION_DEAD char const* const stringBase_80BD6245 = "U_CrvSteelGate.bmd";
-SECTION_DEAD char const* const stringBase_80BD6258 = "U_CrvSteelGate.dzb";
-#pragma pop
-
-/* 80BD626C-80BD6270 0004+00 s=3 e=0 z=0  None .data      l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&stringBase0;
-
-/* 80BD5DB8-80BD5E30 0078+00 s=1 e=0 z=0  None .text      CreateHeap__15daObjCRVSTEEL_cFv */
+/* 80BD5DB8-80BD5E30 000278 0078+00 1/0 0/0 0/0 .text            CreateHeap__15daObjCRVSTEEL_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -363,7 +298,68 @@ asm void daObjCRVSTEEL_c::CreateHeap() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80BD6270-80BD6290 0020+00 s=1 e=0 z=0  None .data      l_daObjCRVSTEEL_Method */
+/* 80BD620C-80BD6210 000004 0004+00 0/1 0/0 0/0 .rodata          @3900 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3900 = -9.0f;
+COMPILER_STRIP_GATE(80BD620C, &lit_3900);
+#pragma pop
+
+/* 80BD6210-80BD6214 000008 0004+00 0/1 0/0 0/0 .rodata          @3901 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3901 = 100.0f;
+COMPILER_STRIP_GATE(80BD6210, &lit_3901);
+#pragma pop
+
+/* 80BD6214-80BD6218 00000C 0004+00 0/1 0/0 0/0 .rodata          @3902 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3902 = -400.0f;
+COMPILER_STRIP_GATE(80BD6214, &lit_3902);
+#pragma pop
+
+/* 80BD6218-80BD621C 000010 0004+00 0/1 0/0 0/0 .rodata          @3903 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static u8 const lit_3903[4] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+COMPILER_STRIP_GATE(80BD6218, &lit_3903);
+#pragma pop
+
+/* 80BD621C-80BD6220 000014 0004+00 0/1 0/0 0/0 .rodata          @3904 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3904 = -50.0f;
+COMPILER_STRIP_GATE(80BD621C, &lit_3904);
+#pragma pop
+
+/* 80BD6220-80BD6224 000018 0004+00 0/1 0/0 0/0 .rodata          @3905 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3905 = 400.0f;
+COMPILER_STRIP_GATE(80BD6220, &lit_3905);
+#pragma pop
+
+/* 80BD6224-80BD6228 00001C 0004+00 0/1 0/0 0/0 .rodata          @3906 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3906 = 900.0f;
+COMPILER_STRIP_GATE(80BD6224, &lit_3906);
+#pragma pop
+
+/* 80BD6228-80BD622C 000020 0004+00 0/1 0/0 0/0 .rodata          @3907 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3907 = 50.0f;
+COMPILER_STRIP_GATE(80BD6228, &lit_3907);
+#pragma pop
+
+/* 80BD6270-80BD6290 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjCRVSTEEL_Method */
 SECTION_DATA static void* l_daObjCRVSTEEL_Method[8] = {
     (void*)daObjCRVSTEEL_Create__FP10fopAc_ac_c,
     (void*)daObjCRVSTEEL_Delete__FP15daObjCRVSTEEL_c,
@@ -375,8 +371,8 @@ SECTION_DATA static void* l_daObjCRVSTEEL_Method[8] = {
     (void*)NULL,
 };
 
-/* 80BD6290-80BD62C0 0030+00 s=0 e=0 z=1  None .data      g_profile_Obj_CRVSTEEL */
-SECTION_DATA void* g_profile_Obj_CRVSTEEL[12] = {
+/* 80BD6290-80BD62C0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_CRVSTEEL */
+SECTION_DATA extern void* g_profile_Obj_CRVSTEEL[12] = {
     (void*)0xFFFFFFFD, (void*)0x0003FFFD,
     (void*)0x00720000, (void*)&g_fpcLf_Method,
     (void*)0x00000848, (void*)NULL,
@@ -385,16 +381,22 @@ SECTION_DATA void* g_profile_Obj_CRVSTEEL[12] = {
     (void*)0x00040180, (void*)0x000E0000,
 };
 
-/* 80BD62C0-80BD62E4 0024+00 s=2 e=0 z=0  None .data      __vt__12dBgS_ObjAcch */
-SECTION_DATA static void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL, (void*)NULL, (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL, (void*)NULL, (void*)func_80BD61F8,
-    (void*)NULL, (void*)NULL, (void*)func_80BD61F0,
+/* 80BD62C0-80BD62E4 000054 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
+SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
+    (void*)NULL /* RTTI */,
+    (void*)NULL,
+    (void*)__dt__12dBgS_ObjAcchFv,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_80BD61F8,
+    (void*)NULL,
+    (void*)NULL,
+    (void*)func_80BD61F0,
 };
 
-/* 80BD62E4-80BD630C 0028+00 s=1 e=0 z=0  None .data      __vt__15daObjCRVSTEEL_c */
-SECTION_DATA static void* __vt__15daObjCRVSTEEL_c[10] = {
-    (void*)NULL,
+/* 80BD62E4-80BD630C 000078 0028+00 1/1 0/0 0/0 .data            __vt__15daObjCRVSTEEL_c */
+SECTION_DATA extern void* __vt__15daObjCRVSTEEL_c[10] = {
+    (void*)NULL /* RTTI */,
     (void*)NULL,
     (void*)CreateHeap__15daObjCRVSTEEL_cFv,
     (void*)Create__15daObjCRVSTEEL_cFv,
@@ -406,7 +408,7 @@ SECTION_DATA static void* __vt__15daObjCRVSTEEL_c[10] = {
     (void*)ToBack__16dBgS_MoveBgActorFv,
 };
 
-/* 80BD5E30-80BD6030 0200+00 s=1 e=0 z=0  None .text      create__15daObjCRVSTEEL_cFv */
+/* 80BD5E30-80BD6030 0002F0 0200+00 1/1 0/0 0/0 .text            create__15daObjCRVSTEEL_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -416,7 +418,7 @@ asm void daObjCRVSTEEL_c::create() {
 }
 #pragma pop
 
-/* 80BD6030-80BD60A0 0070+00 s=3 e=0 z=0  None .text      __dt__12dBgS_ObjAcchFv */
+/* 80BD6030-80BD60A0 0004F0 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -426,13 +428,42 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 }
 #pragma pop
 
-/* 80BD60A0-80BD60A8 0008+00 s=1 e=0 z=0  None .text daObjCRVSTEEL_IsDelete__FP15daObjCRVSTEEL_c
+/* 80BD60A0-80BD60A8 000560 0008+00 1/0 0/0 0/0 .text daObjCRVSTEEL_IsDelete__FP15daObjCRVSTEEL_c
  */
 static bool daObjCRVSTEEL_IsDelete(daObjCRVSTEEL_c* param_0) {
     return true;
 }
 
-/* 80BD60A8-80BD60EC 0044+00 s=1 e=0 z=0  None .text      Create__15daObjCRVSTEEL_cFv */
+/* ############################################################################################## */
+/* 80BD622C-80BD6230 000024 0004+00 0/1 0/0 0/0 .rodata          @3947 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3947 = -1000.0f;
+COMPILER_STRIP_GATE(80BD622C, &lit_3947);
+#pragma pop
+
+/* 80BD6230-80BD6234 000028 0004+00 0/1 0/0 0/0 .rodata          @3948 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3948 = -500.0f;
+COMPILER_STRIP_GATE(80BD6230, &lit_3948);
+#pragma pop
+
+/* 80BD6234-80BD6238 00002C 0004+00 0/1 0/0 0/0 .rodata          @3949 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3949 = 1000.0f;
+COMPILER_STRIP_GATE(80BD6234, &lit_3949);
+#pragma pop
+
+/* 80BD6238-80BD623C 000030 0004+00 0/1 0/0 0/0 .rodata          @3950 */
+#pragma push
+#pragma force_active on
+SECTION_RODATA static f32 const lit_3950 = 500.0f;
+COMPILER_STRIP_GATE(80BD6238, &lit_3950);
+#pragma pop
+
+/* 80BD60A8-80BD60EC 000568 0044+00 1/0 0/0 0/0 .text            Create__15daObjCRVSTEEL_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -442,7 +473,7 @@ asm void daObjCRVSTEEL_c::Create() {
 }
 #pragma pop
 
-/* 80BD60EC-80BD6138 004C+00 s=1 e=0 z=0  None .text      Execute__15daObjCRVSTEEL_cFPPA3_A4_f */
+/* 80BD60EC-80BD6138 0005AC 004C+00 1/0 0/0 0/0 .text Execute__15daObjCRVSTEEL_cFPPA3_A4_f */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -452,7 +483,7 @@ asm void daObjCRVSTEEL_c::Execute(f32 (**param_0)[3][4]) {
 }
 #pragma pop
 
-/* 80BD6138-80BD61BC 0084+00 s=1 e=0 z=0  None .text      Draw__15daObjCRVSTEEL_cFv */
+/* 80BD6138-80BD61BC 0005F8 0084+00 1/0 0/0 0/0 .text            Draw__15daObjCRVSTEEL_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -462,7 +493,7 @@ asm void daObjCRVSTEEL_c::Draw() {
 }
 #pragma pop
 
-/* 80BD61BC-80BD61F0 0034+00 s=1 e=0 z=0  None .text      Delete__15daObjCRVSTEEL_cFv */
+/* 80BD61BC-80BD61F0 00067C 0034+00 1/0 0/0 0/0 .text            Delete__15daObjCRVSTEEL_cFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
@@ -472,22 +503,31 @@ asm void daObjCRVSTEEL_c::Delete() {
 }
 #pragma pop
 
-/* 80BD61F0-80BD61F8 0008+00 s=1 e=0 z=0  None .text      @36@__dt__12dBgS_ObjAcchFv */
+/* 80BD61F0-80BD61F8 0006B0 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80BD61F0() {
+static asm void func_80BD61F0() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crvsteel/d_a_obj_crvsteel/func_80BD61F0.s"
 }
 #pragma pop
 
-/* 80BD61F8-80BD6200 0008+00 s=1 e=0 z=0  None .text      @20@__dt__12dBgS_ObjAcchFv */
+/* 80BD61F8-80BD6200 0006B8 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm static void func_80BD61F8() {
+static asm void func_80BD61F8() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_crvsteel/d_a_obj_crvsteel/func_80BD61F8.s"
 }
+#pragma pop
+
+/* 80BD623C-80BD626B 000034 002F+00 3/2 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+#pragma section ".dead"
+SECTION_DEAD static char const* const stringBase_80BD623C = "CrvSteel";
+SECTION_DEAD static char const* const stringBase_80BD6245 = "U_CrvSteelGate.bmd";
+SECTION_DEAD static char const* const stringBase_80BD6258 = "U_CrvSteelGate.dzb";
 #pragma pop

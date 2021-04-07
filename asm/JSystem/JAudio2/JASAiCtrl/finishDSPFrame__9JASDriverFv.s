@@ -22,8 +22,8 @@ lbl_8029C944:
 /* 8029C948  48 00 00 A9 */	bl getSubFrames__9JASDriverFv
 /* 8029C94C  90 6D 8D 58 */	stw r3, snIntCount__14JASAudioThread(r13)
 /* 8029C950  38 60 00 07 */	li r3, 7
-/* 8029C954  3C 80 80 3A */	lis r4, JASAiCtrl__stringBase0@ha
-/* 8029C958  38 84 B2 F0 */	addi r4, r4, JASAiCtrl__stringBase0@l
+/* 8029C954  3C 80 80 3A */	lis r4, JASAiCtrl__stringBase0@ha /* 0x8039B2F0@ha */
+/* 8029C958  38 84 B2 F0 */	addi r4, r4, JASAiCtrl__stringBase0@l /* 0x8039B2F0@l */
 /* 8029C95C  38 84 00 1C */	addi r4, r4, 0x1c
 /* 8029C960  4B FF 45 85 */	bl start__8JASProbeFlPCc
 /* 8029C964  48 00 00 A1 */	bl getFrameSamples__9JASDriverFv

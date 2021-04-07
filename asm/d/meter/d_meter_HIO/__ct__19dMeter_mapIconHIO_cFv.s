@@ -1,6 +1,6 @@
 lbl_802004B4:
-/* 802004B4  3C 80 80 3C */	lis r4, __vt__19dMeter_mapIconHIO_c@ha
-/* 802004B8  38 04 F1 00 */	addi r0, r4, __vt__19dMeter_mapIconHIO_c@l
+/* 802004B4  3C 80 80 3C */	lis r4, __vt__19dMeter_mapIconHIO_c@ha /* 0x803BF100@ha */
+/* 802004B8  38 04 F1 00 */	addi r0, r4, __vt__19dMeter_mapIconHIO_c@l /* 0x803BF100@l */
 /* 802004BC  90 03 00 00 */	stw r0, 0(r3)
 /* 802004C0  C1 02 AB B8 */	lfs f8, lit_4074(r2)
 /* 802004C4  D1 03 00 08 */	stfs f8, 8(r3)

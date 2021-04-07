@@ -23,12 +23,6 @@ struct create_tag_class {};
 // Forward References:
 //
 
-static void fopKy_Draw(void*);
-static void fopKy_Execute(void*);
-static void fopKy_IsDelete(void*);
-static void fopKy_Delete(void*);
-static void fopKy_Create(void*);
-
 extern "C" static void fopKy_Draw__FPv();
 extern "C" static void fopKy_Execute__FPv();
 extern "C" static void fopKy_IsDelete__FPv();
@@ -39,17 +33,6 @@ extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
 //
 // External References:
 //
-
-void fopDwTg_ToDrawQ(create_tag_class*, int);
-void fopDwTg_DrawQTo(create_tag_class*);
-void fopDwTg_Init(create_tag_class*, void*);
-void fpcBs_MakeOfType(int*);
-void fpcLf_GetPriority(leafdraw_class const*);
-void fpcLf_DrawMethod(leafdraw_method_class*, void*);
-void fpcMtd_Execute(process_method_class*, void*);
-void fpcMtd_IsDelete(process_method_class*, void*);
-void fpcMtd_Delete(process_method_class*, void*);
-void fpcMtd_Create(process_method_class*, void*);
 
 extern "C" void fopDwTg_ToDrawQ__FP16create_tag_classi();
 extern "C" void fopDwTg_DrawQTo__FP16create_tag_class();
@@ -68,63 +51,63 @@ extern "C" extern u8 struct_80451124[4];
 // Declarations:
 //
 
-/* 8001F284-8001F2C0 003C+00 s=1 e=0 z=0  None .text      fopKy_Draw__FPv */
+/* 8001F284-8001F2C0 019BC4 003C+00 1/0 0/0 0/0 .text            fopKy_Draw__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fopKy_Draw(void* param_0) {
+static asm void fopKy_Draw(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_kankyo/fopKy_Draw__FPv.s"
 }
 #pragma pop
 
-/* 8001F2C0-8001F314 0054+00 s=1 e=0 z=0  None .text      fopKy_Execute__FPv */
+/* 8001F2C0-8001F314 019C00 0054+00 1/0 0/0 0/0 .text            fopKy_Execute__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fopKy_Execute(void* param_0) {
+static asm void fopKy_Execute(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_kankyo/fopKy_Execute__FPv.s"
 }
 #pragma pop
 
-/* 8001F314-8001F368 0054+00 s=1 e=0 z=0  None .text      fopKy_IsDelete__FPv */
+/* 8001F314-8001F368 019C54 0054+00 1/0 0/0 0/0 .text            fopKy_IsDelete__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fopKy_IsDelete(void* param_0) {
+static asm void fopKy_IsDelete(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_kankyo/fopKy_IsDelete__FPv.s"
 }
 #pragma pop
 
-/* 8001F368-8001F3B4 004C+00 s=1 e=0 z=0  None .text      fopKy_Delete__FPv */
+/* 8001F368-8001F3B4 019CA8 004C+00 1/0 0/0 0/0 .text            fopKy_Delete__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fopKy_Delete(void* param_0) {
+static asm void fopKy_Delete(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_kankyo/fopKy_Delete__FPv.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450CE8-80450CF0 0004+04 s=1 e=0 z=0  None .sbss      fopKy_KANKYO_TYPE */
+/* 80450CE8-80450CF0 0001E8 0004+04 1/1 0/0 0/0 .sbss            fopKy_KANKYO_TYPE */
 static u8 fopKy_KANKYO_TYPE[4 + 4 /* padding */];
 
-/* 8001F3B4-8001F488 00D4+00 s=1 e=0 z=0  None .text      fopKy_Create__FPv */
+/* 8001F3B4-8001F488 019CF4 00D4+00 1/0 0/0 0/0 .text            fopKy_Create__FPv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm static void fopKy_Create(void* param_0) {
+static asm void fopKy_Create(void* param_0) {
     nofralloc
 #include "asm/f_op/f_op_kankyo/fopKy_Create__FPv.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
-/* 803A3940-803A3958 0014+04 s=0 e=7 z=0  None .data      g_fopKy_Method */
-SECTION_DATA void* g_fopKy_Method[5 + 1 /* padding */] = {
+/* 803A3940-803A3958 -00001 0014+04 0/0 7/0 0/0 .data            g_fopKy_Method */
+SECTION_DATA extern void* g_fopKy_Method[5 + 1 /* padding */] = {
     (void*)fopKy_Create__FPv,
     (void*)fopKy_Delete__FPv,
     (void*)fopKy_Execute__FPv,

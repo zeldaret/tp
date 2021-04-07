@@ -12,22 +12,22 @@ lbl_80CA7068:
 /* 80CA7090  90 03 05 04 */	stw r0, 0x504(r3)
 /* 80CA7094  80 83 05 70 */	lwz r4, 0x570(r3)
 /* 80CA7098  80 84 00 04 */	lwz r4, 4(r4)
-/* 80CA709C  4B 37 34 DC */	b fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
+/* 80CA709C  4B 37 34 DD */	bl fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
 /* 80CA70A0  80 7F 05 74 */	lwz r3, 0x574(r31)
 /* 80CA70A4  80 83 00 04 */	lwz r4, 4(r3)
 /* 80CA70A8  7F E3 FB 78 */	mr r3, r31
-/* 80CA70AC  4B 37 34 CC */	b fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
+/* 80CA70AC  4B 37 34 CD */	bl fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData
 /* 80CA70B0  7F E3 FB 78 */	mr r3, r31
 /* 80CA70B4  4B FF FF 35 */	bl getResName__15daObj_Oiltubo_cFv
 /* 80CA70B8  90 7F 01 00 */	stw r3, 0x100(r31)
 /* 80CA70BC  38 00 00 00 */	li r0, 0
 /* 80CA70C0  90 1F 05 5C */	stw r0, 0x55c(r31)
 /* 80CA70C4  38 7F 07 A4 */	addi r3, r31, 0x7a4
-/* 80CA70C8  3C 80 80 CA */	lis r4, lit_3864@ha
-/* 80CA70CC  C0 24 79 2C */	lfs f1, lit_3864@l(r4)
-/* 80CA70D0  3C 80 80 CA */	lis r4, lit_3865@ha
-/* 80CA70D4  C0 44 79 30 */	lfs f2, lit_3865@l(r4)
-/* 80CA70D8  4B 3C EE 80 */	b SetWall__12dBgS_AcchCirFff
+/* 80CA70C8  3C 80 80 CA */	lis r4, lit_3864@ha /* 0x80CA792C@ha */
+/* 80CA70CC  C0 24 79 2C */	lfs f1, lit_3864@l(r4)  /* 0x80CA792C@l */
+/* 80CA70D0  3C 80 80 CA */	lis r4, lit_3865@ha /* 0x80CA7930@ha */
+/* 80CA70D4  C0 44 79 30 */	lfs f2, lit_3865@l(r4)  /* 0x80CA7930@l */
+/* 80CA70D8  4B 3C EE 81 */	bl SetWall__12dBgS_AcchCirFff
 /* 80CA70DC  38 1F 04 E4 */	addi r0, r31, 0x4e4
 /* 80CA70E0  90 01 00 08 */	stw r0, 8(r1)
 /* 80CA70E4  38 7F 05 90 */	addi r3, r31, 0x590
@@ -38,29 +38,29 @@ lbl_80CA7068:
 /* 80CA70F8  39 1F 07 A4 */	addi r8, r31, 0x7a4
 /* 80CA70FC  39 3F 04 F8 */	addi r9, r31, 0x4f8
 /* 80CA7100  39 5F 04 DC */	addi r10, r31, 0x4dc
-/* 80CA7104  4B 3C F1 44 */	b Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz
+/* 80CA7104  4B 3C F1 45 */	bl Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz
 /* 80CA7108  38 7F 07 68 */	addi r3, r31, 0x768
 /* 80CA710C  38 80 00 FF */	li r4, 0xff
 /* 80CA7110  38 A0 00 00 */	li r5, 0
 /* 80CA7114  7F E6 FB 78 */	mr r6, r31
-/* 80CA7118  4B 3D C7 48 */	b Init__9dCcD_SttsFiiP10fopAc_ac_c
+/* 80CA7118  4B 3D C7 49 */	bl Init__9dCcD_SttsFiiP10fopAc_ac_c
 /* 80CA711C  38 7F 07 E4 */	addi r3, r31, 0x7e4
-/* 80CA7120  3C 80 80 CA */	lis r4, mCcDCyl__15daObj_Oiltubo_c@ha
-/* 80CA7124  38 84 79 B8 */	addi r4, r4, mCcDCyl__15daObj_Oiltubo_c@l
-/* 80CA7128  4B 3D D7 8C */	b Set__8dCcD_CylFRC11dCcD_SrcCyl
+/* 80CA7120  3C 80 80 CA */	lis r4, mCcDCyl__15daObj_Oiltubo_c@ha /* 0x80CA79B8@ha */
+/* 80CA7124  38 84 79 B8 */	addi r4, r4, mCcDCyl__15daObj_Oiltubo_c@l /* 0x80CA79B8@l */
+/* 80CA7128  4B 3D D7 8D */	bl Set__8dCcD_CylFRC11dCcD_SrcCyl
 /* 80CA712C  38 1F 07 68 */	addi r0, r31, 0x768
 /* 80CA7130  90 1F 08 28 */	stw r0, 0x828(r31)
 /* 80CA7134  38 7F 09 20 */	addi r3, r31, 0x920
-/* 80CA7138  3C 80 80 CA */	lis r4, mCcDCyl__15daObj_Oiltubo_c@ha
-/* 80CA713C  38 84 79 B8 */	addi r4, r4, mCcDCyl__15daObj_Oiltubo_c@l
-/* 80CA7140  4B 3D D7 74 */	b Set__8dCcD_CylFRC11dCcD_SrcCyl
+/* 80CA7138  3C 80 80 CA */	lis r4, mCcDCyl__15daObj_Oiltubo_c@ha /* 0x80CA79B8@ha */
+/* 80CA713C  38 84 79 B8 */	addi r4, r4, mCcDCyl__15daObj_Oiltubo_c@l /* 0x80CA79B8@l */
+/* 80CA7140  4B 3D D7 75 */	bl Set__8dCcD_CylFRC11dCcD_SrcCyl
 /* 80CA7144  38 1F 07 68 */	addi r0, r31, 0x768
 /* 80CA7148  90 1F 09 64 */	stw r0, 0x964(r31)
 /* 80CA714C  38 7F 05 90 */	addi r3, r31, 0x590
-/* 80CA7150  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha
-/* 80CA7154  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l
+/* 80CA7150  3C 80 80 40 */	lis r4, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80CA7154  38 84 61 C0 */	addi r4, r4, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80CA7158  38 84 0F 38 */	addi r4, r4, 0xf38
-/* 80CA715C  4B 3C F9 50 */	b CrrPos__9dBgS_AcchFR4dBgS
+/* 80CA715C  4B 3C F9 51 */	bl CrrPos__9dBgS_AcchFR4dBgS
 /* 80CA7160  80 1F 06 6C */	lwz r0, 0x66c(r31)
 /* 80CA7164  90 1F 0A 5C */	stw r0, 0xa5c(r31)
 /* 80CA7168  80 1F 06 70 */	lwz r0, 0x670(r31)

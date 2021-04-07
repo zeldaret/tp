@@ -13,7 +13,7 @@ lbl_80C795E8:
 /* 80C79614  88 7E 05 AC */	lbz r3, 0x5ac(r30)
 /* 80C79618  88 1E 04 E2 */	lbz r0, 0x4e2(r30)
 /* 80C7961C  7C 04 07 74 */	extsb r4, r0
-/* 80C79620  4B 3D 81 CC */	b dPath_GetRoomPath__Fii
+/* 80C79620  4B 3D 81 CD */	bl dPath_GetRoomPath__Fii
 /* 80C79624  88 03 00 05 */	lbz r0, 5(r3)
 /* 80C79628  54 00 07 FF */	clrlwi. r0, r0, 0x1f
 /* 80C7962C  41 82 00 40 */	beq lbl_80C7966C
@@ -64,8 +64,8 @@ lbl_80C796AC:
 /* 80C796D0  7C 83 02 14 */	add r4, r3, r0
 /* 80C796D4  C0 04 00 04 */	lfs f0, 4(r4)
 /* 80C796D8  D0 1E 05 B0 */	stfs f0, 0x5b0(r30)
-/* 80C796DC  3C 60 80 C8 */	lis r3, lit_3653@ha
-/* 80C796E0  C0 23 99 EC */	lfs f1, lit_3653@l(r3)
+/* 80C796DC  3C 60 80 C8 */	lis r3, lit_3653@ha /* 0x80C799EC@ha */
+/* 80C796E0  C0 23 99 EC */	lfs f1, lit_3653@l(r3)  /* 0x80C799EC@l */
 /* 80C796E4  C0 04 00 08 */	lfs f0, 8(r4)
 /* 80C796E8  EC 01 00 2A */	fadds f0, f1, f0
 /* 80C796EC  D0 1E 05 B4 */	stfs f0, 0x5b4(r30)

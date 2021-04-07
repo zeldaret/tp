@@ -5,12 +5,12 @@ lbl_80CE55A8:
 /* 80CE55B4  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CE55B8  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80CE55BC  41 82 00 1C */	beq lbl_80CE55D8
-/* 80CE55C0  3C A0 80 CE */	lis r5, __vt__12J3DFrameCtrl@ha
-/* 80CE55C4  38 05 6B 04 */	addi r0, r5, __vt__12J3DFrameCtrl@l
+/* 80CE55C0  3C A0 80 CE */	lis r5, __vt__12J3DFrameCtrl@ha /* 0x80CE6B04@ha */
+/* 80CE55C4  38 05 6B 04 */	addi r0, r5, __vt__12J3DFrameCtrl@l /* 0x80CE6B04@l */
 /* 80CE55C8  90 1F 00 00 */	stw r0, 0(r31)
 /* 80CE55CC  7C 80 07 35 */	extsh. r0, r4
 /* 80CE55D0  40 81 00 08 */	ble lbl_80CE55D8
-/* 80CE55D4  4B 5E 97 68 */	b __dl__FPv
+/* 80CE55D4  4B 5E 97 69 */	bl __dl__FPv
 lbl_80CE55D8:
 /* 80CE55D8  7F E3 FB 78 */	mr r3, r31
 /* 80CE55DC  83 E1 00 0C */	lwz r31, 0xc(r1)

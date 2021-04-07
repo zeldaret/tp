@@ -3,17 +3,15 @@
 #
 
 M109_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ornament_cloth.plf
+M109_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ornament_cloth.lcf
+M109_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ornament_cloth.map
 
 M109_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_ornament_cloth/executor.cpp \
-	rel/d/a/obj/d_a_obj_ornament_cloth/unknown_translation_unit_ctors.cpp \
-	rel/d/a/obj/d_a_obj_ornament_cloth/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/obj/d_a_obj_ornament_cloth/d_a_obj_ornament_cloth.cpp \
 
 M109_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ornament_cloth/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ornament_cloth/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ornament_cloth/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_ornament_cloth/d_a_obj_ornament_cloth.o \
 
 M109_LIBS := \
@@ -29,14 +27,21 @@ M109_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M109_LDSCRIPT) \
+	-unused -map $(M109_MAP) \
+	-w off \
 
 $(M109_TARGET): $(M109_O_FILES) $(M109_LIBS)
+	@echo [109] creating $(M109_TARGET)
 	@echo $(M109_LIBS) $(M109_O_FILES) > build/M109_ofiles
-	$(LD) -partial $(M109_LDFLAGS) -o $(M109_TARGET) @build/M109_ofiles
+	@python3 tools/lcf.py rel 109 --output $(M109_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M109_LDFLAGS) -o $(M109_TARGET) @build/M109_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_ornament_cloth/%.o: rel/d/a/obj/d_a_obj_ornament_cloth/%.cpp
+	@echo [109] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M109_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M109_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

@@ -3,19 +3,20 @@
 #
 
 M564_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv9SwShutter.plf
+M564_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv9SwShutter.lcf
+M564_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv9SwShutter.map
 
 M564_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv9SwShutter/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv9SwShutter/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv9SwShutter/d_a_obj_lv9SwShutter.cpp \
 
 M564_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv9SwShutter/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv9SwShutter/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv9SwShutter/d_a_obj_lv9SwShutter.o \
 
 M564_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv9SwShutter/libRuntime.PPCEABI.H.a \
 
 M564_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M564_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M564_LDSCRIPT) \
+	-unused -map $(M564_MAP) \
+	-w off \
 
 $(M564_TARGET): $(M564_O_FILES) $(M564_LIBS)
+	@echo [564] creating $(M564_TARGET)
 	@echo $(M564_LIBS) $(M564_O_FILES) > build/M564_ofiles
-	$(LD) -partial $(M564_LDFLAGS) -o $(M564_TARGET) @build/M564_ofiles
+	@python3 tools/lcf.py rel 564 --output $(M564_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M564_LDFLAGS) -o $(M564_TARGET) @build/M564_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv9SwShutter/%.o: rel/d/a/obj/d_a_obj_lv9SwShutter/%.cpp
+	@echo [564] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M564_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M564_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv9SwShutter/libs/Runtime.PPCEABI.H/Makefile
 

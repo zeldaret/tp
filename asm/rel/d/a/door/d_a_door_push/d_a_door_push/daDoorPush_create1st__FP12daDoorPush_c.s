@@ -11,18 +11,18 @@ lbl_80678DAC:
 /* 80678DD0  7F E0 FB 79 */	or. r0, r31, r31
 /* 80678DD4  41 82 00 38 */	beq lbl_80678E0C
 /* 80678DD8  7C 1E 03 78 */	mr r30, r0
-/* 80678DDC  4B 9F F8 48 */	b __ct__16dBgS_MoveBgActorFv
-/* 80678DE0  3C 60 80 68 */	lis r3, __vt__12daDoorPush_c@ha
-/* 80678DE4  38 03 90 48 */	addi r0, r3, __vt__12daDoorPush_c@l
+/* 80678DDC  4B 9F F8 49 */	bl __ct__16dBgS_MoveBgActorFv
+/* 80678DE0  3C 60 80 68 */	lis r3, __vt__12daDoorPush_c@ha /* 0x80679048@ha */
+/* 80678DE4  38 03 90 48 */	addi r0, r3, __vt__12daDoorPush_c@l /* 0x80679048@l */
 /* 80678DE8  90 1E 05 9C */	stw r0, 0x59c(r30)
 /* 80678DEC  38 7E 06 14 */	addi r3, r30, 0x614
-/* 80678DF0  3C 80 80 68 */	lis r4, __ct__4cXyzFv@ha
-/* 80678DF4  38 84 8E 38 */	addi r4, r4, __ct__4cXyzFv@l
-/* 80678DF8  3C A0 80 68 */	lis r5, __dt__4cXyzFv@ha
-/* 80678DFC  38 A5 80 60 */	addi r5, r5, __dt__4cXyzFv@l
+/* 80678DF0  3C 80 80 68 */	lis r4, __ct__4cXyzFv@ha /* 0x80678E38@ha */
+/* 80678DF4  38 84 8E 38 */	addi r4, r4, __ct__4cXyzFv@l /* 0x80678E38@l */
+/* 80678DF8  3C A0 80 68 */	lis r5, __dt__4cXyzFv@ha /* 0x80678060@ha */
+/* 80678DFC  38 A5 80 60 */	addi r5, r5, __dt__4cXyzFv@l /* 0x80678060@l */
 /* 80678E00  38 C0 00 0C */	li r6, 0xc
 /* 80678E04  38 E0 00 02 */	li r7, 2
-/* 80678E08  4B CE 8F 58 */	b __construct_array
+/* 80678E08  4B CE 8F 59 */	bl __construct_array
 lbl_80678E0C:
 /* 80678E0C  80 1F 04 A0 */	lwz r0, 0x4a0(r31)
 /* 80678E10  60 00 00 08 */	ori r0, r0, 8

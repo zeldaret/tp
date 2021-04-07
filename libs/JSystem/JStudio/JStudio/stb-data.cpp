@@ -23,15 +23,17 @@ extern "C" extern u32 ga4cSignature__Q37JStudio3stb4data[1 + 1 /* padding */];
 //
 
 /* ############################################################################################## */
-/* 8039AB88-8039ABA8 0020+00 s=0 e=1 z=0  None .rodata
+/* 8039AB88-8039ABA8 0271E8 0020+00 0/0 1/1 0/0 .rodata
  * gauDataSize_TEParagraph_data__Q37JStudio3stb4data            */
-SECTION_RODATA u8 const gauDataSize_TEParagraph_data__Q37JStudio3stb4data[32] = {
+SECTION_RODATA extern u8 const gauDataSize_TEParagraph_data__Q37JStudio3stb4data[32] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x04,
     0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x40,
 };
+COMPILER_STRIP_GATE(8039AB88, &gauDataSize_TEParagraph_data__Q37JStudio3stb4data);
 
-/* 804554D8-804554E0 0004+04 s=0 e=1 z=0  None .sdata2    ga4cSignature__Q37JStudio3stb4data */
-SECTION_SDATA2 u32 ga4cSignature__Q37JStudio3stb4data[1 + 1 /* padding */] = {
+/* 804554D8-804554E0 003AD8 0004+04 0/0 1/1 0/0 .sdata2          ga4cSignature__Q37JStudio3stb4data
+ */
+SECTION_SDATA2 extern u32 ga4cSignature__Q37JStudio3stb4data[1 + 1 /* padding */] = {
     0x53544200,
     /* padding */
     0x00000000,

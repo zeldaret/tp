@@ -209,8 +209,8 @@ lbl_801895F0:
 /* 80189710  88 9F 02 6D */	lbz r4, 0x26d(r31)
 /* 80189714  38 A0 00 00 */	li r5, 0
 /* 80189718  38 C0 00 FF */	li r6, 0xff
-/* 8018971C  3C E0 80 43 */	lis r7, g_fsHIO@ha
-/* 80189720  38 E7 C9 EC */	addi r7, r7, g_fsHIO@l
+/* 8018971C  3C E0 80 43 */	lis r7, g_fsHIO@ha /* 0x8042C9EC@ha */
+/* 80189720  38 E7 C9 EC */	addi r7, r7, g_fsHIO@l /* 0x8042C9EC@l */
 /* 80189724  88 E7 00 08 */	lbz r7, 8(r7)
 /* 80189728  48 00 3F 29 */	bl selectWakuAlpahAnmInit__14dFile_select_cFUcUcUcUc
 /* 8018972C  7F E3 FB 78 */	mr r3, r31

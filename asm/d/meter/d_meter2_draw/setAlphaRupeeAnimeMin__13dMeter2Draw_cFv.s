@@ -7,8 +7,8 @@ lbl_802168D0:
 /* 802168E4  39 61 00 30 */	addi r11, r1, 0x30
 /* 802168E8  48 14 B8 ED */	bl _savegpr_27
 /* 802168EC  7C 7B 1B 78 */	mr r27, r3
-/* 802168F0  3C 60 80 43 */	lis r3, g_drawHIO@ha
-/* 802168F4  38 63 EB C8 */	addi r3, r3, g_drawHIO@l
+/* 802168F0  3C 60 80 43 */	lis r3, g_drawHIO@ha /* 0x8042EBC8@ha */
+/* 802168F4  38 63 EB C8 */	addi r3, r3, g_drawHIO@l /* 0x8042EBC8@l */
 /* 802168F8  C0 43 03 58 */	lfs f2, 0x358(r3)
 /* 802168FC  C0 23 00 18 */	lfs f1, 0x18(r3)
 /* 80216900  C0 03 03 48 */	lfs f0, 0x348(r3)

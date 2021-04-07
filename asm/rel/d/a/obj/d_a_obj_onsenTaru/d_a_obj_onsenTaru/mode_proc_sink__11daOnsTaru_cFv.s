@@ -5,14 +5,14 @@ lbl_80CA9530:
 /* 80CA953C  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 80CA9540  93 C1 00 08 */	stw r30, 8(r1)
 /* 80CA9544  7C 7E 1B 78 */	mr r30, r3
-/* 80CA9548  3C 60 80 CB */	lis r3, lit_3655@ha
-/* 80CA954C  3B E3 9B 78 */	addi r31, r3, lit_3655@l
+/* 80CA9548  3C 60 80 CB */	lis r3, lit_3655@ha /* 0x80CA9B78@ha */
+/* 80CA954C  3B E3 9B 78 */	addi r31, r3, lit_3655@l /* 0x80CA9B78@l */
 /* 80CA9550  38 7E 05 2C */	addi r3, r30, 0x52c
 /* 80CA9554  C0 3F 00 60 */	lfs f1, 0x60(r31)
 /* 80CA9558  C0 5F 00 64 */	lfs f2, 0x64(r31)
 /* 80CA955C  C0 7F 00 5C */	lfs f3, 0x5c(r31)
 /* 80CA9560  C0 9F 00 68 */	lfs f4, 0x68(r31)
-/* 80CA9564  4B 5C 64 18 */	b cLib_addCalc__FPfffff
+/* 80CA9564  4B 5C 64 19 */	bl cLib_addCalc__FPfffff
 /* 80CA9568  C0 1E 04 FC */	lfs f0, 0x4fc(r30)
 /* 80CA956C  C0 3F 00 54 */	lfs f1, 0x54(r31)
 /* 80CA9570  FC 00 08 40 */	fcmpo cr0, f0, f1
@@ -48,7 +48,7 @@ lbl_80CA95CC:
 lbl_80CA95D4:
 /* 80CA95D4  7F C3 F3 78 */	mr r3, r30
 /* 80CA95D8  38 9E 07 BC */	addi r4, r30, 0x7bc
-/* 80CA95DC  4B 37 10 F0 */	b fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
+/* 80CA95DC  4B 37 10 F1 */	bl fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz
 /* 80CA95E0  80 1E 05 D0 */	lwz r0, 0x5d0(r30)
 /* 80CA95E4  54 00 06 B5 */	rlwinm. r0, r0, 0, 0x1a, 0x1a
 /* 80CA95E8  41 82 00 14 */	beq lbl_80CA95FC

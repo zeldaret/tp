@@ -10,8 +10,8 @@ lbl_80157F68:
 /* 80157F88  FF E0 08 90 */	fmr f31, f1
 /* 80157F8C  88 03 0A C6 */	lbz r0, 0xac6(r3)
 /* 80157F90  28 00 00 00 */	cmplwi r0, 0
-/* 80157F94  3C 60 80 39 */	lis r3, a_npc_d_a_npc_cd2__stringBase0@ha
-/* 80157F98  38 63 3B 70 */	addi r3, r3, a_npc_d_a_npc_cd2__stringBase0@l
+/* 80157F94  3C 60 80 39 */	lis r3, a_npc_d_a_npc_cd2__stringBase0@ha /* 0x80393B70@ha */
+/* 80157F98  38 63 3B 70 */	addi r3, r3, a_npc_d_a_npc_cd2__stringBase0@l /* 0x80393B70@l */
 /* 80157F9C  3B C3 00 21 */	addi r30, r3, 0x21
 /* 80157FA0  41 82 00 08 */	beq lbl_80157FA8
 /* 80157FA4  3B C3 00 28 */	addi r30, r3, 0x28
@@ -30,8 +30,8 @@ lbl_80157FC8:
 /* 80157FD0  38 80 00 05 */	li r4, 5
 lbl_80157FD4:
 /* 80157FD4  7F C3 F3 78 */	mr r3, r30
-/* 80157FD8  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha
-/* 80157FDC  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l
+/* 80157FD8  3C A0 80 40 */	lis r5, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80157FDC  38 A5 61 C0 */	addi r5, r5, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80157FE0  3C A5 00 02 */	addis r5, r5, 2
 /* 80157FE4  38 C0 00 80 */	li r6, 0x80
 /* 80157FE8  38 A5 C2 F8 */	addi r5, r5, -15624
@@ -47,8 +47,8 @@ lbl_80157FD4:
 /* 80158010  38 60 00 00 */	li r3, 0
 /* 80158014  48 00 00 74 */	b lbl_80158088
 lbl_80158018:
-/* 80158018  3C 60 80 39 */	lis r3, lit_4072@ha
-/* 8015801C  38 83 3A FC */	addi r4, r3, lit_4072@l
+/* 80158018  3C 60 80 39 */	lis r3, lit_4072@ha /* 0x80393AFC@ha */
+/* 8015801C  38 83 3A FC */	addi r4, r3, lit_4072@l /* 0x80393AFC@l */
 /* 80158020  80 64 00 00 */	lwz r3, 0(r4)
 /* 80158024  80 04 00 04 */	lwz r0, 4(r4)
 /* 80158028  90 61 00 08 */	stw r3, 8(r1)
@@ -68,8 +68,8 @@ lbl_80158018:
 /* 80158060  D0 1E 00 1C */	stfs f0, 0x1c(r30)
 /* 80158064  FC 00 F8 18 */	frsp f0, f31
 /* 80158068  D0 1E 00 20 */	stfs f0, 0x20(r30)
-/* 8015806C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha
-/* 80158070  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l
+/* 8015806C  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
+/* 80158070  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
 /* 80158074  38 9E 00 24 */	addi r4, r30, 0x24
 /* 80158078  48 1E E4 39 */	bl PSMTXCopy
 /* 8015807C  7F C3 F3 78 */	mr r3, r30

@@ -28,8 +28,8 @@ lbl_80AEBA10:
 /* 80AEBA18  4B FF FD 69 */	bl cut_alert__13daNpc_Shop0_cFii
 /* 80AEBA1C  2C 03 00 00 */	cmpwi r3, 0
 /* 80AEBA20  41 82 00 50 */	beq lbl_80AEBA70
-/* 80AEBA24  3C 60 80 AF */	lis r3, lit_4268@ha
-/* 80AEBA28  38 83 BC A4 */	addi r4, r3, lit_4268@l
+/* 80AEBA24  3C 60 80 AF */	lis r3, lit_4268@ha /* 0x80AEBCA4@ha */
+/* 80AEBA28  38 83 BC A4 */	addi r4, r3, lit_4268@l /* 0x80AEBCA4@l */
 /* 80AEBA2C  80 64 00 00 */	lwz r3, 0(r4)
 /* 80AEBA30  80 04 00 04 */	lwz r0, 4(r4)
 /* 80AEBA34  90 61 00 08 */	stw r3, 8(r1)
@@ -43,10 +43,10 @@ lbl_80AEBA10:
 /* 80AEBA54  4B FF FD D1 */	bl setProcess__13daNpc_Shop0_cFM13daNpc_Shop0_cFPCvPvPv_iPvi
 /* 80AEBA58  48 00 00 18 */	b lbl_80AEBA70
 lbl_80AEBA5C:
-/* 80AEBA5C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 80AEBA60  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 80AEBA5C  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 80AEBA60  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 80AEBA64  38 63 4E C8 */	addi r3, r3, 0x4ec8
-/* 80AEBA68  4B 55 6A 00 */	b reset__14dEvt_control_cFv
+/* 80AEBA68  4B 55 6A 01 */	bl reset__14dEvt_control_cFv
 /* 80AEBA6C  3B E0 00 01 */	li r31, 1
 lbl_80AEBA70:
 /* 80AEBA70  7F E3 FB 78 */	mr r3, r31

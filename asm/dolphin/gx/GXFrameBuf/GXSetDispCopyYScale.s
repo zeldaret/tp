@@ -10,7 +10,7 @@ lbl_8035CFA4:
 /* 8035CFC4  38 00 00 61 */	li r0, 0x61
 /* 8035CFC8  3C 80 CC 01 */	lis r4, 0xCC01 /* 0xCC008000@ha */
 /* 8035CFCC  20 A7 01 00 */	subfic r5, r7, 0x100
-/* 8035CFD0  98 04 80 00 */	stb r0, 0x8000(r4)
+/* 8035CFD0  98 04 80 00 */	stb r0, 0x8000(r4)  /* 0xCC008000@l */
 /* 8035CFD4  30 05 FF FF */	addic r0, r5, -1
 /* 8035CFD8  7C A0 29 10 */	subfe r5, r0, r5
 /* 8035CFDC  38 C0 00 00 */	li r6, 0

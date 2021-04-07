@@ -42,8 +42,8 @@ lbl_80055D00:
 /* 80055D08  40 81 00 08 */	ble lbl_80055D10
 /* 80055D0C  FF A0 00 90 */	fmr f29, f0
 lbl_80055D10:
-/* 80055D10  3C 60 80 43 */	lis r3, j3dSys@ha
-/* 80055D14  38 63 4A C8 */	addi r3, r3, j3dSys@l
+/* 80055D10  3C 60 80 43 */	lis r3, j3dSys@ha /* 0x80434AC8@ha */
+/* 80055D14  38 63 4A C8 */	addi r3, r3, j3dSys@l /* 0x80434AC8@l */
 /* 80055D18  7F 64 DB 78 */	mr r4, r27
 /* 80055D1C  38 A1 00 08 */	addi r5, r1, 8
 /* 80055D20  48 2F 10 4D */	bl PSMTXMultVec
@@ -75,8 +75,8 @@ lbl_80055D78:
 lbl_80055D80:
 /* 80055D80  7F A0 07 75 */	extsb. r0, r29
 /* 80055D84  40 82 00 0C */	bne lbl_80055D90
-/* 80055D88  3C 60 80 45 */	lis r3, __float_max@ha
-/* 80055D8C  C3 83 0A E8 */	lfs f28, __float_max@l(r3)
+/* 80055D88  3C 60 80 45 */	lis r3, __float_max@ha /* 0x80450AE8@ha */
+/* 80055D8C  C3 83 0A E8 */	lfs f28, __float_max@l(r3)  /* 0x80450AE8@l */
 lbl_80055D90:
 /* 80055D90  3B C0 00 00 */	li r30, 0
 /* 80055D94  80 79 00 04 */	lwz r3, 4(r25)

@@ -60,11 +60,11 @@ lbl_806898A4:
 /* 806898BC  88 9F 06 8C */	lbz r4, 0x68c(r31)
 /* 806898C0  28 04 00 FF */	cmplwi r4, 0xff
 /* 806898C4  41 82 00 18 */	beq lbl_806898DC
-/* 806898C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 806898CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l
+/* 806898C8  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 806898CC  38 63 61 C0 */	addi r3, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 806898D0  88 1F 04 E2 */	lbz r0, 0x4e2(r31)
 /* 806898D4  7C 05 07 74 */	extsb r5, r0
-/* 806898D8  4B 9A B9 28 */	b onSwitch__10dSv_info_cFii
+/* 806898D8  4B 9A B9 29 */	bl onSwitch__10dSv_info_cFii
 lbl_806898DC:
 /* 806898DC  38 00 00 00 */	li r0, 0
 /* 806898E0  90 01 00 08 */	stw r0, 8(r1)
@@ -76,9 +76,9 @@ lbl_806898DC:
 /* 806898F8  39 00 00 00 */	li r8, 0
 /* 806898FC  39 20 FF FF */	li r9, -1
 /* 80689900  39 40 00 00 */	li r10, 0
-/* 80689904  4B 99 05 00 */	b fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv
+/* 80689904  4B 99 05 01 */	bl fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv
 /* 80689908  7F E3 FB 78 */	mr r3, r31
-/* 8068990C  4B 99 03 70 */	b fopAcM_delete__FP10fopAc_ac_c
+/* 8068990C  4B 99 03 71 */	bl fopAcM_delete__FP10fopAc_ac_c
 /* 80689910  38 60 00 01 */	li r3, 1
 /* 80689914  48 00 00 28 */	b lbl_8068993C
 lbl_80689918:

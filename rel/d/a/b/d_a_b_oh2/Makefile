@@ -3,17 +3,15 @@
 #
 
 M151_TARGET := $(BUILD_DIR)/rel/d/a/b/d_a_b_oh2.plf
+M151_LDSCRIPT := $(BUILD_DIR)/rel/d/a/b/d_a_b_oh2.lcf
+M151_MAP := $(BUILD_DIR)/rel/d/a/b/d_a_b_oh2.map
 
 M151_CPP_FILES := \
-	rel/d/a/b/d_a_b_oh2/executor.cpp \
-	rel/d/a/b/d_a_b_oh2/unknown_translation_unit_ctors.cpp \
-	rel/d/a/b/d_a_b_oh2/unknown_translation_unit_dtors.cpp \
+	rel/executor.cpp \
 	rel/d/a/b/d_a_b_oh2/d_a_b_oh2.cpp \
 
 M151_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_oh2/executor.o \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_oh2/unknown_translation_unit_ctors.o \
-	$(BUILD_DIR)/rel/d/a/b/d_a_b_oh2/unknown_translation_unit_dtors.o \
+	$(BUILD_DIR)/rel/executor.o \
 	$(BUILD_DIR)/rel/d/a/b/d_a_b_oh2/d_a_b_oh2.o \
 
 M151_LIBS := \
@@ -29,14 +27,21 @@ M151_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M151_LDSCRIPT) \
+	-unused -map $(M151_MAP) \
+	-w off \
 
 $(M151_TARGET): $(M151_O_FILES) $(M151_LIBS)
+	@echo [151] creating $(M151_TARGET)
 	@echo $(M151_LIBS) $(M151_O_FILES) > build/M151_ofiles
-	$(LD) -partial $(M151_LDFLAGS) -o $(M151_TARGET) @build/M151_ofiles
+	@python3 tools/lcf.py rel 151 --output $(M151_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M151_LDFLAGS) -o $(M151_TARGET) @build/M151_ofiles
 
 $(BUILD_DIR)/rel/d/a/b/d_a_b_oh2/%.o: rel/d/a/b/d_a_b_oh2/%.cpp
+	@echo [151] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M151_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M151_CFLAGS) -c -o $@ $@.iconv.cpp
 
 

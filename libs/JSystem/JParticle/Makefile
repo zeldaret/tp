@@ -48,7 +48,6 @@ $(BUILD_DIR)/libJParticle.a: $(LIBJPARTICLE_A_O_FILES)
 	@echo linking... $(BUILD_DIR)/libJParticle.a
 	@echo $(LIBJPARTICLE_A_O_FILES) > build/LIBJPARTICLE_A_ofiles
 	@$(LD) -xm l $(LIBJPARTICLE_A_LDFLAGS) -o $(BUILD_DIR)/libJParticle.a @build/LIBJPARTICLE_A_ofiles
-	@$(STRIP) -d -R .dead -R .comment $(BUILD_DIR)/libJParticle.a
 
 $(BUILD_DIR)/libs/JSystem/JParticle/%.o: libs/JSystem/JParticle/%.cpp
 	@mkdir -p $(@D)

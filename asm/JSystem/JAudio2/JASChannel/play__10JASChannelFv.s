@@ -6,8 +6,8 @@ lbl_8029A9F0:
 /* 8029AA00  7C 7F 1B 78 */	mr r31, r3
 /* 8029AA04  A0 03 00 98 */	lhz r0, 0x98(r3)
 /* 8029AA08  54 03 06 3E */	clrlwi r3, r0, 0x18
-/* 8029AA0C  3C 80 80 2A */	lis r4, dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv@ha
-/* 8029AA10  38 84 AF 78 */	addi r4, r4, dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv@l
+/* 8029AA0C  3C 80 80 2A */	lis r4, dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv@ha /* 0x8029AF78@ha */
+/* 8029AA10  38 84 AF 78 */	addi r4, r4, dspUpdateCallback__10JASChannelFUlPQ26JASDsp8TChannelPv@l /* 0x8029AF78@l */
 /* 8029AA14  7F E5 FB 78 */	mr r5, r31
 /* 8029AA18  48 00 2A 35 */	bl alloc__13JASDSPChannelFUcPFUlPQ26JASDsp8TChannelPv_lPv
 /* 8029AA1C  28 03 00 00 */	cmplwi r3, 0

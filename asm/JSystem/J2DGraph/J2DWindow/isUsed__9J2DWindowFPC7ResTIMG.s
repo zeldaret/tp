@@ -3,8 +3,8 @@ lbl_802FBEDC:
 /* 802FBEE0  7C 08 02 A6 */	mflr r0
 /* 802FBEE4  90 01 00 24 */	stw r0, 0x24(r1)
 /* 802FBEE8  38 E1 00 04 */	addi r7, r1, 4
-/* 802FBEEC  3C A0 80 3A */	lis r5, lit_3037@ha
-/* 802FBEF0  38 A5 1C 40 */	addi r5, r5, lit_3037@l
+/* 802FBEEC  3C A0 80 3A */	lis r5, lit_3037@ha /* 0x803A1C40@ha */
+/* 802FBEF0  38 A5 1C 40 */	addi r5, r5, lit_3037@l /* 0x803A1C40@l */
 /* 802FBEF4  38 C5 FF FC */	addi r6, r5, -4
 /* 802FBEF8  38 00 00 02 */	li r0, 2
 /* 802FBEFC  7C 09 03 A6 */	mtctr r0

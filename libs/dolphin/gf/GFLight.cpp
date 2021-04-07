@@ -19,8 +19,6 @@ struct _GXChannelID {};
 // Forward References:
 //
 
-void GFSetChanAmbColor(_GXChannelID, _GXColor);
-
 extern "C" void GFSetChanAmbColor__F12_GXChannelID8_GXColor();
 
 //
@@ -31,7 +29,7 @@ extern "C" void GFSetChanAmbColor__F12_GXChannelID8_GXColor();
 // Declarations:
 //
 
-/* 802CDE54-802CDE9C 0048+00 s=0 e=0 z=1  None .text GFSetChanAmbColor__F12_GXChannelID8_GXColor
+/* 802CDE54-802CDE9C 2C8794 0048+00 0/0 0/0 1/1 .text GFSetChanAmbColor__F12_GXChannelID8_GXColor
  */
 #pragma push
 #pragma optimization_level 0

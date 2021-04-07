@@ -7,7 +7,7 @@ lbl_8033DBCC:
 /* 8033DBE0  93 A1 00 1C */	stw r29, 0x1c(r1)
 /* 8033DBE4  7C 9E 23 78 */	mr r30, r4
 /* 8033DBE8  3C 60 CC 00 */	lis r3, 0xCC00 /* 0xCC003000@ha */
-/* 8033DBEC  83 E3 30 00 */	lwz r31, 0x3000(r3)
+/* 8033DBEC  83 E3 30 00 */	lwz r31, 0x3000(r3)  /* 0xCC003000@l */
 /* 8033DBF0  57 FF 04 1C */	rlwinm r31, r31, 0, 0x10, 0xe
 /* 8033DBF4  28 1F 00 00 */	cmplwi r31, 0
 /* 8033DBF8  41 82 00 18 */	beq lbl_8033DC10
@@ -77,7 +77,7 @@ lbl_8033DCCC:
 /* 8033DCD0  28 03 00 00 */	cmplwi r3, 0
 /* 8033DCD4  41 82 00 1C */	beq lbl_8033DCF0
 /* 8033DCD8  3C 60 CC 00 */	lis r3, 0xCC00 /* 0xCC006C00@ha */
-/* 8033DCDC  80 63 6C 00 */	lwz r3, 0x6C00(r3)
+/* 8033DCDC  80 63 6C 00 */	lwz r3, 0x6C00(r3)  /* 0xCC006C00@l */
 /* 8033DCE0  54 63 07 38 */	rlwinm r3, r3, 0, 0x1c, 0x1c
 /* 8033DCE4  28 03 00 00 */	cmplwi r3, 0
 /* 8033DCE8  41 82 00 08 */	beq lbl_8033DCF0
@@ -87,7 +87,7 @@ lbl_8033DCF0:
 /* 8033DCF4  28 03 00 00 */	cmplwi r3, 0
 /* 8033DCF8  41 82 00 A4 */	beq lbl_8033DD9C
 /* 8033DCFC  3C 60 CC 00 */	lis r3, 0xCC00 /* 0xCC006800@ha */
-/* 8033DD00  80 83 68 00 */	lwz r4, 0x6800(r3)
+/* 8033DD00  80 83 68 00 */	lwz r4, 0x6800(r3)  /* 0xCC006800@l */
 /* 8033DD04  54 83 07 BC */	rlwinm r3, r4, 0, 0x1e, 0x1e
 /* 8033DD08  28 03 00 00 */	cmplwi r3, 0
 /* 8033DD0C  41 82 00 08 */	beq lbl_8033DD14
@@ -185,14 +185,14 @@ lbl_8033DE2C:
 /* 8033DE38  60 00 01 00 */	ori r0, r0, 0x100
 lbl_8033DE3C:
 /* 8033DE3C  3C 60 80 00 */	lis r3, 0x8000 /* 0x800000C4@ha */
-/* 8033DE40  80 83 00 C4 */	lwz r4, 0x00C4(r3)
+/* 8033DE40  80 83 00 C4 */	lwz r4, 0x00C4(r3)  /* 0x800000C4@l */
 /* 8033DE44  80 63 00 C8 */	lwz r3, 0xc8(r3)
 /* 8033DE48  7C 83 1B 78 */	or r3, r4, r3
 /* 8033DE4C  7C 04 18 78 */	andc r4, r0, r3
 /* 8033DE50  28 04 00 00 */	cmplwi r4, 0
 /* 8033DE54  41 82 00 98 */	beq lbl_8033DEEC
-/* 8033DE58  3C 60 80 3D */	lis r3, InterruptPrioTable@ha
-/* 8033DE5C  38 03 07 58 */	addi r0, r3, InterruptPrioTable@l
+/* 8033DE58  3C 60 80 3D */	lis r3, InterruptPrioTable@ha /* 0x803D0758@ha */
+/* 8033DE5C  38 03 07 58 */	addi r0, r3, InterruptPrioTable@l /* 0x803D0758@l */
 /* 8033DE60  7C 03 03 78 */	mr r3, r0
 /* 8033DE64  48 00 00 04 */	b lbl_8033DE68
 lbl_8033DE68:

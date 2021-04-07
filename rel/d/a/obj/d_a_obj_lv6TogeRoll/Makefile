@@ -3,19 +3,20 @@
 #
 
 M550_TARGET := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeRoll.plf
+M550_LDSCRIPT := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeRoll.lcf
+M550_MAP := $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeRoll.map
 
 M550_CPP_FILES := \
-	rel/d/a/obj/d_a_obj_lv6TogeRoll/executor.cpp \
-	rel/d/a/obj/d_a_obj_lv6TogeRoll/unknown_translation_unit_ctors.cpp \
+	rel/executor.cpp \
+	rel/global_destructor_chain.cpp \
 	rel/d/a/obj/d_a_obj_lv6TogeRoll/d_a_obj_lv6TogeRoll.cpp \
 
 M550_O_FILES := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeRoll/executor.o \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeRoll/unknown_translation_unit_ctors.o \
+	$(BUILD_DIR)/rel/executor.o \
+	$(BUILD_DIR)/rel/global_destructor_chain.o \
 	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeRoll/d_a_obj_lv6TogeRoll.o \
 
 M550_LIBS := \
-	$(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeRoll/libRuntime.PPCEABI.H.a \
 
 M550_CFLAGS := \
 	-sdata 0 \
@@ -28,15 +29,21 @@ M550_LDFLAGS := \
 	-linkmode moreram \
 	-sdata 0 \
 	-sdata2 0 \
+	-m _prolog \
+	-lcf $(M550_LDSCRIPT) \
+	-unused -map $(M550_MAP) \
+	-w off \
 
 $(M550_TARGET): $(M550_O_FILES) $(M550_LIBS)
+	@echo [550] creating $(M550_TARGET)
 	@echo $(M550_LIBS) $(M550_O_FILES) > build/M550_ofiles
-	$(LD) -partial $(M550_LDFLAGS) -o $(M550_TARGET) @build/M550_ofiles
+	@python3 tools/lcf.py rel 550 --output $(M550_LDSCRIPT)
+	@$(LD) -opt_partial -strip_partial $(M550_LDFLAGS) -o $(M550_TARGET) @build/M550_ofiles
 
 $(BUILD_DIR)/rel/d/a/obj/d_a_obj_lv6TogeRoll/%.o: rel/d/a/obj/d_a_obj_lv6TogeRoll/%.cpp
+	@echo [550] building $@
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(M550_CFLAGS) -c -o $@ $<
-	$(STRIP) -d -R .dead -R .comment $@
+	@iconv -f UTF-8 -t SHIFT-JIS -o $@.iconv.cpp $<
+	@$(CC) $(CFLAGS) $(M550_CFLAGS) -c -o $@ $@.iconv.cpp
 
-include rel/d/a/obj/d_a_obj_lv6TogeRoll/libs/Runtime.PPCEABI.H/Makefile
 

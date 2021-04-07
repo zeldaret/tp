@@ -5,8 +5,8 @@ lbl_805A0024:
 /* 805A0030  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 805A0034  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 805A0038  7C 7F 1B 78 */	mr r31, r3
-/* 805A003C  3C 60 80 5A */	lis r3, lit_3769@ha
-/* 805A0040  3B C3 11 58 */	addi r30, r3, lit_3769@l
+/* 805A003C  3C 60 80 5A */	lis r3, lit_3769@ha /* 0x805A1158@ha */
+/* 805A0040  3B C3 11 58 */	addi r30, r3, lit_3769@l /* 0x805A1158@l */
 /* 805A0044  80 1F 08 F0 */	lwz r0, 0x8f0(r31)
 /* 805A0048  54 00 00 3C */	rlwinm r0, r0, 0, 0, 0x1e
 /* 805A004C  90 1F 08 F0 */	stw r0, 0x8f0(r31)
@@ -29,7 +29,7 @@ lbl_805A0084:
 /* 805A0088  2C 00 00 00 */	cmpwi r0, 0
 /* 805A008C  40 82 00 60 */	bne lbl_805A00EC
 /* 805A0090  C0 3E 00 14 */	lfs f1, 0x14(r30)
-/* 805A0094  4B CC 78 C0 */	b cM_rndF__Ff
+/* 805A0094  4B CC 78 C1 */	bl cM_rndF__Ff
 /* 805A0098  C0 1E 00 44 */	lfs f0, 0x44(r30)
 /* 805A009C  EC 00 08 2A */	fadds f0, f0, f1
 /* 805A00A0  FC 00 00 1E */	fctiwz f0, f0
@@ -37,13 +37,13 @@ lbl_805A0084:
 /* 805A00A8  80 01 00 0C */	lwz r0, 0xc(r1)
 /* 805A00AC  B0 1F 06 02 */	sth r0, 0x602(r31)
 /* 805A00B0  C0 3E 00 74 */	lfs f1, 0x74(r30)
-/* 805A00B4  4B CC 78 A0 */	b cM_rndF__Ff
+/* 805A00B4  4B CC 78 A1 */	bl cM_rndF__Ff
 /* 805A00B8  FC 00 08 1E */	fctiwz f0, f1
 /* 805A00BC  D8 01 00 10 */	stfd f0, 0x10(r1)
 /* 805A00C0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 805A00C4  54 00 10 3A */	slwi r0, r0, 2
-/* 805A00C8  3C 60 80 5A */	lis r3, carry_wait_bck@ha
-/* 805A00CC  38 83 11 F8 */	addi r4, r3, carry_wait_bck@l
+/* 805A00C8  3C 60 80 5A */	lis r3, carry_wait_bck@ha /* 0x805A11F8@ha */
+/* 805A00CC  38 83 11 F8 */	addi r4, r3, carry_wait_bck@l /* 0x805A11F8@l */
 /* 805A00D0  7F E3 FB 78 */	mr r3, r31
 /* 805A00D4  7C 84 00 2E */	lwzx r4, r4, r0
 /* 805A00D8  C0 3E 00 4C */	lfs f1, 0x4c(r30)
@@ -61,8 +61,8 @@ lbl_805A00EC:
 /* 805A0104  40 81 00 34 */	ble lbl_805A0138
 /* 805A0108  38 80 00 00 */	li r4, 0
 /* 805A010C  B0 9F 05 FA */	sth r4, 0x5fa(r31)
-/* 805A0110  3C 60 80 5A */	lis r3, l_HIO@ha
-/* 805A0114  38 63 13 40 */	addi r3, r3, l_HIO@l
+/* 805A0110  3C 60 80 5A */	lis r3, l_HIO@ha /* 0x805A1340@ha */
+/* 805A0114  38 63 13 40 */	addi r3, r3, l_HIO@l /* 0x805A1340@l */
 /* 805A0118  C0 03 00 20 */	lfs f0, 0x20(r3)
 /* 805A011C  D0 1F 05 2C */	stfs f0, 0x52c(r31)
 /* 805A0120  C0 03 00 24 */	lfs f0, 0x24(r3)

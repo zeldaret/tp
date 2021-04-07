@@ -6,13 +6,13 @@ lbl_8001FFC4:
 /* 8001FFD4  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8001FFD8  7C 7E 1B 78 */	mr r30, r3
 /* 8001FFDC  48 21 80 BD */	bl endFlowGroup__12dMsgObject_cFv
-/* 8001FFE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha
-/* 8001FFE4  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l
+/* 8001FFE0  3C 60 80 40 */	lis r3, g_dComIfG_gameInfo@ha /* 0x804061C0@ha */
+/* 8001FFE4  3B E3 61 C0 */	addi r31, r3, g_dComIfG_gameInfo@l /* 0x804061C0@l */
 /* 8001FFE8  88 1F 5E 8F */	lbz r0, 0x5e8f(r31)
 /* 8001FFEC  28 00 00 08 */	cmplwi r0, 8
 /* 8001FFF0  40 82 00 14 */	bne lbl_80020004
-/* 8001FFF4  3C 60 80 43 */	lis r3, g_meter2_info@ha
-/* 8001FFF8  38 63 01 88 */	addi r3, r3, g_meter2_info@l
+/* 8001FFF4  3C 60 80 43 */	lis r3, g_meter2_info@ha /* 0x80430188@ha */
+/* 8001FFF8  38 63 01 88 */	addi r3, r3, g_meter2_info@l /* 0x80430188@l */
 /* 8001FFFC  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 80020000  48 1F F6 ED */	bl emphasisButtonDelete__9dMeter2_cFv
 lbl_80020004:

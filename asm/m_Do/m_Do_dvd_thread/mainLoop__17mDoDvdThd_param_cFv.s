@@ -5,8 +5,8 @@ lbl_80015AD8:
 /* 80015AE4  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 80015AE8  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80015AEC  7C 7E 1B 78 */	mr r30, r3
-/* 80015AF0  3C 60 80 01 */	lis r3, cb__FPv@ha
-/* 80015AF4  3B E3 5A 90 */	addi r31, r3, cb__FPv@l
+/* 80015AF0  3C 60 80 01 */	lis r3, cb__FPv@ha /* 0x80015A90@ha */
+/* 80015AF4  3B E3 5A 90 */	addi r31, r3, cb__FPv@l /* 0x80015A90@l */
 /* 80015AF8  48 00 00 54 */	b lbl_80015B4C
 /* 80015AFC  48 00 00 3C */	b lbl_80015B38
 lbl_80015B00:

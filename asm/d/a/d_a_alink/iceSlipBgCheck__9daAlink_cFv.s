@@ -50,8 +50,8 @@ lbl_800A6E88:
 /* 800A6E88  C8 02 92 F8 */	lfd f0, lit_6848(r2)
 /* 800A6E8C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 800A6E90  40 80 00 10 */	bge lbl_800A6EA0
-/* 800A6E94  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800A6E98  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)
+/* 800A6E94  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800A6E98  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 800A6E9C  48 00 00 78 */	b lbl_800A6F14
 lbl_800A6EA0:
 /* 800A6EA0  D0 21 00 08 */	stfs f1, 8(r1)
@@ -85,8 +85,8 @@ lbl_800A6EF8:
 lbl_800A6EFC:
 /* 800A6EFC  2C 00 00 01 */	cmpwi r0, 1
 /* 800A6F00  40 82 00 10 */	bne lbl_800A6F10
-/* 800A6F04  3C 60 80 45 */	lis r3, __float_nan@ha
-/* 800A6F08  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)
+/* 800A6F04  3C 60 80 45 */	lis r3, __float_nan@ha /* 0x80450AE0@ha */
+/* 800A6F08  C3 C3 0A E0 */	lfs f30, __float_nan@l(r3)  /* 0x80450AE0@l */
 /* 800A6F0C  48 00 00 08 */	b lbl_800A6F14
 lbl_800A6F10:
 /* 800A6F10  FF C0 08 90 */	fmr f30, f1
@@ -119,8 +119,8 @@ lbl_800A6F14:
 /* 800A6F78  7C 00 18 50 */	subf r0, r0, r3
 /* 800A6F7C  C0 02 94 68 */	lfs f0, lit_14955(r2)
 /* 800A6F80  EC 20 F8 28 */	fsubs f1, f0, f31
-/* 800A6F84  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha
-/* 800A6F88  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l
+/* 800A6F84  3C 60 80 44 */	lis r3, sincosTable___5JMath@ha /* 0x80439A20@ha */
+/* 800A6F88  38 63 9A 20 */	addi r3, r3, sincosTable___5JMath@l /* 0x80439A20@l */
 /* 800A6F8C  54 00 04 38 */	rlwinm r0, r0, 0, 0x10, 0x1c
 /* 800A6F90  7C 63 02 14 */	add r3, r3, r0
 /* 800A6F94  C0 03 00 04 */	lfs f0, 4(r3)
