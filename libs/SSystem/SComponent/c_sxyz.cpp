@@ -8,16 +8,10 @@
 #include "dolphin/types.h"
 
 //
-// External References:
-//
-
-extern "C" void __ct__5csXyzFsss();
-extern "C" void __dt__5csXyzFv();
-extern "C" void __register_global_object();
-
-//
 // Declarations:
 //
+
+const csXyz csXyz::Zero = csXyz(0,0,0);
 
 /* 802673F4-80267404 0010+00 s=4 e=19 z=119  None .text      __ct__5csXyzFsss */
 csXyz::csXyz(s16 param_0, s16 param_1, s16 param_2) {
@@ -47,35 +41,3 @@ csXyz csXyz::operator-(csXyz& param_0) {
 csXyz csXyz::operator*(f32 param_0) {
     return csXyz(mX* param_0, mY * param_0, mZ * param_0);
 }
-
-#ifdef NON_MATCHING
-csXyz Zero__5csXyz = csXyz(0,0,0);
-#else
-
-/* ############################################################################################## */
-/* 80430DA8-80430DB8 05DAC8 000C+04 1/1 0/0 0/0 .bss             @262 */
-static u8 lit_262[12 + 4 /* padding */];
-
-/* 80451160-80451164 000660 0004+00 1/1 13/13 3/3 .sbss            Zero__5csXyz */
-extern u8 Zero__5csXyz[4];
-u8 Zero__5csXyz[4];
-
-/* 80451164-80451168 000664 0004+00 1/1 6/13 0/2 .sbss            None */
-extern u8 data_80451164[4];
-u8 data_80451164[4];
-
-/* 8026758C-802675E4 261ECC 0058+00 0/0 1/0 0/0 .text            __sinit_c_sxyz_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_c_sxyz_cpp() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_sxyz/__sinit_c_sxyz_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-SECTION_CTORS void* const _ctors_8026758C = (void*)__sinit_c_sxyz_cpp;
-#pragma pop
-#endif

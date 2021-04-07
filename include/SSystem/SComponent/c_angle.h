@@ -9,7 +9,13 @@ private:
     s16 mAngle;
 
 public:
+    const static cSAngle _0;
+    const static cSAngle _1;
+    const static cSAngle _90;
+    const static cSAngle _180;
+    const static cSAngle _270;
     cSAngle() {}
+    ~cSAngle() {}
     cSAngle(const cSAngle&);
     cSAngle(s16);
     cSAngle(float);
@@ -39,8 +45,8 @@ public:
     bool operator>(const cSAngle& other) const { return mAngle > other.mAngle; }
     operator s16(void) const { return mAngle; }
     void operator=(const cSAngle& other) { mAngle = other.mAngle; }
-    static cSAngle getMaxNegative(void) { return cSAngle((s16)-0x8000); }
-    void mirrorAtMaxNeg(void) { *this = getMaxNegative() - *this; }
+    static inline cSAngle getMaxNegative(void) { return cSAngle((s16)-0x8000); }
+    inline void mirrorAtMaxNeg(void) { *this = cSAngle((s16)-0x8000) - *this; }
 };
 
 cSAngle operator+(short, const cSAngle&);

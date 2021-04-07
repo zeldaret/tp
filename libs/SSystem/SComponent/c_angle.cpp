@@ -8,79 +8,17 @@
 #include "dolphin/types.h"
 #include "msl_c/math.h"
 
-f32 cAngle_NS_Adjust(f32,f32,f32);
-
-extern "C" void __ct__7cSAngleFRC7cSAngle();
-extern "C" void __ct__7cSAngleFs();
-extern "C" void __ct__7cSAngleFf();
-extern "C" void Val__7cSAngleFRC7cSAngle();
-extern "C" void Val__7cSAngleFs();
-extern "C" void Val__7cSAngleFf();
-extern "C" void Degree__7cSAngleCFv();
-extern "C" void Radian__7cSAngleCFv();
-extern "C" void Norm__7cSAngleCFv();
-extern "C" void Abs__7cSAngleCFv();
-extern "C" void Inv__7cSAngleCFv();
-extern "C" void Sin__7cSAngleCFv();
-extern "C" void Cos__7cSAngleCFv();
-extern "C" void __mi__7cSAngleCFv();
-extern "C" void __pl__7cSAngleCFRC7cSAngle();
-extern "C" void __mi__7cSAngleCFRC7cSAngle();
-extern "C" void __apl__7cSAngleFRC7cSAngle();
-extern "C" void __ami__7cSAngleFRC7cSAngle();
-extern "C" void __pl__7cSAngleCFs();
-extern "C" void __mi__7cSAngleCFs();
-extern "C" void __apl__7cSAngleFs();
-extern "C" void __ml__7cSAngleCFf();
-extern "C" void __amu__7cSAngleFf();
-extern "C" void __pl__FsRC7cSAngle();
-extern "C" void __mi__FsRC7cSAngle();
-extern "C" void __ct__7cDegreeFf();
-extern "C" void Formal__7cDegreeFv();
-extern "C" void Val__7cDegreeFf();
-extern "C" void Radian__7cDegreeCFv();
-extern "C" void Sin__7cDegreeCFv();
-extern "C" void Cos__7cDegreeCFv();
-extern "C" void Tan__7cDegreeCFv();
-extern "C" void __ct__7cSPolarFRC4cXyz();
-extern "C" void Formal__7cSPolarFv();
-extern "C" void Val__7cSPolarFfss();
-extern "C" void Val__7cSPolarFRC4cXyz();
-extern "C" void Xyz__7cSPolarCFv();
-extern "C" void Globe__7cSPolarCFP7cSGlobe();
-extern "C" void __ct__7cSGlobeFRC7cSGlobe();
-extern "C" void __ct__7cSGlobeFfss();
-extern "C" void __ct__7cSGlobeFfRC7cSAngleRC7cSAngle();
-extern "C" void __ct__7cSGlobeFRC4cXyz();
-extern "C" void Formal__7cSGlobeFv();
-extern "C" void Val__7cSGlobeFRC7cSGlobe();
-extern "C" void Val__7cSGlobeFfss();
-extern "C" void Val__7cSGlobeFfRC7cSAngleRC7cSAngle();
-extern "C" void Val__7cSGlobeFRC4cXyz();
-extern "C" void Xyz__7cSGlobeCFv();
-extern "C" void Polar__7cSGlobeCFP7cSPolar();
-extern "C" void Norm__7cSGlobeCFv();
-extern "C" void Invert__7cSGlobeFv();
-extern "C" void func_80271BA8();
-extern "C" void __sinit_c_angle_cpp();
-extern "C" extern u8 _0__7cSAngle[2 + 2 /* padding */];
-extern "C" extern u8 _90__7cSAngle[2 + 2 /* padding */];
-extern "C" extern u8 _180__7cSAngle[2 + 2 /* padding */];
-extern "C" extern u8 _270__7cSAngle[2 + 6 /* padding */];
-
-//
-// External References:
-//
-
-f32 cM_atan2f(f32, f32);
-
-extern "C" void __dt__7cSAngleFv();
-extern "C" void cM_atan2f__Fff();
-extern "C" void __register_global_object();
+extern f32 cM_atan2f(f32, f32);
 
 //
 // Declarations:
 //
+
+const cSAngle cSAngle::_0(static_cast<s16>(0));
+const cSAngle cSAngle::_1(static_cast<s16>(0xb6));
+const cSAngle cSAngle::_90(static_cast<s16>(0x4000));
+const cSAngle cSAngle::_180(static_cast<s16>(-0x8000));
+const cSAngle cSAngle::_270(static_cast<s16>(-0x4000));
 
 /* 80270F68-80270F98 0030+00 s=0 e=33 z=2  None .text      __ct__7cSAngleFRC7cSAngle */
 cSAngle::cSAngle(const cSAngle& angle) {
@@ -212,9 +150,26 @@ cDegree::cDegree(float f) {
     this->Val(f);
 }
 
+struct cAngle {
+    template <typename T>
+    static T Adjust(T f1, T f2, T f3);
+};
+
+template <typename T>
+T cAngle::Adjust(T f1, T f2, T f3) {
+    while (f1 >= f3) {
+        f1 -= f3 - f2;
+    }
+    while (f1 < f2) {
+        f1 += f3 - f2;
+    }
+    return f1;
+}
+
 /* 8027137C-802713BC 0040+00 s=1 e=0 z=0  None .text      Formal__7cDegreeFv */
 cDegree& cDegree::Formal(void) {
-    mDegree = cAngle_NS_Adjust(mDegree, -180.0f, 180.0f);
+    mDegree = cAngle::Adjust<f32>(mDegree, -180.0f, 180.0f);
+    // mDegree = cAngle_NS_Adjust(mDegree, -180.0f, 180.0f);
     return *this;
 }
 
@@ -335,7 +290,8 @@ cSGlobe& cSGlobe::Formal(void) {
         mInclination.Val(mInclination.Inv());
     }
     if (mAzimuth.Val() < -0x4000 || 0x4000 < mAzimuth.Val()) {
-        mAzimuth.mirrorAtMaxNeg();
+        // mAzimuth.mirrorAtMaxNeg();
+        mAzimuth = cSAngle((s16)-0x8000) - mAzimuth;
         mInclination.Val(mInclination.Inv());
     }
     return *this;
@@ -395,77 +351,3 @@ cSGlobe& cSGlobe::Invert(void) {
     mRadius = -mRadius;
     return this->Formal();
 }
-
-/* 80271BA8-80271BD4 002C+00 s=1 e=0 z=0  None .text      Adjust<f>__6cAngleFfff */
-// cAngle::Adjust<f32>(f32, f32, f32)
-float cAngle_NS_Adjust(float f1, float f2, float f3) {
-    while (f1 >= f3) {
-        f1 -= f3 - f2;
-    }
-    while (f1 < f2) {
-        f1 += f3 - f2;
-    }
-    return f1;
-}
-
-/* ############################################################################################## */
-/* 80430F98-80430FA4 05DCB8 000C+00 1/1 0/0 0/0 .bss             @2401 */
-static u8 lit_2401[12];
-
-/* 80430FA4-80430FB0 05DCC4 000C+00 0/1 0/0 0/0 .bss             @2402 */
-#pragma push
-#pragma force_active on
-static u8 lit_2402[12];
-#pragma pop
-
-/* 80430FB0-80430FBC 05DCD0 000C+00 0/1 0/0 0/0 .bss             @2403 */
-#pragma push
-#pragma force_active on
-static u8 lit_2403[12];
-#pragma pop
-
-/* 80430FBC-80430FC8 05DCDC 000C+00 0/1 0/0 0/0 .bss             @2404 */
-#pragma push
-#pragma force_active on
-static u8 lit_2404[12];
-#pragma pop
-
-/* 80430FC8-80430FD8 05DCE8 000C+04 0/1 0/0 0/0 .bss             @2405 */
-#pragma push
-#pragma force_active on
-static u8 lit_2405[12 + 4 /* padding */];
-#pragma pop
-
-/* 80451188-8045118C 000688 0002+02 1/1 22/22 0/0 .sbss            _0__7cSAngle */
-extern u8 _0__7cSAngle[2 + 2 /* padding */];
-u8 _0__7cSAngle[2 + 2 /* padding */];
-
-/* 8045118C-80451190 00068C 0002+02 1/1 0/0 0/0 .sbss            _1__7cSAngle */
-static u8 _1__7cSAngle[2 + 2 /* padding */];
-
-/* 80451190-80451194 000690 0002+02 1/1 6/6 0/0 .sbss            _90__7cSAngle */
-extern u8 _90__7cSAngle[2 + 2 /* padding */];
-u8 _90__7cSAngle[2 + 2 /* padding */];
-
-/* 80451194-80451198 000694 0002+02 1/1 2/2 0/0 .sbss            _180__7cSAngle */
-extern u8 _180__7cSAngle[2 + 2 /* padding */];
-u8 _180__7cSAngle[2 + 2 /* padding */];
-
-/* 80451198-804511A0 000698 0002+06 1/1 3/3 0/0 .sbss            _270__7cSAngle */
-extern u8 _270__7cSAngle[2 + 6 /* padding */];
-u8 _270__7cSAngle[2 + 6 /* padding */];
-
-/* 80271BD4-80271C8C 26C514 00B8+00 0/0 1/0 0/0 .text            __sinit_c_angle_cpp */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void __sinit_c_angle_cpp() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_angle/__sinit_c_angle_cpp.s"
-}
-#pragma pop
-
-#pragma push
-#pragma force_active on
-SECTION_CTORS void* const _ctors_80271BD4 = (void*)__sinit_c_angle_cpp;
-#pragma pop
