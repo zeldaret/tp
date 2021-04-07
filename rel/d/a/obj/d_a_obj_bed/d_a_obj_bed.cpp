@@ -13,13 +13,15 @@
 
 struct request_of_phase_process_class {};
 
-struct cXyz {};
-
 struct csXyz {};
+
+struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -45,6 +47,8 @@ struct daObj_Bed_c {
 
 struct daObj_Bed_Param_c {
     /* 80BAE0FC */ ~daObj_Bed_Param_c();
+
+    static u8 const m[16];
 };
 
 struct dKy_tevstr_c {};
@@ -60,6 +64,10 @@ struct dRes_info_c {};
 
 struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dBgW_Base {};
@@ -160,6 +168,7 @@ extern "C" void __sinit_d_a_obj_bed_cpp();
 extern "C" void __dt__17daObj_Bed_Param_cFv();
 extern "C" static void func_80BAE144();
 extern "C" static void func_80BAE14C();
+extern "C" u8 const m__17daObj_Bed_Param_c[16];
 extern "C" extern char const* const d_a_obj_bed__stringBase0;
 
 //
@@ -208,9 +217,9 @@ extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" void __register_global_object();
 
@@ -297,10 +306,10 @@ asm daObj_Bed_c::~daObj_Bed_c() {
 
 /* ############################################################################################## */
 /* 80BAE168-80BAE178 000000 0010+00 2/2 0/0 0/0 .rodata          m__17daObj_Bed_Param_c */
-SECTION_RODATA static u8 const m__17daObj_Bed_Param_c[16] = {
+SECTION_RODATA u8 const daObj_Bed_Param_c::m[16] = {
     0x00, 0x00, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x44, 0x16, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BAE168, &m__17daObj_Bed_Param_c);
+COMPILER_STRIP_GATE(80BAE168, &daObj_Bed_Param_c::m);
 
 /* 80BAE178-80BAE17C 000010 0004+00 0/1 0/0 0/0 .rodata          @3902 */
 #pragma push

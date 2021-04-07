@@ -15,6 +15,8 @@ struct request_of_phase_process_class {};
 
 struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct mDoHIO_entry_c {
@@ -39,6 +41,9 @@ struct daZrTuraRc_c {
     /* 80D4215C */ void modeDropEnd();
     /* 80D42160 */ void Draw();
     /* 80D421C4 */ void Delete();
+
+    static u8 const mCcDObjInfo[48];
+    static u8 mCcDSph[64];
 };
 
 struct daZrTuraRc_HIO_c {
@@ -48,9 +53,9 @@ struct daZrTuraRc_HIO_c {
 
 struct dKy_tevstr_c {};
 
-struct cXyz {};
-
 struct J3DModelData {};
+
+struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -179,7 +184,9 @@ extern "C" void __dt__16daZrTuraRc_HIO_cFv();
 extern "C" void __sinit_d_a_obj_zrTuraraRock_cpp();
 extern "C" static void func_80D4239C();
 extern "C" static void func_80D423A4();
+extern "C" u8 const mCcDObjInfo__12daZrTuraRc_c[48];
 extern "C" extern char const* const d_a_obj_zrTuraraRock__stringBase0;
+extern "C" u8 mCcDSph__12daZrTuraRc_c[64];
 
 //
 // External References:
@@ -233,7 +240,7 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" void __register_global_object();
@@ -294,7 +301,7 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80D42460-80D424A0 000020 0040+00 2/2 0/0 0/0 .data            mCcDSph__12daZrTuraRc_c */
-SECTION_DATA static u8 mCcDSph__12daZrTuraRc_c[64] = {
+SECTION_DATA u8 daZrTuraRc_c::mCcDSph[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -436,12 +443,12 @@ asm mDoHIO_entry_c::~mDoHIO_entry_c() {
 
 /* ############################################################################################## */
 /* 80D423D4-80D42404 000014 0030+00 1/1 0/0 0/0 .rodata          mCcDObjInfo__12daZrTuraRc_c */
-SECTION_RODATA static u8 const mCcDObjInfo__12daZrTuraRc_c[48] = {
+SECTION_RODATA u8 const daZrTuraRc_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x01, 0x00, 0x01, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D423D4, &mCcDObjInfo__12daZrTuraRc_c);
+COMPILER_STRIP_GATE(80D423D4, &daZrTuraRc_c::mCcDObjInfo);
 
 /* 80D42404-80D42408 000044 0004+00 1/2 0/0 0/0 .rodata          @3684 */
 SECTION_RODATA static f32 const lit_3684 = 1.0f;

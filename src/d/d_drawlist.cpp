@@ -13,6 +13,18 @@
 
 struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
+
+    static u8 now[48];
+};
+
+struct mDoLib_clipper {
+    static u8 mClipper[92];
+    static f32 mSystemFar;
+    static f32 mFovyRate;
+};
+
+struct mDoGph_gInf_c {
+    static u8 mBackColor[4];
 };
 
 struct mDoExt_3DlineMatSortPacket {
@@ -32,6 +44,8 @@ struct dDlst_shadowTri_c {
     /* 80056344 */ dDlst_shadowTri_c();
 };
 
+struct _GXTexObj {};
+
 struct Vec {};
 
 struct cXyz {
@@ -41,8 +55,6 @@ struct cXyz {
     /* 80266EF4 */ void normalize();
     /* 802670AC */ void isZero() const;
 };
-
-struct _GXTexObj {};
 
 struct dDlst_shadowSimple_c {
     /* 8005520C */ void draw();
@@ -88,16 +100,14 @@ struct dDlst_shadowControl_c {
     /* 80055F1C */ void addReal(u32, J3DModel*);
     /* 80055F84 */ void setSimple(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
     /* 80055FE8 */ void setSimpleTex(ResTIMG const*);
+
+    static u8 mSimpleTexObj[32];
 };
 
 struct dDlst_peekZ_c {
     /* 80056018 */ void newData(s16, s16, u32*);
     /* 80056080 */ void peekData();
 };
-
-struct _GXColor {};
-
-struct dDlst_base_c {};
 
 struct J3DPacket {};
 
@@ -109,6 +119,10 @@ struct J3DDrawBuffer {
     /* 8032548C */ void entryImm(J3DPacket*, u16);
     /* 803254AC */ void draw() const;
 };
+
+struct dDlst_base_c {};
+
+struct _GXColor {};
 
 struct dDlst_list_c {
     /* 800560F0 */ dDlst_list_c();
@@ -125,6 +139,11 @@ struct dDlst_list_c {
     /* 8005681C */ void wipeIn(f32, _GXColor&);
     /* 800568D8 */ void wipeIn(f32);
     /* 80056900 */ void calcWipe();
+
+    static u8 mWipeDlst[72];
+    static u8 mWipeColor[4];
+    static f32 mWipeRate;
+    static f32 mWipeSpeed[1 + 1 /* padding */];
 };
 
 struct dDlst_effectLine_c {
@@ -204,6 +223,10 @@ struct JUtility {
     struct TColor {};
 };
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct JKRArchive {
     /* 802D5B38 */ void getGlbResource(u32, char const*, JKRArchive*);
 };
@@ -223,6 +246,8 @@ struct J3DShapePacket {
 
 struct J3DShape {
     /* 80315300 */ void loadPreDrawSetting() const;
+
+    static u8 sOldVcdVatCmd[4];
 };
 
 struct J2DGrafContext {};
@@ -339,6 +364,11 @@ extern "C" extern void* __vt__11dDlst_2DT_c[3];
 extern "C" extern void* __vt__15dDlst_2DPoint_c[3];
 extern "C" extern void* __vt__14dDlst_2DQuad_c[3];
 extern "C" extern void* __vt__13dDlst_2DTri_c[3];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mWipeDlst__12dDlst_list_c[72];
+extern "C" u8 mWipeColor__12dDlst_list_c[4];
+extern "C" f32 mWipeRate__12dDlst_list_c;
+extern "C" f32 mWipeSpeed__12dDlst_list_c[1 + 1 /* padding */];
 extern "C" extern u8 data_80450EE0[8];
 
 //
@@ -469,23 +499,23 @@ extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
 extern "C" extern void* __vt__26mDoExt_3DlineMatSortPacket[5];
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mClipper__14mDoLib_clipper[92];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mClipper__14mDoLib_clipper[92];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_envHIO[68];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 mBackColor__13mDoGph_gInf_c[4];
+extern "C" u8 sincosTable___5JMath[65536];
+extern "C" u8 mBackColor__13mDoGph_gInf_c[4];
 extern "C" extern u8 g_clearColor[4];
 extern "C" extern u32 g_blackColor;
 extern "C" extern u32 g_whiteColor;
 extern "C" extern u32 __float_nan;
 extern "C" extern u32 __float_max;
-extern "C" extern f32 mSystemFar__14mDoLib_clipper;
-extern "C" extern f32 mFovyRate__14mDoLib_clipper;
+extern "C" f32 mSystemFar__14mDoLib_clipper;
+extern "C" f32 mFovyRate__14mDoLib_clipper;
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
+extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 
 //
 // Declarations:
@@ -2893,8 +2923,7 @@ asm void dDlst_shadowControl_c::setSimple(cXyz* param_0, f32 param_1, f32 param_
 
 /* ############################################################################################## */
 /* 804248D0-804248F0 0515F0 0020+00 1/1 6/6 173/173 .bss mSimpleTexObj__21dDlst_shadowControl_c */
-extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+u8 dDlst_shadowControl_c::mSimpleTexObj[32];
 
 /* 80055FE8-80056018 050928 0030+00 0/0 1/1 0/0 .text
  * setSimpleTex__21dDlst_shadowControl_cFPC7ResTIMG             */
@@ -3189,10 +3218,10 @@ asm void dDlst_list_c::draw(dDlst_base_c** param_0, dDlst_base_c** param_1) {
 
 /* ############################################################################################## */
 /* 804248F0-80424938 051610 0048+00 3/3 0/0 0/0 .bss             mWipeDlst__12dDlst_list_c */
-static u8 mWipeDlst__12dDlst_list_c[72];
+u8 dDlst_list_c::mWipeDlst[72];
 
 /* 8045065C-80450660 0000DC 0004+00 1/1 0/0 0/0 .sdata           mWipeColor__12dDlst_list_c */
-SECTION_SDATA static u8 mWipeColor__12dDlst_list_c[4] = {
+SECTION_SDATA u8 dDlst_list_c::mWipeColor[4] = {
     0x00,
     0x00,
     0x00,
@@ -3204,11 +3233,10 @@ extern u8 data_80450ED0[4];
 u8 data_80450ED0[4];
 
 /* 80450ED4-80450ED8 0003D4 0004+00 2/2 1/1 0/0 .sbss            mWipeRate__12dDlst_list_c */
-extern f32 mWipeRate__12dDlst_list_c;
-f32 mWipeRate__12dDlst_list_c;
+f32 dDlst_list_c::mWipeRate;
 
 /* 80450ED8-80450EE0 0003D8 0004+04 2/2 0/0 0/0 .sbss            mWipeSpeed__12dDlst_list_c */
-static f32 mWipeSpeed__12dDlst_list_c[1 + 1 /* padding */];
+f32 dDlst_list_c::mWipeSpeed[1 + 1 /* padding */];
 
 /* 804520D0-804520D4 0006D0 0004+00 1/1 0/0 0/0 .sdata2          @5809 */
 SECTION_SDATA2 static f32 lit_5809 = 608.0f;

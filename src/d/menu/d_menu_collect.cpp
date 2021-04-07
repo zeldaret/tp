@@ -11,13 +11,21 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
+struct mDoGph_gInf_c {
+    static u8 mFader[4];
+};
+
+struct J3DMaterialTable {};
+
 struct J3DModelData {};
 
 struct J3DAnmTevRegKey {
     /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
 };
-
-struct J3DMaterialTable {};
 
 struct mDoExt_brkAnm {
     /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
@@ -35,7 +43,9 @@ struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
 };
 
-struct cXyz {};
+struct cXyz {
+    static f32 Zero[3];
+};
 
 struct daAlink_c {
     /* 80140064 */ void setShieldChange();
@@ -56,6 +66,10 @@ struct dSv_player_get_item_c {
 struct dSv_player_collect_c {
     /* 8003424C */ void isCollectCrystal(u8) const;
     /* 80034290 */ void isCollectMirror(u8) const;
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -106,14 +120,6 @@ struct dMenu_save_c {
     /* 801F69B8 */ void _draw();
 };
 
-struct STControl {
-    /* 8003219C */ void checkTrigger();
-    /* 8003242C */ void checkLeftTrigger();
-    /* 800324A8 */ void checkRightTrigger();
-    /* 80032524 */ void checkUpTrigger();
-    /* 800325A0 */ void checkDownTrigger();
-};
-
 struct JKRHeap {
     /* 802CE5CC */ void freeAll();
     /* 802CE784 */ void getTotalFreeSize();
@@ -124,6 +130,14 @@ struct JKRExpHeap {
 };
 
 struct CSTControl {};
+
+struct STControl {
+    /* 8003219C */ void checkTrigger();
+    /* 8003242C */ void checkLeftTrigger();
+    /* 800324A8 */ void checkRightTrigger();
+    /* 80032524 */ void checkUpTrigger();
+    /* 800325A0 */ void checkDownTrigger();
+};
 
 struct dMenu_Skill_c {
     /* 801F7224 */ dMenu_Skill_c(JKRExpHeap*, STControl*, CSTControl*);
@@ -276,6 +290,8 @@ struct dMenu_Collect3D_c {
     /* 801B75E8 */ void setupItem3D(f32 (*)[4]);
     /* 801B7660 */ void toItem3Dpos(f32, f32, f32, cXyz*);
     /* 801B774C */ void calcViewMtx(f32 (*)[4]);
+
+    static f32 mViewOffsetY[1 + 1 /* padding */];
 };
 
 struct dMenu_Collect2DTop_c {
@@ -295,6 +311,10 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct ResTIMG {};
@@ -506,6 +526,7 @@ extern "C" void __sinit_d_menu_collect_cpp();
 extern "C" void __dt__20dMenu_Collect2DTop_cFv();
 extern "C" void draw__17dMenu_Collect2D_cFv();
 extern "C" extern char const* const d_menu_d_menu_collect__stringBase0;
+extern "C" f32 mViewOffsetY__17dMenu_Collect3D_c[1 + 1 /* padding */];
 
 //
 // External References:
@@ -670,18 +691,18 @@ extern "C" void tan();
 extern "C" extern u8 const j3dDefaultLightInfo[52];
 extern "C" extern void* __vt__12J3DFrameCtrl[3];
 extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__8J3DModel[9];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_drawHIO[3880];
 extern "C" extern u8 g_meter2_info[248];
-extern "C" extern f32 Zero__4cXyz[3];
+extern "C" f32 Zero__4cXyz[3];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mFader__13mDoGph_gInf_c[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -2510,8 +2531,7 @@ asm void dMenu_Collect3D_c::getMaskMdlVisible() {
 /* ############################################################################################## */
 /* 80450720-80450728 0001A0 0004+04 1/1 0/0 1/1 .sdata           mViewOffsetY__17dMenu_Collect3D_c
  */
-SECTION_SDATA extern f32 mViewOffsetY__17dMenu_Collect3D_c[1 + 1 /* padding */];
-SECTION_SDATA f32 mViewOffsetY__17dMenu_Collect3D_c[1 + 1 /* padding */] = {
+SECTION_SDATA f32 dMenu_Collect3D_c::mViewOffsetY[1 + 1 /* padding */] = {
     -100.0f,
     /* padding */
     0.0f,

@@ -31,6 +31,9 @@ struct JASWaveArcLoader {
     /* 8029A0A0 */ void getRootHeap();
     /* 8029A0D0 */ void setCurrentDir(char const*);
     /* 8029A130 */ void getCurrentDir();
+
+    static u8 sCurrentDir[64];
+    static u8 sAramHeap[4 + 4 /* padding */];
 };
 
 struct JASDisposer {
@@ -95,6 +98,8 @@ extern "C" void onDispose__10JASWaveArcFv();
 extern "C" void setEntryNum__10JASWaveArcFl();
 extern "C" void setFileName__10JASWaveArcFPCc();
 extern "C" void __dt__11JASDisposerFv();
+extern "C" u8 sCurrentDir__16JASWaveArcLoader[64];
+extern "C" u8 sAramHeap__16JASWaveArcLoader[4 + 4 /* padding */];
 
 //
 // External References:
@@ -135,7 +140,7 @@ extern "C" void strlen();
 
 /* ############################################################################################## */
 /* 80451290-80451298 000790 0004+04 1/1 0/0 0/0 .sbss            sAramHeap__16JASWaveArcLoader */
-static u8 sAramHeap__16JASWaveArcLoader[4 + 4 /* padding */];
+u8 JASWaveArcLoader::sAramHeap[4 + 4 /* padding */];
 
 /* 8029A0A0-8029A0D0 2949E0 0030+00 2/2 0/0 0/0 .text            getRootHeap__16JASWaveArcLoaderFv
  */
@@ -150,7 +155,7 @@ asm void JASWaveArcLoader::getRootHeap() {
 
 /* ############################################################################################## */
 /* 803C77E0-803C7820 024900 0040+00 2/2 0/0 0/0 .data            sCurrentDir__16JASWaveArcLoader */
-SECTION_DATA static u8 sCurrentDir__16JASWaveArcLoader[64] = {
+SECTION_DATA u8 JASWaveArcLoader::sCurrentDir[64] = {
     0x2F, 0x41, 0x75, 0x64, 0x69, 0x6F, 0x52, 0x65, 0x73, 0x2F, 0x57, 0x61, 0x76, 0x65, 0x73, 0x2F,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

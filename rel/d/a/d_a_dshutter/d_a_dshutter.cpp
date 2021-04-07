@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
@@ -19,10 +23,14 @@ struct cXyz {};
 
 struct fopAcM_wt_c {
     /* 8001DD84 */ void waterCheck(cXyz const*);
+
+    static f32 mWaterY[1 + 1 /* padding */];
 };
 
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
+
+    static f32 mGroundY;
 };
 
 struct daDsh_c {
@@ -44,6 +52,16 @@ struct daDsh_c {
     /* 80467A80 */ void executeCloseWait();
     /* 80467ADC */ void initClose();
     /* 80467B04 */ void executeClose();
+
+    static u32 OPEN_SIZE;
+    static f32 OPEN_ACCEL;
+    static f32 OPEN_SPEED;
+    static f32 OPEN_BOUND_SPEED;
+    static f32 OPEN_BOUND_RATIO;
+    static f32 CLOSE_ACCEL;
+    static f32 CLOSE_SPEED;
+    static f32 CLOSE_BOUND_SPEED;
+    static f32 CLOSE_BOUND_RATIO;
 };
 
 struct dSv_info_c {
@@ -100,6 +118,10 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct J3DModel {};
@@ -175,22 +197,22 @@ extern "C" void _restgpr_29();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__16dBgS_MoveBgActor[10];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u32 OPEN_SIZE__7daDsh_c;
-extern "C" extern f32 OPEN_ACCEL__7daDsh_c;
-extern "C" extern f32 OPEN_SPEED__7daDsh_c;
-extern "C" extern f32 OPEN_BOUND_SPEED__7daDsh_c;
-extern "C" extern f32 OPEN_BOUND_RATIO__7daDsh_c;
-extern "C" extern f32 CLOSE_ACCEL__7daDsh_c;
-extern "C" extern f32 CLOSE_SPEED__7daDsh_c;
-extern "C" extern f32 CLOSE_BOUND_SPEED__7daDsh_c;
-extern "C" extern f32 CLOSE_BOUND_RATIO__7daDsh_c;
+extern "C" f32 mGroundY__11fopAcM_gc_c;
+extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u32 OPEN_SIZE__7daDsh_c;
+extern "C" f32 OPEN_ACCEL__7daDsh_c;
+extern "C" f32 OPEN_SPEED__7daDsh_c;
+extern "C" f32 OPEN_BOUND_SPEED__7daDsh_c;
+extern "C" f32 OPEN_BOUND_RATIO__7daDsh_c;
+extern "C" f32 CLOSE_ACCEL__7daDsh_c;
+extern "C" f32 CLOSE_SPEED__7daDsh_c;
+extern "C" f32 CLOSE_BOUND_SPEED__7daDsh_c;
+extern "C" f32 CLOSE_BOUND_RATIO__7daDsh_c;
 
 //
 // Declarations:

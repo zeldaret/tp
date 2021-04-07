@@ -16,6 +16,8 @@ struct JASProbe {
     /* 80290D74 */ void start(char const*);
     /* 80290DC4 */ void stop();
     /* 80290F24 */ void stop(s32);
+
+    static u8 sProbeTable[64];
 };
 
 //
@@ -26,6 +28,7 @@ extern "C" void start__8JASProbeFPCc();
 extern "C" void stop__8JASProbeFv();
 extern "C" void start__8JASProbeFlPCc();
 extern "C" void stop__8JASProbeFl();
+extern "C" u8 sProbeTable__8JASProbe[64];
 
 //
 // External References:
@@ -78,7 +81,7 @@ asm void JASProbe::stop() {
 
 /* ############################################################################################## */
 /* 80431620-80431660 05E340 0040+00 2/2 0/0 0/0 .bss             sProbeTable__8JASProbe */
-static u8 sProbeTable__8JASProbe[64];
+u8 JASProbe::sProbeTable[64];
 
 /* 80290EE4-80290F24 28B824 0040+00 0/0 7/7 0/0 .text            start__8JASProbeFlPCc */
 #pragma push

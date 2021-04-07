@@ -15,6 +15,18 @@ struct scene_class {};
 
 struct request_of_phase_process_class {};
 
+struct mDoRst {
+    static u8 mResetData[4 + 4 /* padding */];
+};
+
+struct mDoMch_render_c {
+    static void* mRenderModeObj[1 + 1 /* padding */];
+};
+
+struct mDoGph_gInf_c {
+    static u8 mFader[4];
+};
+
 struct JKRHeap {
     /* 802CE438 */ void becomeCurrentHeap();
     /* 802CE448 */ void destroy();
@@ -32,6 +44,10 @@ struct JKRArchive {
 
 struct mDoDvdThd_mountXArchive_c {
     /* 800161E0 */ void create(char const*, u8, JKRArchive::EMountMode, JKRHeap*);
+};
+
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
 };
 
 struct dTres_c {
@@ -92,6 +108,10 @@ struct dLog_HIO_c {
     /* 8025855C */ ~dLog_HIO_c();
 };
 
+struct dEnemyItem_c {
+    static u8 mData[4 + 4 /* padding */];
+};
+
 struct ResTIMG {};
 
 struct dDlst_shadowControl_c {
@@ -131,6 +151,15 @@ struct Z2SceneMgr {
 
 struct Z2AudioMgr {
     /* 802CD974 */ void resetProcess(u32, bool);
+
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JUTGamePad {
+    struct C3ButtonReset {
+        static u8 sCallback[4];
+        static u8 sCallbackArg[4 + 4 /* padding */];
+    };
 };
 
 struct JKRExpHeap {
@@ -142,8 +171,14 @@ struct JKRAramHeap {
     /* 802D31AC */ void getTotalFreeSize();
 };
 
+struct JKRAram {
+    static u8 sAramObject[4];
+};
+
 struct JFWDisplay {
     /* 80272C60 */ void waitBlanking(int);
+
+    static u8 sManager[4];
 };
 
 struct J2DPicture {
@@ -264,20 +299,20 @@ extern "C" extern u8 g_ntscZeldaProg[60];
 extern "C" extern void* g_fopScn_Method[5 + 1 /* padding */];
 extern "C" extern void* g_fpcNd_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__10dDlst_2D_c[3];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
+extern "C" void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
 extern "C" extern u32 g_blackColor;
 extern "C" extern u8 struct_80450BB8[4];
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
+extern "C" u8 mFader__13mDoGph_gInf_c[4];
 extern "C" extern u8 archiveHeap[4];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 mData__12dEnemyItem_c[4 + 4 /* padding */];
-extern "C" extern u8 sManager__10JFWDisplay[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 sAramObject__7JKRAram[4];
-extern "C" extern u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
-extern "C" extern u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
+extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
+extern "C" u8 mData__12dEnemyItem_c[4 + 4 /* padding */];
+extern "C" u8 sManager__10JFWDisplay[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sAramObject__7JKRAram[4];
+extern "C" u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
+extern "C" u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
 extern "C" extern u8 struct_80451500[4];
 
 //

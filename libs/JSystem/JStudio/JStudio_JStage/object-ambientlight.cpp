@@ -43,6 +43,8 @@ struct TAdaptor {
 
 struct TAdaptor_ambientLight {
     /* 80286C9C */ ~TAdaptor_ambientLight();
+
+    static u8 const sauVariableValue_4_COLOR_RGBA[16];
 };
 
 struct TVariableValue {
@@ -77,7 +79,7 @@ extern "C" void __dl__FPv();
 extern "C" void __construct_array();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
-extern "C" extern u8 const sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight[16];
+extern "C" u8 const sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight[16];
 extern "C" extern void* __vt__Q27JStudio21TAdaptor_ambientLight[8];
 extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];
 

@@ -21,6 +21,10 @@ struct JUTFader {
     /* 802E57D0 */ void setStatus(JUTFader::EStatus, int);
 };
 
+struct JFWDisplay {
+    static u8 sManager[4];
+};
+
 //
 // Forward References:
 //
@@ -56,7 +60,7 @@ extern "C" void setStatus__8JUTFaderFQ28JUTFader7EStatusi();
 extern "C" extern void* g_fopOvlp_Method[5 + 1 /* padding */];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 sManager__10JFWDisplay[4];
+extern "C" u8 sManager__10JFWDisplay[4];
 
 //
 // Declarations:

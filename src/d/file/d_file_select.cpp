@@ -11,6 +11,14 @@
 // Types:
 //
 
+struct mDoRst {
+    static u8 mResetData[4 + 4 /* padding */];
+};
+
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct mDoMemCd_Ctrl_c {
     /* 800169B4 */ void load();
     /* 80016AB0 */ void LoadSync(void*, u32, u32);
@@ -21,13 +29,18 @@ struct mDoMemCd_Ctrl_c {
     /* 80016F2C */ void FormatSync();
 };
 
+struct mDoGph_gInf_c {
+    static u8 mFadeColor[4];
+    static u8 mFader[4];
+};
+
+struct J3DMaterialTable {};
+
 struct J3DModelData {};
 
 struct J3DAnmTevRegKey {
     /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
 };
-
-struct J3DMaterialTable {};
 
 struct mDoExt_brkAnm {
     /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
@@ -43,6 +56,10 @@ struct mDoExt_bckAnm {
 
 struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
+};
+
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
 };
 
 struct dSv_save_c {};
@@ -68,15 +85,15 @@ struct dSv_event_c {
 
 struct JKRArchive {};
 
+struct J2DAnmTextureSRTKey {
+    /* 80184274 */ ~J2DAnmTextureSRTKey();
+};
+
 struct JGeometry {
     template <typename A1>
     struct TBox2 {};
     /* TBox2<f32> */
     struct TBox2__template0 {};
-};
-
-struct J2DAnmTextureSRTKey {
-    /* 80184274 */ ~J2DAnmTextureSRTKey();
 };
 
 struct J2DPane {
@@ -95,7 +112,9 @@ struct dSelect_cursor_c {
 
 struct dKy_tevstr_c {};
 
-struct cXyz {};
+struct cXyz {
+    static f32 Zero[3];
+};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -110,6 +129,8 @@ struct dName_c {
     /* 80250560 */ void _draw();
 };
 
+struct COutFont_c {};
+
 struct JUtility {
     struct TColor {};
 };
@@ -120,8 +141,6 @@ struct J2DTextBox {
     /* 80300660 */ void setString(char const*, ...);
     /* 8030074C */ void setString(s16, char const*, ...);
 };
-
-struct COutFont_c {};
 
 struct JUTFont {};
 
@@ -384,6 +403,10 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct STControl {
     /* 80032044 */ STControl(s16, s16, s16, s16, f32, f32, s16, s16);
     /* 8003219C */ void checkTrigger();
@@ -412,6 +435,10 @@ struct JKRFileLoader {
 };
 
 struct JKRExpHeap {};
+
+struct JFWDisplay {
+    static u8 sManager[4];
+};
 
 struct J3DVertexBuffer {
     /* 80310FD8 */ void init();
@@ -890,20 +917,20 @@ extern "C" extern void* __vt__19J2DAnmTextureSRTKey[4];
 extern "C" extern void* __vt__11J2DAnmColor[5];
 extern "C" extern void* __vt__8J3DModel[9];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_mDoMemCd_control[8192];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_meter2_info[248];
-extern "C" extern f32 Zero__4cXyz[3];
+extern "C" f32 Zero__4cXyz[3];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mFadeColor__13mDoGph_gInf_c[4];
+extern "C" u8 mFadeColor__13mDoGph_gInf_c[4];
 extern "C" extern u32 g_blackColor;
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 sManager__10JFWDisplay[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mFader__13mDoGph_gInf_c[4];
+extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
+extern "C" u8 sManager__10JFWDisplay[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

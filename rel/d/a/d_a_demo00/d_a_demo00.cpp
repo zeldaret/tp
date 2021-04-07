@@ -11,11 +11,28 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct _GXColor {};
 
 struct mDoGph_gInf_c {
     /* 80007FD8 */ void fadeOut(f32, _GXColor&);
     /* 800080D0 */ void fadeOut(f32);
+
+    static u8 mFrameBufferTimg[4];
+};
+
+struct J3DDeformData {};
+
+struct J3DSkinDeform {
+    /* 8032C96C */ J3DSkinDeform();
+};
+
+struct J3DModel {
+    /* 80327A2C */ void setDeformData(J3DDeformData*, u32);
+    /* 80327AA0 */ void setSkinDeform(J3DSkinDeform*, u32);
 };
 
 struct Vec {};
@@ -30,27 +47,16 @@ struct cXyz {
     /* 804A871C */ cXyz();
 };
 
-struct J3DSkinDeform {
-    /* 8032C96C */ J3DSkinDeform();
-};
-
-struct J3DDeformData {};
-
-struct J3DModel {
-    /* 80327A2C */ void setDeformData(J3DDeformData*, u32);
-    /* 80327AA0 */ void setSkinDeform(J3DSkinDeform*, u32);
-};
-
 struct mDoExt_invisibleModel {
     /* 8000E53C */ void create(J3DModel*, u8);
     /* 8000E7C0 */ void entryDL(cXyz*);
 };
 
+struct J3DAnmColor {};
+
 struct J3DAnmTexPattern {};
 
 struct J3DAnmTevRegKey {};
-
-struct J3DAnmColor {};
 
 struct J3DAnmTextureSRTKey {};
 
@@ -91,9 +97,11 @@ struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
@@ -101,9 +109,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -141,6 +147,10 @@ struct mDoExt_3DlineMat0_c {
 struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
     /* 80018C8C */ ~fopAc_ac_c();
+};
+
+struct fopAcM_wt_c {
+    static u8 mWaterCheck[84 + 4 /* padding */];
 };
 
 struct demo_s1_ke_s {
@@ -183,8 +193,20 @@ struct dVibration_c {
     /* 8006FD94 */ void StopQuake(int);
 };
 
+struct dSv_event_tmp_flag_c {
+    static u8 const tempBitLabels[370 + 2 /* padding */];
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
+};
+
 struct dSv_event_c {
     /* 8003498C */ void onEventBit(u16);
+};
+
+struct dStage_roomControl_c {
+    static u8 mDemoArcName[10 + 2 /* padding */];
 };
 
 struct dScnKy_env_light_c {
@@ -213,8 +235,16 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
+};
+
 struct dDemo_object_c {
     /* 80039088 */ void getActor(u8);
+};
+
+struct dDemo_c {
+    static u8 m_object[4];
 };
 
 struct dCamera_c {
@@ -247,6 +277,10 @@ struct _GXTexObj {};
 
 struct JUTNameTab {
     /* 802DEAF8 */ void getName(u16) const;
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct J3DMaterial {};
@@ -434,28 +468,28 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void strcmp();
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
+extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" extern void* __vt__19mDoExt_3DlineMat1_c[5];
 extern "C" extern void* __vt__19mDoExt_3DlineMat0_c[5];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mWaterCheck__11fopAcM_wt_c[84 + 4 /* padding */];
-extern "C" extern u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mWaterCheck__11fopAcM_wt_c[84 + 4 /* padding */];
+extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_Counter[12 + 4 /* padding */];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 g_blackColor;
 extern "C" extern u32 g_saftyWhiteColor;
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
+extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_object__7dDemo_c[4];
+extern "C" u8 m_object__7dDemo_c[4];
 extern "C" void __register_global_object();
 
 //

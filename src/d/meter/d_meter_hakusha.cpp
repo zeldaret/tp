@@ -31,15 +31,15 @@ struct dMeterHakusha_c {
     /* 8020D480 */ void getHakushaNum();
 };
 
-struct JUtility {
-    struct TColor {};
-};
-
 struct CPaneMgrAlpha {
     /* 802555C8 */ void show();
     /* 80255608 */ void hide();
     /* 802557D0 */ void setAlphaRate(f32);
     /* 80255828 */ void getAlphaRate();
+};
+
+struct JUtility {
+    struct TColor {};
 };
 
 struct dMeter2Draw_c {

@@ -20,7 +20,7 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct daNpcT_motionAnmData_c {};
+struct daNpcT_evtData_c {};
 
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
@@ -31,7 +31,7 @@ struct daNpcT_MotionSeqMngr_c {
 
 struct daNpcT_faceMotionAnmData_c {};
 
-struct daNpcT_evtData_c {};
+struct daNpcT_motionAnmData_c {};
 
 struct daNpc_FairySeirei_c {
     /* 8053FF6C */ ~daNpc_FairySeirei_c();
@@ -61,18 +61,23 @@ struct daNpc_FairySeirei_c {
                                        daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
                                        daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
                                        daNpcT_evtData_c const*, char**);
+
+    static void* mCutNameList;
+    static u8 mCutList[12];
 };
 
 struct daNpc_FairySeirei_Param_c {
     /* 80541D20 */ ~daNpc_FairySeirei_Param_c();
+
+    static u8 const m[148];
 };
+
+struct J3DModel {};
 
 struct cXyz {
     /* 805412D0 */ ~cXyz();
     /* 8054184C */ cXyz();
 };
-
-struct J3DModel {};
 
 struct J3DJoint {};
 
@@ -127,6 +132,8 @@ struct daNpcT_c {
     /* 80541B70 */ void changeBck(int*, int*);
     /* 80541B74 */ void changeBtp(int*, int*);
     /* 80541B78 */ void changeBtk(int*, int*);
+
+    static u8 mCcDCyl[68];
 };
 
 struct daNpcT_MatAnm_c {
@@ -145,9 +152,9 @@ struct daNpcT_ActorMngr_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct csXyz {
     /* 8054130C */ ~csXyz();
@@ -236,6 +243,8 @@ struct dBgS_Acch {
 
 struct dAttention_c {
     /* 8054059C */ void getDistTable(int);
+
+    static u8 dist_table[6552];
 };
 
 struct cM3dGCyl {
@@ -365,7 +374,10 @@ extern "C" void __dt__8cM3dGAabFv();
 extern "C" void __dt__25daNpc_FairySeirei_Param_cFv();
 extern "C" static void func_80541D68();
 extern "C" static void func_80541D70();
+extern "C" u8 const m__25daNpc_FairySeirei_Param_c[148];
 extern "C" extern char const* const d_a_npc_fairy_seirei__stringBase0;
+extern "C" void* mCutNameList__19daNpc_FairySeirei_c;
+extern "C" u8 mCutList__19daNpc_FairySeirei_c[12];
 
 //
 // External References:
@@ -459,10 +471,10 @@ extern "C" void _restgpr_29();
 extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 dist_table__12dAttention_c[6552];
+extern "C" u8 dist_table__12dAttention_c[6552];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
+extern "C" u8 mCcDCyl__8daNpcT_c[68];
 extern "C" extern void* __vt__8daNpcT_c[49];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
@@ -565,11 +577,10 @@ SECTION_DATA static u8 l_motionSequenceData[16] = {
 
 /* 80541EFC-80541F00 -00001 0004+00 1/1 0/0 0/0 .data            mCutNameList__19daNpc_FairySeirei_c
  */
-SECTION_DATA static void* mCutNameList__19daNpc_FairySeirei_c =
-    (void*)&d_a_npc_fairy_seirei__stringBase0;
+SECTION_DATA void* daNpc_FairySeirei_c::mCutNameList = (void*)&d_a_npc_fairy_seirei__stringBase0;
 
 /* 80541F00-80541F0C 0000A0 000C+00 2/2 0/0 0/0 .data            mCutList__19daNpc_FairySeirei_c */
-SECTION_DATA static u8 mCutList__19daNpc_FairySeirei_c[12] = {
+SECTION_DATA u8 daNpc_FairySeirei_c::mCutList[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
@@ -757,7 +768,7 @@ asm daNpc_FairySeirei_c::~daNpc_FairySeirei_c() {
 
 /* ############################################################################################## */
 /* 80541D8C-80541E20 000000 0094+00 6/6 0/0 0/0 .rodata          m__25daNpc_FairySeirei_Param_c */
-SECTION_RODATA static u8 const m__25daNpc_FairySeirei_Param_c[148] = {
+SECTION_RODATA u8 const daNpc_FairySeirei_Param_c::m[148] = {
     0x44, 0x16, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x45, 0x7A, 0x00,
     0x00, 0x43, 0x7F, 0x00, 0x00, 0x43, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x70,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -769,7 +780,7 @@ SECTION_RODATA static u8 const m__25daNpc_FairySeirei_Param_c[148] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0x16, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80541D8C, &m__25daNpc_FairySeirei_Param_c);
+COMPILER_STRIP_GATE(80541D8C, &daNpc_FairySeirei_Param_c::m);
 
 /* 80541E20-80541E24 000094 0004+00 1/1 0/0 0/0 .rodata          @4024 */
 SECTION_RODATA static f32 const lit_4024 = -1000000000.0f;

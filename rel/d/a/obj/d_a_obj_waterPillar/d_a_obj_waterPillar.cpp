@@ -15,24 +15,26 @@ struct request_of_phase_process_class {};
 
 struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct mDoHIO_entry_c {
     /* 80D2C768 */ ~mDoHIO_entry_c();
 };
 
-struct J3DAnmTextureSRTKey {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
     /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -83,6 +85,11 @@ struct daWtPillar_c {
     /* 80D2DE84 */ void _delete();
     /* 80D2E054 */ daWtPillar_c();
     /* 80D2E430 */ ~daWtPillar_c();
+
+    static u8 const mCcDObjInfo[48];
+    static u8 const mCcDObjCoInfo[48];
+    static u8 mCcDCps[76];
+    static u8 mCcDCyl[68];
 };
 
 struct daWtPillar_HIO_c {
@@ -227,6 +234,14 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 struct J3DFrameCtrl {
@@ -295,7 +310,11 @@ extern "C" void __dt__17dEvLib_callback_cFv();
 extern "C" bool eventRun__17dEvLib_callback_cFv();
 extern "C" bool eventEnd__17dEvLib_callback_cFv();
 extern "C" bool eventStart__17dEvLib_callback_cFv();
+extern "C" u8 const mCcDObjInfo__12daWtPillar_c[48];
+extern "C" u8 const mCcDObjCoInfo__12daWtPillar_c[48];
 extern "C" extern char const* const d_a_obj_waterPillar__stringBase0;
+extern "C" u8 mCcDCps__12daWtPillar_c[76];
+extern "C" u8 mCcDCyl__12daWtPillar_c[68];
 
 //
 // External References:
@@ -374,12 +393,12 @@ extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__12cCcD_CpsAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sincosTable___5JMath[65536];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -468,7 +487,7 @@ SECTION_DATA static u8 l_cull_box[24] = {
 #pragma pop
 
 /* 80D2E884-80D2E8D0 000038 004C+00 1/2 0/0 0/0 .data            mCcDCps__12daWtPillar_c */
-SECTION_DATA static u8 mCcDCps__12daWtPillar_c[76] = {
+SECTION_DATA u8 daWtPillar_c::mCcDCps[76] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -477,7 +496,7 @@ SECTION_DATA static u8 mCcDCps__12daWtPillar_c[76] = {
 };
 
 /* 80D2E8D0-80D2E914 000084 0044+00 1/2 0/0 0/0 .data            mCcDCyl__12daWtPillar_c */
-SECTION_DATA static u8 mCcDCyl__12daWtPillar_c[68] = {
+SECTION_DATA u8 daWtPillar_c::mCcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -789,20 +808,20 @@ asm void daWtPillar_c::CreateHeap() {
 
 /* ############################################################################################## */
 /* 80D2E790-80D2E7C0 000020 0030+00 1/1 0/0 0/0 .rodata          mCcDObjInfo__12daWtPillar_c */
-SECTION_RODATA static u8 const mCcDObjInfo__12daWtPillar_c[48] = {
+SECTION_RODATA u8 const daWtPillar_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1D,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D2E790, &mCcDObjInfo__12daWtPillar_c);
+COMPILER_STRIP_GATE(80D2E790, &daWtPillar_c::mCcDObjInfo);
 
 /* 80D2E7C0-80D2E7F0 000050 0030+00 1/1 0/0 0/0 .rodata          mCcDObjCoInfo__12daWtPillar_c */
-SECTION_RODATA static u8 const mCcDObjCoInfo__12daWtPillar_c[48] = {
+SECTION_RODATA u8 const daWtPillar_c::mCcDObjCoInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x01, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D2E7C0, &mCcDObjCoInfo__12daWtPillar_c);
+COMPILER_STRIP_GATE(80D2E7C0, &daWtPillar_c::mCcDObjCoInfo);
 
 /* 80D2E7F0-80D2E7F4 000080 0004+00 0/2 0/0 0/0 .rodata          @3742 */
 #pragma push

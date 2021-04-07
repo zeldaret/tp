@@ -27,9 +27,13 @@ struct J3DShapePacket {
 
 struct J3DShape {
     /* 80315300 */ void loadPreDrawSetting() const;
+
+    static u8 sOldVcdVatCmd[4];
 };
 
-struct J3DDrawBuffer {};
+struct J3DDrawBuffer {
+    static u8 sortFuncTable[72];
+};
 
 struct J3DPacket {
     /* 8000E680 */ ~J3DPacket();
@@ -72,6 +76,14 @@ struct J3DDisplayListObj {
     /* 80312698 */ void endDL();
     /* 803126F4 */ void beginPatch();
     /* 80312714 */ void endPatch();
+
+    static u8 sGDLObj[16];
+    static u8 sInterruptFlag[4 + 4 /* padding */];
+};
+
+struct J3DDifferedTexMtx {
+    static u8 sTexGenBlock[4];
+    static u8 sTexMtxObj[4];
 };
 
 //
@@ -111,6 +123,8 @@ extern "C" void draw__14J3DShapePacketFv();
 extern "C" void drawFast__14J3DShapePacketFv();
 extern "C" void draw__9J3DPacketFv();
 extern "C" void entry__12J3DMatPacketFP13J3DDrawBuffer();
+extern "C" u8 sGDLObj__17J3DDisplayListObj[16];
+extern "C" u8 sInterruptFlag__17J3DDisplayListObj[4 + 4 /* padding */];
 
 //
 // External References:
@@ -134,12 +148,12 @@ extern "C" void GDPadCurr32();
 extern "C" void __ptmf_scall();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
-extern "C" extern u8 sortFuncTable__13J3DDrawBuffer[72];
+extern "C" u8 sortFuncTable__13J3DDrawBuffer[72];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u8 struct_804515B0[4];
-extern "C" extern u8 sTexGenBlock__17J3DDifferedTexMtx[4];
-extern "C" extern u8 sTexMtxObj__17J3DDifferedTexMtx[4];
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
+extern "C" u8 sTexGenBlock__17J3DDifferedTexMtx[4];
+extern "C" u8 sTexMtxObj__17J3DDifferedTexMtx[4];
+extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 extern "C" extern u8 __GDCurrentDL[4];
 
 //
@@ -211,12 +225,11 @@ asm void J3DDisplayListObj::callDL() const {
 
 /* ############################################################################################## */
 /* 80434C70-80434C80 061990 0010+00 2/2 3/3 0/0 .bss             sGDLObj__17J3DDisplayListObj */
-extern u8 sGDLObj__17J3DDisplayListObj[16];
-u8 sGDLObj__17J3DDisplayListObj[16];
+u8 J3DDisplayListObj::sGDLObj[16];
 
 /* 804515A0-804515A8 000AA0 0004+04 3/3 0/0 0/0 .sbss            sInterruptFlag__17J3DDisplayListObj
  */
-static u8 sInterruptFlag__17J3DDisplayListObj[4 + 4 /* padding */];
+u8 J3DDisplayListObj::sInterruptFlag[4 + 4 /* padding */];
 
 /* 80312644-80312698 30CF84 0054+00 2/2 1/1 0/0 .text            beginDL__17J3DDisplayListObjFv */
 #pragma push

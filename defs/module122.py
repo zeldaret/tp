@@ -37,13 +37,13 @@ SYMBOLS = [
 	{'addr':0x805A2744,'size':268,'pad':0,'label':"execute__12daTagAJnot_cFv",'name':"execute__12daTagAJnot_cFv",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
 	{'addr':0x805A2850,'size':32,'pad':0,'label':"daTagAJnot_Execute__FP12daTagAJnot_c",'name':"daTagAJnot_Execute__FP12daTagAJnot_c",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
 	{'addr':0x805A2870,'size':8,'pad':0,'label':"daTagAJnot_Draw__FP12daTagAJnot_c",'name':"daTagAJnot_Draw__FP12daTagAJnot_c",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReturnFunction"},
-	{'addr':0x805A2878,'size':4,'pad':0,'label':"_ctors",'name':"_ctors",'lib':-1,'tu':1,'section':1,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
-	{'addr':0x805A287C,'size':4,'pad':0,'label':"_dtors",'name':"_dtors",'lib':-1,'tu':2,'section':2,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
-	{'addr':0x805A2880,'size':4,'pad':0,'label':"lit_3713",'name':"@3713",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
-	{'addr':0x805A2884,'size':4,'pad':0,'label':"lit_3714",'name':"@3714",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[0,0,0],'sh':[0,0,0],'type':"FloatingPoint"},
-	{'addr':0x805A2888,'size':4,'pad':0,'label':"lit_3715",'name':"@3715",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[0,0,0],'sh':[0,0,0],'type':"FloatingPoint"},
-	{'addr':0x805A288C,'size':32,'pad':0,'label':"l_daTagAJnot_Method",'name':"l_daTagAJnot_Method",'lib':-1,'tu':3,'section':4,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
-	{'addr':0x805A28AC,'size':48,'pad':0,'label':"g_profile_Tag_AJnot",'name':"g_profile_Tag_AJnot",'lib':-1,'tu':3,'section':4,'class_template':False,'static':False,'is_reachable':False,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x805A2878,'size':4,'pad':0,'label':"_ctors",'name':"_ctors",'lib':-1,'tu':1,'section':1,'class_template':None,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
+	{'addr':0x805A287C,'size':4,'pad':0,'label':"_dtors",'name':"_dtors",'lib':-1,'tu':2,'section':2,'class_template':None,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
+	{'addr':0x805A2880,'size':4,'pad':0,'label':"lit_3713",'name':"@3713",'lib':-1,'tu':3,'section':3,'class_template':None,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x805A2884,'size':4,'pad':0,'label':"lit_3714",'name':"@3714",'lib':-1,'tu':3,'section':3,'class_template':None,'static':True,'is_reachable':False,'r':[0,0,0],'sh':[0,0,0],'type':"FloatingPoint"},
+	{'addr':0x805A2888,'size':4,'pad':0,'label':"lit_3715",'name':"@3715",'lib':-1,'tu':3,'section':3,'class_template':None,'static':True,'is_reachable':False,'r':[0,0,0],'sh':[0,0,0],'type':"FloatingPoint"},
+	{'addr':0x805A288C,'size':32,'pad':0,'label':"l_daTagAJnot_Method",'name':"l_daTagAJnot_Method",'lib':-1,'tu':3,'section':4,'class_template':None,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x805A28AC,'size':48,'pad':0,'label':"g_profile_Tag_AJnot",'name':"g_profile_Tag_AJnot",'lib':-1,'tu':3,'section':4,'class_template':None,'static':False,'is_reachable':False,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
 ]
 
 # Names

@@ -15,6 +15,13 @@ struct overlap_task_class {};
 
 struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
+
+    static u8 now[48];
+};
+
+struct mDoGph_gInf_c {
+    static u8 mFrameBufferTexObj[32];
+    static u8 mFrameBufferTex[4];
 };
 
 struct dOvlpFd3_dlst_c {
@@ -49,6 +56,10 @@ struct JGeometry {
     struct TBox2 {};
     /* TBox2<f32> */
     struct TBox2__template0 {};
+};
+
+struct JFWDisplay {
+    static u8 sManager[4];
 };
 
 struct J2DOrthoGraph {
@@ -134,12 +145,12 @@ extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
 extern "C" extern void* g_fopOvlp_Method[5 + 1 /* padding */];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 mFrameBufferTexObj__13mDoGph_gInf_c[32];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mFrameBufferTexObj__13mDoGph_gInf_c[32];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_clearColor[4];
-extern "C" extern u8 mFrameBufferTex__13mDoGph_gInf_c[4];
-extern "C" extern u8 sManager__10JFWDisplay[4];
+extern "C" u8 mFrameBufferTex__13mDoGph_gInf_c[4];
+extern "C" u8 sManager__10JFWDisplay[4];
 
 //
 // Declarations:

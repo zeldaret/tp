@@ -30,15 +30,23 @@ struct daTag_Msg_c {
     /* 8048FF8C */ void getResName();
     /* 8048FF9C */ void getParam();
     /* 8049004C */ void cut_speak(int, int);
+
+    static void* mEvtCutTBL[2];
 };
 
 struct daTag_Msg_Param_c {
     /* 80490128 */ ~daTag_Msg_Param_c();
+
+    static u8 const m[1 + 3 /* padding */];
 };
 
 struct dSv_info_c {
     /* 80035200 */ void onSwitch(int, int);
     /* 80035360 */ void isSwitch(int, int) const;
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -93,7 +101,9 @@ extern "C" static void daTag_Msg_Execute__FPv();
 extern "C" static void daTag_Msg_Draw__FPv();
 extern "C" static bool daTag_Msg_IsDelete__FPv();
 extern "C" void __dt__17daTag_Msg_Param_cFv();
+extern "C" u8 const m__17daTag_Msg_Param_c[1 + 3 /* padding */];
 extern "C" extern char const* const d_a_tag_msg__stringBase0;
+extern "C" void* mEvtCutTBL__11daTag_Msg_c[2];
 
 //
 // External References:
@@ -129,7 +139,7 @@ extern "C" void _restgpr_26();
 extern "C" void strcpy();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 struct_80450D64[4];
@@ -160,7 +170,7 @@ SECTION_DATA static void* l_evtNameTBL[2] = {
 };
 
 /* 804901D0-804901D8 -00001 0008+00 1/1 0/0 0/0 .data            mEvtCutTBL__11daTag_Msg_c */
-SECTION_DATA static void* mEvtCutTBL__11daTag_Msg_c[2] = {
+SECTION_DATA void* daTag_Msg_c::mEvtCutTBL[2] = {
     (void*)(((char*)&d_a_tag_msg__stringBase0) + 0x7),
     (void*)(((char*)&d_a_tag_msg__stringBase0) + 0x14),
 };
@@ -243,14 +253,14 @@ asm void daTag_Msg_c::destroy() {
 
 /* ############################################################################################## */
 /* 80490178-8049017C 000000 0001+03 1/1 0/0 0/0 .rodata          m__17daTag_Msg_Param_c */
-SECTION_RODATA static u8 const m__17daTag_Msg_Param_c[1 + 3 /* padding */] = {
+SECTION_RODATA u8 const daTag_Msg_Param_c::m[1 + 3 /* padding */] = {
     0x00,
     /* padding */
     0x00,
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80490178, &m__17daTag_Msg_Param_c);
+COMPILER_STRIP_GATE(80490178, &daTag_Msg_Param_c::m);
 
 /* 8049017C-80490180 000004 0004+00 1/1 0/0 0/0 .rodata          @3757 */
 SECTION_RODATA static f32 const lit_3757 = 150.0f;

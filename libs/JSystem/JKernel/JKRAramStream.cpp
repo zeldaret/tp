@@ -37,6 +37,9 @@ struct JKRHeap {
     /* 802CE4D4 */ void alloc(u32, int);
     /* 802CE474 */ void alloc(u32, int, JKRHeap*);
     /* 802CE500 */ void free(void*, JKRHeap*);
+
+    static u8 sSystemHeap[4];
+    static u8 sCurrentHeap[4];
 };
 
 struct JKRAramStreamCommand {
@@ -53,6 +56,13 @@ struct JKRAramStream {
     /* 802D3ED0 */ void write_StreamToAram_Async(JSUFileInputStream*, u32, u32, u32, u32*);
     /* 802D3FA0 */ void sync(JKRAramStreamCommand*, int);
     /* 802D4034 */ void setTransBuffer(u8*, u32, JKRHeap*);
+
+    static u8 sMessageBuffer[16];
+    static u8 sMessageQueue[32];
+    static u8 sAramStreamObject[4];
+    static u8 transBuffer[4];
+    static u8 transSize[4];
+    static u8 transHeap[4];
 };
 
 struct JKRAramBlock {};
@@ -77,6 +87,12 @@ extern "C" void setTransBuffer__13JKRAramStreamFPUcUlP7JKRHeap();
 extern "C" void __ct__20JKRAramStreamCommandFv();
 extern "C" void getAvailable__20JSURandomInputStreamCFv();
 extern "C" extern char const* const JKRAramStream__stringBase0;
+extern "C" u8 sMessageBuffer__13JKRAramStream[16];
+extern "C" u8 sMessageQueue__13JKRAramStream[32];
+extern "C" u8 sAramStreamObject__13JKRAramStream[4];
+extern "C" u8 transBuffer__13JKRAramStream[4];
+extern "C" u8 transSize__13JKRAramStream[4];
+extern "C" u8 transHeap__13JKRAramStream[4];
 
 //
 // External References:
@@ -101,8 +117,8 @@ extern "C" void _savegpr_24();
 extern "C" void _savegpr_26();
 extern "C" void _restgpr_24();
 extern "C" void _restgpr_26();
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sCurrentHeap__7JKRHeap[4];
 
 //
 // Declarations:
@@ -111,7 +127,7 @@ extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
 /* ############################################################################################## */
 /* 80451408-8045140C 000908 0004+00 1/1 0/0 0/0 .sbss            sAramStreamObject__13JKRAramStream
  */
-static u8 sAramStreamObject__13JKRAramStream[4];
+u8 JKRAramStream::sAramStreamObject[4];
 
 /* 802D3B48-802D3BB8 2CE488 0070+00 0/0 1/1 0/0 .text            create__13JKRAramStreamFl */
 #pragma push
@@ -125,12 +141,12 @@ asm void JKRAramStream::create(s32 param_0) {
 
 /* ############################################################################################## */
 /* 803CC188-803CC198 0292A8 0010+00 1/1 0/0 0/0 .data            sMessageBuffer__13JKRAramStream */
-SECTION_DATA static u8 sMessageBuffer__13JKRAramStream[16] = {
+SECTION_DATA u8 JKRAramStream::sMessageBuffer[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 803CC198-803CC1B8 0292B8 0020+00 2/2 0/0 0/0 .data            sMessageQueue__13JKRAramStream */
-SECTION_DATA static u8 sMessageQueue__13JKRAramStream[32] = {
+SECTION_DATA u8 JKRAramStream::sMessageQueue[32] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -191,13 +207,13 @@ asm void JKRAramStream::writeToAram(JKRAramStreamCommand* param_0) {
 
 /* ############################################################################################## */
 /* 8045140C-80451410 00090C 0004+00 2/2 0/0 0/0 .sbss            transBuffer__13JKRAramStream */
-static u8 transBuffer__13JKRAramStream[4];
+u8 JKRAramStream::transBuffer[4];
 
 /* 80451410-80451414 000910 0004+00 2/2 0/0 0/0 .sbss            transSize__13JKRAramStream */
-static u8 transSize__13JKRAramStream[4];
+u8 JKRAramStream::transSize[4];
 
 /* 80451414-80451418 000914 0004+00 2/2 0/0 0/0 .sbss            transHeap__13JKRAramStream */
-static u8 transHeap__13JKRAramStream[4];
+u8 JKRAramStream::transHeap[4];
 
 /* 802D3ED0-802D3FA0 2CE810 00D0+00 0/0 1/1 0/0 .text
  * write_StreamToAram_Async__13JKRAramStreamFP18JSUFileInputStreamUlUlUlPUl */

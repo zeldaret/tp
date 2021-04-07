@@ -23,10 +23,14 @@ struct cXyz {
     /* 80266F48 */ void normalizeZP();
     /* 80BEEDA8 */ ~cXyz();
     /* 80BEFF30 */ cXyz();
+
+    static f32 Zero[3];
 };
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -44,6 +48,8 @@ struct daObjFlag3_c {
     /* 80BEF700 */ ~daObjFlag3_c();
     /* 80BEF95C */ void create();
     /* 80BEFBC4 */ void create_init();
+
+    static u8 const M_attr[20];
 };
 
 struct dKy_tevstr_c {};
@@ -85,6 +91,10 @@ struct cCcD_GStts {
 
 struct J3DSys {
     /* 8031073C */ void reinitGX();
+};
+
+struct J3DShape {
+    static u8 sOldVcdVatCmd[4];
 };
 
 struct J3DPacket;
@@ -145,6 +155,7 @@ extern "C" void __ct__11J3DLightObjFv();
 extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" void draw__12FlagCloth2_cFv();
 extern "C" void getTargetPos__12FlagCloth2_cFv();
+extern "C" u8 const M_attr__12daObjFlag3_c[20];
 extern "C" extern char const* const d_a_obj_flag3__stringBase0;
 
 //
@@ -244,13 +255,13 @@ extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
+extern "C" f32 Zero__4cXyz[3];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
+extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 
 //
 // Declarations:
@@ -258,11 +269,11 @@ extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
 
 /* ############################################################################################## */
 /* 80BF0458-80BF046C 000000 0014+00 3/3 0/0 0/0 .rodata          M_attr__12daObjFlag3_c */
-SECTION_RODATA static u8 const M_attr__12daObjFlag3_c[20] = {
+SECTION_RODATA u8 const daObjFlag3_c::M_attr[20] = {
     0xC0, 0x00, 0x00, 0x00, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x2E,
     0x14, 0x7B, 0x42, 0x20, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BF0458, &M_attr__12daObjFlag3_c);
+COMPILER_STRIP_GATE(80BF0458, &daObjFlag3_c::M_attr);
 
 /* 80BF046C-80BF048C 000014 0020+00 0/0 0/0 0/0 .rodata          @3637 */
 #pragma push

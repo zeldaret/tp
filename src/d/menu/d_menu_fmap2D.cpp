@@ -18,17 +18,25 @@ struct renderingFmap_c {
                                                  int*);
 };
 
+struct daPy_py_c {
+    static u8 m_midnaActor[4];
+};
+
 struct dSv_player_field_last_stay_info_c {
     /* 80032E78 */ void isRegionBit(int) const;
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct STControl {};
-
 struct J2DOrthoGraph {};
+
+struct STControl {};
 
 struct dMsgScrnExplain_c {
     /* 8023CC88 */ dMsgScrnExplain_c(STControl*, u8, bool, u8);
@@ -46,7 +54,9 @@ struct dMeter2Info_c {
     /* 8021C544 */ void getStringKanji(u32, char*, JMSMesgEntry_c*);
 };
 
-struct JKRExpHeap {};
+struct J2DAnmTextureSRTKey {};
+
+struct JKRArchive {};
 
 struct JGeometry {
     template <typename A1>
@@ -59,8 +69,6 @@ struct J2DGrafContext {
     /* 802E90C0 */ void scissor(JGeometry::TBox2<f32> const&);
 };
 
-struct JKRArchive {};
-
 struct J2DScreen {
     /* 802F8498 */ J2DScreen();
     /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
@@ -68,14 +76,14 @@ struct J2DScreen {
     /* 802F9690 */ void animation();
 };
 
+struct JKRExpHeap {};
+
 struct CPaneMgrAlpha {
     /* 802553FC */ CPaneMgrAlpha(J2DScreen*, u64, u8, JKRExpHeap*);
     /* 80255608 */ void hide();
     /* 802557D0 */ void setAlphaRate(f32);
     /* 80255828 */ void getAlphaRate();
 };
-
-struct J2DAnmTextureSRTKey {};
 
 struct dMenu_Fmap2DTop_c {
     /* 801D5BD0 */ dMenu_Fmap2DTop_c(JKRExpHeap*, STControl*);
@@ -196,8 +204,16 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct JUtility {
     struct TColor {};
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct JKRHeap {};
@@ -411,13 +427,13 @@ extern "C" void _restgpr_29();
 extern "C" void strcmp();
 extern "C" void strcpy();
 extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_fmapHIO[1188];
 extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sincosTable___5JMath[65536];
+extern "C" u8 m_midnaActor__9daPy_py_c[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

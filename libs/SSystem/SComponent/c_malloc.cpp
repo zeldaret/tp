@@ -20,6 +20,8 @@ struct cMl {
     /* 80263220 */ void init(JKRHeap*);
     /* 80263228 */ void memalignB(int, u32);
     /* 80263260 */ void free(void*);
+
+    static u8 Heap[4 + 4 /* padding */];
 };
 
 //
@@ -29,6 +31,7 @@ struct cMl {
 extern "C" void init__3cMlFP7JKRHeap();
 extern "C" void memalignB__3cMlFiUl();
 extern "C" void free__3cMlFPv();
+extern "C" u8 Heap__3cMl[4 + 4 /* padding */];
 extern "C" extern u8 data_80451158[8];
 
 //
@@ -44,7 +47,7 @@ extern "C" void free__7JKRHeapFPv();
 
 /* ############################################################################################## */
 /* 80451150-80451158 000650 0004+04 3/3 0/0 0/0 .sbss            Heap__3cMl */
-static u8 Heap__3cMl[4 + 4 /* padding */];
+u8 cMl::Heap[4 + 4 /* padding */];
 
 /* 80263220-80263228 25DB60 0008+00 0/0 1/1 0/0 .text            init__3cMlFP7JKRHeap */
 #pragma push

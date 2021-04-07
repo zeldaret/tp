@@ -19,6 +19,8 @@ struct daTagMagne_c {
     /* 805A5498 */ void Create();
     /* 805A54DC */ void create();
     /* 805A5578 */ void _delete();
+
+    static u8 mTagMagne[4];
 };
 
 //
@@ -39,7 +41,7 @@ extern "C" extern void* g_profile_Tag_Magne[12];
 extern "C" void __ct__10fopAc_ac_cFv();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 mTagMagne__12daTagMagne_c[4];
+extern "C" u8 mTagMagne__12daTagMagne_c[4];
 
 //
 // Declarations:

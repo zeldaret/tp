@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct mDoExt_morf_c {
     /* 8000FB7C */ void setMorf(f32);
 };
@@ -53,6 +57,8 @@ struct daNpcCd2_c {
     /* 80158FF0 */ void drawObj(int, J3DModel*, f32);
     /* 801590FC */ void drawNpc();
     /* 809BAE80 */ ~daNpcCd2_c();
+
+    static u8 const m_cylDat[68];
 };
 
 struct dNpcLib_lookat_c {
@@ -95,14 +101,14 @@ struct dBgS_AcchCir {
     /* 809BB31C */ ~dBgS_AcchCir();
 };
 
+struct cXyz {
+    /* 809BB2E0 */ ~cXyz();
+};
+
 struct dBgS {};
 
 struct csXyz {
     /* 809BB0D0 */ ~csXyz();
-};
-
-struct cXyz {
-    /* 809BB2E0 */ ~cXyz();
 };
 
 struct dBgS_Acch {
@@ -240,7 +246,7 @@ extern "C" void PSMTXTrans();
 extern "C" void __destroy_arr();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
-extern "C" extern u8 const m_cylDat__10daNpcCd2_c[68];
+extern "C" u8 const m_cylDat__10daNpcCd2_c[68];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
@@ -248,7 +254,7 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 l_Cd2_HIO[16396];
 

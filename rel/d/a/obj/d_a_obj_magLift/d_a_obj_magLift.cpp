@@ -13,6 +13,10 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct mDoHIO_entry_c {
     /* 80C8DA58 */ ~mDoHIO_entry_c();
 };
@@ -40,6 +44,8 @@ struct daMagLift_c {
     /* 80C8E31C */ void setNextPoint();
     /* 80C8E450 */ void Draw();
     /* 80C8E4F4 */ void Delete();
+
+    static u8 const mSpeed[64];
 };
 
 struct daMagLift_HIO_c {
@@ -53,14 +59,14 @@ struct dSv_info_c {
 
 struct dKy_tevstr_c {};
 
+struct J3DModelData {};
+
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 8026702C */ bool operator==(Vec const&) const;
 };
-
-struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -127,6 +133,7 @@ extern "C" static void daMagLift_Delete__FP11daMagLift_c();
 extern "C" static void daMagLift_Create__FP10fopAc_ac_c();
 extern "C" void __dt__15daMagLift_HIO_cFv();
 extern "C" void __sinit_d_a_obj_magLift_cpp();
+extern "C" u8 const mSpeed__11daMagLift_c[64];
 extern "C" extern char const* const d_a_obj_magLift__stringBase0;
 
 //
@@ -165,7 +172,7 @@ extern "C" void PSVECSquareMag();
 extern "C" void __ptmf_scall();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
@@ -370,13 +377,13 @@ asm void daMagLift_c::CreateHeap() {
 
 /* ############################################################################################## */
 /* 80C8E65C-80C8E69C 000000 0040+00 4/4 0/0 0/0 .rodata          mSpeed__11daMagLift_c */
-SECTION_RODATA static u8 const mSpeed__11daMagLift_c[64] = {
+SECTION_RODATA u8 const daMagLift_c::mSpeed[64] = {
     0x40, 0xA0, 0x00, 0x00, 0x40, 0xD5, 0x55, 0x55, 0x41, 0x05, 0x55, 0x55, 0x41, 0x20, 0x00, 0x00,
     0x41, 0x3A, 0xAA, 0xAB, 0x41, 0x55, 0x55, 0x55, 0x41, 0x70, 0x00, 0x00, 0x41, 0x85, 0x55, 0x55,
     0x41, 0x92, 0xAA, 0xAB, 0x41, 0xA0, 0x00, 0x00, 0x41, 0xAD, 0x55, 0x55, 0x41, 0xBA, 0xAA, 0xAB,
     0x41, 0xC8, 0x00, 0x00, 0x41, 0xD5, 0x55, 0x55, 0x41, 0xE2, 0xAA, 0xAB, 0x40, 0x55, 0x55, 0x55,
 };
-COMPILER_STRIP_GATE(80C8E65C, &mSpeed__11daMagLift_c);
+COMPILER_STRIP_GATE(80C8E65C, &daMagLift_c::mSpeed);
 
 /* 80C8E69C-80C8E6A0 000040 0004+00 1/3 0/0 0/0 .rodata          @3718 */
 SECTION_RODATA static u8 const lit_3718[4] = {

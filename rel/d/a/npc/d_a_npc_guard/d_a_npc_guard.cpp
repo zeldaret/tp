@@ -13,6 +13,8 @@
 
 struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct mDoExt_morf_c {
@@ -65,6 +67,8 @@ struct daNpcGuard_c {
     /* 809F1878 */ void lookat();
     /* 809F1F74 */ ~daNpcGuard_c();
     /* 809F2044 */ void execute();
+
+    static u8 ActionTable[168];
 };
 
 struct J3DAnmTransformKey {};
@@ -86,6 +90,8 @@ struct daNpcCd2_c {
     /* 80158FF0 */ void drawObj(int, J3DModel*, f32);
     /* 801590FC */ void drawNpc();
     /* 809F2740 */ ~daNpcCd2_c();
+
+    static u8 const m_cylDat[68];
 };
 
 struct dKy_tevstr_c {};
@@ -102,13 +108,15 @@ struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
 
-struct cXyz {
-    /* 809F0148 */ ~cXyz();
-};
-
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
     /* 809F1D6C */ ~csXyz();
+};
+
+struct cXyz {
+    /* 809F0148 */ ~cXyz();
+
+    static f32 Zero[3];
 };
 
 struct dNpcLib_lookat_c {
@@ -229,6 +237,10 @@ struct PathTrace_c {
     /* 80159F98 */ void setNextPoint(cXyz&);
 };
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DFrameCtrl {
     /* 8032842C */ void checkPass(f32);
 };
@@ -291,6 +303,7 @@ extern "C" void __dt__10dCcD_GSttsFv();
 extern "C" void __dt__12dBgS_AcchCirFv();
 extern "C" void __dt__12dBgS_ObjAcchFv();
 extern "C" extern char const* const d_a_npc_guard__stringBase0;
+extern "C" u8 ActionTable__12daNpcGuard_c[168];
 
 //
 // External References:
@@ -393,7 +406,7 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void abs();
 extern "C" void pow();
-extern "C" extern u8 const m_cylDat__10daNpcCd2_c[68];
+extern "C" u8 const m_cylDat__10daNpcCd2_c[68];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];
@@ -403,12 +416,12 @@ extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 l_Cd2_HIO[16396];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" f32 Zero__4cXyz[3];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 
 //
@@ -586,7 +599,7 @@ SECTION_DATA static void* lit_3837[3] = {
 #pragma pop
 
 /* 809F2E18-809F2EC0 0000C8 00A8+00 1/2 0/0 0/0 .data            ActionTable__12daNpcGuard_c */
-SECTION_DATA static u8 ActionTable__12daNpcGuard_c[168] = {
+SECTION_DATA u8 daNpcGuard_c::ActionTable[168] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

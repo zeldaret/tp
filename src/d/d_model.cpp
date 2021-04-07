@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct dStage_roomControl_c {
+    static u8 mStatus[65792];
+};
+
 struct dMdl_obj_c {};
 
 struct dKy_tevstr_c {};
@@ -24,6 +28,8 @@ struct dMdl_mng_c {
     /* 8009C7AC */ void create();
     /* 8009C864 */ void remove();
     /* 8009C8C0 */ void reset();
+
+    static u8 m_myObj[4 + 4 /* padding */];
 };
 
 struct dMdl_c {
@@ -36,6 +42,8 @@ struct dMdl_c {
 
 struct J3DShape {
     /* 80315300 */ void loadPreDrawSetting() const;
+
+    static u8 sOldVcdVatCmd[4];
 };
 
 struct J3DPacket;
@@ -62,6 +70,7 @@ extern "C" void remove__10dMdl_mng_cFv();
 extern "C" void reset__10dMdl_mng_cFv();
 extern "C" void entry__10dMdl_mng_cFP12J3DModelDataUsi();
 extern "C" void __ct__6dMdl_cFv();
+extern "C" u8 m_myObj__10dMdl_mng_c[4 + 4 /* padding */];
 
 //
 // External References:
@@ -87,11 +96,11 @@ extern "C" void _savegpr_28();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
+extern "C" u8 mStatus__20dStage_roomControl_c[65792];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 g_whiteColor;
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
+extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 
 //
 // Declarations:
@@ -156,7 +165,7 @@ asm void dMdl_mng_c::entry(J3DModelData* param_0, u16 param_1, dKy_tevstr_c* par
 
 /* ############################################################################################## */
 /* 80450FA0-80450FA8 0004A0 0004+04 4/4 0/0 0/0 .sbss            m_myObj__10dMdl_mng_c */
-static u8 m_myObj__10dMdl_mng_c[4 + 4 /* padding */];
+u8 dMdl_mng_c::m_myObj[4 + 4 /* padding */];
 
 /* 8009C7AC-8009C808 0970EC 005C+00 0/0 1/1 0/0 .text            create__10dMdl_mng_cFv */
 #pragma push

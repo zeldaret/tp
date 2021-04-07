@@ -13,6 +13,14 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
+struct mDoLib_clipper {
+    static f32 mSystemFar;
+};
+
 struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
 };
@@ -32,6 +40,9 @@ struct daShopItem_c {
     /* 8059F084 */ void getShadowSize();
     /* 8059F0A0 */ void getCollisionH();
     /* 8059F0BC */ void getCollisionR();
+
+    static void* const mData[276];
+    static f32 const m_cullfar_max;
 };
 
 struct daItemBase_c {
@@ -50,6 +61,10 @@ struct daItemBase_c {
 };
 
 struct dKy_tevstr_c {};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
+};
 
 struct dCcD_GStts {
     /* 80083760 */ dCcD_GStts();
@@ -120,6 +135,7 @@ extern "C" static void daShopItem_Execute__FPv();
 extern "C" static bool daShopItem_IsDelete__FPv();
 extern "C" static void func_8059F420();
 extern "C" static void func_8059F428();
+extern "C" f32 const m_cullfar_max__12daShopItem_c;
 extern "C" extern char const* const d_a_shop_item__stringBase0;
 
 //
@@ -160,7 +176,7 @@ extern "C" void PSMTXTrans();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
 extern "C" void strcmp();
-extern "C" extern void* const mData__12daShopItem_c[276];
+extern "C" void* const mData__12daShopItem_c[276];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
@@ -169,10 +185,10 @@ extern "C" extern void* __vt__12daItemBase_c[17 + 1 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" extern f32 mSystemFar__14mDoLib_clipper;
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" f32 mSystemFar__14mDoLib_clipper;
 
 //
 // Declarations:
@@ -190,8 +206,8 @@ asm void daShopItem_c::getShopArcname() {
 
 /* ############################################################################################## */
 /* 8059F438-8059F43C 000000 0004+00 2/2 0/0 0/0 .rodata          m_cullfar_max__12daShopItem_c */
-SECTION_RODATA static f32 const m_cullfar_max__12daShopItem_c = 5000.0f;
-COMPILER_STRIP_GATE(8059F438, &m_cullfar_max__12daShopItem_c);
+SECTION_RODATA f32 const daShopItem_c::m_cullfar_max = 5000.0f;
+COMPILER_STRIP_GATE(8059F438, &daShopItem_c::m_cullfar_max);
 
 /* 8059F43C-8059F46C 000004 002E+02 1/1 0/0 0/0 .rodata          HeapSizeTbl$3665 */
 SECTION_RODATA static u8 const HeapSizeTbl[46 + 2 /* padding */] = {

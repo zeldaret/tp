@@ -13,6 +13,11 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {
+    /* 80BE6328 */ ~csXyz();
+    /* 80BE6364 */ csXyz();
+};
+
 struct Vec {};
 
 struct cXyz {
@@ -24,17 +29,16 @@ struct cXyz {
     /* 80267150 */ void atan2sY_XZ() const;
     /* 80BE6368 */ ~cXyz();
     /* 80BE63A4 */ cXyz();
-};
 
-struct csXyz {
-    /* 80BE6328 */ ~csXyz();
-    /* 80BE6364 */ csXyz();
+    static f32 Zero[3];
 };
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CDD4 */ void transM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -82,6 +86,8 @@ struct dEvent_manager_c {
 
 struct J3DShape {
     /* 80315300 */ void loadPreDrawSetting() const;
+
+    static u8 sOldVcdVatCmd[4];
 };
 
 struct J3DPacket;
@@ -170,15 +176,15 @@ extern "C" void strcmp();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
+extern "C" f32 Zero__4cXyz[3];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 g_whiteColor;
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
+extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 
 //
 // Declarations:

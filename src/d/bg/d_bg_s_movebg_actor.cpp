@@ -13,6 +13,8 @@
 
 struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -32,11 +34,11 @@ struct dBgW {
     /* 8007B9C0 */ void Move();
 };
 
-struct cXyz {};
-
 struct cBgS_PolyInfo {};
 
 struct csXyz {};
+
+struct cXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -55,6 +57,10 @@ struct dBgS_MoveBgActor {
                                      u32, f32 (*)[3][4]);
     /* 800788DC */ void MoveBGDelete();
     /* 80078950 */ void MoveBGExecute();
+
+    static u8 m_name[4];
+    static u8 m_dzb_id[4];
+    static u8 m_set_func[4 + 4 /* padding */];
 };
 
 struct dBgS {
@@ -94,6 +100,9 @@ extern "C" void
 MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f();
 extern "C" void MoveBGDelete__16dBgS_MoveBgActorFv();
 extern "C" void MoveBGExecute__16dBgS_MoveBgActorFv();
+extern "C" u8 m_name__16dBgS_MoveBgActor[4];
+extern "C" u8 m_dzb_id__16dBgS_MoveBgActor[4];
+extern "C" u8 m_set_func__16dBgS_MoveBgActor[4 + 4 /* padding */];
 
 //
 // External References:
@@ -115,7 +124,7 @@ extern "C" void PSMTXCopy();
 extern "C" void PSMTXTrans();
 extern "C" void _savegpr_27();
 extern "C" void _restgpr_27();
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
@@ -199,14 +208,13 @@ bool dBgS_MoveBgActor::ToBack() {
 
 /* ############################################################################################## */
 /* 80450F70-80450F74 000470 0004+00 2/2 0/0 0/0 .sbss            m_name__16dBgS_MoveBgActor */
-static u8 m_name__16dBgS_MoveBgActor[4];
+u8 dBgS_MoveBgActor::m_name[4];
 
 /* 80450F74-80450F78 000474 0004+00 2/2 0/0 0/0 .sbss            m_dzb_id__16dBgS_MoveBgActor */
-static u8 m_dzb_id__16dBgS_MoveBgActor[4];
+u8 dBgS_MoveBgActor::m_dzb_id[4];
 
 /* 80450F78-80450F80 000478 0004+04 2/2 0/0 1/1 .sbss            m_set_func__16dBgS_MoveBgActor */
-extern u8 m_set_func__16dBgS_MoveBgActor[4 + 4 /* padding */];
-u8 m_set_func__16dBgS_MoveBgActor[4 + 4 /* padding */];
+u8 dBgS_MoveBgActor::m_set_func[4 + 4 /* padding */];
 
 /* 800786C8-800787BC 073008 00F4+00 1/1 0/0 0/0 .text MoveBGCreateHeap__16dBgS_MoveBgActorFv */
 #pragma push

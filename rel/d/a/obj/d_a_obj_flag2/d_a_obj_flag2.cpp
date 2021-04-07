@@ -23,10 +23,14 @@ struct cXyz {
     /* 80266F48 */ void normalizeZP();
     /* 80BEC790 */ ~cXyz();
     /* 80BEDB70 */ cXyz();
+
+    static f32 Zero[3];
 };
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -48,6 +52,8 @@ struct daObjFlag2_c {
     /* 80BED7A4 */ daObjFlag2_c();
     /* 80BEDCE0 */ void draw();
     /* 80BEDEE0 */ ~daObjFlag2_c();
+
+    static u8 const M_attr[20];
 };
 
 struct dKy_tevstr_c {};
@@ -125,8 +131,16 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DSys {
     /* 8031073C */ void reinitGX();
+};
+
+struct J3DShape {
+    static u8 sOldVcdVatCmd[4];
 };
 
 struct J3DPacket;
@@ -200,6 +214,7 @@ extern "C" void __dt__12daObjFlag2_cFv();
 extern "C" static void daObjFlag2_Create__FP10fopAc_ac_c();
 extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" void getTargetPos__11FlagCloth_cFv();
+extern "C" u8 const M_attr__12daObjFlag2_c[20];
 extern "C" extern char const* const d_a_obj_flag2__stringBase0;
 
 //
@@ -312,14 +327,14 @@ extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
+extern "C" f32 Zero__4cXyz[3];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 
 //
 // Declarations:
@@ -327,11 +342,11 @@ extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
 
 /* ############################################################################################## */
 /* 80BEE0DC-80BEE0F0 000000 0014+00 5/5 0/0 0/0 .rodata          M_attr__12daObjFlag2_c */
-SECTION_RODATA static u8 const M_attr__12daObjFlag2_c[20] = {
+SECTION_RODATA u8 const daObjFlag2_c::M_attr[20] = {
     0xC0, 0x00, 0x00, 0x00, 0x3F, 0x3D, 0x70, 0xA4, 0x3F, 0x2E,
     0x14, 0x7B, 0x42, 0x20, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BEE0DC, &M_attr__12daObjFlag2_c);
+COMPILER_STRIP_GATE(80BEE0DC, &daObjFlag2_c::M_attr);
 
 /* 80BEE0F0-80BEE0F4 000014 0004+00 1/1 0/0 0/0 .rodata          @3643 */
 SECTION_RODATA static f32 const lit_3643 = 10.0f;

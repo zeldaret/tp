@@ -11,6 +11,12 @@
 // Types:
 //
 
+struct mDoMain {
+    static u8 COPYDATE_STRING[18 + 2 /* padding */];
+    static u8 sPowerOnTime[4];
+    static u8 sHungUpTime[4];
+};
+
 struct dRes_control_c {
     /* 8003C638 */ void dump();
 };
@@ -27,6 +33,14 @@ struct JKRHeap {
 
 struct JKRAramHeap {
     /* 802D3218 */ void dump();
+};
+
+struct JKRAram {
+    static u8 sAramObject[4];
+};
+
+struct JFWSystem {
+    static u8 systemConsole[4];
 };
 
 struct DynamicModuleControlBase {
@@ -63,17 +77,17 @@ extern "C" void dumpToTerminal__10JUTConsoleFUi();
 extern "C" void OSTicksToCalendarTime();
 extern "C" void _savegpr_23();
 extern "C" void _restgpr_23();
-extern "C" extern u8 COPYDATE_STRING__7mDoMain[18 + 2 /* padding */];
+extern "C" u8 COPYDATE_STRING__7mDoMain[18 + 2 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 sPowerOnTime__7mDoMain[4];
+extern "C" u8 sPowerOnTime__7mDoMain[4];
 extern "C" extern u8 data_80450B0C[4];
-extern "C" extern u8 sHungUpTime__7mDoMain[4];
+extern "C" u8 sHungUpTime__7mDoMain[4];
 extern "C" extern u8 data_80450B14[4];
 extern "C" extern u8 gameHeap[4];
 extern "C" extern u8 zeldaHeap[4];
 extern "C" extern u8 archiveHeap[4];
-extern "C" extern u8 systemConsole__9JFWSystem[4];
-extern "C" extern u8 sAramObject__7JKRAram[4];
+extern "C" u8 systemConsole__9JFWSystem[4];
+extern "C" u8 sAramObject__7JKRAram[4];
 
 //
 // Declarations:

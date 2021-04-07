@@ -13,6 +13,10 @@
 
 struct node_list_class {};
 
+struct mDoCPd_c {
+    static u8 m_gamePad[16];
+};
+
 struct layer_class {};
 
 struct dShutdownErrorMsg_c {
@@ -102,7 +106,7 @@ extern "C" void pauseAllGameSound__10Z2SoundMgrFb();
 extern "C" void stopPatternedRumble__Q210JUTGamePad7CRumbleFs();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
-extern "C" extern u8 m_gamePad__8mDoCPd_c[16];
+extern "C" u8 m_gamePad__8mDoCPd_c[16];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 data_80450B60[4];
 extern "C" extern u8 struct_80450D38[8];

@@ -61,6 +61,17 @@ struct Z2SoundInfo {
     /* 802BB158 */ void getAudibleSwFull(JAISoundID);
 };
 
+struct Z2Param {
+    static f32 DISTANCE_MAX;
+    static f32 MAX_VOLUME_DISTANCE;
+    static f32 DOLBY_CENTER_VALUE;
+    static f32 DOLBY_FLONT_DISTANCE_MAX;
+    static f32 DOLBY_BEHIND_DISTANCE_MAX;
+    static f32 DISTANCE_FX_PARAM;
+    static f32 SONIC_SPEED;
+    static f32 MIN_DISTANCE_VOLUME;
+};
+
 struct Z2Calc {
     struct CurveSign {};
 
@@ -114,6 +125,10 @@ struct Z2AudibleAbsPos {
     /* 802BBCDC */ void calc(JGeometry::TVec3<f32> const&);
     /* 802BBD18 */ void init(JGeometry::TVec3<f32>*, JGeometry::TVec3<f32> const&,
                              JGeometry::TVec3<f32> const*);
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 template <typename A0>
@@ -227,18 +242,18 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern void* __vt__10JAIAudible[5 + 1 /* padding */];
 extern "C" extern void* __vt__11JAIAudience[8];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern f32 DISTANCE_MAX__7Z2Param;
-extern "C" extern f32 MAX_VOLUME_DISTANCE__7Z2Param;
-extern "C" extern f32 DOLBY_CENTER_VALUE__7Z2Param;
-extern "C" extern f32 DOLBY_FLONT_DISTANCE_MAX__7Z2Param;
-extern "C" extern f32 DOLBY_BEHIND_DISTANCE_MAX__7Z2Param;
-extern "C" extern f32 DISTANCE_FX_PARAM__7Z2Param;
-extern "C" extern f32 SONIC_SPEED__7Z2Param;
+extern "C" u8 sincosTable___5JMath[65536];
+extern "C" f32 DISTANCE_MAX__7Z2Param;
+extern "C" f32 MAX_VOLUME_DISTANCE__7Z2Param;
+extern "C" f32 DOLBY_CENTER_VALUE__7Z2Param;
+extern "C" f32 DOLBY_FLONT_DISTANCE_MAX__7Z2Param;
+extern "C" f32 DOLBY_BEHIND_DISTANCE_MAX__7Z2Param;
+extern "C" f32 DISTANCE_FX_PARAM__7Z2Param;
+extern "C" f32 SONIC_SPEED__7Z2Param;
 extern "C" extern u32 __float_epsilon;
 extern "C" extern u8 data_80450B44[4];
 extern "C" extern u8 data_80450B4C[4];
-extern "C" extern f32 MIN_DISTANCE_VOLUME__7Z2Param;
+extern "C" f32 MIN_DISTANCE_VOLUME__7Z2Param;
 
 //
 // Declarations:

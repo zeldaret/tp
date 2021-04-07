@@ -13,6 +13,10 @@
 
 struct process_node_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
 };
@@ -21,11 +25,17 @@ struct cXyz {};
 
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
+
+    static u8 mGndCheck[84];
 };
 
 struct daNocrm_c {
     /* 801452DC */ void execute();
     /* 80145508 */ void getRoomNo(int);
+};
+
+struct dStage_roomControl_c {
+    static u8 mStatus[65792];
 };
 
 struct cBgS_PolyInfo {};
@@ -68,9 +78,9 @@ extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mGndCheck__11fopAcM_gc_c[84];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
+extern "C" u8 mStatus__20dStage_roomControl_c[65792];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 data_804505F0[8];
 extern "C" extern u8 data_80450D68[4];

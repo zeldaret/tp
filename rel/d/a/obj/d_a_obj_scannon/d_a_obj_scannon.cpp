@@ -15,6 +15,8 @@ struct request_of_phase_process_class {};
 
 struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct J3DAnmTextureSRTKey {};
@@ -28,9 +30,9 @@ struct mDoExt_btkAnm {
     /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -88,6 +90,13 @@ struct daSCannon_c {
     /* 80CC8CDC */ void exeEmtLine();
     /* 80CC8DA0 */ void delEmtAll();
     /* 80CC8DDC */ void setCannonRepair();
+
+    static void* const s_demoTable[12];
+    static u8 s_exeProc[48];
+    static u8 s_demoExeProc_WarpEnd[48];
+    static u8 s_demoExeProc_FireTks[72];
+    static u8 s_demoExeProc_FireFirst[24];
+    static u8 s_demoExeProc_FireSecond[96];
 };
 
 struct cXyz {};
@@ -147,6 +156,10 @@ struct dEvent_manager_c {
     /* 80047E10 */ void getMyActIdx(int, char const* const*, int, int, int);
     /* 800480EC */ void getMySubstanceP(int, char const*, int);
     /* 8004817C */ void cutEnd(int);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dComIfG_play_c {
@@ -217,6 +230,10 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JUTNameTab {
@@ -294,7 +311,13 @@ extern "C" void func_80CC8F14(int*);
 extern "C" void __sinit_d_a_obj_scannon_cpp();
 extern "C" static void func_80CC916C();
 extern "C" static void func_80CC9174();
+extern "C" void* const s_demoTable__11daSCannon_c[12];
 extern "C" extern char const* const d_a_obj_scannon__stringBase0;
+extern "C" u8 s_exeProc__11daSCannon_c[48];
+extern "C" u8 s_demoExeProc_WarpEnd__11daSCannon_c[48];
+extern "C" u8 s_demoExeProc_FireTks__11daSCannon_c[72];
+extern "C" u8 s_demoExeProc_FireFirst__11daSCannon_c[24];
+extern "C" u8 s_demoExeProc_FireSecond__11daSCannon_c[96];
 
 //
 // External References:
@@ -391,12 +414,12 @@ extern "C" void strcmp();
 extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -514,7 +537,7 @@ SECTION_DATA static void* lit_4252[3] = {
 #pragma pop
 
 /* 80CC9378-80CC93A8 000074 0030+00 1/2 0/0 0/0 .data            s_exeProc__11daSCannon_c */
-SECTION_DATA static u8 s_exeProc__11daSCannon_c[48] = {
+SECTION_DATA u8 daSCannon_c::s_exeProc[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -586,14 +609,14 @@ SECTION_DATA static void* lit_4409[3] = {
 #pragma pop
 
 /* 80CC9400-80CC9430 0000FC 0030+00 1/1 0/0 0/0 .data s_demoExeProc_WarpEnd__11daSCannon_c */
-SECTION_DATA static u8 s_demoExeProc_WarpEnd__11daSCannon_c[48] = {
+SECTION_DATA u8 daSCannon_c::s_demoExeProc_WarpEnd[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 80CC9430-80CC9478 00012C 0048+00 1/1 0/0 0/0 .data s_demoExeProc_FireTks__11daSCannon_c */
-SECTION_DATA static u8 s_demoExeProc_FireTks__11daSCannon_c[72] = {
+SECTION_DATA u8 daSCannon_c::s_demoExeProc_FireTks[72] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -622,7 +645,7 @@ SECTION_DATA static void* lit_4411[3] = {
 #pragma pop
 
 /* 80CC9490-80CC94A8 00018C 0018+00 1/1 0/0 0/0 .data s_demoExeProc_FireFirst__11daSCannon_c */
-SECTION_DATA static u8 s_demoExeProc_FireFirst__11daSCannon_c[24] = {
+SECTION_DATA u8 daSCannon_c::s_demoExeProc_FireFirst[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -708,7 +731,7 @@ SECTION_DATA static void* lit_4419[3] = {
 #pragma pop
 
 /* 80CC9508-80CC9568 000204 0060+00 1/1 0/0 0/0 .data s_demoExeProc_FireSecond__11daSCannon_c */
-SECTION_DATA static u8 s_demoExeProc_FireSecond__11daSCannon_c[96] = {
+SECTION_DATA u8 daSCannon_c::s_demoExeProc_FireSecond[96] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1067,21 +1090,21 @@ extern "C" u8 s_demoExeProc_FireFirst__11daSCannon_c[24];
 extern "C" u8 s_demoExeProc_FireSecond__11daSCannon_c[96];
 
 /* 80CC91C4-80CC91F4 -00001 0030+00 2/2 0/0 0/0 .rodata          s_demoTable__11daSCannon_c */
-SECTION_RODATA static void* const s_demoTable__11daSCannon_c[12] = {
-    (void*)&s_demoExeProc_WarpEnd__11daSCannon_c,
+SECTION_RODATA void* const daSCannon_c::s_demoTable[12] = {
+    (void*)&daSCannon_c::s_demoExeProc_WarpEnd,
     (void*)&CUT_TYPE_TABLE_WARP_END,
     (void*)0x00000002,
-    (void*)&s_demoExeProc_FireFirst__11daSCannon_c,
+    (void*)&daSCannon_c::s_demoExeProc_FireFirst,
     (void*)&CUT_TYPE_TABLE_FIRE_FIRST,
     (void*)0x00000001,
-    (void*)&s_demoExeProc_FireTks__11daSCannon_c,
+    (void*)&daSCannon_c::s_demoExeProc_FireTks,
     (void*)&CUT_TYPE_TABLE_FIRE_TKS,
     (void*)0x00000003,
-    (void*)&s_demoExeProc_FireSecond__11daSCannon_c,
+    (void*)&daSCannon_c::s_demoExeProc_FireSecond,
     (void*)&CUT_TYPE_TABLE_FIRE_SECOND,
     (void*)0x00000004,
 };
-COMPILER_STRIP_GATE(80CC91C4, &s_demoTable__11daSCannon_c);
+COMPILER_STRIP_GATE(80CC91C4, &daSCannon_c::s_demoTable);
 
 /* 80CC7EC0-80CC7FAC 0014A0 00EC+00 1/1 0/0 0/0 .text            demoExe__11daSCannon_cFv */
 #pragma push

@@ -42,7 +42,9 @@ struct J3DTextureSRTInfo {};
 
 struct J3DAnmKeyTableBase {};
 
-struct J2DScreen {};
+struct J2DScreen {
+    static u8 mDataManage[4 + 4 /* padding */];
+};
 
 struct J2DResReference {
     /* 8030CF10 */ void getResReference(u16) const;
@@ -189,7 +191,7 @@ extern "C" extern void* __vt__10J2DAnmBase[4];
 extern "C" extern void* __vt__15J2DAnmTransform[5 + 4 /* padding */];
 extern "C" extern void* __vt__10JUTNameTab[3];
 extern "C" extern void* __vt__14J2DAnmVtxColor[5];
-extern "C" extern u8 mDataManage__9J2DScreen[4 + 4 /* padding */];
+extern "C" u8 mDataManage__9J2DScreen[4 + 4 /* padding */];
 
 //
 // Declarations:

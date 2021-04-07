@@ -24,6 +24,9 @@ struct Z2Calc {
     /* 802A96F4 */ void getParamByExp(f32, f32, f32, f32, f32, f32, Z2Calc::CurveSign);
     /* 802A9814 */ void getRandom(f32, f32, f32);
     /* 802A98D4 */ void getRandom_0_1();
+
+    static f32 cEqualCSlope;
+    static f32 cEqualPSlope;
 };
 
 struct JMath {
@@ -43,6 +46,8 @@ extern "C" void getRandom_0_1__6Z2CalcFv();
 extern "C" void setParam__Q26Z2Calc8FNoise1fFfff();
 extern "C" void tau__Q26Z2Calc8FNoise1fFf();
 extern "C" void calcNoise1f__Q26Z2Calc8FNoise1fFv();
+extern "C" f32 cEqualCSlope__6Z2Calc;
+extern "C" f32 cEqualPSlope__6Z2Calc;
 
 //
 // External References:
@@ -70,12 +75,10 @@ asm void Z2Calc::linearTransform(f32 param_0, f32 param_1, f32 param_2, f32 para
 
 /* ############################################################################################## */
 /* 80455820-80455824 003E20 0004+00 0/0 1/1 0/0 .sdata2          cEqualCSlope__6Z2Calc */
-SECTION_SDATA2 extern f32 cEqualCSlope__6Z2Calc;
-SECTION_SDATA2 f32 cEqualCSlope__6Z2Calc = 1.0f;
+SECTION_SDATA2 f32 Z2Calc::cEqualCSlope = 1.0f;
 
 /* 80455824-80455828 003E24 0004+00 0/0 1/1 0/0 .sdata2          cEqualPSlope__6Z2Calc */
-SECTION_SDATA2 extern f32 cEqualPSlope__6Z2Calc;
-SECTION_SDATA2 f32 cEqualPSlope__6Z2Calc = 0.5f;
+SECTION_SDATA2 f32 Z2Calc::cEqualPSlope = 0.5f;
 
 /* 80455828-8045582C 003E28 0004+00 1/1 0/0 0/0 .sdata2          @380 */
 SECTION_SDATA2 static u8 lit_380[4] = {

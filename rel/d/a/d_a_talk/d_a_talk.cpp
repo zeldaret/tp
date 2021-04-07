@@ -46,6 +46,10 @@ struct dEvt_control_c {
     /* 80042468 */ void reset();
 };
 
+struct dAttention_c {
+    static u8 dist_table[6552];
+};
+
 //
 // Forward References:
 //
@@ -89,7 +93,7 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 dist_table__12dAttention_c[6552];
+extern "C" u8 dist_table__12dAttention_c[6552];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //

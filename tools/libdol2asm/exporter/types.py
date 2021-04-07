@@ -51,6 +51,7 @@ class TypeList:
     def __init__(self, context: Context):
         self.context = context
         self.global_types = dict()
+        self.require_forward_c_reference = set()
 
     def build(self, symbols: Set[Symbol]):
         for symbol in symbols:
@@ -119,18 +120,22 @@ class TypeList:
         type.traverse(callback, depth=0)
 
     def convert_symbol_to_types(self, symbol):
-        if not isinstance(symbol, Function):
-            return
+        if isinstance(symbol, Function):
+            struct = None
+            if symbol.has_class:
+                struct = self.get_or_create_type_from_name(
+                    None, -1, self.global_types, symbol.demangled_name.names)
+                struct.symbols.append(symbol)
 
-        struct = None
-        if symbol.has_class:
-            struct = self.get_or_create_type_from_name(
-                None, -1, self.global_types, symbol.func_name.names)
-            struct.symbols.append(symbol)
-
-        self.build_type_structure(struct, symbol.return_type)
-        for arg in symbol.argument_types:
-            self.build_type_structure(struct, arg)
+            self.build_type_structure(struct, symbol.return_type)
+            for arg in symbol.argument_types:
+                self.build_type_structure(struct, arg)
+        elif symbol.demangled_name:
+            if symbol.is_class_symbol:
+                self.require_forward_c_reference.add(symbol)
+                struct = self.get_or_create_type_from_name(
+                    None, -1, self.global_types, symbol.demangled_name.names)
+                struct.symbols.append(symbol)
 
     def struct_dependencies(self, struct):
         deps = set()
@@ -213,7 +218,7 @@ class TypeList:
         if not move_function:
             await builder.write_nonewline(f"{pad}/* {function.addr:08X} */ ")
             if function.template_index >= 0:
-                await builder.write(f"/* {function.func_name.to_str()} */")
+                await builder.write(f"/* {function.demangled_name.to_str()} */")
                 await builder.write_nonewline(f"{pad}")
 
             await function.export_function_header(self, builder,
@@ -221,6 +226,24 @@ class TypeList:
                                                   c_export=False,
                                                   full_qualified_name=False)
             await builder.write(f";")
+
+    async def export_struct_symbol(self, builder, parent, indent, symbol, specialize):
+        pad = "\t" * indent
+        await builder.write_nonewline(f"{pad}")
+
+        # non-function symbols will always be static inside structs
+        if isinstance(parent, Struct):
+            await builder.write_nonewline(f"static ")
+
+        if symbol.template_index >= 0:
+            await builder.write(f"/* {symbol.demangled_name.to_str()} */")
+            await builder.write_nonewline(f"{pad}")
+
+        await symbol.export_declaration_header(self, builder,
+                                                forward=True,
+                                                c_export=False,
+                                                full_qualified_name=False)
+        await builder.write(f";")
 
     async def export_struct(self, builder, struct_index, struct, indent):
         self.struct_export_set.add(struct)
@@ -243,14 +266,23 @@ class TypeList:
         # group functions by name (this is essential grouping templated functions)
         names = defaultdict(list)
         for symbol in set(struct.symbols):
-            names[symbol.func_name.last.name].append(symbol)
+            names[symbol.demangled_name.last.name].append(symbol)
 
         symbols = list(names.items())
         symbols.sort(key=lambda x: min([z.addr for z in x[1]]))
 
+        fsymbols = []
+        ssymbols = []
+
+        for name, functions in symbols:
+            if isinstance(functions[0], Function):
+                fsymbols.append((name, functions))
+            else:
+                ssymbols.append((name, functions))
+
         # export functions
         last_template = False
-        for name, functions in symbols:
+        for name, functions in fsymbols:
             if last_template:
                 await builder.write(f"")
                 last_template = False
@@ -258,28 +290,39 @@ class TypeList:
             if functions[0].template_index >= 0:
                 # export templated functions
                 first_function = functions[0]
+                assert isinstance(first_function, Function)
                 move_function = self.function_requires_move(first_function)
 
                 # export generic function header
                 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 args = [
                     f"{alphabet[i]}{struct.depth+1}"
-                    for i in range(len(first_function.func_name.last.templates))
+                    for i in range(len(first_function.demangled_name.last.templates))
                 ]
                 typename_args = ", ".join([f"typename {x}" for x in args])
                 await builder.write(f"{pad}\ttemplate <{typename_args}>")
                 await builder.write_nonewline(f"{pad}\t")
-                await builder.write_nonewline(f"void {first_function.func_name.last.name}(/* ... */)")
+                await builder.write_nonewline(f"void {first_function.demangled_name.last.name}(/* ... */)")
 
                 await builder.write(f";")
 
                 for function in functions:
+                    assert isinstance(function, Function)
                     await self.export_struct_function(builder, struct, indent + 1, function, True)
                 last_template = True
             else:
-                # export normal functions
+                # export functions
                 for function in functions:
+                    assert isinstance(function, Function)
                     await self.export_struct_function(builder, struct, indent + 1, function, (struct_index >= 0))
+         
+        if len(fsymbols) > 0 and len(ssymbols) > 0:
+            await builder.write("")
+
+        for name, syms in ssymbols:
+            symbol = syms[0]
+            assert not isinstance(symbol, Function)
+            await self.export_struct_symbol(builder, struct, indent + 1, symbol, (struct_index >= 0))
 
         await builder.write(f"{pad}}};")
         await builder.write("")

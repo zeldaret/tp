@@ -27,6 +27,10 @@ struct diff_model_c {
     /* 80049408 */ void insert(modelList_c*);
 };
 
+struct dStage_roomControl_c {
+    static u8 mStatus[65792];
+};
+
 struct J3DModel {};
 
 struct dSmplMdl_draw_c {
@@ -90,7 +94,7 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
+extern "C" u8 mStatus__20dStage_roomControl_c[65792];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];

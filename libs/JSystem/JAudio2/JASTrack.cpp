@@ -55,6 +55,8 @@ struct JASDsp {
         /* 8029E06C */ void setFIR8FilterParam(s16*);
         /* 8029E094 */ void setDistFilter(s16);
     };
+
+    static u32 FILTER_MODE_IIR;
 };
 
 struct JASTrack {
@@ -129,6 +131,12 @@ struct JASTrack {
     /* 80292D88 */ void getRootTrack();
     /* 80292DA0 */ void tickProc();
     /* 80292E9C */ void seqMain();
+
+    static u8 const sAdsTable[24];
+    static u8 const sEnvOsc[24];
+    static u8 const sPitchEnvOsc[24];
+    static u8 sDefaultBankTable[1036];
+    static u8 sTrackList[16];
 };
 
 struct JASSeqCtrl {
@@ -258,6 +266,12 @@ extern "C" void __sinit_JASTrack_cpp();
 extern "C" void __dt__Q28JASTrack5TListFv();
 extern "C" void __dt__19JASDefaultBankTableFv();
 extern "C" void func_80293528(u32);
+extern "C" u8 const sAdsTable__8JASTrack[24];
+extern "C" u8 const sEnvOsc__8JASTrack[24];
+extern "C" u8 const sPitchEnvOsc__8JASTrack[24];
+extern "C" u8 sDefaultBankTable__8JASTrack[1036];
+extern "C" u8 sTrackList__8JASTrack[16];
+extern "C" u32 FILTER_MODE_IIR__6JASDsp;
 
 //
 // External References:
@@ -346,7 +360,7 @@ asm JASTrack::JASTrack() {
 static u8 lit_431[12];
 
 /* 804316B4-80431AC0 05E3D4 040C+00 1/2 0/0 0/0 .bss             sDefaultBankTable__8JASTrack */
-static u8 sDefaultBankTable__8JASTrack[1036];
+u8 JASTrack::sDefaultBankTable[1036];
 
 /* 80431AC0-80431ACC 05E7E0 000C+00 0/1 0/0 0/0 .bss             @433 */
 #pragma push
@@ -355,7 +369,7 @@ static u8 lit_433[12];
 #pragma pop
 
 /* 80431ACC-80431ADC 05E7EC 0010+00 1/2 0/0 0/0 .bss             sTrackList__8JASTrack */
-static u8 sTrackList__8JASTrack[16];
+u8 JASTrack::sTrackList[16];
 
 /* 80431ADC-80431AE8 05E7FC 000C+00 3/3 0/0 0/0 .bss             @470 */
 static u8 lit_470[12];
@@ -396,27 +410,27 @@ asm void JASTrack::setChannelMgrCount(u32 param_0) {
 
 /* ############################################################################################## */
 /* 8039AFD0-8039AFE8 027630 0018+00 1/1 0/0 0/0 .rodata          sAdsTable__8JASTrack */
-SECTION_RODATA static u8 const sAdsTable__8JASTrack[24] = {
+SECTION_RODATA u8 const JASTrack::sAdsTable[24] = {
     0x00, 0x00, 0x00, 0x00, 0x7F, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x7F, 0xFF,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8039AFD0, &sAdsTable__8JASTrack);
+COMPILER_STRIP_GATE(8039AFD0, &JASTrack::sAdsTable);
 
 /* 8039AFE8-8039B000 027648 0018+00 1/2 0/0 0/0 .rodata          sEnvOsc__8JASTrack */
-SECTION_RODATA static u8 const sEnvOsc__8JASTrack[24] = {
+SECTION_RODATA u8 const JASTrack::sEnvOsc[24] = {
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8039AFE8, &sEnvOsc__8JASTrack);
+COMPILER_STRIP_GATE(8039AFE8, &JASTrack::sEnvOsc);
 
 /* 8039B000-8039B018 027660 0018+00 0/1 0/0 0/0 .rodata          sPitchEnvOsc__8JASTrack */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const sPitchEnvOsc__8JASTrack[24] = {
+SECTION_RODATA u8 const JASTrack::sPitchEnvOsc[24] = {
     0x00, 0x00, 0x00, 0x01, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8039B000, &sPitchEnvOsc__8JASTrack);
+COMPILER_STRIP_GATE(8039B000, &JASTrack::sPitchEnvOsc);
 #pragma pop
 
 /* 804555A4-804555A8 003BA4 0004+00 9/9 0/0 0/0 .sdata2          @679 */
@@ -767,7 +781,7 @@ asm void JASTrack::setOscAdsr(s16 param_0, s16 param_1, s16 param_2, s16 param_3
 
 /* ############################################################################################## */
 /* 804555D0-804555D4 003BD0 0004+00 2/2 0/0 0/0 .sdata2          FILTER_MODE_IIR__6JASDsp */
-SECTION_SDATA2 static u32 FILTER_MODE_IIR__6JASDsp = 0x00000020;
+SECTION_SDATA2 u32 JASDsp::FILTER_MODE_IIR = 0x00000020;
 
 /* 8029285C-8029289C 28D19C 0040+00 0/0 2/2 0/0 .text            setFIR__8JASTrackFPCs */
 #pragma push

@@ -27,11 +27,13 @@ struct mDoMtx_stack_c {
     /* 8000CD14 */ void pop();
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
-struct J3DAnmTextureSRTKey {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -50,6 +52,8 @@ struct daObjOnCloth_c {
     /* 805951DC */ void setNormalClothPos();
     /* 805954B0 */ void calcJointAngle();
     /* 80595638 */ void checkPlayerMove();
+
+    static u8 const M_attr[48];
 };
 
 struct dKy_tevstr_c {};
@@ -65,6 +69,14 @@ struct dRes_info_c {};
 
 struct dRes_control_c {
     /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
 };
 
 struct J3DModel {};
@@ -101,6 +113,7 @@ extern "C" static void daObjOnCloth_Delete__FP14daObjOnCloth_c();
 extern "C" void __dt__12ClothJoint_cFv();
 extern "C" static void daObjOnCloth_Create__FP10fopAc_ac_c();
 extern "C" void __ct__12ClothJoint_cFv();
+extern "C" u8 const M_attr__14daObjOnCloth_c[48];
 extern "C" extern char const* const d_a_obj_ornament_cloth__stringBase0;
 
 //
@@ -155,12 +168,12 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 
 //
@@ -169,12 +182,12 @@ extern "C" extern u32 __float_nan;
 
 /* ############################################################################################## */
 /* 80595CB4-80595CE4 000000 0030+00 4/4 0/0 0/0 .rodata          M_attr__14daObjOnCloth_c */
-SECTION_RODATA static u8 const M_attr__14daObjOnCloth_c[48] = {
+SECTION_RODATA u8 const daObjOnCloth_c::M_attr[48] = {
     0x41, 0x00, 0x00, 0x00, 0xC2, 0x20, 0x00, 0x00, 0x3E, 0x99, 0x99, 0x9A, 0x3E, 0xF0, 0xA3, 0xD7,
     0x3E, 0x99, 0x99, 0x9A, 0x43, 0x16, 0x00, 0x00, 0x41, 0x60, 0x00, 0x00, 0x3D, 0xA3, 0xD7, 0x0A,
     0x3F, 0x4C, 0xCC, 0xCD, 0x00, 0x40, 0x04, 0x31, 0x04, 0x31, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80595CB4, &M_attr__14daObjOnCloth_c);
+COMPILER_STRIP_GATE(80595CB4, &daObjOnCloth_c::M_attr);
 
 /* 80595CE4-80595CE8 000030 0004+00 0/1 0/0 0/0 .rodata          @3671 */
 #pragma push

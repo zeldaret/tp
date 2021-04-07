@@ -13,21 +13,23 @@
 
 struct request_of_phase_process_class {};
 
-struct cXyz {};
-
 struct csXyz {};
+
+struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
-struct J3DAnmTextureSRTKey {};
+struct J3DAnmColor {};
 
 struct J3DAnmTevRegKey {};
 
-struct J3DAnmColor {};
+struct J3DAnmTextureSRTKey {};
 
 struct J3DMaterialTable {
     /* 8032F64C */ void removeMatColorAnimator(J3DAnmColor*);
@@ -108,6 +110,9 @@ struct daObjSwpush2 {
         /* 80CFF50C */ void demo_runSw();
         /* 80CFF568 */ void Mthd_Execute();
         /* 80CFF8FC */ void Mthd_Draw();
+
+        static u8 const M_arcname[9 + 3 /* padding */];
+        static void* const M_attr[56];
     };
 };
 
@@ -178,6 +183,10 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DModel {};
 
 struct J3DFrameCtrl {
@@ -238,6 +247,8 @@ extern "C" static void func_80CFFB90();
 extern "C" static void func_80CFFBB0();
 extern "C" void func_80CFFBD0(fopAc_ac_c const*, daObjSwpush2::Act_c::Prm_e,
                               daObjSwpush2::Act_c::Prm_e);
+extern "C" u8 const M_arcname__Q212daObjSwpush25Act_c[9 + 3 /* padding */];
+extern "C" void* const M_attr__Q212daObjSwpush25Act_c[56];
 extern "C" extern char const* const d_a_obj_swpush2__stringBase0;
 
 //
@@ -303,12 +314,12 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" extern u8 struct_80CFFEF8[4];
 
 //
@@ -440,7 +451,7 @@ asm void daObjSwpush2::Act_c::solidHeapCB(fopAc_ac_c* param_0) {
 /* ############################################################################################## */
 /* 80CFFBF4-80CFFC00 000000 0009+03 5/4 0/0 0/0 .rodata          M_arcname__Q212daObjSwpush25Act_c
  */
-SECTION_RODATA static u8 const M_arcname__Q212daObjSwpush25Act_c[9 + 3 /* padding */] = {
+SECTION_RODATA u8 const daObjSwpush2::Act_c::M_arcname[9 + 3 /* padding */] = {
     0x4B,
     0x5F,
     0x73,
@@ -455,40 +466,40 @@ SECTION_RODATA static u8 const M_arcname__Q212daObjSwpush25Act_c[9 + 3 /* paddin
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CFFBF4, &M_arcname__Q212daObjSwpush25Act_c);
+COMPILER_STRIP_GATE(80CFFBF4, &daObjSwpush2::Act_c::M_arcname);
 
 /* 80CFFC00-80CFFCE0 -00001 00E0+00 7/10 0/0 0/0 .rodata          M_attr__Q212daObjSwpush25Act_c */
-SECTION_RODATA static void* const M_attr__Q212daObjSwpush25Act_c[56] = {
+SECTION_RODATA void* const daObjSwpush2::Act_c::M_attr[56] = {
     (void*)0x00002000, (void*)0x00000003,
-    (void*)0x3F800000, (void*)&M_arcname__Q212daObjSwpush25Act_c,
+    (void*)0x3F800000, (void*)&daObjSwpush2::Act_c::M_arcname,
     (void*)0x3F666666, (void*)0x3F19999A,
     (void*)NULL,       (void*)0xBE99999A,
     (void*)0x00010006, (void*)0x0006000D,
     (void*)0x3F800000, (void*)0x40200000,
     (void*)0x00060000, (void*)0x43960000,
     (void*)0x00002000, (void*)0x00000020,
-    (void*)0x3F800000, (void*)&M_arcname__Q212daObjSwpush25Act_c,
+    (void*)0x3F800000, (void*)&daObjSwpush2::Act_c::M_arcname,
     (void*)0x3F666666, (void*)0x3F19999A,
     (void*)NULL,       (void*)0xBE99999A,
     (void*)0x00010006, (void*)0x0006000D,
     (void*)0x3F800000, (void*)0x40200000,
     (void*)0x00060000, (void*)0x43960000,
     (void*)0x00002000, (void*)0x00000013,
-    (void*)0x3F800000, (void*)&M_arcname__Q212daObjSwpush25Act_c,
+    (void*)0x3F800000, (void*)&daObjSwpush2::Act_c::M_arcname,
     (void*)0x3F666666, (void*)0x3F19999A,
     (void*)NULL,       (void*)0xBE99999A,
     (void*)0x00010006, (void*)0x0006000D,
     (void*)0x3F800000, (void*)0x40200000,
     (void*)0x00060000, (void*)0x43960000,
     (void*)0x00008000, (void*)0x0000000B,
-    (void*)0x3FC00000, (void*)&M_arcname__Q212daObjSwpush25Act_c,
+    (void*)0x3FC00000, (void*)&daObjSwpush2::Act_c::M_arcname,
     (void*)0x3F6E147B, (void*)0x3ED70A3D,
     (void*)NULL,       (void*)NULL,
     (void*)0x00040004, (void*)0x000F0004,
     (void*)0x3F800000, (void*)0x40200000,
     (void*)0x00060000, (void*)0x43960000,
 };
-COMPILER_STRIP_GATE(80CFFC00, &M_attr__Q212daObjSwpush25Act_c);
+COMPILER_STRIP_GATE(80CFFC00, &daObjSwpush2::Act_c::M_attr);
 
 /* 80CFFCE0-80CFFCE4 0000EC 0004+00 3/7 0/0 0/0 .rodata          @3857 */
 SECTION_RODATA static f32 const lit_3857 = 1.0f;

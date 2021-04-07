@@ -15,12 +15,18 @@ struct JKRThread {};
 
 struct JKRThreadSwitch {
     /* 802D1A70 */ void enter(JKRThread*, int);
+
+    static u8 sManager[4];
 };
 
 struct JKRSolidHeap {};
 
 struct JKRHeap {
     /* 802CE72C */ void getFreeSize();
+};
+
+struct JKRAram {
+    static u8 sAramObject[4];
 };
 
 struct JAU_JASInitializer {
@@ -150,8 +156,8 @@ extern "C" extern u8 data_80451310[8];
 extern "C" extern u8 data_80451318[8];
 extern "C" extern u8 data_80451320[8];
 extern "C" extern u8 data_80451328[8];
-extern "C" extern u8 sManager__15JKRThreadSwitch[4];
-extern "C" extern u8 sAramObject__7JKRAram[4];
+extern "C" u8 sManager__15JKRThreadSwitch[4];
+extern "C" u8 sAramObject__7JKRAram[4];
 
 //
 // Declarations:

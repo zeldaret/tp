@@ -21,17 +21,19 @@ struct csXyz {
 
 struct mDoMtx_stack_c {
     /* 8000CF0C */ void ZXYrotS(csXyz const&);
+
+    static u8 now[48];
 };
-
-struct mDoExt_McaMorfCallBack2_c {};
-
-struct J3DAnmTransform {};
-
-struct Z2Creature {};
 
 struct J3DModelData {};
 
+struct mDoExt_McaMorfCallBack2_c {};
+
 struct mDoExt_McaMorfCallBack1_c {};
+
+struct Z2Creature {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -82,10 +84,14 @@ struct daNpcPray_c {
     /* 80AB4CA4 */ void _Evt_GetHeart_CutInit(int const&);
     /* 80AB4D34 */ void _Evt_GetHeart_CutMain(int const&);
     /* 80AB5798 */ void adjustShapeAngle();
+
+    static u8 mEvtSeqList[24];
 };
 
 struct daNpcPray_Param_c {
     /* 80AB579C */ ~daNpcPray_Param_c();
+
+    static u8 const m[108];
 };
 
 struct _GXColorS10 {};
@@ -123,6 +129,8 @@ struct daNpcF_c {
     /* 80AB56B8 */ bool setExpressionBtp(int);
     /* 80AB56C0 */ void setExpression(int, f32);
     /* 80AB56C4 */ void drawOtherMdls();
+
+    static u8 mCcDCyl[68];
 };
 
 struct cXyz {
@@ -274,6 +282,10 @@ struct Z2CreatureCitizen {
     /* 802C0E18 */ void playVoice(int);
 };
 
+struct J3DSys {
+    static u8 mCurrentMtx[48];
+};
+
 struct J3DFrameCtrl {
     /* 803283FC */ void init(s16);
     /* 80AB565C */ ~J3DFrameCtrl();
@@ -346,7 +358,9 @@ extern "C" void adjustShapeAngle__11daNpcPray_cFv();
 extern "C" void __dt__17daNpcPray_Param_cFv();
 extern "C" static void func_80AB57E4();
 extern "C" static void func_80AB57EC();
+extern "C" u8 const m__17daNpcPray_Param_c[108];
 extern "C" extern char const* const d_a_npc_prayer__stringBase0;
+extern "C" u8 mEvtSeqList__11daNpcPray_c[24];
 
 //
 // External References:
@@ -467,15 +481,15 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcF_c[68];
+extern "C" u8 mCcDCyl__8daNpcF_c[68];
 extern "C" extern void* __vt__8daNpcF_c[18];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" void __register_global_object();
 
 //
@@ -539,7 +553,7 @@ SECTION_DATA static void* lit_3804[3] = {
 };
 
 /* 80AB5A0C-80AB5A24 000088 0018+00 1/2 0/0 0/0 .data            mEvtSeqList__11daNpcPray_c */
-SECTION_DATA static u8 mEvtSeqList__11daNpcPray_c[24] = {
+SECTION_DATA u8 daNpcPray_c::mEvtSeqList[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -766,7 +780,7 @@ asm daNpcPray_c::~daNpcPray_c() {
 
 /* ############################################################################################## */
 /* 80AB5808-80AB5874 000000 006C+00 14/14 0/0 0/0 .rodata          m__17daNpcPray_Param_c */
-SECTION_RODATA static u8 const m__17daNpcPray_Param_c[108] = {
+SECTION_RODATA u8 const daNpcPray_Param_c::m[108] = {
     0x42, 0x5C, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x43, 0x0C, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
@@ -775,7 +789,7 @@ SECTION_RODATA static u8 const m__17daNpcPray_Param_c[108] = {
     0x42, 0x70, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0xC3, 0x96, 0x00, 0x00,
     0x00, 0x3C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AB5808, &m__17daNpcPray_Param_c);
+COMPILER_STRIP_GATE(80AB5808, &daNpcPray_Param_c::m);
 
 /* 80AB5874-80AB5878 00006C 0004+00 0/1 0/0 0/0 .rodata          @4169 */
 #pragma push

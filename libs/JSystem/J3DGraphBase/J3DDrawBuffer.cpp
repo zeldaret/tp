@@ -37,6 +37,10 @@ struct J3DDrawBuffer {
     /* 803254AC */ void draw() const;
     /* 80325500 */ void drawHead() const;
     /* 80325578 */ void drawTail() const;
+
+    static u8 sortFuncTable[72];
+    static u8 drawFuncTable[24];
+    static u8 entryNum[4 + 4 /* padding */];
 };
 
 //
@@ -58,7 +62,9 @@ extern "C" void draw__13J3DDrawBufferCFv();
 extern "C" void drawHead__13J3DDrawBufferCFv();
 extern "C" void drawTail__13J3DDrawBufferCFv();
 extern "C" void __sinit_J3DDrawBuffer_cpp();
-extern "C" extern u8 entryNum__13J3DDrawBuffer[4 + 4 /* padding */];
+extern "C" u8 sortFuncTable__13J3DDrawBuffer[72];
+extern "C" u8 drawFuncTable__13J3DDrawBuffer[24];
+extern "C" u8 entryNum__13J3DDrawBuffer[4 + 4 /* padding */];
 
 //
 // External References:
@@ -267,7 +273,7 @@ SECTION_DATA static void* lit_997[3] = {
 #pragma pop
 
 /* 803CEC30-803CEC78 02BD50 0048+00 0/1 1/1 0/0 .data            sortFuncTable__13J3DDrawBuffer */
-SECTION_DATA extern u8 sortFuncTable__13J3DDrawBuffer[72] = {
+SECTION_DATA u8 J3DDrawBuffer::sortFuncTable[72] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -296,7 +302,7 @@ SECTION_DATA static void* lit_999[3] = {
 #pragma pop
 
 /* 803CEC90-803CECA8 02BDB0 0018+00 1/2 0/0 0/0 .data            drawFuncTable__13J3DDrawBuffer */
-SECTION_DATA static u8 drawFuncTable__13J3DDrawBuffer[24] = {
+SECTION_DATA u8 J3DDrawBuffer::drawFuncTable[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -348,5 +354,4 @@ SECTION_CTORS void* const _ctors_803255F0 = (void*)__sinit_J3DDrawBuffer_cpp;
 
 /* ############################################################################################## */
 /* 804515E0-804515E8 000AE0 0004+04 0/0 1/1 0/0 .sbss            entryNum__13J3DDrawBuffer */
-extern u8 entryNum__13J3DDrawBuffer[4 + 4 /* padding */];
-u8 entryNum__13J3DDrawBuffer[4 + 4 /* padding */];
+u8 J3DDrawBuffer::entryNum[4 + 4 /* padding */];

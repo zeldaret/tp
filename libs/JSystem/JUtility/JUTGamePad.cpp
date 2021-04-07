@@ -15,6 +15,8 @@ struct PADStatus {};
 
 struct JUTGamePadLongPress {
     /* 802E1AFC */ void checkCallback(int, u32);
+
+    static u8 sPatternList[12];
 };
 
 struct JUTGamePad {
@@ -36,6 +38,9 @@ struct JUTGamePad {
         /* 802E1238 */ void update(s8, s8, JUTGamePad::EStickMode, JUTGamePad::EWhichStick, u32);
         /* 802E1500 */ void getButton(u32);
         /* 802E1CA8 */ CStick();
+
+        static f32 sPressPoint;
+        static f32 sReleasePoint;
     };
 
     struct CRumble {
@@ -51,6 +56,19 @@ struct JUTGamePad {
         /* 802E1948 */ void stopPatternedRumble(s16);
         /* 802E1978 */ void stopPatternedRumbleAtThePeriod();
         /* 802E19D8 */ void setEnabled(u32);
+
+        static u8 sChannelMask[16];
+        static u8 mStatus[4];
+        static u8 mEnabled[4];
+    };
+
+    struct C3ButtonReset {
+        static u32 sResetPattern;
+        static u32 sResetMaskPattern;
+        static u8 sCallback[4];
+        static u8 sCallbackArg[4 + 4 /* padding */];
+        static u8 sThreshold[4];
+        static u8 sResetOccurredPort[4];
     };
 
     /* 802E06DC */ JUTGamePad(JUTGamePad::EPadPort);
@@ -66,6 +84,18 @@ struct JUTGamePad {
     /* 802E1024 */ void clearForReset();
     /* 802E199C */ void getGamePad(int);
     /* 802E1A98 */ void recalibrate(u32);
+
+    static u8 mPadList[12];
+    static u8 mPadStatus[48];
+    static u8 mPadButton[192];
+    static u8 mPadMStick[64];
+    static u8 mPadSStick[64];
+    static u32 sStickMode;
+    static u32 sClampMode;
+    static u8 mPadAssign[4];
+    static u8 sSuppressPadReset[4];
+    static u8 sAnalogMode[4];
+    static u8 sRumbleSupported[4];
 };
 
 struct JSUPtrLink {
@@ -139,6 +169,29 @@ extern "C" void func_802E1C54();
 extern "C" void __ct__Q210JUTGamePad6CStickFv();
 extern "C" void __ct__Q210JUTGamePad7CButtonFv();
 extern "C" void func_802E1D08();
+extern "C" u8 sChannelMask__Q210JUTGamePad7CRumble[16];
+extern "C" u8 mPadList__10JUTGamePad[12];
+extern "C" u8 mPadStatus__10JUTGamePad[48];
+extern "C" u8 mPadButton__10JUTGamePad[192];
+extern "C" u8 mPadMStick__10JUTGamePad[64];
+extern "C" u8 mPadSStick__10JUTGamePad[64];
+extern "C" u8 sPatternList__19JUTGamePadLongPress[12];
+extern "C" u32 sStickMode__10JUTGamePad;
+extern "C" u32 sClampMode__10JUTGamePad;
+extern "C" f32 sPressPoint__Q210JUTGamePad6CStick;
+extern "C" f32 sReleasePoint__Q210JUTGamePad6CStick;
+extern "C" u32 sResetPattern__Q210JUTGamePad13C3ButtonReset;
+extern "C" u32 sResetMaskPattern__Q210JUTGamePad13C3ButtonReset;
+extern "C" u8 mPadAssign__10JUTGamePad[4];
+extern "C" u8 sSuppressPadReset__10JUTGamePad[4];
+extern "C" u8 sAnalogMode__10JUTGamePad[4];
+extern "C" u8 sRumbleSupported__10JUTGamePad[4];
+extern "C" u8 mStatus__Q210JUTGamePad7CRumble[4];
+extern "C" u8 mEnabled__Q210JUTGamePad7CRumble[4];
+extern "C" u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
+extern "C" u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
+extern "C" u8 sThreshold__Q210JUTGamePad13C3ButtonReset[4];
+extern "C" u8 sResetOccurredPort__Q210JUTGamePad13C3ButtonReset[4];
 
 //
 // External References:
@@ -184,7 +237,7 @@ extern "C" extern u32 __float_nan;
 
 /* ############################################################################################## */
 /* 803CC5F0-803CC600 029710 0010+00 3/3 0/0 0/0 .data sChannelMask__Q210JUTGamePad7CRumble */
-SECTION_DATA static u8 sChannelMask__Q210JUTGamePad7CRumble[16] = {
+SECTION_DATA u8 JUTGamePad::CRumble::sChannelMask[16] = {
     0x80, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00,
 };
 
@@ -206,13 +259,13 @@ SECTION_DATA extern void* __vt__10JUTGamePad[3 + 1 /* padding */] = {
 static u8 lit_525[12];
 
 /* 804343E4-804343F0 061104 000C+00 4/6 0/0 0/0 .bss             mPadList__10JUTGamePad */
-static u8 mPadList__10JUTGamePad[12];
+u8 JUTGamePad::mPadList[12];
 
 /* 804514D0-804514D4 0009D0 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_804514D0[4];
 
 /* 804514D4-804514D8 0009D4 0004+00 3/3 0/0 0/0 .sbss            mPadAssign__10JUTGamePad */
-static u8 mPadAssign__10JUTGamePad[4];
+u8 JUTGamePad::mPadAssign[4];
 
 /* 802E06DC-802E07B0 2DB01C 00D4+00 0/0 4/4 0/0 .text __ct__10JUTGamePadFQ210JUTGamePad8EPadPort
  */
@@ -247,11 +300,10 @@ asm void JUTGamePad::initList() {
 
 /* ############################################################################################## */
 /* 804514D8-804514DC 0009D8 0004+00 2/2 0/0 0/0 .sbss            sSuppressPadReset__10JUTGamePad */
-static u8 sSuppressPadReset__10JUTGamePad[4];
+u8 JUTGamePad::sSuppressPadReset[4];
 
 /* 804514DC-804514E0 0009DC 0004+00 1/1 1/1 0/0 .sbss            sAnalogMode__10JUTGamePad */
-extern u8 sAnalogMode__10JUTGamePad[4];
-u8 sAnalogMode__10JUTGamePad[4];
+u8 JUTGamePad::sAnalogMode[4];
 
 /* 802E0898-802E08D0 2DB1D8 0038+00 0/0 1/1 0/0 .text            init__10JUTGamePadFv */
 #pragma push
@@ -275,33 +327,31 @@ asm void JUTGamePad::clear() {
 
 /* ############################################################################################## */
 /* 804343F0-80434420 061110 0030+00 1/3 1/1 0/0 .bss             mPadStatus__10JUTGamePad */
-extern u8 mPadStatus__10JUTGamePad[48];
-u8 mPadStatus__10JUTGamePad[48];
+u8 JUTGamePad::mPadStatus[48];
 
 /* 80434420-804344E0 061140 00C0+00 1/4 0/0 0/0 .bss             mPadButton__10JUTGamePad */
-static u8 mPadButton__10JUTGamePad[192];
+u8 JUTGamePad::mPadButton[192];
 
 /* 804344E0-80434520 061200 0040+00 0/3 0/0 0/0 .bss             mPadMStick__10JUTGamePad */
 #pragma push
 #pragma force_active on
-static u8 mPadMStick__10JUTGamePad[64];
+u8 JUTGamePad::mPadMStick[64];
 #pragma pop
 
 /* 80434520-80434560 061240 0040+00 0/3 0/0 0/0 .bss             mPadSStick__10JUTGamePad */
 #pragma push
 #pragma force_active on
-static u8 mPadSStick__10JUTGamePad[64];
+u8 JUTGamePad::mPadSStick[64];
 #pragma pop
 
 /* 804508D8-804508DC 000358 0004+00 1/1 0/0 0/0 .sdata           sStickMode__10JUTGamePad */
-SECTION_SDATA static u32 sStickMode__10JUTGamePad = 0x00000001;
+SECTION_SDATA u32 JUTGamePad::sStickMode = 0x00000001;
 
 /* 804508DC-804508E0 00035C 0004+00 2/2 0/0 0/0 .sdata           sClampMode__10JUTGamePad */
-SECTION_SDATA static u32 sClampMode__10JUTGamePad = 0x00000001;
+SECTION_SDATA u32 JUTGamePad::sClampMode = 0x00000001;
 
 /* 804514E0-804514E4 0009E0 0004+00 1/1 2/2 0/0 .sbss            sRumbleSupported__10JUTGamePad */
-extern u8 sRumbleSupported__10JUTGamePad[4];
-u8 sRumbleSupported__10JUTGamePad[4];
+u8 JUTGamePad::sRumbleSupported[4];
 
 /* 802E08E4-802E0BBC 2DB224 02D8+00 0/0 2/2 0/0 .text            read__10JUTGamePadFv */
 #pragma push
@@ -325,22 +375,20 @@ asm void JUTGamePad::assign() {
 
 /* ############################################################################################## */
 /* 804514E4-804514E8 0009E4 0004+00 5/5 0/0 0/0 .sbss            mStatus__Q210JUTGamePad7CRumble */
-static u8 mStatus__Q210JUTGamePad7CRumble[4];
+u8 JUTGamePad::CRumble::mStatus[4];
 
 /* 804514E8-804514EC 0009E8 0004+00 5/5 0/0 0/0 .sbss            mEnabled__Q210JUTGamePad7CRumble */
-static u8 mEnabled__Q210JUTGamePad7CRumble[4];
+u8 JUTGamePad::CRumble::mEnabled[4];
 
 /* 804514EC-804514F0 0009EC 0004+00 2/2 4/4 0/0 .sbss sCallback__Q210JUTGamePad13C3ButtonReset */
-extern u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
-u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
+u8 JUTGamePad::C3ButtonReset::sCallback[4];
 
 /* 804514F0-804514F8 0009F0 0004+04 2/2 4/4 0/0 .sbss sCallbackArg__Q210JUTGamePad13C3ButtonReset
  */
-extern u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
-u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
+u8 JUTGamePad::C3ButtonReset::sCallbackArg[4 + 4 /* padding */];
 
 /* 804514F8-804514FC 0009F8 0004+00 2/2 0/0 0/0 .sbss sThreshold__Q210JUTGamePad13C3ButtonReset */
-static u8 sThreshold__Q210JUTGamePad13C3ButtonReset[4];
+u8 JUTGamePad::C3ButtonReset::sThreshold[4];
 
 /* 804514FC-80451500 0009FC 0004+00 2/2 0/0 0/0 .sbss            None */
 static u8 data_804514FC[4];
@@ -353,7 +401,7 @@ u8 struct_80451500[4];
 
 /* 80451504-80451508 000A04 0004+00 2/2 0/0 0/0 .sbss
  * sResetOccurredPort__Q210JUTGamePad13C3ButtonReset            */
-static u8 sResetOccurredPort__Q210JUTGamePad13C3ButtonReset[4];
+u8 JUTGamePad::C3ButtonReset::sResetOccurredPort[4];
 
 /* 802E0C6C-802E0CD8 2DB5AC 006C+00 1/1 1/1 0/0 .text            checkResetCallback__10JUTGamePadFx
  */
@@ -375,22 +423,22 @@ static u8 lit_1373[12];
 
 /* 8043456C-80434578 06128C 000C+00 1/2 0/0 0/0 .bss             sPatternList__19JUTGamePadLongPress
  */
-static u8 sPatternList__19JUTGamePadLongPress[12];
+u8 JUTGamePadLongPress::sPatternList[12];
 
 /* 804508E0-804508E4 000360 0004+00 1/1 0/0 0/0 .sdata           sPressPoint__Q210JUTGamePad6CStick
  */
-SECTION_SDATA static f32 sPressPoint__Q210JUTGamePad6CStick = 0.5f;
+SECTION_SDATA f32 JUTGamePad::CStick::sPressPoint = 0.5f;
 
 /* 804508E4-804508E8 000364 0004+00 1/1 0/0 0/0 .sdata sReleasePoint__Q210JUTGamePad6CStick */
-SECTION_SDATA static f32 sReleasePoint__Q210JUTGamePad6CStick = 0.25f;
+SECTION_SDATA f32 JUTGamePad::CStick::sReleasePoint = 0.25f;
 
 /* 804508E8-804508EC 000368 0004+00 1/1 0/0 0/0 .sdata
  * sResetPattern__Q210JUTGamePad13C3ButtonReset                 */
-SECTION_SDATA static u32 sResetPattern__Q210JUTGamePad13C3ButtonReset = 0x00001600;
+SECTION_SDATA u32 JUTGamePad::C3ButtonReset::sResetPattern = 0x00001600;
 
 /* 804508EC-804508F0 00036C 0004+00 1/1 0/0 0/0 .sdata
  * sResetMaskPattern__Q210JUTGamePad13C3ButtonReset             */
-SECTION_SDATA static u32 sResetMaskPattern__Q210JUTGamePad13C3ButtonReset = 0x0000FFFF;
+SECTION_SDATA u32 JUTGamePad::C3ButtonReset::sResetMaskPattern = 0x0000FFFF;
 
 /* 802E0CD8-802E0FA4 2DB618 02CC+00 2/2 0/0 0/0 .text            update__10JUTGamePadFv */
 #pragma push

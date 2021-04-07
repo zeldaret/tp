@@ -24,6 +24,8 @@ struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
     /* 807E2858 */ void multVec(Vec const*, Vec*);
     /* 807E288C */ void YrotS(s16);
+
+    static u8 now[48];
 };
 
 struct _GXColor {};
@@ -33,15 +35,15 @@ struct mDoGph_gInf_c {
     /* 807DFAB4 */ void fadeIn(f32, _GXColor&);
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {};
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -70,6 +72,10 @@ struct mDoExt_3DlineMat1_c {
     /* 807E1CB0 */ mDoExt_3DlineMat1_c();
 };
 
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
+};
+
 struct himo_s {
     /* 807E1CCC */ ~himo_s();
     /* 807E1D2C */ himo_s();
@@ -94,6 +100,8 @@ struct cXyz {
 
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
+
+    static f32 mGroundY;
 };
 
 struct e_wb_class {};
@@ -138,6 +146,10 @@ struct dVibration_c {
     /* 8006FA24 */ void StartShock(int, int, cXyz);
     /* 8006FB10 */ void StartQuake(int, int, cXyz);
     /* 8006FD94 */ void StopQuake(int);
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -199,6 +211,10 @@ struct dEvent_manager_c {
     /* 80047B1C */ void getMyStaffId(char const*, fopAc_ac_c*, int);
     /* 800480EC */ void getMySubstanceP(int, char const*, int);
     /* 8004817C */ void cutEnd(int);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dComIfG_play_c {
@@ -362,11 +378,23 @@ struct Z2CreatureRide {
     /* 802C520C */ void init(Vec*, Vec*, u8, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
 };
 
 struct J3DModel {};
@@ -698,26 +726,26 @@ extern "C" void strcmp();
 extern "C" extern void* __vt__19mDoExt_3DlineMat1_c[5];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 g_blackColor;
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 struct_80450C98[4];
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" f32 mGroundY__11fopAcM_gc_c;
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 extern "C" void SetB_Close__14daObjCRVGATE_cFv();
 extern "C" void OpenSet__15daObjCRVSTEEL_cFff();

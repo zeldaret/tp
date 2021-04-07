@@ -35,13 +35,13 @@ SYMBOLS = [
 	{'addr':0x80485E88,'size':48,'pad':0,'label':"Delete__12daSetBgObj_cFv",'name':"Delete__12daSetBgObj_cFv",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
 	{'addr':0x80485EB8,'size':32,'pad':0,'label':"daSetBgObj_Delete__FP12daSetBgObj_c",'name':"daSetBgObj_Delete__FP12daSetBgObj_c",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
 	{'addr':0x80485ED8,'size':32,'pad':0,'label':"daSetBgObj_Create__FP10fopAc_ac_c",'name':"daSetBgObj_Create__FP10fopAc_ac_c",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
-	{'addr':0x80485EF8,'size':4,'pad':0,'label':"_ctors",'name':"_ctors",'lib':-1,'tu':1,'section':1,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
-	{'addr':0x80485EFC,'size':4,'pad':0,'label':"_dtors",'name':"_dtors",'lib':-1,'tu':2,'section':2,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
-	{'addr':0x80485F00,'size':9,'pad':3,'label':"l_specName",'name':"l_specName",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
-	{'addr':0x80485F0C,'size':3,'pad':0,'label':"d_a_set_bgobj__stringBase0",'name':"@stringBase0",'lib':-1,'tu':3,'section':3,'class_template':False,'static':False,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"StringBase"},
-	{'addr':0x80485F10,'size':10,'pad':2,'label':"l_bg_profName",'name':"l_bg_profName$3618",'lib':-1,'tu':3,'section':4,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
-	{'addr':0x80485F1C,'size':32,'pad':0,'label':"l_daSetBgObj_Method",'name':"l_daSetBgObj_Method",'lib':-1,'tu':3,'section':4,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
-	{'addr':0x80485F3C,'size':48,'pad':0,'label':"g_profile_SET_BG_OBJ",'name':"g_profile_SET_BG_OBJ",'lib':-1,'tu':3,'section':4,'class_template':False,'static':False,'is_reachable':False,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80485EF8,'size':4,'pad':0,'label':"_ctors",'name':"_ctors",'lib':-1,'tu':1,'section':1,'class_template':None,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
+	{'addr':0x80485EFC,'size':4,'pad':0,'label':"_dtors",'name':"_dtors",'lib':-1,'tu':2,'section':2,'class_template':None,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
+	{'addr':0x80485F00,'size':9,'pad':3,'label':"l_specName",'name':"l_specName",'lib':-1,'tu':3,'section':3,'class_template':None,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x80485F0C,'size':3,'pad':0,'label':"d_a_set_bgobj__stringBase0",'name':"@stringBase0",'lib':-1,'tu':3,'section':3,'class_template':None,'static':False,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"StringBase"},
+	{'addr':0x80485F10,'size':10,'pad':2,'label':"l_bg_profName",'name':"l_bg_profName$3618",'lib':-1,'tu':3,'section':4,'class_template':None,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x80485F1C,'size':32,'pad':0,'label':"l_daSetBgObj_Method",'name':"l_daSetBgObj_Method",'lib':-1,'tu':3,'section':4,'class_template':None,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80485F3C,'size':48,'pad':0,'label':"g_profile_SET_BG_OBJ",'name':"g_profile_SET_BG_OBJ",'lib':-1,'tu':3,'section':4,'class_template':None,'static':False,'is_reachable':False,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
 ]
 
 # Names

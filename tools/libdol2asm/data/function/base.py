@@ -18,15 +18,13 @@ special_func_no_return = set([
 class Function(Symbol):
     return_type: Type = None
     argument_types: List[Type] = field(default_factory=list)
-    func_name: libdemangle.QualifiedName = None
     special_func_name: str = None
     func_is_const: bool = False
-    template_index: int = -1
     asm: bool = False
 
     @property
     def uses_any_templates(self):
-        if self.func_name and self.func_name.has_template:
+        if self.demangled_name and self.demangled_name.has_template:
             return True
 
         is_templated = [False]
@@ -45,10 +43,6 @@ class Function(Symbol):
         return is_templated[0]
 
     @property
-    def uses_class_template(self):
-        return self.func_name and self.func_name.has_template
-
-    @property
     def is_static(self):
         s = self.reference_count.static
         e = self.reference_count.extern
@@ -57,7 +51,7 @@ class Function(Symbol):
         if not static_by_references:
             return False
 
-        if not self.func_name:
+        if not self.demangled_name:
             # very arbitrary, but function begining with __ are often special
             if self.identifier.name and self.identifier.name.startswith("__"):
                 return False
@@ -70,13 +64,13 @@ class Function(Symbol):
         return self.identifier.label
 
     def function_name(self, c_export: bool, full_qualified_name: bool):
-        if not self.func_name or c_export:
+        if not self.demangled_name or c_export:
             return self.identifier.label
 
-        if self.func_name.require_specialization:
+        if self.demangled_name.require_specialization:
             return self.identifier.label
 
-        name = self.func_name
+        name = self.demangled_name
         if self.special_func_name and self.has_class:
             # fix up the constructor and destructor if the function is template specialized
             special_name = None
@@ -87,15 +81,12 @@ class Function(Symbol):
 
             if special_name:
                 name = NamedType(
-                    self.func_name.names[:-1] + [ClassName(special_name, [])])
+                    self.demangled_name.names[:-1] + [ClassName(special_name, [])])
 
         if full_qualified_name:
             return name.to_str()
         else:
             return name.last.to_str()
-
-    def is_demangled(self):
-        return self.func_name != None
 
     def valid_reference(self, addr):
         return addr % 4 == 0
@@ -114,14 +105,6 @@ class Function(Symbol):
 
     def types(self):
         return set()
-
-    @property
-    def has_class(self):
-        return self.func_name and self.func_name.has_class
-
-    @property
-    def has_template(self):
-        return self.func_name and self.func_name.has_template
 
     async def export_function_header(self, exporter,
                                      builder: AsyncBuilder,
@@ -158,7 +141,7 @@ class Function(Symbol):
 
         if self._section == ".init":
             await builder.write_nonewline(f"SECTION_INIT ")
-        elif c_export or (self.func_name and self.func_name.require_specialization and full_qualified_name):
+        elif c_export or (self.demangled_name and self.demangled_name.require_specialization and full_qualified_name):
             await builder.write_nonewline(f"extern \"C\" ")
 
         if self.is_static and not self.has_class:
@@ -173,7 +156,7 @@ class Function(Symbol):
         is_special_function = (
             self.special_func_name in special_func_no_return)
         specialized = (
-            self.func_name and self.func_name.require_specialization)
+            self.demangled_name and self.demangled_name.require_specialization)
         if c_export:
             await builder.write_nonewline(f"{return_type.type()} ")
             await builder.write_nonewline(f"{self.function_name(c_export=True,full_qualified_name=full_qualified_name)}")

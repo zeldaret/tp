@@ -13,37 +13,42 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80490DCC */ ~cXyz();
-};
 
-struct csXyz {};
+    static u8 BaseX[12];
+    static u8 BaseY[12];
+};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct mDoHIO_entry_c {
     /* 80490E08 */ ~mDoHIO_entry_c();
 };
 
-struct J3DAnmTevRegKey {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTevRegKey {};
 
 struct mDoExt_brkAnm {
     /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
     /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -58,10 +63,14 @@ struct fopAc_ac_c {};
 
 struct fopAcM_lc_c {
     /* 8001DC68 */ void lineCheck(cXyz const*, cXyz const*, fopAc_ac_c const*);
+
+    static u8 mLineCheck[112];
 };
 
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
+
+    static f32 mGroundY;
 };
 
 struct daTbox_c {
@@ -141,6 +150,10 @@ struct daTbox_HIO_c {
     /* 804960B8 */ ~daTbox_HIO_c();
 };
 
+struct daPy_py_c {
+    static u8 m_midnaActor[4];
+};
+
 struct dVibration_c {
     /* 8006FA24 */ void StartShock(int, int, cXyz);
 };
@@ -197,11 +210,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
 };
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -209,6 +222,10 @@ struct dPa_control_c {
                             cXyz const*, f32);
     /* 8004D068 */ void setPoly(u16, cBgS_PolyInfo&, cXyz const*, dKy_tevstr_c const*, csXyz const*,
                                 cXyz const*, int, dPa_levelEcallBack*, s8, cXyz const*);
+};
+
+struct dItem_data {
+    static u8 item_info[1020 + 4 /* padding */];
 };
 
 struct dEvt_info_c {
@@ -366,7 +383,15 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct LIGHT_INFLUENCE {};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
 
 struct J3DModel {};
 
@@ -625,22 +650,22 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 item_info__10dItem_data[1020 + 4 /* padding */];
+extern "C" u8 item_info__10dItem_data[1020 + 4 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mLineCheck__11fopAcM_lc_c[112];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mLineCheck__11fopAcM_lc_c[112];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 BaseX__4cXyz[12];
-extern "C" extern u8 BaseY__4cXyz[12];
+extern "C" u8 BaseX__4cXyz[12];
+extern "C" u8 BaseY__4cXyz[12];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" f32 mGroundY__11fopAcM_gc_c;
+extern "C" u8 m_midnaActor__9daPy_py_c[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //

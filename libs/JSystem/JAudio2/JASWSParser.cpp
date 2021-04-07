@@ -15,7 +15,9 @@ struct JKRHeap {
     /* 802CE72C */ void getFreeSize();
 };
 
-struct JASWaveInfo {};
+struct JASWaveInfo {
+    static u32 one[1 + 1 /* padding */];
+};
 
 struct JASWaveArc {
     /* 8029A70C */ void setFileName(char const*);
@@ -26,6 +28,8 @@ struct JASWSParser {
     /* 80298FD8 */ void createWaveBank(void const*, JKRHeap*);
     /* 80299034 */ void createBasicWaveBank(void const*, JKRHeap*);
     /* 80299264 */ void createSimpleWaveBank(void const*, JKRHeap*);
+
+    static u8 sUsedHeapSize[4 + 4 /* padding */];
 };
 
 struct JASSimpleWaveBank {
@@ -61,6 +65,7 @@ extern "C" void func_802994D8(void const*, u32);
 extern "C" void func_802994F0(void const*, u32);
 extern "C" void func_80299508(void const*, u32);
 extern "C" void func_80299520(void const*, u32);
+extern "C" u8 sUsedHeapSize__11JASWSParser[4 + 4 /* padding */];
 
 //
 // External References:
@@ -83,7 +88,7 @@ extern "C" void _savegpr_20();
 extern "C" void _savegpr_23();
 extern "C" void _restgpr_20();
 extern "C" void _restgpr_23();
-extern "C" extern u32 one__11JASWaveInfo[1 + 1 /* padding */];
+extern "C" u32 one__11JASWaveInfo[1 + 1 /* padding */];
 extern "C" extern u8 JASDram[4];
 
 //
@@ -113,7 +118,7 @@ asm void JASWSParser::createWaveBank(void const* param_0, JKRHeap* param_1) {
 
 /* ############################################################################################## */
 /* 80451280-80451288 000780 0004+04 2/2 0/0 0/0 .sbss            sUsedHeapSize__11JASWSParser */
-static u8 sUsedHeapSize__11JASWSParser[4 + 4 /* padding */];
+u8 JASWSParser::sUsedHeapSize[4 + 4 /* padding */];
 
 /* 80299034-80299264 293974 0230+00 1/1 0/0 0/0 .text
  * createBasicWaveBank__11JASWSParserFPCvP7JKRHeap              */

@@ -11,10 +11,18 @@
 // Types:
 //
 
+struct mDoGph_gInf_c {
+    static u8 mFader[4];
+};
+
 struct JKRHeap {};
 
 struct mDoDvdThd_mountArchive_c {
     /* 80015E14 */ void create(char const*, u8, JKRHeap*);
+};
+
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
 };
 
 struct dMsgString_c {
@@ -28,11 +36,11 @@ struct dMeter2Info_c {
     /* 8021C544 */ void getStringKanji(u32, char*, JMSMesgEntry_c*);
 };
 
-struct STControl {};
-
 struct JKRExpHeap {};
 
 struct CSTControl {};
+
+struct STControl {};
 
 struct dMenu_Fishing_c {
     /* 801C4D54 */ dMenu_Fishing_c(JKRExpHeap*, STControl*, CSTControl*);
@@ -156,11 +164,11 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void strcpy();
 extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_drawHIO[3880];
 extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
+extern "C" u8 mFader__13mDoGph_gInf_c[4];
 
 //
 // Declarations:

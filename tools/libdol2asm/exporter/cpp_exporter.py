@@ -309,6 +309,8 @@ class CPPExporter:
             for symbol in symbols:
                 if isinstance(symbol, StringBase):
                     continue
+                if symbol in type_list.require_forward_c_reference:
+                    continue
                 already_fixed_forward_reference.add(symbol)
 
         forward_references = list(decl_references - already_fixed_forward_reference)

@@ -15,6 +15,8 @@ struct request_of_phase_process_class {};
 
 struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct mDoHIO_entry_c {
@@ -39,6 +41,9 @@ struct daTaFence_c {
     /* 80D05E54 */ void modeMoveEnd();
     /* 80D05E58 */ void Draw();
     /* 80D05EFC */ void Delete();
+
+    static u8 const mCcDObjInfo[48];
+    static u8 mCcDCyl[68];
 };
 
 struct daTaFence_HIO_c {
@@ -158,6 +163,14 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 //
@@ -193,7 +206,9 @@ extern "C" static void daTaFence_Create__FP10fopAc_ac_c();
 extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" void __dt__15daTaFence_HIO_cFv();
 extern "C" void __sinit_d_a_obj_taFence_cpp();
+extern "C" u8 const mCcDObjInfo__11daTaFence_c[48];
 extern "C" extern char const* const d_a_obj_taFence__stringBase0;
+extern "C" u8 mCcDCyl__11daTaFence_c[68];
 
 //
 // External References:
@@ -261,12 +276,12 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sincosTable___5JMath[65536];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -383,7 +398,7 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80D061C4-80D06208 000020 0044+00 2/2 0/0 0/0 .data            mCcDCyl__11daTaFence_c */
-SECTION_DATA static u8 mCcDCyl__11daTaFence_c[68] = {
+SECTION_DATA u8 daTaFence_c::mCcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -631,12 +646,12 @@ asm void daTaFence_c::Execute(f32 (**param_0)[3][4]) {
 
 /* ############################################################################################## */
 /* 80D06114-80D06144 000034 0030+00 1/1 0/0 0/0 .rodata          mCcDObjInfo__11daTaFence_c */
-SECTION_RODATA static u8 const mCcDObjInfo__11daTaFence_c[48] = {
+SECTION_RODATA u8 const daTaFence_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x40, 0x00, 0x32, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D06114, &mCcDObjInfo__11daTaFence_c);
+COMPILER_STRIP_GATE(80D06114, &daTaFence_c::mCcDObjInfo);
 
 /* 80D06144-80D06174 000064 0030+00 0/1 0/0 0/0 .rodata          l_check_area */
 #pragma push

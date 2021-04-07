@@ -33,6 +33,11 @@ struct TAdaptor {
 
 struct TAdaptor_particle {
     /* 8028770C */ ~TAdaptor_particle();
+
+    static u8 const sauVariableValue_3_TRANSLATION_XYZ[12];
+    static u8 const sauVariableValue_3_ROTATION_XYZ[12];
+    static u8 const sauVariableValue_3_SCALING_XYZ[12];
+    static u8 const sauVariableValue_4_COLOR_RGBA[16];
 };
 
 struct TControl {
@@ -174,10 +179,10 @@ extern "C" void __construct_array();
 extern "C" void __cvt_fp2unsigned();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
-extern "C" extern u8 const sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio17TAdaptor_particle[12];
-extern "C" extern u8 const sauVariableValue_3_ROTATION_XYZ__Q27JStudio17TAdaptor_particle[12];
-extern "C" extern u8 const sauVariableValue_3_SCALING_XYZ__Q27JStudio17TAdaptor_particle[12];
-extern "C" extern u8 const sauVariableValue_4_COLOR_RGBA__Q27JStudio17TAdaptor_particle[16];
+extern "C" u8 const sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio17TAdaptor_particle[12];
+extern "C" u8 const sauVariableValue_3_ROTATION_XYZ__Q27JStudio17TAdaptor_particle[12];
+extern "C" u8 const sauVariableValue_3_SCALING_XYZ__Q27JStudio17TAdaptor_particle[12];
+extern "C" u8 const sauVariableValue_4_COLOR_RGBA__Q27JStudio17TAdaptor_particle[16];
 extern "C" extern void* __vt__18JPAEmitterCallBack[7];
 extern "C" extern void* __vt__Q27JStudio17TAdaptor_particle[19];
 extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];

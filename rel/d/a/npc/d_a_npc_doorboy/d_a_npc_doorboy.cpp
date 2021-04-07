@@ -13,15 +13,19 @@
 
 struct request_of_phase_process_class {};
 
-struct mDoExt_McaMorfCallBack2_c {};
-
-struct J3DAnmTransform {};
-
-struct Z2Creature {};
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
 
 struct J3DModelData {};
 
+struct mDoExt_McaMorfCallBack2_c {};
+
 struct mDoExt_McaMorfCallBack1_c {};
+
+struct Z2Creature {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -37,9 +41,9 @@ struct fopAc_ac_c {
 
 struct _GXColorS10 {};
 
-struct J3DAnmTransformKey {};
-
 struct J3DAnmTexPattern {};
+
+struct J3DAnmTransformKey {};
 
 struct daNpcF_c {
     struct daNpcF_anmPlayData {};
@@ -73,6 +77,8 @@ struct daNpcF_c {
     /* 809AD878 */ bool setExpressionBtp(int);
     /* 809AD880 */ void setExpression(int, f32);
     /* 809AD884 */ void drawOtherMdls();
+
+    static u8 mCcDCyl[68];
 };
 
 struct csXyz {
@@ -132,10 +138,18 @@ struct daNpcDoorBoy_c {
     /* 809ACFF8 */ void setMotionAnm(int, f32);
     /* 809AD0C8 */ bool drawDbgInfo();
     /* 809AD938 */ void adjustShapeAngle();
+
+    static u8 mEvtSeqList[12];
 };
 
 struct daNpcDoorBoy_Param_c {
     /* 809AD93C */ ~daNpcDoorBoy_Param_c();
+
+    static u8 const m[108];
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -169,6 +183,10 @@ struct dEvent_manager_c {
     /* 80047B1C */ void getMyStaffId(char const*, fopAc_ac_c*, int);
     /* 8004817C */ void cutEnd(int);
     /* 800487F0 */ void ChkPresentEnd();
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -271,6 +289,10 @@ struct Z2CreatureCitizen {
     /* 802C0E18 */ void playVoice(int);
 };
 
+struct J3DSys {
+    static u8 mCurrentMtx[48];
+};
+
 struct J3DFrameCtrl {
     /* 803283FC */ void init(s16);
     /* 8032842C */ void checkPass(f32);
@@ -337,7 +359,9 @@ extern "C" void adjustShapeAngle__14daNpcDoorBoy_cFv();
 extern "C" void __dt__20daNpcDoorBoy_Param_cFv();
 extern "C" static void func_809AD984();
 extern "C" static void func_809AD98C();
+extern "C" u8 const m__20daNpcDoorBoy_Param_c[108];
 extern "C" extern char const* const d_a_npc_doorboy__stringBase0;
+extern "C" u8 mEvtSeqList__14daNpcDoorBoy_c[12];
 
 //
 // External References:
@@ -458,19 +482,19 @@ extern "C" void pow();
 extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcF_c[68];
+extern "C" u8 mCcDCyl__8daNpcF_c[68];
 extern "C" extern void* __vt__8daNpcF_c[18];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" void __register_global_object();
 
 //
@@ -537,7 +561,7 @@ SECTION_DATA static void* l_myName = (void*)&d_a_npc_doorboy__stringBase0;
 #pragma pop
 
 /* 809ADBAC-809ADBB8 000084 000C+00 1/2 0/0 0/0 .data            mEvtSeqList__14daNpcDoorBoy_c */
-SECTION_DATA static u8 mEvtSeqList__14daNpcDoorBoy_c[12] = {
+SECTION_DATA u8 daNpcDoorBoy_c::mEvtSeqList[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
@@ -774,7 +798,7 @@ asm daNpcDoorBoy_c::~daNpcDoorBoy_c() {
 
 /* ############################################################################################## */
 /* 809AD9A8-809ADA14 000000 006C+00 10/10 0/0 0/0 .rodata          m__20daNpcDoorBoy_Param_c */
-SECTION_RODATA static u8 const m__20daNpcDoorBoy_Param_c[108] = {
+SECTION_RODATA u8 const daNpcDoorBoy_Param_c::m[108] = {
     0x42, 0x5C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x43, 0x48, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0xC1, 0xA0, 0x00, 0x00,
@@ -783,7 +807,7 @@ SECTION_RODATA static u8 const m__20daNpcDoorBoy_Param_c[108] = {
     0x42, 0x70, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0xC3, 0x96, 0x00, 0x00,
     0x00, 0x3C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(809AD9A8, &m__20daNpcDoorBoy_Param_c);
+COMPILER_STRIP_GATE(809AD9A8, &daNpcDoorBoy_Param_c::m);
 
 /* 809ADA14-809ADA18 00006C 0004+00 0/1 0/0 0/0 .rodata          @4267 */
 #pragma push

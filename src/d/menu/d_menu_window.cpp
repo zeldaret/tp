@@ -13,6 +13,16 @@
 
 struct msg_class {};
 
+struct mDoGph_gInf_c {
+    static u8 mFader[4];
+    static u8 mFrameBufferTimg[4];
+    static u8 mFrameBufferTex[4];
+};
+
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
+};
+
 struct dMw_c {
     /* 801FA13C */ void key_wait_init(u8);
     /* 801FA220 */ void ring_open_init(u8);
@@ -152,15 +162,15 @@ struct dMenu_save_c {
     /* 801F69FC */ void _draw2();
 };
 
+struct JKRExpHeap {};
+
+struct CSTControl {};
+
 struct STControl {
     /* 80032044 */ STControl(s16, s16, s16, s16, f32, f32, s16, s16);
     /* 80032088 */ void setWaitParm(s16, s16, s16, s16, f32, f32, s16, s16);
     /* 8003219C */ void checkTrigger();
 };
-
-struct JKRExpHeap {};
-
-struct CSTControl {};
 
 struct dMenu_Skill_c {
     /* 801F7224 */ dMenu_Skill_c(JKRExpHeap*, STControl*, CSTControl*);
@@ -268,9 +278,17 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct JKRHeap {
     /* 802CE5CC */ void freeAll();
     /* 802CE784 */ void getTotalFreeSize();
+};
+
+struct JFWDisplay {
+    static u8 sManager[4];
 };
 
 //
@@ -542,7 +560,7 @@ extern "C" extern void* g_fopMsg_Method[5 + 1 /* padding */];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" extern void* __vt__10CSTControl[4];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_mwHIO[304];
 extern "C" extern u8 g_mwDHIO[520];
@@ -550,12 +568,12 @@ extern "C" extern u8 g_fmapHIO[1188];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 g_clearColor[4];
 extern "C" extern u32 g_blackColor;
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
-extern "C" extern u8 mFrameBufferTex__13mDoGph_gInf_c[4];
+extern "C" u8 mFader__13mDoGph_gInf_c[4];
+extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
+extern "C" u8 mFrameBufferTex__13mDoGph_gInf_c[4];
 extern "C" extern u8 struct_80450BE4[4];
-extern "C" extern u8 sManager__10JFWDisplay[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sManager__10JFWDisplay[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

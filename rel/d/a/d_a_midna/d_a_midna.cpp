@@ -13,6 +13,8 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
@@ -23,9 +25,10 @@ struct cXyz {
     /* 80267150 */ void atan2sY_XZ() const;
     /* 804BD8B8 */ ~cXyz();
     /* 804BD8F4 */ cXyz();
-};
 
-struct csXyz {};
+    static f32 Zero[3];
+    static u8 BaseX[12];
+};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -33,6 +36,8 @@ struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CE38 */ void scaleM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct mDoExt_morf_c {
@@ -57,9 +62,9 @@ struct mDoExt_blkAnm {
     /* 8000DA08 */ void init(J3DDeformData*, J3DAnmCluster*, int, int, f32, s16, s16);
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -73,6 +78,10 @@ struct mDoExt_baseAnm {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
+struct J3DTransformInfo {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0420 */ ~Z2Creature();
@@ -80,10 +89,6 @@ struct Z2Creature {
     /* 802C0628 */ void initAnime(void*, bool, f32, f32);
     /* 802C06D0 */ void updateAnime(f32, f32);
 };
-
-struct mDoExt_McaMorfCallBack1_c {};
-
-struct J3DTransformInfo {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -106,6 +111,13 @@ struct fopAcM_lc_c {
 
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
+
+    static u8 mGndCheck[84];
+    static f32 mGroundY;
+};
+
+struct daPy_py_c {
+    static u8 m_midnaActor[4];
 };
 
 struct daPy_anmHeap_c {
@@ -127,6 +139,10 @@ struct daMidna_matAnm_c {
     /* 804BC218 */ void init();
     /* 804BC248 */ void calc(J3DMaterial*) const;
     /* 804C63E0 */ ~daMidna_matAnm_c();
+};
+
+struct daMidna_hio_c0 {
+    static u8 const m[32];
 };
 
 struct daMidna_c {
@@ -176,6 +192,9 @@ struct daMidna_c {
     /* 804C4FDC */ void execute();
     /* 804C5A08 */ void draw();
     /* 804C61A4 */ ~daMidna_c();
+
+    static u8 const m_texDataTable[84];
+    static u8 const m_anmDataTable[636];
 };
 
 struct daMidna_McaMorfCB1_c {
@@ -211,6 +230,10 @@ struct dSv_player_status_b_c {
 
 struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
+};
+
+struct dStage_roomControl_c {
+    static u8 mDemoArcName[10 + 2 /* padding */];
 };
 
 struct dKy_tevstr_c {};
@@ -270,10 +293,16 @@ struct dEvent_manager_c {
 
 struct dDlst_shadowControl_c {
     /* 80055F1C */ void addReal(u32, J3DModel*);
+
+    static u8 mSimpleTexObj[32];
 };
 
 struct dDemo_object_c {
     /* 80039088 */ void getActor(u8);
+};
+
+struct dDemo_c {
+    static u8 m_object[4];
 };
 
 struct dDemo_actor_c {
@@ -309,6 +338,10 @@ struct _GXColorS10 {};
 
 struct Quaternion {};
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct JKRArchive {
     /* 802D5ECC */ void readIdxResource(void*, u32, u32);
 };
@@ -334,15 +367,19 @@ struct J3DTevColorAnm {
     /* 804BD128 */ J3DTevColorAnm();
 };
 
-struct J3DAnmTevRegKey {
-    /* 8032B1F8 */ void getTevColorReg(u16, _GXColorS10*) const;
-    /* 8032B4BC */ void getTevKonstReg(u16, _GXColor*) const;
-    /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
+struct J3DSys {
+    static u8 mCurrentMtx[48];
 };
 
 struct J3DAnmTexPattern {
     /* 8032AF50 */ void getTexNo(u16, u16*) const;
     /* 8032B09C */ void searchUpdateMaterialID(J3DModelData*);
+};
+
+struct J3DAnmTevRegKey {
+    /* 8032B1F8 */ void getTevColorReg(u16, _GXColorS10*) const;
+    /* 8032B4BC */ void getTevKonstReg(u16, _GXColor*) const;
+    /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
 };
 
 struct J3DAnmTextureSRTKey {
@@ -457,6 +494,9 @@ extern "C" void calc__11J3DTexNoAnmCFPUs();
 extern "C" void func_804C637C(u8*);
 extern "C" void __dt__20daMidna_McaMorfCB1_cFv();
 extern "C" void __dt__16daMidna_matAnm_cFv();
+extern "C" u8 const m__14daMidna_hio_c0[32];
+extern "C" u8 const m_texDataTable__9daMidna_c[84];
+extern "C" u8 const m_anmDataTable__9daMidna_c[636];
 extern "C" extern char const* const d_a_midna__stringBase0;
 
 //
@@ -637,23 +677,23 @@ extern "C" void _restgpr_29();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mGndCheck__11fopAcM_gc_c[84];
-extern "C" extern u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
+extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_meter2_info[248];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 BaseX__4cXyz[12];
+extern "C" f32 Zero__4cXyz[3];
+extern "C" u8 BaseX__4cXyz[12];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
+extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_object__7dDemo_c[4];
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
+extern "C" u8 m_object__7dDemo_c[4];
+extern "C" u8 m_midnaActor__9daPy_py_c[4];
 extern "C" extern u8 struct_804C6CD8[4];
 
 //
@@ -781,11 +821,11 @@ COMPILER_STRIP_GATE(804C6524, &l_hairScale);
 #pragma pop
 
 /* 804C6560-804C6580 000098 0020+00 1/3 0/0 0/0 .rodata          m__14daMidna_hio_c0 */
-SECTION_RODATA static u8 const m__14daMidna_hio_c0[32] = {
+SECTION_RODATA u8 const daMidna_hio_c0::m[32] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0xC2, 0xAE, 0x00, 0x00, 0x41, 0xC8, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(804C6560, &m__14daMidna_hio_c0);
+COMPILER_STRIP_GATE(804C6560, &daMidna_hio_c0::m);
 
 /* 804C6580-804C6584 0000B8 0004+00 6/18 0/0 0/0 .rodata          @4278 */
 SECTION_RODATA static u8 const lit_4278[4] = {
@@ -1115,7 +1155,7 @@ static asm void daMidna_createHeap(fopAc_ac_c* param_0) {
 /* 804C6590-804C65E4 0000C8 0054+00 0/1 0/0 0/0 .rodata          m_texDataTable__9daMidna_c */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const m_texDataTable__9daMidna_c[84] = {
+SECTION_RODATA u8 const daMidna_c::m_texDataTable[84] = {
     0x04, 0x05, 0x03, 0xA4, 0x03, 0xF5, 0x03, 0x99, 0x03, 0xF6, 0x03, 0x99, 0x04, 0x07,
     0x03, 0x99, 0x04, 0x06, 0x03, 0xA5, 0x04, 0x05, 0x03, 0xA0, 0x03, 0xFA, 0x03, 0x99,
     0x04, 0x01, 0x03, 0x9E, 0x03, 0xF7, 0x03, 0x9F, 0x04, 0x03, 0x03, 0xA2, 0x04, 0x04,
@@ -1123,11 +1163,11 @@ SECTION_RODATA static u8 const m_texDataTable__9daMidna_c[84] = {
     0x03, 0xFE, 0x03, 0x9B, 0x03, 0xFF, 0x03, 0x9C, 0x03, 0xF8, 0x03, 0x99, 0x03, 0xF9,
     0x03, 0x99, 0x04, 0x00, 0x03, 0x9D, 0x03, 0xFB, 0x03, 0x99, 0x03, 0xFD, 0x03, 0x99,
 };
-COMPILER_STRIP_GATE(804C6590, &m_texDataTable__9daMidna_c);
+COMPILER_STRIP_GATE(804C6590, &daMidna_c::m_texDataTable);
 #pragma pop
 
 /* 804C65E4-804C6860 00011C 027C+00 3/12 0/0 0/0 .rodata          m_anmDataTable__9daMidna_c */
-SECTION_RODATA static u8 const m_anmDataTable__9daMidna_c[636] = {
+SECTION_RODATA u8 const daMidna_c::m_anmDataTable[636] = {
     0x01, 0xDC, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xB7, 0x00, 0x01,
     0xBF, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xB8, 0x00, 0x02, 0xBF, 0x80, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x01, 0xDD, 0x00, 0x03, 0xBF, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1169,7 +1209,7 @@ SECTION_RODATA static u8 const m_anmDataTable__9daMidna_c[636] = {
     0x00, 0x00, 0x00, 0x00, 0x02, 0x1B, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x01, 0xC4, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(804C65E4, &m_anmDataTable__9daMidna_c);
+COMPILER_STRIP_GATE(804C65E4, &daMidna_c::m_anmDataTable);
 
 /* 804C6860-804C6864 000398 0004+00 1/5 0/0 0/0 .rodata          @4838 */
 SECTION_RODATA static f32 const lit_4838 = -1.0f;

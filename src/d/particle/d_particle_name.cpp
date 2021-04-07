@@ -8,11 +8,20 @@
 #include "dolphin/types.h"
 
 //
+// Types:
+//
+
+struct dPa_name {
+    static u8 j_o_id[10 + 2 /* padding */];
+    static u8 s_o_id[28];
+};
+
+//
 // Forward References:
 //
 
-extern "C" extern u8 j_o_id__8dPa_name[10 + 2 /* padding */];
-extern "C" extern u8 s_o_id__8dPa_name[28];
+extern "C" u8 j_o_id__8dPa_name[10 + 2 /* padding */];
+extern "C" u8 s_o_id__8dPa_name[28];
 
 //
 // External References:
@@ -24,7 +33,7 @@ extern "C" extern u8 s_o_id__8dPa_name[28];
 
 /* ############################################################################################## */
 /* 803A85D0-803A85DC 0056F0 000A+02 0/0 1/1 0/0 .data            j_o_id__8dPa_name */
-SECTION_DATA extern u8 j_o_id__8dPa_name[10 + 2 /* padding */] = {
+SECTION_DATA u8 dPa_name::j_o_id[10 + 2 /* padding */] = {
     0x07,
     0x0F,
     0x07,
@@ -41,7 +50,7 @@ SECTION_DATA extern u8 j_o_id__8dPa_name[10 + 2 /* padding */] = {
 };
 
 /* 803A85DC-803A85F8 0056FC 001C+00 0/0 1/1 0/0 .data            s_o_id__8dPa_name */
-SECTION_DATA extern u8 s_o_id__8dPa_name[28] = {
+SECTION_DATA u8 dPa_name::s_o_id[28] = {
     0x81, 0x10, 0x81, 0x11, 0x81, 0x12, 0x89, 0xD6, 0x89, 0xD7, 0x89, 0xD8, 0x83, 0xA6,
     0x83, 0xA7, 0x81, 0x04, 0x81, 0x05, 0x81, 0x06, 0x81, 0x74, 0x81, 0x75, 0x81, 0x76,
 };

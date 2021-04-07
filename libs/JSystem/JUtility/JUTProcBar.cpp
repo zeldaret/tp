@@ -15,6 +15,10 @@ struct JUtility {
     struct TColor {};
 };
 
+struct JUTVideo {
+    static u8 sManager[4];
+};
+
 struct JUTProcBar {
     struct CTime {
         /* 802E7340 */ CTime();
@@ -31,10 +35,21 @@ struct JUTProcBar {
     /* 802E5E08 */ void draw();
     /* 802E5E3C */ void drawProcessBar();
     /* 802E6FA0 */ void drawHeapBar();
+
+    static u8 sManager[4];
 };
 
 struct JKRHeap {
     /* 802CE784 */ void getTotalFreeSize();
+
+    static u8 sSystemHeap[4];
+    static u8 sCurrentHeap[4];
+    static u8 sRootHeap[4];
+    static u8 mCodeStart[4];
+    static u8 mCodeEnd[4];
+    static u8 mUserRamStart[4];
+    static u8 mUserRamEnd[4];
+    static u8 mMemorySize[4];
 };
 
 //
@@ -55,6 +70,7 @@ extern "C" static void byteToXLen__Fii();
 extern "C" static void heapBar__FP7JKRHeapiiiii();
 extern "C" void drawHeapBar__10JUTProcBarFv();
 extern "C" void __ct__Q210JUTProcBar5CTimeFv();
+extern "C" u8 sManager__10JUTProcBar[4];
 
 //
 // External References:
@@ -76,15 +92,15 @@ extern "C" void _restgpr_21();
 extern "C" void _restgpr_25();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sRootHeap__7JKRHeap[4];
-extern "C" extern u8 mCodeStart__7JKRHeap[4];
-extern "C" extern u8 mCodeEnd__7JKRHeap[4];
-extern "C" extern u8 mUserRamStart__7JKRHeap[4];
-extern "C" extern u8 mUserRamEnd__7JKRHeap[4];
-extern "C" extern u8 mMemorySize__7JKRHeap[4];
-extern "C" extern u8 sManager__8JUTVideo[4];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sCurrentHeap__7JKRHeap[4];
+extern "C" u8 sRootHeap__7JKRHeap[4];
+extern "C" u8 mCodeStart__7JKRHeap[4];
+extern "C" u8 mCodeEnd__7JKRHeap[4];
+extern "C" u8 mUserRamStart__7JKRHeap[4];
+extern "C" u8 mUserRamEnd__7JKRHeap[4];
+extern "C" u8 mMemorySize__7JKRHeap[4];
+extern "C" u8 sManager__8JUTVideo[4];
 
 //
 // Declarations:
@@ -102,8 +118,7 @@ asm JUTProcBar::JUTProcBar() {
 
 /* ############################################################################################## */
 /* 80451558-8045155C 000A58 0004+00 4/4 6/6 0/0 .sbss            sManager__10JUTProcBar */
-extern u8 sManager__10JUTProcBar[4];
-u8 sManager__10JUTProcBar[4];
+u8 JUTProcBar::sManager[4];
 
 /* 802E599C-802E59E0 2E02DC 0044+00 1/1 0/0 0/0 .text            __dt__10JUTProcBarFv */
 #pragma push

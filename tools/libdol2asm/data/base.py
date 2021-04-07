@@ -40,6 +40,17 @@ class ArbitraryData(Symbol):
         return True
 
     @property
+    def is_class_symbol(self):
+        # @!game
+        # don't generate static class variables for 'cNullVec__6Z2Calc', because it will not compile.
+        # Z2Calc::cNullVec seems to be static data that is initialized in the class definition, thus,
+        # every translation unit which uses Z2Calc will have a copy of the Z2Calc::cNullVec in the data
+        # section. Could not find a way to make this compile without easily.
+        if self.identifier.name == "cNullVec__6Z2Calc":
+            return False
+        return self.demangled_name and self.has_class and not self.has_template
+
+    @property
     def element_size(self):
         return 1
 
@@ -67,18 +78,42 @@ class ArbitraryData(Symbol):
 
     def array_type(self):
         if self.zero_length:
-            return ZeroArrayType.create(self.element_type()) 
+            return ZeroArrayType.create(self.element_type())
         return PaddingArrayType.create(
             self.element_type(),
             self.size // self.element_size,
             self.padding // self.element_size)
 
     def cpp_reference(self, accessor, addr):
+        name = self.declaration_name(forward=False, c_export=False,full_qualified_name=True)
         if addr == self.addr:
-            return f"&{self.identifier.label}"
+            return f"&{name}"
         else:
             offset = addr - self.addr
-            return f"(((char*)&{self.identifier.label})+0x{offset:X})"
+            return f"(((char*)&{name})+0x{offset:X})"
+
+    def declaration_name(self, forward: bool,
+                         c_export: bool,
+                         full_qualified_name: bool):
+        if not self.is_class_symbol or c_export:
+            return self.identifier.label
+
+        if full_qualified_name:
+            return self.demangled_name.to_str()
+        else:
+            return self.demangled_name.last.to_str()
+
+    async def export_declaration_header(self, exporter,
+                                        builder: AsyncBuilder,
+                                        forward: bool,
+                                        c_export: bool,
+                                        full_qualified_name: bool):
+        name = self.declaration_name(c_export=c_export,
+                                     forward=forward,
+                                     full_qualified_name=full_qualified_name)
+
+        decl_type = self.array_type()
+        await builder.write_nonewline(decl_type.decl(name))
 
     async def export_forward_references(self,
                                         exporter,
@@ -86,54 +121,53 @@ class ArbitraryData(Symbol):
                                         c_export: bool = False):
         if not c_export:
             return
-            
-        if self.is_static and self.export_static:
-            if not self.require_forward_reference:
-                return
+
+        if not self.is_class_symbol:
+            if self.is_static and self.export_static:
+                if not self.require_forward_reference:
+                    return
 
         await self.export_section_header(builder)
 
-        if not (self.is_static and self.export_static):
-            await self.export_extern(builder)
+        if not self.is_class_symbol:
+            if not (self.is_static and self.export_static):
+                await self.export_extern(builder)
 
-        name = self.identifier.label
-        if self.demangled_name:
-            name = self.demangled_name.to_str(specialize_templates=False,
-                                              without_template=False)
-
-        decl_type = self.array_type()
-        await builder.write_nonewline(decl_type.decl(name))
+        await self.export_declaration_header(exporter, builder,
+                                             forward=True,
+                                             c_export=c_export,
+                                             full_qualified_name=False)
         await builder.write(";")
 
     async def export_declaration_head(self, exporter, builder: AsyncBuilder):
-        if self.demangled_name:
-            name = self.demangled_name.to_str(specialize_templates=False,
-                                              without_template=False)
-        else:
-            name = self.identifier.label
+        name = self.declaration_name(c_export=False,
+                                     forward=False,
+                                     full_qualified_name=True)
 
         decl_type = self.array_type()
 
-        # for empty symbols that should be exported, we need to double declare it.
-        # otherwise, the compiler thinks that we're not actual declaring it.
-        is_extern = not (self.is_static and self.export_as_static)
-        if not self.data and is_extern:
-            await self.export_section(builder)
-            if self.force_section:
-                await self.export_section_header(builder)
+        if not self.is_class_symbol:
+            # for empty symbols that should be exported, we need to double declare it.
+            # otherwise, the compiler thinks that we're not actual declaring it.
+            is_extern = not (self.is_static and self.export_as_static)
+            if not self.data and is_extern:
+                await self.export_section(builder)
+                if self.force_section:
+                    await self.export_section_header(builder)
 
-            await self.export_extern(builder)
-            await builder.write_nonewline(decl_type.decl(name))
-            await builder.write(";")
+                await self.export_extern(builder)
+                await builder.write_nonewline(decl_type.decl(name))
+                await builder.write(";")
 
         await self.export_section(builder)
         if self.force_section:
             await self.export_section_header(builder)
 
-        if not is_extern:
-            await self.export_static(builder)
-        elif self.data and is_extern:
-            await self.export_extern(builder)
+        if not self.is_class_symbol:
+            if not is_extern:
+                await self.export_static(builder)
+            elif self.data and is_extern:
+                await self.export_extern(builder)
 
         await builder.write_nonewline(decl_type.decl(name))
 
@@ -168,11 +202,11 @@ class ArbitraryData(Symbol):
 
         if self._section == ".rodata":
             await builder.write(f"COMPILER_STRIP_GATE({self.addr:08X}, {self.cpp_reference(None, self.addr)});")
-            #await builder.write_nonewline("SECTION_DEAD ")
-            #await builder.write_nonewline("void* const ")
-            #await builder.write_nonewline(f"cg_{self.addr:08X} = (void*)(")
-            #await builder.write_nonewline(self.cpp_reference(None, self.addr))
-            #await builder.write(f");")
+            # await builder.write_nonewline("SECTION_DEAD ")
+            # await builder.write_nonewline("void* const ")
+            # await builder.write_nonewline(f"cg_{self.addr:08X} = (void*)(")
+            # await builder.write_nonewline(self.cpp_reference(None, self.addr))
+            # await builder.write(f");")
 
         if self.requires_force_active:
             await builder.write(f"#pragma pop")

@@ -15,9 +15,17 @@ struct scene_class {};
 
 struct request_of_phase_process_class {};
 
-struct J3DAnmTextureSRTKey {};
+struct mDoRst {
+    static u8 mResetData[4 + 4 /* padding */];
+};
+
+struct mDoGph_gInf_c {
+    static u8 mFader[4];
+};
 
 struct J3DMaterialTable {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -38,9 +46,9 @@ struct mDoExt_bpkAnm {
     /* 8000D518 */ void entry(J3DMaterialTable*, f32);
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -58,6 +66,10 @@ struct JKRHeap {
 
 struct mDoDvdThd_mountArchive_c {
     /* 80015E14 */ void create(char const*, u8, JKRHeap*);
+};
+
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
 };
 
 struct fopAc_ac_c {
@@ -92,10 +104,18 @@ struct daTit_HIO_c {
     /* 80D67A08 */ ~daTit_HIO_c();
 };
 
+struct dStage_roomControl_c {
+    static u8 mProcID[4];
+};
+
 struct dRes_info_c {};
 
 struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
+};
+
+struct dMenu_Collect3D_c {
+    static f32 mViewOffsetY[1 + 1 /* padding */];
 };
 
 struct dDlst_base_c {
@@ -115,12 +135,20 @@ struct dDemo_object_c {
     /* 80039088 */ void getActor(u8);
 };
 
+struct dDemo_c {
+    static u8 m_object[4];
+};
+
 struct Vec {};
 
 struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 namespace JStudio {
@@ -261,16 +289,16 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_29();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 g_blackColor;
-extern "C" extern f32 mViewOffsetY__17dMenu_Collect3D_c[1 + 1 /* padding */];
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 mProcID__20dStage_roomControl_c[4];
-extern "C" extern u8 m_object__7dDemo_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" f32 mViewOffsetY__17dMenu_Collect3D_c[1 + 1 /* padding */];
+extern "C" u8 mFader__13mDoGph_gInf_c[4];
+extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
+extern "C" u8 mProcID__20dStage_roomControl_c[4];
+extern "C" u8 m_object__7dDemo_c[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //

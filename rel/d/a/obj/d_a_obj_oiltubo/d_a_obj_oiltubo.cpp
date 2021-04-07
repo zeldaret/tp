@@ -13,18 +13,20 @@
 
 struct request_of_phase_process_class {};
 
-struct cXyz {};
-
 struct csXyz {};
+
+struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
-struct J3DAnmTextureSRTKey {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -59,6 +61,9 @@ struct daObj_Oiltubo_c {
     /* 80CA7478 */ void chkEvent();
     /* 80CA74C8 */ void wait(void*);
     /* 80CA7628 */ ~daObj_Oiltubo_c();
+
+    static u8 const mCcDObjInfo[48];
+    static u8 mCcDCyl[68];
 };
 
 struct dKy_tevstr_c {};
@@ -74,6 +79,10 @@ struct dRes_info_c {};
 
 struct dRes_control_c {
     /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -221,7 +230,9 @@ extern "C" void __dt__15daObj_Oiltubo_cFv();
 extern "C" void __sinit_d_a_obj_oiltubo_cpp();
 extern "C" static void func_80CA78D8();
 extern "C" static void func_80CA78E0();
+extern "C" u8 const mCcDObjInfo__15daObj_Oiltubo_c[48];
 extern "C" extern char const* const d_a_obj_oiltubo__stringBase0;
+extern "C" u8 mCcDCyl__15daObj_Oiltubo_c[68];
 
 //
 // External References:
@@ -298,9 +309,9 @@ extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__16Z2SoundObjSimple[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 
 //
@@ -348,7 +359,7 @@ SECTION_DATA static void* l_bbtkFileName = (void*)(((char*)&d_a_obj_oiltubo__str
 #pragma pop
 
 /* 80CA79B8-80CA79FC 000030 0044+00 2/2 0/0 0/0 .data            mCcDCyl__15daObj_Oiltubo_c */
-SECTION_DATA static u8 mCcDCyl__15daObj_Oiltubo_c[68] = {
+SECTION_DATA u8 daObj_Oiltubo_c::mCcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -519,12 +530,12 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 
 /* ############################################################################################## */
 /* 80CA78F4-80CA7924 000000 0030+00 5/5 0/0 0/0 .rodata          mCcDObjInfo__15daObj_Oiltubo_c */
-SECTION_RODATA static u8 const mCcDObjInfo__15daObj_Oiltubo_c[48] = {
+SECTION_RODATA u8 const daObj_Oiltubo_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CA78F4, &mCcDObjInfo__15daObj_Oiltubo_c);
+COMPILER_STRIP_GATE(80CA78F4, &daObj_Oiltubo_c::mCcDObjInfo);
 
 /* 80CA7924-80CA7928 000030 0004+00 1/3 0/0 0/0 .rodata          @3815 */
 SECTION_RODATA static f32 const lit_3815 = 1.0f;

@@ -13,6 +13,8 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
@@ -21,12 +23,12 @@ struct cXyz {
     /* 80CDD580 */ cXyz();
 };
 
-struct csXyz {};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct J3DAnmTevRegKey {};
@@ -65,6 +67,8 @@ struct daObj_SMTile_c {
 
 struct daObj_SMTile_Param_c {
     /* 80CDE300 */ ~daObj_SMTile_Param_c();
+
+    static u8 const m[8];
 };
 
 struct dSv_info_c {
@@ -109,6 +113,10 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DModel {};
 
 struct J3DFrameCtrl {
@@ -142,6 +150,7 @@ extern "C" static bool daObj_SMTile_IsDelete__FPv();
 extern "C" void func_80CDE2A4(int*);
 extern "C" void __sinit_d_a_obj_smtile_cpp();
 extern "C" void __dt__20daObj_SMTile_Param_cFv();
+extern "C" u8 const m__20daObj_SMTile_Param_c[8];
 extern "C" extern char const* const d_a_obj_smtile__stringBase0;
 
 //
@@ -192,11 +201,11 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -308,10 +317,10 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 
 /* ############################################################################################## */
 /* 80CDE35C-80CDE364 000000 0008+00 4/4 0/0 0/0 .rodata          m__20daObj_SMTile_Param_c */
-SECTION_RODATA static u8 const m__20daObj_SMTile_Param_c[8] = {
+SECTION_RODATA u8 const daObj_SMTile_Param_c::m[8] = {
     0x44, 0x16, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CDE35C, &m__20daObj_SMTile_Param_c);
+COMPILER_STRIP_GATE(80CDE35C, &daObj_SMTile_Param_c::m);
 
 /* 80CDE364-80CDE368 000008 0004+00 1/4 0/0 0/0 .rodata          @3892 */
 SECTION_RODATA static u8 const lit_3892[4] = {

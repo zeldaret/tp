@@ -23,11 +23,11 @@ struct J3DTevKColorAnm {};
 
 struct J3DTevColorAnm {};
 
-struct J3DAnmTevRegKey {};
-
 struct J3DAnmColor {};
 
 struct J3DAnmTexPattern {};
+
+struct J3DAnmTevRegKey {};
 
 struct J3DAnmTextureSRTKey {};
 

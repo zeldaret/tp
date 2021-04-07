@@ -15,7 +15,15 @@ struct mDoGph_gInf_c {
     /* 800080D0 */ void fadeOut(f32);
 };
 
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
+};
+
 struct fopAc_ac_c {};
+
+struct daPy_py_c {
+    static u8 m_midnaActor[4];
+};
 
 struct daItemBase_c {
     /* 80037AE4 */ void dead();
@@ -30,12 +38,18 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
+struct dSv_event_tmp_flag_c {
+    static u8 const tempBitLabels[370 + 2 /* padding */];
+};
+
 struct dSv_event_c {
     /* 800349A4 */ void offEventBit(u16);
 };
 
 struct dStage_roomControl_c {
     /* 80024384 */ void getStatusRoomDt(int);
+
+    static u8 mDemoArcName[10 + 2 /* padding */];
 };
 
 struct dRes_info_c {};
@@ -135,6 +149,8 @@ struct dEvDtEvent_c {
 
 struct dDemo_c {
     /* 80039CF8 */ void end();
+
+    static u8 m_mode[4];
 };
 
 struct dCamera_c {
@@ -143,6 +159,10 @@ struct dCamera_c {
 
 struct Z2StatusMgr {
     /* 802B61E8 */ void setDemoName(char*);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 //
@@ -266,15 +286,15 @@ extern "C" void _restgpr_29();
 extern "C" void strcat();
 extern "C" void strncpy();
 extern "C" void strcpy();
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
+extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" extern void* __vt__11dEvt_info_c[3 + 1 /* padding */];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_mode__7dDemo_c[4];
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 m_mode__7dDemo_c[4];
+extern "C" u8 m_midnaActor__9daPy_py_c[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct mDoRst {
+    static u8 mResetData[4 + 4 /* padding */];
+};
+
 struct mDoMemCd_Ctrl_c {
     /* 8001672C */ mDoMemCd_Ctrl_c();
     /* 80016730 */ void ThdInit();
@@ -114,7 +118,7 @@ extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
+extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 
 //
 // Declarations:

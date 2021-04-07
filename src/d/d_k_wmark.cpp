@@ -11,6 +11,14 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
+struct mDoLib_clipper {
+    static u8 mClipper[92];
+};
+
 struct kankyo_class {};
 
 struct cXyz {
@@ -20,11 +28,16 @@ struct cXyz {
 
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
+
+    static u8 mGndCheck[84];
+    static f32 mGroundY;
 };
 
 struct dkWmark_c {
     /* 80261640 */ ~dkWmark_c();
     /* 802616C4 */ void setMatrix();
+
+    static u8 m_nowID[4];
 };
 
 struct dKy_tevstr_c {};
@@ -56,6 +69,10 @@ struct cBgS {
 
 struct Vec {};
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct JKRSolidHeap {};
 
 struct J3DUClipper {
@@ -84,6 +101,7 @@ extern "C" static void dkWmark_Execute__FP9dkWmark_c();
 extern "C" static void dkWmark_Draw__FP9dkWmark_c();
 extern "C" extern char const* const d_d_k_wmark__stringBase0;
 extern "C" extern void* g_profile_WMARK[10 + 1 /* padding */];
+extern "C" u8 m_nowID__9dkWmark_c[4];
 
 //
 // External References:
@@ -123,15 +141,15 @@ extern "C" extern u8 const j3dDefaultLightInfo[52];
 extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mClipper__14mDoLib_clipper[92];
-extern "C" extern u8 mGndCheck__11fopAcM_gc_c[84];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mClipper__14mDoLib_clipper[92];
+extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
+extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" extern u8 struct_80450D64[4];
 
 //
@@ -147,7 +165,7 @@ static u8 lit_3644[12];
 static f32 data_80430C9C[3];
 
 /* 80451130-80451134 000630 0004+00 2/2 0/0 0/0 .sbss            m_nowID__9dkWmark_c */
-static u8 m_nowID__9dkWmark_c[4];
+u8 dkWmark_c::m_nowID[4];
 
 /* 80451134-80451138 000634 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_80451134[4];

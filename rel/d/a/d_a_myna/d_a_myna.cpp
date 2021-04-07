@@ -15,6 +15,8 @@ struct request_of_phase_process_class {};
 
 struct msg_class {};
 
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
@@ -22,13 +24,13 @@ struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
 
-struct csXyz {};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct mDoHIO_entry_c {
@@ -50,9 +52,11 @@ struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
@@ -60,9 +64,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -92,14 +94,14 @@ struct daObj_SSItem_c {
     /* 80CE77F8 */ void getExchangeItemPtr();
 };
 
+struct J3DModel {};
+
 struct J3DAnmTransformKey {};
 
 struct J3DFrameCtrl {
     /* 803283FC */ void init(s16);
     /* 80946370 */ ~J3DFrameCtrl();
 };
-
-struct J3DModel {};
 
 struct J3DJoint {};
 
@@ -192,6 +194,9 @@ struct daMyna_c {
     /* 8094A098 */ void playDefaultWaitAnime();
     /* 8094A608 */ void setDefaultWaitAnime(u8);
     /* 8094AA20 */ ~daMyna_c();
+
+    static u8 const mCcDSph[64];
+    static u8 mBaseMotionTBL[84];
 };
 
 struct daMyna_HIO_c {
@@ -200,6 +205,10 @@ struct daMyna_HIO_c {
 
 struct dSv_memBit_c {
     /* 80034860 */ void isSwitch(int) const;
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -293,6 +302,14 @@ struct cCcD_GStts {
 struct cBgS_GndChk {
     /* 80267C1C */ cBgS_GndChk();
     /* 80267C94 */ ~cBgS_GndChk();
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
 };
 
 //
@@ -408,7 +425,9 @@ extern "C" void __dt__8daMyna_cFv();
 extern "C" void func_8094ABAC(s16*);
 extern "C" void func_8094ABC8(int, int);
 extern "C" void __sinit_d_a_myna_cpp();
+extern "C" u8 const mCcDSph__8daMyna_c[64];
 extern "C" extern char const* const d_a_myna__stringBase0;
+extern "C" u8 mBaseMotionTBL__8daMyna_c[84];
 
 //
 // External References:
@@ -514,18 +533,18 @@ extern "C" void _restgpr_29();
 extern "C" void abs();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 extern "C" void __register_global_object();
 extern "C" void getExchangeItemPtr__14daObj_SSItem_cFv();
@@ -716,13 +735,13 @@ static asm void daMyna_searchEvtTag(void* param_0, void* param_1) {
 
 /* ############################################################################################## */
 /* 8094B1B0-8094B1F0 000000 0040+00 7/7 0/0 0/0 .rodata          mCcDSph__8daMyna_c */
-SECTION_RODATA static u8 const mCcDSph__8daMyna_c[64] = {
+SECTION_RODATA u8 const daMyna_c::mCcDSph[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x0A, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x70, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8094B1B0, &mCcDSph__8daMyna_c);
+COMPILER_STRIP_GATE(8094B1B0, &daMyna_c::mCcDSph);
 
 /* 8094B1F0-8094B1F4 000040 0004+00 25/32 0/0 0/0 .rodata          @3926 */
 SECTION_RODATA static u8 const lit_3926[4] = {
@@ -1405,7 +1424,7 @@ SECTION_DATA static void* lit_3919[3] = {
 #pragma pop
 
 /* 8094B864-8094B8B8 000504 0054+00 1/2 0/0 0/0 .data            mBaseMotionTBL__8daMyna_c */
-SECTION_DATA static u8 mBaseMotionTBL__8daMyna_c[84] = {
+SECTION_DATA u8 daMyna_c::mBaseMotionTBL[84] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

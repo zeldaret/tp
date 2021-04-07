@@ -18,6 +18,8 @@ struct csXyz {
 struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -38,10 +40,15 @@ struct cXyz {
 
 struct fopAcM_wt_c {
     /* 8001DD84 */ void waterCheck(cXyz const*);
+
+    static u8 mWaterCheck[84 + 4 /* padding */];
+    static f32 mWaterY[1 + 1 /* padding */];
 };
 
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
+
+    static u8 mGndCheck[84];
 };
 
 struct daPy_actorKeep_c {
@@ -153,6 +160,8 @@ struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
                             u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
                             cXyz const*, f32);
+
+    static u8 mParticleTracePCB[4 + 4 /* padding */];
 };
 
 struct dJntCol_c {
@@ -272,6 +281,10 @@ struct Z2CreatureLink {
     /* 802C4814 */ void startHitItemSE(u32, u32, Z2SoundObjBase*, f32);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct JPABaseEmitter {};
 
 struct JPAEmitterCallBack {
@@ -280,6 +293,10 @@ struct JPAEmitterCallBack {
     /* 8049DC4C */ void executeAfter(JPABaseEmitter*);
     /* 8049DC50 */ void draw(JPABaseEmitter*);
     /* 8049DC54 */ void drawAfter(JPABaseEmitter*);
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct J3DModel {};
@@ -490,20 +507,20 @@ extern "C" extern void* __vt__12cCcD_CpsAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__15Z2SoundObjArrow[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mGndCheck__11fopAcM_gc_c[84];
-extern "C" extern u8 mWaterCheck__11fopAcM_wt_c[84 + 4 /* padding */];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
+extern "C" u8 mWaterCheck__11fopAcM_wt_c[84 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" extern u32 __float_nan;
 extern "C" extern u32 __float_max;
-extern "C" extern f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
+extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
 extern "C" extern u8 struct_80450D64[4];
 extern "C" extern u8 struct_80450D88[4];
-extern "C" extern u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //

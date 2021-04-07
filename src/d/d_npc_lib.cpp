@@ -11,6 +11,14 @@
 // Types:
 //
 
+struct csXyz {
+    /* 80018BD0 */ ~csXyz();
+    /* 80112C80 */ csXyz();
+    /* 8026745C */ void operator+=(csXyz&);
+
+    static u8 Zero[4];
+};
+
 struct Vec {};
 
 struct cXyz {
@@ -21,16 +29,12 @@ struct cXyz {
     /* 802670AC */ void isZero() const;
 };
 
-struct csXyz {
-    /* 80018BD0 */ ~csXyz();
-    /* 80112C80 */ csXyz();
-    /* 8026745C */ void operator+=(csXyz&);
-};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CE9C */ void XYZrotS(csXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {};
@@ -91,9 +95,9 @@ extern "C" void _savegpr_25();
 extern "C" void _restgpr_22();
 extern "C" void _restgpr_23();
 extern "C" void _restgpr_25();
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 Zero__5csXyz[4];
+extern "C" u8 Zero__5csXyz[4];
 extern "C" extern u8 data_80451164[4];
 
 //

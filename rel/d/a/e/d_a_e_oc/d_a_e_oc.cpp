@@ -13,6 +13,8 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
@@ -20,24 +22,24 @@ struct cXyz {
     /* 80735AD8 */ ~cXyz();
 };
 
-struct csXyz {};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CE38 */ void scaleM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
-
-struct mDoExt_McaMorfCallBack2_c {};
-
-struct J3DAnmTransform {};
-
-struct Z2Creature {};
 
 struct J3DModelData {};
 
+struct mDoExt_McaMorfCallBack2_c {};
+
 struct mDoExt_McaMorfCallBack1_c {};
+
+struct Z2Creature {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -53,6 +55,10 @@ struct fopEn_enemy_c {};
 
 struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
+};
+
+struct daPy_py_c {
+    static u8 m_midnaActor[4];
 };
 
 struct J3DJoint {};
@@ -168,6 +174,8 @@ struct dEvt_control_c {
 
 struct dDlst_shadowControl_c {
     /* 80055F1C */ void addReal(u32, J3DModel*);
+
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcU_AtInfo {};
@@ -311,8 +319,31 @@ struct Z2CreatureEnemy {
     /* 802C1B90 */ void setEnemyName(char const*);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
+};
+
 struct J3DFrameCtrl {
     /* 8032842C */ void checkPass(f32);
+};
+
+struct E_OC_n {
+    static u8 const oc_attackb_trans[40];
+    static u8 const oc_attackc_trans[40];
+    static u8 cc_sph_src[64];
+    static u8 at_sph_src[64];
+    static u8 m_battle_oc[4];
+    static u8 m_damage_oc[4];
+    static u8 m_death_oc[4];
+    static u8 m_talk_oc[4];
 };
 
 //
@@ -403,7 +434,15 @@ extern "C" static void func_807356B4();
 extern "C" static void func_807356BC();
 extern "C" static void setMidnaBindEffect__FP13fopEn_enemy_cP15Z2CreatureEnemyP4cXyzP4cXyz();
 extern "C" void __dt__4cXyzFv();
+extern "C" u8 const oc_attackb_trans__6E_OC_n[40];
+extern "C" u8 const oc_attackc_trans__6E_OC_n[40];
 extern "C" extern char const* const d_a_e_oc__stringBase0;
+extern "C" u8 cc_sph_src__6E_OC_n[64];
+extern "C" u8 at_sph_src__6E_OC_n[64];
+extern "C" u8 m_battle_oc__6E_OC_n[4];
+extern "C" u8 m_damage_oc__6E_OC_n[4];
+extern "C" u8 m_death_oc__6E_OC_n[4];
+extern "C" u8 m_talk_oc__6E_OC_n[4];
 
 //
 // External References:
@@ -548,16 +587,16 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 m_midnaActor__9daPy_py_c[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -623,23 +662,23 @@ COMPILER_STRIP_GATE(80735B50, &lit_3917);
 /* 80735B54-80735B7C 00002C 0028+00 0/1 0/0 0/0 .rodata          oc_attackb_trans__6E_OC_n */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const oc_attackb_trans__6E_OC_n[40] = {
+SECTION_RODATA u8 const E_OC_n::oc_attackb_trans[40] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x41, 0x74, 0xCC, 0xCD, 0x42, 0x19, 0x99, 0x9A, 0x42, 0x7D, 0x33, 0x33,
     0x42, 0xAC, 0x66, 0x66, 0x42, 0xCE, 0x99, 0x9A, 0x42, 0xE0, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80735B54, &oc_attackb_trans__6E_OC_n);
+COMPILER_STRIP_GATE(80735B54, &E_OC_n::oc_attackb_trans);
 #pragma pop
 
 /* 80735B7C-80735BA4 000054 0028+00 0/1 0/0 0/0 .rodata          oc_attackc_trans__6E_OC_n */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const oc_attackc_trans__6E_OC_n[40] = {
+SECTION_RODATA u8 const E_OC_n::oc_attackc_trans[40] = {
     0x00, 0x00, 0x00, 0x00, 0x41, 0xFA, 0x66, 0x66, 0x42, 0x91, 0x66, 0x66, 0x42, 0xB7,
     0x00, 0x00, 0x42, 0xB7, 0x00, 0x00, 0x42, 0xB7, 0x00, 0x00, 0x42, 0xB7, 0x00, 0x00,
     0x42, 0xB7, 0x00, 0x00, 0x42, 0xB7, 0x00, 0x00, 0x42, 0xB7, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80735B7C, &oc_attackc_trans__6E_OC_n);
+COMPILER_STRIP_GATE(80735B7C, &E_OC_n::oc_attackc_trans);
 #pragma pop
 
 /* 80735BA4-80735BA8 00007C 0004+00 0/1 0/0 0/0 .rodata          @3932 */
@@ -742,7 +781,7 @@ SECTION_DATA static u8 eff_id[6 + 2 /* padding */] = {
 #pragma pop
 
 /* 80735D64-80735DA4 000038 0040+00 1/1 0/0 0/0 .data            cc_sph_src__6E_OC_n */
-SECTION_DATA static u8 cc_sph_src__6E_OC_n[64] = {
+SECTION_DATA u8 E_OC_n::cc_sph_src[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x75, 0x09, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
@@ -750,7 +789,7 @@ SECTION_DATA static u8 cc_sph_src__6E_OC_n[64] = {
 };
 
 /* 80735DA4-80735DE4 000078 0040+00 1/1 0/0 0/0 .data            at_sph_src__6E_OC_n */
-SECTION_DATA static u8 at_sph_src__6E_OC_n[64] = {
+SECTION_DATA u8 E_OC_n::at_sph_src[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
@@ -1098,25 +1137,25 @@ static u8 lit_1009[1 + 3 /* padding */];
 /* 80736040-80736044 000048 0004+00 0/2 0/0 0/0 .bss             m_battle_oc__6E_OC_n */
 #pragma push
 #pragma force_active on
-static u8 m_battle_oc__6E_OC_n[4];
+u8 E_OC_n::m_battle_oc[4];
 #pragma pop
 
 /* 80736044-80736048 00004C 0004+00 0/2 0/0 0/0 .bss             m_damage_oc__6E_OC_n */
 #pragma push
 #pragma force_active on
-static u8 m_damage_oc__6E_OC_n[4];
+u8 E_OC_n::m_damage_oc[4];
 #pragma pop
 
 /* 80736048-8073604C 000050 0004+00 0/2 0/0 0/0 .bss             m_death_oc__6E_OC_n */
 #pragma push
 #pragma force_active on
-static u8 m_death_oc__6E_OC_n[4];
+u8 E_OC_n::m_death_oc[4];
 #pragma pop
 
 /* 8073604C-80736050 000054 0004+00 0/2 0/0 0/0 .bss             m_talk_oc__6E_OC_n */
 #pragma push
 #pragma force_active on
-static u8 m_talk_oc__6E_OC_n[4];
+u8 E_OC_n::m_talk_oc[4];
 #pragma pop
 
 /* 80736050-80736054 000058 0004+00 2/2 0/0 0/0 .bss             None */

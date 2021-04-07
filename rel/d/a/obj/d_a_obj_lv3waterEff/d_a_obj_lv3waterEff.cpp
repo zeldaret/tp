@@ -24,14 +24,14 @@ struct daObjWaterEff_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
-struct dKy_tevstr_c {};
-
 struct cXyz {
     /* 80C5C670 */ ~cXyz();
     /* 80C5C6AC */ cXyz();
 };
+
+struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct csXyz {};
 
@@ -47,6 +47,10 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 //
@@ -80,7 +84,7 @@ extern "C" void _restgpr_25();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

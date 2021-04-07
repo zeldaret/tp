@@ -18,17 +18,19 @@ struct cXyz {};
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
+
+    static u8 now[48];
 };
-
-struct mDoExt_McaMorfCallBack2_c {};
-
-struct J3DAnmTransform {};
-
-struct Z2Creature {};
 
 struct J3DModelData {};
 
+struct mDoExt_McaMorfCallBack2_c {};
+
 struct mDoExt_McaMorfCallBack1_c {};
+
+struct Z2Creature {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -78,6 +80,9 @@ struct daTagTWGate_c {
     /* 80D55068 */ void talkProc(int*, int, fopAc_ac_c**);
     /* 80D55160 */ void createHeapCallBack(fopAc_ac_c*);
     /* 80D55180 */ void CreateHeap();
+
+    static u8 const mAttr[1 + 3 /* padding */];
+    static u8 ActionTable[312];
 };
 
 struct dSv_player_status_b_c {
@@ -87,6 +92,10 @@ struct dSv_player_status_b_c {
 struct dSv_info_c {
     /* 80035200 */ void onSwitch(int, int);
     /* 80035360 */ void isSwitch(int, int) const;
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -101,9 +110,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
@@ -155,6 +164,10 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 //
 // Forward References:
 //
@@ -197,7 +210,9 @@ extern "C" static void daTagTWGate_Execute__FP13daTagTWGate_c();
 extern "C" static void daTagTWGate_Draw__FP13daTagTWGate_c();
 extern "C" static bool daTagTWGate_IsDelete__FP13daTagTWGate_c();
 extern "C" void __sinit_d_a_tag_TWgate_cpp();
+extern "C" u8 const mAttr__13daTagTWGate_c[1 + 3 /* padding */];
 extern "C" extern char const* const d_a_tag_TWgate__stringBase0;
+extern "C" u8 ActionTable__13daTagTWGate_c[312];
 extern "C" extern void* g_profile_Tag_TWGate[12];
 
 //
@@ -266,10 +281,10 @@ extern "C" void _restgpr_29();
 extern "C" void pow();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -287,14 +302,14 @@ asm void daTagTWGate_c::initWait() {
 
 /* ############################################################################################## */
 /* 80D557AC-80D557B0 000000 0001+03 5/5 0/0 0/0 .rodata          mAttr__13daTagTWGate_c */
-SECTION_RODATA static u8 const mAttr__13daTagTWGate_c[1 + 3 /* padding */] = {
+SECTION_RODATA u8 const daTagTWGate_c::mAttr[1 + 3 /* padding */] = {
     0x00,
     /* padding */
     0x00,
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D557AC, &mAttr__13daTagTWGate_c);
+COMPILER_STRIP_GATE(80D557AC, &daTagTWGate_c::mAttr);
 
 /* 80D557B0-80D55820 -00001 0070+00 14/18 0/0 0/0 .rodata          l_zevParamTbl */
 SECTION_RODATA static void* const l_zevParamTbl[28] = {
@@ -621,7 +636,7 @@ SECTION_DATA static void* lit_3769[3] = {
 #pragma pop
 
 /* 80D55AD0-80D55C08 00015C 0138+00 14/15 0/0 0/0 .data            ActionTable__13daTagTWGate_c */
-SECTION_DATA static u8 ActionTable__13daTagTWGate_c[312] = {
+SECTION_DATA u8 daTagTWGate_c::ActionTable[312] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

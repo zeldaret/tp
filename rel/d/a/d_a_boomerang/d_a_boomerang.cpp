@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct csXyz {
+    /* 802673F4 */ csXyz(s16, s16, s16);
+};
+
 struct Vec {};
 
 struct cXyz {
@@ -22,19 +26,17 @@ struct cXyz {
     /* 804A27FC */ cXyz();
 };
 
-struct csXyz {
-    /* 802673F4 */ csXyz(s16, s16, s16);
-};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -48,10 +50,15 @@ struct fopAc_ac_c {
 
 struct fopAcM_wt_c {
     /* 8001DD84 */ void waterCheck(cXyz const*);
+
+    static f32 mWaterY[1 + 1 /* padding */];
 };
 
 struct fopAcM_rc_c {
     /* 8001DD1C */ void roofCheck(cXyz const*);
+
+    static u8 mRoofCheck[80];
+    static f32 mRoofY;
 };
 
 struct J3DModel {};
@@ -98,6 +105,14 @@ struct daBoomerang_c {
     /* 804A230C */ daBoomerang_c();
 };
 
+struct daBoomerang_HIO_c0 {
+    static f32 const m_minCircleR;
+    static f32 const m_middleCircleR;
+    static f32 const m_maxCircleR;
+    static f32 const m_scale;
+    static f32 const m_lockWindScale;
+};
+
 struct J3DAnmBase {};
 
 struct daAlink_c {
@@ -141,6 +156,8 @@ struct dPa_control_c {
                             _GXColor const*, cXyz const*, f32);
 };
 
+struct dBgS_AcchCir {};
+
 struct cBgS_PolyInfo {};
 
 struct dBgS {
@@ -149,8 +166,6 @@ struct dBgS {
     /* 80074E50 */ void GetPolyAtt0(cBgS_PolyInfo const&);
     /* 80075100 */ void GetRoomId(cBgS_PolyInfo const&);
 };
-
-struct dBgS_AcchCir {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -293,6 +308,14 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct JKRFileLoader {
     /* 802D4270 */ void getGlbResource(char const*, JKRFileLoader*);
 };
@@ -304,6 +327,10 @@ struct JGeometry {
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
 };
 
 struct J3DAnmTextureSRTKey {
@@ -396,6 +423,11 @@ extern "C" static void func_804A2784();
 extern "C" void __dt__19daBoomerang_sight_cFv();
 extern "C" void __ct__4cXyzFv();
 extern "C" void __dt__12J3DFrameCtrlFv();
+extern "C" f32 const m_minCircleR__18daBoomerang_HIO_c0;
+extern "C" f32 const m_middleCircleR__18daBoomerang_HIO_c0;
+extern "C" f32 const m_maxCircleR__18daBoomerang_HIO_c0;
+extern "C" f32 const m_scale__18daBoomerang_HIO_c0;
+extern "C" f32 const m_lockWindScale__18daBoomerang_HIO_c0;
 extern "C" extern char const* const d_a_boomerang__stringBase0;
 
 //
@@ -547,19 +579,19 @@ extern "C" extern void* __vt__12cCcD_CpsAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__16Z2SoundObjSimple[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mRoofCheck__11fopAcM_rc_c[80];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mRoofCheck__11fopAcM_rc_c[80];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern f32 mRoofY__11fopAcM_rc_c;
-extern "C" extern f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
+extern "C" f32 mRoofY__11fopAcM_rc_c;
+extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
 extern "C" extern u8 struct_80450D64[4];
 extern "C" extern u8 struct_8045101C[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -627,37 +659,37 @@ COMPILER_STRIP_GATE(804A2868, (((char*)&struct_804A2868) + 0x0) /* l_blurRoot */
  */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static f32 const m_minCircleR__18daBoomerang_HIO_c0 = 28.0f;
-COMPILER_STRIP_GATE(804A287C, &m_minCircleR__18daBoomerang_HIO_c0);
+SECTION_RODATA f32 const daBoomerang_HIO_c0::m_minCircleR = 28.0f;
+COMPILER_STRIP_GATE(804A287C, &daBoomerang_HIO_c0::m_minCircleR);
 #pragma pop
 
 /* 804A2880-804A2884 000030 0004+00 0/0 0/0 0/0 .rodata m_middleCircleR__18daBoomerang_HIO_c0 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static f32 const m_middleCircleR__18daBoomerang_HIO_c0 = 35.0f;
-COMPILER_STRIP_GATE(804A2880, &m_middleCircleR__18daBoomerang_HIO_c0);
+SECTION_RODATA f32 const daBoomerang_HIO_c0::m_middleCircleR = 35.0f;
+COMPILER_STRIP_GATE(804A2880, &daBoomerang_HIO_c0::m_middleCircleR);
 #pragma pop
 
 /* 804A2884-804A2888 000034 0004+00 0/0 0/0 0/0 .rodata          m_maxCircleR__18daBoomerang_HIO_c0
  */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static f32 const m_maxCircleR__18daBoomerang_HIO_c0 = 80.0f;
-COMPILER_STRIP_GATE(804A2884, &m_maxCircleR__18daBoomerang_HIO_c0);
+SECTION_RODATA f32 const daBoomerang_HIO_c0::m_maxCircleR = 80.0f;
+COMPILER_STRIP_GATE(804A2884, &daBoomerang_HIO_c0::m_maxCircleR);
 #pragma pop
 
 /* 804A2888-804A288C 000038 0004+00 0/0 0/0 0/0 .rodata          m_scale__18daBoomerang_HIO_c0 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static f32 const m_scale__18daBoomerang_HIO_c0 = 3.0f / 5.0f;
-COMPILER_STRIP_GATE(804A2888, &m_scale__18daBoomerang_HIO_c0);
+SECTION_RODATA f32 const daBoomerang_HIO_c0::m_scale = 3.0f / 5.0f;
+COMPILER_STRIP_GATE(804A2888, &daBoomerang_HIO_c0::m_scale);
 #pragma pop
 
 /* 804A288C-804A2890 00003C 0004+00 0/0 0/0 0/0 .rodata m_lockWindScale__18daBoomerang_HIO_c0 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static f32 const m_lockWindScale__18daBoomerang_HIO_c0 = 2.0f;
-COMPILER_STRIP_GATE(804A288C, &m_lockWindScale__18daBoomerang_HIO_c0);
+SECTION_RODATA f32 const daBoomerang_HIO_c0::m_lockWindScale = 2.0f;
+COMPILER_STRIP_GATE(804A288C, &daBoomerang_HIO_c0::m_lockWindScale);
 #pragma pop
 
 /* 804A2890-804A28A4 000040 0014+00 0/1 0/0 0/0 .rodata          l_lockSeFlg */

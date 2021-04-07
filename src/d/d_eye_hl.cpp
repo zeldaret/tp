@@ -22,6 +22,8 @@ struct dEyeHL_mng_c {
     /* 8009CA48 */ void update();
     /* 8009CB14 */ void entry(dEyeHL_c*);
     /* 8009CB34 */ void remove(dEyeHL_c*);
+
+    static u8 m_obj[4 + 4 /* padding */];
 };
 
 struct JUTNameTab {
@@ -38,6 +40,7 @@ extern "C" void update__12dEyeHL_mng_cFv();
 extern "C" void entry__12dEyeHL_mng_cFP8dEyeHL_c();
 extern "C" void remove__12dEyeHL_mng_cFP8dEyeHL_c();
 extern "C" extern char const* const d_d_eye_hl__stringBase0;
+extern "C" u8 m_obj__12dEyeHL_mng_c[4 + 4 /* padding */];
 extern "C" extern u8 struct_80450FB0[8];
 extern "C" extern u8 struct_80450FB8[4];
 extern "C" extern u8 struct_80450FBC[4];
@@ -81,7 +84,7 @@ asm void dEyeHL_c::remove() {
 
 /* ############################################################################################## */
 /* 80450FA8-80450FB0 0004A8 0004+04 3/3 0/0 0/0 .sbss            m_obj__12dEyeHL_mng_c */
-static u8 m_obj__12dEyeHL_mng_c[4 + 4 /* padding */];
+u8 dEyeHL_mng_c::m_obj[4 + 4 /* padding */];
 
 /* 80452C10-80452C14 001210 0004+00 1/1 0/0 0/0 .sdata2          @3862 */
 SECTION_SDATA2 static f32 lit_3862 = 2.0f;

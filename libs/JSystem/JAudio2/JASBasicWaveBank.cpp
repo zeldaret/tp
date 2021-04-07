@@ -13,7 +13,9 @@
 
 struct JKRHeap {};
 
-struct JASWaveInfo {};
+struct JASWaveInfo {
+    static u32 one[1 + 1 /* padding */];
+};
 
 struct JASWaveHandle {
     /* 80298BD0 */ ~JASWaveHandle();
@@ -61,6 +63,8 @@ struct JASBasicWaveBank {
     /* 80298910 */ void setWaveInfo(JASBasicWaveBank::TWaveGroup*, int, u16, JASWaveInfo const&);
     /* 80298C6C */ void getWaveArc(u32);
     /* 80298C8C */ void getArcCount() const;
+
+    static u8 mNoLoad[4 + 4 /* padding */];
 };
 
 //
@@ -92,6 +96,7 @@ extern "C" void __ct__Q216JASBasicWaveBank14TGroupWaveInfoFv();
 extern "C" void getWaveInfo__Q216JASBasicWaveBank11TWaveHandleCFv();
 extern "C" void getWaveArc__16JASBasicWaveBankFUl();
 extern "C" void getArcCount__16JASBasicWaveBankCFv();
+extern "C" u8 mNoLoad__16JASBasicWaveBank[4 + 4 /* padding */];
 
 //
 // External References:
@@ -114,7 +119,7 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_25();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_29();
-extern "C" extern u32 one__11JASWaveInfo[1 + 1 /* padding */];
+extern "C" u32 one__11JASWaveInfo[1 + 1 /* padding */];
 
 //
 // Declarations:
@@ -241,7 +246,7 @@ asm void JASBasicWaveBank::incWaveTable(JASBasicWaveBank::TWaveGroup const* para
 
 /* ############################################################################################## */
 /* 80451278-80451280 000778 0004+04 2/2 0/0 0/0 .sbss            mNoLoad__16JASBasicWaveBank */
-static u8 mNoLoad__16JASBasicWaveBank[4 + 4 /* padding */];
+u8 JASBasicWaveBank::mNoLoad[4 + 4 /* padding */];
 
 /* 8029883C-802988DC 29317C 00A0+00 1/1 0/0 0/0 .text
  * decWaveTable__16JASBasicWaveBankFPCQ216JASBasicWaveBank10TWaveGroup */

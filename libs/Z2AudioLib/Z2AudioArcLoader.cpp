@@ -11,7 +11,9 @@
 // Types:
 //
 
-struct JKRHeap {};
+struct JKRHeap {
+    static u8 sCurrentHeap[4];
+};
 
 struct JKRArchive {
     struct EMountDirection {};
@@ -94,7 +96,7 @@ extern "C" void _restgpr_29();
 extern "C" extern void* __vt__17JAUAudioArcLoader[17 + 1 /* padding */];
 extern "C" extern u8 data_80450B40[4];
 extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
+extern "C" u8 sCurrentHeap__7JKRHeap[4];
 
 //
 // Declarations:

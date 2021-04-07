@@ -169,6 +169,10 @@ struct Z2Calc {
     /* 802A9814 */ void getRandom(f32, f32, f32);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct Z2Audience {
     /* 802BD92C */ void convertAbsToRel(Vec&, Vec*, int);
     /* 802BD95C */ void calcRelPosVolume(Vec const&, f32, int);
@@ -328,7 +332,7 @@ extern "C" extern u8 data_80450B80[4];
 extern "C" extern u8 data_80450B84[4];
 extern "C" extern u8 data_80450B88[4];
 extern "C" extern u8 struct_80451358[8];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

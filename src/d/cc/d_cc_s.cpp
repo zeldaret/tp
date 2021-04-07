@@ -15,11 +15,15 @@ struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CF0C */ void ZXYrotS(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {};
 
-struct cXyz {};
+struct cXyz {
+    static u8 BaseZ[12];
+};
 
 struct dPa_control_c {
     /* 8004C218 */ void setHitMark(u16, fopAc_ac_c*, cXyz const*, csXyz const*, cXyz const*, u32);
@@ -29,28 +33,28 @@ struct dJntCol_c {
     /* 80036C44 */ void getHitmarkPosAndAngle(cXyz const*, csXyz const*, cXyz*, csXyz*, int) const;
 };
 
+struct cCcD_Stts {
+    /* 80263934 */ void PlusCcMove(f32, f32, f32);
+    /* 80263970 */ void PlusDmg(int);
+};
+
 struct dCcD_GObjInf {
     /* 800843DC */ void ChkAtNoGuard();
 };
 
-struct cCcD_GObjInf {};
-
-struct cCcD_Obj {
-    /* 80263A48 */ void GetAc();
-};
-
 struct cCcD_GStts {};
+
+struct dCcD_GStts {};
 
 struct cCcD_ShapeAttr {
     struct Shape {};
 };
 
-struct dCcD_GStts {};
-
-struct cCcD_Stts {
-    /* 80263934 */ void PlusCcMove(f32, f32, f32);
-    /* 80263970 */ void PlusDmg(int);
+struct cCcD_Obj {
+    /* 80263A48 */ void GetAc();
 };
+
+struct cCcD_GObjInf {};
 
 struct dCcS {
     /* 8002FF40 */ ~dCcS();
@@ -84,6 +88,8 @@ struct dCcS {
     /* 80087330 */ void ChkAtTgMtrlHit(u8, u8);
     /* 8008734C */ void ChkNoHitGAtTg(cCcD_GObjInf const*, cCcD_GObjInf const*, cCcD_GStts*,
                                       cCcD_GStts*);
+
+    static u8 m_mtrl_hit_tbl[64];
 };
 
 struct dCcMassS_Mng {
@@ -169,6 +175,7 @@ extern "C" void Draw__4dCcSFv();
 extern "C" void MassClear__4dCcSFv();
 extern "C" void ChkAtTgMtrlHit__4dCcSFUcUc();
 extern "C" void ChkNoHitGAtTg__4dCcSFPC12cCcD_GObjInfPC12cCcD_GObjInfP10cCcD_GSttsP10cCcD_GStts();
+extern "C" u8 m_mtrl_hit_tbl__4dCcS[64];
 extern "C" extern void* __vt__4dCcS[13];
 
 //
@@ -229,9 +236,9 @@ extern "C" extern void* __vt__8cM3dGSph[3];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__12cCcD_CpsAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 BaseZ__4cXyz[12];
+extern "C" u8 BaseZ__4cXyz[12];
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 //
@@ -622,7 +629,7 @@ asm void dCcS::MassClear() {
 
 /* ############################################################################################## */
 /* 803AC3A4-803AC3E4 0094C4 0040+00 1/1 0/0 0/0 .data            m_mtrl_hit_tbl__4dCcS */
-SECTION_DATA static u8 m_mtrl_hit_tbl__4dCcS[64] = {
+SECTION_DATA u8 dCcS::m_mtrl_hit_tbl[64] = {
     0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00,

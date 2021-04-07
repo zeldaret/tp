@@ -60,14 +60,14 @@ struct JAIStreamMgr {
     /* 802A4174 */ void newStream_();
 };
 
-struct JAISoundActivity {};
+struct JAIAudience {};
 
 template <typename A0>
 struct JAISoundStrategyMgr {};
 /* JAISoundStrategyMgr<JAIStream> */
 struct JAISoundStrategyMgr__template2 {};
 
-struct JAIAudience {};
+struct JAISoundActivity {};
 
 struct JAIStream {
     /* 802A3104 */ JAIStream(JAIStreamMgr*, JAISoundStrategyMgr<JAIStream>*);

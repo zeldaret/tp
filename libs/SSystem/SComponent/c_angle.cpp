@@ -38,6 +38,12 @@ struct cSAngle {
     /* 802711E8 */ void operator-=(cSAngle const&);
     /* 80271264 */ void operator*(f32) const;
     /* 802712B4 */ void operator*=(f32);
+
+    static u8 _0[2 + 2 /* padding */];
+    static u8 _1[2 + 2 /* padding */];
+    static u8 _90[2 + 2 /* padding */];
+    static u8 _180[2 + 2 /* padding */];
+    static u8 _270[2 + 6 /* padding */];
 };
 
 struct cSPolar;
@@ -140,6 +146,11 @@ extern "C" void Norm__7cSGlobeCFv();
 extern "C" void Invert__7cSGlobeFv();
 extern "C" void func_80271BA8(f32, f32, f32);
 extern "C" void __sinit_c_angle_cpp();
+extern "C" u8 _0__7cSAngle[2 + 2 /* padding */];
+extern "C" u8 _1__7cSAngle[2 + 2 /* padding */];
+extern "C" u8 _90__7cSAngle[2 + 2 /* padding */];
+extern "C" u8 _180__7cSAngle[2 + 2 /* padding */];
+extern "C" u8 _270__7cSAngle[2 + 6 /* padding */];
 
 //
 // External References:
@@ -758,23 +769,19 @@ static u8 lit_2405[12 + 4 /* padding */];
 #pragma pop
 
 /* 80451188-8045118C 000688 0002+02 1/1 22/22 0/0 .sbss            _0__7cSAngle */
-extern u8 _0__7cSAngle[2 + 2 /* padding */];
-u8 _0__7cSAngle[2 + 2 /* padding */];
+u8 cSAngle::_0[2 + 2 /* padding */];
 
 /* 8045118C-80451190 00068C 0002+02 1/1 0/0 0/0 .sbss            _1__7cSAngle */
-static u8 _1__7cSAngle[2 + 2 /* padding */];
+u8 cSAngle::_1[2 + 2 /* padding */];
 
 /* 80451190-80451194 000690 0002+02 1/1 6/6 0/0 .sbss            _90__7cSAngle */
-extern u8 _90__7cSAngle[2 + 2 /* padding */];
-u8 _90__7cSAngle[2 + 2 /* padding */];
+u8 cSAngle::_90[2 + 2 /* padding */];
 
 /* 80451194-80451198 000694 0002+02 1/1 2/2 0/0 .sbss            _180__7cSAngle */
-extern u8 _180__7cSAngle[2 + 2 /* padding */];
-u8 _180__7cSAngle[2 + 2 /* padding */];
+u8 cSAngle::_180[2 + 2 /* padding */];
 
 /* 80451198-804511A0 000698 0002+06 1/1 3/3 0/0 .sbss            _270__7cSAngle */
-extern u8 _270__7cSAngle[2 + 6 /* padding */];
-u8 _270__7cSAngle[2 + 6 /* padding */];
+u8 cSAngle::_270[2 + 6 /* padding */];
 
 /* 80271BD4-80271C8C 26C514 00B8+00 0/0 1/0 0/0 .text            __sinit_c_angle_cpp */
 #pragma push

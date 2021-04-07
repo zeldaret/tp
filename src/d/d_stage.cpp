@@ -54,6 +54,10 @@ struct stage_actor_class {};
 
 struct roomRead_class {};
 
+struct mDoRst {
+    static u8 mResetData[4 + 4 /* padding */];
+};
+
 struct layer_class {};
 
 struct fopAc_ac_c {};
@@ -99,29 +103,29 @@ struct dStage_startStage_c {
 
 struct dStage_Lbnk_c {};
 
+struct dStage_DMap_c {};
+
 struct dStage_FileList2_dt_c {};
+
+struct dStage_FloorInfo_c {};
+
+struct dStage_dPnt_c {};
+
+struct dStage_Elst_c {};
+
+struct dStage_dPath_c {};
+
+struct dStage_SoundInfo_c {};
+
+struct dStage_FileList_dt_c {};
 
 struct dStage_MemoryMap_c {};
 
 struct dStage_MemoryConfig_c {};
 
-struct dStage_dPnt_c {};
-
-struct dStage_FileList_dt_c {};
-
-struct dStage_Multi_c {};
-
-struct dStage_FloorInfo_c {};
-
-struct dStage_Elst_c {};
-
-struct dStage_DMap_c {};
-
 struct dStage_MapEventInfo_c {};
 
-struct dStage_SoundInfo_c {};
-
-struct dStage_dPath_c {};
+struct dStage_Multi_c {};
 
 struct dStage_stageDt_c {
     /* 8002483C */ void getStagInfo() const;
@@ -339,6 +343,15 @@ struct dStage_roomControl_c {
     /* 80024940 */ void getArcBank(int);
     /* 80024954 */ void resetArchiveBank(int);
     /* 80024DB0 */ void SetTimePass(int);
+
+    static u8 mMemoryBlock[76];
+    static u8 mArcBank[320];
+    static u8 mStatus[65792];
+    static u8 mDemoArcName[10 + 2 /* padding */];
+    static u8 mProcID[4];
+    static u8 mArcBankName[4];
+    static u8 mArcBankData[4];
+    static u8 m_roomDzs[8];
 };
 
 struct dStage_nextStage_c {
@@ -715,6 +728,14 @@ extern "C" void __dt__19dStage_KeepDoorInfoFv();
 extern "C" void __dt__21stage_tgsc_data_classFv();
 extern "C" void __ct__21stage_tgsc_data_classFv();
 extern "C" extern char const* const d_d_stage__stringBase0;
+extern "C" u8 mMemoryBlock__20dStage_roomControl_c[76];
+extern "C" u8 mArcBank__20dStage_roomControl_c[320];
+extern "C" u8 mStatus__20dStage_roomControl_c[65792];
+extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
+extern "C" u8 mProcID__20dStage_roomControl_c[4];
+extern "C" u8 mArcBankName__20dStage_roomControl_c[4];
+extern "C" u8 mArcBankData__20dStage_roomControl_c[4];
+extern "C" u8 m_roomDzs__20dStage_roomControl_c[8];
 
 //
 // External References:
@@ -796,7 +817,7 @@ extern "C" extern u8 const j3dDefaultLightInfo[52];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_save_bit_HIO[1184 + 4 /* padding */];
 extern "C" extern u8 data_804505F0[8];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
+extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -954,15 +975,13 @@ static u8 lit_5376[12];
 #pragma pop
 
 /* 803F6094-80406194 022DB4 10100+00 12/12 31/31 16/16 .bss mStatus__20dStage_roomControl_c */
-extern u8 mStatus__20dStage_roomControl_c[65792];
-u8 mStatus__20dStage_roomControl_c[65792];
+u8 dStage_roomControl_c::mStatus[65792];
 
 /* 80450D58-80450D60 000258 0008+00 1/1 0/0 0/0 .sbss            tmp_name$4456 */
 static u8 tmp_name[8];
 
 /* 80450D60-80450D64 000260 0004+00 1/1 3/3 1/1 .sbss            mProcID__20dStage_roomControl_c */
-extern u8 mProcID__20dStage_roomControl_c[4];
-u8 mProcID__20dStage_roomControl_c[4];
+u8 dStage_roomControl_c::mProcID[4];
 
 /* 80450D64-80450D68 -00001 0004+00 6/6 94/94 101/101 .sbss            None */
 /* 80450D64 0001+00 data_80450D64 None */
@@ -977,12 +996,10 @@ extern u8 data_80450D68[4];
 u8 data_80450D68[4];
 
 /* 80450D6C-80450D70 00026C 0004+00 1/1 2/2 0/0 .sbss mArcBankName__20dStage_roomControl_c */
-extern u8 mArcBankName__20dStage_roomControl_c[4];
-u8 mArcBankName__20dStage_roomControl_c[4];
+u8 dStage_roomControl_c::mArcBankName[4];
 
 /* 80450D70-80450D74 000270 0004+00 1/1 1/1 0/0 .sbss mArcBankData__20dStage_roomControl_c */
-extern u8 mArcBankData__20dStage_roomControl_c[4];
-u8 mArcBankData__20dStage_roomControl_c[4];
+u8 dStage_roomControl_c::mArcBankData[4];
 
 /* 800241E8-80024338 01EB28 0150+00 1/1 0/0 0/4 .text            init__20dStage_roomControl_cFv */
 #pragma push
@@ -1825,7 +1842,7 @@ SECTION_DATA static void* l_funcTable_5178[9] = {
 };
 
 /* 803A6920-803A696C 003A40 004C+00 3/3 0/0 0/0 .data mMemoryBlock__20dStage_roomControl_c */
-SECTION_DATA static u8 mMemoryBlock__20dStage_roomControl_c[76] = {
+SECTION_DATA u8 dStage_roomControl_c::mMemoryBlock[76] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1949,7 +1966,7 @@ asm void dStage_roomControl_c::destroyMemoryBlock() {
 
 /* ############################################################################################## */
 /* 803A696C-803A6AAC 003A8C 0140+00 2/2 0/0 0/0 .data            mArcBank__20dStage_roomControl_c */
-SECTION_DATA static u8 mArcBank__20dStage_roomControl_c[320] = {
+SECTION_DATA u8 dStage_roomControl_c::mArcBank[320] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -2733,7 +2750,7 @@ static asm void dStage_fieldMapMapPathInit(dStage_dt_c* param_0, void* param_1, 
 /* ############################################################################################## */
 /* 80450D74-80450D7C 000274 0008+00 3/3 0/0 0/0 .sbss            m_roomDzs__20dStage_roomControl_c
  */
-static u8 m_roomDzs__20dStage_roomControl_c[8];
+u8 dStage_roomControl_c::m_roomDzs[8];
 
 /* 8002645C-800265DC 020D9C 0180+00 1/1 0/0 0/0 .text readMult__FP11dStage_dt_cP14dStage_Multi_cb
  */
@@ -2955,8 +2972,7 @@ asm void dStage_infoCreate() {
 
 /* ############################################################################################## */
 /* 80406194-804061A0 032EB4 000A+02 2/2 14/14 7/7 .bss mDemoArcName__20dStage_roomControl_c */
-extern u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
-u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
+u8 dStage_roomControl_c::mDemoArcName[10 + 2 /* padding */];
 
 /* 80026D38-80026DF8 021678 00C0+00 0/0 1/1 0/0 .text            dStage_Create__Fv */
 #pragma push

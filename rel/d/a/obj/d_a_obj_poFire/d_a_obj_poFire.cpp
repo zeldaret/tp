@@ -15,6 +15,8 @@ struct request_of_phase_process_class {};
 
 struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct mDoHIO_entry_c {
@@ -73,10 +75,6 @@ struct dSv_player_get_item_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
-struct dKy_tevstr_c {};
-
 struct Vec {};
 
 struct cXyz {
@@ -84,6 +82,10 @@ struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80266B84 */ void operator*(f32) const;
 };
+
+struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct csXyz {};
 
@@ -96,6 +98,8 @@ struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
                             cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
                             _GXColor const*, cXyz const*, f32);
+
+    static u8 mParticleTracePCB[4 + 4 /* padding */];
 };
 
 struct dEvt_control_c {
@@ -136,6 +140,10 @@ struct cBgS {
 
 struct JPABaseEmitter {
     /* 8027EC60 */ void deleteAllParticle();
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct JGeometry {
@@ -244,10 +252,10 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
+extern "C" u8 sincosTable___5JMath[65536];
+extern "C" u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //

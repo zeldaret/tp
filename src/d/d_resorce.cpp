@@ -11,6 +11,15 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
+struct mDoGph_gInf_c {
+    static u8 mFrameBufferTimg[4];
+    static u8 mZbufferTimg[4];
+};
+
 struct mDoExt_transAnmBas {
     /* 8003C784 */ ~mDoExt_transAnmBas();
 };
@@ -18,13 +27,13 @@ struct mDoExt_transAnmBas {
 struct JKRHeap {
     /* 802CE6B0 */ void getSize(void*, JKRHeap*);
     /* 802CE83C */ void findFromRoot(void*);
+
+    static u8 sCurrentHeap[4];
 };
 
 struct mDoDvdThd_mountArchive_c {
     /* 80015E14 */ void create(char const*, u8, JKRHeap*);
 };
-
-struct cXyz {};
 
 struct JKRArchive {
     /* 802D5CE4 */ void getIdxResource(u32);
@@ -38,6 +47,8 @@ struct J3DModelData {
     /* 80325F94 */ void makeSharedDL();
     /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
 };
+
+struct cXyz {};
 
 struct dRes_info_c {
     /* 8003A260 */ dRes_info_c();
@@ -327,12 +338,12 @@ extern "C" void strlen();
 extern "C" void stricmp();
 extern "C" extern u8 const j3dDefaultMtx[48];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
-extern "C" extern u8 mZbufferTimg__13mDoGph_gInf_c[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
+extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
+extern "C" u8 mZbufferTimg__13mDoGph_gInf_c[4];
+extern "C" u8 sCurrentHeap__7JKRHeap[4];
 extern "C" extern u8 j3dDefaultTevSwapMode[4];
 
 //

@@ -46,6 +46,8 @@ struct JKRAramHeap {
     /* 802D3134 */ void getFreeSize();
     /* 802D31AC */ void getTotalFreeSize();
     /* 802D3218 */ void dump();
+
+    static u8 sAramList[12];
 };
 
 struct JKRAramBlock {
@@ -68,6 +70,7 @@ extern "C" void getTotalFreeSize__11JKRAramHeapFv();
 extern "C" void dump__11JKRAramHeapFv();
 extern "C" void __sinit_JKRAramHeap_cpp();
 extern "C" void func_802D32B0();
+extern "C" u8 sAramList__11JKRAramHeap[12];
 
 //
 // External References:
@@ -109,7 +112,7 @@ SECTION_DATA extern void* __vt__11JKRAramHeap[3 + 1 /* padding */] = {
 static u8 lit_297[12];
 
 /* 8043430C-80434318 06102C 000C+00 8/8 0/0 0/0 .bss             sAramList__11JKRAramHeap */
-static u8 sAramList__11JKRAramHeap[12];
+u8 JKRAramHeap::sAramList[12];
 
 /* 802D2E44-802D2F14 2CD784 00D0+00 0/0 1/1 0/0 .text            __ct__11JKRAramHeapFUlUl */
 #pragma push

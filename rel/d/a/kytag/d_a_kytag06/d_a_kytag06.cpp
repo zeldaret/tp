@@ -28,13 +28,13 @@ struct dSv_event_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
-struct dKy_tevstr_c {};
-
 struct cXyz {
     /* 808589A4 */ ~cXyz();
 };
+
+struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct csXyz {};
 

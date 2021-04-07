@@ -22,6 +22,8 @@ struct JASCalc {
     void clamp(/* ... */);
     /* 8028F69C */ /* JASCalc::clamp<s16, s32> */
     void func_8028F69C(s32);
+
+    static u8 const CUTOFF_TO_IIR_TABLE[1024];
 };
 
 //
@@ -35,6 +37,7 @@ extern "C" void bzerofast__7JASCalcFPvUl();
 extern "C" void bzero__7JASCalcFPvUl();
 extern "C" void pow2__7JASCalcFf();
 extern "C" void func_8028F69C(s32);
+extern "C" u8 const CUTOFF_TO_IIR_TABLE__7JASCalc[1024];
 
 //
 // External References:
@@ -99,7 +102,7 @@ asm void JASCalc::bzero(void* param_0, u32 param_1) {
 
 /* ############################################################################################## */
 /* 8039ABB8-8039AFB8 027218 0400+00 0/0 4/4 0/0 .rodata          CUTOFF_TO_IIR_TABLE__7JASCalc */
-SECTION_RODATA extern u8 const CUTOFF_TO_IIR_TABLE__7JASCalc[1024] = {
+SECTION_RODATA u8 const JASCalc::CUTOFF_TO_IIR_TABLE[1024] = {
     0x0F, 0x5C, 0x0A, 0x3D, 0x46, 0x65, 0x1E, 0x73, 0x0F, 0x5E, 0x0A, 0x3D, 0x46, 0x64, 0x1E, 0x73,
     0x0F, 0x63, 0x0A, 0x3C, 0x46, 0x61, 0x1E, 0x71, 0x0F, 0x6C, 0x0A, 0x3C, 0x46, 0x5B, 0x1E, 0x6F,
     0x0F, 0x79, 0x0A, 0x3A, 0x46, 0x53, 0x1E, 0x6B, 0x0F, 0x89, 0x0A, 0x39, 0x46, 0x49, 0x1E, 0x67,
@@ -165,7 +168,7 @@ SECTION_RODATA extern u8 const CUTOFF_TO_IIR_TABLE__7JASCalc[1024] = {
     0x7A, 0xBD, 0x00, 0x7A, 0x03, 0x49, 0x01, 0x6C, 0x7C, 0x7A, 0x00, 0x52, 0x02, 0x33, 0x00, 0xF4,
     0x7E, 0x3B, 0x00, 0x29, 0x01, 0x1B, 0x00, 0x7A, 0x7F, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8039ABB8, &CUTOFF_TO_IIR_TABLE__7JASCalc);
+COMPILER_STRIP_GATE(8039ABB8, &JASCalc::CUTOFF_TO_IIR_TABLE);
 
 /* 8039AFB8-8039AFD0 027618 0018+00 1/1 0/0 0/0 .rodata          __two_to_x$982 */
 SECTION_RODATA static f32 const __two_to_x[6] = {

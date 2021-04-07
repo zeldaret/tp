@@ -112,6 +112,10 @@ struct TParse {
 
 };  // namespace fvb
 
+struct data {
+    static u8 ga8cSignature[8];
+};
+
 };  // namespace JStudio
 
 namespace JGadget {
@@ -195,7 +199,7 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void memcmp();
 extern "C" extern void* __vt__Q27JStudio13TCreateObject[4];
-extern "C" extern u8 ga8cSignature__Q27JStudio4data[8];
+extern "C" u8 ga8cSignature__Q27JStudio4data[8];
 
 //
 // Declarations:

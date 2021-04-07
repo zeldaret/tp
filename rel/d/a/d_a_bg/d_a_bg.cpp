@@ -11,9 +11,17 @@
 // Types:
 //
 
-struct J3DAnmTextureSRTKey {};
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
+struct mDoLib_clipper {
+    static u8 mClipper[92];
+};
 
 struct J3DMaterialTable {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -40,6 +48,8 @@ struct daSus_c {
     struct room_c {
         /* 800311FC */ void reset();
     };
+
+    static u8 mRoom[256];
 };
 
 struct daGrass_c {
@@ -75,6 +85,8 @@ struct dSv_event_c {
 
 struct dStage_roomControl_c {
     /* 800243B0 */ void getMemoryBlock(int);
+
+    static u8 mStatus[65792];
 };
 
 struct dKy_tevstr_c {};
@@ -90,6 +102,10 @@ struct dRes_info_c {};
 
 struct dRes_control_c {
     /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
+};
+
+struct dDemo_c {
+    static u8 m_frame[4];
 };
 
 struct dBgW_Base {};
@@ -289,14 +305,14 @@ extern "C" extern u8 const j3dDefaultLightInfo[52];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mClipper__14mDoLib_clipper[92];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mClipper__14mDoLib_clipper[92];
+extern "C" u8 mStatus__20dStage_roomControl_c[65792];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mRoom__7daSus_c[256];
+extern "C" u8 mRoom__7daSus_c[256];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 m_frame__7dDemo_c[4];
+extern "C" u8 m_frame__7dDemo_c[4];
 
 //
 // Declarations:

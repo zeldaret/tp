@@ -73,11 +73,11 @@ struct J2DAnmLoader {
     /* 8030A410 */ ~J2DAnmLoader();
 };
 
+struct J2DAnmColorKey {};
+
 struct J2DAnmBase {
     /* 800569B0 */ void searchUpdateMaterialID(J2DScreen*);
 };
-
-struct J2DAnmColorKey {};
 
 struct J2DAnmKeyLoader_v15 {
     /* 80309290 */ J2DAnmKeyLoader_v15();

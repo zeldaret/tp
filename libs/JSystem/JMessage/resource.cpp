@@ -35,6 +35,8 @@ struct JMessage {
         /* 802A906C */ TResourceContainer();
         /* 802A90B8 */ void setEncoding(u8);
         /* 802A90F0 */ void setEncoding_(u8);
+
+        static void* sapfnParseCharacter_[5];
     };
 
     struct TParse {
@@ -49,6 +51,10 @@ struct JMessage {
         /* 802A94A8 */ void parseCharacter_2Byte(char const**);
         /* 802A9528 */ void parseCharacter_ShiftJIS(char const**);
         /* 802A958C */ void parseCharacter_UTF8(char const**);
+    };
+
+    struct data {
+        static f32 ga4cSignature[1 + 1 /* padding */];
     };
 };
 
@@ -91,6 +97,7 @@ extern "C" void parseBlock_next__Q28JMessage6TParseFPPCvPUlUl();
 extern "C" void parseCharacter_1Byte__Q28JMessage6localeFPPCc();
 extern "C" void parseCharacter_2Byte__Q28JMessage6localeFPPCc();
 extern "C" void func_802A94D4(u32 const*, u32 const*, u32 const&);
+extern "C" void* sapfnParseCharacter___Q28JMessage18TResourceContainer[5];
 
 //
 // External References:
@@ -109,7 +116,7 @@ extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
 extern "C" void memcmp();
 extern "C" extern void* __vt__Q37JGadget6binary19TParse_header_block[5];
-extern "C" extern f32 ga4cSignature__Q28JMessage4data[1 + 1 /* padding */];
+extern "C" f32 ga4cSignature__Q28JMessage4data[1 + 1 /* padding */];
 
 //
 // Declarations:
@@ -130,7 +137,7 @@ asm void JMessage::TResource::toMessageIndex_messageID(u32 param_0, u32 param_1,
 /* ############################################################################################## */
 /* 803C9C80-803C9C94 -00001 0014+00 1/1 0/0 0/0 .data
  * sapfnParseCharacter___Q28JMessage18TResourceContainer        */
-SECTION_DATA static void* sapfnParseCharacter___Q28JMessage18TResourceContainer[5] = {
+SECTION_DATA void* JMessage::TResourceContainer::sapfnParseCharacter_[5] = {
     (void*)NULL,
     (void*)parseCharacter_1Byte__Q28JMessage6localeFPPCc,
     (void*)parseCharacter_2Byte__Q28JMessage6localeFPPCc,

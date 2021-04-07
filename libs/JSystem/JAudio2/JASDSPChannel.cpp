@@ -43,6 +43,8 @@ struct JASDSPChannel {
     /* 8029D89C */ void updateAll();
     /* 8029D910 */ void killActiveChannel();
     /* 8029D948 */ void getHandle(u32);
+
+    static u8 sDspChannels[4 + 4 /* padding */];
 };
 
 //
@@ -63,6 +65,7 @@ extern "C" void updateProc__13JASDSPChannelFv();
 extern "C" void updateAll__13JASDSPChannelFv();
 extern "C" void killActiveChannel__13JASDSPChannelFv();
 extern "C" void getHandle__13JASDSPChannelFUl();
+extern "C" u8 sDspChannels__13JASDSPChannel[4 + 4 /* padding */];
 
 //
 // External References:
@@ -129,7 +132,7 @@ asm void JASDSPChannel::drop() {
 
 /* ############################################################################################## */
 /* 804512E0-804512E8 0007E0 0004+04 5/5 0/0 0/0 .sbss            sDspChannels__13JASDSPChannel */
-static u8 sDspChannels__13JASDSPChannel[4 + 4 /* padding */];
+u8 JASDSPChannel::sDspChannels[4 + 4 /* padding */];
 
 /* 8029D3C8-8029D44C 297D08 0084+00 0/0 1/1 0/0 .text            initAll__13JASDSPChannelFv */
 #pragma push

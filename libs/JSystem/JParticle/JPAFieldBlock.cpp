@@ -11,9 +11,9 @@
 // Types:
 //
 
-struct JPABaseParticle {};
-
 struct JPAEmitterWorkData {};
+
+struct JPABaseParticle {};
 
 struct JKRHeap {};
 

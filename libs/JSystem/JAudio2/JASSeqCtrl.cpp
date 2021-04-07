@@ -38,6 +38,8 @@ struct JASSeqCtrl {
     /* 80293B28 */ void findIntr();
     /* 80293B78 */ void checkIntr();
     /* 80293BE8 */ void timerProcess();
+
+    static u8 sDefaultParser[4 + 4 /* padding */];
 };
 
 //
@@ -57,6 +59,7 @@ extern "C" void checkIntr__10JASSeqCtrlFv();
 extern "C" void timerProcess__10JASSeqCtrlFv();
 extern "C" void __sinit_JASSeqCtrl_cpp();
 extern "C" void __dt__12JASSeqParserFv();
+extern "C" u8 sDefaultParser__10JASSeqCtrl[4 + 4 /* padding */];
 
 //
 // External References:
@@ -75,7 +78,7 @@ extern "C" extern void* __vt__12JASSeqParser[8];
 
 /* ############################################################################################## */
 /* 80451238-80451240 000738 0004+04 3/3 0/0 0/0 .sbss            sDefaultParser__10JASSeqCtrl */
-static u8 sDefaultParser__10JASSeqCtrl[4 + 4 /* padding */];
+u8 JASSeqCtrl::sDefaultParser[4 + 4 /* padding */];
 
 /* 802938BC-80293924 28E1FC 0068+00 0/0 1/1 0/0 .text            __ct__10JASSeqCtrlFv */
 #pragma push

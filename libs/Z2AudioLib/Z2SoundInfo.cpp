@@ -11,15 +11,15 @@
 // Types:
 //
 
-struct JAISeq {};
-
 struct JAISound {};
 
-struct JAIStream {};
+struct JAISeq {};
 
 struct JAISoundID {};
 
 struct JAISe {};
+
+struct JAIStream {};
 
 struct Z2SoundInfo {
     /* 802BB00C */ void getBgmSeqResourceID(JAISoundID) const;
@@ -41,6 +41,10 @@ struct Z2SoundInfo {
 struct Z2Calc {
     /* 802A968C */ void linearTransform(f32, f32, f32, f32, f32, bool);
     /* 802A98D4 */ void getRandom_0_1();
+};
+
+struct JAUStdSoundTableType {
+    static u32 STRM_CH_SHIFT;
 };
 
 struct JAUSoundTable {
@@ -78,6 +82,7 @@ extern "C" static void func_802BBCBC();
 extern "C" static void func_802BBCC4();
 extern "C" static void func_802BBCCC();
 extern "C" static void func_802BBCD4();
+extern "C" u32 STRM_CH_SHIFT__20JAUStdSoundTableType;
 
 //
 // External References:
@@ -228,7 +233,7 @@ asm void Z2SoundInfo::getSeqInfo(JAISoundID param_0, JAISeq* param_1) const {
 
 /* ############################################################################################## */
 /* 80455A90-80455A94 004090 0004+00 1/1 0/0 0/0 .sdata2 STRM_CH_SHIFT__20JAUStdSoundTableType */
-SECTION_SDATA2 static u32 STRM_CH_SHIFT__20JAUStdSoundTableType = 0x00000002;
+SECTION_SDATA2 u32 JAUStdSoundTableType::STRM_CH_SHIFT = 0x00000002;
 
 /* 80455A94-80455A98 004094 0004+00 1/1 0/0 0/0 .sdata2          @1010 */
 SECTION_SDATA2 static f32 lit_1010 = 0.5f;

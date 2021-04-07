@@ -13,13 +13,17 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct mDoHIO_entry_c {
     /* 80CE81AC */ ~mDoHIO_entry_c();
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -44,6 +48,9 @@ struct daStairBlock_c {
     /* 80CE88A0 */ void Execute();
     /* 80CE8B24 */ void Draw();
     /* 80CE8C08 */ void Delete();
+
+    static u8 const mCcDObjInfo[48];
+    static u8 mCcDSph[64];
 };
 
 struct daStairBlock_HIO_c {
@@ -112,6 +119,10 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DModel {};
 
 struct J3DFrameCtrl {
@@ -145,7 +156,9 @@ extern "C" static void daStairBlock_Delete__FP14daStairBlock_c();
 extern "C" static void daStairBlock_Create__FP10fopAc_ac_c();
 extern "C" void __dt__18daStairBlock_HIO_cFv();
 extern "C" void __sinit_d_a_obj_stairBlock_cpp();
+extern "C" u8 const mCcDObjInfo__14daStairBlock_c[48];
 extern "C" extern char const* const d_a_obj_stairBlock__stringBase0;
+extern "C" u8 mCcDSph__14daStairBlock_c[64];
 
 //
 // External References:
@@ -199,11 +212,11 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -221,7 +234,7 @@ SECTION_RODATA static u8 const lit_3651[4] = {
 COMPILER_STRIP_GATE(80CE8DBC, &lit_3651);
 
 /* 80CE8ED8-80CE8F18 000000 0040+00 2/2 0/0 0/0 .data            mCcDSph__14daStairBlock_c */
-SECTION_DATA static u8 mCcDSph__14daStairBlock_c[64] = {
+SECTION_DATA u8 daStairBlock_c::mCcDSph[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -327,12 +340,12 @@ asm void daStairBlock_c::setBaseMtx() {
 
 /* ############################################################################################## */
 /* 80CE8DC0-80CE8DF0 000004 0030+00 1/1 0/0 0/0 .rodata          mCcDObjInfo__14daStairBlock_c */
-SECTION_RODATA static u8 const mCcDObjInfo__14daStairBlock_c[48] = {
+SECTION_RODATA u8 const daStairBlock_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x19, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CE8DC0, &mCcDObjInfo__14daStairBlock_c);
+COMPILER_STRIP_GATE(80CE8DC0, &daStairBlock_c::mCcDObjInfo);
 
 /* 80CE8DF0-80CE8E18 000034 0028+00 0/1 0/0 0/0 .rodata          l_bmdIdx */
 #pragma push

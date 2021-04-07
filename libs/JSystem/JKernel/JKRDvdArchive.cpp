@@ -28,10 +28,14 @@ struct JKRHeap {
     /* 802CE500 */ void free(void*, JKRHeap*);
     /* 802CE548 */ void free(void*);
     /* 802CEB18 */ void copyMemory(void*, void*, u32);
+
+    static u8 sSystemHeap[4];
 };
 
 struct JKRFileLoader {
     /* 802D41D4 */ void unmount();
+
+    static u8 sVolumeList[12];
 };
 
 struct JKRExpandSwitch {};
@@ -144,8 +148,8 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void abs();
-extern "C" extern u8 sVolumeList__13JKRFileLoader[12];
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sVolumeList__13JKRFileLoader[12];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
 
 //
 // Declarations:

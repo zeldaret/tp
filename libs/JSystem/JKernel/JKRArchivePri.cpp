@@ -13,11 +13,15 @@
 
 struct JKRHeap {
     /* 802CE83C */ void findFromRoot(void*);
+
+    static u8 sCurrentHeap[4];
 };
 
 struct JKRFileLoader {
     /* 802D40F0 */ JKRFileLoader();
     /* 802D4148 */ ~JKRFileLoader();
+
+    static u8 sCurrentVolume[4 + 4 /* padding */];
 };
 
 struct JKRArchive {
@@ -43,6 +47,8 @@ struct JKRArchive {
     /* 802D6770 */ void findIdResource(u16) const;
     /* 802D693C */ void setExpandSize(JKRArchive::SDIFileEntry*, u32);
     /* 802D6978 */ void getExpandSize(JKRArchive::SDIFileEntry*) const;
+
+    static u8 sCurrentDirID[4 + 4 /* padding */];
 };
 
 //
@@ -64,6 +70,7 @@ extern "C" void store__Q210JKRArchive8CArcNameFPCc();
 extern "C" void store__Q210JKRArchive8CArcNameFPCcc();
 extern "C" void setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl();
 extern "C" void getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry();
+extern "C" u8 sCurrentDirID__10JKRArchive[4 + 4 /* padding */];
 
 //
 // External References:
@@ -82,8 +89,8 @@ extern "C" void _restgpr_29();
 extern "C" void tolower();
 extern "C" void strcmp();
 extern "C" extern void* __vt__10JKRArchive[20];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentVolume__13JKRFileLoader[4 + 4 /* padding */];
+extern "C" u8 sCurrentHeap__7JKRHeap[4];
+extern "C" u8 sCurrentVolume__13JKRFileLoader[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -91,8 +98,7 @@ extern "C" extern u8 sCurrentVolume__13JKRFileLoader[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 80451420-80451428 000920 0004+04 1/1 5/5 0/0 .sbss            sCurrentDirID__10JKRArchive */
-extern u8 sCurrentDirID__10JKRArchive[4 + 4 /* padding */];
-u8 sCurrentDirID__10JKRArchive[4 + 4 /* padding */];
+u8 JKRArchive::sCurrentDirID[4 + 4 /* padding */];
 
 /* 802D6294-802D6334 2D0BD4 00A0+00 0/0 5/5 0/0 .text
  * __ct__10JKRArchiveFlQ210JKRArchive10EMountMode               */

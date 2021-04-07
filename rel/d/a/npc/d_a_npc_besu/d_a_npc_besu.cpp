@@ -11,9 +11,15 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -23,9 +29,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -47,8 +51,6 @@ struct daNpc_Len_c {
     /* 80A660D8 */ void checkStartDemo13StbEvt(fopAc_ac_c*, f32, f32, f32, f32, f32, f32, f32);
 };
 
-struct daNpcT_motionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -57,11 +59,13 @@ struct daNpcT_MotionSeqMngr_c {
     /* 8053DDB8 */ ~daNpcT_MotionSeqMngr_c();
 };
 
+struct daNpcT_motionAnmData_c {};
+
+struct J3DJoint {};
+
 struct daNpcT_faceMotionAnmData_c {};
 
 struct daNpcT_evtData_c {};
-
-struct J3DJoint {};
 
 struct daNpc_Besu_c {
     /* 80536E4C */ ~daNpc_Besu_c();
@@ -130,10 +134,15 @@ struct daNpc_Besu_c {
     /* 8053E6C0 */ bool getBackboneJointNo();
     /* 8053E6C8 */ void checkChangeJoint(int);
     /* 8053E6D8 */ void checkRemoveJoint(int);
+
+    static void* mCutNameList[15];
+    static u8 mCutList[180];
 };
 
 struct daNpc_Besu_Param_c {
     /* 8053E6E8 */ ~daNpc_Besu_Param_c();
+
+    static u8 const m[144];
 };
 
 struct dCcD_GObjInf {
@@ -141,14 +150,14 @@ struct dCcD_GObjInf {
     /* 800840E4 */ ~dCcD_GObjInf();
 };
 
+struct J3DModel {};
+
 struct cXyz {
     /* 80266AE4 */ void operator+(Vec const&) const;
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 8053D724 */ ~cXyz();
     /* 8053DDB4 */ cXyz();
 };
-
-struct J3DModel {};
 
 struct _GXColorS10 {};
 
@@ -207,6 +216,8 @@ struct daNpcT_c {
     /* 8053E2F8 */ void drawGhost();
     /* 8053E2FC */ bool afterSetFaceMotionAnm(int, int, f32, int);
     /* 8053E304 */ void getMotionAnm(daNpcT_motionAnmData_c);
+
+    static u8 mCcDCyl[68];
 };
 
 struct daNpcT_MatAnm_c {
@@ -532,7 +543,10 @@ extern "C" void checkRemoveJoint__12daNpc_Besu_cFi();
 extern "C" void __dt__18daNpc_Besu_Param_cFv();
 extern "C" static void func_8053E730();
 extern "C" static void func_8053E738();
+extern "C" u8 const m__18daNpc_Besu_Param_c[144];
 extern "C" extern char const* const d_a_npc_besu__stringBase0;
+extern "C" void* mCutNameList__12daNpc_Besu_c[15];
+extern "C" u8 mCutList__12daNpc_Besu_c[180];
 
 //
 // External References:
@@ -704,14 +718,14 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
+extern "C" u8 mCcDCyl__8daNpcT_c[68];
 extern "C" extern void* __vt__8daNpcT_c[49];
 extern "C" extern void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
@@ -1062,7 +1076,7 @@ SECTION_DATA static u8 l_motionSequenceData[480] = {
 #pragma pop
 
 /* 8053F744-8053F780 -00001 003C+00 1/1 0/0 0/0 .data            mCutNameList__12daNpc_Besu_c */
-SECTION_DATA static void* mCutNameList__12daNpc_Besu_c[15] = {
+SECTION_DATA void* daNpc_Besu_c::mCutNameList[15] = {
     (void*)&d_a_npc_besu__stringBase0,
     (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x13D),
     (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x155),
@@ -1221,7 +1235,7 @@ SECTION_DATA static void* lit_3921[3] = {
 #pragma pop
 
 /* 8053F828-8053F8DC 000CCC 00B4+00 1/2 0/0 0/0 .data            mCutList__12daNpc_Besu_c */
-SECTION_DATA static u8 mCutList__12daNpc_Besu_c[180] = {
+SECTION_DATA u8 daNpc_Besu_c::mCutList[180] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1699,7 +1713,7 @@ asm daNpc_Besu_c::~daNpc_Besu_c() {
 
 /* ############################################################################################## */
 /* 8053E754-8053E7E4 000000 0090+00 13/13 0/0 0/0 .rodata          m__18daNpc_Besu_Param_c */
-SECTION_RODATA static u8 const m__18daNpc_Besu_Param_c[144] = {
+SECTION_RODATA u8 const daNpc_Besu_Param_c::m[144] = {
     0x43, 0x20, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xC8, 0x00, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x43, 0x0C, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
@@ -1710,7 +1724,7 @@ SECTION_RODATA static u8 const m__18daNpc_Besu_Param_c[144] = {
     0xC1, 0x70, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC1, 0x70, 0x00, 0x00, 0x41, 0x70, 0x00, 0x00,
     0x41, 0xF0, 0x00, 0x00, 0x41, 0x70, 0x00, 0x00, 0x42, 0x8C, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8053E754, &m__18daNpc_Besu_Param_c);
+COMPILER_STRIP_GATE(8053E754, &daNpc_Besu_Param_c::m);
 
 /* 8053E7E4-8053E830 000090 004C+00 0/1 0/0 0/0 .rodata          heapSize$4091 */
 #pragma push

@@ -108,15 +108,15 @@ struct J3DAnmKeyLoader_v15 {
     /* 80339634 */ void setAnmVtxColor(J3DAnmVtxColorKey*, J3DAnmVtxColorKeyData const*);
 };
 
-struct J3DAnmClusterFull {};
-
-struct J3DAnmClusterFullData {};
-
 struct J3DAnmColorFull {
     /* 8032A93C */ J3DAnmColorFull();
 };
 
+struct J3DAnmClusterFullData {};
+
 struct J3DAnmColorFullData {};
+
+struct J3DAnmClusterFull {};
 
 struct J3DAnmFullLoader_v15 {
     /* 80338468 */ J3DAnmFullLoader_v15();

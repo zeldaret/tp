@@ -17,11 +17,13 @@ struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
+
+    static u8 now[48];
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -45,10 +47,16 @@ struct daObjMirror6Pole_c {
     /* 80C95EFC */ void setBaseMtx();
     /* 80C95F50 */ void createHeapCallBack(fopAc_ac_c*);
     /* 80C95F70 */ void CreateHeap();
+
+    static u8 ActionTable[48];
 };
 
 struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -94,6 +102,7 @@ extern "C" static void daObjMirror6Pole_Draw__FP18daObjMirror6Pole_c();
 extern "C" static bool daObjMirror6Pole_IsDelete__FP18daObjMirror6Pole_c();
 extern "C" void __sinit_d_a_obj_mirror_6pole_cpp();
 extern "C" extern char const* const d_a_obj_mirror_6pole__stringBase0;
+extern "C" u8 ActionTable__18daObjMirror6Pole_c[48];
 
 //
 // External References:
@@ -125,8 +134,8 @@ extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
@@ -219,7 +228,7 @@ SECTION_DATA static void* lit_3620[3] = {
 
 /* 80C96580-80C965B0 000054 0030+00 3/4 0/0 0/0 .data            ActionTable__18daObjMirror6Pole_c
  */
-SECTION_DATA static u8 ActionTable__18daObjMirror6Pole_c[48] = {
+SECTION_DATA u8 daObjMirror6Pole_c::ActionTable[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

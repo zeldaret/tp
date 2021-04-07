@@ -28,11 +28,11 @@ struct JSULink__template1 {};
 
 struct JKRArchive {};
 
+struct JAISoundID {};
+
 struct JAUSeqDataBlock {
     /* 802A68F4 */ JAUSeqDataBlock();
 };
-
-struct JAISoundID {};
 
 struct JAUSeqDataBlocks {
     /* 802A6928 */ void getSeqData(JAISoundID);
@@ -42,9 +42,9 @@ struct JAUSeqDataBlocks {
     /* 802A6A18 */ void hasFailedBlock(JAISoundID);
 };
 
-struct JAISeqData {};
-
 struct JAISeqDataUser {};
+
+struct JAISeqData {};
 
 struct JAUDynamicSeqDataBlocks {
     /* 802A6A58 */ JAUDynamicSeqDataBlocks();

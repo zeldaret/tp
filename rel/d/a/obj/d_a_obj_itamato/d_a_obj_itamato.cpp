@@ -13,16 +13,18 @@
 
 struct request_of_phase_process_class {};
 
-struct cXyz {};
-
 struct csXyz {
     /* 80C296E0 */ ~csXyz();
     /* 80C29AC0 */ csXyz();
 };
 
+struct cXyz {};
+
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -56,6 +58,8 @@ struct daObj_ItaMato_c {
 
 struct daObj_ItaMato_Param_c {
     /* 80C2AB04 */ ~daObj_ItaMato_Param_c();
+
+    static u8 const m[20];
 };
 
 struct dSv_info_c {
@@ -95,6 +99,10 @@ struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
                             cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
                             _GXColor const*, cXyz const*, f32);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -203,6 +211,14 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 //
@@ -242,6 +258,7 @@ extern "C" void __sinit_d_a_obj_itamato_cpp();
 extern "C" void __dt__21daObj_ItaMato_Param_cFv();
 extern "C" static void func_80C2AB4C();
 extern "C" static void func_80C2AB54();
+extern "C" u8 const m__21daObj_ItaMato_Param_c[20];
 extern "C" extern char const* const d_a_obj_itamato__stringBase0;
 
 //
@@ -331,13 +348,13 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -462,11 +479,11 @@ asm csXyz::~csXyz() {
 
 /* ############################################################################################## */
 /* 80C2AB70-80C2AB84 000000 0014+00 4/4 0/0 0/0 .rodata          m__21daObj_ItaMato_Param_c */
-SECTION_RODATA static u8 const m__21daObj_ItaMato_Param_c[20] = {
+SECTION_RODATA u8 const daObj_ItaMato_Param_c::m[20] = {
     0x42, 0xDC, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80,
     0x00, 0x00, 0x43, 0xC8, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C2AB70, &m__21daObj_ItaMato_Param_c);
+COMPILER_STRIP_GATE(80C2AB70, &daObj_ItaMato_Param_c::m);
 
 /* 80C2AB84-80C2ABB4 000014 0030+00 1/1 0/0 0/0 .rodata          l_ccDObjData */
 SECTION_RODATA static u8 const l_ccDObjData[48] = {

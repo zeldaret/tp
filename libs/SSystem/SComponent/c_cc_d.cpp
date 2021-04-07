@@ -13,7 +13,11 @@
 
 struct cXyz {
     /* 80009184 */ ~cXyz();
+
+    static f32 Zero[3];
 };
+
+struct Vec {};
 
 struct cM3dGCyl;
 struct cM3dGSph {
@@ -25,8 +29,6 @@ struct cM3dGCyl {
     /* 8026F208 */ void cross(cM3dGSph const*, cXyz*) const;
     /* 8026F22C */ void cross(cM3dGCyl const*, cXyz*) const;
 };
-
-struct Vec {};
 
 struct cM3dGTri {
     /* 8026F7B0 */ void cross(cM3dGCyl const*, Vec*) const;
@@ -43,6 +45,8 @@ struct cM3dGAab {
 
 struct cCcD_AabAttr {};
 
+struct cCcD_PntAttr {};
+
 struct cCcD_ShapeAttr {
     struct Shape {};
 
@@ -52,33 +56,13 @@ struct cCcD_ShapeAttr {
     /* 80263A64 */ void getShapeAccess(cCcD_ShapeAttr::Shape*) const;
     /* 802649D8 */ bool CrossAtTg(cCcD_ShapeAttr const&, cXyz*) const;
     /* 802649E0 */ bool CrossCo(cCcD_ShapeAttr const&, f32*) const;
+
+    static f32 m_virtual_center[3];
 };
 
-struct cCcD_SphAttr;
+struct cCcD_CpsAttr;
 struct cCcD_TriAttr;
-struct cCcD_CylAttr;
-struct cCcD_PntAttr {};
-
-struct cCcD_CpsAttr {
-    /* 80263DC0 */ void CrossAtTg(cCcD_SphAttr const&, cXyz*) const;
-    /* 80263E04 */ void CrossAtTg(cCcD_TriAttr const&, cXyz*) const;
-    /* 80084FE4 */ void CrossAtTg(cCcD_ShapeAttr const&, cXyz*) const;
-    /* 80084FDC */ bool CrossAtTg(cCcD_PntAttr const&, cXyz*) const;
-    /* 80084FD4 */ bool CrossAtTg(cCcD_AabAttr const&, cXyz*) const;
-    /* 80263D38 */ void CrossAtTg(cCcD_CpsAttr const&, cXyz*) const;
-    /* 80263D7C */ void CrossAtTg(cCcD_CylAttr const&, cXyz*) const;
-    /* 80263F24 */ void CrossCo(cCcD_CylAttr const&, f32*) const;
-    /* 80085024 */ bool CrossCo(cCcD_TriAttr const&, f32*) const;
-    /* 8008502C */ bool CrossCo(cCcD_PntAttr const&, f32*) const;
-    /* 8008501C */ bool CrossCo(cCcD_AabAttr const&, f32*) const;
-    /* 80263ED4 */ void CrossCo(cCcD_CpsAttr const&, f32*) const;
-    /* 80263F74 */ void CrossCo(cCcD_SphAttr const&, f32*) const;
-    /* 80085034 */ void CrossCo(cCcD_ShapeAttr const&, f32*) const;
-    /* 80085450 */ ~cCcD_CpsAttr();
-    /* 80263FC4 */ void CalcAabBox();
-    /* 80264014 */ void GetNVec(cXyz const&, cXyz*) const;
-};
-
+struct cCcD_SphAttr;
 struct cCcD_CylAttr {
     /* 80084CC0 */ void GetCoCP() const;
     /* 80037A4C */ void GetCoCP();
@@ -123,6 +107,26 @@ struct cCcD_SphAttr {
     /* 802646E0 */ void CalcAabBox();
     /* 8026476C */ void GetNVec(cXyz const&, cXyz*) const;
     /* 80264808 */ void getShapeAccess(cCcD_ShapeAttr::Shape*) const;
+};
+
+struct cCcD_CpsAttr {
+    /* 80263DC0 */ void CrossAtTg(cCcD_SphAttr const&, cXyz*) const;
+    /* 80263E04 */ void CrossAtTg(cCcD_TriAttr const&, cXyz*) const;
+    /* 80084FE4 */ void CrossAtTg(cCcD_ShapeAttr const&, cXyz*) const;
+    /* 80084FDC */ bool CrossAtTg(cCcD_PntAttr const&, cXyz*) const;
+    /* 80084FD4 */ bool CrossAtTg(cCcD_AabAttr const&, cXyz*) const;
+    /* 80263D38 */ void CrossAtTg(cCcD_CpsAttr const&, cXyz*) const;
+    /* 80263D7C */ void CrossAtTg(cCcD_CylAttr const&, cXyz*) const;
+    /* 80263F24 */ void CrossCo(cCcD_CylAttr const&, f32*) const;
+    /* 80085024 */ bool CrossCo(cCcD_TriAttr const&, f32*) const;
+    /* 8008502C */ bool CrossCo(cCcD_PntAttr const&, f32*) const;
+    /* 8008501C */ bool CrossCo(cCcD_AabAttr const&, f32*) const;
+    /* 80263ED4 */ void CrossCo(cCcD_CpsAttr const&, f32*) const;
+    /* 80263F74 */ void CrossCo(cCcD_SphAttr const&, f32*) const;
+    /* 80085034 */ void CrossCo(cCcD_ShapeAttr const&, f32*) const;
+    /* 80085450 */ ~cCcD_CpsAttr();
+    /* 80263FC4 */ void CalcAabBox();
+    /* 80264014 */ void GetNVec(cXyz const&, cXyz*) const;
 };
 
 struct cCcD_TriAttr {
@@ -292,6 +296,7 @@ extern "C" static void func_80264A54();
 extern "C" static void func_80264A5C();
 extern "C" static void func_80264A64();
 extern "C" extern void* __vt__9cCcD_Stts[8];
+extern "C" f32 m_virtual_center__14cCcD_ShapeAttr[3];
 
 //
 // External References:
@@ -374,7 +379,7 @@ extern "C" void _restgpr_28();
 extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* __vt__8cM3dGAab[3];
 extern "C" extern void* __vt__8cM3dGTri[3];
-extern "C" extern f32 Zero__4cXyz[3];
+extern "C" f32 Zero__4cXyz[3];
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 //
@@ -1284,8 +1289,7 @@ static u8 lit_2414[12];
 
 /* 80430CB4-80430CC0 05D9D4 000C+00 1/1 2/2 0/0 .bss             m_virtual_center__14cCcD_ShapeAttr
  */
-extern f32 m_virtual_center__14cCcD_ShapeAttr[3];
-f32 m_virtual_center__14cCcD_ShapeAttr[3];
+f32 cCcD_ShapeAttr::m_virtual_center[3];
 
 /* 802649F8-80264A4C 25F338 0054+00 0/0 1/0 0/0 .text            __sinit_c_cc_d_cpp */
 #pragma push

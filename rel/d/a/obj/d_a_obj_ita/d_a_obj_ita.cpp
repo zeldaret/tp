@@ -17,12 +17,16 @@ struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {};
 
 struct fopAcM_wt_c {
     /* 8001DD84 */ void waterCheck(cXyz const*);
+
+    static f32 mWaterY[1 + 1 /* padding */];
 };
 
 struct daObj_ITA_HIO_c {
@@ -126,6 +130,10 @@ struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct JMath {
     template <typename A1, typename B1>
     struct TSinCosTable {};
@@ -133,6 +141,8 @@ struct JMath {
     struct TSinCosTable__template0 {
         /* 80C291CC */ void func_80C291CC(s16) /* const */;
     };
+
+    static u8 sincosTable_[65536];
 };
 
 struct J3DModel {};
@@ -224,13 +234,13 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sincosTable___5JMath[65536];
+extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void setHitBoardSe__9daE_YMB_cFv();
 extern "C" void __register_global_object();
 

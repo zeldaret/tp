@@ -62,6 +62,10 @@ struct Z2FxLineMgr {
     /* 802BAE48 */ void setUnderWaterFx(bool);
 };
 
+struct Z2CreatureLink {
+    static u8 mLinkPtr[4 + 4 /* padding */];
+};
+
 struct Z2Calc {
     struct CurveSign {};
 
@@ -129,7 +133,7 @@ extern "C" extern u8 data_80450B80[4];
 extern "C" extern u8 data_80450B84[4];
 extern "C" extern u8 data_80450B88[4];
 extern "C" extern u8 struct_80451124[4];
-extern "C" extern u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
+extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 
 //
 // Declarations:

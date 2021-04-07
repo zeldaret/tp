@@ -13,11 +13,6 @@
 
 struct request_of_phase_process_class {};
 
-struct cXyz {
-    /* 80BFE3FC */ ~cXyz();
-    /* 80BFF8CC */ cXyz();
-};
-
 struct csXyz {
     /* 80BFF8C8 */ csXyz();
     /* 802673F4 */ csXyz(s16, s16, s16);
@@ -25,16 +20,25 @@ struct csXyz {
     /* 80BFEA24 */ ~csXyz();
 };
 
+struct cXyz {
+    /* 80BFE3FC */ ~cXyz();
+    /* 80BFF8CC */ cXyz();
+};
+
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {};
 
 struct fopAcM_wt_c {
     /* 8001DD84 */ void waterCheck(cXyz const*);
+
+    static f32 mWaterY[1 + 1 /* padding */];
 };
 
 struct daObjGOMIKABE_c {
@@ -195,6 +199,10 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DModel {};
 
 //
@@ -330,12 +338,12 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //

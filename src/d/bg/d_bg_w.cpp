@@ -23,15 +23,21 @@ struct dBgW_Base {
     /* 8007E6DC */ void CallArrowStickCallBack(fopAc_ac_c*, fopAc_ac_c*, cXyz&);
 };
 
-struct dBgS_CaptPoly {};
+struct dBgS_SphChk {};
 
 struct dBgS_SplGrpChk {};
+
+struct cBgS_PolyPassChk {};
+
+struct dBgS_CaptPoly {};
 
 struct cM3dGPla {
     /* 8026F57C */ void getCrossY(cXyz const&, f32*) const;
 };
 
-struct cBgS_GrpPassChk {};
+struct cBgS_PolyInfo {
+    /* 802681A4 */ void SetPolyIndex(int);
+};
 
 struct Vec {};
 
@@ -42,15 +48,9 @@ struct dBgS_Acch {
     /* 800772E8 */ void CalcMovePosWork();
 };
 
-struct cBgS_PolyPassChk {};
+struct cBgS_GrpPassChk {};
 
 struct dBgS_RoofChk {};
-
-struct cBgS_PolyInfo {
-    /* 802681A4 */ void SetPolyIndex(int);
-};
-
-struct dBgS_SphChk {};
 
 struct csXyz {};
 
@@ -174,11 +174,11 @@ struct cBgW_GrpElm {
     /* 8007A1E4 */ cBgW_GrpElm();
 };
 
+struct cBgS_GndChk {};
+
 struct cBgD_t {};
 
 struct cBgS_ShdwDraw {};
-
-struct cBgS_GndChk {};
 
 struct cBgS_LinChk {};
 
@@ -236,6 +236,10 @@ struct cBgW {
     /* 8007B948 */ void ChkNotReady() const;
     /* 8007B958 */ void ChkLock() const;
     /* 8007B964 */ void ChkMoveBg() const;
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 //
@@ -445,7 +449,7 @@ extern "C" void _restgpr_29();
 extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* __vt__8cM3dGAab[3];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 //

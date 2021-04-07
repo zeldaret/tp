@@ -33,6 +33,15 @@ struct cXyz {
     /* 802670AC */ void isZero() const;
     /* 80267128 */ void atan2sX_Z() const;
     /* 80267150 */ void atan2sY_XZ() const;
+
+    static f32 Zero[3];
+    static u8 BaseX[12];
+    static u8 BaseY[12];
+    static u8 BaseZ[12];
+    static u8 BaseXY[12];
+    static u8 BaseXZ[12];
+    static u8 BaseYZ[12];
+    static u8 BaseXYZ[12];
 };
 
 //
@@ -58,6 +67,14 @@ extern "C" void isZero__4cXyzCFv();
 extern "C" void atan2sX_Z__4cXyzCFv();
 extern "C" void atan2sY_XZ__4cXyzCFv();
 extern "C" void __sinit_c_xyz_cpp();
+extern "C" f32 Zero__4cXyz[3];
+extern "C" u8 BaseX__4cXyz[12];
+extern "C" u8 BaseY__4cXyz[12];
+extern "C" u8 BaseZ__4cXyz[12];
+extern "C" u8 BaseXY__4cXyz[12];
+extern "C" u8 BaseXZ__4cXyz[12];
+extern "C" u8 BaseYZ__4cXyz[12];
+extern "C" u8 BaseXYZ__4cXyz[12];
 
 //
 // External References:
@@ -168,8 +185,7 @@ asm void cXyz::norm() const {
 static u8 lit_2450[12];
 
 /* 80430CF4-80430D00 05DA14 000C+00 2/3 50/50 42/42 .bss             Zero__4cXyz */
-extern f32 Zero__4cXyz[3];
-f32 Zero__4cXyz[3];
+f32 cXyz::Zero[3];
 
 /* 80455074-80455078 003674 0004+00 4/4 0/0 0/0 .sdata2          @2288 */
 SECTION_SDATA2 static f32 lit_2288 = 7.999999968033578e-11f;
@@ -335,8 +351,7 @@ static u8 lit_2451[12];
 #pragma pop
 
 /* 80430D0C-80430D18 05DA2C 000C+00 0/1 3/3 9/9 .bss             BaseX__4cXyz */
-extern u8 BaseX__4cXyz[12];
-u8 BaseX__4cXyz[12];
+u8 cXyz::BaseX[12];
 
 /* 80430D18-80430D24 05DA38 000C+00 0/1 0/0 0/0 .bss             @2452 */
 #pragma push
@@ -345,8 +360,7 @@ static u8 lit_2452[12];
 #pragma pop
 
 /* 80430D24-80430D30 05DA44 000C+00 0/1 14/14 8/8 .bss             BaseY__4cXyz */
-extern u8 BaseY__4cXyz[12];
-u8 BaseY__4cXyz[12];
+u8 cXyz::BaseY[12];
 
 /* 80430D30-80430D3C 05DA50 000C+00 0/1 0/0 0/0 .bss             @2453 */
 #pragma push
@@ -355,8 +369,7 @@ static u8 lit_2453[12];
 #pragma pop
 
 /* 80430D3C-80430D48 05DA5C 000C+00 0/1 15/15 5/5 .bss             BaseZ__4cXyz */
-extern u8 BaseZ__4cXyz[12];
-u8 BaseZ__4cXyz[12];
+u8 cXyz::BaseZ[12];
 
 /* 80430D48-80430D54 05DA68 000C+00 0/1 0/0 0/0 .bss             @2454 */
 #pragma push
@@ -367,7 +380,7 @@ static u8 lit_2454[12];
 /* 80430D54-80430D60 05DA74 000C+00 0/1 0/0 0/0 .bss             BaseXY__4cXyz */
 #pragma push
 #pragma force_active on
-static u8 BaseXY__4cXyz[12];
+u8 cXyz::BaseXY[12];
 #pragma pop
 
 /* 80430D60-80430D6C 05DA80 000C+00 0/1 0/0 0/0 .bss             @2455 */
@@ -379,7 +392,7 @@ static u8 lit_2455[12];
 /* 80430D6C-80430D78 05DA8C 000C+00 0/1 0/0 0/0 .bss             BaseXZ__4cXyz */
 #pragma push
 #pragma force_active on
-static u8 BaseXZ__4cXyz[12];
+u8 cXyz::BaseXZ[12];
 #pragma pop
 
 /* 80430D78-80430D84 05DA98 000C+00 0/1 0/0 0/0 .bss             @2456 */
@@ -391,7 +404,7 @@ static u8 lit_2456[12];
 /* 80430D84-80430D90 05DAA4 000C+00 0/1 0/0 0/0 .bss             BaseYZ__4cXyz */
 #pragma push
 #pragma force_active on
-static u8 BaseYZ__4cXyz[12];
+u8 cXyz::BaseYZ[12];
 #pragma pop
 
 /* 80430D90-80430D9C 05DAB0 000C+00 0/1 0/0 0/0 .bss             @2457 */
@@ -403,7 +416,7 @@ static u8 lit_2457[12];
 /* 80430D9C-80430DA8 05DABC 000C+00 0/1 0/0 0/0 .bss             BaseXYZ__4cXyz */
 #pragma push
 #pragma force_active on
-static u8 BaseXYZ__4cXyz[12];
+u8 cXyz::BaseXYZ[12];
 #pragma pop
 
 /* 80267290-802673F4 261BD0 0164+00 0/0 1/0 0/0 .text            __sinit_c_xyz_cpp */

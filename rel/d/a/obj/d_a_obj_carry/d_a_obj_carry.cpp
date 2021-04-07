@@ -13,16 +13,18 @@
 
 struct request_of_phase_process_class {};
 
+struct Quaternion {};
+
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
-
-struct Quaternion {};
 
 struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
     /* 8000CF7C */ void quatM(Quaternion const*);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -38,6 +40,9 @@ struct cXyz {
     /* 80266FDC */ void normalizeRS();
     /* 8026706C */ bool operator!=(Vec const&) const;
     /* 802670AC */ void isZero() const;
+
+    static f32 Zero[3];
+    static u8 BaseX[12];
 };
 
 struct fopAcM_lc_c {
@@ -46,6 +51,9 @@ struct fopAcM_lc_c {
 
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
+
+    static u8 mGndCheck[84];
+    static f32 mGroundY;
 };
 
 struct daPy_py_c {
@@ -218,6 +226,8 @@ struct daObjCarry_c {
     /* 8047962C */ void setTgHitCallBack();
     /* 80479648 */ void setCoHitCallBack();
     /* 80479664 */ void CreateInitCall();
+
+    static u8 const mData[2072];
 };
 
 struct J3DModel {};
@@ -267,6 +277,8 @@ struct JPABaseEmitter {};
 struct dPa_modelEcallBack {
     /* 8004AC00 */ void setModel(JPABaseEmitter*, J3DModelData*, dKy_tevstr_c const&, u8, void*, u8,
                                  u8);
+
+    static u8 mEcallback[4];
 };
 
 struct dPa_levelEcallBack {};
@@ -279,6 +291,8 @@ struct dPa_control_c {
                             cXyz const*, f32);
     /* 8004D068 */ void setPoly(u16, cBgS_PolyInfo&, cXyz const*, dKy_tevstr_c const*, csXyz const*,
                                 cXyz const*, int, dPa_levelEcallBack*, s8, cXyz const*);
+
+    static u8 mTsubo[64];
 };
 
 struct dJntColData_c {};
@@ -286,6 +300,10 @@ struct dJntColData_c {};
 struct dJntCol_c {
     /* 80035C8C */ dJntCol_c();
     /* 80035CA0 */ void init(fopAc_ac_c*, dJntColData_c const*, J3DModel*, int);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct cCcD_Obj {};
@@ -440,8 +458,16 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct JUTNameTab {
     /* 802DEAF8 */ void getName(u16) const;
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct DALKMIST_INFLUENCE {};
@@ -624,6 +650,7 @@ extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" void func_804798D8(s8*);
 extern "C" static void func_804798F4();
 extern "C" static void func_804798FC();
+extern "C" u8 const mData__12daObjCarry_c[2072];
 extern "C" extern char const* const d_a_obj_carry__stringBase0;
 
 //
@@ -812,20 +839,20 @@ extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__12cCcD_CpsAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mGndCheck__11fopAcM_gc_c[84];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mTsubo__13dPa_control_c[64];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mTsubo__13dPa_control_c[64];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 BaseX__4cXyz[12];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" f32 Zero__4cXyz[3];
+extern "C" u8 BaseX__4cXyz[12];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
+extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mEcallback__18dPa_modelEcallBack[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mEcallback__18dPa_modelEcallBack[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -856,7 +883,7 @@ SECTION_RODATA static u8 const l_cyl_info[280] = {
 COMPILER_STRIP_GATE(8047990C, &l_cyl_info);
 
 /* 80479A24-8047A23C 000118 0818+00 1/1 0/0 0/0 .rodata          mData__12daObjCarry_c */
-SECTION_RODATA static u8 const mData__12daObjCarry_c[2072] = {
+SECTION_RODATA u8 const daObjCarry_c::mData[2072] = {
     0x41, 0xD8, 0x00, 0x00, 0x42, 0x10, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0x42, 0xA0, 0x00, 0x00,
     0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A, 0xC0, 0xC0, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00,
     0x3E, 0xCC, 0xCC, 0xCD, 0x41, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xE0, 0x00, 0x00,
@@ -988,7 +1015,7 @@ SECTION_RODATA static u8 const mData__12daObjCarry_c[2072] = {
     0x00, 0x14, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0x3D, 0xCC, 0xCC, 0xCD, 0x3F, 0xC0, 0x00, 0x00,
     0x3F, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x00,
 };
-COMPILER_STRIP_GATE(80479A24, &mData__12daObjCarry_c);
+COMPILER_STRIP_GATE(80479A24, &daObjCarry_c::mData);
 
 /* 8047A23C-8047A280 000930 0044+00 0/1 0/0 0/0 .rodata          l_cyl_src */
 #pragma push

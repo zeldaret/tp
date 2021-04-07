@@ -14,11 +14,16 @@
 struct JUTGraphFifo {
     /* 802DEB58 */ JUTGraphFifo(u32);
     /* 802DEC34 */ ~JUTGraphFifo();
+
+    static u8 sCurrentFifo[4];
+    static u8 mGpStatus[5 + 3 /* padding */];
 };
 
 struct JKRHeap {
     /* 802CE4D4 */ void alloc(u32, int);
     /* 802CE548 */ void free(void*);
+
+    static u8 sSystemHeap[4];
 };
 
 //
@@ -27,6 +32,8 @@ struct JKRHeap {
 
 extern "C" void __ct__12JUTGraphFifoFUl();
 extern "C" void __dt__12JUTGraphFifoFv();
+extern "C" u8 sCurrentFifo__12JUTGraphFifo[4];
+extern "C" u8 mGpStatus__12JUTGraphFifo[5 + 3 /* padding */];
 
 //
 // External References:
@@ -42,7 +49,7 @@ extern "C" void GXSaveCPUFifo();
 extern "C" void GXGetGPStatus();
 extern "C" void _savegpr_26();
 extern "C" void _restgpr_26();
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
 
 //
 // Declarations:
@@ -62,7 +69,7 @@ SECTION_DATA extern void* __vt__12JUTGraphFifo[3 + 1 /* padding */] = {
 static u8 data_804514B8[4];
 
 /* 804514BC-804514C0 0009BC 0004+00 2/2 0/0 0/0 .sbss            sCurrentFifo__12JUTGraphFifo */
-static u8 sCurrentFifo__12JUTGraphFifo[4];
+u8 JUTGraphFifo::sCurrentFifo[4];
 
 /* 802DEB58-802DEC34 2D9498 00DC+00 0/0 1/1 0/0 .text            __ct__12JUTGraphFifoFUl */
 #pragma push
@@ -76,7 +83,7 @@ asm JUTGraphFifo::JUTGraphFifo(u32 param_0) {
 
 /* ############################################################################################## */
 /* 804514C0-804514C8 0009C0 0005+03 1/1 0/0 0/0 .sbss            mGpStatus__12JUTGraphFifo */
-static u8 mGpStatus__12JUTGraphFifo[5 + 3 /* padding */];
+u8 JUTGraphFifo::mGpStatus[5 + 3 /* padding */];
 
 /* 802DEC34-802DECF8 2D9574 00C4+00 1/0 0/0 0/0 .text            __dt__12JUTGraphFifoFv */
 #pragma push

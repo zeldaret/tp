@@ -13,6 +13,8 @@
 
 struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {};
@@ -63,6 +65,8 @@ struct daPy_py_c {
     /* 8015F914 */ void setPlayerDamage(int, int);
     /* 8015F954 */ void setMidnaMotionNum(int);
     /* 8015F968 */ void setMidnaFaceNum(int);
+
+    static u8 m_midnaActor[4];
 };
 
 struct daPy_frameCtrl_c {
@@ -108,6 +112,10 @@ struct daAlink_c {
     /* 800E7AEC */ void setFmChainPosFromOut(fopAc_ac_c*, cXyz*, int);
 };
 
+struct dStage_roomControl_c {
+    static u8 mDemoArcName[10 + 2 /* padding */];
+};
+
 struct dRes_info_c {};
 
 struct dRes_control_c {
@@ -123,6 +131,10 @@ struct dDlst_list_c {
 
 struct Vec {};
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct JKRSolidHeap {};
 
 struct JKRHeap {
@@ -135,6 +147,10 @@ struct JKRArchive {
 
 struct J3DSys {
     /* 8031073C */ void reinitGX();
+};
+
+struct J3DShape {
+    static u8 sOldVcdVatCmd[4];
 };
 
 struct J3DFrameCtrl {
@@ -221,6 +237,7 @@ extern "C" void setMidnaMotionNum__9daPy_py_cFi();
 extern "C" void setMidnaFaceNum__9daPy_py_cFi();
 extern "C" void daPy_addCalcShort__FPsssss();
 extern "C" extern void* __vt__18daPy_sightPacket_c[4 + 1 /* padding */];
+extern "C" u8 m_midnaActor__9daPy_py_c[4];
 
 //
 // External References:
@@ -280,13 +297,13 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
 extern "C" extern void* __vt__18mDoExt_transAnmBas[5];
 extern "C" extern void* __vt__18J3DAnmTransformKey[5];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
+extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 
 //
 // Declarations:
@@ -362,8 +379,7 @@ asm void daPy_boomerangMove_c::initOffset(cXyz const* param_0) {
 
 /* ############################################################################################## */
 /* 80451018-8045101C 000518 0004+00 2/2 33/33 103/103 .sbss            m_midnaActor__9daPy_py_c */
-extern u8 m_midnaActor__9daPy_py_c[4];
-u8 m_midnaActor__9daPy_py_c[4];
+u8 daPy_py_c::m_midnaActor[4];
 
 /* 8045101C-80451020 -00001 0004+00 1/1 1/1 1/1 .sbss            None */
 /* 8045101C 0002+00 data_8045101C m_dropAngleY__20daPy_boomerangMove_c */

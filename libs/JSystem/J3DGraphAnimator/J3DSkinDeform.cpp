@@ -27,9 +27,9 @@ struct J3DSkinNList {
     /* 8032C8E4 */ void calcSkin_VtxNrmF32(f32 (*)[4], void*, void*);
 };
 
-struct J3DMtxBuffer {};
-
 struct J3DModelData {};
+
+struct J3DMtxBuffer {};
 
 struct J3DSkinDeform {
     /* 8032C96C */ J3DSkinDeform();
@@ -45,9 +45,13 @@ struct J3DSkinDeform {
     /* 8032DC74 */ void deformVtxPos_S16(J3DVertexBuffer*, J3DMtxBuffer*) const;
     /* 8032DDB8 */ void deformVtxNrm_F32(J3DVertexBuffer*) const;
     /* 8032DEBC */ void deformVtxNrm_S16(J3DVertexBuffer*) const;
-    /* 8032E064 */ void deform(J3DVertexBuffer*, J3DMtxBuffer*);
     /* 8032DFDC */ void deform(J3DModel*);
+    /* 8032E064 */ void deform(J3DVertexBuffer*, J3DMtxBuffer*);
     /* 8032E1B0 */ ~J3DSkinDeform();
+
+    static u8 sWorkArea_WEvlpMixMtx[4096];
+    static u8 sWorkArea_WEvlpMixWeight[4096];
+    static u8 sWorkArea_MtxReg[2048 + 8 /* padding */];
 };
 
 struct J3DShape {
@@ -81,6 +85,9 @@ extern "C" void deform__13J3DSkinDeformFP15J3DVertexBufferP12J3DMtxBuffer();
 extern "C" void calc__15J3DVtxColorCalcFP8J3DModel();
 extern "C" void __dt__13J3DSkinDeformFv();
 extern "C" extern char const* const J3DSkinDeform__stringBase0;
+extern "C" u8 sWorkArea_WEvlpMixMtx__13J3DSkinDeform[4096];
+extern "C" u8 sWorkArea_WEvlpMixWeight__13J3DSkinDeform[4096];
+extern "C" u8 sWorkArea_MtxReg__13J3DSkinDeform[2048 + 8 /* padding */];
 
 //
 // External References:
@@ -197,10 +204,10 @@ asm J3DSkinDeform::J3DSkinDeform() {
 
 /* ############################################################################################## */
 /* 80437218-80438218 063F38 1000+00 1/1 0/0 0/0 .bss sWorkArea_WEvlpMixMtx__13J3DSkinDeform */
-static u8 sWorkArea_WEvlpMixMtx__13J3DSkinDeform[4096];
+u8 J3DSkinDeform::sWorkArea_WEvlpMixMtx[4096];
 
 /* 80438218-80439218 064F38 1000+00 1/1 0/0 0/0 .bss sWorkArea_WEvlpMixWeight__13J3DSkinDeform */
-static u8 sWorkArea_WEvlpMixWeight__13J3DSkinDeform[4096];
+u8 J3DSkinDeform::sWorkArea_WEvlpMixWeight[4096];
 
 /* 80456468-8045646C 004A68 0004+00 1/1 0/0 0/0 .sdata2          @1110 */
 SECTION_SDATA2 static f32 lit_1110 = 1.0f;
@@ -225,7 +232,7 @@ COMPILER_STRIP_GATE(803A2008, &lit_1142);
 
 /* 80439218-80439A20 065F38 0800+08 1/1 0/0 0/0 .bss             sWorkArea_MtxReg__13J3DSkinDeform
  */
-static u8 sWorkArea_MtxReg__13J3DSkinDeform[2048 + 8 /* padding */];
+u8 J3DSkinDeform::sWorkArea_MtxReg[2048 + 8 /* padding */];
 
 /* 8032CF44-8032D378 327884 0434+00 0/0 1/1 0/0 .text
  * initMtxIndexArray__13J3DSkinDeformFP12J3DModelData           */

@@ -11,9 +11,11 @@
 // Types:
 //
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -23,9 +25,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -39,8 +39,6 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct daNpcT_motionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -49,9 +47,11 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80AC6C2C */ ~daNpcT_MotionSeqMngr_c();
 };
 
-struct daNpcT_evtData_c {};
+struct daNpcT_motionAnmData_c {};
 
 struct daNpcT_faceMotionAnmData_c {};
+
+struct daNpcT_evtData_c {};
 
 struct daNpc_seiB_c {
     /* 80AC50EC */ ~daNpc_seiB_c();
@@ -84,26 +84,31 @@ struct daNpc_seiB_c {
                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
                                 daNpcT_evtData_c const*, char**);
+
+    static void* mCutNameList;
+    static u8 mCutList[12];
 };
 
 struct daNpc_seiB_Param_c {
     /* 80AC6FB8 */ ~daNpc_seiB_Param_c();
+
+    static u8 const m[148];
 };
 
-struct _GXColorS10 {};
-
-struct J3DAnmTevRegKey {};
-
-struct J3DJoint {};
-
 struct J3DModel {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct cXyz {
     /* 80AC6664 */ ~cXyz();
     /* 80AC6BE0 */ cXyz();
 };
 
-struct J3DAnmTextureSRTKey {};
+struct _GXColorS10 {};
+
+struct J3DJoint {};
+
+struct J3DAnmTevRegKey {};
 
 struct daNpcT_c {
     /* 8014810C */ void getTexSRTKeyAnmP(char const*, int);
@@ -252,6 +257,8 @@ struct dBgS_Acch {
 
 struct dAttention_c {
     /* 80AC58DC */ void getDistTable(int);
+
+    static u8 dist_table[6552];
 };
 
 struct cM3dGCir {
@@ -361,7 +368,10 @@ __ct__12daNpc_seiB_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ
 extern "C" void __dt__18daNpc_seiB_Param_cFv();
 extern "C" static void func_80AC7000();
 extern "C" static void func_80AC7008();
+extern "C" u8 const m__18daNpc_seiB_Param_c[148];
 extern "C" extern char const* const d_a_npc_seib__stringBase0;
+extern "C" void* mCutNameList__12daNpc_seiB_c;
+extern "C" u8 mCutList__12daNpc_seiB_c[12];
 
 //
 // External References:
@@ -452,7 +462,7 @@ extern "C" void _restgpr_29();
 extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 dist_table__12dAttention_c[6552];
+extern "C" u8 dist_table__12dAttention_c[6552];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__8daNpcT_c[49];
 extern "C" extern void* __vt__9cCcD_Stts[8];
@@ -562,10 +572,10 @@ SECTION_DATA static u8 l_motionSequenceData[64] = {
 #pragma pop
 
 /* 80AC7228-80AC722C -00001 0004+00 1/1 0/0 0/0 .data            mCutNameList__12daNpc_seiB_c */
-SECTION_DATA static void* mCutNameList__12daNpc_seiB_c = (void*)&d_a_npc_seib__stringBase0;
+SECTION_DATA void* daNpc_seiB_c::mCutNameList = (void*)&d_a_npc_seib__stringBase0;
 
 /* 80AC722C-80AC7238 000134 000C+00 2/2 0/0 0/0 .data            mCutList__12daNpc_seiB_c */
-SECTION_DATA static u8 mCutList__12daNpc_seiB_c[12] = {
+SECTION_DATA u8 daNpc_seiB_c::mCutList[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
@@ -757,7 +767,7 @@ asm daNpc_seiB_c::~daNpc_seiB_c() {
 
 /* ############################################################################################## */
 /* 80AC7024-80AC70B8 000000 0094+00 4/4 0/0 0/0 .rodata          m__18daNpc_seiB_Param_c */
-SECTION_RODATA static u8 const m__18daNpc_seiB_Param_c[148] = {
+SECTION_RODATA u8 const daNpc_seiB_Param_c::m[148] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x45, 0x7A, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -769,7 +779,7 @@ SECTION_RODATA static u8 const m__18daNpc_seiB_Param_c[148] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0x96, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AC7024, &m__18daNpc_seiB_Param_c);
+COMPILER_STRIP_GATE(80AC7024, &daNpc_seiB_Param_c::m);
 
 /* 80AC5188-80AC53C8 000188 0240+00 1/1 0/0 0/0 .text            create__12daNpc_seiB_cFv */
 #pragma push

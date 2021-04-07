@@ -66,6 +66,9 @@ struct DynamicModuleControlBase {
     /* 802631FC */ void dump2();
     /* 80263200 */ void getModuleTypeString() const;
     /* 80263210 */ bool getModuleSize() const;
+
+    static u8 mFirst[4];
+    static u8 mLast[4];
 };
 
 struct DynamicModuleControl {
@@ -83,6 +86,10 @@ struct DynamicModuleControl {
     /* 80263000 */ void getModuleSize() const;
     /* 80263070 */ void getModuleTypeString() const;
     /* 80263218 */ void getModuleName() const;
+
+    static u8 sAllocBytes[4];
+    static u8 sArchive[4];
+    static u8 sFileCache[4 + 4 /* padding */];
 };
 
 //
@@ -124,6 +131,11 @@ extern "C" void getModuleTypeString__24DynamicModuleControlBaseCFv();
 extern "C" bool getModuleSize__24DynamicModuleControlBaseCFv();
 extern "C" void getModuleName__20DynamicModuleControlCFv();
 extern "C" extern char const* const DynamicLink__stringBase0;
+extern "C" u8 mFirst__24DynamicModuleControlBase[4];
+extern "C" u8 mLast__24DynamicModuleControlBase[4];
+extern "C" u8 sAllocBytes__20DynamicModuleControl[4];
+extern "C" u8 sArchive__20DynamicModuleControl[4];
+extern "C" u8 sFileCache__20DynamicModuleControl[4 + 4 /* padding */];
 
 //
 // External References:
@@ -211,11 +223,11 @@ SECTION_DATA extern void* __vt__24DynamicModuleControlBase[13] = {
 
 /* 80451138-8045113C 000638 0004+00 3/3 0/0 0/0 .sbss            mFirst__24DynamicModuleControlBase
  */
-static u8 mFirst__24DynamicModuleControlBase[4];
+u8 DynamicModuleControlBase::mFirst[4];
 
 /* 8045113C-80451140 00063C 0004+00 2/2 0/0 0/0 .sbss            mLast__24DynamicModuleControlBase
  */
-static u8 mLast__24DynamicModuleControlBase[4];
+u8 DynamicModuleControlBase::mLast[4];
 
 /* 802621CC-80262284 25CB0C 00B8+00 1/0 2/2 0/0 .text            __dt__24DynamicModuleControlBaseFv
  */
@@ -316,14 +328,14 @@ asm DynamicModuleControl::DynamicModuleControl(char const* param_0) {
 /* ############################################################################################## */
 /* 80451140-80451144 000640 0004+00 3/3 0/0 0/0 .sbss            sAllocBytes__20DynamicModuleControl
  */
-static u8 sAllocBytes__20DynamicModuleControl[4];
+u8 DynamicModuleControl::sAllocBytes[4];
 
 /* 80451144-80451148 000644 0004+00 3/3 0/0 0/0 .sbss            sArchive__20DynamicModuleControl */
-static u8 sArchive__20DynamicModuleControl[4];
+u8 DynamicModuleControl::sArchive[4];
 
 /* 80451148-80451150 000648 0004+04 3/3 0/0 0/0 .sbss            sFileCache__20DynamicModuleControl
  */
-static u8 sFileCache__20DynamicModuleControl[4 + 4 /* padding */];
+u8 DynamicModuleControl::sFileCache[4 + 4 /* padding */];
 
 /* 802626D0-8026275C 25D010 008C+00 1/1 0/0 0/0 .text mountCallback__20DynamicModuleControlFPv */
 #pragma push

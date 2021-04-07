@@ -13,15 +13,17 @@
 
 struct request_of_phase_process_class {};
 
-struct cXyz {};
-
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
 
+struct cXyz {};
+
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {};
@@ -36,6 +38,9 @@ struct daObjMirrorScrew_c {
     /* 80C99490 */ void Execute(f32 (**)[3][4]);
     /* 80C99608 */ void Draw();
     /* 80C996AC */ void Delete();
+
+    static u8 const M_attr[24];
+    static u8 ActionTable[48];
 };
 
 struct dVibration_c {
@@ -47,6 +52,10 @@ struct dVibration_c {
 struct dSv_info_c {
     /* 80035200 */ void onSwitch(int, int);
     /* 80035360 */ void isSwitch(int, int) const;
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -107,6 +116,10 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DModel {};
 
 //
@@ -128,7 +141,9 @@ extern "C" void Execute__18daObjMirrorScrew_cFPPA3_A4_f();
 extern "C" void Draw__18daObjMirrorScrew_cFv();
 extern "C" void Delete__18daObjMirrorScrew_cFv();
 extern "C" void __sinit_d_a_obj_mirror_screw_cpp();
+extern "C" u8 const M_attr__18daObjMirrorScrew_c[24];
 extern "C" extern char const* const d_a_obj_mirror_screw__stringBase0;
+extern "C" u8 ActionTable__18daObjMirrorScrew_c[48];
 
 //
 // External References:
@@ -178,12 +193,12 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -201,11 +216,11 @@ asm void daObjMirrorScrew_c::initWait() {
 
 /* ############################################################################################## */
 /* 80C9975C-80C99774 000000 0018+00 3/3 0/0 0/0 .rodata          M_attr__18daObjMirrorScrew_c */
-SECTION_RODATA static u8 const M_attr__18daObjMirrorScrew_c[24] = {
+SECTION_RODATA u8 const daObjMirrorScrew_c::M_attr[24] = {
     0xC5, 0x29, 0x60, 0x00, 0x3F, 0x19, 0x99, 0x9A, 0x00, 0x00, 0x00, 0x2D,
     0x00, 0x00, 0x00, 0x00, 0x40, 0xA0, 0x00, 0x00, 0xC0, 0x58, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C9975C, &M_attr__18daObjMirrorScrew_c);
+COMPILER_STRIP_GATE(80C9975C, &daObjMirrorScrew_c::M_attr);
 
 /* 80C99774-80C99778 000018 0004+00 0/1 0/0 0/0 .rodata          @3680 */
 #pragma push
@@ -309,7 +324,7 @@ SECTION_DATA static void* lit_3651[3] = {
 
 /* 80C997F4-80C99824 000054 0030+00 2/3 0/0 0/0 .data            ActionTable__18daObjMirrorScrew_c
  */
-SECTION_DATA static u8 ActionTable__18daObjMirrorScrew_c[48] = {
+SECTION_DATA u8 daObjMirrorScrew_c::ActionTable[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

@@ -16,21 +16,23 @@ struct request_of_phase_process_class {};
 struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CE38 */ void scaleM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct mDoHIO_entry_c {
     /* 8015791C */ ~mDoHIO_entry_c();
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {};
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -50,9 +52,9 @@ struct daPy_py_c {
     /* 8015F424 */ void checkNowWolfEyeUp();
 };
 
-struct J3DAnmTransformKey {};
-
 struct J3DJoint {};
+
+struct J3DAnmTransformKey {};
 
 struct J3DModel {};
 
@@ -74,6 +76,8 @@ struct daNpcCd_c {
     /* 8015736C */ void setHitodamaParticle();
     /* 80157524 */ void getNpcMdlDataP(int);
     /* 80157588 */ void getObjMdlDataP(int);
+
+    static u8 const m_cylDat[68];
 };
 
 struct daNpcCd_HIO_c {
@@ -138,6 +142,14 @@ struct Z2CreatureCitizen {
     /* 802C0D48 */ void setMdlType(s8, bool, bool);
 };
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
+};
+
 //
 // Forward References:
 //
@@ -169,6 +181,7 @@ extern "C" void __dt__18fOpAcm_HIO_entry_cFv();
 extern "C" void __dt__14mDoHIO_entry_cFv();
 extern "C" void __dt__13daNpcCd_HIO_cFv();
 extern "C" void __sinit_d_a_npc_cd_cpp();
+extern "C" u8 const m_cylDat__9daNpcCd_c[68];
 extern "C" extern char const* const a_npc_d_a_npc_cd__stringBase0;
 
 //
@@ -217,12 +230,12 @@ extern "C" void _restgpr_22();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u8 data_80450FF8[8];
 
 //
@@ -629,14 +642,14 @@ SECTION_RODATA static void* const l_bckTbl_W[20] = {
 COMPILER_STRIP_GATE(80392DC8, &l_bckTbl_W);
 
 /* 80392E18-80392E5C 01F478 0044+00 0/0 0/0 1/1 .rodata          m_cylDat__9daNpcCd_c */
-SECTION_RODATA extern u8 const m_cylDat__9daNpcCd_c[68] = {
+SECTION_RODATA u8 const daNpcCd_c::m_cylDat[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80392E18, &m_cylDat__9daNpcCd_c);
+COMPILER_STRIP_GATE(80392E18, &daNpcCd_c::m_cylDat);
 
 /* 80392E5C-80392FC4 01F4BC 0168+00 1/1 0/0 0/0 .rodata          a_transScaleTbl$3984 */
 SECTION_RODATA static u8 const a_transScaleTbl[360] = {

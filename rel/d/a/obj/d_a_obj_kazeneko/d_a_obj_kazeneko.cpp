@@ -18,6 +18,8 @@ struct cXyz {};
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -33,6 +35,8 @@ struct daObjKazeNeko_c {
     /* 80C3CB10 */ void setCcCylinder();
     /* 80C3CB7C */ void swingHead();
     /* 80C3CC40 */ void getFirstVec(cXyz*, int);
+
+    static u8 const M_attr[44];
 };
 
 struct daNPC_TK_c {
@@ -108,6 +112,14 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 //
@@ -131,6 +143,7 @@ extern "C" void __dt__8cM3dGCylFv();
 extern "C" void __dt__8cM3dGAabFv();
 extern "C" void __dt__10dCcD_GSttsFv();
 extern "C" void __dt__10cCcD_GSttsFv();
+extern "C" u8 const M_attr__15daObjKazeNeko_c[44];
 extern "C" extern char const* const d_a_obj_kazeneko__stringBase0;
 
 //
@@ -184,12 +197,12 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sincosTable___5JMath[65536];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void endHawkCamera__10daNPC_TK_cFv();
 
 //
@@ -198,12 +211,12 @@ extern "C" void endHawkCamera__10daNPC_TK_cFv();
 
 /* ############################################################################################## */
 /* 80C3D3DC-80C3D408 000000 002C+00 7/7 0/0 0/0 .rodata          M_attr__15daObjKazeNeko_c */
-SECTION_RODATA static u8 const M_attr__15daObjKazeNeko_c[44] = {
+SECTION_RODATA u8 const daObjKazeNeko_c::M_attr[44] = {
     0x41, 0xF0, 0x00, 0x00, 0x42, 0xF0, 0x00, 0x00, 0x45, 0x3B, 0x80, 0x00, 0x45, 0xDA, 0xC0,
     0x00, 0x42, 0xB4, 0x00, 0x00, 0x44, 0xE1, 0x00, 0x00, 0x43, 0x34, 0x00, 0x00, 0x41, 0xD8,
     0x00, 0x00, 0x41, 0x70, 0x00, 0x00, 0x01, 0x70, 0x64, 0x00, 0x00, 0x19, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C3D3DC, &M_attr__15daObjKazeNeko_c);
+COMPILER_STRIP_GATE(80C3D3DC, &daObjKazeNeko_c::M_attr);
 
 /* 80C3D408-80C3D40C 00002C 0004+00 0/1 0/0 0/0 .rodata          @3853 */
 #pragma push

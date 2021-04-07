@@ -17,16 +17,16 @@ struct Z2SpeechMgr2 {
 
 struct JAISound {};
 
+struct JAISoundHandle {};
+
+struct JAISoundID {};
+
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
 };
-
-struct JAISoundHandle {};
-
-struct JAISoundID {};
 
 struct Z2SoundMgr {
     /* 802A9E80 */ Z2SoundMgr();
@@ -76,6 +76,10 @@ struct JASTrack {
 
 struct JASDriver {
     /* 8029E188 */ void waitSubFrame();
+};
+
+struct JASCalc {
+    static u8 const CUTOFF_TO_IIR_TABLE[1024];
 };
 
 struct JAIStreamMgr {
@@ -192,7 +196,7 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void sprintf();
-extern "C" extern u8 const CUTOFF_TO_IIR_TABLE__7JASCalc[1024];
+extern "C" u8 const CUTOFF_TO_IIR_TABLE__7JASCalc[1024];
 extern "C" extern u8 data_80450B4C[4];
 extern "C" extern u8 data_80450B60[4];
 extern "C" extern u8 data_80450B70[4];

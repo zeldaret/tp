@@ -15,6 +15,10 @@ struct dSv_player_item_c {
     /* 80033030 */ void getItem(int, bool) const;
 };
 
+struct dSv_event_tmp_flag_c {
+    static u8 const tempBitLabels[370 + 2 /* padding */];
+};
+
 struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
@@ -24,13 +28,13 @@ struct dMsgString_c {
     /* 80249D28 */ ~dMsgString_c();
 };
 
+struct COutFont_c {
+    /* 80225C94 */ COutFont_c(u8);
+};
+
 struct J2DTextBox {
     /* 80300658 */ void getStringPtr() const;
     /* 8030074C */ void setString(s16, char const*, ...);
-};
-
-struct COutFont_c {
-    /* 80225C94 */ COutFont_c(u8);
 };
 
 struct JUTFont {};
@@ -50,11 +54,9 @@ struct dMsgObject_c {
     /* 80238258 */ void getScrnDrawPtr();
 };
 
-struct JKRExpHeap {};
+struct JKRArchive {};
 
 struct J2DGrafContext {};
-
-struct JKRArchive {};
 
 struct J2DScreen {
     /* 802F8498 */ J2DScreen();
@@ -65,6 +67,8 @@ struct J2DScreen {
 struct J2DPane {
     /* 802F7100 */ void getBounds();
 };
+
+struct JKRExpHeap {};
 
 struct CPaneMgr {
     /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
@@ -181,15 +185,15 @@ struct dMeter2Info_c {
                                         J2DPicture*, void*, J2DPicture*, int);
 };
 
-struct JUtility {
-    struct TColor {};
-};
-
 struct CPaneMgrAlpha {
     /* 802555C8 */ void show();
     /* 80255608 */ void hide();
     /* 802557D0 */ void setAlphaRate(f32);
     /* 80255828 */ void getAlphaRate();
+};
+
+struct JUtility {
+    struct TColor {};
 };
 
 struct dMeter2Draw_c {
@@ -209,6 +213,10 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JKRHeap {
@@ -386,13 +394,13 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
 extern "C" void strcmp();
 extern "C" void strcpy();
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
+extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" extern void* __vt__12dDlst_base_c[3];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_drawHIO[3880];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 g_MsgObject_HIO_c[1040];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

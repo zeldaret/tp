@@ -13,6 +13,10 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
     /* 80018C8C */ ~fopAc_ac_c();
@@ -30,13 +34,15 @@ struct daObjHFtr_c {
     /* 80C17E10 */ void setModelMtx();
     /* 80C17E74 */ void chkHit();
     /* 80C17EDC */ void callEmt();
+
+    static u8 const s_CcDCyl[68];
 };
 
 struct dKy_tevstr_c {};
 
-struct cXyz {};
-
 struct J3DModelData {};
+
+struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -137,6 +143,10 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DModel {};
 
 //
@@ -165,6 +175,7 @@ extern "C" static void daObjHFtr_Delete__FP11daObjHFtr_c();
 extern "C" static void daObjHFtr_execute__FP11daObjHFtr_c();
 extern "C" static void daObjHFtr_draw__FP11daObjHFtr_c();
 extern "C" void __dt__10cCcD_GSttsFv();
+extern "C" u8 const s_CcDCyl__11daObjHFtr_c[68];
 extern "C" extern char const* const d_a_obj_hakai_ftr__stringBase0;
 
 //
@@ -224,11 +235,11 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -444,14 +455,14 @@ asm void daObjHFtr_c::draw() {
 /* 80C180DC-80C18120 000024 0044+00 0/1 0/0 0/0 .rodata          s_CcDCyl__11daObjHFtr_c */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const s_CcDCyl__11daObjHFtr_c[68] = {
+SECTION_RODATA u8 const daObjHFtr_c::s_CcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x40, 0x00, 0x20, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C180DC, &s_CcDCyl__11daObjHFtr_c);
+COMPILER_STRIP_GATE(80C180DC, &daObjHFtr_c::s_CcDCyl);
 #pragma pop
 
 /* 80C18120-80C18124 000068 0004+00 2/2 0/0 0/0 .rodata          @3863 */

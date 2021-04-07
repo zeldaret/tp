@@ -11,7 +11,10 @@
 // Types:
 //
 
-struct JKRHeap {};
+struct JKRHeap {
+    static u8 sSystemHeap[4];
+    static u8 sCurrentHeap[4];
+};
 
 struct JASTaskThread {
     /* 8028F6C4 */ JASTaskThread(int, int, u32);
@@ -20,6 +23,8 @@ struct JASTaskThread {
 struct JASDvd {
     /* 8028FEFC */ void getThreadPointer();
     /* 8028FF04 */ void createThread(s32, int, u32);
+
+    static u8 sThread[4 + 4 /* padding */];
 };
 
 //
@@ -28,6 +33,7 @@ struct JASDvd {
 
 extern "C" void getThreadPointer__6JASDvdFv();
 extern "C" void createThread__6JASDvdFliUl();
+extern "C" u8 sThread__6JASDvd[4 + 4 /* padding */];
 
 //
 // External References:
@@ -39,8 +45,8 @@ extern "C" void OSResumeThread();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
 extern "C" extern u8 JASDram[4];
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sCurrentHeap__7JKRHeap[4];
 
 //
 // Declarations:
@@ -48,7 +54,7 @@ extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
 
 /* ############################################################################################## */
 /* 80451208-80451210 000708 0004+04 2/2 0/0 0/0 .sbss            sThread__6JASDvd */
-static u8 sThread__6JASDvd[4 + 4 /* padding */];
+u8 JASDvd::sThread[4 + 4 /* padding */];
 
 /* 8028FEFC-8028FF04 28A83C 0008+00 0/0 6/6 0/0 .text            getThreadPointer__6JASDvdFv */
 #pragma push

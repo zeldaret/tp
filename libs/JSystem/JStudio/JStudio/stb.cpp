@@ -31,6 +31,9 @@ struct data {
 
         /* 80289A08 */ void getData(JStudio::stb::data::TParse_TParagraph::TData*) const;
     };
+
+    static u32 gu32Mask_TSequence_value_signExpansion[1 + 1 /* padding */];
+    static u32 ga4cSignature[1 + 1 /* padding */];
 };
 
 struct TObject {
@@ -172,6 +175,7 @@ parseBlock_object__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data20TParse_TBlock_ob
 extern "C" void func_80289928(JGadget::TLinkList__template2::iterator,
                               JGadget::TLinkList__template2::iterator,
                               JStudio::object::TPRObject_ID_equal);
+extern "C" u32 gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data[1 + 1 /* padding */];
 
 //
 // External References:
@@ -197,7 +201,7 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void memcmp();
 extern "C" extern void* __vt__Q37JGadget6binary19TParse_header_block[5];
-extern "C" extern u32 ga4cSignature__Q37JStudio3stb4data[1 + 1 /* padding */];
+extern "C" u32 ga4cSignature__Q37JStudio3stb4data[1 + 1 /* padding */];
 
 //
 // Declarations:
@@ -353,8 +357,8 @@ void JStudio::stb::TObject::do_data(void const* param_0, u32 param_1, void const
 /* ############################################################################################## */
 /* 804554D0-804554D8 003AD0 0004+04 1/1 0/0 0/0 .sdata2
  * gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data  */
-SECTION_SDATA2 static u32
-    gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data[1 + 1 /* padding */] = {
+SECTION_SDATA2 u32
+    JStudio::stb::data::gu32Mask_TSequence_value_signExpansion[1 + 1 /* padding */] = {
         0xFF000000,
         /* padding */
         0x00000000,

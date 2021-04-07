@@ -15,6 +15,8 @@ struct request_of_phase_process_class {};
 
 struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct mDoHIO_entry_c {
@@ -48,6 +50,9 @@ struct daLv6ChangeGate_c {
     /* 80C71D40 */ void Draw();
     /* 80C71DE4 */ void Delete();
     /* 80C72034 */ ~daLv6ChangeGate_c();
+
+    static u8 const mCcDObjInfo[48];
+    static u8 mCcDCyl[68];
 };
 
 struct daLv6ChangeGate_HIO_c {
@@ -62,9 +67,9 @@ struct dSv_info_c {
 
 struct dKy_tevstr_c {};
 
-struct cXyz {};
-
 struct J3DModelData {};
+
+struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -170,6 +175,10 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DModel {};
 
 //
@@ -215,7 +224,9 @@ extern "C" bool eventStart__17dEvLib_callback_cFv();
 extern "C" bool eventRun__17dEvLib_callback_cFv();
 extern "C" bool eventEnd__17dEvLib_callback_cFv();
 extern "C" void __dt__17daLv6ChangeGate_cFv();
+extern "C" u8 const mCcDObjInfo__17daLv6ChangeGate_c[48];
 extern "C" extern char const* const d_a_obj_lv6ChangeGate__stringBase0;
+extern "C" u8 mCcDCyl__17daLv6ChangeGate_c[68];
 
 //
 // External References:
@@ -287,11 +298,11 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -326,7 +337,7 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80C721CC-80C72210 000020 0044+00 2/2 0/0 0/0 .data            mCcDCyl__17daLv6ChangeGate_c */
-SECTION_DATA static u8 mCcDCyl__17daLv6ChangeGate_c[68] = {
+SECTION_DATA u8 daLv6ChangeGate_c::mCcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -519,12 +530,12 @@ asm mDoHIO_entry_c::~mDoHIO_entry_c() {
 
 /* ############################################################################################## */
 /* 80C72154-80C72184 000008 0030+00 1/1 0/0 0/0 .rodata          mCcDObjInfo__17daLv6ChangeGate_c */
-SECTION_RODATA static u8 const mCcDObjInfo__17daLv6ChangeGate_c[48] = {
+SECTION_RODATA u8 const daLv6ChangeGate_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x79, 0x01, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C72154, &mCcDObjInfo__17daLv6ChangeGate_c);
+COMPILER_STRIP_GATE(80C72154, &daLv6ChangeGate_c::mCcDObjInfo);
 
 /* 80C72184-80C72188 000038 0004+00 3/6 0/0 0/0 .rodata          @3664 */
 SECTION_RODATA static u8 const lit_3664[4] = {

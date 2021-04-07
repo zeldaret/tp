@@ -13,6 +13,11 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {
+    /* 806B5B7C */ csXyz();
+    /* 806B5B80 */ ~csXyz();
+};
+
 struct Vec {};
 
 struct cXyz {
@@ -21,31 +26,28 @@ struct cXyz {
     /* 806AE56C */ ~cXyz();
 };
 
-struct csXyz {
-    /* 806B5B7C */ csXyz();
-    /* 806B5B80 */ ~csXyz();
-};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CE38 */ void scaleM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct mDoGph_gInf_c {
     /* 80008078 */ void onBlure();
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {};
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -183,6 +185,10 @@ struct dEvt_control_c {
     /* 80042468 */ void reset();
     /* 80042914 */ void setSkipProc(void*, int (*)(void*, int), int);
     /* 800429A8 */ void onSkipFade();
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcU_AtInfo {};
@@ -325,6 +331,14 @@ struct Z2CreatureEnemy {
     /* 802C1094 */ void init(Vec*, Vec*, u8, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
@@ -332,8 +346,23 @@ struct JGeometry {
     struct TVec3__template0 {};
 };
 
+struct J3DSys {
+    static u8 mCurrentMtx[48];
+};
+
 struct J3DFrameCtrl {
     /* 8032842C */ void checkPass(f32);
+};
+
+struct E_DT_n {
+    static u8 eDt_ShakeFrame[40];
+    static u8 eDt_ShakeFrameDemo[40];
+    static u8 cc_dt_body_src[64];
+    static u8 cc_dt_tongue_src[64];
+    static u8 mDt_OtamaNum[4];
+    static u8 mDt_OtamaNo[80];
+    static u8 m_fall_no[4];
+    static u8 m_tongue_pos[12];
 };
 
 //
@@ -422,6 +451,14 @@ extern "C" static void func_806B5C7C();
 extern "C" static void func_806B5C84();
 extern "C" void Bank__9dCamera_cFv();
 extern "C" extern char const* const d_a_e_dt__stringBase0;
+extern "C" u8 eDt_ShakeFrame__6E_DT_n[40];
+extern "C" u8 eDt_ShakeFrameDemo__6E_DT_n[40];
+extern "C" u8 cc_dt_body_src__6E_DT_n[64];
+extern "C" u8 cc_dt_tongue_src__6E_DT_n[64];
+extern "C" u8 mDt_OtamaNum__6E_DT_n[4];
+extern "C" u8 mDt_OtamaNo__6E_DT_n[80];
+extern "C" u8 m_fall_no__6E_DT_n[4];
+extern "C" u8 m_tongue_pos__6E_DT_n[12];
 
 //
 // External References:
@@ -583,18 +620,18 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" extern u8 j3dZModeTable[96];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 struct_80450BE4[4];
 extern "C" extern u8 struct_80450C98[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -664,21 +701,21 @@ COMPILER_STRIP_GATE(806B5CF8, &lit_3801);
 #pragma pop
 
 /* 806B5EEC-806B5F14 000000 0028+00 1/1 0/0 0/0 .data            eDt_ShakeFrame__6E_DT_n */
-SECTION_DATA static u8 eDt_ShakeFrame__6E_DT_n[40] = {
+SECTION_DATA u8 E_DT_n::eDt_ShakeFrame[40] = {
     0x41, 0xA0, 0x00, 0x00, 0x41, 0xB0, 0x00, 0x00, 0x41, 0xC0, 0x00, 0x00, 0x41, 0xD0,
     0x00, 0x00, 0x41, 0xE0, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0x42, 0x00, 0x00, 0x00,
     0x42, 0x08, 0x00, 0x00, 0x42, 0x10, 0x00, 0x00, 0x42, 0x18, 0x00, 0x00,
 };
 
 /* 806B5F14-806B5F3C 000028 0028+00 1/1 0/0 0/0 .data            eDt_ShakeFrameDemo__6E_DT_n */
-SECTION_DATA static u8 eDt_ShakeFrameDemo__6E_DT_n[40] = {
+SECTION_DATA u8 E_DT_n::eDt_ShakeFrameDemo[40] = {
     0x43, 0x9B, 0x00, 0x00, 0x43, 0x9C, 0x00, 0x00, 0x43, 0x9D, 0x00, 0x00, 0x43, 0x9E,
     0x00, 0x00, 0x43, 0x9F, 0x00, 0x00, 0x43, 0xA0, 0x00, 0x00, 0x43, 0xA1, 0x00, 0x00,
     0x43, 0xA2, 0x00, 0x00, 0x43, 0xA3, 0x00, 0x00, 0x43, 0xA4, 0x00, 0x00,
 };
 
 /* 806B5F3C-806B5F7C 000050 0040+00 1/1 0/0 0/0 .data            cc_dt_body_src__6E_DT_n */
-SECTION_DATA static u8 cc_dt_body_src__6E_DT_n[64] = {
+SECTION_DATA u8 E_DT_n::cc_dt_body_src[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x43, 0x00, 0x00, 0x00, 0x75, 0x09, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00,
@@ -686,7 +723,7 @@ SECTION_DATA static u8 cc_dt_body_src__6E_DT_n[64] = {
 };
 
 /* 806B5F7C-806B5FBC 000090 0040+00 1/1 0/0 0/0 .data            cc_dt_tongue_src__6E_DT_n */
-SECTION_DATA static u8 cc_dt_tongue_src__6E_DT_n[64] = {
+SECTION_DATA u8 E_DT_n::cc_dt_tongue_src[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x43, 0x00, 0x00, 0x00, 0x75, 0x09, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
@@ -1592,10 +1629,10 @@ asm void daE_DT_c::setBoxTubaLandEffect() {
 
 /* ############################################################################################## */
 /* 806B62DC-806B62E0 000084 0004+00 2/2 0/0 0/0 .bss             mDt_OtamaNum__6E_DT_n */
-static u8 mDt_OtamaNum__6E_DT_n[4];
+u8 E_DT_n::mDt_OtamaNum[4];
 
 /* 806B62E0-806B6330 000088 0050+00 3/3 0/0 0/0 .bss             mDt_OtamaNo__6E_DT_n */
-static u8 mDt_OtamaNo__6E_DT_n[80];
+u8 E_DT_n::mDt_OtamaNo[80];
 
 /* 806AFC98-806AFD30 002478 0098+00 1/1 0/0 0/0 .text            s_otama_todo__FPvPv */
 #pragma push
@@ -1619,7 +1656,7 @@ asm void daE_DT_c::getNumberOfOtama() {
 
 /* ############################################################################################## */
 /* 806B6330-806B6334 0000D8 0004+00 3/3 0/0 0/0 .bss             m_fall_no__6E_DT_n */
-static u8 m_fall_no__6E_DT_n[4];
+u8 E_DT_n::m_fall_no[4];
 
 /* 806AFD94-806AFE24 002574 0090+00 3/3 0/0 0/0 .text            s_fall_otama__FPvPv */
 #pragma push
@@ -1703,7 +1740,7 @@ static u8 lit_3802[12];
 #pragma pop
 
 /* 806B6340-806B634C 0000E8 000C+00 2/3 0/0 0/0 .bss             m_tongue_pos__6E_DT_n */
-static u8 m_tongue_pos__6E_DT_n[12];
+u8 E_DT_n::m_tongue_pos[12];
 
 /* 806AFF8C-806B0114 00276C 0188+00 1/1 0/0 0/0 .text            s_bomb_search__FPvPv */
 #pragma push

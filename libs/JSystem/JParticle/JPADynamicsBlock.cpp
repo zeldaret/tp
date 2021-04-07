@@ -23,6 +23,10 @@ struct JPABaseEmitter {
     /* 8027EA40 */ void createParticle();
 };
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 //
 // Forward References:
 //
@@ -43,7 +47,7 @@ extern "C" void create__16JPADynamicsBlockFP18JPAEmitterWorkData();
 //
 
 extern "C" void createParticle__14JPABaseEmitterFv();
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 
 //
 // Declarations:

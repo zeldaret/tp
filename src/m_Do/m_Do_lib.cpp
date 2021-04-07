@@ -13,6 +13,10 @@
 
 struct mDoLib_clipper {
     /* 8001528C */ void setup(f32, f32, f32, f32);
+
+    static u8 mClipper[92];
+    static f32 mSystemFar;
+    static f32 mFovyRate;
 };
 
 struct _GXTlutObj {};
@@ -22,6 +26,10 @@ struct _GXTexObj {};
 struct Vec {};
 
 struct ResTIMG {};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
 
 struct J3DUClipper {
     /* 80015590 */ ~J3DUClipper();
@@ -39,6 +47,9 @@ extern "C" void mDoLib_project__FP3VecP3Vec();
 extern "C" void mDoLib_pos2camera__FP3VecP3Vec();
 extern "C" void __sinit_m_Do_lib_cpp();
 extern "C" void __dt__11J3DUClipperFv();
+extern "C" u8 mClipper__14mDoLib_clipper[92];
+extern "C" f32 mSystemFar__14mDoLib_clipper;
+extern "C" f32 mFovyRate__14mDoLib_clipper;
 
 //
 // External References:
@@ -56,7 +67,7 @@ extern "C" void __register_global_object();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 
 //
 // Declarations:
@@ -89,16 +100,13 @@ asm void mDoLib_setResTimgObj(ResTIMG const* param_0, _GXTexObj* param_1, u32 pa
 static u8 lit_3727[12];
 
 /* 803DD8E4-803DD940 00A604 005C+00 2/2 5/5 5/5 .bss             mClipper__14mDoLib_clipper */
-extern u8 mClipper__14mDoLib_clipper[92];
-u8 mClipper__14mDoLib_clipper[92];
+u8 mDoLib_clipper::mClipper[92];
 
 /* 80450C70-80450C74 000170 0004+00 1/1 2/2 4/4 .sbss            mSystemFar__14mDoLib_clipper */
-extern f32 mSystemFar__14mDoLib_clipper;
-f32 mSystemFar__14mDoLib_clipper;
+f32 mDoLib_clipper::mSystemFar;
 
 /* 80450C74-80450C78 000174 0004+00 1/1 1/1 0/0 .sbss            mFovyRate__14mDoLib_clipper */
-extern f32 mFovyRate__14mDoLib_clipper;
-f32 mFovyRate__14mDoLib_clipper;
+f32 mDoLib_clipper::mFovyRate;
 
 /* 80451B80-80451B84 000180 0004+00 1/1 0/0 0/0 .sdata2          @3739 */
 SECTION_SDATA2 static f32 lit_3739 = 182.04444885253906f;

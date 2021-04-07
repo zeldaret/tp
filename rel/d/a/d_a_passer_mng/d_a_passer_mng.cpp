@@ -22,6 +22,12 @@ struct daPasserMng_c {
     /* 80D45E14 */ void getLuggageParamHigh(u32);
     /* 80D46768 */ void create();
     /* 80D467C0 */ void create_init();
+
+    static void* mGroupTbl[4];
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -52,6 +58,7 @@ extern "C" static void daPasserMng_Create__FP10fopAc_ac_c();
 extern "C" void create__13daPasserMng_cFv();
 extern "C" void create_init__13daPasserMng_cFv();
 extern "C" void func_80D46B9C(int, int);
+extern "C" void* mGroupTbl__13daPasserMng_c[4];
 extern "C" extern void* g_profile_PASSER_MNG[12];
 
 //
@@ -85,7 +92,7 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_29();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
@@ -144,7 +151,7 @@ SECTION_RODATA static u8 const groupD[32] = {
 COMPILER_STRIP_GATE(80D46C88, &groupD);
 
 /* 80D46CB0-80D46CC0 -00001 0010+00 1/1 0/0 0/0 .data            mGroupTbl__13daPasserMng_c */
-SECTION_DATA static void* mGroupTbl__13daPasserMng_c[4] = {
+SECTION_DATA void* daPasserMng_c::mGroupTbl[4] = {
     (void*)&groupA,
     (void*)&groupB,
     (void*)&groupC,

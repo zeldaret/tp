@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
     /* 80018C8C */ ~fopAc_ac_c();
@@ -26,19 +30,21 @@ struct daCoachFire_c {
     /* 80657C48 */ void initBaseMtx();
     /* 80657CA8 */ void setBaseMtx();
     /* 80657D2C */ void initCcSphere();
+
+    static u8 const M_attr[16];
 };
 
 struct dPa_levelEcallBack {};
-
-struct _GXColor {};
-
-struct dKy_tevstr_c {};
 
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
+
+struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct csXyz {};
 
@@ -50,6 +56,8 @@ struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
                             cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
                             _GXColor const*, cXyz const*, f32);
+
+    static u8 mParticleTracePCB[4 + 4 /* padding */];
 };
 
 struct dCcD_Stts {
@@ -117,6 +125,7 @@ extern "C" void __dt__8cM3dGSphFv();
 extern "C" void __dt__8cM3dGAabFv();
 extern "C" void __dt__10dCcD_GSttsFv();
 extern "C" void __dt__10cCcD_GSttsFv();
+extern "C" u8 const M_attr__13daCoachFire_c[16];
 extern "C" extern char const* const d_a_coach_fire__stringBase0;
 
 //
@@ -159,9 +168,9 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
+extern "C" u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
 extern "C" void deleteFireArrow__12daNpcCoach_cFUi();
 extern "C" void deleteFireArrowFromList__12daNpcCoach_cFUi();
 
@@ -171,10 +180,10 @@ extern "C" void deleteFireArrowFromList__12daNpcCoach_cFUi();
 
 /* ############################################################################################## */
 /* 806583E8-806583F8 000000 0010+00 3/3 0/0 0/0 .rodata          M_attr__13daCoachFire_c */
-SECTION_RODATA static u8 const M_attr__13daCoachFire_c[16] = {
+SECTION_RODATA u8 const daCoachFire_c::M_attr[16] = {
     0x42, 0x48, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x24, 0xFF, 0x64, 0x00, 0x44, 0x2F, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(806583E8, &M_attr__13daCoachFire_c);
+COMPILER_STRIP_GATE(806583E8, &daCoachFire_c::M_attr);
 
 /* 806583F8-806583FC 000010 0004+00 0/1 0/0 0/0 .rodata          @3812 */
 #pragma push

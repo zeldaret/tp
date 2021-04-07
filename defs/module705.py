@@ -42,11 +42,11 @@ SYMBOLS = [
 	{'addr':0x80D4D64C,'size':32,'pad':0,'label':"daSkip2D_Draw__FPv",'name':"daSkip2D_Draw__FPv",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
 	{'addr':0x80D4D66C,'size':8,'pad':0,'label':"daSkip2D_IsDelete__FPv",'name':"daSkip2D_IsDelete__FPv",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReturnFunction"},
 	{'addr':0x80D4D674,'size':96,'pad':0,'label':"__dt__10daSkip2D_cFv",'name':"__dt__10daSkip2D_cFv",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
-	{'addr':0x80D4D6D4,'size':4,'pad':0,'label':"_ctors",'name':"_ctors",'lib':-1,'tu':1,'section':1,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
-	{'addr':0x80D4D6D8,'size':4,'pad':0,'label':"_dtors",'name':"_dtors",'lib':-1,'tu':2,'section':2,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
-	{'addr':0x80D4D6DC,'size':32,'pad':0,'label':"daSkip2D_MethodTable",'name':"daSkip2D_MethodTable",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
-	{'addr':0x80D4D6FC,'size':48,'pad':0,'label':"g_profile_SKIP2D",'name':"g_profile_SKIP2D",'lib':-1,'tu':3,'section':3,'class_template':False,'static':False,'is_reachable':False,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
-	{'addr':0x80D4D72C,'size':12,'pad':0,'label':"__vt__10daSkip2D_c",'name':"__vt__10daSkip2D_c",'lib':-1,'tu':3,'section':3,'class_template':False,'static':False,'is_reachable':False,'r':[2,0,0],'sh':[0,0,0],'type':"VirtualTable"},
+	{'addr':0x80D4D6D4,'size':4,'pad':0,'label':"_ctors",'name':"_ctors",'lib':-1,'tu':1,'section':1,'class_template':None,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
+	{'addr':0x80D4D6D8,'size':4,'pad':0,'label':"_dtors",'name':"_dtors",'lib':-1,'tu':2,'section':2,'class_template':None,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
+	{'addr':0x80D4D6DC,'size':32,'pad':0,'label':"daSkip2D_MethodTable",'name':"daSkip2D_MethodTable",'lib':-1,'tu':3,'section':3,'class_template':None,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80D4D6FC,'size':48,'pad':0,'label':"g_profile_SKIP2D",'name':"g_profile_SKIP2D",'lib':-1,'tu':3,'section':3,'class_template':None,'static':False,'is_reachable':False,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80D4D72C,'size':12,'pad':0,'label':"__vt__10daSkip2D_c",'name':"__vt__10daSkip2D_c",'lib':-1,'tu':3,'section':3,'class_template':None,'static':False,'is_reachable':False,'r':[2,0,0],'sh':[0,0,0],'type':"VirtualTable"},
 ]
 
 # Names

@@ -18,6 +18,8 @@ struct csXyz {
     /* 8026745C */ void operator+=(csXyz&);
     /* 80267490 */ void operator-(csXyz&);
     /* 802674E8 */ void operator*(f32);
+
+    static u8 Zero[4];
 };
 
 //
@@ -30,6 +32,7 @@ extern "C" void __apl__5csXyzFR5csXyz();
 extern "C" void __mi__5csXyzFR5csXyz();
 extern "C" void __ml__5csXyzFf();
 extern "C" void __sinit_c_sxyz_cpp();
+extern "C" u8 Zero__5csXyz[4];
 
 //
 // External References:
@@ -101,8 +104,7 @@ asm void csXyz::operator*(f32 param_0) {
 static u8 lit_262[12 + 4 /* padding */];
 
 /* 80451160-80451164 000660 0004+00 1/1 13/13 3/3 .sbss            Zero__5csXyz */
-extern u8 Zero__5csXyz[4];
-u8 Zero__5csXyz[4];
+u8 csXyz::Zero[4];
 
 /* 80451164-80451168 000664 0004+00 1/1 6/13 0/2 .sbss            None */
 extern u8 data_80451164[4];

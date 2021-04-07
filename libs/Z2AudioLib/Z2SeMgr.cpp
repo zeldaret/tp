@@ -67,6 +67,33 @@ struct Z2SeMgr {
     /* 802AE5B0 */ void isSoundCulling(JAISoundID);
 };
 
+struct Z2Param {
+    static f32 VOL_SE_SYSTEM_DEFAULT;
+    static f32 VOL_SE_LINK_VOICE_DEFAULT;
+    static f32 VOL_SE_LINK_MOTION_DEFAULT;
+    static f32 VOL_SE_LINK_FOOTNOTE_DEFAULT;
+    static f32 VOL_SE_CHAR_VOICE_DEFAULT;
+    static f32 VOL_SE_CHAR_MOVE_DEFAULT;
+    static f32 VOL_SE_OBJECT_DEFAULT;
+    static f32 VOL_SE_ATMOSPHERE_DEFAULT;
+    static f32 VOL_SE_SYSTEM_TALKING;
+    static f32 VOL_SE_LINK_VOICE_TALKING;
+    static f32 VOL_SE_LINK_MOTION_TALKING;
+    static f32 VOL_SE_LINK_FOOTNOTE_TALKING;
+    static f32 VOL_SE_CHAR_VOICE_TALKING;
+    static f32 VOL_SE_CHAR_MOVE_TALKING;
+    static f32 VOL_SE_OBJECT_TALKING;
+    static f32 VOL_SE_ATMOSPHERE_TALKING;
+    static f32 VOL_SE_SYSTEM_PAUSING;
+    static f32 VOL_SE_LINK_VOICE_PAUSING;
+    static f32 VOL_SE_LINK_MOTION_PAUSING;
+    static f32 VOL_SE_LINK_FOOTNOTE_PAUSING;
+    static f32 VOL_SE_CHAR_VOICE_PAUSING;
+    static f32 VOL_SE_CHAR_MOVE_PAUSING;
+    static f32 VOL_SE_OBJECT_PAUSING;
+    static f32 VOL_SE_ATMOSPHERE_PAUSING;
+};
+
 struct Z2MultiSeObj {
     /* 80007888 */ ~Z2MultiSeObj();
     /* 802AB710 */ Z2MultiSeObj();
@@ -79,6 +106,10 @@ struct Z2MultiSeMgr {
     /* 802AECBC */ void resetMultiSePos();
     /* 802AECE0 */ void getPanPower();
     /* 802AEDC0 */ void getDolbyPower();
+};
+
+struct Z2CreatureLink {
+    static u8 mLinkPtr[4 + 4 /* padding */];
 };
 
 struct Z2Calc {
@@ -191,30 +222,30 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
-extern "C" extern f32 VOL_SE_SYSTEM_DEFAULT__7Z2Param;
-extern "C" extern f32 VOL_SE_LINK_VOICE_DEFAULT__7Z2Param;
-extern "C" extern f32 VOL_SE_LINK_MOTION_DEFAULT__7Z2Param;
-extern "C" extern f32 VOL_SE_LINK_FOOTNOTE_DEFAULT__7Z2Param;
-extern "C" extern f32 VOL_SE_CHAR_VOICE_DEFAULT__7Z2Param;
-extern "C" extern f32 VOL_SE_CHAR_MOVE_DEFAULT__7Z2Param;
-extern "C" extern f32 VOL_SE_OBJECT_DEFAULT__7Z2Param;
-extern "C" extern f32 VOL_SE_ATMOSPHERE_DEFAULT__7Z2Param;
-extern "C" extern f32 VOL_SE_SYSTEM_TALKING__7Z2Param;
-extern "C" extern f32 VOL_SE_LINK_VOICE_TALKING__7Z2Param;
-extern "C" extern f32 VOL_SE_LINK_MOTION_TALKING__7Z2Param;
-extern "C" extern f32 VOL_SE_LINK_FOOTNOTE_TALKING__7Z2Param;
-extern "C" extern f32 VOL_SE_CHAR_VOICE_TALKING__7Z2Param;
-extern "C" extern f32 VOL_SE_CHAR_MOVE_TALKING__7Z2Param;
-extern "C" extern f32 VOL_SE_OBJECT_TALKING__7Z2Param;
-extern "C" extern f32 VOL_SE_ATMOSPHERE_TALKING__7Z2Param;
-extern "C" extern f32 VOL_SE_SYSTEM_PAUSING__7Z2Param;
-extern "C" extern f32 VOL_SE_LINK_VOICE_PAUSING__7Z2Param;
-extern "C" extern f32 VOL_SE_LINK_MOTION_PAUSING__7Z2Param;
-extern "C" extern f32 VOL_SE_LINK_FOOTNOTE_PAUSING__7Z2Param;
-extern "C" extern f32 VOL_SE_CHAR_VOICE_PAUSING__7Z2Param;
-extern "C" extern f32 VOL_SE_CHAR_MOVE_PAUSING__7Z2Param;
-extern "C" extern f32 VOL_SE_OBJECT_PAUSING__7Z2Param;
-extern "C" extern f32 VOL_SE_ATMOSPHERE_PAUSING__7Z2Param;
+extern "C" f32 VOL_SE_SYSTEM_DEFAULT__7Z2Param;
+extern "C" f32 VOL_SE_LINK_VOICE_DEFAULT__7Z2Param;
+extern "C" f32 VOL_SE_LINK_MOTION_DEFAULT__7Z2Param;
+extern "C" f32 VOL_SE_LINK_FOOTNOTE_DEFAULT__7Z2Param;
+extern "C" f32 VOL_SE_CHAR_VOICE_DEFAULT__7Z2Param;
+extern "C" f32 VOL_SE_CHAR_MOVE_DEFAULT__7Z2Param;
+extern "C" f32 VOL_SE_OBJECT_DEFAULT__7Z2Param;
+extern "C" f32 VOL_SE_ATMOSPHERE_DEFAULT__7Z2Param;
+extern "C" f32 VOL_SE_SYSTEM_TALKING__7Z2Param;
+extern "C" f32 VOL_SE_LINK_VOICE_TALKING__7Z2Param;
+extern "C" f32 VOL_SE_LINK_MOTION_TALKING__7Z2Param;
+extern "C" f32 VOL_SE_LINK_FOOTNOTE_TALKING__7Z2Param;
+extern "C" f32 VOL_SE_CHAR_VOICE_TALKING__7Z2Param;
+extern "C" f32 VOL_SE_CHAR_MOVE_TALKING__7Z2Param;
+extern "C" f32 VOL_SE_OBJECT_TALKING__7Z2Param;
+extern "C" f32 VOL_SE_ATMOSPHERE_TALKING__7Z2Param;
+extern "C" f32 VOL_SE_SYSTEM_PAUSING__7Z2Param;
+extern "C" f32 VOL_SE_LINK_VOICE_PAUSING__7Z2Param;
+extern "C" f32 VOL_SE_LINK_MOTION_PAUSING__7Z2Param;
+extern "C" f32 VOL_SE_LINK_FOOTNOTE_PAUSING__7Z2Param;
+extern "C" f32 VOL_SE_CHAR_VOICE_PAUSING__7Z2Param;
+extern "C" f32 VOL_SE_CHAR_MOVE_PAUSING__7Z2Param;
+extern "C" f32 VOL_SE_OBJECT_PAUSING__7Z2Param;
+extern "C" f32 VOL_SE_ATMOSPHERE_PAUSING__7Z2Param;
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 data_80450B44[4];
 extern "C" extern u8 data_80450B60[4];
@@ -224,7 +255,7 @@ extern "C" extern u8 data_80450B7C[4];
 extern "C" extern u8 data_80450B80[4];
 extern "C" extern u8 data_80450B84[4];
 extern "C" extern u8 data_80450B88[4];
-extern "C" extern u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
+extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 
 //
 // Declarations:

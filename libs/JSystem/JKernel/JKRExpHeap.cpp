@@ -30,6 +30,10 @@ struct JKRHeap {
     /* 802CEAC0 */ void dispose();
     /* 802CEA78 */ void dispose(void*, u32);
     /* 802CEDA0 */ void state_dump(JKRHeap::TState const&) const;
+
+    static u8 sCurrentHeap[4];
+    static u8 sRootHeap[4];
+    static u8 mErrorHandler[4];
 };
 
 struct JKRExpHeap {
@@ -161,9 +165,9 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sRootHeap__7JKRHeap[4];
-extern "C" extern u8 mErrorHandler__7JKRHeap[4];
+extern "C" u8 sCurrentHeap__7JKRHeap[4];
+extern "C" u8 sRootHeap__7JKRHeap[4];
+extern "C" u8 mErrorHandler__7JKRHeap[4];
 
 //
 // Declarations:

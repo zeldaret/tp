@@ -224,6 +224,10 @@ struct dDlst_list_c {
     /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
 };
 
+struct dDemo_c {
+    static u8 m_mode[4];
+};
+
 struct dComIfG_play_c {
     /* 8002B36C */ void setItemBombNumCount(u8, s16);
     /* 8002B384 */ void getItemBombNumCount(u8);
@@ -247,6 +251,10 @@ struct JAISoundID {};
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JKRHeap {
@@ -474,8 +482,8 @@ extern "C" extern u8 g_ringHIO[344];
 extern "C" extern u8 g_fmapHIO[1188];
 extern "C" extern u8 g_cursorHIO[68 + 4 /* padding */];
 extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 m_mode__7dDemo_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 m_mode__7dDemo_c[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

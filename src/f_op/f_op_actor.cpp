@@ -29,6 +29,8 @@ struct fopEn_enemy_c {
 struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
     /* 80018C8C */ ~fopAc_ac_c();
+
+    static u8 stopStatus[4];
 };
 
 struct daSus_c {
@@ -61,9 +63,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
+struct cXyz {
+    static f32 Zero[3];
+};
 
-struct cXyz {};
+struct _GXColor {};
 
 struct csXyz {
     /* 80018BD0 */ ~csXyz();
@@ -87,6 +91,10 @@ struct dEvt_control_c {
 
 struct dDemo_object_c {
     /* 80039088 */ void getActor(u8);
+};
+
+struct dDemo_c {
+    static u8 m_object[4];
 };
 
 struct dDemo_actor_c {
@@ -139,6 +147,7 @@ extern "C" void checkBallModelDraw__13fopEn_enemy_cFv();
 extern "C" void setBallModelEffect__13fopEn_enemy_cFP12dKy_tevstr_c();
 extern "C" void drawBallModel__13fopEn_enemy_cFP12dKy_tevstr_c();
 extern "C" extern char const* const f_op_f_op_actor__stringBase0;
+extern "C" u8 stopStatus__10fopAc_ac_c[4];
 extern "C" extern u8 data_80450CC0[4 + 4 /* padding */];
 
 //
@@ -192,10 +201,10 @@ extern "C" void _restgpr_29();
 extern "C" extern u8 const j3dDefaultLightInfo[52];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
+extern "C" f32 Zero__4cXyz[3];
 extern "C" extern u8 g_dComIfAc_gameInfo[8];
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_object__7dDemo_c[4];
+extern "C" u8 m_object__7dDemo_c[4];
 extern "C" extern u8 struct_80451124[4];
 
 //
@@ -290,8 +299,7 @@ asm void fopAc_IsActor(void* param_0) {
 
 /* ############################################################################################## */
 /* 80450CBC-80450CC0 0001BC 0004+00 2/2 1/1 0/0 .sbss            stopStatus__10fopAc_ac_c */
-extern u8 stopStatus__10fopAc_ac_c[4];
-u8 stopStatus__10fopAc_ac_c[4];
+u8 fopAc_ac_c::stopStatus[4];
 
 /* 80018D0C-80018DD8 01364C 00CC+00 1/0 0/0 0/0 .text            fopAc_Draw__FPv */
 #pragma push

@@ -69,6 +69,16 @@ struct JKRHeap {
     /* 802CEDA0 */ void state_dump(JKRHeap::TState const&) const;
     /* 802CEDA4 */ bool do_changeGroupID(u8);
     /* 802CEDAC */ bool do_getCurrentGroupId();
+
+    static u8 sSystemHeap[4];
+    static u8 sCurrentHeap[4];
+    static u8 sRootHeap[4];
+    static u8 mErrorHandler[4];
+    static u8 mCodeStart[4];
+    static u8 mCodeEnd[4];
+    static u8 mUserRamStart[4];
+    static u8 mUserRamEnd[4];
+    static u8 mMemorySize[4];
 };
 
 struct JKRDisposer {
@@ -128,6 +138,15 @@ extern "C" void state_dump__7JKRHeapCFRCQ27JKRHeap6TState();
 extern "C" bool do_changeGroupID__7JKRHeapFUc();
 extern "C" bool do_getCurrentGroupId__7JKRHeapFv();
 extern "C" extern char const* const JKRHeap__stringBase0;
+extern "C" u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sCurrentHeap__7JKRHeap[4];
+extern "C" u8 sRootHeap__7JKRHeap[4];
+extern "C" u8 mErrorHandler__7JKRHeap[4];
+extern "C" u8 mCodeStart__7JKRHeap[4];
+extern "C" u8 mCodeEnd__7JKRHeap[4];
+extern "C" u8 mUserRamStart__7JKRHeap[4];
+extern "C" u8 mUserRamEnd__7JKRHeap[4];
+extern "C" u8 mMemorySize__7JKRHeap[4];
 
 //
 // External References:
@@ -193,20 +212,16 @@ SECTION_DATA extern void* __vt__7JKRHeap[24] = {
 };
 
 /* 80451370-80451374 000870 0004+00 3/3 44/44 0/0 .sbss            sSystemHeap__7JKRHeap */
-extern u8 sSystemHeap__7JKRHeap[4];
-u8 sSystemHeap__7JKRHeap[4];
+u8 JKRHeap::sSystemHeap[4];
 
 /* 80451374-80451378 000874 0004+00 4/4 23/23 0/0 .sbss            sCurrentHeap__7JKRHeap */
-extern u8 sCurrentHeap__7JKRHeap[4];
-u8 sCurrentHeap__7JKRHeap[4];
+u8 JKRHeap::sCurrentHeap[4];
 
 /* 80451378-8045137C 000878 0004+00 3/3 10/10 0/0 .sbss            sRootHeap__7JKRHeap */
-extern u8 sRootHeap__7JKRHeap[4];
-u8 sRootHeap__7JKRHeap[4];
+u8 JKRHeap::sRootHeap[4];
 
 /* 8045137C-80451380 00087C 0004+00 2/2 3/3 0/0 .sbss            mErrorHandler__7JKRHeap */
-extern u8 mErrorHandler__7JKRHeap[4];
-u8 mErrorHandler__7JKRHeap[4];
+u8 JKRHeap::mErrorHandler[4];
 
 /* 80451380-80451384 000880 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_80451380[4];
@@ -233,24 +248,19 @@ asm JKRHeap::~JKRHeap() {
 
 /* ############################################################################################## */
 /* 80451384-80451388 000884 0004+00 1/1 1/1 0/0 .sbss            mCodeStart__7JKRHeap */
-extern u8 mCodeStart__7JKRHeap[4];
-u8 mCodeStart__7JKRHeap[4];
+u8 JKRHeap::mCodeStart[4];
 
 /* 80451388-8045138C 000888 0004+00 1/1 1/1 0/0 .sbss            mCodeEnd__7JKRHeap */
-extern u8 mCodeEnd__7JKRHeap[4];
-u8 mCodeEnd__7JKRHeap[4];
+u8 JKRHeap::mCodeEnd[4];
 
 /* 8045138C-80451390 00088C 0004+00 1/1 1/1 0/0 .sbss            mUserRamStart__7JKRHeap */
-extern u8 mUserRamStart__7JKRHeap[4];
-u8 mUserRamStart__7JKRHeap[4];
+u8 JKRHeap::mUserRamStart[4];
 
 /* 80451390-80451394 000890 0004+00 1/1 1/1 0/0 .sbss            mUserRamEnd__7JKRHeap */
-extern u8 mUserRamEnd__7JKRHeap[4];
-u8 mUserRamEnd__7JKRHeap[4];
+u8 JKRHeap::mUserRamEnd[4];
 
 /* 80451394-80451398 000894 0004+00 1/1 2/2 0/0 .sbss            mMemorySize__7JKRHeap */
-extern u8 mMemorySize__7JKRHeap[4];
-u8 mMemorySize__7JKRHeap[4];
+u8 JKRHeap::mMemorySize[4];
 
 /* 802CE378-802CE428 2C8CB8 00B0+00 0/0 1/1 0/0 .text            initArena__7JKRHeapFPPcPUli */
 #pragma push

@@ -37,11 +37,11 @@ SYMBOLS = [
 	{'addr':0x8057CAC4,'size':8,'pad':0,'label':"func_8057CAC4",'name':"Mthd_Draw__Q28daObjEff25@unnamed@d_a_obj_eff_cpp@FPv",'lib':-1,'tu':3,'section':0,'class_template':None,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReturnFunction"},
 	{'addr':0x8057CACC,'size':8,'pad':0,'label':"func_8057CACC",'name':"Mthd_IsDelete__Q28daObjEff25@unnamed@d_a_obj_eff_cpp@FPv",'lib':-1,'tu':3,'section':0,'class_template':None,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReturnFunction"},
 	{'addr':0x8057CAD4,'size':28,'pad':0,'label':"func_8057CAD4",'name':"PrmAbstract<Q38daObjEff5Act_c5Prm_e>__5daObjFPC10fopAc_ac_cQ38daObjEff5Act_c5Prm_eQ38daObjEff5Act_c5Prm_e",'lib':-1,'tu':3,'section':0,'class_template':True,'static':False,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
-	{'addr':0x8057CAF0,'size':4,'pad':0,'label':"_ctors",'name':"_ctors",'lib':-1,'tu':1,'section':1,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
-	{'addr':0x8057CAF4,'size':4,'pad':0,'label':"_dtors",'name':"_dtors",'lib':-1,'tu':2,'section':2,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
-	{'addr':0x8057CAF8,'size':4,'pad':0,'label':"lit_3648",'name':"@3648",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
-	{'addr':0x8057CAFC,'size':32,'pad':0,'label':"data_8057CAFC",'name':"Mthd_Table__Q28daObjEff25@unnamed@d_a_obj_eff_cpp@",'lib':-1,'tu':3,'section':4,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
-	{'addr':0x8057CB1C,'size':48,'pad':0,'label':"g_profile_Obj_Eff",'name':"g_profile_Obj_Eff",'lib':-1,'tu':3,'section':4,'class_template':False,'static':False,'is_reachable':False,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x8057CAF0,'size':4,'pad':0,'label':"_ctors",'name':"_ctors",'lib':-1,'tu':1,'section':1,'class_template':None,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
+	{'addr':0x8057CAF4,'size':4,'pad':0,'label':"_dtors",'name':"_dtors",'lib':-1,'tu':2,'section':2,'class_template':None,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
+	{'addr':0x8057CAF8,'size':4,'pad':0,'label':"lit_3648",'name':"@3648",'lib':-1,'tu':3,'section':3,'class_template':None,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x8057CAFC,'size':32,'pad':0,'label':"data_8057CAFC",'name':"Mthd_Table__Q28daObjEff25@unnamed@d_a_obj_eff_cpp@",'lib':-1,'tu':3,'section':4,'class_template':None,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x8057CB1C,'size':48,'pad':0,'label':"g_profile_Obj_Eff",'name':"g_profile_Obj_Eff",'lib':-1,'tu':3,'section':4,'class_template':None,'static':False,'is_reachable':False,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
 ]
 
 # Names

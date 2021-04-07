@@ -13,6 +13,10 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct fopAc_ac_c {};
 
 struct daObjLv3saka_c {
@@ -45,11 +49,11 @@ struct dBgW {
     /* 8007B9C0 */ void Move();
 };
 
-struct cXyz {};
-
 struct cBgS_PolyInfo {};
 
 struct csXyz {};
+
+struct cXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -131,7 +135,7 @@ extern "C" void PSMTXCopy();
 extern "C" void PSMTXTrans();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //

@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct mDoCPd_c {
+    static u8 m_gamePad[16];
+};
+
 struct Vec {};
 
 struct cXyz {
@@ -30,6 +34,11 @@ struct dVibration_c {
     /* 8006FF04 */ void Init();
     /* 8006FF38 */ void Pause();
     /* 8006FFF8 */ void Remove();
+
+    static u8 const MS_patt[88];
+    static u8 const CS_patt[88];
+    static u8 const MQ_patt[80];
+    static u8 const CQ_patt[80];
 };
 
 struct dSv_player_config_c {
@@ -94,11 +103,11 @@ extern "C" void _savegpr_26();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_29();
-extern "C" extern u8 const MS_patt__12dVibration_c[88];
-extern "C" extern u8 const CS_patt__12dVibration_c[88];
-extern "C" extern u8 const MQ_patt__12dVibration_c[80];
-extern "C" extern u8 const CQ_patt__12dVibration_c[80];
-extern "C" extern u8 m_gamePad__8mDoCPd_c[16];
+extern "C" u8 const MS_patt__12dVibration_c[88];
+extern "C" u8 const CS_patt__12dVibration_c[88];
+extern "C" u8 const MQ_patt__12dVibration_c[80];
+extern "C" u8 const CQ_patt__12dVibration_c[80];
+extern "C" u8 m_gamePad__8mDoCPd_c[16];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //

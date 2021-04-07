@@ -13,17 +13,23 @@
 
 struct msg_class {};
 
-struct JKRArchive {
-    struct EMountMode {};
-};
-
 struct JKRHeap {
     /* 802CE784 */ void getTotalFreeSize();
+};
+
+struct JKRArchive {
+    struct EMountMode {};
 };
 
 struct mDoDvdThd_mountXArchive_c {
     /* 800161E0 */ void create(char const*, u8, JKRArchive::EMountMode, JKRHeap*);
 };
+
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
+};
+
+struct jmessage_tControl {};
 
 struct Vec {};
 
@@ -42,8 +48,6 @@ struct jmessage_tReference {
     /* 80238C78 */ void setActorPos(cXyz);
 };
 
-struct jmessage_tControl {};
-
 struct jmessage_tSequenceProcessor {
     /* 8022B558 */ jmessage_tSequenceProcessor(jmessage_tReference const*, jmessage_tControl*);
 };
@@ -55,6 +59,10 @@ struct jmessage_tRenderingProcessor {
 
 struct fopAc_ac_c {};
 
+struct daPy_py_c {
+    static u8 m_midnaActor[4];
+};
+
 struct dSv_player_item_record_c {
     /* 80033F7C */ void getBombNum(u8) const;
 };
@@ -65,6 +73,14 @@ struct dSv_player_item_c {
 
 struct dSv_player_get_item_c {
     /* 80033E60 */ void onFirstBit(u8);
+};
+
+struct dSv_event_tmp_flag_c {
+    static u8 const tempBitLabels[370 + 2 /* padding */];
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -316,6 +332,11 @@ struct dDlst_list_c {
     /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
 };
 
+struct dDemo_c {
+    static u8 m_control[4];
+    static u8 m_mesgControl[4];
+};
+
 struct Z2StatusMgr {
     /* 802B60CC */ void talkIn();
     /* 802B6104 */ void talkOut();
@@ -333,6 +354,10 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JUtility {
@@ -652,18 +677,18 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void sprintf();
 extern "C" void strcpy();
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
+extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" extern void* g_fopMsg_Method[5 + 1 /* padding */];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 data_80450B70[4];
-extern "C" extern u8 m_control__7dDemo_c[4];
-extern "C" extern u8 m_mesgControl__7dDemo_c[4];
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 m_control__7dDemo_c[4];
+extern "C" u8 m_mesgControl__7dDemo_c[4];
+extern "C" u8 m_midnaActor__9daPy_py_c[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

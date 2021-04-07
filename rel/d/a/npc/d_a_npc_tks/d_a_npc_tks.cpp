@@ -13,6 +13,12 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {
+    /* 802673F4 */ csXyz(s16, s16, s16);
+    /* 80B1D594 */ csXyz();
+    /* 80B1D59C */ ~csXyz();
+};
+
 struct Vec {};
 
 struct cXyz {
@@ -21,16 +27,12 @@ struct cXyz {
     /* 80B1D668 */ ~cXyz();
 };
 
-struct csXyz {
-    /* 802673F4 */ csXyz(s16, s16, s16);
-    /* 80B1D594 */ csXyz();
-    /* 80B1D59C */ ~csXyz();
-};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct J3DAnmTransform {};
@@ -39,17 +41,17 @@ struct mDoExt_bckAnm {
     /* 8000D990 */ void changeBckOnly(J3DAnmTransform*);
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
+
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
-
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -128,14 +130,14 @@ struct daNpcTks_c {
 
 struct daNpcTks_Param_c {
     /* 80B1DCEC */ ~daNpcTks_Param_c();
+
+    static u8 const m[152];
 };
 
 struct daNpcTkc_c {
     /* 80B0D338 */ void setActionWait();
     /* 80B0D37C */ void setActionFollow();
 };
-
-struct J3DAnmTransformKey {};
 
 struct J3DAnmTextureSRTKey {};
 
@@ -144,6 +146,8 @@ struct _GXColorS10 {};
 struct J3DAnmTexPattern {
     /* 8032AF50 */ void getTexNo(u16, u16*) const;
 };
+
+struct J3DAnmTransformKey {};
 
 struct daNpcF_c {
     struct daNpcF_anmPlayData {};
@@ -173,6 +177,8 @@ struct daNpcF_c {
     /* 80B1D928 */ daNpcF_c();
     /* 80B1DC9C */ void adjustShapeAngle();
     /* 80B1DCA0 */ void setCollisions();
+
+    static u8 mCcDCyl[68];
 };
 
 struct daNpcF_MatAnm_c {
@@ -256,6 +262,10 @@ struct dEvent_manager_c {
     /* 80047F5C */ void getMyNowCutName(int);
     /* 800480EC */ void getMySubstanceP(int, char const*, int);
     /* 8004817C */ void cutEnd(int);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -362,6 +372,10 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct JMath {
     template <typename A1, typename B1>
     struct TSinCosTable {};
@@ -369,6 +383,8 @@ struct JMath {
     struct TSinCosTable__template0 {
         /* 80B1D35C */ void func_80B1D35C(s16) /* const */;
     };
+
+    static u8 sincosTable_[65536];
 };
 
 struct J3DTexNoAnm {
@@ -390,6 +406,10 @@ struct J3DTevKColorAnm {
 struct J3DTevColorAnm {
     /* 80B15270 */ ~J3DTevColorAnm();
     /* 80B152AC */ J3DTevColorAnm();
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
 };
 
 struct J3DMaterialAnm {
@@ -509,6 +529,7 @@ extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" void __dt__16daNpcTks_Param_cFv();
 extern "C" static void func_80B1DD34();
 extern "C" static void func_80B1DD3C();
+extern "C" u8 const m__16daNpcTks_Param_c[152];
 extern "C" extern char const* const d_a_npc_tks__stringBase0;
 
 //
@@ -691,23 +712,23 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcF_c[68];
+extern "C" u8 mCcDCyl__8daNpcF_c[68];
 extern "C" extern void* __vt__8daNpcF_c[18];
 extern "C" extern void* __vt__15daNpcF_MatAnm_c[4 + 6 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void setActionWait__10daNpcTkc_cFv();
 extern "C" void setActionFollow__10daNpcTkc_cFv();
 extern "C" void __register_global_object();
@@ -1327,7 +1348,7 @@ asm daNpcTks_c::~daNpcTks_c() {
 
 /* ############################################################################################## */
 /* 80B1DD58-80B1DDF0 000000 0098+00 25/25 0/0 0/0 .rodata          m__16daNpcTks_Param_c */
-SECTION_RODATA static u8 const m__16daNpcTks_Param_c[152] = {
+SECTION_RODATA u8 const daNpcTks_Param_c::m[152] = {
     0x42, 0xB4, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x42, 0xA0, 0x00, 0x00, 0x42, 0x04, 0x00, 0x00, 0x41, 0xC8, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00, 0xC2, 0x34, 0x00, 0x00,
@@ -1339,7 +1360,7 @@ SECTION_RODATA static u8 const m__16daNpcTks_Param_c[152] = {
     0x43, 0xFA, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xC8, 0x00, 0x00, 0x40, 0xE0, 0x00, 0x00,
     0x40, 0x00, 0x00, 0x00, 0x40, 0xA0, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B1DD58, &m__16daNpcTks_Param_c);
+COMPILER_STRIP_GATE(80B1DD58, &daNpcTks_Param_c::m);
 
 /* 80B1DDF0-80B1DDF4 000098 0004+00 0/2 0/0 0/0 .rodata          @4467 */
 #pragma push

@@ -29,6 +29,9 @@ struct JKRHeap {
     /* 802CEDA0 */ void state_dump(JKRHeap::TState const&) const;
     /* 802CEDA4 */ bool do_changeGroupID(u8);
     /* 802CEDAC */ bool do_getCurrentGroupId();
+
+    static u8 sRootHeap[4];
+    static u8 mErrorHandler[4];
 };
 
 struct JKRSolidHeap {
@@ -112,8 +115,8 @@ extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 sRootHeap__7JKRHeap[4];
-extern "C" extern u8 mErrorHandler__7JKRHeap[4];
+extern "C" u8 sRootHeap__7JKRHeap[4];
+extern "C" u8 mErrorHandler__7JKRHeap[4];
 
 //
 // Declarations:

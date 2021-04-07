@@ -13,9 +13,13 @@
 
 struct request_of_phase_process_class {};
 
-struct J3DAnmTransform {};
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
 
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -66,6 +70,9 @@ struct daObjSCannonTen_c {
     /* 80CCC7D0 */ void initEmtLine();
     /* 80CCC8B8 */ void exeEmtLine();
     /* 80CCC97C */ void delEmtAll();
+
+    static u8 s_exeProc[48];
+    static u8 s_demoExeProc[144];
 };
 
 struct cXyz {};
@@ -115,6 +122,10 @@ struct dEvent_manager_c {
     /* 80047E10 */ void getMyActIdx(int, char const* const*, int, int, int);
     /* 800480EC */ void getMySubstanceP(int, char const*, int);
     /* 8004817C */ void cutEnd(int);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dBgW_Base {};
@@ -181,6 +192,10 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JUTNameTab {
@@ -254,6 +269,8 @@ extern "C" void __sinit_d_a_obj_scannon_ten_cpp();
 extern "C" static void func_80CCCC1C();
 extern "C" static void func_80CCCC24();
 extern "C" extern char const* const d_a_obj_scannon_ten__stringBase0;
+extern "C" u8 s_exeProc__17daObjSCannonTen_c[48];
+extern "C" u8 s_demoExeProc__17daObjSCannonTen_c[144];
 
 //
 // External References:
@@ -335,12 +352,12 @@ extern "C" void _restgpr_29();
 extern "C" void strcmp();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -436,7 +453,7 @@ SECTION_DATA static void* lit_3997[3] = {
 #pragma pop
 
 /* 80CCCD2C-80CCCD5C 00005C 0030+00 1/2 0/0 0/0 .data            s_exeProc__17daObjSCannonTen_c */
-SECTION_DATA static u8 s_exeProc__17daObjSCannonTen_c[48] = {
+SECTION_DATA u8 daObjSCannonTen_c::s_exeProc[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -564,7 +581,7 @@ SECTION_DATA static void* lit_4054[3] = {
 
 /* 80CCCDEC-80CCCE7C 00011C 0090+00 2/3 0/0 0/0 .data            s_demoExeProc__17daObjSCannonTen_c
  */
-SECTION_DATA static u8 s_demoExeProc__17daObjSCannonTen_c[144] = {
+SECTION_DATA u8 daObjSCannonTen_c::s_demoExeProc[144] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

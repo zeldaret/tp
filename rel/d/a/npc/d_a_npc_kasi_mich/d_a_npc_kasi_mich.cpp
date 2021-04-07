@@ -20,21 +20,23 @@ struct csXyz {
 
 struct mDoMtx_stack_c {
     /* 8000CF0C */ void ZXYrotS(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct mDoExt_morf_c {
     /* 8000FB7C */ void setMorf(f32);
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {};
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -58,11 +60,13 @@ struct cXyz {
     /* 80A29944 */ cXyz();
 };
 
+struct J3DJoint {};
+
 struct _GXColorS10 {};
 
-struct J3DAnmTransformKey {};
-
 struct J3DAnmTexPattern {};
+
+struct J3DAnmTransformKey {};
 
 struct daNpcF_c {
     struct daNpcF_anmPlayData {};
@@ -93,9 +97,9 @@ struct daNpcF_c {
     /* 80A29F1C */ bool setExpressionBtp(int);
     /* 80A29F24 */ void setExpression(int, f32);
     /* 80A29F28 */ void drawOtherMdls();
-};
 
-struct J3DJoint {};
+    static u8 mCcDCyl[68];
+};
 
 struct daNpcKasiMich_c {
     /* 80A261CC */ daNpcKasiMich_c();
@@ -148,10 +152,16 @@ struct daNpcKasiMich_c {
     /* 80A29500 */ void actor_front_check(fopAc_ac_c*);
     /* 80A295D8 */ void _getOffset(cXyz const&, cXyz&);
     /* 80A29FDC */ void adjustShapeAngle();
+
+    static u8 mEvtSeqList[12];
+    static u8 mTargetTag[4];
+    static u8 mTargetTagDist[4];
 };
 
 struct daNpcKasiMich_Param_c {
     /* 80A29FE0 */ ~daNpcKasiMich_Param_c();
+
+    static u8 const m[116];
 };
 
 struct dPath {};
@@ -301,6 +311,10 @@ struct Z2CreatureCitizen {
     /* 802C0CE4 */ void init(Vec*, Vec*, u8, u8);
 };
 
+struct J3DSys {
+    static u8 mCurrentMtx[48];
+};
+
 struct J3DFrameCtrl {
     /* 803283FC */ void init(s16);
     /* 80A29EC0 */ ~J3DFrameCtrl();
@@ -393,7 +407,11 @@ extern "C" void adjustShapeAngle__15daNpcKasiMich_cFv();
 extern "C" void __dt__21daNpcKasiMich_Param_cFv();
 extern "C" static void func_80A2A028();
 extern "C" static void func_80A2A030();
+extern "C" u8 const m__21daNpcKasiMich_Param_c[116];
 extern "C" extern char const* const d_a_npc_kasi_mich__stringBase0;
+extern "C" u8 mEvtSeqList__15daNpcKasiMich_c[12];
+extern "C" u8 mTargetTag__15daNpcKasiMich_c[4];
+extern "C" u8 mTargetTagDist__15daNpcKasiMich_c[4];
 
 //
 // External References:
@@ -510,15 +528,15 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcF_c[68];
+extern "C" u8 mCcDCyl__8daNpcF_c[68];
 extern "C" extern void* __vt__8daNpcF_c[18];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" void __register_global_object();
 
 //
@@ -590,7 +608,7 @@ SECTION_DATA static void* l_myName = (void*)&d_a_npc_kasi_mich__stringBase0;
 #pragma pop
 
 /* 80A2A3B4-80A2A3C0 000100 000C+00 1/1 0/0 0/0 .data            mEvtSeqList__15daNpcKasiMich_c */
-SECTION_DATA static u8 mEvtSeqList__15daNpcKasiMich_c[12] = {
+SECTION_DATA u8 daNpcKasiMich_c::mEvtSeqList[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
@@ -1105,7 +1123,7 @@ asm daNpcKasiMich_c::~daNpcKasiMich_c() {
 
 /* ############################################################################################## */
 /* 80A2A04C-80A2A0C0 000000 0074+00 17/17 0/0 0/0 .rodata          m__21daNpcKasiMich_Param_c */
-SECTION_RODATA static u8 const m__21daNpcKasiMich_Param_c[116] = {
+SECTION_RODATA u8 const daNpcKasiMich_Param_c::m[116] = {
     0x42, 0x5C, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xFA, 0x00,
     0x00, 0x43, 0x58, 0x00, 0x00, 0x43, 0x0C, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xF0,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1,
@@ -1115,7 +1133,7 @@ SECTION_RODATA static u8 const m__21daNpcKasiMich_Param_c[116] = {
     0x00, 0x00, 0xC3, 0x96, 0x00, 0x00, 0x00, 0x3C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x41, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A2A04C, &m__21daNpcKasiMich_Param_c);
+COMPILER_STRIP_GATE(80A2A04C, &daNpcKasiMich_Param_c::m);
 
 /* 80A2A0C0-80A2A0C4 000074 0004+00 0/1 0/0 0/0 .rodata          @4197 */
 #pragma push
@@ -1362,13 +1380,13 @@ static u8 lit_3807[12];
 static u8 l_HIO[4];
 
 /* 80A2A7F0-80A2A7F4 000058 0004+00 1/2 0/0 0/0 .bss             mTargetTag__15daNpcKasiMich_c */
-static u8 mTargetTag__15daNpcKasiMich_c[4];
+u8 daNpcKasiMich_c::mTargetTag[4];
 
 /* 80A2A7F4-80A2A7F8 00005C 0004+00 0/1 0/0 0/0 .bss             mTargetTagDist__15daNpcKasiMich_c
  */
 #pragma push
 #pragma force_active on
-static u8 mTargetTagDist__15daNpcKasiMich_c[4];
+u8 daNpcKasiMich_c::mTargetTagDist[4];
 #pragma pop
 
 /* 80A2A7F8-80A2A7FC -00001 0004+00 2/3 0/0 0/0 .bss             None */

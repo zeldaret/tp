@@ -24,20 +24,22 @@ struct cXyz {
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
+
+    static u8 now[48];
 };
+
+struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -89,10 +91,15 @@ struct daNpc_myna2_c {
     /* 80A86A0C */ void ECut_gameGoal(int);
     /* 80A86BEC */ void ECut_gameGoalSuccess(int);
     /* 80A86E8C */ void calcHovering(int, int);
+
+    static void* mEvtCutNameList[5];
+    static u8 mEvtCutList[60];
 };
 
 struct daNpc_myna2_Param_c {
     /* 80A883C8 */ ~daNpc_myna2_Param_c();
+
+    static u8 const m[116];
 };
 
 struct dCcD_GObjInf {
@@ -107,11 +114,11 @@ struct dCcD_Cyl {
     /* 800848B4 */ void Set(dCcD_SrcCyl const&);
 };
 
-struct J3DAnmTransformKey {};
-
 struct _GXColorS10 {};
 
 struct J3DAnmTexPattern {};
+
+struct J3DAnmTransformKey {};
 
 struct daNpcF_c {
     struct daNpcF_anmPlayData {};
@@ -142,6 +149,8 @@ struct daNpcF_c {
     /* 80A881C8 */ void setCollisions();
     /* 80A881CC */ bool setExpressionAnm(int, bool);
     /* 80A881D4 */ void setExpression(int, f32);
+
+    static u8 mCcDCyl[68];
 };
 
 struct daNpcF_Lookat_c {
@@ -276,6 +285,10 @@ struct Z2CreatureSumomo {
     /* 802C1C24 */ void playSumomoBgm(u32);
 };
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DFrameCtrl {
     /* 803283FC */ void init(s16);
     /* 80A88174 */ ~J3DFrameCtrl();
@@ -356,7 +369,10 @@ extern "C" void __sinit_d_a_npc_myna2_cpp();
 extern "C" void __dt__19daNpc_myna2_Param_cFv();
 extern "C" static void func_80A88410();
 extern "C" static void func_80A88418();
+extern "C" u8 const m__19daNpc_myna2_Param_c[116];
 extern "C" extern char const* const d_a_npc_myna2__stringBase0;
+extern "C" void* mEvtCutNameList__13daNpc_myna2_c[5];
+extern "C" u8 mEvtCutList__13daNpc_myna2_c[60];
 
 //
 // External References:
@@ -493,15 +509,15 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcF_c[68];
+extern "C" u8 mCcDCyl__8daNpcF_c[68];
 extern "C" extern void* __vt__8daNpcF_c[18];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__16Z2CreatureSumomo[12];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 extern "C" void __register_global_object();
 
@@ -617,7 +633,7 @@ SECTION_DATA static void* l_myName = (void*)(((char*)&d_a_npc_myna2__stringBase0
 /* 80A887EC-80A88800 -00001 0014+00 0/1 0/0 0/0 .data            mEvtCutNameList__13daNpc_myna2_c */
 #pragma push
 #pragma force_active on
-SECTION_DATA static void* mEvtCutNameList__13daNpc_myna2_c[5] = {
+SECTION_DATA void* daNpc_myna2_c::mEvtCutNameList[5] = {
     (void*)(((char*)&d_a_npc_myna2__stringBase0) + 0x53),
     (void*)&d_a_npc_myna2__stringBase0,
     (void*)(((char*)&d_a_npc_myna2__stringBase0) + 0xB),
@@ -669,7 +685,7 @@ SECTION_DATA static void* lit_4036[3] = {
 /* 80A88830-80A8886C 00017C 003C+00 0/2 0/0 0/0 .data            mEvtCutList__13daNpc_myna2_c */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 mEvtCutList__13daNpc_myna2_c[60] = {
+SECTION_DATA u8 daNpc_myna2_c::mEvtCutList[60] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -979,7 +995,7 @@ asm daNpc_myna2_c::~daNpc_myna2_c() {
 
 /* ############################################################################################## */
 /* 80A88434-80A884A8 000000 0074+00 14/14 0/0 0/0 .rodata          m__19daNpc_myna2_Param_c */
-SECTION_RODATA static u8 const m__19daNpc_myna2_Param_c[116] = {
+SECTION_RODATA u8 const daNpc_myna2_Param_c::m[116] = {
     0x42, 0x70, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x44, 0x16, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x42, 0x20,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -989,7 +1005,7 @@ SECTION_RODATA static u8 const m__19daNpc_myna2_Param_c[116] = {
     0x00, 0x00, 0xC3, 0x96, 0x00, 0x00, 0x00, 0x3C, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x44, 0x2F, 0x00, 0x00, 0x45, 0x1C, 0x40, 0x00,
 };
-COMPILER_STRIP_GATE(80A88434, &m__19daNpc_myna2_Param_c);
+COMPILER_STRIP_GATE(80A88434, &daNpc_myna2_Param_c::m);
 
 /* 80A884A8-80A884BC 000074 0014+00 0/1 0/0 0/0 .rodata          heapSize$4340 */
 #pragma push

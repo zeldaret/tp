@@ -11,6 +11,8 @@
 // Types:
 //
 
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
@@ -21,16 +23,16 @@ struct cXyz {
     /* 804D1E4C */ ~cXyz();
 };
 
-struct csXyz {};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -39,6 +41,10 @@ struct mDoExt_bckAnm {
 
 struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
+};
+
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
 };
 
 struct fopAc_ac_c {
@@ -107,11 +113,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
 };
+
+struct _GXColor {};
 
 struct dPa_control_c {
     struct level_c {
@@ -126,19 +132,19 @@ struct dPa_control_c {
                             _GXColor const*, cXyz const*, f32);
 };
 
+struct dBgS_AcchCir {
+    /* 80075EAC */ dBgS_AcchCir();
+    /* 80075F40 */ void SetWallR(f32);
+    /* 80075F58 */ void SetWall(f32, f32);
+    /* 804D1EF8 */ ~dBgS_AcchCir();
+};
+
 struct dBgS {
     /* 80074BE8 */ void GetPolyColor(cBgS_PolyInfo const&);
     /* 80074CBC */ void GetSpecialCode(cBgS_PolyInfo const&);
     /* 80074E50 */ void GetPolyAtt0(cBgS_PolyInfo const&);
     /* 80074EF0 */ void GetGroundCode(cBgS_PolyInfo const&);
     /* 80075100 */ void GetRoomId(cBgS_PolyInfo const&);
-};
-
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F40 */ void SetWallR(f32);
-    /* 80075F58 */ void SetWall(f32, f32);
-    /* 804D1EF8 */ ~dBgS_AcchCir();
 };
 
 struct dBgS_Acch {
@@ -152,6 +158,10 @@ struct dPaPo_c {
     /* 80050C9C */ void init(dBgS_Acch*, f32, f32);
     /* 80051008 */ void setEffectCenter(dKy_tevstr_c const*, cXyz const*, u32, u32, cXyz const*,
                                         csXyz const*, cXyz const*, s8, f32, f32);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct cCcD_Obj {};
@@ -257,6 +267,10 @@ struct Z2SoundObjBase {
 
 struct Z2CreatureLink {
     /* 802C4814 */ void startHitItemSE(u32, u32, Z2SoundObjBase*, f32);
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct JGeometry {
@@ -448,12 +462,12 @@ extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__16Z2SoundObjSimple[8];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 struct_80450D64[4];
 extern "C" void __register_global_object();

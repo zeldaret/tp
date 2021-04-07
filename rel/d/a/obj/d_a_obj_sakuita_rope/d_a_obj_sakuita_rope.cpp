@@ -13,15 +13,19 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct mDoExt_3DlineMat_c {};
 
 struct mDoExt_3DlineMatSortPacket {
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
 };
 
-struct _GXColor {};
-
 struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct ResTIMG {};
 
@@ -40,6 +44,8 @@ struct daObjItaRope_c {
     /* 80CC5E48 */ void initBaseMtx();
     /* 80CC5E7C */ void setBaseMtx();
     /* 80CC5ECC */ void setNormalRopePos();
+
+    static u8 const M_attr[20];
 };
 
 struct Vec {};
@@ -98,6 +104,10 @@ struct RopeWork_c {
     /* 80CC6460 */ RopeWork_c();
 };
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 //
 // Forward References:
 //
@@ -126,6 +136,7 @@ extern "C" static void daObjItaRope_Delete__FP14daObjItaRope_c();
 extern "C" static void daObjItaRope_Create__FP10fopAc_ac_c();
 extern "C" void __dt__10dCcD_GSttsFv();
 extern "C" void __dt__10cCcD_GSttsFv();
+extern "C" u8 const M_attr__14daObjItaRope_c[20];
 extern "C" extern char const* const d_a_obj_sakuita_rope__stringBase0;
 
 //
@@ -184,10 +195,10 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 
 //
@@ -206,11 +217,11 @@ asm void Sakuita_c::setModelData(J3DModelData* param_0) {
 
 /* ############################################################################################## */
 /* 80CC68F0-80CC6904 000000 0014+00 4/4 0/0 0/0 .rodata          M_attr__14daObjItaRope_c */
-SECTION_RODATA static u8 const M_attr__14daObjItaRope_c[20] = {
+SECTION_RODATA u8 const daObjItaRope_c::M_attr[20] = {
     0xC0, 0xA0, 0x00, 0x00, 0x3E, 0x4C, 0xCC, 0xCD, 0x3F, 0x00,
     0x00, 0x00, 0x3F, 0x4C, 0xCC, 0xCD, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CC68F0, &M_attr__14daObjItaRope_c);
+COMPILER_STRIP_GATE(80CC68F0, &daObjItaRope_c::M_attr);
 
 /* 80CC6904-80CC6908 000014 0004+00 1/2 0/0 0/0 .rodata          @3634 */
 SECTION_RODATA static f32 const lit_3634 = 75.0f;

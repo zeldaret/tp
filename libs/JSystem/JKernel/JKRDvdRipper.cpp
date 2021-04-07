@@ -31,6 +31,8 @@ struct JKRHeap {
     /* 802CE4D4 */ void alloc(u32, int);
     /* 802CE474 */ void alloc(u32, int, JKRHeap*);
     /* 802CE500 */ void free(void*, JKRHeap*);
+
+    static u8 sSystemHeap[4];
 };
 
 struct JKRExpandSwitch {};
@@ -45,13 +47,16 @@ struct JKRDvdFile {
 struct JKRDvdRipper {
     struct EAllocDirection {};
 
-    /* 802D9B98 */ void loadToMainRAM(char const*, u8*, JKRExpandSwitch, u32, JKRHeap*,
-                                      JKRDvdRipper::EAllocDirection, u32, int*, u32*);
     /* 802D9D10 */ void loadToMainRAM(JKRDvdFile*, u8*, JKRExpandSwitch, u32, JKRHeap*,
                                       JKRDvdRipper::EAllocDirection, u32, int*, u32*);
     /* 802D9C54 */ void loadToMainRAM(s32, u8*, JKRExpandSwitch, u32, JKRHeap*,
                                       JKRDvdRipper::EAllocDirection, u32, int*, u32*);
+    /* 802D9B98 */ void loadToMainRAM(char const*, u8*, JKRExpandSwitch, u32, JKRHeap*,
+                                      JKRDvdRipper::EAllocDirection, u32, int*, u32*);
     /* 802DA7D4 */ void isErrorRetry();
+
+    static u8 sDvdAsyncList[12];
+    static u32 sSZSBufferSize;
 };
 
 struct JKRDecomp {
@@ -77,6 +82,8 @@ extern "C" void isErrorRetry__12JKRDvdRipperFv();
 extern "C" void __sinit_JKRDvdRipper_cpp();
 extern "C" void func_802DA820();
 extern "C" extern char const* const JKRDvdRipper__stringBase0;
+extern "C" u8 sDvdAsyncList__12JKRDvdRipper[12];
+extern "C" u32 sSZSBufferSize__12JKRDvdRipper;
 
 //
 // External References:
@@ -116,7 +123,7 @@ extern "C" void _restgpr_23();
 extern "C" void _restgpr_24();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
 
 //
 // Declarations:
@@ -175,13 +182,13 @@ asm void JKRDvdRipper::loadToMainRAM(JKRDvdFile* param_0, u8* param_1, JKRExpand
 static u8 lit_491[12];
 
 /* 80434384-80434390 0610A4 000C+00 1/1 0/0 0/0 .bss             sDvdAsyncList__12JKRDvdRipper */
-static u8 sDvdAsyncList__12JKRDvdRipper[12];
+u8 JKRDvdRipper::sDvdAsyncList[12];
 
 /* 80434390-804343A8 0610B0 0018+00 1/1 0/0 0/0 .bss             decompMutex */
 static u8 decompMutex[24];
 
 /* 804508CC-804508D0 00034C 0004+00 1/1 1/1 0/0 .sdata           sSZSBufferSize__12JKRDvdRipper */
-SECTION_SDATA extern u32 sSZSBufferSize__12JKRDvdRipper = 0x00000400;
+SECTION_SDATA u32 JKRDvdRipper::sSZSBufferSize = 0x00000400;
 
 /* 80451428-8045142C 000928 0004+00 3/3 0/0 0/0 .sbss            szpBuf */
 static u8 szpBuf[4];

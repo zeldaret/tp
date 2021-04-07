@@ -13,6 +13,10 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct mDoHIO_entry_c {
     /* 80D31B88 */ ~mDoHIO_entry_c();
 };
@@ -31,6 +35,8 @@ struct cXyz {
 
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
+
+    static u8 mGndCheck[84];
 };
 
 struct daWdStick_c {
@@ -58,6 +64,9 @@ struct daWdStick_c {
     /* 80D33D8C */ void mode_proc_sink();
     /* 80D33EB0 */ void Draw();
     /* 80D33F14 */ void Delete();
+
+    static u8 const mCcDObjInfo[48];
+    static u8 mCcDSph[64];
 };
 
 struct daWdStick_HIO_c {
@@ -94,6 +103,8 @@ struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
                             cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
                             _GXColor const*, cXyz const*, f32);
+
+    static u8 mParticleTracePCB[4 + 4 /* padding */];
 };
 
 struct dCcD_Stts {
@@ -211,6 +222,14 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 //
@@ -263,7 +282,9 @@ extern "C" static void func_80D34104();
 extern "C" static void func_80D3410C();
 extern "C" static void func_80D34114();
 extern "C" static void func_80D3411C();
+extern "C" u8 const mCcDObjInfo__11daWdStick_c[48];
 extern "C" extern char const* const d_a_obj_wdStick__stringBase0;
+extern "C" u8 mCcDSph__11daWdStick_c[64];
 
 //
 // External References:
@@ -347,14 +368,14 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mGndCheck__11fopAcM_gc_c[84];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -381,7 +402,7 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80D3423C-80D3427C 000020 0040+00 2/2 0/0 0/0 .data            mCcDSph__11daWdStick_c */
-SECTION_DATA static u8 mCcDSph__11daWdStick_c[64] = {
+SECTION_DATA u8 daWdStick_c::mCcDSph[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -608,12 +629,12 @@ asm void daWdStick_c::CreateHeap() {
 
 /* ############################################################################################## */
 /* 80D34138-80D34168 000000 0030+00 10/10 0/0 0/0 .rodata          mCcDObjInfo__11daWdStick_c */
-SECTION_RODATA static u8 const mCcDObjInfo__11daWdStick_c[48] = {
+SECTION_RODATA u8 const daWdStick_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F,
     0xD8, 0xFB, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D34138, &mCcDObjInfo__11daWdStick_c);
+COMPILER_STRIP_GATE(80D34138, &daWdStick_c::mCcDObjInfo);
 
 /* 80D34168-80D3416C 000030 0004+00 0/2 0/0 0/0 .rodata          @3775 */
 #pragma push

@@ -11,9 +11,15 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -23,9 +29,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -40,8 +44,6 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct daNpcT_motionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -49,11 +51,13 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80B6B4B0 */ ~daNpcT_MotionSeqMngr_c();
 };
 
+struct daNpcT_motionAnmData_c {};
+
+struct J3DJoint {};
+
 struct daNpcT_faceMotionAnmData_c {};
 
 struct daNpcT_evtData_c {};
-
-struct J3DJoint {};
 
 struct daNpc_zanB_c {
     /* 80B68F2C */ ~daNpc_zanB_c();
@@ -95,10 +99,15 @@ struct daNpc_zanB_c {
     /* 80B6BC30 */ bool getBackboneJointNo();
     /* 80B6BC38 */ void checkChangeJoint(int);
     /* 80B6BC48 */ void checkRemoveJoint(int);
+
+    static void* mCutNameList;
+    static u8 mCutList[12];
 };
 
 struct daNpc_zanB_Param_c {
     /* 80B6BC58 */ ~daNpc_zanB_Param_c();
+
+    static u8 const m[140];
 };
 
 struct dCcD_GObjInf {
@@ -106,14 +115,14 @@ struct dCcD_GObjInf {
     /* 800840E4 */ ~dCcD_GObjInf();
 };
 
+struct J3DModel {};
+
 struct cXyz {
     /* 80266AE4 */ void operator+(Vec const&) const;
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80B6AEE8 */ ~cXyz();
     /* 80B6B464 */ cXyz();
 };
-
-struct J3DModel {};
 
 struct _GXColorS10 {};
 
@@ -173,6 +182,8 @@ struct daNpcT_c {
     /* 80B6BA68 */ void changeBck(int*, int*);
     /* 80B6BA6C */ void changeBtp(int*, int*);
     /* 80B6BA70 */ void changeBtk(int*, int*);
+
+    static u8 mCcDCyl[68];
 };
 
 struct daNpcT_MatAnm_c {
@@ -450,7 +461,10 @@ extern "C" void checkRemoveJoint__12daNpc_zanB_cFi();
 extern "C" void __dt__18daNpc_zanB_Param_cFv();
 extern "C" static void func_80B6BCA0();
 extern "C" static void func_80B6BCA8();
+extern "C" u8 const m__18daNpc_zanB_Param_c[140];
 extern "C" extern char const* const d_a_npc_zanb__stringBase0;
+extern "C" void* mCutNameList__12daNpc_zanB_c;
+extern "C" u8 mCutList__12daNpc_zanB_c[12];
 
 //
 // External References:
@@ -576,14 +590,14 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
+extern "C" u8 mCcDCyl__8daNpcT_c[68];
 extern "C" extern void* __vt__8daNpcT_c[49];
 extern "C" extern void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
@@ -686,10 +700,10 @@ SECTION_DATA static u8 l_motionSequenceData[32] = {
 #pragma pop
 
 /* 80B6BEA0-80B6BEA4 -00001 0004+00 1/1 0/0 0/0 .data            mCutNameList__12daNpc_zanB_c */
-SECTION_DATA static void* mCutNameList__12daNpc_zanB_c = (void*)&d_a_npc_zanb__stringBase0;
+SECTION_DATA void* daNpc_zanB_c::mCutNameList = (void*)&d_a_npc_zanb__stringBase0;
 
 /* 80B6BEA4-80B6BEB0 0000D4 000C+00 2/2 0/0 0/0 .data            mCutList__12daNpc_zanB_c */
-SECTION_DATA static u8 mCutList__12daNpc_zanB_c[12] = {
+SECTION_DATA u8 daNpc_zanB_c::mCutList[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
@@ -891,7 +905,7 @@ asm daNpc_zanB_c::~daNpc_zanB_c() {
 
 /* ############################################################################################## */
 /* 80B6BCC4-80B6BD50 000000 008C+00 7/7 0/0 0/0 .rodata          m__18daNpc_zanB_Param_c */
-SECTION_RODATA static u8 const m__18daNpc_zanB_Param_c[140] = {
+SECTION_RODATA u8 const daNpc_zanB_Param_c::m[140] = {
     0x43, 0x87, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x43, 0x7A, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
@@ -902,7 +916,7 @@ SECTION_RODATA static u8 const m__18daNpc_zanB_Param_c[140] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B6BCC4, &m__18daNpc_zanB_Param_c);
+COMPILER_STRIP_GATE(80B6BCC4, &daNpc_zanB_Param_c::m);
 
 /* 80B6BD50-80B6BD58 00008C 0008+00 0/1 0/0 0/0 .rodata          heapSize$3959 */
 #pragma push

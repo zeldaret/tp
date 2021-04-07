@@ -50,6 +50,10 @@ struct JKRHeap {
     /* 802CE500 */ void free(void*, JKRHeap*);
     /* 802CE83C */ void findFromRoot(void*);
     /* 802CEBA8 */ void isSubHeap(JKRHeap*) const;
+
+    static u8 sSystemHeap[4];
+    static u8 sCurrentHeap[4];
+    static u8 sRootHeap[4];
 };
 
 struct JKRThread {
@@ -62,6 +66,8 @@ struct JKRThread {
     /* 802D1934 */ void start(void*);
     /* 802D1960 */ void searchThread(OSThread*);
     /* 802D1E14 */ bool run();
+
+    static u8 sThreadList[12];
 };
 
 struct JKRThreadName_ {};
@@ -74,6 +80,17 @@ struct JKRThreadSwitch {
     /* 802D1C74 */ void draw(JKRThreadName_*, JUTConsole*);
     /* 802D1E1C */ void draw(JKRThreadName_*);
     /* 802D1E4C */ ~JKRThreadSwitch();
+
+    static u8 sManager[4];
+    static u8 sTotalCount[4];
+    static u8 sTotalStart[4];
+    static u8 mUserPreCallback[4];
+    static u8 mUserPostCallback[4];
+};
+
+struct JKRTask {
+    static u8 sTaskList[12];
+    static u8 sEndMesgQueue[32];
 };
 
 struct JKRDisposer {
@@ -105,6 +122,14 @@ extern "C" void __sinit_JKRThread_cpp();
 extern "C" void func_802D1EFC();
 extern "C" void func_802D1F50();
 extern "C" extern char const* const JKRThread__stringBase0;
+extern "C" u8 sThreadList__9JKRThread[12];
+extern "C" u8 sTaskList__7JKRTask[12];
+extern "C" u8 sEndMesgQueue__7JKRTask[32];
+extern "C" u8 sManager__15JKRThreadSwitch[4];
+extern "C" u8 sTotalCount__15JKRThreadSwitch[4];
+extern "C" u8 sTotalStart__15JKRThreadSwitch[4];
+extern "C" u8 mUserPreCallback__15JKRThreadSwitch[4];
+extern "C" u8 mUserPostCallback__15JKRThreadSwitch[4];
 
 //
 // External References:
@@ -149,9 +174,9 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void __cvt_sll_flt();
 extern "C" void sprintf();
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sRootHeap__7JKRHeap[4];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sCurrentHeap__7JKRHeap[4];
+extern "C" u8 sRootHeap__7JKRHeap[4];
 
 //
 // Declarations:
@@ -212,7 +237,7 @@ asm JKRThread::JKRThread(OSThread* param_0, int param_1) {
 static u8 lit_481[12];
 
 /* 8043428C-80434298 060FAC 000C+00 5/6 0/0 0/0 .bss             sThreadList__9JKRThread */
-static u8 sThreadList__9JKRThread[12];
+u8 JKRThread::sThreadList[12];
 
 /* 802D1758-802D1830 2CC098 00D8+00 1/0 9/9 0/0 .text            __dt__9JKRThreadFv */
 #pragma push
@@ -269,14 +294,13 @@ asm void JKRThread::searchThread(OSThread* param_0) {
 
 /* ############################################################################################## */
 /* 804513B0-804513B4 0008B0 0004+00 2/2 1/1 0/0 .sbss            sManager__15JKRThreadSwitch */
-extern u8 sManager__15JKRThreadSwitch[4];
-u8 sManager__15JKRThreadSwitch[4];
+u8 JKRThreadSwitch::sManager[4];
 
 /* 804513B4-804513B8 0008B4 0004+00 3/3 0/0 0/0 .sbss            sTotalCount__15JKRThreadSwitch */
-static u8 sTotalCount__15JKRThreadSwitch[4];
+u8 JKRThreadSwitch::sTotalCount[4];
 
 /* 804513B8-804513BC 0008B8 0004+00 1/1 0/0 0/0 .sbss            sTotalStart__15JKRThreadSwitch */
-static u8 sTotalStart__15JKRThreadSwitch[4];
+u8 JKRThreadSwitch::sTotalStart[4];
 
 /* 804513BC-804513C0 0008BC 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_804513BC[4];
@@ -316,10 +340,10 @@ asm void JKRThreadSwitch::enter(JKRThread* param_0, int param_1) {
 /* ############################################################################################## */
 /* 804513C0-804513C4 0008C0 0004+00 1/1 0/0 0/0 .sbss            mUserPreCallback__15JKRThreadSwitch
  */
-static u8 mUserPreCallback__15JKRThreadSwitch[4];
+u8 JKRThreadSwitch::mUserPreCallback[4];
 
 /* 804513C4-804513C8 0008C4 0004+00 1/1 0/0 0/0 .sbss mUserPostCallback__15JKRThreadSwitch */
-static u8 mUserPostCallback__15JKRThreadSwitch[4];
+u8 JKRThreadSwitch::mUserPostCallback[4];
 
 /* 802D1AE4-802D1C74 2CC424 0190+00 1/1 0/0 0/0 .text
  * callback__15JKRThreadSwitchFP8OSThreadP8OSThread             */
@@ -388,7 +412,7 @@ static u8 lit_989[12];
 /* 804342A4-804342B0 060FC4 000C+00 0/1 0/0 0/0 .bss             sTaskList__7JKRTask */
 #pragma push
 #pragma force_active on
-static u8 sTaskList__7JKRTask[12];
+u8 JKRTask::sTaskList[12];
 #pragma pop
 
 /* 802D1E94-802D1EFC 2CC7D4 0068+00 0/0 1/0 0/0 .text            __sinit_JKRThread_cpp */
@@ -430,7 +454,7 @@ extern "C" asm void func_802D1F50() {
 /* 804342B0-804342D0 060FD0 0020+00 0/0 0/0 0/0 .bss             sEndMesgQueue__7JKRTask */
 #pragma push
 #pragma force_active on
-static u8 sEndMesgQueue__7JKRTask[32];
+u8 JKRTask::sEndMesgQueue[32];
 #pragma pop
 
 /* 8039CFA8-8039D078 029608 00CD+03 2/2 0/0 0/0 .rodata          @stringBase0 */

@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct mDoHIO_entry_c {
     /* 80BE8288 */ ~mDoHIO_entry_c();
 };
@@ -29,6 +33,9 @@ struct daFireWood2_c {
     /* 80BE87DC */ void Execute();
     /* 80BE8D98 */ bool Draw();
     /* 80BE8DA0 */ void Delete();
+
+    static u8 const mCcDObjInfo[48];
+    static u8 mCcDCyl[68];
 };
 
 struct daFireWood2_HIO_c {
@@ -44,11 +51,11 @@ struct dSv_info_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
+struct cXyz {};
 
 struct dKy_tevstr_c {};
 
-struct cXyz {};
+struct _GXColor {};
 
 struct csXyz {};
 
@@ -104,6 +111,10 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct LIGHT_INFLUENCE {};
 
 //
@@ -129,6 +140,8 @@ extern "C" static void daFireWood2_Delete__FP13daFireWood2_c();
 extern "C" static void daFireWood2_Create__FP10fopAc_ac_c();
 extern "C" void __dt__17daFireWood2_HIO_cFv();
 extern "C" void __sinit_d_a_obj_fireWood2_cpp();
+extern "C" u8 const mCcDObjInfo__13daFireWood2_c[48];
+extern "C" u8 mCcDCyl__13daFireWood2_c[68];
 
 //
 // External References:
@@ -168,9 +181,9 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -197,7 +210,7 @@ COMPILER_STRIP_GATE(80BE8F3C, &lit_3627);
 #pragma pop
 
 /* 80BE8F98-80BE8FDC 000000 0044+00 2/2 0/0 0/0 .data            mCcDCyl__13daFireWood2_c */
-SECTION_DATA static u8 mCcDCyl__13daFireWood2_c[68] = {
+SECTION_DATA u8 daFireWood2_c::mCcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -330,12 +343,12 @@ asm cM3dGAab::~cM3dGAab() {
 
 /* ############################################################################################## */
 /* 80BE8F40-80BE8F70 00000C 0030+00 1/1 0/0 0/0 .rodata          mCcDObjInfo__13daFireWood2_c */
-SECTION_RODATA static u8 const mCcDObjInfo__13daFireWood2_c[48] = {
+SECTION_RODATA u8 const daFireWood2_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x13,
     0xD8, 0xFB, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x79, 0x01, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BE8F40, &mCcDObjInfo__13daFireWood2_c);
+COMPILER_STRIP_GATE(80BE8F40, &daFireWood2_c::mCcDObjInfo);
 
 /* 80BE8F70-80BE8F74 00003C 0004+00 0/1 0/0 0/0 .rodata          @3834 */
 #pragma push

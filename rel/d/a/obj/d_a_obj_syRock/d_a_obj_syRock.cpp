@@ -15,6 +15,8 @@ struct request_of_phase_process_class {};
 
 struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct mDoHIO_entry_c {
@@ -56,6 +58,9 @@ struct daSyRock_c {
     /* 80D03A4C */ void Draw();
     /* 80D03B08 */ void Delete();
     /* 80D03DAC */ ~daSyRock_c();
+
+    static u8 const mCcDObjInfo[48];
+    static u8 mCcDCyl[68];
 };
 
 struct daSyRock_HIO_c {
@@ -231,6 +236,14 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 //
@@ -285,7 +298,9 @@ extern "C" bool eventRun__17dEvLib_callback_cFv();
 extern "C" bool eventEnd__17dEvLib_callback_cFv();
 extern "C" void getPos__12daWtPillar_cFv();
 extern "C" void __dt__10daSyRock_cFv();
+extern "C" u8 const mCcDObjInfo__10daSyRock_c[48];
 extern "C" extern char const* const d_a_obj_syRock__stringBase0;
+extern "C" u8 mCcDCyl__10daSyRock_c[68];
 
 //
 // External References:
@@ -376,13 +391,13 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 extern "C" void getPillarHeight__12daWtPillar_cFv();
 
@@ -474,7 +489,7 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80D0405C-80D040A0 000020 0044+00 2/2 0/0 0/0 .data            mCcDCyl__10daSyRock_c */
-SECTION_DATA static u8 mCcDCyl__10daSyRock_c[68] = {
+SECTION_DATA u8 daSyRock_c::mCcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -712,12 +727,12 @@ asm void daSyRock_c::CreateHeap() {
 
 /* ############################################################################################## */
 /* 80D03FB8-80D03FE8 000028 0030+00 1/1 0/0 0/0 .rodata          mCcDObjInfo__10daSyRock_c */
-SECTION_RODATA static u8 const mCcDObjInfo__10daSyRock_c[48] = {
+SECTION_RODATA u8 const daSyRock_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F,
     0x00, 0x40, 0x00, 0x20, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x79, 0x01, 0x00, 0x01, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D03FB8, &mCcDObjInfo__10daSyRock_c);
+COMPILER_STRIP_GATE(80D03FB8, &daSyRock_c::mCcDObjInfo);
 
 /* 80D03FE8-80D03FEC 000058 0004+00 2/5 0/0 0/0 .rodata          @3805 */
 SECTION_RODATA static f32 const lit_3805 = 150.0f;

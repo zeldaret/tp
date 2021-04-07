@@ -11,7 +11,9 @@
 // Types:
 //
 
-struct cXyz {};
+struct cXyz {
+    static f32 Zero[3];
+};
 
 struct cM3dGLin {
     /* 8026F2E8 */ void SetStartEnd(cXyz const&, cXyz const&);
@@ -61,7 +63,7 @@ extern "C" void __dl__FPv();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
 extern "C" extern void* __vt__8cM3dGLin[3];
-extern "C" extern f32 Zero__4cXyz[3];
+extern "C" f32 Zero__4cXyz[3];
 
 //
 // Declarations:

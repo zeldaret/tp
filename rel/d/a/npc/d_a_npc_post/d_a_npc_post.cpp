@@ -11,9 +11,15 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -23,9 +29,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -55,8 +59,6 @@ struct daTag_EvtArea_c {
     /* 8048C94C */ void chkPointInArea(cXyz, cXyz);
 };
 
-struct daNpcT_motionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -65,11 +67,13 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80AAC968 */ ~daNpcT_MotionSeqMngr_c();
 };
 
+struct daNpcT_motionAnmData_c {};
+
+struct J3DJoint {};
+
 struct daNpcT_faceMotionAnmData_c {};
 
 struct daNpcT_evtData_c {};
-
-struct J3DJoint {};
 
 struct daNpc_Post_c {
     /* 80AA8C8C */ ~daNpc_Post_c();
@@ -120,10 +124,15 @@ struct daNpc_Post_c {
     /* 80AAD100 */ void checkRemoveJoint(int);
     /* 80AAD110 */ s32 getFootLJointNo();
     /* 80AAD118 */ s32 getFootRJointNo();
+
+    static void* mCutNameList[2];
+    static u8 mCutList[24];
 };
 
 struct daNpc_Post_Param_c {
     /* 80AAD120 */ ~daNpc_Post_Param_c();
+
+    static u8 const m[148];
 };
 
 struct dCcD_GObjInf {
@@ -191,6 +200,8 @@ struct daNpcT_c {
     /* 80AACF04 */ void changeBck(int*, int*);
     /* 80AACF08 */ void changeBtp(int*, int*);
     /* 80AACF0C */ void changeBtk(int*, int*);
+
+    static u8 mCcDCyl[68];
 };
 
 struct daNpcT_Path_c {
@@ -241,13 +252,13 @@ struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
 
-struct dBgS {};
-
 struct dBgS_AcchCir {
     /* 80075EAC */ dBgS_AcchCir();
     /* 80075F40 */ void SetWallR(f32);
     /* 80AAC9B0 */ ~dBgS_AcchCir();
 };
+
+struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -359,6 +370,10 @@ struct cBgS {
 struct Z2SeqMgr {
     /* 802AF49C */ void subBgmStart(u32);
     /* 802AF884 */ void subBgmStop();
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct J3DTexNoAnm {
@@ -513,7 +528,10 @@ extern "C" void __dt__18daNpc_Post_Param_cFv();
 extern "C" static void func_80AAD168();
 extern "C" static void func_80AAD170();
 extern "C" void chkPointInArea__15daTag_EvtArea_cF4cXyz();
+extern "C" u8 const m__18daNpc_Post_Param_c[148];
 extern "C" extern char const* const d_a_npc_post__stringBase0;
+extern "C" void* mCutNameList__12daNpc_Post_c[2];
+extern "C" u8 mCutList__12daNpc_Post_c[24];
 
 //
 // External References:
@@ -676,19 +694,19 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
+extern "C" u8 mCcDCyl__8daNpcT_c[68];
 extern "C" extern void* __vt__8daNpcT_c[49];
 extern "C" extern void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void chkPointInArea__15daTag_EvtArea_cF4cXyz4cXyz();
 extern "C" void __register_global_object();
 
@@ -877,7 +895,7 @@ SECTION_DATA static u8 l_motionSequenceData[176] = {
 #pragma pop
 
 /* 80AAD8F0-80AAD8F8 -00001 0008+00 1/1 0/0 0/0 .data            mCutNameList__12daNpc_Post_c */
-SECTION_DATA static void* mCutNameList__12daNpc_Post_c[2] = {
+SECTION_DATA void* daNpc_Post_c::mCutNameList[2] = {
     (void*)&d_a_npc_post__stringBase0,
     (void*)(((char*)&d_a_npc_post__stringBase0) + 0xD),
 };
@@ -890,7 +908,7 @@ SECTION_DATA static void* lit_3838[3] = {
 };
 
 /* 80AAD904-80AAD91C 000558 0018+00 2/2 0/0 0/0 .data            mCutList__12daNpc_Post_c */
-SECTION_DATA static u8 mCutList__12daNpc_Post_c[24] = {
+SECTION_DATA u8 daNpc_Post_c::mCutList[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -1145,7 +1163,7 @@ asm daNpc_Post_c::~daNpc_Post_c() {
 
 /* ############################################################################################## */
 /* 80AAD1EC-80AAD280 000000 0094+00 12/12 0/0 0/0 .rodata          m__18daNpc_Post_Param_c */
-SECTION_RODATA static u8 const m__18daNpc_Post_Param_c[148] = {
+SECTION_RODATA u8 const daNpc_Post_Param_c::m[148] = {
     0x43, 0x3E, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x44, 0x2F, 0x00,
     0x00, 0x43, 0x7F, 0x00, 0x00, 0x43, 0x34, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xF0,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1,
@@ -1157,7 +1175,7 @@ SECTION_RODATA static u8 const m__18daNpc_Post_Param_c[148] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x80, 0x00, 0x00, 0x00, 0x3C, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AAD1EC, &m__18daNpc_Post_Param_c);
+COMPILER_STRIP_GATE(80AAD1EC, &daNpc_Post_Param_c::m);
 
 /* 80AAD280-80AAD290 000094 0010+00 0/1 0/0 0/0 .rodata          heapSize$4000 */
 #pragma push

@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
+};
+
 struct dSv_player_status_a_c {
     /* 80032A5C */ void getSelectItemIndex(int) const;
 };
@@ -65,11 +69,11 @@ struct dMeter2Draw_c {
                                    JUtility::TColor, JUtility::TColor, f32, u8);
 };
 
-struct STControl {};
-
 struct JKRExpHeap {};
 
 struct CSTControl {};
+
+struct STControl {};
 
 struct dMenu_Ring_c {
     /* 801E9118 */ dMenu_Ring_c(JKRExpHeap*, STControl*, CSTControl*, u8);
@@ -147,6 +151,10 @@ struct dKantera_icon_c {
     /* 801AEC44 */ void setNowGauge(u16, u16);
 };
 
+struct dItem_data {
+    static void* item_resource[1530];
+};
+
 struct Vec {};
 
 struct cXyz {
@@ -157,6 +165,14 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct JKRHeap {
@@ -364,14 +380,14 @@ extern "C" void _restgpr_29();
 extern "C" void abs();
 extern "C" void strcpy();
 extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern void* item_resource__10dItem_data[1530];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" void* item_resource__10dItem_data[1530];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_ringHIO[344];
 extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

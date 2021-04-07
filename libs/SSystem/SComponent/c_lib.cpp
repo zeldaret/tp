@@ -21,6 +21,10 @@ struct cXyz {
     /* 8026706C */ bool operator!=(Vec const&) const;
 };
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 //
 // Forward References:
 //
@@ -76,7 +80,7 @@ extern "C" void PSVECScale();
 extern "C" void PSVECSquareMag();
 extern "C" void PSVECSquareDistance();
 extern "C" void abs();
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 
 //

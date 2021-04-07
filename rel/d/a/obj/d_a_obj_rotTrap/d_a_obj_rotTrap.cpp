@@ -13,6 +13,10 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct mDoHIO_entry_c {
     /* 80CBF8F8 */ ~mDoHIO_entry_c();
 };
@@ -34,6 +38,9 @@ struct daRotTrap_c {
     /* 80CC0440 */ void seSet();
     /* 80CC0548 */ void Draw();
     /* 80CC05EC */ void Delete();
+
+    static u8 const mCcDObjInfo[48];
+    static u8 mCcDCyl[68];
 };
 
 struct daRotTrap_HIO_c {
@@ -162,6 +169,10 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DModel {};
 
 //
@@ -196,7 +207,9 @@ extern "C" static void daRotTrap_Create__FP10fopAc_ac_c();
 extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" void __dt__15daRotTrap_HIO_cFv();
 extern "C" void __sinit_d_a_obj_rotTrap_cpp();
+extern "C" u8 const mCcDObjInfo__11daRotTrap_c[48];
 extern "C" extern char const* const d_a_obj_rotTrap__stringBase0;
+extern "C" u8 mCcDCyl__11daRotTrap_c[68];
 
 //
 // External References:
@@ -263,11 +276,11 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -298,7 +311,7 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80CC0880-80CC08C4 000020 0044+00 2/2 0/0 0/0 .data            mCcDCyl__11daRotTrap_c */
-SECTION_DATA static u8 mCcDCyl__11daRotTrap_c[68] = {
+SECTION_DATA u8 daRotTrap_c::mCcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -565,12 +578,12 @@ asm void daRotTrap_c::Execute(f32 (**param_0)[3][4]) {
 
 /* ############################################################################################## */
 /* 80CC080C-80CC083C 000004 0030+00 1/1 0/0 0/0 .rodata          mCcDObjInfo__11daRotTrap_c */
-SECTION_RODATA static u8 const mCcDObjInfo__11daRotTrap_c[48] = {
+SECTION_RODATA u8 const daRotTrap_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x01, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CC080C, &mCcDObjInfo__11daRotTrap_c);
+COMPILER_STRIP_GATE(80CC080C, &daRotTrap_c::mCcDObjInfo);
 
 /* 80CC083C-80CC0840 000034 0004+00 1/1 0/0 0/0 .rodata          @3880 */
 SECTION_RODATA static f32 const lit_3880 = 45.0f;

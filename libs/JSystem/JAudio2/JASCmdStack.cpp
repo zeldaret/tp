@@ -27,6 +27,9 @@ struct JASPortCmd {
     };
 
     /* 80291060 */ void execAllCommand();
+
+    static u8 sCommandListOnce[12];
+    static u8 sCommandListStay[12];
 };
 
 //
@@ -38,6 +41,8 @@ extern "C" void execCommandOnce__Q210JASPortCmd9TPortHeadFv();
 extern "C" void execCommandStay__Q210JASPortCmd9TPortHeadFv();
 extern "C" void __sinit_JASCmdStack_cpp();
 extern "C" void __dt__Q210JASPortCmd9TPortHeadFv();
+extern "C" u8 sCommandListOnce__10JASPortCmd[12];
+extern "C" u8 sCommandListStay__10JASPortCmd[12];
 
 //
 // External References:
@@ -62,7 +67,7 @@ extern "C" void _restgpr_29();
 static u8 lit_80[12];
 
 /* 80431684-80431690 05E3A4 000C+00 1/2 0/0 0/0 .bss             sCommandListOnce__10JASPortCmd */
-static u8 sCommandListOnce__10JASPortCmd[12];
+u8 JASPortCmd::sCommandListOnce[12];
 
 /* 80431690-8043169C 05E3B0 000C+00 0/1 0/0 0/0 .bss             @82 */
 #pragma push
@@ -71,7 +76,7 @@ static u8 lit_82[12];
 #pragma pop
 
 /* 8043169C-804316A8 05E3BC 000C+00 1/2 0/0 0/0 .bss             sCommandListStay__10JASPortCmd */
-static u8 sCommandListStay__10JASPortCmd[12];
+u8 JASPortCmd::sCommandListStay[12];
 
 /* 80291060-80291094 28B9A0 0034+00 0/0 1/1 0/0 .text            execAllCommand__10JASPortCmdFv */
 #pragma push

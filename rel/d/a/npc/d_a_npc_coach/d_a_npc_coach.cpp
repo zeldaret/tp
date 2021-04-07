@@ -13,6 +13,8 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
@@ -25,12 +27,12 @@ struct cXyz {
     /* 809A4D78 */ cXyz();
 };
 
-struct csXyz {};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct J3DAnmTexPattern {};
@@ -55,17 +57,17 @@ struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
+
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
-
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -95,9 +97,9 @@ struct mDoExt_3DlineMatSortPacket {
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
 };
 
-struct _GXColor {};
-
 struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct ResTIMG {};
 
@@ -113,6 +115,8 @@ struct fopAc_ac_c {
 
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
+
+    static f32 mGroundY;
 };
 
 struct daNpcTheB_c {
@@ -156,6 +160,8 @@ struct daNpcCoach_c {
     /* 809A43DC */ void setBaseMtx();
     /* 809A46C4 */ void initCoachBlazing();
     /* 809A48A8 */ daNpcCoach_c();
+
+    static u8 const M_attr[160];
 };
 
 struct daNpcChHarness_c {
@@ -204,10 +210,16 @@ struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
                             u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
                             cXyz const*, f32);
+
+    static u8 mParticleTracePCB[4 + 4 /* padding */];
 };
 
 struct dMeter2Info_c {
     /* 8021C0E0 */ void setFloatingMessage(u16, s16, bool);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -344,11 +356,19 @@ struct Z2CreatureRide {
     /* 802C520C */ void init(Vec*, Vec*, u8, u8);
 };
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
 };
 
 struct J3DLightObj {
@@ -427,6 +447,7 @@ extern "C" void __dt__12dBgS_ObjAcchFv();
 extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" static void func_809A4EB8();
 extern "C" static void func_809A4EC0();
+extern "C" u8 const M_attr__12daNpcCoach_c[160];
 extern "C" extern char const* const d_a_npc_coach__stringBase0;
 
 //
@@ -603,17 +624,17 @@ extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__15Z2SoundObjCoach[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
+extern "C" f32 mGroundY__11fopAcM_gc_c;
+extern "C" u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
 extern "C" void getHandPos1__11daNpcTheB_cFi();
 extern "C" void getHandPos2__11daNpcTheB_cFi();
 
@@ -653,7 +674,7 @@ static asm void jointRearWheelCallBack(J3DJoint* param_0, int param_1) {
 
 /* ############################################################################################## */
 /* 809A4ED0-809A4F70 000000 00A0+00 19/19 0/0 0/0 .rodata          M_attr__12daNpcCoach_c */
-SECTION_RODATA static u8 const M_attr__12daNpcCoach_c[160] = {
+SECTION_RODATA u8 const daNpcCoach_c::M_attr[160] = {
     0xC0, 0x40, 0x00, 0x00, 0xC3, 0x48, 0x00, 0x00, 0xBE, 0x80, 0x00, 0x00, 0xC3, 0xC1, 0x80, 0x00,
     0xC3, 0x3E, 0x00, 0x00, 0x42, 0xA4, 0x00, 0x00, 0x42, 0xC0, 0x00, 0x00, 0x42, 0xA0, 0x00, 0x00,
     0x3F, 0x00, 0x00, 0x00, 0x3F, 0x59, 0x99, 0x9A, 0x40, 0xC0, 0x00, 0x00, 0x41, 0xB0, 0x00, 0x00,
@@ -665,7 +686,7 @@ SECTION_RODATA static u8 const M_attr__12daNpcCoach_c[160] = {
     0xE0, 0x00, 0x40, 0x00, 0x00, 0x00, 0xFF, 0x50, 0x00, 0x03, 0x00, 0x00, 0x45, 0xBB, 0x80, 0x00,
     0x41, 0x20, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x19,
 };
-COMPILER_STRIP_GATE(809A4ED0, &M_attr__12daNpcCoach_c);
+COMPILER_STRIP_GATE(809A4ED0, &daNpcCoach_c::M_attr);
 
 /* 809A4F70-809A4F74 0000A0 0004+00 3/19 0/0 0/0 .rodata          @4121 */
 SECTION_RODATA static u8 const lit_4121[4] = {

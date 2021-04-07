@@ -13,15 +13,17 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {};
+
 struct cXyz {
     /* 80267128 */ void atan2sX_Z() const;
 };
 
-struct csXyz {};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct mDoExt_morf_c {
@@ -30,12 +32,12 @@ struct mDoExt_morf_c {
 
 struct J3DModelData {};
 
-struct J3DAnmTextureSRTKey {
-    /* 8032B1D4 */ void searchUpdateMaterialID(J3DModelData*);
-};
-
 struct J3DAnmTevRegKey {
     /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
+};
+
+struct J3DAnmTextureSRTKey {
+    /* 8032B1D4 */ void searchUpdateMaterialID(J3DModelData*);
 };
 
 struct J3DMaterialTable {
@@ -59,7 +61,7 @@ struct mDoExt_baseAnm {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -69,7 +71,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -104,6 +106,8 @@ struct daCstaF_c {
     /* 804DF1A4 */ void initStartBrkBtk();
     /* 804DF37C */ void Execute(f32 (**)[3][4]);
     /* 804DF6E4 */ void Draw();
+
+    static u8 const m_bckIdxTable[16];
 };
 
 struct J3DAnmBase {};
@@ -146,6 +150,12 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
+struct dBgS_AcchCir {
+    /* 80075EAC */ dBgS_AcchCir();
+    /* 80075F58 */ void SetWall(f32, f32);
+    /* 804DE220 */ ~dBgS_AcchCir();
+};
+
 struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
 };
@@ -153,12 +163,6 @@ struct cBgS_PolyInfo {
 struct dBgS {
     /* 80074BE8 */ void GetPolyColor(cBgS_PolyInfo const&);
     /* 80075100 */ void GetRoomId(cBgS_PolyInfo const&);
-};
-
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F58 */ void SetWall(f32, f32);
-    /* 804DE220 */ ~dBgS_AcchCir();
 };
 
 struct dBgS_Acch {
@@ -181,6 +185,10 @@ struct dEvt_control_c {
 struct dEvent_manager_c {
     /* 80047698 */ void getEventIdx(fopAc_ac_c*, u8);
     /* 80047A78 */ void endCheck(s16);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -277,6 +285,14 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 struct J3DFrameCtrl {
@@ -319,6 +335,7 @@ extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" void __sinit_d_a_cstaF_cpp();
 extern "C" static void func_804DF89C();
 extern "C" static void func_804DF8A4();
+extern "C" u8 const m_bckIdxTable__9daCstaF_c[16];
 
 //
 // External References:
@@ -443,14 +460,14 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -517,10 +534,10 @@ COMPILER_STRIP_GATE(804DF8D4, &l_spStageName);
 /* 804DF8DC-804DF8EC 000024 0010+00 0/2 0/0 0/0 .rodata          m_bckIdxTable__9daCstaF_c */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const m_bckIdxTable__9daCstaF_c[16] = {
+SECTION_RODATA u8 const daCstaF_c::m_bckIdxTable[16] = {
     0x00, 0x09, 0x00, 0x09, 0x00, 0x08, 0x00, 0x07, 0x00, 0x09, 0x00, 0x09, 0x00, 0x08, 0x00, 0x07,
 };
-COMPILER_STRIP_GATE(804DF8DC, &m_bckIdxTable__9daCstaF_c);
+COMPILER_STRIP_GATE(804DF8DC, &daCstaF_c::m_bckIdxTable);
 #pragma pop
 
 /* 804DF8EC-804DF8FC 000034 0010+00 0/1 0/0 0/0 .rodata          dataTbl$4160 */

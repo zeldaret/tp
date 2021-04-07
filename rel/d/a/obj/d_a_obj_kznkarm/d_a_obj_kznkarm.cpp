@@ -13,14 +13,16 @@
 
 struct request_of_phase_process_class {};
 
-struct cXyz {};
-
 struct csXyz {};
+
+struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -46,6 +48,9 @@ struct daObjKznkarm_c {
     /* 80C506DC */ void initBaseMtx();
     /* 80C50708 */ void setBaseMtx();
     /* 80C5076C */ void getGroundSlope(s16);
+
+    static u8 const M_attr[56];
+    static u8 ActionTable[96];
 };
 
 struct daObjKazeNeko_c {
@@ -75,6 +80,10 @@ struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
                             cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
                             _GXColor const*, cXyz const*, f32);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dBgS_PolyPassChk {
@@ -126,6 +135,14 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 //
@@ -159,7 +176,9 @@ extern "C" void __dt__12dBgS_AcchCirFv();
 extern "C" void __sinit_d_a_obj_kznkarm_cpp();
 extern "C" static void func_80C50CEC();
 extern "C" static void func_80C50CF4();
+extern "C" u8 const M_attr__14daObjKznkarm_c[56];
 extern "C" extern char const* const d_a_obj_kznkarm__stringBase0;
+extern "C" u8 ActionTable__14daObjKznkarm_c[96];
 
 //
 // External References:
@@ -215,14 +234,14 @@ extern "C" void _restgpr_24();
 extern "C" void _restgpr_29();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void getFirstVec__15daObjKazeNeko_cFP4cXyzi();
 
 //
@@ -332,7 +351,7 @@ SECTION_DATA static void* lit_3648[3] = {
 #pragma pop
 
 /* 80C50E28-80C50E88 000084 0060+00 1/2 0/0 0/0 .data            ActionTable__14daObjKznkarm_c */
-SECTION_DATA static u8 ActionTable__14daObjKznkarm_c[96] = {
+SECTION_DATA u8 daObjKznkarm_c::ActionTable[96] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -374,13 +393,13 @@ asm void daObjKznkarm_c::callExecute() {
 
 /* ############################################################################################## */
 /* 80C50D08-80C50D40 000000 0038+00 8/8 0/0 0/0 .rodata          M_attr__14daObjKznkarm_c */
-SECTION_RODATA static u8 const M_attr__14daObjKznkarm_c[56] = {
+SECTION_RODATA u8 const daObjKznkarm_c::M_attr[56] = {
     0xC0, 0xA0, 0x00, 0x00, 0xC1, 0xF0, 0x00, 0x00, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x70,
     0xA3, 0xD7, 0x42, 0x20, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00, 0xC2, 0x70, 0x00, 0x00,
     0xC0, 0xC0, 0x00, 0x00, 0xC0, 0xC0, 0x00, 0x00, 0xC2, 0x70, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x41, 0x40, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0xE0, 0x00,
 };
-COMPILER_STRIP_GATE(80C50D08, &M_attr__14daObjKznkarm_c);
+COMPILER_STRIP_GATE(80C50D08, &daObjKznkarm_c::M_attr);
 
 /* 80C4F8E0-80C4F960 000100 0080+00 1/0 0/0 0/0 .text            initBroken__14daObjKznkarm_cFv */
 #pragma push

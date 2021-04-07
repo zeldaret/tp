@@ -11,15 +11,23 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct _GXColor {};
 
 struct mDoGph_gInf_c {
     /* 80008028 */ void fadeOut_f(f32, _GXColor&);
+
+    static f32 mFadeRate;
 };
+
+struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -29,9 +37,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -45,8 +51,6 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct daNpcT_motionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -54,11 +58,13 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80AB1824 */ ~daNpcT_MotionSeqMngr_c();
 };
 
+struct daNpcT_motionAnmData_c {};
+
+struct J3DJoint {};
+
 struct daNpcT_faceMotionAnmData_c {};
 
 struct daNpcT_evtData_c {};
-
-struct J3DJoint {};
 
 struct daNpc_Pouya_c {
     /* 80AADDAC */ ~daNpc_Pouya_c();
@@ -104,10 +110,15 @@ struct daNpc_Pouya_c {
     /* 80AB1F6C */ bool getBackboneJointNo();
     /* 80AB1F74 */ void checkChangeJoint(int);
     /* 80AB1F84 */ void checkRemoveJoint(int);
+
+    static void* mCutNameList[3];
+    static u8 mCutList[36];
 };
 
 struct daNpc_Pouya_Param_c {
     /* 80AB1F94 */ ~daNpc_Pouya_Param_c();
+
+    static u8 const m[140];
 };
 
 struct dCcD_GObjInf {
@@ -115,8 +126,6 @@ struct dCcD_GObjInf {
     /* 800840E4 */ ~dCcD_GObjInf();
     /* 800844F8 */ void GetTgHitObj();
 };
-
-struct J3DAnmTevRegKey {};
 
 struct J3DModel {};
 
@@ -128,6 +137,8 @@ struct cXyz {
 };
 
 struct _GXColorS10 {};
+
+struct J3DAnmTevRegKey {};
 
 struct csXyz {
     /* 80AB11C0 */ ~csXyz();
@@ -187,6 +198,8 @@ struct daNpcT_c {
     /* 80AB1DD0 */ void changeBck(int*, int*);
     /* 80AB1DD4 */ void changeBtp(int*, int*);
     /* 80AB1DD8 */ void changeBtk(int*, int*);
+
+    static u8 mCcDCyl[68];
 };
 
 struct daNpcT_Path_c {
@@ -364,6 +377,10 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DTexNoAnm {
     /* 80AAE674 */ ~J3DTexNoAnm();
     /* 80AAE6BC */ J3DTexNoAnm();
@@ -506,7 +523,10 @@ extern "C" void checkRemoveJoint__13daNpc_Pouya_cFi();
 extern "C" void __dt__19daNpc_Pouya_Param_cFv();
 extern "C" static void func_80AB1FDC();
 extern "C" static void func_80AB1FE4();
+extern "C" u8 const m__19daNpc_Pouya_Param_c[140];
 extern "C" extern char const* const d_a_npc_pouya__stringBase0;
+extern "C" void* mCutNameList__13daNpc_Pouya_c[3];
+extern "C" u8 mCutList__13daNpc_Pouya_c[36];
 
 //
 // External References:
@@ -659,22 +679,22 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
+extern "C" u8 mCcDCyl__8daNpcT_c[68];
 extern "C" extern void* __vt__8daNpcT_c[49];
 extern "C" extern void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 g_saftyWhiteColor;
 extern "C" extern u32 __float_nan;
-extern "C" extern f32 mFadeRate__13mDoGph_gInf_c;
+extern "C" f32 mFadeRate__13mDoGph_gInf_c;
 extern "C" extern u8 struct_80450BE4[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -898,7 +918,7 @@ SECTION_DATA static u8 l_motionSequenceData[304] = {
 #pragma pop
 
 /* 80AB2984-80AB2990 -00001 000C+00 1/1 0/0 0/0 .data            mCutNameList__13daNpc_Pouya_c */
-SECTION_DATA static void* mCutNameList__13daNpc_Pouya_c[3] = {
+SECTION_DATA void* daNpc_Pouya_c::mCutNameList[3] = {
     (void*)&d_a_npc_pouya__stringBase0,
     (void*)(((char*)&d_a_npc_pouya__stringBase0) + 0x97),
     (void*)(((char*)&d_a_npc_pouya__stringBase0) + 0xA8),
@@ -925,7 +945,7 @@ SECTION_DATA static void* lit_3818[3] = {
 #pragma pop
 
 /* 80AB29A8-80AB29CC 0007B8 0024+00 1/2 0/0 0/0 .data            mCutList__13daNpc_Pouya_c */
-SECTION_DATA static u8 mCutList__13daNpc_Pouya_c[36] = {
+SECTION_DATA u8 daNpc_Pouya_c::mCutList[36] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1250,7 +1270,7 @@ asm daNpc_Pouya_c::~daNpc_Pouya_c() {
 
 /* ############################################################################################## */
 /* 80AB2000-80AB208C 000000 008C+00 8/8 0/0 0/0 .rodata          m__19daNpc_Pouya_Param_c */
-SECTION_RODATA static u8 const m__19daNpc_Pouya_Param_c[140] = {
+SECTION_RODATA u8 const daNpc_Pouya_Param_c::m[140] = {
     0x42, 0xF0, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xC8, 0x00, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
@@ -1261,7 +1281,7 @@ SECTION_RODATA static u8 const m__19daNpc_Pouya_Param_c[140] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AB2000, &m__19daNpc_Pouya_Param_c);
+COMPILER_STRIP_GATE(80AB2000, &daNpc_Pouya_Param_c::m);
 
 /* 80AB208C-80AB20A4 00008C 0018+00 0/1 0/0 0/0 .rodata          heapSize$3971 */
 #pragma push

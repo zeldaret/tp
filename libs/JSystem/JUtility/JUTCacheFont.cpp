@@ -44,6 +44,8 @@ struct JUTResFont {
     /* 802DFD0C */ void getCellWidth() const;
     /* 802DFD58 */ void getCellHeight() const;
     /* 802DFDA4 */ void isLeadByte(int) const;
+
+    static void* const saoAboutEncoding_[3];
 };
 
 struct JUTException {
@@ -88,6 +90,8 @@ struct JKRAramHeap {
 struct JKRAram {
     /* 802D233C */ void mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
     /* 802D25B4 */ void aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
+
+    static u8 sAramObject[4];
 };
 
 //
@@ -160,8 +164,8 @@ extern "C" void _restgpr_21();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern void* const saoAboutEncoding___10JUTResFont[3];
-extern "C" extern u8 sAramObject__7JKRAram[4];
+extern "C" void* const saoAboutEncoding___10JUTResFont[3];
+extern "C" u8 sAramObject__7JKRAram[4];
 
 //
 // Declarations:

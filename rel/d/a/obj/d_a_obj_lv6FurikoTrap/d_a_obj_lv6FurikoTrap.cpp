@@ -13,6 +13,10 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct mDoHIO_entry_c {
     /* 80C724C8 */ ~mDoHIO_entry_c();
 };
@@ -29,6 +33,9 @@ struct daLv6FurikoTrap_c {
     /* 80C72D38 */ void modeMove();
     /* 80C72EE0 */ void Draw();
     /* 80C72F94 */ void Delete();
+
+    static u8 const mCcDObjInfo[48];
+    static u8 mCcDSph[64];
 };
 
 struct daLv6FurikoTrap_HIO_c {
@@ -38,9 +45,9 @@ struct daLv6FurikoTrap_HIO_c {
 
 struct dKy_tevstr_c {};
 
-struct cXyz {};
-
 struct J3DModelData {};
+
+struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -119,6 +126,14 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 //
@@ -146,7 +161,9 @@ extern "C" static void daLv6FurikoTrap_Delete__FP17daLv6FurikoTrap_c();
 extern "C" static void daLv6FurikoTrap_Create__FP10fopAc_ac_c();
 extern "C" void __dt__21daLv6FurikoTrap_HIO_cFv();
 extern "C" void __sinit_d_a_obj_lv6FurikoTrap_cpp();
+extern "C" u8 const mCcDObjInfo__17daLv6FurikoTrap_c[48];
 extern "C" extern char const* const d_a_obj_lv6FurikoTrap__stringBase0;
+extern "C" u8 mCcDSph__17daLv6FurikoTrap_c[64];
 
 //
 // External References:
@@ -206,12 +223,12 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sincosTable___5JMath[65536];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -228,7 +245,7 @@ SECTION_RODATA static f32 const lit_3626 = 45.0f;
 COMPILER_STRIP_GATE(80C73134, &lit_3626);
 
 /* 80C731A4-80C731E4 000000 0040+00 2/2 0/0 0/0 .data            mCcDSph__17daLv6FurikoTrap_c */
-SECTION_DATA static u8 mCcDSph__17daLv6FurikoTrap_c[64] = {
+SECTION_DATA u8 daLv6FurikoTrap_c::mCcDSph[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -415,12 +432,12 @@ asm cM3dGAab::~cM3dGAab() {
 
 /* ############################################################################################## */
 /* 80C73138-80C73168 000008 0030+00 1/1 0/0 0/0 .rodata          mCcDObjInfo__17daLv6FurikoTrap_c */
-SECTION_RODATA static u8 const mCcDObjInfo__17daLv6FurikoTrap_c[48] = {
+SECTION_RODATA u8 const daLv6FurikoTrap_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x01, 0x00, 0x01, 0x00,
     0x00, 0x00, 0x00, 0x01, 0x0A, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C73138, &mCcDObjInfo__17daLv6FurikoTrap_c);
+COMPILER_STRIP_GATE(80C73138, &daLv6FurikoTrap_c::mCcDObjInfo);
 
 /* 80C73168-80C7316C 000038 0004+00 0/2 0/0 0/0 .rodata          @3871 */
 #pragma push

@@ -13,7 +13,9 @@
 
 struct JKRHeap {};
 
-struct JASWaveInfo {};
+struct JASWaveInfo {
+    static u32 one[1 + 1 /* padding */];
+};
 
 struct JASWaveArc {
     /* 80298FA0 */ void onLoadDone();
@@ -74,7 +76,7 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
 extern "C" extern void* __vt__13JASWaveHandle[5];
 extern "C" extern void* __vt__11JASWaveBank[6];
-extern "C" extern u32 one__11JASWaveInfo[1 + 1 /* padding */];
+extern "C" u32 one__11JASWaveInfo[1 + 1 /* padding */];
 
 //
 // Declarations:

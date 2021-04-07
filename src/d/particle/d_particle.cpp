@@ -11,6 +11,14 @@
 // Types:
 //
 
+struct mDoLib_clipper {
+    static u8 mClipper[92];
+};
+
+struct mDoGph_gInf_c {
+    static u8 mFrameBufferTimg[4];
+};
+
 struct JKRHeap {
     /* 802CE500 */ void free(void*, JKRHeap*);
 };
@@ -28,6 +36,8 @@ struct cXyz {
 
 struct fopAcM_wt_c {
     /* 8001DD84 */ void waterCheck(cXyz const*);
+
+    static f32 mWaterY[1 + 1 /* padding */];
 };
 
 struct daPy_py_c {
@@ -58,14 +68,21 @@ struct dPa_wbPcallBack_c {
     /* 8004FECC */ ~dPa_wbPcallBack_c();
 };
 
-struct _GXColor {};
-
 struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct JPAParticleCallBack {
     /* 800183D4 */ void execute(JPABaseEmitter*, JPABaseParticle*);
     /* 800183D8 */ void draw(JPABaseEmitter*, JPABaseParticle*);
     /* 8027EFA4 */ ~JPAParticleCallBack();
+};
+
+struct JGeometry {
+    template <typename A1>
+    struct TVec3 {};
+    /* TVec3<f32> */
+    struct TVec3__template0 {};
 };
 
 struct JPAEmitterCallBack {
@@ -76,8 +93,6 @@ struct JPAEmitterCallBack {
     /* 8027E6A4 */ ~JPAEmitterCallBack();
 };
 
-struct JPADrawInfo {};
-
 struct ResTIMG {};
 
 struct JPAResourceManager {
@@ -87,12 +102,7 @@ struct JPAResourceManager {
     /* 80273FCC */ void getResUserWork(u16) const;
 };
 
-struct JGeometry {
-    template <typename A1>
-    struct TVec3 {};
-    /* TVec3<f32> */
-    struct TVec3__template0 {};
-};
+struct JPADrawInfo {};
 
 struct JPAEmitterManager {
     /* 8027DCA0 */ JPAEmitterManager(u32, u32, JKRHeap*, u8, u8);
@@ -140,6 +150,11 @@ struct dPa_particleTracePcallBack_c {
     /* 8004FC68 */ ~dPa_particleTracePcallBack_c();
 };
 
+struct dPa_name {
+    static u8 j_o_id[10 + 2 /* padding */];
+    static u8 s_o_id[28];
+};
+
 struct dPa_modelPcallBack {
     /* 8004A460 */ void draw(JPABaseEmitter*, JPABaseParticle*);
     /* 80050038 */ ~dPa_modelPcallBack();
@@ -174,6 +189,10 @@ struct dPa_modelEcallBack {
     /* 8004AD90 */ void getRotAxis(JPABaseEmitter*);
     /* 80050014 */ void drawAfter(JPABaseEmitter*);
     /* 80050378 */ ~dPa_modelEcallBack();
+
+    static u8 mEcallback[4];
+    static u8 mPcallback[4];
+    static u8 mModel[4];
 };
 
 struct dPa_light8PcallBack {
@@ -305,6 +324,20 @@ struct dPa_control_c {
                                       cXyz const*);
     /* 8004D988 */ void setCommonPoly(u32*, cBgS_PolyInfo*, cXyz const*, cXyz const*,
                                       dKy_tevstr_c const*, u32, u32, csXyz const*, cXyz const*, s8);
+
+    static u8 mTsubo[64];
+    static u8 mLifeBall[24];
+    static u8 mWindViewMatrix[48];
+    static u8 mEmitterMng[4];
+    static u8 mWaterBubblePcallBack[4];
+    static u8 mFsenthPcallBack[4];
+    static u8 mLight8EcallBack[4];
+    static u8 mLight8PcallBack[4];
+    static u8 m_b_Light8EcallBack[4];
+    static u8 m_b_Light8PcallBack[4];
+    static u8 m_d_Light8EcallBack[4];
+    static u8 m_d_Light8PcallBack[4];
+    static u8 mParticleTracePCB[4 + 4 /* padding */];
 };
 
 struct dJntCol_c {
@@ -323,6 +356,10 @@ struct cBgS {
 };
 
 struct Vec {};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
 
 struct JKRSolidHeap {};
 
@@ -344,14 +381,16 @@ struct J3DSys {
 
 struct J3DShape {
     /* 80315300 */ void loadPreDrawSetting() const;
-};
 
-struct J3DAnmTevRegKey {
-    /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
+    static u8 sOldVcdVatCmd[4];
 };
 
 struct J3DAnmTexPattern {
     /* 8032B09C */ void searchUpdateMaterialID(J3DModelData*);
+};
+
+struct J3DAnmTevRegKey {
+    /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
 };
 
 struct J3DMaterialTable {
@@ -522,6 +561,22 @@ extern "C" void __dt__18dPa_modelEcallBackFv();
 extern "C" void __dt__25dPa_gen_d_light8EcallBackFv();
 extern "C" void __sinit_d_particle_cpp();
 extern "C" extern char const* const d_particle_d_particle__stringBase0;
+extern "C" u8 mTsubo__13dPa_control_c[64];
+extern "C" u8 mLifeBall__13dPa_control_c[24];
+extern "C" u8 mWindViewMatrix__13dPa_control_c[48];
+extern "C" u8 mEcallback__18dPa_modelEcallBack[4];
+extern "C" u8 mPcallback__18dPa_modelEcallBack[4];
+extern "C" u8 mModel__18dPa_modelEcallBack[4];
+extern "C" u8 mEmitterMng__13dPa_control_c[4];
+extern "C" u8 mWaterBubblePcallBack__13dPa_control_c[4];
+extern "C" u8 mFsenthPcallBack__13dPa_control_c[4];
+extern "C" u8 mLight8EcallBack__13dPa_control_c[4];
+extern "C" u8 mLight8PcallBack__13dPa_control_c[4];
+extern "C" u8 m_b_Light8EcallBack__13dPa_control_c[4];
+extern "C" u8 m_b_Light8PcallBack__13dPa_control_c[4];
+extern "C" u8 m_d_Light8EcallBack__13dPa_control_c[4];
+extern "C" u8 m_d_Light8PcallBack__13dPa_control_c[4];
+extern "C" u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
 
 //
 // External References:
@@ -684,21 +739,21 @@ extern "C" void sprintf();
 extern "C" extern u8 const j3dDefaultLightInfo[52];
 extern "C" extern void* __vt__19JPAParticleCallBack[5];
 extern "C" extern void* __vt__8cM3dGPla[3];
-extern "C" extern u8 j_o_id__8dPa_name[10 + 2 /* padding */];
-extern "C" extern u8 s_o_id__8dPa_name[28];
-extern "C" extern u8 mClipper__14mDoLib_clipper[92];
+extern "C" u8 j_o_id__8dPa_name[10 + 2 /* padding */];
+extern "C" u8 s_o_id__8dPa_name[28];
+extern "C" u8 mClipper__14mDoLib_clipper[92];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 g_whiteColor;
 extern "C" extern u32 __float_nan;
 extern "C" extern u32 __float_epsilon;
-extern "C" extern u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
+extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
 extern "C" extern u8 JPTracePCB4[4];
-extern "C" extern f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
+extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
+extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 
 //
 // Declarations:
@@ -999,14 +1054,13 @@ asm void dPa_followEcallBack::end() {
 /* ############################################################################################## */
 /* 80450E90-80450E94 000390 0004+00 2/2 1/1 11/11 .sbss            mEcallback__18dPa_modelEcallBack
  */
-extern u8 mEcallback__18dPa_modelEcallBack[4];
-u8 mEcallback__18dPa_modelEcallBack[4];
+u8 dPa_modelEcallBack::mEcallback[4];
 
 /* 80450E94-80450E98 000394 0004+00 2/2 0/0 0/0 .sbss            mPcallback__18dPa_modelEcallBack */
-static u8 mPcallback__18dPa_modelEcallBack[4];
+u8 dPa_modelEcallBack::mPcallback[4];
 
 /* 80450E98-80450E9C 000398 0004+00 5/5 0/0 0/0 .sbss            mModel__18dPa_modelEcallBack */
-static u8 mModel__18dPa_modelEcallBack[4];
+u8 dPa_modelEcallBack::mModel[4];
 
 /* 80450E9C-80450EA0 -00001 0004+00 3/3 0/0 0/0 .sbss            None */
 /* 80450E9C 0001+00 data_80450E9C None */
@@ -1015,25 +1069,22 @@ static u8 mModel__18dPa_modelEcallBack[4];
 static u8 struct_80450E9C[4];
 
 /* 80450EA0-80450EA4 0003A0 0004+00 14/14 1/1 0/0 .sbss            mEmitterMng__13dPa_control_c */
-extern u8 mEmitterMng__13dPa_control_c[4];
-u8 mEmitterMng__13dPa_control_c[4];
+u8 dPa_control_c::mEmitterMng[4];
 
 /* 80450EA4-80450EA8 0003A4 0004+00 1/1 1/1 0/0 .sbss mWaterBubblePcallBack__13dPa_control_c */
-extern u8 mWaterBubblePcallBack__13dPa_control_c[4];
-u8 mWaterBubblePcallBack__13dPa_control_c[4];
+u8 dPa_control_c::mWaterBubblePcallBack[4];
 
 /* 80450EA8-80450EAC 0003A8 0004+00 3/3 0/0 0/0 .sbss            mFsenthPcallBack__13dPa_control_c
  */
-static u8 mFsenthPcallBack__13dPa_control_c[4];
+u8 dPa_control_c::mFsenthPcallBack[4];
 
 /* 80450EAC-80450EB0 0003AC 0004+00 2/2 0/0 1/1 .sbss            mLight8EcallBack__13dPa_control_c
  */
-extern u8 mLight8EcallBack__13dPa_control_c[4];
-u8 mLight8EcallBack__13dPa_control_c[4];
+u8 dPa_control_c::mLight8EcallBack[4];
 
 /* 80450EB0-80450EB4 0003B0 0004+00 2/2 0/0 0/0 .sbss            mLight8PcallBack__13dPa_control_c
  */
-static u8 mLight8PcallBack__13dPa_control_c[4];
+u8 dPa_control_c::mLight8PcallBack[4];
 
 /* 8004979C-800497B0 0440DC 0014+00 1/0 0/0 0/0 .text
  * setup__19dPa_light8EcallBackFP14JPABaseEmitterPC4cXyzPC5csXyzSc */
@@ -1049,10 +1100,10 @@ asm void dPa_light8EcallBack::setup(JPABaseEmitter* param_0, cXyz const* param_1
 
 /* ############################################################################################## */
 /* 80450EB4-80450EB8 0003B4 0004+00 3/3 0/0 0/0 .sbss m_b_Light8EcallBack__13dPa_control_c */
-static u8 m_b_Light8EcallBack__13dPa_control_c[4];
+u8 dPa_control_c::m_b_Light8EcallBack[4];
 
 /* 80450EB8-80450EBC 0003B8 0004+00 2/2 0/0 0/0 .sbss m_b_Light8PcallBack__13dPa_control_c */
-static u8 m_b_Light8PcallBack__13dPa_control_c[4];
+u8 dPa_control_c::m_b_Light8PcallBack[4];
 
 /* 800497B0-800497CC 0440F0 001C+00 1/0 0/0 0/0 .text
  * setup__25dPa_gen_b_light8EcallBackFP14JPABaseEmitterPC4cXyzPC5csXyzSc */
@@ -1068,10 +1119,10 @@ asm void dPa_gen_b_light8EcallBack::setup(JPABaseEmitter* param_0, cXyz const* p
 
 /* ############################################################################################## */
 /* 80450EBC-80450EC0 0003BC 0004+00 3/3 0/0 0/0 .sbss m_d_Light8EcallBack__13dPa_control_c */
-static u8 m_d_Light8EcallBack__13dPa_control_c[4];
+u8 dPa_control_c::m_d_Light8EcallBack[4];
 
 /* 80450EC0-80450EC4 0003C0 0004+00 2/2 0/0 0/0 .sbss m_d_Light8PcallBack__13dPa_control_c */
-static u8 m_d_Light8PcallBack__13dPa_control_c[4];
+u8 dPa_control_c::m_d_Light8PcallBack[4];
 
 /* 800497CC-800497E8 04410C 001C+00 1/0 0/0 0/0 .text
  * setup__25dPa_gen_d_light8EcallBackFP14JPABaseEmitterPC4cXyzPC5csXyzSc */
@@ -1628,8 +1679,7 @@ extern u8 data_80450EC4[4];
 u8 data_80450EC4[4];
 
 /* 80450EC8-80450ED0 0003C8 0004+04 2/2 1/1 17/17 .sbss mParticleTracePCB__13dPa_control_c */
-extern u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
-u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
+u8 dPa_control_c::mParticleTracePCB[4 + 4 /* padding */];
 
 /* 8004B5AC-8004B688 045EEC 00DC+00 1/1 0/0 0/0 .text
  * cleanup__Q313dPa_control_c7level_c9emitter_cFv               */
@@ -1812,8 +1862,7 @@ static u8 lit_4730[12];
 #pragma pop
 
 /* 80424794-804247D4 0514B4 0040+00 0/1 1/1 1/1 .bss             mTsubo__13dPa_control_c */
-extern u8 mTsubo__13dPa_control_c[64];
-u8 mTsubo__13dPa_control_c[64];
+u8 dPa_control_c::mTsubo[64];
 
 /* 804247D4-804247E0 0514F4 000C+00 0/1 0/0 0/0 .bss             @4731 */
 #pragma push
@@ -1836,7 +1885,7 @@ static u8 lit_4733[12];
 /* 804247F8-80424810 051518 0018+00 0/1 0/0 0/0 .bss             mLifeBall__13dPa_control_c */
 #pragma push
 #pragma force_active on
-static u8 mLifeBall__13dPa_control_c[24];
+u8 dPa_control_c::mLifeBall[24];
 #pragma pop
 
 /* 80424810-8042481C 051530 000C+00 0/1 0/0 0/0 .bss             @4734 */
@@ -1888,7 +1937,7 @@ static u8 lit_4741[12];
 #pragma pop
 
 /* 80424870-804248A0 051590 0030+00 1/1 0/0 0/0 .bss             mWindViewMatrix__13dPa_control_c */
-static u8 mWindViewMatrix__13dPa_control_c[48];
+u8 dPa_control_c::mWindViewMatrix[48];
 
 /* 8004BACC-8004BB70 04640C 00A4+00 0/0 1/1 0/0 .text            __ct__13dPa_control_cFv */
 #pragma push

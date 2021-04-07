@@ -11,11 +11,17 @@
 // Types:
 //
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct JASLfo {
     /* 8029BD14 */ JASLfo();
     /* 8029BD44 */ void getValue() const;
     /* 8029BDD8 */ void incCounter(f32);
     /* 8029BE2C */ void resetCounter();
+
+    static u8 sFreeRunLfo[24];
 };
 
 //
@@ -27,12 +33,13 @@ extern "C" void getValue__6JASLfoCFv();
 extern "C" void incCounter__6JASLfoFf();
 extern "C" void resetCounter__6JASLfoFv();
 extern "C" void __sinit_JASLfo_cpp();
+extern "C" u8 sFreeRunLfo__6JASLfo[24];
 
 //
 // External References:
 //
 
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 
 //
 // Declarations:
@@ -97,8 +104,7 @@ asm void JASLfo::incCounter(f32 param_0) {
 
 /* ############################################################################################## */
 /* 80431C40-80431C58 05E960 0018+00 2/2 1/1 0/0 .bss             sFreeRunLfo__6JASLfo */
-extern u8 sFreeRunLfo__6JASLfo[24];
-u8 sFreeRunLfo__6JASLfo[24];
+u8 JASLfo::sFreeRunLfo[24];
 
 /* 8029BE2C-8029BE6C 29676C 0040+00 0/0 1/1 0/0 .text            resetCounter__6JASLfoFv */
 #pragma push

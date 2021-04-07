@@ -8,10 +8,18 @@
 #include "dolphin/types.h"
 
 //
+// Types:
+//
+
+struct dAttention_c {
+    static u8 dist_table[6552];
+};
+
+//
 // Forward References:
 //
 
-extern "C" extern u8 dist_table__12dAttention_c[6552];
+extern "C" u8 dist_table__12dAttention_c[6552];
 
 //
 // External References:
@@ -23,7 +31,7 @@ extern "C" extern u8 dist_table__12dAttention_c[6552];
 
 /* ############################################################################################## */
 /* 803A9C70-803AB608 006D90 1998+00 0/0 5/5 13/13 .data            dist_table__12dAttention_c */
-SECTION_DATA extern u8 dist_table__12dAttention_c[6552] = {
+SECTION_DATA u8 dAttention_c::dist_table[6552] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x3C, 0x23, 0xD7, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x43, 0x7A, 0x00, 0x00,
     0x43, 0xBB, 0x80, 0x00, 0x43, 0xFA, 0x00, 0x00, 0x43, 0xC8, 0x00, 0x00, 0xC3, 0xC8, 0x00, 0x00,

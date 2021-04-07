@@ -13,7 +13,9 @@
 
 struct _GXRenderModeObj {};
 
-struct JKRHeap {};
+struct JKRHeap {
+    static u8 sSystemHeap[4];
+};
 
 struct JUTXfb {
     struct EXfbNumber {};
@@ -26,6 +28,12 @@ struct JUTXfb {
     /* 802E53B8 */ void createManager(JKRHeap*, JUTXfb::EXfbNumber);
     /* 802E5424 */ void destroyManager();
     /* 802E5454 */ void initiate(u16, u16, JKRHeap*, JUTXfb::EXfbNumber);
+
+    static u8 sManager[4 + 4 /* padding */];
+};
+
+struct JUTVideo {
+    static u8 sManager[4];
 };
 
 //
@@ -40,6 +48,7 @@ extern "C" void delXfb__6JUTXfbFi();
 extern "C" void createManager__6JUTXfbFP7JKRHeapQ26JUTXfb10EXfbNumber();
 extern "C" void destroyManager__6JUTXfbFv();
 extern "C" void initiate__6JUTXfbFUsUsP7JKRHeapQ26JUTXfb10EXfbNumber();
+extern "C" u8 sManager__6JUTXfb[4 + 4 /* padding */];
 
 //
 // External References:
@@ -56,8 +65,8 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sManager__8JUTVideo[4];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sManager__8JUTVideo[4];
 
 //
 // Declarations:
@@ -96,8 +105,7 @@ asm JUTXfb::JUTXfb(_GXRenderModeObj const* param_0, JKRHeap* param_1, JUTXfb::EX
 
 /* ############################################################################################## */
 /* 80451550-80451558 000A50 0004+04 3/3 13/13 0/0 .sbss            sManager__6JUTXfb */
-extern u8 sManager__6JUTXfb[4 + 4 /* padding */];
-u8 sManager__6JUTXfb[4 + 4 /* padding */];
+u8 JUTXfb::sManager[4 + 4 /* padding */];
 
 /* 802E5308-802E5378 2DFC48 0070+00 1/1 0/0 0/0 .text            __dt__6JUTXfbFv */
 #pragma push

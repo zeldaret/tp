@@ -34,6 +34,8 @@ struct dTres_c {
     /* 8009C360 */ void getFirstData(u8);
     /* 8009C3B4 */ void getNextData(dTres_c::typeGroupData_c const*);
     /* 8009C39C */ void getNextData(dTres_c::typeGroupData_c*);
+
+    static u8 mTypeGroupListAll[204 + 4 /* padding */];
 };
 
 struct renderingPlusDoorAndCursor_c {
@@ -94,6 +96,8 @@ struct renderingDAmap_c {
 
 struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct dSv_memBit_c {
@@ -102,6 +106,10 @@ struct dSv_memBit_c {
 
 struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
+};
+
+struct dStage_roomControl_c {
+    static u8 mStatus[65792];
 };
 
 struct dStage_FileList2_dt_c {};
@@ -124,6 +132,8 @@ struct dMpath_n {
         /* 8003C85C */ void create();
         /* 8003C8F4 */ void remove();
     };
+
+    static u8 m_texObjAgg[28];
 };
 
 struct dMpath_c {
@@ -135,6 +145,16 @@ struct dMpath_c {
     /* 8003FB70 */ void create();
     /* 8003FBD0 */ void reset();
     /* 8003FC70 */ void remove();
+
+    static u8 mLayerList[4];
+    static f32 mMinX;
+    static f32 mMaxX;
+    static f32 mMinZ;
+    static f32 mMaxZ;
+    static f32 mAllCenterX;
+    static f32 mAllCenterZ;
+    static f32 mAllSizeX;
+    static f32 mAllSizeZ;
 };
 
 struct dMapInfo_n {
@@ -162,6 +182,9 @@ struct dMapInfo_c {
     /* 8003F714 */ void reset();
     /* 8003F734 */ void create();
     /* 8003F754 */ void remove();
+
+    static u32 mNextRoomNo;
+    static u8 mNowStayRoomNo[4];
 };
 
 struct dDlst_base_c {};
@@ -244,6 +267,17 @@ extern "C" void __sinit_d_map_path_dmap_cpp();
 extern "C" extern void* __vt__19renderingPlusDoor_c[41];
 extern "C" extern void* __vt__28renderingPlusDoorAndCursor_c[47];
 extern "C" extern void* __vt__16renderingDAmap_c[38];
+extern "C" u32 mNextRoomNo__10dMapInfo_c;
+extern "C" u8 mNowStayRoomNo__10dMapInfo_c[4];
+extern "C" u8 mLayerList__8dMpath_c[4];
+extern "C" f32 mMinX__8dMpath_c;
+extern "C" f32 mMaxX__8dMpath_c;
+extern "C" f32 mMinZ__8dMpath_c;
+extern "C" f32 mMaxZ__8dMpath_c;
+extern "C" f32 mAllCenterX__8dMpath_c;
+extern "C" f32 mAllCenterZ__8dMpath_c;
+extern "C" f32 mAllSizeX__8dMpath_c;
+extern "C" f32 mAllSizeZ__8dMpath_c;
 
 //
 // External References:
@@ -310,11 +344,11 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void floor();
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mStatus__20dStage_roomControl_c[65792];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 m_texObjAgg__8dMpath_n[28];
-extern "C" extern u8 mTypeGroupListAll__7dTres_c[204 + 4 /* padding */];
+extern "C" u8 m_texObjAgg__8dMpath_n[28];
+extern "C" u8 mTypeGroupListAll__7dTres_c[204 + 4 /* padding */];
 extern "C" extern u8 g_fmapHIO[1188];
 extern "C" extern u32 __float_max;
 extern "C" extern u8 struct_80450D64[4];
@@ -495,7 +529,7 @@ extern u8 data_80450E58[4];
 u8 data_80450E58[4];
 
 /* 80450E5C-80450E60 00035C 0004+00 4/4 0/0 0/0 .sbss            mNowStayRoomNo__10dMapInfo_c */
-static u8 mNowStayRoomNo__10dMapInfo_c[4];
+u8 dMapInfo_c::mNowStayRoomNo[4];
 
 /* 80450E60-80450E64 000360 0004+00 4/4 3/3 0/0 .sbss            None */
 extern u8 data_80450E60[4];
@@ -569,40 +603,31 @@ void dMapInfo_c::remove() {
 
 /* ############################################################################################## */
 /* 80450E64-80450E68 000364 0004+00 5/5 1/1 0/0 .sbss            mLayerList__8dMpath_c */
-extern u8 mLayerList__8dMpath_c[4];
-u8 mLayerList__8dMpath_c[4];
+u8 dMpath_c::mLayerList[4];
 
 /* 80450E68-80450E6C 000368 0004+00 3/3 1/1 0/0 .sbss            mMinX__8dMpath_c */
-extern f32 mMinX__8dMpath_c;
-f32 mMinX__8dMpath_c;
+f32 dMpath_c::mMinX;
 
 /* 80450E6C-80450E70 00036C 0004+00 3/3 1/1 0/0 .sbss            mMaxX__8dMpath_c */
-extern f32 mMaxX__8dMpath_c;
-f32 mMaxX__8dMpath_c;
+f32 dMpath_c::mMaxX;
 
 /* 80450E70-80450E74 000370 0004+00 3/3 2/2 0/0 .sbss            mMinZ__8dMpath_c */
-extern f32 mMinZ__8dMpath_c;
-f32 mMinZ__8dMpath_c;
+f32 dMpath_c::mMinZ;
 
 /* 80450E74-80450E78 000374 0004+00 3/3 1/1 0/0 .sbss            mMaxZ__8dMpath_c */
-extern f32 mMaxZ__8dMpath_c;
-f32 mMaxZ__8dMpath_c;
+f32 dMpath_c::mMaxZ;
 
 /* 80450E78-80450E7C 000378 0004+00 1/1 2/2 0/0 .sbss            mAllCenterX__8dMpath_c */
-extern f32 mAllCenterX__8dMpath_c;
-f32 mAllCenterX__8dMpath_c;
+f32 dMpath_c::mAllCenterX;
 
 /* 80450E7C-80450E80 00037C 0004+00 1/1 2/2 0/0 .sbss            mAllCenterZ__8dMpath_c */
-extern f32 mAllCenterZ__8dMpath_c;
-f32 mAllCenterZ__8dMpath_c;
+f32 dMpath_c::mAllCenterZ;
 
 /* 80450E80-80450E84 000380 0004+00 1/1 4/4 0/0 .sbss            mAllSizeX__8dMpath_c */
-extern f32 mAllSizeX__8dMpath_c;
-f32 mAllSizeX__8dMpath_c;
+f32 dMpath_c::mAllSizeX;
 
 /* 80450E84-80450E88 000384 0004+00 1/1 4/4 0/0 .sbss            mAllSizeZ__8dMpath_c */
-extern f32 mAllSizeZ__8dMpath_c;
-f32 mAllSizeZ__8dMpath_c;
+f32 dMpath_c::mAllSizeZ;
 
 /* 80450E88-80450E90 000388 0008+00 4/4 0/0 0/0 .sbss            None */
 static u8 data_80450E88[8];
@@ -619,7 +644,7 @@ asm void dMpath_c::isExistMapPathData() {
 
 /* ############################################################################################## */
 /* 80450630-80450634 0000B0 0004+00 0/0 1/1 2/2 .sdata           mNextRoomNo__10dMapInfo_c */
-SECTION_SDATA extern u32 mNextRoomNo__10dMapInfo_c = 0xFFFFFFFF;
+SECTION_SDATA u32 dMapInfo_c::mNextRoomNo = 0xFFFFFFFF;
 
 /* 80450634-80450638 -00001 0004+00 4/4 0/0 0/0 .sdata           None */
 SECTION_SDATA static u8 struct_80450634[4] = {

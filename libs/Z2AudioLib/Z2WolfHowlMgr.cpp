@@ -44,6 +44,10 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2CreatureLink {
+    static u8 mLinkPtr[4 + 4 /* padding */];
+};
+
 struct Z2Calc {
     struct CurveSign {};
 
@@ -122,7 +126,7 @@ extern "C" extern u8 data_80450B74[4];
 extern "C" extern u8 data_80450B80[4];
 extern "C" extern u8 data_80450B84[4];
 extern "C" extern u8 data_80450B88[4];
-extern "C" extern u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
+extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 
 //
 // Declarations:

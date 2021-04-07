@@ -36,6 +36,9 @@ struct JKRHeap {
     /* 802CE4D4 */ void alloc(u32, int);
     /* 802CE474 */ void alloc(u32, int, JKRHeap*);
     /* 802CE500 */ void free(void*, JKRHeap*);
+
+    static u8 sSystemHeap[4];
+    static u8 sCurrentHeap[4];
 };
 
 struct JKRExpandSwitch {};
@@ -75,6 +78,12 @@ struct JKRAram {
     /* 802D22DC */ void changeGroupIdIfNeed(u8*, int);
     /* 802D233C */ void mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
     /* 802D25B4 */ void aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
+
+    static u8 sMessageBuffer[16];
+    static u8 sMessageQueue[32];
+    static u8 sAramCommandList[12];
+    static u32 sSZSBufferSize[1 + 1 /* padding */];
+    static u8 sAramObject[4];
 };
 
 //
@@ -96,6 +105,11 @@ extern "C" static void nextSrcData__FPUc();
 extern "C" void __sinit_JKRAram_cpp();
 extern "C" void func_802D2DF0();
 extern "C" extern char const* const JKRAram__stringBase0;
+extern "C" u8 sMessageBuffer__7JKRAram[16];
+extern "C" u8 sMessageQueue__7JKRAram[32];
+extern "C" u8 sAramCommandList__7JKRAram[12];
+extern "C" u32 sSZSBufferSize__7JKRAram[1 + 1 /* padding */];
+extern "C" u8 sAramObject__7JKRAram[4];
 
 //
 // External References:
@@ -146,8 +160,8 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sCurrentHeap__7JKRHeap[4];
 
 //
 // Declarations:
@@ -155,8 +169,7 @@ extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
 
 /* ############################################################################################## */
 /* 804513C8-804513CC 0008C8 0004+00 3/3 9/9 0/0 .sbss            sAramObject__7JKRAram */
-extern u8 sAramObject__7JKRAram[4];
-u8 sAramObject__7JKRAram[4];
+u8 JKRAram::sAramObject[4];
 
 /* 802D1FA4-802D2040 2CC8E4 009C+00 0/0 1/1 0/0 .text            create__7JKRAramFUlUllll */
 #pragma push
@@ -170,12 +183,12 @@ asm void JKRAram::create(u32 param_0, u32 param_1, s32 param_2, s32 param_3, s32
 
 /* ############################################################################################## */
 /* 803CC128-803CC138 029248 0010+00 1/1 0/0 0/0 .data            sMessageBuffer__7JKRAram */
-SECTION_DATA static u8 sMessageBuffer__7JKRAram[16] = {
+SECTION_DATA u8 JKRAram::sMessageBuffer[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 803CC138-803CC158 029258 0020+00 1/1 1/1 0/0 .data            sMessageQueue__7JKRAram */
-SECTION_DATA extern u8 sMessageQueue__7JKRAram[32] = {
+SECTION_DATA u8 JKRAram::sMessageQueue[32] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -269,13 +282,13 @@ asm void JKRAram::aramToMainRam(u32 param_0, u8* param_1, u32 param_2, JKRExpand
 static u8 lit_492[12];
 
 /* 804342DC-804342E8 060FFC 000C+00 1/1 0/0 0/0 .bss             sAramCommandList__7JKRAram */
-static u8 sAramCommandList__7JKRAram[12];
+u8 JKRAram::sAramCommandList[12];
 
 /* 804342E8-80434300 061008 0018+00 1/1 0/0 0/0 .bss             decompMutex */
 static u8 decompMutex[24];
 
 /* 804508B8-804508C0 000338 0004+04 1/1 1/1 0/0 .sdata           sSZSBufferSize__7JKRAram */
-SECTION_SDATA extern u32 sSZSBufferSize__7JKRAram[1 + 1 /* padding */] = {
+SECTION_SDATA u32 JKRAram::sSZSBufferSize[1 + 1 /* padding */] = {
     0x00000400,
     /* padding */
     0x00000000,

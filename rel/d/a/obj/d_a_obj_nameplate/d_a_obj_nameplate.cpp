@@ -17,6 +17,8 @@ struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -34,6 +36,8 @@ struct daObjNameplate_c {
     /* 805945CC */ void calcSpring();
     /* 80594754 */ void checkHitAngle();
     /* 805947F8 */ void messageProc();
+
+    static u8 const M_attr[32];
 };
 
 struct dCcD_GObjInf {
@@ -108,6 +112,10 @@ struct cCcD_GStts {
     /* 80594E24 */ ~cCcD_GStts();
 };
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 //
@@ -133,6 +141,7 @@ extern "C" void __dt__8cM3dGSphFv();
 extern "C" void __dt__8cM3dGAabFv();
 extern "C" void __dt__10dCcD_GSttsFv();
 extern "C" void __dt__10cCcD_GSttsFv();
+extern "C" u8 const M_attr__16daObjNameplate_c[32];
 extern "C" extern char const* const d_a_obj_nameplate__stringBase0;
 
 //
@@ -187,11 +196,11 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 
 //
 // Declarations:
@@ -199,11 +208,11 @@ extern "C" extern u8 sincosTable___5JMath[65536];
 
 /* ############################################################################################## */
 /* 80594E74-80594E94 000000 0020+00 5/5 0/0 0/0 .rodata          M_attr__16daObjNameplate_c */
-SECTION_RODATA static u8 const M_attr__16daObjNameplate_c[32] = {
+SECTION_RODATA u8 const daObjNameplate_c::M_attr[32] = {
     0x42, 0x48, 0x00, 0x00, 0x45, 0x1C, 0x40, 0x00, 0x43, 0xC8, 0x00, 0x00, 0x40, 0xC0, 0x00, 0x00,
     0xBC, 0xA3, 0xD7, 0x0A, 0x3F, 0x73, 0x33, 0x33, 0x00, 0xAA, 0x07, 0xD0, 0x00, 0x0A, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80594E74, &M_attr__16daObjNameplate_c);
+COMPILER_STRIP_GATE(80594E74, &daObjNameplate_c::M_attr);
 
 /* 80594E94-80594E98 000020 0004+00 0/1 0/0 0/0 .rodata          @3659 */
 #pragma push

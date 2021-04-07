@@ -8,13 +8,23 @@
 #include "dolphin/types.h"
 
 //
+// Types:
+//
+
+struct dItem_data {
+    static void* item_resource[1530];
+    static void* field_item_res[1020];
+    static u8 item_info[1020 + 4 /* padding */];
+};
+
+//
 // Forward References:
 //
 
 extern "C" extern char const* const d_d_item_data__stringBase0;
-extern "C" extern void* item_resource__10dItem_data[1530];
-extern "C" extern void* field_item_res__10dItem_data[1020];
-extern "C" extern u8 item_info__10dItem_data[1020 + 4 /* padding */];
+extern "C" void* item_resource__10dItem_data[1530];
+extern "C" void* field_item_res__10dItem_data[1020];
+extern "C" u8 item_info__10dItem_data[1020 + 4 /* padding */];
 
 //
 // External References:
@@ -26,7 +36,7 @@ extern "C" extern u8 item_info__10dItem_data[1020 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 803AC5A0-803ADD88 -00001 17E8+00 0/0 10/10 2/2 .data            item_resource__10dItem_data */
-SECTION_DATA extern void* item_resource__10dItem_data[1530] = {
+SECTION_DATA void* dItem_data::item_resource[1530] = {
     (void*)&d_d_item_data__stringBase0,
     (void*)0x0004FFFF,
     (void*)0xFFFF0007,
@@ -1560,7 +1570,7 @@ SECTION_DATA extern void* item_resource__10dItem_data[1530] = {
 };
 
 /* 803ADD88-803AED78 -00001 0FF0+00 0/0 3/3 14/14 .data            field_item_res__10dItem_data */
-SECTION_DATA extern void* field_item_res__10dItem_data[1020] = {
+SECTION_DATA void* dItem_data::field_item_res[1020] = {
     (void*)(((char*)&d_d_item_data__stringBase0) + 0x327),
     (void*)0x0014FFFF,
     (void*)0x0030FF00,
@@ -2584,7 +2594,7 @@ SECTION_DATA extern void* field_item_res__10dItem_data[1020] = {
 };
 
 /* 803AED78-803AF178 00BE98 03FC+04 0/0 9/9 9/9 .data            item_info__10dItem_data */
-SECTION_DATA extern u8 item_info__10dItem_data[1020 + 4 /* padding */] = {
+SECTION_DATA u8 dItem_data::item_info[1020 + 4 /* padding */] = {
     0x0F,
     0x28,
     0x1E,

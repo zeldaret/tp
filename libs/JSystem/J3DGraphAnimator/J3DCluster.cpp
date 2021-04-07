@@ -11,11 +11,13 @@
 // Types:
 //
 
+struct JMath {
+    static f32 asinAcosTable_[1032];
+};
+
 struct J3DVertexBuffer {};
 
 struct J3DModel {};
-
-struct J3DCluster {};
 
 struct J3DAnmCluster {};
 
@@ -28,6 +30,8 @@ struct J3DDeformData {
 };
 
 struct J3DClusterKey {};
+
+struct J3DCluster {};
 
 struct J3DDeformer {
     /* 8032E39C */ J3DDeformer(J3DDeformData*);
@@ -70,7 +74,7 @@ extern "C" void _restgpr_21();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
-extern "C" extern f32 asinAcosTable___5JMath[1032];
+extern "C" f32 asinAcosTable___5JMath[1032];
 
 //
 // Declarations:

@@ -13,6 +13,8 @@
 
 struct request_of_phase_process_class {};
 
+struct Quaternion {};
+
 struct Vec {};
 
 struct cXyz {
@@ -21,19 +23,19 @@ struct cXyz {
     /* 80267150 */ void atan2sY_XZ() const;
 };
 
-struct Quaternion {};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CF7C */ void quatM(Quaternion const*);
+
+    static u8 now[48];
 };
+
+struct J3DMaterialTable {};
 
 struct J3DAnmTexPattern {
     /* 8032AF50 */ void getTexNo(u16, u16*) const;
 };
-
-struct J3DMaterialTable {};
 
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
@@ -47,9 +49,9 @@ struct mDoExt_btkAnm {
     /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -94,6 +96,10 @@ struct daHoZelda_matAnm_c {
     /* 80845EAC */ void init();
     /* 80845EDC */ void calc(J3DMaterial*) const;
     /* 80848D54 */ ~daHoZelda_matAnm_c();
+};
+
+struct daHoZelda_hio_c0 {
+    static u8 const m[16];
 };
 
 struct daHoZelda_c {
@@ -183,6 +189,10 @@ struct J3DTevColorAnm {
     /* 808465CC */ J3DTevColorAnm();
 };
 
+struct J3DSys {
+    static u8 mCurrentMtx[48];
+};
+
 struct J3DMtxCalcNoAnmBase {
     /* 80846498 */ ~J3DMtxCalcNoAnmBase();
 };
@@ -212,6 +222,8 @@ struct J3DMtxCalc {
     /* 80848CC8 */ bool getAnmTransform();
     /* 80848CD0 */ void setWeight(u8, f32);
     /* 80848CD4 */ void getWeight(u8) const;
+
+    static u8 mJoint[4];
 };
 
 struct J3DMaterialAnm {
@@ -298,6 +310,7 @@ extern "C" void func_80848CE0(Vec const&, f32 const (&)[3][4]);
 extern "C" void func_80848D08();
 extern "C" void func_80848D38(u8*);
 extern "C" void __dt__18daHoZelda_matAnm_cFv();
+extern "C" u8 const m__16daHoZelda_hio_c0[16];
 
 //
 // External References:
@@ -391,13 +404,13 @@ extern "C" extern void* __vt__25mDoExt_MtxCalcAnmBlendTbl[11];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mJoint__10J3DMtxCalc[4];
+extern "C" u8 mJoint__10J3DMtxCalc[4];
 extern "C" extern u8 struct_80849010[4];
 
 //
@@ -424,10 +437,10 @@ COMPILER_STRIP_GATE(80848E3C, &l_arcName);
 /* 80848E44-80848E54 000008 0010+00 0/5 0/0 0/0 .rodata          m__16daHoZelda_hio_c0 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const m__16daHoZelda_hio_c0[16] = {
+SECTION_RODATA u8 const daHoZelda_hio_c0::m[16] = {
     0x03, 0x8E, 0x2A, 0xAA, 0x40, 0x00, 0x00, 0x00, 0x45, 0x5A, 0xC0, 0x00, 0x45, 0x7A, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80848E44, &m__16daHoZelda_hio_c0);
+COMPILER_STRIP_GATE(80848E44, &daHoZelda_hio_c0::m);
 #pragma pop
 
 /* 80848E54-80848E58 000018 0004+00 6/17 0/0 0/0 .rodata          @3697 */

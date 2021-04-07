@@ -41,9 +41,9 @@ struct dCamParam_c {
     /* 80088620 */ void SearchStyle(u32);
 };
 
-struct cXyz {};
-
 struct cSAngle {};
+
+struct cXyz {};
 
 struct dCamMath {
     /* 8008813C */ void rationalBezierRatio(f32, f32);

@@ -13,17 +13,20 @@
 
 struct request_of_phase_process_class {};
 
+struct Quaternion {};
+
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
     /* 80266AE4 */ void operator+(Vec const&) const;
     /* 8047DBB0 */ ~cXyz();
     /* 8047DBEC */ cXyz();
+
+    static f32 Zero[3];
+    static u8 BaseY[12];
 };
-
-struct csXyz {};
-
-struct Quaternion {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -32,6 +35,8 @@ struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
     /* 8000CF7C */ void quatM(Quaternion const*);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {};
@@ -45,8 +50,6 @@ struct dBgW {
 };
 
 struct daObjMovebox {
-    struct BgcSrc_c {};
-
     struct Act_c {
         struct Prm_e {};
 
@@ -81,7 +84,14 @@ struct daObjMovebox {
         /* 8048027C */ void Execute(f32 (**)[3][4]);
         /* 80480728 */ void Draw();
         /* 804808FC */ void Delete();
+
+        static void* M_dir_base[2];
+        static void* const M_arcname[8];
+        static u8 const M_cyl_src[68];
+        static u8 const M_attr[1280];
     };
+
+    struct BgcSrc_c {};
 
     struct Bgc_c {
         /* 8047DAEC */ Bgc_c();
@@ -97,6 +107,12 @@ struct daObjMovebox {
                                            daObjMovebox::BgcSrc_c const*, s16);
         /* 8047E5A0 */ void chk_wall_touch2(daObjMovebox::Act_c const*,
                                             daObjMovebox::BgcSrc_c const*, int, s16);
+
+        static u8 const M_lin5[80];
+        static u8 const M_lin20[368];
+        static u8 M_gnd_work[1932];
+        static u8 M_wrt_work[84];
+        static u8 M_wall_work[2576];
     };
 };
 
@@ -142,6 +158,8 @@ struct JPABaseEmitter {};
 struct dPa_modelEcallBack {
     /* 8004AC00 */ void setModel(JPABaseEmitter*, J3DModelData*, dKy_tevstr_c const&, u8, void*, u8,
                                  u8);
+
+    static u8 mEcallback[4];
 };
 
 struct dPa_levelEcallBack {};
@@ -282,6 +300,14 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 //
@@ -359,7 +385,15 @@ extern "C" static void func_80480EF4();
 extern "C" static void func_80480EFC();
 extern "C" static void func_80480F04();
 extern "C" static void func_80480F0C();
+extern "C" u8 const M_lin5__Q212daObjMovebox5Bgc_c[80];
+extern "C" u8 const M_lin20__Q212daObjMovebox5Bgc_c[368];
+extern "C" void* const M_arcname__Q212daObjMovebox5Act_c[8];
+extern "C" u8 const M_cyl_src__Q212daObjMovebox5Act_c[68];
+extern "C" u8 const M_attr__Q212daObjMovebox5Act_c[1280];
 extern "C" extern char const* const d_a_obj_movebox__stringBase0;
+extern "C" u8 M_gnd_work__Q212daObjMovebox5Bgc_c[1932];
+extern "C" u8 M_wrt_work__Q212daObjMovebox5Bgc_c[84];
+extern "C" u8 M_wall_work__Q212daObjMovebox5Bgc_c[2576];
 
 //
 // External References:
@@ -476,17 +510,17 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 BaseY__4cXyz[12];
+extern "C" f32 Zero__4cXyz[3];
+extern "C" u8 BaseY__4cXyz[12];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_max;
-extern "C" extern u8 mEcallback__18dPa_modelEcallBack[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern void* M_dir_base__Q212daObjMovebox5Act_c[2];
+extern "C" u8 mEcallback__18dPa_modelEcallBack[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" void* M_dir_base__Q212daObjMovebox5Act_c[2];
 extern "C" void __register_global_object();
 
 //
@@ -495,19 +529,19 @@ extern "C" void __register_global_object();
 
 /* ############################################################################################## */
 /* 80480F28-80480F78 000000 0050+00 14/14 0/0 0/0 .rodata          M_lin5__Q212daObjMovebox5Bgc_c */
-SECTION_RODATA static u8 const M_lin5__Q212daObjMovebox5Bgc_c[80] = {
+SECTION_RODATA u8 const daObjMovebox::Bgc_c::M_lin5[80] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xBF, 0x00, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
     0x3F, 0x00, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
     0x3F, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00,
     0xBF, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80480F28, &M_lin5__Q212daObjMovebox5Bgc_c);
+COMPILER_STRIP_GATE(80480F28, &daObjMovebox::Bgc_c::M_lin5);
 
 /* 80480F78-804810E8 000050 0170+00 0/4 0/0 0/0 .rodata          M_lin20__Q212daObjMovebox5Bgc_c */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const M_lin20__Q212daObjMovebox5Bgc_c[368] = {
+SECTION_RODATA u8 const daObjMovebox::Bgc_c::M_lin20[368] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xBE, 0x80, 0x00, 0x00, 0xBE, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xBF, 0x00, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
@@ -532,7 +566,7 @@ SECTION_RODATA static u8 const M_lin20__Q212daObjMovebox5Bgc_c[368] = {
     0xBF, 0x40, 0x00, 0x00, 0x3E, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xBF, 0x40, 0x00, 0x00, 0xBE, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80480F78, &M_lin20__Q212daObjMovebox5Bgc_c);
+COMPILER_STRIP_GATE(80480F78, &daObjMovebox::Bgc_c::M_lin20);
 #pragma pop
 
 /* 804810E8-804810EC 0001C0 0004+00 7/16 0/0 0/0 .rodata          @3687 */
@@ -675,7 +709,7 @@ static u8 lit_3669[12];
 
 /* 804818D4-80482060 000054 078C+00 7/8 0/0 0/0 .bss             M_gnd_work__Q212daObjMovebox5Bgc_c
  */
-static u8 M_gnd_work__Q212daObjMovebox5Bgc_c[1932];
+u8 daObjMovebox::Bgc_c::M_gnd_work[1932];
 
 /* 8047DBF0-8047DD88 0001F0 0198+00 1/1 0/0 0/0 .text
  * gnd_pos__Q212daObjMovebox5Bgc_cFPCQ212daObjMovebox5Act_cPCQ212daObjMovebox8BgcSrc_cif */
@@ -707,7 +741,7 @@ static u8 lit_3670[12];
 
 /* 8048206C-804820C0 0007EC 0054+00 1/2 0/0 0/0 .bss             M_wrt_work__Q212daObjMovebox5Bgc_c
  */
-static u8 M_wrt_work__Q212daObjMovebox5Bgc_c[84];
+u8 daObjMovebox::Bgc_c::M_wrt_work[84];
 
 /* 8047DD88-8047DE58 000388 00D0+00 1/1 0/0 0/0 .text wrt_pos__Q212daObjMovebox5Bgc_cFRC4cXyz */
 #pragma push
@@ -732,7 +766,7 @@ static u8 lit_3672[12];
 
 /* 804820CC-80482ADC 00084C 0A10+00 3/4 0/0 0/0 .bss             M_wall_work__Q212daObjMovebox5Bgc_c
  */
-static u8 M_wall_work__Q212daObjMovebox5Bgc_c[2576];
+u8 daObjMovebox::Bgc_c::M_wall_work[2576];
 
 /* 8047DE58-8047E134 000458 02DC+00 1/1 0/0 0/0 .text
  * wall_pos__Q212daObjMovebox5Bgc_cFPCQ212daObjMovebox5Act_cPCQ212daObjMovebox8BgcSrc_cisf */
@@ -857,7 +891,7 @@ asm void daObjMovebox::Act_c::prmX_init() {
 /* ############################################################################################## */
 /* 80481104-80481124 -00001 0020+00 3/3 0/0 0/0 .rodata          M_arcname__Q212daObjMovebox5Act_c
  */
-SECTION_RODATA static void* const M_arcname__Q212daObjMovebox5Act_c[8] = {
+SECTION_RODATA void* const daObjMovebox::Act_c::M_arcname[8] = {
     (void*)&d_a_obj_movebox__stringBase0,
     (void*)(((char*)&d_a_obj_movebox__stringBase0) + 0x9),
     (void*)(((char*)&d_a_obj_movebox__stringBase0) + 0x10),
@@ -867,24 +901,24 @@ SECTION_RODATA static void* const M_arcname__Q212daObjMovebox5Act_c[8] = {
     (void*)(((char*)&d_a_obj_movebox__stringBase0) + 0x35),
     (void*)(((char*)&d_a_obj_movebox__stringBase0) + 0x3F),
 };
-COMPILER_STRIP_GATE(80481104, &M_arcname__Q212daObjMovebox5Act_c);
+COMPILER_STRIP_GATE(80481104, &daObjMovebox::Act_c::M_arcname);
 
 /* 80481124-80481168 0001FC 0044+00 0/1 0/0 0/0 .rodata          M_cyl_src__Q212daObjMovebox5Act_c
  */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const M_cyl_src__Q212daObjMovebox5Act_c[68] = {
+SECTION_RODATA u8 const daObjMovebox::Act_c::M_cyl_src[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0xD8, 0xFA, 0xFD, 0xBF, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x78,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x42, 0x96, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80481124, &M_cyl_src__Q212daObjMovebox5Act_c);
+COMPILER_STRIP_GATE(80481124, &daObjMovebox::Act_c::M_cyl_src);
 #pragma pop
 
 /* 80481168-80481668 000240 0500+00 6/18 0/0 0/0 .rodata          M_attr__Q212daObjMovebox5Act_c */
-SECTION_RODATA static u8 const M_attr__Q212daObjMovebox5Act_c[1280] = {
+SECTION_RODATA u8 const daObjMovebox::Act_c::M_attr[1280] = {
     0x00, 0x06, 0x00, 0x0E, 0x00, 0x0A, 0x00, 0x06, 0x00, 0x0E, 0x00, 0x0A, 0x42, 0x96, 0x00, 0x00,
     0x42, 0xB4, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3B, 0xA3, 0xD7, 0x0A, 0x3A, 0x83, 0x12, 0x6F,
     0x00, 0x00, 0x00, 0x00, 0x3F, 0xE6, 0x66, 0x66, 0x40, 0x79, 0x99, 0x9A, 0xBE, 0xC7, 0xAE, 0x14,
@@ -966,7 +1000,7 @@ SECTION_RODATA static u8 const M_attr__Q212daObjMovebox5Act_c[1280] = {
     0x00, 0x08, 0x01, 0x3D, 0x00, 0x08, 0x01, 0x51, 0x00, 0x08, 0x00, 0x2A, 0x00, 0x08, 0x00, 0x2D,
     0xFF, 0xA6, 0xFF, 0xFF, 0xFF, 0xA6, 0x00, 0x5A, 0x00, 0x97, 0x00, 0x5A, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80481168, &M_attr__Q212daObjMovebox5Act_c);
+COMPILER_STRIP_GATE(80481168, &daObjMovebox::Act_c::M_attr);
 
 /* 8047E6B0-8047E6C8 000CB0 0018+00 5/5 0/0 0/0 .text            attr__Q212daObjMovebox5Act_cCFv */
 #pragma push

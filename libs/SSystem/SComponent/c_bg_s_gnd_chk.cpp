@@ -11,7 +11,9 @@
 // Types:
 //
 
-struct cXyz {};
+struct cXyz {
+    static f32 Zero[3];
+};
 
 struct cBgS_PolyInfo {
     /* 80268074 */ cBgS_PolyInfo();
@@ -53,7 +55,7 @@ extern "C" void __dt__8cBgS_ChkFv();
 extern "C" void __ct__13cBgS_PolyInfoFv();
 extern "C" void __dt__13cBgS_PolyInfoFv();
 extern "C" void __dl__FPv();
-extern "C" extern f32 Zero__4cXyz[3];
+extern "C" f32 Zero__4cXyz[3];
 
 //
 // Declarations:

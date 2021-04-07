@@ -30,12 +30,17 @@ struct JKRHeap {
     /* 802CE500 */ void free(void*, JKRHeap*);
     /* 802CE548 */ void free(void*);
     /* 802CE83C */ void findFromRoot(void*);
+
+    static u8 sSystemHeap[4];
 };
 
 struct JKRFileLoader {
     /* 802D40F0 */ JKRFileLoader();
     /* 802D4148 */ ~JKRFileLoader();
     /* 802D41D4 */ void unmount();
+
+    static u8 sVolumeList[12];
+    static u8 sCurrentVolume[4 + 4 /* padding */];
 };
 
 struct JKRFileCache {
@@ -155,9 +160,9 @@ extern "C" void strcmp();
 extern "C" void strcat();
 extern "C" void strcpy();
 extern "C" void strlen();
-extern "C" extern u8 sVolumeList__13JKRFileLoader[12];
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentVolume__13JKRFileLoader[4 + 4 /* padding */];
+extern "C" u8 sVolumeList__13JKRFileLoader[12];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sCurrentVolume__13JKRFileLoader[4 + 4 /* padding */];
 
 //
 // Declarations:

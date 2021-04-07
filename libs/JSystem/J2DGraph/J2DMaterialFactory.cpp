@@ -29,6 +29,10 @@ struct J2DTevStage {
     /* 802F19A8 */ void setTevStageInfo(J2DTevStageInfo const&);
 };
 
+struct J2DScreen {
+    static u8 mDataManage[4 + 4 /* padding */];
+};
+
 struct J2DResReference {
     /* 8030CF10 */ void getResReference(u16) const;
     /* 8030CF44 */ void getName(u16) const;
@@ -146,7 +150,7 @@ extern "C" void strcpy();
 extern "C" extern u8 const j2dDefaultTexCoordInfo[32];
 extern "C" extern u8 const j2dDefaultIndTexMtxInfo[28];
 extern "C" extern u8 const j2dDefaultIndTevStageInfo[12];
-extern "C" extern u8 mDataManage__9J2DScreen[4 + 4 /* padding */];
+extern "C" u8 mDataManage__9J2DScreen[4 + 4 /* padding */];
 extern "C" extern u32 j2dDefaultTevOrderInfoNull;
 extern "C" extern u16 j2dDefaultIndTexOrderNull[1 + 1 /* padding */];
 extern "C" extern u8 j2dDefaultIndTexCoordScaleInfo[2 + 2 /* padding */];

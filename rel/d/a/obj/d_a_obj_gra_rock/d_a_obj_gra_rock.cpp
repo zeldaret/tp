@@ -13,9 +13,13 @@
 
 struct request_of_phase_process_class {};
 
-struct J3DAnmTexPattern {};
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
 
 struct J3DMaterialTable {};
+
+struct J3DAnmTexPattern {};
 
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
@@ -45,6 +49,8 @@ struct daObjGraRock_c {
     /* 80C11FF0 */ void Execute(f32 (**)[3][4]);
     /* 80C120FC */ void Draw();
     /* 80C121C4 */ void Delete();
+
+    static u8 const mCcDCyl[68];
 };
 
 struct dSv_info_c {
@@ -53,9 +59,9 @@ struct dSv_info_c {
 
 struct dKy_tevstr_c {};
 
-struct cXyz {};
-
 struct J3DModelData {};
+
+struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -188,6 +194,14 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 struct J3DFrameCtrl {
@@ -227,6 +241,7 @@ extern "C" void func_80C1230C(u8*);
 extern "C" void func_80C12328(int, int);
 extern "C" static void func_80C123A4();
 extern "C" static void func_80C123AC();
+extern "C" u8 const mCcDCyl__14daObjGraRock_c[68];
 extern "C" extern char const* const d_a_obj_gra_rock__stringBase0;
 
 //
@@ -313,12 +328,12 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sincosTable___5JMath[65536];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -326,14 +341,14 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 80C123BC-80C12400 000000 0044+00 3/3 0/0 0/0 .rodata          mCcDCyl__14daObjGraRock_c */
-SECTION_RODATA static u8 const mCcDCyl__14daObjGraRock_c[68] = {
+SECTION_RODATA u8 const daObjGraRock_c::mCcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x20, 0x20, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C123BC, &mCcDCyl__14daObjGraRock_c);
+COMPILER_STRIP_GATE(80C123BC, &daObjGraRock_c::mCcDCyl);
 
 /* 80C12400-80C12404 000044 0004+00 1/4 0/0 0/0 .rodata          @3857 */
 SECTION_RODATA static u8 const lit_3857[4] = {

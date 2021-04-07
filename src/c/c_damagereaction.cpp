@@ -13,9 +13,9 @@
 
 struct fopAc_ac_c {};
 
-struct JPABaseEmitter {};
-
 struct JPABaseParticle {};
+
+struct JPABaseEmitter {};
 
 struct JPTraceParticleCallBack4 {
     /* 8001817C */ void execute(JPABaseEmitter*, JPABaseParticle*);

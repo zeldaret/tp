@@ -13,6 +13,10 @@
 
 struct Vec {};
 
+struct JStage {
+    struct TObject {};
+};
+
 namespace JStudio {
 struct data {
     struct TEOperationData {};
@@ -34,10 +38,14 @@ struct TVariableValue {
     };
 
     /* 8028B568 */ TVariableValue();
+
+    static u8 soOutput_none_[4 + 4 /* padding */];
 };
 
 struct TAdaptor_sound {
     /* 80287B3C */ ~TAdaptor_sound();
+
+    static u8 const sauVariableValue_3_POSITION_XYZ[12];
 };
 
 struct TControl {
@@ -45,10 +53,6 @@ struct TControl {
 };
 
 };  // namespace JStudio
-
-struct JStage {
-    struct TObject {};
-};
 
 struct JStudio_JStage {
     /* 8028A290 */ void transform_toGlobalFromLocal(f32 (*)[4],
@@ -90,6 +94,8 @@ struct JStudio_JAudio2 {
         /* 8028DF04 */ void prepareSound_();
         /* 8028DFA4 */ void beginSound_fadeIn_();
         /* 8028E054 */ void endSound_fadeOut_(u32);
+
+        static u8 saoVVOSetValue_[72];
     };
 };
 
@@ -171,6 +177,7 @@ extern "C" void beginSound_fadeIn___Q215JStudio_JAudio214TAdaptor_soundFv();
 extern "C" void endSound_fadeOut___Q215JStudio_JAudio214TAdaptor_soundFUl();
 extern "C" void __dt__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_Fv();
 extern "C" void func_8028E0F4();
+extern "C" u8 saoVVOSetValue___Q215JStudio_JAudio214TAdaptor_sound[72];
 
 //
 // External References:
@@ -201,12 +208,12 @@ extern "C" void PSMTXMultVec();
 extern "C" void __register_global_object();
 extern "C" void __construct_array();
 extern "C" void __cvt_fp2unsigned();
-extern "C" extern u8 const sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound[12];
+extern "C" u8 const sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound[12];
 extern "C" extern void* __vt__Q27JStudio14TAdaptor_sound[20];
 extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];
 extern "C" extern void* __vt__Q37JStudio14TVariableValue7TOutput[4];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 soOutput_none___Q27JStudio14TVariableValue[4 + 4 /* padding */];
+extern "C" u8 soOutput_none___Q27JStudio14TVariableValue[4 + 4 /* padding */];
 extern "C" extern u8 data_804511F8[8];
 
 //
@@ -387,7 +394,7 @@ static u8 lit_1822[12];
 
 /* 804314F8-80431540 05E218 0048+00 1/2 0/0 0/0 .bss
  * saoVVOSetValue___Q215JStudio_JAudio214TAdaptor_sound         */
-static u8 saoVVOSetValue___Q215JStudio_JAudio214TAdaptor_sound[72];
+u8 JStudio_JAudio2::TAdaptor_sound::saoVVOSetValue_[72];
 
 /* 8028D9A4-8028DA74 2882E4 00D0+00 1/0 0/0 0/0 .text
  * adaptor_do_prepare__Q215JStudio_JAudio214TAdaptor_soundFv    */

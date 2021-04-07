@@ -11,18 +11,22 @@
 // Types:
 //
 
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
+};
+
 struct dMsgString_c {
     /* 80249C20 */ dMsgString_c();
     /* 80249D28 */ ~dMsgString_c();
 };
+
+struct J2DOrthoGraph {};
 
 struct STControl {
     /* 8003219C */ void checkTrigger();
     /* 80032524 */ void checkUpTrigger();
     /* 800325A0 */ void checkDownTrigger();
 };
-
-struct J2DOrthoGraph {};
 
 struct dMsgScrnExplain_c {
     /* 8023CC88 */ dMsgScrnExplain_c(STControl*, u8, bool, u8);
@@ -69,13 +73,13 @@ struct dMsgScrn3Select_c {
     /* 8023A97C */ void getCharSpace();
 };
 
+struct COutFont_c {
+    /* 80225C94 */ COutFont_c(u8);
+};
+
 struct J2DTextBox {
     /* 80300658 */ void getStringPtr() const;
     /* 8030074C */ void setString(s16, char const*, ...);
-};
-
-struct COutFont_c {
-    /* 80225C94 */ COutFont_c(u8);
 };
 
 struct JUTFont {};
@@ -102,6 +106,10 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct ResTIMG {};
@@ -223,12 +231,12 @@ extern "C" void _restgpr_29();
 extern "C" void snprintf();
 extern "C" void strcat();
 extern "C" void strcpy();
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 g_MsgObject_HIO_c[1040];
 extern "C" extern u8 data_80450B70[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

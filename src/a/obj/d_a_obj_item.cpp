@@ -13,6 +13,8 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
@@ -23,12 +25,12 @@ struct cXyz {
     /* 8026706C */ bool operator!=(Vec const&) const;
 };
 
-struct csXyz {};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -101,6 +103,10 @@ struct daItem_c {
     /* 8015DBF0 */ void initScale();
     /* 8015DC40 */ void initSpeed(int);
     /* 8015DE38 */ void initAngle();
+
+    static u8 mFuncPtr[120];
+    static u8 m_cyl_src[68];
+    static u32 m_timer_max[1 + 1 /* padding */];
 };
 
 struct daItemBase_c {
@@ -125,6 +131,8 @@ struct daItemBase_c {
     /* 801451B4 */ void getCollisionH();
     /* 801451D0 */ void getCollisionR();
     /* 8015B0B8 */ void getData();
+
+    static u8 const m_data[56];
 };
 
 struct dSv_player_get_item_c {
@@ -158,6 +166,11 @@ struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
                             u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
                             cXyz const*, f32);
+};
+
+struct dItem_data {
+    static void* field_item_res[1020];
+    static u8 item_info[1020 + 4 /* padding */];
 };
 
 struct dEvt_control_c {
@@ -249,6 +262,14 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 //
 // Forward References:
 //
@@ -318,6 +339,9 @@ extern "C" void __sinit_d_a_obj_item_cpp();
 extern "C" void getItemPos__9daPy_py_cCFv();
 extern "C" void getLeftHandPos__9daPy_py_cCFv();
 extern "C" extern char const* const a_obj_d_a_obj_item__stringBase0;
+extern "C" u8 mFuncPtr__8daItem_c[120];
+extern "C" u8 m_cyl_src__8daItem_c[68];
+extern "C" u32 m_timer_max__8daItem_c[1 + 1 /* padding */];
 
 //
 // External References:
@@ -429,7 +453,7 @@ extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 const m_data__12daItemBase_c[56];
+extern "C" u8 const m_data__12daItemBase_c[56];
 extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* __vt__8cM3dGPla[3];
@@ -438,21 +462,21 @@ extern "C" extern void* __vt__8cM3dGCyl[3];
 extern "C" extern void* __vt__8cM3dGAab[3];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* field_item_res__10dItem_data[1020];
-extern "C" extern u8 item_info__10dItem_data[1020 + 4 /* padding */];
+extern "C" void* field_item_res__10dItem_data[1020];
+extern "C" u8 item_info__10dItem_data[1020 + 4 /* padding */];
 extern "C" extern void* __vt__12dBgS_ObjAcch[9];
 extern "C" extern void* __vt__12daItemBase_c[17 + 1 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__16Z2SoundObjSimple[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 data_80451010[8];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -715,7 +739,7 @@ SECTION_DATA static void* lit_5248[3] = {
 #pragma pop
 
 /* 803B9E98-803B9F10 016FB8 0078+00 1/2 0/0 0/0 .data            mFuncPtr__8daItem_c */
-SECTION_DATA static u8 mFuncPtr__8daItem_c[120] = {
+SECTION_DATA u8 daItem_c::mFuncPtr[120] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -727,7 +751,7 @@ SECTION_DATA static u8 mFuncPtr__8daItem_c[120] = {
 };
 
 /* 803B9F10-803B9F54 017030 0044+00 1/1 0/0 0/0 .data            m_cyl_src__8daItem_c */
-SECTION_DATA static u8 m_cyl_src__8daItem_c[68] = {
+SECTION_DATA u8 daItem_c::m_cyl_src[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x59,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1302,7 +1326,7 @@ asm void daItem_c::set_bound_se() {
 
 /* ############################################################################################## */
 /* 804506A8-804506B0 000128 0004+04 1/1 0/0 0/0 .sdata           m_timer_max__8daItem_c */
-SECTION_SDATA static u32 m_timer_max__8daItem_c[1 + 1 /* padding */] = {
+SECTION_SDATA u32 daItem_c::m_timer_max[1 + 1 /* padding */] = {
     0x00002710,
     /* padding */
     0x00000000,

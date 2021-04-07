@@ -130,6 +130,10 @@ struct JASSeqParser {
     /* 802956B0 */ void parseCommand(JASTrack*, u8, u16);
     /* 80295864 */ void parseRegCommand(JASTrack*, int);
     /* 802958D4 */ void parse(JASTrack*);
+
+    static u8 sCmdInfo[1536];
+    static u8 sExtCmdInfo[4080];
+    static u8 sCallBackFunc[4];
 };
 
 struct JASSeqCtrl {
@@ -144,6 +148,10 @@ struct JASRegisterParam {
 
     /* 80293684 */ void write(JASRegisterParam::RegID, u32);
     /* 802937B8 */ void read(JASRegisterParam::RegID);
+};
+
+struct JASCalc {
+    static u8 const CUTOFF_TO_IIR_TABLE[1024];
 };
 
 //
@@ -220,7 +228,10 @@ extern "C" void parseRegCommand__12JASSeqParserFP8JASTracki();
 extern "C" void parse__12JASSeqParserFP8JASTrack();
 extern "C" void __sinit_JASSeqParser_cpp();
 extern "C" extern char const* const JASSeqParser__stringBase0;
+extern "C" u8 sCmdInfo__12JASSeqParser[1536];
+extern "C" u8 sExtCmdInfo__12JASSeqParser[4080];
 extern "C" extern void* __vt__12JASSeqParser[8];
+extern "C" u8 sCallBackFunc__12JASSeqParser[4];
 
 //
 // External References:
@@ -274,7 +285,7 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 const CUTOFF_TO_IIR_TABLE__7JASCalc[1024];
+extern "C" u8 const CUTOFF_TO_IIR_TABLE__7JASCalc[1024];
 extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
 
 //
@@ -851,7 +862,7 @@ SECTION_DATA static void* lit_541[3] = {
 #pragma pop
 
 /* 803C5E80-803C6480 022FA0 0600+00 1/2 0/0 0/0 .data            sCmdInfo__12JASSeqParser */
-SECTION_DATA static u8 sCmdInfo__12JASSeqParser[1536] = {
+SECTION_DATA u8 JASSeqParser::sCmdInfo[1536] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -961,7 +972,7 @@ SECTION_DATA static void* lit_542[3] = {
 #pragma pop
 
 /* 803C648C-803C747C 0235AC 0FF0+00 1/2 0/0 0/0 .data            sExtCmdInfo__12JASSeqParser */
-SECTION_DATA static u8 sExtCmdInfo__12JASSeqParser[4080] = {
+SECTION_DATA u8 JASSeqParser::sExtCmdInfo[4080] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1769,8 +1780,7 @@ asm void JASSeqParser::cmdIntTimer(JASTrack* param_0, u32* param_1) {
 
 /* ############################################################################################## */
 /* 80451240-80451244 000740 0004+00 1/1 1/1 0/0 .sbss            sCallBackFunc__12JASSeqParser */
-extern u8 sCallBackFunc__12JASSeqParser[4];
-u8 sCallBackFunc__12JASSeqParser[4];
+u8 JASSeqParser::sCallBackFunc[4];
 
 /* 80294A3C-80294AA4 28F37C 0068+00 1/0 0/0 0/0 .text cmdSyncCPU__12JASSeqParserFP8JASTrackPUl */
 #pragma push

@@ -13,15 +13,17 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {};
+
 struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
 };
 
-struct csXyz {};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -101,14 +103,19 @@ struct dPa_followEcallBack {
     /* 80049580 */ dPa_followEcallBack(u8, u8);
 };
 
-struct _GXColor {};
-
 struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
                             u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
                             cXyz const*, f32);
+};
+
+struct dItem_data {
+    static void* field_item_res[1020];
+    static u8 item_info[1020 + 4 /* padding */];
 };
 
 struct dEvt_control_c {
@@ -223,6 +230,10 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct JPABaseEmitter {};
 
 struct JPAEmitterCallBack {
@@ -231,6 +242,10 @@ struct JPAEmitterCallBack {
     /* 804CE3B4 */ void executeAfter(JPABaseEmitter*);
     /* 804CE3B8 */ void draw(JPABaseEmitter*);
     /* 804CE3BC */ void drawAfter(JPABaseEmitter*);
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 //
@@ -386,18 +401,18 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* field_item_res__10dItem_data[1020];
-extern "C" extern u8 item_info__10dItem_data[1020 + 4 /* padding */];
+extern "C" void* field_item_res__10dItem_data[1020];
+extern "C" u8 item_info__10dItem_data[1020 + 4 /* padding */];
 extern "C" extern void* __vt__12daItemBase_c[17 + 1 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" extern u8 data_804CE6A0[4];
 
 //

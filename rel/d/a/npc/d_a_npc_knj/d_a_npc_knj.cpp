@@ -11,9 +11,11 @@
 // Types:
 //
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -23,9 +25,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -40,8 +40,6 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct daNpcT_motionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -49,9 +47,11 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80A4511C */ ~daNpcT_MotionSeqMngr_c();
 };
 
-struct daNpcT_evtData_c {};
+struct daNpcT_motionAnmData_c {};
 
 struct daNpcT_faceMotionAnmData_c {};
+
+struct daNpcT_evtData_c {};
 
 struct daNpc_Knj_c {
     /* 80A4356C */ ~daNpc_Knj_c();
@@ -84,15 +84,16 @@ struct daNpc_Knj_c {
                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
                                daNpcT_evtData_c const*, char**);
+
+    static void* mCutNameList;
+    static u8 mCutList[12];
 };
 
 struct daNpc_Knj_Param_c {
     /* 80A454A4 */ ~daNpc_Knj_Param_c();
+
+    static u8 const m[140];
 };
-
-struct J3DAnmTevRegKey {};
-
-struct J3DJoint {};
 
 struct J3DModel {};
 
@@ -103,7 +104,11 @@ struct cXyz {
 
 struct _GXColorS10 {};
 
+struct J3DJoint {};
+
 struct J3DAnmTexPattern {};
+
+struct J3DAnmTevRegKey {};
 
 struct daNpcT_c {
     /* 801480D0 */ void getTexPtrnAnmP(char const*, int);
@@ -365,7 +370,10 @@ __ct__11daNpc_Knj_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ2
 extern "C" void __dt__17daNpc_Knj_Param_cFv();
 extern "C" static void func_80A454EC();
 extern "C" static void func_80A454F4();
+extern "C" u8 const m__17daNpc_Knj_Param_c[140];
 extern "C" extern char const* const d_a_npc_knj__stringBase0;
+extern "C" void* mCutNameList__11daNpc_Knj_c;
+extern "C" u8 mCutList__11daNpc_Knj_c[12];
 
 //
 // External References:
@@ -564,10 +572,10 @@ SECTION_DATA static u8 l_motionSequenceData[16] = {
 #pragma pop
 
 /* 80A45684-80A45688 -00001 0004+00 1/1 0/0 0/0 .data            mCutNameList__11daNpc_Knj_c */
-SECTION_DATA static void* mCutNameList__11daNpc_Knj_c = (void*)&d_a_npc_knj__stringBase0;
+SECTION_DATA void* daNpc_Knj_c::mCutNameList = (void*)&d_a_npc_knj__stringBase0;
 
 /* 80A45688-80A45694 0000B8 000C+00 2/2 0/0 0/0 .data            mCutList__11daNpc_Knj_c */
-SECTION_DATA static u8 mCutList__11daNpc_Knj_c[12] = {
+SECTION_DATA u8 daNpc_Knj_c::mCutList[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
@@ -759,7 +767,7 @@ asm daNpc_Knj_c::~daNpc_Knj_c() {
 
 /* ############################################################################################## */
 /* 80A45510-80A4559C 000000 008C+00 4/4 0/0 0/0 .rodata          m__17daNpc_Knj_Param_c */
-SECTION_RODATA static u8 const m__17daNpc_Knj_Param_c[140] = {
+SECTION_RODATA u8 const daNpc_Knj_Param_c::m[140] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x45, 0x7A, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -770,7 +778,7 @@ SECTION_RODATA static u8 const m__17daNpc_Knj_Param_c[140] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A45510, &m__17daNpc_Knj_Param_c);
+COMPILER_STRIP_GATE(80A45510, &daNpc_Knj_Param_c::m);
 
 /* 80A43608-80A43848 000188 0240+00 1/1 0/0 0/0 .text            create__11daNpc_Knj_cFv */
 #pragma push

@@ -23,6 +23,8 @@ struct dTres_c {
     /* 8009C360 */ void getFirstData(u8);
     /* 8009C39C */ void getNextData(dTres_c::typeGroupData_c*);
     /* 8009C4B0 */ void getTypeToTypeGroupNo(u8);
+
+    static u8 mTypeGroupListAll[204 + 4 /* padding */];
 };
 
 struct renderingDmap_c {
@@ -101,6 +103,10 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
+struct dStage_roomControl_c {
+    static u8 mStatus[65792];
+};
+
 struct ResTIMG {};
 
 struct dRenderingMap_c {
@@ -116,6 +122,12 @@ struct dRenderingFDAmap_c {
 
 struct dMpath_c {
     /* 8003F760 */ void getTopBottomFloorNo(s8*, s8*);
+
+    static u8 mLayerList[4];
+    static f32 mAllCenterX;
+    static f32 mAllCenterZ;
+    static f32 mAllSizeX;
+    static f32 mAllSizeZ;
 };
 
 struct dMenu_StageMapCtrl_c {
@@ -154,6 +166,11 @@ struct dMenu_StageMapCtrl_c {
     /* 801C2578 */ void isEnableZoomOut();
     /* 801C2588 */ void setPlusZoomCenterX(f32);
     /* 801C2590 */ void setPlusZoomCenterZ(f32);
+
+    static f32 m_zoomCenterMinX;
+    static f32 m_zoomCenterMaxX;
+    static f32 m_zoomCenterMinZ;
+    static f32 m_zoomCenterMaxZ[1 + 1 /* padding */];
 };
 
 struct dMenu_DmapMap_c {
@@ -172,6 +189,10 @@ struct dMenu_DmapMapCtrl_c {
     /* 801C22A8 */ void draw();
     /* 801C2598 */ void getInitWholeMapScale(f32*, f32, f32, f32, f32);
     /* 801C25C0 */ void getInitDispCenter(f32*, f32*);
+};
+
+struct dMdm_HIO_prm_res_dst_s {
+    static u8 m_res[4];
 };
 
 struct dMapInfo_n {
@@ -259,6 +280,11 @@ extern "C" bool isRendIcon__15renderingDmap_cCFv();
 extern "C" void __sinit_d_menu_dmap_map_cpp();
 extern "C" extern void* __vt__19dMenu_DmapMapCtrl_c[10 + 51 /* padding */];
 extern "C" extern void* __vt__15renderingDmap_c[43 + 1 /* padding */];
+extern "C" u8 m_res__22dMdm_HIO_prm_res_dst_s[4];
+extern "C" f32 m_zoomCenterMinX__20dMenu_StageMapCtrl_c;
+extern "C" f32 m_zoomCenterMaxX__20dMenu_StageMapCtrl_c;
+extern "C" f32 m_zoomCenterMinZ__20dMenu_StageMapCtrl_c;
+extern "C" f32 m_zoomCenterMaxZ__20dMenu_StageMapCtrl_c[1 + 1 /* padding */];
 
 //
 // External References:
@@ -335,18 +361,18 @@ extern "C" void _restgpr_29();
 extern "C" void ceil();
 extern "C" void floor();
 extern "C" void fmod();
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
+extern "C" u8 mStatus__20dStage_roomControl_c[65792];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mTypeGroupListAll__7dTres_c[204 + 4 /* padding */];
+extern "C" u8 mTypeGroupListAll__7dTres_c[204 + 4 /* padding */];
 extern "C" extern u32 __float_max;
 extern "C" extern u8 struct_80450D64[4];
 extern "C" extern u8 data_80450E58[4];
 extern "C" extern u8 data_80450E60[4];
-extern "C" extern u8 mLayerList__8dMpath_c[4];
-extern "C" extern f32 mAllCenterX__8dMpath_c;
-extern "C" extern f32 mAllCenterZ__8dMpath_c;
-extern "C" extern f32 mAllSizeX__8dMpath_c;
-extern "C" extern f32 mAllSizeZ__8dMpath_c;
+extern "C" u8 mLayerList__8dMpath_c[4];
+extern "C" f32 mAllCenterX__8dMpath_c;
+extern "C" f32 mAllCenterZ__8dMpath_c;
+extern "C" f32 mAllSizeX__8dMpath_c;
+extern "C" f32 mAllSizeZ__8dMpath_c;
 
 //
 // Declarations:
@@ -701,7 +727,7 @@ asm void renderingDmap_c::afterDrawPath() {
 
 /* ############################################################################################## */
 /* 80451088-8045108C 000588 0004+00 2/2 0/0 0/0 .sbss            m_res__22dMdm_HIO_prm_res_dst_s */
-static u8 m_res__22dMdm_HIO_prm_res_dst_s[4];
+u8 dMdm_HIO_prm_res_dst_s::m_res[4];
 
 /* 801C0CD8-801C0D04 1BB618 002C+00 1/1 0/0 0/0 .text _create__15dMenu_DmapMap_cFUsUsUsUsPv */
 #pragma push
@@ -1311,16 +1337,16 @@ asm void dMenu_StageMapCtrl_c::_create(u16 param_0, u16 param_1, u16 param_2, u1
 
 /* ############################################################################################## */
 /* 8045108C-80451090 00058C 0004+00 1/1 0/0 0/0 .sbss m_zoomCenterMinX__20dMenu_StageMapCtrl_c */
-static f32 m_zoomCenterMinX__20dMenu_StageMapCtrl_c;
+f32 dMenu_StageMapCtrl_c::m_zoomCenterMinX;
 
 /* 80451090-80451094 000590 0004+00 1/1 0/0 0/0 .sbss m_zoomCenterMaxX__20dMenu_StageMapCtrl_c */
-static f32 m_zoomCenterMaxX__20dMenu_StageMapCtrl_c;
+f32 dMenu_StageMapCtrl_c::m_zoomCenterMaxX;
 
 /* 80451094-80451098 000594 0004+00 1/1 0/0 0/0 .sbss m_zoomCenterMinZ__20dMenu_StageMapCtrl_c */
-static f32 m_zoomCenterMinZ__20dMenu_StageMapCtrl_c;
+f32 dMenu_StageMapCtrl_c::m_zoomCenterMinZ;
 
 /* 80451098-804510A0 000598 0004+04 1/1 0/0 0/0 .sbss m_zoomCenterMaxZ__20dMenu_StageMapCtrl_c */
-static f32 m_zoomCenterMaxZ__20dMenu_StageMapCtrl_c[1 + 1 /* padding */];
+f32 dMenu_StageMapCtrl_c::m_zoomCenterMaxZ[1 + 1 /* padding */];
 
 /* 804540C8-804540CC 0026C8 0004+00 1/1 0/0 0/0 .sdata2          @4460 */
 SECTION_SDATA2 static f32 lit_4460 = 6.0f / 5.0f;

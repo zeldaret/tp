@@ -50,6 +50,10 @@ struct J3DTexMtx {
 
 struct J3DTexCoord {};
 
+struct J3DSys {
+    static u8 sTexCoordScaleTable[64 + 4 /* padding */];
+};
+
 struct J3DNBTScale {};
 
 struct J3DLightObj {
@@ -123,7 +127,7 @@ extern "C" void _savegpr_28();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sTexCoordScaleTable__6J3DSys[64 + 4 /* padding */];
+extern "C" u8 sTexCoordScaleTable__6J3DSys[64 + 4 /* padding */];
 extern "C" extern u8 __GDCurrentDL[4];
 
 //

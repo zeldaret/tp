@@ -60,6 +60,8 @@ struct dBgS_AcchCir {
     /* 80077414 */ ~dBgS_AcchCir();
 };
 
+struct Vec {};
+
 struct cBgS_PolyInfo {
     /* 80268074 */ cBgS_PolyInfo();
     /* 802680B0 */ ~cBgS_PolyInfo();
@@ -68,9 +70,9 @@ struct cBgS_PolyInfo {
     /* 802681A4 */ void SetPolyIndex(int);
 };
 
+struct dBgS_Acch;
 struct csXyz {};
 
-struct dBgS_Acch;
 struct dBgS {
     /* 8007524C */ void WallCorrect(dBgS_Acch*);
     /* 80075374 */ void WallCorrectSort(dBgS_Acch*);
@@ -79,8 +81,6 @@ struct dBgS {
     /* 80075774 */ void MoveBgCrrPos(cBgS_PolyInfo const&, bool, cXyz*, csXyz*, csXyz*, bool, bool);
     /* 80075B84 */ void RideCallBack(cBgS_PolyInfo const&, fopAc_ac_c*);
 };
-
-struct Vec {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();

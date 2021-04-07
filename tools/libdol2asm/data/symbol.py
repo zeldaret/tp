@@ -62,6 +62,7 @@ class Symbol:
     _section: str = None
     alignment: int = 0
     relative_addr: int = -1
+    template_index: int = -1
 
     demangled_name: NamedType = None
     references: Set[int] = field(default_factory=set)
@@ -101,8 +102,20 @@ class Symbol:
         return True
 
     @property
+    def has_class(self):
+        return self.demangled_name and self.demangled_name.has_class
+
+    @property
+    def has_template(self):
+        return self.demangled_name and self.demangled_name.has_template
+
+    @property
     def uses_class_template(self):
-        return False
+        return self.demangled_name and self.demangled_name.has_template
+
+    @property
+    def is_demangled(self):
+        return self.demangled_name != None
 
     @property
     def requires_force_active(self):

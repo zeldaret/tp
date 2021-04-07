@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct mDoExt_morf_c {
     /* 8000FB7C */ void setMorf(f32);
 };
@@ -110,6 +114,53 @@ struct daNpcCdn3_c {
     /* 8097D684 */ ~daNpcCdn3_c();
     /* 8097D748 */ void execute();
     /* 8097DABC */ void checkTimeSchedule();
+
+    static u8 ActionTable[192];
+    static void* m_funcTbl[44];
+    static u8 m_seq00_funcTbl[24];
+    static u8 m_seq01_funcTbl[24];
+    static u8 m_seq02_funcTbl[24];
+    static u8 m_seq03_funcTbl[24];
+    static u8 m_seq04_funcTbl[24];
+    static u8 m_seq05_funcTbl[48];
+    static u8 m_seq06_funcTbl[48];
+    static u8 m_seq07_funcTbl[24];
+    static u8 m_seq08_funcTbl[84];
+    static u8 m_seq09_funcTbl[24];
+    static u8 m_seq10_funcTbl[24];
+    static u8 m_seq11_funcTbl[72];
+    static u8 m_seq12_funcTbl[24];
+    static u8 m_seq13_funcTbl[72];
+    static u8 m_seq14_funcTbl[24];
+    static u8 m_seq15_funcTbl[24];
+    static u8 m_seq16_funcTbl[84];
+    static u8 m_seq17_funcTbl[24];
+    static u8 m_seq18_funcTbl[24];
+    static u8 m_seq19_funcTbl[84];
+    static u8 m_seq20_funcTbl[24];
+    static u8 m_seq21_funcTbl[24];
+    static u8 m_seq22_funcTbl[48];
+    static u8 m_seq23_funcTbl[84];
+    static u8 m_seq24_funcTbl[60];
+    static u8 m_seq25_funcTbl[84];
+    static u8 m_seq26_funcTbl[36];
+    static u8 m_seq27_funcTbl[24];
+    static u8 m_seq28_funcTbl[36];
+    static u8 m_seq29_funcTbl[36];
+    static u8 m_seq30_funcTbl[72];
+    static u8 m_seq31_funcTbl[72];
+    static u8 m_seq32_funcTbl[84];
+    static u8 m_seq33_funcTbl[84];
+    static u8 m_seq34_funcTbl[108];
+    static u8 m_seq35_funcTbl[24];
+    static u8 m_seq36_funcTbl[48];
+    static u8 m_seq37_funcTbl[24];
+    static u8 m_seq38_funcTbl[24];
+    static u8 m_seq39_funcTbl[24];
+    static u8 m_seq40_funcTbl[36];
+    static u8 m_seq41_funcTbl[24];
+    static u8 m_seq42_funcTbl[24];
+    static u8 m_seq43_funcTbl[36];
 };
 
 struct J3DAnmTransformKey {};
@@ -135,6 +186,12 @@ struct daNpcCd2_c {
     /* 801597C0 */ void getEscapeTag();
     /* 80159818 */ void checkFearSituation();
     /* 8097F030 */ ~daNpcCd2_c();
+
+    static u8 const m_cylDat[68];
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -153,13 +210,15 @@ struct dScnKy_env_light_c {
     /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
 };
 
-struct cXyz {
-    /* 809799F8 */ ~cXyz();
-};
-
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
     /* 8097D614 */ ~csXyz();
+};
+
+struct cXyz {
+    /* 809799F8 */ ~cXyz();
+
+    static f32 Zero[3];
 };
 
 struct dNpcLib_lookat_c {
@@ -392,6 +451,52 @@ extern "C" void __dt__10dCcD_GSttsFv();
 extern "C" void __dt__12dBgS_AcchCirFv();
 extern "C" void __dt__12dBgS_ObjAcchFv();
 extern "C" extern char const* const d_a_npc_cdn3__stringBase0;
+extern "C" u8 ActionTable__11daNpcCdn3_c[192];
+extern "C" void* m_funcTbl__11daNpcCdn3_c[44];
+extern "C" u8 m_seq00_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq01_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq02_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq03_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq04_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq05_funcTbl__11daNpcCdn3_c[48];
+extern "C" u8 m_seq06_funcTbl__11daNpcCdn3_c[48];
+extern "C" u8 m_seq07_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq08_funcTbl__11daNpcCdn3_c[84];
+extern "C" u8 m_seq09_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq10_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq11_funcTbl__11daNpcCdn3_c[72];
+extern "C" u8 m_seq12_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq13_funcTbl__11daNpcCdn3_c[72];
+extern "C" u8 m_seq14_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq15_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq16_funcTbl__11daNpcCdn3_c[84];
+extern "C" u8 m_seq17_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq18_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq19_funcTbl__11daNpcCdn3_c[84];
+extern "C" u8 m_seq20_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq21_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq22_funcTbl__11daNpcCdn3_c[48];
+extern "C" u8 m_seq23_funcTbl__11daNpcCdn3_c[84];
+extern "C" u8 m_seq24_funcTbl__11daNpcCdn3_c[60];
+extern "C" u8 m_seq25_funcTbl__11daNpcCdn3_c[84];
+extern "C" u8 m_seq26_funcTbl__11daNpcCdn3_c[36];
+extern "C" u8 m_seq27_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq28_funcTbl__11daNpcCdn3_c[36];
+extern "C" u8 m_seq29_funcTbl__11daNpcCdn3_c[36];
+extern "C" u8 m_seq30_funcTbl__11daNpcCdn3_c[72];
+extern "C" u8 m_seq31_funcTbl__11daNpcCdn3_c[72];
+extern "C" u8 m_seq32_funcTbl__11daNpcCdn3_c[84];
+extern "C" u8 m_seq33_funcTbl__11daNpcCdn3_c[84];
+extern "C" u8 m_seq34_funcTbl__11daNpcCdn3_c[108];
+extern "C" u8 m_seq35_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq36_funcTbl__11daNpcCdn3_c[48];
+extern "C" u8 m_seq37_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq38_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq39_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq40_funcTbl__11daNpcCdn3_c[36];
+extern "C" u8 m_seq41_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq42_funcTbl__11daNpcCdn3_c[24];
+extern "C" u8 m_seq43_funcTbl__11daNpcCdn3_c[36];
 
 //
 // External References:
@@ -509,21 +614,21 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void abs();
 extern "C" void strcmp();
-extern "C" extern u8 const m_cylDat__10daNpcCd2_c[68];
+extern "C" u8 const m_cylDat__10daNpcCd2_c[68];
 extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 l_Cd2_HIO[16396];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
+extern "C" f32 Zero__4cXyz[3];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 __float_nan;
 
@@ -722,7 +827,7 @@ SECTION_DATA static void* lit_3955[3] = {
 #pragma pop
 
 /* 8097F788-8097F848 0000E0 00C0+00 1/2 0/0 0/0 .data            ActionTable__11daNpcCdn3_c */
-SECTION_DATA static u8 ActionTable__11daNpcCdn3_c[192] = {
+SECTION_DATA u8 daNpcCdn3_c::ActionTable[192] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -911,29 +1016,29 @@ SECTION_RODATA static u8 const lit_4037[4] = {
 COMPILER_STRIP_GATE(8097F540, &lit_4037);
 
 /* 8097F848-8097F8F8 -00001 00B0+00 5/5 0/0 0/0 .data            m_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static void* m_funcTbl__11daNpcCdn3_c[44] = {
-    (void*)&m_seq00_funcTbl__11daNpcCdn3_c, (void*)&m_seq01_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq02_funcTbl__11daNpcCdn3_c, (void*)&m_seq03_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq04_funcTbl__11daNpcCdn3_c, (void*)&m_seq05_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq06_funcTbl__11daNpcCdn3_c, (void*)&m_seq07_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq08_funcTbl__11daNpcCdn3_c, (void*)&m_seq09_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq10_funcTbl__11daNpcCdn3_c, (void*)&m_seq11_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq12_funcTbl__11daNpcCdn3_c, (void*)&m_seq13_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq14_funcTbl__11daNpcCdn3_c, (void*)&m_seq15_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq16_funcTbl__11daNpcCdn3_c, (void*)&m_seq17_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq18_funcTbl__11daNpcCdn3_c, (void*)&m_seq19_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq20_funcTbl__11daNpcCdn3_c, (void*)&m_seq21_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq22_funcTbl__11daNpcCdn3_c, (void*)&m_seq23_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq24_funcTbl__11daNpcCdn3_c, (void*)&m_seq25_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq26_funcTbl__11daNpcCdn3_c, (void*)&m_seq27_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq28_funcTbl__11daNpcCdn3_c, (void*)&m_seq29_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq30_funcTbl__11daNpcCdn3_c, (void*)&m_seq31_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq32_funcTbl__11daNpcCdn3_c, (void*)&m_seq33_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq34_funcTbl__11daNpcCdn3_c, (void*)&m_seq35_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq36_funcTbl__11daNpcCdn3_c, (void*)&m_seq37_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq38_funcTbl__11daNpcCdn3_c, (void*)&m_seq39_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq40_funcTbl__11daNpcCdn3_c, (void*)&m_seq41_funcTbl__11daNpcCdn3_c,
-    (void*)&m_seq42_funcTbl__11daNpcCdn3_c, (void*)&m_seq43_funcTbl__11daNpcCdn3_c,
+SECTION_DATA void* daNpcCdn3_c::m_funcTbl[44] = {
+    (void*)&daNpcCdn3_c::m_seq00_funcTbl, (void*)&daNpcCdn3_c::m_seq01_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq02_funcTbl, (void*)&daNpcCdn3_c::m_seq03_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq04_funcTbl, (void*)&daNpcCdn3_c::m_seq05_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq06_funcTbl, (void*)&daNpcCdn3_c::m_seq07_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq08_funcTbl, (void*)&daNpcCdn3_c::m_seq09_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq10_funcTbl, (void*)&daNpcCdn3_c::m_seq11_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq12_funcTbl, (void*)&daNpcCdn3_c::m_seq13_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq14_funcTbl, (void*)&daNpcCdn3_c::m_seq15_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq16_funcTbl, (void*)&daNpcCdn3_c::m_seq17_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq18_funcTbl, (void*)&daNpcCdn3_c::m_seq19_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq20_funcTbl, (void*)&daNpcCdn3_c::m_seq21_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq22_funcTbl, (void*)&daNpcCdn3_c::m_seq23_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq24_funcTbl, (void*)&daNpcCdn3_c::m_seq25_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq26_funcTbl, (void*)&daNpcCdn3_c::m_seq27_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq28_funcTbl, (void*)&daNpcCdn3_c::m_seq29_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq30_funcTbl, (void*)&daNpcCdn3_c::m_seq31_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq32_funcTbl, (void*)&daNpcCdn3_c::m_seq33_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq34_funcTbl, (void*)&daNpcCdn3_c::m_seq35_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq36_funcTbl, (void*)&daNpcCdn3_c::m_seq37_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq38_funcTbl, (void*)&daNpcCdn3_c::m_seq39_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq40_funcTbl, (void*)&daNpcCdn3_c::m_seq41_funcTbl,
+    (void*)&daNpcCdn3_c::m_seq42_funcTbl, (void*)&daNpcCdn3_c::m_seq43_funcTbl,
 };
 
 /* 8097F8F8-8097F904 -00001 000C+00 0/1 0/0 0/0 .data            @5102 */
@@ -947,7 +1052,7 @@ SECTION_DATA static void* lit_5102[3] = {
 #pragma pop
 
 /* 8097F904-8097F91C 00025C 0018+00 1/1 0/0 0/0 .data            m_seq00_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq00_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq00_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -963,7 +1068,7 @@ SECTION_DATA static void* lit_5103[3] = {
 #pragma pop
 
 /* 8097F928-8097F940 000280 0018+00 1/1 0/0 0/0 .data            m_seq01_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq01_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq01_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -979,7 +1084,7 @@ SECTION_DATA static void* lit_5104[3] = {
 #pragma pop
 
 /* 8097F94C-8097F964 0002A4 0018+00 1/1 0/0 0/0 .data            m_seq02_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq02_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq02_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -995,7 +1100,7 @@ SECTION_DATA static void* lit_5105[3] = {
 #pragma pop
 
 /* 8097F970-8097F988 0002C8 0018+00 1/1 0/0 0/0 .data            m_seq03_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq03_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq03_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -1011,7 +1116,7 @@ SECTION_DATA static void* lit_5106[3] = {
 #pragma pop
 
 /* 8097F994-8097F9AC 0002EC 0018+00 1/1 0/0 0/0 .data            m_seq04_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq04_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq04_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -1047,7 +1152,7 @@ SECTION_DATA static void* lit_5109[3] = {
 #pragma pop
 
 /* 8097F9D0-8097FA00 000328 0030+00 1/1 0/0 0/0 .data            m_seq05_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq05_funcTbl__11daNpcCdn3_c[48] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq05_funcTbl[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1084,7 +1189,7 @@ SECTION_DATA static void* lit_5112[3] = {
 #pragma pop
 
 /* 8097FA24-8097FA54 00037C 0030+00 1/1 0/0 0/0 .data            m_seq06_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq06_funcTbl__11daNpcCdn3_c[48] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq06_funcTbl[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1101,7 +1206,7 @@ SECTION_DATA static void* lit_5113[3] = {
 #pragma pop
 
 /* 8097FA60-8097FA78 0003B8 0018+00 1/1 0/0 0/0 .data            m_seq07_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq07_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq07_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -1167,7 +1272,7 @@ SECTION_DATA static void* lit_5119[3] = {
 #pragma pop
 
 /* 8097FAC0-8097FB14 000418 0054+00 1/1 0/0 0/0 .data            m_seq08_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq08_funcTbl__11daNpcCdn3_c[84] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq08_funcTbl[84] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1187,7 +1292,7 @@ SECTION_DATA static void* lit_5120[3] = {
 #pragma pop
 
 /* 8097FB20-8097FB38 000478 0018+00 1/1 0/0 0/0 .data            m_seq09_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq09_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq09_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -1203,7 +1308,7 @@ SECTION_DATA static void* lit_5121[3] = {
 #pragma pop
 
 /* 8097FB44-8097FB5C 00049C 0018+00 1/1 0/0 0/0 .data            m_seq10_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq10_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq10_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -1259,7 +1364,7 @@ SECTION_DATA static void* lit_5126[3] = {
 #pragma pop
 
 /* 8097FB98-8097FBE0 0004F0 0048+00 1/1 0/0 0/0 .data            m_seq11_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq11_funcTbl__11daNpcCdn3_c[72] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq11_funcTbl[72] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1278,7 +1383,7 @@ SECTION_DATA static void* lit_5127[3] = {
 #pragma pop
 
 /* 8097FBEC-8097FC04 000544 0018+00 1/1 0/0 0/0 .data            m_seq12_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq12_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq12_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -1334,7 +1439,7 @@ SECTION_DATA static void* lit_5132[3] = {
 #pragma pop
 
 /* 8097FC40-8097FC88 000598 0048+00 1/1 0/0 0/0 .data            m_seq13_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq13_funcTbl__11daNpcCdn3_c[72] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq13_funcTbl[72] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1353,7 +1458,7 @@ SECTION_DATA static void* lit_5133[3] = {
 #pragma pop
 
 /* 8097FC94-8097FCAC 0005EC 0018+00 1/1 0/0 0/0 .data            m_seq14_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq14_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq14_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -1369,7 +1474,7 @@ SECTION_DATA static void* lit_5134[3] = {
 #pragma pop
 
 /* 8097FCB8-8097FCD0 000610 0018+00 1/1 0/0 0/0 .data            m_seq15_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq15_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq15_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -1435,7 +1540,7 @@ SECTION_DATA static void* lit_5140[3] = {
 #pragma pop
 
 /* 8097FD18-8097FD6C 000670 0054+00 1/1 0/0 0/0 .data            m_seq16_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq16_funcTbl__11daNpcCdn3_c[84] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq16_funcTbl[84] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1455,7 +1560,7 @@ SECTION_DATA static void* lit_5141[3] = {
 #pragma pop
 
 /* 8097FD78-8097FD90 0006D0 0018+00 1/1 0/0 0/0 .data            m_seq17_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq17_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq17_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -1471,7 +1576,7 @@ SECTION_DATA static void* lit_5142[3] = {
 #pragma pop
 
 /* 8097FD9C-8097FDB4 0006F4 0018+00 1/1 0/0 0/0 .data            m_seq18_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq18_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq18_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -1537,7 +1642,7 @@ SECTION_DATA static void* lit_5148[3] = {
 #pragma pop
 
 /* 8097FDFC-8097FE50 000754 0054+00 1/1 0/0 0/0 .data            m_seq19_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq19_funcTbl__11daNpcCdn3_c[84] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq19_funcTbl[84] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1557,7 +1662,7 @@ SECTION_DATA static void* lit_5149[3] = {
 #pragma pop
 
 /* 8097FE5C-8097FE74 0007B4 0018+00 1/1 0/0 0/0 .data            m_seq20_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq20_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq20_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -1573,7 +1678,7 @@ SECTION_DATA static void* lit_5150[3] = {
 #pragma pop
 
 /* 8097FE80-8097FE98 0007D8 0018+00 1/1 0/0 0/0 .data            m_seq21_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq21_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq21_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -1609,7 +1714,7 @@ SECTION_DATA static void* lit_5153[3] = {
 #pragma pop
 
 /* 8097FEBC-8097FEEC 000814 0030+00 1/1 0/0 0/0 .data            m_seq22_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq22_funcTbl__11daNpcCdn3_c[48] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq22_funcTbl[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1676,7 +1781,7 @@ SECTION_DATA static void* lit_5159[3] = {
 #pragma pop
 
 /* 8097FF34-8097FF88 00088C 0054+00 1/1 0/0 0/0 .data            m_seq23_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq23_funcTbl__11daNpcCdn3_c[84] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq23_funcTbl[84] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1726,7 +1831,7 @@ SECTION_DATA static void* lit_5163[3] = {
 #pragma pop
 
 /* 8097FFB8-8097FFF4 000910 003C+00 1/1 0/0 0/0 .data            m_seq24_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq24_funcTbl__11daNpcCdn3_c[60] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq24_funcTbl[60] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1794,7 +1899,7 @@ SECTION_DATA static void* lit_5169[3] = {
 #pragma pop
 
 /* 8098003C-80980090 000994 0054+00 1/1 0/0 0/0 .data            m_seq25_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq25_funcTbl__11daNpcCdn3_c[84] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq25_funcTbl[84] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1824,7 +1929,7 @@ SECTION_DATA static void* lit_5171[3] = {
 #pragma pop
 
 /* 809800A8-809800CC 000A00 0024+00 1/1 0/0 0/0 .data            m_seq26_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq26_funcTbl__11daNpcCdn3_c[36] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq26_funcTbl[36] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1841,7 +1946,7 @@ SECTION_DATA static void* lit_5172[3] = {
 #pragma pop
 
 /* 809800D8-809800F0 000A30 0018+00 1/1 0/0 0/0 .data            m_seq27_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq27_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq27_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -1867,7 +1972,7 @@ SECTION_DATA static void* lit_5174[3] = {
 #pragma pop
 
 /* 80980108-8098012C 000A60 0024+00 1/1 0/0 0/0 .data            m_seq28_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq28_funcTbl__11daNpcCdn3_c[36] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq28_funcTbl[36] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1894,7 +1999,7 @@ SECTION_DATA static void* lit_5176[3] = {
 #pragma pop
 
 /* 80980144-80980168 000A9C 0024+00 1/1 0/0 0/0 .data            m_seq29_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq29_funcTbl__11daNpcCdn3_c[36] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq29_funcTbl[36] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1951,7 +2056,7 @@ SECTION_DATA static void* lit_5181[3] = {
 #pragma pop
 
 /* 809801A4-809801EC 000AFC 0048+00 1/1 0/0 0/0 .data            m_seq30_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq30_funcTbl__11daNpcCdn3_c[72] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq30_funcTbl[72] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -2010,7 +2115,7 @@ SECTION_DATA static void* lit_5186[3] = {
 #pragma pop
 
 /* 80980228-80980270 000B80 0048+00 1/1 0/0 0/0 .data            m_seq31_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq31_funcTbl__11daNpcCdn3_c[72] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq31_funcTbl[72] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -2079,7 +2184,7 @@ SECTION_DATA static void* lit_5192[3] = {
 #pragma pop
 
 /* 809802B8-8098030C 000C10 0054+00 1/1 0/0 0/0 .data            m_seq32_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq32_funcTbl__11daNpcCdn3_c[84] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq32_funcTbl[84] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -2149,7 +2254,7 @@ SECTION_DATA static void* lit_5198[3] = {
 #pragma pop
 
 /* 80980354-809803A8 000CAC 0054+00 1/1 0/0 0/0 .data            m_seq33_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq33_funcTbl__11daNpcCdn3_c[84] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq33_funcTbl[84] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -2239,7 +2344,7 @@ SECTION_DATA static void* lit_5206[3] = {
 #pragma pop
 
 /* 80980408-80980474 000D60 006C+00 1/1 0/0 0/0 .data            m_seq34_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq34_funcTbl__11daNpcCdn3_c[108] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq34_funcTbl[108] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -2260,7 +2365,7 @@ SECTION_DATA static void* lit_5207[3] = {
 #pragma pop
 
 /* 80980480-80980498 000DD8 0018+00 1/1 0/0 0/0 .data            m_seq35_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq35_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq35_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -2296,7 +2401,7 @@ SECTION_DATA static void* lit_5210[3] = {
 #pragma pop
 
 /* 809804BC-809804EC 000E14 0030+00 1/1 0/0 0/0 .data            m_seq36_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq36_funcTbl__11daNpcCdn3_c[48] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq36_funcTbl[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -2313,7 +2418,7 @@ SECTION_DATA static void* lit_5211[3] = {
 #pragma pop
 
 /* 809804F8-80980510 000E50 0018+00 1/1 0/0 0/0 .data            m_seq37_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq37_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq37_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -2329,7 +2434,7 @@ SECTION_DATA static void* lit_5212[3] = {
 #pragma pop
 
 /* 8098051C-80980534 000E74 0018+00 1/1 0/0 0/0 .data            m_seq38_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq38_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq38_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -2345,7 +2450,7 @@ SECTION_DATA static void* lit_5213[3] = {
 #pragma pop
 
 /* 80980540-80980558 000E98 0018+00 1/1 0/0 0/0 .data            m_seq39_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq39_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq39_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -2371,7 +2476,7 @@ SECTION_DATA static void* lit_5215[3] = {
 #pragma pop
 
 /* 80980570-80980594 000EC8 0024+00 1/1 0/0 0/0 .data            m_seq40_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq40_funcTbl__11daNpcCdn3_c[36] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq40_funcTbl[36] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -2388,7 +2493,7 @@ SECTION_DATA static void* lit_5216[3] = {
 #pragma pop
 
 /* 809805A0-809805B8 000EF8 0018+00 1/1 0/0 0/0 .data            m_seq41_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq41_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq41_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -2404,7 +2509,7 @@ SECTION_DATA static void* lit_5217[3] = {
 #pragma pop
 
 /* 809805C4-809805DC 000F1C 0018+00 1/1 0/0 0/0 .data            m_seq42_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq42_funcTbl__11daNpcCdn3_c[24] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq42_funcTbl[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -2430,7 +2535,7 @@ SECTION_DATA static void* lit_5219[3] = {
 #pragma pop
 
 /* 809805F4-80980618 000F4C 0024+00 1/1 0/0 0/0 .data            m_seq43_funcTbl__11daNpcCdn3_c */
-SECTION_DATA static u8 m_seq43_funcTbl__11daNpcCdn3_c[36] = {
+SECTION_DATA u8 daNpcCdn3_c::m_seq43_funcTbl[36] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

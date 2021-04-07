@@ -18,6 +18,17 @@ struct mDoExt_morf_c {
     /* 8000FBC0 */ void frameUpdate();
 };
 
+struct J3DModelData {};
+
+struct J3DModel {
+    /* 80327100 */ void initialize();
+    /* 80327184 */ void entryModelData(J3DModelData*, u32, u32);
+    /* 803275FC */ void newDifferedDisplayList(u32);
+    /* 8032767C */ void lock();
+    /* 803276B4 */ void unlock();
+    /* 803279A0 */ void diff();
+};
+
 struct Vec {};
 
 struct cXyz {
@@ -28,17 +39,6 @@ struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
     /* 80266CBC */ void outprod(Vec const&) const;
     /* 80266F48 */ void normalizeZP();
-};
-
-struct J3DModelData {};
-
-struct J3DModel {
-    /* 80327100 */ void initialize();
-    /* 80327184 */ void entryModelData(J3DModelData*, u32, u32);
-    /* 803275FC */ void newDifferedDisplayList(u32);
-    /* 8032767C */ void lock();
-    /* 803276B4 */ void unlock();
-    /* 803279A0 */ void diff();
 };
 
 struct mDoExt_invisibleModel {
@@ -54,15 +54,18 @@ struct mDoExt_invJntPacket {
 };
 
 struct J3DMaterialTable;
-struct J3DAnmTevRegKey {
-    /* 8032B780 */ void searchUpdateMaterialID(J3DMaterialTable*);
-};
-
 struct J3DAnmColor {
     /* 8032A8A4 */ void searchUpdateMaterialID(J3DMaterialTable*);
 };
 
-struct J3DAnmTexPattern;
+struct J3DAnmTexPattern {
+    /* 8032B004 */ void searchUpdateMaterialID(J3DMaterialTable*);
+};
+
+struct J3DAnmTevRegKey {
+    /* 8032B780 */ void searchUpdateMaterialID(J3DMaterialTable*);
+};
+
 struct J3DAnmTextureSRTKey {
     /* 8032B0C0 */ void searchUpdateMaterialID(J3DMaterialTable*);
 };
@@ -72,10 +75,6 @@ struct J3DMaterialTable {
     /* 8032FBC8 */ void entryTexNoAnimator(J3DAnmTexPattern*);
     /* 8032FCC4 */ void entryTexMtxAnimator(J3DAnmTextureSRTKey*);
     /* 8032FE70 */ void entryTevRegAnimator(J3DAnmTevRegKey*);
-};
-
-struct J3DAnmTexPattern {
-    /* 8032B004 */ void searchUpdateMaterialID(J3DMaterialTable*);
 };
 
 struct mDoExt_btpAnm {
@@ -139,14 +138,14 @@ struct mDoExt_MtxCalcAnmBlendTbl {
 
 struct mDoExt_McaMorfCallBack2_c {};
 
+struct J3DTransformInfo {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct Z2Creature {
     /* 802C0628 */ void initAnime(void*, bool, f32, f32);
     /* 802C06D0 */ void updateAnime(f32, f32);
 };
-
-struct mDoExt_McaMorfCallBack1_c {};
-
-struct J3DTransformInfo {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -213,9 +212,9 @@ struct mDoExt_3DlineMatSortPacket {
     /* 80014E20 */ ~mDoExt_3DlineMatSortPacket();
 };
 
-struct _GXColor {};
-
 struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct ResTIMG {};
 
@@ -237,14 +236,14 @@ struct mDoExt_3DlineMat0_c {
     /* 80014E84 */ bool getMaterialID();
 };
 
-struct J3DDrawBuffer;
+struct J3DPacket;
+struct J3DDrawBuffer {
+    /* 8032548C */ void entryImm(J3DPacket*, u16);
+};
+
 struct J3DPacket {
     /* 8000E680 */ ~J3DPacket();
     /* 80312750 */ bool entry(J3DDrawBuffer*);
-};
-
-struct J3DDrawBuffer {
-    /* 8032548C */ void entryImm(J3DPacket*, u16);
 };
 
 struct dDlst_list_c {
@@ -291,6 +290,8 @@ struct JKRHeap {
     /* 802CE448 */ void destroy();
     /* 802CE500 */ void free(void*, JKRHeap*);
     /* 802CEB78 */ void setErrorFlag(bool);
+
+    static u8 sCurrentHeap[4];
 };
 
 struct JUTResFont {
@@ -412,6 +413,9 @@ struct J3DTevBlock {
 
 struct J3DSys {
     /* 8031073C */ void reinitGX();
+
+    static u8 mCurrentMtx[48];
+    static f32 mParentS[3];
 };
 
 struct J3DShapePacket {
@@ -420,6 +424,8 @@ struct J3DShapePacket {
 
 struct J3DShape {
     /* 80315300 */ void loadPreDrawSetting() const;
+
+    static u8 sOldVcdVatCmd[4];
 };
 
 struct J3DBlend {};
@@ -485,6 +491,8 @@ struct J3DMtxCalc {
     /* 80014E9C */ bool getAnmTransform();
     /* 80014EA4 */ void setWeight(u8, f32);
     /* 80014EA8 */ void getWeight(u8) const;
+
+    static u8 mJoint[4];
 };
 
 struct J3DMaterialAnm {
@@ -529,6 +537,8 @@ struct J3DFrameCtrl {
 
 struct J3DDisplayListObj {
     /* 80312618 */ void callDL() const;
+
+    static u8 sGDLObj[16];
 };
 
 struct J3DColorChan {
@@ -926,14 +936,14 @@ extern "C" extern void* __vt__9J3DPacket[5];
 extern "C" extern void* __vt__8J3DModel[9];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern f32 mParentS__6J3DSys[3];
-extern "C" extern u8 sGDLObj__17J3DDisplayListObj[16];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" f32 mParentS__6J3DSys[3];
+extern "C" u8 sGDLObj__17J3DDisplayListObj[16];
 extern "C" extern u32 __float_nan;
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
-extern "C" extern u8 mJoint__10J3DMtxCalc[4];
+extern "C" u8 sCurrentHeap__7JKRHeap[4];
+extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
+extern "C" u8 mJoint__10J3DMtxCalc[4];
 extern "C" extern u8 __GDCurrentDL[4];
 extern "C" extern u32 j3dDefaultTevOrderInfoNull;
 extern "C" extern u32 j3dDefaultIndTexOrderNull;

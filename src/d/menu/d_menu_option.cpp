@@ -11,10 +11,19 @@
 // Types:
 //
 
+struct mDoGph_gInf_c {
+    static u8 mFader[4];
+};
+
 struct JKRHeap {};
 
 struct mDoDvdThd_mountArchive_c {
     /* 80015E14 */ void create(char const*, u8, JKRHeap*);
+};
+
+struct mDoCPd_c {
+    static u8 m_gamePad[16];
+    static u8 m_cpadInfo[256];
 };
 
 struct dSv_player_config_c {
@@ -179,6 +188,8 @@ struct Z2SeMgr {
 
 struct Z2AudioMgr {
     /* 802CD888 */ void setOutputMode(u32);
+
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct ResTIMG {};
@@ -189,6 +200,8 @@ struct JUTGamePad {
 
         /* 802E18CC */ void startPatternedRumble(void*, JUTGamePad::CRumble::ERumble, u32);
     };
+
+    static u8 sRumbleSupported[4];
 };
 
 struct JKRFileLoader {
@@ -406,14 +419,14 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void strcpy();
 extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 m_gamePad__8mDoCPd_c[16];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 m_gamePad__8mDoCPd_c[16];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_drawHIO[3880];
 extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 sRumbleSupported__10JUTGamePad[4];
+extern "C" u8 mFader__13mDoGph_gInf_c[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sRumbleSupported__10JUTGamePad[4];
 
 //
 // Declarations:

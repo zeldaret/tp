@@ -13,9 +13,15 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -25,9 +31,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -74,6 +78,8 @@ struct daNpcF_c {
     /* 809AF898 */ bool setExpressionAnm(int, bool);
     /* 809AF8A0 */ bool setExpressionBtp(int);
     /* 809AF8A8 */ void setExpression(int, f32);
+
+    static u8 mCcDCyl[68];
 };
 
 struct daNpcF_ActorMngr_c {
@@ -108,6 +114,8 @@ struct daNpcDrSol_c {
 
 struct daNpcDrSol_Param_c {
     /* 809AF938 */ ~daNpcDrSol_Param_c();
+
+    static u8 const m[108];
 };
 
 struct dSv_info_c {
@@ -304,6 +312,7 @@ extern "C" void adjustShapeAngle__12daNpcDrSol_cFv();
 extern "C" void __dt__18daNpcDrSol_Param_cFv();
 extern "C" static void func_809AF980();
 extern "C" static void func_809AF988();
+extern "C" u8 const m__18daNpcDrSol_Param_c[108];
 extern "C" extern char const* const d_a_npc_drainSol__stringBase0;
 
 //
@@ -392,12 +401,12 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcF_c[68];
+extern "C" u8 mCcDCyl__8daNpcF_c[68];
 extern "C" extern void* __vt__8daNpcF_c[18];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" void __register_global_object();
@@ -603,7 +612,7 @@ asm daNpcDrSol_c::~daNpcDrSol_c() {
 
 /* ############################################################################################## */
 /* 809AF9A4-809AFA10 000000 006C+00 5/5 0/0 0/0 .rodata          m__18daNpcDrSol_Param_c */
-SECTION_RODATA static u8 const m__18daNpcDrSol_Param_c[108] = {
+SECTION_RODATA u8 const daNpcDrSol_Param_c::m[108] = {
     0x42, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x43, 0x20, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
@@ -612,7 +621,7 @@ SECTION_RODATA static u8 const m__18daNpcDrSol_Param_c[108] = {
     0x42, 0x70, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0xC3, 0x96, 0x00, 0x00,
     0x00, 0x3C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(809AF9A4, &m__18daNpcDrSol_Param_c);
+COMPILER_STRIP_GATE(809AF9A4, &daNpcDrSol_Param_c::m);
 
 /* 809AFA10-809AFA14 00006C 0004+00 0/1 0/0 0/0 .rodata          @4140 */
 #pragma push

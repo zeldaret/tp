@@ -11,9 +11,15 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -23,9 +29,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -39,8 +43,6 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct daNpcT_motionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -49,11 +51,13 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80AC3CE8 */ ~daNpcT_MotionSeqMngr_c();
 };
 
+struct daNpcT_motionAnmData_c {};
+
+struct J3DJoint {};
+
 struct daNpcT_faceMotionAnmData_c {};
 
 struct daNpcT_evtData_c {};
-
-struct J3DJoint {};
 
 struct daNpc_Saru_c {
     /* 80AC042C */ ~daNpc_Saru_c();
@@ -97,10 +101,15 @@ struct daNpc_Saru_c {
     /* 80AC4474 */ s32 getHeadJointNo();
     /* 80AC447C */ s32 getNeckJointNo();
     /* 80AC4484 */ bool getBackboneJointNo();
+
+    static void* mCutNameList[4];
+    static u8 mCutList[48];
 };
 
 struct daNpc_Saru_Param_c {
     /* 80AC448C */ ~daNpc_Saru_Param_c();
+
+    static u8 const m[144];
 };
 
 struct dCcD_GObjInf {
@@ -108,14 +117,14 @@ struct dCcD_GObjInf {
     /* 800840E4 */ ~dCcD_GObjInf();
 };
 
+struct J3DModel {};
+
 struct cXyz {
     /* 80266AE4 */ void operator+(Vec const&) const;
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80AC360C */ ~cXyz();
     /* 80AC3CE4 */ cXyz();
 };
-
-struct J3DModel {};
 
 struct _GXColorS10 {};
 
@@ -181,6 +190,10 @@ struct daNpcT_c {
     /* 80AC42B8 */ void changeBck(int*, int*);
     /* 80AC42BC */ void changeBtp(int*, int*);
     /* 80AC42C0 */ void changeBtk(int*, int*);
+
+    static u8 mCcDCyl[68];
+    static u8 mFindActorPtrs[200];
+    static u8 mFindCount[4];
 };
 
 struct daNpcT_Path_c {
@@ -437,7 +450,10 @@ extern "C" bool getBackboneJointNo__12daNpc_Saru_cFv();
 extern "C" void __dt__18daNpc_Saru_Param_cFv();
 extern "C" static void func_80AC44D4();
 extern "C" static void func_80AC44DC();
+extern "C" u8 const m__18daNpc_Saru_Param_c[144];
 extern "C" extern char const* const d_a_npc_saru__stringBase0;
+extern "C" void* mCutNameList__12daNpc_Saru_c[4];
+extern "C" u8 mCutList__12daNpc_Saru_c[48];
 
 //
 // External References:
@@ -592,18 +608,18 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
+extern "C" u8 mCcDCyl__8daNpcT_c[68];
 extern "C" extern void* __vt__8daNpcT_c[49];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mFindActorPtrs__8daNpcT_c[200];
+extern "C" u8 mFindActorPtrs__8daNpcT_c[200];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mFindCount__8daNpcT_c[4];
+extern "C" u8 mFindCount__8daNpcT_c[4];
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 extern "C" void __register_global_object();
 
@@ -795,7 +811,7 @@ SECTION_DATA static u8 l_motionSequenceData[176] = {
 #pragma pop
 
 /* 80AC4D90-80AC4DA0 -00001 0010+00 1/1 0/0 0/0 .data            mCutNameList__12daNpc_Saru_c */
-SECTION_DATA static void* mCutNameList__12daNpc_Saru_c[4] = {
+SECTION_DATA void* daNpc_Saru_c::mCutNameList[4] = {
     (void*)&d_a_npc_saru__stringBase0,
     (void*)(((char*)&d_a_npc_saru__stringBase0) + 0x29),
     (void*)(((char*)&d_a_npc_saru__stringBase0) + 0x35),
@@ -833,7 +849,7 @@ SECTION_DATA static void* lit_3844[3] = {
 #pragma pop
 
 /* 80AC4DC4-80AC4DF4 000720 0030+00 1/2 0/0 0/0 .data            mCutList__12daNpc_Saru_c */
-SECTION_DATA static u8 mCutList__12daNpc_Saru_c[48] = {
+SECTION_DATA u8 daNpc_Saru_c::mCutList[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1037,7 +1053,7 @@ asm daNpc_Saru_c::~daNpc_Saru_c() {
 
 /* ############################################################################################## */
 /* 80AC44F8-80AC4588 000000 0090+00 9/9 0/0 0/0 .rodata          m__18daNpc_Saru_Param_c */
-SECTION_RODATA static u8 const m__18daNpc_Saru_Param_c[144] = {
+SECTION_RODATA u8 const daNpc_Saru_Param_c::m[144] = {
     0x43, 0x0C, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x44, 0x09, 0x80, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x43, 0x0C, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x42, 0x70, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1048,7 +1064,7 @@ SECTION_RODATA static u8 const m__18daNpc_Saru_Param_c[144] = {
     0xC1, 0xA0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC1, 0xA0, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00,
     0x42, 0x48, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00, 0x00, 0xB4, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AC44F8, &m__18daNpc_Saru_Param_c);
+COMPILER_STRIP_GATE(80AC44F8, &daNpc_Saru_Param_c::m);
 
 /* 80AC4588-80AC4598 000090 0010+00 0/1 0/0 0/0 .rodata          heapSize$3999 */
 #pragma push

@@ -13,6 +13,8 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
@@ -21,11 +23,11 @@ struct cXyz {
     /* 80C9453C */ ~cXyz();
 };
 
-struct csXyz {};
-
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -54,6 +56,8 @@ struct daObj_Mie_c {
 
 struct daObj_Mie_Param_c {
     /* 80C95A40 */ ~daObj_Mie_Param_c();
+
+    static u8 const m[44];
 };
 
 struct daNpc_Pouya_c {
@@ -93,6 +97,8 @@ struct _GXTexObj {};
 
 struct dDlst_shadowControl_c {
     /* 80055F84 */ void setSimple(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
+
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_GStts {
@@ -185,6 +191,10 @@ struct cBgS {
     /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
 };
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 //
@@ -226,6 +236,7 @@ extern "C" void __sinit_d_a_obj_mie_cpp();
 extern "C" void __dt__17daObj_Mie_Param_cFv();
 extern "C" static void func_80C95A88();
 extern "C" static void func_80C95A90();
+extern "C" u8 const m__17daObj_Mie_Param_c[44];
 extern "C" extern char const* const d_a_obj_mie__stringBase0;
 
 //
@@ -316,11 +327,11 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 extern "C" void getType__13daNpc_Pouya_cFv();
 extern "C" void __register_global_object();
@@ -558,12 +569,12 @@ asm void daObj_Mie_c::Delete() {
 
 /* ############################################################################################## */
 /* 80C95AAC-80C95AD8 000000 002C+00 3/3 0/0 0/0 .rodata          m__17daObj_Mie_Param_c */
-SECTION_RODATA static u8 const m__17daObj_Mie_Param_c[44] = {
+SECTION_RODATA u8 const daObj_Mie_Param_c::m[44] = {
     0x00, 0x00, 0x00, 0x00, 0xC0, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x42, 0xC8, 0x00,
     0x00, 0x43, 0x7F, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0x41, 0x60,
     0x00, 0x00, 0x42, 0x14, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x41, 0x90, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C95AAC, &m__17daObj_Mie_Param_c);
+COMPILER_STRIP_GATE(80C95AAC, &daObj_Mie_Param_c::m);
 
 /* 80C95AD8-80C95B08 00002C 0030+00 1/1 0/0 0/0 .rodata          l_ccDObjData */
 SECTION_RODATA static u8 const l_ccDObjData[48] = {

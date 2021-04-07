@@ -15,6 +15,10 @@ struct JUtility {
     struct TColor {};
 };
 
+struct JUTVideo {
+    static u8 sManager[4];
+};
+
 struct JUTFont {
     /* 802DED70 */ void setCharColor(JUtility::TColor);
     /* 802DEE28 */ void drawString_size_scale(f32, f32, f32, f32, char const*, u32, bool);
@@ -24,10 +28,14 @@ struct JUTDirectPrint {
     /* 802E4288 */ void erase(int, int, int, int);
     /* 802E46D8 */ void drawString(u16, u16, char*);
     /* 802E4798 */ void setCharColor(JUtility::TColor);
+
+    static u8 sDirectPrint[4 + 4 /* padding */];
 };
 
 struct JKRHeap {
     /* 802CE474 */ void alloc(u32, int, JKRHeap*);
+
+    static u8 sCurrentHeap[4];
 };
 
 struct JUTConsole {
@@ -57,6 +65,8 @@ struct JUTConsoleManager {
     /* 802E8384 */ void draw() const;
     /* 802E8450 */ void drawDirect(bool) const;
     /* 802E84C4 */ void setDirectConsole(JUTConsole*);
+
+    static u8 sManager[4];
 };
 
 struct JKRDisposer {
@@ -117,6 +127,7 @@ extern "C" void JUTReportConsole();
 extern "C" void JUTWarningConsole_f();
 extern "C" void JUTWarningConsole();
 extern "C" extern char const* const JUTConsole__stringBase0;
+extern "C" u8 sManager__17JUTConsoleManager[4];
 
 //
 // External References:
@@ -154,9 +165,9 @@ extern "C" void vsnprintf();
 extern "C" void strlen();
 extern "C" extern void* __vt__14J2DGrafContext[10];
 extern "C" extern void* __vt__13J2DOrthoGraph[10];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
-extern "C" extern u8 sManager__8JUTVideo[4];
+extern "C" u8 sCurrentHeap__7JKRHeap[4];
+extern "C" u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
+extern "C" u8 sManager__8JUTVideo[4];
 
 //
 // Declarations:
@@ -164,8 +175,7 @@ extern "C" extern u8 sManager__8JUTVideo[4];
 
 /* ############################################################################################## */
 /* 80451570-80451574 000A70 0004+00 4/4 7/7 0/0 .sbss            sManager__17JUTConsoleManager */
-extern u8 sManager__17JUTConsoleManager[4];
-u8 sManager__17JUTConsoleManager[4];
+u8 JUTConsoleManager::sManager[4];
 
 /* 802E7354-802E73E4 2E1C94 0090+00 0/0 1/1 0/0 .text            create__10JUTConsoleFUiUiP7JKRHeap
  */

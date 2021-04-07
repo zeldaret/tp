@@ -13,6 +13,10 @@
 
 struct mesg_flow_node_branch {};
 
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
+};
+
 struct fopAc_ac_c {};
 
 struct daNpcT_motionAnmData_c {};
@@ -197,6 +201,10 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct ShopCam_action_c {
     /* 80196544 */ void setCamDataIdx(fopAc_ac_c*, fopAc_ac_c*, fopAc_ac_c*, fopAc_ac_c*, cXyz*,
                                       cXyz*);
@@ -379,11 +387,11 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void strcmp();
 extern "C" extern void* __vt__9STControl[4];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_cursorHIO[68 + 4 /* padding */];
 extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

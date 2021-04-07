@@ -22,6 +22,13 @@ struct daItemBase_c {
     /* 80037AE4 */ void dead();
     /* 80037AF4 */ void chkDead();
     /* 8014475C */ void CreateItemHeap(char const*, s16, s16, s16, s16, s16, s16, s16);
+
+    static u8 const m_data[56];
+};
+
+struct dItem_data {
+    static void* item_resource[1530];
+    static void* field_item_res[1020];
 };
 
 //
@@ -37,15 +44,15 @@ extern "C" void dead__12daItemBase_cFv();
 extern "C" void chkDead__12daItemBase_cFv();
 extern "C" void CheckItemCreateHeap__FP10fopAc_ac_c();
 extern "C" void CheckFieldItemCreateHeap__FP10fopAc_ac_c();
-extern "C" extern u8 const m_data__12daItemBase_c[56];
+extern "C" u8 const m_data__12daItemBase_c[56];
 
 //
 // External References:
 //
 
 extern "C" void CreateItemHeap__12daItemBase_cFPCcsssssss();
-extern "C" extern void* item_resource__10dItem_data[1530];
-extern "C" extern void* field_item_res__10dItem_data[1020];
+extern "C" void* item_resource__10dItem_data[1530];
+extern "C" void* field_item_res__10dItem_data[1020];
 
 //
 // Declarations:
@@ -144,10 +151,10 @@ asm void CheckFieldItemCreateHeap(fopAc_ac_c* param_0) {
 
 /* ############################################################################################## */
 /* 803792B0-803792E8 005910 0038+00 0/0 1/1 0/0 .rodata          m_data__12daItemBase_c */
-SECTION_RODATA extern u8 const m_data__12daItemBase_c[56] = {
+SECTION_RODATA u8 const daItemBase_c::m_data[56] = {
     0xC0, 0x90, 0x00, 0x00, 0x3F, 0x1E, 0xB8, 0x52, 0x42, 0x34, 0x00, 0x00, 0x41, 0x20,
     0x00, 0x00, 0x40, 0xC0, 0x00, 0x00, 0x00, 0x01, 0x00, 0xF0, 0x00, 0x3C, 0x0F, 0xA0,
     0x00, 0x78, 0x00, 0x00, 0xC0, 0x80, 0x00, 0x00, 0x40, 0x60, 0x00, 0x00, 0x04, 0x4C,
     0x0B, 0xB8, 0x41, 0xB8, 0x00, 0x00, 0xC0, 0xC0, 0x00, 0x00, 0x00, 0x0D, 0x00, 0x0A,
 };
-COMPILER_STRIP_GATE(803792B0, &m_data__12daItemBase_c);
+COMPILER_STRIP_GATE(803792B0, &daItemBase_c::m_data);

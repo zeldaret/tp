@@ -20,6 +20,8 @@ struct mDoMtx_stack_c {
     /* 8000CD14 */ void pop();
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -32,6 +34,8 @@ struct daObjCatDoor_c {
     /* 80BC43F4 */ void initBaseMtx();
     /* 80BC4454 */ void setBaseMtx();
     /* 80BC4560 */ void calcOpen();
+
+    static u32 const M_attr;
 };
 
 struct dSv_info_c {
@@ -96,6 +100,7 @@ extern "C" static void daObjCatDoor_Execute__FP14daObjCatDoor_c();
 extern "C" static bool daObjCatDoor_IsDelete__FP14daObjCatDoor_c();
 extern "C" static void daObjCatDoor_Delete__FP14daObjCatDoor_c();
 extern "C" static void daObjCatDoor_Create__FP10fopAc_ac_c();
+extern "C" u32 const M_attr__14daObjCatDoor_c;
 extern "C" extern char const* const d_a_obj_catdoor__stringBase0;
 extern "C" extern void* g_profile_Obj_CatDoor[12];
 
@@ -137,7 +142,7 @@ extern "C" void _restgpr_29();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__4dBgW[65];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
@@ -148,8 +153,8 @@ extern "C" extern u8 j3dSys[284];
 
 /* ############################################################################################## */
 /* 80BC49B4-80BC49B8 000000 0004+00 3/3 0/0 0/0 .rodata          M_attr__14daObjCatDoor_c */
-SECTION_RODATA static u32 const M_attr__14daObjCatDoor_c = 0x001E0578;
-COMPILER_STRIP_GATE(80BC49B4, &M_attr__14daObjCatDoor_c);
+SECTION_RODATA u32 const daObjCatDoor_c::M_attr = 0x001E0578;
+COMPILER_STRIP_GATE(80BC49B4, &daObjCatDoor_c::M_attr);
 
 /* 80BC42B8-80BC42C4 000078 000C+00 1/1 0/0 1/1 .text            attr__14daObjCatDoor_cCFv */
 #pragma push

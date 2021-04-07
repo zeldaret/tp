@@ -35,6 +35,14 @@ struct JKRHeap {
 struct JPABaseShape {
     /* 8027A6DC */ JPABaseShape(u8 const*, JKRHeap*);
     /* 8027A7E8 */ void setGX(JPAEmitterWorkData*) const;
+
+    static u8 st_bm[12];
+    static u8 st_bf[40];
+    static u8 st_lo[64];
+    static u8 st_c[32];
+    static u8 st_ao[16];
+    static u8 st_ca[96];
+    static u8 st_aa[32 + 4 /* padding */];
 };
 
 struct JPABaseParticle {};
@@ -48,6 +56,10 @@ struct JGeometry {
 
 struct JPABaseEmitter {
     /* 8027EEB0 */ void calcEmitterGlobalPosition(JGeometry::TVec3<f32>*) const;
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 //
@@ -134,6 +146,13 @@ extern "C" void JPADrawParticleCallBack__FP18JPAEmitterWorkDataP15JPABaseParticl
 extern "C" static void makeColorTable__FPP8_GXColorPC16JPAClrAnmKeyDataUcsP7JKRHeap();
 extern "C" void __ct__12JPABaseShapeFPCUcP7JKRHeap();
 extern "C" void setGX__12JPABaseShapeCFP18JPAEmitterWorkData();
+extern "C" u8 st_bm__12JPABaseShape[12];
+extern "C" u8 st_bf__12JPABaseShape[40];
+extern "C" u8 st_lo__12JPABaseShape[64];
+extern "C" u8 st_c__12JPABaseShape[32];
+extern "C" u8 st_ao__12JPABaseShape[16];
+extern "C" u8 st_ca__12JPABaseShape[96];
+extern "C" u8 st_aa__12JPABaseShape[32 + 4 /* padding */];
 
 //
 // External References:
@@ -171,7 +190,7 @@ extern "C" void _restgpr_22();
 extern "C" void _restgpr_24();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_epsilon;
 
 //
@@ -1125,7 +1144,7 @@ asm JPABaseShape::JPABaseShape(u8 const* param_0, JKRHeap* param_1) {
 /* 803C4360-803C436C 021480 000C+00 0/1 0/0 0/0 .data            st_bm__12JPABaseShape */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 st_bm__12JPABaseShape[12] = {
+SECTION_DATA u8 JPABaseShape::st_bm[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02,
 };
 #pragma pop
@@ -1133,7 +1152,7 @@ SECTION_DATA static u8 st_bm__12JPABaseShape[12] = {
 /* 803C436C-803C4394 02148C 0028+00 0/1 0/0 0/0 .data            st_bf__12JPABaseShape */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 st_bf__12JPABaseShape[40] = {
+SECTION_DATA u8 JPABaseShape::st_bf[40] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00,
     0x00, 0x03, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04,
     0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x07,
@@ -1143,7 +1162,7 @@ SECTION_DATA static u8 st_bf__12JPABaseShape[40] = {
 /* 803C4394-803C43D4 0214B4 0040+00 0/1 0/0 0/0 .data            st_lo__12JPABaseShape */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 st_lo__12JPABaseShape[64] = {
+SECTION_DATA u8 JPABaseShape::st_lo[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x0C,
     0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x0E,
     0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x09,
@@ -1154,7 +1173,7 @@ SECTION_DATA static u8 st_lo__12JPABaseShape[64] = {
 /* 803C43D4-803C43F4 0214F4 0020+00 0/1 0/0 0/0 .data            st_c__12JPABaseShape */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 st_c__12JPABaseShape[32] = {
+SECTION_DATA u8 JPABaseShape::st_c[32] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x02,
     0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x07,
 };
@@ -1163,7 +1182,7 @@ SECTION_DATA static u8 st_c__12JPABaseShape[32] = {
 /* 803C43F4-803C4404 021514 0010+00 0/1 0/0 0/0 .data            st_ao__12JPABaseShape */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 st_ao__12JPABaseShape[16] = {
+SECTION_DATA u8 JPABaseShape::st_ao[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03,
 };
 #pragma pop
@@ -1171,7 +1190,7 @@ SECTION_DATA static u8 st_ao__12JPABaseShape[16] = {
 /* 803C4404-803C4464 021524 0060+00 0/1 0/0 0/0 .data            st_ca__12JPABaseShape */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 st_ca__12JPABaseShape[96] = {
+SECTION_DATA u8 JPABaseShape::st_ca[96] = {
     0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x0F,
     0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0F,
     0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0F,
@@ -1184,7 +1203,7 @@ SECTION_DATA static u8 st_ca__12JPABaseShape[96] = {
 /* 803C4464-803C4488 021584 0020+04 0/1 0/0 0/0 .data            st_aa__12JPABaseShape */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 st_aa__12JPABaseShape[32 + 4 /* padding */] = {
+SECTION_DATA u8 JPABaseShape::st_aa[32 + 4 /* padding */] = {
     0x00,
     0x00,
     0x00,

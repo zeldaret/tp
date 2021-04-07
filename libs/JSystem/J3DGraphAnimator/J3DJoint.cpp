@@ -15,6 +15,12 @@ struct Vec {};
 
 struct J3DTransformInfo {};
 
+struct J3DSys {
+    static u8 mCurrentMtx[48];
+    static f32 mCurrentS[3];
+    static f32 mParentS[3];
+};
+
 struct J3DMtxCalcJ3DSysInitMaya {
     /* 8032ECAC */ void init(Vec const&, f32 const (&)[3][4]);
 };
@@ -35,6 +41,11 @@ struct J3DMtxCalcCalcTransformBasic {
     /* 8032ED30 */ void calcTransform(J3DTransformInfo const&);
 };
 
+struct J3DMtxCalc {
+    static u8 mMtxBuffer[4];
+    static u8 mJoint[4];
+};
+
 struct J3DMaterial {
     /* 80316AB0 */ void setCurrentMtx();
 };
@@ -44,6 +55,12 @@ struct J3DJoint {
     /* 8032F170 */ J3DJoint();
     /* 8032F254 */ void entryIn();
     /* 8032F3F8 */ void recursiveCalc();
+
+    static u8 mCurrentMtxCalc[4 + 4 /* padding */];
+};
+
+struct J3DDrawBuffer {
+    static u8 entryNum[4 + 4 /* padding */];
 };
 
 //
@@ -59,6 +76,9 @@ extern "C" void appendChild__8J3DJointFP8J3DJoint();
 extern "C" void __ct__8J3DJointFv();
 extern "C" void entryIn__8J3DJointFv();
 extern "C" void recursiveCalc__8J3DJointFv();
+extern "C" u8 mMtxBuffer__10J3DMtxCalc[4];
+extern "C" u8 mJoint__10J3DMtxCalc[4];
+extern "C" u8 mCurrentMtxCalc__8J3DJoint[4 + 4 /* padding */];
 
 //
 // External References:
@@ -74,10 +94,10 @@ extern "C" void _savegpr_27();
 extern "C" void _restgpr_27();
 extern "C" extern u8 const j3dDefaultTransformInfo[32];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern f32 mCurrentS__6J3DSys[3];
-extern "C" extern f32 mParentS__6J3DSys[3];
-extern "C" extern u8 entryNum__13J3DDrawBuffer[4 + 4 /* padding */];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" f32 mCurrentS__6J3DSys[3];
+extern "C" f32 mParentS__6J3DSys[3];
+extern "C" u8 entryNum__13J3DDrawBuffer[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -121,12 +141,10 @@ asm void J3DMtxCalcJ3DSysInitMaya::init(Vec const& param_0, f32 const (&param_1)
 
 /* ############################################################################################## */
 /* 804515F0-804515F4 000AF0 0004+00 3/3 1/1 0/0 .sbss            mMtxBuffer__10J3DMtxCalc */
-extern u8 mMtxBuffer__10J3DMtxCalc[4];
-u8 mMtxBuffer__10J3DMtxCalc[4];
+u8 J3DMtxCalc::mMtxBuffer[4];
 
 /* 804515F4-804515F8 000AF4 0004+00 4/4 9/9 2/2 .sbss            mJoint__10J3DMtxCalc */
-extern u8 mJoint__10J3DMtxCalc[4];
-u8 mJoint__10J3DMtxCalc[4];
+u8 J3DMtxCalc::mJoint[4];
 
 /* 804564A0-804564A4 004AA0 0004+00 3/3 0/0 0/0 .sdata2          @922 */
 SECTION_SDATA2 static f32 lit_922 = 1.0f;
@@ -218,8 +236,7 @@ asm void J3DJoint::entryIn() {
 
 /* ############################################################################################## */
 /* 804515F8-80451600 000AF8 0004+04 1/1 1/1 0/0 .sbss            mCurrentMtxCalc__8J3DJoint */
-extern u8 mCurrentMtxCalc__8J3DJoint[4 + 4 /* padding */];
-u8 mCurrentMtxCalc__8J3DJoint[4 + 4 /* padding */];
+u8 J3DJoint::mCurrentMtxCalc[4 + 4 /* padding */];
 
 /* 8032F3F8-8032F5A8 329D38 01B0+00 0/0 1/1 0/0 .text            recursiveCalc__8J3DJointFv */
 #pragma push
