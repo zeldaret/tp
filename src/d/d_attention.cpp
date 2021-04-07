@@ -11,9 +11,9 @@
 // Types:
 //
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);

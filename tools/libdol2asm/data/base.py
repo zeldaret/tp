@@ -141,7 +141,7 @@ class ArbitraryData(Symbol):
         if self.data:
             assert self.size == len(self.data)
             if self.alignment > 0:
-                await builder.write_nonewline(f" __attribute__((aligned({self.alignment})))")
+                await builder.write_nonewline(f" ALIGN_DECL({self.alignment})")
 
             await builder.write(f" = {{")
             await self.export_u8_data(builder, self.data)
@@ -154,7 +154,7 @@ class ArbitraryData(Symbol):
             await builder.write("};")
         else:
             if self.alignment > 0:
-                await builder.write_nonewline(f" __attribute__((aligned({self.alignment})))")
+                await builder.write_nonewline(f" ALIGN_DECL({self.alignment})")
 
             await builder.write(";")
 
@@ -167,11 +167,12 @@ class ArbitraryData(Symbol):
         await self.export_declaration_body(exporter, builder)
 
         if self._section == ".rodata":
-            await builder.write_nonewline("SECTION_DEAD ")
-            await builder.write_nonewline("void* const ")
-            await builder.write_nonewline(f"cg_{self.addr:08X} = (void*)(")
-            await builder.write_nonewline(self.cpp_reference(None, self.addr))
-            await builder.write(f");")
+            await builder.write(f"COMPILER_STRIP_GATE({self.addr:08X}, {self.cpp_reference(None, self.addr)});")
+            #await builder.write_nonewline("SECTION_DEAD ")
+            #await builder.write_nonewline("void* const ")
+            #await builder.write_nonewline(f"cg_{self.addr:08X} = (void*)(")
+            #await builder.write_nonewline(self.cpp_reference(None, self.addr))
+            #await builder.write(f");")
 
         if self.requires_force_active:
             await builder.write(f"#pragma pop")

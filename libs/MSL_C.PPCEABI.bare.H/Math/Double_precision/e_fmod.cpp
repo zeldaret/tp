@@ -26,7 +26,7 @@ extern "C" void __ieee754_fmod();
 SECTION_RODATA static u8 const Zero[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803A2370 = (void*)(&Zero);
+COMPILER_STRIP_GATE(803A2370, &Zero);
 
 /* 80369B9C-80369ED8 3644DC 033C+00 0/0 1/1 0/0 .text            __ieee754_fmod */
 #pragma push

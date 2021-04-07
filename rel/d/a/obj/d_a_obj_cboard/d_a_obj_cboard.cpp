@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {};
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -148,8 +148,8 @@ asm void daObjBoard_c::setBaseMtx() {
 
 /* ############################################################################################## */
 /* 8057BDD0-8057BDD4 000000 0004+00 1/1 0/0 0/0 .rodata          @3636 */
-SECTION_RODATA static u32 const lit_3636 = 0x41200000;
-SECTION_DEAD void* const cg_8057BDD0 = (void*)(&lit_3636);
+SECTION_RODATA static f32 const lit_3636 = 10.0f;
+COMPILER_STRIP_GATE(8057BDD0, &lit_3636);
 
 /* 8057BE20-8057BE24 -00001 0004+00 2/2 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_cboard__stringBase0;

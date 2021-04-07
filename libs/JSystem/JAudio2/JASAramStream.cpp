@@ -452,7 +452,7 @@ asm void JASAramStream::channelProc() {
 SECTION_RODATA static u8 const OSC_RELEASE_TABLE[12] = {
     0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039B168 = (void*)(&OSC_RELEASE_TABLE);
+COMPILER_STRIP_GATE(8039B168, &OSC_RELEASE_TABLE);
 
 /* 8039B174-8039B190 -00001 0018+04 1/1 0/0 0/0 .rodata          OSC_ENV */
 SECTION_RODATA static void* const OSC_ENV[6 + 1 /* padding */] = {
@@ -465,7 +465,7 @@ SECTION_RODATA static void* const OSC_ENV[6 + 1 /* padding */] = {
     /* padding */
     NULL,
 };
-SECTION_DEAD void* const cg_8039B174 = (void*)(&OSC_ENV);
+COMPILER_STRIP_GATE(8039B174, &OSC_ENV);
 
 /* 80431B28-80431B34 05E848 000C+00 1/1 0/0 0/0 .bss             @792 */
 static u8 lit_792[12];

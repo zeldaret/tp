@@ -22,9 +22,14 @@ struct Z2SoundObjSimple {
     /* 802BE844 */ Z2SoundObjSimple();
 };
 
-struct JAISoundID {};
+template <typename A0>
+struct JSULink {};
+/* JSULink<Z2CreatureEnemy> */
+struct JSULink__template2 {};
 
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2CreatureEnemy {
     /* 802C0F64 */ Z2CreatureEnemy();
@@ -42,11 +47,6 @@ struct Z2CreatureEnemy {
     /* 802C1B7C */ void setLinkSearch(bool);
     /* 802C1B90 */ void setEnemyName(char const*);
 };
-
-template <typename A0>
-struct JSULink {};
-/* JSULink<Z2CreatureEnemy> */
-struct JSULink__template2 {};
 
 struct Z2SoundObjMgr {
     /* 802C0074 */ void getEnemyID(char const*, JSULink<Z2CreatureEnemy>*);

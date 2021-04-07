@@ -69,7 +69,7 @@ SECTION_RODATA static u8 const lit_98[37 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_803A26B8 = (void*)(&lit_98);
+COMPILER_STRIP_GATE(803A26B8, &lit_98);
 
 /* 8036CFD8-8036D01C 367918 0044+00 0/0 6/6 0/0 .text            TRKMessageSend */
 #pragma push

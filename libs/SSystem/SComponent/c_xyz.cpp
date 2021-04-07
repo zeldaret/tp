@@ -205,7 +205,7 @@ SECTION_RODATA static u8 const lit_2299[12 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8039A868 = (void*)(&lit_2299);
+COMPILER_STRIP_GATE(8039A868, &lit_2299);
 
 /* 80455078-8045507C 003678 0004+00 1/1 0/0 0/0 .sdata2          @2325 */
 SECTION_SDATA2 static f32 lit_2325 = 1.25f;

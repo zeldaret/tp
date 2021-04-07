@@ -19,9 +19,9 @@ struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
 };
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -52,11 +52,11 @@ struct dSv_memBit_c {
     /* 80034934 */ void isDungeonItem(int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -167,8 +167,8 @@ extern "C" void __register_global_object();
 
 /* ############################################################################################## */
 /* 80C9F288-80C9F28C 000000 0004+00 2/2 0/0 0/0 .rodata          @3762 */
-SECTION_RODATA static u32 const lit_3762 = 0x3F800000;
-SECTION_DEAD void* const cg_80C9F288 = (void*)(&lit_3762);
+SECTION_RODATA static f32 const lit_3762 = 1.0f;
+COMPILER_STRIP_GATE(80C9F288, &lit_3762);
 
 /* 80C9F28C-80C9F290 000004 0004+00 1/1 0/0 0/0 .rodata          @3763 */
 SECTION_RODATA static u8 const lit_3763[4] = {
@@ -177,7 +177,7 @@ SECTION_RODATA static u8 const lit_3763[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80C9F28C = (void*)(&lit_3763);
+COMPILER_STRIP_GATE(80C9F28C, &lit_3763);
 
 /* 80C9F2A8-80C9F2C8 -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Myogan_Method */
 SECTION_DATA static void* l_daObj_Myogan_Method[8] = {
@@ -237,12 +237,12 @@ static asm void daObj_Myogan_Draw(obj_myogan_class* param_0) {
 
 /* ############################################################################################## */
 /* 80C9F290-80C9F294 000008 0004+00 1/1 0/0 0/0 .rodata          @3823 */
-SECTION_RODATA static u32 const lit_3823 = 0x3D4CCCCD;
-SECTION_DEAD void* const cg_80C9F290 = (void*)(&lit_3823);
+SECTION_RODATA static f32 const lit_3823 = 1.0f / 20.0f;
+COMPILER_STRIP_GATE(80C9F290, &lit_3823);
 
 /* 80C9F294-80C9F298 00000C 0004+00 1/1 0/0 0/0 .rodata          @3824 */
-SECTION_RODATA static u32 const lit_3824 = 0x41200000;
-SECTION_DEAD void* const cg_80C9F294 = (void*)(&lit_3824);
+SECTION_RODATA static f32 const lit_3824 = 10.0f;
+COMPILER_STRIP_GATE(80C9F294, &lit_3824);
 
 /* 80C9F318-80C9F31C 000008 0004+00 2/2 0/0 0/0 .bss             None */
 static u8 data_80C9F318[4];
@@ -312,12 +312,12 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 
 /* ############################################################################################## */
 /* 80C9F298-80C9F29C 000010 0004+00 1/1 0/0 0/0 .rodata          @3966 */
-SECTION_RODATA static u32 const lit_3966 = 0x47800000;
-SECTION_DEAD void* const cg_80C9F298 = (void*)(&lit_3966);
+SECTION_RODATA static f32 const lit_3966 = 65536.0f;
+COMPILER_STRIP_GATE(80C9F298, &lit_3966);
 
 /* 80C9F29C-80C9F2A0 000014 0004+00 1/1 0/0 0/0 .rodata          @3967 */
-SECTION_RODATA static u32 const lit_3967 = 0x448FC000;
-SECTION_DEAD void* const cg_80C9F29C = (void*)(&lit_3967);
+SECTION_RODATA static f32 const lit_3967 = 1150.0f;
+COMPILER_STRIP_GATE(80C9F29C, &lit_3967);
 
 /* 80C9F0AC-80C9F1F0 0005EC 0144+00 1/0 0/0 0/0 .text            daObj_Myogan_Create__FP10fopAc_ac_c
  */

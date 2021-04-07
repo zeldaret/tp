@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -36,11 +36,11 @@ struct dSv_player_status_b_c {
     /* 80032BB0 */ void isDarkClearLV(int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -118,7 +118,7 @@ SECTION_RODATA static u8 const lit_3863[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8085BA44 = (void*)(&lit_3863);
+COMPILER_STRIP_GATE(8085BA44, &lit_3863);
 
 /* 8085B3F8-8085B5F4 000078 01FC+00 1/0 0/0 0/0 .text            daKytag09_Draw__FP13kytag09_class
  */
@@ -154,8 +154,8 @@ static asm void daKytag09_Delete(kytag09_class* param_0) {
 
 /* ############################################################################################## */
 /* 8085BA48-8085BA4C 000004 0004+00 2/2 0/0 0/0 .rodata          @3906 */
-SECTION_RODATA static u32 const lit_3906 = 0x3F800000;
-SECTION_DEAD void* const cg_8085BA48 = (void*)(&lit_3906);
+SECTION_RODATA static f32 const lit_3906 = 1.0f;
+COMPILER_STRIP_GATE(8085BA48, &lit_3906);
 
 /* 8085BA60-8085BA80 -00001 0020+00 1/0 0/0 0/0 .data            l_daKytag09_Method */
 SECTION_DATA static void* l_daKytag09_Method[8] = {

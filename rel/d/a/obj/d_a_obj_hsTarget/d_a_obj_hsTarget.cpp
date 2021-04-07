@@ -33,11 +33,11 @@ struct daHsTarget_HIO_c {
     /* 80C1F7F4 */ ~daHsTarget_HIO_c();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -52,9 +52,9 @@ struct dRes_control_c {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -221,7 +221,7 @@ asm void daHsTarget_c::setBaseMtx() {
 SECTION_RODATA static u8 const l_bmdIdx[8] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04,
 };
-SECTION_DEAD void* const cg_80C1F8A0 = (void*)(&l_bmdIdx);
+COMPILER_STRIP_GATE(80C1F8A0, &l_bmdIdx);
 
 /* 80C1F518-80C1F598 0001D8 0080+00 1/0 0/0 0/0 .text            CreateHeap__12daHsTarget_cFv */
 #pragma push
@@ -238,7 +238,7 @@ asm void daHsTarget_c::CreateHeap() {
 SECTION_RODATA static u8 const l_dzbIdx[8] = {
     0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07,
 };
-SECTION_DEAD void* const cg_80C1F8A8 = (void*)(&l_dzbIdx);
+COMPILER_STRIP_GATE(80C1F8A8, &l_dzbIdx);
 
 /* 80C1F598-80C1F6B0 000258 0118+00 1/1 0/0 0/0 .text            create__12daHsTarget_cFv */
 #pragma push

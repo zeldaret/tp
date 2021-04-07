@@ -134,8 +134,8 @@ extern "C" extern u8 struct_80450D64[4];
 
 /* ############################################################################################## */
 /* 8048D7E8-8048D7EC 000000 0004+00 1/1 0/0 0/0 .rodata          @3826 */
-SECTION_RODATA static u32 const lit_3826 = 0x42C80000;
-SECTION_DEAD void* const cg_8048D7E8 = (void*)(&lit_3826);
+SECTION_RODATA static f32 const lit_3826 = 100.0f;
+COMPILER_STRIP_GATE(8048D7E8, &lit_3826);
 
 /* 8048D818-8048D824 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {

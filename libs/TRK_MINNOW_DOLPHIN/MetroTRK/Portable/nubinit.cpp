@@ -70,7 +70,7 @@ SECTION_RODATA static u8 const lit_133[27 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
-SECTION_DEAD void* const cg_803A2688 = (void*)(&lit_133);
+COMPILER_STRIP_GATE(803A2688, &lit_133);
 
 /* 8036CE40-8036CE68 367780 0028+00 0/0 1/1 0/0 .text            TRKNubWelcome */
 #pragma push
@@ -117,7 +117,7 @@ SECTION_RODATA static u8 const lit_154[16 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_803A26A4 = (void*)(&lit_154);
+COMPILER_STRIP_GATE(803A26A4, &lit_154);
 
 /* 8044D8B8-8044D8C0 07A5D8 0004+04 1/1 4/4 0/0 .bss             gTRKBigEndian */
 SECTION_BSS extern u8 gTRKBigEndian[4 + 4 /* padding */];

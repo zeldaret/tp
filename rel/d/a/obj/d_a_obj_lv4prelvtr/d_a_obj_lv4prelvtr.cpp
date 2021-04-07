@@ -28,11 +28,11 @@ struct daObjPRElvtr_c {
     /* 80C68AF0 */ ~daObjPRElvtr_c();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -47,9 +47,9 @@ struct dRes_control_c {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -165,7 +165,7 @@ SECTION_RODATA static u8 const l_cull_box[24] = {
     0xC4, 0x35, 0x40, 0x00, 0xC3, 0x9D, 0x80, 0x00, 0xC4, 0x35, 0x40, 0x00,
     0x44, 0x35, 0x40, 0x00, 0xC1, 0x70, 0x00, 0x00, 0x44, 0x35, 0x40, 0x00,
 };
-SECTION_DEAD void* const cg_80C68B68 = (void*)(&l_cull_box);
+COMPILER_STRIP_GATE(80C68B68, &l_cull_box);
 
 /* 80C68768-80C687D0 0001E8 0068+00 1/0 0/0 0/0 .text            Create__14daObjPRElvtr_cFv */
 #pragma push
@@ -189,18 +189,18 @@ static asm void searchObjSwTurn(void* param_0, void* param_1) {
 
 /* ############################################################################################## */
 /* 80C68B80-80C68B84 000018 0004+00 1/1 0/0 0/0 .rodata          @3694 */
-SECTION_RODATA static u32 const lit_3694 = 0x44610000;
-SECTION_DEAD void* const cg_80C68B80 = (void*)(&lit_3694);
+SECTION_RODATA static f32 const lit_3694 = 900.0f;
+COMPILER_STRIP_GATE(80C68B80, &lit_3694);
 
 /* 80C68B84-80C68B88 00001C 0004+00 1/1 0/0 0/0 .rodata          @3695 */
-SECTION_RODATA static u32 const lit_3695 = 0x467FFC00;
-SECTION_DEAD void* const cg_80C68B84 = (void*)(&lit_3695);
+SECTION_RODATA static f32 const lit_3695 = 16383.0f;
+COMPILER_STRIP_GATE(80C68B84, &lit_3695);
 
 /* 80C68B88-80C68B90 000020 0008+00 1/1 0/0 0/0 .rodata          @3697 */
 SECTION_RODATA static u8 const lit_3697[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80C68B88 = (void*)(&lit_3697);
+COMPILER_STRIP_GATE(80C68B88, &lit_3697);
 
 /* 80C68844-80C68944 0002C4 0100+00 1/0 0/0 0/0 .text            Execute__14daObjPRElvtr_cFPPA3_A4_f
  */

@@ -45,7 +45,7 @@ SYMBOLS = [
 	{'addr':0x80BD6894,'size':32,'pad':0,'label':"daObjCrystal_Create__FP14daObjCrystal_c",'name':"daObjCrystal_Create__FP14daObjCrystal_c",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
 	{'addr':0x80BD68B4,'size':4,'pad':0,'label':"_ctors",'name':"_ctors",'lib':-1,'tu':1,'section':1,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
 	{'addr':0x80BD68B8,'size':4,'pad':0,'label':"_dtors",'name':"_dtors",'lib':-1,'tu':2,'section':2,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
-	{'addr':0x80BD68BC,'size':4,'pad':0,'label':"lit_3693",'name':"@3693",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[2,0,0],'sh':[0,0,0],'type':"Integer"},
+	{'addr':0x80BD68BC,'size':4,'pad':0,'label':"lit_3693",'name':"@3693",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[2,0,0],'sh':[0,0,0],'type':"FloatingPoint"},
 	{'addr':0x80BD68C0,'size':8,'pad':0,'label':"l_bmd",'name':"l_bmd$3697",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[0,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
 	{'addr':0x80BD68C8,'size':8,'pad':0,'label':"l_diff_flag",'name':"l_diff_flag$3698",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[0,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
 	{'addr':0x80BD68D0,'size':8,'pad':0,'label':"l_flag",'name':"l_flag$3699",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[0,0,0],'sh':[0,0,0],'type':"ArbitraryData"},

@@ -77,9 +77,9 @@ struct JAISeqDataRegion {};
 
 struct JAISeqDataMgr {};
 
-struct JAIAudience {};
-
 struct JAISeCategoryArrangement {};
+
+struct JAIAudience {};
 
 struct JAISeMgr {
     /* 802A0074 */ JAISeMgr(bool);

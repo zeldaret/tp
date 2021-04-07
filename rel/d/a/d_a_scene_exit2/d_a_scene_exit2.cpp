@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {};
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -56,9 +56,9 @@ struct dEvent_manager_c {
     /* 8004817C */ void cutEnd(int);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -146,8 +146,8 @@ asm void daScExit_c::setBaseMtx() {
 
 /* ############################################################################################## */
 /* 8059E7F4-8059E7F8 000000 0004+00 2/2 0/0 0/0 .rodata          @3659 */
-SECTION_RODATA static u32 const lit_3659 = 0x42C80000;
-SECTION_DEAD void* const cg_8059E7F4 = (void*)(&lit_3659);
+SECTION_RODATA static f32 const lit_3659 = 100.0f;
+COMPILER_STRIP_GATE(8059E7F4, &lit_3659);
 
 /* 8059E838-8059E844 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -303,22 +303,22 @@ void daScExit_c::actionDead() {
 /* 8059E7F8-8059E7FC 000004 0004+00 0/1 0/0 0/0 .rodata          @3797 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3797 = 0x3F800000;
-SECTION_DEAD void* const cg_8059E7F8 = (void*)(&lit_3797);
+SECTION_RODATA static f32 const lit_3797 = 1.0f;
+COMPILER_STRIP_GATE(8059E7F8, &lit_3797);
 #pragma pop
 
 /* 8059E7FC-8059E800 000008 0004+00 0/1 0/0 0/0 .rodata          @3798 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3798 = 0xBF800000;
-SECTION_DEAD void* const cg_8059E7FC = (void*)(&lit_3798);
+SECTION_RODATA static f32 const lit_3798 = -1.0f;
+COMPILER_STRIP_GATE(8059E7FC, &lit_3798);
 #pragma pop
 
 /* 8059E800-8059E804 00000C 0004+00 0/1 0/0 0/0 .rodata          @3799 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3799 = 0x44480000;
-SECTION_DEAD void* const cg_8059E800 = (void*)(&lit_3799);
+SECTION_RODATA static f32 const lit_3799 = 800.0f;
+COMPILER_STRIP_GATE(8059E800, &lit_3799);
 #pragma pop
 
 /* 8059E8C0-8059E8CC -00001 000C+00 1/1 0/0 0/0 .data            action_table$3745 */
@@ -423,7 +423,7 @@ SECTION_RODATA static u8 const lit_3800[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8059E804 = (void*)(&lit_3800);
+COMPILER_STRIP_GATE(8059E804, &lit_3800);
 #pragma pop
 
 /* 8059E8CC-8059E8EC -00001 0020+00 1/0 0/0 0/0 .data            l_daScExit_Method */

@@ -672,7 +672,7 @@ SECTION_RODATA static void* const PreLoadInfoT[4] = {
     (void*)&T_JOINT_resName,
     (void*)0x01010000,
 };
-SECTION_DEAD void* const cg_8039A2C8 = (void*)(&PreLoadInfoT);
+COMPILER_STRIP_GATE(8039A2C8, &PreLoadInfoT);
 
 /* 80450760-80450764 -00001 0004+00 1/0 0/0 0/0 .sdata           T_JOINT_resName */
 SECTION_SDATA static void* T_JOINT_resName = (void*)&d_s_d_s_play__stringBase0;

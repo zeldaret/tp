@@ -13,13 +13,13 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct Vec {};
 
 struct cXyz {
     /* 80266AE4 */ void operator+(Vec const&) const;
 };
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -71,9 +71,9 @@ struct daObjGeyser_c {
     /* 80BF8D24 */ void Delete();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -379,7 +379,7 @@ asm void daObjGeyser_c::CreateHeap() {
 SECTION_RODATA static u8 const l_dzb[8] = {
     0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x08,
 };
-SECTION_DEAD void* const cg_80BF8FE8 = (void*)(&l_dzb);
+COMPILER_STRIP_GATE(80BF8FE8, &l_dzb);
 
 /* 80BF7174-80BF7288 0002D4 0114+00 1/1 0/0 0/0 .text            create1st__13daObjGeyser_cFv */
 #pragma push
@@ -399,14 +399,14 @@ SECTION_RODATA static u8 const l_scale[24] = {
     0x3F, 0x33, 0x33, 0x33, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
     0x3E, 0x99, 0x99, 0x9A, 0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x80, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80BF8FF0 = (void*)(&l_scale);
+COMPILER_STRIP_GATE(80BF8FF0, &l_scale);
 #pragma pop
 
 /* 80BF9008-80BF900C 000020 0004+00 0/1 0/0 0/0 .rodata          @3758 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3758 = 0x459C4000;
-SECTION_DEAD void* const cg_80BF9008 = (void*)(&lit_3758);
+SECTION_RODATA static f32 const lit_3758 = 5000.0f;
+COMPILER_STRIP_GATE(80BF9008, &lit_3758);
 #pragma pop
 
 /* 80BF900C-80BF9010 000024 0004+00 1/7 0/0 0/0 .rodata          @3759 */
@@ -416,24 +416,24 @@ SECTION_RODATA static u8 const lit_3759[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80BF900C = (void*)(&lit_3759);
+COMPILER_STRIP_GATE(80BF900C, &lit_3759);
 
 /* 80BF9010-80BF9014 000028 0004+00 6/11 0/0 0/0 .rodata          @3760 */
-SECTION_RODATA static u32 const lit_3760 = 0x3F800000;
-SECTION_DEAD void* const cg_80BF9010 = (void*)(&lit_3760);
+SECTION_RODATA static f32 const lit_3760 = 1.0f;
+COMPILER_STRIP_GATE(80BF9010, &lit_3760);
 
 /* 80BF9014-80BF9018 00002C 0004+00 0/3 0/0 0/0 .rodata          @3761 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3761 = 0x43FA0000;
-SECTION_DEAD void* const cg_80BF9014 = (void*)(&lit_3761);
+SECTION_RODATA static f32 const lit_3761 = 500.0f;
+COMPILER_STRIP_GATE(80BF9014, &lit_3761);
 #pragma pop
 
 /* 80BF9018-80BF901C 000030 0004+00 0/2 0/0 0/0 .rodata          @3762 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3762 = 0x42C80000;
-SECTION_DEAD void* const cg_80BF9018 = (void*)(&lit_3762);
+SECTION_RODATA static f32 const lit_3762 = 100.0f;
+COMPILER_STRIP_GATE(80BF9018, &lit_3762);
 #pragma pop
 
 /* 80BF7288-80BF744C 0003E8 01C4+00 1/0 0/0 0/0 .text            Execute__13daObjGeyser_cFPPA3_A4_f
@@ -563,22 +563,22 @@ asm void daObjGeyser_c::actionOff2Init() {
 /* 80BF901C-80BF9020 000034 0004+00 0/3 0/0 0/0 .rodata          @3855 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3855 = 0x447A0000;
-SECTION_DEAD void* const cg_80BF901C = (void*)(&lit_3855);
+SECTION_RODATA static f32 const lit_3855 = 1000.0f;
+COMPILER_STRIP_GATE(80BF901C, &lit_3855);
 #pragma pop
 
 /* 80BF9020-80BF9024 000038 0004+00 0/3 0/0 0/0 .rodata          @3856 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3856 = 0xC2480000;
-SECTION_DEAD void* const cg_80BF9020 = (void*)(&lit_3856);
+SECTION_RODATA static f32 const lit_3856 = -50.0f;
+COMPILER_STRIP_GATE(80BF9020, &lit_3856);
 #pragma pop
 
 /* 80BF9024-80BF9028 00003C 0004+00 0/3 0/0 0/0 .rodata          @3857 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3857 = 0x44960000;
-SECTION_DEAD void* const cg_80BF9024 = (void*)(&lit_3857);
+SECTION_RODATA static f32 const lit_3857 = 1200.0f;
+COMPILER_STRIP_GATE(80BF9024, &lit_3857);
 #pragma pop
 
 /* 80BF9028-80BF9030 000040 0008+00 0/4 0/0 0/0 .rodata          @3858 */
@@ -587,7 +587,7 @@ SECTION_DEAD void* const cg_80BF9024 = (void*)(&lit_3857);
 SECTION_RODATA static u8 const lit_3858[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80BF9028 = (void*)(&lit_3858);
+COMPILER_STRIP_GATE(80BF9028, &lit_3858);
 #pragma pop
 
 /* 80BF9030-80BF9038 000048 0008+00 0/4 0/0 0/0 .rodata          @3859 */
@@ -596,7 +596,7 @@ SECTION_DEAD void* const cg_80BF9028 = (void*)(&lit_3858);
 SECTION_RODATA static u8 const lit_3859[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80BF9030 = (void*)(&lit_3859);
+COMPILER_STRIP_GATE(80BF9030, &lit_3859);
 #pragma pop
 
 /* 80BF9038-80BF9040 000050 0008+00 0/4 0/0 0/0 .rodata          @3860 */
@@ -605,12 +605,12 @@ SECTION_DEAD void* const cg_80BF9030 = (void*)(&lit_3859);
 SECTION_RODATA static u8 const lit_3860[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80BF9038 = (void*)(&lit_3860);
+COMPILER_STRIP_GATE(80BF9038, &lit_3860);
 #pragma pop
 
 /* 80BF9040-80BF9044 000058 0004+00 1/4 0/0 0/0 .rodata          @3861 */
-SECTION_RODATA static u32 const lit_3861 = 0x3DCCCCCD;
-SECTION_DEAD void* const cg_80BF9040 = (void*)(&lit_3861);
+SECTION_RODATA static f32 const lit_3861 = 1.0f / 10.0f;
+COMPILER_STRIP_GATE(80BF9040, &lit_3861);
 
 /* 80BF9198-80BF91B8 -00001 0020+00 1/0 0/0 0/0 .data            daObjGeyser_METHODS */
 SECTION_DATA static void* daObjGeyser_METHODS[8] = {
@@ -696,13 +696,13 @@ asm void daObjGeyser_c::actionOnWait2Init() {
 /* 80BF9044-80BF9048 00005C 0004+00 0/2 0/0 0/0 .rodata          @3969 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3969 = 0x44160000;
-SECTION_DEAD void* const cg_80BF9044 = (void*)(&lit_3969);
+SECTION_RODATA static f32 const lit_3969 = 600.0f;
+COMPILER_STRIP_GATE(80BF9044, &lit_3969);
 #pragma pop
 
 /* 80BF9048-80BF904C 000060 0004+00 1/4 0/0 0/0 .rodata          @3970 */
-SECTION_RODATA static u32 const lit_3970 = 0xBF800000;
-SECTION_DEAD void* const cg_80BF9048 = (void*)(&lit_3970);
+SECTION_RODATA static f32 const lit_3970 = -1.0f;
+COMPILER_STRIP_GATE(80BF9048, &lit_3970);
 
 /* 80BF787C-80BF7C54 0009DC 03D8+00 1/0 0/0 0/0 .text            actionOnWait2__13daObjGeyser_cFv */
 #pragma push
@@ -728,8 +728,8 @@ asm void daObjGeyser_c::actionOn2Init() {
 /* 80BF904C-80BF9050 000064 0004+00 0/2 0/0 0/0 .rodata          @4096 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4096 = 0x3D4CCCCD;
-SECTION_DEAD void* const cg_80BF904C = (void*)(&lit_4096);
+SECTION_RODATA static f32 const lit_4096 = 1.0f / 20.0f;
+COMPILER_STRIP_GATE(80BF904C, &lit_4096);
 #pragma pop
 
 /* 80BF7CA0-80BF8158 000E00 04B8+00 1/0 0/0 0/0 .text            actionOn2__13daObjGeyser_cFv */
@@ -828,8 +828,8 @@ asm void daObjGeyser_c::actionOn() {
 /* 80BF9050-80BF9054 000068 0004+00 0/1 0/0 0/0 .rodata          @4232 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4232 = 0x3E4CCCCD;
-SECTION_DEAD void* const cg_80BF9050 = (void*)(&lit_4232);
+SECTION_RODATA static f32 const lit_4232 = 1.0f / 5.0f;
+COMPILER_STRIP_GATE(80BF9050, &lit_4232);
 #pragma pop
 
 /* 80BF8584-80BF863C 0016E4 00B8+00 2/2 0/0 0/0 .text            setPntWind__13daObjGeyser_cFv */
@@ -856,15 +856,15 @@ asm void daObjGeyser_c::cutPntWind() {
 /* 80BF9054-80BF9058 00006C 0004+00 0/1 0/0 0/0 .rodata          @4280 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4280 = 0x40000000;
-SECTION_DEAD void* const cg_80BF9054 = (void*)(&lit_4280);
+SECTION_RODATA static f32 const lit_4280 = 2.0f;
+COMPILER_STRIP_GATE(80BF9054, &lit_4280);
 #pragma pop
 
 /* 80BF9058-80BF905C 000070 0004+00 0/1 0/0 0/0 .rodata          @4281 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4281 = 0x3F000000;
-SECTION_DEAD void* const cg_80BF9058 = (void*)(&lit_4281);
+SECTION_RODATA static f32 const lit_4281 = 0.5f;
+COMPILER_STRIP_GATE(80BF9058, &lit_4281);
 #pragma pop
 
 /* 80BF8660-80BF8870 0017C0 0210+00 1/1 0/0 0/0 .text            movePntWind__13daObjGeyser_cFv */

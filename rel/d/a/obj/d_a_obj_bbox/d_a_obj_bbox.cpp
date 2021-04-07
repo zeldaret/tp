@@ -37,9 +37,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -54,9 +54,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -116,9 +116,9 @@ struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -233,7 +233,7 @@ SECTION_RODATA static u8 const l_cyl_src[68] = {
     0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x42, 0xB4, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80BAD474 = (void*)(&l_cyl_src);
+COMPILER_STRIP_GATE(80BAD474, &l_cyl_src);
 
 /* 80BACDD8-80BACE50 000118 0078+00 1/0 0/0 0/0 .text            Create__11daObjBBox_cFv */
 #pragma push
@@ -359,21 +359,21 @@ SECTION_RODATA static u8 const particle_id[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80BAD4B8 = (void*)(&particle_id);
+COMPILER_STRIP_GATE(80BAD4B8, &particle_id);
 #pragma pop
 
 /* 80BAD4C4-80BAD4C8 000050 0004+00 0/1 0/0 0/0 .rodata          @3821 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3821 = 0x3F800000;
-SECTION_DEAD void* const cg_80BAD4C4 = (void*)(&lit_3821);
+SECTION_RODATA static f32 const lit_3821 = 1.0f;
+COMPILER_STRIP_GATE(80BAD4C4, &lit_3821);
 #pragma pop
 
 /* 80BAD4C8-80BAD4CC 000054 0004+00 0/1 0/0 0/0 .rodata          @3822 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3822 = 0xBF800000;
-SECTION_DEAD void* const cg_80BAD4C8 = (void*)(&lit_3822);
+SECTION_RODATA static f32 const lit_3822 = -1.0f;
+COMPILER_STRIP_GATE(80BAD4C8, &lit_3822);
 #pragma pop
 
 /* 80BAD0C0-80BAD234 000400 0174+00 1/0 0/0 0/0 .text            Execute__11daObjBBox_cFPPA3_A4_f */

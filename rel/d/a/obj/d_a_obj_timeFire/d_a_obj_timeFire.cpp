@@ -42,13 +42,13 @@ struct dSv_info_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
-struct cXyz {};
-
 struct _GXColor {};
 
 struct dKy_tevstr_c {};
+
+struct cXyz {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
@@ -56,9 +56,9 @@ struct dPa_control_c {
                             _GXColor const*, cXyz const*, f32);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -189,18 +189,18 @@ asm void daTimeFire_c::setBaseMtx() {
 
 /* ############################################################################################## */
 /* 80D0F0E4-80D0F0EC 000000 0004+04 2/2 0/0 0/0 .rodata          @3686 */
-SECTION_RODATA static u32 const lit_3686[1 + 1 /* padding */] = {
-    0x41200000,
+SECTION_RODATA static f32 const lit_3686[1 + 1 /* padding */] = {
+    10.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
-SECTION_DEAD void* const cg_80D0F0E4 = (void*)(&lit_3686);
+COMPILER_STRIP_GATE(80D0F0E4, &lit_3686);
 
 /* 80D0F0EC-80D0F0F4 000008 0008+00 1/1 0/0 0/0 .rodata          @3688 */
 SECTION_RODATA static u8 const lit_3688[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80D0F0EC = (void*)(&lit_3688);
+COMPILER_STRIP_GATE(80D0F0EC, &lit_3688);
 
 /* 80D0E9B0-80D0EACC 0001B0 011C+00 1/1 0/0 0/0 .text            create__12daTimeFire_cFv */
 #pragma push
@@ -216,13 +216,13 @@ asm void daTimeFire_c::create() {
 /* 80D0F0F4-80D0F0F8 000010 0004+00 0/1 0/0 0/0 .rodata          @3707 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3707 = 0x43FA0000;
-SECTION_DEAD void* const cg_80D0F0F4 = (void*)(&lit_3707);
+SECTION_RODATA static f32 const lit_3707 = 500.0f;
+COMPILER_STRIP_GATE(80D0F0F4, &lit_3707);
 #pragma pop
 
 /* 80D0F0F8-80D0F0FC 000014 0004+00 2/3 0/0 0/0 .rodata          @3708 */
-SECTION_RODATA static u32 const lit_3708 = 0x3F800000;
-SECTION_DEAD void* const cg_80D0F0F8 = (void*)(&lit_3708);
+SECTION_RODATA static f32 const lit_3708 = 1.0f;
+COMPILER_STRIP_GATE(80D0F0F8, &lit_3708);
 
 /* 80D0EACC-80D0EB40 0002CC 0074+00 1/1 0/0 0/0 .text            lightInit__12daTimeFire_cFv */
 #pragma push
@@ -256,8 +256,8 @@ asm void daTimeFire_c::cutLight() {
 
 /* ############################################################################################## */
 /* 80D0F0FC-80D0F100 000018 0004+00 2/2 0/0 0/0 .rodata          @3757 */
-SECTION_RODATA static u32 const lit_3757 = 0xBF800000;
-SECTION_DEAD void* const cg_80D0F0FC = (void*)(&lit_3757);
+SECTION_RODATA static f32 const lit_3757 = -1.0f;
+COMPILER_STRIP_GATE(80D0F0FC, &lit_3757);
 
 /* 80D0EB88-80D0ED68 000388 01E0+00 1/1 0/0 0/0 .text            Execute__12daTimeFire_cFv */
 #pragma push

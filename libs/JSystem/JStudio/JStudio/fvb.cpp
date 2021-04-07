@@ -312,7 +312,7 @@ extern "C" extern void* __vt__Q27JStudio19TFunctionValue_list[8];
 extern "C" extern void* __vt__Q27JStudio25TFunctionValue_transition[8];
 extern "C" extern void* __vt__Q27JStudio23TFunctionValue_constant[8];
 extern "C" extern void* __vt__Q27JStudio24TFunctionValue_composite[8];
-extern "C" extern u32 ga4cSignature__Q37JStudio3fvb4data[1 + 1 /* padding */];
+extern "C" extern f32 ga4cSignature__Q37JStudio3fvb4data[1 + 1 /* padding */];
 
 //
 // Declarations:
@@ -589,7 +589,7 @@ SECTION_RODATA static void* const data_8039AA00[16] = {
     (void*)func_80282094, (void*)func_80284210, (void*)func_80282118, (void*)func_8028421C,
     (void*)func_80282200, (void*)func_80284228, (void*)func_80282284, (void*)func_80284234,
 };
-SECTION_DEAD void* const cg_8039AA00 = (void*)(&data_8039AA00);
+COMPILER_STRIP_GATE(8039AA00, &data_8039AA00);
 
 /* 80284240-80284254 27EB80 0014+00 1/1 0/0 0/0 .text
  * getCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@FQ47JStudio3fvb4data11TEComposite */

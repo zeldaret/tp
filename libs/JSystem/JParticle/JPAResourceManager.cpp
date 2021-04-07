@@ -19,9 +19,9 @@ struct JUTTexture {
 
 struct JPATexture {};
 
-struct JKRHeap {};
-
 struct JPAResource {};
+
+struct JKRHeap {};
 
 struct JPAResourceManager {
     /* 80273E10 */ JPAResourceManager(void const*, JKRHeap*);

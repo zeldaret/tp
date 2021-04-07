@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {};
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -170,8 +170,8 @@ extern "C" extern u8 j3dSys[284];
 
 /* ############################################################################################## */
 /* 80C989D8-80C989DC 000000 0004+00 1/1 0/0 0/0 .rodata          @3729 */
-SECTION_RODATA static u32 const lit_3729 = 0x3F800000;
-SECTION_DEAD void* const cg_80C989D8 = (void*)(&lit_3729);
+SECTION_RODATA static f32 const lit_3729 = 1.0f;
+COMPILER_STRIP_GATE(80C989D8, &lit_3729);
 
 /* 80C989DC-80C989E0 000004 0004+00 3/3 0/0 0/0 .rodata          @3730 */
 SECTION_RODATA static u8 const lit_3730[4] = {
@@ -180,13 +180,13 @@ SECTION_RODATA static u8 const lit_3730[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80C989DC = (void*)(&lit_3730);
+COMPILER_STRIP_GATE(80C989DC, &lit_3730);
 
 /* 80C989E0-80C989E8 000008 0008+00 1/1 0/0 0/0 .rodata          @3732 */
 SECTION_RODATA static u8 const lit_3732[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80C989E0 = (void*)(&lit_3732);
+COMPILER_STRIP_GATE(80C989E0, &lit_3732);
 
 /* 80C989F0-80C989F4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_mirror_sand__stringBase0;

@@ -32,11 +32,11 @@ struct dBgW {
     /* 8007B9C0 */ void Move();
 };
 
-struct csXyz {};
+struct cXyz {};
 
 struct cBgS_PolyInfo {};
 
-struct cXyz {};
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();

@@ -63,15 +63,15 @@ struct dSv_info_c {
 
 struct dPa_levelEcallBack {};
 
+struct _GXColor {};
+
 struct cBgS_PolyInfo {};
+
+struct dKy_tevstr_c {};
 
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
-
-struct _GXColor {};
-
-struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     struct level_c {
@@ -904,13 +904,13 @@ asm void fopAcM_rollPlayerCrash(fopAc_ac_c const* param_0, f32 param_1, u32 para
 SECTION_RODATA static u8 const lit_4932[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80378880 = (void*)(&lit_4932);
+COMPILER_STRIP_GATE(80378880, &lit_4932);
 
 /* 8037888C-80378898 004EEC 000C+00 1/1 0/0 0/0 .rodata          @4933 */
 SECTION_RODATA static u8 const lit_4933[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8037888C = (void*)(&lit_4933);
+COMPILER_STRIP_GATE(8037888C, &lit_4933);
 
 /* 8001AC40-8001ACEC 015580 00AC+00 0/0 0/0 2/2 .text fopAcM_checkCullingBox__FPA4_fffffff */
 #pragma push
@@ -1626,7 +1626,7 @@ SECTION_RODATA static u8 const mtx_adj[48] = {
     0x00, 0x00, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80378898 = (void*)(&mtx_adj);
+COMPILER_STRIP_GATE(80378898, &mtx_adj);
 
 /* 8001D42C-8001D5A4 017D6C 0178+00 0/0 3/3 40/40 .text
  * fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData         */
@@ -1713,8 +1713,8 @@ extern u8 mWaterCheck__11fopAcM_wt_c[84 + 4 /* padding */];
 u8 mWaterCheck__11fopAcM_wt_c[84 + 4 /* padding */];
 
 /* 80450CD4-80450CD8 0001D4 0004+00 1/1 0/0 3/3 .sbss            mRoofY__11fopAcM_rc_c */
-extern u8 mRoofY__11fopAcM_rc_c[4];
-u8 mRoofY__11fopAcM_rc_c[4];
+extern f32 mRoofY__11fopAcM_rc_c;
+f32 mRoofY__11fopAcM_rc_c;
 
 /* 80450CD8-80450CE0 0001D8 0004+04 2/2 4/4 19/19 .sbss            mWaterY__11fopAcM_wt_c */
 extern f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];

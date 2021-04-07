@@ -15,7 +15,7 @@ extern "C" extern u32 __float_nan;
 extern "C" extern u32 __float_huge;
 extern "C" extern u32 __float_max;
 extern "C" extern u32 __float_epsilon;
-extern "C" extern u32 data_80450AF0;
+extern "C" extern f32 data_80450AF0;
 
 //
 // External References:
@@ -39,4 +39,5 @@ SECTION_SDATA extern u32 __float_max = 0x7F7FFFFF;
 SECTION_SDATA extern u32 __float_epsilon = 0x34000000;
 
 /* 80450AF0-80450AF4 000570 0004+00 0/0 1/1 0/0 .sdata           None */
-SECTION_SDATA extern u32 data_80450AF0 = 0x80000000;
+SECTION_SDATA extern f32 data_80450AF0;
+SECTION_SDATA f32 data_80450AF0 = -0.0f;

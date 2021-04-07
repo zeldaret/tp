@@ -69,9 +69,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -86,11 +86,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
+struct _GXColor {};
+
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
-
-struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -219,9 +219,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -380,35 +380,35 @@ extern "C" void __register_global_object();
 
 /* ############################################################################################## */
 /* 80B9E8F4-80B9E8F8 000000 0004+00 6/6 0/0 0/0 .rodata          @3661 */
-SECTION_RODATA static u32 const lit_3661 = 0x43E10000;
-SECTION_DEAD void* const cg_80B9E8F4 = (void*)(&lit_3661);
+SECTION_RODATA static f32 const lit_3661 = 450.0f;
+COMPILER_STRIP_GATE(80B9E8F4, &lit_3661);
 
 /* 80B9E8F8-80B9E8FC 000004 0004+00 0/2 0/0 0/0 .rodata          @3662 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3662 = 0x41200000;
-SECTION_DEAD void* const cg_80B9E8F8 = (void*)(&lit_3662);
+SECTION_RODATA static f32 const lit_3662 = 10.0f;
+COMPILER_STRIP_GATE(80B9E8F8, &lit_3662);
 #pragma pop
 
 /* 80B9E8FC-80B9E900 000008 0004+00 0/1 0/0 0/0 .rodata          @3663 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3663 = 0x43480000;
-SECTION_DEAD void* const cg_80B9E8FC = (void*)(&lit_3663);
+SECTION_RODATA static f32 const lit_3663 = 200.0f;
+COMPILER_STRIP_GATE(80B9E8FC, &lit_3663);
 #pragma pop
 
 /* 80B9E900-80B9E904 00000C 0004+00 0/1 0/0 0/0 .rodata          @3664 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3664 = 0x40A00000;
-SECTION_DEAD void* const cg_80B9E900 = (void*)(&lit_3664);
+SECTION_RODATA static f32 const lit_3664 = 5.0f;
+COMPILER_STRIP_GATE(80B9E900, &lit_3664);
 #pragma pop
 
 /* 80B9E904-80B9E908 000010 0004+00 0/2 0/0 0/0 .rodata          @3665 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3665 = 0x40400000;
-SECTION_DEAD void* const cg_80B9E904 = (void*)(&lit_3665);
+SECTION_RODATA static f32 const lit_3665 = 3.0f;
+COMPILER_STRIP_GATE(80B9E904, &lit_3665);
 #pragma pop
 
 /* 80B9E97C-80B9E988 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -669,13 +669,13 @@ SECTION_RODATA static u8 const mCcDObjInfo__10daTurara_c[48] = {
     0xF8, 0x40, 0x00, 0x22, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x79, 0x01, 0x00, 0x01, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80B9E908 = (void*)(&mCcDObjInfo__10daTurara_c);
+COMPILER_STRIP_GATE(80B9E908, &mCcDObjInfo__10daTurara_c);
 
 /* 80B9E938-80B9E940 000044 0008+00 1/1 0/0 0/0 .rodata          l_bmdIdx */
 SECTION_RODATA static u8 const l_bmdIdx[8] = {
     0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x08,
 };
-SECTION_DEAD void* const cg_80B9E938 = (void*)(&l_bmdIdx);
+COMPILER_STRIP_GATE(80B9E938, &l_bmdIdx);
 
 /* 80B9CD74-80B9CED8 0002D4 0164+00 1/0 0/0 0/0 .text            CreateHeap__10daTurara_cFv */
 #pragma push
@@ -691,15 +691,15 @@ asm void daTurara_c::CreateHeap() {
 /* 80B9E940-80B9E944 00004C 0004+00 0/1 0/0 0/0 .rodata          @3823 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3823 = 0x43160000;
-SECTION_DEAD void* const cg_80B9E940 = (void*)(&lit_3823);
+SECTION_RODATA static f32 const lit_3823 = 150.0f;
+COMPILER_STRIP_GATE(80B9E940, &lit_3823);
 #pragma pop
 
 /* 80B9E944-80B9E948 000050 0004+00 0/1 0/0 0/0 .rodata          @3824 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3824 = 0x461C4000;
-SECTION_DEAD void* const cg_80B9E944 = (void*)(&lit_3824);
+SECTION_RODATA static f32 const lit_3824 = 10000.0f;
+COMPILER_STRIP_GATE(80B9E944, &lit_3824);
 #pragma pop
 
 /* 80B9E948-80B9E94C 000054 0004+00 1/5 0/0 0/0 .rodata          @3825 */
@@ -709,7 +709,7 @@ SECTION_RODATA static u8 const lit_3825[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80B9E948 = (void*)(&lit_3825);
+COMPILER_STRIP_GATE(80B9E948, &lit_3825);
 
 /* 80B9CED8-80B9D29C 000438 03C4+00 1/1 0/0 0/0 .text            create__10daTurara_cFv */
 #pragma push
@@ -795,36 +795,36 @@ asm void daTurara_c::Execute(f32 (**param_0)[3][4]) {
 /* 80B9E94C-80B9E950 000058 0004+00 0/1 0/0 0/0 .rodata          @3949 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3949 = 0x3DCCCCCD;
-SECTION_DEAD void* const cg_80B9E94C = (void*)(&lit_3949);
+SECTION_RODATA static f32 const lit_3949 = 1.0f / 10.0f;
+COMPILER_STRIP_GATE(80B9E94C, &lit_3949);
 #pragma pop
 
 /* 80B9E950-80B9E954 00005C 0004+00 0/1 0/0 0/0 .rodata          @3950 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3950 = 0x432A0000;
-SECTION_DEAD void* const cg_80B9E950 = (void*)(&lit_3950);
+SECTION_RODATA static f32 const lit_3950 = 170.0f;
+COMPILER_STRIP_GATE(80B9E950, &lit_3950);
 #pragma pop
 
 /* 80B9E954-80B9E958 000060 0004+00 0/1 0/0 0/0 .rodata          @3951 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3951 = 0x43020000;
-SECTION_DEAD void* const cg_80B9E954 = (void*)(&lit_3951);
+SECTION_RODATA static f32 const lit_3951 = 130.0f;
+COMPILER_STRIP_GATE(80B9E954, &lit_3951);
 #pragma pop
 
 /* 80B9E958-80B9E95C 000064 0004+00 0/1 0/0 0/0 .rodata          @3952 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3952 = 0x43FF0000;
-SECTION_DEAD void* const cg_80B9E958 = (void*)(&lit_3952);
+SECTION_RODATA static f32 const lit_3952 = 510.0f;
+COMPILER_STRIP_GATE(80B9E958, &lit_3952);
 #pragma pop
 
 /* 80B9E95C-80B9E960 000068 0004+00 0/1 0/0 0/0 .rodata          @3953 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3953 = 0x42480000;
-SECTION_DEAD void* const cg_80B9E95C = (void*)(&lit_3953);
+SECTION_RODATA static f32 const lit_3953 = 50.0f;
+COMPILER_STRIP_GATE(80B9E95C, &lit_3953);
 #pragma pop
 
 /* 80B9EB98-80B9EBA4 000008 000C+00 1/1 0/0 0/0 .bss             @3653 */
@@ -858,12 +858,12 @@ asm void daTurara_c::init_modeWait() {
 
 /* ############################################################################################## */
 /* 80B9E960-80B9E964 00006C 0004+00 2/5 0/0 0/0 .rodata          @4027 */
-SECTION_RODATA static u32 const lit_4027 = 0x3F800000;
-SECTION_DEAD void* const cg_80B9E960 = (void*)(&lit_4027);
+SECTION_RODATA static f32 const lit_4027 = 1.0f;
+COMPILER_STRIP_GATE(80B9E960, &lit_4027);
 
 /* 80B9E964-80B9E968 000070 0004+00 2/5 0/0 0/0 .rodata          @4028 */
-SECTION_RODATA static u32 const lit_4028 = 0xBF800000;
-SECTION_DEAD void* const cg_80B9E964 = (void*)(&lit_4028);
+SECTION_RODATA static f32 const lit_4028 = -1.0f;
+COMPILER_STRIP_GATE(80B9E964, &lit_4028);
 
 /* 80B9D738-80B9D998 000C98 0260+00 1/0 0/0 0/0 .text            modeWait__10daTurara_cFv */
 #pragma push
@@ -960,15 +960,15 @@ asm void daTurara_c::modeDropEnd() {
 /* 80B9E968-80B9E96C 000074 0004+00 0/1 0/0 0/0 .rodata          @4263 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4263 = 0x42C80000;
-SECTION_DEAD void* const cg_80B9E968 = (void*)(&lit_4263);
+SECTION_RODATA static f32 const lit_4263 = 100.0f;
+COMPILER_STRIP_GATE(80B9E968, &lit_4263);
 #pragma pop
 
 /* 80B9E96C-80B9E970 000078 0004+00 0/1 0/0 0/0 .rodata          @4264 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4264 = 0x3F333333;
-SECTION_DEAD void* const cg_80B9E96C = (void*)(&lit_4264);
+SECTION_RODATA static f32 const lit_4264 = 7.0f / 10.0f;
+COMPILER_STRIP_GATE(80B9E96C, &lit_4264);
 #pragma pop
 
 /* 80B9E078-80B9E338 0015D8 02C0+00 1/1 0/0 0/0 .text            init_modeDropEnd2__10daTurara_cFv

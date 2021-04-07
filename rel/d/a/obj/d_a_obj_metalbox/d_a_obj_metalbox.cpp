@@ -26,11 +26,11 @@ struct daObjMBox_c {
     /* 80593394 */ void Delete();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -61,9 +61,9 @@ struct dBgS_ObjAcch {
     /* 80593254 */ ~dBgS_ObjAcch();
 };
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -195,8 +195,8 @@ asm void daObjMBox_c::setBaseMtx() {
 
 /* ############################################################################################## */
 /* 8059346C-80593470 000000 0004+00 1/1 0/0 0/0 .rodata          @3655 */
-SECTION_RODATA static u32 const lit_3655 = 0x41F00000;
-SECTION_DEAD void* const cg_8059346C = (void*)(&lit_3655);
+SECTION_RODATA static f32 const lit_3655 = 30.0f;
+COMPILER_STRIP_GATE(8059346C, &lit_3655);
 
 /* 80592F48-80592FD4 000128 008C+00 1/0 0/0 0/0 .text            Create__11daObjMBox_cFv */
 #pragma push

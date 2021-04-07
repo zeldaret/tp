@@ -113,28 +113,28 @@ bool daTag_ShopCamera_c::Draw() {
 
 /* ############################################################################################## */
 /* 80D60A80-80D60A84 000000 0004+00 1/1 0/0 0/0 .rodata          @3663 */
-SECTION_RODATA static u32 const lit_3663 = 0xC1F00000;
-SECTION_DEAD void* const cg_80D60A80 = (void*)(&lit_3663);
+SECTION_RODATA static f32 const lit_3663 = -30.0f;
+COMPILER_STRIP_GATE(80D60A80, &lit_3663);
 
 /* 80D60A84-80D60A88 000004 0004+00 0/1 0/0 0/0 .rodata          @3664 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3664 = 0xC1700000;
-SECTION_DEAD void* const cg_80D60A84 = (void*)(&lit_3664);
+SECTION_RODATA static f32 const lit_3664 = -15.0f;
+COMPILER_STRIP_GATE(80D60A84, &lit_3664);
 #pragma pop
 
 /* 80D60A88-80D60A8C 000008 0004+00 0/1 0/0 0/0 .rodata          @3665 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3665 = 0x41F00000;
-SECTION_DEAD void* const cg_80D60A88 = (void*)(&lit_3665);
+SECTION_RODATA static f32 const lit_3665 = 30.0f;
+COMPILER_STRIP_GATE(80D60A88, &lit_3665);
 #pragma pop
 
 /* 80D60A8C-80D60A90 00000C 0004+00 0/1 0/0 0/0 .rodata          @3666 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3666 = 0x42340000;
-SECTION_DEAD void* const cg_80D60A8C = (void*)(&lit_3666);
+SECTION_RODATA static f32 const lit_3666 = 45.0f;
+COMPILER_STRIP_GATE(80D60A8C, &lit_3666);
 #pragma pop
 
 /* 80D60914-80D60990 0000F4 007C+00 1/1 0/0 0/0 .text            initialize__18daTag_ShopCamera_cFv

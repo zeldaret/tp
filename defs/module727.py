@@ -54,7 +54,7 @@ SYMBOLS = [
 	{'addr':0x80D5B7F4,'size':8,'pad':0,'label':"lit_3725",'name':"@3725",'lib':-1,'tu':3,'section':4,'class_template':False,'static':True,'is_reachable':False,'r':[0,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
 	{'addr':0x80D5B7FC,'size':8,'pad':0,'label':"lit_3726",'name':"@3726",'lib':-1,'tu':3,'section':4,'class_template':False,'static':True,'is_reachable':False,'r':[0,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
 	{'addr':0x80D5B804,'size':8,'pad':0,'label':"lit_3727",'name':"@3727",'lib':-1,'tu':3,'section':4,'class_template':False,'static':True,'is_reachable':False,'r':[0,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
-	{'addr':0x80D5B80C,'size':4,'pad':0,'label':"lit_3728",'name':"@3728",'lib':-1,'tu':3,'section':4,'class_template':False,'static':True,'is_reachable':False,'r':[0,0,0],'sh':[0,0,0],'type':"Integer"},
+	{'addr':0x80D5B80C,'size':4,'pad':0,'label':"lit_3728",'name':"@3728",'lib':-1,'tu':3,'section':4,'class_template':False,'static':True,'is_reachable':False,'r':[0,0,0],'sh':[0,0,0],'type':"FloatingPoint"},
 	{'addr':0x80D5B810,'size':32,'pad':0,'label':"l_daLv6CstaSw_Method",'name':"l_daLv6CstaSw_Method",'lib':-1,'tu':3,'section':5,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
 	{'addr':0x80D5B830,'size':48,'pad':0,'label':"g_profile_Tag_Lv6CstaSw",'name':"g_profile_Tag_Lv6CstaSw",'lib':-1,'tu':3,'section':5,'class_template':False,'static':False,'is_reachable':False,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
 	{'addr':0x80D5B860,'size':12,'pad':0,'label':"__vt__17daLv6CstaSw_HIO_c",'name':"__vt__17daLv6CstaSw_HIO_c",'lib':-1,'tu':3,'section':5,'class_template':False,'static':False,'is_reachable':True,'r':[2,0,0],'sh':[0,0,0],'type':"VirtualTable"},

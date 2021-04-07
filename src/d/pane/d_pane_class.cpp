@@ -494,7 +494,7 @@ asm void CPaneMgr::getGlobalVtxCenter(J2DPane* param_0, bool param_1, s16 param_
 
 /* ############################################################################################## */
 /* 80430748-80430758 05D468 0010+00 2/2 0/0 0/0 .bss             static_mBounds */
-static u8 static_mBounds[16];
+static f32 static_mBounds[4];
 
 /* 80254FB8-802550E8 24F8F8 0130+00 1/1 0/0 0/0 .text            getBounds__8CPaneMgrFP7J2DPane */
 #pragma push

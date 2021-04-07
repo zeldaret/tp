@@ -37,11 +37,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -74,9 +74,9 @@ struct dBgW {
     /* 8007B9C0 */ void Move();
 };
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -109,9 +109,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -216,7 +216,7 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 SECTION_RODATA static u8 const l_dzbidx[12] = {
     0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0A,
 };
-SECTION_DEAD void* const cg_80C4F6B8 = (void*)(&l_dzbidx);
+COMPILER_STRIP_GATE(80C4F6B8, &l_dzbidx);
 
 /* 80C4F6F8-80C4F6FC -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_kwheel01__stringBase0;
@@ -243,18 +243,18 @@ asm void daObjKWheel01_c::create1st() {
 SECTION_RODATA static u8 const l_bmdidx[8] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x05,
 };
-SECTION_DEAD void* const cg_80C4F6C4 = (void*)(&l_bmdidx);
+COMPILER_STRIP_GATE(80C4F6C4, &l_bmdidx);
 
 /* 80C4F6CC-80C4F6E4 000014 0018+00 1/1 0/0 0/0 .rodata          l_cull_box */
 SECTION_RODATA static u8 const l_cull_box[24] = {
     0xC4, 0x9D, 0x80, 0x00, 0xC5, 0x3E, 0xA0, 0x00, 0xC4, 0x9D, 0x80, 0x00,
     0x44, 0x9D, 0x80, 0x00, 0x45, 0x2F, 0x00, 0x00, 0x44, 0x9D, 0x80, 0x00,
 };
-SECTION_DEAD void* const cg_80C4F6CC = (void*)(&l_cull_box);
+COMPILER_STRIP_GATE(80C4F6CC, &l_cull_box);
 
 /* 80C4F6E4-80C4F6E8 00002C 0004+00 2/2 0/0 0/0 .rodata          @3717 */
-SECTION_RODATA static u32 const lit_3717 = 0x3F800000;
-SECTION_DEAD void* const cg_80C4F6E4 = (void*)(&lit_3717);
+SECTION_RODATA static f32 const lit_3717 = 1.0f;
+COMPILER_STRIP_GATE(80C4F6E4, &lit_3717);
 
 /* 80C4EC54-80C4EDCC 000254 0178+00 2/2 0/0 0/0 .text            setMtx__15daObjKWheel01_cFv */
 #pragma push
@@ -298,8 +298,8 @@ static asm void searchKWheel00(void* param_0, void* param_1) {
 
 /* ############################################################################################## */
 /* 80C4F6E8-80C4F6EC 000030 0004+00 1/1 0/0 0/0 .rodata          @3888 */
-SECTION_RODATA static u32 const lit_3888 = 0xBF800000;
-SECTION_DEAD void* const cg_80C4F6E8 = (void*)(&lit_3888);
+SECTION_RODATA static f32 const lit_3888 = -1.0f;
+COMPILER_STRIP_GATE(80C4F6E8, &lit_3888);
 
 /* 80C4F048-80C4F344 000648 02FC+00 1/0 0/0 0/0 .text Execute__15daObjKWheel01_cFPPA3_A4_f */
 #pragma push

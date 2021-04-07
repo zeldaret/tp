@@ -50,11 +50,11 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
+struct JKRArchive {};
+
 struct J2DPane {
     /* 802F7FCC */ void animationTransform();
 };
-
-struct JKRArchive {};
 
 struct dSelect_cursor_c {
     /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
@@ -256,9 +256,9 @@ struct Z2SeqMgr {
     /* 802B3EAC */ void checkBgmIDPlaying(u32);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);

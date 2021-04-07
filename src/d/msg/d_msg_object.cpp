@@ -13,12 +13,12 @@
 
 struct msg_class {};
 
-struct JKRHeap {
-    /* 802CE784 */ void getTotalFreeSize();
-};
-
 struct JKRArchive {
     struct EMountMode {};
+};
+
+struct JKRHeap {
+    /* 802CE784 */ void getTotalFreeSize();
 };
 
 struct mDoDvdThd_mountXArchive_c {

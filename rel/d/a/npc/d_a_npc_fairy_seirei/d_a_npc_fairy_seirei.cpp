@@ -22,16 +22,16 @@ struct fopAc_ac_c {
 
 struct daNpcT_motionAnmData_c {};
 
-struct daNpcT_evtData_c {};
-
-struct daNpcT_faceMotionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
     /* 80145898 */ void initialize();
     /* 80541898 */ ~daNpcT_MotionSeqMngr_c();
 };
+
+struct daNpcT_faceMotionAnmData_c {};
+
+struct daNpcT_evtData_c {};
 
 struct daNpc_FairySeirei_c {
     /* 8053FF6C */ ~daNpc_FairySeirei_c();
@@ -67,14 +67,14 @@ struct daNpc_FairySeirei_Param_c {
     /* 80541D20 */ ~daNpc_FairySeirei_Param_c();
 };
 
-struct J3DJoint {};
-
-struct J3DModel {};
-
 struct cXyz {
     /* 805412D0 */ ~cXyz();
     /* 8054184C */ cXyz();
 };
+
+struct J3DModel {};
+
+struct J3DJoint {};
 
 struct daNpcT_c {
     /* 8014852C */ void execute();
@@ -145,14 +145,14 @@ struct daNpcT_ActorMngr_c {
 
 struct dPa_levelEcallBack {};
 
+struct _GXColor {};
+
+struct dKy_tevstr_c {};
+
 struct csXyz {
     /* 8054130C */ ~csXyz();
     /* 8054174C */ csXyz();
 };
-
-struct _GXColor {};
-
-struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     struct level_c {
@@ -769,11 +769,11 @@ SECTION_RODATA static u8 const m__25daNpc_FairySeirei_Param_c[148] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0x16, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80541D8C = (void*)(&m__25daNpc_FairySeirei_Param_c);
+COMPILER_STRIP_GATE(80541D8C, &m__25daNpc_FairySeirei_Param_c);
 
 /* 80541E20-80541E24 000094 0004+00 1/1 0/0 0/0 .rodata          @4024 */
-SECTION_RODATA static u32 const lit_4024 = 0xCE6E6B28;
-SECTION_DEAD void* const cg_80541E20 = (void*)(&lit_4024);
+SECTION_RODATA static f32 const lit_4024 = -1000000000.0f;
+COMPILER_STRIP_GATE(80541E20, &lit_4024);
 
 /* 8054006C-80540298 0001EC 022C+00 1/1 0/0 0/0 .text            create__19daNpc_FairySeirei_cFv */
 #pragma push
@@ -829,27 +829,27 @@ SECTION_RODATA static u8 const lit_4178[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80541E24 = (void*)(&lit_4178);
+COMPILER_STRIP_GATE(80541E24, &lit_4178);
 
 /* 80541E28-80541E2C 00009C 0004+00 0/2 0/0 0/0 .rodata          @4179 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4179 = 0x47800000;
-SECTION_DEAD void* const cg_80541E28 = (void*)(&lit_4179);
+SECTION_RODATA static f32 const lit_4179 = 65536.0f;
+COMPILER_STRIP_GATE(80541E28, &lit_4179);
 #pragma pop
 
 /* 80541E2C-80541E30 0000A0 0004+00 0/2 0/0 0/0 .rodata          @4180 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4180 = 0x3E4CCCCD;
-SECTION_DEAD void* const cg_80541E2C = (void*)(&lit_4180);
+SECTION_RODATA static f32 const lit_4180 = 1.0f / 5.0f;
+COMPILER_STRIP_GATE(80541E2C, &lit_4180);
 #pragma pop
 
 /* 80541E30-80541E34 0000A4 0004+00 0/1 0/0 0/0 .rodata          @4325 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4325 = 0xBF800000;
-SECTION_DEAD void* const cg_80541E30 = (void*)(&lit_4325);
+SECTION_RODATA static f32 const lit_4325 = -1.0f;
+COMPILER_STRIP_GATE(80541E30, &lit_4325);
 #pragma pop
 
 /* 80540334-8054048C 0004B4 0158+00 1/1 0/0 0/0 .text            reset__19daNpc_FairySeirei_cFv */
@@ -943,8 +943,8 @@ asm void daNpc_FairySeirei_c::setCollision() {
 
 /* ############################################################################################## */
 /* 80541E34-80541E38 0000A8 0004+00 1/1 0/0 0/0 .rodata          @4465 */
-SECTION_RODATA static u32 const lit_4465 = 0x43AF0000;
-SECTION_DEAD void* const cg_80541E34 = (void*)(&lit_4465);
+SECTION_RODATA static f32 const lit_4465 = 350.0f;
+COMPILER_STRIP_GATE(80541E34, &lit_4465);
 
 /* 80540988-80540A30 000B08 00A8+00 1/0 0/0 0/0 .text            setAttnPos__19daNpc_FairySeirei_cFv
  */
@@ -998,21 +998,21 @@ SECTION_RODATA static u8 const id[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80541E38 = (void*)(&id);
+COMPILER_STRIP_GATE(80541E38, &id);
 #pragma pop
 
 /* 80541E40-80541E44 0000B4 0004+00 0/1 0/0 0/0 .rodata          @4530 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4530 = 0x3F800000;
-SECTION_DEAD void* const cg_80541E40 = (void*)(&lit_4530);
+SECTION_RODATA static f32 const lit_4530 = 1.0f;
+COMPILER_STRIP_GATE(80541E40, &lit_4530);
 #pragma pop
 
 /* 80541E44-80541E48 0000B8 0004+00 0/1 0/0 0/0 .rodata          @4531 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4531 = 0x43480000;
-SECTION_DEAD void* const cg_80541E44 = (void*)(&lit_4531);
+SECTION_RODATA static f32 const lit_4531 = 200.0f;
+COMPILER_STRIP_GATE(80541E44, &lit_4531);
 #pragma pop
 
 /* 80540B28-80540C54 000CA8 012C+00 1/1 0/0 0/0 .text            setPrtcls__19daNpc_FairySeirei_cFv
@@ -1051,7 +1051,7 @@ asm void daNpc_FairySeirei_c::talk(int param_0) {
 SECTION_RODATA static u8 const sTempBit[16] = {
     0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x7A, 0x00, 0x00, 0x00, 0x7B, 0x00, 0x00, 0x00, 0x7C,
 };
-SECTION_DEAD void* const cg_80541E48 = (void*)(&sTempBit);
+COMPILER_STRIP_GATE(80541E48, &sTempBit);
 
 /* 80540E10-80540E78 000F90 0068+00 1/1 0/0 0/0 .text _to_FairyCave__19daNpc_FairySeirei_cFv */
 #pragma push

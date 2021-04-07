@@ -170,12 +170,12 @@ asm void daTagRmbitSw_c::execute() {
 
 /* ############################################################################################## */
 /* 80D5FFA8-80D5FFAC 000000 0004+00 1/1 0/0 0/0 .rodata          @3817 */
-SECTION_RODATA static u32 const lit_3817 = 0x42480000;
-SECTION_DEAD void* const cg_80D5FFA8 = (void*)(&lit_3817);
+SECTION_RODATA static f32 const lit_3817 = 50.0f;
+COMPILER_STRIP_GATE(80D5FFA8, &lit_3817);
 
 /* 80D5FFAC-80D5FFB0 000004 0004+00 1/1 0/0 0/0 .rodata          @3818 */
-SECTION_RODATA static u32 const lit_3818 = 0x42C80000;
-SECTION_DEAD void* const cg_80D5FFAC = (void*)(&lit_3818);
+SECTION_RODATA static f32 const lit_3818 = 100.0f;
+COMPILER_STRIP_GATE(80D5FFAC, &lit_3818);
 
 /* 80D5FDB8-80D5FDF0 000338 0038+00 1/1 0/0 0/0 .text            init__14daTagRmbitSw_cFv */
 #pragma push
@@ -195,7 +195,7 @@ SECTION_RODATA static u8 const lit_3853[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80D5FFB0 = (void*)(&lit_3853);
+COMPILER_STRIP_GATE(80D5FFB0, &lit_3853);
 
 /* 80D5FDF0-80D5FEEC 000370 00FC+00 1/1 0/0 0/0 .text            chkPlyrInTag__14daTagRmbitSw_cFv */
 #pragma push

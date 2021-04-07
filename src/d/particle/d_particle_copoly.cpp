@@ -11,13 +11,13 @@
 // Types:
 //
 
-struct csXyz {};
-
-struct cBgS_PolyInfo {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     struct level_c {

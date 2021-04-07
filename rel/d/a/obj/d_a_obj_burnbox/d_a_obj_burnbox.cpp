@@ -32,9 +32,9 @@ struct daObjBurnBox_c {
     /* 8046EC10 */ void Delete();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -49,9 +49,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -210,13 +210,13 @@ asm void daObjBurnBox_c::setBaseMtx() {
 SECTION_RODATA static u8 const l_bmd[12] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x03,
 };
-SECTION_DEAD void* const cg_8046EE48 = (void*)(&l_bmd);
+COMPILER_STRIP_GATE(8046EE48, &l_bmd);
 
 /* 8046EE54-8046EE60 00000C 000C+00 1/1 0/0 0/0 .rodata          l_heap_size */
 SECTION_RODATA static u8 const l_heap_size[12] = {
     0x00, 0x00, 0x08, 0x20, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x08, 0x20,
 };
-SECTION_DEAD void* const cg_8046EE54 = (void*)(&l_heap_size);
+COMPILER_STRIP_GATE(8046EE54, &l_heap_size);
 
 /* 8046EE60-8046EEA4 000018 0044+00 0/1 0/0 0/0 .rodata          l_cyl_src */
 #pragma push
@@ -228,7 +228,7 @@ SECTION_RODATA static u8 const l_cyl_src[68] = {
     0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8046EE60 = (void*)(&l_cyl_src);
+COMPILER_STRIP_GATE(8046EE60, &l_cyl_src);
 #pragma pop
 
 /* 8046EEA4-8046EEB0 00005C 000A+02 0/1 0/0 0/0 .rodata          particle_id$3649 */
@@ -249,35 +249,35 @@ SECTION_RODATA static u8 const particle_id[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8046EEA4 = (void*)(&particle_id);
+COMPILER_STRIP_GATE(8046EEA4, &particle_id);
 #pragma pop
 
 /* 8046EEB0-8046EEB4 000068 0004+00 0/1 0/0 0/0 .rodata          @3684 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3684 = 0x42160000;
-SECTION_DEAD void* const cg_8046EEB0 = (void*)(&lit_3684);
+SECTION_RODATA static f32 const lit_3684 = 37.5f;
+COMPILER_STRIP_GATE(8046EEB0, &lit_3684);
 #pragma pop
 
 /* 8046EEB4-8046EEB8 00006C 0004+00 0/1 0/0 0/0 .rodata          @3685 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3685 = 0x3F000000;
-SECTION_DEAD void* const cg_8046EEB4 = (void*)(&lit_3685);
+SECTION_RODATA static f32 const lit_3685 = 0.5f;
+COMPILER_STRIP_GATE(8046EEB4, &lit_3685);
 #pragma pop
 
 /* 8046EEB8-8046EEBC 000070 0004+00 0/1 0/0 0/0 .rodata          @3686 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3686 = 0x42960000;
-SECTION_DEAD void* const cg_8046EEB8 = (void*)(&lit_3686);
+SECTION_RODATA static f32 const lit_3686 = 75.0f;
+COMPILER_STRIP_GATE(8046EEB8, &lit_3686);
 #pragma pop
 
 /* 8046EEBC-8046EEC0 000074 0004+00 0/1 0/0 0/0 .rodata          @3687 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3687 = 0x3F800000;
-SECTION_DEAD void* const cg_8046EEBC = (void*)(&lit_3687);
+SECTION_RODATA static f32 const lit_3687 = 1.0f;
+COMPILER_STRIP_GATE(8046EEBC, &lit_3687);
 #pragma pop
 
 /* 8046E738-8046E8BC 000118 0184+00 1/0 0/0 0/0 .text            Create__14daObjBurnBox_cFv */

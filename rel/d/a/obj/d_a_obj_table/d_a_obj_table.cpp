@@ -33,9 +33,9 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -81,9 +81,9 @@ struct dComIfG_play_c {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -267,8 +267,8 @@ asm void daObjTable_c::CreateHeap() {
 
 /* ############################################################################################## */
 /* 80D06C04-80D06C08 000000 0004+00 2/2 0/0 0/0 .rodata          @4017 */
-SECTION_RODATA static u32 const lit_4017 = 0x42C80000;
-SECTION_DEAD void* const cg_80D06C04 = (void*)(&lit_4017);
+SECTION_RODATA static f32 const lit_4017 = 100.0f;
+COMPILER_STRIP_GATE(80D06C04, &lit_4017);
 
 /* 80D065D0-80D0695C 000210 038C+00 1/0 0/0 0/0 .text            Create__12daObjTable_cFv */
 #pragma push
@@ -293,8 +293,8 @@ asm void daObjTable_c::Execute(f32 (**param_0)[3][4]) {
 
 /* ############################################################################################## */
 /* 80D06C08-80D06C0C 000004 0004+00 1/1 0/0 0/0 .rodata          @4077 */
-SECTION_RODATA static u32 const lit_4077 = 0x43FA0000;
-SECTION_DEAD void* const cg_80D06C08 = (void*)(&lit_4077);
+SECTION_RODATA static f32 const lit_4077 = 500.0f;
+COMPILER_STRIP_GATE(80D06C08, &lit_4077);
 
 /* 80D06AD8-80D06BC8 000718 00F0+00 1/0 0/0 0/0 .text            Draw__12daObjTable_cFv */
 #pragma push

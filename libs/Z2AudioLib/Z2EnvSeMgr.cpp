@@ -36,9 +36,9 @@ struct Z2SoundMgr {
     /* 802AA270 */ void setIIR(JAISound*, s16 const*);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -361,7 +361,7 @@ SECTION_RODATA static u8 const cNullVec__6Z2Calc[12 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8039C250 = (void*)(&cNullVec__6Z2Calc);
+COMPILER_STRIP_GATE(8039C250, &cNullVec__6Z2Calc);
 
 /* 80455D60-80455D64 004360 0004+00 10/10 0/0 0/0 .sdata2          @3574 */
 SECTION_SDATA2 static f32 lit_3574 = 0.5f;

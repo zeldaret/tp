@@ -45,28 +45,28 @@ extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 
 /* ############################################################################################## */
 /* 804D523C-804D5240 000000 0004+00 1/1 0/0 0/0 .rodata          @3640 */
-SECTION_RODATA static u32 const lit_3640 = 0x449C4000;
-SECTION_DEAD void* const cg_804D523C = (void*)(&lit_3640);
+SECTION_RODATA static f32 const lit_3640 = 1250.0f;
+COMPILER_STRIP_GATE(804D523C, &lit_3640);
 
 /* 804D5240-804D5244 000004 0004+00 0/1 0/0 0/0 .rodata          @3641 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3641 = 0x451C4000;
-SECTION_DEAD void* const cg_804D5240 = (void*)(&lit_3641);
+SECTION_RODATA static f32 const lit_3641 = 2500.0f;
+COMPILER_STRIP_GATE(804D5240, &lit_3641);
 #pragma pop
 
 /* 804D5244-804D5248 000008 0004+00 0/1 0/0 0/0 .rodata          @3642 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3642 = 0x42FA0000;
-SECTION_DEAD void* const cg_804D5244 = (void*)(&lit_3642);
+SECTION_RODATA static f32 const lit_3642 = 125.0f;
+COMPILER_STRIP_GATE(804D5244, &lit_3642);
 #pragma pop
 
 /* 804D5248-804D524C 00000C 0004+00 0/1 0/0 0/0 .rodata          @3643 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3643 = 0x437A0000;
-SECTION_DEAD void* const cg_804D5248 = (void*)(&lit_3643);
+SECTION_RODATA static f32 const lit_3643 = 250.0f;
+COMPILER_STRIP_GATE(804D5248, &lit_3643);
 #pragma pop
 
 /* 804D5118-804D51E0 000078 00C8+00 1/1 0/0 0/0 .text            create__7daSus_cFv */

@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {};
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -34,9 +34,9 @@ struct daObj_Suisya_c {
     /* 80CF0310 */ void create();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -72,9 +72,9 @@ struct cBgS_PolyInfo {};
 
 struct _GXTexObj {};
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -146,14 +146,14 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 80CF0520-80CF0524 000000 0004+00 2/2 0/0 0/0 .rodata          @3662 */
-SECTION_RODATA static u32 const lit_3662 = 0x42C80000;
-SECTION_DEAD void* const cg_80CF0520 = (void*)(&lit_3662);
+SECTION_RODATA static f32 const lit_3662 = 100.0f;
+COMPILER_STRIP_GATE(80CF0520, &lit_3662);
 
 /* 80CF0524-80CF0528 000004 0004+00 0/1 0/0 0/0 .rodata          @3663 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3663 = 0x43C80000;
-SECTION_DEAD void* const cg_80CF0524 = (void*)(&lit_3663);
+SECTION_RODATA static f32 const lit_3663 = 400.0f;
+COMPILER_STRIP_GATE(80CF0524, &lit_3663);
 #pragma pop
 
 /* 80CF0528-80CF052C 000008 0004+00 0/2 0/0 0/0 .rodata          @3664 */
@@ -165,12 +165,12 @@ SECTION_RODATA static u8 const lit_3664[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80CF0528 = (void*)(&lit_3664);
+COMPILER_STRIP_GATE(80CF0528, &lit_3664);
 #pragma pop
 
 /* 80CF052C-80CF0530 00000C 0004+00 1/2 0/0 0/0 .rodata          @3665 */
-SECTION_RODATA static u32 const lit_3665 = 0x3F800000;
-SECTION_DEAD void* const cg_80CF052C = (void*)(&lit_3665);
+SECTION_RODATA static f32 const lit_3665 = 1.0f;
+COMPILER_STRIP_GATE(80CF052C, &lit_3665);
 
 /* 80CF0078-80CF0148 000078 00D0+00 1/1 0/0 0/0 .text            draw__14daObj_Suisya_cFv */
 #pragma push
@@ -194,8 +194,8 @@ static asm void daObj_Suisya_Draw(daObj_Suisya_c* param_0) {
 
 /* ############################################################################################## */
 /* 80CF0530-80CF0534 000010 0004+00 1/1 0/0 0/0 .rodata          @3682 */
-SECTION_RODATA static u32 const lit_3682 = 0xBF800000;
-SECTION_DEAD void* const cg_80CF0530 = (void*)(&lit_3682);
+SECTION_RODATA static f32 const lit_3682 = -1.0f;
+COMPILER_STRIP_GATE(80CF0530, &lit_3682);
 
 /* 80CF0168-80CF020C 000168 00A4+00 1/1 0/0 0/0 .text            execute__14daObj_Suisya_cFv */
 #pragma push
@@ -266,29 +266,29 @@ static asm void useHeapInit(fopAc_ac_c* param_0) {
 /* 80CF0534-80CF0538 000014 0004+00 0/1 0/0 0/0 .rodata          @3749 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3749 = 0xC3480000;
-SECTION_DEAD void* const cg_80CF0534 = (void*)(&lit_3749);
+SECTION_RODATA static f32 const lit_3749 = -200.0f;
+COMPILER_STRIP_GATE(80CF0534, &lit_3749);
 #pragma pop
 
 /* 80CF0538-80CF053C 000018 0004+00 0/1 0/0 0/0 .rodata          @3750 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3750 = 0xC3FA0000;
-SECTION_DEAD void* const cg_80CF0538 = (void*)(&lit_3750);
+SECTION_RODATA static f32 const lit_3750 = -500.0f;
+COMPILER_STRIP_GATE(80CF0538, &lit_3750);
 #pragma pop
 
 /* 80CF053C-80CF0540 00001C 0004+00 0/1 0/0 0/0 .rodata          @3751 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3751 = 0x43480000;
-SECTION_DEAD void* const cg_80CF053C = (void*)(&lit_3751);
+SECTION_RODATA static f32 const lit_3751 = 200.0f;
+COMPILER_STRIP_GATE(80CF053C, &lit_3751);
 #pragma pop
 
 /* 80CF0540-80CF0544 000020 0004+00 0/1 0/0 0/0 .rodata          @3752 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3752 = 0x43FA0000;
-SECTION_DEAD void* const cg_80CF0540 = (void*)(&lit_3752);
+SECTION_RODATA static f32 const lit_3752 = 500.0f;
+COMPILER_STRIP_GATE(80CF0540, &lit_3752);
 #pragma pop
 
 /* 80CF054C-80CF056C -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Suisya_Method */

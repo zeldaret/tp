@@ -152,13 +152,13 @@ struct dMenu_save_c {
     /* 801F69FC */ void _draw2();
 };
 
-struct JKRExpHeap {};
-
 struct STControl {
     /* 80032044 */ STControl(s16, s16, s16, s16, f32, f32, s16, s16);
     /* 80032088 */ void setWaitParm(s16, s16, s16, s16, f32, f32, s16, s16);
     /* 8003219C */ void checkTrigger();
 };
+
+struct JKRExpHeap {};
 
 struct CSTControl {};
 
@@ -260,9 +260,9 @@ struct dDlst_MENU_CAPTURE_c {
     /* 801FE2E8 */ ~dDlst_MENU_CAPTURE_c();
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);

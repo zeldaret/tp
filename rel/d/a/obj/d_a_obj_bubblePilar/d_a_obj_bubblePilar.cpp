@@ -46,11 +46,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -65,9 +65,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     struct level_c {
@@ -145,9 +145,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -417,11 +417,11 @@ SECTION_RODATA static u8 const mCcDObjInfo__13daBubbPilar_c[48] = {
     0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80BC4070 = (void*)(&mCcDObjInfo__13daBubbPilar_c);
+COMPILER_STRIP_GATE(80BC4070, &mCcDObjInfo__13daBubbPilar_c);
 
 /* 80BC40A0-80BC40A4 000030 0004+00 1/3 0/0 0/0 .rodata          @3654 */
-SECTION_RODATA static u32 const lit_3654 = 0x3F800000;
-SECTION_DEAD void* const cg_80BC40A0 = (void*)(&lit_3654);
+SECTION_RODATA static f32 const lit_3654 = 1.0f;
+COMPILER_STRIP_GATE(80BC40A0, &lit_3654);
 
 /* 80BC3460-80BC3518 000160 00B8+00 2/2 0/0 0/0 .text            setBaseMtx__13daBubbPilar_cFv */
 #pragma push
@@ -518,15 +518,15 @@ asm void daBubbPilar_c::initModeWait() {
 /* 80BC40A4-80BC40A8 000034 0004+00 0/2 0/0 0/0 .rodata          @3939 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3939 = 0xBF800000;
-SECTION_DEAD void* const cg_80BC40A4 = (void*)(&lit_3939);
+SECTION_RODATA static f32 const lit_3939 = -1.0f;
+COMPILER_STRIP_GATE(80BC40A4, &lit_3939);
 #pragma pop
 
 /* 80BC40A8-80BC40AC 000038 0004+00 0/1 0/0 0/0 .rodata          @3940 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3940 = 0x42C80000;
-SECTION_DEAD void* const cg_80BC40A8 = (void*)(&lit_3940);
+SECTION_RODATA static f32 const lit_3940 = 100.0f;
+COMPILER_STRIP_GATE(80BC40A8, &lit_3940);
 #pragma pop
 
 /* 80BC3AC4-80BC3C74 0007C4 01B0+00 1/0 0/0 0/0 .text            modeWait__13daBubbPilar_cFv */
@@ -564,7 +564,7 @@ SECTION_RODATA static u8 const particle_id[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80BC40AC = (void*)(&particle_id);
+COMPILER_STRIP_GATE(80BC40AC, &particle_id);
 #pragma pop
 
 /* 80BC3C98-80BC3DB0 000998 0118+00 1/0 0/0 0/0 .text            modeEffOn__13daBubbPilar_cFv */

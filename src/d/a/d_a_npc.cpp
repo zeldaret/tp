@@ -13,12 +13,6 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {
-    /* 80018BD0 */ ~csXyz();
-    /* 80112C80 */ csXyz();
-    /* 8026745C */ void operator+=(csXyz&);
-};
-
 struct Vec {};
 
 struct cXyz {
@@ -28,6 +22,12 @@ struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80266EF4 */ void normalize();
     /* 802670AC */ void isZero() const;
+};
+
+struct csXyz {
+    /* 80018BD0 */ ~csXyz();
+    /* 80112C80 */ csXyz();
+    /* 8026745C */ void operator+=(csXyz&);
 };
 
 struct mDoMtx_stack_c {
@@ -44,13 +44,13 @@ struct mDoExt_morf_c {
     /* 8000FB7C */ void setMorf(f32);
 };
 
-struct J3DAnmColor {};
-
-struct J3DAnmTextureSRTKey {};
+struct J3DAnmTexPattern {};
 
 struct J3DAnmTevRegKey {};
 
-struct J3DAnmTexPattern {};
+struct J3DAnmColor {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct J3DMaterialTable {
     /* 8032F64C */ void removeMatColorAnimator(J3DAnmColor*);
@@ -116,11 +116,9 @@ struct daNpcT_motionAnmData_c {};
 
 struct daNpcT_faceMotionAnmData_c {};
 
-struct J3DModel {};
+struct J3DAnmTransformKey {};
 
-struct dCcD_GObjInf {
-    /* 80084460 */ void ChkTgHit();
-};
+struct J3DModel {};
 
 struct J3DFrameCtrl {
     /* 803283FC */ void init(s16);
@@ -128,9 +126,11 @@ struct J3DFrameCtrl {
 
 struct _GXColorS10 {};
 
-struct J3DAnmTransformKey {};
-
 struct J3DJoint {};
+
+struct dCcD_GObjInf {
+    /* 80084460 */ void ChkTgHit();
+};
 
 struct daNpcT_c {
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
@@ -3206,7 +3206,7 @@ SECTION_RODATA extern u8 const mCcDObjData__8daNpcT_c[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80392680 = (void*)(&mCcDObjData__8daNpcT_c);
+COMPILER_STRIP_GATE(80392680, &mCcDObjData__8daNpcT_c);
 
 /* 8014D3D8-8014D538 147D18 0160+00 0/0 1/0 0/0 .text            __sinit_d_a_npc_cpp */
 #pragma push
@@ -5128,7 +5128,7 @@ SECTION_RODATA static u8 const mCcDObj__11daBaseNpc_c[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803926B0 = (void*)(&mCcDObj__11daBaseNpc_c);
+COMPILER_STRIP_GATE(803926B0, &mCcDObj__11daBaseNpc_c);
 #pragma pop
 
 /* 803926E0-80392710 01ED40 0030+00 0/0 0/0 0/0 .rodata          mCcDObjInfo__8daNpcF_c */
@@ -5139,7 +5139,7 @@ SECTION_RODATA static u8 const mCcDObjInfo__8daNpcF_c[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803926E0 = (void*)(&mCcDObjInfo__8daNpcF_c);
+COMPILER_STRIP_GATE(803926E0, &mCcDObjInfo__8daNpcF_c);
 #pragma pop
 
 /* 80450FF8-80451000 0004F8 0008+00 0/0 1/1 0/0 .sbss            None */

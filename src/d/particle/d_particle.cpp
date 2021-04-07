@@ -58,13 +58,25 @@ struct dPa_wbPcallBack_c {
     /* 8004FECC */ ~dPa_wbPcallBack_c();
 };
 
-struct JPADrawInfo {};
+struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct JPAParticleCallBack {
     /* 800183D4 */ void execute(JPABaseEmitter*, JPABaseParticle*);
     /* 800183D8 */ void draw(JPABaseEmitter*, JPABaseParticle*);
     /* 8027EFA4 */ ~JPAParticleCallBack();
 };
+
+struct JPAEmitterCallBack {
+    /* 80050368 */ void execute(JPABaseEmitter*);
+    /* 8005036C */ void draw(JPABaseEmitter*);
+    /* 80050370 */ void drawAfter(JPABaseEmitter*);
+    /* 80050374 */ void executeAfter(JPABaseEmitter*);
+    /* 8027E6A4 */ ~JPAEmitterCallBack();
+};
+
+struct JPADrawInfo {};
 
 struct ResTIMG {};
 
@@ -82,14 +94,6 @@ struct JGeometry {
     struct TVec3__template0 {};
 };
 
-struct JPAEmitterCallBack {
-    /* 80050368 */ void execute(JPABaseEmitter*);
-    /* 8005036C */ void draw(JPABaseEmitter*);
-    /* 80050370 */ void drawAfter(JPABaseEmitter*);
-    /* 80050374 */ void executeAfter(JPABaseEmitter*);
-    /* 8027E6A4 */ ~JPAEmitterCallBack();
-};
-
 struct JPAEmitterManager {
     /* 8027DCA0 */ JPAEmitterManager(u32, u32, JKRHeap*, u8, u8);
     /* 8027DEBC */ void createSimpleEmitterID(JGeometry::TVec3<f32> const&, u16, u8, u8,
@@ -100,10 +104,6 @@ struct JPAEmitterManager {
     /* 8027E344 */ void entryResourceManager(JPAResourceManager*, u8);
     /* 8027E354 */ void clearResourceManager(u8);
 };
-
-struct _GXColor {};
-
-struct dKy_tevstr_c {};
 
 struct dPa_simpleEcallBack {
     /* 8004ADF4 */ dPa_simpleEcallBack();
@@ -1263,7 +1263,7 @@ static asm void dPa_setWindPower(JPABaseParticle* param_0) {
 SECTION_RODATA static u8 const lit_4065[12] = {
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8037A108 = (void*)(&lit_4065);
+COMPILER_STRIP_GATE(8037A108, &lit_4065);
 
 /* 80451F5C-80451F60 00055C 0004+00 3/3 0/0 0/0 .sdata2          @4090 */
 SECTION_SDATA2 static f32 lit_4090 = -0.0054931640625f;
@@ -2332,7 +2332,7 @@ void dPa_gen_d_light8PcallBack::execute(JPABaseEmitter* param_0, JPABaseParticle
 SECTION_RODATA static u8 const lit_5691[12] = {
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8037A114 = (void*)(&lit_5691);
+COMPILER_STRIP_GATE(8037A114, &lit_5691);
 
 /* 80451FD8-80451FDC 0005D8 0004+00 3/3 0/0 0/0 .sdata2          @6075 */
 SECTION_SDATA2 static f32 lit_6075 = 32.0f;
@@ -2383,7 +2383,7 @@ asm void dPa_gen_b_light8PcallBack::draw(JPABaseEmitter* param_0, JPABaseParticl
 SECTION_RODATA static u8 const lit_6363[12] = {
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8037A120 = (void*)(&lit_6363);
+COMPILER_STRIP_GATE(8037A120, &lit_6363);
 
 /* 8004ED44-8004F6B8 049684 0974+00 1/0 0/0 0/0 .text
  * draw__25dPa_gen_d_light8PcallBackFP14JPABaseEmitterP15JPABaseParticle */

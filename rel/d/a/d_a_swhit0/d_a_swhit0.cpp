@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTevRegKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_brkAnm {
     /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
@@ -136,9 +136,9 @@ struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -318,8 +318,8 @@ asm void daSwhit0_c::makeEventId() {
 
 /* ############################################################################################## */
 /* 80487370-80487374 000000 0004+00 6/6 0/0 0/0 .rodata          @3685 */
-SECTION_RODATA static u32 const lit_3685 = 0x3F800000;
-SECTION_DEAD void* const cg_80487370 = (void*)(&lit_3685);
+SECTION_RODATA static f32 const lit_3685 = 1.0f;
+COMPILER_STRIP_GATE(80487370, &lit_3685);
 
 /* 804873BC-804873C0 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_swhit0__stringBase0;
@@ -336,8 +336,8 @@ asm void daSwhit0_c::CreateHeap() {
 
 /* ############################################################################################## */
 /* 80487374-80487378 000004 0004+00 1/1 0/0 0/0 .rodata          @3725 */
-SECTION_RODATA static u32 const lit_3725 = 0x42BE0000;
-SECTION_DEAD void* const cg_80487374 = (void*)(&lit_3725);
+SECTION_RODATA static f32 const lit_3725 = 95.0f;
+COMPILER_STRIP_GATE(80487374, &lit_3725);
 
 /* 804873C0-80487400 000004 0040+00 1/1 0/0 0/0 .data            l_sph_src */
 SECTION_DATA static u8 l_sph_src[64] = {
@@ -529,12 +529,12 @@ asm void daSwhit0_c::offSwitch() {
 
 /* ############################################################################################## */
 /* 80487378-80487380 000008 0004+04 5/5 0/0 0/0 .rodata          @3982 */
-SECTION_RODATA static u32 const lit_3982[1 + 1 /* padding */] = {
-    0xBF800000,
+SECTION_RODATA static f32 const lit_3982[1 + 1 /* padding */] = {
+    -1.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
-SECTION_DEAD void* const cg_80487378 = (void*)(&lit_3982);
+COMPILER_STRIP_GATE(80487378, &lit_3982);
 
 /* 804868A8-804869C4 000928 011C+00 2/2 0/0 0/0 .text            DemoProc__10daSwhit0_cFv */
 #pragma push
@@ -641,7 +641,7 @@ asm void daSwhit0_c::setDrawMtx() {
 SECTION_RODATA static u8 const lit_4212[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80487380 = (void*)(&lit_4212);
+COMPILER_STRIP_GATE(80487380, &lit_4212);
 
 /* 80487138-80487228 0011B8 00F0+00 1/0 0/0 0/0 .text            daSwhit0_Draw__FP10daSwhit0_c */
 #pragma push

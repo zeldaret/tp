@@ -11,9 +11,9 @@
 // Types:
 //
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -768,11 +768,11 @@ asm J3DMatColorAnm::J3DMatColorAnm() {
 SECTION_RODATA static u8 const lit_3756[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80459374 = (void*)(&lit_3756);
+COMPILER_STRIP_GATE(80459374, &lit_3756);
 
 /* 80459380-80459384 00000C 0004+00 2/3 0/0 0/0 .rodata          @3900 */
-SECTION_RODATA static u32 const lit_3900 = 0x3F800000;
-SECTION_DEAD void* const cg_80459380 = (void*)(&lit_3900);
+SECTION_RODATA static f32 const lit_3900 = 1.0f;
+COMPILER_STRIP_GATE(80459380, &lit_3900);
 
 /* 80457F34-80458040 0003B4 010C+00 1/1 0/0 0/0 .text
  * create__13daBg_btkAnm_cFP12J3DModelDataP19J3DAnmTextureSRTKeyi */
@@ -803,7 +803,7 @@ SECTION_RODATA static u8 const lit_3914[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80459384 = (void*)(&lit_3914);
+COMPILER_STRIP_GATE(80459384, &lit_3914);
 
 /* 80458088-804580CC 000508 0044+00 1/1 0/0 0/0 .text entry__13daBg_btkAnm_cFP12J3DModelData */
 #pragma push
@@ -868,8 +868,8 @@ static asm void checkCreateHeap(fopAc_ac_c* param_0) {
 
 /* ############################################################################################## */
 /* 80459388-8045938C 000014 0004+00 1/1 0/0 0/0 .rodata          @4125 */
-SECTION_RODATA static u32 const lit_4125 = 0xBF800000;
-SECTION_DEAD void* const cg_80459388 = (void*)(&lit_4125);
+SECTION_RODATA static f32 const lit_4125 = -1.0f;
+COMPILER_STRIP_GATE(80459388, &lit_4125);
 
 /* 804582B8-80458750 000738 0498+00 2/2 0/0 1/1 .text            createHeap__6daBg_cFv */
 #pragma push
@@ -915,33 +915,33 @@ static asm void daBg_Draw(daBg_c* param_0) {
 /* 8045938C-80459390 000018 0004+00 0/1 0/0 0/0 .rodata          @4479 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4479 = 0x49742400;
-SECTION_DEAD void* const cg_8045938C = (void*)(&lit_4479);
+SECTION_RODATA static f32 const lit_4479 = 1000000.0f;
+COMPILER_STRIP_GATE(8045938C, &lit_4479);
 #pragma pop
 
 /* 80459390-80459394 00001C 0004+00 0/1 0/0 0/0 .rodata          @4480 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4480 = 0x3F666666;
-SECTION_DEAD void* const cg_80459390 = (void*)(&lit_4480);
+SECTION_RODATA static f32 const lit_4480 = 9.0f / 10.0f;
+COMPILER_STRIP_GATE(80459390, &lit_4480);
 #pragma pop
 
 /* 80459394-8045939C 000020 0004+04 0/1 0/0 0/0 .rodata          @4481 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4481[1 + 1 /* padding */] = {
-    0x41200000,
+SECTION_RODATA static f32 const lit_4481[1 + 1 /* padding */] = {
+    10.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
-SECTION_DEAD void* const cg_80459394 = (void*)(&lit_4481);
+COMPILER_STRIP_GATE(80459394, &lit_4481);
 #pragma pop
 
 /* 8045939C-804593A4 000028 0008+00 1/2 0/0 0/0 .rodata          @4483 */
 SECTION_RODATA static u8 const lit_4483[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8045939C = (void*)(&lit_4483);
+COMPILER_STRIP_GATE(8045939C, &lit_4483);
 
 /* 804588C4-80458F38 000D44 0674+00 1/1 0/0 0/0 .text            draw__6daBg_cFv */
 #pragma push
@@ -955,8 +955,8 @@ asm void daBg_c::draw() {
 
 /* ############################################################################################## */
 /* 804593A4-804593A8 000030 0004+00 1/1 0/0 0/0 .rodata          @4524 */
-SECTION_RODATA static u32 const lit_4524 = 0x42C80000;
-SECTION_DEAD void* const cg_804593A4 = (void*)(&lit_4524);
+SECTION_RODATA static f32 const lit_4524 = 100.0f;
+COMPILER_STRIP_GATE(804593A4, &lit_4524);
 
 /* 80458F38-8045901C 0013B8 00E4+00 1/0 0/0 0/0 .text            daBg_Execute__FP6daBg_c */
 #pragma push

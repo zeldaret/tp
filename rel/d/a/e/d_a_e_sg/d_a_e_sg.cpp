@@ -29,8 +29,6 @@ struct daE_SG_HIO_c {
     /* 8078DC84 */ ~daE_SG_HIO_c();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct Vec {};
@@ -41,6 +39,8 @@ struct cXyz {
     /* 8078A4DC */ ~cXyz();
     /* 8078DD7C */ cXyz();
 };
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -55,11 +55,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
+struct _GXColor {};
+
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
-
-struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
@@ -334,28 +334,28 @@ extern "C" void __register_global_object();
 
 /* ############################################################################################## */
 /* 8078DDA4-8078DDA8 000000 0004+00 13/13 0/0 0/0 .rodata          @3767 */
-SECTION_RODATA static u32 const lit_3767 = 0x3F99999A;
-SECTION_DEAD void* const cg_8078DDA4 = (void*)(&lit_3767);
+SECTION_RODATA static f32 const lit_3767 = 6.0f / 5.0f;
+COMPILER_STRIP_GATE(8078DDA4, &lit_3767);
 
 /* 8078DDA8-8078DDAC 000004 0004+00 0/7 0/0 0/0 .rodata          @3768 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3768 = 0x41200000;
-SECTION_DEAD void* const cg_8078DDA8 = (void*)(&lit_3768);
+SECTION_RODATA static f32 const lit_3768 = 10.0f;
+COMPILER_STRIP_GATE(8078DDA8, &lit_3768);
 #pragma pop
 
 /* 8078DDAC-8078DDB0 000008 0004+00 0/1 0/0 0/0 .rodata          @3769 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3769 = 0x41500000;
-SECTION_DEAD void* const cg_8078DDAC = (void*)(&lit_3769);
+SECTION_RODATA static f32 const lit_3769 = 13.0f;
+COMPILER_STRIP_GATE(8078DDAC, &lit_3769);
 #pragma pop
 
 /* 8078DDB0-8078DDB4 00000C 0004+00 0/1 0/0 0/0 .rodata          @3770 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3770 = 0x43FA0000;
-SECTION_DEAD void* const cg_8078DDB0 = (void*)(&lit_3770);
+SECTION_RODATA static f32 const lit_3770 = 500.0f;
+COMPILER_STRIP_GATE(8078DDB0, &lit_3770);
 #pragma pop
 
 /* 8078DEB4-8078DF34 000000 0080+00 4/4 0/0 0/0 .data            stick_bit */
@@ -555,15 +555,15 @@ static asm void nodeCallBack(J3DJoint* param_0, int param_1) {
 /* 8078DDB4-8078DDB8 000010 0004+00 0/5 0/0 0/0 .rodata          @3842 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3842 = 0x42C80000;
-SECTION_DEAD void* const cg_8078DDB4 = (void*)(&lit_3842);
+SECTION_RODATA static f32 const lit_3842 = 100.0f;
+COMPILER_STRIP_GATE(8078DDB4, &lit_3842);
 #pragma pop
 
 /* 8078DDB8-8078DDBC 000014 0004+00 0/1 0/0 0/0 .rodata          @3843 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3843 = 0x43C80000;
-SECTION_DEAD void* const cg_8078DDB8 = (void*)(&lit_3843);
+SECTION_RODATA static f32 const lit_3843 = 400.0f;
+COMPILER_STRIP_GATE(8078DDB8, &lit_3843);
 #pragma pop
 
 /* 8078DDBC-8078DDC0 000018 0004+00 1/11 0/0 0/0 .rodata          @3844 */
@@ -573,13 +573,13 @@ SECTION_RODATA static u8 const lit_3844[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8078DDBC = (void*)(&lit_3844);
+COMPILER_STRIP_GATE(8078DDBC, &lit_3844);
 
 /* 8078DDC0-8078DDC4 00001C 0004+00 0/10 0/0 0/0 .rodata          @3845 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3845 = 0x3F800000;
-SECTION_DEAD void* const cg_8078DDC0 = (void*)(&lit_3845);
+SECTION_RODATA static f32 const lit_3845 = 1.0f;
+COMPILER_STRIP_GATE(8078DDC0, &lit_3845);
 #pragma pop
 
 /* 8078A400-8078A4DC 0002C0 00DC+00 1/0 0/0 0/0 .text            daE_SG_Draw__FP10e_sg_class */
@@ -719,12 +719,12 @@ static asm void pl_joint_search(e_sg_class* param_0) {
 
 /* ############################################################################################## */
 /* 8078DDC4-8078DDCC 000020 0004+04 1/6 0/0 0/0 .rodata          @3901 */
-SECTION_RODATA static u32 const lit_3901[1 + 1 /* padding */] = {
-    0x41F00000,
+SECTION_RODATA static f32 const lit_3901[1 + 1 /* padding */] = {
+    30.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
-SECTION_DEAD void* const cg_8078DDC4 = (void*)(&lit_3901);
+COMPILER_STRIP_GATE(8078DDC4, &lit_3901);
 
 /* 8078A588-8078A67C 000448 00F4+00 3/3 0/0 0/0 .text otherBgCheck__FP10fopAc_ac_cP4cXyzP4cXyz */
 #pragma push
@@ -775,7 +775,7 @@ static asm void s_box_sub(void* param_0, void* param_1) {
 SECTION_RODATA static u8 const lit_3999[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8078DDCC = (void*)(&lit_3999);
+COMPILER_STRIP_GATE(8078DDCC, &lit_3999);
 #pragma pop
 
 /* 8078DDD4-8078DDDC 000030 0008+00 0/6 0/0 0/0 .rodata          @4000 */
@@ -784,7 +784,7 @@ SECTION_DEAD void* const cg_8078DDCC = (void*)(&lit_3999);
 SECTION_RODATA static u8 const lit_4000[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8078DDD4 = (void*)(&lit_4000);
+COMPILER_STRIP_GATE(8078DDD4, &lit_4000);
 #pragma pop
 
 /* 8078DDDC-8078DDE4 000038 0008+00 0/6 0/0 0/0 .rodata          @4001 */
@@ -793,7 +793,7 @@ SECTION_DEAD void* const cg_8078DDD4 = (void*)(&lit_4000);
 SECTION_RODATA static u8 const lit_4001[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8078DDDC = (void*)(&lit_4001);
+COMPILER_STRIP_GATE(8078DDDC, &lit_4001);
 #pragma pop
 
 /* 8078A6EC-8078A9B8 0005AC 02CC+00 1/1 0/0 0/0 .text            search_box__FP10e_sg_class */
@@ -808,8 +808,8 @@ static asm void search_box(e_sg_class* param_0) {
 
 /* ############################################################################################## */
 /* 8078DDE4-8078DDE8 000040 0004+00 1/7 0/0 0/0 .rodata          @4015 */
-SECTION_RODATA static u32 const lit_4015 = 0x41A00000;
-SECTION_DEAD void* const cg_8078DDE4 = (void*)(&lit_4015);
+SECTION_RODATA static f32 const lit_4015 = 20.0f;
+COMPILER_STRIP_GATE(8078DDE4, &lit_4015);
 
 /* 8078A9B8-8078AA3C 000878 0084+00 1/1 0/0 0/0 .text            search_esa__FP10e_sg_class */
 #pragma push
@@ -825,89 +825,89 @@ static asm void search_esa(e_sg_class* param_0) {
 /* 8078DDE8-8078DDEC 000044 0004+00 0/5 0/0 0/0 .rodata          @4216 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4216 = 0x42480000;
-SECTION_DEAD void* const cg_8078DDE8 = (void*)(&lit_4216);
+SECTION_RODATA static f32 const lit_4216 = 50.0f;
+COMPILER_STRIP_GATE(8078DDE8, &lit_4216);
 #pragma pop
 
 /* 8078DDEC-8078DDF0 000048 0004+00 0/8 0/0 0/0 .rodata          @4217 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4217 = 0x3F000000;
-SECTION_DEAD void* const cg_8078DDEC = (void*)(&lit_4217);
+SECTION_RODATA static f32 const lit_4217 = 0.5f;
+COMPILER_STRIP_GATE(8078DDEC, &lit_4217);
 #pragma pop
 
 /* 8078DDF0-8078DDF4 00004C 0004+00 0/2 0/0 0/0 .rodata          @4218 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4218 = 0x3DCCCCCD;
-SECTION_DEAD void* const cg_8078DDF0 = (void*)(&lit_4218);
+SECTION_RODATA static f32 const lit_4218 = 1.0f / 10.0f;
+COMPILER_STRIP_GATE(8078DDF0, &lit_4218);
 #pragma pop
 
 /* 8078DDF4-8078DDF8 000050 0004+00 0/2 0/0 0/0 .rodata          @4219 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4219 = 0x3D4CCCCD;
-SECTION_DEAD void* const cg_8078DDF4 = (void*)(&lit_4219);
+SECTION_RODATA static f32 const lit_4219 = 1.0f / 20.0f;
+COMPILER_STRIP_GATE(8078DDF4, &lit_4219);
 #pragma pop
 
 /* 8078DDF8-8078DDFC 000054 0004+00 0/1 0/0 0/0 .rodata          @4220 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4220 = 0x3E99999A;
-SECTION_DEAD void* const cg_8078DDF8 = (void*)(&lit_4220);
+SECTION_RODATA static f32 const lit_4220 = 3.0f / 10.0f;
+COMPILER_STRIP_GATE(8078DDF8, &lit_4220);
 #pragma pop
 
 /* 8078DDFC-8078DE00 000058 0004+00 0/2 0/0 0/0 .rodata          @4221 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4221 = 0x3E4CCCCD;
-SECTION_DEAD void* const cg_8078DDFC = (void*)(&lit_4221);
+SECTION_RODATA static f32 const lit_4221 = 1.0f / 5.0f;
+COMPILER_STRIP_GATE(8078DDFC, &lit_4221);
 #pragma pop
 
 /* 8078DE00-8078DE04 00005C 0004+00 0/1 0/0 0/0 .rodata          @4222 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4222 = 0x463B8000;
-SECTION_DEAD void* const cg_8078DE00 = (void*)(&lit_4222);
+SECTION_RODATA static f32 const lit_4222 = 12000.0f;
+COMPILER_STRIP_GATE(8078DE00, &lit_4222);
 #pragma pop
 
 /* 8078DE04-8078DE08 000060 0004+00 0/5 0/0 0/0 .rodata          @4223 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4223 = 0x40A00000;
-SECTION_DEAD void* const cg_8078DE04 = (void*)(&lit_4223);
+SECTION_RODATA static f32 const lit_4223 = 5.0f;
+COMPILER_STRIP_GATE(8078DE04, &lit_4223);
 #pragma pop
 
 /* 8078DE08-8078DE0C 000064 0004+00 0/4 0/0 0/0 .rodata          @4224 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4224 = 0x457A0000;
-SECTION_DEAD void* const cg_8078DE08 = (void*)(&lit_4224);
+SECTION_RODATA static f32 const lit_4224 = 4000.0f;
+COMPILER_STRIP_GATE(8078DE08, &lit_4224);
 #pragma pop
 
 /* 8078DE0C-8078DE10 000068 0004+00 0/4 0/0 0/0 .rodata          @4225 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4225 = 0xC57A0000;
-SECTION_DEAD void* const cg_8078DE0C = (void*)(&lit_4225);
+SECTION_RODATA static f32 const lit_4225 = -4000.0f;
+COMPILER_STRIP_GATE(8078DE0C, &lit_4225);
 #pragma pop
 
 /* 8078DE10-8078DE14 00006C 0004+00 0/5 0/0 0/0 .rodata          @4226 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4226 = 0x447A0000;
-SECTION_DEAD void* const cg_8078DE10 = (void*)(&lit_4226);
+SECTION_RODATA static f32 const lit_4226 = 1000.0f;
+COMPILER_STRIP_GATE(8078DE10, &lit_4226);
 #pragma pop
 
 /* 8078DE14-8078DE1C 000070 0004+04 0/3 0/0 0/0 .rodata          @4227 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4227[1 + 1 /* padding */] = {
-    0x47800000,
+SECTION_RODATA static f32 const lit_4227[1 + 1 /* padding */] = {
+    65536.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
-SECTION_DEAD void* const cg_8078DE14 = (void*)(&lit_4227);
+COMPILER_STRIP_GATE(8078DE14, &lit_4227);
 #pragma pop
 
 /* 8078DE1C-8078DE24 000078 0008+00 0/5 0/0 0/0 .rodata          @4229 */
@@ -916,7 +916,7 @@ SECTION_DEAD void* const cg_8078DE14 = (void*)(&lit_4227);
 SECTION_RODATA static u8 const lit_4229[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8078DE1C = (void*)(&lit_4229);
+COMPILER_STRIP_GATE(8078DE1C, &lit_4229);
 #pragma pop
 
 /* 8078AA3C-8078B114 0008FC 06D8+00 1/1 0/0 0/0 .text            e_sg_move__FP10e_sg_class */
@@ -933,29 +933,29 @@ static asm void e_sg_move(e_sg_class* param_0) {
 /* 8078DE24-8078DE28 000080 0004+00 0/3 0/0 0/0 .rodata          @4314 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4314 = 0x3F666666;
-SECTION_DEAD void* const cg_8078DE24 = (void*)(&lit_4314);
+SECTION_RODATA static f32 const lit_4314 = 9.0f / 10.0f;
+COMPILER_STRIP_GATE(8078DE24, &lit_4314);
 #pragma pop
 
 /* 8078DE28-8078DE2C 000084 0004+00 0/1 0/0 0/0 .rodata          @4315 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4315 = 0x45DAC000;
-SECTION_DEAD void* const cg_8078DE28 = (void*)(&lit_4315);
+SECTION_RODATA static f32 const lit_4315 = 7000.0f;
+COMPILER_STRIP_GATE(8078DE28, &lit_4315);
 #pragma pop
 
 /* 8078DE2C-8078DE30 000088 0004+00 0/1 0/0 0/0 .rodata          @4316 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4316 = 0x3ECCCCCD;
-SECTION_DEAD void* const cg_8078DE2C = (void*)(&lit_4316);
+SECTION_RODATA static f32 const lit_4316 = 2.0f / 5.0f;
+COMPILER_STRIP_GATE(8078DE2C, &lit_4316);
 #pragma pop
 
 /* 8078DE30-8078DE34 00008C 0004+00 0/2 0/0 0/0 .rodata          @4317 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4317 = 0x42A00000;
-SECTION_DEAD void* const cg_8078DE30 = (void*)(&lit_4317);
+SECTION_RODATA static f32 const lit_4317 = 80.0f;
+COMPILER_STRIP_GATE(8078DE30, &lit_4317);
 #pragma pop
 
 /* 8078B114-8078B618 000FD4 0504+00 1/1 0/0 0/0 .text            e_sg_search__FP10e_sg_class */
@@ -972,50 +972,50 @@ static asm void e_sg_search(e_sg_class* param_0) {
 /* 8078DE34-8078DE38 000090 0004+00 0/2 0/0 0/0 .rodata          @4448 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4448 = 0x42700000;
-SECTION_DEAD void* const cg_8078DE34 = (void*)(&lit_4448);
+SECTION_RODATA static f32 const lit_4448 = 60.0f;
+COMPILER_STRIP_GATE(8078DE34, &lit_4448);
 #pragma pop
 
 /* 8078DE38-8078DE3C 000094 0004+00 0/4 0/0 0/0 .rodata          @4449 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4449 = 0x453B8000;
-SECTION_DEAD void* const cg_8078DE38 = (void*)(&lit_4449);
+SECTION_RODATA static f32 const lit_4449 = 3000.0f;
+COMPILER_STRIP_GATE(8078DE38, &lit_4449);
 #pragma pop
 
 /* 8078DE3C-8078DE40 000098 0004+00 0/2 0/0 0/0 .rodata          @4450 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4450 = 0x43480000;
-SECTION_DEAD void* const cg_8078DE3C = (void*)(&lit_4450);
+SECTION_RODATA static f32 const lit_4450 = 200.0f;
+COMPILER_STRIP_GATE(8078DE3C, &lit_4450);
 #pragma pop
 
 /* 8078DE40-8078DE44 00009C 0004+00 0/3 0/0 0/0 .rodata          @4451 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4451 = 0x44FA0000;
-SECTION_DEAD void* const cg_8078DE40 = (void*)(&lit_4451);
+SECTION_RODATA static f32 const lit_4451 = 2000.0f;
+COMPILER_STRIP_GATE(8078DE40, &lit_4451);
 #pragma pop
 
 /* 8078DE44-8078DE48 0000A0 0004+00 0/1 0/0 0/0 .rodata          @4452 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4452 = 0x43960000;
-SECTION_DEAD void* const cg_8078DE44 = (void*)(&lit_4452);
+SECTION_RODATA static f32 const lit_4452 = 300.0f;
+COMPILER_STRIP_GATE(8078DE44, &lit_4452);
 #pragma pop
 
 /* 8078DE48-8078DE4C 0000A4 0004+00 0/1 0/0 0/0 .rodata          @4453 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4453 = 0x442F0000;
-SECTION_DEAD void* const cg_8078DE48 = (void*)(&lit_4453);
+SECTION_RODATA static f32 const lit_4453 = 700.0f;
+COMPILER_STRIP_GATE(8078DE48, &lit_4453);
 #pragma pop
 
 /* 8078DE4C-8078DE50 0000A8 0004+00 0/2 0/0 0/0 .rodata          @4454 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4454 = 0xC2C80000;
-SECTION_DEAD void* const cg_8078DE4C = (void*)(&lit_4454);
+SECTION_RODATA static f32 const lit_4454 = -100.0f;
+COMPILER_STRIP_GATE(8078DE4C, &lit_4454);
 #pragma pop
 
 /* 8078B618-8078BC24 0014D8 060C+00 1/1 0/0 0/0 .text            e_sg_b_search__FP10e_sg_class */
@@ -1032,15 +1032,15 @@ static asm void e_sg_b_search(e_sg_class* param_0) {
 /* 8078DE50-8078DE54 0000AC 0004+00 0/2 0/0 0/0 .rodata          @4543 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4543 = 0x42200000;
-SECTION_DEAD void* const cg_8078DE50 = (void*)(&lit_4543);
+SECTION_RODATA static f32 const lit_4543 = 40.0f;
+COMPILER_STRIP_GATE(8078DE50, &lit_4543);
 #pragma pop
 
 /* 8078DE54-8078DE58 0000B0 0004+00 0/1 0/0 0/0 .rodata          @4544 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4544 = 0x3F333333;
-SECTION_DEAD void* const cg_8078DE54 = (void*)(&lit_4544);
+SECTION_RODATA static f32 const lit_4544 = 7.0f / 10.0f;
+COMPILER_STRIP_GATE(8078DE54, &lit_4544);
 #pragma pop
 
 /* 8078BC24-8078C068 001AE4 0444+00 1/1 0/0 0/0 .text            e_sg_esa_search__FP10e_sg_class */
@@ -1057,8 +1057,8 @@ static asm void e_sg_esa_search(e_sg_class* param_0) {
 /* 8078DE58-8078DE5C 0000B4 0004+00 0/1 0/0 0/0 .rodata          @4604 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4604 = 0x45FA0000;
-SECTION_DEAD void* const cg_8078DE58 = (void*)(&lit_4604);
+SECTION_RODATA static f32 const lit_4604 = 8000.0f;
+COMPILER_STRIP_GATE(8078DE58, &lit_4604);
 #pragma pop
 
 /* 8078C068-8078C470 001F28 0408+00 1/1 0/0 0/0 .text            e_sg_kamu__FP10e_sg_class */
@@ -1075,15 +1075,15 @@ static asm void e_sg_kamu(e_sg_class* param_0) {
 /* 8078DE5C-8078DE60 0000B8 0004+00 0/1 0/0 0/0 .rodata          @4649 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4649 = 0x466A6000;
-SECTION_DEAD void* const cg_8078DE5C = (void*)(&lit_4649);
+SECTION_RODATA static f32 const lit_4649 = 15000.0f;
+COMPILER_STRIP_GATE(8078DE5C, &lit_4649);
 #pragma pop
 
 /* 8078DE60-8078DE64 0000BC 0004+00 0/2 0/0 0/0 .rodata          @4650 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4650 = 0x40400000;
-SECTION_DEAD void* const cg_8078DE60 = (void*)(&lit_4650);
+SECTION_RODATA static f32 const lit_4650 = 3.0f;
+COMPILER_STRIP_GATE(8078DE60, &lit_4650);
 #pragma pop
 
 /* 8078C470-8078C77C 002330 030C+00 1/1 0/0 0/0 .text            e_sg_drop__FP10e_sg_class */
@@ -1100,8 +1100,8 @@ static asm void e_sg_drop(e_sg_class* param_0) {
 /* 8078DE64-8078DE68 0000C0 0004+00 0/1 0/0 0/0 .rodata          @4700 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4700 = 0x40000000;
-SECTION_DEAD void* const cg_8078DE64 = (void*)(&lit_4700);
+SECTION_RODATA static f32 const lit_4700 = 2.0f;
+COMPILER_STRIP_GATE(8078DE64, &lit_4700);
 #pragma pop
 
 /* 8078C77C-8078CA1C 00263C 02A0+00 1/1 0/0 0/0 .text            e_sg_damage__FP10e_sg_class */
@@ -1141,70 +1141,70 @@ static asm void action(e_sg_class* param_0) {
 SECTION_RODATA static u8 const lit_4743[12] = {
     0x3F, 0x80, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x40, 0x60, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8078DE68 = (void*)(&lit_4743);
+COMPILER_STRIP_GATE(8078DE68, &lit_4743);
 #pragma pop
 
 /* 8078DE74-8078DE78 0000D0 0004+00 0/0 0/0 0/0 .rodata          @4805 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4805 = 0x464B2000;
-SECTION_DEAD void* const cg_8078DE74 = (void*)(&lit_4805);
+SECTION_RODATA static f32 const lit_4805 = 13000.0f;
+COMPILER_STRIP_GATE(8078DE74, &lit_4805);
 #pragma pop
 
 /* 8078DE78-8078DE7C 0000D4 0004+00 0/0 0/0 0/0 .rodata          @4806 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4806 = 0xBE99999A;
-SECTION_DEAD void* const cg_8078DE78 = (void*)(&lit_4806);
+SECTION_RODATA static f32 const lit_4806 = -3.0f / 10.0f;
+COMPILER_STRIP_GATE(8078DE78, &lit_4806);
 #pragma pop
 
 /* 8078DE7C-8078DE80 0000D8 0004+00 0/0 0/0 0/0 .rodata          @4807 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4807 = 0x3F400000;
-SECTION_DEAD void* const cg_8078DE7C = (void*)(&lit_4807);
+SECTION_RODATA static f32 const lit_4807 = 0.75f;
+COMPILER_STRIP_GATE(8078DE7C, &lit_4807);
 #pragma pop
 
 /* 8078DE80-8078DE84 0000DC 0004+00 0/0 0/0 0/0 .rodata          @4808 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4808 = 0xC0200000;
-SECTION_DEAD void* const cg_8078DE80 = (void*)(&lit_4808);
+SECTION_RODATA static f32 const lit_4808 = -2.5f;
+COMPILER_STRIP_GATE(8078DE80, &lit_4808);
 #pragma pop
 
 /* 8078DE84-8078DE88 0000E0 0004+00 0/1 0/0 0/0 .rodata          @4809 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4809 = 0x41700000;
-SECTION_DEAD void* const cg_8078DE84 = (void*)(&lit_4809);
+SECTION_RODATA static f32 const lit_4809 = 15.0f;
+COMPILER_STRIP_GATE(8078DE84, &lit_4809);
 #pragma pop
 
 /* 8078DE88-8078DE8C 0000E4 0004+00 0/1 0/0 0/0 .rodata          @4966 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4966 = 0xCE6E6B28;
-SECTION_DEAD void* const cg_8078DE88 = (void*)(&lit_4966);
+SECTION_RODATA static f32 const lit_4966 = -1000000000.0f;
+COMPILER_STRIP_GATE(8078DE88, &lit_4966);
 #pragma pop
 
 /* 8078DE8C-8078DE90 0000E8 0004+00 0/1 0/0 0/0 .rodata          @4967 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4967 = 0x437A0000;
-SECTION_DEAD void* const cg_8078DE8C = (void*)(&lit_4967);
+SECTION_RODATA static f32 const lit_4967 = 250.0f;
+COMPILER_STRIP_GATE(8078DE8C, &lit_4967);
 #pragma pop
 
 /* 8078DE90-8078DE94 0000EC 0004+00 0/1 0/0 0/0 .rodata          @4968 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4968 = 0xC1700000;
-SECTION_DEAD void* const cg_8078DE90 = (void*)(&lit_4968);
+SECTION_RODATA static f32 const lit_4968 = -15.0f;
+COMPILER_STRIP_GATE(8078DE90, &lit_4968);
 #pragma pop
 
 /* 8078DE94-8078DE98 0000F0 0004+00 0/1 0/0 0/0 .rodata          @4969 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4969 = 0x469C4000;
-SECTION_DEAD void* const cg_8078DE94 = (void*)(&lit_4969);
+SECTION_RODATA static f32 const lit_4969 = 20000.0f;
+COMPILER_STRIP_GATE(8078DE94, &lit_4969);
 #pragma pop
 
 /* 8078E1C4-8078E1D4 00012C 000C+04 0/1 0/0 0/0 .bss             @4849 */
@@ -1258,19 +1258,19 @@ static asm void useHeapInit(fopAc_ac_c* param_0) {
 /* 8078DE98-8078DE9C 0000F4 0004+00 0/1 0/0 0/0 .rodata          @5130 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_5130 = 0xC3160000;
-SECTION_DEAD void* const cg_8078DE98 = (void*)(&lit_5130);
+SECTION_RODATA static f32 const lit_5130 = -150.0f;
+COMPILER_STRIP_GATE(8078DE98, &lit_5130);
 #pragma pop
 
 /* 8078DE9C-8078DEA4 0000F8 0004+04 0/1 0/0 0/0 .rodata          @5131 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_5131[1 + 1 /* padding */] = {
-    0xC7C35000,
+SECTION_RODATA static f32 const lit_5131[1 + 1 /* padding */] = {
+    -100000.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
-SECTION_DEAD void* const cg_8078DE9C = (void*)(&lit_5131);
+COMPILER_STRIP_GATE(8078DE9C, &lit_5131);
 #pragma pop
 
 /* 8078DEA4-8078DEAC 000100 0008+00 0/1 0/0 0/0 .rodata          @5134 */
@@ -1279,7 +1279,7 @@ SECTION_DEAD void* const cg_8078DE9C = (void*)(&lit_5131);
 SECTION_RODATA static u8 const lit_5134[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8078DEA4 = (void*)(&lit_5134);
+COMPILER_STRIP_GATE(8078DEA4, &lit_5134);
 #pragma pop
 
 /* 8078D780-8078DB84 003640 0404+00 1/0 0/0 0/0 .text            daE_SG_Create__FP10fopAc_ac_c */

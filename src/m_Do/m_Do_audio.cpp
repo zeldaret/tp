@@ -52,12 +52,12 @@ struct Z2MultiSeMgr {
     /* 802AEB34 */ ~Z2MultiSeMgr();
 };
 
-struct JAISoundID {};
-
 struct JAISoundHandle {
     /* 80007838 */ ~JAISoundHandle();
     /* 802A2184 */ void releaseSound();
 };
+
+struct JAISoundID {};
 
 struct JGeometry {
     template <typename A1>

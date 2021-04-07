@@ -287,28 +287,28 @@ asm void daTag_SSDrink_c::restart() {
 
 /* ############################################################################################## */
 /* 80D637A0-80D637A4 000000 0004+00 2/2 0/0 0/0 .rodata          @3843 */
-SECTION_RODATA static u32 const lit_3843 = 0xC1F00000;
-SECTION_DEAD void* const cg_80D637A0 = (void*)(&lit_3843);
+SECTION_RODATA static f32 const lit_3843 = -30.0f;
+COMPILER_STRIP_GATE(80D637A0, &lit_3843);
 
 /* 80D637A4-80D637A8 000004 0004+00 0/1 0/0 0/0 .rodata          @3844 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3844 = 0xC1700000;
-SECTION_DEAD void* const cg_80D637A4 = (void*)(&lit_3844);
+SECTION_RODATA static f32 const lit_3844 = -15.0f;
+COMPILER_STRIP_GATE(80D637A4, &lit_3844);
 #pragma pop
 
 /* 80D637A8-80D637AC 000008 0004+00 0/1 0/0 0/0 .rodata          @3845 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3845 = 0x41F00000;
-SECTION_DEAD void* const cg_80D637A8 = (void*)(&lit_3845);
+SECTION_RODATA static f32 const lit_3845 = 30.0f;
+COMPILER_STRIP_GATE(80D637A8, &lit_3845);
 #pragma pop
 
 /* 80D637AC-80D637B0 00000C 0004+00 0/1 0/0 0/0 .rodata          @3846 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3846 = 0x42340000;
-SECTION_DEAD void* const cg_80D637AC = (void*)(&lit_3846);
+SECTION_RODATA static f32 const lit_3846 = 45.0f;
+COMPILER_STRIP_GATE(80D637AC, &lit_3846);
 #pragma pop
 
 /* 80D63044-80D630BC 000304 0078+00 1/1 0/0 0/0 .text            initialize__15daTag_SSDrink_cFv */
@@ -365,8 +365,8 @@ asm void daTag_SSDrink_c::chkEvent() {
 
 /* ############################################################################################## */
 /* 80D637B0-80D637B4 000010 0004+00 1/2 0/0 0/0 .rodata          @3947 */
-SECTION_RODATA static u32 const lit_3947 = 0x43200000;
-SECTION_DEAD void* const cg_80D637B0 = (void*)(&lit_3947);
+SECTION_RODATA static f32 const lit_3947 = 160.0f;
+COMPILER_STRIP_GATE(80D637B0, &lit_3947);
 
 /* 80D63384-80D63490 000644 010C+00 1/1 0/0 0/0 .text            orderEvent__15daTag_SSDrink_cFv */
 #pragma push
@@ -382,15 +382,15 @@ asm void daTag_SSDrink_c::orderEvent() {
 /* 80D637B4-80D637B8 000014 0004+00 0/1 0/0 0/0 .rodata          @3991 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3991 = 0x43480000;
-SECTION_DEAD void* const cg_80D637B4 = (void*)(&lit_3991);
+SECTION_RODATA static f32 const lit_3991 = 200.0f;
+COMPILER_STRIP_GATE(80D637B4, &lit_3991);
 #pragma pop
 
 /* 80D637B8-80D637BC 000018 0004+00 0/1 0/0 0/0 .rodata          @3992 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3992 = 0x42C80000;
-SECTION_DEAD void* const cg_80D637B8 = (void*)(&lit_3992);
+SECTION_RODATA static f32 const lit_3992 = 100.0f;
+COMPILER_STRIP_GATE(80D637B8, &lit_3992);
 #pragma pop
 
 /* 80D63490-80D635C8 000750 0138+00 2/0 0/0 0/0 .text            wait__15daTag_SSDrink_cFPv */

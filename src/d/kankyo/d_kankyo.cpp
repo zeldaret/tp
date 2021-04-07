@@ -21,9 +21,9 @@ struct mDoGph_gInf_c {
     };
 };
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -61,6 +61,8 @@ struct dStage_roomControl_c {
     /* 8019F780 */ void GetTimePass();
 };
 
+struct dKy_tevstr_c {};
+
 struct Vec {};
 
 struct cXyz {
@@ -70,13 +72,11 @@ struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
 };
 
+struct _GXColorS10 {};
+
 struct J3DModelData {
     /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
 };
-
-struct dKy_tevstr_c {};
-
-struct _GXColorS10 {};
 
 struct dScnKy_env_light_c {
     /* 8019F2E8 */ dScnKy_env_light_c();
@@ -114,9 +114,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -2879,7 +2879,7 @@ static asm void NewAmbColGet(_GXColorS10* param_0) {
 SECTION_RODATA static u8 const lit_9035[12] = {
     0x4C, 0xBE, 0xBC, 0x20, 0x4C, 0xBE, 0xBC, 0x20, 0x4C, 0xBE, 0xBC, 0x20,
 };
-SECTION_DEAD void* const cg_80394C60 = (void*)(&lit_9035);
+COMPILER_STRIP_GATE(80394C60, &lit_9035);
 
 /* 80453DAC-80453DB0 0023AC 0004+00 1/1 0/0 0/0 .sdata2          @8975 */
 SECTION_SDATA2 static f32 lit_8975 = 50.0f;

@@ -42,9 +42,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -64,9 +64,9 @@ struct dBgW {
     /* 8007B9C0 */ void Move();
 };
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -99,9 +99,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -205,11 +205,11 @@ SECTION_RODATA static u8 const l_cull_box[24] = {
     0xC2, 0xC8, 0x00, 0x00, 0xC4, 0x48, 0x00, 0x00, 0xC3, 0x96, 0x00, 0x00,
     0x44, 0x3B, 0x80, 0x00, 0x43, 0xFA, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80CAD1B8 = (void*)(&l_cull_box);
+COMPILER_STRIP_GATE(80CAD1B8, &l_cull_box);
 
 /* 80CAD1D0-80CAD1D4 000018 0004+00 1/1 0/0 0/0 .rodata          @3666 */
-SECTION_RODATA static u32 const lit_3666 = 0x42480000;
-SECTION_DEAD void* const cg_80CAD1D0 = (void*)(&lit_3666);
+SECTION_RODATA static f32 const lit_3666 = 50.0f;
+COMPILER_STRIP_GATE(80CAD1D0, &lit_3666);
 
 /* 80CAD1D4-80CAD1D8 00001C 0004+00 1/3 0/0 0/0 .rodata          @3667 */
 SECTION_RODATA static u8 const lit_3667[4] = {
@@ -218,13 +218,13 @@ SECTION_RODATA static u8 const lit_3667[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80CAD1D4 = (void*)(&lit_3667);
+COMPILER_STRIP_GATE(80CAD1D4, &lit_3667);
 
 /* 80CAD1D8-80CAD1E0 000020 0008+00 1/3 0/0 0/0 .rodata          @3669 */
 SECTION_RODATA static u8 const lit_3669[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80CAD1D8 = (void*)(&lit_3669);
+COMPILER_STRIP_GATE(80CAD1D8, &lit_3669);
 
 /* 80CAC8DC-80CACA44 00015C 0168+00 2/2 0/0 0/0 .text            setMtx__13daObjPDwall_cFv */
 #pragma push
@@ -250,8 +250,8 @@ asm void daObjPDwall_c::CreateHeap() {
 /* 80CAD1E0-80CAD1E4 000028 0004+00 0/2 0/0 0/0 .rodata          @3731 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3731 = 0xC1F00000;
-SECTION_DEAD void* const cg_80CAD1E0 = (void*)(&lit_3731);
+SECTION_RODATA static f32 const lit_3731 = -30.0f;
+COMPILER_STRIP_GATE(80CAD1E0, &lit_3731);
 #pragma pop
 
 /* 80CACBA8-80CACCE0 000428 0138+00 1/0 0/0 0/0 .text            Create__13daObjPDwall_cFv */
@@ -268,29 +268,29 @@ asm void daObjPDwall_c::Create() {
 /* 80CAD1E4-80CAD1E8 00002C 0004+00 0/1 0/0 0/0 .rodata          @3787 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3787 = 0x40A00000;
-SECTION_DEAD void* const cg_80CAD1E4 = (void*)(&lit_3787);
+SECTION_RODATA static f32 const lit_3787 = 5.0f;
+COMPILER_STRIP_GATE(80CAD1E4, &lit_3787);
 #pragma pop
 
 /* 80CAD1E8-80CAD1EC 000030 0004+00 0/1 0/0 0/0 .rodata          @3788 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3788 = 0xBE4CCCCD;
-SECTION_DEAD void* const cg_80CAD1E8 = (void*)(&lit_3788);
+SECTION_RODATA static f32 const lit_3788 = -1.0f / 5.0f;
+COMPILER_STRIP_GATE(80CAD1E8, &lit_3788);
 #pragma pop
 
 /* 80CAD1EC-80CAD1F0 000034 0004+00 0/1 0/0 0/0 .rodata          @3789 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3789 = 0x3F800000;
-SECTION_DEAD void* const cg_80CAD1EC = (void*)(&lit_3789);
+SECTION_RODATA static f32 const lit_3789 = 1.0f;
+COMPILER_STRIP_GATE(80CAD1EC, &lit_3789);
 #pragma pop
 
 /* 80CAD1F0-80CAD1F4 000038 0004+00 0/1 0/0 0/0 .rodata          @3790 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3790 = 0xBF800000;
-SECTION_DEAD void* const cg_80CAD1F0 = (void*)(&lit_3790);
+SECTION_RODATA static f32 const lit_3790 = -1.0f;
+COMPILER_STRIP_GATE(80CAD1F0, &lit_3790);
 #pragma pop
 
 /* 80CACCE0-80CACF14 000560 0234+00 1/0 0/0 0/0 .text            Execute__13daObjPDwall_cFPPA3_A4_f

@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -52,11 +52,11 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -148,8 +148,8 @@ static asm void CheckCreateHeap(fopAc_ac_c* param_0) {
 
 /* ############################################################################################## */
 /* 80D21A08-80D21A0C 000000 0004+00 2/2 0/0 0/0 .rodata          @3630 */
-SECTION_RODATA static u32 const lit_3630 = 0x40A00000;
-SECTION_DEAD void* const cg_80D21A08 = (void*)(&lit_3630);
+SECTION_RODATA static f32 const lit_3630 = 5.0f;
+COMPILER_STRIP_GATE(80D21A08, &lit_3630);
 
 /* 80D213F8-80D21448 000098 0050+00 1/1 0/0 0/0 .text            initBaseMtx__11daObjVGnd_cFv */
 #pragma push
@@ -183,8 +183,8 @@ asm void daObjVGnd_c::Create() {
 
 /* ############################################################################################## */
 /* 80D21A0C-80D21A10 000004 0004+00 1/2 0/0 0/0 .rodata          @3704 */
-SECTION_RODATA static u32 const lit_3704 = 0x3F800000;
-SECTION_DEAD void* const cg_80D21A0C = (void*)(&lit_3704);
+SECTION_RODATA static f32 const lit_3704 = 1.0f;
+COMPILER_STRIP_GATE(80D21A0C, &lit_3704);
 
 /* 80D21A24-80D21A28 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_vground__stringBase0;
@@ -252,8 +252,8 @@ asm void daObjVGnd_c::create() {
 /* 80D21A10-80D21A14 000008 0004+00 0/1 0/0 0/0 .rodata          @3778 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3778 = 0x40000000;
-SECTION_DEAD void* const cg_80D21A10 = (void*)(&lit_3778);
+SECTION_RODATA static f32 const lit_3778 = 2.0f;
+COMPILER_STRIP_GATE(80D21A10, &lit_3778);
 #pragma pop
 
 /* 80D21A14-80D21A18 00000C 0004+00 0/1 0/0 0/0 .rodata          @3779 */
@@ -265,7 +265,7 @@ SECTION_RODATA static u8 const lit_3779[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80D21A14 = (void*)(&lit_3779);
+COMPILER_STRIP_GATE(80D21A14, &lit_3779);
 #pragma pop
 
 /* 80D217A8-80D21878 000448 00D0+00 2/2 0/0 0/0 .text            execute__11daObjVGnd_cFv */

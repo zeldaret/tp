@@ -74,11 +74,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
+struct _GXColor {};
+
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
-
-struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -271,14 +271,14 @@ asm void daObjAvalanche_c::initBaseMtx() {
 SECTION_RODATA static u8 const l_dzb[8] = {
     0x00, 0x00, 0x00, 0x0D, 0x00, 0x00, 0x00, 0x0C,
 };
-SECTION_DEAD void* const cg_80BA7CFC = (void*)(&l_dzb);
+COMPILER_STRIP_GATE(80BA7CFC, &l_dzb);
 
 /* 80BA7D04-80BA7D1C 000008 0018+00 1/1 0/0 0/0 .rodata          l_check_pos */
 SECTION_RODATA static u8 const l_check_pos[24] = {
     0xC3, 0x96, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x43, 0x96, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80BA7D04 = (void*)(&l_check_pos);
+COMPILER_STRIP_GATE(80BA7D04, &l_check_pos);
 
 /* 80BA7D1C-80BA7D20 000020 0004+00 4/5 0/0 0/0 .rodata          @3663 */
 SECTION_RODATA static u8 const lit_3663[4] = {
@@ -287,7 +287,7 @@ SECTION_RODATA static u8 const lit_3663[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80BA7D1C = (void*)(&lit_3663);
+COMPILER_STRIP_GATE(80BA7D1C, &lit_3663);
 
 /* 80BA6F14-80BA6FC8 0000B4 00B4+00 3/3 0/0 0/0 .text            setBaseMtx__16daObjAvalanche_cFv */
 #pragma push
@@ -301,14 +301,14 @@ asm void daObjAvalanche_c::setBaseMtx() {
 
 /* ############################################################################################## */
 /* 80BA7D20-80BA7D24 000024 0004+00 1/1 0/0 0/0 .rodata          @3716 */
-SECTION_RODATA static u32 const lit_3716 = 0xC3C80000;
-SECTION_DEAD void* const cg_80BA7D20 = (void*)(&lit_3716);
+SECTION_RODATA static f32 const lit_3716 = -400.0f;
+COMPILER_STRIP_GATE(80BA7D20, &lit_3716);
 
 /* 80BA7D24-80BA7D2C 000028 0008+00 1/1 0/0 0/0 .rodata          @3718 */
 SECTION_RODATA static u8 const lit_3718[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80BA7D24 = (void*)(&lit_3718);
+COMPILER_STRIP_GATE(80BA7D24, &lit_3718);
 
 /* 80BA7D70-80BA7D7C 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -361,8 +361,8 @@ asm void daObjAvalanche_c::Create() {
 
 /* ############################################################################################## */
 /* 80BA7D2C-80BA7D30 000030 0004+00 2/3 0/0 0/0 .rodata          @3762 */
-SECTION_RODATA static u32 const lit_3762 = 0x3F800000;
-SECTION_DEAD void* const cg_80BA7D2C = (void*)(&lit_3762);
+SECTION_RODATA static f32 const lit_3762 = 1.0f;
+COMPILER_STRIP_GATE(80BA7D2C, &lit_3762);
 
 /* 80BA7DB4-80BA7DC0 -00001 000C+00 0/1 0/0 0/0 .data            @3851 */
 #pragma push
@@ -491,8 +491,8 @@ asm void daObjAvalanche_c::Execute(f32 (**param_0)[3][4]) {
 
 /* ############################################################################################## */
 /* 80BA7D30-80BA7D34 000034 0004+00 1/1 0/0 0/0 .rodata          @3834 */
-SECTION_RODATA static u32 const lit_3834 = 0x43960000;
-SECTION_DEAD void* const cg_80BA7D30 = (void*)(&lit_3834);
+SECTION_RODATA static f32 const lit_3834 = 300.0f;
+COMPILER_STRIP_GATE(80BA7D30, &lit_3834);
 
 /* 80BA7440-80BA75A4 0005E0 0164+00 1/1 0/0 0/0 .text            checkCollapse__16daObjAvalanche_cFv
  */
@@ -507,8 +507,8 @@ asm void daObjAvalanche_c::checkCollapse() {
 
 /* ############################################################################################## */
 /* 80BA7D34-80BA7D38 000038 0004+00 1/1 0/0 0/0 .rodata          @3846 */
-SECTION_RODATA static u32 const lit_3846 = 0x42200000;
-SECTION_DEAD void* const cg_80BA7D34 = (void*)(&lit_3846);
+SECTION_RODATA static f32 const lit_3846 = 40.0f;
+COMPILER_STRIP_GATE(80BA7D34, &lit_3846);
 
 /* 80BA75A4-80BA7618 000744 0074+00 1/1 0/0 0/0 .text            move__16daObjAvalanche_cFv */
 #pragma push
@@ -568,8 +568,8 @@ void daObjAvalanche_c::actionDead() {
 
 /* ############################################################################################## */
 /* 80BA7D38-80BA7D3C 00003C 0004+00 1/1 0/0 0/0 .rodata          @3964 */
-SECTION_RODATA static u32 const lit_3964 = 0xBF800000;
-SECTION_DEAD void* const cg_80BA7D38 = (void*)(&lit_3964);
+SECTION_RODATA static f32 const lit_3964 = -1.0f;
+COMPILER_STRIP_GATE(80BA7D38, &lit_3964);
 
 /* 80BA788C-80BA7A50 000A2C 01C4+00 2/2 0/0 0/0 .text            demoProc__16daObjAvalanche_cFv */
 #pragma push

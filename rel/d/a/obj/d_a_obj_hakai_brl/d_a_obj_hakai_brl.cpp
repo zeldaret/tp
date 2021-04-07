@@ -32,11 +32,11 @@ struct daObjHBarrel_c {
     /* 80C17090 */ void callEmt();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -59,9 +59,9 @@ struct dPa_modelEcallBack {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004C218 */ void setHitMark(u16, fopAc_ac_c*, cXyz const*, csXyz const*, cXyz const*, u32);
@@ -125,9 +125,9 @@ struct Z2SoundObjBase {
     /* 802BE4A4 */ void startCollisionSE(u32, u32, Z2SoundObjBase*);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -407,20 +407,20 @@ SECTION_RODATA static u8 const s_CcDCyl__14daObjHBarrel_c[68] = {
     0x00, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80C172FC = (void*)(&s_CcDCyl__14daObjHBarrel_c);
+COMPILER_STRIP_GATE(80C172FC, &s_CcDCyl__14daObjHBarrel_c);
 
 /* 80C17340-80C17344 000044 0004+00 0/1 0/0 0/0 .rodata          @3826 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3826 = 0x432A0000;
-SECTION_DEAD void* const cg_80C17340 = (void*)(&lit_3826);
+SECTION_RODATA static f32 const lit_3826 = 170.0f;
+COMPILER_STRIP_GATE(80C17340, &lit_3826);
 #pragma pop
 
 /* 80C17344-80C17348 000048 0004+00 0/1 0/0 0/0 .rodata          @3827 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3827 = 0x42B40000;
-SECTION_DEAD void* const cg_80C17344 = (void*)(&lit_3827);
+SECTION_RODATA static f32 const lit_3827 = 90.0f;
+COMPILER_STRIP_GATE(80C17344, &lit_3827);
 #pragma pop
 
 /* 80C16D50-80C16DEC 000690 009C+00 1/1 0/0 0/0 .text            init__14daObjHBarrel_cFv */
@@ -445,12 +445,12 @@ asm void daObjHBarrel_c::setModelMtx() {
 
 /* ############################################################################################## */
 /* 80C17348-80C1734C 00004C 0004+00 1/2 0/0 0/0 .rodata          @3916 */
-SECTION_RODATA static u32 const lit_3916 = 0x3F800000;
-SECTION_DEAD void* const cg_80C17348 = (void*)(&lit_3916);
+SECTION_RODATA static f32 const lit_3916 = 1.0f;
+COMPILER_STRIP_GATE(80C17348, &lit_3916);
 
 /* 80C1734C-80C17350 000050 0004+00 1/1 0/0 0/0 .rodata          @3917 */
-SECTION_RODATA static u32 const lit_3917 = 0xBF800000;
-SECTION_DEAD void* const cg_80C1734C = (void*)(&lit_3917);
+SECTION_RODATA static f32 const lit_3917 = -1.0f;
+COMPILER_STRIP_GATE(80C1734C, &lit_3917);
 
 /* 80C16E50-80C17090 000790 0240+00 1/1 0/0 0/0 .text            hitAction__14daObjHBarrel_cFv */
 #pragma push
@@ -477,14 +477,14 @@ SECTION_RODATA static u8 const PARTICLE_NAME[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80C17350 = (void*)(&PARTICLE_NAME);
+COMPILER_STRIP_GATE(80C17350, &PARTICLE_NAME);
 #pragma pop
 
 /* 80C17358-80C1735C 00005C 0004+00 0/1 0/0 0/0 .rodata          @3953 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3953 = 0x3F900000;
-SECTION_DEAD void* const cg_80C17358 = (void*)(&lit_3953);
+SECTION_RODATA static f32 const lit_3953 = 1.125f;
+COMPILER_STRIP_GATE(80C17358, &lit_3953);
 #pragma pop
 
 /* 80C17090-80C171F8 0009D0 0168+00 1/1 0/0 0/0 .text            callEmt__14daObjHBarrel_cFv */

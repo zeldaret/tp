@@ -256,7 +256,7 @@ SECTION_RODATA static u8 const DSPADPCM_FILTER__6JASDsp[64] = {
     0x10, 0x68, 0xF7, 0x38, 0x12, 0xC0, 0xF7, 0x04, 0x14, 0x00, 0xF4, 0x00, 0x08, 0x00, 0xF8, 0x00,
     0x04, 0x00, 0xFC, 0x00, 0xFC, 0x00, 0x04, 0x00, 0xFC, 0x00, 0x00, 0x00, 0xF8, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039B360 = (void*)(&DSPADPCM_FILTER__6JASDsp);
+COMPILER_STRIP_GATE(8039B360, &DSPADPCM_FILTER__6JASDsp);
 
 /* 8039B3A0-8039B8A0 -00001 0500+00 1/1 0/0 0/0 .rodata          DSPRES_FILTER__6JASDsp */
 SECTION_RODATA static void* const DSPRES_FILTER__6JASDsp[320] = {
@@ -581,7 +581,7 @@ SECTION_RODATA static void* const DSPRES_FILTER__6JASDsp[320] = {
     (void*)0x7FD87FE9,
     (void*)0x7FF57FFD,
 };
-SECTION_DEAD void* const cg_8039B3A0 = (void*)(&DSPRES_FILTER__6JASDsp);
+COMPILER_STRIP_GATE(8039B3A0, &DSPRES_FILTER__6JASDsp);
 
 /* 8029DAC8-8029DB78 298408 00B0+00 0/0 1/1 0/0 .text            initBuffer__6JASDspFv */
 #pragma push
@@ -893,7 +893,7 @@ SECTION_RODATA static u8 const connect_table[24] = {
     0x00, 0x00, 0x0D, 0x00, 0x0D, 0x60, 0x0D, 0xC0, 0x0E, 0x20, 0x0E, 0x80,
     0x0E, 0xE0, 0x0C, 0xA0, 0x0F, 0x40, 0x0F, 0xA0, 0x0B, 0x00, 0x09, 0xA0,
 };
-SECTION_DEAD void* const cg_8039B8A0 = (void*)(&connect_table);
+COMPILER_STRIP_GATE(8039B8A0, &connect_table);
 
 /* 8029E09C-8029E0BC 2989DC 0020+00 0/0 1/1 0/0 .text setBusConnect__Q26JASDsp8TChannelFUcUc */
 #pragma push

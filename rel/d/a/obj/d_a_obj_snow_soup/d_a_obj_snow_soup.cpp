@@ -38,11 +38,11 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -57,11 +57,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
+struct _GXColor {};
+
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
-
-struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -69,9 +69,9 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -214,13 +214,13 @@ asm daObjSnowSoup_c::~daObjSnowSoup_c() {
 SECTION_RODATA static u8 const SOUP_MODEL_OFFSET[12] = {
     0x45, 0x4F, 0x5D, 0xC3, 0x43, 0x56, 0xBA, 0xE1, 0x43, 0xA1, 0xA6, 0x66,
 };
-SECTION_DEAD void* const cg_80CE023C = (void*)(&SOUP_MODEL_OFFSET);
+COMPILER_STRIP_GATE(80CE023C, &SOUP_MODEL_OFFSET);
 
 /* 80CE0248-80CE0254 00000C 000C+00 1/1 0/0 0/0 .rodata          BMD_IDX$3657 */
 SECTION_RODATA static u8 const BMD_IDX[12] = {
     0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x05,
 };
-SECTION_DEAD void* const cg_80CE0248 = (void*)(&BMD_IDX);
+COMPILER_STRIP_GATE(80CE0248, &BMD_IDX);
 
 /* 80CDF990-80CDFA3C 0001B0 00AC+00 1/1 0/0 0/0 .text            createHeap__15daObjSnowSoup_cFv */
 #pragma push
@@ -240,7 +240,7 @@ SECTION_RODATA static u8 const lit_3706[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80CE0254 = (void*)(&lit_3706);
+COMPILER_STRIP_GATE(80CE0254, &lit_3706);
 
 /* 80CDFA3C-80CDFB70 00025C 0134+00 1/1 0/0 0/0 .text            create__15daObjSnowSoup_cFv */
 #pragma push
@@ -274,12 +274,12 @@ asm void daObjSnowSoup_c::draw() {
 
 /* ############################################################################################## */
 /* 80CE0258-80CE025C 00001C 0004+00 1/3 0/0 0/0 .rodata          @3757 */
-SECTION_RODATA static u32 const lit_3757 = 0x3F800000;
-SECTION_DEAD void* const cg_80CE0258 = (void*)(&lit_3757);
+SECTION_RODATA static f32 const lit_3757 = 1.0f;
+COMPILER_STRIP_GATE(80CE0258, &lit_3757);
 
 /* 80CE025C-80CE0260 000020 0004+00 1/1 0/0 0/0 .rodata          @3758 */
-SECTION_RODATA static u32 const lit_3758 = 0xBF800000;
-SECTION_DEAD void* const cg_80CE025C = (void*)(&lit_3758);
+SECTION_RODATA static f32 const lit_3758 = -1.0f;
+COMPILER_STRIP_GATE(80CE025C, &lit_3758);
 
 /* 80CDFC40-80CDFE14 000460 01D4+00 1/1 0/0 0/0 .text            execute__15daObjSnowSoup_cFv */
 #pragma push
@@ -318,7 +318,7 @@ asm void daObjSnowSoup_c::setModelMtx() {
 SECTION_RODATA static u8 const PARTICLE_NAME_3789[8] = {
     0x87, 0xE1, 0x87, 0xE2, 0x87, 0xE3, 0x87, 0xE6,
 };
-SECTION_DEAD void* const cg_80CE0260 = (void*)(&PARTICLE_NAME_3789);
+COMPILER_STRIP_GATE(80CE0260, &PARTICLE_NAME_3789);
 #pragma pop
 
 /* 80CDFF14-80CDFFF8 000734 00E4+00 1/1 0/0 0/0 .text createSmkEmtCommon__15daObjSnowSoup_cFv */
@@ -348,7 +348,7 @@ asm void daObjSnowSoup_c::deleteSmkEmtCommon() {
 SECTION_RODATA static u8 const PARTICLE_NAME_3834[12] = {
     0x89, 0x84, 0x89, 0x85, 0x8A, 0x8B, 0x8A, 0x8D, 0x8A, 0x8C, 0x8A, 0x8E,
 };
-SECTION_DEAD void* const cg_80CE0268 = (void*)(&PARTICLE_NAME_3834);
+COMPILER_STRIP_GATE(80CE0268, &PARTICLE_NAME_3834);
 #pragma pop
 
 /* 80CE003C-80CE0134 00085C 00F8+00 2/2 0/0 0/0 .text createSmkEmtChange__15daObjSnowSoup_cFi */

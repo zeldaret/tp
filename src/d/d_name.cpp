@@ -11,9 +11,9 @@
 // Types:
 //
 
-struct J2DPane {};
-
 struct JKRArchive {};
+
+struct J2DPane {};
 
 struct dSelect_cursor_c {
     /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
@@ -81,9 +81,9 @@ struct dDlst_NameIN_c {
     /* 8025115C */ ~dDlst_NameIN_c();
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);

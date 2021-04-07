@@ -45,6 +45,8 @@ struct renderingDmap_c {
     /* 801C263C */ bool isRendIcon() const;
 };
 
+struct Vec {};
+
 struct dDrawPath_c {
     struct line_class {};
 
@@ -61,8 +63,6 @@ struct dDrawPath_c {
     /* 8003C94C */ void rendering(dDrawPath_c::line_class const*);
     /* 8003CCC4 */ void drawPath();
 };
-
-struct Vec {};
 
 struct renderingDAmap_c {
     /* 8003FCC8 */ void init(u8*, u16, u16, u16, u16);
@@ -605,7 +605,7 @@ SECTION_RODATA static void* const l_paletteDmap_m[60] = {
     (void*)NULL,
     (void*)NULL,
 };
-SECTION_DEAD void* const cg_80395860 = (void*)(&l_paletteDmap_m);
+COMPILER_STRIP_GATE(80395860, &l_paletteDmap_m);
 
 /* 80395950-80395974 021FB0 0024+00 0/1 0/0 0/0 .rodata          l_dungeon_offColor$3841 */
 #pragma push
@@ -615,7 +615,7 @@ SECTION_RODATA static u8 const l_dungeon_offColor[36] = {
     0x04, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00,
     0x1C, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x24, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80395950 = (void*)(&l_dungeon_offColor);
+COMPILER_STRIP_GATE(80395950, &l_dungeon_offColor);
 #pragma pop
 
 /* 80395974-80395998 021FD4 0024+00 0/1 0/0 0/0 .rodata          l_dungeon_onColor$3842 */
@@ -626,7 +626,7 @@ SECTION_RODATA static u8 const l_dungeon_onColor[36] = {
     0x04, 0x00, 0x00, 0x00, 0x34, 0x00, 0x00, 0x00, 0x38, 0x00, 0x00, 0x00,
     0x3C, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x44, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80395974 = (void*)(&l_dungeon_onColor);
+COMPILER_STRIP_GATE(80395974, &l_dungeon_onColor);
 #pragma pop
 
 /* 80395998-803959C0 021FF8 0024+04 0/1 0/0 0/0 .rodata          l_dungeon_stayColor$3843 */
@@ -675,7 +675,7 @@ SECTION_RODATA static u8 const l_dungeon_stayColor[36 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80395998 = (void*)(&l_dungeon_stayColor);
+COMPILER_STRIP_GATE(80395998, &l_dungeon_stayColor);
 #pragma pop
 
 /* 801C0C48-801C0CB8 1BB588 0070+00 1/0 0/0 0/0 .text            getColor__15renderingDmap_cFi */
@@ -1311,16 +1311,16 @@ asm void dMenu_StageMapCtrl_c::_create(u16 param_0, u16 param_1, u16 param_2, u1
 
 /* ############################################################################################## */
 /* 8045108C-80451090 00058C 0004+00 1/1 0/0 0/0 .sbss m_zoomCenterMinX__20dMenu_StageMapCtrl_c */
-static u8 m_zoomCenterMinX__20dMenu_StageMapCtrl_c[4];
+static f32 m_zoomCenterMinX__20dMenu_StageMapCtrl_c;
 
 /* 80451090-80451094 000590 0004+00 1/1 0/0 0/0 .sbss m_zoomCenterMaxX__20dMenu_StageMapCtrl_c */
-static u8 m_zoomCenterMaxX__20dMenu_StageMapCtrl_c[4];
+static f32 m_zoomCenterMaxX__20dMenu_StageMapCtrl_c;
 
 /* 80451094-80451098 000594 0004+00 1/1 0/0 0/0 .sbss m_zoomCenterMinZ__20dMenu_StageMapCtrl_c */
-static u8 m_zoomCenterMinZ__20dMenu_StageMapCtrl_c[4];
+static f32 m_zoomCenterMinZ__20dMenu_StageMapCtrl_c;
 
 /* 80451098-804510A0 000598 0004+04 1/1 0/0 0/0 .sbss m_zoomCenterMaxZ__20dMenu_StageMapCtrl_c */
-static u8 m_zoomCenterMaxZ__20dMenu_StageMapCtrl_c[4 + 4 /* padding */];
+static f32 m_zoomCenterMaxZ__20dMenu_StageMapCtrl_c[1 + 1 /* padding */];
 
 /* 804540C8-804540CC 0026C8 0004+00 1/1 0/0 0/0 .sdata2          @4460 */
 SECTION_SDATA2 static f32 lit_4460 = 6.0f / 5.0f;

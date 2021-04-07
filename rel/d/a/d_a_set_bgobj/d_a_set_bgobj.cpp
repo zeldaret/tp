@@ -82,7 +82,7 @@ SECTION_RODATA static u8 const l_specName[9 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80485F00 = (void*)(&l_specName);
+COMPILER_STRIP_GATE(80485F00, &l_specName);
 
 /* 80485F10-80485F1C 000000 000A+02 1/1 0/0 0/0 .data            l_bg_profName$3618 */
 SECTION_DATA static u8 l_bg_profName[10 + 2 /* padding */] = {

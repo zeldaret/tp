@@ -241,9 +241,15 @@ def value_initialized_symbol(section: Section,
             pass
         else:
             values = Integer.u32_from(data)
-            padding_values = Integer.u32_from(padding_data)
+            float_values = FloatingPoint.f32_from(data)
             if values[0] != 0:
-                return [Integer.create_u32(identifier, symbol.addr, data, values, padding_data, padding_values)]
+                f32 = float_values[0][1]
+                if util.is_nice_float32(f32) or f32 in util.float32_exact:
+                    padding_values = FloatingPoint.f32_from(padding_data)
+                    return [FloatingPoint.create_f32(identifier, symbol.addr, float_values, padding_values)]
+                else:
+                    padding_values = Integer.u32_from(padding_data)
+                    return [Integer.create_u32(identifier, symbol.addr, data, values, padding_data, padding_values)]
 
     if symbol.size == 2 and len(padding_data) % 2 == 0:
         if identifier.name and "$" in identifier.name:

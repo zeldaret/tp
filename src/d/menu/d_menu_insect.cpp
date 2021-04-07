@@ -28,9 +28,9 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct J2DPane {};
-
 struct JKRArchive {};
+
+struct J2DPane {};
 
 struct dSelect_cursor_c {
     /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
@@ -60,6 +60,8 @@ struct dMsgScrn3Select_c {
     /* 8023A97C */ void getCharSpace();
 };
 
+struct JMSMesgEntry_c {};
+
 struct ResTIMG {};
 
 struct J2DPicture {
@@ -67,8 +69,6 @@ struct J2DPicture {
 };
 
 struct JUTFont {};
-
-struct JMSMesgEntry_c {};
 
 struct dMeter2Info_c {
     /* 8021C250 */ void getString(u32, char*, JMSMesgEntry_c*);
@@ -78,8 +78,6 @@ struct dMeter2Info_c {
                                         J2DPicture*, void*, J2DPicture*, int);
 };
 
-struct JKRExpHeap {};
-
 struct STControl {
     /* 8003219C */ void checkTrigger();
     /* 8003242C */ void checkLeftTrigger();
@@ -87,6 +85,8 @@ struct STControl {
     /* 80032524 */ void checkUpTrigger();
     /* 800325A0 */ void checkDownTrigger();
 };
+
+struct JKRExpHeap {};
 
 struct CSTControl {};
 
@@ -129,9 +129,9 @@ struct dMenu_Insect_c {
     /* 801DA630 */ void draw();
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -702,7 +702,7 @@ SECTION_RODATA static u8 const insect_tag[192] = {
     0x00, 0x00, 0x62, 0x61, 0x74, 0x5F, 0x6F, 0x73, 0x00, 0x62, 0x61, 0x74, 0x5F, 0x6D, 0x65, 0x73,
     0x00, 0x74, 0x6F, 0x6E, 0x62, 0x5F, 0x6F, 0x73, 0x74, 0x6F, 0x6E, 0x62, 0x5F, 0x6D, 0x65, 0x73,
 };
-SECTION_DEAD void* const cg_80396690 = (void*)(&insect_tag);
+COMPILER_STRIP_GATE(80396690, &insect_tag);
 
 /* 80396750-80396810 022DB0 00C0+00 1/1 0/0 0/0 .rodata          ageha_tag$4250 */
 SECTION_RODATA static u8 const ageha_tag[192] = {
@@ -719,7 +719,7 @@ SECTION_RODATA static u8 const ageha_tag[192] = {
     0x00, 0x61, 0x67, 0x65, 0x68, 0x61, 0x32, 0x30, 0x00, 0x61, 0x67, 0x65, 0x68, 0x61, 0x32, 0x31,
     0x00, 0x61, 0x67, 0x65, 0x68, 0x61, 0x32, 0x32, 0x00, 0x61, 0x67, 0x65, 0x68, 0x61, 0x32, 0x33,
 };
-SECTION_DEAD void* const cg_80396750 = (void*)(&ageha_tag);
+COMPILER_STRIP_GATE(80396750, &ageha_tag);
 
 /* 801D9644-801D98F0 1D3F84 02AC+00 1/1 0/0 0/0 .text            screenSetBase__14dMenu_Insect_cFv
  */
@@ -749,7 +749,7 @@ SECTION_RODATA static u8 const text_a_tag[40] = {
     0x5F, 0x32, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x61, 0x74, 0x65, 0x78,
     0x74, 0x31, 0x5F, 0x34, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
 };
-SECTION_DEAD void* const cg_80396810 = (void*)(&text_a_tag);
+COMPILER_STRIP_GATE(80396810, &text_a_tag);
 
 /* 80396838-80396860 022E98 0028+00 1/1 0/0 0/0 .rodata          text_b_tag$4329 */
 SECTION_RODATA static u8 const text_b_tag[40] = {
@@ -757,7 +757,7 @@ SECTION_RODATA static u8 const text_b_tag[40] = {
     0x5F, 0x32, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x62, 0x74, 0x65, 0x78,
     0x74, 0x31, 0x5F, 0x34, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
 };
-SECTION_DEAD void* const cg_80396838 = (void*)(&text_b_tag);
+COMPILER_STRIP_GATE(80396838, &text_b_tag);
 
 /* 801D9BD0-801D9D4C 1D4510 017C+00 1/1 0/0 0/0 .text            screenSetDoIcon__14dMenu_Insect_cFv
  */
@@ -811,7 +811,7 @@ SECTION_RODATA static u8 const i_evtID[96] = {
     0x00, 0x00, 0x01, 0xA1, 0x00, 0x00, 0x01, 0xA2, 0x00, 0x00, 0x01, 0x99, 0x00, 0x00, 0x01, 0x9A,
     0x00, 0x00, 0x01, 0x97, 0x00, 0x00, 0x01, 0x98, 0x00, 0x00, 0x01, 0xA3, 0x00, 0x00, 0x01, 0xA4,
 };
-SECTION_DEAD void* const cg_80396860 = (void*)(&i_evtID);
+COMPILER_STRIP_GATE(80396860, &i_evtID);
 
 /* 801D9E20-801D9E7C 1D4760 005C+00 4/4 0/0 0/0 .text            isGiveInsect__14dMenu_Insect_cFii
  */

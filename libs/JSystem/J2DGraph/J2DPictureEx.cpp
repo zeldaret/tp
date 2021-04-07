@@ -71,17 +71,21 @@ struct J2DScreen {
     /* 802F9640 */ void getNameResource(char const*);
 };
 
-struct J2DAnmBase {};
+struct J2DAnmVtxColor {};
+
+struct J2DAnmTextureSRTKey {};
 
 struct J2DAnmColor {};
 
-struct J2DAnmVtxColor {};
+struct J2DAnmBase {};
+
+struct J2DAnmTevRegKey {};
+
+struct J2DAnmTransform {};
 
 struct J2DAnmVisibilityFull {
     /* 8030C048 */ void getVisibility(u16, u8*) const;
 };
-
-struct J2DAnmTransform {};
 
 struct J2DPane {
     /* 80053BC0 */ void calcMtx();
@@ -107,10 +111,6 @@ struct J2DPane {
     /* 802F8464 */ void setConnectParent(bool);
     /* 802F8474 */ void update();
 };
-
-struct J2DAnmTevRegKey {};
-
-struct J2DAnmTextureSRTKey {};
 
 struct J2DAnmTexPattern {};
 
@@ -768,7 +768,7 @@ SECTION_RODATA static u8 const lit_2555[32] = {
     0x0F, 0x08, 0x0A, 0x0F, 0x0F, 0x08, 0x0A, 0x0F, 0x0F, 0x08, 0x0E, 0x0F, 0x0F, 0x08, 0x0E, 0x00,
     0x0F, 0x0A, 0x00, 0x0F, 0x02, 0x04, 0x08, 0x0F, 0x02, 0x04, 0x08, 0x0F, 0x02, 0x04, 0x00, 0x0F,
 };
-SECTION_DEAD void* const cg_803A1D50 = (void*)(&lit_2555);
+COMPILER_STRIP_GATE(803A1D50, &lit_2555);
 
 /* 80305688-80305928 2FFFC8 02A0+00 1/1 0/0 0/0 .text
  * setStage__12J2DPictureExFP11J2DTevStageQ212J2DPictureEx10stage_enum */
@@ -1283,7 +1283,7 @@ SECTION_RODATA static u8 const lit_2556[32] = {
     0x07, 0x04, 0x05, 0x07, 0x05, 0x07, 0x07, 0x07, 0x07, 0x04, 0x06, 0x07, 0x07, 0x04, 0x06, 0x00,
     0x07, 0x05, 0x00, 0x07, 0x01, 0x02, 0x04, 0x07, 0x07, 0x07, 0x07, 0x02, 0x01, 0x02, 0x00, 0x07,
 };
-SECTION_DEAD void* const cg_803A1D70 = (void*)(&lit_2556);
+COMPILER_STRIP_GATE(803A1D70, &lit_2556);
 #pragma pop
 
 /* 803A1D90-803A1DB8 02E3F0 0028+00 0/0 0/0 0/0 .rodata          @2557 */
@@ -1294,5 +1294,5 @@ SECTION_RODATA static u8 const lit_2557[40] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
     0x01, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803A1D90 = (void*)(&lit_2557);
+COMPILER_STRIP_GATE(803A1D90, &lit_2557);
 #pragma pop

@@ -202,7 +202,7 @@ asm daPPolamp_c::~daPPolamp_c() {
 SECTION_RODATA static u8 const lit_3757[12] = {
     0x00, 0x00, 0x00, 0x00, 0xC2, 0x34, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80D4D27C = (void*)(&lit_3757);
+COMPILER_STRIP_GATE(80D4D27C, &lit_3757);
 
 /* 80D4C9FC-80D4CB24 00013C 0128+00 1/1 0/0 0/0 .text            create__11daPPolamp_cFv */
 #pragma push
@@ -229,13 +229,13 @@ asm void daPPolamp_c::execute() {
 SECTION_RODATA static u8 const lit_3797[8] = {
     0x00, 0x48, 0x00, 0x85, 0x00, 0xFF, 0x00, 0xFF,
 };
-SECTION_DEAD void* const cg_80D4D288 = (void*)(&lit_3797);
+COMPILER_STRIP_GATE(80D4D288, &lit_3797);
 
 /* 80D4D290-80D4D298 000014 0008+00 1/1 0/0 0/0 .rodata          @3802 */
 SECTION_RODATA static u8 const lit_3802[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0x00, 0xFF,
 };
-SECTION_DEAD void* const cg_80D4D290 = (void*)(&lit_3802);
+COMPILER_STRIP_GATE(80D4D290, &lit_3802);
 
 /* 80D4D340-80D4D344 000000 0001+03 1/1 0/0 0/0 .bss             @1109 */
 static u8 lit_1109[1 + 3 /* padding */];
@@ -377,7 +377,7 @@ asm void daPPolamp_c::setModelMtx() {
 SECTION_RODATA static u8 const lit_3859[12] = {
     0x00, 0x00, 0x00, 0x00, 0xC2, 0x34, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80D4D298 = (void*)(&lit_3859);
+COMPILER_STRIP_GATE(80D4D298, &lit_3859);
 
 /* 80D4CDA8-80D4CE9C 0004E8 00F4+00 1/1 0/0 0/0 .text            setPclModelMtx__11daPPolamp_cFv */
 #pragma push
@@ -391,8 +391,8 @@ asm void daPPolamp_c::setPclModelMtx() {
 
 /* ############################################################################################## */
 /* 80D4D2A4-80D4D2A8 000028 0004+00 2/2 0/0 0/0 .rodata          @3909 */
-SECTION_RODATA static u32 const lit_3909 = 0x3F800000;
-SECTION_DEAD void* const cg_80D4D2A4 = (void*)(&lit_3909);
+SECTION_RODATA static f32 const lit_3909 = 1.0f;
+COMPILER_STRIP_GATE(80D4D2A4, &lit_3909);
 
 /* 80D4CE9C-80D4CFB0 0005DC 0114+00 1/1 0/0 0/0 .text            createHeap__11daPPolamp_cFv */
 #pragma push
@@ -408,36 +408,36 @@ asm void daPPolamp_c::createHeap() {
 /* 80D4D2A8-80D4D2AC 00002C 0004+00 0/1 0/0 0/0 .rodata          @3922 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3922 = 0x43E10000;
-SECTION_DEAD void* const cg_80D4D2A8 = (void*)(&lit_3922);
+SECTION_RODATA static f32 const lit_3922 = 450.0f;
+COMPILER_STRIP_GATE(80D4D2A8, &lit_3922);
 #pragma pop
 
 /* 80D4D2AC-80D4D2B0 000030 0004+00 0/1 0/0 0/0 .rodata          @3923 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3923 = 0x3DCCCCCD;
-SECTION_DEAD void* const cg_80D4D2AC = (void*)(&lit_3923);
+SECTION_RODATA static f32 const lit_3923 = 1.0f / 10.0f;
+COMPILER_STRIP_GATE(80D4D2AC, &lit_3923);
 #pragma pop
 
 /* 80D4D2B0-80D4D2B4 000034 0004+00 0/1 0/0 0/0 .rodata          @3924 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3924 = 0x3F8CCCCD;
-SECTION_DEAD void* const cg_80D4D2B0 = (void*)(&lit_3924);
+SECTION_RODATA static f32 const lit_3924 = 11.0f / 10.0f;
+COMPILER_STRIP_GATE(80D4D2B0, &lit_3924);
 #pragma pop
 
 /* 80D4D2B4-80D4D2B8 000038 0004+00 0/1 0/0 0/0 .rodata          @3925 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3925 = 0x3DF5C28F;
-SECTION_DEAD void* const cg_80D4D2B4 = (void*)(&lit_3925);
+SECTION_RODATA static f32 const lit_3925 = 3.0f / 25.0f;
+COMPILER_STRIP_GATE(80D4D2B4, &lit_3925);
 #pragma pop
 
 /* 80D4D2B8-80D4D2BC 00003C 0004+00 0/1 0/0 0/0 .rodata          @3926 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3926 = 0x42A00000;
-SECTION_DEAD void* const cg_80D4D2B8 = (void*)(&lit_3926);
+SECTION_RODATA static f32 const lit_3926 = 80.0f;
+COMPILER_STRIP_GATE(80D4D2B8, &lit_3926);
 #pragma pop
 
 /* 80D4D2BC-80D4D2C4 000040 0008+00 0/1 0/0 0/0 .rodata          @3928 */
@@ -446,7 +446,7 @@ SECTION_DEAD void* const cg_80D4D2B8 = (void*)(&lit_3926);
 SECTION_RODATA static u8 const lit_3928[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80D4D2BC = (void*)(&lit_3928);
+COMPILER_STRIP_GATE(80D4D2BC, &lit_3928);
 #pragma pop
 
 /* 80D4CFB0-80D4D10C 0006F0 015C+00 1/1 0/0 0/0 .text            moveSwing__11daPPolamp_cFv */
@@ -461,8 +461,8 @@ asm void daPPolamp_c::moveSwing() {
 
 /* ############################################################################################## */
 /* 80D4D2C4-80D4D2C8 000048 0004+00 1/1 0/0 0/0 .rodata          @3936 */
-SECTION_RODATA static u32 const lit_3936 = 0x3E4CCCCD;
-SECTION_DEAD void* const cg_80D4D2C4 = (void*)(&lit_3936);
+SECTION_RODATA static f32 const lit_3936 = 1.0f / 5.0f;
+COMPILER_STRIP_GATE(80D4D2C4, &lit_3936);
 
 /* 80D4D10C-80D4D140 00084C 0034+00 1/1 0/0 0/0 .text            initParam__11daPPolamp_cFv */
 #pragma push

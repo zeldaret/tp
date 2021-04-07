@@ -14,26 +14,6 @@
 struct Vec {};
 
 namespace JStudio {
-namespace ctb {
-struct TObject {};
-
-struct TControl {
-    /* 80280FC4 */ TControl();
-    /* 80280FF4 */ ~TControl();
-    /* 80281230 */ void getObject_index(u32);
-};
-
-struct TFactory {
-    /* 80281274 */ ~TFactory();
-};
-
-struct TParse {
-    /* 8028135C */ TParse(JStudio::ctb::TControl*);
-    /* 8028137C */ ~TParse();
-};
-
-};  // namespace ctb
-
 struct TCreateObject {
     /* 80285488 */ ~TCreateObject();
 };
@@ -75,6 +55,26 @@ struct TFactory {
     /* 80285560 */ void appendCreateObject(JStudio::TCreateObject*);
     /* 802855AC */ void create(JStudio::stb::data::TParse_TBlock_object const&);
 };
+
+namespace ctb {
+struct TObject {};
+
+struct TControl {
+    /* 80280FC4 */ TControl();
+    /* 80280FF4 */ ~TControl();
+    /* 80281230 */ void getObject_index(u32);
+};
+
+struct TFactory {
+    /* 80281274 */ ~TFactory();
+};
+
+struct TParse {
+    /* 8028135C */ TParse(JStudio::ctb::TControl*);
+    /* 8028137C */ ~TParse();
+};
+
+};  // namespace ctb
 
 struct TControl {
     /* 80285114 */ TControl();
@@ -206,7 +206,7 @@ extern "C" extern u8 ga8cSignature__Q27JStudio4data[8];
 SECTION_RODATA static u8 const lit_745[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039AA40 = (void*)(&lit_745);
+COMPILER_STRIP_GATE(8039AA40, &lit_745);
 
 /* 803C4AC0-803C4AE0 021BE0 0020+00 2/2 0/0 0/0 .data            __vt__Q27JStudio6TParse */
 SECTION_DATA extern void* __vt__Q27JStudio6TParse[8] = {
@@ -306,7 +306,7 @@ asm void JStudio::TControl::transformOnGet_setOrigin_TxyzRy(Vec const& param_0, 
 SECTION_RODATA static u8 const lit_838[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039AA4C = (void*)(&lit_838);
+COMPILER_STRIP_GATE(8039AA4C, &lit_838);
 
 /* 80285368-8028543C 27FCA8 00D4+00 1/1 0/0 0/0 .text
  * transform_setOrigin_ctb__Q27JStudio8TControlFRCQ37JStudio3ctb7TObject */
@@ -415,7 +415,7 @@ SECTION_RODATA static u8 const lit_1138[12 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8039AA58 = (void*)(&lit_1138);
+COMPILER_STRIP_GATE(8039AA58, &lit_1138);
 
 /* 80285708-802857E4 280048 00DC+00 1/0 0/0 0/0 .text
  * parseHeader__Q27JStudio6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl */

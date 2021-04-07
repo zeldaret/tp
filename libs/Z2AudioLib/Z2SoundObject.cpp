@@ -19,9 +19,9 @@ struct Z2SoundStarter {
     /* 802AAEDC */ void setPortData(JAISoundHandle*, u32, u16, s8);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SoundObjSimple {
     /* 802BE844 */ Z2SoundObjSimple();
@@ -417,7 +417,7 @@ SECTION_RODATA static u8 const cNullVec__6Z2Calc[12 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8039C230 = (void*)(&cNullVec__6Z2Calc);
+COMPILER_STRIP_GATE(8039C230, &cNullVec__6Z2Calc);
 
 /* 802BE5A0-802BE5FC 2B8EE0 005C+00 1/1 0/0 0/0 .text            __ct__21Z2DopplerSoundObjBaseFv */
 #pragma push

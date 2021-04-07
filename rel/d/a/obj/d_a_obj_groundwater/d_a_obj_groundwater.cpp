@@ -21,9 +21,9 @@ struct mDoHIO_entry_c {
     /* 80C134F8 */ ~mDoHIO_entry_c();
 };
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -100,9 +100,9 @@ struct dRes_control_c {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -231,7 +231,7 @@ SECTION_RODATA static u8 const lit_3642[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80C149E0 = (void*)(&lit_3642);
+COMPILER_STRIP_GATE(80C149E0, &lit_3642);
 
 /* 80C149FC-80C14A08 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -398,8 +398,8 @@ asm void daGrdWater_c::setBaseMtx() {
 
 /* ############################################################################################## */
 /* 80C149E4-80C149E8 000004 0004+00 5/6 0/0 0/0 .rodata          @3712 */
-SECTION_RODATA static u32 const lit_3712 = 0x3F800000;
-SECTION_DEAD void* const cg_80C149E4 = (void*)(&lit_3712);
+SECTION_RODATA static f32 const lit_3712 = 1.0f;
+COMPILER_STRIP_GATE(80C149E4, &lit_3712);
 
 /* 80C13618-80C139E4 000258 03CC+00 1/0 0/0 0/0 .text            CreateHeap__12daGrdWater_cFv */
 #pragma push
@@ -416,7 +416,7 @@ asm void daGrdWater_c::CreateHeap() {
 SECTION_RODATA static u8 const lit_3891[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80C149E8 = (void*)(&lit_3891);
+COMPILER_STRIP_GATE(80C149E8, &lit_3891);
 
 /* 80C139E4-80C13DB0 000624 03CC+00 1/1 0/0 0/0 .text            create__12daGrdWater_cFv */
 #pragma push
@@ -560,8 +560,8 @@ asm void daGrdWater_c::modeLevelDownB() {
 /* 80C149F0-80C149F4 000010 0004+00 0/1 0/0 0/0 .rodata          @4253 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4253 = 0xBC23D70A;
-SECTION_DEAD void* const cg_80C149F0 = (void*)(&lit_4253);
+SECTION_RODATA static f32 const lit_4253 = -1.0f / 100.0f;
+COMPILER_STRIP_GATE(80C149F0, &lit_4253);
 #pragma pop
 
 /* 80C14554-80C147EC 001194 0298+00 1/0 0/0 0/0 .text            Draw__12daGrdWater_cFv */

@@ -46,9 +46,9 @@ struct dRes_control_c {
     /* 8003C37C */ void getRes(char const*, char const*, dRes_info_c*, int);
 };
 
-struct J3DModel {};
-
 struct J3DModelData {};
+
+struct J3DModel {};
 
 struct dComIfG_play_c {
     /* 8002CAF0 */ void addSimpleModel(J3DModelData*, int, u8);
@@ -156,48 +156,48 @@ SECTION_RODATA static u8 const M_attr__14daObjSakuita_c[44] = {
     0x00, 0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x00, 0x00, 0x00, 0xC0, 0xC0, 0x00, 0x00, 0x44, 0x61,
     0x00, 0x00, 0x46, 0x9C, 0x40, 0x00, 0x42, 0xC8, 0x00, 0x00, 0x14, 0x00, 0x14, 0x00,
 };
-SECTION_DEAD void* const cg_80CC50B4 = (void*)(&M_attr__14daObjSakuita_c);
+COMPILER_STRIP_GATE(80CC50B4, &M_attr__14daObjSakuita_c);
 
 /* 80CC50E0-80CC50E4 00002C 0004+00 0/1 0/0 0/0 .rodata          @3658 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3658 = 0xC1F00000;
-SECTION_DEAD void* const cg_80CC50E0 = (void*)(&lit_3658);
+SECTION_RODATA static f32 const lit_3658 = -30.0f;
+COMPILER_STRIP_GATE(80CC50E0, &lit_3658);
 #pragma pop
 
 /* 80CC50E4-80CC50E8 000030 0004+00 0/1 0/0 0/0 .rodata          @3659 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3659 = 0xC2B40000;
-SECTION_DEAD void* const cg_80CC50E4 = (void*)(&lit_3659);
+SECTION_RODATA static f32 const lit_3659 = -90.0f;
+COMPILER_STRIP_GATE(80CC50E4, &lit_3659);
 #pragma pop
 
 /* 80CC50E8-80CC50EC 000034 0004+00 0/1 0/0 0/0 .rodata          @3660 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3660 = 0xC1200000;
-SECTION_DEAD void* const cg_80CC50E8 = (void*)(&lit_3660);
+SECTION_RODATA static f32 const lit_3660 = -10.0f;
+COMPILER_STRIP_GATE(80CC50E8, &lit_3660);
 #pragma pop
 
 /* 80CC50EC-80CC50F0 000038 0004+00 0/1 0/0 0/0 .rodata          @3661 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3661 = 0x41F00000;
-SECTION_DEAD void* const cg_80CC50EC = (void*)(&lit_3661);
+SECTION_RODATA static f32 const lit_3661 = 30.0f;
+COMPILER_STRIP_GATE(80CC50EC, &lit_3661);
 #pragma pop
 
 /* 80CC50F0-80CC50F4 00003C 0004+00 0/1 0/0 0/0 .rodata          @3662 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3662 = 0x41A00000;
-SECTION_DEAD void* const cg_80CC50F0 = (void*)(&lit_3662);
+SECTION_RODATA static f32 const lit_3662 = 20.0f;
+COMPILER_STRIP_GATE(80CC50F0, &lit_3662);
 #pragma pop
 
 /* 80CC50F4-80CC50F8 000040 0004+00 0/1 0/0 0/0 .rodata          @3663 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3663 = 0x41200000;
-SECTION_DEAD void* const cg_80CC50F4 = (void*)(&lit_3663);
+SECTION_RODATA static f32 const lit_3663 = 10.0f;
+COMPILER_STRIP_GATE(80CC50F4, &lit_3663);
 #pragma pop
 
 /* 80CC512C-80CC5130 -00001 0004+00 4/4 0/0 0/0 .data            l_arcName */
@@ -237,15 +237,15 @@ asm void daObjSakuita_c::setBaseMtx() {
 /* 80CC50F8-80CC50FC 000044 0004+00 0/0 0/0 0/0 .rodata          @3704 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3704 = 0x3F000000;
-SECTION_DEAD void* const cg_80CC50F8 = (void*)(&lit_3704);
+SECTION_RODATA static f32 const lit_3704 = 0.5f;
+COMPILER_STRIP_GATE(80CC50F8, &lit_3704);
 #pragma pop
 
 /* 80CC50FC-80CC5100 000048 0004+00 0/1 0/0 0/0 .rodata          @3761 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3761 = 0x3DCCCCCD;
-SECTION_DEAD void* const cg_80CC50FC = (void*)(&lit_3761);
+SECTION_RODATA static f32 const lit_3761 = 1.0f / 10.0f;
+COMPILER_STRIP_GATE(80CC50FC, &lit_3761);
 #pragma pop
 
 /* 80CC5100-80CC5104 00004C 0004+00 0/1 0/0 0/0 .rodata          @3762 */
@@ -257,21 +257,21 @@ SECTION_RODATA static u8 const lit_3762[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80CC5100 = (void*)(&lit_3762);
+COMPILER_STRIP_GATE(80CC5100, &lit_3762);
 #pragma pop
 
 /* 80CC5104-80CC5108 000050 0004+00 0/1 0/0 0/0 .rodata          @3763 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3763 = 0x3ECCCCCD;
-SECTION_DEAD void* const cg_80CC5104 = (void*)(&lit_3763);
+SECTION_RODATA static f32 const lit_3763 = 2.0f / 5.0f;
+COMPILER_STRIP_GATE(80CC5104, &lit_3763);
 #pragma pop
 
 /* 80CC5108-80CC510C 000054 0004+00 0/1 0/0 0/0 .rodata          @3764 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3764 = 0x46000000;
-SECTION_DEAD void* const cg_80CC5108 = (void*)(&lit_3764);
+SECTION_RODATA static f32 const lit_3764 = 8192.0f;
+COMPILER_STRIP_GATE(80CC5108, &lit_3764);
 #pragma pop
 
 /* 80CC489C-80CC4A98 00021C 01FC+00 1/1 0/0 0/0 .text            setPlatePos__14daObjSakuita_cFv */
@@ -289,7 +289,7 @@ asm void daObjSakuita_c::setPlatePos() {
 SECTION_RODATA static u8 const lit_3781[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80CC510C = (void*)(&lit_3781);
+COMPILER_STRIP_GATE(80CC510C, &lit_3781);
 
 /* 80CC4A98-80CC4B5C 000418 00C4+00 1/1 0/0 0/0 .text            calcAngle__14daObjSakuita_cFv */
 #pragma push

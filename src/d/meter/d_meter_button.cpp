@@ -24,13 +24,13 @@ struct dMsgString_c {
     /* 80249D28 */ ~dMsgString_c();
 };
 
-struct COutFont_c {
-    /* 80225C94 */ COutFont_c(u8);
-};
-
 struct J2DTextBox {
     /* 80300658 */ void getStringPtr() const;
     /* 8030074C */ void setString(s16, char const*, ...);
+};
+
+struct COutFont_c {
+    /* 80225C94 */ COutFont_c(u8);
 };
 
 struct JUTFont {};
@@ -181,15 +181,15 @@ struct dMeter2Info_c {
                                         J2DPicture*, void*, J2DPicture*, int);
 };
 
+struct JUtility {
+    struct TColor {};
+};
+
 struct CPaneMgrAlpha {
     /* 802555C8 */ void show();
     /* 80255608 */ void hide();
     /* 802557D0 */ void setAlphaRate(f32);
     /* 80255828 */ void getAlphaRate();
-};
-
-struct JUtility {
-    struct TColor {};
 };
 
 struct dMeter2Draw_c {
@@ -203,9 +203,9 @@ struct dComIfG_play_c {
     /* 8002C97C */ void getLayerNo(int);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -797,7 +797,7 @@ SECTION_RODATA static u8 const text_tag[80] = {
     0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x36, 0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x37,
     0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x38, 0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x39,
 };
-SECTION_DEAD void* const cg_80398048 = (void*)(&text_tag);
+COMPILER_STRIP_GATE(80398048, &text_tag);
 
 /* 80398098-803980E8 0246F8 0050+00 1/1 0/0 0/0 .rodata          ftext_tag$5462 */
 SECTION_RODATA static u8 const ftext_tag[80] = {
@@ -807,7 +807,7 @@ SECTION_RODATA static u8 const ftext_tag[80] = {
     0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x36, 0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x37,
     0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x38, 0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x39,
 };
-SECTION_DEAD void* const cg_80398098 = (void*)(&ftext_tag);
+COMPILER_STRIP_GATE(80398098, &ftext_tag);
 
 /* 80454770-80454774 002D70 0004+00 4/4 0/0 0/0 .sdata2          @5628 */
 SECTION_SDATA2 static f32 lit_5628 = 0.5f;

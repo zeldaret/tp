@@ -19,11 +19,11 @@ struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -160,28 +160,28 @@ static asm void useHeapInit(fopAc_ac_c* param_0) {
 
 /* ############################################################################################## */
 /* 80D212DC-80D212E0 000000 0004+00 1/1 0/0 0/0 .rodata          @3744 */
-SECTION_RODATA static u32 const lit_3744 = 0xC3960000;
-SECTION_DEAD void* const cg_80D212DC = (void*)(&lit_3744);
+SECTION_RODATA static f32 const lit_3744 = -300.0f;
+COMPILER_STRIP_GATE(80D212DC, &lit_3744);
 
 /* 80D212E0-80D212E4 000004 0004+00 0/1 0/0 0/0 .rodata          @3745 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3745 = 0xC4160000;
-SECTION_DEAD void* const cg_80D212E0 = (void*)(&lit_3745);
+SECTION_RODATA static f32 const lit_3745 = -600.0f;
+COMPILER_STRIP_GATE(80D212E0, &lit_3745);
 #pragma pop
 
 /* 80D212E4-80D212E8 000008 0004+00 0/1 0/0 0/0 .rodata          @3746 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3746 = 0x43960000;
-SECTION_DEAD void* const cg_80D212E4 = (void*)(&lit_3746);
+SECTION_RODATA static f32 const lit_3746 = 300.0f;
+COMPILER_STRIP_GATE(80D212E4, &lit_3746);
 #pragma pop
 
 /* 80D212E8-80D212EC 00000C 0004+00 0/1 0/0 0/0 .rodata          @3747 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3747 = 0x44160000;
-SECTION_DEAD void* const cg_80D212E8 = (void*)(&lit_3747);
+SECTION_RODATA static f32 const lit_3747 = 600.0f;
+COMPILER_STRIP_GATE(80D212E8, &lit_3747);
 #pragma pop
 
 /* 80D211AC-80D212D4 0002CC 0128+00 1/0 0/0 0/0 .text            daObj_Usaku_Create__FP10fopAc_ac_c

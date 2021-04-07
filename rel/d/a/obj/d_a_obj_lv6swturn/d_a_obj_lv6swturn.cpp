@@ -51,9 +51,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -72,9 +72,9 @@ struct dBgW_Base {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -185,7 +185,7 @@ SECTION_RODATA static u8 const lit_3695[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80C846A4 = (void*)(&lit_3695);
+COMPILER_STRIP_GATE(80C846A4, &lit_3695);
 
 /* 80C83998-80C83A98 000078 0100+00 1/1 0/0 0/0 .text
  * PPCallBack__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel */
@@ -337,22 +337,22 @@ asm void daObjLv6SwTurn_c::init_modeWait() {
 /* 80C846A8-80C846AC 000004 0004+00 0/2 0/0 0/0 .rodata          @3960 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3960 = 0x3F800000;
-SECTION_DEAD void* const cg_80C846A8 = (void*)(&lit_3960);
+SECTION_RODATA static f32 const lit_3960 = 1.0f;
+COMPILER_STRIP_GATE(80C846A8, &lit_3960);
 #pragma pop
 
 /* 80C846AC-80C846B0 000008 0004+00 0/2 0/0 0/0 .rodata          @3961 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3961 = 0xBF800000;
-SECTION_DEAD void* const cg_80C846AC = (void*)(&lit_3961);
+SECTION_RODATA static f32 const lit_3961 = -1.0f;
+COMPILER_STRIP_GATE(80C846AC, &lit_3961);
 #pragma pop
 
 /* 80C846B0-80C846B4 00000C 0004+00 0/1 0/0 0/0 .rodata          @3962 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3962 = 0x41200000;
-SECTION_DEAD void* const cg_80C846B0 = (void*)(&lit_3962);
+SECTION_RODATA static f32 const lit_3962 = 10.0f;
+COMPILER_STRIP_GATE(80C846B0, &lit_3962);
 #pragma pop
 
 /* 80C846B4-80C846BC 000010 0008+00 0/2 0/0 0/0 .rodata          @3964 */
@@ -361,7 +361,7 @@ SECTION_DEAD void* const cg_80C846B0 = (void*)(&lit_3962);
 SECTION_RODATA static u8 const lit_3964[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80C846B4 = (void*)(&lit_3964);
+COMPILER_STRIP_GATE(80C846B4, &lit_3964);
 #pragma pop
 
 /* 80C83E58-80C84238 000538 03E0+00 1/0 0/0 0/0 .text            modeWait__16daObjLv6SwTurn_cFv */
@@ -388,15 +388,15 @@ asm void daObjLv6SwTurn_c::init_modeRotate() {
 /* 80C846BC-80C846C0 000018 0004+00 0/1 0/0 0/0 .rodata          @4069 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4069 = 0x46800000;
-SECTION_DEAD void* const cg_80C846BC = (void*)(&lit_4069);
+SECTION_RODATA static f32 const lit_4069 = 16384.0f;
+COMPILER_STRIP_GATE(80C846BC, &lit_4069);
 #pragma pop
 
 /* 80C846C0-80C846C4 00001C 0004+00 0/1 0/0 0/0 .rodata          @4070 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4070 = 0x42B40000;
-SECTION_DEAD void* const cg_80C846C0 = (void*)(&lit_4070);
+SECTION_RODATA static f32 const lit_4070 = 90.0f;
+COMPILER_STRIP_GATE(80C846C0, &lit_4070);
 #pragma pop
 
 /* 80C8425C-80C844F8 00093C 029C+00 1/0 0/0 0/0 .text            modeRotate__16daObjLv6SwTurn_cFv */

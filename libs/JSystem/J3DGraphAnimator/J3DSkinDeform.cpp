@@ -221,7 +221,7 @@ asm void J3DSkinDeform::initSkinInfo(J3DModelData* param_0) {
 SECTION_RODATA static u8 const lit_1142[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02,
 };
-SECTION_DEAD void* const cg_803A2008 = (void*)(&lit_1142);
+COMPILER_STRIP_GATE(803A2008, &lit_1142);
 
 /* 80439218-80439A20 065F38 0800+08 1/1 0/0 0/0 .bss             sWorkArea_MtxReg__13J3DSkinDeform
  */
@@ -243,7 +243,7 @@ asm void J3DSkinDeform::initMtxIndexArray(J3DModelData* param_0) {
 SECTION_RODATA static u8 const lit_1270[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02,
 };
-SECTION_DEAD void* const cg_803A2018 = (void*)(&lit_1270);
+COMPILER_STRIP_GATE(803A2018, &lit_1270);
 
 /* 8032D378-8032D5C4 327CB8 024C+00 0/0 1/1 0/0 .text
  * changeFastSkinDL__13J3DSkinDeformFP12J3DModelData            */

@@ -36,11 +36,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -73,11 +73,11 @@ struct dBgS_AcchCir {
     /* 80CDE868 */ ~dBgS_AcchCir();
 };
 
-struct csXyz {};
-
 struct dBgS {
     /* 80074A08 */ void Regist(dBgW_Base*, fopAc_ac_c*);
 };
+
+struct csXyz {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -288,7 +288,7 @@ asm daSmWStone_c::~daSmWStone_c() {
 SECTION_RODATA static u8 const lit_3776[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80CDEEF4 = (void*)(&lit_3776);
+COMPILER_STRIP_GATE(80CDEEF4, &lit_3776);
 
 /* 80CDEF00-80CDEF04 00000C 0004+00 1/2 0/0 0/0 .rodata          @4191 */
 SECTION_RODATA static u8 const lit_4191[4] = {
@@ -297,11 +297,11 @@ SECTION_RODATA static u8 const lit_4191[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80CDEF00 = (void*)(&lit_4191);
+COMPILER_STRIP_GATE(80CDEF00, &lit_4191);
 
 /* 80CDEF04-80CDEF08 000010 0004+00 1/1 0/0 0/0 .rodata          @4192 */
-SECTION_RODATA static u32 const lit_4192 = 0x41200000;
-SECTION_DEAD void* const cg_80CDEF04 = (void*)(&lit_4192);
+SECTION_RODATA static f32 const lit_4192 = 10.0f;
+COMPILER_STRIP_GATE(80CDEF04, &lit_4192);
 
 /* 80CDE614-80CDE7F8 000174 01E4+00 1/1 0/0 0/0 .text            create__12daSmWStone_cFv */
 #pragma push
@@ -347,15 +347,15 @@ asm void daSmWStone_c::execute() {
 /* 80CDEF08-80CDEF0C 000014 0004+00 0/1 0/0 0/0 .rodata          @4238 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4238 = 0x43FA0000;
-SECTION_DEAD void* const cg_80CDEF08 = (void*)(&lit_4238);
+SECTION_RODATA static f32 const lit_4238 = 500.0f;
+COMPILER_STRIP_GATE(80CDEF08, &lit_4238);
 #pragma pop
 
 /* 80CDEF0C-80CDEF10 000018 0004+00 0/1 0/0 0/0 .rodata          @4239 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4239 = 0x3F800000;
-SECTION_DEAD void* const cg_80CDEF0C = (void*)(&lit_4239);
+SECTION_RODATA static f32 const lit_4239 = 1.0f;
+COMPILER_STRIP_GATE(80CDEF0C, &lit_4239);
 #pragma pop
 
 /* 80CDE92C-80CDEA2C 00048C 0100+00 1/1 0/0 0/0 .text            draw__12daSmWStone_cFv */
@@ -420,8 +420,8 @@ asm void daSmWStone_c::init() {
 
 /* ############################################################################################## */
 /* 80CDEF10-80CDEF14 00001C 0004+00 1/1 0/0 0/0 .rodata          @4350 */
-SECTION_RODATA static u32 const lit_4350 = 0x471C4000;
-SECTION_DEAD void* const cg_80CDEF10 = (void*)(&lit_4350);
+SECTION_RODATA static f32 const lit_4350 = 40000.0f;
+COMPILER_STRIP_GATE(80CDEF10, &lit_4350);
 
 /* 80CDED9C-80CDEE28 0008FC 008C+00 1/1 0/0 0/0 .text            chkWlfInRange__12daSmWStone_cFv */
 #pragma push

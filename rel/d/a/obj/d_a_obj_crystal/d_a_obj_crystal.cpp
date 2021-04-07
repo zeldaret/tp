@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {};
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -37,9 +37,9 @@ struct daObjCrystal_c {
     /* 80BD67C8 */ void _delete();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -164,8 +164,8 @@ asm void daObjCrystal_c::setBaseMtx() {
 
 /* ############################################################################################## */
 /* 80BD68BC-80BD68C0 000000 0004+00 2/2 0/0 0/0 .rodata          @3693 */
-SECTION_RODATA static u32 const lit_3693 = 0x3F800000;
-SECTION_DEAD void* const cg_80BD68BC = (void*)(&lit_3693);
+SECTION_RODATA static f32 const lit_3693 = 1.0f;
+COMPILER_STRIP_GATE(80BD68BC, &lit_3693);
 
 /* 80BD6470-80BD65B0 000150 0140+00 1/1 0/0 0/0 .text            Create__14daObjCrystal_cFv */
 #pragma push
@@ -184,7 +184,7 @@ asm void daObjCrystal_c::Create() {
 SECTION_RODATA static u8 const l_bmd[8] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x07,
 };
-SECTION_DEAD void* const cg_80BD68C0 = (void*)(&l_bmd);
+COMPILER_STRIP_GATE(80BD68C0, &l_bmd);
 #pragma pop
 
 /* 80BD68C8-80BD68D0 00000C 0008+00 0/1 0/0 0/0 .rodata          l_diff_flag$3698 */
@@ -193,7 +193,7 @@ SECTION_DEAD void* const cg_80BD68C0 = (void*)(&l_bmd);
 SECTION_RODATA static u8 const l_diff_flag[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80BD68C8 = (void*)(&l_diff_flag);
+COMPILER_STRIP_GATE(80BD68C8, &l_diff_flag);
 #pragma pop
 
 /* 80BD68D0-80BD68D8 000014 0008+00 0/1 0/0 0/0 .rodata          l_flag$3699 */
@@ -202,7 +202,7 @@ SECTION_DEAD void* const cg_80BD68C8 = (void*)(&l_diff_flag);
 SECTION_RODATA static u8 const l_flag[8] = {
     0x19, 0x00, 0x00, 0x84, 0x11, 0x00, 0x00, 0x84,
 };
-SECTION_DEAD void* const cg_80BD68D0 = (void*)(&l_flag);
+COMPILER_STRIP_GATE(80BD68D0, &l_flag);
 #pragma pop
 
 /* 80BD68F0-80BD68F4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */

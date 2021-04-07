@@ -218,13 +218,13 @@ SECTION_DATA static void* sGuideData[18] = {
 };
 
 /* 80450880-80450884 000300 0004+00 2/2 0/0 0/0 .sdata           cPitchDown */
-SECTION_SDATA static u32 cPitchDown = 0x3F641206;
+SECTION_SDATA static f32 cPitchDown = 0.8909000158309937f;
 
 /* 80450884-80450888 000304 0004+00 4/4 0/0 0/0 .sdata           cPitchCenter */
-SECTION_SDATA static u32 cPitchCenter = 0x3F800000;
+SECTION_SDATA static f32 cPitchCenter = 1.0f;
 
 /* 80450888-8045088C 000308 0004+00 2/2 0/0 0/0 .sdata           cPitchUp */
-SECTION_SDATA static u32 cPitchUp = 0x3F9837B5;
+SECTION_SDATA static f32 cPitchUp = 1.1892000436782837f;
 
 /* 8045088C-80450890 -00001 0004+00 4/4 0/0 0/0 .sdata           None */
 SECTION_SDATA static u8 struct_8045088C[4] = {

@@ -94,8 +94,8 @@ extern "C" void __register_global_object();
 
 /* ############################################################################################## */
 /* 805A4B20-805A4B24 000000 0004+00 1/1 0/0 0/0 .rodata          @3782 */
-SECTION_RODATA static u32 const lit_3782 = 0x42C80000;
-SECTION_DEAD void* const cg_805A4B20 = (void*)(&lit_3782);
+SECTION_RODATA static f32 const lit_3782 = 100.0f;
+COMPILER_STRIP_GATE(805A4B20, &lit_3782);
 
 /* 805A43EC-805A45D8 0000EC 01EC+00 1/1 0/0 0/0 .text            create__12daTagHstop_cFv */
 #pragma push

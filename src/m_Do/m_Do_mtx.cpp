@@ -11,10 +11,6 @@
 // Types:
 //
 
-struct csXyz {};
-
-struct Quaternion {};
-
 struct Vec {};
 
 struct cXyz {
@@ -23,6 +19,10 @@ struct cXyz {
     /* 80266EF4 */ void normalize();
     /* 80266FDC */ void normalizeRS();
 };
+
+struct csXyz {};
+
+struct Quaternion {};
 
 struct mDoMtx_stack_c {
     /* 8000CCC8 */ void push();

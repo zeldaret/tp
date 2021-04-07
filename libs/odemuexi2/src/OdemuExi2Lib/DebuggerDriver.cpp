@@ -35,7 +35,7 @@ extern "C" void OSRestoreInterrupts();
 extern "C" void __OSSetInterruptHandler();
 extern "C" void __OSMaskInterrupts();
 extern "C" void __OSUnmaskInterrupts();
-extern "C" extern u32 data_80450AF0;
+extern "C" extern f32 data_80450AF0;
 
 //
 // Declarations:

@@ -18,9 +18,9 @@ struct JGeometry {
     struct TVec3__template0 {};
 };
 
-struct JAISoundID {};
-
 struct JAISoundHandle {};
+
+struct JAISoundID {};
 
 struct JAISoundStarter {
     /* 802A2F6C */ JAISoundStarter(bool);

@@ -133,7 +133,7 @@ asm void J3DShape::initialize() {
 SECTION_RODATA static u8 const lit_697[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02,
 };
-SECTION_DEAD void* const cg_803A1E98 = (void*)(&lit_697);
+COMPILER_STRIP_GATE(803A1E98, &lit_697);
 
 /* 80314BB8-80314CBC 30F4F8 0104+00 0/0 1/1 0/0 .text addTexMtxIndexInDL__8J3DShapeF7_GXAttrUl */
 #pragma push

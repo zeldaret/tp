@@ -73,12 +73,12 @@ struct dDlst_list_c {
     /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
 };
 
+struct JKRArchive {};
+
 struct J2DPane {
     /* 802F7AFC */ void getParentPane();
     /* 802F7FCC */ void animationTransform();
 };
-
-struct JKRArchive {};
 
 struct dDlst_TimerScrnDraw_c {
     /* 8025DB38 */ dDlst_TimerScrnDraw_c();
@@ -122,9 +122,9 @@ struct dComIfG_play_c {
     /* 8002CBDC */ void getTimerPtr();
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);

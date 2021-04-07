@@ -321,7 +321,7 @@ SECTION_RODATA static u8 const typeToTypeGroup__7dTres_c[34 + 6 /* padding */] =
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8037B0D8 = (void*)(&typeToTypeGroup__7dTres_c);
+COMPILER_STRIP_GATE(8037B0D8, &typeToTypeGroup__7dTres_c);
 
 /* 8009C49C-8009C4B0 096DDC 0014+00 0/0 1/1 0/0 .text            getTypeGroupNoToType__7dTres_cFUc
  */

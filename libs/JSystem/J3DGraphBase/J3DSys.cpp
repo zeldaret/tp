@@ -131,12 +131,12 @@ extern u8 mCurrentMtx__6J3DSys[48];
 u8 mCurrentMtx__6J3DSys[48];
 
 /* 80434C14-80434C20 061934 000C+00 0/0 6/6 0/0 .bss             mCurrentS__6J3DSys */
-extern u8 mCurrentS__6J3DSys[12];
-u8 mCurrentS__6J3DSys[12];
+extern f32 mCurrentS__6J3DSys[3];
+f32 mCurrentS__6J3DSys[3];
 
 /* 80434C20-80434C2C 061940 000C+00 0/0 5/5 0/0 .bss             mParentS__6J3DSys */
-extern u8 mParentS__6J3DSys[12];
-u8 mParentS__6J3DSys[12];
+extern f32 mParentS__6J3DSys[3];
+f32 mParentS__6J3DSys[3];
 
 /* 80434C2C-80434C70 06194C 0040+04 1/1 17/17 0/0 .bss             sTexCoordScaleTable__6J3DSys */
 extern u8 sTexCoordScaleTable__6J3DSys[64 + 4 /* padding */];
@@ -177,13 +177,13 @@ asm void J3DSys::loadNrmMtxIndx(int param_0, u16 param_1) const {
 SECTION_RODATA static u8 const lit_695[16] = {
     0x00, 0x00, 0x80, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803A1DF8 = (void*)(&lit_695);
+COMPILER_STRIP_GATE(803A1DF8, &lit_695);
 
 /* 803A1E08-803A1E18 02E468 0010+00 1/1 0/0 0/0 .rodata          @696 */
 SECTION_RODATA static u8 const lit_696[16] = {
     0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803A1E08 = (void*)(&lit_696);
+COMPILER_STRIP_GATE(803A1E08, &lit_696);
 
 /* 8030FF0C-803100BC 30A84C 01B0+00 1/1 0/0 0/0 .text setTexCacheRegion__6J3DSysF15_GXTexCacheSize
  */
@@ -202,7 +202,7 @@ SECTION_RODATA static u8 const lit_737[24] = {
     0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803A1E18 = (void*)(&lit_737);
+COMPILER_STRIP_GATE(803A1E18, &lit_737);
 
 /* 803CD8A0-803CD8B0 02A9C0 0010+00 1/1 0/0 0/0 .data            NullTexData */
 SECTION_DATA static u8 NullTexData[16] = {

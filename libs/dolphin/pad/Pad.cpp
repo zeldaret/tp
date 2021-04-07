@@ -236,10 +236,10 @@ SECTION_SDATA static u32 Spec = 0x00000005;
 SECTION_SDATA static void* MakeStatus = (void*)SPEC2_MakeStatus;
 
 /* 80450A38-80450A3C 0004B8 0004+00 3/3 0/0 0/0 .sdata           CmdReadOrigin */
-SECTION_SDATA static u32 CmdReadOrigin = 0x41000000;
+SECTION_SDATA static f32 CmdReadOrigin = 8.0f;
 
 /* 80450A3C-80450A40 0004BC 0004+00 1/1 0/0 0/0 .sdata           CmdCalibrate */
-SECTION_SDATA static u32 CmdCalibrate = 0x42000000;
+SECTION_SDATA static f32 CmdCalibrate = 32.0f;
 
 /* 8034E6C0-8034E9EC 349000 032C+00 4/4 0/0 0/0 .text            PADTypeAndStatusCallback */
 #pragma push

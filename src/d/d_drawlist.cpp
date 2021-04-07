@@ -32,8 +32,6 @@ struct dDlst_shadowTri_c {
     /* 80056344 */ dDlst_shadowTri_c();
 };
 
-struct _GXTexObj {};
-
 struct Vec {};
 
 struct cXyz {
@@ -43,6 +41,8 @@ struct cXyz {
     /* 80266EF4 */ void normalize();
     /* 802670AC */ void isZero() const;
 };
+
+struct _GXTexObj {};
 
 struct dDlst_shadowSimple_c {
     /* 8005520C */ void draw();
@@ -68,9 +68,9 @@ struct dDlst_shadowRealPoly_c {
     /* 800569A8 */ s32 getTriMax();
 };
 
-struct cM3dGPla {};
-
 struct cBgD_Vtx_t {};
+
+struct cM3dGPla {};
 
 struct dDlst_shadowPoly_c {
     /* 80054288 */ void set(cBgD_Vtx_t*, u16, u16, u16, cM3dGPla*);
@@ -95,6 +95,10 @@ struct dDlst_peekZ_c {
     /* 80056080 */ void peekData();
 };
 
+struct _GXColor {};
+
+struct dDlst_base_c {};
+
 struct J3DPacket {};
 
 struct J3DDrawBuffer {
@@ -105,10 +109,6 @@ struct J3DDrawBuffer {
     /* 8032548C */ void entryImm(J3DPacket*, u16);
     /* 803254AC */ void draw() const;
 };
-
-struct _GXColor {};
-
-struct dDlst_base_c {};
 
 struct dDlst_list_c {
     /* 800560F0 */ dDlst_list_c();
@@ -3041,7 +3041,7 @@ SECTION_RODATA static u8 const l_drawlistSize[42 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8037A178 = (void*)(&l_drawlistSize);
+COMPILER_STRIP_GATE(8037A178, &l_drawlistSize);
 
 /* 8037A1A4-8037A1B0 006804 0009+03 1/1 0/0 0/0 .rodata          l_nonSortId$5662 */
 SECTION_RODATA static u8 const l_nonSortId[9 + 3 /* padding */] = {
@@ -3059,7 +3059,7 @@ SECTION_RODATA static u8 const l_nonSortId[9 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8037A1A4 = (void*)(&l_nonSortId);
+COMPILER_STRIP_GATE(8037A1A4, &l_nonSortId);
 
 /* 804520C4-804520CC 0006C4 0006+02 1/1 0/0 0/0 .sdata2          l_zSortId$5668 */
 SECTION_SDATA2 static u8 l_zSortId[6 + 2 /* padding */] = {

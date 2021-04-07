@@ -17,9 +17,9 @@ struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
 };
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -66,11 +66,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -102,9 +102,9 @@ struct Z2SeqMgr {
     /* 802AFE18 */ void bgmStreamPlay();
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -288,28 +288,28 @@ asm void daObjSwBallC_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 80CF6CD4-80CF6CD8 000000 0004+00 3/3 0/0 0/0 .rodata          l_color */
 SECTION_RODATA static u32 const l_color = 0x0396FFFF;
-SECTION_DEAD void* const cg_80CF6CD4 = (void*)(&l_color);
+COMPILER_STRIP_GATE(80CF6CD4, &l_color);
 
 /* 80CF6CD8-80CF6CDC 000004 0004+00 0/0 0/0 0/0 .rodata          @3697 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3697 = 0xBF800000;
-SECTION_DEAD void* const cg_80CF6CD8 = (void*)(&lit_3697);
+SECTION_RODATA static f32 const lit_3697 = -1.0f;
+COMPILER_STRIP_GATE(80CF6CD8, &lit_3697);
 #pragma pop
 
 /* 80CF6CDC-80CF6CE4 000008 0004+04 2/3 0/0 0/0 .rodata          @3814 */
-SECTION_RODATA static u32 const lit_3814[1 + 1 /* padding */] = {
-    0x3F800000,
+SECTION_RODATA static f32 const lit_3814[1 + 1 /* padding */] = {
+    1.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
-SECTION_DEAD void* const cg_80CF6CDC = (void*)(&lit_3814);
+COMPILER_STRIP_GATE(80CF6CDC, &lit_3814);
 
 /* 80CF6CE4-80CF6CEC 000010 0008+00 1/1 0/0 0/0 .rodata          @3816 */
 SECTION_RODATA static u8 const lit_3816[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80CF6CE4 = (void*)(&lit_3816);
+COMPILER_STRIP_GATE(80CF6CE4, &lit_3816);
 
 /* 80CF6D90-80CF6D9C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -353,7 +353,7 @@ SECTION_RODATA static u8 const lit_3850[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80CF6CEC = (void*)(&lit_3850);
+COMPILER_STRIP_GATE(80CF6CEC, &lit_3850);
 
 /* 80CF6DB8-80CF6DBC -00001 0004+00 1/1 0/0 0/0 .data            l_staffName */
 SECTION_DATA static void* l_staffName = (void*)(((char*)&d_a_obj_swBallC__stringBase0) + 0x1D);
@@ -641,27 +641,27 @@ asm void daObjSwBallC_c::deleteLightBallB() {
 /* 80CF6CF0-80CF6CF4 00001C 0004+00 0/0 0/0 0/0 .rodata          @4109 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4109 = 0x43834000;
-SECTION_DEAD void* const cg_80CF6CF0 = (void*)(&lit_4109);
+SECTION_RODATA static f32 const lit_4109 = 262.5f;
+COMPILER_STRIP_GATE(80CF6CF0, &lit_4109);
 #pragma pop
 
 /* 80CF6CF4-80CF6CF8 000020 0004+00 0/0 0/0 0/0 .rodata          @4110 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4110 = 0xC33C0000;
-SECTION_DEAD void* const cg_80CF6CF4 = (void*)(&lit_4110);
+SECTION_RODATA static f32 const lit_4110 = -188.0f;
+COMPILER_STRIP_GATE(80CF6CF4, &lit_4110);
 #pragma pop
 
 /* 80CF6CF8-80CF6CFC 000024 0004+00 0/0 0/0 0/0 .rodata          @4111 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4111 = 0x46276200;
-SECTION_DEAD void* const cg_80CF6CF8 = (void*)(&lit_4111);
+SECTION_RODATA static f32 const lit_4111 = 10712.5f;
+COMPILER_STRIP_GATE(80CF6CF8, &lit_4111);
 #pragma pop
 
 /* 80CF6CFC-80CF6D00 000028 0004+00 1/1 0/0 0/0 .rodata          @4175 */
-SECTION_RODATA static u32 const lit_4175 = 0x3D4CCCCD;
-SECTION_DEAD void* const cg_80CF6CFC = (void*)(&lit_4175);
+SECTION_RODATA static f32 const lit_4175 = 1.0f / 20.0f;
+COMPILER_STRIP_GATE(80CF6CFC, &lit_4175);
 
 /* 80CF699C-80CF6A74 000E7C 00D8+00 1/1 0/0 0/0 .text calcLightBallScale__14daObjSwBallC_cFv */
 #pragma push
@@ -677,15 +677,15 @@ asm void daObjSwBallC_c::calcLightBallScale() {
 /* 80CF6D00-80CF6D04 00002C 0004+00 0/1 0/0 0/0 .rodata          @4252 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4252 = 0x42C80000;
-SECTION_DEAD void* const cg_80CF6D00 = (void*)(&lit_4252);
+SECTION_RODATA static f32 const lit_4252 = 100.0f;
+COMPILER_STRIP_GATE(80CF6D00, &lit_4252);
 #pragma pop
 
 /* 80CF6D04-80CF6D08 000030 0004+00 0/1 0/0 0/0 .rodata          @4253 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4253 = 0xC2C80000;
-SECTION_DEAD void* const cg_80CF6D04 = (void*)(&lit_4253);
+SECTION_RODATA static f32 const lit_4253 = -100.0f;
+COMPILER_STRIP_GATE(80CF6D04, &lit_4253);
 #pragma pop
 
 /* 80CF6A74-80CF6BFC 000F54 0188+00 1/1 0/0 0/0 .text            draw__14daObjSwBallC_cFv */

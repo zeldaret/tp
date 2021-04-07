@@ -30,13 +30,13 @@ struct J3DModelLoader_v26 {
 
 struct J3DDrawBlock {};
 
-struct J3DModelInfoBlock {};
-
-struct J3DMaterialDLBlock {};
-
 struct J3DJointBlock {};
 
 struct J3DEnvelopeBlock {};
+
+struct J3DModelInfoBlock {};
+
+struct J3DMaterialDLBlock {};
 
 struct J3DModelLoader {
     /* 80336794 */ void countMaterialNum(void const*);

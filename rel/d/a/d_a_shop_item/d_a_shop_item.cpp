@@ -190,8 +190,8 @@ asm void daShopItem_c::getShopArcname() {
 
 /* ############################################################################################## */
 /* 8059F438-8059F43C 000000 0004+00 2/2 0/0 0/0 .rodata          m_cullfar_max__12daShopItem_c */
-SECTION_RODATA static u32 const m_cullfar_max__12daShopItem_c = 0x459C4000;
-SECTION_DEAD void* const cg_8059F438 = (void*)(&m_cullfar_max__12daShopItem_c);
+SECTION_RODATA static f32 const m_cullfar_max__12daShopItem_c = 5000.0f;
+COMPILER_STRIP_GATE(8059F438, &m_cullfar_max__12daShopItem_c);
 
 /* 8059F43C-8059F46C 000004 002E+02 1/1 0/0 0/0 .rodata          HeapSizeTbl$3665 */
 SECTION_RODATA static u8 const HeapSizeTbl[46 + 2 /* padding */] = {
@@ -245,7 +245,7 @@ SECTION_RODATA static u8 const HeapSizeTbl[46 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8059F43C = (void*)(&HeapSizeTbl);
+COMPILER_STRIP_GATE(8059F43C, &HeapSizeTbl);
 
 /* 8059EC04-8059EC1C 0002C4 0018+00 1/1 0/0 0/0 .text            getHeapSize__12daShopItem_cFv */
 #pragma push
@@ -261,8 +261,8 @@ asm void daShopItem_c::getHeapSize() {
 /* 8059F46C-8059F470 000034 0004+00 0/1 0/0 0/0 .rodata          @3718 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3718 = 0xC2C80000;
-SECTION_DEAD void* const cg_8059F46C = (void*)(&lit_3718);
+SECTION_RODATA static f32 const lit_3718 = -100.0f;
+COMPILER_STRIP_GATE(8059F46C, &lit_3718);
 #pragma pop
 
 /* 8059F470-8059F474 000038 0004+00 0/2 0/0 0/0 .rodata          @3719 */
@@ -274,39 +274,39 @@ SECTION_RODATA static u8 const lit_3719[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8059F470 = (void*)(&lit_3719);
+COMPILER_STRIP_GATE(8059F470, &lit_3719);
 #pragma pop
 
 /* 8059F474-8059F478 00003C 0004+00 0/1 0/0 0/0 .rodata          @3720 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3720 = 0x42C80000;
-SECTION_DEAD void* const cg_8059F474 = (void*)(&lit_3720);
+SECTION_RODATA static f32 const lit_3720 = 100.0f;
+COMPILER_STRIP_GATE(8059F474, &lit_3720);
 #pragma pop
 
 /* 8059F478-8059F47C 000040 0004+00 0/1 0/0 0/0 .rodata          @3721 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3721 = 0x43480000;
-SECTION_DEAD void* const cg_8059F478 = (void*)(&lit_3721);
+SECTION_RODATA static f32 const lit_3721 = 200.0f;
+COMPILER_STRIP_GATE(8059F478, &lit_3721);
 #pragma pop
 
 /* 8059F47C-8059F480 000044 0004+00 1/3 0/0 0/0 .rodata          @3722 */
-SECTION_RODATA static u32 const lit_3722 = 0x3F800000;
-SECTION_DEAD void* const cg_8059F47C = (void*)(&lit_3722);
+SECTION_RODATA static f32 const lit_3722 = 1.0f;
+COMPILER_STRIP_GATE(8059F47C, &lit_3722);
 
 /* 8059F480-8059F484 000048 0004+00 0/1 0/0 0/0 .rodata          @3723 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3723 = 0x459C4000;
-SECTION_DEAD void* const cg_8059F480 = (void*)(&lit_3723);
+SECTION_RODATA static f32 const lit_3723 = 5000.0f;
+COMPILER_STRIP_GATE(8059F480, &lit_3723);
 #pragma pop
 
 /* 8059F484-8059F488 00004C 0004+00 0/1 0/0 0/0 .rodata          @3724 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3724 = 0x3F4CCCCD;
-SECTION_DEAD void* const cg_8059F484 = (void*)(&lit_3724);
+SECTION_RODATA static f32 const lit_3724 = 4.0f / 5.0f;
+COMPILER_STRIP_GATE(8059F484, &lit_3724);
 #pragma pop
 
 /* 8059EC1C-8059ED58 0002DC 013C+00 1/1 0/0 0/0 .text            CreateInit__12daShopItem_cFv */
@@ -358,8 +358,8 @@ void daShopItem_c::setListStart() {
 /* 8059F488-8059F48C 000050 0004+00 0/1 0/0 0/0 .rodata          @3823 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3823 = 0x42A00000;
-SECTION_DEAD void* const cg_8059F488 = (void*)(&lit_3823);
+SECTION_RODATA static f32 const lit_3823 = 80.0f;
+COMPILER_STRIP_GATE(8059F488, &lit_3823);
 #pragma pop
 
 /* 8059EFA0-8059F024 000660 0084+00 1/0 0/0 0/0 .text            setShadow__12daShopItem_cFv */

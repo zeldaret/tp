@@ -39,9 +39,9 @@ struct daNPC_TK_c {
     /* 80B0A568 */ void endHawkCamera();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -100,9 +100,9 @@ struct cCcD_GStts {
     /* 80C3D38C */ ~cCcD_GStts();
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -203,34 +203,34 @@ SECTION_RODATA static u8 const M_attr__15daObjKazeNeko_c[44] = {
     0x00, 0x42, 0xB4, 0x00, 0x00, 0x44, 0xE1, 0x00, 0x00, 0x43, 0x34, 0x00, 0x00, 0x41, 0xD8,
     0x00, 0x00, 0x41, 0x70, 0x00, 0x00, 0x01, 0x70, 0x64, 0x00, 0x00, 0x19, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80C3D3DC = (void*)(&M_attr__15daObjKazeNeko_c);
+COMPILER_STRIP_GATE(80C3D3DC, &M_attr__15daObjKazeNeko_c);
 
 /* 80C3D408-80C3D40C 00002C 0004+00 0/1 0/0 0/0 .rodata          @3853 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3853 = 0xC2C80000;
-SECTION_DEAD void* const cg_80C3D408 = (void*)(&lit_3853);
+SECTION_RODATA static f32 const lit_3853 = -100.0f;
+COMPILER_STRIP_GATE(80C3D408, &lit_3853);
 #pragma pop
 
 /* 80C3D40C-80C3D410 000030 0004+00 0/1 0/0 0/0 .rodata          @3854 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3854 = 0xC1200000;
-SECTION_DEAD void* const cg_80C3D40C = (void*)(&lit_3854);
+SECTION_RODATA static f32 const lit_3854 = -10.0f;
+COMPILER_STRIP_GATE(80C3D40C, &lit_3854);
 #pragma pop
 
 /* 80C3D410-80C3D414 000034 0004+00 0/1 0/0 0/0 .rodata          @3855 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3855 = 0x42C80000;
-SECTION_DEAD void* const cg_80C3D410 = (void*)(&lit_3855);
+SECTION_RODATA static f32 const lit_3855 = 100.0f;
+COMPILER_STRIP_GATE(80C3D410, &lit_3855);
 #pragma pop
 
 /* 80C3D414-80C3D418 000038 0004+00 0/1 0/0 0/0 .rodata          @3856 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3856 = 0x43480000;
-SECTION_DEAD void* const cg_80C3D414 = (void*)(&lit_3856);
+SECTION_RODATA static f32 const lit_3856 = 200.0f;
+COMPILER_STRIP_GATE(80C3D414, &lit_3856);
 #pragma pop
 
 /* 80C3C8D8-80C3C968 000078 0090+00 1/1 0/0 0/0 .text            create_init__15daObjKazeNeko_cFv */
@@ -261,7 +261,7 @@ SECTION_RODATA static u8 const lit_3890[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80C3D418 = (void*)(&lit_3890);
+COMPILER_STRIP_GATE(80C3D418, &lit_3890);
 
 /* 80C3C988-80C3CA8C 000128 0104+00 2/2 0/0 0/0 .text            setBaseMtx__15daObjKazeNeko_cFv */
 #pragma push
@@ -282,7 +282,7 @@ SECTION_RODATA static u8 const ccCylSrc[68] = {
     0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80C3D41C = (void*)(&ccCylSrc);
+COMPILER_STRIP_GATE(80C3D41C, &ccCylSrc);
 
 /* 80C3CA8C-80C3CB10 00022C 0084+00 1/1 0/0 0/0 .text            initCcCylinder__15daObjKazeNeko_cFv
  */
@@ -320,20 +320,20 @@ asm void daObjKazeNeko_c::swingHead() {
 /* 80C3D460-80C3D464 000084 0004+00 0/1 0/0 0/0 .rodata          @3947 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3947 = 0x3F800000;
-SECTION_DEAD void* const cg_80C3D460 = (void*)(&lit_3947);
+SECTION_RODATA static f32 const lit_3947 = 1.0f;
+COMPILER_STRIP_GATE(80C3D460, &lit_3947);
 #pragma pop
 
 /* 80C3D464-80C3D468 000088 0004+00 0/1 0/0 0/0 .rodata          @3948 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3948 = 0xBF800000;
-SECTION_DEAD void* const cg_80C3D464 = (void*)(&lit_3948);
+SECTION_RODATA static f32 const lit_3948 = -1.0f;
+COMPILER_STRIP_GATE(80C3D464, &lit_3948);
 #pragma pop
 
 /* 80C3D468-80C3D46C 00008C 0004+00 1/1 0/0 0/0 .rodata          @3962 */
-SECTION_RODATA static u32 const lit_3962 = 0x41F00000;
-SECTION_DEAD void* const cg_80C3D468 = (void*)(&lit_3962);
+SECTION_RODATA static f32 const lit_3962 = 30.0f;
+COMPILER_STRIP_GATE(80C3D468, &lit_3962);
 
 /* 80C3CC40-80C3CC90 0003E0 0050+00 0/0 0/0 1/1 .text getFirstVec__15daObjKazeNeko_cFP4cXyzi */
 #pragma push
@@ -376,7 +376,7 @@ static asm void daObjKazeNeko_Draw(daObjKazeNeko_c* param_0) {
 SECTION_RODATA static u8 const lit_4119[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80C3D46C = (void*)(&lit_4119);
+COMPILER_STRIP_GATE(80C3D46C, &lit_4119);
 #pragma pop
 
 /* 80C3CEA8-80C3D030 000648 0188+00 1/0 0/0 0/0 .text daObjKazeNeko_Execute__FP15daObjKazeNeko_c

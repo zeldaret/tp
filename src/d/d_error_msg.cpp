@@ -176,7 +176,7 @@ SECTION_RODATA static u8 const black_tex[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8037B140 = (void*)(&black_tex);
+COMPILER_STRIP_GATE(8037B140, &black_tex);
 
 /* 8037B180-8037B3E0 0077E0 0260+00 1/1 0/0 0/0 .rodata          msg_data */
 SECTION_RODATA static u8 const msg_data[608] = {
@@ -219,7 +219,7 @@ SECTION_RODATA static u8 const msg_data[608] = {
     0x6F, 0x72, 0x20, 0x64, 0x65, 0x74, 0x61, 0x69, 0x6C, 0x73, 0x2E, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8037B180 = (void*)(&msg_data);
+COMPILER_STRIP_GATE(8037B180, &msg_data);
 
 /* 8037B3E0-8038D640 -00001 12260+00 1/1 0/0 0/0 .rodata          font_data */
 SECTION_RODATA static void* const font_data[18584] = {
@@ -18809,7 +18809,7 @@ SECTION_RODATA static void* const font_data[18584] = {
     (void*)0x69727473,
     (void*)0xE1B80000,
 };
-SECTION_DEAD void* const cg_8037B3E0 = (void*)(&font_data);
+COMPILER_STRIP_GATE(8037B3E0, &font_data);
 
 /* 80452C18-80452C1C 001218 0004+00 3/3 0/0 0/0 .sdata2          @3758 */
 SECTION_SDATA2 static u8 lit_3758[4] = {

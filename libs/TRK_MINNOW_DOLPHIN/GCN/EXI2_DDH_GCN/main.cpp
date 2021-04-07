@@ -96,7 +96,7 @@ SECTION_RODATA static u8 const lit_318[20] = {
     0x63, 0x63, 0x20, 0x6E, 0x6F, 0x74, 0x20, 0x69, 0x6E, 0x69,
     0x74, 0x69, 0x61, 0x6C, 0x69, 0x7A, 0x65, 0x64, 0x0A, 0x00,
 };
-SECTION_DEAD void* const cg_803A2D10 = (void*)(&lit_318);
+COMPILER_STRIP_GATE(803A2D10, &lit_318);
 
 /* 803A2D24-803A2D50 02F384 0029+03 0/1 0/0 0/0 .rodata          @319 */
 #pragma push
@@ -148,7 +148,7 @@ SECTION_RODATA static u8 const lit_319[41 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_803A2D24 = (void*)(&lit_319);
+COMPILER_STRIP_GATE(803A2D24, &lit_319);
 #pragma pop
 
 /* 803A2D50-803A2D6C 02F3B0 001C+00 0/1 0/0 0/0 .rodata          @320 */
@@ -158,7 +158,7 @@ SECTION_RODATA static u8 const lit_320[28] = {
     0x63, 0x63, 0x5F, 0x77, 0x72, 0x69, 0x74, 0x65, 0x20, 0x73, 0x65, 0x6E, 0x64, 0x69,
     0x6E, 0x67, 0x20, 0x25, 0x6C, 0x64, 0x20, 0x62, 0x79, 0x74, 0x65, 0x73, 0x0A, 0x00,
 };
-SECTION_DEAD void* const cg_803A2D50 = (void*)(&lit_320);
+COMPILER_STRIP_GATE(803A2D50, &lit_320);
 #pragma pop
 
 /* 804519C0-804519C8 000EC0 0004+04 3/3 0/0 0/0 .sbss            gIsInitialized */
@@ -219,7 +219,7 @@ SECTION_RODATA static u8 const lit_342[37 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_803A2D6C = (void*)(&lit_342);
+COMPILER_STRIP_GATE(803A2D6C, &lit_342);
 
 /* 803A2D94-803A2DC4 02F3F4 002D+03 1/1 0/0 0/0 .rodata          @343 */
 SECTION_RODATA static u8 const lit_343[45 + 3 /* padding */] = {
@@ -273,7 +273,7 @@ SECTION_RODATA static u8 const lit_343[45 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_803A2D94 = (void*)(&lit_343);
+COMPILER_STRIP_GATE(803A2D94, &lit_343);
 
 /* 803724F8-803725E4 36CE38 00EC+00 0/0 1/1 0/0 .text            ddh_cc_read */
 #pragma push
@@ -330,14 +330,14 @@ SECTION_RODATA static u8 const lit_349[19 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
-SECTION_DEAD void* const cg_803A2DC4 = (void*)(&lit_349);
+COMPILER_STRIP_GATE(803A2DC4, &lit_349);
 
 /* 803A2DD8-803A2DF0 02F438 0018+00 1/1 0/0 0/0 .rodata          @350 */
 SECTION_RODATA static u8 const lit_350[24] = {
     0x44, 0x4F, 0x4E, 0x45, 0x20, 0x43, 0x41, 0x4C, 0x4C, 0x49, 0x4E, 0x47,
     0x20, 0x45, 0x58, 0x49, 0x32, 0x5F, 0x49, 0x6E, 0x69, 0x74, 0x0A, 0x00,
 };
-SECTION_DEAD void* const cg_803A2DD8 = (void*)(&lit_350);
+COMPILER_STRIP_GATE(803A2DD8, &lit_350);
 
 /* 80372618-803726A0 36CF58 0088+00 0/0 1/1 0/0 .text            ddh_cc_initialize */
 #pragma push

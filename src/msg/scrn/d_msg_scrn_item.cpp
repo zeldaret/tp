@@ -18,9 +18,9 @@ struct dMsgScrnLight_c {
 
 struct JKRExpHeap {};
 
-struct J2DAnmTextureSRTKey {};
-
 struct J2DAnmColor {};
+
+struct J2DAnmTextureSRTKey {};
 
 struct dMsgScrnItem_c {
     /* 8023E79C */ dMsgScrnItem_c(u8, u8, JKRExpHeap*);

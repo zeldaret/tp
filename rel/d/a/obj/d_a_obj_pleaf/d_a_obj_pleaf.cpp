@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {};
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
@@ -46,9 +46,9 @@ struct daObj_Pleaf_Param_c {
     /* 80CB17F8 */ ~daObj_Pleaf_Param_c();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -320,36 +320,36 @@ asm daObj_Pleaf_c::~daObj_Pleaf_c() {
 SECTION_RODATA static u8 const m__19daObj_Pleaf_Param_c[16] = {
     0x00, 0x00, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x44, 0x61, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80CB1864 = (void*)(&m__19daObj_Pleaf_Param_c);
+COMPILER_STRIP_GATE(80CB1864, &m__19daObj_Pleaf_Param_c);
 
 /* 80CB1874-80CB1878 000010 0004+00 0/1 0/0 0/0 .rodata          @3905 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3905 = 0xC3960000;
-SECTION_DEAD void* const cg_80CB1874 = (void*)(&lit_3905);
+SECTION_RODATA static f32 const lit_3905 = -300.0f;
+COMPILER_STRIP_GATE(80CB1874, &lit_3905);
 #pragma pop
 
 /* 80CB1878-80CB187C 000014 0004+00 0/1 0/0 0/0 .rodata          @3906 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3906 = 0xC2480000;
-SECTION_DEAD void* const cg_80CB1878 = (void*)(&lit_3906);
+SECTION_RODATA static f32 const lit_3906 = -50.0f;
+COMPILER_STRIP_GATE(80CB1878, &lit_3906);
 #pragma pop
 
 /* 80CB187C-80CB1880 000018 0004+00 0/1 0/0 0/0 .rodata          @3907 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3907 = 0x43960000;
-SECTION_DEAD void* const cg_80CB187C = (void*)(&lit_3907);
+SECTION_RODATA static f32 const lit_3907 = 300.0f;
+COMPILER_STRIP_GATE(80CB187C, &lit_3907);
 #pragma pop
 
 /* 80CB1880-80CB1884 00001C 0004+00 1/2 0/0 0/0 .rodata          @3908 */
-SECTION_RODATA static u32 const lit_3908 = 0x42480000;
-SECTION_DEAD void* const cg_80CB1880 = (void*)(&lit_3908);
+SECTION_RODATA static f32 const lit_3908 = 50.0f;
+COMPILER_STRIP_GATE(80CB1880, &lit_3908);
 
 /* 80CB1884-80CB1888 000020 0004+00 1/3 0/0 0/0 .rodata          @3909 */
-SECTION_RODATA static u32 const lit_3909 = 0xCE6E6B28;
-SECTION_DEAD void* const cg_80CB1884 = (void*)(&lit_3909);
+SECTION_RODATA static f32 const lit_3909 = -1000000000.0f;
+COMPILER_STRIP_GATE(80CB1884, &lit_3909);
 
 /* 80CB0F08-80CB1180 0002A8 0278+00 1/1 0/0 0/0 .text            create__13daObj_Pleaf_cFv */
 #pragma push
@@ -445,15 +445,15 @@ asm void daObj_Pleaf_c::Execute() {
 /* 80CB1888-80CB188C 000024 0004+00 0/1 0/0 0/0 .rodata          @4025 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4025 = 0x41A00000;
-SECTION_DEAD void* const cg_80CB1888 = (void*)(&lit_4025);
+SECTION_RODATA static f32 const lit_4025 = 20.0f;
+COMPILER_STRIP_GATE(80CB1888, &lit_4025);
 #pragma pop
 
 /* 80CB188C-80CB1890 000028 0004+00 0/1 0/0 0/0 .rodata          @4026 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4026 = 0x3F800000;
-SECTION_DEAD void* const cg_80CB188C = (void*)(&lit_4026);
+SECTION_RODATA static f32 const lit_4026 = 1.0f;
+COMPILER_STRIP_GATE(80CB188C, &lit_4026);
 #pragma pop
 
 /* 80CB14D4-80CB1598 000874 00C4+00 1/1 0/0 0/0 .text            Draw__13daObj_Pleaf_cFv */

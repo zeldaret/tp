@@ -115,7 +115,7 @@ asm void JASBank::noteOn(JASBank const* param_0, int param_1, u8 param_2, u8 par
 SECTION_RODATA static u8 const OSC_RELEASE_TABLE[12] = {
     0x00, 0x01, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039B190 = (void*)(&OSC_RELEASE_TABLE);
+COMPILER_STRIP_GATE(8039B190, &OSC_RELEASE_TABLE);
 
 /* 8039B19C-8039B1B8 -00001 0018+04 1/1 0/0 0/0 .rodata          OSC_ENV$261 */
 SECTION_RODATA static void* const OSC_ENV[6 + 1 /* padding */] = {
@@ -128,7 +128,7 @@ SECTION_RODATA static void* const OSC_ENV[6 + 1 /* padding */] = {
     /* padding */
     NULL,
 };
-SECTION_DEAD void* const cg_8039B19C = (void*)(&OSC_ENV);
+COMPILER_STRIP_GATE(8039B19C, &OSC_ENV);
 
 /* 8045563C-80455640 003C3C 0004+00 1/1 0/0 0/0 .sdata2          @290 */
 SECTION_SDATA2 static f32 lit_290 = 16736.015625f;

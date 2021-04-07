@@ -13,11 +13,11 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {
     /* 80483450 */ ~cXyz();
 };
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CCC8 */ void push();
@@ -103,9 +103,9 @@ struct dSv_info_c {
     /* 8003542C */ void revSwitch(int, int);
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -348,7 +348,7 @@ SECTION_RODATA static u8 const M_bmd__Q211daObjSwpush5Act_c[6 + 2 /* padding */]
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80484D10 = (void*)(&M_bmd__Q211daObjSwpush5Act_c);
+COMPILER_STRIP_GATE(80484D10, &M_bmd__Q211daObjSwpush5Act_c);
 
 /* 80484D18-80484D20 000008 0006+02 1/1 0/0 0/0 .rodata          M_dzb__Q211daObjSwpush5Act_c */
 SECTION_RODATA static u8 const M_dzb__Q211daObjSwpush5Act_c[6 + 2 /* padding */] = {
@@ -362,7 +362,7 @@ SECTION_RODATA static u8 const M_dzb__Q211daObjSwpush5Act_c[6 + 2 /* padding */]
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80484D18 = (void*)(&M_dzb__Q211daObjSwpush5Act_c);
+COMPILER_STRIP_GATE(80484D18, &M_dzb__Q211daObjSwpush5Act_c);
 
 /* 80484E84-80484E90 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -417,7 +417,7 @@ asm void daObjSwpush::Act_c::create_res_load() {
 SECTION_RODATA static u8 const M_heap_size__Q211daObjSwpush5Act_c[12] = {
     0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x10, 0x00,
 };
-SECTION_DEAD void* const cg_80484D20 = (void*)(&M_heap_size__Q211daObjSwpush5Act_c);
+COMPILER_STRIP_GATE(80484D20, &M_heap_size__Q211daObjSwpush5Act_c);
 #pragma pop
 
 /* 80484D2C-80484E08 00001C 00DC+00 4/10 0/0 0/0 .rodata          M_attr__Q211daObjSwpush5Act_c */
@@ -437,62 +437,62 @@ SECTION_RODATA static u8 const M_attr__Q211daObjSwpush5Act_c[220] = {
     0x00, 0x00, 0x00, 0x00, 0xBE, 0x99, 0x99, 0x9A, 0x00, 0x01, 0x00, 0x06, 0x00, 0x06, 0x00, 0x0D,
     0x3F, 0x80, 0x00, 0x00, 0x40, 0x20, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80484D2C = (void*)(&M_attr__Q211daObjSwpush5Act_c);
+COMPILER_STRIP_GATE(80484D2C, &M_attr__Q211daObjSwpush5Act_c);
 
 /* 80484E08-80484E0C 0000F8 0004+00 0/3 0/0 0/0 .rodata          M_op_vtx__Q211daObjSwpush5Act_c */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const M_op_vtx__Q211daObjSwpush5Act_c = 0x0D0B0A0C;
-SECTION_DEAD void* const cg_80484E08 = (void*)(&M_op_vtx__Q211daObjSwpush5Act_c);
+COMPILER_STRIP_GATE(80484E08, &M_op_vtx__Q211daObjSwpush5Act_c);
 #pragma pop
 
 /* 80484E0C-80484E10 0000FC 0004+00 0/1 0/0 0/0 .rodata          @3872 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3872 = 0x3F000000;
-SECTION_DEAD void* const cg_80484E0C = (void*)(&lit_3872);
+SECTION_RODATA static f32 const lit_3872 = 0.5f;
+COMPILER_STRIP_GATE(80484E0C, &lit_3872);
 #pragma pop
 
 /* 80484E10-80484E14 000100 0004+00 0/2 0/0 0/0 .rodata          @3873 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3873 = 0x3FA00000;
-SECTION_DEAD void* const cg_80484E10 = (void*)(&lit_3873);
+SECTION_RODATA static f32 const lit_3873 = 1.25f;
+COMPILER_STRIP_GATE(80484E10, &lit_3873);
 #pragma pop
 
 /* 80484E14-80484E18 000104 0004+00 0/2 0/0 0/0 .rodata          @3874 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3874 = 0x40000000;
-SECTION_DEAD void* const cg_80484E14 = (void*)(&lit_3874);
+SECTION_RODATA static f32 const lit_3874 = 2.0f;
+COMPILER_STRIP_GATE(80484E14, &lit_3874);
 #pragma pop
 
 /* 80484E18-80484E1C 000108 0004+00 0/1 0/0 0/0 .rodata          @3875 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3875 = 0x42A00000;
-SECTION_DEAD void* const cg_80484E18 = (void*)(&lit_3875);
+SECTION_RODATA static f32 const lit_3875 = 80.0f;
+COMPILER_STRIP_GATE(80484E18, &lit_3875);
 #pragma pop
 
 /* 80484E1C-80484E20 00010C 0004+00 0/1 0/0 0/0 .rodata          @3876 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3876 = 0xC2A00000;
-SECTION_DEAD void* const cg_80484E1C = (void*)(&lit_3876);
+SECTION_RODATA static f32 const lit_3876 = -80.0f;
+COMPILER_STRIP_GATE(80484E1C, &lit_3876);
 #pragma pop
 
 /* 80484E20-80484E24 000110 0004+00 0/1 0/0 0/0 .rodata          @3877 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3877 = 0xC0000000;
-SECTION_DEAD void* const cg_80484E20 = (void*)(&lit_3877);
+SECTION_RODATA static f32 const lit_3877 = -2.0f;
+COMPILER_STRIP_GATE(80484E20, &lit_3877);
 #pragma pop
 
 /* 80484E24-80484E28 000114 0004+00 0/1 0/0 0/0 .rodata          @3878 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3878 = 0x421C0000;
-SECTION_DEAD void* const cg_80484E24 = (void*)(&lit_3878);
+SECTION_RODATA static f32 const lit_3878 = 39.0f;
+COMPILER_STRIP_GATE(80484E24, &lit_3878);
 #pragma pop
 
 /* 80484E28-80484E2C 000118 0004+00 3/6 0/0 0/0 .rodata          @3879 */
@@ -502,17 +502,17 @@ SECTION_RODATA static u8 const lit_3879[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80484E28 = (void*)(&lit_3879);
+COMPILER_STRIP_GATE(80484E28, &lit_3879);
 
 /* 80484E2C-80484E30 00011C 0004+00 2/8 0/0 0/0 .rodata          @3880 */
-SECTION_RODATA static u32 const lit_3880 = 0x3F800000;
-SECTION_DEAD void* const cg_80484E2C = (void*)(&lit_3880);
+SECTION_RODATA static f32 const lit_3880 = 1.0f;
+COMPILER_STRIP_GATE(80484E2C, &lit_3880);
 
 /* 80484E30-80484E34 000120 0004+00 0/3 0/0 0/0 .rodata          @3881 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3881 = 0xC20E0000;
-SECTION_DEAD void* const cg_80484E30 = (void*)(&lit_3881);
+SECTION_RODATA static f32 const lit_3881 = -35.5f;
+COMPILER_STRIP_GATE(80484E30, &lit_3881);
 #pragma pop
 
 /* 80483038-80483450 0003D8 0418+00 1/1 0/0 0/0 .text Mthd_Create__Q211daObjSwpush5Act_cFv */
@@ -586,14 +586,14 @@ SECTION_RODATA static u8 const tri_id[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80484E34 = (void*)(&tri_id);
+COMPILER_STRIP_GATE(80484E34, &tri_id);
 #pragma pop
 
 /* 80484E3C-80484E40 00012C 0004+00 0/3 0/0 0/0 .rodata          @4028 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4028 = 0xBF800000;
-SECTION_DEAD void* const cg_80484E3C = (void*)(&lit_4028);
+SECTION_RODATA static f32 const lit_4028 = -1.0f;
+COMPILER_STRIP_GATE(80484E3C, &lit_4028);
 #pragma pop
 
 /* 80484EB0-80484EBC -00001 000C+00 0/1 0/0 0/0 .data            @4518 */
@@ -904,8 +904,8 @@ asm void daObjSwpush::Act_c::jnodeCB(J3DJoint* param_0, int param_1) {
 /* 80484E40-80484E44 000130 0004+00 0/1 0/0 0/0 .rodata          @4097 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4097 = 0xC2120000;
-SECTION_DEAD void* const cg_80484E40 = (void*)(&lit_4097);
+SECTION_RODATA static f32 const lit_4097 = -36.5f;
+COMPILER_STRIP_GATE(80484E40, &lit_4097);
 #pragma pop
 
 /* 80483A5C-80483B70 000DFC 0114+00 1/1 0/0 0/0 .text calc_top_pos__Q211daObjSwpush5Act_cFv */
@@ -952,8 +952,8 @@ asm void daObjSwpush::Act_c::mode_upper_init() {
 /* 80484E44-80484E48 000134 0004+00 0/1 0/0 0/0 .rodata          @4214 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4214 = 0x3F666666;
-SECTION_DEAD void* const cg_80484E44 = (void*)(&lit_4214);
+SECTION_RODATA static f32 const lit_4214 = 9.0f / 10.0f;
+COMPILER_STRIP_GATE(80484E44, &lit_4214);
 #pragma pop
 
 /* 80483D2C-80483FA8 0010CC 027C+00 1/0 0/0 0/0 .text            mode_upper__Q211daObjSwpush5Act_cFv
@@ -1165,8 +1165,8 @@ asm void daObjSwpush::Act_c::nr_ride_people(char param_0) {
 /* 80484E48-80484E4C 000138 0004+00 0/1 0/0 0/0 .rodata          @4554 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4554 = 0x43160000;
-SECTION_DEAD void* const cg_80484E48 = (void*)(&lit_4554);
+SECTION_RODATA static f32 const lit_4554 = 150.0f;
+COMPILER_STRIP_GATE(80484E48, &lit_4554);
 #pragma pop
 
 /* 8048509C-804850A0 -00001 0004+00 1/1 0/0 0/0 .bss             None */

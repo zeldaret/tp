@@ -32,13 +32,13 @@ struct daObj {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
-struct cXyz {};
-
 struct _GXColor {};
 
 struct dKy_tevstr_c {};
+
+struct cXyz {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -82,7 +82,7 @@ SECTION_RODATA static u8 const lit_3648[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8057CAF8 = (void*)(&lit_3648);
+COMPILER_STRIP_GATE(8057CAF8, &lit_3648);
 
 /* 8057C9D8-8057CA94 000078 00BC+00 1/1 0/0 0/0 .text            _create__Q28daObjEff5Act_cFv */
 #pragma push

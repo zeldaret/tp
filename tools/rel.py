@@ -40,17 +40,17 @@ def rel():
 
 @rel.command(name="info")
 @click.option('--debug/--no-debug')
-@click.option('--header', '-h', 'dump_header', is_flag=True, default=False)
+@click.option('--header', '-t', 'dump_header', is_flag=True, default=False)
 @click.option('--sections', '-s', 'dump_sections', is_flag=True, default=False)
 @click.option('--data', '-d', 'dump_data', is_flag=True, default=False)
 @click.option('--relocations', '-r', 'dump_relocation', is_flag=True, default=False)
 @click.option('--imp', '-i', 'dump_imp', is_flag=True, default=False)
-@click.argument("rel_path", metavar='<REL>', nargs=-1)
+@click.argument("rel_path", metavar='<REL>', nargs=1, type=click.Path(exists=True,file_okay=True,dir_okay=False))
 def rel_info(debug, rel_path, dump_header, dump_sections, dump_data, dump_relocation, dump_imp):
     if debug:
         LOG.setLevel(logging.DEBUG)
 
-    path = Path(rel_path[0])
+    path = Path(rel_path)
     if not path.exists():
         LOG.error(f"File not found: '{path}'")
         sys.exit(1)

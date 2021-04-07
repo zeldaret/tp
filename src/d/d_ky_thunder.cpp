@@ -156,10 +156,10 @@ static u8 lit_3818[12];
 
 /* 8042E808-8042E814 05B528 000C+00 1/1 0/0 0/0 .bss l_offsetPos$localstatic3$draw__10dThunder_cFv
  */
-static u8 data_8042E808[12];
+static f32 data_8042E808[3];
 
 /* 8042E814-8042E820 05B534 000C+00 1/1 0/0 0/0 .bss l_scale$localstatic5$draw__10dThunder_cFv */
-static u8 data_8042E814[12];
+static f32 data_8042E814[3];
 
 /* 80453E70-80453E74 002470 0004+00 2/2 0/0 0/0 .sdata2          @3882 */
 SECTION_SDATA2 static u8 lit_3882[4] = {

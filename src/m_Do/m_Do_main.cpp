@@ -435,7 +435,7 @@ static f32 console_position_y;
 static u8 data_80450B28[4];
 
 /* 80450B2C-80450B30 00002C 0004+00 1/1 0/0 0/0 .sbss            console_scroll$3782 */
-static u8 console_scroll[4];
+static f32 console_scroll;
 
 /* 80450B30-80450B34 000030 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_80450B30[4];

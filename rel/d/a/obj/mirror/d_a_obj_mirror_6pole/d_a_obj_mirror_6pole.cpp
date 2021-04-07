@@ -143,7 +143,7 @@ SECTION_RODATA static u8 const lit_3630[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80C96510 = (void*)(&lit_3630);
+COMPILER_STRIP_GATE(80C96510, &lit_3630);
 
 /* 80C95E18-80C95E2C 000078 0014+00 1/0 0/0 0/0 .text            initWait__18daObjMirror6Pole_cFv */
 #pragma push
@@ -276,14 +276,14 @@ asm void daObjMirror6Pole_c::createHeapCallBack(fopAc_ac_c* param_0) {
 
 /* ############################################################################################## */
 /* 80C96514-80C96518 000004 0004+00 1/1 0/0 0/0 .rodata          @3755 */
-SECTION_RODATA static u32 const lit_3755 = 0x3F800000;
-SECTION_DEAD void* const cg_80C96514 = (void*)(&lit_3755);
+SECTION_RODATA static f32 const lit_3755 = 1.0f;
+COMPILER_STRIP_GATE(80C96514, &lit_3755);
 
 /* 80C96518-80C96520 000008 0008+00 1/1 0/0 0/0 .rodata          @3757 */
 SECTION_RODATA static u8 const lit_3757[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80C96518 = (void*)(&lit_3757);
+COMPILER_STRIP_GATE(80C96518, &lit_3757);
 
 /* 80C965B0-80C965D0 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjMirror6Pole_Method */
 SECTION_DATA static void* l_daObjMirror6Pole_Method[8] = {

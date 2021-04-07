@@ -50,9 +50,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -75,9 +75,9 @@ struct dComIfG_resLoader_c {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -94,9 +94,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -183,14 +183,14 @@ extern "C" extern f32 mGroundY__11fopAcM_gc_c;
 extern "C" extern f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
 extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" extern u32 OPEN_SIZE__7daDsh_c;
-extern "C" extern u32 OPEN_ACCEL__7daDsh_c;
-extern "C" extern u32 OPEN_SPEED__7daDsh_c;
-extern "C" extern u32 OPEN_BOUND_SPEED__7daDsh_c;
-extern "C" extern u32 OPEN_BOUND_RATIO__7daDsh_c;
-extern "C" extern u32 CLOSE_ACCEL__7daDsh_c;
-extern "C" extern u32 CLOSE_SPEED__7daDsh_c;
-extern "C" extern u32 CLOSE_BOUND_SPEED__7daDsh_c;
-extern "C" extern u32 CLOSE_BOUND_RATIO__7daDsh_c;
+extern "C" extern f32 OPEN_ACCEL__7daDsh_c;
+extern "C" extern f32 OPEN_SPEED__7daDsh_c;
+extern "C" extern f32 OPEN_BOUND_SPEED__7daDsh_c;
+extern "C" extern f32 OPEN_BOUND_RATIO__7daDsh_c;
+extern "C" extern f32 CLOSE_ACCEL__7daDsh_c;
+extern "C" extern f32 CLOSE_SPEED__7daDsh_c;
+extern "C" extern f32 CLOSE_BOUND_SPEED__7daDsh_c;
+extern "C" extern f32 CLOSE_BOUND_RATIO__7daDsh_c;
 
 //
 // Declarations:
@@ -360,7 +360,7 @@ asm daDsh_c::~daDsh_c() {
 SECTION_RODATA static u8 const l_bmd[12] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04,
 };
-SECTION_DEAD void* const cg_80467F04 = (void*)(&l_bmd);
+COMPILER_STRIP_GATE(80467F04, &l_bmd);
 
 /* 8046751C-8046759C 0000FC 0080+00 1/0 0/0 0/0 .text            CreateHeap__7daDsh_cFv */
 #pragma push
@@ -557,13 +557,13 @@ asm void daDsh_c::executeOpenWait() {
 SECTION_RODATA static u8 const l_dzb[12] = {
     0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07,
 };
-SECTION_DEAD void* const cg_80467F10 = (void*)(&l_dzb);
+COMPILER_STRIP_GATE(80467F10, &l_dzb);
 
 /* 80467F1C-80467F28 000018 000C+00 1/1 0/0 0/0 .rodata          l_heap_size */
 SECTION_RODATA static u8 const l_heap_size[12] = {
     0x00, 0x00, 0x0C, 0x10, 0x00, 0x00, 0x0C, 0x10, 0x00, 0x00, 0x3D, 0x60,
 };
-SECTION_DEAD void* const cg_80467F1C = (void*)(&l_heap_size);
+COMPILER_STRIP_GATE(80467F1C, &l_heap_size);
 
 /* 80467F28-80467F2C 000024 0004+00 1/2 0/0 0/0 .rodata          @3781 */
 SECTION_RODATA static u8 const lit_3781[4] = {
@@ -572,27 +572,27 @@ SECTION_RODATA static u8 const lit_3781[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80467F28 = (void*)(&lit_3781);
+COMPILER_STRIP_GATE(80467F28, &lit_3781);
 
 /* 80467F2C-80467F30 000028 0004+00 0/1 0/0 0/0 .rodata          @3782 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3782 = 0x42C80000;
-SECTION_DEAD void* const cg_80467F2C = (void*)(&lit_3782);
+SECTION_RODATA static f32 const lit_3782 = 100.0f;
+COMPILER_STRIP_GATE(80467F2C, &lit_3782);
 #pragma pop
 
 /* 80467F30-80467F34 00002C 0004+00 0/1 0/0 0/0 .rodata          @3783 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3783 = 0x3F800000;
-SECTION_DEAD void* const cg_80467F30 = (void*)(&lit_3783);
+SECTION_RODATA static f32 const lit_3783 = 1.0f;
+COMPILER_STRIP_GATE(80467F30, &lit_3783);
 #pragma pop
 
 /* 80467F34-80467F38 000030 0004+00 0/1 0/0 0/0 .rodata          @3784 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3784 = 0xBF800000;
-SECTION_DEAD void* const cg_80467F34 = (void*)(&lit_3784);
+SECTION_RODATA static f32 const lit_3784 = -1.0f;
+COMPILER_STRIP_GATE(80467F34, &lit_3784);
 #pragma pop
 
 /* 80467840-80467988 000420 0148+00 1/0 0/0 0/0 .text            initOpen__7daDsh_cFv */
@@ -607,12 +607,12 @@ asm void daDsh_c::initOpen() {
 
 /* ############################################################################################## */
 /* 80467F38-80467F3C 000034 0004+00 2/2 0/0 0/0 .rodata          @3802 */
-SECTION_RODATA static u32 const lit_3802 = 0x40000000;
-SECTION_DEAD void* const cg_80467F38 = (void*)(&lit_3802);
+SECTION_RODATA static f32 const lit_3802 = 2.0f;
+COMPILER_STRIP_GATE(80467F38, &lit_3802);
 
 /* 80467F3C-80467F40 000038 0004+00 2/2 0/0 0/0 .rodata          @3803 */
-SECTION_RODATA static u32 const lit_3803 = 0x41000000;
-SECTION_DEAD void* const cg_80467F3C = (void*)(&lit_3803);
+SECTION_RODATA static f32 const lit_3803 = 8.0f;
+COMPILER_STRIP_GATE(80467F3C, &lit_3803);
 
 /* 804680E0-804680F8 000070 0018+00 2/3 0/0 0/0 .bss             l_closeWaitAction */
 static u8 l_closeWaitAction[24];

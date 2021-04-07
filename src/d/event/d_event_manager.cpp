@@ -41,11 +41,7 @@ struct dEvt_control_c {
     /* 800436F4 */ void setPtD(void*);
 };
 
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-};
+struct dEvDtData_c {};
 
 struct dEvDtStaff_c {
     /* 80044134 */ void init();
@@ -56,7 +52,11 @@ struct dEvDtEvent_c {
     /* 80043F70 */ void specialStaffProc(dEvDtStaff_c*);
 };
 
-struct dEvDtData_c {};
+struct Vec {};
+
+struct cXyz {
+    /* 80266B34 */ void operator-(Vec const&) const;
+};
 
 struct dEvent_manager_c {
     /* 800465E8 */ void getSubstance(dEvDtData_c*, int);
@@ -373,7 +373,7 @@ SECTION_RODATA static u8 const data_80379F50[15 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
-SECTION_DEAD void* const cg_80379F50 = (void*)(&data_80379F50);
+COMPILER_STRIP_GATE(80379F50, &data_80379F50);
 
 /* 80046710-80046800 041050 00F0+00 0/0 1/1 0/0 .text            create__16dEvent_manager_cFv */
 #pragma push

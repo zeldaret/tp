@@ -40,11 +40,11 @@ struct daObjHata_c {
     /* 80C1919C */ void moveSwing();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -276,12 +276,12 @@ asm void daObjHata_c::setModelMtx() {
 
 /* ############################################################################################## */
 /* 80C19478-80C1947C 000000 0004+00 2/2 0/0 0/0 .rodata          @3788 */
-SECTION_RODATA static u32 const lit_3788 = 0x44A00000;
-SECTION_DEAD void* const cg_80C19478 = (void*)(&lit_3788);
+SECTION_RODATA static f32 const lit_3788 = 1280.0f;
+COMPILER_STRIP_GATE(80C19478, &lit_3788);
 
 /* 80C1947C-80C19480 000004 0004+00 1/2 0/0 0/0 .rodata          @3789 */
-SECTION_RODATA static u32 const lit_3789 = 0x3F800000;
-SECTION_DEAD void* const cg_80C1947C = (void*)(&lit_3789);
+SECTION_RODATA static f32 const lit_3789 = 1.0f;
+COMPILER_STRIP_GATE(80C1947C, &lit_3789);
 
 /* 80C190FC-80C1919C 0005BC 00A0+00 1/1 0/0 0/0 .text            init__11daObjHata_cFv */
 #pragma push
@@ -300,7 +300,7 @@ asm void daObjHata_c::init() {
 SECTION_RODATA static u8 const SING[12] = {
     0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x01,
 };
-SECTION_DEAD void* const cg_80C19480 = (void*)(&SING);
+COMPILER_STRIP_GATE(80C19480, &SING);
 #pragma pop
 
 /* 80C1948C-80C19498 000014 000C+00 0/1 0/0 0/0 .rodata          AIM_ANGLE_X$3794 */
@@ -309,7 +309,7 @@ SECTION_DEAD void* const cg_80C19480 = (void*)(&SING);
 SECTION_RODATA static u8 const AIM_ANGLE_X[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xBC, 0x00, 0x00, 0x02, 0xBC,
 };
-SECTION_DEAD void* const cg_80C1948C = (void*)(&AIM_ANGLE_X);
+COMPILER_STRIP_GATE(80C1948C, &AIM_ANGLE_X);
 #pragma pop
 
 /* 80C19498-80C194A4 000020 000C+00 0/1 0/0 0/0 .rodata          STEP_ANGLE_X$3795 */
@@ -318,39 +318,39 @@ SECTION_DEAD void* const cg_80C1948C = (void*)(&AIM_ANGLE_X);
 SECTION_RODATA static u8 const STEP_ANGLE_X[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3C, 0x00, 0x00, 0x00, 0x5A,
 };
-SECTION_DEAD void* const cg_80C19498 = (void*)(&STEP_ANGLE_X);
+COMPILER_STRIP_GATE(80C19498, &STEP_ANGLE_X);
 #pragma pop
 
 /* 80C194A4-80C194A8 00002C 0004+00 0/1 0/0 0/0 .rodata          @3823 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3823 = 0x42480000;
-SECTION_DEAD void* const cg_80C194A4 = (void*)(&lit_3823);
+SECTION_RODATA static f32 const lit_3823 = 50.0f;
+COMPILER_STRIP_GATE(80C194A4, &lit_3823);
 #pragma pop
 
 /* 80C194A8-80C194AC 000030 0004+00 0/1 0/0 0/0 .rodata          @3824 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3824 = 0x44BB8000;
-SECTION_DEAD void* const cg_80C194A8 = (void*)(&lit_3824);
+SECTION_RODATA static f32 const lit_3824 = 1500.0f;
+COMPILER_STRIP_GATE(80C194A8, &lit_3824);
 #pragma pop
 
 /* 80C194AC-80C194B0 000034 0004+00 0/1 0/0 0/0 .rodata          @3825 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3825 = 0x3DCCCCCD;
-SECTION_DEAD void* const cg_80C194AC = (void*)(&lit_3825);
+SECTION_RODATA static f32 const lit_3825 = 1.0f / 10.0f;
+COMPILER_STRIP_GATE(80C194AC, &lit_3825);
 #pragma pop
 
 /* 80C194B0-80C194B8 000038 0004+04 0/1 0/0 0/0 .rodata          @3826 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3826[1 + 1 /* padding */] = {
-    0x3F000000,
+SECTION_RODATA static f32 const lit_3826[1 + 1 /* padding */] = {
+    0.5f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
-SECTION_DEAD void* const cg_80C194B0 = (void*)(&lit_3826);
+COMPILER_STRIP_GATE(80C194B0, &lit_3826);
 #pragma pop
 
 /* 80C194B8-80C194C0 000040 0008+00 0/1 0/0 0/0 .rodata          @3828 */
@@ -359,7 +359,7 @@ SECTION_DEAD void* const cg_80C194B0 = (void*)(&lit_3826);
 SECTION_RODATA static u8 const lit_3828[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80C194B8 = (void*)(&lit_3828);
+COMPILER_STRIP_GATE(80C194B8, &lit_3828);
 #pragma pop
 
 /* 80C1919C-80C193BC 00065C 0220+00 1/1 0/0 0/0 .text            moveSwing__11daObjHata_cFv */

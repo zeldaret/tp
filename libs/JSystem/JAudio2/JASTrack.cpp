@@ -32,15 +32,6 @@ struct JASTrackPort {
     /* 802935E8 */ void writeExport(u32, u16);
 };
 
-struct JASDsp {
-    struct TChannel {
-        /* 8029E00C */ void setFilterMode(u16);
-        /* 8029E044 */ void setIIRFilterParam(s16*);
-        /* 8029E06C */ void setFIR8FilterParam(s16*);
-        /* 8029E094 */ void setDistFilter(s16);
-    };
-};
-
 struct JASOscillator {
     struct Point {};
 
@@ -56,6 +47,15 @@ struct JASChannel {
 };
 
 struct JASSoundParams {};
+
+struct JASDsp {
+    struct TChannel {
+        /* 8029E00C */ void setFilterMode(u16);
+        /* 8029E044 */ void setIIRFilterParam(s16*);
+        /* 8029E06C */ void setFIR8FilterParam(s16*);
+        /* 8029E094 */ void setDistFilter(s16);
+    };
+};
 
 struct JASTrack {
     struct TChannelMgr {
@@ -400,14 +400,14 @@ SECTION_RODATA static u8 const sAdsTable__8JASTrack[24] = {
     0x00, 0x00, 0x00, 0x00, 0x7F, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x7F, 0xFF,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039AFD0 = (void*)(&sAdsTable__8JASTrack);
+COMPILER_STRIP_GATE(8039AFD0, &sAdsTable__8JASTrack);
 
 /* 8039AFE8-8039B000 027648 0018+00 1/2 0/0 0/0 .rodata          sEnvOsc__8JASTrack */
 SECTION_RODATA static u8 const sEnvOsc__8JASTrack[24] = {
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039AFE8 = (void*)(&sEnvOsc__8JASTrack);
+COMPILER_STRIP_GATE(8039AFE8, &sEnvOsc__8JASTrack);
 
 /* 8039B000-8039B018 027660 0018+00 0/1 0/0 0/0 .rodata          sPitchEnvOsc__8JASTrack */
 #pragma push
@@ -416,7 +416,7 @@ SECTION_RODATA static u8 const sPitchEnvOsc__8JASTrack[24] = {
     0x00, 0x00, 0x00, 0x01, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039B000 = (void*)(&sPitchEnvOsc__8JASTrack);
+COMPILER_STRIP_GATE(8039B000, &sPitchEnvOsc__8JASTrack);
 #pragma pop
 
 /* 804555A4-804555A8 003BA4 0004+00 9/9 0/0 0/0 .sdata2          @679 */

@@ -265,8 +265,8 @@ asm void daCoach2D_c::execute() {
 
 /* ############################################################################################## */
 /* 80657924-80657928 000000 0004+00 2/2 0/0 0/0 .rodata          @4003 */
-SECTION_RODATA static u32 const lit_4003 = 0x43340000;
-SECTION_DEAD void* const cg_80657924 = (void*)(&lit_4003);
+SECTION_RODATA static f32 const lit_4003 = 180.0f;
+COMPILER_STRIP_GATE(80657924, &lit_4003);
 
 /* 80657928-8065792C 000004 0004+00 1/2 0/0 0/0 .rodata          @4004 */
 SECTION_RODATA static u8 const lit_4004[4] = {
@@ -275,13 +275,13 @@ SECTION_RODATA static u8 const lit_4004[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80657928 = (void*)(&lit_4004);
+COMPILER_STRIP_GATE(80657928, &lit_4004);
 
 /* 8065792C-80657930 000008 0004+00 0/1 0/0 0/0 .rodata          @4005 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4005 = 0x3F800000;
-SECTION_DEAD void* const cg_8065792C = (void*)(&lit_4005);
+SECTION_RODATA static f32 const lit_4005 = 1.0f;
+COMPILER_STRIP_GATE(8065792C, &lit_4005);
 #pragma pop
 
 /* 80657A90-80657A9C 000008 000C+00 1/1 0/0 0/0 .bss             @3772 */
@@ -314,46 +314,46 @@ asm void daCoach2D_c::initiate() {
 /* 80657930-80657934 00000C 0004+00 0/1 0/0 0/0 .rodata          @4050 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4050 = 0x40800000;
-SECTION_DEAD void* const cg_80657930 = (void*)(&lit_4050);
+SECTION_RODATA static f32 const lit_4050 = 4.0f;
+COMPILER_STRIP_GATE(80657930, &lit_4050);
 #pragma pop
 
 /* 80657934-80657938 000010 0004+00 0/1 0/0 0/0 .rodata          @4051 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4051 = 0x437F0000;
-SECTION_DEAD void* const cg_80657934 = (void*)(&lit_4051);
+SECTION_RODATA static f32 const lit_4051 = 255.0f;
+COMPILER_STRIP_GATE(80657934, &lit_4051);
 #pragma pop
 
 /* 80657938-8065793C 000014 0004+00 0/1 0/0 0/0 .rodata          @4052 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4052 = 0x428C0000;
-SECTION_DEAD void* const cg_80657938 = (void*)(&lit_4052);
+SECTION_RODATA static f32 const lit_4052 = 70.0f;
+COMPILER_STRIP_GATE(80657938, &lit_4052);
 #pragma pop
 
 /* 8065793C-80657944 000018 0004+04 0/1 0/0 0/0 .rodata          @4053 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4053[1 + 1 /* padding */] = {
-    0x43390000,
+SECTION_RODATA static f32 const lit_4053[1 + 1 /* padding */] = {
+    185.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
-SECTION_DEAD void* const cg_8065793C = (void*)(&lit_4053);
+COMPILER_STRIP_GATE(8065793C, &lit_4053);
 #pragma pop
 
 /* 80657944-8065794C 000020 0008+00 1/2 0/0 0/0 .rodata          @4055 */
 SECTION_RODATA static u8 const lit_4055[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80657944 = (void*)(&lit_4055);
+COMPILER_STRIP_GATE(80657944, &lit_4055);
 
 /* 8065794C-80657954 000028 0008+00 1/2 0/0 0/0 .rodata          @4056 */
 SECTION_RODATA static u8 const lit_4056[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8065794C = (void*)(&lit_4056);
+COMPILER_STRIP_GATE(8065794C, &lit_4056);
 
 /* 80657260-80657490 000980 0230+00 1/1 0/0 0/0 .text            update__11daCoach2D_cFv */
 #pragma push

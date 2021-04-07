@@ -72,7 +72,7 @@ SECTION_RODATA static u8 const lit_126[25 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_803A2890 = (void*)(&lit_126);
+COMPILER_STRIP_GATE(803A2890, &lit_126);
 
 /* 803A28AC-803A28D0 02EF0C 001D+07 1/1 0/0 0/0 .rodata          @127 */
 SECTION_RODATA static u8 const lit_127[29 + 7 /* padding */] = {
@@ -114,7 +114,7 @@ SECTION_RODATA static u8 const lit_127[29 + 7 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_803A28AC = (void*)(&lit_127);
+COMPILER_STRIP_GATE(803A28AC, &lit_127);
 
 /* 803D3190-803D3200 -00001 006C+04 1/1 0/0 0/0 .data            @128 */
 SECTION_DATA static void* lit_128[27 + 1 /* padding */] = {

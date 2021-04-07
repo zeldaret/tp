@@ -38,6 +38,8 @@ struct dBgS_Acch {
     /* 8007732C */ void CalcWallRR();
 };
 
+struct cXyz {};
+
 struct cBgS_PolyInfo {
     /* 802680F8 */ void ChkSetInfo() const;
     /* 80268120 */ void ClearPi();
@@ -47,8 +49,6 @@ struct cBgS_PolyInfo {
 };
 
 struct csXyz {};
-
-struct cXyz {};
 
 struct dBgS {
     /* 80030C50 */ ~dBgS();

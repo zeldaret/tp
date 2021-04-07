@@ -54,13 +54,13 @@ struct JGeometry {
 
 struct J2DAnmBase {};
 
-struct J2DGrafContext {};
-
 struct J2DAnmVtxColor {};
 
-struct J2DAnmVisibilityFull {};
-
 struct J2DAnmTransform {};
+
+struct J2DGrafContext {};
+
+struct J2DAnmVisibilityFull {};
 
 struct J2DPane {
     /* 80020158 */ void setAlpha(u8);
@@ -91,13 +91,13 @@ struct J2DPane {
     /* 802F8478 */ void drawSelf(f32, f32);
 };
 
-struct J2DAnmColor {};
-
-struct J2DAnmTextureSRTKey {};
+struct J2DAnmTexPattern {};
 
 struct J2DAnmTevRegKey {};
 
-struct J2DAnmTexPattern {};
+struct J2DAnmColor {};
+
+struct J2DAnmTextureSRTKey {};
 
 struct J2DMaterial {
     /* 802EA1AC */ J2DMaterial();

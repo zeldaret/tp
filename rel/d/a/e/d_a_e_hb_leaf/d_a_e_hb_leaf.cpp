@@ -134,8 +134,8 @@ static asm void daE_HB_LEAF_Delete(e_hb_leaf_class* param_0) {
 
 /* ############################################################################################## */
 /* 806E0290-806E0294 000000 0004+00 1/1 0/0 0/0 .rodata          @3690 */
-SECTION_RODATA static u32 const lit_3690 = 0x3F800000;
-SECTION_DEAD void* const cg_806E0290 = (void*)(&lit_3690);
+SECTION_RODATA static f32 const lit_3690 = 1.0f;
+COMPILER_STRIP_GATE(806E0290, &lit_3690);
 
 /* 806E00D8-806E01D8 0001F8 0100+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push

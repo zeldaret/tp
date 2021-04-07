@@ -872,7 +872,7 @@ SECTION_RODATA static void* const DynamicNameTable[1514] = {
     (void*)0x03100000, (void*)(((char*)&c_c_dylink__stringBase0) + 0x2A03),
     (void*)0xFFFF0000, (void*)NULL,
 };
-SECTION_DEAD void* const cg_80374640 = (void*)(&DynamicNameTable);
+COMPILER_STRIP_GATE(80374640, &DynamicNameTable);
 
 /* 803F0F50-803F1BB0 01DC70 0C60+00 4/4 0/0 0/0 .bss             DMC */
 static u8 DMC[3168];

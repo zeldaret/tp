@@ -11,13 +11,13 @@
 // Types:
 //
 
-struct J3DMaterialTable {};
-
 struct J3DModelData {};
 
 struct J3DAnmTevRegKey {
     /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
 };
+
+struct J3DMaterialTable {};
 
 struct mDoExt_brkAnm {
     /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
@@ -62,9 +62,9 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct J2DPane {};
-
 struct JKRArchive {};
+
+struct J2DPane {};
 
 struct dSelect_cursor_c {
     /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
@@ -106,6 +106,14 @@ struct dMenu_save_c {
     /* 801F69B8 */ void _draw();
 };
 
+struct STControl {
+    /* 8003219C */ void checkTrigger();
+    /* 8003242C */ void checkLeftTrigger();
+    /* 800324A8 */ void checkRightTrigger();
+    /* 80032524 */ void checkUpTrigger();
+    /* 800325A0 */ void checkDownTrigger();
+};
+
 struct JKRHeap {
     /* 802CE5CC */ void freeAll();
     /* 802CE784 */ void getTotalFreeSize();
@@ -113,14 +121,6 @@ struct JKRHeap {
 
 struct JKRExpHeap {
     /* 802CEE2C */ void create(u32, JKRHeap*, bool);
-};
-
-struct STControl {
-    /* 8003219C */ void checkTrigger();
-    /* 8003242C */ void checkLeftTrigger();
-    /* 800324A8 */ void checkRightTrigger();
-    /* 80032524 */ void checkUpTrigger();
-    /* 800325A0 */ void checkDownTrigger();
 };
 
 struct CSTControl {};
@@ -289,9 +289,9 @@ struct dDlst_list_c {
     /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -1311,7 +1311,7 @@ SECTION_RODATA static u8 const lit_3778[12 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80394F78 = (void*)(&lit_3778);
+COMPILER_STRIP_GATE(80394F78, &lit_3778);
 
 /* 80394F88-80394FA0 0215E8 0018+00 0/1 0/0 0/0 .rodata          text_sv$4768 */
 #pragma push
@@ -1320,7 +1320,7 @@ SECTION_RODATA static u8 const text_sv[24] = {
     0x00, 0x00, 0x00, 0x73, 0x61, 0x76, 0x5F, 0x30, 0x00, 0x00, 0x00, 0x73,
     0x61, 0x76, 0x5F, 0x31, 0x00, 0x00, 0x00, 0x73, 0x61, 0x76, 0x5F, 0x32,
 };
-SECTION_DEAD void* const cg_80394F88 = (void*)(&text_sv);
+COMPILER_STRIP_GATE(80394F88, &text_sv);
 #pragma pop
 
 /* 80394FA0-80394FB8 021600 0018+00 0/1 0/0 0/0 .rodata          text_op$4769 */
@@ -1330,7 +1330,7 @@ SECTION_RODATA static u8 const text_op[24] = {
     0x00, 0x00, 0x00, 0x6F, 0x70, 0x74, 0x5F, 0x30, 0x00, 0x00, 0x00, 0x6F,
     0x70, 0x74, 0x5F, 0x31, 0x00, 0x00, 0x00, 0x6F, 0x70, 0x74, 0x5F, 0x32,
 };
-SECTION_DEAD void* const cg_80394FA0 = (void*)(&text_op);
+COMPILER_STRIP_GATE(80394FA0, &text_op);
 #pragma pop
 
 /* 80394FB8-80394FD0 021618 0018+00 0/1 0/0 0/0 .rodata          ftext_sv$4770 */
@@ -1340,7 +1340,7 @@ SECTION_RODATA static u8 const ftext_sv[24] = {
     0x00, 0x66, 0x5F, 0x73, 0x61, 0x76, 0x5F, 0x30, 0x00, 0x66, 0x5F, 0x73,
     0x61, 0x76, 0x5F, 0x31, 0x00, 0x66, 0x5F, 0x73, 0x61, 0x76, 0x5F, 0x32,
 };
-SECTION_DEAD void* const cg_80394FB8 = (void*)(&ftext_sv);
+COMPILER_STRIP_GATE(80394FB8, &ftext_sv);
 #pragma pop
 
 /* 80394FD0-80394FE8 021630 0018+00 0/1 0/0 0/0 .rodata          ftext_op$4771 */
@@ -1350,7 +1350,7 @@ SECTION_RODATA static u8 const ftext_op[24] = {
     0x00, 0x66, 0x5F, 0x6F, 0x70, 0x74, 0x5F, 0x30, 0x00, 0x66, 0x5F, 0x6F,
     0x70, 0x74, 0x5F, 0x31, 0x00, 0x66, 0x5F, 0x6F, 0x70, 0x74, 0x5F, 0x32,
 };
-SECTION_DEAD void* const cg_80394FD0 = (void*)(&ftext_op);
+COMPILER_STRIP_GATE(80394FD0, &ftext_op);
 #pragma pop
 
 /* 80394FE8-80395010 021648 0028+00 0/1 0/0 0/0 .rodata          text_a_tag$4777 */
@@ -1361,7 +1361,7 @@ SECTION_RODATA static u8 const text_a_tag_4777[40] = {
     0x5F, 0x32, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x61, 0x74, 0x65, 0x78,
     0x74, 0x31, 0x5F, 0x34, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
 };
-SECTION_DEAD void* const cg_80394FE8 = (void*)(&text_a_tag_4777);
+COMPILER_STRIP_GATE(80394FE8, &text_a_tag_4777);
 #pragma pop
 
 /* 80395010-80395038 021670 0028+00 0/1 0/0 0/0 .rodata          text_b_tag$4778 */
@@ -1372,7 +1372,7 @@ SECTION_RODATA static u8 const text_b_tag_4778[40] = {
     0x5F, 0x32, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x62, 0x74, 0x65, 0x78,
     0x74, 0x31, 0x5F, 0x34, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
 };
-SECTION_DEAD void* const cg_80395010 = (void*)(&text_b_tag_4778);
+COMPILER_STRIP_GATE(80395010, &text_b_tag_4778);
 #pragma pop
 
 /* 80453F30-80453F34 002530 0004+00 2/2 0/0 0/0 .sdata2          @5173 */
@@ -1455,7 +1455,7 @@ SECTION_RODATA static u8 const lit_5343[9 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80395038 = (void*)(&lit_5343);
+COMPILER_STRIP_GATE(80395038, &lit_5343);
 
 /* 80395044-80395050 0216A4 0009+03 1/1 0/0 0/0 .rodata          @5344 */
 SECTION_RODATA static u8 const lit_5344[9 + 3 /* padding */] = {
@@ -1473,7 +1473,7 @@ SECTION_RODATA static u8 const lit_5344[9 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80395044 = (void*)(&lit_5344);
+COMPILER_STRIP_GATE(80395044, &lit_5344);
 
 /* 80453F50-80453F54 002550 0004+00 1/1 0/0 0/0 .sdata2          @5402 */
 SECTION_SDATA2 static u32 lit_5402 = 0x03020301;
@@ -1594,7 +1594,7 @@ SECTION_RODATA static u8 const smell_tag[40] = {
     0x68, 0x69, 0x77, 0x6F, 0x6C, 0x66, 0x5F, 0x66, 0x69, 0x73, 0x77, 0x6F, 0x6C, 0x66,
     0x5F, 0x69, 0x72, 0x69, 0x77, 0x6F, 0x6C, 0x66, 0x5F, 0x70, 0x6F, 0x75,
 };
-SECTION_DEAD void* const cg_80395050 = (void*)(&smell_tag);
+COMPILER_STRIP_GATE(80395050, &smell_tag);
 
 /* 801B3524-801B3640 1ADE64 011C+00 1/1 0/0 0/0 .text            setSmellType__17dMenu_Collect2D_cFv
  */
@@ -1613,7 +1613,7 @@ SECTION_RODATA static u8 const heart_tag[32] = {
     0x68, 0x65, 0x61, 0x72, 0x74, 0x5F, 0x31, 0x6E, 0x68, 0x65, 0x61, 0x72, 0x74, 0x5F, 0x32, 0x6E,
     0x68, 0x65, 0x61, 0x72, 0x74, 0x5F, 0x33, 0x6E, 0x68, 0x65, 0x61, 0x72, 0x74, 0x5F, 0x34, 0x6E,
 };
-SECTION_DEAD void* const cg_80395078 = (void*)(&heart_tag);
+COMPILER_STRIP_GATE(80395078, &heart_tag);
 
 /* 801B3640-801B370C 1ADF80 00CC+00 1/1 0/0 0/0 .text setHeartPiece__17dMenu_Collect2D_cFv */
 #pragma push
@@ -1640,7 +1640,7 @@ asm void dMenu_Collect2D_c::setPohMaxNum(u8 param_0) {
 SECTION_RODATA static u8 const tag_5980[16] = {
     0x00, 0x6B, 0x65, 0x6E, 0x5F, 0x67, 0x5F, 0x30, 0x00, 0x6B, 0x65, 0x6E, 0x5F, 0x67, 0x5F, 0x31,
 };
-SECTION_DEAD void* const cg_80395098 = (void*)(&tag_5980);
+COMPILER_STRIP_GATE(80395098, &tag_5980);
 
 /* 801B39D0-801B3CF4 1AE310 0324+00 2/2 0/0 0/0 .text
  * setEquipItemFrameColorSword__17dMenu_Collect2D_cFi           */
@@ -1658,7 +1658,7 @@ asm void dMenu_Collect2D_c::setEquipItemFrameColorSword(int param_0) {
 SECTION_RODATA static u8 const tag_6100[16] = {
     0x74, 0x61, 0x74, 0x65, 0x5F, 0x67, 0x5F, 0x30, 0x74, 0x61, 0x74, 0x65, 0x5F, 0x67, 0x5F, 0x31,
 };
-SECTION_DEAD void* const cg_803950A8 = (void*)(&tag_6100);
+COMPILER_STRIP_GATE(803950A8, &tag_6100);
 
 /* 801B3CF4-801B3FDC 1AE634 02E8+00 2/2 0/0 0/0 .text
  * setEquipItemFrameColorShield__17dMenu_Collect2D_cFi          */
@@ -1677,7 +1677,7 @@ SECTION_RODATA static u8 const tag_6213[24] = {
     0x66, 0x75, 0x6B, 0x75, 0x5F, 0x67, 0x5F, 0x30, 0x66, 0x75, 0x6B, 0x75,
     0x5F, 0x67, 0x5F, 0x31, 0x66, 0x75, 0x6B, 0x75, 0x5F, 0x67, 0x5F, 0x32,
 };
-SECTION_DEAD void* const cg_803950B8 = (void*)(&tag_6213);
+COMPILER_STRIP_GATE(803950B8, &tag_6213);
 
 /* 801B3FDC-801B42D8 1AE91C 02FC+00 2/2 0/0 0/0 .text
  * setEquipItemFrameColorClothes__17dMenu_Collect2D_cFi         */
@@ -1699,7 +1699,7 @@ SECTION_RODATA static u8 const kaz_n[72] = {
     0x5F, 0x30, 0x35, 0x00, 0x00, 0x75, 0x7A, 0x75, 0x5F, 0x30, 0x36, 0x00, 0x00, 0x75, 0x7A,
     0x75, 0x5F, 0x30, 0x37, 0x00, 0x00, 0x00, 0x68, 0x69, 0x73, 0x68, 0x69,
 };
-SECTION_DEAD void* const cg_803950D0 = (void*)(&kaz_n);
+COMPILER_STRIP_GATE(803950D0, &kaz_n);
 
 /* 801B42D8-801B46FC 1AEC18 0424+00 2/2 0/0 0/0 .text            setHIO__17dMenu_Collect2D_cFb */
 #pragma push
@@ -1736,7 +1736,7 @@ SECTION_RODATA static u8 const itemTag[336] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80395118 = (void*)(&itemTag);
+COMPILER_STRIP_GATE(80395118, &itemTag);
 
 /* 801B46FC-801B473C 1AF03C 0040+00 3/3 0/0 0/0 .text            getItemTag__17dMenu_Collect2D_cFiib
  */
@@ -2183,7 +2183,7 @@ SECTION_RODATA static u8 const text_a_tag_7111[40] = {
     0x5F, 0x32, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x61, 0x74, 0x65, 0x78,
     0x74, 0x31, 0x5F, 0x34, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
 };
-SECTION_DEAD void* const cg_80395268 = (void*)(&text_a_tag_7111);
+COMPILER_STRIP_GATE(80395268, &text_a_tag_7111);
 
 /* 801B5FB4-801B60B8 1B08F4 0104+00 20/20 0/0 0/0 .text setAButtonString__17dMenu_Collect2D_cFUs
  */
@@ -2203,7 +2203,7 @@ SECTION_RODATA static u8 const text_b_tag_7134[40] = {
     0x5F, 0x32, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x62, 0x74, 0x65, 0x78,
     0x74, 0x31, 0x5F, 0x34, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
 };
-SECTION_DEAD void* const cg_80395290 = (void*)(&text_b_tag_7134);
+COMPILER_STRIP_GATE(80395290, &text_b_tag_7134);
 
 /* 801B60B8-801B61BC 1B09F8 0104+00 20/20 0/0 0/0 .text setBButtonString__17dMenu_Collect2D_cFUs
  */
@@ -2402,7 +2402,7 @@ SECTION_RODATA static u8 const m_kamen_offset_x[20] = {
     0xC1, 0x60, 0x00, 0x00, 0xC1, 0x60, 0x00, 0x00, 0xC1, 0x60,
     0x00, 0x00, 0x3F, 0xA6, 0x66, 0x66, 0x40, 0xD0, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803952B8 = (void*)(&m_kamen_offset_x);
+COMPILER_STRIP_GATE(803952B8, &m_kamen_offset_x);
 #pragma pop
 
 /* 803952CC-803952E0 02192C 0014+00 0/1 0/0 0/0 .rodata          m_kamen_offset_y$7579 */
@@ -2412,7 +2412,7 @@ SECTION_RODATA static u8 const m_kamen_offset_y[20] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x41, 0xB0, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803952CC = (void*)(&m_kamen_offset_y);
+COMPILER_STRIP_GATE(803952CC, &m_kamen_offset_y);
 #pragma pop
 
 /* 803952E0-803952F4 021940 0014+00 0/1 0/0 0/0 .rodata          m_kamen_scale$7580 */
@@ -2422,7 +2422,7 @@ SECTION_RODATA static u8 const m_kamen_scale[20] = {
     0x40, 0x26, 0x66, 0x66, 0x40, 0x26, 0x66, 0x66, 0x40, 0x0C,
     0xCC, 0xCD, 0x3F, 0xE6, 0x66, 0x66, 0x3F, 0xE6, 0x66, 0x66,
 };
-SECTION_DEAD void* const cg_803952E0 = (void*)(&m_kamen_scale);
+COMPILER_STRIP_GATE(803952E0, &m_kamen_scale);
 #pragma pop
 
 /* 801B7014-801B71C4 1B1954 01B0+00 1/1 0/0 0/0 .text createMaskModel__17dMenu_Collect3D_cFv */
@@ -2443,7 +2443,7 @@ SECTION_RODATA static u8 const m_mirror_offset_x[20] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803952F4 = (void*)(&m_mirror_offset_x);
+COMPILER_STRIP_GATE(803952F4, &m_mirror_offset_x);
 #pragma pop
 
 /* 80395308-8039531C 021968 0014+00 0/1 0/0 0/0 .rodata          m_mirror_offset_y$7683 */
@@ -2453,7 +2453,7 @@ SECTION_RODATA static u8 const m_mirror_offset_y[20] = {
     0x40, 0x80, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x40, 0x80,
     0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80395308 = (void*)(&m_mirror_offset_y);
+COMPILER_STRIP_GATE(80395308, &m_mirror_offset_y);
 #pragma pop
 
 /* 8039531C-80395330 02197C 0014+00 0/1 0/0 0/0 .rodata          m_mirror_scale$7684 */
@@ -2463,7 +2463,7 @@ SECTION_RODATA static u8 const m_mirror_scale[20] = {
     0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x19,
     0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A,
 };
-SECTION_DEAD void* const cg_8039531C = (void*)(&m_mirror_scale);
+COMPILER_STRIP_GATE(8039531C, &m_mirror_scale);
 #pragma pop
 
 /* 801B71C4-801B7434 1B1B04 0270+00 1/1 0/0 0/0 .text createMirrorModel__17dMenu_Collect3D_cFv */
@@ -2510,10 +2510,11 @@ asm void dMenu_Collect3D_c::getMaskMdlVisible() {
 /* ############################################################################################## */
 /* 80450720-80450728 0001A0 0004+04 1/1 0/0 1/1 .sdata           mViewOffsetY__17dMenu_Collect3D_c
  */
-SECTION_SDATA extern u32 mViewOffsetY__17dMenu_Collect3D_c[1 + 1 /* padding */] = {
-    0xC2C80000,
+SECTION_SDATA extern f32 mViewOffsetY__17dMenu_Collect3D_c[1 + 1 /* padding */];
+SECTION_SDATA f32 mViewOffsetY__17dMenu_Collect3D_c[1 + 1 /* padding */] = {
+    -100.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
 
 /* 80453FC4-80453FC8 0025C4 0004+00 3/3 0/0 0/0 .sdata2          @7944 */

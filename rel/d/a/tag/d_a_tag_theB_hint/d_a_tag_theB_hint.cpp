@@ -58,18 +58,18 @@ extern "C" void setHintEvent__11daNpcTheB_cFlUsi();
 
 /* ############################################################################################## */
 /* 80D63E54-80D63E5C 000000 0004+04 1/1 0/0 0/0 .rodata          @3831 */
-SECTION_RODATA static u32 const lit_3831[1 + 1 /* padding */] = {
-    0x42C80000,
+SECTION_RODATA static f32 const lit_3831[1 + 1 /* padding */] = {
+    100.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
-SECTION_DEAD void* const cg_80D63E54 = (void*)(&lit_3831);
+COMPILER_STRIP_GATE(80D63E54, &lit_3831);
 
 /* 80D63E5C-80D63E64 000008 0008+00 1/1 0/0 0/0 .rodata          @3832 */
 SECTION_RODATA static u8 const lit_3832[8] = {
     0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80D63E5C = (void*)(&lit_3832);
+COMPILER_STRIP_GATE(80D63E5C, &lit_3832);
 
 /* 80D63CD8-80D63D4C 000078 0074+00 1/0 0/0 0/0 .text daTagTheBHint_Create__FP10fopAc_ac_c */
 #pragma push

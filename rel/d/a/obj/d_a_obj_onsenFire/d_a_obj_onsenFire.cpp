@@ -25,20 +25,20 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct _GXColor {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004D1B8 */ void setSimple(u16, cXyz const*, dKy_tevstr_c const*, u8, _GXColor const&,
                                   _GXColor const&, int, f32);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -95,20 +95,20 @@ SECTION_RODATA static u8 const lit_3659[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80CA8474 = (void*)(&lit_3659);
+COMPILER_STRIP_GATE(80CA8474, &lit_3659);
 
 /* 80CA8478-80CA847C 000004 0004+00 0/1 0/0 0/0 .rodata          @3660 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3660 = 0x3F800000;
-SECTION_DEAD void* const cg_80CA8478 = (void*)(&lit_3660);
+SECTION_RODATA static f32 const lit_3660 = 1.0f;
+COMPILER_STRIP_GATE(80CA8478, &lit_3660);
 #pragma pop
 
 /* 80CA847C-80CA8480 000008 0004+00 0/1 0/0 0/0 .rodata          @3661 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3661 = 0xBF800000;
-SECTION_DEAD void* const cg_80CA847C = (void*)(&lit_3661);
+SECTION_RODATA static f32 const lit_3661 = -1.0f;
+COMPILER_STRIP_GATE(80CA847C, &lit_3661);
 #pragma pop
 
 /* 80CA82F4-80CA83FC 0000F4 0108+00 1/1 0/0 0/0 .text            execute__16daObjOnsenFire_cFv */

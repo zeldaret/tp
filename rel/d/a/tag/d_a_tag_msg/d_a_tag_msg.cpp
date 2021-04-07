@@ -250,11 +250,11 @@ SECTION_RODATA static u8 const m__17daTag_Msg_Param_c[1 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80490178 = (void*)(&m__17daTag_Msg_Param_c);
+COMPILER_STRIP_GATE(80490178, &m__17daTag_Msg_Param_c);
 
 /* 8049017C-80490180 000004 0004+00 1/1 0/0 0/0 .rodata          @3757 */
-SECTION_RODATA static u32 const lit_3757 = 0x43160000;
-SECTION_DEAD void* const cg_8049017C = (void*)(&lit_3757);
+SECTION_RODATA static f32 const lit_3757 = 150.0f;
+COMPILER_STRIP_GATE(8049017C, &lit_3757);
 
 /* 8048F9E8-8048FC68 000288 0280+00 1/1 0/0 0/0 .text            execute__11daTag_Msg_cFv */
 #pragma push
@@ -286,7 +286,7 @@ SECTION_RODATA static u8 const lit_3813[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80490180 = (void*)(&lit_3813);
+COMPILER_STRIP_GATE(80490180, &lit_3813);
 #pragma pop
 
 /* 80490188-80490190 000010 0008+00 0/1 0/0 0/0 .rodata          @3814 */
@@ -295,7 +295,7 @@ SECTION_DEAD void* const cg_80490180 = (void*)(&lit_3813);
 SECTION_RODATA static u8 const lit_3814[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80490188 = (void*)(&lit_3814);
+COMPILER_STRIP_GATE(80490188, &lit_3814);
 #pragma pop
 
 /* 80490190-80490198 000018 0008+00 0/1 0/0 0/0 .rodata          @3815 */
@@ -304,7 +304,7 @@ SECTION_DEAD void* const cg_80490188 = (void*)(&lit_3814);
 SECTION_RODATA static u8 const lit_3815[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80490190 = (void*)(&lit_3815);
+COMPILER_STRIP_GATE(80490190, &lit_3815);
 #pragma pop
 
 /* 80490198-804901A0 000020 0008+00 0/1 0/0 0/0 .rodata          @3816 */
@@ -313,7 +313,7 @@ SECTION_DEAD void* const cg_80490190 = (void*)(&lit_3815);
 SECTION_RODATA static u8 const lit_3816[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80490198 = (void*)(&lit_3816);
+COMPILER_STRIP_GATE(80490198, &lit_3816);
 #pragma pop
 
 /* 8048FC70-8048FE18 000510 01A8+00 1/1 0/0 0/0 .text            rangeCheck__11daTag_Msg_cFv */
@@ -348,8 +348,8 @@ asm void daTag_Msg_c::getResName() {
 
 /* ############################################################################################## */
 /* 804901A0-804901A4 000028 0004+00 1/1 0/0 0/0 .rodata          @3880 */
-SECTION_RODATA static u32 const lit_3880 = 0x42C80000;
-SECTION_DEAD void* const cg_804901A0 = (void*)(&lit_3880);
+SECTION_RODATA static f32 const lit_3880 = 100.0f;
+COMPILER_STRIP_GATE(804901A0, &lit_3880);
 
 /* 8048FF9C-8049004C 00083C 00B0+00 1/1 0/0 0/0 .text            getParam__11daTag_Msg_cFv */
 #pragma push

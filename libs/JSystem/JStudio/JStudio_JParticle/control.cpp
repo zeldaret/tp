@@ -161,7 +161,7 @@ SECTION_RODATA static u8 const lit_1172[12 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8039ABA8 = (void*)(&lit_1172);
+COMPILER_STRIP_GATE(8039ABA8, &lit_1172);
 
 /* 8028E474-8028E4E4 288DB4 0070+00 1/0 0/0 0/0 .text
  * emitter_create__Q217JStudio_JParticle13TCreateObjectFUl      */

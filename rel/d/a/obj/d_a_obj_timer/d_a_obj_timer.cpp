@@ -43,9 +43,9 @@ struct dSv_info_c {
 
 struct create_tag_class {};
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -140,12 +140,12 @@ asm void daObjTimer::Act_c::mode_count_init() {
 
 /* ############################################################################################## */
 /* 80485640-80485644 000000 0004+00 1/1 0/0 0/0 .rodata          @3720 */
-SECTION_RODATA static u32 const lit_3720 = 0x3F800000;
-SECTION_DEAD void* const cg_80485640 = (void*)(&lit_3720);
+SECTION_RODATA static f32 const lit_3720 = 1.0f;
+COMPILER_STRIP_GATE(80485640, &lit_3720);
 
 /* 80485644-80485648 000004 0004+00 1/1 0/0 0/0 .rodata          @3721 */
-SECTION_RODATA static u32 const lit_3721 = 0xBF800000;
-SECTION_DEAD void* const cg_80485644 = (void*)(&lit_3721);
+SECTION_RODATA static f32 const lit_3721 = -1.0f;
+COMPILER_STRIP_GATE(80485644, &lit_3721);
 
 /* 80485324-804854BC 000204 0198+00 1/0 0/0 0/0 .text            mode_count__Q210daObjTimer5Act_cFv
  */

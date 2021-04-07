@@ -15,9 +15,9 @@ struct request_of_phase_process_class {};
 
 struct obj_lv3WaterB_class {};
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -36,13 +36,13 @@ struct dSv_memBit_c {
     /* 80034934 */ void isDungeonItem(int) const;
 };
 
-struct J3DModelData {
-    /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
-};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {
+    /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
+};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -151,14 +151,14 @@ extern "C" extern u8 j3dSys[284];
 
 /* ############################################################################################## */
 /* 80C5BD50-80C5BD54 000000 0004+00 3/3 0/0 0/0 .rodata          @3724 */
-SECTION_RODATA static u32 const lit_3724 = 0x3F800000;
-SECTION_DEAD void* const cg_80C5BD50 = (void*)(&lit_3724);
+SECTION_RODATA static f32 const lit_3724 = 1.0f;
+COMPILER_STRIP_GATE(80C5BD50, &lit_3724);
 
 /* 80C5BD54-80C5BD58 000004 0004+00 0/1 0/0 0/0 .rodata          @3725 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3725 = 0xBC75C28F;
-SECTION_DEAD void* const cg_80C5BD54 = (void*)(&lit_3725);
+COMPILER_STRIP_GATE(80C5BD54, &lit_3725);
 #pragma pop
 
 /* 80C5BD58-80C5BD5C 000008 0004+00 0/2 0/0 0/0 .rodata          @3726 */
@@ -170,7 +170,7 @@ SECTION_RODATA static u8 const lit_3726[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80C5BD58 = (void*)(&lit_3726);
+COMPILER_STRIP_GATE(80C5BD58, &lit_3726);
 #pragma pop
 
 /* 80C5B578-80C5B71C 000078 01A4+00 1/0 0/0 0/0 .text
@@ -188,30 +188,30 @@ static asm void daObj_Lv3waterB_Draw(obj_lv3WaterB_class* param_0) {
 /* 80C5BD5C-80C5BD60 00000C 0004+00 0/1 0/0 0/0 .rodata          @3751 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3751 = 0x457A0000;
-SECTION_DEAD void* const cg_80C5BD5C = (void*)(&lit_3751);
+SECTION_RODATA static f32 const lit_3751 = 4000.0f;
+COMPILER_STRIP_GATE(80C5BD5C, &lit_3751);
 #pragma pop
 
 /* 80C5BD60-80C5BD64 000010 0004+00 1/2 0/0 0/0 .rodata          @3752 */
-SECTION_RODATA static u32 const lit_3752 = 0x43200000;
-SECTION_DEAD void* const cg_80C5BD60 = (void*)(&lit_3752);
+SECTION_RODATA static f32 const lit_3752 = 160.0f;
+COMPILER_STRIP_GATE(80C5BD60, &lit_3752);
 
 /* 80C5BD64-80C5BD68 000014 0004+00 1/2 0/0 0/0 .rodata          @3753 */
-SECTION_RODATA static u32 const lit_3753 = 0x4661C800;
-SECTION_DEAD void* const cg_80C5BD64 = (void*)(&lit_3753);
+SECTION_RODATA static f32 const lit_3753 = 14450.0f;
+COMPILER_STRIP_GATE(80C5BD64, &lit_3753);
 
 /* 80C5BD68-80C5BD6C 000018 0004+00 0/1 0/0 0/0 .rodata          @3754 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3754 = 0x3D4CCCCD;
-SECTION_DEAD void* const cg_80C5BD68 = (void*)(&lit_3754);
+SECTION_RODATA static f32 const lit_3754 = 1.0f / 20.0f;
+COMPILER_STRIP_GATE(80C5BD68, &lit_3754);
 #pragma pop
 
 /* 80C5BD6C-80C5BD70 00001C 0004+00 0/1 0/0 0/0 .rodata          @3755 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3755 = 0x41200000;
-SECTION_DEAD void* const cg_80C5BD6C = (void*)(&lit_3755);
+SECTION_RODATA static f32 const lit_3755 = 10.0f;
+COMPILER_STRIP_GATE(80C5BD6C, &lit_3755);
 #pragma pop
 
 /* 80C5B71C-80C5B89C 00021C 0180+00 1/1 0/0 0/0 .text            action__FP19obj_lv3WaterB_class */

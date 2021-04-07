@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -54,11 +54,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -220,8 +220,8 @@ asm daObjRCircle_c::~daObjRCircle_c() {
 
 /* ############################################################################################## */
 /* 80CB8D00-80CB8D04 000000 0004+00 2/2 0/0 0/0 .rodata          @3701 */
-SECTION_RODATA static u32 const lit_3701 = 0x3F800000;
-SECTION_DEAD void* const cg_80CB8D00 = (void*)(&lit_3701);
+SECTION_RODATA static f32 const lit_3701 = 1.0f;
+COMPILER_STRIP_GATE(80CB8D00, &lit_3701);
 
 /* 80CB8D04-80CB8D08 000004 0004+00 2/2 0/0 0/0 .rodata          @3702 */
 SECTION_RODATA static u8 const lit_3702[4] = {
@@ -230,7 +230,7 @@ SECTION_RODATA static u8 const lit_3702[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80CB8D04 = (void*)(&lit_3702);
+COMPILER_STRIP_GATE(80CB8D04, &lit_3702);
 
 /* 80CB8814-80CB8928 000234 0114+00 1/1 0/0 0/0 .text            createHeap__14daObjRCircle_cFv */
 #pragma push

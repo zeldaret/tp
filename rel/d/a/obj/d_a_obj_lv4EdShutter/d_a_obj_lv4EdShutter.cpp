@@ -51,11 +51,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -78,9 +78,9 @@ struct dEvLib_callback_c {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -96,9 +96,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -193,12 +193,12 @@ extern "C" void __register_global_object();
 
 /* ############################################################################################## */
 /* 80C5E8DC-80C5E8E0 000000 0004+00 3/3 0/0 0/0 .rodata          @3634 */
-SECTION_RODATA static u32 const lit_3634 = 0x42A00000;
-SECTION_DEAD void* const cg_80C5E8DC = (void*)(&lit_3634);
+SECTION_RODATA static f32 const lit_3634 = 80.0f;
+COMPILER_STRIP_GATE(80C5E8DC, &lit_3634);
 
 /* 80C5E8E0-80C5E8E4 000004 0004+00 1/1 0/0 0/0 .rodata          @3635 */
-SECTION_RODATA static u32 const lit_3635 = 0x42200000;
-SECTION_DEAD void* const cg_80C5E8E0 = (void*)(&lit_3635);
+SECTION_RODATA static f32 const lit_3635 = 40.0f;
+COMPILER_STRIP_GATE(80C5E8E0, &lit_3635);
 
 /* 80C5E904-80C5E910 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -378,8 +378,8 @@ asm void daLv4EdShutter_c::CreateHeap() {
 
 /* ############################################################################################## */
 /* 80C5E8E4-80C5E8E8 000008 0004+00 1/2 0/0 0/0 .rodata          @3704 */
-SECTION_RODATA static u32 const lit_3704 = 0xC3960000;
-SECTION_DEAD void* const cg_80C5E8E4 = (void*)(&lit_3704);
+SECTION_RODATA static f32 const lit_3704 = -300.0f;
+COMPILER_STRIP_GATE(80C5E8E4, &lit_3704);
 
 /* 80C5DF34-80C5E0A4 000274 0170+00 1/1 0/0 0/0 .text            create__16daLv4EdShutter_cFv */
 #pragma push
@@ -444,12 +444,12 @@ asm void daLv4EdShutter_c::modeWait() {
 
 /* ############################################################################################## */
 /* 80C5E8E8-80C5E8EC 00000C 0004+00 2/2 0/0 0/0 .rodata          @3787 */
-SECTION_RODATA static u32 const lit_3787 = 0x3F800000;
-SECTION_DEAD void* const cg_80C5E8E8 = (void*)(&lit_3787);
+SECTION_RODATA static f32 const lit_3787 = 1.0f;
+COMPILER_STRIP_GATE(80C5E8E8, &lit_3787);
 
 /* 80C5E8EC-80C5E8F0 000010 0004+00 2/2 0/0 0/0 .rodata          @3788 */
-SECTION_RODATA static u32 const lit_3788 = 0xBF800000;
-SECTION_DEAD void* const cg_80C5E8EC = (void*)(&lit_3788);
+SECTION_RODATA static f32 const lit_3788 = -1.0f;
+COMPILER_STRIP_GATE(80C5E8EC, &lit_3788);
 
 /* 80C5E2E0-80C5E394 000620 00B4+00 1/1 0/0 0/0 .text            init_modeOpen__16daLv4EdShutter_cFv
  */
@@ -466,15 +466,15 @@ asm void daLv4EdShutter_c::init_modeOpen() {
 /* 80C5E8F0-80C5E8F4 000014 0004+00 0/2 0/0 0/0 .rodata          @3816 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3816 = 0x3E99999A;
-SECTION_DEAD void* const cg_80C5E8F0 = (void*)(&lit_3816);
+SECTION_RODATA static f32 const lit_3816 = 3.0f / 10.0f;
+COMPILER_STRIP_GATE(80C5E8F0, &lit_3816);
 #pragma pop
 
 /* 80C5E8F4-80C5E8F8 000018 0004+00 0/2 0/0 0/0 .rodata          @3817 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3817 = 0x40A00000;
-SECTION_DEAD void* const cg_80C5E8F4 = (void*)(&lit_3817);
+SECTION_RODATA static f32 const lit_3817 = 5.0f;
+COMPILER_STRIP_GATE(80C5E8F4, &lit_3817);
 #pragma pop
 
 /* 80C5E8F8-80C5E8FC 00001C 0004+00 0/2 0/0 0/0 .rodata          @3818 */
@@ -486,7 +486,7 @@ SECTION_RODATA static u8 const lit_3818[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80C5E8F8 = (void*)(&lit_3818);
+COMPILER_STRIP_GATE(80C5E8F8, &lit_3818);
 #pragma pop
 
 /* 80C5E394-80C5E464 0006D4 00D0+00 1/0 0/0 0/0 .text            modeOpen__16daLv4EdShutter_cFv */

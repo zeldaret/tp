@@ -187,7 +187,7 @@ SECTION_RODATA static u8 const l_sph_src[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80D5D914 = (void*)(&l_sph_src);
+COMPILER_STRIP_GATE(80D5D914, &l_sph_src);
 
 /* 80D5D570-80D5D6A0 0001B0 0130+00 1/1 0/0 0/0 .text            create__11daTagPati_cFv */
 #pragma push
@@ -241,12 +241,12 @@ asm void daTagPati_c::Execute() {
 
 /* ############################################################################################## */
 /* 80D5D958-80D5D95C 000044 0004+00 1/1 0/0 0/0 .rodata          @3802 */
-SECTION_RODATA static u32 const lit_3802 = 0x44A8C000;
-SECTION_DEAD void* const cg_80D5D958 = (void*)(&lit_3802);
+SECTION_RODATA static f32 const lit_3802 = 1350.0f;
+COMPILER_STRIP_GATE(80D5D958, &lit_3802);
 
 /* 80D5D95C-80D5D960 000048 0004+00 1/1 0/0 0/0 .rodata          @3803 */
-SECTION_RODATA static u32 const lit_3803 = 0x48927C00;
-SECTION_DEAD void* const cg_80D5D95C = (void*)(&lit_3803);
+SECTION_RODATA static f32 const lit_3803 = 300000.0f;
+COMPILER_STRIP_GATE(80D5D95C, &lit_3803);
 
 /* 80D5D7C8-80D5D830 000408 0068+00 1/1 0/0 0/0 .text            col_set__11daTagPati_cFv */
 #pragma push

@@ -51,9 +51,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -72,9 +72,9 @@ struct dBgW_Base {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -184,7 +184,7 @@ SECTION_RODATA static u8 const lit_3695[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80CAAB20 = (void*)(&lit_3695);
+COMPILER_STRIP_GATE(80CAAB20, &lit_3695);
 
 /* 80CA9E98-80CA9F9C 000078 0104+00 1/1 0/0 0/0 .text
  * PPCallBack__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel */
@@ -339,14 +339,14 @@ asm void daObjPDoor_c::init_modeWait() {
 
 /* ############################################################################################## */
 /* 80CAAB24-80CAAB28 000004 0004+00 1/1 0/0 0/0 .rodata          @3942 */
-SECTION_RODATA static u32 const lit_3942 = 0x41200000;
-SECTION_DEAD void* const cg_80CAAB24 = (void*)(&lit_3942);
+SECTION_RODATA static f32 const lit_3942 = 10.0f;
+COMPILER_STRIP_GATE(80CAAB24, &lit_3942);
 
 /* 80CAAB28-80CAAB30 000008 0008+00 1/2 0/0 0/0 .rodata          @3944 */
 SECTION_RODATA static u8 const lit_3944[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80CAAB28 = (void*)(&lit_3944);
+COMPILER_STRIP_GATE(80CAAB28, &lit_3944);
 
 /* 80CAA354-80CAA698 000534 0344+00 1/0 0/0 0/0 .text            modeWait__12daObjPDoor_cFv */
 #pragma push
@@ -373,29 +373,29 @@ asm void daObjPDoor_c::init_modeRotate() {
 /* 80CAAB30-80CAAB34 000010 0004+00 0/1 0/0 0/0 .rodata          @4051 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4051 = 0x45AAA800;
-SECTION_DEAD void* const cg_80CAAB30 = (void*)(&lit_4051);
+SECTION_RODATA static f32 const lit_4051 = 5461.0f;
+COMPILER_STRIP_GATE(80CAAB30, &lit_4051);
 #pragma pop
 
 /* 80CAAB34-80CAAB38 000014 0004+00 0/1 0/0 0/0 .rodata          @4052 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4052 = 0x42700000;
-SECTION_DEAD void* const cg_80CAAB34 = (void*)(&lit_4052);
+SECTION_RODATA static f32 const lit_4052 = 60.0f;
+COMPILER_STRIP_GATE(80CAAB34, &lit_4052);
 #pragma pop
 
 /* 80CAAB38-80CAAB3C 000018 0004+00 0/1 0/0 0/0 .rodata          @4053 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4053 = 0x3F800000;
-SECTION_DEAD void* const cg_80CAAB38 = (void*)(&lit_4053);
+SECTION_RODATA static f32 const lit_4053 = 1.0f;
+COMPILER_STRIP_GATE(80CAAB38, &lit_4053);
 #pragma pop
 
 /* 80CAAB3C-80CAAB40 00001C 0004+00 0/1 0/0 0/0 .rodata          @4054 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4054 = 0xBF800000;
-SECTION_DEAD void* const cg_80CAAB3C = (void*)(&lit_4054);
+SECTION_RODATA static f32 const lit_4054 = -1.0f;
+COMPILER_STRIP_GATE(80CAAB3C, &lit_4054);
 #pragma pop
 
 /* 80CAA6B4-80CAA968 000894 02B4+00 1/0 0/0 0/0 .text            modeRotate__12daObjPDoor_cFv */

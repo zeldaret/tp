@@ -11,6 +11,32 @@
 // Types:
 //
 
+namespace JGadget {
+template <typename A1, typename B1>
+struct TLinkList {};
+/* TLinkList<JStudio::ctb::TObject, 12> */
+struct TLinkList__template0 {
+    struct iterator {};
+};
+
+struct binary {
+    struct TParse_header_block {
+        /* 802DC8C8 */ ~TParse_header_block();
+    };
+};
+
+struct TLinkListNode {};
+
+struct TNodeLinkList {
+    struct iterator {};
+
+    /* 802DCA1C */ ~TNodeLinkList();
+    /* 802DCBA8 */ void Insert(JGadget::TNodeLinkList::iterator, JGadget::TLinkListNode*);
+    /* 802DCBD4 */ void Erase(JGadget::TLinkListNode*);
+};
+
+};  // namespace JGadget
+
 namespace JStudio {
 namespace ctb {
 struct TObject {
@@ -63,32 +89,6 @@ struct object {
 };
 
 };  // namespace JStudio
-
-namespace JGadget {
-template <typename A1, typename B1>
-struct TLinkList {};
-/* TLinkList<JStudio::ctb::TObject, 12> */
-struct TLinkList__template0 {
-    struct iterator {};
-};
-
-struct binary {
-    struct TParse_header_block {
-        /* 802DC8C8 */ ~TParse_header_block();
-    };
-};
-
-struct TLinkListNode {};
-
-struct TNodeLinkList {
-    struct iterator {};
-
-    /* 802DCA1C */ ~TNodeLinkList();
-    /* 802DCBA8 */ void Insert(JGadget::TNodeLinkList::iterator, JGadget::TLinkListNode*);
-    /* 802DCBD4 */ void Erase(JGadget::TLinkListNode*);
-};
-
-};  // namespace JGadget
 
 namespace std {
 template <typename A1, typename B1>

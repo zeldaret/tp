@@ -13,18 +13,18 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {};
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
 };
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTexPattern {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
@@ -96,9 +96,9 @@ struct dSv_info_c {
     /* 800352B0 */ void offSwitch(int, int);
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -604,11 +604,11 @@ SECTION_RODATA static u8 const mCcDObjInfo__15daObj_SSDrink_c[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80CE6930 = (void*)(&mCcDObjInfo__15daObj_SSDrink_c);
+COMPILER_STRIP_GATE(80CE6930, &mCcDObjInfo__15daObj_SSDrink_c);
 
 /* 80CE6960-80CE6964 000030 0004+00 1/3 0/0 0/0 .rodata          @4000 */
-SECTION_RODATA static u32 const lit_4000 = 0x3F800000;
-SECTION_DEAD void* const cg_80CE6960 = (void*)(&lit_4000);
+SECTION_RODATA static f32 const lit_4000 = 1.0f;
+COMPILER_STRIP_GATE(80CE6960, &lit_4000);
 
 /* 80CE53EC-80CE55A8 0004EC 01BC+00 1/1 0/0 0/0 .text            CreateHeap__15daObj_SSDrink_cFv */
 #pragma push
@@ -644,22 +644,22 @@ asm void daObj_SSDrink_c::Delete() {
 /* 80CE6964-80CE6968 000034 0004+00 0/2 0/0 0/0 .rodata          @4057 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4057 = 0xCE6E6B28;
-SECTION_DEAD void* const cg_80CE6964 = (void*)(&lit_4057);
+SECTION_RODATA static f32 const lit_4057 = -1000000000.0f;
+COMPILER_STRIP_GATE(80CE6964, &lit_4057);
 #pragma pop
 
 /* 80CE6968-80CE696C 000038 0004+00 0/2 0/0 0/0 .rodata          @4058 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4058 = 0x41200000;
-SECTION_DEAD void* const cg_80CE6968 = (void*)(&lit_4058);
+SECTION_RODATA static f32 const lit_4058 = 10.0f;
+COMPILER_STRIP_GATE(80CE6968, &lit_4058);
 #pragma pop
 
 /* 80CE696C-80CE6970 00003C 0004+00 0/2 0/0 0/0 .rodata          @4059 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4059 = 0x41F00000;
-SECTION_DEAD void* const cg_80CE696C = (void*)(&lit_4059);
+SECTION_RODATA static f32 const lit_4059 = 30.0f;
+COMPILER_STRIP_GATE(80CE696C, &lit_4059);
 #pragma pop
 
 /* 80CE5624-80CE5858 000724 0234+00 2/2 0/0 0/0 .text            Execute__15daObj_SSDrink_cFv */
@@ -788,36 +788,36 @@ asm void daObj_SSDrink_c::restart() {
 /* 80CE6970-80CE6974 000040 0004+00 0/1 0/0 0/0 .rodata          @4204 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4204 = 0xC1F00000;
-SECTION_DEAD void* const cg_80CE6970 = (void*)(&lit_4204);
+SECTION_RODATA static f32 const lit_4204 = -30.0f;
+COMPILER_STRIP_GATE(80CE6970, &lit_4204);
 #pragma pop
 
 /* 80CE6974-80CE6978 000044 0004+00 0/1 0/0 0/0 .rodata          @4205 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4205 = 0xC1700000;
-SECTION_DEAD void* const cg_80CE6974 = (void*)(&lit_4205);
+SECTION_RODATA static f32 const lit_4205 = -15.0f;
+COMPILER_STRIP_GATE(80CE6974, &lit_4205);
 #pragma pop
 
 /* 80CE6978-80CE697C 000048 0004+00 0/1 0/0 0/0 .rodata          @4206 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4206 = 0x42340000;
-SECTION_DEAD void* const cg_80CE6978 = (void*)(&lit_4206);
+SECTION_RODATA static f32 const lit_4206 = 45.0f;
+COMPILER_STRIP_GATE(80CE6978, &lit_4206);
 #pragma pop
 
 /* 80CE697C-80CE6980 00004C 0004+00 0/2 0/0 0/0 .rodata          @4207 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4207 = 0x41C00000;
-SECTION_DEAD void* const cg_80CE697C = (void*)(&lit_4207);
+SECTION_RODATA static f32 const lit_4207 = 24.0f;
+COMPILER_STRIP_GATE(80CE697C, &lit_4207);
 #pragma pop
 
 /* 80CE6980-80CE6984 000050 0004+00 0/2 0/0 0/0 .rodata          @4208 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4208 = 0x41400000;
-SECTION_DEAD void* const cg_80CE6980 = (void*)(&lit_4208);
+SECTION_RODATA static f32 const lit_4208 = 12.0f;
+COMPILER_STRIP_GATE(80CE6980, &lit_4208);
 #pragma pop
 
 /* 80CE5BF0-80CE5DB0 000CF0 01C0+00 1/1 0/0 0/0 .text            initialize__15daObj_SSDrink_cFv */
@@ -856,8 +856,8 @@ asm void daObj_SSDrink_c::setProcess(int (daObj_SSDrink_c::*)(void*)) {
 /* 80CE6984-80CE6988 000054 0004+00 0/1 0/0 0/0 .rodata          @4257 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4257 = 0xC0A00000;
-SECTION_DEAD void* const cg_80CE6984 = (void*)(&lit_4257);
+SECTION_RODATA static f32 const lit_4257 = -5.0f;
+COMPILER_STRIP_GATE(80CE6984, &lit_4257);
 #pragma pop
 
 /* 80CE5EC8-80CE5FE4 000FC8 011C+00 1/1 0/0 0/0 .text            setParam__15daObj_SSDrink_cFv */
@@ -916,7 +916,7 @@ asm void daObj_SSDrink_c::setAttnPos() {
 SECTION_RODATA static u8 const lit_4320[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80CE6988 = (void*)(&lit_4320);
+COMPILER_STRIP_GATE(80CE6988, &lit_4320);
 
 /* 80CE6170-80CE61E4 001270 0074+00 1/1 0/0 0/0 .text            animeEntry__15daObj_SSDrink_cFv */
 #pragma push

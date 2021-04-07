@@ -64,8 +64,8 @@ static bool daKytag05_Delete(kytag05_class* param_0) {
 
 /* ############################################################################################## */
 /* 80528B18-80528B1C 000000 0004+00 1/1 0/0 0/0 .rodata          @3665 */
-SECTION_RODATA static u32 const lit_3665 = 0x42C80000;
-SECTION_DEAD void* const cg_80528B18 = (void*)(&lit_3665);
+SECTION_RODATA static f32 const lit_3665 = 100.0f;
+COMPILER_STRIP_GATE(80528B18, &lit_3665);
 
 /* 80528A78-80528B10 000098 0098+00 1/0 0/0 0/0 .text            daKytag05_Create__FP10fopAc_ac_c */
 #pragma push

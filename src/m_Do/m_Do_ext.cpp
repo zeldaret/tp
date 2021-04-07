@@ -18,17 +18,6 @@ struct mDoExt_morf_c {
     /* 8000FBC0 */ void frameUpdate();
 };
 
-struct J3DModelData {};
-
-struct J3DModel {
-    /* 80327100 */ void initialize();
-    /* 80327184 */ void entryModelData(J3DModelData*, u32, u32);
-    /* 803275FC */ void newDifferedDisplayList(u32);
-    /* 8032767C */ void lock();
-    /* 803276B4 */ void unlock();
-    /* 803279A0 */ void diff();
-};
-
 struct Vec {};
 
 struct cXyz {
@@ -39,6 +28,17 @@ struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
     /* 80266CBC */ void outprod(Vec const&) const;
     /* 80266F48 */ void normalizeZP();
+};
+
+struct J3DModelData {};
+
+struct J3DModel {
+    /* 80327100 */ void initialize();
+    /* 80327184 */ void entryModelData(J3DModelData*, u32, u32);
+    /* 803275FC */ void newDifferedDisplayList(u32);
+    /* 8032767C */ void lock();
+    /* 803276B4 */ void unlock();
+    /* 803279A0 */ void diff();
 };
 
 struct mDoExt_invisibleModel {
@@ -54,20 +54,17 @@ struct mDoExt_invJntPacket {
 };
 
 struct J3DMaterialTable;
-struct J3DAnmColor {
-    /* 8032A8A4 */ void searchUpdateMaterialID(J3DMaterialTable*);
-};
-
-struct J3DAnmTextureSRTKey {
-    /* 8032B0C0 */ void searchUpdateMaterialID(J3DMaterialTable*);
-};
-
 struct J3DAnmTevRegKey {
     /* 8032B780 */ void searchUpdateMaterialID(J3DMaterialTable*);
 };
 
-struct J3DAnmTexPattern {
-    /* 8032B004 */ void searchUpdateMaterialID(J3DMaterialTable*);
+struct J3DAnmColor {
+    /* 8032A8A4 */ void searchUpdateMaterialID(J3DMaterialTable*);
+};
+
+struct J3DAnmTexPattern;
+struct J3DAnmTextureSRTKey {
+    /* 8032B0C0 */ void searchUpdateMaterialID(J3DMaterialTable*);
 };
 
 struct J3DMaterialTable {
@@ -75,6 +72,10 @@ struct J3DMaterialTable {
     /* 8032FBC8 */ void entryTexNoAnimator(J3DAnmTexPattern*);
     /* 8032FCC4 */ void entryTexMtxAnimator(J3DAnmTextureSRTKey*);
     /* 8032FE70 */ void entryTevRegAnimator(J3DAnmTevRegKey*);
+};
+
+struct J3DAnmTexPattern {
+    /* 8032B004 */ void searchUpdateMaterialID(J3DMaterialTable*);
 };
 
 struct mDoExt_btpAnm {
@@ -136,14 +137,14 @@ struct mDoExt_MtxCalcAnmBlendTbl {
     /* 80014F3C */ ~mDoExt_MtxCalcAnmBlendTbl();
 };
 
-struct mDoExt_McaMorfCallBack1_c {};
+struct mDoExt_McaMorfCallBack2_c {};
 
 struct Z2Creature {
     /* 802C0628 */ void initAnime(void*, bool, f32, f32);
     /* 802C06D0 */ void updateAnime(f32, f32);
 };
 
-struct mDoExt_McaMorfCallBack2_c {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct J3DTransformInfo {};
 
@@ -214,9 +215,9 @@ struct mDoExt_3DlineMatSortPacket {
 
 struct _GXColor {};
 
-struct ResTIMG {};
-
 struct dKy_tevstr_c {};
+
+struct ResTIMG {};
 
 struct mDoExt_3DlineMat1_c {
     /* 80013360 */ void init(u16, u16, ResTIMG*, int);
@@ -236,14 +237,14 @@ struct mDoExt_3DlineMat0_c {
     /* 80014E84 */ bool getMaterialID();
 };
 
-struct J3DPacket;
-struct J3DDrawBuffer {
-    /* 8032548C */ void entryImm(J3DPacket*, u16);
-};
-
+struct J3DDrawBuffer;
 struct J3DPacket {
     /* 8000E680 */ ~J3DPacket();
     /* 80312750 */ bool entry(J3DDrawBuffer*);
+};
+
+struct J3DDrawBuffer {
+    /* 8032548C */ void entryImm(J3DPacket*, u16);
 };
 
 struct dDlst_list_c {
@@ -258,9 +259,9 @@ struct _GXBlendMode {};
 
 struct _GXBlendFactor {};
 
-struct JAISoundID {};
-
 struct Z2SoundHandlePool {};
+
+struct JAISoundID {};
 
 struct Z2SoundObjBase {
     /* 802BE038 */ void framework(u32, s8);
@@ -376,12 +377,12 @@ struct J3DIndTevStage {
     /* 8000E14C */ J3DIndTevStage();
 };
 
-struct J3DGXColor {
-    /* 8000E538 */ J3DGXColor();
-};
-
 struct J3DGXColorS10 {
     /* 8000E460 */ J3DGXColorS10();
+};
+
+struct J3DGXColor {
+    /* 8000E538 */ J3DGXColor();
 };
 
 struct J3DTevBlock {
@@ -926,7 +927,7 @@ extern "C" extern void* __vt__8J3DModel[9];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 mParentS__6J3DSys[12];
+extern "C" extern f32 mParentS__6J3DSys[3];
 extern "C" extern u8 sGDLObj__17J3DDisplayListObj[16];
 extern "C" extern u32 __float_nan;
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
@@ -3582,7 +3583,7 @@ SECTION_RODATA static u8 const fontdata_8224[18 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_803740C0 = (void*)(&fontdata_8224);
+COMPILER_STRIP_GATE(803740C0, &fontdata_8224);
 
 /* 80450C44-80450C48 000144 0004+00 3/3 0/0 0/0 .sbss            mDoExt_font0 */
 static u8 mDoExt_font0[4];
@@ -3629,7 +3630,7 @@ SECTION_RODATA static u8 const fontdata_8253[20] = {
     0x72, 0x65, 0x69, 0x73, 0x68, 0x6F, 0x74, 0x61, 0x69, 0x5F,
     0x32, 0x34, 0x5F, 0x32, 0x32, 0x2E, 0x62, 0x66, 0x6E, 0x00,
 };
-SECTION_DEAD void* const cg_803740D4 = (void*)(&fontdata_8253);
+COMPILER_STRIP_GATE(803740D4, &fontdata_8253);
 
 /* 80450C50-80450C54 000150 0004+00 2/2 0/0 0/0 .sbss            mDoExt_font1 */
 static u8 mDoExt_font1[4];
@@ -3666,7 +3667,7 @@ SECTION_RODATA static u8 const fontdata_8287[20] = {
     0x72, 0x65, 0x69, 0x73, 0x68, 0x6F, 0x74, 0x61, 0x69, 0x5F,
     0x32, 0x34, 0x5F, 0x32, 0x32, 0x2E, 0x62, 0x66, 0x6E, 0x00,
 };
-SECTION_DEAD void* const cg_803740E8 = (void*)(&fontdata_8287);
+COMPILER_STRIP_GATE(803740E8, &fontdata_8287);
 
 /* 80450C5C-80450C60 00015C 0004+00 3/3 0/0 0/0 .sbss            mDoExt_font2 */
 static u8 mDoExt_font2[4];

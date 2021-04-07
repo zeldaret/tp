@@ -48,9 +48,9 @@ struct dEvent_manager_c {
     /* 8004817C */ void cutEnd(int);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -268,14 +268,14 @@ void daTagRiverBack_c::actionDead() {
 
 /* ############################################################################################## */
 /* 80D5F944-80D5F948 000000 0004+00 1/1 0/0 0/0 .rodata          @3813 */
-SECTION_RODATA static u32 const lit_3813 = 0x3F800000;
-SECTION_DEAD void* const cg_80D5F944 = (void*)(&lit_3813);
+SECTION_RODATA static f32 const lit_3813 = 1.0f;
+COMPILER_STRIP_GATE(80D5F944, &lit_3813);
 
 /* 80D5F948-80D5F94C 000004 0004+00 0/1 0/0 0/0 .rodata          @3814 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3814 = 0xBF800000;
-SECTION_DEAD void* const cg_80D5F948 = (void*)(&lit_3814);
+SECTION_RODATA static f32 const lit_3814 = -1.0f;
+COMPILER_STRIP_GATE(80D5F948, &lit_3814);
 #pragma pop
 
 /* 80D5F94C-80D5F950 000008 0004+00 0/1 0/0 0/0 .rodata          @3815 */
@@ -287,7 +287,7 @@ SECTION_RODATA static u8 const lit_3815[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80D5F94C = (void*)(&lit_3815);
+COMPILER_STRIP_GATE(80D5F94C, &lit_3815);
 #pragma pop
 
 /* 80D5FA0C-80D5FA14 -00001 0008+00 1/1 0/0 0/0 .data            action_table$3769 */

@@ -36,10 +36,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {
-    /* 80018BD0 */ ~csXyz();
-    /* 802673F4 */ csXyz(s16, s16, s16);
-};
+struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct Vec {};
 
@@ -48,9 +47,10 @@ struct cXyz {
     /* 80266AE4 */ void operator+(Vec const&) const;
 };
 
-struct _GXColor {};
-
-struct dKy_tevstr_c {};
+struct csXyz {
+    /* 80018BD0 */ ~csXyz();
+    /* 802673F4 */ csXyz(s16, s16, s16);
+};
 
 struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
@@ -543,7 +543,7 @@ SECTION_RODATA static u8 const sun_chkpnt[40] = {
     0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0xC1, 0xA0, 0x00, 0x00,
     0x41, 0x20, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8037A4C0 = (void*)(&sun_chkpnt);
+COMPILER_STRIP_GATE(8037A4C0, &sun_chkpnt);
 
 /* 803A9BA0-803A9BAC 006CC0 000C+00 1/1 0/0 0/0 .data            sun_color$4213 */
 SECTION_DATA static u8 sun_color[12] = {
@@ -556,7 +556,7 @@ SECTION_DATA static u8 sun_color2[12] = {
 };
 
 /* 80450EE8-80450EEC 0003E8 0004+00 1/1 0/0 0/0 .sbss            S_parcent_bak$4131 */
-static u8 S_parcent_bak[4];
+static f32 S_parcent_bak;
 
 /* 80450EEC-80450EF0 -00001 0004+00 2/2 0/0 0/0 .sbss            None */
 /* 80450EEC 0002+00 data_80450EEC None */
@@ -1155,7 +1155,7 @@ SECTION_RODATA static u8 const lit_6991[32] = {
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x54, 0x7A, 0xE1, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x47, 0xAE, 0x14,
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x47, 0xAE, 0x14, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x54, 0x7A, 0xE1,
 };
-SECTION_DEAD void* const cg_8037A4E8 = (void*)(&lit_6991);
+COMPILER_STRIP_GATE(8037A4E8, &lit_6991);
 
 /* 803A9BB8-803A9BD8 -00001 0020+00 1/1 0/0 0/0 .data            @7214 */
 SECTION_DATA static void* lit_7214[8] = {
@@ -1203,7 +1203,7 @@ SECTION_RODATA static u8 const lit_7275[32] = {
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x54, 0x7A, 0xE1, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x47, 0xAE, 0x14,
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x47, 0xAE, 0x14, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x54, 0x7A, 0xE1,
 };
-SECTION_DEAD void* const cg_8037A508 = (void*)(&lit_7275);
+COMPILER_STRIP_GATE(8037A508, &lit_7275);
 
 /* 803A9BD8-803A9BF8 -00001 0020+00 1/1 0/0 0/0 .data            @7549 */
 SECTION_DATA static void* lit_7549[8] = {
@@ -1245,14 +1245,14 @@ SECTION_RODATA static u8 const scale_dat[32] = {
     0x45, 0xFA, 0x00, 0x00, 0x46, 0x24, 0x10, 0x00, 0x40, 0x4C, 0xCC, 0xCD, 0x3F, 0xE6, 0x66, 0x66,
     0x3F, 0xE6, 0x66, 0x66, 0x40, 0xC6, 0x66, 0x66, 0x3F, 0x99, 0x99, 0x9A, 0x40, 0x80, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8037A528 = (void*)(&scale_dat);
+COMPILER_STRIP_GATE(8037A528, &scale_dat);
 
 /* 8037A548-8037A568 006BA8 0020+00 1/1 0/0 0/0 .rodata          col_dat$7609 */
 SECTION_RODATA static u8 const col_dat[32] = {
     0xB4, 0xC8, 0xFF, 0xFF, 0xC8, 0xC8, 0xFF, 0x50, 0xFF, 0x8C, 0x78, 0x5A, 0xFF, 0xB4, 0x78, 0x64,
     0xB4, 0xB4, 0x78, 0x55, 0xB4, 0xC8, 0x64, 0x5A, 0xDC, 0xFF, 0xB4, 0x6E, 0xC8, 0xDC, 0xFF, 0x5A,
 };
-SECTION_DEAD void* const cg_8037A548 = (void*)(&col_dat);
+COMPILER_STRIP_GATE(8037A548, &col_dat);
 
 /* 80450EF0-80450EF4 -00001 0004+00 1/1 0/0 0/0 .sbss            None */
 /* 80450EF0 0002+00 data_80450EF0 None */
@@ -1392,7 +1392,7 @@ asm void dKyr_drawSibuki(f32 (*param_0)[4], u8** param_1) {
 
 /* ############################################################################################## */
 /* 80450F00-80450F04 000400 0004+00 1/1 0/0 0/0 .sbss            rot$8366 */
-static u8 rot_8366[4];
+static f32 rot_8366;
 
 /* 80450F04-80450F08 000404 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_80450F04[4];
@@ -1478,7 +1478,7 @@ static u8 add_table_8941[48];
 #pragma pop
 
 /* 80450F08-80450F0C 000408 0004+00 1/1 0/0 0/0 .sbss            rot$8936 */
-static u8 rot_8936[4];
+static f32 rot_8936;
 
 /* 80450F0C-80450F10 -00001 0004+00 1/1 0/0 0/0 .sbss            None */
 /* 80450F0C 0001+00 data_80450F0C None */
@@ -1569,7 +1569,7 @@ asm void dKyr_drawSnow(f32 (*param_0)[4], u8** param_1) {
 SECTION_RODATA static u8 const star_col[16] = {
     0xFF, 0xBE, 0xC8, 0xA0, 0xC8, 0xFF, 0xBE, 0x78, 0xC8, 0xBE, 0xFF, 0x50, 0xFF, 0xFF, 0xFF, 0xC8,
 };
-SECTION_DEAD void* const cg_8037A568 = (void*)(&star_col);
+COMPILER_STRIP_GATE(8037A568, &star_col);
 
 /* 80424A10-80424A1C 051730 000C+00 0/1 0/0 0/0 .bss             @9425 */
 #pragma push
@@ -1656,7 +1656,7 @@ static u8 hokuto_position[78 + 6 /* padding */];
 #pragma pop
 
 /* 80450F18-80450F1C 000418 0004+00 1/1 0/0 0/0 .sbss            rot$9421 */
-static u8 rot_9421[4];
+static f32 rot_9421;
 
 /* 80450F1C-80450F20 -00001 0004+00 1/1 0/0 0/0 .sbss            None */
 /* 80450F1C 0001+00 data_80450F1C None */
@@ -1690,7 +1690,7 @@ asm void dKyr_drawStar(f32 (*param_0)[4], u8** param_1) {
 
 /* ############################################################################################## */
 /* 80450F20-80450F24 000420 0004+00 1/1 0/0 0/0 .sbss            rot$9847 */
-static u8 rot_9847[4];
+static f32 rot_9847;
 
 /* 80450F24-80450F28 000424 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_80450F24[4];
@@ -1722,7 +1722,7 @@ asm void drawCloudShadow(f32 (*param_0)[4], u8** param_1) {
 
 /* ############################################################################################## */
 /* 80450F28-80450F2C 000428 0004+00 1/1 0/0 0/0 .sbss            howa_loop_cnt$10108 */
-static u8 howa_loop_cnt[4];
+static f32 howa_loop_cnt;
 
 /* 80450F2C-80450F30 00042C 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_80450F2C[4];
@@ -1857,7 +1857,7 @@ asm void dKyr_odour_move() {
 
 /* ############################################################################################## */
 /* 80450F30-80450F34 000430 0004+00 1/1 0/0 0/0 .sbss            rot$10882 */
-static u8 rot_10882[4];
+static f32 rot_10882;
 
 /* 80450F34-80450F38 000434 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_80450F34[4];
@@ -1941,7 +1941,7 @@ asm void dKyr_evil_move() {
 
 /* ############################################################################################## */
 /* 80450F40-80450F44 000440 0004+00 1/1 0/0 0/0 .sbss            rot$11586 */
-static u8 rot_11586[4];
+static f32 rot_11586;
 
 /* 80450F44-80450F48 000444 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_80450F44[4];
@@ -1991,7 +1991,7 @@ static asm void dKyr_near_bosslight_check(cXyz param_0) {
 
 /* ############################################################################################## */
 /* 80450F48-80450F4C 000448 0004+00 1/1 0/0 0/0 .sbss            rot$11958 */
-static u8 rot_11958[4];
+static f32 rot_11958;
 
 /* 80450F4C-80450F50 00044C 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_80450F4C[4];

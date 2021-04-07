@@ -171,8 +171,8 @@ asm void daTag_Lantern_c::Delete() {
 
 /* ############################################################################################## */
 /* 8048F148-8048F14C 000000 0004+00 1/1 0/0 0/0 .rodata          @3683 */
-SECTION_RODATA static u32 const lit_3683 = 0xCE6E6B28;
-SECTION_DEAD void* const cg_8048F148 = (void*)(&lit_3683);
+SECTION_RODATA static f32 const lit_3683 = -1000000000.0f;
+COMPILER_STRIP_GATE(8048F148, &lit_3683);
 
 /* 8048EDDC-8048EF6C 00021C 0190+00 2/2 0/0 0/0 .text            Execute__15daTag_Lantern_cFv */
 #pragma push
@@ -197,11 +197,11 @@ SECTION_RODATA static u8 const lit_3697[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8048F14C = (void*)(&lit_3697);
+COMPILER_STRIP_GATE(8048F14C, &lit_3697);
 
 /* 8048F150-8048F154 000008 0004+00 1/1 0/0 0/0 .rodata          @3698 */
-SECTION_RODATA static u32 const lit_3698 = 0x42C80000;
-SECTION_DEAD void* const cg_8048F150 = (void*)(&lit_3698);
+SECTION_RODATA static f32 const lit_3698 = 100.0f;
+COMPILER_STRIP_GATE(8048F150, &lit_3698);
 
 /* 8048EF74-8048F024 0003B4 00B0+00 1/1 0/0 0/0 .text            initialize__15daTag_Lantern_cFv */
 #pragma push

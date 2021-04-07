@@ -408,7 +408,7 @@ static u8 lit_1104[1 + 3 /* padding */];
 /* 808795B0-808795B4 000010 0001+03 0/0 0/0 0/0 .bss             @1099 */
 #pragma push
 #pragma force_active on
-static u8 lit_1099[1 + 3 /* padding */] __attribute__((aligned(16)));
+static u8 lit_1099[1 + 3 /* padding */] ALIGN_DECL(16);
 #pragma pop
 
 /* 808795B4-808795B8 000014 0001+03 0/0 0/0 0/0 .bss             @1097 */
@@ -432,7 +432,7 @@ static u8 lit_1094[1 + 3 /* padding */];
 /* 808795C0-808795C4 000020 0001+03 0/0 0/0 0/0 .bss             @1057 */
 #pragma push
 #pragma force_active on
-static u8 lit_1057[1 + 3 /* padding */] __attribute__((aligned(32)));
+static u8 lit_1057[1 + 3 /* padding */] ALIGN_DECL(32);
 #pragma pop
 
 /* 808795C4-808795C8 000024 0001+03 0/0 0/0 0/0 .bss             @1055 */
@@ -456,7 +456,7 @@ static u8 lit_1052[1 + 3 /* padding */];
 /* 808795D0-808795D4 000030 0001+03 0/0 0/0 0/0 .bss             @1014 */
 #pragma push
 #pragma force_active on
-static u8 lit_1014[1 + 3 /* padding */] __attribute__((aligned(16)));
+static u8 lit_1014[1 + 3 /* padding */] ALIGN_DECL(16);
 #pragma pop
 
 /* 808795D4-808795D8 000034 0001+03 0/0 0/0 0/0 .bss             @1012 */
@@ -480,7 +480,7 @@ static u8 lit_1009[1 + 3 /* padding */];
 /* 808795E0-80879A40 000040 0460+00 0/0 0/0 0/0 .bss             THPStatistics */
 #pragma push
 #pragma force_active on
-static u8 THPStatistics[1120] __attribute__((aligned(32)));
+static u8 THPStatistics[1120] ALIGN_DECL(32);
 #pragma pop
 
 /* 80879A40-80879A44 0004A0 0004+00 1/2 0/0 0/0 .bss             Ydchuff */
@@ -504,7 +504,7 @@ static u8 Vachuff[4 + 8 /* padding */];
 /* 80879A60-80879B60 0004C0 0100+00 0/2 0/0 0/0 .bss             __THPIDCTWorkspace */
 #pragma push
 #pragma force_active on
-static u8 __THPIDCTWorkspace[256] __attribute__((aligned(32)));
+static u8 __THPIDCTWorkspace[256] ALIGN_DECL(32);
 #pragma pop
 
 /* 80879B60-80879B64 0005C0 0004+00 1/3 0/0 0/0 .bss             __THPHuffmanBits */
@@ -525,7 +525,7 @@ static u8 Gbase[4 + 16 /* padding */];
 /* 80879B80-80879B84 0005E0 0004+00 0/5 0/0 0/0 .bss             Gwid */
 #pragma push
 #pragma force_active on
-static u8 Gwid[4] __attribute__((aligned(32)));
+static u8 Gwid[4] ALIGN_DECL(32);
 #pragma pop
 
 /* 80879B84-80879B88 0005E4 0004+00 0/5 0/0 0/0 .bss             Gq */
@@ -616,7 +616,7 @@ SECTION_RODATA static u8 const __THPJpegNaturalOrder[80] = {
     0x3A, 0x3B, 0x34, 0x2D, 0x26, 0x1F, 0x27, 0x2E, 0x35, 0x3C, 0x3D, 0x36, 0x2F, 0x37, 0x3E, 0x3F,
     0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F,
 };
-SECTION_DEAD void* const cg_80879034 = (void*)(&__THPJpegNaturalOrder);
+COMPILER_STRIP_GATE(80879034, &__THPJpegNaturalOrder);
 
 /* 80879084-808790C4 000050 0040+00 1/1 0/0 0/0 .rodata          __THPAANScaleFactor */
 SECTION_RODATA static u8 const __THPAANScaleFactor[64] = {
@@ -625,13 +625,13 @@ SECTION_RODATA static u8 const __THPAANScaleFactor[64] = {
     0x3F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xE9, 0x24, 0x69, 0xC0, 0x00, 0x00, 0x00,
     0x3F, 0xE1, 0x51, 0x7A, 0x80, 0x00, 0x00, 0x00, 0x3F, 0xD1, 0xA8, 0x55, 0xE0, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80879084 = (void*)(&__THPAANScaleFactor);
+COMPILER_STRIP_GATE(80879084, &__THPAANScaleFactor);
 
 /* 808790C4-808790CC 000090 0008+00 1/1 0/0 0/0 .rodata          @3998 */
 SECTION_RODATA static u8 const lit_3998[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_808790C4 = (void*)(&lit_3998);
+COMPILER_STRIP_GATE(808790C4, &lit_3998);
 
 /* 808731B4-80873574 000AD4 03C0+00 1/1 0/0 0/0 .text            __THPReadQuantizationTable */
 #pragma push
@@ -749,35 +749,35 @@ asm void __THPDecompressiMCURow512x448() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4205 = 0x3FB504F3;
-SECTION_DEAD void* const cg_808790CC = (void*)(&lit_4205);
+COMPILER_STRIP_GATE(808790CC, &lit_4205);
 #pragma pop
 
 /* 808790D0-808790D4 00009C 0004+00 0/2 0/0 0/0 .rodata          @4206 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4206 = 0x3FEC835E;
-SECTION_DEAD void* const cg_808790D0 = (void*)(&lit_4206);
+COMPILER_STRIP_GATE(808790D0, &lit_4206);
 #pragma pop
 
 /* 808790D4-808790D8 0000A0 0004+00 0/2 0/0 0/0 .rodata          @4207 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4207 = 0x3F8A8BD4;
-SECTION_DEAD void* const cg_808790D4 = (void*)(&lit_4207);
+COMPILER_STRIP_GATE(808790D4, &lit_4207);
 #pragma pop
 
 /* 808790D8-808790DC 0000A4 0004+00 0/2 0/0 0/0 .rodata          @4208 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4208 = 0xC0273D75;
-SECTION_DEAD void* const cg_808790D8 = (void*)(&lit_4208);
+COMPILER_STRIP_GATE(808790D8, &lit_4208);
 #pragma pop
 
 /* 808790DC-808790E0 0000A8 0004+00 0/2 0/0 0/0 .rodata          @4209 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4209 = 0x44800000;
-SECTION_DEAD void* const cg_808790DC = (void*)(&lit_4209);
+SECTION_RODATA static f32 const lit_4209 = 1024.0f;
+COMPILER_STRIP_GATE(808790DC, &lit_4209);
 #pragma pop
 
 /* 80873FBC-8087445C 0018DC 04A0+00 3/3 0/0 0/0 .text            __THPInverseDCTY8 */
@@ -882,7 +882,7 @@ static asm void OSInitFastCast() {
 
 /* ############################################################################################## */
 /* 80879BD0-80879DA0 000630 01D0+00 28/29 0/0 0/0 .bss             daMP_ActivePlayer */
-static u8 daMP_ActivePlayer[464] __attribute__((aligned(16)));
+static u8 daMP_ActivePlayer[464] ALIGN_DECL(16);
 
 /* 80879DA0-80879DA4 000800 0004+00 2/3 0/0 0/0 .bss             daMP_ReadThreadCreated */
 static u8 daMP_ReadThreadCreated[4];
@@ -977,7 +977,7 @@ static u8 daMP_ReadedBufferMessage2[40 + 4 /* padding */];
 #pragma pop
 
 /* 80879E80-8087A198 0008E0 0318+00 3/4 0/0 0/0 .bss             daMP_ReadThread */
-static u8 daMP_ReadThread[792] __attribute__((aligned(32)));
+static u8 daMP_ReadThread[792] ALIGN_DECL(32);
 
 /* 808759AC-808759E4 0032CC 0038+00 1/1 0/0 0/0 .text            daMP_ReadThreadStart__Fv */
 #pragma push
@@ -1042,7 +1042,7 @@ static asm void daMP_CreateReadThread(s32 param_0) {
 
 /* ############################################################################################## */
 /* 8087C1A0-8087C4B8 002C00 0318+00 4/5 0/0 0/0 .bss             daMP_VideoDecodeThread */
-static u8 daMP_VideoDecodeThread[792] __attribute__((aligned(32)));
+static u8 daMP_VideoDecodeThread[792] ALIGN_DECL(32);
 
 /* 8087C4B8-808E04B8 002F18 64000+00 1/1 0/0 0/0 .bss             daMP_VideoDecodeThreadStack */
 static u8 daMP_VideoDecodeThreadStack[409600];
@@ -1306,14 +1306,14 @@ static asm void daMP_THPGXRestore() {
 
 /* ############################################################################################## */
 /* 808790E0-808790E4 0000AC 0004+00 1/1 0/0 0/0 .rodata          @4465 */
-SECTION_RODATA static u32 const lit_4465 = 0x42C80000;
-SECTION_DEAD void* const cg_808790E0 = (void*)(&lit_4465);
+SECTION_RODATA static f32 const lit_4465 = 100.0f;
+COMPILER_STRIP_GATE(808790E0, &lit_4465);
 
 /* 808790E4-808790E8 0000B0 0004+00 0/0 0/0 0/0 .rodata          @4466 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4466 = 0x42700000;
-SECTION_DEAD void* const cg_808790E4 = (void*)(&lit_4466);
+SECTION_RODATA static f32 const lit_4466 = 60.0f;
+COMPILER_STRIP_GATE(808790E4, &lit_4466);
 #pragma pop
 
 /* 808790E8-808790F0 0000B4 0008+00 0/1 0/0 0/0 .rodata          @4779 */
@@ -1322,28 +1322,28 @@ SECTION_DEAD void* const cg_808790E4 = (void*)(&lit_4466);
 SECTION_RODATA static u8 const lit_4779[8] = {
     0xFF, 0xA6, 0x00, 0x00, 0xFF, 0x8E, 0x00, 0x87,
 };
-SECTION_DEAD void* const cg_808790E8 = (void*)(&lit_4779);
+COMPILER_STRIP_GATE(808790E8, &lit_4779);
 #pragma pop
 
 /* 808790F0-808790F4 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4782 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4782 = 0x0000E258;
-SECTION_DEAD void* const cg_808790F0 = (void*)(&lit_4782);
+COMPILER_STRIP_GATE(808790F0, &lit_4782);
 #pragma pop
 
 /* 808790F4-808790F8 0000C0 0004+00 0/1 0/0 0/0 .rodata          @4785 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4785 = 0xB30000B6;
-SECTION_DEAD void* const cg_808790F4 = (void*)(&lit_4785);
+COMPILER_STRIP_GATE(808790F4, &lit_4785);
 #pragma pop
 
 /* 808790F8-808790FC 0000C4 0004+00 0/1 0/0 0/0 .rodata          @4788 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4788 = 0xFF00FF80;
-SECTION_DEAD void* const cg_808790F8 = (void*)(&lit_4788);
+COMPILER_STRIP_GATE(808790F8, &lit_4788);
 #pragma pop
 
 /* 808790FC-80879100 0000C8 0004+00 2/4 0/0 0/0 .rodata          @4809 */
@@ -1353,28 +1353,28 @@ SECTION_RODATA static u8 const lit_4809[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_808790FC = (void*)(&lit_4809);
+COMPILER_STRIP_GATE(808790FC, &lit_4809);
 
 /* 80879100-80879104 0000CC 0004+00 0/1 0/0 0/0 .rodata          @4810 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4810 = 0xBF800000;
-SECTION_DEAD void* const cg_80879100 = (void*)(&lit_4810);
+SECTION_RODATA static f32 const lit_4810 = -1.0f;
+COMPILER_STRIP_GATE(80879100, &lit_4810);
 #pragma pop
 
 /* 80879104-8087910C 0000D0 0004+04 1/3 0/0 0/0 .rodata          @4811 */
-SECTION_RODATA static u32 const lit_4811[1 + 1 /* padding */] = {
-    0x3F800000,
+SECTION_RODATA static f32 const lit_4811[1 + 1 /* padding */] = {
+    1.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
-SECTION_DEAD void* const cg_80879104 = (void*)(&lit_4811);
+COMPILER_STRIP_GATE(80879104, &lit_4811);
 
 /* 8087910C-80879114 0000D8 0008+00 2/3 0/0 0/0 .rodata          @4814 */
 SECTION_RODATA static u8 const lit_4814[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8087910C = (void*)(&lit_4814);
+COMPILER_STRIP_GATE(8087910C, &lit_4814);
 
 /* 8087667C-80876BA8 003F9C 052C+00 1/1 0/0 0/0 .text
  * daMP_THPGXYuv2RgbSetup__FPC16_GXRenderModeObj                */
@@ -1436,8 +1436,8 @@ static asm void GXPosition3s16() {
 
 /* ############################################################################################## */
 /* 80879114-80879118 0000E0 0004+00 1/1 0/0 0/0 .rodata          @4894 */
-SECTION_RODATA static u32 const lit_4894 = 0x3F333333;
-SECTION_DEAD void* const cg_80879114 = (void*)(&lit_4894);
+SECTION_RODATA static f32 const lit_4894 = 7.0f / 10.0f;
+COMPILER_STRIP_GATE(80879114, &lit_4894);
 
 /* 80879434-80879534 000000 0100+00 1/1 0/0 0/0 .data            daMP_VolumeTable */
 SECTION_DATA static u8 daMP_VolumeTable[256] = {
@@ -1486,7 +1486,7 @@ static u8 daMP_DecodedAudioBufferMessage[12];
 static u8 daMP_Initialized[4 + 20 /* padding */];
 
 /* 809448A0-809448E0 0CB300 0040+00 2/2 0/0 0/0 .bss             daMP_WorkBuffer */
-static u8 daMP_WorkBuffer[64] __attribute__((aligned(32)));
+static u8 daMP_WorkBuffer[64] ALIGN_DECL(32);
 
 /* 809448E0-80944900 0CB340 0020+00 3/3 0/0 0/0 .bss             daMP_PrepareReadyQueue */
 static u8 daMP_PrepareReadyQueue[32];
@@ -1534,7 +1534,7 @@ static u8 daMP_AudioSystem[4 + 24 /* padding */];
 #pragma pop
 
 /* 80944960-80945AE0 0CB3C0 1180+00 1/1 0/0 0/0 .bss             daMP_SoundBuffer */
-static u8 daMP_SoundBuffer[4480] __attribute__((aligned(32)));
+static u8 daMP_SoundBuffer[4480] ALIGN_DECL(32);
 
 /* 80877074-8087712C 004994 00B8+00 1/1 0/0 0/0 .text            daMP_audioCallbackWithMSound__Fl */
 #pragma push
@@ -1608,8 +1608,8 @@ static asm void daMP_THPPlayerQuit() {
 
 /* ############################################################################################## */
 /* 80879118-8087911C 0000E4 0004+00 1/2 0/0 0/0 .rodata          @4983 */
-SECTION_RODATA static u32 const lit_4983 = 0x42FE0000;
-SECTION_DEAD void* const cg_80879118 = (void*)(&lit_4983);
+SECTION_RODATA static f32 const lit_4983 = 127.0f;
+COMPILER_STRIP_GATE(80879118, &lit_4983);
 
 /* 8087730C-808776EC 004C2C 03E0+00 1/1 0/0 0/0 .text            daMP_THPPlayerOpen__FPCci */
 #pragma push

@@ -48,14 +48,16 @@ struct dMsgScrn3Select_c {
     /* 8023A97C */ void getCharSpace();
 };
 
+struct JMSMesgEntry_c {};
+
+struct ResTLUT {};
+
 struct JGeometry {
     template <typename A1>
     struct TBox2 {};
     /* TBox2<f32> */
     struct TBox2__template0 {};
 };
-
-struct ResTLUT {};
 
 struct ResTIMG {};
 
@@ -66,8 +68,6 @@ struct J2DPicture {
 
 struct JUTFont {};
 
-struct JMSMesgEntry_c {};
-
 struct dMeter2Info_c {
     /* 8021C250 */ void getString(u32, char*, JMSMesgEntry_c*);
     /* 8021C7FC */ void getStringLength(JUTFont*, f32, f32, char*);
@@ -75,17 +75,17 @@ struct dMeter2Info_c {
                                         J2DPicture*, void*, J2DPicture*, int);
 };
 
-struct JKRExpHeap {};
-
-struct JKRArchive {};
-
-struct J2DOrthoGraph {};
-
 struct STControl {
     /* 8003219C */ void checkTrigger();
     /* 80032524 */ void checkUpTrigger();
     /* 800325A0 */ void checkDownTrigger();
 };
+
+struct JKRExpHeap {};
+
+struct J2DOrthoGraph {};
+
+struct JKRArchive {};
 
 struct dMenu_ItemExplain_c {
     /* 801DA754 */ dMenu_ItemExplain_c(JKRExpHeap*, JKRArchive*, STControl*, bool);
@@ -122,9 +122,9 @@ struct dKantera_icon_c {
     /* 801AEC44 */ void setNowGauge(u16, u16);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -295,14 +295,14 @@ SECTION_RODATA static u8 const name_tag[32] = {
     0x69, 0x74, 0x65, 0x6D, 0x5F, 0x6E, 0x30, 0x34, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x6E, 0x30, 0x35,
     0x69, 0x74, 0x65, 0x6D, 0x5F, 0x6E, 0x30, 0x36, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x6E, 0x30, 0x37,
 };
-SECTION_DEAD void* const cg_80396950 = (void*)(&name_tag);
+COMPILER_STRIP_GATE(80396950, &name_tag);
 
 /* 80396970-80396990 022FD0 0020+00 1/1 0/0 0/0 .rodata          fame_tag$3884 */
 SECTION_RODATA static u8 const fame_tag[32] = {
     0x66, 0x5F, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x31, 0x66, 0x5F, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x32,
     0x66, 0x5F, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x33, 0x66, 0x5F, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x34,
 };
-SECTION_DEAD void* const cg_80396970 = (void*)(&fame_tag);
+COMPILER_STRIP_GATE(80396970, &fame_tag);
 
 /* 803BD8C8-803BD8D4 01A9E8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {

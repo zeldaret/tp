@@ -139,7 +139,7 @@ SECTION_RODATA static u8 const sCurveTableLinear__13JASOscillator[68] = {
     0x00, 0x00, 0x3E, 0xA0, 0x00, 0x00, 0x3E, 0x80, 0x00, 0x00, 0x3E, 0x40, 0x00, 0x00,
     0x3E, 0x00, 0x00, 0x00, 0x3D, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039B1D0 = (void*)(&sCurveTableLinear__13JASOscillator);
+COMPILER_STRIP_GATE(8039B1D0, &sCurveTableLinear__13JASOscillator);
 
 /* 8039B214-8039B258 027874 0044+00 1/0 0/0 0/0 .rodata sCurveTableSampleCell__13JASOscillator */
 SECTION_RODATA static u8 const sCurveTableSampleCell__13JASOscillator[68] = {
@@ -149,7 +149,7 @@ SECTION_RODATA static u8 const sCurveTableSampleCell__13JASOscillator[68] = {
     0x81, 0xE4, 0x3D, 0x32, 0xC1, 0x6E, 0x3C, 0xFC, 0x81, 0xFC, 0x3C, 0xC2, 0x41, 0x8E,
     0x3C, 0x7A, 0x02, 0x25, 0x3C, 0x16, 0x01, 0x29, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039B214 = (void*)(&sCurveTableSampleCell__13JASOscillator);
+COMPILER_STRIP_GATE(8039B214, &sCurveTableSampleCell__13JASOscillator);
 
 /* 8039B258-8039B29C 0278B8 0044+00 1/0 0/0 0/0 .rodata          sCurveTableSqRoot__13JASOscillator
  */
@@ -160,7 +160,7 @@ SECTION_RODATA static u8 const sCurveTableSqRoot__13JASOscillator[68] = {
     0x00, 0x00, 0x3D, 0xC7, 0xFF, 0xF9, 0x3D, 0x80, 0x00, 0x00, 0x3D, 0x0F, 0xFF, 0xF3,
     0x3C, 0x80, 0x00, 0x00, 0x3B, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039B258 = (void*)(&sCurveTableSqRoot__13JASOscillator);
+COMPILER_STRIP_GATE(8039B258, &sCurveTableSqRoot__13JASOscillator);
 
 /* 8039B29C-8039B2E0 0278FC 0044+00 1/0 0/0 0/0 .rodata          sCurveTableSquare__13JASOscillator
  */
@@ -171,7 +171,7 @@ SECTION_RODATA static u8 const sCurveTableSquare__13JASOscillator[68] = {
     0xC4, 0x69, 0x3F, 0x0F, 0x1B, 0xBD, 0x3F, 0x00, 0x00, 0x00, 0x3E, 0xDD, 0xB3, 0xE1,
     0x3E, 0xB5, 0x04, 0xE6, 0x3E, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039B29C = (void*)(&sCurveTableSquare__13JASOscillator);
+COMPILER_STRIP_GATE(8039B29C, &sCurveTableSquare__13JASOscillator);
 
 /* 803C78A8-803C78B8 -00001 0010+00 1/1 0/0 0/0 .data            table_list$151 */
 SECTION_DATA static void* table_list[4] = {

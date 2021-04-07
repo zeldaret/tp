@@ -55,19 +55,19 @@ struct J2DTextBoxHBinding {};
 
 struct J2DAnmBase {};
 
-struct J2DAnmColor {};
-
-struct J2DAnmTextureSRTKey {};
+struct J2DAnmTevRegKey {};
 
 struct J2DAnmVtxColor {};
 
-struct J2DAnmVisibilityFull {};
-
 struct J2DAnmTransform {};
+
+struct J2DAnmTextureSRTKey {};
+
+struct J2DAnmVisibilityFull {};
 
 struct J2DAnmTexPattern {};
 
-struct J2DAnmTevRegKey {};
+struct J2DAnmColor {};
 
 struct J2DPane {
     /* 80020158 */ void setAlpha(u8);

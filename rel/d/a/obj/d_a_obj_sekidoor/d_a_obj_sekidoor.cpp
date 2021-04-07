@@ -43,9 +43,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -60,9 +60,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     struct level_c {
@@ -91,9 +91,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -303,31 +303,31 @@ SECTION_RODATA static u8 const m__22daObj_SekiDoor_Param_c[1 + 3 /* padding */] 
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80CCDA08 = (void*)(&m__22daObj_SekiDoor_Param_c);
+COMPILER_STRIP_GATE(80CCDA08, &m__22daObj_SekiDoor_Param_c);
 
 /* 80CCDA0C-80CCDA10 000004 0004+00 1/3 0/0 0/0 .rodata          @3956 */
-SECTION_RODATA static u32 const lit_3956 = 0x43E60000;
-SECTION_DEAD void* const cg_80CCDA0C = (void*)(&lit_3956);
+SECTION_RODATA static f32 const lit_3956 = 460.0f;
+COMPILER_STRIP_GATE(80CCDA0C, &lit_3956);
 
 /* 80CCDA10-80CCDA14 000008 0004+00 0/1 0/0 0/0 .rodata          @3957 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3957 = 0x40800000;
-SECTION_DEAD void* const cg_80CCDA10 = (void*)(&lit_3957);
+SECTION_RODATA static f32 const lit_3957 = 4.0f;
+COMPILER_STRIP_GATE(80CCDA10, &lit_3957);
 #pragma pop
 
 /* 80CCDA14-80CCDA18 00000C 0004+00 0/2 0/0 0/0 .rodata          @3958 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3958 = 0x3F800000;
-SECTION_DEAD void* const cg_80CCDA14 = (void*)(&lit_3958);
+SECTION_RODATA static f32 const lit_3958 = 1.0f;
+COMPILER_STRIP_GATE(80CCDA14, &lit_3958);
 #pragma pop
 
 /* 80CCDA18-80CCDA1C 000010 0004+00 0/1 0/0 0/0 .rodata          @3959 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3959 = 0xBF800000;
-SECTION_DEAD void* const cg_80CCDA18 = (void*)(&lit_3959);
+SECTION_RODATA static f32 const lit_3959 = -1.0f;
+COMPILER_STRIP_GATE(80CCDA18, &lit_3959);
 #pragma pop
 
 /* 80CCDA1C-80CCDA20 000014 0004+00 0/1 0/0 0/0 .rodata          @3960 */
@@ -339,7 +339,7 @@ SECTION_RODATA static u8 const lit_3960[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80CCDA1C = (void*)(&lit_3960);
+COMPILER_STRIP_GATE(80CCDA1C, &lit_3960);
 #pragma pop
 
 /* 80CCDA20-80CCDA28 000018 0008+00 0/1 0/0 0/0 .rodata          @3962 */
@@ -348,7 +348,7 @@ SECTION_DEAD void* const cg_80CCDA1C = (void*)(&lit_3960);
 SECTION_RODATA static u8 const lit_3962[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80CCDA20 = (void*)(&lit_3962);
+COMPILER_STRIP_GATE(80CCDA20, &lit_3962);
 #pragma pop
 
 /* 80CCD290-80CCD51C 000350 028C+00 1/0 0/0 0/0 .text Execute__16daObj_SekiDoor_cFPPA3_A4_f */
@@ -398,7 +398,7 @@ asm void daObj_SekiDoor_c::evtSkip() {
 SECTION_RODATA static u8 const id[8] = {
     0x8B, 0x85, 0x8B, 0x86, 0x8B, 0x87, 0x8B, 0x88,
 };
-SECTION_DEAD void* const cg_80CCDA28 = (void*)(&id);
+COMPILER_STRIP_GATE(80CCDA28, &id);
 #pragma pop
 
 /* 80CCD64C-80CCD810 00070C 01C4+00 1/1 0/0 0/0 .text            setPrtcls__16daObj_SekiDoor_cFv */

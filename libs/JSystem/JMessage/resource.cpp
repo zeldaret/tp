@@ -109,7 +109,7 @@ extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
 extern "C" void memcmp();
 extern "C" extern void* __vt__Q37JGadget6binary19TParse_header_block[5];
-extern "C" extern u32 ga4cSignature__Q28JMessage4data[1 + 1 /* padding */];
+extern "C" extern f32 ga4cSignature__Q28JMessage4data[1 + 1 /* padding */];
 
 //
 // Declarations:

@@ -47,11 +47,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -77,9 +77,9 @@ struct dBgS_ObjAcch {
     /* 80D45264 */ ~dBgS_ObjAcch();
 };
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -217,14 +217,14 @@ extern "C" extern u8 j3dSys[284];
 
 /* ############################################################################################## */
 /* 80D455C4-80D455C8 000000 0004+00 1/1 0/0 0/0 .rodata          @3814 */
-SECTION_RODATA static u32 const lit_3814 = 0x41200000;
-SECTION_DEAD void* const cg_80D455C4 = (void*)(&lit_3814);
+SECTION_RODATA static f32 const lit_3814 = 10.0f;
+COMPILER_STRIP_GATE(80D455C4, &lit_3814);
 
 /* 80D455C8-80D455CC 000004 0004+00 0/1 0/0 0/0 .rodata          @3815 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3815 = 0x43184CCD;
-SECTION_DEAD void* const cg_80D455C8 = (void*)(&lit_3815);
+COMPILER_STRIP_GATE(80D455C8, &lit_3815);
 #pragma pop
 
 /* 80D455CC-80D455D0 000008 0004+00 2/3 0/0 0/0 .rodata          @3816 */
@@ -234,7 +234,7 @@ SECTION_RODATA static u8 const lit_3816[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80D455CC = (void*)(&lit_3816);
+COMPILER_STRIP_GATE(80D455CC, &lit_3816);
 
 /* 80D44CB8-80D44D3C 000078 0084+00 1/1 0/0 0/0 .text            setAttnPos__14daObjZraRock_cFv */
 #pragma push
@@ -289,8 +289,8 @@ asm void daObjZraRock_c::Create() {
 
 /* ############################################################################################## */
 /* 80D455D0-80D455D4 00000C 0004+00 1/1 0/0 0/0 .rodata          @3903 */
-SECTION_RODATA static u32 const lit_3903 = 0x3F800000;
-SECTION_DEAD void* const cg_80D455D0 = (void*)(&lit_3903);
+SECTION_RODATA static f32 const lit_3903 = 1.0f;
+COMPILER_STRIP_GATE(80D455D0, &lit_3903);
 
 /* 80D455F0-80D455F4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_zra_rock__stringBase0;

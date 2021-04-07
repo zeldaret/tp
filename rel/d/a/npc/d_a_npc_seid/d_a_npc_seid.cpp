@@ -11,9 +11,7 @@
 // Types:
 //
 
-struct mDoExt_McaMorfCallBack1_c {};
-
-struct J3DModelData {};
+struct mDoExt_McaMorfCallBack2_c {};
 
 struct J3DAnmTransform {};
 
@@ -25,7 +23,9 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct mDoExt_McaMorfCallBack2_c {};
+struct J3DModelData {};
+
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -41,16 +41,16 @@ struct fopAc_ac_c {
 
 struct daNpcT_motionAnmData_c {};
 
-struct daNpcT_evtData_c {};
-
-struct daNpcT_faceMotionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
     /* 80145898 */ void initialize();
     /* 80ACAF64 */ ~daNpcT_MotionSeqMngr_c();
 };
+
+struct daNpcT_evtData_c {};
+
+struct daNpcT_faceMotionAnmData_c {};
 
 struct daNpc_seiD_c {
     /* 80AC968C */ ~daNpc_seiD_c();
@@ -89,9 +89,11 @@ struct daNpc_seiD_Param_c {
     /* 80ACB2F0 */ ~daNpc_seiD_Param_c();
 };
 
-struct J3DJoint {};
+struct _GXColorS10 {};
 
 struct J3DAnmTevRegKey {};
+
+struct J3DJoint {};
 
 struct J3DModel {};
 
@@ -99,8 +101,6 @@ struct cXyz {
     /* 80ACA99C */ ~cXyz();
     /* 80ACAF18 */ cXyz();
 };
-
-struct _GXColorS10 {};
 
 struct J3DAnmTextureSRTKey {};
 
@@ -235,12 +235,12 @@ struct dBgS_AcchCir {
     /* 80ACAFAC */ ~dBgS_AcchCir();
 };
 
+struct dBgS {};
+
 struct csXyz {
     /* 80ACA9D8 */ ~csXyz();
     /* 80ACAE18 */ csXyz();
 };
-
-struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -757,7 +757,7 @@ SECTION_RODATA static u8 const m__18daNpc_seiD_Param_c[148] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0x96, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80ACB35C = (void*)(&m__18daNpc_seiD_Param_c);
+COMPILER_STRIP_GATE(80ACB35C, &m__18daNpc_seiD_Param_c);
 
 /* 80AC9728-80AC9968 000188 0240+00 1/1 0/0 0/0 .text            create__12daNpc_seiD_cFv */
 #pragma push
@@ -777,25 +777,25 @@ SECTION_RODATA static u8 const lit_4089[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80ACB3F0 = (void*)(&lit_4089);
+COMPILER_STRIP_GATE(80ACB3F0, &lit_4089);
 
 /* 80ACB3F4-80ACB3F8 000098 0004+00 0/2 0/0 0/0 .rodata          @4090 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4090 = 0x47800000;
-SECTION_DEAD void* const cg_80ACB3F4 = (void*)(&lit_4090);
+SECTION_RODATA static f32 const lit_4090 = 65536.0f;
+COMPILER_STRIP_GATE(80ACB3F4, &lit_4090);
 #pragma pop
 
 /* 80ACB3F8-80ACB3FC 00009C 0004+00 0/2 0/0 0/0 .rodata          @4091 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4091 = 0x3E4CCCCD;
-SECTION_DEAD void* const cg_80ACB3F8 = (void*)(&lit_4091);
+SECTION_RODATA static f32 const lit_4091 = 1.0f / 5.0f;
+COMPILER_STRIP_GATE(80ACB3F8, &lit_4091);
 #pragma pop
 
 /* 80ACB3FC-80ACB400 0000A0 0004+00 2/2 0/0 0/0 .rodata          @4215 */
-SECTION_RODATA static u32 const lit_4215 = 0x3F800000;
-SECTION_DEAD void* const cg_80ACB3FC = (void*)(&lit_4215);
+SECTION_RODATA static f32 const lit_4215 = 1.0f;
+COMPILER_STRIP_GATE(80ACB3FC, &lit_4215);
 
 /* 80AC9968-80AC9AC0 0003C8 0158+00 1/1 0/0 0/0 .text            CreateHeap__12daNpc_seiD_cFv */
 #pragma push
@@ -829,8 +829,8 @@ asm void daNpc_seiD_c::Execute() {
 
 /* ############################################################################################## */
 /* 80ACB400-80ACB404 0000A4 0004+00 1/1 0/0 0/0 .rodata          @4247 */
-SECTION_RODATA static u32 const lit_4247 = 0x42C80000;
-SECTION_DEAD void* const cg_80ACB400 = (void*)(&lit_4247);
+SECTION_RODATA static f32 const lit_4247 = 100.0f;
+COMPILER_STRIP_GATE(80ACB400, &lit_4247);
 
 /* 80AC9B14-80AC9BA8 000574 0094+00 1/1 0/0 0/0 .text            Draw__12daNpc_seiD_cFv */
 #pragma push
@@ -882,8 +882,8 @@ bool daNpc_seiD_c::isDelete() {
 /* 80ACB404-80ACB408 0000A8 0004+00 0/1 0/0 0/0 .rodata          @4292 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4292 = 0xBF800000;
-SECTION_DEAD void* const cg_80ACB404 = (void*)(&lit_4292);
+SECTION_RODATA static f32 const lit_4292 = -1.0f;
+COMPILER_STRIP_GATE(80ACB404, &lit_4292);
 #pragma pop
 
 /* 80AC9C0C-80AC9D5C 00066C 0150+00 1/1 0/0 0/0 .text            reset__12daNpc_seiD_cFv */

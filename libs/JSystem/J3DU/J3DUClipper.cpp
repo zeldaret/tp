@@ -67,7 +67,7 @@ asm void J3DUClipper::init() {
 SECTION_RODATA static u8 const lit_898[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039A948 = (void*)(&lit_898);
+COMPILER_STRIP_GATE(8039A948, &lit_898);
 
 /* 8039A954-8039A960 026FB4 000C+00 0/1 0/0 0/0 .rodata          @899 */
 #pragma push
@@ -75,7 +75,7 @@ SECTION_DEAD void* const cg_8039A948 = (void*)(&lit_898);
 SECTION_RODATA static u8 const lit_899[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039A954 = (void*)(&lit_899);
+COMPILER_STRIP_GATE(8039A954, &lit_899);
 #pragma pop
 
 /* 8039A960-8039A96C 026FC0 000C+00 0/1 0/0 0/0 .rodata          @900 */
@@ -84,7 +84,7 @@ SECTION_DEAD void* const cg_8039A954 = (void*)(&lit_899);
 SECTION_RODATA static u8 const lit_900[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039A960 = (void*)(&lit_900);
+COMPILER_STRIP_GATE(8039A960, &lit_900);
 #pragma pop
 
 /* 8039A96C-8039A978 026FCC 000C+00 0/1 0/0 0/0 .rodata          @901 */
@@ -93,7 +93,7 @@ SECTION_DEAD void* const cg_8039A960 = (void*)(&lit_900);
 SECTION_RODATA static u8 const lit_901[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039A96C = (void*)(&lit_901);
+COMPILER_STRIP_GATE(8039A96C, &lit_901);
 #pragma pop
 
 /* 8039A978-8039A984 026FD8 000C+00 0/1 0/0 0/0 .rodata          @902 */
@@ -102,7 +102,7 @@ SECTION_DEAD void* const cg_8039A96C = (void*)(&lit_901);
 SECTION_RODATA static u8 const lit_902[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039A978 = (void*)(&lit_902);
+COMPILER_STRIP_GATE(8039A978, &lit_902);
 #pragma pop
 
 /* 80455280-80455284 003880 0004+00 1/1 0/0 0/0 .sdata2          @913 */

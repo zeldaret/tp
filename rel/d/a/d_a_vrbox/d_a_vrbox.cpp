@@ -76,11 +76,11 @@ SECTION_RODATA static u8 const lit_3695[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80498990 = (void*)(&lit_3695);
+COMPILER_STRIP_GATE(80498990, &lit_3695);
 
 /* 80498994-80498998 000004 0004+00 1/1 0/0 0/0 .rodata          @3696 */
-SECTION_RODATA static u32 const lit_3696 = 0x3DB851EC;
-SECTION_DEAD void* const cg_80498994 = (void*)(&lit_3696);
+SECTION_RODATA static f32 const lit_3696 = 9.0f / 100.0f;
+COMPILER_STRIP_GATE(80498994, &lit_3696);
 
 /* 80498518-804986B8 000078 01A0+00 1/0 0/0 0/0 .text            daVrbox_Draw__FP11vrbox_class */
 #pragma push

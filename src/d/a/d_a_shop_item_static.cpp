@@ -341,7 +341,7 @@ SECTION_RODATA extern void* const mData__12daShopItem_c[276] = {
     (void*)0x0000000C,
     (void*)NULL,
 };
-SECTION_DEAD void* const cg_803792E8 = (void*)(&mData__12daShopItem_c);
+COMPILER_STRIP_GATE(803792E8, &mData__12daShopItem_c);
 
 /* 80037C24-80037C7C 032564 0058+00 0/0 0/0 1/1 .text CheckShopItemCreateHeap__FP10fopAc_ac_c */
 #pragma push

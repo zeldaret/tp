@@ -23,9 +23,9 @@ struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
 };
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -49,14 +49,14 @@ struct daSetBgObj_c {
     /* 80031870 */ void getArcName(fopAc_ac_c*);
 };
 
-struct cCcD_Obj {};
-
 struct J3DModel {};
 
 struct dBgW {
     /* 8007B970 */ dBgW();
     /* 8007B9C0 */ void Move();
 };
+
+struct cCcD_Obj {};
 
 struct daBgObj_c {
     struct spec_data_c {
@@ -117,9 +117,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -142,9 +142,9 @@ struct dPa_modelEcallBack {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -600,11 +600,11 @@ SECTION_RODATA static u8 const l_cyl_src[68] = {
     0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8045C9B8 = (void*)(&l_cyl_src);
+COMPILER_STRIP_GATE(8045C9B8, &l_cyl_src);
 
 /* 8045C9FC-8045CA00 000044 0004+00 2/2 0/0 0/0 .rodata          @3823 */
-SECTION_RODATA static u32 const lit_3823 = 0x3F000000;
-SECTION_DEAD void* const cg_8045C9FC = (void*)(&lit_3823);
+SECTION_RODATA static f32 const lit_3823 = 0.5f;
+COMPILER_STRIP_GATE(8045C9FC, &lit_3823);
 
 /* 80459BEC-80459D0C 00060C 0120+00 1/1 0/0 0/1 .text            initAtt__9daBgObj_cFv */
 #pragma push
@@ -655,7 +655,7 @@ SECTION_RODATA static u8 const lit_3873[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8045CA00 = (void*)(&lit_3873);
+COMPILER_STRIP_GATE(8045CA00, &lit_3873);
 
 /* 80459E04-80459F14 000824 0110+00 1/1 0/0 0/0 .text settingCullSizeBoxForCo__9daBgObj_cFi */
 #pragma push
@@ -671,15 +671,15 @@ asm void daBgObj_c::settingCullSizeBoxForCo(int param_0) {
 /* 8045CA04-8045CA08 00004C 0004+00 0/1 0/0 0/0 .rodata          @3943 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3943 = 0x4E6E6B28;
-SECTION_DEAD void* const cg_8045CA04 = (void*)(&lit_3943);
+SECTION_RODATA static f32 const lit_3943 = 1000000000.0f;
+COMPILER_STRIP_GATE(8045CA04, &lit_3943);
 #pragma pop
 
 /* 8045CA08-8045CA0C 000050 0004+00 0/1 0/0 0/0 .rodata          @3944 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3944 = 0xCE6E6B28;
-SECTION_DEAD void* const cg_8045CA08 = (void*)(&lit_3944);
+SECTION_RODATA static f32 const lit_3944 = -1000000000.0f;
+COMPILER_STRIP_GATE(8045CA08, &lit_3944);
 #pragma pop
 
 /* 80459F14-8045A0EC 000934 01D8+00 3/3 0/0 0/0 .text settingCullSizeBoxForCull__9daBgObj_cFi */
@@ -850,8 +850,8 @@ asm void daBgObj_c::Create() {
 
 /* ############################################################################################## */
 /* 8045CA0C-8045CA10 000054 0004+00 4/8 0/0 0/0 .rodata          @4076 */
-SECTION_RODATA static u32 const lit_4076 = 0x3F800000;
-SECTION_DEAD void* const cg_8045CA0C = (void*)(&lit_4076);
+SECTION_RODATA static f32 const lit_4076 = 1.0f;
+COMPILER_STRIP_GATE(8045CA0C, &lit_4076);
 
 /* 8045CBFC-8045CC08 -00001 000C+00 0/1 0/0 0/0 .data            @3769 */
 #pragma push
@@ -1218,21 +1218,21 @@ asm void daBgObj_c::set_tri_3() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4502 = 0xFFFFFFFF;
-SECTION_DEAD void* const cg_8045CA10 = (void*)(&lit_4502);
+COMPILER_STRIP_GATE(8045CA10, &lit_4502);
 #pragma pop
 
 /* 8045CA14-8045CA18 00005C 0004+00 0/1 0/0 0/0 .rodata          @4503 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4503 = 0xFFFFFFFF;
-SECTION_DEAD void* const cg_8045CA14 = (void*)(&lit_4503);
+COMPILER_STRIP_GATE(8045CA14, &lit_4503);
 #pragma pop
 
 /* 8045CA18-8045CA1C 000060 0004+00 0/1 0/0 0/0 .rodata          @4560 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4560 = 0x3F666666;
-SECTION_DEAD void* const cg_8045CA18 = (void*)(&lit_4560);
+SECTION_RODATA static f32 const lit_4560 = 9.0f / 10.0f;
+COMPILER_STRIP_GATE(8045CA18, &lit_4560);
 #pragma pop
 
 /* 8045B17C-8045B3A0 001B9C 0224+00 3/3 0/0 0/0 .text            setParticle__9daBgObj_cFv */
@@ -1247,8 +1247,8 @@ asm void daBgObj_c::setParticle() {
 
 /* ############################################################################################## */
 /* 8045CA1C-8045CA20 000064 0004+00 1/4 0/0 0/0 .rodata          @4579 */
-SECTION_RODATA static u32 const lit_4579 = 0xBF800000;
-SECTION_DEAD void* const cg_8045CA1C = (void*)(&lit_4579);
+SECTION_RODATA static f32 const lit_4579 = -1.0f;
+COMPILER_STRIP_GATE(8045CA1C, &lit_4579);
 
 /* 8045B3A0-8045B44C 001DC0 00AC+00 3/3 0/0 0/0 .text            setSe__9daBgObj_cFv */
 #pragma push

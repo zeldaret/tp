@@ -27,11 +27,11 @@ struct dSv_memBit_c {
     /* 80034934 */ void isDungeonItem(int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -169,8 +169,8 @@ static asm void useHeapInit(fopAc_ac_c* param_0) {
 
 /* ############################################################################################## */
 /* 8057CF68-8057CF6C 000000 0004+00 1/1 0/0 0/0 .rodata          @3743 */
-SECTION_RODATA static u32 const lit_3743 = 0x47800000;
-SECTION_DEAD void* const cg_8057CF68 = (void*)(&lit_3743);
+SECTION_RODATA static f32 const lit_3743 = 65536.0f;
+COMPILER_STRIP_GATE(8057CF68, &lit_3743);
 
 /* 8057CF6C-8057CF70 000004 0004+00 0/1 0/0 0/0 .rodata          @3744 */
 #pragma push
@@ -181,14 +181,14 @@ SECTION_RODATA static u8 const lit_3744[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8057CF6C = (void*)(&lit_3744);
+COMPILER_STRIP_GATE(8057CF6C, &lit_3744);
 #pragma pop
 
 /* 8057CF70-8057CF74 000008 0004+00 0/1 0/0 0/0 .rodata          @3745 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3745 = 0xC1F00000;
-SECTION_DEAD void* const cg_8057CF70 = (void*)(&lit_3745);
+SECTION_RODATA static f32 const lit_3745 = -30.0f;
+COMPILER_STRIP_GATE(8057CF70, &lit_3745);
 #pragma pop
 
 /* 8057CDE0-8057CF60 000280 0180+00 1/0 0/0 0/0 .text            daObj_Fmobj_Create__FP10fopAc_ac_c

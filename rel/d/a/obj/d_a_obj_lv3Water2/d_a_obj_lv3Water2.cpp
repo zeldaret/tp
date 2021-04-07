@@ -17,9 +17,9 @@ struct mDoHIO_entry_c {
     /* 80C5A430 */ ~mDoHIO_entry_c();
 };
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -57,13 +57,13 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {
-    /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
-};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {
+    /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
+};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -78,9 +78,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
@@ -115,9 +115,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -384,22 +384,22 @@ asm void daLv3Water2_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 80C5B364-80C5B368 000000 0004+00 3/3 0/0 0/0 .rodata          l_bmdIdx */
 SECTION_RODATA static u32 const l_bmdIdx = 0x00000005;
-SECTION_DEAD void* const cg_80C5B364 = (void*)(&l_bmdIdx);
+COMPILER_STRIP_GATE(80C5B364, &l_bmdIdx);
 
 /* 80C5B368-80C5B36C 000004 0004+00 1/1 0/0 0/0 .rodata          l_dzbIdx */
 SECTION_RODATA static u32 const l_dzbIdx = 0x0000000D;
-SECTION_DEAD void* const cg_80C5B368 = (void*)(&l_dzbIdx);
+COMPILER_STRIP_GATE(80C5B368, &l_dzbIdx);
 
 /* 80C5B36C-80C5B370 000008 0004+00 0/1 0/0 0/0 .rodata          l_btkIdx */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const l_btkIdx = 0x00000009;
-SECTION_DEAD void* const cg_80C5B36C = (void*)(&l_btkIdx);
+COMPILER_STRIP_GATE(80C5B36C, &l_btkIdx);
 #pragma pop
 
 /* 80C5B370-80C5B374 00000C 0004+00 2/5 0/0 0/0 .rodata          @3682 */
-SECTION_RODATA static u32 const lit_3682 = 0x3F800000;
-SECTION_DEAD void* const cg_80C5B370 = (void*)(&lit_3682);
+SECTION_RODATA static f32 const lit_3682 = 1.0f;
+COMPILER_STRIP_GATE(80C5B370, &lit_3682);
 
 /* 80C5A4F8-80C5A5E4 0001D8 00EC+00 1/0 0/0 0/0 .text            CreateHeap__13daLv3Water2_cFv */
 #pragma push
@@ -413,18 +413,18 @@ asm void daLv3Water2_c::CreateHeap() {
 
 /* ############################################################################################## */
 /* 80C5B374-80C5B37C 000010 0004+04 1/2 0/0 0/0 .rodata          @3747 */
-SECTION_RODATA static u32 const lit_3747[1 + 1 /* padding */] = {
-    0x40A00000,
+SECTION_RODATA static f32 const lit_3747[1 + 1 /* padding */] = {
+    5.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
-SECTION_DEAD void* const cg_80C5B374 = (void*)(&lit_3747);
+COMPILER_STRIP_GATE(80C5B374, &lit_3747);
 
 /* 80C5B37C-80C5B384 000018 0008+00 1/2 0/0 0/0 .rodata          @3749 */
 SECTION_RODATA static u8 const lit_3749[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80C5B37C = (void*)(&lit_3749);
+COMPILER_STRIP_GATE(80C5B37C, &lit_3749);
 
 /* 80C5A5E4-80C5A7FC 0002C4 0218+00 1/1 0/0 0/0 .text            create__13daLv3Water2_cFv */
 #pragma push
@@ -490,7 +490,7 @@ asm void daLv3Water2_c::mode_init_levelCtrl() {
 SECTION_RODATA static u8 const lit_3899[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80C5B384 = (void*)(&lit_3899);
+COMPILER_STRIP_GATE(80C5B384, &lit_3899);
 
 /* 80C5ACE4-80C5ADA4 0009C4 00C0+00 1/0 0/0 0/0 .text mode_proc_levelCtrl__13daLv3Water2_cFv */
 #pragma push
@@ -506,8 +506,8 @@ asm void daLv3Water2_c::mode_proc_levelCtrl() {
 /* 80C5B38C-80C5B390 000028 0004+00 0/1 0/0 0/0 .rodata          @3951 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3951 = 0xBC23D70A;
-SECTION_DEAD void* const cg_80C5B38C = (void*)(&lit_3951);
+SECTION_RODATA static f32 const lit_3951 = -1.0f / 100.0f;
+COMPILER_STRIP_GATE(80C5B38C, &lit_3951);
 #pragma pop
 
 /* 80C5B390-80C5B394 00002C 0004+00 0/1 0/0 0/0 .rodata          @3952 */
@@ -519,7 +519,7 @@ SECTION_RODATA static u8 const lit_3952[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80C5B390 = (void*)(&lit_3952);
+COMPILER_STRIP_GATE(80C5B390, &lit_3952);
 #pragma pop
 
 /* 80C5ADA4-80C5AEFC 000A84 0158+00 1/0 0/0 0/0 .text            Draw__13daLv3Water2_cFv */
@@ -546,8 +546,8 @@ asm void daLv3Water2_c::Delete() {
 /* 80C5B394-80C5B398 000030 0004+00 0/1 0/0 0/0 .rodata          @3983 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3983 = 0xBF800000;
-SECTION_DEAD void* const cg_80C5B394 = (void*)(&lit_3983);
+SECTION_RODATA static f32 const lit_3983 = -1.0f;
+COMPILER_STRIP_GATE(80C5B394, &lit_3983);
 #pragma pop
 
 /* 80C5AF3C-80C5B0C0 000C1C 0184+00 2/1 0/0 0/0 .text            eventStart__13daLv3Water2_cFv */

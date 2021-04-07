@@ -117,21 +117,21 @@ static asm void daE_YD_LEAF_Draw(e_yd_leaf_class* param_0) {
 
 /* ############################################################################################## */
 /* 807F81E8-807F81EC 000000 0004+00 3/3 0/0 0/0 .rodata          @3707 */
-SECTION_RODATA static u32 const lit_3707 = 0x3F800000;
-SECTION_DEAD void* const cg_807F81E8 = (void*)(&lit_3707);
+SECTION_RODATA static f32 const lit_3707 = 1.0f;
+COMPILER_STRIP_GATE(807F81E8, &lit_3707);
 
 /* 807F81EC-807F81F0 000004 0004+00 0/1 0/0 0/0 .rodata          @3708 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3708 = 0x3DA3D70A;
-SECTION_DEAD void* const cg_807F81EC = (void*)(&lit_3708);
+SECTION_RODATA static f32 const lit_3708 = 2.0f / 25.0f;
+COMPILER_STRIP_GATE(807F81EC, &lit_3708);
 #pragma pop
 
 /* 807F81F0-807F81F4 000008 0004+00 0/1 0/0 0/0 .rodata          @3709 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3709 = 0x3C23D70A;
-SECTION_DEAD void* const cg_807F81F0 = (void*)(&lit_3709);
+SECTION_RODATA static f32 const lit_3709 = 1.0f / 100.0f;
+COMPILER_STRIP_GATE(807F81F0, &lit_3709);
 #pragma pop
 
 /* 807F7EC0-807F7FEC 000120 012C+00 2/1 0/0 0/0 .text daE_YD_LEAF_Execute__FP15e_yd_leaf_class */

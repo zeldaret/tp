@@ -210,8 +210,8 @@ asm void daTag_Evt_c::destroy() {
 
 /* ############################################################################################## */
 /* 8048C398-8048C39C 000000 0004+00 2/2 0/0 0/0 .rodata          @3784 */
-SECTION_RODATA static u32 const lit_3784 = 0x42C80000;
-SECTION_DEAD void* const cg_8048C398 = (void*)(&lit_3784);
+SECTION_RODATA static f32 const lit_3784 = 100.0f;
+COMPILER_STRIP_GATE(8048C398, &lit_3784);
 
 /* 8048C39C-8048C3A0 000004 0004+00 1/2 0/0 0/0 .rodata          @3785 */
 SECTION_RODATA static u8 const lit_3785[4] = {
@@ -220,7 +220,7 @@ SECTION_RODATA static u8 const lit_3785[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8048C39C = (void*)(&lit_3785);
+COMPILER_STRIP_GATE(8048C39C, &lit_3785);
 
 /* 8048C3A0-8048C3A8 000008 0008+00 0/1 0/0 0/0 .rodata          @3786 */
 #pragma push
@@ -228,7 +228,7 @@ SECTION_DEAD void* const cg_8048C39C = (void*)(&lit_3785);
 SECTION_RODATA static u8 const lit_3786[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8048C3A0 = (void*)(&lit_3786);
+COMPILER_STRIP_GATE(8048C3A0, &lit_3786);
 #pragma pop
 
 /* 8048C3A8-8048C3B0 000010 0008+00 0/1 0/0 0/0 .rodata          @3787 */
@@ -237,7 +237,7 @@ SECTION_DEAD void* const cg_8048C3A0 = (void*)(&lit_3786);
 SECTION_RODATA static u8 const lit_3787[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8048C3A8 = (void*)(&lit_3787);
+COMPILER_STRIP_GATE(8048C3A8, &lit_3787);
 #pragma pop
 
 /* 8048C3B0-8048C3B8 000018 0008+00 0/1 0/0 0/0 .rodata          @3788 */
@@ -246,7 +246,7 @@ SECTION_DEAD void* const cg_8048C3A8 = (void*)(&lit_3787);
 SECTION_RODATA static u8 const lit_3788[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8048C3B0 = (void*)(&lit_3788);
+COMPILER_STRIP_GATE(8048C3B0, &lit_3788);
 #pragma pop
 
 /* 8048BA0C-8048BE44 00016C 0438+00 1/1 0/0 0/0 .text            execute__11daTag_Evt_cFv */
@@ -266,8 +266,8 @@ bool daTag_Evt_c::draw() {
 
 /* ############################################################################################## */
 /* 8048C3B8-8048C3BC 000020 0004+00 1/1 0/0 0/0 .rodata          @3815 */
-SECTION_RODATA static u32 const lit_3815 = 0x41200000;
-SECTION_DEAD void* const cg_8048C3B8 = (void*)(&lit_3815);
+SECTION_RODATA static f32 const lit_3815 = 10.0f;
+COMPILER_STRIP_GATE(8048C3B8, &lit_3815);
 
 /* 8048BE4C-8048BF64 0005AC 0118+00 1/1 0/0 0/0 .text            getParam__11daTag_Evt_cFv */
 #pragma push

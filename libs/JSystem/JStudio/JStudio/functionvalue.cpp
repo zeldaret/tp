@@ -345,7 +345,7 @@ SECTION_RODATA static void* const data_8039A9F0[4] = {
     (void*)extrapolateParameter_turn__Q27JStudio13functionvalueFdd,
     (void*)extrapolateParameter_clamp__Q27JStudio13functionvalueFdd,
 };
-SECTION_DEAD void* const cg_8039A9F0 = (void*)(&data_8039A9F0);
+COMPILER_STRIP_GATE(8039A9F0, &data_8039A9F0);
 
 /* 80281648-80281690 27BF88 0048+00 3/3 1/1 0/0 .text
  * toFunction_outside__Q27JStudio14TFunctionValueFi             */

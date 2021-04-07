@@ -48,11 +48,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -67,9 +67,9 @@ struct dRes_control_c {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -85,9 +85,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -184,34 +184,34 @@ SECTION_RODATA static u8 const lit_3650[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80C86130 = (void*)(&lit_3650);
+COMPILER_STRIP_GATE(80C86130, &lit_3650);
 
 /* 80C86134-80C86138 000004 0004+00 0/1 0/0 0/0 .rodata          @3651 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3651 = 0x3DCCCCCD;
-SECTION_DEAD void* const cg_80C86134 = (void*)(&lit_3651);
+SECTION_RODATA static f32 const lit_3651 = 1.0f / 10.0f;
+COMPILER_STRIP_GATE(80C86134, &lit_3651);
 #pragma pop
 
 /* 80C86138-80C8613C 000008 0004+00 0/1 0/0 0/0 .rodata          @3652 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3652 = 0x3B449BA6;
-SECTION_DEAD void* const cg_80C86138 = (void*)(&lit_3652);
+COMPILER_STRIP_GATE(80C86138, &lit_3652);
 #pragma pop
 
 /* 80C8613C-80C86140 00000C 0004+00 0/4 0/0 0/0 .rodata          @3653 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3653 = 0x3F800000;
-SECTION_DEAD void* const cg_80C8613C = (void*)(&lit_3653);
+SECTION_RODATA static f32 const lit_3653 = 1.0f;
+COMPILER_STRIP_GATE(80C8613C, &lit_3653);
 #pragma pop
 
 /* 80C86140-80C86144 000010 0004+00 0/1 0/0 0/0 .rodata          @3654 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3654 = 0x41A00000;
-SECTION_DEAD void* const cg_80C86140 = (void*)(&lit_3654);
+SECTION_RODATA static f32 const lit_3654 = 20.0f;
+COMPILER_STRIP_GATE(80C86140, &lit_3654);
 #pragma pop
 
 /* 80C86174-80C86180 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -469,36 +469,36 @@ asm void daPropY_c::init_modeMove() {
 /* 80C86144-80C86148 000014 0004+00 0/2 0/0 0/0 .rodata          @3845 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3845 = 0x43B40000;
-SECTION_DEAD void* const cg_80C86144 = (void*)(&lit_3845);
+SECTION_RODATA static f32 const lit_3845 = 360.0f;
+COMPILER_STRIP_GATE(80C86144, &lit_3845);
 #pragma pop
 
 /* 80C86148-80C8614C 000018 0004+00 0/2 0/0 0/0 .rodata          @3846 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3846 = 0x41F00000;
-SECTION_DEAD void* const cg_80C86148 = (void*)(&lit_3846);
+SECTION_RODATA static f32 const lit_3846 = 30.0f;
+COMPILER_STRIP_GATE(80C86148, &lit_3846);
 #pragma pop
 
 /* 80C8614C-80C86150 00001C 0004+00 0/4 0/0 0/0 .rodata          @3847 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3847 = 0x43360B61;
-SECTION_DEAD void* const cg_80C8614C = (void*)(&lit_3847);
+COMPILER_STRIP_GATE(80C8614C, &lit_3847);
 #pragma pop
 
 /* 80C86150-80C86154 000020 0004+00 0/2 0/0 0/0 .rodata          @3848 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3848 = 0x42FE0000;
-SECTION_DEAD void* const cg_80C86150 = (void*)(&lit_3848);
+SECTION_RODATA static f32 const lit_3848 = 127.0f;
+COMPILER_STRIP_GATE(80C86150, &lit_3848);
 #pragma pop
 
 /* 80C86154-80C86158 000024 0004+00 0/3 0/0 0/0 .rodata          @3849 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3849 = 0xBF800000;
-SECTION_DEAD void* const cg_80C86154 = (void*)(&lit_3849);
+SECTION_RODATA static f32 const lit_3849 = -1.0f;
+COMPILER_STRIP_GATE(80C86154, &lit_3849);
 #pragma pop
 
 /* 80C859E0-80C85B08 000660 0128+00 1/0 0/0 0/0 .text            modeMove__9daPropY_cFv */
@@ -558,7 +558,7 @@ asm void daPropY_c::modeMove2() {
 SECTION_RODATA static u8 const lit_3913[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80C86158 = (void*)(&lit_3913);
+COMPILER_STRIP_GATE(80C86158, &lit_3913);
 #pragma pop
 
 /* 80C85CAC-80C85DD0 00092C 0124+00 1/1 0/0 0/0 .text            init_modeStop__9daPropY_cFv */

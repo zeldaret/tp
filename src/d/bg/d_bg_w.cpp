@@ -25,23 +25,13 @@ struct dBgW_Base {
 
 struct dBgS_CaptPoly {};
 
-struct cBgS_PolyInfo {
-    /* 802681A4 */ void SetPolyIndex(int);
-};
-
 struct dBgS_SplGrpChk {};
-
-struct cBgS_GrpPassChk {};
-
-struct dBgS_RoofChk {};
-
-struct dBgS_SphChk {};
-
-struct csXyz {};
 
 struct cM3dGPla {
     /* 8026F57C */ void getCrossY(cXyz const&, f32*) const;
 };
+
+struct cBgS_GrpPassChk {};
 
 struct Vec {};
 
@@ -53,6 +43,16 @@ struct dBgS_Acch {
 };
 
 struct cBgS_PolyPassChk {};
+
+struct dBgS_RoofChk {};
+
+struct cBgS_PolyInfo {
+    /* 802681A4 */ void SetPolyIndex(int);
+};
+
+struct dBgS_SphChk {};
+
+struct csXyz {};
 
 struct dBgW {
     /* 8007B3AC */ void GetExitId(cBgS_PolyInfo const&);
@@ -178,9 +178,9 @@ struct cBgD_t {};
 
 struct cBgS_ShdwDraw {};
 
-struct cBgS_LinChk {};
-
 struct cBgS_GndChk {};
+
+struct cBgS_LinChk {};
 
 struct cBgW {
     /* 80079294 */ cBgW();

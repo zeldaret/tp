@@ -11,16 +11,16 @@
 // Types:
 //
 
-struct JAISoundID {};
-
-struct JAISoundHandle {};
-
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
 };
+
+struct JAISoundHandle {};
+
+struct JAISoundID {};
 
 struct Z2SoundStarter {
     /* 802AAB94 */ Z2SoundStarter(bool);

@@ -94,8 +94,8 @@ extern "C" extern u8 data_805A1F28[4];
 
 /* ############################################################################################## */
 /* 805A1D94-805A1D98 000000 0004+00 2/2 0/0 0/0 .rodata          @3708 */
-SECTION_RODATA static u32 const lit_3708 = 0xC2C80000;
-SECTION_DEAD void* const cg_805A1D94 = (void*)(&lit_3708);
+SECTION_RODATA static f32 const lit_3708 = -100.0f;
+COMPILER_STRIP_GATE(805A1D94, &lit_3708);
 
 /* 805A13F8-805A15DC 000078 01E4+00 1/1 0/0 0/0 .text            hitCheck__FP9daSwc00_c */
 #pragma push
@@ -312,36 +312,36 @@ static asm void daSwc00_Create(fopAc_ac_c* param_0) {
 /* 805A1D98-805A1D9C 000004 0004+00 0/0 0/0 0/0 .rodata          @3991 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3991 = 0x42C80000;
-SECTION_DEAD void* const cg_805A1D98 = (void*)(&lit_3991);
+SECTION_RODATA static f32 const lit_3991 = 100.0f;
+COMPILER_STRIP_GATE(805A1D98, &lit_3991);
 #pragma pop
 
 /* 805A1D9C-805A1DA0 000008 0004+00 0/0 0/0 0/0 .rodata          @3992 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3992 = 0x41F00000;
-SECTION_DEAD void* const cg_805A1D9C = (void*)(&lit_3992);
+SECTION_RODATA static f32 const lit_3992 = 30.0f;
+COMPILER_STRIP_GATE(805A1D9C, &lit_3992);
 #pragma pop
 
 /* 805A1DA0-805A1DA4 00000C 0004+00 0/0 0/0 0/0 .rodata          @3993 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3993 = 0x447A0000;
-SECTION_DEAD void* const cg_805A1DA0 = (void*)(&lit_3993);
+SECTION_RODATA static f32 const lit_3993 = 1000.0f;
+COMPILER_STRIP_GATE(805A1DA0, &lit_3993);
 #pragma pop
 
 /* 805A1DA4-805A1DA8 000010 0004+00 0/0 0/0 0/0 .rodata          @3994 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3994 = 0x41200000;
-SECTION_DEAD void* const cg_805A1DA4 = (void*)(&lit_3994);
+SECTION_RODATA static f32 const lit_3994 = 10.0f;
+COMPILER_STRIP_GATE(805A1DA4, &lit_3994);
 #pragma pop
 
 /* 805A1DA8-805A1DAC 000014 0004+00 0/0 0/0 0/0 .rodata          @3995 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3995 = 0x42480000;
-SECTION_DEAD void* const cg_805A1DA8 = (void*)(&lit_3995);
+SECTION_RODATA static f32 const lit_3995 = 50.0f;
+COMPILER_STRIP_GATE(805A1DA8, &lit_3995);
 #pragma pop
 
 /* 805A1ED4-805A1EF4 -00001 0020+00 1/0 0/0 0/0 .data            l_daSwc00_Method */

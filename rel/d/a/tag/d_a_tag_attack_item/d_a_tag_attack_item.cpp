@@ -11,11 +11,11 @@
 // Types:
 //
 
+struct cXyz {};
+
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
-
-struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -180,12 +180,12 @@ asm void daTagAtkItem_c::setBaseMtx() {
 
 /* ############################################################################################## */
 /* 805A32C8-805A32CC 000000 0004+00 2/2 0/0 0/0 .rodata          @3657 */
-SECTION_RODATA static u32 const lit_3657 = 0x42480000;
-SECTION_DEAD void* const cg_805A32C8 = (void*)(&lit_3657);
+SECTION_RODATA static f32 const lit_3657 = 50.0f;
+COMPILER_STRIP_GATE(805A32C8, &lit_3657);
 
 /* 805A32CC-805A32D0 000004 0004+00 1/2 0/0 0/0 .rodata          @3658 */
-SECTION_RODATA static u32 const lit_3658 = 0x42C80000;
-SECTION_DEAD void* const cg_805A32CC = (void*)(&lit_3658);
+SECTION_RODATA static f32 const lit_3658 = 100.0f;
+COMPILER_STRIP_GATE(805A32CC, &lit_3658);
 
 /* 805A32F4-805A3338 000000 0044+00 1/1 0/0 0/0 .data            l_cyl_src */
 SECTION_DATA static u8 l_cyl_src[68] = {
@@ -377,7 +377,7 @@ SECTION_RODATA static u8 const lit_3859[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_805A32D0 = (void*)(&lit_3859);
+COMPILER_STRIP_GATE(805A32D0, &lit_3859);
 #pragma pop
 
 /* 805A32D8-805A32E0 000010 0008+00 0/1 0/0 0/0 .rodata          @3860 */
@@ -386,7 +386,7 @@ SECTION_DEAD void* const cg_805A32D0 = (void*)(&lit_3859);
 SECTION_RODATA static u8 const lit_3860[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_805A32D8 = (void*)(&lit_3860);
+COMPILER_STRIP_GATE(805A32D8, &lit_3860);
 #pragma pop
 
 /* 805A32E0-805A32E8 000018 0008+00 0/1 0/0 0/0 .rodata          @3861 */
@@ -395,7 +395,7 @@ SECTION_DEAD void* const cg_805A32D8 = (void*)(&lit_3860);
 SECTION_RODATA static u8 const lit_3861[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_805A32E0 = (void*)(&lit_3861);
+COMPILER_STRIP_GATE(805A32E0, &lit_3861);
 #pragma pop
 
 /* 805A32E8-805A32F0 000020 0008+00 0/1 0/0 0/0 .rodata          @3862 */
@@ -404,7 +404,7 @@ SECTION_DEAD void* const cg_805A32E0 = (void*)(&lit_3861);
 SECTION_RODATA static u8 const lit_3862[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_805A32E8 = (void*)(&lit_3862);
+COMPILER_STRIP_GATE(805A32E8, &lit_3862);
 #pragma pop
 
 /* 805A2D58-805A2F54 000478 01FC+00 1/1 0/0 0/0 .text            checkHit__14daTagAtkItem_cFv */
@@ -419,8 +419,8 @@ asm void daTagAtkItem_c::checkHit() {
 
 /* ############################################################################################## */
 /* 805A32F0-805A32F4 000028 0004+00 1/1 0/0 0/0 .rodata          @3898 */
-SECTION_RODATA static u32 const lit_3898 = 0x46FFFE00;
-SECTION_DEAD void* const cg_805A32F0 = (void*)(&lit_3898);
+SECTION_RODATA static f32 const lit_3898 = 32767.0f;
+COMPILER_STRIP_GATE(805A32F0, &lit_3898);
 
 /* 805A2F54-805A3038 000674 00E4+00 2/2 0/0 0/0 .text            createItem__14daTagAtkItem_cFv */
 #pragma push

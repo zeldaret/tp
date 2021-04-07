@@ -19,9 +19,9 @@ struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
 };
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -45,9 +45,9 @@ struct daObjOnsen_c {
     /* 80CA8008 */ void Delete();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -62,9 +62,9 @@ struct dRes_control_c {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -183,7 +183,7 @@ asm void daObjOnsen_c::Create() {
 SECTION_RODATA static u8 const l_bmd[8] = {
     0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x05,
 };
-SECTION_DEAD void* const cg_80CA811C = (void*)(&l_bmd);
+COMPILER_STRIP_GATE(80CA811C, &l_bmd);
 
 /* 80CA8124-80CA812C 000008 0008+00 0/1 0/0 0/0 .rodata          l_btk */
 #pragma push
@@ -191,7 +191,7 @@ SECTION_DEAD void* const cg_80CA811C = (void*)(&l_bmd);
 SECTION_RODATA static u8 const l_btk[8] = {
     0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x09,
 };
-SECTION_DEAD void* const cg_80CA8124 = (void*)(&l_btk);
+COMPILER_STRIP_GATE(80CA8124, &l_btk);
 #pragma pop
 
 /* 80CA812C-80CA8134 000010 0008+00 0/1 0/0 0/0 .rodata          l_bmd2 */
@@ -200,26 +200,26 @@ SECTION_DEAD void* const cg_80CA8124 = (void*)(&l_btk);
 SECTION_RODATA static u8 const l_bmd2[8] = {
     0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x06,
 };
-SECTION_DEAD void* const cg_80CA812C = (void*)(&l_bmd2);
+COMPILER_STRIP_GATE(80CA812C, &l_bmd2);
 #pragma pop
 
 /* 80CA8134-80CA813C 000018 0008+00 1/1 0/0 0/0 .rodata          l_dzb */
 SECTION_RODATA static u8 const l_dzb[8] = {
     0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x0C,
 };
-SECTION_DEAD void* const cg_80CA8134 = (void*)(&l_dzb);
+COMPILER_STRIP_GATE(80CA8134, &l_dzb);
 
 /* 80CA813C-80CA8144 000020 0008+00 1/1 0/0 0/0 .rodata          l_heap_size */
 SECTION_RODATA static u8 const l_heap_size[8] = {
     0x00, 0x00, 0x28, 0x00, 0x00, 0x00, 0x1A, 0xE0,
 };
-SECTION_DEAD void* const cg_80CA813C = (void*)(&l_heap_size);
+COMPILER_STRIP_GATE(80CA813C, &l_heap_size);
 
 /* 80CA8144-80CA8148 000028 0004+00 0/1 0/0 0/0 .rodata          @3694 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3694 = 0x3F800000;
-SECTION_DEAD void* const cg_80CA8144 = (void*)(&lit_3694);
+SECTION_RODATA static f32 const lit_3694 = 1.0f;
+COMPILER_STRIP_GATE(80CA8144, &lit_3694);
 #pragma pop
 
 /* 80CA815C-80CA8164 -00001 0008+00 3/3 0/0 0/0 .data            l_arcName */

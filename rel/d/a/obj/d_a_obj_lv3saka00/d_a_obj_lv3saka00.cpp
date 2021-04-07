@@ -45,11 +45,11 @@ struct dBgW {
     /* 8007B9C0 */ void Move();
 };
 
-struct csXyz {};
+struct cXyz {};
 
 struct cBgS_PolyInfo {};
 
-struct cXyz {};
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -173,13 +173,13 @@ asm void daObjLv3saka_c::Create() {
 SECTION_RODATA static u8 const l_dzbIdx[8] = {
     0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x03,
 };
-SECTION_DEAD void* const cg_80C5C3C4 = (void*)(&l_dzbIdx);
+COMPILER_STRIP_GATE(80C5C3C4, &l_dzbIdx);
 
 /* 80C5C3CC-80C5C3D4 000008 0008+00 1/1 0/0 0/0 .rodata          l_dzbIdx2 */
 SECTION_RODATA static u8 const l_dzbIdx2[8] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04,
 };
-SECTION_DEAD void* const cg_80C5C3CC = (void*)(&l_dzbIdx2);
+COMPILER_STRIP_GATE(80C5C3CC, &l_dzbIdx2);
 
 /* 80C5C3F0-80C5C3F8 -00001 0008+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName[2] = {
@@ -202,7 +202,7 @@ asm void daObjLv3saka_c::CreateHeap() {
 SECTION_RODATA static u8 const l_heap_size[8] = {
     0x00, 0x00, 0x4E, 0x00, 0x00, 0x00, 0x29, 0x00,
 };
-SECTION_DEAD void* const cg_80C5C3D4 = (void*)(&l_heap_size);
+COMPILER_STRIP_GATE(80C5C3D4, &l_heap_size);
 
 /* 80C5C058-80C5C0FC 000278 00A4+00 1/1 0/0 0/0 .text            create1st__14daObjLv3saka_cFv */
 #pragma push

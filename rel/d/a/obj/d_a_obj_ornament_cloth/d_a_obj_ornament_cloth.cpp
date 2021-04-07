@@ -29,9 +29,9 @@ struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
 };
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -52,9 +52,9 @@ struct daObjOnCloth_c {
     /* 80595638 */ void checkPlayerMove();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -174,41 +174,41 @@ SECTION_RODATA static u8 const M_attr__14daObjOnCloth_c[48] = {
     0x3E, 0x99, 0x99, 0x9A, 0x43, 0x16, 0x00, 0x00, 0x41, 0x60, 0x00, 0x00, 0x3D, 0xA3, 0xD7, 0x0A,
     0x3F, 0x4C, 0xCC, 0xCD, 0x00, 0x40, 0x04, 0x31, 0x04, 0x31, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80595CB4 = (void*)(&M_attr__14daObjOnCloth_c);
+COMPILER_STRIP_GATE(80595CB4, &M_attr__14daObjOnCloth_c);
 
 /* 80595CE4-80595CE8 000030 0004+00 0/1 0/0 0/0 .rodata          @3671 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3671 = 0xC2480000;
-SECTION_DEAD void* const cg_80595CE4 = (void*)(&lit_3671);
+SECTION_RODATA static f32 const lit_3671 = -50.0f;
+COMPILER_STRIP_GATE(80595CE4, &lit_3671);
 #pragma pop
 
 /* 80595CE8-80595CEC 000034 0004+00 0/1 0/0 0/0 .rodata          @3672 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3672 = 0xC32A0000;
-SECTION_DEAD void* const cg_80595CE8 = (void*)(&lit_3672);
+SECTION_RODATA static f32 const lit_3672 = -170.0f;
+COMPILER_STRIP_GATE(80595CE8, &lit_3672);
 #pragma pop
 
 /* 80595CEC-80595CF0 000038 0004+00 0/1 0/0 0/0 .rodata          @3673 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3673 = 0x42480000;
-SECTION_DEAD void* const cg_80595CEC = (void*)(&lit_3673);
+SECTION_RODATA static f32 const lit_3673 = 50.0f;
+COMPILER_STRIP_GATE(80595CEC, &lit_3673);
 #pragma pop
 
 /* 80595CF0-80595CF4 00003C 0004+00 0/1 0/0 0/0 .rodata          @3674 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3674 = 0x41A00000;
-SECTION_DEAD void* const cg_80595CF0 = (void*)(&lit_3674);
+SECTION_RODATA static f32 const lit_3674 = 20.0f;
+COMPILER_STRIP_GATE(80595CF0, &lit_3674);
 #pragma pop
 
 /* 80595CF4-80595CF8 000040 0004+00 0/2 0/0 0/0 .rodata          @3675 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3675 = 0xBF800000;
-SECTION_DEAD void* const cg_80595CF4 = (void*)(&lit_3675);
+SECTION_RODATA static f32 const lit_3675 = -1.0f;
+COMPILER_STRIP_GATE(80595CF4, &lit_3675);
 #pragma pop
 
 /* 80595CF8-80595CFC 000044 0004+00 1/4 0/0 0/0 .rodata          @3676 */
@@ -218,7 +218,7 @@ SECTION_RODATA static u8 const lit_3676[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80595CF8 = (void*)(&lit_3676);
+COMPILER_STRIP_GATE(80595CF8, &lit_3676);
 
 /* 80595CFC-80595D04 000048 0008+00 0/1 0/0 0/0 .rodata          @3678 */
 #pragma push
@@ -226,7 +226,7 @@ SECTION_DEAD void* const cg_80595CF8 = (void*)(&lit_3676);
 SECTION_RODATA static u8 const lit_3678[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80595CFC = (void*)(&lit_3678);
+COMPILER_STRIP_GATE(80595CFC, &lit_3678);
 #pragma pop
 
 /* 80595038-80595158 000078 0120+00 1/1 0/0 0/0 .text            create_init__14daObjOnCloth_cFv */
@@ -266,7 +266,7 @@ asm void daObjOnCloth_c::setBaseMtx() {
 SECTION_RODATA static u8 const lit_3785[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80595D04 = (void*)(&lit_3785);
+COMPILER_STRIP_GATE(80595D04, &lit_3785);
 #pragma pop
 
 /* 80595D0C-80595D14 000058 0008+00 0/1 0/0 0/0 .rodata          @3786 */
@@ -275,7 +275,7 @@ SECTION_DEAD void* const cg_80595D04 = (void*)(&lit_3785);
 SECTION_RODATA static u8 const lit_3786[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80595D0C = (void*)(&lit_3786);
+COMPILER_STRIP_GATE(80595D0C, &lit_3786);
 #pragma pop
 
 /* 80595D14-80595D1C 000060 0008+00 0/1 0/0 0/0 .rodata          @3787 */
@@ -284,21 +284,21 @@ SECTION_DEAD void* const cg_80595D0C = (void*)(&lit_3786);
 SECTION_RODATA static u8 const lit_3787[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80595D14 = (void*)(&lit_3787);
+COMPILER_STRIP_GATE(80595D14, &lit_3787);
 #pragma pop
 
 /* 80595D1C-80595D20 000068 0004+00 0/1 0/0 0/0 .rodata          @3788 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3788 = 0x3F19999A;
-SECTION_DEAD void* const cg_80595D1C = (void*)(&lit_3788);
+SECTION_RODATA static f32 const lit_3788 = 3.0f / 5.0f;
+COMPILER_STRIP_GATE(80595D1C, &lit_3788);
 #pragma pop
 
 /* 80595D20-80595D24 00006C 0004+00 0/1 0/0 0/0 .rodata          @3789 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3789 = 0x3DCCCCCD;
-SECTION_DEAD void* const cg_80595D20 = (void*)(&lit_3789);
+SECTION_RODATA static f32 const lit_3789 = 1.0f / 10.0f;
+COMPILER_STRIP_GATE(80595D20, &lit_3789);
 #pragma pop
 
 /* 805951DC-805954B0 00021C 02D4+00 1/1 0/0 0/0 .text setNormalClothPos__14daObjOnCloth_cFv */
@@ -315,19 +315,19 @@ asm void daObjOnCloth_c::setNormalClothPos() {
 /* 80595D24-80595D2C 000070 0004+04 0/1 0/0 0/0 .rodata          @3832 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3832[1 + 1 /* padding */] = {
-    0x40800000,
+SECTION_RODATA static f32 const lit_3832[1 + 1 /* padding */] = {
+    4.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
-SECTION_DEAD void* const cg_80595D24 = (void*)(&lit_3832);
+COMPILER_STRIP_GATE(80595D24, &lit_3832);
 #pragma pop
 
 /* 80595D2C-80595D34 000078 0008+00 1/2 0/0 0/0 .rodata          @3834 */
 SECTION_RODATA static u8 const lit_3834[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80595D2C = (void*)(&lit_3834);
+COMPILER_STRIP_GATE(80595D2C, &lit_3834);
 
 /* 805954B0-80595638 0004F0 0188+00 1/1 0/0 0/0 .text            calcJointAngle__14daObjOnCloth_cFv
  */
@@ -363,8 +363,8 @@ static asm void nodeCallBack(J3DJoint* param_0, int param_1) {
 
 /* ############################################################################################## */
 /* 80595D34-80595D38 000080 0004+00 1/1 0/0 0/0 .rodata          @3973 */
-SECTION_RODATA static u32 const lit_3973 = 0x3F800000;
-SECTION_DEAD void* const cg_80595D34 = (void*)(&lit_3973);
+SECTION_RODATA static f32 const lit_3973 = 1.0f;
+COMPILER_STRIP_GATE(80595D34, &lit_3973);
 
 /* 80595D60-80595D64 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_ornament_cloth__stringBase0;

@@ -31,6 +31,8 @@ struct renderingPlusDoorAndCursor_c {
     /* 80040ADC */ void getIconPosition(dTres_c::typeGroupData_c*) const;
 };
 
+struct Vec {};
+
 struct dDrawPath_c {
     struct room_class {};
 
@@ -48,8 +50,6 @@ struct dDrawPath_c {
     /* 8003C94C */ void rendering(dDrawPath_c::line_class const*);
     /* 8003CCC4 */ void drawPath();
 };
-
-struct Vec {};
 
 struct renderingDAmap_c {
     /* 8002B150 */ ~renderingDAmap_c();
@@ -342,10 +342,10 @@ extern "C" extern u8 sincosTable___5JMath[65536];
 extern "C" extern u32 mNextRoomNo__10dMapInfo_c;
 extern "C" extern u8 data_80450E58[4];
 extern "C" extern u8 data_80450E60[4];
-extern "C" extern u8 mMinX__8dMpath_c[4];
-extern "C" extern u8 mMaxX__8dMpath_c[4];
-extern "C" extern u8 mMinZ__8dMpath_c[4];
-extern "C" extern u8 mMaxZ__8dMpath_c[4];
+extern "C" extern f32 mMinX__8dMpath_c;
+extern "C" extern f32 mMaxX__8dMpath_c;
+extern "C" extern f32 mMinZ__8dMpath_c;
+extern "C" extern f32 mMaxZ__8dMpath_c;
 
 //
 // Declarations:
@@ -360,7 +360,7 @@ SECTION_RODATA static u8 const l_iconSize[68] = {
     0xD7, 0x0A, 0x3D, 0xA3, 0xD7, 0x0A, 0x3D, 0xA3, 0xD7, 0x0A, 0x3D, 0xA3, 0xD7, 0x0A,
     0x3D, 0xA3, 0xD7, 0x0A, 0x3D, 0xA3, 0xD7, 0x0A, 0x3D, 0xA3, 0xD7, 0x0A,
 };
-SECTION_DEAD void* const cg_80378E48 = (void*)(&l_iconSize);
+COMPILER_STRIP_GATE(80378E48, &l_iconSize);
 
 /* 800284BC-800284D0 022DFC 0014+00 2/0 0/0 0/0 .text            getIconSize__15renderingAmap_cCFUc
  */
@@ -628,7 +628,7 @@ SECTION_RODATA static u8 const l_dungeon_offColor[36] = {
     0x04, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00,
     0x1C, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x24, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80378E8C = (void*)(&l_dungeon_offColor);
+COMPILER_STRIP_GATE(80378E8C, &l_dungeon_offColor);
 #pragma pop
 
 /* 80378EB0-80378ED4 005510 0024+00 0/1 0/0 0/0 .rodata          l_dungeon_onColor$3938 */
@@ -639,7 +639,7 @@ SECTION_RODATA static u8 const l_dungeon_onColor[36] = {
     0x04, 0x00, 0x00, 0x00, 0x34, 0x00, 0x00, 0x00, 0x38, 0x00, 0x00, 0x00,
     0x3C, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x44, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80378EB0 = (void*)(&l_dungeon_onColor);
+COMPILER_STRIP_GATE(80378EB0, &l_dungeon_onColor);
 #pragma pop
 
 /* 80378ED4-80378EF8 005534 0024+00 0/1 0/0 0/0 .rodata          l_dungeon_stayColor$3939 */
@@ -650,7 +650,7 @@ SECTION_RODATA static u8 const l_dungeon_stayColor[36] = {
     0x04, 0x00, 0x00, 0x00, 0x54, 0x00, 0x00, 0x00, 0x58, 0x00, 0x00, 0x00,
     0x5C, 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00, 0x64, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80378ED4 = (void*)(&l_dungeon_stayColor);
+COMPILER_STRIP_GATE(80378ED4, &l_dungeon_stayColor);
 #pragma pop
 
 /* 80028DF4-80028EE4 023734 00F0+00 1/0 0/0 0/0 .text            getColor__6dMap_cFi */
@@ -709,7 +709,7 @@ asm void renderingAmap_c::getLineColor(int param_0, int param_1) {
 SECTION_RODATA static u8 const colorTable[16] = {
     0xBC, 0x00, 0x00, 0x00, 0xC0, 0x00, 0x00, 0x00, 0xC4, 0x00, 0x00, 0x00, 0xC8, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80378EF8 = (void*)(&colorTable);
+COMPILER_STRIP_GATE(80378EF8, &colorTable);
 
 /* 80028FB4-80029038 0238F4 0084+00 2/0 0/0 0/0 .text getDecoLineColor__15renderingAmap_cFii */
 #pragma push
@@ -797,7 +797,7 @@ SECTION_RODATA static u8 const l_stayType[28] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80378F08 = (void*)(&l_stayType);
+COMPILER_STRIP_GATE(80378F08, &l_stayType);
 
 /* 80029160-80029190 023AA0 0030+00 7/7 0/0 0/0 .text            getStayType__15renderingAmap_cCFv
  */

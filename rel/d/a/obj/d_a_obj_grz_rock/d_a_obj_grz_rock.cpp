@@ -32,11 +32,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -52,9 +52,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -237,20 +237,20 @@ asm void daObjGrzRock_c::setRoomNo() {
 SECTION_RODATA static u8 const l_prticles_id[12] = {
     0x89, 0xC2, 0x89, 0xC3, 0x89, 0xC4, 0x89, 0xC5, 0x89, 0xC6, 0x89, 0xC7,
 };
-SECTION_DEAD void* const cg_80C15360 = (void*)(&l_prticles_id);
+COMPILER_STRIP_GATE(80C15360, &l_prticles_id);
 
 /* 80C1536C-80C15370 00000C 0004+00 0/1 0/0 0/0 .rodata          @3849 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3849 = 0x3F59999A;
-SECTION_DEAD void* const cg_80C1536C = (void*)(&lit_3849);
+SECTION_RODATA static f32 const lit_3849 = 17.0f / 20.0f;
+COMPILER_STRIP_GATE(80C1536C, &lit_3849);
 #pragma pop
 
 /* 80C15370-80C15374 000010 0004+00 0/1 0/0 0/0 .rodata          @3850 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3850 = 0x3F800000;
-SECTION_DEAD void* const cg_80C15370 = (void*)(&lit_3850);
+SECTION_RODATA static f32 const lit_3850 = 1.0f;
+COMPILER_STRIP_GATE(80C15370, &lit_3850);
 #pragma pop
 
 /* 80C14CF0-80C14DA0 000190 00B0+00 1/1 0/0 0/0 .text            setPrtcl__14daObjGrzRock_cFv */
@@ -271,7 +271,7 @@ SECTION_RODATA static u8 const lit_3886[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80C15374 = (void*)(&lit_3886);
+COMPILER_STRIP_GATE(80C15374, &lit_3886);
 
 /* 80C14DA0-80C14EE0 000240 0140+00 1/0 0/0 0/0 .text            Create__14daObjGrzRock_cFv */
 #pragma push

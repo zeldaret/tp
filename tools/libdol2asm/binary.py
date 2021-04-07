@@ -27,9 +27,11 @@ def analyze(context: Context,
     cache_path = Path(f"build/generate/analyze_cache_{module_id}.dump")
     if cache and cache_path.exists():
         with cache_path.open('rb') as input:
-            return pickle.load(input)
+            access, highLink = pickle.load(input)
+            return access, highLink
 
     accesses = dict()
+    highLink = dict()
     for section in sections:
         for start, stop in section.code_segments:
             size = stop - start
@@ -40,10 +42,10 @@ def analyze(context: Context,
                 pass
 
             accesses.update(collector.accesses)
-
+            highLink.update(collector.highLink)
     if cache:
         util._create_dirs_for_file(cache_path)
         with cache_path.open('wb') as output:
-            pickle.dump(accesses, output)
+            pickle.dump((accesses,highLink,), output)
 
-    return accesses
+    return accesses, highLink

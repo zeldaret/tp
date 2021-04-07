@@ -13,11 +13,11 @@
 
 struct request_of_phase_process_class {};
 
+struct cXyz {};
+
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
-
-struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -40,9 +40,9 @@ struct daObjIBone_c {
     /* 80C28050 */ void _delete();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -119,9 +119,9 @@ struct Z2SoundObjBase {
     /* 802BE4A4 */ void startCollisionSE(u32, u32, Z2SoundObjBase*);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -255,7 +255,7 @@ SECTION_RODATA static u8 const l_cyl_src[68] = {
     0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x43, 0x0C, 0x00, 0x00, 0x42, 0x8C, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80C28120 = (void*)(&l_cyl_src);
+COMPILER_STRIP_GATE(80C28120, &l_cyl_src);
 
 /* 80C28164-80C281A8 000044 0044+00 0/1 0/0 0/0 .rodata          l_cyl_src2 */
 #pragma push
@@ -267,16 +267,16 @@ SECTION_RODATA static u8 const l_cyl_src2[68] = {
     0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x43, 0x0C, 0x00, 0x00, 0x42, 0x8C, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80C28164 = (void*)(&l_cyl_src2);
+COMPILER_STRIP_GATE(80C28164, &l_cyl_src2);
 #pragma pop
 
 /* 80C281A8-80C281AC 000088 0004+00 1/2 0/0 0/0 .rodata          @3693 */
-SECTION_RODATA static u32 const lit_3693 = 0x42C80000;
-SECTION_DEAD void* const cg_80C281A8 = (void*)(&lit_3693);
+SECTION_RODATA static f32 const lit_3693 = 100.0f;
+COMPILER_STRIP_GATE(80C281A8, &lit_3693);
 
 /* 80C281AC-80C281B0 00008C 0004+00 1/2 0/0 0/0 .rodata          @3694 */
-SECTION_RODATA static u32 const lit_3694 = 0x43700000;
-SECTION_DEAD void* const cg_80C281AC = (void*)(&lit_3694);
+SECTION_RODATA static f32 const lit_3694 = 240.0f;
+COMPILER_STRIP_GATE(80C281AC, &lit_3694);
 
 /* 80C27780-80C27810 000140 0090+00 1/1 0/0 0/0 .text            s_boar_sub__FPvPv */
 #pragma push
@@ -322,8 +322,8 @@ asm void daObjIBone_c::setBaseMtx() {
 /* 80C281B0-80C281B4 000090 0004+00 0/1 0/0 0/0 .rodata          @3738 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3738 = 0x3FACCCCD;
-SECTION_DEAD void* const cg_80C281B0 = (void*)(&lit_3738);
+SECTION_RODATA static f32 const lit_3738 = 27.0f / 20.0f;
+COMPILER_STRIP_GATE(80C281B0, &lit_3738);
 #pragma pop
 
 /* 80C278CC-80C279A8 00028C 00DC+00 1/1 0/0 0/0 .text            Create__12daObjIBone_cFv */
@@ -430,7 +430,7 @@ SECTION_RODATA static u8 const lit_3926[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80C281B4 = (void*)(&lit_3926);
+COMPILER_STRIP_GATE(80C281B4, &lit_3926);
 #pragma pop
 
 /* 80C27C4C-80C27E48 00060C 01FC+00 1/1 0/0 0/0 .text            execute__12daObjIBone_cFv */
@@ -454,21 +454,21 @@ SECTION_RODATA static u8 const particle_id[2 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80C281B8 = (void*)(&particle_id);
+COMPILER_STRIP_GATE(80C281B8, &particle_id);
 #pragma pop
 
 /* 80C281BC-80C281C0 00009C 0004+00 0/1 0/0 0/0 .rodata          @3963 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3963 = 0x3F800000;
-SECTION_DEAD void* const cg_80C281BC = (void*)(&lit_3963);
+SECTION_RODATA static f32 const lit_3963 = 1.0f;
+COMPILER_STRIP_GATE(80C281BC, &lit_3963);
 #pragma pop
 
 /* 80C281C0-80C281C4 0000A0 0004+00 0/1 0/0 0/0 .rodata          @3964 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3964 = 0xBF800000;
-SECTION_DEAD void* const cg_80C281C0 = (void*)(&lit_3964);
+SECTION_RODATA static f32 const lit_3964 = -1.0f;
+COMPILER_STRIP_GATE(80C281C0, &lit_3964);
 #pragma pop
 
 /* 80C27E48-80C27FEC 000808 01A4+00 1/1 0/0 0/0 .text            setBreakEffect__12daObjIBone_cFv */

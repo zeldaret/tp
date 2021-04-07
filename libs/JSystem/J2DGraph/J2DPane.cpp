@@ -56,28 +56,28 @@ struct JGeometry {
 
 struct J2DRotateAxis {};
 
-struct J2DAnmBase {};
+struct J2DBasePosition {};
+
+struct J2DAnmVtxColor {};
+
+struct J2DAnmTextureSRTKey {};
 
 struct J2DAnmColor {};
+
+struct J2DAnmBase {};
+
+struct J2DAnmTevRegKey {};
+
+struct J2DAnmTransform {};
 
 struct J2DGrafContext {
     /* 802E8E20 */ void setScissor();
     /* 802E90C0 */ void scissor(JGeometry::TBox2<f32> const&);
 };
 
-struct J2DAnmVisibilityFull {};
-
-struct J2DAnmTransform {};
-
-struct J2DAnmTevRegKey {};
-
-struct J2DBasePosition {};
-
-struct J2DAnmTextureSRTKey {};
-
-struct J2DAnmVtxColor {};
-
 struct J2DAnmTexPattern {};
+
+struct J2DAnmVisibilityFull {};
 
 struct J2DPane {
     /* 80020158 */ void setAlpha(u8);
@@ -524,7 +524,7 @@ asm void J2DPane::resize(f32 param_0, f32 param_1) {
 
 /* ############################################################################################## */
 /* 804349B0-804349C0 0616D0 0010+00 2/2 0/0 0/0 .bss             static_mBounds__7J2DPane */
-static u8 static_mBounds__7J2DPane[16];
+static f32 static_mBounds__7J2DPane[4];
 
 /* 802F7100-802F71DC 2F1A40 00DC+00 0/0 25/25 1/1 .text            getBounds__7J2DPaneFv */
 #pragma push

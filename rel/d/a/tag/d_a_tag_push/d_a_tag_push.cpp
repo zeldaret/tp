@@ -118,8 +118,8 @@ asm void daTag_Push_c::srchActor(void* param_0, void* param_1) {
 
 /* ############################################################################################## */
 /* 8049094C-80490950 000000 0004+00 1/1 0/0 0/0 .rodata          @3887 */
-SECTION_RODATA static u32 const lit_3887 = 0x42C80000;
-SECTION_DEAD void* const cg_8049094C = (void*)(&lit_3887);
+SECTION_RODATA static f32 const lit_3887 = 100.0f;
+COMPILER_STRIP_GATE(8049094C, &lit_3887);
 
 /* 80490978-80490998 -00001 0020+00 1/0 0/0 0/0 .data            daTag_Push_MethodTable */
 SECTION_DATA static void* daTag_Push_MethodTable[8] = {

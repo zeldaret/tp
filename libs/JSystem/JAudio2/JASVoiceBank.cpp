@@ -44,7 +44,7 @@ SECTION_RODATA static u8 const sOscData__12JASVoiceBank[24] = {
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039B1B8 = (void*)(&sOscData__12JASVoiceBank);
+COMPILER_STRIP_GATE(8039B1B8, &sOscData__12JASVoiceBank);
 
 /* 80451268-80451270 000768 0004+04 1/1 0/0 0/0 .sbss            sOscTable__12JASVoiceBank */
 static u8 sOscTable__12JASVoiceBank[4 + 4 /* padding */];

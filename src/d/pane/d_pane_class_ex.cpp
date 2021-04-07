@@ -35,11 +35,11 @@ struct J2DPicture {
     /* 8025603C */ bool getMaterial() const;
 };
 
-struct J2DAnmVtxColor {};
+struct J2DAnmTexPattern {};
 
 struct J2DAnmVisibilityFull {};
 
-struct J2DAnmTexPattern {};
+struct J2DAnmVtxColor {};
 
 struct J2DPane {
     /* 80256018 */ void setAnimation(J2DAnmVtxColor*);

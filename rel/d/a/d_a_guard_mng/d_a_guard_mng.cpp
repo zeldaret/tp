@@ -82,11 +82,11 @@ static asm void s_sub(void* param_0, void* param_1) {
 SECTION_RODATA static u8 const data_80837DE4[8] = {
     0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x02, 0x01,
 };
-SECTION_DEAD void* const cg_80837DE4 = (void*)(&data_80837DE4);
+COMPILER_STRIP_GATE(80837DE4, &data_80837DE4);
 
 /* 80837DEC-80837DF0 000008 0004+00 1/1 0/0 0/0 .rodata          @3663 */
-SECTION_RODATA static u32 const lit_3663 = 0x4E6E6B28;
-SECTION_DEAD void* const cg_80837DEC = (void*)(&lit_3663);
+SECTION_RODATA static f32 const lit_3663 = 1000000000.0f;
+COMPILER_STRIP_GATE(80837DEC, &lit_3663);
 
 /* 80837B9C-80837BEC 0000FC 0050+00 1/1 0/0 0/0 .text            checkMerchantNum__12daGuardMng_cFv
  */

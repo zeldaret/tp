@@ -50,11 +50,11 @@ extern u8 sincosTable___5JMath[65536];
 u8 sincosTable___5JMath[65536];
 
 /* 80449A20-8044AA40 076740 1020+00 1/1 0/0 0/0 .bss             atanTable___5JMath */
-static u8 atanTable___5JMath[4128];
+static f32 atanTable___5JMath[1032];
 
 /* 8044AA40-8044BA60 077760 1020+00 1/1 1/1 0/0 .bss             asinAcosTable___5JMath */
-extern u8 asinAcosTable___5JMath[4128];
-u8 asinAcosTable___5JMath[4128];
+extern f32 asinAcosTable___5JMath[1032];
+f32 asinAcosTable___5JMath[1032];
 
 /* 804564D8-804564E0 004AD8 0004+04 2/2 0/0 0/0 .sdata2          @326 */
 SECTION_SDATA2 static f32 lit_326[1 + 1 /* padding */] = {

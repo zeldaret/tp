@@ -250,7 +250,7 @@ SECTION_RODATA static void* const sMixFuncs__9JASDriver[4] = {
     (void*)mixExtraTrack__9JASDriverFPsUlPFl_Ps,
     (void*)mixInterleaveTrack__9JASDriverFPsUlPFl_Ps,
 };
-SECTION_DEAD void* const cg_8039B2E0 = (void*)(&sMixFuncs__9JASDriver);
+COMPILER_STRIP_GATE(8039B2E0, &sMixFuncs__9JASDriver);
 
 /* 804512C4-804512C8 0007C4 0004+00 2/2 0/0 0/0 .sbss            sSubFrameCounter__9JASDriver */
 static u8 sSubFrameCounter__9JASDriver[4];

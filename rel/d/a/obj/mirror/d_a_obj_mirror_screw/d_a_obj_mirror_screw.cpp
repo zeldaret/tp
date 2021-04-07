@@ -13,11 +13,11 @@
 
 struct request_of_phase_process_class {};
 
+struct cXyz {};
+
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
-
-struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -54,9 +54,9 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -98,9 +98,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -205,13 +205,13 @@ SECTION_RODATA static u8 const M_attr__18daObjMirrorScrew_c[24] = {
     0xC5, 0x29, 0x60, 0x00, 0x3F, 0x19, 0x99, 0x9A, 0x00, 0x00, 0x00, 0x2D,
     0x00, 0x00, 0x00, 0x00, 0x40, 0xA0, 0x00, 0x00, 0xC0, 0x58, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80C9975C = (void*)(&M_attr__18daObjMirrorScrew_c);
+COMPILER_STRIP_GATE(80C9975C, &M_attr__18daObjMirrorScrew_c);
 
 /* 80C99774-80C99778 000018 0004+00 0/1 0/0 0/0 .rodata          @3680 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3680 = 0x45800000;
-SECTION_DEAD void* const cg_80C99774 = (void*)(&lit_3680);
+SECTION_RODATA static f32 const lit_3680 = 4096.0f;
+COMPILER_STRIP_GATE(80C99774, &lit_3680);
 #pragma pop
 
 /* 80C99778-80C9977C 00001C 0004+00 0/3 0/0 0/0 .rodata          @3681 */
@@ -223,18 +223,18 @@ SECTION_RODATA static u8 const lit_3681[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80C99778 = (void*)(&lit_3681);
+COMPILER_STRIP_GATE(80C99778, &lit_3681);
 #pragma pop
 
 /* 80C9977C-80C99784 000020 0004+04 0/3 0/0 0/0 .rodata          @3682 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3682[1 + 1 /* padding */] = {
-    0x3F800000,
+SECTION_RODATA static f32 const lit_3682[1 + 1 /* padding */] = {
+    1.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
-SECTION_DEAD void* const cg_80C9977C = (void*)(&lit_3682);
+COMPILER_STRIP_GATE(80C9977C, &lit_3682);
 #pragma pop
 
 /* 80C99784-80C9978C 000028 0008+00 0/1 0/0 0/0 .rodata          @3684 */
@@ -243,7 +243,7 @@ SECTION_DEAD void* const cg_80C9977C = (void*)(&lit_3682);
 SECTION_RODATA static u8 const lit_3684[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80C99784 = (void*)(&lit_3684);
+COMPILER_STRIP_GATE(80C99784, &lit_3684);
 #pragma pop
 
 /* 80C997A0-80C997AC 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -330,8 +330,8 @@ asm void daObjMirrorScrew_c::executeWait() {
 /* 80C9978C-80C99790 000030 0004+00 0/2 0/0 0/0 .rodata          @3746 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3746 = 0xBF800000;
-SECTION_DEAD void* const cg_80C9978C = (void*)(&lit_3746);
+SECTION_RODATA static f32 const lit_3746 = -1.0f;
+COMPILER_STRIP_GATE(80C9978C, &lit_3746);
 #pragma pop
 
 /* 80C98C00-80C98F04 0001A0 0304+00 1/0 0/0 0/0 .text            initDown__18daObjMirrorScrew_cFv */
@@ -347,7 +347,7 @@ asm void daObjMirrorScrew_c::initDown() {
 /* ############################################################################################## */
 /* 80C99790-80C99794 000034 0004+00 1/2 0/0 0/0 .rodata          @3845 */
 SECTION_RODATA static u32 const lit_3845 = 0x4524C1F0;
-SECTION_DEAD void* const cg_80C99790 = (void*)(&lit_3845);
+COMPILER_STRIP_GATE(80C99790, &lit_3845);
 
 /* 80C98F04-80C99154 0004A4 0250+00 1/0 0/0 0/0 .text            executeDown__18daObjMirrorScrew_cFv
  */

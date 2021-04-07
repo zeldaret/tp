@@ -69,13 +69,13 @@ struct dMsgScrn3Select_c {
     /* 8023A97C */ void getCharSpace();
 };
 
-struct COutFont_c {
-    /* 80225C94 */ COutFont_c(u8);
-};
-
 struct J2DTextBox {
     /* 80300658 */ void getStringPtr() const;
     /* 8030074C */ void setString(s16, char const*, ...);
+};
+
+struct COutFont_c {
+    /* 80225C94 */ COutFont_c(u8);
 };
 
 struct JUTFont {};
@@ -96,9 +96,9 @@ struct Z2SpeechMgr2 {
     /* 802CBF60 */ void setTextCount(s16);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);

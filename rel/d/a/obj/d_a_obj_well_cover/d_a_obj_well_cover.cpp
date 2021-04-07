@@ -41,9 +41,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -58,9 +58,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -319,8 +319,8 @@ asm void daObjWCover_c::action() {
 
 /* ############################################################################################## */
 /* 80D36A0C-80D36A10 000000 0004+00 2/2 0/0 0/0 .rodata          @3794 */
-SECTION_RODATA static u32 const lit_3794 = 0x43160000;
-SECTION_DEAD void* const cg_80D36A0C = (void*)(&lit_3794);
+SECTION_RODATA static f32 const lit_3794 = 150.0f;
+COMPILER_STRIP_GATE(80D36A0C, &lit_3794);
 
 /* 80D36A10-80D36A14 000004 0004+00 0/2 0/0 0/0 .rodata          @3795 */
 #pragma push
@@ -331,7 +331,7 @@ SECTION_RODATA static u8 const lit_3795[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80D36A10 = (void*)(&lit_3795);
+COMPILER_STRIP_GATE(80D36A10, &lit_3795);
 #pragma pop
 
 /* 80D36A14-80D36A1C 000008 0008+00 0/1 0/0 0/0 .rodata          @3796 */
@@ -340,7 +340,7 @@ SECTION_DEAD void* const cg_80D36A10 = (void*)(&lit_3795);
 SECTION_RODATA static u8 const lit_3796[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80D36A14 = (void*)(&lit_3796);
+COMPILER_STRIP_GATE(80D36A14, &lit_3796);
 #pragma pop
 
 /* 80D36A1C-80D36A24 000010 0008+00 0/1 0/0 0/0 .rodata          @3797 */
@@ -349,7 +349,7 @@ SECTION_DEAD void* const cg_80D36A14 = (void*)(&lit_3796);
 SECTION_RODATA static u8 const lit_3797[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80D36A1C = (void*)(&lit_3797);
+COMPILER_STRIP_GATE(80D36A1C, &lit_3797);
 #pragma pop
 
 /* 80D36A24-80D36A2C 000018 0008+00 0/1 0/0 0/0 .rodata          @3798 */
@@ -358,21 +358,21 @@ SECTION_DEAD void* const cg_80D36A1C = (void*)(&lit_3797);
 SECTION_RODATA static u8 const lit_3798[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80D36A24 = (void*)(&lit_3798);
+COMPILER_STRIP_GATE(80D36A24, &lit_3798);
 #pragma pop
 
 /* 80D36A2C-80D36A30 000020 0004+00 0/1 0/0 0/0 .rodata          @3799 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3799 = 0x42A00000;
-SECTION_DEAD void* const cg_80D36A2C = (void*)(&lit_3799);
+SECTION_RODATA static f32 const lit_3799 = 80.0f;
+COMPILER_STRIP_GATE(80D36A2C, &lit_3799);
 #pragma pop
 
 /* 80D36A30-80D36A34 000024 0004+00 0/1 0/0 0/0 .rodata          @3800 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3800 = 0x43480000;
-SECTION_DEAD void* const cg_80D36A30 = (void*)(&lit_3800);
+SECTION_RODATA static f32 const lit_3800 = 200.0f;
+COMPILER_STRIP_GATE(80D36A30, &lit_3800);
 #pragma pop
 
 /* 80D365B8-80D36790 000398 01D8+00 1/0 0/0 0/0 .text            modeWait__13daObjWCover_cFv */
@@ -400,14 +400,14 @@ SECTION_RODATA static u8 const particle_id[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80D36A34 = (void*)(&particle_id);
+COMPILER_STRIP_GATE(80D36A34, &particle_id);
 #pragma pop
 
 /* 80D36A3C-80D36A40 000030 0004+00 0/1 0/0 0/0 .rodata          @3833 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3833 = 0x3F800000;
-SECTION_DEAD void* const cg_80D36A3C = (void*)(&lit_3833);
+SECTION_RODATA static f32 const lit_3833 = 1.0f;
+COMPILER_STRIP_GATE(80D36A3C, &lit_3833);
 #pragma pop
 
 /* 80D36790-80D3689C 000570 010C+00 1/1 0/0 0/0 .text            init_modeBreak__13daObjWCover_cFv

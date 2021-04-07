@@ -132,8 +132,8 @@ static asm void daE_DB_LEAF_Delete(e_db_leaf_class* param_0) {
 
 /* ############################################################################################## */
 /* 806A2114-806A2118 000000 0004+00 1/1 0/0 0/0 .rodata          @3699 */
-SECTION_RODATA static u32 const lit_3699 = 0x3F800000;
-SECTION_DEAD void* const cg_806A2114 = (void*)(&lit_3699);
+SECTION_RODATA static f32 const lit_3699 = 1.0f;
+COMPILER_STRIP_GATE(806A2114, &lit_3699);
 
 /* 806A1F5C-806A205C 00019C 0100+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push

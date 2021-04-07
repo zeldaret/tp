@@ -50,6 +50,10 @@ loadStoreInsns = {
     PPC_INS_STDU,
 }
 
+cs = Cs(CS_ARCH_PPC, CS_MODE_32 | CS_MODE_BIG_ENDIAN)
+cs.detail = True
+cs.imm_unsigned = False
+
 # Returns true if the instruction is a load or store with the given register as a base
 def is_load_store_reg_offset(insn, reg):
     return insn.id in loadStoreInsns and (reg == None or insn.operands[1].mem.base == reg)
@@ -246,10 +250,6 @@ class Disassembler:
     """Disassemble code segments with support for merging loads that are split"""
 
     def __init__(self, sections):
-        self.cs = Cs(CS_ARCH_PPC, CS_MODE_32 | CS_MODE_BIG_ENDIAN)
-        self.cs.detail = True
-        self.cs.imm_unsigned = False
-
         self.lisInsns = {}  
         self.splitDataLoads = {}  
         self.linkedInsns = {} 
@@ -257,6 +257,7 @@ class Disassembler:
         self.r2AddrInsns = {}
         self.registers = {}
         self.registerLoads = {}
+        self.highLink = {}
         self.sections = sections
 
         self.r13_addr = 0x80458580
@@ -299,6 +300,7 @@ class Disassembler:
         self.r2AddrInsns = {}
         self.registers = {}
         self.registerLoads = {}
+        self.highLink = {}
 
         self.r13_addr = 0x80458580
         self.r2_addr = 0x80459A00
@@ -309,7 +311,7 @@ class Disassembler:
         instructions = []
         offset = 0
         while offset < size:
-            decoded_insns = list(self.cs.disasm(data[offset:], addr + offset))
+            decoded_insns = list(cs.disasm(data[offset:], addr + offset))
             if len(decoded_insns) == 0:
                 instructions.append((addr + offset, None, data[offset:][:4]))
                 offset += 4
@@ -344,7 +346,7 @@ class Disassembler:
         instructions = []
         offset = 0
         while offset < size:
-            decoded_insns = list(self.cs.disasm(data[offset:], addr + offset))
+            decoded_insns = list(cs.disasm(data[offset:], addr + offset))
             if len(decoded_insns) == 0:
                 instructions.append((addr + offset, None, data[offset:][:4]))
                 offset += 4
@@ -369,7 +371,7 @@ class Disassembler:
         instructions = []
         offset = 0
         while offset < size:
-            decoded_insns = list(self.cs.disasm(data[offset:], addr + offset))
+            decoded_insns = list(cs.disasm(data[offset:], addr + offset))
             if len(decoded_insns) == 0:
                 instructions.append((addr + offset, None, data[offset:][:4]))
                 offset += 4
@@ -424,6 +426,7 @@ class Disassembler:
 
             value = combine_split_load_value(hiLoadInsn, insn)
             self.linkedInsns[hiLoadInsn.address] = insn
+            self.highLink[insn.address] = hiLoadInsn.address
             self.splitDataLoads[hiLoadInsn.address] = value
             self.splitDataLoads[insn.address] = value
             self.lisInsns.pop(insn.operands[1].reg, None)
@@ -471,6 +474,9 @@ class FloatLoadAccess(Access):
 class DoubleLoadAccess(Access):
     """Double-float access"""
 
+DOUBLE_INST = { PPC_INS_LFD, PPC_INS_LFDU, PPC_INS_STFD, PPC_INS_STFDU }
+FLOAT_INST = { PPC_INS_LFS, PPC_INS_LFSU, PPC_INS_STFS, PPC_INS_STFSU }
+
 class AccessCollector(Disassembler):
     """
     Search through assembly code and collect access to possible labels.
@@ -489,14 +495,10 @@ class AccessCollector(Disassembler):
         if not self.is_label_candidate(value):
             return
 
-        if insn.address == 0x80143294:
-            print(f"{insn.address:08X}")
-            assert False
-
         assert not insn.address in self.accesses
-        if insn.id in { PPC_INS_LFD, PPC_INS_LFDU }:
+        if insn.id in DOUBLE_INST:
             self.accesses[insn.address] = DoubleLoadAccess(insn.address, value)
-        elif insn.id in { PPC_INS_LFS, PPC_INS_LFSU }:
+        elif insn.id in FLOAT_INST:
             self.accesses[insn.address] = FloatLoadAccess(insn.address, value)
         else:
             self.accesses[insn.address] = Access(insn.address, value)
@@ -512,20 +514,6 @@ class AccessCollector(Disassembler):
         r2_addr = self.r2AddrInsns[insn.address]
         r13_addr = self.r13AddrInsns[insn.address]
 
-        """
-        if address == 0x80143294:
-            print(insn.address in self.splitDataLoads)
-            print(is_load_store_reg_offset(insn, None))
-            if insn.address in self.splitDataLoads:
-            value = self.splitDataLoads[address]
-            rA = insn.reg_name(insn.operands[0].reg)
-            rB = insn.reg_name(insn.operands[1].mem.base)
-            print(f"{value:08X} {rA} {rB}")
-            print(f"{insn.mnemonic} {insn.op_str}")
-            sys.exit(1)
-        """
-
-        
         if insn.id in {PPC_INS_B, PPC_INS_BL, PPC_INS_BC, PPC_INS_BDZ, PPC_INS_BDNZ}:
             for op in insn.operands:
                 if op.type == PPC_OP_IMM:
@@ -556,6 +544,3 @@ class AccessCollector(Disassembler):
         elif insn.address in self.splitDataLoads and is_load_store_reg_offset(insn, None):
             value = self.splitDataLoads[insn.address]
             self.add_load_access(insn, value)
-        #elif insn.address in self.registerLoads and is_load_store_reg_offset(insn, None):
-        #    value = self.registerLoads[insn.address]
-        #    self.add_load_access(insn, value)

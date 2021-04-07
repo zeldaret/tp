@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -59,11 +59,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -85,9 +85,9 @@ struct dEvLib_callback_c {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -102,9 +102,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -229,8 +229,8 @@ asm void daObjLv4Sand_c::setBaseMtx() {
 
 /* ############################################################################################## */
 /* 80C6A3B8-80C6A3BC 000000 0004+00 3/3 0/0 0/0 .rodata          @3679 */
-SECTION_RODATA static u32 const lit_3679 = 0xC55AC000;
-SECTION_DEAD void* const cg_80C6A3B8 = (void*)(&lit_3679);
+SECTION_RODATA static f32 const lit_3679 = -3500.0f;
+COMPILER_STRIP_GATE(80C6A3B8, &lit_3679);
 
 /* 80C6A3BC-80C6A3C0 000004 0004+00 2/2 0/0 0/0 .rodata          @3680 */
 SECTION_RODATA static u8 const lit_3680[4] = {
@@ -239,7 +239,7 @@ SECTION_RODATA static u8 const lit_3680[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80C6A3BC = (void*)(&lit_3680);
+COMPILER_STRIP_GATE(80C6A3BC, &lit_3680);
 
 /* 80C69B50-80C69C28 000130 00D8+00 1/0 0/0 0/0 .text            Create__14daObjLv4Sand_cFv */
 #pragma push
@@ -253,8 +253,8 @@ asm void daObjLv4Sand_c::Create() {
 
 /* ############################################################################################## */
 /* 80C6A3C0-80C6A3C4 000008 0004+00 1/2 0/0 0/0 .rodata          @3710 */
-SECTION_RODATA static u32 const lit_3710 = 0x3F800000;
-SECTION_DEAD void* const cg_80C6A3C0 = (void*)(&lit_3710);
+SECTION_RODATA static f32 const lit_3710 = 1.0f;
+COMPILER_STRIP_GATE(80C6A3C0, &lit_3710);
 
 /* 80C6A3E0-80C6A3EC 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -390,15 +390,15 @@ asm void daObjLv4Sand_c::create1st() {
 /* 80C6A3C4-80C6A3C8 00000C 0004+00 0/1 0/0 0/0 .rodata          @3748 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3748 = 0x454E4000;
-SECTION_DEAD void* const cg_80C6A3C4 = (void*)(&lit_3748);
+SECTION_RODATA static f32 const lit_3748 = 3300.0f;
+COMPILER_STRIP_GATE(80C6A3C4, &lit_3748);
 #pragma pop
 
 /* 80C6A3C8-80C6A3CC 000010 0004+00 0/1 0/0 0/0 .rodata          @3749 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3749 = 0xBF800000;
-SECTION_DEAD void* const cg_80C6A3C8 = (void*)(&lit_3749);
+SECTION_RODATA static f32 const lit_3749 = -1.0f;
+COMPILER_STRIP_GATE(80C6A3C8, &lit_3749);
 #pragma pop
 
 /* 80C69E10-80C69F18 0003F0 0108+00 1/0 0/0 0/0 .text            Execute__14daObjLv4Sand_cFPPA3_A4_f
@@ -458,15 +458,15 @@ asm void daObjLv4Sand_c::mode_init_move() {
 /* 80C6A3CC-80C6A3D0 000014 0004+00 0/1 0/0 0/0 .rodata          @3786 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3786 = 0x41080000;
-SECTION_DEAD void* const cg_80C6A3CC = (void*)(&lit_3786);
+SECTION_RODATA static f32 const lit_3786 = 8.5f;
+COMPILER_STRIP_GATE(80C6A3CC, &lit_3786);
 #pragma pop
 
 /* 80C6A3D0-80C6A3D4 000018 0004+00 0/1 0/0 0/0 .rodata          @3787 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3787 = 0x3E99999A;
-SECTION_DEAD void* const cg_80C6A3D0 = (void*)(&lit_3787);
+SECTION_RODATA static f32 const lit_3787 = 3.0f / 10.0f;
+COMPILER_STRIP_GATE(80C6A3D0, &lit_3787);
 #pragma pop
 
 /* 80C6A034-80C6A09C 000614 0068+00 1/0 0/0 0/0 .text            mode_move__14daObjLv4Sand_cFv */

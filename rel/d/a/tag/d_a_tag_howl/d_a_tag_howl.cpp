@@ -148,7 +148,7 @@ SECTION_RODATA static u8 const lit_3739[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8048DD64 = (void*)(&lit_3739);
+COMPILER_STRIP_GATE(8048DD64, &lit_3739);
 
 /* 8048DD6C-8048DD74 000008 0008+00 0/1 0/0 0/0 .rodata          @3740 */
 #pragma push
@@ -156,7 +156,7 @@ SECTION_DEAD void* const cg_8048DD64 = (void*)(&lit_3739);
 SECTION_RODATA static u8 const lit_3740[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8048DD6C = (void*)(&lit_3740);
+COMPILER_STRIP_GATE(8048DD6C, &lit_3740);
 #pragma pop
 
 /* 8048DD74-8048DD7C 000010 0008+00 0/1 0/0 0/0 .rodata          @3741 */
@@ -165,7 +165,7 @@ SECTION_DEAD void* const cg_8048DD6C = (void*)(&lit_3740);
 SECTION_RODATA static u8 const lit_3741[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8048DD74 = (void*)(&lit_3741);
+COMPILER_STRIP_GATE(8048DD74, &lit_3741);
 #pragma pop
 
 /* 8048DD7C-8048DD84 000018 0008+00 0/1 0/0 0/0 .rodata          @3742 */
@@ -174,7 +174,7 @@ SECTION_DEAD void* const cg_8048DD74 = (void*)(&lit_3741);
 SECTION_RODATA static u8 const lit_3742[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8048DD7C = (void*)(&lit_3742);
+COMPILER_STRIP_GATE(8048DD7C, &lit_3742);
 #pragma pop
 
 /* 8048DA2C-8048DC1C 00014C 01F0+00 1/1 0/0 0/0 .text            isAreaCheck__12daTag_Howl_cFv */
@@ -189,8 +189,8 @@ asm void daTag_Howl_c::isAreaCheck() {
 
 /* ############################################################################################## */
 /* 8048DD84-8048DD88 000020 0004+00 1/1 0/0 0/0 .rodata          @3752 */
-SECTION_RODATA static u32 const lit_3752 = 0x42C80000;
-SECTION_DEAD void* const cg_8048DD84 = (void*)(&lit_3752);
+SECTION_RODATA static f32 const lit_3752 = 100.0f;
+COMPILER_STRIP_GATE(8048DD84, &lit_3752);
 
 /* 8048DC1C-8048DC68 00033C 004C+00 1/1 0/0 0/0 .text            getParam__12daTag_Howl_cFv */
 #pragma push

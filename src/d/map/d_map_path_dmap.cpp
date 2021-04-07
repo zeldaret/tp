@@ -573,20 +573,20 @@ extern u8 mLayerList__8dMpath_c[4];
 u8 mLayerList__8dMpath_c[4];
 
 /* 80450E68-80450E6C 000368 0004+00 3/3 1/1 0/0 .sbss            mMinX__8dMpath_c */
-extern u8 mMinX__8dMpath_c[4];
-u8 mMinX__8dMpath_c[4];
+extern f32 mMinX__8dMpath_c;
+f32 mMinX__8dMpath_c;
 
 /* 80450E6C-80450E70 00036C 0004+00 3/3 1/1 0/0 .sbss            mMaxX__8dMpath_c */
-extern u8 mMaxX__8dMpath_c[4];
-u8 mMaxX__8dMpath_c[4];
+extern f32 mMaxX__8dMpath_c;
+f32 mMaxX__8dMpath_c;
 
 /* 80450E70-80450E74 000370 0004+00 3/3 2/2 0/0 .sbss            mMinZ__8dMpath_c */
-extern u8 mMinZ__8dMpath_c[4];
-u8 mMinZ__8dMpath_c[4];
+extern f32 mMinZ__8dMpath_c;
+f32 mMinZ__8dMpath_c;
 
 /* 80450E74-80450E78 000374 0004+00 3/3 1/1 0/0 .sbss            mMaxZ__8dMpath_c */
-extern u8 mMaxZ__8dMpath_c[4];
-u8 mMaxZ__8dMpath_c[4];
+extern f32 mMaxZ__8dMpath_c;
+f32 mMaxZ__8dMpath_c;
 
 /* 80450E78-80450E7C 000378 0004+00 1/1 2/2 0/0 .sbss            mAllCenterX__8dMpath_c */
 extern f32 mAllCenterX__8dMpath_c;
@@ -1011,7 +1011,7 @@ SECTION_RODATA static u8 const l_100x100BoxVertexList[48] = {
     0xC2, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80379C58 = (void*)(&l_100x100BoxVertexList);
+COMPILER_STRIP_GATE(80379C58, &l_100x100BoxVertexList);
 
 /* 80451E70-80451E74 000470 0004+00 1/1 0/0 0/0 .sdata2          @4484 */
 SECTION_SDATA2 static f32 lit_4484 = 6.0f;
@@ -1115,7 +1115,7 @@ SECTION_RODATA static void* const l_treasureDispList_4524[12] = {
     (void*)NULL,       (void*)0x00000001, (void*)&l_treasureStartColor,
     (void*)0x05000000, (void*)0x00000003, (void*)&l_destinationStartColor,
 };
-SECTION_DEAD void* const cg_80379C88 = (void*)(&l_treasureDispList_4524);
+COMPILER_STRIP_GATE(80379C88, &l_treasureDispList_4524);
 
 /* 80451E74-80451E78 000474 0004+00 1/0 0/0 0/0 .sdata2          l_entranceStartColor */
 SECTION_SDATA2 static u32 l_entranceStartColor = 0x94000000;
@@ -1207,7 +1207,7 @@ SECTION_RODATA static void* const l_treasureDispList_4606[33] = {
     (void*)0x04000000, (void*)0x00000004, (void*)&l_smallKeyStartColor,
     (void*)0x03000000, (void*)0x00000004, (void*)&l_bossStartColor,
 };
-SECTION_DEAD void* const cg_80379CB8 = (void*)(&l_treasureDispList_4606);
+COMPILER_STRIP_GATE(80379CB8, &l_treasureDispList_4606);
 
 /* 80451EAC-80451EB4 0004AC 0008+00 1/1 0/0 0/0 .sdata2          l_iconTex0$4605 */
 SECTION_SDATA2 static u8 l_iconTex0_4605[8] = {
@@ -1239,7 +1239,7 @@ SECTION_RODATA static u8 const l_iconPosData[32] = {
     0xC2, 0x48, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00,
     0x42, 0x48, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80379D3C = (void*)(&l_iconPosData);
+COMPILER_STRIP_GATE(80379D3C, &l_iconPosData);
 
 /* 80041208-800412C0 03BB48 00B8+00 2/2 0/0 0/0 .text
  * drawIconSingle__28renderingPlusDoorAndCursor_cFRC3Vecff      */
@@ -1260,7 +1260,7 @@ SECTION_RODATA static u8 const l_offset[36] = {
     0xC3, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC3, 0x70, 0x00, 0x00,
     0x43, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC3, 0x70, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80379D5C = (void*)(&l_offset);
+COMPILER_STRIP_GATE(80379D5C, &l_offset);
 
 /* 80450638-80450640 0000B8 0004+04 1/1 0/0 0/0 .sdata           l_cursorColor$4709 */
 SECTION_SDATA static u8 l_cursorColor[4 + 4 /* padding */] = {

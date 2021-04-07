@@ -19,9 +19,9 @@ struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
 };
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -39,15 +39,15 @@ struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
 };
 
-struct mDoExt_McaMorfCallBack1_c {};
-
-struct J3DModelData {};
+struct mDoExt_McaMorfCallBack2_c {};
 
 struct J3DAnmTransform {};
 
 struct Z2Creature {};
 
-struct mDoExt_McaMorfCallBack2_c {};
+struct J3DModelData {};
+
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -80,9 +80,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -232,7 +232,7 @@ SECTION_RODATA static u8 const l_bmdIndex[28] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00,
     0x00, 0x09, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x0B,
 };
-SECTION_DEAD void* const cg_80D3EC0C = (void*)(&l_bmdIndex);
+COMPILER_STRIP_GATE(80D3EC0C, &l_bmdIndex);
 
 /* 80D3EC28-80D3EC34 00001C 000C+00 0/1 0/0 0/0 .rodata          l_brkIndex */
 #pragma push
@@ -240,7 +240,7 @@ SECTION_DEAD void* const cg_80D3EC0C = (void*)(&l_bmdIndex);
 SECTION_RODATA static u8 const l_brkIndex[12] = {
     0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07,
 };
-SECTION_DEAD void* const cg_80D3EC28 = (void*)(&l_brkIndex);
+COMPILER_STRIP_GATE(80D3EC28, &l_brkIndex);
 #pragma pop
 
 /* 80D3EC34-80D3EC50 000028 001C+00 0/1 0/0 0/0 .rodata          l_btkIndex */
@@ -250,12 +250,12 @@ SECTION_RODATA static u8 const l_btkIndex[28] = {
     0x00, 0x00, 0x00, 0x0E, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x00,
     0x00, 0x0E, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x10,
 };
-SECTION_DEAD void* const cg_80D3EC34 = (void*)(&l_btkIndex);
+COMPILER_STRIP_GATE(80D3EC34, &l_btkIndex);
 #pragma pop
 
 /* 80D3EC50-80D3EC54 000044 0004+00 1/3 0/0 0/0 .rodata          @3967 */
-SECTION_RODATA static u32 const lit_3967 = 0x3F800000;
-SECTION_DEAD void* const cg_80D3EC50 = (void*)(&lit_3967);
+SECTION_RODATA static f32 const lit_3967 = 1.0f;
+COMPILER_STRIP_GATE(80D3EC50, &lit_3967);
 
 /* 80D3EC54-80D3EC58 000048 0004+00 1/2 0/0 0/0 .rodata          @3968 */
 SECTION_RODATA static u8 const lit_3968[4] = {
@@ -264,13 +264,13 @@ SECTION_RODATA static u8 const lit_3968[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80D3EC54 = (void*)(&lit_3968);
+COMPILER_STRIP_GATE(80D3EC54, &lit_3968);
 
 /* 80D3EC58-80D3EC5C 00004C 0004+00 0/1 0/0 0/0 .rodata          @3969 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3969 = 0xBF800000;
-SECTION_DEAD void* const cg_80D3EC58 = (void*)(&lit_3969);
+SECTION_RODATA static f32 const lit_3969 = -1.0f;
+COMPILER_STRIP_GATE(80D3EC58, &lit_3969);
 #pragma pop
 
 /* 80D3ECFC-80D3ED10 000040 0014+00 1/1 0/0 0/0 .data            mirror_effect_id$3870 */

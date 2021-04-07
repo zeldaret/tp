@@ -36,11 +36,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -55,9 +55,9 @@ struct dRes_control_c {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -288,7 +288,7 @@ SECTION_RODATA static u8 const lit_3704[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80C67D80 = (void*)(&lit_3704);
+COMPILER_STRIP_GATE(80C67D80, &lit_3704);
 
 /* 80C67B28-80C67B40 0003A8 0018+00 1/1 0/0 0/0 .text            mode_init_move__15daObjLv4Floor_cFv
  */
@@ -305,22 +305,22 @@ asm void daObjLv4Floor_c::mode_init_move() {
 /* 80C67D84-80C67D88 000004 0004+00 0/1 0/0 0/0 .rodata          @3711 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3711 = 0x40733333;
-SECTION_DEAD void* const cg_80C67D84 = (void*)(&lit_3711);
+SECTION_RODATA static f32 const lit_3711 = 19.0f / 5.0f;
+COMPILER_STRIP_GATE(80C67D84, &lit_3711);
 #pragma pop
 
 /* 80C67D88-80C67D8C 000008 0004+00 0/1 0/0 0/0 .rodata          @3712 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3712 = 0x3DA3D70A;
-SECTION_DEAD void* const cg_80C67D88 = (void*)(&lit_3712);
+SECTION_RODATA static f32 const lit_3712 = 2.0f / 25.0f;
+COMPILER_STRIP_GATE(80C67D88, &lit_3712);
 #pragma pop
 
 /* 80C67D8C-80C67D90 00000C 0004+00 0/1 0/0 0/0 .rodata          @3713 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3713 = 0xC4BB8000;
-SECTION_DEAD void* const cg_80C67D8C = (void*)(&lit_3713);
+SECTION_RODATA static f32 const lit_3713 = -1500.0f;
+COMPILER_STRIP_GATE(80C67D8C, &lit_3713);
 #pragma pop
 
 /* 80C67B40-80C67BA8 0003C0 0068+00 1/0 0/0 0/0 .text            mode_move__15daObjLv4Floor_cFv */

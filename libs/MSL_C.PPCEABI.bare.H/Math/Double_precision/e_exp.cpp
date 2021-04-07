@@ -26,7 +26,7 @@ extern "C" void __ieee754_exp();
 SECTION_RODATA static u8 const halF[16] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xBF, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803A2340 = (void*)(&halF);
+COMPILER_STRIP_GATE(803A2340, &halF);
 
 /* 803A2350-803A2360 02E9B0 0010+00 0/1 0/0 0/0 .rodata          ln2HI */
 #pragma push
@@ -34,7 +34,7 @@ SECTION_DEAD void* const cg_803A2340 = (void*)(&halF);
 SECTION_RODATA static u8 const ln2HI[16] = {
     0x3F, 0xE6, 0x2E, 0x42, 0xFE, 0xE0, 0x00, 0x00, 0xBF, 0xE6, 0x2E, 0x42, 0xFE, 0xE0, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803A2350 = (void*)(&ln2HI);
+COMPILER_STRIP_GATE(803A2350, &ln2HI);
 #pragma pop
 
 /* 803A2360-803A2370 02E9C0 0010+00 0/1 0/0 0/0 .rodata          ln2LO */
@@ -43,7 +43,7 @@ SECTION_DEAD void* const cg_803A2350 = (void*)(&ln2HI);
 SECTION_RODATA static u8 const ln2LO[16] = {
     0x3D, 0xEA, 0x39, 0xEF, 0x35, 0x79, 0x3C, 0x76, 0xBD, 0xEA, 0x39, 0xEF, 0x35, 0x79, 0x3C, 0x76,
 };
-SECTION_DEAD void* const cg_803A2360 = (void*)(&ln2LO);
+COMPILER_STRIP_GATE(803A2360, &ln2LO);
 #pragma pop
 
 /* 804567E0-804567E8 004DE0 0008+00 1/1 0/0 0/0 .sdata2          @115 */

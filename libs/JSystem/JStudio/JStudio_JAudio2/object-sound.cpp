@@ -105,11 +105,11 @@ struct JAISoundStatus_ {
     /* 802A2244 */ void unlockIfLocked();
 };
 
-struct JAISoundID {};
-
 struct JAISoundHandle {
     /* 802A2184 */ void releaseSound();
 };
+
+struct JAISoundID {};
 
 struct JAISoundStarter {
     /* 802A2FEC */ void startLevelSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);

@@ -70,7 +70,7 @@ extern "C" void _restgpr_21();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
-extern "C" extern u8 asinAcosTable___5JMath[4128];
+extern "C" extern f32 asinAcosTable___5JMath[1032];
 
 //
 // Declarations:
@@ -154,10 +154,10 @@ asm void J3DDeformer::deform(J3DVertexBuffer* param_0, u16 param_1) {
 SECTION_SDATA2 static f32 lit_830 = 1.0f;
 
 /* 80456474-80456478 004A74 0004+00 1/1 0/0 0/0 .sdata2          @840 */
-SECTION_SDATA2 static u32 lit_840 = 0x3F800000;
+SECTION_SDATA2 static f32 lit_840 = 1.0f;
 
 /* 80456478-8045647C 004A78 0004+00 1/1 0/0 0/0 .sdata2          None */
-SECTION_SDATA2 static u32 data_80456478 = 0xBF800000;
+SECTION_SDATA2 static f32 data_80456478 = -1.0f;
 
 /* 8045647C-80456480 004A7C 0004+00 3/3 0/0 0/0 .sdata2          @866 */
 SECTION_SDATA2 static u8 lit_866[4] = {

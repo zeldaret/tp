@@ -11,6 +11,12 @@
 // Types:
 //
 
+struct Vec {};
+
+struct cXyz {
+    /* 80266B34 */ void operator-(Vec const&) const;
+};
+
 struct jmessage_tReference {
     /* 80228B04 */ jmessage_tReference();
     /* 80228CB4 */ ~jmessage_tReference();
@@ -41,12 +47,6 @@ struct jmessage_tReference {
     /* 8022994C */ void isLightEnd();
     /* 802299AC */ void decideOutFontRupeeColor(int);
     /* 80232A20 */ void getActorPos();
-};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
 };
 
 struct jmessage_tControl {
@@ -115,17 +115,12 @@ struct jmessage_tMeasureProcessor {
     /* 8022B5F4 */ ~jmessage_tMeasureProcessor();
 };
 
-struct jmessage_string_tControl {
-    /* 8022FB5C */ jmessage_string_tControl();
-    /* 802328DC */ ~jmessage_string_tControl();
+struct J2DTextBox {
+    /* 80300658 */ void getStringPtr() const;
 };
 
 struct COutFont_c {
     /* 80226CF8 */ void initialize();
-};
-
-struct J2DTextBox {
-    /* 80300658 */ void getStringPtr() const;
 };
 
 struct JUTFont {};
@@ -143,6 +138,11 @@ struct jmessage_string_tReference {
     /* 8022FACC */ void setOutfontLength(int, f32);
     /* 8022FAF0 */ void clearOutfontLength(int);
     /* 8022FB24 */ void getLineCountNowPage();
+};
+
+struct jmessage_string_tControl {
+    /* 8022FB5C */ jmessage_string_tControl();
+    /* 802328DC */ ~jmessage_string_tControl();
 };
 
 struct jmessage_string_tSequenceProcessor {
@@ -712,7 +712,7 @@ SECTION_RODATA static u8 const colorTable_3861[36] = {
     0xA0, 0xB4, 0xDC, 0xFF, 0xDC, 0xDC, 0x82, 0xFF, 0xB4, 0xC8, 0xE6, 0xFF,
     0xC8, 0xA0, 0xDC, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xDC, 0xAA, 0x78, 0xFF,
 };
-SECTION_DEAD void* const cg_803995C8 = (void*)(&colorTable_3861);
+COMPILER_STRIP_GATE(803995C8, &colorTable_3861);
 
 /* 802288FC-802289A8 22323C 00AC+00 2/2 0/0 0/0 .text            getFontCCColorTable__FUcUc */
 #pragma push
@@ -731,7 +731,7 @@ SECTION_RODATA static u8 const colorTable_3877[36] = {
     0xA0, 0xB4, 0xDC, 0xFF, 0xDC, 0xDC, 0x82, 0xFF, 0xB4, 0xC8, 0xE6, 0xFF,
     0xC8, 0xA0, 0xDC, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xDC, 0xAA, 0x78, 0xFF,
 };
-SECTION_DEAD void* const cg_803995EC = (void*)(&colorTable_3877);
+COMPILER_STRIP_GATE(803995EC, &colorTable_3877);
 
 /* 802289A8-80228A54 2232E8 00AC+00 2/2 0/0 0/0 .text            getFontGCColorTable__FUcUc */
 #pragma push

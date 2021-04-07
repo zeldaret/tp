@@ -29,11 +29,11 @@ struct daObjToaruMaki_c {
     /* 80D13524 */ void execute();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -203,7 +203,7 @@ asm daObjToaruMaki_c::~daObjToaruMaki_c() {
 SECTION_RODATA static u8 const l_bmdIdx[8] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x03,
 };
-SECTION_DEAD void* const cg_80D13604 = (void*)(&l_bmdIdx);
+COMPILER_STRIP_GATE(80D13604, &l_bmdIdx);
 
 /* 80D1316C-80D132B4 00016C 0148+00 1/1 0/0 0/0 .text            createHeap__16daObjToaruMaki_cFv */
 #pragma push
@@ -220,7 +220,7 @@ asm void daObjToaruMaki_c::createHeap() {
 SECTION_RODATA static u8 const l_heapSize[8] = {
     0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x0E, 0xB0,
 };
-SECTION_DEAD void* const cg_80D1360C = (void*)(&l_heapSize);
+COMPILER_STRIP_GATE(80D1360C, &l_heapSize);
 
 /* 80D132B4-80D133C0 0002B4 010C+00 1/1 0/0 0/0 .text            create__16daObjToaruMaki_cFv */
 #pragma push

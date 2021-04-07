@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -100,8 +100,8 @@ void daWarpBug_c::create_init() {
 
 /* ############################################################################################## */
 /* 80D681DC-80D681E0 000000 0004+00 1/1 0/0 0/0 .rodata          @3709 */
-SECTION_RODATA static u32 const lit_3709 = 0x3F800000;
-SECTION_DEAD void* const cg_80D681DC = (void*)(&lit_3709);
+SECTION_RODATA static f32 const lit_3709 = 1.0f;
+COMPILER_STRIP_GATE(80D681DC, &lit_3709);
 
 /* 80D68208-80D6820C -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_warp_bug__stringBase0;

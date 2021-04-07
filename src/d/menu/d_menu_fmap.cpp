@@ -90,12 +90,12 @@ struct dMenu_Fmap_world_data_c {
 
 struct dMenu_Fmap_stage_data_c {};
 
-struct JKRExpHeap {
-    /* 802CEE2C */ void create(u32, JKRHeap*, bool);
-};
-
 struct STControl {
     /* 8003219C */ void checkTrigger();
+};
+
+struct JKRExpHeap {
+    /* 802CEE2C */ void create(u32, JKRHeap*, bool);
 };
 
 struct CSTControl {};
@@ -316,9 +316,9 @@ struct dDlst_list_c {
     /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -2629,7 +2629,7 @@ SECTION_RODATA static u8 const i_swBit[24] = {
     0x00, 0x00, 0x00, 0x41, 0x00, 0x00, 0x00, 0x29, 0x00, 0x00, 0x00, 0x2A,
     0x00, 0x00, 0x00, 0x32, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x32,
 };
-SECTION_DEAD void* const cg_803960D0 = (void*)(&i_swBit);
+COMPILER_STRIP_GATE(803960D0, &i_swBit);
 
 /* 801CD814-801CD8B4 1C8154 00A0+00 1/1 0/0 0/0 .text            howlArrowPosInit__12dMenu_Fmap_cFv
  */

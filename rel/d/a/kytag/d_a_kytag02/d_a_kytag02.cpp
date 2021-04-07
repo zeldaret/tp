@@ -74,14 +74,14 @@ static bool daKytag02_Draw(kytag02_class* param_0) {
 
 /* ############################################################################################## */
 /* 80855DFC-80855E00 000000 0004+00 1/1 0/0 0/0 .rodata          @3666 */
-SECTION_RODATA static u32 const lit_3666 = 0x3E8A3D71;
-SECTION_DEAD void* const cg_80855DFC = (void*)(&lit_3666);
+SECTION_RODATA static f32 const lit_3666 = 27.0f / 100.0f;
+COMPILER_STRIP_GATE(80855DFC, &lit_3666);
 
 /* 80855E00-80855E04 000004 0004+00 0/1 0/0 0/0 .rodata          @3667 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3667 = 0x3ECF5C28;
-SECTION_DEAD void* const cg_80855E00 = (void*)(&lit_3667);
+COMPILER_STRIP_GATE(80855E00, &lit_3667);
 #pragma pop
 
 /* 80855E04-80855E08 000008 0004+00 1/2 0/0 0/0 .rodata          @3668 */
@@ -91,13 +91,13 @@ SECTION_RODATA static u8 const lit_3668[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80855E04 = (void*)(&lit_3668);
+COMPILER_STRIP_GATE(80855E04, &lit_3668);
 
 /* 80855E08-80855E0C 00000C 0004+00 0/1 0/0 0/0 .rodata          @3669 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3669 = 0x3E99999A;
-SECTION_DEAD void* const cg_80855E08 = (void*)(&lit_3669);
+SECTION_RODATA static f32 const lit_3669 = 3.0f / 10.0f;
+COMPILER_STRIP_GATE(80855E08, &lit_3669);
 #pragma pop
 
 /* 80855AC0-80855CC4 000080 0204+00 1/0 0/0 0/0 .text daKytag02_Execute__FP13kytag02_class */

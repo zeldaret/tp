@@ -46,13 +46,13 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
+struct dKy_tevstr_c {};
 
 struct cXyz {
     /* 80009184 */ ~cXyz();
 };
 
-struct dKy_tevstr_c {};
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -1708,7 +1708,7 @@ asm jmessage_tControl::~jmessage_tControl() {
 static u8 lit_5233[12];
 
 /* 80424668-80424678 051388 000C+04 1/1 0/0 0/0 .bss             l_translation$5232 */
-static u8 l_translation[12 + 4 /* padding */];
+static f32 l_translation[3 + 1 /* padding */];
 
 /* 80450E50-80450E58 000350 0008+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_80450E50[8];

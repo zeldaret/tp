@@ -13,22 +13,22 @@
 
 struct Vec {};
 
-struct J3DModel;
-struct J3DDeformData {
-    /* 8032E230 */ void offAllFlag(u32);
-    /* 8032E274 */ void deform(J3DModel*);
-};
-
 struct J3DModelData {
     /* 803260F8 */ void syncJ3DSysFlags() const;
 };
 
+struct J3DModel;
 struct J3DSkinDeform {
     /* 8032C9B0 */ void initSkinInfo(J3DModelData*);
     /* 8032CF44 */ void initMtxIndexArray(J3DModelData*);
     /* 8032D378 */ void changeFastSkinDL(J3DModelData*);
     /* 8032D738 */ void transformVtxPosNrm(J3DModelData*);
     /* 8032DFDC */ void deform(J3DModel*);
+};
+
+struct J3DDeformData {
+    /* 8032E230 */ void offAllFlag(u32);
+    /* 8032E274 */ void deform(J3DModel*);
 };
 
 struct J3DModel {

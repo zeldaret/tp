@@ -202,7 +202,7 @@ bool daObjGraWall_c::Delete() {
 SECTION_RODATA static u8 const l_DATA[8] = {
     0x43, 0x34, 0x00, 0x00, 0x43, 0x8C, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80C10FB0 = (void*)(&l_DATA);
+COMPILER_STRIP_GATE(80C10FB0, &l_DATA);
 
 /* 80C10FB8-80C10FFC 000008 0044+00 1/1 0/0 0/0 .rodata          l_cyl_src */
 SECTION_RODATA static u8 const l_cyl_src[68] = {
@@ -212,7 +212,7 @@ SECTION_RODATA static u8 const l_cyl_src[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80C10FB8 = (void*)(&l_cyl_src);
+COMPILER_STRIP_GATE(80C10FB8, &l_cyl_src);
 
 /* 80C10E80-80C10ED4 000300 0054+00 1/1 0/0 0/0 .text            col_init__14daObjGraWall_cFv */
 #pragma push

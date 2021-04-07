@@ -21,13 +21,13 @@ struct mDoMemCd_Ctrl_c {
     /* 80016F2C */ void FormatSync();
 };
 
-struct J3DMaterialTable {};
-
 struct J3DModelData {};
 
 struct J3DAnmTevRegKey {
     /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
 };
+
+struct J3DMaterialTable {};
 
 struct mDoExt_brkAnm {
     /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
@@ -66,6 +66,8 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
+struct JKRArchive {};
+
 struct JGeometry {
     template <typename A1>
     struct TBox2 {};
@@ -83,8 +85,6 @@ struct J2DPane {
     /* 802F6714 */ void insertChild(J2DPane*, J2DPane*);
     /* 802F7FCC */ void animationTransform();
 };
-
-struct JKRArchive {};
 
 struct dSelect_cursor_c {
     /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
@@ -110,8 +110,6 @@ struct dName_c {
     /* 80250560 */ void _draw();
 };
 
-struct COutFont_c {};
-
 struct JUtility {
     struct TColor {};
 };
@@ -122,6 +120,8 @@ struct J2DTextBox {
     /* 80300660 */ void setString(char const*, ...);
     /* 8030074C */ void setString(s16, char const*, ...);
 };
+
+struct COutFont_c {};
 
 struct JUTFont {};
 
@@ -375,9 +375,9 @@ struct dComIfG_play_c {
     /* 8002B2C8 */ void itemInit();
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -4319,7 +4319,7 @@ SECTION_RODATA static u8 const m_kamen_offset_x[20] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80394310 = (void*)(&m_kamen_offset_x);
+COMPILER_STRIP_GATE(80394310, &m_kamen_offset_x);
 
 /* 80394324-80394338 020984 0014+00 0/1 0/0 0/0 .rodata          m_kamen_offset_y$8679 */
 #pragma push
@@ -4328,7 +4328,7 @@ SECTION_RODATA static u8 const m_kamen_offset_y[20] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x40, 0xA0, 0x00, 0x00, 0x40, 0xA0, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80394324 = (void*)(&m_kamen_offset_y);
+COMPILER_STRIP_GATE(80394324, &m_kamen_offset_y);
 #pragma pop
 
 /* 80394338-8039434C 020998 0014+00 0/1 0/0 0/0 .rodata          m_kamen_scale$8680 */
@@ -4338,7 +4338,7 @@ SECTION_RODATA static u8 const m_kamen_scale[20] = {
     0x40, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00, 0x40, 0x00,
     0x00, 0x00, 0x3F, 0xCC, 0xCC, 0xCD, 0x3F, 0xCC, 0xCC, 0xCD,
 };
-SECTION_DEAD void* const cg_80394338 = (void*)(&m_kamen_scale);
+COMPILER_STRIP_GATE(80394338, &m_kamen_scale);
 #pragma pop
 
 /* 80190BA8-80190D68 18B4E8 01C0+00 1/1 0/0 0/0 .text createMaskModel__16dFile_select3D_cFv */
@@ -4359,7 +4359,7 @@ SECTION_RODATA static u8 const m_mirror_offset_x[20] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039434C = (void*)(&m_mirror_offset_x);
+COMPILER_STRIP_GATE(8039434C, &m_mirror_offset_x);
 #pragma pop
 
 /* 80394360-80394374 0209C0 0014+00 0/1 0/0 0/0 .rodata          m_mirror_offset_y$8782 */
@@ -4369,7 +4369,7 @@ SECTION_RODATA static u8 const m_mirror_offset_y[20] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80394360 = (void*)(&m_mirror_offset_y);
+COMPILER_STRIP_GATE(80394360, &m_mirror_offset_y);
 #pragma pop
 
 /* 80394374-80394388 0209D4 0014+00 0/1 0/0 0/0 .rodata          m_mirror_scale$8783 */
@@ -4379,7 +4379,7 @@ SECTION_RODATA static u8 const m_mirror_scale[20] = {
     0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x19,
     0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x19, 0x99, 0x9A,
 };
-SECTION_DEAD void* const cg_80394374 = (void*)(&m_mirror_scale);
+COMPILER_STRIP_GATE(80394374, &m_mirror_scale);
 #pragma pop
 
 /* 80190D68-80190FE8 18B6A8 0280+00 1/1 0/0 0/0 .text createMirrorModel__16dFile_select3D_cFv */

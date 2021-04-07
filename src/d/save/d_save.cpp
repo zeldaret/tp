@@ -4226,7 +4226,7 @@ SECTION_RODATA extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* 
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_803790C0 = (void*)(&tempBitLabels__20dSv_event_tmp_flag_c);
+COMPILER_STRIP_GATE(803790C0, &tempBitLabels__20dSv_event_tmp_flag_c);
 
 /* 80379234-80379298 005894 0062+02 8/8 0/0 0/0 .rodata          @stringBase0 */
 #pragma push

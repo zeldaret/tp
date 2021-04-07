@@ -30,11 +30,11 @@ struct daObjProp_c {
     /* 80CB54F4 */ void setModelMtx();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -166,7 +166,7 @@ asm daObjProp_c::~daObjProp_c() {
 SECTION_RODATA static u8 const BMD_IDX[8] = {
     0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04,
 };
-SECTION_DEAD void* const cg_80CB5614 = (void*)(&BMD_IDX);
+COMPILER_STRIP_GATE(80CB5614, &BMD_IDX);
 
 /* 80CB52B4-80CB5334 000154 0080+00 1/1 0/0 0/0 .text            createHeap__11daObjProp_cFv */
 #pragma push
@@ -216,7 +216,7 @@ SECTION_RODATA static u8 const ADD_ANGLE[4] = {
     0xE8,
     0x00,
 };
-SECTION_DEAD void* const cg_80CB561C = (void*)(&ADD_ANGLE);
+COMPILER_STRIP_GATE(80CB561C, &ADD_ANGLE);
 
 /* 80CB54A0-80CB54E4 000340 0044+00 1/1 0/0 0/0 .text            execute__11daObjProp_cFv */
 #pragma push

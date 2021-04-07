@@ -54,9 +54,9 @@ struct dDlst_shadowControl_c {
     /* 80055A14 */ void draw(f32 (*)[4]);
 };
 
-struct dDlst_base_c {};
-
 struct J3DDrawBuffer {};
+
+struct dDlst_base_c {};
 
 struct dDlst_list_c {
     /* 80056390 */ void init();

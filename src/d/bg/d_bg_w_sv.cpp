@@ -17,11 +17,11 @@ struct dBgW_Base {
     /* 80074AB4 */ void SetOldShapeAngleY(s16);
 };
 
+struct cBgD_t {};
+
 struct cXyz {};
 
 struct cBgS_PolyInfo {};
-
-struct cBgD_t {};
 
 struct csXyz {};
 
@@ -42,13 +42,13 @@ struct dBgS_SplGrpChk {};
 
 struct cBgS_GrpPassChk {};
 
-struct dBgS_RoofChk {};
-
-struct dBgS_SphChk {};
-
 struct dBgS_Acch {};
 
 struct cBgS_PolyPassChk {};
+
+struct dBgS_RoofChk {};
+
+struct dBgS_SphChk {};
 
 struct dBgW {
     /* 8007B3AC */ void GetExitId(cBgS_PolyInfo const&);

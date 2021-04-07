@@ -620,7 +620,7 @@ asm void Z2SeMgr::menuInSe() {
 SECTION_RODATA static u8 const lit_5054[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039B9F0 = (void*)(&lit_5054);
+COMPILER_STRIP_GATE(8039B9F0, &lit_5054);
 
 /* 80455990-80455994 003F90 0004+00 1/1 0/0 0/0 .sdata2          @5085 */
 SECTION_SDATA2 static f32 lit_5085 = 4.0f;
@@ -640,7 +640,7 @@ asm void Z2SeMgr::setLevObjSE(u32 param_0, Vec* param_1, s8 param_2) {
 SECTION_RODATA static u8 const lit_5100[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039B9FC = (void*)(&lit_5100);
+COMPILER_STRIP_GATE(8039B9FC, &lit_5100);
 
 /* 80455994-80455998 003F94 0004+00 1/1 0/0 0/0 .sdata2          @5134 */
 SECTION_SDATA2 static f32 lit_5134 = 3.0f;

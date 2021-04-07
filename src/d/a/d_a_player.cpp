@@ -652,7 +652,7 @@ SECTION_RODATA static u8 const twglArcName[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80393DA8 = (void*)(&twglArcName);
+COMPILER_STRIP_GATE(80393DA8, &twglArcName);
 
 /* 80393DB4-80393DC0 020414 000A+02 1/0 0/0 0/0 .rodata          twgwArcName$4617 */
 SECTION_RODATA static u8 const twgwArcName[10 + 2 /* padding */] = {
@@ -670,7 +670,7 @@ SECTION_RODATA static u8 const twgwArcName[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80393DB4 = (void*)(&twgwArcName);
+COMPILER_STRIP_GATE(80393DB4, &twgwArcName);
 
 /* 803BA0A0-803BA0C0 -00001 0020+00 1/1 0/0 0/0 .data            arcName$4622 */
 SECTION_DATA static void* arcName[8] = {

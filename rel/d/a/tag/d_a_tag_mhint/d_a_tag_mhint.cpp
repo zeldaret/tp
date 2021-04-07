@@ -53,9 +53,9 @@ struct dAttHint_c {
     /* 800738FC */ void request(fopAc_ac_c*, int);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -120,21 +120,21 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 805A6034-805A6038 000000 0004+00 2/2 0/0 0/0 .rodata          @3741 */
-SECTION_RODATA static u32 const lit_3741 = 0x41200000;
-SECTION_DEAD void* const cg_805A6034 = (void*)(&lit_3741);
+SECTION_RODATA static f32 const lit_3741 = 10.0f;
+COMPILER_STRIP_GATE(805A6034, &lit_3741);
 
 /* 805A6038-805A603C 000004 0004+00 0/1 0/0 0/0 .rodata          @3742 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3742 = 0x461C4000;
-SECTION_DEAD void* const cg_805A6038 = (void*)(&lit_3742);
+SECTION_RODATA static f32 const lit_3742 = 10000.0f;
+COMPILER_STRIP_GATE(805A6038, &lit_3742);
 #pragma pop
 
 /* 805A603C-805A6040 000008 0004+00 0/1 0/0 0/0 .rodata          @3743 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3743 = 0x42C80000;
-SECTION_DEAD void* const cg_805A603C = (void*)(&lit_3743);
+SECTION_RODATA static f32 const lit_3743 = 100.0f;
+COMPILER_STRIP_GATE(805A603C, &lit_3743);
 #pragma pop
 
 /* 805A56B8-805A58C8 000078 0210+00 1/1 0/0 0/0 .text            create__12daTagMhint_cFv */
@@ -181,12 +181,12 @@ static asm void daTagMhint_Delete(daTagMhint_c* param_0) {
 
 /* ############################################################################################## */
 /* 805A6040-805A6044 00000C 0004+00 1/2 0/0 0/0 .rodata          @3803 */
-SECTION_RODATA static u32 const lit_3803 = 0x3F800000;
-SECTION_DEAD void* const cg_805A6040 = (void*)(&lit_3803);
+SECTION_RODATA static f32 const lit_3803 = 1.0f;
+COMPILER_STRIP_GATE(805A6040, &lit_3803);
 
 /* 805A6044-805A6048 000010 0004+00 1/2 0/0 0/0 .rodata          @3804 */
-SECTION_RODATA static u32 const lit_3804 = 0xBF800000;
-SECTION_DEAD void* const cg_805A6044 = (void*)(&lit_3804);
+SECTION_RODATA static f32 const lit_3804 = -1.0f;
+COMPILER_STRIP_GATE(805A6044, &lit_3804);
 
 /* 805A5974-805A5AE4 000334 0170+00 1/1 0/0 0/0 .text            eventOrder__12daTagMhint_cFv */
 #pragma push
@@ -208,7 +208,7 @@ SECTION_RODATA static u8 const lit_3956[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_805A6048 = (void*)(&lit_3956);
+COMPILER_STRIP_GATE(805A6048, &lit_3956);
 #pragma pop
 
 /* 805A5AE4-805A6004 0004A4 0520+00 1/1 0/0 0/0 .text            execute__12daTagMhint_cFv */

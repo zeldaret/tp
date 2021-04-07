@@ -21,13 +21,13 @@ struct daNpcT_faceMotionAnmData_c {};
 
 struct J3DModel {};
 
-struct J3DJoint {};
-
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
+
+struct J3DJoint {};
 
 struct daNpcT_c {
     /* 801490D4 */ void ctrlBtk();

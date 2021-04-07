@@ -116,9 +116,9 @@ struct cDylPhs {
     /* 8001884C */ void Link(request_of_phase_process_class*, s16);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -539,7 +539,7 @@ SECTION_RODATA static u8 const l_preLoad_dylKeyTbl[28] = {
     0x02, 0xDC, 0x02, 0xCE, 0x02, 0x21, 0x00, 0xF2, 0x02, 0x1B, 0x02, 0xF4, 0x01, 0x39,
     0x01, 0x5A, 0x02, 0xE4, 0x00, 0xFE, 0x03, 0x08, 0x03, 0x0F, 0x00, 0xFF, 0x01, 0x3F,
 };
-SECTION_DEAD void* const cg_80399FE0 = (void*)(&l_preLoad_dylKeyTbl);
+COMPILER_STRIP_GATE(80399FE0, &l_preLoad_dylKeyTbl);
 
 /* 8025611C-80256198 250A5C 007C+00 2/2 0/0 0/0 .text            preLoad_dyl__10dScnLogo_cFv */
 #pragma push

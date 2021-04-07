@@ -814,7 +814,7 @@ asm void J2DColorBlock::initialize() {
 SECTION_RODATA static u8 const lit_1463[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x03,
 };
-SECTION_DEAD void* const cg_803A1C00 = (void*)(&lit_1463);
+COMPILER_STRIP_GATE(803A1C00, &lit_1463);
 
 /* 802EB424-802EB510 2E5D64 00EC+00 0/0 1/1 0/0 .text            setGX__13J2DColorBlockFv */
 #pragma push

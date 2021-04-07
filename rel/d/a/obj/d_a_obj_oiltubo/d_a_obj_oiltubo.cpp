@@ -13,18 +13,18 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct cXyz {};
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
 };
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTextureSRTKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -61,9 +61,9 @@ struct daObj_Oiltubo_c {
     /* 80CA7628 */ ~daObj_Oiltubo_c();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -524,11 +524,11 @@ SECTION_RODATA static u8 const mCcDObjInfo__15daObj_Oiltubo_c[48] = {
     0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80CA78F4 = (void*)(&mCcDObjInfo__15daObj_Oiltubo_c);
+COMPILER_STRIP_GATE(80CA78F4, &mCcDObjInfo__15daObj_Oiltubo_c);
 
 /* 80CA7924-80CA7928 000030 0004+00 1/3 0/0 0/0 .rodata          @3815 */
-SECTION_RODATA static u32 const lit_3815 = 0x3F800000;
-SECTION_DEAD void* const cg_80CA7924 = (void*)(&lit_3815);
+SECTION_RODATA static f32 const lit_3815 = 1.0f;
+COMPILER_STRIP_GATE(80CA7924, &lit_3815);
 
 /* 80CA6B28-80CA6C5C 000488 0134+00 1/1 0/0 0/0 .text            CreateHeap__15daObj_Oiltubo_cFv */
 #pragma push
@@ -554,17 +554,17 @@ asm void daObj_Oiltubo_c::Delete() {
 /* 80CA7928-80CA792C 000034 0004+00 0/1 0/0 0/0 .rodata          @3863 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3863 = 0xCE6E6B28;
-SECTION_DEAD void* const cg_80CA7928 = (void*)(&lit_3863);
+SECTION_RODATA static f32 const lit_3863 = -1000000000.0f;
+COMPILER_STRIP_GATE(80CA7928, &lit_3863);
 #pragma pop
 
 /* 80CA792C-80CA7930 000038 0004+00 1/4 0/0 0/0 .rodata          @3864 */
-SECTION_RODATA static u32 const lit_3864 = 0x42480000;
-SECTION_DEAD void* const cg_80CA792C = (void*)(&lit_3864);
+SECTION_RODATA static f32 const lit_3864 = 50.0f;
+COMPILER_STRIP_GATE(80CA792C, &lit_3864);
 
 /* 80CA7930-80CA7934 00003C 0004+00 1/3 0/0 0/0 .rodata          @3865 */
-SECTION_RODATA static u32 const lit_3865 = 0x428C0000;
-SECTION_DEAD void* const cg_80CA7930 = (void*)(&lit_3865);
+SECTION_RODATA static f32 const lit_3865 = 70.0f;
+COMPILER_STRIP_GATE(80CA7930, &lit_3865);
 
 /* 80CA6CA0-80CA6EDC 000600 023C+00 2/2 0/0 0/0 .text            Execute__15daObj_Oiltubo_cFv */
 #pragma push
@@ -580,15 +580,15 @@ asm void daObj_Oiltubo_c::Execute() {
 /* 80CA7934-80CA7938 000040 0004+00 0/1 0/0 0/0 .rodata          @3884 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3884 = 0x44480000;
-SECTION_DEAD void* const cg_80CA7934 = (void*)(&lit_3884);
+SECTION_RODATA static f32 const lit_3884 = 800.0f;
+COMPILER_STRIP_GATE(80CA7934, &lit_3884);
 #pragma pop
 
 /* 80CA7938-80CA793C 000044 0004+00 0/1 0/0 0/0 .rodata          @3885 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3885 = 0x42F00000;
-SECTION_DEAD void* const cg_80CA7938 = (void*)(&lit_3885);
+SECTION_RODATA static f32 const lit_3885 = 120.0f;
+COMPILER_STRIP_GATE(80CA7938, &lit_3885);
 #pragma pop
 
 /* 80CA6EDC-80CA6FC8 00083C 00EC+00 1/1 0/0 0/0 .text            Draw__15daObj_Oiltubo_cFv */
@@ -696,8 +696,8 @@ asm void daObj_Oiltubo_c::setMtx() {
 
 /* ############################################################################################## */
 /* 80CA793C-80CA7940 000048 0004+00 1/1 0/0 0/0 .rodata          @3999 */
-SECTION_RODATA static u32 const lit_3999 = 0x43160000;
-SECTION_DEAD void* const cg_80CA793C = (void*)(&lit_3999);
+SECTION_RODATA static f32 const lit_3999 = 150.0f;
+COMPILER_STRIP_GATE(80CA793C, &lit_3999);
 
 /* 80CA7430-80CA7478 000D90 0048+00 1/1 0/0 0/0 .text            setAttnPos__15daObj_Oiltubo_cFv */
 #pragma push
@@ -723,15 +723,15 @@ asm void daObj_Oiltubo_c::chkEvent() {
 /* 80CA7940-80CA7944 00004C 0004+00 0/1 0/0 0/0 .rodata          @4029 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4029 = 0x42C80000;
-SECTION_DEAD void* const cg_80CA7940 = (void*)(&lit_4029);
+SECTION_RODATA static f32 const lit_4029 = 100.0f;
+COMPILER_STRIP_GATE(80CA7940, &lit_4029);
 #pragma pop
 
 /* 80CA7944-80CA7948 000050 0004+00 0/1 0/0 0/0 .rodata          @4030 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4030 = 0xC2480000;
-SECTION_DEAD void* const cg_80CA7944 = (void*)(&lit_4030);
+SECTION_RODATA static f32 const lit_4030 = -50.0f;
+COMPILER_STRIP_GATE(80CA7944, &lit_4030);
 #pragma pop
 
 /* 80CA74C8-80CA7558 000E28 0090+00 1/0 0/0 0/0 .text            wait__15daObj_Oiltubo_cFPv */

@@ -11,12 +11,12 @@
 // Types:
 //
 
-struct Z2CreatureEnemy {};
-
 template <typename A0>
 struct JSULink {};
 /* JSULink<Z2CreatureEnemy> */
 struct JSULink__template2 {};
+
+struct Z2CreatureEnemy {};
 
 struct Z2SoundObjMgr {
     /* 802BF920 */ Z2SoundObjMgr();
@@ -142,7 +142,7 @@ SECTION_RODATA static u8 const lit_3380[12 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8039C240 = (void*)(&lit_3380);
+COMPILER_STRIP_GATE(8039C240, &lit_3380);
 
 /* 803CAD70-803CB170 027E90 0400+00 3/3 0/0 0/0 .data            mEnemyInfo */
 SECTION_DATA static u8 mEnemyInfo[1024] = {

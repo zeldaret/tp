@@ -15,9 +15,7 @@ struct Z2SpeechMgr2 {
     /* 802CC190 */ void speakOneWord(bool);
 };
 
-struct JAISoundID {};
-
-struct JAISoundHandle {};
+struct JAISound {};
 
 struct JGeometry {
     template <typename A1>
@@ -26,7 +24,9 @@ struct JGeometry {
     struct TVec3__template0 {};
 };
 
-struct JAISound {};
+struct JAISoundHandle {};
+
+struct JAISoundID {};
 
 struct Z2SoundMgr {
     /* 802A9E80 */ Z2SoundMgr();
@@ -322,7 +322,7 @@ asm void Z2SoundMgr::setIIR(JAISound* param_0, s16 const* param_1) {
 SECTION_RODATA static u8 const cResetFilterTable[16] = {
     0x7F, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8039B9C0 = (void*)(&cResetFilterTable);
+COMPILER_STRIP_GATE(8039B9C0, &cResetFilterTable);
 
 /* 802AA33C-802AA430 2A4C7C 00F4+00 1/1 0/0 0/0 .text setFilterOff__10Z2SoundMgrFP8JAISound */
 #pragma push

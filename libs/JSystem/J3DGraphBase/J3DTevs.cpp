@@ -322,14 +322,14 @@ SECTION_RODATA extern u8 const j3dDefaultLightInfo[52] = {
     0xFF, 0xFF, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803A1EC8 = (void*)(&j3dDefaultLightInfo);
+COMPILER_STRIP_GATE(803A1EC8, &j3dDefaultLightInfo);
 
 /* 803A1EFC-803A1F1C 02E55C 0020+00 0/0 5/5 0/0 .rodata          j3dDefaultTexCoordInfo */
 SECTION_RODATA extern u8 const j3dDefaultTexCoordInfo[32] = {
     0x01, 0x04, 0x3C, 0x00, 0x01, 0x05, 0x3C, 0x00, 0x01, 0x06, 0x3C, 0x00, 0x01, 0x07, 0x3C, 0x00,
     0x01, 0x08, 0x3C, 0x00, 0x01, 0x09, 0x3C, 0x00, 0x01, 0x0A, 0x3C, 0x00, 0x01, 0x0B, 0x3C, 0x00,
 };
-SECTION_DEAD void* const cg_803A1EFC = (void*)(&j3dDefaultTexCoordInfo);
+COMPILER_STRIP_GATE(803A1EFC, &j3dDefaultTexCoordInfo);
 
 /* 803A1F1C-803A1F80 02E57C 0064+00 0/0 1/1 0/0 .rodata          j3dDefaultTexMtxInfo */
 SECTION_RODATA extern u8 const j3dDefaultTexMtxInfo[100] = {
@@ -341,27 +341,27 @@ SECTION_RODATA extern u8 const j3dDefaultTexMtxInfo[100] = {
     0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803A1F1C = (void*)(&j3dDefaultTexMtxInfo);
+COMPILER_STRIP_GATE(803A1F1C, &j3dDefaultTexMtxInfo);
 
 /* 803A1F80-803A1F9C 02E5E0 001C+00 0/0 2/2 0/0 .rodata          j3dDefaultIndTexMtxInfo */
 SECTION_RODATA extern u8 const j3dDefaultIndTexMtxInfo[28] = {
     0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803A1F80 = (void*)(&j3dDefaultIndTexMtxInfo);
+COMPILER_STRIP_GATE(803A1F80, &j3dDefaultIndTexMtxInfo);
 
 /* 803A1F9C-803A1FB0 02E5FC 0014+00 0/0 1/1 0/0 .rodata          j3dDefaultTevStageInfo */
 SECTION_RODATA extern u8 const j3dDefaultTevStageInfo[20] = {
     0x04, 0x0A, 0x0F, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
     0x05, 0x07, 0x07, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803A1F9C = (void*)(&j3dDefaultTevStageInfo);
+COMPILER_STRIP_GATE(803A1F9C, &j3dDefaultTevStageInfo);
 
 /* 803A1FB0-803A1FBC 02E610 000C+00 0/0 2/2 0/0 .rodata          j3dDefaultIndTevStageInfo */
 SECTION_RODATA extern u8 const j3dDefaultIndTevStageInfo[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803A1FB0 = (void*)(&j3dDefaultIndTevStageInfo);
+COMPILER_STRIP_GATE(803A1FB0, &j3dDefaultIndTevStageInfo);
 
 /* 803A1FBC-803A1FE8 02E61C 002C+00 0/0 3/3 0/0 .rodata          j3dDefaultFogInfo */
 SECTION_RODATA extern u8 const j3dDefaultFogInfo[44] = {
@@ -369,13 +369,13 @@ SECTION_RODATA extern u8 const j3dDefaultFogInfo[44] = {
     0xCD, 0x46, 0x1C, 0x40, 0x00, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803A1FBC = (void*)(&j3dDefaultFogInfo);
+COMPILER_STRIP_GATE(803A1FBC, &j3dDefaultFogInfo);
 
 /* 803A1FE8-803A1FF8 02E648 0010+00 0/0 3/3 0/0 .rodata          j3dDefaultNBTScaleInfo */
 SECTION_RODATA extern u8 const j3dDefaultNBTScaleInfo[16] = {
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803A1FE8 = (void*)(&j3dDefaultNBTScaleInfo);
+COMPILER_STRIP_GATE(803A1FE8, &j3dDefaultNBTScaleInfo);
 
 /* 803A1FF8-803A2008 02E658 000B+05 1/1 0/0 0/0 .rodata          @1197 */
 SECTION_RODATA static u8 const lit_1197[11 + 5 /* padding */] = {
@@ -397,7 +397,7 @@ SECTION_RODATA static u8 const lit_1197[11 + 5 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_803A1FF8 = (void*)(&lit_1197);
+COMPILER_STRIP_GATE(803A1FF8, &lit_1197);
 
 /* 80434C98-80436A60 0619B8 1DC7+01 1/1 0/0 0/0 .bss             j3dTexCoordTable */
 static u8 j3dTexCoordTable[7623 + 1 /* padding */];

@@ -43,13 +43,13 @@ struct dSv_info_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
-struct cXyz {};
-
 struct _GXColor {};
 
 struct dKy_tevstr_c {};
+
+struct cXyz {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
@@ -94,9 +94,9 @@ struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -278,21 +278,21 @@ SECTION_RODATA static u8 const mCcDObjInfo__12daKtOnFire_c[48] = {
     0xD8, 0xFB, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8058CF88 = (void*)(&mCcDObjInfo__12daKtOnFire_c);
+COMPILER_STRIP_GATE(8058CF88, &mCcDObjInfo__12daKtOnFire_c);
 
 /* 8058CFB8-8058CFC0 000030 0004+04 1/2 0/0 0/0 .rodata          @3710 */
-SECTION_RODATA static u32 const lit_3710[1 + 1 /* padding */] = {
-    0x41200000,
+SECTION_RODATA static f32 const lit_3710[1 + 1 /* padding */] = {
+    10.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
-SECTION_DEAD void* const cg_8058CFB8 = (void*)(&lit_3710);
+COMPILER_STRIP_GATE(8058CFB8, &lit_3710);
 
 /* 8058CFC0-8058CFC8 000038 0008+00 1/1 0/0 0/0 .rodata          @3712 */
 SECTION_RODATA static u8 const lit_3712[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_8058CFC0 = (void*)(&lit_3712);
+COMPILER_STRIP_GATE(8058CFC0, &lit_3712);
 
 /* 8058C6D0-8058C8D0 0001B0 0200+00 1/1 0/0 0/0 .text            create__12daKtOnFire_cFv */
 #pragma push
@@ -328,15 +328,15 @@ asm cM3dGAab::~cM3dGAab() {
 /* 8058CFC8-8058CFCC 000040 0004+00 0/1 0/0 0/0 .rodata          @3797 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3797 = 0x43FA0000;
-SECTION_DEAD void* const cg_8058CFC8 = (void*)(&lit_3797);
+SECTION_RODATA static f32 const lit_3797 = 500.0f;
+COMPILER_STRIP_GATE(8058CFC8, &lit_3797);
 #pragma pop
 
 /* 8058CFCC-8058CFD0 000044 0004+00 0/2 0/0 0/0 .rodata          @3798 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3798 = 0x3F800000;
-SECTION_DEAD void* const cg_8058CFCC = (void*)(&lit_3798);
+SECTION_RODATA static f32 const lit_3798 = 1.0f;
+COMPILER_STRIP_GATE(8058CFCC, &lit_3798);
 #pragma pop
 
 /* 8058C960-8058C9D4 000440 0074+00 1/1 0/0 0/0 .text            lightInit__12daKtOnFire_cFv */
@@ -373,22 +373,22 @@ asm void daKtOnFire_c::cutLight() {
 /* 8058CFD0-8058CFD4 000048 0004+00 0/1 0/0 0/0 .rodata          @3913 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3913 = 0xBF800000;
-SECTION_DEAD void* const cg_8058CFD0 = (void*)(&lit_3913);
+SECTION_RODATA static f32 const lit_3913 = -1.0f;
+COMPILER_STRIP_GATE(8058CFD0, &lit_3913);
 #pragma pop
 
 /* 8058CFD4-8058CFD8 00004C 0004+00 0/1 0/0 0/0 .rodata          @3914 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3914 = 0x42480000;
-SECTION_DEAD void* const cg_8058CFD4 = (void*)(&lit_3914);
+SECTION_RODATA static f32 const lit_3914 = 50.0f;
+COMPILER_STRIP_GATE(8058CFD4, &lit_3914);
 #pragma pop
 
 /* 8058CFD8-8058CFDC 000050 0004+00 0/1 0/0 0/0 .rodata          @3915 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3915 = 0x42C80000;
-SECTION_DEAD void* const cg_8058CFD8 = (void*)(&lit_3915);
+SECTION_RODATA static f32 const lit_3915 = 100.0f;
+COMPILER_STRIP_GATE(8058CFD8, &lit_3915);
 #pragma pop
 
 /* 8058D0C0-8058D0CC 000008 000C+00 1/1 0/0 0/0 .bss             @3619 */

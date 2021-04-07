@@ -321,7 +321,7 @@ SECTION_RODATA extern u8 const j2dDefaultTexCoordInfo[32] = {
     0x01, 0x04, 0x3C, 0x00, 0x01, 0x05, 0x3C, 0x00, 0x01, 0x06, 0x3C, 0x00, 0x01, 0x07, 0x3C, 0x00,
     0x01, 0x08, 0x3C, 0x00, 0x01, 0x09, 0x3C, 0x00, 0x01, 0x0A, 0x3C, 0x00, 0x01, 0x0B, 0x3C, 0x00,
 };
-SECTION_DEAD void* const cg_803A1B80 = (void*)(&j2dDefaultTexCoordInfo);
+COMPILER_STRIP_GATE(803A1B80, &j2dDefaultTexCoordInfo);
 
 /* 803A1BA0-803A1BC4 02E200 0024+00 0/0 3/3 0/0 .rodata          j2dDefaultTexMtxInfo */
 SECTION_RODATA extern u8 const j2dDefaultTexMtxInfo[36] = {
@@ -329,27 +329,27 @@ SECTION_RODATA extern u8 const j2dDefaultTexMtxInfo[36] = {
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803A1BA0 = (void*)(&j2dDefaultTexMtxInfo);
+COMPILER_STRIP_GATE(803A1BA0, &j2dDefaultTexMtxInfo);
 
 /* 803A1BC4-803A1BE0 02E224 001C+00 0/0 3/3 0/0 .rodata          j2dDefaultIndTexMtxInfo */
 SECTION_RODATA extern u8 const j2dDefaultIndTexMtxInfo[28] = {
     0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803A1BC4 = (void*)(&j2dDefaultIndTexMtxInfo);
+COMPILER_STRIP_GATE(803A1BC4, &j2dDefaultIndTexMtxInfo);
 
 /* 803A1BE0-803A1BF4 02E240 0014+00 0/0 1/1 0/0 .rodata          j2dDefaultTevStageInfo */
 SECTION_RODATA extern u8 const j2dDefaultTevStageInfo[20] = {
     0x04, 0x0A, 0x0F, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
     0x05, 0x07, 0x07, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803A1BE0 = (void*)(&j2dDefaultTevStageInfo);
+COMPILER_STRIP_GATE(803A1BE0, &j2dDefaultTevStageInfo);
 
 /* 803A1BF4-803A1C00 02E254 000C+00 0/0 7/7 0/0 .rodata          j2dDefaultIndTevStageInfo */
 SECTION_RODATA extern u8 const j2dDefaultIndTevStageInfo[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803A1BF4 = (void*)(&j2dDefaultIndTevStageInfo);
+COMPILER_STRIP_GATE(803A1BF4, &j2dDefaultIndTevStageInfo);
 
 /* 8045617C-80456180 00477C 0004+00 0/0 1/1 0/0 .sdata2          j2dDefaultColInfo */
 SECTION_SDATA2 extern u32 j2dDefaultColInfo = 0xFFFFFFFF;

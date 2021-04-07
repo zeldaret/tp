@@ -19,15 +19,15 @@ struct dSelect_icon_c {
     /* 80195B70 */ void setPos(J2DPane*, f32, f32);
 };
 
+struct J2DAnmColor {};
+
 struct JKRArchive {};
+
+struct J2DAnmTextureSRTKey {};
 
 struct J2DAnmTransformKey {
     /* 801959C0 */ ~J2DAnmTransformKey();
 };
-
-struct J2DAnmColor {};
-
-struct J2DAnmTextureSRTKey {};
 
 struct dSelect_cursor_c {
     /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
@@ -267,7 +267,7 @@ SECTION_RODATA static u8 const corner_tag[32] = {
     0x6C, 0x5F, 0x75, 0x5F, 0x6E, 0x75, 0x6C, 0x6C, 0x6C, 0x5F, 0x64, 0x5F, 0x6E, 0x75, 0x6C, 0x6C,
     0x72, 0x5F, 0x75, 0x5F, 0x6E, 0x75, 0x6C, 0x6C, 0x72, 0x5F, 0x64, 0x5F, 0x6E, 0x75, 0x6C, 0x6C,
 };
-SECTION_DEAD void* const cg_80394A10 = (void*)(&corner_tag);
+COMPILER_STRIP_GATE(80394A10, &corner_tag);
 
 /* 80453A50-80453A54 002050 0004+00 4/4 0/0 0/0 .sdata2          @3808 */
 SECTION_SDATA2 static u8 lit_3808[4] = {
@@ -400,7 +400,7 @@ SECTION_RODATA static u8 const tag_4181[32] = {
     0x00, 0x00, 0x00, 0x00, 0x6C, 0x5F, 0x6C, 0x64, 0x00, 0x00, 0x00, 0x00, 0x6C, 0x5F, 0x6C, 0x75,
     0x00, 0x00, 0x00, 0x00, 0x6C, 0x5F, 0x72, 0x64, 0x00, 0x00, 0x00, 0x00, 0x6C, 0x5F, 0x72, 0x75,
 };
-SECTION_DEAD void* const cg_80394A30 = (void*)(&tag_4181);
+COMPILER_STRIP_GATE(80394A30, &tag_4181);
 
 /* 80195460-801955F0 18FDA0 0190+00 1/1 0/0 0/0 .text
  * setBpkAnimation__16dSelect_cursor_cFP11J2DAnmColor           */
@@ -421,13 +421,13 @@ SECTION_RODATA static u8 const tag_4197[64] = {
     0x00, 0x69, 0x5F, 0x63, 0x5F, 0x72, 0x64, 0x31, 0x00, 0x69, 0x5F, 0x63, 0x5F, 0x72, 0x64, 0x32,
     0x00, 0x69, 0x5F, 0x63, 0x5F, 0x72, 0x75, 0x31, 0x00, 0x69, 0x5F, 0x63, 0x5F, 0x72, 0x75, 0x32,
 };
-SECTION_DEAD void* const cg_80394A50 = (void*)(&tag_4197);
+COMPILER_STRIP_GATE(80394A50, &tag_4197);
 
 /* 80394A90-80394AA0 0210F0 0010+00 1/1 0/0 0/0 .rodata          tag$4204 */
 SECTION_RODATA static u8 const tag_4204[16] = {
     0x00, 0x00, 0x67, 0x6F, 0x6C, 0x64, 0x30, 0x31, 0x00, 0x00, 0x67, 0x6F, 0x6C, 0x64, 0x30, 0x32,
 };
-SECTION_DEAD void* const cg_80394A90 = (void*)(&tag_4204);
+COMPILER_STRIP_GATE(80394A90, &tag_4204);
 
 /* 801955F0-80195724 18FF30 0134+00 1/1 0/0 0/0 .text
  * setBtk0Animation__16dSelect_cursor_cFP19J2DAnmTextureSRTKey  */

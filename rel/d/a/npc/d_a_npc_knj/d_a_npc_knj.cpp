@@ -11,9 +11,7 @@
 // Types:
 //
 
-struct mDoExt_McaMorfCallBack1_c {};
-
-struct J3DModelData {};
+struct mDoExt_McaMorfCallBack2_c {};
 
 struct J3DAnmTransform {};
 
@@ -25,7 +23,9 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct mDoExt_McaMorfCallBack2_c {};
+struct J3DModelData {};
+
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -42,16 +42,16 @@ struct fopAc_ac_c {
 
 struct daNpcT_motionAnmData_c {};
 
-struct daNpcT_evtData_c {};
-
-struct daNpcT_faceMotionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
     /* 80145898 */ void initialize();
     /* 80A4511C */ ~daNpcT_MotionSeqMngr_c();
 };
+
+struct daNpcT_evtData_c {};
+
+struct daNpcT_faceMotionAnmData_c {};
 
 struct daNpc_Knj_c {
     /* 80A4356C */ ~daNpc_Knj_c();
@@ -90,11 +90,9 @@ struct daNpc_Knj_Param_c {
     /* 80A454A4 */ ~daNpc_Knj_Param_c();
 };
 
-struct J3DJoint {};
-
 struct J3DAnmTevRegKey {};
 
-struct J3DAnmTexPattern {};
+struct J3DJoint {};
 
 struct J3DModel {};
 
@@ -104,6 +102,8 @@ struct cXyz {
 };
 
 struct _GXColorS10 {};
+
+struct J3DAnmTexPattern {};
 
 struct daNpcT_c {
     /* 801480D0 */ void getTexPtrnAnmP(char const*, int);
@@ -246,12 +246,12 @@ struct dBgS_AcchCir {
     /* 80A45164 */ ~dBgS_AcchCir();
 };
 
+struct dBgS {};
+
 struct csXyz {
     /* 80A44B90 */ ~csXyz();
     /* 80A44FD0 */ csXyz();
 };
-
-struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -770,7 +770,7 @@ SECTION_RODATA static u8 const m__17daNpc_Knj_Param_c[140] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80A45510 = (void*)(&m__17daNpc_Knj_Param_c);
+COMPILER_STRIP_GATE(80A45510, &m__17daNpc_Knj_Param_c);
 
 /* 80A43608-80A43848 000188 0240+00 1/1 0/0 0/0 .text            create__11daNpc_Knj_cFv */
 #pragma push
@@ -790,29 +790,29 @@ SECTION_RODATA static u8 const lit_4089[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80A4559C = (void*)(&lit_4089);
+COMPILER_STRIP_GATE(80A4559C, &lit_4089);
 
 /* 80A455A0-80A455A4 000090 0004+00 0/2 0/0 0/0 .rodata          @4090 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4090 = 0x47800000;
-SECTION_DEAD void* const cg_80A455A0 = (void*)(&lit_4090);
+SECTION_RODATA static f32 const lit_4090 = 65536.0f;
+COMPILER_STRIP_GATE(80A455A0, &lit_4090);
 #pragma pop
 
 /* 80A455A4-80A455A8 000094 0004+00 0/2 0/0 0/0 .rodata          @4091 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4091 = 0x3E4CCCCD;
-SECTION_DEAD void* const cg_80A455A4 = (void*)(&lit_4091);
+SECTION_RODATA static f32 const lit_4091 = 1.0f / 5.0f;
+COMPILER_STRIP_GATE(80A455A4, &lit_4091);
 #pragma pop
 
 /* 80A455A8-80A455B0 000098 0004+04 2/2 0/0 0/0 .rodata          @4215 */
-SECTION_RODATA static u32 const lit_4215[1 + 1 /* padding */] = {
-    0x3F800000,
+SECTION_RODATA static f32 const lit_4215[1 + 1 /* padding */] = {
+    1.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
-SECTION_DEAD void* const cg_80A455A8 = (void*)(&lit_4215);
+COMPILER_STRIP_GATE(80A455A8, &lit_4215);
 
 /* 80A43848-80A439A0 0003C8 0158+00 1/1 0/0 0/0 .text            CreateHeap__11daNpc_Knj_cFv */
 #pragma push
@@ -975,7 +975,7 @@ bool daNpc_Knj_c::drawDbgInfo() {
 SECTION_RODATA static u8 const lit_4453[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80A455B0 = (void*)(&lit_4453);
+COMPILER_STRIP_GATE(80A455B0, &lit_4453);
 
 /* 80A44088-80A44264 000C08 01DC+00 1/0 0/0 0/0 .text afterSetMotionAnm__11daNpc_Knj_cFiifi */
 #pragma push
@@ -1031,8 +1031,8 @@ asm void daNpc_Knj_c::setAction(int (daNpc_Knj_c::*)(void*)) {
 
 /* ############################################################################################## */
 /* 80A455B8-80A455BC 0000A8 0004+00 1/1 0/0 0/0 .rodata          @4529 */
-SECTION_RODATA static u32 const lit_4529 = 0xBF800000;
-SECTION_DEAD void* const cg_80A455B8 = (void*)(&lit_4529);
+SECTION_RODATA static f32 const lit_4529 = -1.0f;
+COMPILER_STRIP_GATE(80A455B8, &lit_4529);
 
 /* 80A443EC-80A44598 000F6C 01AC+00 1/0 0/0 0/0 .text            wait__11daNpc_Knj_cFPv */
 #pragma push

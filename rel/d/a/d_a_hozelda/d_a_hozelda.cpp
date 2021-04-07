@@ -13,8 +13,6 @@
 
 struct request_of_phase_process_class {};
 
-struct Quaternion {};
-
 struct Vec {};
 
 struct cXyz {
@@ -23,17 +21,19 @@ struct cXyz {
     /* 80267150 */ void atan2sY_XZ() const;
 };
 
+struct Quaternion {};
+
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CF7C */ void quatM(Quaternion const*);
 };
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTexPattern {
     /* 8032AF50 */ void getTexNo(u16, u16*) const;
 };
+
+struct J3DMaterialTable {};
 
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
@@ -419,7 +419,7 @@ static asm void daHoZelda_searchGanon(fopAc_ac_c* param_0, void* param_1) {
 SECTION_RODATA static u8 const l_arcName[8] = {
     0x48, 0x6F, 0x5A, 0x65, 0x6C, 0x64, 0x61, 0x00,
 };
-SECTION_DEAD void* const cg_80848E3C = (void*)(&l_arcName);
+COMPILER_STRIP_GATE(80848E3C, &l_arcName);
 
 /* 80848E44-80848E54 000008 0010+00 0/5 0/0 0/0 .rodata          m__16daHoZelda_hio_c0 */
 #pragma push
@@ -427,7 +427,7 @@ SECTION_DEAD void* const cg_80848E3C = (void*)(&l_arcName);
 SECTION_RODATA static u8 const m__16daHoZelda_hio_c0[16] = {
     0x03, 0x8E, 0x2A, 0xAA, 0x40, 0x00, 0x00, 0x00, 0x45, 0x5A, 0xC0, 0x00, 0x45, 0x7A, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80848E44 = (void*)(&m__16daHoZelda_hio_c0);
+COMPILER_STRIP_GATE(80848E44, &m__16daHoZelda_hio_c0);
 #pragma pop
 
 /* 80848E54-80848E58 000018 0004+00 6/17 0/0 0/0 .rodata          @3697 */
@@ -437,7 +437,7 @@ SECTION_RODATA static u8 const lit_3697[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80848E54 = (void*)(&lit_3697);
+COMPILER_STRIP_GATE(80848E54, &lit_3697);
 
 /* 80845EAC-80845EDC 00008C 0030+00 2/2 0/0 0/0 .text            init__18daHoZelda_matAnm_cFv */
 #pragma push
@@ -451,14 +451,14 @@ asm void daHoZelda_matAnm_c::init() {
 
 /* ############################################################################################## */
 /* 80848E58-80848E5C 00001C 0004+00 5/14 0/0 0/0 .rodata          @3722 */
-SECTION_RODATA static u32 const lit_3722 = 0x3F800000;
-SECTION_DEAD void* const cg_80848E58 = (void*)(&lit_3722);
+SECTION_RODATA static f32 const lit_3722 = 1.0f;
+COMPILER_STRIP_GATE(80848E58, &lit_3722);
 
 /* 80848E5C-80848E64 000020 0008+00 1/6 0/0 0/0 .rodata          @3724 */
 SECTION_RODATA static u8 const lit_3724[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80848E5C = (void*)(&lit_3724);
+COMPILER_STRIP_GATE(80848E5C, &lit_3724);
 
 /* 80845EDC-80846000 0000BC 0124+00 1/0 0/0 0/0 .text calc__18daHoZelda_matAnm_cCFP11J3DMaterial
  */
@@ -744,8 +744,8 @@ static asm void daHoZelda_modelCallBack(J3DJoint* param_0, int param_1) {
 /* 80848E64-80848E68 000028 0004+00 0/2 0/0 0/0 .rodata          @4062 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4062 = 0xBF800000;
-SECTION_DEAD void* const cg_80848E64 = (void*)(&lit_4062);
+SECTION_RODATA static f32 const lit_4062 = -1.0f;
+COMPILER_STRIP_GATE(80848E64, &lit_4062);
 #pragma pop
 
 /* 808469B0-80846C4C 000B90 029C+00 1/1 0/0 0/0 .text            create__11daHoZelda_cFv */
@@ -852,8 +852,8 @@ asm void daHoZelda_c::setDoubleAnime(f32 param_0, f32 param_1, f32 param_2, u16 
 
 /* ############################################################################################## */
 /* 80848E68-80848E6C 00002C 0004+00 1/2 0/0 0/0 .rodata          @4209 */
-SECTION_RODATA static u32 const lit_4209 = 0x40400000;
-SECTION_DEAD void* const cg_80848E68 = (void*)(&lit_4209);
+SECTION_RODATA static f32 const lit_4209 = 3.0f;
+COMPILER_STRIP_GATE(80848E68, &lit_4209);
 
 /* 8084718C-80847234 00136C 00A8+00 1/1 0/0 0/0 .text            setUpperAnime__11daHoZelda_cFUs */
 #pragma push
@@ -891,7 +891,7 @@ asm void daHoZelda_c::setSingleAnime(u16 param_0, f32 param_1, f32 param_2, s16 
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4283 = 0x3C449BA6;
-SECTION_DEAD void* const cg_80848E6C = (void*)(&lit_4283);
+COMPILER_STRIP_GATE(80848E6C, &lit_4283);
 #pragma pop
 
 /* 80847430-80847574 001610 0144+00 1/1 0/0 0/0 .text            animePlay__11daHoZelda_cFv */
@@ -938,8 +938,8 @@ asm void daHoZelda_c::setNormalFace() {
 /* 80848E70-80848E74 000034 0004+00 0/1 0/0 0/0 .rodata          @4530 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4530 = 0x40800000;
-SECTION_DEAD void* const cg_80848E70 = (void*)(&lit_4530);
+SECTION_RODATA static f32 const lit_4530 = 4.0f;
+COMPILER_STRIP_GATE(80848E70, &lit_4530);
 #pragma pop
 
 /* 808476B0-80847E44 001890 0794+00 1/1 0/0 0/0 .text            setAnm__11daHoZelda_cFv */
@@ -959,7 +959,7 @@ asm void daHoZelda_c::setAnm() {
 SECTION_RODATA static u8 const localEyePos[12] = {
     0x41, 0x00, 0x00, 0x00, 0xC1, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80848E74 = (void*)(&localEyePos);
+COMPILER_STRIP_GATE(80848E74, &localEyePos);
 #pragma pop
 
 /* 80848E80-80848E8C 000044 000C+00 0/1 0/0 0/0 .rodata          localHeadCenterPos$4538 */
@@ -968,28 +968,28 @@ SECTION_DEAD void* const cg_80848E74 = (void*)(&localEyePos);
 SECTION_RODATA static u8 const localHeadCenterPos[12] = {
     0x41, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80848E80 = (void*)(&localHeadCenterPos);
+COMPILER_STRIP_GATE(80848E80, &localHeadCenterPos);
 #pragma pop
 
 /* 80848E8C-80848E90 000050 0004+00 0/1 0/0 0/0 .rodata          @4580 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4580 = 0x42A00000;
-SECTION_DEAD void* const cg_80848E8C = (void*)(&lit_4580);
+SECTION_RODATA static f32 const lit_4580 = 80.0f;
+COMPILER_STRIP_GATE(80848E8C, &lit_4580);
 #pragma pop
 
 /* 80848E90-80848E94 000054 0004+00 0/1 0/0 0/0 .rodata          @4581 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4581 = 0x41200000;
-SECTION_DEAD void* const cg_80848E90 = (void*)(&lit_4581);
+SECTION_RODATA static f32 const lit_4581 = 10.0f;
+COMPILER_STRIP_GATE(80848E90, &lit_4581);
 #pragma pop
 
 /* 80848E94-80848E98 000058 0004+00 0/1 0/0 0/0 .rodata          @4582 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4582 = 0xC0000000;
-SECTION_DEAD void* const cg_80848E94 = (void*)(&lit_4582);
+SECTION_RODATA static f32 const lit_4582 = -2.0f;
+COMPILER_STRIP_GATE(80848E94, &lit_4582);
 #pragma pop
 
 /* 80847E44-80847F54 002024 0110+00 2/2 0/0 0/0 .text            setBowModel__11daHoZelda_cFv */
@@ -1007,13 +1007,13 @@ asm void daHoZelda_c::setBowModel() {
 SECTION_RODATA static u8 const localHorseRidePos[12] = {
     0xC0, 0xBC, 0x9B, 0xA6, 0x42, 0x52, 0x70, 0xA4, 0x40, 0x82, 0x87, 0x2B,
 };
-SECTION_DEAD void* const cg_80848E98 = (void*)(&localHorseRidePos);
+COMPILER_STRIP_GATE(80848E98, &localHorseRidePos);
 
 /* 80848EA4-80848EB0 000068 000C+00 1/1 0/0 0/0 .rodata          localFrontHorseRidePos$4587 */
 SECTION_RODATA static u8 const localFrontHorseRidePos[12] = {
     0xC2, 0x97, 0xC9, 0xBA, 0x42, 0x66, 0x70, 0xA4, 0x40, 0x82, 0x87, 0x2B,
 };
-SECTION_DEAD void* const cg_80848EA4 = (void*)(&localFrontHorseRidePos);
+COMPILER_STRIP_GATE(80848EA4, &localFrontHorseRidePos);
 
 /* 80847F54-80848058 002134 0104+00 2/2 0/0 0/0 .text            setMatrix__11daHoZelda_cFv */
 #pragma push
@@ -1060,13 +1060,13 @@ asm void daHoZelda_c::setBowBck(u16 param_0) {
 SECTION_RODATA static u8 const baseRidePos[12] = {
     0x3D, 0xCC, 0xCC, 0xCD, 0x43, 0x6C, 0xB3, 0x33, 0xC2, 0x7E, 0x37, 0x4C,
 };
-SECTION_DEAD void* const cg_80848EB0 = (void*)(&baseRidePos);
+COMPILER_STRIP_GATE(80848EB0, &baseRidePos);
 
 /* 80848EBC-80848EC8 000080 000C+00 1/1 0/0 0/0 .rodata          frontRidePos$4673 */
 SECTION_RODATA static u8 const frontRidePos[12] = {
     0x3D, 0xCC, 0xCC, 0xCD, 0x43, 0x71, 0xB3, 0x33, 0x40, 0xCE, 0x45, 0xA0,
 };
-SECTION_DEAD void* const cg_80848EBC = (void*)(&frontRidePos);
+COMPILER_STRIP_GATE(80848EBC, &frontRidePos);
 
 /* 8084819C-80848204 00237C 0068+00 2/2 0/0 0/0 .text            setRideOffset__11daHoZelda_cFv */
 #pragma push
@@ -1093,42 +1093,42 @@ asm void daHoZelda_c::clearEyeMove() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4752 = 0x39000000;
-SECTION_DEAD void* const cg_80848EC8 = (void*)(&lit_4752);
+COMPILER_STRIP_GATE(80848EC8, &lit_4752);
 #pragma pop
 
 /* 80848ECC-80848ED0 000090 0004+00 0/1 0/0 0/0 .rodata          @4753 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4753 = 0xBE4CCCCD;
-SECTION_DEAD void* const cg_80848ECC = (void*)(&lit_4753);
+SECTION_RODATA static f32 const lit_4753 = -1.0f / 5.0f;
+COMPILER_STRIP_GATE(80848ECC, &lit_4753);
 #pragma pop
 
 /* 80848ED0-80848ED4 000094 0004+00 0/1 0/0 0/0 .rodata          @4754 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4754 = 0x3E4CCCCD;
-SECTION_DEAD void* const cg_80848ED0 = (void*)(&lit_4754);
+SECTION_RODATA static f32 const lit_4754 = 1.0f / 5.0f;
+COMPILER_STRIP_GATE(80848ED0, &lit_4754);
 #pragma pop
 
 /* 80848ED4-80848ED8 000098 0004+00 0/1 0/0 0/0 .rodata          @4755 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4755 = 0x3F000000;
-SECTION_DEAD void* const cg_80848ED4 = (void*)(&lit_4755);
+SECTION_RODATA static f32 const lit_4755 = 0.5f;
+COMPILER_STRIP_GATE(80848ED4, &lit_4755);
 #pragma pop
 
 /* 80848ED8-80848EDC 00009C 0004+00 0/1 0/0 0/0 .rodata          @4756 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4756 = 0x3DCCCCCD;
-SECTION_DEAD void* const cg_80848ED8 = (void*)(&lit_4756);
+SECTION_RODATA static f32 const lit_4756 = 1.0f / 10.0f;
+COMPILER_STRIP_GATE(80848ED8, &lit_4756);
 #pragma pop
 
 /* 80848EDC-80848EE0 0000A0 0004+00 0/1 0/0 0/0 .rodata          @4757 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4757 = 0x3CF5C28F;
-SECTION_DEAD void* const cg_80848EDC = (void*)(&lit_4757);
+SECTION_RODATA static f32 const lit_4757 = 3.0f / 100.0f;
+COMPILER_STRIP_GATE(80848EDC, &lit_4757);
 #pragma pop
 
 /* 80848254-808484B8 002434 0264+00 1/1 0/0 0/0 .text            setEyeMove__11daHoZelda_cFPC4cXyzss
@@ -1146,15 +1146,15 @@ asm void daHoZelda_c::setEyeMove(cXyz const* param_0, s16 param_1, s16 param_2) 
 /* 80848EE0-80848EE4 0000A4 0004+00 0/1 0/0 0/0 .rodata          @4861 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4861 = 0x48742400;
-SECTION_DEAD void* const cg_80848EE0 = (void*)(&lit_4861);
+SECTION_RODATA static f32 const lit_4861 = 250000.0f;
+COMPILER_STRIP_GATE(80848EE0, &lit_4861);
 #pragma pop
 
 /* 80848EE4-80848EE8 0000A8 0004+00 0/1 0/0 0/0 .rodata          @4862 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4862 = 0x47AFC800;
-SECTION_DEAD void* const cg_80848EE4 = (void*)(&lit_4862);
+SECTION_RODATA static f32 const lit_4862 = 90000.0f;
+COMPILER_STRIP_GATE(80848EE4, &lit_4862);
 #pragma pop
 
 /* 808484B8-80848774 002698 02BC+00 1/1 0/0 0/0 .text            setNeckAngle__11daHoZelda_cFv */
@@ -1171,8 +1171,8 @@ asm void daHoZelda_c::setNeckAngle() {
 /* 80848EE8-80848EEC 0000AC 0004+00 0/1 0/0 0/0 .rodata          @4938 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4938 = 0x42200000;
-SECTION_DEAD void* const cg_80848EE8 = (void*)(&lit_4938);
+SECTION_RODATA static f32 const lit_4938 = 40.0f;
+COMPILER_STRIP_GATE(80848EE8, &lit_4938);
 #pragma pop
 
 /* 80848EEC-80848EF4 0000B0 0008+00 0/1 0/0 0/0 .rodata          @4939 */
@@ -1181,7 +1181,7 @@ SECTION_DEAD void* const cg_80848EE8 = (void*)(&lit_4938);
 SECTION_RODATA static u8 const lit_4939[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80848EEC = (void*)(&lit_4939);
+COMPILER_STRIP_GATE(80848EEC, &lit_4939);
 #pragma pop
 
 /* 80848EF4-80848EFC 0000B8 0008+00 0/1 0/0 0/0 .rodata          @4940 */
@@ -1190,7 +1190,7 @@ SECTION_DEAD void* const cg_80848EEC = (void*)(&lit_4939);
 SECTION_RODATA static u8 const lit_4940[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80848EF4 = (void*)(&lit_4940);
+COMPILER_STRIP_GATE(80848EF4, &lit_4940);
 #pragma pop
 
 /* 80848EFC-80848F04 0000C0 0008+00 0/1 0/0 0/0 .rodata          @4941 */
@@ -1199,7 +1199,7 @@ SECTION_DEAD void* const cg_80848EF4 = (void*)(&lit_4940);
 SECTION_RODATA static u8 const lit_4941[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80848EFC = (void*)(&lit_4941);
+COMPILER_STRIP_GATE(80848EFC, &lit_4941);
 #pragma pop
 
 /* 80848774-808489CC 002954 0258+00 1/1 0/0 0/0 .text            searchBodyAngle__11daHoZelda_cFv */

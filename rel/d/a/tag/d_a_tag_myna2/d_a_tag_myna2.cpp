@@ -101,7 +101,7 @@ SECTION_RODATA static u8 const lit_3743[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80D5CA3C = (void*)(&lit_3743);
+COMPILER_STRIP_GATE(80D5CA3C, &lit_3743);
 
 /* 80D5CA44-80D5CA4C 000008 0008+00 0/1 0/0 0/0 .rodata          @3744 */
 #pragma push
@@ -109,7 +109,7 @@ SECTION_DEAD void* const cg_80D5CA3C = (void*)(&lit_3743);
 SECTION_RODATA static u8 const lit_3744[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80D5CA44 = (void*)(&lit_3744);
+COMPILER_STRIP_GATE(80D5CA44, &lit_3744);
 #pragma pop
 
 /* 80D5CA4C-80D5CA54 000010 0008+00 0/1 0/0 0/0 .rodata          @3745 */
@@ -118,7 +118,7 @@ SECTION_DEAD void* const cg_80D5CA44 = (void*)(&lit_3744);
 SECTION_RODATA static u8 const lit_3745[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80D5CA4C = (void*)(&lit_3745);
+COMPILER_STRIP_GATE(80D5CA4C, &lit_3745);
 #pragma pop
 
 /* 80D5CA54-80D5CA5C 000018 0008+00 0/1 0/0 0/0 .rodata          @3746 */
@@ -127,21 +127,21 @@ SECTION_DEAD void* const cg_80D5CA4C = (void*)(&lit_3745);
 SECTION_RODATA static u8 const lit_3746[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80D5CA54 = (void*)(&lit_3746);
+COMPILER_STRIP_GATE(80D5CA54, &lit_3746);
 #pragma pop
 
 /* 80D5CA5C-80D5CA60 000020 0004+00 0/1 0/0 0/0 .rodata          @3747 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3747 = 0x42C80000;
-SECTION_DEAD void* const cg_80D5CA5C = (void*)(&lit_3747);
+SECTION_RODATA static f32 const lit_3747 = 100.0f;
+COMPILER_STRIP_GATE(80D5CA5C, &lit_3747);
 #pragma pop
 
 /* 80D5CA60-80D5CA64 000024 0004+00 0/1 0/0 0/0 .rodata          @3748 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3748 = 0x447A0000;
-SECTION_DEAD void* const cg_80D5CA60 = (void*)(&lit_3748);
+SECTION_RODATA static f32 const lit_3748 = 1000.0f;
+COMPILER_STRIP_GATE(80D5CA60, &lit_3748);
 #pragma pop
 
 /* 80D5C708-80D5C9A8 0000E8 02A0+00 1/1 0/0 0/0 .text            execute__12daTagMyna2_cFv */

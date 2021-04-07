@@ -55,9 +55,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -89,9 +89,9 @@ struct dBgW_Base {};
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -243,8 +243,8 @@ asm void daObjSmgDoor_c::initBaseMtx() {
 
 /* ############################################################################################## */
 /* 80CDCBF4-80CDCBF8 000000 0004+00 3/3 0/0 0/0 .rodata          @3705 */
-SECTION_RODATA static u32 const lit_3705 = 0xC3110000;
-SECTION_DEAD void* const cg_80CDCBF4 = (void*)(&lit_3705);
+SECTION_RODATA static f32 const lit_3705 = -145.0f;
+COMPILER_STRIP_GATE(80CDCBF4, &lit_3705);
 
 /* 80CDCBF8-80CDCBFC 000004 0004+00 1/4 0/0 0/0 .rodata          @3706 */
 SECTION_RODATA static u8 const lit_3706[4] = {
@@ -253,13 +253,13 @@ SECTION_RODATA static u8 const lit_3706[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80CDCBF8 = (void*)(&lit_3706);
+COMPILER_STRIP_GATE(80CDCBF8, &lit_3706);
 
 /* 80CDCBFC-80CDCC00 000008 0004+00 0/1 0/0 0/0 .rodata          @3707 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3707 = 0x43110000;
-SECTION_DEAD void* const cg_80CDCBFC = (void*)(&lit_3707);
+SECTION_RODATA static f32 const lit_3707 = 145.0f;
+COMPILER_STRIP_GATE(80CDCBFC, &lit_3707);
 #pragma pop
 
 /* 80CDBBEC-80CDBD38 00012C 014C+00 2/2 0/0 0/0 .text            setBaseMtx__14daObjSmgDoor_cFv */
@@ -274,8 +274,8 @@ asm void daObjSmgDoor_c::setBaseMtx() {
 
 /* ############################################################################################## */
 /* 80CDCC00-80CDCC04 00000C 0004+00 1/1 0/0 0/0 .rodata          @3722 */
-SECTION_RODATA static u32 const lit_3722 = 0x43160000;
-SECTION_DEAD void* const cg_80CDCC00 = (void*)(&lit_3722);
+SECTION_RODATA static f32 const lit_3722 = 150.0f;
+COMPILER_STRIP_GATE(80CDCC00, &lit_3722);
 
 /* 80CDCCC4-80CDCCD0 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -396,12 +396,12 @@ asm void daObjSmgDoor_c::getDemoAction() {
 
 /* ############################################################################################## */
 /* 80CDCC04-80CDCC08 000010 0004+00 3/3 0/0 0/0 .rodata          @3825 */
-SECTION_RODATA static u32 const lit_3825 = 0x3F800000;
-SECTION_DEAD void* const cg_80CDCC04 = (void*)(&lit_3825);
+SECTION_RODATA static f32 const lit_3825 = 1.0f;
+COMPILER_STRIP_GATE(80CDCC04, &lit_3825);
 
 /* 80CDCC08-80CDCC0C 000014 0004+00 3/3 0/0 0/0 .rodata          @3826 */
-SECTION_RODATA static u32 const lit_3826 = 0xBF800000;
-SECTION_DEAD void* const cg_80CDCC08 = (void*)(&lit_3826);
+SECTION_RODATA static f32 const lit_3826 = -1.0f;
+COMPILER_STRIP_GATE(80CDCC08, &lit_3826);
 
 /* 80CDC038-80CDC248 000578 0210+00 1/1 0/0 0/0 .text            demoProc__14daObjSmgDoor_cFv */
 #pragma push
@@ -435,8 +435,8 @@ asm void daObjSmgDoor_c::openProc() {
 
 /* ############################################################################################## */
 /* 80CDCC0C-80CDCC10 000018 0004+00 1/1 0/0 0/0 .rodata          @3888 */
-SECTION_RODATA static u32 const lit_3888 = 0x42700000;
-SECTION_DEAD void* const cg_80CDCC0C = (void*)(&lit_3888);
+SECTION_RODATA static f32 const lit_3888 = 60.0f;
+COMPILER_STRIP_GATE(80CDCC0C, &lit_3888);
 
 /* 80CDC4AC-80CDC548 0009EC 009C+00 1/1 0/0 0/0 .text            setGoal__14daObjSmgDoor_cFv */
 #pragma push
@@ -452,15 +452,15 @@ asm void daObjSmgDoor_c::setGoal() {
 /* 80CDCC10-80CDCC14 00001C 0004+00 0/1 0/0 0/0 .rodata          @3906 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3906 = 0x43960000;
-SECTION_DEAD void* const cg_80CDCC10 = (void*)(&lit_3906);
+SECTION_RODATA static f32 const lit_3906 = 300.0f;
+COMPILER_STRIP_GATE(80CDCC10, &lit_3906);
 #pragma pop
 
 /* 80CDCC14-80CDCC18 000020 0004+00 0/1 0/0 0/0 .rodata          @3907 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3907 = 0x437A0000;
-SECTION_DEAD void* const cg_80CDCC14 = (void*)(&lit_3907);
+SECTION_RODATA static f32 const lit_3907 = 250.0f;
+COMPILER_STRIP_GATE(80CDCC14, &lit_3907);
 #pragma pop
 
 /* 80CDC548-80CDC610 000A88 00C8+00 1/1 0/0 0/0 .text            setPos__14daObjSmgDoor_cFv */
@@ -565,22 +565,22 @@ void daObjSmgDoor_c::actionDead() {
 /* 80CDCC18-80CDCC1C 000024 0004+00 0/1 0/0 0/0 .rodata          @4054 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4054 = 0x47742400;
-SECTION_DEAD void* const cg_80CDCC18 = (void*)(&lit_4054);
+SECTION_RODATA static f32 const lit_4054 = 62500.0f;
+COMPILER_STRIP_GATE(80CDCC18, &lit_4054);
 #pragma pop
 
 /* 80CDCC1C-80CDCC20 000028 0004+00 0/1 0/0 0/0 .rodata          @4055 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4055 = 0x47AFC800;
-SECTION_DEAD void* const cg_80CDCC1C = (void*)(&lit_4055);
+SECTION_RODATA static f32 const lit_4055 = 90000.0f;
+COMPILER_STRIP_GATE(80CDCC1C, &lit_4055);
 #pragma pop
 
 /* 80CDCC20-80CDCC24 00002C 0004+00 0/1 0/0 0/0 .rodata          @4056 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4056 = 0x463D1000;
-SECTION_DEAD void* const cg_80CDCC20 = (void*)(&lit_4056);
+SECTION_RODATA static f32 const lit_4056 = 12100.0f;
+COMPILER_STRIP_GATE(80CDCC20, &lit_4056);
 #pragma pop
 
 /* 80CDC7F8-80CDC974 000D38 017C+00 1/1 0/0 0/0 .text            checkArea__14daObjSmgDoor_cFv */

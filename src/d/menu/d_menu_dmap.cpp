@@ -46,14 +46,14 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
+struct JKRArchive {};
+
 struct J2DBasePosition {};
 
 struct J2DPane {
     /* 802F7100 */ void getBounds();
     /* 802F76F8 */ void setBasePosition(J2DBasePosition);
 };
-
-struct JKRArchive {};
 
 struct dSelect_cursor_c {
     /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
@@ -86,6 +86,8 @@ struct dMeterHaihai_c {
     /* 8020BC20 */ void setScale(f32);
 };
 
+struct JMSMesgEntry_c {};
+
 struct ResTIMG {};
 
 struct J2DPicture {
@@ -93,8 +95,6 @@ struct J2DPicture {
     /* 801BDD70 */ void insert(ResTIMG const*, u8, f32);
     /* 802FC708 */ J2DPicture(ResTIMG const*);
 };
-
-struct JMSMesgEntry_c {};
 
 struct dMeter2Info_c {
     /* 8021C250 */ void getString(u32, char*, JMSMesgEntry_c*);
@@ -131,12 +131,6 @@ struct dMenu_StageMapCtrl_c {
     /* 801C2590 */ void setPlusZoomCenterZ(f32);
 };
 
-struct JKRExpHeap {
-    /* 802CEE2C */ void create(u32, JKRHeap*, bool);
-};
-
-struct J2DOrthoGraph {};
-
 struct STControl {
     /* 80032044 */ STControl(s16, s16, s16, s16, f32, f32, s16, s16);
     /* 8003219C */ void checkTrigger();
@@ -146,14 +140,18 @@ struct STControl {
     /* 800325A0 */ void checkDownTrigger();
 };
 
+struct JKRExpHeap {
+    /* 802CEE2C */ void create(u32, JKRHeap*, bool);
+};
+
+struct J2DOrthoGraph {};
+
 struct dMenu_ItemExplain_c {
     /* 801DA754 */ dMenu_ItemExplain_c(JKRExpHeap*, JKRArchive*, STControl*, bool);
     /* 801DB470 */ void move();
     /* 801DB514 */ void draw(J2DOrthoGraph*);
     /* 801DC3C8 */ void openExplainDmap(u8, u8, u8, bool, u8);
 };
-
-struct CSTControl {};
 
 struct JGeometry {
     template <typename A1>
@@ -172,6 +170,8 @@ struct J2DScreen {
     /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
     /* 802F9690 */ void animation();
 };
+
+struct CSTControl {};
 
 struct dMenu_Dmap_c {
     /* 801BB498 */ dMenu_Dmap_c(JKRExpHeap*, STControl*, CSTControl*, u8, u8);
@@ -280,9 +280,9 @@ struct dDlst_list_c {
     /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -1223,7 +1223,7 @@ SECTION_RODATA static u8 const cont_at_4145[40] = {
     0x74, 0x31, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x32, 0x63, 0x6F, 0x6E, 0x74,
     0x5F, 0x61, 0x74, 0x33, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x34,
 };
-SECTION_DEAD void* const cg_80395518 = (void*)(&cont_at_4145);
+COMPILER_STRIP_GATE(80395518, &cont_at_4145);
 
 /* 80395540-80395568 021BA0 0028+00 0/1 0/0 0/0 .rodata          cont_bt$4146 */
 #pragma push
@@ -1233,7 +1233,7 @@ SECTION_RODATA static u8 const cont_bt_4146[40] = {
     0x74, 0x31, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x62, 0x74, 0x32, 0x63, 0x6F, 0x6E, 0x74,
     0x5F, 0x62, 0x74, 0x33, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x62, 0x74, 0x34,
 };
-SECTION_DEAD void* const cg_80395540 = (void*)(&cont_bt_4146);
+COMPILER_STRIP_GATE(80395540, &cont_bt_4146);
 #pragma pop
 
 /* 80395568-80395590 021BC8 0028+00 0/1 0/0 0/0 .rodata          font_at$4147 */
@@ -1244,7 +1244,7 @@ SECTION_RODATA static u8 const font_at[40] = {
     0x74, 0x31, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x32, 0x66, 0x6F, 0x6E, 0x74,
     0x5F, 0x61, 0x74, 0x33, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x34,
 };
-SECTION_DEAD void* const cg_80395568 = (void*)(&font_at);
+COMPILER_STRIP_GATE(80395568, &font_at);
 #pragma pop
 
 /* 80395590-803955B8 021BF0 0028+00 0/1 0/0 0/0 .rodata          font_bt$4148 */
@@ -1255,7 +1255,7 @@ SECTION_RODATA static u8 const font_bt[40] = {
     0x74, 0x31, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x62, 0x74, 0x32, 0x66, 0x6F, 0x6E, 0x74,
     0x5F, 0x62, 0x74, 0x33, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x62, 0x74, 0x34,
 };
-SECTION_DEAD void* const cg_80395590 = (void*)(&font_bt);
+COMPILER_STRIP_GATE(80395590, &font_bt);
 #pragma pop
 
 /* 803955B8-803955C8 021C18 0010+00 0/1 0/0 0/0 .rodata          c_tag$4155 */
@@ -1264,7 +1264,7 @@ SECTION_DEAD void* const cg_80395590 = (void*)(&font_bt);
 SECTION_RODATA static u8 const c_tag_4155[16] = {
     0x66, 0x5F, 0x74, 0x65, 0x78, 0x74, 0x5F, 0x73, 0x00, 0x00, 0x66, 0x5F, 0x74, 0x65, 0x78, 0x74,
 };
-SECTION_DEAD void* const cg_803955B8 = (void*)(&c_tag_4155);
+COMPILER_STRIP_GATE(803955B8, &c_tag_4155);
 #pragma pop
 
 /* 80454004-80454008 002604 0004+00 1/1 0/0 0/0 .sdata2          @4191 */
@@ -1290,7 +1290,7 @@ SECTION_RODATA static u8 const cont_at_4196[40] = {
     0x74, 0x31, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x32, 0x66, 0x6F, 0x6E, 0x74,
     0x5F, 0x61, 0x74, 0x33, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x34,
 };
-SECTION_DEAD void* const cg_803955C8 = (void*)(&cont_at_4196);
+COMPILER_STRIP_GATE(803955C8, &cont_at_4196);
 
 /* 801B8DE4-801B8EBC 1B3724 00D8+00 7/7 0/0 0/0 .text setAButtonString__14dMenu_DmapBg_cFUl */
 #pragma push
@@ -1309,7 +1309,7 @@ SECTION_RODATA static u8 const cont_bt_4211[40] = {
     0x74, 0x31, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x62, 0x74, 0x32, 0x66, 0x6F, 0x6E, 0x74,
     0x5F, 0x62, 0x74, 0x33, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x62, 0x74, 0x34,
 };
-SECTION_DEAD void* const cg_803955F0 = (void*)(&cont_bt_4211);
+COMPILER_STRIP_GATE(803955F0, &cont_bt_4211);
 
 /* 801B8EBC-801B8F94 1B37FC 00D8+00 8/8 0/0 0/0 .text setBButtonString__14dMenu_DmapBg_cFUl */
 #pragma push
@@ -1326,13 +1326,13 @@ asm void dMenu_DmapBg_c::setBButtonString(u32 param_0) {
 SECTION_RODATA static u8 const c_tag_4229[16] = {
     0x66, 0x5F, 0x74, 0x65, 0x78, 0x74, 0x5F, 0x73, 0x00, 0x00, 0x66, 0x5F, 0x74, 0x65, 0x78, 0x74,
 };
-SECTION_DEAD void* const cg_80395618 = (void*)(&c_tag_4229);
+COMPILER_STRIP_GATE(80395618, &c_tag_4229);
 
 /* 80451078-8045107C 000578 0004+00 1/1 0/0 0/0 .sbss            player_px */
-static u8 player_px[4];
+static f32 player_px;
 
 /* 8045107C-80451080 00057C 0004+00 1/1 0/0 0/0 .sbss            player_py */
-static u8 player_py[4];
+static f32 player_py;
 
 /* 80451080-80451088 000580 0004+04 6/6 0/0 0/0 .sbss            myclass__12dMenu_Dmap_c */
 static u8 myclass__12dMenu_Dmap_c[4 + 4 /* padding */];
@@ -1443,7 +1443,7 @@ SECTION_RODATA static u8 const lit_4325[26 + 6 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80395628 = (void*)(&lit_4325);
+COMPILER_STRIP_GATE(80395628, &lit_4325);
 
 /* 801B944C-801BA0B4 1B3D8C 0C68+00 1/1 0/0 0/0 .text            setFloorMessage__14dMenu_DmapBg_cFv
  */
@@ -1612,7 +1612,7 @@ SECTION_RODATA static u8 const floor_tag[64] = {
     0x66, 0x6C, 0x6F, 0x6F, 0x72, 0x33, 0x5F, 0x6E, 0x66, 0x6C, 0x6F, 0x6F, 0x72, 0x34, 0x5F, 0x6E,
     0x66, 0x6C, 0x6F, 0x6F, 0x72, 0x35, 0x5F, 0x6E, 0x66, 0x6C, 0x6F, 0x6F, 0x72, 0x36, 0x5F, 0x6E,
 };
-SECTION_DEAD void* const cg_80395648 = (void*)(&floor_tag);
+COMPILER_STRIP_GATE(80395648, &floor_tag);
 #pragma pop
 
 /* 80395688-803956C8 021CE8 0040+00 0/1 0/0 0/0 .rodata          icon_tag$4933 */
@@ -1624,7 +1624,7 @@ SECTION_RODATA static u8 const icon_tag[64] = {
     0x69, 0x63, 0x6F, 0x5F, 0x73, 0x65, 0x74, 0x33, 0x69, 0x63, 0x6F, 0x5F, 0x73, 0x65, 0x74, 0x34,
     0x69, 0x63, 0x6F, 0x5F, 0x73, 0x65, 0x74, 0x35, 0x69, 0x63, 0x6F, 0x5F, 0x73, 0x65, 0x74, 0x36,
 };
-SECTION_DEAD void* const cg_80395688 = (void*)(&icon_tag);
+COMPILER_STRIP_GATE(80395688, &icon_tag);
 #pragma pop
 
 /* 803956C8-80395708 021D28 0040+00 0/1 0/0 0/0 .rodata          boss_tag$4934 */
@@ -1636,7 +1636,7 @@ SECTION_RODATA static u8 const boss_tag[64] = {
     0x69, 0x63, 0x5F, 0x73, 0x74, 0x5F, 0x62, 0x33, 0x69, 0x63, 0x5F, 0x73, 0x74, 0x5F, 0x62, 0x34,
     0x69, 0x63, 0x5F, 0x73, 0x74, 0x5F, 0x62, 0x35, 0x69, 0x63, 0x5F, 0x73, 0x74, 0x5F, 0x62, 0x36,
 };
-SECTION_DEAD void* const cg_803956C8 = (void*)(&boss_tag);
+COMPILER_STRIP_GATE(803956C8, &boss_tag);
 #pragma pop
 
 /* 80395708-80395718 021D68 0010+00 0/1 0/0 0/0 .rodata          stay_tag$4935 */
@@ -1645,7 +1645,7 @@ SECTION_DEAD void* const cg_803956C8 = (void*)(&boss_tag);
 SECTION_RODATA static u8 const stay_tag[16] = {
     0x72, 0x69, 0x6E, 0x6B, 0x5F, 0x6E, 0x75, 0x6C, 0x62, 0x6F, 0x73, 0x73, 0x5F, 0x6E, 0x75, 0x6C,
 };
-SECTION_DEAD void* const cg_80395708 = (void*)(&stay_tag);
+COMPILER_STRIP_GATE(80395708, &stay_tag);
 #pragma pop
 
 /* 80395718-80395730 021D78 0018+00 0/1 0/0 0/0 .rodata          waku_tag$4973 */
@@ -1655,7 +1655,7 @@ SECTION_RODATA static u8 const waku_tag[24] = {
     0x67, 0x72, 0x61, 0x79, 0x5F, 0x6D, 0x61, 0x70, 0x67, 0x72, 0x61, 0x79,
     0x5F, 0x63, 0x6F, 0x6E, 0x67, 0x72, 0x61, 0x79, 0x5F, 0x6B, 0x65, 0x79,
 };
-SECTION_DEAD void* const cg_80395718 = (void*)(&waku_tag);
+COMPILER_STRIP_GATE(80395718, &waku_tag);
 #pragma pop
 
 /* 80395730-80395748 021D90 0018+00 0/1 0/0 0/0 .rodata          key_tag$5002 */
@@ -1665,7 +1665,7 @@ SECTION_RODATA static u8 const key_tag[24] = {
     0x00, 0x00, 0x6B, 0x65, 0x79, 0x5F, 0x30, 0x30, 0x00, 0x00, 0x6B, 0x65,
     0x79, 0x5F, 0x30, 0x31, 0x00, 0x00, 0x6B, 0x65, 0x79, 0x5F, 0x30, 0x32,
 };
-SECTION_DEAD void* const cg_80395730 = (void*)(&key_tag);
+COMPILER_STRIP_GATE(80395730, &key_tag);
 #pragma pop
 
 /* 80395748-80395760 021DA8 0018+00 0/1 0/0 0/0 .rodata          item_tag$5040 */
@@ -1675,7 +1675,7 @@ SECTION_RODATA static u8 const item_tag[24] = {
     0x00, 0x00, 0x6D, 0x61, 0x70, 0x30, 0x30, 0x30, 0x00, 0x00, 0x63, 0x6F,
     0x6E, 0x30, 0x30, 0x30, 0x00, 0x69, 0x5F, 0x6B, 0x65, 0x79, 0x5F, 0x6E,
 };
-SECTION_DEAD void* const cg_80395748 = (void*)(&item_tag);
+COMPILER_STRIP_GATE(80395748, &item_tag);
 #pragma pop
 
 /* 8045404C-80454050 00264C 0004+00 1/1 0/0 0/0 .sdata2          @5277 */

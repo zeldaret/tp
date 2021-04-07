@@ -109,28 +109,28 @@ static asm void daEcont_Delete(econt_class* param_0) {
 
 /* ############################################################################################## */
 /* 8051977C-80519780 000000 0004+00 1/1 0/0 0/0 .rodata          @3870 */
-SECTION_RODATA static u32 const lit_3870 = 0x43520000;
-SECTION_DEAD void* const cg_8051977C = (void*)(&lit_3870);
+SECTION_RODATA static f32 const lit_3870 = 210.0f;
+COMPILER_STRIP_GATE(8051977C, &lit_3870);
 
 /* 80519780-80519784 000004 0004+00 0/1 0/0 0/0 .rodata          @3871 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3871 = 0x43CD0000;
-SECTION_DEAD void* const cg_80519780 = (void*)(&lit_3871);
+SECTION_RODATA static f32 const lit_3871 = 410.0f;
+COMPILER_STRIP_GATE(80519780, &lit_3871);
 #pragma pop
 
 /* 80519784-80519788 000008 0004+00 0/1 0/0 0/0 .rodata          @3872 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3872 = 0x42000000;
-SECTION_DEAD void* const cg_80519784 = (void*)(&lit_3872);
+SECTION_RODATA static f32 const lit_3872 = 32.0f;
+COMPILER_STRIP_GATE(80519784, &lit_3872);
 #pragma pop
 
 /* 80519788-8051978C 00000C 0004+00 0/1 0/0 0/0 .rodata          @3873 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3873 = 0x43D18000;
-SECTION_DEAD void* const cg_80519788 = (void*)(&lit_3873);
+SECTION_RODATA static f32 const lit_3873 = 419.0f;
+COMPILER_STRIP_GATE(80519788, &lit_3873);
 #pragma pop
 
 /* 805196E4-80519774 000244 0090+00 1/0 0/0 0/0 .text            daEcont_Create__FP10fopAc_ac_c */

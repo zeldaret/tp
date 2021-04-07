@@ -11,7 +11,7 @@
 // Forward References:
 //
 
-extern "C" extern u32 ga4cSignature__Q37JStudio3fvb4data[1 + 1 /* padding */];
+extern "C" extern f32 ga4cSignature__Q37JStudio3fvb4data[1 + 1 /* padding */];
 
 //
 // External References:
@@ -24,8 +24,9 @@ extern "C" extern u32 ga4cSignature__Q37JStudio3fvb4data[1 + 1 /* padding */];
 /* ############################################################################################## */
 /* 80455450-80455458 003A50 0004+04 0/0 1/1 0/0 .sdata2          ga4cSignature__Q37JStudio3fvb4data
  */
-SECTION_SDATA2 extern u32 ga4cSignature__Q37JStudio3fvb4data[1 + 1 /* padding */] = {
-    0x46564200,
+SECTION_SDATA2 extern f32 ga4cSignature__Q37JStudio3fvb4data[1 + 1 /* padding */];
+SECTION_SDATA2 f32 ga4cSignature__Q37JStudio3fvb4data[1 + 1 /* padding */] = {
+    13712.5f,
     /* padding */
-    0x00000000,
+    0.0f,
 };

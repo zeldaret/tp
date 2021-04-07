@@ -1,3 +1,5 @@
+import librel
+
 from dataclasses import dataclass, field
 from collections import defaultdict
 from typing import Dict, List
@@ -5,7 +7,7 @@ from pathlib import Path
 from intervaltree import Interval, IntervalTree
 
 from .context import Context
-from .disassemble import Access, BranchAccess
+from .disassemble import Access, BranchAccess, FloatLoadAccess, DoubleLoadAccess
 from .data import *
 
 from . import util
@@ -15,6 +17,7 @@ from . import sort_translation_units
 from . import generate_symbols
 from . import generate_functions
 from . import settings
+from . import disassemble
 
 
 def insert_access_as_symbol(context: Context,
@@ -23,14 +26,17 @@ def insert_access_as_symbol(context: Context,
                             map_sections: Dict[str, linker_map.Section],
                             map_addrs: Dict[str, Dict[int, linker_map.Symbol]],
                             ait: Dict[str, IntervalTree],
+                            relocations,
                             access: Access) -> bool:
     """Insert new symbol from the access data"""
 
     # determine what sections the access addr are in
     in_sections = [x for x in sections if access.addr in x]
+    if len(in_sections) == 0:
+        return False
     if len(in_sections) != 1:
         context.warning("multiple section for symbol at 0x%08X" %
-                        (addr & 0xFFFFFFFF))
+                        (access.addr & 0xFFFFFFFF))
         context.warning([(x.name, x.start, x.end) for x in sections])
         context.warning([x.name for x in in_sections])
         return False
@@ -41,6 +47,12 @@ def insert_access_as_symbol(context: Context,
     if relative_addr in map_addrs[section.name]:
         map_addrs[section.name][relative_addr].access = access
         return False
+
+    #if map_sections[section.name].index in relocations:
+    #    for relocation in relocations[map_sections[section.name].index]:
+    #        if relocation.replace_addr == relative_addr:
+    #            relocation.access = access
+    #            return False
 
     overlap = ait[section.name].at(relative_addr)
     if len(overlap) > 0:
@@ -203,7 +215,7 @@ def search(context: Context,
         base_folder=(module_id == 0))
     
     # Find accesses/symbols by analyzing the code
-    accesses = binary.analyze(
+    accesses, highLink = binary.analyze(
         context,
         module_id, 
         sections,
@@ -221,22 +233,9 @@ def search(context: Context,
     sorted_accesses = list(accesses.items())
     sorted_accesses.sort(key=lambda x: x[0])
     for relative_addr, access in sorted_accesses:
-        is_relocation_symbol = False
-        """
-        for relocs in relocations.values():
-            if relative_addr in relocs:
-                relocs[relative_addr].access = access
-                is_relocation_symbol = True
-                break
-        """
-
-        # if the access is a relocatable symbol skip
-        if is_relocation_symbol:
-            continue
-
         # add access as symbol, the check if the address is already a symbol is done inside 'insert_access_as_symbol'
         insert_access_as_symbol(context, module_id, sections,
-                                map_sections, map_addrs, ait_sections, access)
+                                map_sections, map_addrs, ait_sections, relocations, access)
 
     # add entrypoint to the right section. the entrypoint is required as it is not included in the linker map.
     if module_id == 0:
@@ -246,7 +245,7 @@ def search(context: Context,
 
             branch_access = BranchAccess(at=0x00000000, addr=settings.ENTRY_POINT)
             insert_access_as_symbol(
-                context, module_id, sections, map_sections, map_addrs, ait_sections, branch_access)
+                context, module_id, sections, map_sections, map_addrs, ait_sections, relocations, branch_access)
             break
 
     # insert relocation that are not already symbol from the linker map
@@ -271,13 +270,40 @@ def search(context: Context,
                     overlap_symbol = list(overlap)[0].data
                     if overlap_symbol.name == "@stringBase0":
                         continue
-                    
+
+                access = None
+                if r.parent.data and r.parent.executable_flag and module_id == 372:
+                    inst_addr = r.parent.addr + r.offset
+                    if r.type == librel.R_PPC_ADDR16_LO:
+                        inst_addr -= 2
+                    elif r.type == librel.R_PPC_ADDR16_HI:
+                        inst_addr -= 2
+                    elif r.type == librel.R_PPC_ADDR16_HA:
+                        inst_addr -= 2
+                    if inst_addr in highLink:
+                        high_inst_data = r.parent.data[highLink[inst_addr] - r.parent.addr:][:4]
+                        high_insts = list(disassemble.cs.disasm(high_inst_data, highLink[inst_addr]))
+
+                        inst_data = r.parent.data[inst_addr - r.parent.addr:][:4]
+                        insts = list(disassemble.cs.disasm(inst_data, inst_addr))
+
+                        if len(insts) == 1 and len(high_insts) == 1:
+                            high_inst = high_insts[0]
+                            inst = insts[0]
+                            if high_inst.id == disassemble.PPC_INS_LIS:
+                                if inst.id in disassemble.FLOAT_INST:
+                                    access = FloatLoadAccess(r.offset, section.addr + addr)
+                                elif inst.id in disassemble.DOUBLE_INST:
+                                    access = DoubleLoadAccess(r.offset, section.addr + addr)
+
                 if not addr in table[section.name]:
                     symbol = linker_map.Symbol(addr, 0, 0, None, None, None)
                     symbol.source = f"relocation/{section.name}/{r.addend:08X}"
-                    symbol.access = r.access
+                    symbol.access = access
                     table[section.name][addr] = symbol
                     map_sections[section.name].symbols.append(symbol)
+                elif access:
+                    table[section.name][addr].access = access
             else:
                 context.error(f"{section.name} not in module {module_id}")
 
@@ -286,14 +312,6 @@ def search(context: Context,
     tree = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
     tree_order = defaultdict(lambda: defaultdict(list))
     for section in map_sections.values():
-
-        """
-        # .rel will be compiled with some standard libraries, but the linker map for the rel does not included what library these function come from.
-        for symbol in section.symbols:
-            if module_id != 0:
-                if symbol.obj == "global_destructor_chain.o":
-                    symbol.lib = "Runtime.PPCEABI.H.a"
-        """
 
         # calculate the size of symbols and determine where symbols without a library and object file should be located.
         infer_location_from_other_symbols(section, section.symbols)

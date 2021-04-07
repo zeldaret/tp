@@ -38,11 +38,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -78,11 +78,11 @@ struct dBgS_ObjAcch {
     /* 80C67464 */ ~dBgS_ObjAcch();
 };
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
 };
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -395,8 +395,8 @@ asm void daObjL4DigSand_c::mode_wait() {
 
 /* ############################################################################################## */
 /* 80C675D4-80C675D8 000000 0004+00 2/2 0/0 0/0 .rodata          @3746 */
-SECTION_RODATA static u32 const lit_3746 = 0xCE6E6B28;
-SECTION_DEAD void* const cg_80C675D4 = (void*)(&lit_3746);
+SECTION_RODATA static f32 const lit_3746 = -1000000000.0f;
+COMPILER_STRIP_GATE(80C675D4, &lit_3746);
 
 /* 80C67658-80C67678 -00001 0020+00 1/0 0/0 0/0 .data            daObjL4DigSand_METHODS */
 SECTION_DATA static void* daObjL4DigSand_METHODS[8] = {
@@ -509,22 +509,22 @@ asm dBgS_ObjGndChk::~dBgS_ObjGndChk() {
 /* 80C675D8-80C675DC 000004 0004+00 0/1 0/0 0/0 .rodata          @3765 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3765 = 0x41200000;
-SECTION_DEAD void* const cg_80C675D8 = (void*)(&lit_3765);
+SECTION_RODATA static f32 const lit_3765 = 10.0f;
+COMPILER_STRIP_GATE(80C675D8, &lit_3765);
 #pragma pop
 
 /* 80C675DC-80C675E0 000008 0004+00 0/1 0/0 0/0 .rodata          @3766 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3766 = 0x41700000;
-SECTION_DEAD void* const cg_80C675DC = (void*)(&lit_3766);
+SECTION_RODATA static f32 const lit_3766 = 15.0f;
+COMPILER_STRIP_GATE(80C675DC, &lit_3766);
 #pragma pop
 
 /* 80C675E0-80C675E4 00000C 0004+00 0/1 0/0 0/0 .rodata          @3767 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3767 = 0x3F800000;
-SECTION_DEAD void* const cg_80C675E0 = (void*)(&lit_3767);
+SECTION_RODATA static f32 const lit_3767 = 1.0f;
+COMPILER_STRIP_GATE(80C675E0, &lit_3767);
 #pragma pop
 
 /* 80C66FFC-80C670AC 00055C 00B0+00 1/0 0/0 0/0 .text            mode_dig__16daObjL4DigSand_cFv */

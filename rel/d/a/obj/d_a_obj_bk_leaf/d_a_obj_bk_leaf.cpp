@@ -176,8 +176,8 @@ asm void daBkLeaf_c::Create() {
 
 /* ############################################################################################## */
 /* 80BB6710-80BB6714 000000 0004+00 2/2 0/0 0/0 .rodata          @3742 */
-SECTION_RODATA static u32 const lit_3742 = 0x3F800000;
-SECTION_DEAD void* const cg_80BB6710 = (void*)(&lit_3742);
+SECTION_RODATA static f32 const lit_3742 = 1.0f;
+COMPILER_STRIP_GATE(80BB6710, &lit_3742);
 
 /* 80BB6738-80BB6744 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -279,7 +279,7 @@ SECTION_RODATA static u8 const lit_3811[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80BB6714 = (void*)(&lit_3811);
+COMPILER_STRIP_GATE(80BB6714, &lit_3811);
 
 /* 80BB64A8-80BB65C4 000448 011C+00 1/1 0/0 0/0 .text            execute__10daBkLeaf_cFv */
 #pragma push

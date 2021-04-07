@@ -44,7 +44,7 @@ SYMBOLS = [
 	{'addr':0x8057BD9C,'size':44,'pad':0,'label':"daObjBoard_MoveBGDraw__FP12daObjBoard_c",'name':"daObjBoard_MoveBGDraw__FP12daObjBoard_c",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
 	{'addr':0x8057BDC8,'size':4,'pad':0,'label':"_ctors",'name':"_ctors",'lib':-1,'tu':1,'section':1,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
 	{'addr':0x8057BDCC,'size':4,'pad':0,'label':"_dtors",'name':"_dtors",'lib':-1,'tu':2,'section':2,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
-	{'addr':0x8057BDD0,'size':4,'pad':0,'label':"lit_3636",'name':"@3636",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"Integer"},
+	{'addr':0x8057BDD0,'size':4,'pad':0,'label':"lit_3636",'name':"@3636",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"FloatingPoint"},
 	{'addr':0x8057BDD4,'size':75,'pad':0,'label':"d_a_obj_cboard__stringBase0",'name':"@stringBase0",'lib':-1,'tu':3,'section':3,'class_template':False,'static':False,'is_reachable':False,'r':[2,0,0],'sh':[0,0,0],'type':"StringBase"},
 	{'addr':0x8057BE20,'size':4,'pad':0,'label':"l_arcName",'name':"l_arcName",'lib':-1,'tu':3,'section':4,'class_template':False,'static':True,'is_reachable':False,'r':[2,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
 	{'addr':0x8057BE24,'size':20,'pad':0,'label':"l_dzbName",'name':"l_dzbName",'lib':-1,'tu':3,'section':4,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},

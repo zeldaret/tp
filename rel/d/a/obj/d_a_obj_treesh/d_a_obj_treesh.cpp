@@ -41,9 +41,9 @@ struct daTreeSh_HIO_c {
     /* 80D1F81C */ ~daTreeSh_HIO_c();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -58,12 +58,12 @@ struct dRes_control_c {
 
 struct dBgW {};
 
+struct cBgS_PolyInfo {};
+
 struct csXyz {
     /* 80D1F10C */ ~csXyz();
     /* 80D1F7AC */ csXyz();
 };
-
-struct cBgS_PolyInfo {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -299,39 +299,39 @@ asm void daTreeSh_c::create1st() {
 
 /* ############################################################################################## */
 /* 80D1F8C8-80D1F8CC 000000 0004+00 1/1 0/0 0/0 .rodata          @3767 */
-SECTION_RODATA static u32 const lit_3767 = 0x41700000;
-SECTION_DEAD void* const cg_80D1F8C8 = (void*)(&lit_3767);
+SECTION_RODATA static f32 const lit_3767 = 15.0f;
+COMPILER_STRIP_GATE(80D1F8C8, &lit_3767);
 
 /* 80D1F8CC-80D1F8D0 000004 0004+00 0/1 0/0 0/0 .rodata          @3768 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3768 = 0x41F00000;
-SECTION_DEAD void* const cg_80D1F8CC = (void*)(&lit_3768);
+SECTION_RODATA static f32 const lit_3768 = 30.0f;
+COMPILER_STRIP_GATE(80D1F8CC, &lit_3768);
 #pragma pop
 
 /* 80D1F8D0-80D1F8D4 000008 0004+00 0/1 0/0 0/0 .rodata          @3769 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3769 = 0x3F800000;
-SECTION_DEAD void* const cg_80D1F8D0 = (void*)(&lit_3769);
+SECTION_RODATA static f32 const lit_3769 = 1.0f;
+COMPILER_STRIP_GATE(80D1F8D0, &lit_3769);
 #pragma pop
 
 /* 80D1F8D4-80D1F8D8 00000C 0004+00 0/1 0/0 0/0 .rodata          @3770 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3770 = 0x3E99999A;
-SECTION_DEAD void* const cg_80D1F8D4 = (void*)(&lit_3770);
+SECTION_RODATA static f32 const lit_3770 = 3.0f / 10.0f;
+COMPILER_STRIP_GATE(80D1F8D4, &lit_3770);
 #pragma pop
 
 /* 80D1F8D8-80D1F8E0 000010 0004+04 0/1 0/0 0/0 .rodata          @3771 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3771[1 + 1 /* padding */] = {
-    0x3E4CCCCD,
+SECTION_RODATA static f32 const lit_3771[1 + 1 /* padding */] = {
+    1.0f / 5.0f,
     /* padding */
-    0x00000000,
+    0.0f,
 };
-SECTION_DEAD void* const cg_80D1F8D8 = (void*)(&lit_3771);
+COMPILER_STRIP_GATE(80D1F8D8, &lit_3771);
 #pragma pop
 
 /* 80D1F8E0-80D1F8E8 000018 0008+00 0/1 0/0 0/0 .rodata          @3774 */
@@ -340,7 +340,7 @@ SECTION_DEAD void* const cg_80D1F8D8 = (void*)(&lit_3771);
 SECTION_RODATA static u8 const lit_3774[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80D1F8E0 = (void*)(&lit_3774);
+COMPILER_STRIP_GATE(80D1F8E0, &lit_3774);
 #pragma pop
 
 /* 80D1F990-80D1F99C 000008 000C+00 1/1 0/0 0/0 .bss             @3618 */

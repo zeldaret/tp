@@ -27,12 +27,12 @@ struct cXyz {
     /* 80266CBC */ void outprod(Vec const&) const;
 };
 
+struct Quaternion {};
+
 struct dCcD_GObjInf {
     /* 800844F8 */ void GetTgHitObj();
     /* 8008457C */ void GetTgHitObjSe();
 };
-
-struct Quaternion {};
 
 struct daObj {
     /* 80037038 */ void eff_break_tsubo(fopAc_ac_c*, cXyz, int);
@@ -53,9 +53,9 @@ struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
 
-struct JPABaseEmitter {};
-
 struct dKy_tevstr_c {};
+
+struct JPABaseEmitter {};
 
 struct J3DModelData {};
 
@@ -66,9 +66,9 @@ struct dPa_modelEcallBack {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -324,7 +324,7 @@ SECTION_RODATA static f32 const zero_quat[4] = {
     0.0f,
     1.0f,
 };
-SECTION_DEAD void* const cg_80379298 = (void*)(&zero_quat);
+COMPILER_STRIP_GATE(80379298, &zero_quat);
 
 /* 80451DA8-80451DB0 0003A8 0004+04 1/1 0/0 0/0 .sdata2          @3956 */
 SECTION_SDATA2 static f32 lit_3956[1 + 1 /* padding */] = {

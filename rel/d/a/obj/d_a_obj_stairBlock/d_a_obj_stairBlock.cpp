@@ -104,9 +104,9 @@ struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -218,7 +218,7 @@ SECTION_RODATA static u8 const lit_3651[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80CE8DBC = (void*)(&lit_3651);
+COMPILER_STRIP_GATE(80CE8DBC, &lit_3651);
 
 /* 80CE8ED8-80CE8F18 000000 0040+00 2/2 0/0 0/0 .data            mCcDSph__14daStairBlock_c */
 SECTION_DATA static u8 mCcDSph__14daStairBlock_c[64] = {
@@ -332,7 +332,7 @@ SECTION_RODATA static u8 const mCcDObjInfo__14daStairBlock_c[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x19, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80CE8DC0 = (void*)(&mCcDObjInfo__14daStairBlock_c);
+COMPILER_STRIP_GATE(80CE8DC0, &mCcDObjInfo__14daStairBlock_c);
 
 /* 80CE8DF0-80CE8E18 000034 0028+00 0/1 0/0 0/0 .rodata          l_bmdIdx */
 #pragma push
@@ -342,7 +342,7 @@ SECTION_RODATA static u8 const l_bmdIdx[40] = {
     0x00, 0x13, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x15, 0x00, 0x00, 0x00, 0x16,
     0x00, 0x00, 0x00, 0x17, 0x00, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00, 0x19,
 };
-SECTION_DEAD void* const cg_80CE8DF0 = (void*)(&l_bmdIdx);
+COMPILER_STRIP_GATE(80CE8DF0, &l_bmdIdx);
 #pragma pop
 
 /* 80CE8E18-80CE8E40 00005C 0028+00 0/1 0/0 0/0 .rodata          l_bckIdx */
@@ -353,7 +353,7 @@ SECTION_RODATA static u8 const l_bckIdx[40] = {
     0x00, 0x07, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x0A,
     0x00, 0x00, 0x00, 0x0B, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x0D,
 };
-SECTION_DEAD void* const cg_80CE8E18 = (void*)(&l_bckIdx);
+COMPILER_STRIP_GATE(80CE8E18, &l_bckIdx);
 #pragma pop
 
 /* 80CE8E40-80CE8EB8 000084 0078+00 0/1 0/0 0/0 .rodata          centerPos */
@@ -369,14 +369,14 @@ SECTION_RODATA static u8 const centerPos[120] = {
     0x41, 0xD7, 0x45, 0xDA, 0x40, 0x9A, 0x46, 0xDA, 0xA3, 0x3E, 0xC5, 0x25, 0x41, 0xD7, 0x45,
     0xDA, 0x40, 0x9A, 0x46, 0xDA, 0xA3, 0x3E, 0xC5, 0x25, 0x41, 0xD7, 0x45, 0xDA, 0x40, 0x9A,
 };
-SECTION_DEAD void* const cg_80CE8E40 = (void*)(&centerPos);
+COMPILER_STRIP_GATE(80CE8E40, &centerPos);
 #pragma pop
 
 /* 80CE8EB8-80CE8EBC 0000FC 0004+00 0/2 0/0 0/0 .rodata          @3705 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3705 = 0x3F800000;
-SECTION_DEAD void* const cg_80CE8EB8 = (void*)(&lit_3705);
+SECTION_RODATA static f32 const lit_3705 = 1.0f;
+COMPILER_STRIP_GATE(80CE8EB8, &lit_3705);
 #pragma pop
 
 /* 80CE8EBC-80CE8EC4 000100 0008+00 0/1 0/0 0/0 .rodata          @3707 */
@@ -385,7 +385,7 @@ SECTION_DEAD void* const cg_80CE8EB8 = (void*)(&lit_3705);
 SECTION_RODATA static u8 const lit_3707[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80CE8EBC = (void*)(&lit_3707);
+COMPILER_STRIP_GATE(80CE8EBC, &lit_3707);
 #pragma pop
 
 /* 80CE82A0-80CE83F0 000220 0150+00 1/0 0/0 0/0 .text            CreateHeap__14daStairBlock_cFv */
@@ -493,15 +493,15 @@ asm void daStairBlock_c::createHeapCallBack(fopAc_ac_c* param_0) {
 /* 80CE8EC4-80CE8EC8 000108 0004+00 0/1 0/0 0/0 .rodata          @3942 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3942 = 0xBF800000;
-SECTION_DEAD void* const cg_80CE8EC4 = (void*)(&lit_3942);
+SECTION_RODATA static f32 const lit_3942 = -1.0f;
+COMPILER_STRIP_GATE(80CE8EC4, &lit_3942);
 #pragma pop
 
 /* 80CE8EC8-80CE8ECC 00010C 0004+00 0/1 0/0 0/0 .rodata          @3943 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3943 = 0x43480000;
-SECTION_DEAD void* const cg_80CE8EC8 = (void*)(&lit_3943);
+SECTION_RODATA static f32 const lit_3943 = 200.0f;
+COMPILER_STRIP_GATE(80CE8EC8, &lit_3943);
 #pragma pop
 
 /* 80CE8FC8-80CE8FD4 000008 000C+00 1/1 0/0 0/0 .bss             @3640 */

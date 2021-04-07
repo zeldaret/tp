@@ -28,11 +28,11 @@ struct daObjKJgjs_c {
     /* 80C464CC */ ~daObjKJgjs_c();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -47,9 +47,9 @@ struct dRes_control_c {
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -127,7 +127,7 @@ extern "C" extern u8 j3dSys[284];
 SECTION_RODATA static u8 const l_dzbidx[8] = {
     0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x09,
 };
-SECTION_DEAD void* const cg_80C46544 = (void*)(&l_dzbidx);
+COMPILER_STRIP_GATE(80C46544, &l_dzbidx);
 
 /* 80C4658C-80C46590 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_kjgjs__stringBase0;
@@ -157,7 +157,7 @@ asm void daObjKJgjs_c::setMtx() {
 SECTION_RODATA static u8 const l_bmdidx[8] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x05,
 };
-SECTION_DEAD void* const cg_80C4654C = (void*)(&l_bmdidx);
+COMPILER_STRIP_GATE(80C4654C, &l_bmdidx);
 
 /* 80C461E4-80C46264 0001C4 0080+00 1/0 0/0 0/0 .text            CreateHeap__12daObjKJgjs_cFv */
 #pragma push
@@ -176,7 +176,7 @@ SECTION_RODATA static u8 const l_cull_box[48] = {
     0x45, 0x2F, 0x00, 0x00, 0x44, 0x9D, 0x80, 0x00, 0xC2, 0x98, 0xBD, 0x71, 0xC1, 0x2D, 0x47, 0xAE,
     0xC2, 0x9D, 0x05, 0x1F, 0x42, 0x97, 0x0A, 0x3D, 0x41, 0x2F, 0x33, 0x33, 0x42, 0x9C, 0x1E, 0xB8,
 };
-SECTION_DEAD void* const cg_80C46554 = (void*)(&l_cull_box);
+COMPILER_STRIP_GATE(80C46554, &l_cull_box);
 
 /* 80C46264-80C46310 000244 00AC+00 1/0 0/0 0/0 .text            Create__12daObjKJgjs_cFv */
 #pragma push

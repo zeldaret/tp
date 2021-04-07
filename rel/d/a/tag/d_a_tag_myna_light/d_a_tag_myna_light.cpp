@@ -30,13 +30,13 @@ struct daTag_MynaLight_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
-struct cXyz {};
-
 struct _GXColor {};
 
 struct dKy_tevstr_c {};
+
+struct cXyz {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -44,9 +44,9 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -151,21 +151,21 @@ asm void daTag_MynaLight_c::Delete() {
 
 /* ############################################################################################## */
 /* 80D5D300-80D5D304 000000 0004+00 4/4 0/0 0/0 .rodata          @3694 */
-SECTION_RODATA static u32 const lit_3694 = 0x3D888889;
-SECTION_DEAD void* const cg_80D5D300 = (void*)(&lit_3694);
+SECTION_RODATA static f32 const lit_3694 = 1.0f / 15.0f;
+COMPILER_STRIP_GATE(80D5D300, &lit_3694);
 
 /* 80D5D304-80D5D308 000004 0004+00 0/3 0/0 0/0 .rodata          @3695 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3695 = 0x3F800000;
-SECTION_DEAD void* const cg_80D5D304 = (void*)(&lit_3695);
+SECTION_RODATA static f32 const lit_3695 = 1.0f;
+COMPILER_STRIP_GATE(80D5D304, &lit_3695);
 #pragma pop
 
 /* 80D5D308-80D5D30C 000008 0004+00 0/2 0/0 0/0 .rodata          @3696 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3696 = 0xBF800000;
-SECTION_DEAD void* const cg_80D5D308 = (void*)(&lit_3696);
+SECTION_RODATA static f32 const lit_3696 = -1.0f;
+COMPILER_STRIP_GATE(80D5D308, &lit_3696);
 #pragma pop
 
 /* 80D5CBF4-80D5CD94 000134 01A0+00 1/1 0/0 0/0 .text            Execute__17daTag_MynaLight_cFv */
@@ -183,28 +183,28 @@ asm void daTag_MynaLight_c::Execute() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3706 = 0xBC6642FF;
-SECTION_DEAD void* const cg_80D5D30C = (void*)(&lit_3706);
+COMPILER_STRIP_GATE(80D5D30C, &lit_3706);
 #pragma pop
 
 /* 80D5D310-80D5D314 000010 0004+00 0/1 0/0 0/0 .rodata          @3708 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3708 = 0x3F000000;
-SECTION_DEAD void* const cg_80D5D310 = (void*)(&lit_3708);
+SECTION_RODATA static f32 const lit_3708 = 0.5f;
+COMPILER_STRIP_GATE(80D5D310, &lit_3708);
 #pragma pop
 
 /* 80D5D314-80D5D318 000014 0004+00 0/1 0/0 0/0 .rodata          @3709 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3709 = 0x3DCCCCCD;
-SECTION_DEAD void* const cg_80D5D314 = (void*)(&lit_3709);
+SECTION_RODATA static f32 const lit_3709 = 1.0f / 10.0f;
+COMPILER_STRIP_GATE(80D5D314, &lit_3709);
 #pragma pop
 
 /* 80D5D318-80D5D31C 000018 0004+00 0/1 0/0 0/0 .rodata          @3710 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3710 = 0x38D1B717;
-SECTION_DEAD void* const cg_80D5D318 = (void*)(&lit_3710);
+COMPILER_STRIP_GATE(80D5D318, &lit_3710);
 #pragma pop
 
 /* 80D5D31C-80D5D320 00001C 0004+00 0/2 0/0 0/0 .rodata          @3711 */
@@ -216,14 +216,14 @@ SECTION_RODATA static u8 const lit_3711[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80D5D31C = (void*)(&lit_3711);
+COMPILER_STRIP_GATE(80D5D31C, &lit_3711);
 #pragma pop
 
 /* 80D5D320-80D5D324 000020 0004+00 0/1 0/0 0/0 .rodata          @3712 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3712 = 0x358637BD;
-SECTION_DEAD void* const cg_80D5D320 = (void*)(&lit_3712);
+COMPILER_STRIP_GATE(80D5D320, &lit_3712);
 #pragma pop
 
 /* 80D5CD94-80D5CE40 0002D4 00AC+00 1/1 0/0 0/0 .text            Draw__17daTag_MynaLight_cFv */
@@ -240,36 +240,36 @@ asm void daTag_MynaLight_c::Draw() {
 /* 80D5D324-80D5D328 000024 0004+00 0/1 0/0 0/0 .rodata          @3811 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3811 = 0xC5A01000;
-SECTION_DEAD void* const cg_80D5D324 = (void*)(&lit_3811);
+SECTION_RODATA static f32 const lit_3811 = -5122.0f;
+COMPILER_STRIP_GATE(80D5D324, &lit_3811);
 #pragma pop
 
 /* 80D5D328-80D5D32C 000028 0004+00 0/1 0/0 0/0 .rodata          @3812 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3812 = 0xC2F80000;
-SECTION_DEAD void* const cg_80D5D328 = (void*)(&lit_3812);
+SECTION_RODATA static f32 const lit_3812 = -124.0f;
+COMPILER_STRIP_GATE(80D5D328, &lit_3812);
 #pragma pop
 
 /* 80D5D32C-80D5D330 00002C 0004+00 0/1 0/0 0/0 .rodata          @3813 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3813 = 0xC53FB000;
-SECTION_DEAD void* const cg_80D5D32C = (void*)(&lit_3813);
+SECTION_RODATA static f32 const lit_3813 = -3067.0f;
+COMPILER_STRIP_GATE(80D5D32C, &lit_3813);
 #pragma pop
 
 /* 80D5D330-80D5D334 000030 0004+00 0/1 0/0 0/0 .rodata          @3814 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3814 = 0x3ECCCCCD;
-SECTION_DEAD void* const cg_80D5D330 = (void*)(&lit_3814);
+SECTION_RODATA static f32 const lit_3814 = 2.0f / 5.0f;
+COMPILER_STRIP_GATE(80D5D330, &lit_3814);
 #pragma pop
 
 /* 80D5D334-80D5D338 000034 0004+00 0/1 0/0 0/0 .rodata          @3815 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3815 = 0x3E800000;
-SECTION_DEAD void* const cg_80D5D334 = (void*)(&lit_3815);
+SECTION_RODATA static f32 const lit_3815 = 0.25f;
+COMPILER_STRIP_GATE(80D5D334, &lit_3815);
 #pragma pop
 
 /* 80D5CE40-80D5D148 000380 0308+00 0/0 0/0 1/1 .text setTurnOnOffChange__17daTag_MynaLight_cFv */
@@ -306,29 +306,29 @@ asm void daTag_MynaLight_c::getTurnOffTime() {
 /* 80D5D338-80D5D33C 000038 0004+00 0/1 0/0 0/0 .rodata          @3851 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3851 = 0xC1F00000;
-SECTION_DEAD void* const cg_80D5D338 = (void*)(&lit_3851);
+SECTION_RODATA static f32 const lit_3851 = -30.0f;
+COMPILER_STRIP_GATE(80D5D338, &lit_3851);
 #pragma pop
 
 /* 80D5D33C-80D5D340 00003C 0004+00 0/1 0/0 0/0 .rodata          @3852 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3852 = 0xC1700000;
-SECTION_DEAD void* const cg_80D5D33C = (void*)(&lit_3852);
+SECTION_RODATA static f32 const lit_3852 = -15.0f;
+COMPILER_STRIP_GATE(80D5D33C, &lit_3852);
 #pragma pop
 
 /* 80D5D340-80D5D344 000040 0004+00 0/1 0/0 0/0 .rodata          @3853 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3853 = 0x41F00000;
-SECTION_DEAD void* const cg_80D5D340 = (void*)(&lit_3853);
+SECTION_RODATA static f32 const lit_3853 = 30.0f;
+COMPILER_STRIP_GATE(80D5D340, &lit_3853);
 #pragma pop
 
 /* 80D5D344-80D5D348 000044 0004+00 0/1 0/0 0/0 .rodata          @3854 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3854 = 0x42340000;
-SECTION_DEAD void* const cg_80D5D344 = (void*)(&lit_3854);
+SECTION_RODATA static f32 const lit_3854 = 45.0f;
+COMPILER_STRIP_GATE(80D5D344, &lit_3854);
 #pragma pop
 
 /* 80D5D160-80D5D210 0006A0 00B0+00 1/1 0/0 0/0 .text            initialize__17daTag_MynaLight_cFv

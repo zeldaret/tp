@@ -50,9 +50,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -67,9 +67,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -142,9 +142,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -509,11 +509,11 @@ SECTION_RODATA static u8 const mCcDObjInfo__11daBarDesk_c[48] = {
     0xD8, 0xFA, 0xFD, 0xBF, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80BA9B70 = (void*)(&mCcDObjInfo__11daBarDesk_c);
+COMPILER_STRIP_GATE(80BA9B70, &mCcDObjInfo__11daBarDesk_c);
 
 /* 80BA9BA0-80BA9BA4 000030 0004+00 1/1 0/0 0/0 .rodata          @3839 */
-SECTION_RODATA static u32 const lit_3839 = 0x42B40000;
-SECTION_DEAD void* const cg_80BA9BA0 = (void*)(&lit_3839);
+SECTION_RODATA static f32 const lit_3839 = 90.0f;
+COMPILER_STRIP_GATE(80BA9BA0, &lit_3839);
 
 /* 80BA968C-80BA973C 0005EC 00B0+00 1/0 0/0 0/0 .text            modeWait__11daBarDesk_cFv */
 #pragma push
@@ -527,14 +527,14 @@ asm void daBarDesk_c::modeWait() {
 
 /* ############################################################################################## */
 /* 80BA9BA4-80BA9BA8 000034 0004+00 1/2 0/0 0/0 .rodata          @3861 */
-SECTION_RODATA static u32 const lit_3861 = 0x3F800000;
-SECTION_DEAD void* const cg_80BA9BA4 = (void*)(&lit_3861);
+SECTION_RODATA static f32 const lit_3861 = 1.0f;
+COMPILER_STRIP_GATE(80BA9BA4, &lit_3861);
 
 /* 80BA9BA8-80BA9BAC 000038 0004+00 0/1 0/0 0/0 .rodata          @3862 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3862 = 0xBF800000;
-SECTION_DEAD void* const cg_80BA9BA8 = (void*)(&lit_3862);
+SECTION_RODATA static f32 const lit_3862 = -1.0f;
+COMPILER_STRIP_GATE(80BA9BA8, &lit_3862);
 #pragma pop
 
 /* 80BA9BAC-80BA9BB0 00003C 0004+00 0/1 0/0 0/0 .rodata          @3863 */
@@ -546,7 +546,7 @@ SECTION_RODATA static u8 const lit_3863[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80BA9BAC = (void*)(&lit_3863);
+COMPILER_STRIP_GATE(80BA9BAC, &lit_3863);
 #pragma pop
 
 /* 80BA973C-80BA9824 00069C 00E8+00 1/1 0/0 0/0 .text            init_modeBreak__11daBarDesk_cFv */
@@ -577,7 +577,7 @@ SECTION_RODATA static u8 const particle_id[4] = {
     0x85,
     0xF5,
 };
-SECTION_DEAD void* const cg_80BA9BB0 = (void*)(&particle_id);
+COMPILER_STRIP_GATE(80BA9BB0, &particle_id);
 
 /* 80BA9844-80BA98E8 0007A4 00A4+00 1/1 0/0 0/0 .text            setBreakEffect__11daBarDesk_cFv */
 #pragma push

@@ -44,11 +44,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -65,9 +65,9 @@ struct dBgW_Base {};
 
 struct dBgW {};
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {};
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -174,11 +174,11 @@ SECTION_RODATA static u8 const lit_3651[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80C884E4 = (void*)(&lit_3651);
+COMPILER_STRIP_GATE(80C884E4, &lit_3651);
 
 /* 80C884E8-80C884EC 000004 0004+00 1/1 0/0 0/0 .rodata          @3652 */
-SECTION_RODATA static u32 const lit_3652 = 0x3F333333;
-SECTION_DEAD void* const cg_80C884E8 = (void*)(&lit_3652);
+SECTION_RODATA static f32 const lit_3652 = 7.0f / 10.0f;
+COMPILER_STRIP_GATE(80C884E8, &lit_3652);
 
 /* 80C88504-80C88510 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -408,22 +408,22 @@ asm void daKekaiTrap_c::init_modeMoveUp() {
 /* 80C884EC-80C884F0 000008 0004+00 0/2 0/0 0/0 .rodata          @3802 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3802 = 0x41F00000;
-SECTION_DEAD void* const cg_80C884EC = (void*)(&lit_3802);
+SECTION_RODATA static f32 const lit_3802 = 30.0f;
+COMPILER_STRIP_GATE(80C884EC, &lit_3802);
 #pragma pop
 
 /* 80C884F0-80C884F4 00000C 0004+00 0/2 0/0 0/0 .rodata          @3803 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3803 = 0x3F800000;
-SECTION_DEAD void* const cg_80C884F0 = (void*)(&lit_3803);
+SECTION_RODATA static f32 const lit_3803 = 1.0f;
+COMPILER_STRIP_GATE(80C884F0, &lit_3803);
 #pragma pop
 
 /* 80C884F4-80C884F8 000010 0004+00 0/2 0/0 0/0 .rodata          @3804 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3804 = 0x3CF5C28F;
-SECTION_DEAD void* const cg_80C884F4 = (void*)(&lit_3804);
+SECTION_RODATA static f32 const lit_3804 = 3.0f / 100.0f;
+COMPILER_STRIP_GATE(80C884F4, &lit_3804);
 #pragma pop
 
 /* 80C88138-80C881F0 000578 00B8+00 1/0 0/0 0/0 .text            modeMoveUp__13daKekaiTrap_cFv */

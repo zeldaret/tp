@@ -15,9 +15,9 @@ struct request_of_phase_process_class {};
 
 struct obj_brakeeff_class {};
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTevRegKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_brkAnm {
     /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
@@ -32,8 +32,6 @@ struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct Vec {};
@@ -41,6 +39,8 @@ struct Vec {};
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -55,9 +55,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
 struct _GXColor {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -230,28 +230,28 @@ static asm void daObj_Brakeeff_Draw(obj_brakeeff_class* param_0) {
 
 /* ############################################################################################## */
 /* 8046E528-8046E52C 000000 0004+00 2/2 0/0 0/0 .rodata          @3879 */
-SECTION_RODATA static u32 const lit_3879 = 0x3F800000;
-SECTION_DEAD void* const cg_8046E528 = (void*)(&lit_3879);
+SECTION_RODATA static f32 const lit_3879 = 1.0f;
+COMPILER_STRIP_GATE(8046E528, &lit_3879);
 
 /* 8046E52C-8046E530 000004 0004+00 0/1 0/0 0/0 .rodata          @3880 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3880 = 0x42960000;
-SECTION_DEAD void* const cg_8046E52C = (void*)(&lit_3880);
+SECTION_RODATA static f32 const lit_3880 = 75.0f;
+COMPILER_STRIP_GATE(8046E52C, &lit_3880);
 #pragma pop
 
 /* 8046E530-8046E534 000008 0004+00 0/1 0/0 0/0 .rodata          @3881 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3881 = 0x42480000;
-SECTION_DEAD void* const cg_8046E530 = (void*)(&lit_3881);
+SECTION_RODATA static f32 const lit_3881 = 50.0f;
+COMPILER_STRIP_GATE(8046E530, &lit_3881);
 #pragma pop
 
 /* 8046E534-8046E538 00000C 0004+00 0/1 0/0 0/0 .rodata          @3882 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3882 = 0x3F0F5C29;
-SECTION_DEAD void* const cg_8046E534 = (void*)(&lit_3882);
+SECTION_RODATA static f32 const lit_3882 = 14.0f / 25.0f;
+COMPILER_STRIP_GATE(8046E534, &lit_3882);
 #pragma pop
 
 /* 8046E540-8046E54C 000000 000A+02 1/1 0/0 0/0 .data            e_name */

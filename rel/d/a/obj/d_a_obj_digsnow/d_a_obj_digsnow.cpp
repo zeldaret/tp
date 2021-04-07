@@ -38,11 +38,11 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
 
 struct cXyz {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -78,11 +78,11 @@ struct dBgS_ObjAcch {
     /* 80BDD574 */ ~dBgS_ObjAcch();
 };
 
-struct csXyz {};
-
 struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
 };
+
+struct csXyz {};
 
 struct dBgS_MoveBgActor {
     /* 80078624 */ dBgS_MoveBgActor();
@@ -395,8 +395,8 @@ asm void daObjDigSnow_c::mode_wait() {
 
 /* ############################################################################################## */
 /* 80BDD6C8-80BDD6CC 000000 0004+00 2/2 0/0 0/0 .rodata          @3744 */
-SECTION_RODATA static u32 const lit_3744 = 0xCE6E6B28;
-SECTION_DEAD void* const cg_80BDD6C8 = (void*)(&lit_3744);
+SECTION_RODATA static f32 const lit_3744 = -1000000000.0f;
+COMPILER_STRIP_GATE(80BDD6C8, &lit_3744);
 
 /* 80BDD754-80BDD774 -00001 0020+00 1/0 0/0 0/0 .data            daObjDigSnow_METHODS */
 SECTION_DATA static void* daObjDigSnow_METHODS[8] = {
@@ -509,29 +509,29 @@ asm dBgS_ObjGndChk::~dBgS_ObjGndChk() {
 /* 80BDD6CC-80BDD6D0 000004 0004+00 0/1 0/0 0/0 .rodata          @3761 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3761 = 0x41200000;
-SECTION_DEAD void* const cg_80BDD6CC = (void*)(&lit_3761);
+SECTION_RODATA static f32 const lit_3761 = 10.0f;
+COMPILER_STRIP_GATE(80BDD6CC, &lit_3761);
 #pragma pop
 
 /* 80BDD6D0-80BDD6D4 000008 0004+00 0/1 0/0 0/0 .rodata          @3762 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3762 = 0x420C0000;
-SECTION_DEAD void* const cg_80BDD6D0 = (void*)(&lit_3762);
+SECTION_RODATA static f32 const lit_3762 = 35.0f;
+COMPILER_STRIP_GATE(80BDD6D0, &lit_3762);
 #pragma pop
 
 /* 80BDD6D4-80BDD6D8 00000C 0004+00 0/1 0/0 0/0 .rodata          @3763 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3763 = 0x3F800000;
-SECTION_DEAD void* const cg_80BDD6D4 = (void*)(&lit_3763);
+SECTION_RODATA static f32 const lit_3763 = 1.0f;
+COMPILER_STRIP_GATE(80BDD6D4, &lit_3763);
 #pragma pop
 
 /* 80BDD6D8-80BDD6DC 000010 0004+00 0/1 0/0 0/0 .rodata          @3764 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3764 = 0x41F00000;
-SECTION_DEAD void* const cg_80BDD6D8 = (void*)(&lit_3764);
+SECTION_RODATA static f32 const lit_3764 = 30.0f;
+COMPILER_STRIP_GATE(80BDD6D8, &lit_3764);
 #pragma pop
 
 /* 80BDD124-80BDD1BC 000544 0098+00 1/0 0/0 0/0 .text            mode_dig__14daObjDigSnow_cFv */

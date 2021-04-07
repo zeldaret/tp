@@ -11,8 +11,6 @@
 // Types:
 //
 
-struct Vec {};
-
 struct JASSoundParams {
     /* 8029E3B0 */ void clamp();
     /* 8029E47C */ void combine(JASSoundParams const&, JASSoundParams const&);
@@ -34,6 +32,8 @@ struct Z2Audible {
     /* 802BC218 */ void getDistVolBit();
     /* 802BD510 */ ~Z2Audible();
 };
+
+struct Vec {};
 
 struct Z2AudioCamera {
     /* 802BC758 */ Z2AudioCamera();
@@ -77,12 +77,12 @@ struct Z2Audience3DSetting {
     /* 802BC6F8 */ void updateDolbyDist(f32, f32);
 };
 
-struct JAIAudible {
-    /* 8029EFAC */ ~JAIAudible();
-};
-
 struct Z2AudibleChannel {
     /* 802BBE74 */ Z2AudibleChannel();
+};
+
+struct JAIAudible {
+    /* 8029EFAC */ ~JAIAudible();
 };
 
 struct Z2Audience {
@@ -479,7 +479,7 @@ asm void Z2Audience3DSetting::initVolumeDist() {
 
 /* ############################################################################################## */
 /* 80451350-80451354 000850 0004+00 2/2 0/0 0/0 .sbss            cNearFarRatio */
-static u8 cNearFarRatio[4];
+static f32 cNearFarRatio;
 
 /* 802BC4D0-802BC6A4 2B6E10 01D4+00 1/1 0/0 0/0 .text updateVolumeDist__19Z2Audience3DSettingFf */
 #pragma push
@@ -567,7 +567,7 @@ SECTION_RODATA static u8 const lit_1193[12 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8039C220 = (void*)(&lit_1193);
+COMPILER_STRIP_GATE(8039C220, &lit_1193);
 
 /* 80455B08-80455B0C 004108 0004+00 1/1 0/0 0/0 .sdata2          @1267 */
 SECTION_SDATA2 static f32 lit_1267 = -22.755556106567383f;

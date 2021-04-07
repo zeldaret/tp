@@ -31,7 +31,7 @@ extern "C" extern u8 errno[4 + 4 /* padding */];
 SECTION_RODATA static u8 const bp[16] = {
     0x3F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xF8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803A2380 = (void*)(&bp);
+COMPILER_STRIP_GATE(803A2380, &bp);
 
 /* 803A2390-803A23A0 02E9F0 0010+00 0/1 0/0 0/0 .rodata          dp_h */
 #pragma push
@@ -39,7 +39,7 @@ SECTION_DEAD void* const cg_803A2380 = (void*)(&bp);
 SECTION_RODATA static u8 const dp_h[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xE2, 0xB8, 0x03, 0x40, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_803A2390 = (void*)(&dp_h);
+COMPILER_STRIP_GATE(803A2390, &dp_h);
 #pragma pop
 
 /* 803A23A0-803A23B0 02EA00 0010+00 0/1 0/0 0/0 .rodata          dp_l */
@@ -48,7 +48,7 @@ SECTION_DEAD void* const cg_803A2390 = (void*)(&dp_h);
 SECTION_RODATA static u8 const dp_l[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3E, 0x4C, 0xFD, 0xEB, 0x43, 0xCF, 0xD0, 0x06,
 };
-SECTION_DEAD void* const cg_803A23A0 = (void*)(&dp_l);
+COMPILER_STRIP_GATE(803A23A0, &dp_l);
 #pragma pop
 
 /* 80456858-80456860 004E58 0008+00 1/1 0/0 0/0 .sdata2          @336 */

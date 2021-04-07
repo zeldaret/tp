@@ -13,8 +13,6 @@
 
 struct request_of_phase_process_class {};
 
-struct csXyz {};
-
 struct Vec {};
 
 struct cXyz {
@@ -22,6 +20,8 @@ struct cXyz {
     /* 80CDD3AC */ ~cXyz();
     /* 80CDD580 */ cXyz();
 };
+
+struct csXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
@@ -71,9 +71,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -311,7 +311,7 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 SECTION_RODATA static u8 const m__20daObj_SMTile_Param_c[8] = {
     0x44, 0x16, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80CDE35C = (void*)(&m__20daObj_SMTile_Param_c);
+COMPILER_STRIP_GATE(80CDE35C, &m__20daObj_SMTile_Param_c);
 
 /* 80CDE364-80CDE368 000008 0004+00 1/4 0/0 0/0 .rodata          @3892 */
 SECTION_RODATA static u8 const lit_3892[4] = {
@@ -320,7 +320,7 @@ SECTION_RODATA static u8 const lit_3892[4] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_80CDE364 = (void*)(&lit_3892);
+COMPILER_STRIP_GATE(80CDE364, &lit_3892);
 
 /* 80CDD5CC-80CDD6E8 00040C 011C+00 1/1 0/0 0/0 .text            CreateHeap__14daObj_SMTile_cFv */
 #pragma push
@@ -346,22 +346,22 @@ asm void daObj_SMTile_c::Delete() {
 /* 80CDE368-80CDE36C 00000C 0004+00 0/4 0/0 0/0 .rodata          @3978 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3978 = 0x3F800000;
-SECTION_DEAD void* const cg_80CDE368 = (void*)(&lit_3978);
+SECTION_RODATA static f32 const lit_3978 = 1.0f;
+COMPILER_STRIP_GATE(80CDE368, &lit_3978);
 #pragma pop
 
 /* 80CDE36C-80CDE370 000010 0004+00 0/3 0/0 0/0 .rodata          @3979 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3979 = 0xBF800000;
-SECTION_DEAD void* const cg_80CDE36C = (void*)(&lit_3979);
+SECTION_RODATA static f32 const lit_3979 = -1.0f;
+COMPILER_STRIP_GATE(80CDE36C, &lit_3979);
 #pragma pop
 
 /* 80CDE370-80CDE374 000014 0004+00 0/1 0/0 0/0 .rodata          @3980 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3980 = 0x42200000;
-SECTION_DEAD void* const cg_80CDE370 = (void*)(&lit_3980);
+SECTION_RODATA static f32 const lit_3980 = 40.0f;
+COMPILER_STRIP_GATE(80CDE370, &lit_3980);
 #pragma pop
 
 /* 80CDE374-80CDE37C 000018 0008+00 0/3 0/0 0/0 .rodata          @3982 */
@@ -370,7 +370,7 @@ SECTION_DEAD void* const cg_80CDE370 = (void*)(&lit_3980);
 SECTION_RODATA static u8 const lit_3982[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80CDE374 = (void*)(&lit_3982);
+COMPILER_STRIP_GATE(80CDE374, &lit_3982);
 #pragma pop
 
 /* 80CDD71C-80CDDA98 00055C 037C+00 2/2 0/0 0/0 .text            Execute__14daObj_SMTile_cFv */
@@ -431,14 +431,14 @@ asm void daObj_SMTile_c::setPrtcls(int param_0, int param_1) {
 SECTION_RODATA static u8 const id[8] = {
     0xFF, 0xFF, 0x86, 0xEC, 0x86, 0xED, 0x86, 0xEE,
 };
-SECTION_DEAD void* const cg_80CDE37C = (void*)(&id);
+COMPILER_STRIP_GATE(80CDE37C, &id);
 #pragma pop
 
 /* 80CDE384-80CDE388 000028 0004+00 0/1 0/0 0/0 .rodata          @4194 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_4194 = 0x437F0000;
-SECTION_DEAD void* const cg_80CDE384 = (void*)(&lit_4194);
+SECTION_RODATA static f32 const lit_4194 = 255.0f;
+COMPILER_STRIP_GATE(80CDE384, &lit_4194);
 #pragma pop
 
 /* 80CDDEFC-80CDE1A8 000D3C 02AC+00 1/1 0/0 0/0 .text            touchPrtcls__14daObj_SMTile_cFf */

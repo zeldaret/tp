@@ -255,7 +255,7 @@ SECTION_RODATA extern void* const saoAboutEncoding___10JUTResFont[3] = {
     (void*)isLeadByte_2Byte__7JUTFontFi,
     (void*)isLeadByte_ShiftJIS__7JUTFontFi,
 };
-SECTION_DEAD void* const cg_8039D390 = (void*)(&saoAboutEncoding___10JUTResFont);
+COMPILER_STRIP_GATE(8039D390, &saoAboutEncoding___10JUTResFont);
 
 /* 802DF344-802DF48C 2D9C84 0148+00 1/0 0/0 0/0 .text            setBlock__10JUTResFontFv */
 #pragma push
@@ -563,7 +563,7 @@ SECTION_RODATA static u8 const halftofull[190 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-SECTION_DEAD void* const cg_8039D39C = (void*)(&halftofull);
+COMPILER_STRIP_GATE(8039D39C, &halftofull);
 
 /* 802DFDD8-802DFF60 2DA718 0188+00 2/2 0/0 0/0 .text            getFontCode__10JUTResFontCFi */
 #pragma push

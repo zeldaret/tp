@@ -92,8 +92,8 @@ asm void daTagLightBall_c::setBaseMtx() {
 
 /* ############################################################################################## */
 /* 80D5AC78-80D5AC7C 000000 0004+00 1/1 0/0 0/0 .rodata          @3682 */
-SECTION_RODATA static u32 const lit_3682 = 0x42C80000;
-SECTION_DEAD void* const cg_80D5AC78 = (void*)(&lit_3682);
+SECTION_RODATA static f32 const lit_3682 = 100.0f;
+COMPILER_STRIP_GATE(80D5AC78, &lit_3682);
 
 /* 80D5A870-80D5A9B8 0000F0 0148+00 1/1 0/0 0/0 .text            Create__16daTagLightBall_cFv */
 #pragma push

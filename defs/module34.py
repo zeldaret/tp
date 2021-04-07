@@ -49,7 +49,7 @@ SYMBOLS = [
 	{'addr':0x8048DD6C,'size':8,'pad':0,'label':"lit_3740",'name':"@3740",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[0,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
 	{'addr':0x8048DD74,'size':8,'pad':0,'label':"lit_3741",'name':"@3741",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[0,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
 	{'addr':0x8048DD7C,'size':8,'pad':0,'label':"lit_3742",'name':"@3742",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[0,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
-	{'addr':0x8048DD84,'size':4,'pad':0,'label':"lit_3752",'name':"@3752",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"Integer"},
+	{'addr':0x8048DD84,'size':4,'pad':0,'label':"lit_3752",'name':"@3752",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"FloatingPoint"},
 	{'addr':0x8048DD88,'size':32,'pad':0,'label':"daTag_Howl_MethodTable",'name':"daTag_Howl_MethodTable",'lib':-1,'tu':3,'section':4,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
 	{'addr':0x8048DDA8,'size':48,'pad':0,'label':"g_profile_TAG_HOWL",'name':"g_profile_TAG_HOWL",'lib':-1,'tu':3,'section':4,'class_template':False,'static':False,'is_reachable':False,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
 	{'addr':0x8048DDD8,'size':12,'pad':0,'label':"__vt__12daTag_Howl_c",'name':"__vt__12daTag_Howl_c",'lib':-1,'tu':3,'section':4,'class_template':False,'static':False,'is_reachable':False,'r':[2,0,0],'sh':[0,0,0],'type':"VirtualTable"},

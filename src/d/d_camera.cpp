@@ -187,7 +187,15 @@ struct dCcMassS_Mng {
     /* 80085EB8 */ void GetCamTopPos(Vec*);
 };
 
+struct dBgS_LinChk {
+    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
+};
+
 struct camera_class {};
+
+struct dCamMapToolData {
+    /* 8015FEB8 */ void Set(s32, s32, fopAc_ac_c*, u16, u8);
+};
 
 struct cSAngle {
     /* 80030510 */ ~cSAngle();
@@ -219,14 +227,6 @@ struct cSAngle {
     /* 802711E8 */ void operator-=(cSAngle const&);
     /* 80271264 */ void operator*(f32) const;
     /* 802712B4 */ void operator*=(f32);
-};
-
-struct dCamMapToolData {
-    /* 8015FEB8 */ void Set(s32, s32, fopAc_ac_c*, u16, u8);
-};
-
-struct dBgS_LinChk {
-    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
 };
 
 struct dCamera_c {
@@ -3689,7 +3689,7 @@ SECTION_RODATA static u8 const lit_16654[408] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_80393DC0 = (void*)(&lit_16654);
+COMPILER_STRIP_GATE(80393DC0, &lit_16654);
 
 /* 8017F828-8018050C 17A168 0CE4+00 2/1 0/0 0/0 .text            eventCamera__9dCamera_cFl */
 #pragma push
@@ -3813,7 +3813,7 @@ asm void dCamera_c::Reset() {
 SECTION_RODATA static u8 const wave[16] = {
     0x3E, 0xCC, 0xCC, 0xCD, 0x3F, 0x66, 0x66, 0x66, 0x40, 0x06, 0x66, 0x66, 0x40, 0x4C, 0xCC, 0xCD,
 };
-SECTION_DEAD void* const cg_80393F58 = (void*)(&wave);
+COMPILER_STRIP_GATE(80393F58, &wave);
 
 /* 80453908-8045390C 001F08 0004+00 1/1 0/0 0/0 .sdata2          @17253 */
 SECTION_SDATA2 static f32 lit_17253 = 43.0f / 100.0f;

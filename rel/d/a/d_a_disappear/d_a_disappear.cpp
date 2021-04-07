@@ -19,13 +19,13 @@ struct disappear_class {};
 
 struct dPa_levelEcallBack {};
 
-struct csXyz {};
-
-struct cXyz {};
-
 struct _GXColor {};
 
 struct dKy_tevstr_c {};
+
+struct cXyz {};
+
+struct csXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -33,9 +33,9 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
-struct JAISoundID {};
-
 struct Vec {};
+
+struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -120,8 +120,8 @@ static bool daDisappear_Delete(disappear_class* param_0) {
 
 /* ############################################################################################## */
 /* 804A9460-804A9464 000000 0004+00 4/4 0/0 0/0 .rodata          @3704 */
-SECTION_RODATA static u32 const lit_3704 = 0x3F800000;
-SECTION_DEAD void* const cg_804A9460 = (void*)(&lit_3704);
+SECTION_RODATA static f32 const lit_3704 = 1.0f;
+COMPILER_STRIP_GATE(804A9460, &lit_3704);
 
 /* 804A9480-804A9488 000000 0008+00 1/1 0/0 0/0 .data            da_name$3684 */
 SECTION_DATA static u8 da_name_3684[8] = {
@@ -170,15 +170,15 @@ static asm void ghost_disappear(disappear_class* param_0, f32 param_1) {
 /* 804A9464-804A9468 000004 0004+00 0/1 0/0 0/0 .rodata          @3787 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3787 = 0xBF800000;
-SECTION_DEAD void* const cg_804A9464 = (void*)(&lit_3787);
+SECTION_RODATA static f32 const lit_3787 = -1.0f;
+COMPILER_STRIP_GATE(804A9464, &lit_3787);
 #pragma pop
 
 /* 804A9468-804A946C 000008 0004+00 0/1 0/0 0/0 .rodata          @3788 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3788 = 0x3FD53F7D;
-SECTION_DEAD void* const cg_804A9468 = (void*)(&lit_3788);
+COMPILER_STRIP_GATE(804A9468, &lit_3788);
 #pragma pop
 
 /* 804A9494-804A94A4 000014 000E+02 1/1 0/0 0/0 .data            da_name$3736 */
@@ -217,22 +217,22 @@ static asm void set_disappear(disappear_class* param_0, f32 param_1) {
 /* 804A946C-804A9470 00000C 0004+00 0/1 0/0 0/0 .rodata          @3825 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3825 = 0x3C23D70A;
-SECTION_DEAD void* const cg_804A946C = (void*)(&lit_3825);
+SECTION_RODATA static f32 const lit_3825 = 1.0f / 100.0f;
+COMPILER_STRIP_GATE(804A946C, &lit_3825);
 #pragma pop
 
 /* 804A9470-804A9474 000010 0004+00 0/1 0/0 0/0 .rodata          @3826 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3826 = 0x3DCCCCCD;
-SECTION_DEAD void* const cg_804A9470 = (void*)(&lit_3826);
+SECTION_RODATA static f32 const lit_3826 = 1.0f / 10.0f;
+COMPILER_STRIP_GATE(804A9470, &lit_3826);
 #pragma pop
 
 /* 804A9474-804A9478 000014 0004+00 0/1 0/0 0/0 .rodata          @3827 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u32 const lit_3827 = 0x42480000;
-SECTION_DEAD void* const cg_804A9474 = (void*)(&lit_3827);
+SECTION_RODATA static f32 const lit_3827 = 50.0f;
+COMPILER_STRIP_GATE(804A9474, &lit_3827);
 #pragma pop
 
 /* 804A9478-804A9480 000018 0008+00 0/1 0/0 0/0 .rodata          @3829 */
@@ -241,7 +241,7 @@ SECTION_DEAD void* const cg_804A9474 = (void*)(&lit_3827);
 SECTION_RODATA static u8 const lit_3829[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-SECTION_DEAD void* const cg_804A9478 = (void*)(&lit_3829);
+COMPILER_STRIP_GATE(804A9478, &lit_3829);
 #pragma pop
 
 /* 804A9364-804A9458 0004C4 00F4+00 1/0 0/0 0/0 .text            daDisappear_Create__FP10fopAc_ac_c

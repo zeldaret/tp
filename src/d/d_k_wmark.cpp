@@ -27,9 +27,9 @@ struct dkWmark_c {
     /* 802616C4 */ void setMatrix();
 };
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -242,7 +242,7 @@ static asm void dkWmark_Execute(dkWmark_c* param_0) {
 SECTION_RODATA static u8 const data_8039A488[12] = {
     0x00, 0x00, 0x00, 0x82, 0x5F, 0x4B, 0x32, 0x3C, 0x64, 0x6E, 0x78, 0x28,
 };
-SECTION_DEAD void* const cg_8039A488 = (void*)(&data_8039A488);
+COMPILER_STRIP_GATE(8039A488, &data_8039A488);
 
 /* 80454FE4-80454FE8 0035E4 0004+00 1/1 0/0 0/0 .sdata2          @3906 */
 SECTION_SDATA2 static f32 lit_3906 = 50.0f;
