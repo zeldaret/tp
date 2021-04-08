@@ -4,6 +4,7 @@
 #include "dolphin/types.h"
 
 extern "C" {
+s32 abs(s32);
 f64 acos(f64);
 f32 acosf(f32);
 f64 asin(f64);
