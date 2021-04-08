@@ -1,9 +1,9 @@
 #ifndef D_KANKYO_H_
 #define D_KANKYO_H_
-#include "Z2AudioLib/Z2EnvSeMgr/Z2EnvSeMgr.h"
-#include "gx/GX.h"
 #include "SComponent/c_xyz.h"
+#include "Z2AudioLib/Z2EnvSeMgr/Z2EnvSeMgr.h"
 #include "d/d_kankyo/d_kankyo_wether/d_kankyo_wether.h"
+#include "gx/GX.h"
 
 class kankyo_class {};
 

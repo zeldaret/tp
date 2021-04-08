@@ -3,8 +3,8 @@
 
 #include "JSystem/JAudio2/JAISe/JAISe.h"
 #include "JSystem/JAudio2/JAISound/JAISound.h"
-#include "Z2AudioLib/Z2Creature/Z2Creature.h"
 #include "SComponent/c_xyz.h"
+#include "Z2AudioLib/Z2Creature/Z2Creature.h"
 #include "global.h"
 #include "mtx_vec.h"
 

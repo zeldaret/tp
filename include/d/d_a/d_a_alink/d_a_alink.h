@@ -5,32 +5,32 @@
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/J3DGraphAnimator/J3DModelLoader.h"
-#include "m_Do/m_Do_ext/m_Do_ext.h"
+#include "JSystem/J3DGraphBase/J3DMatBlock/J3DMatBlock.h"
 #include "JSystem/JMath/JMath.h"
+#include "JSystem/JParticle/JPAParticle.h"
 #include "SComponent/c_bg_s_poly_info.h"
 #include "SComponent/c_phase.h"
 #include "SComponent/c_sxyz.h"
 #include "SComponent/c_xyz.h"
-#include "d/d_attention/d_attention.h"
-#include "d/d_kankyo/d_kankyo.h"
-#include "d/d_jnt_col/d_jnt_col.h"
-#include "d/d_a/d_a_player/d_a_player.h"
-#include "d/d_eye_hl/d_eye_hl.h"
-#include "d/d_particle/d_particle.h"
-#include "d/d_cc/d_cc_d.h"
-#include "d/d_bg/d_bg_s/d_bg_s_acch.h"
-#include "d/d_bg/d_bg_s/d_bg_s_lin_chk.h"
-#include "JSystem/JParticle/JPAParticle.h"
-#include "JSystem/J3DGraphBase/J3DMatBlock/J3DMatBlock.h"
-#include "d/d_particle/d_particle_copoly.h"
-#include "d/d_com/d_com_inf_game/d_com_inf_game.h"
-#include "d/d_resource/d_resource.h"
-#include "d/d_save/d_save/d_save.h"
-#include "d/d_msg/d_msg_flow/d_msg_flow.h"
-#include "f/f_op/f_op_actor.h"
 #include "Z2AudioLib/Z2LinkMgr/Z2LinkMgr.h"
 #include "Z2AudioLib/Z2WolfHowlMgr/Z2WolfHowlMgr.h"
+#include "d/d_a/d_a_player/d_a_player.h"
+#include "d/d_attention/d_attention.h"
+#include "d/d_bg/d_bg_s/d_bg_s_acch.h"
+#include "d/d_bg/d_bg_s/d_bg_s_lin_chk.h"
+#include "d/d_cc/d_cc_d.h"
+#include "d/d_com/d_com_inf_game/d_com_inf_game.h"
+#include "d/d_eye_hl/d_eye_hl.h"
+#include "d/d_jnt_col/d_jnt_col.h"
+#include "d/d_kankyo/d_kankyo.h"
+#include "d/d_msg/d_msg_flow/d_msg_flow.h"
+#include "d/d_particle/d_particle.h"
+#include "d/d_particle/d_particle_copoly.h"
+#include "d/d_resource/d_resource.h"
+#include "d/d_save/d_save/d_save.h"
+#include "f/f_op/f_op_actor.h"
 #include "global.h"
+#include "m_Do/m_Do_ext/m_Do_ext.h"
 
 typedef u32 daAlink_ANM;
 typedef u32 daAlink_UPPER;
@@ -89,7 +89,7 @@ private:
     /* 0x02C */ cXyz field_0x2c;
     /* 0x038 */ cXyz field_0x38[0x3C];
     /* 0x308 */ cXyz field_0x308[0x3C];
-}; // Size = 0x5D8
+};  // Size = 0x5D8
 
 class dAlink_bottleWaterPcallBack_c : JPAParticleCallBack {
 private:
@@ -294,13 +294,9 @@ public:
     void setShieldChange(void);
 
     // inlines
-    bool checkUpperAnime(u16 pIdx) const {
-        return mAnmHeap2[2].getIdx() == pIdx;
-    }
+    bool checkUpperAnime(u16 pIdx) const { return mAnmHeap2[2].getIdx() == pIdx; }
 
-    bool checkIronBallWaitAnime() const {
-        return checkUpperAnime(0x19C);
-    }
+    bool checkIronBallWaitAnime() const { return checkUpperAnime(0x19C); }
 
 private:
     /* 0x0062C */ request_of_phase_process_class* field_0x062C;
@@ -329,7 +325,7 @@ private:
     /* 0x00688 */ J3DModel* field_0x0688;
     /* 0x0068C */ J3DAnmBase* field_0x068c;
     /* 0x00690 */ mDoExt_baseAnm** field_0x0690;
-    /* 0x00694 */ void* field_0x0694; //J3DDeformData
+    /* 0x00694 */ void* field_0x0694;  // J3DDeformData
     /* 0x00698 */ void* field_0x0698;
     /* 0x0069C */ void* field_0x069c;
     /* 0x006A0 */ J3DModel* field_0x06a0;
@@ -403,7 +399,7 @@ private:
     /* 0x01F94 */ daPy_anmHeap_c mAnmHeap2[3];
     /* 0x01FD0 */ daPy_frameCtrl_c mFrameCtrl1[3];
     /* 0x02018 */ daPy_frameCtrl_c mFrameCtrl2[3];
-    /* 0x02060 */ void* field_0x2060; // mDoExt_MtxCalcOldFrame*
+    /* 0x02060 */ void* field_0x2060;  // mDoExt_MtxCalcOldFrame*
     /* 0x02064 */ daAlink_sight_c mSight;
     /* 0x020F0 */ daPy_anmHeap_c mAnmHeap3;
     /* 0x02104 */ daPy_anmHeap_c mAnmHeap4;
@@ -463,7 +459,7 @@ private:
     /* 0x02C48 */ Mtx field_0x2c48;
     /* 0x02C78 */ Mtx field_0x2c78;
     /* 0x02CA8 */ Z2CreatureLink mZ2Link;
-    /* 0x02D75 */ u8 field_0x2d75[3]; // padding?
+    /* 0x02D75 */ u8 field_0x2d75[3];  // padding?
     /* 0x02D78 */ void* field_0x2d78;
     /* 0x02D7C */ daPy_frameCtrl_c* field_0x2d7c;
     /* 0x02D80 */ int field_0x2d80;
@@ -908,8 +904,11 @@ private:
 
 class daMidna_c {
 public:
-    enum daMidna_ERFLG0 { NoServiceWait = 128, ForcePanic = 8, };
-    enum daMidna_FLG1 { ForceNormalColor = 8, ForceTiredColor = 4};
+    enum daMidna_ERFLG0 {
+        NoServiceWait = 128,
+        ForcePanic = 8,
+    };
+    enum daMidna_FLG1 { ForceNormalColor = 8, ForceTiredColor = 4 };
 
     void onForcePanic(void);
     u32 checkForceNormalColor(void) const;
@@ -917,12 +916,8 @@ public:
     bool checkMidnaTired(void);
     void onNoServiceWait(void);
 
-    void onEndResetStateFlg0(daMidna_ERFLG0 pFlg) {
-        mEndResetStateFlg0 |= pFlg;
-    }
-    u32 checkStateFlg1(daMidna_FLG1 pFlg) const {
-        return mStateFlg1 & pFlg;
-    }
+    void onEndResetStateFlg0(daMidna_ERFLG0 pFlg) { mEndResetStateFlg0 |= pFlg; }
+    u32 checkStateFlg1(daMidna_FLG1 pFlg) const { return mStateFlg1 & pFlg; }
 
 private:
     u8 unk[0x893];

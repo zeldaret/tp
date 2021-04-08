@@ -9,9 +9,7 @@ public:
     virtual void draw();
 };
 
-class dPa_levelEcallBack : JPAEmitterCallBack {
-
-};
+class dPa_levelEcallBack : JPAEmitterCallBack {};
 
 class dPa_hermiteEcallBack_c : dPa_levelEcallBack {
 private:

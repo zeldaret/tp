@@ -70,7 +70,7 @@ private:
     mDoExt_baseAnm base_anm;
     u8 field_0x14[4];
     u32 field_0x18;
-}; // Size = 0x1C
+};  // Size = 0x1C
 #pragma pack(pop)
 
 #pragma pack(push, 1)
@@ -85,6 +85,6 @@ class mDoExt_AnmRatioPack {
 private:
     /* 0x0 */ float mRatio;
     /* 0x4 */ J3DAnmTransform* mAnmTransform;
-}; // Size = 0x8
+};  // Size = 0x8
 
 #endif

@@ -3743,7 +3743,8 @@ BOOL daAlink_c::checkMagicArmorHeavy(void) const {
 BOOL daAlink_c::checkBootsOrArmorHeavy(void) const {
     BOOL check = FALSE;
 
-    if (checkEquipHeavyBoots() != 0 || checkMagicArmorHeavy() != FALSE || checkIronBallWaitAnime()) {
+    if (checkEquipHeavyBoots() != 0 || checkMagicArmorHeavy() != FALSE ||
+        checkIronBallWaitAnime()) {
         check = TRUE;
     }
 

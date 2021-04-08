@@ -1,10 +1,10 @@
 #ifndef C_BG_S_LIN_CHK_H_
 #define C_BG_S_LIN_CHK_H_
 
-#include "SComponent/c_xyz.h"
 #include "SComponent/c_bg_s_chk.h"
 #include "SComponent/c_bg_s_poly_info.h"
 #include "SComponent/c_m3d_g_lin.h"
+#include "SComponent/c_xyz.h"
 #include "global.h"
 
 class cBgS_LinChk : cBgS_Chk {
@@ -18,6 +18,7 @@ private:
     /* 0x052 */ u8 mPreRoofChk;
     /* 0x053 */ u8 mFrontFlag;
     /* 0x054 */ u8 mBackFlag;
+
 public:
     cBgS_LinChk(void);
     ~cBgS_LinChk(void);

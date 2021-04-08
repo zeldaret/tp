@@ -1,8 +1,8 @@
 #ifndef C_BG_S_CHK_H_
 #define C_BG_S_CHK_H_
 
-#include "d/d_bg/d_bg_s/d_bg_s_poly_pass_chk.h"
 #include "d/d_bg/d_bg_s/d_bg_s_grp_pass_chk.h"
+#include "d/d_bg/d_bg_s/d_bg_s_poly_pass_chk.h"
 #include "global.h"
 
 class cBgS_Chk {

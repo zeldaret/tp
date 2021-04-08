@@ -62,8 +62,6 @@ private:
     /* 0x1D4 */ u8 mWtrChkMode;
 };
 
-class dBgS_LinkAcch : public dBgS_Acch {
-
-};
+class dBgS_LinkAcch : public dBgS_Acch {};
 
 #endif

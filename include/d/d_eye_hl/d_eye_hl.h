@@ -14,7 +14,6 @@ private:
     /* 0x10 */ dEyeHL_mng_c* field_0x10;
 };
 
-class dEyeHL_c : dEyeHL_mng_c {
-};
+class dEyeHL_c : dEyeHL_mng_c {};
 
 #endif

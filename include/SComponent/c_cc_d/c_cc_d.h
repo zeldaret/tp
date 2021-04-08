@@ -25,13 +25,13 @@ public:
 private:
     /* 0x00 */ cCcD_ShapeAttr cccd_shapeattr;
     /* 0x20 */ cM3dGSph cm3dgsph;
-}; // Size = 0x30
+};  // Size = 0x30
 
 class cCcD_CylAttr {
 private:
     /* 0x00 */ cCcD_ShapeAttr cccd_shapeattr;
     /* 0x20 */ cM3dGCyl cm3dgcyl;
-}; // Size = 0x34
+};  // Size = 0x34
 
 class cCcD_DivideInfo {
 public:
@@ -53,11 +53,10 @@ class cCcD_GStts {
 public:
 private:
     /* 0x00 */ void* vtable;
-}; // Size = 0x4
+};  // Size = 0x4
 
 class cCcD_Stts {
 public:
-
 private:
     /* 0x00 */ cXyz field_0x00;
     /* 0x0C */ fopAc_ac_c* mActor;
@@ -66,13 +65,13 @@ private:
     /* 0x15 */ u8 field_0x15;
     /* 0x16 */ u8 mTg;
     /* 0x18 */ void* vtable;
-}; // Size = 0x1C
+};  // Size = 0x1C
 
 class cCcD_ObjCommonBase {
 private:
     /* 0x00 */ int mSPrm;
     /* 0x04 */ int mRPrm;
-    /* 0x08 */ void* mHitObj; //cCcD_Obj* type
+    /* 0x08 */ void* mHitObj;  // cCcD_Obj* type
     /* 0x0C */ void* vtable;
 };
 
@@ -89,17 +88,16 @@ private:
     /* 0x10 */ int mType;
 };
 
-class cCcD_ObjCo : cCcD_ObjCommonBase {
-};
+class cCcD_ObjCo : cCcD_ObjCommonBase {};
 
 class cCcD_ObjHitInf {
 private:
     /* 0x000 */ cCcD_ObjAt mObjAt;
-    /* 0x015 */ u8 field_0x15[3]; //padding?
+    /* 0x015 */ u8 field_0x15[3];  // padding?
     /* 0x018 */ cCcD_ObjTg mObjTg;
     /* 0x02C */ cCcD_ObjCo mObjCo;
     /* 0x03C */ void* vtable;
-}; // Size = 0x40
+};  // Size = 0x40
 
 class cCcD_Obj : cCcD_ObjHitInf {
 public:
@@ -107,10 +105,8 @@ private:
     /* 0x040 */ int field_0x40;
     /* 0x044 */ cCcD_Stts* mStts;
     /* 0x048 */ cCcD_DivideInfo mDivideInfo;
-}; // Size = 0x58
+};  // Size = 0x58
 
-class cCcD_GObjInf : cCcD_Obj {
-};
-
+class cCcD_GObjInf : cCcD_Obj {};
 
 #endif

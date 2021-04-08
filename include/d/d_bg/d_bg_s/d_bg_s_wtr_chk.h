@@ -7,7 +7,6 @@
 class dBgS_WtrChk {
 private:
     /* 0x00 */ dBgS_SplGrpChk mSplGrp;
-}; // Size = 0x54
-
+};  // Size = 0x54
 
 #endif

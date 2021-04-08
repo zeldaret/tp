@@ -48,7 +48,7 @@ public:
 
 class Z2SoundObjAnime : protected Z2SoundObjBase {
 public:
-    /* 0x20 */ void* field_0x20; //JAUSoundAnimation*
+    /* 0x20 */ void* field_0x20;  // JAUSoundAnimation*
     /* 0x24 */ int field_0x24;
     /* 0x28 */ float field_0x28;
     /* 0x2C */ float field_0x2c;

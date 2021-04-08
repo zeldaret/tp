@@ -6,6 +6,7 @@
 class J3DPacket {
 public:
     virtual void draw();
+
 private:
     /* 0x04 */ J3DPacket* mNextPacket;
     /* 0x08 */ J3DPacket* mChildPacket;

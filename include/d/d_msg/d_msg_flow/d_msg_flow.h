@@ -1,8 +1,8 @@
 #ifndef D_MSG_FLOW_H_
 #define D_MSG_FLOW_H_
 
-#include "f/f_op/f_op_actor.h"
 #include "dolphin/types.h"
+#include "f/f_op/f_op_actor.h"
 
 class dMsgFlow_c {
 public:

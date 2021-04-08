@@ -1,18 +1,19 @@
 #ifndef D_A_PLAYER_H_
 #define D_A_PLAYER_H_
 
-#include "SComponent/c_bg_s_poly_info.h"
-#include "SComponent/c_xyz.h"
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 #include "JSystem/JUtility/JUTTexture.h"
+#include "SComponent/c_bg_s_poly_info.h"
+#include "SComponent/c_xyz.h"
 #include "d/d_drawlist/d_drawlist.h"
-#include "mtx_vec.h"
 #include "f/f_op/f_op_actor.h"
 #include "global.h"
+#include "mtx_vec.h"
 
 class daPy_anmHeap_c {
 public:
     u16 getIdx() const { return mIdx; }
+
 private:
     /* 0x00 */ u16 mIdx;
     /* 0x02 */ u16 mPriIdx;
@@ -21,7 +22,7 @@ private:
     /* 0x08 */ int mBufferSize;
     /* 0x0C */ void* mBuffer;
     /* 0x10 */ JKRHeap* mAnimeHeap;
-}; // Size = 0x14
+};  // Size = 0x14
 
 class daPy_actorKeep_c {
 public:
@@ -64,7 +65,6 @@ private:
 
 class daPy_demo_c {
 public:
-
 private:
     /* 0x00 */ u16 mDemoType;
     /* 0x02 */ s16 mDemoMoveAngle;
@@ -75,7 +75,7 @@ private:
     /* 0x10 */ int mDemoMode;
     /* 0x14 */ float mStick;
     /* 0x18 */ cXyz mDemoPos0;
-}; // Size = 0x24
+};  // Size = 0x24
 
 class daPy_py_c {
 private:
@@ -271,7 +271,7 @@ public:
     int checkEquipHeavyBoots() const;
 
     virtual void onFrollCrashFlg(u8, int);
-    virtual bool checkWolfDash (void);
+    virtual bool checkWolfDash(void);
 
     inline void onNoResetFlg3(int pFlg) { mNoResetFlg3 |= pFlg; }
     inline void onNoResetFlg0(int pFlg) { mNoResetFlg0 |= pFlg; }

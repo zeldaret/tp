@@ -10,7 +10,6 @@ public:
 
 class dBgS_GrpPassChk : public cBgS_GrpPassChk {
 public:
-
 private:
     u32 mGrp;
 };
