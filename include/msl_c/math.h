@@ -75,9 +75,9 @@ inline f32 sqrtf(f32 mag) {
         tmpd = sqrt_step(tmpd, mag);
         return mag * tmpd;
     } else if (mag < 0.0) {
-        return /* __float_nan */ __float_nan[0];
+        return __float_nan[0];
     } else if (fpclassify(mag) == 1) {
-        return /* __float_nan */ __float_nan[0];
+        return __float_nan[0];
     } else {
         return mag;
     }
