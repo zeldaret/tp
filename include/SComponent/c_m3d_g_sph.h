@@ -16,6 +16,7 @@ public:
     cXyz mCenter;
     f32 mRadius;
 
+    virtual ~cM3dGSph();
     void SetC(const cXyz&);
     void Set(const cXyz&, f32);
     void Set(const cM3dGSphS&);

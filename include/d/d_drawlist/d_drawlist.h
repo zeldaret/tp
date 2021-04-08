@@ -37,4 +37,9 @@ public:
 };  // Size: 0x161A0
 #pragma pack(pop)
 
+class dDlst_base_c {
+public:
+    virtual void draw();
+};
+
 #endif D_DRAWLIST_H_

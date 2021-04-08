@@ -75,7 +75,7 @@ void Z2CreatureLink::setLinkGroupInfo(u8 param1) {
 }
 
 void Z2CreatureLink::setLinkHp(s32 health, s32 param2) {
-    this->link_hp = health;
+    link_hp = health;
 }
 
 asm void Z2CreatureLink::setLinkSwordType(s32, s32) {

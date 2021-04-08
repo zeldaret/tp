@@ -3,12 +3,22 @@
 
 #include "JSystem/JAudio2/JAISe/JAISe.h"
 #include "JSystem/JAudio2/JAISound/JAISound.h"
+#include "Z2AudioLib/Z2Creature/Z2Creature.h"
+#include "SComponent/c_xyz.h"
 #include "global.h"
 #include "mtx_vec.h"
 
 class Z2SoundObjBase;
 
-class Z2CreatureLink {
+struct Z2LinkSoundStarter : Z2SoundStarter {
+    Z2LinkSoundStarter(void);
+    ~Z2LinkSoundStarter();
+    // u32 startSound(JAISoundID, JAISoundHandle, TVec3<float>*, u32, float, float, float, float,
+    // float, u32);
+};
+
+#pragma pack(push, 1)
+class Z2CreatureLink : Z2Creature {
 public:
     Z2CreatureLink(void);
     ~Z2CreatureLink();
@@ -39,32 +49,24 @@ public:
     void setResumeAttack(bool);
 
 private:
-    u8 unk0[179];
-    u8 unk179;
-    float unk180;
-    float unk184;
-    float unk188;
-    u8 link_state;
-    u8 unk193;
-    u8 unk194;
-    u8 link_hp;
-    u8 unk196;
-    u8 lantern_state;
-    u8 unk198;
-    u8 unk199;
-    u8 unk200;
-    u8 unk201;
-    u8 sink_depth;
-    u8 unk203;
-    u8 unk204;
+    /* 0x90 */ Z2LinkSoundStarter mLinkSoundStarter;
+    /* 0x94 */ Z2SoundObjSimple mSoundObjSimple;
+    /* 0xB4 */ cXyz field_0xb4;
+    /* 0xC0 */ u8 link_state;
+    /* 0xC1 */ u8 unk193;
+    /* 0xC2 */ u8 unk194;
+    /* 0xC3 */ u8 link_hp;
+    /* 0xC4 */ u8 boots_type;
+    /* 0xC5 */ u8 lantern_state;
+    /* 0xC6 */ u8 unk198;
+    /* 0xC7 */ u8 unk199;
+    /* 0xC8 */ u8 unk200;
+    /* 0xC9 */ u8 unk201;
+    /* 0xCA */ u8 sink_depth;
+    /* 0xCB */ u8 flags1;
+    /* 0xCC */ u8 flags2;
 };
-
-struct Z2LinkSoundStarter {
-    Z2LinkSoundStarter(void);
-    ~Z2LinkSoundStarter();
-    // u32 startSound(JAISoundID, JAISoundHandle, TVec3<float>*, u32, float, float, float, float,
-    // float, u32);
-};
+#pragma pack(pop)
 
 extern "C" {
 void __dt__14Z2CreatureRideFv(void);

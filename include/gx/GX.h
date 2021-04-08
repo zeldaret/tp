@@ -38,6 +38,13 @@ struct _GXColor {
     u8 a;
 };
 
+struct GXColorS10 {
+    s16 r;
+    s16 g;
+    s16 b;
+    s16 a;
+};
+
 struct GXRenderModeObj {
     s32 vi_tv_mode;
     u16 fb_width;

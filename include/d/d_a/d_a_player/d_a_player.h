@@ -3,10 +3,25 @@
 
 #include "SComponent/c_bg_s_poly_info.h"
 #include "SComponent/c_xyz.h"
+#include "JSystem/J3DGraphAnimator/J3DAnimation.h"
+#include "JSystem/JUtility/JUTTexture.h"
+#include "d/d_drawlist/d_drawlist.h"
+#include "mtx_vec.h"
 #include "f/f_op/f_op_actor.h"
 #include "global.h"
 
-class daPy_anmHeap_c {};
+class daPy_anmHeap_c {
+public:
+    u16 getIdx() const { return mIdx; }
+private:
+    /* 0x00 */ u16 mIdx;
+    /* 0x02 */ u16 mPriIdx;
+    /* 0x04 */ u16 mArcNo;
+    /* 0x06 */ u16 field_0x06;
+    /* 0x08 */ int mBufferSize;
+    /* 0x0C */ void* mBuffer;
+    /* 0x10 */ JKRHeap* mAnimeHeap;
+}; // Size = 0x14
 
 class daPy_actorKeep_c {
 public:
@@ -17,17 +32,82 @@ public:
 
     u32 getID(void) const { return mID; }
     void setID(u32 id) { mID = id; }
-    u32 getActor(void) const { return mActor; }
+    fopAc_ac_c* getActor(void) const { return mActor; }
 
 private:
     u32 mID;
-    u32 mActor;
+    fopAc_ac_c* mActor;
 };
 
+#pragma pack(push, 1)
+class daPy_frameCtrl_c : J3DFrameCtrl {
+public:
+    bool checkAnmEnd(void);
+    void updateFrame(void);
+    void setFrameCtrl(u8, short, short, float, float);
+
+private:
+    /* 0x14 */ u16 field_0x14;
+    /* 0x16 */ u16 field_0x16;
+};
+#pragma pack(pop)
+
+class daPy_sightPacket_c : dDlst_base_c {
+private:
+    /* 0x04 */ bool mDrawFlag;
+    /* 0x05 */ u8 field_0x5[3];
+    /* 0x08 */ cXyz mPos;
+    /* 0x14 */ Mtx field_0x14;
+    /* 0x44 */ ResTIMG* field_0x44;
+    /* 0x48 */ ResTIMG* field_0x48;
+};
+
+class daPy_demo_c {
+public:
+
+private:
+    /* 0x00 */ u16 mDemoType;
+    /* 0x02 */ s16 mDemoMoveAngle;
+    /* 0x04 */ s16 mTimer;
+    /* 0x06 */ s16 mParam2;
+    /* 0x08 */ int mParam0;
+    /* 0x0C */ int mParam1;
+    /* 0x10 */ int mDemoMode;
+    /* 0x14 */ float mStick;
+    /* 0x18 */ cXyz mDemoPos0;
+}; // Size = 0x24
+
 class daPy_py_c {
+private:
+    /* 0x0000 */ fopAc_ac_c mActor;
+    /* 0x0538 */ u8 field_0x538[0x32];
+    /* 0x056A */ u8 field_0x56a;
+    /* 0x056B */ u8 field_0x56b[5];
+    /* 0x0570 */ int mNoResetFlg0;
+    /* 0x0574 */ int mNoResetFlg1;
+    /* 0x0578 */ int mNoResetFlg2;
+    /* 0x057C */ int mNoResetFlg3;
+    /* 0x0580 */ int mResetFlg0;
+    /* 0x0584 */ int mResetFlg1;
+    /* 0x0588 */ int mEndResetFlg0;
+    /* 0x058C */ int mEndResetFlg1;
+    /* 0x0590 */ int mEndResetFlg2;
+    /* 0x0594 */ u8 field_0x594[0x10];
+    /* 0x05A4 */ cXyz mHeadTopPos;
+    /* 0x05B0 */ cXyz mItemPos;
+    /* 0x05BC */ cXyz mSwordTopPos;
+    /* 0x05C8 */ cXyz mLeftHandPos;
+    /* 0x05D4 */ cXyz mRightHandPos;
+    /* 0x05E0 */ cXyz mLeftFootPosP;
+    /* 0x05EC */ cXyz mRightFootPosP;
+    /* 0x05F8 */ u8 field_0x5f8[0xC];
+    /* 0x0604 */ daPy_demo_c mDemo;
+
 public:
     enum daPy_FLG2 {};
     enum daPy_ERFLG0 {};
+
+    enum daPy_FLG0 { EquipHeavyBoots = 0x2000000 };
 
     u32 checkBoarSingleBattle(void) const;
     u32 checkEndResetFlg0(daPy_ERFLG0) const;
@@ -187,22 +267,26 @@ public:
     int checkCopyRodEquip(void) const;
     int checkCutJumpMode(void) const;
     int getAtnActorID(void) const;  // might not be int
+    int checkNoResetFlg0(daPy_FLG0) const;
+    int checkEquipHeavyBoots() const;
 
-private:
-    /* 0x0000 */ u8 unk[0x4d0];
-    /* 0x04D0 */ cXyz mPosition;
-    s16 mGiantPuzzleAimAngle;
-    u32 unk0x578;
-    u32 unk0x588;
+    virtual void onFrollCrashFlg(u8, int);
+    virtual bool checkWolfDash (void);
+
+    inline void onNoResetFlg3(int pFlg) { mNoResetFlg3 |= pFlg; }
+    inline void onNoResetFlg0(int pFlg) { mNoResetFlg0 |= pFlg; }
+    inline void offNoResetFlg3(int pFlg) { mNoResetFlg3 &= ~pFlg; }
+
+    inline fopAc_ac_c& getActor() { return mActor; }
 };
 
 class daHorse_c {
 public:
-    u32 getZeldaActor(void);
+    fopAc_ac_c* getZeldaActor(void);
 
 private:
     u8 unk[0x1254];
-    daPy_actorKeep_c actorKeep;
+    daPy_actorKeep_c mZeldaActorKeep;
 };
 
 #endif

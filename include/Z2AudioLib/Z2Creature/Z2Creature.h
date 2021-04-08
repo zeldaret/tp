@@ -1,6 +1,7 @@
 #ifndef Z2CREATURE_H_
 #define Z2CREATURE_H_
 
+#include "Z2AudioLib/Z2SoundObject/Z2SoundObject.h"
 #include "dolphin/types.h"
 
 class Z2Creature {
@@ -17,6 +18,12 @@ public:
     virtual void startCreatureExtraSound();
     virtual void startCreatureExtraSoundLevel();
     virtual void startCollisionSE();
+
+private:
+    /* 0x04 */ int field_0x04;
+    /* 0x08 */ Z2SoundObjAnime mSoundObjAnime;
+    /* 0x50 */ Z2SoundObjSimple mSoundObjSimple1;
+    /* 0x70 */ Z2SoundObjSimple mSoundObjSimple2;
 };
 
 class Z2CreatureEnemy : public Z2Creature {};

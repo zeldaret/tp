@@ -2004,8 +2004,16 @@ extern u8 lbl_80450D64;
 extern u8 lbl_80451360;
 extern u8 lbl_803A6F88;
 
-u32 daAlink_c::getE3Zhint(void) {
-    return 0;
+inline int daPy_py_c::checkNoResetFlg0(daPy_FLG0 pFlg) const {
+    return mNoResetFlg0 & pFlg;
+}
+
+inline int daPy_py_c::checkEquipHeavyBoots() const {
+    return checkNoResetFlg0(EquipHeavyBoots);
+}
+
+bool daAlink_c::getE3Zhint(void) {
+    return false;
 }
 
 asm const char* daAlink_c::getAlinkArcName(void) {
@@ -2040,18 +2048,10 @@ asm void daAlink_matAnm_c::calc(J3DMaterial*) const {
 #include "d/d_a/d_a_alink/asm/func_8009D90C.s"
 }
 
-// matches but need to fix class structure
-#ifdef NONMATCHING
 bool daAlink_c::checkStageName(const char* stage) {
     stage = (const char*)this;
     return strcmp(dComIfGp_getStartStageName(), stage) == 0;
 }
-#else
-asm bool daAlink_c::checkStageName(char const* stage) {
-    nofralloc
-#include "d/d_a/d_a_alink/asm/func_8009DA60.s"
-}
-#endif
 
 asm void daAlink_c::tgHitCallback(fopAc_ac_c*, dCcD_GObjInf*, dCcD_GObjInf*) {
     nofralloc
@@ -3083,21 +3083,21 @@ asm void setPlayerPosAndAngle__9daAlink_cFPA4_f(void){nofralloc
 }
 
 u32 daAlink_c::itemTriggerCheck(u8 param1) {
-    unk12206 |= param1;
-    return unk12173 & param1;
+    field_0x2fae |= param1;
+    return mItemTrigger & param1;
 }
 
 u32 daAlink_c::itemButtonCheck(u8 param1) {
-    unk12206 |= param1;
-    return unk12174 & param1;
+    field_0x2fae |= param1;
+    return mItemButton & param1;
 }
 
 void daAlink_c::itemButton(void) {
-    itemButtonCheck(1 << unk12188);
+    itemButtonCheck(1 << mSelectItemId);
 }
 
 void daAlink_c::itemTrigger(void) {
-    itemTriggerCheck(1 << unk12188);
+    itemTriggerCheck(1 << mSelectItemId);
 }
 
 void daAlink_c::spActionButton(void) {
@@ -3109,7 +3109,7 @@ void daAlink_c::spActionTrigger(void) {
 }
 
 u32 daAlink_c::midnaTalkTrigger(void) const {
-    return unk12173 & 4;
+    return mItemTrigger & 4;
 }
 
 void daAlink_c::swordSwingTrigger(void) {
@@ -3743,7 +3743,7 @@ BOOL daAlink_c::checkMagicArmorHeavy(void) const {
 BOOL daAlink_c::checkBootsOrArmorHeavy(void) const {
     BOOL check = FALSE;
 
-    if ((unk1392 & 0x2000000) != 0 || checkMagicArmorHeavy() != FALSE || unk8124 == 0x19C) {
+    if (checkEquipHeavyBoots() != 0 || checkMagicArmorHeavy() != FALSE || checkIronBallWaitAnime()) {
         check = TRUE;
     }
 
@@ -3771,14 +3771,14 @@ asm void initGravity__9daAlink_cFv(void) {
 #include "d/d_a/d_a_alink/asm/func_800BB644.s"
 }
 
-void daAlink_c::setSpecialGravity(float param1, float param2, int param3) {
+void daAlink_c::setSpecialGravity(float pGravity, float pFallSpeed, int param3) {
     if (param3 != 0) {
-        unk1404 &= ~0x4000;
+        offNoResetFlg3(0x4000);
     } else {
-        unk1404 |= 0x4000;
+        onNoResetFlg3(0x4000);
     }
-    unk1328 = param1;
-    unk1332 = param2;
+    getActor().mGravity = pGravity;
+    getActor().mMaxFallSpeed = pFallSpeed;
 }
 
 // transAnimeProc__9daAlink_cFP4cXyzff
@@ -4005,13 +4005,13 @@ int daAlink_c::checkMagicArmorWearAbility(void) const {
     bool uvar = false;
     bool bvar = false;
 
-    if ((unk1396 & 0x2000000) == 0) {
+    if ((mNoResetFlg1 & 0x2000000) == 0) {
         if (g_dComIfG_gameInfo.info.getSaveFile().getPlayer().getPlayerStatusA().getEquipment(0) ==
             48) {
             bvar = true;
         }
     }
-    if (bvar && (unk1400 & 0x80000) == 0) {
+    if (bvar && (mNoResetFlg2 & 0x80000) == 0) {
         uvar = true;
     }
     return uvar;
@@ -4235,11 +4235,11 @@ asm void getModelJointMtx__9daAlink_cFUs(void) {
 
 void daAlink_c::onFrollCrashFlg(u8 param1, int param2) {
     if (param2 != 0) {
-        unk1392 |= 16;
+        onNoResetFlg0(16);
     } else {
-        unk1392 |= 8;
+        onNoResetFlg0(8);
     }
-    unk12196 = param1;
+    field_0x2fa4 = param1;
 }
 //
 // changeWarpMaterial__9daAlink_cFQ29daAlink_c21daAlink_WARP_MAT_MODE
@@ -15464,7 +15464,7 @@ asm void setClothesChange__9daAlink_cFi(void) {
 // setShieldChange__9daAlink_cFv
 // daAlink_c::setShieldChange(void)
 void daAlink_c::setShieldChange(void) {
-    unk12241 = 4;
+    mShieldChange = 4;
 }
 
 // loadModelDVD__9daAlink_cFv
@@ -17029,8 +17029,8 @@ asm void checkCutJumpMode__9daPy_py_cCFv(void){nofralloc
 #include "d/d_a/d_a_alink/asm/func_8014193C.s"
 }
 
-u32 daHorse_c::getZeldaActor(void) {
-    return actorKeep.getActor();
+fopAc_ac_c* daHorse_c::getZeldaActor(void) {
+    return mZeldaActorKeep.getActor();
 }
 
 u8 dComIfGp_getDoStatus__Fv(void) {
@@ -17070,15 +17070,15 @@ asm void dMeter2Info_setFloatingMessage__FUssb(void) {
 }
 
 void daMidna_c::onForcePanic(void) {
-    unk2200 |= 8;
+    onEndResetStateFlg0(ForcePanic);
 }
 
 u32 daMidna_c::checkForceNormalColor(void) const {
-    return unk2196 & 8;
+    return checkStateFlg1(ForceNormalColor);
 }
 
 u32 daMidna_c::checkForceTiredColor(void) const {
-    return unk2196 & 4;
+    return checkStateFlg1(ForceTiredColor);
 }
 
 // checkMidnaTired__9daMidna_cFv
@@ -17089,7 +17089,7 @@ asm void checkMidnaTired__9daMidna_cFv(void) {
 }
 
 void daMidna_c::onNoServiceWait(void) {
-    unk2200 |= 128;
+    onEndResetStateFlg0(NoServiceWait);
 }
 
 // setControllActorData__8daCrod_cFv

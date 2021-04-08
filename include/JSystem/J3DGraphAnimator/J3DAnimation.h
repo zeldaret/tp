@@ -8,13 +8,13 @@ class J3DFrameCtrl {
 public:
 private:
     void* vtable;
-    u8 field_0x4;
-    u8 field_0x5;
-    u16 field_0x6;
-    s16 field_0x8;
-    u16 field_0xa;
-    float field_0xc;
-    float field_0x10;
+    u8 mAttribute;
+    bool mState;
+    u16 mStart;
+    s16 mEnd;
+    u16 mLoop;
+    float mRate;
+    float mFrame;
 };
 #pragma pack(pop)
 

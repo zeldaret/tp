@@ -1,9 +1,8 @@
 #ifndef J3DDRAWBUFFER_H_
 #define J3DDRAWBUFFER_H_
 
+#include "JSystem/J3DGraphBase/J3DPacket/J3DPacket.h"
 #include "dolphin/types.h"
-
-class J3DPacket;  // might need to be moved
 
 class J3DDrawBuffer {
 public:
