@@ -7,145 +7,64 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-//
-// Types:
-//
-
-struct cBgS_PolyInfo {
-    /* 80268074 */ cBgS_PolyInfo();
-    /* 802680B0 */ ~cBgS_PolyInfo();
-    /* 802680F8 */ void ChkSetInfo() const;
-    /* 80268120 */ void ClearPi();
-    /* 80268148 */ void SetPolyInfo(cBgS_PolyInfo const&);
-    /* 8026816C */ void SetActorInfo(int, void*, unsigned int);
-    /* 8026817C */ void ChkSafe(void const*, unsigned int) const;
-    /* 802681A4 */ void SetPolyIndex(int);
-    /* 802681AC */ void ChkBgIndex() const;
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__13cBgS_PolyInfoFv();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void ChkSetInfo__13cBgS_PolyInfoCFv();
-extern "C" void ClearPi__13cBgS_PolyInfoFv();
-extern "C" void SetPolyInfo__13cBgS_PolyInfoFRC13cBgS_PolyInfo();
-extern "C" void SetActorInfo__13cBgS_PolyInfoFiPvUi();
-extern "C" void ChkSafe__13cBgS_PolyInfoCFPCvUi();
-extern "C" void SetPolyIndex__13cBgS_PolyInfoFi();
-extern "C" void ChkBgIndex__13cBgS_PolyInfoCFv();
-
-//
-// External References:
-//
-
-extern "C" void __dl__FPv();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 803C3FD0-803C3FE0 0210F0 000C+04 2/2 0/0 0/0 .data            __vt__13cBgS_PolyInfo */
-SECTION_DATA extern void* __vt__13cBgS_PolyInfo[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__13cBgS_PolyInfoFv,
-    /* padding */
-    NULL,
-};
-
 /* 80268074-802680B0 2629B4 003C+00 0/0 7/7 9/9 .text            __ct__13cBgS_PolyInfoFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgS_PolyInfo::cBgS_PolyInfo() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_s_poly_info/__ct__13cBgS_PolyInfoFv.s"
+cBgS_PolyInfo::cBgS_PolyInfo(void) {
+    this->ClearPi();
 }
-#pragma pop
 
 /* 802680B0-802680F8 2629F0 0048+00 1/0 10/10 393/393 .text            __dt__13cBgS_PolyInfoFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgS_PolyInfo::~cBgS_PolyInfo() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_s_poly_info/__dt__13cBgS_PolyInfoFv.s"
-}
-#pragma pop
+cBgS_PolyInfo::~cBgS_PolyInfo(void) {}
 
 /* 802680F8-80268120 262A38 0028+00 0/0 4/4 0/0 .text            ChkSetInfo__13cBgS_PolyInfoCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgS_PolyInfo::ChkSetInfo() const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_s_poly_info/ChkSetInfo__13cBgS_PolyInfoCFv.s"
+bool cBgS_PolyInfo::ChkSetInfo(void) const {
+    if (mPolyIndex == 0xFFFF || unk_0x02 == 0x100) {
+        return false;
+    } else {
+        return true;
+    }
 }
-#pragma pop
 
 /* 80268120-80268148 262A60 0028+00 1/1 11/11 0/0 .text            ClearPi__13cBgS_PolyInfoFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgS_PolyInfo::ClearPi() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_s_poly_info/ClearPi__13cBgS_PolyInfoFv.s"
+void cBgS_PolyInfo::ClearPi(void) {
+    mPolyIndex = 0xFFFF;
+    unk_0x02 = 0x100;
+    unk_0x04 = 0;
+    unk_0x08 = -1;
 }
-#pragma pop
 
 /* 80268148-8026816C 262A88 0024+00 0/0 11/11 1/1 .text
  * SetPolyInfo__13cBgS_PolyInfoFRC13cBgS_PolyInfo               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgS_PolyInfo::SetPolyInfo(cBgS_PolyInfo const& param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_s_poly_info/SetPolyInfo__13cBgS_PolyInfoFRC13cBgS_PolyInfo.s"
+void cBgS_PolyInfo::SetPolyInfo(const cBgS_PolyInfo& pOther) {
+    mPolyIndex = pOther.mPolyIndex;
+    unk_0x02 = pOther.unk_0x02;
+    unk_0x04 = pOther.unk_0x04;
+    unk_0x08 = pOther.unk_0x08;
 }
-#pragma pop
 
 /* 8026816C-8026817C 262AAC 0010+00 0/0 6/6 0/0 .text            SetActorInfo__13cBgS_PolyInfoFiPvUi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgS_PolyInfo::SetActorInfo(int param_0, void* param_1, unsigned int param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_s_poly_info/SetActorInfo__13cBgS_PolyInfoFiPvUi.s"
+void cBgS_PolyInfo::SetActorInfo(int param_1, void* param_2, unsigned int param_3) {
+    unk_0x02 = param_1;
+    unk_0x04 = param_2;
+    unk_0x08 = param_3;
 }
-#pragma pop
 
 /* 8026817C-802681A4 262ABC 0028+00 0/0 1/1 0/0 .text            ChkSafe__13cBgS_PolyInfoCFPCvUi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgS_PolyInfo::ChkSafe(void const* param_0, unsigned int param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_s_poly_info/ChkSafe__13cBgS_PolyInfoCFPCvUi.s"
+bool cBgS_PolyInfo::ChkSafe(const void* param_1, unsigned int param_2) const {
+    if (unk_0x04 == param_1 && unk_0x08 == param_2) {
+        return true;
+    } else {
+        return false;
+    }
 }
-#pragma pop
 
 /* 802681A4-802681AC 262AE4 0008+00 0/0 11/11 0/0 .text            SetPolyIndex__13cBgS_PolyInfoFi
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgS_PolyInfo::SetPolyIndex(int param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_s_poly_info/SetPolyIndex__13cBgS_PolyInfoFi.s"
+void cBgS_PolyInfo::SetPolyIndex(int pPolyIndex) {
+    mPolyIndex = pPolyIndex;
 }
-#pragma pop
 
 /* 802681AC-802681C0 262AEC 0014+00 0/0 3/3 0/0 .text            ChkBgIndex__13cBgS_PolyInfoCFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgS_PolyInfo::ChkBgIndex() const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_s_poly_info/ChkBgIndex__13cBgS_PolyInfoCFv.s"
+bool cBgS_PolyInfo::ChkBgIndex(void) const {
+    return unk_0x02 != 0x100;
 }
-#pragma pop

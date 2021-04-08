@@ -3,7 +3,7 @@
 // Translation Unit: c_bg_s_gnd_chk
 //
 
-#include "SSystem/SComponent/c_bg_s_gnd_chk.h"
+// #include "SSystem/SComponent/c_bg_s_gnd_chk.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
@@ -44,7 +44,7 @@ extern "C" void __dt__11cBgS_GndChkFv();
 extern "C" void SetPos__11cBgS_GndChkFPC3Vec();
 extern "C" void SetPos__11cBgS_GndChkFPC4cXyz();
 extern "C" void PreCheck__11cBgS_GndChkFv();
-extern "C" static void func_80267D54();
+extern "C" void func_80267D54();
 
 //
 // External References:
@@ -123,7 +123,7 @@ asm void cBgS_GndChk::PreCheck() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void func_80267D54() {
+asm void func_80267D54() {
     nofralloc
 #include "asm/SSystem/SComponent/c_bg_s_gnd_chk/func_80267D54.s"
 }

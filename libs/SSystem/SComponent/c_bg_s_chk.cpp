@@ -8,81 +8,32 @@
 #include "dolphin/types.h"
 
 //
-// Types:
-//
-
-struct cBgS_Chk {
-    /* 80267B4C */ cBgS_Chk();
-    /* 80267B70 */ ~cBgS_Chk();
-    /* 80267BB8 */ void SetExtChk(cBgS_Chk&);
-    /* 80267BDC */ void ChkSameActorPid(unsigned int) const;
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__8cBgS_ChkFv();
-extern "C" void __dt__8cBgS_ChkFv();
-extern "C" void SetExtChk__8cBgS_ChkFR8cBgS_Chk();
-extern "C" void ChkSameActorPid__8cBgS_ChkCFUi();
-
-//
-// External References:
-//
-
-extern "C" void __dl__FPv();
-
-//
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803C3F80-803C3F90 0210A0 000C+04 2/2 0/0 0/0 .data            __vt__8cBgS_Chk */
-SECTION_DATA extern void* __vt__8cBgS_Chk[3 + 1 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cBgS_ChkFv,
-    /* padding */
-    NULL,
-};
-
 /* 80267B4C-80267B70 26248C 0024+00 0/0 7/7 0/0 .text            __ct__8cBgS_ChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgS_Chk::cBgS_Chk() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_s_chk/__ct__8cBgS_ChkFv.s"
+cBgS_Chk::cBgS_Chk(void) {
+    unk_0x00 = 0;
+    unk_0x04 = 0;
+    unk_0x0C = 1;
 }
-#pragma pop
 
 /* 80267B70-80267BB8 2624B0 0048+00 1/0 7/7 0/0 .text            __dt__8cBgS_ChkFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cBgS_Chk::~cBgS_Chk() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_s_chk/__dt__8cBgS_ChkFv.s"
-}
-#pragma pop
+cBgS_Chk::~cBgS_Chk(void) {}
 
 /* 80267BB8-80267BDC 2624F8 0024+00 0/0 4/4 0/0 .text            SetExtChk__8cBgS_ChkFR8cBgS_Chk */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgS_Chk::SetExtChk(cBgS_Chk& param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_s_chk/SetExtChk__8cBgS_ChkFR8cBgS_Chk.s"
+void cBgS_Chk::SetExtChk(cBgS_Chk& pOther) {
+    unk_0x00 = pOther.unk_0x00;
+    unk_0x04 = pOther.unk_0x04;
+    unk_0x08 = pOther.unk_0x08;
+    unk_0x0C = pOther.unk_0x0C;
 }
-#pragma pop
 
 /* 80267BDC-80267C1C 26251C 0040+00 0/0 7/7 0/0 .text            ChkSameActorPid__8cBgS_ChkCFUi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgS_Chk::ChkSameActorPid(unsigned int param_0) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_s_chk/ChkSameActorPid__8cBgS_ChkCFUi.s"
+bool cBgS_Chk::ChkSameActorPid(unsigned int pUint) const {
+    if (unk_0x08 == -1 || pUint == UINT32_MAX || unk_0x0C == 0) {
+        return 0;
+    } else {
+        return (unk_0x08 == pUint) ? 1 : 0;
+    }
 }
-#pragma pop

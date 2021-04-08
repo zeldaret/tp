@@ -6,32 +6,9 @@
 #include "SSystem/SComponent/c_bg_s_shdw_draw.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct cXyz {};
-
-struct cM3dGPla {};
-
-struct cM3dGAab {
-    /* 8026EC54 */ void Set(cXyz const*, cXyz const*);
-};
-
-struct cBgD_Vtx_t {};
-
-struct cBgS_ShdwDraw {
-    /* 80267F88 */ cBgS_ShdwDraw();
-    /* 80267FD0 */ ~cBgS_ShdwDraw();
-    /* 80268048 */ void Set(cXyz&, cXyz&);
-    /* 8026806C */ void SetCallback(int (*)(cBgS_ShdwDraw*, cBgD_Vtx_t*, int, int, int, cM3dGPla*));
-};
-
-struct cBgS_Chk {
-    /* 80267B4C */ cBgS_Chk();
-    /* 80267B70 */ ~cBgS_Chk();
-};
+#include "SSystem/SComponent/c_xyz.h"
+#include "SSystem/SComponent/c_m3d_g_pla.h"
+#include "SSystem/SComponent/c_m3d_g_aab.h"
 
 //
 // Forward References:
