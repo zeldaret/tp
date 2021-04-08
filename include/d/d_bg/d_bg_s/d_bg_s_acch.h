@@ -3,6 +3,8 @@
 
 #include "SComponent/c_bg_s_poly_info.h"
 #include "SComponent/c_m3d_g_cir.h"
+#include "SComponent/c_m3d_g_cyl.h"
+#include "SComponent/c_m3d_g_lin.h"
 #include "SComponent/c_m3d_g_pla.h"
 #include "d/d_bg/d_bg_s/d_bg_s_gnd_chk.h"
 #include "d/d_bg/d_bg_s/d_bg_s_roof_chk.h"
