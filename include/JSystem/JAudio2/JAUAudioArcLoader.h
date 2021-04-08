@@ -3,4 +3,6 @@
 
 #include "dolphin/types.h"
 
+struct JAUSection;
+
 #endif /* JAUAUDIOARCLOADER_H */

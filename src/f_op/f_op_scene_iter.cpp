@@ -6,43 +6,23 @@
 #include "f_op/f_op_scene_iter.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct node_list_class {};
-
-struct node_class {};
-
-struct judge_filter {};
-
-struct create_tag_class {};
-
-//
-// Forward References:
-//
-
-extern "C" void fopScnIt_Judge__FPFPvPv_PvPv();
-
-//
-// External References:
-//
-
-extern "C" void cLsIt_Judge__FP15node_list_classPFP10node_classPv_PvPv();
-extern "C" void cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter();
-extern "C" extern u8 g_fopScnTg_SceneList[12 + 4 /* padding */];
+#include "SSystem/SComponent/c_list.h"
+#include "SSystem/SComponent/c_list_iter.h"
+#include "SSystem/SComponent/c_tag_iter.h"
+#include "f_op/f_op_scene_tag.h"
 
 //
 // Declarations:
 //
 
 /* 8001EC74-8001ECB0 0195B4 003C+00 0/0 1/1 0/0 .text            fopScnIt_Judge__FPFPvPv_PvPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopScnIt_Judge(void* (*)(void*, void*), void* param_1) {
-    nofralloc
-#include "asm/f_op/f_op_scene_iter/fopScnIt_Judge__FPFPvPv_PvPv.s"
+void* fopScnIt_Judge(fop_ScnItFunc pFunc1, void* pData) {
+    struct {
+        fop_ScnItFunc mFunc;
+        void* mpData;
+    } iterParams;
+
+    iterParams.mFunc = pFunc1;
+    iterParams.mpData = pData;
+    return cLsIt_Judge(&g_fopScnTg_SceneList, (cNdIt_JudgeFunc)cTgIt_JudgeFilter, &iterParams);
 }
-#pragma pop

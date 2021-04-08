@@ -11,12 +11,6 @@
 // Types:
 //
 
-struct process_method_class {};
-
-struct leafdraw_method_class {};
-
-struct leafdraw_class {};
-
 struct dKy_tevstr_c {};
 
 struct fopEn_enemy_c {
@@ -24,13 +18,6 @@ struct fopEn_enemy_c {
     /* 800194FC */ void checkBallModelDraw();
     /* 80019520 */ void setBallModelEffect(dKy_tevstr_c*);
     /* 800196A0 */ void drawBallModel(dKy_tevstr_c*);
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-
-    static u8 stopStatus[4];
 };
 
 struct daSus_c {
@@ -63,15 +50,7 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct cXyz {
-    static f32 Zero[3];
-};
-
 struct _GXColor {};
-
-struct csXyz {
-    /* 80018BD0 */ ~csXyz();
-};
 
 struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
@@ -100,8 +79,6 @@ struct dDemo_c {
 struct dDemo_actor_c {
     /* 8003815C */ void setActor(fopAc_ac_c*);
 };
-
-struct create_tag_class {};
 
 struct J3DModel {};
 
@@ -194,7 +171,6 @@ extern "C" void searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP12J3DModelData();
 extern "C" void searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData();
 extern "C" void entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey();
 extern "C" void entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
-extern "C" void PSMTXTrans();
 extern "C" void __construct_array();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
@@ -225,7 +201,8 @@ asm fopAc_ac_c::fopAc_ac_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm csXyz::~csXyz() {
+// asm csXyz::~csXyz() {
+extern "C" asm void __dt__5csXyzFv() {
     nofralloc
 #include "asm/f_op/f_op_actor/__dt__5csXyzFv.s"
 }

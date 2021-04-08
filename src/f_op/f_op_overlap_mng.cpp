@@ -6,18 +6,10 @@
 #include "f_op/f_op_overlap_mng.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct scene_class {};
-
-struct request_base_class {};
-
-struct overlap_task_class {};
-
-struct overlap_request_class {};
+#include "SSystem/SComponent/c_request.h"
+#include "f_op/f_op_overlap_req.h"
+#include "f_op/f_op_scene_pause.h"
+#include "f_pc/f_pc_executor.h"
 
 //
 // Forward References:
@@ -57,141 +49,107 @@ extern "C" void cReq_Done__FP18request_base_class();
 
 /* ############################################################################################## */
 /* 804505B0-804505B8 000030 0004+04 10/10 0/0 0/0 .sdata           l_fopOvlpM_overlap */
-SECTION_SDATA static u8 l_fopOvlpM_overlap[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+// making it not an array put it in .bss
+static request_base_class* l_fopOvlpM_overlap[1] = {NULL};
 
 /* 8001E484-8001E4C4 018DC4 0040+00 0/0 1/1 0/0 .text            fopOvlpM_SceneIsStop__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopOvlpM_SceneIsStop() {
-    nofralloc
-#include "asm/f_op/f_op_overlap_mng/fopOvlpM_SceneIsStop__Fv.s"
+int fopOvlpM_SceneIsStop(void) {
+    if (l_fopOvlpM_overlap[0]) {
+        return fopScnPause_Enable(
+            (scene_class*)fpcEx_SearchByID(l_fopOvlpM_overlap[0]->field_0x20[0x32]));
+    } else {
+        return 0;
+    }
 }
-#pragma pop
 
 /* 8001E4C4-8001E504 018E04 0040+00 0/0 5/5 0/0 .text            fopOvlpM_SceneIsStart__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopOvlpM_SceneIsStart() {
-    nofralloc
-#include "asm/f_op/f_op_overlap_mng/fopOvlpM_SceneIsStart__Fv.s"
+int fopOvlpM_SceneIsStart(void) {
+    if (l_fopOvlpM_overlap[0]) {
+        return fopScnPause_Disable(
+            (scene_class*)fpcEx_SearchByID(l_fopOvlpM_overlap[0]->field_0x20[0x32]));
+    } else {
+        return 0;
+    }
 }
-#pragma pop
 
 /* 8001E504-8001E51C 018E44 0018+00 0/0 3/3 0/0 .text fopOvlpM_IsOutReq__FP18overlap_task_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopOvlpM_IsOutReq(overlap_task_class* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_overlap_mng/fopOvlpM_IsOutReq__FP18overlap_task_class.s"
+int fopOvlpM_IsOutReq(overlap_task_class* pTaskClass) {
+    return (pTaskClass->field_0xc4 & 0x3F) == 2;
 }
-#pragma pop
 
 /* 8001E51C-8001E540 018E5C 0024+00 0/0 6/6 0/0 .text fopOvlpM_Done__FP18overlap_task_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopOvlpM_Done(overlap_task_class* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_overlap_mng/fopOvlpM_Done__FP18overlap_task_class.s"
+void fopOvlpM_Done(overlap_task_class* pTaskClass) {
+    cReq_Done((request_base_class*)&pTaskClass->field_0xc4);
 }
-#pragma pop
 
 /* 8001E540-8001E558 018E80 0018+00 0/0 1/1 0/0 .text            fopOvlpM_ToldAboutID__FUi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopOvlpM_ToldAboutID(unsigned int param_0) {
-    nofralloc
-#include "asm/f_op/f_op_overlap_mng/fopOvlpM_ToldAboutID__FUi.s"
+void fopOvlpM_ToldAboutID(unsigned int param_1) {
+    l_fopOvlpM_overlap[0] ? l_fopOvlpM_overlap[0]->field_0x20[0x32] = param_1 : 0;
 }
-#pragma pop
 
 /* 8001E558-8001E574 018E98 001C+00 0/0 6/6 7/7 .text            fopOvlpM_IsPeek__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopOvlpM_IsPeek() {
-    nofralloc
-#include "asm/f_op/f_op_overlap_mng/fopOvlpM_IsPeek__Fv.s"
+int fopOvlpM_IsPeek(void) {
+    return l_fopOvlpM_overlap[0] ? l_fopOvlpM_overlap[0]->field_0x8 : 0;
 }
-#pragma pop
 
 /* 8001E574-8001E5A8 018EB4 0034+00 0/0 1/1 0/0 .text            fopOvlpM_IsDone__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopOvlpM_IsDone() {
-    nofralloc
-#include "asm/f_op/f_op_overlap_mng/fopOvlpM_IsDone__Fv.s"
+int fopOvlpM_IsDone(void) {
+    return l_fopOvlpM_overlap[0] ? cReq_Is_Done(l_fopOvlpM_overlap[0]) : 0;
 }
-#pragma pop
 
 /* 8001E5A8-8001E5D0 018EE8 0028+00 0/0 3/3 1/1 .text            fopOvlpM_IsDoingReq__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopOvlpM_IsDoingReq() {
-    nofralloc
-#include "asm/f_op/f_op_overlap_mng/fopOvlpM_IsDoingReq__Fv.s"
+int fopOvlpM_IsDoingReq(void) {
+    if (l_fopOvlpM_overlap[0] && l_fopOvlpM_overlap[0]->field_0x4 == 1) {
+        return 1;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 8001E5D0-8001E604 018F10 0034+00 0/0 1/1 0/0 .text            fopOvlpM_ClearOfReq__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopOvlpM_ClearOfReq() {
-    nofralloc
-#include "asm/f_op/f_op_overlap_mng/fopOvlpM_ClearOfReq__Fv.s"
+int fopOvlpM_ClearOfReq(void) {
+    return l_fopOvlpM_overlap[0] ? fopOvlpReq_OverlapClr((overlap_request_class*)l_fopOvlpM_overlap[0]) :
+                                0;
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803F1DE8-803F1E10 01EB08 0028+00 1/1 0/0 0/0 .bss             l_fopOvlpM_Request */
-static u8 l_fopOvlpM_Request[40];
+static overlap_request_class l_fopOvlpM_Request;
 
 /* 8001E604-8001E650 018F44 004C+00 0/0 1/1 0/0 .text            fopOvlpM_Request__FsUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopOvlpM_Request(s16 param_0, u16 param_1) {
-    nofralloc
-#include "asm/f_op/f_op_overlap_mng/fopOvlpM_Request__FsUs.s"
+request_base_class* fopOvlpM_Request(s16 param_1, u16 param_2) {
+    if (!l_fopOvlpM_overlap[0]) {
+        request_base_class* tmp = fopOvlpReq_Request(&l_fopOvlpM_Request, param_1, param_2);
+        l_fopOvlpM_overlap[0] = tmp;
+        return tmp;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 8001E650-8001E698 018F90 0048+00 0/0 1/1 0/0 .text            fopOvlpM_Management__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopOvlpM_Management() {
-    nofralloc
-#include "asm/f_op/f_op_overlap_mng/fopOvlpM_Management__Fv.s"
+void fopOvlpM_Management(void) {
+    if (l_fopOvlpM_overlap[0]) {
+        int tmp = fopOvlpReq_Handler((overlap_request_class*)l_fopOvlpM_overlap[0]);
+        if (6 <= tmp || 3 > tmp) {
+            return;
+        }
+        l_fopOvlpM_overlap[0] = NULL;
+    }
 }
-#pragma pop
 
 /* 8001E698-8001E6E8 018FD8 0050+00 0/0 1/1 0/0 .text            fopOvlpM_Cancel__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopOvlpM_Cancel() {
-    nofralloc
-#include "asm/f_op/f_op_overlap_mng/fopOvlpM_Cancel__Fv.s"
+int fopOvlpM_Cancel(void) {
+    if (!l_fopOvlpM_overlap[0]) {
+        return 1;
+    }
+    if (fopOvlpReq_Cancel((overlap_request_class*)l_fopOvlpM_overlap[0]) == true) {
+        l_fopOvlpM_overlap[0] = NULL;
+        return 1;
+    }
+
+    return 0;
 }
-#pragma pop
 
 /* 8001E6E8-8001E6EC 019028 0004+00 0/0 1/1 0/0 .text            fopOvlpM_Init__Fv */
 void fopOvlpM_Init() {

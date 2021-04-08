@@ -6,59 +6,35 @@
 #include "f_op/f_op_actor_iter.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
+#include "SSystem/SComponent/c_list_iter.h"
+#include "SSystem/SComponent/c_tag_iter.h"
+#include "f_op/f_op_actor_tag.h"
 
-//
-// Types:
-//
-
-struct node_list_class {};
-
-struct node_class {};
-
-struct method_filter {};
-
-struct judge_filter {};
-
-struct create_tag_class {};
-
-//
-// Forward References:
-//
-
-extern "C" void fopAcIt_Executor__FPFPvPv_iPv();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-
-//
-// External References:
-//
-
-extern "C" void cLsIt_Method__FP15node_list_classPFP10node_classPv_iPv();
-extern "C" void cLsIt_Judge__FP15node_list_classPFP10node_classPv_PvPv();
-extern "C" void cTgIt_MethodCall__FP16create_tag_classP13method_filter();
-extern "C" void cTgIt_JudgeFilter__FP16create_tag_classP12judge_filter();
-extern "C" extern u8 g_fopAcTg_Queue[12 + 4 /* padding */];
+extern node_list_class g_fopAcTg_Queue;
 
 //
 // Declarations:
 //
 
 /* 800197BC-800197F8 0140FC 003C+00 0/0 5/5 3/3 .text            fopAcIt_Executor__FPFPvPv_iPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopAcIt_Executor(int (*)(void*, void*), void* param_1) {
-    nofralloc
-#include "asm/f_op/f_op_actor_iter/fopAcIt_Executor__FPFPvPv_iPv.s"
+int fopAcIt_Executor(fopAcIt_ExecutorFunc pExecFunc, void* pData) {
+    struct {
+        fopAcIt_ExecutorFunc func;
+        void* data;
+    } userData;
+    userData.func = pExecFunc;
+    userData.data = pData;
+    return cLsIt_Method(&g_fopAcTg_Queue, (cNdIt_MethodFunc)cTgIt_MethodCall, &userData);
 }
-#pragma pop
 
 /* 800197F8-80019834 014138 003C+00 0/0 67/67 388/388 .text            fopAcIt_Judge__FPFPvPv_PvPv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopAcIt_Judge(void* (*)(void*, void*), void* param_1) {
-    nofralloc
-#include "asm/f_op/f_op_actor_iter/fopAcIt_Judge__FPFPvPv_PvPv.s"
+void* fopAcIt_Judge(fopAcIt_JudgeFunc pJudgeFunc, void* pData) {
+    struct {
+        fopAcIt_JudgeFunc func;
+        void* data;
+    } userData;
+    userData.func = pJudgeFunc;
+    userData.data = pData;
+    return cLsIt_Judge(&g_fopAcTg_Queue, (cNdIt_JudgeFunc)cTgIt_JudgeFilter, &userData);
 }
-#pragma pop

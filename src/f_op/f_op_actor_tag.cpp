@@ -6,30 +6,7 @@
 #include "f_op/f_op_actor_tag.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct node_list_class {};
-
-struct create_tag_class {};
-
-//
-// Forward References:
-//
-
-extern "C" void fopAcTg_ToActorQ__FP16create_tag_class();
-extern "C" void fopAcTg_ActorQTo__FP16create_tag_class();
-extern "C" void fopAcTg_Init__FP16create_tag_classPv();
-
-//
-// External References:
-//
-
-extern "C" void cTg_SingleCutFromTree__FP16create_tag_class();
-extern "C" void cTg_Addition__FP15node_list_classP16create_tag_class();
-extern "C" void cTg_Create__FP16create_tag_classPv();
+#include "SSystem/SComponent/c_tag.h"
 
 //
 // Declarations:
@@ -37,52 +14,20 @@ extern "C" void cTg_Create__FP16create_tag_classPv();
 
 /* ############################################################################################## */
 /* 803A35E0-803A35F0 000700 000C+04 1/1 2/2 0/0 .data            g_fopAcTg_Queue */
-SECTION_DATA extern u8 g_fopAcTg_Queue[12 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
+node_list_class g_fopAcTg_Queue = {NULL, NULL, 0};
 
 /* 80019834-80019860 014174 002C+00 0/0 1/1 0/0 .text fopAcTg_ToActorQ__FP16create_tag_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopAcTg_ToActorQ(create_tag_class* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor_tag/fopAcTg_ToActorQ__FP16create_tag_class.s"
+u32 fopAcTg_ToActorQ(create_tag_class* c) {
+    return cTg_Addition(&g_fopAcTg_Queue, c);
 }
-#pragma pop
 
 /* 80019860-80019880 0141A0 0020+00 0/0 1/1 0/0 .text fopAcTg_ActorQTo__FP16create_tag_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopAcTg_ActorQTo(create_tag_class* param_0) {
-    nofralloc
-#include "asm/f_op/f_op_actor_tag/fopAcTg_ActorQTo__FP16create_tag_class.s"
+u32 fopAcTg_ActorQTo(create_tag_class* pTag) {
+    return cTg_SingleCutFromTree(pTag);
 }
-#pragma pop
 
 /* 80019880-800198A4 0141C0 0024+00 0/0 1/1 0/0 .text fopAcTg_Init__FP16create_tag_classPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fopAcTg_Init(create_tag_class* param_0, void* param_1) {
-    nofralloc
-#include "asm/f_op/f_op_actor_tag/fopAcTg_Init__FP16create_tag_classPv.s"
+u32 fopAcTg_Init(create_tag_class* pTag, void* data) {
+    cTg_Create(pTag, data);
+    return 1;
 }
-#pragma pop

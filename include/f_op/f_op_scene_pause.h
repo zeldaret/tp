@@ -1,6 +1,10 @@
-#ifndef F_OP_F_OP_SCENE_PAUSE_H
-#define F_OP_F_OP_SCENE_PAUSE_H
+#ifndef F_F_OP_SCENE_PAUSE_H_
+#define F_F_OP_SCENE_PAUSE_H_
 
 #include "dolphin/types.h"
+#include "f_op/f_op_scene.h"
 
-#endif /* F_OP_F_OP_SCENE_PAUSE_H */
+int fopScnPause_Enable(scene_class* pScene);
+int fopScnPause_Disable(scene_class* pScene);
+
+#endif

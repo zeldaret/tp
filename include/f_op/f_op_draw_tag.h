@@ -1,6 +1,8 @@
-#ifndef F_OP_F_OP_DRAW_TAG_H
-#define F_OP_F_OP_DRAW_TAG_H
+#ifndef F_F_OP_DRAW_TAG
+#define F_F_OP_DRAW_TAG
 
-#include "dolphin/types.h"
+#include "SSystem/SComponent/c_tag.h"
 
-#endif /* F_OP_F_OP_DRAW_TAG_H */
+void fopDwTg_DrawQTo(create_tag_class* pTag);
+
+#endif

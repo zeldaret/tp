@@ -11,24 +11,6 @@
 // Types:
 //
 
-struct Z2Calc {
-    struct CurveSign {};
-
-    struct FNoise1f {
-        /* 802A9944 */ void setParam(f32, f32, f32);
-        /* 802A9958 */ void tau(f32);
-        /* 802A99A0 */ void calcNoise1f();
-    };
-
-    /* 802A968C */ void linearTransform(f32, f32, f32, f32, f32, bool);
-    /* 802A96F4 */ void getParamByExp(f32, f32, f32, f32, f32, f32, Z2Calc::CurveSign);
-    /* 802A9814 */ void getRandom(f32, f32, f32);
-    /* 802A98D4 */ void getRandom_0_1();
-
-    static f32 cEqualCSlope;
-    static f32 cEqualPSlope;
-};
-
 struct JMath {
     struct TRandom_fast_ {
         /* 80339AE4 */ TRandom_fast_(u32);
@@ -66,7 +48,7 @@ extern "C" void pow();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2Calc::linearTransform(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
+asm f32 Z2Calc::linearTransform(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
                                  bool param_5) {
     nofralloc
 #include "asm/Z2AudioLib/Z2Calc/linearTransform__6Z2CalcFfffffb.s"
@@ -96,7 +78,7 @@ SECTION_SDATA2 static f32 lit_381 = 1.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2Calc::getParamByExp(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
+asm f32 Z2Calc::getParamByExp(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
                                f32 param_5, Z2Calc::CurveSign param_6) {
     nofralloc
 #include "asm/Z2AudioLib/Z2Calc/getParamByExp__6Z2CalcFffffffQ26Z2Calc9CurveSign.s"
@@ -114,7 +96,7 @@ SECTION_SDATA2 static f32 lit_397 = -2.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2Calc::getRandom(f32 param_0, f32 param_1, f32 param_2) {
+asm f32 Z2Calc::getRandom(f32 param_0, f32 param_1, f32 param_2) {
     nofralloc
 #include "asm/Z2AudioLib/Z2Calc/getRandom__6Z2CalcFfff.s"
 }
@@ -131,7 +113,7 @@ static u8 oRandom[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2Calc::getRandom_0_1() {
+asm f32 Z2Calc::getRandom_0_1() {
     nofralloc
 #include "asm/Z2AudioLib/Z2Calc/getRandom_0_1__6Z2CalcFv.s"
 }
@@ -151,7 +133,7 @@ asm void Z2Calc::FNoise1f::setParam(f32 param_0, f32 param_1, f32 param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2Calc::FNoise1f::tau(f32 param_0) {
+asm f32 Z2Calc::FNoise1f::tau(f32 param_0) {
     nofralloc
 #include "asm/Z2AudioLib/Z2Calc/tau__Q26Z2Calc8FNoise1fFf.s"
 }
@@ -162,7 +144,7 @@ asm void Z2Calc::FNoise1f::tau(f32 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void Z2Calc::FNoise1f::calcNoise1f() {
+asm f32 Z2Calc::FNoise1f::calcNoise1f() {
     nofralloc
 #include "asm/Z2AudioLib/Z2Calc/calcNoise1f__Q26Z2Calc8FNoise1fFv.s"
 }
