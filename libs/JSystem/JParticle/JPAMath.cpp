@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
@@ -37,7 +41,7 @@ extern "C" void PSMTXIdentity();
 extern "C" void PSVECMag();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_epsilon;
 
 //

@@ -13,30 +13,32 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
 
-struct csXyz {};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CE38 */ void scaleM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
-
-struct mDoExt_McaMorfCallBack2_c {};
-
-struct J3DAnmTransform {};
-
-struct Z2Creature {};
 
 struct J3DModelData {};
 
+struct mDoExt_McaMorfCallBack2_c {};
+
 struct mDoExt_McaMorfCallBack1_c {};
+
+struct Z2Creature {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -48,6 +50,10 @@ struct mDoExt_McaMorfSO {
     /* 800111EC */ void modelCalc();
 };
 
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
+};
+
 struct fopEn_enemy_c {};
 
 struct fopAc_ac_c {
@@ -56,6 +62,8 @@ struct fopAc_ac_c {
 
 struct daPy_py_c {
     /* 806D0E34 */ void checkNowWolf();
+
+    static u8 m_midnaActor[4];
 };
 
 struct J3DJoint {};
@@ -120,11 +128,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
 };
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004C218 */ void setHitMark(u16, fopAc_ac_c*, cXyz const*, csXyz const*, cXyz const*, u32);
@@ -143,6 +151,8 @@ struct dPa_control_c {
 
 struct dDlst_shadowControl_c {
     /* 80055F1C */ void addReal(u32, J3DModel*);
+
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcU_AtInfo {};
@@ -253,6 +263,10 @@ struct Z2CreatureEnemy {
     /* 802C1094 */ void init(Vec*, Vec*, u8, u8);
     /* 802C1B7C */ void setLinkSearch(bool);
     /* 802C1B90 */ void setEnemyName(char const*);
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
 };
 
 struct J3DFrameCtrl {
@@ -438,15 +452,15 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
+extern "C" u8 m_midnaActor__9daPy_py_c[4];
 extern "C" void __register_global_object();
 
 //

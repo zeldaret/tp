@@ -11,11 +11,11 @@
 // Types:
 //
 
-struct cXyz {};
-
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
+
+struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);

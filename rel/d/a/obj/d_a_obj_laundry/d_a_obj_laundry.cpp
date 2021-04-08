@@ -28,11 +28,13 @@ struct mDoMtx_stack_c {
     /* 8000CD14 */ void pop();
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
-struct J3DAnmTextureSRTKey {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -54,6 +56,8 @@ struct daObjLdy_c {
     /* 80C51194 */ void setNormalClothPos();
     /* 80C51644 */ void calcJointAngle();
     /* 80C5183C */ bool divorceParent();
+
+    static u8 const M_attr[52];
 };
 
 struct dKy_tevstr_c {};
@@ -105,6 +109,14 @@ struct LaundJoint_c {
     /* 80C51EC0 */ LaundJoint_c();
 };
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
+};
+
 struct J3DModel {};
 
 struct J3DJoint {};
@@ -139,6 +151,7 @@ extern "C" void __dt__8cM3dGCylFv();
 extern "C" void __dt__8cM3dGAabFv();
 extern "C" void __dt__10dCcD_GSttsFv();
 extern "C" void __dt__10cCcD_GSttsFv();
+extern "C" u8 const M_attr__10daObjLdy_c[52];
 extern "C" extern char const* const d_a_obj_laundry__stringBase0;
 
 //
@@ -204,12 +217,12 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 
 //
@@ -218,13 +231,13 @@ extern "C" extern u32 __float_nan;
 
 /* ############################################################################################## */
 /* 80C52000-80C52034 000000 0034+00 3/3 0/0 0/0 .rodata          M_attr__10daObjLdy_c */
-SECTION_RODATA static u8 const M_attr__10daObjLdy_c[52] = {
+SECTION_RODATA u8 const daObjLdy_c::M_attr[52] = {
     0x40, 0xA0, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0x43, 0x02, 0x00, 0x00, 0xC2,
     0x48, 0x00, 0x00, 0x3E, 0x19, 0x99, 0x9A, 0x3E, 0xE6, 0x66, 0x66, 0x3E, 0x99,
     0x99, 0x9A, 0x44, 0x7A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x00,
 };
-COMPILER_STRIP_GATE(80C52000, &M_attr__10daObjLdy_c);
+COMPILER_STRIP_GATE(80C52000, &daObjLdy_c::M_attr);
 
 /* 80C52034-80C52038 000034 0004+00 0/1 0/0 0/0 .rodata          @3751 */
 #pragma push

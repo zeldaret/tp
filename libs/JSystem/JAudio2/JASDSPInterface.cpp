@@ -13,7 +13,9 @@
 
 struct JKRHeap {};
 
-struct JASWaveInfo {};
+struct JASWaveInfo {
+    static u32 one[1 + 1 /* padding */];
+};
 
 struct JASDsp {
     struct FxlineConfig_ {};
@@ -55,6 +57,13 @@ struct JASDsp {
     /* 8029DAA0 */ void invalChannelAll();
     /* 8029DAC8 */ void initBuffer();
     /* 8029DB78 */ void setFXLine(u8, s16*, JASDsp::FxlineConfig_*);
+
+    static u8 const DSPADPCM_FILTER[64];
+    static void* const DSPRES_FILTER[320];
+    static u8 SEND_TABLE[24 + 24 /* padding */];
+    static u8 CH_BUF[4];
+    static u8 FX_BUF[4];
+    static f32 sDSPVolume;
 };
 
 struct JASCalc {
@@ -100,7 +109,13 @@ extern "C" void setFIR8FilterParam__Q26JASDsp8TChannelFPs();
 extern "C" void setDistFilter__Q26JASDsp8TChannelFs();
 extern "C" void setBusConnect__Q26JASDsp8TChannelFUcUc();
 extern "C" void DSP_CreateMap2__FUl();
-extern "C" extern u32 one__11JASWaveInfo[1 + 1 /* padding */];
+extern "C" u8 const DSPADPCM_FILTER__6JASDsp[64];
+extern "C" void* const DSPRES_FILTER__6JASDsp[320];
+extern "C" u8 SEND_TABLE__6JASDsp[24 + 24 /* padding */];
+extern "C" u32 one__11JASWaveInfo[1 + 1 /* padding */];
+extern "C" u8 CH_BUF__6JASDsp[4];
+extern "C" u8 FX_BUF__6JASDsp[4];
+extern "C" f32 sDSPVolume__6JASDsp;
 
 //
 // External References:
@@ -131,13 +146,13 @@ extern "C" extern u8 JASDram[4];
 
 /* ############################################################################################## */
 /* 804512E8-804512EC 0007E8 0004+00 5/5 0/0 0/0 .sbss            CH_BUF__6JASDsp */
-static u8 CH_BUF__6JASDsp[4];
+u8 JASDsp::CH_BUF[4];
 
 /* 804512EC-804512F0 0007EC 0004+00 3/3 0/0 0/0 .sbss            FX_BUF__6JASDsp */
-static u8 FX_BUF__6JASDsp[4];
+u8 JASDsp::FX_BUF[4];
 
 /* 804512F0-804512F4 0007F0 0004+00 2/2 0/0 0/0 .sbss            sDSPVolume__6JASDsp */
-static f32 sDSPVolume__6JASDsp;
+f32 JASDsp::sDSPVolume;
 
 /* 804512F4-804512F8 -00001 0004+00 1/1 0/0 0/0 .sbss            None */
 /* 804512F4 0001+00 data_804512F4 None */
@@ -250,16 +265,16 @@ asm void JASDsp::invalChannelAll() {
 
 /* ############################################################################################## */
 /* 8039B360-8039B3A0 0279C0 0040+00 1/1 0/0 0/0 .rodata          DSPADPCM_FILTER__6JASDsp */
-SECTION_RODATA static u8 const DSPADPCM_FILTER__6JASDsp[64] = {
+SECTION_RODATA u8 const JASDsp::DSPADPCM_FILTER[64] = {
     0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x04, 0x00, 0x04, 0x00,
     0x10, 0x00, 0xF8, 0x00, 0x0E, 0x00, 0xFA, 0x00, 0x0C, 0x00, 0xFC, 0x00, 0x12, 0x00, 0xF6, 0x00,
     0x10, 0x68, 0xF7, 0x38, 0x12, 0xC0, 0xF7, 0x04, 0x14, 0x00, 0xF4, 0x00, 0x08, 0x00, 0xF8, 0x00,
     0x04, 0x00, 0xFC, 0x00, 0xFC, 0x00, 0x04, 0x00, 0xFC, 0x00, 0x00, 0x00, 0xF8, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8039B360, &DSPADPCM_FILTER__6JASDsp);
+COMPILER_STRIP_GATE(8039B360, &JASDsp::DSPADPCM_FILTER);
 
 /* 8039B3A0-8039B8A0 -00001 0500+00 1/1 0/0 0/0 .rodata          DSPRES_FILTER__6JASDsp */
-SECTION_RODATA static void* const DSPRES_FILTER__6JASDsp[320] = {
+SECTION_RODATA void* const JASDsp::DSPRES_FILTER[320] = {
     (void*)0x0C3966AD,
     (void*)0x0D46FFDF,
     (void*)0x0B396696,
@@ -581,7 +596,7 @@ SECTION_RODATA static void* const DSPRES_FILTER__6JASDsp[320] = {
     (void*)0x7FD87FE9,
     (void*)0x7FF57FFD,
 };
-COMPILER_STRIP_GATE(8039B3A0, &DSPRES_FILTER__6JASDsp);
+COMPILER_STRIP_GATE(8039B3A0, &JASDsp::DSPRES_FILTER);
 
 /* 8029DAC8-8029DB78 298408 00B0+00 0/0 1/1 0/0 .text            initBuffer__6JASDspFv */
 #pragma push
@@ -595,7 +610,7 @@ asm void JASDsp::initBuffer() {
 
 /* ############################################################################################## */
 /* 803C78F0-803C7920 024A10 0018+18 1/1 0/0 0/0 .data            SEND_TABLE__6JASDsp */
-SECTION_DATA static u8 SEND_TABLE__6JASDsp[24 + 24 /* padding */] = {
+SECTION_DATA u8 JASDsp::SEND_TABLE[24 + 24 /* padding */] = {
     0x0D,
     0x00,
     0x0D,
@@ -917,7 +932,7 @@ asm void DSP_CreateMap2(u32 param_0) {
 
 /* ############################################################################################## */
 /* 804507B8-804507C0 000238 0004+04 0/0 5/5 0/0 .sdata           one__11JASWaveInfo */
-SECTION_SDATA extern u32 one__11JASWaveInfo[1 + 1 /* padding */] = {
+SECTION_SDATA u32 JASWaveInfo::one[1 + 1 /* padding */] = {
     0x00000001,
     /* padding */
     0x00000000,

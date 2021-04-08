@@ -13,13 +13,17 @@
 
 struct request_of_phase_process_class {};
 
-struct cXyz {};
+struct cXyz {
+    static f32 Zero[3];
+};
 
 struct mDoMtx_stack_c {
     /* 8000CCC8 */ void push();
     /* 8000CD14 */ void pop();
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {};
@@ -48,6 +52,9 @@ struct daObjLadder {
         /* 8058DA64 */ void init_mtx();
         /* 8058DAA0 */ void Execute(f32 (**)[3][4]);
         /* 8058DBB8 */ void Draw();
+
+        static u8 const M_arcname[5 + 3 /* padding */];
+        static u8 M_tmp_mtx[48];
     };
 };
 
@@ -140,6 +147,14 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 //
@@ -177,6 +192,8 @@ extern "C" void func_8058DD14(fopAc_ac_c const*, daObjLadder::Act_c::Prm_e,
 extern "C" static void func_8058DD30();
 extern "C" static void func_8058DD38();
 extern "C" static void func_8058DD40();
+extern "C" u8 const M_arcname__Q211daObjLadder5Act_c[5 + 3 /* padding */];
+extern "C" u8 M_tmp_mtx__Q211daObjLadder5Act_c[48];
 
 //
 // External References:
@@ -229,13 +246,13 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
+extern "C" f32 Zero__4cXyz[3];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sincosTable___5JMath[65536];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -252,7 +269,7 @@ SECTION_RODATA static u8 const data_8058DD50[36] = {
 COMPILER_STRIP_GATE(8058DD50, &data_8058DD50);
 
 /* 8058DD74-8058DD7C 000024 0005+03 3/3 0/0 0/0 .rodata          M_arcname__Q211daObjLadder5Act_c */
-SECTION_RODATA static u8 const M_arcname__Q211daObjLadder5Act_c[5 + 3 /* padding */] = {
+SECTION_RODATA u8 const daObjLadder::Act_c::M_arcname[5 + 3 /* padding */] = {
     0x4D,
     0x68,
     0x73,
@@ -263,7 +280,7 @@ SECTION_RODATA static u8 const M_arcname__Q211daObjLadder5Act_c[5 + 3 /* padding
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8058DD74, &M_arcname__Q211daObjLadder5Act_c);
+COMPILER_STRIP_GATE(8058DD74, &daObjLadder::Act_c::M_arcname);
 
 /* 8058DDAC-8058DDB8 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -651,7 +668,7 @@ void daObjLadder::Act_c::mode_fell() {
 
 /* ############################################################################################## */
 /* 8058DF20-8058DF50 000000 0030+00 2/2 0/0 0/0 .bss             M_tmp_mtx__Q211daObjLadder5Act_c */
-static u8 M_tmp_mtx__Q211daObjLadder5Act_c[48];
+u8 daObjLadder::Act_c::M_tmp_mtx[48];
 
 /* 8058D9D0-8058DA64 0008F0 0094+00 3/3 0/0 0/0 .text            set_mtx__Q211daObjLadder5Act_cFv */
 #pragma push

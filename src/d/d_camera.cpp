@@ -39,11 +39,16 @@ struct cXyz {
     /* 80266CE4 */ void norm() const;
     /* 80266EF4 */ void normalize();
     /* 8026706C */ bool operator!=(Vec const&) const;
+
+    static f32 Zero[3];
+    static u8 BaseY[12];
 };
 
 struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CE70 */ void scaleM(cXyz const&);
+
+    static u8 now[48];
 };
 
 struct mDoLib_clipper {
@@ -58,9 +63,13 @@ struct mDoGph_gInf_c {
 struct mDoCPd_c {
     /* 8016C314 */ void getHoldA(u32);
     /* 80182BF8 */ void getTrigA(u32);
+
+    static u8 m_cpadInfo[256];
 };
 
-struct fopAc_ac_c {};
+struct fopAc_ac_c {
+    static u8 stopStatus[4];
+};
 
 struct daTagMwait_c {
     /* 80182D9C */ void checkEndMessage();
@@ -86,6 +95,8 @@ struct daPy_py_c {
     /* 80182AC4 */ void checkCopyRodThrowAfter() const;
     /* 80182AD8 */ void checkRide() const;
     /* 80182B9C */ void getRightHandPos() const;
+
+    static u8 m_midnaActor[4];
 };
 
 struct daHorse_c {
@@ -117,6 +128,10 @@ struct dVibration_c {
 
 struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
+};
+
+struct dSv_event_tmp_flag_c {
+    static u8 const tempBitLabels[370 + 2 /* padding */];
 };
 
 struct dSv_event_c {
@@ -159,6 +174,10 @@ struct dDemo_object_c {
     /* 80039128 */ void getActiveCamera();
 };
 
+struct dDemo_c {
+    static u8 m_object[4];
+};
+
 struct dCstick_c {
     /* 8008845C */ bool Shift(u32);
 };
@@ -185,10 +204,6 @@ struct dCcMassS_Mng {
     /* 80085E6C */ void SetCam(cM3dGCps const&);
     /* 80085EB0 */ void GetResultCam() const;
     /* 80085EB8 */ void GetCamTopPos(Vec*);
-};
-
-struct dBgS_LinChk {
-    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
 };
 
 struct camera_class {};
@@ -227,6 +242,15 @@ struct cSAngle {
     /* 802711E8 */ void operator-=(cSAngle const&);
     /* 80271264 */ void operator*(f32) const;
     /* 802712B4 */ void operator*=(f32);
+
+    static u8 _0[2 + 2 /* padding */];
+    static u8 _90[2 + 2 /* padding */];
+    static u8 _180[2 + 2 /* padding */];
+    static u8 _270[2 + 6 /* padding */];
+};
+
+struct dBgS_LinChk {
+    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
 };
 
 struct dCamera_c {
@@ -399,6 +423,8 @@ struct dCamera_c {
     /* 8018296C */ void clrFlag(u32);
     /* 80182980 */ void chkFlag(u32);
     /* 801829AC */ void Bank();
+
+    static u8 engine_tbl[240];
 };
 
 struct dCamSetup_c {
@@ -615,6 +641,10 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct Z2Audience {
@@ -864,6 +894,7 @@ extern "C" void checkNoAttention__12daTagMhint_cCFv();
 extern "C" void set__4cXyzFfff();
 extern "C" void checkEndMessage__12daTagMwait_cFv();
 extern "C" extern char const* const d_d_camera__stringBase0;
+extern "C" u8 engine_tbl__9dCamera_c[240];
 
 //
 // External References:
@@ -1152,7 +1183,7 @@ extern "C" void _restgpr_29();
 extern "C" void strncmp();
 extern "C" void strcmp();
 extern "C" void tan();
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
+extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
 extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* g_fopCam_Method[5 + 1 /* padding */];
@@ -1163,25 +1194,25 @@ extern "C" extern void* __vt__8cM3dGLin[3];
 extern "C" extern void* __vt__8cM3dGSph[3];
 extern "C" extern void* __vt__18dDlst_effectLine_c[3];
 extern "C" extern void* __vt__14dBgS_CamGndChk[12];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 BaseY__4cXyz[12];
+extern "C" f32 Zero__4cXyz[3];
+extern "C" u8 BaseY__4cXyz[12];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u8 g_dComIfGoat_gameInfo[4 + 4 /* padding */];
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 data_80450B44[4];
 extern "C" extern u8 struct_80450BE4[4];
-extern "C" extern u8 stopStatus__10fopAc_ac_c[4];
+extern "C" u8 stopStatus__10fopAc_ac_c[4];
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_object__7dDemo_c[4];
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 _0__7cSAngle[2 + 2 /* padding */];
-extern "C" extern u8 _90__7cSAngle[2 + 2 /* padding */];
-extern "C" extern u8 _180__7cSAngle[2 + 2 /* padding */];
-extern "C" extern u8 _270__7cSAngle[2 + 6 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 m_object__7dDemo_c[4];
+extern "C" u8 m_midnaActor__9daPy_py_c[4];
+extern "C" u8 _0__7cSAngle[2 + 2 /* padding */];
+extern "C" u8 _90__7cSAngle[2 + 2 /* padding */];
+extern "C" u8 _180__7cSAngle[2 + 2 /* padding */];
+extern "C" u8 _270__7cSAngle[2 + 6 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -1471,7 +1502,7 @@ SECTION_DATA static void* lit_4497[3] = {
 #pragma pop
 
 /* 803BA25C-803BA34C 01737C 00F0+00 2/3 3/3 0/0 .data            engine_tbl__9dCamera_c */
-SECTION_DATA extern u8 engine_tbl__9dCamera_c[240] = {
+SECTION_DATA u8 dCamera_c::engine_tbl[240] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

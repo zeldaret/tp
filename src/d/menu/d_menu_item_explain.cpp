@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
+};
+
 struct dSv_player_item_record_c {
     /* 80033F7C */ void getBombNum(u8) const;
 };
@@ -48,8 +52,6 @@ struct dMsgScrn3Select_c {
     /* 8023A97C */ void getCharSpace();
 };
 
-struct JMSMesgEntry_c {};
-
 struct ResTLUT {};
 
 struct JGeometry {
@@ -66,6 +68,8 @@ struct J2DPicture {
     /* 802FC800 */ J2DPicture(u64, JGeometry::TBox2<f32> const&, ResTIMG const*, ResTLUT const*);
 };
 
+struct JMSMesgEntry_c {};
+
 struct JUTFont {};
 
 struct dMeter2Info_c {
@@ -75,17 +79,17 @@ struct dMeter2Info_c {
                                         J2DPicture*, void*, J2DPicture*, int);
 };
 
+struct J2DOrthoGraph {};
+
+struct JKRExpHeap {};
+
+struct JKRArchive {};
+
 struct STControl {
     /* 8003219C */ void checkTrigger();
     /* 80032524 */ void checkUpTrigger();
     /* 800325A0 */ void checkDownTrigger();
 };
-
-struct JKRExpHeap {};
-
-struct J2DOrthoGraph {};
-
-struct JKRArchive {};
 
 struct dMenu_ItemExplain_c {
     /* 801DA754 */ dMenu_ItemExplain_c(JKRExpHeap*, JKRArchive*, STControl*, bool);
@@ -128,6 +132,10 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JKRHeap {
@@ -278,12 +286,12 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void snprintf();
 extern "C" void strcat();
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_drawHIO[3880];
 extern "C" extern u8 g_ringHIO[344];
 extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

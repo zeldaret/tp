@@ -20,6 +20,10 @@ struct JPAEmitterWorkData {};
 
 struct JPABaseParticle {};
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 //
 // Forward References:
 //
@@ -41,7 +45,7 @@ extern "C" void init__13JPAExtraShapeFv();
 // External References:
 //
 
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 
 //
 // Declarations:

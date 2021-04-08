@@ -85,6 +85,10 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 //
 // Forward References:
 //
@@ -152,7 +156,7 @@ extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

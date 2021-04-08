@@ -36,6 +36,8 @@ struct daMP_c {
     /* 80878F18 */ void daMP_c_Callback_Finish(daMP_c*);
     /* 80878F38 */ void daMP_c_Callback_Main(daMP_c*);
     /* 80878F70 */ void daMP_c_Callback_Draw(daMP_c*);
+
+    static u8 m_myObj[4];
 };
 
 struct daMP_THPReadBuffer {};
@@ -72,6 +74,8 @@ struct THPAudioInfo {};
 struct JUTVideo {
     /* 808788BC */ void getRenderMode() const;
     /* 808788C4 */ void getManager();
+
+    static u8 sManager[4];
 };
 
 struct JKRHeap {
@@ -82,6 +86,8 @@ struct JKRHeap {
 struct JFWDisplay {
     /* 80878D44 */ void setFrameRate(u16);
     /* 80878D54 */ void getManager();
+
+    static u8 sManager[4];
 };
 
 struct JASMixMode {};
@@ -345,9 +351,9 @@ extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_clearColor[4];
 extern "C" extern u8 struct_80450BE4[4];
-extern "C" extern u8 m_myObj__6daMP_c[4];
-extern "C" extern u8 sManager__10JFWDisplay[4];
-extern "C" extern u8 sManager__8JUTVideo[4];
+extern "C" u8 m_myObj__6daMP_c[4];
+extern "C" u8 sManager__10JFWDisplay[4];
+extern "C" u8 sManager__8JUTVideo[4];
 
 //
 // Declarations:

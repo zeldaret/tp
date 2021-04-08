@@ -24,11 +24,15 @@ struct cXyz {
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CE70 */ void scaleM(cXyz const&);
+
+    static u8 now[48];
 };
+
+struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
@@ -36,9 +40,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -90,11 +92,18 @@ struct daNpc_SoldierB_c {
     /* 80AF4DBC */ void talk(void*);
     /* 80AF4F54 */ void ECut_listenLake(int);
     /* 80AF50AC */ void test(void*);
+
+    static void* mEvtCutNameList[2];
+    static u8 mEvtCutList[24];
 };
 
 struct daNpc_SoldierB_Param_c {
     /* 80AF5A68 */ ~daNpc_SoldierB_Param_c();
+
+    static u8 const m[108];
 };
+
+struct _GXColorS10 {};
 
 struct dCcD_GObjInf {
     /* 80083A28 */ dCcD_GObjInf();
@@ -106,8 +115,6 @@ struct dCcD_SrcCyl {};
 struct dCcD_Cyl {
     /* 800848B4 */ void Set(dCcD_SrcCyl const&);
 };
-
-struct _GXColorS10 {};
 
 struct J3DAnmTransformKey {};
 
@@ -141,6 +148,8 @@ struct daNpcF_c {
     /* 80AF5984 */ bool setExpressionAnm(int, bool);
     /* 80AF598C */ bool setExpressionBtp(int);
     /* 80AF5994 */ void setExpression(int, f32);
+
+    static u8 mCcDCyl[68];
 };
 
 struct csXyz {
@@ -276,6 +285,14 @@ struct cBgS_GndChk {
     /* 80267C94 */ ~cBgS_GndChk();
 };
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
+};
+
 struct J3DFrameCtrl {
     /* 803283FC */ void init(s16);
     /* 80AF5934 */ ~J3DFrameCtrl();
@@ -349,7 +366,10 @@ extern "C" void __sinit_d_a_npc_soldierB_cpp();
 extern "C" void __dt__22daNpc_SoldierB_Param_cFv();
 extern "C" static void func_80AF5AB0();
 extern "C" static void func_80AF5AB8();
+extern "C" u8 const m__22daNpc_SoldierB_Param_c[108];
 extern "C" extern char const* const d_a_npc_soldierB__stringBase0;
+extern "C" void* mEvtCutNameList__16daNpc_SoldierB_c[2];
+extern "C" u8 mEvtCutList__16daNpc_SoldierB_c[24];
 
 //
 // External References:
@@ -477,17 +497,17 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcF_c[68];
+extern "C" u8 mCcDCyl__8daNpcF_c[68];
 extern "C" extern void* __vt__8daNpcF_c[18];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 extern "C" void __register_global_object();
 
@@ -573,7 +593,7 @@ SECTION_DATA static void* l_myName = (void*)&d_a_npc_soldierB__stringBase0;
  */
 #pragma push
 #pragma force_active on
-SECTION_DATA static void* mEvtCutNameList__16daNpc_SoldierB_c[2] = {
+SECTION_DATA void* daNpc_SoldierB_c::mEvtCutNameList[2] = {
     (void*)(((char*)&d_a_npc_soldierB__stringBase0) + 0x8),
     (void*)(((char*)&d_a_npc_soldierB__stringBase0) + 0x9),
 };
@@ -587,7 +607,7 @@ SECTION_DATA static void* lit_4024[3] = {
 };
 
 /* 80AF5CA8-80AF5CC0 000098 0018+00 1/2 0/0 0/0 .data            mEvtCutList__16daNpc_SoldierB_c */
-SECTION_DATA static u8 mEvtCutList__16daNpc_SoldierB_c[24] = {
+SECTION_DATA u8 daNpc_SoldierB_c::mEvtCutList[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -788,7 +808,7 @@ asm daNpc_SoldierB_c::~daNpc_SoldierB_c() {
 
 /* ############################################################################################## */
 /* 80AF5AD4-80AF5B40 000000 006C+00 11/11 0/0 0/0 .rodata          m__22daNpc_SoldierB_Param_c */
-SECTION_RODATA static u8 const m__22daNpc_SoldierB_Param_c[108] = {
+SECTION_RODATA u8 const daNpc_SoldierB_Param_c::m[108] = {
     0x41, 0xF0, 0x00, 0x00, 0xC0, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x44, 0x16, 0x00, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x43, 0x70, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
@@ -797,7 +817,7 @@ SECTION_RODATA static u8 const m__22daNpc_SoldierB_Param_c[108] = {
     0x43, 0x34, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0xC3, 0x96, 0x00, 0x00,
     0x00, 0x3C, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AF5AD4, &m__22daNpc_SoldierB_Param_c);
+COMPILER_STRIP_GATE(80AF5AD4, &daNpc_SoldierB_Param_c::m);
 
 /* 80AF5B40-80AF5B44 00006C 0004+00 0/1 0/0 0/0 .rodata          @4399 */
 #pragma push

@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct Quaternion {};
+
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
@@ -19,10 +23,6 @@ struct cXyz {
     /* 80266EF4 */ void normalize();
     /* 80266FDC */ void normalizeRS();
 };
-
-struct csXyz {};
-
-struct Quaternion {};
 
 struct mDoMtx_stack_c {
     /* 8000CCC8 */ void push();
@@ -39,10 +39,19 @@ struct mDoMtx_stack_c {
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
     /* 8000CF7C */ void quatM(Quaternion const*);
     /* 8000D070 */ ~mDoMtx_stack_c();
+
+    static u8 now[48];
+    static u8 buffer[768];
+    static void* next;
+    static void* end;
 };
 
 struct mDoMtx_quatStack_c {
     /* 8000D034 */ ~mDoMtx_quatStack_c();
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 //
@@ -82,6 +91,10 @@ extern "C" void __sinit_m_Do_mtx_cpp();
 extern "C" void __dt__18mDoMtx_quatStack_cFv();
 extern "C" void __dt__14mDoMtx_stack_cFv();
 extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 buffer__14mDoMtx_stack_c[768];
+extern "C" void* next__14mDoMtx_stack_c;
+extern "C" void* end__14mDoMtx_stack_c;
 
 //
 // External References:
@@ -104,7 +117,7 @@ extern "C" void PSVECDotProduct();
 extern "C" void __register_global_object();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_epsilon;
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
@@ -302,20 +315,19 @@ asm void mDoMtx_MtxToRot(f32 const (*param_0)[4], csXyz* param_1) {
 /* ############################################################################################## */
 /* 803DD470-803DD4A0 00A190 0030+00 12/12 142/142 1820/1820 .bss             now__14mDoMtx_stack_c
  */
-extern u8 now__14mDoMtx_stack_c[48];
-u8 now__14mDoMtx_stack_c[48];
+u8 mDoMtx_stack_c::now[48];
 
 /* 803DD4A0-803DD7A0 00A1C0 0300+00 2/2 0/0 0/0 .bss             buffer__14mDoMtx_stack_c */
-static u8 buffer__14mDoMtx_stack_c[768];
+u8 mDoMtx_stack_c::buffer[768];
 
 /* 803DD7A0-803DD7AC 00A4C0 000C+00 1/1 0/0 0/0 .bss             @4048 */
 static u8 lit_4048[12];
 
 /* 804505A8-804505AC -00001 0004+00 3/3 0/0 0/0 .sdata           next__14mDoMtx_stack_c */
-SECTION_SDATA static void* next__14mDoMtx_stack_c = (void*)&buffer__14mDoMtx_stack_c;
+SECTION_SDATA void* mDoMtx_stack_c::next = (void*)&mDoMtx_stack_c::buffer;
 
 /* 804505AC-804505B0 -00001 0004+00 2/2 0/0 0/0 .sdata           end__14mDoMtx_stack_c */
-SECTION_SDATA static void* end__14mDoMtx_stack_c = (void*)&lit_4048;
+SECTION_SDATA void* mDoMtx_stack_c::end = (void*)&lit_4048;
 
 /* 8000CCC8-8000CD14 007608 004C+00 0/0 0/0 24/24 .text            push__14mDoMtx_stack_cFv */
 #pragma push

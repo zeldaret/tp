@@ -11,9 +11,15 @@
 // Types:
 //
 
+struct mDoRst {
+    static u8 mResetData[4 + 4 /* padding */];
+};
+
 struct JKRHeap {
     /* 802CE500 */ void free(void*, JKRHeap*);
     /* 802CE7B0 */ void changeGroupID(u8);
+
+    static u8 sCurrentHeap[4];
 };
 
 struct mDoDvdThd_toMainRam_c {
@@ -57,6 +63,10 @@ struct JAISoundHandle {
     /* 802A2184 */ void releaseSound();
 };
 
+struct JKRSolidHeap {
+    /* 802D0BF4 */ void adjustSize();
+};
+
 struct JAISoundID {};
 
 struct JGeometry {
@@ -64,10 +74,6 @@ struct JGeometry {
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
-};
-
-struct JKRSolidHeap {
-    /* 802D0BF4 */ void adjustSize();
 };
 
 struct Z2AudioMgr {
@@ -80,6 +86,8 @@ struct Z2AudioMgr {
     /* 802CD9CC */ void resetRecover();
     /* 802CDA6C */ void hasReset() const;
     /* 802CDB1C */ void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
+
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct Z2Audience {
@@ -196,10 +204,10 @@ extern "C" extern u8 data_80450B7C[4];
 extern "C" extern u8 data_80450B80[4];
 extern "C" extern u8 data_80450B84[4];
 extern "C" extern u8 data_80450B88[4];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
+extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 extern "C" extern u8 struct_80450C80[8];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sCurrentHeap__7JKRHeap[4];
 
 //
 // Declarations:

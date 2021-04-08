@@ -16,6 +16,8 @@ struct fopAc_ac_c {};
 struct daShopItem_c {
     /* 80037C14 */ void getRotateP();
     /* 80037C1C */ void getPosP();
+
+    static void* const mData[276];
 };
 
 struct daItemBase_c {
@@ -29,6 +31,7 @@ struct daItemBase_c {
 extern "C" void getRotateP__12daShopItem_cFv();
 extern "C" void getPosP__12daShopItem_cFv();
 extern "C" void CheckShopItemCreateHeap__FP10fopAc_ac_c();
+extern "C" void* const mData__12daShopItem_c[276];
 extern "C" extern char const* const d_a_d_a_shop_item_static__stringBase0;
 
 //
@@ -63,7 +66,7 @@ asm void daShopItem_c::getPosP() {
 
 /* ############################################################################################## */
 /* 803792E8-80379738 -00001 0450+00 1/1 0/0 9/9 .rodata          mData__12daShopItem_c */
-SECTION_RODATA extern void* const mData__12daShopItem_c[276] = {
+SECTION_RODATA void* const daShopItem_c::mData[276] = {
     (void*)&d_a_d_a_shop_item_static__stringBase0,
     (void*)0x0003FFFF,
     (void*)0xFFFFFFFF,
@@ -341,7 +344,7 @@ SECTION_RODATA extern void* const mData__12daShopItem_c[276] = {
     (void*)0x0000000C,
     (void*)NULL,
 };
-COMPILER_STRIP_GATE(803792E8, &mData__12daShopItem_c);
+COMPILER_STRIP_GATE(803792E8, &daShopItem_c::mData);
 
 /* 80037C24-80037C7C 032564 0058+00 0/0 0/0 1/1 .text CheckShopItemCreateHeap__FP10fopAc_ac_c */
 #pragma push

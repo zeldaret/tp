@@ -19,6 +19,8 @@ struct JUtility {
     struct TColor {};
 };
 
+struct JKRHeap {};
+
 struct JUTFont {
     struct TWidth {};
 
@@ -28,8 +30,6 @@ struct JUTFont {
     /* 802E0110 */ bool isLeadByte_2Byte(int);
     /* 802E0118 */ void isLeadByte_ShiftJIS(int);
 };
-
-struct JKRHeap {};
 
 struct JUTResFont {
     /* 802DDFD8 */ void getResFont() const;
@@ -59,6 +59,8 @@ struct JUTResFont {
     /* 802DFDD8 */ void getFontCode(int) const;
     /* 802DFF60 */ void loadImage(int, _GXTexMapID);
     /* 802E00C4 */ void convertSjis(int, u16*) const;
+
+    static void* const saoAboutEncoding_[3];
 };
 
 //
@@ -88,6 +90,7 @@ extern "C" void convertSjis__10JUTResFontCFiPUs();
 extern "C" bool isLeadByte_1Byte__7JUTFontFi();
 extern "C" bool isLeadByte_2Byte__7JUTFontFi();
 extern "C" void isLeadByte_ShiftJIS__7JUTFontFi();
+extern "C" void* const saoAboutEncoding___10JUTResFont[3];
 extern "C" extern char const* const JUTResFont__stringBase0;
 
 //
@@ -250,12 +253,12 @@ asm void JUTResFont::countBlock() {
 
 /* ############################################################################################## */
 /* 8039D390-8039D39C -00001 000C+00 1/1 1/1 0/0 .rodata          saoAboutEncoding___10JUTResFont */
-SECTION_RODATA extern void* const saoAboutEncoding___10JUTResFont[3] = {
+SECTION_RODATA void* const JUTResFont::saoAboutEncoding_[3] = {
     (void*)isLeadByte_1Byte__7JUTFontFi,
     (void*)isLeadByte_2Byte__7JUTFontFi,
     (void*)isLeadByte_ShiftJIS__7JUTFontFi,
 };
-COMPILER_STRIP_GATE(8039D390, &saoAboutEncoding___10JUTResFont);
+COMPILER_STRIP_GATE(8039D390, &JUTResFont::saoAboutEncoding_);
 
 /* 802DF344-802DF48C 2D9C84 0148+00 1/0 0/0 0/0 .text            setBlock__10JUTResFontFv */
 #pragma push

@@ -11,16 +11,16 @@
 // Types:
 //
 
+struct JAISoundHandle {};
+
+struct JAISoundID {};
+
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
 };
-
-struct JAISoundHandle {};
-
-struct JAISoundID {};
 
 struct Z2SoundStarter {
     /* 802AAB94 */ Z2SoundStarter(bool);
@@ -34,6 +34,10 @@ struct Z2SoundStarter {
 
 struct Z2EnvSeMgr {
     /* 802C93E4 */ void getFogDensity();
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JASTrack {
@@ -90,7 +94,7 @@ extern "C" extern u8 data_80450B3C[4];
 extern "C" extern u8 data_80450B74[4];
 extern "C" extern u8 data_80450B7C[4];
 extern "C" extern u8 data_80450B80[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

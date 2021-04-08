@@ -18,6 +18,8 @@ struct Vec {};
 struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
     /* 806009F8 */ void multVecZero(Vec*);
+
+    static u8 now[48];
 };
 
 struct _GXColor {};
@@ -31,9 +33,9 @@ struct mDoExt_morf_c {
     /* 806024EC */ void isStop();
 };
 
-struct J3DAnmTexPattern {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTexPattern {};
 
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
@@ -58,15 +60,15 @@ struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {};
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -106,6 +108,8 @@ struct mDoExt_3DlineMat1_c {
 
 struct mDoCPd_c {
     /* 80602368 */ void getTrigA(u32);
+
+    static u8 m_cpadInfo[256];
 };
 
 struct g_himo_s {
@@ -138,6 +142,8 @@ struct daPy_py_c {
     /* 80602338 */ void cancelOriginalDemo();
     /* 80602590 */ void changeDemoMode(u32, int, int, s16);
     /* 806025A4 */ void changeOriginalDemo();
+
+    static u8 m_midnaActor[4];
 };
 
 struct daHorse_c {
@@ -210,6 +216,8 @@ struct J3DModel {
 
 struct dDlst_shadowControl_c {
     /* 80055F1C */ void addReal(u32, J3DModel*);
+
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcU_AtInfo {};
@@ -384,8 +392,20 @@ struct Z2CreatureEnemy {
     /* 802C1B90 */ void setEnemyName(char const*);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct JPABaseEmitter {
     /* 8027EC60 */ void deleteAllParticle();
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
 };
 
 struct J3DLightObj {
@@ -704,20 +724,20 @@ extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__16Z2SoundObjSimple[8];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 g_blackColor;
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
+extern "C" u8 m_midnaActor__9daPy_py_c[4];
 extern "C" extern u8 struct_80451124[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //

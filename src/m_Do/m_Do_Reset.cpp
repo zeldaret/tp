@@ -13,18 +13,31 @@
 
 struct mDoRst {
     /* 800157F4 */ void getResetData();
+
+    static u8 mResetData[4 + 4 /* padding */];
 };
 
 struct Z2AudioMgr {
     /* 802CDA6C */ void hasReset() const;
+
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JUTXfb {
     /* 802E5214 */ void clearIndex();
+
+    static u8 sManager[4 + 4 /* padding */];
 };
 
 struct JUTVideo {
     /* 802E4CAC */ void destroyManager();
+};
+
+struct JUTGamePad {
+    struct C3ButtonReset {
+        static u8 sCallback[4];
+        static u8 sCallbackArg[4 + 4 /* padding */];
+    };
 };
 
 struct JASTaskThread {
@@ -45,6 +58,7 @@ extern "C" void mDoRst_reset__FiUli();
 extern "C" void mDoRst_resetCallBack__FiPv();
 extern "C" void getResetData__6mDoRstFv();
 extern "C" extern char const* const m_Do_m_Do_Reset__stringBase0;
+extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 extern "C" extern u8 struct_80450C80[8];
 extern "C" extern u8 data_80450C88[8];
 
@@ -83,11 +97,11 @@ extern "C" void GXSetDrawDoneCallback();
 extern "C" void _savegpr_27();
 extern "C" extern u8 g_mDoMemCd_control[8192];
 extern "C" extern u8 struct_80450BB8[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
-extern "C" extern u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
+extern "C" u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
 extern "C" extern u8 struct_80451500[4];
-extern "C" extern u8 sManager__6JUTXfb[4 + 4 /* padding */];
+extern "C" u8 sManager__6JUTXfb[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -110,8 +124,7 @@ static asm void destroyVideo() {
 
 /* ############################################################################################## */
 /* 80450C78-80450C80 000178 0004+04 3/3 42/42 2/2 .sbss            mResetData__6mDoRst */
-extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-u8 mResetData__6mDoRst[4 + 4 /* padding */];
+u8 mDoRst::mResetData[4 + 4 /* padding */];
 
 /* 80015614-8001574C 00FF54 0138+00 0/0 3/3 0/0 .text            mDoRst_reset__FiUli */
 #pragma push

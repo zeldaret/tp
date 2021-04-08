@@ -31,10 +31,10 @@ SYMBOLS = [
 	{'addr':0x80D55CB8,'size':32,'pad':0,'label':"_unresolved",'name':"_unresolved",'lib':-1,'tu':0,'section':0,'class_template':None,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"ASMFunction"},
 	{'addr':0x80D55CD8,'size':80,'pad':0,'label':"daTagArena_Create__FP10fopAc_ac_c",'name':"daTagArena_Create__FP10fopAc_ac_c",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
 	{'addr':0x80D55D28,'size':48,'pad':0,'label':"daTagArena_Delete__FP12daTagArena_c",'name':"daTagArena_Delete__FP12daTagArena_c",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
-	{'addr':0x80D55D58,'size':4,'pad':0,'label':"_ctors",'name':"_ctors",'lib':-1,'tu':1,'section':1,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
-	{'addr':0x80D55D5C,'size':4,'pad':0,'label':"_dtors",'name':"_dtors",'lib':-1,'tu':2,'section':2,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
-	{'addr':0x80D55D60,'size':32,'pad':0,'label':"l_daTagArena_Method",'name':"l_daTagArena_Method",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
-	{'addr':0x80D55D80,'size':48,'pad':0,'label':"g_profile_Tag_Arena",'name':"g_profile_Tag_Arena",'lib':-1,'tu':3,'section':3,'class_template':False,'static':False,'is_reachable':False,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80D55D58,'size':4,'pad':0,'label':"_ctors",'name':"_ctors",'lib':-1,'tu':1,'section':1,'class_template':None,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
+	{'addr':0x80D55D5C,'size':4,'pad':0,'label':"_dtors",'name':"_dtors",'lib':-1,'tu':2,'section':2,'class_template':None,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
+	{'addr':0x80D55D60,'size':32,'pad':0,'label':"l_daTagArena_Method",'name':"l_daTagArena_Method",'lib':-1,'tu':3,'section':3,'class_template':None,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80D55D80,'size':48,'pad':0,'label':"g_profile_Tag_Arena",'name':"g_profile_Tag_Arena",'lib':-1,'tu':3,'section':3,'class_template':None,'static':False,'is_reachable':False,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
 ]
 
 # Names

@@ -21,6 +21,9 @@ struct daTagHstop_c {
     /* 805A45F8 */ ~daTagHstop_c();
     /* 805A46B8 */ void setActive();
     /* 805A475C */ void execute();
+
+    static u8 m_top[4 + 4 /* padding */];
+    static u8 m_msgFlow[76];
 };
 
 struct daPy_py_c {
@@ -62,6 +65,7 @@ extern "C" static void daTagHstop_Execute__FP12daTagHstop_c();
 extern "C" static bool daTagHstop_Draw__FP12daTagHstop_c();
 extern "C" void __sinit_d_a_tag_hstop_cpp();
 extern "C" extern void* g_profile_Tag_Hstop[12];
+extern "C" u8 m_msgFlow__12daTagHstop_c[76];
 
 //
 // External References:
@@ -85,7 +89,7 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 m_top__12daTagHstop_c[4 + 4 /* padding */];
+extern "C" u8 m_top__12daTagHstop_c[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -154,7 +158,7 @@ asm void daTagHstop_c::setActive() {
 static u8 lit_3686[12];
 
 /* 805A4B8C-805A4BD8 000014 004C+00 2/2 0/0 0/0 .bss             m_msgFlow__12daTagHstop_c */
-static u8 m_msgFlow__12daTagHstop_c[76];
+u8 daTagHstop_c::m_msgFlow[76];
 
 /* 805A475C-805A4AA8 00045C 034C+00 1/1 0/0 0/0 .text            execute__12daTagHstop_cFv */
 #pragma push

@@ -118,7 +118,9 @@ def type_from_demangled_param(param):
 
     return type
 
+
 dollar_re = re.compile(r'(\w+)\$([0-9]+)')
+
 
 def nameFix(context, label_collisions, reference_collisions, dollar_names, symbol):
     util.escape_name(symbol.identifier)
@@ -132,16 +134,17 @@ def nameFix(context, label_collisions, reference_collisions, dollar_names, symbo
                 symbol.identifier.override_name = f"{match.group(1)}_{match.group(2)}"
 
     # TODO: Support demangled names for variables
-    """
-    if symbol.identifier.name and (not "@" in symbol.identifier.name) and not isinstance(symbol, Function):
+    if (symbol.identifier.name and
+            (not "@" in symbol.identifier.name) and
+            (not "$" in symbol.identifier.name) and
+            not isinstance(symbol, Function) and
+            not symbol.identifier.name.startswith("__vt")):
         try:
             name = symbol.identifier.name
             p = libdemangle.ParseCtx(name)
             p.demangle_variable()
 
             if len(p.to_str()) > 0 and p.to_str() != name:
-                #context.debug(p.to_str())
-
                 types = [
                     type_from_demangled_param(x)
                     for x in p.demangled
@@ -153,16 +156,16 @@ def nameFix(context, label_collisions, reference_collisions, dollar_names, symbo
                         valid = False
                         break
 
-                if valid: 
-                    symbol.demangled_name = named_type_from_qulified_name(p.full_name)
+                if valid:
+                    symbol.demangled_name = named_type_from_qulified_name(
+                        p.full_name)
         except Exception as e:
             context.error(f"demangle error: '{name}'")
             context.error(f"\t{e}")
             context.error(f"\t{p.func_name}")
             context.error(f"\t{p.class_name}")
             context.error(f"\t{p.to_str()}")
-    """
-    
+
     if (symbol.identifier.name and (not "@" in symbol.identifier.name) and isinstance(symbol, Function)):
         name = symbol.identifier.name
         try:
@@ -182,7 +185,7 @@ def nameFix(context, label_collisions, reference_collisions, dollar_names, symbo
                         break
 
                 if valid:
-                    symbol.func_name = named_type_from_qulified_name(
+                    symbol.demangled_name = named_type_from_qulified_name(
                         p.full_name)
                     symbol.func_is_const = p.is_const
                     symbol.special_func_name = p.special_func_name
@@ -195,7 +198,7 @@ def nameFix(context, label_collisions, reference_collisions, dollar_names, symbo
                         else:
                             symbol.return_type = return_type
 
-                    #if not symbol.uses_class_template:
+                    # if not symbol.uses_class_template:
                     #    symbol.identifier.is_name_safe = True
                 else:
                     context.warning(
@@ -217,7 +220,8 @@ def nameFix(context, label_collisions, reference_collisions, dollar_names, symbo
 
 def nameCollision(context, label_collisions, reference_collisions, parent_name, symbol):
     if not symbol.is_static or isinstance(symbol, StringBase):
-        nice_name = parent_name.replace("/", "_").replace(".", "_").replace("-", "_")
+        nice_name = parent_name.replace(
+            "/", "_").replace(".", "_").replace("-", "_")
         if isinstance(symbol, StringBase) and symbol._module != 0:
             symbol.identifier.override_name = nice_name + "__" + symbol.identifier.label
         elif label_collisions[symbol.identifier.label] > 1 or reference_collisions[symbol.identifier.reference] > 1:
@@ -239,7 +243,6 @@ def execute(context, libraries):
                     if not match:
                         continue
                     dollar_names[match.group(1)] += 1
-
 
             for sec in tu.sections.values():
                 for symbol in sec.symbols:
@@ -267,10 +270,10 @@ def execute(context, libraries):
             for section in tu.sections.values():
                 for symbol in section.symbols:
                     if isinstance(symbol, Function):
-                        if symbol.is_demangled():
-                            add_named_type(symbol.func_name, 1)
+                        if symbol.is_demangled:
+                            add_named_type(symbol.demangled_name, 1)
                             raw_names = tuple(
-                                [x.name for x in symbol.func_name.names])
+                                [x.name for x in symbol.demangled_name.names])
                             names[raw_names].append(symbol)
 
                         if symbol.return_type:
@@ -301,10 +304,10 @@ def execute(context, libraries):
 
     # generate template_index for functions.
     for name, functions in names.items():
-        if functions[0].func_name.last.templates:
+        if functions[0].demangled_name.last.templates:
             #context.debug("Found Templated Function(s):")
             functions.sort(key=lambda x: x.addr)
             for i, function in enumerate(functions):
                 function.template_index = i
-                function.func_name.last.template_index = i
-                # context.debug(f"\t{function.func_name.to_str(without_template=True)}")
+                function.demangled_name.last.template_index = i
+                # context.debug(f"\t{function.demangled_name.to_str(without_template=True)}")

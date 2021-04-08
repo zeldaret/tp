@@ -36,12 +36,12 @@ struct daNpcT_MotionSeqMngr_c {
 
 struct J3DModel {};
 
-struct J3DJoint {};
-
 struct cXyz {
     /* 80AEC0DC */ ~cXyz();
     /* 80AEC670 */ cXyz();
 };
+
+struct J3DJoint {};
 
 struct daNpcT_c {
     /* 801490D4 */ void ctrlBtk();

@@ -18,6 +18,8 @@ struct csXyz {};
 struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -34,10 +36,15 @@ struct cXyz {
     /* 80267128 */ void atan2sX_Z() const;
     /* 80267150 */ void atan2sY_XZ() const;
     /* 804DA5B8 */ ~cXyz();
+
+    static f32 Zero[3];
 };
 
 struct fopAcM_wt_c {
     /* 8001DD84 */ void waterCheck(cXyz const*);
+
+    static u8 mWaterCheck[84 + 4 /* padding */];
+    static f32 mWaterY[1 + 1 /* padding */];
 };
 
 struct daTagWaterFall_c {
@@ -88,6 +95,10 @@ struct dVibration_c {
     /* 8006FA24 */ void StartShock(int, int, cXyz);
 };
 
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
+};
+
 struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
@@ -131,6 +142,8 @@ struct J3DModel {};
 
 struct dDlst_shadowControl_c {
     /* 80055F1C */ void addReal(u32, J3DModel*);
+
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -256,6 +269,14 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct JGeometry {
@@ -426,26 +447,26 @@ extern "C" void abs();
 extern "C" void strcmp();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__16Z2SoundObjSimple[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mWaterCheck__11fopAcM_wt_c[84 + 4 /* padding */];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mWaterCheck__11fopAcM_wt_c[84 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_meter2_info[248];
-extern "C" extern f32 Zero__4cXyz[3];
+extern "C" f32 Zero__4cXyz[3];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
+extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 extern "C" void BreakSet__15daObjGOMIKABE_cFv();
 extern "C" void checkHitWaterFall__16daTagWaterFall_cF4cXyz();

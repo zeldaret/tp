@@ -15,6 +15,8 @@ struct request_of_phase_process_class {};
 
 struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -26,6 +28,8 @@ struct cXyz {};
 
 struct fopAcM_wt_c {
     /* 8001DD84 */ void waterCheck(cXyz const*);
+
+    static f32 mWaterY[1 + 1 /* padding */];
 };
 
 struct daBkyRock_c {
@@ -52,6 +56,9 @@ struct daBkyRock_c {
     /* 80BB7818 */ void pieceMove();
     /* 80BB7988 */ void pieceMoveInit();
     /* 80BB7C18 */ void callBombEmt(int, u16 const*);
+
+    static u8 const s_CcDCyl[68];
+    static u8 s_exeProc[36];
 };
 
 struct dVibration_c {
@@ -181,6 +188,10 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DModel {};
 
 //
@@ -219,7 +230,9 @@ extern "C" static void daBkyRock_execute__FP11daBkyRock_c();
 extern "C" static void daBkyRock_draw__FP11daBkyRock_c();
 extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" void __sinit_d_a_obj_bky_rock_cpp();
+extern "C" u8 const s_CcDCyl__11daBkyRock_c[68];
 extern "C" extern char const* const d_a_obj_bky_rock__stringBase0;
+extern "C" u8 s_exeProc__11daBkyRock_c[36];
 
 //
 // External References:
@@ -299,11 +312,11 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -372,7 +385,7 @@ SECTION_DATA static void* lit_3935[3] = {
 #pragma pop
 
 /* 80BB8064-80BB8088 000048 0024+00 1/2 0/0 0/0 .data            s_exeProc__11daBkyRock_c */
-SECTION_DATA static u8 s_exeProc__11daBkyRock_c[36] = {
+SECTION_DATA u8 daBkyRock_c::s_exeProc[36] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -613,14 +626,14 @@ COMPILER_STRIP_GATE(80BB7ED4, &SECOND_PARTICLE_NAME);
 /* 80BB7EE0-80BB7F24 000030 0044+00 0/1 0/0 0/0 .rodata          s_CcDCyl__11daBkyRock_c */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const s_CcDCyl__11daBkyRock_c[68] = {
+SECTION_RODATA u8 const daBkyRock_c::s_CcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x20, 0xA0, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BB7EE0, &s_CcDCyl__11daBkyRock_c);
+COMPILER_STRIP_GATE(80BB7EE0, &daBkyRock_c::s_CcDCyl);
 #pragma pop
 
 /* 80BB7F24-80BB7F3C 000074 0018+00 1/1 0/0 0/0 .rodata          BMD_IDX$3845 */

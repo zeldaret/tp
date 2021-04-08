@@ -11,6 +11,8 @@
 // Types:
 //
 
+struct dMenu_Fmap_world_data_c {};
+
 struct dDrawPath_c {
     struct group_class {};
 
@@ -31,8 +33,6 @@ struct dDrawPath_c {
 struct dMenu_Fmap_region_data_c {
     /* 8003DB70 */ void getPointStagePathInnerNo(f32, f32, int, int*, int*);
 };
-
-struct dMenu_Fmap_world_data_c {};
 
 struct renderingFmap_c {
     struct palette_e {};
@@ -82,6 +82,10 @@ struct dRenderingFDAmap_c {
     /* 8003D6B8 */ void getDecorationLineWidth(int);
 };
 
+struct dMfm_HIO_prm_res_src_s {
+    static u8 m_other[1 + 3 /* padding */];
+};
+
 struct dMenu_Fmap_room_data_c {
     /* 8003D818 */ void isArrival();
 };
@@ -118,6 +122,10 @@ struct dDlst_list_c {
 };
 
 struct Vec {};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
 
 //
 // Forward References:
@@ -167,6 +175,7 @@ extern "C" bool isRenderingFloor__15renderingFmap_cFi();
 extern "C" void beforeDrawPath__15renderingFmap_cFv();
 extern "C" void afterDrawPath__15renderingFmap_cFv();
 extern "C" extern char const* const d_menu_d_menu_fmap_map__stringBase0;
+extern "C" u8 m_other__22dMfm_HIO_prm_res_src_s[1 + 3 /* padding */];
 
 //
 // External References:
@@ -218,7 +227,7 @@ extern "C" extern void* __vt__18dRenderingFDAmap_c[26];
 extern "C" extern void* __vt__11dDrawPath_c[16];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_Counter[12 + 4 /* padding */];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u8 struct_80450D64[4];
 
 //
@@ -632,7 +641,7 @@ asm void dMenu_FmapMap_c::_delete() {
 /* ############################################################################################## */
 /* 80454194-80454198 002794 0001+03 2/2 0/0 0/0 .sdata2          m_other__22dMfm_HIO_prm_res_src_s
  */
-SECTION_SDATA2 static u8 m_other__22dMfm_HIO_prm_res_src_s[1 + 3 /* padding */] = {
+SECTION_SDATA2 u8 dMfm_HIO_prm_res_src_s::m_other[1 + 3 /* padding */] = {
     0x1E,
     /* padding */
     0x00,

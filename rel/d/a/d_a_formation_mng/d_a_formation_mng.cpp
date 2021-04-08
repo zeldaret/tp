@@ -18,6 +18,8 @@ struct mDoMtx_stack_c {
     /* 8000CD14 */ void pop();
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -27,6 +29,8 @@ struct fopAc_ac_c {
 
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
+
+    static f32 mGroundY;
 };
 
 struct Vec {};
@@ -62,6 +66,9 @@ struct daFmtMng_c {
     /* 80837078 */ void executeFight();
     /* 808374B4 */ void create();
     /* 8083750C */ void create_init();
+
+    static u8 const M_attr[24];
+    static u8 ActionTable[120];
 };
 
 struct daFmtMng_Path_c {
@@ -76,6 +83,10 @@ struct dSv_danBit_c {
 struct dPath {};
 
 struct csXyz {};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
 
 struct FmtMember_c {
     /* 80837458 */ ~FmtMember_c();
@@ -112,6 +123,8 @@ extern "C" void create__10daFmtMng_cFv();
 extern "C" void create_init__10daFmtMng_cFv();
 extern "C" void __ct__11FmtMember_cFv();
 extern "C" void __sinit_d_a_formation_mng_cpp();
+extern "C" u8 const M_attr__10daFmtMng_c[24];
+extern "C" u8 ActionTable__10daFmtMng_c[120];
 extern "C" extern void* g_profile_FORMATION_MNG[12];
 
 //
@@ -172,11 +185,11 @@ extern "C" void _restgpr_29();
 extern "C" void pow();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
+extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" void initPosAngle__10daNpcFgd_cFR3Vecs();
 
 //
@@ -185,11 +198,11 @@ extern "C" void initPosAngle__10daNpcFgd_cFR3Vecs();
 
 /* ############################################################################################## */
 /* 808378A8-808378C0 000000 0018+00 12/12 0/0 0/0 .rodata          M_attr__10daFmtMng_c */
-SECTION_RODATA static u8 const M_attr__10daFmtMng_c[24] = {
+SECTION_RODATA u8 const daFmtMng_c::M_attr[24] = {
     0x00, 0x00, 0x00, 0x14, 0x40, 0xC0, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00,
     0x42, 0xF0, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00, 0x00, 0x0A, 0x40, 0x00,
 };
-COMPILER_STRIP_GATE(808378A8, &M_attr__10daFmtMng_c);
+COMPILER_STRIP_GATE(808378A8, &daFmtMng_c::M_attr);
 
 /* 808378C0-808378C4 000018 0004+00 1/7 0/0 0/0 .rodata          @3979 */
 SECTION_RODATA static f32 const lit_3979 = 1.0f;
@@ -409,7 +422,7 @@ SECTION_DATA static void* lit_3870[3] = {
 #pragma pop
 
 /* 808379C4-80837A3C 000098 0078+00 6/7 0/0 0/0 .data            ActionTable__10daFmtMng_c */
-SECTION_DATA static u8 ActionTable__10daFmtMng_c[120] = {
+SECTION_DATA u8 daFmtMng_c::ActionTable[120] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

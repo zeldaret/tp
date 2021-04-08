@@ -13,13 +13,15 @@
 
 struct request_of_phase_process_class {};
 
-struct cXyz {};
-
 struct csXyz {};
+
+struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -44,6 +46,8 @@ struct daObj_Pleaf_c {
 
 struct daObj_Pleaf_Param_c {
     /* 80CB17F8 */ ~daObj_Pleaf_Param_c();
+
+    static u8 const m[16];
 };
 
 struct dKy_tevstr_c {};
@@ -59,6 +63,10 @@ struct dRes_info_c {};
 
 struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -164,6 +172,7 @@ extern "C" void __sinit_d_a_obj_pleaf_cpp();
 extern "C" void __dt__19daObj_Pleaf_Param_cFv();
 extern "C" static void func_80CB1840();
 extern "C" static void func_80CB1848();
+extern "C" u8 const m__19daObj_Pleaf_Param_c[16];
 extern "C" extern char const* const d_a_obj_pleaf__stringBase0;
 
 //
@@ -214,9 +223,9 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" void __register_global_object();
 
@@ -317,10 +326,10 @@ asm daObj_Pleaf_c::~daObj_Pleaf_c() {
 
 /* ############################################################################################## */
 /* 80CB1864-80CB1874 000000 0010+00 2/2 0/0 0/0 .rodata          m__19daObj_Pleaf_Param_c */
-SECTION_RODATA static u8 const m__19daObj_Pleaf_Param_c[16] = {
+SECTION_RODATA u8 const daObj_Pleaf_Param_c::m[16] = {
     0x00, 0x00, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x44, 0x61, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CB1864, &m__19daObj_Pleaf_Param_c);
+COMPILER_STRIP_GATE(80CB1864, &daObj_Pleaf_Param_c::m);
 
 /* 80CB1874-80CB1878 000010 0004+00 0/1 0/0 0/0 .rodata          @3905 */
 #pragma push

@@ -21,6 +21,10 @@ struct e_wb_class {
     /* 80037DBC */ void setRunRideMode();
 };
 
+struct daTagHstop_c {
+    static u8 m_top[4 + 4 /* padding */];
+};
+
 struct Z2CreatureRide {
     /* 802C522C */ void setLinkRiding(bool);
 };
@@ -36,7 +40,7 @@ extern "C" void getOff__10e_wb_classFv();
 extern "C" void checkDownDamage__10e_wb_classFv();
 extern "C" void checkNormalRideMode__10e_wb_classCFv();
 extern "C" void setRunRideMode__10e_wb_classFv();
-extern "C" extern u8 m_top__12daTagHstop_c[4 + 4 /* padding */];
+extern "C" u8 m_top__12daTagHstop_c[4 + 4 /* padding */];
 
 //
 // External References:
@@ -120,5 +124,4 @@ asm void e_wb_class::setRunRideMode() {
 
 /* ############################################################################################## */
 /* 80450DF8-80450E00 0002F8 0004+04 0/0 1/1 3/3 .sbss            m_top__12daTagHstop_c */
-extern u8 m_top__12daTagHstop_c[4 + 4 /* padding */];
-u8 m_top__12daTagHstop_c[4 + 4 /* padding */];
+u8 daTagHstop_c::m_top[4 + 4 /* padding */];

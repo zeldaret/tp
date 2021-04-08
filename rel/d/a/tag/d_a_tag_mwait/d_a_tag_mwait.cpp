@@ -22,6 +22,10 @@ struct daTagMwait_c {
     /* 80D5C0A8 */ void execute();
 };
 
+struct daPy_py_c {
+    static u8 m_midnaActor[4];
+};
+
 struct dSv_info_c {
     /* 80035200 */ void onSwitch(int, int);
     /* 80035360 */ void isSwitch(int, int) const;
@@ -77,7 +81,7 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
+extern "C" u8 m_midnaActor__9daPy_py_c[4];
 
 //
 // Declarations:

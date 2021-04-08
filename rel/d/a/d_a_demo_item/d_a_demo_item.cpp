@@ -13,6 +13,10 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct leafdraw_class {};
 
 struct fopAc_ac_c {
@@ -69,11 +73,11 @@ struct dSv_event_c {
 
 struct dKy_tevstr_c {};
 
+struct J3DModelData {};
+
 struct cXyz {
     /* 804E00A0 */ ~cXyz();
 };
-
-struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -94,6 +98,10 @@ struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
                             u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
                             cXyz const*, f32);
+};
+
+struct dItem_data {
+    static void* item_resource[1530];
 };
 
 struct dComIfG_play_c {
@@ -258,12 +266,12 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* item_resource__10dItem_data[1530];
+extern "C" void* item_resource__10dItem_data[1530];
 extern "C" extern void* __vt__12daItemBase_c[17 + 1 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 struct_80450D64[4];

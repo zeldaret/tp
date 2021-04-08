@@ -68,6 +68,8 @@ struct JKRHeap {
 
 struct JKRFileLoader {
     /* 802D41D4 */ void unmount();
+
+    static u8 sVolumeList[12];
 };
 
 struct JKRExpandSwitch {};
@@ -134,7 +136,7 @@ extern "C" void _savegpr_28();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 sVolumeList__13JKRFileLoader[12];
+extern "C" u8 sVolumeList__13JKRFileLoader[12];
 
 //
 // Declarations:

@@ -249,6 +249,14 @@ struct dSv_fishing_info_c {
     /* 800344FC */ void addFishCount(u8);
 };
 
+struct dSv_event_tmp_flag_c {
+    static u8 const tempBitLabels[370 + 2 /* padding */];
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
+};
+
 struct dSv_event_c {
     /* 80034954 */ void init();
     /* 8003498C */ void onEventBit(u16);
@@ -291,6 +299,12 @@ struct dComIfG_play_c {
 
 struct Z2AudioMgr {
     /* 802CD888 */ void setOutputMode(u32);
+
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JUTGamePad {
+    static u8 sRumbleSupported[4];
 };
 
 //
@@ -457,8 +471,9 @@ extern "C" void isActor__10dSv_info_cCFii();
 extern "C" void memory_to_card__10dSv_info_cFPci();
 extern "C" void card_to_memory__10dSv_info_cFPci();
 extern "C" void initdata_to_card__10dSv_info_cFPci();
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
+extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" extern char const* const d_save_d_save__stringBase0;
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 
 //
 // External References:
@@ -502,8 +517,8 @@ extern "C" void printf();
 extern "C" void strcpy();
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 sRumbleSupported__10JUTGamePad[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sRumbleSupported__10JUTGamePad[4];
 
 //
 // Declarations:
@@ -921,7 +936,7 @@ asm void dSv_player_item_c::checkBottle(u8 param_0) {
 
 /* ############################################################################################## */
 /* 803A7288-803A78F8 0043A8 066C+04 2/2 45/45 148/148 .data saveBitLabels__16dSv_event_flag_c */
-SECTION_DATA extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */] = {
+SECTION_DATA u8 dSv_event_flag_c::saveBitLabels[1644 + 4 /* padding */] = {
     0xFF,
     0xFF,
     0x00,
@@ -3851,7 +3866,7 @@ asm void dSv_info_c::initdata_to_card(char* param_0, int param_1) {
 
 /* ############################################################################################## */
 /* 803790C0-80379234 005720 0172+02 0/0 17/17 7/7 .rodata tempBitLabels__20dSv_event_tmp_flag_c */
-SECTION_RODATA extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */] = {
+SECTION_RODATA u8 const dSv_event_tmp_flag_c::tempBitLabels[370 + 2 /* padding */] = {
     0xFF,
     0xFF,
     0xFF,
@@ -4226,7 +4241,7 @@ SECTION_RODATA extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* 
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(803790C0, &tempBitLabels__20dSv_event_tmp_flag_c);
+COMPILER_STRIP_GATE(803790C0, &dSv_event_tmp_flag_c::tempBitLabels);
 
 /* 80379234-80379298 005894 0062+02 8/8 0/0 0/0 .rodata          @stringBase0 */
 #pragma push

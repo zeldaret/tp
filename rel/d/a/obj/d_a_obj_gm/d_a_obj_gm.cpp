@@ -61,6 +61,10 @@ struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
 
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
+};
+
 struct dCcU_AtInfo {};
 
 struct dCcD_Stts {
@@ -156,6 +160,10 @@ struct _GXTexObj {};
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct J3DModel {};
@@ -288,9 +296,9 @@ extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" extern u32 __float_nan;
 extern "C" void __register_global_object();

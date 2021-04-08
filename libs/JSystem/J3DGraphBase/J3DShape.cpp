@@ -21,6 +21,10 @@ struct Vec {};
 
 struct J3DShapeMtx {
     /* 803130A8 */ void resetMtxLoadCache();
+
+    static u8 sCurrentPipeline[4];
+    static u8 sCurrentScaleFlag[4];
+    static u8 sTexMtxLoadType[4];
 };
 
 struct J3DShapeDraw {
@@ -44,6 +48,8 @@ struct J3DShape {
     /* 803155E0 */ void draw() const;
     /* 80315628 */ void simpleDraw() const;
     /* 803156AC */ void simpleDrawCache() const;
+
+    static u8 sOldVcdVatCmd[4];
 };
 
 //
@@ -68,6 +74,7 @@ extern "C" void draw__8J3DShapeCFv();
 extern "C" void simpleDraw__8J3DShapeCFv();
 extern "C" void simpleDrawCache__8J3DShapeCFv();
 extern "C" extern void* __vt__8J3DShape[6];
+extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 
 //
 // External References:
@@ -100,10 +107,10 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u8 j3dDefaultViewNo[4 + 4 /* padding */];
-extern "C" extern u8 sCurrentPipeline__11J3DShapeMtx[4];
-extern "C" extern u8 sCurrentScaleFlag__11J3DShapeMtx[4];
+extern "C" u8 sCurrentPipeline__11J3DShapeMtx[4];
+extern "C" u8 sCurrentScaleFlag__11J3DShapeMtx[4];
 extern "C" extern u8 struct_804515B0[4];
-extern "C" extern u8 sTexMtxLoadType__11J3DShapeMtx[4];
+extern "C" u8 sTexMtxLoadType__11J3DShapeMtx[4];
 extern "C" extern u8 __GDCurrentDL[4];
 
 //
@@ -245,8 +252,7 @@ asm void J3DShape::makeVcdVatCmd() {
 
 /* ############################################################################################## */
 /* 804515D0-804515D4 000AD0 0004+00 5/5 25/25 9/9 .sbss            sOldVcdVatCmd__8J3DShape */
-extern u8 sOldVcdVatCmd__8J3DShape[4];
-u8 sOldVcdVatCmd__8J3DShape[4];
+u8 J3DShape::sOldVcdVatCmd[4];
 
 /* 80315300-80315398 30FC40 0098+00 2/2 6/6 3/3 .text            loadPreDrawSetting__8J3DShapeCFv */
 #pragma push

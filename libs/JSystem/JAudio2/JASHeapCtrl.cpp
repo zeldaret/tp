@@ -25,7 +25,9 @@ struct JSUPtrList {
 
 struct JKRSolidHeap {};
 
-struct JKRHeap {};
+struct JKRHeap {
+    static u8 sSystemHeap[4];
+};
 
 struct JKRExpHeap {
     /* 802CEE2C */ void create(u32, JKRHeap*, bool);
@@ -37,6 +39,11 @@ struct JASKernel {
     /* 80290AC8 */ void getCommandHeap();
     /* 80290AD0 */ void setupAramHeap(u32, u32);
     /* 80290B08 */ void getAramHeap();
+
+    static u8 audioAramHeap[68];
+    static u8 sAramBase[4];
+    static u8 sSystemHeap[4];
+    static u8 sCommandHeap[4];
 };
 
 struct JASDisposer {
@@ -90,6 +97,10 @@ extern "C" void getAramHeap__9JASKernelFv();
 extern "C" void __sinit_JASHeapCtrl_cpp();
 extern "C" void __dt__7JASHeapFv();
 extern "C" void onDispose__11JASDisposerFv();
+extern "C" u8 audioAramHeap__9JASKernel[68];
+extern "C" u8 sAramBase__9JASKernel[4];
+extern "C" u8 sSystemHeap__9JASKernel[4];
+extern "C" u8 sCommandHeap__9JASKernel[4];
 
 //
 // External References:
@@ -118,7 +129,7 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
 
 //
 // Declarations:
@@ -274,13 +285,13 @@ asm void JASGenericMemPool::free(void* param_0, u32 param_1) {
 
 /* ############################################################################################## */
 /* 80451214-80451218 000714 0004+00 1/1 0/0 0/0 .sbss            sAramBase__9JASKernel */
-static u8 sAramBase__9JASKernel[4];
+u8 JASKernel::sAramBase[4];
 
 /* 80451218-8045121C 000718 0004+00 2/2 0/0 0/0 .sbss            sSystemHeap__9JASKernel */
-static u8 sSystemHeap__9JASKernel[4];
+u8 JASKernel::sSystemHeap[4];
 
 /* 8045121C-80451220 00071C 0004+00 2/2 0/0 0/0 .sbss            sCommandHeap__9JASKernel */
-static u8 sCommandHeap__9JASKernel[4];
+u8 JASKernel::sCommandHeap[4];
 
 /* 802909B8-80290AC0 28B2F8 0108+00 0/0 1/1 0/0 .text setupRootHeap__9JASKernelFP12JKRSolidHeapUl
  */
@@ -318,7 +329,7 @@ asm void JASKernel::getCommandHeap() {
 static u8 lit_313[12];
 
 /* 804315DC-80431620 05E2FC 0044+00 3/3 0/0 0/0 .bss             audioAramHeap__9JASKernel */
-static u8 audioAramHeap__9JASKernel[68];
+u8 JASKernel::audioAramHeap[68];
 
 /* 80290AD0-80290B08 28B410 0038+00 0/0 1/1 0/0 .text            setupAramHeap__9JASKernelFUlUl */
 #pragma push

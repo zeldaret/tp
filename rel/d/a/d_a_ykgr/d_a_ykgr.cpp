@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct mDoHIO_entry_c {
     /* 805A8DF4 */ ~mDoHIO_entry_c();
 };
@@ -21,6 +25,10 @@ struct fopAc_ac_c {
 
 struct daYkgr_c {
     /* 805A85D4 */ void getPosRate();
+
+    static u8 m_aim_rate[4];
+    static u8 m_path[4];
+    static u8 m_emitter[4];
 };
 
 struct daYkgr_HIO_c {
@@ -29,11 +37,11 @@ struct daYkgr_HIO_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
+struct cXyz {};
 
 struct dKy_tevstr_c {};
 
-struct cXyz {};
+struct _GXColor {};
 
 struct csXyz {};
 
@@ -43,9 +51,9 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
-struct JPABaseEmitter {};
-
 struct JPABaseParticle {};
+
+struct JPABaseEmitter {};
 
 struct dPa_YkgrPcallBack {
     /* 805A848C */ void draw(JPABaseEmitter*, JPABaseParticle*);
@@ -116,14 +124,14 @@ extern "C" void _restgpr_29();
 extern "C" void strcmp();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u32 __float_nan;
 extern "C" extern u32 __float_max;
 extern "C" extern u8 struct_80450D8C[4];
-extern "C" extern u8 m_aim_rate__8daYkgr_c[4];
-extern "C" extern u8 m_path__8daYkgr_c[4];
-extern "C" extern u8 m_emitter__8daYkgr_c[4];
+extern "C" u8 m_aim_rate__8daYkgr_c[4];
+extern "C" u8 m_path__8daYkgr_c[4];
+extern "C" u8 m_emitter__8daYkgr_c[4];
 extern "C" void __register_global_object();
 
 //

@@ -27,6 +27,10 @@ struct mDoDvdThd_mountArchive_c {
     /* 80015E14 */ void create(char const*, u8, JKRHeap*);
 };
 
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
+};
+
 struct fopAc_ac_c {};
 
 struct dTres_c {
@@ -80,6 +84,11 @@ struct dMsgFlow_c {
     /* 8024A2D8 */ void doFlow(fopAc_ac_c*, fopAc_ac_c**, int);
 };
 
+struct dMpath_c {
+    static f32 mAllSizeX;
+    static f32 mAllSizeZ;
+};
+
 struct dMeterHaihai_c {
     /* 8020AE8C */ dMeterHaihai_c(u8);
     /* 8020B814 */ void drawHaihai(u8, f32, f32, f32, f32);
@@ -131,6 +140,12 @@ struct dMenu_StageMapCtrl_c {
     /* 801C2590 */ void setPlusZoomCenterZ(f32);
 };
 
+struct J2DOrthoGraph {};
+
+struct JKRExpHeap {
+    /* 802CEE2C */ void create(u32, JKRHeap*, bool);
+};
+
 struct STControl {
     /* 80032044 */ STControl(s16, s16, s16, s16, f32, f32, s16, s16);
     /* 8003219C */ void checkTrigger();
@@ -139,12 +154,6 @@ struct STControl {
     /* 80032524 */ void checkUpTrigger();
     /* 800325A0 */ void checkDownTrigger();
 };
-
-struct JKRExpHeap {
-    /* 802CEE2C */ void create(u32, JKRHeap*, bool);
-};
-
-struct J2DOrthoGraph {};
 
 struct dMenu_ItemExplain_c {
     /* 801DA754 */ dMenu_ItemExplain_c(JKRExpHeap*, JKRArchive*, STControl*, bool);
@@ -225,6 +234,8 @@ struct dMenu_Dmap_c {
     /* 801C01A0 */ void zoomIn_proc();
     /* 801C023C */ void zoomOut_init_proc();
     /* 801C02F0 */ void zoomOut_proc();
+
+    static u8 myclass[4 + 4 /* padding */];
 };
 
 struct dMenu_DmapMap_c {
@@ -287,6 +298,14 @@ struct JAISoundID {};
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct JKRFileLoader {
@@ -417,6 +436,7 @@ extern "C" void __ct__15renderingDmap_cFv();
 extern "C" void __sinit_d_menu_dmap_cpp();
 extern "C" static void func_801C0844();
 extern "C" extern char const* const d_menu_d_menu_dmap__stringBase0;
+extern "C" u8 myclass__12dMenu_Dmap_c[4 + 4 /* padding */];
 
 //
 // External References:
@@ -568,14 +588,14 @@ extern "C" extern void* __vt__19renderingPlusDoor_c[41];
 extern "C" extern void* __vt__16renderingDAmap_c[38];
 extern "C" extern void* __vt__19dMenu_DmapMapCtrl_c[10 + 51 /* padding */];
 extern "C" extern void* __vt__15renderingDmap_c[43 + 1 /* padding */];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_fmapHIO[1188];
 extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern f32 mAllSizeX__8dMpath_c;
-extern "C" extern f32 mAllSizeZ__8dMpath_c;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sincosTable___5JMath[65536];
+extern "C" f32 mAllSizeX__8dMpath_c;
+extern "C" f32 mAllSizeZ__8dMpath_c;
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -1335,7 +1355,7 @@ static f32 player_px;
 static f32 player_py;
 
 /* 80451080-80451088 000580 0004+04 6/6 0/0 0/0 .sbss            myclass__12dMenu_Dmap_c */
-static u8 myclass__12dMenu_Dmap_c[4 + 4 /* padding */];
+u8 dMenu_Dmap_c::myclass[4 + 4 /* padding */];
 
 /* 8045400C-80454010 00260C 0004+00 7/7 0/0 0/0 .sdata2          @4249 */
 SECTION_SDATA2 static f32 lit_4249 = 0.5f;

@@ -33,6 +33,9 @@ struct daTag_EvtMsg_c {
     /* 8048D54C */ void ECut_talk(int);
     /* 8048D5CC */ void ECut_wait(int);
     /* 8048D6F0 */ ~daTag_EvtMsg_c();
+
+    static void* mEvtCutNameList[3];
+    static u8 mEvtCutList[36];
 };
 
 struct dSv_info_c {
@@ -87,6 +90,8 @@ extern "C" void __dt__14daTag_EvtMsg_cFv();
 extern "C" void func_8048D760(int*);
 extern "C" void __sinit_d_a_tag_evtmsg_cpp();
 extern "C" extern char const* const d_a_tag_evtmsg__stringBase0;
+extern "C" void* mEvtCutNameList__14daTag_EvtMsg_c[3];
+extern "C" u8 mEvtCutList__14daTag_EvtMsg_c[36];
 
 //
 // External References:
@@ -159,7 +164,7 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
  */
 #pragma push
 #pragma force_active on
-SECTION_DATA static void* mEvtCutNameList__14daTag_EvtMsg_c[3] = {
+SECTION_DATA void* daTag_EvtMsg_c::mEvtCutNameList[3] = {
     (void*)&d_a_tag_evtmsg__stringBase0,
     (void*)(((char*)&d_a_tag_evtmsg__stringBase0) + 0x1),
     (void*)(((char*)&d_a_tag_evtmsg__stringBase0) + 0x6),
@@ -189,7 +194,7 @@ SECTION_DATA static void* lit_3803[3] = {
 /* 8048D85C-8048D880 000044 0024+00 0/2 0/0 0/0 .data            mEvtCutList__14daTag_EvtMsg_c */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 mEvtCutList__14daTag_EvtMsg_c[36] = {
+SECTION_DATA u8 daTag_EvtMsg_c::mEvtCutList[36] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

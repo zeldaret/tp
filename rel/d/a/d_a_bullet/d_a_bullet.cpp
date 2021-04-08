@@ -13,14 +13,16 @@
 
 struct request_of_phase_process_class {};
 
-struct cXyz {};
-
 struct csXyz {};
+
+struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -43,10 +45,15 @@ struct daBullet_c {
     /* 80656378 */ void setProcess(int (daBullet_c::*)(void*));
     /* 80656420 */ void wait(void*);
     /* 806564B8 */ void move(void*);
+
+    static u8 const mCcDObjInfo[48];
+    static u8 mCcDSph[64];
 };
 
 struct daBullet_Param_c {
     /* 806566A8 */ ~daBullet_Param_c();
+
+    static u8 const m[24];
 };
 
 struct dKy_tevstr_c {};
@@ -171,7 +178,10 @@ extern "C" void __sinit_d_a_bullet_cpp();
 extern "C" void __dt__16daBullet_Param_cFv();
 extern "C" static void func_806566F0();
 extern "C" static void func_806566F8();
+extern "C" u8 const mCcDObjInfo__10daBullet_c[48];
+extern "C" u8 const m__16daBullet_Param_c[24];
 extern "C" extern char const* const d_a_bullet__stringBase0;
+extern "C" u8 mCcDSph__10daBullet_c[64];
 
 //
 // External References:
@@ -224,7 +234,7 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 struct_80450D64[4];
@@ -243,7 +253,7 @@ SECTION_DATA static void* l_resFileNameList = (void*)&d_a_bullet__stringBase0;
 SECTION_DATA static void* l_bmdFileNameList = (void*)(((char*)&d_a_bullet__stringBase0) + 0x7);
 
 /* 80656794-806567D4 000008 0040+00 2/2 0/0 0/0 .data            mCcDSph__10daBullet_c */
-SECTION_DATA static u8 mCcDSph__10daBullet_c[64] = {
+SECTION_DATA u8 daBullet_c::mCcDSph[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -433,19 +443,19 @@ asm void daBullet_c::Delete() {
 
 /* ############################################################################################## */
 /* 80656714-80656744 000000 0030+00 2/2 0/0 0/0 .rodata          mCcDObjInfo__10daBullet_c */
-SECTION_RODATA static u8 const mCcDObjInfo__10daBullet_c[48] = {
+SECTION_RODATA u8 const daBullet_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80656714, &mCcDObjInfo__10daBullet_c);
+COMPILER_STRIP_GATE(80656714, &daBullet_c::mCcDObjInfo);
 
 /* 80656744-8065675C 000030 0018+00 1/2 0/0 0/0 .rodata          m__16daBullet_Param_c */
-SECTION_RODATA static u8 const m__16daBullet_Param_c[24] = {
+SECTION_RODATA u8 const daBullet_Param_c::m[24] = {
     0xC0, 0x40, 0x00, 0x00, 0x43, 0x7F, 0x00, 0x00, 0x40, 0x40, 0x00, 0x00,
     0x3F, 0xC0, 0x00, 0x00, 0x40, 0x40, 0x00, 0x00, 0x07, 0x08, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80656744, &m__16daBullet_Param_c);
+COMPILER_STRIP_GATE(80656744, &daBullet_Param_c::m);
 
 /* 8065675C-80656760 000048 0004+00 1/1 0/0 0/0 .rodata          @3824 */
 SECTION_RODATA static f32 const lit_3824 = -1000000000.0f;

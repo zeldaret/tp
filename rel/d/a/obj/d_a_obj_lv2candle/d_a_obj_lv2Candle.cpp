@@ -13,6 +13,10 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct mDoHIO_entry_c {
     /* 8058E0F4 */ ~mDoHIO_entry_c();
 };
@@ -35,6 +39,9 @@ struct daLv2Candle_c {
     /* 8058E99C */ void Execute();
     /* 8058EEC8 */ void Draw();
     /* 8058EF6C */ void Delete();
+
+    static u8 const mCcDObjInfo[48];
+    static u8 mCcDCyl[68];
 };
 
 struct daLv2Candle_HIO_c {
@@ -50,9 +57,9 @@ struct dSv_info_c {
 
 struct dKy_tevstr_c {};
 
-struct cXyz {};
-
 struct J3DModelData {};
+
+struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -132,6 +139,10 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct LIGHT_INFLUENCE {};
 
 struct J3DModel {};
@@ -163,7 +174,9 @@ extern "C" static void daLv2Candle_Delete__FP13daLv2Candle_c();
 extern "C" static void daLv2Candle_Create__FP10fopAc_ac_c();
 extern "C" void __dt__17daLv2Candle_HIO_cFv();
 extern "C" void __sinit_d_a_obj_lv2Candle_cpp();
+extern "C" u8 const mCcDObjInfo__13daLv2Candle_c[48];
 extern "C" extern char const* const d_a_obj_lv2Candle__stringBase0;
+extern "C" u8 mCcDCyl__13daLv2Candle_c[68];
 
 //
 // External References:
@@ -222,12 +235,12 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 g_whiteColor;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -268,7 +281,7 @@ COMPILER_STRIP_GATE(8058F140, &lit_3641);
 #pragma pop
 
 /* 8058F1C8-8058F20C 000000 0044+00 2/2 0/0 0/0 .data            mCcDCyl__13daLv2Candle_c */
-SECTION_DATA static u8 mCcDCyl__13daLv2Candle_c[68] = {
+SECTION_DATA u8 daLv2Candle_c::mCcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -365,12 +378,12 @@ asm void daLv2Candle_c::setBaseMtx() {
 
 /* ############################################################################################## */
 /* 8058F144-8058F174 000014 0030+00 1/1 0/0 0/0 .rodata          mCcDObjInfo__13daLv2Candle_c */
-SECTION_RODATA static u8 const mCcDObjInfo__13daLv2Candle_c[48] = {
+SECTION_RODATA u8 const daLv2Candle_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x13,
     0xD8, 0xFB, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x79, 0x01, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8058F144, &mCcDObjInfo__13daLv2Candle_c);
+COMPILER_STRIP_GATE(8058F144, &daLv2Candle_c::mCcDObjInfo);
 
 /* 8058F174-8058F180 000044 000C+00 1/1 0/0 0/0 .rodata          l_bmdIdx */
 SECTION_RODATA static u8 const l_bmdIdx[12] = {

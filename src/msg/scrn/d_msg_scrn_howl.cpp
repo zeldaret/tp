@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
+};
+
 struct dMsgScrnHowl_c {
     /* 8024096C */ dMsgScrnHowl_c();
     /* 80241784 */ ~dMsgScrnHowl_c();
@@ -256,7 +260,7 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 g_MsgObject_HIO_c[1040];

@@ -17,11 +17,13 @@ struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
+
+    static u8 now[48];
 };
 
-struct J3DAnmTextureSRTKey {};
-
 struct J3DAnmTevRegKey {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct J3DMaterialTable {
     /* 8032F7B4 */ void removeTexMtxAnimator(J3DAnmTextureSRTKey*);
@@ -56,10 +58,21 @@ struct daObjMasterSword_c {
     /* 80C90F6C */ void create_init();
     /* 80C91448 */ ~daObjMasterSword_c();
     /* 80C91714 */ void draw();
+
+    static f32 const mAttr;
+    static u8 ActionTable[24];
 };
 
 struct dSv_player_get_item_c {
     /* 80033E60 */ void onFirstBit(u8);
+};
+
+struct dSv_event_tmp_flag_c {
+    static u8 const tempBitLabels[370 + 2 /* padding */];
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -80,6 +93,10 @@ struct dRes_info_c {};
 
 struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -195,7 +212,9 @@ extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" void __sinit_d_a_obj_master_sword_cpp();
 extern "C" static void func_80C91924();
 extern "C" static void func_80C9192C();
+extern "C" f32 const mAttr__18daObjMasterSword_c;
 extern "C" extern char const* const d_a_obj_master_sword__stringBase0;
+extern "C" u8 ActionTable__18daObjMasterSword_c[24];
 
 //
 // External References:
@@ -261,18 +280,18 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
+extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u8 data_80C91AD0[4];
@@ -315,8 +334,8 @@ asm void daObjMasterSword_c::createHeapCallBack(fopAc_ac_c* param_0) {
 
 /* ############################################################################################## */
 /* 80C91940-80C91944 000000 0004+00 2/2 0/0 0/0 .rodata          mAttr__18daObjMasterSword_c */
-SECTION_RODATA static f32 const mAttr__18daObjMasterSword_c = 1.0f;
-COMPILER_STRIP_GATE(80C91940, &mAttr__18daObjMasterSword_c);
+SECTION_RODATA f32 const daObjMasterSword_c::mAttr = 1.0f;
+COMPILER_STRIP_GATE(80C91940, &daObjMasterSword_c::mAttr);
 
 /* 80C91944-80C91950 000004 000C+00 0/1 0/0 0/0 .rodata          @3710 */
 #pragma push
@@ -396,7 +415,7 @@ SECTION_DATA static void* lit_3656[3] = {
 
 /* 80C919B8-80C919D0 00003C 0018+00 1/2 0/0 0/0 .data            ActionTable__18daObjMasterSword_c
  */
-SECTION_DATA static u8 ActionTable__18daObjMasterSword_c[24] = {
+SECTION_DATA u8 daObjMasterSword_c::ActionTable[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };

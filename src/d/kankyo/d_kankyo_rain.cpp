@@ -11,6 +11,14 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
+struct mDoGph_gInf_c {
+    static u8 mFrameBufferTimg[4];
+};
+
 struct daPy_py_c {
     /* 8006F160 */ bool getKandelaarFlamePos();
     /* 8015F424 */ void checkNowWolfEyeUp();
@@ -36,16 +44,16 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
-struct dKy_tevstr_c {};
-
 struct Vec {};
 
 struct cXyz {
     /* 80009184 */ ~cXyz();
     /* 80266AE4 */ void operator+(Vec const&) const;
 };
+
+struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct csXyz {
     /* 80018BD0 */ ~csXyz();
@@ -66,6 +74,10 @@ struct dEvent_manager_c {
 
 struct dDlst_peekZ_c {
     /* 80056018 */ void newData(s16, s16, u32*);
+};
+
+struct dDemo_c {
+    static u8 m_mode[4];
 };
 
 struct dComIfG_play_c {
@@ -135,8 +147,16 @@ struct ResTIMG {};
 
 struct LIGHT_INFLUENCE {};
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DSys {
     /* 8031073C */ void reinitGX();
+};
+
+struct J3DShape {
+    static u8 sOldVcdVatCmd[4];
 };
 
 struct DOUBLE_POS {};
@@ -350,18 +370,18 @@ extern "C" extern void* __vt__19dKankyo_star_Packet[5];
 extern "C" extern void* __vt__19dKankyo_snow_Packet[5];
 extern "C" extern void* __vt__18dBgS_ObjGndChk_All[12];
 extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_mEnvSeMgr[780];
 extern "C" extern u8 g_Counter[12 + 4 /* padding */];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
+extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_mode__7dDemo_c[4];
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
+extern "C" u8 m_mode__7dDemo_c[4];
+extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 
 //
 // Declarations:

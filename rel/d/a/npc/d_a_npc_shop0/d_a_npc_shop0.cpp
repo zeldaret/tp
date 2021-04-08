@@ -13,9 +13,13 @@
 
 struct request_of_phase_process_class {};
 
-struct J3DAnmTransform {};
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
 
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -55,10 +59,14 @@ struct daNpc_Shop0_c {
     /* 80AEB824 */ void setProcess(int (daNpc_Shop0_c::*)(void*), void*, int);
     /* 80AEB920 */ void wait(void*);
     /* 80AEB9BC */ void talk(void*);
+
+    static u8 const mCylDat[68];
 };
 
 struct daNpc_Shop0_Param_c {
     /* 80AEBB14 */ ~daNpc_Shop0_Param_c();
+
+    static u8 const mParam[12];
 };
 
 struct dSv_info_c {
@@ -86,16 +94,18 @@ struct dEvent_manager_c {
     /* 800487F0 */ void ChkPresentEnd();
 };
 
+struct _GXTexObj {};
+
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
 
-struct _GXTexObj {};
-
 struct dDlst_shadowControl_c {
     /* 80055F84 */ void setSimple(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
+
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -252,6 +262,8 @@ extern "C" static void func_80AEBBAC();
 extern "C" static void func_80AEBBB4();
 extern "C" static void func_80AEBBBC();
 extern "C" static void func_80AEBBC4();
+extern "C" u8 const mCylDat__13daNpc_Shop0_c[68];
+extern "C" u8 const mParam__19daNpc_Shop0_Param_c[12];
 extern "C" extern char const* const d_a_npc_shop0__stringBase0;
 
 //
@@ -325,9 +337,9 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 struct_80450D64[4];
 
 //
@@ -589,22 +601,22 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 
 /* ############################################################################################## */
 /* 80AEBBD4-80AEBC18 000000 0044+00 2/2 0/0 0/0 .rodata          mCylDat__13daNpc_Shop0_c */
-SECTION_RODATA static u8 const mCylDat__13daNpc_Shop0_c[68] = {
+SECTION_RODATA u8 const daNpc_Shop0_c::mCylDat[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AEBBD4, &mCylDat__13daNpc_Shop0_c);
+COMPILER_STRIP_GATE(80AEBBD4, &daNpc_Shop0_c::mCylDat);
 
 /* 80AEBC18-80AEBC24 000044 000C+00 0/0 0/0 0/0 .rodata          mParam__19daNpc_Shop0_Param_c */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const mParam__19daNpc_Shop0_Param_c[12] = {
+SECTION_RODATA u8 const daNpc_Shop0_Param_c::mParam[12] = {
     0x44, 0x48, 0x00, 0x00, 0x44, 0x48, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AEBC18, &mParam__19daNpc_Shop0_Param_c);
+COMPILER_STRIP_GATE(80AEBC18, &daNpc_Shop0_Param_c::mParam);
 #pragma pop
 
 /* 80AEBC24-80AEBC28 000050 0004+00 2/3 0/0 0/0 .rodata          @4004 */

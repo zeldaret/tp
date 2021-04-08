@@ -42,14 +42,14 @@ SYMBOLS = [
 	{'addr':0x80D5F1A0,'size':32,'pad':0,'label':"daTagRetRm_Delete__FP12daTagRetRm_c",'name':"daTagRetRm_Delete__FP12daTagRetRm_c",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
 	{'addr':0x80D5F1C0,'size':32,'pad':0,'label':"daTagRetRm_execute__FP12daTagRetRm_c",'name':"daTagRetRm_execute__FP12daTagRetRm_c",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
 	{'addr':0x80D5F1E0,'size':32,'pad':0,'label':"daTagRetRm_draw__FP12daTagRetRm_c",'name':"daTagRetRm_draw__FP12daTagRetRm_c",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
-	{'addr':0x80D5F200,'size':4,'pad':0,'label':"_ctors",'name':"_ctors",'lib':-1,'tu':1,'section':1,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
-	{'addr':0x80D5F204,'size':4,'pad':0,'label':"_dtors",'name':"_dtors",'lib':-1,'tu':2,'section':2,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
-	{'addr':0x80D5F208,'size':4,'pad':0,'label':"lit_3682",'name':"@3682",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"FloatingPoint"},
-	{'addr':0x80D5F20C,'size':4,'pad':0,'label':"lit_3683",'name':"@3683",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"FloatingPoint"},
-	{'addr':0x80D5F210,'size':4,'pad':0,'label':"lit_3718",'name':"@3718",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
-	{'addr':0x80D5F214,'size':32,'pad':0,'label':"daTagRetRm_METHODS",'name':"daTagRetRm_METHODS",'lib':-1,'tu':3,'section':4,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
-	{'addr':0x80D5F234,'size':48,'pad':0,'label':"g_profile_Tag_RetRoom",'name':"g_profile_Tag_RetRoom",'lib':-1,'tu':3,'section':4,'class_template':False,'static':False,'is_reachable':False,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
-	{'addr':0x80D5F264,'size':12,'pad':0,'label':"__vt__12daTagRetRm_c",'name':"__vt__12daTagRetRm_c",'lib':-1,'tu':3,'section':4,'class_template':False,'static':False,'is_reachable':False,'r':[2,0,0],'sh':[0,0,0],'type':"VirtualTable"},
+	{'addr':0x80D5F200,'size':4,'pad':0,'label':"_ctors",'name':"_ctors",'lib':-1,'tu':1,'section':1,'class_template':None,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
+	{'addr':0x80D5F204,'size':4,'pad':0,'label':"_dtors",'name':"_dtors",'lib':-1,'tu':2,'section':2,'class_template':None,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
+	{'addr':0x80D5F208,'size':4,'pad':0,'label':"lit_3682",'name':"@3682",'lib':-1,'tu':3,'section':3,'class_template':None,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"FloatingPoint"},
+	{'addr':0x80D5F20C,'size':4,'pad':0,'label':"lit_3683",'name':"@3683",'lib':-1,'tu':3,'section':3,'class_template':None,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"FloatingPoint"},
+	{'addr':0x80D5F210,'size':4,'pad':0,'label':"lit_3718",'name':"@3718",'lib':-1,'tu':3,'section':3,'class_template':None,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ArbitraryData"},
+	{'addr':0x80D5F214,'size':32,'pad':0,'label':"daTagRetRm_METHODS",'name':"daTagRetRm_METHODS",'lib':-1,'tu':3,'section':4,'class_template':None,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80D5F234,'size':48,'pad':0,'label':"g_profile_Tag_RetRoom",'name':"g_profile_Tag_RetRoom",'lib':-1,'tu':3,'section':4,'class_template':None,'static':False,'is_reachable':False,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80D5F264,'size':12,'pad':0,'label':"__vt__12daTagRetRm_c",'name':"__vt__12daTagRetRm_c",'lib':-1,'tu':3,'section':4,'class_template':None,'static':False,'is_reachable':False,'r':[2,0,0],'sh':[0,0,0],'type':"VirtualTable"},
 ]
 
 # Names

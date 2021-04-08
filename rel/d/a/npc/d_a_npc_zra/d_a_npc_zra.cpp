@@ -13,6 +13,12 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {
+    /* 80B7EF80 */ csXyz();
+    /* 802673F4 */ csXyz(s16, s16, s16);
+    /* 80B7EF44 */ ~csXyz();
+};
+
 struct Vec {};
 
 struct cXyz {
@@ -20,12 +26,6 @@ struct cXyz {
     /* 80266EF4 */ void normalize();
     /* 80B78730 */ ~cXyz();
     /* 80B7EF84 */ cXyz();
-};
-
-struct csXyz {
-    /* 80B7EF80 */ csXyz();
-    /* 802673F4 */ csXyz(s16, s16, s16);
-    /* 80B7EF44 */ ~csXyz();
 };
 
 struct mDoMtx_stack_c {
@@ -36,19 +36,21 @@ struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF0C */ void ZXYrotS(csXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct mDoExt_morf_c {
     /* 8000FB7C */ void setMorf(f32);
 };
 
-struct J3DAnmTevRegKey {};
-
 struct J3DAnmColor {};
 
 struct J3DAnmTexPattern {
     /* 8032AF50 */ void getTexNo(u16, u16*) const;
 };
+
+struct J3DAnmTevRegKey {};
 
 struct J3DAnmTextureSRTKey {};
 
@@ -87,17 +89,17 @@ struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
+
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
-
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -222,6 +224,9 @@ struct daNpc_zrA_c {
     /* 80B8B530 */ void ECut_searchPrince1(int);
     /* 80B8BCE8 */ void ECut_searchPrince2(int);
     /* 80B8C3E8 */ void adjustShapeAngle();
+
+    static void* mEvtCutNameList[11];
+    static u8 mEvtCutList[132];
 };
 
 struct daNpc_zrA_Path_c {
@@ -237,6 +242,8 @@ struct daNpc_zrA_Path_c {
 
 struct daNpc_zrA_Param_c {
     /* 80B8C3EC */ ~daNpc_zrA_Param_c();
+
+    static u8 const m[176];
 };
 
 struct daNpc_Hoz_c {
@@ -288,6 +295,8 @@ struct daNpcF_c {
     /* 80B7F0E8 */ ~daNpcF_c();
     /* 80B7F334 */ daNpcF_c();
     /* 80B7F660 */ void setCollisions();
+
+    static u8 mCcDCyl[68];
 };
 
 struct dPath {};
@@ -357,14 +366,14 @@ struct dRes_control_c {
 
 struct dPnt {};
 
-struct dBgS {};
-
 struct dBgS_AcchCir {
     /* 80075EAC */ dBgS_AcchCir();
     /* 80075F40 */ void SetWallR(f32);
     /* 80075F58 */ void SetWall(f32, f32);
     /* 80B7F524 */ ~dBgS_AcchCir();
 };
+
+struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -411,6 +420,8 @@ struct dEvent_manager_c {
 
 struct dDlst_shadowControl_c {
     /* 80055F1C */ void addReal(u32, J3DModel*);
+
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -492,6 +503,14 @@ struct Z2SeqMgr {
     /* 802AF884 */ void subBgmStop();
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DTexNoAnm {
     /* 80B7A408 */ ~J3DTexNoAnm();
     /* 80B7A450 */ J3DTexNoAnm();
@@ -511,6 +530,10 @@ struct J3DTevKColorAnm {
 struct J3DTevColorAnm {
     /* 80B7A3B4 */ ~J3DTevColorAnm();
     /* 80B7A3F0 */ J3DTevColorAnm();
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
 };
 
 struct J3DMaterialAnm {
@@ -687,7 +710,10 @@ extern "C" void adjustShapeAngle__11daNpc_zrA_cFv();
 extern "C" void __dt__17daNpc_zrA_Param_cFv();
 extern "C" static void func_80B8C434();
 extern "C" static void func_80B8C43C();
+extern "C" u8 const m__17daNpc_zrA_Param_c[176];
 extern "C" extern char const* const d_a_npc_zra__stringBase0;
+extern "C" void* mEvtCutNameList__11daNpc_zrA_c[11];
+extern "C" u8 mEvtCutList__11daNpc_zrA_c[132];
 
 //
 // External References:
@@ -921,24 +947,24 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcF_c[68];
+extern "C" u8 mCcDCyl__8daNpcF_c[68];
 extern "C" extern void* __vt__8daNpcF_c[18];
 extern "C" extern void* __vt__15daNpcF_MatAnm_c[4 + 6 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void getType__11daNpc_Hoz_cFv();
 extern "C" void __register_global_object();
 extern "C" void entryPointer__14daObjZraMark_cFP10fopAc_ac_c();
@@ -949,7 +975,7 @@ extern "C" void entryPointer__14daObjZraMark_cFP10fopAc_ac_c();
 
 /* ############################################################################################## */
 /* 80B8C458-80B8C508 000000 00B0+00 56/56 0/0 0/0 .rodata          m__17daNpc_zrA_Param_c */
-SECTION_RODATA static u8 const m__17daNpc_zrA_Param_c[176] = {
+SECTION_RODATA u8 const daNpc_zrA_Param_c::m[176] = {
     0x43, 0x66, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x44, 0x48, 0x00, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x43, 0x66, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
     0x41, 0xF0, 0x00, 0x00, 0xC1, 0xA0, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0xC1, 0xF0, 0x00, 0x00,
@@ -962,7 +988,7 @@ SECTION_RODATA static u8 const m__17daNpc_zrA_Param_c[176] = {
     0x41, 0xA0, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x08, 0x00, 0x00, 0x02, 0x40, 0xC0, 0x00, 0x00,
     0x43, 0x0C, 0x00, 0x00, 0x43, 0xAF, 0x00, 0x00, 0x45, 0x9C, 0x40, 0x00, 0x45, 0x3B, 0x80, 0x00,
 };
-COMPILER_STRIP_GATE(80B8C458, &m__17daNpc_zrA_Param_c);
+COMPILER_STRIP_GATE(80B8C458, &daNpc_zrA_Param_c::m);
 
 /* 80B8C508-80B8C510 0000B0 0004+04 9/48 0/0 0/0 .rodata          @3939 */
 SECTION_RODATA static u8 const lit_3939[4 + 4 /* padding */] = {
@@ -1324,7 +1350,7 @@ SECTION_DATA static void* l_myName[4] = {
 /* 80B8D33C-80B8D368 -00001 002C+00 0/1 0/0 0/0 .data            mEvtCutNameList__11daNpc_zrA_c */
 #pragma push
 #pragma force_active on
-SECTION_DATA static void* mEvtCutNameList__11daNpc_zrA_c[11] = {
+SECTION_DATA void* daNpc_zrA_c::mEvtCutNameList[11] = {
     (void*)(((char*)&d_a_npc_zra__stringBase0) + 0x128),
     (void*)&d_a_npc_zra__stringBase0,
     (void*)(((char*)&d_a_npc_zra__stringBase0) + 0xA),
@@ -1442,7 +1468,7 @@ SECTION_DATA static void* lit_4451[3] = {
 /* 80B8D3E0-80B8D464 000550 0084+00 0/2 0/0 0/0 .data            mEvtCutList__11daNpc_zrA_c */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 mEvtCutList__11daNpc_zrA_c[132] = {
+SECTION_DATA u8 daNpc_zrA_c::mEvtCutList[132] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

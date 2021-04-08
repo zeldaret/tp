@@ -13,6 +13,15 @@
 
 struct process_priority_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
+struct mDoLib_clipper {
+    static u8 mClipper[92];
+    static f32 mSystemFar;
+};
+
 struct layer_class {};
 
 struct l_HIO {
@@ -27,26 +36,42 @@ struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80266F48 */ void normalizeZP();
     /* 80267128 */ void atan2sX_Z() const;
+
+    static f32 Zero[3];
+    static u8 BaseY[12];
 };
 
 struct fopAcM_wt_c {
     /* 8001DD84 */ void waterCheck(cXyz const*);
+
+    static u8 mWaterCheck[84 + 4 /* padding */];
+    static f32 mWaterY[1 + 1 /* padding */];
 };
 
 struct fopAcM_rc_c {
     /* 8001DD1C */ void roofCheck(cXyz const*);
+
+    static u8 mRoofCheck[80];
+    static f32 mRoofY;
 };
 
 struct fopAcM_lc_c {
     /* 8001DC68 */ void lineCheck(cXyz const*, cXyz const*, fopAc_ac_c const*);
+
+    static u8 mLineCheck[112];
 };
 
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
+
+    static u8 mGndCheck[84];
+    static f32 mGroundY;
 };
 
 struct daTagStream_c {
     /* 800318B4 */ void checkArea(cXyz const*);
+
+    static u8 m_top[4];
 };
 
 struct daPy_py_c {
@@ -61,16 +86,23 @@ struct dSv_info_c {
     /* 80035644 */ void onActor(int, int);
 };
 
+struct dStage_roomControl_c {
+    static u8 mStatus[65792];
+    static u8 mProcID[4];
+};
+
 struct dPa_levelEcallBack {};
-
-struct _GXColor {};
-
-struct cBgS_PolyInfo {};
 
 struct dKy_tevstr_c {};
 
+struct cBgS_PolyInfo {};
+
+struct _GXColor {};
+
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
+
+    static u8 Zero[4];
 };
 
 struct dPa_control_c {
@@ -97,6 +129,10 @@ struct dEvent_manager_c {
     /* 80047698 */ void getEventIdx(fopAc_ac_c*, u8);
     /* 80047758 */ void getEventIdx(fopAc_ac_c*, char const*, u8);
     /* 800481F4 */ void getEventPrio(fopAc_ac_c*, s16);
+};
+
+struct dEnemyItem_c {
+    static u8 mData[4 + 4 /* padding */];
 };
 
 struct dBgS_WtrChk {
@@ -167,6 +203,10 @@ struct cBgS {
     /* 800744A0 */ void GroundCross(cBgS_GndChk*);
     /* 80074660 */ void ChkPolySafe(cBgS_PolyInfo const&);
     /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct JKRSolidHeap {};
@@ -317,6 +357,13 @@ extern "C" bool checkFrontRoll__9daPy_py_cCFv();
 extern "C" bool checkHorseRide__9daPy_py_cCFv();
 extern "C" s32 getGrabActorID__9daPy_py_cCFv();
 extern "C" extern char const* const f_op_f_op_actor_mng__stringBase0;
+extern "C" u8 mLineCheck__11fopAcM_lc_c[112];
+extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
+extern "C" u8 mRoofCheck__11fopAcM_rc_c[80];
+extern "C" u8 mWaterCheck__11fopAcM_wt_c[84 + 4 /* padding */];
+extern "C" f32 mGroundY__11fopAcM_gc_c;
+extern "C" f32 mRoofY__11fopAcM_rc_c;
+extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
 
 //
 // External References:
@@ -432,23 +479,23 @@ extern "C" void strchr();
 extern "C" void strcmp();
 extern "C" void strcpy();
 extern "C" void sqrt();
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mClipper__14mDoLib_clipper[92];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mClipper__14mDoLib_clipper[92];
+extern "C" u8 mStatus__20dStage_roomControl_c[65792];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 BaseY__4cXyz[12];
+extern "C" f32 Zero__4cXyz[3];
+extern "C" u8 BaseY__4cXyz[12];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" extern u32 __float_nan;
-extern "C" extern f32 mSystemFar__14mDoLib_clipper;
+extern "C" f32 mSystemFar__14mDoLib_clipper;
 extern "C" extern u8 g_fpcNd_type[4 + 4 /* padding */];
-extern "C" extern u8 mProcID__20dStage_roomControl_c[4];
+extern "C" u8 mProcID__20dStage_roomControl_c[4];
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_top__13daTagStream_c[4];
-extern "C" extern u8 mData__12dEnemyItem_c[4 + 4 /* padding */];
-extern "C" extern u8 Zero__5csXyz[4];
+extern "C" u8 m_top__13daTagStream_c[4];
+extern "C" u8 mData__12dEnemyItem_c[4 + 4 /* padding */];
+extern "C" u8 Zero__5csXyz[4];
 extern "C" extern u8 data_80451164[4];
 
 //
@@ -1527,8 +1574,7 @@ static u8 lit_6481[12];
 #pragma pop
 
 /* 803F1C48-803F1CB8 01E968 0070+00 1/2 4/4 9/9 .bss             mLineCheck__11fopAcM_lc_c */
-extern u8 mLineCheck__11fopAcM_lc_c[112];
-u8 mLineCheck__11fopAcM_lc_c[112];
+u8 fopAcM_lc_c::mLineCheck[112];
 
 /* 803F1CB8-803F1CC4 01E9D8 000C+00 0/1 0/0 0/0 .bss             @6503 */
 #pragma push
@@ -1537,15 +1583,13 @@ static u8 lit_6503[12];
 #pragma pop
 
 /* 803F1CC4-803F1D18 01E9E4 0054+00 2/3 6/6 26/26 .bss             mGndCheck__11fopAcM_gc_c */
-extern u8 mGndCheck__11fopAcM_gc_c[84];
-u8 mGndCheck__11fopAcM_gc_c[84];
+u8 fopAcM_gc_c::mGndCheck[84];
 
 /* 80450CCC-80450CD0 0001CC 0001+03 1/1 0/0 0/0 .sbss            l_hio */
 static u8 l_hio[1 + 3 /* padding */];
 
 /* 80450CD0-80450CD4 0001D0 0004+00 2/2 7/7 103/103 .sbss            mGroundY__11fopAcM_gc_c */
-extern f32 mGroundY__11fopAcM_gc_c;
-f32 mGroundY__11fopAcM_gc_c;
+f32 fopAcM_gc_c::mGroundY;
 
 /* 8001D020-8001D10C 017960 00EC+00 0/0 0/0 96/96 .text
  * fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci */
@@ -1699,8 +1743,7 @@ static u8 lit_6509[12];
 #pragma pop
 
 /* 803F1D24-803F1D74 01EA44 0050+00 1/2 1/1 1/1 .bss             mRoofCheck__11fopAcM_rc_c */
-extern u8 mRoofCheck__11fopAcM_rc_c[80];
-u8 mRoofCheck__11fopAcM_rc_c[80];
+u8 fopAcM_rc_c::mRoofCheck[80];
 
 /* 803F1D74-803F1D80 01EA94 000C+00 0/1 0/0 0/0 .bss             @6519 */
 #pragma push
@@ -1709,16 +1752,13 @@ static u8 lit_6519[12];
 #pragma pop
 
 /* 803F1D80-803F1DD8 01EAA0 0054+04 2/3 3/3 4/4 .bss             mWaterCheck__11fopAcM_wt_c */
-extern u8 mWaterCheck__11fopAcM_wt_c[84 + 4 /* padding */];
-u8 mWaterCheck__11fopAcM_wt_c[84 + 4 /* padding */];
+u8 fopAcM_wt_c::mWaterCheck[84 + 4 /* padding */];
 
 /* 80450CD4-80450CD8 0001D4 0004+00 1/1 0/0 3/3 .sbss            mRoofY__11fopAcM_rc_c */
-extern f32 mRoofY__11fopAcM_rc_c;
-f32 mRoofY__11fopAcM_rc_c;
+f32 fopAcM_rc_c::mRoofY;
 
 /* 80450CD8-80450CE0 0001D8 0004+04 2/2 4/4 19/19 .sbss            mWaterY__11fopAcM_wt_c */
-extern f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
-f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
+f32 fopAcM_wt_c::mWaterY[1 + 1 /* padding */];
 
 /* 80451C58-80451C5C 000258 0004+00 2/2 0/0 0/0 .sdata2          @6353 */
 SECTION_SDATA2 static f32 lit_6353 = -1000000000.0f;

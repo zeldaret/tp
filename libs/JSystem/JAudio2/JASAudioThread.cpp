@@ -11,7 +11,10 @@
 // Types:
 //
 
-struct JKRHeap {};
+struct JKRHeap {
+    static u8 sSystemHeap[4];
+    static u8 sCurrentHeap[4];
+};
 
 struct JKRThread {
     /* 802D1610 */ JKRThread(JKRHeap*, u32, int, int);
@@ -63,6 +66,8 @@ struct JASAudioThread {
     /* 8029CF68 */ void DMACallback();
     /* 8029CFBC */ void DSPCallback(void*);
     /* 8029D028 */ ~JASAudioThread();
+
+    static u8 snIntCount[4 + 4 /* padding */];
 };
 
 //
@@ -77,6 +82,7 @@ extern "C" void DMACallback__14JASAudioThreadFv();
 extern "C" void DSPCallback__14JASAudioThreadFPv();
 extern "C" void __dt__14JASAudioThreadFv();
 extern "C" extern char const* const JASAudioThread__stringBase0;
+extern "C" u8 snIntCount__14JASAudioThread[4 + 4 /* padding */];
 
 //
 // External References:
@@ -118,8 +124,8 @@ extern "C" extern u8 data_80431B34[16 + 4 /* padding */];
 extern "C" extern u8 data_80450B8C[4];
 extern "C" extern u8 JASDram[4];
 extern "C" extern u8 struct_80451260[8];
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sCurrentHeap__7JKRHeap[4];
 
 //
 // Declarations:
@@ -169,8 +175,7 @@ asm void JASAudioThread::stop() {
 static u8 lit_205[12 + 4 /* padding */];
 
 /* 804512D8-804512E0 0007D8 0004+04 1/1 2/2 0/0 .sbss            snIntCount__14JASAudioThread */
-extern u8 snIntCount__14JASAudioThread[4 + 4 /* padding */];
-u8 snIntCount__14JASAudioThread[4 + 4 /* padding */];
+u8 JASAudioThread::snIntCount[4 + 4 /* padding */];
 
 /* 8029CDEC-8029CF68 29772C 017C+00 1/0 0/0 0/0 .text            run__14JASAudioThreadFv */
 #pragma push

@@ -19,7 +19,9 @@ struct JUTFont {
     /* 802DEDC4 */ void setGradColor(JUtility::TColor, JUtility::TColor);
 };
 
-struct JKRHeap {};
+struct JKRHeap {
+    static u8 sSystemHeap[4];
+};
 
 struct J2DTextBoxVBinding {};
 
@@ -45,6 +47,9 @@ struct J2DPrint {
     /* 802F594C */ void initchar();
     /* 802F59C0 */ void getNumberS32(u8 const**, s32, s32, int);
     /* 802F5AC4 */ void getNumberF32(u8 const**, f32, f32, int);
+
+    static u8 mStrBuff[4];
+    static u8 mStrBuffSize[4];
 };
 
 //
@@ -68,6 +73,8 @@ extern "C" void doEscapeCode__8J2DPrintFPPCUcUc();
 extern "C" void initchar__8J2DPrintFv();
 extern "C" void getNumberS32__8J2DPrintFPPCUclli();
 extern "C" void getNumberF32__8J2DPrintFPPCUcffi();
+extern "C" u8 mStrBuff__8J2DPrint[4];
+extern "C" u8 mStrBuffSize__8J2DPrint[4];
 
 //
 // External References:
@@ -90,7 +97,7 @@ extern "C" void vsnprintf();
 extern "C" void strlen();
 extern "C" void strtol();
 extern "C" void strtoul();
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
 
 //
 // Declarations:
@@ -98,13 +105,13 @@ extern "C" extern u8 sSystemHeap__7JKRHeap[4];
 
 /* ############################################################################################## */
 /* 80451580-80451584 000A80 0004+00 3/3 0/0 0/0 .sbss            mStrBuff__8J2DPrint */
-static u8 mStrBuff__8J2DPrint[4];
+u8 J2DPrint::mStrBuff[4];
 
 /* 80451584-80451588 000A84 0004+00 1/1 0/0 0/0 .sbss            None */
 static u8 data_80451584[4];
 
 /* 80451588-8045158C 000A88 0004+00 3/3 0/0 0/0 .sbss            mStrBuffSize__8J2DPrint */
-static u8 mStrBuffSize__8J2DPrint[4];
+u8 J2DPrint::mStrBuffSize[4];
 
 /* 8045158C-80451590 000A8C 0004+00 2/2 0/0 0/0 .sbss            None */
 static u8 data_8045158C[4];

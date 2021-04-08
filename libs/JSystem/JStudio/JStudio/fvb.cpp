@@ -57,6 +57,8 @@ struct data {
 
         /* 802850AC */ void getData(JStudio::fvb::data::TParse_TParagraph::TData*) const;
     };
+
+    static f32 ga4cSignature[1 + 1 /* padding */];
 };
 
 struct TObject;
@@ -312,7 +314,7 @@ extern "C" extern void* __vt__Q27JStudio19TFunctionValue_list[8];
 extern "C" extern void* __vt__Q27JStudio25TFunctionValue_transition[8];
 extern "C" extern void* __vt__Q27JStudio23TFunctionValue_constant[8];
 extern "C" extern void* __vt__Q27JStudio24TFunctionValue_composite[8];
-extern "C" extern f32 ga4cSignature__Q37JStudio3fvb4data[1 + 1 /* padding */];
+extern "C" f32 ga4cSignature__Q37JStudio3fvb4data[1 + 1 /* padding */];
 
 //
 // Declarations:

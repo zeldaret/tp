@@ -13,6 +13,14 @@
 
 struct Vec {};
 
+struct JStage {
+    struct TSystem {};
+
+    struct TCamera {};
+
+    struct TObject {};
+};
+
 namespace JStudio {
 struct data {
     struct TEOperationData {};
@@ -34,21 +42,18 @@ struct TVariableValue {
 
     /* 80285EB8 */ void update_immediate_(JStudio::TVariableValue*, f64);
     /* 8028B568 */ TVariableValue();
+
+    static u8 soOutput_none_[4 + 4 /* padding */];
 };
 
 struct TAdaptor_camera {
     /* 80286E1C */ ~TAdaptor_camera();
+
+    static u8 const sauVariableValue_3_POSITION_XYZ[12];
+    static u8 const sauVariableValue_3_TARGET_POSITION_XYZ[12];
 };
 
 };  // namespace JStudio
-
-struct JStage {
-    struct TSystem {};
-
-    struct TCamera {};
-
-    struct TObject {};
-};
 
 struct JStudio_JStage {
     struct TAdaptor_camera {
@@ -76,6 +81,8 @@ struct JStudio_JStage {
         /* 8028BEB8 */ void getJSG_position_(JStudio::TControl const*);
         /* 8028BFBC */ void setJSG_targetPosition_(JStudio::TControl const*);
         /* 8028C09C */ void getJSG_targetPosition_(JStudio::TControl const*);
+
+        static u8 saoVVOutput_[160 + 4 /* padding */];
     };
 
     template <typename A1, typename B1>
@@ -132,6 +139,7 @@ extern "C" void getJSG_targetPosition___Q214JStudio_JStage15TAdaptor_cameraFPCQ2
 extern "C" void func_8028C180();
 extern "C" void func_8028C4E4();
 extern "C" void func_8028C544(f32, JStudio::TAdaptor*);
+extern "C" u8 saoVVOutput___Q214JStudio_JStage15TAdaptor_camera[160 + 4 /* padding */];
 
 //
 // External References:
@@ -160,13 +168,13 @@ extern "C" void _savegpr_27();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
-extern "C" extern u8 const sauVariableValue_3_POSITION_XYZ__Q27JStudio15TAdaptor_camera[12];
-extern "C" extern u8 const sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera[12];
+extern "C" u8 const sauVariableValue_3_POSITION_XYZ__Q27JStudio15TAdaptor_camera[12];
+extern "C" u8 const sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera[12];
 extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
 extern "C" extern void* __vt__Q27JStudio15TAdaptor_camera[15];
 extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];
 extern "C" extern void* __vt__Q37JStudio14TVariableValue7TOutput[4];
-extern "C" extern u8 soOutput_none___Q27JStudio14TVariableValue[4 + 4 /* padding */];
+extern "C" u8 soOutput_none___Q27JStudio14TVariableValue[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -329,7 +337,7 @@ static u8 lit_1034[12];
 
 /* 804312D4-80431378 05DFF4 00A0+04 2/3 0/0 0/0 .bss
  * saoVVOutput___Q214JStudio_JStage15TAdaptor_camera            */
-static u8 saoVVOutput___Q214JStudio_JStage15TAdaptor_camera[160 + 4 /* padding */];
+u8 JStudio_JStage::TAdaptor_camera::saoVVOutput_[160 + 4 /* padding */];
 
 /* 8028B9D4-8028BA1C 286314 0048+00 1/0 0/0 0/0 .text
  * adaptor_do_prepare__Q214JStudio_JStage15TAdaptor_cameraFv    */

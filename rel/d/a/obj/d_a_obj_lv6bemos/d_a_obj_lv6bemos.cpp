@@ -19,6 +19,8 @@ struct mDoMtx_stack_c {
     /* 8000CCC8 */ void push();
     /* 8000CD14 */ void pop();
     /* 8000CD64 */ void transS(cXyz const&);
+
+    static u8 now[48];
 };
 
 struct J3DAnmTextureSRTKey {};
@@ -32,9 +34,9 @@ struct mDoExt_btkAnm {
     /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -96,6 +98,8 @@ struct _GXTexObj {};
 
 struct dDlst_shadowControl_c {
     /* 80055F84 */ void setSimple(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
+
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -191,6 +195,10 @@ struct cBgS {
 };
 
 struct Vec {};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
+};
 
 struct J3DModel {};
 
@@ -320,12 +328,12 @@ extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__12cCcD_CpsAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 data_80C7E138[4];
 

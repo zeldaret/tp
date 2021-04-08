@@ -40,10 +40,16 @@ struct TVariableValue {
 
     /* 80285EB8 */ void update_immediate_(JStudio::TVariableValue*, f64);
     /* 8028B568 */ TVariableValue();
+
+    static u8 soOutput_none_[4 + 4 /* padding */];
 };
 
 struct TAdaptor_light {
     /* 80287308 */ ~TAdaptor_light();
+
+    static u8 const sauVariableValue_4_COLOR_RGBA[16];
+    static u8 const sauVariableValue_3_POSITION_XYZ[12];
+    static u8 const sauVariableValue_3_TARGET_POSITION_XYZ[12];
 };
 
 };  // namespace JStudio
@@ -64,6 +70,8 @@ struct JStudio_JStage {
         /* 8028D18C */ void adaptor_do_data(void const*, u32, void const*, u32);
         /* 8028D1B0 */ void adaptor_do_FACULTY(JStudio::data::TEOperationData, void const*, u32);
         /* 8028D228 */ void adaptor_do_ENABLE(JStudio::data::TEOperationData, void const*, u32);
+
+        static u8 saoVVOutput_direction_[72];
     };
 
     struct TAdaptor_object_ {
@@ -92,6 +100,7 @@ extern "C" void
 __cl__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_CFfPQ27JStudio8TAdaptor();
 extern "C" void __dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv();
 extern "C" void func_8028D2B8();
+extern "C" u8 saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light[72];
 
 //
 // External References:
@@ -120,14 +129,14 @@ extern "C" void _restgpr_29();
 extern "C" void cos();
 extern "C" void sin();
 extern "C" void atan2();
-extern "C" extern u8 const sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light[16];
-extern "C" extern u8 const sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light[12];
-extern "C" extern u8 const sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light[12];
+extern "C" u8 const sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light[16];
+extern "C" u8 const sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light[12];
+extern "C" u8 const sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light[12];
 extern "C" extern void* __vt__Q27JStudio14TAdaptor_light[10];
 extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];
 extern "C" extern void* __vt__Q37JStudio14TVariableValue7TOutput[4];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 soOutput_none___Q27JStudio14TVariableValue[4 + 4 /* padding */];
+extern "C" u8 soOutput_none___Q27JStudio14TVariableValue[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -218,7 +227,7 @@ static u8 lit_935[12];
 
 /* 80431448-80431490 05E168 0048+00 1/2 0/0 0/0 .bss
  * saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light   */
-static u8 saoVVOutput_direction___Q214JStudio_JStage14TAdaptor_light[72];
+u8 JStudio_JStage::TAdaptor_light::saoVVOutput_direction_[72];
 
 /* 8028CC68-8028CCB0 2875A8 0048+00 1/0 0/0 0/0 .text
  * adaptor_do_prepare__Q214JStudio_JStage14TAdaptor_lightFv     */

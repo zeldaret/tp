@@ -17,6 +17,8 @@ struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -28,15 +30,15 @@ struct daSetBgObj_c {
     /* 80031870 */ void getArcName(fopAc_ac_c*);
 };
 
+struct FlagJoint_c {
+    /* 80BEC3BC */ ~FlagJoint_c();
+    /* 80BEC4E0 */ FlagJoint_c();
+};
+
 struct csXyz {
     /* 8026745C */ void operator+=(csXyz&);
     /* 80267490 */ void operator-(csXyz&);
     /* 802674E8 */ void operator*(f32);
-};
-
-struct FlagJoint_c {
-    /* 80BEC3BC */ ~FlagJoint_c();
-    /* 80BEC4E0 */ FlagJoint_c();
 };
 
 struct daObjFlag_c {
@@ -47,6 +49,8 @@ struct daObjFlag_c {
     /* 80BEBC58 */ void calcAngleSwingZ(FlagJoint_c*, f32);
     /* 80BEBDAC */ void calcAngleSwingX(FlagJoint_c*, f32);
     /* 80BEBE64 */ void getSwingY(f32);
+
+    static u8 const M_attr[52];
 };
 
 struct dKy_tevstr_c {};
@@ -70,6 +74,18 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
 };
 
 struct J3DModel {};
@@ -96,6 +112,7 @@ extern "C" static void daObjFlag_Delete__FP11daObjFlag_c();
 extern "C" void __dt__11FlagJoint_cFv();
 extern "C" static void daObjFlag_Create__FP10fopAc_ac_c();
 extern "C" void __ct__11FlagJoint_cFv();
+extern "C" u8 const M_attr__11daObjFlag_c[52];
 extern "C" extern char const* const d_a_obj_flag__stringBase0;
 extern "C" extern void* g_profile_Obj_Flag[12];
 
@@ -137,13 +154,13 @@ extern "C" void _restgpr_26();
 extern "C" void sprintf();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -151,13 +168,13 @@ extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 80BEC4EC-80BEC520 000000 0034+00 4/4 0/0 0/0 .rodata          M_attr__11daObjFlag_c */
-SECTION_RODATA static u8 const M_attr__11daObjFlag_c[52] = {
+SECTION_RODATA u8 const daObjFlag_c::M_attr[52] = {
     0x45, 0x7A, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3E, 0x99, 0x99, 0x9A, 0x00,
     0x0F, 0x07, 0xD0, 0x05, 0xDC, 0x0F, 0xA0, 0x07, 0x08, 0x00, 0x00, 0x00, 0x00,
     0x03, 0xE8, 0x01, 0x90, 0x00, 0x00, 0x00, 0x00, 0x01, 0x2C, 0x01, 0x01, 0x00,
     0x00, 0x46, 0x3B, 0x80, 0x00, 0x45, 0x3B, 0x80, 0x00, 0x46, 0x3B, 0x80, 0x00,
 };
-COMPILER_STRIP_GATE(80BEC4EC, &M_attr__11daObjFlag_c);
+COMPILER_STRIP_GATE(80BEC4EC, &daObjFlag_c::M_attr);
 
 /* 80BEC520-80BEC524 000034 0004+00 1/1 0/0 0/0 .rodata          @3637 */
 SECTION_RODATA static f32 const lit_3637 = 65535.0f;

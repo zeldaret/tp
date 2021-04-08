@@ -27,6 +27,8 @@ struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CDD4 */ void transM(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct mDoGph_gInf_c {
@@ -39,17 +41,17 @@ struct mDoExt_bckAnm {
     /* 8000D990 */ void changeBckOnly(J3DAnmTransform*);
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
+
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
-
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -155,13 +157,15 @@ struct daNpcWrestler_c {
     /* 80B40D1C */ bool drawDbgInfo();
     /* 80B40D24 */ void drawOtherMdls();
     /* 80B4166C */ void adjustShapeAngle();
+
+    static u8 mEvtSeqList[84];
 };
 
 struct daNpcWrestler_Param_c {
     /* 80B41670 */ ~daNpcWrestler_Param_c();
-};
 
-struct J3DAnmTransformKey {};
+    static u8 const m[404];
+};
 
 struct J3DAnmTextureSRTKey {};
 
@@ -170,6 +174,8 @@ struct _GXColorS10 {};
 struct J3DAnmTexPattern {
     /* 8032AF50 */ void getTexNo(u16, u16*) const;
 };
+
+struct J3DAnmTransformKey {};
 
 struct daNpcF_c {
     struct daNpcF_anmPlayData {};
@@ -204,6 +210,8 @@ struct daNpcF_c {
     /* 80B4100C */ ~daNpcF_c();
     /* 80B41258 */ daNpcF_c();
     /* 80B415CC */ void setCollisions();
+
+    static u8 mCcDCyl[68];
 };
 
 struct daNpcF_MatAnm_c {
@@ -248,9 +256,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     struct level_c {
@@ -402,6 +410,10 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct JMath {
     template <typename A1, typename B1>
     struct TSinCosTable {};
@@ -409,6 +421,8 @@ struct JMath {
     struct TSinCosTable__template0 {
         /* 80B40D28 */ void func_80B40D28(s16) /* const */;
     };
+
+    static u8 sincosTable_[65536];
 };
 
 struct JGeometry {
@@ -437,6 +451,10 @@ struct J3DTevKColorAnm {
 struct J3DTevColorAnm {
     /* 80B2FC48 */ ~J3DTevColorAnm();
     /* 80B2FC84 */ J3DTevColorAnm();
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
 };
 
 struct J3DMaterialAnm {
@@ -572,7 +590,9 @@ extern "C" void adjustShapeAngle__15daNpcWrestler_cFv();
 extern "C" void __dt__21daNpcWrestler_Param_cFv();
 extern "C" static void func_80B416B8();
 extern "C" static void func_80B416C0();
+extern "C" u8 const m__21daNpcWrestler_Param_c[404];
 extern "C" extern char const* const d_a_npc_wrestler__stringBase0;
+extern "C" u8 mEvtSeqList__15daNpcWrestler_c[84];
 
 //
 // External References:
@@ -769,21 +789,21 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcF_c[68];
+extern "C" u8 mCcDCyl__8daNpcF_c[68];
 extern "C" extern void* __vt__8daNpcF_c[18];
 extern "C" extern void* __vt__15daNpcF_MatAnm_c[4 + 6 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void setTagJump__11daNpc_grA_cFv();
 extern "C" void setHomeJump__11daNpc_grA_cFv();
 extern "C" void getMode1__11daNpc_grA_cFv();
@@ -1093,7 +1113,7 @@ SECTION_DATA static void* lit_3980[3] = {
 /* 80B4266C-80B426C0 000874 0054+00 0/2 0/0 0/0 .data            mEvtSeqList__15daNpcWrestler_c */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 mEvtSeqList__15daNpcWrestler_c[84] = {
+SECTION_DATA u8 daNpcWrestler_c::mEvtSeqList[84] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -2354,7 +2374,7 @@ asm daNpcWrestler_c::~daNpcWrestler_c() {
 
 /* ############################################################################################## */
 /* 80B416DC-80B41870 000000 0194+00 35/35 0/0 0/0 .rodata          m__21daNpcWrestler_Param_c */
-SECTION_RODATA static u8 const m__21daNpcWrestler_Param_c[404] = {
+SECTION_RODATA u8 const daNpcWrestler_Param_c::m[404] = {
     0x43, 0x5C, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xC8, 0x00, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x43, 0x48, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0xC1, 0xF0, 0x00, 0x00,
@@ -2382,7 +2402,7 @@ SECTION_RODATA static u8 const m__21daNpcWrestler_Param_c[404] = {
     0x00, 0x00, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0x42, 0x70, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B416DC, &m__21daNpcWrestler_Param_c);
+COMPILER_STRIP_GATE(80B416DC, &daNpcWrestler_Param_c::m);
 
 /* 80B41870-80B41874 000194 0004+00 0/1 0/0 0/0 .rodata          @4358 */
 #pragma push

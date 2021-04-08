@@ -13,17 +13,19 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
 
-struct csXyz {};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct J3DAnmTextureSRTKey {};
@@ -37,9 +39,9 @@ struct mDoExt_btkAnm {
     /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -81,6 +83,12 @@ struct daSCannonCrs_c {
     /* 80CCAB24 */ void initEmtRt(u16, int, u16 const*, JPABaseEmitter**);
     /* 80CCAC48 */ void exeEmtRt(u16, int, JPABaseEmitter**);
     /* 80CCACD0 */ void callMidnaBeamEmt();
+
+    static u8 s_exeProc[72];
+};
+
+struct daPy_py_c {
+    static u8 m_midnaActor[4];
 };
 
 struct dVibration_c {
@@ -91,6 +99,10 @@ struct dVibration_c {
 
 struct dSv_memBit_c {
     /* 80034810 */ void onSwitch(int);
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -180,6 +192,10 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct JUTNameTab {
     /* 802DEAF8 */ void getName(u16) const;
 };
@@ -233,6 +249,7 @@ extern "C" static void daSCannonCrs_execute__FP14daSCannonCrs_c();
 extern "C" static void daSCannonCrs_draw__FP14daSCannonCrs_c();
 extern "C" void __sinit_d_a_obj_scannon_crs_cpp();
 extern "C" extern char const* const d_a_obj_scannon_crs__stringBase0;
+extern "C" u8 s_exeProc__14daSCannonCrs_c[72];
 
 //
 // External References:
@@ -323,15 +340,15 @@ extern "C" void _restgpr_29();
 extern "C" void strcmp();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 m_midnaActor__9daPy_py_c[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -446,7 +463,7 @@ SECTION_DATA static void* lit_3895[3] = {
 #pragma pop
 
 /* 80CCB1D0-80CCB218 000074 0048+00 1/2 0/0 0/0 .data            s_exeProc__14daSCannonCrs_c */
-SECTION_DATA static u8 s_exeProc__14daSCannonCrs_c[72] = {
+SECTION_DATA u8 daSCannonCrs_c::s_exeProc[72] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

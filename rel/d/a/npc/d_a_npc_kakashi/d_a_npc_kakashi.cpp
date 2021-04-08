@@ -13,20 +13,22 @@
 
 struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
+
+    static u8 now[48];
 };
+
+struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0420 */ ~Z2Creature();
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -40,8 +42,6 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct daNpcT_motionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -49,13 +49,15 @@ struct daNpcT_MotionSeqMngr_c {
     /* 8054E460 */ ~daNpcT_MotionSeqMngr_c();
 };
 
-struct daNpcT_faceMotionAnmData_c {};
-
-struct daNpcT_evtData_c {};
+struct daNpcT_motionAnmData_c {};
 
 struct J3DModel {};
 
 struct J3DJoint {};
+
+struct daNpcT_faceMotionAnmData_c {};
+
+struct daNpcT_evtData_c {};
 
 struct daNpc_Kakashi_c {
     /* 8054B36C */ ~daNpc_Kakashi_c();
@@ -98,10 +100,15 @@ struct daNpc_Kakashi_c {
                                    daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
                                    daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
                                    daNpcT_evtData_c const*, char**);
+
+    static void* mCutNameList[4];
+    static u8 mCutList[48];
 };
 
 struct daNpc_Kakashi_Param_c {
     /* 8054EA58 */ ~daNpc_Kakashi_Param_c();
+
+    static u8 const m[152];
 };
 
 struct dCcD_GObjInf {
@@ -178,6 +185,9 @@ struct daNpcT_c {
     /* 8054E728 */ void changeBck(int*, int*);
     /* 8054E72C */ void changeBtp(int*, int*);
     /* 8054E730 */ void changeBtk(int*, int*);
+
+    static u8 mCcDCyl[68];
+    static u8 mCcDSph[64];
 };
 
 struct daNpcT_MatAnm_c {
@@ -212,9 +222,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -359,6 +369,14 @@ struct Z2SoundObjBase {
     /* 802BE4A4 */ void startCollisionSE(u32, u32, Z2SoundObjBase*);
 };
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
+};
+
 struct J3DFrameCtrl {
     /* 803283FC */ void init(s16);
     /* 8054E5E4 */ ~J3DFrameCtrl();
@@ -462,7 +480,10 @@ extern "C" void __dt__8cM3dGAabFv();
 extern "C" void __dt__21daNpc_Kakashi_Param_cFv();
 extern "C" static void func_8054EAA0();
 extern "C" static void func_8054EAA8();
+extern "C" u8 const m__21daNpc_Kakashi_Param_c[152];
 extern "C" extern char const* const d_a_npc_kakashi__stringBase0;
+extern "C" void* mCutNameList__15daNpc_Kakashi_c[4];
+extern "C" u8 mCutList__15daNpc_Kakashi_c[48];
 
 //
 // External References:
@@ -609,19 +630,19 @@ extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
-extern "C" extern u8 mCcDSph__8daNpcT_c[64];
+extern "C" u8 mCcDCyl__8daNpcT_c[68];
+extern "C" u8 mCcDSph__8daNpcT_c[64];
 extern "C" extern void* __vt__8daNpcT_c[49];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__16Z2SoundObjSimple[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u8 struct_80451124[4];
 extern "C" void __register_global_object();
 
@@ -757,7 +778,7 @@ SECTION_DATA static u8 l_motionSequenceData[16] = {
 #pragma pop
 
 /* 8054EEF8-8054EF08 -00001 0010+00 1/1 0/0 0/0 .data            mCutNameList__15daNpc_Kakashi_c */
-SECTION_DATA static void* mCutNameList__15daNpc_Kakashi_c[4] = {
+SECTION_DATA void* daNpc_Kakashi_c::mCutNameList[4] = {
     (void*)&d_a_npc_kakashi__stringBase0,
     (void*)(((char*)&d_a_npc_kakashi__stringBase0) + 0x1A6),
     (void*)(((char*)&d_a_npc_kakashi__stringBase0) + 0x1B2),
@@ -795,7 +816,7 @@ SECTION_DATA static void* lit_3834[3] = {
 #pragma pop
 
 /* 8054EF2C-8054EF5C 000190 0030+00 1/2 0/0 0/0 .data            mCutList__15daNpc_Kakashi_c */
-SECTION_DATA static u8 mCutList__15daNpc_Kakashi_c[48] = {
+SECTION_DATA u8 daNpc_Kakashi_c::mCutList[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1051,7 +1072,7 @@ asm daNpc_Kakashi_c::~daNpc_Kakashi_c() {
 
 /* ############################################################################################## */
 /* 8054EAC4-8054EB5C 000000 0098+00 7/7 0/0 0/0 .rodata          m__21daNpc_Kakashi_Param_c */
-SECTION_RODATA static u8 const m__21daNpc_Kakashi_Param_c[152] = {
+SECTION_RODATA u8 const daNpc_Kakashi_Param_c::m[152] = {
     0x43, 0x3E, 0x00, 0x00, 0xC0, 0xC0, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x44, 0x2F, 0x00, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1063,7 +1084,7 @@ SECTION_RODATA static u8 const m__21daNpc_Kakashi_Param_c[152] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
     0x41, 0xF0, 0x00, 0x00, 0x41, 0xD8, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8054EAC4, &m__21daNpc_Kakashi_Param_c);
+COMPILER_STRIP_GATE(8054EAC4, &daNpc_Kakashi_Param_c::m);
 
 /* 8054EB5C-8054EB60 000098 0004+00 0/1 0/0 0/0 .rodata          @4078 */
 #pragma push

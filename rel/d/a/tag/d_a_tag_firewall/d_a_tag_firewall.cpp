@@ -35,9 +35,9 @@ struct dVibration_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct csXyz {};
 
@@ -98,6 +98,15 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct Tag_FWall_n {
+    static u8 cc_sph_src[64];
+    static u8 game_over_eff_name[8];
+};
+
 //
 // Forward References:
 //
@@ -116,6 +125,8 @@ extern "C" void __dt__8cM3dGSphFv();
 extern "C" void __dt__8cM3dGAabFv();
 extern "C" void __ct__4cXyzFv();
 extern "C" static void daTag_FWall_Create__FP13daTag_FWall_c();
+extern "C" u8 cc_sph_src__11Tag_FWall_n[64];
+extern "C" u8 game_over_eff_name__11Tag_FWall_n[8];
 
 //
 // External References:
@@ -154,7 +165,7 @@ extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -239,7 +250,7 @@ COMPILER_STRIP_GATE(80D59508, &lit_3991);
 #pragma pop
 
 /* 80D5950C-80D5954C 000000 0040+00 1/1 0/0 0/0 .data            cc_sph_src__11Tag_FWall_n */
-SECTION_DATA static u8 cc_sph_src__11Tag_FWall_n[64] = {
+SECTION_DATA u8 Tag_FWall_n::cc_sph_src[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0C,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
@@ -248,7 +259,7 @@ SECTION_DATA static u8 cc_sph_src__11Tag_FWall_n[64] = {
 
 /* 80D5954C-80D59554 000040 0008+00 1/1 0/0 0/0 .data            game_over_eff_name__11Tag_FWall_n
  */
-SECTION_DATA static u8 game_over_eff_name__11Tag_FWall_n[8] = {
+SECTION_DATA u8 Tag_FWall_n::game_over_eff_name[8] = {
     0x84, 0xCC, 0x84, 0xCD, 0x84, 0xCE, 0x84, 0xCF,
 };
 

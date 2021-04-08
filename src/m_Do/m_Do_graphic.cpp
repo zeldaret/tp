@@ -15,6 +15,14 @@ struct view_port_class {};
 
 struct view_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
+struct mDoMch_render_c {
+    static void* mRenderModeObj[1 + 1 /* padding */];
+};
+
 struct _GXColor {};
 
 struct mDoGph_gInf_c {
@@ -32,6 +40,20 @@ struct mDoGph_gInf_c {
     /* 800080A0 */ void onBlure(f32 const (*)[4]);
     /* 80008078 */ void onBlure();
     /* 80008330 */ void calcFade();
+
+    static u8 mFrameBufferTexObj[32];
+    static u8 mZbufferTexObj[32];
+    static u8 m_bloom[20];
+    static u8 mBlureMtx[48 + 4 /* padding */];
+    static u8 mBackColor[4];
+    static u8 mFadeColor[4];
+    static u8 mFader[4];
+    static u8 mFrameBufferTimg[4];
+    static u8 mFrameBufferTex[4];
+    static u8 mZbufferTimg[4];
+    static u8 mZbufferTex[4];
+    static f32 mFadeRate;
+    static f32 mFadeSpeed;
 };
 
 struct daPy_py_c {
@@ -75,6 +97,8 @@ struct dAttention_c {
 
 struct cXyz {
     /* 80009184 */ ~cXyz();
+
+    static f32 Zero[3];
 };
 
 struct _GXRenderModeObj {};
@@ -87,14 +111,34 @@ struct JUtility {
 
 struct JUTXfb {
     struct EXfbNumber {};
+
+    static u8 sManager[4 + 4 /* padding */];
 };
 
 struct JUTVideo {
     /* 802E5198 */ void setRenderMode(_GXRenderModeObj const*);
+
+    static u8 sManager[4];
+};
+
+struct JUTProcBar {
+    static u8 sManager[4];
+};
+
+struct JUTGamePad {
+    static u8 mPadStatus[48];
 };
 
 struct JUTFader {
     /* 802E5530 */ JUTFader(int, int, int, int, JUtility::TColor);
+};
+
+struct JUTDbPrint {
+    static u8 sDebugPrint[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct JKRSolidHeap {};
@@ -103,6 +147,8 @@ struct JKRHeap {
     /* 802CE4D4 */ void alloc(u32, int);
     /* 802CE474 */ void alloc(u32, int, JKRHeap*);
     /* 802CE548 */ void free(void*);
+
+    static u8 sCurrentHeap[4];
 };
 
 struct JGeometry {
@@ -112,8 +158,14 @@ struct JGeometry {
     struct TBox2__template0 {};
 };
 
+struct JFWSystem {
+    static u8 systemConsole[4];
+};
+
 struct JFWDisplay {
     /* 802721DC */ void createManager(_GXRenderModeObj const*, JKRHeap*, JUTXfb::EXfbNumber, bool);
+
+    static u8 sManager[4];
 };
 
 struct J3DSys {
@@ -168,6 +220,19 @@ extern "C" void mDoGph_Create__Fv();
 extern "C" void __sinit_m_Do_graphic_cpp();
 extern "C" s32 getAtnActorID__9daPy_py_cCFv();
 extern "C" extern char const* const m_Do_m_Do_graphic__stringBase0;
+extern "C" u8 mFrameBufferTexObj__13mDoGph_gInf_c[32];
+extern "C" u8 mZbufferTexObj__13mDoGph_gInf_c[32];
+extern "C" u8 m_bloom__13mDoGph_gInf_c[20];
+extern "C" u8 mBlureMtx__13mDoGph_gInf_c[48 + 4 /* padding */];
+extern "C" u8 mBackColor__13mDoGph_gInf_c[4];
+extern "C" u8 mFadeColor__13mDoGph_gInf_c[4];
+extern "C" u8 mFader__13mDoGph_gInf_c[4];
+extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
+extern "C" u8 mFrameBufferTex__13mDoGph_gInf_c[4];
+extern "C" u8 mZbufferTimg__13mDoGph_gInf_c[4];
+extern "C" u8 mZbufferTex__13mDoGph_gInf_c[4];
+extern "C" f32 mFadeRate__13mDoGph_gInf_c;
+extern "C" f32 mFadeSpeed__13mDoGph_gInf_c;
 
 //
 // External References:
@@ -294,26 +359,26 @@ extern "C" void strcmp();
 extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
 extern "C" extern void* __vt__14J2DGrafContext[10];
 extern "C" extern void* __vt__13J2DOrthoGraph[10];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_HIO[64 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 mPadStatus__10JUTGamePad[48];
+extern "C" f32 Zero__4cXyz[3];
+extern "C" u8 mPadStatus__10JUTGamePad[48];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 data_80450580;
-extern "C" extern void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
+extern "C" void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
 extern "C" extern u8 g_clearColor[4];
 extern "C" extern u32 g_whiteColor;
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 systemConsole__9JFWSystem[4];
-extern "C" extern u8 sManager__10JFWDisplay[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
-extern "C" extern u8 sManager__8JUTVideo[4];
-extern "C" extern u8 sManager__6JUTXfb[4 + 4 /* padding */];
-extern "C" extern u8 sManager__10JUTProcBar[4];
+extern "C" u8 systemConsole__9JFWSystem[4];
+extern "C" u8 sManager__10JFWDisplay[4];
+extern "C" u8 sCurrentHeap__7JKRHeap[4];
+extern "C" u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
+extern "C" u8 sManager__8JUTVideo[4];
+extern "C" u8 sManager__6JUTXfb[4 + 4 /* padding */];
+extern "C" u8 sManager__10JUTProcBar[4];
 
 //
 // Declarations:
@@ -331,7 +396,7 @@ static asm void createTimg(u16 param_0, u16 param_1, u32 param_2) {
 
 /* ############################################################################################## */
 /* 80450590-80450594 000010 0004+00 2/2 1/1 0/0 .sdata           mBackColor__13mDoGph_gInf_c */
-SECTION_SDATA extern u8 mBackColor__13mDoGph_gInf_c[4] = {
+SECTION_SDATA u8 mDoGph_gInf_c::mBackColor[4] = {
     0x00,
     0x00,
     0x00,
@@ -339,7 +404,7 @@ SECTION_SDATA extern u8 mBackColor__13mDoGph_gInf_c[4] = {
 };
 
 /* 80450594-80450598 000014 0004+00 4/4 3/3 0/0 .sdata           mFadeColor__13mDoGph_gInf_c */
-SECTION_SDATA extern u8 mFadeColor__13mDoGph_gInf_c[4] = {
+SECTION_SDATA u8 mDoGph_gInf_c::mFadeColor[4] = {
     0x00,
     0x00,
     0x00,
@@ -347,32 +412,26 @@ SECTION_SDATA extern u8 mFadeColor__13mDoGph_gInf_c[4] = {
 };
 
 /* 80450BC8-80450BCC 0000C8 0004+00 2/2 38/38 1/1 .sbss            mFader__13mDoGph_gInf_c */
-extern u8 mFader__13mDoGph_gInf_c[4];
-u8 mFader__13mDoGph_gInf_c[4];
+u8 mDoGph_gInf_c::mFader[4];
 
 /* 80450BCC-80450BD0 0000CC 0004+00 3/3 8/8 1/1 .sbss            mFrameBufferTimg__13mDoGph_gInf_c
  */
-extern u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
-u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
+u8 mDoGph_gInf_c::mFrameBufferTimg[4];
 
 /* 80450BD0-80450BD4 0000D0 0004+00 3/3 6/6 0/0 .sbss            mFrameBufferTex__13mDoGph_gInf_c */
-extern u8 mFrameBufferTex__13mDoGph_gInf_c[4];
-u8 mFrameBufferTex__13mDoGph_gInf_c[4];
+u8 mDoGph_gInf_c::mFrameBufferTex[4];
 
 /* 80450BD4-80450BD8 0000D4 0004+00 1/1 1/1 0/0 .sbss            mZbufferTimg__13mDoGph_gInf_c */
-extern u8 mZbufferTimg__13mDoGph_gInf_c[4];
-u8 mZbufferTimg__13mDoGph_gInf_c[4];
+u8 mDoGph_gInf_c::mZbufferTimg[4];
 
 /* 80450BD8-80450BDC 0000D8 0004+00 3/3 1/1 0/0 .sbss            mZbufferTex__13mDoGph_gInf_c */
-extern u8 mZbufferTex__13mDoGph_gInf_c[4];
-u8 mZbufferTex__13mDoGph_gInf_c[4];
+u8 mDoGph_gInf_c::mZbufferTex[4];
 
 /* 80450BDC-80450BE0 0000DC 0004+00 3/3 3/3 1/1 .sbss            mFadeRate__13mDoGph_gInf_c */
-extern f32 mFadeRate__13mDoGph_gInf_c;
-f32 mFadeRate__13mDoGph_gInf_c;
+f32 mDoGph_gInf_c::mFadeRate;
 
 /* 80450BE0-80450BE4 0000E0 0004+00 3/3 0/0 0/0 .sbss            mFadeSpeed__13mDoGph_gInf_c */
-static f32 mFadeSpeed__13mDoGph_gInf_c;
+f32 mDoGph_gInf_c::mFadeSpeed;
 
 /* 80450BE4-80450BE8 -00001 0004+00 8/8 9/9 11/11 .sbss            None */
 /* 80450BE4 0001+00 data_80450BE4 None */
@@ -451,18 +510,16 @@ asm void mDoGph_gInf_c::onBlure() {
 /* ############################################################################################## */
 /* 803DD3E8-803DD408 00A108 0020+00 3/3 3/3 0/0 .bss             mFrameBufferTexObj__13mDoGph_gInf_c
  */
-extern u8 mFrameBufferTexObj__13mDoGph_gInf_c[32];
-u8 mFrameBufferTexObj__13mDoGph_gInf_c[32];
+u8 mDoGph_gInf_c::mFrameBufferTexObj[32];
 
 /* 803DD408-803DD428 00A128 0020+00 1/1 0/0 0/0 .bss             mZbufferTexObj__13mDoGph_gInf_c */
-static u8 mZbufferTexObj__13mDoGph_gInf_c[32];
+u8 mDoGph_gInf_c::mZbufferTexObj[32];
 
 /* 803DD428-803DD43C 00A148 0014+00 2/2 3/3 0/0 .bss             m_bloom__13mDoGph_gInf_c */
-extern u8 m_bloom__13mDoGph_gInf_c[20];
-u8 m_bloom__13mDoGph_gInf_c[20];
+u8 mDoGph_gInf_c::m_bloom[20];
 
 /* 803DD43C-803DD470 00A15C 0030+04 2/2 0/0 0/0 .bss             mBlureMtx__13mDoGph_gInf_c */
-static u8 mBlureMtx__13mDoGph_gInf_c[48 + 4 /* padding */];
+u8 mDoGph_gInf_c::mBlureMtx[48 + 4 /* padding */];
 
 /* 800080A0-800080D0 0029E0 0030+00 1/1 1/1 0/0 .text            onBlure__13mDoGph_gInf_cFPA4_Cf */
 #pragma push

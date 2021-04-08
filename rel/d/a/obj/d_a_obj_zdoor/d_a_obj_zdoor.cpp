@@ -13,6 +13,10 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct fopAc_ac_c {};
 
 struct daZdoor_c {
@@ -29,13 +33,13 @@ struct daZdoor_c {
 
 struct dKy_tevstr_c {};
 
+struct J3DModelData {};
+
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
-
-struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -130,6 +134,10 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DModel {};
 
 //
@@ -220,11 +228,11 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

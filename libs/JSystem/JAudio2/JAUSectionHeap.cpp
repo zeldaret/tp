@@ -84,11 +84,11 @@ struct JAUSeqCollection {
     /* 802A66AC */ void init(void const*);
 };
 
-struct JAISeqData {};
+struct JAISoundID {};
 
 struct JAISeqDataUser {};
 
-struct JAISoundID {};
+struct JAISeqData {};
 
 struct JAUSectionHeap {
     struct TSectionHeapData {

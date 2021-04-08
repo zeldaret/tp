@@ -13,13 +13,15 @@
 
 struct request_of_phase_process_class {};
 
-struct cXyz {};
-
 struct csXyz {};
+
+struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct J3DAnmTextureSRTKey {};
@@ -37,9 +39,11 @@ struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -49,9 +53,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -87,6 +89,8 @@ struct daObj_AutoMata_c {
 
 struct daObj_AutoMata_Param_c {
     /* 80BA6BA4 */ ~daObj_AutoMata_Param_c();
+
+    static u8 const m[12];
 };
 
 struct dKy_tevstr_c {};
@@ -100,6 +104,10 @@ struct dRes_info_c {};
 
 struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -202,6 +210,10 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DModel {};
 
 struct J3DFrameCtrl {
@@ -244,6 +256,7 @@ extern "C" void __sinit_d_a_obj_automata_cpp();
 extern "C" void __dt__22daObj_AutoMata_Param_cFv();
 extern "C" static void func_80BA6BEC();
 extern "C" static void func_80BA6BF4();
+extern "C" u8 const m__22daObj_AutoMata_Param_c[12];
 extern "C" extern char const* const d_a_obj_automata__stringBase0;
 
 //
@@ -331,13 +344,13 @@ extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 struct_80450D64[4];
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -494,10 +507,10 @@ asm daObj_AutoMata_c::~daObj_AutoMata_c() {
 
 /* ############################################################################################## */
 /* 80BA6C10-80BA6C1C 000000 000C+00 5/5 0/0 0/0 .rodata          m__22daObj_AutoMata_Param_c */
-SECTION_RODATA static u8 const m__22daObj_AutoMata_Param_c[12] = {
+SECTION_RODATA u8 const daObj_AutoMata_Param_c::m[12] = {
     0x43, 0x5C, 0x00, 0x00, 0x42, 0xA0, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BA6C10, &m__22daObj_AutoMata_Param_c);
+COMPILER_STRIP_GATE(80BA6C10, &daObj_AutoMata_Param_c::m);
 
 /* 80BA6C1C-80BA6C4C 00000C 0030+00 1/1 0/0 0/0 .rodata          l_ccDObjData */
 SECTION_RODATA static u8 const l_ccDObjData[48] = {

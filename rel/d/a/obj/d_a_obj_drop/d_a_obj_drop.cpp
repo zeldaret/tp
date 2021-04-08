@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct _GXColor {};
 
 struct mDoGph_gInf_c {
@@ -66,6 +70,10 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
+};
+
 struct dSv_event_c {
     /* 8003498C */ void onEventBit(u16);
 };
@@ -81,17 +89,21 @@ struct dPa_followEcallBack {
     /* 80BE02B0 */ void __defctor();
 };
 
-struct dKy_tevstr_c {};
-
 struct cXyz {
     /* 802670AC */ void isZero() const;
     /* 80BE0318 */ ~cXyz();
     /* 80BE0354 */ cXyz();
+
+    static f32 Zero[3];
 };
+
+struct dKy_tevstr_c {};
 
 struct csXyz {
     /* 80BE02D8 */ ~csXyz();
     /* 80BE0314 */ csXyz();
+
+    static u8 Zero[4];
 };
 
 struct dPa_control_c {
@@ -201,6 +213,10 @@ struct JPAEmitterCallBack {
     /* 80BE1EE4 */ void executeAfter(JPABaseEmitter*);
     /* 80BE1EE8 */ void draw(JPABaseEmitter*);
     /* 80BE1EEC */ void drawAfter(JPABaseEmitter*);
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 //
@@ -330,20 +346,20 @@ extern "C" void _restgpr_29();
 extern "C" void strcmp();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__19dPa_followEcallBack[10];
 extern "C" extern void* __vt__8dCcD_Sph[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" f32 Zero__4cXyz[3];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 g_saftyWhiteColor;
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 Zero__5csXyz[4];
+extern "C" u8 Zero__5csXyz[4];
 extern "C" extern u8 struct_80BE2238[4];
 
 //

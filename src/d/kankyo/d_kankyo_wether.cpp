@@ -27,10 +27,6 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
-struct dKy_tevstr_c {};
-
 struct Vec {};
 
 struct cXyz {
@@ -40,7 +36,13 @@ struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
     /* 80266D30 */ void normZP() const;
     /* 8026706C */ bool operator!=(Vec const&) const;
+
+    static f32 Zero[3];
 };
+
+struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct csXyz {};
 
@@ -122,6 +124,10 @@ struct Z2EnvSeMgr {
     /* 802C800C */ void startStrongWindSe(s8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct WIND_INFLUENCE {};
 
 struct VRKUMO_EFF {
@@ -142,6 +148,10 @@ struct SNOW_EFF {
 struct RAIN_EFF {
     /* 80056CD0 */ ~RAIN_EFF();
     /* 80056D0C */ RAIN_EFF();
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct J3DPacket;
@@ -382,13 +392,13 @@ extern "C" extern void* __vt__9J3DPacket[5];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_mEnvSeMgr[780];
-extern "C" extern f32 Zero__4cXyz[3];
+extern "C" f32 Zero__4cXyz[3];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 struct_80450D64[4];
 extern "C" extern u8 data_80450EE0[8];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

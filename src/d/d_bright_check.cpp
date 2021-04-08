@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
+};
+
 struct dMsgString_c {
     /* 80249C20 */ dMsgString_c();
     /* 80249D28 */ ~dMsgString_c();
@@ -45,6 +49,10 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct J2DTextBox {
@@ -95,9 +103,9 @@ extern "C" void __ptmf_scall();
 extern "C" void _savegpr_22();
 extern "C" void _restgpr_22();
 extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

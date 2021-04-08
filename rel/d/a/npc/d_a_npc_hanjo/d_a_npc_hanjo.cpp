@@ -11,6 +11,11 @@
 // Types:
 //
 
+struct csXyz {
+    /* 809FF21C */ ~csXyz();
+    /* 809FF7B8 */ csXyz();
+};
+
 struct Vec {};
 
 struct cXyz {
@@ -20,21 +25,20 @@ struct cXyz {
     /* 809FF8B8 */ cXyz();
 };
 
-struct csXyz {
-    /* 809FF21C */ ~csXyz();
-    /* 809FF7B8 */ csXyz();
-};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CE38 */ void scaleM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
+
+struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
@@ -42,9 +46,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -63,8 +65,6 @@ struct daTag_EvtArea_c {
     /* 8048C94C */ void chkPointInArea(cXyz, cXyz);
 };
 
-struct daNpcT_motionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -73,11 +73,13 @@ struct daNpcT_MotionSeqMngr_c {
     /* 809FF8BC */ ~daNpcT_MotionSeqMngr_c();
 };
 
+struct daNpcT_motionAnmData_c {};
+
+struct J3DJoint {};
+
 struct daNpcT_faceMotionAnmData_c {};
 
 struct daNpcT_evtData_c {};
-
-struct J3DJoint {};
 
 struct daNpc_Hanjo_c {
     /* 809F908C */ ~daNpc_Hanjo_c();
@@ -135,10 +137,17 @@ struct daNpc_Hanjo_c {
     /* 80A00514 */ void checkRemoveJoint(int);
     /* 80A00524 */ s32 getFootLJointNo();
     /* 80A0052C */ s32 getFootRJointNo();
+
+    static u8 const mStoneCcDObjInfo[48];
+    static void* mCutNameList[6];
+    static u8 mCutList[72];
+    static u8 mStoneCcDSph[64];
 };
 
 struct daNpc_Hanjo_Param_c {
     /* 80A00534 */ ~daNpc_Hanjo_Param_c();
+
+    static u8 const m[180];
 };
 
 struct daNpc_HanjoStone_c {
@@ -218,6 +227,8 @@ struct daNpcT_c {
     /* 809FFE60 */ void changeBck(int*, int*);
     /* 809FFE64 */ void changeBtp(int*, int*);
     /* 809FFE68 */ void changeBtk(int*, int*);
+
+    static u8 mCcDCyl[68];
 };
 
 struct daNpcT_Path_c {
@@ -289,13 +300,13 @@ struct dPa_control_c {
                             _GXColor const*, cXyz const*, f32);
 };
 
-struct dBgS {};
-
 struct dBgS_AcchCir {
     /* 80075EAC */ dBgS_AcchCir();
     /* 80075F40 */ void SetWallR(f32);
     /* 809FF904 */ ~dBgS_AcchCir();
 };
+
+struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -431,6 +442,14 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct J3DTexNoAnm {
@@ -597,7 +616,12 @@ extern "C" void __dt__19daNpc_Hanjo_Param_cFv();
 extern "C" static void func_80A0057C();
 extern "C" static void func_80A00584();
 extern "C" void chkPointInArea__15daTag_EvtArea_cF4cXyz();
+extern "C" u8 const m__19daNpc_Hanjo_Param_c[180];
+extern "C" u8 const mStoneCcDObjInfo__13daNpc_Hanjo_c[48];
 extern "C" extern char const* const d_a_npc_hanjo__stringBase0;
+extern "C" void* mCutNameList__13daNpc_Hanjo_c[6];
+extern "C" u8 mCutList__13daNpc_Hanjo_c[72];
+extern "C" u8 mStoneCcDSph__13daNpc_Hanjo_c[64];
 
 //
 // External References:
@@ -798,7 +822,7 @@ extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
+extern "C" u8 mCcDCyl__8daNpcT_c[68];
 extern "C" extern void* __vt__8daNpcT_c[49];
 extern "C" extern void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
@@ -806,15 +830,15 @@ extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_Counter[12 + 4 /* padding */];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void chkPointInArea__15daTag_EvtArea_cF4cXyz4cXyz();
 extern "C" void __register_global_object();
 
@@ -1044,7 +1068,7 @@ SECTION_DATA static u8 l_motionSequenceData[320] = {
 #pragma pop
 
 /* 80A00F78-80A00F90 -00001 0018+00 1/1 0/0 0/0 .data            mCutNameList__13daNpc_Hanjo_c */
-SECTION_DATA static void* mCutNameList__13daNpc_Hanjo_c[6] = {
+SECTION_DATA void* daNpc_Hanjo_c::mCutNameList[6] = {
     (void*)&d_a_npc_hanjo__stringBase0,
     (void*)(((char*)&d_a_npc_hanjo__stringBase0) + 0xF8),
     (void*)(((char*)&d_a_npc_hanjo__stringBase0) + 0x110),
@@ -1104,7 +1128,7 @@ SECTION_DATA static void* lit_3858[3] = {
 #pragma pop
 
 /* 80A00FCC-80A01014 00068C 0048+00 1/2 0/0 0/0 .data            mCutList__13daNpc_Hanjo_c */
-SECTION_DATA static u8 mCutList__13daNpc_Hanjo_c[72] = {
+SECTION_DATA u8 daNpc_Hanjo_c::mCutList[72] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1115,7 +1139,7 @@ SECTION_DATA static u8 mCutList__13daNpc_Hanjo_c[72] = {
 /* 80A01014-80A01054 0006D4 0040+00 0/1 0/0 0/0 .data            mStoneCcDSph__13daNpc_Hanjo_c */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 mStoneCcDSph__13daNpc_Hanjo_c[64] = {
+SECTION_DATA u8 daNpc_Hanjo_c::mStoneCcDSph[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1368,7 +1392,7 @@ asm daNpc_Hanjo_c::~daNpc_Hanjo_c() {
 
 /* ############################################################################################## */
 /* 80A00600-80A006B4 000000 00B4+00 19/19 0/0 0/0 .rodata          m__19daNpc_Hanjo_Param_c */
-SECTION_RODATA static u8 const m__19daNpc_Hanjo_Param_c[180] = {
+SECTION_RODATA u8 const daNpc_Hanjo_Param_c::m[180] = {
     0x43, 0x20, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xC8, 0x00,
     0x00, 0x43, 0x7F, 0x00, 0x00, 0x43, 0x20, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xF0,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1,
@@ -1382,16 +1406,16 @@ SECTION_RODATA static u8 const m__19daNpc_Hanjo_Param_c[180] = {
     0x00, 0x00, 0x42, 0xA0, 0x00, 0x00, 0x42, 0x82, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x44,
     0x16, 0x00, 0x00, 0x43, 0x08, 0x00, 0x00, 0x05, 0x00, 0x00, 0x5A, 0x00, 0x5A, 0x00, 0x02,
 };
-COMPILER_STRIP_GATE(80A00600, &m__19daNpc_Hanjo_Param_c);
+COMPILER_STRIP_GATE(80A00600, &daNpc_Hanjo_Param_c::m);
 
 /* 80A006B4-80A006E4 0000B4 0030+00 1/1 0/0 0/0 .rodata          mStoneCcDObjInfo__13daNpc_Hanjo_c
  */
-SECTION_RODATA static u8 const mStoneCcDObjInfo__13daNpc_Hanjo_c[48] = {
+SECTION_RODATA u8 const daNpc_Hanjo_c::mStoneCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A006B4, &mStoneCcDObjInfo__13daNpc_Hanjo_c);
+COMPILER_STRIP_GATE(80A006B4, &daNpc_Hanjo_c::mStoneCcDObjInfo);
 
 /* 80A006E4-80A006F8 0000E4 0014+00 0/1 0/0 0/0 .rodata          heapSize$4058 */
 #pragma push

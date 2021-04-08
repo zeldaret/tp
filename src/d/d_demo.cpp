@@ -37,6 +37,10 @@ struct daMP_c {
     /* 80031AD0 */ void daMP_c_THPPlayerPlay();
 };
 
+struct dStage_roomControl_c {
+    static u8 mDemoArcName[10 + 2 /* padding */];
+};
+
 struct dRes_info_c {};
 
 struct dRes_control_c {
@@ -46,11 +50,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct dKy_tevstr_c {};
-
 struct cXyz {
     /* 80009184 */ ~cXyz();
 };
+
+struct dKy_tevstr_c {};
 
 struct csXyz {};
 
@@ -58,6 +62,8 @@ struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
                             u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
                             cXyz const*, f32);
+
+    static u8 mEmitterMng[4];
 };
 
 struct dMsgObject_c {
@@ -222,6 +228,26 @@ struct dDemo_c {
     /* 80039EDC */ void setBranchType(u16);
     /* 80039EEC */ void setBranchId(u16, s16);
     /* 80039F04 */ void reset();
+
+    static u16 m_branchId[1 + 3 /* padding */];
+    static u8 m_system[4];
+    static u8 m_control[4];
+    static u8 m_stage[4];
+    static u8 m_audio[4];
+    static u8 m_particle[4];
+    static u8 m_message[4];
+    static u8 m_factory[4];
+    static u8 m_mesgControl[4];
+    static u8 m_object[4];
+    static u8 m_data[4];
+    static u8 m_frame[4];
+    static u8 m_translation[4];
+    static f32 m_rotationY;
+    static u8 m_frameNoMsg[4];
+    static u8 m_mode[4];
+    static u8 m_status[4];
+    static u8 m_branchType[2 + 2 /* padding */];
+    static u8 m_branchData[4];
 };
 
 struct dDemo_ambient_c {
@@ -451,6 +477,25 @@ extern "C" void JSGGetTranslation__13dDemo_actor_cCFP3Vec();
 extern "C" void JSGGetScaling__13dDemo_actor_cCFP3Vec();
 extern "C" void JSGGetRotation__13dDemo_actor_cCFP3Vec();
 extern "C" extern char const* const d_d_demo__stringBase0;
+extern "C" u16 m_branchId__7dDemo_c[1 + 3 /* padding */];
+extern "C" u8 m_system__7dDemo_c[4];
+extern "C" u8 m_control__7dDemo_c[4];
+extern "C" u8 m_stage__7dDemo_c[4];
+extern "C" u8 m_audio__7dDemo_c[4];
+extern "C" u8 m_particle__7dDemo_c[4];
+extern "C" u8 m_message__7dDemo_c[4];
+extern "C" u8 m_factory__7dDemo_c[4];
+extern "C" u8 m_mesgControl__7dDemo_c[4];
+extern "C" u8 m_object__7dDemo_c[4];
+extern "C" u8 m_data__7dDemo_c[4];
+extern "C" u8 m_frame__7dDemo_c[4];
+extern "C" u8 m_translation__7dDemo_c[4];
+extern "C" f32 m_rotationY__7dDemo_c;
+extern "C" u8 m_frameNoMsg__7dDemo_c[4];
+extern "C" u8 m_mode__7dDemo_c[4];
+extern "C" u8 m_status__7dDemo_c[4];
+extern "C" u8 m_branchType__7dDemo_c[2 + 2 /* padding */];
+extern "C" u8 m_branchData__7dDemo_c[4];
 
 //
 // External References:
@@ -584,14 +629,14 @@ extern "C" extern void* __vt__Q37JStudio3stb8TFactory[5];
 extern "C" extern void* __vt__Q214JStudio_JStage13TCreateObject[4];
 extern "C" extern void* __vt__Q215JStudio_JAudio213TCreateObject[4];
 extern "C" extern void* __vt__Q217JStudio_JParticle13TCreateObject[6];
-extern "C" extern u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
+extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u32 g_blackColor;
 extern "C" extern u32 __float_max;
 extern "C" extern u8 data_80450B74[4];
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mEmitterMng__13dPa_control_c[4];
+extern "C" u8 mEmitterMng__13dPa_control_c[4];
 
 //
 // Declarations:
@@ -961,65 +1006,58 @@ asm void dDemo_actor_c::getPrm_Morf() {
 static u8 dummy[20];
 
 /* 80450E00-80450E04 000300 0004+00 2/2 0/0 0/0 .sbss            m_system__7dDemo_c */
-static u8 m_system__7dDemo_c[4];
+u8 dDemo_c::m_system[4];
 
 /* 80450E04-80450E08 000304 0004+00 6/6 3/3 0/0 .sbss            m_control__7dDemo_c */
-extern u8 m_control__7dDemo_c[4];
-u8 m_control__7dDemo_c[4];
+u8 dDemo_c::m_control[4];
 
 /* 80450E08-80450E0C 000308 0004+00 2/2 0/0 0/0 .sbss            m_stage__7dDemo_c */
-static u8 m_stage__7dDemo_c[4];
+u8 dDemo_c::m_stage[4];
 
 /* 80450E0C-80450E10 00030C 0004+00 2/2 0/0 0/0 .sbss            m_audio__7dDemo_c */
-static u8 m_audio__7dDemo_c[4];
+u8 dDemo_c::m_audio[4];
 
 /* 80450E10-80450E14 000310 0004+00 2/2 0/0 0/0 .sbss            m_particle__7dDemo_c */
-static u8 m_particle__7dDemo_c[4];
+u8 dDemo_c::m_particle[4];
 
 /* 80450E14-80450E18 000314 0004+00 2/2 0/0 0/0 .sbss            m_message__7dDemo_c */
-static u8 m_message__7dDemo_c[4];
+u8 dDemo_c::m_message[4];
 
 /* 80450E18-80450E1C 000318 0004+00 2/2 0/0 0/0 .sbss            m_factory__7dDemo_c */
-static u8 m_factory__7dDemo_c[4];
+u8 dDemo_c::m_factory[4];
 
 /* 80450E1C-80450E20 00031C 0004+00 2/2 1/1 0/0 .sbss            m_mesgControl__7dDemo_c */
-extern u8 m_mesgControl__7dDemo_c[4];
-u8 m_mesgControl__7dDemo_c[4];
+u8 dDemo_c::m_mesgControl[4];
 
 /* 80450E20-80450E24 000320 0004+00 5/5 9/9 7/7 .sbss            m_object__7dDemo_c */
-extern u8 m_object__7dDemo_c[4];
-u8 m_object__7dDemo_c[4];
+u8 dDemo_c::m_object[4];
 
 /* 80450E24-80450E28 000324 0004+00 4/4 0/0 0/0 .sbss            m_data__7dDemo_c */
-static u8 m_data__7dDemo_c[4];
+u8 dDemo_c::m_data[4];
 
 /* 80450E28-80450E2C 000328 0004+00 2/2 0/0 1/1 .sbss            m_frame__7dDemo_c */
-extern u8 m_frame__7dDemo_c[4];
-u8 m_frame__7dDemo_c[4];
+u8 dDemo_c::m_frame[4];
 
 /* 80450E2C-80450E30 00032C 0004+00 2/2 0/0 0/0 .sbss            m_translation__7dDemo_c */
-static u8 m_translation__7dDemo_c[4];
+u8 dDemo_c::m_translation[4];
 
 /* 80450E30-80450E34 000330 0004+00 2/2 0/0 0/0 .sbss            m_rotationY__7dDemo_c */
-static f32 m_rotationY__7dDemo_c;
+f32 dDemo_c::m_rotationY;
 
 /* 80450E34-80450E38 000334 0004+00 2/2 1/1 0/0 .sbss            m_frameNoMsg__7dDemo_c */
-extern u8 m_frameNoMsg__7dDemo_c[4];
-u8 m_frameNoMsg__7dDemo_c[4];
+u8 dDemo_c::m_frameNoMsg[4];
 
 /* 80450E38-80450E3C 000338 0004+00 4/4 4/4 0/0 .sbss            m_mode__7dDemo_c */
-extern u8 m_mode__7dDemo_c[4];
-u8 m_mode__7dDemo_c[4];
+u8 dDemo_c::m_mode[4];
 
 /* 80450E3C-80450E40 00033C 0004+00 2/2 1/1 0/0 .sbss            m_status__7dDemo_c */
-extern u8 m_status__7dDemo_c[4];
-u8 m_status__7dDemo_c[4];
+u8 dDemo_c::m_status[4];
 
 /* 80450E40-80450E44 000340 0002+02 2/2 0/0 0/0 .sbss            m_branchType__7dDemo_c */
-static u8 m_branchType__7dDemo_c[2 + 2 /* padding */];
+u8 dDemo_c::m_branchType[2 + 2 /* padding */];
 
 /* 80450E44-80450E48 000344 0004+00 5/5 0/0 0/0 .sbss            m_branchData__7dDemo_c */
-static u8 m_branchData__7dDemo_c[4];
+u8 dDemo_c::m_branchData[4];
 
 /* 80450E48-80450E4C -00001 0004+00 1/1 0/0 0/0 .sbss            None */
 /* 80450E48 0001+00 data_80450E48 None */
@@ -1080,7 +1118,7 @@ static asm void branchFile(char const* param_0) {
 
 /* ############################################################################################## */
 /* 80450620-80450628 0000A0 0002+06 3/3 1/1 0/0 .sdata           m_branchId__7dDemo_c */
-SECTION_SDATA extern u16 m_branchId__7dDemo_c[1 + 3 /* padding */] = {
+SECTION_SDATA u16 dDemo_c::m_branchId[1 + 3 /* padding */] = {
     0xFFFF,
     /* padding */
     0x0000,

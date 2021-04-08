@@ -15,6 +15,10 @@ struct dSv_memBit_c {
     /* 80034860 */ void isSwitch(int) const;
 };
 
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
+};
+
 struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
@@ -114,6 +118,10 @@ struct Z2EnvSeAutoPan {
     /* 802C60E0 */ void startEnvSeAutoPanLevel(JAISoundID, f32, f32, f32);
 };
 
+struct Z2CreatureLink {
+    static u8 mLinkPtr[4 + 4 /* padding */];
+};
+
 struct Z2Calc {
     struct CurveSign {};
 
@@ -125,6 +133,9 @@ struct Z2Calc {
     /* 802A968C */ void linearTransform(f32, f32, f32, f32, f32, bool);
     /* 802A96F4 */ void getParamByExp(f32, f32, f32, f32, f32, f32, Z2Calc::CurveSign);
     /* 802A9814 */ void getRandom(f32, f32, f32);
+
+    static f32 cEqualCSlope;
+    static f32 cEqualPSlope;
 };
 
 struct Z2Audience {
@@ -139,6 +150,10 @@ struct JGeometry {
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
+};
+
+struct JASCalc {
+    static u8 const CUTOFF_TO_IIR_TABLE[1024];
 };
 
 struct JAISoundStarter {
@@ -250,8 +265,8 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 const CUTOFF_TO_IIR_TABLE__7JASCalc[1024];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 const CUTOFF_TO_IIR_TABLE__7JASCalc[1024];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 data_80450B3C[4];
 extern "C" extern u8 data_80450B44[4];
@@ -260,9 +275,9 @@ extern "C" extern u8 data_80450B74[4];
 extern "C" extern u8 data_80450B7C[4];
 extern "C" extern u8 data_80450B80[4];
 extern "C" extern u8 data_80450B88[4];
-extern "C" extern u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
-extern "C" extern f32 cEqualCSlope__6Z2Calc;
-extern "C" extern f32 cEqualPSlope__6Z2Calc;
+extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
+extern "C" f32 cEqualCSlope__6Z2Calc;
+extern "C" f32 cEqualPSlope__6Z2Calc;
 
 //
 // Declarations:

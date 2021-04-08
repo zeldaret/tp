@@ -117,12 +117,20 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
+};
+
 struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
 struct dSv_danBit_c {
     /* 80034BE8 */ void isSwitch(int) const;
+};
+
+struct dStage_roomControl_c {
+    static u8 mStatus[65792];
 };
 
 struct dRes_info_c {};
@@ -143,6 +151,13 @@ struct dRenderingFDAmap_c {
     /* 8003D188 */ void preRenderingMap();
     /* 8003D320 */ void postRenderingMap();
     /* 8003D3C0 */ void renderingDecoration(dDrawPath_c::line_class const*);
+};
+
+struct dMpath_c {
+    static f32 mMinX;
+    static f32 mMaxX;
+    static f32 mMinZ;
+    static f32 mMaxZ;
 };
 
 struct dMap_c {
@@ -174,6 +189,10 @@ struct dMap_c {
     /* 8002AF20 */ ~dMap_c();
 };
 
+struct dMap_HIO_prm_res_dst_s {
+    static u8 m_res[4 + 4 /* padding */];
+};
+
 struct dMapInfo_n {
     /* 8003ECA0 */ void chkGetCompass();
     /* 8003ECD8 */ void chkGetMap();
@@ -183,6 +202,8 @@ struct dMapInfo_n {
 
 struct dMapInfo_c {
     /* 8003F6C8 */ void move(int, f32);
+
+    static u32 mNextRoomNo;
 };
 
 struct dDrawPathWithNormalPattern_c {
@@ -191,6 +212,10 @@ struct dDrawPathWithNormalPattern_c {
 
 struct dDlst_base_c {
     /* 8002ABEC */ void draw();
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 //
@@ -265,6 +290,7 @@ extern "C" void __dt__28renderingPlusDoorAndCursor_cFv();
 extern "C" void __dt__19renderingPlusDoor_cFv();
 extern "C" void __dt__16renderingDAmap_cFv();
 extern "C" extern char const* const d_map_d_map__stringBase0;
+extern "C" u8 m_res__22dMap_HIO_prm_res_dst_s[4 + 4 /* padding */];
 
 //
 // External References:
@@ -329,23 +355,23 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void strcmp();
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__18dRenderingFDAmap_c[26];
 extern "C" extern void* __vt__11dDrawPath_c[16];
 extern "C" extern void* __vt__19renderingPlusDoor_c[41];
 extern "C" extern void* __vt__28renderingPlusDoorAndCursor_c[47];
 extern "C" extern void* __vt__16renderingDAmap_c[38];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
+extern "C" u8 mStatus__20dStage_roomControl_c[65792];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_Counter[12 + 4 /* padding */];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 mNextRoomNo__10dMapInfo_c;
+extern "C" u8 sincosTable___5JMath[65536];
+extern "C" u32 mNextRoomNo__10dMapInfo_c;
 extern "C" extern u8 data_80450E58[4];
 extern "C" extern u8 data_80450E60[4];
-extern "C" extern f32 mMinX__8dMpath_c;
-extern "C" extern f32 mMaxX__8dMpath_c;
-extern "C" extern f32 mMinZ__8dMpath_c;
-extern "C" extern f32 mMaxZ__8dMpath_c;
+extern "C" f32 mMinX__8dMpath_c;
+extern "C" f32 mMaxX__8dMpath_c;
+extern "C" f32 mMinZ__8dMpath_c;
+extern "C" f32 mMaxZ__8dMpath_c;
 
 //
 // Declarations:
@@ -376,7 +402,7 @@ asm void renderingAmap_c::getIconSize(u8 param_0) const {
 /* ############################################################################################## */
 /* 80450D80-80450D88 000280 0004+04 10/10 0/0 0/0 .sbss            m_res__22dMap_HIO_prm_res_dst_s
  */
-static u8 m_res__22dMap_HIO_prm_res_dst_s[4 + 4 /* padding */];
+u8 dMap_HIO_prm_res_dst_s::m_res[4 + 4 /* padding */];
 
 /* 80451CA0-80451CA4 0002A0 0004+00 4/4 0/0 0/0 .sdata2          @3745 */
 SECTION_SDATA2 static f32 lit_3745 = 0.5f;

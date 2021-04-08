@@ -13,6 +13,12 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {
+    /* 802673F4 */ csXyz(s16, s16, s16);
+
+    static u8 Zero[4];
+};
+
 struct Vec {};
 
 struct cXyz {
@@ -22,14 +28,12 @@ struct cXyz {
     /* 80663B34 */ ~cXyz();
 };
 
-struct csXyz {
-    /* 802673F4 */ csXyz(s16, s16, s16);
-};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct mDoExt_morf_c {
@@ -43,9 +47,9 @@ struct mDoExt_invisibleModel {
     /* 8000E7C0 */ void entryDL(cXyz*);
 };
 
-struct J3DAnmTextureSRTKey {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -63,9 +67,11 @@ struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
@@ -73,9 +79,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -94,10 +98,15 @@ struct fopAc_ac_c {
 
 struct fopAcM_lc_c {
     /* 8001DC68 */ void lineCheck(cXyz const*, cXyz const*, fopAc_ac_c const*);
+
+    static u8 mLineCheck[112];
 };
 
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
+
+    static u8 mGndCheck[84];
+    static f32 mGroundY;
 };
 
 struct daPy_actorKeep_c {
@@ -121,6 +130,8 @@ struct daCstatue_c {
     /* 80666C38 */ void initStartBrkBtk();
     /* 80666DE8 */ void execute();
     /* 80667438 */ void draw();
+
+    static u8 const m_bckIdxTable[70 + 2 /* padding */];
 };
 
 struct daAlink_c {
@@ -174,6 +185,12 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
+struct dBgS_AcchCir {
+    /* 80075EAC */ dBgS_AcchCir();
+    /* 80075F58 */ void SetWall(f32, f32);
+    /* 80664768 */ ~dBgS_AcchCir();
+};
+
 struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
 };
@@ -183,12 +200,6 @@ struct dBgS {
     /* 80074BE8 */ void GetPolyColor(cBgS_PolyInfo const&);
     /* 80074E00 */ void GetWallCode(cBgS_PolyInfo const&);
     /* 80075100 */ void GetRoomId(cBgS_PolyInfo const&);
-};
-
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F58 */ void SetWall(f32, f32);
-    /* 80664768 */ ~dBgS_AcchCir();
 };
 
 struct dBgS_Acch {
@@ -206,6 +217,10 @@ struct dPaPo_c {
 
 struct dEvt_control_c {
     /* 80042468 */ void reset();
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -320,6 +335,10 @@ struct cBgS {
 
 struct _GXTexObj {};
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DFrameCtrl {
     /* 803283FC */ void init(s16);
     /* 8032842C */ void checkPass(f32);
@@ -367,6 +386,7 @@ extern "C" static void daCstatue_Draw__FP11daCstatue_c();
 extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" static void func_80667678();
 extern "C" static void func_80667680();
+extern "C" u8 const m_bckIdxTable__11daCstatue_c[70 + 2 /* padding */];
 
 //
 // External References:
@@ -515,17 +535,17 @@ extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__12cCcD_CpsAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mLineCheck__11fopAcM_lc_c[112];
-extern "C" extern u8 mGndCheck__11fopAcM_gc_c[84];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mLineCheck__11fopAcM_lc_c[112];
+extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
+extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 Zero__5csXyz[4];
+extern "C" u8 Zero__5csXyz[4];
 extern "C" void __register_global_object();
 
 //
@@ -591,7 +611,7 @@ COMPILER_STRIP_GATE(806676AC, &l_arcNameBS);
 /* 806676B4-806676FC 00001C 0046+02 0/2 0/0 0/0 .rodata          m_bckIdxTable__11daCstatue_c */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const m_bckIdxTable__11daCstatue_c[70 + 2 /* padding */] = {
+SECTION_RODATA u8 const daCstatue_c::m_bckIdxTable[70 + 2 /* padding */] = {
     0x00,
     0x0E,
     0x00,
@@ -666,7 +686,7 @@ SECTION_RODATA static u8 const m_bckIdxTable__11daCstatue_c[70 + 2 /* padding */
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(806676B4, &m_bckIdxTable__11daCstatue_c);
+COMPILER_STRIP_GATE(806676B4, &daCstatue_c::m_bckIdxTable);
 #pragma pop
 
 /* 806676FC-80667738 000064 003C+00 0/1 0/0 0/0 .rodata          dataTbl$4169 */

@@ -13,12 +13,12 @@
 
 struct request_of_phase_process_class {};
 
-struct cXyz {
-    /* 80009184 */ ~cXyz();
-};
-
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
+};
+
+struct cXyz {
+    /* 80009184 */ ~cXyz();
 };
 
 struct mDoMtx_stack_c {
@@ -26,6 +26,8 @@ struct mDoMtx_stack_c {
     /* 8000CDD4 */ void transM(cXyz const&);
     /* 8000CE38 */ void scaleM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct J3DAnmTexPattern {};
@@ -39,15 +41,15 @@ struct mDoExt_btpAnm {
     /* 8000D5E8 */ void entry(J3DMaterialTable*, s16);
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {};
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -65,9 +67,9 @@ struct daPy_py_c {
     /* 8015F424 */ void checkNowWolfEyeUp();
 };
 
-struct J3DAnmTransformKey {};
-
 struct J3DJoint {};
+
+struct J3DAnmTransformKey {};
 
 struct J3DModel {};
 
@@ -94,6 +96,8 @@ struct daNpcCd2_c {
     /* 801598E8 */ void getNpcMdlDataP(int);
     /* 8015994C */ void getObjMdlDataP(int);
     /* 801599C4 */ void getTexAnmP(int);
+
+    static u8 const m_cylDat[68];
 };
 
 struct daNpcCd2_HIO_c {
@@ -145,6 +149,10 @@ struct dPa_control_c {
                             _GXColor const*, cXyz const*, f32);
 };
 
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
+};
+
 struct cBgS_PolyInfo {};
 
 struct dBgS {
@@ -173,6 +181,14 @@ struct PathTrace_c {
     /* 8015A294 */ void decIndex(int);
     /* 8015A370 */ void checkObstacle(fopAc_ac_c*);
     /* 8015A3E4 */ void checkObstacleSub(fopAc_ac_c*);
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
 };
 
 struct J3DFrameCtrl {
@@ -228,6 +244,7 @@ extern "C" void __dt__21daNpcCd2_HIO_MChild_cFv();
 extern "C" void __ct__21daNpcCd2_HIO_MChild_cFv();
 extern "C" void __dt__14daNpcCd2_HIO_cFv();
 extern "C" void __sinit_d_a_npc_cd2_cpp();
+extern "C" u8 const m_cylDat__10daNpcCd2_c[68];
 extern "C" extern char const* const a_npc_d_a_npc_cd2__stringBase0;
 extern "C" extern u8 data_80451010[8];
 
@@ -305,13 +322,13 @@ extern "C" void pow();
 extern "C" extern void* __vt__12J3DFrameCtrl[3];
 extern "C" extern void* __vt__18fOpAcm_HIO_entry_c[3];
 extern "C" extern void* __vt__14mDoHIO_entry_c[3];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 
 //
@@ -814,14 +831,14 @@ SECTION_RODATA static void* const l_bckTbl_W[108] = {
 COMPILER_STRIP_GATE(803937A0, &l_bckTbl_W);
 
 /* 80393950-80393994 01FFB0 0044+00 0/0 0/0 4/4 .rodata          m_cylDat__10daNpcCd2_c */
-SECTION_RODATA extern u8 const m_cylDat__10daNpcCd2_c[68] = {
+SECTION_RODATA u8 const daNpcCd2_c::m_cylDat[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80393950, &m_cylDat__10daNpcCd2_c);
+COMPILER_STRIP_GATE(80393950, &daNpcCd2_c::m_cylDat);
 
 /* 80393994-80393AFC 01FFF4 0168+00 1/1 0/0 0/0 .rodata          a_transScaleTbl$3998 */
 SECTION_RODATA static u8 const a_transScaleTbl[360] = {

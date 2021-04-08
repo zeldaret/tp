@@ -13,6 +13,8 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
@@ -24,12 +26,12 @@ struct cXyz {
     /* 80596DE8 */ cXyz();
 };
 
-struct csXyz {};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CDD4 */ void transM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct mDoExt_3DlineMat_c {};
@@ -38,9 +40,9 @@ struct mDoExt_3DlineMatSortPacket {
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
 };
 
-struct _GXColor {};
-
 struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct ResTIMG {};
 
@@ -53,6 +55,8 @@ struct fopAc_ac_c {};
 
 struct fopAcM_lc_c {
     /* 8001DC68 */ void lineCheck(cXyz const*, cXyz const*, fopAc_ac_c const*);
+
+    static u8 mLineCheck[112];
 };
 
 struct daObjRBridge_c {
@@ -196,6 +200,10 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DModel {};
 
 //
@@ -333,14 +341,14 @@ extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__12cCcD_CpsAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mLineCheck__11fopAcM_lc_c[112];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mLineCheck__11fopAcM_lc_c[112];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" extern u8 data_805980F8[4];
 
 //

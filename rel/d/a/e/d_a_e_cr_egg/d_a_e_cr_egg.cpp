@@ -16,6 +16,8 @@ struct request_of_phase_process_class {};
 struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CE38 */ void scaleM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -26,13 +28,13 @@ struct e_cr_egg_class {};
 
 struct dKy_tevstr_c {};
 
+struct J3DModelData {};
+
 struct Vec {};
 
 struct cXyz {
     /* 80266AE4 */ void operator+(Vec const&) const;
 };
-
-struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -55,6 +57,10 @@ struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
                             u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
                             cXyz const*, f32);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -129,6 +135,10 @@ struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
     /* 802C06F4 */ void stopAnime();
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct J3DModel {};
@@ -212,12 +222,12 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

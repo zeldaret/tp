@@ -13,6 +13,12 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {
+    /* 80D303D0 */ csXyz();
+    /* 802673F4 */ csXyz(s16, s16, s16);
+    /* 80D30394 */ ~csXyz();
+};
+
 struct Vec {};
 
 struct cXyz {
@@ -23,18 +29,16 @@ struct cXyz {
     /* 80267150 */ void atan2sY_XZ() const;
     /* 80D303D4 */ cXyz();
     /* 80D303D8 */ ~cXyz();
-};
 
-struct csXyz {
-    /* 80D303D0 */ csXyz();
-    /* 802673F4 */ csXyz(s16, s16, s16);
-    /* 80D30394 */ ~csXyz();
+    static f32 Zero[3];
 };
 
 struct mDoMtx_stack_c {
     /* 8000CDD4 */ void transM(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -44,6 +48,8 @@ struct fopAc_ac_c {
 
 struct fopAcM_rc_c {
     /* 8001DD1C */ void roofCheck(cXyz const*);
+
+    static f32 mRoofY;
 };
 
 struct daObjWchain_shape_c {
@@ -90,8 +96,18 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DShape {
     /* 80315300 */ void loadPreDrawSetting() const;
+
+    static u8 sOldVcdVatCmd[4];
 };
 
 struct J3DPacket;
@@ -197,18 +213,18 @@ extern "C" void abs();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
+extern "C" f32 Zero__4cXyz[3];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 g_whiteColor;
 extern "C" extern u32 __float_nan;
-extern "C" extern f32 mRoofY__11fopAcM_rc_c;
+extern "C" f32 mRoofY__11fopAcM_rc_c;
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 
 //
 // Declarations:

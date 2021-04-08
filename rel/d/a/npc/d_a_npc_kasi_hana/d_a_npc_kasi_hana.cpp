@@ -21,21 +21,23 @@ struct csXyz {
 
 struct mDoMtx_stack_c {
     /* 8000CF0C */ void ZXYrotS(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct mDoExt_morf_c {
     /* 8000FB7C */ void setMorf(f32);
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {};
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -85,11 +87,13 @@ struct daNpcKasi_Mng_c {
 
 struct J3DModel {};
 
+struct J3DJoint {};
+
 struct _GXColorS10 {};
 
-struct J3DAnmTransformKey {};
-
 struct J3DAnmTexPattern {};
+
+struct J3DAnmTransformKey {};
 
 struct daNpcF_c {
     struct daNpcF_anmPlayData {};
@@ -124,9 +128,9 @@ struct daNpcF_c {
     /* 80A20EAC */ bool setExpressionBtp(int);
     /* 80A20EB4 */ void setExpression(int, f32);
     /* 80A20EB8 */ void drawOtherMdls();
-};
 
-struct J3DJoint {};
+    static u8 mCcDCyl[68];
+};
 
 struct daNpcKasiHana_c {
     /* 80A1BE44 */ daNpcKasiHana_c();
@@ -186,10 +190,17 @@ struct daNpcKasiHana_c {
     /* 80A20244 */ void _Evt_Kasi_Cheer2_CutInit(int const&);
     /* 80A20350 */ void _Evt_Kasi_Cheer2_CutMain(int const&, int);
     /* 80A20678 */ void adjustShapeAngle();
+
+    static u8 mEvtSeqList[72];
+    static u8 mTargetTag[4];
+    static u8 mTargetTagDist[4];
+    static u8 mWolfAngle[2 + 2 /* padding */];
 };
 
 struct daNpcKasiHana_Param_c {
     /* 80A2067C */ ~daNpcKasiHana_Param_c();
+
+    static u8 const m[124];
 };
 
 struct dPath {};
@@ -356,6 +367,14 @@ struct Z2CreatureCitizen {
     /* 802C0CE4 */ void init(Vec*, Vec*, u8, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
+};
+
 struct J3DFrameCtrl {
     /* 803283FC */ void init(s16);
     /* 80A20E50 */ ~J3DFrameCtrl();
@@ -478,7 +497,12 @@ extern "C" void drawOtherMdls__8daNpcF_cFv();
 extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" void func_80A20F04(int, int);
 extern "C" void __sinit_d_a_npc_kasi_hana_cpp();
+extern "C" u8 const m__21daNpcKasiHana_Param_c[124];
 extern "C" extern char const* const d_a_npc_kasi_hana__stringBase0;
+extern "C" u8 mEvtSeqList__15daNpcKasiHana_c[72];
+extern "C" u8 mTargetTag__15daNpcKasiHana_c[4];
+extern "C" u8 mTargetTagDist__15daNpcKasiHana_c[4];
+extern "C" u8 mWolfAngle__15daNpcKasiHana_c[2 + 2 /* padding */];
 
 //
 // External References:
@@ -619,17 +643,17 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcF_c[68];
+extern "C" u8 mCcDCyl__8daNpcF_c[68];
 extern "C" extern void* __vt__8daNpcF_c[18];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -1092,7 +1116,7 @@ SECTION_DATA static void* lit_4328[3] = {
 /* 80A21518-80A21560 000144 0048+00 0/2 0/0 0/0 .data            mEvtSeqList__15daNpcKasiHana_c */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 mEvtSeqList__15daNpcKasiHana_c[72] = {
+SECTION_DATA u8 daNpcKasiHana_c::mEvtSeqList[72] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1510,7 +1534,7 @@ asm daNpcKasiHana_c::~daNpcKasiHana_c() {
 
 /* ############################################################################################## */
 /* 80A210C8-80A21144 000048 007C+00 5/12 0/0 0/0 .rodata          m__21daNpcKasiHana_Param_c */
-SECTION_RODATA static u8 const m__21daNpcKasiHana_Param_c[124] = {
+SECTION_RODATA u8 const daNpcKasiHana_Param_c::m[124] = {
     0x42, 0x5C, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00,
     0x43, 0x58, 0x00, 0x00, 0x43, 0x0C, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
@@ -1520,7 +1544,7 @@ SECTION_RODATA static u8 const m__21daNpcKasiHana_Param_c[124] = {
     0x00, 0x3C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0x48, 0x00, 0x00,
     0x43, 0xC8, 0x00, 0x00, 0x41, 0x60, 0x00, 0x00, 0x41, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A210C8, &m__21daNpcKasiHana_Param_c);
+COMPILER_STRIP_GATE(80A210C8, &daNpcKasiHana_Param_c::m);
 
 /* 80A21144-80A21148 0000C4 0004+00 0/1 0/0 0/0 .rodata          @4768 */
 #pragma push
@@ -2338,17 +2362,17 @@ static u8 lit_4323[12];
 static u8 l_HIO[4];
 
 /* 80A21858-80A2185C 000058 0004+00 1/2 0/0 0/0 .bss             mTargetTag__15daNpcKasiHana_c */
-static u8 mTargetTag__15daNpcKasiHana_c[4];
+u8 daNpcKasiHana_c::mTargetTag[4];
 
 /* 80A2185C-80A21860 00005C 0004+00 0/1 0/0 0/0 .bss             mTargetTagDist__15daNpcKasiHana_c
  */
 #pragma push
 #pragma force_active on
-static u8 mTargetTagDist__15daNpcKasiHana_c[4];
+u8 daNpcKasiHana_c::mTargetTagDist[4];
 #pragma pop
 
 /* 80A21860-80A21864 000060 0002+02 1/2 0/0 0/0 .bss             mWolfAngle__15daNpcKasiHana_c */
-static u8 mWolfAngle__15daNpcKasiHana_c[2 + 2 /* padding */];
+u8 daNpcKasiHana_c::mWolfAngle[2 + 2 /* padding */];
 
 /* 80A1E78C-80A1E7F4 0038CC 0068+00 1/1 0/0 0/0 .text            srchWolfTag__15daNpcKasiHana_cFv */
 #pragma push

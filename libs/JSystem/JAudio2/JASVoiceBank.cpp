@@ -17,6 +17,9 @@ struct JASVoiceBank {
     /* 80297F74 */ void getInstParam(int, int, int, JASInstParam*) const;
     /* 80297FAC */ ~JASVoiceBank();
     /* 80298008 */ void getType() const;
+
+    static u8 const sOscData[24];
+    static u8 sOscTable[4 + 4 /* padding */];
 };
 
 //
@@ -26,6 +29,8 @@ struct JASVoiceBank {
 extern "C" void getInstParam__12JASVoiceBankCFiiiP12JASInstParam();
 extern "C" void __dt__12JASVoiceBankFv();
 extern "C" void getType__12JASVoiceBankCFv();
+extern "C" u8 const sOscData__12JASVoiceBank[24];
+extern "C" u8 sOscTable__12JASVoiceBank[4 + 4 /* padding */];
 
 //
 // External References:
@@ -40,14 +45,14 @@ extern "C" extern void* __vt__7JASBank[5];
 
 /* ############################################################################################## */
 /* 8039B1B8-8039B1D0 027818 0018+00 1/1 0/0 0/0 .rodata          sOscData__12JASVoiceBank */
-SECTION_RODATA static u8 const sOscData__12JASVoiceBank[24] = {
+SECTION_RODATA u8 const JASVoiceBank::sOscData[24] = {
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8039B1B8, &sOscData__12JASVoiceBank);
+COMPILER_STRIP_GATE(8039B1B8, &JASVoiceBank::sOscData);
 
 /* 80451268-80451270 000768 0004+04 1/1 0/0 0/0 .sbss            sOscTable__12JASVoiceBank */
-static u8 sOscTable__12JASVoiceBank[4 + 4 /* padding */];
+u8 JASVoiceBank::sOscTable[4 + 4 /* padding */];
 
 /* 80297F74-80297FAC 2928B4 0038+00 1/0 0/0 0/0 .text
  * getInstParam__12JASVoiceBankCFiiiP12JASInstParam             */

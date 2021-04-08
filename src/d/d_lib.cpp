@@ -11,12 +11,23 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
+};
+
 struct fopAc_ac_c {};
 
 struct dLib_time_c {
     /* 80032804 */ void getTime();
     /* 80032880 */ void stopTime();
     /* 800328BC */ void startTime();
+
+    static u8 m_diffTime[4];
+    static u8 m_stopTime[4];
 };
 
 struct dEvt_control_c {
@@ -89,6 +100,8 @@ extern "C" void dLib_getExpandSizeFromAramArchive__FP14JKRAramArchivePCc();
 extern "C" void getTime__11dLib_time_cFv();
 extern "C" void stopTime__11dLib_time_cFv();
 extern "C" void startTime__11dLib_time_cFv();
+extern "C" u8 m_diffTime__11dLib_time_c[4];
+extern "C" u8 m_stopTime__11dLib_time_c[4];
 extern "C" extern u8 struct_80450DF0[8];
 
 //
@@ -105,8 +118,8 @@ extern "C" void OSGetTime();
 extern "C" void PSMTXMultVec();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 
 //
@@ -313,13 +326,13 @@ asm void dLib_getExpandSizeFromAramArchive(JKRAramArchive* param_0, char const* 
 
 /* ############################################################################################## */
 /* 80450DD8-80450DDC 0002D8 0004+00 2/2 0/0 0/0 .sbss            m_diffTime__11dLib_time_c */
-static u8 m_diffTime__11dLib_time_c[4];
+u8 dLib_time_c::m_diffTime[4];
 
 /* 80450DDC-80450DE0 0002DC 0004+00 2/2 0/0 0/0 .sbss            None */
 static u8 data_80450DDC[4];
 
 /* 80450DE0-80450DE4 0002E0 0004+00 3/3 0/0 0/0 .sbss            m_stopTime__11dLib_time_c */
-static u8 m_stopTime__11dLib_time_c[4];
+u8 dLib_time_c::m_stopTime[4];
 
 /* 80450DE4-80450DE8 0002E4 0004+00 3/3 0/0 0/0 .sbss            None */
 static u8 data_80450DE4[4];

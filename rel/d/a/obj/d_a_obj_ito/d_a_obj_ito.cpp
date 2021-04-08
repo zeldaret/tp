@@ -17,6 +17,8 @@ struct obj_ito_class {};
 
 struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct mDoExt_3DlineMat_c {};
@@ -25,9 +27,9 @@ struct mDoExt_3DlineMatSortPacket {
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
 };
 
-struct _GXColor {};
-
 struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct mDoExt_3DlineMat0_c {
     /* 800125E0 */ void init(u16, u16, int);
@@ -45,6 +47,8 @@ struct daObj_Ito_HIO_c {
     /* 8047D778 */ ~daObj_Ito_HIO_c();
 };
 
+struct J3DModelData {};
+
 struct Vec {};
 
 struct cXyz {
@@ -54,8 +58,6 @@ struct cXyz {
     /* 8047B9A4 */ ~cXyz();
     /* 8047D594 */ cXyz();
 };
-
-struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -155,6 +157,14 @@ struct Z2SeMgr {
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct J3DModel {};
@@ -276,13 +286,13 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //

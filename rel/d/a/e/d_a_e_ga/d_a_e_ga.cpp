@@ -16,6 +16,8 @@ struct request_of_phase_process_class {};
 struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CE38 */ void scaleM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct ga_s {
@@ -60,6 +62,10 @@ struct dComIfG_play_c {
     /* 8002CAF0 */ void addSimpleModel(J3DModelData*, int, u8);
     /* 8002CB30 */ void removeSimpleModel(J3DModelData*, int);
     /* 8002CB68 */ void entrySimpleModel(J3DModel*, int);
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 //
@@ -122,10 +128,10 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" void __register_global_object();
 

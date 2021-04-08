@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct J3DAnmTevRegKey {};
 
 struct J3DMaterialTable {
@@ -48,6 +52,10 @@ struct Vec {};
 
 struct Z2EnvSeMgr {
     /* 802C7E68 */ void startFarThunderSe(Vec*, s8);
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct JKRSolidHeap {};
@@ -113,13 +121,13 @@ extern "C" void strcmp();
 extern "C" extern void* __vt__12J3DFrameCtrl[3];
 extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_mEnvSeMgr[780];
 extern "C" extern u8 g_Counter[12 + 4 /* padding */];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u8 struct_80450D64[4];
 extern "C" extern u8 struct_80451070[8];
 

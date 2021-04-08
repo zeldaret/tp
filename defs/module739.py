@@ -38,10 +38,10 @@ SYMBOLS = [
 	{'addr':0x80D602C4,'size':32,'pad':0,'label':"daTagSetBall_Execute__FP14daTagSetBall_c",'name':"daTagSetBall_Execute__FP14daTagSetBall_c",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
 	{'addr':0x80D602E4,'size':32,'pad':0,'label':"daTagSetBall_Delete__FP14daTagSetBall_c",'name':"daTagSetBall_Delete__FP14daTagSetBall_c",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
 	{'addr':0x80D60304,'size':32,'pad':0,'label':"daTagSetBall_Create__FP14daTagSetBall_c",'name':"daTagSetBall_Create__FP14daTagSetBall_c",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
-	{'addr':0x80D60324,'size':4,'pad':0,'label':"_ctors",'name':"_ctors",'lib':-1,'tu':1,'section':1,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
-	{'addr':0x80D60328,'size':4,'pad':0,'label':"_dtors",'name':"_dtors",'lib':-1,'tu':2,'section':2,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
-	{'addr':0x80D6032C,'size':32,'pad':0,'label':"l_daTagSetBall_Method",'name':"l_daTagSetBall_Method",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
-	{'addr':0x80D6034C,'size':48,'pad':0,'label':"g_profile_Tag_SetBall",'name':"g_profile_Tag_SetBall",'lib':-1,'tu':3,'section':3,'class_template':False,'static':False,'is_reachable':False,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80D60324,'size':4,'pad':0,'label':"_ctors",'name':"_ctors",'lib':-1,'tu':1,'section':1,'class_template':None,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
+	{'addr':0x80D60328,'size':4,'pad':0,'label':"_dtors",'name':"_dtors",'lib':-1,'tu':2,'section':2,'class_template':None,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
+	{'addr':0x80D6032C,'size':32,'pad':0,'label':"l_daTagSetBall_Method",'name':"l_daTagSetBall_Method",'lib':-1,'tu':3,'section':3,'class_template':None,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80D6034C,'size':48,'pad':0,'label':"g_profile_Tag_SetBall",'name':"g_profile_Tag_SetBall",'lib':-1,'tu':3,'section':3,'class_template':None,'static':False,'is_reachable':False,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
 ]
 
 # Names

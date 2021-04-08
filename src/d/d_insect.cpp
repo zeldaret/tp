@@ -15,6 +15,10 @@ struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
 };
 
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
+};
+
 struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
@@ -77,7 +81,7 @@ extern "C" void endCheckOld__16dEvent_manager_cFPCc();
 extern "C" void newData__13dDlst_peekZ_cFssPUl();
 extern "C" void Insect_Release__9dInsect_cFv();
 extern "C" void isCatchNotGiveInsect__14dMenu_Insect_cFUc();
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //

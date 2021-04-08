@@ -11,9 +11,15 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -23,9 +29,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -40,8 +44,6 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct daNpcT_motionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -49,11 +51,13 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80A731A4 */ ~daNpcT_MotionSeqMngr_c();
 };
 
+struct daNpcT_motionAnmData_c {};
+
+struct J3DJoint {};
+
 struct daNpcT_faceMotionAnmData_c {};
 
 struct daNpcT_evtData_c {};
-
-struct J3DJoint {};
 
 struct daNpc_midP_c {
     /* 80A70C6C */ ~daNpc_midP_c();
@@ -96,10 +100,15 @@ struct daNpc_midP_c {
     /* 80A7392C */ s32 getBackboneJointNo();
     /* 80A73934 */ void checkChangeJoint(int);
     /* 80A73944 */ void checkRemoveJoint(int);
+
+    static void* mCutNameList;
+    static u8 mCutList[12];
 };
 
 struct daNpc_midP_Param_c {
     /* 80A73954 */ ~daNpc_midP_Param_c();
+
+    static u8 const m[140];
 };
 
 struct dCcD_GObjInf {
@@ -107,13 +116,13 @@ struct dCcD_GObjInf {
     /* 800840E4 */ ~dCcD_GObjInf();
 };
 
+struct J3DModel {};
+
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80A72BDC */ ~cXyz();
     /* 80A73158 */ cXyz();
 };
-
-struct J3DModel {};
 
 struct _GXColorS10 {};
 
@@ -166,6 +175,8 @@ struct daNpcT_c {
     /* 80A7375C */ void changeBck(int*, int*);
     /* 80A73760 */ void changeBtp(int*, int*);
     /* 80A73764 */ void changeBtk(int*, int*);
+
+    static u8 mCcDCyl[68];
 };
 
 struct daNpcT_MatAnm_c {
@@ -310,6 +321,10 @@ struct cBgS_GndChk {
     /* 80267C94 */ ~cBgS_GndChk();
 };
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DTexNoAnm {
     /* 80A713A8 */ ~J3DTexNoAnm();
     /* 80A713F0 */ J3DTexNoAnm();
@@ -448,7 +463,10 @@ extern "C" void checkRemoveJoint__12daNpc_midP_cFi();
 extern "C" void __dt__18daNpc_midP_Param_cFv();
 extern "C" static void func_80A7399C();
 extern "C" static void func_80A739A4();
+extern "C" u8 const m__18daNpc_midP_Param_c[140];
 extern "C" extern char const* const d_a_npc_midp__stringBase0;
+extern "C" void* mCutNameList__12daNpc_midP_c;
+extern "C" u8 mCutList__12daNpc_midP_c[12];
 
 //
 // External References:
@@ -569,18 +587,18 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
+extern "C" u8 mCcDCyl__8daNpcT_c[68];
 extern "C" extern void* __vt__8daNpcT_c[49];
 extern "C" extern void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 extern "C" void __register_global_object();
 
@@ -677,10 +695,10 @@ SECTION_DATA static u8 l_motionSequenceData[16] = {
 #pragma pop
 
 /* 80A73B58-80A73B5C -00001 0004+00 1/1 0/0 0/0 .data            mCutNameList__12daNpc_midP_c */
-SECTION_DATA static void* mCutNameList__12daNpc_midP_c = (void*)&d_a_npc_midp__stringBase0;
+SECTION_DATA void* daNpc_midP_c::mCutNameList = (void*)&d_a_npc_midp__stringBase0;
 
 /* 80A73B5C-80A73B68 0000A8 000C+00 2/2 0/0 0/0 .data            mCutList__12daNpc_midP_c */
-SECTION_DATA static u8 mCutList__12daNpc_midP_c[12] = {
+SECTION_DATA u8 daNpc_midP_c::mCutList[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
@@ -875,7 +893,7 @@ asm daNpc_midP_c::~daNpc_midP_c() {
 
 /* ############################################################################################## */
 /* 80A739C0-80A73A4C 000000 008C+00 6/6 0/0 0/0 .rodata          m__18daNpc_midP_Param_c */
-SECTION_RODATA static u8 const m__18daNpc_midP_Param_c[140] = {
+SECTION_RODATA u8 const daNpc_midP_Param_c::m[140] = {
     0x43, 0x52, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x43, 0x3E, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
@@ -886,7 +904,7 @@ SECTION_RODATA static u8 const m__18daNpc_midP_Param_c[140] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A739C0, &m__18daNpc_midP_Param_c);
+COMPILER_STRIP_GATE(80A739C0, &daNpc_midP_Param_c::m);
 
 /* 80A73A4C-80A73A50 00008C 0004+00 0/1 0/0 0/0 .rodata          @4028 */
 #pragma push

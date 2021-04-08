@@ -13,13 +13,21 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D990 */ void changeBckOnly(J3DAnmTransform*);
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
+
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -28,10 +36,6 @@ struct Z2Creature {
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
-
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -89,13 +93,16 @@ struct daNpcThe_c {
     /* 80AFB1C4 */ void lookat();
     /* 80AFB488 */ bool drawDbgInfo();
     /* 80AFBD9C */ void adjustShapeAngle();
+
+    static void* mEvtCutNameList[4];
+    static u8 mEvtCutList[48];
 };
 
 struct daNpcThe_Param_c {
     /* 80AFBDA0 */ ~daNpcThe_Param_c();
-};
 
-struct J3DAnmTransformKey {};
+    static u8 const m[108];
+};
 
 struct J3DAnmTextureSRTKey {};
 
@@ -104,6 +111,8 @@ struct _GXColorS10 {};
 struct J3DAnmTexPattern {
     /* 8032AF50 */ void getTexNo(u16, u16*) const;
 };
+
+struct J3DAnmTransformKey {};
 
 struct daNpcF_c {
     struct daNpcF_anmPlayData {};
@@ -140,6 +149,8 @@ struct daNpcF_c {
     /* 80AFB978 */ daNpcF_c();
     /* 80AFBCEC */ void setCollisions();
     /* 80AFBCF0 */ void drawOtherMdls();
+
+    static u8 mCcDCyl[68];
 };
 
 struct daNpcF_MatAnm_c {
@@ -166,6 +177,10 @@ struct daNpcF_ActorMngr_c {
     /* 801506EC */ void getActorP();
     /* 80AFB558 */ ~daNpcF_ActorMngr_c();
     /* 80AFB5A0 */ daNpcF_ActorMngr_c();
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -301,6 +316,8 @@ struct JMath {
     struct TSinCosTable__template0 {
         /* 80AFB490 */ void func_80AFB490(s16) /* const */;
     };
+
+    static u8 sincosTable_[65536];
 };
 
 struct J3DTexNoAnm {
@@ -322,6 +339,10 @@ struct J3DTevKColorAnm {
 struct J3DTevColorAnm {
     /* 80AF7FAC */ ~J3DTevColorAnm();
     /* 80AF7FE8 */ J3DTevColorAnm();
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
 };
 
 struct J3DMaterialAnm {
@@ -410,7 +431,10 @@ extern "C" void adjustShapeAngle__10daNpcThe_cFv();
 extern "C" void __dt__16daNpcThe_Param_cFv();
 extern "C" static void func_80AFBDE8();
 extern "C" static void func_80AFBDF0();
+extern "C" u8 const m__16daNpcThe_Param_c[108];
 extern "C" extern char const* const d_a_npc_the__stringBase0;
+extern "C" void* mEvtCutNameList__10daNpcThe_c[4];
+extern "C" u8 mEvtCutList__10daNpcThe_c[48];
 
 //
 // External References:
@@ -548,21 +572,21 @@ extern "C" void strcmp();
 extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcF_c[68];
+extern "C" u8 mCcDCyl__8daNpcF_c[68];
 extern "C" extern void* __vt__8daNpcF_c[18];
 extern "C" extern void* __vt__15daNpcF_MatAnm_c[4 + 6 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 extern "C" void chkPointInArea__15daTag_EvtArea_cF4cXyz4cXyz();
 extern "C" void __register_global_object();
@@ -687,7 +711,7 @@ SECTION_DATA static void* l_myName = (void*)&d_a_npc_the__stringBase0;
 /* 80AFC3B4-80AFC3C4 -00001 0010+00 0/1 0/0 0/0 .data            mEvtCutNameList__10daNpcThe_c */
 #pragma push
 #pragma force_active on
-SECTION_DATA static void* mEvtCutNameList__10daNpcThe_c[4] = {
+SECTION_DATA void* daNpcThe_c::mEvtCutNameList[4] = {
     (void*)(((char*)&d_a_npc_the__stringBase0) + 0x45),
     (void*)(((char*)&d_a_npc_the__stringBase0) + 0x46),
     (void*)(((char*)&d_a_npc_the__stringBase0) + 0x46),
@@ -728,7 +752,7 @@ SECTION_DATA static void* lit_3812[3] = {
 /* 80AFC3E8-80AFC418 000218 0030+00 0/2 0/0 0/0 .data            mEvtCutList__10daNpcThe_c */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 mEvtCutList__10daNpcThe_c[48] = {
+SECTION_DATA u8 daNpcThe_c::mEvtCutList[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1047,7 +1071,7 @@ asm daNpcThe_c::~daNpcThe_c() {
 
 /* ############################################################################################## */
 /* 80AFBE0C-80AFBE78 000000 006C+00 11/11 0/0 0/0 .rodata          m__16daNpcThe_Param_c */
-SECTION_RODATA static u8 const m__16daNpcThe_Param_c[108] = {
+SECTION_RODATA u8 const daNpcThe_Param_c::m[108] = {
     0x43, 0x5C, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xC8, 0x00, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x43, 0x48, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0xC1, 0xA0, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
@@ -1056,7 +1080,7 @@ SECTION_RODATA static u8 const m__16daNpcThe_Param_c[108] = {
     0x42, 0xA0, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0xC3, 0x96, 0x00, 0x00,
     0x00, 0x3C, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AFBE0C, &m__16daNpcThe_Param_c);
+COMPILER_STRIP_GATE(80AFBE0C, &daNpcThe_Param_c::m);
 
 /* 80AFBE78-80AFBE84 00006C 000C+00 1/1 0/0 0/0 .rodata          @4159 */
 SECTION_RODATA static u8 const lit_4159[12] = {

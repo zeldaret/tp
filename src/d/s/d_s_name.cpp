@@ -15,6 +15,18 @@ struct scene_class {};
 
 struct request_of_phase_process_class {};
 
+struct mDoRst {
+    static u8 mResetData[4 + 4 /* padding */];
+};
+
+struct mDoMch_render_c {
+    static void* mRenderModeObj[1 + 1 /* padding */];
+};
+
+struct mDoGph_gInf_c {
+    static u8 mFader[4];
+};
+
 struct dVibration_c {
     /* 8006F268 */ void Run();
     /* 8006FF04 */ void Init();
@@ -97,10 +109,18 @@ struct Z2SeqMgr {
     /* 802AFE18 */ void bgmStreamPlay();
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct Vec {};
 
 struct JKRExpHeap {
     /* 802CEE2C */ void create(u32, JKRHeap*, bool);
+};
+
+struct JFWDisplay {
+    static u8 sManager[4];
 };
 
 //
@@ -189,13 +209,13 @@ extern "C" extern void* g_fpcNd_Method[5 + 1 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
+extern "C" void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
 extern "C" extern u32 g_blackColor;
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
+extern "C" u8 mFader__13mDoGph_gInf_c[4];
 extern "C" extern u8 struct_80450BE4[4];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 sManager__10JFWDisplay[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
+extern "C" u8 sManager__10JFWDisplay[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

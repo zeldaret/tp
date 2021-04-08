@@ -50,6 +50,8 @@ struct JKRDvdFile {
     /* 802D9A70 */ void sync();
     /* 802D9AC4 */ void doneProcess(s32, DVDFileInfo*);
     /* 802D9AF8 */ void getFileSize() const;
+
+    static u8 sDvdList[12];
 };
 
 struct JKRDisposer {
@@ -77,6 +79,7 @@ extern "C" void getFileSize__10JKRDvdFileCFv();
 extern "C" void __sinit_JKRDvdFile_cpp();
 extern "C" void func_802D9B44();
 extern "C" extern char const* const JKRDvdFile__stringBase0;
+extern "C" u8 sDvdList__10JKRDvdFile[12];
 
 //
 // External References:
@@ -186,7 +189,7 @@ asm void JKRDvdFile::initiate() {
 static u8 lit_657[12];
 
 /* 8043436C-80434378 06108C 000C+00 4/4 0/0 0/0 .bss             sDvdList__10JKRDvdFile */
-static u8 sDvdList__10JKRDvdFile[12];
+u8 JKRDvdFile::sDvdList[12];
 
 /* 802D9850-802D98C4 2D4190 0074+00 1/0 1/1 0/0 .text            open__10JKRDvdFileFPCc */
 #pragma push

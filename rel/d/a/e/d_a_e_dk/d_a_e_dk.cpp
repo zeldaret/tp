@@ -21,11 +21,13 @@ struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CE38 */ void scaleM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
-struct J3DAnmTextureSRTKey {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -43,15 +45,15 @@ struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {};
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -69,11 +71,11 @@ struct fopAc_ac_c {
 
 struct cBgD_Vtx_t {};
 
+struct cM3dGPla {};
+
 struct dBgS_SphChk {
     /* 80078A14 */ dBgS_SphChk();
 };
-
-struct cM3dGPla {};
 
 struct daE_DK_c {
     /* 806AA228 */ void draw();
@@ -147,6 +149,10 @@ struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
                             cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
                             _GXColor const*, cXyz const*, f32);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcU_AtInfo {};
@@ -254,6 +260,10 @@ struct Z2CreatureEnemy {
     /* 802C1094 */ void init(Vec*, Vec*, u8, u8);
     /* 802C1B7C */ void setLinkSearch(bool);
     /* 802C1B90 */ void setEnemyName(char const*);
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct JGeometry {
@@ -436,12 +446,12 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dZModeTable[96];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 extern "C" void __register_global_object();
 

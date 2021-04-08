@@ -21,12 +21,21 @@ struct pair__template0 {
 
 };  // namespace std
 
+struct JMath {
+    static u8 sincosTable_[65536];
+    static f32 atanTable_[1032];
+    static f32 asinAcosTable_[1032];
+};
+
 //
 // Forward References:
 //
 
 extern "C" void __sinit_JMATrigonometric_cpp();
 extern "C" void func_80339CB0();
+extern "C" u8 sincosTable___5JMath[65536];
+extern "C" f32 atanTable___5JMath[1032];
+extern "C" f32 asinAcosTable___5JMath[1032];
 
 //
 // External References:
@@ -46,15 +55,13 @@ extern "C" void asin();
 
 /* ############################################################################################## */
 /* 80439A20-80449A20 066740 10000+00 1/1 265/265 705/705 .bss             sincosTable___5JMath */
-extern u8 sincosTable___5JMath[65536];
-u8 sincosTable___5JMath[65536];
+u8 JMath::sincosTable_[65536];
 
 /* 80449A20-8044AA40 076740 1020+00 1/1 0/0 0/0 .bss             atanTable___5JMath */
-static f32 atanTable___5JMath[1032];
+f32 JMath::atanTable_[1032];
 
 /* 8044AA40-8044BA60 077760 1020+00 1/1 1/1 0/0 .bss             asinAcosTable___5JMath */
-extern f32 asinAcosTable___5JMath[1032];
-f32 asinAcosTable___5JMath[1032];
+f32 JMath::asinAcosTable_[1032];
 
 /* 804564D8-804564E0 004AD8 0004+04 2/2 0/0 0/0 .sdata2          @326 */
 SECTION_SDATA2 static f32 lit_326[1 + 1 /* padding */] = {

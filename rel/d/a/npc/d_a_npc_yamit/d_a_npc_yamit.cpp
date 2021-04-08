@@ -11,9 +11,15 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -23,9 +29,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -45,8 +49,6 @@ struct daTagYami_c {
     /* 80D65F24 */ void offMidnaTagSw2();
 };
 
-struct daNpcT_motionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -54,11 +56,13 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80B4C5EC */ ~daNpcT_MotionSeqMngr_c();
 };
 
+struct daNpcT_motionAnmData_c {};
+
+struct J3DJoint {};
+
 struct daNpcT_faceMotionAnmData_c {};
 
 struct daNpcT_evtData_c {};
-
-struct J3DJoint {};
 
 struct daNpc_yamiT_c {
     /* 80B49BEC */ ~daNpc_yamiT_c();
@@ -105,10 +109,15 @@ struct daNpc_yamiT_c {
     /* 80B4CD10 */ bool getBackboneJointNo();
     /* 80B4CD18 */ void checkChangeJoint(int);
     /* 80B4CD28 */ void checkRemoveJoint(int);
+
+    static void* mCutNameList[2];
+    static u8 mCutList[24];
 };
 
 struct daNpc_yamiT_Param_c {
     /* 80B4CD38 */ ~daNpc_yamiT_Param_c();
+
+    static u8 const m[140];
 };
 
 struct dCcD_GObjInf {
@@ -116,13 +125,13 @@ struct dCcD_GObjInf {
     /* 800840E4 */ ~dCcD_GObjInf();
 };
 
+struct J3DModel {};
+
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80B4BF4C */ ~cXyz();
     /* 80B4C5A0 */ cXyz();
 };
-
-struct J3DModel {};
 
 struct _GXColorS10 {};
 
@@ -175,6 +184,8 @@ struct daNpcT_c {
     /* 80B4CBA4 */ void changeBck(int*, int*);
     /* 80B4CBA8 */ void changeBtp(int*, int*);
     /* 80B4CBAC */ void changeBtk(int*, int*);
+
+    static u8 mCcDCyl[68];
 };
 
 struct daNpcT_Path_c {
@@ -337,6 +348,10 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DTexNoAnm {
     /* 80B4A314 */ ~J3DTexNoAnm();
     /* 80B4A35C */ J3DTexNoAnm();
@@ -480,7 +495,10 @@ extern "C" void checkRemoveJoint__13daNpc_yamiT_cFi();
 extern "C" void __dt__19daNpc_yamiT_Param_cFv();
 extern "C" static void func_80B4CD80();
 extern "C" static void func_80B4CD88();
+extern "C" u8 const m__19daNpc_yamiT_Param_c[140];
 extern "C" extern char const* const d_a_npc_yamit__stringBase0;
+extern "C" void* mCutNameList__13daNpc_yamiT_c[2];
+extern "C" u8 mCutList__13daNpc_yamiT_c[24];
 
 //
 // External References:
@@ -610,19 +628,19 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
+extern "C" u8 mCcDCyl__8daNpcT_c[68];
 extern "C" extern void* __vt__8daNpcT_c[49];
 extern "C" extern void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 extern "C" void onMidnaTagSw__11daTagYami_cFv();
 extern "C" void offMidnaTagSw2__11daTagYami_cFv();
@@ -730,7 +748,7 @@ SECTION_DATA static u8 l_motionSequenceData[48] = {
 #pragma pop
 
 /* 80B4CFC8-80B4CFD0 -00001 0008+00 1/1 0/0 0/0 .data            mCutNameList__13daNpc_yamiT_c */
-SECTION_DATA static void* mCutNameList__13daNpc_yamiT_c[2] = {
+SECTION_DATA void* daNpc_yamiT_c::mCutNameList[2] = {
     (void*)&d_a_npc_yamit__stringBase0,
     (void*)(((char*)&d_a_npc_yamit__stringBase0) + 0x1),
 };
@@ -743,7 +761,7 @@ SECTION_DATA static void* lit_3814[3] = {
 };
 
 /* 80B4CFDC-80B4CFF4 000140 0018+00 2/2 0/0 0/0 .data            mCutList__13daNpc_yamiT_c */
-SECTION_DATA static u8 mCutList__13daNpc_yamiT_c[24] = {
+SECTION_DATA u8 daNpc_yamiT_c::mCutList[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -953,7 +971,7 @@ asm daNpc_yamiT_c::~daNpc_yamiT_c() {
 
 /* ############################################################################################## */
 /* 80B4CDA4-80B4CE30 000000 008C+00 7/7 0/0 0/0 .rodata          m__19daNpc_yamiT_Param_c */
-SECTION_RODATA static u8 const m__19daNpc_yamiT_Param_c[140] = {
+SECTION_RODATA u8 const daNpc_yamiT_Param_c::m[140] = {
     0x43, 0x66, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xC8, 0x00, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x43, 0x5C, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
@@ -964,7 +982,7 @@ SECTION_RODATA static u8 const m__19daNpc_yamiT_Param_c[140] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B4CDA4, &m__19daNpc_yamiT_Param_c);
+COMPILER_STRIP_GATE(80B4CDA4, &daNpc_yamiT_Param_c::m);
 
 /* 80B4CE30-80B4CE34 00008C 0004+00 0/1 0/0 0/0 .rodata          @4027 */
 #pragma push

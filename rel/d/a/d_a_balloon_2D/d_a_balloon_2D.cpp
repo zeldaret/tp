@@ -54,6 +54,8 @@ struct daBalloon2D_c {
     /* 80654730 */ void drawAddScore();
     /* 80654E8C */ void setHIO(bool);
     /* 80655494 */ ~daBalloon2D_c();
+
+    static u8 myclass[4];
 };
 
 struct daBalloon2D_HIO_c {
@@ -87,6 +89,10 @@ struct dDlst_list_c {
 struct Vec {};
 
 struct ResTIMG {};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
 
 struct JKRExpHeap {};
 
@@ -158,6 +164,7 @@ extern "C" void __dt__Q213daBalloon2D_c6c_listFv();
 extern "C" void __dt__13daBalloon2D_cFv();
 extern "C" void __sinit_d_a_balloon_2D_cpp();
 extern "C" extern char const* const d_a_balloon_2D__stringBase0;
+extern "C" u8 myclass__13daBalloon2D_c[4];
 
 //
 // External References:
@@ -205,7 +212,7 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" void __register_global_object();
 
 //
@@ -281,7 +288,7 @@ static u8 lit_3779[12];
 static u8 l_HOSTIO[200];
 
 /* 80655844-80655848 0000DC 0004+00 2/2 0/0 0/0 .bss             myclass__13daBalloon2D_c */
-static u8 myclass__13daBalloon2D_c[4];
+u8 daBalloon2D_c::myclass[4];
 
 /* 80653D24-80653DB4 000944 0090+00 1/1 0/0 0/0 .text            create__13daBalloon2D_cFv */
 #pragma push

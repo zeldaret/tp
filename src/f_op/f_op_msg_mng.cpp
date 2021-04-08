@@ -17,6 +17,10 @@ struct layer_class {};
 
 struct fopAc_ac_c {};
 
+struct dStage_roomControl_c {
+    static u8 mProcID[4];
+};
+
 struct dMsgObject_c {
     /* 80233D04 */ void setMessageIndex(u32, u32, bool);
     /* 80233E70 */ void setMessageIndexDemo(u32, bool);
@@ -39,6 +43,10 @@ struct cXyz {};
 
 struct cMl {
     /* 80263228 */ void memalignB(int, u32);
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct JKRHeap {
@@ -118,9 +126,9 @@ extern "C" void _restgpr_29();
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 g_MsgObject_HIO_c[1040];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u8 g_fpcNd_type[4 + 4 /* padding */];
-extern "C" extern u8 mProcID__20dStage_roomControl_c[4];
+extern "C" u8 mProcID__20dStage_roomControl_c[4];
 
 //
 // Declarations:

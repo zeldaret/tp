@@ -13,6 +13,12 @@
 
 struct fopAc_ac_c {};
 
+struct daYkgr_c {
+    static u8 m_aim_rate[4];
+    static u8 m_path[4];
+    static u8 m_emitter[4];
+};
+
 struct cXyz {
     /* 80009184 */ ~cXyz();
     /* 800125DC */ cXyz();
@@ -20,6 +26,8 @@ struct cXyz {
 
 struct daTagStream_c {
     /* 800318B4 */ void checkArea(cXyz const*);
+
+    static u8 m_top[4];
 };
 
 struct daTagMist_c {
@@ -33,6 +41,8 @@ struct daTagMagne_c {
     /* 80031BF4 */ void checkMagneA();
     /* 80031C48 */ void checkMagneB();
     /* 80031C9C */ void checkMagneC();
+
+    static u8 mTagMagne[4];
 };
 
 struct daSus_c {
@@ -58,10 +68,19 @@ struct daSus_c {
     /* 800314D4 */ void check(fopAc_ac_c*);
     /* 80031434 */ void check(s8, cXyz const&);
     /* 800315A4 */ void execute();
+
+    static u8 mData[1152];
+    static u8 mRoom[256];
 };
 
 struct daSetBgObj_c {
     /* 80031870 */ void getArcName(fopAc_ac_c*);
+};
+
+struct daObjMovebox {
+    struct Act_c {
+        static void* M_dir_base[2];
+    };
 };
 
 struct daObjCarry_c {
@@ -75,6 +94,10 @@ struct daObjCarry_c {
     /* 80031D8C */ void chkSttsFlag(int, u8);
     /* 80031DAC */ void setRoomNo(int, s8);
     /* 80031DB8 */ void getRoomNo(int);
+
+    static u8 mPos[60];
+    static u8 mSttsFlag[5 + 3 /* padding */];
+    static u8 mRoomNo[5 + 3 /* padding */];
 };
 
 struct J3DModel {};
@@ -82,6 +105,9 @@ struct J3DModel {};
 struct daMirror_c {
     /* 8003194C */ void entry(J3DModel*);
     /* 80031990 */ void remove();
+
+    static u8 m_entryModel[12];
+    static u8 m_myObj[4];
 };
 
 struct daMP_c {
@@ -89,11 +115,29 @@ struct daMP_c {
     /* 80031AA4 */ void daMP_c_Set_PercentMovieVolume(f32);
     /* 80031AD0 */ void daMP_c_THPPlayerPlay();
     /* 80031B24 */ void daMP_c_THPPlayerPause();
+
+    static u8 m_myObj[4];
 };
 
 struct daGrass_c {
     /* 800319C8 */ void deleteRoomGrass(int);
     /* 80031A20 */ void deleteRoomFlower(int);
+
+    static u8 m_myObj[4];
+    static u8 m_grass[4];
+    static u8 m_flower[4];
+};
+
+struct daDsh_c {
+    static u32 OPEN_SIZE;
+    static f32 OPEN_ACCEL;
+    static f32 OPEN_SPEED;
+    static f32 OPEN_BOUND_SPEED;
+    static f32 OPEN_BOUND_RATIO;
+    static f32 CLOSE_ACCEL;
+    static f32 CLOSE_SPEED;
+    static f32 CLOSE_BOUND_SPEED;
+    static f32 CLOSE_BOUND_RATIO;
 };
 
 struct dSv_info_c {
@@ -106,6 +150,18 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
     /* 800349E0 */ void setEventReg(u16, u8);
     /* 80034A04 */ void getEventReg(u16) const;
+};
+
+struct dGrass_packet_c {
+    static u8 m_deleteRoom[12];
+};
+
+struct dFlower_packet_c {
+    static u8 m_deleteRoom[12];
+};
+
+struct dDemo_c {
+    static u8 m_status[4];
 };
 
 struct dComIfG_play_c {
@@ -174,6 +230,34 @@ extern "C" void func_80031EF0();
 extern "C" void __dt__Q27daSus_c6data_cFv();
 extern "C" void __ct__Q27daSus_c6data_cFv();
 extern "C" extern char const* const d_com_d_com_static__stringBase0;
+extern "C" u8 mData__7daSus_c[1152];
+extern "C" u8 mRoom__7daSus_c[256];
+extern "C" u8 m_entryModel__10daMirror_c[12];
+extern "C" u8 m_deleteRoom__15dGrass_packet_c[12];
+extern "C" u8 m_deleteRoom__16dFlower_packet_c[12];
+extern "C" u8 mPos__12daObjCarry_c[60];
+extern "C" u8 m_aim_rate__8daYkgr_c[4];
+extern "C" u8 m_path__8daYkgr_c[4];
+extern "C" u8 m_emitter__8daYkgr_c[4];
+extern "C" u8 m_top__13daTagStream_c[4];
+extern "C" u8 m_myObj__10daMirror_c[4];
+extern "C" u8 m_myObj__9daGrass_c[4];
+extern "C" u8 m_grass__9daGrass_c[4];
+extern "C" u8 m_flower__9daGrass_c[4];
+extern "C" u8 m_myObj__6daMP_c[4];
+extern "C" u8 mTagMagne__12daTagMagne_c[4];
+extern "C" u8 mSttsFlag__12daObjCarry_c[5 + 3 /* padding */];
+extern "C" u8 mRoomNo__12daObjCarry_c[5 + 3 /* padding */];
+extern "C" void* M_dir_base__Q212daObjMovebox5Act_c[2];
+extern "C" u32 OPEN_SIZE__7daDsh_c;
+extern "C" f32 OPEN_ACCEL__7daDsh_c;
+extern "C" f32 OPEN_SPEED__7daDsh_c;
+extern "C" f32 OPEN_BOUND_SPEED__7daDsh_c;
+extern "C" f32 OPEN_BOUND_RATIO__7daDsh_c;
+extern "C" f32 CLOSE_ACCEL__7daDsh_c;
+extern "C" f32 CLOSE_SPEED__7daDsh_c;
+extern "C" f32 CLOSE_BOUND_SPEED__7daDsh_c;
+extern "C" f32 CLOSE_BOUND_RATIO__7daDsh_c;
 
 //
 // External References:
@@ -205,7 +289,7 @@ extern "C" void sprintf();
 extern "C" void strcmp();
 extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 m_status__7dDemo_c[4];
+extern "C" u8 m_status__7dDemo_c[4];
 
 //
 // Declarations:
@@ -298,11 +382,10 @@ asm void daSus_c::room_c::reset() {
 static u8 lit_3840[12];
 
 /* 80423FFC-8042447C 050D1C 0480+00 6/7 0/0 0/0 .bss             mData__7daSus_c */
-static u8 mData__7daSus_c[1152];
+u8 daSus_c::mData[1152];
 
 /* 8042447C-8042457C 05119C 0100+00 2/3 0/0 1/1 .bss             mRoom__7daSus_c */
-extern u8 mRoom__7daSus_c[256];
-u8 mRoom__7daSus_c[256];
+u8 daSus_c::mRoom[256];
 
 /* 80450D88-80450D8C -00001 0004+00 1/1 0/0 2/2 .sbss            None */
 /* 80450D88 0002+00 data_80450D88 m_count__9daArrow_c */
@@ -461,16 +544,13 @@ extern u8 struct_80450D8C[4];
 u8 struct_80450D8C[4];
 
 /* 80450D90-80450D94 000290 0004+00 0/0 0/0 1/1 .sbss            m_aim_rate__8daYkgr_c */
-extern u8 m_aim_rate__8daYkgr_c[4];
-u8 m_aim_rate__8daYkgr_c[4];
+u8 daYkgr_c::m_aim_rate[4];
 
 /* 80450D94-80450D98 000294 0004+00 0/0 0/0 2/2 .sbss            m_path__8daYkgr_c */
-extern u8 m_path__8daYkgr_c[4];
-u8 m_path__8daYkgr_c[4];
+u8 daYkgr_c::m_path[4];
 
 /* 80450D98-80450D9C 000298 0004+00 0/0 1/1 2/2 .sbss            m_emitter__8daYkgr_c */
-extern u8 m_emitter__8daYkgr_c[4];
-u8 m_emitter__8daYkgr_c[4];
+u8 daYkgr_c::m_emitter[4];
 
 /* 80450D9C-80450DA4 00029C 0008+00 1/1 0/0 0/0 .sbss            arcName$4309 */
 static u8 arcName[8];
@@ -489,45 +569,37 @@ asm void daSetBgObj_c::getArcName(fopAc_ac_c* param_0) {
 /* ############################################################################################## */
 /* 80451D28-80451D30 -00001 0008+00 0/0 0/0 3/3 .sdata2          M_dir_base__Q212daObjMovebox5Act_c
  */
-SECTION_SDATA2 extern void* M_dir_base__Q212daObjMovebox5Act_c[2] = {
+SECTION_SDATA2 void* daObjMovebox::Act_c::M_dir_base[2] = {
     (void*)0x00004000,
     (void*)(((char*)mDoMch_Create__Fv) + 0x2BC),
 };
 
 /* 80451D30-80451D34 000330 0004+00 0/0 0/0 3/3 .sdata2          OPEN_SIZE__7daDsh_c */
-SECTION_SDATA2 extern u32 OPEN_SIZE__7daDsh_c = 0x43870CCD;
+SECTION_SDATA2 u32 daDsh_c::OPEN_SIZE = 0x43870CCD;
 
 /* 80451D34-80451D38 000334 0004+00 0/0 0/0 1/1 .sdata2          OPEN_ACCEL__7daDsh_c */
-SECTION_SDATA2 extern f32 OPEN_ACCEL__7daDsh_c;
-SECTION_SDATA2 f32 OPEN_ACCEL__7daDsh_c = 10.0f;
+SECTION_SDATA2 f32 daDsh_c::OPEN_ACCEL = 10.0f;
 
 /* 80451D38-80451D3C 000338 0004+00 0/0 0/0 1/1 .sdata2          OPEN_SPEED__7daDsh_c */
-SECTION_SDATA2 extern f32 OPEN_SPEED__7daDsh_c;
-SECTION_SDATA2 f32 OPEN_SPEED__7daDsh_c = -40.0f;
+SECTION_SDATA2 f32 daDsh_c::OPEN_SPEED = -40.0f;
 
 /* 80451D3C-80451D40 00033C 0004+00 0/0 0/0 1/1 .sdata2          OPEN_BOUND_SPEED__7daDsh_c */
-SECTION_SDATA2 extern f32 OPEN_BOUND_SPEED__7daDsh_c;
-SECTION_SDATA2 f32 OPEN_BOUND_SPEED__7daDsh_c = -30.0f;
+SECTION_SDATA2 f32 daDsh_c::OPEN_BOUND_SPEED = -30.0f;
 
 /* 80451D40-80451D44 000340 0004+00 0/0 0/0 1/1 .sdata2          OPEN_BOUND_RATIO__7daDsh_c */
-SECTION_SDATA2 extern f32 OPEN_BOUND_RATIO__7daDsh_c;
-SECTION_SDATA2 f32 OPEN_BOUND_RATIO__7daDsh_c = -2.0f / 5.0f;
+SECTION_SDATA2 f32 daDsh_c::OPEN_BOUND_RATIO = -2.0f / 5.0f;
 
 /* 80451D44-80451D48 000344 0004+00 0/0 0/0 1/1 .sdata2          CLOSE_ACCEL__7daDsh_c */
-SECTION_SDATA2 extern f32 CLOSE_ACCEL__7daDsh_c;
-SECTION_SDATA2 f32 CLOSE_ACCEL__7daDsh_c = 10.0f;
+SECTION_SDATA2 f32 daDsh_c::CLOSE_ACCEL = 10.0f;
 
 /* 80451D48-80451D4C 000348 0004+00 0/0 0/0 1/1 .sdata2          CLOSE_SPEED__7daDsh_c */
-SECTION_SDATA2 extern f32 CLOSE_SPEED__7daDsh_c;
-SECTION_SDATA2 f32 CLOSE_SPEED__7daDsh_c = 40.0f;
+SECTION_SDATA2 f32 daDsh_c::CLOSE_SPEED = 40.0f;
 
 /* 80451D4C-80451D50 00034C 0004+00 0/0 0/0 1/1 .sdata2          CLOSE_BOUND_SPEED__7daDsh_c */
-SECTION_SDATA2 extern f32 CLOSE_BOUND_SPEED__7daDsh_c;
-SECTION_SDATA2 f32 CLOSE_BOUND_SPEED__7daDsh_c = 30.0f;
+SECTION_SDATA2 f32 daDsh_c::CLOSE_BOUND_SPEED = 30.0f;
 
 /* 80451D50-80451D54 000350 0004+00 0/0 0/0 1/1 .sdata2          CLOSE_BOUND_RATIO__7daDsh_c */
-SECTION_SDATA2 extern f32 CLOSE_BOUND_RATIO__7daDsh_c;
-SECTION_SDATA2 f32 CLOSE_BOUND_RATIO__7daDsh_c = -2.0f / 5.0f;
+SECTION_SDATA2 f32 daDsh_c::CLOSE_BOUND_RATIO = -2.0f / 5.0f;
 
 /* 80451D54-80451D58 000354 0004+00 1/1 0/0 0/0 .sdata2          @4338 */
 SECTION_SDATA2 static u8 lit_4338[4] = {
@@ -550,16 +622,13 @@ asm void daTagStream_c::checkArea(cXyz const* param_0) {
 
 /* ############################################################################################## */
 /* 8042457C-80424588 05129C 000C+00 1/2 0/0 1/1 .bss             m_entryModel__10daMirror_c */
-extern u8 m_entryModel__10daMirror_c[12];
-u8 m_entryModel__10daMirror_c[12];
+u8 daMirror_c::m_entryModel[12];
 
 /* 80450DA4-80450DA8 0002A4 0004+00 0/0 1/1 2/2 .sbss            m_top__13daTagStream_c */
-extern u8 m_top__13daTagStream_c[4];
-u8 m_top__13daTagStream_c[4];
+u8 daTagStream_c::m_top[4];
 
 /* 80450DA8-80450DAC 0002A8 0004+00 2/2 0/0 4/4 .sbss            m_myObj__10daMirror_c */
-extern u8 m_myObj__10daMirror_c[4];
-u8 m_myObj__10daMirror_c[4];
+u8 daMirror_c::m_myObj[4];
 
 /* 8003194C-80031990 02C28C 0044+00 0/0 1/1 9/9 .text            entry__10daMirror_cFP8J3DModel */
 #pragma push
@@ -583,16 +652,13 @@ asm void daMirror_c::remove() {
 
 /* ############################################################################################## */
 /* 80424588-80424594 0512A8 000C+00 1/2 0/0 1/1 .bss             m_deleteRoom__15dGrass_packet_c */
-extern u8 m_deleteRoom__15dGrass_packet_c[12];
-u8 m_deleteRoom__15dGrass_packet_c[12];
+u8 dGrass_packet_c::m_deleteRoom[12];
 
 /* 80450DAC-80450DB0 0002AC 0004+00 0/0 0/0 2/2 .sbss            m_myObj__9daGrass_c */
-extern u8 m_myObj__9daGrass_c[4];
-u8 m_myObj__9daGrass_c[4];
+u8 daGrass_c::m_myObj[4];
 
 /* 80450DB0-80450DB4 0002B0 0004+00 1/1 0/0 11/11 .sbss            m_grass__9daGrass_c */
-extern u8 m_grass__9daGrass_c[4];
-u8 m_grass__9daGrass_c[4];
+u8 daGrass_c::m_grass[4];
 
 /* 800319C8-80031A20 02C308 0058+00 0/0 0/0 1/1 .text            deleteRoomGrass__9daGrass_cFi */
 #pragma push
@@ -606,12 +672,10 @@ asm void daGrass_c::deleteRoomGrass(int param_0) {
 
 /* ############################################################################################## */
 /* 80424594-804245A0 0512B4 000C+00 1/2 0/0 1/1 .bss             m_deleteRoom__16dFlower_packet_c */
-extern u8 m_deleteRoom__16dFlower_packet_c[12];
-u8 m_deleteRoom__16dFlower_packet_c[12];
+u8 dFlower_packet_c::m_deleteRoom[12];
 
 /* 80450DB4-80450DB8 0002B4 0004+00 1/1 0/0 9/9 .sbss            m_flower__9daGrass_c */
-extern u8 m_flower__9daGrass_c[4];
-u8 m_flower__9daGrass_c[4];
+u8 daGrass_c::m_flower[4];
 
 /* 80031A20-80031A78 02C360 0058+00 0/0 0/0 1/1 .text            deleteRoomFlower__9daGrass_cFi */
 #pragma push
@@ -625,8 +689,7 @@ asm void daGrass_c::deleteRoomFlower(int param_0) {
 
 /* ############################################################################################## */
 /* 80450DB8-80450DBC 0002B8 0004+00 4/4 0/0 2/2 .sbss            m_myObj__6daMP_c */
-extern u8 m_myObj__6daMP_c[4];
-u8 m_myObj__6daMP_c[4];
+u8 daMP_c::m_myObj[4];
 
 /* 80031A78-80031AA4 02C3B8 002C+00 0/0 0/0 1/1 .text daMP_c_Get_MovieRestFrame__6daMP_cFv */
 #pragma push
@@ -670,8 +733,7 @@ asm void daMP_c::daMP_c_THPPlayerPause() {
 
 /* ############################################################################################## */
 /* 80450DBC-80450DC0 0002BC 0004+00 1/1 0/0 3/3 .sbss            mTagMagne__12daTagMagne_c */
-extern u8 mTagMagne__12daTagMagne_c[4];
-u8 mTagMagne__12daTagMagne_c[4];
+u8 daTagMagne_c::mTagMagne[4];
 
 /* 80031B50-80031BF4 02C490 00A4+00 0/0 4/4 0/0 .text
  * checkMagnetCode__12daTagMagne_cFR13cBgS_PolyInfo             */
@@ -769,7 +831,7 @@ static u8 lit_4480[12];
 #pragma pop
 
 /* 804245AC-804245E8 0512CC 003C+00 3/4 0/0 0/0 .bss             mPos__12daObjCarry_c */
-static u8 mPos__12daObjCarry_c[60];
+u8 daObjCarry_c::mPos[60];
 
 /* 80031D24-80031D38 02C664 0014+00 0/0 0/0 1/1 .text            getPos__12daObjCarry_cFi */
 #pragma push
@@ -793,7 +855,7 @@ asm void daObjCarry_c::savePos(int param_0, cXyz param_1) {
 
 /* ############################################################################################## */
 /* 80450DC4-80450DCC 0002C4 0005+03 3/3 0/0 0/0 .sbss            mSttsFlag__12daObjCarry_c */
-static u8 mSttsFlag__12daObjCarry_c[5 + 3 /* padding */];
+u8 daObjCarry_c::mSttsFlag[5 + 3 /* padding */];
 
 /* 80031D64-80031D78 02C6A4 0014+00 0/0 0/0 1/1 .text            onSttsFlag__12daObjCarry_cFiUc */
 #pragma push
@@ -827,7 +889,7 @@ asm void daObjCarry_c::chkSttsFlag(int param_0, u8 param_1) {
 
 /* ############################################################################################## */
 /* 80450DCC-80450DD4 0002CC 0005+03 2/2 0/0 0/0 .sbss            mRoomNo__12daObjCarry_c */
-static u8 mRoomNo__12daObjCarry_c[5 + 3 /* padding */];
+u8 daObjCarry_c::mRoomNo[5 + 3 /* padding */];
 
 /* 80031DAC-80031DB8 02C6EC 000C+00 0/0 0/0 2/2 .text            setRoomNo__12daObjCarry_cFiSc */
 #pragma push

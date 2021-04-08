@@ -15,6 +15,8 @@ struct request_of_phase_process_class {};
 
 struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct mDoHIO_entry_c {
@@ -71,6 +73,8 @@ struct daL8Lift_c {
     /* 80C89ADC */ void setNextPoint();
     /* 80C89C10 */ void Draw();
     /* 80C89DC8 */ void Delete();
+
+    static u8 const mSpeed[64];
 };
 
 struct daL8Lift_HIO_c {
@@ -84,14 +88,14 @@ struct dSv_info_c {
 
 struct dKy_tevstr_c {};
 
+struct J3DModelData {};
+
 struct Vec {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 8026702C */ bool operator==(Vec const&) const;
 };
-
-struct J3DModelData {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -169,6 +173,10 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct LIGHT_INFLUENCE {};
 
 struct J3DModel {};
@@ -225,6 +233,7 @@ extern "C" void __dt__14daL8Lift_HIO_cFv();
 extern "C" void __sinit_d_a_obj_lv8Lift_cpp();
 extern "C" static void func_80C89F3C();
 extern "C" static void func_80C89F44();
+extern "C" u8 const mSpeed__10daL8Lift_c[64];
 extern "C" extern char const* const d_a_obj_lv8Lift__stringBase0;
 
 //
@@ -295,12 +304,12 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -556,13 +565,13 @@ asm void daL8Lift_c::setBaseMtx() {
 /* 80C89F64-80C89FA4 000004 0040+00 0/1 0/0 0/0 .rodata          mSpeed__10daL8Lift_c */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const mSpeed__10daL8Lift_c[64] = {
+SECTION_RODATA u8 const daL8Lift_c::mSpeed[64] = {
     0x40, 0xA0, 0x00, 0x00, 0x40, 0xD5, 0x55, 0x55, 0x41, 0x05, 0x55, 0x55, 0x41, 0x20, 0x00, 0x00,
     0x41, 0x3A, 0xAA, 0xAB, 0x41, 0x55, 0x55, 0x55, 0x41, 0x70, 0x00, 0x00, 0x41, 0x85, 0x55, 0x55,
     0x41, 0x92, 0xAA, 0xAB, 0x41, 0xA0, 0x00, 0x00, 0x41, 0xAD, 0x55, 0x55, 0x41, 0xBA, 0xAA, 0xAB,
     0x41, 0xC8, 0x00, 0x00, 0x41, 0xD5, 0x55, 0x55, 0x41, 0xE2, 0xAA, 0xAB, 0x40, 0x55, 0x55, 0x55,
 };
-COMPILER_STRIP_GATE(80C89F64, &mSpeed__10daL8Lift_c);
+COMPILER_STRIP_GATE(80C89F64, &daL8Lift_c::mSpeed);
 #pragma pop
 
 /* 80C89FA4-80C89FA8 000044 0004+00 4/9 0/0 0/0 .rodata          @3661 */

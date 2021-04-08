@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
+};
+
 struct fopAc_ac_c {};
 
 struct daPy_py_c {
@@ -19,6 +23,8 @@ struct daPy_py_c {
     /* 80097858 */ bool checkBoardRide() const;
     /* 80097860 */ bool checkSpinnerRide() const;
     /* 80097868 */ bool checkBoarRide() const;
+
+    static u8 m_midnaActor[4];
 };
 
 struct daMidna_c {
@@ -48,6 +54,8 @@ struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
     /* 80266CE4 */ void norm() const;
     /* 80266EF4 */ void normalize();
+
+    static f32 Zero[3];
 };
 
 struct dEvent_manager_c {
@@ -58,6 +66,10 @@ struct dEvent_manager_c {
 
 struct dDemo_object_c {
     /* 80039128 */ void getActiveCamera();
+};
+
+struct dDemo_c {
+    static u8 m_object[4];
 };
 
 struct dCcS {
@@ -131,6 +143,8 @@ struct dCamera_c {
     /* 80181208 */ void SetBlureAlpha(f32);
     /* 80181210 */ void SetBlureScale(f32, f32, f32);
     /* 80181220 */ void SetBlurePosition(f32, f32, f32);
+
+    static u8 engine_tbl[240];
 };
 
 struct dCamParam_c {
@@ -154,6 +168,9 @@ struct cSAngle {
     /* 802711D4 */ void operator+=(cSAngle const&);
     /* 80271264 */ void operator*(f32) const;
     /* 802712B4 */ void operator*=(f32);
+
+    static u8 _0[2 + 2 /* padding */];
+    static u8 _90[2 + 2 /* padding */];
 };
 
 struct dCamMath {
@@ -380,17 +397,17 @@ extern "C" void _restgpr_29();
 extern "C" void strcmp();
 extern "C" void strcpy();
 extern "C" extern void* __vt__8cM3dGPla[3];
-extern "C" extern u8 engine_tbl__9dCamera_c[240];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 engine_tbl__9dCamera_c[240];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern f32 Zero__4cXyz[3];
+extern "C" f32 Zero__4cXyz[3];
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_object__7dDemo_c[4];
+extern "C" u8 m_object__7dDemo_c[4];
 extern "C" extern u8 struct_80450F88[8];
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 _0__7cSAngle[2 + 2 /* padding */];
-extern "C" extern u8 _90__7cSAngle[2 + 2 /* padding */];
+extern "C" u8 m_midnaActor__9daPy_py_c[4];
+extern "C" u8 _0__7cSAngle[2 + 2 /* padding */];
+extern "C" u8 _90__7cSAngle[2 + 2 /* padding */];
 
 //
 // Declarations:

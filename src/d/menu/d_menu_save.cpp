@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct mDoRst {
+    static u8 mResetData[4 + 4 /* padding */];
+};
+
 struct mDoMemCd_Ctrl_c {
     /* 800169B4 */ void load();
     /* 80016AB0 */ void LoadSync(void*, u32, u32);
@@ -28,6 +32,10 @@ struct mDoDvdThd_mountArchive_c {
     /* 80015E14 */ void create(char const*, u8, JKRHeap*);
 };
 
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
+};
+
 struct dSv_save_c {};
 
 struct dSv_player_item_c {
@@ -43,6 +51,10 @@ struct dSv_info_c {
     /* 800350F0 */ void putSave(int);
     /* 80035798 */ void memory_to_card(char*, int);
     /* 80035BD0 */ void initdata_to_card(char*, int);
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -68,6 +80,8 @@ struct dMsgString_c {
     /* 80249D28 */ ~dMsgString_c();
 };
 
+struct J2DOrthoGraph {};
+
 struct STControl {
     /* 80032044 */ STControl(s16, s16, s16, s16, f32, f32, s16, s16);
     /* 8003219C */ void checkTrigger();
@@ -76,8 +90,6 @@ struct STControl {
     /* 80032524 */ void checkUpTrigger();
     /* 800325A0 */ void checkDownTrigger();
 };
-
-struct J2DOrthoGraph {};
 
 struct dMsgScrnExplain_c {
     /* 8023CC88 */ dMsgScrnExplain_c(STControl*, u8, bool, u8);
@@ -265,6 +277,10 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct JUtility {
     struct TColor {};
 };
@@ -274,6 +290,10 @@ struct JKRFileLoader {
 };
 
 struct JKRExpHeap {};
+
+struct JFWDisplay {
+    static u8 sManager[4];
+};
 
 struct J2DTextBox {
     /* 80300658 */ void getStringPtr() const;
@@ -542,15 +562,15 @@ extern "C" void printf();
 extern "C" void strcpy();
 extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
 extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__12dMenu_save_c[3 + 3 /* padding */];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 g_mDoMemCd_control[8192];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 sManager__10JFWDisplay[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
+extern "C" u8 sManager__10JFWDisplay[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

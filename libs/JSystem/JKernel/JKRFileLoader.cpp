@@ -38,6 +38,9 @@ struct JKRFileLoader {
     /* 802D43A0 */ void detachResource(void*, JKRFileLoader*);
     /* 802D4438 */ void findVolume(char const**);
     /* 802D44C4 */ void fetchVolumeName(char*, s32, char const*);
+
+    static u8 sVolumeList[12];
+    static u8 sCurrentVolume[4 + 4 /* padding */];
 };
 
 struct JKRDisposer {
@@ -61,6 +64,8 @@ extern "C" void fetchVolumeName__13JKRFileLoaderFPclPCc();
 extern "C" void __sinit_JKRFileLoader_cpp();
 extern "C" void func_802D45E4();
 extern "C" extern char const* const JKRFileLoader__stringBase0;
+extern "C" u8 sVolumeList__13JKRFileLoader[12];
+extern "C" u8 sCurrentVolume__13JKRFileLoader[4 + 4 /* padding */];
 
 //
 // External References:
@@ -118,8 +123,7 @@ asm JKRFileLoader::JKRFileLoader() {
 
 /* ############################################################################################## */
 /* 80451418-80451420 000918 0004+04 2/2 3/3 0/0 .sbss            sCurrentVolume__13JKRFileLoader */
-extern u8 sCurrentVolume__13JKRFileLoader[4 + 4 /* padding */];
-u8 sCurrentVolume__13JKRFileLoader[4 + 4 /* padding */];
+u8 JKRFileLoader::sCurrentVolume[4 + 4 /* padding */];
 
 /* 802D4148-802D41D4 2CEA88 008C+00 1/0 2/2 0/0 .text            __dt__13JKRFileLoaderFv */
 #pragma push
@@ -157,8 +161,7 @@ asm void JKRFileLoader::getGlbResource(char const* param_0) {
 static u8 lit_2182[12];
 
 /* 80434354-80434360 061074 000C+00 5/5 14/14 0/0 .bss             sVolumeList__13JKRFileLoader */
-extern u8 sVolumeList__13JKRFileLoader[12];
-u8 sVolumeList__13JKRFileLoader[12];
+u8 JKRFileLoader::sVolumeList[12];
 
 /* 802D4270-802D4308 2CEBB0 0098+00 0/0 29/29 1/1 .text
  * getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader          */

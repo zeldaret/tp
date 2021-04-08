@@ -40,10 +40,10 @@ SYMBOLS = [
 	{'addr':0x80D66704,'size':40,'pad':0,'label':"daTalk_Delete__FP8daTalk_c",'name':"daTalk_Delete__FP8daTalk_c",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
 	{'addr':0x80D6672C,'size':32,'pad':0,'label':"daTalk_Execute__FP8daTalk_c",'name':"daTalk_Execute__FP8daTalk_c",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
 	{'addr':0x80D6674C,'size':32,'pad':0,'label':"daTalk_Draw__FP8daTalk_c",'name':"daTalk_Draw__FP8daTalk_c",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
-	{'addr':0x80D6676C,'size':4,'pad':0,'label':"_ctors",'name':"_ctors",'lib':-1,'tu':1,'section':1,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
-	{'addr':0x80D66770,'size':4,'pad':0,'label':"_dtors",'name':"_dtors",'lib':-1,'tu':2,'section':2,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
-	{'addr':0x80D66774,'size':32,'pad':0,'label':"l_daTalk_Method",'name':"l_daTalk_Method",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
-	{'addr':0x80D66794,'size':48,'pad':0,'label':"g_profile_TALK",'name':"g_profile_TALK",'lib':-1,'tu':3,'section':3,'class_template':False,'static':False,'is_reachable':False,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80D6676C,'size':4,'pad':0,'label':"_ctors",'name':"_ctors",'lib':-1,'tu':1,'section':1,'class_template':None,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
+	{'addr':0x80D66770,'size':4,'pad':0,'label':"_dtors",'name':"_dtors",'lib':-1,'tu':2,'section':2,'class_template':None,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
+	{'addr':0x80D66774,'size':32,'pad':0,'label':"l_daTalk_Method",'name':"l_daTalk_Method",'lib':-1,'tu':3,'section':3,'class_template':None,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80D66794,'size':48,'pad':0,'label':"g_profile_TALK",'name':"g_profile_TALK",'lib':-1,'tu':3,'section':3,'class_template':None,'static':False,'is_reachable':False,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
 ]
 
 # Names

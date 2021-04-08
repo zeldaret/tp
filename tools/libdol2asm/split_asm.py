@@ -207,7 +207,7 @@ class Dol2AsmSplitter:
                     cs.append((0, section.size))
 
             executable_section = ExecutableSection(
-                section.name, section.addr, section.size, 0, section.data, 
+                section.name, section.addr, section.size, 0, section.data,
                 code_segments=cs, relocations={}, alignment=4)
             executable_sections.append(executable_section)
 
@@ -245,9 +245,9 @@ class Dol2AsmSplitter:
 
                 exe_section = ExecutableSection(
                     section.name, section.addr, section.length, base_addr,
-                    section.data, 
-                    code_segments=cs, 
-                    relocations={}, 
+                    section.data,
+                    code_segments=cs,
+                    relocations={},
                     alignment=section.alignment)
                 exe_section.raw_offset = offset
                 executable_sections.append(exe_section)
@@ -628,7 +628,7 @@ class Dol2AsmSplitter:
         self.cpp_group_count = 4
         self.asm_group_count = 128
         self.step_count = 1
-        cache = False
+        cache = True
 
         print(f"dol2asm {VERSION} for '{settings.GAME_NAME}'")
 
@@ -659,7 +659,6 @@ class Dol2AsmSplitter:
         self.search_binary(cache)
 
         start_time = time.time()
-
         cache_path = Path("build/full_cache_xx.dump")
         if cache and cache_path.exists():
             with cache_path.open('rb') as input:
@@ -694,10 +693,12 @@ class Dol2AsmSplitter:
         if not self.select_modules and self.rel_gen:
             global_destructor_chain_path = Path(__file__).parent.joinpath(
                 "global_destructor_chain.template.cpp")
-            executor_path = Path(__file__).parent.joinpath("executor.template.cpp")
+            executor_path = Path(__file__).parent.joinpath(
+                "executor.template.cpp")
 
             if global_destructor_chain_path.exists():
-                output_path = self.rel_path.joinpath("global_destructor_chain.cpp")
+                output_path = self.rel_path.joinpath(
+                    "global_destructor_chain.cpp")
                 util._create_dirs_for_file(output_path)
                 with global_destructor_chain_path.open('r') as input:
                     with output_path.open('w') as output:

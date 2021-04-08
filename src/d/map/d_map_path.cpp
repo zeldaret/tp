@@ -64,6 +64,8 @@ struct dMpath_n {
         /* 8003C8F4 */ void remove();
         /* 8003D740 */ ~dTexObjAggregate_c();
     };
+
+    static u8 m_texObjAgg[28];
 };
 
 struct dDlst_base_c {
@@ -101,6 +103,7 @@ extern "C" void __dt__Q28dMpath_n18dTexObjAggregate_cFv();
 extern "C" extern char const* const d_map_d_map_path__stringBase0;
 extern "C" extern void* __vt__18dRenderingFDAmap_c[26];
 extern "C" extern void* __vt__11dDrawPath_c[16];
+extern "C" u8 m_texObjAgg__8dMpath_n[28];
 
 //
 // External References:
@@ -366,8 +369,7 @@ asm void dRenderingFDAmap_c::postRenderingMap() {
 static u8 lit_3639[12];
 
 /* 80424684-804246A0 0513A4 001C+00 2/2 5/5 0/0 .bss             m_texObjAgg__8dMpath_n */
-extern u8 m_texObjAgg__8dMpath_n[28];
-u8 m_texObjAgg__8dMpath_n[28];
+u8 dMpath_n::m_texObjAgg[28];
 
 /* 8003D3C0-8003D68C 037D00 02CC+00 0/0 2/2 0/0 .text
  * renderingDecoration__18dRenderingFDAmap_cFPCQ211dDrawPath_c10line_class */

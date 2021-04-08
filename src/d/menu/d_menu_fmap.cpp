@@ -37,8 +37,16 @@ struct fmpTresTypeGroupDataList_c {
     /* 8003EB10 */ ~fmpTresTypeGroupDataList_c();
 };
 
+struct daPy_py_c {
+    static u8 m_midnaActor[4];
+};
+
 struct dTres_c {
     struct data_s {};
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -72,6 +80,8 @@ struct dMsgFlow_c {
 struct dMf_HIO_c {
     /* 801C65F8 */ dMf_HIO_c();
     /* 801CDA2C */ ~dMf_HIO_c();
+
+    static u8 mMySelfPointer[4];
 };
 
 struct dMeterMap_c {
@@ -90,15 +100,15 @@ struct dMenu_Fmap_world_data_c {
 
 struct dMenu_Fmap_stage_data_c {};
 
-struct STControl {
-    /* 8003219C */ void checkTrigger();
-};
-
 struct JKRExpHeap {
     /* 802CEE2C */ void create(u32, JKRHeap*, bool);
 };
 
 struct CSTControl {};
+
+struct STControl {
+    /* 8003219C */ void checkTrigger();
+};
 
 struct dMenu_Fmap_c {
     /* 801C66E4 */ dMenu_Fmap_c(JKRExpHeap*, STControl*, CSTControl*, u8, u8, u8, f32, f32, u8);
@@ -221,6 +231,8 @@ struct dMenu_Fmap_c {
     /* 801CD8B4 */ void getHowlRegionID();
     /* 801CD92C */ void isLightVesselGet();
     /* 801CD95C */ void getPlayerPos2D();
+
+    static u8 MyClass[4];
 };
 
 struct dMenu_FmapMap_c {
@@ -322,6 +334,10 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JKRArchive {
@@ -460,6 +476,8 @@ extern "C" void getPlayerPos2D__12dMenu_Fmap_cFv();
 extern "C" void __dt__9dMf_HIO_cFv();
 extern "C" void __sinit_d_menu_fmap_cpp();
 extern "C" extern char const* const d_menu_d_menu_fmap__stringBase0;
+extern "C" u8 mMySelfPointer__9dMf_HIO_c[4];
+extern "C" u8 MyClass__12dMenu_Fmap_c[4];
 
 //
 // External References:
@@ -605,14 +623,14 @@ extern "C" void _restgpr_29();
 extern "C" void sprintf();
 extern "C" void strcmp();
 extern "C" void strcpy();
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__19dMenuFmapIconDisp_c[3];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_fmapHIO[1188];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 m_midnaActor__9daPy_py_c[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -1313,7 +1331,7 @@ SECTION_DATA extern void* __vt__9dMf_HIO_c[3 + 1 /* padding */] = {
 };
 
 /* 804510A0-804510A4 0005A0 0004+00 1/1 0/0 0/0 .sbss            mMySelfPointer__9dMf_HIO_c */
-static u8 mMySelfPointer__9dMf_HIO_c[4];
+u8 dMf_HIO_c::mMySelfPointer[4];
 
 /* 80454120-80454124 002720 0004+00 1/1 0/0 0/0 .sdata2          @3994 */
 SECTION_SDATA2 static f32 lit_3994 = 1.0f / 5.0f;
@@ -1347,7 +1365,7 @@ asm void dMenuFmap_getStartStageName(void* param_0) {
 
 /* ############################################################################################## */
 /* 804510AC-804510B0 0005AC 0004+00 2/2 0/0 0/0 .sbss            MyClass__12dMenu_Fmap_c */
-static u8 MyClass__12dMenu_Fmap_c[4];
+u8 dMenu_Fmap_c::MyClass[4];
 
 /* 80454128-8045412C 002728 0004+00 31/31 0/0 0/0 .sdata2          @4158 */
 SECTION_SDATA2 static u8 lit_4158[4] = {

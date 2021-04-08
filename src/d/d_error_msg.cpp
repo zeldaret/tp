@@ -11,8 +11,16 @@
 // Types:
 //
 
+struct mDoRst {
+    static u8 mResetData[4 + 4 /* padding */];
+};
+
 struct mDoGph_gInf_c {
     /* 80007F90 */ void beginRender();
+
+    static u8 mFrameBufferTexObj[32];
+    static u8 mFrameBufferTimg[4];
+    static u8 mFrameBufferTex[4];
 };
 
 struct dShutdownErrorMsg_c {
@@ -26,6 +34,8 @@ struct dDvdErrorMsg_c {
 
 struct Z2AudioMgr {
     /* 802CD974 */ void resetProcess(u32, bool);
+
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct ResTLUT {};
@@ -46,6 +56,10 @@ struct JGeometry {
     struct TBox2 {};
     /* TBox2<f32> */
     struct TBox2__template0 {};
+};
+
+struct JFWDisplay {
+    static u8 sManager[4];
 };
 
 struct J3DSys {
@@ -151,18 +165,18 @@ extern "C" void _restgpr_27();
 extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
 extern "C" extern void* __vt__14J2DGrafContext[10];
 extern "C" extern void* __vt__13J2DOrthoGraph[10];
-extern "C" extern u8 mFrameBufferTexObj__13mDoGph_gInf_c[32];
+extern "C" u8 mFrameBufferTexObj__13mDoGph_gInf_c[32];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u8 g_clearColor[4];
 extern "C" extern u8 data_80450688[8];
 extern "C" extern u8 struct_80450BB8[4];
-extern "C" extern u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
-extern "C" extern u8 mFrameBufferTex__13mDoGph_gInf_c[4];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
+extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
+extern "C" u8 mFrameBufferTex__13mDoGph_gInf_c[4];
+extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 extern "C" extern u8 struct_80450FB0[8];
-extern "C" extern u8 sManager__10JFWDisplay[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sManager__10JFWDisplay[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

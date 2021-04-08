@@ -32,10 +32,14 @@ struct TVariableValue {
 
     /* 80285EB8 */ void update_immediate_(JStudio::TVariableValue*, f64);
     /* 8028B568 */ TVariableValue();
+
+    static u8 soOutput_none_[4 + 4 /* padding */];
 };
 
 struct TAdaptor_fog {
     /* 8028717C */ ~TAdaptor_fog();
+
+    static u8 const sauVariableValue_4_COLOR_RGBA[16];
 };
 
 };  // namespace JStudio
@@ -49,6 +53,8 @@ struct JStudio_JStage {
         /* 8028C7B4 */ void adaptor_do_end();
         /* 8028C808 */ void adaptor_do_update(u32);
         /* 8028C880 */ void adaptor_do_data(void const*, u32, void const*, u32);
+
+        static u8 saoVVOutput_[96 + 4 /* padding */];
     };
 
     template <typename A1, typename B1>
@@ -78,6 +84,7 @@ extern "C" void adaptor_do_data__Q214JStudio_JStage12TAdaptor_fogFPCvUlPCvUl();
 extern "C" void func_8028C8A4();
 extern "C" void func_8028CAC0();
 extern "C" void func_8028CB20(f32, JStudio::TAdaptor*);
+extern "C" u8 saoVVOutput___Q214JStudio_JStage12TAdaptor_fog[96 + 4 /* padding */];
 
 //
 // External References:
@@ -98,12 +105,12 @@ extern "C" void _savegpr_27();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
-extern "C" extern u8 const sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog[16];
+extern "C" u8 const sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog[16];
 extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
 extern "C" extern void* __vt__Q27JStudio12TAdaptor_fog[8];
 extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];
 extern "C" extern void* __vt__Q37JStudio14TVariableValue7TOutput[4];
-extern "C" extern u8 soOutput_none___Q27JStudio14TVariableValue[4 + 4 /* padding */];
+extern "C" u8 soOutput_none___Q27JStudio14TVariableValue[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -200,7 +207,7 @@ static u8 lit_854[12];
 
 /* 8043139C-80431400 05E0BC 0060+04 2/3 0/0 0/0 .bss
  * saoVVOutput___Q214JStudio_JStage12TAdaptor_fog               */
-static u8 saoVVOutput___Q214JStudio_JStage12TAdaptor_fog[96 + 4 /* padding */];
+u8 JStudio_JStage::TAdaptor_fog::saoVVOutput_[96 + 4 /* padding */];
 
 /* 8028C684-8028C6CC 286FC4 0048+00 1/0 0/0 0/0 .text
  * adaptor_do_prepare__Q214JStudio_JStage12TAdaptor_fogFv       */

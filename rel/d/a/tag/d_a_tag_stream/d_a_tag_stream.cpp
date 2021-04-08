@@ -20,10 +20,16 @@ struct daTagStream_c {
     /* 80D638F8 */ void create();
     /* 80D63A98 */ ~daTagStream_c();
     /* 80D63B58 */ void execute();
+
+    static u8 m_top[4];
 };
 
 struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 //
@@ -50,8 +56,8 @@ extern "C" void __dl__FPv();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 m_top__13daTagStream_c[4];
+extern "C" u8 sincosTable___5JMath[65536];
+extern "C" u8 m_top__13daTagStream_c[4];
 
 //
 // Declarations:

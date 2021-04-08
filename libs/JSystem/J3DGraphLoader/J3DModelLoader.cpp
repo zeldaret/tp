@@ -27,6 +27,8 @@ struct JUTNameTab {
 
 struct JKRHeap {
     /* 802CE784 */ void getTotalFreeSize();
+
+    static u8 sCurrentHeap[4];
 };
 
 struct J3DVertexData {};
@@ -39,6 +41,11 @@ struct J3DTextureBlock {};
 
 struct J3DTexture {
     /* 803366A4 */ ~J3DTexture();
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
+    static f32 mCurrentS[3];
 };
 
 struct J3DDrawMtxData {};
@@ -93,6 +100,8 @@ struct J3DMtxCalc {
     /* 80014E9C */ bool getAnmTransform();
     /* 80014EA4 */ void setWeight(u8, f32);
     /* 80014EA8 */ void getWeight(u8) const;
+
+    static u8 mJoint[4];
 };
 
 struct J3DMaterialBlock {};
@@ -117,15 +126,15 @@ struct J3DModelLoaderDataBase {
     /* 803346BC */ void load(void const*, u32);
 };
 
-struct J3DDrawBlock {};
-
-struct J3DJointBlock {};
+struct J3DMaterialDLBlock {};
 
 struct J3DEnvelopeBlock {};
 
 struct J3DModelInfoBlock {};
 
-struct J3DMaterialDLBlock {};
+struct J3DJointBlock {};
+
+struct J3DDrawBlock {};
 
 struct J3DModelLoader {
     /* 8033468C */ J3DModelLoader();
@@ -329,10 +338,10 @@ extern "C" extern void* data_803A3360[11];
 extern "C" extern void* __vt__19J3DMtxCalcNoAnmBase[11];
 extern "C" extern void* __vt__10J3DMtxCalc[11 + 1 /* padding */];
 extern "C" extern void* __vt__11J3DMaterial[12];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern f32 mCurrentS__6J3DSys[3];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 mJoint__10J3DMtxCalc[4];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" f32 mCurrentS__6J3DSys[3];
+extern "C" u8 sCurrentHeap__7JKRHeap[4];
+extern "C" u8 mJoint__10J3DMtxCalc[4];
 
 //
 // Declarations:

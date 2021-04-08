@@ -11,6 +11,8 @@
 // Types:
 //
 
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
@@ -21,26 +23,28 @@ struct cXyz {
     /* 80266F48 */ void normalizeZP();
     /* 80267128 */ void atan2sX_Z() const;
     /* 80267150 */ void atan2sY_XZ() const;
-};
 
-struct csXyz {};
+    static u8 BaseZ[12];
+};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CF0C */ void ZXYrotS(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {};
 
 struct J3DModel {};
 
-struct dJntColData_c {};
-
 struct cM3dGLin {
     /* 80036A5C */ ~cM3dGLin();
     /* 8026F2E8 */ void SetStartEnd(cXyz const&, cXyz const&);
 };
+
+struct dJntColData_c {};
 
 struct dJntCol_c {
     /* 80035C8C */ dJntCol_c();
@@ -126,8 +130,8 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* __vt__8cM3dGCyl[3];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 BaseZ__4cXyz[12];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 BaseZ__4cXyz[12];
 extern "C" extern u32 __float_nan;
 extern "C" extern u32 __float_max;
 

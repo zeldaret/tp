@@ -18,11 +18,15 @@ struct csXyz {
 
 struct mDoMtx_stack_c {
     /* 8000CF0C */ void ZXYrotS(csXyz const&);
+
+    static u8 now[48];
 };
+
+struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -32,9 +36,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -63,8 +65,6 @@ struct daPy_py_c {
     /* 80D4C034 */ void checkNowWolf();
 };
 
-struct daNpcT_motionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -72,11 +72,13 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80D4B7BC */ ~daNpcT_MotionSeqMngr_c();
 };
 
+struct daNpcT_motionAnmData_c {};
+
+struct J3DJoint {};
+
 struct daNpcT_faceMotionAnmData_c {};
 
 struct daNpcT_evtData_c {};
-
-struct J3DJoint {};
 
 struct daPeru_c {
     /* 80D46EEC */ ~daPeru_c();
@@ -131,10 +133,15 @@ struct daPeru_c {
     /* 80D4BEE4 */ void checkChangeJoint(int);
     /* 80D4BEF4 */ void checkRemoveJoint(int);
     /* 80D4BF04 */ void beforeMove();
+
+    static void* mCutNameList[3];
+    static u8 mCutList[36];
 };
 
 struct daPeru_Param_c {
     /* 80D4BF7C */ ~daPeru_Param_c();
+
+    static u8 const m[152];
 };
 
 struct daObjCatDoor_c {
@@ -202,6 +209,8 @@ struct daNpcT_c {
     /* 80D4BD84 */ void changeBck(int*, int*);
     /* 80D4BD88 */ void changeBtp(int*, int*);
     /* 80D4BD8C */ void changeBtk(int*, int*);
+
+    static u8 mCcDCyl[68];
 };
 
 struct daNpcT_Path_c {
@@ -359,6 +368,10 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct J3DTexNoAnm {
@@ -520,7 +533,10 @@ extern "C" static void func_80D4BFC4();
 extern "C" static void func_80D4BFCC();
 extern "C" void chkPointInArea__15daTag_EvtArea_cF4cXyz();
 extern "C" void checkNowWolf__9daPy_py_cFv();
+extern "C" u8 const m__14daPeru_Param_c[152];
 extern "C" extern char const* const d_a_peru__stringBase0;
+extern "C" void* mCutNameList__8daPeru_c[3];
+extern "C" u8 mCutList__8daPeru_c[36];
 
 //
 // External References:
@@ -656,18 +672,18 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
+extern "C" u8 mCcDCyl__8daNpcT_c[68];
 extern "C" extern void* __vt__8daNpcT_c[49];
 extern "C" extern void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void chkPointInArea__15daTag_EvtArea_cF4cXyz4cXyz();
 extern "C" void attr__14daObjCatDoor_cCFv();
 extern "C" void setBaseMtx__14daObjCatDoor_cFv();
@@ -807,7 +823,7 @@ SECTION_DATA static u8 l_motionSequenceData[160] = {
 #pragma pop
 
 /* 80D4C4E4-80D4C4F0 -00001 000C+00 1/1 0/0 0/0 .data            mCutNameList__8daPeru_c */
-SECTION_DATA static void* mCutNameList__8daPeru_c[3] = {
+SECTION_DATA void* daPeru_c::mCutNameList[3] = {
     (void*)&d_a_peru__stringBase0,
     (void*)(((char*)&d_a_peru__stringBase0) + 0x1),
     (void*)(((char*)&d_a_peru__stringBase0) + 0xD),
@@ -834,7 +850,7 @@ SECTION_DATA static void* lit_3836[3] = {
 #pragma pop
 
 /* 80D4C508-80D4C52C 00032C 0024+00 1/2 0/0 0/0 .data            mCutList__8daPeru_c */
-SECTION_DATA static u8 mCutList__8daPeru_c[36] = {
+SECTION_DATA u8 daPeru_c::mCutList[36] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1175,7 +1191,7 @@ asm daPeru_c::~daPeru_c() {
 
 /* ############################################################################################## */
 /* 80D4C060-80D4C0F8 000000 0098+00 19/19 0/0 0/0 .rodata          m__14daPeru_Param_c */
-SECTION_RODATA static u8 const m__14daPeru_Param_c[152] = {
+SECTION_RODATA u8 const daPeru_Param_c::m[152] = {
     0x42, 0x70, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0x66, 0x00, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x42, 0x70, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0xC1, 0xF0, 0x00, 0x00,
@@ -1187,7 +1203,7 @@ SECTION_RODATA static u8 const m__14daPeru_Param_c[152] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D4C060, &m__14daPeru_Param_c);
+COMPILER_STRIP_GATE(80D4C060, &daPeru_Param_c::m);
 
 /* 80D4C0F8-80D4C0FC 000098 0004+00 0/2 0/0 0/0 .rodata          @4050 */
 #pragma push

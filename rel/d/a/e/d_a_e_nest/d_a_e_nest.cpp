@@ -21,6 +21,8 @@ struct nest_hahen_s {
 struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CE38 */ void scaleM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -37,6 +39,8 @@ struct cXyz {
 
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
+
+    static f32 mGroundY;
 };
 
 struct e_nest_class {};
@@ -60,6 +64,10 @@ struct daE_Nest_HIO_c {
 struct dSv_info_c {
     /* 80035200 */ void onSwitch(int, int);
     /* 80035360 */ void isSwitch(int, int) const;
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -98,6 +106,10 @@ struct dPa_control_c {
 
 struct dEvt_control_c {
     /* 80042468 */ void reset();
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcU_AtInfo {};
@@ -230,6 +242,14 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct J3DModel {};
@@ -396,7 +416,7 @@ extern "C" void _restgpr_29();
 extern "C" void strcmp();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
@@ -404,15 +424,15 @@ extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" f32 mGroundY__11fopAcM_gc_c;
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 extern "C" void setHawkSideCamera__10daNPC_TK_cF4cXyz();
 extern "C" void setHawkCamera__10daNPC_TK_cFP10fopAc_ac_c();

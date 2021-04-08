@@ -427,6 +427,10 @@ struct J3DTevBlock1 {
     /* 803228F4 */ ~J3DTevBlock1();
 };
 
+struct J3DSys {
+    static u8 sTexCoordScaleTable[64 + 4 /* padding */];
+};
+
 struct J3DPEBlockXlu {
     /* 80317BF4 */ s32 countDLSize();
     /* 8031E98C */ void load();
@@ -1265,7 +1269,7 @@ extern "C" extern void* __vt__11J3DIndBlock[19];
 extern "C" extern void* __vt__14J3DTexGenBlock[27];
 extern "C" extern void* __vt__13J3DColorBlock[36];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sTexCoordScaleTable__6J3DSys[64 + 4 /* padding */];
+extern "C" u8 sTexCoordScaleTable__6J3DSys[64 + 4 /* padding */];
 extern "C" extern u8 j3dTevSwapTableTable[1024];
 extern "C" extern u8 j3dAlphaCmpTable[768];
 extern "C" extern u8 j3dZModeTable[96];

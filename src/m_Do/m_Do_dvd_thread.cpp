@@ -75,6 +75,10 @@ struct mDoDvdThd {
     /* 800157FC */ void main(void*);
     /* 80015858 */ void create(s32);
     /* 800158B4 */ void suspend();
+
+    static u8 l_thread[792 + 8 /* padding */];
+    static u8 l_threadStack[4096];
+    static u8 l_param[72 + 24 /* padding */];
 };
 
 struct OSThread {};
@@ -141,6 +145,9 @@ extern "C" void __dt__21mDoDvdThd_toMainRam_cFv();
 extern "C" void execute__21mDoDvdThd_toMainRam_cFv();
 extern "C" void __sinit_m_Do_dvd_thread_cpp();
 extern "C" extern char const* const m_Do_m_Do_dvd_thread__stringBase0;
+extern "C" u8 l_thread__9mDoDvdThd[792 + 8 /* padding */];
+extern "C" u8 l_threadStack__9mDoDvdThd[4096];
+extern "C" u8 l_param__9mDoDvdThd[72 + 24 /* padding */];
 
 //
 // External References:
@@ -209,16 +216,16 @@ asm void mDoDvdThd::main(void* param_0) {
 
 /* ############################################################################################## */
 /* 803DD940-803DDC60 00A660 0318+08 2/2 0/0 0/0 .bss             l_thread__9mDoDvdThd */
-static u8 l_thread__9mDoDvdThd[792 + 8 /* padding */];
+u8 mDoDvdThd::l_thread[792 + 8 /* padding */];
 
 /* 803DDC60-803DEC60 00A980 1000+00 0/1 0/0 0/0 .bss             l_threadStack__9mDoDvdThd */
 #pragma push
 #pragma force_active on
-static u8 l_threadStack__9mDoDvdThd[4096];
+u8 mDoDvdThd::l_threadStack[4096];
 #pragma pop
 
 /* 803DEC60-803DECC0 00B980 0048+18 5/6 0/0 0/0 .bss             l_param__9mDoDvdThd */
-static u8 l_param__9mDoDvdThd[72 + 24 /* padding */];
+u8 mDoDvdThd::l_param[72 + 24 /* padding */];
 
 /* 80015858-800158B4 010198 005C+00 0/0 1/1 0/0 .text            create__9mDoDvdThdFl */
 #pragma push

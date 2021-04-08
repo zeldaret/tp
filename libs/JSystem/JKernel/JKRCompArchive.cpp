@@ -32,10 +32,14 @@ struct JKRHeap {
     /* 802CE500 */ void free(void*, JKRHeap*);
     /* 802CE548 */ void free(void*);
     /* 802CEB18 */ void copyMemory(void*, void*, u32);
+
+    static u8 sSystemHeap[4];
 };
 
 struct JKRFileLoader {
     /* 802D41D4 */ void unmount();
+
+    static u8 sVolumeList[12];
 };
 
 struct JKRExpandSwitch {};
@@ -112,6 +116,8 @@ struct JKRAramArchive {
 struct JKRAram {
     /* 802D233C */ void mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
     /* 802D25B4 */ void aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*);
+
+    static u8 sAramObject[4];
 };
 
 //
@@ -181,9 +187,9 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void abs();
-extern "C" extern u8 sVolumeList__13JKRFileLoader[12];
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sAramObject__7JKRAram[4];
+extern "C" u8 sVolumeList__13JKRFileLoader[12];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sAramObject__7JKRAram[4];
 
 //
 // Declarations:

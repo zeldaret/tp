@@ -19,6 +19,14 @@ struct request_of_phase_process_class {};
 
 struct phaseParam_c {};
 
+struct mDoRst {
+    static u8 mResetData[4 + 4 /* padding */];
+};
+
+struct mDoGph_gInf_c {
+    static u8 mFader[4];
+};
+
 struct mDoExt_btkAnm {
     /* 8003079C */ ~mDoExt_btkAnm();
     /* 80030954 */ mDoExt_btkAnm();
@@ -37,6 +45,10 @@ struct mDoExt_bpkAnm {
 struct mDoExt_bckAnm {
     /* 800306A0 */ ~mDoExt_bckAnm();
     /* 80030A2C */ mDoExt_bckAnm();
+};
+
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
 };
 
 struct daAlink_c {
@@ -157,6 +169,10 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
+};
+
 struct dSv_event_c {
     /* 8003498C */ void onEventBit(u16);
     /* 800349A4 */ void offEventBit(u16);
@@ -169,6 +185,8 @@ struct dStage_roomControl_c {
     /* 80024338 */ void initZone();
     /* 80024384 */ void getStatusRoomDt(int);
     /* 8002D9B0 */ void getZoneNo(int);
+
+    static u8 mStatus[65792];
 };
 
 struct dStage_nextStage_c {
@@ -382,6 +400,10 @@ struct cBgS {
 
 struct Z2SeqMgr {
     /* 802AF408 */ void bgmStop(u32, s32);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JKRExpHeap {
@@ -720,7 +742,7 @@ extern "C" extern void* __vt__12J3DFrameCtrl[3];
 extern "C" extern void* __vt__8cM3dGPla[3];
 extern "C" extern void* __vt__16dStage_stageDt_c[93];
 extern "C" extern void* __vt__11dStage_dt_c[93];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__19dAttDraw_CallBack_c[3];
 extern "C" extern void* __vt__11dAttParam_c[3 + 1 /* padding */];
 extern "C" extern void* __vt__4dBgS[5];
@@ -731,14 +753,14 @@ extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__12cCcD_CpsAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__4cCcS[12];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 mStatus__20dStage_roomControl_c[65792];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
+extern "C" u8 mFader__13mDoGph_gInf_c[4];
+extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

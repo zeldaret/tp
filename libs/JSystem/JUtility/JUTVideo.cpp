@@ -13,6 +13,10 @@
 
 struct _GXRenderModeObj {};
 
+struct JUTXfb {
+    static u8 sManager[4 + 4 /* padding */];
+};
+
 struct JUTVideo {
     /* 802E4C54 */ void createManager(_GXRenderModeObj const*);
     /* 802E4CAC */ void destroyManager();
@@ -25,10 +29,16 @@ struct JUTVideo {
     /* 802E5144 */ void postRetraceProc(u32);
     /* 802E5198 */ void setRenderMode(_GXRenderModeObj const*);
     /* 802E5210 */ void waitRetraceIfNeed();
+
+    static u8 sManager[4];
+    static u8 sVideoLastTick[4];
+    static u8 sVideoInterval[4];
 };
 
 struct JUTDirectPrint {
     /* 802E456C */ void changeFrameBuffer(void*, u16, u16);
+
+    static u8 sDirectPrint[4 + 4 /* padding */];
 };
 
 //
@@ -46,6 +56,9 @@ extern "C" void drawDoneCallback__8JUTVideoFv();
 extern "C" void postRetraceProc__8JUTVideoFUl();
 extern "C" void setRenderMode__8JUTVideoFPC16_GXRenderModeObj();
 extern "C" void waitRetraceIfNeed__8JUTVideoFv();
+extern "C" u8 sManager__8JUTVideo[4];
+extern "C" u8 sVideoLastTick__8JUTVideo[4];
+extern "C" u8 sVideoInterval__8JUTVideo[4];
 
 //
 // External References:
@@ -71,8 +84,8 @@ extern "C" void GXFlush();
 extern "C" void GXSetDrawDone();
 extern "C" void GXSetDrawDoneCallback();
 extern "C" void GXCopyDisp();
-extern "C" extern u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
-extern "C" extern u8 sManager__6JUTXfb[4 + 4 /* padding */];
+extern "C" u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
+extern "C" u8 sManager__6JUTXfb[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -80,8 +93,7 @@ extern "C" extern u8 sManager__6JUTXfb[4 + 4 /* padding */];
 
 /* ############################################################################################## */
 /* 80451538-8045153C 000A38 0004+00 4/4 18/18 1/1 .sbss            sManager__8JUTVideo */
-extern u8 sManager__8JUTVideo[4];
-u8 sManager__8JUTVideo[4];
+u8 JUTVideo::sManager[4];
 
 /* 802E4C54-802E4CAC 2DF594 0058+00 0/0 1/1 0/0 .text
  * createManager__8JUTVideoFPC16_GXRenderModeObj                */
@@ -115,12 +127,10 @@ SECTION_DATA extern void* __vt__8JUTVideo[3 + 1 /* padding */] = {
 };
 
 /* 8045153C-80451540 000A3C 0004+00 2/2 1/1 0/0 .sbss            sVideoLastTick__8JUTVideo */
-extern u8 sVideoLastTick__8JUTVideo[4];
-u8 sVideoLastTick__8JUTVideo[4];
+u8 JUTVideo::sVideoLastTick[4];
 
 /* 80451540-80451544 000A40 0004+00 2/2 1/1 0/0 .sbss            sVideoInterval__8JUTVideo */
-extern u8 sVideoInterval__8JUTVideo[4];
-u8 sVideoInterval__8JUTVideo[4];
+u8 JUTVideo::sVideoInterval[4];
 
 /* 802E4CF4-802E4DE8 2DF634 00F4+00 1/1 0/0 0/0 .text __ct__8JUTVideoFPC16_GXRenderModeObj */
 #pragma push

@@ -37,11 +37,11 @@ struct J3DTexGenBlockNull {
     /* 80332AD0 */ ~J3DTexGenBlockNull();
 };
 
-struct J3DNBTScale {};
-
 struct J3DTexCoord {
     /* 8000E464 */ J3DTexCoord();
 };
+
+struct J3DNBTScale {};
 
 struct J3DTexGenBlock {
     /* 8000DFD8 */ bool getTexMtx(u32);
@@ -162,9 +162,9 @@ struct J3DPEBlockNull {
     /* 803329B0 */ ~J3DPEBlockNull();
 };
 
-struct J3DAlphaComp {};
-
 struct J3DBlend {};
+
+struct J3DAlphaComp {};
 
 struct J3DFog {};
 
@@ -197,6 +197,10 @@ struct J3DPEBlock {
     /* 80317394 */ void setFogOffset(u32);
 };
 
+struct J3DMaterialDLBlock {};
+
+struct J3DMaterialBlock {};
+
 struct J3DMaterial {
     /* 803157A0 */ void createColorBlock(u32);
     /* 803159A0 */ void createTexGenBlock(u32);
@@ -211,10 +215,6 @@ struct J3DMaterial {
     /* 80316240 */ void initialize();
     /* 80332B94 */ ~J3DMaterial();
 };
-
-struct J3DMaterialDLBlock {};
-
-struct J3DMaterialBlock {};
 
 struct J3DMaterialFactory {
     struct MaterialType {};

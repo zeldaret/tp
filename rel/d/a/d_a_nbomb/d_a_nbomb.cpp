@@ -13,6 +13,8 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
@@ -23,19 +25,24 @@ struct cXyz {
     /* 80266F48 */ void normalizeZP();
     /* 80267128 */ void atan2sX_Z() const;
     /* 804C6F78 */ ~cXyz();
-};
 
-struct csXyz {};
+    static f32 Zero[3];
+    static u8 BaseX[12];
+    static u8 BaseY[12];
+    static u8 BaseZ[12];
+};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -97,6 +104,8 @@ struct daNbomb_c {
     /* 804CC2C0 */ void checkExplodeNow();
     /* 804CC2D4 */ void deleteBombAndEffect();
     /* 804CC30C */ void setCargoBombExplode();
+
+    static void* m_arcNameList[6];
 };
 
 struct J3DModel {};
@@ -166,12 +175,16 @@ struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
                             cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
                             _GXColor const*, cXyz const*, f32);
+
+    static u8 mParticleTracePCB[4 + 4 /* padding */];
 };
 
 struct _GXTexObj {};
 
 struct dDlst_shadowControl_c {
     /* 80055F84 */ void setSimple(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
+
+    static u8 mSimpleTexObj[32];
 };
 
 struct cCcD_Obj {};
@@ -290,9 +303,17 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct WIND_INFLUENCE {};
 
 struct LIGHT_INFLUENCE {};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
 
 struct JGeometry {
     template <typename A1>
@@ -371,6 +392,7 @@ extern "C" bool checkExplodeNow__7dBomb_cFv();
 extern "C" void deleteBombAndEffect__7dBomb_cFv();
 extern "C" void setCargoBombExplode__7dBomb_cFv();
 extern "C" extern char const* const d_a_nbomb__stringBase0;
+extern "C" void* m_arcNameList__9daNbomb_c[6];
 
 //
 // External References:
@@ -542,19 +564,19 @@ extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__16Z2SoundObjSimple[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 BaseX__4cXyz[12];
-extern "C" extern u8 BaseY__4cXyz[12];
-extern "C" extern u8 BaseZ__4cXyz[12];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" f32 Zero__4cXyz[3];
+extern "C" u8 BaseX__4cXyz[12];
+extern "C" u8 BaseY__4cXyz[12];
+extern "C" u8 BaseZ__4cXyz[12];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -758,7 +780,7 @@ SECTION_DATA static u8 l_sphSrc[64] = {
 };
 
 /* 804CC518-804CC530 -00001 0018+00 4/4 0/0 0/0 .data            m_arcNameList__9daNbomb_c */
-SECTION_DATA static void* m_arcNameList__9daNbomb_c[6] = {
+SECTION_DATA void* daNbomb_c::m_arcNameList[6] = {
     (void*)NULL,
     (void*)NULL,
     (void*)NULL,

@@ -11,7 +11,9 @@
 // Types:
 //
 
-struct JKRHeap {};
+struct JKRHeap {
+    static u8 sSystemHeap[4];
+};
 
 struct JKRThread {
     /* 802D1610 */ JKRThread(JKRHeap*, u32, int, int);
@@ -78,7 +80,7 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" extern u8 JASDram[4];
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
 
 //
 // Declarations:

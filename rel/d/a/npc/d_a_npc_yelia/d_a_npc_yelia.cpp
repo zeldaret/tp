@@ -11,9 +11,15 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -23,9 +29,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -39,8 +43,6 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct daNpcT_motionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -49,11 +51,13 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80B51A44 */ ~daNpcT_MotionSeqMngr_c();
 };
 
+struct daNpcT_motionAnmData_c {};
+
+struct J3DJoint {};
+
 struct daNpcT_faceMotionAnmData_c {};
 
 struct daNpcT_evtData_c {};
-
-struct J3DJoint {};
 
 struct daNpc_Yelia_c {
     /* 80B4D30C */ ~daNpc_Yelia_c();
@@ -102,10 +106,15 @@ struct daNpc_Yelia_c {
     /* 80B52204 */ void checkChangeJoint(int);
     /* 80B52214 */ void checkRemoveJoint(int);
     /* 80B52224 */ bool chkXYItems();
+
+    static void* mCutNameList[6];
+    static u8 mCutList[72];
 };
 
 struct daNpc_Yelia_Param_c {
     /* 80B5222C */ ~daNpc_Yelia_Param_c();
+
+    static u8 const m[140];
 };
 
 struct dCcD_GObjInf {
@@ -113,14 +122,14 @@ struct dCcD_GObjInf {
     /* 800840E4 */ ~dCcD_GObjInf();
 };
 
+struct J3DModel {};
+
 struct cXyz {
     /* 80266AE4 */ void operator+(Vec const&) const;
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80B51368 */ ~cXyz();
     /* 80B51A40 */ cXyz();
 };
-
-struct J3DModel {};
 
 struct _GXColorS10 {};
 
@@ -176,6 +185,8 @@ struct daNpcT_c {
     /* 80B51FF8 */ void changeBck(int*, int*);
     /* 80B51FFC */ void changeBtp(int*, int*);
     /* 80B52000 */ void changeBtk(int*, int*);
+
+    static u8 mCcDCyl[68];
 };
 
 struct daNpcT_Path_c {
@@ -348,6 +359,10 @@ struct cBgS_GndChk {
     /* 80267C94 */ ~cBgS_GndChk();
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DTexNoAnm {
     /* 80B4DB0C */ ~J3DTexNoAnm();
     /* 80B4DB54 */ J3DTexNoAnm();
@@ -496,7 +511,10 @@ extern "C" void __dt__19daNpc_Yelia_Param_cFv();
 extern "C" static void func_80B52274();
 extern "C" static void func_80B5227C();
 extern "C" void setOffsetPos__9daDitem_cF4cXyz();
+extern "C" u8 const m__19daNpc_Yelia_Param_c[140];
 extern "C" extern char const* const d_a_npc_yelia__stringBase0;
+extern "C" void* mCutNameList__13daNpc_Yelia_c[6];
+extern "C" u8 mCutList__13daNpc_Yelia_c[72];
 
 //
 // External References:
@@ -653,18 +671,18 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
+extern "C" u8 mCcDCyl__8daNpcT_c[68];
 extern "C" extern void* __vt__8daNpcT_c[49];
 extern "C" extern void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -971,7 +989,7 @@ SECTION_DATA static u8 l_motionSequenceData[544] = {
 #pragma pop
 
 /* 80B53064-80B5307C -00001 0018+00 1/1 0/0 0/0 .data            mCutNameList__13daNpc_Yelia_c */
-SECTION_DATA static void* mCutNameList__13daNpc_Yelia_c[6] = {
+SECTION_DATA void* daNpc_Yelia_c::mCutNameList[6] = {
     (void*)&d_a_npc_yelia__stringBase0,
     (void*)(((char*)&d_a_npc_yelia__stringBase0) + 0x76),
     (void*)(((char*)&d_a_npc_yelia__stringBase0) + 0x92),
@@ -1031,7 +1049,7 @@ SECTION_DATA static void* lit_3930[3] = {
 #pragma pop
 
 /* 80B530B8-80B53100 000BDC 0048+00 1/2 0/0 0/0 .data            mCutList__13daNpc_Yelia_c */
-SECTION_DATA static u8 mCutList__13daNpc_Yelia_c[72] = {
+SECTION_DATA u8 daNpc_Yelia_c::mCutList[72] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1361,7 +1379,7 @@ asm daNpc_Yelia_c::~daNpc_Yelia_c() {
 
 /* ############################################################################################## */
 /* 80B522B4-80B52340 000000 008C+00 7/7 0/0 0/0 .rodata          m__19daNpc_Yelia_Param_c */
-SECTION_RODATA static u8 const m__19daNpc_Yelia_Param_c[140] = {
+SECTION_RODATA u8 const daNpc_Yelia_Param_c::m[140] = {
     0x43, 0x2A, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xC8, 0x00, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x43, 0x20, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
@@ -1372,7 +1390,7 @@ SECTION_RODATA static u8 const m__19daNpc_Yelia_Param_c[140] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B522B4, &m__19daNpc_Yelia_Param_c);
+COMPILER_STRIP_GATE(80B522B4, &daNpc_Yelia_Param_c::m);
 
 /* 80B52340-80B52368 00008C 0028+00 0/1 0/0 0/0 .rodata          heapSize$4085 */
 #pragma push

@@ -11,8 +11,19 @@
 // Types:
 //
 
+struct mDoRst {
+    static u8 mResetData[4 + 4 /* padding */];
+};
+
 struct mDoMemCd_Ctrl_c {
     /* 80016894 */ void update();
+};
+
+struct mDoMain {
+    static u8 COPYDATE_STRING[18 + 2 /* padding */];
+    static u32 memMargin;
+    static u8 sPowerOnTime[4];
+    static u8 sHungUpTime[4];
 };
 
 struct mDoDvdThd_callback_c {
@@ -22,6 +33,9 @@ struct mDoDvdThd_callback_c {
 struct mDoCPd_c {
     /* 80007954 */ void create();
     /* 80007A94 */ void read();
+
+    static u8 m_gamePad[16];
+    static u8 m_cpadInfo[256];
 };
 
 struct dRes_control_c {
@@ -47,6 +61,10 @@ struct JKRHeap {
     /* 800065D8 */ bool dump_sort();
     /* 802CE72C */ void getFreeSize();
     /* 802CE784 */ void getTotalFreeSize();
+
+    static u8 sSystemHeap[4];
+    static u8 sCurrentHeap[4];
+    static u8 sRootHeap[4];
 };
 
 struct JKRSolidHeap {
@@ -61,6 +79,14 @@ struct JKRAramHeap {
     /* 802D3134 */ void getFreeSize();
     /* 802D31AC */ void getTotalFreeSize();
     /* 802D3218 */ void dump();
+};
+
+struct JKRAram {
+    static u8 sAramObject[4];
+};
+
+struct JFWSystem {
+    static u8 systemConsole[4];
 };
 
 struct HeapCheck {
@@ -92,6 +118,10 @@ extern "C" void main();
 extern "C" bool dump_sort__7JKRHeapFv();
 extern "C" void __sinit_m_Do_main_cpp();
 extern "C" extern char const* const m_Do_m_Do_main__stringBase0;
+extern "C" u8 COPYDATE_STRING__7mDoMain[18 + 2 /* padding */];
+extern "C" u32 memMargin__7mDoMain;
+extern "C" u8 sPowerOnTime__7mDoMain[4];
+extern "C" u8 sHungUpTime__7mDoMain[4];
 extern "C" extern u8 data_80450B38[4];
 extern "C" extern u8 data_80450B3C[4];
 extern "C" extern u8 data_80450B40[4];
@@ -186,8 +216,8 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void strcmp();
-extern "C" extern u8 m_gamePad__8mDoCPd_c[16];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 m_gamePad__8mDoCPd_c[16];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 g_mDoMemCd_control[8192];
 extern "C" extern u8 g_HIO[64 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
@@ -195,13 +225,13 @@ extern "C" extern u8 g_mDoAud_audioHeap[4];
 extern "C" extern u8 gameHeap[4];
 extern "C" extern u8 zeldaHeap[4];
 extern "C" extern u8 archiveHeap[4];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
+extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 extern "C" extern u8 struct_80450C80[8];
-extern "C" extern u8 systemConsole__9JFWSystem[4];
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sRootHeap__7JKRHeap[4];
-extern "C" extern u8 sAramObject__7JKRAram[4];
+extern "C" u8 systemConsole__9JFWSystem[4];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sCurrentHeap__7JKRHeap[4];
+extern "C" u8 sRootHeap__7JKRHeap[4];
+extern "C" u8 sAramObject__7JKRAram[4];
 
 //
 // Declarations:
@@ -253,7 +283,7 @@ extern "C" u8 HostioHeapCheck[40];
 extern "C" u8 CommandHeapCheck[40];
 
 /* 803A2EE0-803A2EF4 000000 0012+02 2/2 1/1 0/0 .data            COPYDATE_STRING__7mDoMain */
-SECTION_DATA extern u8 COPYDATE_STRING__7mDoMain[18 + 2 /* padding */] = {
+SECTION_DATA u8 mDoMain::COPYDATE_STRING[18 + 2 /* padding */] = {
     0x3F,
     0x3F,
     0x2F,
@@ -379,7 +409,7 @@ SECTION_DATA static void* desc2[5 + 1 /* padding */] = {
 SECTION_SDATA extern u32 data_80450580 = 0xFF000000;
 
 /* 80450584-80450588 000004 0004+00 0/0 1/1 0/0 .sdata           memMargin__7mDoMain */
-SECTION_SDATA extern u32 memMargin__7mDoMain = 0xFFFFFFFF;
+SECTION_SDATA u32 mDoMain::memMargin = 0xFFFFFFFF;
 
 /* 80450588-80450590 000008 0008+00 2/2 0/0 0/0 .sdata           None */
 SECTION_SDATA static u8 data_80450588[8] = {
@@ -390,16 +420,14 @@ SECTION_SDATA static u8 data_80450588[8] = {
 static u8 data_80450B00[8];
 
 /* 80450B08-80450B0C 000008 0004+00 1/1 1/1 0/0 .sbss            sPowerOnTime__7mDoMain */
-extern u8 sPowerOnTime__7mDoMain[4];
-u8 sPowerOnTime__7mDoMain[4];
+u8 mDoMain::sPowerOnTime[4];
 
 /* 80450B0C-80450B10 00000C 0004+00 1/1 1/1 0/0 .sbss            None */
 extern u8 data_80450B0C[4];
 u8 data_80450B0C[4];
 
 /* 80450B10-80450B14 000010 0004+00 0/0 2/2 0/0 .sbss            sHungUpTime__7mDoMain */
-extern u8 sHungUpTime__7mDoMain[4];
-u8 sHungUpTime__7mDoMain[4];
+u8 mDoMain::sHungUpTime[4];
 
 /* 80450B14-80450B18 000014 0004+00 0/0 2/2 0/0 .sbss            None */
 extern u8 data_80450B14[4];

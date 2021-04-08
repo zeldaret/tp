@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct mDoExt_morf_c {
     /* 8000FB7C */ void setMorf(f32);
 };
@@ -38,6 +42,8 @@ struct daNpcPasser2_c {
     /* 80AA7CD8 */ void create();
     /* 80AA7F78 */ void create_init();
     /* 80AA8270 */ ~daNpcPasser2_c();
+
+    static u8 ActionTable[24];
 };
 
 struct J3DAnmTransformKey {};
@@ -58,6 +64,8 @@ struct daNpcCd_c {
     /* 80156E8C */ void drawObj(int, J3DModel*, f32);
     /* 80156F74 */ void drawNpc();
     /* 80AA8694 */ ~daNpcCd_c();
+
+    static u8 const m_cylDat[68];
 };
 
 struct dCcD_Stts {
@@ -95,11 +103,11 @@ struct dBgS_AcchCir {
     /* 80AA892C */ ~dBgS_AcchCir();
 };
 
+struct cXyz {};
+
 struct dBgS {};
 
 struct csXyz {};
-
-struct cXyz {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -160,6 +168,10 @@ struct PathTrace_c {
     /* 80159F98 */ void setNextPoint(cXyz&);
 };
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 //
 // Forward References:
 //
@@ -192,6 +204,7 @@ extern "C" void __dt__8cM3dGAabFv();
 extern "C" void __dt__10dCcD_GSttsFv();
 extern "C" void __dt__12dBgS_AcchCirFv();
 extern "C" void __dt__12dBgS_ObjAcchFv();
+extern "C" u8 ActionTable__14daNpcPasser2_c[24];
 
 //
 // External References:
@@ -269,7 +282,7 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void abs();
-extern "C" extern u8 const m_cylDat__9daNpcCd_c[68];
+extern "C" u8 const m_cylDat__9daNpcCd_c[68];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
@@ -277,10 +290,10 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 l_Cd_HIO[10684];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 
 //
 // Declarations:
@@ -337,7 +350,7 @@ SECTION_DATA static void* lit_3846[3] = {
 #pragma pop
 
 /* 80AA8AA0-80AA8AB8 000038 0018+00 1/2 0/0 0/0 .data            ActionTable__14daNpcPasser2_c */
-SECTION_DATA static u8 ActionTable__14daNpcPasser2_c[24] = {
+SECTION_DATA u8 daNpcPasser2_c::ActionTable[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };

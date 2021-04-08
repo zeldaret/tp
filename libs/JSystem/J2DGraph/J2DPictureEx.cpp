@@ -71,21 +71,19 @@ struct J2DScreen {
     /* 802F9640 */ void getNameResource(char const*);
 };
 
-struct J2DAnmVtxColor {};
-
-struct J2DAnmTextureSRTKey {};
-
-struct J2DAnmColor {};
-
-struct J2DAnmBase {};
-
 struct J2DAnmTevRegKey {};
 
 struct J2DAnmTransform {};
 
+struct J2DAnmVtxColor {};
+
+struct J2DAnmTextureSRTKey {};
+
 struct J2DAnmVisibilityFull {
     /* 8030C048 */ void getVisibility(u16, u8*) const;
 };
+
+struct J2DAnmBase {};
 
 struct J2DPane {
     /* 80053BC0 */ void calcMtx();
@@ -113,6 +111,8 @@ struct J2DPane {
 };
 
 struct J2DAnmTexPattern {};
+
+struct J2DAnmColor {};
 
 struct J2DMaterial {
     /* 802EA38C */ void setGX();

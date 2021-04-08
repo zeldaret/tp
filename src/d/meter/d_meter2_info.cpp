@@ -40,6 +40,10 @@ struct dSv_letter_info_c {
     /* 8003444C */ void isLetterGetFlag(int) const;
 };
 
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
+};
+
 struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
@@ -60,17 +64,17 @@ struct dMeterMap_c {
     /* 8020D900 */ void isMapOpenCheck();
 };
 
-struct JMSMesgEntry_c {};
-
-struct JUTFont {};
-
-struct cXyz {};
-
 struct J2DTextBox {
     /* 8021C7F4 */ void getFont() const;
 };
 
+struct JUTFont {};
+
 struct J2DPicture {};
+
+struct cXyz {};
+
+struct JMSMesgEntry_c {};
 
 struct dMeter2Info_c {
     /* 8021BDDC */ dMeter2Info_c();
@@ -113,6 +117,14 @@ struct dMeter2Info_c {
     /* 8021E0C4 */ void resetMiniGameItem(bool);
     /* 8021E268 */ void setMiniGameCount(s8);
     /* 8021E290 */ void setSaveStageName(char const*);
+};
+
+struct dMenu_Letter {
+    static u8 letter_data[512];
+};
+
+struct dItem_data {
+    static void* item_resource[1530];
 };
 
 struct csXyz {
@@ -190,6 +202,7 @@ extern "C" void dMeter2Info_set2DVibration__Fv();
 extern "C" void dMeter2Info_set2DVibrationM__Fv();
 extern "C" void __sinit_d_meter2_info_cpp();
 extern "C" extern char const* const d_meter_d_meter2_info__stringBase0;
+extern "C" u8 letter_data__12dMenu_Letter[512];
 
 //
 // External References:
@@ -242,8 +255,8 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void strcmp();
 extern "C" void strcpy();
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* item_resource__10dItem_data[1530];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" void* item_resource__10dItem_data[1530];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 
 //
@@ -307,7 +320,7 @@ SECTION_DATA static void* tex_name_5183[10] = {
 };
 
 /* 803BF81C-803BFA1C 01C93C 0200+00 3/3 6/6 0/0 .data            letter_data__12dMenu_Letter */
-SECTION_DATA extern u8 letter_data__12dMenu_Letter[512] = {
+SECTION_DATA u8 dMenu_Letter::letter_data[512] = {
     0x09, 0xC5, 0x0A, 0x29, 0x0A, 0x8D, 0x01, 0x0B, 0x09, 0xC6, 0x0A, 0x2A, 0x0A, 0x8E, 0x02, 0x37,
     0x09, 0xC7, 0x0A, 0x2B, 0x0A, 0x8F, 0x02, 0x36, 0x09, 0xC8, 0x0A, 0x2C, 0x0A, 0x90, 0x00, 0x37,
     0x09, 0xC9, 0x0A, 0x2D, 0x0A, 0x91, 0x00, 0x39, 0x09, 0xCA, 0x0A, 0x2E, 0x0A, 0x92, 0x00, 0x67,

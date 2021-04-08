@@ -29,6 +29,8 @@ struct daPy_py_c {
     /* 8015F3FC */ void getAttentionOffsetY();
     /* 8015F954 */ void setMidnaMotionNum(int);
     /* 8015F968 */ void setMidnaFaceNum(int);
+
+    static u8 m_midnaActor[4];
 };
 
 struct daAlink_c {
@@ -75,6 +77,14 @@ struct dSv_memBit_c {
 struct dSv_light_drop_c {
     /* 80034340 */ void getLightDropNum(u8) const;
     /* 80034368 */ void onLightDropGetFlag(u8);
+};
+
+struct dSv_event_tmp_flag_c {
+    static u8 const tempBitLabels[370 + 2 /* padding */];
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -242,6 +252,9 @@ struct dMsgFlow_c {
     /* 8024D970 */ void event040(mesg_flow_node_event*, fopAc_ac_c*);
     /* 8024DA78 */ void event041(mesg_flow_node_event*, fopAc_ac_c*);
     /* 8024DAA8 */ bool event042(mesg_flow_node_event*, fopAc_ac_c*);
+
+    static u8 mQueryList[636];
+    static u8 mEventList[516];
 };
 
 struct dMeter2Info_c {
@@ -273,6 +286,10 @@ struct cSAngle {
 
 struct Z2SeMgr {
     /* 802ADB14 */ void messageSePlay(u16, Vec*, s8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 //
@@ -403,6 +420,8 @@ extern "C" bool event042__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c();
 extern "C" void func_8024DAB0(s32*);
 extern "C" void __sinit_d_msg_flow_cpp();
 extern "C" extern char const* const d_msg_d_msg_flow__stringBase0;
+extern "C" u8 mQueryList__10dMsgFlow_c[636];
+extern "C" u8 mEventList__10dMsgFlow_c[516];
 
 //
 // External References:
@@ -514,16 +533,16 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void strcmp();
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 g_MsgObject_HIO_c[1040];
 extern "C" extern u32 g_saftyWhiteColor;
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 m_midnaActor__9daPy_py_c[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -1145,7 +1164,7 @@ SECTION_DATA static void* lit_5075[3] = {
 #pragma pop
 
 /* 803C184C-803C1AC8 01E96C 027C+00 2/3 0/0 0/0 .data            mQueryList__10dMsgFlow_c */
-SECTION_DATA static u8 mQueryList__10dMsgFlow_c[636] = {
+SECTION_DATA u8 dMsgFlow_c::mQueryList[636] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1619,7 +1638,7 @@ SECTION_DATA static void* lit_5986[3] = {
 #pragma pop
 
 /* 803C1CCC-803C1ED0 01EDEC 0204+00 1/2 0/0 0/0 .data            mEventList__10dMsgFlow_c */
-SECTION_DATA static u8 mEventList__10dMsgFlow_c[516] = {
+SECTION_DATA u8 dMsgFlow_c::mEventList[516] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

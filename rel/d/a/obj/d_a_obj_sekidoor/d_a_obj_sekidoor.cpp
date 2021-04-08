@@ -13,6 +13,10 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct fopAc_ac_c {};
 
 struct daObj_SekiDoor_c {
@@ -30,6 +34,8 @@ struct daObj_SekiDoor_c {
 
 struct daObj_SekiDoor_Param_c {
     /* 80CCD9AC */ ~daObj_SekiDoor_Param_c();
+
+    static u8 const m[1 + 3 /* padding */];
 };
 
 struct cXyz {};
@@ -100,6 +106,14 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 //
@@ -124,6 +138,7 @@ extern "C" static void daObj_SekiDoor_Draw__FPv();
 extern "C" static bool daObj_SekiDoor_IsDelete__FPv();
 extern "C" void __sinit_d_a_obj_sekidoor_cpp();
 extern "C" void __dt__22daObj_SekiDoor_Param_cFv();
+extern "C" u8 const m__22daObj_SekiDoor_Param_c[1 + 3 /* padding */];
 extern "C" extern char const* const d_a_obj_sekidoor__stringBase0;
 
 //
@@ -167,13 +182,13 @@ extern "C" void _savegpr_24();
 extern "C" void _restgpr_24();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -296,14 +311,14 @@ asm void daObj_SekiDoor_c::Delete() {
 
 /* ############################################################################################## */
 /* 80CCDA08-80CCDA0C 000000 0001+03 2/2 0/0 0/0 .rodata          m__22daObj_SekiDoor_Param_c */
-SECTION_RODATA static u8 const m__22daObj_SekiDoor_Param_c[1 + 3 /* padding */] = {
+SECTION_RODATA u8 const daObj_SekiDoor_Param_c::m[1 + 3 /* padding */] = {
     0x00,
     /* padding */
     0x00,
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CCDA08, &m__22daObj_SekiDoor_Param_c);
+COMPILER_STRIP_GATE(80CCDA08, &daObj_SekiDoor_Param_c::m);
 
 /* 80CCDA0C-80CCDA10 000004 0004+00 1/3 0/0 0/0 .rodata          @3956 */
 SECTION_RODATA static f32 const lit_3956 = 460.0f;

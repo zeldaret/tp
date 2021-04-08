@@ -11,6 +11,10 @@
 // Types:
 //
 
+struct mDoRst {
+    static u8 mResetData[4 + 4 /* padding */];
+};
+
 struct JUTGamePad {
     struct EPadPort {};
 
@@ -18,10 +22,17 @@ struct JUTGamePad {
         /* 802E19D8 */ void setEnabled(u32);
     };
 
+    struct C3ButtonReset {
+        static u8 sCallback[4];
+        static u8 sCallbackArg[4 + 4 /* padding */];
+    };
+
     /* 802E06DC */ JUTGamePad(JUTGamePad::EPadPort);
     /* 802E08E4 */ void read();
     /* 802E1024 */ void clearForReset();
     /* 802E199C */ void getGamePad(int);
+
+    static u8 sAnalogMode[4];
 };
 
 struct interface_of_controller_pad {};
@@ -32,6 +43,9 @@ struct mDoCPd_c {
     /* 80007B7C */ void convert(interface_of_controller_pad*, JUTGamePad*);
     /* 80007CD0 */ void LRlockCheck(interface_of_controller_pad*);
     /* 80007D74 */ void recalibrate();
+
+    static u8 m_gamePad[16];
+    static u8 m_cpadInfo[256];
 };
 
 //
@@ -43,6 +57,8 @@ extern "C" void read__8mDoCPd_cFv();
 extern "C" void convert__8mDoCPd_cFP27interface_of_controller_padP10JUTGamePad();
 extern "C" void LRlockCheck__8mDoCPd_cFP27interface_of_controller_pad();
 extern "C" void recalibrate__8mDoCPd_cFv();
+extern "C" u8 m_gamePad__8mDoCPd_c[16];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 
 //
 // External References:
@@ -61,10 +77,10 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
 extern "C" extern u8 g_HIO[64 + 4 /* padding */];
 extern "C" extern u32 data_80450580;
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 sAnalogMode__10JUTGamePad[4];
-extern "C" extern u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
-extern "C" extern u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
+extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
+extern "C" u8 sAnalogMode__10JUTGamePad[4];
+extern "C" u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
+extern "C" u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
 extern "C" extern u8 struct_80451500[4];
 
 //
@@ -73,12 +89,10 @@ extern "C" extern u8 struct_80451500[4];
 
 /* ############################################################################################## */
 /* 803DD2D8-803DD2E8 009FF8 0010+00 2/2 6/6 0/0 .bss             m_gamePad__8mDoCPd_c */
-extern u8 m_gamePad__8mDoCPd_c[16];
-u8 m_gamePad__8mDoCPd_c[16];
+u8 mDoCPd_c::m_gamePad[16];
 
 /* 803DD2E8-803DD3E8 00A008 0100+00 2/2 84/84 37/37 .bss             m_cpadInfo__8mDoCPd_c */
-extern u8 m_cpadInfo__8mDoCPd_c[256];
-u8 m_cpadInfo__8mDoCPd_c[256];
+u8 mDoCPd_c::m_cpadInfo[256];
 
 /* 80007954-80007A94 002294 0140+00 0/0 1/1 0/0 .text            create__8mDoCPd_cFv */
 #pragma push

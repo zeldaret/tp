@@ -13,6 +13,10 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
     /* 80018C8C */ ~fopAc_ac_c();
@@ -30,13 +34,15 @@ struct daObjHBarrel_c {
     /* 80C16DEC */ void setModelMtx();
     /* 80C16E50 */ void hitAction();
     /* 80C17090 */ void callEmt();
+
+    static u8 const s_CcDCyl[68];
 };
 
 struct dKy_tevstr_c {};
 
-struct cXyz {};
-
 struct J3DModelData {};
+
+struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -55,6 +61,8 @@ struct JPABaseEmitter {};
 struct dPa_modelEcallBack {
     /* 8004AC00 */ void setModel(JPABaseEmitter*, J3DModelData*, dKy_tevstr_c const&, u8, void*, u8,
                                  u8);
+
+    static u8 mEcallback[4];
 };
 
 struct dPa_levelEcallBack {};
@@ -133,6 +141,10 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DModel {};
 
 //
@@ -159,6 +171,7 @@ extern "C" static void daObjHBarrel_Delete__FP14daObjHBarrel_c();
 extern "C" static void daObjHBarrel_execute__FP14daObjHBarrel_c();
 extern "C" static void daObjHBarrel_draw__FP14daObjHBarrel_c();
 extern "C" void __dt__10cCcD_GSttsFv();
+extern "C" u8 const s_CcDCyl__14daObjHBarrel_c[68];
 extern "C" extern char const* const d_a_obj_hakai_brl__stringBase0;
 
 //
@@ -217,11 +230,11 @@ extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__16Z2SoundObjSimple[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 mEcallback__18dPa_modelEcallBack[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mEcallback__18dPa_modelEcallBack[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -400,14 +413,14 @@ asm void daObjHBarrel_c::execute() {
 
 /* ############################################################################################## */
 /* 80C172FC-80C17340 000000 0044+00 2/2 0/0 0/0 .rodata          s_CcDCyl__14daObjHBarrel_c */
-SECTION_RODATA static u8 const s_CcDCyl__14daObjHBarrel_c[68] = {
+SECTION_RODATA u8 const daObjHBarrel_c::s_CcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x0D, 0xD8, 0xFA, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x79,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C172FC, &s_CcDCyl__14daObjHBarrel_c);
+COMPILER_STRIP_GATE(80C172FC, &daObjHBarrel_c::s_CcDCyl);
 
 /* 80C17340-80C17344 000044 0004+00 0/1 0/0 0/0 .rodata          @3826 */
 #pragma push

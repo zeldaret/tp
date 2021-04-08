@@ -23,6 +23,12 @@ struct JUTFont {
 struct JUTDirectPrint {
     /* 802E46D8 */ void drawString(u16, u16, char*);
     /* 802E4798 */ void setCharColor(JUtility::TColor);
+
+    static u8 sDirectPrint[4 + 4 /* padding */];
+};
+
+struct JUTDbPrint {
+    static u8 sDebugPrint[4 + 4 /* padding */];
 };
 
 struct JUTAssertion {
@@ -56,8 +62,8 @@ extern "C" void setCharColor__14JUTDirectPrintFQ28JUtility6TColor();
 extern "C" void VIGetRetraceCount();
 extern "C" void strlen();
 extern "C" extern u8 data_804508F8[8];
-extern "C" extern u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
-extern "C" extern u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
+extern "C" u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
+extern "C" u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
 
 //
 // Declarations:

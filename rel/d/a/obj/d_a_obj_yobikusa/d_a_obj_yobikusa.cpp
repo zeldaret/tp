@@ -18,6 +18,8 @@ struct cXyz {};
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CE70 */ void scaleM(cXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -51,6 +53,9 @@ struct daObjYobikusa_c {
     /* 8059D3B4 */ void toPickLeaf();
     /* 8059D454 */ void setNewLeaf();
     /* 8059D738 */ void execute();
+
+    static u8 const M_attr[64];
+    static u8 ActionTable[72];
 };
 
 struct dKy_tevstr_c {};
@@ -155,6 +160,14 @@ struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
 };
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
+};
+
 struct J3DModel {};
 
 struct J3DJoint {};
@@ -199,7 +212,9 @@ extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" void __sinit_d_a_obj_yobikusa_cpp();
 extern "C" static void func_8059DE60();
 extern "C" static void func_8059DE68();
+extern "C" u8 const M_attr__15daObjYobikusa_c[64];
 extern "C" extern char const* const d_a_obj_yobikusa__stringBase0;
+extern "C" u8 ActionTable__15daObjYobikusa_c[72];
 
 //
 // External References:
@@ -267,12 +282,12 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 
 //
 // Declarations:
@@ -364,7 +379,7 @@ SECTION_DATA static void* lit_3646[3] = {
 #pragma pop
 
 /* 8059DFD8-8059E020 000070 0048+00 1/2 0/0 0/0 .data            ActionTable__15daObjYobikusa_c */
-SECTION_DATA static u8 ActionTable__15daObjYobikusa_c[72] = {
+SECTION_DATA u8 daObjYobikusa_c::ActionTable[72] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -416,13 +431,13 @@ asm void daObjYobikusa_c::initSwingWind() {
 
 /* ############################################################################################## */
 /* 8059DE7C-8059DEBC 000000 0040+00 6/6 0/0 0/0 .rodata          M_attr__15daObjYobikusa_c */
-SECTION_RODATA static u8 const M_attr__15daObjYobikusa_c[64] = {
+SECTION_RODATA u8 const daObjYobikusa_c::M_attr[64] = {
     0x44, 0x7A, 0x00, 0x00, 0x45, 0x7A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0xBB, 0x80, 0x00,
     0x43, 0xFA, 0x00, 0x00, 0x44, 0x90, 0x00, 0x00, 0x44, 0x00, 0x00, 0x00, 0x43, 0x48, 0x00, 0x00,
     0x43, 0xC8, 0x00, 0x00, 0x3C, 0xA3, 0xD7, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x45, 0x9C, 0x40, 0x00, 0x43, 0x16, 0x00, 0x00, 0x04, 0x00, 0x00, 0x40, 0x27, 0x10, 0x19, 0xB6,
 };
-COMPILER_STRIP_GATE(8059DE7C, &M_attr__15daObjYobikusa_c);
+COMPILER_STRIP_GATE(8059DE7C, &daObjYobikusa_c::M_attr);
 
 /* 8059DEBC-8059DEC0 000040 0004+00 2/5 0/0 0/0 .rodata          @3699 */
 SECTION_RODATA static u8 const lit_3699[4] = {

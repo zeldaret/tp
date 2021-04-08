@@ -87,6 +87,11 @@ struct JASAramStream {
     /* 802974AC */ void channelProc();
     /* 80297658 */ void channelStart();
     /* 80297870 */ void channelStop(u16);
+
+    static u8 sLoadThread[4];
+    static u8 sReadBuffer[4];
+    static u8 sBlockSize[4];
+    static u8 sChannelMax[4];
 };
 
 //
@@ -117,6 +122,10 @@ extern "C" void channelProc__13JASAramStreamFv();
 extern "C" void channelStart__13JASAramStreamFv();
 extern "C" void channelStop__13JASAramStreamFUs();
 extern "C" void func_802978DC();
+extern "C" u8 sLoadThread__13JASAramStream[4];
+extern "C" u8 sReadBuffer__13JASAramStream[4];
+extern "C" u8 sBlockSize__13JASAramStream[4];
+extern "C" u8 sChannelMax__13JASAramStream[4];
 
 //
 // External References:
@@ -166,17 +175,16 @@ extern "C" extern u8 JASDram[4];
 
 /* ############################################################################################## */
 /* 80451250-80451254 000750 0004+00 6/6 0/0 0/0 .sbss            sLoadThread__13JASAramStream */
-static u8 sLoadThread__13JASAramStream[4];
+u8 JASAramStream::sLoadThread[4];
 
 /* 80451254-80451258 000754 0004+00 3/3 0/0 0/0 .sbss            sReadBuffer__13JASAramStream */
-static u8 sReadBuffer__13JASAramStream[4];
+u8 JASAramStream::sReadBuffer[4];
 
 /* 80451258-8045125C 000758 0004+00 6/6 1/1 0/0 .sbss            sBlockSize__13JASAramStream */
-extern u8 sBlockSize__13JASAramStream[4];
-u8 sBlockSize__13JASAramStream[4];
+u8 JASAramStream::sBlockSize[4];
 
 /* 8045125C-80451260 00075C 0004+00 1/1 0/0 0/0 .sbss            sChannelMax__13JASAramStream */
-static u8 sChannelMax__13JASAramStream[4];
+u8 JASAramStream::sChannelMax[4];
 
 /* 80451260-80451268 -00001 0008+00 8/8 4/4 0/0 .sbss            None */
 /* 80451260 0001+00 data_80451260 None */

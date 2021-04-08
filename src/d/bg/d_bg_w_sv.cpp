@@ -17,13 +17,13 @@ struct dBgW_Base {
     /* 80074AB4 */ void SetOldShapeAngleY(s16);
 };
 
-struct cBgD_t {};
+struct cBgS_PolyInfo {};
 
 struct cXyz {};
 
-struct cBgS_PolyInfo {};
-
 struct csXyz {};
+
+struct cBgD_t {};
 
 struct dBgWSv {
     /* 80082F98 */ void Set(cBgD_t*, u32);
@@ -36,19 +36,19 @@ struct dBgWSv {
     /* 800835DC */ ~dBgWSv();
 };
 
-struct dBgS_CaptPoly {};
+struct dBgS_SphChk {};
 
 struct dBgS_SplGrpChk {};
 
-struct cBgS_GrpPassChk {};
+struct cBgS_PolyPassChk {};
+
+struct dBgS_CaptPoly {};
 
 struct dBgS_Acch {};
 
-struct cBgS_PolyPassChk {};
+struct cBgS_GrpPassChk {};
 
 struct dBgS_RoofChk {};
-
-struct dBgS_SphChk {};
 
 struct dBgW {
     /* 8007B3AC */ void GetExitId(cBgS_PolyInfo const&);
@@ -96,11 +96,11 @@ struct dBgW {
     /* 8007E4B4 */ void ChkMoveFlag() const;
 };
 
-struct cBgS_ShdwDraw {};
-
 struct cBgS_LinChk {};
 
 struct cBgS_GndChk {};
+
+struct cBgS_ShdwDraw {};
 
 struct cBgW {
     /* 8007933C */ ~cBgW();

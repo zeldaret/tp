@@ -15,6 +15,10 @@ struct JUtility {
     struct TColor {};
 };
 
+struct JUTVideo {
+    static u8 sManager[4];
+};
+
 struct JUTFont {
     /* 802DED70 */ void setCharColor(JUtility::TColor);
     /* 802DEE28 */ void drawString_size_scale(f32, f32, f32, f32, char const*, u32, bool);
@@ -23,6 +27,8 @@ struct JUTFont {
 struct JKRHeap {
     /* 802CE474 */ void alloc(u32, int, JKRHeap*);
     /* 802CE500 */ void free(void*, JKRHeap*);
+
+    static u8 sCurrentHeap[4];
 };
 
 struct JUTDbPrint {
@@ -33,6 +39,8 @@ struct JUTDbPrint {
     /* 802E02DC */ void flush(int, int, int, int);
     /* 802E02A4 */ void flush();
     /* 802E0440 */ void drawString(int, int, int, u8 const*);
+
+    static u8 sDebugPrint[4 + 4 /* padding */];
 };
 
 struct J2DOrthoGraph {
@@ -53,6 +61,7 @@ extern "C" void flush__10JUTDbPrintFiiii();
 extern "C" void drawString__10JUTDbPrintFiiiPCUc();
 extern "C" void JUTReport__FiiPCce();
 extern "C" void JUTReport__FiiiPCce();
+extern "C" u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
 
 //
 // External References:
@@ -77,8 +86,8 @@ extern "C" void vsnprintf();
 extern "C" void strcpy();
 extern "C" extern void* __vt__14J2DGrafContext[10];
 extern "C" extern void* __vt__13J2DOrthoGraph[10];
-extern "C" extern u8 sCurrentHeap__7JKRHeap[4];
-extern "C" extern u8 sManager__8JUTVideo[4];
+extern "C" u8 sCurrentHeap__7JKRHeap[4];
+extern "C" u8 sManager__8JUTVideo[4];
 
 //
 // Declarations:
@@ -96,8 +105,7 @@ asm JUTDbPrint::JUTDbPrint(JUTFont* param_0, JKRHeap* param_1) {
 
 /* ############################################################################################## */
 /* 804514C8-804514D0 0009C8 0004+04 3/3 6/6 0/0 .sbss            sDebugPrint__10JUTDbPrint */
-extern u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
-u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
+u8 JUTDbPrint::sDebugPrint[4 + 4 /* padding */];
 
 /* 802E0190-802E0204 2DAAD0 0074+00 0/0 2/2 0/0 .text start__10JUTDbPrintFP7JUTFontP7JKRHeap */
 #pragma push

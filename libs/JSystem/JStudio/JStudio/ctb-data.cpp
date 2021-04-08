@@ -8,10 +8,24 @@
 #include "dolphin/types.h"
 
 //
+// Types:
+//
+
+namespace JStudio {
+namespace ctb {
+struct data {
+    static u32 ga4cSignature[1 + 1 /* padding */];
+};
+
+};  // namespace ctb
+
+};  // namespace JStudio
+
+//
 // Forward References:
 //
 
-extern "C" extern u32 ga4cSignature__Q37JStudio3ctb4data[1 + 1 /* padding */];
+extern "C" u32 ga4cSignature__Q37JStudio3ctb4data[1 + 1 /* padding */];
 
 //
 // External References:
@@ -24,7 +38,7 @@ extern "C" extern u32 ga4cSignature__Q37JStudio3ctb4data[1 + 1 /* padding */];
 /* ############################################################################################## */
 /* 804553F8-80455400 0039F8 0004+04 0/0 1/1 0/0 .sdata2          ga4cSignature__Q37JStudio3ctb4data
  */
-SECTION_SDATA2 extern u32 ga4cSignature__Q37JStudio3ctb4data[1 + 1 /* padding */] = {
+SECTION_SDATA2 u32 JStudio::ctb::data::ga4cSignature[1 + 1 /* padding */] = {
     0x43544200,
     /* padding */
     0x00000000,

@@ -11,9 +11,15 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -23,9 +29,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -39,8 +43,6 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct daNpcT_motionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -48,11 +50,13 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80A48184 */ ~daNpcT_MotionSeqMngr_c();
 };
 
-struct daNpcT_evtData_c {};
+struct daNpcT_motionAnmData_c {};
 
 struct J3DJoint {};
 
 struct daNpcT_faceMotionAnmData_c {};
+
+struct daNpcT_evtData_c {};
 
 struct daNpc_Kolinb_c {
     /* 80A4598C */ ~daNpc_Kolinb_c();
@@ -97,10 +101,15 @@ struct daNpc_Kolinb_c {
     /* 80A4864C */ void checkRemoveJoint(int);
     /* 80A48674 */ void getBackboneJointNo();
     /* 80A4868C */ void getNeckJointNo();
+
+    static void* mCutNameList[7];
+    static u8 mCutList[84];
 };
 
 struct daNpc_Kolinb_Param_c {
     /* 80A486A4 */ ~daNpc_Kolinb_Param_c();
+
+    static u8 const m[140];
 };
 
 struct dCcD_GObjInf {
@@ -108,13 +117,13 @@ struct dCcD_GObjInf {
     /* 800840E4 */ ~dCcD_GObjInf();
 };
 
+struct J3DModel {};
+
 struct cXyz {
     /* 80266AE4 */ void operator+(Vec const&) const;
     /* 80A47AE4 */ ~cXyz();
     /* 80A48138 */ cXyz();
 };
-
-struct J3DModel {};
 
 struct _GXColorS10 {};
 
@@ -173,6 +182,8 @@ struct daNpcT_c {
     /* 80A48428 */ void changeBck(int*, int*);
     /* 80A4842C */ void changeBtp(int*, int*);
     /* 80A48430 */ void changeBtk(int*, int*);
+
+    static u8 mCcDCyl[68];
 };
 
 struct daNpcT_Path_c {
@@ -409,7 +420,10 @@ extern "C" void getNeckJointNo__14daNpc_Kolinb_cFv();
 extern "C" void __dt__20daNpc_Kolinb_Param_cFv();
 extern "C" static void func_80A486EC();
 extern "C" static void func_80A486F4();
+extern "C" u8 const m__20daNpc_Kolinb_Param_c[140];
 extern "C" extern char const* const d_a_npc_kolinb__stringBase0;
+extern "C" void* mCutNameList__14daNpc_Kolinb_c[7];
+extern "C" u8 mCutList__14daNpc_Kolinb_c[84];
 
 //
 // External References:
@@ -520,12 +534,12 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
+extern "C" u8 mCcDCyl__8daNpcT_c[68];
 extern "C" extern void* __vt__8daNpcT_c[49];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 j3dSys[284];
 extern "C" void __register_global_object();
@@ -680,7 +694,7 @@ SECTION_DATA static u8 l_motionSequenceData[128] = {
 #pragma pop
 
 /* 80A48BDC-80A48BF8 -00001 001C+00 1/1 0/0 0/0 .data            mCutNameList__14daNpc_Kolinb_c */
-SECTION_DATA static void* mCutNameList__14daNpc_Kolinb_c[7] = {
+SECTION_DATA void* daNpc_Kolinb_c::mCutNameList[7] = {
     (void*)&d_a_npc_kolinb__stringBase0,
     (void*)(((char*)&d_a_npc_kolinb__stringBase0) + 0xD),
     (void*)(((char*)&d_a_npc_kolinb__stringBase0) + 0x23),
@@ -751,7 +765,7 @@ SECTION_DATA static void* lit_3817[3] = {
 #pragma pop
 
 /* 80A48C40-80A48C94 0003EC 0054+00 1/2 0/0 0/0 .data            mCutList__14daNpc_Kolinb_c */
-SECTION_DATA static u8 mCutList__14daNpc_Kolinb_c[84] = {
+SECTION_DATA u8 daNpc_Kolinb_c::mCutList[84] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -958,7 +972,7 @@ asm daNpc_Kolinb_c::~daNpc_Kolinb_c() {
 
 /* ############################################################################################## */
 /* 80A48710-80A4879C 000000 008C+00 5/5 0/0 0/0 .rodata          m__20daNpc_Kolinb_Param_c */
-SECTION_RODATA static u8 const m__20daNpc_Kolinb_Param_c[140] = {
+SECTION_RODATA u8 const daNpc_Kolinb_Param_c::m[140] = {
     0x42, 0xC8, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x43, 0x20, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -969,7 +983,7 @@ SECTION_RODATA static u8 const m__20daNpc_Kolinb_Param_c[140] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A48710, &m__20daNpc_Kolinb_Param_c);
+COMPILER_STRIP_GATE(80A48710, &daNpc_Kolinb_Param_c::m);
 
 /* 80A4879C-80A487AC 00008C 0010+00 0/1 0/0 0/0 .rodata          heapSize$3973 */
 #pragma push

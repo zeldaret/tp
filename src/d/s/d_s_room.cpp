@@ -17,6 +17,10 @@ struct room_of_scene_class {};
 
 struct request_of_phase_process_class {};
 
+struct mDoRst {
+    static u8 mResetData[4 + 4 /* padding */];
+};
+
 struct layer_class {};
 
 struct dSv_zoneBit_c {
@@ -36,6 +40,11 @@ struct dStage_roomControl_c {
     /* 80024954 */ void resetArchiveBank(int);
     /* 8002D9B0 */ void getZoneNo(int);
     /* 8025BAAC */ void setZoneNo(int, int);
+
+    static u8 mStatus[65792];
+    static u8 mDemoArcName[10 + 2 /* padding */];
+    static u8 mArcBankName[4];
+    static u8 mArcBankData[4];
 };
 
 struct dStage_dt_c {};
@@ -161,14 +170,14 @@ extern "C" void strcmp();
 extern "C" void strnicmp();
 extern "C" extern void* g_fopScn_Method[5 + 1 /* padding */];
 extern "C" extern void* g_fpcNd_Method[5 + 1 /* padding */];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" extern u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
+extern "C" u8 mStatus__20dStage_roomControl_c[65792];
+extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
+extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 extern "C" extern u8 g_fpcNd_type[4 + 4 /* padding */];
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mArcBankName__20dStage_roomControl_c[4];
-extern "C" extern u8 mArcBankData__20dStage_roomControl_c[4];
+extern "C" u8 mArcBankName__20dStage_roomControl_c[4];
+extern "C" u8 mArcBankData__20dStage_roomControl_c[4];
 extern "C" extern u8 struct_80451124[4];
 
 //

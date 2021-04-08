@@ -11,6 +11,11 @@
 // Types:
 //
 
+struct csXyz {
+    /* 80CD4C0C */ ~csXyz();
+    /* 80CD51A8 */ csXyz();
+};
+
 struct Vec {};
 
 struct cXyz {
@@ -20,15 +25,12 @@ struct cXyz {
     /* 80CD52A8 */ cXyz();
 };
 
-struct csXyz {
-    /* 80CD4C0C */ ~csXyz();
-    /* 80CD51A8 */ csXyz();
-};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct J3DModel {};
@@ -55,9 +57,11 @@ struct mDoExt_brkAnm {
     /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
@@ -65,9 +69,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -90,8 +92,6 @@ struct daTag_EvtArea_c {
     /* 8048C94C */ void chkPointInArea(cXyz, cXyz);
 };
 
-struct daNpcT_motionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -100,9 +100,11 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80CD52AC */ ~daNpcT_MotionSeqMngr_c();
 };
 
-struct daNpcT_evtData_c {};
+struct daNpcT_motionAnmData_c {};
 
 struct daNpcT_faceMotionAnmData_c {};
+
+struct daNpcT_evtData_c {};
 
 struct daObj_Sekizoa_c {
     /* 80CCE34C */ ~daObj_Sekizoa_c();
@@ -161,10 +163,15 @@ struct daObj_Sekizoa_c {
     /* 80CD5B74 */ s32 getHeadJointNo();
     /* 80CD5B7C */ bool getBackboneJointNo();
     /* 80CD5B84 */ void chkGoal();
+
+    static void* mCutNameList[9];
+    static u8 mCutList[108];
 };
 
 struct daObj_Sekizoa_Param_c {
     /* 80CD5C30 */ ~daObj_Sekizoa_Param_c();
+
+    static u8 const m[156];
 };
 
 struct daObj_SekiDoor_c {
@@ -246,6 +253,11 @@ struct daNpcT_c {
     /* 80CD5878 */ void changeBck(int*, int*);
     /* 80CD587C */ void changeBtp(int*, int*);
     /* 80CD5880 */ void changeBtk(int*, int*);
+
+    static u8 mCcDCyl[68];
+    static u8 mFindActorPtrs[200];
+    static u8 mSrchName[2 + 2 /* padding */];
+    static u8 mFindCount[4];
 };
 
 struct daNpcT_Path_c {
@@ -438,6 +450,10 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DFrameCtrl {
     /* 803283FC */ void init(s16);
     /* 80CD5430 */ ~J3DFrameCtrl();
@@ -553,7 +569,10 @@ extern "C" void __dt__21daObj_Sekizoa_Param_cFv();
 extern "C" static void func_80CD5C78();
 extern "C" static void func_80CD5C80();
 extern "C" void chkPointInArea__15daTag_EvtArea_cF4cXyz();
+extern "C" u8 const m__21daObj_Sekizoa_Param_c[156];
 extern "C" extern char const* const d_a_obj_sekizoa__stringBase0;
+extern "C" void* mCutNameList__15daObj_Sekizoa_c[9];
+extern "C" u8 mCutList__15daObj_Sekizoa_c[108];
 
 //
 // External References:
@@ -747,20 +766,20 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
+extern "C" u8 mCcDCyl__8daNpcT_c[68];
 extern "C" extern void* __vt__8daNpcT_c[49];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mFindActorPtrs__8daNpcT_c[200];
+extern "C" u8 mFindActorPtrs__8daNpcT_c[200];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mSrchName__8daNpcT_c[2 + 2 /* padding */];
-extern "C" extern u8 mFindCount__8daNpcT_c[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mSrchName__8daNpcT_c[2 + 2 /* padding */];
+extern "C" u8 mFindCount__8daNpcT_c[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void chkPointInArea__15daTag_EvtArea_cF4cXyz4cXyz();
 extern "C" void evtSkip__16daObj_SekiDoor_cFv();
 extern "C" void __register_global_object();
@@ -948,7 +967,7 @@ SECTION_DATA static u8 l_motionSequenceData[384] = {
 #pragma pop
 
 /* 80CD6410-80CD6434 -00001 0024+00 1/1 0/0 0/0 .data            mCutNameList__15daObj_Sekizoa_c */
-SECTION_DATA static void* mCutNameList__15daObj_Sekizoa_c[9] = {
+SECTION_DATA void* daObj_Sekizoa_c::mCutNameList[9] = {
     (void*)&d_a_obj_sekizoa__stringBase0,
     (void*)(((char*)&d_a_obj_sekizoa__stringBase0) + 0xD),
     (void*)(((char*)&d_a_obj_sekizoa__stringBase0) + 0xD),
@@ -1041,7 +1060,7 @@ SECTION_DATA static void* lit_3906[3] = {
 #pragma pop
 
 /* 80CD6494-80CD6500 0005BC 006C+00 1/2 0/0 0/0 .data            mCutList__15daObj_Sekizoa_c */
-SECTION_DATA static u8 mCutList__15daObj_Sekizoa_c[108] = {
+SECTION_DATA u8 daObj_Sekizoa_c::mCutList[108] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1348,7 +1367,7 @@ asm daObj_Sekizoa_c::~daObj_Sekizoa_c() {
 
 /* ############################################################################################## */
 /* 80CD5CFC-80CD5D98 000000 009C+00 19/19 0/0 0/0 .rodata          m__21daObj_Sekizoa_Param_c */
-SECTION_RODATA static u8 const m__21daObj_Sekizoa_Param_c[156] = {
+SECTION_RODATA u8 const daObj_Sekizoa_Param_c::m[156] = {
     0x44, 0x16, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x44, 0x89, 0x80, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x44, 0x09, 0x80, 0x00, 0x42, 0xC8, 0x00, 0x00, 0x42, 0x8C, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1360,7 +1379,7 @@ SECTION_RODATA static u8 const m__21daObj_Sekizoa_Param_c[156] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0x16, 0x00, 0x00,
     0x41, 0xF0, 0x00, 0x00, 0x3B, 0x83, 0x12, 0x6F, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CD5CFC, &m__21daObj_Sekizoa_Param_c);
+COMPILER_STRIP_GATE(80CD5CFC, &daObj_Sekizoa_Param_c::m);
 
 /* 80CD5D98-80CD5DB8 00009C 0020+00 0/1 0/0 0/0 .rodata          heapSize$4093 */
 #pragma push

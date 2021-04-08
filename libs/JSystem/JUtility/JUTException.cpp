@@ -68,6 +68,19 @@ struct JUTException {
     /* 802E3C90 */ void queryMapAddress_single(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
     /* 802E3FEC */ void createConsole(void*, u32);
     /* 802E40EC */ ~JUTException();
+
+    static u8 sMessageQueue[32];
+    static void* sCpuExpName[17];
+    static u8 sMapFileList[12 + 4 /* padding */];
+    static u8 sMessageBuffer[4 + 4 /* padding */];
+    static u8 sErrorManager[4];
+    static u8 sPreUserCallback[4];
+    static u8 sPostUserCallback[4];
+    static u8 sConsoleBuffer[4];
+    static u8 sConsoleBufferSize[4];
+    static u8 sConsole[4];
+    static u8 msr[4];
+    static u8 fpscr[4];
 };
 
 struct JUTDirectFile {
@@ -91,6 +104,8 @@ struct JUTConsole {
 struct JUTConsoleManager {
     /* 802E8450 */ void drawDirect(bool) const;
     /* 802E84C4 */ void setDirectConsole(JUTConsole*);
+
+    static u8 sManager[4];
 };
 
 struct JSUPtrLink {
@@ -115,7 +130,9 @@ struct JKRThread {
     /* 802D1758 */ ~JKRThread();
 };
 
-struct JKRHeap {};
+struct JKRHeap {
+    static u8 sSystemHeap[4];
+};
 
 //
 // Forward References:
@@ -155,7 +172,19 @@ extern "C" void __dt__12JUTExceptionFv();
 extern "C" void __sinit_JUTException_cpp();
 extern "C" void func_802E4194();
 extern "C" extern char const* const JUTException__stringBase0;
+extern "C" u8 sMessageQueue__12JUTException[32];
+extern "C" void* sCpuExpName__12JUTException[17];
+extern "C" u8 sMapFileList__12JUTException[12 + 4 /* padding */];
+extern "C" u8 sMessageBuffer__12JUTException[4 + 4 /* padding */];
 extern "C" extern u8 data_804508F8[8];
+extern "C" u8 sErrorManager__12JUTException[4];
+extern "C" u8 sPreUserCallback__12JUTException[4];
+extern "C" u8 sPostUserCallback__12JUTException[4];
+extern "C" u8 sConsoleBuffer__12JUTException[4];
+extern "C" u8 sConsoleBufferSize__12JUTException[4];
+extern "C" u8 sConsole__12JUTException[4];
+extern "C" u8 msr__12JUTException[4];
+extern "C" u8 fpscr__12JUTException[4];
 
 //
 // External References:
@@ -241,8 +270,8 @@ extern "C" void strcpy();
 extern "C" void strtol();
 extern "C" extern u8 GXNtsc480Int[60];
 extern "C" extern u32 __OSFpscrEnableBits;
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sManager__17JUTConsoleManager[4];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sManager__17JUTConsoleManager[4];
 
 //
 // Declarations:
@@ -250,7 +279,7 @@ extern "C" extern u8 sManager__17JUTConsoleManager[4];
 
 /* ############################################################################################## */
 /* 803CC620-803CC640 029740 0020+00 3/3 0/0 0/0 .data            sMessageQueue__12JUTException */
-SECTION_DATA static u8 sMessageQueue__12JUTException[32] = {
+SECTION_DATA u8 JUTException::sMessageQueue[32] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -262,7 +291,7 @@ SECTION_DATA static u8 c3bcnt[32] = {
 };
 
 /* 803CC660-803CC6A4 -00001 0044+00 1/1 0/0 0/0 .data            sCpuExpName__12JUTException */
-SECTION_DATA static void* sCpuExpName__12JUTException[17] = {
+SECTION_DATA void* JUTException::sCpuExpName[17] = {
     (void*)&JUTException__stringBase0,
     (void*)(((char*)&JUTException__stringBase0) + 0xD),
     (void*)(((char*)&JUTException__stringBase0) + 0x1B),
@@ -293,15 +322,14 @@ SECTION_DATA extern void* __vt__12JUTException[4 + 1 /* padding */] = {
 };
 
 /* 80451508-8045150C 000A08 0004+00 4/4 3/3 0/0 .sbss            sErrorManager__12JUTException */
-extern u8 sErrorManager__12JUTException[4];
-u8 sErrorManager__12JUTException[4];
+u8 JUTException::sErrorManager[4];
 
 /* 8045150C-80451510 000A0C 0004+00 4/4 0/0 0/0 .sbss            sPreUserCallback__12JUTException */
-static u8 sPreUserCallback__12JUTException[4];
+u8 JUTException::sPreUserCallback[4];
 
 /* 80451510-80451514 000A10 0004+00 3/3 0/0 0/0 .sbss            sPostUserCallback__12JUTException
  */
-static u8 sPostUserCallback__12JUTException[4];
+u8 JUTException::sPostUserCallback[4];
 
 /* 802E1D5C-802E1E40 2DC69C 00E4+00 1/1 0/0 0/0 .text __ct__12JUTExceptionFP14JUTDirectPrint */
 #pragma push
@@ -325,7 +353,7 @@ asm void JUTException::create(JUTDirectPrint* param_0) {
 
 /* ############################################################################################## */
 /* 804508F0-804508F8 000370 0004+04 1/1 0/0 0/0 .sdata           sMessageBuffer__12JUTException */
-SECTION_SDATA static u8 sMessageBuffer__12JUTException[4 + 4 /* padding */] = {
+SECTION_SDATA u8 JUTException::sMessageBuffer[4 + 4 /* padding */] = {
     0x00,
     0x00,
     0x00,
@@ -352,21 +380,20 @@ asm void JUTException::run() {
 static u8 exCallbackObject[20];
 
 /* 80451514-80451518 000A14 0004+00 1/1 0/0 0/0 .sbss            sConsoleBuffer__12JUTException */
-static u8 sConsoleBuffer__12JUTException[4];
+u8 JUTException::sConsoleBuffer[4];
 
 /* 80451518-8045151C 000A18 0004+00 1/1 0/0 0/0 .sbss            sConsoleBufferSize__12JUTException
  */
-static u8 sConsoleBufferSize__12JUTException[4];
+u8 JUTException::sConsoleBufferSize[4];
 
 /* 8045151C-80451520 000A1C 0004+00 13/13 1/1 0/0 .sbss            sConsole__12JUTException */
-extern u8 sConsole__12JUTException[4];
-u8 sConsole__12JUTException[4];
+u8 JUTException::sConsole[4];
 
 /* 80451520-80451524 000A20 0004+00 2/2 0/0 0/0 .sbss            msr__12JUTException */
-static u8 msr__12JUTException[4];
+u8 JUTException::msr[4];
 
 /* 80451524-80451528 000A24 0004+00 3/3 0/0 0/0 .sbss            fpscr__12JUTException */
-static u8 fpscr__12JUTException[4];
+u8 JUTException::fpscr[4];
 
 /* 802E1FCC-802E20C0 2DC90C 00F4+00 2/2 0/0 0/0 .text
  * errorHandler__12JUTExceptionFUsP9OSContextUlUl               */
@@ -384,7 +411,7 @@ asm void JUTException::errorHandler(u16 param_0, OSContext* param_1, u32 param_2
 static u8 lit_2182[12];
 
 /* 80434598-804345A8 0612B8 000C+04 4/4 0/0 0/0 .bss             sMapFileList__12JUTException */
-static u8 sMapFileList__12JUTException[12 + 4 /* padding */];
+u8 JUTException::sMapFileList[12 + 4 /* padding */];
 
 /* 804345A8-80434870 0612C8 02C8+00 1/1 0/0 0/0 .bss             context$2230 */
 static u8 context[712];

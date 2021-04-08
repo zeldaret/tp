@@ -52,15 +52,15 @@ struct JGeometry {
     struct TBox2__template0 {};
 };
 
-struct J2DAnmBase {};
+struct J2DAnmVisibilityFull {};
 
-struct J2DAnmVtxColor {};
+struct J2DAnmBase {};
 
 struct J2DAnmTransform {};
 
 struct J2DGrafContext {};
 
-struct J2DAnmVisibilityFull {};
+struct J2DAnmVtxColor {};
 
 struct J2DPane {
     /* 80020158 */ void setAlpha(u8);
@@ -91,13 +91,13 @@ struct J2DPane {
     /* 802F8478 */ void drawSelf(f32, f32);
 };
 
-struct J2DAnmTexPattern {};
-
-struct J2DAnmTevRegKey {};
+struct J2DAnmTextureSRTKey {};
 
 struct J2DAnmColor {};
 
-struct J2DAnmTextureSRTKey {};
+struct J2DAnmTevRegKey {};
+
+struct J2DAnmTexPattern {};
 
 struct J2DMaterial {
     /* 802EA1AC */ J2DMaterial();
@@ -165,6 +165,8 @@ struct J2DScreen {
     /* 802F9A20 */ void calcMtx();
     /* 802F9A74 */ void setAnimationVF(J2DAnmVisibilityFull*);
     /* 802F9A78 */ void setAnimationVC(J2DAnmVtxColor*);
+
+    static u8 mDataManage[4 + 4 /* padding */];
 };
 
 struct J2DResReference {};
@@ -232,6 +234,7 @@ extern "C" void calcMtx__9J2DScreenFv();
 extern "C" void setAnimation__9J2DScreenFP10J2DAnmBase();
 extern "C" void setAnimationVF__9J2DScreenFP20J2DAnmVisibilityFull();
 extern "C" void setAnimationVC__9J2DScreenFP14J2DAnmVtxColor();
+extern "C" u8 mDataManage__9J2DScreen[4 + 4 /* padding */];
 
 //
 // External References:
@@ -605,8 +608,7 @@ asm void J2DScreen::isUsed(ResFONT const* param_0) {
 
 /* ############################################################################################## */
 /* 80451590-80451598 000A90 0004+04 1/1 3/3 0/0 .sbss            mDataManage__9J2DScreen */
-extern u8 mDataManage__9J2DScreen[4 + 4 /* padding */];
-u8 mDataManage__9J2DScreen[4 + 4 /* padding */];
+u8 J2DScreen::mDataManage[4 + 4 /* padding */];
 
 /* 802F9640-802F9690 2F3F80 0050+00 0/0 6/6 0/0 .text            getNameResource__9J2DScreenFPCc */
 #pragma push

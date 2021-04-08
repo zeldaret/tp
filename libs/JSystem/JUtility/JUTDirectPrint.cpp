@@ -30,6 +30,11 @@ struct JUTDirectPrint {
     /* 802E4708 */ void drawString_f(u16, u16, char const*, ...);
     /* 802E47C8 */ void setCharColor(u8, u8, u8);
     /* 802E4798 */ void setCharColor(JUtility::TColor);
+
+    static u8 sAsciiTable[128];
+    static void* sFontData[64];
+    static void* sFontData2[77];
+    static u8 sDirectPrint[4 + 4 /* padding */];
 };
 
 namespace JStudio {
@@ -54,6 +59,10 @@ extern "C" void drawString_f__14JUTDirectPrintFUsUsPCce();
 extern "C" void setCharColor__14JUTDirectPrintFQ28JUtility6TColor();
 extern "C" void setCharColor__14JUTDirectPrintFUcUcUc();
 extern "C" extern char const* const JUTDirectPrint__stringBase0;
+extern "C" u8 sAsciiTable__14JUTDirectPrint[128];
+extern "C" void* sFontData__14JUTDirectPrint[64];
+extern "C" void* sFontData2__14JUTDirectPrint[77];
+extern "C" u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
 
 //
 // External References:
@@ -85,8 +94,7 @@ asm JUTDirectPrint::JUTDirectPrint() {
 
 /* ############################################################################################## */
 /* 80451528-80451530 000A28 0004+04 1/1 4/4 0/0 .sbss            sDirectPrint__14JUTDirectPrint */
-extern u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
-u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
+u8 JUTDirectPrint::sDirectPrint[4 + 4 /* padding */];
 
 /* 802E4240-802E4288 2DEB80 0048+00 0/0 1/1 0/0 .text            start__14JUTDirectPrintFv */
 #pragma push
@@ -110,7 +118,7 @@ asm void JUTDirectPrint::erase(int param_0, int param_1, int param_2, int param_
 
 /* ############################################################################################## */
 /* 803CC6B8-803CC738 0297D8 0080+00 2/2 0/0 0/0 .data            sAsciiTable__14JUTDirectPrint */
-SECTION_DATA static u8 sAsciiTable__14JUTDirectPrint[128] = {
+SECTION_DATA u8 JUTDirectPrint::sAsciiTable[128] = {
     0x7A, 0x7A, 0x7A, 0x7A, 0x7A, 0x7A, 0x7A, 0x7A, 0x7A, 0xFD, 0xFE, 0x7A, 0x7A, 0x7A, 0x7A, 0x7A,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
     0xFF, 0x29, 0x64, 0x65, 0x66, 0x2B, 0x67, 0x68, 0x25, 0x26, 0x69, 0x2A, 0x6A, 0x27, 0x2C, 0x6B,
@@ -124,7 +132,7 @@ SECTION_DATA static u8 sAsciiTable__14JUTDirectPrint[128] = {
 /* 803CC738-803CC838 -00001 0100+00 0/1 0/0 0/0 .data            sFontData__14JUTDirectPrint */
 #pragma push
 #pragma force_active on
-SECTION_DATA static void* sFontData__14JUTDirectPrint[64] = {
+SECTION_DATA void* JUTDirectPrint::sFontData[64] = {
     (void*)0x70871C30,
     (void*)0x8988A250,
     (void*)0x88808290,
@@ -195,7 +203,7 @@ SECTION_DATA static void* sFontData__14JUTDirectPrint[64] = {
 /* 803CC838-803CC96C -00001 0134+00 0/1 0/0 0/0 .data            sFontData2__14JUTDirectPrint */
 #pragma push
 #pragma force_active on
-SECTION_DATA static void* sFontData2__14JUTDirectPrint[77] = {
+SECTION_DATA void* JUTDirectPrint::sFontData2[77] = {
     (void*)0x51421820,
     (void*)0x53E7A420,
     (void*)0x014A2C40,

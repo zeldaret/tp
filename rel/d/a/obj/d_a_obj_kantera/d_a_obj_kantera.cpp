@@ -13,6 +13,10 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
 };
@@ -54,6 +58,11 @@ struct daItemBase_c {
     /* 8014519C */ void getShadowSize();
     /* 801451B4 */ void getCollisionH();
     /* 801451D0 */ void getCollisionR();
+};
+
+struct dItem_data {
+    static void* field_item_res[1020];
+    static u8 item_info[1020 + 4 /* padding */];
 };
 
 struct dEvt_control_c {
@@ -98,13 +107,13 @@ struct dBgS_AcchCir {
     /* 80C38E98 */ ~dBgS_AcchCir();
 };
 
-struct dBgS {};
-
-struct csXyz {};
-
 struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
 };
+
+struct dBgS {};
+
+struct csXyz {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -244,13 +253,13 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* field_item_res__10dItem_data[1020];
-extern "C" extern u8 item_info__10dItem_data[1020 + 4 /* padding */];
+extern "C" void* field_item_res__10dItem_data[1020];
+extern "C" u8 item_info__10dItem_data[1020 + 4 /* padding */];
 extern "C" extern void* __vt__12daItemBase_c[17 + 1 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 data_80C39860[4];

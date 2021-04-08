@@ -13,6 +13,10 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {
+    /* 802673F4 */ csXyz(s16, s16, s16);
+};
+
 struct Vec {};
 
 struct cXyz {
@@ -23,10 +27,9 @@ struct cXyz {
     /* 8026706C */ bool operator!=(Vec const&) const;
     /* 80BAF8BC */ ~cXyz();
     /* 80BB0ED0 */ cXyz();
-};
 
-struct csXyz {
-    /* 802673F4 */ csXyz(s16, s16, s16);
+    static f32 Zero[3];
+    static u8 BaseY[12];
 };
 
 struct mDoMtx_stack_c {
@@ -35,11 +38,13 @@ struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CE38 */ void scaleM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
-struct J3DAnmTextureSRTKey {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -53,9 +58,9 @@ struct mDoExt_brkAnm {
     /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -70,6 +75,8 @@ struct fopAc_ac_c {};
 
 struct fopAcM_lc_c {
     /* 8001DC68 */ void lineCheck(cXyz const*, cXyz const*, fopAc_ac_c const*);
+
+    static u8 mLineCheck[112];
 };
 
 struct dBgW_Base {
@@ -83,6 +90,12 @@ struct daObjBm_c {
         /* 80BB0E0C */ Bgc_c();
         /* 80BB0ED4 */ void wall_pos(fopAc_ac_c const*, daObjBm_c::BgcSrc_c const*, int, s16, f32);
         /* 80BB1154 */ void chk_wall_pre(fopAc_ac_c const*, daObjBm_c::BgcSrc_c const*, int, s16);
+
+        static u8 const M_lin20[368];
+        static u8 M_lin5[80];
+        static u8 M_gnd_work[1932];
+        static u8 M_wrt_work[84];
+        static u8 M_wall_work[2576];
     };
 
     /* 80BAE36C */ void PPCallBack(fopAc_ac_c*, fopAc_ac_c*, s16, dBgW_Base::PushPullLabel);
@@ -131,6 +144,8 @@ struct daObjBm_c {
     /* 80BB2700 */ void actionDead();
     /* 80BB2AB0 */ void Draw();
     /* 80BB2C8C */ void Delete();
+
+    static u8 const M_dir_base[8];
 };
 
 struct dSv_info_c {
@@ -330,8 +345,16 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct JUTNameTab {
     /* 802DEAF8 */ void getName(u16) const;
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct JGeometry {
@@ -437,7 +460,13 @@ extern "C" static void func_80BB3784();
 extern "C" static void func_80BB378C();
 extern "C" static void func_80BB3794();
 extern "C" static void func_80BB379C();
+extern "C" u8 const M_dir_base__9daObjBm_c[8];
+extern "C" u8 const M_lin20__Q29daObjBm_c5Bgc_c[368];
 extern "C" extern char const* const d_a_obj_bemos__stringBase0;
+extern "C" u8 M_lin5__Q29daObjBm_c5Bgc_c[80];
+extern "C" u8 M_gnd_work__Q29daObjBm_c5Bgc_c[1932];
+extern "C" u8 M_wrt_work__Q29daObjBm_c5Bgc_c[84];
+extern "C" u8 M_wall_work__Q29daObjBm_c5Bgc_c[2576];
 
 //
 // External References:
@@ -583,17 +612,17 @@ extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__12cCcD_CpsAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mLineCheck__11fopAcM_lc_c[112];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mLineCheck__11fopAcM_lc_c[112];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 BaseY__4cXyz[12];
+extern "C" f32 Zero__4cXyz[3];
+extern "C" u8 BaseY__4cXyz[12];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 extern "C" extern u32 __float_max;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -665,10 +694,10 @@ SECTION_RODATA static u8 const l_craw_offset[48] = {
 COMPILER_STRIP_GATE(80BB37E8, &l_craw_offset);
 
 /* 80BB3818-80BB3820 000060 0008+00 1/2 0/0 0/0 .rodata          M_dir_base__9daObjBm_c */
-SECTION_RODATA static u8 const M_dir_base__9daObjBm_c[8] = {
+SECTION_RODATA u8 const daObjBm_c::M_dir_base[8] = {
     0x00, 0x00, 0x40, 0x00, 0x80, 0x00, 0xC0, 0x00,
 };
-COMPILER_STRIP_GATE(80BB3818, &M_dir_base__9daObjBm_c);
+COMPILER_STRIP_GATE(80BB3818, &daObjBm_c::M_dir_base);
 
 /* 80BB3820-80BB3824 000068 0004+00 1/3 0/0 0/0 .rodata          @3933 */
 SECTION_RODATA static f32 const lit_3933 = 0.5f;
@@ -1026,7 +1055,7 @@ SECTION_DATA static u8 l_eff_func[48] = {
 #pragma pop
 
 /* 80BB3D14-80BB3D64 0002A0 0050+00 2/2 0/0 0/0 .data            M_lin5__Q29daObjBm_c5Bgc_c */
-SECTION_DATA static u8 M_lin5__Q29daObjBm_c5Bgc_c[80] = {
+SECTION_DATA u8 daObjBm_c::Bgc_c::M_lin5[80] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xBF, 0x00, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00,
     0x3F, 0x00, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00,
@@ -1737,7 +1766,7 @@ cXyz::cXyz() {
 /* 80BB3898-80BB3A08 0000E0 0170+00 0/0 0/0 0/0 .rodata          M_lin20__Q29daObjBm_c5Bgc_c */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const M_lin20__Q29daObjBm_c5Bgc_c[368] = {
+SECTION_RODATA u8 const daObjBm_c::Bgc_c::M_lin20[368] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xBE, 0x80, 0x00, 0x00, 0xBE, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xBF, 0x00, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00,
@@ -1762,7 +1791,7 @@ SECTION_RODATA static u8 const M_lin20__Q29daObjBm_c5Bgc_c[368] = {
     0xBF, 0x40, 0x00, 0x00, 0x3E, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xBF, 0x40, 0x00, 0x00, 0xBE, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BB3898, &M_lin20__Q29daObjBm_c5Bgc_c);
+COMPILER_STRIP_GATE(80BB3898, &daObjBm_c::Bgc_c::M_lin20);
 #pragma pop
 
 /* 80BB3A08-80BB3A0C 000250 0004+00 0/0 0/0 0/0 .rodata          @5157 */
@@ -1800,7 +1829,7 @@ static u8 lit_5101[12];
 #pragma pop
 
 /* 80BB3F9C-80BB4728 0000BC 078C+00 1/2 0/0 0/0 .bss             M_gnd_work__Q29daObjBm_c5Bgc_c */
-static u8 M_gnd_work__Q29daObjBm_c5Bgc_c[1932];
+u8 daObjBm_c::Bgc_c::M_gnd_work[1932];
 
 /* 80BB4728-80BB4734 000848 000C+00 0/1 0/0 0/0 .bss             @5102 */
 #pragma push
@@ -1811,7 +1840,7 @@ static u8 lit_5102[12];
 /* 80BB4734-80BB4788 000854 0054+00 0/1 0/0 0/0 .bss             M_wrt_work__Q29daObjBm_c5Bgc_c */
 #pragma push
 #pragma force_active on
-static u8 M_wrt_work__Q29daObjBm_c5Bgc_c[84];
+u8 daObjBm_c::Bgc_c::M_wrt_work[84];
 #pragma pop
 
 /* 80BB4788-80BB4794 0008A8 000C+00 0/1 0/0 0/0 .bss             @5104 */
@@ -1821,7 +1850,7 @@ static u8 lit_5104[12];
 #pragma pop
 
 /* 80BB4794-80BB51A4 0008B4 0A10+00 2/3 0/0 0/0 .bss             M_wall_work__Q29daObjBm_c5Bgc_c */
-static u8 M_wall_work__Q29daObjBm_c5Bgc_c[2576];
+u8 daObjBm_c::Bgc_c::M_wall_work[2576];
 
 /* 80BB0ED4-80BB1154 002C54 0280+00 1/1 0/0 0/0 .text
  * wall_pos__Q29daObjBm_c5Bgc_cFPC10fopAc_ac_cPCQ29daObjBm_c8BgcSrc_cisf */

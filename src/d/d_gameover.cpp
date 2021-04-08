@@ -15,6 +15,19 @@ struct request_of_phase_process_class {};
 
 struct msg_class {};
 
+struct mDoRst {
+    static u8 mResetData[4 + 4 /* padding */];
+};
+
+struct mDoGph_gInf_c {
+    static u8 mFadeColor[4];
+    static u8 mFader[4];
+    static u8 mFrameBufferTimg[4];
+    static u8 mFrameBufferTex[4];
+    static u8 mZbufferTex[4];
+    static f32 mFadeRate;
+};
+
 struct fopAc_ac_c {};
 
 struct dSv_player_item_c {
@@ -24,6 +37,10 @@ struct dSv_player_item_c {
 
 struct dSv_player_get_item_c {
     /* 80033EC8 */ void isFirstBit(u8) const;
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -130,6 +147,10 @@ struct JGeometry {
     struct TBox2 {};
     /* TBox2<f32> */
     struct TBox2__template0 {};
+};
+
+struct JFWDisplay {
+    static u8 sManager[4];
 };
 
 struct J2DTextBox {
@@ -278,23 +299,23 @@ extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
 extern "C" extern void* g_fopMsg_Method[5 + 1 /* padding */];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__14mDoHIO_entry_c[3];
 extern "C" extern void* __vt__16dDlst_MenuSave_c[4];
 extern "C" extern void* __vt__23dDlst_MenuSaveExplain_c[4 + 18 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_meter2_info[248];
-extern "C" extern u8 mFadeColor__13mDoGph_gInf_c[4];
+extern "C" u8 mFadeColor__13mDoGph_gInf_c[4];
 extern "C" extern u8 g_clearColor[4];
 extern "C" extern u32 g_blackColor;
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
-extern "C" extern u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
-extern "C" extern u8 mFrameBufferTex__13mDoGph_gInf_c[4];
-extern "C" extern u8 mZbufferTex__13mDoGph_gInf_c[4];
-extern "C" extern f32 mFadeRate__13mDoGph_gInf_c;
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
+extern "C" u8 mFader__13mDoGph_gInf_c[4];
+extern "C" u8 mFrameBufferTimg__13mDoGph_gInf_c[4];
+extern "C" u8 mFrameBufferTex__13mDoGph_gInf_c[4];
+extern "C" u8 mZbufferTex__13mDoGph_gInf_c[4];
+extern "C" f32 mFadeRate__13mDoGph_gInf_c;
+extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 extern "C" extern u8 g_menuHIO[8];
-extern "C" extern u8 sManager__10JFWDisplay[4];
+extern "C" u8 sManager__10JFWDisplay[4];
 
 //
 // Declarations:

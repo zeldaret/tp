@@ -11,7 +11,13 @@
 // Types:
 //
 
-struct JASWaveInfo {};
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
+struct JASWaveInfo {
+    static u32 one[1 + 1 /* padding */];
+};
 
 struct JASOscillator {
     struct Data {};
@@ -99,6 +105,11 @@ struct JASChannel {
     /* 8029BC0C */ void initBankDisposeMsgQueue();
     /* 8029BC48 */ void receiveBankDisposeMsg();
     /* 8029BCC0 */ void checkBankDispose() const;
+
+    static u8 sBankDisposeMsgQ[32];
+    static u8 sBankDisposeMsg[64];
+    static u8 sBankDisposeList[64];
+    static u8 sBankDisposeListSize[4 + 4 /* padding */];
 };
 
 struct JASCalc {
@@ -131,6 +142,10 @@ extern "C" void free__10JASChannelFv();
 extern "C" void initBankDisposeMsgQueue__10JASChannelFv();
 extern "C" void receiveBankDisposeMsg__10JASChannelFv();
 extern "C" void checkBankDispose__10JASChannelCFv();
+extern "C" u8 sBankDisposeMsgQ__10JASChannel[32];
+extern "C" u8 sBankDisposeMsg__10JASChannel[64];
+extern "C" u8 sBankDisposeList__10JASChannel[64];
+extern "C" u8 sBankDisposeListSize__10JASChannel[4 + 4 /* padding */];
 
 //
 // External References:
@@ -181,8 +196,8 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern u8 data_80431B34[16 + 4 /* padding */];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u32 one__11JASWaveInfo[1 + 1 /* padding */];
+extern "C" u8 sincosTable___5JMath[65536];
+extern "C" u32 one__11JASWaveInfo[1 + 1 /* padding */];
 extern "C" extern u8 struct_80451260[8];
 
 //
@@ -221,13 +236,13 @@ asm JASChannel::JASChannel(void (*)(u32, JASChannel*, JASDsp::TChannel*, void*),
 
 /* ############################################################################################## */
 /* 80431B90-80431BB0 05E8B0 0020+00 2/2 0/0 0/0 .bss             sBankDisposeMsgQ__10JASChannel */
-static u8 sBankDisposeMsgQ__10JASChannel[32];
+u8 JASChannel::sBankDisposeMsgQ[32];
 
 /* 80431BB0-80431BF0 05E8D0 0040+00 1/1 0/0 0/0 .bss             sBankDisposeMsg__10JASChannel */
-static u8 sBankDisposeMsg__10JASChannel[64];
+u8 JASChannel::sBankDisposeMsg[64];
 
 /* 80431BF0-80431C30 05E910 0040+00 2/2 0/3 0/0 .bss             sBankDisposeList__10JASChannel */
-static u8 sBankDisposeList__10JASChannel[64];
+u8 JASChannel::sBankDisposeList[64];
 
 /* 80431C30-80431C40 05E950 000C+04 1/1 0/2 0/0 .bss             @556 */
 static u8 lit_556[12 + 4 /* padding */];
@@ -515,7 +530,7 @@ asm void JASChannel::free() {
 /* ############################################################################################## */
 /* 80451298-804512A0 000798 0004+04 3/3 0/0 0/0 .sbss            sBankDisposeListSize__10JASChannel
  */
-static u8 sBankDisposeListSize__10JASChannel[4 + 4 /* padding */];
+u8 JASChannel::sBankDisposeListSize[4 + 4 /* padding */];
 
 /* 8029BC0C-8029BC48 29654C 003C+00 0/0 1/1 0/0 .text initBankDisposeMsgQueue__10JASChannelFv */
 #pragma push

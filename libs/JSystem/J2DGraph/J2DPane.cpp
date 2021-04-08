@@ -17,11 +17,11 @@ struct ResTIMG {};
 
 struct ResFONT {};
 
-struct JKRArchive {};
-
 struct JSUInputStream {
     /* 802DC298 */ void read(void*, s32);
 };
+
+struct JKRArchive {};
 
 struct JUTResReference {
     /* 802DE078 */ void getResource(JSUInputStream*, u32, JKRArchive*);
@@ -54,17 +54,11 @@ struct JGeometry {
     struct TBox2__template0 {};
 };
 
+struct J2DScreen {
+    static u8 mDataManage[4 + 4 /* padding */];
+};
+
 struct J2DRotateAxis {};
-
-struct J2DBasePosition {};
-
-struct J2DAnmVtxColor {};
-
-struct J2DAnmTextureSRTKey {};
-
-struct J2DAnmColor {};
-
-struct J2DAnmBase {};
 
 struct J2DAnmTevRegKey {};
 
@@ -75,9 +69,19 @@ struct J2DGrafContext {
     /* 802E90C0 */ void scissor(JGeometry::TBox2<f32> const&);
 };
 
-struct J2DAnmTexPattern {};
+struct J2DAnmVtxColor {};
+
+struct J2DAnmTextureSRTKey {};
+
+struct J2DAnmColor {};
+
+struct J2DBasePosition {};
 
 struct J2DAnmVisibilityFull {};
+
+struct J2DAnmBase {};
+
+struct J2DAnmTexPattern {};
 
 struct J2DPane {
     /* 80020158 */ void setAlpha(u8);
@@ -143,6 +147,8 @@ struct J2DPane {
     /* 802F83FC */ void setAnimationVC(J2DAnmVtxColor*);
     /* 802F8464 */ void setConnectParent(bool);
     /* 802F8474 */ void update();
+
+    static f32 static_mBounds[4];
 };
 
 struct J2DOrthoGraph {
@@ -211,6 +217,7 @@ extern "C" void setConnectParent__7J2DPaneFb();
 extern "C" void update__7J2DPaneFv();
 extern "C" void drawSelf__7J2DPaneFff();
 extern "C" void __sinit_J2DPane_cpp();
+extern "C" f32 static_mBounds__7J2DPane[4];
 
 //
 // External References:
@@ -258,7 +265,7 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern void* __vt__14J2DGrafContext[10];
-extern "C" extern u8 mDataManage__9J2DScreen[4 + 4 /* padding */];
+extern "C" u8 mDataManage__9J2DScreen[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -524,7 +531,7 @@ asm void J2DPane::resize(f32 param_0, f32 param_1) {
 
 /* ############################################################################################## */
 /* 804349B0-804349C0 0616D0 0010+00 2/2 0/0 0/0 .bss             static_mBounds__7J2DPane */
-static f32 static_mBounds__7J2DPane[4];
+f32 J2DPane::static_mBounds[4];
 
 /* 802F7100-802F71DC 2F1A40 00DC+00 0/0 25/25 1/1 .text            getBounds__7J2DPaneFv */
 #pragma push

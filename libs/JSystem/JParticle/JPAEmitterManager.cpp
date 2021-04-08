@@ -36,15 +36,10 @@ struct JPAResourceManager {
     /* 80273E68 */ void getResource(u16) const;
 };
 
+struct JPAEmitterWorkData {};
+
 struct JPAResource;
 struct JPAParticleCallBack {};
-
-struct JPABaseEmitter;
-struct JKRHeap {};
-
-struct JPAEmitterCallBack {};
-
-struct JPADrawInfo {};
 
 struct JGeometry {
     template <typename A1>
@@ -53,6 +48,13 @@ struct JGeometry {
     struct TVec3__template0 {};
 };
 
+struct JPAEmitterCallBack {};
+
+struct JPADrawInfo {};
+
+struct JKRHeap {};
+
+struct JPABaseEmitter;
 struct JPAEmitterManager {
     /* 8027DCA0 */ JPAEmitterManager(u32, u32, JKRHeap*, u8, u8);
     /* 8027DEBC */ void createSimpleEmitterID(JGeometry::TVec3<f32> const&, u16, u8, u8,
@@ -73,8 +75,6 @@ struct JPABaseEmitter {
     /* 8027E6EC */ void init(JPAEmitterManager*, JPAResource*);
     /* 8027EC60 */ void deleteAllParticle();
 };
-
-struct JPAEmitterWorkData {};
 
 struct JPAResource {
     /* 802755E8 */ void calc(JPAEmitterWorkData*, JPABaseEmitter*);

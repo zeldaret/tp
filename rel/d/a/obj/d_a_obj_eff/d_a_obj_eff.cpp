@@ -32,11 +32,11 @@ struct daObj {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
+struct cXyz {};
 
 struct dKy_tevstr_c {};
 
-struct cXyz {};
+struct _GXColor {};
 
 struct csXyz {};
 

@@ -13,6 +13,8 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
@@ -24,17 +26,17 @@ struct cXyz {
     /* 80815900 */ ~cXyz();
 };
 
-struct csXyz {};
-
 struct mDoMtx_stack_c {
     /* 8000CDD4 */ void transM(cXyz const&);
     /* 8000CE38 */ void scaleM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
-struct J3DAnmTevRegKey {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTevRegKey {};
 
 struct mDoExt_brkAnm {
     /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
@@ -45,15 +47,15 @@ struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {};
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -78,6 +80,8 @@ struct daTag_FWall_c {
 struct daPy_py_c {
     /* 8015F424 */ void checkNowWolfEyeUp();
     /* 8081593C */ void getLeftHandPos() const;
+
+    static u8 m_midnaActor[4];
 };
 
 struct daKago_c {
@@ -197,6 +201,10 @@ struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
                             u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
                             cXyz const*, f32);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dComIfG_play_c {
@@ -334,12 +342,20 @@ struct Z2CreatureEnemy {
     /* 802C1B90 */ void setEnemyName(char const*);
 };
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 struct J3DFrameCtrl {
     /* 803283FC */ void init(s16);
     /* 8032842C */ void checkPass(f32);
     /* 80813E3C */ ~J3DFrameCtrl();
+};
+
+struct E_YM_n {
+    static u8 cc_sph_src[64];
 };
 
 //
@@ -438,6 +454,7 @@ extern "C" void __dt__4cXyzFv();
 extern "C" void getLeftHandPos__9daPy_py_cCFv();
 extern "C" void getPos__13daTag_FWall_cFUc();
 extern "C" extern char const* const d_a_e_ym__stringBase0;
+extern "C" u8 cc_sph_src__6E_YM_n[64];
 
 //
 // External References:
@@ -593,15 +610,15 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 JPTracePCB4[4];
-extern "C" extern u8 m_midnaActor__9daPy_py_c[4];
+extern "C" u8 m_midnaActor__9daPy_py_c[4];
 extern "C" void __register_global_object();
 extern "C" void checkNextPath__8daKago_cF4cXyz();
 
@@ -759,7 +776,7 @@ SECTION_DATA static u8 eff_id[6 + 2 /* padding */] = {
 #pragma pop
 
 /* 80815B3C-80815B7C 000038 0040+00 1/1 0/0 0/0 .data            cc_sph_src__6E_YM_n */
-SECTION_DATA static u8 cc_sph_src__6E_YM_n[64] = {
+SECTION_DATA u8 E_YM_n::cc_sph_src[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D,
     0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x75, 0x09, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,

@@ -35,6 +35,8 @@ struct JSUList__template5 {
 
 struct JKRHeap {
     /* 802CE500 */ void free(void*, JKRHeap*);
+
+    static u8 sSystemHeap[4];
 };
 
 struct JKRDecompCommand {};
@@ -58,6 +60,13 @@ struct JKRAramPiece {
     /* 802D3838 */ void orderSync(int, u32, u32, u32, JKRAramBlock*);
     /* 802D38CC */ void startDMA(JKRAMCommand*);
     /* 802D3944 */ void doneDMA(u32);
+
+    static u8 sAramPieceCommandList[12];
+    static u8 mMutex[24];
+};
+
+struct JKRAram {
+    static u8 sMessageQueue[32];
 };
 
 //
@@ -75,6 +84,8 @@ extern "C" void __ct__12JKRAMCommandFv();
 extern "C" void __dt__12JKRAMCommandFv();
 extern "C" void __sinit_JKRAramPiece_cpp();
 extern "C" extern char const* const JKRAramPiece__stringBase0;
+extern "C" u8 sAramPieceCommandList__12JKRAramPiece[12];
+extern "C" u8 mMutex__12JKRAramPiece[24];
 
 //
 // External References:
@@ -107,8 +118,8 @@ extern "C" void _savegpr_27();
 extern "C" void _restgpr_25();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
-extern "C" extern u8 sMessageQueue__7JKRAram[32];
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sMessageQueue__7JKRAram[32];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
 
 //
 // Declarations:
@@ -142,10 +153,10 @@ asm void JKRAramPiece::sendCommand(JKRAMCommand* param_0) {
 static u8 lit_492[12];
 
 /* 80434324-80434330 061044 000C+00 3/3 0/0 0/0 .bss sAramPieceCommandList__12JKRAramPiece */
-static u8 sAramPieceCommandList__12JKRAramPiece[12];
+u8 JKRAramPiece::sAramPieceCommandList[12];
 
 /* 80434330-80434348 061050 0018+00 3/3 0/0 0/0 .bss             mMutex__12JKRAramPiece */
-static u8 mMutex__12JKRAramPiece[24];
+u8 JKRAramPiece::mMutex[24];
 
 /* 802D3614-802D3770 2CDF54 015C+00 1/1 0/0 0/0 .text
  * orderAsync__12JKRAramPieceFiUlUlUlP12JKRAramBlockPFUl_v      */

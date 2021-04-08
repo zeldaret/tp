@@ -13,13 +13,15 @@
 
 struct request_of_phase_process_class {};
 
-struct cXyz {};
-
 struct csXyz {};
+
+struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {};
@@ -48,6 +50,9 @@ struct daObj_SSItem_c {
     /* 80CE7CC4 */ void setMtx();
     /* 80CE7D28 */ void setAttnPos();
     /* 80CE7D5C */ void wait(void*);
+
+    static u8 const mCcDObjInfo[48];
+    static u8 mCcDCyl[68];
 };
 
 struct daObj_SSBase_c {
@@ -84,6 +89,8 @@ struct _GXTexObj {};
 
 struct dDlst_shadowControl_c {
     /* 80055F84 */ void setSimple(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
+
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -221,7 +228,9 @@ extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" void __sinit_d_a_obj_ss_item_cpp();
 extern "C" static void func_80CE7E94();
 extern "C" static void func_80CE7E9C();
+extern "C" u8 const mCcDObjInfo__14daObj_SSItem_c[48];
 extern "C" extern char const* const d_a_obj_ss_item__stringBase0;
+extern "C" u8 mCcDCyl__14daObj_SSItem_c[68];
 
 //
 // External References:
@@ -290,9 +299,9 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" void soldoutItem__8daMyna_cFUi();
 
@@ -321,7 +330,7 @@ SECTION_DATA static void* l_bmdFileName[3] = {
 };
 
 /* 80CE7F58-80CE7F9C 000024 0044+00 2/2 0/0 0/0 .data            mCcDCyl__14daObj_SSItem_c */
-SECTION_DATA static u8 mCcDCyl__14daObj_SSItem_c[68] = {
+SECTION_DATA u8 daObj_SSItem_c::mCcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -514,12 +523,12 @@ asm void daObj_SSItem_c::Delete() {
 
 /* ############################################################################################## */
 /* 80CE7EB0-80CE7EE0 000000 0030+00 5/5 0/0 0/0 .rodata          mCcDObjInfo__14daObj_SSItem_c */
-SECTION_RODATA static u8 const mCcDObjInfo__14daObj_SSItem_c[48] = {
+SECTION_RODATA u8 const daObj_SSItem_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CE7EB0, &mCcDObjInfo__14daObj_SSItem_c);
+COMPILER_STRIP_GATE(80CE7EB0, &daObj_SSItem_c::mCcDObjInfo);
 
 /* 80CE7EE0-80CE7EE4 000030 0004+00 1/2 0/0 0/0 .rodata          @4205 */
 SECTION_RODATA static u8 const lit_4205[4] = {

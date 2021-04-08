@@ -13,13 +13,15 @@
 
 struct request_of_phase_process_class {};
 
-struct cXyz {};
-
 struct csXyz {};
+
+struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -40,10 +42,18 @@ struct daObj_Nougu_c {
     /* 80CA4708 */ void setEnvTevColor();
     /* 80CA4764 */ void setRoomNo();
     /* 80CA47A4 */ void setMtx();
+
+    static u8 mCcDSph[64];
 };
 
 struct daObj_Nougu_Param_c {
     /* 80CA494C */ ~daObj_Nougu_Param_c();
+
+    static u8 const m[16];
+};
+
+struct daNpcT_c {
+    static u8 const mCcDObjData[48];
 };
 
 struct dKy_tevstr_c {};
@@ -59,6 +69,10 @@ struct dRes_info_c {};
 
 struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -178,7 +192,9 @@ extern "C" void __sinit_d_a_obj_nougu_cpp();
 extern "C" void __dt__19daObj_Nougu_Param_cFv();
 extern "C" static void func_80CA4994();
 extern "C" static void func_80CA499C();
+extern "C" u8 const m__19daObj_Nougu_Param_c[16];
 extern "C" extern char const* const d_a_obj_nougu__stringBase0;
+extern "C" u8 mCcDSph__13daObj_Nougu_c[64];
 
 //
 // External References:
@@ -229,7 +245,7 @@ extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void _savegpr_24();
 extern "C" void _restgpr_24();
-extern "C" extern u8 const mCcDObjData__8daNpcT_c[48];
+extern "C" u8 const mCcDObjData__8daNpcT_c[48];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];
@@ -237,9 +253,9 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" void __register_global_object();
 
@@ -249,7 +265,7 @@ extern "C" void __register_global_object();
 
 /* ############################################################################################## */
 /* 80CA4A00-80CA4A40 000000 0040+00 2/2 0/0 0/0 .data            mCcDSph__13daObj_Nougu_c */
-SECTION_DATA static u8 mCcDSph__13daObj_Nougu_c[64] = {
+SECTION_DATA u8 daObj_Nougu_c::mCcDSph[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -358,10 +374,10 @@ asm dCcD_Sph::~dCcD_Sph() {
 
 /* ############################################################################################## */
 /* 80CA49B8-80CA49C8 000000 0010+00 3/3 0/0 0/0 .rodata          m__19daObj_Nougu_Param_c */
-SECTION_RODATA static u8 const m__19daObj_Nougu_Param_c[16] = {
+SECTION_RODATA u8 const daObj_Nougu_Param_c::m[16] = {
     0x00, 0x00, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0x48, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CA49B8, &m__19daObj_Nougu_Param_c);
+COMPILER_STRIP_GATE(80CA49B8, &daObj_Nougu_Param_c::m);
 
 /* 80CA49C8-80CA49CC 000010 0004+00 0/1 0/0 0/0 .rodata          @3916 */
 #pragma push

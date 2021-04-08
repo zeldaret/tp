@@ -13,6 +13,10 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct mDoHIO_entry_c {
     /* 80D17C2C */ ~mDoHIO_entry_c();
 };
@@ -43,6 +47,9 @@ struct daTogeTrap_c {
     /* 80D18A5C */ void modeBreak();
     /* 80D18BEC */ void Draw();
     /* 80D18CA4 */ void Delete();
+
+    static u8 const mCcDObjInfo[48];
+    static u8 mCcDCyl[68];
 };
 
 struct daTogeTrap_HIO_c {
@@ -170,6 +177,10 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DModel {};
 
 //
@@ -208,7 +219,9 @@ extern "C" static void daTogeTrap_Create__FP10fopAc_ac_c();
 extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" void __dt__16daTogeTrap_HIO_cFv();
 extern "C" void __sinit_d_a_obj_togeTrap_cpp();
+extern "C" u8 const mCcDObjInfo__12daTogeTrap_c[48];
 extern "C" extern char const* const d_a_obj_togeTrap__stringBase0;
+extern "C" u8 mCcDCyl__12daTogeTrap_c[68];
 
 //
 // External References:
@@ -279,11 +292,11 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -347,7 +360,7 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80D18F30-80D18F74 000020 0044+00 2/2 0/0 0/0 .data            mCcDCyl__12daTogeTrap_c */
-SECTION_DATA static u8 mCcDCyl__12daTogeTrap_c[68] = {
+SECTION_DATA u8 daTogeTrap_c::mCcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -542,12 +555,12 @@ asm void daTogeTrap_c::CreateHeap() {
 
 /* ############################################################################################## */
 /* 80D18EAC-80D18EDC 000014 0030+00 1/1 0/0 0/0 .rodata          mCcDObjInfo__12daTogeTrap_c */
-SECTION_RODATA static u8 const mCcDObjInfo__12daTogeTrap_c[48] = {
+SECTION_RODATA u8 const daTogeTrap_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1D,
     0x00, 0x48, 0x00, 0x28, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D18EAC, &mCcDObjInfo__12daTogeTrap_c);
+COMPILER_STRIP_GATE(80D18EAC, &daTogeTrap_c::mCcDObjInfo);
 
 /* 80D18EDC-80D18EE0 000044 0004+00 1/2 0/0 0/0 .rodata          @3780 */
 SECTION_RODATA static f32 const lit_3780 = 300.0f;

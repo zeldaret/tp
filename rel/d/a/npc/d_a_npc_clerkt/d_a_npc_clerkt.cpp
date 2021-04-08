@@ -21,20 +21,22 @@ struct cXyz {
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
+
+    static u8 now[48];
 };
+
+struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -65,11 +67,11 @@ struct dCcD_GObjInf {
     /* 800840E4 */ ~dCcD_GObjInf();
 };
 
-struct J3DJoint {};
-
 struct J3DModel {};
 
 struct _GXColorS10 {};
+
+struct J3DJoint {};
 
 struct daNpcT_c {
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
@@ -121,6 +123,8 @@ struct daNpcT_c {
     /* 8099CF28 */ void changeBck(int*, int*);
     /* 8099CF2C */ void changeBtp(int*, int*);
     /* 8099CF30 */ void changeBtk(int*, int*);
+
+    static u8 mCcDCyl[68];
 };
 
 struct daNpcT_MatAnm_c {
@@ -152,6 +156,8 @@ struct daNpcT_ActorMngr_c {
 
 struct daNpcClerkt_Param_c {
     /* 8099D0A8 */ ~daNpcClerkt_Param_c();
+
+    static u8 const m[140];
 };
 
 struct daNpcClerkT_c {
@@ -193,6 +199,9 @@ struct daNpcClerkT_c {
     /* 8099D090 */ s32 getBackboneJointNo();
     /* 8099D098 */ s32 getNeckJointNo();
     /* 8099D0A0 */ s32 getHeadJointNo();
+
+    static void* mCutNameList;
+    static u8 mCutList[12];
 };
 
 struct dMsgFlow_c {
@@ -482,7 +491,10 @@ __ct__13dShopSystem_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPC
 extern "C" bool getResName2__13dShopSystem_cFi();
 extern "C" bool beforeStartSeqAction__13dShopSystem_cFP10dMsgFlow_ci();
 extern "C" bool beforeSelectSeqAction__13dShopSystem_cFP10dMsgFlow_ci();
+extern "C" u8 const m__19daNpcClerkt_Param_c[140];
 extern "C" extern char const* const d_a_npc_clerkt__stringBase0;
+extern "C" void* mCutNameList__13daNpcClerkT_c;
+extern "C" u8 mCutList__13daNpcClerkT_c[12];
 
 //
 // External References:
@@ -620,7 +632,7 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
+extern "C" u8 mCcDCyl__8daNpcT_c[68];
 extern "C" extern void* __vt__8daNpcT_c[49];
 extern "C" extern void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */];
 extern "C" extern void* __vt__13dShopSystem_c[52 + 1 /* padding */];
@@ -628,7 +640,7 @@ extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 __float_nan;
@@ -730,10 +742,10 @@ SECTION_DATA static u8 l_motionSequenceData[16] = {
 #pragma pop
 
 /* 8099D428-8099D42C -00001 0004+00 1/1 0/0 0/0 .data            mCutNameList__13daNpcClerkT_c */
-SECTION_DATA static void* mCutNameList__13daNpcClerkT_c = (void*)&d_a_npc_clerkt__stringBase0;
+SECTION_DATA void* daNpcClerkT_c::mCutNameList = (void*)&d_a_npc_clerkt__stringBase0;
 
 /* 8099D42C-8099D438 0000D4 000C+00 2/2 0/0 0/0 .data            mCutList__13daNpcClerkT_c */
-SECTION_DATA static u8 mCutList__13daNpcClerkT_c[12] = {
+SECTION_DATA u8 daNpcClerkT_c::mCutList[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
@@ -964,7 +976,7 @@ asm daNpcClerkT_c::~daNpcClerkT_c() {
 
 /* ############################################################################################## */
 /* 8099D244-8099D2D0 000000 008C+00 8/8 0/0 0/0 .rodata          m__19daNpcClerkt_Param_c */
-SECTION_RODATA static u8 const m__19daNpcClerkt_Param_c[140] = {
+SECTION_RODATA u8 const daNpcClerkt_Param_c::m[140] = {
     0x42, 0xF0, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x43, 0x48, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0xC1, 0xF0, 0x00, 0x00,
@@ -975,7 +987,7 @@ SECTION_RODATA static u8 const m__19daNpcClerkt_Param_c[140] = {
     0xC1, 0xA0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC1, 0xA0, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00,
     0x42, 0x20, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0x42, 0xDC, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8099D244, &m__19daNpcClerkt_Param_c);
+COMPILER_STRIP_GATE(8099D244, &daNpcClerkt_Param_c::m);
 
 /* 8099D2D0-8099D2D4 00008C 0004+00 0/1 0/0 0/0 .rodata          @4027 */
 #pragma push

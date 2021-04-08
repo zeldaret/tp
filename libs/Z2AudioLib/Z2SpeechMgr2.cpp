@@ -11,18 +11,18 @@
 // Types:
 //
 
+struct JAISoundHandle {
+    /* 802A2184 */ void releaseSound();
+};
+
+struct JAISoundID {};
+
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
 };
-
-struct JAISoundHandle {
-    /* 802A2184 */ void releaseSound();
-};
-
-struct JAISoundID {};
 
 struct Z2SpeechStarter {
     /* 802CBCEC */ ~Z2SpeechStarter();
@@ -56,8 +56,50 @@ struct Z2SeqMgr {
     /* 802AF49C */ void subBgmStart(u32);
 };
 
+struct Z2MdnPrm {
+    static u8 const sReply[100];
+    static u8 const sReplyTail[10 + 2 /* padding */];
+    static u8 const sJoke[100];
+    static u8 const sJokeTail[10 + 2 /* padding */];
+    static u8 const sSexy[100];
+    static u8 const sSexyTail[10 + 2 /* padding */];
+    static u8 const sRidicule[100];
+    static u8 const sRidiculeTail[10 + 2 /* padding */];
+    static u8 const sBoring[108];
+    static u8 const sIrritated[94 + 2 /* padding */];
+    static u8 const sIrritatedTail[10 + 2 /* padding */];
+    static u8 const sOrder[114 + 2 /* padding */];
+    static u8 const sResent[106 + 2 /* padding */];
+    static u8 const sCheerful[106 + 2 /* padding */];
+    static u8 const sConfused[106 + 2 /* padding */];
+    static u8 const sHostility[104];
+    static u8 const sTired[106 + 2 /* padding */];
+    static u8 const sSerious[106 + 2 /* padding */];
+    static u8 const sReplyb[84];
+    static u8 const sApologize[100];
+    static u8 const sApologizeTail[9 + 3 /* padding */];
+    static u8 const sDeside[100];
+    static u8 const sAfford[104];
+    static u8 const sAffordTail[12];
+    static void* const sPrm[51];
+    static u8 sBoringTail[6 + 2 /* padding */];
+    static u8 sOrderTail[6 + 2 /* padding */];
+    static u8 sResentTail[5 + 3 /* padding */];
+    static u8 sCheerfulTail[8];
+    static u8 sConfusedTail[5 + 3 /* padding */];
+    static u8 sHostilityTail[7 + 1 /* padding */];
+    static u8 sTiredTail[8];
+    static u8 sSeriousTail[7 + 1 /* padding */];
+    static u8 sReplybTail[7 + 1 /* padding */];
+    static u8 sDesideTail[8];
+};
+
 struct Z2EnvSeMgr {
     /* 802C93E4 */ void getFogDensity();
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JMath {
@@ -99,6 +141,41 @@ extern "C" void playOneShotVoice__12Z2SpeechMgr2FUcUsP3VecSc();
 extern "C" void isMidnaSpeak__12Z2SpeechMgr2Fv();
 extern "C" void __ct__15Z2SpeechStarterFv();
 extern "C" void func_802CCFF8();
+extern "C" u8 const sReply__8Z2MdnPrm[100];
+extern "C" u8 const sReplyTail__8Z2MdnPrm[10 + 2 /* padding */];
+extern "C" u8 const sJoke__8Z2MdnPrm[100];
+extern "C" u8 const sJokeTail__8Z2MdnPrm[10 + 2 /* padding */];
+extern "C" u8 const sSexy__8Z2MdnPrm[100];
+extern "C" u8 const sSexyTail__8Z2MdnPrm[10 + 2 /* padding */];
+extern "C" u8 const sRidicule__8Z2MdnPrm[100];
+extern "C" u8 const sRidiculeTail__8Z2MdnPrm[10 + 2 /* padding */];
+extern "C" u8 const sBoring__8Z2MdnPrm[108];
+extern "C" u8 const sIrritated__8Z2MdnPrm[94 + 2 /* padding */];
+extern "C" u8 const sIrritatedTail__8Z2MdnPrm[10 + 2 /* padding */];
+extern "C" u8 const sOrder__8Z2MdnPrm[114 + 2 /* padding */];
+extern "C" u8 const sResent__8Z2MdnPrm[106 + 2 /* padding */];
+extern "C" u8 const sCheerful__8Z2MdnPrm[106 + 2 /* padding */];
+extern "C" u8 const sConfused__8Z2MdnPrm[106 + 2 /* padding */];
+extern "C" u8 const sHostility__8Z2MdnPrm[104];
+extern "C" u8 const sTired__8Z2MdnPrm[106 + 2 /* padding */];
+extern "C" u8 const sSerious__8Z2MdnPrm[106 + 2 /* padding */];
+extern "C" u8 const sReplyb__8Z2MdnPrm[84];
+extern "C" u8 const sApologize__8Z2MdnPrm[100];
+extern "C" u8 const sApologizeTail__8Z2MdnPrm[9 + 3 /* padding */];
+extern "C" u8 const sDeside__8Z2MdnPrm[100];
+extern "C" u8 const sAfford__8Z2MdnPrm[104];
+extern "C" u8 const sAffordTail__8Z2MdnPrm[12];
+extern "C" void* const sPrm__8Z2MdnPrm[51];
+extern "C" u8 sBoringTail__8Z2MdnPrm[6 + 2 /* padding */];
+extern "C" u8 sOrderTail__8Z2MdnPrm[6 + 2 /* padding */];
+extern "C" u8 sResentTail__8Z2MdnPrm[5 + 3 /* padding */];
+extern "C" u8 sCheerfulTail__8Z2MdnPrm[8];
+extern "C" u8 sConfusedTail__8Z2MdnPrm[5 + 3 /* padding */];
+extern "C" u8 sHostilityTail__8Z2MdnPrm[7 + 1 /* padding */];
+extern "C" u8 sTiredTail__8Z2MdnPrm[8];
+extern "C" u8 sSeriousTail__8Z2MdnPrm[7 + 1 /* padding */];
+extern "C" u8 sReplybTail__8Z2MdnPrm[7 + 1 /* padding */];
+extern "C" u8 sDesideTail__8Z2MdnPrm[8];
 
 //
 // External References:
@@ -133,7 +210,7 @@ extern "C" extern u8 data_80450B74[4];
 extern "C" extern u8 data_80450B7C[4];
 extern "C" extern u8 data_80450B80[4];
 extern "C" extern u8 data_80450B84[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -322,7 +399,7 @@ asm void Z2SpeechMgr2::setString(u16 const* param_0, s16 param_1, u8 param_2, u1
 
 /* ############################################################################################## */
 /* 80455EE0-80455EE8 0044E0 0006+02 1/0 0/0 0/0 .sdata2          sBoringTail__8Z2MdnPrm */
-SECTION_SDATA2 static u8 sBoringTail__8Z2MdnPrm[6 + 2 /* padding */] = {
+SECTION_SDATA2 u8 Z2MdnPrm::sBoringTail[6 + 2 /* padding */] = {
     0x92,
     0x58,
     0x59,
@@ -335,7 +412,7 @@ SECTION_SDATA2 static u8 sBoringTail__8Z2MdnPrm[6 + 2 /* padding */] = {
 };
 
 /* 80455EE8-80455EF0 0044E8 0006+02 1/0 0/0 0/0 .sdata2          sOrderTail__8Z2MdnPrm */
-SECTION_SDATA2 static u8 sOrderTail__8Z2MdnPrm[6 + 2 /* padding */] = {
+SECTION_SDATA2 u8 Z2MdnPrm::sOrderTail[6 + 2 /* padding */] = {
     0x60,
     0xA8,
     0x5B,
@@ -348,7 +425,7 @@ SECTION_SDATA2 static u8 sOrderTail__8Z2MdnPrm[6 + 2 /* padding */] = {
 };
 
 /* 80455EF0-80455EF8 0044F0 0005+03 1/0 0/0 0/0 .sdata2          sResentTail__8Z2MdnPrm */
-SECTION_SDATA2 static u8 sResentTail__8Z2MdnPrm[5 + 3 /* padding */] = {
+SECTION_SDATA2 u8 Z2MdnPrm::sResentTail[5 + 3 /* padding */] = {
     0x4A,
     0x98,
     0x8A,
@@ -361,12 +438,12 @@ SECTION_SDATA2 static u8 sResentTail__8Z2MdnPrm[5 + 3 /* padding */] = {
 };
 
 /* 80455EF8-80455F00 0044F8 0008+00 1/0 0/0 0/0 .sdata2          sCheerfulTail__8Z2MdnPrm */
-SECTION_SDATA2 static u8 sCheerfulTail__8Z2MdnPrm[8] = {
+SECTION_SDATA2 u8 Z2MdnPrm::sCheerfulTail[8] = {
     0x60, 0x6D, 0x4D, 0x44, 0x9C, 0x54, 0x70, 0x7B,
 };
 
 /* 80455F00-80455F08 004500 0005+03 1/0 0/0 0/0 .sdata2          sConfusedTail__8Z2MdnPrm */
-SECTION_SDATA2 static u8 sConfusedTail__8Z2MdnPrm[5 + 3 /* padding */] = {
+SECTION_SDATA2 u8 Z2MdnPrm::sConfusedTail[5 + 3 /* padding */] = {
     0x2C,
     0x42,
     0x4C,
@@ -379,7 +456,7 @@ SECTION_SDATA2 static u8 sConfusedTail__8Z2MdnPrm[5 + 3 /* padding */] = {
 };
 
 /* 80455F08-80455F10 004508 0007+01 1/0 0/0 0/0 .sdata2          sHostilityTail__8Z2MdnPrm */
-SECTION_SDATA2 static u8 sHostilityTail__8Z2MdnPrm[7 + 1 /* padding */] = {
+SECTION_SDATA2 u8 Z2MdnPrm::sHostilityTail[7 + 1 /* padding */] = {
     0x97,
     0x67,
     0x94,
@@ -392,12 +469,12 @@ SECTION_SDATA2 static u8 sHostilityTail__8Z2MdnPrm[7 + 1 /* padding */] = {
 };
 
 /* 80455F10-80455F18 004510 0008+00 1/0 0/0 0/0 .sdata2          sTiredTail__8Z2MdnPrm */
-SECTION_SDATA2 static u8 sTiredTail__8Z2MdnPrm[8] = {
+SECTION_SDATA2 u8 Z2MdnPrm::sTiredTail[8] = {
     0x66, 0x6F, 0x3B, 0x7A, 0x49, 0x91, 0x5C, 0x6A,
 };
 
 /* 80455F18-80455F20 004518 0007+01 1/0 0/0 0/0 .sdata2          sSeriousTail__8Z2MdnPrm */
-SECTION_SDATA2 static u8 sSeriousTail__8Z2MdnPrm[7 + 1 /* padding */] = {
+SECTION_SDATA2 u8 Z2MdnPrm::sSeriousTail[7 + 1 /* padding */] = {
     0x7B,
     0x69,
     0x4B,
@@ -410,7 +487,7 @@ SECTION_SDATA2 static u8 sSeriousTail__8Z2MdnPrm[7 + 1 /* padding */] = {
 };
 
 /* 80455F20-80455F28 004520 0007+01 1/0 0/0 0/0 .sdata2          sReplybTail__8Z2MdnPrm */
-SECTION_SDATA2 static u8 sReplybTail__8Z2MdnPrm[7 + 1 /* padding */] = {
+SECTION_SDATA2 u8 Z2MdnPrm::sReplybTail[7 + 1 /* padding */] = {
     0x4F,
     0x4A,
     0xA2,
@@ -423,7 +500,7 @@ SECTION_SDATA2 static u8 sReplybTail__8Z2MdnPrm[7 + 1 /* padding */] = {
 };
 
 /* 80455F28-80455F30 004528 0008+00 1/0 0/0 0/0 .sdata2          sDesideTail__8Z2MdnPrm */
-SECTION_SDATA2 static u8 sDesideTail__8Z2MdnPrm[8] = {
+SECTION_SDATA2 u8 Z2MdnPrm::sDesideTail[8] = {
     0x64, 0x2E, 0x4A, 0x57, 0x80, 0x48, 0x7C, 0x5F,
 };
 
@@ -510,7 +587,7 @@ extern "C" u8 sReplybTail__8Z2MdnPrm[7 + 1 /* padding */];
 extern "C" u8 sDesideTail__8Z2MdnPrm[8];
 
 /* 8039C260-8039C2C4 0288C0 0064+00 1/0 0/0 0/0 .rodata          sReply__8Z2MdnPrm */
-SECTION_RODATA static u8 const sReply__8Z2MdnPrm[100] = {
+SECTION_RODATA u8 const Z2MdnPrm::sReply[100] = {
     0x6A, 0x8A, 0x50, 0x5F, 0x53, 0x37, 0x37, 0x4F, 0x4F, 0x5E, 0xAA, 0x46, 0x52, 0x5A, 0x5A,
     0x4F, 0x4F, 0x45, 0x45, 0x56, 0x64, 0x79, 0x79, 0x79, 0x87, 0x95, 0x95, 0x89, 0x89, 0x4C,
     0x4C, 0x4B, 0x52, 0x41, 0x41, 0x5B, 0x5F, 0x71, 0x53, 0x47, 0x89, 0x7D, 0x77, 0x88, 0x88,
@@ -519,10 +596,10 @@ SECTION_RODATA static u8 const sReply__8Z2MdnPrm[100] = {
     0x5D, 0x60, 0x63, 0x63, 0x54, 0x3E, 0x38, 0x38, 0x39, 0x35, 0x41, 0x41, 0x41, 0x41, 0x56,
     0x71, 0x85, 0x85, 0xA2, 0xA2, 0x52, 0x52, 0x5C, 0x5C, 0x75,
 };
-COMPILER_STRIP_GATE(8039C260, &sReply__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C260, &Z2MdnPrm::sReply);
 
 /* 8039C2C4-8039C2D0 028924 000A+02 1/0 0/0 0/0 .rodata          sReplyTail__8Z2MdnPrm */
-SECTION_RODATA static u8 const sReplyTail__8Z2MdnPrm[10 + 2 /* padding */] = {
+SECTION_RODATA u8 const Z2MdnPrm::sReplyTail[10 + 2 /* padding */] = {
     0x5E,
     0x7F,
     0x68,
@@ -537,10 +614,10 @@ SECTION_RODATA static u8 const sReplyTail__8Z2MdnPrm[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C2C4, &sReplyTail__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C2C4, &Z2MdnPrm::sReplyTail);
 
 /* 8039C2D0-8039C334 028930 0064+00 1/0 0/0 0/0 .rodata          sJoke__8Z2MdnPrm */
-SECTION_RODATA static u8 const sJoke__8Z2MdnPrm[100] = {
+SECTION_RODATA u8 const Z2MdnPrm::sJoke[100] = {
     0x68, 0x57, 0x57, 0x55, 0x55, 0x51, 0x5B, 0x64, 0x6B, 0x7B, 0x7B, 0x5C, 0x77, 0x97, 0x8D,
     0x97, 0x97, 0x8D, 0x66, 0x69, 0xA2, 0x5C, 0x87, 0x4F, 0x69, 0x5F, 0x5F, 0x83, 0x83, 0x82,
     0x7F, 0x96, 0x96, 0xB0, 0x70, 0xA1, 0x6D, 0x6D, 0x6D, 0x59, 0x4C, 0x4B, 0x5A, 0x40, 0x4A,
@@ -549,10 +626,10 @@ SECTION_RODATA static u8 const sJoke__8Z2MdnPrm[100] = {
     0x64, 0x60, 0xB1, 0x6C, 0x6D, 0x6D, 0x7E, 0x7A, 0x97, 0x97, 0x99, 0xA5, 0x89, 0x90, 0xA4,
     0x45, 0x45, 0x29, 0x4C, 0x4B, 0x64, 0x64, 0x60, 0x5C, 0xB1,
 };
-COMPILER_STRIP_GATE(8039C2D0, &sJoke__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C2D0, &Z2MdnPrm::sJoke);
 
 /* 8039C334-8039C340 028994 000A+02 1/0 0/0 0/0 .rodata          sJokeTail__8Z2MdnPrm */
-SECTION_RODATA static u8 const sJokeTail__8Z2MdnPrm[10 + 2 /* padding */] = {
+SECTION_RODATA u8 const Z2MdnPrm::sJokeTail[10 + 2 /* padding */] = {
     0x51,
     0x97,
     0x60,
@@ -567,10 +644,10 @@ SECTION_RODATA static u8 const sJokeTail__8Z2MdnPrm[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C334, &sJokeTail__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C334, &Z2MdnPrm::sJokeTail);
 
 /* 8039C340-8039C3A4 0289A0 0064+00 1/0 0/0 0/0 .rodata          sSexy__8Z2MdnPrm */
-SECTION_RODATA static u8 const sSexy__8Z2MdnPrm[100] = {
+SECTION_RODATA u8 const Z2MdnPrm::sSexy[100] = {
     0x5E, 0x60, 0x5F, 0x63, 0x63, 0x72, 0x72, 0x78, 0x4D, 0x7A, 0x6E, 0x6E, 0x6E, 0x6E, 0x6E,
     0x59, 0x59, 0x7A, 0x7A, 0xA5, 0x90, 0x8D, 0x86, 0x62, 0x72, 0x79, 0x79, 0x86, 0x7F, 0x8B,
     0x85, 0x7B, 0x7B, 0x5E, 0x5E, 0x6D, 0x6D, 0x88, 0x5F, 0xA3, 0xA3, 0x95, 0x95, 0x7F, 0x79,
@@ -579,10 +656,10 @@ SECTION_RODATA static u8 const sSexy__8Z2MdnPrm[100] = {
     0x76, 0x79, 0x79, 0x5C, 0x6A, 0x90, 0xAB, 0x5C, 0x7D, 0x52, 0x49, 0x54, 0x57, 0x49, 0x55,
     0x79, 0x65, 0x65, 0x4A, 0x5C, 0x78, 0x78, 0x8B, 0x8D, 0x7C,
 };
-COMPILER_STRIP_GATE(8039C340, &sSexy__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C340, &Z2MdnPrm::sSexy);
 
 /* 8039C3A4-8039C3B0 028A04 000A+02 1/0 0/0 0/0 .rodata          sSexyTail__8Z2MdnPrm */
-SECTION_RODATA static u8 const sSexyTail__8Z2MdnPrm[10 + 2 /* padding */] = {
+SECTION_RODATA u8 const Z2MdnPrm::sSexyTail[10 + 2 /* padding */] = {
     0x52,
     0x79,
     0x82,
@@ -597,10 +674,10 @@ SECTION_RODATA static u8 const sSexyTail__8Z2MdnPrm[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C3A4, &sSexyTail__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C3A4, &Z2MdnPrm::sSexyTail);
 
 /* 8039C3B0-8039C414 028A10 0064+00 1/0 0/0 0/0 .rodata          sRidicule__8Z2MdnPrm */
-SECTION_RODATA static u8 const sRidicule__8Z2MdnPrm[100] = {
+SECTION_RODATA u8 const Z2MdnPrm::sRidicule[100] = {
     0xA7, 0x5A, 0x5A, 0x52, 0x52, 0x85, 0x85, 0x8C, 0x63, 0x73, 0x73, 0x90, 0x50, 0x46, 0x74,
     0x74, 0xA3, 0xA7, 0x41, 0x51, 0x58, 0x34, 0x34, 0x2A, 0x5A, 0x81, 0x5D, 0x42, 0x4B, 0x70,
     0x70, 0xB1, 0xB1, 0xB1, 0xB1, 0x65, 0x6A, 0xB1, 0x54, 0xA8, 0xA8, 0x6B, 0x6C, 0x55, 0x55,
@@ -609,10 +686,10 @@ SECTION_RODATA static u8 const sRidicule__8Z2MdnPrm[100] = {
     0x79, 0x79, 0x7C, 0x7C, 0x6C, 0x6C, 0x73, 0x73, 0x6E, 0x6E, 0x36, 0x3F, 0x3C, 0x56, 0x2D,
     0x2D, 0x2D, 0x2D, 0x8C, 0x8C, 0x8B, 0x8B, 0x93, 0x93, 0x6E,
 };
-COMPILER_STRIP_GATE(8039C3B0, &sRidicule__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C3B0, &Z2MdnPrm::sRidicule);
 
 /* 8039C414-8039C420 028A74 000A+02 1/0 0/0 0/0 .rodata          sRidiculeTail__8Z2MdnPrm */
-SECTION_RODATA static u8 const sRidiculeTail__8Z2MdnPrm[10 + 2 /* padding */] = {
+SECTION_RODATA u8 const Z2MdnPrm::sRidiculeTail[10 + 2 /* padding */] = {
     0x81,
     0x67,
     0x6D,
@@ -627,10 +704,10 @@ SECTION_RODATA static u8 const sRidiculeTail__8Z2MdnPrm[10 + 2 /* padding */] = 
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C414, &sRidiculeTail__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C414, &Z2MdnPrm::sRidiculeTail);
 
 /* 8039C420-8039C48C 028A80 006C+00 1/0 0/0 0/0 .rodata          sBoring__8Z2MdnPrm */
-SECTION_RODATA static u8 const sBoring__8Z2MdnPrm[108] = {
+SECTION_RODATA u8 const Z2MdnPrm::sBoring[108] = {
     0x8E, 0x9C, 0x9C, 0x5A, 0x5A, 0x52, 0x52, 0x5B, 0x5C, 0x56, 0x5C, 0x52, 0x52, 0x2D, 0x2D, 0x5B,
     0x59, 0x56, 0x56, 0x56, 0x56, 0x6B, 0x6B, 0x58, 0x4C, 0x8E, 0x8E, 0x59, 0x61, 0x54, 0xA0, 0x4D,
     0x5D, 0x59, 0x48, 0x30, 0x30, 0x5B, 0x5B, 0x5B, 0x4A, 0x64, 0x64, 0x7A, 0x7A, 0x92, 0x62, 0x62,
@@ -639,10 +716,10 @@ SECTION_RODATA static u8 const sBoring__8Z2MdnPrm[108] = {
     0x89, 0x5A, 0x5A, 0x63, 0x66, 0x5E, 0x5E, 0x71, 0x62, 0x55, 0x55, 0x85, 0x85, 0x5B, 0x5B, 0x5B,
     0x5B, 0x5E, 0x70, 0x56, 0x56, 0x4C, 0x4C, 0x59, 0x59, 0x5B, 0x5B, 0x71,
 };
-COMPILER_STRIP_GATE(8039C420, &sBoring__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C420, &Z2MdnPrm::sBoring);
 
 /* 8039C48C-8039C4EC 028AEC 005E+02 1/0 0/0 0/0 .rodata          sIrritated__8Z2MdnPrm */
-SECTION_RODATA static u8 const sIrritated__8Z2MdnPrm[94 + 2 /* padding */] = {
+SECTION_RODATA u8 const Z2MdnPrm::sIrritated[94 + 2 /* padding */] = {
     0x6C,
     0x91,
     0x67,
@@ -741,10 +818,10 @@ SECTION_RODATA static u8 const sIrritated__8Z2MdnPrm[94 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C48C, &sIrritated__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C48C, &Z2MdnPrm::sIrritated);
 
 /* 8039C4EC-8039C4F8 028B4C 000A+02 1/0 0/0 0/0 .rodata          sIrritatedTail__8Z2MdnPrm */
-SECTION_RODATA static u8 const sIrritatedTail__8Z2MdnPrm[10 + 2 /* padding */] = {
+SECTION_RODATA u8 const Z2MdnPrm::sIrritatedTail[10 + 2 /* padding */] = {
     0x64,
     0x61,
     0x4E,
@@ -759,10 +836,10 @@ SECTION_RODATA static u8 const sIrritatedTail__8Z2MdnPrm[10 + 2 /* padding */] =
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C4EC, &sIrritatedTail__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C4EC, &Z2MdnPrm::sIrritatedTail);
 
 /* 8039C4F8-8039C56C 028B58 0072+02 1/0 0/0 0/0 .rodata          sOrder__8Z2MdnPrm */
-SECTION_RODATA static u8 const sOrder__8Z2MdnPrm[114 + 2 /* padding */] = {
+SECTION_RODATA u8 const Z2MdnPrm::sOrder[114 + 2 /* padding */] = {
     0x77,
     0x5F,
     0x5F,
@@ -881,10 +958,10 @@ SECTION_RODATA static u8 const sOrder__8Z2MdnPrm[114 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C4F8, &sOrder__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C4F8, &Z2MdnPrm::sOrder);
 
 /* 8039C56C-8039C5D8 028BCC 006A+02 1/0 0/0 0/0 .rodata          sResent__8Z2MdnPrm */
-SECTION_RODATA static u8 const sResent__8Z2MdnPrm[106 + 2 /* padding */] = {
+SECTION_RODATA u8 const Z2MdnPrm::sResent[106 + 2 /* padding */] = {
     0x6F,
     0x5F,
     0x5F,
@@ -995,10 +1072,10 @@ SECTION_RODATA static u8 const sResent__8Z2MdnPrm[106 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C56C, &sResent__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C56C, &Z2MdnPrm::sResent);
 
 /* 8039C5D8-8039C644 028C38 006A+02 1/0 0/0 0/0 .rodata          sCheerful__8Z2MdnPrm */
-SECTION_RODATA static u8 const sCheerful__8Z2MdnPrm[106 + 2 /* padding */] = {
+SECTION_RODATA u8 const Z2MdnPrm::sCheerful[106 + 2 /* padding */] = {
     0x64,
     0x6D,
     0x6D,
@@ -1109,10 +1186,10 @@ SECTION_RODATA static u8 const sCheerful__8Z2MdnPrm[106 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C5D8, &sCheerful__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C5D8, &Z2MdnPrm::sCheerful);
 
 /* 8039C644-8039C6B0 028CA4 006A+02 1/0 0/0 0/0 .rodata          sConfused__8Z2MdnPrm */
-SECTION_RODATA static u8 const sConfused__8Z2MdnPrm[106 + 2 /* padding */] = {
+SECTION_RODATA u8 const Z2MdnPrm::sConfused[106 + 2 /* padding */] = {
     0x83,
     0x80,
     0x80,
@@ -1223,10 +1300,10 @@ SECTION_RODATA static u8 const sConfused__8Z2MdnPrm[106 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C644, &sConfused__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C644, &Z2MdnPrm::sConfused);
 
 /* 8039C6B0-8039C718 028D10 0068+00 1/0 0/0 0/0 .rodata          sHostility__8Z2MdnPrm */
-SECTION_RODATA static u8 const sHostility__8Z2MdnPrm[104] = {
+SECTION_RODATA u8 const Z2MdnPrm::sHostility[104] = {
     0x85, 0x71, 0x71, 0x73, 0x73, 0x3B, 0x62, 0x84, 0x94, 0x94, 0x94, 0xAF, 0x98, 0xAD, 0xAD,
     0x5A, 0x5A, 0x63, 0x63, 0x97, 0x90, 0x90, 0x7B, 0x73, 0x73, 0x63, 0x63, 0x55, 0x55, 0x65,
     0x66, 0x7F, 0x7F, 0x87, 0x87, 0x8A, 0x8A, 0x94, 0x5D, 0x5C, 0x5A, 0x67, 0x67, 0x68, 0x68,
@@ -1235,10 +1312,10 @@ SECTION_RODATA static u8 const sHostility__8Z2MdnPrm[104] = {
     0x65, 0x6B, 0x6E, 0x6E, 0x83, 0x83, 0x96, 0x3F, 0x56, 0x56, 0x56, 0x56, 0x4F, 0x5F, 0x57,
     0x62, 0x6A, 0x5F, 0x72, 0x72, 0x62, 0x62, 0x65, 0x5E, 0x69, 0x69, 0x63, 0x63, 0x7F,
 };
-COMPILER_STRIP_GATE(8039C6B0, &sHostility__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C6B0, &Z2MdnPrm::sHostility);
 
 /* 8039C718-8039C784 028D78 006A+02 1/0 0/0 0/0 .rodata          sTired__8Z2MdnPrm */
-SECTION_RODATA static u8 const sTired__8Z2MdnPrm[106 + 2 /* padding */] = {
+SECTION_RODATA u8 const Z2MdnPrm::sTired[106 + 2 /* padding */] = {
     0x70,
     0x70,
     0x70,
@@ -1349,10 +1426,10 @@ SECTION_RODATA static u8 const sTired__8Z2MdnPrm[106 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C718, &sTired__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C718, &Z2MdnPrm::sTired);
 
 /* 8039C784-8039C7F0 028DE4 006A+02 1/0 0/0 0/0 .rodata          sSerious__8Z2MdnPrm */
-SECTION_RODATA static u8 const sSerious__8Z2MdnPrm[106 + 2 /* padding */] = {
+SECTION_RODATA u8 const Z2MdnPrm::sSerious[106 + 2 /* padding */] = {
     0x52,
     0x65,
     0x65,
@@ -1463,10 +1540,10 @@ SECTION_RODATA static u8 const sSerious__8Z2MdnPrm[106 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C784, &sSerious__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C784, &Z2MdnPrm::sSerious);
 
 /* 8039C7F0-8039C844 028E50 0054+00 1/0 0/0 0/0 .rodata          sReplyb__8Z2MdnPrm */
-SECTION_RODATA static u8 const sReplyb__8Z2MdnPrm[84] = {
+SECTION_RODATA u8 const Z2MdnPrm::sReplyb[84] = {
     0x5C, 0x45, 0x45, 0x71, 0x9F, 0x57, 0xB4, 0xB4, 0x56, 0x62, 0x8E, 0x61, 0x61, 0xB0,
     0xB0, 0x3C, 0x59, 0x4A, 0x64, 0xA4, 0xA4, 0x5A, 0x5A, 0x5A, 0x5A, 0x72, 0x72, 0x4B,
     0x6B, 0x97, 0x97, 0x59, 0x60, 0x60, 0x60, 0x69, 0x3E, 0x3E, 0x57, 0x42, 0x5E, 0x76,
@@ -1474,10 +1551,10 @@ SECTION_RODATA static u8 const sReplyb__8Z2MdnPrm[84] = {
     0x72, 0x8A, 0x2C, 0x1F, 0x1F, 0x95, 0x95, 0x69, 0x4C, 0x59, 0x59, 0x79, 0x5B, 0x44,
     0x44, 0x4F, 0x52, 0x58, 0x5A, 0x6F, 0x6E, 0x8A, 0x8E, 0x8E, 0x8E, 0x8C, 0x8C, 0x9B,
 };
-COMPILER_STRIP_GATE(8039C7F0, &sReplyb__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C7F0, &Z2MdnPrm::sReplyb);
 
 /* 8039C844-8039C8A8 028EA4 0064+00 1/0 0/0 0/0 .rodata          sApologize__8Z2MdnPrm */
-SECTION_RODATA static u8 const sApologize__8Z2MdnPrm[100] = {
+SECTION_RODATA u8 const Z2MdnPrm::sApologize[100] = {
     0x6A, 0x6A, 0x6A, 0x51, 0x51, 0x51, 0x51, 0x51, 0x51, 0x51, 0x57, 0x57, 0x57, 0x63, 0x61,
     0x54, 0x54, 0x54, 0x54, 0x58, 0x58, 0x58, 0x58, 0x45, 0x45, 0x56, 0x56, 0x5B, 0x5B, 0x37,
     0x53, 0x53, 0x53, 0x59, 0x59, 0x59, 0x49, 0x58, 0x58, 0x55, 0x56, 0x56, 0x83, 0x7F, 0x7F,
@@ -1486,10 +1563,10 @@ SECTION_RODATA static u8 const sApologize__8Z2MdnPrm[100] = {
     0x5B, 0x70, 0x72, 0x72, 0x72, 0x72, 0x6E, 0x76, 0x6B, 0x6B, 0x58, 0x69, 0x66, 0x66, 0x64,
     0x64, 0x60, 0x61, 0x63, 0x6A, 0x62, 0x62, 0x64, 0x65, 0x71,
 };
-COMPILER_STRIP_GATE(8039C844, &sApologize__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C844, &Z2MdnPrm::sApologize);
 
 /* 8039C8A8-8039C8B4 028F08 0009+03 1/0 0/0 0/0 .rodata          sApologizeTail__8Z2MdnPrm */
-SECTION_RODATA static u8 const sApologizeTail__8Z2MdnPrm[9 + 3 /* padding */] = {
+SECTION_RODATA u8 const Z2MdnPrm::sApologizeTail[9 + 3 /* padding */] = {
     0x7C,
     0x6E,
     0x63,
@@ -1504,10 +1581,10 @@ SECTION_RODATA static u8 const sApologizeTail__8Z2MdnPrm[9 + 3 /* padding */] = 
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C8A8, &sApologizeTail__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C8A8, &Z2MdnPrm::sApologizeTail);
 
 /* 8039C8B4-8039C918 028F14 0064+00 1/0 0/0 0/0 .rodata          sDeside__8Z2MdnPrm */
-SECTION_RODATA static u8 const sDeside__8Z2MdnPrm[100] = {
+SECTION_RODATA u8 const Z2MdnPrm::sDeside[100] = {
     0x77, 0x77, 0x77, 0x58, 0x58, 0x6F, 0x78, 0x5F, 0x66, 0x5E, 0x6E, 0x62, 0x62, 0x2E, 0x5A,
     0x58, 0x54, 0x52, 0x52, 0x5C, 0x59, 0x56, 0x56, 0x4B, 0x4B, 0x63, 0x63, 0x4D, 0x4E, 0x4A,
     0x69, 0x71, 0x71, 0x76, 0x80, 0x80, 0x80, 0x73, 0x73, 0x5C, 0x7C, 0x64, 0x83, 0x89, 0x89,
@@ -1516,10 +1593,10 @@ SECTION_RODATA static u8 const sDeside__8Z2MdnPrm[100] = {
     0x62, 0x5D, 0x67, 0x5D, 0x5F, 0x62, 0x59, 0x5D, 0x55, 0x55, 0x48, 0x5F, 0x5F, 0x5F, 0x5D,
     0x75, 0x6A, 0x66, 0x76, 0x69, 0x69, 0x69, 0x60, 0x60, 0x5F,
 };
-COMPILER_STRIP_GATE(8039C8B4, &sDeside__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C8B4, &Z2MdnPrm::sDeside);
 
 /* 8039C918-8039C980 028F78 0068+00 1/0 0/0 0/0 .rodata          sAfford__8Z2MdnPrm */
-SECTION_RODATA static u8 const sAfford__8Z2MdnPrm[104] = {
+SECTION_RODATA u8 const Z2MdnPrm::sAfford[104] = {
     0x4E, 0x45, 0x52, 0x5B, 0x56, 0x5B, 0x59, 0x52, 0x52, 0x57, 0x5C, 0x50, 0x50, 0x49, 0x80,
     0x6E, 0x6E, 0x5A, 0x5C, 0x60, 0x6A, 0x62, 0x62, 0x6A, 0x71, 0x48, 0x4C, 0x5B, 0x5A, 0x40,
     0x40, 0x49, 0x49, 0x50, 0x51, 0x51, 0x51, 0x3A, 0x5A, 0x5A, 0x5A, 0x5A, 0x5A, 0x57, 0x57,
@@ -1528,35 +1605,35 @@ SECTION_RODATA static u8 const sAfford__8Z2MdnPrm[104] = {
     0x7D, 0x6E, 0x56, 0x79, 0x79, 0x50, 0x4C, 0x50, 0x43, 0x52, 0x51, 0x66, 0x6C, 0x64, 0x63,
     0x63, 0x5D, 0x69, 0x70, 0x56, 0x50, 0x4B, 0x92, 0x86, 0x8F, 0x4B, 0x4F, 0x57, 0x56,
 };
-COMPILER_STRIP_GATE(8039C918, &sAfford__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C918, &Z2MdnPrm::sAfford);
 
 /* 8039C980-8039C98C 028FE0 000C+00 1/0 0/0 0/0 .rodata          sAffordTail__8Z2MdnPrm */
-SECTION_RODATA static u8 const sAffordTail__8Z2MdnPrm[12] = {
+SECTION_RODATA u8 const Z2MdnPrm::sAffordTail[12] = {
     0x63, 0x8E, 0x5B, 0x59, 0x4C, 0x3A, 0x69, 0x47, 0x41, 0x59, 0x50, 0x55,
 };
-COMPILER_STRIP_GATE(8039C980, &sAffordTail__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C980, &Z2MdnPrm::sAffordTail);
 
 /* 8039C98C-8039CA58 -00001 00CC+00 2/2 0/0 0/0 .rodata          sPrm__8Z2MdnPrm */
-SECTION_RODATA static void* const sPrm__8Z2MdnPrm[51] = {
-    (void*)&sReply__8Z2MdnPrm,     (void*)&sReplyTail__8Z2MdnPrm,     (void*)0x32060400,
-    (void*)&sJoke__8Z2MdnPrm,      (void*)&sJokeTail__8Z2MdnPrm,      (void*)0x32030700,
-    (void*)&sSexy__8Z2MdnPrm,      (void*)&sSexyTail__8Z2MdnPrm,      (void*)0x32030700,
-    (void*)&sRidicule__8Z2MdnPrm,  (void*)&sRidiculeTail__8Z2MdnPrm,  (void*)0x32030700,
-    (void*)&sBoring__8Z2MdnPrm,    (void*)&sBoringTail__8Z2MdnPrm,    (void*)0x36010500,
-    (void*)&sIrritated__8Z2MdnPrm, (void*)&sIrritatedTail__8Z2MdnPrm, (void*)0x2F030700,
-    (void*)&sOrder__8Z2MdnPrm,     (void*)&sOrderTail__8Z2MdnPrm,     (void*)0x39020400,
-    (void*)&sResent__8Z2MdnPrm,    (void*)&sResentTail__8Z2MdnPrm,    (void*)0x35020300,
-    (void*)&sCheerful__8Z2MdnPrm,  (void*)&sCheerfulTail__8Z2MdnPrm,  (void*)0x35010700,
-    (void*)&sConfused__8Z2MdnPrm,  (void*)&sConfusedTail__8Z2MdnPrm,  (void*)0x35030200,
-    (void*)&sHostility__8Z2MdnPrm, (void*)&sHostilityTail__8Z2MdnPrm, (void*)0x34020500,
-    (void*)&sTired__8Z2MdnPrm,     (void*)&sTiredTail__8Z2MdnPrm,     (void*)0x35030500,
-    (void*)&sSerious__8Z2MdnPrm,   (void*)&sSeriousTail__8Z2MdnPrm,   (void*)0x35020500,
-    (void*)&sReplyb__8Z2MdnPrm,    (void*)&sReplybTail__8Z2MdnPrm,    (void*)0x2A040300,
-    (void*)&sApologize__8Z2MdnPrm, (void*)&sApologizeTail__8Z2MdnPrm, (void*)0x32040500,
-    (void*)&sDeside__8Z2MdnPrm,    (void*)&sDesideTail__8Z2MdnPrm,    (void*)0x32010700,
-    (void*)&sAfford__8Z2MdnPrm,    (void*)&sAffordTail__8Z2MdnPrm,    (void*)0x34020A00,
+SECTION_RODATA void* const Z2MdnPrm::sPrm[51] = {
+    (void*)&Z2MdnPrm::sReply,     (void*)&Z2MdnPrm::sReplyTail,     (void*)0x32060400,
+    (void*)&Z2MdnPrm::sJoke,      (void*)&Z2MdnPrm::sJokeTail,      (void*)0x32030700,
+    (void*)&Z2MdnPrm::sSexy,      (void*)&Z2MdnPrm::sSexyTail,      (void*)0x32030700,
+    (void*)&Z2MdnPrm::sRidicule,  (void*)&Z2MdnPrm::sRidiculeTail,  (void*)0x32030700,
+    (void*)&Z2MdnPrm::sBoring,    (void*)&Z2MdnPrm::sBoringTail,    (void*)0x36010500,
+    (void*)&Z2MdnPrm::sIrritated, (void*)&Z2MdnPrm::sIrritatedTail, (void*)0x2F030700,
+    (void*)&Z2MdnPrm::sOrder,     (void*)&Z2MdnPrm::sOrderTail,     (void*)0x39020400,
+    (void*)&Z2MdnPrm::sResent,    (void*)&Z2MdnPrm::sResentTail,    (void*)0x35020300,
+    (void*)&Z2MdnPrm::sCheerful,  (void*)&Z2MdnPrm::sCheerfulTail,  (void*)0x35010700,
+    (void*)&Z2MdnPrm::sConfused,  (void*)&Z2MdnPrm::sConfusedTail,  (void*)0x35030200,
+    (void*)&Z2MdnPrm::sHostility, (void*)&Z2MdnPrm::sHostilityTail, (void*)0x34020500,
+    (void*)&Z2MdnPrm::sTired,     (void*)&Z2MdnPrm::sTiredTail,     (void*)0x35030500,
+    (void*)&Z2MdnPrm::sSerious,   (void*)&Z2MdnPrm::sSeriousTail,   (void*)0x35020500,
+    (void*)&Z2MdnPrm::sReplyb,    (void*)&Z2MdnPrm::sReplybTail,    (void*)0x2A040300,
+    (void*)&Z2MdnPrm::sApologize, (void*)&Z2MdnPrm::sApologizeTail, (void*)0x32040500,
+    (void*)&Z2MdnPrm::sDeside,    (void*)&Z2MdnPrm::sDesideTail,    (void*)0x32010700,
+    (void*)&Z2MdnPrm::sAfford,    (void*)&Z2MdnPrm::sAffordTail,    (void*)0x34020A00,
 };
-COMPILER_STRIP_GATE(8039C98C, &sPrm__8Z2MdnPrm);
+COMPILER_STRIP_GATE(8039C98C, &Z2MdnPrm::sPrm);
 
 /* 80455F48-80455F50 004548 0008+00 3/3 0/0 0/0 .sdata2          @4083 */
 SECTION_SDATA2 static f64 lit_4083 = 4503599627370496.0 /* cast u32 to float */;

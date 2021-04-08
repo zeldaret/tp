@@ -13,6 +13,11 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoLib_clipper {
+    static u8 mClipper[92];
+    static f32 mSystemFar;
+};
+
 struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
 };
@@ -27,6 +32,9 @@ struct cXyz {
 
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
+
+    static u8 mGndCheck[84];
+    static f32 mGroundY;
 };
 
 struct ep_hahen_s {
@@ -99,6 +107,10 @@ struct dEvent_manager_c {
     /* 80047D4C */ void getIsAddvance(int);
     /* 80047E10 */ void getMyActIdx(int, char const* const*, int, int, int);
     /* 8004817C */ void cutEnd(int);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcU_AtInfo {};
@@ -202,7 +214,15 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct LIGHT_INFLUENCE {};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
 
 struct J3DUClipper {
     /* 8027378C */ void calcViewFrustum();
@@ -363,19 +383,19 @@ extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 mClipper__14mDoLib_clipper[92];
-extern "C" extern u8 mGndCheck__11fopAcM_gc_c[84];
+extern "C" u8 mClipper__14mDoLib_clipper[92];
+extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 g_whiteColor;
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" extern u32 __float_nan;
-extern "C" extern f32 mSystemFar__14mDoLib_clipper;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
+extern "C" f32 mSystemFar__14mDoLib_clipper;
+extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" extern u8 struct_80451124[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

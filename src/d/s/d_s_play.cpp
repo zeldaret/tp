@@ -17,10 +17,17 @@ struct scene_class {};
 
 struct request_of_phase_process_class {};
 
+struct mDoRst {
+    static u8 mResetData[4 + 4 /* padding */];
+};
+
 struct mDoGph_gInf_c {
     struct bloom_c {
         /* 800095F8 */ void remove();
     };
+
+    static u8 m_bloom[20];
+    static u8 mFader[4];
 };
 
 struct mDoDvdThd_toMainRam_c {};
@@ -28,6 +35,26 @@ struct mDoDvdThd_toMainRam_c {};
 struct mDoDvdThd_mountXArchive_c {};
 
 struct fopAc_ac_c {};
+
+struct fopAcM_wt_c {
+    static u8 mWaterCheck[84 + 4 /* padding */];
+};
+
+struct fopAcM_rc_c {
+    static u8 mRoofCheck[80];
+};
+
+struct fopAcM_lc_c {
+    static u8 mLineCheck[112];
+};
+
+struct fopAcM_gc_c {
+    static u8 mGndCheck[84];
+};
+
+struct daYkgr_c {
+    static u8 m_emitter[4];
+};
 
 struct daSus_c {
     /* 800313BC */ void reset();
@@ -79,6 +106,8 @@ struct dStage_startStage_c {};
 
 struct dStage_roomControl_c {
     /* 80024954 */ void resetArchiveBank(int);
+
+    static u8 mProcID[4];
 };
 
 struct dScnPly_reg_HIO_c {
@@ -215,11 +244,26 @@ struct Z2SceneMgr {
     /* 802BA294 */ void sceneBgmStart();
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JUTGamePad {
+    struct C3ButtonReset {
+        static u8 sCallback[4];
+        static u8 sCallbackArg[4 + 4 /* padding */];
+    };
+};
+
 struct JUTAssertion {
     /* 802E4C3C */ void setMessageCount(int);
 };
 
 struct JKRExpHeap {};
+
+struct JFWDisplay {
+    static u8 sManager[4];
+};
 
 //
 // Forward References:
@@ -375,11 +419,11 @@ extern "C" void strcmp();
 extern "C" extern void* g_fopScn_Method[5 + 1 /* padding */];
 extern "C" extern void* g_fpcNd_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__14mDoHIO_entry_c[3];
-extern "C" extern u8 m_bloom__13mDoGph_gInf_c[20];
-extern "C" extern u8 mLineCheck__11fopAcM_lc_c[112];
-extern "C" extern u8 mGndCheck__11fopAcM_gc_c[84];
-extern "C" extern u8 mRoofCheck__11fopAcM_rc_c[80];
-extern "C" extern u8 mWaterCheck__11fopAcM_wt_c[84 + 4 /* padding */];
+extern "C" u8 m_bloom__13mDoGph_gInf_c[20];
+extern "C" u8 mLineCheck__11fopAcM_lc_c[112];
+extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
+extern "C" u8 mRoofCheck__11fopAcM_rc_c[80];
+extern "C" u8 mWaterCheck__11fopAcM_wt_c[84 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_save_bit_HIO[1184 + 4 /* padding */];
@@ -388,19 +432,19 @@ extern "C" extern u8 data_804505F0[8];
 extern "C" extern u32 g_blackColor;
 extern "C" extern u32 g_saftyWhiteColor;
 extern "C" extern u8 struct_80450BB8[4];
-extern "C" extern u8 mFader__13mDoGph_gInf_c[4];
+extern "C" u8 mFader__13mDoGph_gInf_c[4];
 extern "C" extern u8 struct_80450BE4[4];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 mProcID__20dStage_roomControl_c[4];
+extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
+extern "C" u8 mProcID__20dStage_roomControl_c[4];
 extern "C" extern u8 data_80450D68[4];
 extern "C" extern u8 struct_80450D8C[4];
-extern "C" extern u8 m_emitter__8daYkgr_c[4];
+extern "C" u8 m_emitter__8daYkgr_c[4];
 extern "C" extern u8 data_80450EC4[4];
 extern "C" extern u8 data_80450ED0[4];
-extern "C" extern u8 sManager__10JFWDisplay[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
-extern "C" extern u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
+extern "C" u8 sManager__10JFWDisplay[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
+extern "C" u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
 extern "C" extern u8 struct_80451500[4];
 
 //

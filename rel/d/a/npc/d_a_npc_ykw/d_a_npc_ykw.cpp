@@ -22,11 +22,15 @@ struct cXyz {
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
+
+    static u8 now[48];
 };
+
+struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
@@ -34,9 +38,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -55,8 +57,6 @@ struct daTag_EvtArea_c {
     /* 8048C94C */ void chkPointInArea(cXyz, cXyz);
 };
 
-struct daNpcT_motionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -65,11 +65,13 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80B672D8 */ ~daNpcT_MotionSeqMngr_c();
 };
 
-struct daNpcT_evtData_c {};
+struct daNpcT_motionAnmData_c {};
 
 struct J3DJoint {};
 
 struct daNpcT_faceMotionAnmData_c {};
+
+struct daNpcT_evtData_c {};
 
 struct daNpc_ykW_c {
     /* 80B5EF0C */ ~daNpc_ykW_c();
@@ -133,10 +135,15 @@ struct daNpc_ykW_c {
     /* 80B67B4C */ void checkRemoveJoint(int);
     /* 80B67B5C */ s32 getFootLJointNo();
     /* 80B67B64 */ s32 getFootRJointNo();
+
+    static void* mCutNameList[8];
+    static u8 mCutList[96];
 };
 
 struct daNpc_ykW_Param_c {
     /* 80B67B6C */ ~daNpc_ykW_Param_c();
+
+    static u8 const m[180];
 };
 
 struct daNpc_ykM_c {
@@ -213,6 +220,10 @@ struct daNpcT_c {
     /* 80B678C4 */ void changeBck(int*, int*);
     /* 80B678C8 */ void changeBtp(int*, int*);
     /* 80B678CC */ void changeBtk(int*, int*);
+
+    static u8 mCcDCyl[68];
+    static u8 mFindActorPtrs[200];
+    static u8 mFindCount[4];
 };
 
 struct daNpcT_Path_c {
@@ -291,11 +302,11 @@ struct dPath {};
 
 struct dPa_levelEcallBack {};
 
+struct dKy_tevstr_c {};
+
 struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
 };
-
-struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     struct level_c {
@@ -307,14 +318,14 @@ struct dPa_control_c {
                                 cXyz const*);
 };
 
-struct dBgS {
-    /* 80074E50 */ void GetPolyAtt0(cBgS_PolyInfo const&);
-};
-
 struct dBgS_AcchCir {
     /* 80075EAC */ dBgS_AcchCir();
     /* 80075F40 */ void SetWallR(f32);
     /* 80B67320 */ ~dBgS_AcchCir();
+};
+
+struct dBgS {
+    /* 80074E50 */ void GetPolyAtt0(cBgS_PolyInfo const&);
 };
 
 struct dBgS_Acch {
@@ -446,6 +457,14 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct J3DTexNoAnm {
@@ -611,7 +630,10 @@ extern "C" void __dt__17daNpc_ykW_Param_cFv();
 extern "C" static void func_80B67BB4();
 extern "C" static void func_80B67BBC();
 extern "C" void chkPointInArea__15daTag_EvtArea_cF4cXyz();
+extern "C" u8 const m__17daNpc_ykW_Param_c[180];
 extern "C" extern char const* const d_a_npc_ykw__stringBase0;
+extern "C" void* mCutNameList__11daNpc_ykW_c[8];
+extern "C" u8 mCutList__11daNpc_ykW_c[96];
 
 //
 // External References:
@@ -829,23 +851,23 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
+extern "C" u8 mCcDCyl__8daNpcT_c[68];
 extern "C" extern void* __vt__8daNpcT_c[49];
 extern "C" extern void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mFindActorPtrs__8daNpcT_c[200];
+extern "C" u8 mFindActorPtrs__8daNpcT_c[200];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mFindCount__8daNpcT_c[4];
+extern "C" u8 mFindCount__8daNpcT_c[4];
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void chkPointInArea__15daTag_EvtArea_cF4cXyz4cXyz();
 extern "C" void getType__11daNpc_ykM_cFv();
 extern "C" void __register_global_object();
@@ -1108,7 +1130,7 @@ SECTION_DATA static u8 l_motionSequenceData[528] = {
 #pragma pop
 
 /* 80B68848-80B68868 -00001 0020+00 1/1 0/0 0/0 .data            mCutNameList__11daNpc_ykW_c */
-SECTION_DATA static void* mCutNameList__11daNpc_ykW_c[8] = {
+SECTION_DATA void* daNpc_ykW_c::mCutNameList[8] = {
     (void*)&d_a_npc_ykw__stringBase0,
     (void*)(((char*)&d_a_npc_ykw__stringBase0) + 0x1D),
     (void*)(((char*)&d_a_npc_ykw__stringBase0) + 0x9F),
@@ -1190,7 +1212,7 @@ SECTION_DATA static void* lit_4125[3] = {
 #pragma pop
 
 /* 80B688BC-80B6891C 00097C 0060+00 1/2 0/0 0/0 .data            mCutList__11daNpc_ykW_c */
-SECTION_DATA static u8 mCutList__11daNpc_ykW_c[96] = {
+SECTION_DATA u8 daNpc_ykW_c::mCutList[96] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1634,7 +1656,7 @@ asm daNpc_ykW_c::~daNpc_ykW_c() {
 
 /* ############################################################################################## */
 /* 80B67C38-80B67CEC 000000 00B4+00 19/19 0/0 0/0 .rodata          m__17daNpc_ykW_Param_c */
-SECTION_RODATA static u8 const m__17daNpc_ykW_Param_c[180] = {
+SECTION_RODATA u8 const daNpc_ykW_Param_c::m[180] = {
     0x43, 0x7A, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xFA, 0x00,
     0x00, 0x43, 0x7F, 0x00, 0x00, 0x43, 0x66, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x42, 0x70,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0xC1,
@@ -1648,7 +1670,7 @@ SECTION_RODATA static u8 const m__17daNpc_ykW_Param_c[180] = {
     0x00, 0x00, 0x42, 0x60, 0x00, 0x00, 0x3F, 0x33, 0x33, 0x33, 0x42, 0x68, 0x00, 0x00, 0x00,
     0x03, 0x00, 0x05, 0x3F, 0x19, 0x99, 0x9A, 0x01, 0x68, 0x00, 0x00, 0x00, 0x1E, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B67C38, &m__17daNpc_ykW_Param_c);
+COMPILER_STRIP_GATE(80B67C38, &daNpc_ykW_Param_c::m);
 
 /* 80B67CEC-80B67D0C 0000B4 0020+00 0/1 0/0 0/0 .rodata          heapSize$4289 */
 #pragma push

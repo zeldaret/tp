@@ -13,6 +13,13 @@
 
 struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
+
+    static u8 now[48];
+};
+
+struct mDoLib_clipper {
+    static u8 mClipper[92];
+    static f32 mSystemFar;
 };
 
 struct fopAc_ac_c {
@@ -27,6 +34,8 @@ struct cXyz {
 
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
+
+    static f32 mGroundY;
 };
 
 struct daPy_py_c {
@@ -46,10 +55,16 @@ struct daGrass_c {
     /* 8051C24C */ void drawFlower();
     /* 8051C280 */ void newFlowerData(s8, cXyz&, int, s8, s16);
     /* 8051C304 */ void create();
+
+    static u8 m_myObj[4];
+    static u8 m_grass[4];
+    static u8 m_flower[4];
 };
 
 struct dStage_roomControl_c {
     /* 80024384 */ void getStatusRoomDt(int);
+
+    static u8 mStatus[65792];
 };
 
 struct dScnKy_env_light_c {
@@ -58,9 +73,9 @@ struct dScnKy_env_light_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
@@ -71,13 +86,15 @@ struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
                             u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
                             cXyz const*, f32);
-};
 
-struct cCcD_Obj {};
+    static u8 mLight8EcallBack[4];
+};
 
 struct dCcMassS_HitInf {
     /* 8051ED98 */ ~dCcMassS_HitInf();
 };
+
+struct cCcD_Obj {};
 
 struct dGrass_data_c {
     /* 8051D88C */ void WorkCo(fopAc_ac_c*, u32, int);
@@ -106,6 +123,8 @@ struct dGrass_packet_c {
     /* 80520864 */ void deleteRoom(int);
     /* 80520898 */ void newAnm();
     /* 805208E4 */ void setAnm(int, s16);
+
+    static u8 m_deleteRoom[12];
 };
 
 struct dGrass_anm_c {
@@ -139,6 +158,8 @@ struct dFlower_packet_c {
     /* 80522F0C */ void deleteRoom(int);
     /* 80522F40 */ void newAnm();
     /* 80522F8C */ void setAnm(int, s16);
+
+    static u8 m_deleteRoom[12];
 };
 
 struct dFlower_anm_c {
@@ -178,6 +199,14 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DUClipper {
     /* 8027378C */ void calcViewFrustum();
     /* 802738FC */ void clip(f32 const (*)[4], Vec, f32) const;
@@ -185,6 +214,10 @@ struct J3DUClipper {
 
 struct J3DSys {
     /* 8031073C */ void reinitGX();
+};
+
+struct J3DShape {
+    static u8 sOldVcdVatCmd[4];
 };
 
 struct J3DPacket;
@@ -365,27 +398,27 @@ extern "C" void strcmp();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mClipper__14mDoLib_clipper[92];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mClipper__14mDoLib_clipper[92];
+extern "C" u8 mStatus__20dStage_roomControl_c[65792];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 m_deleteRoom__15dGrass_packet_c[12];
-extern "C" extern u8 m_deleteRoom__16dFlower_packet_c[12];
+extern "C" u8 m_deleteRoom__15dGrass_packet_c[12];
+extern "C" u8 m_deleteRoom__16dFlower_packet_c[12];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_Counter[12 + 4 /* padding */];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern f32 mSystemFar__14mDoLib_clipper;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
+extern "C" f32 mSystemFar__14mDoLib_clipper;
+extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_myObj__9daGrass_c[4];
-extern "C" extern u8 m_grass__9daGrass_c[4];
-extern "C" extern u8 m_flower__9daGrass_c[4];
-extern "C" extern u8 mLight8EcallBack__13dPa_control_c[4];
+extern "C" u8 m_myObj__9daGrass_c[4];
+extern "C" u8 m_grass__9daGrass_c[4];
+extern "C" u8 m_flower__9daGrass_c[4];
+extern "C" u8 mLight8EcallBack__13dPa_control_c[4];
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 extern "C" void __register_global_object();
 
 //

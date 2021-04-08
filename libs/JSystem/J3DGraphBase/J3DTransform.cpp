@@ -13,6 +13,10 @@
 
 struct Vec {};
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DTransformInfo {};
 
 struct J3DTextureSRTInfo {};
@@ -43,7 +47,7 @@ extern "C" extern u8 PSMulUnit01[8];
 //
 
 extern "C" void PSVECNormalize();
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 
 //
 // Declarations:

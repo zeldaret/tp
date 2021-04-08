@@ -62,8 +62,16 @@ struct dSv_info_c {
     /* 80035200 */ void onSwitch(int, int);
 };
 
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
+};
+
 struct dSv_event_c {
     /* 8003498C */ void onEventBit(u16);
+};
+
+struct dEnemyItem_c {
+    static u8 mData[4 + 4 /* padding */];
 };
 
 struct dComIfG_play_c {
@@ -461,7 +469,7 @@ extern "C" void isInsect__FUc();
 extern "C" void check_itemno__Fi();
 extern "C" static void addBombCount__FUcUc();
 extern "C" extern char const* const d_d_item__stringBase0;
-extern "C" extern u8 mData__12dEnemyItem_c[4 + 4 /* padding */];
+extern "C" u8 mData__12dEnemyItem_c[4 + 4 /* padding */];
 
 //
 // External References:
@@ -506,7 +514,7 @@ extern "C" void _restgpr_20();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_29();
 extern "C" void strncmp();
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 struct_80450D64[4];
 
@@ -4433,8 +4441,7 @@ static asm void addBombCount(u8 param_0, u8 param_1) {
 
 /* ############################################################################################## */
 /* 80450F90-80450F98 000490 0004+04 0/0 2/2 0/0 .sbss            mData__12dEnemyItem_c */
-extern u8 mData__12dEnemyItem_c[4 + 4 /* padding */];
-u8 mData__12dEnemyItem_c[4 + 4 /* padding */];
+u8 dEnemyItem_c::mData[4 + 4 /* padding */];
 
 /* 8037B0D0-8037B0D8 007730 0007+01 1/1 0/0 0/0 .rodata          @stringBase0 */
 #pragma push

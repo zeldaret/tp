@@ -57,21 +57,21 @@ struct JGeometry {
     struct TBox2__template0 {};
 };
 
-struct J2DAnmBase {};
+struct J2DAnmColor {};
 
 struct J2DAnmTevRegKey {};
 
-struct J2DAnmVtxColor {};
+struct J2DAnmVisibilityFull {};
+
+struct J2DAnmBase {};
 
 struct J2DAnmTransform {};
 
+struct J2DAnmVtxColor {};
+
 struct J2DAnmTextureSRTKey {};
 
-struct J2DAnmVisibilityFull {};
-
 struct J2DAnmTexPattern {};
-
-struct J2DAnmColor {};
 
 struct J2DPane {
     /* 80020158 */ void setAlpha(u8);

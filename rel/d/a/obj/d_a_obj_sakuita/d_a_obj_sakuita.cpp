@@ -24,6 +24,8 @@ struct cXyz {
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -38,6 +40,8 @@ struct daObjSakuita_c {
     /* 80CC489C */ void setPlatePos();
     /* 80CC4A98 */ void calcAngle();
     /* 80CC4C9C */ ~daObjSakuita_c();
+
+    static u8 const M_attr[44];
 };
 
 struct dRes_info_c {};
@@ -78,6 +82,10 @@ struct cCcD_GStts {
     /* 80CC5064 */ ~cCcD_GStts();
 };
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 //
 // Forward References:
 //
@@ -98,6 +106,7 @@ extern "C" void __dt__8cM3dGCylFv();
 extern "C" void __dt__8cM3dGAabFv();
 extern "C" void __dt__10dCcD_GSttsFv();
 extern "C" void __dt__10cCcD_GSttsFv();
+extern "C" u8 const M_attr__14daObjSakuita_c[44];
 extern "C" extern char const* const d_a_obj_sakuita__stringBase0;
 
 //
@@ -141,9 +150,9 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 
 //
 // Declarations:
@@ -151,12 +160,12 @@ extern "C" extern u8 sincosTable___5JMath[65536];
 
 /* ############################################################################################## */
 /* 80CC50B4-80CC50E0 000000 002C+00 3/3 0/0 0/0 .rodata          M_attr__14daObjSakuita_c */
-SECTION_RODATA static u8 const M_attr__14daObjSakuita_c[44] = {
+SECTION_RODATA u8 const daObjSakuita_c::M_attr[44] = {
     0x41, 0xA0, 0x00, 0x00, 0x41, 0x40, 0x00, 0x00, 0x42, 0x8C, 0x00, 0x00, 0xC2, 0x48, 0x00,
     0x00, 0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x00, 0x00, 0x00, 0xC0, 0xC0, 0x00, 0x00, 0x44, 0x61,
     0x00, 0x00, 0x46, 0x9C, 0x40, 0x00, 0x42, 0xC8, 0x00, 0x00, 0x14, 0x00, 0x14, 0x00,
 };
-COMPILER_STRIP_GATE(80CC50B4, &M_attr__14daObjSakuita_c);
+COMPILER_STRIP_GATE(80CC50B4, &daObjSakuita_c::M_attr);
 
 /* 80CC50E0-80CC50E4 00002C 0004+00 0/1 0/0 0/0 .rodata          @3658 */
 #pragma push

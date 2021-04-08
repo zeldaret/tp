@@ -19,9 +19,9 @@ struct mDoExt_3DlineMatSortPacket {
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
 };
 
-struct _GXColor {};
-
 struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct ResTIMG {};
 
@@ -40,6 +40,8 @@ struct daObjLndRope_c {
     /* 80C5285C */ void initBaseMtx();
     /* 80C52890 */ void setBaseMtx();
     /* 80C528E0 */ void setNormalRopePos();
+
+    static u8 const M_attr[20];
 };
 
 struct Vec {};
@@ -116,6 +118,7 @@ extern "C" void __dt__8cM3dGSphFv();
 extern "C" void __dt__8cM3dGAabFv();
 extern "C" void __dt__10dCcD_GSttsFv();
 extern "C" void __dt__10cCcD_GSttsFv();
+extern "C" u8 const M_attr__14daObjLndRope_c[20];
 extern "C" extern char const* const d_a_obj_laundry_rope__stringBase0;
 
 //
@@ -179,11 +182,11 @@ extern "C" extern u32 __float_nan;
 
 /* ############################################################################################## */
 /* 80C53304-80C53318 000000 0014+00 3/3 0/0 0/0 .rodata          M_attr__14daObjLndRope_c */
-SECTION_RODATA static u8 const M_attr__14daObjLndRope_c[20] = {
+SECTION_RODATA u8 const daObjLndRope_c::M_attr[20] = {
     0xC0, 0xA0, 0x00, 0x00, 0x3E, 0x4C, 0xCC, 0xCD, 0x3F, 0x00,
     0x00, 0x00, 0x3F, 0x4C, 0xCC, 0xCD, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C53304, &M_attr__14daObjLndRope_c);
+COMPILER_STRIP_GATE(80C53304, &daObjLndRope_c::M_attr);
 
 /* 80C53318-80C53328 000014 000D+03 0/1 0/0 0/0 .rodata          l_laundryList */
 #pragma push

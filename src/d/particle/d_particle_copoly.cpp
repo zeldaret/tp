@@ -13,11 +13,11 @@
 
 struct dKy_tevstr_c {};
 
-struct cXyz {};
-
 struct cBgS_PolyInfo {};
 
 struct csXyz {};
+
+struct cXyz {};
 
 struct dPa_control_c {
     struct level_c {
@@ -54,6 +54,9 @@ struct dPaPoT_c {
     /* 8005147C */ void getLeftEffType(int) const;
     /* 80051494 */ void getRightEmitter(int, int);
     /* 800514DC */ void getLeftEmitter(int, int);
+
+    static u8 m_typeTwoData[36];
+    static u8 m_emitterTwoData[36];
 };
 
 struct dPaPoF_c {
@@ -65,6 +68,9 @@ struct dPaPoF_c {
     /* 80051578 */ void getBackLeftEffType(int) const;
     /* 80051584 */ void getBackRightEmitter(int, int);
     /* 800515CC */ void getBackLeftEmitter(int, int);
+
+    static u8 m_typeFourData[60];
+    static u8 m_emitterFourData[60 + 28 /* padding */];
 };
 
 struct dBgS {
@@ -101,6 +107,10 @@ extern "C" void getBackLeftEffType__8dPaPoF_cCFi();
 extern "C" void getBackRightEmitter__8dPaPoF_cFii();
 extern "C" void getBackLeftEmitter__8dPaPoF_cFii();
 extern "C" void __sinit_d_particle_copoly_cpp();
+extern "C" u8 m_typeTwoData__8dPaPoT_c[36];
+extern "C" u8 m_emitterTwoData__8dPaPoT_c[36];
+extern "C" u8 m_typeFourData__8dPaPoF_c[60];
+extern "C" u8 m_emitterFourData__8dPaPoF_c[60 + 28 /* padding */];
 
 //
 // External References:
@@ -386,7 +396,7 @@ SECTION_DATA static void* lit_3818[3] = {
 /* 803A8628-803A864C 005748 0024+00 0/1 0/0 0/0 .data            m_typeTwoData__8dPaPoT_c */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 m_typeTwoData__8dPaPoT_c[36] = {
+SECTION_DATA u8 dPaPoT_c::m_typeTwoData[36] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -424,7 +434,7 @@ SECTION_DATA static void* lit_3828[3] = {
 #pragma pop
 
 /* 803A8670-803A8694 005790 0024+00 0/1 0/0 1/1 .data            m_emitterTwoData__8dPaPoT_c */
-SECTION_DATA extern u8 m_emitterTwoData__8dPaPoT_c[36] = {
+SECTION_DATA u8 dPaPoT_c::m_emitterTwoData[36] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -481,7 +491,7 @@ SECTION_DATA static void* lit_3845[3] = {
 #pragma pop
 
 /* 803A86D0-803A870C 0057F0 003C+00 0/1 5/5 1/1 .data            m_typeFourData__8dPaPoF_c */
-SECTION_DATA extern u8 m_typeFourData__8dPaPoF_c[60] = {
+SECTION_DATA u8 dPaPoF_c::m_typeFourData[60] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -539,7 +549,7 @@ SECTION_DATA static void* lit_3854[3] = {
 #pragma pop
 
 /* 803A8748-803A87A0 005868 003C+1C 0/1 5/5 1/1 .data            m_emitterFourData__8dPaPoF_c */
-SECTION_DATA extern u8 m_emitterFourData__8dPaPoF_c[60 + 28 /* padding */] = {
+SECTION_DATA u8 dPaPoF_c::m_emitterFourData[60 + 28 /* padding */] = {
     0x00,
     0x00,
     0x00,

@@ -16,6 +16,8 @@ struct request_of_phase_process_class {};
 struct mDoMtx_stack_c {
     /* 8000CCC8 */ void push();
     /* 8000CD14 */ void pop();
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {};
@@ -37,13 +39,16 @@ struct daGraveStone_c {
     /* 80C13030 */ void Execute(f32 (**)[3][4]);
     /* 80C13078 */ void Draw();
     /* 80C1311C */ void Delete();
+
+    static u8 const mCcDObjInfo[48];
+    static u8 const mCcDCyl[68];
 };
 
 struct dKy_tevstr_c {};
 
-struct cXyz {};
-
 struct J3DModelData {};
+
+struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -63,6 +68,11 @@ struct dPa_control_c {
     };
 };
 
+struct dBgS_AcchCir {
+    /* 80075EAC */ dBgS_AcchCir();
+    /* 80075F58 */ void SetWall(f32, f32);
+};
+
 struct cBgS_PolyInfo {};
 
 struct dBgS {
@@ -71,11 +81,6 @@ struct dBgS {
 };
 
 struct csXyz {};
-
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F58 */ void SetWall(f32, f32);
-};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -161,6 +166,10 @@ struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DModel {};
 
 //
@@ -191,6 +200,8 @@ extern "C" static void daGraveStone_create__FP10fopAc_ac_c();
 extern "C" void func_80C1321C(s16*);
 extern "C" static void func_80C13238();
 extern "C" static void func_80C13240();
+extern "C" u8 const mCcDObjInfo__14daGraveStone_c[48];
+extern "C" u8 const mCcDCyl__14daGraveStone_c[68];
 extern "C" extern char const* const d_a_obj_grave_stone__stringBase0;
 
 //
@@ -257,11 +268,11 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -279,22 +290,22 @@ asm void daGraveStone_c::setBaseMtx() {
 
 /* ############################################################################################## */
 /* 80C13250-80C13280 000000 0030+00 1/1 0/0 0/0 .rodata          mCcDObjInfo__14daGraveStone_c */
-SECTION_RODATA static u8 const mCcDObjInfo__14daGraveStone_c[48] = {
+SECTION_RODATA u8 const daGraveStone_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C13250, &mCcDObjInfo__14daGraveStone_c);
+COMPILER_STRIP_GATE(80C13250, &daGraveStone_c::mCcDObjInfo);
 
 /* 80C13280-80C132C4 000030 0044+00 1/1 0/0 0/0 .rodata          mCcDCyl__14daGraveStone_c */
-SECTION_RODATA static u8 const mCcDCyl__14daGraveStone_c[68] = {
+SECTION_RODATA u8 const daGraveStone_c::mCcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C13280, &mCcDCyl__14daGraveStone_c);
+COMPILER_STRIP_GATE(80C13280, &daGraveStone_c::mCcDCyl);
 
 /* 80C132C4-80C132C8 000074 0004+00 2/3 0/0 0/0 .rodata          @3717 */
 SECTION_RODATA static u8 const lit_3717[4] = {

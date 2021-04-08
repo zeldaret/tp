@@ -28,6 +28,13 @@ struct cXyz {
 struct mDoMtx_stack_c {
     /* 8000CE00 */ void scaleS(cXyz const&);
     /* 8000CE38 */ void scaleM(f32, f32, f32);
+
+    static u8 now[48];
+};
+
+struct mDoLib_clipper {
+    static u8 mClipper[92];
+    static f32 mSystemFar;
 };
 
 struct fopAc_ac_c {
@@ -47,6 +54,9 @@ struct daMirror_c {
     /* 8087206C */ void create();
     /* 808723E4 */ void execute();
     /* 80872560 */ void entryModel(J3DModel*);
+
+    static u8 m_entryModel[12];
+    static u8 m_myObj[4];
 };
 
 struct dSv_info_c {
@@ -107,6 +117,8 @@ struct J3DShapePacket {
 
 struct J3DShape {
     /* 80315300 */ void loadPreDrawSetting() const;
+
+    static u8 sOldVcdVatCmd[4];
 };
 
 struct J3DPacket;
@@ -247,17 +259,17 @@ extern "C" extern u8 g_mDoMtx_identity[48 + 24 /* padding */];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mClipper__14mDoLib_clipper[92];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mClipper__14mDoLib_clipper[92];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 m_entryModel__10daMirror_c[12];
+extern "C" u8 m_entryModel__10daMirror_c[12];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u8 g_clearColor[4];
 extern "C" extern u32 __float_max;
-extern "C" extern f32 mSystemFar__14mDoLib_clipper;
-extern "C" extern u8 m_myObj__10daMirror_c[4];
-extern "C" extern u8 sOldVcdVatCmd__8J3DShape[4];
+extern "C" f32 mSystemFar__14mDoLib_clipper;
+extern "C" u8 m_myObj__10daMirror_c[4];
+extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
 
 //
 // Declarations:

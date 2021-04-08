@@ -29,11 +29,17 @@ struct daTag_Evt_c {
     /* 8048C124 */ void doEvtCutTalk(int);
     /* 8048C1C8 */ void doEvtCutNext(int);
     /* 8048C304 */ ~daTag_Evt_c();
+
+    static void* mEvtCutList[3];
 };
 
 struct dSv_info_c {
     /* 80035200 */ void onSwitch(int, int);
     /* 80035360 */ void isSwitch(int, int) const;
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -93,6 +99,7 @@ extern "C" static bool daTag_Evt_IsDelete__FPv();
 extern "C" void __dt__11daTag_Evt_cFv();
 extern "C" void func_8048C374(int*);
 extern "C" extern char const* const d_a_tag_evt__stringBase0;
+extern "C" void* mEvtCutList__11daTag_Evt_c[3];
 
 //
 // External References:
@@ -133,7 +140,7 @@ extern "C" void _restgpr_29();
 extern "C" void strcpy();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 struct_80450D64[4];
@@ -153,7 +160,7 @@ SECTION_DATA static void* l_evtNameList[2] = {
 SECTION_DATA static void* l_resFileName = (void*)(((char*)&d_a_tag_evt__stringBase0) + 0xF);
 
 /* 8048C408-8048C414 -00001 000C+00 1/1 0/0 0/0 .data            mEvtCutList__11daTag_Evt_c */
-SECTION_DATA static void* mEvtCutList__11daTag_Evt_c[3] = {
+SECTION_DATA void* daTag_Evt_c::mEvtCutList[3] = {
     (void*)(((char*)&d_a_tag_evt__stringBase0) + 0x16),
     (void*)(((char*)&d_a_tag_evt__stringBase0) + 0x1B),
     (void*)(((char*)&d_a_tag_evt__stringBase0) + 0x20),

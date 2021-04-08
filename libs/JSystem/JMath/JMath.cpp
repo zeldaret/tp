@@ -15,6 +15,10 @@ struct Vec {};
 
 struct Quaternion {};
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 //
 // Forward References:
 //
@@ -29,7 +33,7 @@ extern "C" void JMAMTXApplyScale__FPA4_CfPA4_ffff();
 // External References:
 //
 
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 
 //
 // Declarations:

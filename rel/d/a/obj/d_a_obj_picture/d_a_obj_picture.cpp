@@ -13,6 +13,8 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
@@ -22,12 +24,12 @@ struct cXyz {
     /* 80266F48 */ void normalizeZP();
 };
 
-struct csXyz {};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CE38 */ void scaleM(f32, f32, f32);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct mDoExt_3DlineMat_c {};
@@ -36,9 +38,9 @@ struct mDoExt_3DlineMatSortPacket {
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
 };
 
-struct _GXColor {};
-
 struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct ResTIMG {};
 
@@ -54,6 +56,8 @@ struct fopAc_ac_c {
 
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
+
+    static f32 mGroundY;
 };
 
 struct daObjPicture_c {
@@ -75,6 +79,9 @@ struct daObjPicture_c {
     /* 80CAED28 */ void chkHitRope();
     /* 80CAEDDC */ void chkHitBombTg();
     /* 80CAEE90 */ void setPicAtCol();
+
+    static u8 s_CcDCps[76];
+    static u8 s_CcDCyl_pic_at[68];
 };
 
 struct dSv_info_c {
@@ -186,6 +193,14 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 //
@@ -222,6 +237,8 @@ extern "C" static void daObjPicture_execute__FP14daObjPicture_c();
 extern "C" static void daObjPicture_draw__FP14daObjPicture_c();
 extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" extern char const* const d_a_obj_picture__stringBase0;
+extern "C" u8 s_CcDCps__14daObjPicture_c[76];
+extern "C" u8 s_CcDCyl_pic_at__14daObjPicture_c[68];
 
 //
 // External References:
@@ -311,14 +328,14 @@ extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__12cCcD_CpsAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" f32 mGroundY__11fopAcM_gc_c;
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -350,7 +367,7 @@ SECTION_DATA static u8 l_PIC_AT_OFFSET_POS[12] = {
 };
 
 /* 80CAF110-80CAF15C 000028 004C+00 1/1 0/0 0/0 .data            s_CcDCps__14daObjPicture_c */
-SECTION_DATA static u8 s_CcDCps__14daObjPicture_c[76] = {
+SECTION_DATA u8 daObjPicture_c::s_CcDCps[76] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x20, 0xA0, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00,
@@ -360,7 +377,7 @@ SECTION_DATA static u8 s_CcDCps__14daObjPicture_c[76] = {
 
 /* 80CAF15C-80CAF1A0 000074 0044+00 1/1 0/0 0/0 .data            s_CcDCyl_pic_at__14daObjPicture_c
  */
-SECTION_DATA static u8 s_CcDCyl_pic_at__14daObjPicture_c[68] = {
+SECTION_DATA u8 daObjPicture_c::s_CcDCyl_pic_at[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x79,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

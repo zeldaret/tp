@@ -11,9 +11,13 @@
 // Types:
 //
 
-struct J3DAnmTextureSRTKey {};
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
 
 struct J3DAnmTevRegKey {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct J3DMaterialTable {
     /* 8032F7B4 */ void removeTexMtxAnimator(J3DAnmTextureSRTKey*);
@@ -34,9 +38,11 @@ struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -46,9 +52,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -66,8 +70,6 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct daNpcT_motionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -75,11 +77,13 @@ struct daNpcT_MotionSeqMngr_c {
     /* 809B88E8 */ ~daNpcT_MotionSeqMngr_c();
 };
 
-struct daNpcT_evtData_c {};
+struct daNpcT_motionAnmData_c {};
 
 struct J3DJoint {};
 
 struct daNpcT_faceMotionAnmData_c {};
+
+struct daNpcT_evtData_c {};
 
 struct daNpc_Fairy_c {
     /* 809B228C */ ~daNpc_Fairy_c();
@@ -182,10 +186,15 @@ struct daNpc_Fairy_c {
     /* 809B9250 */ bool getBackboneJointNo();
     /* 809B9258 */ void checkChangeJoint(int);
     /* 809B9268 */ void checkRemoveJoint(int);
+
+    static void* mCutNameList[18];
+    static u8 mCutList[216];
 };
 
 struct daNpc_Fairy_Param_c {
     /* 809B9278 */ ~daNpc_Fairy_Param_c();
+
+    static u8 const m[148];
 };
 
 struct dCcD_GObjInf {
@@ -193,19 +202,19 @@ struct dCcD_GObjInf {
     /* 800840E4 */ ~dCcD_GObjInf();
 };
 
-struct J3DAnmColor {};
-
-struct _GXColorS10 {};
-
-struct J3DAnmTransformKey {};
-
 struct J3DModel {};
+
+struct J3DAnmColor {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 809B2250 */ ~cXyz();
     /* 809B889C */ cXyz();
 };
+
+struct _GXColorS10 {};
+
+struct J3DAnmTransformKey {};
 
 struct daNpcT_c {
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
@@ -261,6 +270,8 @@ struct daNpcT_c {
     /* 809B8E44 */ void changeAnm(int*, int*);
     /* 809B8E48 */ void changeBck(int*, int*);
     /* 809B8E4C */ void changeBtp(int*, int*);
+
+    static u8 mCcDCyl[68];
 };
 
 struct daNpcT_MatAnm_c {
@@ -328,13 +339,13 @@ struct dPa_control_c {
                             _GXColor const*, cXyz const*, f32);
 };
 
-struct dBgS {};
-
 struct dBgS_AcchCir {
     /* 80075EAC */ dBgS_AcchCir();
     /* 80075F40 */ void SetWallR(f32);
     /* 809B8930 */ ~dBgS_AcchCir();
 };
+
+struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -457,6 +468,10 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct J3DTexNoAnm {
@@ -662,7 +677,10 @@ extern "C" void checkRemoveJoint__13daNpc_Fairy_cFi();
 extern "C" void __dt__19daNpc_Fairy_Param_cFv();
 extern "C" static void func_809B92C0();
 extern "C" static void func_809B92C8();
+extern "C" u8 const m__19daNpc_Fairy_Param_c[148];
 extern "C" extern char const* const d_a_npc_fairy__stringBase0;
+extern "C" void* mCutNameList__13daNpc_Fairy_c[18];
+extern "C" u8 mCutList__13daNpc_Fairy_c[216];
 
 //
 // External References:
@@ -824,19 +842,19 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
+extern "C" u8 mCcDCyl__8daNpcT_c[68];
 extern "C" extern void* __vt__8daNpcT_c[49];
 extern "C" extern void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 __float_nan;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -855,7 +873,7 @@ asm void _Fairy_Feather_c::create() {
 
 /* ############################################################################################## */
 /* 809B92E4-809B9378 000000 0094+00 21/21 0/0 0/0 .rodata          m__19daNpc_Fairy_Param_c */
-SECTION_RODATA static u8 const m__19daNpc_Fairy_Param_c[148] = {
+SECTION_RODATA u8 const daNpc_Fairy_Param_c::m[148] = {
     0x43, 0x3E, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x44, 0x2F, 0x00,
     0x00, 0x43, 0x7F, 0x00, 0x00, 0x43, 0x2A, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xF0,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1,
@@ -867,7 +885,7 @@ SECTION_RODATA static u8 const m__19daNpc_Fairy_Param_c[148] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x70, 0x00, 0x00, 0x43, 0x48, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(809B92E4, &m__19daNpc_Fairy_Param_c);
+COMPILER_STRIP_GATE(809B92E4, &daNpc_Fairy_Param_c::m);
 
 /* 809B9378-809B937C 000094 0004+00 9/15 0/0 0/0 .rodata          @3916 */
 SECTION_RODATA static f32 const lit_3916 = 1.0f;
@@ -1159,7 +1177,7 @@ SECTION_DATA static void* l_evtList[36] = {
 #pragma pop
 
 /* 809B998C-809B99D4 -00001 0048+00 1/1 0/0 0/0 .data            mCutNameList__13daNpc_Fairy_c */
-SECTION_DATA static void* mCutNameList__13daNpc_Fairy_c[18] = {
+SECTION_DATA void* daNpc_Fairy_c::mCutNameList[18] = {
     (void*)&d_a_npc_fairy__stringBase0,
     (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x7),
     (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x15),
@@ -1351,7 +1369,7 @@ SECTION_DATA static void* lit_3867[3] = {
 #pragma pop
 
 /* 809B9AA0-809B9B78 0004C8 00D8+00 1/2 0/0 0/0 .data            mCutList__13daNpc_Fairy_c */
-SECTION_DATA static u8 mCutList__13daNpc_Fairy_c[216] = {
+SECTION_DATA u8 daNpc_Fairy_c::mCutList[216] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,

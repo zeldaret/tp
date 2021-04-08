@@ -15,11 +15,13 @@ struct request_of_phase_process_class {};
 
 struct mDoMtx_stack_c {
     /* 8000CE38 */ void scaleM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
-struct J3DAnmTexPattern {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTexPattern {};
 
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
@@ -37,11 +39,11 @@ struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct J3DAnmTransform {};
+struct Vec {};
 
 struct J3DModelData {};
 
-struct Vec {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorf {
     /* 8000FC4C */ mDoExt_McaMorf(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -51,6 +53,10 @@ struct mDoExt_McaMorf {
     /* 800105C8 */ void play(Vec*, u32, s8);
     /* 80010680 */ void entryDL();
     /* 800106AC */ void modelCalc();
+};
+
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
 };
 
 struct fopAc_ac_c {
@@ -118,6 +124,10 @@ struct dMsgFlow_c {
 
 struct dEvt_control_c {
     /* 80042468 */ void reset();
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -216,11 +226,19 @@ struct Z2SoundObjBase {
     /* 802BDFF8 */ void deleteObject();
 };
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
 };
 
 struct J3DModel {};
@@ -407,14 +425,14 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" extern u32 __float_nan;
 extern "C" void __register_global_object();

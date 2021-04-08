@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct J3DAnmTexPattern {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTexPattern {};
 
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
@@ -43,9 +43,9 @@ struct mDoExt_bpkAnm {
     /* 8000D518 */ void entry(J3DMaterialTable*, f32);
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -94,6 +94,15 @@ struct dRes_info_c {};
 
 struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
+};
+
+struct dItem_data {
+    static void* item_resource[1530];
+    static u8 item_info[1020 + 4 /* padding */];
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct cBgS_PolyInfo {};
@@ -164,10 +173,10 @@ extern "C" void _restfpr_27();
 extern "C" void _savegpr_21();
 extern "C" void _restgpr_21();
 extern "C" extern void* __vt__12J3DFrameCtrl[3];
-extern "C" extern void* item_resource__10dItem_data[1530];
-extern "C" extern u8 item_info__10dItem_data[1020 + 4 /* padding */];
+extern "C" void* item_resource__10dItem_data[1530];
+extern "C" u8 item_info__10dItem_data[1020 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
 

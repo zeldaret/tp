@@ -15,6 +15,8 @@ struct request_of_phase_process_class {};
 
 struct mDoMtx_stack_c {
     /* 8000CD9C */ void transM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct mDoHIO_entry_c {
@@ -51,6 +53,9 @@ struct daTurara_c {
     /* 80B9E388 */ void Draw();
     /* 80B9E478 */ void Delete();
     /* 80B9E710 */ ~daTurara_c();
+
+    static u8 const mCcDObjInfo[48];
+    static u8 mCcDCyl[68];
 };
 
 struct daTurara_HIO_c {
@@ -227,6 +232,14 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 //
@@ -277,7 +290,9 @@ extern "C" bool eventStart__17dEvLib_callback_cFv();
 extern "C" bool eventRun__17dEvLib_callback_cFv();
 extern "C" bool eventEnd__17dEvLib_callback_cFv();
 extern "C" void __dt__10daTurara_cFv();
+extern "C" u8 const mCcDObjInfo__10daTurara_c[48];
 extern "C" extern char const* const d_a_obj_Turara__stringBase0;
+extern "C" u8 mCcDCyl__10daTurara_c[68];
 
 //
 // External References:
@@ -366,12 +381,12 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sincosTable___5JMath[65536];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -430,7 +445,7 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80B9E99C-80B9E9E0 000020 0044+00 2/2 0/0 0/0 .data            mCcDCyl__10daTurara_c */
-SECTION_DATA static u8 mCcDCyl__10daTurara_c[68] = {
+SECTION_DATA u8 daTurara_c::mCcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -664,12 +679,12 @@ asm void daTurara_c::setBaseMtx() {
 
 /* ############################################################################################## */
 /* 80B9E908-80B9E938 000014 0030+00 1/1 0/0 0/0 .rodata          mCcDObjInfo__10daTurara_c */
-SECTION_RODATA static u8 const mCcDObjInfo__10daTurara_c[48] = {
+SECTION_RODATA u8 const daTurara_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F,
     0xF8, 0x40, 0x00, 0x22, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x79, 0x01, 0x00, 0x01, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B9E908, &mCcDObjInfo__10daTurara_c);
+COMPILER_STRIP_GATE(80B9E908, &daTurara_c::mCcDObjInfo);
 
 /* 80B9E938-80B9E940 000044 0008+00 1/1 0/0 0/0 .rodata          l_bmdIdx */
 SECTION_RODATA static u8 const l_bmdIdx[8] = {

@@ -16,6 +16,8 @@ struct _GXColor {};
 struct mDoGph_gInf_c {
     /* 80007FD8 */ void fadeOut(f32, _GXColor&);
     /* 800080D0 */ void fadeOut(f32);
+
+    static f32 mFadeRate;
 };
 
 struct fopAc_ac_c {};
@@ -27,6 +29,14 @@ struct dVibration_c {
     /* 8006FB10 */ void StartQuake(int, int, cXyz);
     /* 8006FC0C */ void StartQuake(u8 const*, int, int, cXyz);
     /* 8006FD94 */ void StopQuake(int);
+};
+
+struct dSv_event_tmp_flag_c {
+    static u8 const tempBitLabels[370 + 2 /* padding */];
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -107,11 +117,17 @@ struct dEvDtBase_c {
 
 struct dDlst_list_c {
     /* 800568D8 */ void wipeIn(f32);
+
+    static f32 mWipeRate;
 };
 
 struct dDemo_c {
     /* 80039B6C */ void start(u8 const*, cXyz*, f32);
     /* 80039CF8 */ void end();
+
+    static u8 m_control[4];
+    static u8 m_frameNoMsg[4];
+    static u8 m_mode[4];
 };
 
 struct dCamera_c {
@@ -131,6 +147,10 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 //
@@ -236,17 +256,17 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void strcmp();
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern f32 mFadeRate__13mDoGph_gInf_c;
+extern "C" f32 mFadeRate__13mDoGph_gInf_c;
 extern "C" extern u8 struct_80450BE4[4];
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_control__7dDemo_c[4];
-extern "C" extern u8 m_frameNoMsg__7dDemo_c[4];
-extern "C" extern u8 m_mode__7dDemo_c[4];
-extern "C" extern f32 mWipeRate__12dDlst_list_c;
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 m_control__7dDemo_c[4];
+extern "C" u8 m_frameNoMsg__7dDemo_c[4];
+extern "C" u8 m_mode__7dDemo_c[4];
+extern "C" f32 mWipeRate__12dDlst_list_c;
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

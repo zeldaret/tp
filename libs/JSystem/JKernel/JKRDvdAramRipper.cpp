@@ -44,6 +44,8 @@ struct JSUFileInputStream {
 struct JKRHeap {
     /* 802CE4D4 */ void alloc(u32, int);
     /* 802CE500 */ void free(void*, JKRHeap*);
+
+    static u8 sSystemHeap[4];
 };
 
 struct JKRExpandSwitch {};
@@ -66,6 +68,9 @@ struct JKRDvdAramRipper {
                                          u32*);
     /* 802DAA74 */ void callCommand_Async(JKRADCommand*);
     /* 802DAE48 */ void syncAram(JKRADCommand*, int);
+
+    static u8 sDvdAramAsyncList[12];
+    static u32 sSZSBufferSize;
 };
 
 struct JKRDecomp {
@@ -91,6 +96,10 @@ struct JKRAramHeap {
     /* 802D2FBC */ void alloc(u32, JKRAramHeap::EAllocMode);
 };
 
+struct JKRAram {
+    static u8 sAramObject[4];
+};
+
 //
 // Forward References:
 //
@@ -111,6 +120,8 @@ extern "C" static void nextSrcData__FPUc();
 extern "C" static void dmaBufferFlush__FUl();
 extern "C" void __sinit_JKRDvdAramRipper_cpp();
 extern "C" void func_802DB62C();
+extern "C" u8 sDvdAramAsyncList__16JKRDvdAramRipper[12];
+extern "C" u32 sSZSBufferSize__16JKRDvdAramRipper;
 
 //
 // External References:
@@ -159,8 +170,8 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_29();
 extern "C" extern void* __vt__20JSURandomInputStream[9];
 extern "C" extern void* __vt__18JSUFileInputStream[9 + 1 /* padding */];
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sAramObject__7JKRAram[4];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sAramObject__7JKRAram[4];
 
 //
 // Declarations:
@@ -208,7 +219,7 @@ asm void JKRDvdAramRipper::loadToAram_Async(JKRDvdFile* param_0, u32 param_1,
 static u8 lit_301[12];
 
 /* 804343B4-804343C0 0610D4 000C+00 3/3 0/0 0/0 .bss sDvdAramAsyncList__16JKRDvdAramRipper */
-static u8 sDvdAramAsyncList__16JKRDvdAramRipper[12];
+u8 JKRDvdAramRipper::sDvdAramAsyncList[12];
 
 /* 804508D0-804508D4 000350 0004+00 3/3 0/0 0/0 .sdata           None */
 SECTION_SDATA static u32 data_804508D0 = 0x01000000;
@@ -271,7 +282,7 @@ static u8 decompMutex[24];
 
 /* 804508D4-804508D8 000354 0004+00 1/1 1/1 0/0 .sdata           sSZSBufferSize__16JKRDvdAramRipper
  */
-SECTION_SDATA extern u32 sSZSBufferSize__16JKRDvdAramRipper = 0x00000400;
+SECTION_SDATA u32 JKRDvdAramRipper::sSZSBufferSize = 0x00000400;
 
 /* 80451468-8045146C 000968 0004+00 3/3 0/0 0/0 .sbss            szpBuf */
 static u8 szpBuf[4];

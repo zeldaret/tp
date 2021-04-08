@@ -11,10 +11,12 @@
 // Types:
 //
 
-struct Vec {};
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
+};
 
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
+struct jmessage_tControl {
+    /* 802299EC */ jmessage_tControl();
 };
 
 struct jmessage_tReference {
@@ -49,8 +51,10 @@ struct jmessage_tReference {
     /* 80232A20 */ void getActorPos();
 };
 
-struct jmessage_tControl {
-    /* 802299EC */ jmessage_tControl();
+struct Vec {};
+
+struct cXyz {
+    /* 80266B34 */ void operator-(Vec const&) const;
 };
 
 struct jmessage_tSequenceProcessor {
@@ -115,12 +119,17 @@ struct jmessage_tMeasureProcessor {
     /* 8022B5F4 */ ~jmessage_tMeasureProcessor();
 };
 
-struct J2DTextBox {
-    /* 80300658 */ void getStringPtr() const;
+struct jmessage_string_tControl {
+    /* 8022FB5C */ jmessage_string_tControl();
+    /* 802328DC */ ~jmessage_string_tControl();
 };
 
 struct COutFont_c {
     /* 80226CF8 */ void initialize();
+};
+
+struct J2DTextBox {
+    /* 80300658 */ void getStringPtr() const;
 };
 
 struct JUTFont {};
@@ -138,11 +147,6 @@ struct jmessage_string_tReference {
     /* 8022FACC */ void setOutfontLength(int, f32);
     /* 8022FAF0 */ void clearOutfontLength(int);
     /* 8022FB24 */ void getLineCountNowPage();
-};
-
-struct jmessage_string_tControl {
-    /* 8022FB5C */ jmessage_string_tControl();
-    /* 802328DC */ ~jmessage_string_tControl();
 };
 
 struct jmessage_string_tSequenceProcessor {
@@ -195,6 +199,14 @@ struct dSv_player_item_max_c {
     /* 800340F8 */ void getBombNum(u8) const;
 };
 
+struct dSv_event_tmp_flag_c {
+    static u8 const tempBitLabels[370 + 2 /* padding */];
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
+};
+
 struct dSv_event_c {
     /* 8003498C */ void onEventBit(u16);
     /* 80034A04 */ void getEventReg(u16) const;
@@ -239,6 +251,10 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct STControl {
@@ -553,18 +569,18 @@ extern "C" void snprintf();
 extern "C" void strcat();
 extern "C" void strcpy();
 extern "C" void strlen();
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__17jmessage_tControl[3];
 extern "C" extern void* __vt__Q28JMessage10TReference[4 + 1 /* padding */];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 g_MsgObject_HIO_c[1040];
 extern "C" extern u8 data_80450B70[4];
 extern "C" extern u8 struct_80450D64[4];
 extern "C" extern u8 g_msg_unit[4 + 4 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

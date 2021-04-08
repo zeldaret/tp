@@ -11,8 +11,21 @@
 // Types:
 //
 
+struct mDoRst {
+    static u8 mResetData[4 + 4 /* padding */];
+};
+
 struct mDoMemCd_Ctrl_c {
     /* 80016730 */ void ThdInit();
+};
+
+struct mDoMch_render_c {
+    static void* mRenderModeObj[1 + 1 /* padding */];
+};
+
+struct mDoMain {
+    static u32 memMargin;
+    static u8 sHungUpTime[4];
 };
 
 struct mDoDvdThd {
@@ -25,6 +38,9 @@ struct JKRHeap {
     /* 802CE784 */ void getTotalFreeSize();
     /* 802CEB78 */ void setErrorFlag(bool);
     /* 802CEB88 */ void setErrorHandler(void (*)(void*, u32, int));
+
+    static u8 sSystemHeap[4];
+    static u8 sRootHeap[4];
 };
 
 struct cMl {
@@ -55,10 +71,15 @@ struct JUTException {
     /* 802E3AEC */ void setPreUserCallback(void (*)(u16, OSContext*, u32, u32));
     /* 802E3AFC */ void setPostUserCallback(void (*)(u16, OSContext*, u32, u32));
     /* 802E3B0C */ void appendMapFile(char const*);
+
+    static u8 sErrorManager[4];
+    static u8 sConsole[4];
 };
 
 struct JUTDbPrint {
     /* 802E0190 */ void start(JUTFont*, JKRHeap*);
+
+    static u8 sDebugPrint[4 + 4 /* padding */];
 };
 
 struct JUTConsole {
@@ -72,6 +93,8 @@ struct JUTConsole {
 struct JUTConsoleManager {
     /* 802E8450 */ void drawDirect(bool) const;
     /* 802E84C4 */ void setDirectConsole(JUTConsole*);
+
+    static u8 sManager[4];
 };
 
 struct JUTAssertion {
@@ -86,13 +109,37 @@ struct JKRThread {
     /* 802D16B8 */ JKRThread(OSThread*, int);
 };
 
+struct JKRDvdRipper {
+    static u32 sSZSBufferSize;
+};
+
+struct JKRDvdAramRipper {
+    static u32 sSZSBufferSize;
+};
+
 struct JKRAramStream {
     /* 802D4034 */ void setTransBuffer(u8*, u32, JKRHeap*);
 };
 
+struct JKRAram {
+    static u32 sSZSBufferSize[1 + 1 /* padding */];
+};
+
 struct JFWSystem {
+    struct CSetUpParam {
+        static u32 maxStdHeaps;
+        static u32 sysHeapSize;
+        static u32 fifoBufSize;
+        static u32 aramAudioBufSize;
+        static u32 aramGraphBufSize;
+        static void* renderMode;
+    };
+
     /* 80271CD0 */ void firstInit();
     /* 80271D18 */ void init();
+
+    static u8 systemHeap[4];
+    static u8 systemConsole[4];
 };
 
 //
@@ -113,6 +160,7 @@ extern "C" static void my_PrintHeap__FPCcUl();
 extern "C" static void my_SysPrintHeap__FPCcPvUl();
 extern "C" void mDoMch_Create__Fv();
 extern "C" extern char const* const m_Do_m_Do_machine__stringBase0;
+extern "C" void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */];
 
 //
 // External References:
@@ -196,33 +244,33 @@ extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
 extern "C" extern u8 g_mDoMemCd_control[8192];
 extern "C" extern u32 data_80450580;
-extern "C" extern u32 memMargin__7mDoMain;
-extern "C" extern u32 maxStdHeaps__Q29JFWSystem11CSetUpParam;
-extern "C" extern u32 sysHeapSize__Q29JFWSystem11CSetUpParam;
-extern "C" extern u32 fifoBufSize__Q29JFWSystem11CSetUpParam;
-extern "C" extern u32 aramAudioBufSize__Q29JFWSystem11CSetUpParam;
-extern "C" extern u32 aramGraphBufSize__Q29JFWSystem11CSetUpParam;
-extern "C" extern void* renderMode__Q29JFWSystem11CSetUpParam;
+extern "C" u32 memMargin__7mDoMain;
+extern "C" u32 maxStdHeaps__Q29JFWSystem11CSetUpParam;
+extern "C" u32 sysHeapSize__Q29JFWSystem11CSetUpParam;
+extern "C" u32 fifoBufSize__Q29JFWSystem11CSetUpParam;
+extern "C" u32 aramAudioBufSize__Q29JFWSystem11CSetUpParam;
+extern "C" u32 aramGraphBufSize__Q29JFWSystem11CSetUpParam;
+extern "C" void* renderMode__Q29JFWSystem11CSetUpParam;
 extern "C" extern u8 data_804508B0[8];
-extern "C" extern u32 sSZSBufferSize__7JKRAram[1 + 1 /* padding */];
-extern "C" extern u32 sSZSBufferSize__12JKRDvdRipper;
-extern "C" extern u32 sSZSBufferSize__16JKRDvdAramRipper;
-extern "C" extern u8 sHungUpTime__7mDoMain[4];
+extern "C" u32 sSZSBufferSize__7JKRAram[1 + 1 /* padding */];
+extern "C" u32 sSZSBufferSize__12JKRDvdRipper;
+extern "C" u32 sSZSBufferSize__16JKRDvdAramRipper;
+extern "C" u8 sHungUpTime__7mDoMain[4];
 extern "C" extern u8 data_80450B14[4];
 extern "C" extern u8 gameHeap[4];
 extern "C" extern u8 zeldaHeap[4];
 extern "C" extern u8 commandHeap[4];
 extern "C" extern u8 archiveHeap[4];
-extern "C" extern u8 mResetData__6mDoRst[4 + 4 /* padding */];
-extern "C" extern u8 systemHeap__9JFWSystem[4];
-extern "C" extern u8 systemConsole__9JFWSystem[4];
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
-extern "C" extern u8 sRootHeap__7JKRHeap[4];
-extern "C" extern u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
+extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
+extern "C" u8 systemHeap__9JFWSystem[4];
+extern "C" u8 systemConsole__9JFWSystem[4];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sRootHeap__7JKRHeap[4];
+extern "C" u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
 extern "C" extern u8 struct_80451500[4];
-extern "C" extern u8 sErrorManager__12JUTException[4];
-extern "C" extern u8 sConsole__12JUTException[4];
-extern "C" extern u8 sManager__17JUTConsoleManager[4];
+extern "C" u8 sErrorManager__12JUTException[4];
+extern "C" u8 sConsole__12JUTException[4];
+extern "C" u8 sManager__17JUTConsoleManager[4];
 
 //
 // Declarations:
@@ -402,7 +450,7 @@ SECTION_DATA extern u8 g_ntscZeldaProg[60] = {
 
 /* 804505A0-804505A8 -00001 0004+04 1/1 3/3 0/0 .sdata           mRenderModeObj__15mDoMch_render_c
  */
-SECTION_SDATA extern void* mRenderModeObj__15mDoMch_render_c[1 + 1 /* padding */] = {
+SECTION_SDATA void* mDoMch_render_c::mRenderModeObj[1 + 1 /* padding */] = {
     (void*)&g_ntscZeldaIntDf,
     /* padding */
     NULL,

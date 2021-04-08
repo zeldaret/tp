@@ -27,15 +27,17 @@ struct mDoMtx_stack_c {
     /* 8000CD14 */ void pop();
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CE38 */ void scaleM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
 struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorf {
     /* 8000FC4C */ mDoExt_McaMorf(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -51,9 +53,9 @@ struct mDoExt_3DlineMatSortPacket {
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
 };
 
-struct _GXColor {};
-
 struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct mDoExt_3DlineMat0_c {
     /* 800125E0 */ void init(u16, u16, int);
@@ -63,6 +65,8 @@ struct mDoExt_3DlineMat0_c {
 struct mDoCPd_c {
     /* 804BB4C0 */ void getTrigZ(u32);
     /* 804BB4DC */ void getTrigA(u32);
+
+    static u8 m_cpadInfo[256];
 };
 
 struct fopAc_ac_c {
@@ -133,6 +137,10 @@ struct dSv_info_c {
 
 struct dSv_fishing_info_c {
     /* 800344FC */ void addFishCount(u8);
+};
+
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
 };
 
 struct dSv_event_c {
@@ -327,6 +335,18 @@ struct Z2SeMgr {
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
 };
 
 struct J3DModel {};
@@ -615,26 +635,26 @@ extern "C" void tan();
 extern "C" extern void* __vt__19mDoExt_3DlineMat0_c[5];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 g_Counter[12 + 4 /* padding */];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern void* calc_mtx[1 + 1 /* padding */];
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 struct_80450C98[4];
 extern "C" extern u8 struct_80450C9C[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 extern "C" void actionInitWait2__11daObjLife_cFv();
 

@@ -23,20 +23,22 @@ struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CDD4 */ void transM(cXyz const&);
     /* 8000CE38 */ void scaleM(f32, f32, f32);
+
+    static u8 now[48];
 };
 
-struct J3DAnmTextureSRTKey {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
     /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -53,10 +55,14 @@ struct fopAc_ac_c {
 
 struct fopAcM_wt_c {
     /* 8001DD84 */ void waterCheck(cXyz const*);
+
+    static f32 mWaterY[1 + 1 /* padding */];
 };
 
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
+
+    static f32 mGroundY;
 };
 
 struct door_param2_c {
@@ -165,11 +171,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
 };
+
+struct _GXColor {};
 
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
@@ -273,6 +279,14 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct J3DModel {};
@@ -481,15 +495,15 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
+extern "C" u8 sincosTable___5JMath[65536];
+extern "C" f32 mGroundY__11fopAcM_gc_c;
+extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" extern u8 data_80677D38[4];
 
 //

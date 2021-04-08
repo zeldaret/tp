@@ -16,7 +16,9 @@ struct JKRThread {
     /* 802D1758 */ ~JKRThread();
 };
 
-struct JKRHeap {};
+struct JKRHeap {
+    static u8 sSystemHeap[4];
+};
 
 struct JKRDecompCommand {
     /* 802DBD70 */ JKRDecompCommand();
@@ -37,6 +39,10 @@ struct JKRDecomp {
     /* 802DBA58 */ void decodeSZP(u8*, u8*, u32, u32);
     /* 802DBC14 */ void decodeSZS(u8*, u8*, u32, u32);
     /* 802DBCF8 */ void checkCompressed(u8*);
+
+    static u8 sMessageBuffer[32];
+    static u8 sMessageQueue[32];
+    static u8 sDecompObject[4 + 4 /* padding */];
 };
 
 struct JKRAMCommand {};
@@ -64,6 +70,9 @@ extern "C" void decodeSZS__9JKRDecompFPUcPUcUlUl();
 extern "C" void checkCompressed__9JKRDecompFPUc();
 extern "C" void __ct__16JKRDecompCommandFv();
 extern "C" void __dt__16JKRDecompCommandFv();
+extern "C" u8 sMessageBuffer__9JKRDecomp[32];
+extern "C" u8 sMessageQueue__9JKRDecomp[32];
+extern "C" u8 sDecompObject__9JKRDecomp[4 + 4 /* padding */];
 
 //
 // External References:
@@ -82,7 +91,7 @@ extern "C" void _savegpr_27();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
-extern "C" extern u8 sSystemHeap__7JKRHeap[4];
+extern "C" u8 sSystemHeap__7JKRHeap[4];
 
 //
 // Declarations:
@@ -90,7 +99,7 @@ extern "C" extern u8 sSystemHeap__7JKRHeap[4];
 
 /* ############################################################################################## */
 /* 804514B0-804514B8 0009B0 0004+04 1/1 0/0 0/0 .sbss            sDecompObject__9JKRDecomp */
-static u8 sDecompObject__9JKRDecomp[4 + 4 /* padding */];
+u8 JKRDecomp::sDecompObject[4 + 4 /* padding */];
 
 /* 802DB680-802DB6E0 2D5FC0 0060+00 0/0 1/1 0/0 .text            create__9JKRDecompFl */
 #pragma push
@@ -104,13 +113,13 @@ asm void JKRDecomp::create(s32 param_0) {
 
 /* ############################################################################################## */
 /* 803CC460-803CC480 029580 0020+00 1/1 0/0 0/0 .data            sMessageBuffer__9JKRDecomp */
-SECTION_DATA static u8 sMessageBuffer__9JKRDecomp[32] = {
+SECTION_DATA u8 JKRDecomp::sMessageBuffer[32] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 803CC480-803CC4A0 0295A0 0020+00 2/2 0/0 0/0 .data            sMessageQueue__9JKRDecomp */
-SECTION_DATA static u8 sMessageQueue__9JKRDecomp[32] = {
+SECTION_DATA u8 JKRDecomp::sMessageQueue[32] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };

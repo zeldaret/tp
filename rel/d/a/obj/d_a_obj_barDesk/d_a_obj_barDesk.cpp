@@ -13,6 +13,10 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct mDoHIO_entry_c {
     /* 80BA91B8 */ ~mDoHIO_entry_c();
 };
@@ -32,6 +36,9 @@ struct daBarDesk_c {
     /* 80BA9844 */ void setBreakEffect();
     /* 80BA98E8 */ void Draw();
     /* 80BA998C */ void Delete();
+
+    static u8 const mCcDObjInfo[48];
+    static u8 mCcDCyl[68];
 };
 
 struct daBarDesk_HIO_c {
@@ -150,6 +157,10 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DModel {};
 
 //
@@ -180,7 +191,9 @@ extern "C" static void daBarDesk_Create__FP10fopAc_ac_c();
 extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" void __dt__15daBarDesk_HIO_cFv();
 extern "C" void __sinit_d_a_obj_barDesk_cpp();
+extern "C" u8 const mCcDObjInfo__11daBarDesk_c[48];
 extern "C" extern char const* const d_a_obj_barDesk__stringBase0;
+extern "C" u8 mCcDCyl__11daBarDesk_c[68];
 
 //
 // External References:
@@ -236,11 +249,11 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -267,7 +280,7 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80BA9BDC-80BA9C20 000020 0044+00 2/2 0/0 0/0 .data            mCcDCyl__11daBarDesk_c */
-SECTION_DATA static u8 mCcDCyl__11daBarDesk_c[68] = {
+SECTION_DATA u8 daBarDesk_c::mCcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -504,12 +517,12 @@ asm void daBarDesk_c::init_modeWait() {
 
 /* ############################################################################################## */
 /* 80BA9B70-80BA9BA0 000000 0030+00 2/2 0/0 0/0 .rodata          mCcDObjInfo__11daBarDesk_c */
-SECTION_RODATA static u8 const mCcDObjInfo__11daBarDesk_c[48] = {
+SECTION_RODATA u8 const daBarDesk_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xD8, 0xFA, 0xFD, 0xBF, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BA9B70, &mCcDObjInfo__11daBarDesk_c);
+COMPILER_STRIP_GATE(80BA9B70, &daBarDesk_c::mCcDObjInfo);
 
 /* 80BA9BA0-80BA9BA4 000030 0004+00 1/1 0/0 0/0 .rodata          @3839 */
 SECTION_RODATA static f32 const lit_3839 = 90.0f;

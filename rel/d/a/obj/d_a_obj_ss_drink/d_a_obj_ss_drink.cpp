@@ -13,18 +13,20 @@
 
 struct request_of_phase_process_class {};
 
-struct cXyz {};
-
 struct csXyz {};
+
+struct cXyz {};
 
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
-struct J3DAnmTexPattern {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTexPattern {};
 
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
@@ -79,6 +81,9 @@ struct daObj_SSDrink_c {
     /* 80CE644C */ bool wait(void*);
     /* 80CE6454 */ void talk(void*);
     /* 80CE6514 */ void drink(void*);
+
+    static u8 const mCcDObjInfo[48];
+    static u8 mCcDCyl[68];
 };
 
 struct daObj_SSBase_c {
@@ -128,6 +133,8 @@ struct _GXTexObj {};
 
 struct dDlst_shadowControl_c {
     /* 80055F84 */ void setSimple(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
+
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -278,7 +285,9 @@ extern "C" void __dt__8cM3dGAabFv();
 extern "C" void __dt__12dBgS_AcchCirFv();
 extern "C" void __dt__10dCcD_GSttsFv();
 extern "C" void __dt__12dBgS_ObjAcchFv();
+extern "C" u8 const mCcDObjInfo__15daObj_SSDrink_c[48];
 extern "C" extern char const* const d_a_obj_ss_drink__stringBase0;
+extern "C" u8 mCcDCyl__15daObj_SSDrink_c[68];
 
 //
 // External References:
@@ -361,9 +370,9 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" void soldoutItem__8daMyna_cFUi();
 
@@ -397,7 +406,7 @@ SECTION_DATA static void* l_resFileName = (void*)&d_a_obj_ss_drink__stringBase0;
 SECTION_DATA static void* l_bmdName = (void*)(((char*)&d_a_obj_ss_drink__stringBase0) + 0x8);
 
 /* 80CE69EC-80CE6A30 000028 0044+00 2/2 0/0 0/0 .data            mCcDCyl__15daObj_SSDrink_c */
-SECTION_DATA static u8 mCcDCyl__15daObj_SSDrink_c[68] = {
+SECTION_DATA u8 daObj_SSDrink_c::mCcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -599,12 +608,12 @@ asm void daObj_SSDrink_c::create() {
 
 /* ############################################################################################## */
 /* 80CE6930-80CE6960 000000 0030+00 5/5 0/0 0/0 .rodata          mCcDObjInfo__15daObj_SSDrink_c */
-SECTION_RODATA static u8 const mCcDObjInfo__15daObj_SSDrink_c[48] = {
+SECTION_RODATA u8 const daObj_SSDrink_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CE6930, &mCcDObjInfo__15daObj_SSDrink_c);
+COMPILER_STRIP_GATE(80CE6930, &daObj_SSDrink_c::mCcDObjInfo);
 
 /* 80CE6960-80CE6964 000030 0004+00 1/3 0/0 0/0 .rodata          @4000 */
 SECTION_RODATA static f32 const lit_4000 = 1.0f;

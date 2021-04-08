@@ -16,11 +16,11 @@ struct dMsgScrnLight_c {
     /* 80245C04 */ void draw(f32*, f32, f32, f32, f32, f32, u8);
 };
 
+struct J2DAnmTextureSRTKey {};
+
 struct JKRExpHeap {};
 
 struct J2DAnmColor {};
-
-struct J2DAnmTextureSRTKey {};
 
 struct dMsgScrnItem_c {
     /* 8023E79C */ dMsgScrnItem_c(u8, u8, JKRExpHeap*);
@@ -102,6 +102,10 @@ struct dMeter2Info_c {
     /* 8021CF08 */ void readItemTexture(u8, void*, J2DPicture*, void*, J2DPicture*, void*,
                                         J2DPicture*, void*, J2DPicture*, int);
     /* 8021D36C */ void setItemColor(u8, J2DPicture*, J2DPicture*, J2DPicture*, J2DPicture*);
+};
+
+struct dItem_data {
+    static void* item_resource[1530];
 };
 
 struct Vec {};
@@ -264,7 +268,7 @@ extern "C" void _restgpr_25();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern void* item_resource__10dItem_data[1530];
+extern "C" void* item_resource__10dItem_data[1530];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_drawHIO[3880];
 extern "C" extern u8 g_meter2_info[248];

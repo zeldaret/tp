@@ -54,11 +54,27 @@ struct Z2SceneMgr {
     /* 802B9C50 */ void framework();
 };
 
+struct Z2Param {
+    static f32 VOL_BGM_DEFAULT;
+    static f32 VOL_SE_SYSTEM_DEFAULT;
+    static f32 VOL_SE_LINK_VOICE_DEFAULT;
+    static f32 VOL_SE_LINK_MOTION_DEFAULT;
+    static f32 VOL_SE_LINK_FOOTNOTE_DEFAULT;
+    static f32 VOL_SE_CHAR_VOICE_DEFAULT;
+    static f32 VOL_SE_CHAR_MOVE_DEFAULT;
+    static f32 VOL_SE_OBJECT_DEFAULT;
+    static f32 VOL_SE_ATMOSPHERE_DEFAULT;
+};
+
 struct Z2FxLineMgr {
     /* 802BA7DC */ Z2FxLineMgr();
 };
 
 struct JAISoundHandle {};
+
+struct JKRSolidHeap {};
+
+struct JKRArchive {};
 
 struct JAISoundID {};
 
@@ -68,10 +84,6 @@ struct JGeometry {
     /* TVec3<f32> */
     struct TVec3__template0 {};
 };
-
-struct JKRArchive {};
-
-struct JKRSolidHeap {};
 
 struct Z2AudioMgr {
     /* 802CD248 */ Z2AudioMgr();
@@ -83,6 +95,8 @@ struct Z2AudioMgr {
     /* 802CD9CC */ void resetRecover();
     /* 802CDA6C */ void hasReset() const;
     /* 802CDB1C */ void startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
+
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JAUSection {
@@ -140,6 +154,10 @@ struct JAUAudioArcInterpreter {
 
 struct JASTrack {};
 
+struct JASSeqParser {
+    static u8 sCallBackFunc[4];
+};
+
 struct JASResArcLoader {
     /* 80290C04 */ void getResMaxSize(JKRArchive const*);
 };
@@ -182,6 +200,10 @@ struct JASAudioReseter {
     /* 8029D138 */ void start(u32, bool);
     /* 8029D1D4 */ void resume();
     /* 8029D1F8 */ void checkDone() const;
+};
+
+struct JASAramStream {
+    static u8 sBlockSize[4];
 };
 
 struct JAIStreamAramMgr {
@@ -227,6 +249,7 @@ extern "C" void func_802CDB68();
 extern "C" void func_802CDC08(u32);
 extern "C" void func_802CDCEC(u32*);
 extern "C" extern char const* const Z2AudioMgr__stringBase0;
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // External References:
@@ -312,19 +335,19 @@ extern "C" extern void* __vt__11Z2SoundInfo[20];
 extern "C" extern void* __files[80];
 extern "C" extern u8 data_804341C4[16 + 4 /* padding */];
 extern "C" extern u8 data_804341E4[16 + 4 /* padding */];
-extern "C" extern f32 VOL_BGM_DEFAULT__7Z2Param;
-extern "C" extern f32 VOL_SE_SYSTEM_DEFAULT__7Z2Param;
-extern "C" extern f32 VOL_SE_LINK_VOICE_DEFAULT__7Z2Param;
-extern "C" extern f32 VOL_SE_LINK_MOTION_DEFAULT__7Z2Param;
-extern "C" extern f32 VOL_SE_LINK_FOOTNOTE_DEFAULT__7Z2Param;
-extern "C" extern f32 VOL_SE_CHAR_VOICE_DEFAULT__7Z2Param;
-extern "C" extern f32 VOL_SE_CHAR_MOVE_DEFAULT__7Z2Param;
-extern "C" extern f32 VOL_SE_OBJECT_DEFAULT__7Z2Param;
-extern "C" extern f32 VOL_SE_ATMOSPHERE_DEFAULT__7Z2Param;
+extern "C" f32 VOL_BGM_DEFAULT__7Z2Param;
+extern "C" f32 VOL_SE_SYSTEM_DEFAULT__7Z2Param;
+extern "C" f32 VOL_SE_LINK_VOICE_DEFAULT__7Z2Param;
+extern "C" f32 VOL_SE_LINK_MOTION_DEFAULT__7Z2Param;
+extern "C" f32 VOL_SE_LINK_FOOTNOTE_DEFAULT__7Z2Param;
+extern "C" f32 VOL_SE_CHAR_VOICE_DEFAULT__7Z2Param;
+extern "C" f32 VOL_SE_CHAR_MOVE_DEFAULT__7Z2Param;
+extern "C" f32 VOL_SE_OBJECT_DEFAULT__7Z2Param;
+extern "C" f32 VOL_SE_ATMOSPHERE_DEFAULT__7Z2Param;
 extern "C" extern u8 data_80450B4C[4];
 extern "C" extern u8 data_80450B50[4];
-extern "C" extern u8 sCallBackFunc__12JASSeqParser[4];
-extern "C" extern u8 sBlockSize__13JASAramStream[4];
+extern "C" u8 sCallBackFunc__12JASSeqParser[4];
+extern "C" u8 sBlockSize__13JASAramStream[4];
 extern "C" extern u8 data_80451348[8];
 extern "C" extern u8 data_80451354[4];
 
@@ -342,8 +365,7 @@ SECTION_DATA extern void* __vt__10Z2AudioMgr[3] = {
 
 /* 80451368-80451370 000868 0004+04 1/1 251/251 900/900 .sbss            mAudioMgrPtr__10Z2AudioMgr
  */
-extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+u8 Z2AudioMgr::mAudioMgrPtr[4 + 4 /* padding */];
 
 /* 802CD248-802CD34C 2C7B88 0104+00 0/0 1/1 0/0 .text            __ct__10Z2AudioMgrFv */
 #pragma push

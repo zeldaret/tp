@@ -17,6 +17,13 @@ struct daPy_py_c {
     /* 8015F398 */ void checkMasterSwordEquip();
 };
 
+struct dCcD_GObjInf {
+    /* 800844F8 */ void GetTgHitObj();
+    /* 8008457C */ void GetTgHitObjSe();
+};
+
+struct Quaternion {};
+
 struct Vec {};
 
 struct cXyz {
@@ -25,13 +32,9 @@ struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
     /* 80266C18 */ void operator/(f32) const;
     /* 80266CBC */ void outprod(Vec const&) const;
-};
 
-struct Quaternion {};
-
-struct dCcD_GObjInf {
-    /* 800844F8 */ void GetTgHitObj();
-    /* 8008457C */ void GetTgHitObjSe();
+    static f32 Zero[3];
+    static u8 BaseY[12];
 };
 
 struct daObj {
@@ -55,13 +58,15 @@ struct dRes_control_c {
 
 struct dKy_tevstr_c {};
 
-struct JPABaseEmitter {};
-
 struct J3DModelData {};
+
+struct JPABaseEmitter {};
 
 struct dPa_modelEcallBack {
     /* 8004AC00 */ void setModel(JPABaseEmitter*, J3DModelData*, dKy_tevstr_c const&, u8, void*, u8,
                                  u8);
+
+    static u8 mEcallback[4];
 };
 
 struct dPa_levelEcallBack {};
@@ -74,6 +79,8 @@ struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
                             u8, dPa_levelEcallBack*, s8, _GXColor const*, _GXColor const*,
                             cXyz const*, f32);
+
+    static u8 mTsubo[64];
 };
 
 struct dCcD_GAtTgCoCommonBase {
@@ -92,6 +99,14 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 //
@@ -153,13 +168,13 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void acos();
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mTsubo__13dPa_control_c[64];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 BaseY__4cXyz[12];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mTsubo__13dPa_control_c[64];
+extern "C" f32 Zero__4cXyz[3];
+extern "C" u8 BaseY__4cXyz[12];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u8 struct_80450DF0[8];
-extern "C" extern u8 mEcallback__18dPa_modelEcallBack[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mEcallback__18dPa_modelEcallBack[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

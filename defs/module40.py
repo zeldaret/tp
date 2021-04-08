@@ -36,10 +36,10 @@ SYMBOLS = [
 	{'addr':0x80490B88,'size':8,'pad':0,'label':"daTag_Telop_IsDelete__FP13daTag_Telop_c",'name':"daTag_Telop_IsDelete__FP13daTag_Telop_c",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReturnFunction"},
 	{'addr':0x80490B90,'size':48,'pad':0,'label':"daTag_Telop_Delete__FP13daTag_Telop_c",'name':"daTag_Telop_Delete__FP13daTag_Telop_c",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
 	{'addr':0x80490BC0,'size':32,'pad':0,'label':"daTag_Telop_Create__FP10fopAc_ac_c",'name':"daTag_Telop_Create__FP10fopAc_ac_c",'lib':-1,'tu':3,'section':0,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ASMFunction"},
-	{'addr':0x80490BE0,'size':4,'pad':0,'label':"_ctors",'name':"_ctors",'lib':-1,'tu':1,'section':1,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
-	{'addr':0x80490BE4,'size':4,'pad':0,'label':"_dtors",'name':"_dtors",'lib':-1,'tu':2,'section':2,'class_template':False,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
-	{'addr':0x80490BE8,'size':32,'pad':0,'label':"l_daTag_Telop_Method",'name':"l_daTag_Telop_Method",'lib':-1,'tu':3,'section':3,'class_template':False,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
-	{'addr':0x80490C08,'size':48,'pad':0,'label':"g_profile_TAG_TELOP",'name':"g_profile_TAG_TELOP",'lib':-1,'tu':3,'section':3,'class_template':False,'static':False,'is_reachable':False,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80490BE0,'size':4,'pad':0,'label':"_ctors",'name':"_ctors",'lib':-1,'tu':1,'section':1,'class_template':None,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
+	{'addr':0x80490BE4,'size':4,'pad':0,'label':"_dtors",'name':"_dtors",'lib':-1,'tu':2,'section':2,'class_template':None,'static':False,'is_reachable':True,'r':[0,1,0],'sh':[0,0,0],'type':"LinkerGenerated"},
+	{'addr':0x80490BE8,'size':32,'pad':0,'label':"l_daTag_Telop_Method",'name':"l_daTag_Telop_Method",'lib':-1,'tu':3,'section':3,'class_template':None,'static':True,'is_reachable':False,'r':[1,0,0],'sh':[0,0,0],'type':"ReferenceArray"},
+	{'addr':0x80490C08,'size':48,'pad':0,'label':"g_profile_TAG_TELOP",'name':"g_profile_TAG_TELOP",'lib':-1,'tu':3,'section':3,'class_template':None,'static':False,'is_reachable':False,'r':[0,0,1],'sh':[0,0,0],'type':"ReferenceArray"},
 ]
 
 # Names

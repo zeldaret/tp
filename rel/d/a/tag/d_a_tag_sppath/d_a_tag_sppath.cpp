@@ -16,6 +16,8 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
+struct dPath {};
+
 struct Vec {};
 
 struct cXyz {
@@ -23,8 +25,6 @@ struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
     /* 80266F48 */ void normalizeZP();
 };
-
-struct dPath {};
 
 struct daTagSppath_c {
     /* 80D61C18 */ void create();

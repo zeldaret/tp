@@ -13,6 +13,8 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
@@ -21,11 +23,11 @@ struct cXyz {
     /* 80BF33CC */ ~cXyz();
 };
 
-struct csXyz {};
-
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -54,6 +56,8 @@ struct daObj_Gadget_c {
 
 struct daObj_Gadget_Param_c {
     /* 80BF48D8 */ ~daObj_Gadget_Param_c();
+
+    static u8 const m[44];
 };
 
 struct dKy_tevstr_c {};
@@ -89,6 +93,8 @@ struct _GXTexObj {};
 
 struct dDlst_shadowControl_c {
     /* 80055F84 */ void setSimple(cXyz*, f32, f32, cXyz*, s16, f32, _GXTexObj*);
+
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -192,6 +198,10 @@ struct cBgS {
     /* 80074744 */ void GetTriPla(cBgS_PolyInfo const&, cM3dGPla*) const;
 };
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 //
@@ -233,6 +243,7 @@ extern "C" void __sinit_d_a_obj_gadget_cpp();
 extern "C" void __dt__20daObj_Gadget_Param_cFv();
 extern "C" static void func_80BF4920();
 extern "C" static void func_80BF4928();
+extern "C" u8 const m__20daObj_Gadget_Param_c[44];
 extern "C" extern char const* const d_a_obj_gadget__stringBase0;
 
 //
@@ -327,11 +338,11 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 extern "C" void __register_global_object();
 
@@ -486,12 +497,12 @@ asm daObj_Gadget_c::~daObj_Gadget_c() {
 
 /* ############################################################################################## */
 /* 80BF4944-80BF4970 000000 002C+00 4/4 0/0 0/0 .rodata          m__20daObj_Gadget_Param_c */
-SECTION_RODATA static u8 const m__20daObj_Gadget_Param_c[44] = {
+SECTION_RODATA u8 const daObj_Gadget_Param_c::m[44] = {
     0x00, 0x00, 0x00, 0x00, 0xC0, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x42, 0xC8, 0x00,
     0x00, 0x42, 0x14, 0x00, 0x00, 0x41, 0xD0, 0x00, 0x00, 0x41, 0x50, 0x00, 0x00, 0x41, 0x60,
     0x00, 0x00, 0x42, 0x14, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x41, 0x90, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BF4944, &m__20daObj_Gadget_Param_c);
+COMPILER_STRIP_GATE(80BF4944, &daObj_Gadget_Param_c::m);
 
 /* 80BF4970-80BF49A0 00002C 0030+00 1/1 0/0 0/0 .rodata          l_ccDObjData */
 SECTION_RODATA static u8 const l_ccDObjData[48] = {

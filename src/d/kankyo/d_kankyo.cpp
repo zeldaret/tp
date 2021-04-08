@@ -15,15 +15,21 @@ struct sub_kankyo__class {};
 
 struct stage_pure_lightvec_info_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct mDoGph_gInf_c {
     struct bloom_c {
         /* 80009544 */ void create();
     };
+
+    static u8 m_bloom[20];
 };
 
-struct J3DAnmTextureSRTKey {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -51,6 +57,10 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
+struct dSv_event_tmp_flag_c {
+    static u8 const tempBitLabels[370 + 2 /* padding */];
+};
+
 struct dSv_event_c {
     /* 800349A4 */ void offEventBit(u16);
     /* 800349BC */ void isEventBit(u16) const;
@@ -59,9 +69,17 @@ struct dSv_event_c {
 struct dStage_roomControl_c {
     /* 80024384 */ void getStatusRoomDt(int);
     /* 8019F780 */ void GetTimePass();
+
+    static u8 mStatus[65792];
 };
 
+struct _GXColorS10 {};
+
 struct dKy_tevstr_c {};
+
+struct J3DModelData {
+    /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
+};
 
 struct Vec {};
 
@@ -70,12 +88,6 @@ struct cXyz {
     /* 80266AE4 */ void operator+(Vec const&) const;
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80266B84 */ void operator*(f32) const;
-};
-
-struct _GXColorS10 {};
-
-struct J3DModelData {
-    /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
 };
 
 struct dScnKy_env_light_c {
@@ -173,6 +185,10 @@ struct Z2EnvSeMgr {
     /* 802C6998 */ void resetScene();
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct WIND_INF_ENTITY {
     /* 8019F4B8 */ ~WIND_INF_ENTITY();
     /* 8019F4F4 */ WIND_INF_ENTITY();
@@ -189,6 +205,10 @@ struct JUTNameTab {
 
 struct JPABaseEmitter {
     /* 8027EC60 */ void deleteAllParticle();
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
 };
 
 struct JKRSolidHeap {};
@@ -574,23 +594,23 @@ extern "C" void memcmp();
 extern "C" void strcmp();
 extern "C" void cos();
 extern "C" void sin();
-extern "C" extern u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
+extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
 extern "C" extern u8 const j3dDefaultMtx[48];
 extern "C" extern u8 const j3dDefaultLightInfo[52];
 extern "C" extern void* __vt__12J3DFrameCtrl[3];
 extern "C" extern void* g_fopKy_Method[5 + 1 /* padding */];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 m_bloom__13mDoGph_gInf_c[20];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mStatus__20dStage_roomControl_c[65792];
+extern "C" u8 m_bloom__13mDoGph_gInf_c[20];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mStatus__20dStage_roomControl_c[65792];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_meter2_info[248];
 extern "C" extern u8 g_Counter[12 + 4 /* padding */];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:

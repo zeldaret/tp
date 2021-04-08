@@ -19,6 +19,8 @@ struct J3DMtxBuffer {};
 
 struct J3DMtxCalc {
     /* 80325D1C */ void setMtxBuffer(J3DMtxBuffer*);
+
+    static u8 mMtxBuffer[4];
 };
 
 struct J3DModelHierarchy {};
@@ -28,6 +30,8 @@ struct J3DMaterialTable {};
 struct J3DJoint {
     /* 8032F13C */ void appendChild(J3DJoint*);
     /* 8032F3F8 */ void recursiveCalc();
+
+    static u8 mCurrentMtxCalc[4 + 4 /* padding */];
 };
 
 struct J3DJointTree {
@@ -67,8 +71,8 @@ extern "C" void appendChild__8J3DJointFP8J3DJoint();
 extern "C" void recursiveCalc__8J3DJointFv();
 extern "C" void _savegpr_23();
 extern "C" void _restgpr_23();
-extern "C" extern u8 mMtxBuffer__10J3DMtxCalc[4];
-extern "C" extern u8 mCurrentMtxCalc__8J3DJoint[4 + 4 /* padding */];
+extern "C" u8 mMtxBuffer__10J3DMtxCalc[4];
+extern "C" u8 mCurrentMtxCalc__8J3DJoint[4 + 4 /* padding */];
 
 //
 // Declarations:

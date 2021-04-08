@@ -13,6 +13,10 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
 struct mDoHIO_entry_c {
     /* 80C6A6B4 */ ~mDoHIO_entry_c();
 };
@@ -35,6 +39,9 @@ struct daFlorBoad_c {
     /* 80C6AD40 */ void modeBreak();
     /* 80C6AEB0 */ void Draw();
     /* 80C6AF54 */ void Delete();
+
+    static u8 const mCcDObjInfo[48];
+    static u8 mCcDCyl[68];
 };
 
 struct daFlorBoad_HIO_c {
@@ -49,9 +56,9 @@ struct dSv_info_c {
 
 struct dKy_tevstr_c {};
 
-struct cXyz {};
-
 struct J3DModelData {};
+
+struct cXyz {};
 
 struct dScnKy_env_light_c {
     /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
@@ -145,6 +152,10 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
 struct J3DModel {};
 
 //
@@ -175,7 +186,9 @@ extern "C" static void daFlorBoad_Create__FP10fopAc_ac_c();
 extern "C" void __dt__10cCcD_GSttsFv();
 extern "C" void __dt__16daFlorBoad_HIO_cFv();
 extern "C" void __sinit_d_a_obj_lv5FloorBoard_cpp();
+extern "C" u8 const mCcDObjInfo__12daFlorBoad_c[48];
 extern "C" extern char const* const d_a_obj_lv5FloorBoard__stringBase0;
+extern "C" u8 mCcDCyl__12daFlorBoad_c[68];
 
 //
 // External References:
@@ -231,11 +244,11 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -266,7 +279,7 @@ SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
 #pragma pop
 
 /* 80C6B1B8-80C6B1FC 000020 0044+00 2/2 0/0 0/0 .data            mCcDCyl__12daFlorBoad_c */
-SECTION_DATA static u8 mCcDCyl__12daFlorBoad_c[68] = {
+SECTION_DATA u8 daFlorBoad_c::mCcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -521,12 +534,12 @@ asm void daFlorBoad_c::init_modeWait() {
 
 /* ############################################################################################## */
 /* 80C6B14C-80C6B17C 000004 0030+00 1/1 0/0 0/0 .rodata          mCcDObjInfo__12daFlorBoad_c */
-SECTION_RODATA static u8 const mCcDObjInfo__12daFlorBoad_c[48] = {
+SECTION_RODATA u8 const daFlorBoad_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x40, 0x00, 0x20, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x02,
     0x00, 0x00, 0x00, 0x01, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C6B14C, &mCcDObjInfo__12daFlorBoad_c);
+COMPILER_STRIP_GATE(80C6B14C, &daFlorBoad_c::mCcDObjInfo);
 
 /* 80C6B17C-80C6B180 000034 0004+00 0/1 0/0 0/0 .rodata          @3870 */
 #pragma push

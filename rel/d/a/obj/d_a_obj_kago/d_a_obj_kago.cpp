@@ -13,6 +13,8 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
@@ -21,11 +23,11 @@ struct cXyz {
     /* 80C32324 */ ~cXyz();
 };
 
-struct csXyz {};
-
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -55,6 +57,12 @@ struct daObj_Kago_c {
 
 struct daObj_Kago_Param_c {
     /* 80C33C14 */ ~daObj_Kago_Param_c();
+
+    static u8 const m[44];
+};
+
+struct daNpcT_c {
+    static u8 const mCcDObjData[48];
 };
 
 struct dKy_tevstr_c {};
@@ -84,6 +92,10 @@ struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
                             cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
                             _GXColor const*, cXyz const*, f32);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -191,6 +203,10 @@ struct cBgS {
 
 struct _GXTexObj {};
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 //
@@ -234,6 +250,7 @@ extern "C" void __sinit_d_a_obj_kago_cpp();
 extern "C" void __dt__18daObj_Kago_Param_cFv();
 extern "C" static void func_80C33C5C();
 extern "C" static void func_80C33C64();
+extern "C" u8 const m__18daObj_Kago_Param_c[44];
 extern "C" extern char const* const d_a_obj_kago__stringBase0;
 
 //
@@ -324,7 +341,7 @@ extern "C" void _savegpr_27();
 extern "C" void _restgpr_24();
 extern "C" void _restgpr_25();
 extern "C" void _restgpr_27();
-extern "C" extern u8 const mCcDObjData__8daNpcT_c[48];
+extern "C" u8 const mCcDObjData__8daNpcT_c[48];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
@@ -332,11 +349,11 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 extern "C" void __register_global_object();
 
@@ -494,12 +511,12 @@ asm dCcD_Cyl::~dCcD_Cyl() {
 
 /* ############################################################################################## */
 /* 80C33C80-80C33CAC 000000 002C+00 5/5 0/0 0/0 .rodata          m__18daObj_Kago_Param_c */
-SECTION_RODATA static u8 const m__18daObj_Kago_Param_c[44] = {
+SECTION_RODATA u8 const daObj_Kago_Param_c::m[44] = {
     0x00, 0x00, 0x00, 0x00, 0xC0, 0xA0, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xC8, 0x00,
     0x00, 0x42, 0x92, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0x41, 0xC0, 0x00, 0x00, 0x41, 0xF0,
     0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0x42, 0x5C, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C33C80, &m__18daObj_Kago_Param_c);
+COMPILER_STRIP_GATE(80C33C80, &daObj_Kago_Param_c::m);
 
 /* 80C33CAC-80C33CDC 00002C 0030+00 0/0 0/0 0/0 .rodata          l_ccDObjData */
 #pragma push

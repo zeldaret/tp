@@ -11,9 +11,17 @@
 // Types:
 //
 
+struct dSv_event_flag_c {
+    static u8 saveBitLabels[1644 + 4 /* padding */];
+};
+
 struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
+
+struct JAISoundHandle {};
+
+struct JAISoundID {};
 
 struct JGeometry {
     template <typename A1>
@@ -21,10 +29,6 @@ struct JGeometry {
     /* TVec3<f32> */
     struct TVec3__template0 {};
 };
-
-struct JAISoundHandle {};
-
-struct JAISoundID {};
 
 struct Z2SoundStarter {
     /* 802AAB94 */ Z2SoundStarter(bool);
@@ -135,6 +139,8 @@ struct Z2CreatureLink {
     /* 802C4784 */ void startCollisionSE(u32, u32);
     /* 802C4814 */ void startHitItemSE(u32, u32, Z2SoundObjBase*, f32);
     /* 802C48D8 */ void setResumeAttack(bool);
+
+    static u8 mLinkPtr[4 + 4 /* padding */];
 };
 
 struct Z2Creature {
@@ -225,6 +231,7 @@ extern "C" void startFireSound__15Z2SoundObjCoachFUs();
 extern "C" void startSound__15Z2SoundObjCoachF10JAISoundIDUlSc();
 extern "C" static void func_802C588C();
 extern "C" static void func_802C5894();
+extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 
 //
 // External References:
@@ -284,7 +291,7 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_24();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
+extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
 extern "C" extern void* __vt__14Z2SoundStarter[5 + 1 /* padding */];
 extern "C" extern void* __vt__16Z2SoundObjSimple[8];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
@@ -417,8 +424,7 @@ SECTION_DATA extern void* __vt__14Z2CreatureLink[18] = {
 };
 
 /* 80451360-80451368 000860 0004+04 3/3 15/15 0/0 .sbss            mLinkPtr__14Z2CreatureLink */
-extern u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
-u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
+u8 Z2CreatureLink::mLinkPtr[4 + 4 /* padding */];
 
 /* 802C333C-802C3464 2BDC7C 0128+00 0/0 1/1 0/0 .text            __ct__14Z2CreatureLinkFv */
 #pragma push

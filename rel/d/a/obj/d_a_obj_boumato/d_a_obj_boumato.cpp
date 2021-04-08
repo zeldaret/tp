@@ -13,16 +13,18 @@
 
 struct request_of_phase_process_class {};
 
-struct cXyz {};
-
 struct csXyz {
     /* 80BBB1F4 */ ~csXyz();
     /* 80BBB558 */ csXyz();
 };
 
+struct cXyz {};
+
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -57,6 +59,8 @@ struct daObj_BouMato_c {
 
 struct daObj_BouMato_Param_c {
     /* 80BBC404 */ ~daObj_BouMato_Param_c();
+
+    static u8 const m[28];
 };
 
 struct dSv_info_c {
@@ -96,6 +100,10 @@ struct dEvent_manager_c {
     /* 80047A78 */ void endCheck(s16);
     /* 80047B1C */ void getMyStaffId(char const*, fopAc_ac_c*, int);
     /* 8004817C */ void cutEnd(int);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -196,6 +204,14 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 //
 // Forward References:
 //
@@ -234,6 +250,7 @@ extern "C" void __sinit_d_a_obj_boumato_cpp();
 extern "C" void __dt__21daObj_BouMato_Param_cFv();
 extern "C" static void func_80BBC44C();
 extern "C" static void func_80BBC454();
+extern "C" u8 const m__21daObj_BouMato_Param_c[28];
 extern "C" extern char const* const d_a_obj_boumato__stringBase0;
 
 //
@@ -324,12 +341,12 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 sincosTable___5JMath[65536];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -468,11 +485,11 @@ asm csXyz::~csXyz() {
 
 /* ############################################################################################## */
 /* 80BBC470-80BBC48C 000000 001C+00 4/4 0/0 0/0 .rodata          m__21daObj_BouMato_Param_c */
-SECTION_RODATA static u8 const m__21daObj_BouMato_Param_c[28] = {
+SECTION_RODATA u8 const daObj_BouMato_Param_c::m[28] = {
     0x00, 0x00, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xC8,
     0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BBC470, &m__21daObj_BouMato_Param_c);
+COMPILER_STRIP_GATE(80BBC470, &daObj_BouMato_Param_c::m);
 
 /* 80BBC48C-80BBC4BC 00001C 0030+00 1/1 0/0 0/0 .rodata          l_ccDObjData */
 SECTION_RODATA static u8 const l_ccDObjData[48] = {

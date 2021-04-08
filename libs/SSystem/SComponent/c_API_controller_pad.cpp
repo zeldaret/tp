@@ -13,6 +13,8 @@
 
 struct mDoCPd_c {
     /* 80007D74 */ void recalibrate();
+
+    static u8 m_cpadInfo[256];
 };
 
 //
@@ -27,7 +29,7 @@ extern "C" void cAPICPad_ANY_BUTTON__FUl();
 //
 
 extern "C" void recalibrate__8mDoCPd_cFv();
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
 
 //
 // Declarations:

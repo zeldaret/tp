@@ -82,6 +82,8 @@ struct JASBNKParser {
 
     /* 80299538 */ void createBank(void const*, JKRHeap*);
     /* 80299558 */ void createBasicBank(void const*, JKRHeap*);
+
+    static u8 sUsedHeapSize[4];
 };
 
 //
@@ -104,6 +106,7 @@ extern "C" void func_8029A000(void const*, u32);
 extern "C" void func_8029A018(void const*, u32);
 extern "C" void func_8029A030(void const*, u32);
 extern "C" void __sinit_JASBNKParser_cpp();
+extern "C" u8 sUsedHeapSize__12JASBNKParser[4];
 
 //
 // External References:
@@ -155,7 +158,7 @@ asm void JASBNKParser::createBank(void const* param_0, JKRHeap* param_1) {
 
 /* ############################################################################################## */
 /* 80451288-8045128C 000788 0004+00 1/1 0/0 0/0 .sbss            sUsedHeapSize__12JASBNKParser */
-static u8 sUsedHeapSize__12JASBNKParser[4];
+u8 JASBNKParser::sUsedHeapSize[4];
 
 /* 80299558-80299600 293E98 00A8+00 1/1 0/0 0/0 .text createBasicBank__12JASBNKParserFPCvP7JKRHeap
  */

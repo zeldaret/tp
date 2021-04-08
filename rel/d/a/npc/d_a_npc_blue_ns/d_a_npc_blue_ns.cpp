@@ -13,9 +13,15 @@
 
 struct request_of_phase_process_class {};
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -25,9 +31,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -163,10 +167,14 @@ struct daNpcBlueNS_c {
     /* 8096BD40 */ void _Evt_ChgYami_STNoppo_CutInit(int const&);
     /* 8096BDD8 */ void _Evt_ChgYami_STNoppo_CutMain(int const&);
     /* 8096C8B0 */ void adjustShapeAngle();
+
+    static u8 mEvtSeqList[84];
 };
 
 struct daNpcBlueNS_Param_c {
     /* 8096C8B4 */ ~daNpcBlueNS_Param_c();
+
+    static u8 const m[112];
 };
 
 struct dSv_info_c {
@@ -214,6 +222,10 @@ struct dEvent_manager_c {
     /* 800480EC */ void getMySubstanceP(int, char const*, int);
     /* 8004817C */ void cutEnd(int);
     /* 800487F0 */ void ChkPresentEnd();
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -307,6 +319,10 @@ struct cBgS_GndChk {
 };
 
 struct _GXTexObj {};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
+};
 
 struct J3DFrameCtrl {
     /* 803283FC */ void init(s16);
@@ -405,7 +421,9 @@ extern "C" void adjustShapeAngle__13daNpcBlueNS_cFv();
 extern "C" void __dt__19daNpcBlueNS_Param_cFv();
 extern "C" static void func_8096C8FC();
 extern "C" static void func_8096C904();
+extern "C" u8 const m__19daNpcBlueNS_Param_c[112];
 extern "C" extern char const* const d_a_npc_blue_ns__stringBase0;
+extern "C" u8 mEvtSeqList__13daNpcBlueNS_c[84];
 
 //
 // External References:
@@ -537,12 +555,12 @@ extern "C" extern void* __vt__8daNpcF_c[18];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" extern u32 __float_nan;
 extern "C" void __register_global_object();
 
@@ -666,7 +684,7 @@ SECTION_DATA static void* lit_3895[3] = {
 /* 8096CC98-8096CCEC 0000F8 0054+00 0/2 0/0 0/0 .data            mEvtSeqList__13daNpcBlueNS_c */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 mEvtSeqList__13daNpcBlueNS_c[84] = {
+SECTION_DATA u8 daNpcBlueNS_c::mEvtSeqList[84] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -916,7 +934,7 @@ SECTION_RODATA static u8 const l_cyl_src[68] = {
 COMPILER_STRIP_GATE(8096C920, &l_cyl_src);
 
 /* 8096C964-8096C9D4 000044 0070+00 3/9 0/0 0/0 .rodata          m__19daNpcBlueNS_Param_c */
-SECTION_RODATA static u8 const m__19daNpcBlueNS_Param_c[112] = {
+SECTION_RODATA u8 const daNpcBlueNS_Param_c::m[112] = {
     0x42, 0x5C, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x44, 0xFA, 0x00, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x42, 0xD2, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
@@ -925,7 +943,7 @@ SECTION_RODATA static u8 const m__19daNpcBlueNS_Param_c[112] = {
     0x42, 0x70, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0xC3, 0x96, 0x00, 0x00,
     0x00, 0x3C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8096C964, &m__19daNpcBlueNS_Param_c);
+COMPILER_STRIP_GATE(8096C964, &daNpcBlueNS_Param_c::m);
 
 /* 8096C9D4-8096C9D8 0000B4 0004+00 0/1 0/0 0/0 .rodata          @4265 */
 #pragma push

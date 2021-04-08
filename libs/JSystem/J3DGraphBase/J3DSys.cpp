@@ -29,6 +29,11 @@ struct J3DSys {
     /* 80310A3C */ void reinitTevStages();
     /* 80310D44 */ void reinitIndStages();
     /* 80310E3C */ void reinitPixelProc();
+
+    static u8 mCurrentMtx[48];
+    static f32 mCurrentS[3];
+    static f32 mParentS[3];
+    static u8 sTexCoordScaleTable[64 + 4 /* padding */];
 };
 
 //
@@ -49,6 +54,10 @@ extern "C" void reinitTevStages__6J3DSysFv();
 extern "C" void reinitIndStages__6J3DSysFv();
 extern "C" void reinitPixelProc__6J3DSysFv();
 extern "C" void __sinit_J3DSys_cpp();
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" f32 mCurrentS__6J3DSys[3];
+extern "C" f32 mParentS__6J3DSys[3];
+extern "C" u8 sTexCoordScaleTable__6J3DSys[64 + 4 /* padding */];
 extern "C" extern u8 j3dDefaultViewNo[4 + 4 /* padding */];
 
 //
@@ -127,20 +136,16 @@ extern u8 j3dSys[284];
 u8 j3dSys[284];
 
 /* 80434BE4-80434C14 061904 0030+00 0/0 17/17 154/154 .bss             mCurrentMtx__6J3DSys */
-extern u8 mCurrentMtx__6J3DSys[48];
-u8 mCurrentMtx__6J3DSys[48];
+u8 J3DSys::mCurrentMtx[48];
 
 /* 80434C14-80434C20 061934 000C+00 0/0 6/6 0/0 .bss             mCurrentS__6J3DSys */
-extern f32 mCurrentS__6J3DSys[3];
-f32 mCurrentS__6J3DSys[3];
+f32 J3DSys::mCurrentS[3];
 
 /* 80434C20-80434C2C 061940 000C+00 0/0 5/5 0/0 .bss             mParentS__6J3DSys */
-extern f32 mParentS__6J3DSys[3];
-f32 mParentS__6J3DSys[3];
+f32 J3DSys::mParentS[3];
 
 /* 80434C2C-80434C70 06194C 0040+04 1/1 17/17 0/0 .bss             sTexCoordScaleTable__6J3DSys */
-extern u8 sTexCoordScaleTable__6J3DSys[64 + 4 /* padding */];
-u8 sTexCoordScaleTable__6J3DSys[64 + 4 /* padding */];
+u8 J3DSys::sTexCoordScaleTable[64 + 4 /* padding */];
 
 /* 8030FDE8-8030FEC0 30A728 00D8+00 1/1 0/0 0/0 .text            __ct__6J3DSysFv */
 #pragma push

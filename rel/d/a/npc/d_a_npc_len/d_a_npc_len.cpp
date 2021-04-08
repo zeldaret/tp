@@ -11,9 +11,15 @@
 // Types:
 //
 
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
+
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -23,9 +29,7 @@ struct Z2Creature {
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
 
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -43,8 +47,6 @@ struct daPy_py_c {
     /* 8015F424 */ void checkNowWolfEyeUp();
 };
 
-struct daNpcT_motionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -52,11 +54,13 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80A68604 */ ~daNpcT_MotionSeqMngr_c();
 };
 
+struct daNpcT_motionAnmData_c {};
+
+struct J3DJoint {};
+
 struct daNpcT_faceMotionAnmData_c {};
 
 struct daNpcT_evtData_c {};
-
-struct J3DJoint {};
 
 struct daNpc_Len_c {
     /* 80A6432C */ ~daNpc_Len_c();
@@ -105,10 +109,15 @@ struct daNpc_Len_c {
     /* 80A68E20 */ s32 getFootLJointNo();
     /* 80A68E28 */ s32 getFootRJointNo();
     /* 80A68E30 */ bool chkXYItems();
+
+    static void* mCutNameList[4];
+    static u8 mCutList[48];
 };
 
 struct daNpc_Len_Param_c {
     /* 80A68E38 */ ~daNpc_Len_Param_c();
+
+    static u8 const m[148];
 };
 
 struct dCcD_GObjInf {
@@ -117,14 +126,14 @@ struct dCcD_GObjInf {
     /* 800844F8 */ void GetTgHitObj();
 };
 
+struct J3DModel {};
+
 struct cXyz {
     /* 80266AE4 */ void operator+(Vec const&) const;
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80A67F28 */ ~cXyz();
     /* 80A68600 */ cXyz();
 };
-
-struct J3DModel {};
 
 struct _GXColorS10 {};
 
@@ -186,6 +195,8 @@ struct daNpcT_c {
     /* 80A68BA8 */ void changeBck(int*, int*);
     /* 80A68BAC */ void changeBtp(int*, int*);
     /* 80A68BB0 */ void changeBtk(int*, int*);
+
+    static u8 mCcDCyl[68];
 };
 
 struct daNpcT_Path_c {
@@ -233,13 +244,13 @@ struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
 
-struct dBgS {};
-
 struct dBgS_AcchCir {
     /* 80075EAC */ dBgS_AcchCir();
     /* 80075F40 */ void SetWallR(f32);
     /* 80A6864C */ ~dBgS_AcchCir();
 };
+
+struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -484,7 +495,10 @@ extern "C" bool chkXYItems__11daNpc_Len_cFv();
 extern "C" void __dt__17daNpc_Len_Param_cFv();
 extern "C" static void func_80A68E80();
 extern "C" static void func_80A68E88();
+extern "C" u8 const m__17daNpc_Len_Param_c[148];
 extern "C" extern char const* const d_a_npc_len__stringBase0;
+extern "C" void* mCutNameList__11daNpc_Len_c[4];
+extern "C" u8 mCutList__11daNpc_Len_c[48];
 
 //
 // External References:
@@ -640,14 +654,14 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcT_c[68];
+extern "C" u8 mCcDCyl__8daNpcT_c[68];
 extern "C" extern void* __vt__8daNpcT_c[49];
 extern "C" extern void* __vt__15daNpcT_MatAnm_c[4 + 1 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 __float_nan;
@@ -860,7 +874,7 @@ SECTION_DATA static u8 l_motionSequenceData[224] = {
 #pragma pop
 
 /* 80A69774-80A69784 -00001 0010+00 1/1 0/0 0/0 .data            mCutNameList__11daNpc_Len_c */
-SECTION_DATA static void* mCutNameList__11daNpc_Len_c[4] = {
+SECTION_DATA void* daNpc_Len_c::mCutNameList[4] = {
     (void*)&d_a_npc_len__stringBase0,
     (void*)(((char*)&d_a_npc_len__stringBase0) + 0x28),
     (void*)(((char*)&d_a_npc_len__stringBase0) + 0x6C),
@@ -898,7 +912,7 @@ SECTION_DATA static void* lit_3847[3] = {
 #pragma pop
 
 /* 80A697A8-80A697D8 000720 0030+00 1/2 0/0 0/0 .data            mCutList__11daNpc_Len_c */
-SECTION_DATA static u8 mCutList__11daNpc_Len_c[48] = {
+SECTION_DATA u8 daNpc_Len_c::mCutList[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1156,7 +1170,7 @@ asm daNpc_Len_c::~daNpc_Len_c() {
 
 /* ############################################################################################## */
 /* 80A68EA4-80A68F38 000000 0094+00 9/9 0/0 0/0 .rodata          m__17daNpc_Len_Param_c */
-SECTION_RODATA static u8 const m__17daNpc_Len_Param_c[148] = {
+SECTION_RODATA u8 const daNpc_Len_Param_c::m[148] = {
     0x43, 0x66, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xE1, 0x00,
     0x00, 0x43, 0x7F, 0x00, 0x00, 0x43, 0x52, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x42, 0x20,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x70, 0x00, 0x00, 0xC1,
@@ -1168,7 +1182,7 @@ SECTION_RODATA static u8 const m__17daNpc_Len_Param_c[148] = {
     0xC1, 0xA0, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x41, 0xA0, 0x00,
     0x00, 0x42, 0xC8, 0x00, 0x00, 0x01, 0x68, 0x00, 0xB4, 0x40, 0x40, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A68EA4, &m__17daNpc_Len_Param_c);
+COMPILER_STRIP_GATE(80A68EA4, &daNpc_Len_Param_c::m);
 
 /* 80A68F38-80A68F60 000094 0028+00 0/1 0/0 0/0 .rodata          heapSize$4002 */
 #pragma push

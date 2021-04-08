@@ -13,6 +13,11 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {
+    /* 809F7D04 */ ~csXyz();
+    /* 809F7D40 */ csXyz();
+};
+
 struct Vec {};
 
 struct cXyz {
@@ -21,22 +26,19 @@ struct cXyz {
     /* 809F7D80 */ cXyz();
 };
 
-struct csXyz {
-    /* 809F7D04 */ ~csXyz();
-    /* 809F7D40 */ csXyz();
-};
-
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
-};
 
-struct J3DAnmTevRegKey {};
+    static u8 now[48];
+};
 
 struct J3DAnmTexPattern {
     /* 8032AF50 */ void getTexNo(u16, u16*) const;
 };
+
+struct J3DAnmTevRegKey {};
 
 struct J3DAnmTextureSRTKey {};
 
@@ -64,17 +66,17 @@ struct mDoExt_bckAnm {
     /* 8000D990 */ void changeBckOnly(J3DAnmTransform*);
 };
 
+struct J3DModelData {};
+
 struct mDoExt_McaMorfCallBack2_c {};
+
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
-
-struct J3DModelData {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -91,17 +93,19 @@ struct fopAc_ac_c {
 
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
+
+    static f32 mGroundY;
 };
+
+struct _GXColorS10 {};
+
+struct J3DModel {};
+
+struct J3DJoint {};
 
 struct dBgS_ObjAcch {
     /* 809F828C */ ~dBgS_ObjAcch();
 };
-
-struct J3DModel {};
-
-struct _GXColorS10 {};
-
-struct J3DJoint {};
 
 struct daNpc_GWolf_c {
     /* 809F30AC */ daNpc_GWolf_c();
@@ -149,10 +153,15 @@ struct daNpc_GWolf_c {
     /* 809F77E4 */ void talk(void*);
     /* 809F797C */ void test(void*);
     /* 809F7A30 */ void getGroundSlope(dBgS_ObjAcch&, s16);
+
+    static void* mEvtCutNameList[5];
+    static u8 mEvtCutList[60];
 };
 
 struct daNpc_GWolf_Param_c {
     /* 809F8488 */ ~daNpc_GWolf_Param_c();
+
+    static u8 const m[140];
 };
 
 struct dCcD_GObjInf {
@@ -204,6 +213,8 @@ struct daNpcF_c {
     /* 809F7FD0 */ daNpcF_c();
     /* 809F8344 */ void setCollisions();
     /* 809F8348 */ bool setExpressionBtp(int);
+
+    static u8 mCcDCyl[68];
 };
 
 struct daNpcF_MatAnm_c {
@@ -263,6 +274,10 @@ struct dEvent_manager_c {
     /* 800480EC */ void getMySubstanceP(int, char const*, int);
     /* 8004817C */ void cutEnd(int);
     /* 800487F0 */ void ChkPresentEnd();
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -358,6 +373,14 @@ struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DTexNoAnm {
     /* 809F3AC4 */ ~J3DTexNoAnm();
     /* 809F3B0C */ J3DTexNoAnm();
@@ -377,6 +400,10 @@ struct J3DTevKColorAnm {
 struct J3DTevColorAnm {
     /* 809F3A70 */ ~J3DTevColorAnm();
     /* 809F3AAC */ J3DTevColorAnm();
+};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
 };
 
 struct J3DMaterialAnm {
@@ -483,7 +510,10 @@ extern "C" void __sinit_d_a_npc_gwolf_cpp();
 extern "C" void __dt__19daNpc_GWolf_Param_cFv();
 extern "C" static void func_809F84D0();
 extern "C" static void func_809F84D8();
+extern "C" u8 const m__19daNpc_GWolf_Param_c[140];
 extern "C" extern char const* const d_a_npc_gwolf__stringBase0;
+extern "C" void* mEvtCutNameList__13daNpc_GWolf_c[5];
+extern "C" u8 mEvtCutList__13daNpc_GWolf_c[60];
 
 //
 // External References:
@@ -651,24 +681,24 @@ extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern u8 mCcDCyl__8daNpcF_c[68];
+extern "C" u8 mCcDCyl__8daNpcF_c[68];
 extern "C" extern void* __vt__8daNpcF_c[18];
 extern "C" extern void* __vt__15daNpcF_MatAnm_c[4 + 6 /* padding */];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
+extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
@@ -834,7 +864,7 @@ SECTION_DATA static u8 l_warpAppearFlag[14 + 2 /* padding */] = {
 /* 809F8990-809F89A4 -00001 0014+00 0/1 0/0 0/0 .data            mEvtCutNameList__13daNpc_GWolf_c */
 #pragma push
 #pragma force_active on
-SECTION_DATA static void* mEvtCutNameList__13daNpc_GWolf_c[5] = {
+SECTION_DATA void* daNpc_GWolf_c::mEvtCutNameList[5] = {
     (void*)(((char*)&d_a_npc_gwolf__stringBase0) + 0xD2),
     (void*)&d_a_npc_gwolf__stringBase0,
     (void*)(((char*)&d_a_npc_gwolf__stringBase0) + 0xC),
@@ -886,7 +916,7 @@ SECTION_DATA static void* lit_4021[3] = {
 /* 809F89D4-809F8A10 0001E0 003C+00 0/2 0/0 0/0 .data            mEvtCutList__13daNpc_GWolf_c */
 #pragma push
 #pragma force_active on
-SECTION_DATA static u8 mEvtCutList__13daNpc_GWolf_c[60] = {
+SECTION_DATA u8 daNpc_GWolf_c::mEvtCutList[60] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1386,7 +1416,7 @@ asm daNpc_GWolf_c::~daNpc_GWolf_c() {
 
 /* ############################################################################################## */
 /* 809F84F4-809F8580 000000 008C+00 17/17 0/0 0/0 .rodata          m__19daNpc_GWolf_Param_c */
-SECTION_RODATA static u8 const m__19daNpc_GWolf_Param_c[140] = {
+SECTION_RODATA u8 const daNpc_GWolf_Param_c::m[140] = {
     0x41, 0xF0, 0x00, 0x00, 0xC0, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x44, 0x16, 0x00, 0x00,
     0x43, 0x7F, 0x00, 0x00, 0x43, 0x70, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x42, 0x70, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
@@ -1397,7 +1427,7 @@ SECTION_RODATA static u8 const m__19daNpc_GWolf_Param_c[140] = {
     0x42, 0x22, 0x00, 0x00, 0x41, 0x9C, 0x00, 0x00, 0x42, 0x1A, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00,
     0x3F, 0x7D, 0x70, 0xA4, 0x3F, 0x66, 0x66, 0x66, 0x42, 0xF0, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(809F84F4, &m__19daNpc_GWolf_Param_c);
+COMPILER_STRIP_GATE(809F84F4, &daNpc_GWolf_Param_c::m);
 
 /* 809F8580-809F8584 00008C 0004+00 0/1 0/0 0/0 .rodata          @4401 */
 #pragma push

@@ -13,6 +13,8 @@
 
 struct request_of_phase_process_class {};
 
+struct csXyz {};
+
 struct Vec {};
 
 struct cXyz {
@@ -21,11 +23,11 @@ struct cXyz {
     /* 80D3C35C */ ~cXyz();
 };
 
-struct csXyz {};
-
 struct mDoMtx_stack_c {
     /* 8000CE70 */ void scaleM(cXyz const&);
     /* 8000CF44 */ void ZXYrotM(csXyz const&);
+
+    static u8 now[48];
 };
 
 struct fopAc_ac_c {
@@ -53,10 +55,19 @@ struct daObj_YBag_c {
     /* 80D3D8CC */ void setSmokePrtcl();
     /* 80D3D948 */ void setWaterPrtcl();
     /* 80D3DA70 */ void setHamonPrtcl();
+
+    static u8 const mCcDObjInfo[48];
+    static u8 mCcDCyl[68];
 };
 
 struct daObj_YBag_Param_c {
     /* 80D3DC20 */ ~daObj_YBag_Param_c();
+
+    static u8 const m[44];
+};
+
+struct daNpcT_c {
+    static u8 const mCcDObjData[48];
 };
 
 struct dKy_tevstr_c {};
@@ -86,6 +97,10 @@ struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
                             cXyz const*, u8, dPa_levelEcallBack*, s8, _GXColor const*,
                             _GXColor const*, cXyz const*, f32);
+};
+
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
 };
 
 struct dCcD_Stts {
@@ -183,6 +198,10 @@ struct cBgS {
 
 struct _GXTexObj {};
 
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DModel {};
 
 //
@@ -225,7 +244,10 @@ extern "C" void __sinit_d_a_obj_yel_bag_cpp();
 extern "C" void __dt__18daObj_YBag_Param_cFv();
 extern "C" static void func_80D3DC68();
 extern "C" static void func_80D3DC70();
+extern "C" u8 const mCcDObjInfo__12daObj_YBag_c[48];
+extern "C" u8 const m__18daObj_YBag_Param_c[44];
 extern "C" extern char const* const d_a_obj_yel_bag__stringBase0;
+extern "C" u8 mCcDCyl__12daObj_YBag_c[68];
 
 //
 // External References:
@@ -313,7 +335,7 @@ extern "C" void _restgpr_26();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
 extern "C" void abs();
-extern "C" extern u8 const mCcDObjData__8daNpcT_c[48];
+extern "C" u8 const mCcDObjData__8daNpcT_c[48];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
@@ -321,11 +343,11 @@ extern "C" extern void* __vt__9dCcD_Stts[11];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 extern "C" void __register_global_object();
 
@@ -372,7 +394,7 @@ SECTION_DATA static void* l_loadRes_list[2] = {
 SECTION_DATA static void* l_resNames = (void*)&d_a_obj_yel_bag__stringBase0;
 
 /* 80D3DDB4-80D3DDF8 000040 0044+00 1/2 0/0 0/0 .data            mCcDCyl__12daObj_YBag_c */
-SECTION_DATA static u8 mCcDCyl__12daObj_YBag_c[68] = {
+SECTION_DATA u8 daObj_YBag_c::mCcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -544,22 +566,22 @@ asm daObj_YBag_c::~daObj_YBag_c() {
 
 /* ############################################################################################## */
 /* 80D3DC8C-80D3DCBC 000000 0030+00 4/4 0/0 0/0 .rodata          mCcDObjInfo__12daObj_YBag_c */
-SECTION_RODATA static u8 const mCcDObjInfo__12daObj_YBag_c[48] = {
+SECTION_RODATA u8 const daObj_YBag_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D3DC8C, &mCcDObjInfo__12daObj_YBag_c);
+COMPILER_STRIP_GATE(80D3DC8C, &daObj_YBag_c::mCcDObjInfo);
 
 /* 80D3DCBC-80D3DCE8 000030 002C+00 0/3 0/0 0/0 .rodata          m__18daObj_YBag_Param_c */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static u8 const m__18daObj_YBag_Param_c[44] = {
+SECTION_RODATA u8 const daObj_YBag_Param_c::m[44] = {
     0x00, 0x00, 0x00, 0x00, 0xC0, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xC8, 0x00,
     0x00, 0x43, 0x7F, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x41, 0x20,
     0x00, 0x00, 0x42, 0x24, 0x00, 0x00, 0x42, 0x00, 0x00, 0x00, 0x40, 0x40, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D3DCBC, &m__18daObj_YBag_Param_c);
+COMPILER_STRIP_GATE(80D3DCBC, &daObj_YBag_Param_c::m);
 #pragma pop
 
 /* 80D3DCE8-80D3DCEC 00005C 0004+00 0/1 0/0 0/0 .rodata          @4021 */

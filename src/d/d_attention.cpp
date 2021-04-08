@@ -11,9 +11,13 @@
 // Types:
 //
 
-struct J3DAnmTextureSRTKey {};
+struct mDoMtx_stack_c {
+    static u8 now[48];
+};
 
 struct J3DMaterialTable {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct mDoExt_btkAnm {
     /* 8000D63C */ void init(J3DMaterialTable*, J3DAnmTextureSRTKey*, int, int, f32, s16, s16);
@@ -34,9 +38,9 @@ struct mDoExt_bpkAnm {
     /* 8000D518 */ void entry(J3DMaterialTable*, f32);
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -45,6 +49,10 @@ struct mDoExt_bckAnm {
 
 struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
+};
+
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
 };
 
 struct fopAc_ac_c {};
@@ -63,17 +71,17 @@ struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
 
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-};
-
 struct cSAngle {
     /* 80270F68 */ cSAngle(cSAngle const&);
     /* 80270F98 */ cSAngle(s16);
     /* 802710E8 */ void Inv() const;
     /* 80271228 */ void operator-(s16) const;
+};
+
+struct Vec {};
+
+struct cXyz {
+    /* 80266B34 */ void operator-(Vec const&) const;
 };
 
 struct dAttention_c {
@@ -113,6 +121,14 @@ struct dAttention_c {
     /* 8007378C */ void CheckObjectTarget(s32);
     /* 800737E4 */ void LockonTruth();
     /* 80073838 */ void checkDistance(cXyz*, s16, cXyz*, f32, f32, f32, f32);
+
+    static u8 loc_type_tbl[12];
+    static u8 act_type_tbl[20];
+    static u8 dist_table[6552];
+    static u32 loc_type_num;
+    static u32 act_type_num;
+    static u32 chk_type_tbl;
+    static u32 chk_type_num;
 };
 
 struct dAttParam_c {
@@ -182,6 +198,10 @@ struct JAISoundID {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
+};
+
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
 };
 
 struct JKRSolidHeap {};
@@ -270,6 +290,12 @@ extern "C" void request__10dAttLook_cFP10fopAc_ac_cfffsi();
 extern "C" void __dt__15dAttDrawParam_cFv();
 extern "C" void __sinit_d_attention_cpp();
 extern "C" extern char const* const d_d_attention__stringBase0;
+extern "C" u8 loc_type_tbl__12dAttention_c[12];
+extern "C" u8 act_type_tbl__12dAttention_c[20];
+extern "C" u32 loc_type_num__12dAttention_c;
+extern "C" u32 act_type_num__12dAttention_c;
+extern "C" u32 chk_type_tbl__12dAttention_c;
+extern "C" u32 chk_type_num__12dAttention_c;
 extern "C" extern u8 data_80450680[8];
 extern "C" extern u8 data_80450688[8];
 
@@ -340,16 +366,16 @@ extern "C" void _restgpr_29();
 extern "C" void strcmp();
 extern "C" void tan();
 extern "C" extern void* __vt__25mDoExt_McaMorfCallBack1_c[3];
-extern "C" extern u8 dist_table__12dAttention_c[6552];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 dist_table__12dAttention_c[6552];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" extern u8 j3dSys[284];
 extern "C" extern u32 __float_nan;
 extern "C" extern u32 __float_max;
 extern "C" extern u8 struct_80450D64[4];
 extern "C" extern u8 data_80450F58[8];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -368,12 +394,12 @@ static asm void func_80070018() {
 
 /* ############################################################################################## */
 /* 803A9BF8-803A9C04 006D18 000C+00 2/2 0/0 0/0 .data            loc_type_tbl__12dAttention_c */
-SECTION_DATA static u8 loc_type_tbl__12dAttention_c[12] = {
+SECTION_DATA u8 dAttention_c::loc_type_tbl[12] = {
     0x00, 0x00, 0x00, 0x01, 0x00, 0x01, 0x00, 0x02, 0x00, 0x02, 0x00, 0x04,
 };
 
 /* 803A9C04-803A9C18 006D24 0014+00 1/1 0/0 0/0 .data            act_type_tbl__12dAttention_c */
-SECTION_DATA static u8 act_type_tbl__12dAttention_c[20] = {
+SECTION_DATA u8 dAttention_c::act_type_tbl[20] = {
     0x00, 0x03, 0x00, 0x08, 0x00, 0x04, 0x00, 0x10, 0x00, 0x05,
     0x00, 0x20, 0x00, 0x06, 0x00, 0x40, 0x00, 0x07, 0x00, 0x80,
 };
@@ -568,7 +594,7 @@ asm void dAttention_c::getActionBtnXY() {
 
 /* ############################################################################################## */
 /* 80450660-80450664 0000E0 0004+00 2/2 0/0 0/0 .sdata           loc_type_num__12dAttention_c */
-SECTION_SDATA static u32 loc_type_num__12dAttention_c = 0x00000003;
+SECTION_SDATA u32 dAttention_c::loc_type_num = 0x00000003;
 
 /* 80070A70-80070AC0 06B3B0 0050+00 1/1 0/0 0/0 .text            chkAttMask__12dAttention_cFUlUl */
 #pragma push
@@ -592,13 +618,13 @@ static asm void check_event_condition(u32 param_0, u16 param_1) {
 
 /* ############################################################################################## */
 /* 80450664-80450668 0000E4 0004+00 1/1 0/0 0/0 .sdata           act_type_num__12dAttention_c */
-SECTION_SDATA static u32 act_type_num__12dAttention_c = 0x00000005;
+SECTION_SDATA u32 dAttention_c::act_type_num = 0x00000005;
 
 /* 80450668-8045066C 0000E8 0004+00 1/1 0/0 0/0 .sdata           chk_type_tbl__12dAttention_c */
-SECTION_SDATA static u32 chk_type_tbl__12dAttention_c = 0x00080100;
+SECTION_SDATA u32 dAttention_c::chk_type_tbl = 0x00080100;
 
 /* 8045066C-80450670 0000EC 0004+00 1/1 0/0 0/0 .sdata           chk_type_num__12dAttention_c */
-SECTION_SDATA static u32 chk_type_num__12dAttention_c = 0x00000001;
+SECTION_SDATA u32 dAttention_c::chk_type_num = 0x00000001;
 
 /* 80450670-80450674 0000F0 0004+00 2/2 0/0 0/0 .sdata           None */
 SECTION_SDATA static u32 data_80450670 = 0x01000000;

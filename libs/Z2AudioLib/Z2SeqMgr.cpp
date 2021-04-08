@@ -87,6 +87,17 @@ struct Z2SceneMgr {
     /* 802B68E0 */ void setSceneExist(bool);
 };
 
+struct Z2Param {
+    static f32 VOL_BGM_DEFAULT;
+    static f32 VOL_BGM_TALKING;
+    static f32 VOL_BGM_PAUSING;
+    static f32 ENEMY_LASTHIT_MUTE_VOLUME;
+};
+
+struct Z2CreatureLink {
+    static u8 mLinkPtr[4 + 4 /* padding */];
+};
+
 struct Z2Calc {
     struct CurveSign {};
 
@@ -209,9 +220,9 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_26();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern f32 VOL_BGM_DEFAULT__7Z2Param;
-extern "C" extern f32 VOL_BGM_TALKING__7Z2Param;
-extern "C" extern f32 VOL_BGM_PAUSING__7Z2Param;
+extern "C" f32 VOL_BGM_DEFAULT__7Z2Param;
+extern "C" f32 VOL_BGM_TALKING__7Z2Param;
+extern "C" f32 VOL_BGM_PAUSING__7Z2Param;
 extern "C" extern u8 struct_80450860[4];
 extern "C" extern u8 struct_80450864[4];
 extern "C" extern u8 struct_80450868[4];
@@ -222,8 +233,8 @@ extern "C" extern u8 data_80450B74[4];
 extern "C" extern u8 data_80450B7C[4];
 extern "C" extern u8 data_80450B80[4];
 extern "C" extern u8 data_80450B84[4];
-extern "C" extern f32 ENEMY_LASTHIT_MUTE_VOLUME__7Z2Param;
-extern "C" extern u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
+extern "C" f32 ENEMY_LASTHIT_MUTE_VOLUME__7Z2Param;
+extern "C" u8 mLinkPtr__14Z2CreatureLink[4 + 4 /* padding */];
 
 //
 // Declarations:

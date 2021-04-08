@@ -13,6 +13,8 @@
 
 struct request_of_phase_process_class {};
 
+struct Quaternion {};
+
 struct Vec {};
 
 struct cXyz {
@@ -24,20 +26,23 @@ struct cXyz {
     /* 80267150 */ void atan2sY_XZ() const;
     /* 8083836C */ ~cXyz();
     /* 808392D8 */ cXyz();
-};
 
-struct Quaternion {};
+    static f32 Zero[3];
+    static u8 BaseX[12];
+};
 
 struct mDoMtx_stack_c {
     /* 8000CD64 */ void transS(cXyz const&);
     /* 8000CD9C */ void transM(f32, f32, f32);
     /* 8000CE38 */ void scaleM(f32, f32, f32);
     /* 8000CF7C */ void quatM(Quaternion const*);
+
+    static u8 now[48];
 };
 
-struct J3DAnmTexPattern {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTexPattern {};
 
 struct mDoExt_btpAnm {
     /* 8000D54C */ void init(J3DMaterialTable*, J3DAnmTexPattern*, int, int, f32, s16, s16);
@@ -59,15 +64,19 @@ struct mDoExt_3DlineMatSortPacket {
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
 };
 
-struct _GXColor {};
-
 struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct ResTIMG {};
 
 struct mDoExt_3DlineMat1_c {
     /* 80013360 */ void init(u16, u16, ResTIMG*, int);
     /* 8001373C */ void update(int, f32, _GXColor&, u16, dKy_tevstr_c*);
+};
+
+struct mDoCPd_c {
+    static u8 m_cpadInfo[256];
 };
 
 struct fopAc_ac_c {
@@ -77,10 +86,19 @@ struct fopAc_ac_c {
 
 struct fopAcM_wt_c {
     /* 8001DD84 */ void waterCheck(cXyz const*);
+
+    static f32 mWaterY[1 + 1 /* padding */];
 };
 
 struct fopAcM_gc_c {
     /* 8001DCBC */ void gndCheck(cXyz const*);
+
+    static u8 mGndCheck[84];
+    static f32 mGroundY;
+};
+
+struct daTagHstop_c {
+    static u8 m_top[4 + 4 /* padding */];
 };
 
 struct daPy_py_c {
@@ -98,6 +116,10 @@ struct daPy_frameCtrl_c {
 struct daPy_actorKeep_c {
     /* 8015EC48 */ void setActor();
     /* 8015ECFC */ void clearData();
+};
+
+struct daHorse_hio_c0 {
+    static u8 const m[292];
 };
 
 struct dCcD_GObjInf {
@@ -192,6 +214,9 @@ struct daHorse_c {
     /* 80844590 */ void draw();
     /* 8084478C */ ~daHorse_c();
     /* 80844CB0 */ daHorse_c();
+
+    static u8 const m_footJointTable[8];
+    static f32 const m_callLimitDistance2;
 };
 
 struct daHorseRein_c {
@@ -225,6 +250,9 @@ struct daAlink_c {
     /* 800ECF04 */ void checkHorseLieAnime() const;
     /* 800ECF5C */ void checkHorseSubjectivity() const;
     /* 800ED0D4 */ void getHorseReinHandPos(cXyz*, cXyz*);
+
+    static u8 const m_handLeftInSidePos[12];
+    static u8 const m_handRightInSidePos[12];
 };
 
 struct dVibration_c {
@@ -239,6 +267,10 @@ struct dSv_horse_place_c {
 
 struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
+};
+
+struct dStage_roomControl_c {
+    static u8 mDemoArcName[10 + 2 /* padding */];
 };
 
 struct J3DModelData {};
@@ -271,6 +303,12 @@ struct dPa_control_c {
                             _GXColor const*, cXyz const*, f32);
 };
 
+struct dBgS_AcchCir {
+    /* 80075EAC */ dBgS_AcchCir();
+    /* 80075F58 */ void SetWall(f32, f32);
+    /* 808452E4 */ ~dBgS_AcchCir();
+};
+
 struct dBgS {
     /* 80074B98 */ void GetExitId(cBgS_PolyInfo const&);
     /* 80074BE8 */ void GetPolyColor(cBgS_PolyInfo const&);
@@ -278,12 +316,6 @@ struct dBgS {
     /* 80074CBC */ void GetSpecialCode(cBgS_PolyInfo const&);
     /* 80074EF0 */ void GetGroundCode(cBgS_PolyInfo const&);
     /* 80075100 */ void GetRoomId(cBgS_PolyInfo const&);
-};
-
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F58 */ void SetWall(f32, f32);
-    /* 808452E4 */ ~dBgS_AcchCir();
 };
 
 struct dBgS_Acch {
@@ -301,6 +333,9 @@ struct dPaPoF_c {
     /* 800512E8 */ void setEffectFour(dKy_tevstr_c const*, cXyz const*, u32, u32, cXyz const*,
                                       cXyz const*, cXyz const*, cXyz const*, cXyz const*,
                                       csXyz const*, cXyz const*, s8, f32, f32);
+
+    static u8 m_typeFourData[60];
+    static u8 m_emitterFourData[60 + 28 /* padding */];
 };
 
 struct dMsgFlow_c {
@@ -322,8 +357,16 @@ struct dEvent_manager_c {
     /* 800483E0 */ void getGoal();
 };
 
+struct dDlst_shadowControl_c {
+    static u8 mSimpleTexObj[32];
+};
+
 struct dDemo_object_c {
     /* 80039088 */ void getActor(u8);
+};
+
+struct dDemo_c {
+    static u8 m_object[4];
 };
 
 struct dDemo_actor_c {
@@ -469,7 +512,19 @@ struct Z2Creature {
     /* 802C06D0 */ void updateAnime(f32, f32);
 };
 
+struct Z2AudioMgr {
+    static u8 mAudioMgrPtr[4 + 4 /* padding */];
+};
+
+struct JMath {
+    static u8 sincosTable_[65536];
+};
+
 struct J3DTransformInfo {};
+
+struct J3DSys {
+    static u8 mCurrentMtx[48];
+};
 
 struct J3DMtxCalcNoAnmBase {
     /* 80839348 */ ~J3DMtxCalcNoAnmBase();
@@ -502,6 +557,8 @@ struct J3DMtxCalc {
     /* 80844B9C */ bool getAnmTransform();
     /* 80844BA4 */ void setWeight(u8, f32);
     /* 80844BA8 */ void getWeight(u8) const;
+
+    static u8 mJoint[4];
 };
 
 struct J3DModel {};
@@ -654,6 +711,9 @@ extern "C" void __ct__16daPy_frameCtrl_cFv();
 extern "C" void __dt__19mDoExt_AnmRatioPackFv();
 extern "C" void __ct__19mDoExt_AnmRatioPackFv();
 extern "C" void __dt__12J3DFrameCtrlFv();
+extern "C" u8 const m_footJointTable__9daHorse_c[8];
+extern "C" f32 const m_callLimitDistance2__9daHorse_c;
+extern "C" u8 const m__14daHorse_hio_c0[292];
 extern "C" extern char const* const d_a_horse__stringBase0;
 
 //
@@ -856,15 +916,15 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" void abs();
 extern "C" void strcmp();
-extern "C" extern u8 const m_handLeftInSidePos__9daAlink_c[12];
-extern "C" extern u8 const m_handRightInSidePos__9daAlink_c[12];
+extern "C" u8 const m_handLeftInSidePos__9daAlink_c[12];
+extern "C" u8 const m_handRightInSidePos__9daAlink_c[12];
 extern "C" extern void* __vt__19mDoExt_3DlineMat1_c[5];
 extern "C" extern void* __vt__28mDoExt_MtxCalcAnmBlendTblOld[11];
 extern "C" extern void* __vt__25mDoExt_MtxCalcAnmBlendTbl[11];
 extern "C" extern void* g_fopAc_Method[8];
 extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
-extern "C" extern u8 m_typeFourData__8dPaPoF_c[60];
-extern "C" extern u8 m_emitterFourData__8dPaPoF_c[60 + 28 /* padding */];
+extern "C" u8 m_typeFourData__8dPaPoF_c[60];
+extern "C" u8 m_emitterFourData__8dPaPoF_c[60 + 28 /* padding */];
 extern "C" extern void* __vt__8dCcD_Sph[36];
 extern "C" extern void* __vt__8dCcD_Cyl[36];
 extern "C" extern void* __vt__9dCcD_Stts[11];
@@ -872,28 +932,28 @@ extern "C" extern void* __vt__12cCcD_SphAttr[25];
 extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" extern u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 mGndCheck__11fopAcM_gc_c[84];
-extern "C" extern u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
+extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
+extern "C" u8 now__14mDoMtx_stack_c[48];
+extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
+extern "C" u8 mDemoArcName__20dStage_roomControl_c[10 + 2 /* padding */];
 extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
+extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" extern u8 g_env_light[4880];
 extern "C" extern u8 g_meter2_info[248];
-extern "C" extern f32 Zero__4cXyz[3];
-extern "C" extern u8 BaseX__4cXyz[12];
+extern "C" f32 Zero__4cXyz[3];
+extern "C" u8 BaseX__4cXyz[12];
 extern "C" extern u8 j3dSys[284];
-extern "C" extern u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 sincosTable___5JMath[65536];
+extern "C" u8 mCurrentMtx__6J3DSys[48];
+extern "C" u8 sincosTable___5JMath[65536];
 extern "C" extern u32 __float_nan;
-extern "C" extern f32 mGroundY__11fopAcM_gc_c;
-extern "C" extern f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
+extern "C" f32 mGroundY__11fopAcM_gc_c;
+extern "C" f32 mWaterY__11fopAcM_wt_c[1 + 1 /* padding */];
 extern "C" extern u8 struct_80450D64[4];
-extern "C" extern u8 m_top__12daTagHstop_c[4 + 4 /* padding */];
-extern "C" extern u8 m_object__7dDemo_c[4];
+extern "C" u8 m_top__12daTagHstop_c[4 + 4 /* padding */];
+extern "C" u8 m_object__7dDemo_c[4];
 extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
-extern "C" extern u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 mJoint__10J3DMtxCalc[4];
+extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
+extern "C" u8 mJoint__10J3DMtxCalc[4];
 extern "C" void isAngry__7daCow_cFv();
 extern "C" void setAngryHit__7daCow_cFv();
 extern "C" void __register_global_object();
@@ -924,20 +984,20 @@ SECTION_RODATA static u8 const l_arcName[6 + 2 /* padding */] = {
 COMPILER_STRIP_GATE(808454B8, &l_arcName);
 
 /* 808454C0-808454C8 000014 0008+00 2/5 0/0 0/0 .rodata          m_footJointTable__9daHorse_c */
-SECTION_RODATA static u8 const m_footJointTable__9daHorse_c[8] = {
+SECTION_RODATA u8 const daHorse_c::m_footJointTable[8] = {
     0x00, 0x03, 0x00, 0x07, 0x00, 0x1B, 0x00, 0x1F,
 };
-COMPILER_STRIP_GATE(808454C0, &m_footJointTable__9daHorse_c);
+COMPILER_STRIP_GATE(808454C0, &daHorse_c::m_footJointTable);
 
 /* 808454C8-808454CC 00001C 0004+00 0/0 0/0 0/0 .rodata          m_callLimitDistance2__9daHorse_c */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static f32 const m_callLimitDistance2__9daHorse_c = 640000.0f;
-COMPILER_STRIP_GATE(808454C8, &m_callLimitDistance2__9daHorse_c);
+SECTION_RODATA f32 const daHorse_c::m_callLimitDistance2 = 640000.0f;
+COMPILER_STRIP_GATE(808454C8, &daHorse_c::m_callLimitDistance2);
 #pragma pop
 
 /* 808454CC-808455F0 000020 0124+00 1/20 0/0 0/0 .rodata          m__14daHorse_hio_c0 */
-SECTION_RODATA static u8 const m__14daHorse_hio_c0[292] = {
+SECTION_RODATA u8 const daHorse_hio_c0::m[292] = {
     0x02, 0x58, 0x00, 0x32, 0x00, 0x2D, 0x00, 0x07, 0x00, 0x0E, 0x00, 0x08, 0x00, 0x5A, 0x00, 0xD2,
     0x00, 0x0F, 0x00, 0x07, 0x00, 0x0D, 0x00, 0x08, 0x00, 0x03, 0x00, 0x2D, 0x42, 0x28, 0x00, 0x00,
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0xC0, 0x00, 0x00, 0x3F, 0x99, 0x99, 0x9A,
@@ -958,7 +1018,7 @@ SECTION_RODATA static u8 const m__14daHorse_hio_c0[292] = {
     0x00, 0x00, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x3F, 0x8C, 0xCC, 0xCD, 0x3F, 0xA6, 0x66, 0x66,
     0x41, 0x70, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(808454CC, &m__14daHorse_hio_c0);
+COMPILER_STRIP_GATE(808454CC, &daHorse_hio_c0::m);
 
 /* 808455F0-808455F4 000144 0004+00 3/11 0/0 0/0 .rodata          @4303 */
 SECTION_RODATA static f32 const lit_4303 = 3.0f;

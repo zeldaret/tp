@@ -22,6 +22,8 @@ struct JKRHeap {
     /* 802CED84 */ void state_register(JKRHeap::TState*, u32) const;
     /* 802CED88 */ void state_compare(JKRHeap::TState const&, JKRHeap::TState const&) const;
     /* 802CEDA0 */ void state_dump(JKRHeap::TState const&) const;
+
+    static u8 sRootHeap[4];
 };
 
 struct JKRAssertHeap {
@@ -85,7 +87,7 @@ extern "C" void __dl__FPv();
 extern "C" void state_register__7JKRHeapCFPQ27JKRHeap6TStateUl();
 extern "C" void state_compare__7JKRHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState();
 extern "C" void state_dump__7JKRHeapCFRCQ27JKRHeap6TState();
-extern "C" extern u8 sRootHeap__7JKRHeap[4];
+extern "C" u8 sRootHeap__7JKRHeap[4];
 
 //
 // Declarations:

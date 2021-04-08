@@ -26,6 +26,8 @@ struct JUTXfb {
 
     /* 802E53B8 */ void createManager(JKRHeap*, JUTXfb::EXfbNumber);
     /* 802E5424 */ void destroyManager();
+
+    static u8 sManager[4 + 4 /* padding */];
 };
 
 struct JUTVideo {
@@ -33,6 +35,10 @@ struct JUTVideo {
     /* 802E50B0 */ void dummyNoDrawWait();
     /* 802E5198 */ void setRenderMode(_GXRenderModeObj const*);
     /* 802E5210 */ void waitRetraceIfNeed();
+
+    static u8 sManager[4];
+    static u8 sVideoLastTick[4];
+    static u8 sVideoInterval[4];
 };
 
 struct JUTProcBar {
@@ -40,6 +46,8 @@ struct JUTProcBar {
     /* 802E5A28 */ void destroy();
     /* 802E5A60 */ void clear();
     /* 802E5E08 */ void draw();
+
+    static u8 sManager[4];
 };
 
 struct JUTFader {
@@ -48,14 +56,20 @@ struct JUTFader {
 
 struct JUTDirectPrint {
     /* 802E456C */ void changeFrameBuffer(void*, u16, u16);
+
+    static u8 sDirectPrint[4 + 4 /* padding */];
 };
 
 struct JUTDbPrint {
     /* 802E02A4 */ void flush();
+
+    static u8 sDebugPrint[4 + 4 /* padding */];
 };
 
 struct JUTConsoleManager {
     /* 802E8384 */ void draw() const;
+
+    static u8 sManager[4];
 };
 
 struct JUTAssertion {
@@ -104,6 +118,12 @@ struct JFWDisplay {
     /* 80272F2C */ void clearEfb();
     /* 80272F58 */ void clearEfb(_GXColor);
     /* 8027331C */ void calcCombinationRatio();
+
+    static u8 sManager[4];
+};
+
+struct JFWAlarm {
+    static u8 sList[12];
 };
 
 struct J2DOrthoGraph {
@@ -145,6 +165,8 @@ extern "C" static void diagnoseGpHang__Fv();
 extern "C" void __sinit_JFWDisplay_cpp();
 extern "C" void func_80273724();
 extern "C" extern char const* const JFWDisplay__stringBase0;
+extern "C" u8 sList__8JFWAlarm[12];
+extern "C" u8 sManager__10JFWDisplay[4];
 
 //
 // External References:
@@ -257,14 +279,14 @@ extern "C" void _restgpr_29();
 extern "C" void __cvt_dbl_usll();
 extern "C" extern void* __vt__14J2DGrafContext[10];
 extern "C" extern void* __vt__13J2DOrthoGraph[10];
-extern "C" extern u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
-extern "C" extern u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
-extern "C" extern u8 sManager__8JUTVideo[4];
-extern "C" extern u8 sVideoLastTick__8JUTVideo[4];
-extern "C" extern u8 sVideoInterval__8JUTVideo[4];
-extern "C" extern u8 sManager__6JUTXfb[4 + 4 /* padding */];
-extern "C" extern u8 sManager__10JUTProcBar[4];
-extern "C" extern u8 sManager__17JUTConsoleManager[4];
+extern "C" u8 sDebugPrint__10JUTDbPrint[4 + 4 /* padding */];
+extern "C" u8 sDirectPrint__14JUTDirectPrint[4 + 4 /* padding */];
+extern "C" u8 sManager__8JUTVideo[4];
+extern "C" u8 sVideoLastTick__8JUTVideo[4];
+extern "C" u8 sVideoInterval__8JUTVideo[4];
+extern "C" u8 sManager__6JUTXfb[4 + 4 /* padding */];
+extern "C" u8 sManager__10JUTProcBar[4];
+extern "C" u8 sManager__17JUTConsoleManager[4];
 
 //
 // Declarations:
@@ -403,8 +425,7 @@ asm JFWDisplay::~JFWDisplay() {
 
 /* ############################################################################################## */
 /* 804511C0-804511C4 0006C0 0004+00 2/2 40/40 1/1 .sbss            sManager__10JFWDisplay */
-extern u8 sManager__10JFWDisplay[4];
-u8 sManager__10JFWDisplay[4];
+u8 JFWDisplay::sManager[4];
 
 /* 802721DC-80272260 26CB1C 0084+00 0/0 1/1 0/0 .text
  * createManager__10JFWDisplayFPC16_GXRenderModeObjP7JKRHeapQ26JUTXfb10EXfbNumberb */
@@ -593,7 +614,7 @@ static asm void waitForTick(u32 param_0, u16 param_1) {
 static u8 lit_2184[12];
 
 /* 80430FE4-80430FF0 05DD04 000C+00 4/4 0/0 0/0 .bss             sList__8JFWAlarm */
-static u8 sList__8JFWAlarm[12];
+u8 JFWAlarm::sList[12];
 
 /* 80272DD0-80272E10 26D710 0040+00 1/1 0/0 0/0 .text JFWThreadAlarmHandler__FP7OSAlarmP9OSContext
  */

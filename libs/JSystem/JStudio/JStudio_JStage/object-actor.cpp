@@ -34,6 +34,8 @@ struct TVariableValue {
 
     /* 80285EB8 */ void update_immediate_(JStudio::TVariableValue*, f64);
     /* 8028B568 */ TVariableValue();
+
+    static u8 soOutput_none_[4 + 4 /* padding */];
 };
 
 struct TFunctionValue {
@@ -46,6 +48,10 @@ struct math {
 
 struct TAdaptor_actor {
     /* 802868B0 */ ~TAdaptor_actor();
+
+    static u8 const sauVariableValue_3_TRANSLATION_XYZ[12];
+    static u8 const sauVariableValue_3_ROTATION_XYZ[12];
+    static u8 const sauVariableValue_3_SCALING_XYZ[12];
 };
 
 };  // namespace JStudio
@@ -96,6 +102,9 @@ struct JStudio_JStage {
                                        JStudio::data::TEOperationData, void const*, u32);
         /* 8028AD38 */ void setJSG_SRT_(JStudio::TControl const*);
         /* 8028AECC */ void getJSG_SRT_(JStudio::TControl const*);
+
+        static u8 saoVVOutput_[64];
+        static u8 saoVVOutput_ANIMATION_FRAME_[144 + 4 /* padding */];
     };
 
     template <typename A1, typename B1>
@@ -166,6 +175,9 @@ extern "C" void func_8028B198();
 extern "C" void __ct__Q27JStudio14TVariableValueFv();
 extern "C" void func_8028B580();
 extern "C" void func_8028B5E0(f32, JStudio::TAdaptor*);
+extern "C" u8 saoVVOutput___Q214JStudio_JStage14TAdaptor_actor[64];
+extern "C" u8
+    saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor[144 + 4 /* padding */];
 
 //
 // External References:
@@ -197,14 +209,14 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_27();
 extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
-extern "C" extern u8 const sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor[12];
-extern "C" extern u8 const sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor[12];
-extern "C" extern u8 const sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor[12];
+extern "C" u8 const sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor[12];
+extern "C" u8 const sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor[12];
+extern "C" u8 const sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor[12];
 extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
 extern "C" extern void* __vt__Q27JStudio14TAdaptor_actor[20];
 extern "C" extern void* __vt__Q27JStudio8TAdaptor[8];
 extern "C" extern void* __vt__Q37JStudio14TVariableValue7TOutput[4];
-extern "C" extern u8 soOutput_none___Q27JStudio14TVariableValue[4 + 4 /* padding */];
+extern "C" u8 soOutput_none___Q27JStudio14TVariableValue[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -392,7 +404,7 @@ static u8 lit_1088[12];
 
 /* 804311A0-804311E0 05DEC0 0040+00 2/3 0/0 0/0 .bss
  * saoVVOutput___Q214JStudio_JStage14TAdaptor_actor             */
-static u8 saoVVOutput___Q214JStudio_JStage14TAdaptor_actor[64];
+u8 JStudio_JStage::TAdaptor_actor::saoVVOutput_[64];
 
 /* 804311E0-804311EC 05DF00 000C+00 0/1 0/0 0/0 .bss             @1095 */
 #pragma push
@@ -414,7 +426,7 @@ static u8 lit_1103[12];
 
 /* 80431204-80431298 05DF24 0090+04 2/3 0/0 0/0 .bss
  * saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor */
-static u8 saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor[144 + 4 /* padding */];
+u8 JStudio_JStage::TAdaptor_actor::saoVVOutput_ANIMATION_FRAME_[144 + 4 /* padding */];
 
 /* 8028A728-8028A7B4 285068 008C+00 1/0 0/0 0/0 .text
  * adaptor_do_prepare__Q214JStudio_JStage14TAdaptor_actorFv     */
