@@ -11,8 +11,6 @@
 // Types:
 //
 
-struct dMenu_Fmap_world_data_c {};
-
 struct dDrawPath_c {
     struct group_class {};
 
@@ -33,6 +31,8 @@ struct dDrawPath_c {
 struct dMenu_Fmap_region_data_c {
     /* 8003DB70 */ void getPointStagePathInnerNo(f32, f32, int, int*, int*);
 };
+
+struct dMenu_Fmap_world_data_c {};
 
 struct renderingFmap_c {
     struct palette_e {};

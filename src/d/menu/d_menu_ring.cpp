@@ -69,11 +69,11 @@ struct dMeter2Draw_c {
                                    JUtility::TColor, JUtility::TColor, f32, u8);
 };
 
+struct STControl {};
+
 struct JKRExpHeap {};
 
 struct CSTControl {};
-
-struct STControl {};
 
 struct dMenu_Ring_c {
     /* 801E9118 */ dMenu_Ring_c(JKRExpHeap*, STControl*, CSTControl*, u8);

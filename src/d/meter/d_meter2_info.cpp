@@ -64,17 +64,17 @@ struct dMeterMap_c {
     /* 8020D900 */ void isMapOpenCheck();
 };
 
+struct cXyz {};
+
+struct J2DPicture {};
+
 struct J2DTextBox {
     /* 8021C7F4 */ void getFont() const;
 };
 
-struct JUTFont {};
-
-struct J2DPicture {};
-
-struct cXyz {};
-
 struct JMSMesgEntry_c {};
+
+struct JUTFont {};
 
 struct dMeter2Info_c {
     /* 8021BDDC */ dMeter2Info_c();

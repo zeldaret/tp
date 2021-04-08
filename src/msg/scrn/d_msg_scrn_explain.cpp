@@ -20,13 +20,13 @@ struct dMsgString_c {
     /* 80249D28 */ ~dMsgString_c();
 };
 
-struct J2DOrthoGraph {};
-
 struct STControl {
     /* 8003219C */ void checkTrigger();
     /* 80032524 */ void checkUpTrigger();
     /* 800325A0 */ void checkDownTrigger();
 };
+
+struct J2DOrthoGraph {};
 
 struct dMsgScrnExplain_c {
     /* 8023CC88 */ dMsgScrnExplain_c(STControl*, u8, bool, u8);

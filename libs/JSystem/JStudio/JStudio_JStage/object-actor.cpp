@@ -13,6 +13,14 @@
 
 struct Vec {};
 
+struct JStage {
+    struct TSystem {};
+
+    struct TActor {};
+
+    struct TObject {};
+};
+
 namespace JStudio {
 struct data {
     struct TEOperationData {};
@@ -55,14 +63,6 @@ struct TAdaptor_actor {
 };
 
 };  // namespace JStudio
-
-struct JStage {
-    struct TSystem {};
-
-    struct TActor {};
-
-    struct TObject {};
-};
 
 struct JStudio_JStage {
     struct TAdaptor_actor {

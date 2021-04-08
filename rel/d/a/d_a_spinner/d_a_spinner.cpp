@@ -30,9 +30,9 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DModelData {};
-
 struct J3DAnmTransform {};
+
+struct J3DModelData {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -132,19 +132,19 @@ struct dPa_control_c {
                             _GXColor const*, cXyz const*, f32);
 };
 
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F40 */ void SetWallR(f32);
-    /* 80075F58 */ void SetWall(f32, f32);
-    /* 804D1EF8 */ ~dBgS_AcchCir();
-};
-
 struct dBgS {
     /* 80074BE8 */ void GetPolyColor(cBgS_PolyInfo const&);
     /* 80074CBC */ void GetSpecialCode(cBgS_PolyInfo const&);
     /* 80074E50 */ void GetPolyAtt0(cBgS_PolyInfo const&);
     /* 80074EF0 */ void GetGroundCode(cBgS_PolyInfo const&);
     /* 80075100 */ void GetRoomId(cBgS_PolyInfo const&);
+};
+
+struct dBgS_AcchCir {
+    /* 80075EAC */ dBgS_AcchCir();
+    /* 80075F40 */ void SetWallR(f32);
+    /* 80075F58 */ void SetWall(f32, f32);
+    /* 804D1EF8 */ ~dBgS_AcchCir();
 };
 
 struct dBgS_Acch {

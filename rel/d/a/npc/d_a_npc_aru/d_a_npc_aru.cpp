@@ -15,11 +15,13 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
+struct J3DAnmTransform {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -28,8 +30,6 @@ struct Z2Creature {
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
-
-struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -55,6 +55,14 @@ struct daTag_EvtArea_c {
     /* 8048C94C */ void chkPointInArea(cXyz, cXyz);
 };
 
+struct J3DJoint {};
+
+struct daNpcT_faceMotionAnmData_c {};
+
+struct daNpcT_evtData_c {};
+
+struct daNpcT_motionAnmData_c {};
+
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -62,14 +70,6 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80145A24 */ void checkEndSequence();
     /* 80956DDC */ ~daNpcT_MotionSeqMngr_c();
 };
-
-struct daNpcT_motionAnmData_c {};
-
-struct J3DJoint {};
-
-struct daNpcT_faceMotionAnmData_c {};
-
-struct daNpcT_evtData_c {};
 
 struct daNpc_Aru_c {
     /* 8095178C */ ~daNpc_Aru_c();
@@ -143,20 +143,20 @@ struct daNpc_Aru_Param_c {
     static u8 const m[160];
 };
 
+struct csXyz {
+    /* 80956784 */ ~csXyz();
+    /* 80956CD8 */ csXyz();
+};
+
 struct dCcD_GObjInf {
     /* 80083A28 */ dCcD_GObjInf();
     /* 800840E4 */ ~dCcD_GObjInf();
     /* 800844F8 */ void GetTgHitObj();
 };
 
-struct J3DModel {};
-
 struct _GXColorS10 {};
 
-struct csXyz {
-    /* 80956784 */ ~csXyz();
-    /* 80956CD8 */ csXyz();
-};
+struct J3DModel {};
 
 struct daNpcT_c {
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
@@ -255,13 +255,13 @@ struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
 
+struct dBgS {};
+
 struct dBgS_AcchCir {
     /* 80075EAC */ dBgS_AcchCir();
     /* 80075F40 */ void SetWallR(f32);
     /* 80956E24 */ ~dBgS_AcchCir();
 };
-
-struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();

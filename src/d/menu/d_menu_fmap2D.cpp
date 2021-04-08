@@ -34,9 +34,9 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct J2DOrthoGraph {};
-
 struct STControl {};
+
+struct J2DOrthoGraph {};
 
 struct dMsgScrnExplain_c {
     /* 8023CC88 */ dMsgScrnExplain_c(STControl*, u8, bool, u8);
@@ -56,7 +56,7 @@ struct dMeter2Info_c {
 
 struct J2DAnmTextureSRTKey {};
 
-struct JKRArchive {};
+struct JKRExpHeap {};
 
 struct JGeometry {
     template <typename A1>
@@ -69,14 +69,14 @@ struct J2DGrafContext {
     /* 802E90C0 */ void scissor(JGeometry::TBox2<f32> const&);
 };
 
+struct JKRArchive {};
+
 struct J2DScreen {
     /* 802F8498 */ J2DScreen();
     /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
     /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
     /* 802F9690 */ void animation();
 };
-
-struct JKRExpHeap {};
 
 struct CPaneMgrAlpha {
     /* 802553FC */ CPaneMgrAlpha(J2DScreen*, u64, u8, JKRExpHeap*);

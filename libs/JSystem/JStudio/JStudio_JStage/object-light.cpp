@@ -15,12 +15,6 @@ struct _GXColor {};
 
 struct Vec {};
 
-struct JStage {
-    struct TSystem {};
-
-    struct TLight {};
-};
-
 namespace JStudio {
 struct data {
     struct TEOperationData {};
@@ -53,6 +47,12 @@ struct TAdaptor_light {
 };
 
 };  // namespace JStudio
+
+struct JStage {
+    struct TSystem {};
+
+    struct TLight {};
+};
 
 struct JStudio_JStage {
     struct TAdaptor_light {

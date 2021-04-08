@@ -35,9 +35,9 @@ struct fopAcM_gc_c {
     static f32 mGroundY;
 };
 
-struct J3DJoint {};
-
 struct J3DModel {};
+
+struct J3DJoint {};
 
 struct daObjKaisou_c {
     /* 80C34058 */ void ctrlJoint(J3DJoint*, J3DModel*);

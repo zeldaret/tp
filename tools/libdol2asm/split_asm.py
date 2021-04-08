@@ -300,6 +300,12 @@ class Dol2AsmSplitter:
             for symbol in add_list:
                 self.symbol_table.add_symbol(symbol)
 
+            add_list, remove_list = generate_functions.decompile(self.context, libs, self.symbol_table)
+            for symbol in remove_list:
+                self.symbol_table.remove_symbol(symbol)
+            for symbol in add_list:
+                self.symbol_table.add_symbol(symbol)
+
     def name_symbols(self):
         print(f"{self.step_count:2} Naming")
         self.step_count += 1
@@ -658,6 +664,7 @@ class Dol2AsmSplitter:
 
         self.search_binary(cache)
 
+        cache = True
         start_time = time.time()
         cache_path = Path("build/full_cache_xx.dump")
         if cache and cache_path.exists():

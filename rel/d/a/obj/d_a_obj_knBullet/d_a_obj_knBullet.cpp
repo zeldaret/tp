@@ -36,6 +36,8 @@ struct daObjKnBullet_c {
 
 struct dPa_levelEcallBack {};
 
+struct _GXColor {};
+
 struct Vec {};
 
 struct cXyz {
@@ -44,8 +46,6 @@ struct cXyz {
 };
 
 struct dKy_tevstr_c {};
-
-struct _GXColor {};
 
 struct dPa_control_c {
     struct level_c {

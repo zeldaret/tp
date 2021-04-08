@@ -73,14 +73,14 @@ struct dScnKy_env_light_c {
 
 struct dPa_levelEcallBack {};
 
-struct dKy_tevstr_c {};
-
 struct _GXColor {};
 
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
     /* 8051EB4C */ ~csXyz();
 };
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,

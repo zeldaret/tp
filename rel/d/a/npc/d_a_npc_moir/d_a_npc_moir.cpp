@@ -23,11 +23,11 @@ struct mDoExt_bckAnm {
     /* 8000D990 */ void changeBckOnly(J3DAnmTransform*);
 };
 
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -50,9 +50,9 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct J3DJoint {};
-
 struct J3DModel {};
+
+struct J3DJoint {};
 
 struct daNpcMoiR_c {
     /* 80A7C16C */ daNpcMoiR_c();
@@ -102,15 +102,15 @@ struct daNpcMoiR_Param_c {
     static u8 const m[116];
 };
 
-struct J3DAnmTextureSRTKey {};
-
-struct _GXColorS10 {};
-
 struct J3DAnmTexPattern {
     /* 8032AF50 */ void getTexNo(u16, u16*) const;
 };
 
 struct J3DAnmTransformKey {};
+
+struct _GXColorS10 {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct daNpcF_c {
     struct daNpcF_anmPlayData {};

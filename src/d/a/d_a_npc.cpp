@@ -48,13 +48,13 @@ struct mDoExt_morf_c {
     /* 8000FB7C */ void setMorf(f32);
 };
 
-struct J3DAnmColor {};
-
-struct J3DAnmTexPattern {};
+struct J3DAnmTextureSRTKey {};
 
 struct J3DAnmTevRegKey {};
 
-struct J3DAnmTextureSRTKey {};
+struct J3DAnmColor {};
+
+struct J3DAnmTexPattern {};
 
 struct J3DMaterialTable {
     /* 8032F64C */ void removeMatColorAnimator(J3DAnmColor*);
@@ -83,9 +83,9 @@ struct mDoExt_bpkAnm {
     /* 8000D518 */ void entry(J3DMaterialTable*, f32);
 };
 
-struct J3DModelData {};
-
 struct J3DAnmTransform {};
+
+struct J3DModelData {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -120,21 +120,21 @@ struct daNpcT_motionAnmData_c {};
 
 struct daNpcT_faceMotionAnmData_c {};
 
-struct dCcD_GObjInf {
-    /* 80084460 */ void ChkTgHit();
-};
-
-struct J3DModel {};
-
-struct _GXColorS10 {};
-
 struct J3DFrameCtrl {
     /* 803283FC */ void init(s16);
 };
 
+struct J3DAnmTransformKey {};
+
 struct J3DJoint {};
 
-struct J3DAnmTransformKey {};
+struct dCcD_GObjInf {
+    /* 80084460 */ void ChkTgHit();
+};
+
+struct _GXColorS10 {};
+
+struct J3DModel {};
 
 struct daNpcT_c {
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);

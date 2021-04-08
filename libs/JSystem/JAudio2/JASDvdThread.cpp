@@ -21,7 +21,7 @@ struct JASTaskThread {
 };
 
 struct JASDvd {
-    /* 8028FEFC */ void getThreadPointer();
+    /* 8028FEFC */ u32 getThreadPointer();
     /* 8028FF04 */ void createThread(s32, int, u32);
 
     static u8 sThread[4 + 4 /* padding */];
@@ -31,7 +31,7 @@ struct JASDvd {
 // Forward References:
 //
 
-extern "C" void getThreadPointer__6JASDvdFv();
+extern "C" u32 getThreadPointer__6JASDvdFv();
 extern "C" void createThread__6JASDvdFliUl();
 extern "C" u8 sThread__6JASDvd[4 + 4 /* padding */];
 
@@ -53,18 +53,13 @@ extern "C" u8 sCurrentHeap__7JKRHeap[4];
 //
 
 /* ############################################################################################## */
-/* 80451208-80451210 000708 0004+04 2/2 0/0 0/0 .sbss            sThread__6JASDvd */
+/* 80451208-80451210 000708 0004+04 2/1 0/0 0/0 .sbss            sThread__6JASDvd */
 u8 JASDvd::sThread[4 + 4 /* padding */];
 
-/* 8028FEFC-8028FF04 28A83C 0008+00 0/0 6/6 0/0 .text            getThreadPointer__6JASDvdFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDvd::getThreadPointer() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASDvdThread/getThreadPointer__6JASDvdFv.s"
+/* 8028FEFC-8028FF04 -00001 0008+00 0/0 0/0 0/0 .text            getThreadPointer__6JASDvdFv */
+u32 JASDvd::getThreadPointer() {
+    return *(u32*)(&JASDvd::sThread);
 }
-#pragma pop
 
 /* 8028FF04-8028FFA8 28A844 00A4+00 0/0 1/1 0/0 .text            createThread__6JASDvdFliUl */
 #pragma push

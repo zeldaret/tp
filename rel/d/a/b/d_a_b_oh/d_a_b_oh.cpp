@@ -55,11 +55,11 @@ struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Vec {};
+struct J3DAnmTransform {};
 
 struct J3DModelData {};
 
-struct J3DAnmTransform {};
+struct Vec {};
 
 struct mDoExt_McaMorf {
     /* 8000FC4C */ mDoExt_McaMorf(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -97,12 +97,12 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {
     /* 8061D8FC */ ~csXyz();
     /* 8061D938 */ csXyz();
 };
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004C218 */ void setHitMark(u16, fopAc_ac_c*, cXyz const*, csXyz const*, cXyz const*, u32);

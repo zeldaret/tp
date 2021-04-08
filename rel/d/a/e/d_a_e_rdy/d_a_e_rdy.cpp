@@ -25,15 +25,15 @@ struct mDoGph_gInf_c {
     /* 80007FD8 */ void fadeOut(f32, _GXColor&);
 };
 
+struct J3DAnmTransform {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct mDoExt_McaMorfCallBack1_c {};
-
 struct Z2Creature {};
-
-struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,

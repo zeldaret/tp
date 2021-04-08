@@ -73,14 +73,6 @@ struct dStage_roomControl_c {
     static u8 mStatus[65792];
 };
 
-struct _GXColorS10 {};
-
-struct dKy_tevstr_c {};
-
-struct J3DModelData {
-    /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
-};
-
 struct Vec {};
 
 struct cXyz {
@@ -89,6 +81,14 @@ struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80266B84 */ void operator*(f32) const;
 };
+
+struct J3DModelData {
+    /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
+};
+
+struct _GXColorS10 {};
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 8019F2E8 */ dScnKy_env_light_c();

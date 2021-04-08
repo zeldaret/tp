@@ -91,7 +91,7 @@ struct daPy_py_c {
     /* 80182A10 */ void checkGoronSideMove() const;
     /* 80182AAC */ void getRightFootPosP();
     /* 80182AB4 */ void getLeftFootPosP();
-    /* 80182ABC */ void getMidnaActor();
+    /* 80182ABC */ u32 getMidnaActor();
     /* 80182AC4 */ void checkCopyRodThrowAfter() const;
     /* 80182AD8 */ void checkRide() const;
     /* 80182B9C */ void getRightHandPos() const;
@@ -208,8 +208,8 @@ struct dCcMassS_Mng {
 
 struct camera_class {};
 
-struct dCamMapToolData {
-    /* 8015FEB8 */ void Set(s32, s32, fopAc_ac_c*, u16, u8);
+struct dBgS_LinChk {
+    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
 };
 
 struct cSAngle {
@@ -249,8 +249,8 @@ struct cSAngle {
     static u8 _270[2 + 6 /* padding */];
 };
 
-struct dBgS_LinChk {
-    /* 80077D64 */ void Set(cXyz const*, cXyz const*, fopAc_ac_c const*);
+struct dCamMapToolData {
+    /* 8015FEB8 */ void Set(s32, s32, fopAc_ac_c*, u16, u8);
 };
 
 struct dCamera_c {
@@ -852,7 +852,7 @@ extern "C" bool __lt__7cSAngleCFRC7cSAngle();
 extern "C" bool __gt__7cSAngleCFRC7cSAngle();
 extern "C" void getRightFootPosP__9daPy_py_cFv();
 extern "C" void getLeftFootPosP__9daPy_py_cFv();
-extern "C" void getMidnaActor__9daPy_py_cFv();
+extern "C" u32 getMidnaActor__9daPy_py_cFv();
 extern "C" void checkCopyRodThrowAfter__9daPy_py_cCFv();
 extern "C" void keepLock__12dAttention_cFi();
 extern "C" void checkRide__9daPy_py_cCFv();
@@ -4620,15 +4620,10 @@ asm void daPy_py_c::getLeftFootPosP() {
 }
 #pragma pop
 
-/* 80182ABC-80182AC4 17D3FC 0008+00 2/2 0/0 0/0 .text            getMidnaActor__9daPy_py_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daPy_py_c::getMidnaActor() {
-    nofralloc
-#include "asm/d/d_camera/getMidnaActor__9daPy_py_cFv.s"
+/* 80182ABC-80182AC4 -00001 0008+00 0/0 0/0 0/0 .text            getMidnaActor__9daPy_py_cFv */
+u32 daPy_py_c::getMidnaActor() {
+    return *(u32*)(&daPy_py_c::m_midnaActor);
 }
-#pragma pop
 
 /* 80182AC4-80182AD0 17D404 000C+00 1/1 0/0 0/0 .text checkCopyRodThrowAfter__9daPy_py_cCFv */
 #pragma push

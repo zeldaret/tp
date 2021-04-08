@@ -48,14 +48,14 @@ struct JASDriver {
     /* 8029C900 */ void finishDSPFrame();
     /* 8029C9DC */ void registerMixCallback(s16* (*)(s32), JASMixMode);
     /* 8029C9E8 */ void getDacRate();
-    /* 8029C9F0 */ void getSubFrames();
+    /* 8029C9F0 */ u32 getSubFrames();
     /* 8029C9F8 */ void getDacSize();
     /* 8029CA04 */ void getFrameSamples();
     /* 8029CA10 */ void mixMonoTrack(s16*, u32, s16* (*)(s32));
     /* 8029CAC0 */ void mixMonoTrackWide(s16*, u32, s16* (*)(s32));
     /* 8029CB70 */ void mixExtraTrack(s16*, u32, s16* (*)(s32));
     /* 8029CC50 */ void mixInterleaveTrack(s16*, u32, s16* (*)(s32));
-    /* 8029CCD4 */ void getSubFrameCounter();
+    /* 8029CCD4 */ u32 getSubFrameCounter();
     /* 8029E2A8 */ void subframeCallback();
     /* 8029E2D0 */ void DSPSyncCallback();
 
@@ -113,14 +113,14 @@ extern "C" void readDspBuffer__9JASDriverFPsUl();
 extern "C" void finishDSPFrame__9JASDriverFv();
 extern "C" void registerMixCallback__9JASDriverFPFl_Ps10JASMixMode();
 extern "C" void getDacRate__9JASDriverFv();
-extern "C" void getSubFrames__9JASDriverFv();
+extern "C" u32 getSubFrames__9JASDriverFv();
 extern "C" void getDacSize__9JASDriverFv();
 extern "C" void getFrameSamples__9JASDriverFv();
 extern "C" void mixMonoTrack__9JASDriverFPsUlPFl_Ps();
 extern "C" void mixMonoTrackWide__9JASDriverFPsUlPFl_Ps();
 extern "C" void mixExtraTrack__9JASDriverFPsUlPFl_Ps();
 extern "C" void mixInterleaveTrack__9JASDriverFPsUlPFl_Ps();
-extern "C" void getSubFrameCounter__9JASDriverFv();
+extern "C" u32 getSubFrameCounter__9JASDriverFv();
 extern "C" void* const sMixFuncs__9JASDriver[4];
 extern "C" extern char const* const JASAiCtrl__stringBase0;
 extern "C" u8 sDmaDacBuffer__9JASDriver[12 + 4 /* padding */];
@@ -257,7 +257,7 @@ SECTION_SDATA u32 JASDriver::sMixMode = 0x00000002;
 /* 804507B0-804507B4 000230 0004+00 2/2 0/0 0/0 .sdata           sDacRate__9JASDriver */
 SECTION_SDATA f32 JASDriver::sDacRate = 32028.5f;
 
-/* 804507B4-804507B8 000234 0004+00 4/4 0/0 0/0 .sdata           sSubFrames__9JASDriver */
+/* 804507B4-804507B8 000234 0004+00 4/3 0/0 0/0 .sdata           sSubFrames__9JASDriver */
 SECTION_SDATA u32 JASDriver::sSubFrames = 0x00000007;
 
 /* 80455720-80455724 003D20 0004+00 1/1 0/0 0/0 .sdata2          @233 */
@@ -289,7 +289,7 @@ SECTION_RODATA void* const JASDriver::sMixFuncs[4] = {
 };
 COMPILER_STRIP_GATE(8039B2E0, &JASDriver::sMixFuncs);
 
-/* 804512C4-804512C8 0007C4 0004+00 2/2 0/0 0/0 .sbss            sSubFrameCounter__9JASDriver */
+/* 804512C4-804512C8 0007C4 0004+00 2/1 0/0 0/0 .sbss            sSubFrameCounter__9JASDriver */
 u8 JASDriver::sSubFrameCounter[4];
 
 /* 804512C8-804512CC 0007C8 0004+00 1/1 0/0 0/0 .sbss            dacp$239 */
@@ -386,15 +386,10 @@ asm void JASDriver::getDacRate() {
 }
 #pragma pop
 
-/* 8029C9F0-8029C9F8 297330 0008+00 2/2 2/2 0/0 .text            getSubFrames__9JASDriverFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDriver::getSubFrames() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAiCtrl/getSubFrames__9JASDriverFv.s"
+/* 8029C9F0-8029C9F8 -00001 0008+00 0/0 0/0 0/0 .text            getSubFrames__9JASDriverFv */
+u32 JASDriver::getSubFrames() {
+    return *(u32*)(&JASDriver::sSubFrames);
 }
-#pragma pop
 
 /* 8029C9F8-8029CA04 297338 000C+00 2/2 0/0 0/0 .text            getDacSize__9JASDriverFv */
 #pragma push
@@ -457,15 +452,10 @@ asm void JASDriver::mixInterleaveTrack(s16* param_0, u32 param_1, s16* (*)(s32))
 }
 #pragma pop
 
-/* 8029CCD4-8029CCDC 297614 0008+00 0/0 1/1 0/0 .text            getSubFrameCounter__9JASDriverFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDriver::getSubFrameCounter() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASAiCtrl/getSubFrameCounter__9JASDriverFv.s"
+/* 8029CCD4-8029CCDC -00001 0008+00 0/0 0/0 0/0 .text            getSubFrameCounter__9JASDriverFv */
+u32 JASDriver::getSubFrameCounter() {
+    return *(u32*)(&JASDriver::sSubFrameCounter);
 }
-#pragma pop
 
 /* 8039B2F0-8039B338 027950 0048+00 5/5 0/0 0/0 .rodata          @stringBase0 */
 #pragma push

@@ -36,14 +36,14 @@ struct daObjNagaisu_c {
     static u8 const REMOVE_ISU_IDX[28];
 };
 
-struct dCcD_Stts {
-    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
-};
-
 struct dMdl_obj_c {};
 
 struct dMdl_c {
     /* 8009C668 */ void entryObj(dMdl_obj_c*);
+};
+
+struct dCcD_Stts {
+    /* 80083860 */ void Init(int, int, fopAc_ac_c*);
 };
 
 struct daObjIsuChild_c {

@@ -34,13 +34,13 @@ struct mDoGph_gInf_c {
     static u8 mFader[4];
 };
 
-struct J3DMaterialTable {};
-
 struct J3DModelData {};
 
 struct J3DAnmTevRegKey {
     /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
 };
+
+struct J3DMaterialTable {};
 
 struct mDoExt_brkAnm {
     /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
@@ -83,8 +83,6 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct JKRArchive {};
-
 struct J2DAnmTextureSRTKey {
     /* 80184274 */ ~J2DAnmTextureSRTKey();
 };
@@ -102,6 +100,8 @@ struct J2DPane {
     /* 802F6714 */ void insertChild(J2DPane*, J2DPane*);
     /* 802F7FCC */ void animationTransform();
 };
+
+struct JKRArchive {};
 
 struct dSelect_cursor_c {
     /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);

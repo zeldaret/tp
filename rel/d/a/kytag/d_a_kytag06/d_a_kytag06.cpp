@@ -28,15 +28,15 @@ struct dSv_event_c {
 
 struct dPa_levelEcallBack {};
 
+struct _GXColor {};
+
 struct cXyz {
     /* 808589A4 */ ~cXyz();
 };
 
-struct dKy_tevstr_c {};
-
-struct _GXColor {};
-
 struct csXyz {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,

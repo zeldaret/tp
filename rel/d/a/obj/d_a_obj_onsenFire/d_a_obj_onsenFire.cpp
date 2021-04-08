@@ -29,9 +29,9 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct dKy_tevstr_c {};
-
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct cXyz {};
 

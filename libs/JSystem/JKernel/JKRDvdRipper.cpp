@@ -53,7 +53,7 @@ struct JKRDvdRipper {
                                       JKRDvdRipper::EAllocDirection, u32, int*, u32*);
     /* 802D9B98 */ void loadToMainRAM(char const*, u8*, JKRExpandSwitch, u32, JKRHeap*,
                                       JKRDvdRipper::EAllocDirection, u32, int*, u32*);
-    /* 802DA7D4 */ void isErrorRetry();
+    /* 802DA7D4 */ u8 isErrorRetry();
 
     static u8 sDvdAsyncList[12];
     static u32 sSZSBufferSize;
@@ -78,7 +78,7 @@ extern "C" static void JKRDecompressFromDVD__FP10JKRDvdFilePvUlUlUlUlPUl();
 extern "C" static void decompSZS_subroutine__FPUcPUc();
 extern "C" static void firstSrcData__Fv();
 extern "C" static void nextSrcData__FPUc();
-extern "C" void isErrorRetry__12JKRDvdRipperFv();
+extern "C" u8 isErrorRetry__12JKRDvdRipperFv();
 extern "C" void __sinit_JKRDvdRipper_cpp();
 extern "C" void func_802DA820();
 extern "C" extern char const* const JKRDvdRipper__stringBase0;
@@ -159,7 +159,7 @@ asm void JKRDvdRipper::loadToMainRAM(s32 param_0, u8* param_1, JKRExpandSwitch p
 #pragma pop
 
 /* ############################################################################################## */
-/* 804508C8-804508CC 000348 0004+00 3/3 0/0 0/0 .sdata           None */
+/* 804508C8-804508CC 000348 0004+00 3/2 0/0 0/0 .sdata           None */
 SECTION_SDATA static u32 data_804508C8 = 0x01000000;
 
 /* 802D9D10-802DA1E4 2D4650 04D4+00 2/2 0/0 0/0 .text
@@ -277,15 +277,10 @@ static asm void nextSrcData(u8* param_0) {
 }
 #pragma pop
 
-/* 802DA7D4-802DA7DC 2D5114 0008+00 1/1 0/0 0/0 .text            isErrorRetry__12JKRDvdRipperFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JKRDvdRipper::isErrorRetry() {
-    nofralloc
-#include "asm/JSystem/JKernel/JKRDvdRipper/isErrorRetry__12JKRDvdRipperFv.s"
+/* 802DA7D4-802DA7DC -00001 0008+00 0/0 0/0 0/0 .text            isErrorRetry__12JKRDvdRipperFv */
+u8 JKRDvdRipper::isErrorRetry() {
+    return *(u8*)(&data_804508C8);
 }
-#pragma pop
 
 /* 802DA7DC-802DA820 2D511C 0044+00 0/0 1/0 0/0 .text            __sinit_JKRDvdRipper_cpp */
 #pragma push

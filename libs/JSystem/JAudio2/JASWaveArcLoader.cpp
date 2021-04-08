@@ -70,12 +70,7 @@ struct JASTaskThread {
 };
 
 struct JASKernel {
-    /* 80290AC0 */ void getSystemHeap();
     /* 80290B08 */ void getAramHeap();
-};
-
-struct JASDvd {
-    /* 8028FEFC */ void getThreadPointer();
 };
 
 //

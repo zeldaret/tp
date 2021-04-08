@@ -30,11 +30,11 @@ struct J3DTexGenBlock4 {
     /* 80317674 */ void initialize();
 };
 
+struct J3DNBTScale {};
+
 struct J3DTexCoord {
     /* 8000E464 */ J3DTexCoord();
 };
-
-struct J3DNBTScale {};
 
 struct J3DTexGenBlock {
     /* 8000DFD8 */ bool getTexMtx(u32);
@@ -109,9 +109,9 @@ struct J3DPEBlockFogOff {
 
 struct J3DBlend {};
 
-struct J3DAlphaComp {};
-
 struct J3DFog {};
+
+struct J3DAlphaComp {};
 
 struct J3DPEBlock {
     /* 8000DBCC */ void patch();

@@ -26,19 +26,19 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
+struct J3DAnmTransform {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
-
-struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -57,6 +57,14 @@ struct daTag_EvtArea_c {
     /* 8048C94C */ void chkPointInArea(cXyz, cXyz);
 };
 
+struct J3DJoint {};
+
+struct daNpcT_faceMotionAnmData_c {};
+
+struct daNpcT_evtData_c {};
+
+struct daNpcT_motionAnmData_c {};
+
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -64,14 +72,6 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80145A24 */ void checkEndSequence();
     /* 80B672D8 */ ~daNpcT_MotionSeqMngr_c();
 };
-
-struct daNpcT_motionAnmData_c {};
-
-struct J3DJoint {};
-
-struct daNpcT_faceMotionAnmData_c {};
-
-struct daNpcT_evtData_c {};
 
 struct daNpc_ykW_c {
     /* 80B5EF0C */ ~daNpc_ykW_c();
@@ -152,19 +152,19 @@ struct daNpc_ykM_c {
 
 struct daNpcT_pntData_c {};
 
+struct csXyz {
+    /* 80B66C38 */ ~csXyz();
+    /* 80B671D4 */ csXyz();
+};
+
 struct dCcD_GObjInf {
     /* 80083A28 */ dCcD_GObjInf();
     /* 800840E4 */ ~dCcD_GObjInf();
 };
 
-struct J3DModel {};
-
 struct _GXColorS10 {};
 
-struct csXyz {
-    /* 80B66C38 */ ~csXyz();
-    /* 80B671D4 */ csXyz();
-};
+struct J3DModel {};
 
 struct daNpcT_c {
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
@@ -302,11 +302,11 @@ struct dPath {};
 
 struct dPa_levelEcallBack {};
 
-struct dKy_tevstr_c {};
-
 struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
 };
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     struct level_c {
@@ -318,14 +318,14 @@ struct dPa_control_c {
                                 cXyz const*);
 };
 
+struct dBgS {
+    /* 80074E50 */ void GetPolyAtt0(cBgS_PolyInfo const&);
+};
+
 struct dBgS_AcchCir {
     /* 80075EAC */ dBgS_AcchCir();
     /* 80075F40 */ void SetWallR(f32);
     /* 80B67320 */ ~dBgS_AcchCir();
-};
-
-struct dBgS {
-    /* 80074E50 */ void GetPolyAtt0(cBgS_PolyInfo const&);
 };
 
 struct dBgS_Acch {

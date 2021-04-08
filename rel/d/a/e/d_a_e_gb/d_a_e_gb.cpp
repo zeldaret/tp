@@ -19,9 +19,9 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTevRegKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_brkAnm {
     /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
@@ -36,11 +36,11 @@ struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Vec {};
+struct J3DAnmTransform {};
 
 struct J3DModelData {};
 
-struct J3DAnmTransform {};
+struct Vec {};
 
 struct mDoExt_McaMorf {
     /* 8000FC4C */ mDoExt_McaMorf(J3DModelData*, mDoExt_McaMorfCallBack1_c*,

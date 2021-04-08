@@ -60,28 +60,28 @@ struct J2DScreen {
 
 struct J2DRotateAxis {};
 
+struct J2DAnmVtxColor {};
+
+struct J2DAnmTexPattern {};
+
+struct J2DAnmTextureSRTKey {};
+
 struct J2DAnmTevRegKey {};
 
-struct J2DAnmTransform {};
+struct J2DBasePosition {};
 
 struct J2DGrafContext {
     /* 802E8E20 */ void setScissor();
     /* 802E90C0 */ void scissor(JGeometry::TBox2<f32> const&);
 };
 
-struct J2DAnmVtxColor {};
-
-struct J2DAnmTextureSRTKey {};
+struct J2DAnmVisibilityFull {};
 
 struct J2DAnmColor {};
 
-struct J2DBasePosition {};
-
-struct J2DAnmVisibilityFull {};
+struct J2DAnmTransform {};
 
 struct J2DAnmBase {};
-
-struct J2DAnmTexPattern {};
 
 struct J2DPane {
     /* 80020158 */ void setAlpha(u8);

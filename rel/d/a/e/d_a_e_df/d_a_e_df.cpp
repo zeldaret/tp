@@ -28,15 +28,15 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
+struct J3DAnmTransform {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct mDoExt_McaMorfCallBack1_c {};
-
 struct Z2Creature {};
-
-struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -65,9 +65,9 @@ struct daPy_py_c {
     static u8 m_midnaActor[4];
 };
 
-struct J3DJoint {};
-
 struct J3DModel {};
+
+struct J3DJoint {};
 
 struct daE_DF_c {
     /* 806A7710 */ void CreateHeap();

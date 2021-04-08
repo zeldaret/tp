@@ -51,12 +51,12 @@ struct daSetBgObj_c {
     /* 80031870 */ void getArcName(fopAc_ac_c*);
 };
 
+struct J3DModel {};
+
 struct dBgW {
     /* 8007B970 */ dBgW();
     /* 8007B9C0 */ void Move();
 };
-
-struct J3DModel {};
 
 struct cCcD_Obj {};
 

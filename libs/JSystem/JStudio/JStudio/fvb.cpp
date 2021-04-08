@@ -49,18 +49,6 @@ struct TVector_pointer_void {
 
 namespace JStudio {
 namespace fvb {
-struct data {
-    struct TParse_TBlock {};
-
-    struct TParse_TParagraph {
-        struct TData {};
-
-        /* 802850AC */ void getData(JStudio::fvb::data::TParse_TParagraph::TData*) const;
-    };
-
-    static f32 ga4cSignature[1 + 1 /* padding */];
-};
-
 struct TObject;
 struct TControl {
     /* 80284668 */ TControl();
@@ -71,6 +59,18 @@ struct TControl {
     /* 802847D0 */ void destroyObject_all();
     /* 80284834 */ void getObject(void const*, u32);
     /* 802848D4 */ void getObject_index(u32);
+};
+
+struct data {
+    struct TParse_TBlock {};
+
+    struct TParse_TParagraph {
+        struct TData {};
+
+        /* 802850AC */ void getData(JStudio::fvb::data::TParse_TParagraph::TData*) const;
+    };
+
+    static f32 ga4cSignature[1 + 1 /* padding */];
 };
 
 struct TObject {

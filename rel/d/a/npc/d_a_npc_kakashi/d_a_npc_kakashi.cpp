@@ -17,18 +17,18 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
+struct J3DAnmTransform {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0420 */ ~Z2Creature();
 };
-
-struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -42,22 +42,22 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
+struct J3DJoint {};
+
+struct daNpcT_faceMotionAnmData_c {};
+
+struct daNpcT_evtData_c {};
+
+struct J3DModel {};
+
+struct daNpcT_motionAnmData_c {};
+
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
     /* 80145898 */ void initialize();
     /* 8054E460 */ ~daNpcT_MotionSeqMngr_c();
 };
-
-struct daNpcT_motionAnmData_c {};
-
-struct J3DModel {};
-
-struct J3DJoint {};
-
-struct daNpcT_faceMotionAnmData_c {};
-
-struct daNpcT_evtData_c {};
 
 struct daNpc_Kakashi_c {
     /* 8054B36C */ ~daNpc_Kakashi_c();
@@ -111,6 +111,11 @@ struct daNpc_Kakashi_Param_c {
     static u8 const m[152];
 };
 
+struct csXyz {
+    /* 8054DED8 */ ~csXyz();
+    /* 8054E8F8 */ csXyz();
+};
+
 struct dCcD_GObjInf {
     /* 80083A28 */ dCcD_GObjInf();
     /* 800840E4 */ ~dCcD_GObjInf();
@@ -119,16 +124,11 @@ struct dCcD_GObjInf {
     /* 800845B0 */ void getHitSeID(u8, int);
 };
 
+struct _GXColorS10 {};
+
 struct cXyz {
     /* 8054DDD0 */ ~cXyz();
     /* 8054E414 */ cXyz();
-};
-
-struct _GXColorS10 {};
-
-struct csXyz {
-    /* 8054DED8 */ ~csXyz();
-    /* 8054E8F8 */ csXyz();
 };
 
 struct daNpcT_c {
@@ -222,9 +222,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct dKy_tevstr_c {};
-
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,

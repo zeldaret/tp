@@ -22,9 +22,9 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTevRegKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_brkAnm {
     /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);

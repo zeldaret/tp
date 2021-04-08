@@ -41,15 +41,15 @@ struct mDoExt_btpAnm {
     /* 8000D5E8 */ void entry(J3DMaterialTable*, s16);
 };
 
+struct J3DAnmTransform {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct mDoExt_McaMorfCallBack1_c {};
-
 struct Z2Creature {};
-
-struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -67,11 +67,11 @@ struct daPy_py_c {
     /* 8015F424 */ void checkNowWolfEyeUp();
 };
 
-struct J3DJoint {};
-
 struct J3DAnmTransformKey {};
 
 struct J3DModel {};
+
+struct J3DJoint {};
 
 struct daNpcCd2_c {
     /* 80157D00 */ void NpcCreate(int);

@@ -17,12 +17,12 @@ struct daPy_py_c {
     /* 8015F398 */ void checkMasterSwordEquip();
 };
 
+struct Quaternion {};
+
 struct dCcD_GObjInf {
     /* 800844F8 */ void GetTgHitObj();
     /* 8008457C */ void GetTgHitObjSe();
 };
-
-struct Quaternion {};
 
 struct Vec {};
 
@@ -56,11 +56,11 @@ struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
 
-struct dKy_tevstr_c {};
+struct JPABaseEmitter {};
 
 struct J3DModelData {};
 
-struct JPABaseEmitter {};
+struct dKy_tevstr_c {};
 
 struct dPa_modelEcallBack {
     /* 8004AC00 */ void setModel(JPABaseEmitter*, J3DModelData*, dKy_tevstr_c const&, u8, void*, u8,

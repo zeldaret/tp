@@ -11,15 +11,15 @@
 // Types:
 //
 
-struct JAISound {};
-
-struct JAISeq {};
+struct JAISe {};
 
 struct JAISoundID {};
 
-struct JAISe {};
+struct JAISeq {};
 
 struct JAIStream {};
+
+struct JAISound {};
 
 struct Z2SoundInfo {
     /* 802BB00C */ void getBgmSeqResourceID(JAISoundID) const;

@@ -25,15 +25,15 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
+struct J3DAnmTransform {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct mDoExt_McaMorfCallBack1_c {};
-
 struct Z2Creature {};
-
-struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -47,9 +47,9 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct J3DJoint {};
-
 struct J3DModel {};
+
+struct J3DJoint {};
 
 struct daNpcPray_c {
     /* 80AB2DEC */ daNpcPray_c();
@@ -94,9 +94,9 @@ struct daNpcPray_Param_c {
     static u8 const m[108];
 };
 
-struct _GXColorS10 {};
-
 struct J3DAnmTransformKey {};
+
+struct _GXColorS10 {};
 
 struct daNpcF_c {
     struct daNpcF_anmPlayData {};

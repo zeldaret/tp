@@ -38,11 +38,13 @@ struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
 };
 
+struct J3DAnmTransform {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -51,8 +53,6 @@ struct Z2Creature {
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
-
-struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -70,20 +70,20 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
+struct J3DJoint {};
+
+struct daNpcT_faceMotionAnmData_c {};
+
+struct daNpcT_evtData_c {};
+
+struct daNpcT_motionAnmData_c {};
+
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
     /* 80145898 */ void initialize();
     /* 809B88E8 */ ~daNpcT_MotionSeqMngr_c();
 };
-
-struct daNpcT_motionAnmData_c {};
-
-struct J3DJoint {};
-
-struct daNpcT_faceMotionAnmData_c {};
-
-struct daNpcT_evtData_c {};
 
 struct daNpc_Fairy_c {
     /* 809B228C */ ~daNpc_Fairy_c();
@@ -197,14 +197,16 @@ struct daNpc_Fairy_Param_c {
     static u8 const m[148];
 };
 
+struct J3DAnmColor {};
+
+struct J3DAnmTransformKey {};
+
 struct dCcD_GObjInf {
     /* 80083A28 */ dCcD_GObjInf();
     /* 800840E4 */ ~dCcD_GObjInf();
 };
 
-struct J3DModel {};
-
-struct J3DAnmColor {};
+struct _GXColorS10 {};
 
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
@@ -212,9 +214,7 @@ struct cXyz {
     /* 809B889C */ cXyz();
 };
 
-struct _GXColorS10 {};
-
-struct J3DAnmTransformKey {};
+struct J3DModel {};
 
 struct daNpcT_c {
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
@@ -339,13 +339,13 @@ struct dPa_control_c {
                             _GXColor const*, cXyz const*, f32);
 };
 
+struct dBgS {};
+
 struct dBgS_AcchCir {
     /* 80075EAC */ dBgS_AcchCir();
     /* 80075F40 */ void SetWallR(f32);
     /* 809B8930 */ ~dBgS_AcchCir();
 };
-
-struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();

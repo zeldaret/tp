@@ -53,9 +53,9 @@ struct JKRAramStream {
     /* 802D3B48 */ void create(s32);
 };
 
-struct JKRAramBlock {};
-
 struct JKRAMCommand {};
+
+struct JKRAramBlock {};
 
 struct JKRAramPiece {
     /* 802D3838 */ void orderSync(int, u32, u32, u32, JKRAramBlock*);

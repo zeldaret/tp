@@ -28,10 +28,6 @@ struct JASResArcLoader {
     /* 80290D18 */ void loadResourceAsync(JKRArchive*, u16, u8*, u32, void (*)(u32, u32), u32);
 };
 
-struct JASDvd {
-    /* 8028FEFC */ void getThreadPointer();
-};
-
 //
 // Forward References:
 //

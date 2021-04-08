@@ -45,15 +45,15 @@ struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
 };
 
+struct J3DAnmTransform {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct mDoExt_McaMorfCallBack1_c {};
-
 struct Z2Creature {};
-
-struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -69,13 +69,13 @@ struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
 };
 
-struct cBgD_Vtx_t {};
-
 struct cM3dGPla {};
 
 struct dBgS_SphChk {
     /* 80078A14 */ dBgS_SphChk();
 };
+
+struct cBgD_Vtx_t {};
 
 struct daE_DK_c {
     /* 806AA228 */ void draw();

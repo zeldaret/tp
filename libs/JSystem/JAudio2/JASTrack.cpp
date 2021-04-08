@@ -32,6 +32,8 @@ struct JASTrackPort {
     /* 802935E8 */ void writeExport(u32, u16);
 };
 
+struct JASSoundParams {};
+
 struct JASOscillator {
     struct Point {};
 
@@ -45,8 +47,6 @@ struct JASChannel {
     /* 8029ACD4 */ void setKeySweepTarget(s32, u32);
     /* 8029BBFC */ void free();
 };
-
-struct JASSoundParams {};
 
 struct JASDsp {
     struct TChannel {
@@ -175,7 +175,6 @@ struct JASGenericMemPool {
 
 struct JASDriver {
     /* 8029C9E8 */ void getDacRate();
-    /* 8029C9F0 */ void getSubFrames();
     /* 8029E274 */ void registerSubFrameCallback(s32 (*)(void*), void*);
 };
 

@@ -126,15 +126,15 @@ struct J3DModelLoaderDataBase {
     /* 803346BC */ void load(void const*, u32);
 };
 
-struct J3DMaterialDLBlock {};
-
-struct J3DEnvelopeBlock {};
-
 struct J3DModelInfoBlock {};
 
 struct J3DJointBlock {};
 
 struct J3DDrawBlock {};
+
+struct J3DEnvelopeBlock {};
+
+struct J3DMaterialDLBlock {};
 
 struct J3DModelLoader {
     /* 8033468C */ J3DModelLoader();

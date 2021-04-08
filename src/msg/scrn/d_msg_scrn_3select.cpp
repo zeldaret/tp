@@ -11,12 +11,12 @@
 // Types:
 //
 
-struct JKRArchive {};
-
 struct J2DPane {
     /* 802F7100 */ void getBounds();
     /* 802F7FCC */ void animationTransform();
 };
+
+struct JKRArchive {};
 
 struct dSelect_cursor_c {
     /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);

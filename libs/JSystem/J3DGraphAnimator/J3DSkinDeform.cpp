@@ -27,9 +27,9 @@ struct J3DSkinNList {
     /* 8032C8E4 */ void calcSkin_VtxNrmF32(f32 (*)[4], void*, void*);
 };
 
-struct J3DModelData {};
-
 struct J3DMtxBuffer {};
+
+struct J3DModelData {};
 
 struct J3DSkinDeform {
     /* 8032C96C */ J3DSkinDeform();

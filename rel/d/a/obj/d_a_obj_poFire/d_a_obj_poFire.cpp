@@ -75,6 +75,8 @@ struct dSv_player_get_item_c {
 
 struct dPa_levelEcallBack {};
 
+struct _GXColor {};
+
 struct Vec {};
 
 struct cXyz {
@@ -83,11 +85,9 @@ struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
 };
 
-struct dKy_tevstr_c {};
-
-struct _GXColor {};
-
 struct csXyz {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     struct level_c {

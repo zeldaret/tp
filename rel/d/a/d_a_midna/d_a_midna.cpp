@@ -62,9 +62,9 @@ struct mDoExt_blkAnm {
     /* 8000DA08 */ void init(J3DDeformData*, J3DAnmCluster*, int, int, f32, s16, s16);
 };
 
-struct J3DModelData {};
-
 struct J3DAnmTransform {};
+
+struct J3DModelData {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -76,11 +76,11 @@ struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
 };
 
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
 struct J3DTransformInfo {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
@@ -371,11 +371,6 @@ struct J3DSys {
     static u8 mCurrentMtx[48];
 };
 
-struct J3DAnmTexPattern {
-    /* 8032AF50 */ void getTexNo(u16, u16*) const;
-    /* 8032B09C */ void searchUpdateMaterialID(J3DModelData*);
-};
-
 struct J3DAnmTevRegKey {
     /* 8032B1F8 */ void getTevColorReg(u16, _GXColorS10*) const;
     /* 8032B4BC */ void getTevKonstReg(u16, _GXColor*) const;
@@ -384,6 +379,11 @@ struct J3DAnmTevRegKey {
 
 struct J3DAnmTextureSRTKey {
     /* 8032B1D4 */ void searchUpdateMaterialID(J3DModelData*);
+};
+
+struct J3DAnmTexPattern {
+    /* 8032AF50 */ void getTexNo(u16, u16*) const;
+    /* 8032B09C */ void searchUpdateMaterialID(J3DModelData*);
 };
 
 struct J3DMaterialTable {

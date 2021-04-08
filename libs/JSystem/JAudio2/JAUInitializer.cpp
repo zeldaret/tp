@@ -88,7 +88,6 @@ struct JASGenericMemPool {
 };
 
 struct JASDvd {
-    /* 8028FEFC */ void getThreadPointer();
     /* 8028FF04 */ void createThread(s32, int, u32);
 };
 

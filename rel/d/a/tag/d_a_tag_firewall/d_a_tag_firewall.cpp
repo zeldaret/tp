@@ -35,11 +35,11 @@ struct dVibration_c {
 
 struct dPa_levelEcallBack {};
 
-struct dKy_tevstr_c {};
-
 struct _GXColor {};
 
 struct csXyz {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     struct level_c {

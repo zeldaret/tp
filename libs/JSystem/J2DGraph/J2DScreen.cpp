@@ -52,15 +52,33 @@ struct JGeometry {
     struct TBox2__template0 {};
 };
 
+struct J2DAnmTextureSRTKey {};
+
+struct J2DAnmTexPattern {};
+
+struct J2DAnmColor {};
+
+struct J2DAnmTevRegKey {};
+
+struct J2DMaterial {
+    /* 802EA1AC */ J2DMaterial();
+    /* 802EA2CC */ ~J2DMaterial();
+    /* 802EAA2C */ void setAnimation(J2DAnmTexPattern*);
+    /* 802EA94C */ void setAnimation(J2DAnmTextureSRTKey*);
+    /* 802EAB0C */ void setAnimation(J2DAnmTevRegKey*);
+    /* 802EA89C */ void setAnimation(J2DAnmColor*);
+    /* 802EAC78 */ void animation();
+};
+
 struct J2DAnmVisibilityFull {};
 
-struct J2DAnmBase {};
+struct J2DAnmVtxColor {};
 
 struct J2DAnmTransform {};
 
-struct J2DGrafContext {};
+struct J2DAnmBase {};
 
-struct J2DAnmVtxColor {};
+struct J2DGrafContext {};
 
 struct J2DPane {
     /* 80020158 */ void setAlpha(u8);
@@ -89,24 +107,6 @@ struct J2DPane {
     /* 802F8464 */ void setConnectParent(bool);
     /* 802F8474 */ void update();
     /* 802F8478 */ void drawSelf(f32, f32);
-};
-
-struct J2DAnmTextureSRTKey {};
-
-struct J2DAnmColor {};
-
-struct J2DAnmTevRegKey {};
-
-struct J2DAnmTexPattern {};
-
-struct J2DMaterial {
-    /* 802EA1AC */ J2DMaterial();
-    /* 802EA2CC */ ~J2DMaterial();
-    /* 802EAA2C */ void setAnimation(J2DAnmTexPattern*);
-    /* 802EA94C */ void setAnimation(J2DAnmTextureSRTKey*);
-    /* 802EAB0C */ void setAnimation(J2DAnmTevRegKey*);
-    /* 802EA89C */ void setAnimation(J2DAnmColor*);
-    /* 802EAC78 */ void animation();
 };
 
 struct J2DWindowEx {

@@ -378,7 +378,7 @@ asm void daPy_boomerangMove_c::initOffset(cXyz const* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451018-8045101C 000518 0004+00 2/2 33/33 103/103 .sbss            m_midnaActor__9daPy_py_c */
+/* 80451018-8045101C 000518 0004+00 2/2 33/32 103/103 .sbss            m_midnaActor__9daPy_py_c */
 u8 daPy_py_c::m_midnaActor[4];
 
 /* 8045101C-80451020 -00001 0004+00 1/1 1/1 1/1 .sbss            None */

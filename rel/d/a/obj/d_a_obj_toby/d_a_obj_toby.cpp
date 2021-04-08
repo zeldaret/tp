@@ -95,9 +95,9 @@ struct dEvt_control_c {
     /* 80042468 */ void reset();
 };
 
-struct J3DModelData {};
-
 struct J3DModel {};
+
+struct J3DModelData {};
 
 struct dComIfG_play_c {
     /* 8002CAF0 */ void addSimpleModel(J3DModelData*, int, u8);

@@ -23,11 +23,11 @@ struct mDoExt_bckAnm {
     /* 8000D990 */ void changeBckOnly(J3DAnmTransform*);
 };
 
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -49,9 +49,9 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct J3DJoint {};
-
 struct J3DModel {};
+
+struct J3DJoint {};
 
 struct daNpc_grC_c {
     /* 809CB4CC */ daNpc_grC_c();
@@ -108,24 +108,24 @@ struct daNpc_grC_Param_c {
     static u8 const m[108];
 };
 
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-};
-
-struct J3DAnmTextureSRTKey {};
-
 struct dCcD_SrcCyl {};
 
 struct dCcD_Cyl {
     /* 800848B4 */ void Set(dCcD_SrcCyl const&);
 };
 
-struct _GXColorS10 {};
-
 struct J3DAnmTexPattern {};
 
 struct J3DAnmTransformKey {};
+
+struct _GXColorS10 {};
+
+struct dCcD_GObjInf {
+    /* 80083A28 */ dCcD_GObjInf();
+    /* 800840E4 */ ~dCcD_GObjInf();
+};
+
+struct J3DAnmTextureSRTKey {};
 
 struct daNpcF_c {
     struct daNpcF_anmPlayData {};
@@ -201,14 +201,14 @@ struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
 
+struct dBgS {};
+
 struct dBgS_AcchCir {
     /* 80075EAC */ dBgS_AcchCir();
     /* 80075F40 */ void SetWallR(f32);
     /* 80075F58 */ void SetWall(f32, f32);
     /* 809CF274 */ ~dBgS_AcchCir();
 };
-
-struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();

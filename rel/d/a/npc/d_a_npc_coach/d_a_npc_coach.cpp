@@ -57,11 +57,11 @@ struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
 };
 
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
@@ -99,9 +99,9 @@ struct mDoExt_3DlineMatSortPacket {
 
 struct dKy_tevstr_c {};
 
-struct _GXColor {};
-
 struct ResTIMG {};
+
+struct _GXColor {};
 
 struct mDoExt_3DlineMat1_c {
     /* 80013360 */ void init(u16, u16, ResTIMG*, int);
@@ -124,11 +124,11 @@ struct daNpcTheB_c {
     /* 80AFD5F0 */ void getHandPos2(int);
 };
 
-struct J3DModel {};
-
 struct SVec {};
 
 struct J3DJoint {};
+
+struct J3DModel {};
 
 struct daNpcCoach_c {
     /* 8099DA60 */ void hitFireArrow(cXyz);

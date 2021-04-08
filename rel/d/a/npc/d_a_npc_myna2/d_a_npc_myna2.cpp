@@ -28,18 +28,18 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
+struct J3DAnmTransform {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
-
-struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -102,23 +102,23 @@ struct daNpc_myna2_Param_c {
     static u8 const m[116];
 };
 
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-    /* 80084658 */ void ChkCoHit();
-};
-
 struct dCcD_SrcCyl {};
 
 struct dCcD_Cyl {
     /* 800848B4 */ void Set(dCcD_SrcCyl const&);
 };
 
-struct _GXColorS10 {};
-
 struct J3DAnmTexPattern {};
 
 struct J3DAnmTransformKey {};
+
+struct _GXColorS10 {};
+
+struct dCcD_GObjInf {
+    /* 80083A28 */ dCcD_GObjInf();
+    /* 800840E4 */ ~dCcD_GObjInf();
+    /* 80084658 */ void ChkCoHit();
+};
 
 struct daNpcF_c {
     struct daNpcF_anmPlayData {};

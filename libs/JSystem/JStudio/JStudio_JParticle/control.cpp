@@ -55,14 +55,14 @@ struct JStudio_JParticle {
 
 struct JPAParticleCallBack {};
 
+struct JPAEmitterCallBack {};
+
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
 };
-
-struct JPAEmitterCallBack {};
 
 struct JPAEmitterManager {
     /* 8027DEBC */ void createSimpleEmitterID(JGeometry::TVec3<f32> const&, u16, u8, u8,

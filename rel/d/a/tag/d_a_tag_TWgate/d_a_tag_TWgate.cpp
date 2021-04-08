@@ -22,15 +22,15 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
+struct J3DAnmTransform {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct mDoExt_McaMorfCallBack1_c {};
-
 struct Z2Creature {};
-
-struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -110,13 +110,13 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct dKy_tevstr_c {};
-
 struct _GXColor {};
 
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,

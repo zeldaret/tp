@@ -77,13 +77,13 @@ struct J2DTevOrder {
     /* 802F1B70 */ J2DTevOrder();
 };
 
-struct J2DGXColorS10 {
-    /* 802F1B90 */ J2DGXColorS10();
-};
-
 struct J2DIndTevStage {
     /* 802EA044 */ void load(u8);
     /* 802F18A0 */ J2DIndTevStage();
+};
+
+struct J2DGXColorS10 {
+    /* 802F1B90 */ J2DGXColorS10();
 };
 
 struct J2DTevBlock8 {

@@ -80,9 +80,9 @@ struct dDlst_shadowRealPoly_c {
     /* 800569A8 */ s32 getTriMax();
 };
 
-struct cBgD_Vtx_t {};
-
 struct cM3dGPla {};
+
+struct cBgD_Vtx_t {};
 
 struct dDlst_shadowPoly_c {
     /* 80054288 */ void set(cBgD_Vtx_t*, u16, u16, u16, cM3dGPla*);
@@ -109,6 +109,8 @@ struct dDlst_peekZ_c {
     /* 80056080 */ void peekData();
 };
 
+struct dDlst_base_c {};
+
 struct J3DPacket {};
 
 struct J3DDrawBuffer {
@@ -119,8 +121,6 @@ struct J3DDrawBuffer {
     /* 8032548C */ void entryImm(J3DPacket*, u16);
     /* 803254AC */ void draw() const;
 };
-
-struct dDlst_base_c {};
 
 struct _GXColor {};
 

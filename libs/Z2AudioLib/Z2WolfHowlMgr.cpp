@@ -11,9 +11,9 @@
 // Types:
 //
 
-struct Vec {};
-
 struct Z2WolfHowlData {};
+
+struct Vec {};
 
 struct Z2WolfHowlMgr {
     /* 802CAAC0 */ Z2WolfHowlMgr();

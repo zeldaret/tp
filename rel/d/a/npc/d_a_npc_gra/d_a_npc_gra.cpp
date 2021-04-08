@@ -41,11 +41,11 @@ struct mDoExt_bckAnm {
     /* 8000D990 */ void changeBckOnly(J3DAnmTransform*);
 };
 
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
@@ -76,9 +76,9 @@ struct daTagGra_c {
     /* 809C9D0C */ void getGraPos();
 };
 
-struct J3DJoint {};
-
 struct J3DModel {};
+
+struct J3DJoint {};
 
 struct daNpc_grA_c {
     struct daNpc_GrA_prtclMngr_c {
@@ -178,19 +178,19 @@ struct daNpcT_ActorMngr_c {
     /* 80145708 */ void getActorP();
 };
 
-struct J3DAnmTextureSRTKey {};
-
 struct dCcD_SrcCyl {};
 
 struct dCcD_Cyl {
     /* 800848B4 */ void Set(dCcD_SrcCyl const&);
 };
 
-struct _GXColorS10 {};
-
 struct J3DAnmTexPattern {};
 
 struct J3DAnmTransformKey {};
+
+struct _GXColorS10 {};
+
+struct J3DAnmTextureSRTKey {};
 
 struct daNpcF_c {
     struct daNpcF_anmPlayData {};
@@ -287,11 +287,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
+struct _GXColor {};
+
 struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
 };
-
-struct _GXColor {};
 
 struct dPa_control_c {
     struct level_c {
@@ -306,14 +306,14 @@ struct dPa_control_c {
                                 cXyz const*);
 };
 
+struct dBgS {};
+
 struct dBgS_AcchCir {
     /* 80075EAC */ dBgS_AcchCir();
     /* 80075F40 */ void SetWallR(f32);
     /* 80075F58 */ void SetWall(f32, f32);
     /* 809C98F8 */ ~dBgS_AcchCir();
 };
-
-struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();

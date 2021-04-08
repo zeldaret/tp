@@ -11,8 +11,8 @@
 // Forward References:
 //
 
-extern "C" void OSGetArenaHi();
-extern "C" void OSGetArenaLo();
+extern "C" u32 OSGetArenaHi();
+extern "C" u32 OSGetArenaLo();
 extern "C" void OSSetArenaHi();
 extern "C" void OSSetArenaLo();
 extern "C" void OSAllocFromArenaLo();
@@ -26,36 +26,26 @@ extern "C" void OSAllocFromArenaLo();
 //
 
 /* ############################################################################################## */
-/* 80451650-80451658 000B50 0004+04 2/2 0/0 0/0 .sbss            __OSArenaHi */
+/* 80451650-80451658 000B50 0004+04 2/1 0/0 0/0 .sbss            __OSArenaHi */
 static u8 __OSArenaHi[4 + 4 /* padding */];
 
-/* 8033B28C-8033B294 335BCC 0008+00 0/0 7/7 0/0 .text            OSGetArenaHi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSGetArenaHi() {
-    nofralloc
-#include "asm/dolphin/os/OSArena/OSGetArenaHi.s"
+/* 8033B28C-8033B294 -00001 0008+00 0/0 0/0 0/0 .text            OSGetArenaHi */
+u32 OSGetArenaHi() {
+    return *(u32*)(&__OSArenaHi);
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 80450998-804509A0 000418 0004+04 3/3 0/0 0/0 .sdata           __OSArenaLo */
+/* 80450998-804509A0 000418 0004+04 3/2 0/0 0/0 .sdata           __OSArenaLo */
 SECTION_SDATA static u32 __OSArenaLo[1 + 1 /* padding */] = {
     0xFFFFFFFF,
     /* padding */
     0x00000000,
 };
 
-/* 8033B294-8033B29C 335BD4 0008+00 0/0 4/4 0/0 .text            OSGetArenaLo */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void OSGetArenaLo() {
-    nofralloc
-#include "asm/dolphin/os/OSArena/OSGetArenaLo.s"
+/* 8033B294-8033B29C -00001 0008+00 0/0 0/0 0/0 .text            OSGetArenaLo */
+u32 OSGetArenaLo() {
+    return *(u32*)(&__OSArenaLo);
 }
-#pragma pop
 
 /* 8033B29C-8033B2A4 335BDC 0008+00 0/0 5/5 0/0 .text            OSSetArenaHi */
 #pragma push

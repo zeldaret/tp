@@ -63,11 +63,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
+struct _GXColor {};
+
 struct cXyz {
     static f32 Zero[3];
 };
-
-struct _GXColor {};
 
 struct csXyz {
     /* 80018BD0 */ ~csXyz();

@@ -39,11 +39,11 @@ struct mDoExt_brkAnm {
     /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
 };
 
+struct J3DAnmTransform {};
+
 struct J3DModelData {
     /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
 };
-
-struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);

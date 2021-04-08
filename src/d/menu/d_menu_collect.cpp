@@ -19,13 +19,13 @@ struct mDoGph_gInf_c {
     static u8 mFader[4];
 };
 
-struct J3DMaterialTable {};
-
 struct J3DModelData {};
 
 struct J3DAnmTevRegKey {
     /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
 };
+
+struct J3DMaterialTable {};
 
 struct mDoExt_brkAnm {
     /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
@@ -76,9 +76,9 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct JKRArchive {};
-
 struct J2DPane {};
+
+struct JKRArchive {};
 
 struct dSelect_cursor_c {
     /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
@@ -120,6 +120,14 @@ struct dMenu_save_c {
     /* 801F69B8 */ void _draw();
 };
 
+struct STControl {
+    /* 8003219C */ void checkTrigger();
+    /* 8003242C */ void checkLeftTrigger();
+    /* 800324A8 */ void checkRightTrigger();
+    /* 80032524 */ void checkUpTrigger();
+    /* 800325A0 */ void checkDownTrigger();
+};
+
 struct JKRHeap {
     /* 802CE5CC */ void freeAll();
     /* 802CE784 */ void getTotalFreeSize();
@@ -130,14 +138,6 @@ struct JKRExpHeap {
 };
 
 struct CSTControl {};
-
-struct STControl {
-    /* 8003219C */ void checkTrigger();
-    /* 8003242C */ void checkLeftTrigger();
-    /* 800324A8 */ void checkRightTrigger();
-    /* 80032524 */ void checkUpTrigger();
-    /* 800325A0 */ void checkDownTrigger();
-};
 
 struct dMenu_Skill_c {
     /* 801F7224 */ dMenu_Skill_c(JKRExpHeap*, STControl*, CSTControl*);

@@ -75,23 +75,21 @@ struct J2DScreen {
 
 struct J2DMirror {};
 
-struct J2DBinding {};
-
-struct J2DAnmColor {};
-
-struct J2DAnmTevRegKey {};
-
-struct J2DAnmVisibilityFull {};
-
-struct J2DAnmBase {};
-
-struct J2DAnmTransform {};
+struct J2DAnmTexPattern {};
 
 struct J2DAnmVtxColor {};
 
+struct J2DAnmVisibilityFull {};
+
+struct J2DAnmColor {};
+
+struct J2DAnmTransform {};
+
 struct J2DAnmTextureSRTKey {};
 
-struct J2DAnmTexPattern {};
+struct J2DAnmTevRegKey {};
+
+struct J2DAnmBase {};
 
 struct J2DPane {
     /* 80020158 */ void setAlpha(u8);
@@ -135,6 +133,8 @@ struct J2DPane {
 };
 
 struct J2DMaterial {};
+
+struct J2DBinding {};
 
 struct J2DPicture {
     /* 800202CC */ void setBlendRatio(f32, f32);

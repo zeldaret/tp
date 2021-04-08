@@ -17,9 +17,9 @@ struct mDoGph_gInf_c {
     /* 80007FD8 */ void fadeOut(f32, _GXColor&);
 };
 
-struct Vec {};
-
 struct J3DAnmTransform {};
+
+struct Vec {};
 
 struct mDoExt_McaMorf {
     /* 8001037C */ void setAnm(J3DAnmTransform*, int, f32, f32, f32, f32, void*);
@@ -54,9 +54,9 @@ struct cXyz {
     /* 80009184 */ ~cXyz();
 };
 
-struct dKy_tevstr_c {};
-
 struct csXyz {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -110,9 +110,9 @@ struct JStage {
         /* 80280B88 */ void JSGGetColor() const;
     };
 
-    struct TECameraProjection {};
-
     struct TECameraView {};
+
+    struct TECameraProjection {};
 
     struct TCamera {
         /* 80280BA0 */ ~TCamera();

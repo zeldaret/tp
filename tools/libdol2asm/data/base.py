@@ -84,6 +84,12 @@ class ArbitraryData(Symbol):
             self.size // self.element_size,
             self.padding // self.element_size)
 
+    def return_type(self):
+        array_type = self.array_type()
+        if isinstance(array_type, ArrayType) or isinstance(array_type, PaddingArrayType)  or isinstance(array_type, ZeroArrayType):
+            return PointerType(array_type.base)
+        return array_type
+
     def cpp_reference(self, accessor, addr):
         name = self.declaration_name(forward=False, c_export=False,full_qualified_name=True)
         if addr == self.addr:
@@ -91,6 +97,14 @@ class ArbitraryData(Symbol):
         else:
             offset = addr - self.addr
             return f"(((char*)&{name})+0x{offset:X})"
+
+    def cpp_load(self, accessor, addr):
+        name = self.declaration_name(forward=False, c_export=False,full_qualified_name=True)
+        if addr == self.addr:
+            return f"{name}"
+        else:
+            offset = addr - self.addr
+            return f"*(((char*)&{name})+0x{offset:X})"
 
     def declaration_name(self, forward: bool,
                          c_export: bool,

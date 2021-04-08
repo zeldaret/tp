@@ -50,6 +50,8 @@ struct dBgW {
 };
 
 struct daObjMovebox {
+    struct BgcSrc_c {};
+
     struct Act_c {
         struct Prm_e {};
 
@@ -90,8 +92,6 @@ struct daObjMovebox {
         static u8 const M_cyl_src[68];
         static u8 const M_attr[1280];
     };
-
-    struct BgcSrc_c {};
 
     struct Bgc_c {
         /* 8047DAEC */ Bgc_c();

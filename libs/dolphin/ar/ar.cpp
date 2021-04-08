@@ -16,7 +16,7 @@ extern "C" void ARGetDMAStatus();
 extern "C" void ARStartDMA();
 extern "C" void ARAlloc();
 extern "C" void ARInit();
-extern "C" void ARGetSize();
+extern "C" u32 ARGetSize();
 extern "C" void __ARHandler();
 extern "C" void __ARClearInterrupt();
 extern "C" void __ARGetInterruptStatus();
@@ -77,7 +77,7 @@ asm void ARStartDMA() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804518BC-804518C0 000DBC 0004+00 2/2 0/0 0/0 .sbss            __AR_Size */
+/* 804518BC-804518C0 000DBC 0004+00 2/1 0/0 0/0 .sbss            __AR_Size */
 static u8 __AR_Size[4];
 
 /* 804518C0-804518C4 000DC0 0004+00 1/1 0/0 0/0 .sbss            __AR_InternalSize */
@@ -203,15 +203,10 @@ asm void ARInit() {
 }
 #pragma pop
 
-/* 803507F0-803507F8 34B130 0008+00 0/0 1/1 0/0 .text            ARGetSize */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void ARGetSize() {
-    nofralloc
-#include "asm/dolphin/ar/ar/ARGetSize.s"
+/* 803507F0-803507F8 -00001 0008+00 0/0 0/0 0/0 .text            ARGetSize */
+u32 ARGetSize() {
+    return *(u32*)(&__AR_Size);
 }
-#pragma pop
 
 /* 803507F8-80350870 34B138 0078+00 1/1 0/0 0/0 .text            __ARHandler */
 #pragma push

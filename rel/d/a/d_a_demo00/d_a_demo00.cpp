@@ -24,11 +24,11 @@ struct mDoGph_gInf_c {
     static u8 mFrameBufferTimg[4];
 };
 
-struct J3DDeformData {};
-
 struct J3DSkinDeform {
     /* 8032C96C */ J3DSkinDeform();
 };
+
+struct J3DDeformData {};
 
 struct J3DModel {
     /* 80327A2C */ void setDeformData(J3DDeformData*, u32);
@@ -52,13 +52,13 @@ struct mDoExt_invisibleModel {
     /* 8000E7C0 */ void entryDL(cXyz*);
 };
 
-struct J3DAnmColor {};
-
-struct J3DAnmTexPattern {};
+struct J3DAnmTextureSRTKey {};
 
 struct J3DAnmTevRegKey {};
 
-struct J3DAnmTextureSRTKey {};
+struct J3DAnmColor {};
+
+struct J3DAnmTexPattern {};
 
 struct J3DMaterialTable {
     /* 8032F64C */ void removeMatColorAnimator(J3DAnmColor*);
@@ -97,19 +97,19 @@ struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
 };
 
+struct J3DAnmTransform {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
     /* 802C0420 */ ~Z2Creature();
     /* 802C0530 */ void init(Vec*, Vec*, u8, u8);
 };
-
-struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,

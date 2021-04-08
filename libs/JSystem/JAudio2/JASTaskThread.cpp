@@ -31,11 +31,6 @@ struct JASTaskThread {
     /* 8028FE88 */ void pause(bool);
 };
 
-struct JASKernel {
-    /* 80290AC0 */ void getSystemHeap();
-    /* 80290AC8 */ void getCommandHeap();
-};
-
 struct JASCalc {
     /* 8028F354 */ void bcopy(void const*, void*, u32);
 };

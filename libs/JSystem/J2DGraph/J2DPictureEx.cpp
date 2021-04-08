@@ -71,17 +71,29 @@ struct J2DScreen {
     /* 802F9640 */ void getNameResource(char const*);
 };
 
-struct J2DAnmTevRegKey {};
-
-struct J2DAnmTransform {};
+struct J2DAnmTexPattern {};
 
 struct J2DAnmVtxColor {};
 
 struct J2DAnmTextureSRTKey {};
 
+struct J2DAnmColor {};
+
+struct J2DAnmTevRegKey {};
+
+struct J2DMaterial {
+    /* 802EA38C */ void setGX();
+    /* 802EAB0C */ void setAnimation(J2DAnmTevRegKey*);
+    /* 802EAA2C */ void setAnimation(J2DAnmTexPattern*);
+    /* 802EA94C */ void setAnimation(J2DAnmTextureSRTKey*);
+    /* 802EA89C */ void setAnimation(J2DAnmColor*);
+};
+
 struct J2DAnmVisibilityFull {
     /* 8030C048 */ void getVisibility(u16, u8*) const;
 };
+
+struct J2DAnmTransform {};
 
 struct J2DAnmBase {};
 
@@ -108,18 +120,6 @@ struct J2DPane {
     /* 802F83FC */ void setAnimationVC(J2DAnmVtxColor*);
     /* 802F8464 */ void setConnectParent(bool);
     /* 802F8474 */ void update();
-};
-
-struct J2DAnmTexPattern {};
-
-struct J2DAnmColor {};
-
-struct J2DMaterial {
-    /* 802EA38C */ void setGX();
-    /* 802EAB0C */ void setAnimation(J2DAnmTevRegKey*);
-    /* 802EAA2C */ void setAnimation(J2DAnmTexPattern*);
-    /* 802EA94C */ void setAnimation(J2DAnmTextureSRTKey*);
-    /* 802EA89C */ void setAnimation(J2DAnmColor*);
 };
 
 struct J2DPictureEx {

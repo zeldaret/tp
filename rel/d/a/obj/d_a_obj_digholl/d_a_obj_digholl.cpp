@@ -34,9 +34,9 @@ struct dSv_info_c {
     /* 80035360 */ void isSwitch(int, int) const;
 };
 
-struct dKy_tevstr_c {};
-
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004D1B8 */ void setSimple(u16, cXyz const*, dKy_tevstr_c const*, u8, _GXColor const&,

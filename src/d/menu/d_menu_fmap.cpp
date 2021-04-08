@@ -100,15 +100,15 @@ struct dMenu_Fmap_world_data_c {
 
 struct dMenu_Fmap_stage_data_c {};
 
+struct STControl {
+    /* 8003219C */ void checkTrigger();
+};
+
 struct JKRExpHeap {
     /* 802CEE2C */ void create(u32, JKRHeap*, bool);
 };
 
 struct CSTControl {};
-
-struct STControl {
-    /* 8003219C */ void checkTrigger();
-};
 
 struct dMenu_Fmap_c {
     /* 801C66E4 */ dMenu_Fmap_c(JKRExpHeap*, STControl*, CSTControl*, u8, u8, u8, f32, f32, u8);

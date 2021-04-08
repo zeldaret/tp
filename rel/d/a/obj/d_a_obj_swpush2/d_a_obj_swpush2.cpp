@@ -25,11 +25,11 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmColor {};
+struct J3DAnmTextureSRTKey {};
 
 struct J3DAnmTevRegKey {};
 
-struct J3DAnmTextureSRTKey {};
+struct J3DAnmColor {};
 
 struct J3DMaterialTable {
     /* 8032F64C */ void removeMatColorAnimator(J3DAnmColor*);

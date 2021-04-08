@@ -11,17 +11,17 @@
 // Types:
 //
 
-struct JAISoundHandle {
-    /* 802A2184 */ void releaseSound();
-};
-
-struct JAISoundID {};
-
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
+};
+
+struct JAISoundID {};
+
+struct JAISoundHandle {
+    /* 802A2184 */ void releaseSound();
 };
 
 struct Z2SpeechStarter {

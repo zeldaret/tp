@@ -15,9 +15,9 @@ struct mDoCPd_c {
     static u8 m_cpadInfo[256];
 };
 
-struct JKRArchive {};
-
 struct J2DPane {};
+
+struct JKRArchive {};
 
 struct dSelect_cursor_c {
     /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);

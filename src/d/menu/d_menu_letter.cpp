@@ -31,11 +31,11 @@ struct dSv_letter_info_c {
     /* 8003449C */ void isLetterReadFlag(int) const;
 };
 
-struct JKRArchive {};
-
 struct J2DPane {
     /* 802F7100 */ void getBounds();
 };
+
+struct JKRArchive {};
 
 struct dSelect_cursor_c {
     /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
@@ -85,14 +85,14 @@ struct dMeter2Info_c {
     /* 8021C544 */ void getStringKanji(u32, char*, JMSMesgEntry_c*);
 };
 
-struct JKRExpHeap {};
-
-struct CSTControl {};
-
 struct STControl {
     /* 80032524 */ void checkUpTrigger();
     /* 800325A0 */ void checkDownTrigger();
 };
+
+struct JKRExpHeap {};
+
+struct CSTControl {};
 
 struct dMenu_Letter_c {
     /* 801DCDC0 */ dMenu_Letter_c(JKRExpHeap*, STControl*, CSTControl*);

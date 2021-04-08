@@ -46,13 +46,13 @@ struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct Vec {};
+struct J3DAnmTransform {};
 
 struct J3DModelData {
     /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
 };
 
-struct J3DAnmTransform {};
+struct Vec {};
 
 struct mDoExt_McaMorf {
     /* 8000FC4C */ mDoExt_McaMorf(J3DModelData*, mDoExt_McaMorfCallBack1_c*,

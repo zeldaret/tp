@@ -17,12 +17,11 @@ struct JASDsp {
 };
 
 struct JASDriver {
-    /* 8029CCD4 */ void getSubFrameCounter();
     /* 8029E130 */ void setDSPLevel(f32);
-    /* 8029E150 */ void getChannelLevel_dsp();
+    /* 8029E150 */ u16 getChannelLevel_dsp();
     /* 8029E158 */ void getDSPLevel();
     /* 8029E178 */ void setOutputMode(u32);
-    /* 8029E180 */ void getOutputMode();
+    /* 8029E180 */ u32 getOutputMode();
     /* 8029E188 */ void waitSubFrame();
     /* 8029E1C4 */ void rejectCallback(s32 (*)(void*), void*);
     /* 8029E240 */ void registerDspSyncCallback(s32 (*)(void*), void*);
@@ -53,10 +52,10 @@ struct JASCallbackMgr {
 //
 
 extern "C" void setDSPLevel__9JASDriverFf();
-extern "C" void getChannelLevel_dsp__9JASDriverFv();
+extern "C" u16 getChannelLevel_dsp__9JASDriverFv();
 extern "C" void getDSPLevel__9JASDriverFv();
 extern "C" void setOutputMode__9JASDriverFUl();
-extern "C" void getOutputMode__9JASDriverFv();
+extern "C" u32 getOutputMode__9JASDriverFv();
 extern "C" void waitSubFrame__9JASDriverFv();
 extern "C" void rejectCallback__9JASDriverFPFPv_lPv();
 extern "C" void registerDspSyncCallback__9JASDriverFPFPv_lPv();
@@ -102,23 +101,18 @@ asm void JASDriver::setDSPLevel(f32 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804507C0-804507C4 000240 0002+02 1/1 0/0 0/0 .sdata           MAX_MIXERLEVEL__9JASDriver */
+/* 804507C0-804507C4 000240 0002+02 1/0 0/0 0/0 .sdata           MAX_MIXERLEVEL__9JASDriver */
 SECTION_SDATA u16 JASDriver::MAX_MIXERLEVEL[1 + 1 /* padding */] = {
     0x2EE0,
     /* padding */
     0x0000,
 };
 
-/* 8029E150-8029E158 298A90 0008+00 0/0 2/2 0/0 .text            getChannelLevel_dsp__9JASDriverFv
+/* 8029E150-8029E158 -00001 0008+00 0/0 0/0 0/0 .text            getChannelLevel_dsp__9JASDriverFv
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDriver::getChannelLevel_dsp() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASDriverIF/getChannelLevel_dsp__9JASDriverFv.s"
+u16 JASDriver::getChannelLevel_dsp() {
+    return *(u16*)(&JASDriver::MAX_MIXERLEVEL);
 }
-#pragma pop
 
 /* 8029E158-8029E178 298A98 0020+00 0/0 3/3 0/0 .text            getDSPLevel__9JASDriverFv */
 #pragma push
@@ -131,7 +125,7 @@ asm void JASDriver::getDSPLevel() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 804507C4-804507C8 000244 0004+00 2/2 0/0 0/0 .sdata           JAS_SYSTEM_OUTPUT_MODE__9JASDriver
+/* 804507C4-804507C8 000244 0004+00 2/1 0/0 0/0 .sdata           JAS_SYSTEM_OUTPUT_MODE__9JASDriver
  */
 SECTION_SDATA u32 JASDriver::JAS_SYSTEM_OUTPUT_MODE = 0x00000001;
 
@@ -145,15 +139,10 @@ asm void JASDriver::setOutputMode(u32 param_0) {
 }
 #pragma pop
 
-/* 8029E180-8029E188 298AC0 0008+00 0/0 4/4 1/1 .text            getOutputMode__9JASDriverFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDriver::getOutputMode() {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASDriverIF/getOutputMode__9JASDriverFv.s"
+/* 8029E180-8029E188 -00001 0008+00 0/0 0/0 0/0 .text            getOutputMode__9JASDriverFv */
+u32 JASDriver::getOutputMode() {
+    return *(u32*)(&JASDriver::JAS_SYSTEM_OUTPUT_MODE);
 }
-#pragma pop
 
 /* 8029E188-8029E1C4 298AC8 003C+00 0/0 1/1 0/0 .text            waitSubFrame__9JASDriverFv */
 #pragma push

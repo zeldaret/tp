@@ -19,6 +19,12 @@ struct jmessage_tControl {
     /* 802299EC */ jmessage_tControl();
 };
 
+struct Vec {};
+
+struct cXyz {
+    /* 80266B34 */ void operator-(Vec const&) const;
+};
+
 struct jmessage_tReference {
     /* 80228B04 */ jmessage_tReference();
     /* 80228CB4 */ ~jmessage_tReference();
@@ -49,12 +55,6 @@ struct jmessage_tReference {
     /* 8022994C */ void isLightEnd();
     /* 802299AC */ void decideOutFontRupeeColor(int);
     /* 80232A20 */ void getActorPos();
-};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
 };
 
 struct jmessage_tSequenceProcessor {

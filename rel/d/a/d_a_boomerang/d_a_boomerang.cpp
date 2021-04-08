@@ -34,9 +34,9 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DModelData {};
-
 struct J3DAnmTransform {};
+
+struct J3DModelData {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -156,8 +156,6 @@ struct dPa_control_c {
                             _GXColor const*, cXyz const*, f32);
 };
 
-struct dBgS_AcchCir {};
-
 struct cBgS_PolyInfo {};
 
 struct dBgS {
@@ -166,6 +164,8 @@ struct dBgS {
     /* 80074E50 */ void GetPolyAtt0(cBgS_PolyInfo const&);
     /* 80075100 */ void GetRoomId(cBgS_PolyInfo const&);
 };
+
+struct dBgS_AcchCir {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();

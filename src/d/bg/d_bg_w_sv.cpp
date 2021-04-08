@@ -19,11 +19,11 @@ struct dBgW_Base {
 
 struct cBgS_PolyInfo {};
 
-struct cXyz {};
+struct cBgD_t {};
 
 struct csXyz {};
 
-struct cBgD_t {};
+struct cXyz {};
 
 struct dBgWSv {
     /* 80082F98 */ void Set(cBgD_t*, u32);
@@ -36,19 +36,19 @@ struct dBgWSv {
     /* 800835DC */ ~dBgWSv();
 };
 
-struct dBgS_SphChk {};
-
-struct dBgS_SplGrpChk {};
-
-struct cBgS_PolyPassChk {};
+struct cBgS_GrpPassChk {};
 
 struct dBgS_CaptPoly {};
 
+struct dBgS_RoofChk {};
+
+struct dBgS_SplGrpChk {};
+
 struct dBgS_Acch {};
 
-struct cBgS_GrpPassChk {};
+struct cBgS_PolyPassChk {};
 
-struct dBgS_RoofChk {};
+struct dBgS_SphChk {};
 
 struct dBgW {
     /* 8007B3AC */ void GetExitId(cBgS_PolyInfo const&);
@@ -98,9 +98,9 @@ struct dBgW {
 
 struct cBgS_LinChk {};
 
-struct cBgS_GndChk {};
-
 struct cBgS_ShdwDraw {};
+
+struct cBgS_GndChk {};
 
 struct cBgW {
     /* 8007933C */ ~cBgW();

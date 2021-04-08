@@ -49,14 +49,14 @@ struct JASAramStream {
 
 struct JAIStreamMgr {};
 
-struct JAIAudience {};
-
 template <typename A0>
 struct JAISoundStrategyMgr {};
 /* JAISoundStrategyMgr<JAIStream> */
 struct JAISoundStrategyMgr__template2 {};
 
 struct JAISoundID {};
+
+struct JAIAudience {};
 
 struct JAISoundActivity {};
 

@@ -14,9 +14,9 @@
 struct Vec {};
 
 struct JStage {
-    struct TECameraProjection {};
-
     struct TECameraView {};
+
+    struct TECameraProjection {};
 
     struct TCamera {
         /* 80280BA0 */ ~TCamera();

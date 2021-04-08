@@ -13,12 +13,6 @@
 
 struct _GXColor {};
 
-struct JStage {
-    struct TSystem {};
-
-    struct TFog {};
-};
-
 namespace JStudio {
 struct TAdaptor {
     /* 802862AC */ void adaptor_setVariableValue_GXColor(u32 const*, _GXColor const&);
@@ -43,6 +37,12 @@ struct TAdaptor_fog {
 };
 
 };  // namespace JStudio
+
+struct JStage {
+    struct TSystem {};
+
+    struct TFog {};
+};
 
 struct JStudio_JStage {
     struct TAdaptor_fog {

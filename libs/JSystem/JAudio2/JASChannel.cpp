@@ -67,8 +67,6 @@ struct JASDsp {
 
 struct JASDriver {
     /* 8029C9E8 */ void getDacRate();
-    /* 8029E150 */ void getChannelLevel_dsp();
-    /* 8029E180 */ void getOutputMode();
 };
 
 struct JASDSPChannel {

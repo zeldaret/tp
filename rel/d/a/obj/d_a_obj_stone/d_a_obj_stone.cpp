@@ -13,11 +13,11 @@
 
 struct request_of_phase_process_class {};
 
-struct Quaternion {};
-
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
+
+struct Quaternion {};
 
 struct mDoMtx_stack_c {
     /* 8000CF44 */ void ZXYrotM(csXyz const&);

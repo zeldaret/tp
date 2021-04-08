@@ -11,14 +11,14 @@
 // Types:
 //
 
-struct JAISoundID {};
-
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
 };
+
+struct JAISoundID {};
 
 struct Z2SoundHandles {
     /* 802AB07C */ Z2SoundHandles();

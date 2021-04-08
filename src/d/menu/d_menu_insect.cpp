@@ -40,9 +40,9 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct JKRArchive {};
-
 struct J2DPane {};
+
+struct JKRArchive {};
 
 struct dSelect_cursor_c {
     /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
@@ -90,10 +90,6 @@ struct dMeter2Info_c {
                                         J2DPicture*, void*, J2DPicture*, int);
 };
 
-struct JKRExpHeap {};
-
-struct CSTControl {};
-
 struct STControl {
     /* 8003219C */ void checkTrigger();
     /* 8003242C */ void checkLeftTrigger();
@@ -101,6 +97,10 @@ struct STControl {
     /* 80032524 */ void checkUpTrigger();
     /* 800325A0 */ void checkDownTrigger();
 };
+
+struct JKRExpHeap {};
+
+struct CSTControl {};
 
 struct dMenu_Insect_c {
     /* 801D8114 */ dMenu_Insect_c(JKRExpHeap*, STControl*, CSTControl*, u8);

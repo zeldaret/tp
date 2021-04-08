@@ -68,15 +68,7 @@ struct dPa_wbPcallBack_c {
     /* 8004FECC */ ~dPa_wbPcallBack_c();
 };
 
-struct dKy_tevstr_c {};
-
 struct _GXColor {};
-
-struct JPAParticleCallBack {
-    /* 800183D4 */ void execute(JPABaseEmitter*, JPABaseParticle*);
-    /* 800183D8 */ void draw(JPABaseEmitter*, JPABaseParticle*);
-    /* 8027EFA4 */ ~JPAParticleCallBack();
-};
 
 struct JGeometry {
     template <typename A1>
@@ -84,6 +76,8 @@ struct JGeometry {
     /* TVec3<f32> */
     struct TVec3__template0 {};
 };
+
+struct JPADrawInfo {};
 
 struct JPAEmitterCallBack {
     /* 80050368 */ void execute(JPABaseEmitter*);
@@ -102,7 +96,11 @@ struct JPAResourceManager {
     /* 80273FCC */ void getResUserWork(u16) const;
 };
 
-struct JPADrawInfo {};
+struct JPAParticleCallBack {
+    /* 800183D4 */ void execute(JPABaseEmitter*, JPABaseParticle*);
+    /* 800183D8 */ void draw(JPABaseEmitter*, JPABaseParticle*);
+    /* 8027EFA4 */ ~JPAParticleCallBack();
+};
 
 struct JPAEmitterManager {
     /* 8027DCA0 */ JPAEmitterManager(u32, u32, JKRHeap*, u8, u8);
@@ -114,6 +112,8 @@ struct JPAEmitterManager {
     /* 8027E344 */ void entryResourceManager(JPAResourceManager*, u8);
     /* 8027E354 */ void clearResourceManager(u8);
 };
+
+struct dKy_tevstr_c {};
 
 struct dPa_simpleEcallBack {
     /* 8004ADF4 */ dPa_simpleEcallBack();
@@ -385,12 +385,12 @@ struct J3DShape {
     static u8 sOldVcdVatCmd[4];
 };
 
-struct J3DAnmTexPattern {
-    /* 8032B09C */ void searchUpdateMaterialID(J3DModelData*);
-};
-
 struct J3DAnmTevRegKey {
     /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
+};
+
+struct J3DAnmTexPattern {
+    /* 8032B09C */ void searchUpdateMaterialID(J3DModelData*);
 };
 
 struct J3DMaterialTable {

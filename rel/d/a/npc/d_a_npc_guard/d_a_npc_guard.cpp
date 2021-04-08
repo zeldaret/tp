@@ -94,9 +94,9 @@ struct daNpcCd2_c {
     static u8 const m_cylDat[68];
 };
 
-struct dKy_tevstr_c {};
-
 struct J3DModelData {};
+
+struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);

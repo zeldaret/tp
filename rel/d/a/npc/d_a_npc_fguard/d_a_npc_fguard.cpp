@@ -101,11 +101,11 @@ struct dBgS_AcchCir {
     /* 809BB31C */ ~dBgS_AcchCir();
 };
 
+struct dBgS {};
+
 struct cXyz {
     /* 809BB2E0 */ ~cXyz();
 };
-
-struct dBgS {};
 
 struct csXyz {
     /* 809BB0D0 */ ~csXyz();

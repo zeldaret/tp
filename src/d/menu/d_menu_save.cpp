@@ -62,11 +62,11 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct JKRArchive {};
-
 struct J2DPane {
     /* 802F7FCC */ void animationTransform();
 };
+
+struct JKRArchive {};
 
 struct dSelect_cursor_c {
     /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
@@ -80,8 +80,6 @@ struct dMsgString_c {
     /* 80249D28 */ ~dMsgString_c();
 };
 
-struct J2DOrthoGraph {};
-
 struct STControl {
     /* 80032044 */ STControl(s16, s16, s16, s16, f32, f32, s16, s16);
     /* 8003219C */ void checkTrigger();
@@ -90,6 +88,8 @@ struct STControl {
     /* 80032524 */ void checkUpTrigger();
     /* 800325A0 */ void checkDownTrigger();
 };
+
+struct J2DOrthoGraph {};
 
 struct dMsgScrnExplain_c {
     /* 8023CC88 */ dMsgScrnExplain_c(STControl*, u8, bool, u8);

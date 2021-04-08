@@ -40,9 +40,9 @@ struct mDoExt_3DlineMatSortPacket {
 
 struct dKy_tevstr_c {};
 
-struct _GXColor {};
-
 struct ResTIMG {};
+
+struct _GXColor {};
 
 struct mDoExt_3DlineMat1_c {
     /* 80013360 */ void init(u16, u16, ResTIMG*, int);

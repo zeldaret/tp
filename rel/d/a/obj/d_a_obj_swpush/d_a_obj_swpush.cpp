@@ -35,12 +35,12 @@ struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
 };
 
+struct J3DJoint {};
+
 struct dBgW {
     /* 8007B970 */ dBgW();
     /* 8007B9C0 */ void Move();
 };
-
-struct J3DJoint {};
 
 struct daObjSwpush {
     struct Act_c {

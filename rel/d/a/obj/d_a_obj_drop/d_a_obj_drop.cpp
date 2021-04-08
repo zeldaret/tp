@@ -97,14 +97,14 @@ struct cXyz {
     static f32 Zero[3];
 };
 
-struct dKy_tevstr_c {};
-
 struct csXyz {
     /* 80BE02D8 */ ~csXyz();
     /* 80BE0314 */ csXyz();
 
     static u8 Zero[4];
 };
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,

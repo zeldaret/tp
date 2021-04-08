@@ -47,13 +47,13 @@ struct mDoExt_invisibleModel {
     /* 8000E7C0 */ void entryDL(cXyz*);
 };
 
-struct J3DAnmTexPattern {
-    /* 8032AF50 */ void getTexNo(u16, u16*) const;
-};
+struct J3DAnmTextureSRTKey {};
 
 struct J3DAnmTevRegKey {};
 
-struct J3DAnmTextureSRTKey {};
+struct J3DAnmTexPattern {
+    /* 8032AF50 */ void getTexNo(u16, u16*) const;
+};
 
 struct J3DMaterialTable {
     /* 8032F6F8 */ void removeTexNoAnimator(J3DAnmTexPattern*);
@@ -79,11 +79,11 @@ struct mDoExt_bckAnm {
     /* 8000D990 */ void changeBckOnly(J3DAnmTransform*);
 };
 
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
@@ -110,9 +110,9 @@ struct fopAcM_gc_c {
     static f32 mGroundY;
 };
 
-struct _GXColorS10 {};
-
 struct J3DJoint {};
+
+struct _GXColorS10 {};
 
 struct daNpc_zrZ_c {
     /* 80B93DCC */ daNpc_zrZ_c();
@@ -182,11 +182,6 @@ struct daNpc_zrZ_Param_c {
     static u8 const m[132];
 };
 
-struct dCcD_GObjInf {
-    /* 80083A28 */ dCcD_GObjInf();
-    /* 800840E4 */ ~dCcD_GObjInf();
-};
-
 struct dCcD_SrcCyl {};
 
 struct dCcD_Cyl {
@@ -194,6 +189,11 @@ struct dCcD_Cyl {
 };
 
 struct J3DAnmTransformKey {};
+
+struct dCcD_GObjInf {
+    /* 80083A28 */ dCcD_GObjInf();
+    /* 800840E4 */ ~dCcD_GObjInf();
+};
 
 struct daNpcF_c {
     struct daNpcF_anmPlayData {};

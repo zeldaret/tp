@@ -41,7 +41,7 @@ extern "C" void fpcLy_CreatingMesg__FP11layer_class();
 extern "C" void fpcLy_CreatedMesg__FP11layer_class();
 extern "C" void fpcLy_RootLayer__Fv();
 extern "C" void fpcLy_SetCurrentLayer__FP11layer_class();
-extern "C" void fpcLy_CurrentLayer__Fv();
+extern "C" u32 fpcLy_CurrentLayer__Fv();
 extern "C" static void fpcLy_Search__FUi();
 extern "C" void fpcLy_Layer__FUi();
 extern "C" static void fpcLy_Regist__FP11layer_class();
@@ -227,7 +227,7 @@ asm void fpcLy_RootLayer() {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450D18-80450D1C 000218 0004+00 2/2 0/0 0/0 .sbss            l_fpcLy_CurrLayer_p */
+/* 80450D18-80450D1C 000218 0004+00 2/1 0/0 0/0 .sbss            l_fpcLy_CurrLayer_p */
 static u8 l_fpcLy_CurrLayer_p[4];
 
 /* 800216EC-800216F4 01C02C 0008+00 1/1 13/13 0/0 .text fpcLy_SetCurrentLayer__FP11layer_class */
@@ -240,15 +240,10 @@ asm void fpcLy_SetCurrentLayer(layer_class* param_0) {
 }
 #pragma pop
 
-/* 800216F4-800216FC 01C034 0008+00 1/1 21/21 0/0 .text            fpcLy_CurrentLayer__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void fpcLy_CurrentLayer() {
-    nofralloc
-#include "asm/f_pc/f_pc_layer/fpcLy_CurrentLayer__Fv.s"
+/* 800216F4-800216FC -00001 0008+00 0/0 0/0 0/0 .text            fpcLy_CurrentLayer__Fv */
+u32 fpcLy_CurrentLayer() {
+    return *(u32*)(&l_fpcLy_CurrLayer_p);
 }
-#pragma pop
 
 /* 800216FC-8002174C 01C03C 0050+00 1/1 0/0 0/0 .text            fpcLy_Search__FUi */
 #pragma push

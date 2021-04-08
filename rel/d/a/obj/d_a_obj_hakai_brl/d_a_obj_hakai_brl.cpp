@@ -67,9 +67,9 @@ struct dPa_modelEcallBack {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004C218 */ void setHitMark(u16, fopAc_ac_c*, cXyz const*, csXyz const*, cXyz const*, u32);

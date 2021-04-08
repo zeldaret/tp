@@ -43,8 +43,6 @@ struct dEvt_control_c {
     /* 800436F4 */ void setPtD(void*);
 };
 
-struct dEvDtData_c {};
-
 struct dEvDtStaff_c {
     /* 80044134 */ void init();
 };
@@ -59,6 +57,8 @@ struct Vec {};
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
+
+struct dEvDtData_c {};
 
 struct dEvent_manager_c {
     /* 800465E8 */ void getSubstance(dEvDtData_c*, int);

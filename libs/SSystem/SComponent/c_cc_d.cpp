@@ -43,10 +43,7 @@ struct cM3dGAab {
     /* 8026EE68 */ void PlusR(f32);
 };
 
-struct cCcD_AabAttr {};
-
-struct cCcD_PntAttr {};
-
+struct cCcD_TriAttr;
 struct cCcD_ShapeAttr {
     struct Shape {};
 
@@ -60,9 +57,12 @@ struct cCcD_ShapeAttr {
     static f32 m_virtual_center[3];
 };
 
+struct cCcD_AabAttr {};
+
 struct cCcD_CpsAttr;
-struct cCcD_TriAttr;
 struct cCcD_SphAttr;
+struct cCcD_PntAttr {};
+
 struct cCcD_CylAttr {
     /* 80084CC0 */ void GetCoCP() const;
     /* 80037A4C */ void GetCoCP();

@@ -33,9 +33,9 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct JKRArchive {};
-
 struct J2DPane {};
+
+struct JKRArchive {};
 
 struct dSelect_cursor_c {
     /* 80194220 */ dSelect_cursor_c(u8, f32, JKRArchive*);
@@ -56,14 +56,14 @@ struct dMeter2Info_c {
     /* 8021C544 */ void getStringKanji(u32, char*, JMSMesgEntry_c*);
 };
 
-struct JKRExpHeap {};
-
-struct CSTControl {};
-
 struct STControl {
     /* 80032524 */ void checkUpTrigger();
     /* 800325A0 */ void checkDownTrigger();
 };
+
+struct JKRExpHeap {};
+
+struct CSTControl {};
 
 struct dMenu_Skill_c {
     /* 801F7224 */ dMenu_Skill_c(JKRExpHeap*, STControl*, CSTControl*);

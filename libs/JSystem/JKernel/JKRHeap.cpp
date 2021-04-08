@@ -214,7 +214,7 @@ SECTION_DATA extern void* __vt__7JKRHeap[24] = {
 /* 80451370-80451374 000870 0004+00 3/3 44/44 0/0 .sbss            sSystemHeap__7JKRHeap */
 u8 JKRHeap::sSystemHeap[4];
 
-/* 80451374-80451378 000874 0004+00 4/4 23/23 0/0 .sbss            sCurrentHeap__7JKRHeap */
+/* 80451374-80451378 000874 0004+00 4/4 23/22 0/0 .sbss            sCurrentHeap__7JKRHeap */
 u8 JKRHeap::sCurrentHeap[4];
 
 /* 80451378-8045137C 000878 0004+00 3/3 10/10 0/0 .sbss            sRootHeap__7JKRHeap */

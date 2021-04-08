@@ -31,8 +31,6 @@ struct renderingPlusDoorAndCursor_c {
     /* 80040ADC */ void getIconPosition(dTres_c::typeGroupData_c*) const;
 };
 
-struct Vec {};
-
 struct dDrawPath_c {
     struct room_class {};
 
@@ -50,6 +48,8 @@ struct dDrawPath_c {
     /* 8003C94C */ void rendering(dDrawPath_c::line_class const*);
     /* 8003CCC4 */ void drawPath();
 };
+
+struct Vec {};
 
 struct renderingDAmap_c {
     /* 8002B150 */ ~renderingDAmap_c();

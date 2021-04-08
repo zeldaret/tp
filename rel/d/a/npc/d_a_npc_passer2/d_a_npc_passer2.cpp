@@ -103,9 +103,9 @@ struct dBgS_AcchCir {
     /* 80AA892C */ ~dBgS_AcchCir();
 };
 
-struct cXyz {};
-
 struct dBgS {};
+
+struct cXyz {};
 
 struct csXyz {};
 

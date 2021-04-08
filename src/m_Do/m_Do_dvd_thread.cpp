@@ -105,10 +105,6 @@ struct JASTaskThread {
     /* 8028FB5C */ void sendCmdMsg(void (*)(void*), void const*, u32);
 };
 
-struct JASDvd {
-    /* 8028FEFC */ void getThreadPointer();
-};
-
 //
 // Forward References:
 //

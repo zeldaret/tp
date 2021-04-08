@@ -37,24 +37,24 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTevRegKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_brkAnm {
     /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
     /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
 };
 
+struct J3DAnmTransform {};
+
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct mDoExt_McaMorfCallBack1_c {};
-
 struct Z2Creature {};
-
-struct J3DAnmTransform {};
 
 struct mDoExt_McaMorfSO {
     /* 800107D0 */ mDoExt_McaMorfSO(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -79,6 +79,8 @@ struct daPy_py_c {
     static u8 m_midnaActor[4];
 };
 
+struct J3DModel {};
+
 struct J3DJoint {};
 
 struct dCcD_SrcSph {};
@@ -89,8 +91,6 @@ struct dCcD_Sph {
     /* 80622674 */ ~dCcD_Sph();
     /* 8062D678 */ dCcD_Sph();
 };
-
-struct J3DModel {};
 
 struct daB_TN_c {
     /* 8061EC58 */ void ctrlJoint(J3DJoint*, J3DModel*);

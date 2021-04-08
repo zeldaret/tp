@@ -27,7 +27,7 @@ struct daBgObj_c {
 
 SECTION_INIT void __check_pad3();
 SECTION_INIT void __set_debug_bba();
-SECTION_INIT void __get_debug_bba();
+SECTION_INIT u8 __get_debug_bba();
 SECTION_INIT void __start();
 SECTION_INIT void __init_registers();
 SECTION_INIT void __init_data();
@@ -89,15 +89,10 @@ SECTION_INIT asm void __set_debug_bba() {
 }
 #pragma pop
 
-/* 8000314C-80003154 00004C 0008+00 1/1 0/0 0/0 .init            __get_debug_bba */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-SECTION_INIT asm void __get_debug_bba() {
-    nofralloc
-#include "asm/init/__get_debug_bba.s"
+/* 8000314C-80003154 -00001 0008+00 0/0 0/0 0/0 .init            __get_debug_bba */
+SECTION_INIT u8 __get_debug_bba() {
+    return *(u8*)(&data_804516D0);
 }
-#pragma pop
 
 /* 80003154-800032B0 000054 015C+00 0/0 1/0 0/0 .init            __start */
 #pragma push

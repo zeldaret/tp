@@ -118,9 +118,9 @@ extern "C" void draw__17JUTConsoleManagerCFv();
 extern "C" void drawDirect__17JUTConsoleManagerCFb();
 extern "C" void setDirectConsole__17JUTConsoleManagerFP10JUTConsole();
 extern "C" void JUTSetReportConsole();
-extern "C" static void JUTGetReportConsole();
+extern "C" u32 JUTGetReportConsole();
 extern "C" void JUTSetWarningConsole();
-extern "C" static void JUTGetWarningConsole();
+extern "C" u32 JUTGetWarningConsole();
 extern "C" static void JUTReportConsole_f_va();
 extern "C" void JUTReportConsole_f();
 extern "C" void JUTReportConsole();
@@ -453,7 +453,7 @@ asm void JUTConsoleManager::setDirectConsole(JUTConsole* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80451574-80451578 000A74 0004+00 2/2 0/0 0/0 .sbss            sReportConsole */
+/* 80451574-80451578 000A74 0004+00 2/1 0/0 0/0 .sbss            sReportConsole */
 static u8 sReportConsole[4];
 
 /* 802E8520-802E8528 2E2E60 0008+00 1/1 1/1 0/0 .text            JUTSetReportConsole */
@@ -466,18 +466,13 @@ asm void JUTSetReportConsole() {
 }
 #pragma pop
 
-/* 802E8528-802E8530 2E2E68 0008+00 2/2 0/0 0/0 .text            JUTGetReportConsole */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void JUTGetReportConsole() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/JUTGetReportConsole.s"
+/* 802E8528-802E8530 -00001 0008+00 0/0 0/0 0/0 .text            JUTGetReportConsole */
+u32 JUTGetReportConsole() {
+    return *(u32*)(&sReportConsole);
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 80451578-80451580 000A78 0004+04 2/2 0/0 0/0 .sbss            sWarningConsole */
+/* 80451578-80451580 000A78 0004+04 2/1 0/0 0/0 .sbss            sWarningConsole */
 static u8 sWarningConsole[4 + 4 /* padding */];
 
 /* 802E8530-802E8538 2E2E70 0008+00 1/1 1/1 0/0 .text            JUTSetWarningConsole */
@@ -490,15 +485,10 @@ asm void JUTSetWarningConsole() {
 }
 #pragma pop
 
-/* 802E8538-802E8540 2E2E78 0008+00 1/1 0/0 0/0 .text            JUTGetWarningConsole */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void JUTGetWarningConsole() {
-    nofralloc
-#include "asm/JSystem/JUtility/JUTConsole/JUTGetWarningConsole.s"
+/* 802E8538-802E8540 -00001 0008+00 0/0 0/0 0/0 .text            JUTGetWarningConsole */
+u32 JUTGetWarningConsole() {
+    return *(u32*)(&sWarningConsole);
 }
-#pragma pop
 
 /* 802E8540-802E85C8 2E2E80 0088+00 2/2 0/0 0/0 .text            JUTReportConsole_f_va */
 #pragma push

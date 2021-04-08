@@ -41,10 +41,6 @@ struct JASGenericMemPool {
     /* 80290948 */ void alloc(u32);
 };
 
-struct JASDvd {
-    /* 8028FEFC */ void getThreadPointer();
-};
-
 struct JASDsp {
     struct TChannel {};
 };

@@ -101,31 +101,31 @@ struct dStage_startStage_c {
     /* 8002419C */ void set(char const*, s8, s16, s8);
 };
 
-struct dStage_Lbnk_c {};
-
-struct dStage_DMap_c {};
-
-struct dStage_FileList2_dt_c {};
-
-struct dStage_FloorInfo_c {};
-
-struct dStage_dPnt_c {};
-
-struct dStage_Elst_c {};
-
-struct dStage_dPath_c {};
-
-struct dStage_SoundInfo_c {};
-
-struct dStage_FileList_dt_c {};
-
-struct dStage_MemoryMap_c {};
+struct dStage_Multi_c {};
 
 struct dStage_MemoryConfig_c {};
 
 struct dStage_MapEventInfo_c {};
 
-struct dStage_Multi_c {};
+struct dStage_SoundInfo_c {};
+
+struct dStage_MemoryMap_c {};
+
+struct dStage_DMap_c {};
+
+struct dStage_dPnt_c {};
+
+struct dStage_dPath_c {};
+
+struct dStage_FloorInfo_c {};
+
+struct dStage_Lbnk_c {};
+
+struct dStage_Elst_c {};
+
+struct dStage_FileList2_dt_c {};
+
+struct dStage_FileList_dt_c {};
 
 struct dStage_stageDt_c {
     /* 8002483C */ void getStagInfo() const;

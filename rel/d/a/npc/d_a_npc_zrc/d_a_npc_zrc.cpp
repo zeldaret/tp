@@ -27,11 +27,11 @@ struct mDoExt_bckAnm {
     /* 8000D990 */ void changeBckOnly(J3DAnmTransform*);
 };
 
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct J3DModelData {};
 
 struct mDoExt_McaMorfCallBack2_c {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct Vec {};
 
@@ -73,9 +73,19 @@ struct daPy_py_c {
     /* 8015F424 */ void checkNowWolfEyeUp();
 };
 
-struct J3DJoint {};
+struct dCcD_SrcCyl {};
 
-struct J3DModel {};
+struct dCcD_Cyl {
+    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
+};
+
+struct J3DAnmTexPattern {
+    /* 8032AF50 */ void getTexNo(u16, u16*) const;
+};
+
+struct J3DAnmTransformKey {};
+
+struct _GXColorS10 {};
 
 struct dCcD_GObjInf {
     /* 80083A28 */ dCcD_GObjInf();
@@ -83,20 +93,6 @@ struct dCcD_GObjInf {
 };
 
 struct J3DAnmTextureSRTKey {};
-
-struct dCcD_SrcCyl {};
-
-struct dCcD_Cyl {
-    /* 800848B4 */ void Set(dCcD_SrcCyl const&);
-};
-
-struct _GXColorS10 {};
-
-struct J3DAnmTexPattern {
-    /* 8032AF50 */ void getTexNo(u16, u16*) const;
-};
-
-struct J3DAnmTransformKey {};
 
 struct daNpcF_c {
     struct daNpcF_anmPlayData {};
@@ -138,6 +134,10 @@ struct daNpcF_c {
 
     static u8 mCcDCyl[68];
 };
+
+struct J3DModel {};
+
+struct J3DJoint {};
 
 struct daNpc_zrC_c {
     /* 80B8DC0C */ daNpc_zrC_c();

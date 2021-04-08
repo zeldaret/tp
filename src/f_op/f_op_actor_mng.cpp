@@ -93,17 +93,17 @@ struct dStage_roomControl_c {
 
 struct dPa_levelEcallBack {};
 
-struct dKy_tevstr_c {};
+struct _GXColor {};
 
 struct cBgS_PolyInfo {};
-
-struct _GXColor {};
 
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 
     static u8 Zero[4];
 };
+
+struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     struct level_c {

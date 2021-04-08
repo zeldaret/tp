@@ -1,6 +1,10 @@
 import struct
 
+from capstone import *
+from capstone.ppc import *
+
 from . import linker_map
+from . import disassemble
 from .types import *
 from .data import *
 
@@ -159,6 +163,61 @@ def is_load_global_function(data: bytearray) -> Tuple[bool, int, str, int]:
 
     return False, None, None, None
 
+# TODO: @!game move
+R2_ADDR = 0x80459A00
+R13_ADDR = 0x80458580
+
+RETURN_SYMBOL_LOAD_INSTS = {
+    PPC_INS_LWZ,
+    PPC_INS_LHZ,
+    PPC_INS_LBZ,
+}
+
+RETURN_SYMBOL_TYPE = {
+    PPC_INS_LWZ: U32,
+    PPC_INS_LHZ: U16,
+    PPC_INS_LBZ: U8,
+}
+
+def decompile_return_symbol_function(symbol, block, insts, symbol_table) -> Function:
+    if len(insts) != 2:
+        return None
+
+    load = insts[0]
+    ret = insts[1]
+
+    if ret.id != PPC_INS_BLR:
+        return None
+    if not load.id in RETURN_SYMBOL_LOAD_INSTS:
+        return None
+    
+    address = 0
+    mem_base = load.operands[1].mem.base
+    mem_disp = load.operands[1].mem.disp
+    if mem_base == PPC_REG_R2:
+        address = R2_ADDR + disassemble.sign_extend_16(mem_disp)
+    elif mem_base == PPC_REG_R13:
+        address = R13_ADDR + disassemble.sign_extend_16(mem_disp)
+    else:
+        return None
+
+    return_symbol = symbol_table[-1, address]
+    if not return_symbol:
+        return None
+
+    # structure does not work :(
+    if isinstance(return_symbol, Structure):
+        return None
+
+    return SymbolReturnFunction(
+        symbol.identifier,
+        addr=symbol.addr,
+        size=symbol.size,
+        padding=symbol.padding,
+        alignment=0,
+        return_type=RETURN_SYMBOL_TYPE[load.id],
+        symbol_addr=address)
+    
 
 def from_group(section: Section, group: List[linker_map.Symbol]) -> Function:
     """
@@ -169,35 +228,38 @@ def from_group(section: Section, group: List[linker_map.Symbol]) -> Function:
     if len(group) == 1:
         block = group[0]
         data = section.get_data(block.start, block.end)
-        if is_return_function(data):
-            return [ReturnFunction(
-                Identifier("func", block.start, block.name),
-                addr=block.addr,
-                size=block.size,
-                padding=block.padding,
-                alignment=0,
-                return_type=VOID)]
+        if len(data) >= 4 and len(data) < 16:   
+            insts = list(disassemble.cs.disasm(data, block.start))
 
-        if is_return_integer_function(data):
-            integer_value = get_short_value(data)
-            if integer_value == 0:
-                value = "false"
-                type = BOOL
-            elif integer_value == 1:
-                value = "true"
-                type = BOOL
-            else:
-                value = f"{integer_value}"
-                type = S32
+            if is_return_function(data):
+                return [CustomReturnFunction(
+                    Identifier("func", block.start, block.name),
+                    addr=block.addr,
+                    size=block.size,
+                    padding=block.padding,
+                    alignment=0,
+                    return_type=VOID)]
 
-            return [ReturnFunction(
-                Identifier("func", block.start, block.name),
-                addr=block.addr,
-                size=block.size,
-                padding=block.padding,
-                alignment=0,
-                return_type=type,
-                return_value=value)]
+            if is_return_integer_function(data):
+                integer_value = get_short_value(data)
+                if integer_value == 0:
+                    value = "false"
+                    type = BOOL
+                elif integer_value == 1:
+                    value = "true"
+                    type = BOOL
+                else:
+                    value = f"{integer_value}"
+                    type = S32
+
+                return [CustomReturnFunction(
+                    Identifier("func", block.start, block.name),
+                    addr=block.addr,
+                    size=block.size,
+                    padding=block.padding,
+                    alignment=0,
+                    return_type=type,
+                    return_value=value)]
 
     first = group[0]
     if first.size <= 0:
@@ -208,3 +270,44 @@ def from_group(section: Section, group: List[linker_map.Symbol]) -> Function:
 
     # the function was not decompilable
     return [ASMFunction.create(section, group)]
+
+def decompile_symbol(context, section, symbol, symbol_table, add_list, remove_list):
+    if not isinstance(symbol, ASMFunction):
+        return symbol
+    if len(symbol.blocks) > 1:
+        return symbol
+
+    block = symbol.blocks[0]
+    data = symbol.data[block.start-symbol.start:block.end-symbol.start]
+    if len(data) <= 0 or len(data) > 16:
+        return symbol
+
+    insts = list(disassemble.cs.disasm(data, block.start))
+    function = decompile_return_symbol_function(symbol, block, insts, symbol_table)
+    if function:
+        function.set_mlts(symbol._module, symbol._library, symbol._translation_unit, symbol._section)
+        assert function.addr == symbol.addr
+        assert function.size == symbol.size
+        add_list.add(function)
+        remove_list.discard(symbol)
+        return function
+
+    #if symbol.size == 8:
+    #    context.debug(f"{symbol.addr:08X} {symbol.name}")
+
+    return symbol
+
+def decompile(context, libraries, symbol_table):
+    remove_list = set()
+    add_list = set()
+    for lib in libraries:
+        for tu in lib.translation_units.values():
+            for section in tu.sections.values():
+                if section.name != ".text" and section.name != ".init":
+                    continue
+                symbols = []
+                for symbol in section.symbols:
+                    symbols.append(decompile_symbol(context, section, symbol, symbol_table, add_list, remove_list))
+                section.symbols = symbols
+    return add_list, remove_list
+        

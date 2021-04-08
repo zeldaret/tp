@@ -47,8 +47,6 @@ struct renderingDmap_c {
     /* 801C263C */ bool isRendIcon() const;
 };
 
-struct Vec {};
-
 struct dDrawPath_c {
     struct line_class {};
 
@@ -65,6 +63,8 @@ struct dDrawPath_c {
     /* 8003C94C */ void rendering(dDrawPath_c::line_class const*);
     /* 8003CCC4 */ void drawPath();
 };
+
+struct Vec {};
 
 struct renderingDAmap_c {
     /* 8003FCC8 */ void init(u8*, u16, u16, u16, u16);

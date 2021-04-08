@@ -68,10 +68,7 @@ struct dPa_control_c {
     };
 };
 
-struct dBgS_AcchCir {
-    /* 80075EAC */ dBgS_AcchCir();
-    /* 80075F58 */ void SetWall(f32, f32);
-};
+struct csXyz {};
 
 struct cBgS_PolyInfo {};
 
@@ -80,7 +77,10 @@ struct dBgS {
     /* 80075100 */ void GetRoomId(cBgS_PolyInfo const&);
 };
 
-struct csXyz {};
+struct dBgS_AcchCir {
+    /* 80075EAC */ dBgS_AcchCir();
+    /* 80075F58 */ void SetWall(f32, f32);
+};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();

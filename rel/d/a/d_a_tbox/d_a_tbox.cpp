@@ -37,18 +37,18 @@ struct mDoHIO_entry_c {
     /* 80490E08 */ ~mDoHIO_entry_c();
 };
 
-struct J3DMaterialTable {};
-
 struct J3DAnmTevRegKey {};
+
+struct J3DMaterialTable {};
 
 struct mDoExt_brkAnm {
     /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
     /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
 };
 
-struct J3DModelData {};
-
 struct J3DAnmTransform {};
+
+struct J3DModelData {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -210,11 +210,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
+struct _GXColor {};
+
 struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
 };
-
-struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,

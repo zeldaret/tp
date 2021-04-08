@@ -54,20 +54,20 @@ struct mDoExt_invJntPacket {
 };
 
 struct J3DMaterialTable;
-struct J3DAnmColor {
-    /* 8032A8A4 */ void searchUpdateMaterialID(J3DMaterialTable*);
-};
-
-struct J3DAnmTexPattern {
-    /* 8032B004 */ void searchUpdateMaterialID(J3DMaterialTable*);
+struct J3DAnmTextureSRTKey {
+    /* 8032B0C0 */ void searchUpdateMaterialID(J3DMaterialTable*);
 };
 
 struct J3DAnmTevRegKey {
     /* 8032B780 */ void searchUpdateMaterialID(J3DMaterialTable*);
 };
 
-struct J3DAnmTextureSRTKey {
-    /* 8032B0C0 */ void searchUpdateMaterialID(J3DMaterialTable*);
+struct J3DAnmColor {
+    /* 8032A8A4 */ void searchUpdateMaterialID(J3DMaterialTable*);
+};
+
+struct J3DAnmTexPattern {
+    /* 8032B004 */ void searchUpdateMaterialID(J3DMaterialTable*);
 };
 
 struct J3DMaterialTable {
@@ -136,11 +136,11 @@ struct mDoExt_MtxCalcAnmBlendTbl {
     /* 80014F3C */ ~mDoExt_MtxCalcAnmBlendTbl();
 };
 
+struct mDoExt_McaMorfCallBack1_c {};
+
 struct mDoExt_McaMorfCallBack2_c {};
 
 struct J3DTransformInfo {};
-
-struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C0628 */ void initAnime(void*, bool, f32, f32);
@@ -214,9 +214,9 @@ struct mDoExt_3DlineMatSortPacket {
 
 struct dKy_tevstr_c {};
 
-struct _GXColor {};
-
 struct ResTIMG {};
+
+struct _GXColor {};
 
 struct mDoExt_3DlineMat1_c {
     /* 80013360 */ void init(u16, u16, ResTIMG*, int);
@@ -236,14 +236,14 @@ struct mDoExt_3DlineMat0_c {
     /* 80014E84 */ bool getMaterialID();
 };
 
-struct J3DPacket;
-struct J3DDrawBuffer {
-    /* 8032548C */ void entryImm(J3DPacket*, u16);
-};
-
+struct J3DDrawBuffer;
 struct J3DPacket {
     /* 8000E680 */ ~J3DPacket();
     /* 80312750 */ bool entry(J3DDrawBuffer*);
+};
+
+struct J3DDrawBuffer {
+    /* 8032548C */ void entryImm(J3DPacket*, u16);
 };
 
 struct dDlst_list_c {
@@ -374,16 +374,16 @@ struct J3DTevKColorAnm {};
 
 struct J3DTevColorAnm {};
 
-struct J3DIndTevStage {
-    /* 8000E14C */ J3DIndTevStage();
-};
-
 struct J3DGXColorS10 {
     /* 8000E460 */ J3DGXColorS10();
 };
 
 struct J3DGXColor {
     /* 8000E538 */ J3DGXColor();
+};
+
+struct J3DIndTevStage {
+    /* 8000E14C */ J3DIndTevStage();
 };
 
 struct J3DTevBlock {
@@ -664,21 +664,21 @@ extern "C" void entryDL__21mDoExt_invisibleModelFP4cXyz();
 extern "C" void mDoExt_setupShareTexture__FP12J3DModelDataP12J3DModelData();
 extern "C" void mDoExt_setupStageTexture__FP12J3DModelData();
 extern "C" void mDoExt_createAssertHeap__FP7JKRHeap();
-extern "C" void mDoExt_getAssertHeap__Fv();
+extern "C" u32 mDoExt_getAssertHeap__Fv();
 extern "C" void mDoExt_createDbPrintHeap__FUlP7JKRHeap();
-extern "C" void mDoExt_getDbPrintHeap__Fv();
+extern "C" u32 mDoExt_getDbPrintHeap__Fv();
 extern "C" void mDoExt_createGameHeap__FUlP7JKRHeap();
-extern "C" void mDoExt_getGameHeap__Fv();
+extern "C" u32 mDoExt_getGameHeap__Fv();
 extern "C" void mDoExt_createZeldaHeap__FUlP7JKRHeap();
-extern "C" void mDoExt_getZeldaHeap__Fv();
+extern "C" u32 mDoExt_getZeldaHeap__Fv();
 extern "C" void mDoExt_createCommandHeap__FUlP7JKRHeap();
-extern "C" void mDoExt_getCommandHeap__Fv();
+extern "C" u32 mDoExt_getCommandHeap__Fv();
 extern "C" void mDoExt_createArchiveHeap__FUlP7JKRHeap();
-extern "C" void mDoExt_getArchiveHeap__Fv();
-extern "C" void mDoExt_getArchiveHeapPtr__Fv();
+extern "C" u32 mDoExt_getArchiveHeap__Fv();
+extern "C" u32 mDoExt_getArchiveHeapPtr__Fv();
 extern "C" void mDoExt_createJ2dHeap__FUlP7JKRHeap();
-extern "C" void mDoExt_getJ2dHeap__Fv();
-extern "C" void mDoExt_getHostIOHeap__Fv();
+extern "C" u32 mDoExt_getJ2dHeap__Fv();
+extern "C" u32 mDoExt_getHostIOHeap__Fv();
 extern "C" static void mDoExt_createSolidHeap__FUlP7JKRHeapUl();
 extern "C" void mDoExt_createSolidHeapFromGame__FUlUl();
 extern "C" void mDoExt_createSolidHeapFromSystem__FUlUl();
@@ -691,7 +691,7 @@ extern "C" void mDoExt_adjustSolidHeapToSystem__FP12JKRSolidHeap();
 extern "C" void mDoExt_destroySolidHeap__FP12JKRSolidHeap();
 extern "C" void mDoExt_destroyExpHeap__FP10JKRExpHeap();
 extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
-extern "C" void mDoExt_getCurrentHeap__Fv();
+extern "C" u32 mDoExt_getCurrentHeap__Fv();
 extern "C" void mDoExt_restoreCurrentHeap__Fv();
 extern "C" void mDoExt_resIDToIndex__FP10JKRArchiveUs();
 extern "C" void calc__25mDoExt_MtxCalcAnmBlendTblFv();
@@ -2506,7 +2506,7 @@ asm void mDoExt_setupStageTexture(J3DModelData* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
-/* 80450C20-80450C24 000120 0004+00 2/2 0/0 0/0 .sbss            AssertHeap */
+/* 80450C20-80450C24 000120 0004+00 2/1 0/0 0/0 .sbss            AssertHeap */
 static u8 AssertHeap[4];
 
 /* 8000ECC0-8000ECE4 009600 0024+00 0/0 1/1 0/0 .text            mDoExt_createAssertHeap__FP7JKRHeap
@@ -2520,18 +2520,13 @@ asm void mDoExt_createAssertHeap(JKRHeap* param_0) {
 }
 #pragma pop
 
-/* 8000ECE4-8000ECEC 009624 0008+00 0/0 3/3 0/0 .text            mDoExt_getAssertHeap__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_getAssertHeap() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_getAssertHeap__Fv.s"
+/* 8000ECE4-8000ECEC -00001 0008+00 0/0 0/0 0/0 .text            mDoExt_getAssertHeap__Fv */
+u32 mDoExt_getAssertHeap() {
+    return *(u32*)(&AssertHeap);
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 80450C24-80450C28 000124 0004+00 2/2 0/0 0/0 .sbss            DbPrintHeap */
+/* 80450C24-80450C28 000124 0004+00 2/1 0/0 0/0 .sbss            DbPrintHeap */
 static u8 DbPrintHeap[4];
 
 /* 8000ECEC-8000ED14 00962C 0028+00 0/0 1/1 0/0 .text mDoExt_createDbPrintHeap__FUlP7JKRHeap */
@@ -2544,18 +2539,13 @@ asm void mDoExt_createDbPrintHeap(u32 param_0, JKRHeap* param_1) {
 }
 #pragma pop
 
-/* 8000ED14-8000ED1C 009654 0008+00 0/0 1/1 0/0 .text            mDoExt_getDbPrintHeap__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_getDbPrintHeap() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_getDbPrintHeap__Fv.s"
+/* 8000ED14-8000ED1C -00001 0008+00 0/0 0/0 0/0 .text            mDoExt_getDbPrintHeap__Fv */
+u32 mDoExt_getDbPrintHeap() {
+    return *(u32*)(&DbPrintHeap);
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 80450C28-80450C2C 000128 0004+00 2/2 3/3 0/0 .sbss            gameHeap */
+/* 80450C28-80450C2C 000128 0004+00 2/1 3/3 0/0 .sbss            gameHeap */
 extern u8 gameHeap[4];
 u8 gameHeap[4];
 
@@ -2570,18 +2560,13 @@ asm void mDoExt_createGameHeap(u32 param_0, JKRHeap* param_1) {
 }
 #pragma pop
 
-/* 8000ED50-8000ED58 009690 0008+00 3/3 10/10 1/1 .text            mDoExt_getGameHeap__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_getGameHeap() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_getGameHeap__Fv.s"
+/* 8000ED50-8000ED58 -00001 0008+00 0/0 0/0 0/0 .text            mDoExt_getGameHeap__Fv */
+u32 mDoExt_getGameHeap() {
+    return *(u32*)(&gameHeap);
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 80450C2C-80450C30 00012C 0004+00 2/2 3/3 0/0 .sbss            zeldaHeap */
+/* 80450C2C-80450C30 00012C 0004+00 2/1 3/3 0/0 .sbss            zeldaHeap */
 extern u8 zeldaHeap[4];
 u8 zeldaHeap[4];
 
@@ -2595,18 +2580,13 @@ asm void mDoExt_createZeldaHeap(u32 param_0, JKRHeap* param_1) {
 }
 #pragma pop
 
-/* 8000ED80-8000ED88 0096C0 0008+00 4/4 4/4 0/0 .text            mDoExt_getZeldaHeap__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_getZeldaHeap() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_getZeldaHeap__Fv.s"
+/* 8000ED80-8000ED88 -00001 0008+00 0/0 0/0 0/0 .text            mDoExt_getZeldaHeap__Fv */
+u32 mDoExt_getZeldaHeap() {
+    return *(u32*)(&zeldaHeap);
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 80450C30-80450C34 000130 0004+00 2/2 1/1 0/0 .sbss            commandHeap */
+/* 80450C30-80450C34 000130 0004+00 2/1 1/1 0/0 .sbss            commandHeap */
 extern u8 commandHeap[4];
 u8 commandHeap[4];
 
@@ -2620,18 +2600,13 @@ asm void mDoExt_createCommandHeap(u32 param_0, JKRHeap* param_1) {
 }
 #pragma pop
 
-/* 8000EDB0-8000EDB8 0096F0 0008+00 0/0 6/6 0/0 .text            mDoExt_getCommandHeap__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_getCommandHeap() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_getCommandHeap__Fv.s"
+/* 8000EDB0-8000EDB8 -00001 0008+00 0/0 0/0 0/0 .text            mDoExt_getCommandHeap__Fv */
+u32 mDoExt_getCommandHeap() {
+    return *(u32*)(&commandHeap);
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 80450C34-80450C38 000134 0004+00 3/3 5/5 0/0 .sbss            archiveHeap */
+/* 80450C34-80450C38 000134 0004+00 3/1 5/5 0/0 .sbss            archiveHeap */
 extern u8 archiveHeap[4];
 u8 archiveHeap[4];
 
@@ -2645,28 +2620,18 @@ asm void mDoExt_createArchiveHeap(u32 param_0, JKRHeap* param_1) {
 }
 #pragma pop
 
-/* 8000EDEC-8000EDF4 00972C 0008+00 0/0 18/18 1/1 .text            mDoExt_getArchiveHeap__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_getArchiveHeap() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_getArchiveHeap__Fv.s"
+/* 8000EDEC-8000EDF4 -00001 0008+00 0/0 0/0 0/0 .text            mDoExt_getArchiveHeap__Fv */
+u32 mDoExt_getArchiveHeap() {
+    return *(u32*)(&archiveHeap);
 }
-#pragma pop
 
-/* 8000EDF4-8000EDFC 009734 0008+00 0/0 1/1 0/0 .text            mDoExt_getArchiveHeapPtr__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_getArchiveHeapPtr() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_getArchiveHeapPtr__Fv.s"
+/* 8000EDF4-8000EDFC -00001 0008+00 0/0 0/0 0/0 .text            mDoExt_getArchiveHeapPtr__Fv */
+u32 mDoExt_getArchiveHeapPtr() {
+    return *(u32*)(&archiveHeap);
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 80450C38-80450C3C 000138 0004+00 2/2 0/0 0/0 .sbss            j2dHeap */
+/* 80450C38-80450C3C 000138 0004+00 2/1 0/0 0/0 .sbss            j2dHeap */
 static u8 j2dHeap[4];
 
 /* 8000EDFC-8000EE30 00973C 0034+00 0/0 1/1 0/0 .text            mDoExt_createJ2dHeap__FUlP7JKRHeap
@@ -2680,29 +2645,19 @@ asm void mDoExt_createJ2dHeap(u32 param_0, JKRHeap* param_1) {
 }
 #pragma pop
 
-/* 8000EE30-8000EE38 009770 0008+00 0/0 7/7 0/0 .text            mDoExt_getJ2dHeap__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_getJ2dHeap() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_getJ2dHeap__Fv.s"
+/* 8000EE30-8000EE38 -00001 0008+00 0/0 0/0 0/0 .text            mDoExt_getJ2dHeap__Fv */
+u32 mDoExt_getJ2dHeap() {
+    return *(u32*)(&j2dHeap);
 }
-#pragma pop
 
 /* ############################################################################################## */
-/* 80450C3C-80450C40 00013C 0004+00 1/1 0/0 0/0 .sbss            HostIOHeap */
+/* 80450C3C-80450C40 00013C 0004+00 1/0 0/0 0/0 .sbss            HostIOHeap */
 static u8 HostIOHeap[4];
 
-/* 8000EE38-8000EE40 009778 0008+00 0/0 1/1 0/0 .text            mDoExt_getHostIOHeap__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_getHostIOHeap() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_getHostIOHeap__Fv.s"
+/* 8000EE38-8000EE40 -00001 0008+00 0/0 0/0 0/0 .text            mDoExt_getHostIOHeap__Fv */
+u32 mDoExt_getHostIOHeap() {
+    return *(u32*)(&HostIOHeap);
 }
-#pragma pop
 
 /* 8000EE40-8000EED8 009780 0098+00 3/3 0/0 0/0 .text mDoExt_createSolidHeap__FUlP7JKRHeapUl */
 #pragma push
@@ -2837,15 +2792,10 @@ asm void mDoExt_setCurrentHeap(JKRHeap* param_0) {
 }
 #pragma pop
 
-/* 8000F1EC-8000F1F4 009B2C 0008+00 0/0 4/4 0/0 .text            mDoExt_getCurrentHeap__Fv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void mDoExt_getCurrentHeap() {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/mDoExt_getCurrentHeap__Fv.s"
+/* 8000F1EC-8000F1F4 -00001 0008+00 0/0 0/0 0/0 .text            mDoExt_getCurrentHeap__Fv */
+u32 mDoExt_getCurrentHeap() {
+    return *(u32*)(&JKRHeap::sCurrentHeap);
 }
-#pragma pop
 
 /* 8000F1F4-8000F220 009B34 002C+00 1/1 9/9 0/0 .text            mDoExt_restoreCurrentHeap__Fv */
 #pragma push

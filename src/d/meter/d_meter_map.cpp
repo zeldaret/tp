@@ -36,10 +36,6 @@ struct dMsgObject_c {
     /* 8023822C */ void getStatus();
 };
 
-struct dMpath_c {
-    /* 8003F758 */ void isExistMapPathData();
-};
-
 struct J2DScreen {};
 
 struct dMeterMap_c {

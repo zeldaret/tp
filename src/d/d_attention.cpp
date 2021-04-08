@@ -38,9 +38,9 @@ struct mDoExt_bpkAnm {
     /* 8000D518 */ void entry(J3DMaterialTable*, f32);
 };
 
-struct J3DModelData {};
-
 struct J3DAnmTransform {};
+
+struct J3DModelData {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -71,17 +71,17 @@ struct dRes_control_c {
     /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
 };
 
+struct Vec {};
+
+struct cXyz {
+    /* 80266B34 */ void operator-(Vec const&) const;
+};
+
 struct cSAngle {
     /* 80270F68 */ cSAngle(cSAngle const&);
     /* 80270F98 */ cSAngle(s16);
     /* 802710E8 */ void Inv() const;
     /* 80271228 */ void operator-(s16) const;
-};
-
-struct Vec {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
 };
 
 struct dAttention_c {

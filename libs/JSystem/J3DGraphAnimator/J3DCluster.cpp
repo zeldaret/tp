@@ -29,9 +29,9 @@ struct J3DDeformData {
     /* 8032E364 */ void setAnm(J3DAnmCluster*);
 };
 
-struct J3DClusterKey {};
-
 struct J3DCluster {};
+
+struct J3DClusterKey {};
 
 struct J3DDeformer {
     /* 8032E39C */ J3DDeformer(J3DDeformData*);

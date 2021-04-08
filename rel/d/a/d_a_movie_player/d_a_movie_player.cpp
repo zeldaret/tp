@@ -94,7 +94,6 @@ struct JASMixMode {};
 
 struct JASDriver {
     /* 8029C9DC */ void registerMixCallback(s16* (*)(s32), JASMixMode);
-    /* 8029E180 */ void getOutputMode();
 };
 
 //

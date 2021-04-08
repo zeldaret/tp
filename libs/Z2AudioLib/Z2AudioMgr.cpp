@@ -70,20 +70,20 @@ struct Z2FxLineMgr {
     /* 802BA7DC */ Z2FxLineMgr();
 };
 
-struct JAISoundHandle {};
-
-struct JKRSolidHeap {};
-
-struct JKRArchive {};
-
-struct JAISoundID {};
-
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
 };
+
+struct JAISoundID {};
+
+struct JKRArchive {};
+
+struct JKRSolidHeap {};
+
+struct JAISoundHandle {};
 
 struct Z2AudioMgr {
     /* 802CD248 */ Z2AudioMgr();
@@ -191,7 +191,6 @@ struct JASGenericMemPool {
 };
 
 struct JASDriver {
-    /* 8029C9F0 */ void getSubFrames();
     /* 8029E178 */ void setOutputMode(u32);
 };
 

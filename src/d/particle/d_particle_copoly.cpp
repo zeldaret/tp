@@ -11,9 +11,9 @@
 // Types:
 //
 
-struct dKy_tevstr_c {};
-
 struct cBgS_PolyInfo {};
+
+struct dKy_tevstr_c {};
 
 struct csXyz {};
 

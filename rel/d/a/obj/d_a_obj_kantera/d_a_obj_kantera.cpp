@@ -107,11 +107,11 @@ struct dBgS_AcchCir {
     /* 80C38E98 */ ~dBgS_AcchCir();
 };
 
+struct dBgS {};
+
 struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
 };
-
-struct dBgS {};
 
 struct csXyz {};
 

@@ -137,7 +137,7 @@ struct dMpath_n {
 };
 
 struct dMpath_c {
-    /* 8003F758 */ void isExistMapPathData();
+    /* 8003F758 */ u8 isExistMapPathData();
     /* 8003F760 */ void getTopBottomFloorNo(s8*, s8*);
     /* 8003F7E8 */ void createWork();
     /* 8003FA40 */ void setPointer(s8, void*, int);
@@ -218,7 +218,7 @@ extern "C" void init__10dMapInfo_cFv();
 extern "C" void reset__10dMapInfo_cFv();
 extern "C" void create__10dMapInfo_cFv();
 extern "C" void remove__10dMapInfo_cFv();
-extern "C" void isExistMapPathData__8dMpath_cFv();
+extern "C" u8 isExistMapPathData__8dMpath_cFv();
 extern "C" void getTopBottomFloorNo__8dMpath_cFPScPSc();
 extern "C" void createWork__8dMpath_cFv();
 extern "C" void setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc();
@@ -629,18 +629,13 @@ f32 dMpath_c::mAllSizeX;
 /* 80450E84-80450E88 000384 0004+00 1/1 4/4 0/0 .sbss            mAllSizeZ__8dMpath_c */
 f32 dMpath_c::mAllSizeZ;
 
-/* 80450E88-80450E90 000388 0008+00 4/4 0/0 0/0 .sbss            None */
+/* 80450E88-80450E90 000388 0008+00 4/3 0/0 0/0 .sbss            None */
 static u8 data_80450E88[8];
 
-/* 8003F758-8003F760 03A098 0008+00 2/2 1/1 0/0 .text            isExistMapPathData__8dMpath_cFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dMpath_c::isExistMapPathData() {
-    nofralloc
-#include "asm/d/map/d_map_path_dmap/isExistMapPathData__8dMpath_cFv.s"
+/* 8003F758-8003F760 -00001 0008+00 0/0 0/0 0/0 .text            isExistMapPathData__8dMpath_cFv */
+u8 dMpath_c::isExistMapPathData() {
+    return *(u8*)(&data_80450E88);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80450630-80450634 0000B0 0004+00 0/0 1/1 2/2 .sdata           mNextRoomNo__10dMapInfo_c */

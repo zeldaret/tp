@@ -36,11 +36,11 @@ struct dMeter2Info_c {
     /* 8021C544 */ void getStringKanji(u32, char*, JMSMesgEntry_c*);
 };
 
+struct STControl {};
+
 struct JKRExpHeap {};
 
 struct CSTControl {};
-
-struct STControl {};
 
 struct dMenu_Fishing_c {
     /* 801C4D54 */ dMenu_Fishing_c(JKRExpHeap*, STControl*, CSTControl*);

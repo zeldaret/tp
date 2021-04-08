@@ -88,12 +88,12 @@ struct Z2Audience3DSetting {
     /* 802BC6F8 */ void updateDolbyDist(f32, f32);
 };
 
-struct Z2AudibleChannel {
-    /* 802BBE74 */ Z2AudibleChannel();
-};
-
 struct JAIAudible {
     /* 8029EFAC */ ~JAIAudible();
+};
+
+struct Z2AudibleChannel {
+    /* 802BBE74 */ Z2AudibleChannel();
 };
 
 struct Z2Audience {
