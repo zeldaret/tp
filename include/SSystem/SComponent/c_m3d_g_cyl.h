@@ -1,8 +1,8 @@
 #ifndef C_M3D_G_CYL_H
 #define C_M3D_G_CYL_H
 
-#include "dolphin/types.h"
 #include "SSystem/SComponent/c_xyz.h"
+#include "dolphin/types.h"
 
 // Cylinder
 struct cM3dGCylS {
@@ -15,7 +15,7 @@ class cM3dGSph;
 class cM3dGCyl : public cM3dGCylS {
 public:
     cM3dGCyl(const cXyz*, f32, f32);
-    ~cM3dGCyl();
+    virtual ~cM3dGCyl();
     void Set(const cM3dGCylS&);
     void Set(const cXyz&, f32, f32);
     void SetC(const cXyz&);

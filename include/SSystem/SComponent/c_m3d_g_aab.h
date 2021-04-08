@@ -1,8 +1,8 @@
 #ifndef C_M3D_G_AAB_H
 #define C_M3D_G_AAB_H
 
-#include "dolphin/types.h"
 #include "SSystem/SComponent/c_xyz.h"
+#include "dolphin/types.h"
 
 // Axis aligned bounding box
 class cM3dGAab {

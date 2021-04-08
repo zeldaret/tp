@@ -2,10 +2,10 @@
 #ifndef F_PC_LEAF_H_
 #define F_PC_LEAF_H_
 
+#include "dolphin/types.h"
 #include "f_pc/f_pc_base.h"
 #include "f_pc/f_pc_draw_priority.h"
 #include "f_pc/f_pc_method.h"
-#include "dolphin/types.h"
 
 typedef struct leafdraw_method_class {
     /* 0x00 */ process_method_class mBase;

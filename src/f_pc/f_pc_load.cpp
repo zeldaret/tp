@@ -4,9 +4,9 @@
 //
 
 #include "f_pc/f_pc_load.h"
+#include "SSystem/SComponent/c_phase.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "SSystem/SComponent/c_phase.h"
 
 extern s32 cDyl_IsLinked(s16 procName);
 extern s32 cDyl_Unlink(s16 procName);

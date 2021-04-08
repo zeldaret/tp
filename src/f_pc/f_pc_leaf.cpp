@@ -69,9 +69,7 @@ s32 fpcLf_Create(leafdraw_class* pLeaf) {
 /* ############################################################################################## */
 /* 803A39E8-803A3A00 0014+04 s=0 e=27 z=756  None .data      g_fpcLf_Method */
 leafdraw_method_class g_fpcLf_Method = {
-    (process_method_func)fpcLf_Create,
-    (process_method_func)fpcLf_Delete,
-    (process_method_func)fpcLf_Execute,
-    (process_method_func)fpcLf_IsDelete,
+    (process_method_func)fpcLf_Create,  (process_method_func)fpcLf_Delete,
+    (process_method_func)fpcLf_Execute, (process_method_func)fpcLf_IsDelete,
     (process_method_func)fpcLf_Draw,
 };

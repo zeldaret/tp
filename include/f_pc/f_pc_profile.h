@@ -2,8 +2,8 @@
 #ifndef F_PC_PROFILE_H_
 #define F_PC_PROFILE_H_
 
-#include "f_pc/f_pc_method.h"
 #include "dolphin/types.h"
+#include "f_pc/f_pc_method.h"
 
 struct nodedraw_method_class;
 

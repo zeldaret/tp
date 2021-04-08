@@ -6,8 +6,8 @@
 #include "f_pc/f_pc_creator.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "f_pc/f_pc_create_req.h"
 #include "f_pc/f_pc_base.h"
+#include "f_pc/f_pc_create_req.h"
 
 //
 // Declarations:

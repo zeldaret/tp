@@ -4,11 +4,11 @@
 
 #include "SSystem/SComponent/c_phase.h"
 #include "SSystem/SComponent/c_tag.h"
+#include "dolphin/types.h"
 #include "f_pc/f_pc_create_tag.h"
 #include "f_pc/f_pc_layer.h"
 #include "f_pc/f_pc_method.h"
 #include "f_pc/f_pc_method_tag.h"
-#include "dolphin/types.h"
 
 struct base_process_class;
 

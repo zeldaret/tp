@@ -4,46 +4,9 @@
 //
 
 #include "SSystem/SComponent/c_m3d_g_tri.h"
+#include "SSystem/SComponent/c_m3d.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct Vec {};
-
-struct cM3dGPla {
-    /* 8026F52C */ void SetupNP(Vec const&, Vec const&);
-    /* 8026F624 */ void Set(cM3dGPla const*);
-};
-
-struct cM3dGCyl {};
-
-struct cM3dGTri {
-    /* 8026F7B0 */ void cross(cM3dGCyl const*, Vec*) const;
-    /* 8026F7DC */ void setPos(Vec const*, Vec const*, Vec const*);
-    /* 8026F85C */ void setBg(Vec const*, Vec const*, Vec const*, cM3dGPla const*);
-    /* 8026F8C8 */ void set(Vec const*, Vec const*, Vec const*, Vec const*);
-};
-
-//
-// Forward References:
-//
-
-extern "C" void cross__8cM3dGTriCFPC8cM3dGCylP3Vec();
-extern "C" void setPos__8cM3dGTriFPC3VecPC3VecPC3Vec();
-extern "C" void setBg__8cM3dGTriFPC3VecPC3VecPC3VecPC8cM3dGPla();
-extern "C" void set__8cM3dGTriFPC3VecPC3VecPC3VecPC3Vec();
-
-//
-// External References:
-//
-
-extern "C" void cM3d_CalcPla__FPC3VecPC3VecPC3VecP3VecPf();
-extern "C" void cM3d_Cross_CylTri__FPC8cM3dGCylPC8cM3dGTriP3Vec();
-extern "C" void SetupNP__8cM3dGPlaFRC3VecRC3Vec();
-extern "C" void Set__8cM3dGPlaFPC8cM3dGPla();
 
 //
 // Declarations:
@@ -51,44 +14,31 @@ extern "C" void Set__8cM3dGPlaFPC8cM3dGPla();
 
 /* 8026F7B0-8026F7DC 26A0F0 002C+00 0/0 1/1 0/0 .text            cross__8cM3dGTriCFPC8cM3dGCylP3Vec
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGTri::cross(cM3dGCyl const* param_0, Vec* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_tri/cross__8cM3dGTriCFPC8cM3dGCylP3Vec.s"
+bool cM3dGTri::cross(const cM3dGCyl* pCylinder, Vec* out) const {
+    return cM3d_Cross_CylTri(pCylinder, this, out);
 }
-#pragma pop
 
 /* 8026F7DC-8026F85C 26A11C 0080+00 0/0 0/0 6/6 .text setPos__8cM3dGTriFPC3VecPC3VecPC3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGTri::setPos(Vec const* param_0, Vec const* param_1, Vec const* param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_tri/setPos__8cM3dGTriFPC3VecPC3VecPC3Vec.s"
+void cM3dGTri::setPos(const Vec* pA, const Vec* pB, const Vec* pC) {
+    mA = *pA;
+    mB = *pB;
+    mC = *pC;
+    cM3d_CalcPla(&mA, &mB, &mC, &mPlane.mNormal, &mPlane.mD);
 }
-#pragma pop
 
 /* 8026F85C-8026F8C8 26A19C 006C+00 0/0 2/2 0/0 .text
  * setBg__8cM3dGTriFPC3VecPC3VecPC3VecPC8cM3dGPla               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGTri::setBg(Vec const* param_0, Vec const* param_1, Vec const* param_2,
-                         cM3dGPla const* param_3) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_tri/setBg__8cM3dGTriFPC3VecPC3VecPC3VecPC8cM3dGPla.s"
+void cM3dGTri::setBg(const Vec* pA, const Vec* pB, const Vec* pC, const cM3dGPla* pPlane) {
+    mA = *pA;
+    mB = *pB;
+    mC = *pC;
+    mPlane.Set(pPlane);
 }
-#pragma pop
 
 /* 8026F8C8-8026F93C 26A208 0074+00 0/0 1/1 0/0 .text set__8cM3dGTriFPC3VecPC3VecPC3VecPC3Vec */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGTri::set(Vec const* param_0, Vec const* param_1, Vec const* param_2,
-                       Vec const* param_3) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_tri/set__8cM3dGTriFPC3VecPC3VecPC3VecPC3Vec.s"
+void cM3dGTri::set(const Vec* pA, const Vec* pB, const Vec* pC, const Vec* pNormal) {
+    mA = *pA;
+    mB = *pB;
+    mC = *pC;
+    mPlane.SetupNP(*pNormal, *pA);
 }
-#pragma pop

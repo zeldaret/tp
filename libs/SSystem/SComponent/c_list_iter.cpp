@@ -7,7 +7,6 @@
 #include "dol2asm.h"
 #include "dolphin/types.h"
 
-
 /* 80266060-80266098 0038+00 s=0 e=5 z=0  None .text
  * cLsIt_Method__FP15node_list_classPFP10node_classPv_iPv       */
 int cLsIt_Method(node_list_class* pList, cNdIt_MethodFunc pMethod, void* pUserData) {

@@ -1,9 +1,9 @@
 #ifndef C_TREE_H
 #define C_TREE_H
 
-#include "dolphin/types.h"
 #include "SSystem/SComponent/c_list.h"
 #include "SSystem/SComponent/c_node.h"
+#include "dolphin/types.h"
 
 typedef struct node_lists_tree_class {
     node_list_class* mpLists;

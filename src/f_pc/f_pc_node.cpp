@@ -117,9 +117,7 @@ s32 fpcNd_Create(process_node_class* pProcNode1) {
 /* ############################################################################################## */
 /* 803A3A20-803A3A38 0014+04 s=0 e=9 z=0  None .data      g_fpcNd_Method */
 nodedraw_method_class g_fpcNd_Method = {
-    (process_method_func)fpcNd_Create,
-    (process_method_func)fpcNd_Delete,
-    (process_method_func)fpcNd_Execute,
-    (process_method_func)fpcNd_IsDelete,
+    (process_method_func)fpcNd_Create,  (process_method_func)fpcNd_Delete,
+    (process_method_func)fpcNd_Execute, (process_method_func)fpcNd_IsDelete,
     (process_method_func)fpcNd_Draw,
 };

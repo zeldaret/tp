@@ -6,9 +6,9 @@
 #include "f_pc/f_pc_executor.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "f_pc/f_pc_searcher.h"
 #include "f_pc/f_pc_node.h"
 #include "f_pc/f_pc_pause.h"
+#include "f_pc/f_pc_searcher.h"
 
 //
 // Declarations:

@@ -8,34 +8,11 @@
 #include "dolphin/types.h"
 
 //
-// Forward References:
-//
-
-extern "C" void __ct__8cM3dGLinFRC4cXyzRC4cXyz();
-extern "C" void SetStartEnd__8cM3dGLinFRC4cXyzRC4cXyz();
-extern "C" void SetStartEnd__8cM3dGLinFRC3VecRC3Vec();
-extern "C" void CalcPos__8cM3dGLinCFP3Vecf();
-extern "C" void SetEnd__8cM3dGLinFRC4cXyz();
-
-//
-// External References:
-//
-
-extern "C" extern void* __vt__8cM3dGLin[3];
-
-//
 // Declarations:
 //
 
 /* 8026F2A8-8026F2E8 0040+00 s=0 e=8 z=1  None .text      __ct__8cM3dGLinFRC4cXyzRC4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cM3dGLin::cM3dGLin(cXyz const& param_0, cXyz const& param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_lin/__ct__8cM3dGLinFRC4cXyzRC4cXyz.s"
-}
-#pragma pop
+cM3dGLin::cM3dGLin(const cXyz& pStart, const cXyz& pEnd) : mStart(pStart), mEnd(pEnd) {}
 
 /* 8026F2E8-8026F31C 0034+00 s=0 e=8 z=10  None .text      SetStartEnd__8cM3dGLinFRC4cXyzRC4cXyz */
 void cM3dGLin::SetStartEnd(const cXyz& pStart, const cXyz& pEnd) {

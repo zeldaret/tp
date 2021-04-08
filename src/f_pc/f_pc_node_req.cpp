@@ -4,6 +4,8 @@
 //
 
 #include "f_pc/f_pc_node_req.h"
+#include "SSystem/SComponent/c_malloc.h"
+#include "SSystem/SStandard/s_basic.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
 #include "f_pc/f_pc_base.h"
@@ -13,8 +15,6 @@
 #include "f_pc/f_pc_executor.h"
 #include "f_pc/f_pc_layer.h"
 #include "f_pc/f_pc_stdcreate_req.h"
-#include "SSystem/SComponent/c_malloc.h"
-#include "SSystem/SStandard/s_basic.h"
 
 //
 // Declarations:
@@ -30,9 +30,7 @@ void fpcNdRq_RequestQTo(node_create_request* pNodeCreateReq) {
 
 /* ############################################################################################## */
 /* 803A3A38-803A3A44 000C+00 s=5 e=0 z=0  None .data      l_fpcNdRq_Queue */
-static node_list_class l_fpcNdRq_Queue = {
-    NULL, NULL, 0
-};
+static node_list_class l_fpcNdRq_Queue = {NULL, NULL, 0};
 
 /* 80022804-80022850 004C+00 s=1 e=0 z=0  None .text fpcNdRq_ToRequestQ__FP19node_create_request
  */
@@ -201,15 +199,10 @@ s32 fpcNdRq_IsIng(process_node_class* pProcNode) {
 
 /* ############################################################################################## */
 /* 803A3A44-803A3AA8 0064+00 s=1 e=0 z=0  None .data      clear$2359 */
-static node_create_request clear = {
-    NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, 0, NULL, NULL,
-    NULL, 0, 0,
-    NULL, 5, 0xFFFFFFFF,
-    NULL, 0xFFFFFFFE,
-    NULL, 0xFFFFFFFE,
-    0x7FFF, NULL,
-    0x7FFF
-};
+static node_create_request clear = {NULL,       NULL,   NULL, NULL,       0,    NULL,       NULL,
+                                    NULL,       NULL,   0,    NULL,       NULL, NULL,       0,
+                                    0,          NULL,   5,    0xFFFFFFFF, NULL, 0xFFFFFFFE, NULL,
+                                    0xFFFFFFFE, 0x7FFF, NULL, 0x7FFF};
 
 /* 80022C9C-80022E14 0178+00 s=3 e=0 z=0  None .text      fpcNdRq_Create__FUl */
 node_create_request* fpcNdRq_Create(u32 pRequestSize) {
@@ -228,12 +221,9 @@ node_create_request* fpcNdRq_Create(u32 pRequestSize) {
 /* ############################################################################################## */
 /* 803A3AA8-803A3AC0 0018+00 s=1 e=0 z=0  None .data      methods$2376 */
 static cPhs__Handler methods_2376[6] = {
-    (cPhs__Handler)fpcNdRq_phase_IsDeleteTiming,
-    (cPhs__Handler)fpcNdRq_phase_Delete,
-    (cPhs__Handler)fpcNdRq_phase_IsDeleted,
-    (cPhs__Handler)fpcNdRq_phase_Create,
-    (cPhs__Handler)fpcNdRq_phase_IsCreated,
-    NULL,
+    (cPhs__Handler)fpcNdRq_phase_IsDeleteTiming, (cPhs__Handler)fpcNdRq_phase_Delete,
+    (cPhs__Handler)fpcNdRq_phase_IsDeleted,      (cPhs__Handler)fpcNdRq_phase_Create,
+    (cPhs__Handler)fpcNdRq_phase_IsCreated,      NULL,
 };
 
 /* 80022E14-80022EB0 009C+00 s=1 e=0 z=0  None .text

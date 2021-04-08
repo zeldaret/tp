@@ -1,8 +1,8 @@
 #ifndef C_ANGLE_H
 #define C_ANGLE_H
 
-#include "dolphin/types.h"
 #include "SSystem/SComponent/c_xyz.h"
+#include "dolphin/types.h"
 
 class cSAngle {
 private:

@@ -3,8 +3,8 @@
 #define F_PC_DELETE_TAG_H_
 
 #include "SSystem/SComponent/c_tag.h"
-#include "f_pc/f_pc_layer.h"
 #include "dolphin/types.h"
+#include "f_pc/f_pc_layer.h"
 
 typedef int (*delete_tag_func)(void*);
 

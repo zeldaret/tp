@@ -6,8 +6,8 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "mtx_vec.h"
 #include "msl_c/math.h"
+#include "mtx_vec.h"
 
 #define FLOAT_LABEL(x) (*(f32*)&x)
 #define DOUBLE_LABEL(x) (*(f64*)&x)

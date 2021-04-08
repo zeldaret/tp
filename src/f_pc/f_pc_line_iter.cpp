@@ -4,14 +4,14 @@
 //
 
 #include "f_pc/f_pc_line_iter.h"
-#include "dol2asm.h"
-#include "dolphin/types.h"
-#include "f_pc/f_pc_line.h"
-#include "f_pc/f_pc_create_tag.h"
-#include "f_pc/f_pc_layer.h"
-#include "f_pc/f_pc_base.h"
 #include "SSystem/SComponent/c_tag_iter.h"
 #include "SSystem/SComponent/c_tree_iter.h"
+#include "dol2asm.h"
+#include "dolphin/types.h"
+#include "f_pc/f_pc_base.h"
+#include "f_pc/f_pc_create_tag.h"
+#include "f_pc/f_pc_layer.h"
+#include "f_pc/f_pc_line.h"
 
 //
 // Declarations:

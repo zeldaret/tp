@@ -31,11 +31,8 @@ s32 fpcFCtRq_Delete(fast_create_request* pFstCreateReq) {
 
 /* ############################################################################################## */
 /* 803A3AE0-803A3AF0 000C+04 s=1 e=0 z=0  None .data      submethod$2214 */
-create_request_method_class submethod = {
-    (cPhs__Handler)fpcFCtRq_Do,
-    NULL,
-    (process_method_func)fpcFCtRq_Delete
-};
+create_request_method_class submethod = {(cPhs__Handler)fpcFCtRq_Do, NULL,
+                                         (process_method_func)fpcFCtRq_Delete};
 
 /* 80023AA0-80023B70 00D0+00 s=0 e=3 z=43  None .text
  * fpcFCtRq_Request__FP11layer_classsPFPvPv_iPvPv               */

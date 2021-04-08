@@ -3,10 +3,10 @@
 
 #include "SSystem/SComponent/c_node_iter.h"
 #include "SSystem/SComponent/c_tag.h"
+#include "dolphin/types.h"
 #include "f_pc/f_pc_base.h"
 #include "f_pc/f_pc_create_iter.h"
 #include "f_pc/f_pc_node_req.h"
-#include "dolphin/types.h"
 
 typedef int (*FastCreateReqFunc)(void*);
 typedef void (*fpcM_ManagementFunc)(void);

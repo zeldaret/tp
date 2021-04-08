@@ -4,11 +4,11 @@
 //
 
 #include "f_pc/f_pc_draw.h"
+#include "SSystem/SComponent/c_API_graphic.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "SSystem/SComponent/c_API_graphic.h"
-#include "f_pc/f_pc_pause.h"
 #include "f_pc/f_pc_leaf.h"
+#include "f_pc/f_pc_pause.h"
 
 //
 // Declarations:

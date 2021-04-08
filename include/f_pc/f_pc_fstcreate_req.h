@@ -1,10 +1,10 @@
 #ifndef F_PC_FSTCREATE_REQ_H_
 #define F_PC_FSTCREATE_REQ_H_
 
+#include "dolphin/types.h"
 #include "f_pc/f_pc_base.h"
 #include "f_pc/f_pc_create_req.h"
 #include "f_pc/f_pc_layer.h"
-#include "dolphin/types.h"
 
 typedef int (*fstCreateFunc)(void*, void*);
 

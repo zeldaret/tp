@@ -9,7 +9,7 @@
 
 /* ############################################################################################## */
 /* 80451150-80451158 0004+04 s=3 e=0 z=0  None .sbss      Heap__3cMl */
-JKRHeap *cMl::Heap;
+JKRHeap* cMl::Heap;
 
 /* 80263220-80263228 0008+00 s=0 e=1 z=0  None .text      init__3cMlFP7JKRHeap */
 void cMl::init(JKRHeap* heap) {
@@ -31,5 +31,3 @@ void cMl::free(void* ptr) {
         Heap->free(ptr);
     }
 }
-
-

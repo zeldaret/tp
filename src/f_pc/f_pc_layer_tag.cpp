@@ -66,14 +66,7 @@ s32 fpcLyTg_Move(layer_management_tag_class* pTag, unsigned int layerID, u16 lis
 /* ############################################################################################## */
 /* 803A3A00-803A3A20 001C+04 s=1 e=0 z=0  None .data      crear$2239 */
 layer_management_tag_class crear = {
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    0,
-    NULL,
-    0xFFFF,
-    0xFFFF,
+    NULL, NULL, NULL, NULL, 0, NULL, 0xFFFF, 0xFFFF,
 };
 
 /* 80021EB0-80021F64 00B4+00 s=0 e=1 z=0  None .text

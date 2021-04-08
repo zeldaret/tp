@@ -6,10 +6,10 @@
 #include "f_pc/f_pc_layer.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-#include "f_pc/f_pc_method.h"
-#include "f_pc/f_pc_method_tag.h"
-#include "f_pc/f_pc_method_iter.h"
 #include "f_pc/f_pc_layer.h"
+#include "f_pc/f_pc_method.h"
+#include "f_pc/f_pc_method_iter.h"
+#include "f_pc/f_pc_method_tag.h"
 
 //
 // Declarations:
@@ -94,12 +94,7 @@ void fpcLy_CreatedMesg(layer_class* pLayer) {
 /* ############################################################################################## */
 /* 803A39B0-803A39DC 002C+00 s=2 e=0 z=0  None .data      l_fpcLy_Crear */
 layer_class l_fpcLy_Crear = {
-    NULL, NULL, 0,
-    0xFFFFFFFF,
-    NULL, 0,
-    NULL,
-    NULL, NULL, 0,
-    0, 0,
+    NULL, NULL, 0, 0xFFFFFFFF, NULL, 0, NULL, NULL, NULL, 0, 0, 0,
 };
 
 /* 803A39DC-803A39E8 000C+00 s=3 e=0 z=0  None .data      l_fpcLy_LayerList */

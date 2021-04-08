@@ -3,118 +3,33 @@
 // Translation Unit: c_m3d_g_cps
 //
 
-// #include "SSystem/SComponent/c_m3d_g_cps.h"
+#include "SSystem/SComponent/c_m3d_g_cps.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct cXyz {};
-
-struct Vec {};
-
-struct cM3dGLin {
-    /* 8026F2E8 */ void SetStartEnd(cXyz const&, cXyz const&);
-    /* 8026F31C */ void SetStartEnd(Vec const&, Vec const&);
-};
-
-struct cM3dGCpsS {};
-
-struct cM3dGCps {
-    /* 8026EF88 */ cM3dGCps();
-    /* 8026EFA4 */ ~cM3dGCps();
-    /* 8026F000 */ void Set(cXyz const&, cXyz const&, f32);
-    /* 8026F03C */ void Set(cM3dGCpsS const&);
-    /* 8026F080 */ void SetCps(cM3dGCps const&);
-};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__8cM3dGCpsFv();
-extern "C" void __dt__8cM3dGCpsFv();
-extern "C" void Set__8cM3dGCpsFRC4cXyzRC4cXyzf();
-extern "C" void Set__8cM3dGCpsFRC9cM3dGCpsS();
-extern "C" void SetCps__8cM3dGCpsFRC8cM3dGCps();
-
-//
-// External References:
-//
-
-extern "C" void SetStartEnd__8cM3dGLinFRC4cXyzRC4cXyz();
-extern "C" void SetStartEnd__8cM3dGLinFRC3VecRC3Vec();
-extern "C" void __dl__FPv();
-extern "C" extern void* __vt__8cM3dGLin[3];
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 803C3FF8-803C4020 021118 000C+1C 2/2 0/0 0/0 .data            __vt__8cM3dGCps */
-SECTION_DATA extern void* __vt__8cM3dGCps[3 + 7 /* padding */] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGCpsFv,
-    /* padding */
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-};
-
 /* 8026EF88-8026EFA4 2698C8 001C+00 0/0 5/5 20/20 .text            __ct__8cM3dGCpsFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cM3dGCps::cM3dGCps() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_cps/__ct__8cM3dGCpsFv.s"
-}
-#pragma pop
+cM3dGCps::cM3dGCps(void) {}
 
 /* 8026EFA4-8026F000 2698E4 005C+00 1/0 7/7 6/6 .text            __dt__8cM3dGCpsFv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cM3dGCps::~cM3dGCps() {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_cps/__dt__8cM3dGCpsFv.s"
-}
-#pragma pop
+cM3dGCps::~cM3dGCps(void) {}
 
 /* 8026F000-8026F03C 269940 003C+00 1/1 2/2 10/10 .text            Set__8cM3dGCpsFRC4cXyzRC4cXyzf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGCps::Set(cXyz const& param_0, cXyz const& param_1, f32 param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_cps/Set__8cM3dGCpsFRC4cXyzRC4cXyzf.s"
+void cM3dGCps::Set(const cXyz& pStart, const cXyz& pEnd, f32 pUnkF) {
+    this->SetStartEnd(pStart, pEnd);
+    unk_0x1c = pUnkF;
 }
-#pragma pop
 
 /* 8026F03C-8026F080 26997C 0044+00 0/0 1/1 10/10 .text            Set__8cM3dGCpsFRC9cM3dGCpsS */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGCps::Set(cM3dGCpsS const& param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_cps/Set__8cM3dGCpsFRC9cM3dGCpsS.s"
+void cM3dGCps::Set(const cM3dGCpsS& other) {
+    this->SetStartEnd(other.mStart, other.mEnd);
+    unk_0x1c = other.unk_0x1c;
 }
-#pragma pop
 
 /* 8026F080-8026F0A8 2699C0 0028+00 0/0 1/1 0/0 .text            SetCps__8cM3dGCpsFRC8cM3dGCps */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGCps::SetCps(cM3dGCps const& param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_cps/SetCps__8cM3dGCpsFRC8cM3dGCps.s"
+void cM3dGCps::SetCps(const cM3dGCps& other) {
+    this->Set(other.GetStartP(), other.GetEndP(), other.unk_0x1c);
 }
-#pragma pop

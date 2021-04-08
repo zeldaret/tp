@@ -3,149 +3,71 @@
 // Translation Unit: c_m3d_g_cyl
 //
 
-// #include "SSystem/SComponent/c_m3d_g_cyl.h"
+#include "SSystem/SComponent/c_m3d_g_cyl.h"
+#include "SSystem/SComponent/c_m3d.h"
 #include "dol2asm.h"
 #include "dolphin/types.h"
-
-//
-// Types:
-//
-
-struct cXyz {};
-
-struct cM3dGSph {};
-
-struct cM3dGCylS {};
-
-struct cM3dGCyl {
-    /* 8026F0A8 */ cM3dGCyl(cXyz const*, f32, f32);
-    /* 8026F180 */ void Set(cXyz const&, f32, f32);
-    /* 8026F114 */ void Set(cM3dGCylS const&);
-    /* 8026F1DC */ void SetC(cXyz const&);
-    /* 8026F1F8 */ void SetH(f32);
-    /* 8026F200 */ void SetR(f32);
-    /* 8026F208 */ void cross(cM3dGSph const*, cXyz*) const;
-    /* 8026F22C */ void cross(cM3dGCyl const*, cXyz*) const;
-    /* 8026F24C */ void calcMinMax(cXyz*, cXyz*);
-};
-
-struct Vec {};
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__8cM3dGCylFPC4cXyzff();
-extern "C" void Set__8cM3dGCylFRC9cM3dGCylS();
-extern "C" void Set__8cM3dGCylFRC4cXyzff();
-extern "C" void SetC__8cM3dGCylFRC4cXyz();
-extern "C" void SetH__8cM3dGCylFf();
-extern "C" void SetR__8cM3dGCylFf();
-extern "C" void cross__8cM3dGCylCFPC8cM3dGSphP4cXyz();
-extern "C" void cross__8cM3dGCylCFPC8cM3dGCylP4cXyz();
-extern "C" void calcMinMax__8cM3dGCylFP4cXyzP4cXyz();
-
-//
-// External References:
-//
-
-extern "C" void cM3d_Cross_CylSph__FPC8cM3dGCylPC8cM3dGSphP3VecPf();
-extern "C" void cM3d_Cross_CylCyl__FPC8cM3dGCylPC8cM3dGCylP3Vec();
-extern "C" extern void* __vt__8cM3dGCyl[3];
 
 //
 // Declarations:
 //
 
 /* 8026F0A8-8026F114 2699E8 006C+00 0/0 1/1 0/0 .text            __ct__8cM3dGCylFPC4cXyzff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm cM3dGCyl::cM3dGCyl(cXyz const* param_0, f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_cyl/__ct__8cM3dGCylFPC4cXyzff.s"
+cM3dGCyl::cM3dGCyl(const cXyz* pCenter, f32 pRadius, f32 pHeight) {
+    this->SetC(*pCenter);
+    this->SetR(pRadius);
+    this->SetH(pHeight);
 }
-#pragma pop
 
 /* 8026F114-8026F180 269A54 006C+00 0/0 1/1 4/4 .text            Set__8cM3dGCylFRC9cM3dGCylS */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGCyl::Set(cM3dGCylS const& param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_cyl/Set__8cM3dGCylFRC9cM3dGCylS.s"
+void cM3dGCyl::Set(const cM3dGCylS& other) {
+    this->SetC(cXyz(other.mCenter));
+    this->SetR(other.mRadius);
+    this->SetH(other.mHeight);
 }
-#pragma pop
 
 /* 8026F180-8026F1DC 269AC0 005C+00 0/0 2/2 1/1 .text            Set__8cM3dGCylFRC4cXyzff */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGCyl::Set(cXyz const& param_0, f32 param_1, f32 param_2) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_cyl/Set__8cM3dGCylFRC4cXyzff.s"
+void cM3dGCyl::Set(const cXyz& pCenter, f32 pRadius, f32 pHeight) {
+    this->SetC(pCenter);
+    this->SetR(pRadius);
+    this->SetH(pHeight);
 }
-#pragma pop
 
 /* 8026F1DC-8026F1F8 269B1C 001C+00 3/3 13/13 257/257 .text            SetC__8cM3dGCylFRC4cXyz */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGCyl::SetC(cXyz const& param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_cyl/SetC__8cM3dGCylFRC4cXyz.s"
+void cM3dGCyl::SetC(const cXyz& pCenter) {
+    mCenter = pCenter;
 }
-#pragma pop
 
 /* 8026F1F8-8026F200 269B38 0008+00 3/3 11/11 197/197 .text            SetH__8cM3dGCylFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGCyl::SetH(f32 param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_cyl/SetH__8cM3dGCylFf.s"
+void cM3dGCyl::SetH(f32 pHeight) {
+    mHeight = pHeight;
 }
-#pragma pop
 
 /* 8026F200-8026F208 269B40 0008+00 3/3 6/6 204/204 .text            SetR__8cM3dGCylFf */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGCyl::SetR(f32 param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_cyl/SetR__8cM3dGCylFf.s"
+void cM3dGCyl::SetR(f32 pRadius) {
+    mRadius = pRadius;
 }
-#pragma pop
 
 /* 8026F208-8026F22C 269B48 0024+00 0/0 1/1 0/0 .text            cross__8cM3dGCylCFPC8cM3dGSphP4cXyz
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGCyl::cross(cM3dGSph const* param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_cyl/cross__8cM3dGCylCFPC8cM3dGSphP4cXyz.s"
+bool cM3dGCyl::cross(const cM3dGSph* pOther, cXyz* pOut) const {
+    f32 f;
+    return cM3d_Cross_CylSph(this, pOther, pOut, &f);
 }
-#pragma pop
 
 /* 8026F22C-8026F24C 269B6C 0020+00 0/0 1/1 0/0 .text            cross__8cM3dGCylCFPC8cM3dGCylP4cXyz
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGCyl::cross(cM3dGCyl const* param_0, cXyz* param_1) const {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_cyl/cross__8cM3dGCylCFPC8cM3dGCylP4cXyz.s"
+bool cM3dGCyl::cross(const cM3dGCyl* pOther, cXyz* pOut) const {
+    return cM3d_Cross_CylCyl(this, pOther, pOut);
 }
-#pragma pop
 
 /* 8026F24C-8026F2A8 269B8C 005C+00 0/0 2/2 0/0 .text            calcMinMax__8cM3dGCylFP4cXyzP4cXyz
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cM3dGCyl::calcMinMax(cXyz* param_0, cXyz* param_1) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_m3d_g_cyl/calcMinMax__8cM3dGCylFP4cXyzP4cXyz.s"
+void cM3dGCyl::calcMinMax(cXyz* pMin, cXyz* pMax) {
+    pMin->x = mCenter.x - mRadius;
+    pMin->y = mCenter.y;
+    pMin->z = mCenter.z - mRadius;
+    pMax->x = mCenter.x + mRadius;
+    pMax->y = mCenter.y + mHeight;
+    pMax->z = mCenter.z + mRadius;
 }
-#pragma pop

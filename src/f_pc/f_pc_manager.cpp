@@ -14,9 +14,9 @@
 #include "f_pc/f_pc_draw.h"
 #include "f_pc/f_pc_executor.h"
 #include "f_pc/f_pc_fstcreate_req.h"
+#include "f_pc/f_pc_layer.h"
 #include "f_pc/f_pc_layer_iter.h"
 #include "f_pc/f_pc_layer_tag.h"
-#include "f_pc/f_pc_layer.h"
 #include "f_pc/f_pc_line.h"
 #include "f_pc/f_pc_line_iter.h"
 #include "f_pc/f_pc_line_tag.h"
@@ -81,7 +81,6 @@ extern "C" void fpcM_JudgeInLayer__FUiPFPvPv_PvPv();
 //
 // External References:
 //
-
 
 extern "C" void fpcCtIt_JudgeInLayer__FUiPFPvPv_PvPv();
 extern "C" void fpcCt_IsCreatingByID__FUi();
