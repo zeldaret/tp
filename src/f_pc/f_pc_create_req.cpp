@@ -6,18 +6,12 @@
 #include "f_pc/f_pc_create_req.h"
 #include "SSystem/SComponent/c_malloc.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_pc/f_pc_create_iter.h"
 #include "f_pc/f_pc_create_tag.h"
 #include "f_pc/f_pc_deletor.h"
 #include "f_pc/f_pc_executor.h"
 #include "f_pc/f_pc_layer_iter.h"
-
-// hack to make functions that return comparisons as int match
-extern int __cntlzw(unsigned int);
-inline BOOL checkEqual(s32 a, s32 b) {
-    return (u32)__cntlzw(a - b) >> 5;
-}
+#include "global.h"
 
 //
 // Declarations:

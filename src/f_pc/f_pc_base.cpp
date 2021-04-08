@@ -8,14 +8,8 @@
 #include "SSystem/SComponent/c_phase.h"
 #include "SSystem/SStandard/s_basic.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_pc/f_pc_pause.h"
-
-// hack to make functions that return comparisons as int match
-extern int __cntlzw(unsigned int);
-inline BOOL checkEqual(s32 a, s32 b) {
-    return (u32)__cntlzw(a - b) >> 5;
-}
+#include "global.h"
 
 //
 // Declarations:

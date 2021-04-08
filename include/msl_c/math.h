@@ -60,8 +60,28 @@ f64 sqrt(f64);
 f64 tan(f64);
 f32 tanf(f32);
 
-__declspec(section ".sdata") extern f32 __float_nan;
-__declspec(section ".sdata") extern f32 __float_epsilon;
+extern f32 __float_nan[4];
+extern f32 __float_epsilon[4];
+
+inline f64 sqrt_step(f64 tmpd, f32 mag) {
+    return tmpd * 0.5 * (3.0 - mag * (tmpd * tmpd));
+}
+
+inline f32 sqrtf(f32 mag) {
+    if (mag > 0.0f) {
+        f64 tmpd = __frsqrte(mag);
+        tmpd = sqrt_step(tmpd, mag);
+        tmpd = sqrt_step(tmpd, mag);
+        tmpd = sqrt_step(tmpd, mag);
+        return mag * tmpd;
+    } else if (mag < 0.0) {
+        return /* __float_nan */ __float_nan[0];
+    } else if (fpclassify(mag) == 1) {
+        return /* __float_nan */ __float_nan[0];
+    } else {
+        return mag;
+    }
+}
 }
 
 #endif

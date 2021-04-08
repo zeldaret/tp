@@ -1,10 +1,18 @@
 #ifndef C_XYZ_H
 #define C_XYZ_H
 
-#include "dolphin/types.h"
+#include "global.h"
 #include "mtx_vec.h"
 
 struct cXyz : Vec {
+    static const cXyz Zero;
+    static const cXyz BaseX;
+    static const cXyz BaseY;
+    static const cXyz BaseZ;
+    static const cXyz BaseXY;
+    static const cXyz BaseXZ;
+    static const cXyz BaseYZ;
+    static const cXyz BaseXYZ;
     /* 80009184 */ ~cXyz() {}
     /* inlined  */ cXyz() {}
     cXyz(f32 x, f32 y, f32 z) {
@@ -98,6 +106,16 @@ struct cXyz : Vec {
     }
 
     float getSquareMag() const { return PSVECSquareMag(this); }
+
+    static float getNearZeroValue() { return 8e-11f; }
+
+    bool isNearZeroSquare() const { return (this->getSquareMag() < getNearZeroValue()); }
+    f32 abs2() const { return this->getSquareMag(); }
+    f32 abs2XZ() const {
+        cXyz tmp(this->x, 0, this->z);
+        return tmp.abs2();
+    }
+    f32 getMagXZ() const { return cXyz(this->x, 0, this->z).getSquareMag(); }
 };
 
 #endif /* C_XYZ_H */

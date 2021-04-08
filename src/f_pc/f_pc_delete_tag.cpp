@@ -5,13 +5,7 @@
 
 #include "f_pc/f_pc_delete_tag.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
-
-// hack to make functions that return comparisons as int match
-extern int __cntlzw(unsigned int);
-inline BOOL checkEqual(s32 a, s32 b) {
-    return (u32)__cntlzw(a - b) >> 5;
-}
+#include "global.h"
 
 //
 // Declarations:

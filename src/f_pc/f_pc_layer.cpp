@@ -5,21 +5,15 @@
 
 #include "f_pc/f_pc_layer.h"
 #include "dol2asm.h"
-#include "dolphin/types.h"
 #include "f_pc/f_pc_layer.h"
 #include "f_pc/f_pc_method.h"
 #include "f_pc/f_pc_method_iter.h"
 #include "f_pc/f_pc_method_tag.h"
+#include "global.h"
 
 //
 // Declarations:
 //
-
-// hack to make functions that return comparisons as int match
-extern int __cntlzw(unsigned int);
-inline BOOL checkEqual(s32 a, s32 b) {
-    return (u32)__cntlzw(a - b) >> 5;
-}
 
 /* 80021588-800215A8 0020+00 s=0 e=4 z=0  None .text fpcLy_CancelQTo__FP24process_method_tag_class
  */
