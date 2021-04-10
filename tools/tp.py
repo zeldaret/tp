@@ -35,6 +35,8 @@ from rich.console import Console
 from rich.progress import Progress
 from rich.text import Text
 from rich.table import Table
+from dataclasses import dataclass, field
+from typing import Dict
 
 import multiprocessing as mp
 
@@ -64,22 +66,23 @@ def tp():
     """ Tools to help the decompilation of "The Legend of Zelda: Twilight Princess" """
     pass
 
-
 @tp.command(name="progress")
 @click.option('--debug/--no-debug')
-@click.option('--matchning/--no-matching', default=True, is_flag=True)
+@click.option('--matching/--no-matching', default=True, is_flag=True)
+@click.option('--print-rels', default=False, is_flag=True)
 @click.option('--format', '-f', default="FANCY", type=click.Choice(['FANCY', 'CSV', 'JSON-SHIELD'], case_sensitive=False))
-def progress(debug, matchning, format):
+def progress(debug, matching, format, print_rels):
     """ Calculate decompilation progress """
 
     if debug:
         LOG.setLevel(logging.DEBUG)
 
-    text = Text("--- Progress")
-    text.stylize("bold magenta")
-    CONSOLE.print(text)
+    if format == "FANCY":
+        text = Text("--- Progress")
+        text.stylize("bold magenta")
+        CONSOLE.print(text)
 
-    calculate_progress(matchning, format)
+    calculate_progress(matching, format, print_rels)
 
 @tp.command(name="check")
 @click.option('--debug/--no-debug')
@@ -107,11 +110,51 @@ def check(debug, game_path, build_path):
         CONSOLE.print(text)
         sys.exit(1)
 
-def calculate_progress(matchning, format):
-    if not matchning:
-        LOG.error("non-matching progress is not support yet.")
-        sys.exit(1)
+@dataclass
+class ProgressSection:
+    name: str
+    addr: int 
+    size: int
+    decompiled: int
 
+    @property
+    def percentage(self):
+        return 100 * (self.decompiled / self.size)
+
+@dataclass
+class ProgressGroup:
+    name: str
+    size: int
+    decompiled: int
+    sections: Dict[str, ProgressSection] = field(default_factory=dict)
+
+    @property
+    def percentage(self):
+        return 100 * (self.decompiled / self.size)
+
+def calculate_rel_progress(matching, format):
+    asm_files = find_used_asm_files(not matching, use_progress_bar=(format == "FANCY"))
+
+    results = []
+    rel_paths = get_files_with_ext(Path("build/dolzel2/rel/"), ".rel")
+    for rel_path in rel_paths:
+        with rel_path.open("rb") as file:
+            data = file.read()
+
+        name = rel_path.name.replace(".rel", "")
+        size = len(data)
+        rel_asm_files = [ file for file in asm_files if f"/{name}/" in str(file)]
+        ranges = find_function_ranges(rel_asm_files)
+
+        decompiled = size
+        for range in ranges:
+            decompiled -= (range[1] - range[0])
+
+        results.append(ProgressGroup(name, size, decompiled, {}))
+
+    return results
+
+def calculate_dol_progress(matching, format):
     # read .dol file
     dol_path = Path("build/dolzel2/main.dol")
     if not dol_path.exists():
@@ -126,10 +169,9 @@ def calculate_progress(matchning, format):
     total_size = len(data)
     format_size = 0x100
 
-
     # assume everything is decompiled
     sections = dict([
-        (section.name, [section.aligned_size, section.aligned_size, section.addr])
+        (section.name, ProgressSection(section.name, section.addr, section.aligned_size, section.aligned_size))
         for section in dol.sections
         if section.data
     ])
@@ -144,7 +186,7 @@ def calculate_progress(matchning, format):
     text_decompiled_size = text.size
 
     # find all _used_ asm files
-    asm_files = find_used_asm_files(not matchning, use_progress_bar=(format == "FANCY"))
+    asm_files = find_used_asm_files(not matching, use_progress_bar=(format == "FANCY"))
 
     # calculate the range each asm file occupies
     ranges = find_function_ranges(asm_files)
@@ -155,12 +197,30 @@ def calculate_progress(matchning, format):
     # substract the size of each asm function
     for function_range in ranges:
         if function_range[0] >= init.addr and function_range[1] < init.addr + init.size:
-            sections[".init"][0] -= (function_range[1] - function_range[0])
+            sections[".init"].decompiled -= (function_range[1] - function_range[0])
         elif function_range[0] >= text.addr and function_range[1] < text.addr + text.size:
-            sections[".text"][0]-= (function_range[1] - function_range[0])
+            sections[".text"].decompiled-= (function_range[1] - function_range[0])
 
-    total_decompiled_size = format_size + sum([info[0] for info in sections.values()])
-    total_pct = 100 * (total_decompiled_size / total_size)
+    total_decompiled_size = format_size + sum([section.decompiled for section in sections.values()])
+    return ProgressGroup("main.dol", total_size, total_decompiled_size, sections)
+
+def calculate_progress(matching, format, print_rels):
+    if not matching:
+        LOG.error("non-matching progress is not support yet.")
+        sys.exit(1)
+
+    dol_progress = calculate_dol_progress(matching, format)
+    rels_progress = calculate_rel_progress(matching, format)
+
+    rel_size = 0
+    rel_decompiled = 0
+    for rel in rels_progress:
+        rel_size += rel.size
+        rel_decompiled += rel.decompiled
+
+    total_size = dol_progress.size + rel_size
+    decompiled_size = dol_progress.decompiled + rel_decompiled
+
 
     if format == "FANCY":
         table = Table(title="main.dol")
@@ -172,24 +232,57 @@ def calculate_progress(matchning, format):
         table.add_column("Total (bytes)", justify="right",
                          style="bright_magenta")
 
-        for name, info in sections.items():
-            pct = 100 * (info[0] / info[1])
-            table.add_row(name, f"{pct:10.6f}%", f"{info[0]}", f"{info[1]}")
+        for name, section in dol_progress.sections.items():
+            table.add_row(name, f"{section.percentage:10.6f}%", f"{section.decompiled}", f"{section.size}")
 
         table.add_row("", "", "", "")
-        table.add_row("total", f"{total_pct:10.6f}%", f"{total_decompiled_size}", f"{total_size}")
-        
+        table.add_row("total", f"{dol_progress.percentage:10.6f}%", f"{dol_progress.decompiled}", f"{dol_progress.size}")
+        CONSOLE.print(table)
+
+        table = Table(title="RELs")
+        table.add_column("Section", justify="right",
+                        style="cyan", no_wrap=True)
+        table.add_column("Percentage", style="green")
+        table.add_column("Decompiled (bytes)",
+                        justify="right", style="bright_yellow")
+        table.add_column("Total (bytes)", justify="right",
+                        style="bright_magenta")
+
+
+        if print_rels:
+            for rel in rels_progress:
+                table.add_row(rel.name, f"{rel.percentage:10.6f}%", f"{rel.decompiled}", f"{rel.size}")
+
+            table.add_row("", "", "", "")
+            table.add_row("total", f"{100 * (rel_decompiled / rel_size):10.6f}%", f"{rel_decompiled}", f"{rel_size}")
+            CONSOLE.print(table)
+
+        table = Table(title="Total")
+        table.add_column("Section", justify="right",
+                        style="cyan", no_wrap=True)
+        table.add_column("Percentage", style="green")
+        table.add_column("Decompiled (bytes)",
+                        justify="right", style="bright_yellow")
+        table.add_column("Total (bytes)", justify="right",
+                        style="bright_magenta")
+
+        table.add_row("main.dol", f"{dol_progress.percentage:10.6f}%", f"{dol_progress.decompiled}", f"{dol_progress.size}")
+        table.add_row("RELs", f"{100 * (rel_decompiled / rel_size):10.6f}%", f"{rel_decompiled}", f"{rel_size}")
+
+        table.add_row("", "", "", "")
+        table.add_row("total", f"{100 * (decompiled_size / total_size):10.6f}%", f"{decompiled_size}", f"{total_size}")
         CONSOLE.print(table)
     elif format == "CSV":
         version = 1
         git_object = git.Repo().head.object
         timestamp = str(git_object.committed_date)
         git_hash = git_object.hexsha
+
         data = [
             str(version), timestamp, git_hash,
-            str(sections[".init"][0]), str(sections[".init"][1]),
-            str(sections[".text"][0]), str(sections[".text"][1]),
-            str(total_decompiled_size), str(total_size),
+            str(dol_progress.decompiled), str(dol_progress.size),
+            str(rel_decompiled), str(rel_size),
+            str(decompiled_size), str(total_size),
 
         ]
         print(",".join(data))
@@ -198,13 +291,13 @@ def calculate_progress(matchning, format):
         print(json.dumps({
             "schemaVersion": 1,
             "label": "progress",
-            "message": f"{total_pct:.3g}%",
+            "message": f"{100 * (decompiled_size / total_size):.3g}%",
             "color": 'yellow',
         }))
     else:
-        init_pct = 100 * (sections[".init"][0] / sections[".init"][1])
-        text_pct = 100 * (sections[".text"][0] / sections[".text"][1])
-        print(init_pct, text_pct, total_pct)
+        print(dol_progress.percentage)
+        print(100 * (rel_decompiled / rel_size))
+        print(100 * (decompiled_size / total_size))
         LOG.error("unknown format: '{format}'")
 
 def find_function_ranges(asm_files):
