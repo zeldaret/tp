@@ -22,13 +22,13 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct J3DModelData {};
+struct J3DAnmTransform {};
 
-struct mDoExt_McaMorfCallBack2_c {};
+struct J3DModelData {};
 
 struct Z2Creature {};
 
@@ -110,13 +110,13 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
+struct dKy_tevstr_c {};
 
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
 
-struct dKy_tevstr_c {};
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -155,9 +155,9 @@ struct dEvent_manager_c {
     /* 8004817C */ void cutEnd(int);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -301,6 +301,60 @@ asm void daTagTWGate_c::initWait() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80D55848-80D55852 00009C 000A+00 4/3 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80D55848;
+
+/* 80D55852-80D55861 0000A6 000F+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80D55852;
+
+/* 80D55861-80D55875 0000B5 0014+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80D55861;
+
+/* 80D55875-80D55887 0000C9 0012+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80D55875;
+
+/* 80D55887-80D5588F 0000DB 0008+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80D55887;
+
+/* 80D5588F-80D55899 0000E3 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80D5588F;
+
+/* 80D55899-80D558A7 0000ED 000E+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80D55899;
+
+/* 80D558A7-80D558BA 0000FB 0013+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80D558A7;
+
+/* 80D558BA-80D558CB 00010E 0011+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80D558BA;
+
+/* 80D558CB-80D558D3 00011F 0008+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80D558CB;
+
+/* 80D558D3-80D558DD 000127 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80D558D3;
+
+/* 80D558DD-80D558EC 000131 000F+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80D558DD;
+
+/* 80D558EC-80D55900 000140 0014+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80D558EC;
+
+/* 80D55900-80D55912 000154 0012+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80D55900;
+
+/* 80D55912-80D5591C 000166 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80D55912;
+
+/* 80D5591C-80D5592A 000170 000E+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80D5591C;
+
+/* 80D5592A-80D5593D 00017E 0013+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80D5592A;
+
+/* 80D5593D-80D5594E 000191 0011+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80D5593D;
+
 /* 80D557AC-80D557B0 000000 0001+03 5/5 0/0 0/0 .rodata          mAttr__13daTagTWGate_c */
 SECTION_RODATA u8 const daTagTWGate_c::mAttr[1 + 3 /* padding */] = {
     0x00,
@@ -309,7 +363,7 @@ SECTION_RODATA u8 const daTagTWGate_c::mAttr[1 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D557AC, &daTagTWGate_c::mAttr);
+COMPILER_STRIP_GATE(0x80D557AC, &daTagTWGate_c::mAttr);
 
 /* 80D557B0-80D55820 -00001 0070+00 14/18 0/0 0/0 .rodata          l_zevParamTbl */
 SECTION_RODATA static void* const l_zevParamTbl[28] = {
@@ -342,17 +396,41 @@ SECTION_RODATA static void* const l_zevParamTbl[28] = {
     (void*)(((char*)&d_a_tag_TWgate__stringBase0) + 0x83),
     (void*)0x000A020E,
 };
-COMPILER_STRIP_GATE(80D557B0, &l_zevParamTbl);
+COMPILER_STRIP_GATE(0x80D557B0, &l_zevParamTbl);
 
 /* 80D55820-80D55824 000074 0004+00 1/1 0/0 0/0 .rodata          @3857 */
 SECTION_RODATA static f32 const lit_3857 = 100.0f;
-COMPILER_STRIP_GATE(80D55820, &lit_3857);
+COMPILER_STRIP_GATE(0x80D55820, &lit_3857);
 
 /* 80D55824-80D5582C 000078 0008+00 1/1 0/0 0/0 .rodata          @3858 */
 SECTION_RODATA static u8 const lit_3858[8] = {
     0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D55824, &lit_3858);
+COMPILER_STRIP_GATE(0x80D55824, &lit_3858);
+
+/* 80D55848-80D55848 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D55848 = "TWGate_FL";
+SECTION_DEAD static char const* const stringBase_80D55852 = "TW_GATE_FILONE";
+SECTION_DEAD static char const* const stringBase_80D55861 = "TW_GATE_FILONE_TALK";
+SECTION_DEAD static char const* const stringBase_80D55875 = "TW_GATE_FILONE_IN";
+SECTION_DEAD static char const* const stringBase_80D55887 = "F_SP108";
+SECTION_DEAD static char const* const stringBase_80D5588F = "TWGate_OD";
+SECTION_DEAD static char const* const stringBase_80D55899 = "TW_GATE_ORDIN";
+SECTION_DEAD static char const* const stringBase_80D558A7 = "TW_GATE_ORDIN_TALK";
+SECTION_DEAD static char const* const stringBase_80D558BA = "TW_GATE_ORDIN_IN";
+SECTION_DEAD static char const* const stringBase_80D558CB = "F_SP121";
+SECTION_DEAD static char const* const stringBase_80D558D3 = "TWGate_RN";
+SECTION_DEAD static char const* const stringBase_80D558DD = "TW_GATE_RANAIL";
+SECTION_DEAD static char const* const stringBase_80D558EC = "TW_GATE_RANAIL_TALK";
+SECTION_DEAD static char const* const stringBase_80D55900 = "TW_GATE_RANAIL_IN";
+SECTION_DEAD static char const* const stringBase_80D55912 = "TWGate_HY";
+SECTION_DEAD static char const* const stringBase_80D5591C = "TW_GATE_HYRAL";
+SECTION_DEAD static char const* const stringBase_80D5592A = "TW_GATE_HYRAL_TALK";
+SECTION_DEAD static char const* const stringBase_80D5593D = "TW_GATE_HYRAL_IN";
+SECTION_DEAD static char const* const stringBase_80D5594E = "Gate";
+#pragma pop
 
 /* 80D55974-80D55980 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -725,7 +803,7 @@ asm void daTagTWGate_c::initDemoFilone3() {
 /* ############################################################################################## */
 /* 80D5582C-80D55830 000080 0004+00 1/5 0/0 0/0 .rodata          @4079 */
 SECTION_RODATA static f32 const lit_4079 = 1.0f;
-COMPILER_STRIP_GATE(80D5582C, &lit_4079);
+COMPILER_STRIP_GATE(0x80D5582C, &lit_4079);
 
 /* 80D55830-80D55834 000084 0004+00 1/6 0/0 0/0 .rodata          @4080 */
 SECTION_RODATA static u8 const lit_4080[4] = {
@@ -734,25 +812,25 @@ SECTION_RODATA static u8 const lit_4080[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D55830, &lit_4080);
+COMPILER_STRIP_GATE(0x80D55830, &lit_4080);
 
 /* 80D55834-80D55838 000088 0004+00 0/4 0/0 0/0 .rodata          @4081 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4081 = 240.0f;
-COMPILER_STRIP_GATE(80D55834, &lit_4081);
+COMPILER_STRIP_GATE(0x80D55834, &lit_4081);
 #pragma pop
 
 /* 80D55838-80D5583C 00008C 0004+00 0/4 0/0 0/0 .rodata          @4082 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4082 = -710.0f;
-COMPILER_STRIP_GATE(80D55838, &lit_4082);
+COMPILER_STRIP_GATE(0x80D55838, &lit_4082);
 #pragma pop
 
 /* 80D5583C-80D55840 000090 0004+00 1/5 0/0 0/0 .rodata          @4083 */
 SECTION_RODATA static f32 const lit_4083 = -1.0f;
-COMPILER_STRIP_GATE(80D5583C, &lit_4083);
+COMPILER_STRIP_GATE(0x80D5583C, &lit_4083);
 
 /* 80D52E7C-80D53250 0008FC 03D4+00 1/0 0/0 0/0 .text executeDemoFilone3__13daTagTWGate_cFv */
 #pragma push
@@ -958,14 +1036,14 @@ asm void daTagTWGate_c::executeDemoHyral3() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4790 = 250.0f;
-COMPILER_STRIP_GATE(80D55840, &lit_4790);
+COMPILER_STRIP_GATE(0x80D55840, &lit_4790);
 #pragma pop
 
 /* 80D55844-80D55848 000098 0004+00 0/1 0/0 0/0 .rodata          @4791 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4791 = -840.0f;
-COMPILER_STRIP_GATE(80D55844, &lit_4791);
+COMPILER_STRIP_GATE(0x80D55844, &lit_4791);
 #pragma pop
 
 /* 80D54ECC-80D54F88 00294C 00BC+00 4/4 0/0 0/0 .text            initBaseMtx__13daTagTWGate_cFv */
@@ -976,6 +1054,15 @@ asm void daTagTWGate_c::initBaseMtx() {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_TWgate/d_a_tag_TWgate/initBaseMtx__13daTagTWGate_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80D55848-80D55848 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D55953 = "TWGate_Md";
+SECTION_DEAD static char const* const stringBase_80D5595D = "TWGate_Wf";
+SECTION_DEAD static char const* const stringBase_80D55967 = "TWGate_Lk";
 #pragma pop
 
 /* 80D54F88-80D5502C 002A08 00A4+00 4/4 0/0 0/0 .text            downloadModels__13daTagTWGate_cFv
@@ -1090,7 +1177,7 @@ asm void __sinit_d_a_tag_TWgate_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80D55520 = (void*)__sinit_d_a_tag_TWgate_cpp;
+REGISTER_CTORS(0x80D55520, __sinit_d_a_tag_TWgate_cpp);
 #pragma pop
 
 /* ############################################################################################## */
@@ -1116,30 +1203,4 @@ SECTION_DATA extern void* g_profile_Tag_TWGate[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80D55848-80D55971 00009C 0129+00 5/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D55848 = "TWGate_FL";
-SECTION_DEAD static char const* const stringBase_80D55852 = "TW_GATE_FILONE";
-SECTION_DEAD static char const* const stringBase_80D55861 = "TW_GATE_FILONE_TALK";
-SECTION_DEAD static char const* const stringBase_80D55875 = "TW_GATE_FILONE_IN";
-SECTION_DEAD static char const* const stringBase_80D55887 = "F_SP108";
-SECTION_DEAD static char const* const stringBase_80D5588F = "TWGate_OD";
-SECTION_DEAD static char const* const stringBase_80D55899 = "TW_GATE_ORDIN";
-SECTION_DEAD static char const* const stringBase_80D558A7 = "TW_GATE_ORDIN_TALK";
-SECTION_DEAD static char const* const stringBase_80D558BA = "TW_GATE_ORDIN_IN";
-SECTION_DEAD static char const* const stringBase_80D558CB = "F_SP121";
-SECTION_DEAD static char const* const stringBase_80D558D3 = "TWGate_RN";
-SECTION_DEAD static char const* const stringBase_80D558DD = "TW_GATE_RANAIL";
-SECTION_DEAD static char const* const stringBase_80D558EC = "TW_GATE_RANAIL_TALK";
-SECTION_DEAD static char const* const stringBase_80D55900 = "TW_GATE_RANAIL_IN";
-SECTION_DEAD static char const* const stringBase_80D55912 = "TWGate_HY";
-SECTION_DEAD static char const* const stringBase_80D5591C = "TW_GATE_HYRAL";
-SECTION_DEAD static char const* const stringBase_80D5592A = "TW_GATE_HYRAL_TALK";
-SECTION_DEAD static char const* const stringBase_80D5593D = "TW_GATE_HYRAL_IN";
-SECTION_DEAD static char const* const stringBase_80D5594E = "Gate";
-SECTION_DEAD static char const* const stringBase_80D55953 = "TWGate_Md";
-SECTION_DEAD static char const* const stringBase_80D5595D = "TWGate_Wf";
-SECTION_DEAD static char const* const stringBase_80D55967 = "TWGate_Lk";
-#pragma pop
+/* 80D55848-80D55848 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -61,9 +61,9 @@ struct J2DTextBox {
     /* 8030074C */ void setString(s16, char const*, ...);
 };
 
-struct J2DGrafContext {};
-
 struct J2DAnmTransform {};
+
+struct J2DGrafContext {};
 
 struct J2DScreen {
     /* 80192414 */ void setAnimation(J2DAnmTransform*);
@@ -71,10 +71,6 @@ struct J2DScreen {
     /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
     /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
     /* 802F9690 */ void animation();
-};
-
-struct J2DPane {
-    /* 802F7FC4 */ void setAnimation(J2DAnmTransform*);
 };
 
 struct J2DAnmLoaderDataBase {
@@ -228,6 +224,18 @@ asm dFile_warning_c::~dFile_warning_c() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80394828-80394828 020E88 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394828 = "zelda_file_select_warning_window.blo";
+SECTION_DEAD static char const* const stringBase_8039484D = "zelda_option_set_up_window.blo";
+SECTION_DEAD static char const* const stringBase_8039486C = "zelda_file_select_warning_window.bck";
+SECTION_DEAD static char const* const stringBase_80394891 = "zelda_option_set_up_window.bck";
+SECTION_DEAD static char const* const stringBase_803948B0 = "";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803948B1 = "\0\0\0\0\0\0";
+#pragma pop
+
 /* 804539DC-804539E0 -00001 0004+00 1/1 0/0 0/0 .sdata2          @3769 */
 SECTION_SDATA2 static void* lit_3769 = (void*)&d_file_d_file_sel_warning__stringBase0;
 
@@ -399,7 +407,7 @@ asm void __sinit_d_file_sel_warning_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8019238C = (void*)__sinit_d_file_sel_warning_cpp;
+REGISTER_CTORS(0x8019238C, __sinit_d_file_sel_warning_cpp);
 #pragma pop
 
 /* 801923CC-80192414 18CD0C 0048+00 1/0 0/0 0/0 .text            __dt__16dDlst_FileWarn_cFv */
@@ -423,15 +431,4 @@ asm void J2DScreen::setAnimation(J2DAnmTransform* param_0) {
 }
 #pragma pop
 
-/* 80394828-803948B8 020E88 0089+07 5/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80394828 = "zelda_file_select_warning_window.blo";
-SECTION_DEAD static char const* const stringBase_8039484D = "zelda_option_set_up_window.blo";
-SECTION_DEAD static char const* const stringBase_8039486C = "zelda_file_select_warning_window.bck";
-SECTION_DEAD static char const* const stringBase_80394891 = "zelda_option_set_up_window.bck";
-SECTION_DEAD static char const* const stringBase_803948B0 = "";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803948B1 = "\0\0\0\0\0\0";
-#pragma pop
+/* 80394828-80394828 020E88 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

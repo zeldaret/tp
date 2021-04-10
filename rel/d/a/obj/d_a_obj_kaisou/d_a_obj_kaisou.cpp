@@ -210,17 +210,17 @@ extern "C" f32 mGroundY__11fopAcM_gc_c;
 /* ############################################################################################## */
 /* 80C34EEC-80C34EF0 000000 0004+00 4/4 0/0 0/0 .rodata          @3806 */
 SECTION_RODATA static f32 const lit_3806 = 7.0f / 10.0f;
-COMPILER_STRIP_GATE(80C34EEC, &lit_3806);
+COMPILER_STRIP_GATE(0x80C34EEC, &lit_3806);
 
 /* 80C34EF0-80C34EF4 000004 0004+00 1/1 0/0 0/0 .rodata          @3807 */
 SECTION_RODATA static f32 const lit_3807 = 0.5f;
-COMPILER_STRIP_GATE(80C34EF0, &lit_3807);
+COMPILER_STRIP_GATE(0x80C34EF0, &lit_3807);
 
 /* 80C34EF4-80C34EFC 000008 0008+00 1/3 0/0 0/0 .rodata          @3809 */
 SECTION_RODATA static u8 const lit_3809[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C34EF4, &lit_3809);
+COMPILER_STRIP_GATE(0x80C34EF4, &lit_3809);
 
 /* 80C34058-80C34288 000078 0230+00 1/1 0/0 0/0 .text
  * ctrlJoint__13daObjKaisou_cFP8J3DJointP8J3DModel              */
@@ -244,6 +244,13 @@ static asm void JointCallBack(J3DJoint* param_0, int param_1) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80C34FA0-80C34FA0 0000B4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C34FA0 = "M_kaisou";
+SECTION_DEAD static char const* const stringBase_80C34FA9 = "M_kaisou.bmd";
+#pragma pop
+
 /* 80C34FC0-80C34FC4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_kaisou__stringBase0;
 
@@ -287,7 +294,7 @@ SECTION_RODATA static u8 const ccCylSrc[68] = {
     0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C34EFC, &ccCylSrc);
+COMPILER_STRIP_GATE(0x80C34EFC, &ccCylSrc);
 
 /* 80C34390-80C343F0 0003B0 0060+00 1/1 0/0 0/0 .text            initCcCylinder__13daObjKaisou_cFv
  */
@@ -320,7 +327,7 @@ SECTION_RODATA static u8 const lit_3963[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C34F40, &lit_3963);
+COMPILER_STRIP_GATE(0x80C34F40, &lit_3963);
 #pragma pop
 
 /* 80C34F44-80C34F4C 000058 0008+00 0/1 0/0 0/0 .rodata          @3964 */
@@ -329,7 +336,7 @@ COMPILER_STRIP_GATE(80C34F40, &lit_3963);
 SECTION_RODATA static u8 const lit_3964[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C34F44, &lit_3964);
+COMPILER_STRIP_GATE(0x80C34F44, &lit_3964);
 #pragma pop
 
 /* 80C34F4C-80C34F54 000060 0008+00 0/1 0/0 0/0 .rodata          @3965 */
@@ -338,7 +345,7 @@ COMPILER_STRIP_GATE(80C34F44, &lit_3964);
 SECTION_RODATA static u8 const lit_3965[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C34F4C, &lit_3965);
+COMPILER_STRIP_GATE(0x80C34F4C, &lit_3965);
 #pragma pop
 
 /* 80C34F54-80C34F5C 000068 0008+00 0/1 0/0 0/0 .rodata          @3966 */
@@ -347,35 +354,35 @@ COMPILER_STRIP_GATE(80C34F4C, &lit_3965);
 SECTION_RODATA static u8 const lit_3966[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C34F54, &lit_3966);
+COMPILER_STRIP_GATE(0x80C34F54, &lit_3966);
 #pragma pop
 
 /* 80C34F5C-80C34F60 000070 0004+00 0/2 0/0 0/0 .rodata          @3967 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3967 = 4.0f;
-COMPILER_STRIP_GATE(80C34F5C, &lit_3967);
+COMPILER_STRIP_GATE(0x80C34F5C, &lit_3967);
 #pragma pop
 
 /* 80C34F60-80C34F64 000074 0004+00 0/1 0/0 0/0 .rodata          @3968 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3968 = 6.0f / 5.0f;
-COMPILER_STRIP_GATE(80C34F60, &lit_3968);
+COMPILER_STRIP_GATE(0x80C34F60, &lit_3968);
 #pragma pop
 
 /* 80C34F64-80C34F68 000078 0004+00 0/1 0/0 0/0 .rodata          @3969 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3969 = 120.0f;
-COMPILER_STRIP_GATE(80C34F64, &lit_3969);
+COMPILER_STRIP_GATE(0x80C34F64, &lit_3969);
 #pragma pop
 
 /* 80C34F68-80C34F6C 00007C 0004+00 0/1 0/0 0/0 .rodata          @3970 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3970 = 4096.0f;
-COMPILER_STRIP_GATE(80C34F68, &lit_3970);
+COMPILER_STRIP_GATE(0x80C34F68, &lit_3970);
 #pragma pop
 
 /* 80C34FC4-80C35038 -00001 0074+00 1/1 0/0 0/0 .data            @3975 */
@@ -430,7 +437,7 @@ SECTION_RODATA static f32 const lit_3995[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80C34F6C, &lit_3995);
+COMPILER_STRIP_GATE(0x80C34F6C, &lit_3995);
 #pragma pop
 
 /* 80C34F74-80C34F7C 000088 0008+00 0/1 0/0 0/0 .rodata          @3996 */
@@ -439,21 +446,21 @@ COMPILER_STRIP_GATE(80C34F6C, &lit_3995);
 SECTION_RODATA static u8 const lit_3996[8] = {
     0x3F, 0xF8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C34F74, &lit_3996);
+COMPILER_STRIP_GATE(0x80C34F74, &lit_3996);
 #pragma pop
 
 /* 80C34F7C-80C34F80 000090 0004+00 0/1 0/0 0/0 .rodata          @3997 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3997 = 32768.0f;
-COMPILER_STRIP_GATE(80C34F7C, &lit_3997);
+COMPILER_STRIP_GATE(0x80C34F7C, &lit_3997);
 #pragma pop
 
 /* 80C34F80-80C34F84 000094 0004+00 0/1 0/0 0/0 .rodata          @3998 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3998 = 9.0f / 5.0f;
-COMPILER_STRIP_GATE(80C34F80, &lit_3998);
+COMPILER_STRIP_GATE(0x80C34F80, &lit_3998);
 #pragma pop
 
 /* 80C34824-80C34A98 000844 0274+00 1/1 0/0 0/0 .text            Execute__13daObjKaisou_cFv */
@@ -479,7 +486,7 @@ asm void daObjKaisou_c::Delete() {
 /* ############################################################################################## */
 /* 80C34F84-80C34F88 000098 0004+00 1/1 0/0 0/0 .rodata          @4022 */
 SECTION_RODATA static f32 const lit_4022 = 2.0f;
-COMPILER_STRIP_GATE(80C34F84, &lit_4022);
+COMPILER_STRIP_GATE(0x80C34F84, &lit_4022);
 
 /* 80C34ACC-80C34B34 000AEC 0068+00 1/1 0/0 0/0 .text            setBaseMtx__13daObjKaisou_cFv */
 #pragma push
@@ -517,42 +524,48 @@ static asm void daObjKaisou_Execute(daObjKaisou_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4157 = -9.0f;
-COMPILER_STRIP_GATE(80C34F88, &lit_4157);
+COMPILER_STRIP_GATE(0x80C34F88, &lit_4157);
 #pragma pop
 
 /* 80C34F8C-80C34F90 0000A0 0004+00 0/1 0/0 0/0 .rodata          @4158 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4158 = 100.0f;
-COMPILER_STRIP_GATE(80C34F8C, &lit_4158);
+COMPILER_STRIP_GATE(0x80C34F8C, &lit_4158);
 #pragma pop
 
 /* 80C34F90-80C34F94 0000A4 0004+00 0/1 0/0 0/0 .rodata          @4159 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4159 = -1000.0f;
-COMPILER_STRIP_GATE(80C34F90, &lit_4159);
+COMPILER_STRIP_GATE(0x80C34F90, &lit_4159);
 #pragma pop
 
 /* 80C34F94-80C34F98 0000A8 0004+00 0/1 0/0 0/0 .rodata          @4160 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4160 = -500.0f;
-COMPILER_STRIP_GATE(80C34F94, &lit_4160);
+COMPILER_STRIP_GATE(0x80C34F94, &lit_4160);
 #pragma pop
 
 /* 80C34F98-80C34F9C 0000AC 0004+00 0/1 0/0 0/0 .rodata          @4161 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4161 = 1000.0f;
-COMPILER_STRIP_GATE(80C34F98, &lit_4161);
+COMPILER_STRIP_GATE(0x80C34F98, &lit_4161);
 #pragma pop
 
 /* 80C34F9C-80C34FA0 0000B0 0004+00 0/1 0/0 0/0 .rodata          @4162 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4162 = 500.0f;
-COMPILER_STRIP_GATE(80C34F9C, &lit_4162);
+COMPILER_STRIP_GATE(0x80C34F9C, &lit_4162);
+#pragma pop
+
+/* 80C34FA0-80C34FA0 0000B4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C34FB6 = "D_MN01A";
 #pragma pop
 
 /* 80C35038-80C35058 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjKaisou_Method */
@@ -626,11 +639,4 @@ static bool daObjKaisou_IsDelete(daObjKaisou_c* param_0) {
     return true;
 }
 
-/* 80C34FA0-80C34FBE 0000B4 001E+00 3/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C34FA0 = "M_kaisou";
-SECTION_DEAD static char const* const stringBase_80C34FA9 = "M_kaisou.bmd";
-SECTION_DEAD static char const* const stringBase_80C34FB6 = "D_MN01A";
-#pragma pop
+/* 80C34FA0-80C34FA0 0000B4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

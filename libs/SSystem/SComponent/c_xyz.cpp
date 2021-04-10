@@ -221,7 +221,7 @@ SECTION_RODATA static u8 const lit_2299[12 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039A868, &lit_2299);
+COMPILER_STRIP_GATE(0x8039A868, &lit_2299);
 
 /* 80455078-8045507C 003678 0004+00 1/1 0/0 0/0 .sdata2          @2325 */
 SECTION_SDATA2 static f32 lit_2325 = 1.25f;
@@ -431,5 +431,5 @@ asm void __sinit_c_xyz_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80267290 = (void*)__sinit_c_xyz_cpp;
+REGISTER_CTORS(0x80267290, __sinit_c_xyz_cpp);
 #pragma pop

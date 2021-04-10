@@ -53,9 +53,9 @@ struct dMenu_Calibration_c {
     /* 801AFBF4 */ void draw();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -475,6 +475,15 @@ asm void dMenu_Calibration_c::setCalibrationValue() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80394F70-80394F70 0215D0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394F70 = "";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80394F71 = "\0\0\0\0\0\0";
+#pragma pop
+
 /* 801AF738-801AF7E8 1AA078 00B0+00 6/6 0/0 0/0 .text setAButtonString__19dMenu_Calibration_cFUs
  */
 #pragma push
@@ -550,14 +559,7 @@ asm void __sinit_d_menu_calibration_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_801AFC14 = (void*)__sinit_d_menu_calibration_cpp;
+REGISTER_CTORS(0x801AFC14, __sinit_d_menu_calibration_cpp);
 #pragma pop
 
-/* 80394F70-80394F78 0215D0 0001+07 4/4 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80394F70 = "";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80394F71 = "\0\0\0\0\0\0";
-#pragma pop
+/* 80394F70-80394F70 0215D0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

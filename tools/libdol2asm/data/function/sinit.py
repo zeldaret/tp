@@ -20,7 +20,7 @@ class SInitFunction(ASMFunction):
 
         await builder.write("#pragma push")
         await builder.write("#pragma force_active on")
-        await builder.write(f"SECTION_CTORS void* const _ctors_{self.addr:08X} = (void*){self.label};")
+        await builder.write(f"REGISTER_CTORS(0x{self.addr:08X}, {self.label});")
         await builder.write("#pragma pop")
         await builder.write("")
 

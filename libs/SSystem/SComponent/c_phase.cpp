@@ -49,7 +49,7 @@ asm void cPhs_Reset(request_of_phase_process_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cPhs_Set(request_of_phase_process_class* param_0, int (**)(void*)) {
+asm void cPhs_Set(request_of_phase_process_class* param_0, int (**param_1)(void*)) {
     nofralloc
 #include "asm/SSystem/SComponent/c_phase/cPhs_Set__FP30request_of_phase_process_classPPFPv_i.s"
 }
@@ -104,7 +104,8 @@ asm void cPhs_Do(request_of_phase_process_class* param_0, void* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cPhs_Handler(request_of_phase_process_class* param_0, int (**)(void*), void* param_2) {
+asm void cPhs_Handler(request_of_phase_process_class* param_0, int (**param_1)(void*),
+                      void* param_2) {
     nofralloc
 #include "asm/SSystem/SComponent/c_phase/cPhs_Handler__FP30request_of_phase_process_classPPFPv_iPv.s"
 }

@@ -176,6 +176,15 @@ asm void mDoMemCd_Ctrl_c::load() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803743F8-803743F8 000A58 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803743F8 = "gczelda2";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80374401 = "\0\0\0\0\0\0";
+#pragma pop
+
 /* 80016A0C-80016AB0 01134C 00A4+00 1/1 0/0 0/0 .text            restore__15mDoMemCd_Ctrl_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -408,14 +417,7 @@ asm void __sinit_m_Do_MemCard_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80017470 = (void*)__sinit_m_Do_MemCard_cpp;
+REGISTER_CTORS(0x80017470, __sinit_m_Do_MemCard_cpp);
 #pragma pop
 
-/* 803743F8-80374408 000A58 0009+07 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803743F8 = "gczelda2";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80374401 = "\0\0\0\0\0\0";
-#pragma pop
+/* 803743F8-803743F8 000A58 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -34,7 +34,7 @@ template <typename A0>
 struct JASMemPool {};
 /* JASMemPool<JAIStream> */
 struct JASMemPool__template3 {
-    /* 802A3E68 */ void func_802A3E68();
+    /* 802A3E68 */ void func_802A3E68(void* _this);
 };
 
 struct JASGenericMemPool {
@@ -60,14 +60,14 @@ struct JAIStreamMgr {
     /* 802A4174 */ void newStream_();
 };
 
+struct JAISoundActivity {};
+
 template <typename A0>
 struct JAISoundStrategyMgr {};
 /* JAISoundStrategyMgr<JAIStream> */
 struct JAISoundStrategyMgr__template2 {};
 
 struct JAIAudience {};
-
-struct JAISoundActivity {};
 
 struct JAIStream {
     /* 802A3104 */ JAIStream(JAIStreamMgr*, JAISoundStrategyMgr<JAIStream>*);
@@ -90,7 +90,7 @@ struct JAISound {
 extern "C" void __ct__12JAIStreamMgrFb();
 extern "C" void func_802A3C3C();
 extern "C" void freeDeadStream___12JAIStreamMgrFv();
-extern "C" void func_802A3E68();
+extern "C" void func_802A3E68(void* _this);
 extern "C" void calc__12JAIStreamMgrFv();
 extern "C" void stop__12JAIStreamMgrFv();
 extern "C" void stop__12JAIStreamMgrFUl();
@@ -197,7 +197,7 @@ asm void JAIStreamMgr::freeDeadStream_() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802A3E68() {
+extern "C" asm void func_802A3E68(void* _this) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAIStreamMgr/func_802A3E68.s"
 }

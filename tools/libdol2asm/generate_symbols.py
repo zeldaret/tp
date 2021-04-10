@@ -24,7 +24,7 @@ def string_decode(data: bytearray) -> Tuple[str, str]:
     return None, None
 
 
-def string_from_data(addr: int, data: bytearray) -> String:
+def string_from_data(addr: int, data: bytearray, string_base: StringBase) -> String:
     """ Create string symbol from an address and data """
 
     string, encoding = string_decode(data)
@@ -36,7 +36,8 @@ def string_from_data(addr: int, data: bytearray) -> String:
         len(data),
         data_type=PointerType(ConstType(CHAR)),
         encoding=encoding,
-        decoded_string=string)
+        decoded_string=string,
+        string_base=string_base)
 
 
 def zero_initialized_symbol(section: Section,
@@ -81,14 +82,32 @@ def value_initialized_symbol(section: Section,
     # strings will always be in rodata
     if section.name == ".rodata":
         if symbol.name == "@stringBase0":
-            strings = []
+            string_base = StringBase(
+                    Identifier("stringBase", symbol.addr, symbol.name),
+                    symbol.addr,
+                    0,
+                    data = bytes(),
+                    data_type=PointerType(ConstType(CHAR)),
+                    padding=0,
+                    padding_data=bytes(),
+                    strings = [])
+
+            strings = [ string_base ]
             split_data = list(util.magicsplit(data, 0))
             x_offset = 0
             for x in split_data[:-1]:
+                str_addr = symbol.addr + x_offset
+                str_length = len(x) + 1
+                str_data = bytes(x + [0])
                 strings.append(string_from_data(
-                    symbol.addr + x_offset, bytes(x + [0])))
-                x_offset += len(x) + 1
-            return [StringBase.create(symbol, strings, data, padding_data)]
+                    str_addr, str_data, string_base))
+                x_offset += str_length
+            #return [StringBase.create(symbol, strings, data, padding_data)]
+
+            strings[-1].padding = len(padding_data)
+            strings[-1].padding_data = padding_data
+
+            return strings
 
     if section.name == ".init":
         if symbol.name == "_rom_copy_info" or symbol.name == "_bss_init_info":

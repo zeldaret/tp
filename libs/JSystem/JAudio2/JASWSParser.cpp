@@ -58,13 +58,13 @@ extern "C" void getGroupCount__11JASWSParserFPCv();
 extern "C" void createWaveBank__11JASWSParserFPCvP7JKRHeap();
 extern "C" void createBasicWaveBank__11JASWSParserFPCvP7JKRHeap();
 extern "C" void createSimpleWaveBank__11JASWSParserFPCvP7JKRHeap();
-extern "C" void func_80299490(void const*, u32);
-extern "C" void func_802994A8(void const*, u32);
-extern "C" void func_802994C0(void const*, u32);
-extern "C" void func_802994D8(void const*, u32);
-extern "C" void func_802994F0(void const*, u32);
-extern "C" void func_80299508(void const*, u32);
-extern "C" void func_80299520(void const*, u32);
+extern "C" void func_80299490(void* _this, void const*, u32);
+extern "C" void func_802994A8(void* _this, void const*, u32);
+extern "C" void func_802994C0(void* _this, void const*, u32);
+extern "C" void func_802994D8(void* _this, void const*, u32);
+extern "C" void func_802994F0(void* _this, void const*, u32);
+extern "C" void func_80299508(void* _this, void const*, u32);
+extern "C" void func_80299520(void* _this, void const*, u32);
 extern "C" u8 sUsedHeapSize__11JASWSParser[4 + 4 /* padding */];
 
 //
@@ -147,7 +147,7 @@ asm void JASWSParser::createSimpleWaveBank(void const* param_0, JKRHeap* param_1
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80299490(void const* param_0, u32 param_1) {
+extern "C" asm void func_80299490(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASWSParser/func_80299490.s"
 }
@@ -158,7 +158,7 @@ extern "C" asm void func_80299490(void const* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802994A8(void const* param_0, u32 param_1) {
+extern "C" asm void func_802994A8(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASWSParser/func_802994A8.s"
 }
@@ -169,7 +169,7 @@ extern "C" asm void func_802994A8(void const* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802994C0(void const* param_0, u32 param_1) {
+extern "C" asm void func_802994C0(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASWSParser/func_802994C0.s"
 }
@@ -180,7 +180,7 @@ extern "C" asm void func_802994C0(void const* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802994D8(void const* param_0, u32 param_1) {
+extern "C" asm void func_802994D8(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASWSParser/func_802994D8.s"
 }
@@ -191,7 +191,7 @@ extern "C" asm void func_802994D8(void const* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802994F0(void const* param_0, u32 param_1) {
+extern "C" asm void func_802994F0(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASWSParser/func_802994F0.s"
 }
@@ -202,7 +202,7 @@ extern "C" asm void func_802994F0(void const* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80299508(void const* param_0, u32 param_1) {
+extern "C" asm void func_80299508(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASWSParser/func_80299508.s"
 }
@@ -213,7 +213,7 @@ extern "C" asm void func_80299508(void const* param_0, u32 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80299520(void const* param_0, u32 param_1) {
+extern "C" asm void func_80299520(void* _this, void const* param_0, u32 param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASWSParser/func_80299520.s"
 }

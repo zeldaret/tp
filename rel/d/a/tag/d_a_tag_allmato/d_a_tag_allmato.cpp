@@ -216,7 +216,22 @@ extern "C" extern f32 G_CM3D_F_ABS_MIN[1 + 1 /* padding */];
 /* ############################################################################################## */
 /* 804896E4-804896E8 000000 0004+00 5/6 0/0 0/0 .rodata          @4025 */
 SECTION_RODATA static f32 const lit_4025 = 100.0f;
-COMPILER_STRIP_GATE(804896E4, &lit_4025);
+COMPILER_STRIP_GATE(0x804896E4, &lit_4025);
+
+/* 8048973C-8048973C 000058 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8048973C = "";
+SECTION_DEAD static char const* const stringBase_8048973D = "FOCUS_BOUMATO";
+SECTION_DEAD static char const* const stringBase_8048974B = "FOCUS_ITAMATO";
+SECTION_DEAD static char const* const stringBase_80489759 = "FOCUS_ITAMATO_ON_ROOF";
+SECTION_DEAD static char const* const stringBase_8048976F = "HIT_BOUMATO1";
+SECTION_DEAD static char const* const stringBase_8048977C = "HIT_BOUMATO2";
+SECTION_DEAD static char const* const stringBase_80489789 = "HIT_BOUMATO3";
+SECTION_DEAD static char const* const stringBase_80489796 = "NEARPIN_BOUMATO";
+SECTION_DEAD static char const* const stringBase_804897A6 = "Taro1";
+SECTION_DEAD static char const* const stringBase_804897AC = "Taro2";
+#pragma pop
 
 /* 804897BC-804897FC -00001 0040+00 2/2 0/0 0/0 .data            l_evtList */
 SECTION_DATA static void* l_evtList[16] = {
@@ -319,6 +334,27 @@ bool daTag_AllMato_c::Delete() {
 }
 
 /* ############################################################################################## */
+/* 8048973D-8048974B 000059 000E+00 2/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_8048973D;
+
+/* 8048974B-80489759 000067 000E+00 2/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_8048974B;
+
+/* 80489759-8048976F 000075 0016+00 2/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80489759;
+
+/* 8048976F-8048977C 00008B 000D+00 2/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_8048976F;
+
+/* 8048977C-80489789 000098 000D+00 2/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_8048977C;
+
+/* 80489789-80489796 0000A5 000D+00 2/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80489789;
+
+/* 80489796-804897A6 0000B2 0010+00 2/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_80489796;
+
 /* 804896E8-80489704 -00001 001C+00 1/1 0/0 0/0 .rodata          @4071 */
 SECTION_RODATA static void* const lit_4071[7] = {
     (void*)(((char*)&d_a_tag_allmato__stringBase0) + 0x1),
@@ -329,7 +365,13 @@ SECTION_RODATA static void* const lit_4071[7] = {
     (void*)(((char*)&d_a_tag_allmato__stringBase0) + 0x4D),
     (void*)(((char*)&d_a_tag_allmato__stringBase0) + 0x5A),
 };
-COMPILER_STRIP_GATE(804896E8, &lit_4071);
+COMPILER_STRIP_GATE(0x804896E8, &lit_4071);
+
+/* 8048973C-8048973C 000058 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_804897B2 = "AllMato";
+#pragma pop
 
 /* 804876B8-80487C5C 0001F8 05A4+00 1/1 0/0 0/0 .text            Execute__15daTag_AllMato_cFv */
 #pragma push
@@ -463,7 +505,7 @@ SECTION_RODATA static u8 const lit_4606[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80489704, &lit_4606);
+COMPILER_STRIP_GATE(0x80489704, &lit_4606);
 #pragma pop
 
 /* 8048970C-80489714 000028 0008+00 0/4 0/0 0/0 .rodata          @4607 */
@@ -472,7 +514,7 @@ COMPILER_STRIP_GATE(80489704, &lit_4606);
 SECTION_RODATA static u8 const lit_4607[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8048970C, &lit_4607);
+COMPILER_STRIP_GATE(0x8048970C, &lit_4607);
 #pragma pop
 
 /* 80489714-8048971C 000030 0008+00 0/4 0/0 0/0 .rodata          @4608 */
@@ -481,7 +523,7 @@ COMPILER_STRIP_GATE(8048970C, &lit_4607);
 SECTION_RODATA static u8 const lit_4608[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80489714, &lit_4608);
+COMPILER_STRIP_GATE(0x80489714, &lit_4608);
 #pragma pop
 
 /* 8048971C-80489724 000038 0008+00 0/4 0/0 0/0 .rodata          @4609 */
@@ -490,28 +532,28 @@ COMPILER_STRIP_GATE(80489714, &lit_4608);
 SECTION_RODATA static u8 const lit_4609[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8048971C, &lit_4609);
+COMPILER_STRIP_GATE(0x8048971C, &lit_4609);
 #pragma pop
 
 /* 80489724-80489728 000040 0004+00 0/2 0/0 0/0 .rodata          @4610 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4610 = -2.0f;
-COMPILER_STRIP_GATE(80489724, &lit_4610);
+COMPILER_STRIP_GATE(0x80489724, &lit_4610);
 #pragma pop
 
 /* 80489728-8048972C 000044 0004+00 0/2 0/0 0/0 .rodata          @4611 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4611 = -100.0f;
-COMPILER_STRIP_GATE(80489728, &lit_4611);
+COMPILER_STRIP_GATE(0x80489728, &lit_4611);
 #pragma pop
 
 /* 8048972C-80489730 000048 0004+00 0/2 0/0 0/0 .rodata          @4612 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4612 = 95.0f;
-COMPILER_STRIP_GATE(8048972C, &lit_4612);
+COMPILER_STRIP_GATE(0x8048972C, &lit_4612);
 #pragma pop
 
 /* 80488238-80488994 000D78 075C+00 1/1 0/0 0/0 .text            checkCrsMato__15daTag_AllMato_cFv
@@ -627,7 +669,7 @@ asm daNpcT_ActorMngr_c::daNpcT_ActorMngr_c() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4688 = 10.0f;
-COMPILER_STRIP_GATE(80489730, &lit_4688);
+COMPILER_STRIP_GATE(0x80489730, &lit_4688);
 #pragma pop
 
 /* 804891BC-804893C4 001CFC 0208+00 1/1 0/0 0/0 .text
@@ -656,14 +698,14 @@ asm cM3dGSph::~cM3dGSph() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4752 = 120.0f;
-COMPILER_STRIP_GATE(80489734, &lit_4752);
+COMPILER_STRIP_GATE(0x80489734, &lit_4752);
 #pragma pop
 
 /* 80489738-8048973C 000054 0004+00 0/1 0/0 0/0 .rodata          @4753 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4753 = 30.0f;
-COMPILER_STRIP_GATE(80489738, &lit_4753);
+COMPILER_STRIP_GATE(0x80489738, &lit_4753);
 #pragma pop
 
 /* 8048940C-804895EC 001F4C 01E0+00 2/2 0/0 0/0 .text
@@ -697,19 +739,4 @@ asm daTag_AllMato_c::~daTag_AllMato_c() {
 }
 #pragma pop
 
-/* 8048973C-804897BA 000058 007E+00 4/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8048973C = "";
-SECTION_DEAD static char const* const stringBase_8048973D = "FOCUS_BOUMATO";
-SECTION_DEAD static char const* const stringBase_8048974B = "FOCUS_ITAMATO";
-SECTION_DEAD static char const* const stringBase_80489759 = "FOCUS_ITAMATO_ON_ROOF";
-SECTION_DEAD static char const* const stringBase_8048976F = "HIT_BOUMATO1";
-SECTION_DEAD static char const* const stringBase_8048977C = "HIT_BOUMATO2";
-SECTION_DEAD static char const* const stringBase_80489789 = "HIT_BOUMATO3";
-SECTION_DEAD static char const* const stringBase_80489796 = "NEARPIN_BOUMATO";
-SECTION_DEAD static char const* const stringBase_804897A6 = "Taro1";
-SECTION_DEAD static char const* const stringBase_804897AC = "Taro2";
-SECTION_DEAD static char const* const stringBase_804897B2 = "AllMato";
-#pragma pop
+/* 8048973C-8048973C 000058 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

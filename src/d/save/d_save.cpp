@@ -293,7 +293,6 @@ struct dMeter2Info_c {
 };
 
 struct dComIfG_play_c {
-    /* 8002B3A8 */ void setNowVibration(u8);
     /* 8002B3B0 */ void getNowVibration();
 };
 
@@ -663,6 +662,12 @@ asm void dSv_player_status_b_c::isTransformLV(int param_0) const {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80379234-80379234 005894 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379234 = "";
+#pragma pop
+
 /* 80451D5C-80451D60 00035C 0004+00 3/3 0/0 0/0 .sdata2          @3813 */
 SECTION_SDATA2 static u8 lit_3813[4] = {
     0x00,
@@ -689,6 +694,13 @@ asm void dSv_horse_place_c::set(char const* param_0, cXyz const& param_1, s16 pa
     nofralloc
 #include "asm/d/save/d_save/set__17dSv_horse_place_cFPCcRC4cXyzsSc.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80379234-80379234 005894 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379235 = "F_SP108";
 #pragma pop
 
 /* 80032CC8-80032D1C 02D608 0054+00 1/1 0/0 0/0 .text            init__25dSv_player_return_place_cFv
@@ -798,6 +810,13 @@ asm void dSv_player_item_c::setItem(int param_0, u8 param_1) {
     nofralloc
 #include "asm/d/save/d_save/setItem__17dSv_player_item_cFiUc.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80379234-80379234 005894 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037923D = "合成アイテム不定＝＝＝＞%d, %d\n";
 #pragma pop
 
 /* 80033030-800332F8 02D970 02C8+00 7/7 70/70 2/2 .text            getItem__17dSv_player_item_cCFib
@@ -3095,16 +3114,11 @@ asm void dSv_player_config_c::getSound() {
 }
 #pragma pop
 
-/* 8003468C-80034694 02EFCC 0008+00 1/1 1/1 0/0 .text            setSound__19dSv_player_config_cFUc
+/* 8003468C-80034694 -00001 0008+00 0/0 0/0 0/0 .text            setSound__19dSv_player_config_cFUc
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSv_player_config_c::setSound(u8 param_0) {
-    nofralloc
-#include "asm/d/save/d_save/setSound__19dSv_player_config_cFUc.s"
+void dSv_player_config_c::setSound(u8 param_0) {
+    *(u8*)(((u8*)this) + 1) /* this->field_0x1 */ = (u8)(param_0);
 }
-#pragma pop
 
 /* 80034694-8003469C 02EFD4 0008+00 1/1 1/1 0/0 .text getVibration__19dSv_player_config_cFv */
 #pragma push
@@ -3116,15 +3130,10 @@ asm void dSv_player_config_c::getVibration() {
 }
 #pragma pop
 
-/* 8003469C-800346A4 02EFDC 0008+00 0/0 1/1 0/0 .text setVibration__19dSv_player_config_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dSv_player_config_c::setVibration(u8 param_0) {
-    nofralloc
-#include "asm/d/save/d_save/setVibration__19dSv_player_config_cFUc.s"
+/* 8003469C-800346A4 -00001 0008+00 0/0 0/0 0/0 .text setVibration__19dSv_player_config_cFUc */
+void dSv_player_config_c::setVibration(u8 param_0) {
+    *(u8*)(((u8*)this) + 3) /* this->field_0x3 */ = (u8)(param_0);
 }
-#pragma pop
 
 /* 800346A4-80034750 02EFE4 00AC+00 1/1 0/0 0/0 .text            init__12dSv_player_cFv */
 #pragma push
@@ -3833,6 +3842,14 @@ asm void dSv_info_c::isActor(int param_0, int param_1) const {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80379234-80379234 005894 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037925D = "Write size:%d\n";
+SECTION_DEAD static char const* const stringBase_8037926C = "SAVE size:%d\n";
+#pragma pop
+
 /* 80035798-80035A04 0300D8 026C+00 0/0 1/1 0/0 .text            memory_to_card__10dSv_info_cFPci */
 #pragma push
 #pragma optimization_level 0
@@ -3843,6 +3860,13 @@ asm void dSv_info_c::memory_to_card(char* param_0, int param_1) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80379234-80379234 005894 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037927A = "LOAD size:%d\n";
+#pragma pop
+
 /* 80035A04-80035BD0 030344 01CC+00 0/0 2/2 0/0 .text            card_to_memory__10dSv_info_cFPci */
 #pragma push
 #pragma optimization_level 0
@@ -3851,6 +3875,15 @@ asm void dSv_info_c::card_to_memory(char* param_0, int param_1) {
     nofralloc
 #include "asm/d/save/d_save/card_to_memory__10dSv_info_cFPci.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80379234-80379234 005894 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379288 = "INIT size:%d\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80379296 = "\0";
 #pragma pop
 
 /* 80035BD0-80035C88 030510 00B8+00 0/0 3/3 0/0 .text            initdata_to_card__10dSv_info_cFPci
@@ -4241,19 +4274,6 @@ SECTION_RODATA u8 const dSv_event_tmp_flag_c::tempBitLabels[370 + 2 /* padding *
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(803790C0, &dSv_event_tmp_flag_c::tempBitLabels);
+COMPILER_STRIP_GATE(0x803790C0, &dSv_event_tmp_flag_c::tempBitLabels);
 
-/* 80379234-80379298 005894 0062+02 8/8 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80379234 = "";
-SECTION_DEAD static char const* const stringBase_80379235 = "F_SP108";
-SECTION_DEAD static char const* const stringBase_8037923D = "合成アイテム不定＝＝＝＞%d, %d\n";
-SECTION_DEAD static char const* const stringBase_8037925D = "Write size:%d\n";
-SECTION_DEAD static char const* const stringBase_8037926C = "SAVE size:%d\n";
-SECTION_DEAD static char const* const stringBase_8037927A = "LOAD size:%d\n";
-SECTION_DEAD static char const* const stringBase_80379288 = "INIT size:%d\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80379296 = "\0";
-#pragma pop
+/* 80379234-80379234 005894 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -115,7 +115,7 @@ asm JASTaskThread::~JASTaskThread() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASTaskThread::allocCallStack(void (*)(void*), void const* param_1, u32 param_2) {
+asm void JASTaskThread::allocCallStack(void (*param_0)(void*), void const* param_1, u32 param_2) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASTaskThread/allocCallStack__13JASTaskThreadFPFPv_vPCvUl.s"
 }
@@ -125,7 +125,7 @@ asm void JASTaskThread::allocCallStack(void (*)(void*), void const* param_1, u32
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASTaskThread::allocCallStack(void (*)(void*), void* param_1) {
+asm void JASTaskThread::allocCallStack(void (*param_0)(void*), void* param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASTaskThread/allocCallStack__13JASTaskThreadFPFPv_vPv.s"
 }
@@ -135,7 +135,7 @@ asm void JASTaskThread::allocCallStack(void (*)(void*), void* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASTaskThread::sendCmdMsg(void (*)(void*), void const* param_1, u32 param_2) {
+asm void JASTaskThread::sendCmdMsg(void (*param_0)(void*), void const* param_1, u32 param_2) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASTaskThread/sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl.s"
 }
@@ -145,7 +145,7 @@ asm void JASTaskThread::sendCmdMsg(void (*)(void*), void const* param_1, u32 par
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASTaskThread::sendCmdMsg(void (*)(void*), void* param_1) {
+asm void JASTaskThread::sendCmdMsg(void (*param_0)(void*), void* param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASTaskThread/sendCmdMsg__13JASTaskThreadFPFPv_vPv.s"
 }

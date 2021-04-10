@@ -55,7 +55,7 @@ extern "C" void _restgpr_28();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcLyIt_OnlyHere(layer_class* param_0, int (*)(void*, void*), void* param_2) {
+asm void fpcLyIt_OnlyHere(layer_class* param_0, int (*param_1)(void*, void*), void* param_2) {
     nofralloc
 #include "asm/f_pc/f_pc_layer_iter/fpcLyIt_OnlyHere__FP11layer_classPFPvPv_iPv.s"
 }
@@ -66,7 +66,7 @@ asm void fpcLyIt_OnlyHere(layer_class* param_0, int (*)(void*, void*), void* par
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcLyIt_OnlyHereLY(layer_class* param_0, int (*)(void*, void*), void* param_2) {
+asm void fpcLyIt_OnlyHereLY(layer_class* param_0, int (*param_1)(void*, void*), void* param_2) {
     nofralloc
 #include "asm/f_pc/f_pc_layer_iter/fpcLyIt_OnlyHereLY__FP11layer_classPFPvPv_iPv.s"
 }
@@ -76,7 +76,7 @@ asm void fpcLyIt_OnlyHereLY(layer_class* param_0, int (*)(void*, void*), void* p
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcLyIt_Judge(layer_class* param_0, void* (*)(void*, void*), void* param_2) {
+asm void fpcLyIt_Judge(layer_class* param_0, void* (*param_1)(void*, void*), void* param_2) {
     nofralloc
 #include "asm/f_pc/f_pc_layer_iter/fpcLyIt_Judge__FP11layer_classPFPvPv_PvPv.s"
 }
@@ -86,7 +86,7 @@ asm void fpcLyIt_Judge(layer_class* param_0, void* (*)(void*, void*), void* para
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcLyIt_AllJudge(void* (*)(void*, void*), void* param_1) {
+asm void fpcLyIt_AllJudge(void* (*param_0)(void*, void*), void* param_1) {
     nofralloc
 #include "asm/f_pc/f_pc_layer_iter/fpcLyIt_AllJudge__FPFPvPv_PvPv.s"
 }

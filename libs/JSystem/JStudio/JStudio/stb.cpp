@@ -129,8 +129,8 @@ template <typename A1, typename B1>
 void find_if(/* ... */);
 /* 80289928 */ /* std::find_if<JGadget::TLinkList<JStudio::stb::TObject, 12>::iterator,
                   JStudio::object::TPRObject_ID_equal> */
-void func_80289928(JGadget::TLinkList__template2::iterator, JGadget::TLinkList__template2::iterator,
-                   JStudio::object::TPRObject_ID_equal);
+void func_80289928(void* _this, JGadget::TLinkList__template2::iterator,
+                   JGadget::TLinkList__template2::iterator, JStudio::object::TPRObject_ID_equal);
 };  // namespace std
 
 //
@@ -172,7 +172,7 @@ extern "C" bool parseHeader__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data14TParse
 extern "C" void parseBlock_block__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl();
 extern "C" void
 parseBlock_object__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data20TParse_TBlock_objectUl();
-extern "C" void func_80289928(JGadget::TLinkList__template2::iterator,
+extern "C" void func_80289928(void* _this, JGadget::TLinkList__template2::iterator,
                               JGadget::TLinkList__template2::iterator,
                               JStudio::object::TPRObject_ID_equal);
 extern "C" u32 gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data[1 + 1 /* padding */];
@@ -611,7 +611,7 @@ JStudio::stb::TParse::parseBlock_object(JStudio::stb::data::TParse_TBlock_object
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80289928(JGadget::TLinkList__template2::iterator param_0,
+extern "C" asm void func_80289928(void* _this, JGadget::TLinkList__template2::iterator param_0,
                                   JGadget::TLinkList__template2::iterator param_1,
                                   JStudio::object::TPRObject_ID_equal param_2) {
     nofralloc

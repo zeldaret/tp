@@ -25,10 +25,6 @@ struct daTagHstop_c {
     static u8 m_top[4 + 4 /* padding */];
 };
 
-struct Z2CreatureRide {
-    /* 802C522C */ void setLinkRiding(bool);
-};
-
 //
 // Forward References:
 //

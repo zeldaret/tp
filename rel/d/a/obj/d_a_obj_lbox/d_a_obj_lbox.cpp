@@ -90,11 +90,11 @@ struct dBgS_AcchCir {
     /* 80075F58 */ void SetWall(f32, f32);
 };
 
+struct csXyz {};
+
 struct dBgS {
     /* 80074A08 */ void Regist(dBgW_Base*, fopAc_ac_c*);
 };
-
-struct csXyz {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -131,9 +131,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -242,7 +242,7 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80C53FBC-80C53FC0 000000 0004+00 3/3 0/0 0/0 .rodata          @3768 */
 SECTION_RODATA static f32 const lit_3768 = 2.0f;
-COMPILER_STRIP_GATE(80C53FBC, &lit_3768);
+COMPILER_STRIP_GATE(0x80C53FBC, &lit_3768);
 
 /* 80C53FC0-80C53FC4 000004 0004+00 1/2 0/0 0/0 .rodata          @3769 */
 SECTION_RODATA static u8 const lit_3769[4] = {
@@ -251,7 +251,7 @@ SECTION_RODATA static u8 const lit_3769[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C53FC0, &lit_3769);
+COMPILER_STRIP_GATE(0x80C53FC0, &lit_3769);
 
 /* 80C54008-80C54048 000000 0040+00 1/1 0/0 0/0 .data            cc_sph_src$3950 */
 SECTION_DATA static u8 cc_sph_src[64] = {
@@ -343,63 +343,63 @@ static asm void daObj_Lbox_Draw(obj_lbox_class* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3877 = 4500.0f;
-COMPILER_STRIP_GATE(80C53FC4, &lit_3877);
+COMPILER_STRIP_GATE(0x80C53FC4, &lit_3877);
 #pragma pop
 
 /* 80C53FC8-80C53FCC 00000C 0004+00 0/1 0/0 0/0 .rodata          @3878 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3878 = -3450.0f;
-COMPILER_STRIP_GATE(80C53FC8, &lit_3878);
+COMPILER_STRIP_GATE(0x80C53FC8, &lit_3878);
 #pragma pop
 
 /* 80C53FCC-80C53FD0 000010 0004+00 0/1 0/0 0/0 .rodata          @3879 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3879 = 1.0f;
-COMPILER_STRIP_GATE(80C53FCC, &lit_3879);
+COMPILER_STRIP_GATE(0x80C53FCC, &lit_3879);
 #pragma pop
 
 /* 80C53FD0-80C53FD4 000014 0004+00 0/1 0/0 0/0 .rodata          @3880 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3880 = -1.0f;
-COMPILER_STRIP_GATE(80C53FD0, &lit_3880);
+COMPILER_STRIP_GATE(0x80C53FD0, &lit_3880);
 #pragma pop
 
 /* 80C53FD4-80C53FD8 000018 0004+00 0/1 0/0 0/0 .rodata          @3881 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3881 = 5.0f;
-COMPILER_STRIP_GATE(80C53FD4, &lit_3881);
+COMPILER_STRIP_GATE(0x80C53FD4, &lit_3881);
 #pragma pop
 
 /* 80C53FD8-80C53FDC 00001C 0004+00 0/2 0/0 0/0 .rodata          @3882 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3882 = 200.0f;
-COMPILER_STRIP_GATE(80C53FD8, &lit_3882);
+COMPILER_STRIP_GATE(0x80C53FD8, &lit_3882);
 #pragma pop
 
 /* 80C53FDC-80C53FE0 000020 0004+00 0/1 0/0 0/0 .rodata          @3883 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3883 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80C53FDC, &lit_3883);
+COMPILER_STRIP_GATE(0x80C53FDC, &lit_3883);
 #pragma pop
 
 /* 80C53FE0-80C53FE4 000024 0004+00 0/1 0/0 0/0 .rodata          @3884 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3884 = 3.5f;
-COMPILER_STRIP_GATE(80C53FE0, &lit_3884);
+COMPILER_STRIP_GATE(0x80C53FE0, &lit_3884);
 #pragma pop
 
 /* 80C53FE4-80C53FE8 000028 0004+00 0/2 0/0 0/0 .rodata          @3885 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3885 = 50.0f;
-COMPILER_STRIP_GATE(80C53FE4, &lit_3885);
+COMPILER_STRIP_GATE(0x80C53FE4, &lit_3885);
 #pragma pop
 
 /* 80C540E8-80C540EC 000008 0004+00 2/2 0/0 0/0 .bss             None */
@@ -436,6 +436,13 @@ static bool daObj_Lbox_IsDelete(obj_lbox_class* param_0) {
     return true;
 }
 
+/* ############################################################################################## */
+/* 80C53FFC-80C53FFC 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C53FFC = "Obj_lbox";
+#pragma pop
+
 /* 80C539D0-80C53A38 000550 0068+00 1/0 0/0 0/0 .text daObj_Lbox_Delete__FP14obj_lbox_class */
 #pragma push
 #pragma optimization_level 0
@@ -461,35 +468,35 @@ static asm void useHeapInit(fopAc_ac_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3886 = 20000.0f;
-COMPILER_STRIP_GATE(80C53FE8, &lit_3886);
+COMPILER_STRIP_GATE(0x80C53FE8, &lit_3886);
 #pragma pop
 
 /* 80C53FEC-80C53FF0 000030 0004+00 0/0 0/0 0/0 .rodata          @3887 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3887 = 150.0f;
-COMPILER_STRIP_GATE(80C53FEC, &lit_3887);
+COMPILER_STRIP_GATE(0x80C53FEC, &lit_3887);
 #pragma pop
 
 /* 80C53FF0-80C53FF4 000034 0004+00 0/1 0/0 0/0 .rodata          @4020 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4020 = -200.0f;
-COMPILER_STRIP_GATE(80C53FF0, &lit_4020);
+COMPILER_STRIP_GATE(0x80C53FF0, &lit_4020);
 #pragma pop
 
 /* 80C53FF4-80C53FF8 000038 0004+00 0/1 0/0 0/0 .rodata          @4021 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4021 = -3000.0f;
-COMPILER_STRIP_GATE(80C53FF4, &lit_4021);
+COMPILER_STRIP_GATE(0x80C53FF4, &lit_4021);
 #pragma pop
 
 /* 80C53FF8-80C53FFC 00003C 0004+00 0/1 0/0 0/0 .rodata          @4022 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4022 = 3000.0f;
-COMPILER_STRIP_GATE(80C53FF8, &lit_4022);
+COMPILER_STRIP_GATE(0x80C53FF8, &lit_4022);
 #pragma pop
 
 /* 80C53B3C-80C53E14 0006BC 02D8+00 1/0 0/0 0/0 .text            daObj_Lbox_Create__FP10fopAc_ac_c
@@ -555,7 +562,7 @@ asm void __sinit_d_a_obj_lbox_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C53F5C = (void*)__sinit_d_a_obj_lbox_cpp;
+REGISTER_CTORS(0x80C53F5C, __sinit_d_a_obj_lbox_cpp);
 #pragma pop
 
 /* 80C53F98-80C53FA0 000B18 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
@@ -578,9 +585,4 @@ static asm void func_80C53FA0() {
 }
 #pragma pop
 
-/* 80C53FFC-80C54005 000040 0009+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C53FFC = "Obj_lbox";
-#pragma pop
+/* 80C53FFC-80C53FFC 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

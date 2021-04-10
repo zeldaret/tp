@@ -24,8 +24,8 @@ lbl_8065BA68:
 /* 8065BA84  FC 1F F0 40 */	fcmpo cr0, f31, f30
 /* 8065BA88  40 80 00 4C */	bge lbl_8065BAD4
 /* 8065BA8C  7C 65 07 34 */	extsh r5, r3
-/* 8065BA90  3C 80 80 66 */	lis r4, struct_80662FB8+0x0@ha /* 0x80662FB8@ha */
-/* 8065BA94  38 84 2F B8 */	addi r4, r4, struct_80662FB8+0x0@l /* 0x80662FB8@l */
+/* 8065BA90  3C 80 80 66 */	lis r4, data_80662FB8@ha /* 0x80662FB8@ha */
+/* 8065BA94  38 84 2F B8 */	addi r4, r4, data_80662FB8@l /* 0x80662FB8@l */
 /* 8065BA98  A8 84 00 00 */	lha r4, 0(r4)
 /* 8065BA9C  38 04 20 00 */	addi r0, r4, 0x2000
 /* 8065BAA0  7C 05 00 00 */	cmpw r5, r0
@@ -44,8 +44,8 @@ lbl_8065BACC:
 /* 8065BAD0  48 00 00 48 */	b lbl_8065BB18
 lbl_8065BAD4:
 /* 8065BAD4  7C 65 07 34 */	extsh r5, r3
-/* 8065BAD8  3C 80 80 66 */	lis r4, struct_80662FB8+0x0@ha /* 0x80662FB8@ha */
-/* 8065BADC  38 84 2F B8 */	addi r4, r4, struct_80662FB8+0x0@l /* 0x80662FB8@l */
+/* 8065BAD8  3C 80 80 66 */	lis r4, data_80662FB8@ha /* 0x80662FB8@ha */
+/* 8065BADC  38 84 2F B8 */	addi r4, r4, data_80662FB8@l /* 0x80662FB8@l */
 /* 8065BAE0  A8 84 00 00 */	lha r4, 0(r4)
 /* 8065BAE4  38 04 2A AA */	addi r0, r4, 0x2aaa
 /* 8065BAE8  7C 05 00 00 */	cmpw r5, r0

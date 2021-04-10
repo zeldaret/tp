@@ -71,25 +71,23 @@ extern "C" void MWTRACE();
 // Declarations:
 //
 
-/* 8036F638-8036F640 369F78 0008+00 2/2 1/1 0/0 .text            __TRK_get_MSR */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+/* 8036F638-8036F640 -00001 0008+00 0/0 0/0 0/0 .text            __TRK_get_MSR */
 asm void __TRK_get_MSR() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl/__TRK_get_MSR.s"
+    // clang-format off
+	nofralloc
+	mfmsr r3
+	blr
+    // clang-format on
 }
-#pragma pop
 
-/* 8036F640-8036F648 369F80 0008+00 1/1 0/0 0/0 .text            __TRK_set_MSR */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+/* 8036F640-8036F648 -00001 0008+00 0/0 0/0 0/0 .text            __TRK_set_MSR */
 asm void __TRK_set_MSR() {
-    nofralloc
-#include "asm/TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl/__TRK_set_MSR.s"
+    // clang-format off
+	nofralloc
+	mtmsr r3
+	blr
+    // clang-format on
 }
-#pragma pop
 
 /* 8036F648-8036F684 369F88 003C+00 1/1 0/0 0/0 .text            TRK_ppc_memcpy */
 #pragma push
@@ -274,7 +272,7 @@ asm void TRKTargetGetPC() {
 SECTION_RODATA static u8 const gTRKMemMap[16] = {
     0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01,
 };
-COMPILER_STRIP_GATE(803A2B60, &gTRKMemMap);
+COMPILER_STRIP_GATE(0x803A2B60, &gTRKMemMap);
 
 /* 803A2B70-803A2B98 02F1D0 0028+00 2/2 0/0 0/0 .rodata          @276 */
 SECTION_RODATA static u8 const lit_276[40] = {
@@ -282,7 +280,7 @@ SECTION_RODATA static u8 const lit_276[40] = {
     0x00, 0x00, 0x60, 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00,
     0x60, 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803A2B70, &lit_276);
+COMPILER_STRIP_GATE(0x803A2B70, &lit_276);
 
 /* 803A2B98-803A2BC0 02F1F8 0028+00 1/1 0/0 0/0 .rodata          @283 */
 SECTION_RODATA static u8 const lit_283[40] = {
@@ -290,7 +288,7 @@ SECTION_RODATA static u8 const lit_283[40] = {
     0x00, 0x00, 0x60, 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00,
     0x60, 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803A2B98, &lit_283);
+COMPILER_STRIP_GATE(0x803A2B98, &lit_283);
 
 /* 803A2BC0-803A2BE8 02F220 0028+00 1/1 0/0 0/0 .rodata          @290 */
 SECTION_RODATA static u8 const lit_290[40] = {
@@ -298,13 +296,13 @@ SECTION_RODATA static u8 const lit_290[40] = {
     0x00, 0x00, 0x60, 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00,
     0x60, 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00, 0x60, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803A2BC0, &lit_290);
+COMPILER_STRIP_GATE(0x803A2BC0, &lit_290);
 
 /* 803A2BE8-803A2BF8 02F248 0010+00 3/3 0/0 0/0 .rodata          @422 */
 SECTION_RODATA static u8 const lit_422[16] = {
     0x54, 0x61, 0x72, 0x67, 0x65, 0x74, 0x44, 0x6F, 0x53, 0x74, 0x65, 0x70, 0x28, 0x29, 0x0A, 0x00,
 };
-COMPILER_STRIP_GATE(803A2BE8, &lit_422);
+COMPILER_STRIP_GATE(0x803A2BE8, &lit_422);
 
 /* 803D3254-803D3268 030374 0014+00 3/3 0/0 0/0 .data            gTRKStepStatus */
 SECTION_DATA static u8 gTRKStepStatus[20] = {

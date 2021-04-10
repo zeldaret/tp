@@ -46,7 +46,7 @@ extern "C" extern u8 g_fopAcTg_Queue[12 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopAcIt_Executor(int (*)(void*, void*), void* param_1) {
+asm void fopAcIt_Executor(int (*param_0)(void*, void*), void* param_1) {
     nofralloc
 #include "asm/f_op/f_op_actor_iter/fopAcIt_Executor__FPFPvPv_iPv.s"
 }
@@ -57,7 +57,7 @@ asm void fopAcIt_Executor(int (*)(void*, void*), void* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopAcIt_Judge(void* (*)(void*, void*), void* param_1) {
+asm void fopAcIt_Judge(void* (*param_0)(void*, void*), void* param_1) {
     nofralloc
 #include "asm/f_op/f_op_actor_iter/fopAcIt_Judge__FPFPvPv_PvPv.s"
 }

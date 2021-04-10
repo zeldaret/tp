@@ -168,7 +168,7 @@ asm void JKRDecomp::run() {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm void JKRDecomp::prepareCommand(u8* param_0, u8* param_1, u32 param_2, u32 param_3,
-                                   void (*)(u32)) {
+                                   void (*param_4)(u32)) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRDecomp/prepareCommand__9JKRDecompFPUcPUcUlUlPFUl_v.s"
 }
@@ -189,7 +189,8 @@ asm void JKRDecomp::sendCommand(JKRDecompCommand* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRDecomp::orderAsync(u8* param_0, u8* param_1, u32 param_2, u32 param_3, void (*)(u32)) {
+asm void JKRDecomp::orderAsync(u8* param_0, u8* param_1, u32 param_2, u32 param_3,
+                               void (*param_4)(u32)) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRDecomp/orderAsync__9JKRDecompFPUcPUcUlUlPFUl_v.s"
 }

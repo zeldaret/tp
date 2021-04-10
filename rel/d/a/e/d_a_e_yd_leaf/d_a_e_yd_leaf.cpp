@@ -23,9 +23,9 @@ struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorf {
     /* 8000FC4C */ mDoExt_McaMorf(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -120,20 +120,20 @@ static asm void daE_YD_LEAF_Draw(e_yd_leaf_class* param_0) {
 /* ############################################################################################## */
 /* 807F81E8-807F81EC 000000 0004+00 3/3 0/0 0/0 .rodata          @3707 */
 SECTION_RODATA static f32 const lit_3707 = 1.0f;
-COMPILER_STRIP_GATE(807F81E8, &lit_3707);
+COMPILER_STRIP_GATE(0x807F81E8, &lit_3707);
 
 /* 807F81EC-807F81F0 000004 0004+00 0/1 0/0 0/0 .rodata          @3708 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3708 = 2.0f / 25.0f;
-COMPILER_STRIP_GATE(807F81EC, &lit_3708);
+COMPILER_STRIP_GATE(0x807F81EC, &lit_3708);
 #pragma pop
 
 /* 807F81F0-807F81F4 000008 0004+00 0/1 0/0 0/0 .rodata          @3709 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3709 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(807F81F0, &lit_3709);
+COMPILER_STRIP_GATE(0x807F81F0, &lit_3709);
 #pragma pop
 
 /* 807F7EC0-807F7FEC 000120 012C+00 2/1 0/0 0/0 .text daE_YD_LEAF_Execute__FP15e_yd_leaf_class */
@@ -150,6 +150,13 @@ static asm void daE_YD_LEAF_Execute(e_yd_leaf_class* param_0) {
 static bool daE_YD_LEAF_IsDelete(e_yd_leaf_class* param_0) {
     return true;
 }
+
+/* ############################################################################################## */
+/* 807F81F4-807F81F4 00000C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_807F81F4 = "E_YD";
+#pragma pop
 
 /* 807F7FF4-807F8024 000254 0030+00 1/0 0/0 0/0 .text daE_YD_LEAF_Delete__FP15e_yd_leaf_class */
 #pragma push
@@ -205,9 +212,4 @@ SECTION_DATA extern void* g_profile_E_YD_LEAF[12] = {
     (void*)0x00040000, (void*)NULL,
 };
 
-/* 807F81F4-807F81F9 00000C 0005+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_807F81F4 = "E_YD";
-#pragma pop
+/* 807F81F4-807F81F4 00000C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

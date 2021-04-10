@@ -52,7 +52,7 @@ extern "C" extern u8 g_fpcCtTg_Queue[12 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcCtIt_Method(int (*)(void*, void*), void* param_1) {
+asm void fpcCtIt_Method(int (*param_0)(void*, void*), void* param_1) {
     nofralloc
 #include "asm/f_pc/f_pc_create_iter/fpcCtIt_Method__FPFPvPv_iPv.s"
 }
@@ -62,7 +62,7 @@ asm void fpcCtIt_Method(int (*)(void*, void*), void* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcCtIt_Judge(void* (*)(void*, void*), void* param_1) {
+asm void fpcCtIt_Judge(void* (*param_0)(void*, void*), void* param_1) {
     nofralloc
 #include "asm/f_pc/f_pc_create_iter/fpcCtIt_Judge__FPFPvPv_PvPv.s"
 }
@@ -83,7 +83,7 @@ static asm void fpcCtIt_filter_JudgeInLayer(create_tag* param_0, fpcCtIt_jilprm_
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcCtIt_JudgeInLayer(unsigned int param_0, void* (*)(void*, void*), void* param_2) {
+asm void fpcCtIt_JudgeInLayer(unsigned int param_0, void* (*param_1)(void*, void*), void* param_2) {
     nofralloc
 #include "asm/f_pc/f_pc_create_iter/fpcCtIt_JudgeInLayer__FUiPFPvPv_PvPv.s"
 }

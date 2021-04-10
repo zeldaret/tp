@@ -41,9 +41,9 @@ struct mDoExt_brkAnm {
     /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -280,9 +280,9 @@ struct cBgS {
 
 struct _GXTexObj {};
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -367,7 +367,7 @@ extern "C" static void daObjVolcBom_MoveBGDelete__FP14daObjVolcBom_c();
 extern "C" static void daObjVolcBom_MoveBGExecute__FP14daObjVolcBom_c();
 extern "C" static void daObjVolcBom_MoveBGDraw__FP14daObjVolcBom_c();
 extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void func_80D26B28(u8*);
+extern "C" void func_80D26B28(void* _this, u8*);
 extern "C" static void func_80D26B44();
 extern "C" static void func_80D26B4C();
 extern "C" extern char const* const d_a_obj_volcbom__stringBase0;
@@ -536,7 +536,7 @@ asm void daObjVolcBom_c::setBaseMtx() {
 SECTION_RODATA static u8 const l_midna_offset[12] = {
     0x00, 0x00, 0x00, 0x00, 0x44, 0x7A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D26B5C, &l_midna_offset);
+COMPILER_STRIP_GATE(0x80D26B5C, &l_midna_offset);
 
 /* 80D26B68-80D26B6C 00000C 0002+02 0/1 0/0 0/0 .rodata          l_disapp_eff */
 #pragma push
@@ -546,7 +546,7 @@ SECTION_RODATA static u16 const l_disapp_eff[1 + 1 /* padding */] = {
     /* padding */
     0x0000,
 };
-COMPILER_STRIP_GATE(80D26B68, &l_disapp_eff);
+COMPILER_STRIP_GATE(0x80D26B68, &l_disapp_eff);
 #pragma pop
 
 /* 80D26B6C-80D26B74 000010 0006+02 0/1 0/0 0/0 .rodata          l_start_eff */
@@ -563,36 +563,45 @@ SECTION_RODATA static u8 const l_start_eff[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D26B6C, &l_start_eff);
+COMPILER_STRIP_GATE(0x80D26B6C, &l_start_eff);
 #pragma pop
 
 /* 80D26B74-80D26B7C 000018 0008+00 1/1 0/0 0/0 .rodata          l_bind_eff */
 SECTION_RODATA static u8 const l_bind_eff[8] = {
     0x8B, 0x47, 0x8B, 0x48, 0x8B, 0x49, 0x8B, 0x4A,
 };
-COMPILER_STRIP_GATE(80D26B74, &l_bind_eff);
+COMPILER_STRIP_GATE(0x80D26B74, &l_bind_eff);
 
 /* 80D26B7C-80D26B80 000020 0004+00 4/11 0/0 0/0 .rodata          @3785 */
 SECTION_RODATA static f32 const lit_3785 = 1.0f;
-COMPILER_STRIP_GATE(80D26B7C, &lit_3785);
+COMPILER_STRIP_GATE(0x80D26B7C, &lit_3785);
 
 /* 80D26B80-80D26B84 000024 0004+00 0/1 0/0 0/0 .rodata          @3786 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3786 = 30.0f;
-COMPILER_STRIP_GATE(80D26B80, &lit_3786);
+COMPILER_STRIP_GATE(0x80D26B80, &lit_3786);
 #pragma pop
 
 /* 80D26B84-80D26B88 000028 0004+00 0/1 0/0 0/0 .rodata          @3787 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3787 = -6.0f;
-COMPILER_STRIP_GATE(80D26B84, &lit_3787);
+COMPILER_STRIP_GATE(0x80D26B84, &lit_3787);
 #pragma pop
 
 /* 80D26B88-80D26B8C 00002C 0004+00 1/2 0/0 0/0 .rodata          @3788 */
 SECTION_RODATA static f32 const lit_3788 = 10.0f;
-COMPILER_STRIP_GATE(80D26B88, &lit_3788);
+COMPILER_STRIP_GATE(0x80D26B88, &lit_3788);
+
+/* 80D26C0C-80D26C0C 0000B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D26C0C = "M_VolcBom";
+SECTION_DEAD static char const* const stringBase_80D26C16 = "PORTAL_WARP_BIGVOLC";
+SECTION_DEAD static char const* const stringBase_80D26C2A = "BigVolc";
+SECTION_DEAD static char const* const stringBase_80D26C32 = "effect_p";
+#pragma pop
 
 /* 80D26C54-80D26C60 000000 000C+00 3/3 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -655,7 +664,16 @@ SECTION_RODATA static u8 const lit_3904[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D26B8C, &lit_3904);
+COMPILER_STRIP_GATE(0x80D26B8C, &lit_3904);
+
+/* 80D26C0C-80D26C0C 0000B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D26C3B = "WAIT";
+SECTION_DEAD static char const* const stringBase_80D26C40 = "FLY";
+SECTION_DEAD static char const* const stringBase_80D26C44 = "INIT";
+SECTION_DEAD static char const* const stringBase_80D26C49 = "BEAM";
+#pragma pop
 
 /* 80D26CC4-80D26CD0 -00001 000C+00 0/1 0/0 0/0 .data            @3933 */
 #pragma push
@@ -919,7 +937,7 @@ asm void daObjVolcBom_c::mode_proc_call() {
 /* ############################################################################################## */
 /* 80D26B90-80D26B94 000034 0004+00 1/2 0/0 0/0 .rodata          @3958 */
 SECTION_RODATA static f32 const lit_3958 = 2000.0f;
-COMPILER_STRIP_GATE(80D26B90, &lit_3958);
+COMPILER_STRIP_GATE(0x80D26B90, &lit_3958);
 
 /* 80D24B18-80D24B6C 0009F8 0054+00 1/1 0/0 0/0 .text init_modeWaitAppear__14daObjVolcBom_cFv */
 #pragma push
@@ -936,39 +954,39 @@ asm void daObjVolcBom_c::init_modeWaitAppear() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3997 = 1.0f / 50.0f;
-COMPILER_STRIP_GATE(80D26B94, &lit_3997);
+COMPILER_STRIP_GATE(0x80D26B94, &lit_3997);
 #pragma pop
 
 /* 80D26B98-80D26B9C 00003C 0004+00 0/1 0/0 0/0 .rodata          @3998 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3998 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80D26B98, &lit_3998);
+COMPILER_STRIP_GATE(0x80D26B98, &lit_3998);
 #pragma pop
 
 /* 80D26B9C-80D26BA0 000040 0004+00 0/2 0/0 0/0 .rodata          @3999 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3999 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(80D26B9C, &lit_3999);
+COMPILER_STRIP_GATE(0x80D26B9C, &lit_3999);
 #pragma pop
 
 /* 80D26BA0-80D26BA4 000044 0004+00 1/5 0/0 0/0 .rodata          @4000 */
 SECTION_RODATA static f32 const lit_4000 = -1.0f;
-COMPILER_STRIP_GATE(80D26BA0, &lit_4000);
+COMPILER_STRIP_GATE(0x80D26BA0, &lit_4000);
 
 /* 80D26BA4-80D26BA8 000048 0004+00 0/1 0/0 0/0 .rodata          @4001 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4001 = 15000.0f;
-COMPILER_STRIP_GATE(80D26BA4, &lit_4001);
+COMPILER_STRIP_GATE(0x80D26BA4, &lit_4001);
 #pragma pop
 
 /* 80D26BA8-80D26BAC 00004C 0004+00 0/1 0/0 0/0 .rodata          @4002 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4002 = -250.0f;
-COMPILER_STRIP_GATE(80D26BA8, &lit_4002);
+COMPILER_STRIP_GATE(0x80D26BA8, &lit_4002);
 #pragma pop
 
 /* 80D24B6C-80D24D80 000A4C 0214+00 1/0 0/0 0/0 .text            modeWaitAppear__14daObjVolcBom_cFv
@@ -987,7 +1005,7 @@ asm void daObjVolcBom_c::modeWaitAppear() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4022 = 0.5f;
-COMPILER_STRIP_GATE(80D26BAC, &lit_4022);
+COMPILER_STRIP_GATE(0x80D26BAC, &lit_4022);
 #pragma pop
 
 /* 80D24D80-80D24E50 000C60 00D0+00 1/1 0/0 0/0 .text            init_modeFall__14daObjVolcBom_cFv
@@ -1024,7 +1042,7 @@ SECTION_RODATA static u8 const l_effect_id[14 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D26BB0, &l_effect_id);
+COMPILER_STRIP_GATE(0x80D26BB0, &l_effect_id);
 #pragma pop
 
 /* 80D24E50-80D25024 000D30 01D4+00 1/0 0/0 0/0 .text            modeFall__14daObjVolcBom_cFv */
@@ -1072,7 +1090,7 @@ asm void daObjVolcBom_c::init_modeWait() {
 /* ############################################################################################## */
 /* 80D26BC0-80D26BC4 000064 0004+00 1/1 0/0 0/0 .rodata          @4103 */
 SECTION_RODATA static f32 const lit_4103 = 750.0f;
-COMPILER_STRIP_GATE(80D26BC0, &lit_4103);
+COMPILER_STRIP_GATE(0x80D26BC0, &lit_4103);
 
 /* 80D25100-80D25178 000FE0 0078+00 1/0 0/0 0/0 .text            modeWait__14daObjVolcBom_cFv */
 #pragma push
@@ -1141,13 +1159,13 @@ SECTION_RODATA static f32 const lit_4162[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80D26BC4, &lit_4162);
+COMPILER_STRIP_GATE(0x80D26BC4, &lit_4162);
 
 /* 80D26BCC-80D26BD4 000070 0008+00 1/1 0/0 0/0 .rodata          @4164 */
 SECTION_RODATA static u8 const lit_4164[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D26BCC, &lit_4164);
+COMPILER_STRIP_GATE(0x80D26BCC, &lit_4164);
 
 /* 80D252C8-80D25364 0011A8 009C+00 3/3 0/0 0/0 .text checkTalkDistance__14daObjVolcBom_cFv */
 #pragma push
@@ -1164,14 +1182,14 @@ asm void daObjVolcBom_c::checkTalkDistance() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4175 = 1000.0f;
-COMPILER_STRIP_GATE(80D26BD4, &lit_4175);
+COMPILER_STRIP_GATE(0x80D26BD4, &lit_4175);
 #pragma pop
 
 /* 80D26BD8-80D26BDC 00007C 0004+00 0/1 0/0 0/0 .rodata          @4176 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4176 = 250.0f;
-COMPILER_STRIP_GATE(80D26BD8, &lit_4176);
+COMPILER_STRIP_GATE(0x80D26BD8, &lit_4176);
 #pragma pop
 
 /* 80D25364-80D253FC 001244 0098+00 1/1 0/0 0/0 .text calcMidnaWaitPos__14daObjVolcBom_cFv */
@@ -1286,7 +1304,7 @@ asm void daObjVolcBom_c::actionWait() {
 SECTION_RODATA static u8 const lit_4470[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D26BDC, &lit_4470);
+COMPILER_STRIP_GATE(0x80D26BDC, &lit_4470);
 #pragma pop
 
 /* 80D26BE4-80D26BEC 000088 0008+00 0/2 0/0 0/0 .rodata          @4471 */
@@ -1295,7 +1313,7 @@ COMPILER_STRIP_GATE(80D26BDC, &lit_4470);
 SECTION_RODATA static u8 const lit_4471[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D26BE4, &lit_4471);
+COMPILER_STRIP_GATE(0x80D26BE4, &lit_4471);
 #pragma pop
 
 /* 80D26BEC-80D26BF4 000090 0008+00 0/2 0/0 0/0 .rodata          @4472 */
@@ -1304,14 +1322,14 @@ COMPILER_STRIP_GATE(80D26BE4, &lit_4471);
 SECTION_RODATA static u8 const lit_4472[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D26BEC, &lit_4472);
+COMPILER_STRIP_GATE(0x80D26BEC, &lit_4472);
 #pragma pop
 
 /* 80D26BF4-80D26BF8 000098 0004+00 0/1 0/0 0/0 .rodata          @4473 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4473 = 5.0f;
-COMPILER_STRIP_GATE(80D26BF4, &lit_4473);
+COMPILER_STRIP_GATE(0x80D26BF4, &lit_4473);
 #pragma pop
 
 /* 80D25B04-80D25CA0 0019E4 019C+00 2/1 0/0 0/0 .text actionOrderEvent__14daObjVolcBom_cFv */
@@ -1366,28 +1384,34 @@ void daObjVolcBom_c::actionDead() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4715 = 222.0f;
-COMPILER_STRIP_GATE(80D26BF8, &lit_4715);
+COMPILER_STRIP_GATE(0x80D26BF8, &lit_4715);
 #pragma pop
 
 /* 80D26BFC-80D26C00 0000A0 0004+00 0/1 0/0 0/0 .rodata          @4716 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4716 = -10.0f;
-COMPILER_STRIP_GATE(80D26BFC, &lit_4716);
+COMPILER_STRIP_GATE(0x80D26BFC, &lit_4716);
 #pragma pop
 
 /* 80D26C00-80D26C04 0000A4 0004+00 0/1 0/0 0/0 .rodata          @4717 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4717 = -65.0f;
-COMPILER_STRIP_GATE(80D26C00, &lit_4717);
+COMPILER_STRIP_GATE(0x80D26C00, &lit_4717);
 #pragma pop
 
 /* 80D26C04-80D26C08 0000A8 0004+00 0/1 0/0 0/0 .rodata          @4718 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4718 = 55.0f;
-COMPILER_STRIP_GATE(80D26C04, &lit_4718);
+COMPILER_STRIP_GATE(0x80D26C04, &lit_4718);
+#pragma pop
+
+/* 80D26C0C-80D26C0C 0000B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D26C4E = "Timer";
 #pragma pop
 
 /* 80D25EE8-80D26468 001DC8 0580+00 3/3 0/0 0/0 .text            demoProc__14daObjVolcBom_cFv */
@@ -1415,7 +1439,7 @@ asm void daObjVolcBom_c::calcObjPos() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4828 = 4000.0f;
-COMPILER_STRIP_GATE(80D26C08, &lit_4828);
+COMPILER_STRIP_GATE(0x80D26C08, &lit_4828);
 #pragma pop
 
 /* 80D264E8-80D266FC 0023C8 0214+00 1/0 0/0 0/0 .text            Draw__14daObjVolcBom_cFv */
@@ -1561,7 +1585,7 @@ asm cCcD_GStts::~cCcD_GStts() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80D26B28(u8* param_0) {
+extern "C" asm void func_80D26B28(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_volcbom/d_a_obj_volcbom/func_80D26B28.s"
 }
@@ -1587,17 +1611,4 @@ static asm void func_80D26B4C() {
 }
 #pragma pop
 
-/* 80D26C0C-80D26C54 0000B0 0048+00 7/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D26C0C = "M_VolcBom";
-SECTION_DEAD static char const* const stringBase_80D26C16 = "PORTAL_WARP_BIGVOLC";
-SECTION_DEAD static char const* const stringBase_80D26C2A = "BigVolc";
-SECTION_DEAD static char const* const stringBase_80D26C32 = "effect_p";
-SECTION_DEAD static char const* const stringBase_80D26C3B = "WAIT";
-SECTION_DEAD static char const* const stringBase_80D26C40 = "FLY";
-SECTION_DEAD static char const* const stringBase_80D26C44 = "INIT";
-SECTION_DEAD static char const* const stringBase_80D26C49 = "BEAM";
-SECTION_DEAD static char const* const stringBase_80D26C4E = "Timer";
-#pragma pop
+/* 80D26C0C-80D26C0C 0000B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

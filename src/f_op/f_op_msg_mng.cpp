@@ -213,7 +213,7 @@ static asm void createTimerAppend(int param_0, u32 param_1, u8 param_2, u8 param
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm void fopMsgM_create(s16 param_0, fopAc_ac_c* param_1, cXyz* param_2, u32* param_3, u32* param_4,
-                        int (*)(void*)) {
+                        int (*param_5)(void*)) {
     nofralloc
 #include "asm/f_op/f_op_msg_mng/fopMsgM_create__FsP10fopAc_ac_cP4cXyzPUlPUlPFPv_i.s"
 }
@@ -224,7 +224,7 @@ asm void fopMsgM_create(s16 param_0, fopAc_ac_c* param_1, cXyz* param_2, u32* pa
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm void fop_Timer_create(s16 param_0, u8 param_1, u32 param_2, u8 param_3, u8 param_4, f32 param_5,
-                          f32 param_6, f32 param_7, f32 param_8, int (*)(void*)) {
+                          f32 param_6, f32 param_7, f32 param_8, int (*param_9)(void*)) {
     nofralloc
 #include "asm/f_op/f_op_msg_mng/fop_Timer_create__FsUcUlUcUcffffPFPv_i.s"
 }
@@ -292,21 +292,16 @@ asm void fopMsgM_setMessageID(unsigned int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopMsgM_Create(s16 param_0, int (*)(void*), void* param_2) {
+asm void fopMsgM_Create(s16 param_0, int (*param_1)(void*), void* param_2) {
     nofralloc
 #include "asm/f_op/f_op_msg_mng/fopMsgM_Create__FsPFPv_iPv.s"
 }
 #pragma pop
 
-/* 80020158-80020160 01AA98 0008+00 0/0 5/0 0/0 .text            setAlpha__7J2DPaneFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::setAlpha(u8 param_0) {
-    nofralloc
-#include "asm/f_op/f_op_msg_mng/setAlpha__7J2DPaneFUc.s"
+/* 80020158-80020160 -00001 0008+00 0/0 0/0 0/0 .text            setAlpha__7J2DPaneFUc */
+void J2DPane::setAlpha(u8 param_0) {
+    *(u8*)(((u8*)this) + 178) /* this->field_0xb2 */ = (u8)(param_0);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 803A3970-803A3990 -00001 001C+04 1/1 0/0 0/0 .data            @4305 */

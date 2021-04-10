@@ -101,21 +101,19 @@ struct dStage_startStage_c {
     /* 8002419C */ void set(char const*, s8, s16, s8);
 };
 
-struct dStage_Multi_c {};
-
-struct dStage_MemoryConfig_c {};
-
-struct dStage_MapEventInfo_c {};
-
-struct dStage_SoundInfo_c {};
+struct dStage_FileList2_dt_c {};
 
 struct dStage_MemoryMap_c {};
 
-struct dStage_DMap_c {};
+struct dStage_dPath_c {};
+
+struct dStage_Multi_c {};
+
+struct dStage_SoundInfo_c {};
+
+struct dStage_FileList_dt_c {};
 
 struct dStage_dPnt_c {};
-
-struct dStage_dPath_c {};
 
 struct dStage_FloorInfo_c {};
 
@@ -123,9 +121,11 @@ struct dStage_Lbnk_c {};
 
 struct dStage_Elst_c {};
 
-struct dStage_FileList2_dt_c {};
+struct dStage_MemoryConfig_c {};
 
-struct dStage_FileList_dt_c {};
+struct dStage_DMap_c {};
+
+struct dStage_MapEventInfo_c {};
 
 struct dStage_stageDt_c {
     /* 8002483C */ void getStagInfo() const;
@@ -823,6 +823,13 @@ extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
 // Declarations:
 //
 
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378A50 = "OPENING";
+#pragma pop
+
 /* 80023E28-80023E94 01E768 006C+00 0/0 1/1 0/3 .text set__18dStage_nextStage_cFPCcScsScScUc */
 #pragma push
 #pragma optimization_level 0
@@ -834,6 +841,14 @@ asm void dStage_nextStage_c::set(char const* param_0, s8 param_1, s16 param_2, s
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378A58 =
+    "部屋情報が、多分ですが壊れています。\n変換し直してみてください。\n";
+#pragma pop
+
 /* 80023E94-80023EC4 01E7D4 0030+00 14/14 0/0 0/0 .text            dStage_SetErrorRoom__Fv */
 #pragma push
 #pragma optimization_level 0
@@ -842,6 +857,14 @@ static asm void dStage_SetErrorRoom() {
     nofralloc
 #include "asm/d/d_stage/dStage_SetErrorRoom__Fv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378A99 =
+    "ステージ情報が、多分ですが壊れています。\n変換し直してみてください。";
 #pragma pop
 
 /* 80023EC4-80023EF4 01E804 0030+00 5/5 0/0 0/1 .text            dStage_SetErrorStage__Fv */
@@ -968,6 +991,13 @@ asm void dStage_startStage_c::set(char const* param_0, s8 param_1, s16 param_2, 
 #pragma pop
 
 /* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378ADD = "name.bin";
+SECTION_DEAD static char const* const stringBase_80378AE6 = "bank.bin";
+#pragma pop
+
 /* 803F6088-803F6094 022DA8 000C+00 0/1 0/0 0/0 .bss             @5376 */
 #pragma push
 #pragma force_active on
@@ -2009,6 +2039,15 @@ asm void dStage_roomControl_c::getArcBank(int param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378AEF = "";
+SECTION_DEAD static char const* const stringBase_80378AF0 =
+    "Bank[%d] : %s.arc Sync Read Error !!\n";
+#pragma pop
+
 /* 80024954-80024A34 01F294 00E0+00 0/0 2/2 0/2 .text resetArchiveBank__20dStage_roomControl_cFi
  */
 #pragma push
@@ -2040,6 +2079,13 @@ asm void dStage_roomControl_c::roomDzs_c::remove() {
     nofralloc
 #include "asm/d/d_stage/remove__Q220dStage_roomControl_c9roomDzs_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378B16 = "%s/room%d.dzs";
 #pragma pop
 
 /* 80024B44-80024C1C 01F484 00D8+00 1/1 0/0 0/1 .text add__Q220dStage_roomControl_c9roomDzs_cFUcUc
@@ -2124,6 +2170,13 @@ asm void dStage_searchName(char const* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378B24 = "%d%+0d";
+#pragma pop
+
 /* 80024E30-80024EDC 01F770 00AC+00 1/1 0/0 0/0 .text            dStage_getName__FsSc */
 #pragma push
 #pragma optimization_level 0
@@ -2193,6 +2246,13 @@ asm void dStage_stageDt_c::getPlayer() const {
     nofralloc
 #include "asm/d/d_stage/getPlayer__16dStage_stageDt_cCFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378B2B = "S_MV000";
 #pragma pop
 
 /* 80025014-800252B8 01F954 02A4+00 2/0 0/0 0/0 .text dStage_playerInit__FP11dStage_dt_cPviPv */
@@ -2407,6 +2467,13 @@ asm void dStage_stagInfo_GetParticleNo(stage_stag_info_class* param_0, int param
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378B33 = "Xtg_00";
+#pragma pop
+
 /* 80025744-8002582C 020084 00E8+00 1/0 0/0 0/0 .text dStage_stagInfoInit__FP11dStage_dt_cPviPv */
 #pragma push
 #pragma optimization_level 0
@@ -2608,6 +2675,13 @@ static asm void dStage_setLayerTagName(FuncTable* param_0, int param_1, int para
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378B3A = "dStage_dt_c_decode: i_data is NULL\n";
+#pragma pop
+
 /* 800260B4-8002617C 0209F4 00C8+00 9/9 0/0 0/0 .text
  * dStage_dt_c_decode__FPvP11dStage_dt_cP9FuncTablei            */
 #pragma push
@@ -2748,6 +2822,12 @@ static asm void dStage_fieldMapMapPathInit(dStage_dt_c* param_0, void* param_1, 
 #pragma pop
 
 /* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378B5E = "room%d.dzs";
+#pragma pop
+
 /* 80450D74-80450D7C 000274 0008+00 3/3 0/0 0/0 .sbss            m_roomDzs__20dStage_roomControl_c
  */
 u8 dStage_roomControl_c::m_roomDzs[8];
@@ -2960,6 +3040,13 @@ asm void dStage_dt_c_fieldMapLoader(void* param_0, dStage_dt_c* param_1) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378B69 = "stage.dzs";
+#pragma pop
+
 /* 80026CDC-80026D38 02161C 005C+00 0/0 1/1 0/0 .text            dStage_infoCreate__Fv */
 #pragma push
 #pragma optimization_level 0
@@ -2971,6 +3058,12 @@ asm void dStage_infoCreate() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378B73 = "vrbox_sora.bmd";
+#pragma pop
+
 /* 80406194-804061A0 032EB4 000A+02 2/2 14/14 7/7 .bss mDemoArcName__20dStage_roomControl_c */
 u8 dStage_roomControl_c::mDemoArcName[10 + 2 /* padding */];
 
@@ -2982,6 +3075,14 @@ asm void dStage_Create() {
     nofralloc
 #include "asm/d/d_stage/dStage_Create__Fv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378B82 = "Stg_00";
+SECTION_DEAD static char const* const stringBase_80378B89 = "Event";
 #pragma pop
 
 /* 80026DF8-80026FDC 021738 01E4+00 0/0 1/1 0/7 .text            dStage_Delete__Fv */
@@ -3069,6 +3170,14 @@ asm void dStage_stageDt_c::getSclsInfo() const {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378B8F = "%s: %d: シーンリストがありません。\n";
+SECTION_DEAD static char const* const stringBase_80378BB3 = "d_stage.cpp";
+#pragma pop
+
 /* 800272F0-800274B0 021C30 01C0+00 0/0 1/1 0/0 .text dStage_changeScene4Event__FiScibfUlsi */
 #pragma push
 #pragma optimization_level 0
@@ -3090,16 +3199,11 @@ asm void dStage_restartRoom(u32 param_0, u32 param_1, int param_2) {
 }
 #pragma pop
 
-/* 80027524-8002752C 021E64 0008+00 1/0 0/0 0/0 .text
+/* 80027524-8002752C -00001 0008+00 0/0 0/0 0/0 .text
  * setCamera__15dStage_roomDt_cFP18stage_camera_class           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setCamera(stage_camera_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setCamera__15dStage_roomDt_cFP18stage_camera_class.s"
+void dStage_roomDt_c::setCamera(stage_camera_class* param_0) {
+    *(u32*)(((u8*)this) + 52) /* this->field_0x34 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 8002752C-80027534 021E6C 0008+00 1/0 0/0 0/0 .text            getCamera__15dStage_roomDt_cCFv */
 #pragma push
@@ -3111,16 +3215,11 @@ asm void dStage_roomDt_c::getCamera() const {
 }
 #pragma pop
 
-/* 80027534-8002753C 021E74 0008+00 1/0 0/0 0/0 .text
+/* 80027534-8002753C -00001 0008+00 0/0 0/0 0/0 .text
  * setArrow__15dStage_roomDt_cFP17stage_arrow_class             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setArrow(stage_arrow_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setArrow__15dStage_roomDt_cFP17stage_arrow_class.s"
+void dStage_roomDt_c::setArrow(stage_arrow_class* param_0) {
+    *(u32*)(((u8*)this) + 56) /* this->field_0x38 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 8002753C-80027544 021E7C 0008+00 1/0 0/0 0/0 .text            getArrow__15dStage_roomDt_cCFv */
 #pragma push
@@ -3132,27 +3231,17 @@ asm void dStage_roomDt_c::getArrow() const {
 }
 #pragma pop
 
-/* 80027544-8002754C 021E84 0008+00 1/0 0/0 0/0 .text
+/* 80027544-8002754C -00001 0008+00 0/0 0/0 0/0 .text
  * setPlayer__15dStage_roomDt_cFP17stage_actor_class            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setPlayer(stage_actor_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setPlayer__15dStage_roomDt_cFP17stage_actor_class.s"
+void dStage_roomDt_c::setPlayer(stage_actor_class* param_0) {
+    *(u32*)(((u8*)this) + 40) /* this->field_0x28 */ = (u32)(param_0);
 }
-#pragma pop
 
-/* 8002754C-80027554 021E8C 0008+00 1/0 0/0 0/0 .text            setPlayerNum__15dStage_roomDt_cFUs
+/* 8002754C-80027554 -00001 0008+00 0/0 0/0 0/0 .text            setPlayerNum__15dStage_roomDt_cFUs
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setPlayerNum(u16 param_0) {
-    nofralloc
-#include "asm/d/d_stage/setPlayerNum__15dStage_roomDt_cFUs.s"
+void dStage_roomDt_c::setPlayerNum(u16 param_0) {
+    *(u16*)(((u8*)this) + 96) /* this->field_0x60 */ = (u16)(param_0);
 }
-#pragma pop
 
 /* 80027554-8002755C 021E94 0008+00 1/0 0/0 0/0 .text            getPlayerNum__15dStage_roomDt_cCFv
  */
@@ -3163,6 +3252,13 @@ asm void dStage_roomDt_c::getPlayerNum() const {
     nofralloc
 #include "asm/d/d_stage/getPlayerNum__15dStage_roomDt_cCFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378BBF = "Room non room data !!\n";
 #pragma pop
 
 /* 8002755C-80027590 021E9C 0034+00 1/0 0/0 0/0 .text setRoom__15dStage_roomDt_cFP14roomRead_class
@@ -3186,16 +3282,11 @@ asm void dStage_roomDt_c::getRoom() const {
 }
 #pragma pop
 
-/* 800275C4-800275CC 021F04 0008+00 1/0 0/0 0/0 .text
+/* 800275C4-800275CC -00001 0008+00 0/0 0/0 0/0 .text
  * setMapInfo__15dStage_roomDt_cFP20stage_map_info_class        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setMapInfo(stage_map_info_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setMapInfo__15dStage_roomDt_cFP20stage_map_info_class.s"
+void dStage_roomDt_c::setMapInfo(stage_map_info_class* param_0) {
+    *(u32*)(((u8*)this) + 16) /* this->field_0x10 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 800275CC-800275D4 021F0C 0008+00 1/0 0/0 0/0 .text            getMapInfo__15dStage_roomDt_cCFv */
 #pragma push
@@ -3207,15 +3298,17 @@ asm void dStage_roomDt_c::getMapInfo() const {
 }
 #pragma pop
 
-/* 800275D4-800275DC 021F14 0008+00 1/0 0/0 0/0 .text
+/* 800275D4-800275DC -00001 0008+00 0/0 0/0 0/0 .text
  * setMapInfoBase__15dStage_roomDt_cFP26stage_map_info_dummy_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setMapInfoBase(stage_map_info_dummy_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setMapInfoBase__15dStage_roomDt_cFP26stage_map_info_dummy_class.s"
+void dStage_roomDt_c::setMapInfoBase(stage_map_info_dummy_class* param_0) {
+    *(u32*)(((u8*)this) + 20) /* this->field_0x14 */ = (u32)(param_0);
 }
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378BD6 = "Room non palet data !!\n";
 #pragma pop
 
 /* 800275DC-80027610 021F1C 0034+00 1/0 0/0 0/0 .text
@@ -3239,6 +3332,13 @@ asm void dStage_roomDt_c::getPaletteInfo() const {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378BEE = "Room non pselect data !!\n";
+#pragma pop
+
 /* 80027644-80027678 021F84 0034+00 1/0 0/0 0/0 .text
  * setPselectInfo__15dStage_roomDt_cFP24stage_pselect_info_class */
 #pragma push
@@ -3258,6 +3358,13 @@ asm void dStage_roomDt_c::getPselectInfo() const {
     nofralloc
 #include "asm/d/d_stage/getPselectInfo__15dStage_roomDt_cCFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378C08 = "Room non envr data !!\n";
 #pragma pop
 
 /* 800276AC-800276E0 021FEC 0034+00 1/0 0/0 0/0 .text
@@ -3282,16 +3389,11 @@ asm void dStage_roomDt_c::getEnvrInfo() const {
 }
 #pragma pop
 
-/* 80027714-8002771C 022054 0008+00 1/0 0/0 0/0 .text
+/* 80027714-8002771C -00001 0008+00 0/0 0/0 0/0 .text
  * setVrboxInfo__15dStage_roomDt_cFP22stage_vrbox_info_class    */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setVrboxInfo(stage_vrbox_info_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setVrboxInfo__15dStage_roomDt_cFP22stage_vrbox_info_class.s"
+void dStage_roomDt_c::setVrboxInfo(stage_vrbox_info_class* param_0) {
+    *(u32*)(((u8*)this) + 24) /* this->field_0x18 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 8002771C-80027724 02205C 0008+00 1/0 0/0 0/0 .text            getVrboxInfo__15dStage_roomDt_cCFv
  */
@@ -3304,16 +3406,11 @@ asm void dStage_roomDt_c::getVrboxInfo() const {
 }
 #pragma pop
 
-/* 80027724-8002772C 022064 0008+00 1/0 0/0 0/0 .text
+/* 80027724-8002772C -00001 0008+00 0/0 0/0 0/0 .text
  * setVrboxcolInfo__15dStage_roomDt_cFP25stage_vrboxcol_info_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setVrboxcolInfo(stage_vrboxcol_info_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setVrboxcolInfo__15dStage_roomDt_cFP25stage_vrboxcol_info_class.s"
+void dStage_roomDt_c::setVrboxcolInfo(stage_vrboxcol_info_class* param_0) {
+    *(u32*)(((u8*)this) + 28) /* this->field_0x1c */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 8002772C-80027734 02206C 0008+00 1/0 0/0 0/0 .text getVrboxcolInfo__15dStage_roomDt_cCFv */
 #pragma push
@@ -3323,6 +3420,13 @@ asm void dStage_roomDt_c::getVrboxcolInfo() const {
     nofralloc
 #include "asm/d/d_stage/getVrboxcolInfo__15dStage_roomDt_cCFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378C1F = "Room non plight data !!\n";
 #pragma pop
 
 /* 80027734-80027768 022074 0034+00 1/0 0/0 0/0 .text
@@ -3347,6 +3451,13 @@ asm void dStage_roomDt_c::getPlightInfo() const {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378C38 = "Room non palette num data !!\n";
+#pragma pop
+
 /* 8002779C-800277D0 0220DC 0034+00 1/0 0/0 0/0 .text setPaletteNumInfo__15dStage_roomDt_cFi */
 #pragma push
 #pragma optimization_level 0
@@ -3367,6 +3478,13 @@ asm void dStage_roomDt_c::getPaletteNumInfo() const {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378C56 = "Room non pselect num data !!\n";
+#pragma pop
+
 /* 80027804-80027838 022144 0034+00 1/0 0/0 0/0 .text setPselectNumInfo__15dStage_roomDt_cFi */
 #pragma push
 #pragma optimization_level 0
@@ -3385,6 +3503,13 @@ asm void dStage_roomDt_c::getPselectNumInfo() const {
     nofralloc
 #include "asm/d/d_stage/getPselectNumInfo__15dStage_roomDt_cCFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378C74 = "Room non envr num data !!\n";
 #pragma pop
 
 /* 8002786C-800278A0 0221AC 0034+00 1/0 0/0 0/0 .text            setEnvrNumInfo__15dStage_roomDt_cFi
@@ -3408,15 +3533,10 @@ asm void dStage_roomDt_c::getEnvrNumInfo() const {
 }
 #pragma pop
 
-/* 800278D4-800278DC 022214 0008+00 1/0 0/0 0/0 .text setVrboxNumInfo__15dStage_roomDt_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setVrboxNumInfo(int param_0) {
-    nofralloc
-#include "asm/d/d_stage/setVrboxNumInfo__15dStage_roomDt_cFi.s"
+/* 800278D4-800278DC -00001 0008+00 0/0 0/0 0/0 .text setVrboxNumInfo__15dStage_roomDt_cFi */
+void dStage_roomDt_c::setVrboxNumInfo(int param_0) {
+    *(u32*)(((u8*)this) + 100) /* this->field_0x64 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 800278DC-800278E4 02221C 0008+00 1/0 0/0 0/0 .text getVrboxNumInfo__15dStage_roomDt_cCFv */
 #pragma push
@@ -3428,15 +3548,10 @@ asm void dStage_roomDt_c::getVrboxNumInfo() const {
 }
 #pragma pop
 
-/* 800278E4-800278EC 022224 0008+00 1/0 0/0 0/0 .text setVrboxcolNumInfo__15dStage_roomDt_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setVrboxcolNumInfo(int param_0) {
-    nofralloc
-#include "asm/d/d_stage/setVrboxcolNumInfo__15dStage_roomDt_cFi.s"
+/* 800278E4-800278EC -00001 0008+00 0/0 0/0 0/0 .text setVrboxcolNumInfo__15dStage_roomDt_cFi */
+void dStage_roomDt_c::setVrboxcolNumInfo(int param_0) {
+    *(u32*)(((u8*)this) + 104) /* this->field_0x68 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 800278EC-800278F4 02222C 0008+00 1/0 0/0 0/0 .text getVrboxcolNumInfo__15dStage_roomDt_cCFv */
 #pragma push
@@ -3446,6 +3561,13 @@ asm void dStage_roomDt_c::getVrboxcolNumInfo() const {
     nofralloc
 #include "asm/d/d_stage/getVrboxcolNumInfo__15dStage_roomDt_cCFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378C8F = "Room non plight num data !!\n";
 #pragma pop
 
 /* 800278F4-80027928 022234 0034+00 1/0 0/0 0/0 .text setPlightNumInfo__15dStage_roomDt_cFi */
@@ -3468,16 +3590,11 @@ asm void dStage_roomDt_c::getPlightNumInfo() const {
 }
 #pragma pop
 
-/* 8002795C-80027964 02229C 0008+00 1/0 0/0 0/0 .text
+/* 8002795C-80027964 -00001 0008+00 0/0 0/0 0/0 .text
  * setLightVecInfo__15dStage_roomDt_cFP30stage_pure_lightvec_info_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setLightVecInfo(stage_pure_lightvec_info_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setLightVecInfo__15dStage_roomDt_cFP30stage_pure_lightvec_info_class.s"
+void dStage_roomDt_c::setLightVecInfo(stage_pure_lightvec_info_class* param_0) {
+    *(u32*)(((u8*)this) + 8) /* this->field_0x8 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027964-8002796C 0222A4 0008+00 1/0 0/0 0/0 .text getLightVecInfo__15dStage_roomDt_cCFv */
 #pragma push
@@ -3489,15 +3606,10 @@ asm void dStage_roomDt_c::getLightVecInfo() const {
 }
 #pragma pop
 
-/* 8002796C-80027974 0222AC 0008+00 1/0 0/0 0/0 .text setLightVecInfoNum__15dStage_roomDt_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setLightVecInfoNum(int param_0) {
-    nofralloc
-#include "asm/d/d_stage/setLightVecInfoNum__15dStage_roomDt_cFi.s"
+/* 8002796C-80027974 -00001 0008+00 0/0 0/0 0/0 .text setLightVecInfoNum__15dStage_roomDt_cFi */
+void dStage_roomDt_c::setLightVecInfoNum(int param_0) {
+    *(u32*)(((u8*)this) + 12) /* this->field_0xc */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027974-8002797C 0222B4 0008+00 1/0 0/0 0/0 .text getLightVecInfoNum__15dStage_roomDt_cCFv */
 #pragma push
@@ -3507,6 +3619,13 @@ asm void dStage_roomDt_c::getLightVecInfoNum() const {
     nofralloc
 #include "asm/d/d_stage/getLightVecInfoNum__15dStage_roomDt_cCFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378CAC = "Room non stag data !!\n";
 #pragma pop
 
 /* 8002797C-800279B0 0222BC 0034+00 1/0 0/0 0/0 .text
@@ -3531,15 +3650,17 @@ asm void dStage_roomDt_c::getStagInfo() const {
 }
 #pragma pop
 
-/* 800279E4-800279EC 022324 0008+00 1/0 0/0 0/0 .text
+/* 800279E4-800279EC -00001 0008+00 0/0 0/0 0/0 .text
  * setSclsInfo__15dStage_roomDt_cFP27stage_scls_info_dummy_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setSclsInfo(stage_scls_info_dummy_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setSclsInfo__15dStage_roomDt_cFP27stage_scls_info_dummy_class.s"
+void dStage_roomDt_c::setSclsInfo(stage_scls_info_dummy_class* param_0) {
+    *(u32*)(((u8*)this) + 72) /* this->field_0x48 */ = (u32)(param_0);
 }
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378CC3 = "Room non Pnt data !\n";
 #pragma pop
 
 /* 800279EC-80027A20 02232C 0034+00 1/0 0/0 0/0 .text
@@ -3553,6 +3674,13 @@ asm void dStage_roomDt_c::setPntInfo(dStage_dPnt_c* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378CD8 = "Room non Pnts data !\n";
+#pragma pop
+
 /* 80027A20-80027A54 022360 0034+00 1/0 0/0 0/0 .text            getPntInf__15dStage_roomDt_cCFv */
 #pragma push
 #pragma optimization_level 0
@@ -3561,6 +3689,13 @@ asm void dStage_roomDt_c::getPntInf() const {
     nofralloc
 #include "asm/d/d_stage/getPntInf__15dStage_roomDt_cCFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378CEE = "Room non Path data !\n";
 #pragma pop
 
 /* 80027A54-80027A88 022394 0034+00 1/0 0/0 0/0 .text
@@ -3584,16 +3719,11 @@ asm void dStage_roomDt_c::getPathInf() const {
 }
 #pragma pop
 
-/* 80027ABC-80027AC4 0223FC 0008+00 1/0 0/0 0/0 .text
+/* 80027ABC-80027AC4 -00001 0008+00 0/0 0/0 0/0 .text
  * setPnt2Info__15dStage_roomDt_cFP13dStage_dPnt_c              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setPnt2Info(dStage_dPnt_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setPnt2Info__15dStage_roomDt_cFP13dStage_dPnt_c.s"
+void dStage_roomDt_c::setPnt2Info(dStage_dPnt_c* param_0) {
+    *(u32*)(((u8*)this) + 44) /* this->field_0x2c */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027AC4-80027ACC 022404 0008+00 1/0 0/0 0/0 .text            getPnt2Inf__15dStage_roomDt_cCFv */
 #pragma push
@@ -3605,16 +3735,11 @@ asm void dStage_roomDt_c::getPnt2Inf() const {
 }
 #pragma pop
 
-/* 80027ACC-80027AD4 02240C 0008+00 1/0 0/0 0/0 .text
+/* 80027ACC-80027AD4 -00001 0008+00 0/0 0/0 0/0 .text
  * setPath2Info__15dStage_roomDt_cFP14dStage_dPath_c            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setPath2Info(dStage_dPath_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setPath2Info__15dStage_roomDt_cFP14dStage_dPath_c.s"
+void dStage_roomDt_c::setPath2Info(dStage_dPath_c* param_0) {
+    *(u32*)(((u8*)this) + 48) /* this->field_0x30 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027AD4-80027ADC 022414 0008+00 1/0 0/0 0/0 .text            getPath2Inf__15dStage_roomDt_cCFv
  */
@@ -3627,16 +3752,11 @@ asm void dStage_roomDt_c::getPath2Inf() const {
 }
 #pragma pop
 
-/* 80027ADC-80027AE4 02241C 0008+00 1/0 0/0 0/0 .text
+/* 80027ADC-80027AE4 -00001 0008+00 0/0 0/0 0/0 .text
  * setSoundInf__15dStage_roomDt_cFP18dStage_SoundInfo_c         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setSoundInf(dStage_SoundInfo_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setSoundInf__15dStage_roomDt_cFP18dStage_SoundInfo_c.s"
+void dStage_roomDt_c::setSoundInf(dStage_SoundInfo_c* param_0) {
+    *(u32*)(((u8*)this) + 64) /* this->field_0x40 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027AE4-80027AEC 022424 0008+00 1/0 0/0 0/0 .text            getSoundInf__15dStage_roomDt_cCFv
  */
@@ -3649,16 +3769,11 @@ asm void dStage_roomDt_c::getSoundInf() const {
 }
 #pragma pop
 
-/* 80027AEC-80027AF4 02242C 0008+00 1/0 0/0 0/0 .text
+/* 80027AEC-80027AF4 -00001 0008+00 0/0 0/0 0/0 .text
  * setSoundInfCL__15dStage_roomDt_cFP18dStage_SoundInfo_c       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setSoundInfCL(dStage_SoundInfo_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setSoundInfCL__15dStage_roomDt_cFP18dStage_SoundInfo_c.s"
+void dStage_roomDt_c::setSoundInfCL(dStage_SoundInfo_c* param_0) {
+    *(u32*)(((u8*)this) + 68) /* this->field_0x44 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027AF4-80027AFC 022434 0008+00 1/0 0/0 0/0 .text            getSoundInfCL__15dStage_roomDt_cCFv
  */
@@ -3671,16 +3786,11 @@ asm void dStage_roomDt_c::getSoundInfCL() const {
 }
 #pragma pop
 
-/* 80027AFC-80027B04 02243C 0008+00 1/0 0/0 0/0 .text
+/* 80027AFC-80027B04 -00001 0008+00 0/0 0/0 0/0 .text
  * setMapEventInfo__15dStage_roomDt_cFP21dStage_MapEventInfo_c  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setMapEventInfo(dStage_MapEventInfo_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setMapEventInfo__15dStage_roomDt_cFP21dStage_MapEventInfo_c.s"
+void dStage_roomDt_c::setMapEventInfo(dStage_MapEventInfo_c* param_0) {
+    *(u32*)(((u8*)this) + 60) /* this->field_0x3c */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027B04-80027B0C 022444 0008+00 1/0 0/0 0/0 .text getMapEventInfo__15dStage_roomDt_cCFv */
 #pragma push
@@ -3692,16 +3802,11 @@ asm void dStage_roomDt_c::getMapEventInfo() const {
 }
 #pragma pop
 
-/* 80027B0C-80027B14 02244C 0008+00 1/0 0/0 0/0 .text
+/* 80027B0C-80027B14 -00001 0008+00 0/0 0/0 0/0 .text
  * setFileList2Info__15dStage_roomDt_cFP21dStage_FileList2_dt_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setFileList2Info(dStage_FileList2_dt_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setFileList2Info__15dStage_roomDt_cFP21dStage_FileList2_dt_c.s"
+void dStage_roomDt_c::setFileList2Info(dStage_FileList2_dt_c* param_0) {
+    *(u32*)(((u8*)this) + 32) /* this->field_0x20 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027B14-80027B1C 022454 0008+00 1/0 0/0 0/0 .text getFileList2Info__15dStage_roomDt_cCFv */
 #pragma push
@@ -3713,27 +3818,17 @@ asm void dStage_roomDt_c::getFileList2Info() const {
 }
 #pragma pop
 
-/* 80027B1C-80027B24 02245C 0008+00 1/0 0/0 0/0 .text
+/* 80027B1C-80027B24 -00001 0008+00 0/0 0/0 0/0 .text
  * setFileListInfo__15dStage_roomDt_cFP20dStage_FileList_dt_c   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setFileListInfo(dStage_FileList_dt_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setFileListInfo__15dStage_roomDt_cFP20dStage_FileList_dt_c.s"
+void dStage_roomDt_c::setFileListInfo(dStage_FileList_dt_c* param_0) {
+    *(u32*)(((u8*)this) + 36) /* this->field_0x24 */ = (u32)(param_0);
 }
-#pragma pop
 
-/* 80027B24-80027B2C 022464 0008+00 1/0 0/0 0/0 .text
+/* 80027B24-80027B2C -00001 0008+00 0/0 0/0 0/0 .text
  * setFloorInfo__15dStage_roomDt_cFP18dStage_FloorInfo_c        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setFloorInfo(dStage_FloorInfo_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setFloorInfo__15dStage_roomDt_cFP18dStage_FloorInfo_c.s"
+void dStage_roomDt_c::setFloorInfo(dStage_FloorInfo_c* param_0) {
+    *(u32*)(((u8*)this) + 92) /* this->field_0x5c */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027B2C-80027B34 02246C 0008+00 1/0 0/0 0/0 .text            getFloorInfo__15dStage_roomDt_cCFv
  */
@@ -3744,6 +3839,13 @@ asm void dStage_roomDt_c::getFloorInfo() const {
     nofralloc
 #include "asm/d/d_stage/getFloorInfo__15dStage_roomDt_cCFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378D04 = "Room non memory config data!\n";
 #pragma pop
 
 /* 80027B34-80027B64 022474 0030+00 1/0 0/0 0/0 .text
@@ -3765,6 +3867,13 @@ asm void dStage_roomDt_c::getMemoryConfig() const {
     nofralloc
 #include "asm/d/d_stage/getMemoryConfig__15dStage_roomDt_cCFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378D22 = "Room non memory map data!\n";
 #pragma pop
 
 /* 80027B98-80027BC8 0224D8 0030+00 1/0 0/0 0/0 .text
@@ -3789,6 +3898,13 @@ asm void dStage_roomDt_c::getMemoryMap() const {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378D3D = "Room non multi data!\n";
+#pragma pop
+
 /* 80027BFC-80027C2C 02253C 0030+00 1/0 0/0 0/0 .text
  * setMulti__15dStage_roomDt_cFP14dStage_Multi_c                */
 #pragma push
@@ -3808,6 +3924,13 @@ asm void dStage_roomDt_c::getMulti() const {
     nofralloc
 #include "asm/d/d_stage/getMulti__15dStage_roomDt_cCFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378D53 = "Room non old multi data!\n";
 #pragma pop
 
 /* 80027C60-80027C90 0225A0 0030+00 1/0 0/0 0/0 .text            setOldMulti__15dStage_roomDt_cFv */
@@ -3842,16 +3965,11 @@ asm void dStage_roomDt_c::getOldMulti() const {
 }
 #pragma pop
 
-/* 80027CF4-80027CFC 022634 0008+00 1/0 0/0 0/0 .text setLbnk__15dStage_roomDt_cFP13dStage_Lbnk_c
+/* 80027CF4-80027CFC -00001 0008+00 0/0 0/0 0/0 .text setLbnk__15dStage_roomDt_cFP13dStage_Lbnk_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setLbnk(dStage_Lbnk_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setLbnk__15dStage_roomDt_cFP13dStage_Lbnk_c.s"
+void dStage_roomDt_c::setLbnk(dStage_Lbnk_c* param_0) {
+    *(u32*)(((u8*)this) + 76) /* this->field_0x4c */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027CFC-80027D04 02263C 0008+00 1/0 0/0 0/0 .text            getLbnk__15dStage_roomDt_cCFv */
 #pragma push
@@ -3863,16 +3981,11 @@ asm void dStage_roomDt_c::getLbnk() const {
 }
 #pragma pop
 
-/* 80027D04-80027D0C 022644 0008+00 1/0 0/0 0/0 .text
+/* 80027D04-80027D0C -00001 0008+00 0/0 0/0 0/0 .text
  * setTresure__15dStage_roomDt_cFP19stage_tresure_class         */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setTresure(stage_tresure_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setTresure__15dStage_roomDt_cFP19stage_tresure_class.s"
+void dStage_roomDt_c::setTresure(stage_tresure_class* param_0) {
+    *(u32*)(((u8*)this) + 80) /* this->field_0x50 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027D0C-80027D14 02264C 0008+00 1/0 0/0 0/0 .text            getTresure__15dStage_roomDt_cCFv */
 #pragma push
@@ -3895,16 +4008,11 @@ bool dStage_roomDt_c::getDMap() const {
     return false;
 }
 
-/* 80027D20-80027D28 022660 0008+00 1/0 0/0 0/0 .text
+/* 80027D20-80027D28 -00001 0008+00 0/0 0/0 0/0 .text
  * setDrTg__15dStage_roomDt_cFP16stage_tgsc_class               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setDrTg(stage_tgsc_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setDrTg__15dStage_roomDt_cFP16stage_tgsc_class.s"
+void dStage_roomDt_c::setDrTg(stage_tgsc_class* param_0) {
+    *(u32*)(((u8*)this) + 84) /* this->field_0x54 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027D28-80027D30 022668 0008+00 1/0 0/0 0/0 .text            getDrTg__15dStage_roomDt_cCFv */
 #pragma push
@@ -3916,16 +4024,11 @@ asm void dStage_roomDt_c::getDrTg() const {
 }
 #pragma pop
 
-/* 80027D30-80027D38 022670 0008+00 1/0 0/0 0/0 .text
+/* 80027D30-80027D38 -00001 0008+00 0/0 0/0 0/0 .text
  * setDoor__15dStage_roomDt_cFP16stage_tgsc_class               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_roomDt_c::setDoor(stage_tgsc_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setDoor__15dStage_roomDt_cFP16stage_tgsc_class.s"
+void dStage_roomDt_c::setDoor(stage_tgsc_class* param_0) {
+    *(u32*)(((u8*)this) + 88) /* this->field_0x58 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027D38-80027D40 022678 0008+00 1/0 0/0 0/0 .text            getDoor__15dStage_roomDt_cCFv */
 #pragma push
@@ -3935,6 +4038,13 @@ asm void dStage_roomDt_c::getDoor() const {
     nofralloc
 #include "asm/d/d_stage/getDoor__15dStage_roomDt_cCFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378D6D = "stage non 2d map path data !!\n";
 #pragma pop
 
 /* 80027D40-80027D70 022680 0030+00 1/0 0/0 0/0 .text            setMapPath__15dStage_roomDt_cFPv */
@@ -3957,6 +4067,13 @@ asm void dStage_roomDt_c::getMapPath() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378D8C = "Room non envLayserSet data\n";
+#pragma pop
+
 /* 80027DA4-80027DD8 0226E4 0034+00 1/0 0/0 0/0 .text setElst__15dStage_roomDt_cFP13dStage_Elst_c
  */
 #pragma push
@@ -3966,6 +4083,13 @@ asm void dStage_roomDt_c::setElst(dStage_Elst_c* param_0) {
     nofralloc
 #include "asm/d/d_stage/setElst__15dStage_roomDt_cFP13dStage_Elst_c.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378DA8 = "Room no Elst Data!!\n";
 #pragma pop
 
 /* 80027DD8-80027E10 022718 0038+00 1/0 0/0 0/0 .text            getElst__15dStage_roomDt_cFv */
@@ -3978,16 +4102,11 @@ asm void dStage_roomDt_c::getElst() {
 }
 #pragma pop
 
-/* 80027E10-80027E18 022750 0008+00 1/0 0/0 0/0 .text
+/* 80027E10-80027E18 -00001 0008+00 0/0 0/0 0/0 .text
  * setCamera__16dStage_stageDt_cFP18stage_camera_class          */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setCamera(stage_camera_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setCamera__16dStage_stageDt_cFP18stage_camera_class.s"
+void dStage_stageDt_c::setCamera(stage_camera_class* param_0) {
+    *(u32*)(((u8*)this) + 8) /* this->field_0x8 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027E18-80027E20 022758 0008+00 1/0 0/0 0/0 .text            getCamera__16dStage_stageDt_cCFv */
 #pragma push
@@ -3999,16 +4118,11 @@ asm void dStage_stageDt_c::getCamera() const {
 }
 #pragma pop
 
-/* 80027E20-80027E28 022760 0008+00 1/0 0/0 0/0 .text
+/* 80027E20-80027E28 -00001 0008+00 0/0 0/0 0/0 .text
  * setArrow__16dStage_stageDt_cFP17stage_arrow_class            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setArrow(stage_arrow_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setArrow__16dStage_stageDt_cFP17stage_arrow_class.s"
+void dStage_stageDt_c::setArrow(stage_arrow_class* param_0) {
+    *(u32*)(((u8*)this) + 12) /* this->field_0xc */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027E28-80027E30 022768 0008+00 1/0 0/0 0/0 .text            getArrow__16dStage_stageDt_cCFv */
 #pragma push
@@ -4020,27 +4134,17 @@ asm void dStage_stageDt_c::getArrow() const {
 }
 #pragma pop
 
-/* 80027E30-80027E38 022770 0008+00 1/0 0/0 0/0 .text
+/* 80027E30-80027E38 -00001 0008+00 0/0 0/0 0/0 .text
  * setPlayer__16dStage_stageDt_cFP17stage_actor_class           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setPlayer(stage_actor_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setPlayer__16dStage_stageDt_cFP17stage_actor_class.s"
+void dStage_stageDt_c::setPlayer(stage_actor_class* param_0) {
+    *(u32*)(((u8*)this) + 16) /* this->field_0x10 */ = (u32)(param_0);
 }
-#pragma pop
 
-/* 80027E38-80027E40 022778 0008+00 1/0 0/0 0/0 .text            setPlayerNum__16dStage_stageDt_cFUs
+/* 80027E38-80027E40 -00001 0008+00 0/0 0/0 0/0 .text            setPlayerNum__16dStage_stageDt_cFUs
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setPlayerNum(u16 param_0) {
-    nofralloc
-#include "asm/d/d_stage/setPlayerNum__16dStage_stageDt_cFUs.s"
+void dStage_stageDt_c::setPlayerNum(u16 param_0) {
+    *(u16*)(((u8*)this) + 84) /* this->field_0x54 */ = (u16)(param_0);
 }
-#pragma pop
 
 /* 80027E40-80027E48 022780 0008+00 1/0 0/0 0/0 .text            getPlayerNum__16dStage_stageDt_cCFv
  */
@@ -4053,27 +4157,17 @@ asm void dStage_stageDt_c::getPlayerNum() const {
 }
 #pragma pop
 
-/* 80027E48-80027E50 022788 0008+00 1/0 0/0 0/0 .text
+/* 80027E48-80027E50 -00001 0008+00 0/0 0/0 0/0 .text
  * setRoom__16dStage_stageDt_cFP14roomRead_class                */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setRoom(roomRead_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setRoom__16dStage_stageDt_cFP14roomRead_class.s"
+void dStage_stageDt_c::setRoom(roomRead_class* param_0) {
+    *(u32*)(((u8*)this) + 20) /* this->field_0x14 */ = (u32)(param_0);
 }
-#pragma pop
 
-/* 80027E50-80027E58 022790 0008+00 1/0 0/0 0/0 .text
+/* 80027E50-80027E58 -00001 0008+00 0/0 0/0 0/0 .text
  * setMapInfo__16dStage_stageDt_cFP20stage_map_info_class       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setMapInfo(stage_map_info_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setMapInfo__16dStage_stageDt_cFP20stage_map_info_class.s"
+void dStage_stageDt_c::setMapInfo(stage_map_info_class* param_0) {
+    *(u32*)(((u8*)this) + 24) /* this->field_0x18 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027E58-80027E60 022798 0008+00 1/0 0/0 0/0 .text            getMapInfo__16dStage_stageDt_cCFv
  */
@@ -4086,27 +4180,17 @@ asm void dStage_stageDt_c::getMapInfo() const {
 }
 #pragma pop
 
-/* 80027E60-80027E68 0227A0 0008+00 1/0 0/0 0/0 .text
+/* 80027E60-80027E68 -00001 0008+00 0/0 0/0 0/0 .text
  * setMapInfoBase__16dStage_stageDt_cFP26stage_map_info_dummy_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setMapInfoBase(stage_map_info_dummy_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setMapInfoBase__16dStage_stageDt_cFP26stage_map_info_dummy_class.s"
+void dStage_stageDt_c::setMapInfoBase(stage_map_info_dummy_class* param_0) {
+    *(u32*)(((u8*)this) + 28) /* this->field_0x1c */ = (u32)(param_0);
 }
-#pragma pop
 
-/* 80027E68-80027E70 0227A8 0008+00 1/0 0/0 0/0 .text
+/* 80027E68-80027E70 -00001 0008+00 0/0 0/0 0/0 .text
  * setPaletteInfo__16dStage_stageDt_cFP24stage_palette_info_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setPaletteInfo(stage_palette_info_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setPaletteInfo__16dStage_stageDt_cFP24stage_palette_info_class.s"
+void dStage_stageDt_c::setPaletteInfo(stage_palette_info_class* param_0) {
+    *(u32*)(((u8*)this) + 32) /* this->field_0x20 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027E70-80027E78 0227B0 0008+00 1/0 0/0 0/0 .text getPaletteInfo__16dStage_stageDt_cCFv */
 #pragma push
@@ -4118,16 +4202,11 @@ asm void dStage_stageDt_c::getPaletteInfo() const {
 }
 #pragma pop
 
-/* 80027E78-80027E80 0227B8 0008+00 1/0 0/0 0/0 .text
+/* 80027E78-80027E80 -00001 0008+00 0/0 0/0 0/0 .text
  * setPselectInfo__16dStage_stageDt_cFP24stage_pselect_info_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setPselectInfo(stage_pselect_info_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setPselectInfo__16dStage_stageDt_cFP24stage_pselect_info_class.s"
+void dStage_stageDt_c::setPselectInfo(stage_pselect_info_class* param_0) {
+    *(u32*)(((u8*)this) + 36) /* this->field_0x24 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027E80-80027E88 0227C0 0008+00 1/0 0/0 0/0 .text getPselectInfo__16dStage_stageDt_cCFv */
 #pragma push
@@ -4139,16 +4218,11 @@ asm void dStage_stageDt_c::getPselectInfo() const {
 }
 #pragma pop
 
-/* 80027E88-80027E90 0227C8 0008+00 1/0 0/0 0/0 .text
+/* 80027E88-80027E90 -00001 0008+00 0/0 0/0 0/0 .text
  * setEnvrInfo__16dStage_stageDt_cFP21stage_envr_info_class     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setEnvrInfo(stage_envr_info_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setEnvrInfo__16dStage_stageDt_cFP21stage_envr_info_class.s"
+void dStage_stageDt_c::setEnvrInfo(stage_envr_info_class* param_0) {
+    *(u32*)(((u8*)this) + 40) /* this->field_0x28 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027E90-80027E98 0227D0 0008+00 1/0 0/0 0/0 .text            getEnvrInfo__16dStage_stageDt_cCFv
  */
@@ -4161,16 +4235,11 @@ asm void dStage_stageDt_c::getEnvrInfo() const {
 }
 #pragma pop
 
-/* 80027E98-80027EA0 0227D8 0008+00 1/0 0/0 0/0 .text
+/* 80027E98-80027EA0 -00001 0008+00 0/0 0/0 0/0 .text
  * setVrboxInfo__16dStage_stageDt_cFP22stage_vrbox_info_class   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setVrboxInfo(stage_vrbox_info_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setVrboxInfo__16dStage_stageDt_cFP22stage_vrbox_info_class.s"
+void dStage_stageDt_c::setVrboxInfo(stage_vrbox_info_class* param_0) {
+    *(u32*)(((u8*)this) + 44) /* this->field_0x2c */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027EA0-80027EA8 0227E0 0008+00 1/0 0/0 0/0 .text            getVrboxInfo__16dStage_stageDt_cCFv
  */
@@ -4183,16 +4252,11 @@ asm void dStage_stageDt_c::getVrboxInfo() const {
 }
 #pragma pop
 
-/* 80027EA8-80027EB0 0227E8 0008+00 1/0 0/0 0/0 .text
+/* 80027EA8-80027EB0 -00001 0008+00 0/0 0/0 0/0 .text
  * setVrboxcolInfo__16dStage_stageDt_cFP25stage_vrboxcol_info_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setVrboxcolInfo(stage_vrboxcol_info_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setVrboxcolInfo__16dStage_stageDt_cFP25stage_vrboxcol_info_class.s"
+void dStage_stageDt_c::setVrboxcolInfo(stage_vrboxcol_info_class* param_0) {
+    *(u32*)(((u8*)this) + 48) /* this->field_0x30 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027EB0-80027EB8 0227F0 0008+00 1/0 0/0 0/0 .text getVrboxcolInfo__16dStage_stageDt_cCFv */
 #pragma push
@@ -4204,16 +4268,11 @@ asm void dStage_stageDt_c::getVrboxcolInfo() const {
 }
 #pragma pop
 
-/* 80027EB8-80027EC0 0227F8 0008+00 1/0 0/0 0/0 .text
+/* 80027EB8-80027EC0 -00001 0008+00 0/0 0/0 0/0 .text
  * setPlightInfo__16dStage_stageDt_cFP23stage_plight_info_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setPlightInfo(stage_plight_info_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setPlightInfo__16dStage_stageDt_cFP23stage_plight_info_class.s"
+void dStage_stageDt_c::setPlightInfo(stage_plight_info_class* param_0) {
+    *(u32*)(((u8*)this) + 52) /* this->field_0x34 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027EC0-80027EC8 022800 0008+00 1/0 0/0 0/0 .text getPlightInfo__16dStage_stageDt_cCFv */
 #pragma push
@@ -4225,15 +4284,10 @@ asm void dStage_stageDt_c::getPlightInfo() const {
 }
 #pragma pop
 
-/* 80027EC8-80027ED0 022808 0008+00 1/0 0/0 0/0 .text setPaletteNumInfo__16dStage_stageDt_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setPaletteNumInfo(int param_0) {
-    nofralloc
-#include "asm/d/d_stage/setPaletteNumInfo__16dStage_stageDt_cFi.s"
+/* 80027EC8-80027ED0 -00001 0008+00 0/0 0/0 0/0 .text setPaletteNumInfo__16dStage_stageDt_cFi */
+void dStage_stageDt_c::setPaletteNumInfo(int param_0) {
+    *(u32*)(((u8*)this) + 60) /* this->field_0x3c */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027ED0-80027ED8 022810 0008+00 1/0 0/0 0/0 .text getPaletteNumInfo__16dStage_stageDt_cCFv */
 #pragma push
@@ -4245,15 +4299,10 @@ asm void dStage_stageDt_c::getPaletteNumInfo() const {
 }
 #pragma pop
 
-/* 80027ED8-80027EE0 022818 0008+00 1/0 0/0 0/0 .text setPselectNumInfo__16dStage_stageDt_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setPselectNumInfo(int param_0) {
-    nofralloc
-#include "asm/d/d_stage/setPselectNumInfo__16dStage_stageDt_cFi.s"
+/* 80027ED8-80027EE0 -00001 0008+00 0/0 0/0 0/0 .text setPselectNumInfo__16dStage_stageDt_cFi */
+void dStage_stageDt_c::setPselectNumInfo(int param_0) {
+    *(u32*)(((u8*)this) + 64) /* this->field_0x40 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027EE0-80027EE8 022820 0008+00 1/0 0/0 0/0 .text getPselectNumInfo__16dStage_stageDt_cCFv */
 #pragma push
@@ -4265,15 +4314,10 @@ asm void dStage_stageDt_c::getPselectNumInfo() const {
 }
 #pragma pop
 
-/* 80027EE8-80027EF0 022828 0008+00 1/0 0/0 0/0 .text setEnvrNumInfo__16dStage_stageDt_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setEnvrNumInfo(int param_0) {
-    nofralloc
-#include "asm/d/d_stage/setEnvrNumInfo__16dStage_stageDt_cFi.s"
+/* 80027EE8-80027EF0 -00001 0008+00 0/0 0/0 0/0 .text setEnvrNumInfo__16dStage_stageDt_cFi */
+void dStage_stageDt_c::setEnvrNumInfo(int param_0) {
+    *(u32*)(((u8*)this) + 68) /* this->field_0x44 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027EF0-80027EF8 022830 0008+00 1/0 0/0 0/0 .text getEnvrNumInfo__16dStage_stageDt_cCFv */
 #pragma push
@@ -4285,15 +4329,10 @@ asm void dStage_stageDt_c::getEnvrNumInfo() const {
 }
 #pragma pop
 
-/* 80027EF8-80027F00 022838 0008+00 1/0 0/0 0/0 .text setVrboxNumInfo__16dStage_stageDt_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setVrboxNumInfo(int param_0) {
-    nofralloc
-#include "asm/d/d_stage/setVrboxNumInfo__16dStage_stageDt_cFi.s"
+/* 80027EF8-80027F00 -00001 0008+00 0/0 0/0 0/0 .text setVrboxNumInfo__16dStage_stageDt_cFi */
+void dStage_stageDt_c::setVrboxNumInfo(int param_0) {
+    *(u32*)(((u8*)this) + 72) /* this->field_0x48 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027F00-80027F08 022840 0008+00 1/0 0/0 0/0 .text getVrboxNumInfo__16dStage_stageDt_cCFv */
 #pragma push
@@ -4305,15 +4344,10 @@ asm void dStage_stageDt_c::getVrboxNumInfo() const {
 }
 #pragma pop
 
-/* 80027F08-80027F10 022848 0008+00 1/0 0/0 0/0 .text setVrboxcolNumInfo__16dStage_stageDt_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setVrboxcolNumInfo(int param_0) {
-    nofralloc
-#include "asm/d/d_stage/setVrboxcolNumInfo__16dStage_stageDt_cFi.s"
+/* 80027F08-80027F10 -00001 0008+00 0/0 0/0 0/0 .text setVrboxcolNumInfo__16dStage_stageDt_cFi */
+void dStage_stageDt_c::setVrboxcolNumInfo(int param_0) {
+    *(u32*)(((u8*)this) + 76) /* this->field_0x4c */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027F10-80027F18 022850 0008+00 1/0 0/0 0/0 .text getVrboxcolNumInfo__16dStage_stageDt_cCFv */
 #pragma push
@@ -4323,6 +4357,13 @@ asm void dStage_stageDt_c::getVrboxcolNumInfo() const {
     nofralloc
 #include "asm/d/d_stage/getVrboxcolNumInfo__16dStage_stageDt_cCFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378DBD = "stage non LightVec data !!\n";
 #pragma pop
 
 /* 80027F18-80027F4C 022858 0034+00 1/0 0/0 0/0 .text
@@ -4346,6 +4387,13 @@ asm void dStage_stageDt_c::getLightVecInfo() const {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378DD9 = "stage non LightVecNum data !!\n";
+#pragma pop
+
 /* 80027F80-80027FB4 0228C0 0034+00 1/0 0/0 0/0 .text setLightVecInfoNum__16dStage_stageDt_cFi */
 #pragma push
 #pragma optimization_level 0
@@ -4366,15 +4414,10 @@ asm void dStage_stageDt_c::getLightVecInfoNum() const {
 }
 #pragma pop
 
-/* 80027FE8-80027FF0 022928 0008+00 1/0 0/0 0/0 .text setPlightNumInfo__16dStage_stageDt_cFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setPlightNumInfo(int param_0) {
-    nofralloc
-#include "asm/d/d_stage/setPlightNumInfo__16dStage_stageDt_cFi.s"
+/* 80027FE8-80027FF0 -00001 0008+00 0/0 0/0 0/0 .text setPlightNumInfo__16dStage_stageDt_cFi */
+void dStage_stageDt_c::setPlightNumInfo(int param_0) {
+    *(u32*)(((u8*)this) + 80) /* this->field_0x50 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80027FF0-80027FF8 022930 0008+00 1/0 0/0 0/0 .text getPlightNumInfo__16dStage_stageDt_cCFv */
 #pragma push
@@ -4386,38 +4429,23 @@ asm void dStage_stageDt_c::getPlightNumInfo() const {
 }
 #pragma pop
 
-/* 80027FF8-80028000 022938 0008+00 1/0 0/0 0/0 .text
+/* 80027FF8-80028000 -00001 0008+00 0/0 0/0 0/0 .text
  * setStagInfo__16dStage_stageDt_cFP21stage_stag_info_class     */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setStagInfo(stage_stag_info_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setStagInfo__16dStage_stageDt_cFP21stage_stag_info_class.s"
+void dStage_stageDt_c::setStagInfo(stage_stag_info_class* param_0) {
+    *(u32*)(((u8*)this) + 92) /* this->field_0x5c */ = (u32)(param_0);
 }
-#pragma pop
 
-/* 80028000-80028008 022940 0008+00 1/0 0/0 0/0 .text
+/* 80028000-80028008 -00001 0008+00 0/0 0/0 0/0 .text
  * setSclsInfo__16dStage_stageDt_cFP27stage_scls_info_dummy_class */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setSclsInfo(stage_scls_info_dummy_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setSclsInfo__16dStage_stageDt_cFP27stage_scls_info_dummy_class.s"
+void dStage_stageDt_c::setSclsInfo(stage_scls_info_dummy_class* param_0) {
+    *(u32*)(((u8*)this) + 96) /* this->field_0x60 */ = (u32)(param_0);
 }
-#pragma pop
 
-/* 80028008-80028010 022948 0008+00 1/0 0/0 0/0 .text
+/* 80028008-80028010 -00001 0008+00 0/0 0/0 0/0 .text
  * setPntInfo__16dStage_stageDt_cFP13dStage_dPnt_c              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setPntInfo(dStage_dPnt_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setPntInfo__16dStage_stageDt_cFP13dStage_dPnt_c.s"
+void dStage_stageDt_c::setPntInfo(dStage_dPnt_c* param_0) {
+    *(u32*)(((u8*)this) + 100) /* this->field_0x64 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80028010-80028018 022950 0008+00 1/0 0/0 0/0 .text            getPntInf__16dStage_stageDt_cCFv */
 #pragma push
@@ -4429,16 +4457,11 @@ asm void dStage_stageDt_c::getPntInf() const {
 }
 #pragma pop
 
-/* 80028018-80028020 022958 0008+00 1/0 0/0 0/0 .text
+/* 80028018-80028020 -00001 0008+00 0/0 0/0 0/0 .text
  * setPathInfo__16dStage_stageDt_cFP14dStage_dPath_c            */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setPathInfo(dStage_dPath_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setPathInfo__16dStage_stageDt_cFP14dStage_dPath_c.s"
+void dStage_stageDt_c::setPathInfo(dStage_dPath_c* param_0) {
+    *(u32*)(((u8*)this) + 104) /* this->field_0x68 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80028020-80028028 022960 0008+00 1/0 0/0 0/0 .text            getPathInf__16dStage_stageDt_cCFv
  */
@@ -4451,16 +4474,11 @@ asm void dStage_stageDt_c::getPathInf() const {
 }
 #pragma pop
 
-/* 80028028-80028030 022968 0008+00 1/0 0/0 0/0 .text
+/* 80028028-80028030 -00001 0008+00 0/0 0/0 0/0 .text
  * setPnt2Info__16dStage_stageDt_cFP13dStage_dPnt_c             */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setPnt2Info(dStage_dPnt_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setPnt2Info__16dStage_stageDt_cFP13dStage_dPnt_c.s"
+void dStage_stageDt_c::setPnt2Info(dStage_dPnt_c* param_0) {
+    *(u32*)(((u8*)this) + 108) /* this->field_0x6c */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80028030-80028038 022970 0008+00 1/0 0/0 0/0 .text            getPnt2Inf__16dStage_stageDt_cCFv
  */
@@ -4473,16 +4491,11 @@ asm void dStage_stageDt_c::getPnt2Inf() const {
 }
 #pragma pop
 
-/* 80028038-80028040 022978 0008+00 1/0 0/0 0/0 .text
+/* 80028038-80028040 -00001 0008+00 0/0 0/0 0/0 .text
  * setPath2Info__16dStage_stageDt_cFP14dStage_dPath_c           */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setPath2Info(dStage_dPath_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setPath2Info__16dStage_stageDt_cFP14dStage_dPath_c.s"
+void dStage_stageDt_c::setPath2Info(dStage_dPath_c* param_0) {
+    *(u32*)(((u8*)this) + 112) /* this->field_0x70 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80028040-80028048 022980 0008+00 1/0 0/0 0/0 .text            getPath2Inf__16dStage_stageDt_cCFv
  */
@@ -4495,16 +4508,11 @@ asm void dStage_stageDt_c::getPath2Inf() const {
 }
 #pragma pop
 
-/* 80028048-80028050 022988 0008+00 1/0 0/0 0/0 .text
+/* 80028048-80028050 -00001 0008+00 0/0 0/0 0/0 .text
  * setSoundInf__16dStage_stageDt_cFP18dStage_SoundInfo_c        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setSoundInf(dStage_SoundInfo_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setSoundInf__16dStage_stageDt_cFP18dStage_SoundInfo_c.s"
+void dStage_stageDt_c::setSoundInf(dStage_SoundInfo_c* param_0) {
+    *(u32*)(((u8*)this) + 116) /* this->field_0x74 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80028050-80028058 022990 0008+00 1/0 0/0 0/0 .text            getSoundInf__16dStage_stageDt_cCFv
  */
@@ -4517,16 +4525,11 @@ asm void dStage_stageDt_c::getSoundInf() const {
 }
 #pragma pop
 
-/* 80028058-80028060 022998 0008+00 1/0 0/0 0/0 .text
+/* 80028058-80028060 -00001 0008+00 0/0 0/0 0/0 .text
  * setSoundInfCL__16dStage_stageDt_cFP18dStage_SoundInfo_c      */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setSoundInfCL(dStage_SoundInfo_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setSoundInfCL__16dStage_stageDt_cFP18dStage_SoundInfo_c.s"
+void dStage_stageDt_c::setSoundInfCL(dStage_SoundInfo_c* param_0) {
+    *(u32*)(((u8*)this) + 120) /* this->field_0x78 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80028060-80028068 0229A0 0008+00 1/0 0/0 0/0 .text getSoundInfCL__16dStage_stageDt_cCFv */
 #pragma push
@@ -4538,16 +4541,11 @@ asm void dStage_stageDt_c::getSoundInfCL() const {
 }
 #pragma pop
 
-/* 80028068-80028070 0229A8 0008+00 1/0 0/0 0/0 .text
+/* 80028068-80028070 -00001 0008+00 0/0 0/0 0/0 .text
  * setMapEventInfo__16dStage_stageDt_cFP21dStage_MapEventInfo_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setMapEventInfo(dStage_MapEventInfo_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setMapEventInfo__16dStage_stageDt_cFP21dStage_MapEventInfo_c.s"
+void dStage_stageDt_c::setMapEventInfo(dStage_MapEventInfo_c* param_0) {
+    *(u32*)(((u8*)this) + 56) /* this->field_0x38 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80028070-80028078 0229B0 0008+00 1/0 0/0 0/0 .text getMapEventInfo__16dStage_stageDt_cCFv */
 #pragma push
@@ -4557,6 +4555,13 @@ asm void dStage_stageDt_c::getMapEventInfo() const {
     nofralloc
 #include "asm/d/d_stage/getMapEventInfo__16dStage_stageDt_cCFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378DF8 = "stage non filelist2 data!\n";
 #pragma pop
 
 /* 80028078-800280AC 0229B8 0034+00 1/0 0/0 0/0 .text
@@ -4580,6 +4585,13 @@ asm void dStage_stageDt_c::getFileList2Info() const {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378E13 = "stage non filelist data!\n";
+#pragma pop
+
 /* 800280E0-80028114 022A20 0034+00 1/0 0/0 0/0 .text
  * setFileListInfo__16dStage_stageDt_cFP20dStage_FileList_dt_c  */
 #pragma push
@@ -4601,16 +4613,11 @@ asm void dStage_stageDt_c::getFileListInfo() const {
 }
 #pragma pop
 
-/* 80028148-80028150 022A88 0008+00 1/0 0/0 0/0 .text
+/* 80028148-80028150 -00001 0008+00 0/0 0/0 0/0 .text
  * setFloorInfo__16dStage_stageDt_cFP18dStage_FloorInfo_c       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setFloorInfo(dStage_FloorInfo_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setFloorInfo__16dStage_stageDt_cFP18dStage_FloorInfo_c.s"
+void dStage_stageDt_c::setFloorInfo(dStage_FloorInfo_c* param_0) {
+    *(u32*)(((u8*)this) + 124) /* this->field_0x7c */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80028150-80028158 022A90 0008+00 1/0 0/0 0/0 .text            getFloorInfo__16dStage_stageDt_cCFv
  */
@@ -4623,16 +4630,11 @@ asm void dStage_stageDt_c::getFloorInfo() const {
 }
 #pragma pop
 
-/* 80028158-80028160 022A98 0008+00 1/0 0/0 0/0 .text
+/* 80028158-80028160 -00001 0008+00 0/0 0/0 0/0 .text
  * setMemoryConfig__16dStage_stageDt_cFP21dStage_MemoryConfig_c */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setMemoryConfig(dStage_MemoryConfig_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setMemoryConfig__16dStage_stageDt_cFP21dStage_MemoryConfig_c.s"
+void dStage_stageDt_c::setMemoryConfig(dStage_MemoryConfig_c* param_0) {
+    *(u32*)(((u8*)this) + 128) /* this->field_0x80 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80028160-80028168 022AA0 0008+00 1/0 0/0 0/0 .text getMemoryConfig__16dStage_stageDt_cCFv */
 #pragma push
@@ -4644,16 +4646,11 @@ asm void dStage_stageDt_c::getMemoryConfig() const {
 }
 #pragma pop
 
-/* 80028168-80028170 022AA8 0008+00 1/0 0/0 0/0 .text
+/* 80028168-80028170 -00001 0008+00 0/0 0/0 0/0 .text
  * setMemoryMap__16dStage_stageDt_cFP18dStage_MemoryMap_c       */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setMemoryMap(dStage_MemoryMap_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setMemoryMap__16dStage_stageDt_cFP18dStage_MemoryMap_c.s"
+void dStage_stageDt_c::setMemoryMap(dStage_MemoryMap_c* param_0) {
+    *(u32*)(((u8*)this) + 132) /* this->field_0x84 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80028170-80028178 022AB0 0008+00 1/0 0/0 0/0 .text            getMemoryMap__16dStage_stageDt_cCFv
  */
@@ -4666,16 +4663,11 @@ asm void dStage_stageDt_c::getMemoryMap() const {
 }
 #pragma pop
 
-/* 80028178-80028180 022AB8 0008+00 1/0 0/0 0/0 .text
+/* 80028178-80028180 -00001 0008+00 0/0 0/0 0/0 .text
  * setMulti__16dStage_stageDt_cFP14dStage_Multi_c               */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setMulti(dStage_Multi_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setMulti__16dStage_stageDt_cFP14dStage_Multi_c.s"
+void dStage_stageDt_c::setMulti(dStage_Multi_c* param_0) {
+    *(u32*)(((u8*)this) + 136) /* this->field_0x88 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80028180-80028188 022AC0 0008+00 1/0 0/0 0/0 .text            getMulti__16dStage_stageDt_cCFv */
 #pragma push
@@ -4696,6 +4688,15 @@ asm void dStage_stageDt_c::getOldMulti() const {
     nofralloc
 #include "asm/d/d_stage/getOldMulti__16dStage_stageDt_cCFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378E2D = "stage non Lbnk data!\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80378E43 = "\0\0\0\0";
 #pragma pop
 
 /* 80028190-800281C4 022AD0 0034+00 1/0 0/0 0/0 .text setLbnk__16dStage_stageDt_cFP13dStage_Lbnk_c
@@ -4719,16 +4720,11 @@ asm void dStage_stageDt_c::getLbnk() const {
 }
 #pragma pop
 
-/* 800281F8-80028200 022B38 0008+00 1/0 0/0 0/0 .text
+/* 800281F8-80028200 -00001 0008+00 0/0 0/0 0/0 .text
  * setTresure__16dStage_stageDt_cFP19stage_tresure_class        */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setTresure(stage_tresure_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setTresure__16dStage_stageDt_cFP19stage_tresure_class.s"
+void dStage_stageDt_c::setTresure(stage_tresure_class* param_0) {
+    *(u32*)(((u8*)this) + 144) /* this->field_0x90 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80028200-80028208 022B40 0008+00 1/0 0/0 0/0 .text            getTresure__16dStage_stageDt_cCFv
  */
@@ -4741,16 +4737,11 @@ asm void dStage_stageDt_c::getTresure() const {
 }
 #pragma pop
 
-/* 80028208-80028210 022B48 0008+00 1/0 0/0 0/0 .text setDMap__16dStage_stageDt_cFP13dStage_DMap_c
+/* 80028208-80028210 -00001 0008+00 0/0 0/0 0/0 .text setDMap__16dStage_stageDt_cFP13dStage_DMap_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setDMap(dStage_DMap_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setDMap__16dStage_stageDt_cFP13dStage_DMap_c.s"
+void dStage_stageDt_c::setDMap(dStage_DMap_c* param_0) {
+    *(u32*)(((u8*)this) + 148) /* this->field_0x94 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80028210-80028218 022B50 0008+00 1/0 0/0 0/0 .text            getDMap__16dStage_stageDt_cCFv */
 #pragma push
@@ -4762,16 +4753,11 @@ asm void dStage_stageDt_c::getDMap() const {
 }
 #pragma pop
 
-/* 80028218-80028220 022B58 0008+00 1/0 0/0 0/0 .text
+/* 80028218-80028220 -00001 0008+00 0/0 0/0 0/0 .text
  * setDrTg__16dStage_stageDt_cFP16stage_tgsc_class              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setDrTg(stage_tgsc_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setDrTg__16dStage_stageDt_cFP16stage_tgsc_class.s"
+void dStage_stageDt_c::setDrTg(stage_tgsc_class* param_0) {
+    *(u32*)(((u8*)this) + 152) /* this->field_0x98 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80028220-80028228 022B60 0008+00 1/0 0/0 0/0 .text            getDrTg__16dStage_stageDt_cCFv */
 #pragma push
@@ -4783,16 +4769,11 @@ asm void dStage_stageDt_c::getDrTg() const {
 }
 #pragma pop
 
-/* 80028228-80028230 022B68 0008+00 1/0 0/0 0/0 .text
+/* 80028228-80028230 -00001 0008+00 0/0 0/0 0/0 .text
  * setDoor__16dStage_stageDt_cFP16stage_tgsc_class              */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setDoor(stage_tgsc_class* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setDoor__16dStage_stageDt_cFP16stage_tgsc_class.s"
+void dStage_stageDt_c::setDoor(stage_tgsc_class* param_0) {
+    *(u32*)(((u8*)this) + 156) /* this->field_0x9c */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80028230-80028238 022B70 0008+00 1/0 0/0 0/0 .text            getDoor__16dStage_stageDt_cCFv */
 #pragma push
@@ -4815,16 +4796,11 @@ bool dStage_stageDt_c::getMapPath() {
     return false;
 }
 
-/* 80028244-8002824C 022B84 0008+00 1/0 0/0 0/0 .text setElst__16dStage_stageDt_cFP13dStage_Elst_c
+/* 80028244-8002824C -00001 0008+00 0/0 0/0 0/0 .text setElst__16dStage_stageDt_cFP13dStage_Elst_c
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dStage_stageDt_c::setElst(dStage_Elst_c* param_0) {
-    nofralloc
-#include "asm/d/d_stage/setElst__16dStage_stageDt_cFP13dStage_Elst_c.s"
+void dStage_stageDt_c::setElst(dStage_Elst_c* param_0) {
+    *(u32*)(((u8*)this) + 160) /* this->field_0xa0 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 8002824C-80028328 022B8C 00DC+00 0/0 1/0 0/0 .text            __sinit_d_stage_cpp */
 #pragma push
@@ -4838,7 +4814,7 @@ asm void __sinit_d_stage_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8002824C = (void*)__sinit_d_stage_cpp;
+REGISTER_CTORS(0x8002824C, __sinit_d_stage_cpp);
 #pragma pop
 
 /* 80028328-80028360 022C68 0038+00 1/1 0/0 0/0 .text            __arraydtor$5375 */
@@ -5195,57 +5171,4 @@ stage_tgsc_data_class::stage_tgsc_data_class() {
 static u8 pad_80450D7C[4];
 #pragma pop
 
-/* 80378A50-80378E48 0050B0 03F3+05 62/62 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80378A50 = "OPENING";
-SECTION_DEAD static char const* const stringBase_80378A58 =
-    "部屋情報が、多分ですが壊れています。\n変換し直してみてください。\n";
-SECTION_DEAD static char const* const stringBase_80378A99 =
-    "ステージ情報が、多分ですが壊れています。\n変換し直してみてください。";
-SECTION_DEAD static char const* const stringBase_80378ADD = "name.bin";
-SECTION_DEAD static char const* const stringBase_80378AE6 = "bank.bin";
-SECTION_DEAD static char const* const stringBase_80378AEF = "";
-SECTION_DEAD static char const* const stringBase_80378AF0 =
-    "Bank[%d] : %s.arc Sync Read Error !!\n";
-SECTION_DEAD static char const* const stringBase_80378B16 = "%s/room%d.dzs";
-SECTION_DEAD static char const* const stringBase_80378B24 = "%d%+0d";
-SECTION_DEAD static char const* const stringBase_80378B2B = "S_MV000";
-SECTION_DEAD static char const* const stringBase_80378B33 = "Xtg_00";
-SECTION_DEAD static char const* const stringBase_80378B3A = "dStage_dt_c_decode: i_data is NULL\n";
-SECTION_DEAD static char const* const stringBase_80378B5E = "room%d.dzs";
-SECTION_DEAD static char const* const stringBase_80378B69 = "stage.dzs";
-SECTION_DEAD static char const* const stringBase_80378B73 = "vrbox_sora.bmd";
-SECTION_DEAD static char const* const stringBase_80378B82 = "Stg_00";
-SECTION_DEAD static char const* const stringBase_80378B89 = "Event";
-SECTION_DEAD static char const* const stringBase_80378B8F = "%s: %d: シーンリストがありません。\n";
-SECTION_DEAD static char const* const stringBase_80378BB3 = "d_stage.cpp";
-SECTION_DEAD static char const* const stringBase_80378BBF = "Room non room data !!\n";
-SECTION_DEAD static char const* const stringBase_80378BD6 = "Room non palet data !!\n";
-SECTION_DEAD static char const* const stringBase_80378BEE = "Room non pselect data !!\n";
-SECTION_DEAD static char const* const stringBase_80378C08 = "Room non envr data !!\n";
-SECTION_DEAD static char const* const stringBase_80378C1F = "Room non plight data !!\n";
-SECTION_DEAD static char const* const stringBase_80378C38 = "Room non palette num data !!\n";
-SECTION_DEAD static char const* const stringBase_80378C56 = "Room non pselect num data !!\n";
-SECTION_DEAD static char const* const stringBase_80378C74 = "Room non envr num data !!\n";
-SECTION_DEAD static char const* const stringBase_80378C8F = "Room non plight num data !!\n";
-SECTION_DEAD static char const* const stringBase_80378CAC = "Room non stag data !!\n";
-SECTION_DEAD static char const* const stringBase_80378CC3 = "Room non Pnt data !\n";
-SECTION_DEAD static char const* const stringBase_80378CD8 = "Room non Pnts data !\n";
-SECTION_DEAD static char const* const stringBase_80378CEE = "Room non Path data !\n";
-SECTION_DEAD static char const* const stringBase_80378D04 = "Room non memory config data!\n";
-SECTION_DEAD static char const* const stringBase_80378D22 = "Room non memory map data!\n";
-SECTION_DEAD static char const* const stringBase_80378D3D = "Room non multi data!\n";
-SECTION_DEAD static char const* const stringBase_80378D53 = "Room non old multi data!\n";
-SECTION_DEAD static char const* const stringBase_80378D6D = "stage non 2d map path data !!\n";
-SECTION_DEAD static char const* const stringBase_80378D8C = "Room non envLayserSet data\n";
-SECTION_DEAD static char const* const stringBase_80378DA8 = "Room no Elst Data!!\n";
-SECTION_DEAD static char const* const stringBase_80378DBD = "stage non LightVec data !!\n";
-SECTION_DEAD static char const* const stringBase_80378DD9 = "stage non LightVecNum data !!\n";
-SECTION_DEAD static char const* const stringBase_80378DF8 = "stage non filelist2 data!\n";
-SECTION_DEAD static char const* const stringBase_80378E13 = "stage non filelist data!\n";
-SECTION_DEAD static char const* const stringBase_80378E2D = "stage non Lbnk data!\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80378E43 = "\0\0\0\0";
-#pragma pop
+/* 80378A50-80378A50 0050B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

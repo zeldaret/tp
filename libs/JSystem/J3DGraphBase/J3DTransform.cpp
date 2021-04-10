@@ -25,7 +25,7 @@ struct J3DTextureSRTInfo {};
 // Forward References:
 //
 
-extern "C" static void __MTGQR7__FUl();
+extern "C" void __MTGQR7__FUl();
 extern "C" void J3DGQRSetup7__FUlUlUlUl();
 extern "C" void J3DCalcBBoardMtx__FPA4_f();
 extern "C" void J3DCalcYBBoardMtx__FPA4_f();
@@ -53,15 +53,14 @@ extern "C" u8 sincosTable___5JMath[65536];
 // Declarations:
 //
 
-/* 80311630-80311638 30BF70 0008+00 1/1 0/0 0/0 .text            __MTGQR7__FUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void __MTGQR7(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/J3DGraphBase/J3DTransform/__MTGQR7__FUl.s"
+/* 80311630-80311638 -00001 0008+00 0/0 0/0 0/0 .text            __MTGQR7__FUl */
+asm void __MTGQR7(u32 param_0) {
+    // clang-format off
+	nofralloc
+	mtspr 0x397, r3
+	blr
+    // clang-format on
 }
-#pragma pop
 
 /* 80311638-80311670 30BF78 0038+00 0/0 2/2 0/0 .text            J3DGQRSetup7__FUlUlUlUl */
 #pragma push
@@ -98,13 +97,13 @@ SECTION_RODATA extern u8 const j3dDefaultTransformInfo[32] = {
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803A1E30, &j3dDefaultTransformInfo);
+COMPILER_STRIP_GATE(0x803A1E30, &j3dDefaultTransformInfo);
 
 /* 803A1E50-803A1E5C 02E4B0 000C+00 0/0 1/1 0/0 .rodata          j3dDefaultScale */
 SECTION_RODATA extern u8 const j3dDefaultScale[12] = {
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803A1E50, &j3dDefaultScale);
+COMPILER_STRIP_GATE(0x803A1E50, &j3dDefaultScale);
 
 /* 803A1E5C-803A1E8C 02E4BC 0030+00 0/0 8/8 7/7 .rodata          j3dDefaultMtx */
 SECTION_RODATA extern u8 const j3dDefaultMtx[48] = {
@@ -112,13 +111,13 @@ SECTION_RODATA extern u8 const j3dDefaultMtx[48] = {
     0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803A1E5C, &j3dDefaultMtx);
+COMPILER_STRIP_GATE(0x803A1E5C, &j3dDefaultMtx);
 
 /* 803A1E8C-803A1E98 02E4EC 000C+00 1/1 0/0 0/0 .rodata          @443 */
 SECTION_RODATA static u8 const lit_443[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803A1E8C, &lit_443);
+COMPILER_STRIP_GATE(0x803A1E8C, &lit_443);
 
 /* 80311760-8031189C 30C0A0 013C+00 0/0 2/2 0/0 .text            J3DCalcYBBoardMtx__FPA4_f */
 #pragma push

@@ -48,7 +48,7 @@ SECTION_RODATA static u8 const lit_80[11 + 5 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(803A2BF8, &lit_80);
+COMPILER_STRIP_GATE(0x803A2BF8, &lit_80);
 
 /* 8044F818-8044F820 07C538 0004+04 1/1 0/0 0/0 .bss             TRK_mainError */
 SECTION_BSS static u8 TRK_mainError[4 + 4 /* padding */];

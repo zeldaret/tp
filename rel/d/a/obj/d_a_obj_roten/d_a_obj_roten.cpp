@@ -63,9 +63,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -90,9 +90,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -202,20 +202,20 @@ asm void daObj_Roten_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 80CC1400-80CC1404 000000 0004+00 2/2 0/0 0/0 .rodata          @3778 */
 SECTION_RODATA static f32 const lit_3778 = 10.0f;
-COMPILER_STRIP_GATE(80CC1400, &lit_3778);
+COMPILER_STRIP_GATE(0x80CC1400, &lit_3778);
 
 /* 80CC1404-80CC1408 000004 0004+00 0/1 0/0 0/0 .rodata          @3779 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3779 = 90.0f;
-COMPILER_STRIP_GATE(80CC1404, &lit_3779);
+COMPILER_STRIP_GATE(0x80CC1404, &lit_3779);
 #pragma pop
 
 /* 80CC1408-80CC140C 000008 0004+00 0/1 0/0 0/0 .rodata          @3780 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3780 = 270.0f;
-COMPILER_STRIP_GATE(80CC1408, &lit_3780);
+COMPILER_STRIP_GATE(0x80CC1408, &lit_3780);
 #pragma pop
 
 /* 80CC140C-80CC1410 00000C 0004+00 0/2 0/0 0/0 .rodata          @3781 */
@@ -227,47 +227,47 @@ SECTION_RODATA static u8 const lit_3781[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CC140C, &lit_3781);
+COMPILER_STRIP_GATE(0x80CC140C, &lit_3781);
 #pragma pop
 
 /* 80CC1410-80CC1414 000010 0004+00 0/1 0/0 0/0 .rodata          @3782 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3782 = -80.0f;
-COMPILER_STRIP_GATE(80CC1410, &lit_3782);
+COMPILER_STRIP_GATE(0x80CC1410, &lit_3782);
 #pragma pop
 
 /* 80CC1414-80CC1418 000014 0004+00 0/1 0/0 0/0 .rodata          @3783 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3783 = 177.0f;
-COMPILER_STRIP_GATE(80CC1414, &lit_3783);
+COMPILER_STRIP_GATE(0x80CC1414, &lit_3783);
 #pragma pop
 
 /* 80CC1418-80CC141C 000018 0004+00 0/1 0/0 0/0 .rodata          @3784 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3784 = 110.0f;
-COMPILER_STRIP_GATE(80CC1418, &lit_3784);
+COMPILER_STRIP_GATE(0x80CC1418, &lit_3784);
 #pragma pop
 
 /* 80CC141C-80CC1420 00001C 0004+00 0/1 0/0 0/0 .rodata          @3785 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3785 = 2.0f / 5.0f;
-COMPILER_STRIP_GATE(80CC141C, &lit_3785);
+COMPILER_STRIP_GATE(0x80CC141C, &lit_3785);
 #pragma pop
 
 /* 80CC1420-80CC1424 000020 0004+00 0/1 0/0 0/0 .rodata          @3786 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3786 = 0.25f;
-COMPILER_STRIP_GATE(80CC1420, &lit_3786);
+COMPILER_STRIP_GATE(0x80CC1420, &lit_3786);
 #pragma pop
 
 /* 80CC1424-80CC1428 000024 0004+00 1/3 0/0 0/0 .rodata          @3787 */
 SECTION_RODATA static f32 const lit_3787 = 1.0f;
-COMPILER_STRIP_GATE(80CC1424, &lit_3787);
+COMPILER_STRIP_GATE(0x80CC1424, &lit_3787);
 
 /* 80CC0C20-80CC0EC4 000140 02A4+00 1/0 0/0 0/0 .text            Create__13daObj_Roten_cFv */
 #pragma push
@@ -280,6 +280,12 @@ asm void daObj_Roten_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80CC1440-80CC1440 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CC1440 = "Obj_roten";
+#pragma pop
+
 /* 80CC144C-80CC1450 -00001 0004+00 1/1 0/0 0/0 .data            l_resFileName */
 SECTION_DATA static void* l_resFileName = (void*)&d_a_obj_roten__stringBase0;
 
@@ -350,7 +356,7 @@ asm void daObj_Roten_c::create() {
 /* ############################################################################################## */
 /* 80CC1428-80CC142C 000028 0004+00 1/1 0/0 0/0 .rodata          @3844 */
 SECTION_RODATA static f32 const lit_3844 = -1.0f;
-COMPILER_STRIP_GATE(80CC1428, &lit_3844);
+COMPILER_STRIP_GATE(0x80CC1428, &lit_3844);
 
 /* 80CC1038-80CC1138 000558 0100+00 1/0 0/0 0/0 .text            Execute__13daObj_Roten_cFPPA3_A4_f
  */
@@ -368,35 +374,35 @@ asm void daObj_Roten_c::Execute(f32 (**param_0)[3][4]) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3853 = 0xBC6642FF;
-COMPILER_STRIP_GATE(80CC142C, &lit_3853);
+COMPILER_STRIP_GATE(0x80CC142C, &lit_3853);
 #pragma pop
 
 /* 80CC1430-80CC1434 000030 0004+00 0/1 0/0 0/0 .rodata          @3878 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3878 = 0.5f;
-COMPILER_STRIP_GATE(80CC1430, &lit_3878);
+COMPILER_STRIP_GATE(0x80CC1430, &lit_3878);
 #pragma pop
 
 /* 80CC1434-80CC1438 000034 0004+00 0/1 0/0 0/0 .rodata          @3879 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3879 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80CC1434, &lit_3879);
+COMPILER_STRIP_GATE(0x80CC1434, &lit_3879);
 #pragma pop
 
 /* 80CC1438-80CC143C 000038 0004+00 0/1 0/0 0/0 .rodata          @3880 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3880 = 0x38D1B717;
-COMPILER_STRIP_GATE(80CC1438, &lit_3880);
+COMPILER_STRIP_GATE(0x80CC1438, &lit_3880);
 #pragma pop
 
 /* 80CC143C-80CC1440 00003C 0004+00 0/1 0/0 0/0 .rodata          @3881 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3881 = 0x358637BD;
-COMPILER_STRIP_GATE(80CC143C, &lit_3881);
+COMPILER_STRIP_GATE(0x80CC143C, &lit_3881);
 #pragma pop
 
 /* 80CC1138-80CC1254 000658 011C+00 1/0 0/0 0/0 .text            Draw__13daObj_Roten_cFv */
@@ -484,9 +490,4 @@ asm daObj_Roten_c::~daObj_Roten_c() {
 }
 #pragma pop
 
-/* 80CC1440-80CC144A 000040 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CC1440 = "Obj_roten";
-#pragma pop
+/* 80CC1440-80CC1440 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -22,8 +22,8 @@ lbl_8074E530:
 /* 8074E538  2C 03 00 02 */	cmpwi r3, 2
 /* 8074E53C  40 82 00 38 */	bne lbl_8074E574
 /* 8074E540  38 00 00 00 */	li r0, 0
-/* 8074E544  3C 60 80 75 */	lis r3, struct_80757AD4+0x6@ha /* 0x80757ADA@ha */
-/* 8074E548  B0 03 7A DA */	sth r0, struct_80757AD4+0x6@l(r3)  /* 0x80757ADA@l */
+/* 8074E544  3C 60 80 75 */	lis r3, mAttackNo@ha /* 0x80757ADA@ha */
+/* 8074E548  B0 03 7A DA */	sth r0, mAttackNo@l(r3)  /* 0x80757ADA@l */
 /* 8074E54C  88 9E 05 BF */	lbz r4, 0x5bf(r30)
 /* 8074E550  28 04 00 FF */	cmplwi r4, 0xff
 /* 8074E554  41 82 00 18 */	beq lbl_8074E56C
@@ -90,8 +90,8 @@ lbl_8074E60C:
 /* 8074E634  D8 01 00 08 */	stfd f0, 8(r1)
 /* 8074E638  80 01 00 0C */	lwz r0, 0xc(r1)
 /* 8074E63C  54 00 06 3E */	clrlwi r0, r0, 0x18
-/* 8074E640  3C 60 80 75 */	lis r3, struct_80757AD4+0x6@ha /* 0x80757ADA@ha */
-/* 8074E644  B4 03 7A DA */	sthu r0, struct_80757AD4+0x6@l(r3)  /* 0x80757ADA@l */
+/* 8074E640  3C 60 80 75 */	lis r3, mAttackNo@ha /* 0x80757ADA@ha */
+/* 8074E644  B4 03 7A DA */	sthu r0, mAttackNo@l(r3)  /* 0x80757ADA@l */
 /* 8074E648  2C 00 00 06 */	cmpwi r0, 6
 /* 8074E64C  40 81 00 0C */	ble lbl_8074E658
 /* 8074E650  38 00 00 03 */	li r0, 3

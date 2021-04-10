@@ -353,7 +353,7 @@ asm void __sinit_JASHeapCtrl_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80290B14 = (void*)__sinit_JASHeapCtrl_cpp;
+REGISTER_CTORS(0x80290B14, __sinit_JASHeapCtrl_cpp);
 #pragma pop
 
 /* 80290B54-80290BCC 28B494 0078+00 1/1 3/3 0/0 .text            __dt__7JASHeapFv */

@@ -28,16 +28,16 @@ struct dMsgString_c {
     /* 80249D28 */ ~dMsgString_c();
 };
 
-struct COutFont_c {
-    /* 80225C94 */ COutFont_c(u8);
-};
-
 struct J2DTextBox {
     /* 80300658 */ void getStringPtr() const;
     /* 8030074C */ void setString(s16, char const*, ...);
 };
 
 struct JUTFont {};
+
+struct COutFont_c {
+    /* 80225C94 */ COutFont_c(u8);
+};
 
 struct dMsgObject_c {
     /* 802370A8 */ void isGetItemMessage();
@@ -58,8 +58,6 @@ struct J2DPane {
     /* 802F7100 */ void getBounds();
 };
 
-struct JKRExpHeap {};
-
 struct J2DGrafContext {};
 
 struct JKRArchive {};
@@ -69,6 +67,8 @@ struct J2DScreen {
     /* 802F8648 */ void setPriority(char const*, u32, JKRArchive*);
     /* 802F8ED4 */ void draw(f32, f32, J2DGrafContext const*);
 };
+
+struct JKRExpHeap {};
 
 struct CPaneMgr {
     /* 80253984 */ CPaneMgr(J2DScreen*, u64, u8, JKRExpHeap*);
@@ -185,15 +185,15 @@ struct dMeter2Info_c {
                                         J2DPicture*, void*, J2DPicture*, int);
 };
 
+struct JUtility {
+    struct TColor {};
+};
+
 struct CPaneMgrAlpha {
     /* 802555C8 */ void show();
     /* 80255608 */ void hide();
     /* 802557D0 */ void setAlphaRate(f32);
     /* 80255828 */ void getAlphaRate();
-};
-
-struct JUtility {
-    struct TColor {};
 };
 
 struct dMeter2Draw_c {
@@ -207,9 +207,9 @@ struct dComIfG_play_c {
     /* 8002C97C */ void getLayerNo(int);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -805,7 +805,7 @@ SECTION_RODATA static u8 const text_tag[80] = {
     0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x36, 0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x37,
     0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x38, 0x69, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x39,
 };
-COMPILER_STRIP_GATE(80398048, &text_tag);
+COMPILER_STRIP_GATE(0x80398048, &text_tag);
 
 /* 80398098-803980E8 0246F8 0050+00 1/1 0/0 0/0 .rodata          ftext_tag$5462 */
 SECTION_RODATA static u8 const ftext_tag[80] = {
@@ -815,7 +815,14 @@ SECTION_RODATA static u8 const ftext_tag[80] = {
     0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x36, 0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x37,
     0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x38, 0x66, 0x6E, 0x66, 0x6F, 0x5F, 0x61, 0x72, 0x39,
 };
-COMPILER_STRIP_GATE(80398098, &ftext_tag);
+COMPILER_STRIP_GATE(0x80398098, &ftext_tag);
+
+/* 803980E8-803980E8 024748 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803980E8 = "zelda_game_image_button_info.blo";
+SECTION_DEAD static char const* const stringBase_80398109 = "";
+#pragma pop
 
 /* 80454770-80454774 002D70 0004+00 4/4 0/0 0/0 .sdata2          @5628 */
 SECTION_SDATA2 static f32 lit_5628 = 0.5f;
@@ -854,6 +861,14 @@ asm void dMeterButton_c::screenInitButton() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803980E8-803980E8 024748 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039810A = "zelda_message_window_new.blo";
+SECTION_DEAD static char const* const stringBase_80398127 = "zelda_message_window_text.blo";
+#pragma pop
+
 /* 80205834-80205CA0 200174 046C+00 1/1 0/0 0/0 .text            screenInitText__14dMeterButton_cFv
  */
 #pragma push
@@ -866,6 +881,15 @@ asm void dMeterButton_c::screenInitText() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 803980E8-803980E8 024748 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80398145 = "F_SP00";
+SECTION_DEAD static char const* const stringBase_8039814C = "R_SP161";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80398154 = "\0\0\0";
+#pragma pop
+
 /* 80454794-80454798 002D94 0004+00 1/1 0/0 0/0 .sdata2          @6012 */
 SECTION_SDATA2 static f32 lit_6012 = -25.0f;
 
@@ -1539,16 +1563,4 @@ asm void dMeterButton_c::paneTrans(CPaneMgr* param_0, f32 param_1, f32 param_2, 
 }
 #pragma pop
 
-/* 803980E8-80398158 024748 006C+04 4/4 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803980E8 = "zelda_game_image_button_info.blo";
-SECTION_DEAD static char const* const stringBase_80398109 = "";
-SECTION_DEAD static char const* const stringBase_8039810A = "zelda_message_window_new.blo";
-SECTION_DEAD static char const* const stringBase_80398127 = "zelda_message_window_text.blo";
-SECTION_DEAD static char const* const stringBase_80398145 = "F_SP00";
-SECTION_DEAD static char const* const stringBase_8039814C = "R_SP161";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80398154 = "\0\0\0";
-#pragma pop
+/* 803980E8-803980E8 024748 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

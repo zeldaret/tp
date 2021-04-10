@@ -55,7 +55,7 @@ extern "C" bool _delete__10daSwBall_cFv();
 extern "C" static void daSwBall_Execute__FP10daSwBall_c();
 extern "C" static void daSwBall_Delete__FP10daSwBall_c();
 extern "C" static void daSwBall_Create__FP10fopAc_ac_c();
-extern "C" void func_80D4E974(u8*);
+extern "C" void func_80D4E974(void* _this, u8*);
 extern "C" extern void* g_profile_SwBall[12];
 
 //
@@ -106,20 +106,20 @@ static asm void s_ball_sub(void* param_0, void* param_1) {
 /* ############################################################################################## */
 /* 80D4E998-80D4E99C 000000 0004+00 2/2 0/0 0/0 .rodata          @3718 */
 SECTION_RODATA static f32 const lit_3718 = 10.0f;
-COMPILER_STRIP_GATE(80D4E998, &lit_3718);
+COMPILER_STRIP_GATE(0x80D4E998, &lit_3718);
 
 /* 80D4E99C-80D4E9A0 000004 0004+00 0/1 0/0 0/0 .rodata          @3719 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3719 = 100.0f;
-COMPILER_STRIP_GATE(80D4E99C, &lit_3719);
+COMPILER_STRIP_GATE(0x80D4E99C, &lit_3719);
 #pragma pop
 
 /* 80D4E9A0-80D4E9A4 000008 0004+00 0/1 0/0 0/0 .rodata          @3720 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3720 = -100.0f;
-COMPILER_STRIP_GATE(80D4E9A0, &lit_3720);
+COMPILER_STRIP_GATE(0x80D4E9A0, &lit_3720);
 #pragma pop
 
 /* 80D4E9A4-80D4E9A8 00000C 0004+00 0/2 0/0 0/0 .rodata          @3721 */
@@ -131,7 +131,7 @@ SECTION_RODATA static u8 const lit_3721[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D4E9A4, &lit_3721);
+COMPILER_STRIP_GATE(0x80D4E9A4, &lit_3721);
 #pragma pop
 
 /* 80D4E054-80D4E194 0000F4 0140+00 2/2 0/0 0/0 .text checkArea_sub__10daSwBall_cFP10fopAc_ac_c */
@@ -265,7 +265,7 @@ void daSwBall_c::actionStop() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3994 = 300.0f;
-COMPILER_STRIP_GATE(80D4E9A8, &lit_3994);
+COMPILER_STRIP_GATE(0x80D4E9A8, &lit_3994);
 #pragma pop
 
 /* 80D4E6C8-80D4E90C 000768 0244+00 1/1 0/0 0/0 .text            PutCrrPos__10daSwBall_cFv */
@@ -317,7 +317,7 @@ static asm void daSwBall_Create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80D4E974(u8* param_0) {
+extern "C" asm void func_80D4E974(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_swBall/d_a_swBall/func_80D4E974.s"
 }

@@ -13,12 +13,12 @@
 
 struct Vec {};
 
+struct cM3dGCyl {};
+
 struct cM3dGPla {
     /* 8026F52C */ void SetupNP(Vec const&, Vec const&);
     /* 8026F624 */ void Set(cM3dGPla const*);
 };
-
-struct cM3dGCyl {};
 
 struct cM3dGTri {
     /* 8026F7B0 */ void cross(cM3dGCyl const*, Vec*) const;

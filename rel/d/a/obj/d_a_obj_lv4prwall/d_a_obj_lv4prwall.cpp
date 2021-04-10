@@ -81,9 +81,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -177,7 +177,15 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 SECTION_RODATA static u8 const l_dzbidx[12] = {
     0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07,
 };
-COMPILER_STRIP_GATE(80C698E8, &l_dzbidx);
+COMPILER_STRIP_GATE(0x80C698E8, &l_dzbidx);
+
+/* 80C69974-80C69974 00008C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C69974 = "PRWallR09";
+SECTION_DEAD static char const* const stringBase_80C6997E = "P_Rwall";
+SECTION_DEAD static char const* const stringBase_80C69986 = "PRWallR04";
+#pragma pop
 
 /* 80C69990-80C6999C -00001 000C+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName[3] = {
@@ -201,7 +209,7 @@ asm void daObjLv4PRwall_c::create1st() {
 SECTION_RODATA static u8 const l_bmdidx[12] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04,
 };
-COMPILER_STRIP_GATE(80C698F4, &l_bmdidx);
+COMPILER_STRIP_GATE(0x80C698F4, &l_bmdidx);
 
 /* 80C69900-80C69948 000018 0048+00 1/1 0/0 0/0 .rodata          l_cull_box */
 SECTION_RODATA static u8 const l_cull_box[72] = {
@@ -211,21 +219,21 @@ SECTION_RODATA static u8 const l_cull_box[72] = {
     0x89, 0x90, 0x00, 0xC4, 0x89, 0x87, 0x5C, 0xC3, 0x48, 0x33, 0x33, 0xC4, 0x89, 0x87, 0x5C,
     0x44, 0x89, 0x87, 0x5C, 0x44, 0x7A, 0x2C, 0xCD, 0x44, 0x89, 0x87, 0x5C,
 };
-COMPILER_STRIP_GATE(80C69900, &l_cull_box);
+COMPILER_STRIP_GATE(0x80C69900, &l_cull_box);
 
 /* 80C69948-80C6994C 000060 0004+00 1/1 0/0 0/0 .rodata          @3688 */
 SECTION_RODATA static u32 const lit_3688 = 0x3C800000;
-COMPILER_STRIP_GATE(80C69948, &lit_3688);
+COMPILER_STRIP_GATE(0x80C69948, &lit_3688);
 
 /* 80C6994C-80C69950 000064 0004+00 1/1 0/0 0/0 .rodata          @3689 */
 SECTION_RODATA static f32 const lit_3689 = 2.0f;
-COMPILER_STRIP_GATE(80C6994C, &lit_3689);
+COMPILER_STRIP_GATE(0x80C6994C, &lit_3689);
 
 /* 80C69950-80C69958 000068 0008+00 1/1 0/0 0/0 .rodata          @3691 */
 SECTION_RODATA static u8 const lit_3691[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C69950, &lit_3691);
+COMPILER_STRIP_GATE(0x80C69950, &lit_3691);
 
 /* 80C68DD8-80C68F20 0001B8 0148+00 3/3 0/0 0/0 .text            setMtx__16daObjLv4PRwall_cFv */
 #pragma push
@@ -255,7 +263,7 @@ SECTION_RODATA static u8 const lit_3713[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C69958, &lit_3713);
+COMPILER_STRIP_GATE(0x80C69958, &lit_3713);
 
 /* 80C68FA0-80C69064 000380 00C4+00 1/0 0/0 0/0 .text            Create__16daObjLv4PRwall_cFv */
 #pragma push
@@ -282,42 +290,42 @@ static asm void searchObjSwTurn(void* param_0, void* param_1) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3959 = -2.0f;
-COMPILER_STRIP_GATE(80C6995C, &lit_3959);
+COMPILER_STRIP_GATE(0x80C6995C, &lit_3959);
 #pragma pop
 
 /* 80C69960-80C69964 000078 0004+00 0/1 0/0 0/0 .rodata          @3960 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3960 = 1.0f;
-COMPILER_STRIP_GATE(80C69960, &lit_3960);
+COMPILER_STRIP_GATE(0x80C69960, &lit_3960);
 #pragma pop
 
 /* 80C69964-80C69968 00007C 0004+00 0/1 0/0 0/0 .rodata          @3961 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3961 = -1.0f;
-COMPILER_STRIP_GATE(80C69964, &lit_3961);
+COMPILER_STRIP_GATE(0x80C69964, &lit_3961);
 #pragma pop
 
 /* 80C69968-80C6996C 000080 0004+00 0/1 0/0 0/0 .rodata          @3962 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3962 = 0.5f;
-COMPILER_STRIP_GATE(80C69968, &lit_3962);
+COMPILER_STRIP_GATE(0x80C69968, &lit_3962);
 #pragma pop
 
 /* 80C6996C-80C69970 000084 0004+00 0/1 0/0 0/0 .rodata          @3963 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3963 = -1.0f / 5.0f;
-COMPILER_STRIP_GATE(80C6996C, &lit_3963);
+COMPILER_STRIP_GATE(0x80C6996C, &lit_3963);
 #pragma pop
 
 /* 80C69970-80C69974 000088 0004+00 0/1 0/0 0/0 .rodata          @3964 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3964 = 20.0f;
-COMPILER_STRIP_GATE(80C69970, &lit_3964);
+COMPILER_STRIP_GATE(0x80C69970, &lit_3964);
 #pragma pop
 
 /* 80C690D8-80C696BC 0004B8 05E4+00 1/0 0/0 0/0 .text Execute__16daObjLv4PRwall_cFPPA3_A4_f */
@@ -442,11 +450,4 @@ asm daObjLv4PRwall_c::~daObjLv4PRwall_c() {
 }
 #pragma pop
 
-/* 80C69974-80C69990 00008C 001C+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C69974 = "PRWallR09";
-SECTION_DEAD static char const* const stringBase_80C6997E = "P_Rwall";
-SECTION_DEAD static char const* const stringBase_80C69986 = "PRWallR04";
-#pragma pop
+/* 80C69974-80C69974 00008C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

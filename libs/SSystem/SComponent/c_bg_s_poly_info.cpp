@@ -129,16 +129,10 @@ asm void cBgS_PolyInfo::ChkSafe(void const* param_0, unsigned int param_1) const
 }
 #pragma pop
 
-/* 802681A4-802681AC 262AE4 0008+00 0/0 11/11 0/0 .text            SetPolyIndex__13cBgS_PolyInfoFi
- */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgS_PolyInfo::SetPolyIndex(int param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_s_poly_info/SetPolyIndex__13cBgS_PolyInfoFi.s"
+/* 802681A4-802681AC -00001 0008+00 0/0 0/0 0/0 .text            SetPolyIndex__13cBgS_PolyInfoFi */
+void cBgS_PolyInfo::SetPolyIndex(int param_0) {
+    *(u16*)this = (u16)(param_0);
 }
-#pragma pop
 
 /* 802681AC-802681C0 262AEC 0014+00 0/0 3/3 0/0 .text            ChkBgIndex__13cBgS_PolyInfoCFv */
 #pragma push

@@ -28,15 +28,15 @@ struct J3DModelLoader_v26 {
     /* 80336F60 */ void calcSizeMaterialTable(J3DMaterialBlock const*, u32);
 };
 
-struct J3DModelInfoBlock {};
+struct J3DDrawBlock {};
+
+struct J3DMaterialDLBlock {};
 
 struct J3DJointBlock {};
 
-struct J3DDrawBlock {};
-
 struct J3DEnvelopeBlock {};
 
-struct J3DMaterialDLBlock {};
+struct J3DModelInfoBlock {};
 
 struct J3DModelLoader {
     /* 80336794 */ void countMaterialNum(void const*);
@@ -96,7 +96,7 @@ extern "C" void __ct__18J3DMaterialFactoryFRC18J3DMaterialDLBlock();
 extern "C" void countUniqueMaterials__18J3DMaterialFactoryFv();
 extern "C" void
 calcSize__18J3DMaterialFactoryCFP11J3DMaterialQ218J3DMaterialFactory12MaterialTypeiUl();
-extern "C" void func_8033674C(void const*, void const*);
+extern "C" void func_8033674C(void* _this, void const*, void const*);
 extern "C" void __ct__15J3DShapeFactoryFRC13J3DShapeBlock();
 extern "C" void calcSize__15J3DShapeFactoryFiUl();
 extern "C" void calcSizeVcdVatCmdBuffer__15J3DShapeFactoryFUl();
@@ -121,6 +121,15 @@ asm void J3DModelLoader::countMaterialNum(void const* param_0) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DModelLoaderCalcSize/countMaterialNum__14J3DModelLoaderFPCv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 803A20E8-803A20E8 02E748 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803A20E8 = "Unknown data block\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803A20FC = "\0\0\0";
 #pragma pop
 
 /* 803367D4-803369A0 331114 01CC+00 0/0 3/0 0/0 .text calcLoadSize__14J3DModelLoaderFPCvUl */
@@ -276,11 +285,4 @@ asm void J3DModelLoader::calcSizeMaterialDL(J3DMaterialDLBlock const* param_0, u
 }
 #pragma pop
 
-/* 803A20E8-803A2100 02E748 0014+04 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803A20E8 = "Unknown data block\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803A20FC = "\0\0\0";
-#pragma pop
+/* 803A20E8-803A20E8 02E748 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

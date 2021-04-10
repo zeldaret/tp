@@ -78,9 +78,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -213,7 +213,7 @@ extern "C" bool eventStart__17dEvLib_callback_cFv();
 extern "C" bool eventRun__17dEvLib_callback_cFv();
 extern "C" bool eventEnd__17dEvLib_callback_cFv();
 extern "C" void __dt__14daObjYtaihou_cFv();
-extern "C" void func_80BA1118(s16*);
+extern "C" void func_80BA1118(void* _this, s16*);
 extern "C" static void func_80BA1134();
 extern "C" static void func_80BA113C();
 extern "C" extern char const* const d_a_obj_Y_taihou__stringBase0;
@@ -304,27 +304,27 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80BA1154-80BA1158 000000 0004+00 4/4 0/0 0/0 .rodata          @3695 */
 SECTION_RODATA static f32 const lit_3695 = 150.0f;
-COMPILER_STRIP_GATE(80BA1154, &lit_3695);
+COMPILER_STRIP_GATE(0x80BA1154, &lit_3695);
 
 /* 80BA1158-80BA115C 000004 0004+00 0/1 0/0 0/0 .rodata          @3696 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3696 = 200.0f;
-COMPILER_STRIP_GATE(80BA1158, &lit_3696);
+COMPILER_STRIP_GATE(0x80BA1158, &lit_3696);
 #pragma pop
 
 /* 80BA115C-80BA1160 000008 0004+00 0/3 0/0 0/0 .rodata          @3697 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3697 = 1.0f;
-COMPILER_STRIP_GATE(80BA115C, &lit_3697);
+COMPILER_STRIP_GATE(0x80BA115C, &lit_3697);
 #pragma pop
 
 /* 80BA1160-80BA1164 00000C 0004+00 0/3 0/0 0/0 .rodata          @3698 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3698 = -1.0f;
-COMPILER_STRIP_GATE(80BA1160, &lit_3698);
+COMPILER_STRIP_GATE(0x80BA1160, &lit_3698);
 #pragma pop
 
 /* 80B9FAEC-80B9FC40 0000EC 0154+00 1/1 0/0 0/0 .text
@@ -347,7 +347,7 @@ SECTION_RODATA static u8 const lit_3733[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BA1164, &lit_3733);
+COMPILER_STRIP_GATE(0x80BA1164, &lit_3733);
 
 /* 80B9FC40-80B9FD20 000240 00E0+00 1/1 0/0 0/0 .text
  * pushPullcallBack__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel */
@@ -374,7 +374,7 @@ asm cXyz::~cXyz() {
 /* ############################################################################################## */
 /* 80BA1168-80BA116C 000014 0004+00 1/1 0/0 0/0 .rodata          @3749 */
 SECTION_RODATA static f32 const lit_3749 = 40000.0f;
-COMPILER_STRIP_GATE(80BA1168, &lit_3749);
+COMPILER_STRIP_GATE(0x80BA1168, &lit_3749);
 
 /* 80B9FD5C-80B9FDE8 00035C 008C+00 1/1 0/0 0/0 .text            searchIronBallCallback__FPvPv */
 #pragma push
@@ -387,6 +387,12 @@ static asm void searchIronBallCallback(void* param_0, void* param_1) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80BA11D4-80BA11D4 000080 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BA11D4 = "Y_taihou";
+#pragma pop
+
 /* 80BA11E0-80BA11E4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_Y_taihou__stringBase0;
 
@@ -471,28 +477,28 @@ asm void daObjYtaihou_c::setNextAngle() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3852 = 4.0f / 5.0f;
-COMPILER_STRIP_GATE(80BA116C, &lit_3852);
+COMPILER_STRIP_GATE(0x80BA116C, &lit_3852);
 #pragma pop
 
 /* 80BA1170-80BA1174 00001C 0004+00 0/1 0/0 0/0 .rodata          @3853 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3853 = 60.0f;
-COMPILER_STRIP_GATE(80BA1170, &lit_3853);
+COMPILER_STRIP_GATE(0x80BA1170, &lit_3853);
 #pragma pop
 
 /* 80BA1174-80BA1178 000020 0004+00 0/1 0/0 0/0 .rodata          @3854 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3854 = 59.0f;
-COMPILER_STRIP_GATE(80BA1174, &lit_3854);
+COMPILER_STRIP_GATE(0x80BA1174, &lit_3854);
 #pragma pop
 
 /* 80BA1178-80BA117C 000024 0004+00 0/1 0/0 0/0 .rodata          @3855 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3855 = 3.0f / 5.0f;
-COMPILER_STRIP_GATE(80BA1178, &lit_3855);
+COMPILER_STRIP_GATE(0x80BA1178, &lit_3855);
 #pragma pop
 
 /* 80BA117C-80BA1184 000028 0004+04 0/1 0/0 0/0 .rodata          @3856 */
@@ -503,7 +509,7 @@ SECTION_RODATA static f32 const lit_3856[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80BA117C, &lit_3856);
+COMPILER_STRIP_GATE(0x80BA117C, &lit_3856);
 #pragma pop
 
 /* 80BA1184-80BA118C 000030 0008+00 0/1 0/0 0/0 .rodata          @3858 */
@@ -512,7 +518,7 @@ COMPILER_STRIP_GATE(80BA117C, &lit_3856);
 SECTION_RODATA static u8 const lit_3858[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BA1184, &lit_3858);
+COMPILER_STRIP_GATE(0x80BA1184, &lit_3858);
 #pragma pop
 
 /* 80BA1318-80BA131C 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
@@ -629,7 +635,7 @@ asm void daObjYtaihou_c::setMtx() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3915 = 10.0f;
-COMPILER_STRIP_GATE(80BA118C, &lit_3915);
+COMPILER_STRIP_GATE(0x80BA118C, &lit_3915);
 #pragma pop
 
 /* 80BA0208-80BA045C 000808 0254+00 1/1 0/0 0/0 .text            rotateCheck__14daObjYtaihou_cFv */
@@ -649,7 +655,7 @@ asm void daObjYtaihou_c::rotateCheck() {
 SECTION_RODATA static u8 const l_hibanaOffset[12] = {
     0x00, 0x00, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BA1190, &l_hibanaOffset);
+COMPILER_STRIP_GATE(0x80BA1190, &l_hibanaOffset);
 #pragma pop
 
 /* 80BA119C-80BA11A8 000048 000C+00 0/1 0/0 0/0 .rodata          l_shotOffset$3961 */
@@ -658,7 +664,7 @@ COMPILER_STRIP_GATE(80BA1190, &l_hibanaOffset);
 SECTION_RODATA static u8 const l_shotOffset[12] = {
     0x00, 0x00, 0x00, 0x00, 0x43, 0x02, 0x00, 0x00, 0xC2, 0xC8, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BA119C, &l_shotOffset);
+COMPILER_STRIP_GATE(0x80BA119C, &l_shotOffset);
 #pragma pop
 
 /* 80BA11A8-80BA11B4 000054 000C+00 0/1 0/0 0/0 .rodata          l_shotSmokeOffset$3962 */
@@ -667,42 +673,42 @@ COMPILER_STRIP_GATE(80BA119C, &l_shotOffset);
 SECTION_RODATA static u8 const l_shotSmokeOffset[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BA11A8, &l_shotSmokeOffset);
+COMPILER_STRIP_GATE(0x80BA11A8, &l_shotSmokeOffset);
 #pragma pop
 
 /* 80BA11B4-80BA11B8 000060 0004+00 0/1 0/0 0/0 .rodata          @4105 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4105 = 55.0f;
-COMPILER_STRIP_GATE(80BA11B4, &lit_4105);
+COMPILER_STRIP_GATE(0x80BA11B4, &lit_4105);
 #pragma pop
 
 /* 80BA11B8-80BA11BC 000064 0004+00 0/1 0/0 0/0 .rodata          @4106 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4106 = 95.0f;
-COMPILER_STRIP_GATE(80BA11B8, &lit_4106);
+COMPILER_STRIP_GATE(0x80BA11B8, &lit_4106);
 #pragma pop
 
 /* 80BA11BC-80BA11C0 000068 0004+00 0/1 0/0 0/0 .rodata          @4107 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4107 = 9.0f / 5.0f;
-COMPILER_STRIP_GATE(80BA11BC, &lit_4107);
+COMPILER_STRIP_GATE(0x80BA11BC, &lit_4107);
 #pragma pop
 
 /* 80BA11C0-80BA11C4 00006C 0004+00 0/1 0/0 0/0 .rodata          @4108 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4108 = 210.0f;
-COMPILER_STRIP_GATE(80BA11C0, &lit_4108);
+COMPILER_STRIP_GATE(0x80BA11C0, &lit_4108);
 #pragma pop
 
 /* 80BA11C4-80BA11C8 000070 0004+00 0/1 0/0 0/0 .rodata          @4109 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4109 = 40.0f;
-COMPILER_STRIP_GATE(80BA11C4, &lit_4109);
+COMPILER_STRIP_GATE(0x80BA11C4, &lit_4109);
 #pragma pop
 
 /* 80BA1360-80BA1370 000050 000C+04 0/1 0/0 0/0 .bss             @3951 */
@@ -762,7 +768,7 @@ asm void daObjYtaihou_c::Create() {
 SECTION_RODATA static u8 const l_cc_offset[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BA11C8, &l_cc_offset);
+COMPILER_STRIP_GATE(0x80BA11C8, &l_cc_offset);
 
 /* 80BA0A94-80BA0B4C 001094 00B8+00 1/0 0/0 0/0 .text            Execute__14daObjYtaihou_cFPPA3_A4_f
  */
@@ -1002,7 +1008,7 @@ asm daObjYtaihou_c::~daObjYtaihou_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80BA1118(s16* param_0) {
+extern "C" asm void func_80BA1118(void* _this, s16* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_Y_taihou/d_a_obj_Y_taihou/func_80BA1118.s"
 }
@@ -1200,9 +1206,4 @@ static u8 data_80BA13D8[4];
 static u8 data_80BA13DC[4];
 #pragma pop
 
-/* 80BA11D4-80BA11DD 000080 0009+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BA11D4 = "Y_taihou";
-#pragma pop
+/* 80BA11D4-80BA11D4 000080 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

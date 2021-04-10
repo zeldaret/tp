@@ -49,18 +49,6 @@ struct TVector_pointer_void {
 
 namespace JStudio {
 namespace fvb {
-struct TObject;
-struct TControl {
-    /* 80284668 */ TControl();
-    /* 80284698 */ ~TControl();
-    /* 80284704 */ void appendObject(JStudio::fvb::TObject*);
-    /* 80284750 */ void removeObject(JStudio::fvb::TObject*);
-    /* 80284780 */ void destroyObject(JStudio::fvb::TObject*);
-    /* 802847D0 */ void destroyObject_all();
-    /* 80284834 */ void getObject(void const*, u32);
-    /* 802848D4 */ void getObject_index(u32);
-};
-
 struct data {
     struct TParse_TBlock {};
 
@@ -71,6 +59,18 @@ struct data {
     };
 
     static f32 ga4cSignature[1 + 1 /* padding */];
+};
+
+struct TObject;
+struct TControl {
+    /* 80284668 */ TControl();
+    /* 80284698 */ ~TControl();
+    /* 80284704 */ void appendObject(JStudio::fvb::TObject*);
+    /* 80284750 */ void removeObject(JStudio::fvb::TObject*);
+    /* 80284780 */ void destroyObject(JStudio::fvb::TObject*);
+    /* 802847D0 */ void destroyObject_all();
+    /* 80284834 */ void getObject(void const*, u32);
+    /* 802848D4 */ void getObject_index(u32);
 };
 
 struct TObject {
@@ -204,8 +204,8 @@ template <typename A1, typename B1>
 void find_if(/* ... */);
 /* 80285018 */ /* std::find_if<JGadget::TLinkList<JStudio::fvb::TObject, 12>::iterator,
                   JStudio::object::TPRObject_ID_equal> */
-void func_80285018(JGadget::TLinkList__template1::iterator, JGadget::TLinkList__template1::iterator,
-                   JStudio::object::TPRObject_ID_equal);
+void func_80285018(void* _this, JGadget::TLinkList__template1::iterator,
+                   JGadget::TLinkList__template1::iterator, JStudio::object::TPRObject_ID_equal);
 };  // namespace std
 
 //
@@ -262,7 +262,7 @@ extern "C" void __dt__Q37JStudio3fvb12TObject_listFv();
 extern "C" void __dt__Q37JStudio3fvb18TObject_transitionFv();
 extern "C" void __dt__Q37JStudio3fvb16TObject_constantFv();
 extern "C" void __dt__Q37JStudio3fvb17TObject_compositeFv();
-extern "C" void func_80285018(JGadget::TLinkList__template1::iterator,
+extern "C" void func_80285018(void* _this, JGadget::TLinkList__template1::iterator,
                               JGadget::TLinkList__template1::iterator,
                               JStudio::object::TPRObject_ID_equal);
 
@@ -591,7 +591,7 @@ SECTION_RODATA static void* const data_8039AA00[16] = {
     (void*)func_80282094, (void*)func_80284210, (void*)func_80282118, (void*)func_8028421C,
     (void*)func_80282200, (void*)func_80284228, (void*)func_80282284, (void*)func_80284234,
 };
-COMPILER_STRIP_GATE(8039AA00, &data_8039AA00);
+COMPILER_STRIP_GATE(0x8039AA00, &data_8039AA00);
 
 /* 80284240-80284254 27EB80 0014+00 1/1 0/0 0/0 .text
  * getCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@FQ47JStudio3fvb4data11TEComposite */
@@ -981,7 +981,7 @@ asm JStudio::fvb::TObject_composite::~TObject_composite() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80285018(JGadget::TLinkList__template1::iterator param_0,
+extern "C" asm void func_80285018(void* _this, JGadget::TLinkList__template1::iterator param_0,
                                   JGadget::TLinkList__template1::iterator param_1,
                                   JStudio::object::TPRObject_ID_equal param_2) {
     nofralloc

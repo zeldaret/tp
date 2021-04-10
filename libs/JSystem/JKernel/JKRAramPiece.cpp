@@ -30,7 +30,7 @@ template <typename A0>
 struct JSUList {};
 /* JSUList<JKRAMCommand> */
 struct JSUList__template5 {
-    /* 802D2DF0 */ void func_802D2DF0();
+    /* 802D2DF0 */ void func_802D2DF0(void* _this);
 };
 
 struct JKRHeap {
@@ -95,7 +95,7 @@ extern "C" void OSReport();
 extern "C" void free__7JKRHeapFPvP7JKRHeap();
 extern "C" void* __nw__FUlP7JKRHeapi();
 extern "C" void __dl__FPv();
-extern "C" void func_802D2DF0();
+extern "C" void func_802D2DF0(void* _this);
 extern "C" void sendCommand__9JKRDecompFP16JKRDecompCommand();
 extern "C" void __ct__10JSUPtrLinkFPv();
 extern "C" void __dt__10JSUPtrLinkFv();
@@ -131,7 +131,7 @@ extern "C" u8 sSystemHeap__7JKRHeap[4];
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm void JKRAramPiece::prepareCommand(int param_0, u32 param_1, u32 param_2, u32 param_3,
-                                      JKRAramBlock* param_4, void (*)(u32)) {
+                                      JKRAramBlock* param_4, void (*param_5)(u32)) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRAramPiece/prepareCommand__12JKRAramPieceFiUlUlUlP12JKRAramBlockPFUl_v.s"
 }
@@ -149,6 +149,18 @@ asm void JKRAramPiece::sendCommand(JKRAMCommand* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8039D0B8-8039D0B8 029718 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D0B8 = "direction = %x\n";
+SECTION_DEAD static char const* const stringBase_8039D0C8 = "source = %x\n";
+SECTION_DEAD static char const* const stringBase_8039D0D5 = "destination = %x\n";
+SECTION_DEAD static char const* const stringBase_8039D0E7 = "length = %x\n";
+SECTION_DEAD static char const* const stringBase_8039D0F4 = "JKRAramPiece.cpp";
+SECTION_DEAD static char const* const stringBase_8039D105 = "%s";
+SECTION_DEAD static char const* const stringBase_8039D108 = "illegal address. abort.";
+#pragma pop
+
 /* 80434318-80434324 061038 000C+00 1/1 0/0 0/0 .bss             @492 */
 static u8 lit_492[12];
 
@@ -164,7 +176,7 @@ u8 JKRAramPiece::mMutex[24];
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm void JKRAramPiece::orderAsync(int param_0, u32 param_1, u32 param_2, u32 param_3,
-                                  JKRAramBlock* param_4, void (*)(u32)) {
+                                  JKRAramBlock* param_4, void (*param_5)(u32)) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRAramPiece/orderAsync__12JKRAramPieceFiUlUlUlP12JKRAramBlockPFUl_v.s"
 }
@@ -244,18 +256,7 @@ asm void __sinit_JKRAramPiece_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_802D3B04 = (void*)__sinit_JKRAramPiece_cpp;
+REGISTER_CTORS(0x802D3B04, __sinit_JKRAramPiece_cpp);
 #pragma pop
 
-/* 8039D0B8-8039D120 029718 0068+00 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039D0B8 = "direction = %x\n";
-SECTION_DEAD static char const* const stringBase_8039D0C8 = "source = %x\n";
-SECTION_DEAD static char const* const stringBase_8039D0D5 = "destination = %x\n";
-SECTION_DEAD static char const* const stringBase_8039D0E7 = "length = %x\n";
-SECTION_DEAD static char const* const stringBase_8039D0F4 = "JKRAramPiece.cpp";
-SECTION_DEAD static char const* const stringBase_8039D105 = "%s";
-SECTION_DEAD static char const* const stringBase_8039D108 = "illegal address. abort.";
-#pragma pop
+/* 8039D0B8-8039D0B8 029718 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

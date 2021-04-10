@@ -117,6 +117,19 @@ static asm void print(char const* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80374460-80374460 000AC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80374460 =
+    "--------------------------------------\n";
+SECTION_DEAD static char const* const stringBase_80374488 = "-- Heap Free / TotalFree (KB) --\n";
+SECTION_DEAD static char const* const stringBase_803744AA = "  Zelda %5d / %5d\n";
+SECTION_DEAD static char const* const stringBase_803744BD = "   Game %5d / %5d\n";
+SECTION_DEAD static char const* const stringBase_803744D0 = "Archive %5d / %5d\n";
+SECTION_DEAD static char const* const stringBase_803744E3 = "--------------------------------\n";
+#pragma pop
+
 /* 80017E30-80017F8C 012770 015C+00 1/1 0/0 0/0 .text            dispHeapInfo__Fv */
 #pragma push
 #pragma optimization_level 0
@@ -127,6 +140,13 @@ static asm void dispHeapInfo() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80374460-80374460 000AC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80374505 = "Start StageName:RoomNo [%s:%d]\n";
+#pragma pop
+
 /* 80017F8C-80017FD0 0128CC 0044+00 1/1 0/0 0/0 .text            dispGameInfo__Fv */
 #pragma push
 #pragma optimization_level 0
@@ -135,6 +155,27 @@ static asm void dispGameInfo() {
     nofralloc
 #include "asm/m_Do/m_Do_machine_exception/dispGameInfo__Fv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80374460-80374460 000AC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80374525 =
+    "------------- Date Infomation ---------\n";
+SECTION_DEAD static char const* const stringBase_8037454E = " FINAL VERSION\n";
+SECTION_DEAD static char const* const stringBase_8037455E = "COMPILE USER: FINAL\n";
+SECTION_DEAD static char const* const stringBase_80374573 = "COPYDATE   : %17s\n";
+SECTION_DEAD static char const* const stringBase_80374586 =
+    "PowerOnTime: %04d/%2d/%2d %2d:%2d:%2d`%03d\"%03d\n";
+SECTION_DEAD static char const* const stringBase_803745B7 =
+    "HungUpTime : %04d/%2d/%2d %2d:%2d:%2d`%03d\"%03d\n";
+SECTION_DEAD static char const* const stringBase_803745E8 =
+    "PlayTime   : %4d days, %2d:%2d:%2d`%03d\"%03d\n";
+SECTION_DEAD static char const* const stringBase_80374616 =
+    "---------------------------------------\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8037463F = "";
 #pragma pop
 
 /* 80017FD0-80018124 012910 0154+00 1/1 0/0 0/0 .text            dispDateInfo__Fv */
@@ -185,31 +226,4 @@ u8 struct_80450C98[4];
 extern u8 struct_80450C9C[4];
 u8 struct_80450C9C[4];
 
-/* 80374460-80374640 000AC0 01DF+01 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80374460 =
-    "--------------------------------------\n";
-SECTION_DEAD static char const* const stringBase_80374488 = "-- Heap Free / TotalFree (KB) --\n";
-SECTION_DEAD static char const* const stringBase_803744AA = "  Zelda %5d / %5d\n";
-SECTION_DEAD static char const* const stringBase_803744BD = "   Game %5d / %5d\n";
-SECTION_DEAD static char const* const stringBase_803744D0 = "Archive %5d / %5d\n";
-SECTION_DEAD static char const* const stringBase_803744E3 = "--------------------------------\n";
-SECTION_DEAD static char const* const stringBase_80374505 = "Start StageName:RoomNo [%s:%d]\n";
-SECTION_DEAD static char const* const stringBase_80374525 =
-    "------------- Date Infomation ---------\n";
-SECTION_DEAD static char const* const stringBase_8037454E = " FINAL VERSION\n";
-SECTION_DEAD static char const* const stringBase_8037455E = "COMPILE USER: FINAL\n";
-SECTION_DEAD static char const* const stringBase_80374573 = "COPYDATE   : %17s\n";
-SECTION_DEAD static char const* const stringBase_80374586 =
-    "PowerOnTime: %04d/%2d/%2d %2d:%2d:%2d`%03d\"%03d\n";
-SECTION_DEAD static char const* const stringBase_803745B7 =
-    "HungUpTime : %04d/%2d/%2d %2d:%2d:%2d`%03d\"%03d\n";
-SECTION_DEAD static char const* const stringBase_803745E8 =
-    "PlayTime   : %4d days, %2d:%2d:%2d`%03d\"%03d\n";
-SECTION_DEAD static char const* const stringBase_80374616 =
-    "---------------------------------------\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037463F = "";
-#pragma pop
+/* 80374460-80374460 000AC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

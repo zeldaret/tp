@@ -111,8 +111,8 @@ struct JStudio_JStage {
     struct TVariableValueOutput_object_ {};
     /* TVariableValueOutput_object_<JStudio_JStage::TAdaptor_actor, JStage::TActor> */
     struct TVariableValueOutput_object___template0 {
-        /* 8028B580 */ void func_8028B580();
-        /* 8028B5E0 */ void func_8028B5E0(f32, JStudio::TAdaptor*) /* const */;
+        /* 8028B580 */ void func_8028B580(void* _this);
+        /* 8028B5E0 */ void func_8028B5E0(void* _this, f32, JStudio::TAdaptor*) /* const */;
     };
 
     struct TAdaptor_object_ {
@@ -173,8 +173,8 @@ __cl__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_CFfPQ27JStud
 extern "C" void __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv();
 extern "C" void func_8028B198();
 extern "C" void __ct__Q27JStudio14TVariableValueFv();
-extern "C" void func_8028B580();
-extern "C" void func_8028B5E0(f32, JStudio::TAdaptor*);
+extern "C" void func_8028B580(void* _this);
+extern "C" void func_8028B5E0(void* _this, f32, JStudio::TAdaptor*);
 extern "C" u8 saoVVOutput___Q214JStudio_JStage14TAdaptor_actor[64];
 extern "C" u8
     saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor[144 + 4 /* padding */];
@@ -650,7 +650,7 @@ JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION_ENABLE(JStudio::data::TEOper
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JStudio_JStage::TAdaptor_actor::setJSG_ID_(void (JStage::TActor::*)(u32),
+asm void JStudio_JStage::TAdaptor_actor::setJSG_ID_(void (JStage::TActor::*param_0)(u32),
                                                     JStudio::data::TEOperationData param_1,
                                                     void const* param_2, u32 param_3) {
     nofralloc
@@ -740,7 +740,7 @@ asm void func_8028B198() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8028B198 = (void*)func_8028B198;
+REGISTER_CTORS(0x8028B198, func_8028B198);
 #pragma pop
 
 /* 8028B568-8028B580 285EA8 0018+00 1/1 6/6 0/0 .text            __ct__Q27JStudio14TVariableValueFv
@@ -760,7 +760,7 @@ asm JStudio::TVariableValue::TVariableValue() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8028B580() {
+extern "C" asm void func_8028B580(void* _this) {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio_JStage/object-actor/func_8028B580.s"
 }
@@ -772,7 +772,8 @@ extern "C" asm void func_8028B580() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8028B5E0(f32 param_0, JStudio::TAdaptor* param_1) /* const */ {
+extern "C" asm void func_8028B5E0(void* _this, f32 param_0,
+                                  JStudio::TAdaptor* param_1) /* const */ {
     nofralloc
 #include "asm/JSystem/JStudio/JStudio_JStage/object-actor/func_8028B5E0.s"
 }

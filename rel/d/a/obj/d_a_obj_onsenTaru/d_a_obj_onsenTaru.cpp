@@ -104,9 +104,9 @@ struct dPa_modelEcallBack {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -334,11 +334,11 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80CA9B78-80CA9B7C 000000 0004+00 7/7 0/0 0/0 .rodata          @3655 */
 SECTION_RODATA static f32 const lit_3655 = 1.0f;
-COMPILER_STRIP_GATE(80CA9B78, &lit_3655);
+COMPILER_STRIP_GATE(0x80CA9B78, &lit_3655);
 
 /* 80CA9B7C-80CA9B80 000004 0004+00 1/2 0/0 0/0 .rodata          @3656 */
 SECTION_RODATA static f32 const lit_3656 = 125.0f;
-COMPILER_STRIP_GATE(80CA9B7C, &lit_3656);
+COMPILER_STRIP_GATE(0x80CA9B7C, &lit_3656);
 
 /* 80CA9C18-80CA9C24 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -569,6 +569,13 @@ asm void daOnsTaru_c::setBaseMtx() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80CA9BF4-80CA9BF4 00007C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CA9BF4 = "maroTaru";
+#pragma pop
+
 /* 80CA8748-80CA87B4 000268 006C+00 1/0 0/0 0/0 .text            CreateHeap__11daOnsTaru_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -586,31 +593,31 @@ SECTION_RODATA u8 const daOnsTaru_c::mCcDObjInfo[48] = {
     0xD8, 0xFA, 0xDD, 0xAF, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x01, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CA9B80, &daOnsTaru_c::mCcDObjInfo);
+COMPILER_STRIP_GATE(0x80CA9B80, &daOnsTaru_c::mCcDObjInfo);
 
 /* 80CA9BB0-80CA9BB4 000038 0004+00 0/2 0/0 0/0 .rodata          @3772 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3772 = 110.0f;
-COMPILER_STRIP_GATE(80CA9BB0, &lit_3772);
+COMPILER_STRIP_GATE(0x80CA9BB0, &lit_3772);
 #pragma pop
 
 /* 80CA9BB4-80CA9BB8 00003C 0004+00 0/2 0/0 0/0 .rodata          @3773 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3773 = 50.0f;
-COMPILER_STRIP_GATE(80CA9BB4, &lit_3773);
+COMPILER_STRIP_GATE(0x80CA9BB4, &lit_3773);
 #pragma pop
 
 /* 80CA9BB8-80CA9BBC 000040 0004+00 2/4 0/0 0/0 .rodata          @3774 */
 SECTION_RODATA static f32 const lit_3774 = -7.0f;
-COMPILER_STRIP_GATE(80CA9BB8, &lit_3774);
+COMPILER_STRIP_GATE(0x80CA9BB8, &lit_3774);
 
 /* 80CA9BBC-80CA9BC0 000044 0004+00 0/1 0/0 0/0 .rodata          @3775 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3775 = -100.0f;
-COMPILER_STRIP_GATE(80CA9BBC, &lit_3775);
+COMPILER_STRIP_GATE(0x80CA9BBC, &lit_3775);
 #pragma pop
 
 /* 80CA87B4-80CA8A54 0002D4 02A0+00 1/1 0/0 0/0 .text            create__11daOnsTaru_cFv */
@@ -687,7 +694,7 @@ asm void daOnsTaru_c::createHeapCallBack(fopAc_ac_c* param_0) {
 /* ############################################################################################## */
 /* 80CA9BC0-80CA9BC4 000048 0004+00 1/2 0/0 0/0 .rodata          @3863 */
 SECTION_RODATA static f32 const lit_3863 = 100.0f;
-COMPILER_STRIP_GATE(80CA9BC0, &lit_3863);
+COMPILER_STRIP_GATE(0x80CA9BC0, &lit_3863);
 
 /* 80CA8C4C-80CA8C70 00076C 0024+00 1/1 0/0 0/0 .text            chkSinkAll__11daOnsTaru_cFv */
 #pragma push
@@ -702,7 +709,7 @@ asm void daOnsTaru_c::chkSinkAll() {
 /* ############################################################################################## */
 /* 80CA9BC4-80CA9BC8 00004C 0004+00 1/1 0/0 0/0 .rodata          @3869 */
 SECTION_RODATA static f32 const lit_3869 = 40.0f;
-COMPILER_STRIP_GATE(80CA9BC4, &lit_3869);
+COMPILER_STRIP_GATE(0x80CA9BC4, &lit_3869);
 
 /* 80CA8C70-80CA8C94 000790 0024+00 3/3 0/0 0/0 .text            chkWaterLineIn__11daOnsTaru_cFv */
 #pragma push
@@ -719,28 +726,28 @@ asm void daOnsTaru_c::chkWaterLineIn() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3950 = -1.0f;
-COMPILER_STRIP_GATE(80CA9BC8, &lit_3950);
+COMPILER_STRIP_GATE(0x80CA9BC8, &lit_3950);
 #pragma pop
 
 /* 80CA9BCC-80CA9BD0 000054 0004+00 0/2 0/0 0/0 .rodata          @3951 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3951 = -15.0f;
-COMPILER_STRIP_GATE(80CA9BCC, &lit_3951);
+COMPILER_STRIP_GATE(0x80CA9BCC, &lit_3951);
 #pragma pop
 
 /* 80CA9BD0-80CA9BD4 000058 0004+00 0/1 0/0 0/0 .rodata          @3952 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3952 = 2.0f;
-COMPILER_STRIP_GATE(80CA9BD0, &lit_3952);
+COMPILER_STRIP_GATE(0x80CA9BD0, &lit_3952);
 #pragma pop
 
 /* 80CA9BD4-80CA9BD8 00005C 0004+00 0/2 0/0 0/0 .rodata          @3953 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3953 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80CA9BD4, &lit_3953);
+COMPILER_STRIP_GATE(0x80CA9BD4, &lit_3953);
 #pragma pop
 
 /* 80CA8C94-80CA8F38 0007B4 02A4+00 1/1 0/0 0/0 .text            bgCheck__11daOnsTaru_cFv */
@@ -792,7 +799,7 @@ SECTION_RODATA static u8 const lit_4020[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CA9BD8, &lit_4020);
+COMPILER_STRIP_GATE(0x80CA9BD8, &lit_4020);
 
 /* 80CA929C-80CA92CC 000DBC 0030+00 2/2 0/0 0/0 .text            mode_init_wait__11daOnsTaru_cFv */
 #pragma push
@@ -884,35 +891,35 @@ asm void daOnsTaru_c::mode_init_sink() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4132 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(80CA9BDC, &lit_4132);
+COMPILER_STRIP_GATE(0x80CA9BDC, &lit_4132);
 #pragma pop
 
 /* 80CA9BE0-80CA9BE4 000068 0004+00 0/1 0/0 0/0 .rodata          @4133 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4133 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(80CA9BE0, &lit_4133);
+COMPILER_STRIP_GATE(0x80CA9BE0, &lit_4133);
 #pragma pop
 
 /* 80CA9BE4-80CA9BE8 00006C 0004+00 0/1 0/0 0/0 .rodata          @4134 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4134 = 13.0f;
-COMPILER_STRIP_GATE(80CA9BE4, &lit_4134);
+COMPILER_STRIP_GATE(0x80CA9BE4, &lit_4134);
 #pragma pop
 
 /* 80CA9BE8-80CA9BEC 000070 0004+00 0/1 0/0 0/0 .rodata          @4135 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4135 = 9.0f / 10.0f;
-COMPILER_STRIP_GATE(80CA9BE8, &lit_4135);
+COMPILER_STRIP_GATE(0x80CA9BE8, &lit_4135);
 #pragma pop
 
 /* 80CA9BEC-80CA9BF0 000074 0004+00 0/1 0/0 0/0 .rodata          @4136 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4136 = -6.0f;
-COMPILER_STRIP_GATE(80CA9BEC, &lit_4136);
+COMPILER_STRIP_GATE(0x80CA9BEC, &lit_4136);
 #pragma pop
 
 /* 80CA9530-80CA9620 001050 00F0+00 1/0 0/0 0/0 .text            mode_proc_sink__11daOnsTaru_cFv */
@@ -928,7 +935,14 @@ asm void daOnsTaru_c::mode_proc_sink() {
 /* ############################################################################################## */
 /* 80CA9BF0-80CA9BF4 000078 0004+00 1/1 0/0 0/0 .rodata          @4186 */
 SECTION_RODATA static f32 const lit_4186 = 0.75f;
-COMPILER_STRIP_GATE(80CA9BF0, &lit_4186);
+COMPILER_STRIP_GATE(0x80CA9BF0, &lit_4186);
+
+/* 80CA9BF4-80CA9BF4 00007C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CA9BFD = "Always";
+SECTION_DEAD static char const* const stringBase_80CA9C04 = "BreakWoodBox.bmd";
+#pragma pop
 
 /* 80CA9620-80CA98B8 001140 0298+00 1/1 0/0 0/0 .text            breakEffSet__11daOnsTaru_cFv */
 #pragma push
@@ -1034,7 +1048,7 @@ asm void __sinit_d_a_obj_onsenTaru_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80CA9AE4 = (void*)__sinit_d_a_obj_onsenTaru_cpp;
+REGISTER_CTORS(0x80CA9AE4, __sinit_d_a_obj_onsenTaru_cpp);
 #pragma pop
 
 /* 80CA9B54-80CA9B5C 001674 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
@@ -1057,11 +1071,4 @@ static asm void func_80CA9B5C() {
 }
 #pragma pop
 
-/* 80CA9BF4-80CA9C15 00007C 0021+00 4/4 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CA9BF4 = "maroTaru";
-SECTION_DEAD static char const* const stringBase_80CA9BFD = "Always";
-SECTION_DEAD static char const* const stringBase_80CA9C04 = "BreakWoodBox.bmd";
-#pragma pop
+/* 80CA9BF4-80CA9BF4 00007C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

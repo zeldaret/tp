@@ -61,15 +61,10 @@ asm dBgPlc::~dBgPlc() {
 }
 #pragma pop
 
-/* 800740BC-800740C4 06E9FC 0008+00 0/0 1/1 0/0 .text            setBase__6dBgPlcFPv */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgPlc::setBase(void* param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_plc/setBase__6dBgPlcFPv.s"
+/* 800740BC-800740C4 -00001 0008+00 0/0 0/0 0/0 .text            setBase__6dBgPlcFPv */
+void dBgPlc::setBase(void* param_0) {
+    *(u32*)this = (u32)(param_0);
 }
-#pragma pop
 
 /* 800740C4-800740DC 06EA04 0018+00 0/0 1/1 0/0 .text            getCode__6dBgPlcCFiPP5sBgPc */
 #pragma push

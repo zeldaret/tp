@@ -93,7 +93,7 @@ struct dStage_roomControl_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
+struct dKy_tevstr_c {};
 
 struct cBgS_PolyInfo {};
 
@@ -103,7 +103,7 @@ struct csXyz {
     static u8 Zero[4];
 };
 
-struct dKy_tevstr_c {};
+struct _GXColor {};
 
 struct dPa_control_c {
     struct level_c {
@@ -122,7 +122,6 @@ struct dEvt_control_c {
     /* 80041668 */ void order(u16, u16, u16, u16, void*, void*, s16, u8);
     /* 800432EC */ void convPId(unsigned int);
     /* 80043500 */ void searchMapEventData(u8, s32);
-    /* 80043724 */ void setGtItm(u8);
 };
 
 struct dEvent_manager_c {
@@ -506,7 +505,7 @@ extern "C" extern u8 data_80451164[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopAcM_FastCreate(s16 param_0, int (*)(void*), void* param_2, void* param_3) {
+asm void fopAcM_FastCreate(s16 param_0, int (*param_1)(void*), void* param_2, void* param_3) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_FastCreate__FsPFPv_iPvPv.s"
 }
@@ -584,6 +583,13 @@ static void fopAcM_Log(fopAc_ac_c const* param_0, char const* param_1) {
     /* empty function */
 }
 
+/* ############################################################################################## */
+/* 803788C8-803788C8 004F28 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803788C8 = "アクターの削除";
+#pragma pop
+
 /* 80019C7C-80019CB8 0145BC 003C+00 0/0 10/10 483/483 .text            fopAcM_delete__FP10fopAc_ac_c
  */
 #pragma push
@@ -612,7 +618,7 @@ asm void fopAcM_delete(unsigned int param_0) {
 #pragma optimizewithasm off
 static asm void fopAcM_create(s16 param_0, u16 param_1, u32 param_2, cXyz const* param_3,
                               int param_4, csXyz const* param_5, cXyz const* param_6, s8 param_7,
-                              int (*)(void*)) {
+                              int (*param_8)(void*)) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_create__FsUsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i.s"
 }
@@ -636,8 +642,8 @@ asm void fopAcM_create(s16 param_0, u32 param_1, cXyz const* param_2, int param_
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm void fopAcM_fastCreate(s16 param_0, u32 param_1, cXyz const* param_2, int param_3,
-                           csXyz const* param_4, cXyz const* param_5, s8 param_6, int (*)(void*),
-                           void* param_8) {
+                           csXyz const* param_4, cXyz const* param_5, s8 param_6,
+                           int (*param_7)(void*), void* param_8) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv.s"
 }
@@ -649,7 +655,7 @@ asm void fopAcM_fastCreate(s16 param_0, u32 param_1, cXyz const* param_2, int pa
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm void fopAcM_fastCreate(char const* param_0, u32 param_1, cXyz const* param_2, int param_3,
-                           csXyz const* param_4, cXyz const* param_5, int (*)(void*),
+                           csXyz const* param_4, cXyz const* param_5, int (*param_6)(void*),
                            void* param_7) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_fastCreate__FPCcUlPC4cXyziPC5csXyzPC4cXyzPFPv_iPv.s"
@@ -663,7 +669,7 @@ asm void fopAcM_fastCreate(char const* param_0, u32 param_1, cXyz const* param_2
 #pragma optimizewithasm off
 asm void fopAcM_createChild(s16 param_0, unsigned int param_1, u32 param_2, cXyz const* param_3,
                             int param_4, csXyz const* param_5, cXyz const* param_6, s8 param_7,
-                            int (*)(void*)) {
+                            int (*param_8)(void*)) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i.s"
 }
@@ -676,10 +682,19 @@ asm void fopAcM_createChild(s16 param_0, unsigned int param_1, u32 param_2, cXyz
 #pragma optimizewithasm off
 asm void fopAcM_createChildFromOffset(s16 param_0, unsigned int param_1, u32 param_2,
                                       cXyz const* param_3, int param_4, csXyz const* param_5,
-                                      cXyz const* param_6, s8 param_7, int (*)(void*)) {
+                                      cXyz const* param_6, s8 param_7, int (*param_8)(void*)) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_createChildFromOffset__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 803788C8-803788C8 004F28 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803788D7 = "アクターのヒープの生成";
+SECTION_DEAD static char const* const stringBase_803788EE = "fopAcM_createHeap 確保失敗\n";
+SECTION_DEAD static char const* const stringBase_8037890A = "アクターのヒープの破壊";
 #pragma pop
 
 /* 8001A138-8001A188 014A78 0050+00 0/0 1/1 1/1 .text            fopAcM_DeleteHeap__FP10fopAc_ac_c
@@ -698,13 +713,32 @@ asm void fopAcM_DeleteHeap(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void fopAcM_callCallback(fopAc_ac_c* param_0, int (*)(fopAc_ac_c*), JKRHeap* param_2) {
+static asm void fopAcM_callCallback(fopAc_ac_c* param_0, int (*param_1)(fopAc_ac_c*),
+                                    JKRHeap* param_2) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_callCallback__FP10fopAc_ac_cPFP10fopAc_ac_c_iP7JKRHeap.s"
 }
 #pragma pop
 
 /* ############################################################################################## */
+/* 803788C8-803788C8 004F28 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378921 =
+    "見積もりヒープサイズ(%08x)で登録失敗しました。%08x[%s]\n";
+SECTION_DEAD static char const* const stringBase_80378959 =
+    "見積もりヒープが確保できませんでした。 %08x [%s]\n";
+SECTION_DEAD static char const* const stringBase_8037898B =
+    "最大空きヒープサイズで確保失敗。[%s]\n";
+SECTION_DEAD static char const* const stringBase_803789B1 =
+    "最大空きヒープサイズで登録失敗。%08x[%s]\n";
+SECTION_DEAD static char const* const stringBase_803789DB = "ぴったりサイズで、登録失敗？(バグ)\n";
+SECTION_DEAD static char const* const stringBase_803789FF = "ばぐばぐです\n";
+SECTION_DEAD static char const* const stringBase_80378A0D = "緊急回避措置\n";
+SECTION_DEAD static char const* const stringBase_80378A1B =
+    "fopAcM_entrySolidHeap だめでした [%s]\n";
+#pragma pop
+
 /* 80450CC8-80450CCC -00001 0004+00 2/2 0/0 0/0 .sbss            None */
 /* 80450CC8 0001+00 data_80450CC8 None */
 /* 80450CC9 0003+00 data_80450CC9 None */
@@ -715,7 +749,8 @@ static u8 struct_80450CC8[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void fopAcM_entrySolidHeap_(fopAc_ac_c* param_0, int (*)(fopAc_ac_c*), u32 param_2) {
+static asm void fopAcM_entrySolidHeap_(fopAc_ac_c* param_0, int (*param_1)(fopAc_ac_c*),
+                                       u32 param_2) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_entrySolidHeap___FP10fopAc_ac_cPFP10fopAc_ac_c_iUl.s"
 }
@@ -726,7 +761,7 @@ static asm void fopAcM_entrySolidHeap_(fopAc_ac_c* param_0, int (*)(fopAc_ac_c*)
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopAcM_entrySolidHeap(fopAc_ac_c* param_0, int (*)(fopAc_ac_c*), u32 param_2) {
+asm void fopAcM_entrySolidHeap(fopAc_ac_c* param_0, int (*param_1)(fopAc_ac_c*), u32 param_2) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl.s"
 }
@@ -951,13 +986,13 @@ asm void fopAcM_rollPlayerCrash(fopAc_ac_c const* param_0, f32 param_1, u32 para
 SECTION_RODATA static u8 const lit_4932[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80378880, &lit_4932);
+COMPILER_STRIP_GATE(0x80378880, &lit_4932);
 
 /* 8037888C-80378898 004EEC 000C+00 1/1 0/0 0/0 .rodata          @4933 */
 SECTION_RODATA static u8 const lit_4933[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8037888C, &lit_4933);
+COMPILER_STRIP_GATE(0x8037888C, &lit_4933);
 
 /* 8001AC40-8001ACEC 015580 00AC+00 0/0 0/0 2/2 .text fopAcM_checkCullingBox__FPA4_fffffff */
 #pragma push
@@ -1402,7 +1437,7 @@ SECTION_SDATA2 static f32 lit_5812 = 1.0f / 5.0f;
 #pragma optimizewithasm off
 asm void fopAcM_fastCreateItem(cXyz const* param_0, int param_1, int param_2, csXyz const* param_3,
                                cXyz const* param_4, f32* param_5, f32* param_6, int param_7,
-                               int param_8, int (*)(void*)) {
+                               int param_8, int (*param_9)(void*)) {
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_fastCreateItem__FPC4cXyziiPC5csXyzPC4cXyzPfPfiiPFPv_i.s"
 }
@@ -1670,7 +1705,7 @@ SECTION_RODATA static u8 const mtx_adj[48] = {
     0x00, 0x00, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80378898, &mtx_adj);
+COMPILER_STRIP_GATE(0x80378898, &mtx_adj);
 
 /* 8001D42C-8001D5A4 017D6C 0178+00 0/0 3/3 40/40 .text
  * fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData         */
@@ -1681,6 +1716,15 @@ asm void fopAcM_setEffectMtx(fopAc_ac_c const* param_0, J3DModelData const* para
     nofralloc
 #include "asm/f_op/f_op_actor_mng/fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 803788C8-803788C8 004F28 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378A42 = "UNKOWN";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80378A49 = "\0\0\0\0\0\0";
 #pragma pop
 
 /* 8001D5A4-8001D5EC 017EE4 0048+00 1/1 0/0 0/0 .text fopAcM_getProcNameString__FPC10fopAc_ac_c */
@@ -1958,7 +2002,7 @@ asm void __sinit_f_op_actor_mng_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8001DE14 = (void*)__sinit_f_op_actor_mng_cpp;
+REGISTER_CTORS(0x8001DE14, __sinit_f_op_actor_mng_cpp);
 #pragma pop
 
 /* 8001DF30-8001DFA8 018870 0078+00 5/4 0/0 0/0 .text            __dt__11dBgS_WtrChkFv */
@@ -2116,28 +2160,4 @@ s32 daPy_py_c::getGrabActorID() const {
     return -1;
 }
 
-/* 803788C8-80378A50 004F28 0181+07 5/5 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803788C8 = "アクターの削除";
-SECTION_DEAD static char const* const stringBase_803788D7 = "アクターのヒープの生成";
-SECTION_DEAD static char const* const stringBase_803788EE = "fopAcM_createHeap 確保失敗\n";
-SECTION_DEAD static char const* const stringBase_8037890A = "アクターのヒープの破壊";
-SECTION_DEAD static char const* const stringBase_80378921 =
-    "見積もりヒープサイズ(%08x)で登録失敗しました。%08x[%s]\n";
-SECTION_DEAD static char const* const stringBase_80378959 =
-    "見積もりヒープが確保できませんでした。 %08x [%s]\n";
-SECTION_DEAD static char const* const stringBase_8037898B =
-    "最大空きヒープサイズで確保失敗。[%s]\n";
-SECTION_DEAD static char const* const stringBase_803789B1 =
-    "最大空きヒープサイズで登録失敗。%08x[%s]\n";
-SECTION_DEAD static char const* const stringBase_803789DB = "ぴったりサイズで、登録失敗？(バグ)\n";
-SECTION_DEAD static char const* const stringBase_803789FF = "ばぐばぐです\n";
-SECTION_DEAD static char const* const stringBase_80378A0D = "緊急回避措置\n";
-SECTION_DEAD static char const* const stringBase_80378A1B =
-    "fopAcM_entrySolidHeap だめでした [%s]\n";
-SECTION_DEAD static char const* const stringBase_80378A42 = "UNKOWN";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80378A49 = "\0\0\0\0\0\0";
-#pragma pop
+/* 803788C8-803788C8 004F28 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

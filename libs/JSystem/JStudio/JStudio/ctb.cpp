@@ -97,8 +97,8 @@ template <typename A1, typename B1>
 void find_if(/* ... */);
 /* 802815B4 */ /* std::find_if<JGadget::TLinkList<JStudio::ctb::TObject, 12>::iterator,
                   JStudio::object::TPRObject_ID_equal> */
-void func_802815B4(JGadget::TLinkList__template0::iterator, JGadget::TLinkList__template0::iterator,
-                   JStudio::object::TPRObject_ID_equal);
+void func_802815B4(void* _this, JGadget::TLinkList__template0::iterator,
+                   JGadget::TLinkList__template0::iterator, JStudio::object::TPRObject_ID_equal);
 };  // namespace std
 
 //
@@ -124,7 +124,7 @@ extern "C" void __dt__Q37JStudio3ctb6TParseFv();
 extern "C" void parseHeader_next__Q37JStudio3ctb6TParseFPPCvPUlUl();
 extern "C" void parseBlock_next__Q37JStudio3ctb6TParseFPPCvPUlUl();
 extern "C" void __dt__Q37JStudio3ctb14TObject_TxyzRyFv();
-extern "C" void func_802815B4(JGadget::TLinkList__template0::iterator,
+extern "C" void func_802815B4(void* _this, JGadget::TLinkList__template0::iterator,
                               JGadget::TLinkList__template0::iterator,
                               JStudio::object::TPRObject_ID_equal);
 
@@ -401,7 +401,7 @@ asm JStudio::ctb::TObject_TxyzRy::~TObject_TxyzRy() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802815B4(JGadget::TLinkList__template0::iterator param_0,
+extern "C" asm void func_802815B4(void* _this, JGadget::TLinkList__template0::iterator param_0,
                                   JGadget::TLinkList__template0::iterator param_1,
                                   JStudio::object::TPRObject_ID_equal param_2) {
     nofralloc

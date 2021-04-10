@@ -162,7 +162,7 @@ extern "C" static void daObjSmgDoor_create1st__FP14daObjSmgDoor_c();
 extern "C" static void daObjSmgDoor_MoveBGDelete__FP14daObjSmgDoor_c();
 extern "C" static void daObjSmgDoor_MoveBGExecute__FP14daObjSmgDoor_c();
 extern "C" static void daObjSmgDoor_MoveBGDraw__FP14daObjSmgDoor_c();
-extern "C" void func_80CDCBD0(u8*);
+extern "C" void func_80CDCBD0(void* _this, u8*);
 extern "C" extern char const* const d_a_obj_smgdoor__stringBase0;
 
 //
@@ -254,7 +254,7 @@ asm void daObjSmgDoor_c::initBaseMtx() {
 /* ############################################################################################## */
 /* 80CDCBF4-80CDCBF8 000000 0004+00 3/3 0/0 0/0 .rodata          @3705 */
 SECTION_RODATA static f32 const lit_3705 = -145.0f;
-COMPILER_STRIP_GATE(80CDCBF4, &lit_3705);
+COMPILER_STRIP_GATE(0x80CDCBF4, &lit_3705);
 
 /* 80CDCBF8-80CDCBFC 000004 0004+00 1/4 0/0 0/0 .rodata          @3706 */
 SECTION_RODATA static u8 const lit_3706[4] = {
@@ -263,13 +263,13 @@ SECTION_RODATA static u8 const lit_3706[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CDCBF8, &lit_3706);
+COMPILER_STRIP_GATE(0x80CDCBF8, &lit_3706);
 
 /* 80CDCBFC-80CDCC00 000008 0004+00 0/1 0/0 0/0 .rodata          @3707 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3707 = 145.0f;
-COMPILER_STRIP_GATE(80CDCBFC, &lit_3707);
+COMPILER_STRIP_GATE(0x80CDCBFC, &lit_3707);
 #pragma pop
 
 /* 80CDBBEC-80CDBD38 00012C 014C+00 2/2 0/0 0/0 .text            setBaseMtx__14daObjSmgDoor_cFv */
@@ -285,7 +285,20 @@ asm void daObjSmgDoor_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 80CDCC00-80CDCC04 00000C 0004+00 1/1 0/0 0/0 .rodata          @3722 */
 SECTION_RODATA static f32 const lit_3722 = 150.0f;
-COMPILER_STRIP_GATE(80CDCC00, &lit_3722);
+COMPILER_STRIP_GATE(0x80CDCC00, &lit_3722);
+
+/* 80CDCC24-80CDCC24 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CDCC24 = "A_SMGDoor";
+SECTION_DEAD static char const* const stringBase_80CDCC2E = "A_SMKDoor";
+SECTION_DEAD static char const* const stringBase_80CDCC38 = "A_SMGDoor.bmd";
+SECTION_DEAD static char const* const stringBase_80CDCC46 = "A_SMKDoor.bmd";
+SECTION_DEAD static char const* const stringBase_80CDCC54 = "A_SMGDoor.dzb";
+SECTION_DEAD static char const* const stringBase_80CDCC62 = "A_SMKDoor.dzb";
+SECTION_DEAD static char const* const stringBase_80CDCC70 = "NOW_DOOR_IN";
+SECTION_DEAD static char const* const stringBase_80CDCC7C = "OLD_DOOR_IN";
+#pragma pop
 
 /* 80CDCCC4-80CDCCD0 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -383,6 +396,17 @@ asm void daObjSmgDoor_c::Execute(f32 (**param_0)[3][4]) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80CDCC24-80CDCC24 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CDCC88 = "WAIT";
+SECTION_DEAD static char const* const stringBase_80CDCC8D = "OPEN";
+SECTION_DEAD static char const* const stringBase_80CDCC92 = "SETGOAL";
+SECTION_DEAD static char const* const stringBase_80CDCC9A = "SETPOS";
+SECTION_DEAD static char const* const stringBase_80CDCCA1 = "SCENE_CHG";
+SECTION_DEAD static char const* const stringBase_80CDCCAB = "COLOR_CHG";
+#pragma pop
+
 /* 80CDCD1C-80CDCD34 -00001 0018+00 1/1 0/0 0/0 .data            action_table$3763 */
 SECTION_DATA static void* action_table[6] = {
     (void*)(((char*)&d_a_obj_smgdoor__stringBase0) + 0x64),
@@ -407,11 +431,18 @@ asm void daObjSmgDoor_c::getDemoAction() {
 /* ############################################################################################## */
 /* 80CDCC04-80CDCC08 000010 0004+00 3/3 0/0 0/0 .rodata          @3825 */
 SECTION_RODATA static f32 const lit_3825 = 1.0f;
-COMPILER_STRIP_GATE(80CDCC04, &lit_3825);
+COMPILER_STRIP_GATE(0x80CDCC04, &lit_3825);
 
 /* 80CDCC08-80CDCC0C 000014 0004+00 3/3 0/0 0/0 .rodata          @3826 */
 SECTION_RODATA static f32 const lit_3826 = -1.0f;
-COMPILER_STRIP_GATE(80CDCC08, &lit_3826);
+COMPILER_STRIP_GATE(0x80CDCC08, &lit_3826);
+
+/* 80CDCC24-80CDCC24 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CDCCB5 = "smgdoor";
+SECTION_DEAD static char const* const stringBase_80CDCCBD = "Timer";
+#pragma pop
 
 /* 80CDC038-80CDC248 000578 0210+00 1/1 0/0 0/0 .text            demoProc__14daObjSmgDoor_cFv */
 #pragma push
@@ -446,7 +477,7 @@ asm void daObjSmgDoor_c::openProc() {
 /* ############################################################################################## */
 /* 80CDCC0C-80CDCC10 000018 0004+00 1/1 0/0 0/0 .rodata          @3888 */
 SECTION_RODATA static f32 const lit_3888 = 60.0f;
-COMPILER_STRIP_GATE(80CDCC0C, &lit_3888);
+COMPILER_STRIP_GATE(0x80CDCC0C, &lit_3888);
 
 /* 80CDC4AC-80CDC548 0009EC 009C+00 1/1 0/0 0/0 .text            setGoal__14daObjSmgDoor_cFv */
 #pragma push
@@ -463,14 +494,14 @@ asm void daObjSmgDoor_c::setGoal() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3906 = 300.0f;
-COMPILER_STRIP_GATE(80CDCC10, &lit_3906);
+COMPILER_STRIP_GATE(0x80CDCC10, &lit_3906);
 #pragma pop
 
 /* 80CDCC14-80CDCC18 000020 0004+00 0/1 0/0 0/0 .rodata          @3907 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3907 = 250.0f;
-COMPILER_STRIP_GATE(80CDCC14, &lit_3907);
+COMPILER_STRIP_GATE(0x80CDCC14, &lit_3907);
 #pragma pop
 
 /* 80CDC548-80CDC610 000A88 00C8+00 1/1 0/0 0/0 .text            setPos__14daObjSmgDoor_cFv */
@@ -576,21 +607,21 @@ void daObjSmgDoor_c::actionDead() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4054 = 62500.0f;
-COMPILER_STRIP_GATE(80CDCC18, &lit_4054);
+COMPILER_STRIP_GATE(0x80CDCC18, &lit_4054);
 #pragma pop
 
 /* 80CDCC1C-80CDCC20 000028 0004+00 0/1 0/0 0/0 .rodata          @4055 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4055 = 90000.0f;
-COMPILER_STRIP_GATE(80CDCC1C, &lit_4055);
+COMPILER_STRIP_GATE(0x80CDCC1C, &lit_4055);
 #pragma pop
 
 /* 80CDCC20-80CDCC24 00002C 0004+00 0/1 0/0 0/0 .rodata          @4056 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4056 = 12100.0f;
-COMPILER_STRIP_GATE(80CDCC20, &lit_4056);
+COMPILER_STRIP_GATE(0x80CDCC20, &lit_4056);
 #pragma pop
 
 /* 80CDC7F8-80CDC974 000D38 017C+00 1/1 0/0 0/0 .text            checkArea__14daObjSmgDoor_cFv */
@@ -718,30 +749,10 @@ static asm void daObjSmgDoor_MoveBGDraw(daObjSmgDoor_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80CDCBD0(u8* param_0) {
+extern "C" asm void func_80CDCBD0(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_smgdoor/d_a_obj_smgdoor/func_80CDCBD0.s"
 }
 #pragma pop
 
-/* 80CDCC24-80CDCCC3 000030 009F+00 6/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CDCC24 = "A_SMGDoor";
-SECTION_DEAD static char const* const stringBase_80CDCC2E = "A_SMKDoor";
-SECTION_DEAD static char const* const stringBase_80CDCC38 = "A_SMGDoor.bmd";
-SECTION_DEAD static char const* const stringBase_80CDCC46 = "A_SMKDoor.bmd";
-SECTION_DEAD static char const* const stringBase_80CDCC54 = "A_SMGDoor.dzb";
-SECTION_DEAD static char const* const stringBase_80CDCC62 = "A_SMKDoor.dzb";
-SECTION_DEAD static char const* const stringBase_80CDCC70 = "NOW_DOOR_IN";
-SECTION_DEAD static char const* const stringBase_80CDCC7C = "OLD_DOOR_IN";
-SECTION_DEAD static char const* const stringBase_80CDCC88 = "WAIT";
-SECTION_DEAD static char const* const stringBase_80CDCC8D = "OPEN";
-SECTION_DEAD static char const* const stringBase_80CDCC92 = "SETGOAL";
-SECTION_DEAD static char const* const stringBase_80CDCC9A = "SETPOS";
-SECTION_DEAD static char const* const stringBase_80CDCCA1 = "SCENE_CHG";
-SECTION_DEAD static char const* const stringBase_80CDCCAB = "COLOR_CHG";
-SECTION_DEAD static char const* const stringBase_80CDCCB5 = "smgdoor";
-SECTION_DEAD static char const* const stringBase_80CDCCBD = "Timer";
-#pragma pop
+/* 80CDCC24-80CDCC24 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

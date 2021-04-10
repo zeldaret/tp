@@ -18,7 +18,7 @@ struct draw_priority_class {};
 //
 
 extern "C" void fpcDwPi_Get__FPC19draw_priority_class();
-extern "C" static void fpcDwPi_Set__FP19draw_priority_classs();
+extern "C" void fpcDwPi_Set__FP19draw_priority_classs();
 extern "C" void fpcDwPi_Init__FP19draw_priority_classs();
 
 //
@@ -39,15 +39,10 @@ asm void fpcDwPi_Get(draw_priority_class const* param_0) {
 }
 #pragma pop
 
-/* 80021310-80021318 01BC50 0008+00 1/1 0/0 0/0 .text fpcDwPi_Set__FP19draw_priority_classs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-static asm void fpcDwPi_Set(draw_priority_class* param_0, s16 param_1) {
-    nofralloc
-#include "asm/f_pc/f_pc_draw_priority/fpcDwPi_Set__FP19draw_priority_classs.s"
+/* 80021310-80021318 -00001 0008+00 0/0 0/0 0/0 .text fpcDwPi_Set__FP19draw_priority_classs */
+void fpcDwPi_Set(draw_priority_class* param_0, s16 param_1) {
+    *(u16*)param_0 = (u16)(param_1);
 }
-#pragma pop
 
 /* 80021318-80021338 01BC58 0020+00 0/0 1/1 0/0 .text fpcDwPi_Init__FP19draw_priority_classs */
 #pragma push

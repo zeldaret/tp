@@ -15,13 +15,13 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct J3DModelData {};
+struct J3DAnmTransform {};
 
-struct mDoExt_McaMorfCallBack2_c {};
+struct J3DModelData {};
 
 struct Vec {};
 
@@ -43,13 +43,7 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct J3DJoint {};
-
 struct daNpcT_faceMotionAnmData_c {};
-
-struct daNpcT_evtData_c {};
-
-struct daNpcT_motionAnmData_c {};
 
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
@@ -57,6 +51,12 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80145898 */ void initialize();
     /* 80B7133C */ ~daNpcT_MotionSeqMngr_c();
 };
+
+struct daNpcT_evtData_c {};
+
+struct daNpcT_motionAnmData_c {};
+
+struct J3DJoint {};
 
 struct daNpc_ZelR_c {
     /* 80B6EE2C */ ~daNpc_ZelR_c();
@@ -117,13 +117,13 @@ struct dCcD_GObjInf {
 
 struct _GXColorS10 {};
 
+struct J3DModel {};
+
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80B70C9C */ ~cXyz();
     /* 80B712F0 */ cXyz();
 };
-
-struct J3DModel {};
 
 struct daNpcT_c {
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
@@ -274,12 +274,12 @@ struct dBgS_AcchCir {
     /* 80B71384 */ ~dBgS_AcchCir();
 };
 
-struct dBgS {};
-
 struct csXyz {
     /* 80B70CD8 */ ~csXyz();
     /* 80B711F0 */ csXyz();
 };
+
+struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -611,6 +611,14 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80B71BC0-80B71BC0 0000E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80B71BC0 = "";
+SECTION_DEAD static char const* const stringBase_80B71BC1 = "NO_RESPONSE";
+SECTION_DEAD static char const* const stringBase_80B71BCD = "zelRf";
+#pragma pop
+
 /* 80B71BD8-80B71BE4 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -918,34 +926,34 @@ SECTION_RODATA u8 const daNpc_ZelR_Param_c::m[140] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B71AE0, &daNpc_ZelR_Param_c::m);
+COMPILER_STRIP_GATE(0x80B71AE0, &daNpc_ZelR_Param_c::m);
 
 /* 80B71B6C-80B71B70 00008C 0004+00 0/1 0/0 0/0 .rodata          @4018 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4018 = -300.0f;
-COMPILER_STRIP_GATE(80B71B6C, &lit_4018);
+COMPILER_STRIP_GATE(0x80B71B6C, &lit_4018);
 #pragma pop
 
 /* 80B71B70-80B71B74 000090 0004+00 0/1 0/0 0/0 .rodata          @4019 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4019 = -50.0f;
-COMPILER_STRIP_GATE(80B71B70, &lit_4019);
+COMPILER_STRIP_GATE(0x80B71B70, &lit_4019);
 #pragma pop
 
 /* 80B71B74-80B71B78 000094 0004+00 0/1 0/0 0/0 .rodata          @4020 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4020 = 300.0f;
-COMPILER_STRIP_GATE(80B71B74, &lit_4020);
+COMPILER_STRIP_GATE(0x80B71B74, &lit_4020);
 #pragma pop
 
 /* 80B71B78-80B71B7C 000098 0004+00 0/1 0/0 0/0 .rodata          @4021 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4021 = 450.0f;
-COMPILER_STRIP_GATE(80B71B78, &lit_4021);
+COMPILER_STRIP_GATE(0x80B71B78, &lit_4021);
 #pragma pop
 
 /* 80B6EF64-80B6F1F8 000224 0294+00 1/1 0/0 0/0 .text            create__12daNpc_ZelR_cFv */
@@ -966,22 +974,22 @@ SECTION_RODATA static u8 const lit_4182[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80B71B7C, &lit_4182);
+COMPILER_STRIP_GATE(0x80B71B7C, &lit_4182);
 
 /* 80B71B80-80B71B84 0000A0 0004+00 0/2 0/0 0/0 .rodata          @4183 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4183 = 65536.0f;
-COMPILER_STRIP_GATE(80B71B80, &lit_4183);
+COMPILER_STRIP_GATE(0x80B71B80, &lit_4183);
 #pragma pop
 
 /* 80B71B84-80B71B88 0000A4 0004+00 1/4 0/0 0/0 .rodata          @4184 */
 SECTION_RODATA static f32 const lit_4184 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80B71B84, &lit_4184);
+COMPILER_STRIP_GATE(0x80B71B84, &lit_4184);
 
 /* 80B71B88-80B71B8C 0000A8 0004+00 2/4 0/0 0/0 .rodata          @4339 */
 SECTION_RODATA static f32 const lit_4339 = 1.0f;
-COMPILER_STRIP_GATE(80B71B88, &lit_4339);
+COMPILER_STRIP_GATE(0x80B71B88, &lit_4339);
 
 /* 80B6F1F8-80B6F4A8 0004B8 02B0+00 1/1 0/0 0/0 .text            CreateHeap__12daNpc_ZelR_cFv */
 #pragma push
@@ -1116,7 +1124,7 @@ asm void daNpc_ZelR_c::Execute() {
 /* ############################################################################################## */
 /* 80B71B8C-80B71B90 0000AC 0004+00 1/1 0/0 0/0 .rodata          @4399 */
 SECTION_RODATA static f32 const lit_4399 = 100.0f;
-COMPILER_STRIP_GATE(80B71B8C, &lit_4399);
+COMPILER_STRIP_GATE(0x80B71B8C, &lit_4399);
 
 /* 80B6F6B8-80B6F77C 000978 00C4+00 1/1 0/0 0/0 .text            Draw__12daNpc_ZelR_cFv */
 #pragma push
@@ -1213,7 +1221,7 @@ asm void daNpc_ZelR_c::afterJntAnm(int param_0) {
 /* ############################################################################################## */
 /* 80B71B90-80B71B94 0000B0 0004+00 3/3 0/0 0/0 .rodata          @4557 */
 SECTION_RODATA static f32 const lit_4557 = -1.0f;
-COMPILER_STRIP_GATE(80B71B90, &lit_4557);
+COMPILER_STRIP_GATE(0x80B71B90, &lit_4557);
 
 /* 80B6FA9C-80B6FBA8 000D5C 010C+00 1/0 0/0 0/0 .text            ctrlBtk__12daNpc_ZelR_cFv */
 #pragma push
@@ -1260,6 +1268,13 @@ asm void daNpc_ZelR_c::evtTalk() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80B71BC0-80B71BC0 0000E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80B71BD3 = "ZelR";
+#pragma pop
+
 /* 80B6FE00-80B6FEC8 0010C0 00C8+00 1/0 0/0 0/0 .text            evtCutProc__12daNpc_ZelR_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -1295,28 +1310,28 @@ asm void daNpc_ZelR_c::beforeMove() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4728 = 10.0f;
-COMPILER_STRIP_GATE(80B71B94, &lit_4728);
+COMPILER_STRIP_GATE(0x80B71B94, &lit_4728);
 #pragma pop
 
 /* 80B71B98-80B71B9C 0000B8 0004+00 0/1 0/0 0/0 .rodata          @4729 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4729 = -30.0f;
-COMPILER_STRIP_GATE(80B71B98, &lit_4729);
+COMPILER_STRIP_GATE(0x80B71B98, &lit_4729);
 #pragma pop
 
 /* 80B71B9C-80B71BA0 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4730 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4730 = 0x38C90FDB;
-COMPILER_STRIP_GATE(80B71B9C, &lit_4730);
+COMPILER_STRIP_GATE(0x80B71B9C, &lit_4730);
 #pragma pop
 
 /* 80B71BA0-80B71BA8 0000C0 0008+00 1/3 0/0 0/0 .rodata          @4732 */
 SECTION_RODATA static u8 const lit_4732[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B71BA0, &lit_4732);
+COMPILER_STRIP_GATE(0x80B71BA0, &lit_4732);
 
 /* 80B70090-80B702B0 001350 0220+00 1/0 0/0 0/0 .text            setAttnPos__12daNpc_ZelR_cFv */
 #pragma push
@@ -1358,7 +1373,7 @@ asm void daNpc_ZelR_c::selectAction() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_ZelR_c::chkAction(int (daNpc_ZelR_c::*)(void*)) {
+asm void daNpc_ZelR_c::chkAction(int (daNpc_ZelR_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_zelR/d_a_npc_zelR/chkAction__12daNpc_ZelR_cFM12daNpc_ZelR_cFPCvPvPv_i.s"
 }
@@ -1369,7 +1384,7 @@ asm void daNpc_ZelR_c::chkAction(int (daNpc_ZelR_c::*)(void*)) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_ZelR_c::setAction(int (daNpc_ZelR_c::*)(void*)) {
+asm void daNpc_ZelR_c::setAction(int (daNpc_ZelR_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_zelR/d_a_npc_zelR/setAction__12daNpc_ZelR_cFM12daNpc_ZelR_cFPCvPvPv_i.s"
 }
@@ -1634,7 +1649,7 @@ asm void daNpcT_JntAnm_c::setEyeAngleY(cXyz param_0, s16 param_1, int param_2, f
 SECTION_RODATA static u8 const lit_4790[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B71BA8, &lit_4790);
+COMPILER_STRIP_GATE(0x80B71BA8, &lit_4790);
 #pragma pop
 
 /* 80B71BB0-80B71BB8 0000D0 0008+00 0/1 0/0 0/0 .rodata          @4791 */
@@ -1643,7 +1658,7 @@ COMPILER_STRIP_GATE(80B71BA8, &lit_4790);
 SECTION_RODATA static u8 const lit_4791[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B71BB0, &lit_4791);
+COMPILER_STRIP_GATE(0x80B71BB0, &lit_4791);
 #pragma pop
 
 /* 80B71BB8-80B71BC0 0000D8 0008+00 0/1 0/0 0/0 .rodata          @4792 */
@@ -1652,7 +1667,7 @@ COMPILER_STRIP_GATE(80B71BB0, &lit_4791);
 SECTION_RODATA static u8 const lit_4792[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B71BB8, &lit_4792);
+COMPILER_STRIP_GATE(0x80B71BB8, &lit_4792);
 #pragma pop
 
 /* 80B71624-80B7182C 0028E4 0208+00 1/1 0/0 0/0 .text setEyeAngleX__15daNpcT_JntAnm_cF4cXyzfs */
@@ -1810,7 +1825,7 @@ asm void __sinit_d_a_npc_zelR_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80B7190C = (void*)__sinit_d_a_npc_zelR_cpp;
+REGISTER_CTORS(0x80B7190C, __sinit_d_a_npc_zelR_cpp);
 #pragma pop
 
 /* 80B71974-80B71A34 002C34 00C0+00 1/1 0/0 0/0 .text
@@ -1902,12 +1917,4 @@ static asm void func_80B71AC4() {
 }
 #pragma pop
 
-/* 80B71BC0-80B71BD8 0000E0 0018+00 4/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80B71BC0 = "";
-SECTION_DEAD static char const* const stringBase_80B71BC1 = "NO_RESPONSE";
-SECTION_DEAD static char const* const stringBase_80B71BCD = "zelRf";
-SECTION_DEAD static char const* const stringBase_80B71BD3 = "ZelR";
-#pragma pop
+/* 80B71BC0-80B71BC0 0000E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

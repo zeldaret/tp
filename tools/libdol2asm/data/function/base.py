@@ -132,12 +132,19 @@ class Function(Symbol):
             for line in lines:
                 await builder.write(line)
 
-        arg_type = ""
+        arg_type = []
         if forward:
-            arg_type = ", ".join([x.type(specialize_templates=True) for x in self.argument_types])
+            arg_type = [x.type(specialize_templates=True) for x in self.argument_types]
         else:
-            arg_type = ", ".join([x.decl(f"param_{i}",specialize_templates=True) for i, x in zip(
-                range(len(self.argument_types)), self.argument_types)])
+            arg_type = [
+                x.decl(f"param_{i}",specialize_templates=True) 
+                for i, x in enumerate(self.argument_types)
+            ]
+
+        if self.demangled_name and self.demangled_name.require_specialization:
+            arg_type = [f"void* _this", *arg_type]
+
+        arg_type = ", ".join(arg_type)
 
         if self._section == ".init":
             await builder.write_nonewline(f"SECTION_INIT ")

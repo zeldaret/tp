@@ -24,7 +24,7 @@ template <typename A0>
 struct JSUList {};
 /* JSUList<JKRAMCommand> */
 struct JSUList__template5 {
-    /* 802D2DF0 */ void func_802D2DF0();
+    /* 802D2DF0 */ void func_802D2DF0(void* _this);
 };
 
 struct JKRThread {
@@ -103,7 +103,7 @@ extern "C" static void decompSZS_subroutine__FPUcPUc();
 extern "C" static void firstSrcData__Fv();
 extern "C" static void nextSrcData__FPUc();
 extern "C" void __sinit_JKRAram_cpp();
-extern "C" void func_802D2DF0();
+extern "C" void func_802D2DF0(void* _this);
 extern "C" extern char const* const JKRAram__stringBase0;
 extern "C" u8 sMessageBuffer__7JKRAram[16];
 extern "C" u8 sMessageQueue__7JKRAram[32];
@@ -229,6 +229,15 @@ asm void JKRAram::run() {
     nofralloc
 #include "asm/JSystem/JKernel/JKRAram/run__7JKRAramFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8039D078-8039D078 0296D8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D078 = "JKRAram.cpp";
+SECTION_DEAD static char const* const stringBase_8039D084 = "%s";
+SECTION_DEAD static char const* const stringBase_8039D087 = ":::address not 32Byte aligned.";
 #pragma pop
 
 /* 802D2248-802D22DC 2CCB88 0094+00 2/2 0/0 0/0 .text
@@ -393,7 +402,7 @@ asm void __sinit_JKRAram_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_802D2DAC = (void*)__sinit_JKRAram_cpp;
+REGISTER_CTORS(0x802D2DAC, __sinit_JKRAram_cpp);
 #pragma pop
 
 /* 802D2DF0-802D2E44 2CD730 0054+00 1/1 1/1 0/0 .text            __dt__23JSUList<12JKRAMCommand>Fv
@@ -401,20 +410,19 @@ SECTION_CTORS void* const _ctors_802D2DAC = (void*)__sinit_JKRAram_cpp;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802D2DF0() {
+extern "C" asm void func_802D2DF0(void* _this) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRAram/func_802D2DF0.s"
 }
 #pragma pop
 
-/* 8039D078-8039D0B8 0296D8 003C+04 1/1 0/0 0/0 .rodata          @stringBase0 */
+/* ############################################################################################## */
+/* 8039D0A6-8039D0B8 029706 000E+04 0/0 0/0 0/0 .rodata          None */
 #pragma push
 #pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039D078 = "JKRAram.cpp";
-SECTION_DEAD static char const* const stringBase_8039D084 = "%s";
-SECTION_DEAD static char const* const stringBase_8039D087 = ":::address not 32Byte aligned.";
 SECTION_DEAD static char const* const stringBase_8039D0A6 = "bad aramSync\n";
 /* @stringBase0 padding */
 SECTION_DEAD static char const* const pad_8039D0B4 = "\0\0\0";
 #pragma pop
+
+/* 8039D078-8039D078 0296D8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

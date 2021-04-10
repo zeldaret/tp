@@ -102,7 +102,7 @@ SECTION_RODATA static u8 const lit_321[31 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
-COMPILER_STRIP_GATE(803A28D0, &lit_321);
+COMPILER_STRIP_GATE(0x803A28D0, &lit_321);
 
 /* 803A28F0-803A28F8 02EF50 0008+00 0/1 0/0 0/0 .rodata          @322 */
 #pragma push
@@ -110,7 +110,7 @@ COMPILER_STRIP_GATE(803A28D0, &lit_321);
 SECTION_RODATA static u8 const lit_322[8] = {
     0x45, 0x6E, 0x61, 0x62, 0x6C, 0x65, 0x0A, 0x00,
 };
-COMPILER_STRIP_GATE(803A28F0, &lit_322);
+COMPILER_STRIP_GATE(0x803A28F0, &lit_322);
 #pragma pop
 
 /* 803A28F8-803A2904 02EF58 0009+03 0/1 0/0 0/0 .rodata          @323 */
@@ -131,7 +131,7 @@ SECTION_RODATA static u8 const lit_323[9 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(803A28F8, &lit_323);
+COMPILER_STRIP_GATE(0x803A28F8, &lit_323);
 #pragma pop
 
 /* 8036DD14-8036DDBC 368654 00A8+00 0/0 1/1 0/0 .text            TRKDoSetOption */
@@ -169,7 +169,7 @@ asm void TRKDoStep() {
 SECTION_RODATA static u8 const lit_370[12] = {
     0x44, 0x6F, 0x43, 0x6F, 0x6E, 0x74, 0x69, 0x6E, 0x75, 0x65, 0x0A, 0x00,
 };
-COMPILER_STRIP_GATE(803A2904, &lit_370);
+COMPILER_STRIP_GATE(0x803A2904, &lit_370);
 
 /* 8036E084-8036E134 3689C4 00B0+00 0/0 1/1 0/0 .text            TRKDoContinue */
 #pragma push
@@ -220,7 +220,7 @@ SECTION_RODATA static u8 const lit_402[31 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
-COMPILER_STRIP_GATE(803A2910, &lit_402);
+COMPILER_STRIP_GATE(0x803A2910, &lit_402);
 #pragma pop
 
 /* 803A2930-803A2950 02EF90 001F+01 1/4 0/0 0/0 .rodata          @403 */
@@ -259,7 +259,7 @@ SECTION_RODATA static u8 const lit_403[31 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
-COMPILER_STRIP_GATE(803A2930, &lit_403);
+COMPILER_STRIP_GATE(0x803A2930, &lit_403);
 
 /* 803A2950-803A2968 02EFB0 0017+01 1/4 0/0 0/0 .rodata          @404 */
 SECTION_RODATA static u8 const lit_404[23 + 1 /* padding */] = {
@@ -289,7 +289,7 @@ SECTION_RODATA static u8 const lit_404[23 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
-COMPILER_STRIP_GATE(803A2950, &lit_404);
+COMPILER_STRIP_GATE(0x803A2950, &lit_404);
 
 /* 8036E134-8036E3C4 368A74 0290+00 0/0 1/1 0/0 .text            TRKDoWriteRegisters */
 #pragma push
@@ -310,7 +310,7 @@ SECTION_RODATA static u8 const lit_462[40] = {
     0x73, 0x20, 0x3A, 0x20, 0x42, 0x75, 0x66, 0x66, 0x65, 0x72, 0x20, 0x6C, 0x65, 0x6E,
     0x67, 0x74, 0x68, 0x20, 0x30, 0x78, 0x25, 0x30, 0x38, 0x78, 0x0A, 0x00,
 };
-COMPILER_STRIP_GATE(803A2968, &lit_462);
+COMPILER_STRIP_GATE(0x803A2968, &lit_462);
 #pragma pop
 
 /* 803A2990-803A29C8 02EFF0 0036+02 0/1 0/0 0/0 .rodata          @463 */
@@ -375,7 +375,7 @@ SECTION_RODATA static u8 const lit_463[54 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(803A2990, &lit_463);
+COMPILER_STRIP_GATE(0x803A2990, &lit_463);
 #pragma pop
 
 /* 803A29C8-803A29F0 02F028 0028+00 0/1 0/0 0/0 .rodata          @464 */
@@ -386,7 +386,7 @@ SECTION_RODATA static u8 const lit_464[40] = {
     0x73, 0x20, 0x3A, 0x20, 0x45, 0x72, 0x72, 0x6F, 0x72, 0x20, 0x46, 0x50, 0x20, 0x72,
     0x65, 0x67, 0x73, 0x20, 0x30, 0x78, 0x25, 0x30, 0x38, 0x78, 0x0A, 0x00,
 };
-COMPILER_STRIP_GATE(803A29C8, &lit_464);
+COMPILER_STRIP_GATE(0x803A29C8, &lit_464);
 #pragma pop
 
 /* 803A29F0-803A2A20 02F050 002F+01 0/1 0/0 0/0 .rodata          @465 */
@@ -443,7 +443,7 @@ SECTION_RODATA static u8 const lit_465[47 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
-COMPILER_STRIP_GATE(803A29F0, &lit_465);
+COMPILER_STRIP_GATE(0x803A29F0, &lit_465);
 #pragma pop
 
 /* 803A2A20-803A2A50 02F080 002F+01 0/1 0/0 0/0 .rodata          @466 */
@@ -500,7 +500,7 @@ SECTION_RODATA static u8 const lit_466[47 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
-COMPILER_STRIP_GATE(803A2A20, &lit_466);
+COMPILER_STRIP_GATE(0x803A2A20, &lit_466);
 #pragma pop
 
 /* 8036E3C4-8036E6A4 368D04 02E0+00 0/0 1/1 0/0 .text            TRKDoReadRegisters */
@@ -568,7 +568,7 @@ SECTION_RODATA static u8 const lit_498[45 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(803A2A50, &lit_498);
+COMPILER_STRIP_GATE(0x803A2A50, &lit_498);
 #pragma pop
 
 /* 803D3200-803D321C -00001 001C+00 1/1 0/0 0/0 .data            @499 */
@@ -598,7 +598,7 @@ SECTION_RODATA static u8 const lit_535[44] = {
     0x30, 0x32, 0x78, 0x29, 0x20, 0x3A, 0x20, 0x30, 0x78, 0x25, 0x30, 0x38, 0x78, 0x20, 0x30,
     0x78, 0x25, 0x30, 0x38, 0x78, 0x20, 0x30, 0x78, 0x25, 0x30, 0x38, 0x78, 0x0A, 0x00,
 };
-COMPILER_STRIP_GATE(803A2A80, &lit_535);
+COMPILER_STRIP_GATE(0x803A2A80, &lit_535);
 #pragma pop
 
 /* 803D321C-803D3238 -00001 001C+00 1/1 0/0 0/0 .data            @536 */
@@ -706,7 +706,7 @@ SECTION_RODATA static u8 const lit_573[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(803A2AAC, &lit_573);
+COMPILER_STRIP_GATE(0x803A2AAC, &lit_573);
 
 /* 803A2AB4-803A2AB8 02F114 0002+02 1/1 0/0 0/0 .rodata          @574 */
 SECTION_RODATA static u16 const lit_574[1 + 1 /* padding */] = {
@@ -714,7 +714,7 @@ SECTION_RODATA static u16 const lit_574[1 + 1 /* padding */] = {
     /* padding */
     0x0000,
 };
-COMPILER_STRIP_GATE(803A2AB4, &lit_574);
+COMPILER_STRIP_GATE(0x803A2AB4, &lit_574);
 
 /* 8036ECDC-8036ED84 36961C 00A8+00 0/0 1/1 0/0 .text            OutputData */
 #pragma push

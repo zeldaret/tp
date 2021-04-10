@@ -17,9 +17,9 @@ struct dStage_roomControl_c {
 
 struct dMdl_obj_c {};
 
-struct J3DModelData {};
-
 struct dKy_tevstr_c {};
+
+struct J3DModelData {};
 
 struct dMdl_mng_c {
     /* 8009C6DC */ void search(J3DModelData*, u16, dKy_tevstr_c*);

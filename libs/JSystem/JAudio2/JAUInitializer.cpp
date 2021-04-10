@@ -47,34 +47,34 @@ template <typename A0>
 struct JASMemPool_MultiThreaded {};
 /* JASMemPool_MultiThreaded<JASTrack> */
 struct JASMemPool_MultiThreaded__template0 {
-    /* 802932E0 */ void func_802932E0();
+    /* 802932E0 */ void func_802932E0(void* _this);
 };
 
 /* JASMemPool_MultiThreaded<JASTrack::TChannelMgr> */
 struct JASMemPool_MultiThreaded__template1 {
-    /* 80293334 */ void func_80293334();
+    /* 80293334 */ void func_80293334(void* _this);
 };
 
 template <typename A0>
 struct JASMemPool {};
 /* JASMemPool<JAISe> */
 struct JASMemPool__template0 {
-    /* 8029FC34 */ void func_8029FC34();
+    /* 8029FC34 */ void func_8029FC34(void* _this);
 };
 
 /* JASMemPool<JAISoundChild> */
 struct JASMemPool__template1 {
-    /* 802A1268 */ void func_802A1268();
+    /* 802A1268 */ void func_802A1268(void* _this);
 };
 
 /* JASMemPool<JAISeq> */
 struct JASMemPool__template2 {
-    /* 802A1AF4 */ void func_802A1AF4();
+    /* 802A1AF4 */ void func_802A1AF4(void* _this);
 };
 
 /* JASMemPool<JAIStream> */
 struct JASMemPool__template3 {
-    /* 802A3E68 */ void func_802A3E68();
+    /* 802A3E68 */ void func_802A3E68(void* _this);
 };
 
 struct JASKernel {
@@ -123,17 +123,17 @@ extern "C" void __ct__17JASGenericMemPoolFv();
 extern "C" void newMemPool__17JASGenericMemPoolFUli();
 extern "C" void setupRootHeap__9JASKernelFP12JKRSolidHeapUl();
 extern "C" void setupAramHeap__9JASKernelFUlUl();
-extern "C" void func_802932E0();
-extern "C" void func_80293334();
+extern "C" void func_802932E0(void* _this);
+extern "C" void func_80293334(void* _this);
 extern "C" void initSystem__13JASAramStreamFUlUl();
 extern "C" void setCurrentDir__16JASWaveArcLoaderFPCc();
 extern "C" void create__14JASAudioThreadFl();
 extern "C" void setDSPLevel__9JASDriverFf();
 extern "C" void setOutputMode__9JASDriverFUl();
-extern "C" void func_8029FC34();
-extern "C" void func_802A1268();
-extern "C" void func_802A1AF4();
-extern "C" void func_802A3E68();
+extern "C" void func_8029FC34(void* _this);
+extern "C" void func_802A1268(void* _this);
+extern "C" void func_802A1AF4(void* _this);
+extern "C" void func_802A3E68(void* _this);
 extern "C" void getFreeSize__7JKRHeapFv();
 extern "C" void enter__15JKRThreadSwitchFP9JKRThreadi();
 extern "C" void OSDisableInterrupts();

@@ -29,12 +29,6 @@ struct Z2Calc {
     static f32 cEqualPSlope;
 };
 
-struct JMath {
-    struct TRandom_fast_ {
-        /* 80339AE4 */ TRandom_fast_(u32);
-    };
-};
-
 //
 // Forward References:
 //

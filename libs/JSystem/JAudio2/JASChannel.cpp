@@ -36,7 +36,7 @@ template <typename A0>
 struct JASMemPool_MultiThreaded {};
 /* JASMemPool_MultiThreaded<JASChannel> */
 struct JASMemPool_MultiThreaded__template2 {
-    /* 802978DC */ void func_802978DC();
+    /* 802978DC */ void func_802978DC(void* _this);
 };
 
 struct JASLfo {
@@ -152,7 +152,7 @@ extern "C" u8 sBankDisposeListSize__10JASChannel[4 + 4 /* padding */];
 extern "C" void pow2__7JASCalcFf();
 extern "C" void __ct__17JASGenericMemPoolFv();
 extern "C" void free__17JASGenericMemPoolFPvUl();
-extern "C" void func_802978DC();
+extern "C" void func_802978DC(void* _this);
 extern "C" void __ct__6JASLfoFv();
 extern "C" void getValue__6JASLfoCFv();
 extern "C" void incCounter__6JASLfoFf();
@@ -226,7 +226,8 @@ SECTION_SDATA2 static f32 lit_546[1 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm JASChannel::JASChannel(void (*)(u32, JASChannel*, JASDsp::TChannel*, void*), void* param_1) {
+asm JASChannel::JASChannel(void (*param_0)(u32, JASChannel*, JASDsp::TChannel*, void*),
+                           void* param_1) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASChannel/__ct__10JASChannelFPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv.s"
 }

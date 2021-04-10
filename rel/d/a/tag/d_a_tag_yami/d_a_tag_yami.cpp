@@ -161,20 +161,20 @@ SECTION_RODATA static u8 const l_sph_src[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D66210, &l_sph_src);
+COMPILER_STRIP_GATE(0x80D66210, &l_sph_src);
 
 /* 80D66254-80D66258 000044 0004+00 0/1 0/0 0/0 .rodata          @3726 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3726 = 700.0f;
-COMPILER_STRIP_GATE(80D66254, &lit_3726);
+COMPILER_STRIP_GATE(0x80D66254, &lit_3726);
 #pragma pop
 
 /* 80D66258-80D6625C 000048 0004+00 0/1 0/0 0/0 .rodata          @3727 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3727 = 300.0f;
-COMPILER_STRIP_GATE(80D66258, &lit_3727);
+COMPILER_STRIP_GATE(0x80D66258, &lit_3727);
 #pragma pop
 
 /* 80D66280-80D662A0 -00001 0020+00 1/0 0/0 0/0 .data            l_daTagYami_Method */
@@ -255,7 +255,7 @@ SECTION_RODATA static u8 const lit_3820[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D6625C, &lit_3820);
+COMPILER_STRIP_GATE(0x80D6625C, &lit_3820);
 
 /* 80D66260-80D66268 000050 0004+04 1/1 0/0 0/0 .rodata          @3821 */
 SECTION_RODATA static f32 const lit_3821[1 + 1 /* padding */] = {
@@ -263,7 +263,7 @@ SECTION_RODATA static f32 const lit_3821[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80D66260, &lit_3821);
+COMPILER_STRIP_GATE(0x80D66260, &lit_3821);
 
 /* 80D65C60-80D65D08 0002E0 00A8+00 1/1 0/0 0/0 .text            calcCoC__11daTagYami_cFR4cXyz */
 #pragma push
@@ -297,7 +297,7 @@ asm void daTagYami_c::chk_CoHit() {
 SECTION_RODATA static u8 const lit_3889[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D66268, &lit_3889);
+COMPILER_STRIP_GATE(0x80D66268, &lit_3889);
 #pragma pop
 
 /* 80D66270-80D66278 000060 0008+00 0/1 0/0 0/0 .rodata          @3890 */
@@ -306,7 +306,7 @@ COMPILER_STRIP_GATE(80D66268, &lit_3889);
 SECTION_RODATA static u8 const lit_3890[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D66270, &lit_3890);
+COMPILER_STRIP_GATE(0x80D66270, &lit_3890);
 #pragma pop
 
 /* 80D66278-80D66280 000068 0008+00 0/1 0/0 0/0 .rodata          @3891 */
@@ -315,7 +315,7 @@ COMPILER_STRIP_GATE(80D66270, &lit_3890);
 SECTION_RODATA static u8 const lit_3891[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D66278, &lit_3891);
+COMPILER_STRIP_GATE(0x80D66278, &lit_3891);
 #pragma pop
 
 /* 80D65D60-80D65EEC 0003E0 018C+00 1/1 0/0 0/0 .text            getPlDist__11daTagYami_cFv */

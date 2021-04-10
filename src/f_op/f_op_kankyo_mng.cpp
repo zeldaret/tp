@@ -15,13 +15,13 @@ struct layer_class {};
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
-struct cXyz {};
+struct dKy_tevstr_c {};
 
 struct csXyz {};
 
-struct dKy_tevstr_c {};
+struct _GXColor {};
+
+struct cXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -110,7 +110,7 @@ asm void fopKyM_Delete(void* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void fopKyM_Create(s16 param_0, int (*)(void*), void* param_2) {
+static asm void fopKyM_Create(s16 param_0, int (*param_1)(void*), void* param_2) {
     nofralloc
 #include "asm/f_op/f_op_kankyo_mng/fopKyM_Create__FsPFPv_iPv.s"
 }
@@ -120,7 +120,8 @@ static asm void fopKyM_Create(s16 param_0, int (*)(void*), void* param_2) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopKyM_create(s16 param_0, int param_1, cXyz* param_2, cXyz* param_3, int (*)(void*)) {
+asm void fopKyM_create(s16 param_0, int param_1, cXyz* param_2, cXyz* param_3,
+                       int (*param_4)(void*)) {
     nofralloc
 #include "asm/f_op/f_op_kankyo_mng/fopKyM_create__FsiP4cXyzP4cXyzPFPv_i.s"
 }
@@ -130,7 +131,8 @@ asm void fopKyM_create(s16 param_0, int param_1, cXyz* param_2, cXyz* param_3, i
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopKyM_fastCreate(s16 param_0, int param_1, cXyz* param_2, cXyz* param_3, int (*)(void*)) {
+asm void fopKyM_fastCreate(s16 param_0, int param_1, cXyz* param_2, cXyz* param_3,
+                           int (*param_4)(void*)) {
     nofralloc
 #include "asm/f_op/f_op_kankyo_mng/fopKyM_fastCreate__FsiP4cXyzP4cXyzPFPv_i.s"
 }

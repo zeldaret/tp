@@ -21,13 +21,13 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct J3DModelData {};
+struct J3DAnmTransform {};
 
-struct mDoExt_McaMorfCallBack2_c {};
+struct J3DModelData {};
 
 struct Z2Creature {};
 
@@ -132,11 +132,11 @@ SECTION_RODATA static u8 const l_arcName[7 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
-COMPILER_STRIP_GATE(8045D290, &l_arcName);
+COMPILER_STRIP_GATE(0x8045D290, &l_arcName);
 
 /* 8045D298-8045D29C 000008 0004+00 1/1 0/0 0/0 .rodata          @3769 */
 SECTION_RODATA static f32 const lit_3769 = 1.0f;
-COMPILER_STRIP_GATE(8045D298, &lit_3769);
+COMPILER_STRIP_GATE(0x8045D298, &lit_3769);
 
 /* 8045CED8-8045CFC4 000078 00EC+00 1/1 0/0 0/0 .text            createHeap__10daDmidna_cFv */
 #pragma push

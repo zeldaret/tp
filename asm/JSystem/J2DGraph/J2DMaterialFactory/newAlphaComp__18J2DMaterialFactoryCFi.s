@@ -25,7 +25,7 @@ lbl_802F3FE0:
 /* 802F403C  98 03 00 03 */	stb r0, 3(r3)
 /* 802F4040  4E 80 00 20 */	blr 
 lbl_802F4044:
-/* 802F4044  A0 02 C7 AE */	lhz r0, struct_804561AC+0x2(r2)
+/* 802F4044  A0 02 C7 AE */	lhz r0, j2dDefaultAlphaCmp(r2)
 /* 802F4048  B0 03 00 00 */	sth r0, 0(r3)
 /* 802F404C  38 00 00 00 */	li r0, 0
 /* 802F4050  98 03 00 02 */	stb r0, 2(r3)

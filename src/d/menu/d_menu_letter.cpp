@@ -45,8 +45,6 @@ struct dSelect_cursor_c {
     /* 801952A0 */ void setAlphaRate(f32);
 };
 
-struct COutFont_c {};
-
 struct J2DTextBox {
     /* 801DFA28 */ void getWhite() const;
     /* 801DFA34 */ void getBlack() const;
@@ -55,6 +53,8 @@ struct J2DTextBox {
 };
 
 struct JUTFont {};
+
+struct COutFont_c {};
 
 struct dMsgString_c {
     /* 801E1D10 */ void getStringPage(u32, u8, u8, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*,
@@ -90,9 +90,9 @@ struct STControl {
     /* 800325A0 */ void checkDownTrigger();
 };
 
-struct JKRExpHeap {};
-
 struct CSTControl {};
+
+struct JKRExpHeap {};
 
 struct dMenu_Letter_c {
     /* 801DCDC0 */ dMenu_Letter_c(JKRExpHeap*, STControl*, CSTControl*);
@@ -143,9 +143,9 @@ struct dMenu_Letter {
     static u8 letter_data[512];
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -661,6 +661,12 @@ asm void dMenu_Letter_c::init() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80396DC0-80396DC0 023420 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80396DC0 = "/res/Layout/letres.arc";
+#pragma pop
+
 /* 80454310-80454318 002910 0008+00 7/7 0/0 0/0 .sdata2          @4171 */
 SECTION_SDATA2 static f64 lit_4171 = 4503601774854144.0 /* cast s32 to float */;
 
@@ -758,6 +764,13 @@ asm void dMenu_Letter_c::slide_left_move() {
     nofralloc
 #include "asm/d/menu/d_menu_letter/slide_left_move__14dMenu_Letter_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80396DC0-80396DC0 023420 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80396DD7 = "%d/%d";
 #pragma pop
 
 /* 801DE334-801DE564 1D8C74 0230+00 1/0 0/0 0/0 .text            read_open_init__14dMenu_Letter_cFv
@@ -875,7 +888,7 @@ SECTION_RODATA static u8 const tag_sub0[48] = {
     0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x32, 0x73, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x33, 0x73,
     0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x34, 0x73, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x35, 0x73,
 };
-COMPILER_STRIP_GATE(803969C8, &tag_sub0);
+COMPILER_STRIP_GATE(0x803969C8, &tag_sub0);
 
 /* 803969F8-80396A28 023058 0030+00 0/1 0/0 0/0 .rodata          tag_sub1$4611 */
 #pragma push
@@ -885,7 +898,7 @@ SECTION_RODATA static u8 const tag_sub1[48] = {
     0x00, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x32, 0x00, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x33,
     0x00, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x34, 0x00, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x35,
 };
-COMPILER_STRIP_GATE(803969F8, &tag_sub1);
+COMPILER_STRIP_GATE(0x803969F8, &tag_sub1);
 #pragma pop
 
 /* 80396A28-80396A58 023088 0030+00 0/1 0/0 0/0 .rodata          tag_name0$4612 */
@@ -896,7 +909,7 @@ SECTION_RODATA static u8 const tag_name0[48] = {
     0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x66, 0x38, 0x73, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x39, 0x73,
     0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x31, 0x30, 0x73, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x31, 0x31, 0x73,
 };
-COMPILER_STRIP_GATE(80396A28, &tag_name0);
+COMPILER_STRIP_GATE(0x80396A28, &tag_name0);
 #pragma pop
 
 /* 80396A58-80396A88 0230B8 0030+00 0/1 0/0 0/0 .rodata          tag_name1$4613 */
@@ -907,7 +920,7 @@ SECTION_RODATA static u8 const tag_name1[48] = {
     0x00, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x38, 0x00, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x39,
     0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x31, 0x30, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x31, 0x31,
 };
-COMPILER_STRIP_GATE(80396A58, &tag_name1);
+COMPILER_STRIP_GATE(0x80396A58, &tag_name1);
 #pragma pop
 
 /* 80396A88-80396AB8 0230E8 0030+00 0/1 0/0 0/0 .rodata          ftag_sub0$4614 */
@@ -918,7 +931,7 @@ SECTION_RODATA static u8 const ftag_sub0[48] = {
     0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x32, 0x73, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x33, 0x73,
     0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x34, 0x73, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x35, 0x73,
 };
-COMPILER_STRIP_GATE(80396A88, &ftag_sub0);
+COMPILER_STRIP_GATE(0x80396A88, &ftag_sub0);
 #pragma pop
 
 /* 80396AB8-80396AE8 023118 0030+00 0/1 0/0 0/0 .rodata          ftag_sub1$4615 */
@@ -929,7 +942,7 @@ SECTION_RODATA static u8 const ftag_sub1[48] = {
     0x00, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x32, 0x00, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x33,
     0x00, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x34, 0x00, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x35,
 };
-COMPILER_STRIP_GATE(80396AB8, &ftag_sub1);
+COMPILER_STRIP_GATE(0x80396AB8, &ftag_sub1);
 #pragma pop
 
 /* 80396AE8-80396B18 023148 0030+00 0/1 0/0 0/0 .rodata          ftag_name0$4616 */
@@ -940,7 +953,7 @@ SECTION_RODATA static u8 const ftag_name0[48] = {
     0x66, 0x65, 0x6E, 0x75, 0x5F, 0x66, 0x38, 0x73, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x39, 0x73,
     0x66, 0x65, 0x6E, 0x75, 0x5F, 0x31, 0x30, 0x73, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x31, 0x31, 0x73,
 };
-COMPILER_STRIP_GATE(80396AE8, &ftag_name0);
+COMPILER_STRIP_GATE(0x80396AE8, &ftag_name0);
 #pragma pop
 
 /* 80396B18-80396B48 023178 0030+00 0/1 0/0 0/0 .rodata          ftag_name1$4617 */
@@ -951,7 +964,7 @@ SECTION_RODATA static u8 const ftag_name1[48] = {
     0x00, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x38, 0x00, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x39,
     0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x31, 0x30, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x31, 0x31,
 };
-COMPILER_STRIP_GATE(80396B18, &ftag_name1);
+COMPILER_STRIP_GATE(0x80396B18, &ftag_name1);
 #pragma pop
 
 /* 80396B48-80396B78 0231A8 0030+00 0/1 0/0 0/0 .rodata          tag_letter$4628 */
@@ -962,7 +975,7 @@ SECTION_RODATA static u8 const tag_letter[48] = {
     0x6C, 0x65, 0x74, 0x5F, 0x30, 0x32, 0x5F, 0x6E, 0x6C, 0x65, 0x74, 0x5F, 0x30, 0x33, 0x5F, 0x6E,
     0x6C, 0x65, 0x74, 0x5F, 0x30, 0x34, 0x5F, 0x6E, 0x6C, 0x65, 0x74, 0x5F, 0x30, 0x35, 0x5F, 0x6E,
 };
-COMPILER_STRIP_GATE(80396B48, &tag_letter);
+COMPILER_STRIP_GATE(0x80396B48, &tag_letter);
 #pragma pop
 
 /* 80396B78-80396BA8 0231D8 0030+00 0/1 0/0 0/0 .rodata          tag_frame$4635 */
@@ -973,7 +986,7 @@ SECTION_RODATA static u8 const tag_frame[48] = {
     0x66, 0x6C, 0x61, 0x6D, 0x65, 0x5F, 0x30, 0x32, 0x66, 0x6C, 0x61, 0x6D, 0x65, 0x5F, 0x30, 0x33,
     0x66, 0x6C, 0x61, 0x6D, 0x65, 0x5F, 0x30, 0x34, 0x66, 0x6C, 0x61, 0x6D, 0x65, 0x5F, 0x30, 0x35,
 };
-COMPILER_STRIP_GATE(80396B78, &tag_frame);
+COMPILER_STRIP_GATE(0x80396B78, &tag_frame);
 #pragma pop
 
 /* 80396BA8-80396BD8 023208 0030+00 0/1 0/0 0/0 .rodata          tag_menu0$4636 */
@@ -984,7 +997,7 @@ SECTION_RODATA static u8 const tag_menu0[48] = {
     0x00, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x32, 0x00, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x33,
     0x00, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x34, 0x00, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x35,
 };
-COMPILER_STRIP_GATE(80396BA8, &tag_menu0);
+COMPILER_STRIP_GATE(0x80396BA8, &tag_menu0);
 #pragma pop
 
 /* 80396BD8-80396C08 023238 0030+00 0/1 0/0 0/0 .rodata          tag_menu1$4637 */
@@ -995,7 +1008,7 @@ SECTION_RODATA static u8 const tag_menu1[48] = {
     0x00, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x38, 0x00, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x39,
     0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x31, 0x30, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x31, 0x31,
 };
-COMPILER_STRIP_GATE(80396BD8, &tag_menu1);
+COMPILER_STRIP_GATE(0x80396BD8, &tag_menu1);
 #pragma pop
 
 /* 80396C08-80396C38 023268 0030+00 0/1 0/0 0/0 .rodata          tag_midoku$4638 */
@@ -1006,7 +1019,14 @@ SECTION_RODATA static u8 const tag_midoku[48] = {
     0x6D, 0x69, 0x64, 0x6F, 0x6B, 0x75, 0x5F, 0x32, 0x6D, 0x69, 0x64, 0x6F, 0x6B, 0x75, 0x5F, 0x33,
     0x6D, 0x69, 0x64, 0x6F, 0x6B, 0x75, 0x5F, 0x34, 0x6D, 0x69, 0x64, 0x6F, 0x6B, 0x75, 0x5F, 0x35,
 };
-COMPILER_STRIP_GATE(80396C08, &tag_midoku);
+COMPILER_STRIP_GATE(0x80396C08, &tag_midoku);
+#pragma pop
+
+/* 80396DC0-80396DC0 023420 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80396DDD = "zelda_letter_select_6menu.blo";
+SECTION_DEAD static char const* const stringBase_80396DFB = "";
 #pragma pop
 
 /* 801DF010-801DFA28 1D9950 0A18+00 1/1 0/0 0/0 .text            screenSetMenu__14dMenu_Letter_cFv
@@ -1071,7 +1091,7 @@ SECTION_RODATA static u8 const tag_pip[72] = {
     0x35, 0x5F, 0x6E, 0x00, 0x70, 0x69, 0x5F, 0x30, 0x36, 0x5F, 0x6E, 0x00, 0x70, 0x69, 0x5F,
     0x30, 0x37, 0x5F, 0x6E, 0x00, 0x70, 0x69, 0x5F, 0x30, 0x38, 0x5F, 0x6E,
 };
-COMPILER_STRIP_GATE(80396C38, &tag_pip);
+COMPILER_STRIP_GATE(0x80396C38, &tag_pip);
 #pragma pop
 
 /* 80396C80-80396CC8 0232E0 0048+00 0/1 0/0 0/0 .rodata          tag_pil$4828 */
@@ -1084,7 +1104,7 @@ SECTION_RODATA static u8 const tag_pil[72] = {
     0x5F, 0x30, 0x35, 0x00, 0x70, 0x69, 0x5F, 0x6C, 0x5F, 0x30, 0x36, 0x00, 0x70, 0x69, 0x5F,
     0x6C, 0x5F, 0x30, 0x37, 0x00, 0x70, 0x69, 0x5F, 0x6C, 0x5F, 0x30, 0x38,
 };
-COMPILER_STRIP_GATE(80396C80, &tag_pil);
+COMPILER_STRIP_GATE(0x80396C80, &tag_pil);
 #pragma pop
 
 /* 80396CC8-80396D10 023328 0048+00 0/1 0/0 0/0 .rodata          tag_pii$4829 */
@@ -1097,7 +1117,13 @@ SECTION_RODATA static u8 const tag_pii[72] = {
     0x5F, 0x30, 0x35, 0x00, 0x00, 0x00, 0x70, 0x69, 0x5F, 0x30, 0x36, 0x00, 0x00, 0x00, 0x70,
     0x69, 0x5F, 0x30, 0x37, 0x00, 0x00, 0x00, 0x70, 0x69, 0x5F, 0x30, 0x38,
 };
-COMPILER_STRIP_GATE(80396CC8, &tag_pii);
+COMPILER_STRIP_GATE(0x80396CC8, &tag_pii);
+#pragma pop
+
+/* 80396DC0-80396DC0 023420 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80396DFC = "zelda_letter_select_base.blo";
 #pragma pop
 
 /* 801DFA58-801E0330 1DA398 08D8+00 1/1 0/0 0/0 .text            screenSetBase__14dMenu_Letter_cFv
@@ -1109,6 +1135,13 @@ asm void dMenu_Letter_c::screenSetBase() {
     nofralloc
 #include "asm/d/menu/d_menu_letter/screenSetBase__14dMenu_Letter_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80396DC0-80396DC0 023420 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80396E19 = "zelda_letter_select_shadow.blo";
 #pragma pop
 
 /* 801E0330-801E03D8 1DAC70 00A8+00 1/1 0/0 0/0 .text            screenSetShadow__14dMenu_Letter_cFv
@@ -1132,7 +1165,15 @@ SECTION_RODATA static u8 const line_tag[96] = {
     0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x31, 0x37, 0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x31, 0x38,
     0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x31, 0x39, 0x00, 0x00, 0x6C, 0x69, 0x6E, 0x65, 0x32, 0x30,
 };
-COMPILER_STRIP_GATE(80396D10, &line_tag);
+COMPILER_STRIP_GATE(0x80396D10, &line_tag);
+
+/* 80396DC0-80396DC0 023420 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80396E38 = "zelda_letter_window_base.blo";
+SECTION_DEAD static char const* const stringBase_80396E55 = "zelda_letter_window_spot.blo";
+SECTION_DEAD static char const* const stringBase_80396E72 = "tt_block8x8.bti";
+#pragma pop
 
 /* 801E03D8-801E09A8 1DAD18 05D0+00 1/1 0/0 0/0 .text            screenSetLetter__14dMenu_Letter_cFv
  */
@@ -1152,7 +1193,7 @@ SECTION_RODATA static u8 const text_a_tag[40] = {
     0x5F, 0x32, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x61, 0x74, 0x65, 0x78,
     0x74, 0x31, 0x5F, 0x34, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
 };
-COMPILER_STRIP_GATE(80396D70, &text_a_tag);
+COMPILER_STRIP_GATE(0x80396D70, &text_a_tag);
 
 /* 80396D98-80396DC0 0233F8 0028+00 1/1 0/0 0/0 .rodata          text_b_tag$5025 */
 SECTION_RODATA static u8 const text_b_tag[40] = {
@@ -1160,7 +1201,13 @@ SECTION_RODATA static u8 const text_b_tag[40] = {
     0x5F, 0x32, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x62, 0x74, 0x65, 0x78,
     0x74, 0x31, 0x5F, 0x34, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
 };
-COMPILER_STRIP_GATE(80396D98, &text_b_tag);
+COMPILER_STRIP_GATE(0x80396D98, &text_b_tag);
+
+/* 80396DC0-80396DC0 023420 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80396E82 = "zelda_collect_soubi_do_icon_parts.blo";
+#pragma pop
 
 /* 801E09A8-801E0B24 1DB2E8 017C+00 1/1 0/0 0/0 .text            screenSetDoIcon__14dMenu_Letter_cFv
  */
@@ -1310,21 +1357,7 @@ asm void __sinit_d_menu_letter_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_801E1D7C = (void*)__sinit_d_menu_letter_cpp;
+REGISTER_CTORS(0x801E1D7C, __sinit_d_menu_letter_cpp);
 #pragma pop
 
-/* 80396DC0-80396EA8 023420 00E8+00 10/10 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80396DC0 = "/res/Layout/letres.arc";
-SECTION_DEAD static char const* const stringBase_80396DD7 = "%d/%d";
-SECTION_DEAD static char const* const stringBase_80396DDD = "zelda_letter_select_6menu.blo";
-SECTION_DEAD static char const* const stringBase_80396DFB = "";
-SECTION_DEAD static char const* const stringBase_80396DFC = "zelda_letter_select_base.blo";
-SECTION_DEAD static char const* const stringBase_80396E19 = "zelda_letter_select_shadow.blo";
-SECTION_DEAD static char const* const stringBase_80396E38 = "zelda_letter_window_base.blo";
-SECTION_DEAD static char const* const stringBase_80396E55 = "zelda_letter_window_spot.blo";
-SECTION_DEAD static char const* const stringBase_80396E72 = "tt_block8x8.bti";
-SECTION_DEAD static char const* const stringBase_80396E82 = "zelda_collect_soubi_do_icon_parts.blo";
-#pragma pop
+/* 80396DC0-80396DC0 023420 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

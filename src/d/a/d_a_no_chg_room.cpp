@@ -129,6 +129,15 @@ asm void daNocrm_c::getRoomNo(int param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80392640-80392640 01ECA0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80392640 =
+    "部屋読み込み矩形：読み込みＩＤが−１ですので、自滅します！\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039267C = "\0\0\0";
+#pragma pop
+
 /* 804533CC-804533D0 0019CC 0004+00 1/1 0/0 0/0 .sdata2          @3832 */
 SECTION_SDATA2 static f32 lit_3832 = 1000.0f;
 
@@ -192,12 +201,4 @@ SECTION_DATA extern void* g_profile_NO_CHG_ROOM[12] = {
     (void*)0x00060000, (void*)0x05000000,
 };
 
-/* 80392640-80392680 01ECA0 003C+04 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80392640 =
-    "部屋読み込み矩形：読み込みＩＤが−１ですので、自滅します！\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039267C = "\0\0\0";
-#pragma pop
+/* 80392640-80392640 01ECA0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

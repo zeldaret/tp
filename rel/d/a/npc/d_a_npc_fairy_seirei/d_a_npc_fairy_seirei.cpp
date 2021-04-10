@@ -22,16 +22,16 @@ struct fopAc_ac_c {
 
 struct daNpcT_faceMotionAnmData_c {};
 
-struct daNpcT_evtData_c {};
-
-struct daNpcT_motionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
     /* 80145898 */ void initialize();
     /* 80541898 */ ~daNpcT_MotionSeqMngr_c();
 };
+
+struct daNpcT_evtData_c {};
+
+struct daNpcT_motionAnmData_c {};
 
 struct daNpc_FairySeirei_c {
     /* 8053FF6C */ ~daNpc_FairySeirei_c();
@@ -72,14 +72,14 @@ struct daNpc_FairySeirei_Param_c {
     static u8 const m[148];
 };
 
+struct J3DModel {};
+
 struct J3DJoint {};
 
 struct cXyz {
     /* 805412D0 */ ~cXyz();
     /* 8054184C */ cXyz();
 };
-
-struct J3DModel {};
 
 struct daNpcT_c {
     /* 8014852C */ void execute();
@@ -152,14 +152,14 @@ struct daNpcT_ActorMngr_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
+struct dKy_tevstr_c {};
 
 struct csXyz {
     /* 8054130C */ ~csXyz();
     /* 8054174C */ csXyz();
 };
 
-struct dKy_tevstr_c {};
+struct _GXColor {};
 
 struct dPa_control_c {
     struct level_c {
@@ -487,6 +487,12 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80541E58-80541E58 0000CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80541E58 = "";
+#pragma pop
+
 /* 80541E60-80541E6C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -780,11 +786,11 @@ SECTION_RODATA u8 const daNpc_FairySeirei_Param_c::m[148] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0x16, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80541D8C, &daNpc_FairySeirei_Param_c::m);
+COMPILER_STRIP_GATE(0x80541D8C, &daNpc_FairySeirei_Param_c::m);
 
 /* 80541E20-80541E24 000094 0004+00 1/1 0/0 0/0 .rodata          @4024 */
 SECTION_RODATA static f32 const lit_4024 = -1000000000.0f;
-COMPILER_STRIP_GATE(80541E20, &lit_4024);
+COMPILER_STRIP_GATE(0x80541E20, &lit_4024);
 
 /* 8054006C-80540298 0001EC 022C+00 1/1 0/0 0/0 .text            create__19daNpc_FairySeirei_cFv */
 #pragma push
@@ -840,27 +846,27 @@ SECTION_RODATA static u8 const lit_4178[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80541E24, &lit_4178);
+COMPILER_STRIP_GATE(0x80541E24, &lit_4178);
 
 /* 80541E28-80541E2C 00009C 0004+00 0/2 0/0 0/0 .rodata          @4179 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4179 = 65536.0f;
-COMPILER_STRIP_GATE(80541E28, &lit_4179);
+COMPILER_STRIP_GATE(0x80541E28, &lit_4179);
 #pragma pop
 
 /* 80541E2C-80541E30 0000A0 0004+00 0/2 0/0 0/0 .rodata          @4180 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4180 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80541E2C, &lit_4180);
+COMPILER_STRIP_GATE(0x80541E2C, &lit_4180);
 #pragma pop
 
 /* 80541E30-80541E34 0000A4 0004+00 0/1 0/0 0/0 .rodata          @4325 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4325 = -1.0f;
-COMPILER_STRIP_GATE(80541E30, &lit_4325);
+COMPILER_STRIP_GATE(0x80541E30, &lit_4325);
 #pragma pop
 
 /* 80540334-8054048C 0004B4 0158+00 1/1 0/0 0/0 .text            reset__19daNpc_FairySeirei_cFv */
@@ -910,6 +916,13 @@ asm void daNpc_FairySeirei_c::evtTalk() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80541E58-80541E58 0000CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80541E59 = "Seirei";
+#pragma pop
+
 /* 805406BC-80540784 00083C 00C8+00 1/0 0/0 0/0 .text            evtCutProc__19daNpc_FairySeirei_cFv
  */
 #pragma push
@@ -955,7 +968,7 @@ asm void daNpc_FairySeirei_c::setCollision() {
 /* ############################################################################################## */
 /* 80541E34-80541E38 0000A8 0004+00 1/1 0/0 0/0 .rodata          @4465 */
 SECTION_RODATA static f32 const lit_4465 = 350.0f;
-COMPILER_STRIP_GATE(80541E34, &lit_4465);
+COMPILER_STRIP_GATE(0x80541E34, &lit_4465);
 
 /* 80540988-80540A30 000B08 00A8+00 1/0 0/0 0/0 .text            setAttnPos__19daNpc_FairySeirei_cFv
  */
@@ -988,7 +1001,7 @@ asm void daNpc_FairySeirei_c::selectAction() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_FairySeirei_c::setAction(int (daNpc_FairySeirei_c::*)(int)) {
+asm void daNpc_FairySeirei_c::setAction(int (daNpc_FairySeirei_c::*param_0)(int)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_fairy_seirei/d_a_npc_fairy_seirei/func_80540A80.s"
 }
@@ -1009,21 +1022,21 @@ SECTION_RODATA static u8 const id[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80541E38, &id);
+COMPILER_STRIP_GATE(0x80541E38, &id);
 #pragma pop
 
 /* 80541E40-80541E44 0000B4 0004+00 0/1 0/0 0/0 .rodata          @4530 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4530 = 1.0f;
-COMPILER_STRIP_GATE(80541E40, &lit_4530);
+COMPILER_STRIP_GATE(0x80541E40, &lit_4530);
 #pragma pop
 
 /* 80541E44-80541E48 0000B8 0004+00 0/1 0/0 0/0 .rodata          @4531 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4531 = 200.0f;
-COMPILER_STRIP_GATE(80541E44, &lit_4531);
+COMPILER_STRIP_GATE(0x80541E44, &lit_4531);
 #pragma pop
 
 /* 80540B28-80540C54 000CA8 012C+00 1/1 0/0 0/0 .text            setPrtcls__19daNpc_FairySeirei_cFv
@@ -1062,7 +1075,7 @@ asm void daNpc_FairySeirei_c::talk(int param_0) {
 SECTION_RODATA static u8 const sTempBit[16] = {
     0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x7A, 0x00, 0x00, 0x00, 0x7B, 0x00, 0x00, 0x00, 0x7C,
 };
-COMPILER_STRIP_GATE(80541E48, &sTempBit);
+COMPILER_STRIP_GATE(0x80541E48, &sTempBit);
 
 /* 80540E10-80540E78 000F90 0068+00 1/1 0/0 0/0 .text _to_FairyCave__19daNpc_FairySeirei_cFv */
 #pragma push
@@ -1443,7 +1456,7 @@ asm void __sinit_d_a_npc_fairy_seirei_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80541B7C = (void*)__sinit_d_a_npc_fairy_seirei_cpp;
+REGISTER_CTORS(0x80541B7C, __sinit_d_a_npc_fairy_seirei_cpp);
 #pragma pop
 
 /* 80541BE4-80541C90 001D64 00AC+00 1/1 0/0 0/0 .text
@@ -1513,10 +1526,4 @@ static asm void func_80541D70() {
 }
 #pragma pop
 
-/* 80541E58-80541E60 0000CC 0008+00 4/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80541E58 = "";
-SECTION_DEAD static char const* const stringBase_80541E59 = "Seirei";
-#pragma pop
+/* 80541E58-80541E58 0000CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

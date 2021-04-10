@@ -37,9 +37,9 @@ struct mDoExt_brkAnm {
     /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -136,9 +136,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -247,11 +247,18 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80CB4FC0-80CB4FC4 000000 0004+00 1/1 0/0 0/0 .rodata          @3628 */
 SECTION_RODATA static f32 const lit_3628 = 2.0f;
-COMPILER_STRIP_GATE(80CB4FC0, &lit_3628);
+COMPILER_STRIP_GATE(0x80CB4FC0, &lit_3628);
 
 /* 80CB4FC4-80CB4FC8 000004 0004+00 1/1 0/0 0/0 .rodata          @3629 */
 SECTION_RODATA static f32 const lit_3629 = 12.0f;
-COMPILER_STRIP_GATE(80CB4FC4, &lit_3629);
+COMPILER_STRIP_GATE(0x80CB4FC4, &lit_3629);
+
+/* 80CB4FDC-80CB4FDC 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CB4FDC = "pouBox0";
+SECTION_DEAD static char const* const stringBase_80CB4FE4 = "pouBox1";
+#pragma pop
 
 /* 80CB4FEC-80CB4FF8 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -431,7 +438,7 @@ SECTION_RODATA static f32 const lit_3724[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80CB4FC8, &lit_3724);
+COMPILER_STRIP_GATE(0x80CB4FC8, &lit_3724);
 
 /* 80CB43D0-80CB46C4 000270 02F4+00 1/0 0/0 0/0 .text            CreateHeap__10daPoTbox_cFv */
 #pragma push
@@ -448,7 +455,7 @@ asm void daPoTbox_c::CreateHeap() {
 SECTION_RODATA static u8 const lit_3835[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CB4FD0, &lit_3835);
+COMPILER_STRIP_GATE(0x80CB4FD0, &lit_3835);
 
 /* 80CB46C4-80CB4954 000564 0290+00 1/1 0/0 0/0 .text            create__10daPoTbox_cFv */
 #pragma push
@@ -513,7 +520,7 @@ asm void daPoTbox_c::modeWait() {
 /* ############################################################################################## */
 /* 80CB4FD8-80CB4FDC 000018 0004+00 1/1 0/0 0/0 .rodata          @3926 */
 SECTION_RODATA static f32 const lit_3926 = -1.0f;
-COMPILER_STRIP_GATE(80CB4FD8, &lit_3926);
+COMPILER_STRIP_GATE(0x80CB4FD8, &lit_3926);
 
 /* 80CB4B10-80CB4BF8 0009B0 00E8+00 1/1 0/0 0/0 .text            init_modeOpen__10daPoTbox_cFv */
 #pragma push
@@ -652,13 +659,7 @@ asm void __sinit_d_a_obj_poTbox_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80CB4F70 = (void*)__sinit_d_a_obj_poTbox_cpp;
+REGISTER_CTORS(0x80CB4F70, __sinit_d_a_obj_poTbox_cpp);
 #pragma pop
 
-/* 80CB4FDC-80CB4FEC 00001C 0010+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CB4FDC = "pouBox0";
-SECTION_DEAD static char const* const stringBase_80CB4FE4 = "pouBox1";
-#pragma pop
+/* 80CB4FDC-80CB4FDC 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

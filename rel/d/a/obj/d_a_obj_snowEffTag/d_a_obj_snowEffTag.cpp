@@ -39,6 +39,10 @@ struct daSnowEffTag_HIO_c {
 
 struct dPa_levelEcallBack {};
 
+struct dKy_tevstr_c {};
+
+struct csXyz {};
+
 struct _GXColor {};
 
 struct Vec {};
@@ -46,10 +50,6 @@ struct Vec {};
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
-
-struct csXyz {};
-
-struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     struct level_c {
@@ -203,27 +203,27 @@ asm void daSnowEffTag_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 80CDF720-80CDF724 000000 0004+00 2/2 0/0 0/0 .rodata          @3702 */
 SECTION_RODATA static f32 const lit_3702 = 100.0f;
-COMPILER_STRIP_GATE(80CDF720, &lit_3702);
+COMPILER_STRIP_GATE(0x80CDF720, &lit_3702);
 
 /* 80CDF724-80CDF728 000004 0004+00 0/1 0/0 0/0 .rodata          @3703 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3703 = 0.5f;
-COMPILER_STRIP_GATE(80CDF724, &lit_3703);
+COMPILER_STRIP_GATE(0x80CDF724, &lit_3703);
 #pragma pop
 
 /* 80CDF728-80CDF72C 000008 0004+00 0/1 0/0 0/0 .rodata          @3704 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3704 = 0.25f;
-COMPILER_STRIP_GATE(80CDF728, &lit_3704);
+COMPILER_STRIP_GATE(0x80CDF728, &lit_3704);
 #pragma pop
 
 /* 80CDF72C-80CDF730 00000C 0004+00 0/1 0/0 0/0 .rodata          @3705 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3705 = 0.125f;
-COMPILER_STRIP_GATE(80CDF72C, &lit_3705);
+COMPILER_STRIP_GATE(0x80CDF72C, &lit_3705);
 #pragma pop
 
 /* 80CDF184-80CDF2B8 0001C4 0134+00 1/1 0/0 0/0 .text            create__14daSnowEffTag_cFv */
@@ -251,7 +251,7 @@ SECTION_RODATA static u8 const lit_3765[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CDF730, &lit_3765);
+COMPILER_STRIP_GATE(0x80CDF730, &lit_3765);
 #pragma pop
 
 /* 80CDF738-80CDF740 000018 0008+00 0/1 0/0 0/0 .rodata          @3766 */
@@ -260,7 +260,7 @@ COMPILER_STRIP_GATE(80CDF730, &lit_3765);
 SECTION_RODATA static u8 const lit_3766[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CDF738, &lit_3766);
+COMPILER_STRIP_GATE(0x80CDF738, &lit_3766);
 #pragma pop
 
 /* 80CDF740-80CDF748 000020 0008+00 0/1 0/0 0/0 .rodata          @3767 */
@@ -269,7 +269,7 @@ COMPILER_STRIP_GATE(80CDF738, &lit_3766);
 SECTION_RODATA static u8 const lit_3767[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CDF740, &lit_3767);
+COMPILER_STRIP_GATE(0x80CDF740, &lit_3767);
 #pragma pop
 
 /* 80CDF748-80CDF750 000028 0008+00 0/1 0/0 0/0 .rodata          @3768 */
@@ -278,7 +278,7 @@ COMPILER_STRIP_GATE(80CDF740, &lit_3767);
 SECTION_RODATA static u8 const lit_3768[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CDF748, &lit_3768);
+COMPILER_STRIP_GATE(0x80CDF748, &lit_3768);
 #pragma pop
 
 /* 80CDF2B8-80CDF498 0002F8 01E0+00 1/1 0/0 0/0 .text            playerAreaCheck__14daSnowEffTag_cFv
@@ -295,11 +295,11 @@ asm void daSnowEffTag_c::playerAreaCheck() {
 /* ############################################################################################## */
 /* 80CDF750-80CDF754 000030 0004+00 1/1 0/0 0/0 .rodata          @3806 */
 SECTION_RODATA static f32 const lit_3806 = 1.0f;
-COMPILER_STRIP_GATE(80CDF750, &lit_3806);
+COMPILER_STRIP_GATE(0x80CDF750, &lit_3806);
 
 /* 80CDF754-80CDF758 000034 0004+00 1/1 0/0 0/0 .rodata          @3807 */
 SECTION_RODATA static f32 const lit_3807 = -1.0f;
-COMPILER_STRIP_GATE(80CDF754, &lit_3807);
+COMPILER_STRIP_GATE(0x80CDF754, &lit_3807);
 
 /* 80CDF498-80CDF5E4 0004D8 014C+00 1/1 0/0 0/0 .text            Execute__14daSnowEffTag_cFv */
 #pragma push
@@ -391,5 +391,5 @@ asm void __sinit_d_a_obj_snowEffTag_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80CDF6D0 = (void*)__sinit_d_a_obj_snowEffTag_cpp;
+REGISTER_CTORS(0x80CDF6D0, __sinit_d_a_obj_snowEffTag_cpp);
 #pragma pop

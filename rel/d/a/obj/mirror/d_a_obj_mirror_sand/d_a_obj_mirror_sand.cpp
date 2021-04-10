@@ -24,9 +24,9 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -177,7 +177,7 @@ extern "C" extern u8 j3dSys[284];
 /* ############################################################################################## */
 /* 80C989D8-80C989DC 000000 0004+00 1/1 0/0 0/0 .rodata          @3729 */
 SECTION_RODATA static f32 const lit_3729 = 1.0f;
-COMPILER_STRIP_GATE(80C989D8, &lit_3729);
+COMPILER_STRIP_GATE(0x80C989D8, &lit_3729);
 
 /* 80C989DC-80C989E0 000004 0004+00 3/3 0/0 0/0 .rodata          @3730 */
 SECTION_RODATA static u8 const lit_3730[4] = {
@@ -186,13 +186,19 @@ SECTION_RODATA static u8 const lit_3730[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C989DC, &lit_3730);
+COMPILER_STRIP_GATE(0x80C989DC, &lit_3730);
 
 /* 80C989E0-80C989E8 000008 0008+00 1/1 0/0 0/0 .rodata          @3732 */
 SECTION_RODATA static u8 const lit_3732[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C989E0, &lit_3732);
+COMPILER_STRIP_GATE(0x80C989E0, &lit_3732);
+
+/* 80C989E8-80C989E8 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C989E8 = "MR-Sand";
+#pragma pop
 
 /* 80C989F0-80C989F4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_mirror_sand__stringBase0;
@@ -327,9 +333,4 @@ static asm void daObjMirrorSand_Create(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 80C989E8-80C989F0 000010 0008+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C989E8 = "MR-Sand";
-#pragma pop
+/* 80C989E8-80C989E8 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

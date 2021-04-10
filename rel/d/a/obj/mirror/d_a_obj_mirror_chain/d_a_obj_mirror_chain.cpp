@@ -44,9 +44,9 @@ struct mDoExt_brkAnm {
     /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -271,13 +271,13 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 /* ############################################################################################## */
 /* 80C98028-80C9802C 000000 0004+00 2/2 0/0 0/0 .rodata          @3915 */
 SECTION_RODATA static u32 const lit_3915 = 0x3C8EFA35;
-COMPILER_STRIP_GATE(80C98028, &lit_3915);
+COMPILER_STRIP_GATE(0x80C98028, &lit_3915);
 
 /* 80C9802C-80C98030 000004 0004+00 0/1 0/0 0/0 .rodata          @3916 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3916 = 0.5f;
-COMPILER_STRIP_GATE(80C9802C, &lit_3916);
+COMPILER_STRIP_GATE(0x80C9802C, &lit_3916);
 #pragma pop
 
 /* 80C98030-80C98034 000008 0004+00 2/4 0/0 0/0 .rodata          @3917 */
@@ -287,41 +287,41 @@ SECTION_RODATA static u8 const lit_3917[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C98030, &lit_3917);
+COMPILER_STRIP_GATE(0x80C98030, &lit_3917);
 
 /* 80C98034-80C98038 00000C 0004+00 0/1 0/0 0/0 .rodata          @3918 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3918 = 2.0f;
-COMPILER_STRIP_GATE(80C98034, &lit_3918);
+COMPILER_STRIP_GATE(0x80C98034, &lit_3918);
 #pragma pop
 
 /* 80C98038-80C9803C 000010 0004+00 0/1 0/0 0/0 .rodata          @3919 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3919 = 304.0f;
-COMPILER_STRIP_GATE(80C98038, &lit_3919);
+COMPILER_STRIP_GATE(0x80C98038, &lit_3919);
 #pragma pop
 
 /* 80C9803C-80C98040 000014 0004+00 0/1 0/0 0/0 .rodata          @3920 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3920 = 608.0f;
-COMPILER_STRIP_GATE(80C9803C, &lit_3920);
+COMPILER_STRIP_GATE(0x80C9803C, &lit_3920);
 #pragma pop
 
 /* 80C98040-80C98044 000018 0004+00 0/1 0/0 0/0 .rodata          @3921 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3921 = 224.0f;
-COMPILER_STRIP_GATE(80C98040, &lit_3921);
+COMPILER_STRIP_GATE(0x80C98040, &lit_3921);
 #pragma pop
 
 /* 80C98044-80C98048 00001C 0004+00 0/1 0/0 0/0 .rodata          @3922 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3922 = 448.0f;
-COMPILER_STRIP_GATE(80C98044, &lit_3922);
+COMPILER_STRIP_GATE(0x80C98044, &lit_3922);
 #pragma pop
 
 /* 80C98048-80C98050 000020 0004+04 1/3 0/0 0/0 .rodata          @3923 */
@@ -330,7 +330,7 @@ SECTION_RODATA static f32 const lit_3923[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80C98048, &lit_3923);
+COMPILER_STRIP_GATE(0x80C98048, &lit_3923);
 
 /* 80C98050-80C98058 000028 0008+00 0/1 0/0 0/0 .rodata          @3925 */
 #pragma push
@@ -338,7 +338,7 @@ COMPILER_STRIP_GATE(80C98048, &lit_3923);
 SECTION_RODATA static u8 const lit_3925[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C98050, &lit_3925);
+COMPILER_STRIP_GATE(0x80C98050, &lit_3925);
 #pragma pop
 
 /* 80C98138-80C98148 000000 0010+00 2/2 0/0 0/0 .bss             l_scissor */
@@ -389,7 +389,13 @@ static asm void createSolidHeap(fopAc_ac_c* param_0) {
 SECTION_RODATA static u8 const lit_4164[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C98058, &lit_4164);
+COMPILER_STRIP_GATE(0x80C98058, &lit_4164);
+
+/* 80C98074-80C98074 00004C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C98074 = "MR-Chain";
+#pragma pop
 
 /* 80C98080-80C98084 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_mirror_chain__stringBase0;
@@ -517,7 +523,7 @@ SECTION_RODATA static u8 const data_80C98060[4] = {
     0xE6,
     0x66,
 };
-COMPILER_STRIP_GATE(80C98060, &data_80C98060);
+COMPILER_STRIP_GATE(0x80C98060, &data_80C98060);
 #pragma pop
 
 /* 80C98064-80C98068 00003C 0004+00 0/0 0/0 0/0 .rodata
@@ -530,7 +536,7 @@ SECTION_RODATA static u8 const data_80C98064[4] = {
     0x5C,
     0xA4,
 };
-COMPILER_STRIP_GATE(80C98064, &data_80C98064);
+COMPILER_STRIP_GATE(0x80C98064, &data_80C98064);
 #pragma pop
 
 /* 80C98068-80C9806C 000040 0004+00 0/0 0/0 0/0 .rodata
@@ -543,7 +549,7 @@ SECTION_RODATA static u8 const data_80C98068[4] = {
     0xE1,
     0x0F,
 };
-COMPILER_STRIP_GATE(80C98068, &data_80C98068);
+COMPILER_STRIP_GATE(0x80C98068, &data_80C98068);
 #pragma pop
 
 /* 80C9806C-80C98070 000044 0004+00 0/0 0/0 0/0 .rodata
@@ -556,14 +562,14 @@ SECTION_RODATA static u8 const data_80C9806C[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C9806C, &data_80C9806C);
+COMPILER_STRIP_GATE(0x80C9806C, &data_80C9806C);
 #pragma pop
 
 /* 80C98070-80C98074 000048 0004+00 0/1 0/0 0/0 .rodata          @4494 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4494 = -1.0f;
-COMPILER_STRIP_GATE(80C98070, &lit_4494);
+COMPILER_STRIP_GATE(0x80C98070, &lit_4494);
 #pragma pop
 
 /* 80C97988-80C97BA4 001368 021C+00 1/1 0/0 0/0 .text            execute__18daObjMirrorChain_cFv */
@@ -657,9 +663,4 @@ cXyz::cXyz() {
     /* empty function */
 }
 
-/* 80C98074-80C9807D 00004C 0009+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C98074 = "MR-Chain";
-#pragma pop
+/* 80C98074-80C98074 00004C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

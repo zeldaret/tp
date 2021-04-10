@@ -447,7 +447,7 @@ asm void daTag_Cam_c::getAreaNoChk() {
 SECTION_RODATA static u8 const lit_3874[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8048A590, &lit_3874);
+COMPILER_STRIP_GATE(0x8048A590, &lit_3874);
 
 /* 8048A59C-8048A5F4 -00001 0058+00 0/0 0/0 0/0 .rodata          @4358 */
 #pragma push
@@ -460,14 +460,14 @@ SECTION_RODATA static void* const lit_4358[22] = {
     (void*)func_80489DB0, (void*)func_80489DE4, (void*)func_80489DF8, (void*)func_80489E18,
     (void*)func_80489E8C, (void*)func_80489EDC,
 };
-COMPILER_STRIP_GATE(8048A59C, &lit_4358);
+COMPILER_STRIP_GATE(0x8048A59C, &lit_4358);
 #pragma pop
 
 /* 8048A5F4-8048A5F8 000064 0004+00 0/1 0/0 0/0 .rodata          @4466 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4466 = 80.0f;
-COMPILER_STRIP_GATE(8048A5F4, &lit_4466);
+COMPILER_STRIP_GATE(0x8048A5F4, &lit_4466);
 #pragma pop
 
 /* 8048A5F8-8048A600 000068 0004+04 0/2 0/0 0/0 .rodata          @4467 */
@@ -484,7 +484,7 @@ SECTION_RODATA static u8 const lit_4467[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8048A5F8, &lit_4467);
+COMPILER_STRIP_GATE(0x8048A5F8, &lit_4467);
 #pragma pop
 
 /* 8048A600-8048A608 000070 0008+00 0/1 0/0 0/0 .rodata          @4468 */
@@ -493,7 +493,7 @@ COMPILER_STRIP_GATE(8048A5F8, &lit_4467);
 SECTION_RODATA static u8 const lit_4468[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8048A600, &lit_4468);
+COMPILER_STRIP_GATE(0x8048A600, &lit_4468);
 #pragma pop
 
 /* 8048A608-8048A610 000078 0008+00 0/1 0/0 0/0 .rodata          @4469 */
@@ -502,7 +502,7 @@ COMPILER_STRIP_GATE(8048A600, &lit_4468);
 SECTION_RODATA static u8 const lit_4469[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8048A608, &lit_4469);
+COMPILER_STRIP_GATE(0x8048A608, &lit_4469);
 #pragma pop
 
 /* 8048A610-8048A618 000080 0008+00 0/1 0/0 0/0 .rodata          @4470 */
@@ -511,7 +511,7 @@ COMPILER_STRIP_GATE(8048A608, &lit_4469);
 SECTION_RODATA static u8 const lit_4470[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8048A610, &lit_4470);
+COMPILER_STRIP_GATE(0x8048A610, &lit_4470);
 #pragma pop
 
 /* 80489F74-8048A378 000554 0404+00 1/1 0/0 0/0 .text            execute__11daTag_Cam_cFv */
@@ -562,14 +562,14 @@ static asm void daTag_Cam_Delete(daTag_Cam_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4545 = 500.0f;
-COMPILER_STRIP_GATE(8048A618, &lit_4545);
+COMPILER_STRIP_GATE(0x8048A618, &lit_4545);
 #pragma pop
 
 /* 8048A61C-8048A620 00008C 0004+00 0/1 0/0 0/0 .rodata          @4546 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4546 = 1000.0f;
-COMPILER_STRIP_GATE(8048A61C, &lit_4546);
+COMPILER_STRIP_GATE(0x8048A61C, &lit_4546);
 #pragma pop
 
 /* 8048A3DC-8048A588 0009BC 01AC+00 1/0 0/0 0/0 .text            daTag_Cam_Create__FP10fopAc_ac_c */

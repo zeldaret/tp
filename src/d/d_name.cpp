@@ -85,9 +85,9 @@ struct dDlst_NameIN_c {
     /* 8025115C */ ~dDlst_NameIN_c();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -261,6 +261,244 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
+/* 80399CC8-80399CC8 026328 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399CC8 = "あ";
+SECTION_DEAD static char const* const stringBase_80399CCB = "い";
+SECTION_DEAD static char const* const stringBase_80399CCE = "う";
+SECTION_DEAD static char const* const stringBase_80399CD1 = "え";
+SECTION_DEAD static char const* const stringBase_80399CD4 = "お";
+SECTION_DEAD static char const* const stringBase_80399CD7 = "か";
+SECTION_DEAD static char const* const stringBase_80399CDA = "き";
+SECTION_DEAD static char const* const stringBase_80399CDD = "く";
+SECTION_DEAD static char const* const stringBase_80399CE0 = "け";
+SECTION_DEAD static char const* const stringBase_80399CE3 = "こ";
+SECTION_DEAD static char const* const stringBase_80399CE6 = "さ";
+SECTION_DEAD static char const* const stringBase_80399CE9 = "し";
+SECTION_DEAD static char const* const stringBase_80399CEC = "す";
+SECTION_DEAD static char const* const stringBase_80399CEF = "せ";
+SECTION_DEAD static char const* const stringBase_80399CF2 = "そ";
+SECTION_DEAD static char const* const stringBase_80399CF5 = "た";
+SECTION_DEAD static char const* const stringBase_80399CF8 = "ち";
+SECTION_DEAD static char const* const stringBase_80399CFB = "つ";
+SECTION_DEAD static char const* const stringBase_80399CFE = "て";
+SECTION_DEAD static char const* const stringBase_80399D01 = "と";
+SECTION_DEAD static char const* const stringBase_80399D04 = "な";
+SECTION_DEAD static char const* const stringBase_80399D07 = "に";
+SECTION_DEAD static char const* const stringBase_80399D0A = "ぬ";
+SECTION_DEAD static char const* const stringBase_80399D0D = "ね";
+SECTION_DEAD static char const* const stringBase_80399D10 = "の";
+SECTION_DEAD static char const* const stringBase_80399D13 = "は";
+SECTION_DEAD static char const* const stringBase_80399D16 = "ひ";
+SECTION_DEAD static char const* const stringBase_80399D19 = "ふ";
+SECTION_DEAD static char const* const stringBase_80399D1C = "へ";
+SECTION_DEAD static char const* const stringBase_80399D1F = "ほ";
+SECTION_DEAD static char const* const stringBase_80399D22 = "ま";
+SECTION_DEAD static char const* const stringBase_80399D25 = "み";
+SECTION_DEAD static char const* const stringBase_80399D28 = "む";
+SECTION_DEAD static char const* const stringBase_80399D2B = "め";
+SECTION_DEAD static char const* const stringBase_80399D2E = "も";
+SECTION_DEAD static char const* const stringBase_80399D31 = "や";
+SECTION_DEAD static char const* const stringBase_80399D34 = "　";
+SECTION_DEAD static char const* const stringBase_80399D37 = "ゆ";
+SECTION_DEAD static char const* const stringBase_80399D3A = "よ";
+SECTION_DEAD static char const* const stringBase_80399D3D = "ら";
+SECTION_DEAD static char const* const stringBase_80399D40 = "り";
+SECTION_DEAD static char const* const stringBase_80399D43 = "る";
+SECTION_DEAD static char const* const stringBase_80399D46 = "れ";
+SECTION_DEAD static char const* const stringBase_80399D49 = "ろ";
+SECTION_DEAD static char const* const stringBase_80399D4C = "わ";
+SECTION_DEAD static char const* const stringBase_80399D4F = "を";
+SECTION_DEAD static char const* const stringBase_80399D52 = "ん";
+SECTION_DEAD static char const* const stringBase_80399D55 = "ぁ";
+SECTION_DEAD static char const* const stringBase_80399D58 = "ぃ";
+SECTION_DEAD static char const* const stringBase_80399D5B = "ぅ";
+SECTION_DEAD static char const* const stringBase_80399D5E = "ぇ";
+SECTION_DEAD static char const* const stringBase_80399D61 = "ぉ";
+SECTION_DEAD static char const* const stringBase_80399D64 = "ゃ";
+SECTION_DEAD static char const* const stringBase_80399D67 = "ゅ";
+SECTION_DEAD static char const* const stringBase_80399D6A = "ょ";
+SECTION_DEAD static char const* const stringBase_80399D6D = "っ";
+SECTION_DEAD static char const* const stringBase_80399D70 = "ー";
+SECTION_DEAD static char const* const stringBase_80399D73 = "゛";
+SECTION_DEAD static char const* const stringBase_80399D76 = "゜";
+SECTION_DEAD static char const* const stringBase_80399D79 = "￥";
+SECTION_DEAD static char const* const stringBase_80399D7C = "が";
+SECTION_DEAD static char const* const stringBase_80399D7F = "ぎ";
+SECTION_DEAD static char const* const stringBase_80399D82 = "ぐ";
+SECTION_DEAD static char const* const stringBase_80399D85 = "げ";
+SECTION_DEAD static char const* const stringBase_80399D88 = "ご";
+SECTION_DEAD static char const* const stringBase_80399D8B = "ざ";
+SECTION_DEAD static char const* const stringBase_80399D8E = "じ";
+SECTION_DEAD static char const* const stringBase_80399D91 = "ず";
+SECTION_DEAD static char const* const stringBase_80399D94 = "ぜ";
+SECTION_DEAD static char const* const stringBase_80399D97 = "ぞ";
+SECTION_DEAD static char const* const stringBase_80399D9A = "だ";
+SECTION_DEAD static char const* const stringBase_80399D9D = "ぢ";
+SECTION_DEAD static char const* const stringBase_80399DA0 = "づ";
+SECTION_DEAD static char const* const stringBase_80399DA3 = "で";
+SECTION_DEAD static char const* const stringBase_80399DA6 = "ど";
+SECTION_DEAD static char const* const stringBase_80399DA9 = "ば";
+SECTION_DEAD static char const* const stringBase_80399DAC = "び";
+SECTION_DEAD static char const* const stringBase_80399DAF = "ぶ";
+SECTION_DEAD static char const* const stringBase_80399DB2 = "べ";
+SECTION_DEAD static char const* const stringBase_80399DB5 = "ぼ";
+SECTION_DEAD static char const* const stringBase_80399DB8 = "ぱ";
+SECTION_DEAD static char const* const stringBase_80399DBB = "ぴ";
+SECTION_DEAD static char const* const stringBase_80399DBE = "ぷ";
+SECTION_DEAD static char const* const stringBase_80399DC1 = "ぺ";
+SECTION_DEAD static char const* const stringBase_80399DC4 = "ぽ";
+SECTION_DEAD static char const* const stringBase_80399DC7 = "ア";
+SECTION_DEAD static char const* const stringBase_80399DCA = "イ";
+SECTION_DEAD static char const* const stringBase_80399DCD = "ウ";
+SECTION_DEAD static char const* const stringBase_80399DD0 = "エ";
+SECTION_DEAD static char const* const stringBase_80399DD3 = "オ";
+SECTION_DEAD static char const* const stringBase_80399DD6 = "カ";
+SECTION_DEAD static char const* const stringBase_80399DD9 = "キ";
+SECTION_DEAD static char const* const stringBase_80399DDC = "ク";
+SECTION_DEAD static char const* const stringBase_80399DDF = "ケ";
+SECTION_DEAD static char const* const stringBase_80399DE2 = "コ";
+SECTION_DEAD static char const* const stringBase_80399DE5 = "サ";
+SECTION_DEAD static char const* const stringBase_80399DE8 = "シ";
+SECTION_DEAD static char const* const stringBase_80399DEB = "ス";
+SECTION_DEAD static char const* const stringBase_80399DEE = "セ";
+// MWCC ignores mapping of some japanese characters using the
+// byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
+SECTION_DEAD static char const* const stringBase_80399DF1 = "\x83\x5C";
+SECTION_DEAD static char const* const stringBase_80399DF4 = "タ";
+SECTION_DEAD static char const* const stringBase_80399DF7 = "チ";
+SECTION_DEAD static char const* const stringBase_80399DFA = "ツ";
+SECTION_DEAD static char const* const stringBase_80399DFD = "テ";
+SECTION_DEAD static char const* const stringBase_80399E00 = "ト";
+SECTION_DEAD static char const* const stringBase_80399E03 = "ナ";
+SECTION_DEAD static char const* const stringBase_80399E06 = "ニ";
+SECTION_DEAD static char const* const stringBase_80399E09 = "ヌ";
+SECTION_DEAD static char const* const stringBase_80399E0C = "ネ";
+SECTION_DEAD static char const* const stringBase_80399E0F = "ノ";
+SECTION_DEAD static char const* const stringBase_80399E12 = "ハ";
+SECTION_DEAD static char const* const stringBase_80399E15 = "ヒ";
+SECTION_DEAD static char const* const stringBase_80399E18 = "フ";
+SECTION_DEAD static char const* const stringBase_80399E1B = "ヘ";
+SECTION_DEAD static char const* const stringBase_80399E1E = "ホ";
+SECTION_DEAD static char const* const stringBase_80399E21 = "マ";
+SECTION_DEAD static char const* const stringBase_80399E24 = "ミ";
+SECTION_DEAD static char const* const stringBase_80399E27 = "ム";
+SECTION_DEAD static char const* const stringBase_80399E2A = "メ";
+SECTION_DEAD static char const* const stringBase_80399E2D = "モ";
+SECTION_DEAD static char const* const stringBase_80399E30 = "ヤ";
+SECTION_DEAD static char const* const stringBase_80399E33 = "ユ";
+SECTION_DEAD static char const* const stringBase_80399E36 = "ヨ";
+SECTION_DEAD static char const* const stringBase_80399E39 = "ラ";
+SECTION_DEAD static char const* const stringBase_80399E3C = "リ";
+SECTION_DEAD static char const* const stringBase_80399E3F = "ル";
+SECTION_DEAD static char const* const stringBase_80399E42 = "レ";
+SECTION_DEAD static char const* const stringBase_80399E45 = "ロ";
+SECTION_DEAD static char const* const stringBase_80399E48 = "ワ";
+SECTION_DEAD static char const* const stringBase_80399E4B = "ヲ";
+SECTION_DEAD static char const* const stringBase_80399E4E = "ン";
+SECTION_DEAD static char const* const stringBase_80399E51 = "ァ";
+SECTION_DEAD static char const* const stringBase_80399E54 = "ィ";
+SECTION_DEAD static char const* const stringBase_80399E57 = "ゥ";
+SECTION_DEAD static char const* const stringBase_80399E5A = "ェ";
+SECTION_DEAD static char const* const stringBase_80399E5D = "ォ";
+SECTION_DEAD static char const* const stringBase_80399E60 = "ャ";
+SECTION_DEAD static char const* const stringBase_80399E63 = "ュ";
+SECTION_DEAD static char const* const stringBase_80399E66 = "ョ";
+SECTION_DEAD static char const* const stringBase_80399E69 = "ッ";
+SECTION_DEAD static char const* const stringBase_80399E6C = "ヴ";
+SECTION_DEAD static char const* const stringBase_80399E6F = "ガ";
+SECTION_DEAD static char const* const stringBase_80399E72 = "ギ";
+SECTION_DEAD static char const* const stringBase_80399E75 = "グ";
+SECTION_DEAD static char const* const stringBase_80399E78 = "ゲ";
+SECTION_DEAD static char const* const stringBase_80399E7B = "ゴ";
+SECTION_DEAD static char const* const stringBase_80399E7E = "ザ";
+SECTION_DEAD static char const* const stringBase_80399E81 = "ジ";
+SECTION_DEAD static char const* const stringBase_80399E84 = "ズ";
+SECTION_DEAD static char const* const stringBase_80399E87 = "ゼ";
+SECTION_DEAD static char const* const stringBase_80399E8A = "ゾ";
+SECTION_DEAD static char const* const stringBase_80399E8D = "ダ";
+SECTION_DEAD static char const* const stringBase_80399E90 = "ヂ";
+SECTION_DEAD static char const* const stringBase_80399E93 = "ヅ";
+SECTION_DEAD static char const* const stringBase_80399E96 = "デ";
+SECTION_DEAD static char const* const stringBase_80399E99 = "ド";
+SECTION_DEAD static char const* const stringBase_80399E9C = "バ";
+SECTION_DEAD static char const* const stringBase_80399E9F = "ビ";
+SECTION_DEAD static char const* const stringBase_80399EA2 = "ブ";
+SECTION_DEAD static char const* const stringBase_80399EA5 = "ベ";
+SECTION_DEAD static char const* const stringBase_80399EA8 = "ボ";
+SECTION_DEAD static char const* const stringBase_80399EAB = "パ";
+SECTION_DEAD static char const* const stringBase_80399EAE = "ピ";
+SECTION_DEAD static char const* const stringBase_80399EB1 = "プ";
+SECTION_DEAD static char const* const stringBase_80399EB4 = "ペ";
+SECTION_DEAD static char const* const stringBase_80399EB7 = "ポ";
+SECTION_DEAD static char const* const stringBase_80399EBA = "A";
+SECTION_DEAD static char const* const stringBase_80399EBC = "N";
+SECTION_DEAD static char const* const stringBase_80399EBE = "a";
+SECTION_DEAD static char const* const stringBase_80399EC0 = "n";
+SECTION_DEAD static char const* const stringBase_80399EC2 = "1";
+SECTION_DEAD static char const* const stringBase_80399EC4 = "B";
+SECTION_DEAD static char const* const stringBase_80399EC6 = "O";
+SECTION_DEAD static char const* const stringBase_80399EC8 = "b";
+SECTION_DEAD static char const* const stringBase_80399ECA = "o";
+SECTION_DEAD static char const* const stringBase_80399ECC = "2";
+SECTION_DEAD static char const* const stringBase_80399ECE = "C";
+SECTION_DEAD static char const* const stringBase_80399ED0 = "P";
+SECTION_DEAD static char const* const stringBase_80399ED2 = "c";
+SECTION_DEAD static char const* const stringBase_80399ED4 = "p";
+SECTION_DEAD static char const* const stringBase_80399ED6 = "3";
+SECTION_DEAD static char const* const stringBase_80399ED8 = "D";
+SECTION_DEAD static char const* const stringBase_80399EDA = "Q";
+SECTION_DEAD static char const* const stringBase_80399EDC = "d";
+SECTION_DEAD static char const* const stringBase_80399EDE = "q";
+SECTION_DEAD static char const* const stringBase_80399EE0 = "4";
+SECTION_DEAD static char const* const stringBase_80399EE2 = "E";
+SECTION_DEAD static char const* const stringBase_80399EE4 = "R";
+SECTION_DEAD static char const* const stringBase_80399EE6 = "e";
+SECTION_DEAD static char const* const stringBase_80399EE8 = "r";
+SECTION_DEAD static char const* const stringBase_80399EEA = "5";
+SECTION_DEAD static char const* const stringBase_80399EEC = "F";
+SECTION_DEAD static char const* const stringBase_80399EEE = "S";
+SECTION_DEAD static char const* const stringBase_80399EF0 = "f";
+SECTION_DEAD static char const* const stringBase_80399EF2 = "s";
+SECTION_DEAD static char const* const stringBase_80399EF4 = "6";
+SECTION_DEAD static char const* const stringBase_80399EF6 = "G";
+SECTION_DEAD static char const* const stringBase_80399EF8 = "T";
+SECTION_DEAD static char const* const stringBase_80399EFA = "g";
+SECTION_DEAD static char const* const stringBase_80399EFC = "t";
+SECTION_DEAD static char const* const stringBase_80399EFE = "7";
+SECTION_DEAD static char const* const stringBase_80399F00 = "H";
+SECTION_DEAD static char const* const stringBase_80399F02 = "U";
+SECTION_DEAD static char const* const stringBase_80399F04 = "h";
+SECTION_DEAD static char const* const stringBase_80399F06 = "u";
+SECTION_DEAD static char const* const stringBase_80399F08 = "8";
+SECTION_DEAD static char const* const stringBase_80399F0A = "I";
+SECTION_DEAD static char const* const stringBase_80399F0C = "V";
+SECTION_DEAD static char const* const stringBase_80399F0E = "i";
+SECTION_DEAD static char const* const stringBase_80399F10 = "v";
+SECTION_DEAD static char const* const stringBase_80399F12 = "9";
+SECTION_DEAD static char const* const stringBase_80399F14 = "J";
+SECTION_DEAD static char const* const stringBase_80399F16 = "W";
+SECTION_DEAD static char const* const stringBase_80399F18 = "j";
+SECTION_DEAD static char const* const stringBase_80399F1A = "w";
+SECTION_DEAD static char const* const stringBase_80399F1C = "0";
+SECTION_DEAD static char const* const stringBase_80399F1E = "K";
+SECTION_DEAD static char const* const stringBase_80399F20 = "X";
+SECTION_DEAD static char const* const stringBase_80399F22 = "k";
+SECTION_DEAD static char const* const stringBase_80399F24 = "x";
+SECTION_DEAD static char const* const stringBase_80399F26 = ",";
+SECTION_DEAD static char const* const stringBase_80399F28 = "L";
+SECTION_DEAD static char const* const stringBase_80399F2A = "Y";
+SECTION_DEAD static char const* const stringBase_80399F2C = "l";
+SECTION_DEAD static char const* const stringBase_80399F2E = "y";
+SECTION_DEAD static char const* const stringBase_80399F30 = ".";
+SECTION_DEAD static char const* const stringBase_80399F32 = "M";
+SECTION_DEAD static char const* const stringBase_80399F34 = "Z";
+SECTION_DEAD static char const* const stringBase_80399F36 = "m";
+SECTION_DEAD static char const* const stringBase_80399F38 = "z";
+SECTION_DEAD static char const* const stringBase_80399F3A = " ";
+#pragma pop
+
 /* 803C1F50-803C1F5C 01F070 000C+00 5/5 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1280,6 +1518,27 @@ asm void dName_c::setMoji(int param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80399CC8-80399CC8 026328 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399F3C = ""
+                                                            "\x1B"
+                                                            "CD"
+                                                            "\x1B"
+                                                            "CR"
+                                                            "\x1B"
+                                                            "CC[000000]"
+                                                            "\x1B"
+                                                            "GM[0]%c"
+                                                            "\x1B"
+                                                            "HM"
+                                                            "\x1B"
+                                                            "CC[ffffff]"
+                                                            "\x1B"
+                                                            "GM[0]%c";
+#pragma pop
+
 /* 8024F88C-8024F914 24A1CC 0088+00 4/4 0/0 0/0 .text            setNameText__7dName_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -1385,6 +1644,28 @@ asm void dName_c::backSpace() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80399CC8-80399CC8 026328 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399F6C = ""
+                                                            "\x1B"
+                                                            "CD"
+                                                            "\x1B"
+                                                            "CR"
+                                                            "\x1B"
+                                                            "CC[000000]"
+                                                            "\x1B"
+                                                            "GM[0]";
+SECTION_DEAD static char const* const stringBase_80399F84 = ""
+                                                            "\x1B"
+                                                            "HM"
+                                                            "\x1B"
+                                                            "CC[ffffff]"
+                                                            "\x1B"
+                                                            "GM[0]";
+#pragma pop
+
 /* 802501B0-80250284 24AAF0 00D4+00 2/2 0/0 0/0 .text            mojiListChange__7dName_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -1436,6 +1717,17 @@ asm void dName_c::_draw() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80399CC8-80399CC8 026328 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399F99 = "zelda_player_name.blo";
+SECTION_DEAD static char const* const stringBase_80399FAF = "zelda_player_name.bpk";
+SECTION_DEAD static char const* const stringBase_80399FC5 = "zelda_player_name.btk";
+SECTION_DEAD static char const* const stringBase_80399FDB = "";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80399FDC = "\0\0\0";
+#pragma pop
+
 /* 80454DD4-80454DD8 0033D4 0004+00 1/1 0/0 0/0 .sdata2          @4722 */
 SECTION_SDATA2 static f32 lit_4722 = 41.0f / 50.0f;
 
@@ -1534,281 +1826,7 @@ asm void __sinit_d_name_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_802511EC = (void*)__sinit_d_name_cpp;
+REGISTER_CTORS(0x802511EC, __sinit_d_name_cpp);
 #pragma pop
 
-/* 80399CC8-80399FE0 026328 0314+04 10/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80399CC8 = "あ";
-SECTION_DEAD static char const* const stringBase_80399CCB = "い";
-SECTION_DEAD static char const* const stringBase_80399CCE = "う";
-SECTION_DEAD static char const* const stringBase_80399CD1 = "え";
-SECTION_DEAD static char const* const stringBase_80399CD4 = "お";
-SECTION_DEAD static char const* const stringBase_80399CD7 = "か";
-SECTION_DEAD static char const* const stringBase_80399CDA = "き";
-SECTION_DEAD static char const* const stringBase_80399CDD = "く";
-SECTION_DEAD static char const* const stringBase_80399CE0 = "け";
-SECTION_DEAD static char const* const stringBase_80399CE3 = "こ";
-SECTION_DEAD static char const* const stringBase_80399CE6 = "さ";
-SECTION_DEAD static char const* const stringBase_80399CE9 = "し";
-SECTION_DEAD static char const* const stringBase_80399CEC = "す";
-SECTION_DEAD static char const* const stringBase_80399CEF = "せ";
-SECTION_DEAD static char const* const stringBase_80399CF2 = "そ";
-SECTION_DEAD static char const* const stringBase_80399CF5 = "た";
-SECTION_DEAD static char const* const stringBase_80399CF8 = "ち";
-SECTION_DEAD static char const* const stringBase_80399CFB = "つ";
-SECTION_DEAD static char const* const stringBase_80399CFE = "て";
-SECTION_DEAD static char const* const stringBase_80399D01 = "と";
-SECTION_DEAD static char const* const stringBase_80399D04 = "な";
-SECTION_DEAD static char const* const stringBase_80399D07 = "に";
-SECTION_DEAD static char const* const stringBase_80399D0A = "ぬ";
-SECTION_DEAD static char const* const stringBase_80399D0D = "ね";
-SECTION_DEAD static char const* const stringBase_80399D10 = "の";
-SECTION_DEAD static char const* const stringBase_80399D13 = "は";
-SECTION_DEAD static char const* const stringBase_80399D16 = "ひ";
-SECTION_DEAD static char const* const stringBase_80399D19 = "ふ";
-SECTION_DEAD static char const* const stringBase_80399D1C = "へ";
-SECTION_DEAD static char const* const stringBase_80399D1F = "ほ";
-SECTION_DEAD static char const* const stringBase_80399D22 = "ま";
-SECTION_DEAD static char const* const stringBase_80399D25 = "み";
-SECTION_DEAD static char const* const stringBase_80399D28 = "む";
-SECTION_DEAD static char const* const stringBase_80399D2B = "め";
-SECTION_DEAD static char const* const stringBase_80399D2E = "も";
-SECTION_DEAD static char const* const stringBase_80399D31 = "や";
-SECTION_DEAD static char const* const stringBase_80399D34 = "　";
-SECTION_DEAD static char const* const stringBase_80399D37 = "ゆ";
-SECTION_DEAD static char const* const stringBase_80399D3A = "よ";
-SECTION_DEAD static char const* const stringBase_80399D3D = "ら";
-SECTION_DEAD static char const* const stringBase_80399D40 = "り";
-SECTION_DEAD static char const* const stringBase_80399D43 = "る";
-SECTION_DEAD static char const* const stringBase_80399D46 = "れ";
-SECTION_DEAD static char const* const stringBase_80399D49 = "ろ";
-SECTION_DEAD static char const* const stringBase_80399D4C = "わ";
-SECTION_DEAD static char const* const stringBase_80399D4F = "を";
-SECTION_DEAD static char const* const stringBase_80399D52 = "ん";
-SECTION_DEAD static char const* const stringBase_80399D55 = "ぁ";
-SECTION_DEAD static char const* const stringBase_80399D58 = "ぃ";
-SECTION_DEAD static char const* const stringBase_80399D5B = "ぅ";
-SECTION_DEAD static char const* const stringBase_80399D5E = "ぇ";
-SECTION_DEAD static char const* const stringBase_80399D61 = "ぉ";
-SECTION_DEAD static char const* const stringBase_80399D64 = "ゃ";
-SECTION_DEAD static char const* const stringBase_80399D67 = "ゅ";
-SECTION_DEAD static char const* const stringBase_80399D6A = "ょ";
-SECTION_DEAD static char const* const stringBase_80399D6D = "っ";
-SECTION_DEAD static char const* const stringBase_80399D70 = "ー";
-SECTION_DEAD static char const* const stringBase_80399D73 = "゛";
-SECTION_DEAD static char const* const stringBase_80399D76 = "゜";
-SECTION_DEAD static char const* const stringBase_80399D79 = "￥";
-SECTION_DEAD static char const* const stringBase_80399D7C = "が";
-SECTION_DEAD static char const* const stringBase_80399D7F = "ぎ";
-SECTION_DEAD static char const* const stringBase_80399D82 = "ぐ";
-SECTION_DEAD static char const* const stringBase_80399D85 = "げ";
-SECTION_DEAD static char const* const stringBase_80399D88 = "ご";
-SECTION_DEAD static char const* const stringBase_80399D8B = "ざ";
-SECTION_DEAD static char const* const stringBase_80399D8E = "じ";
-SECTION_DEAD static char const* const stringBase_80399D91 = "ず";
-SECTION_DEAD static char const* const stringBase_80399D94 = "ぜ";
-SECTION_DEAD static char const* const stringBase_80399D97 = "ぞ";
-SECTION_DEAD static char const* const stringBase_80399D9A = "だ";
-SECTION_DEAD static char const* const stringBase_80399D9D = "ぢ";
-SECTION_DEAD static char const* const stringBase_80399DA0 = "づ";
-SECTION_DEAD static char const* const stringBase_80399DA3 = "で";
-SECTION_DEAD static char const* const stringBase_80399DA6 = "ど";
-SECTION_DEAD static char const* const stringBase_80399DA9 = "ば";
-SECTION_DEAD static char const* const stringBase_80399DAC = "び";
-SECTION_DEAD static char const* const stringBase_80399DAF = "ぶ";
-SECTION_DEAD static char const* const stringBase_80399DB2 = "べ";
-SECTION_DEAD static char const* const stringBase_80399DB5 = "ぼ";
-SECTION_DEAD static char const* const stringBase_80399DB8 = "ぱ";
-SECTION_DEAD static char const* const stringBase_80399DBB = "ぴ";
-SECTION_DEAD static char const* const stringBase_80399DBE = "ぷ";
-SECTION_DEAD static char const* const stringBase_80399DC1 = "ぺ";
-SECTION_DEAD static char const* const stringBase_80399DC4 = "ぽ";
-SECTION_DEAD static char const* const stringBase_80399DC7 = "ア";
-SECTION_DEAD static char const* const stringBase_80399DCA = "イ";
-SECTION_DEAD static char const* const stringBase_80399DCD = "ウ";
-SECTION_DEAD static char const* const stringBase_80399DD0 = "エ";
-SECTION_DEAD static char const* const stringBase_80399DD3 = "オ";
-SECTION_DEAD static char const* const stringBase_80399DD6 = "カ";
-SECTION_DEAD static char const* const stringBase_80399DD9 = "キ";
-SECTION_DEAD static char const* const stringBase_80399DDC = "ク";
-SECTION_DEAD static char const* const stringBase_80399DDF = "ケ";
-SECTION_DEAD static char const* const stringBase_80399DE2 = "コ";
-SECTION_DEAD static char const* const stringBase_80399DE5 = "サ";
-SECTION_DEAD static char const* const stringBase_80399DE8 = "シ";
-SECTION_DEAD static char const* const stringBase_80399DEB = "ス";
-SECTION_DEAD static char const* const stringBase_80399DEE = "セ";
-// MWCC ignores mapping of some japanese characters using the
-// byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
-SECTION_DEAD static char const* const stringBase_80399DF1 = "\x83\x5C";
-SECTION_DEAD static char const* const stringBase_80399DF4 = "タ";
-SECTION_DEAD static char const* const stringBase_80399DF7 = "チ";
-SECTION_DEAD static char const* const stringBase_80399DFA = "ツ";
-SECTION_DEAD static char const* const stringBase_80399DFD = "テ";
-SECTION_DEAD static char const* const stringBase_80399E00 = "ト";
-SECTION_DEAD static char const* const stringBase_80399E03 = "ナ";
-SECTION_DEAD static char const* const stringBase_80399E06 = "ニ";
-SECTION_DEAD static char const* const stringBase_80399E09 = "ヌ";
-SECTION_DEAD static char const* const stringBase_80399E0C = "ネ";
-SECTION_DEAD static char const* const stringBase_80399E0F = "ノ";
-SECTION_DEAD static char const* const stringBase_80399E12 = "ハ";
-SECTION_DEAD static char const* const stringBase_80399E15 = "ヒ";
-SECTION_DEAD static char const* const stringBase_80399E18 = "フ";
-SECTION_DEAD static char const* const stringBase_80399E1B = "ヘ";
-SECTION_DEAD static char const* const stringBase_80399E1E = "ホ";
-SECTION_DEAD static char const* const stringBase_80399E21 = "マ";
-SECTION_DEAD static char const* const stringBase_80399E24 = "ミ";
-SECTION_DEAD static char const* const stringBase_80399E27 = "ム";
-SECTION_DEAD static char const* const stringBase_80399E2A = "メ";
-SECTION_DEAD static char const* const stringBase_80399E2D = "モ";
-SECTION_DEAD static char const* const stringBase_80399E30 = "ヤ";
-SECTION_DEAD static char const* const stringBase_80399E33 = "ユ";
-SECTION_DEAD static char const* const stringBase_80399E36 = "ヨ";
-SECTION_DEAD static char const* const stringBase_80399E39 = "ラ";
-SECTION_DEAD static char const* const stringBase_80399E3C = "リ";
-SECTION_DEAD static char const* const stringBase_80399E3F = "ル";
-SECTION_DEAD static char const* const stringBase_80399E42 = "レ";
-SECTION_DEAD static char const* const stringBase_80399E45 = "ロ";
-SECTION_DEAD static char const* const stringBase_80399E48 = "ワ";
-SECTION_DEAD static char const* const stringBase_80399E4B = "ヲ";
-SECTION_DEAD static char const* const stringBase_80399E4E = "ン";
-SECTION_DEAD static char const* const stringBase_80399E51 = "ァ";
-SECTION_DEAD static char const* const stringBase_80399E54 = "ィ";
-SECTION_DEAD static char const* const stringBase_80399E57 = "ゥ";
-SECTION_DEAD static char const* const stringBase_80399E5A = "ェ";
-SECTION_DEAD static char const* const stringBase_80399E5D = "ォ";
-SECTION_DEAD static char const* const stringBase_80399E60 = "ャ";
-SECTION_DEAD static char const* const stringBase_80399E63 = "ュ";
-SECTION_DEAD static char const* const stringBase_80399E66 = "ョ";
-SECTION_DEAD static char const* const stringBase_80399E69 = "ッ";
-SECTION_DEAD static char const* const stringBase_80399E6C = "ヴ";
-SECTION_DEAD static char const* const stringBase_80399E6F = "ガ";
-SECTION_DEAD static char const* const stringBase_80399E72 = "ギ";
-SECTION_DEAD static char const* const stringBase_80399E75 = "グ";
-SECTION_DEAD static char const* const stringBase_80399E78 = "ゲ";
-SECTION_DEAD static char const* const stringBase_80399E7B = "ゴ";
-SECTION_DEAD static char const* const stringBase_80399E7E = "ザ";
-SECTION_DEAD static char const* const stringBase_80399E81 = "ジ";
-SECTION_DEAD static char const* const stringBase_80399E84 = "ズ";
-SECTION_DEAD static char const* const stringBase_80399E87 = "ゼ";
-SECTION_DEAD static char const* const stringBase_80399E8A = "ゾ";
-SECTION_DEAD static char const* const stringBase_80399E8D = "ダ";
-SECTION_DEAD static char const* const stringBase_80399E90 = "ヂ";
-SECTION_DEAD static char const* const stringBase_80399E93 = "ヅ";
-SECTION_DEAD static char const* const stringBase_80399E96 = "デ";
-SECTION_DEAD static char const* const stringBase_80399E99 = "ド";
-SECTION_DEAD static char const* const stringBase_80399E9C = "バ";
-SECTION_DEAD static char const* const stringBase_80399E9F = "ビ";
-SECTION_DEAD static char const* const stringBase_80399EA2 = "ブ";
-SECTION_DEAD static char const* const stringBase_80399EA5 = "ベ";
-SECTION_DEAD static char const* const stringBase_80399EA8 = "ボ";
-SECTION_DEAD static char const* const stringBase_80399EAB = "パ";
-SECTION_DEAD static char const* const stringBase_80399EAE = "ピ";
-SECTION_DEAD static char const* const stringBase_80399EB1 = "プ";
-SECTION_DEAD static char const* const stringBase_80399EB4 = "ペ";
-SECTION_DEAD static char const* const stringBase_80399EB7 = "ポ";
-SECTION_DEAD static char const* const stringBase_80399EBA = "A";
-SECTION_DEAD static char const* const stringBase_80399EBC = "N";
-SECTION_DEAD static char const* const stringBase_80399EBE = "a";
-SECTION_DEAD static char const* const stringBase_80399EC0 = "n";
-SECTION_DEAD static char const* const stringBase_80399EC2 = "1";
-SECTION_DEAD static char const* const stringBase_80399EC4 = "B";
-SECTION_DEAD static char const* const stringBase_80399EC6 = "O";
-SECTION_DEAD static char const* const stringBase_80399EC8 = "b";
-SECTION_DEAD static char const* const stringBase_80399ECA = "o";
-SECTION_DEAD static char const* const stringBase_80399ECC = "2";
-SECTION_DEAD static char const* const stringBase_80399ECE = "C";
-SECTION_DEAD static char const* const stringBase_80399ED0 = "P";
-SECTION_DEAD static char const* const stringBase_80399ED2 = "c";
-SECTION_DEAD static char const* const stringBase_80399ED4 = "p";
-SECTION_DEAD static char const* const stringBase_80399ED6 = "3";
-SECTION_DEAD static char const* const stringBase_80399ED8 = "D";
-SECTION_DEAD static char const* const stringBase_80399EDA = "Q";
-SECTION_DEAD static char const* const stringBase_80399EDC = "d";
-SECTION_DEAD static char const* const stringBase_80399EDE = "q";
-SECTION_DEAD static char const* const stringBase_80399EE0 = "4";
-SECTION_DEAD static char const* const stringBase_80399EE2 = "E";
-SECTION_DEAD static char const* const stringBase_80399EE4 = "R";
-SECTION_DEAD static char const* const stringBase_80399EE6 = "e";
-SECTION_DEAD static char const* const stringBase_80399EE8 = "r";
-SECTION_DEAD static char const* const stringBase_80399EEA = "5";
-SECTION_DEAD static char const* const stringBase_80399EEC = "F";
-SECTION_DEAD static char const* const stringBase_80399EEE = "S";
-SECTION_DEAD static char const* const stringBase_80399EF0 = "f";
-SECTION_DEAD static char const* const stringBase_80399EF2 = "s";
-SECTION_DEAD static char const* const stringBase_80399EF4 = "6";
-SECTION_DEAD static char const* const stringBase_80399EF6 = "G";
-SECTION_DEAD static char const* const stringBase_80399EF8 = "T";
-SECTION_DEAD static char const* const stringBase_80399EFA = "g";
-SECTION_DEAD static char const* const stringBase_80399EFC = "t";
-SECTION_DEAD static char const* const stringBase_80399EFE = "7";
-SECTION_DEAD static char const* const stringBase_80399F00 = "H";
-SECTION_DEAD static char const* const stringBase_80399F02 = "U";
-SECTION_DEAD static char const* const stringBase_80399F04 = "h";
-SECTION_DEAD static char const* const stringBase_80399F06 = "u";
-SECTION_DEAD static char const* const stringBase_80399F08 = "8";
-SECTION_DEAD static char const* const stringBase_80399F0A = "I";
-SECTION_DEAD static char const* const stringBase_80399F0C = "V";
-SECTION_DEAD static char const* const stringBase_80399F0E = "i";
-SECTION_DEAD static char const* const stringBase_80399F10 = "v";
-SECTION_DEAD static char const* const stringBase_80399F12 = "9";
-SECTION_DEAD static char const* const stringBase_80399F14 = "J";
-SECTION_DEAD static char const* const stringBase_80399F16 = "W";
-SECTION_DEAD static char const* const stringBase_80399F18 = "j";
-SECTION_DEAD static char const* const stringBase_80399F1A = "w";
-SECTION_DEAD static char const* const stringBase_80399F1C = "0";
-SECTION_DEAD static char const* const stringBase_80399F1E = "K";
-SECTION_DEAD static char const* const stringBase_80399F20 = "X";
-SECTION_DEAD static char const* const stringBase_80399F22 = "k";
-SECTION_DEAD static char const* const stringBase_80399F24 = "x";
-SECTION_DEAD static char const* const stringBase_80399F26 = ",";
-SECTION_DEAD static char const* const stringBase_80399F28 = "L";
-SECTION_DEAD static char const* const stringBase_80399F2A = "Y";
-SECTION_DEAD static char const* const stringBase_80399F2C = "l";
-SECTION_DEAD static char const* const stringBase_80399F2E = "y";
-SECTION_DEAD static char const* const stringBase_80399F30 = ".";
-SECTION_DEAD static char const* const stringBase_80399F32 = "M";
-SECTION_DEAD static char const* const stringBase_80399F34 = "Z";
-SECTION_DEAD static char const* const stringBase_80399F36 = "m";
-SECTION_DEAD static char const* const stringBase_80399F38 = "z";
-SECTION_DEAD static char const* const stringBase_80399F3A = " ";
-SECTION_DEAD static char const* const stringBase_80399F3C = ""
-                                                            "\x1B"
-                                                            "CD"
-                                                            "\x1B"
-                                                            "CR"
-                                                            "\x1B"
-                                                            "CC[000000]"
-                                                            "\x1B"
-                                                            "GM[0]%c"
-                                                            "\x1B"
-                                                            "HM"
-                                                            "\x1B"
-                                                            "CC[ffffff]"
-                                                            "\x1B"
-                                                            "GM[0]%c";
-SECTION_DEAD static char const* const stringBase_80399F6C = ""
-                                                            "\x1B"
-                                                            "CD"
-                                                            "\x1B"
-                                                            "CR"
-                                                            "\x1B"
-                                                            "CC[000000]"
-                                                            "\x1B"
-                                                            "GM[0]";
-SECTION_DEAD static char const* const stringBase_80399F84 = ""
-                                                            "\x1B"
-                                                            "HM"
-                                                            "\x1B"
-                                                            "CC[ffffff]"
-                                                            "\x1B"
-                                                            "GM[0]";
-SECTION_DEAD static char const* const stringBase_80399F99 = "zelda_player_name.blo";
-SECTION_DEAD static char const* const stringBase_80399FAF = "zelda_player_name.bpk";
-SECTION_DEAD static char const* const stringBase_80399FC5 = "zelda_player_name.btk";
-SECTION_DEAD static char const* const stringBase_80399FDB = "";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80399FDC = "\0\0\0";
-#pragma pop
+/* 80399CC8-80399CC8 026328 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

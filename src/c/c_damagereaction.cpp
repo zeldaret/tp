@@ -157,7 +157,7 @@ asm void __sinit_c_damagereaction_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80018388 = (void*)__sinit_c_damagereaction_cpp;
+REGISTER_CTORS(0x80018388, __sinit_c_damagereaction_cpp);
 #pragma pop
 
 /* 800183D4-800183D8 012D14 0004+00 1/0 1/0 0/0 .text

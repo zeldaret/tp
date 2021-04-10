@@ -65,7 +65,7 @@ struct JGeometry {
     struct TVec2 {};
     /* TVec2<s16> */
     struct TVec2__template0 {
-        /* 802FF204 */ void func_802FF204();
+        /* 802FF204 */ void func_802FF204(void* _this);
     };
 };
 
@@ -77,22 +77,21 @@ struct J2DMirror {};
 
 struct J2DAnmTexPattern {};
 
-struct J2DAnmVtxColor {};
-
 struct J2DAnmVisibilityFull {};
-
-struct J2DAnmColor {};
-
-struct J2DAnmTransform {};
-
-struct J2DAnmTextureSRTKey {};
-
-struct J2DAnmTevRegKey {};
 
 struct J2DAnmBase {};
 
+struct J2DAnmColor {};
+
+struct J2DAnmTevRegKey {};
+
+struct J2DAnmTextureSRTKey {};
+
+struct J2DAnmTransform {};
+
+struct J2DAnmVtxColor {};
+
 struct J2DPane {
-    /* 80020158 */ void setAlpha(u8);
     /* 80053BC0 */ void calcMtx();
     /* 80053C00 */ void makeMatrix(f32, f32);
     /* 802F7540 */ void makeMatrix(f32, f32, f32, f32);
@@ -100,7 +99,6 @@ struct J2DPane {
     /* 8025601C */ void setAnimation(J2DAnmVisibilityFull*);
     /* 80256020 */ void setAnimation(J2DAnmTexPattern*);
     /* 8018BF28 */ void setAnimation(J2DAnmTextureSRTKey*);
-    /* 802F7FC4 */ void setAnimation(J2DAnmTransform*);
     /* 80126350 */ void setAnimation(J2DAnmTevRegKey*);
     /* 80126354 */ void setAnimation(J2DAnmColor*);
     /* 802F7EF4 */ void setAnimation(J2DAnmBase*);
@@ -252,7 +250,7 @@ extern "C" void func_802FED84();
 extern "C" void isUsed__10J2DPictureFPC7ResTIMG();
 extern "C" void getUsableTlut__10J2DPictureFUc();
 extern "C" void getTlutID__10J2DPictureFPC7ResTIMGUc();
-extern "C" void func_802FF204();
+extern "C" void func_802FF204(void* _this);
 extern "C" void append__10J2DPictureFP10JUTTexturef();
 extern "C" void append__10J2DPictureFPC7ResTIMGP10JUTPalettef();
 extern "C" void load__10J2DPictureFUc();
@@ -916,7 +914,7 @@ asm void J2DPicture::getTlutID(ResTIMG const* param_0, u8 param_1) {
 #pragma pop
 
 /* 802FF204-802FF208 2F9B44 0004+00 5/5 1/1 0/0 .text            __ct__Q29JGeometry8TVec2<s>Fv */
-extern "C" void func_802FF204() {
+extern "C" void func_802FF204(void* _this) {
     /* empty function */
 }
 

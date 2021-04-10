@@ -41,15 +41,14 @@ asm void OSGetTime() {
 }
 #pragma pop
 
-/* 80342714-8034271C 33D054 0008+00 0/0 13/13 1/1 .text            OSGetTick */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
+/* 80342714-8034271C -00001 0008+00 0/0 0/0 0/0 .text            OSGetTick */
 asm void OSGetTick() {
-    nofralloc
-#include "asm/dolphin/os/OSTime/OSGetTick.s"
+    // clang-format off
+	nofralloc
+	mftb r3, 0x10c
+	blr
+    // clang-format on
 }
-#pragma pop
 
 /* 8034271C-80342780 33D05C 0064+00 0/0 16/16 0/0 .text            __OSGetSystemTime */
 #pragma push

@@ -21,9 +21,9 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -179,7 +179,15 @@ asm void daBkLeaf_c::Create() {
 /* ############################################################################################## */
 /* 80BB6710-80BB6714 000000 0004+00 2/2 0/0 0/0 .rodata          @3742 */
 SECTION_RODATA static f32 const lit_3742 = 1.0f;
-COMPILER_STRIP_GATE(80BB6710, &lit_3742);
+COMPILER_STRIP_GATE(0x80BB6710, &lit_3742);
+
+/* 80BB6718-80BB6718 000008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BB6718 = "Obj_bkl";
+SECTION_DEAD static char const* const stringBase_80BB6720 = "hl.bmd";
+SECTION_DEAD static char const* const stringBase_80BB6727 = "hl_shake1.bck";
+#pragma pop
 
 /* 80BB6738-80BB6744 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -281,7 +289,7 @@ SECTION_RODATA static u8 const lit_3811[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BB6714, &lit_3811);
+COMPILER_STRIP_GATE(0x80BB6714, &lit_3811);
 
 /* 80BB64A8-80BB65C4 000448 011C+00 1/1 0/0 0/0 .text            execute__10daBkLeaf_cFv */
 #pragma push
@@ -353,11 +361,4 @@ static asm void daBkLeaf_Create(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 80BB6718-80BB6735 000008 001D+00 3/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BB6718 = "Obj_bkl";
-SECTION_DEAD static char const* const stringBase_80BB6720 = "hl.bmd";
-SECTION_DEAD static char const* const stringBase_80BB6727 = "hl_shake1.bck";
-#pragma pop
+/* 80BB6718-80BB6718 000008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

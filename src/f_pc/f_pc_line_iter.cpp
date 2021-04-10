@@ -59,7 +59,7 @@ static asm void fpcLnIt_MethodCall(create_tag_class* param_0, method_filter* par
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcLnIt_Queue(int (*)(void*, void*)) {
+asm void fpcLnIt_Queue(int (*param_0)(void*, void*)) {
     nofralloc
 #include "asm/f_pc/f_pc_line_iter/fpcLnIt_Queue__FPFPvPv_i.s"
 }

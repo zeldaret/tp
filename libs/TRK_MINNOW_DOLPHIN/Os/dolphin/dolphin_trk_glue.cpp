@@ -96,7 +96,7 @@ SECTION_RODATA static u8 const EndofProgramInstruction[4] = {
     0x4E,
     0x44,
 };
-COMPILER_STRIP_GATE(803A2C08, &EndofProgramInstruction);
+COMPILER_STRIP_GATE(0x803A2C08, &EndofProgramInstruction);
 
 /* 80371C80-80371CD8 36C5C0 0058+00 0/0 1/1 0/0 .text            InitializeProgramEndTrap */
 #pragma push
@@ -111,7 +111,7 @@ asm void InitializeProgramEndTrap() {
 /* ############################################################################################## */
 /* 803A2C0C-803A2C10 02F26C 0004+00 1/1 0/0 0/0 .rodata          @165 */
 SECTION_RODATA static u32 const lit_165 = 0x25730A00;
-COMPILER_STRIP_GATE(803A2C0C, &lit_165);
+COMPILER_STRIP_GATE(0x803A2C0C, &lit_165);
 
 /* 80371CD8-80371D08 36C618 0030+00 0/0 1/1 0/0 .text            TRK_board_display */
 #pragma push
@@ -236,7 +236,7 @@ SECTION_RODATA static u8 const lit_215[21 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(803A2C10, &lit_215);
+COMPILER_STRIP_GATE(0x803A2C10, &lit_215);
 #pragma pop
 
 /* 803A2C28-803A2C40 02F288 0017+01 0/1 0/0 0/0 .rodata          @216 */
@@ -269,7 +269,7 @@ SECTION_RODATA static u8 const lit_216[23 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
-COMPILER_STRIP_GATE(803A2C28, &lit_216);
+COMPILER_STRIP_GATE(0x803A2C28, &lit_216);
 #pragma pop
 
 /* 803A2C40-803A2C64 02F2A0 0021+03 0/1 0/0 0/0 .rodata          @217 */
@@ -314,7 +314,7 @@ SECTION_RODATA static u8 const lit_217[33 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(803A2C40, &lit_217);
+COMPILER_STRIP_GATE(0x803A2C40, &lit_217);
 #pragma pop
 
 /* 803A2C64-803A2C88 02F2C4 0024+00 0/1 0/0 0/0 .rodata          @218 */
@@ -325,7 +325,7 @@ SECTION_RODATA static u8 const lit_218[36] = {
     0x65, 0x74, 0x20, 0x74, 0x6F, 0x20, 0x41, 0x4D, 0x43, 0x20, 0x44, 0x44,
     0x48, 0x20, 0x68, 0x61, 0x72, 0x64, 0x77, 0x61, 0x72, 0x65, 0x0A, 0x00,
 };
-COMPILER_STRIP_GATE(803A2C64, &lit_218);
+COMPILER_STRIP_GATE(0x803A2C64, &lit_218);
 #pragma pop
 
 /* 803A2C88-803A2CB4 02F2E8 002B+01 0/1 0/0 0/0 .rodata          @219 */
@@ -378,7 +378,7 @@ SECTION_RODATA static u8 const lit_219[43 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
-COMPILER_STRIP_GATE(803A2C88, &lit_219);
+COMPILER_STRIP_GATE(0x803A2C88, &lit_219);
 #pragma pop
 
 /* 803A2CB4-803A2CE4 02F314 002F+01 0/1 0/0 0/0 .rodata          @220 */
@@ -435,7 +435,7 @@ SECTION_RODATA static u8 const lit_220[47 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
-COMPILER_STRIP_GATE(803A2CB4, &lit_220);
+COMPILER_STRIP_GATE(0x803A2CB4, &lit_220);
 #pragma pop
 
 /* 803A2CE4-803A2D10 02F344 0028+04 0/1 0/0 0/0 .rodata          @221 */
@@ -488,7 +488,7 @@ SECTION_RODATA static u8 const lit_221[40 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(803A2CE4, &lit_221);
+COMPILER_STRIP_GATE(0x803A2CE4, &lit_221);
 #pragma pop
 
 /* 80371EA8-80372114 36C7E8 026C+00 0/0 2/2 0/0 .text            InitMetroTRKCommTable */

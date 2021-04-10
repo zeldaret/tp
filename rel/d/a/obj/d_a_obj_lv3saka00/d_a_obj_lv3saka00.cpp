@@ -177,13 +177,20 @@ asm void daObjLv3saka_c::Create() {
 SECTION_RODATA static u8 const l_dzbIdx[8] = {
     0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x03,
 };
-COMPILER_STRIP_GATE(80C5C3C4, &l_dzbIdx);
+COMPILER_STRIP_GATE(0x80C5C3C4, &l_dzbIdx);
 
 /* 80C5C3CC-80C5C3D4 000008 0008+00 1/1 0/0 0/0 .rodata          l_dzbIdx2 */
 SECTION_RODATA static u8 const l_dzbIdx2[8] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04,
 };
-COMPILER_STRIP_GATE(80C5C3CC, &l_dzbIdx2);
+COMPILER_STRIP_GATE(0x80C5C3CC, &l_dzbIdx2);
+
+/* 80C5C3DC-80C5C3DC 000018 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C5C3DC = "Obj_saka";
+SECTION_DEAD static char const* const stringBase_80C5C3E5 = "Obj_saka2";
+#pragma pop
 
 /* 80C5C3F0-80C5C3F8 -00001 0008+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName[2] = {
@@ -206,7 +213,7 @@ asm void daObjLv3saka_c::CreateHeap() {
 SECTION_RODATA static u8 const l_heap_size[8] = {
     0x00, 0x00, 0x4E, 0x00, 0x00, 0x00, 0x29, 0x00,
 };
-COMPILER_STRIP_GATE(80C5C3D4, &l_heap_size);
+COMPILER_STRIP_GATE(0x80C5C3D4, &l_heap_size);
 
 /* 80C5C058-80C5C0FC 000278 00A4+00 1/1 0/0 0/0 .text            create1st__14daObjLv3saka_cFv */
 #pragma push
@@ -345,10 +352,4 @@ static asm void daObjLv3saka_MoveBGDraw(daObjLv3saka_c* param_0) {
 }
 #pragma pop
 
-/* 80C5C3DC-80C5C3EF 000018 0013+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C5C3DC = "Obj_saka";
-SECTION_DEAD static char const* const stringBase_80C5C3E5 = "Obj_saka2";
-#pragma pop
+/* 80C5C3DC-80C5C3DC 000018 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

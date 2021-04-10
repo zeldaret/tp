@@ -38,7 +38,7 @@ lbl_802EA1AC:
 /* 802EA23C  48 07 7B 25 */	bl __construct_array
 /* 802EA240  38 7F 00 28 */	addi r3, r31, 0x28
 /* 802EA244  48 00 12 CD */	bl initialize__14J2DTexGenBlockFv
-/* 802EA248  A0 02 C7 AE */	lhz r0, struct_804561AC+0x2(r2)
+/* 802EA248  A0 02 C7 AE */	lhz r0, j2dDefaultAlphaCmp(r2)
 /* 802EA24C  B0 1F 00 78 */	sth r0, 0x78(r31)
 /* 802EA250  38 00 00 00 */	li r0, 0
 /* 802EA254  98 1F 00 7A */	stb r0, 0x7a(r31)

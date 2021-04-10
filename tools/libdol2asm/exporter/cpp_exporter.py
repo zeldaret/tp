@@ -8,6 +8,7 @@ from pathlib import Path
 from collections import defaultdict
 from typing import List, Dict
 from dataclasses import dataclass, field
+from itertools import groupby
 
 from .. import util
 from .. import settings
@@ -36,6 +37,7 @@ order = {
     ".init": 8
 }
 
+
 @dataclass
 class CPPExporter:
     context: Context
@@ -44,13 +46,13 @@ class CPPExporter:
 
     async def export_symbol_header(self, builder: AsyncBuilder, symbol: Symbol):
         await builder.write("/* %08X-%08X %06X %04X+%02X %i/%i %i/%i %i/%i %-16s %-60s */" % (
-            symbol.start, symbol.end+symbol.padding, 
+            symbol.start, symbol.end+symbol.padding,
             symbol.relative_addr,
             symbol.size, symbol.padding,
-            symbol.reference_count.static, 
-            symbol.implicit_reference_count.static, 
-            symbol.reference_count.extern, 
-            symbol.implicit_reference_count.extern, 
+            symbol.reference_count.static,
+            symbol.implicit_reference_count.static,
+            symbol.reference_count.extern,
+            symbol.implicit_reference_count.extern,
             symbol.reference_count.rel,
             symbol.implicit_reference_count.rel,
             symbol._section, symbol.identifier.name))
@@ -142,8 +144,6 @@ class CPPExporter:
             else:
                 section.symbols.sort(key=lambda x: x.addr)
 
-
-
         for function, symbols, forward_symbols in function_symbols_groups:
             # new section of symbols followed by a function
             if len(symbols) > 0:
@@ -156,11 +156,22 @@ class CPPExporter:
                 await builder.write("")
 
             unreferenced_decls = 0
-            for symbol in symbols:
-                assert not isinstance(symbol, StringBase)
-                await self.export_symbol_header(builder, symbol)
-                await symbol.export_declaration(self, builder)
-                await builder.write("")
+            symbol_groups = [list(g) for k, g in groupby(symbols, key=lambda x: isinstance(x, String))]
+            for symbols in symbol_groups:
+                if isinstance(symbols[0], String):
+                    await self.export_symbol_header(builder, symbols[0].string_base)
+                    await builder.write("#pragma push")
+                    await builder.write("#pragma force_active on")
+                    for symbol in symbols:
+                        await symbol.export_declaration(self, builder, force_active=False)
+                    await builder.write("#pragma pop")
+                    await builder.write("")
+                else:
+                    for symbol in symbols:
+                        assert not isinstance(symbol, StringBase)
+                        await self.export_symbol_header(builder, symbol)
+                        await symbol.export_declaration(self, builder)
+                        await builder.write("")
 
             await self.export_symbol_header(builder, function)
             await function.export_declaration(self, builder)
@@ -184,7 +195,7 @@ class CPPExporter:
                 await symbol.export_declaration(self, builder)
                 await builder.write("")
 
-    def gather_function_groups(self, decl_references):    
+    def gather_function_groups(self, decl_references):
         sections = list(self.tu.sections.values())
         sections.sort(key=lambda x: order[x.name]
                       if x.name in order else 10 + len(x.name))
@@ -229,10 +240,14 @@ class CPPExporter:
                     # add missing references so that the order is still correct
                     missing_order_symbols = []
                     for symbol in symbols:
+                        is_string = isinstance(symbol, String)
                         symbol_section = self.tu.sections[symbol._section]
                         for prev_symbol in symbol_section.symbols:
                             if prev_symbol == symbol:
                                 break
+                            prev_is_string = isinstance(prev_symbol, String)
+                            if is_string != prev_is_string:
+                                continue
                             if isinstance(prev_symbol, Function) or isinstance(prev_symbol, StringBase):
                                 continue
                             if prev_symbol in used_symbols:
@@ -301,10 +316,9 @@ class CPPExporter:
         type_list.build(forward_references)
         type_list.build(external_references)
 
-
-
         already_fixed_forward_reference = set()
-        function_symbols_groups, fsg_used_symbols = self.gather_function_groups(decl_references)
+        function_symbols_groups, fsg_used_symbols = self.gather_function_groups(
+            decl_references)
         for function, symbols, forward_symbols in function_symbols_groups:
             for symbol in symbols:
                 if isinstance(symbol, StringBase):
@@ -313,14 +327,15 @@ class CPPExporter:
                     continue
                 already_fixed_forward_reference.add(symbol)
 
-        forward_references = list(decl_references - already_fixed_forward_reference)
+        forward_references = list(
+            decl_references - already_fixed_forward_reference)
         forward_references.sort(key=lambda x: x.addr)
 
         stringBases = set()
         for decl in decl_references:
             if isinstance(decl, StringBase):
                 stringBases.add(decl)
-            
+
         decl_references = decl_references - stringBases
 
         async with AsyncBuilder(path) as builder:
@@ -376,52 +391,6 @@ class CPPExporter:
 
             await self.export_declarations(builder, tu, decl_references, function_symbols_groups, fsg_used_symbols)
 
-            """
-            # symbols that are in the .rodata (read-only data) section will be stripped by the compiler (not the linker)
-            # if they are not used. create a dead-symbol to fake the use of the read-only symbol. This will mess with the
-            # of the symbols. E.g. 
-            #       SECTION_RODATA static u32 const lit_4125 = 0x42A00000;
-            #       SECTION_RODATA static u32 const lit_4218 = 0x43130000; 
-            #       SECTION_DEAD void* const cg_805AA484 = (void*)(&lit_4125);
-            # will output:
-            #       lit_4218
-            #       @stringBase0 (if it exists)
-            #       lit_4125
-            # this is incorrect! solution is, if any read-only symbol requires the fake dead symbol trick, to do it for 
-            # all read-only symbols.
-
-            rodata = []
-            dead_rodata = []
-            for decl in decl_references:
-                if decl._section != ".rodata":
-                    continue
-
-                rodata.append(decl)
-                if not decl.requires_force_active:
-                    continue
-
-                dead_rodata.append(decl)
-
-            if dead_rodata:
-                await builder.write("// ")
-                await builder.write("// Read-Only Compiler Gate:")
-                await builder.write("// ")
-                await builder.write("")
-
-                await builder.write("#pragma push")
-                await builder.write("#pragma force_active on")
-                rodata.sort(key=lambda x: x.addr)
-                for decl in rodata:
-                    await builder.write_nonewline("SECTION_DEAD ")
-                    await builder.write_nonewline("void* const ")
-                    await builder.write_nonewline(f"cg_{decl.addr:08X} = (void*)(")
-                    await builder.write_nonewline(decl.cpp_reference(None, decl.addr))
-                    await builder.write(f");")
-
-                await builder.write("#pragma pop")
-                await builder.write("")
-            """
-
             for stringBase in stringBases:
                 await self.export_symbol_header(builder, stringBase)
                 await stringBase.export_declaration(self, builder)
@@ -437,8 +406,6 @@ def export_translation_unit_group(context: Context, tus: List[Tuple[TranslationU
     ]
 
     async def wait_all():
-        # for task in async_tasks:
-        #    await task
         await asyncio.gather(*async_tasks)
 
     asyncio.run(wait_all())
@@ -473,8 +440,6 @@ def export_function(context: Context, section: Section, functions: List[Symbol],
     ]
 
     async def wait_all():
-        # for task in async_tasks:
-        #    await task
         await asyncio.gather(*async_tasks)
 
     asyncio.run(wait_all())

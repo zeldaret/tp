@@ -160,20 +160,26 @@ SECTION_RODATA static u8 const lit_3642[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8059A3E8, &lit_3642);
+COMPILER_STRIP_GATE(0x8059A3E8, &lit_3642);
 
 /* 8059A3EC-8059A3F0 000004 0004+00 0/1 0/0 0/0 .rodata          @3643 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3643 = 100.0f;
-COMPILER_STRIP_GATE(8059A3EC, &lit_3643);
+COMPILER_STRIP_GATE(0x8059A3EC, &lit_3643);
 #pragma pop
 
 /* 8059A3F0-8059A3F4 000008 0004+00 0/1 0/0 0/0 .rodata          @3644 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3644 = 30.0f;
-COMPILER_STRIP_GATE(8059A3F0, &lit_3644);
+COMPILER_STRIP_GATE(0x8059A3F0, &lit_3644);
+#pragma pop
+
+/* 8059A404-8059A404 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8059A404 = "A_IwaAto";
 #pragma pop
 
 /* 8059A410-8059A414 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
@@ -252,21 +258,21 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 SECTION_RODATA static u8 const l_shadow_size[8] = {
     0x42, 0x5C, 0x00, 0x00, 0x42, 0xAA, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8059A3F4, &l_shadow_size);
+COMPILER_STRIP_GATE(0x8059A3F4, &l_shadow_size);
 #pragma pop
 
 /* 8059A3FC-8059A400 000014 0004+00 0/1 0/0 0/0 .rodata          @3718 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3718 = -3.0f / 5.0f;
-COMPILER_STRIP_GATE(8059A3FC, &lit_3718);
+COMPILER_STRIP_GATE(0x8059A3FC, &lit_3718);
 #pragma pop
 
 /* 8059A400-8059A404 000018 0004+00 0/1 0/0 0/0 .rodata          @3719 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3719 = 0x3ECCCCCC;
-COMPILER_STRIP_GATE(8059A400, &lit_3719);
+COMPILER_STRIP_GATE(0x8059A400, &lit_3719);
 #pragma pop
 
 /* 8059A2CC-8059A33C 00032C 0070+00 1/1 0/0 0/0 .text            draw__12daObjSMark_cFv */
@@ -342,9 +348,4 @@ static asm void func_8059A3D8() {
 }
 #pragma pop
 
-/* 8059A404-8059A40D 00001C 0009+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8059A404 = "A_IwaAto";
-#pragma pop
+/* 8059A404-8059A404 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -59,7 +59,7 @@ extern "C" extern u8 g_fpcNd_type[4 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcEx_Search(void* (*)(void*, void*), void* param_1) {
+asm void fpcEx_Search(void* (*param_0)(void*, void*), void* param_1) {
     nofralloc
 #include "asm/f_pc/f_pc_executor/fpcEx_Search__FPFPvPv_PvPv.s"
 }
@@ -129,7 +129,7 @@ asm void fpcEx_ToExecuteQ(base_process_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcEx_Handler(int (*)(void*, void*)) {
+asm void fpcEx_Handler(int (*param_0)(void*, void*)) {
     nofralloc
 #include "asm/f_pc/f_pc_executor/fpcEx_Handler__FPFPvPv_i.s"
 }

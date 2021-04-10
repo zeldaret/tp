@@ -170,7 +170,7 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80C9F288-80C9F28C 000000 0004+00 2/2 0/0 0/0 .rodata          @3762 */
 SECTION_RODATA static f32 const lit_3762 = 1.0f;
-COMPILER_STRIP_GATE(80C9F288, &lit_3762);
+COMPILER_STRIP_GATE(0x80C9F288, &lit_3762);
 
 /* 80C9F28C-80C9F290 000004 0004+00 1/1 0/0 0/0 .rodata          @3763 */
 SECTION_RODATA static u8 const lit_3763[4] = {
@@ -179,7 +179,7 @@ SECTION_RODATA static u8 const lit_3763[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C9F28C, &lit_3763);
+COMPILER_STRIP_GATE(0x80C9F28C, &lit_3763);
 
 /* 80C9F2A8-80C9F2C8 -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Myogan_Method */
 SECTION_DATA static void* l_daObj_Myogan_Method[8] = {
@@ -240,11 +240,11 @@ static asm void daObj_Myogan_Draw(obj_myogan_class* param_0) {
 /* ############################################################################################## */
 /* 80C9F290-80C9F294 000008 0004+00 1/1 0/0 0/0 .rodata          @3823 */
 SECTION_RODATA static f32 const lit_3823 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(80C9F290, &lit_3823);
+COMPILER_STRIP_GATE(0x80C9F290, &lit_3823);
 
 /* 80C9F294-80C9F298 00000C 0004+00 1/1 0/0 0/0 .rodata          @3824 */
 SECTION_RODATA static f32 const lit_3824 = 10.0f;
-COMPILER_STRIP_GATE(80C9F294, &lit_3824);
+COMPILER_STRIP_GATE(0x80C9F294, &lit_3824);
 
 /* 80C9F318-80C9F31C 000008 0004+00 2/2 0/0 0/0 .bss             None */
 static u8 data_80C9F318[4];
@@ -282,6 +282,13 @@ static bool daObj_Myogan_IsDelete(obj_myogan_class* param_0) {
     return true;
 }
 
+/* ############################################################################################## */
+/* 80C9F2A0-80C9F2A0 000018 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C9F2A0 = "S_YOGAN";
+#pragma pop
+
 /* 80C9EDC0-80C9EE28 000300 0068+00 1/0 0/0 0/0 .text daObj_Myogan_Delete__FP16obj_myogan_class */
 #pragma push
 #pragma optimization_level 0
@@ -315,11 +322,11 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 /* ############################################################################################## */
 /* 80C9F298-80C9F29C 000010 0004+00 1/1 0/0 0/0 .rodata          @3966 */
 SECTION_RODATA static f32 const lit_3966 = 65536.0f;
-COMPILER_STRIP_GATE(80C9F298, &lit_3966);
+COMPILER_STRIP_GATE(0x80C9F298, &lit_3966);
 
 /* 80C9F29C-80C9F2A0 000014 0004+00 1/1 0/0 0/0 .rodata          @3967 */
 SECTION_RODATA static f32 const lit_3967 = 1150.0f;
-COMPILER_STRIP_GATE(80C9F29C, &lit_3967);
+COMPILER_STRIP_GATE(0x80C9F29C, &lit_3967);
 
 /* 80C9F0AC-80C9F1F0 0005EC 0144+00 1/0 0/0 0/0 .text            daObj_Myogan_Create__FP10fopAc_ac_c
  */
@@ -354,12 +361,7 @@ asm void __sinit_d_a_obj_myogan_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C9F238 = (void*)__sinit_d_a_obj_myogan_cpp;
+REGISTER_CTORS(0x80C9F238, __sinit_d_a_obj_myogan_cpp);
 #pragma pop
 
-/* 80C9F2A0-80C9F2A8 000018 0008+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C9F2A0 = "S_YOGAN";
-#pragma pop
+/* 80C9F2A0-80C9F2A0 000018 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

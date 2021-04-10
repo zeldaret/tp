@@ -36,6 +36,10 @@ struct daCoachFire_c {
 
 struct dPa_levelEcallBack {};
 
+struct dKy_tevstr_c {};
+
+struct csXyz {};
+
 struct _GXColor {};
 
 struct Vec {};
@@ -43,10 +47,6 @@ struct Vec {};
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
 };
-
-struct csXyz {};
-
-struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     struct level_c {
@@ -183,34 +183,34 @@ extern "C" void deleteFireArrowFromList__12daNpcCoach_cFUi();
 SECTION_RODATA u8 const daCoachFire_c::M_attr[16] = {
     0x42, 0x48, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x24, 0xFF, 0x64, 0x00, 0x44, 0x2F, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(806583E8, &daCoachFire_c::M_attr);
+COMPILER_STRIP_GATE(0x806583E8, &daCoachFire_c::M_attr);
 
 /* 806583F8-806583FC 000010 0004+00 0/1 0/0 0/0 .rodata          @3812 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3812 = -100.0f;
-COMPILER_STRIP_GATE(806583F8, &lit_3812);
+COMPILER_STRIP_GATE(0x806583F8, &lit_3812);
 #pragma pop
 
 /* 806583FC-80658400 000014 0004+00 0/1 0/0 0/0 .rodata          @3813 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3813 = -10.0f;
-COMPILER_STRIP_GATE(806583FC, &lit_3813);
+COMPILER_STRIP_GATE(0x806583FC, &lit_3813);
 #pragma pop
 
 /* 80658400-80658404 000018 0004+00 0/1 0/0 0/0 .rodata          @3814 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3814 = 100.0f;
-COMPILER_STRIP_GATE(80658400, &lit_3814);
+COMPILER_STRIP_GATE(0x80658400, &lit_3814);
 #pragma pop
 
 /* 80658404-80658408 00001C 0004+00 0/1 0/0 0/0 .rodata          @3815 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3815 = 200.0f;
-COMPILER_STRIP_GATE(80658404, &lit_3815);
+COMPILER_STRIP_GATE(0x80658404, &lit_3815);
 #pragma pop
 
 /* 80657B78-80657C48 000078 00D0+00 1/1 0/0 0/0 .text            create_init__13daCoachFire_cFv */
@@ -252,7 +252,7 @@ SECTION_RODATA static u8 const data_80658408[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x48, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80658408, &data_80658408);
+COMPILER_STRIP_GATE(0x80658408, &data_80658408);
 
 /* 80657D2C-80657D9C 00022C 0070+00 1/1 0/0 0/0 .text            initCcSphere__13daCoachFire_cFv */
 #pragma push
@@ -269,7 +269,7 @@ asm void daCoachFire_c::initCcSphere() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3911 = 1.0f;
-COMPILER_STRIP_GATE(80658448, &lit_3911);
+COMPILER_STRIP_GATE(0x80658448, &lit_3911);
 #pragma pop
 
 /* 8065844C-80658450 000064 0004+00 0/1 0/0 0/0 .rodata          @3912 */
@@ -281,14 +281,14 @@ SECTION_RODATA static u8 const lit_3912[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8065844C, &lit_3912);
+COMPILER_STRIP_GATE(0x8065844C, &lit_3912);
 #pragma pop
 
 /* 80658450-80658454 000068 0004+00 0/1 0/0 0/0 .rodata          @3913 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3913 = 9.0f / 10.0f;
-COMPILER_STRIP_GATE(80658450, &lit_3913);
+COMPILER_STRIP_GATE(0x80658450, &lit_3913);
 #pragma pop
 
 /* 80657D9C-80657EA0 00029C 0104+00 1/0 0/0 0/0 .text            daCoachFire_Draw__FP13daCoachFire_c
@@ -429,9 +429,11 @@ asm cCcD_GStts::~cCcD_GStts() {
 }
 #pragma pop
 
-/* 80658454-8065845A 00006C 0006+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+/* ############################################################################################## */
+/* 80658454-8065845A 00006C 0006+00 0/0 0/0 0/0 .rodata          None */
 #pragma push
 #pragma force_active on
-#pragma section ".dead"
 SECTION_DEAD static char const* const stringBase_80658454 = "Coach";
 #pragma pop
+
+/* 80658454-80658454 00006C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

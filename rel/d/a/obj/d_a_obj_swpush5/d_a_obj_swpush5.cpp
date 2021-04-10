@@ -264,13 +264,13 @@ extern "C" void __register_global_object();
 SECTION_RODATA static u8 const l_dzbIdx[8] = {
     0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x08,
 };
-COMPILER_STRIP_GATE(8059C6A4, &l_dzbIdx);
+COMPILER_STRIP_GATE(0x8059C6A4, &l_dzbIdx);
 
 /* 8059C6AC-8059C6B0 000008 0004+00 0/1 0/0 0/0 .rodata          @3718 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3718 = -50.0f;
-COMPILER_STRIP_GATE(8059C6AC, &lit_3718);
+COMPILER_STRIP_GATE(0x8059C6AC, &lit_3718);
 #pragma pop
 
 /* 8059C6B0-8059C6B4 00000C 0004+00 3/7 0/0 0/0 .rodata          @3719 */
@@ -280,13 +280,13 @@ SECTION_RODATA static u8 const lit_3719[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8059C6B0, &lit_3719);
+COMPILER_STRIP_GATE(0x8059C6B0, &lit_3719);
 
 /* 8059C6B4-8059C6B8 000010 0004+00 0/1 0/0 0/0 .rodata          @3720 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3720 = 50.0f;
-COMPILER_STRIP_GATE(8059C6B4, &lit_3720);
+COMPILER_STRIP_GATE(0x8059C6B4, &lit_3720);
 #pragma pop
 
 /* 8059C870-8059C874 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
@@ -456,7 +456,7 @@ asm void daObjSw5_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 8059C6B8-8059C6BC 000014 0004+00 1/3 0/0 0/0 .rodata          @3815 */
 SECTION_RODATA static f32 const lit_3815 = -25.0f;
-COMPILER_STRIP_GATE(8059C6B8, &lit_3815);
+COMPILER_STRIP_GATE(0x8059C6B8, &lit_3815);
 
 /* 8059B920-8059BA1C 000520 00FC+00 1/0 0/0 0/0 .text            Create__10daObjSw5_cFv */
 #pragma push
@@ -469,6 +469,12 @@ asm void daObjSw5_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8059C6D0-8059C6D0 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8059C6D0 = "D_Hfsw00";
+#pragma pop
+
 /* 8059C6DC-8059C6E8 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -787,19 +793,19 @@ void daObjSw5_c::actionEvent() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3986 = 9.0f / 10.0f;
-COMPILER_STRIP_GATE(8059C6BC, &lit_3986);
+COMPILER_STRIP_GATE(0x8059C6BC, &lit_3986);
 #pragma pop
 
 /* 8059C6C0-8059C6C4 00001C 0004+00 0/1 0/0 0/0 .rodata          @3987 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3987 = 0.5f;
-COMPILER_STRIP_GATE(8059C6C0, &lit_3987);
+COMPILER_STRIP_GATE(0x8059C6C0, &lit_3987);
 #pragma pop
 
 /* 8059C6C4-8059C6C8 000020 0004+00 2/6 0/0 0/0 .rodata          @3988 */
 SECTION_RODATA static f32 const lit_3988 = 1.0f;
-COMPILER_STRIP_GATE(8059C6C4, &lit_3988);
+COMPILER_STRIP_GATE(0x8059C6C4, &lit_3988);
 
 /* 8059BF54-8059BFE4 000B54 0090+00 1/1 0/0 0/0 .text            calc_top_pos__10daObjSw5_cFv */
 #pragma push
@@ -835,13 +841,13 @@ asm void daObjSw5_c::modeWaitLowerInit() {
 /* ############################################################################################## */
 /* 8059C6C8-8059C6CC 000024 0004+00 1/3 0/0 0/0 .rodata          @4041 */
 SECTION_RODATA static f32 const lit_4041 = -1.0f;
-COMPILER_STRIP_GATE(8059C6C8, &lit_4041);
+COMPILER_STRIP_GATE(0x8059C6C8, &lit_4041);
 
 /* 8059C6CC-8059C6D0 000028 0004+00 0/1 0/0 0/0 .rodata          @4042 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4042 = 4.0f / 5.0f;
-COMPILER_STRIP_GATE(8059C6CC, &lit_4042);
+COMPILER_STRIP_GATE(0x8059C6CC, &lit_4042);
 #pragma pop
 
 /* 8059C0C8-8059C23C 000CC8 0174+00 1/0 0/0 0/0 .text            modeWaitLower__10daObjSw5_cFv */
@@ -1157,9 +1163,4 @@ static u8 data_8059C974[4];
 static u8 data_8059C978[4];
 #pragma pop
 
-/* 8059C6D0-8059C6D9 00002C 0009+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8059C6D0 = "D_Hfsw00";
-#pragma pop
+/* 8059C6D0-8059C6D0 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

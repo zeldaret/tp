@@ -214,6 +214,15 @@ asm void daLv4HsTarget_c::setBaseMtx() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80C5FA3C-80C5FA3C 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C5FA3C = "L4HsMato";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80C5FA45 = "\0\0";
+#pragma pop
+
 /* 80C5F718-80C5F784 0001D8 006C+00 1/0 0/0 0/0 .text            CreateHeap__15daLv4HsTarget_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -334,14 +343,7 @@ asm void __sinit_d_a_obj_lv4HsTarget_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C5F9EC = (void*)__sinit_d_a_obj_lv4HsTarget_cpp;
+REGISTER_CTORS(0x80C5F9EC, __sinit_d_a_obj_lv4HsTarget_cpp);
 #pragma pop
 
-/* 80C5FA3C-80C5FA48 000000 0009+03 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C5FA3C = "L4HsMato";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80C5FA45 = "\0\0";
-#pragma pop
+/* 80C5FA3C-80C5FA3C 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

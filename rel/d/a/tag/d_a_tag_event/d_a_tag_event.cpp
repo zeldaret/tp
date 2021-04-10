@@ -136,6 +136,13 @@ extern "C" extern u8 struct_80450D64[4];
 // Declarations:
 //
 
+/* ############################################################################################## */
+/* 8048B840-8048B840 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8048B840 = "Bk";
+#pragma pop
+
 /* 8048AD38-8048AD68 000078 0030+00 1/1 0/0 0/0 .text            daTag_getBk__FUl */
 #pragma push
 #pragma optimization_level 0
@@ -259,11 +266,11 @@ void daTag_Event_c::demoProc() {
 /* ############################################################################################## */
 /* 8048B830-8048B834 000000 0004+00 1/1 0/0 0/0 .rodata          @3814 */
 SECTION_RODATA static f32 const lit_3814 = 100.0f;
-COMPILER_STRIP_GATE(8048B830, &lit_3814);
+COMPILER_STRIP_GATE(0x8048B830, &lit_3814);
 
 /* 8048B834-8048B838 000004 0004+00 1/1 0/0 0/0 .rodata          @3815 */
 SECTION_RODATA static f32 const lit_3815 = 10.0f;
-COMPILER_STRIP_GATE(8048B834, &lit_3815);
+COMPILER_STRIP_GATE(0x8048B834, &lit_3815);
 
 /* 8048AF00-8048B0E4 000240 01E4+00 1/1 0/0 0/0 .text            create__13daTag_Event_cFv */
 #pragma push
@@ -308,7 +315,7 @@ asm void daTag_Event_c::actionReady() {
 /* ############################################################################################## */
 /* 8048B838-8048B83C 000008 0004+00 1/1 0/0 0/0 .rodata          @3954 */
 SECTION_RODATA static f32 const lit_3954 = 0.5f;
-COMPILER_STRIP_GATE(8048B838, &lit_3954);
+COMPILER_STRIP_GATE(0x8048B838, &lit_3954);
 
 /* 8048B83C-8048B840 00000C 0004+00 1/1 0/0 0/0 .rodata          @3955 */
 SECTION_RODATA static u8 const lit_3955[4] = {
@@ -317,7 +324,7 @@ SECTION_RODATA static u8 const lit_3955[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8048B83C, &lit_3955);
+COMPILER_STRIP_GATE(0x8048B83C, &lit_3955);
 
 /* 8048B378-8048B514 0006B8 019C+00 1/1 0/0 0/0 .text            checkArea__13daTag_Event_cFv */
 #pragma push
@@ -449,9 +456,4 @@ SECTION_DATA extern void* g_profile_TAG_EVENT[12] = {
     (void*)0x00044000, (void*)0x00060000,
 };
 
-/* 8048B840-8048B843 000010 0003+00 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8048B840 = "Bk";
-#pragma pop
+/* 8048B840-8048B840 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

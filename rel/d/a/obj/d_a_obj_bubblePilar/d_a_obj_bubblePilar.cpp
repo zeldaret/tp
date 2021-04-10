@@ -70,9 +70,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     struct level_c {
@@ -150,9 +150,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -428,11 +428,11 @@ SECTION_RODATA u8 const daBubbPilar_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BC4070, &daBubbPilar_c::mCcDObjInfo);
+COMPILER_STRIP_GATE(0x80BC4070, &daBubbPilar_c::mCcDObjInfo);
 
 /* 80BC40A0-80BC40A4 000030 0004+00 1/3 0/0 0/0 .rodata          @3654 */
 SECTION_RODATA static f32 const lit_3654 = 1.0f;
-COMPILER_STRIP_GATE(80BC40A0, &lit_3654);
+COMPILER_STRIP_GATE(0x80BC40A0, &lit_3654);
 
 /* 80BC3460-80BC3518 000160 00B8+00 2/2 0/0 0/0 .text            setBaseMtx__13daBubbPilar_cFv */
 #pragma push
@@ -442,6 +442,13 @@ asm void daBubbPilar_c::setBaseMtx() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bubblePilar/d_a_obj_bubblePilar/setBaseMtx__13daBubbPilar_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80BC40B4-80BC40B4 000044 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BC40B4 = "M_Crack";
 #pragma pop
 
 /* 80BC3518-80BC35D0 000218 00B8+00 1/0 0/0 0/0 .text            CreateHeap__13daBubbPilar_cFv */
@@ -530,14 +537,14 @@ asm void daBubbPilar_c::initModeWait() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3939 = -1.0f;
-COMPILER_STRIP_GATE(80BC40A4, &lit_3939);
+COMPILER_STRIP_GATE(0x80BC40A4, &lit_3939);
 #pragma pop
 
 /* 80BC40A8-80BC40AC 000038 0004+00 0/1 0/0 0/0 .rodata          @3940 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3940 = 100.0f;
-COMPILER_STRIP_GATE(80BC40A8, &lit_3940);
+COMPILER_STRIP_GATE(0x80BC40A8, &lit_3940);
 #pragma pop
 
 /* 80BC3AC4-80BC3C74 0007C4 01B0+00 1/0 0/0 0/0 .text            modeWait__13daBubbPilar_cFv */
@@ -575,7 +582,7 @@ SECTION_RODATA static u8 const particle_id[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BC40AC, &particle_id);
+COMPILER_STRIP_GATE(0x80BC40AC, &particle_id);
 #pragma pop
 
 /* 80BC3C98-80BC3DB0 000998 0118+00 1/0 0/0 0/0 .text            modeEffOn__13daBubbPilar_cFv */
@@ -682,12 +689,7 @@ asm void __sinit_d_a_obj_bubblePilar_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80BC3FEC = (void*)__sinit_d_a_obj_bubblePilar_cpp;
+REGISTER_CTORS(0x80BC3FEC, __sinit_d_a_obj_bubblePilar_cpp);
 #pragma pop
 
-/* 80BC40B4-80BC40BC 000044 0008+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BC40B4 = "M_Crack";
-#pragma pop
+/* 80BC40B4-80BC40B4 000044 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

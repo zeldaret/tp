@@ -128,6 +128,15 @@ extern "C" extern u8 g_MsgObject_HIO_c[1040];
 //
 
 /* ############################################################################################## */
+/* 80399B78-80399B78 0261D8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399B78 = "zelda_stage_title_foreign.blo";
+SECTION_DEAD static char const* const stringBase_80399B96 = "";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80399B97 = "";
+#pragma pop
+
 /* 803C12B0-803C12E8 01E3D0 0038+00 1/1 0/0 0/0 .data            t_tag$3877 */
 SECTION_DATA static u8 t_tag[56] = {
     0x00, 0x73, 0x66, 0x6F, 0x6E, 0x74, 0x62, 0x30, 0x00, 0x73, 0x66, 0x6F, 0x6E, 0x74,
@@ -245,12 +254,4 @@ void dMsgScrnPlace_c::fontAlpha(f32 param_0) {
     /* empty function */
 }
 
-/* 80399B78-80399B98 0261D8 001F+01 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80399B78 = "zelda_stage_title_foreign.blo";
-SECTION_DEAD static char const* const stringBase_80399B96 = "";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80399B97 = "";
-#pragma pop
+/* 80399B78-80399B78 0261D8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -17,9 +17,9 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -78,11 +78,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -187,7 +187,7 @@ extern "C" static void daObjAvalanche_create1st__FP16daObjAvalanche_c();
 extern "C" static void daObjAvalanche_MoveBGDelete__FP16daObjAvalanche_c();
 extern "C" static void daObjAvalanche_MoveBGExecute__FP16daObjAvalanche_c();
 extern "C" static void daObjAvalanche_MoveBGDraw__FP16daObjAvalanche_c();
-extern "C" void func_80BA7CD8(u8*);
+extern "C" void func_80BA7CD8(void* _this, u8*);
 extern "C" extern char const* const d_a_obj_avalanche__stringBase0;
 
 //
@@ -279,14 +279,14 @@ asm void daObjAvalanche_c::initBaseMtx() {
 SECTION_RODATA static u8 const l_dzb[8] = {
     0x00, 0x00, 0x00, 0x0D, 0x00, 0x00, 0x00, 0x0C,
 };
-COMPILER_STRIP_GATE(80BA7CFC, &l_dzb);
+COMPILER_STRIP_GATE(0x80BA7CFC, &l_dzb);
 
 /* 80BA7D04-80BA7D1C 000008 0018+00 1/1 0/0 0/0 .rodata          l_check_pos */
 SECTION_RODATA static u8 const l_check_pos[24] = {
     0xC3, 0x96, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x43, 0x96, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BA7D04, &l_check_pos);
+COMPILER_STRIP_GATE(0x80BA7D04, &l_check_pos);
 
 /* 80BA7D1C-80BA7D20 000020 0004+00 4/5 0/0 0/0 .rodata          @3663 */
 SECTION_RODATA static u8 const lit_3663[4] = {
@@ -295,7 +295,7 @@ SECTION_RODATA static u8 const lit_3663[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BA7D1C, &lit_3663);
+COMPILER_STRIP_GATE(0x80BA7D1C, &lit_3663);
 
 /* 80BA6F14-80BA6FC8 0000B4 00B4+00 3/3 0/0 0/0 .text            setBaseMtx__16daObjAvalanche_cFv */
 #pragma push
@@ -310,13 +310,21 @@ asm void daObjAvalanche_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 80BA7D20-80BA7D24 000024 0004+00 1/1 0/0 0/0 .rodata          @3716 */
 SECTION_RODATA static f32 const lit_3716 = -400.0f;
-COMPILER_STRIP_GATE(80BA7D20, &lit_3716);
+COMPILER_STRIP_GATE(0x80BA7D20, &lit_3716);
 
 /* 80BA7D24-80BA7D2C 000028 0008+00 1/1 0/0 0/0 .rodata          @3718 */
 SECTION_RODATA static u8 const lit_3718[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BA7D24, &lit_3718);
+COMPILER_STRIP_GATE(0x80BA7D24, &lit_3718);
+
+/* 80BA7D3C-80BA7D3C 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BA7D3C = "V_Yuki";
+SECTION_DEAD static char const* const stringBase_80BA7D43 = "SNOW_COLLAPSE";
+SECTION_DEAD static char const* const stringBase_80BA7D51 = "Obj_ava";
+#pragma pop
 
 /* 80BA7D70-80BA7D7C 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -370,7 +378,14 @@ asm void daObjAvalanche_c::Create() {
 /* ############################################################################################## */
 /* 80BA7D2C-80BA7D30 000030 0004+00 2/3 0/0 0/0 .rodata          @3762 */
 SECTION_RODATA static f32 const lit_3762 = 1.0f;
-COMPILER_STRIP_GATE(80BA7D2C, &lit_3762);
+COMPILER_STRIP_GATE(0x80BA7D2C, &lit_3762);
+
+/* 80BA7D3C-80BA7D3C 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BA7D59 = "WAIT";
+SECTION_DEAD static char const* const stringBase_80BA7D5E = "COLLAPSE";
+#pragma pop
 
 /* 80BA7DB4-80BA7DC0 -00001 000C+00 0/1 0/0 0/0 .data            @3851 */
 #pragma push
@@ -500,7 +515,7 @@ asm void daObjAvalanche_c::Execute(f32 (**param_0)[3][4]) {
 /* ############################################################################################## */
 /* 80BA7D30-80BA7D34 000034 0004+00 1/1 0/0 0/0 .rodata          @3834 */
 SECTION_RODATA static f32 const lit_3834 = 300.0f;
-COMPILER_STRIP_GATE(80BA7D30, &lit_3834);
+COMPILER_STRIP_GATE(0x80BA7D30, &lit_3834);
 
 /* 80BA7440-80BA75A4 0005E0 0164+00 1/1 0/0 0/0 .text            checkCollapse__16daObjAvalanche_cFv
  */
@@ -516,7 +531,7 @@ asm void daObjAvalanche_c::checkCollapse() {
 /* ############################################################################################## */
 /* 80BA7D34-80BA7D38 000038 0004+00 1/1 0/0 0/0 .rodata          @3846 */
 SECTION_RODATA static f32 const lit_3846 = 40.0f;
-COMPILER_STRIP_GATE(80BA7D34, &lit_3846);
+COMPILER_STRIP_GATE(0x80BA7D34, &lit_3846);
 
 /* 80BA75A4-80BA7618 000744 0074+00 1/1 0/0 0/0 .text            move__16daObjAvalanche_cFv */
 #pragma push
@@ -577,7 +592,13 @@ void daObjAvalanche_c::actionDead() {
 /* ############################################################################################## */
 /* 80BA7D38-80BA7D3C 00003C 0004+00 1/1 0/0 0/0 .rodata          @3964 */
 SECTION_RODATA static f32 const lit_3964 = -1.0f;
-COMPILER_STRIP_GATE(80BA7D38, &lit_3964);
+COMPILER_STRIP_GATE(0x80BA7D38, &lit_3964);
+
+/* 80BA7D3C-80BA7D3C 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BA7D67 = "Timer";
+#pragma pop
 
 /* 80BA788C-80BA7A50 000A2C 01C4+00 2/2 0/0 0/0 .text            demoProc__16daObjAvalanche_cFv */
 #pragma push
@@ -682,20 +703,10 @@ static asm void daObjAvalanche_MoveBGDraw(daObjAvalanche_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80BA7CD8(u8* param_0) {
+extern "C" asm void func_80BA7CD8(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_avalanche/d_a_obj_avalanche/func_80BA7CD8.s"
 }
 #pragma pop
 
-/* 80BA7D3C-80BA7D6D 000040 0031+00 5/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BA7D3C = "V_Yuki";
-SECTION_DEAD static char const* const stringBase_80BA7D43 = "SNOW_COLLAPSE";
-SECTION_DEAD static char const* const stringBase_80BA7D51 = "Obj_ava";
-SECTION_DEAD static char const* const stringBase_80BA7D59 = "WAIT";
-SECTION_DEAD static char const* const stringBase_80BA7D5E = "COLLAPSE";
-SECTION_DEAD static char const* const stringBase_80BA7D67 = "Timer";
-#pragma pop
+/* 80BA7D3C-80BA7D3C 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

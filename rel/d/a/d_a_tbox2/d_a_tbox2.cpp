@@ -25,9 +25,9 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -98,7 +98,6 @@ struct dEvt_info_c {
 struct dEvt_control_c {
     /* 80042468 */ void reset();
     /* 800436BC */ void setPtI(void*);
-    /* 800436EC */ void setPtI_Id(unsigned int);
 };
 
 struct dEvent_manager_c {
@@ -422,7 +421,7 @@ SECTION_RODATA static u8 const l_resInfo[32] = {
     0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x0D, 0x00, 0x00, 0x00, 0x0E,
     0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x10,
 };
-COMPILER_STRIP_GATE(80498160, &l_resInfo);
+COMPILER_STRIP_GATE(0x80498160, &l_resInfo);
 
 /* 80498180-804981BC 000020 003C+00 1/2 0/0 0/0 .rodata          l_cyl_info */
 SECTION_RODATA static u8 const l_cyl_info[60] = {
@@ -431,13 +430,13 @@ SECTION_RODATA static u8 const l_cyl_info[60] = {
     0x00, 0x00, 0x42, 0x48, 0x00, 0x00, 0x42, 0x8C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0xC2, 0x70, 0x00, 0x00, 0x42, 0x8C, 0x00, 0x00, 0x42, 0xA0, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80498180, &l_cyl_info);
+COMPILER_STRIP_GATE(0x80498180, &l_cyl_info);
 
 /* 804981BC-804981C0 00005C 0004+00 0/1 0/0 0/0 .rodata          @3714 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3714 = 50.0f;
-COMPILER_STRIP_GATE(804981BC, &lit_3714);
+COMPILER_STRIP_GATE(0x804981BC, &lit_3714);
 #pragma pop
 
 /* 804981C0-804981C4 000060 0004+00 1/3 0/0 0/0 .rodata          @3715 */
@@ -447,22 +446,29 @@ SECTION_RODATA static u8 const lit_3715[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(804981C0, &lit_3715);
+COMPILER_STRIP_GATE(0x804981C0, &lit_3715);
 
 /* 804981C4-804981C8 000064 0004+00 0/1 0/0 0/0 .rodata          @3716 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3716 = -6.0f;
-COMPILER_STRIP_GATE(804981C4, &lit_3716);
+COMPILER_STRIP_GATE(0x804981C4, &lit_3716);
 #pragma pop
 
 /* 804981C8-804981CC 000068 0004+00 1/2 0/0 0/0 .rodata          @3717 */
 SECTION_RODATA static f32 const lit_3717 = 5.0f;
-COMPILER_STRIP_GATE(804981C8, &lit_3717);
+COMPILER_STRIP_GATE(0x804981C8, &lit_3717);
 
 /* 804981CC-804981D0 00006C 0004+00 1/2 0/0 0/0 .rodata          @3718 */
 SECTION_RODATA static f32 const lit_3718 = 30.0f;
-COMPILER_STRIP_GATE(804981CC, &lit_3718);
+COMPILER_STRIP_GATE(0x804981CC, &lit_3718);
+
+/* 804981E0-804981E0 000080 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_804981E0 = "Tbox2";
+SECTION_DEAD static char const* const stringBase_804981E6 = "TREASURE";
+#pragma pop
 
 /* 8049825C-80498268 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -510,7 +516,16 @@ asm void daTbox2_c::Create() {
 /* ############################################################################################## */
 /* 804981D0-804981D4 000070 0004+00 4/4 0/0 0/0 .rodata          @3763 */
 SECTION_RODATA static f32 const lit_3763 = 1.0f;
-COMPILER_STRIP_GATE(804981D0, &lit_3763);
+COMPILER_STRIP_GATE(0x804981D0, &lit_3763);
+
+/* 804981E0-804981E0 000080 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_804981EF = "WAIT";
+SECTION_DEAD static char const* const stringBase_804981F4 = "OPEN";
+SECTION_DEAD static char const* const stringBase_804981F9 = "APPEAR";
+SECTION_DEAD static char const* const stringBase_80498200 = "OPEN_SHORT";
+#pragma pop
 
 /* 804982C8-804982D8 -00001 0010+00 1/1 0/0 0/0 .data            action_table$3964 */
 SECTION_DATA static void* action_table[4] = {
@@ -790,7 +805,7 @@ asm dCcD_GStts::~dCcD_GStts() {
 /* ############################################################################################## */
 /* 804981D4-804981D8 000074 0004+00 1/1 0/0 0/0 .rodata          @4021 */
 SECTION_RODATA static f32 const lit_4021 = -1.0f;
-COMPILER_STRIP_GATE(804981D4, &lit_4021);
+COMPILER_STRIP_GATE(0x804981D4, &lit_4021);
 
 /* 8049724C-80497478 0008AC 022C+00 3/3 0/0 0/0 .text            demoProc__9daTbox2_cFv */
 #pragma push
@@ -929,6 +944,15 @@ asm void daTbox2_c::init_actionOpenWait() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 804981E0-804981E0 000080 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8049820B = "DEFAULT_TREASURE_SIMPLE";
+SECTION_DEAD static char const* const stringBase_80498223 = "DEFAULT_TREASURE_NOTOPEN";
+SECTION_DEAD static char const* const stringBase_8049823C = "DEFAULT_TREASURE_NORMAL";
+#pragma pop
+
 /* 80497A18-80497BD0 001078 01B8+00 1/0 0/0 0/0 .text            actionOpenWait__9daTbox2_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -954,14 +978,20 @@ asm void daTbox2_c::setGetDemoItem() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4266 = 22500.0f;
-COMPILER_STRIP_GATE(804981D8, &lit_4266);
+COMPILER_STRIP_GATE(0x804981D8, &lit_4266);
 #pragma pop
 
 /* 804981DC-804981E0 00007C 0004+00 0/1 0/0 0/0 .rodata          @4267 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4267 = 20.0f;
-COMPILER_STRIP_GATE(804981DC, &lit_4267);
+COMPILER_STRIP_GATE(0x804981DC, &lit_4267);
+#pragma pop
+
+/* 804981E0-804981E0 000080 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80498254 = "R_SP01";
 #pragma pop
 
 /* 80497C60-80497DA0 0012C0 0140+00 1/1 0/0 0/0 .text            boxCheck__9daTbox2_cFv */
@@ -1071,18 +1101,4 @@ static asm void func_80498150() {
 }
 #pragma pop
 
-/* 804981E0-8049825B 000080 007B+00 5/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_804981E0 = "Tbox2";
-SECTION_DEAD static char const* const stringBase_804981E6 = "TREASURE";
-SECTION_DEAD static char const* const stringBase_804981EF = "WAIT";
-SECTION_DEAD static char const* const stringBase_804981F4 = "OPEN";
-SECTION_DEAD static char const* const stringBase_804981F9 = "APPEAR";
-SECTION_DEAD static char const* const stringBase_80498200 = "OPEN_SHORT";
-SECTION_DEAD static char const* const stringBase_8049820B = "DEFAULT_TREASURE_SIMPLE";
-SECTION_DEAD static char const* const stringBase_80498223 = "DEFAULT_TREASURE_NOTOPEN";
-SECTION_DEAD static char const* const stringBase_8049823C = "DEFAULT_TREASURE_NORMAL";
-SECTION_DEAD static char const* const stringBase_80498254 = "R_SP01";
-#pragma pop
+/* 804981E0-804981E0 000080 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

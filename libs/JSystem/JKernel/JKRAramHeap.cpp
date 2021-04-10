@@ -23,7 +23,7 @@ template <typename A0>
 struct JSUList {};
 /* JSUList<JKRAramBlock> */
 struct JSUList__template6 {
-    /* 802D32B0 */ void func_802D32B0();
+    /* 802D32B0 */ void func_802D32B0(void* _this);
 };
 
 struct JKRHeap {
@@ -69,7 +69,7 @@ extern "C" void getFreeSize__11JKRAramHeapFv();
 extern "C" void getTotalFreeSize__11JKRAramHeapFv();
 extern "C" void dump__11JKRAramHeapFv();
 extern "C" void __sinit_JKRAramHeap_cpp();
-extern "C" void func_802D32B0();
+extern "C" void func_802D32B0(void* _this);
 extern "C" u8 sAramList__11JKRAramHeap[12];
 
 //
@@ -208,7 +208,7 @@ asm void __sinit_JKRAramHeap_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_802D326C = (void*)__sinit_JKRAramHeap_cpp;
+REGISTER_CTORS(0x802D326C, __sinit_JKRAramHeap_cpp);
 #pragma pop
 
 /* 802D32B0-802D3304 2CDBF0 0054+00 1/1 0/0 0/0 .text            __dt__23JSUList<12JKRAramBlock>Fv
@@ -216,7 +216,7 @@ SECTION_CTORS void* const _ctors_802D326C = (void*)__sinit_JKRAramHeap_cpp;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802D32B0() {
+extern "C" asm void func_802D32B0(void* _this) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRAramHeap/func_802D32B0.s"
 }

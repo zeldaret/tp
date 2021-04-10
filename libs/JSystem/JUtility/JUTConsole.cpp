@@ -337,6 +337,14 @@ asm void JUTConsole_print_f_va_() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039D9A8-8039D9A8 02A008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D9A8 = "[%03d] %s\n";
+SECTION_DEAD static char const* const stringBase_8039D9B3 = "%s\n";
+#pragma pop
+
 /* 802E7F7C-802E80A8 2E28BC 012C+00 0/0 2/2 0/0 .text            dumpToTerminal__10JUTConsoleFUi */
 #pragma push
 #pragma optimization_level 0
@@ -510,6 +518,19 @@ asm void JUTReportConsole_f() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039D9A8-8039D9A8 02A008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D9B7 =
+    "\n:::dump of console[%x]----------------\n";
+SECTION_DEAD static char const* const stringBase_8039D9E0 =
+    ":::dump of console[%x] END------------\n";
+SECTION_DEAD static char const* const stringBase_8039DA08 = "%s";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039DA0B = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
+#pragma pop
+
 /* 802E8648-802E867C 2E2F88 0034+00 0/0 6/6 0/0 .text            JUTReportConsole */
 #pragma push
 #pragma optimization_level 0
@@ -540,17 +561,4 @@ asm void JUTWarningConsole() {
 }
 #pragma pop
 
-/* 8039D9A8-8039DA20 02A008 0063+15 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039D9A8 = "[%03d] %s\n";
-SECTION_DEAD static char const* const stringBase_8039D9B3 = "%s\n";
-SECTION_DEAD static char const* const stringBase_8039D9B7 =
-    "\n:::dump of console[%x]----------------\n";
-SECTION_DEAD static char const* const stringBase_8039D9E0 =
-    ":::dump of console[%x] END------------\n";
-SECTION_DEAD static char const* const stringBase_8039DA08 = "%s";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039DA0B = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
-#pragma pop
+/* 8039D9A8-8039D9A8 02A008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

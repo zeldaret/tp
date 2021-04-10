@@ -268,9 +268,9 @@ struct Z2SeqMgr {
     /* 802B3EAC */ void checkBgmIDPlaying(u32);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -1532,6 +1532,12 @@ asm dMenu_save_c::dMenu_save_c() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80397960-80397960 023FC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80397960 = "/res/Layout/saveres.arc";
+#pragma pop
+
 /* 8042E840-8042E84C 05B560 000C+00 1/1 0/0 0/0 .bss             @3785 */
 static u8 lit_3785[12];
 
@@ -1555,6 +1561,18 @@ asm void dMenu_save_c::_create() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80397960-80397960 023FC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80397978 = "zelda_file_select2.blo";
+SECTION_DEAD static char const* const stringBase_8039798F = "zelda_file_select2.bck";
+SECTION_DEAD static char const* const stringBase_803979A6 = "zelda_file_select2.bpk";
+SECTION_DEAD static char const* const stringBase_803979BD = "zelda_file_select2_02.btk";
+SECTION_DEAD static char const* const stringBase_803979D7 = "zelda_file_select2.btk";
+SECTION_DEAD static char const* const stringBase_803979EE = "zelda_file_select2.brk";
+SECTION_DEAD static char const* const stringBase_80397A05 = "";
+#pragma pop
+
 /* 80450740-80450744 0001C0 0002+02 1/1 0/0 0/0 .sdata           l_msgNum0$3868 */
 SECTION_SDATA static u8 l_msgNum0[2 + 2 /* padding */] = {
     0x08,
@@ -2119,6 +2137,13 @@ asm void dMenu_save_c::dataWrite() {
     nofralloc
 #include "asm/d/menu/d_menu_save/dataWrite__12dMenu_save_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80397960-80397960 023FC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80397A06 = "save cmdState %d\n";
 #pragma pop
 
 /* 801F28E4-801F298C 1ED224 00A8+00 1/0 0/0 0/0 .text memCardDataSaveWait__12dMenu_save_cFv */
@@ -2923,20 +2948,7 @@ asm void __sinit_d_menu_save_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_801F6C1C = (void*)__sinit_d_menu_save_cpp;
+REGISTER_CTORS(0x801F6C1C, __sinit_d_menu_save_cpp);
 #pragma pop
 
-/* 80397960-80397A18 023FC0 00B8+00 6/6 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80397960 = "/res/Layout/saveres.arc";
-SECTION_DEAD static char const* const stringBase_80397978 = "zelda_file_select2.blo";
-SECTION_DEAD static char const* const stringBase_8039798F = "zelda_file_select2.bck";
-SECTION_DEAD static char const* const stringBase_803979A6 = "zelda_file_select2.bpk";
-SECTION_DEAD static char const* const stringBase_803979BD = "zelda_file_select2_02.btk";
-SECTION_DEAD static char const* const stringBase_803979D7 = "zelda_file_select2.btk";
-SECTION_DEAD static char const* const stringBase_803979EE = "zelda_file_select2.brk";
-SECTION_DEAD static char const* const stringBase_80397A05 = "";
-SECTION_DEAD static char const* const stringBase_80397A06 = "save cmdState %d\n";
-#pragma pop
+/* 80397960-80397960 023FC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

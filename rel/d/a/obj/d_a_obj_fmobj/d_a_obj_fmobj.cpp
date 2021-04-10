@@ -149,6 +149,13 @@ static bool daObj_Fmobj_IsDelete(obj_fmobj_class* param_0) {
     return true;
 }
 
+/* ############################################################################################## */
+/* 8057CF74-8057CF74 00000C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8057CF74 = "Obj_Fmobj";
+#pragma pop
+
 /* 8057CC8C-8057CCDC 00012C 0050+00 1/0 0/0 0/0 .text daObj_Fmobj_Delete__FP15obj_fmobj_class */
 #pragma push
 #pragma optimization_level 0
@@ -172,7 +179,7 @@ static asm void useHeapInit(fopAc_ac_c* param_0) {
 /* ############################################################################################## */
 /* 8057CF68-8057CF6C 000000 0004+00 1/1 0/0 0/0 .rodata          @3743 */
 SECTION_RODATA static f32 const lit_3743 = 65536.0f;
-COMPILER_STRIP_GATE(8057CF68, &lit_3743);
+COMPILER_STRIP_GATE(0x8057CF68, &lit_3743);
 
 /* 8057CF6C-8057CF70 000004 0004+00 0/1 0/0 0/0 .rodata          @3744 */
 #pragma push
@@ -183,14 +190,14 @@ SECTION_RODATA static u8 const lit_3744[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8057CF6C, &lit_3744);
+COMPILER_STRIP_GATE(0x8057CF6C, &lit_3744);
 #pragma pop
 
 /* 8057CF70-8057CF74 000008 0004+00 0/1 0/0 0/0 .rodata          @3745 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3745 = -30.0f;
-COMPILER_STRIP_GATE(8057CF70, &lit_3745);
+COMPILER_STRIP_GATE(0x8057CF70, &lit_3745);
 #pragma pop
 
 /* 8057CDE0-8057CF60 000280 0180+00 1/0 0/0 0/0 .text            daObj_Fmobj_Create__FP10fopAc_ac_c
@@ -227,9 +234,4 @@ SECTION_DATA extern void* g_profile_OBJ_FMOBJ[12] = {
     (void*)0x00040100, (void*)0x00070000,
 };
 
-/* 8057CF74-8057CF7E 00000C 000A+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8057CF74 = "Obj_Fmobj";
-#pragma pop
+/* 8057CF74-8057CF74 00000C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

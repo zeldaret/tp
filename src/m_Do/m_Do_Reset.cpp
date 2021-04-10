@@ -119,6 +119,12 @@ static asm void destroyVideo() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80374198-80374198 0007F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80374198 = "DVD_STATE_BUSY\n";
+#pragma pop
+
 /* 80450C78-80450C80 000178 0004+04 3/2 42/42 2/2 .sbss            mResetData__6mDoRst */
 u8 mDoRst::mResetData[4 + 4 /* padding */];
 
@@ -158,9 +164,4 @@ u8 struct_80450C80[8];
 extern u8 data_80450C88[8];
 u8 data_80450C88[8];
 
-/* 80374198-803741A8 0007F8 0010+00 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80374198 = "DVD_STATE_BUSY\n";
-#pragma pop
+/* 80374198-80374198 0007F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

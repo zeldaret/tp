@@ -15,13 +15,13 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct J3DModelData {};
+struct J3DAnmTransform {};
 
-struct mDoExt_McaMorfCallBack2_c {};
+struct J3DModelData {};
 
 struct Vec {};
 
@@ -45,13 +45,7 @@ struct fopAc_ac_c {
     /* 80018B64 */ fopAc_ac_c();
 };
 
-struct J3DJoint {};
-
 struct daNpcT_faceMotionAnmData_c {};
-
-struct daNpcT_evtData_c {};
-
-struct daNpcT_motionAnmData_c {};
 
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
@@ -60,6 +54,12 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80145A24 */ void checkEndSequence();
     /* 80AD40F4 */ ~daNpcT_MotionSeqMngr_c();
 };
+
+struct daNpcT_evtData_c {};
+
+struct daNpcT_motionAnmData_c {};
+
+struct J3DJoint {};
 
 struct daNpc_Seira2_c {
     /* 80AD0C0C */ ~daNpc_Seira2_c();
@@ -131,13 +131,13 @@ struct dCcD_GObjInf {
 
 struct _GXColorS10 {};
 
+struct J3DModel {};
+
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80AD3B74 */ ~cXyz();
     /* 80AD40F0 */ cXyz();
 };
-
-struct J3DModel {};
 
 struct daNpcT_c {
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
@@ -319,12 +319,12 @@ struct dBgS_AcchCir {
     /* 80AD413C */ ~dBgS_AcchCir();
 };
 
-struct dBgS {};
-
 struct csXyz {
     /* 80AD3BB0 */ ~csXyz();
     /* 80AD3FF0 */ csXyz();
 };
+
+struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -516,8 +516,8 @@ extern "C" void changeAnm__8daNpcT_cFPiPi();
 extern "C" void changeBck__8daNpcT_cFPiPi();
 extern "C" void changeBtp__8daNpcT_cFPiPi();
 extern "C" void changeBtk__8daNpcT_cFPiPi();
-extern "C" void func_80AD46B8(int*);
-extern "C" void func_80AD46D4(int, int);
+extern "C" void func_80AD46B8(void* _this, int*);
+extern "C" void func_80AD46D4(void* _this, int, int);
 extern "C" void __sinit_d_a_npc_seira2_cpp();
 extern "C" void
 __ct__14daNpc_Seira2_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
@@ -706,6 +706,16 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80AD4B5C-80AD4B5C 0000FC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80AD4B5C = "";
+SECTION_DEAD static char const* const stringBase_80AD4B5D = "DEFAULT_GETITEM";
+SECTION_DEAD static char const* const stringBase_80AD4B6D = "Seira";
+SECTION_DEAD static char const* const stringBase_80AD4B73 = "SeraBtl";
+SECTION_DEAD static char const* const stringBase_80AD4B7B = "Sera";
+#pragma pop
+
 /* 80AD4B90-80AD4B9C 000000 000C+00 4/4 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1243,34 +1253,34 @@ SECTION_RODATA u8 const daNpc_Seira2_Param_c::m[140] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AD4A60, &daNpc_Seira2_Param_c::m);
+COMPILER_STRIP_GATE(0x80AD4A60, &daNpc_Seira2_Param_c::m);
 
 /* 80AD4AEC-80AD4AF0 00008C 0004+00 0/1 0/0 0/0 .rodata          @3960 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3960 = -300.0f;
-COMPILER_STRIP_GATE(80AD4AEC, &lit_3960);
+COMPILER_STRIP_GATE(0x80AD4AEC, &lit_3960);
 #pragma pop
 
 /* 80AD4AF0-80AD4AF4 000090 0004+00 0/1 0/0 0/0 .rodata          @3961 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3961 = -50.0f;
-COMPILER_STRIP_GATE(80AD4AF0, &lit_3961);
+COMPILER_STRIP_GATE(0x80AD4AF0, &lit_3961);
 #pragma pop
 
 /* 80AD4AF4-80AD4AF8 000094 0004+00 0/1 0/0 0/0 .rodata          @3962 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3962 = 300.0f;
-COMPILER_STRIP_GATE(80AD4AF4, &lit_3962);
+COMPILER_STRIP_GATE(0x80AD4AF4, &lit_3962);
 #pragma pop
 
 /* 80AD4AF8-80AD4AFC 000098 0004+00 0/1 0/0 0/0 .rodata          @3963 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3963 = 450.0f;
-COMPILER_STRIP_GATE(80AD4AF8, &lit_3963);
+COMPILER_STRIP_GATE(0x80AD4AF8, &lit_3963);
 #pragma pop
 
 /* 80AD0D58-80AD0FF8 000238 02A0+00 1/1 0/0 0/0 .text            create__14daNpc_Seira2_cFv */
@@ -1288,21 +1298,21 @@ asm void daNpc_Seira2_c::create() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4052 = 0.25f;
-COMPILER_STRIP_GATE(80AD4AFC, &lit_4052);
+COMPILER_STRIP_GATE(0x80AD4AFC, &lit_4052);
 #pragma pop
 
 /* 80AD4B00-80AD4B04 0000A0 0004+00 0/2 0/0 0/0 .rodata          @4053 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4053 = 20.0f;
-COMPILER_STRIP_GATE(80AD4B00, &lit_4053);
+COMPILER_STRIP_GATE(0x80AD4B00, &lit_4053);
 #pragma pop
 
 /* 80AD4B04-80AD4B08 0000A4 0004+00 0/1 0/0 0/0 .rodata          @4054 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4054 = 5.0f;
-COMPILER_STRIP_GATE(80AD4B04, &lit_4054);
+COMPILER_STRIP_GATE(0x80AD4B04, &lit_4054);
 #pragma pop
 
 /* 80AD4B08-80AD4B0C 0000A8 0004+00 11/18 0/0 0/0 .rodata          @4055 */
@@ -1312,36 +1322,36 @@ SECTION_RODATA static u8 const lit_4055[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80AD4B08, &lit_4055);
+COMPILER_STRIP_GATE(0x80AD4B08, &lit_4055);
 
 /* 80AD4B0C-80AD4B10 0000AC 0004+00 1/2 0/0 0/0 .rodata          @4056 */
 SECTION_RODATA static f32 const lit_4056 = 100.0f;
-COMPILER_STRIP_GATE(80AD4B0C, &lit_4056);
+COMPILER_STRIP_GATE(0x80AD4B0C, &lit_4056);
 
 /* 80AD4B10-80AD4B14 0000B0 0004+00 0/1 0/0 0/0 .rodata          @4057 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4057 = 60.0f;
-COMPILER_STRIP_GATE(80AD4B10, &lit_4057);
+COMPILER_STRIP_GATE(0x80AD4B10, &lit_4057);
 #pragma pop
 
 /* 80AD4B14-80AD4B18 0000B4 0004+00 0/2 0/0 0/0 .rodata          @4278 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4278 = 65536.0f;
-COMPILER_STRIP_GATE(80AD4B14, &lit_4278);
+COMPILER_STRIP_GATE(0x80AD4B14, &lit_4278);
 #pragma pop
 
 /* 80AD4B18-80AD4B1C 0000B8 0004+00 0/3 0/0 0/0 .rodata          @4279 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4279 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80AD4B18, &lit_4279);
+COMPILER_STRIP_GATE(0x80AD4B18, &lit_4279);
 #pragma pop
 
 /* 80AD4B1C-80AD4B20 0000BC 0004+00 2/5 0/0 0/0 .rodata          @4443 */
 SECTION_RODATA static f32 const lit_4443 = 1.0f;
-COMPILER_STRIP_GATE(80AD4B1C, &lit_4443);
+COMPILER_STRIP_GATE(0x80AD4B1C, &lit_4443);
 
 /* 80AD0FF8-80AD134C 0004D8 0354+00 1/1 0/0 0/0 .text            CreateHeap__14daNpc_Seira2_cFv */
 #pragma push
@@ -1585,7 +1595,7 @@ asm void daNpc_Seira2_c::setParam() {
 /* ############################################################################################## */
 /* 80AD4B20-80AD4B24 0000C0 0004+00 7/9 0/0 0/0 .rodata          @4661 */
 SECTION_RODATA static f32 const lit_4661 = -1.0f;
-COMPILER_STRIP_GATE(80AD4B20, &lit_4661);
+COMPILER_STRIP_GATE(0x80AD4B20, &lit_4661);
 
 /* 80AD1B38-80AD1BF8 001018 00C0+00 1/0 0/0 0/0 .text setAfterTalkMotion__14daNpc_Seira2_cFv */
 #pragma push
@@ -1615,6 +1625,13 @@ asm void daNpc_Seira2_c::evtTalk() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_seira2/d_a_npc_seira2/evtTalk__14daNpc_Seira2_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80AD4B5C-80AD4B5C 0000FC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80AD4B80 = "Seira2";
 #pragma pop
 
 /* 80AD1E04-80AD1ED4 0012E4 00D0+00 1/0 0/0 0/0 .text            evtCutProc__14daNpc_Seira2_cFv */
@@ -1652,42 +1669,42 @@ asm void daNpc_Seira2_c::beforeMove() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4854 = -30.0f;
-COMPILER_STRIP_GATE(80AD4B24, &lit_4854);
+COMPILER_STRIP_GATE(0x80AD4B24, &lit_4854);
 #pragma pop
 
 /* 80AD4B28-80AD4B2C 0000C8 0004+00 0/1 0/0 0/0 .rodata          @4855 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4855 = 10.0f;
-COMPILER_STRIP_GATE(80AD4B28, &lit_4855);
+COMPILER_STRIP_GATE(0x80AD4B28, &lit_4855);
 #pragma pop
 
 /* 80AD4B2C-80AD4B30 0000CC 0004+00 0/1 0/0 0/0 .rodata          @4856 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4856 = 0x38C90FDB;
-COMPILER_STRIP_GATE(80AD4B2C, &lit_4856);
+COMPILER_STRIP_GATE(0x80AD4B2C, &lit_4856);
 #pragma pop
 
 /* 80AD4B30-80AD4B34 0000D0 0004+00 0/1 0/0 0/0 .rodata          @4857 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4857 = 170.0f;
-COMPILER_STRIP_GATE(80AD4B30, &lit_4857);
+COMPILER_STRIP_GATE(0x80AD4B30, &lit_4857);
 #pragma pop
 
 /* 80AD4B34-80AD4B38 0000D4 0004+00 0/1 0/0 0/0 .rodata          @4858 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4858 = 80.0f;
-COMPILER_STRIP_GATE(80AD4B34, &lit_4858);
+COMPILER_STRIP_GATE(0x80AD4B34, &lit_4858);
 #pragma pop
 
 /* 80AD4B38-80AD4B40 0000D8 0008+00 2/4 0/0 0/0 .rodata          @4860 */
 SECTION_RODATA static u8 const lit_4860[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AD4B38, &lit_4860);
+COMPILER_STRIP_GATE(0x80AD4B38, &lit_4860);
 
 /* 80AD20A8-80AD23A8 001588 0300+00 1/0 0/0 0/0 .text            setAttnPos__14daNpc_Seira2_cFv */
 #pragma push
@@ -1760,7 +1777,7 @@ asm void daNpc_Seira2_c::selectAction() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_Seira2_c::chkAction(int (daNpc_Seira2_c::*)(void*)) {
+asm void daNpc_Seira2_c::chkAction(int (daNpc_Seira2_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_seira2/d_a_npc_seira2/chkAction__14daNpc_Seira2_cFM14daNpc_Seira2_cFPCvPvPv_i.s"
 }
@@ -1771,10 +1788,17 @@ asm void daNpc_Seira2_c::chkAction(int (daNpc_Seira2_c::*)(void*)) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_Seira2_c::setAction(int (daNpc_Seira2_c::*)(void*)) {
+asm void daNpc_Seira2_c::setAction(int (daNpc_Seira2_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_seira2/d_a_npc_seira2/setAction__14daNpc_Seira2_cFM14daNpc_Seira2_cFPCvPvPv_i.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80AD4B5C-80AD4B5C 0000FC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80AD4B87 = "R_SP01";
 #pragma pop
 
 /* 80AD2944-80AD29BC 001E24 0078+00 2/2 0/0 0/0 .text checkStageIsSeira2sShop__14daNpc_Seira2_cFv
@@ -1835,7 +1859,7 @@ asm void daNpc_Seira2_c::worry(void* param_0) {
 SECTION_RODATA static u8 const lit_4918[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AD4B40, &lit_4918);
+COMPILER_STRIP_GATE(0x80AD4B40, &lit_4918);
 #pragma pop
 
 /* 80AD4B48-80AD4B50 0000E8 0008+00 0/1 0/0 0/0 .rodata          @4919 */
@@ -1844,7 +1868,7 @@ COMPILER_STRIP_GATE(80AD4B40, &lit_4918);
 SECTION_RODATA static u8 const lit_4919[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AD4B48, &lit_4919);
+COMPILER_STRIP_GATE(0x80AD4B48, &lit_4919);
 #pragma pop
 
 /* 80AD4B50-80AD4B58 0000F0 0008+00 0/1 0/0 0/0 .rodata          @4920 */
@@ -1853,14 +1877,14 @@ COMPILER_STRIP_GATE(80AD4B48, &lit_4919);
 SECTION_RODATA static u8 const lit_4920[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AD4B50, &lit_4920);
+COMPILER_STRIP_GATE(0x80AD4B50, &lit_4920);
 #pragma pop
 
 /* 80AD4B58-80AD4B5C 0000F8 0004+00 0/1 0/0 0/0 .rodata          @5421 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5421 = 350.0f;
-COMPILER_STRIP_GATE(80AD4B58, &lit_5421);
+COMPILER_STRIP_GATE(0x80AD4B58, &lit_5421);
 #pragma pop
 
 /* 80AD31F0-80AD3508 0026D0 0318+00 1/0 0/0 0/0 .text            sad__14daNpc_Seira2_cFPv */
@@ -2258,7 +2282,7 @@ void daNpcT_c::changeBtk(int* param_0, int* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80AD46B8(int* param_0) {
+extern "C" asm void func_80AD46B8(void* _this, int* param_0) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_seira2/d_a_npc_seira2/func_80AD46B8.s"
 }
@@ -2268,7 +2292,7 @@ extern "C" asm void func_80AD46B8(int* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80AD46D4(int param_0, int param_1) {
+extern "C" asm void func_80AD46D4(void* _this, int param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_seira2/d_a_npc_seira2/func_80AD46D4.s"
 }
@@ -2300,7 +2324,7 @@ asm void __sinit_d_a_npc_seira2_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80AD4750 = (void*)__sinit_d_a_npc_seira2_cpp;
+REGISTER_CTORS(0x80AD4750, __sinit_d_a_npc_seira2_cpp);
 #pragma pop
 
 /* 80AD47B8-80AD4884 003C98 00CC+00 1/1 0/0 0/0 .text
@@ -2426,15 +2450,4 @@ bool dShopSystem_c::beforeSelectSeqAction(dMsgFlow_c* param_0, int param_1) {
     return true;
 }
 
-/* 80AD4B5C-80AD4B8E 0000FC 0032+00 5/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80AD4B5C = "";
-SECTION_DEAD static char const* const stringBase_80AD4B5D = "DEFAULT_GETITEM";
-SECTION_DEAD static char const* const stringBase_80AD4B6D = "Seira";
-SECTION_DEAD static char const* const stringBase_80AD4B73 = "SeraBtl";
-SECTION_DEAD static char const* const stringBase_80AD4B7B = "Sera";
-SECTION_DEAD static char const* const stringBase_80AD4B80 = "Seira2";
-SECTION_DEAD static char const* const stringBase_80AD4B87 = "R_SP01";
-#pragma pop
+/* 80AD4B5C-80AD4B5C 0000FC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

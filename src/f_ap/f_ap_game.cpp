@@ -135,5 +135,5 @@ asm void __sinit_f_ap_game_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80018B28 = (void*)__sinit_f_ap_game_cpp;
+REGISTER_CTORS(0x80018B28, __sinit_f_ap_game_cpp);
 #pragma pop

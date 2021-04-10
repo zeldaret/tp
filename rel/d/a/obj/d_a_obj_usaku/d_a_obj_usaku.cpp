@@ -142,6 +142,13 @@ static bool daObj_Usaku_IsDelete(obj_usaku_class* param_0) {
     return true;
 }
 
+/* ############################################################################################## */
+/* 80D212EC-80D212EC 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D212EC = "Obj_usaku";
+#pragma pop
+
 /* 80D21050-80D210A8 000170 0058+00 1/0 0/0 0/0 .text daObj_Usaku_Delete__FP15obj_usaku_class */
 #pragma push
 #pragma optimization_level 0
@@ -165,27 +172,27 @@ static asm void useHeapInit(fopAc_ac_c* param_0) {
 /* ############################################################################################## */
 /* 80D212DC-80D212E0 000000 0004+00 1/1 0/0 0/0 .rodata          @3744 */
 SECTION_RODATA static f32 const lit_3744 = -300.0f;
-COMPILER_STRIP_GATE(80D212DC, &lit_3744);
+COMPILER_STRIP_GATE(0x80D212DC, &lit_3744);
 
 /* 80D212E0-80D212E4 000004 0004+00 0/1 0/0 0/0 .rodata          @3745 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3745 = -600.0f;
-COMPILER_STRIP_GATE(80D212E0, &lit_3745);
+COMPILER_STRIP_GATE(0x80D212E0, &lit_3745);
 #pragma pop
 
 /* 80D212E4-80D212E8 000008 0004+00 0/1 0/0 0/0 .rodata          @3746 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3746 = 300.0f;
-COMPILER_STRIP_GATE(80D212E4, &lit_3746);
+COMPILER_STRIP_GATE(0x80D212E4, &lit_3746);
 #pragma pop
 
 /* 80D212E8-80D212EC 00000C 0004+00 0/1 0/0 0/0 .rodata          @3747 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3747 = 600.0f;
-COMPILER_STRIP_GATE(80D212E8, &lit_3747);
+COMPILER_STRIP_GATE(0x80D212E8, &lit_3747);
 #pragma pop
 
 /* 80D211AC-80D212D4 0002CC 0128+00 1/0 0/0 0/0 .text            daObj_Usaku_Create__FP10fopAc_ac_c
@@ -222,9 +229,4 @@ SECTION_DATA extern void* g_profile_OBJ_USAKU[12] = {
     (void*)0x00040100, (void*)0x000E0000,
 };
 
-/* 80D212EC-80D212F6 000010 000A+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D212EC = "Obj_usaku";
-#pragma pop
+/* 80D212EC-80D212EC 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

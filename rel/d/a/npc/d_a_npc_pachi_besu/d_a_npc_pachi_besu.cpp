@@ -15,13 +15,13 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct J3DModelData {};
+struct J3DAnmTransform {};
 
-struct mDoExt_McaMorfCallBack2_c {};
+struct J3DModelData {};
 
 struct Vec {};
 
@@ -43,19 +43,7 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct J3DJoint {};
-
-struct cXyz {
-    /* 80266B34 */ void operator-(Vec const&) const;
-    /* 80A95B40 */ ~cXyz();
-    /* 80A961D0 */ cXyz();
-};
-
 struct daNpcT_faceMotionAnmData_c {};
-
-struct daNpcT_evtData_c {};
-
-struct daNpcT_motionAnmData_c {};
 
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
@@ -63,6 +51,18 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80145898 */ void initialize();
     /* 80145A24 */ void checkEndSequence();
     /* 80A961D4 */ ~daNpcT_MotionSeqMngr_c();
+};
+
+struct daNpcT_evtData_c {};
+
+struct daNpcT_motionAnmData_c {};
+
+struct J3DJoint {};
+
+struct cXyz {
+    /* 80266B34 */ void operator-(Vec const&) const;
+    /* 80A95B40 */ ~cXyz();
+    /* 80A961D0 */ cXyz();
 };
 
 struct daNpc_Pachi_Besu_c {
@@ -305,12 +305,12 @@ struct dBgS_AcchCir {
     /* 80A9621C */ ~dBgS_AcchCir();
 };
 
-struct dBgS {};
-
 struct csXyz {
     /* 80A95B7C */ ~csXyz();
     /* 80A960D0 */ csXyz();
 };
+
+struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -673,6 +673,29 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80A96B60-80A96B60 0000F4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80A96B60 = "";
+SECTION_DEAD static char const* const stringBase_80A96B61 = "TUTRIAL_TALK2";
+SECTION_DEAD static char const* const stringBase_80A96B6F = "Besu";
+SECTION_DEAD static char const* const stringBase_80A96B74 = "Besu_TW";
+SECTION_DEAD static char const* const stringBase_80A96B7C = "Besu0";
+SECTION_DEAD static char const* const stringBase_80A96B82 = "Besu1";
+SECTION_DEAD static char const* const stringBase_80A96B88 = "Besu2";
+SECTION_DEAD static char const* const stringBase_80A96B8E = "Besu3";
+SECTION_DEAD static char const* const stringBase_80A96B94 = "evt_pachi";
+SECTION_DEAD static char const* const stringBase_80A96B9E = "TUTRIAL_BEGIN";
+SECTION_DEAD static char const* const stringBase_80A96BAC = "TUTRIAL_BEGIN_SKIP";
+SECTION_DEAD static char const* const stringBase_80A96BBF = "TUTRIAL_CLEAR";
+SECTION_DEAD static char const* const stringBase_80A96BCD = "TUTRIAL_TALK";
+SECTION_DEAD static char const* const stringBase_80A96BDA = "HIT_KAKASI_BODY";
+SECTION_DEAD static char const* const stringBase_80A96BEA = "TUTRIAL_SELECT_GIVEUP";
+SECTION_DEAD static char const* const stringBase_80A96C00 = "TUTRIAL_GIVEUP";
+SECTION_DEAD static char const* const stringBase_80A96C0F = "TUTRIAL_CONTINUE";
+SECTION_DEAD static char const* const stringBase_80A96C20 = "TUTRIAL_CAUTION";
+#pragma pop
+
 /* 80A96C40-80A96C4C 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1341,41 +1364,41 @@ SECTION_RODATA u8 const daNpc_Pachi_Besu_Param_c::m[140] = {
     0xC1, 0x70, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC1, 0x70, 0x00, 0x00, 0x41, 0x70, 0x00, 0x00,
     0x41, 0xF0, 0x00, 0x00, 0x41, 0x70, 0x00, 0x00, 0x42, 0x8C, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A96A6C, &daNpc_Pachi_Besu_Param_c::m);
+COMPILER_STRIP_GATE(0x80A96A6C, &daNpc_Pachi_Besu_Param_c::m);
 
 /* 80A96AF8-80A96AFC 00008C 0004+00 0/1 0/0 0/0 .rodata          @4186 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4186 = -300.0f;
-COMPILER_STRIP_GATE(80A96AF8, &lit_4186);
+COMPILER_STRIP_GATE(0x80A96AF8, &lit_4186);
 #pragma pop
 
 /* 80A96AFC-80A96B00 000090 0004+00 0/1 0/0 0/0 .rodata          @4187 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4187 = -50.0f;
-COMPILER_STRIP_GATE(80A96AFC, &lit_4187);
+COMPILER_STRIP_GATE(0x80A96AFC, &lit_4187);
 #pragma pop
 
 /* 80A96B00-80A96B04 000094 0004+00 0/1 0/0 0/0 .rodata          @4188 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4188 = 300.0f;
-COMPILER_STRIP_GATE(80A96B00, &lit_4188);
+COMPILER_STRIP_GATE(0x80A96B00, &lit_4188);
 #pragma pop
 
 /* 80A96B04-80A96B08 000098 0004+00 0/1 0/0 0/0 .rodata          @4189 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4189 = 450.0f;
-COMPILER_STRIP_GATE(80A96B04, &lit_4189);
+COMPILER_STRIP_GATE(0x80A96B04, &lit_4189);
 #pragma pop
 
 /* 80A96B08-80A96B0C 00009C 0004+00 0/1 0/0 0/0 .rodata          @4190 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4190 = -1000000000.0f;
-COMPILER_STRIP_GATE(80A96B08, &lit_4190);
+COMPILER_STRIP_GATE(0x80A96B08, &lit_4190);
 #pragma pop
 
 /* 80A92EA4-80A9317C 000224 02D8+00 1/1 0/0 0/0 .text            create__18daNpc_Pachi_Besu_cFv */
@@ -1396,25 +1419,25 @@ SECTION_RODATA static u8 const lit_4347[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80A96B0C, &lit_4347);
+COMPILER_STRIP_GATE(0x80A96B0C, &lit_4347);
 
 /* 80A96B10-80A96B14 0000A4 0004+00 0/2 0/0 0/0 .rodata          @4348 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4348 = 65536.0f;
-COMPILER_STRIP_GATE(80A96B10, &lit_4348);
+COMPILER_STRIP_GATE(0x80A96B10, &lit_4348);
 #pragma pop
 
 /* 80A96B14-80A96B18 0000A8 0004+00 0/3 0/0 0/0 .rodata          @4349 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4349 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80A96B14, &lit_4349);
+COMPILER_STRIP_GATE(0x80A96B14, &lit_4349);
 #pragma pop
 
 /* 80A96B18-80A96B1C 0000AC 0004+00 2/4 0/0 0/0 .rodata          @4497 */
 SECTION_RODATA static f32 const lit_4497 = 1.0f;
-COMPILER_STRIP_GATE(80A96B18, &lit_4497);
+COMPILER_STRIP_GATE(0x80A96B18, &lit_4497);
 
 /* 80A9317C-80A9344C 0004FC 02D0+00 1/1 0/0 0/0 .text            CreateHeap__18daNpc_Pachi_Besu_cFv
  */
@@ -1550,7 +1573,7 @@ asm void daNpc_Pachi_Besu_c::Execute() {
 /* ############################################################################################## */
 /* 80A96B1C-80A96B20 0000B0 0004+00 1/2 0/0 0/0 .rodata          @4546 */
 SECTION_RODATA static f32 const lit_4546 = 100.0f;
-COMPILER_STRIP_GATE(80A96B1C, &lit_4546);
+COMPILER_STRIP_GATE(0x80A96B1C, &lit_4546);
 
 /* 80A9365C-80A936F0 0009DC 0094+00 1/1 0/0 0/0 .text            Draw__18daNpc_Pachi_Besu_cFv */
 #pragma push
@@ -1638,7 +1661,7 @@ asm void daNpc_Pachi_Besu_c::setParam() {
 /* ############################################################################################## */
 /* 80A96B20-80A96B24 0000B4 0004+00 3/4 0/0 0/0 .rodata          @4732 */
 SECTION_RODATA static f32 const lit_4732 = -1.0f;
-COMPILER_STRIP_GATE(80A96B20, &lit_4732);
+COMPILER_STRIP_GATE(0x80A96B20, &lit_4732);
 
 /* 80A97AC8-80A97ACC 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
 static u8 lit_1109[1 + 3 /* padding */];
@@ -1799,6 +1822,13 @@ asm void daNpc_Pachi_Besu_c::evtTalk() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80A96B60-80A96B60 0000F4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80A96C30 = "PA_Besu";
+#pragma pop
+
 /* 80A93FB0-80A94078 001330 00C8+00 1/0 0/0 0/0 .text            evtCutProc__18daNpc_Pachi_Besu_cFv
  */
 #pragma push
@@ -1836,14 +1866,14 @@ asm void daNpc_Pachi_Besu_c::beforeMove() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4908 = 10.0f;
-COMPILER_STRIP_GATE(80A96B24, &lit_4908);
+COMPILER_STRIP_GATE(0x80A96B24, &lit_4908);
 #pragma pop
 
 /* 80A96B28-80A96B2C 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4909 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4909 = 30.0f;
-COMPILER_STRIP_GATE(80A96B28, &lit_4909);
+COMPILER_STRIP_GATE(0x80A96B28, &lit_4909);
 #pragma pop
 
 /* 80A96B2C-80A96B34 0000C0 0004+04 0/1 0/0 0/0 .rodata          @4910 */
@@ -1854,14 +1884,14 @@ SECTION_RODATA static u32 const lit_4910[1 + 1 /* padding */] = {
     /* padding */
     0x00000000,
 };
-COMPILER_STRIP_GATE(80A96B2C, &lit_4910);
+COMPILER_STRIP_GATE(0x80A96B2C, &lit_4910);
 #pragma pop
 
 /* 80A96B34-80A96B3C 0000C8 0008+00 1/3 0/0 0/0 .rodata          @4912 */
 SECTION_RODATA static u8 const lit_4912[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A96B34, &lit_4912);
+COMPILER_STRIP_GATE(0x80A96B34, &lit_4912);
 
 /* 80A94298-80A944F0 001618 0258+00 1/0 0/0 0/0 .text            setAttnPos__18daNpc_Pachi_Besu_cFv
  */
@@ -1905,7 +1935,7 @@ asm void daNpc_Pachi_Besu_c::selectAction() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_Pachi_Besu_c::chkAction(int (daNpc_Pachi_Besu_c::*)(void*)) {
+asm void daNpc_Pachi_Besu_c::chkAction(int (daNpc_Pachi_Besu_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_pachi_besu/d_a_npc_pachi_besu/chkAction__18daNpc_Pachi_Besu_cFM18daNpc_Pachi_Besu_cFPCvPvPv_i.s"
 }
@@ -1916,7 +1946,7 @@ asm void daNpc_Pachi_Besu_c::chkAction(int (daNpc_Pachi_Besu_c::*)(void*)) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_Pachi_Besu_c::setAction(int (daNpc_Pachi_Besu_c::*)(void*)) {
+asm void daNpc_Pachi_Besu_c::setAction(int (daNpc_Pachi_Besu_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_pachi_besu/d_a_npc_pachi_besu/setAction__18daNpc_Pachi_Besu_cFM18daNpc_Pachi_Besu_cFPCvPvPv_i.s"
 }
@@ -1970,6 +2000,13 @@ asm void daNpc_Pachi_Besu_c::_turn_pos(cXyz const& param_0) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_pachi_besu/d_a_npc_pachi_besu/_turn_pos__18daNpc_Pachi_Besu_cFRC4cXyz.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80A96B60-80A96B60 0000F4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80A96C38 = "cutId";
 #pragma pop
 
 /* 80A94B64-80A94BF8 001EE4 0094+00 1/0 0/0 0/0 .text cutTutrialBegin__18daNpc_Pachi_Besu_cFi */
@@ -2045,7 +2082,7 @@ asm void daNpc_Pachi_Besu_c::_cutTutrialClear_Init(int const& param_0) {
 SECTION_RODATA static u8 const lit_4970[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A96B3C, &lit_4970);
+COMPILER_STRIP_GATE(0x80A96B3C, &lit_4970);
 #pragma pop
 
 /* 80A96B44-80A96B4C 0000D8 0008+00 0/1 0/0 0/0 .rodata          @4971 */
@@ -2054,7 +2091,7 @@ COMPILER_STRIP_GATE(80A96B3C, &lit_4970);
 SECTION_RODATA static u8 const lit_4971[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A96B44, &lit_4971);
+COMPILER_STRIP_GATE(0x80A96B44, &lit_4971);
 #pragma pop
 
 /* 80A96B4C-80A96B54 0000E0 0008+00 0/1 0/0 0/0 .rodata          @4972 */
@@ -2063,28 +2100,28 @@ COMPILER_STRIP_GATE(80A96B44, &lit_4971);
 SECTION_RODATA static u8 const lit_4972[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80A96B4C, &lit_4972);
+COMPILER_STRIP_GATE(0x80A96B4C, &lit_4972);
 #pragma pop
 
 /* 80A96B54-80A96B58 0000E8 0004+00 0/2 0/0 0/0 .rodata          @5270 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_5270 = 0x445FBAA0;
-COMPILER_STRIP_GATE(80A96B54, &lit_5270);
+COMPILER_STRIP_GATE(0x80A96B54, &lit_5270);
 #pragma pop
 
 /* 80A96B58-80A96B5C 0000EC 0004+00 0/2 0/0 0/0 .rodata          @5271 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_5271 = 0x4461DA4E;
-COMPILER_STRIP_GATE(80A96B58, &lit_5271);
+COMPILER_STRIP_GATE(0x80A96B58, &lit_5271);
 #pragma pop
 
 /* 80A96B5C-80A96B60 0000F0 0004+00 0/2 0/0 0/0 .rodata          @5272 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_5272 = 0xC4FF0B85;
-COMPILER_STRIP_GATE(80A96B5C, &lit_5272);
+COMPILER_STRIP_GATE(0x80A96B5C, &lit_5272);
 #pragma pop
 
 /* 80A94E38-80A94ECC 0021B8 0094+00 1/1 0/0 0/0 .text
@@ -2663,7 +2700,7 @@ asm void __sinit_d_a_npc_pachi_besu_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80A96798 = (void*)__sinit_d_a_npc_pachi_besu_cpp;
+REGISTER_CTORS(0x80A96798, __sinit_d_a_npc_pachi_besu_cpp);
 #pragma pop
 
 /* 80A968F4-80A969C0 003C74 00CC+00 1/1 0/0 0/0 .text
@@ -2927,28 +2964,4 @@ static u8 data_80A97B90[4];
 static u8 data_80A97B94[4];
 #pragma pop
 
-/* 80A96B60-80A96C3E 0000F4 00DE+00 14/11 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80A96B60 = "";
-SECTION_DEAD static char const* const stringBase_80A96B61 = "TUTRIAL_TALK2";
-SECTION_DEAD static char const* const stringBase_80A96B6F = "Besu";
-SECTION_DEAD static char const* const stringBase_80A96B74 = "Besu_TW";
-SECTION_DEAD static char const* const stringBase_80A96B7C = "Besu0";
-SECTION_DEAD static char const* const stringBase_80A96B82 = "Besu1";
-SECTION_DEAD static char const* const stringBase_80A96B88 = "Besu2";
-SECTION_DEAD static char const* const stringBase_80A96B8E = "Besu3";
-SECTION_DEAD static char const* const stringBase_80A96B94 = "evt_pachi";
-SECTION_DEAD static char const* const stringBase_80A96B9E = "TUTRIAL_BEGIN";
-SECTION_DEAD static char const* const stringBase_80A96BAC = "TUTRIAL_BEGIN_SKIP";
-SECTION_DEAD static char const* const stringBase_80A96BBF = "TUTRIAL_CLEAR";
-SECTION_DEAD static char const* const stringBase_80A96BCD = "TUTRIAL_TALK";
-SECTION_DEAD static char const* const stringBase_80A96BDA = "HIT_KAKASI_BODY";
-SECTION_DEAD static char const* const stringBase_80A96BEA = "TUTRIAL_SELECT_GIVEUP";
-SECTION_DEAD static char const* const stringBase_80A96C00 = "TUTRIAL_GIVEUP";
-SECTION_DEAD static char const* const stringBase_80A96C0F = "TUTRIAL_CONTINUE";
-SECTION_DEAD static char const* const stringBase_80A96C20 = "TUTRIAL_CAUTION";
-SECTION_DEAD static char const* const stringBase_80A96C30 = "PA_Besu";
-SECTION_DEAD static char const* const stringBase_80A96C38 = "cutId";
-#pragma pop
+/* 80A96B60-80A96B60 0000F4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

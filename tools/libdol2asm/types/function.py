@@ -48,4 +48,4 @@ class FunctionType(Type):
                                      without_template=without_template)
         args = ", ".join([x.type(specialize_templates=specialize_templates,
                                  without_template=without_template) for x in self.argument_types])
-        return f"{return_type} ({class_name}{inner_type})({args})"
+        return f"{return_type} ({class_name}{inner_type}{label})({args})"

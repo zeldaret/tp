@@ -349,7 +349,7 @@ asm void __sinit_J3DDrawBuffer_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_803255F0 = (void*)__sinit_J3DDrawBuffer_cpp;
+REGISTER_CTORS(0x803255F0, __sinit_J3DDrawBuffer_cpp);
 #pragma pop
 
 /* ############################################################################################## */

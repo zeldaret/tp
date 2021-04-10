@@ -84,9 +84,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -215,13 +215,13 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80CB9A84-80CB9A88 000000 0004+00 4/4 0/0 0/0 .rodata          @3649 */
 SECTION_RODATA static f32 const lit_3649 = 130.0f;
-COMPILER_STRIP_GATE(80CB9A84, &lit_3649);
+COMPILER_STRIP_GATE(0x80CB9A84, &lit_3649);
 
 /* 80CB9A88-80CB9A8C 000004 0004+00 0/1 0/0 0/0 .rodata          @3650 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3650 = 200.0f;
-COMPILER_STRIP_GATE(80CB9A88, &lit_3650);
+COMPILER_STRIP_GATE(0x80CB9A88, &lit_3650);
 #pragma pop
 
 /* 80CB9A8C-80CB9A94 000008 0004+04 0/4 0/0 0/0 .rodata          @3651 */
@@ -238,7 +238,7 @@ SECTION_RODATA static u8 const lit_3651[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CB9A8C, &lit_3651);
+COMPILER_STRIP_GATE(0x80CB9A8C, &lit_3651);
 #pragma pop
 
 /* 80CB9ACC-80CB9AD8 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -389,6 +389,13 @@ asm void daRfHole_c::setBaseMtx() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80CB9AC0-80CB9AC0 00003C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CB9AC0 = "Otosiana";
+#pragma pop
+
 /* 80CB8F8C-80CB8FF8 00020C 006C+00 1/0 0/0 0/0 .text            CreateHeap__10daRfHole_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -427,7 +434,7 @@ asm void daRfHole_c::rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c
 SECTION_RODATA static u8 const lit_3817[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CB9A94, &lit_3817);
+COMPILER_STRIP_GATE(0x80CB9A94, &lit_3817);
 #pragma pop
 
 /* 80CB9A9C-80CB9AA4 000018 0008+00 0/1 0/0 0/0 .rodata          @3818 */
@@ -436,7 +443,7 @@ COMPILER_STRIP_GATE(80CB9A94, &lit_3817);
 SECTION_RODATA static u8 const lit_3818[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CB9A9C, &lit_3818);
+COMPILER_STRIP_GATE(0x80CB9A9C, &lit_3818);
 #pragma pop
 
 /* 80CB9AA4-80CB9AAC 000020 0008+00 0/1 0/0 0/0 .rodata          @3819 */
@@ -445,21 +452,21 @@ COMPILER_STRIP_GATE(80CB9A9C, &lit_3818);
 SECTION_RODATA static u8 const lit_3819[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CB9AA4, &lit_3819);
+COMPILER_STRIP_GATE(0x80CB9AA4, &lit_3819);
 #pragma pop
 
 /* 80CB9AAC-80CB9AB0 000028 0004+00 0/3 0/0 0/0 .rodata          @3820 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3820 = 1.0f;
-COMPILER_STRIP_GATE(80CB9AAC, &lit_3820);
+COMPILER_STRIP_GATE(0x80CB9AAC, &lit_3820);
 #pragma pop
 
 /* 80CB9AB0-80CB9AB4 00002C 0004+00 0/2 0/0 0/0 .rodata          @3821 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3821 = -1.0f;
-COMPILER_STRIP_GATE(80CB9AB0, &lit_3821);
+COMPILER_STRIP_GATE(0x80CB9AB0, &lit_3821);
 #pragma pop
 
 /* 80CB9BE8-80CB9BF4 000008 000C+00 1/1 0/0 0/0 .bss             @3643 */
@@ -602,7 +609,7 @@ SECTION_RODATA static u8 const particle_id[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CB9AB4, &particle_id);
+COMPILER_STRIP_GATE(0x80CB9AB4, &particle_id);
 #pragma pop
 
 /* 80CB9768-80CB9878 0009E8 0110+00 2/2 0/0 0/0 .text            setBreakEffect__10daRfHole_cFv */
@@ -697,12 +704,7 @@ asm void __sinit_d_a_obj_rfHole_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80CB9A34 = (void*)__sinit_d_a_obj_rfHole_cpp;
+REGISTER_CTORS(0x80CB9A34, __sinit_d_a_obj_rfHole_cpp);
 #pragma pop
 
-/* 80CB9AC0-80CB9AC9 00003C 0009+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CB9AC0 = "Otosiana";
-#pragma pop
+/* 80CB9AC0-80CB9AC0 00003C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -38,10 +38,6 @@ struct dBgS_Acch {
     /* 8007732C */ void CalcWallRR();
 };
 
-struct csXyz {};
-
-struct cXyz {};
-
 struct cBgS_PolyInfo {
     /* 802680F8 */ void ChkSetInfo() const;
     /* 80268120 */ void ClearPi();
@@ -49,6 +45,10 @@ struct cBgS_PolyInfo {
     /* 8026817C */ void ChkSafe(void const*, unsigned int) const;
     /* 802681AC */ void ChkBgIndex() const;
 };
+
+struct csXyz {};
+
+struct cXyz {};
 
 struct dBgS {
     /* 80030C50 */ ~dBgS();
@@ -96,7 +96,6 @@ struct dBgS {
 struct cM3dGPla {};
 
 struct cBgW_BgId {
-    /* 802681C0 */ void Regist(int);
     /* 802681C8 */ void Release();
     /* 802681D4 */ void ChkUsed() const;
 };
@@ -520,15 +519,10 @@ asm void dBgS::Regist(dBgW_Base* param_0, fopAc_ac_c* param_1) {
 }
 #pragma pop
 
-/* 80074AB4-80074ABC 06F3F4 0008+00 0/0 5/0 0/0 .text            SetOldShapeAngleY__9dBgW_BaseFs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dBgW_Base::SetOldShapeAngleY(s16 param_0) {
-    nofralloc
-#include "asm/d/bg/d_bg_s/SetOldShapeAngleY__9dBgW_BaseFs.s"
+/* 80074AB4-80074ABC -00001 0008+00 0/0 0/0 0/0 .text            SetOldShapeAngleY__9dBgW_BaseFs */
+void dBgW_Base::SetOldShapeAngleY(s16 param_0) {
+    *(u16*)(((u8*)this) + 12) /* this->field_0xc */ = (u16)(param_0);
 }
-#pragma pop
 
 /* 80074ABC-80074B40 06F3FC 0084+00 0/0 11/11 5/5 .text ChkMoveBG__4dBgSFRC13cBgS_PolyInfo */
 #pragma push

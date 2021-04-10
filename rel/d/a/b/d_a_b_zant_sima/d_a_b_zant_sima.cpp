@@ -220,7 +220,7 @@ SECTION_RODATA static u8 const lit_3800[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8065332C, &lit_3800);
+COMPILER_STRIP_GATE(0x8065332C, &lit_3800);
 
 /* 80653334-8065333C 000008 0008+00 0/1 0/0 0/0 .rodata          @3801 */
 #pragma push
@@ -228,35 +228,35 @@ COMPILER_STRIP_GATE(8065332C, &lit_3800);
 SECTION_RODATA static u8 const lit_3801[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80653334, &lit_3801);
+COMPILER_STRIP_GATE(0x80653334, &lit_3801);
 #pragma pop
 
 /* 8065333C-80653340 000010 0004+00 0/2 0/0 0/0 .rodata          @3802 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3802 = 150.0f;
-COMPILER_STRIP_GATE(8065333C, &lit_3802);
+COMPILER_STRIP_GATE(0x8065333C, &lit_3802);
 #pragma pop
 
 /* 80653340-80653344 000014 0004+00 0/1 0/0 0/0 .rodata          @3803 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3803 = 130.0f;
-COMPILER_STRIP_GATE(80653340, &lit_3803);
+COMPILER_STRIP_GATE(0x80653340, &lit_3803);
 #pragma pop
 
 /* 80653344-80653348 000018 0004+00 0/1 0/0 0/0 .rodata          @3804 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3804 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80653344, &lit_3804);
+COMPILER_STRIP_GATE(0x80653344, &lit_3804);
 #pragma pop
 
 /* 80653348-8065334C 00001C 0004+00 0/1 0/0 0/0 .rodata          @3805 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3805 = 20.0f;
-COMPILER_STRIP_GATE(80653348, &lit_3805);
+COMPILER_STRIP_GATE(0x80653348, &lit_3805);
 #pragma pop
 
 /* 80652B28-80652DA8 0001C8 0280+00 1/1 0/0 0/0 .text            action__11daB_ZANTS_cFv */
@@ -272,7 +272,7 @@ asm void daB_ZANTS_c::action() {
 /* ############################################################################################## */
 /* 8065334C-80653350 000020 0004+00 1/1 0/0 0/0 .rodata          @3831 */
 SECTION_RODATA static f32 const lit_3831 = -30.0f;
-COMPILER_STRIP_GATE(8065334C, &lit_3831);
+COMPILER_STRIP_GATE(0x8065334C, &lit_3831);
 
 /* 80652DA8-80652E98 000448 00F0+00 1/1 0/0 0/0 .text            execute__11daB_ZANTS_cFv */
 #pragma push
@@ -301,6 +301,13 @@ static bool daB_ZANTS_IsDelete(daB_ZANTS_c* param_0) {
     return true;
 }
 
+/* ############################################################################################## */
+/* 80653364-80653364 000038 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80653364 = "MAGNESIMA";
+#pragma pop
+
 /* 80652EC0-80652F18 000560 0058+00 1/1 0/0 0/0 .text            _delete__11daB_ZANTS_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -325,7 +332,7 @@ static asm void daB_ZANTS_Delete(daB_ZANTS_c* param_0) {
 /* ############################################################################################## */
 /* 80653350-80653354 000024 0004+00 1/1 0/0 0/0 .rodata          @3917 */
 SECTION_RODATA static f32 const lit_3917 = 1.0f;
-COMPILER_STRIP_GATE(80653350, &lit_3917);
+COMPILER_STRIP_GATE(0x80653350, &lit_3917);
 
 /* 80653370-80653390 -00001 0020+00 1/0 0/0 0/0 .data            l_daB_ZANTS_Method */
 SECTION_DATA static void* l_daB_ZANTS_Method[8] = {
@@ -391,28 +398,28 @@ static asm void useHeapInit(fopAc_ac_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3967 = -200.0f;
-COMPILER_STRIP_GATE(80653354, &lit_3967);
+COMPILER_STRIP_GATE(0x80653354, &lit_3967);
 #pragma pop
 
 /* 80653358-8065335C 00002C 0004+00 0/1 0/0 0/0 .rodata          @3968 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3968 = -500.0f;
-COMPILER_STRIP_GATE(80653358, &lit_3968);
+COMPILER_STRIP_GATE(0x80653358, &lit_3968);
 #pragma pop
 
 /* 8065335C-80653360 000030 0004+00 0/1 0/0 0/0 .rodata          @3969 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3969 = 200.0f;
-COMPILER_STRIP_GATE(8065335C, &lit_3969);
+COMPILER_STRIP_GATE(0x8065335C, &lit_3969);
 #pragma pop
 
 /* 80653360-80653364 000034 0004+00 0/1 0/0 0/0 .rodata          @3970 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3970 = 500.0f;
-COMPILER_STRIP_GATE(80653360, &lit_3970);
+COMPILER_STRIP_GATE(0x80653360, &lit_3970);
 #pragma pop
 
 /* 806531E8-80653304 000888 011C+00 1/1 0/0 0/0 .text            create__11daB_ZANTS_cFv */
@@ -436,9 +443,4 @@ static asm void daB_ZANTS_Create(daB_ZANTS_c* param_0) {
 }
 #pragma pop
 
-/* 80653364-8065336E 000038 000A+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80653364 = "MAGNESIMA";
-#pragma pop
+/* 80653364-80653364 000038 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

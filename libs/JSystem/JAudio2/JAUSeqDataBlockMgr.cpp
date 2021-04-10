@@ -28,11 +28,11 @@ struct JSULink__template1 {};
 
 struct JKRArchive {};
 
+struct JAISoundID {};
+
 struct JAUSeqDataBlock {
     /* 802A68F4 */ JAUSeqDataBlock();
 };
-
-struct JAISoundID {};
 
 struct JAUSeqDataBlocks {
     /* 802A6928 */ void getSeqData(JAISoundID);
@@ -42,9 +42,9 @@ struct JAUSeqDataBlocks {
     /* 802A6A18 */ void hasFailedBlock(JAISoundID);
 };
 
-struct JAISeqData {};
-
 struct JAISeqDataUser {};
+
+struct JAISeqData {};
 
 struct JAUDynamicSeqDataBlocks {
     /* 802A6A58 */ JAUDynamicSeqDataBlocks();
@@ -181,16 +181,11 @@ asm JAUDynamicSeqDataBlocks::JAUDynamicSeqDataBlocks() {
 }
 #pragma pop
 
-/* 802A6AA0-802A6AA8 2A13E0 0008+00 0/0 2/2 0/0 .text
+/* 802A6AA0-802A6AA8 -00001 0008+00 0/0 0/0 0/0 .text
  * setSeqDataArchive__23JAUDynamicSeqDataBlocksFP10JKRArchive   */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAUDynamicSeqDataBlocks::setSeqDataArchive(JKRArchive* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAUSeqDataBlockMgr/setSeqDataArchive__23JAUDynamicSeqDataBlocksFP10JKRArchive.s"
+void JAUDynamicSeqDataBlocks::setSeqDataArchive(JKRArchive* param_0) {
+    *(u32*)(((u8*)this) + 36) /* this->field_0x24 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 802A6AA8-802A6B8C 2A13E8 00E4+00 0/0 1/1 0/0 .text
  * getSeqData__23JAUDynamicSeqDataBlocksF10JAISoundIDP14JAISeqDataUserP10JAISeqDatab */

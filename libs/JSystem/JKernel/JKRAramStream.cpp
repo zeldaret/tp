@@ -194,6 +194,17 @@ bool JKRAramStream::readFromAram() {
     return true;
 }
 
+/* ############################################################################################## */
+/* 8039D120-8039D120 029780 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D120 = "JKRAramStream.cpp";
+SECTION_DEAD static char const* const stringBase_8039D132 = "%s";
+SECTION_DEAD static char const* const stringBase_8039D135 = ":::Cannot alloc memory\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039D14D = "\0\0";
+#pragma pop
+
 /* 802D3CE0-802D3ED0 2CE620 01F0+00 1/1 0/0 0/0 .text
  * writeToAram__13JKRAramStreamFP20JKRAramStreamCommand         */
 #pragma push
@@ -269,13 +280,4 @@ asm void JSURandomInputStream::getAvailable() const {
 }
 #pragma pop
 
-/* 8039D120-8039D150 029780 002D+03 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039D120 = "JKRAramStream.cpp";
-SECTION_DEAD static char const* const stringBase_8039D132 = "%s";
-SECTION_DEAD static char const* const stringBase_8039D135 = ":::Cannot alloc memory\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D14D = "\0\0";
-#pragma pop
+/* 8039D120-8039D120 029780 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

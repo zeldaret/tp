@@ -22,13 +22,13 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct J3DModelData {};
+struct J3DAnmTransform {};
 
-struct mDoExt_McaMorfCallBack2_c {};
+struct J3DModelData {};
 
 struct Vec {};
 
@@ -65,13 +65,7 @@ struct daPy_py_c {
     /* 80D4C034 */ void checkNowWolf();
 };
 
-struct J3DJoint {};
-
 struct daNpcT_faceMotionAnmData_c {};
-
-struct daNpcT_evtData_c {};
-
-struct daNpcT_motionAnmData_c {};
 
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
@@ -79,6 +73,12 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80145898 */ void initialize();
     /* 80D4B7BC */ ~daNpcT_MotionSeqMngr_c();
 };
+
+struct daNpcT_evtData_c {};
+
+struct daNpcT_motionAnmData_c {};
+
+struct J3DJoint {};
 
 struct daPeru_c {
     /* 80D46EEC */ ~daPeru_c();
@@ -694,6 +694,15 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80D4C1B0-80D4C1B0 000150 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D4C1B0 = "";
+SECTION_DEAD static char const* const stringBase_80D4C1B1 = "PERU_APPEAR";
+SECTION_DEAD static char const* const stringBase_80D4C1BD = "PERU_APPEAR_SKIP";
+SECTION_DEAD static char const* const stringBase_80D4C1CE = "Peru";
+#pragma pop
+
 /* 80D4C1DC-80D4C1E8 000000 000C+00 3/3 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1203,34 +1212,34 @@ SECTION_RODATA u8 const daPeru_Param_c::m[152] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D4C060, &daPeru_Param_c::m);
+COMPILER_STRIP_GATE(0x80D4C060, &daPeru_Param_c::m);
 
 /* 80D4C0F8-80D4C0FC 000098 0004+00 0/2 0/0 0/0 .rodata          @4050 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4050 = -300.0f;
-COMPILER_STRIP_GATE(80D4C0F8, &lit_4050);
+COMPILER_STRIP_GATE(0x80D4C0F8, &lit_4050);
 #pragma pop
 
 /* 80D4C0FC-80D4C100 00009C 0004+00 0/1 0/0 0/0 .rodata          @4051 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4051 = -50.0f;
-COMPILER_STRIP_GATE(80D4C0FC, &lit_4051);
+COMPILER_STRIP_GATE(0x80D4C0FC, &lit_4051);
 #pragma pop
 
 /* 80D4C100-80D4C104 0000A0 0004+00 0/2 0/0 0/0 .rodata          @4052 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4052 = 300.0f;
-COMPILER_STRIP_GATE(80D4C100, &lit_4052);
+COMPILER_STRIP_GATE(0x80D4C100, &lit_4052);
 #pragma pop
 
 /* 80D4C104-80D4C108 0000A4 0004+00 0/1 0/0 0/0 .rodata          @4053 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4053 = 450.0f;
-COMPILER_STRIP_GATE(80D4C104, &lit_4053);
+COMPILER_STRIP_GATE(0x80D4C104, &lit_4053);
 #pragma pop
 
 /* 80D46FCC-80D4720C 0001CC 0240+00 1/1 0/0 0/0 .text            create__8daPeru_cFv */
@@ -1251,25 +1260,25 @@ SECTION_RODATA static u8 const lit_4199[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D4C108, &lit_4199);
+COMPILER_STRIP_GATE(0x80D4C108, &lit_4199);
 
 /* 80D4C10C-80D4C110 0000AC 0004+00 0/2 0/0 0/0 .rodata          @4200 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4200 = 65536.0f;
-COMPILER_STRIP_GATE(80D4C10C, &lit_4200);
+COMPILER_STRIP_GATE(0x80D4C10C, &lit_4200);
 #pragma pop
 
 /* 80D4C110-80D4C114 0000B0 0004+00 0/3 0/0 0/0 .rodata          @4201 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4201 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80D4C110, &lit_4201);
+COMPILER_STRIP_GATE(0x80D4C110, &lit_4201);
 #pragma pop
 
 /* 80D4C114-80D4C118 0000B4 0004+00 3/5 0/0 0/0 .rodata          @4348 */
 SECTION_RODATA static f32 const lit_4348 = 1.0f;
-COMPILER_STRIP_GATE(80D4C114, &lit_4348);
+COMPILER_STRIP_GATE(0x80D4C114, &lit_4348);
 
 /* 80D4720C-80D474A0 00040C 0294+00 1/1 0/0 0/0 .text            CreateHeap__8daPeru_cFv */
 #pragma push
@@ -1386,21 +1395,21 @@ asm J3DMatColorAnm::J3DMatColorAnm() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4395 = 0x45345E66;
-COMPILER_STRIP_GATE(80D4C118, &lit_4395);
+COMPILER_STRIP_GATE(0x80D4C118, &lit_4395);
 #pragma pop
 
 /* 80D4C11C-80D4C120 0000BC 0004+00 0/2 0/0 0/0 .rodata          @4396 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4396 = -880.0f;
-COMPILER_STRIP_GATE(80D4C11C, &lit_4396);
+COMPILER_STRIP_GATE(0x80D4C11C, &lit_4396);
 #pragma pop
 
 /* 80D4C120-80D4C124 0000C0 0004+00 0/2 0/0 0/0 .rodata          @4397 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4397 = 0x45AF8A66;
-COMPILER_STRIP_GATE(80D4C120, &lit_4397);
+COMPILER_STRIP_GATE(0x80D4C120, &lit_4397);
 #pragma pop
 
 /* 80D4765C-80D47750 00085C 00F4+00 1/1 0/0 0/0 .text            typeInitialize__8daPeru_cFv */
@@ -1436,7 +1445,7 @@ asm void daPeru_c::Execute() {
 /* ############################################################################################## */
 /* 80D4C124-80D4C128 0000C4 0004+00 1/1 0/0 0/0 .rodata          @4430 */
 SECTION_RODATA static f32 const lit_4430 = 100.0f;
-COMPILER_STRIP_GATE(80D4C124, &lit_4430);
+COMPILER_STRIP_GATE(0x80D4C124, &lit_4430);
 
 /* 80D477A4-80D47840 0009A4 009C+00 1/1 0/0 0/0 .text            Draw__8daPeru_cFv */
 #pragma push
@@ -1502,7 +1511,7 @@ asm void daPeru_c::setParam() {
 /* ############################################################################################## */
 /* 80D4C128-80D4C12C 0000C8 0004+00 4/14 0/0 0/0 .rodata          @4548 */
 SECTION_RODATA static f32 const lit_4548 = -1.0f;
-COMPILER_STRIP_GATE(80D4C128, &lit_4548);
+COMPILER_STRIP_GATE(0x80D4C128, &lit_4548);
 
 /* 80D47C4C-80D47CAC 000E4C 0060+00 1/0 0/0 0/0 .text            setAfterTalkMotion__8daPeru_cFv */
 #pragma push
@@ -1559,28 +1568,28 @@ asm void daPeru_c::action() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4662 = 10.0f;
-COMPILER_STRIP_GATE(80D4C12C, &lit_4662);
+COMPILER_STRIP_GATE(0x80D4C12C, &lit_4662);
 #pragma pop
 
 /* 80D4C130-80D4C134 0000D0 0004+00 0/1 0/0 0/0 .rodata          @4663 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4663 = 0x38C90FDB;
-COMPILER_STRIP_GATE(80D4C130, &lit_4663);
+COMPILER_STRIP_GATE(0x80D4C130, &lit_4663);
 #pragma pop
 
 /* 80D4C134-80D4C138 0000D4 0004+00 0/2 0/0 0/0 .rodata          @4664 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4664 = 30.0f;
-COMPILER_STRIP_GATE(80D4C134, &lit_4664);
+COMPILER_STRIP_GATE(0x80D4C134, &lit_4664);
 #pragma pop
 
 /* 80D4C138-80D4C140 0000D8 0008+00 1/3 0/0 0/0 .rodata          @4666 */
 SECTION_RODATA static u8 const lit_4666[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D4C138, &lit_4666);
+COMPILER_STRIP_GATE(0x80D4C138, &lit_4666);
 
 /* 80D47F5C-80D481A4 00115C 0248+00 1/0 0/0 0/0 .text            setAttnPos__8daPeru_cFv */
 #pragma push
@@ -1599,7 +1608,7 @@ asm void daPeru_c::setAttnPos() {
 SECTION_RODATA static u8 const lit_4724[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D4C140, &lit_4724);
+COMPILER_STRIP_GATE(0x80D4C140, &lit_4724);
 #pragma pop
 
 /* 80D4C148-80D4C150 0000E8 0008+00 0/3 0/0 0/0 .rodata          @4725 */
@@ -1608,7 +1617,7 @@ COMPILER_STRIP_GATE(80D4C140, &lit_4724);
 SECTION_RODATA static u8 const lit_4725[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D4C148, &lit_4725);
+COMPILER_STRIP_GATE(0x80D4C148, &lit_4725);
 #pragma pop
 
 /* 80D4C150-80D4C158 0000F0 0008+00 0/3 0/0 0/0 .rodata          @4726 */
@@ -1617,14 +1626,14 @@ COMPILER_STRIP_GATE(80D4C148, &lit_4725);
 SECTION_RODATA static u8 const lit_4726[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D4C150, &lit_4726);
+COMPILER_STRIP_GATE(0x80D4C150, &lit_4726);
 #pragma pop
 
 /* 80D4C158-80D4C160 0000F8 0008+00 1/1 0/0 0/0 .rodata          @4737 */
 SECTION_RODATA static u8 const lit_4737[8] = {
     0x41, 0xA0, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D4C158, &lit_4737);
+COMPILER_STRIP_GATE(0x80D4C158, &lit_4737);
 
 /* 80D481A4-80D4835C 0013A4 01B8+00 1/0 0/0 0/0 .text            setCollision__8daPeru_cFv */
 #pragma push
@@ -1646,7 +1655,7 @@ bool daPeru_c::drawDbgInfo() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daPeru_c::setAction(int (daPeru_c::*)(int), int param_1) {
+asm void daPeru_c::setAction(int (daPeru_c::*param_0)(int), int param_1) {
     nofralloc
 #include "asm/rel/d/a/d_a_peru/d_a_peru/setAction__8daPeru_cFM8daPeru_cFPCvPvi_ii.s"
 }
@@ -1698,42 +1707,42 @@ asm void daPeru_c::talk(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5061 = -9.0f;
-COMPILER_STRIP_GATE(80D4C160, &lit_5061);
+COMPILER_STRIP_GATE(0x80D4C160, &lit_5061);
 #pragma pop
 
 /* 80D4C164-80D4C168 000104 0004+00 0/1 0/0 0/0 .rodata          @5062 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5062 = 22.0f;
-COMPILER_STRIP_GATE(80D4C164, &lit_5062);
+COMPILER_STRIP_GATE(0x80D4C164, &lit_5062);
 #pragma pop
 
 /* 80D4C168-80D4C16C 000108 0004+00 0/1 0/0 0/0 .rodata          @5063 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5063 = 36.0f;
-COMPILER_STRIP_GATE(80D4C168, &lit_5063);
+COMPILER_STRIP_GATE(0x80D4C168, &lit_5063);
 #pragma pop
 
 /* 80D4C16C-80D4C170 00010C 0004+00 0/1 0/0 0/0 .rodata          @5064 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5064 = 14.5f;
-COMPILER_STRIP_GATE(80D4C16C, &lit_5064);
+COMPILER_STRIP_GATE(0x80D4C16C, &lit_5064);
 #pragma pop
 
 /* 80D4C170-80D4C174 000110 0004+00 0/1 0/0 0/0 .rodata          @5065 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5065 = 18.0f;
-COMPILER_STRIP_GATE(80D4C170, &lit_5065);
+COMPILER_STRIP_GATE(0x80D4C170, &lit_5065);
 #pragma pop
 
 /* 80D4C174-80D4C178 000114 0004+00 0/1 0/0 0/0 .rodata          @5066 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5066 = 4.0f;
-COMPILER_STRIP_GATE(80D4C174, &lit_5066);
+COMPILER_STRIP_GATE(0x80D4C174, &lit_5066);
 #pragma pop
 
 /* 80D48A7C-80D48C58 001C7C 01DC+00 1/0 0/0 0/0 .text            jump_st__8daPeru_cFi */
@@ -1761,7 +1770,7 @@ asm void daPeru_c::jump_ed(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5169 = 23.0f;
-COMPILER_STRIP_GATE(80D4C178, &lit_5169);
+COMPILER_STRIP_GATE(0x80D4C178, &lit_5169);
 #pragma pop
 
 /* 80D48E34-80D48FA8 002034 0174+00 1/0 0/0 0/0 .text            sniff__8daPeru_cFi */
@@ -1779,7 +1788,7 @@ asm void daPeru_c::sniff(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5207 = 6.0f / 5.0f;
-COMPILER_STRIP_GATE(80D4C17C, &lit_5207);
+COMPILER_STRIP_GATE(0x80D4C17C, &lit_5207);
 #pragma pop
 
 /* 80D48FA8-80D4910C 0021A8 0164+00 1/0 0/0 0/0 .text            demo_appear__8daPeru_cFi */
@@ -1797,21 +1806,21 @@ asm void daPeru_c::demo_appear(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5247 = 24.0f / 5.0f;
-COMPILER_STRIP_GATE(80D4C180, &lit_5247);
+COMPILER_STRIP_GATE(0x80D4C180, &lit_5247);
 #pragma pop
 
 /* 80D4C184-80D4C188 000124 0004+00 0/1 0/0 0/0 .rodata          @5248 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5248 = 13.0f / 10.0f;
-COMPILER_STRIP_GATE(80D4C184, &lit_5248);
+COMPILER_STRIP_GATE(0x80D4C184, &lit_5248);
 #pragma pop
 
 /* 80D4C188-80D4C18C 000128 0004+00 0/1 0/0 0/0 .rodata          @5249 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5249 = 130.0f;
-COMPILER_STRIP_GATE(80D4C188, &lit_5249);
+COMPILER_STRIP_GATE(0x80D4C188, &lit_5249);
 #pragma pop
 
 /* 80D4910C-80D492A8 00230C 019C+00 1/0 0/0 0/0 .text            demo_walk_to_link__8daPeru_cFi */
@@ -1829,7 +1838,7 @@ asm void daPeru_c::demo_walk_to_link(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5282 = 21.0f / 5.0f;
-COMPILER_STRIP_GATE(80D4C18C, &lit_5282);
+COMPILER_STRIP_GATE(0x80D4C18C, &lit_5282);
 #pragma pop
 
 /* 80D492A8-80D49418 0024A8 0170+00 1/0 0/0 0/0 .text            demo_walk_circle__8daPeru_cFi */
@@ -1847,21 +1856,21 @@ asm void daPeru_c::demo_walk_circle(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_5360 = 0x45405B96;
-COMPILER_STRIP_GATE(80D4C190, &lit_5360);
+COMPILER_STRIP_GATE(0x80D4C190, &lit_5360);
 #pragma pop
 
 /* 80D4C194-80D4C198 000134 0004+00 0/1 0/0 0/0 .rodata          @5361 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_5361 = 0xC4598148;
-COMPILER_STRIP_GATE(80D4C194, &lit_5361);
+COMPILER_STRIP_GATE(0x80D4C194, &lit_5361);
 #pragma pop
 
 /* 80D4C198-80D4C19C 000138 0004+00 0/1 0/0 0/0 .rodata          @5362 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_5362 = 0x45BD3A31;
-COMPILER_STRIP_GATE(80D4C198, &lit_5362);
+COMPILER_STRIP_GATE(0x80D4C198, &lit_5362);
 #pragma pop
 
 /* 80D49418-80D4971C 002618 0304+00 1/0 0/0 0/0 .text            demo_walk_to_window__8daPeru_cFi */
@@ -1879,35 +1888,35 @@ asm void daPeru_c::demo_walk_to_window(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5436 = 8.0f;
-COMPILER_STRIP_GATE(80D4C19C, &lit_5436);
+COMPILER_STRIP_GATE(0x80D4C19C, &lit_5436);
 #pragma pop
 
 /* 80D4C1A0-80D4C1A4 000140 0004+00 0/1 0/0 0/0 .rodata          @5437 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_5437 = 0x453305F0;
-COMPILER_STRIP_GATE(80D4C1A0, &lit_5437);
+COMPILER_STRIP_GATE(0x80D4C1A0, &lit_5437);
 #pragma pop
 
 /* 80D4C1A4-80D4C1A8 000144 0004+00 0/1 0/0 0/0 .rodata          @5438 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_5438 = 0xC4524EE9;
-COMPILER_STRIP_GATE(80D4C1A4, &lit_5438);
+COMPILER_STRIP_GATE(0x80D4C1A4, &lit_5438);
 #pragma pop
 
 /* 80D4C1A8-80D4C1AC 000148 0004+00 0/1 0/0 0/0 .rodata          @5439 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_5439 = 0x45ADFCC7;
-COMPILER_STRIP_GATE(80D4C1A8, &lit_5439);
+COMPILER_STRIP_GATE(0x80D4C1A8, &lit_5439);
 #pragma pop
 
 /* 80D4C1AC-80D4C1B0 00014C 0004+00 0/1 0/0 0/0 .rodata          @5440 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5440 = 60.0f;
-COMPILER_STRIP_GATE(80D4C1AC, &lit_5440);
+COMPILER_STRIP_GATE(0x80D4C1AC, &lit_5440);
 #pragma pop
 
 /* 80D4971C-80D499AC 00291C 0290+00 1/0 0/0 0/0 .text            demo_walk_to_pathway__8daPeru_cFi
@@ -1919,6 +1928,13 @@ asm void daPeru_c::demo_walk_to_pathway(int param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_peru/d_a_peru/demo_walk_to_pathway__8daPeru_cFi.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80D4C1B0-80D4C1B0 000150 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D4C1D3 = "cut_id";
 #pragma pop
 
 /* 80D499AC-80D49A40 002BAC 0094+00 1/0 0/0 0/0 .text            cutAppear__8daPeru_cFi */
@@ -2533,7 +2549,7 @@ asm void __sinit_d_a_peru_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80D4BD90 = (void*)__sinit_d_a_peru_cpp;
+REGISTER_CTORS(0x80D4BD90, __sinit_d_a_peru_cpp);
 #pragma pop
 
 /* 80D4BE2C-80D4BEC4 00502C 0098+00 1/1 0/0 0/0 .text
@@ -2825,13 +2841,4 @@ static u8 data_80D4C8B8[4];
 static u8 data_80D4C8BC[4];
 #pragma pop
 
-/* 80D4C1B0-80D4C1DA 000150 002A+00 6/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D4C1B0 = "";
-SECTION_DEAD static char const* const stringBase_80D4C1B1 = "PERU_APPEAR";
-SECTION_DEAD static char const* const stringBase_80D4C1BD = "PERU_APPEAR_SKIP";
-SECTION_DEAD static char const* const stringBase_80D4C1CE = "Peru";
-SECTION_DEAD static char const* const stringBase_80D4C1D3 = "cut_id";
-#pragma pop
+/* 80D4C1B0-80D4C1B0 000150 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

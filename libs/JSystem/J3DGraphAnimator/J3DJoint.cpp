@@ -108,7 +108,7 @@ extern "C" u8 entryNum__13J3DDrawBuffer[4 + 4 /* padding */];
 SECTION_RODATA static u8 const lit_882[12] = {
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803A2068, &lit_882);
+COMPILER_STRIP_GATE(0x803A2068, &lit_882);
 
 /* 8032EC28-8032ECAC 329568 0084+00 0/0 1/1 0/0 .text
  * init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf            */
@@ -126,7 +126,7 @@ asm void J3DMtxCalcJ3DSysInitBasic::init(Vec const& param_0, f32 const (&param_1
 SECTION_RODATA static u8 const lit_893[12] = {
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803A2074, &lit_893);
+COMPILER_STRIP_GATE(0x803A2074, &lit_893);
 
 /* 8032ECAC-8032ED30 3295EC 0084+00 0/0 2/2 2/2 .text
  * init__24J3DMtxCalcJ3DSysInitMayaFRC3VecRA3_A4_Cf             */
@@ -198,13 +198,13 @@ asm void J3DJoint::appendChild(J3DJoint* param_0) {
 SECTION_RODATA static u8 const lit_1257[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803A2080, &lit_1257);
+COMPILER_STRIP_GATE(0x803A2080, &lit_1257);
 
 /* 803A208C-803A2098 02E6EC 000C+00 1/1 0/0 0/0 .rodata          @1259 */
 SECTION_RODATA static u8 const lit_1259[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803A208C, &lit_1259);
+COMPILER_STRIP_GATE(0x803A208C, &lit_1259);
 
 /* 804564A4-804564A8 004AA4 0004+00 1/1 0/0 0/0 .sdata2          @1220 */
 SECTION_SDATA2 static u8 lit_1220[4] = {

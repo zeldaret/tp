@@ -186,7 +186,7 @@ SECTION_RODATA static u8 const l_idx[96] = {
     0x0B, 0x11, 0x06, 0x05, 0x11, 0x13, 0x02, 0x00, 0x11, 0x13, 0x02, 0x01, 0x13, 0x17, 0x04, 0x00,
     0x13, 0x17, 0x04, 0x01, 0x13, 0x17, 0x04, 0x02, 0x13, 0x17, 0x04, 0x03, 0x17, 0x05, 0x06, 0x00,
 };
-COMPILER_STRIP_GATE(80BF55EC, &l_idx);
+COMPILER_STRIP_GATE(0x80BF55EC, &l_idx);
 
 /* 80BF564C-80BF56AC 000060 0060+00 0/1 0/0 0/0 .rodata          l_color */
 #pragma push
@@ -199,12 +199,19 @@ SECTION_RODATA static u8 const l_color[96] = {
     0xFF, 0xFF, 0xFF, 0xFF, 0x64, 0x64, 0x64, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x78, 0x78, 0x78, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xB4, 0xB4, 0xB4, 0xFF,
 };
-COMPILER_STRIP_GATE(80BF564C, &l_color);
+COMPILER_STRIP_GATE(0x80BF564C, &l_color);
 #pragma pop
 
 /* 80BF56AC-80BF56B0 0000C0 0004+00 1/1 0/0 0/0 .rodata          @3681 */
 SECTION_RODATA static f32 const lit_3681 = 1000000.0f;
-COMPILER_STRIP_GATE(80BF56AC, &lit_3681);
+COMPILER_STRIP_GATE(0x80BF56AC, &lit_3681);
+
+/* 80BF56D4-80BF56D4 0000E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BF56D4 = "Y_gwall";
+SECTION_DEAD static char const* const stringBase_80BF56DC = "mat00";
+#pragma pop
 
 /* 80BF56E4-80BF56E8 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_ganonwall__stringBase0;
@@ -225,7 +232,7 @@ asm void daObjGWall_c::Create() {
 /* ############################################################################################## */
 /* 80BF56B0-80BF56B4 0000C4 0004+00 1/1 0/0 0/0 .rodata          @3711 */
 SECTION_RODATA static f32 const lit_3711 = 1.0f;
-COMPILER_STRIP_GATE(80BF56B0, &lit_3711);
+COMPILER_STRIP_GATE(0x80BF56B0, &lit_3711);
 
 /* 80BF56EC-80BF570C -00001 0020+00 1/0 0/0 0/0 .data            l_daObjGWall_Method */
 SECTION_DATA static void* l_daObjGWall_Method[8] = {
@@ -311,14 +318,14 @@ asm void daObjGWall_c::checkDraw() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3836 = 1000.0f;
-COMPILER_STRIP_GATE(80BF56B4, &lit_3836);
+COMPILER_STRIP_GATE(0x80BF56B4, &lit_3836);
 #pragma pop
 
 /* 80BF56B8-80BF56BC 0000CC 0004+00 0/1 0/0 0/0 .rodata          @3837 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3837 = 250000.0f;
-COMPILER_STRIP_GATE(80BF56B8, &lit_3837);
+COMPILER_STRIP_GATE(0x80BF56B8, &lit_3837);
 #pragma pop
 
 /* 80BF56BC-80BF56C4 0000D0 0004+04 0/1 0/0 0/0 .rodata          @3838 */
@@ -329,7 +336,7 @@ SECTION_RODATA static f32 const lit_3838[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80BF56BC, &lit_3838);
+COMPILER_STRIP_GATE(0x80BF56BC, &lit_3838);
 #pragma pop
 
 /* 80BF56C4-80BF56CC 0000D8 0008+00 0/1 0/0 0/0 .rodata          @3840 */
@@ -338,7 +345,7 @@ COMPILER_STRIP_GATE(80BF56BC, &lit_3838);
 SECTION_RODATA static u8 const lit_3840[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BF56C4, &lit_3840);
+COMPILER_STRIP_GATE(0x80BF56C4, &lit_3840);
 #pragma pop
 
 /* 80BF56CC-80BF56D4 0000E0 0008+00 0/1 0/0 0/0 .rodata          @3842 */
@@ -347,7 +354,7 @@ COMPILER_STRIP_GATE(80BF56C4, &lit_3840);
 SECTION_RODATA static u8 const lit_3842[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BF56CC, &lit_3842);
+COMPILER_STRIP_GATE(0x80BF56CC, &lit_3842);
 #pragma pop
 
 /* 80BF5168-80BF5530 0004E8 03C8+00 1/1 0/0 0/0 .text            draw__12daObjGWall_cFv */
@@ -413,10 +420,4 @@ static asm void daObjGWall_Create(daObjGWall_c* param_0) {
 }
 #pragma pop
 
-/* 80BF56D4-80BF56E2 0000E8 000E+00 2/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BF56D4 = "Y_gwall";
-SECTION_DEAD static char const* const stringBase_80BF56DC = "mat00";
-#pragma pop
+/* 80BF56D4-80BF56D4 0000E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

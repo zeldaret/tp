@@ -25,9 +25,9 @@ struct J3DTevKColorAnm {};
 
 struct J3DTevColorAnm {};
 
-struct J3DMatColorAnm {};
-
 struct J3DMaterial {};
+
+struct J3DMatColorAnm {};
 
 struct J3DMaterialAnm {
     /* 800A4820 */ ~J3DMaterialAnm();

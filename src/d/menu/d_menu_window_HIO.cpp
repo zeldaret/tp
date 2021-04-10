@@ -199,5 +199,5 @@ asm void __sinit_d_menu_window_HIO_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_801F9F28 = (void*)__sinit_d_menu_window_HIO_cpp;
+REGISTER_CTORS(0x801F9F28, __sinit_d_menu_window_HIO_cpp);
 #pragma pop

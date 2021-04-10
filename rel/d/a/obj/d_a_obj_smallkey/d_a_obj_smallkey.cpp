@@ -111,9 +111,9 @@ struct dPa_followEcallBack {
     /* 80CDA48C */ void __defctor();
 };
 
-struct _GXColor {};
-
 struct dKy_tevstr_c {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -128,7 +128,6 @@ struct dItem_data {
 
 struct dEvt_control_c {
     /* 80042468 */ void reset();
-    /* 800436EC */ void setPtI_Id(unsigned int);
 };
 
 struct dEvent_manager_c {
@@ -292,7 +291,7 @@ extern "C" void execute__18JPAEmitterCallBackFP14JPABaseEmitter();
 extern "C" void executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter();
 extern "C" void draw__18JPAEmitterCallBackFP14JPABaseEmitter();
 extern "C" void drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter();
-extern "C" void func_80CDB7C0(u8*);
+extern "C" void func_80CDB7C0(void* _this, u8*);
 extern "C" static void func_80CDB7DC();
 extern "C" static void func_80CDB7E4();
 extern "C" extern char const* const d_a_obj_smallkey__stringBase0;
@@ -416,7 +415,7 @@ SECTION_RODATA static u8 const l_cyl_src[68] = {
     0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CDB7F4, &l_cyl_src);
+COMPILER_STRIP_GATE(0x80CDB7F4, &l_cyl_src);
 
 /* 80CDB838-80CDB83C 000044 0004+00 2/7 0/0 0/0 .rodata          @3875 */
 SECTION_RODATA static u8 const lit_3875[4] = {
@@ -425,7 +424,7 @@ SECTION_RODATA static u8 const lit_3875[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CDB838, &lit_3875);
+COMPILER_STRIP_GATE(0x80CDB838, &lit_3875);
 
 /* 80CDB83C-80CDB844 000048 0008+00 0/3 0/0 0/0 .rodata          @3876 */
 #pragma push
@@ -433,7 +432,7 @@ COMPILER_STRIP_GATE(80CDB838, &lit_3875);
 SECTION_RODATA static u8 const lit_3876[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CDB83C, &lit_3876);
+COMPILER_STRIP_GATE(0x80CDB83C, &lit_3876);
 #pragma pop
 
 /* 80CDB844-80CDB84C 000050 0008+00 0/3 0/0 0/0 .rodata          @3877 */
@@ -442,7 +441,7 @@ COMPILER_STRIP_GATE(80CDB83C, &lit_3876);
 SECTION_RODATA static u8 const lit_3877[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CDB844, &lit_3877);
+COMPILER_STRIP_GATE(0x80CDB844, &lit_3877);
 #pragma pop
 
 /* 80CDB84C-80CDB854 000058 0008+00 0/3 0/0 0/0 .rodata          @3878 */
@@ -451,25 +450,25 @@ COMPILER_STRIP_GATE(80CDB844, &lit_3877);
 SECTION_RODATA static u8 const lit_3878[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CDB84C, &lit_3878);
+COMPILER_STRIP_GATE(0x80CDB84C, &lit_3878);
 #pragma pop
 
 /* 80CDB854-80CDB858 000060 0004+00 2/6 0/0 0/0 .rodata          @3879 */
 SECTION_RODATA static f32 const lit_3879 = 1.0f;
-COMPILER_STRIP_GATE(80CDB854, &lit_3879);
+COMPILER_STRIP_GATE(0x80CDB854, &lit_3879);
 
 /* 80CDB858-80CDB85C 000064 0004+00 0/1 0/0 0/0 .rodata          @3880 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3880 = 50.0f;
-COMPILER_STRIP_GATE(80CDB858, &lit_3880);
+COMPILER_STRIP_GATE(0x80CDB858, &lit_3880);
 #pragma pop
 
 /* 80CDB85C-80CDB860 000068 0004+00 0/1 0/0 0/0 .rodata          @3881 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3881 = 10.0f;
-COMPILER_STRIP_GATE(80CDB85C, &lit_3881);
+COMPILER_STRIP_GATE(0x80CDB85C, &lit_3881);
 #pragma pop
 
 /* 80CD97B8-80CD9B40 000078 0388+00 1/1 0/0 0/0 .text            searchParentSub__FPvPv */
@@ -763,7 +762,7 @@ asm void daKey_c::initBaseMtx() {
 /* ############################################################################################## */
 /* 80CDB860-80CDB864 00006C 0004+00 1/2 0/0 0/0 .rodata          @4031 */
 SECTION_RODATA static f32 const lit_4031 = 5.0f;
-COMPILER_STRIP_GATE(80CDB860, &lit_4031);
+COMPILER_STRIP_GATE(0x80CDB860, &lit_4031);
 
 /* 80CD9F68-80CD9FDC 000828 0074+00 2/2 0/0 0/0 .text            setBaseMtx__7daKey_cFv */
 #pragma push
@@ -780,21 +779,21 @@ asm void daKey_c::setBaseMtx() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4064 = 30.0f;
-COMPILER_STRIP_GATE(80CDB864, &lit_4064);
+COMPILER_STRIP_GATE(0x80CDB864, &lit_4064);
 #pragma pop
 
 /* 80CDB868-80CDB86C 000074 0004+00 0/1 0/0 0/0 .rodata          @4065 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4065 = -6.0f;
-COMPILER_STRIP_GATE(80CDB868, &lit_4065);
+COMPILER_STRIP_GATE(0x80CDB868, &lit_4065);
 #pragma pop
 
 /* 80CDB86C-80CDB874 000078 0008+00 1/2 0/0 0/0 .rodata          @4067 */
 SECTION_RODATA static u8 const lit_4067[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CDB86C, &lit_4067);
+COMPILER_STRIP_GATE(0x80CDB86C, &lit_4067);
 
 /* 80CD9FDC-80CDA15C 00089C 0180+00 1/1 0/0 0/0 .text            Create__7daKey_cFv */
 #pragma push
@@ -810,6 +809,13 @@ asm void daKey_c::Create() {
 bool daKey_c::__CreateHeap() {
     return true;
 }
+
+/* ############################################################################################## */
+/* 80CDB890-80CDB890 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CDB890 = "F_SP118";
+#pragma pop
 
 /* 80CDA164-80CDA404 000A24 02A0+00 1/1 0/0 0/0 .text            create__7daKey_cFv */
 #pragma push
@@ -902,26 +908,26 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4279 = 7.0f / 10.0f;
-COMPILER_STRIP_GATE(80CDB874, &lit_4279);
+COMPILER_STRIP_GATE(0x80CDB874, &lit_4279);
 #pragma pop
 
 /* 80CDB878-80CDB87C 000084 0004+00 0/2 0/0 0/0 .rodata          @4280 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4280 = 3.0f;
-COMPILER_STRIP_GATE(80CDB878, &lit_4280);
+COMPILER_STRIP_GATE(0x80CDB878, &lit_4280);
 #pragma pop
 
 /* 80CDB87C-80CDB880 000088 0004+00 0/1 0/0 0/0 .rodata          @4281 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4281 = 2.0f;
-COMPILER_STRIP_GATE(80CDB87C, &lit_4281);
+COMPILER_STRIP_GATE(0x80CDB87C, &lit_4281);
 #pragma pop
 
 /* 80CDB880-80CDB884 00008C 0004+00 1/2 0/0 0/0 .rodata          @4282 */
 SECTION_RODATA static f32 const lit_4282 = -1.0f;
-COMPILER_STRIP_GATE(80CDB880, &lit_4282);
+COMPILER_STRIP_GATE(0x80CDB880, &lit_4282);
 
 /* 80CDA680-80CDA7E8 000F40 0168+00 1/1 0/0 0/0 .text            bg_check__7daKey_cFv */
 #pragma push
@@ -988,7 +994,7 @@ asm void daKey_c::actionWaitInit() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4400 = 9.0f / 10.0f;
-COMPILER_STRIP_GATE(80CDB884, &lit_4400);
+COMPILER_STRIP_GATE(0x80CDB884, &lit_4400);
 #pragma pop
 
 /* 80CDAA28-80CDAB74 0012E8 014C+00 1/0 0/0 0/0 .text            actionWait__7daKey_cFv */
@@ -1020,6 +1026,13 @@ asm void daKey_c::actionOrderGetDemo() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_smallkey/d_a_obj_smallkey/actionOrderGetDemo__7daKey_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80CDB890-80CDB890 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CDB898 = "DEFAULT_GETITEM";
 #pragma pop
 
 /* 80CDAC94-80CDAD28 001554 0094+00 1/0 0/0 0/0 .text            actionGetDemo__7daKey_cFv */
@@ -1055,7 +1068,7 @@ asm void daKey_c::actionSwOnWait() {
 /* ############################################################################################## */
 /* 80CDB888-80CDB88C 000094 0004+00 1/1 0/0 0/0 .rodata          @4503 */
 SECTION_RODATA static f32 const lit_4503 = 4.0f;
-COMPILER_STRIP_GATE(80CDB888, &lit_4503);
+COMPILER_STRIP_GATE(0x80CDB888, &lit_4503);
 
 /* 80CDAE54-80CDAF40 001714 00EC+00 1/1 0/0 0/0 .text actionInitBoomerangCarry__7daKey_cFv */
 #pragma push
@@ -1102,7 +1115,7 @@ asm void daKey_c::effectStop() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4618 = 1000.0f;
-COMPILER_STRIP_GATE(80CDB88C, &lit_4618);
+COMPILER_STRIP_GATE(0x80CDB88C, &lit_4618);
 #pragma pop
 
 /* 80CDB128-80CDB2E0 0019E8 01B8+00 1/1 0/0 0/0 .text            effectCtrl__7daKey_cFv */
@@ -1264,7 +1277,7 @@ void JPAEmitterCallBack::drawAfter(JPABaseEmitter* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80CDB7C0(u8* param_0) {
+extern "C" asm void func_80CDB7C0(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_smallkey/d_a_obj_smallkey/func_80CDB7C0.s"
 }
@@ -1290,10 +1303,4 @@ static asm void func_80CDB7E4() {
 }
 #pragma pop
 
-/* 80CDB890-80CDB8A8 00009C 0018+00 2/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CDB890 = "F_SP118";
-SECTION_DEAD static char const* const stringBase_80CDB898 = "DEFAULT_GETITEM";
-#pragma pop
+/* 80CDB890-80CDB890 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

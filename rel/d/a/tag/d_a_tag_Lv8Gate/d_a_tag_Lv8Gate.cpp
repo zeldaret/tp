@@ -21,9 +21,9 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -85,9 +85,9 @@ struct dAttention_c {
     /* 80073734 */ void ActionTarget(s32);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -194,7 +194,14 @@ static asm void createSolidHeap(fopAc_ac_c* param_0) {
 /* ############################################################################################## */
 /* 80D524CC-80D524D0 000000 0004+00 3/3 0/0 0/0 .rodata          @3749 */
 SECTION_RODATA static f32 const lit_3749 = 1.0f;
-COMPILER_STRIP_GATE(80D524CC, &lit_3749);
+COMPILER_STRIP_GATE(0x80D524CC, &lit_3749);
+
+/* 80D524F0-80D524F0 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D524F0 = "Lv8Gate";
+SECTION_DEAD static char const* const stringBase_80D524F8 = "D_MN08";
+#pragma pop
 
 /* 80D52510-80D52514 -00001 0004+00 4/4 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_tag_Lv8Gate__stringBase0;
@@ -253,28 +260,28 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3805 = -100.0f;
-COMPILER_STRIP_GATE(80D524D0, &lit_3805);
+COMPILER_STRIP_GATE(0x80D524D0, &lit_3805);
 #pragma pop
 
 /* 80D524D4-80D524D8 000008 0004+00 0/1 0/0 0/0 .rodata          @3806 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3806 = -50.0f;
-COMPILER_STRIP_GATE(80D524D4, &lit_3806);
+COMPILER_STRIP_GATE(0x80D524D4, &lit_3806);
 #pragma pop
 
 /* 80D524D8-80D524DC 00000C 0004+00 0/1 0/0 0/0 .rodata          @3807 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3807 = 100.0f;
-COMPILER_STRIP_GATE(80D524D8, &lit_3807);
+COMPILER_STRIP_GATE(0x80D524D8, &lit_3807);
 #pragma pop
 
 /* 80D524DC-80D524E0 000010 0004+00 0/1 0/0 0/0 .rodata          @3808 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3808 = 220.0f;
-COMPILER_STRIP_GATE(80D524DC, &lit_3808);
+COMPILER_STRIP_GATE(0x80D524DC, &lit_3808);
 #pragma pop
 
 /* 80D51DC8-80D51F28 000208 0160+00 1/0 0/0 0/0 .text            daTagLv8Gate_Create__FP10fopAc_ac_c
@@ -308,28 +315,34 @@ SECTION_RODATA static u8 const lit_3891[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D524E0, &lit_3891);
+COMPILER_STRIP_GATE(0x80D524E0, &lit_3891);
 #pragma pop
 
 /* 80D524E4-80D524E8 000018 0004+00 0/1 0/0 0/0 .rodata          @3892 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3892 = 400.0f;
-COMPILER_STRIP_GATE(80D524E4, &lit_3892);
+COMPILER_STRIP_GATE(0x80D524E4, &lit_3892);
 #pragma pop
 
 /* 80D524E8-80D524EC 00001C 0004+00 0/1 0/0 0/0 .rodata          @3893 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3893 = 1400.0f;
-COMPILER_STRIP_GATE(80D524E8, &lit_3893);
+COMPILER_STRIP_GATE(0x80D524E8, &lit_3893);
 #pragma pop
 
 /* 80D524EC-80D524F0 000020 0004+00 0/1 0/0 0/0 .rodata          @3894 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3894 = -1.0f;
-COMPILER_STRIP_GATE(80D524EC, &lit_3894);
+COMPILER_STRIP_GATE(0x80D524EC, &lit_3894);
+#pragma pop
+
+/* 80D524F0-80D524F0 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D524FF = "LV8_GATE_ENTRY";
 #pragma pop
 
 /* 80D51F48-80D522F0 000388 03A8+00 1/1 0/0 0/0 .text            execute__14daTagLv8Gate_cFv */
@@ -367,11 +380,4 @@ static asm void daTagLv8Gate_Delete(daTagLv8Gate_c* param_0) {
 }
 #pragma pop
 
-/* 80D524F0-80D5250E 000024 001E+00 3/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D524F0 = "Lv8Gate";
-SECTION_DEAD static char const* const stringBase_80D524F8 = "D_MN08";
-SECTION_DEAD static char const* const stringBase_80D524FF = "LV8_GATE_ENTRY";
-#pragma pop
+/* 80D524F0-80D524F0 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -65,7 +65,7 @@ lbl_80316018:
 /* 80316050  3C 80 80 3A */	lis r4, j3dDefaultFogInfo@ha /* 0x803A1FBC@ha */
 /* 80316054  38 84 1F BC */	addi r4, r4, j3dDefaultFogInfo@l /* 0x803A1FBC@l */
 /* 80316058  48 00 F7 A9 */	bl __as__10J3DFogInfoFRC10J3DFogInfo
-/* 8031605C  A0 02 C9 FA */	lhz r0, struct_804563F8+0x2(r2)
+/* 8031605C  A0 02 C9 FA */	lhz r0, j3dDefaultAlphaCmpID(r2)
 /* 80316060  B0 1F 00 30 */	sth r0, 0x30(r31)
 /* 80316064  38 00 00 00 */	li r0, 0
 /* 80316068  98 1F 00 32 */	stb r0, 0x32(r31)
@@ -91,7 +91,7 @@ lbl_8031608C:
 /* 803160B4  3C 80 80 3D */	lis r4, __vt__16J3DPEBlockFogOff@ha /* 0x803CE06C@ha */
 /* 803160B8  38 04 E0 6C */	addi r0, r4, __vt__16J3DPEBlockFogOff@l /* 0x803CE06C@l */
 /* 803160BC  90 1F 00 00 */	stw r0, 0(r31)
-/* 803160C0  A0 02 C9 FA */	lhz r0, struct_804563F8+0x2(r2)
+/* 803160C0  A0 02 C9 FA */	lhz r0, j3dDefaultAlphaCmpID(r2)
 /* 803160C4  B0 1F 00 04 */	sth r0, 4(r31)
 /* 803160C8  38 00 00 00 */	li r0, 0
 /* 803160CC  98 1F 00 06 */	stb r0, 6(r31)

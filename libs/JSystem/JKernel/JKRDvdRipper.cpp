@@ -24,7 +24,7 @@ template <typename A0>
 struct JSUList {};
 /* JSUList<JKRDMCommand> */
 struct JSUList__template9 {
-    /* 802DA820 */ void func_802DA820();
+    /* 802DA820 */ void func_802DA820(void* _this);
 };
 
 struct JKRHeap {
@@ -80,7 +80,7 @@ extern "C" static void firstSrcData__Fv();
 extern "C" static void nextSrcData__FPUc();
 extern "C" u8 isErrorRetry__12JKRDvdRipperFv();
 extern "C" void __sinit_JKRDvdRipper_cpp();
-extern "C" void func_802DA820();
+extern "C" void func_802DA820(void* _this);
 extern "C" extern char const* const JKRDvdRipper__stringBase0;
 extern "C" u8 sDvdAsyncList__12JKRDvdRipper[12];
 extern "C" u32 sSZSBufferSize__12JKRDvdRipper;
@@ -159,6 +159,17 @@ asm void JKRDvdRipper::loadToMainRAM(s32 param_0, u8* param_1, JKRExpandSwitch p
 #pragma pop
 
 /* ############################################################################################## */
+/* 8039D290-8039D290 0298F0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D290 = "JKRDvdRipper.cpp";
+SECTION_DEAD static char const* const stringBase_8039D2A1 = "%s";
+SECTION_DEAD static char const* const stringBase_8039D2A4 = "Sorry, not applied for SZP archive.";
+SECTION_DEAD static char const* const stringBase_8039D2C8 = "Not support SZP with offset read";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039D2E9 = "\0\0\0\0\0\0";
+#pragma pop
+
 /* 804508C8-804508CC 000348 0004+00 3/2 0/0 0/0 .sdata           None */
 SECTION_SDATA static u32 data_804508C8 = 0x01000000;
 
@@ -294,7 +305,7 @@ asm void __sinit_JKRDvdRipper_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_802DA7DC = (void*)__sinit_JKRDvdRipper_cpp;
+REGISTER_CTORS(0x802DA7DC, __sinit_JKRDvdRipper_cpp);
 #pragma pop
 
 /* 802DA820-802DA874 2D5160 0054+00 1/1 0/0 0/0 .text            __dt__23JSUList<12JKRDMCommand>Fv
@@ -302,20 +313,10 @@ SECTION_CTORS void* const _ctors_802DA7DC = (void*)__sinit_JKRDvdRipper_cpp;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802DA820() {
+extern "C" asm void func_802DA820(void* _this) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRDvdRipper/func_802DA820.s"
 }
 #pragma pop
 
-/* 8039D290-8039D2F0 0298F0 0059+07 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039D290 = "JKRDvdRipper.cpp";
-SECTION_DEAD static char const* const stringBase_8039D2A1 = "%s";
-SECTION_DEAD static char const* const stringBase_8039D2A4 = "Sorry, not applied for SZP archive.";
-SECTION_DEAD static char const* const stringBase_8039D2C8 = "Not support SZP with offset read";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D2E9 = "\0\0\0\0\0\0";
-#pragma pop
+/* 8039D290-8039D290 0298F0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

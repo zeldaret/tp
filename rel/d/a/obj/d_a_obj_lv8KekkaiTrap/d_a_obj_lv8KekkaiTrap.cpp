@@ -178,11 +178,17 @@ SECTION_RODATA static u8 const lit_3651[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C884E4, &lit_3651);
+COMPILER_STRIP_GATE(0x80C884E4, &lit_3651);
 
 /* 80C884E8-80C884EC 000004 0004+00 1/1 0/0 0/0 .rodata          @3652 */
 SECTION_RODATA static f32 const lit_3652 = 7.0f / 10.0f;
-COMPILER_STRIP_GATE(80C884E8, &lit_3652);
+COMPILER_STRIP_GATE(0x80C884E8, &lit_3652);
+
+/* 80C884F8-80C884F8 000014 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C884F8 = "Lv8Kekkai";
+#pragma pop
 
 /* 80C88504-80C88510 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -413,21 +419,21 @@ asm void daKekaiTrap_c::init_modeMoveUp() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3802 = 30.0f;
-COMPILER_STRIP_GATE(80C884EC, &lit_3802);
+COMPILER_STRIP_GATE(0x80C884EC, &lit_3802);
 #pragma pop
 
 /* 80C884F0-80C884F4 00000C 0004+00 0/2 0/0 0/0 .rodata          @3803 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3803 = 1.0f;
-COMPILER_STRIP_GATE(80C884F0, &lit_3803);
+COMPILER_STRIP_GATE(0x80C884F0, &lit_3803);
 #pragma pop
 
 /* 80C884F4-80C884F8 000010 0004+00 0/2 0/0 0/0 .rodata          @3804 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3804 = 3.0f / 100.0f;
-COMPILER_STRIP_GATE(80C884F4, &lit_3804);
+COMPILER_STRIP_GATE(0x80C884F4, &lit_3804);
 #pragma pop
 
 /* 80C88138-80C881F0 000578 00B8+00 1/0 0/0 0/0 .text            modeMoveUp__13daKekaiTrap_cFv */
@@ -545,12 +551,7 @@ asm void __sinit_d_a_obj_lv8KekkaiTrap_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C88494 = (void*)__sinit_d_a_obj_lv8KekkaiTrap_cpp;
+REGISTER_CTORS(0x80C88494, __sinit_d_a_obj_lv8KekkaiTrap_cpp);
 #pragma pop
 
-/* 80C884F8-80C88502 000014 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C884F8 = "Lv8Kekkai";
-#pragma pop
+/* 80C884F8-80C884F8 000014 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

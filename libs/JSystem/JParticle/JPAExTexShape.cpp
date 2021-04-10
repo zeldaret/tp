@@ -51,12 +51,7 @@ asm void JPALoadExTex(JPAEmitterWorkData* param_0) {
 }
 #pragma pop
 
-/* 8027B13C-8027B144 275A7C 0008+00 0/0 1/1 0/0 .text            __ct__13JPAExTexShapeFPCUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JPAExTexShape::JPAExTexShape(u8 const* param_0) {
-    nofralloc
-#include "asm/JSystem/JParticle/JPAExTexShape/__ct__13JPAExTexShapeFPCUc.s"
+/* 8027B13C-8027B144 -00001 0008+00 0/0 0/0 0/0 .text            __ct__13JPAExTexShapeFPCUc */
+JPAExTexShape::JPAExTexShape(u8 const* param_0) {
+    *(u32*)this = (u32)(param_0);
 }
-#pragma pop

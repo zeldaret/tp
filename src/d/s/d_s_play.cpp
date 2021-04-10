@@ -398,7 +398,7 @@ extern "C" void dMeter2Info_setCloth__FUcb();
 extern "C" void dMeter2Info_setSword__FUcb();
 extern "C" void dMeter2Info_setShield__FUcb();
 extern "C" void readMessageGroup__12dMsgObject_cFPP25mDoDvdThd_mountXArchive_c();
-extern "C" void func_80252E70(s8*);
+extern "C" void func_80252E70(void* _this, s8*);
 extern "C" void ClearPi__13cBgS_PolyInfoFv();
 extern "C" void setInDarkness__10Z2SceneMgrFb();
 extern "C" void check1stDynamicWave__10Z2SceneMgrFv();
@@ -703,6 +703,9 @@ static asm void dScnPly_IsDelete(dScnPly_c param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8039A2DF-8039A2E7 02693F 0008+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_8039A2DF;
+
 /* 80450760-80450764 -00001 0004+00 1/0 0/0 0/0 .sdata           T_JOINT_resName */
 extern "C" void* T_JOINT_resName;
 
@@ -716,7 +719,14 @@ SECTION_RODATA static void* const PreLoadInfoT[4] = {
     (void*)&T_JOINT_resName,
     (void*)0x01010000,
 };
-COMPILER_STRIP_GATE(8039A2C8, &PreLoadInfoT);
+COMPILER_STRIP_GATE(0x8039A2C8, &PreLoadInfoT);
+
+/* 8039A2D8-8039A2D8 026938 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A2D8 = "Always";
+SECTION_DEAD static char const* const stringBase_8039A2DF = "T_JOINT";
+#pragma pop
 
 /* 80450760-80450764 -00001 0004+00 1/0 0/0 0/0 .sdata           T_JOINT_resName */
 SECTION_SDATA static void* T_JOINT_resName = (void*)&d_s_d_s_play__stringBase0;
@@ -739,6 +749,14 @@ static asm void dScnPly_Delete(dScnPly_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_play/dScnPly_Delete__FP9dScnPly_c.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8039A2D8-8039A2D8 026938 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A2E7 = "F_SP109";
+SECTION_DEAD static char const* const stringBase_8039A2EF = "F_SP116";
 #pragma pop
 
 /* 80259AC4-80259BFC 254404 0138+00 1/1 0/0 0/0 .text            resetGame__9dScnPly_cFv */
@@ -786,6 +804,23 @@ static s32 phase_0(dScnPly_c* param_0) {
     return 2;
 }
 
+/* ############################################################################################## */
+/* 8039A2D8-8039A2D8 026938 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A2F7 = "F_SP108";
+SECTION_DEAD static char const* const stringBase_8039A2FF = "F_SP115";
+SECTION_DEAD static char const* const stringBase_8039A307 = "F_SP117";
+SECTION_DEAD static char const* const stringBase_8039A30F = "F_SP104";
+SECTION_DEAD static char const* const stringBase_8039A317 = "D_SB10";
+SECTION_DEAD static char const* const stringBase_8039A31E = "D_MN08D";
+SECTION_DEAD static char const* const stringBase_8039A326 = "R_SP107";
+SECTION_DEAD static char const* const stringBase_8039A32E = "F_SP121";
+SECTION_DEAD static char const* const stringBase_8039A336 = "F_SP127";
+SECTION_DEAD static char const* const stringBase_8039A33E = "Start StageName:RoomNo [%s:%d]\n";
+SECTION_DEAD static char const* const stringBase_8039A35E = "Stg_00";
+#pragma pop
+
 /* 80259D84-8025A438 2546C4 06B4+00 1/0 0/0 0/0 .text            phase_1__FP9dScnPly_c */
 #pragma push
 #pragma optimization_level 0
@@ -794,6 +829,17 @@ static asm void phase_1(dScnPly_c* param_0) {
     nofralloc
 #include "asm/d/s/d_s_play/phase_1__FP9dScnPly_c.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8039A2D8-8039A2D8 026938 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039A365 = "Event";
+SECTION_DEAD static char const* const stringBase_8039A36B = "/res/Object/";
+SECTION_DEAD static char const* const stringBase_8039A378 = "CamParam";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039A381 = "\0\0\0\0\0\0";
 #pragma pop
 
 /* 8025A438-8025A4F8 254D78 00C0+00 1/0 0/0 0/0 .text            phase_1_0__FP9dScnPly_c */
@@ -961,7 +1007,7 @@ asm void __sinit_d_s_play_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8025AC54 = (void*)__sinit_d_s_play_cpp;
+REGISTER_CTORS(0x8025AC54, __sinit_d_s_play_cpp);
 #pragma pop
 
 /* 8025AD04-8025AD78 255644 0074+00 2/1 0/0 0/0 .text            __dt__17dScnPly_env_HIO_cFv */
@@ -994,28 +1040,4 @@ asm dScnPly_preLoad_HIO_c::~dScnPly_preLoad_HIO_c() {
 }
 #pragma pop
 
-/* 8039A2D8-8039A388 026938 00A9+07 5/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039A2D8 = "Always";
-SECTION_DEAD static char const* const stringBase_8039A2DF = "T_JOINT";
-SECTION_DEAD static char const* const stringBase_8039A2E7 = "F_SP109";
-SECTION_DEAD static char const* const stringBase_8039A2EF = "F_SP116";
-SECTION_DEAD static char const* const stringBase_8039A2F7 = "F_SP108";
-SECTION_DEAD static char const* const stringBase_8039A2FF = "F_SP115";
-SECTION_DEAD static char const* const stringBase_8039A307 = "F_SP117";
-SECTION_DEAD static char const* const stringBase_8039A30F = "F_SP104";
-SECTION_DEAD static char const* const stringBase_8039A317 = "D_SB10";
-SECTION_DEAD static char const* const stringBase_8039A31E = "D_MN08D";
-SECTION_DEAD static char const* const stringBase_8039A326 = "R_SP107";
-SECTION_DEAD static char const* const stringBase_8039A32E = "F_SP121";
-SECTION_DEAD static char const* const stringBase_8039A336 = "F_SP127";
-SECTION_DEAD static char const* const stringBase_8039A33E = "Start StageName:RoomNo [%s:%d]\n";
-SECTION_DEAD static char const* const stringBase_8039A35E = "Stg_00";
-SECTION_DEAD static char const* const stringBase_8039A365 = "Event";
-SECTION_DEAD static char const* const stringBase_8039A36B = "/res/Object/";
-SECTION_DEAD static char const* const stringBase_8039A378 = "CamParam";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039A381 = "\0\0\0\0\0\0";
-#pragma pop
+/* 8039A2D8-8039A2D8 026938 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

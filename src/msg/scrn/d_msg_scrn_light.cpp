@@ -142,6 +142,16 @@ asm void dMsgScrnLight_HIO_c::updateColor(u8 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80399B08-80399B08 026168 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399B08 = "zelda_message_window_text_light.blo";
+SECTION_DEAD static char const* const stringBase_80399B2C = "zelda_message_window_text_light.bck";
+SECTION_DEAD static char const* const stringBase_80399B50 = "zelda_message_window_text_light.bpk";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80399B74 = "\0\0\0";
+#pragma pop
+
 /* 804306C8-804306D4 05D3E8 000C+00 1/1 0/0 0/0 .bss             @3735 */
 static u8 lit_3735[12];
 
@@ -242,16 +252,7 @@ asm void __sinit_d_msg_scrn_light_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80246390 = (void*)__sinit_d_msg_scrn_light_cpp;
+REGISTER_CTORS(0x80246390, __sinit_d_msg_scrn_light_cpp);
 #pragma pop
 
-/* 80399B08-80399B78 026168 006C+04 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80399B08 = "zelda_message_window_text_light.blo";
-SECTION_DEAD static char const* const stringBase_80399B2C = "zelda_message_window_text_light.bck";
-SECTION_DEAD static char const* const stringBase_80399B50 = "zelda_message_window_text_light.bpk";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80399B74 = "\0\0\0";
-#pragma pop
+/* 80399B08-80399B08 026168 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

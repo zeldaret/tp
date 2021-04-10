@@ -36,7 +36,7 @@ extern "C" void cLsIt_Method__FP15node_list_classPFP10node_classPv_iPv();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcMtdIt_Method(node_list_class* param_0, int (*)(void*)) {
+asm void fpcMtdIt_Method(node_list_class* param_0, int (*param_1)(void*)) {
     nofralloc
 #include "asm/f_pc/f_pc_method_iter/fpcMtdIt_Method__FP15node_list_classPFPv_i.s"
 }

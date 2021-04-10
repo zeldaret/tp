@@ -141,9 +141,9 @@ struct Z2SeqMgr {
     /* 802AFE18 */ void bgmStreamPlay();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -356,6 +356,21 @@ static asm void getStartTelopNo() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80379DD0-80379DD0 006430 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379DD0 = "ID";
+SECTION_DEAD static char const* const stringBase_80379DD3 = "Stage";
+SECTION_DEAD static char const* const stringBase_80379DD9 = "StartCode";
+SECTION_DEAD static char const* const stringBase_80379DE3 = "RoomNo";
+SECTION_DEAD static char const* const stringBase_80379DEA = "Layer";
+SECTION_DEAD static char const* const stringBase_80379DF0 = "Wipe";
+SECTION_DEAD static char const* const stringBase_80379DF5 = "Mode";
+SECTION_DEAD static char const* const stringBase_80379DFA = "Speed";
+SECTION_DEAD static char const* const stringBase_80379E00 = "Hour";
+SECTION_DEAD static char const* const stringBase_80379E05 = "NoVisit";
+#pragma pop
+
 /* 80451ED0-80451ED4 0004D0 0004+00 4/4 0/0 0/0 .sdata2          @4264 */
 SECTION_SDATA2 static u8 lit_4264[4] = {
     0x00,
@@ -451,6 +466,13 @@ asm void dEvDtEvent_c::specialStaffProc(dEvDtStaff_c* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80379DD0-80379DD0 006430 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379E0D = "Timer";
+#pragma pop
+
 /* 80043FD8-8004403C 03E918 0064+00 4/4 0/0 0/0 .text specialProc_WaitStart__12dEvDtStaff_cFi */
 #pragma push
 #pragma optimization_level 0
@@ -522,6 +544,13 @@ asm void dEvDtStaff_c::advanceCut(int param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80379DD0-80379DD0 006430 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379E13 = "LIGHT";
+SECTION_DEAD static char const* const stringBase_80379E19 = "Weather";
+#pragma pop
+
 /* 80451EE0-80451EE8 0004E0 0004+04 1/1 0/0 0/0 .sdata2          @4460 */
 SECTION_SDATA2 static f32 lit_4460[1 + 1 /* padding */] = {
     1.0f / 15.0f,
@@ -543,6 +572,17 @@ asm void dEvDtStaff_c::specialProcLight() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80379DD0-80379DD0 006430 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379E21 = "MESSAGE";
+SECTION_DEAD static char const* const stringBase_80379E29 = "msgNo";
+SECTION_DEAD static char const* const stringBase_80379E2F = "No";
+SECTION_DEAD static char const* const stringBase_80379E32 = "Type";
+SECTION_DEAD static char const* const stringBase_80379E37 = "ForStart";
+#pragma pop
+
 /* 80044324-80044A58 03EC64 0734+00 1/1 0/0 0/0 .text specialProcMessage__12dEvDtStaff_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -554,6 +594,12 @@ asm void dEvDtStaff_c::specialProcMessage() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80379DD0-80379DD0 006430 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379E40 = "SOUND";
+#pragma pop
+
 /* 80451EF0-80451EF4 0004F0 0004+00 4/4 0/0 0/0 .sdata2          @4668 */
 SECTION_SDATA2 static f32 lit_4668 = 1.0f;
 
@@ -571,6 +617,18 @@ asm void dEvDtStaff_c::specialProcSound() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80379DD0-80379DD0 006430 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379E46 = "CREATER";
+SECTION_DEAD static char const* const stringBase_80379E4E = "MAKECAST";
+SECTION_DEAD static char const* const stringBase_80379E57 = "ARG";
+SECTION_DEAD static char const* const stringBase_80379E5B = "POS";
+SECTION_DEAD static char const* const stringBase_80379E5F = "ANGLE";
+SECTION_DEAD static char const* const stringBase_80379E65 = "SCALE";
+#pragma pop
+
 /* 80044CB8-80044EE4 03F5F8 022C+00 1/1 0/0 0/0 .text            specialProcCreate__12dEvDtStaff_cFv
  */
 #pragma push
@@ -580,6 +638,30 @@ asm void dEvDtStaff_c::specialProcCreate() {
     nofralloc
 #include "asm/d/event/d_event_data/specialProcCreate__12dEvDtStaff_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80379DD0-80379DD0 006430 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379E6B = "DIRECTOR";
+SECTION_DEAD static char const* const stringBase_80379E74 = "EventFlag";
+SECTION_DEAD static char const* const stringBase_80379E7E = "EventFlagOff";
+SECTION_DEAD static char const* const stringBase_80379E8B = "SwitchTable";
+SECTION_DEAD static char const* const stringBase_80379E97 = "SwitchBit";
+SECTION_DEAD static char const* const stringBase_80379EA1 = "SwitchOff";
+SECTION_DEAD static char const* const stringBase_80379EAB = "TmpBit";
+SECTION_DEAD static char const* const stringBase_80379EB2 = "TmpBitOff";
+SECTION_DEAD static char const* const stringBase_80379EBC = "PLAYER_NODRAW";
+SECTION_DEAD static char const* const stringBase_80379ECA = "PLAYER_DRAW";
+SECTION_DEAD static char const* const stringBase_80379ED6 = "Zev";
+SECTION_DEAD static char const* const stringBase_80379EDA = "Rate";
+SECTION_DEAD static char const* const stringBase_80379EDF = "Color";
+SECTION_DEAD static char const* const stringBase_80379EE5 = "Pattern";
+SECTION_DEAD static char const* const stringBase_80379EED = "Pt2";
+SECTION_DEAD static char const* const stringBase_80379EF1 = "PtT";
+SECTION_DEAD static char const* const stringBase_80379EF5 = "PtI";
+SECTION_DEAD static char const* const stringBase_80379EF9 = "PtD";
 #pragma pop
 
 /* 80044EE4-80045878 03F824 0994+00 1/1 0/0 0/0 .text specialProcDirector__12dEvDtStaff_cFv */
@@ -593,6 +675,15 @@ asm void dEvDtStaff_c::specialProcDirector() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80379DD0-80379DD0 006430 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379EFD = "PACKAGE";
+SECTION_DEAD static char const* const stringBase_80379F05 = "FileName";
+SECTION_DEAD static char const* const stringBase_80379F0E = "OffsetPos";
+SECTION_DEAD static char const* const stringBase_80379F18 = "OffsetAngY";
+#pragma pop
+
 /* 80451EF8-80451EFC 0004F8 0004+00 1/1 0/0 0/0 .sdata2          @5057 */
 SECTION_SDATA2 static f32 lit_5057 = 10.0f;
 
@@ -606,6 +697,13 @@ asm void dEvDtStaff_c::specialProcPackage() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80379DD0-80379DD0 006430 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379F23 = "TIMEKEEPER";
+#pragma pop
+
 /* 80045AFC-80045C34 04043C 0138+00 1/1 0/0 0/0 .text specialProcTimekeeper__12dEvDtStaff_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -617,6 +715,18 @@ asm void dEvDtStaff_c::specialProcTimekeeper() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80379DD0-80379DD0 006430 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379F2E = "EFFECT";
+SECTION_DEAD static char const* const stringBase_80379F35 = "Power";
+SECTION_DEAD static char const* const stringBase_80379F3B = "Random";
+SECTION_DEAD static char const* const stringBase_80379F42 = "Alpha";
+SECTION_DEAD static char const* const stringBase_80379F48 = "Scale";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80379F4E = "\0";
+#pragma pop
+
 /* 80451EFC-80451F00 0004FC 0004+00 1/1 0/0 0/0 .sdata2          @5200 */
 SECTION_SDATA2 static f32 lit_5200 = 4.0f / 5.0f;
 
@@ -682,63 +792,4 @@ asm void dEvDtBase_c::advanceCutLocal(dEvDtStaff_c* param_0) {
 }
 #pragma pop
 
-/* 80379DD0-80379F50 006430 017E+02 10/10 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80379DD0 = "ID";
-SECTION_DEAD static char const* const stringBase_80379DD3 = "Stage";
-SECTION_DEAD static char const* const stringBase_80379DD9 = "StartCode";
-SECTION_DEAD static char const* const stringBase_80379DE3 = "RoomNo";
-SECTION_DEAD static char const* const stringBase_80379DEA = "Layer";
-SECTION_DEAD static char const* const stringBase_80379DF0 = "Wipe";
-SECTION_DEAD static char const* const stringBase_80379DF5 = "Mode";
-SECTION_DEAD static char const* const stringBase_80379DFA = "Speed";
-SECTION_DEAD static char const* const stringBase_80379E00 = "Hour";
-SECTION_DEAD static char const* const stringBase_80379E05 = "NoVisit";
-SECTION_DEAD static char const* const stringBase_80379E0D = "Timer";
-SECTION_DEAD static char const* const stringBase_80379E13 = "LIGHT";
-SECTION_DEAD static char const* const stringBase_80379E19 = "Weather";
-SECTION_DEAD static char const* const stringBase_80379E21 = "MESSAGE";
-SECTION_DEAD static char const* const stringBase_80379E29 = "msgNo";
-SECTION_DEAD static char const* const stringBase_80379E2F = "No";
-SECTION_DEAD static char const* const stringBase_80379E32 = "Type";
-SECTION_DEAD static char const* const stringBase_80379E37 = "ForStart";
-SECTION_DEAD static char const* const stringBase_80379E40 = "SOUND";
-SECTION_DEAD static char const* const stringBase_80379E46 = "CREATER";
-SECTION_DEAD static char const* const stringBase_80379E4E = "MAKECAST";
-SECTION_DEAD static char const* const stringBase_80379E57 = "ARG";
-SECTION_DEAD static char const* const stringBase_80379E5B = "POS";
-SECTION_DEAD static char const* const stringBase_80379E5F = "ANGLE";
-SECTION_DEAD static char const* const stringBase_80379E65 = "SCALE";
-SECTION_DEAD static char const* const stringBase_80379E6B = "DIRECTOR";
-SECTION_DEAD static char const* const stringBase_80379E74 = "EventFlag";
-SECTION_DEAD static char const* const stringBase_80379E7E = "EventFlagOff";
-SECTION_DEAD static char const* const stringBase_80379E8B = "SwitchTable";
-SECTION_DEAD static char const* const stringBase_80379E97 = "SwitchBit";
-SECTION_DEAD static char const* const stringBase_80379EA1 = "SwitchOff";
-SECTION_DEAD static char const* const stringBase_80379EAB = "TmpBit";
-SECTION_DEAD static char const* const stringBase_80379EB2 = "TmpBitOff";
-SECTION_DEAD static char const* const stringBase_80379EBC = "PLAYER_NODRAW";
-SECTION_DEAD static char const* const stringBase_80379ECA = "PLAYER_DRAW";
-SECTION_DEAD static char const* const stringBase_80379ED6 = "Zev";
-SECTION_DEAD static char const* const stringBase_80379EDA = "Rate";
-SECTION_DEAD static char const* const stringBase_80379EDF = "Color";
-SECTION_DEAD static char const* const stringBase_80379EE5 = "Pattern";
-SECTION_DEAD static char const* const stringBase_80379EED = "Pt2";
-SECTION_DEAD static char const* const stringBase_80379EF1 = "PtT";
-SECTION_DEAD static char const* const stringBase_80379EF5 = "PtI";
-SECTION_DEAD static char const* const stringBase_80379EF9 = "PtD";
-SECTION_DEAD static char const* const stringBase_80379EFD = "PACKAGE";
-SECTION_DEAD static char const* const stringBase_80379F05 = "FileName";
-SECTION_DEAD static char const* const stringBase_80379F0E = "OffsetPos";
-SECTION_DEAD static char const* const stringBase_80379F18 = "OffsetAngY";
-SECTION_DEAD static char const* const stringBase_80379F23 = "TIMEKEEPER";
-SECTION_DEAD static char const* const stringBase_80379F2E = "EFFECT";
-SECTION_DEAD static char const* const stringBase_80379F35 = "Power";
-SECTION_DEAD static char const* const stringBase_80379F3B = "Random";
-SECTION_DEAD static char const* const stringBase_80379F42 = "Alpha";
-SECTION_DEAD static char const* const stringBase_80379F48 = "Scale";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80379F4E = "\0";
-#pragma pop
+/* 80379DD0-80379DD0 006430 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

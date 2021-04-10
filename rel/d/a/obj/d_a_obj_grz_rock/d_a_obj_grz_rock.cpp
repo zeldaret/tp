@@ -56,9 +56,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -241,20 +241,20 @@ asm void daObjGrzRock_c::setRoomNo() {
 SECTION_RODATA static u8 const l_prticles_id[12] = {
     0x89, 0xC2, 0x89, 0xC3, 0x89, 0xC4, 0x89, 0xC5, 0x89, 0xC6, 0x89, 0xC7,
 };
-COMPILER_STRIP_GATE(80C15360, &l_prticles_id);
+COMPILER_STRIP_GATE(0x80C15360, &l_prticles_id);
 
 /* 80C1536C-80C15370 00000C 0004+00 0/1 0/0 0/0 .rodata          @3849 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3849 = 17.0f / 20.0f;
-COMPILER_STRIP_GATE(80C1536C, &lit_3849);
+COMPILER_STRIP_GATE(0x80C1536C, &lit_3849);
 #pragma pop
 
 /* 80C15370-80C15374 000010 0004+00 0/1 0/0 0/0 .rodata          @3850 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3850 = 1.0f;
-COMPILER_STRIP_GATE(80C15370, &lit_3850);
+COMPILER_STRIP_GATE(0x80C15370, &lit_3850);
 #pragma pop
 
 /* 80C14CF0-80C14DA0 000190 00B0+00 1/1 0/0 0/0 .text            setPrtcl__14daObjGrzRock_cFv */
@@ -275,7 +275,7 @@ SECTION_RODATA static u8 const lit_3886[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C15374, &lit_3886);
+COMPILER_STRIP_GATE(0x80C15374, &lit_3886);
 
 /* 80C14DA0-80C14EE0 000240 0140+00 1/0 0/0 0/0 .text            Create__14daObjGrzRock_cFv */
 #pragma push
@@ -288,6 +288,12 @@ asm void daObjGrzRock_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80C15378-80C15378 000018 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C15378 = "grZRock";
+#pragma pop
+
 /* 80C1538C-80C15390 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_grz_rock__stringBase0;
 
@@ -302,6 +308,12 @@ asm void daObjGrzRock_c::CreateHeap() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80C15378-80C15378 000018 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C15380 = "grZRock.dzb";
+#pragma pop
+
 /* 80C15390-80C153B0 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjGrzRock_Method */
 SECTION_DATA static void* l_daObjGrzRock_Method[8] = {
     (void*)daObjGrzRock_create__FP10fopAc_ac_c,
@@ -468,10 +480,4 @@ static asm void func_80C15350() {
 }
 #pragma pop
 
-/* 80C15378-80C1538C 000018 0014+00 2/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C15378 = "grZRock";
-SECTION_DEAD static char const* const stringBase_80C15380 = "grZRock.dzb";
-#pragma pop
+/* 80C15378-80C15378 000018 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

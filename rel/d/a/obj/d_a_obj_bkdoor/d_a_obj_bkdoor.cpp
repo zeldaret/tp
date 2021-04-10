@@ -75,9 +75,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -195,13 +195,13 @@ asm void daObjBkDoor_c::setBaseMtx() {
 SECTION_RODATA static u8 const l_bmd[8] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x05,
 };
-COMPILER_STRIP_GATE(80579490, &l_bmd);
+COMPILER_STRIP_GATE(0x80579490, &l_bmd);
 
 /* 80579498-805794A0 000008 0008+00 1/1 0/0 0/0 .rodata          l_dzb */
 SECTION_RODATA static u8 const l_dzb[8] = {
     0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x09,
 };
-COMPILER_STRIP_GATE(80579498, &l_dzb);
+COMPILER_STRIP_GATE(0x80579498, &l_dzb);
 
 /* 805794A0-805794B4 000010 0014+00 0/0 0/0 0/0 .rodata          l_col_offsetX */
 #pragma push
@@ -210,7 +210,7 @@ SECTION_RODATA static u8 const l_col_offsetX[20] = {
     0x42, 0xA0, 0x00, 0x00, 0x43, 0x20, 0x00, 0x00, 0x43, 0x70,
     0x00, 0x00, 0x43, 0xA0, 0x00, 0x00, 0x43, 0xC8, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(805794A0, &l_col_offsetX);
+COMPILER_STRIP_GATE(0x805794A0, &l_col_offsetX);
 #pragma pop
 
 /* 805794B4-805794E4 000024 0030+00 0/1 0/0 0/0 .rodata          l_roll_crash_check_areaL */
@@ -221,7 +221,7 @@ SECTION_RODATA static u8 const l_roll_crash_check_areaL[48] = {
     0x00, 0x00, 0x00, 0x00, 0xC3, 0x0C, 0x00, 0x00, 0x44, 0x89, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x43, 0x0C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x43, 0x0C, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(805794B4, &l_roll_crash_check_areaL);
+COMPILER_STRIP_GATE(0x805794B4, &l_roll_crash_check_areaL);
 #pragma pop
 
 /* 805794E4-80579514 000054 0030+00 0/1 0/0 0/0 .rodata          l_roll_crash_check_areaR */
@@ -232,12 +232,12 @@ SECTION_RODATA static u8 const l_roll_crash_check_areaR[48] = {
     0x00, 0x00, 0x00, 0x00, 0xC3, 0x0C, 0x00, 0x00, 0xC4, 0x89, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x43, 0x0C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x43, 0x0C, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(805794E4, &l_roll_crash_check_areaR);
+COMPILER_STRIP_GATE(0x805794E4, &l_roll_crash_check_areaR);
 #pragma pop
 
 /* 80579514-80579518 000084 0004+00 1/1 0/0 0/0 .rodata          @3702 */
 SECTION_RODATA static f32 const lit_3702 = 2.0f;
-COMPILER_STRIP_GATE(80579514, &lit_3702);
+COMPILER_STRIP_GATE(0x80579514, &lit_3702);
 
 /* 80578E14-80578EA0 000174 008C+00 1/0 0/0 0/0 .text            Create__13daObjBkDoor_cFv */
 #pragma push
@@ -250,6 +250,12 @@ asm void daObjBkDoor_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80579538-80579538 0000A8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80579538 = "A_BkDoor";
+#pragma pop
+
 /* 80579544-80579548 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_bkdoor__stringBase0;
 
@@ -288,56 +294,56 @@ asm void daObjBkDoor_c::openCheck() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3817 = -600.0f;
-COMPILER_STRIP_GATE(80579518, &lit_3817);
+COMPILER_STRIP_GATE(0x80579518, &lit_3817);
 #pragma pop
 
 /* 8057951C-80579520 00008C 0004+00 0/1 0/0 0/0 .rodata          @3818 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3818 = 600.0f;
-COMPILER_STRIP_GATE(8057951C, &lit_3818);
+COMPILER_STRIP_GATE(0x8057951C, &lit_3818);
 #pragma pop
 
 /* 80579520-80579524 000090 0004+00 0/1 0/0 0/0 .rodata          @3819 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3819 = 700.0f;
-COMPILER_STRIP_GATE(80579520, &lit_3819);
+COMPILER_STRIP_GATE(0x80579520, &lit_3819);
 #pragma pop
 
 /* 80579524-80579528 000094 0004+00 0/1 0/0 0/0 .rodata          @3820 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3820 = 1.0f;
-COMPILER_STRIP_GATE(80579524, &lit_3820);
+COMPILER_STRIP_GATE(0x80579524, &lit_3820);
 #pragma pop
 
 /* 80579528-8057952C 000098 0004+00 0/1 0/0 0/0 .rodata          @3821 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3821 = -1.0f;
-COMPILER_STRIP_GATE(80579528, &lit_3821);
+COMPILER_STRIP_GATE(0x80579528, &lit_3821);
 #pragma pop
 
 /* 8057952C-80579530 00009C 0004+00 0/1 0/0 0/0 .rodata          @3822 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3822 = -700.0f;
-COMPILER_STRIP_GATE(8057952C, &lit_3822);
+COMPILER_STRIP_GATE(0x8057952C, &lit_3822);
 #pragma pop
 
 /* 80579530-80579534 0000A0 0004+00 0/1 0/0 0/0 .rodata          @3823 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3823 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80579530, &lit_3823);
+COMPILER_STRIP_GATE(0x80579530, &lit_3823);
 #pragma pop
 
 /* 80579534-80579538 0000A4 0004+00 0/1 0/0 0/0 .rodata          @3824 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3824 = 20.0f;
-COMPILER_STRIP_GATE(80579534, &lit_3824);
+COMPILER_STRIP_GATE(0x80579534, &lit_3824);
 #pragma pop
 
 /* 8057902C-805792E4 00038C 02B8+00 1/0 0/0 0/0 .text            Execute__13daObjBkDoor_cFPPA3_A4_f
@@ -450,9 +456,4 @@ static asm void daObjBkDoor_MoveBGDraw(daObjBkDoor_c* param_0) {
 }
 #pragma pop
 
-/* 80579538-80579541 0000A8 0009+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80579538 = "A_BkDoor";
-#pragma pop
+/* 80579538-80579538 0000A8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

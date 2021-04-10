@@ -36,6 +36,67 @@ extern "C" extern u8 g_env_light[4880];
 //
 
 /* ############################################################################################## */
+/* 8037A1C0-8037A1C0 006820 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A1C0 = "R_SP30";
+SECTION_DEAD static char const* const stringBase_8037A1C7 = "T_SP05";
+SECTION_DEAD static char const* const stringBase_8037A1CE = "T_SP05A";
+SECTION_DEAD static char const* const stringBase_8037A1D6 = "T_WARP2";
+SECTION_DEAD static char const* const stringBase_8037A1DE = "T_IMAI";
+SECTION_DEAD static char const* const stringBase_8037A1E5 = "T_IMAI0";
+SECTION_DEAD static char const* const stringBase_8037A1ED = "T_TOMI";
+SECTION_DEAD static char const* const stringBase_8037A1F4 = "T_SASA1";
+SECTION_DEAD static char const* const stringBase_8037A1FC = "F_SP105";
+SECTION_DEAD static char const* const stringBase_8037A204 = "F_SP05";
+SECTION_DEAD static char const* const stringBase_8037A20B = "R_SP107";
+SECTION_DEAD static char const* const stringBase_8037A213 = "F_SP108";
+SECTION_DEAD static char const* const stringBase_8037A21B = "R_SP108";
+SECTION_DEAD static char const* const stringBase_8037A223 = "TEST11";
+SECTION_DEAD static char const* const stringBase_8037A22A = "F_SP109";
+SECTION_DEAD static char const* const stringBase_8037A232 = "F_SP110";
+SECTION_DEAD static char const* const stringBase_8037A23A = "R_SP109";
+SECTION_DEAD static char const* const stringBase_8037A242 = "F_SP111";
+SECTION_DEAD static char const* const stringBase_8037A24A = "F_SP112";
+SECTION_DEAD static char const* const stringBase_8037A252 = "F_SP113";
+SECTION_DEAD static char const* const stringBase_8037A25A = "F_SP115";
+SECTION_DEAD static char const* const stringBase_8037A262 = "F_SP116";
+SECTION_DEAD static char const* const stringBase_8037A26A = "F_SP122";
+SECTION_DEAD static char const* const stringBase_8037A272 = "F_SP121";
+SECTION_DEAD static char const* const stringBase_8037A27A = "F_SP126";
+SECTION_DEAD static char const* const stringBase_8037A282 = "R_SP209";
+SECTION_DEAD static char const* const stringBase_8037A28A = "R_SP116";
+SECTION_DEAD static char const* const stringBase_8037A292 = "D_MN08";
+SECTION_DEAD static char const* const stringBase_8037A299 = "D_MN08B";
+SECTION_DEAD static char const* const stringBase_8037A2A1 = "D_MN08C";
+SECTION_DEAD static char const* const stringBase_8037A2A9 = "D_MN08A";
+SECTION_DEAD static char const* const stringBase_8037A2B1 = "D_SB10";
+SECTION_DEAD static char const* const stringBase_8037A2B8 = "R_SP01";
+SECTION_DEAD static char const* const stringBase_8037A2BF = "R_SP128";
+SECTION_DEAD static char const* const stringBase_8037A2C7 = "F_SP114";
+SECTION_DEAD static char const* const stringBase_8037A2CF = "F_SP102";
+SECTION_DEAD static char const* const stringBase_8037A2D7 = "F_SP123";
+SECTION_DEAD static char const* const stringBase_8037A2DF = "R_SP160";
+SECTION_DEAD static char const* const stringBase_8037A2E7 = "R_SP161";
+SECTION_DEAD static char const* const stringBase_8037A2EF = "F_SP118";
+SECTION_DEAD static char const* const stringBase_8037A2F7 = "F_SP124";
+SECTION_DEAD static char const* const stringBase_8037A2FF = "F_SP125";
+SECTION_DEAD static char const* const stringBase_8037A307 = "R_SP127";
+SECTION_DEAD static char const* const stringBase_8037A30F = "D_MN01A";
+SECTION_DEAD static char const* const stringBase_8037A317 = "D_MN10A";
+SECTION_DEAD static char const* const stringBase_8037A31F = "D_MN06A";
+SECTION_DEAD static char const* const stringBase_8037A327 = "D_MN07A";
+SECTION_DEAD static char const* const stringBase_8037A32F = "D_MN08D";
+SECTION_DEAD static char const* const stringBase_8037A337 = "D_MN09";
+SECTION_DEAD static char const* const stringBase_8037A33E = "D_MN09B";
+SECTION_DEAD static char const* const stringBase_8037A346 = "D_MN09C";
+SECTION_DEAD static char const* const stringBase_8037A34E = "R_SP300";
+SECTION_DEAD static char const* const stringBase_8037A356 = "D_SB02";
+SECTION_DEAD static char const* const stringBase_8037A35D = "D_SB03";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8037A364 = "\0\0\0";
+#pragma pop
+
 /* 803A8E98-803A9198 005FB8 0300+00 1/1 0/0 0/0 .data            l_kydata_BloomInf_tbl */
 SECTION_DATA static u8 l_kydata_BloomInf_tbl[768] = {
     0x01, 0xFF, 0x40, 0x80, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x28, 0x46, 0x87,
@@ -1003,64 +1064,4 @@ asm void dKyd_BloomInf_tbl_getp(int param_0) {
 }
 #pragma pop
 
-/* 8037A1C0-8037A368 006820 01A4+04 3/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8037A1C0 = "R_SP30";
-SECTION_DEAD static char const* const stringBase_8037A1C7 = "T_SP05";
-SECTION_DEAD static char const* const stringBase_8037A1CE = "T_SP05A";
-SECTION_DEAD static char const* const stringBase_8037A1D6 = "T_WARP2";
-SECTION_DEAD static char const* const stringBase_8037A1DE = "T_IMAI";
-SECTION_DEAD static char const* const stringBase_8037A1E5 = "T_IMAI0";
-SECTION_DEAD static char const* const stringBase_8037A1ED = "T_TOMI";
-SECTION_DEAD static char const* const stringBase_8037A1F4 = "T_SASA1";
-SECTION_DEAD static char const* const stringBase_8037A1FC = "F_SP105";
-SECTION_DEAD static char const* const stringBase_8037A204 = "F_SP05";
-SECTION_DEAD static char const* const stringBase_8037A20B = "R_SP107";
-SECTION_DEAD static char const* const stringBase_8037A213 = "F_SP108";
-SECTION_DEAD static char const* const stringBase_8037A21B = "R_SP108";
-SECTION_DEAD static char const* const stringBase_8037A223 = "TEST11";
-SECTION_DEAD static char const* const stringBase_8037A22A = "F_SP109";
-SECTION_DEAD static char const* const stringBase_8037A232 = "F_SP110";
-SECTION_DEAD static char const* const stringBase_8037A23A = "R_SP109";
-SECTION_DEAD static char const* const stringBase_8037A242 = "F_SP111";
-SECTION_DEAD static char const* const stringBase_8037A24A = "F_SP112";
-SECTION_DEAD static char const* const stringBase_8037A252 = "F_SP113";
-SECTION_DEAD static char const* const stringBase_8037A25A = "F_SP115";
-SECTION_DEAD static char const* const stringBase_8037A262 = "F_SP116";
-SECTION_DEAD static char const* const stringBase_8037A26A = "F_SP122";
-SECTION_DEAD static char const* const stringBase_8037A272 = "F_SP121";
-SECTION_DEAD static char const* const stringBase_8037A27A = "F_SP126";
-SECTION_DEAD static char const* const stringBase_8037A282 = "R_SP209";
-SECTION_DEAD static char const* const stringBase_8037A28A = "R_SP116";
-SECTION_DEAD static char const* const stringBase_8037A292 = "D_MN08";
-SECTION_DEAD static char const* const stringBase_8037A299 = "D_MN08B";
-SECTION_DEAD static char const* const stringBase_8037A2A1 = "D_MN08C";
-SECTION_DEAD static char const* const stringBase_8037A2A9 = "D_MN08A";
-SECTION_DEAD static char const* const stringBase_8037A2B1 = "D_SB10";
-SECTION_DEAD static char const* const stringBase_8037A2B8 = "R_SP01";
-SECTION_DEAD static char const* const stringBase_8037A2BF = "R_SP128";
-SECTION_DEAD static char const* const stringBase_8037A2C7 = "F_SP114";
-SECTION_DEAD static char const* const stringBase_8037A2CF = "F_SP102";
-SECTION_DEAD static char const* const stringBase_8037A2D7 = "F_SP123";
-SECTION_DEAD static char const* const stringBase_8037A2DF = "R_SP160";
-SECTION_DEAD static char const* const stringBase_8037A2E7 = "R_SP161";
-SECTION_DEAD static char const* const stringBase_8037A2EF = "F_SP118";
-SECTION_DEAD static char const* const stringBase_8037A2F7 = "F_SP124";
-SECTION_DEAD static char const* const stringBase_8037A2FF = "F_SP125";
-SECTION_DEAD static char const* const stringBase_8037A307 = "R_SP127";
-SECTION_DEAD static char const* const stringBase_8037A30F = "D_MN01A";
-SECTION_DEAD static char const* const stringBase_8037A317 = "D_MN10A";
-SECTION_DEAD static char const* const stringBase_8037A31F = "D_MN06A";
-SECTION_DEAD static char const* const stringBase_8037A327 = "D_MN07A";
-SECTION_DEAD static char const* const stringBase_8037A32F = "D_MN08D";
-SECTION_DEAD static char const* const stringBase_8037A337 = "D_MN09";
-SECTION_DEAD static char const* const stringBase_8037A33E = "D_MN09B";
-SECTION_DEAD static char const* const stringBase_8037A346 = "D_MN09C";
-SECTION_DEAD static char const* const stringBase_8037A34E = "R_SP300";
-SECTION_DEAD static char const* const stringBase_8037A356 = "D_SB02";
-SECTION_DEAD static char const* const stringBase_8037A35D = "D_SB03";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037A364 = "\0\0\0";
-#pragma pop
+/* 8037A1C0-8037A1C0 006820 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

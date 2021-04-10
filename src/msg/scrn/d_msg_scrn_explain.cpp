@@ -73,16 +73,16 @@ struct dMsgScrn3Select_c {
     /* 8023A97C */ void getCharSpace();
 };
 
-struct COutFont_c {
-    /* 80225C94 */ COutFont_c(u8);
-};
-
 struct J2DTextBox {
     /* 80300658 */ void getStringPtr() const;
     /* 8030074C */ void setString(s16, char const*, ...);
 };
 
 struct JUTFont {};
+
+struct COutFont_c {
+    /* 80225C94 */ COutFont_c(u8);
+};
 
 struct dMsgObject_c {
     /* 802380F4 */ void getString(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, char*,
@@ -100,9 +100,9 @@ struct Z2SpeechMgr2 {
     /* 802CBF60 */ void setTextCount(s16);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -243,6 +243,17 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
+/* 80399910-80399910 025F70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399910 = "zelda_message_window_new.blo";
+SECTION_DEAD static char const* const stringBase_8039992D =
+    "zelda_message_window_text_save_road.blo";
+SECTION_DEAD static char const* const stringBase_80399955 = "zelda_message_window_text.blo";
+SECTION_DEAD static char const* const stringBase_80399973 = "";
+SECTION_DEAD static char const* const stringBase_80399974 = "tt_block8x8.bti";
+#pragma pop
+
 /* 803C0E40-803C0E4C 01DF60 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -546,6 +557,16 @@ asm void dMsgScrnExplain_c::move_proc() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80399910-80399910 025F70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399984 = ""
+                                                            "\x1B"
+                                                            "CR[%d]";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039998C = "\0\0\0";
+#pragma pop
+
 /* 80454BE8-80454BEC 0031E8 0004+00 1/1 0/0 0/0 .sdata2          @4294 */
 SECTION_SDATA2 static f32 lit_4294 = 0.5f;
 
@@ -652,22 +673,7 @@ asm void __sinit_d_msg_scrn_explain_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8023E668 = (void*)__sinit_d_msg_scrn_explain_cpp;
+REGISTER_CTORS(0x8023E668, __sinit_d_msg_scrn_explain_cpp);
 #pragma pop
 
-/* 80399910-80399990 025F70 007C+04 2/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80399910 = "zelda_message_window_new.blo";
-SECTION_DEAD static char const* const stringBase_8039992D =
-    "zelda_message_window_text_save_road.blo";
-SECTION_DEAD static char const* const stringBase_80399955 = "zelda_message_window_text.blo";
-SECTION_DEAD static char const* const stringBase_80399973 = "";
-SECTION_DEAD static char const* const stringBase_80399974 = "tt_block8x8.bti";
-SECTION_DEAD static char const* const stringBase_80399984 = ""
-                                                            "\x1B"
-                                                            "CR[%d]";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039998C = "\0\0\0";
-#pragma pop
+/* 80399910-80399910 025F70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

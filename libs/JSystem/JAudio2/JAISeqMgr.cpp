@@ -39,7 +39,7 @@ template <typename A0>
 struct JASMemPool {};
 /* JASMemPool<JAISeq> */
 struct JASMemPool__template2 {
-    /* 802A1AF4 */ void func_802A1AF4();
+    /* 802A1AF4 */ void func_802A1AF4(void* _this);
 };
 
 struct JASGenericMemPool {
@@ -107,7 +107,7 @@ extern "C" void isUsingSeqData__9JAISeqMgrFRC16JAISeqDataRegion();
 extern "C" void releaseSeqData__9JAISeqMgrFRC16JAISeqDataRegion();
 extern "C" void __ct__9JAISeqMgrFb();
 extern "C" void freeDeadSeq___9JAISeqMgrFv();
-extern "C" void func_802A1AF4();
+extern "C" void func_802A1AF4(void* _this);
 extern "C" void func_802A1B48();
 extern "C" void calc__9JAISeqMgrFv();
 extern "C" void stop__9JAISeqMgrFv();
@@ -241,7 +241,7 @@ asm void JAISeqMgr::freeDeadSeq_() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802A1AF4() {
+extern "C" asm void func_802A1AF4(void* _this) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAISeqMgr/func_802A1AF4.s"
 }

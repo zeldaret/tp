@@ -240,6 +240,13 @@ asm void JUTCacheFont::initialize_state() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039D2F0-8039D2F0 029950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D2F0 = "JUTCacheFont: Unknown data block\n";
+#pragma pop
+
 /* 802DD35C-802DD4EC 2D7C9C 0190+00 1/1 0/0 0/0 .text
  * getMemorySize__12JUTCacheFontFPC7ResFONTPUsPUlPUsPUlPUsPUlPUl */
 #pragma push
@@ -295,6 +302,16 @@ asm void JUTCacheFont::allocArray(JKRHeap* param_0) {
     nofralloc
 #include "asm/JSystem/JUtility/JUTCacheFont/allocArray__12JUTCacheFontFP7JKRHeap.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8039D2F0-8039D2F0 029950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D312 = "JUTCacheFont.cpp";
+SECTION_DEAD static char const* const stringBase_8039D323 = "%s";
+SECTION_DEAD static char const* const stringBase_8039D326 = "trouble occurred in JKRMainRamToAram.";
+SECTION_DEAD static char const* const stringBase_8039D34C = "Unknown data block\n";
 #pragma pop
 
 /* 802DD8EC-802DDB0C 2D822C 0220+00 1/0 0/0 0/0 .text            setBlock__12JUTCacheFontFv */
@@ -462,13 +479,4 @@ asm void JUTResFont::getHeight() const {
 }
 #pragma pop
 
-/* 8039D2F0-8039D360 029950 0070+00 2/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039D2F0 = "JUTCacheFont: Unknown data block\n";
-SECTION_DEAD static char const* const stringBase_8039D312 = "JUTCacheFont.cpp";
-SECTION_DEAD static char const* const stringBase_8039D323 = "%s";
-SECTION_DEAD static char const* const stringBase_8039D326 = "trouble occurred in JKRMainRamToAram.";
-SECTION_DEAD static char const* const stringBase_8039D34C = "Unknown data block\n";
-#pragma pop
+/* 8039D2F0-8039D2F0 029950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

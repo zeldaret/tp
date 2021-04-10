@@ -37,14 +37,13 @@ struct J2DPicture {
 
 struct J2DAnmTexPattern {};
 
-struct J2DAnmVtxColor {};
-
 struct J2DAnmVisibilityFull {};
+
+struct J2DAnmVtxColor {};
 
 struct J2DPane {
     /* 80256018 */ void setAnimation(J2DAnmVtxColor*);
     /* 80256020 */ void setAnimation(J2DAnmTexPattern*);
-    /* 802F7FC4 */ void setAnimation(J2DAnmTransform*);
     /* 8025601C */ void setAnimation(J2DAnmVisibilityFull*);
 };
 

@@ -91,9 +91,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -185,11 +185,11 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80BC31A0-80BC31A4 000000 0004+00 3/3 0/0 0/0 .rodata          @3625 */
 SECTION_RODATA static f32 const lit_3625 = 2.0f;
-COMPILER_STRIP_GATE(80BC31A0, &lit_3625);
+COMPILER_STRIP_GATE(0x80BC31A0, &lit_3625);
 
 /* 80BC31A4-80BC31A8 000004 0004+00 1/1 0/0 0/0 .rodata          @3626 */
 SECTION_RODATA static f32 const lit_3626 = 12.0f;
-COMPILER_STRIP_GATE(80BC31A4, &lit_3626);
+COMPILER_STRIP_GATE(0x80BC31A4, &lit_3626);
 
 /* 80BC31CC-80BC31D8 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -327,7 +327,7 @@ SECTION_RODATA static u8 const lit_3647[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BC31A8, &lit_3647);
+COMPILER_STRIP_GATE(0x80BC31A8, &lit_3647);
 
 /* 80BC2910-80BC29AC 000170 009C+00 2/2 0/0 0/0 .text            setBaseMtx__10daBsGate_cFv */
 #pragma push
@@ -337,6 +337,13 @@ asm void daBsGate_c::setBaseMtx() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_bsGate/d_a_obj_bsGate/setBaseMtx__10daBsGate_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80BC31C4-80BC31C4 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BC31C4 = "S_Zgate";
 #pragma pop
 
 /* 80BC29AC-80BC2A18 00020C 006C+00 1/0 0/0 0/0 .text            CreateHeap__10daBsGate_cFv */
@@ -352,7 +359,7 @@ asm void daBsGate_c::CreateHeap() {
 /* ############################################################################################## */
 /* 80BC31AC-80BC31B0 00000C 0004+00 1/1 0/0 0/0 .rodata          @3710 */
 SECTION_RODATA static f32 const lit_3710 = -250.0f;
-COMPILER_STRIP_GATE(80BC31AC, &lit_3710);
+COMPILER_STRIP_GATE(0x80BC31AC, &lit_3710);
 
 /* 80BC2A18-80BC2B6C 000278 0154+00 1/1 0/0 0/0 .text            create__10daBsGate_cFv */
 #pragma push
@@ -424,28 +431,28 @@ asm void daBsGate_c::init_modeOpen() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3783 = 1.0f;
-COMPILER_STRIP_GATE(80BC31B0, &lit_3783);
+COMPILER_STRIP_GATE(0x80BC31B0, &lit_3783);
 #pragma pop
 
 /* 80BC31B4-80BC31B8 000014 0004+00 0/2 0/0 0/0 .rodata          @3784 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3784 = -1.0f;
-COMPILER_STRIP_GATE(80BC31B4, &lit_3784);
+COMPILER_STRIP_GATE(0x80BC31B4, &lit_3784);
 #pragma pop
 
 /* 80BC31B8-80BC31BC 000018 0004+00 0/1 0/0 0/0 .rodata          @3785 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3785 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80BC31B8, &lit_3785);
+COMPILER_STRIP_GATE(0x80BC31B8, &lit_3785);
 #pragma pop
 
 /* 80BC31BC-80BC31C0 00001C 0004+00 0/2 0/0 0/0 .rodata          @3786 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3786 = 0.5f;
-COMPILER_STRIP_GATE(80BC31BC, &lit_3786);
+COMPILER_STRIP_GATE(0x80BC31BC, &lit_3786);
 #pragma pop
 
 /* 80BC2CE0-80BC2E34 000540 0154+00 1/0 0/0 0/0 .text            modeOpen__10daBsGate_cFv */
@@ -473,7 +480,7 @@ asm void daBsGate_c::init_modeClose() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3820 = 2.0f / 5.0f;
-COMPILER_STRIP_GATE(80BC31C0, &lit_3820);
+COMPILER_STRIP_GATE(0x80BC31C0, &lit_3820);
 #pragma pop
 
 /* 80BC2E40-80BC2F94 0006A0 0154+00 1/0 0/0 0/0 .text            modeClose__10daBsGate_cFv */
@@ -568,12 +575,7 @@ asm void __sinit_d_a_obj_bsGate_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80BC3150 = (void*)__sinit_d_a_obj_bsGate_cpp;
+REGISTER_CTORS(0x80BC3150, __sinit_d_a_obj_bsGate_cpp);
 #pragma pop
 
-/* 80BC31C4-80BC31CC 000024 0008+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BC31C4 = "S_Zgate";
-#pragma pop
+/* 80BC31C4-80BC31C4 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

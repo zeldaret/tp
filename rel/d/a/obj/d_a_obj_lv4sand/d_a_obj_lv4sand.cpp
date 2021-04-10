@@ -106,9 +106,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -238,7 +238,7 @@ asm void daObjLv4Sand_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 80C6A3B8-80C6A3BC 000000 0004+00 3/3 0/0 0/0 .rodata          @3679 */
 SECTION_RODATA static f32 const lit_3679 = -3500.0f;
-COMPILER_STRIP_GATE(80C6A3B8, &lit_3679);
+COMPILER_STRIP_GATE(0x80C6A3B8, &lit_3679);
 
 /* 80C6A3BC-80C6A3C0 000004 0004+00 2/2 0/0 0/0 .rodata          @3680 */
 SECTION_RODATA static u8 const lit_3680[4] = {
@@ -247,7 +247,7 @@ SECTION_RODATA static u8 const lit_3680[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C6A3BC, &lit_3680);
+COMPILER_STRIP_GATE(0x80C6A3BC, &lit_3680);
 
 /* 80C69B50-80C69C28 000130 00D8+00 1/0 0/0 0/0 .text            Create__14daObjLv4Sand_cFv */
 #pragma push
@@ -262,7 +262,13 @@ asm void daObjLv4Sand_c::Create() {
 /* ############################################################################################## */
 /* 80C6A3C0-80C6A3C4 000008 0004+00 1/2 0/0 0/0 .rodata          @3710 */
 SECTION_RODATA static f32 const lit_3710 = 1.0f;
-COMPILER_STRIP_GATE(80C6A3C0, &lit_3710);
+COMPILER_STRIP_GATE(0x80C6A3C0, &lit_3710);
+
+/* 80C6A3D4-80C6A3D4 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C6A3D4 = "P_L4Sand";
+#pragma pop
 
 /* 80C6A3E0-80C6A3EC 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -399,14 +405,14 @@ asm void daObjLv4Sand_c::create1st() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3748 = 3300.0f;
-COMPILER_STRIP_GATE(80C6A3C4, &lit_3748);
+COMPILER_STRIP_GATE(0x80C6A3C4, &lit_3748);
 #pragma pop
 
 /* 80C6A3C8-80C6A3CC 000010 0004+00 0/1 0/0 0/0 .rodata          @3749 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3749 = -1.0f;
-COMPILER_STRIP_GATE(80C6A3C8, &lit_3749);
+COMPILER_STRIP_GATE(0x80C6A3C8, &lit_3749);
 #pragma pop
 
 /* 80C69E10-80C69F18 0003F0 0108+00 1/0 0/0 0/0 .text            Execute__14daObjLv4Sand_cFPPA3_A4_f
@@ -467,14 +473,14 @@ asm void daObjLv4Sand_c::mode_init_move() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3786 = 8.5f;
-COMPILER_STRIP_GATE(80C6A3CC, &lit_3786);
+COMPILER_STRIP_GATE(0x80C6A3CC, &lit_3786);
 #pragma pop
 
 /* 80C6A3D0-80C6A3D4 000018 0004+00 0/1 0/0 0/0 .rodata          @3787 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3787 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(80C6A3D0, &lit_3787);
+COMPILER_STRIP_GATE(0x80C6A3D0, &lit_3787);
 #pragma pop
 
 /* 80C6A034-80C6A09C 000614 0068+00 1/0 0/0 0/0 .text            mode_move__14daObjLv4Sand_cFv */
@@ -656,9 +662,4 @@ static asm void func_80C6A3A8() {
 }
 #pragma pop
 
-/* 80C6A3D4-80C6A3DD 00001C 0009+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C6A3D4 = "P_L4Sand";
-#pragma pop
+/* 80C6A3D4-80C6A3D4 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

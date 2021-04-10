@@ -165,48 +165,55 @@ SECTION_RODATA u8 const daObjSakuita_c::M_attr[44] = {
     0x00, 0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x00, 0x00, 0x00, 0xC0, 0xC0, 0x00, 0x00, 0x44, 0x61,
     0x00, 0x00, 0x46, 0x9C, 0x40, 0x00, 0x42, 0xC8, 0x00, 0x00, 0x14, 0x00, 0x14, 0x00,
 };
-COMPILER_STRIP_GATE(80CC50B4, &daObjSakuita_c::M_attr);
+COMPILER_STRIP_GATE(0x80CC50B4, &daObjSakuita_c::M_attr);
 
 /* 80CC50E0-80CC50E4 00002C 0004+00 0/1 0/0 0/0 .rodata          @3658 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3658 = -30.0f;
-COMPILER_STRIP_GATE(80CC50E0, &lit_3658);
+COMPILER_STRIP_GATE(0x80CC50E0, &lit_3658);
 #pragma pop
 
 /* 80CC50E4-80CC50E8 000030 0004+00 0/1 0/0 0/0 .rodata          @3659 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3659 = -90.0f;
-COMPILER_STRIP_GATE(80CC50E4, &lit_3659);
+COMPILER_STRIP_GATE(0x80CC50E4, &lit_3659);
 #pragma pop
 
 /* 80CC50E8-80CC50EC 000034 0004+00 0/1 0/0 0/0 .rodata          @3660 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3660 = -10.0f;
-COMPILER_STRIP_GATE(80CC50E8, &lit_3660);
+COMPILER_STRIP_GATE(0x80CC50E8, &lit_3660);
 #pragma pop
 
 /* 80CC50EC-80CC50F0 000038 0004+00 0/1 0/0 0/0 .rodata          @3661 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3661 = 30.0f;
-COMPILER_STRIP_GATE(80CC50EC, &lit_3661);
+COMPILER_STRIP_GATE(0x80CC50EC, &lit_3661);
 #pragma pop
 
 /* 80CC50F0-80CC50F4 00003C 0004+00 0/1 0/0 0/0 .rodata          @3662 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3662 = 20.0f;
-COMPILER_STRIP_GATE(80CC50F0, &lit_3662);
+COMPILER_STRIP_GATE(0x80CC50F0, &lit_3662);
 #pragma pop
 
 /* 80CC50F4-80CC50F8 000040 0004+00 0/1 0/0 0/0 .rodata          @3663 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3663 = 10.0f;
-COMPILER_STRIP_GATE(80CC50F4, &lit_3663);
+COMPILER_STRIP_GATE(0x80CC50F4, &lit_3663);
+#pragma pop
+
+/* 80CC5114-80CC5114 000060 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CC5114 = "A_Sakuita";
+SECTION_DEAD static char const* const stringBase_80CC511E = "A_Sakuita.bmd";
 #pragma pop
 
 /* 80CC512C-80CC5130 -00001 0004+00 4/4 0/0 0/0 .data            l_arcName */
@@ -247,14 +254,14 @@ asm void daObjSakuita_c::setBaseMtx() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3704 = 0.5f;
-COMPILER_STRIP_GATE(80CC50F8, &lit_3704);
+COMPILER_STRIP_GATE(0x80CC50F8, &lit_3704);
 #pragma pop
 
 /* 80CC50FC-80CC5100 000048 0004+00 0/1 0/0 0/0 .rodata          @3761 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3761 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80CC50FC, &lit_3761);
+COMPILER_STRIP_GATE(0x80CC50FC, &lit_3761);
 #pragma pop
 
 /* 80CC5100-80CC5104 00004C 0004+00 0/1 0/0 0/0 .rodata          @3762 */
@@ -266,21 +273,21 @@ SECTION_RODATA static u8 const lit_3762[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CC5100, &lit_3762);
+COMPILER_STRIP_GATE(0x80CC5100, &lit_3762);
 #pragma pop
 
 /* 80CC5104-80CC5108 000050 0004+00 0/1 0/0 0/0 .rodata          @3763 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3763 = 2.0f / 5.0f;
-COMPILER_STRIP_GATE(80CC5104, &lit_3763);
+COMPILER_STRIP_GATE(0x80CC5104, &lit_3763);
 #pragma pop
 
 /* 80CC5108-80CC510C 000054 0004+00 0/1 0/0 0/0 .rodata          @3764 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3764 = 8192.0f;
-COMPILER_STRIP_GATE(80CC5108, &lit_3764);
+COMPILER_STRIP_GATE(0x80CC5108, &lit_3764);
 #pragma pop
 
 /* 80CC489C-80CC4A98 00021C 01FC+00 1/1 0/0 0/0 .text            setPlatePos__14daObjSakuita_cFv */
@@ -298,7 +305,7 @@ asm void daObjSakuita_c::setPlatePos() {
 SECTION_RODATA static u8 const lit_3781[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CC510C, &lit_3781);
+COMPILER_STRIP_GATE(0x80CC510C, &lit_3781);
 
 /* 80CC4A98-80CC4B5C 000418 00C4+00 1/1 0/0 0/0 .text            calcAngle__14daObjSakuita_cFv */
 #pragma push
@@ -467,10 +474,4 @@ asm cCcD_GStts::~cCcD_GStts() {
 }
 #pragma pop
 
-/* 80CC5114-80CC512C 000060 0018+00 4/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CC5114 = "A_Sakuita";
-SECTION_DEAD static char const* const stringBase_80CC511E = "A_Sakuita.bmd";
-#pragma pop
+/* 80CC5114-80CC5114 000060 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

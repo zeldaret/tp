@@ -76,27 +76,27 @@ extern "C" extern u32 __float_nan;
 /* ############################################################################################## */
 /* 80D5B15C-80D5B160 000000 0004+00 2/2 0/0 0/0 .rodata          @3655 */
 SECTION_RODATA static f32 const lit_3655 = -30.0f;
-COMPILER_STRIP_GATE(80D5B15C, &lit_3655);
+COMPILER_STRIP_GATE(0x80D5B15C, &lit_3655);
 
 /* 80D5B160-80D5B164 000004 0004+00 0/1 0/0 0/0 .rodata          @3656 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3656 = -15.0f;
-COMPILER_STRIP_GATE(80D5B160, &lit_3656);
+COMPILER_STRIP_GATE(0x80D5B160, &lit_3656);
 #pragma pop
 
 /* 80D5B164-80D5B168 000008 0004+00 0/1 0/0 0/0 .rodata          @3657 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3657 = 30.0f;
-COMPILER_STRIP_GATE(80D5B164, &lit_3657);
+COMPILER_STRIP_GATE(0x80D5B164, &lit_3657);
 #pragma pop
 
 /* 80D5B168-80D5B16C 00000C 0004+00 0/1 0/0 0/0 .rodata          @3658 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3658 = 45.0f;
-COMPILER_STRIP_GATE(80D5B168, &lit_3658);
+COMPILER_STRIP_GATE(0x80D5B168, &lit_3658);
 #pragma pop
 
 /* 80D5B18C-80D5B1AC -00001 0020+00 1/0 0/0 0/0 .data            daTag_Lv5Soup_MethodTable */
@@ -163,7 +163,7 @@ bool daTag_Lv5Soup_c::Draw() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3743 = 100.0f;
-COMPILER_STRIP_GATE(80D5B16C, &lit_3743);
+COMPILER_STRIP_GATE(0x80D5B16C, &lit_3743);
 #pragma pop
 
 /* 80D5B170-80D5B174 000014 0004+00 0/1 0/0 0/0 .rodata          @3744 */
@@ -175,7 +175,7 @@ SECTION_RODATA static u8 const lit_3744[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D5B170, &lit_3744);
+COMPILER_STRIP_GATE(0x80D5B170, &lit_3744);
 #pragma pop
 
 /* 80D5B174-80D5B17C 000018 0008+00 0/1 0/0 0/0 .rodata          @3745 */
@@ -184,7 +184,7 @@ COMPILER_STRIP_GATE(80D5B170, &lit_3744);
 SECTION_RODATA static u8 const lit_3745[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D5B174, &lit_3745);
+COMPILER_STRIP_GATE(0x80D5B174, &lit_3745);
 #pragma pop
 
 /* 80D5B17C-80D5B184 000020 0008+00 0/1 0/0 0/0 .rodata          @3746 */
@@ -193,7 +193,7 @@ COMPILER_STRIP_GATE(80D5B174, &lit_3745);
 SECTION_RODATA static u8 const lit_3746[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D5B17C, &lit_3746);
+COMPILER_STRIP_GATE(0x80D5B17C, &lit_3746);
 #pragma pop
 
 /* 80D5B184-80D5B18C 000028 0008+00 0/1 0/0 0/0 .rodata          @3747 */
@@ -202,7 +202,7 @@ COMPILER_STRIP_GATE(80D5B17C, &lit_3746);
 SECTION_RODATA static u8 const lit_3747[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D5B184, &lit_3747);
+COMPILER_STRIP_GATE(0x80D5B184, &lit_3747);
 #pragma pop
 
 /* 80D5AEA4-80D5B06C 0001C4 01C8+00 1/1 0/0 0/0 .text            isAreaCheck__15daTag_Lv5Soup_cFv */

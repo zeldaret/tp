@@ -40,7 +40,7 @@ template <typename A0>
 struct JASMemPool {};
 /* JASMemPool<JAISe> */
 struct JASMemPool__template0 {
-    /* 8029FC34 */ void func_8029FC34();
+    /* 8029FC34 */ void func_8029FC34(void* _this);
 };
 
 struct JASGenericMemPool {
@@ -77,9 +77,9 @@ struct JAISeqDataRegion {};
 
 struct JAISeqDataMgr {};
 
-struct JAIAudience {};
-
 struct JAISeCategoryArrangement {};
+
+struct JAIAudience {};
 
 struct JAISeMgr {
     /* 802A0074 */ JAISeMgr(bool);
@@ -131,7 +131,7 @@ extern "C" void isUsingSeqData__16JAISeCategoryMgrFRC16JAISeqDataRegion();
 extern "C" void releaseSeqData__16JAISeCategoryMgrFRC16JAISeqDataRegion();
 extern "C" void JAISeMgr_calc___16JAISeCategoryMgrFv();
 extern "C" void JAISeMgr_freeDeadSe___16JAISeCategoryMgrFv();
-extern "C" void func_8029FC34();
+extern "C" void func_8029FC34(void* _this);
 extern "C" void JAISeMgr_acceptsNewSe___16JAISeCategoryMgrCFUl();
 extern "C" void sortByPriority___16JAISeCategoryMgrFv();
 extern "C" void stop__16JAISeCategoryMgrFUl();
@@ -260,7 +260,7 @@ asm void JAISeCategoryMgr::JAISeMgr_freeDeadSe_() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8029FC34() {
+extern "C" asm void func_8029FC34(void* _this) {
     nofralloc
 #include "asm/JSystem/JAudio2/JAISeMgr/func_8029FC34.s"
 }
@@ -443,15 +443,10 @@ asm void JAISeMgr::initParams() {
 }
 #pragma pop
 
-/* 802A03D8-802A03E0 29AD18 0008+00 0/0 1/1 0/0 .text setAudience__8JAISeMgrFP11JAIAudience */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JAISeMgr::setAudience(JAIAudience* param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JAISeMgr/setAudience__8JAISeMgrFP11JAIAudience.s"
+/* 802A03D8-802A03E0 -00001 0008+00 0/0 0/0 0/0 .text setAudience__8JAISeMgrFP11JAIAudience */
+void JAISeMgr::setAudience(JAIAudience* param_0) {
+    *(u32*)(((u8*)this) + 8) /* this->field_0x8 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 802A03E0-802A0434 29AD20 0054+00 0/0 1/1 0/0 .text setSeqDataMgr__8JAISeMgrFP13JAISeqDataMgr */
 #pragma push
@@ -501,6 +496,15 @@ asm void JAISeMgr::mixOut() {
     nofralloc
 #include "asm/JSystem/JAudio2/JAISeMgr/mixOut__8JAISeMgrFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8039B8F8-8039B8F8 027F58 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039B8F8 = "cannot new Se %08x.";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039B90C = "\0\0\0";
 #pragma pop
 
 /* 802A0768-802A08D0 29B0A8 0168+00 0/0 1/1 0/0 .text
@@ -555,11 +559,4 @@ asm JAISeCategoryMgr::JAISeCategoryMgr() {
 }
 #pragma pop
 
-/* 8039B8F8-8039B910 027F58 0014+04 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039B8F8 = "cannot new Se %08x.";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039B90C = "\0\0\0";
-#pragma pop
+/* 8039B8F8-8039B8F8 027F58 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

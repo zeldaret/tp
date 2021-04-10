@@ -163,9 +163,9 @@ struct Z2SoundObjBase {
     /* 802BDFF8 */ void deleteObject();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -296,7 +296,13 @@ SECTION_RODATA static u8 const lit_3631[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CBDA5C, &lit_3631);
+COMPILER_STRIP_GATE(0x80CBDA5C, &lit_3631);
+
+/* 80CBDB14-80CBDB14 0000B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CBDB14 = "RiverRock";
+#pragma pop
 
 /* 80CBDB40-80CBDB44 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_riverrock__stringBase0;
@@ -377,7 +383,7 @@ SECTION_RODATA static u8 const ccCylSrc[68] = {
     0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC3, 0xFA, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x44, 0x7A, 0x00, 0x00, 0x44, 0x7A, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CBDA60, &ccCylSrc);
+COMPILER_STRIP_GATE(0x80CBDA60, &ccCylSrc);
 
 /* 80CBC6F4-80CBC754 000114 0060+00 1/1 0/0 0/0 .text initCcCylinder__16daObjRIVERROCK_cFv */
 #pragma push
@@ -396,7 +402,7 @@ SECTION_RODATA static f32 const lit_3642[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80CBDAA4, &lit_3642);
+COMPILER_STRIP_GATE(0x80CBDAA4, &lit_3642);
 
 /* 80CBC754-80CBC7B4 000174 0060+00 1/1 0/0 0/0 .text            SetCcCyl__16daObjRIVERROCK_cFv */
 #pragma push
@@ -434,7 +440,7 @@ static asm void daObjRIVERROCK_Delete(daObjRIVERROCK_c* param_0) {
 SECTION_RODATA static u8 const lit_3669[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CBDAAC, &lit_3669);
+COMPILER_STRIP_GATE(0x80CBDAAC, &lit_3669);
 
 /* 80CBC7F8-80CBC8BC 000218 00C4+00 1/1 0/0 0/0 .text BreakWaitAction__16daObjRIVERROCK_cFv */
 #pragma push
@@ -451,56 +457,56 @@ asm void daObjRIVERROCK_c::BreakWaitAction() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3742 = 700.0f;
-COMPILER_STRIP_GATE(80CBDAB4, &lit_3742);
+COMPILER_STRIP_GATE(0x80CBDAB4, &lit_3742);
 #pragma pop
 
 /* 80CBDAB8-80CBDABC 00005C 0004+00 0/1 0/0 0/0 .rodata          @3743 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3743 = 5650.0f;
-COMPILER_STRIP_GATE(80CBDAB8, &lit_3743);
+COMPILER_STRIP_GATE(0x80CBDAB8, &lit_3743);
 #pragma pop
 
 /* 80CBDABC-80CBDAC0 000060 0004+00 0/1 0/0 0/0 .rodata          @3744 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3744 = 2850.0f;
-COMPILER_STRIP_GATE(80CBDABC, &lit_3744);
+COMPILER_STRIP_GATE(0x80CBDABC, &lit_3744);
 #pragma pop
 
 /* 80CBDAC0-80CBDAC4 000064 0004+00 0/1 0/0 0/0 .rodata          @3745 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3745 = 300.0f;
-COMPILER_STRIP_GATE(80CBDAC0, &lit_3745);
+COMPILER_STRIP_GATE(0x80CBDAC0, &lit_3745);
 #pragma pop
 
 /* 80CBDAC4-80CBDAC8 000068 0004+00 0/1 0/0 0/0 .rodata          @3746 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3746 = -300.0f;
-COMPILER_STRIP_GATE(80CBDAC4, &lit_3746);
+COMPILER_STRIP_GATE(0x80CBDAC4, &lit_3746);
 #pragma pop
 
 /* 80CBDAC8-80CBDACC 00006C 0004+00 0/3 0/0 0/0 .rodata          @3747 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3747 = 1.0f;
-COMPILER_STRIP_GATE(80CBDAC8, &lit_3747);
+COMPILER_STRIP_GATE(0x80CBDAC8, &lit_3747);
 #pragma pop
 
 /* 80CBDACC-80CBDAD0 000070 0004+00 0/2 0/0 0/0 .rodata          @3748 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3748 = -1.0f;
-COMPILER_STRIP_GATE(80CBDACC, &lit_3748);
+COMPILER_STRIP_GATE(0x80CBDACC, &lit_3748);
 #pragma pop
 
 /* 80CBDAD0-80CBDAD4 000074 0004+00 0/1 0/0 0/0 .rodata          @3749 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3749 = 3.0f;
-COMPILER_STRIP_GATE(80CBDAD0, &lit_3749);
+COMPILER_STRIP_GATE(0x80CBDAD0, &lit_3749);
 #pragma pop
 
 /* 80CBC8BC-80CBCC3C 0002DC 0380+00 1/1 0/0 0/0 .text            CheckBG__16daObjRIVERROCK_cFv */
@@ -516,7 +522,7 @@ asm void daObjRIVERROCK_c::CheckBG() {
 /* ############################################################################################## */
 /* 80CBDAD4-80CBDAD8 000078 0004+00 1/1 0/0 0/0 .rodata          @3758 */
 SECTION_RODATA static f32 const lit_3758 = 3628.0f;
-COMPILER_STRIP_GATE(80CBDAD4, &lit_3758);
+COMPILER_STRIP_GATE(0x80CBDAD4, &lit_3758);
 
 /* 80CBDBE8-80CBDBEC 000008 0004+00 2/2 0/0 0/0 .bss             None */
 static u8 data_80CBDBE8[4];
@@ -574,14 +580,14 @@ asm void daObjRIVERROCK_c::Action() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3861 = 200.0f;
-COMPILER_STRIP_GATE(80CBDAD8, &lit_3861);
+COMPILER_STRIP_GATE(0x80CBDAD8, &lit_3861);
 #pragma pop
 
 /* 80CBDADC-80CBDAE0 000080 0004+00 0/1 0/0 0/0 .rodata          @3862 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3862 = 280.0f;
-COMPILER_STRIP_GATE(80CBDADC, &lit_3862);
+COMPILER_STRIP_GATE(0x80CBDADC, &lit_3862);
 #pragma pop
 
 /* 80CBCE2C-80CBD1C4 00084C 0398+00 3/3 0/0 0/0 .text            BreakSet__16daObjRIVERROCK_cFv */
@@ -609,14 +615,14 @@ asm void daObjRIVERROCK_c::WaitAction() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3895 = 150.0f;
-COMPILER_STRIP_GATE(80CBDAE0, &lit_3895);
+COMPILER_STRIP_GATE(0x80CBDAE0, &lit_3895);
 #pragma pop
 
 /* 80CBDAE4-80CBDAE8 000088 0004+00 0/1 0/0 0/0 .rodata          @3896 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3896 = -150.0f;
-COMPILER_STRIP_GATE(80CBDAE4, &lit_3896);
+COMPILER_STRIP_GATE(0x80CBDAE4, &lit_3896);
 #pragma pop
 
 /* 80CBD204-80CBD2FC 000C24 00F8+00 1/1 0/0 0/0 .text            setBaseMtx__16daObjRIVERROCK_cFv */
@@ -650,6 +656,13 @@ static asm void daObjRIVERROCK_Execute(daObjRIVERROCK_c* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80CBDB14-80CBDB14 0000B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CBDB1E = "M_RiverRock.bmd";
+#pragma pop
+
 /* 80CBD348-80CBD3C0 000D68 0078+00 1/0 0/0 0/0 .text            CreateHeap__16daObjRIVERROCK_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -665,49 +678,49 @@ asm void daObjRIVERROCK_c::CreateHeap() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4026 = -9.0f;
-COMPILER_STRIP_GATE(80CBDAE8, &lit_4026);
+COMPILER_STRIP_GATE(0x80CBDAE8, &lit_4026);
 #pragma pop
 
 /* 80CBDAEC-80CBDAF0 000090 0004+00 0/1 0/0 0/0 .rodata          @4027 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4027 = 0.5f;
-COMPILER_STRIP_GATE(80CBDAEC, &lit_4027);
+COMPILER_STRIP_GATE(0x80CBDAEC, &lit_4027);
 #pragma pop
 
 /* 80CBDAF0-80CBDAF4 000094 0004+00 0/1 0/0 0/0 .rodata          @4028 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4028 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(80CBDAF0, &lit_4028);
+COMPILER_STRIP_GATE(0x80CBDAF0, &lit_4028);
 #pragma pop
 
 /* 80CBDAF4-80CBDAF8 000098 0004+00 0/1 0/0 0/0 .rodata          @4029 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4029 = 2800.0f;
-COMPILER_STRIP_GATE(80CBDAF4, &lit_4029);
+COMPILER_STRIP_GATE(0x80CBDAF4, &lit_4029);
 #pragma pop
 
 /* 80CBDAF8-80CBDAFC 00009C 0004+00 0/1 0/0 0/0 .rodata          @4030 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4030 = 6000.0f;
-COMPILER_STRIP_GATE(80CBDAF8, &lit_4030);
+COMPILER_STRIP_GATE(0x80CBDAF8, &lit_4030);
 #pragma pop
 
 /* 80CBDAFC-80CBDB00 0000A0 0004+00 0/1 0/0 0/0 .rodata          @4031 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4031 = -6000.0f;
-COMPILER_STRIP_GATE(80CBDAFC, &lit_4031);
+COMPILER_STRIP_GATE(0x80CBDAFC, &lit_4031);
 #pragma pop
 
 /* 80CBDB00-80CBDB04 0000A4 0004+00 0/2 0/0 0/0 .rodata          @4032 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4032 = -500.0f;
-COMPILER_STRIP_GATE(80CBDB00, &lit_4032);
+COMPILER_STRIP_GATE(0x80CBDB00, &lit_4032);
 #pragma pop
 
 /* 80CBDB04-80CBDB0C 0000A8 0008+00 0/1 0/0 0/0 .rodata          @4034 */
@@ -716,7 +729,13 @@ COMPILER_STRIP_GATE(80CBDB00, &lit_4032);
 SECTION_RODATA static u8 const lit_4034[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CBDB04, &lit_4034);
+COMPILER_STRIP_GATE(0x80CBDB04, &lit_4034);
+#pragma pop
+
+/* 80CBDB14-80CBDB14 0000B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CBDB2E = "M_RiverRock.dzb";
 #pragma pop
 
 /* 80CBD3C0-80CBD71C 000DE0 035C+00 1/1 0/0 0/0 .text            create__16daObjRIVERROCK_cFv */
@@ -760,14 +779,14 @@ static bool daObjRIVERROCK_IsDelete(daObjRIVERROCK_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4119 = -1000.0f;
-COMPILER_STRIP_GATE(80CBDB0C, &lit_4119);
+COMPILER_STRIP_GATE(0x80CBDB0C, &lit_4119);
 #pragma pop
 
 /* 80CBDB10-80CBDB14 0000B4 0004+00 0/1 0/0 0/0 .rodata          @4120 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4120 = 500.0f;
-COMPILER_STRIP_GATE(80CBDB10, &lit_4120);
+COMPILER_STRIP_GATE(0x80CBDB10, &lit_4120);
 #pragma pop
 
 /* 80CBD7B4-80CBD814 0011D4 0060+00 1/0 0/0 0/0 .text            Create__16daObjRIVERROCK_cFv */
@@ -832,14 +851,7 @@ asm void __sinit_d_a_obj_riverrock_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80CBDA0C = (void*)__sinit_d_a_obj_riverrock_cpp;
+REGISTER_CTORS(0x80CBDA0C, __sinit_d_a_obj_riverrock_cpp);
 #pragma pop
 
-/* 80CBDB14-80CBDB3E 0000B8 002A+00 3/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CBDB14 = "RiverRock";
-SECTION_DEAD static char const* const stringBase_80CBDB1E = "M_RiverRock.bmd";
-SECTION_DEAD static char const* const stringBase_80CBDB2E = "M_RiverRock.dzb";
-#pragma pop
+/* 80CBDB14-80CBDB14 0000B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

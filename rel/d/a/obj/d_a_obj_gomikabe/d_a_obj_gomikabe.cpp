@@ -191,9 +191,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -351,6 +351,12 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80BFFCF4-80BFFCF4 0000D8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BFFCF4 = "GomiKabe";
+#pragma pop
+
 /* 80BFFD30-80BFFD34 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_gomikabe__stringBase0;
 
@@ -449,7 +455,7 @@ SECTION_RODATA static u8 const ccSphSrc[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x43, 0x48, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BFFC1C, &ccSphSrc);
+COMPILER_STRIP_GATE(0x80BFFC1C, &ccSphSrc);
 
 /* 80BFE244-80BFE2CC 000104 0088+00 1/1 0/0 0/0 .text            initCcCylinder__15daObjGOMIKABE_cFv
  */
@@ -467,7 +473,7 @@ asm void daObjGOMIKABE_c::initCcCylinder() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3801 = -200.0f;
-COMPILER_STRIP_GATE(80BFFC5C, &lit_3801);
+COMPILER_STRIP_GATE(0x80BFFC5C, &lit_3801);
 #pragma pop
 
 /* 80BFFC60-80BFFC64 000044 0004+00 0/4 0/0 0/0 .rodata          @3802 */
@@ -479,7 +485,7 @@ SECTION_RODATA static u8 const lit_3802[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BFFC60, &lit_3802);
+COMPILER_STRIP_GATE(0x80BFFC60, &lit_3802);
 #pragma pop
 
 /* 80BFFC64-80BFFC6C 000048 0004+04 0/1 0/0 0/0 .rodata          @3803 */
@@ -490,14 +496,14 @@ SECTION_RODATA static f32 const lit_3803[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80BFFC64, &lit_3803);
+COMPILER_STRIP_GATE(0x80BFFC64, &lit_3803);
 #pragma pop
 
 /* 80BFFC6C-80BFFC74 000050 0008+00 1/3 0/0 0/0 .rodata          @3805 */
 SECTION_RODATA static u8 const lit_3805[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BFFC6C, &lit_3805);
+COMPILER_STRIP_GATE(0x80BFFC6C, &lit_3805);
 
 /* 80BFE2CC-80BFE3FC 00018C 0130+00 1/1 0/0 0/0 .text            SetCcCyl__15daObjGOMIKABE_cFv */
 #pragma push
@@ -542,7 +548,7 @@ static asm void daObjGOMIKABE_Delete(daObjGOMIKABE_c* param_0) {
 /* ############################################################################################## */
 /* 80BFFC74-80BFFC78 000058 0004+00 1/2 0/0 0/0 .rodata          @3842 */
 SECTION_RODATA static f32 const lit_3842 = 300.0f;
-COMPILER_STRIP_GATE(80BFFC74, &lit_3842);
+COMPILER_STRIP_GATE(0x80BFFC74, &lit_3842);
 
 /* 80BFE47C-80BFE4C4 00033C 0048+00 1/1 0/0 0/0 .text            WaitAction__15daObjGOMIKABE_cFv */
 #pragma push
@@ -569,63 +575,63 @@ asm void daObjGOMIKABE_c::BreakChk() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3977 = 50.0f;
-COMPILER_STRIP_GATE(80BFFC78, &lit_3977);
+COMPILER_STRIP_GATE(0x80BFFC78, &lit_3977);
 #pragma pop
 
 /* 80BFFC7C-80BFFC80 000060 0004+00 0/1 0/0 0/0 .rodata          @3978 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3978 = 15.0f;
-COMPILER_STRIP_GATE(80BFFC7C, &lit_3978);
+COMPILER_STRIP_GATE(0x80BFFC7C, &lit_3978);
 #pragma pop
 
 /* 80BFFC80-80BFFC84 000064 0004+00 0/1 0/0 0/0 .rodata          @3979 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3979 = 10.0f;
-COMPILER_STRIP_GATE(80BFFC80, &lit_3979);
+COMPILER_STRIP_GATE(0x80BFFC80, &lit_3979);
 #pragma pop
 
 /* 80BFFC84-80BFFC88 000068 0004+00 0/3 0/0 0/0 .rodata          @3980 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3980 = 1000.0f;
-COMPILER_STRIP_GATE(80BFFC84, &lit_3980);
+COMPILER_STRIP_GATE(0x80BFFC84, &lit_3980);
 #pragma pop
 
 /* 80BFFC88-80BFFC8C 00006C 0004+00 0/1 0/0 0/0 .rodata          @3981 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3981 = 32000.0f;
-COMPILER_STRIP_GATE(80BFFC88, &lit_3981);
+COMPILER_STRIP_GATE(0x80BFFC88, &lit_3981);
 #pragma pop
 
 /* 80BFFC8C-80BFFC90 000070 0004+00 0/1 0/0 0/0 .rodata          @3982 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3982 = -50.0f;
-COMPILER_STRIP_GATE(80BFFC8C, &lit_3982);
+COMPILER_STRIP_GATE(0x80BFFC8C, &lit_3982);
 #pragma pop
 
 /* 80BFFC90-80BFFC94 000074 0004+00 0/1 0/0 0/0 .rodata          @3983 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3983 = 5.0f;
-COMPILER_STRIP_GATE(80BFFC90, &lit_3983);
+COMPILER_STRIP_GATE(0x80BFFC90, &lit_3983);
 #pragma pop
 
 /* 80BFFC94-80BFFC98 000078 0004+00 0/2 0/0 0/0 .rodata          @3984 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3984 = 1.0f;
-COMPILER_STRIP_GATE(80BFFC94, &lit_3984);
+COMPILER_STRIP_GATE(0x80BFFC94, &lit_3984);
 #pragma pop
 
 /* 80BFFC98-80BFFC9C 00007C 0004+00 0/1 0/0 0/0 .rodata          @3985 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3985 = -1.0f;
-COMPILER_STRIP_GATE(80BFFC98, &lit_3985);
+COMPILER_STRIP_GATE(0x80BFFC98, &lit_3985);
 #pragma pop
 
 /* 80BFE52C-80BFEA24 0003EC 04F8+00 1/1 0/0 1/1 .text            BreakSet__15daObjGOMIKABE_cFv */
@@ -651,11 +657,11 @@ asm csXyz::~csXyz() {
 /* ############################################################################################## */
 /* 80BFFC9C-80BFFCA0 000080 0004+00 1/1 0/0 0/0 .rodata          @4011 */
 SECTION_RODATA static f32 const lit_4011 = 7.0f / 10.0f;
-COMPILER_STRIP_GATE(80BFFC9C, &lit_4011);
+COMPILER_STRIP_GATE(0x80BFFC9C, &lit_4011);
 
 /* 80BFFCA0-80BFFCA4 000084 0004+00 1/1 0/0 0/0 .rodata          @4012 */
 SECTION_RODATA static f32 const lit_4012 = 0.5f;
-COMPILER_STRIP_GATE(80BFFCA0, &lit_4012);
+COMPILER_STRIP_GATE(0x80BFFCA0, &lit_4012);
 
 /* 80BFEA60-80BFEB90 000920 0130+00 1/1 0/0 0/0 .text
  * getWaterStream__15daObjGOMIKABE_cFR4cXyzR4cXyzf              */
@@ -675,7 +681,7 @@ asm void daObjGOMIKABE_c::getWaterStream(cXyz& param_0, cXyz& param_1, f32 param
 SECTION_RODATA static u8 const lit_4156[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BFFCA4, &lit_4156);
+COMPILER_STRIP_GATE(0x80BFFCA4, &lit_4156);
 #pragma pop
 
 /* 80BFFCAC-80BFFCB4 000090 0008+00 0/0 0/0 0/0 .rodata          @4157 */
@@ -684,7 +690,7 @@ COMPILER_STRIP_GATE(80BFFCA4, &lit_4156);
 SECTION_RODATA static u8 const lit_4157[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BFFCAC, &lit_4157);
+COMPILER_STRIP_GATE(0x80BFFCAC, &lit_4157);
 #pragma pop
 
 /* 80BFFCB4-80BFFCBC 000098 0008+00 0/0 0/0 0/0 .rodata          @4158 */
@@ -693,28 +699,28 @@ COMPILER_STRIP_GATE(80BFFCAC, &lit_4157);
 SECTION_RODATA static u8 const lit_4158[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BFFCB4, &lit_4158);
+COMPILER_STRIP_GATE(0x80BFFCB4, &lit_4158);
 #pragma pop
 
 /* 80BFFCBC-80BFFCC0 0000A0 0004+00 0/0 0/0 0/0 .rodata          @4159 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4159 = 2.0f;
-COMPILER_STRIP_GATE(80BFFCBC, &lit_4159);
+COMPILER_STRIP_GATE(0x80BFFCBC, &lit_4159);
 #pragma pop
 
 /* 80BFFCC0-80BFFCC4 0000A4 0004+00 0/0 0/0 0/0 .rodata          @4160 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4160 = 3000.0f;
-COMPILER_STRIP_GATE(80BFFCC0, &lit_4160);
+COMPILER_STRIP_GATE(0x80BFFCC0, &lit_4160);
 #pragma pop
 
 /* 80BFFCC4-80BFFCC8 0000A8 0004+00 0/2 0/0 0/0 .rodata          @4278 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4278 = 100.0f;
-COMPILER_STRIP_GATE(80BFFCC4, &lit_4278);
+COMPILER_STRIP_GATE(0x80BFFCC4, &lit_4278);
 #pragma pop
 
 /* 80BFEB90-80BFED54 000A50 01C4+00 1/1 0/0 0/0 .text            SpeedSet__15daObjGOMIKABE_cFv */
@@ -740,7 +746,7 @@ asm void daObjGOMIKABE_c::BreakAction() {
 /* ############################################################################################## */
 /* 80BFFCC8-80BFFCCC 0000AC 0004+00 1/1 0/0 0/0 .rodata          @4308 */
 SECTION_RODATA static f32 const lit_4308 = 7000.0f;
-COMPILER_STRIP_GATE(80BFFCC8, &lit_4308);
+COMPILER_STRIP_GATE(0x80BFFCC8, &lit_4308);
 
 /* 80BFED74-80BFEE24 000C34 00B0+00 1/1 0/0 0/0 .text            CheckCull__15daObjGOMIKABE_cFv */
 #pragma push
@@ -757,14 +763,14 @@ asm void daObjGOMIKABE_c::CheckCull() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4321 = 608.0f;
-COMPILER_STRIP_GATE(80BFFCCC, &lit_4321);
+COMPILER_STRIP_GATE(0x80BFFCCC, &lit_4321);
 #pragma pop
 
 /* 80BFFCD0-80BFFCD4 0000B4 0004+00 0/1 0/0 0/0 .rodata          @4322 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4322 = 448.0f;
-COMPILER_STRIP_GATE(80BFFCD0, &lit_4322);
+COMPILER_STRIP_GATE(0x80BFFCD0, &lit_4322);
 #pragma pop
 
 /* 80BFEE24-80BFEEA8 000CE4 0084+00 1/1 0/0 0/0 .text checkViewArea__15daObjGOMIKABE_cF4cXyz */
@@ -828,6 +834,14 @@ static asm void daObjGOMIKABE_Execute(daObjGOMIKABE_c* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80BFFCF4-80BFFCF4 0000D8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BFFCFD = "M_Gomikabe.bmd";
+SECTION_DEAD static char const* const stringBase_80BFFD0C = "M_Gomikabe_Hahen.bmd";
+#pragma pop
+
 /* 80BFF064-80BFF164 000F24 0100+00 1/0 0/0 0/0 .text            CreateHeap__15daObjGOMIKABE_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -843,28 +857,28 @@ asm void daObjGOMIKABE_c::CreateHeap() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4498 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(80BFFCD4, &lit_4498);
+COMPILER_STRIP_GATE(0x80BFFCD4, &lit_4498);
 #pragma pop
 
 /* 80BFFCD8-80BFFCDC 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4499 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4499 = 30.0f;
-COMPILER_STRIP_GATE(80BFFCD8, &lit_4499);
+COMPILER_STRIP_GATE(0x80BFFCD8, &lit_4499);
 #pragma pop
 
 /* 80BFFCDC-80BFFCE0 0000C0 0004+00 0/2 0/0 0/0 .rodata          @4500 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4500 = -1000.0f;
-COMPILER_STRIP_GATE(80BFFCDC, &lit_4500);
+COMPILER_STRIP_GATE(0x80BFFCDC, &lit_4500);
 #pragma pop
 
 /* 80BFFCE0-80BFFCE4 0000C4 0004+00 0/2 0/0 0/0 .rodata          @4501 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4501 = -500.0f;
-COMPILER_STRIP_GATE(80BFFCE0, &lit_4501);
+COMPILER_STRIP_GATE(0x80BFFCE0, &lit_4501);
 #pragma pop
 
 /* 80BFFCE4-80BFFCEC 0000C8 0008+00 0/1 0/0 0/0 .rodata          @4503 */
@@ -873,7 +887,13 @@ COMPILER_STRIP_GATE(80BFFCE0, &lit_4501);
 SECTION_RODATA static u8 const lit_4503[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BFFCE4, &lit_4503);
+COMPILER_STRIP_GATE(0x80BFFCE4, &lit_4503);
+#pragma pop
+
+/* 80BFFCF4-80BFFCF4 0000D8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BFFD21 = "M_Gomikabe.dzb";
 #pragma pop
 
 /* 80BFFE08-80BFFE0C 000008 0004+00 2/2 0/0 0/0 .bss             None */
@@ -986,7 +1006,7 @@ static bool daObjGOMIKABE_IsDelete(daObjGOMIKABE_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4607 = 500.0f;
-COMPILER_STRIP_GATE(80BFFCEC, &lit_4607);
+COMPILER_STRIP_GATE(0x80BFFCEC, &lit_4607);
 #pragma pop
 
 /* 80BFF8D8-80BFF938 001798 0060+00 1/0 0/0 0/0 .text            Create__15daObjGOMIKABE_cFv */
@@ -1002,7 +1022,7 @@ asm void daObjGOMIKABE_c::Create() {
 /* ############################################################################################## */
 /* 80BFFCF0-80BFFCF4 0000D4 0004+00 1/1 0/0 0/0 .rodata          @4620 */
 SECTION_RODATA static f32 const lit_4620 = -5.0f;
-COMPILER_STRIP_GATE(80BFFCF0, &lit_4620);
+COMPILER_STRIP_GATE(0x80BFFCF0, &lit_4620);
 
 /* 80BFF938-80BFFA00 0017F8 00C8+00 1/0 0/0 0/0 .text Execute__15daObjGOMIKABE_cFPPA3_A4_f */
 #pragma push
@@ -1056,7 +1076,7 @@ asm void __sinit_d_a_obj_gomikabe_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80BFFBBC = (void*)__sinit_d_a_obj_gomikabe_cpp;
+REGISTER_CTORS(0x80BFFBBC, __sinit_d_a_obj_gomikabe_cpp);
 #pragma pop
 
 /* 80BFFBF8-80BFFC00 001AB8 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
@@ -1079,12 +1099,4 @@ static asm void func_80BFFC00() {
 }
 #pragma pop
 
-/* 80BFFCF4-80BFFD30 0000D8 003C+00 3/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BFFCF4 = "GomiKabe";
-SECTION_DEAD static char const* const stringBase_80BFFCFD = "M_Gomikabe.bmd";
-SECTION_DEAD static char const* const stringBase_80BFFD0C = "M_Gomikabe_Hahen.bmd";
-SECTION_DEAD static char const* const stringBase_80BFFD21 = "M_Gomikabe.dzb";
-#pragma pop
+/* 80BFFCF4-80BFFCF4 0000D8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

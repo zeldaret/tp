@@ -134,6 +134,12 @@ asm void __FileWrite() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 803A2318-803A2318 02E978 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803A2318 = "";
+#pragma pop
+
 /* 80450AD8-80450AE0 000558 0002+06 1/1 0/0 0/0 .sdata           @wstringBase0 */
 SECTION_SDATA static u8 data_80450AD8[2 + 6 /* padding */] = {
     0x00,
@@ -158,6 +164,21 @@ asm void __pformatter() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 803A2318-803A2318 02E978 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803A2319 = "-INF";
+SECTION_DEAD static char const* const stringBase_803A231E = "-inf";
+SECTION_DEAD static char const* const stringBase_803A2323 = "INF";
+SECTION_DEAD static char const* const stringBase_803A2327 = "inf";
+SECTION_DEAD static char const* const stringBase_803A232B = "-NAN";
+SECTION_DEAD static char const* const stringBase_803A2330 = "-nan";
+SECTION_DEAD static char const* const stringBase_803A2335 = "NAN";
+SECTION_DEAD static char const* const stringBase_803A2339 = "nan";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803A233D = "\0\0";
+#pragma pop
+
 /* 80456670-80456678 004C70 0008+00 1/1 0/0 0/0 .sdata2          @1089 */
 SECTION_SDATA2 static u8 lit_1089[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -323,19 +344,4 @@ static asm void parse_format() {
 }
 #pragma pop
 
-/* 803A2318-803A2340 02E978 0025+03 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803A2318 = "";
-SECTION_DEAD static char const* const stringBase_803A2319 = "-INF";
-SECTION_DEAD static char const* const stringBase_803A231E = "-inf";
-SECTION_DEAD static char const* const stringBase_803A2323 = "INF";
-SECTION_DEAD static char const* const stringBase_803A2327 = "inf";
-SECTION_DEAD static char const* const stringBase_803A232B = "-NAN";
-SECTION_DEAD static char const* const stringBase_803A2330 = "-nan";
-SECTION_DEAD static char const* const stringBase_803A2335 = "NAN";
-SECTION_DEAD static char const* const stringBase_803A2339 = "nan";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803A233D = "\0\0";
-#pragma pop
+/* 803A2318-803A2318 02E978 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

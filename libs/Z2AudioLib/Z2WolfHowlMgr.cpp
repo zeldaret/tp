@@ -230,16 +230,16 @@ SECTION_SDATA static f32 cPitchCenter = 1.0f;
 /* 80450888-8045088C 000308 0004+00 2/2 0/0 0/0 .sdata           cPitchUp */
 SECTION_SDATA static f32 cPitchUp = 1.1892000436782837f;
 
-/* 8045088C-80450890 -00001 0004+00 4/4 0/0 0/0 .sdata           None */
-SECTION_SDATA static u8 struct_8045088C[4] = {
+/* 8045088C-8045088E -00001 0002+00 1/1 0/0 0/0 .sdata           None */
+SECTION_SDATA static u8 struct_8045088C[2] = {
     /* 8045088C 0001+00 data_8045088C None */
     0x07,
     /* 8045088D 0001+00 data_8045088D None */
     0x07,
-    /* 8045088E 0002+00 data_8045088E None */
-    0x1E,
-    0x00,
 };
+
+/* 8045088E-80450890 00030E 0002+00 4/4 0/0 0/0 .sdata           None */
+SECTION_SDATA static u16 data_8045088E = 0x1E00;
 
 /* 80450890-80450894 000310 0004+00 1/1 0/0 0/0 .sdata           cR_FlatWidth */
 SECTION_SDATA static f32 cR_FlatWidth = 0.9438700079917908f;
@@ -539,5 +539,5 @@ asm void __sinit_Z2WolfHowlMgr_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_802CBB7C = (void*)__sinit_Z2WolfHowlMgr_cpp;
+REGISTER_CTORS(0x802CBB7C, __sinit_Z2WolfHowlMgr_cpp);
 #pragma pop

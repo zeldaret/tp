@@ -66,7 +66,7 @@ lbl_802CB45C:
 /* 802CB468  57 A0 06 3E */	clrlwi r0, r29, 0x18
 /* 802CB46C  7C 00 18 40 */	cmplw r0, r3
 /* 802CB470  41 80 FF CC */	blt lbl_802CB43C
-/* 802CB474  88 6D 83 0E */	lbz r3, struct_8045088C+0x2(r13)
+/* 802CB474  88 6D 83 0E */	lbz r3, data_8045088E(r13)
 /* 802CB478  80 1F 00 88 */	lwz r0, 0x88(r31)
 /* 802CB47C  7C 03 00 50 */	subf r0, r3, r0
 /* 802CB480  7C 00 F0 40 */	cmplw r0, r30
@@ -123,7 +123,7 @@ lbl_802CB528:
 /* 802CB53C  98 1F 00 BC */	stb r0, 0xbc(r31)
 /* 802CB540  48 00 00 F4 */	b lbl_802CB634
 lbl_802CB544:
-/* 802CB544  88 0D 83 0E */	lbz r0, struct_8045088C+0x2(r13)
+/* 802CB544  88 0D 83 0E */	lbz r0, data_8045088E(r13)
 /* 802CB548  7C 04 00 40 */	cmplw r4, r0
 /* 802CB54C  41 80 00 E8 */	blt lbl_802CB634
 /* 802CB550  7F A0 20 50 */	subf r29, r0, r4

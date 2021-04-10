@@ -95,7 +95,7 @@ static asm void fpcDtTg_DeleteQTo(delete_tag_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcDtTg_Do(delete_tag_class* param_0, int (*)(void*)) {
+asm void fpcDtTg_Do(delete_tag_class* param_0, int (*param_1)(void*)) {
     nofralloc
 #include "asm/f_pc/f_pc_delete_tag/fpcDtTg_Do__FP16delete_tag_classPFPv_i.s"
 }

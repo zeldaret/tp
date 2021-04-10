@@ -241,41 +241,48 @@ asm void daObjKKanban_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 80C46F54-80C46F58 000000 0004+00 3/3 0/0 0/0 .rodata          @3715 */
 SECTION_RODATA static f32 const lit_3715 = -950.0f;
-COMPILER_STRIP_GATE(80C46F54, &lit_3715);
+COMPILER_STRIP_GATE(0x80C46F54, &lit_3715);
 
 /* 80C46F58-80C46F5C 000004 0004+00 0/1 0/0 0/0 .rodata          @3716 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3716 = -2150.0f;
-COMPILER_STRIP_GATE(80C46F58, &lit_3716);
+COMPILER_STRIP_GATE(0x80C46F58, &lit_3716);
 #pragma pop
 
 /* 80C46F5C-80C46F60 000008 0004+00 0/1 0/0 0/0 .rodata          @3717 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3717 = -2000.0f;
-COMPILER_STRIP_GATE(80C46F5C, &lit_3717);
+COMPILER_STRIP_GATE(0x80C46F5C, &lit_3717);
 #pragma pop
 
 /* 80C46F60-80C46F64 00000C 0004+00 0/2 0/0 0/0 .rodata          @3718 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3718 = 100.0f;
-COMPILER_STRIP_GATE(80C46F60, &lit_3718);
+COMPILER_STRIP_GATE(0x80C46F60, &lit_3718);
 #pragma pop
 
 /* 80C46F64-80C46F68 000010 0004+00 0/2 0/0 0/0 .rodata          @3719 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3719 = 50.0f;
-COMPILER_STRIP_GATE(80C46F64, &lit_3719);
+COMPILER_STRIP_GATE(0x80C46F64, &lit_3719);
 #pragma pop
 
 /* 80C46F68-80C46F6C 000014 0004+00 0/1 0/0 0/0 .rodata          @3720 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3720 = 800.0f;
-COMPILER_STRIP_GATE(80C46F68, &lit_3720);
+COMPILER_STRIP_GATE(0x80C46F68, &lit_3720);
+#pragma pop
+
+/* 80C46F88-80C46F88 000034 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C46F88 = "H_KKanban";
+SECTION_DEAD static char const* const stringBase_80C46F92 = "move";
 #pragma pop
 
 /* 80C46F98-80C46F9C -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
@@ -311,28 +318,28 @@ SECTION_RODATA static u8 const lit_3747[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C46F6C, &lit_3747);
+COMPILER_STRIP_GATE(0x80C46F6C, &lit_3747);
 #pragma pop
 
 /* 80C46F70-80C46F74 00001C 0004+00 0/1 0/0 0/0 .rodata          @3748 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3748 = -500.0f;
-COMPILER_STRIP_GATE(80C46F70, &lit_3748);
+COMPILER_STRIP_GATE(0x80C46F70, &lit_3748);
 #pragma pop
 
 /* 80C46F74-80C46F78 000020 0004+00 0/1 0/0 0/0 .rodata          @3749 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3749 = -1200.0f;
-COMPILER_STRIP_GATE(80C46F74, &lit_3749);
+COMPILER_STRIP_GATE(0x80C46F74, &lit_3749);
 #pragma pop
 
 /* 80C46F78-80C46F7C 000024 0004+00 0/1 0/0 0/0 .rodata          @3750 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3750 = 760.0f;
-COMPILER_STRIP_GATE(80C46F78, &lit_3750);
+COMPILER_STRIP_GATE(0x80C46F78, &lit_3750);
 #pragma pop
 
 /* 80C46928-80C469F4 000308 00CC+00 1/1 0/0 0/0 .text            setTG__14daObjKKanban_cFv */
@@ -370,21 +377,21 @@ asm void daObjKKanban_c::create1st() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3784 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(80C46F7C, &lit_3784);
+COMPILER_STRIP_GATE(0x80C46F7C, &lit_3784);
 #pragma pop
 
 /* 80C46F80-80C46F84 00002C 0004+00 0/1 0/0 0/0 .rodata          @3785 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3785 = 10.0f;
-COMPILER_STRIP_GATE(80C46F80, &lit_3785);
+COMPILER_STRIP_GATE(0x80C46F80, &lit_3785);
 #pragma pop
 
 /* 80C46F84-80C46F88 000030 0004+00 0/1 0/0 0/0 .rodata          @3786 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3786 = 2000.0f;
-COMPILER_STRIP_GATE(80C46F84, &lit_3786);
+COMPILER_STRIP_GATE(0x80C46F84, &lit_3786);
 #pragma pop
 
 /* 80C46AE4-80C46C1C 0004C4 0138+00 1/0 0/0 0/0 .text            Execute__14daObjKKanban_cFPPA3_A4_f
@@ -550,10 +557,4 @@ static asm void daObjKKanban_MoveBGDraw(daObjKKanban_c* param_0) {
 }
 #pragma pop
 
-/* 80C46F88-80C46F97 000034 000F+00 2/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C46F88 = "H_KKanban";
-SECTION_DEAD static char const* const stringBase_80C46F92 = "move";
-#pragma pop
+/* 80C46F88-80C46F88 000034 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

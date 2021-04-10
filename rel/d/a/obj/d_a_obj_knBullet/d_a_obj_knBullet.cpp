@@ -36,6 +36,8 @@ struct daObjKnBullet_c {
 
 struct dPa_levelEcallBack {};
 
+struct dKy_tevstr_c {};
+
 struct _GXColor {};
 
 struct Vec {};
@@ -44,8 +46,6 @@ struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80266F48 */ void normalizeZP();
 };
-
-struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     struct level_c {
@@ -128,7 +128,7 @@ extern "C" static void daObjKnBullet_Draw__FP15daObjKnBullet_c();
 extern "C" static bool daObjKnBullet_IsDelete__FP15daObjKnBullet_c();
 extern "C" static void daObjKnBullet_Delete__FP15daObjKnBullet_c();
 extern "C" static void daObjKnBullet_create__FP10fopAc_ac_c();
-extern "C" void func_80C4792C(s16*);
+extern "C" void func_80C4792C(void* _this, s16*);
 
 //
 // External References:
@@ -190,7 +190,7 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 SECTION_RODATA static u8 const l_DATA[12] = {
     0x41, 0xF0, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0x00, 0x96, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C47950, &l_DATA);
+COMPILER_STRIP_GATE(0x80C47950, &l_DATA);
 
 /* 80C4795C-80C4799C 00000C 0040+00 1/1 0/0 0/0 .rodata          l_sph_src */
 SECTION_RODATA static u8 const l_sph_src[64] = {
@@ -199,34 +199,34 @@ SECTION_RODATA static u8 const l_sph_src[64] = {
     0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C4795C, &l_sph_src);
+COMPILER_STRIP_GATE(0x80C4795C, &l_sph_src);
 
 /* 80C4799C-80C479A0 00004C 0004+00 0/1 0/0 0/0 .rodata          @3907 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3907 = -300.0f;
-COMPILER_STRIP_GATE(80C4799C, &lit_3907);
+COMPILER_STRIP_GATE(0x80C4799C, &lit_3907);
 #pragma pop
 
 /* 80C479A0-80C479A4 000050 0004+00 0/1 0/0 0/0 .rodata          @3908 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3908 = -50.0f;
-COMPILER_STRIP_GATE(80C479A0, &lit_3908);
+COMPILER_STRIP_GATE(0x80C479A0, &lit_3908);
 #pragma pop
 
 /* 80C479A4-80C479A8 000054 0004+00 0/1 0/0 0/0 .rodata          @3909 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3909 = 300.0f;
-COMPILER_STRIP_GATE(80C479A4, &lit_3909);
+COMPILER_STRIP_GATE(0x80C479A4, &lit_3909);
 #pragma pop
 
 /* 80C479A8-80C479AC 000058 0004+00 0/1 0/0 0/0 .rodata          @3910 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3910 = 450.0f;
-COMPILER_STRIP_GATE(80C479A8, &lit_3910);
+COMPILER_STRIP_GATE(0x80C479A8, &lit_3910);
 #pragma pop
 
 /* 80C479CC-80C479EC -00001 0020+00 1/0 0/0 0/0 .data            l_daObjKnBullet_Method */
@@ -310,18 +310,18 @@ SECTION_RODATA static u8 const l_prticles_id_3986[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C479AC, &l_prticles_id_3986);
+COMPILER_STRIP_GATE(0x80C479AC, &l_prticles_id_3986);
 #pragma pop
 
 /* 80C479B4-80C479B8 000064 0004+00 1/2 0/0 0/0 .rodata          @4021 */
 SECTION_RODATA static f32 const lit_4021 = 1.0f;
-COMPILER_STRIP_GATE(80C479B4, &lit_4021);
+COMPILER_STRIP_GATE(0x80C479B4, &lit_4021);
 
 /* 80C479B8-80C479BC 000068 0004+00 0/1 0/0 0/0 .rodata          @4022 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4022 = -1.0f;
-COMPILER_STRIP_GATE(80C479B8, &lit_4022);
+COMPILER_STRIP_GATE(0x80C479B8, &lit_4022);
 #pragma pop
 
 /* 80C47300-80C47480 000260 0180+00 1/1 0/0 0/0 .text            Execute__15daObjKnBullet_cFv */
@@ -374,14 +374,14 @@ SECTION_RODATA static u8 const lit_4129[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C479BC, &lit_4129);
+COMPILER_STRIP_GATE(0x80C479BC, &lit_4129);
 #pragma pop
 
 /* 80C479C0-80C479C4 000070 0004+00 0/1 0/0 0/0 .rodata          @4130 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4130 = 150.0f;
-COMPILER_STRIP_GATE(80C479C0, &lit_4130);
+COMPILER_STRIP_GATE(0x80C479C0, &lit_4130);
 #pragma pop
 
 /* 80C47558-80C477B4 0004B8 025C+00 1/1 0/0 0/0 .text            col_chk__15daObjKnBullet_cFv */
@@ -399,7 +399,7 @@ asm void daObjKnBullet_c::col_chk() {
 SECTION_RODATA static u8 const l_prticles_id_4141[6] = {
     0x8B, 0x82, 0x8B, 0x83, 0x8B, 0x84,
 };
-COMPILER_STRIP_GATE(80C479C4, &l_prticles_id_4141);
+COMPILER_STRIP_GATE(0x80C479C4, &l_prticles_id_4141);
 
 /* 80C477B4-80C478A4 000714 00F0+00 1/1 0/0 0/0 .text            hitPrtclSet__15daObjKnBullet_cFv */
 #pragma push
@@ -462,7 +462,7 @@ static asm void daObjKnBullet_create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80C4792C(s16* param_0) {
+extern "C" asm void func_80C4792C(void* _this, s16* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_knBullet/d_a_obj_knBullet/func_80C4792C.s"
 }

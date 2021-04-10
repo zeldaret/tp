@@ -311,6 +311,15 @@ asm dCamBGChk_c::dCamBGChk_c() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8037A7E0-8037A7E0 006E40 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A7E0 = "camstyle.dat";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8037A7ED = "\0\0";
+#pragma pop
+
 /* 800884F0-8008858C 082E30 009C+00 0/0 1/1 0/0 .text            __ct__11dCamParam_cFl */
 #pragma push
 #pragma optimization_level 0
@@ -475,11 +484,4 @@ asm dCstick_c::~dCstick_c() {
 }
 #pragma pop
 
-/* 8037A7E0-8037A7F0 006E40 000D+03 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8037A7E0 = "camstyle.dat";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037A7ED = "\0\0";
-#pragma pop
+/* 8037A7E0-8037A7E0 006E40 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

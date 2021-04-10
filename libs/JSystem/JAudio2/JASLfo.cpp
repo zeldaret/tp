@@ -128,5 +128,5 @@ asm void __sinit_JASLfo_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8029BE6C = (void*)__sinit_JASLfo_cpp;
+REGISTER_CTORS(0x8029BE6C, __sinit_JASLfo_cpp);
 #pragma pop

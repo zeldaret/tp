@@ -41,7 +41,7 @@ extern "C" extern u8 g_fopScnTg_SceneList[12 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fopScnIt_Judge(void* (*)(void*, void*), void* param_1) {
+asm void fopScnIt_Judge(void* (*param_0)(void*, void*), void* param_1) {
     nofralloc
 #include "asm/f_op/f_op_scene_iter/fopScnIt_Judge__FPFPvPv_PvPv.s"
 }

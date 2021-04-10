@@ -52,9 +52,9 @@ extern "C" void __dt__20J3DClusterLoader_v15Fv();
 extern "C" void load__20J3DClusterLoader_v15FPCv();
 extern "C" void readCluster__20J3DClusterLoader_v15FPC15J3DClusterBlock();
 extern "C" void __dt__16J3DClusterLoaderFv();
-extern "C" void func_80334644(void const*, void const*);
-extern "C" void func_8033465C(void const*, void const*);
-extern "C" void func_80334674(void const*, void const*);
+extern "C" void func_80334644(void* _this, void const*, void const*);
+extern "C" void func_8033465C(void* _this, void const*, void const*);
+extern "C" void func_80334674(void* _this, void const*, void const*);
 extern "C" extern char const* const J3DClusterLoader__stringBase0;
 
 //
@@ -68,9 +68,9 @@ extern "C" void* __nwa__FUl();
 extern "C" void* __nwa__FUli();
 extern "C" void __dl__FPv();
 extern "C" void __ct__10JUTNameTabFPC7ResNTAB();
-extern "C" void func_802F42C0(void const*, void const*);
-extern "C" void func_8030A530(void const*, void const*);
-extern "C" void func_8030A560(void const*, void const*);
+extern "C" void func_802F42C0(void* _this, void const*, void const*);
+extern "C" void func_8030A530(void* _this, void const*, void const*);
+extern "C" void func_8030A560(void* _this, void const*, void const*);
 extern "C" void __ct__13J3DDeformDataFv();
 extern "C" void __ct__11J3DDeformerFP13J3DDeformData();
 extern "C" void DCStoreRange();
@@ -130,6 +130,15 @@ asm J3DClusterLoader_v15::~J3DClusterLoader_v15() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803A2098-803A2098 02E6F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803A2098 = "Unknown data block\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803A20AC = "\0\0\0";
+#pragma pop
+
 /* 80334244-803342F8 32EB84 00B4+00 2/1 0/0 0/0 .text            load__20J3DClusterLoader_v15FPCv */
 #pragma push
 #pragma optimization_level 0
@@ -166,7 +175,7 @@ asm J3DClusterLoader::~J3DClusterLoader() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80334644(void const* param_0, void const* param_1) {
+extern "C" asm void func_80334644(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DClusterLoader/func_80334644.s"
 }
@@ -177,7 +186,7 @@ extern "C" asm void func_80334644(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8033465C(void const* param_0, void const* param_1) {
+extern "C" asm void func_8033465C(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DClusterLoader/func_8033465C.s"
 }
@@ -188,17 +197,10 @@ extern "C" asm void func_8033465C(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80334674(void const* param_0, void const* param_1) {
+extern "C" asm void func_80334674(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DClusterLoader/func_80334674.s"
 }
 #pragma pop
 
-/* 803A2098-803A20B0 02E6F8 0014+04 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803A2098 = "Unknown data block\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803A20AC = "\0\0\0";
-#pragma pop
+/* 803A2098-803A2098 02E6F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

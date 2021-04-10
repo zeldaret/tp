@@ -31,7 +31,7 @@ template <typename A0>
 struct JSUList {};
 /* JSUList<JKRDvdFile> */
 struct JSUList__template8 {
-    /* 802D9B44 */ void func_802D9B44();
+    /* 802D9B44 */ void func_802D9B44(void* _this);
 };
 
 struct DVDFileInfo {};
@@ -77,7 +77,7 @@ extern "C" void sync__10JKRDvdFileFv();
 extern "C" void doneProcess__10JKRDvdFileFlP11DVDFileInfo();
 extern "C" void getFileSize__10JKRDvdFileCFv();
 extern "C" void __sinit_JKRDvdFile_cpp();
-extern "C" void func_802D9B44();
+extern "C" void func_802D9B44(void* _this);
 extern "C" extern char const* const JKRDvdFile__stringBase0;
 extern "C" u8 sDvdList__10JKRDvdFile[12];
 
@@ -211,6 +211,17 @@ asm void JKRDvdFile::open(s32 param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039D260-8039D260 0298C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D260 = "JKRDvdFile.cpp";
+SECTION_DEAD static char const* const stringBase_8039D26F = "%s";
+SECTION_DEAD static char const* const stringBase_8039D272 = "cannot close DVD file\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039D289 = "\0\0\0\0\0\0";
+#pragma pop
+
 /* 802D9938-802D99B4 2D4278 007C+00 1/0 0/0 0/0 .text            close__10JKRDvdFileFv */
 #pragma push
 #pragma optimization_level 0
@@ -278,26 +289,17 @@ asm void __sinit_JKRDvdFile_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_802D9B00 = (void*)__sinit_JKRDvdFile_cpp;
+REGISTER_CTORS(0x802D9B00, __sinit_JKRDvdFile_cpp);
 #pragma pop
 
 /* 802D9B44-802D9B98 2D4484 0054+00 1/1 0/0 0/0 .text            __dt__21JSUList<10JKRDvdFile>Fv */
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802D9B44() {
+extern "C" asm void func_802D9B44(void* _this) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRDvdFile/func_802D9B44.s"
 }
 #pragma pop
 
-/* 8039D260-8039D290 0298C0 0029+07 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039D260 = "JKRDvdFile.cpp";
-SECTION_DEAD static char const* const stringBase_8039D26F = "%s";
-SECTION_DEAD static char const* const stringBase_8039D272 = "cannot close DVD file\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D289 = "\0\0\0\0\0\0";
-#pragma pop
+/* 8039D260-8039D260 0298C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

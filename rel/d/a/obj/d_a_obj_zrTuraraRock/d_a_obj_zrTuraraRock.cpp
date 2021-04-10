@@ -102,9 +102,9 @@ struct dBgS_AcchCir {
     /* 80D41D94 */ ~dBgS_AcchCir();
 };
 
-struct dBgS {};
-
 struct csXyz {};
+
+struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -252,34 +252,34 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80D423C0-80D423C4 000000 0004+00 2/2 0/0 0/0 .rodata          @3653 */
 SECTION_RODATA static f32 const lit_3653 = 450.0f;
-COMPILER_STRIP_GATE(80D423C0, &lit_3653);
+COMPILER_STRIP_GATE(0x80D423C0, &lit_3653);
 
 /* 80D423C4-80D423C8 000004 0004+00 0/1 0/0 0/0 .rodata          @3654 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3654 = 10.0f;
-COMPILER_STRIP_GATE(80D423C4, &lit_3654);
+COMPILER_STRIP_GATE(0x80D423C4, &lit_3654);
 #pragma pop
 
 /* 80D423C8-80D423CC 000008 0004+00 0/1 0/0 0/0 .rodata          @3655 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3655 = 200.0f;
-COMPILER_STRIP_GATE(80D423C8, &lit_3655);
+COMPILER_STRIP_GATE(0x80D423C8, &lit_3655);
 #pragma pop
 
 /* 80D423CC-80D423D0 00000C 0004+00 0/1 0/0 0/0 .rodata          @3656 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3656 = 5.0f;
-COMPILER_STRIP_GATE(80D423CC, &lit_3656);
+COMPILER_STRIP_GATE(0x80D423CC, &lit_3656);
 #pragma pop
 
 /* 80D423D0-80D423D4 000010 0004+00 0/2 0/0 0/0 .rodata          @3657 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3657 = 3.0f;
-COMPILER_STRIP_GATE(80D423D0, &lit_3657);
+COMPILER_STRIP_GATE(0x80D423D0, &lit_3657);
 #pragma pop
 
 /* 80D42440-80D4244C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -448,11 +448,11 @@ SECTION_RODATA u8 const daZrTuraRc_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x01, 0x00, 0x01, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D423D4, &daZrTuraRc_c::mCcDObjInfo);
+COMPILER_STRIP_GATE(0x80D423D4, &daZrTuraRc_c::mCcDObjInfo);
 
 /* 80D42404-80D42408 000044 0004+00 1/2 0/0 0/0 .rodata          @3684 */
 SECTION_RODATA static f32 const lit_3684 = 1.0f;
-COMPILER_STRIP_GATE(80D42404, &lit_3684);
+COMPILER_STRIP_GATE(0x80D42404, &lit_3684);
 
 /* 80D41934-80D419D4 000194 00A0+00 2/2 0/0 0/0 .text            setBaseMtx__12daZrTuraRc_cFv */
 #pragma push
@@ -462,6 +462,13 @@ asm void daZrTuraRc_c::setBaseMtx() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zrTuraraRock/d_a_obj_zrTuraraRock/setBaseMtx__12daZrTuraRc_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80D42434-80D42434 000074 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D42434 = "M_DRockHn";
 #pragma pop
 
 /* 80D419D4-80D41A40 000234 006C+00 1/1 0/0 0/0 .text            CreateHeap__12daZrTuraRc_cFv */
@@ -477,41 +484,41 @@ asm void daZrTuraRc_c::CreateHeap() {
 /* ############################################################################################## */
 /* 80D42408-80D4240C 000048 0004+00 1/2 0/0 0/0 .rodata          @3774 */
 SECTION_RODATA static f32 const lit_3774 = 130.0f;
-COMPILER_STRIP_GATE(80D42408, &lit_3774);
+COMPILER_STRIP_GATE(0x80D42408, &lit_3774);
 
 /* 80D4240C-80D42410 00004C 0004+00 0/1 0/0 0/0 .rodata          @3775 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3775 = 65.0f;
-COMPILER_STRIP_GATE(80D4240C, &lit_3775);
+COMPILER_STRIP_GATE(0x80D4240C, &lit_3775);
 #pragma pop
 
 /* 80D42410-80D42414 000050 0004+00 0/1 0/0 0/0 .rodata          @3776 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3776 = 10000.0f;
-COMPILER_STRIP_GATE(80D42410, &lit_3776);
+COMPILER_STRIP_GATE(0x80D42410, &lit_3776);
 #pragma pop
 
 /* 80D42414-80D42418 000054 0004+00 0/1 0/0 0/0 .rodata          @3777 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3777 = 9.0f / 10.0f;
-COMPILER_STRIP_GATE(80D42414, &lit_3777);
+COMPILER_STRIP_GATE(0x80D42414, &lit_3777);
 #pragma pop
 
 /* 80D42418-80D4241C 000058 0004+00 0/1 0/0 0/0 .rodata          @3778 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3778 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80D42418, &lit_3778);
+COMPILER_STRIP_GATE(0x80D42418, &lit_3778);
 #pragma pop
 
 /* 80D4241C-80D42420 00005C 0004+00 0/1 0/0 0/0 .rodata          @3779 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3779 = 180.0f;
-COMPILER_STRIP_GATE(80D4241C, &lit_3779);
+COMPILER_STRIP_GATE(0x80D4241C, &lit_3779);
 #pragma pop
 
 /* 80D42420-80D42428 000060 0004+04 0/1 0/0 0/0 .rodata          @3780 */
@@ -522,7 +529,7 @@ SECTION_RODATA static u32 const lit_3780[1 + 1 /* padding */] = {
     /* padding */
     0x00000000,
 };
-COMPILER_STRIP_GATE(80D42420, &lit_3780);
+COMPILER_STRIP_GATE(0x80D42420, &lit_3780);
 #pragma pop
 
 /* 80D42428-80D42430 000068 0008+00 0/1 0/0 0/0 .rodata          @3782 */
@@ -531,7 +538,7 @@ COMPILER_STRIP_GATE(80D42420, &lit_3780);
 SECTION_RODATA static u8 const lit_3782[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D42428, &lit_3782);
+COMPILER_STRIP_GATE(0x80D42428, &lit_3782);
 #pragma pop
 
 /* 80D41A40-80D41D24 0002A0 02E4+00 1/1 0/0 0/0 .text            create__12daZrTuraRc_cFv */
@@ -643,7 +650,7 @@ SECTION_RODATA static u8 const lit_3885[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D42430, &lit_3885);
+COMPILER_STRIP_GATE(0x80D42430, &lit_3885);
 
 /* 80D4204C-80D42084 0008AC 0038+00 1/1 0/0 0/0 .text            init_modeDrop__12daZrTuraRc_cFv */
 #pragma push
@@ -786,7 +793,7 @@ asm void __sinit_d_a_obj_zrTuraraRock_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80D4232C = (void*)__sinit_d_a_obj_zrTuraraRock_cpp;
+REGISTER_CTORS(0x80D4232C, __sinit_d_a_obj_zrTuraraRock_cpp);
 #pragma pop
 
 /* 80D4239C-80D423A4 000BFC 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
@@ -809,9 +816,4 @@ static asm void func_80D423A4() {
 }
 #pragma pop
 
-/* 80D42434-80D4243E 000074 000A+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D42434 = "M_DRockHn";
-#pragma pop
+/* 80D42434-80D42434 000074 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

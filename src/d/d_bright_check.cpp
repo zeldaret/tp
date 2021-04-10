@@ -43,9 +43,9 @@ struct dBrightCheck_c {
     /* 80193594 */ void _draw();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -190,7 +190,7 @@ SECTION_RODATA static u8 const tv_btnA[40] = {
     0x74, 0x32, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x33, 0x63, 0x6F, 0x6E, 0x74,
     0x5F, 0x61, 0x74, 0x34, 0x00, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74,
 };
-COMPILER_STRIP_GATE(80394910, &tv_btnA);
+COMPILER_STRIP_GATE(0x80394910, &tv_btnA);
 
 /* 80394938-80394960 020F98 0028+00 0/1 0/0 0/0 .rodata          ftv_btnA$3745 */
 #pragma push
@@ -200,7 +200,7 @@ SECTION_RODATA static u8 const ftv_btnA[40] = {
     0x74, 0x32, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x33, 0x66, 0x6F, 0x6E, 0x74,
     0x5F, 0x61, 0x74, 0x34, 0x00, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74,
 };
-COMPILER_STRIP_GATE(80394938, &ftv_btnA);
+COMPILER_STRIP_GATE(0x80394938, &ftv_btnA);
 #pragma pop
 
 /* 80394960-803949B0 020FC0 0050+00 0/1 0/0 0/0 .rodata          txTV$3751 */
@@ -213,7 +213,7 @@ SECTION_RODATA static u8 const txTV[80] = {
     0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x37, 0x31, 0x00, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x33,
     0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x38, 0x31, 0x00, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x34,
 };
-COMPILER_STRIP_GATE(80394960, &txTV);
+COMPILER_STRIP_GATE(0x80394960, &txTV);
 #pragma pop
 
 /* 803949B0-803949D8 021010 0028+00 0/1 0/0 0/0 .rodata          txTVhide$3752 */
@@ -224,7 +224,14 @@ SECTION_RODATA static u8 const txTVhide[40] = {
     0x39, 0x6E, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x31, 0x30, 0x6E, 0x00, 0x6D, 0x65, 0x6E,
     0x75, 0x5F, 0x37, 0x6E, 0x00, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x38, 0x6E,
 };
-COMPILER_STRIP_GATE(803949B0, &txTVhide);
+COMPILER_STRIP_GATE(0x803949B0, &txTVhide);
+#pragma pop
+
+/* 803949D8-803949D8 021038 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803949D8 = "zelda_option_check.blo";
+SECTION_DEAD static char const* const stringBase_803949EF = "";
 #pragma pop
 
 /* 80453A00-80453A04 002000 0004+00 2/2 0/0 0/0 .sdata2          @3792 */
@@ -313,7 +320,7 @@ asm void __sinit_d_bright_check_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80193608 = (void*)__sinit_d_bright_check_cpp;
+REGISTER_CTORS(0x80193608, __sinit_d_bright_check_cpp);
 #pragma pop
 
 /* 80193648-80193690 18DF88 0048+00 1/0 0/0 0/0 .text            __dt__19dDlst_BrightCheck_cFv */
@@ -326,10 +333,4 @@ asm dDlst_BrightCheck_c::~dDlst_BrightCheck_c() {
 }
 #pragma pop
 
-/* 803949D8-803949F0 021038 0018+00 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803949D8 = "zelda_option_check.blo";
-SECTION_DEAD static char const* const stringBase_803949EF = "";
-#pragma pop
+/* 803949D8-803949D8 021038 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

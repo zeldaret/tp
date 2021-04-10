@@ -112,7 +112,7 @@ template <typename A0>
 struct JSUList {};
 /* JSUList<JAIStream> */
 struct JSUList__template2 {
-    /* 802B9994 */ void func_802B9994() /* const */;
+    /* 802B9994 */ void func_802B9994(void* _this) /* const */;
 };
 
 struct JAUSoundTable {
@@ -154,7 +154,7 @@ extern "C" void __ct__10JAISoundIDFRC10JAISoundID();
 extern "C" void setFieldBgmPlay__8Z2SeqMgrFb();
 extern "C" void isActive__12JAIStreamMgrCFv();
 extern "C" void getID__8JAISoundCFv();
-extern "C" void func_802B9994();
+extern "C" void func_802B9994(void* _this);
 extern "C" static void dComIfGs_getStartPoint__Fv();
 extern "C" void unMuteSceneBgm__8Z2SeqMgrFUl();
 extern "C" void muteSceneBgm__8Z2SeqMgrFUlf();
@@ -317,6 +317,95 @@ asm void Z2SceneMgr::setFadeInStart(u8 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8039BFA8-8039BFA8 028608 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039BFA8 = "F_SP00";
+SECTION_DEAD static char const* const stringBase_8039BFAF = "F_SP103";
+SECTION_DEAD static char const* const stringBase_8039BFB7 = "R_SP01";
+SECTION_DEAD static char const* const stringBase_8039BFBE = "F_SP104";
+SECTION_DEAD static char const* const stringBase_8039BFC6 = "R_SP107";
+SECTION_DEAD static char const* const stringBase_8039BFCE = "F_SP108";
+SECTION_DEAD static char const* const stringBase_8039BFD6 = "R_SP108";
+SECTION_DEAD static char const* const stringBase_8039BFDE = "F_SP117";
+SECTION_DEAD static char const* const stringBase_8039BFE6 = "F_SP109";
+SECTION_DEAD static char const* const stringBase_8039BFEE = "R_SP109";
+SECTION_DEAD static char const* const stringBase_8039BFF6 = "R_SP209";
+SECTION_DEAD static char const* const stringBase_8039BFFE = "F_SP110";
+SECTION_DEAD static char const* const stringBase_8039C006 = "R_SP110";
+SECTION_DEAD static char const* const stringBase_8039C00E = "F_SP111";
+SECTION_DEAD static char const* const stringBase_8039C016 = "F_SP128";
+SECTION_DEAD static char const* const stringBase_8039C01E = "R_SP128";
+SECTION_DEAD static char const* const stringBase_8039C026 = "F_SP115";
+SECTION_DEAD static char const* const stringBase_8039C02E = "F_SP112";
+SECTION_DEAD static char const* const stringBase_8039C036 = "F_SP126";
+SECTION_DEAD static char const* const stringBase_8039C03E = "F_SP127";
+SECTION_DEAD static char const* const stringBase_8039C046 = "R_SP127";
+SECTION_DEAD static char const* const stringBase_8039C04E = "F_SP113";
+SECTION_DEAD static char const* const stringBase_8039C056 = "F_SP116";
+SECTION_DEAD static char const* const stringBase_8039C05E = "R_SP116";
+SECTION_DEAD static char const* const stringBase_8039C066 = "R_SP160";
+SECTION_DEAD static char const* const stringBase_8039C06E = "R_SP161";
+SECTION_DEAD static char const* const stringBase_8039C076 = "F_SP114";
+SECTION_DEAD static char const* const stringBase_8039C07E = "F_SP118";
+SECTION_DEAD static char const* const stringBase_8039C086 = "F_SP124";
+SECTION_DEAD static char const* const stringBase_8039C08E = "F_SP125";
+SECTION_DEAD static char const* const stringBase_8039C096 = "F_SP121";
+SECTION_DEAD static char const* const stringBase_8039C09E = "F_SP122";
+SECTION_DEAD static char const* const stringBase_8039C0A6 = "F_SP123";
+SECTION_DEAD static char const* const stringBase_8039C0AE = "F_SP200";
+SECTION_DEAD static char const* const stringBase_8039C0B6 = "F_SP102";
+SECTION_DEAD static char const* const stringBase_8039C0BE = "";
+SECTION_DEAD static char const* const stringBase_8039C0BF = "R_SP300";
+SECTION_DEAD static char const* const stringBase_8039C0C7 = "R_SP301";
+SECTION_DEAD static char const* const stringBase_8039C0CF = "T_ENEMY";
+SECTION_DEAD static char const* const stringBase_8039C0D7 = "D_MN54";
+SECTION_DEAD static char const* const stringBase_8039C0DE = "D_MN05";
+SECTION_DEAD static char const* const stringBase_8039C0E5 = "D_MN05B";
+SECTION_DEAD static char const* const stringBase_8039C0ED = "D_MN05A";
+SECTION_DEAD static char const* const stringBase_8039C0F5 = "D_MN04";
+SECTION_DEAD static char const* const stringBase_8039C0FC = "D_MN04B";
+SECTION_DEAD static char const* const stringBase_8039C104 = "D_MN04A";
+SECTION_DEAD static char const* const stringBase_8039C10C = "D_MN01";
+SECTION_DEAD static char const* const stringBase_8039C113 = "D_MN01B";
+SECTION_DEAD static char const* const stringBase_8039C11B = "D_MN01A";
+SECTION_DEAD static char const* const stringBase_8039C123 = "D_MN10";
+SECTION_DEAD static char const* const stringBase_8039C12A = "D_MN10B";
+SECTION_DEAD static char const* const stringBase_8039C132 = "D_MN10A";
+SECTION_DEAD static char const* const stringBase_8039C13A = "D_MN11";
+SECTION_DEAD static char const* const stringBase_8039C141 = "D_MN11B";
+SECTION_DEAD static char const* const stringBase_8039C149 = "D_MN11A";
+SECTION_DEAD static char const* const stringBase_8039C151 = "D_MN06";
+SECTION_DEAD static char const* const stringBase_8039C158 = "D_MN06B";
+SECTION_DEAD static char const* const stringBase_8039C160 = "D_MN06A";
+SECTION_DEAD static char const* const stringBase_8039C168 = "D_MN07";
+SECTION_DEAD static char const* const stringBase_8039C16F = "D_MN07B";
+SECTION_DEAD static char const* const stringBase_8039C177 = "D_MN07A";
+SECTION_DEAD static char const* const stringBase_8039C17F = "D_MN08";
+SECTION_DEAD static char const* const stringBase_8039C186 = "D_MN08B";
+SECTION_DEAD static char const* const stringBase_8039C18E = "D_MN08C";
+SECTION_DEAD static char const* const stringBase_8039C196 = "D_MN08A";
+SECTION_DEAD static char const* const stringBase_8039C19E = "D_MN08D";
+SECTION_DEAD static char const* const stringBase_8039C1A6 = "D_MN09";
+SECTION_DEAD static char const* const stringBase_8039C1AD = "D_MN09A";
+SECTION_DEAD static char const* const stringBase_8039C1B5 = "D_MN09B";
+SECTION_DEAD static char const* const stringBase_8039C1BD = "D_MN09C";
+SECTION_DEAD static char const* const stringBase_8039C1C5 = "D_SB00";
+SECTION_DEAD static char const* const stringBase_8039C1CC = "D_SB01";
+SECTION_DEAD static char const* const stringBase_8039C1D3 = "D_SB02";
+SECTION_DEAD static char const* const stringBase_8039C1DA = "D_SB03";
+SECTION_DEAD static char const* const stringBase_8039C1E1 = "D_SB04";
+SECTION_DEAD static char const* const stringBase_8039C1E8 = "D_SB05";
+SECTION_DEAD static char const* const stringBase_8039C1EF = "D_SB06";
+SECTION_DEAD static char const* const stringBase_8039C1F6 = "D_SB07";
+SECTION_DEAD static char const* const stringBase_8039C1FD = "D_SB08";
+SECTION_DEAD static char const* const stringBase_8039C204 = "D_SB09";
+SECTION_DEAD static char const* const stringBase_8039C20B = "D_SB10";
+SECTION_DEAD static char const* const stringBase_8039C212 = "force_end";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039C21C = "\0\0\0";
+#pragma pop
+
 /* 803CA5C0-803CA704 -00001 0144+00 1/1 0/0 0/0 .data            sSpotName */
 SECTION_DATA static void* sSpotName[81] = {
     (void*)&Z2SceneMgr__stringBase0,
@@ -682,7 +771,7 @@ asm void JAISound::getID() const {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802B9994() /* const */ {
+extern "C" asm void func_802B9994(void* _this) /* const */ {
     nofralloc
 #include "asm/Z2AudioLib/Z2SceneMgr/func_802B9994.s"
 }
@@ -769,15 +858,10 @@ asm void Z2SeqMgr::setWindStoneVol(f32 param_0, u32 param_1) {
 }
 #pragma pop
 
-/* 802B9B60-802B9B68 2B44A0 0008+00 1/1 0/0 0/0 .text            __ct__10JAISoundIDFUl */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm JAISoundID::JAISoundID(u32 param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2SceneMgr/__ct__10JAISoundIDFUl.s"
+/* 802B9B60-802B9B68 -00001 0008+00 0/0 0/0 0/0 .text            __ct__10JAISoundIDFUl */
+JAISoundID::JAISoundID(u32 param_0) {
+    *(u32*)this = (u32)(param_0);
 }
-#pragma pop
 
 /* 802B9B68-802B9C50 2B44A8 00E8+00 1/1 0/0 0/0 .text
  * sceneChange__10Z2SceneMgrF10JAISoundIDUcUcUcUcUcb            */
@@ -1023,92 +1107,4 @@ asm void Z2SceneMgr::loadBgmWave(u32 param_0) {
 }
 #pragma pop
 
-/* 8039BFA8-8039C220 028608 0274+04 2/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039BFA8 = "F_SP00";
-SECTION_DEAD static char const* const stringBase_8039BFAF = "F_SP103";
-SECTION_DEAD static char const* const stringBase_8039BFB7 = "R_SP01";
-SECTION_DEAD static char const* const stringBase_8039BFBE = "F_SP104";
-SECTION_DEAD static char const* const stringBase_8039BFC6 = "R_SP107";
-SECTION_DEAD static char const* const stringBase_8039BFCE = "F_SP108";
-SECTION_DEAD static char const* const stringBase_8039BFD6 = "R_SP108";
-SECTION_DEAD static char const* const stringBase_8039BFDE = "F_SP117";
-SECTION_DEAD static char const* const stringBase_8039BFE6 = "F_SP109";
-SECTION_DEAD static char const* const stringBase_8039BFEE = "R_SP109";
-SECTION_DEAD static char const* const stringBase_8039BFF6 = "R_SP209";
-SECTION_DEAD static char const* const stringBase_8039BFFE = "F_SP110";
-SECTION_DEAD static char const* const stringBase_8039C006 = "R_SP110";
-SECTION_DEAD static char const* const stringBase_8039C00E = "F_SP111";
-SECTION_DEAD static char const* const stringBase_8039C016 = "F_SP128";
-SECTION_DEAD static char const* const stringBase_8039C01E = "R_SP128";
-SECTION_DEAD static char const* const stringBase_8039C026 = "F_SP115";
-SECTION_DEAD static char const* const stringBase_8039C02E = "F_SP112";
-SECTION_DEAD static char const* const stringBase_8039C036 = "F_SP126";
-SECTION_DEAD static char const* const stringBase_8039C03E = "F_SP127";
-SECTION_DEAD static char const* const stringBase_8039C046 = "R_SP127";
-SECTION_DEAD static char const* const stringBase_8039C04E = "F_SP113";
-SECTION_DEAD static char const* const stringBase_8039C056 = "F_SP116";
-SECTION_DEAD static char const* const stringBase_8039C05E = "R_SP116";
-SECTION_DEAD static char const* const stringBase_8039C066 = "R_SP160";
-SECTION_DEAD static char const* const stringBase_8039C06E = "R_SP161";
-SECTION_DEAD static char const* const stringBase_8039C076 = "F_SP114";
-SECTION_DEAD static char const* const stringBase_8039C07E = "F_SP118";
-SECTION_DEAD static char const* const stringBase_8039C086 = "F_SP124";
-SECTION_DEAD static char const* const stringBase_8039C08E = "F_SP125";
-SECTION_DEAD static char const* const stringBase_8039C096 = "F_SP121";
-SECTION_DEAD static char const* const stringBase_8039C09E = "F_SP122";
-SECTION_DEAD static char const* const stringBase_8039C0A6 = "F_SP123";
-SECTION_DEAD static char const* const stringBase_8039C0AE = "F_SP200";
-SECTION_DEAD static char const* const stringBase_8039C0B6 = "F_SP102";
-SECTION_DEAD static char const* const stringBase_8039C0BE = "";
-SECTION_DEAD static char const* const stringBase_8039C0BF = "R_SP300";
-SECTION_DEAD static char const* const stringBase_8039C0C7 = "R_SP301";
-SECTION_DEAD static char const* const stringBase_8039C0CF = "T_ENEMY";
-SECTION_DEAD static char const* const stringBase_8039C0D7 = "D_MN54";
-SECTION_DEAD static char const* const stringBase_8039C0DE = "D_MN05";
-SECTION_DEAD static char const* const stringBase_8039C0E5 = "D_MN05B";
-SECTION_DEAD static char const* const stringBase_8039C0ED = "D_MN05A";
-SECTION_DEAD static char const* const stringBase_8039C0F5 = "D_MN04";
-SECTION_DEAD static char const* const stringBase_8039C0FC = "D_MN04B";
-SECTION_DEAD static char const* const stringBase_8039C104 = "D_MN04A";
-SECTION_DEAD static char const* const stringBase_8039C10C = "D_MN01";
-SECTION_DEAD static char const* const stringBase_8039C113 = "D_MN01B";
-SECTION_DEAD static char const* const stringBase_8039C11B = "D_MN01A";
-SECTION_DEAD static char const* const stringBase_8039C123 = "D_MN10";
-SECTION_DEAD static char const* const stringBase_8039C12A = "D_MN10B";
-SECTION_DEAD static char const* const stringBase_8039C132 = "D_MN10A";
-SECTION_DEAD static char const* const stringBase_8039C13A = "D_MN11";
-SECTION_DEAD static char const* const stringBase_8039C141 = "D_MN11B";
-SECTION_DEAD static char const* const stringBase_8039C149 = "D_MN11A";
-SECTION_DEAD static char const* const stringBase_8039C151 = "D_MN06";
-SECTION_DEAD static char const* const stringBase_8039C158 = "D_MN06B";
-SECTION_DEAD static char const* const stringBase_8039C160 = "D_MN06A";
-SECTION_DEAD static char const* const stringBase_8039C168 = "D_MN07";
-SECTION_DEAD static char const* const stringBase_8039C16F = "D_MN07B";
-SECTION_DEAD static char const* const stringBase_8039C177 = "D_MN07A";
-SECTION_DEAD static char const* const stringBase_8039C17F = "D_MN08";
-SECTION_DEAD static char const* const stringBase_8039C186 = "D_MN08B";
-SECTION_DEAD static char const* const stringBase_8039C18E = "D_MN08C";
-SECTION_DEAD static char const* const stringBase_8039C196 = "D_MN08A";
-SECTION_DEAD static char const* const stringBase_8039C19E = "D_MN08D";
-SECTION_DEAD static char const* const stringBase_8039C1A6 = "D_MN09";
-SECTION_DEAD static char const* const stringBase_8039C1AD = "D_MN09A";
-SECTION_DEAD static char const* const stringBase_8039C1B5 = "D_MN09B";
-SECTION_DEAD static char const* const stringBase_8039C1BD = "D_MN09C";
-SECTION_DEAD static char const* const stringBase_8039C1C5 = "D_SB00";
-SECTION_DEAD static char const* const stringBase_8039C1CC = "D_SB01";
-SECTION_DEAD static char const* const stringBase_8039C1D3 = "D_SB02";
-SECTION_DEAD static char const* const stringBase_8039C1DA = "D_SB03";
-SECTION_DEAD static char const* const stringBase_8039C1E1 = "D_SB04";
-SECTION_DEAD static char const* const stringBase_8039C1E8 = "D_SB05";
-SECTION_DEAD static char const* const stringBase_8039C1EF = "D_SB06";
-SECTION_DEAD static char const* const stringBase_8039C1F6 = "D_SB07";
-SECTION_DEAD static char const* const stringBase_8039C1FD = "D_SB08";
-SECTION_DEAD static char const* const stringBase_8039C204 = "D_SB09";
-SECTION_DEAD static char const* const stringBase_8039C20B = "D_SB10";
-SECTION_DEAD static char const* const stringBase_8039C212 = "force_end";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039C21C = "\0\0\0";
-#pragma pop
+/* 8039BFA8-8039BFA8 028608 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

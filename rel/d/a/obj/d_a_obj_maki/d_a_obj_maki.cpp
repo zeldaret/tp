@@ -19,9 +19,9 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTevRegKey {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTevRegKey {};
 
 struct mDoExt_brkAnm {
     /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
@@ -65,9 +65,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -118,9 +118,9 @@ struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -335,39 +335,39 @@ static asm void daObj_Maki_Draw(obj_maki_class* param_0) {
 /* ############################################################################################## */
 /* 80C90934-80C90938 000000 0004+00 3/3 0/0 0/0 .rodata          @3928 */
 SECTION_RODATA static f32 const lit_3928 = 1.0f;
-COMPILER_STRIP_GATE(80C90934, &lit_3928);
+COMPILER_STRIP_GATE(0x80C90934, &lit_3928);
 
 /* 80C90938-80C9093C 000004 0004+00 0/1 0/0 0/0 .rodata          @3929 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3929 = -1.0f;
-COMPILER_STRIP_GATE(80C90938, &lit_3929);
+COMPILER_STRIP_GATE(0x80C90938, &lit_3929);
 #pragma pop
 
 /* 80C9093C-80C90940 000008 0004+00 0/1 0/0 0/0 .rodata          @3930 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3930 = -150.0f;
-COMPILER_STRIP_GATE(80C9093C, &lit_3930);
+COMPILER_STRIP_GATE(0x80C9093C, &lit_3930);
 #pragma pop
 
 /* 80C90940-80C90944 00000C 0004+00 0/1 0/0 0/0 .rodata          @3931 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3931 = 250.0f;
-COMPILER_STRIP_GATE(80C90940, &lit_3931);
+COMPILER_STRIP_GATE(0x80C90940, &lit_3931);
 #pragma pop
 
 /* 80C90944-80C90948 000010 0004+00 0/1 0/0 0/0 .rodata          @3932 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3932 = 50.0f;
-COMPILER_STRIP_GATE(80C90944, &lit_3932);
+COMPILER_STRIP_GATE(0x80C90944, &lit_3932);
 #pragma pop
 
 /* 80C90948-80C9094C 000014 0004+00 1/2 0/0 0/0 .rodata          @3933 */
 SECTION_RODATA static f32 const lit_3933 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80C90948, &lit_3933);
+COMPILER_STRIP_GATE(0x80C90948, &lit_3933);
 
 /* 80C9094C-80C90950 000018 0004+00 0/1 0/0 0/0 .rodata          @3934 */
 #pragma push
@@ -378,14 +378,14 @@ SECTION_RODATA static u8 const lit_3934[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C9094C, &lit_3934);
+COMPILER_STRIP_GATE(0x80C9094C, &lit_3934);
 #pragma pop
 
 /* 80C90950-80C90954 00001C 0004+00 0/1 0/0 0/0 .rodata          @3935 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3935 = 20000.0f;
-COMPILER_STRIP_GATE(80C90950, &lit_3935);
+COMPILER_STRIP_GATE(0x80C90950, &lit_3935);
 #pragma pop
 
 /* 80C8FEDC-80C90378 0001BC 049C+00 2/1 0/0 0/0 .text daObj_Maki_Execute__FP14obj_maki_class */
@@ -404,6 +404,12 @@ static bool daObj_Maki_IsDelete(obj_maki_class* param_0) {
 }
 
 /* ############################################################################################## */
+/* 80C90960-80C90960 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C90960 = "Obj_maki";
+#pragma pop
+
 /* 80C90A50-80C90A54 000008 0004+00 2/2 0/0 0/0 .bss             None */
 static u8 data_80C90A50[4];
 
@@ -442,21 +448,27 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4075 = -500.0f;
-COMPILER_STRIP_GATE(80C90954, &lit_4075);
+COMPILER_STRIP_GATE(0x80C90954, &lit_4075);
 #pragma pop
 
 /* 80C90958-80C9095C 000024 0004+00 0/1 0/0 0/0 .rodata          @4076 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4076 = -200.0f;
-COMPILER_STRIP_GATE(80C90958, &lit_4076);
+COMPILER_STRIP_GATE(0x80C90958, &lit_4076);
 #pragma pop
 
 /* 80C9095C-80C90960 000028 0004+00 0/1 0/0 0/0 .rodata          @4077 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4077 = 500.0f;
-COMPILER_STRIP_GATE(80C9095C, &lit_4077);
+COMPILER_STRIP_GATE(0x80C9095C, &lit_4077);
+#pragma pop
+
+/* 80C90960-80C90960 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C90969 = "F_SP118";
 #pragma pop
 
 /* 80C90A54-80C90A60 00000C 000C+00 1/1 0/0 0/0 .bss             @3764 */
@@ -518,13 +530,7 @@ asm void __sinit_d_a_obj_maki_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C908E4 = (void*)__sinit_d_a_obj_maki_cpp;
+REGISTER_CTORS(0x80C908E4, __sinit_d_a_obj_maki_cpp);
 #pragma pop
 
-/* 80C90960-80C90971 00002C 0011+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C90960 = "Obj_maki";
-SECTION_DEAD static char const* const stringBase_80C90969 = "F_SP118";
-#pragma pop
+/* 80C90960-80C90960 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

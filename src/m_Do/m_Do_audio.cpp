@@ -39,10 +39,6 @@ struct mDoAud_zelAudio_c {
     /* 80007368 */ ~mDoAud_zelAudio_c();
 };
 
-struct Z2StatusMgr {
-    /* 802B6758 */ void setEventBit(void*);
-};
-
 struct Z2SceneMgr {
     /* 802B697C */ void setFadeOutStart(u8);
     /* 802B6A18 */ void setFadeInStart(u8);
@@ -65,11 +61,11 @@ struct JGeometry {
     struct TVec3__template0 {};
 };
 
-struct JAISoundID {};
-
 struct JKRSolidHeap {
     /* 802D0BF4 */ void adjustSize();
 };
+
+struct JAISoundID {};
 
 struct JAISoundHandle {
     /* 80007838 */ ~JAISoundHandle();
@@ -232,6 +228,17 @@ asm void mDoAud_zelAudio_c::reset() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80373D68-80373D68 0003C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80373D68 = "/Audiores/Z2Sound.baa";
+SECTION_DEAD static char const* const stringBase_80373D7E = "/Audiores/Seqs/Z2SoundSeqs.arc";
+SECTION_DEAD static char const* const stringBase_80373D9D =
+    "ヒープ確保失敗につきオーディオ初期化できません\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80373DCD = "\0\0";
+#pragma pop
+
 /* 803DBF40-803DBF4C 008C60 000C+00 1/1 0/1 0/0 .bss             @3620 */
 static u8 lit_3620[12];
 
@@ -348,7 +355,7 @@ asm void __sinit_m_Do_audio_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80007318 = (void*)__sinit_m_Do_audio_cpp;
+REGISTER_CTORS(0x80007318, __sinit_m_Do_audio_cpp);
 #pragma pop
 
 /* 80007368-800073C8 001CA8 0060+00 1/1 0/0 0/0 .text            __dt__17mDoAud_zelAudio_cFv */
@@ -412,14 +419,4 @@ asm JAISeCategoryMgr::~JAISeCategoryMgr() {
 }
 #pragma pop
 
-/* 80373D68-80373DD0 0003C8 0065+03 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80373D68 = "/Audiores/Z2Sound.baa";
-SECTION_DEAD static char const* const stringBase_80373D7E = "/Audiores/Seqs/Z2SoundSeqs.arc";
-SECTION_DEAD static char const* const stringBase_80373D9D =
-    "ヒープ確保失敗につきオーディオ初期化できません\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80373DCD = "\0\0";
-#pragma pop
+/* 80373D68-80373D68 0003C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

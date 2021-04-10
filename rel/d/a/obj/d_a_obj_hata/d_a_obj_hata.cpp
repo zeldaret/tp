@@ -163,6 +163,12 @@ asm csXyz::~csXyz() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80C194C0-80C194C0 000048 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C194C0 = "Hata";
+#pragma pop
+
 /* 80C194C8-80C194CC -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_hata__stringBase0;
 
@@ -283,11 +289,11 @@ asm void daObjHata_c::setModelMtx() {
 /* ############################################################################################## */
 /* 80C19478-80C1947C 000000 0004+00 2/2 0/0 0/0 .rodata          @3788 */
 SECTION_RODATA static f32 const lit_3788 = 1280.0f;
-COMPILER_STRIP_GATE(80C19478, &lit_3788);
+COMPILER_STRIP_GATE(0x80C19478, &lit_3788);
 
 /* 80C1947C-80C19480 000004 0004+00 1/2 0/0 0/0 .rodata          @3789 */
 SECTION_RODATA static f32 const lit_3789 = 1.0f;
-COMPILER_STRIP_GATE(80C1947C, &lit_3789);
+COMPILER_STRIP_GATE(0x80C1947C, &lit_3789);
 
 /* 80C190FC-80C1919C 0005BC 00A0+00 1/1 0/0 0/0 .text            init__11daObjHata_cFv */
 #pragma push
@@ -306,7 +312,7 @@ asm void daObjHata_c::init() {
 SECTION_RODATA static u8 const SING[12] = {
     0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x01,
 };
-COMPILER_STRIP_GATE(80C19480, &SING);
+COMPILER_STRIP_GATE(0x80C19480, &SING);
 #pragma pop
 
 /* 80C1948C-80C19498 000014 000C+00 0/1 0/0 0/0 .rodata          AIM_ANGLE_X$3794 */
@@ -315,7 +321,7 @@ COMPILER_STRIP_GATE(80C19480, &SING);
 SECTION_RODATA static u8 const AIM_ANGLE_X[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xBC, 0x00, 0x00, 0x02, 0xBC,
 };
-COMPILER_STRIP_GATE(80C1948C, &AIM_ANGLE_X);
+COMPILER_STRIP_GATE(0x80C1948C, &AIM_ANGLE_X);
 #pragma pop
 
 /* 80C19498-80C194A4 000020 000C+00 0/1 0/0 0/0 .rodata          STEP_ANGLE_X$3795 */
@@ -324,28 +330,28 @@ COMPILER_STRIP_GATE(80C1948C, &AIM_ANGLE_X);
 SECTION_RODATA static u8 const STEP_ANGLE_X[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3C, 0x00, 0x00, 0x00, 0x5A,
 };
-COMPILER_STRIP_GATE(80C19498, &STEP_ANGLE_X);
+COMPILER_STRIP_GATE(0x80C19498, &STEP_ANGLE_X);
 #pragma pop
 
 /* 80C194A4-80C194A8 00002C 0004+00 0/1 0/0 0/0 .rodata          @3823 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3823 = 50.0f;
-COMPILER_STRIP_GATE(80C194A4, &lit_3823);
+COMPILER_STRIP_GATE(0x80C194A4, &lit_3823);
 #pragma pop
 
 /* 80C194A8-80C194AC 000030 0004+00 0/1 0/0 0/0 .rodata          @3824 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3824 = 1500.0f;
-COMPILER_STRIP_GATE(80C194A8, &lit_3824);
+COMPILER_STRIP_GATE(0x80C194A8, &lit_3824);
 #pragma pop
 
 /* 80C194AC-80C194B0 000034 0004+00 0/1 0/0 0/0 .rodata          @3825 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3825 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80C194AC, &lit_3825);
+COMPILER_STRIP_GATE(0x80C194AC, &lit_3825);
 #pragma pop
 
 /* 80C194B0-80C194B8 000038 0004+04 0/1 0/0 0/0 .rodata          @3826 */
@@ -356,7 +362,7 @@ SECTION_RODATA static f32 const lit_3826[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80C194B0, &lit_3826);
+COMPILER_STRIP_GATE(0x80C194B0, &lit_3826);
 #pragma pop
 
 /* 80C194B8-80C194C0 000040 0008+00 0/1 0/0 0/0 .rodata          @3828 */
@@ -365,7 +371,7 @@ COMPILER_STRIP_GATE(80C194B0, &lit_3826);
 SECTION_RODATA static u8 const lit_3828[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C194B8, &lit_3828);
+COMPILER_STRIP_GATE(0x80C194B8, &lit_3828);
 #pragma pop
 
 /* 80C1919C-80C193BC 00065C 0220+00 1/1 0/0 0/0 .text            moveSwing__11daObjHata_cFv */
@@ -421,9 +427,4 @@ static asm void daObjHata_draw(daObjHata_c* param_0) {
 }
 #pragma pop
 
-/* 80C194C0-80C194C5 000048 0005+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C194C0 = "Hata";
-#pragma pop
+/* 80C194C0-80C194C0 000048 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

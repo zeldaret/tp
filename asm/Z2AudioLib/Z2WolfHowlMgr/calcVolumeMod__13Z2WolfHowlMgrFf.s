@@ -8,7 +8,7 @@ lbl_802CABEC:
 /* 802CAC04  28 04 00 00 */	cmplwi r4, 0
 /* 802CAC08  41 82 00 94 */	beq lbl_802CAC9C
 /* 802CAC0C  80 7F 00 88 */	lwz r3, 0x88(r31)
-/* 802CAC10  88 0D 83 0E */	lbz r0, struct_8045088C+0x2(r13)
+/* 802CAC10  88 0D 83 0E */	lbz r0, data_8045088E(r13)
 /* 802CAC14  7C 03 00 40 */	cmplw r3, r0
 /* 802CAC18  40 80 00 18 */	bge lbl_802CAC30
 /* 802CAC1C  38 64 00 48 */	addi r3, r4, 0x48

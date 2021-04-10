@@ -66,9 +66,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     struct level_c {
@@ -97,9 +97,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -196,6 +196,13 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80CCDA30-80CCDA30 000028 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CCDA30 = "";
+SECTION_DEAD static char const* const stringBase_80CCDA31 = "SekiDoor";
+#pragma pop
+
 /* 80CCDA3C-80CCDA48 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -318,31 +325,31 @@ SECTION_RODATA u8 const daObj_SekiDoor_Param_c::m[1 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CCDA08, &daObj_SekiDoor_Param_c::m);
+COMPILER_STRIP_GATE(0x80CCDA08, &daObj_SekiDoor_Param_c::m);
 
 /* 80CCDA0C-80CCDA10 000004 0004+00 1/3 0/0 0/0 .rodata          @3956 */
 SECTION_RODATA static f32 const lit_3956 = 460.0f;
-COMPILER_STRIP_GATE(80CCDA0C, &lit_3956);
+COMPILER_STRIP_GATE(0x80CCDA0C, &lit_3956);
 
 /* 80CCDA10-80CCDA14 000008 0004+00 0/1 0/0 0/0 .rodata          @3957 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3957 = 4.0f;
-COMPILER_STRIP_GATE(80CCDA10, &lit_3957);
+COMPILER_STRIP_GATE(0x80CCDA10, &lit_3957);
 #pragma pop
 
 /* 80CCDA14-80CCDA18 00000C 0004+00 0/2 0/0 0/0 .rodata          @3958 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3958 = 1.0f;
-COMPILER_STRIP_GATE(80CCDA14, &lit_3958);
+COMPILER_STRIP_GATE(0x80CCDA14, &lit_3958);
 #pragma pop
 
 /* 80CCDA18-80CCDA1C 000010 0004+00 0/1 0/0 0/0 .rodata          @3959 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3959 = -1.0f;
-COMPILER_STRIP_GATE(80CCDA18, &lit_3959);
+COMPILER_STRIP_GATE(0x80CCDA18, &lit_3959);
 #pragma pop
 
 /* 80CCDA1C-80CCDA20 000014 0004+00 0/1 0/0 0/0 .rodata          @3960 */
@@ -354,7 +361,7 @@ SECTION_RODATA static u8 const lit_3960[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CCDA1C, &lit_3960);
+COMPILER_STRIP_GATE(0x80CCDA1C, &lit_3960);
 #pragma pop
 
 /* 80CCDA20-80CCDA28 000018 0008+00 0/1 0/0 0/0 .rodata          @3962 */
@@ -363,7 +370,7 @@ COMPILER_STRIP_GATE(80CCDA1C, &lit_3960);
 SECTION_RODATA static u8 const lit_3962[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CCDA20, &lit_3962);
+COMPILER_STRIP_GATE(0x80CCDA20, &lit_3962);
 #pragma pop
 
 /* 80CCD290-80CCD51C 000350 028C+00 1/0 0/0 0/0 .text Execute__16daObj_SekiDoor_cFPPA3_A4_f */
@@ -413,7 +420,7 @@ asm void daObj_SekiDoor_c::evtSkip() {
 SECTION_RODATA static u8 const id[8] = {
     0x8B, 0x85, 0x8B, 0x86, 0x8B, 0x87, 0x8B, 0x88,
 };
-COMPILER_STRIP_GATE(80CCDA28, &id);
+COMPILER_STRIP_GATE(0x80CCDA28, &id);
 #pragma pop
 
 /* 80CCD64C-80CCD810 00070C 01C4+00 1/1 0/0 0/0 .text            setPrtcls__16daObj_SekiDoor_cFv */
@@ -518,7 +525,7 @@ asm void __sinit_d_a_obj_sekidoor_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80CCD96C = (void*)__sinit_d_a_obj_sekidoor_cpp;
+REGISTER_CTORS(0x80CCD96C, __sinit_d_a_obj_sekidoor_cpp);
 #pragma pop
 
 /* 80CCD9AC-80CCD9F4 000A6C 0048+00 2/1 0/0 0/0 .text            __dt__22daObj_SekiDoor_Param_cFv */
@@ -531,10 +538,4 @@ asm daObj_SekiDoor_Param_c::~daObj_SekiDoor_Param_c() {
 }
 #pragma pop
 
-/* 80CCDA30-80CCDA3A 000028 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CCDA30 = "";
-SECTION_DEAD static char const* const stringBase_80CCDA31 = "SekiDoor";
-#pragma pop
+/* 80CCDA30-80CCDA30 000028 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

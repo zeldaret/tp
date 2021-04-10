@@ -15,6 +15,12 @@ struct _GXColor {};
 
 struct Vec {};
 
+struct JStage {
+    struct TSystem {};
+
+    struct TLight {};
+};
+
 namespace JStudio {
 struct data {
     struct TEOperationData {};
@@ -47,12 +53,6 @@ struct TAdaptor_light {
 };
 
 };  // namespace JStudio
-
-struct JStage {
-    struct TSystem {};
-
-    struct TLight {};
-};
 
 struct JStudio_JStage {
     struct TAdaptor_light {
@@ -371,5 +371,5 @@ asm void func_8028D2B8() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8028D2B8 = (void*)func_8028D2B8;
+REGISTER_CTORS(0x8028D2B8, func_8028D2B8);
 #pragma pop

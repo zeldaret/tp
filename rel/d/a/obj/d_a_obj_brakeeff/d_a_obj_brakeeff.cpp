@@ -19,9 +19,9 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTevRegKey {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTevRegKey {};
 
 struct mDoExt_brkAnm {
     /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
@@ -59,9 +59,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -235,27 +235,27 @@ static asm void daObj_Brakeeff_Draw(obj_brakeeff_class* param_0) {
 /* ############################################################################################## */
 /* 8046E528-8046E52C 000000 0004+00 2/2 0/0 0/0 .rodata          @3879 */
 SECTION_RODATA static f32 const lit_3879 = 1.0f;
-COMPILER_STRIP_GATE(8046E528, &lit_3879);
+COMPILER_STRIP_GATE(0x8046E528, &lit_3879);
 
 /* 8046E52C-8046E530 000004 0004+00 0/1 0/0 0/0 .rodata          @3880 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3880 = 75.0f;
-COMPILER_STRIP_GATE(8046E52C, &lit_3880);
+COMPILER_STRIP_GATE(0x8046E52C, &lit_3880);
 #pragma pop
 
 /* 8046E530-8046E534 000008 0004+00 0/1 0/0 0/0 .rodata          @3881 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3881 = 50.0f;
-COMPILER_STRIP_GATE(8046E530, &lit_3881);
+COMPILER_STRIP_GATE(0x8046E530, &lit_3881);
 #pragma pop
 
 /* 8046E534-8046E538 00000C 0004+00 0/1 0/0 0/0 .rodata          @3882 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3882 = 14.0f / 25.0f;
-COMPILER_STRIP_GATE(8046E534, &lit_3882);
+COMPILER_STRIP_GATE(0x8046E534, &lit_3882);
 #pragma pop
 
 /* 8046E540-8046E54C 000000 000A+02 1/1 0/0 0/0 .data            e_name */
@@ -311,6 +311,13 @@ static asm void daObj_Brakeeff_Execute(obj_brakeeff_class* param_0) {
 static bool daObj_Brakeeff_IsDelete(obj_brakeeff_class* param_0) {
     return true;
 }
+
+/* ############################################################################################## */
+/* 8046E538-8046E538 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8046E538 = "Obj_Bef";
+#pragma pop
 
 /* 8046E0A0-8046E0F0 000460 0050+00 1/0 0/0 0/0 .text
  * daObj_Brakeeff_Delete__FP18obj_brakeeff_class                */
@@ -435,9 +442,4 @@ asm cM3dGAab::~cM3dGAab() {
 }
 #pragma pop
 
-/* 8046E538-8046E540 000010 0008+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8046E538 = "Obj_Bef";
-#pragma pop
+/* 8046E538-8046E538 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

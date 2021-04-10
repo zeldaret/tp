@@ -130,7 +130,7 @@ asm void fpcM_Draw(void* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-static asm void fpcM_DrawIterater(int (*)(void*, void*)) {
+static asm void fpcM_DrawIterater(int (*param_0)(void*, void*)) {
     nofralloc
 #include "asm/f_pc/f_pc_manager/fpcM_DrawIterater__FPFPvPv_i.s"
 }
@@ -170,7 +170,7 @@ asm void fpcM_IsCreating(unsigned int param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcM_Management(void (*)(void), void (*)(void)) {
+asm void fpcM_Management(void (*param_0)(void), void (*param_1)(void)) {
     nofralloc
 #include "asm/f_pc/f_pc_manager/fpcM_Management__FPFv_vPFv_v.s"
 }
@@ -197,7 +197,7 @@ asm void fpcM_Init() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcM_FastCreate(s16 param_0, int (*)(void*), void* param_2, void* param_3) {
+asm void fpcM_FastCreate(s16 param_0, int (*param_1)(void*), void* param_2, void* param_3) {
     nofralloc
 #include "asm/f_pc/f_pc_manager/fpcM_FastCreate__FsPFPv_iPvPv.s"
 }
@@ -238,7 +238,7 @@ asm void fpcM_PauseDisable(void* param_0, u8 param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcM_JudgeInLayer(unsigned int param_0, void* (*)(void*, void*), void* param_2) {
+asm void fpcM_JudgeInLayer(unsigned int param_0, void* (*param_1)(void*, void*), void* param_2) {
     nofralloc
 #include "asm/f_pc/f_pc_manager/fpcM_JudgeInLayer__FUiPFPvPv_PvPv.s"
 }

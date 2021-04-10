@@ -23,8 +23,8 @@ lbl_8065B788:
 /* 8065B7B0  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 8065B7B4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
 /* 8065B7B8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
-/* 8065B7BC  3C 80 80 66 */	lis r4, struct_80662FB8+0x2@ha /* 0x80662FBA@ha */
-/* 8065B7C0  38 84 2F BA */	addi r4, r4, struct_80662FB8+0x2@l /* 0x80662FBA@l */
+/* 8065B7BC  3C 80 80 66 */	lis r4, data_80662FBA@ha /* 0x80662FBA@ha */
+/* 8065B7C0  38 84 2F BA */	addi r4, r4, data_80662FBA@l /* 0x80662FBA@l */
 /* 8065B7C4  A8 84 00 00 */	lha r4, 0(r4)
 /* 8065B7C8  4B 9B 0C 15 */	bl mDoMtx_YrotS__FPA4_fs
 /* 8065B7CC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
@@ -60,8 +60,8 @@ lbl_8065B818:
 /* 8065B840  D0 01 00 28 */	stfs f0, 0x28(r1)
 /* 8065B844  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
 /* 8065B848  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
-/* 8065B84C  3C 80 80 66 */	lis r4, struct_80662FB8+0x0@ha /* 0x80662FB8@ha */
-/* 8065B850  A8 04 2F B8 */	lha r0, struct_80662FB8+0x0@l(r4)  /* 0x80662FB8@l */
+/* 8065B84C  3C 80 80 66 */	lis r4, data_80662FB8@ha /* 0x80662FB8@ha */
+/* 8065B850  A8 04 2F B8 */	lha r0, data_80662FB8@l(r4)  /* 0x80662FB8@l */
 /* 8065B854  7C 00 00 D0 */	neg r0, r0
 /* 8065B858  7C 04 07 34 */	extsh r4, r0
 /* 8065B85C  4B 9B 0B 81 */	bl mDoMtx_YrotS__FPA4_fs

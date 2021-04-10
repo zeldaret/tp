@@ -72,9 +72,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     struct level_c {
@@ -172,9 +172,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -298,7 +298,7 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80D4159C-80D415A0 000000 0004+00 3/4 0/0 0/0 .rodata          @3657 */
 SECTION_RODATA static f32 const lit_3657 = 250.0f;
-COMPILER_STRIP_GATE(80D4159C, &lit_3657);
+COMPILER_STRIP_GATE(0x80D4159C, &lit_3657);
 
 /* 80D41608-80D41614 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -472,11 +472,11 @@ SECTION_RODATA u8 const daZrTurara_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x01, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D415A0, &daZrTurara_c::mCcDObjInfo);
+COMPILER_STRIP_GATE(0x80D415A0, &daZrTurara_c::mCcDObjInfo);
 
 /* 80D415D0-80D415D4 000034 0004+00 3/4 0/0 0/0 .rodata          @3699 */
 SECTION_RODATA static f32 const lit_3699 = 1.0f;
-COMPILER_STRIP_GATE(80D415D0, &lit_3699);
+COMPILER_STRIP_GATE(0x80D415D0, &lit_3699);
 
 /* 80D405E4-80D40714 000164 0130+00 2/2 0/0 0/0 .text            setBaseMtx__12daZrTurara_cFv */
 #pragma push
@@ -486,6 +486,13 @@ asm void daZrTurara_c::setBaseMtx() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_zrTurara/d_a_obj_zrTurara/setBaseMtx__12daZrTurara_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80D415FC-80D415FC 000060 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D415FC = "M_DrpRock";
 #pragma pop
 
 /* 80D40714-80D40844 000294 0130+00 1/0 0/0 0/0 .text            CreateHeap__12daZrTurara_cFv */
@@ -505,13 +512,13 @@ SECTION_RODATA static f32 const lit_3831[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80D415D4, &lit_3831);
+COMPILER_STRIP_GATE(0x80D415D4, &lit_3831);
 
 /* 80D415DC-80D415E4 000040 0008+00 1/1 0/0 0/0 .rodata          @3833 */
 SECTION_RODATA static u8 const lit_3833[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D415DC, &lit_3833);
+COMPILER_STRIP_GATE(0x80D415DC, &lit_3833);
 
 /* 80D40844-80D40B1C 0003C4 02D8+00 1/1 0/0 0/0 .text            create__12daZrTurara_cFv */
 #pragma push
@@ -569,21 +576,21 @@ asm void daZrTurara_c::Execute(f32 (**param_0)[3][4]) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3926 = 130.0f;
-COMPILER_STRIP_GATE(80D415E4, &lit_3926);
+COMPILER_STRIP_GATE(0x80D415E4, &lit_3926);
 #pragma pop
 
 /* 80D415E8-80D415EC 00004C 0004+00 0/1 0/0 0/0 .rodata          @3927 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3927 = 450.0f;
-COMPILER_STRIP_GATE(80D415E8, &lit_3927);
+COMPILER_STRIP_GATE(0x80D415E8, &lit_3927);
 #pragma pop
 
 /* 80D415EC-80D415F0 000050 0004+00 0/1 0/0 0/0 .rodata          @3928 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3928 = 500.0f;
-COMPILER_STRIP_GATE(80D415EC, &lit_3928);
+COMPILER_STRIP_GATE(0x80D415EC, &lit_3928);
 #pragma pop
 
 /* 80D41780-80D4178C 000008 000C+00 1/1 0/0 0/0 .bss             @3651 */
@@ -618,7 +625,7 @@ asm void daZrTurara_c::modeWait() {
 /* ############################################################################################## */
 /* 80D415F0-80D415F4 000054 0004+00 1/1 0/0 0/0 .rodata          @4013 */
 SECTION_RODATA static f32 const lit_4013 = -1.0f;
-COMPILER_STRIP_GATE(80D415F0, &lit_4013);
+COMPILER_STRIP_GATE(0x80D415F0, &lit_4013);
 
 /* 80D40E0C-80D410E0 00098C 02D4+00 1/1 0/0 0/0 .text            init_modeBreak__12daZrTurara_cFv */
 #pragma push
@@ -635,14 +642,14 @@ asm void daZrTurara_c::init_modeBreak() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4059 = 200.0f;
-COMPILER_STRIP_GATE(80D415F4, &lit_4059);
+COMPILER_STRIP_GATE(0x80D415F4, &lit_4059);
 #pragma pop
 
 /* 80D415F8-80D415FC 00005C 0004+00 0/1 0/0 0/0 .rodata          @4060 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4060 = 20.0f;
-COMPILER_STRIP_GATE(80D415F8, &lit_4060);
+COMPILER_STRIP_GATE(0x80D415F8, &lit_4060);
 #pragma pop
 
 /* 80D410E0-80D412A0 000C60 01C0+00 1/0 0/0 0/0 .text            modeBreak__12daZrTurara_cFv */
@@ -765,12 +772,7 @@ asm void __sinit_d_a_obj_zrTurara_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80D41518 = (void*)__sinit_d_a_obj_zrTurara_cpp;
+REGISTER_CTORS(0x80D41518, __sinit_d_a_obj_zrTurara_cpp);
 #pragma pop
 
-/* 80D415FC-80D41606 000060 000A+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D415FC = "M_DrpRock";
-#pragma pop
+/* 80D415FC-80D415FC 000060 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

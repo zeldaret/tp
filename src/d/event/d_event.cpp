@@ -381,6 +381,14 @@ asm void dEvt_control_c::beforeFlagProc(dEvt_order_c* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80379D80-80379D80 0063E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379D80 = "？？？";
+SECTION_DEAD static char const* const stringBase_80379D87 = "ALL";
+#pragma pop
+
 /* 80041964-800419A8 03C2A4 0044+00 2/2 0/0 0/0 .text
  * afterFlagProc__14dEvt_control_cFP12dEvt_order_c              */
 #pragma push
@@ -403,6 +411,14 @@ asm void dEvt_control_c::commonCheck(dEvt_order_c* param_0, u16 param_1, u16 par
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80379D80-80379D80 0063E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379D8B = "DEFAULT_TALK";
+SECTION_DEAD static char const* const stringBase_80379D98 = "MHINT_TALK";
+#pragma pop
+
 /* 80041A20-80041B58 03C360 0138+00 1/1 0/0 0/0 .text talkCheck__14dEvt_control_cFP12dEvt_order_c
  */
 #pragma push
@@ -412,6 +428,13 @@ asm void dEvt_control_c::talkCheck(dEvt_order_c* param_0) {
     nofralloc
 #include "asm/d/event/d_event/talkCheck__14dEvt_control_cFP12dEvt_order_c.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80379D80-80379D80 0063E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379DA3 = "DEFAULT_TALK_XY";
 #pragma pop
 
 /* 80041B58-80041C90 03C498 0138+00 1/1 0/0 0/0 .text
@@ -487,6 +510,13 @@ asm void dEvt_control_c::doorCheck(dEvt_order_c* param_0) {
     nofralloc
 #include "asm/d/event/d_event/doorCheck__14dEvt_control_cFP12dEvt_order_c.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80379D80-80379D80 0063E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379DB3 = "DEFAULT_GETITEM";
 #pragma pop
 
 /* 8004212C-800421C0 03CA6C 0094+00 1/1 0/0 0/0 .text itemCheck__14dEvt_control_cFP12dEvt_order_c
@@ -590,6 +620,13 @@ asm void dEv_defaultSkipProc(void* param_0, int param_1) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80379D80-80379D80 0063E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379DC3 = "$0";
+#pragma pop
+
 /* 8004261C-80042778 03CF5C 015C+00 1/1 1/1 0/0 .text            dEv_defaultSkipZev__FPvi */
 #pragma push
 #pragma optimization_level 0
@@ -635,7 +672,7 @@ asm void dEvt_control_c::getSkipEventName() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void dEvt_control_c::setSkipProc(void* param_0, int (*)(void*, int), int param_2) {
+asm void dEvt_control_c::setSkipProc(void* param_0, int (*param_1)(void*, int), int param_2) {
     nofralloc
 #include "asm/d/event/d_event/setSkipProc__14dEvt_control_cFPvPFPvi_ii.s"
 }
@@ -903,15 +940,10 @@ asm void dEvt_control_c::setPtI(void* param_0) {
 }
 #pragma pop
 
-/* 800436EC-800436F4 03E02C 0008+00 0/0 6/6 43/43 .text            setPtI_Id__14dEvt_control_cFUi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvt_control_c::setPtI_Id(unsigned int param_0) {
-    nofralloc
-#include "asm/d/event/d_event/setPtI_Id__14dEvt_control_cFUi.s"
+/* 800436EC-800436F4 -00001 0008+00 0/0 0/0 0/0 .text            setPtI_Id__14dEvt_control_cFUi */
+void dEvt_control_c::setPtI_Id(unsigned int param_0) {
+    *(u32*)(((u8*)this) + 208) /* this->field_0xd0 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 800436F4-80043724 03E034 0030+00 0/0 4/4 0/0 .text            setPtD__14dEvt_control_cFPv */
 #pragma push
@@ -923,28 +955,18 @@ asm void dEvt_control_c::setPtD(void* param_0) {
 }
 #pragma pop
 
-/* 80043724-8004372C 03E064 0008+00 0/0 2/2 0/0 .text            setGtItm__14dEvt_control_cFUc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void dEvt_control_c::setGtItm(u8 param_0) {
-    nofralloc
-#include "asm/d/event/d_event/setGtItm__14dEvt_control_cFUc.s"
+/* 80043724-8004372C -00001 0008+00 0/0 0/0 0/0 .text            setGtItm__14dEvt_control_cFUc */
+void dEvt_control_c::setGtItm(u8 param_0) {
+    *(u8*)(((u8*)this) + 239) /* this->field_0xef */ = (u8)(param_0);
 }
-#pragma pop
 
-/* 80379D80-80379DD0 0063E0 004E+02 7/7 0/0 0/0 .rodata          @stringBase0 */
+/* ############################################################################################## */
+/* 80379DC6-80379DD0 006426 0008+02 0/0 0/0 0/0 .rodata          None */
 #pragma push
 #pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80379D80 = "？？？";
-SECTION_DEAD static char const* const stringBase_80379D87 = "ALL";
-SECTION_DEAD static char const* const stringBase_80379D8B = "DEFAULT_TALK";
-SECTION_DEAD static char const* const stringBase_80379D98 = "MHINT_TALK";
-SECTION_DEAD static char const* const stringBase_80379DA3 = "DEFAULT_TALK_XY";
-SECTION_DEAD static char const* const stringBase_80379DB3 = "DEFAULT_GETITEM";
-SECTION_DEAD static char const* const stringBase_80379DC3 = "$0";
 SECTION_DEAD static char const* const stringBase_80379DC6 = "GIVEMAN";
 /* @stringBase0 padding */
 SECTION_DEAD static char const* const pad_80379DCE = "\0";
 #pragma pop
+
+/* 80379D80-80379D80 0063E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -48,13 +48,13 @@ struct dSv_info_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
-struct cXyz {};
+struct dKy_tevstr_c {};
 
 struct csXyz {};
 
-struct dKy_tevstr_c {};
+struct _GXColor {};
+
+struct cXyz {};
 
 struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
@@ -99,9 +99,9 @@ struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -192,11 +192,11 @@ SECTION_RODATA static u8 const lit_3625[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BE8004, &lit_3625);
+COMPILER_STRIP_GATE(0x80BE8004, &lit_3625);
 
 /* 80BE8008-80BE800C 000004 0004+00 1/2 0/0 0/0 .rodata          @3626 */
 SECTION_RODATA static f32 const lit_3626 = 60.0f;
-COMPILER_STRIP_GATE(80BE8008, &lit_3626);
+COMPILER_STRIP_GATE(0x80BE8008, &lit_3626);
 
 /* 80BE8050-80BE8094 000000 0044+00 2/2 0/0 0/0 .data            mCcDCyl__12daFireWood_c */
 SECTION_DATA u8 daFireWood_c::mCcDCyl[68] = {
@@ -337,27 +337,27 @@ SECTION_RODATA u8 const daFireWood_c::mCcDObjInfo[48] = {
     0xD8, 0xFB, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BE800C, &daFireWood_c::mCcDObjInfo);
+COMPILER_STRIP_GATE(0x80BE800C, &daFireWood_c::mCcDObjInfo);
 
 /* 80BE803C-80BE8040 000038 0004+00 0/1 0/0 0/0 .rodata          @3806 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3806 = 10.0f;
-COMPILER_STRIP_GATE(80BE803C, &lit_3806);
+COMPILER_STRIP_GATE(0x80BE803C, &lit_3806);
 #pragma pop
 
 /* 80BE8040-80BE8044 00003C 0004+00 0/1 0/0 0/0 .rodata          @3807 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3807 = 500.0f;
-COMPILER_STRIP_GATE(80BE8040, &lit_3807);
+COMPILER_STRIP_GATE(0x80BE8040, &lit_3807);
 #pragma pop
 
 /* 80BE8044-80BE8048 000040 0004+00 0/2 0/0 0/0 .rodata          @3808 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3808 = 1.0f;
-COMPILER_STRIP_GATE(80BE8044, &lit_3808);
+COMPILER_STRIP_GATE(0x80BE8044, &lit_3808);
 #pragma pop
 
 /* 80BE79A0-80BE7A14 000460 0074+00 1/1 0/0 0/0 .text            lightInit__12daFireWood_cFv */
@@ -385,14 +385,14 @@ asm void daFireWood_c::setLight() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3919 = -1.0f;
-COMPILER_STRIP_GATE(80BE8048, &lit_3919);
+COMPILER_STRIP_GATE(0x80BE8048, &lit_3919);
 #pragma pop
 
 /* 80BE804C-80BE8050 000048 0004+00 0/2 0/0 0/0 .rodata          @3920 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3920 = 100.0f;
-COMPILER_STRIP_GATE(80BE804C, &lit_3920);
+COMPILER_STRIP_GATE(0x80BE804C, &lit_3920);
 #pragma pop
 
 /* 80BE7A38-80BE7E74 0004F8 043C+00 1/1 0/0 0/0 .text            Execute__12daFireWood_cFv */
@@ -485,5 +485,5 @@ asm void __sinit_d_a_obj_fireWood_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80BE7F80 = (void*)__sinit_d_a_obj_fireWood_cpp;
+REGISTER_CTORS(0x80BE7F80, __sinit_d_a_obj_fireWood_cpp);
 #pragma pop

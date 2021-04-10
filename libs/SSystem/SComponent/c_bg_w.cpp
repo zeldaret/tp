@@ -36,15 +36,10 @@ extern "C" void cBgW_CheckBWall__Ff();
 // Declarations:
 //
 
-/* 802681C0-802681C8 262B00 0008+00 0/0 1/1 0/0 .text            Regist__9cBgW_BgIdFi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cBgW_BgId::Regist(int param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_bg_w/Regist__9cBgW_BgIdFi.s"
+/* 802681C0-802681C8 -00001 0008+00 0/0 0/0 0/0 .text            Regist__9cBgW_BgIdFi */
+void cBgW_BgId::Regist(int param_0) {
+    *(u16*)this = (u16)(param_0);
 }
-#pragma pop
 
 /* 802681C8-802681D4 262B08 000C+00 0/0 2/2 0/0 .text            Release__9cBgW_BgIdFv */
 #pragma push

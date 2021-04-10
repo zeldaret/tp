@@ -106,7 +106,6 @@ struct dPa_control_c {
 
 struct dEvt_control_c {
     /* 80042468 */ void reset();
-    /* 800436EC */ void setPtI_Id(unsigned int);
 };
 
 struct dEvent_manager_c {
@@ -163,7 +162,7 @@ extern "C" static void daTagStatue_Draw__FP13daTagStatue_c();
 extern "C" static void daTagStatue_Execute__FP13daTagStatue_c();
 extern "C" static void daTagStatue_Delete__FP13daTagStatue_c();
 extern "C" static void daTagStatue_Create__FP13daTagStatue_c();
-extern "C" void func_805A80E0(u8*);
+extern "C" void func_805A80E0(void* _this, u8*);
 extern "C" extern char const* const d_a_tag_statue_evt__stringBase0;
 
 //
@@ -271,11 +270,11 @@ asm void daTagStatue_c::initBaseMtx() {
 SECTION_RODATA static u8 const l_event_bit[12] = {
     0x60, 0x80, 0x60, 0x40, 0x60, 0x20, 0x60, 0x10, 0x60, 0x08, 0x62, 0x04,
 };
-COMPILER_STRIP_GATE(805A8104, &l_event_bit);
+COMPILER_STRIP_GATE(0x805A8104, &l_event_bit);
 
 /* 805A8110-805A8114 00000C 0004+00 4/4 0/0 0/0 .rodata          @3690 */
 SECTION_RODATA static f32 const lit_3690 = 1.0f;
-COMPILER_STRIP_GATE(805A8110, &lit_3690);
+COMPILER_STRIP_GATE(0x805A8110, &lit_3690);
 
 /* 805A7000-805A7068 000120 0068+00 2/2 0/0 0/0 .text            setBaseMtx__13daTagStatue_cFv */
 #pragma push
@@ -300,19 +299,36 @@ SECTION_RODATA static u8 const lit_3756[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(805A8114, &lit_3756);
+COMPILER_STRIP_GATE(0x805A8114, &lit_3756);
 
 /* 805A811C-805A8124 000018 0008+00 1/1 0/0 0/0 .rodata          @3758 */
 SECTION_RODATA static u8 const lit_3758[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(805A811C, &lit_3758);
+COMPILER_STRIP_GATE(0x805A811C, &lit_3758);
 
 /* 805A8124-805A812C 000020 0008+00 1/1 0/0 0/0 .rodata          @3759 */
 SECTION_RODATA static u8 const lit_3759[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(805A8124, &lit_3759);
+COMPILER_STRIP_GATE(0x805A8124, &lit_3759);
+
+/* 805A8154-805A8154 000050 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_805A8154 = "Obj_cs_f";
+SECTION_DEAD static char const* const stringBase_805A815D = "SKY_LETTERS_00";
+SECTION_DEAD static char const* const stringBase_805A816C = "SKY_LETTERS_01";
+SECTION_DEAD static char const* const stringBase_805A817B = "SKY_LETTERS_02";
+SECTION_DEAD static char const* const stringBase_805A818A = "SKY_LETTERS_03";
+SECTION_DEAD static char const* const stringBase_805A8199 = "SKY_LETTERS_04";
+SECTION_DEAD static char const* const stringBase_805A81A8 = "SKY_LETTERS_05";
+SECTION_DEAD static char const* const stringBase_805A81B7 = "cs_ev_01";
+SECTION_DEAD static char const* const stringBase_805A81C0 = "cs_ev_02";
+SECTION_DEAD static char const* const stringBase_805A81C9 = "cs_ev_03";
+SECTION_DEAD static char const* const stringBase_805A81D2 = "cs_ev_04";
+SECTION_DEAD static char const* const stringBase_805A81DB = "cs_ev_05";
+#pragma pop
 
 /* 805A81FC-805A8208 000000 000C+00 3/3 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -391,6 +407,14 @@ asm void daTagStatue_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 805A8154-805A8154 000050 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_805A81E4 = "WAIT";
+SECTION_DEAD static char const* const stringBase_805A81E9 = "ST_MOVE";
+SECTION_DEAD static char const* const stringBase_805A81F1 = "ITEM";
+#pragma pop
+
 /* 805A8270-805A827C -00001 000C+00 0/1 0/0 0/0 .data            @3878 */
 #pragma push
 #pragma force_active on
@@ -547,7 +571,7 @@ SECTION_RODATA static f32 const lit_3894[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(805A812C, &lit_3894);
+COMPILER_STRIP_GATE(0x805A812C, &lit_3894);
 
 /* 805A759C-805A76AC 0006BC 0110+00 1/1 0/0 0/0 .text            event_proc_call__13daTagStatue_cFv
  */
@@ -596,6 +620,13 @@ void daTagStatue_c::actionDead() {
     /* empty function */
 }
 
+/* ############################################################################################## */
+/* 805A8154-805A8154 000050 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_805A81F6 = "Timer";
+#pragma pop
+
 /* 805A784C-805A7A68 00096C 021C+00 2/2 0/0 0/0 .text            demoProc__13daTagStatue_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -633,7 +664,7 @@ asm void daTagStatue_c::endParticle() {
 SECTION_RODATA static u8 const lit_4079[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(805A8134, &lit_4079);
+COMPILER_STRIP_GATE(0x805A8134, &lit_4079);
 #pragma pop
 
 /* 805A813C-805A8144 000038 0008+00 0/2 0/0 0/0 .rodata          @4080 */
@@ -642,7 +673,7 @@ COMPILER_STRIP_GATE(805A8134, &lit_4079);
 SECTION_RODATA static u8 const lit_4080[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(805A813C, &lit_4080);
+COMPILER_STRIP_GATE(0x805A813C, &lit_4080);
 #pragma pop
 
 /* 805A8144-805A814C 000040 0008+00 0/2 0/0 0/0 .rodata          @4081 */
@@ -651,14 +682,14 @@ COMPILER_STRIP_GATE(805A813C, &lit_4080);
 SECTION_RODATA static u8 const lit_4081[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(805A8144, &lit_4081);
+COMPILER_STRIP_GATE(0x805A8144, &lit_4081);
 #pragma pop
 
 /* 805A814C-805A8150 000048 0004+00 0/1 0/0 0/0 .rodata          @4082 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4082 = 100.0f;
-COMPILER_STRIP_GATE(805A814C, &lit_4082);
+COMPILER_STRIP_GATE(0x805A814C, &lit_4082);
 #pragma pop
 
 /* 805A7B78-805A7CD0 000C98 0158+00 1/1 0/0 0/0 .text            checkStartDemo__13daTagStatue_cFv
@@ -677,7 +708,7 @@ asm void daTagStatue_c::checkStartDemo() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4143 = 120.0f;
-COMPILER_STRIP_GATE(805A8150, &lit_4143);
+COMPILER_STRIP_GATE(0x805A8150, &lit_4143);
 #pragma pop
 
 /* 805A7CD0-805A7E94 000DF0 01C4+00 2/2 0/0 0/0 .text            checkOnEffect__13daTagStatue_cFv */
@@ -766,30 +797,10 @@ static asm void daTagStatue_Create(daTagStatue_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_805A80E0(u8* param_0) {
+extern "C" asm void func_805A80E0(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_statue_evt/d_a_tag_statue_evt/func_805A80E0.s"
 }
 #pragma pop
 
-/* 805A8154-805A81FC 000050 00A8+00 5/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_805A8154 = "Obj_cs_f";
-SECTION_DEAD static char const* const stringBase_805A815D = "SKY_LETTERS_00";
-SECTION_DEAD static char const* const stringBase_805A816C = "SKY_LETTERS_01";
-SECTION_DEAD static char const* const stringBase_805A817B = "SKY_LETTERS_02";
-SECTION_DEAD static char const* const stringBase_805A818A = "SKY_LETTERS_03";
-SECTION_DEAD static char const* const stringBase_805A8199 = "SKY_LETTERS_04";
-SECTION_DEAD static char const* const stringBase_805A81A8 = "SKY_LETTERS_05";
-SECTION_DEAD static char const* const stringBase_805A81B7 = "cs_ev_01";
-SECTION_DEAD static char const* const stringBase_805A81C0 = "cs_ev_02";
-SECTION_DEAD static char const* const stringBase_805A81C9 = "cs_ev_03";
-SECTION_DEAD static char const* const stringBase_805A81D2 = "cs_ev_04";
-SECTION_DEAD static char const* const stringBase_805A81DB = "cs_ev_05";
-SECTION_DEAD static char const* const stringBase_805A81E4 = "WAIT";
-SECTION_DEAD static char const* const stringBase_805A81E9 = "ST_MOVE";
-SECTION_DEAD static char const* const stringBase_805A81F1 = "ITEM";
-SECTION_DEAD static char const* const stringBase_805A81F6 = "Timer";
-#pragma pop
+/* 805A8154-805A8154 000050 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

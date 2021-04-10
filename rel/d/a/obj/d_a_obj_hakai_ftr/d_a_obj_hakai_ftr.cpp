@@ -57,9 +57,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -135,9 +135,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -256,6 +256,14 @@ static asm void daObjHFtr_c_createHeap(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80C18168-80C18168 0000B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C18168 = "HChair";
+SECTION_DEAD static char const* const stringBase_80C1816F = "HSofa";
+SECTION_DEAD static char const* const stringBase_80C18175 = "HTable";
+#pragma pop
+
 /* 80C1817C-80C18188 -00001 000C+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName[3] = {
     (void*)&d_a_obj_hakai_ftr__stringBase0,
@@ -396,13 +404,13 @@ asm daObjHFtr_c::~daObjHFtr_c() {
 SECTION_RODATA static u8 const l_bmdIdx[12] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04,
 };
-COMPILER_STRIP_GATE(80C180B8, &l_bmdIdx);
+COMPILER_STRIP_GATE(0x80C180B8, &l_bmdIdx);
 
 /* 80C180C4-80C180D0 00000C 000C+00 1/1 0/0 0/0 .rodata          l_dzbIdx */
 SECTION_RODATA static u8 const l_dzbIdx[12] = {
     0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07,
 };
-COMPILER_STRIP_GATE(80C180C4, &l_dzbIdx);
+COMPILER_STRIP_GATE(0x80C180C4, &l_dzbIdx);
 
 /* 80C17874-80C179B0 000454 013C+00 1/1 0/0 0/0 .text            createHeap__11daObjHFtr_cFv */
 #pragma push
@@ -419,7 +427,7 @@ asm void daObjHFtr_c::createHeap() {
 SECTION_RODATA static u8 const l_heapSize[12] = {
     0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x20, 0x00,
 };
-COMPILER_STRIP_GATE(80C180D0, &l_heapSize);
+COMPILER_STRIP_GATE(0x80C180D0, &l_heapSize);
 
 /* 80C179B0-80C17AC0 000590 0110+00 1/1 0/0 0/0 .text            create__11daObjHFtr_cFv */
 #pragma push
@@ -462,16 +470,16 @@ SECTION_RODATA u8 const daObjHFtr_c::s_CcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C180DC, &daObjHFtr_c::s_CcDCyl);
+COMPILER_STRIP_GATE(0x80C180DC, &daObjHFtr_c::s_CcDCyl);
 #pragma pop
 
 /* 80C18120-80C18124 000068 0004+00 2/2 0/0 0/0 .rodata          @3863 */
 SECTION_RODATA static f32 const lit_3863 = 1.0f;
-COMPILER_STRIP_GATE(80C18120, &lit_3863);
+COMPILER_STRIP_GATE(0x80C18120, &lit_3863);
 
 /* 80C18124-80C18128 00006C 0004+00 1/1 0/0 0/0 .rodata          @3864 */
 SECTION_RODATA static f32 const lit_3864 = -1.0f;
-COMPILER_STRIP_GATE(80C18124, &lit_3864);
+COMPILER_STRIP_GATE(0x80C18124, &lit_3864);
 
 /* 80C17BD4-80C17CD0 0007B4 00FC+00 1/1 0/0 0/0 .text            execute__11daObjHFtr_cFv */
 #pragma push
@@ -491,7 +499,7 @@ SECTION_RODATA static u8 const COL_OFFSET_X[24] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x32,
     0xFF, 0xFF, 0xFF, 0xCE, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C18128, &COL_OFFSET_X);
+COMPILER_STRIP_GATE(0x80C18128, &COL_OFFSET_X);
 #pragma pop
 
 /* 80C18140-80C1814C 000088 000C+00 0/1 0/0 0/0 .rodata          COL_HEIGHT$3869 */
@@ -500,7 +508,7 @@ COMPILER_STRIP_GATE(80C18128, &COL_OFFSET_X);
 SECTION_RODATA static u8 const COL_HEIGHT[12] = {
     0x00, 0x00, 0x00, 0xAA, 0x00, 0x00, 0x00, 0xA0, 0x00, 0x00, 0x00, 0x6E,
 };
-COMPILER_STRIP_GATE(80C18140, &COL_HEIGHT);
+COMPILER_STRIP_GATE(0x80C18140, &COL_HEIGHT);
 #pragma pop
 
 /* 80C1814C-80C18158 000094 000C+00 0/1 0/0 0/0 .rodata          COL_RADIUS$3870 */
@@ -509,7 +517,7 @@ COMPILER_STRIP_GATE(80C18140, &COL_HEIGHT);
 SECTION_RODATA static u8 const COL_RADIUS[12] = {
     0x00, 0x00, 0x00, 0x3C, 0x00, 0x00, 0x00, 0x46, 0x00, 0x00, 0x00, 0x5A,
 };
-COMPILER_STRIP_GATE(80C1814C, &COL_RADIUS);
+COMPILER_STRIP_GATE(0x80C1814C, &COL_RADIUS);
 #pragma pop
 
 /* 80C18158-80C18160 0000A0 0008+00 0/1 0/0 0/0 .rodata          @3896 */
@@ -518,7 +526,7 @@ COMPILER_STRIP_GATE(80C1814C, &COL_RADIUS);
 SECTION_RODATA static u8 const lit_3896[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C18158, &lit_3896);
+COMPILER_STRIP_GATE(0x80C18158, &lit_3896);
 #pragma pop
 
 /* 80C17CD0-80C17E10 0008B0 0140+00 1/1 0/0 0/0 .text            init__11daObjHFtr_cFv */
@@ -556,7 +564,7 @@ asm void daObjHFtr_c::chkHit() {
 SECTION_RODATA static u8 const PARTICLE_NAME[8] = {
     0x8A, 0xE7, 0x8A, 0xE8, 0x8A, 0xE9, 0x8A, 0xEA,
 };
-COMPILER_STRIP_GATE(80C18160, &PARTICLE_NAME);
+COMPILER_STRIP_GATE(0x80C18160, &PARTICLE_NAME);
 
 /* 80C17EDC-80C17FB4 000ABC 00D8+00 1/1 0/0 0/0 .text            callEmt__11daObjHFtr_cFv */
 #pragma push
@@ -621,11 +629,4 @@ asm cCcD_GStts::~cCcD_GStts() {
 }
 #pragma pop
 
-/* 80C18168-80C1817C 0000B0 0014+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C18168 = "HChair";
-SECTION_DEAD static char const* const stringBase_80C1816F = "HSofa";
-SECTION_DEAD static char const* const stringBase_80C18175 = "HTable";
-#pragma pop
+/* 80C18168-80C18168 0000B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

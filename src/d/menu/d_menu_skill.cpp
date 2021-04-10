@@ -61,9 +61,9 @@ struct STControl {
     /* 800325A0 */ void checkDownTrigger();
 };
 
-struct JKRExpHeap {};
-
 struct CSTControl {};
+
+struct JKRExpHeap {};
 
 struct dMenu_Skill_c {
     /* 801F7224 */ dMenu_Skill_c(JKRExpHeap*, STControl*, CSTControl*);
@@ -98,9 +98,9 @@ struct dMenu_Skill_c {
     /* 801F9A08 */ void draw();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -487,6 +487,12 @@ asm void dMenu_Skill_c::init() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80397DB8-80397DB8 024418 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80397DB8 = "/res/Layout/skillres.arc";
+#pragma pop
+
 /* 804544B0-804544B8 002AB0 0008+00 4/4 0/0 0/0 .sdata2          @4016 */
 SECTION_SDATA2 static f64 lit_4016 = 4503601774854144.0 /* cast s32 to float */;
 
@@ -536,14 +542,14 @@ SECTION_RODATA static u8 const i_id[28] = {
     0x00, 0x00, 0x06, 0xB4, 0x00, 0x00, 0x06, 0xB3, 0x00, 0x00, 0x06, 0xB5, 0x00, 0x00,
     0x06, 0xB6, 0x00, 0x00, 0x06, 0xB7, 0x00, 0x00, 0x06, 0xB8, 0x00, 0x00, 0x06, 0xB9,
 };
-COMPILER_STRIP_GATE(80397A18, &i_id);
+COMPILER_STRIP_GATE(0x80397A18, &i_id);
 
 /* 80397A34-80397A50 024094 001C+00 1/1 0/0 0/0 .rodata          i_id1$4088 */
 SECTION_RODATA static u8 const i_id1_4088[28] = {
     0x00, 0x00, 0x06, 0xAD, 0x00, 0x00, 0x06, 0xAC, 0x00, 0x00, 0x06, 0xAE, 0x00, 0x00,
     0x06, 0xAF, 0x00, 0x00, 0x06, 0xB0, 0x00, 0x00, 0x06, 0xB1, 0x00, 0x00, 0x06, 0xB2,
 };
-COMPILER_STRIP_GATE(80397A34, &i_id1_4088);
+COMPILER_STRIP_GATE(0x80397A34, &i_id1_4088);
 
 /* 801F7F24-801F7FF8 1F2864 00D4+00 1/0 0/0 0/0 .text            read_open_init__13dMenu_Skill_cFv
  */
@@ -625,7 +631,7 @@ SECTION_RODATA static u8 const tag_sub0[56] = {
     0x5F, 0x74, 0x33, 0x73, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x34, 0x73, 0x6D, 0x65,
     0x6E, 0x75, 0x5F, 0x74, 0x35, 0x73, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x35, 0x31,
 };
-COMPILER_STRIP_GATE(80397A50, &tag_sub0);
+COMPILER_STRIP_GATE(0x80397A50, &tag_sub0);
 #pragma pop
 
 /* 80397A88-80397AC0 0240E8 0038+00 0/1 0/0 0/0 .rodata          tag_sub1$4149 */
@@ -637,7 +643,7 @@ SECTION_RODATA static u8 const tag_sub1[56] = {
     0x75, 0x5F, 0x74, 0x33, 0x00, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x34, 0x00, 0x6D,
     0x65, 0x6E, 0x75, 0x5F, 0x74, 0x35, 0x00, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x36,
 };
-COMPILER_STRIP_GATE(80397A88, &tag_sub1);
+COMPILER_STRIP_GATE(0x80397A88, &tag_sub1);
 #pragma pop
 
 /* 80397AC0-80397AF8 024120 0038+00 0/1 0/0 0/0 .rodata          tag_name0$4150 */
@@ -649,7 +655,7 @@ SECTION_RODATA static u8 const tag_name0[56] = {
     0x5F, 0x74, 0x39, 0x73, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x31, 0x30, 0x73, 0x6D, 0x65,
     0x6E, 0x75, 0x5F, 0x31, 0x31, 0x73, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x31, 0x31, 0x32,
 };
-COMPILER_STRIP_GATE(80397AC0, &tag_name0);
+COMPILER_STRIP_GATE(0x80397AC0, &tag_name0);
 #pragma pop
 
 /* 80397AF8-80397B30 024158 0038+00 0/1 0/0 0/0 .rodata          tag_name1$4151 */
@@ -661,7 +667,7 @@ SECTION_RODATA static u8 const tag_name1[56] = {
     0x75, 0x5F, 0x74, 0x39, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x31, 0x30, 0x6D, 0x65,
     0x6E, 0x75, 0x5F, 0x74, 0x31, 0x31, 0x6D, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x30, 0x31,
 };
-COMPILER_STRIP_GATE(80397AF8, &tag_name1);
+COMPILER_STRIP_GATE(0x80397AF8, &tag_name1);
 #pragma pop
 
 /* 80397B30-80397B68 024190 0038+00 0/1 0/0 0/0 .rodata          ftag_sub0$4152 */
@@ -673,7 +679,7 @@ SECTION_RODATA static u8 const ftag_sub0[56] = {
     0x5F, 0x74, 0x33, 0x73, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x34, 0x73, 0x66, 0x65,
     0x6E, 0x75, 0x5F, 0x74, 0x35, 0x73, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x36, 0x73,
 };
-COMPILER_STRIP_GATE(80397B30, &ftag_sub0);
+COMPILER_STRIP_GATE(0x80397B30, &ftag_sub0);
 #pragma pop
 
 /* 80397B68-80397BA0 0241C8 0038+00 0/1 0/0 0/0 .rodata          ftag_sub1$4153 */
@@ -685,7 +691,7 @@ SECTION_RODATA static u8 const ftag_sub1[56] = {
     0x75, 0x5F, 0x74, 0x33, 0x00, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x34, 0x00, 0x66,
     0x65, 0x6E, 0x75, 0x5F, 0x74, 0x35, 0x00, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x74, 0x36,
 };
-COMPILER_STRIP_GATE(80397B68, &ftag_sub1);
+COMPILER_STRIP_GATE(0x80397B68, &ftag_sub1);
 #pragma pop
 
 /* 80397BA0-80397BD8 024200 0038+00 0/1 0/0 0/0 .rodata          ftag_name0$4154 */
@@ -697,7 +703,7 @@ SECTION_RODATA static u8 const ftag_name0[56] = {
     0x5F, 0x31, 0x30, 0x73, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x31, 0x31, 0x73, 0x66, 0x65,
     0x6E, 0x75, 0x5F, 0x31, 0x32, 0x73, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x31, 0x33, 0x73,
 };
-COMPILER_STRIP_GATE(80397BA0, &ftag_name0);
+COMPILER_STRIP_GATE(0x80397BA0, &ftag_name0);
 #pragma pop
 
 /* 80397BD8-80397C10 024238 0038+00 0/1 0/0 0/0 .rodata          ftag_name1$4155 */
@@ -709,7 +715,7 @@ SECTION_RODATA static u8 const ftag_name1[56] = {
     0x75, 0x5F, 0x31, 0x30, 0x00, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x31, 0x31, 0x00, 0x66,
     0x65, 0x6E, 0x75, 0x5F, 0x31, 0x32, 0x00, 0x66, 0x65, 0x6E, 0x75, 0x5F, 0x31, 0x33,
 };
-COMPILER_STRIP_GATE(80397BD8, &ftag_name1);
+COMPILER_STRIP_GATE(0x80397BD8, &ftag_name1);
 #pragma pop
 
 /* 80397C10-80397C48 024270 0038+00 0/1 0/0 0/0 .rodata          tag_letter$4166 */
@@ -721,7 +727,7 @@ SECTION_RODATA static u8 const tag_letter[56] = {
     0x30, 0x33, 0x5F, 0x6E, 0x6C, 0x65, 0x74, 0x5F, 0x30, 0x34, 0x5F, 0x6E, 0x6C, 0x65,
     0x74, 0x5F, 0x30, 0x35, 0x5F, 0x6E, 0x6C, 0x65, 0x74, 0x5F, 0x30, 0x36, 0x5F, 0x6E,
 };
-COMPILER_STRIP_GATE(80397C10, &tag_letter);
+COMPILER_STRIP_GATE(0x80397C10, &tag_letter);
 #pragma pop
 
 /* 80397C48-80397C80 0242A8 0038+00 0/1 0/0 0/0 .rodata          tag_frame$4173 */
@@ -733,7 +739,7 @@ SECTION_RODATA static u8 const tag_frame[56] = {
     0x65, 0x5F, 0x30, 0x33, 0x66, 0x6C, 0x61, 0x6D, 0x65, 0x5F, 0x30, 0x34, 0x66, 0x6C,
     0x61, 0x6D, 0x65, 0x5F, 0x30, 0x35, 0x66, 0x6C, 0x61, 0x6D, 0x65, 0x5F, 0x30, 0x36,
 };
-COMPILER_STRIP_GATE(80397C48, &tag_frame);
+COMPILER_STRIP_GATE(0x80397C48, &tag_frame);
 #pragma pop
 
 /* 80397C80-80397CB8 0242E0 0038+00 0/1 0/0 0/0 .rodata          tag_maki$4174 */
@@ -745,7 +751,7 @@ SECTION_RODATA static u8 const tag_maki[56] = {
     0x69, 0x5F, 0x33, 0x6E, 0x00, 0x6D, 0x61, 0x6B, 0x69, 0x5F, 0x34, 0x6E, 0x00, 0x6D,
     0x61, 0x6B, 0x69, 0x5F, 0x35, 0x6E, 0x00, 0x6D, 0x61, 0x6B, 0x69, 0x5F, 0x36, 0x6E,
 };
-COMPILER_STRIP_GATE(80397C80, &tag_maki);
+COMPILER_STRIP_GATE(0x80397C80, &tag_maki);
 #pragma pop
 
 /* 80397CB8-80397CF0 024318 0038+00 0/1 0/0 0/0 .rodata          tag_makic$4175 */
@@ -757,7 +763,14 @@ SECTION_RODATA static u8 const tag_makic[56] = {
     0x6B, 0x69, 0x5F, 0x33, 0x00, 0x00, 0x6D, 0x61, 0x6B, 0x69, 0x5F, 0x34, 0x00, 0x00,
     0x6D, 0x61, 0x6B, 0x69, 0x5F, 0x35, 0x00, 0x00, 0x6D, 0x61, 0x6B, 0x69, 0x5F, 0x36,
 };
-COMPILER_STRIP_GATE(80397CB8, &tag_makic);
+COMPILER_STRIP_GATE(0x80397CB8, &tag_makic);
+#pragma pop
+
+/* 80397DB8-80397DB8 024418 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80397DD1 = "zelda_ougi_window.blo";
+SECTION_DEAD static char const* const stringBase_80397DE7 = "";
 #pragma pop
 
 /* 801F8388-801F8A18 1F2CC8 0690+00 1/1 0/0 0/0 .text            screenSetMenu__13dMenu_Skill_cFv */
@@ -776,14 +789,21 @@ SECTION_RODATA static u8 const name_tag[32] = {
     0x69, 0x74, 0x65, 0x6D, 0x5F, 0x6E, 0x30, 0x34, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x6E, 0x30, 0x35,
     0x69, 0x74, 0x65, 0x6D, 0x5F, 0x6E, 0x30, 0x36, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x6E, 0x30, 0x37,
 };
-COMPILER_STRIP_GATE(80397CF0, &name_tag);
+COMPILER_STRIP_GATE(0x80397CF0, &name_tag);
 
 /* 80397D10-80397D30 024370 0020+00 1/1 0/0 0/0 .rodata          fame_tag$4307 */
 SECTION_RODATA static u8 const fame_tag[32] = {
     0x66, 0x5F, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x31, 0x66, 0x5F, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x32,
     0x66, 0x5F, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x33, 0x66, 0x5F, 0x69, 0x74, 0x65, 0x6D, 0x5F, 0x34,
 };
-COMPILER_STRIP_GATE(80397D10, &fame_tag);
+COMPILER_STRIP_GATE(0x80397D10, &fame_tag);
+
+/* 80397DB8-80397DB8 024418 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80397DE8 = "zelda_ougi_info.blo";
+SECTION_DEAD static char const* const stringBase_80397DFC = "tt_block8x8.bti";
+#pragma pop
 
 /* 801F8A18-801F8D20 1F3358 0308+00 1/1 0/0 0/0 .text            screenSetLetter__13dMenu_Skill_cFv
  */
@@ -803,7 +823,7 @@ SECTION_RODATA static u8 const text_a_tag[40] = {
     0x5F, 0x32, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x61, 0x74, 0x65, 0x78,
     0x74, 0x31, 0x5F, 0x34, 0x61, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
 };
-COMPILER_STRIP_GATE(80397D30, &text_a_tag);
+COMPILER_STRIP_GATE(0x80397D30, &text_a_tag);
 
 /* 80397D58-80397D80 0243B8 0028+00 1/1 0/0 0/0 .rodata          text_b_tag$4366 */
 SECTION_RODATA static u8 const text_b_tag[40] = {
@@ -811,7 +831,15 @@ SECTION_RODATA static u8 const text_b_tag[40] = {
     0x5F, 0x32, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x33, 0x62, 0x74, 0x65, 0x78,
     0x74, 0x31, 0x5F, 0x34, 0x62, 0x74, 0x65, 0x78, 0x74, 0x31, 0x5F, 0x35,
 };
-COMPILER_STRIP_GATE(80397D58, &text_b_tag);
+COMPILER_STRIP_GATE(0x80397D58, &text_b_tag);
+
+/* 80397DB8-80397DB8 024418 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80397E0C = "zelda_collect_soubi_do_icon_parts.blo";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80397E32 = "\0\0\0\0\0";
+#pragma pop
 
 /* 801F8D20-801F8E9C 1F3660 017C+00 1/1 0/0 0/0 .text            screenSetDoIcon__13dMenu_Skill_cFv
  */
@@ -850,14 +878,14 @@ SECTION_RODATA static u8 const i_id0[28] = {
     0x00, 0x00, 0x06, 0xA5, 0x00, 0x00, 0x06, 0xA6, 0x00, 0x00, 0x06, 0xA7, 0x00, 0x00,
     0x06, 0xA8, 0x00, 0x00, 0x06, 0xA9, 0x00, 0x00, 0x06, 0xAA, 0x00, 0x00, 0x06, 0xAB,
 };
-COMPILER_STRIP_GATE(80397D80, &i_id0);
+COMPILER_STRIP_GATE(0x80397D80, &i_id0);
 
 /* 80397D9C-80397DB8 0243FC 001C+00 1/1 0/0 0/0 .rodata          i_id1$4479 */
 SECTION_RODATA static u8 const i_id1_4479[28] = {
     0x00, 0x00, 0x06, 0xAD, 0x00, 0x00, 0x06, 0xAC, 0x00, 0x00, 0x06, 0xAE, 0x00, 0x00,
     0x06, 0xAF, 0x00, 0x00, 0x06, 0xB0, 0x00, 0x00, 0x06, 0xB1, 0x00, 0x00, 0x06, 0xB2,
 };
-COMPILER_STRIP_GATE(80397D9C, &i_id1_4479);
+COMPILER_STRIP_GATE(0x80397D9C, &i_id1_4479);
 
 /* 801F9144-801F9260 1F3A84 011C+00 1/1 0/0 0/0 .text            setPageText__13dMenu_Skill_cFv */
 #pragma push
@@ -942,19 +970,7 @@ asm void __sinit_d_menu_skill_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_801F9A28 = (void*)__sinit_d_menu_skill_cpp;
+REGISTER_CTORS(0x801F9A28, __sinit_d_menu_skill_cpp);
 #pragma pop
 
-/* 80397DB8-80397E38 024418 007A+06 7/7 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80397DB8 = "/res/Layout/skillres.arc";
-SECTION_DEAD static char const* const stringBase_80397DD1 = "zelda_ougi_window.blo";
-SECTION_DEAD static char const* const stringBase_80397DE7 = "";
-SECTION_DEAD static char const* const stringBase_80397DE8 = "zelda_ougi_info.blo";
-SECTION_DEAD static char const* const stringBase_80397DFC = "tt_block8x8.bti";
-SECTION_DEAD static char const* const stringBase_80397E0C = "zelda_collect_soubi_do_icon_parts.blo";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80397E32 = "\0\0\0\0\0";
-#pragma pop
+/* 80397DB8-80397DB8 024418 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -111,22 +111,22 @@ extern "C" void newAlphaComp__18J2DMaterialFactoryCFi();
 extern "C" void newBlend__18J2DMaterialFactoryCFi();
 extern "C" void newDither__18J2DMaterialFactoryCFi();
 extern "C" void __ct__11J2DTevStageFRC15J2DTevStageInfo();
-extern "C" void func_802F4170(void const*, void const*);
-extern "C" void func_802F4188(void const*, void const*);
-extern "C" void func_802F41A0(void const*, void const*);
-extern "C" void func_802F41B8(void const*, void const*);
-extern "C" void func_802F41D0(void const*, void const*);
-extern "C" void func_802F41E8(void const*, void const*);
-extern "C" void func_802F4200(void const*, void const*);
-extern "C" void func_802F4218(void const*, void const*);
-extern "C" void func_802F4230(void const*, void const*);
-extern "C" void func_802F4248(void const*, void const*);
-extern "C" void func_802F4260(void const*, void const*);
-extern "C" void func_802F4278(void const*, void const*);
-extern "C" void func_802F4290(void const*, void const*);
-extern "C" void func_802F42A8(void const*, void const*);
-extern "C" void func_802F42C0(void const*, void const*);
-extern "C" void func_802F42D8(void const*, void const*);
+extern "C" void func_802F4170(void* _this, void const*, void const*);
+extern "C" void func_802F4188(void* _this, void const*, void const*);
+extern "C" void func_802F41A0(void* _this, void const*, void const*);
+extern "C" void func_802F41B8(void* _this, void const*, void const*);
+extern "C" void func_802F41D0(void* _this, void const*, void const*);
+extern "C" void func_802F41E8(void* _this, void const*, void const*);
+extern "C" void func_802F4200(void* _this, void const*, void const*);
+extern "C" void func_802F4218(void* _this, void const*, void const*);
+extern "C" void func_802F4230(void* _this, void const*, void const*);
+extern "C" void func_802F4248(void* _this, void const*, void const*);
+extern "C" void func_802F4260(void* _this, void const*, void const*);
+extern "C" void func_802F4278(void* _this, void const*, void const*);
+extern "C" void func_802F4290(void* _this, void const*, void const*);
+extern "C" void func_802F42A8(void* _this, void const*, void const*);
+extern "C" void func_802F42C0(void* _this, void const*, void const*);
+extern "C" void func_802F42D8(void* _this, void const*, void const*);
 
 //
 // External References:
@@ -158,7 +158,7 @@ extern "C" extern u8 j2dDefaultTevSwapMode[4];
 extern "C" extern u32 j2dDefaultTevSwapModeTable;
 extern "C" extern u32 j2dDefaultBlendInfo;
 extern "C" extern u32 j2dDefaultColorChanInfo;
-extern "C" extern u8 struct_804561AC[4];
+extern "C" extern u16 j2dDefaultAlphaCmp;
 
 //
 // Declarations:
@@ -467,7 +467,7 @@ asm J2DTevStage::J2DTevStage(J2DTevStageInfo const& param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802F4170(void const* param_0, void const* param_1) {
+extern "C" asm void func_802F4170(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterialFactory/func_802F4170.s"
 }
@@ -478,7 +478,7 @@ extern "C" asm void func_802F4170(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802F4188(void const* param_0, void const* param_1) {
+extern "C" asm void func_802F4188(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterialFactory/func_802F4188.s"
 }
@@ -489,7 +489,7 @@ extern "C" asm void func_802F4188(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802F41A0(void const* param_0, void const* param_1) {
+extern "C" asm void func_802F41A0(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterialFactory/func_802F41A0.s"
 }
@@ -500,7 +500,7 @@ extern "C" asm void func_802F41A0(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802F41B8(void const* param_0, void const* param_1) {
+extern "C" asm void func_802F41B8(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterialFactory/func_802F41B8.s"
 }
@@ -511,7 +511,7 @@ extern "C" asm void func_802F41B8(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802F41D0(void const* param_0, void const* param_1) {
+extern "C" asm void func_802F41D0(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterialFactory/func_802F41D0.s"
 }
@@ -522,7 +522,7 @@ extern "C" asm void func_802F41D0(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802F41E8(void const* param_0, void const* param_1) {
+extern "C" asm void func_802F41E8(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterialFactory/func_802F41E8.s"
 }
@@ -533,7 +533,7 @@ extern "C" asm void func_802F41E8(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802F4200(void const* param_0, void const* param_1) {
+extern "C" asm void func_802F4200(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterialFactory/func_802F4200.s"
 }
@@ -544,7 +544,7 @@ extern "C" asm void func_802F4200(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802F4218(void const* param_0, void const* param_1) {
+extern "C" asm void func_802F4218(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterialFactory/func_802F4218.s"
 }
@@ -555,7 +555,7 @@ extern "C" asm void func_802F4218(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802F4230(void const* param_0, void const* param_1) {
+extern "C" asm void func_802F4230(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterialFactory/func_802F4230.s"
 }
@@ -566,7 +566,7 @@ extern "C" asm void func_802F4230(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802F4248(void const* param_0, void const* param_1) {
+extern "C" asm void func_802F4248(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterialFactory/func_802F4248.s"
 }
@@ -576,7 +576,7 @@ extern "C" asm void func_802F4248(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802F4260(void const* param_0, void const* param_1) {
+extern "C" asm void func_802F4260(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterialFactory/func_802F4260.s"
 }
@@ -586,7 +586,7 @@ extern "C" asm void func_802F4260(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802F4278(void const* param_0, void const* param_1) {
+extern "C" asm void func_802F4278(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterialFactory/func_802F4278.s"
 }
@@ -597,7 +597,7 @@ extern "C" asm void func_802F4278(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802F4290(void const* param_0, void const* param_1) {
+extern "C" asm void func_802F4290(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterialFactory/func_802F4290.s"
 }
@@ -608,7 +608,7 @@ extern "C" asm void func_802F4290(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802F42A8(void const* param_0, void const* param_1) {
+extern "C" asm void func_802F42A8(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterialFactory/func_802F42A8.s"
 }
@@ -618,7 +618,7 @@ extern "C" asm void func_802F42A8(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802F42C0(void const* param_0, void const* param_1) {
+extern "C" asm void func_802F42C0(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterialFactory/func_802F42C0.s"
 }
@@ -629,7 +629,7 @@ extern "C" asm void func_802F42C0(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802F42D8(void const* param_0, void const* param_1) {
+extern "C" asm void func_802F42D8(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J2DGraph/J2DMaterialFactory/func_802F42D8.s"
 }

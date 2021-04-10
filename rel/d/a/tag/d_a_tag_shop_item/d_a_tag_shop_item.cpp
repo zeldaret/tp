@@ -103,11 +103,17 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 /* ############################################################################################## */
 /* 80D611D0-80D611D4 000000 0004+00 2/2 0/0 0/0 .rodata          @3684 */
 SECTION_RODATA static f32 const lit_3684 = 90.0f;
-COMPILER_STRIP_GATE(80D611D0, &lit_3684);
+COMPILER_STRIP_GATE(0x80D611D0, &lit_3684);
 
 /* 80D611D4-80D611D8 000004 0004+00 1/1 0/0 0/0 .rodata          @3685 */
 SECTION_RODATA static f32 const lit_3685 = 270.0f;
-COMPILER_STRIP_GATE(80D611D4, &lit_3685);
+COMPILER_STRIP_GATE(0x80D611D4, &lit_3685);
+
+/* 80D611E8-80D611E8 000018 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D611E8 = "F_SP109";
+#pragma pop
 
 /* 80D611F0-80D61210 -00001 0020+00 1/0 0/0 0/0 .data            daTag_ShopItem_MethodTable */
 SECTION_DATA static void* daTag_ShopItem_MethodTable[8] = {
@@ -220,28 +226,28 @@ asm void daTag_ShopItem_c::getSwitchBit2() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3778 = -30.0f;
-COMPILER_STRIP_GATE(80D611D8, &lit_3778);
+COMPILER_STRIP_GATE(0x80D611D8, &lit_3778);
 #pragma pop
 
 /* 80D611DC-80D611E0 00000C 0004+00 0/1 0/0 0/0 .rodata          @3779 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3779 = -15.0f;
-COMPILER_STRIP_GATE(80D611DC, &lit_3779);
+COMPILER_STRIP_GATE(0x80D611DC, &lit_3779);
 #pragma pop
 
 /* 80D611E0-80D611E4 000010 0004+00 0/1 0/0 0/0 .rodata          @3780 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3780 = 30.0f;
-COMPILER_STRIP_GATE(80D611E0, &lit_3780);
+COMPILER_STRIP_GATE(0x80D611E0, &lit_3780);
 #pragma pop
 
 /* 80D611E4-80D611E8 000014 0004+00 0/1 0/0 0/0 .rodata          @3781 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3781 = 45.0f;
-COMPILER_STRIP_GATE(80D611E4, &lit_3781);
+COMPILER_STRIP_GATE(0x80D611E4, &lit_3781);
 #pragma pop
 
 /* 80D6105C-80D610E0 00055C 0084+00 1/1 0/0 0/0 .text            initialize__16daTag_ShopItem_cFv */
@@ -309,9 +315,4 @@ asm daTag_ShopItem_c::~daTag_ShopItem_c() {
 }
 #pragma pop
 
-/* 80D611E8-80D611F0 000018 0008+00 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D611E8 = "F_SP109";
-#pragma pop
+/* 80D611E8-80D611E8 000018 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

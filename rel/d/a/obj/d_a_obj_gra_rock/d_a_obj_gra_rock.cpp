@@ -77,9 +77,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -186,9 +186,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -236,9 +236,9 @@ extern "C" static void daObjGraRock_Execute__FP14daObjGraRock_c();
 extern "C" static bool daObjGraRock_IsDelete__FP14daObjGraRock_c();
 extern "C" static void daObjGraRock_Delete__FP14daObjGraRock_c();
 extern "C" static void daObjGraRock_create__FP10fopAc_ac_c();
-extern "C" void func_80C122F0(s16*);
-extern "C" void func_80C1230C(u8*);
-extern "C" void func_80C12328(int, int);
+extern "C" void func_80C122F0(void* _this, s16*);
+extern "C" void func_80C1230C(void* _this, u8*);
+extern "C" void func_80C12328(void* _this, int, int);
 extern "C" static void func_80C123A4();
 extern "C" static void func_80C123AC();
 extern "C" u8 const mCcDCyl__14daObjGraRock_c[68];
@@ -348,7 +348,7 @@ SECTION_RODATA u8 const daObjGraRock_c::mCcDCyl[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C123BC, &daObjGraRock_c::mCcDCyl);
+COMPILER_STRIP_GATE(0x80C123BC, &daObjGraRock_c::mCcDCyl);
 
 /* 80C12400-80C12404 000044 0004+00 1/4 0/0 0/0 .rodata          @3857 */
 SECTION_RODATA static u8 const lit_3857[4] = {
@@ -357,31 +357,31 @@ SECTION_RODATA static u8 const lit_3857[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C12400, &lit_3857);
+COMPILER_STRIP_GATE(0x80C12400, &lit_3857);
 
 /* 80C12404-80C12408 000048 0004+00 0/2 0/0 0/0 .rodata          @3858 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3858 = 680.0f;
-COMPILER_STRIP_GATE(80C12404, &lit_3858);
+COMPILER_STRIP_GATE(0x80C12404, &lit_3858);
 #pragma pop
 
 /* 80C12408-80C1240C 00004C 0004+00 0/2 0/0 0/0 .rodata          @3859 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3859 = 145.0f;
-COMPILER_STRIP_GATE(80C12408, &lit_3859);
+COMPILER_STRIP_GATE(0x80C12408, &lit_3859);
 #pragma pop
 
 /* 80C1240C-80C12410 000050 0004+00 4/6 0/0 0/0 .rodata          @3860 */
 SECTION_RODATA static f32 const lit_3860 = 1.0f;
-COMPILER_STRIP_GATE(80C1240C, &lit_3860);
+COMPILER_STRIP_GATE(0x80C1240C, &lit_3860);
 
 /* 80C12410-80C12414 000054 0004+00 0/2 0/0 0/0 .rodata          @3861 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3861 = -1.0f;
-COMPILER_STRIP_GATE(80C12410, &lit_3861);
+COMPILER_STRIP_GATE(0x80C12410, &lit_3861);
 #pragma pop
 
 /* 80C12414-80C1241C 000058 0004+04 0/1 0/0 0/0 .rodata          @3862 */
@@ -392,14 +392,14 @@ SECTION_RODATA static f32 const lit_3862[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80C12414, &lit_3862);
+COMPILER_STRIP_GATE(0x80C12414, &lit_3862);
 #pragma pop
 
 /* 80C1241C-80C12424 000060 0008+00 1/2 0/0 0/0 .rodata          @3864 */
 SECTION_RODATA static u8 const lit_3864[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C1241C, &lit_3864);
+COMPILER_STRIP_GATE(0x80C1241C, &lit_3864);
 
 /* 80C110F8-80C11444 000078 034C+00 1/1 0/0 0/0 .text            setAttnPos__14daObjGraRock_cFv */
 #pragma push
@@ -429,7 +429,7 @@ SECTION_RODATA static u8 const l_prticles_id[4] = {
     0x87,
     0x60,
 };
-COMPILER_STRIP_GATE(80C12424, &l_prticles_id);
+COMPILER_STRIP_GATE(0x80C12424, &l_prticles_id);
 
 /* 80C114C0-80C1157C 000440 00BC+00 1/1 0/0 0/0 .text            setPrtcl__14daObjGraRock_cFv */
 #pragma push
@@ -498,42 +498,42 @@ asm void daObjGraRock_c::checkHitAt(cCcD_Obj* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4024 = 0xC3A438D5;
-COMPILER_STRIP_GATE(80C12428, &lit_4024);
+COMPILER_STRIP_GATE(0x80C12428, &lit_4024);
 #pragma pop
 
 /* 80C1242C-80C12430 000070 0004+00 0/1 0/0 0/0 .rodata          @4025 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4025 = -150.0f;
-COMPILER_STRIP_GATE(80C1242C, &lit_4025);
+COMPILER_STRIP_GATE(0x80C1242C, &lit_4025);
 #pragma pop
 
 /* 80C12430-80C12434 000074 0004+00 0/1 0/0 0/0 .rodata          @4026 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4026 = 0xC3C01581;
-COMPILER_STRIP_GATE(80C12430, &lit_4026);
+COMPILER_STRIP_GATE(0x80C12430, &lit_4026);
 #pragma pop
 
 /* 80C12434-80C12438 000078 0004+00 0/1 0/0 0/0 .rodata          @4027 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4027 = 0x43A1274C;
-COMPILER_STRIP_GATE(80C12434, &lit_4027);
+COMPILER_STRIP_GATE(0x80C12434, &lit_4027);
 #pragma pop
 
 /* 80C12438-80C1243C 00007C 0004+00 0/1 0/0 0/0 .rodata          @4028 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4028 = 0x4483F1C2;
-COMPILER_STRIP_GATE(80C12438, &lit_4028);
+COMPILER_STRIP_GATE(0x80C12438, &lit_4028);
 #pragma pop
 
 /* 80C1243C-80C12440 000080 0004+00 0/1 0/0 0/0 .rodata          @4029 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4029 = 0x43C89F9E;
-COMPILER_STRIP_GATE(80C1243C, &lit_4029);
+COMPILER_STRIP_GATE(0x80C1243C, &lit_4029);
 #pragma pop
 
 /* 80C11970-80C11B68 0008F0 01F8+00 1/0 0/0 0/0 .text            Create__14daObjGraRock_cFv */
@@ -547,6 +547,18 @@ asm void daObjGraRock_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80C12440-80C12440 000084 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C12440 = "M_VBom";
+SECTION_DEAD static char const* const stringBase_80C12447 = "grA_base";
+SECTION_DEAD static char const* const stringBase_80C12450 = "grA_mdl";
+SECTION_DEAD static char const* const stringBase_80C12458 = "grA_Rock";
+SECTION_DEAD static char const* const stringBase_80C12461 = "grA_RockD";
+SECTION_DEAD static char const* const stringBase_80C1246B = "M_VBom_Zora.bmd";
+SECTION_DEAD static char const* const stringBase_80C1247B = "M_VBom_Zora.btp";
+#pragma pop
+
 /* 80C1249C-80C124B0 -00001 0014+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName[5] = {
     (void*)&d_a_obj_gra_rock__stringBase0,
@@ -567,6 +579,12 @@ asm void daObjGraRock_c::CreateHeap() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80C12440-80C12440 000084 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C1248B = "M_VBom_Zora.dzb";
+#pragma pop
+
 /* 80C124B0-80C124D0 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjGraRock_Method */
 SECTION_DATA static void* l_daObjGraRock_Method[8] = {
     (void*)daObjGraRock_create__FP10fopAc_ac_c,
@@ -768,7 +786,7 @@ static asm void daObjGraRock_create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80C122F0(s16* param_0) {
+extern "C" asm void func_80C122F0(void* _this, s16* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_gra_rock/d_a_obj_gra_rock/func_80C122F0.s"
 }
@@ -778,7 +796,7 @@ extern "C" asm void func_80C122F0(s16* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80C1230C(u8* param_0) {
+extern "C" asm void func_80C1230C(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_gra_rock/d_a_obj_gra_rock/func_80C1230C.s"
 }
@@ -788,7 +806,7 @@ extern "C" asm void func_80C1230C(u8* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80C12328(int param_0, int param_1) {
+extern "C" asm void func_80C12328(void* _this, int param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_gra_rock/d_a_obj_gra_rock/func_80C12328.s"
 }
@@ -814,16 +832,4 @@ static asm void func_80C123AC() {
 }
 #pragma pop
 
-/* 80C12440-80C1249B 000084 005B+00 3/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C12440 = "M_VBom";
-SECTION_DEAD static char const* const stringBase_80C12447 = "grA_base";
-SECTION_DEAD static char const* const stringBase_80C12450 = "grA_mdl";
-SECTION_DEAD static char const* const stringBase_80C12458 = "grA_Rock";
-SECTION_DEAD static char const* const stringBase_80C12461 = "grA_RockD";
-SECTION_DEAD static char const* const stringBase_80C1246B = "M_VBom_Zora.bmd";
-SECTION_DEAD static char const* const stringBase_80C1247B = "M_VBom_Zora.btp";
-SECTION_DEAD static char const* const stringBase_80C1248B = "M_VBom_Zora.dzb";
-#pragma pop
+/* 80C12440-80C12440 000084 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

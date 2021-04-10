@@ -161,16 +161,11 @@ asm JASDrumSet::TPerc::TPerc() {
 }
 #pragma pop
 
-/* 802984E4-802984EC 292E24 0008+00 0/0 2/2 0/0 .text            setRelease__Q210JASDrumSet5TPercFUl
+/* 802984E4-802984EC -00001 0008+00 0/0 0/0 0/0 .text            setRelease__Q210JASDrumSet5TPercFUl
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDrumSet::TPerc::setRelease(u32 param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASDrumSet/setRelease__Q210JASDrumSet5TPercFUl.s"
+void JASDrumSet::TPerc::setRelease(u32 param_0) {
+    *(u16*)(((u8*)this) + 12) /* this->field_0xc */ = (u16)(param_0);
 }
-#pragma pop
 
 /* 802984EC-802984F8 292E2C 000C+00 1/0 0/0 0/0 .text            getType__10JASDrumSetCFv */
 #pragma push

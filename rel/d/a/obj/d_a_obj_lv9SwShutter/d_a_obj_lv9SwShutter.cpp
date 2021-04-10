@@ -87,9 +87,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -184,20 +184,20 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80C8D7DC-80C8D7E0 000000 0004+00 3/3 0/0 0/0 .rodata          @3627 */
 SECTION_RODATA static f32 const lit_3627 = 6.0f;
-COMPILER_STRIP_GATE(80C8D7DC, &lit_3627);
+COMPILER_STRIP_GATE(0x80C8D7DC, &lit_3627);
 
 /* 80C8D7E0-80C8D7E4 000004 0004+00 0/1 0/0 0/0 .rodata          @3628 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3628 = 30.0f;
-COMPILER_STRIP_GATE(80C8D7E0, &lit_3628);
+COMPILER_STRIP_GATE(0x80C8D7E0, &lit_3628);
 #pragma pop
 
 /* 80C8D7E4-80C8D7E8 000008 0004+00 0/1 0/0 0/0 .rodata          @3629 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3629 = 15.0f;
-COMPILER_STRIP_GATE(80C8D7E4, &lit_3629);
+COMPILER_STRIP_GATE(0x80C8D7E4, &lit_3629);
 #pragma pop
 
 /* 80C8D80C-80C8D818 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -336,7 +336,7 @@ SECTION_RODATA static u8 const lit_3650[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C8D7E8, &lit_3650);
+COMPILER_STRIP_GATE(0x80C8D7E8, &lit_3650);
 
 /* 80C8CF38-80C8CFD4 000178 009C+00 2/2 0/0 0/0 .text            setBaseMtx__16daLv9SwShutter_cFv */
 #pragma push
@@ -346,6 +346,13 @@ asm void daLv9SwShutter_c::setBaseMtx() {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_lv9SwShutter/d_a_obj_lv9SwShutter/setBaseMtx__16daLv9SwShutter_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80C8D800-80C8D800 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C8D800 = "L9SwShut";
 #pragma pop
 
 /* 80C8CFD4-80C8D040 000214 006C+00 1/0 0/0 0/0 .text            CreateHeap__16daLv9SwShutter_cFv */
@@ -361,7 +368,7 @@ asm void daLv9SwShutter_c::CreateHeap() {
 /* ############################################################################################## */
 /* 80C8D7EC-80C8D7F0 000010 0004+00 1/2 0/0 0/0 .rodata          @3708 */
 SECTION_RODATA static f32 const lit_3708 = 600.0f;
-COMPILER_STRIP_GATE(80C8D7EC, &lit_3708);
+COMPILER_STRIP_GATE(0x80C8D7EC, &lit_3708);
 
 /* 80C8D040-80C8D168 000280 0128+00 1/1 0/0 0/0 .text            create__16daLv9SwShutter_cFv */
 #pragma push
@@ -436,28 +443,28 @@ asm void daLv9SwShutter_c::init_modeOpen() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3782 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80C8D7F0, &lit_3782);
+COMPILER_STRIP_GATE(0x80C8D7F0, &lit_3782);
 #pragma pop
 
 /* 80C8D7F4-80C8D7F8 000018 0004+00 0/2 0/0 0/0 .rodata          @3783 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3783 = 5.0f;
-COMPILER_STRIP_GATE(80C8D7F4, &lit_3783);
+COMPILER_STRIP_GATE(0x80C8D7F4, &lit_3783);
 #pragma pop
 
 /* 80C8D7F8-80C8D7FC 00001C 0004+00 0/2 0/0 0/0 .rodata          @3784 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3784 = 1.0f;
-COMPILER_STRIP_GATE(80C8D7F8, &lit_3784);
+COMPILER_STRIP_GATE(0x80C8D7F8, &lit_3784);
 #pragma pop
 
 /* 80C8D7FC-80C8D800 000020 0004+00 0/2 0/0 0/0 .rodata          @3785 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3785 = -1.0f;
-COMPILER_STRIP_GATE(80C8D7FC, &lit_3785);
+COMPILER_STRIP_GATE(0x80C8D7FC, &lit_3785);
 #pragma pop
 
 /* 80C8D2D8-80C8D440 000518 0168+00 1/0 0/0 0/0 .text            modeOpen__16daLv9SwShutter_cFv */
@@ -574,12 +581,7 @@ asm void __sinit_d_a_obj_lv9SwShutter_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C8D78C = (void*)__sinit_d_a_obj_lv9SwShutter_cpp;
+REGISTER_CTORS(0x80C8D78C, __sinit_d_a_obj_lv9SwShutter_cpp);
 #pragma pop
 
-/* 80C8D800-80C8D809 000024 0009+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C8D800 = "L9SwShut";
-#pragma pop
+/* 80C8D800-80C8D800 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

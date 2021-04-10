@@ -185,7 +185,7 @@ asm void daObjOnsen_c::Create() {
 SECTION_RODATA static u8 const l_bmd[8] = {
     0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x05,
 };
-COMPILER_STRIP_GATE(80CA811C, &l_bmd);
+COMPILER_STRIP_GATE(0x80CA811C, &l_bmd);
 
 /* 80CA8124-80CA812C 000008 0008+00 0/1 0/0 0/0 .rodata          l_btk */
 #pragma push
@@ -193,7 +193,7 @@ COMPILER_STRIP_GATE(80CA811C, &l_bmd);
 SECTION_RODATA static u8 const l_btk[8] = {
     0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x09,
 };
-COMPILER_STRIP_GATE(80CA8124, &l_btk);
+COMPILER_STRIP_GATE(0x80CA8124, &l_btk);
 #pragma pop
 
 /* 80CA812C-80CA8134 000010 0008+00 0/1 0/0 0/0 .rodata          l_bmd2 */
@@ -202,26 +202,33 @@ COMPILER_STRIP_GATE(80CA8124, &l_btk);
 SECTION_RODATA static u8 const l_bmd2[8] = {
     0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x06,
 };
-COMPILER_STRIP_GATE(80CA812C, &l_bmd2);
+COMPILER_STRIP_GATE(0x80CA812C, &l_bmd2);
 #pragma pop
 
 /* 80CA8134-80CA813C 000018 0008+00 1/1 0/0 0/0 .rodata          l_dzb */
 SECTION_RODATA static u8 const l_dzb[8] = {
     0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x0C,
 };
-COMPILER_STRIP_GATE(80CA8134, &l_dzb);
+COMPILER_STRIP_GATE(0x80CA8134, &l_dzb);
 
 /* 80CA813C-80CA8144 000020 0008+00 1/1 0/0 0/0 .rodata          l_heap_size */
 SECTION_RODATA static u8 const l_heap_size[8] = {
     0x00, 0x00, 0x28, 0x00, 0x00, 0x00, 0x1A, 0xE0,
 };
-COMPILER_STRIP_GATE(80CA813C, &l_heap_size);
+COMPILER_STRIP_GATE(0x80CA813C, &l_heap_size);
 
 /* 80CA8144-80CA8148 000028 0004+00 0/1 0/0 0/0 .rodata          @3694 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3694 = 1.0f;
-COMPILER_STRIP_GATE(80CA8144, &lit_3694);
+COMPILER_STRIP_GATE(0x80CA8144, &lit_3694);
+#pragma pop
+
+/* 80CA8148-80CA8148 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CA8148 = "H_Onsen";
+SECTION_DEAD static char const* const stringBase_80CA8150 = "H_KaOnsen";
 #pragma pop
 
 /* 80CA815C-80CA8164 -00001 0008+00 3/3 0/0 0/0 .data            l_arcName */
@@ -376,10 +383,4 @@ static asm void daObjOnsen_MoveBGDraw(daObjOnsen_c* param_0) {
 }
 #pragma pop
 
-/* 80CA8148-80CA815A 00002C 0012+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CA8148 = "H_Onsen";
-SECTION_DEAD static char const* const stringBase_80CA8150 = "H_KaOnsen";
-#pragma pop
+/* 80CA8148-80CA8148 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

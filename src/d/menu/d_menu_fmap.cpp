@@ -104,11 +104,11 @@ struct STControl {
     /* 8003219C */ void checkTrigger();
 };
 
+struct CSTControl {};
+
 struct JKRExpHeap {
     /* 802CEE2C */ void create(u32, JKRHeap*, bool);
 };
-
-struct CSTControl {};
 
 struct dMenu_Fmap_c {
     /* 801C66E4 */ dMenu_Fmap_c(JKRExpHeap*, STControl*, CSTControl*, u8, u8, u8, f32, f32, u8);
@@ -328,9 +328,9 @@ struct dDlst_list_c {
     /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -637,6 +637,31 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
+/* 803960E8-803960E8 022748 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803960E8 = "";
+SECTION_DEAD static char const* const stringBase_803960E9 = "dat/field.dat";
+SECTION_DEAD static char const* const stringBase_803960F7 = "dat/portal.dat";
+SECTION_DEAD static char const* const stringBase_80396106 = "F_SP124";
+SECTION_DEAD static char const* const stringBase_8039610E = "/res/FieldMap/res-f.arc";
+SECTION_DEAD static char const* const stringBase_80396126 = "dat/data.dat";
+SECTION_DEAD static char const* const stringBase_80396133 = "%s/stage.dat";
+SECTION_DEAD static char const* const stringBase_80396140 = "%s/room%d.dzs";
+SECTION_DEAD static char const* const stringBase_8039614E = "tex/region8.bti";
+SECTION_DEAD static char const* const stringBase_8039615E = "tex/region%d.bti";
+SECTION_DEAD static char const* const stringBase_8039616F = "F_SP115";
+SECTION_DEAD static char const* const stringBase_80396177 = "F_SP113";
+SECTION_DEAD static char const* const stringBase_8039617F = "F_SP109";
+SECTION_DEAD static char const* const stringBase_80396187 = "F_SP108";
+SECTION_DEAD static char const* const stringBase_8039618F = "F_SP104";
+SECTION_DEAD static char const* const stringBase_80396197 = "F_SP122";
+SECTION_DEAD static char const* const stringBase_8039619F = "F_SP111";
+SECTION_DEAD static char const* const stringBase_803961A7 = "F_SP116";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803961AF = "";
+#pragma pop
+
 /* 803BD090-803BD09C 01A1B0 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -2647,7 +2672,7 @@ SECTION_RODATA static u8 const i_swBit[24] = {
     0x00, 0x00, 0x00, 0x41, 0x00, 0x00, 0x00, 0x29, 0x00, 0x00, 0x00, 0x2A,
     0x00, 0x00, 0x00, 0x32, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x32,
 };
-COMPILER_STRIP_GATE(803960D0, &i_swBit);
+COMPILER_STRIP_GATE(0x803960D0, &i_swBit);
 
 /* 801CD814-801CD8B4 1C8154 00A0+00 1/1 0/0 0/0 .text            howlArrowPosInit__12dMenu_Fmap_cFv
  */
@@ -2714,31 +2739,7 @@ asm void __sinit_d_menu_fmap_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_801CDA74 = (void*)__sinit_d_menu_fmap_cpp;
+REGISTER_CTORS(0x801CDA74, __sinit_d_menu_fmap_cpp);
 #pragma pop
 
-/* 803960E8-803961B0 022748 00C7+01 9/7 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803960E8 = "";
-SECTION_DEAD static char const* const stringBase_803960E9 = "dat/field.dat";
-SECTION_DEAD static char const* const stringBase_803960F7 = "dat/portal.dat";
-SECTION_DEAD static char const* const stringBase_80396106 = "F_SP124";
-SECTION_DEAD static char const* const stringBase_8039610E = "/res/FieldMap/res-f.arc";
-SECTION_DEAD static char const* const stringBase_80396126 = "dat/data.dat";
-SECTION_DEAD static char const* const stringBase_80396133 = "%s/stage.dat";
-SECTION_DEAD static char const* const stringBase_80396140 = "%s/room%d.dzs";
-SECTION_DEAD static char const* const stringBase_8039614E = "tex/region8.bti";
-SECTION_DEAD static char const* const stringBase_8039615E = "tex/region%d.bti";
-SECTION_DEAD static char const* const stringBase_8039616F = "F_SP115";
-SECTION_DEAD static char const* const stringBase_80396177 = "F_SP113";
-SECTION_DEAD static char const* const stringBase_8039617F = "F_SP109";
-SECTION_DEAD static char const* const stringBase_80396187 = "F_SP108";
-SECTION_DEAD static char const* const stringBase_8039618F = "F_SP104";
-SECTION_DEAD static char const* const stringBase_80396197 = "F_SP122";
-SECTION_DEAD static char const* const stringBase_8039619F = "F_SP111";
-SECTION_DEAD static char const* const stringBase_803961A7 = "F_SP116";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803961AF = "";
-#pragma pop
+/* 803960E8-803960E8 022748 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

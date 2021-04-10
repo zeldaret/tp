@@ -544,6 +544,17 @@ asm void JKRHeap::copyMemory(void* param_0, void* param_1, u32 param_2) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039CAD8-8039CAD8 029138 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039CAD8 = "JKRHeap.cpp";
+SECTION_DEAD static char const* const stringBase_8039CAE4 = "%s";
+SECTION_DEAD static char const* const stringBase_8039CAE7 = "abort\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039CAEE = "\0";
+#pragma pop
+
 /* 802CEB40-802CEB78 2C9480 0038+00 2/2 0/0 0/0 .text JKRDefaultMemoryErrorRoutine__FPvUli */
 #pragma push
 #pragma optimization_level 0
@@ -569,7 +580,7 @@ asm void JKRHeap::setErrorFlag(bool param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JKRHeap::setErrorHandler(void (*)(void*, u32, int)) {
+asm void JKRHeap::setErrorHandler(void (*param_0)(void*, u32, int)) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRHeap/setErrorHandler__7JKRHeapFPFPvUli_v.s"
 }
@@ -698,13 +709,4 @@ bool JKRHeap::do_getCurrentGroupId() {
     return false;
 }
 
-/* 8039CAD8-8039CAF0 029138 0016+02 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039CAD8 = "JKRHeap.cpp";
-SECTION_DEAD static char const* const stringBase_8039CAE4 = "%s";
-SECTION_DEAD static char const* const stringBase_8039CAE7 = "abort\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039CAEE = "\0";
-#pragma pop
+/* 8039CAD8-8039CAD8 029138 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

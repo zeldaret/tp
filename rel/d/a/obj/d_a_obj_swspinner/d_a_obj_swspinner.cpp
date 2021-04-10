@@ -97,9 +97,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -203,7 +203,7 @@ SECTION_RODATA static u8 const lit_3717[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D00A94, &lit_3717);
+COMPILER_STRIP_GATE(0x80D00A94, &lit_3717);
 
 /* 80D00A9C-80D00AA4 000008 0008+00 0/1 0/0 0/0 .rodata          @3718 */
 #pragma push
@@ -211,7 +211,7 @@ COMPILER_STRIP_GATE(80D00A94, &lit_3717);
 SECTION_RODATA static u8 const lit_3718[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D00A9C, &lit_3718);
+COMPILER_STRIP_GATE(0x80D00A9C, &lit_3718);
 #pragma pop
 
 /* 80D00AA4-80D00AAC 000010 0008+00 0/1 0/0 0/0 .rodata          @3719 */
@@ -220,7 +220,7 @@ COMPILER_STRIP_GATE(80D00A9C, &lit_3718);
 SECTION_RODATA static u8 const lit_3719[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D00AA4, &lit_3719);
+COMPILER_STRIP_GATE(0x80D00AA4, &lit_3719);
 #pragma pop
 
 /* 80D00AAC-80D00AB4 000018 0008+00 0/1 0/0 0/0 .rodata          @3720 */
@@ -229,14 +229,14 @@ COMPILER_STRIP_GATE(80D00AA4, &lit_3719);
 SECTION_RODATA static u8 const lit_3720[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D00AAC, &lit_3720);
+COMPILER_STRIP_GATE(0x80D00AAC, &lit_3720);
 #pragma pop
 
 /* 80D00AB4-80D00AB8 000020 0004+00 0/3 0/0 0/0 .rodata          @3721 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3721 = 100.0f;
-COMPILER_STRIP_GATE(80D00AB4, &lit_3721);
+COMPILER_STRIP_GATE(0x80D00AB4, &lit_3721);
 #pragma pop
 
 /* 80CFFF78-80D00174 000078 01FC+00 1/1 0/0 0/0 .text            search_spinner_sub__FPvPv */
@@ -275,14 +275,14 @@ asm void daObjSwSpinner_c::setBaseMtx() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3773 = 50.0f;
-COMPILER_STRIP_GATE(80D00AB8, &lit_3773);
+COMPILER_STRIP_GATE(0x80D00AB8, &lit_3773);
 #pragma pop
 
 /* 80D00ABC-80D00AC0 000028 0004+00 0/1 0/0 0/0 .rodata          @3774 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3774 = 30.0f;
-COMPILER_STRIP_GATE(80D00ABC, &lit_3774);
+COMPILER_STRIP_GATE(0x80D00ABC, &lit_3774);
 #pragma pop
 
 /* 80D00284-80D0035C 000384 00D8+00 1/0 0/0 0/0 .text            Create__16daObjSwSpinner_cFv */
@@ -296,6 +296,12 @@ asm void daObjSwSpinner_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80D00AD4-80D00AD4 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D00AD4 = "P_Sswitch";
+#pragma pop
+
 /* 80D00AE0-80D00AE4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_swspinner__stringBase0;
 
@@ -324,35 +330,35 @@ asm void daObjSwSpinner_c::create1st() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3919 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80D00AC0, &lit_3919);
+COMPILER_STRIP_GATE(0x80D00AC0, &lit_3919);
 #pragma pop
 
 /* 80D00AC4-80D00AC8 000030 0004+00 0/1 0/0 0/0 .rodata          @3920 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3920 = 10.0f;
-COMPILER_STRIP_GATE(80D00AC4, &lit_3920);
+COMPILER_STRIP_GATE(0x80D00AC4, &lit_3920);
 #pragma pop
 
 /* 80D00AC8-80D00ACC 000034 0004+00 0/1 0/0 0/0 .rodata          @3921 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3921 = 2.0f;
-COMPILER_STRIP_GATE(80D00AC8, &lit_3921);
+COMPILER_STRIP_GATE(0x80D00AC8, &lit_3921);
 #pragma pop
 
 /* 80D00ACC-80D00AD0 000038 0004+00 0/1 0/0 0/0 .rodata          @3922 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3922 = 1.0f;
-COMPILER_STRIP_GATE(80D00ACC, &lit_3922);
+COMPILER_STRIP_GATE(0x80D00ACC, &lit_3922);
 #pragma pop
 
 /* 80D00AD0-80D00AD4 00003C 0004+00 0/1 0/0 0/0 .rodata          @3923 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3923 = -1.0f;
-COMPILER_STRIP_GATE(80D00AD0, &lit_3923);
+COMPILER_STRIP_GATE(0x80D00AD0, &lit_3923);
 #pragma pop
 
 /* 80D00518-80D00890 000618 0378+00 1/0 0/0 0/0 .text Execute__16daObjSwSpinner_cFPPA3_A4_f */
@@ -466,9 +472,4 @@ static asm void daObjSwSpinner_MoveBGDraw(daObjSwSpinner_c* param_0) {
 }
 #pragma pop
 
-/* 80D00AD4-80D00ADE 000040 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D00AD4 = "P_Sswitch";
-#pragma pop
+/* 80D00AD4-80D00AD4 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

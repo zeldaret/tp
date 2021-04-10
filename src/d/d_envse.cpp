@@ -138,6 +138,15 @@ static asm void dEnvSe_getNearPathPos(cXyz* param_0, cXyz* param_1, dPath* param
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80394308-80394308 020968 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394308 = "sndtag";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039430F = "";
+#pragma pop
+
 /* 80182FD8-80183480 17D918 04A8+00 1/1 0/0 0/0 .text
  * execute_common__8dEnvSe_cFP18dStage_SoundInfo_cPScUc         */
 #pragma push
@@ -213,11 +222,4 @@ SECTION_DATA extern void* g_profile_ENVSE[10 + 1 /* padding */] = {
     NULL,
 };
 
-/* 80394308-80394310 020968 0007+01 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80394308 = "sndtag";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039430F = "";
-#pragma pop
+/* 80394308-80394308 020968 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

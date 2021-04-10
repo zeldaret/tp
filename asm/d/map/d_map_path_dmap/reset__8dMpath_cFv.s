@@ -2,7 +2,7 @@ lbl_8003FBD0:
 /* 8003FBD0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8003FBD4  7C 08 02 A6 */	mflr r0
 /* 8003FBD8  90 01 00 14 */	stw r0, 0x14(r1)
-/* 8003FBDC  88 0D 80 B6 */	lbz r0, struct_80450634+0x2(r13)
+/* 8003FBDC  88 0D 80 B6 */	lbz r0, data_80450636(r13)
 /* 8003FBE0  28 00 00 00 */	cmplwi r0, 0
 /* 8003FBE4  41 82 00 7C */	beq lbl_8003FC60
 /* 8003FBE8  38 C0 00 00 */	li r6, 0
@@ -34,7 +34,7 @@ lbl_8003FC00:
 /* 8003FC48  38 00 FF 80 */	li r0, -128
 /* 8003FC4C  98 0D 80 B5 */	stb r0, struct_80450634+0x1(r13)
 /* 8003FC50  38 00 00 00 */	li r0, 0
-/* 8003FC54  98 0D 80 B6 */	stb r0, struct_80450634+0x2(r13)
+/* 8003FC54  98 0D 80 B6 */	stb r0, data_80450636(r13)
 /* 8003FC58  98 0D 89 08 */	stb r0, data_80450E88(r13)
 /* 8003FC5C  4B FF FA B9 */	bl reset__10dMapInfo_cFv
 lbl_8003FC60:

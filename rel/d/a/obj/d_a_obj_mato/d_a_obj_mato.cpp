@@ -116,9 +116,9 @@ struct cCcD_GStts {
     /* 80C92C00 */ ~cCcD_GStts();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -236,7 +236,7 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObjMATO_c::setAction(void (daObjMATO_c::*)(int), int param_1) {
+asm void daObjMATO_c::setAction(void (daObjMATO_c::*param_0)(int), int param_1) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_mato/d_a_obj_mato/setAction__11daObjMATO_cFM11daObjMATO_cFPCvPvi_vi.s"
 }
@@ -248,7 +248,13 @@ SECTION_RODATA static u8 const l_B_ling_bmd_table[28] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00,
     0x00, 0x04, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04,
 };
-COMPILER_STRIP_GATE(80C92C50, &l_B_ling_bmd_table);
+COMPILER_STRIP_GATE(0x80C92C50, &l_B_ling_bmd_table);
+
+/* 80C92CD4-80C92CD4 000084 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C92CD4 = "B_ling";
+#pragma pop
 
 /* 80C91C1C-80C91D04 00013C 00E8+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push
@@ -326,7 +332,7 @@ SECTION_RODATA static u8 const lit_3878[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C92C6C, &lit_3878);
+COMPILER_STRIP_GATE(0x80C92C6C, &lit_3878);
 
 /* 80C92D2C-80C92D38 -00001 000C+00 1/1 0/0 0/0 .data            @3867 */
 SECTION_DATA static void* lit_3867[3] = {
@@ -348,11 +354,11 @@ asm void daObjMATO_c::start_wait(int param_0) {
 /* ############################################################################################## */
 /* 80C92C70-80C92C74 000020 0004+00 1/2 0/0 0/0 .rodata          @3900 */
 SECTION_RODATA static f32 const lit_3900 = 1.0f;
-COMPILER_STRIP_GATE(80C92C70, &lit_3900);
+COMPILER_STRIP_GATE(0x80C92C70, &lit_3900);
 
 /* 80C92C74-80C92C78 000024 0004+00 1/1 0/0 0/0 .rodata          @3901 */
 SECTION_RODATA static f32 const lit_3901 = 0.25f;
-COMPILER_STRIP_GATE(80C92C74, &lit_3901);
+COMPILER_STRIP_GATE(0x80C92C74, &lit_3901);
 
 /* 80C92D38-80C92D44 -00001 000C+00 1/1 0/0 0/0 .data            @3891 */
 SECTION_DATA static void* lit_3891[3] = {
@@ -379,7 +385,7 @@ SECTION_RODATA static u8 const l_rupee_itemno_table[28] = {
     0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00,
     0x00, 0x04, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x07,
 };
-COMPILER_STRIP_GATE(80C92C78, &l_rupee_itemno_table);
+COMPILER_STRIP_GATE(0x80C92C78, &l_rupee_itemno_table);
 #pragma pop
 
 /* 80C92C94-80C92C9C 000044 0007+01 0/1 0/0 0/0 .rodata          l_rupee_count_table */
@@ -396,7 +402,7 @@ SECTION_RODATA static u8 const l_rupee_count_table[7 + 1 /* padding */] = {
     /* padding */
     0x00,
 };
-COMPILER_STRIP_GATE(80C92C94, &l_rupee_count_table);
+COMPILER_STRIP_GATE(0x80C92C94, &l_rupee_count_table);
 #pragma pop
 
 /* 80C92C9C-80C92CB8 00004C 001C+00 0/1 0/0 0/0 .rodata          l_rupee_getse */
@@ -406,28 +412,28 @@ SECTION_RODATA static u8 const l_rupee_getse[28] = {
     0x00, 0x00, 0x00, 0x70, 0x00, 0x00, 0x00, 0x71, 0x00, 0x00, 0x00, 0x71, 0x00, 0x00,
     0x00, 0x72, 0x00, 0x00, 0x00, 0x72, 0x00, 0x00, 0x00, 0x72, 0x00, 0x00, 0x00, 0x72,
 };
-COMPILER_STRIP_GATE(80C92C9C, &l_rupee_getse);
+COMPILER_STRIP_GATE(0x80C92C9C, &l_rupee_getse);
 #pragma pop
 
 /* 80C92CB8-80C92CBC 000068 0004+00 0/1 0/0 0/0 .rodata          @3934 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3934 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80C92CB8, &lit_3934);
+COMPILER_STRIP_GATE(0x80C92CB8, &lit_3934);
 #pragma pop
 
 /* 80C92CBC-80C92CC0 00006C 0004+00 0/1 0/0 0/0 .rodata          @3935 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3935 = 1.5f;
-COMPILER_STRIP_GATE(80C92CBC, &lit_3935);
+COMPILER_STRIP_GATE(0x80C92CBC, &lit_3935);
 #pragma pop
 
 /* 80C92CC0-80C92CC4 000070 0004+00 0/1 0/0 0/0 .rodata          @3936 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3936 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(80C92CC0, &lit_3936);
+COMPILER_STRIP_GATE(0x80C92CC0, &lit_3936);
 #pragma pop
 
 /* 80C92D44-80C92D50 -00001 000C+00 1/1 0/0 0/0 .data            @3924 */
@@ -452,7 +458,7 @@ asm void daObjMATO_c::disappear(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3959 = -1.0f;
-COMPILER_STRIP_GATE(80C92CC4, &lit_3959);
+COMPILER_STRIP_GATE(0x80C92CC4, &lit_3959);
 #pragma pop
 
 /* 80C921A8-80C922AC 0006C8 0104+00 1/1 0/0 0/0 .text            getRupee__11daObjMATO_cFi */
@@ -490,21 +496,21 @@ asm void daObjMATO_c::_delete() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4039 = 420.0f;
-COMPILER_STRIP_GATE(80C92CC8, &lit_4039);
+COMPILER_STRIP_GATE(0x80C92CC8, &lit_4039);
 #pragma pop
 
 /* 80C92CCC-80C92CD0 00007C 0004+00 0/1 0/0 0/0 .rodata          @4040 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4040 = 190.0f;
-COMPILER_STRIP_GATE(80C92CCC, &lit_4040);
+COMPILER_STRIP_GATE(0x80C92CCC, &lit_4040);
 #pragma pop
 
 /* 80C92CD0-80C92CD4 000080 0004+00 0/1 0/0 0/0 .rodata          @4041 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4041 = 840.0f;
-COMPILER_STRIP_GATE(80C92CD0, &lit_4041);
+COMPILER_STRIP_GATE(0x80C92CD0, &lit_4041);
 #pragma pop
 
 /* 80C9243C-80C92584 00095C 0148+00 1/1 0/0 0/0 .text            setBaseMtx__11daObjMATO_cFv */
@@ -683,9 +689,4 @@ asm cCcD_GStts::~cCcD_GStts() {
 }
 #pragma pop
 
-/* 80C92CD4-80C92CDB 000084 0007+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C92CD4 = "B_ling";
-#pragma pop
+/* 80C92CD4-80C92CD4 000084 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

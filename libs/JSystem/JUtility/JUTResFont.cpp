@@ -19,8 +19,6 @@ struct JUtility {
     struct TColor {};
 };
 
-struct JKRHeap {};
-
 struct JUTFont {
     struct TWidth {};
 
@@ -30,6 +28,8 @@ struct JUTFont {
     /* 802E0110 */ bool isLeadByte_2Byte(int);
     /* 802E0118 */ void isLeadByte_ShiftJIS(int);
 };
+
+struct JKRHeap {};
 
 struct JUTResFont {
     /* 802DDFD8 */ void getResFont() const;
@@ -241,6 +241,13 @@ asm void JUTResFont::protected_initiate(ResFONT const* param_0, JKRHeap* param_1
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039D45C-8039D45C 029ABC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D45C = "JUTResFont: Unknown data block\n";
+#pragma pop
+
 /* 802DF248-802DF344 2D9B88 00FC+00 1/1 0/0 0/0 .text            countBlock__10JUTResFontFv */
 #pragma push
 #pragma optimization_level 0
@@ -258,7 +265,13 @@ SECTION_RODATA void* const JUTResFont::saoAboutEncoding_[3] = {
     (void*)isLeadByte_2Byte__7JUTFontFi,
     (void*)isLeadByte_ShiftJIS__7JUTFontFi,
 };
-COMPILER_STRIP_GATE(8039D390, &JUTResFont::saoAboutEncoding_);
+COMPILER_STRIP_GATE(0x8039D390, &JUTResFont::saoAboutEncoding_);
+
+/* 8039D45C-8039D45C 029ABC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D47C = "Unknown data block\n";
+#pragma pop
 
 /* 802DF344-802DF48C 2D9C84 0148+00 1/0 0/0 0/0 .text            setBlock__10JUTResFontFv */
 #pragma push
@@ -566,7 +579,7 @@ SECTION_RODATA static u8 const halftofull[190 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039D39C, &halftofull);
+COMPILER_STRIP_GATE(0x8039D39C, &halftofull);
 
 /* 802DFDD8-802DFF60 2DA718 0188+00 2/2 0/0 0/0 .text            getFontCode__10JUTResFontCFi */
 #pragma push
@@ -618,10 +631,4 @@ asm void JUTFont::isLeadByte_ShiftJIS(int param_0) {
 }
 #pragma pop
 
-/* 8039D45C-8039D490 029ABC 0034+00 2/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039D45C = "JUTResFont: Unknown data block\n";
-SECTION_DEAD static char const* const stringBase_8039D47C = "Unknown data block\n";
-#pragma pop
+/* 8039D45C-8039D45C 029ABC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

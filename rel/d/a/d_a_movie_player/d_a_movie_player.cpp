@@ -621,7 +621,7 @@ SECTION_RODATA static u8 const __THPJpegNaturalOrder[80] = {
     0x3A, 0x3B, 0x34, 0x2D, 0x26, 0x1F, 0x27, 0x2E, 0x35, 0x3C, 0x3D, 0x36, 0x2F, 0x37, 0x3E, 0x3F,
     0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F, 0x3F,
 };
-COMPILER_STRIP_GATE(80879034, &__THPJpegNaturalOrder);
+COMPILER_STRIP_GATE(0x80879034, &__THPJpegNaturalOrder);
 
 /* 80879084-808790C4 000050 0040+00 1/1 0/0 0/0 .rodata          __THPAANScaleFactor */
 SECTION_RODATA static u8 const __THPAANScaleFactor[64] = {
@@ -630,13 +630,13 @@ SECTION_RODATA static u8 const __THPAANScaleFactor[64] = {
     0x3F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0xE9, 0x24, 0x69, 0xC0, 0x00, 0x00, 0x00,
     0x3F, 0xE1, 0x51, 0x7A, 0x80, 0x00, 0x00, 0x00, 0x3F, 0xD1, 0xA8, 0x55, 0xE0, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80879084, &__THPAANScaleFactor);
+COMPILER_STRIP_GATE(0x80879084, &__THPAANScaleFactor);
 
 /* 808790C4-808790CC 000090 0008+00 1/1 0/0 0/0 .rodata          @3998 */
 SECTION_RODATA static u8 const lit_3998[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(808790C4, &lit_3998);
+COMPILER_STRIP_GATE(0x808790C4, &lit_3998);
 
 /* 808731B4-80873574 000AD4 03C0+00 1/1 0/0 0/0 .text            __THPReadQuantizationTable */
 #pragma push
@@ -754,35 +754,35 @@ asm void __THPDecompressiMCURow512x448() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4205 = 0x3FB504F3;
-COMPILER_STRIP_GATE(808790CC, &lit_4205);
+COMPILER_STRIP_GATE(0x808790CC, &lit_4205);
 #pragma pop
 
 /* 808790D0-808790D4 00009C 0004+00 0/2 0/0 0/0 .rodata          @4206 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4206 = 0x3FEC835E;
-COMPILER_STRIP_GATE(808790D0, &lit_4206);
+COMPILER_STRIP_GATE(0x808790D0, &lit_4206);
 #pragma pop
 
 /* 808790D4-808790D8 0000A0 0004+00 0/2 0/0 0/0 .rodata          @4207 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4207 = 0x3F8A8BD4;
-COMPILER_STRIP_GATE(808790D4, &lit_4207);
+COMPILER_STRIP_GATE(0x808790D4, &lit_4207);
 #pragma pop
 
 /* 808790D8-808790DC 0000A4 0004+00 0/2 0/0 0/0 .rodata          @4208 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4208 = 0xC0273D75;
-COMPILER_STRIP_GATE(808790D8, &lit_4208);
+COMPILER_STRIP_GATE(0x808790D8, &lit_4208);
 #pragma pop
 
 /* 808790DC-808790E0 0000A8 0004+00 0/2 0/0 0/0 .rodata          @4209 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4209 = 1024.0f;
-COMPILER_STRIP_GATE(808790DC, &lit_4209);
+COMPILER_STRIP_GATE(0x808790DC, &lit_4209);
 #pragma pop
 
 /* 80873FBC-8087445C 0018DC 04A0+00 3/3 0/0 0/0 .text            __THPInverseDCTY8 */
@@ -1026,6 +1026,12 @@ static asm void daMP_NEXT_READ_SIZE(daMP_THPReadBuffer* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8087911C-8087911C 0000E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8087911C = "Can't create read thread\n";
+#pragma pop
+
 /* 8087A198-8087C198 000BF8 2000+00 0/1 0/0 0/0 .bss             daMP_ReadThreadStack */
 #pragma push
 #pragma force_active on
@@ -1144,6 +1150,13 @@ static asm void daMP_VideoDecoderForOnMemory(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_movie_player/d_a_movie_player/daMP_VideoDecoderForOnMemory__FPv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8087911C-8087911C 0000E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80879136 = "Can't create video decode thread\n";
 #pragma pop
 
 /* 80875FD4-808760EC 0038F4 0118+00 1/1 0/0 0/0 .text            daMP_CreateVideoDecodeThread__FlPUc
@@ -1268,6 +1281,13 @@ static asm void daMP_AudioDecoderForOnMemory(void* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8087911C-8087911C 0000E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80879158 = "Can't create audio decode thread\n";
+#pragma pop
+
 /* 808763EC-808764E8 003D0C 00FC+00 1/1 0/0 0/0 .text            daMP_CreateAudioDecodeThread__FlPUc
  */
 #pragma push
@@ -1312,13 +1332,13 @@ static asm void daMP_THPGXRestore() {
 /* ############################################################################################## */
 /* 808790E0-808790E4 0000AC 0004+00 1/1 0/0 0/0 .rodata          @4465 */
 SECTION_RODATA static f32 const lit_4465 = 100.0f;
-COMPILER_STRIP_GATE(808790E0, &lit_4465);
+COMPILER_STRIP_GATE(0x808790E0, &lit_4465);
 
 /* 808790E4-808790E8 0000B0 0004+00 0/0 0/0 0/0 .rodata          @4466 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4466 = 60.0f;
-COMPILER_STRIP_GATE(808790E4, &lit_4466);
+COMPILER_STRIP_GATE(0x808790E4, &lit_4466);
 #pragma pop
 
 /* 808790E8-808790F0 0000B4 0008+00 0/1 0/0 0/0 .rodata          @4779 */
@@ -1327,28 +1347,28 @@ COMPILER_STRIP_GATE(808790E4, &lit_4466);
 SECTION_RODATA static u8 const lit_4779[8] = {
     0xFF, 0xA6, 0x00, 0x00, 0xFF, 0x8E, 0x00, 0x87,
 };
-COMPILER_STRIP_GATE(808790E8, &lit_4779);
+COMPILER_STRIP_GATE(0x808790E8, &lit_4779);
 #pragma pop
 
 /* 808790F0-808790F4 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4782 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4782 = 0x0000E258;
-COMPILER_STRIP_GATE(808790F0, &lit_4782);
+COMPILER_STRIP_GATE(0x808790F0, &lit_4782);
 #pragma pop
 
 /* 808790F4-808790F8 0000C0 0004+00 0/1 0/0 0/0 .rodata          @4785 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4785 = 0xB30000B6;
-COMPILER_STRIP_GATE(808790F4, &lit_4785);
+COMPILER_STRIP_GATE(0x808790F4, &lit_4785);
 #pragma pop
 
 /* 808790F8-808790FC 0000C4 0004+00 0/1 0/0 0/0 .rodata          @4788 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4788 = 0xFF00FF80;
-COMPILER_STRIP_GATE(808790F8, &lit_4788);
+COMPILER_STRIP_GATE(0x808790F8, &lit_4788);
 #pragma pop
 
 /* 808790FC-80879100 0000C8 0004+00 2/4 0/0 0/0 .rodata          @4809 */
@@ -1358,13 +1378,13 @@ SECTION_RODATA static u8 const lit_4809[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(808790FC, &lit_4809);
+COMPILER_STRIP_GATE(0x808790FC, &lit_4809);
 
 /* 80879100-80879104 0000CC 0004+00 0/1 0/0 0/0 .rodata          @4810 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4810 = -1.0f;
-COMPILER_STRIP_GATE(80879100, &lit_4810);
+COMPILER_STRIP_GATE(0x80879100, &lit_4810);
 #pragma pop
 
 /* 80879104-8087910C 0000D0 0004+04 1/3 0/0 0/0 .rodata          @4811 */
@@ -1373,13 +1393,13 @@ SECTION_RODATA static f32 const lit_4811[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80879104, &lit_4811);
+COMPILER_STRIP_GATE(0x80879104, &lit_4811);
 
 /* 8087910C-80879114 0000D8 0008+00 2/3 0/0 0/0 .rodata          @4814 */
 SECTION_RODATA static u8 const lit_4814[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8087910C, &lit_4814);
+COMPILER_STRIP_GATE(0x8087910C, &lit_4814);
 
 /* 8087667C-80876BA8 003F9C 052C+00 1/1 0/0 0/0 .text
  * daMP_THPGXYuv2RgbSetup__FPC16_GXRenderModeObj                */
@@ -1442,7 +1462,7 @@ static asm void GXPosition3s16() {
 /* ############################################################################################## */
 /* 80879114-80879118 0000E0 0004+00 1/1 0/0 0/0 .rodata          @4894 */
 SECTION_RODATA static f32 const lit_4894 = 7.0f / 10.0f;
-COMPILER_STRIP_GATE(80879114, &lit_4894);
+COMPILER_STRIP_GATE(0x80879114, &lit_4894);
 
 /* 80879434-80879534 000000 0100+00 1/1 0/0 0/0 .data            daMP_VolumeTable */
 SECTION_DATA static u8 daMP_VolumeTable[256] = {
@@ -1614,7 +1634,31 @@ static asm void daMP_THPPlayerQuit() {
 /* ############################################################################################## */
 /* 80879118-8087911C 0000E4 0004+00 1/2 0/0 0/0 .rodata          @4983 */
 SECTION_RODATA static f32 const lit_4983 = 127.0f;
-COMPILER_STRIP_GATE(80879118, &lit_4983);
+COMPILER_STRIP_GATE(0x80879118, &lit_4983);
+
+/* 8087911C-8087911C 0000E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8087917A =
+    "You must call daMP_THPPlayerInit before you call"
+    " this function\n";
+SECTION_DEAD static char const* const stringBase_808791BA =
+    "Can't open %s. Because thp file have already ope"
+    "ned.\n";
+SECTION_DEAD static char const* const stringBase_808791F0 = "Can't open %s.\n";
+SECTION_DEAD static char const* const stringBase_80879200 =
+    "Fail to read the header from THP file.\n";
+SECTION_DEAD static char const* const stringBase_80879228 = "THP";
+SECTION_DEAD static char const* const stringBase_8087922C = "This file is not THP file.\n";
+SECTION_DEAD static char const* const stringBase_80879248 = "invalid version.\n";
+SECTION_DEAD static char const* const stringBase_8087925A =
+    "Fail to read the frame component infomation from"
+    " THP file.\n";
+SECTION_DEAD static char const* const stringBase_80879296 =
+    "Fail to read the video infomation from THP file."
+    "\n";
+SECTION_DEAD static char const* const stringBase_808792C8 = "Unknow frame components.\n";
+#pragma pop
 
 /* 8087730C-808776EC 004C2C 03E0+00 1/1 0/0 0/0 .text            daMP_THPPlayerOpen__FPCci */
 #pragma push
@@ -1714,6 +1758,23 @@ static asm void daMP_PrepareReady(int param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_movie_player/d_a_movie_player/daMP_PrepareReady__Fi.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8087911C-8087911C 0000E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_808792E2 =
+    "This thp file doesn't have the offset data\n";
+SECTION_DEAD static char const* const stringBase_8087930E =
+    "Fail to read the offset data from THP file.\n";
+SECTION_DEAD static char const* const stringBase_8087933B =
+    "Specified frame number is over total frame numbe"
+    "r\n";
+SECTION_DEAD static char const* const stringBase_8087936E =
+    "Specified audio track number is invalid\n";
+SECTION_DEAD static char const* const stringBase_80879397 =
+    "Fail to read all movie data from THP file\n";
 #pragma pop
 
 /* 80877FB8-808782A0 0058D8 02E8+00 1/1 0/0 0/0 .text            daMP_THPPlayerPrepare__Flll */
@@ -1850,6 +1911,15 @@ static asm void daMP_THPPlayerSetVolume(s32 param_0, s32 param_1) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8087911C-8087911C 0000E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_808793C2 = "Fail to open the thp file\n";
+SECTION_DEAD static char const* const stringBase_808793DD = "Can't allocate the memory";
+SECTION_DEAD static char const* const stringBase_808793F7 = "Fail to prepare\n";
+#pragma pop
+
 /* 80878758-808788BC 006078 0164+00 1/1 0/0 0/0 .text            daMP_ActivePlayer_Init__FPCc */
 #pragma push
 #pragma optimization_level 0
@@ -1917,6 +1987,13 @@ static asm void JKRFree(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_movie_player/d_a_movie_player/JKRFree__FPv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8087911C-8087911C 0000E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80879408 = "Error happen";
 #pragma pop
 
 /* 80878938-80878994 006258 005C+00 1/1 0/0 0/0 .text            daMP_ActivePlayer_Main__Fv */
@@ -2022,6 +2099,13 @@ asm void daMP_c::daMP_c_Get_arg_movieNo() {
     nofralloc
 #include "asm/rel/d/a/d_a_movie_player/d_a_movie_player/daMP_c_Get_arg_movieNo__6daMP_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8087911C-8087911C 0000E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80879415 = "/Movie/demo_movie%02d_%02d.thp";
 #pragma pop
 
 /* 80878C28-80878D10 006548 00E8+00 1/1 0/0 0/0 .text            daMP_c_Init__6daMP_cFv */
@@ -2227,7 +2311,7 @@ asm void __sinit_d_a_movie_player_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80878FB0 = (void*)__sinit_d_a_movie_player_cpp;
+REGISTER_CTORS(0x80878FB0, __sinit_d_a_movie_player_cpp);
 #pragma pop
 
 /* ############################################################################################## */
@@ -2462,46 +2546,4 @@ static u8 data_80945B6C[4];
 static u8 data_80945B70[4];
 #pragma pop
 
-/* 8087911C-80879434 0000E8 0318+00 8/8 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8087911C = "Can't create read thread\n";
-SECTION_DEAD static char const* const stringBase_80879136 = "Can't create video decode thread\n";
-SECTION_DEAD static char const* const stringBase_80879158 = "Can't create audio decode thread\n";
-SECTION_DEAD static char const* const stringBase_8087917A =
-    "You must call daMP_THPPlayerInit before you call"
-    " this function\n";
-SECTION_DEAD static char const* const stringBase_808791BA =
-    "Can't open %s. Because thp file have already ope"
-    "ned.\n";
-SECTION_DEAD static char const* const stringBase_808791F0 = "Can't open %s.\n";
-SECTION_DEAD static char const* const stringBase_80879200 =
-    "Fail to read the header from THP file.\n";
-SECTION_DEAD static char const* const stringBase_80879228 = "THP";
-SECTION_DEAD static char const* const stringBase_8087922C = "This file is not THP file.\n";
-SECTION_DEAD static char const* const stringBase_80879248 = "invalid version.\n";
-SECTION_DEAD static char const* const stringBase_8087925A =
-    "Fail to read the frame component infomation from"
-    " THP file.\n";
-SECTION_DEAD static char const* const stringBase_80879296 =
-    "Fail to read the video infomation from THP file."
-    "\n";
-SECTION_DEAD static char const* const stringBase_808792C8 = "Unknow frame components.\n";
-SECTION_DEAD static char const* const stringBase_808792E2 =
-    "This thp file doesn't have the offset data\n";
-SECTION_DEAD static char const* const stringBase_8087930E =
-    "Fail to read the offset data from THP file.\n";
-SECTION_DEAD static char const* const stringBase_8087933B =
-    "Specified frame number is over total frame numbe"
-    "r\n";
-SECTION_DEAD static char const* const stringBase_8087936E =
-    "Specified audio track number is invalid\n";
-SECTION_DEAD static char const* const stringBase_80879397 =
-    "Fail to read all movie data from THP file\n";
-SECTION_DEAD static char const* const stringBase_808793C2 = "Fail to open the thp file\n";
-SECTION_DEAD static char const* const stringBase_808793DD = "Can't allocate the memory";
-SECTION_DEAD static char const* const stringBase_808793F7 = "Fail to prepare\n";
-SECTION_DEAD static char const* const stringBase_80879408 = "Error happen";
-SECTION_DEAD static char const* const stringBase_80879415 = "/Movie/demo_movie%02d_%02d.thp";
-#pragma pop
+/* 8087911C-8087911C 0000E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

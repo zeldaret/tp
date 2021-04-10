@@ -244,6 +244,12 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80599E68-80599E68 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80599E68 = "Taro6";
+#pragma pop
+
 /* 80599E70-80599EB0 000000 0040+00 2/2 0/0 0/0 .data            mCcDSph__13daObj_Stick_c */
 SECTION_DATA u8 daObj_Stick_c::mCcDSph[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -347,39 +353,39 @@ asm daObj_Stick_c::~daObj_Stick_c() {
 SECTION_RODATA u8 const daObj_Stick_Param_c::m[16] = {
     0x00, 0x00, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80599E3C, &daObj_Stick_Param_c::m);
+COMPILER_STRIP_GATE(0x80599E3C, &daObj_Stick_Param_c::m);
 
 /* 80599E4C-80599E50 000010 0004+00 0/1 0/0 0/0 .rodata          @3918 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3918 = -50.0f;
-COMPILER_STRIP_GATE(80599E4C, &lit_3918);
+COMPILER_STRIP_GATE(0x80599E4C, &lit_3918);
 #pragma pop
 
 /* 80599E50-80599E54 000014 0004+00 0/1 0/0 0/0 .rodata          @3919 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3919 = -75.0f;
-COMPILER_STRIP_GATE(80599E50, &lit_3919);
+COMPILER_STRIP_GATE(0x80599E50, &lit_3919);
 #pragma pop
 
 /* 80599E54-80599E58 000018 0004+00 0/1 0/0 0/0 .rodata          @3920 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3920 = 50.0f;
-COMPILER_STRIP_GATE(80599E54, &lit_3920);
+COMPILER_STRIP_GATE(0x80599E54, &lit_3920);
 #pragma pop
 
 /* 80599E58-80599E5C 00001C 0004+00 0/1 0/0 0/0 .rodata          @3921 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3921 = 75.0f;
-COMPILER_STRIP_GATE(80599E58, &lit_3921);
+COMPILER_STRIP_GATE(0x80599E58, &lit_3921);
 #pragma pop
 
 /* 80599E5C-80599E60 000020 0004+00 1/3 0/0 0/0 .rodata          @3922 */
 SECTION_RODATA static f32 const lit_3922 = -1000000000.0f;
-COMPILER_STRIP_GATE(80599E5C, &lit_3922);
+COMPILER_STRIP_GATE(0x80599E5C, &lit_3922);
 
 /* 805993E8-805996BC 0002A8 02D4+00 1/1 0/0 0/0 .text            create__13daObj_Stick_cFv */
 #pragma push
@@ -476,14 +482,14 @@ asm void daObj_Stick_c::Execute() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4045 = 20.0f;
-COMPILER_STRIP_GATE(80599E60, &lit_4045);
+COMPILER_STRIP_GATE(0x80599E60, &lit_4045);
 #pragma pop
 
 /* 80599E64-80599E68 000028 0004+00 0/1 0/0 0/0 .rodata          @4046 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4046 = 1.0f;
-COMPILER_STRIP_GATE(80599E64, &lit_4046);
+COMPILER_STRIP_GATE(0x80599E64, &lit_4046);
 #pragma pop
 
 /* 80599A78-80599B3C 000938 00C4+00 1/1 0/0 0/0 .text            Draw__13daObj_Stick_cFv */
@@ -639,7 +645,7 @@ asm void __sinit_d_a_obj_stick_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80599D5C = (void*)__sinit_d_a_obj_stick_cpp;
+REGISTER_CTORS(0x80599D5C, __sinit_d_a_obj_stick_cpp);
 #pragma pop
 
 /* 80599DD0-80599E18 000C90 0048+00 2/1 0/0 0/0 .text            __dt__19daObj_Stick_Param_cFv */
@@ -672,9 +678,4 @@ static asm void func_80599E20() {
 }
 #pragma pop
 
-/* 80599E68-80599E6E 00002C 0006+00 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80599E68 = "Taro6";
-#pragma pop
+/* 80599E68-80599E68 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

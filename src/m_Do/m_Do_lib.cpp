@@ -197,7 +197,7 @@ asm void __sinit_m_Do_lib_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80015544 = (void*)__sinit_m_Do_lib_cpp;
+REGISTER_CTORS(0x80015544, __sinit_m_Do_lib_cpp);
 #pragma pop
 
 /* 80015590-800155D8 00FED0 0048+00 2/1 0/0 0/0 .text            __dt__11J3DUClipperFv */

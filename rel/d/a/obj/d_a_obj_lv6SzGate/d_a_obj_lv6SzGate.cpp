@@ -139,9 +139,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -258,27 +258,27 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80C76630-80C76634 000000 0004+00 3/3 0/0 0/0 .rodata          @3627 */
 SECTION_RODATA static f32 const lit_3627 = 4.0f;
-COMPILER_STRIP_GATE(80C76630, &lit_3627);
+COMPILER_STRIP_GATE(0x80C76630, &lit_3627);
 
 /* 80C76634-80C76638 000004 0004+00 0/1 0/0 0/0 .rodata          @3628 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3628 = 30.0f;
-COMPILER_STRIP_GATE(80C76634, &lit_3628);
+COMPILER_STRIP_GATE(0x80C76634, &lit_3628);
 #pragma pop
 
 /* 80C76638-80C7663C 000008 0004+00 0/1 0/0 0/0 .rodata          @3629 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3629 = 15.0f;
-COMPILER_STRIP_GATE(80C76638, &lit_3629);
+COMPILER_STRIP_GATE(0x80C76638, &lit_3629);
 #pragma pop
 
 /* 80C7663C-80C76640 00000C 0004+00 0/1 0/0 0/0 .rodata          @3630 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3630 = 400.0f;
-COMPILER_STRIP_GATE(80C7663C, &lit_3630);
+COMPILER_STRIP_GATE(0x80C7663C, &lit_3630);
 #pragma pop
 
 /* 80C76668-80C76674 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -457,7 +457,7 @@ asm mDoHIO_entry_c::~mDoHIO_entry_c() {
 /* ############################################################################################## */
 /* 80C76640-80C76644 000010 0004+00 1/1 0/0 0/0 .rodata          @3665 */
 SECTION_RODATA static f32 const lit_3665 = -200.0f;
-COMPILER_STRIP_GATE(80C76640, &lit_3665);
+COMPILER_STRIP_GATE(0x80C76640, &lit_3665);
 
 /* 80C76644-80C76648 000014 0004+00 2/4 0/0 0/0 .rodata          @3666 */
 SECTION_RODATA static u8 const lit_3666[4] = {
@@ -466,7 +466,7 @@ SECTION_RODATA static u8 const lit_3666[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C76644, &lit_3666);
+COMPILER_STRIP_GATE(0x80C76644, &lit_3666);
 
 /* 80C75900-80C75A54 000180 0154+00 2/2 0/0 0/0 .text            setBaseMtx__13daLv6SzGate_cFv */
 #pragma push
@@ -481,7 +481,13 @@ asm void daLv6SzGate_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 80C76648-80C7664C 000018 0004+00 2/4 0/0 0/0 .rodata          @3697 */
 SECTION_RODATA static f32 const lit_3697 = 1.0f;
-COMPILER_STRIP_GATE(80C76648, &lit_3697);
+COMPILER_STRIP_GATE(0x80C76648, &lit_3697);
+
+/* 80C7665C-80C7665C 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C7665C = "L6SzGate";
+#pragma pop
 
 /* 80C75A54-80C75C0C 0002D4 01B8+00 1/0 0/0 0/0 .text            CreateHeap__13daLv6SzGate_cFv */
 #pragma push
@@ -588,7 +594,7 @@ asm void daLv6SzGate_c::modeOpenWait0() {
 /* ############################################################################################## */
 /* 80C7664C-80C76650 00001C 0004+00 2/4 0/0 0/0 .rodata          @3843 */
 SECTION_RODATA static f32 const lit_3843 = -1.0f;
-COMPILER_STRIP_GATE(80C7664C, &lit_3843);
+COMPILER_STRIP_GATE(0x80C7664C, &lit_3843);
 
 /* 80C76010-80C76094 000890 0084+00 1/1 0/0 0/0 .text init_modeOpenWait__13daLv6SzGate_cFv */
 #pragma push
@@ -625,14 +631,14 @@ asm void daLv6SzGate_c::init_modeOpen() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3879 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80C76650, &lit_3879);
+COMPILER_STRIP_GATE(0x80C76650, &lit_3879);
 #pragma pop
 
 /* 80C76654-80C76658 000024 0004+00 0/1 0/0 0/0 .rodata          @3880 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3880 = 0.5f;
-COMPILER_STRIP_GATE(80C76654, &lit_3880);
+COMPILER_STRIP_GATE(0x80C76654, &lit_3880);
 #pragma pop
 
 /* 80C760FC-80C7624C 00097C 0150+00 1/0 0/0 0/0 .text            modeOpen__13daLv6SzGate_cFv */
@@ -650,7 +656,7 @@ asm void daLv6SzGate_c::modeOpen() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3901 = 5.0f;
-COMPILER_STRIP_GATE(80C76658, &lit_3901);
+COMPILER_STRIP_GATE(0x80C76658, &lit_3901);
 #pragma pop
 
 /* 80C7624C-80C76328 000ACC 00DC+00 1/0 0/0 0/0 .text            modeClose__13daLv6SzGate_cFv */
@@ -767,12 +773,7 @@ asm void __sinit_d_a_obj_lv6SzGate_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C765E0 = (void*)__sinit_d_a_obj_lv6SzGate_cpp;
+REGISTER_CTORS(0x80C765E0, __sinit_d_a_obj_lv6SzGate_cpp);
 #pragma pop
 
-/* 80C7665C-80C76665 00002C 0009+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C7665C = "L6SzGate";
-#pragma pop
+/* 80C7665C-80C7665C 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

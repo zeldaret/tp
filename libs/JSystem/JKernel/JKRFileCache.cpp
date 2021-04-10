@@ -179,6 +179,15 @@ asm void JKRFileCache::mount(char const* param_0, JKRHeap* param_1, char const* 
 #pragma pop
 
 /* ############################################################################################## */
+/* 8039D158-8039D158 0297B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D158 = "/";
+SECTION_DEAD static char const* const stringBase_8039D15A = "dvd";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039D15E = "\0";
+#pragma pop
+
 /* 803CC238-803CC288 029358 004C+04 2/2 0/0 0/0 .data            __vt__12JKRFileCache */
 SECTION_DATA extern void* __vt__12JKRFileCache[19 + 1 /* padding */] = {
     (void*)NULL /* RTTI */,
@@ -447,12 +456,4 @@ asm void JKRFileCache::readNameResource(void* param_0, u32 param_1, u32 param_2,
 }
 #pragma pop
 
-/* 8039D158-8039D160 0297B8 0006+02 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039D158 = "/";
-SECTION_DEAD static char const* const stringBase_8039D15A = "dvd";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D15E = "\0";
-#pragma pop
+/* 8039D158-8039D158 0297B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

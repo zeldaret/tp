@@ -30,7 +30,7 @@ template <typename A0>
 struct JASMemPool_MultiThreaded {};
 /* JASMemPool_MultiThreaded<JASChannel> */
 struct JASMemPool_MultiThreaded__template2 {
-    /* 802978DC */ void func_802978DC();
+    /* 802978DC */ void func_802978DC(void* _this);
 };
 
 struct JASGenericMemPool {
@@ -92,7 +92,7 @@ extern "C" void __ct__17JASGenericMemPoolFv();
 extern "C" void newMemPool__17JASGenericMemPoolFUli();
 extern "C" void start__8JASProbeFlPCc();
 extern "C" void stop__8JASProbeFl();
-extern "C" void func_802978DC();
+extern "C" void func_802978DC(void* _this);
 extern "C" void initAI__9JASDriverFPFv_v();
 extern "C" void startDMA__9JASDriverFv();
 extern "C" void stopDMA__9JASDriverFv();
@@ -171,6 +171,12 @@ asm void JASAudioThread::stop() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8039B338-8039B338 027998 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039B338 = "SFR_DSP";
+#pragma pop
+
 /* 80431C68-80431C78 05E988 000C+04 1/1 0/0 0/0 .bss             @205 */
 static u8 lit_205[12 + 4 /* padding */];
 
@@ -185,6 +191,15 @@ asm void JASAudioThread::run() {
     nofralloc
 #include "asm/JSystem/JAudio2/JASAudioThread/run__14JASAudioThreadFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8039B338-8039B338 027998 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039B340 = "UPDATE-DAC";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039B34B = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
 #pragma pop
 
 /* 8029CF68-8029CFBC 2978A8 0054+00 1/1 0/0 0/0 .text            DMACallback__14JASAudioThreadFv */
@@ -217,12 +232,4 @@ asm JASAudioThread::~JASAudioThread() {
 }
 #pragma pop
 
-/* 8039B338-8039B360 027998 0013+15 2/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039B338 = "SFR_DSP";
-SECTION_DEAD static char const* const stringBase_8039B340 = "UPDATE-DAC";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039B34B = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
-#pragma pop
+/* 8039B338-8039B338 027998 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

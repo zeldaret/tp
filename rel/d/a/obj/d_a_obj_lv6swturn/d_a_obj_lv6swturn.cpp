@@ -195,7 +195,7 @@ SECTION_RODATA static u8 const lit_3695[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C846A4, &lit_3695);
+COMPILER_STRIP_GATE(0x80C846A4, &lit_3695);
 
 /* 80C83998-80C83A98 000078 0100+00 1/1 0/0 0/0 .text
  * PPCallBack__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel */
@@ -241,6 +241,12 @@ asm void daObjLv6SwTurn_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80C846C4-80C846C4 000020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C846C4 = "Obj_l6tsw";
+#pragma pop
+
 /* 80C846D0-80C846DC 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -348,21 +354,21 @@ asm void daObjLv6SwTurn_c::init_modeWait() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3960 = 1.0f;
-COMPILER_STRIP_GATE(80C846A8, &lit_3960);
+COMPILER_STRIP_GATE(0x80C846A8, &lit_3960);
 #pragma pop
 
 /* 80C846AC-80C846B0 000008 0004+00 0/2 0/0 0/0 .rodata          @3961 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3961 = -1.0f;
-COMPILER_STRIP_GATE(80C846AC, &lit_3961);
+COMPILER_STRIP_GATE(0x80C846AC, &lit_3961);
 #pragma pop
 
 /* 80C846B0-80C846B4 00000C 0004+00 0/1 0/0 0/0 .rodata          @3962 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3962 = 10.0f;
-COMPILER_STRIP_GATE(80C846B0, &lit_3962);
+COMPILER_STRIP_GATE(0x80C846B0, &lit_3962);
 #pragma pop
 
 /* 80C846B4-80C846BC 000010 0008+00 0/2 0/0 0/0 .rodata          @3964 */
@@ -371,7 +377,7 @@ COMPILER_STRIP_GATE(80C846B0, &lit_3962);
 SECTION_RODATA static u8 const lit_3964[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C846B4, &lit_3964);
+COMPILER_STRIP_GATE(0x80C846B4, &lit_3964);
 #pragma pop
 
 /* 80C83E58-80C84238 000538 03E0+00 1/0 0/0 0/0 .text            modeWait__16daObjLv6SwTurn_cFv */
@@ -399,14 +405,14 @@ asm void daObjLv6SwTurn_c::init_modeRotate() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4069 = 16384.0f;
-COMPILER_STRIP_GATE(80C846BC, &lit_4069);
+COMPILER_STRIP_GATE(0x80C846BC, &lit_4069);
 #pragma pop
 
 /* 80C846C0-80C846C4 00001C 0004+00 0/1 0/0 0/0 .rodata          @4070 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4070 = 90.0f;
-COMPILER_STRIP_GATE(80C846C0, &lit_4070);
+COMPILER_STRIP_GATE(0x80C846C0, &lit_4070);
 #pragma pop
 
 /* 80C8425C-80C844F8 00093C 029C+00 1/0 0/0 0/0 .text            modeRotate__16daObjLv6SwTurn_cFv */
@@ -520,9 +526,4 @@ static asm void daObjLv6SwTurn_MoveBGDraw(daObjLv6SwTurn_c* param_0) {
 }
 #pragma pop
 
-/* 80C846C4-80C846CE 000020 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C846C4 = "Obj_l6tsw";
-#pragma pop
+/* 80C846C4-80C846C4 000020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

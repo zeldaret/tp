@@ -150,7 +150,17 @@ SECTION_RODATA static u8 const t_tag[24] = {
     0x6D, 0x67, 0x5F, 0x65, 0x34, 0x6C, 0x69, 0x6E, 0x00, 0x00, 0x00, 0x00,
     0x66, 0x34, 0x5F, 0x77, 0x00, 0x00, 0x00, 0x00, 0x74, 0x34, 0x5F, 0x73,
 };
-COMPILER_STRIP_GATE(80399AA0, &t_tag);
+COMPILER_STRIP_GATE(0x80399AA0, &t_tag);
+
+/* 80399AB8-80399AB8 026118 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399AB8 = "zelda_kanban_stone_a.blo";
+SECTION_DEAD static char const* const stringBase_80399AD1 = "zelda_kanban_stone_a.bck";
+SECTION_DEAD static char const* const stringBase_80399AEA = "zelda_kanban_stone_a.btk";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80399B03 = "\0\0\0\0";
+#pragma pop
 
 /* 803C1240-803C1298 01E360 0058+00 2/2 0/0 0/0 .data            __vt__16dMsgScrnKanban_c */
 SECTION_DATA extern void* __vt__16dMsgScrnKanban_c[22] = {
@@ -260,13 +270,4 @@ void dMsgScrnKanban_c::fukiTrans(f32 param_0, f32 param_1) {
     /* empty function */
 }
 
-/* 80399AB8-80399B08 026118 004B+05 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80399AB8 = "zelda_kanban_stone_a.blo";
-SECTION_DEAD static char const* const stringBase_80399AD1 = "zelda_kanban_stone_a.bck";
-SECTION_DEAD static char const* const stringBase_80399AEA = "zelda_kanban_stone_a.btk";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80399B03 = "\0\0\0\0";
-#pragma pop
+/* 80399AB8-80399AB8 026118 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -140,8 +140,6 @@ struct dMenu_StageMapCtrl_c {
     /* 801C2590 */ void setPlusZoomCenterZ(f32);
 };
 
-struct J2DOrthoGraph {};
-
 struct STControl {
     /* 80032044 */ STControl(s16, s16, s16, s16, f32, f32, s16, s16);
     /* 8003219C */ void checkTrigger();
@@ -150,6 +148,8 @@ struct STControl {
     /* 80032524 */ void checkUpTrigger();
     /* 800325A0 */ void checkDownTrigger();
 };
+
+struct J2DOrthoGraph {};
 
 struct JKRExpHeap {
     /* 802CEE2C */ void create(u32, JKRHeap*, bool);
@@ -291,9 +291,9 @@ struct dDlst_list_c {
     /* 80056794 */ void set(dDlst_base_c**&, dDlst_base_c**&, dDlst_base_c*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -602,6 +602,12 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
+/* 80395760-80395760 021DC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80395760 = "/res/FieldMap/D_MN10.arc";
+#pragma pop
+
 /* 803BC7E0-803BC7EC 019900 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1170,6 +1176,13 @@ asm dMenu_DmapBg_c::dMenu_DmapBg_c(JKRExpHeap* param_0, STControl* param_1) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80395760-80395760 021DC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80395779 = "zelda_dungeon_map_map.blo";
+SECTION_DEAD static char const* const stringBase_80395793 = "zelda_dungeon_map_map.btk";
+#pragma pop
+
 /* 80453FF0-80453FF4 0025F0 0004+00 1/1 0/0 0/0 .sdata2          @4073 */
 SECTION_SDATA2 static f32 lit_4073 = -15.0f;
 
@@ -1243,7 +1256,7 @@ SECTION_RODATA static u8 const cont_at_4145[40] = {
     0x74, 0x31, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x32, 0x63, 0x6F, 0x6E, 0x74,
     0x5F, 0x61, 0x74, 0x33, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x34,
 };
-COMPILER_STRIP_GATE(80395518, &cont_at_4145);
+COMPILER_STRIP_GATE(0x80395518, &cont_at_4145);
 
 /* 80395540-80395568 021BA0 0028+00 0/1 0/0 0/0 .rodata          cont_bt$4146 */
 #pragma push
@@ -1253,7 +1266,7 @@ SECTION_RODATA static u8 const cont_bt_4146[40] = {
     0x74, 0x31, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x62, 0x74, 0x32, 0x63, 0x6F, 0x6E, 0x74,
     0x5F, 0x62, 0x74, 0x33, 0x63, 0x6F, 0x6E, 0x74, 0x5F, 0x62, 0x74, 0x34,
 };
-COMPILER_STRIP_GATE(80395540, &cont_bt_4146);
+COMPILER_STRIP_GATE(0x80395540, &cont_bt_4146);
 #pragma pop
 
 /* 80395568-80395590 021BC8 0028+00 0/1 0/0 0/0 .rodata          font_at$4147 */
@@ -1264,7 +1277,7 @@ SECTION_RODATA static u8 const font_at[40] = {
     0x74, 0x31, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x32, 0x66, 0x6F, 0x6E, 0x74,
     0x5F, 0x61, 0x74, 0x33, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x34,
 };
-COMPILER_STRIP_GATE(80395568, &font_at);
+COMPILER_STRIP_GATE(0x80395568, &font_at);
 #pragma pop
 
 /* 80395590-803955B8 021BF0 0028+00 0/1 0/0 0/0 .rodata          font_bt$4148 */
@@ -1275,7 +1288,7 @@ SECTION_RODATA static u8 const font_bt[40] = {
     0x74, 0x31, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x62, 0x74, 0x32, 0x66, 0x6F, 0x6E, 0x74,
     0x5F, 0x62, 0x74, 0x33, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x62, 0x74, 0x34,
 };
-COMPILER_STRIP_GATE(80395590, &font_bt);
+COMPILER_STRIP_GATE(0x80395590, &font_bt);
 #pragma pop
 
 /* 803955B8-803955C8 021C18 0010+00 0/1 0/0 0/0 .rodata          c_tag$4155 */
@@ -1284,7 +1297,14 @@ COMPILER_STRIP_GATE(80395590, &font_bt);
 SECTION_RODATA static u8 const c_tag_4155[16] = {
     0x66, 0x5F, 0x74, 0x65, 0x78, 0x74, 0x5F, 0x73, 0x00, 0x00, 0x66, 0x5F, 0x74, 0x65, 0x78, 0x74,
 };
-COMPILER_STRIP_GATE(803955B8, &c_tag_4155);
+COMPILER_STRIP_GATE(0x803955B8, &c_tag_4155);
+#pragma pop
+
+/* 80395760-80395760 021DC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803957AD = "zelda_dungeon_map_spot_button.blo";
+SECTION_DEAD static char const* const stringBase_803957CF = "";
 #pragma pop
 
 /* 80454004-80454008 002604 0004+00 1/1 0/0 0/0 .sdata2          @4191 */
@@ -1310,7 +1330,7 @@ SECTION_RODATA static u8 const cont_at_4196[40] = {
     0x74, 0x31, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x32, 0x66, 0x6F, 0x6E, 0x74,
     0x5F, 0x61, 0x74, 0x33, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x61, 0x74, 0x34,
 };
-COMPILER_STRIP_GATE(803955C8, &cont_at_4196);
+COMPILER_STRIP_GATE(0x803955C8, &cont_at_4196);
 
 /* 801B8DE4-801B8EBC 1B3724 00D8+00 7/7 0/0 0/0 .text setAButtonString__14dMenu_DmapBg_cFUl */
 #pragma push
@@ -1329,7 +1349,7 @@ SECTION_RODATA static u8 const cont_bt_4211[40] = {
     0x74, 0x31, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x62, 0x74, 0x32, 0x66, 0x6F, 0x6E, 0x74,
     0x5F, 0x62, 0x74, 0x33, 0x66, 0x6F, 0x6E, 0x74, 0x5F, 0x62, 0x74, 0x34,
 };
-COMPILER_STRIP_GATE(803955F0, &cont_bt_4211);
+COMPILER_STRIP_GATE(0x803955F0, &cont_bt_4211);
 
 /* 801B8EBC-801B8F94 1B37FC 00D8+00 8/8 0/0 0/0 .text setBButtonString__14dMenu_DmapBg_cFUl */
 #pragma push
@@ -1346,7 +1366,7 @@ asm void dMenu_DmapBg_c::setBButtonString(u32 param_0) {
 SECTION_RODATA static u8 const c_tag_4229[16] = {
     0x66, 0x5F, 0x74, 0x65, 0x78, 0x74, 0x5F, 0x73, 0x00, 0x00, 0x66, 0x5F, 0x74, 0x65, 0x78, 0x74,
 };
-COMPILER_STRIP_GATE(80395618, &c_tag_4229);
+COMPILER_STRIP_GATE(0x80395618, &c_tag_4229);
 
 /* 80451078-8045107C 000578 0004+00 1/1 0/0 0/0 .sbss            player_px */
 static f32 player_px;
@@ -1403,6 +1423,13 @@ asm void dMenu_DmapBg_c::deleteExplain() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80395760-80395760 021DC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803957D0 = "zelda_dungeon_map_base.blo";
+SECTION_DEAD static char const* const stringBase_803957EB = "zelda_dungeon_map_floor_parts.blo";
+#pragma pop
+
 /* 80454010-80454014 002610 0004+00 1/1 0/0 0/0 .sdata2          @4312 */
 SECTION_SDATA2 static f32 lit_4312 = 19.0f / 20.0f;
 
@@ -1463,7 +1490,7 @@ SECTION_RODATA static u8 const lit_4325[26 + 6 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80395628, &lit_4325);
+COMPILER_STRIP_GATE(0x80395628, &lit_4325);
 
 /* 801B944C-801BA0B4 1B3D8C 0C68+00 1/1 0/0 0/0 .text            setFloorMessage__14dMenu_DmapBg_cFv
  */
@@ -1575,6 +1602,13 @@ asm void dMenu_DmapBg_c::draw() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80395760-80395760 021DC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039580D = "tex/bg.bti";
+SECTION_DEAD static char const* const stringBase_80395818 = "spec/spec.dat";
+#pragma pop
+
 /* 80454040-80454044 002640 0004+00 1/1 0/0 0/0 .sdata2          @4848 */
 SECTION_SDATA2 static f32 lit_4848 = 25.5f;
 
@@ -1632,7 +1666,7 @@ SECTION_RODATA static u8 const floor_tag[64] = {
     0x66, 0x6C, 0x6F, 0x6F, 0x72, 0x33, 0x5F, 0x6E, 0x66, 0x6C, 0x6F, 0x6F, 0x72, 0x34, 0x5F, 0x6E,
     0x66, 0x6C, 0x6F, 0x6F, 0x72, 0x35, 0x5F, 0x6E, 0x66, 0x6C, 0x6F, 0x6F, 0x72, 0x36, 0x5F, 0x6E,
 };
-COMPILER_STRIP_GATE(80395648, &floor_tag);
+COMPILER_STRIP_GATE(0x80395648, &floor_tag);
 #pragma pop
 
 /* 80395688-803956C8 021CE8 0040+00 0/1 0/0 0/0 .rodata          icon_tag$4933 */
@@ -1644,7 +1678,7 @@ SECTION_RODATA static u8 const icon_tag[64] = {
     0x69, 0x63, 0x6F, 0x5F, 0x73, 0x65, 0x74, 0x33, 0x69, 0x63, 0x6F, 0x5F, 0x73, 0x65, 0x74, 0x34,
     0x69, 0x63, 0x6F, 0x5F, 0x73, 0x65, 0x74, 0x35, 0x69, 0x63, 0x6F, 0x5F, 0x73, 0x65, 0x74, 0x36,
 };
-COMPILER_STRIP_GATE(80395688, &icon_tag);
+COMPILER_STRIP_GATE(0x80395688, &icon_tag);
 #pragma pop
 
 /* 803956C8-80395708 021D28 0040+00 0/1 0/0 0/0 .rodata          boss_tag$4934 */
@@ -1656,7 +1690,7 @@ SECTION_RODATA static u8 const boss_tag[64] = {
     0x69, 0x63, 0x5F, 0x73, 0x74, 0x5F, 0x62, 0x33, 0x69, 0x63, 0x5F, 0x73, 0x74, 0x5F, 0x62, 0x34,
     0x69, 0x63, 0x5F, 0x73, 0x74, 0x5F, 0x62, 0x35, 0x69, 0x63, 0x5F, 0x73, 0x74, 0x5F, 0x62, 0x36,
 };
-COMPILER_STRIP_GATE(803956C8, &boss_tag);
+COMPILER_STRIP_GATE(0x803956C8, &boss_tag);
 #pragma pop
 
 /* 80395708-80395718 021D68 0010+00 0/1 0/0 0/0 .rodata          stay_tag$4935 */
@@ -1665,7 +1699,7 @@ COMPILER_STRIP_GATE(803956C8, &boss_tag);
 SECTION_RODATA static u8 const stay_tag[16] = {
     0x72, 0x69, 0x6E, 0x6B, 0x5F, 0x6E, 0x75, 0x6C, 0x62, 0x6F, 0x73, 0x73, 0x5F, 0x6E, 0x75, 0x6C,
 };
-COMPILER_STRIP_GATE(80395708, &stay_tag);
+COMPILER_STRIP_GATE(0x80395708, &stay_tag);
 #pragma pop
 
 /* 80395718-80395730 021D78 0018+00 0/1 0/0 0/0 .rodata          waku_tag$4973 */
@@ -1675,7 +1709,7 @@ SECTION_RODATA static u8 const waku_tag[24] = {
     0x67, 0x72, 0x61, 0x79, 0x5F, 0x6D, 0x61, 0x70, 0x67, 0x72, 0x61, 0x79,
     0x5F, 0x63, 0x6F, 0x6E, 0x67, 0x72, 0x61, 0x79, 0x5F, 0x6B, 0x65, 0x79,
 };
-COMPILER_STRIP_GATE(80395718, &waku_tag);
+COMPILER_STRIP_GATE(0x80395718, &waku_tag);
 #pragma pop
 
 /* 80395730-80395748 021D90 0018+00 0/1 0/0 0/0 .rodata          key_tag$5002 */
@@ -1685,7 +1719,7 @@ SECTION_RODATA static u8 const key_tag[24] = {
     0x00, 0x00, 0x6B, 0x65, 0x79, 0x5F, 0x30, 0x30, 0x00, 0x00, 0x6B, 0x65,
     0x79, 0x5F, 0x30, 0x31, 0x00, 0x00, 0x6B, 0x65, 0x79, 0x5F, 0x30, 0x32,
 };
-COMPILER_STRIP_GATE(80395730, &key_tag);
+COMPILER_STRIP_GATE(0x80395730, &key_tag);
 #pragma pop
 
 /* 80395748-80395760 021DA8 0018+00 0/1 0/0 0/0 .rodata          item_tag$5040 */
@@ -1695,7 +1729,7 @@ SECTION_RODATA static u8 const item_tag[24] = {
     0x00, 0x00, 0x6D, 0x61, 0x70, 0x30, 0x30, 0x30, 0x00, 0x00, 0x63, 0x6F,
     0x6E, 0x30, 0x30, 0x30, 0x00, 0x69, 0x5F, 0x6B, 0x65, 0x79, 0x5F, 0x6E,
 };
-COMPILER_STRIP_GATE(80395748, &item_tag);
+COMPILER_STRIP_GATE(0x80395748, &item_tag);
 #pragma pop
 
 /* 8045404C-80454050 00264C 0004+00 1/1 0/0 0/0 .sdata2          @5277 */
@@ -1911,6 +1945,16 @@ asm void dMenu_Dmap_c::mapControl() {
     nofralloc
 #include "asm/d/menu/d_menu_dmap/mapControl__12dMenu_Dmap_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80395760-80395760 021DC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80395826 = "/res/FieldMap/res-d.arc";
+SECTION_DEAD static char const* const stringBase_8039583E = "dat/data.dat";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039584B = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
 #pragma pop
 
 /* 801BE328-801BE670 1B8C68 0348+00 0/0 1/1 0/0 .text            isOpen__12dMenu_Dmap_cFv */
@@ -2304,7 +2348,7 @@ asm void __sinit_d_menu_dmap_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_801C05C4 = (void*)__sinit_d_menu_dmap_cpp;
+REGISTER_CTORS(0x801C05C4, __sinit_d_menu_dmap_cpp);
 #pragma pop
 
 /* 801C0844-801C084C 1BB184 0008+00 1/0 0/0 0/0 .text            @4@__dt__14dMenu_DmapBg_cFv */
@@ -2317,21 +2361,4 @@ static asm void func_801C0844() {
 }
 #pragma pop
 
-/* 80395760-80395860 021DC0 00EB+15 10/10 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80395760 = "/res/FieldMap/D_MN10.arc";
-SECTION_DEAD static char const* const stringBase_80395779 = "zelda_dungeon_map_map.blo";
-SECTION_DEAD static char const* const stringBase_80395793 = "zelda_dungeon_map_map.btk";
-SECTION_DEAD static char const* const stringBase_803957AD = "zelda_dungeon_map_spot_button.blo";
-SECTION_DEAD static char const* const stringBase_803957CF = "";
-SECTION_DEAD static char const* const stringBase_803957D0 = "zelda_dungeon_map_base.blo";
-SECTION_DEAD static char const* const stringBase_803957EB = "zelda_dungeon_map_floor_parts.blo";
-SECTION_DEAD static char const* const stringBase_8039580D = "tex/bg.bti";
-SECTION_DEAD static char const* const stringBase_80395818 = "spec/spec.dat";
-SECTION_DEAD static char const* const stringBase_80395826 = "/res/FieldMap/res-d.arc";
-SECTION_DEAD static char const* const stringBase_8039583E = "dat/data.dat";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039584B = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
-#pragma pop
+/* 80395760-80395760 021DC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

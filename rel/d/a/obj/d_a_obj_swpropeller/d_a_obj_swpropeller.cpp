@@ -156,9 +156,9 @@ extern "C" static void daObjSwPr_Draw__FP11daObjSwPr_c();
 extern "C" static void daObjSwPr_Execute__FP11daObjSwPr_c();
 extern "C" static void daObjSwPr_Delete__FP11daObjSwPr_c();
 extern "C" static void daObjSwPr_Create__FP10fopAc_ac_c();
-extern "C" void func_8059B26C(u16*);
-extern "C" void func_8059B288(u8*);
-extern "C" void func_8059B2A4(s16*);
+extern "C" void func_8059B26C(void* _this, u16*);
+extern "C" void func_8059B288(void* _this, u8*);
+extern "C" void func_8059B2A4(void* _this, s16*);
 extern "C" extern char const* const d_a_obj_swpropeller__stringBase0;
 
 //
@@ -273,13 +273,13 @@ asm void daObjSwPr_c::setBaseMtx() {
 SECTION_RODATA static u8 const l_bmdName[8] = {
     0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x03,
 };
-COMPILER_STRIP_GATE(8059B2C8, &l_bmdName);
+COMPILER_STRIP_GATE(0x8059B2C8, &l_bmdName);
 
 /* 8059B2D0-8059B2D8 000008 0008+00 1/1 0/0 0/0 .rodata          l_heap_size */
 SECTION_RODATA static u8 const l_heap_size[8] = {
     0x00, 0x00, 0x0F, 0x20, 0x00, 0x00, 0x36, 0xC0,
 };
-COMPILER_STRIP_GATE(8059B2D0, &l_heap_size);
+COMPILER_STRIP_GATE(0x8059B2D0, &l_heap_size);
 
 /* 8059B2D8-8059B31C 000010 0044+00 0/1 0/0 0/0 .rodata          l_cyl_src */
 #pragma push
@@ -291,7 +291,7 @@ SECTION_RODATA static u8 const l_cyl_src[68] = {
     0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8059B2D8, &l_cyl_src);
+COMPILER_STRIP_GATE(0x8059B2D8, &l_cyl_src);
 #pragma pop
 
 /* 8059B31C-8059B334 000054 0018+00 0/1 0/0 0/0 .rodata          l_cull_size */
@@ -301,7 +301,7 @@ SECTION_RODATA static u8 const l_cull_size[24] = {
     0xC3, 0x16, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC3, 0x16, 0x00, 0x00,
     0x43, 0x16, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8059B31C, &l_cull_size);
+COMPILER_STRIP_GATE(0x8059B31C, &l_cull_size);
 #pragma pop
 
 /* 8059B334-8059B33C 00006C 0006+02 0/0 0/0 0/0 .rodata          l_r00_rot_time */
@@ -318,14 +318,23 @@ SECTION_RODATA static u8 const l_r00_rot_time[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8059B334, &l_r00_rot_time);
+COMPILER_STRIP_GATE(0x8059B334, &l_r00_rot_time);
 #pragma pop
 
 /* 8059B33C-8059B340 000074 0004+00 0/1 0/0 0/0 .rodata          @3747 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3747 = 100.0f;
-COMPILER_STRIP_GATE(8059B33C, &lit_3747);
+COMPILER_STRIP_GATE(0x8059B33C, &lit_3747);
+#pragma pop
+
+/* 8059B360-8059B360 000098 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8059B360 = "K_prop00";
+SECTION_DEAD static char const* const stringBase_8059B369 = "Lv9_puro";
+SECTION_DEAD static char const* const stringBase_8059B372 = "kaiten";
+SECTION_DEAD static char const* const stringBase_8059B379 = "D_MN05";
 #pragma pop
 
 /* 8059B380-8059B388 -00001 0008+00 3/3 0/0 0/0 .data            l_arcName */
@@ -447,11 +456,11 @@ asm void daObjSwPr_c::switchCtrl() {
 /* ############################################################################################## */
 /* 8059B340-8059B344 000078 0004+00 1/2 0/0 0/0 .rodata          @3983 */
 SECTION_RODATA static f32 const lit_3983 = 1.0f;
-COMPILER_STRIP_GATE(8059B340, &lit_3983);
+COMPILER_STRIP_GATE(0x8059B340, &lit_3983);
 
 /* 8059B344-8059B348 00007C 0004+00 1/2 0/0 0/0 .rodata          @3984 */
 SECTION_RODATA static f32 const lit_3984 = -1.0f;
-COMPILER_STRIP_GATE(8059B344, &lit_3984);
+COMPILER_STRIP_GATE(0x8059B344, &lit_3984);
 
 /* 8059AB9C-8059ADCC 0006FC 0230+00 1/1 0/0 0/0 .text execute_type_boomerang__11daObjSwPr_cFv */
 #pragma push
@@ -479,21 +488,21 @@ asm void daObjSwPr_c::execute_type_wind() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4086 = 127.0f;
-COMPILER_STRIP_GATE(8059B348, &lit_4086);
+COMPILER_STRIP_GATE(0x8059B348, &lit_4086);
 #pragma pop
 
 /* 8059B34C-8059B350 000084 0004+00 0/1 0/0 0/0 .rodata          @4087 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4087 = 1200.0f;
-COMPILER_STRIP_GATE(8059B34C, &lit_4087);
+COMPILER_STRIP_GATE(0x8059B34C, &lit_4087);
 #pragma pop
 
 /* 8059B350-8059B354 000088 0004+00 0/1 0/0 0/0 .rodata          @4088 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4088 = 600.0f;
-COMPILER_STRIP_GATE(8059B350, &lit_4088);
+COMPILER_STRIP_GATE(0x8059B350, &lit_4088);
 #pragma pop
 
 /* 8059B354-8059B358 00008C 0004+00 0/1 0/0 0/0 .rodata          @4089 */
@@ -505,7 +514,7 @@ SECTION_RODATA static u8 const lit_4089[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8059B354, &lit_4089);
+COMPILER_STRIP_GATE(0x8059B354, &lit_4089);
 #pragma pop
 
 /* 8059B358-8059B360 000090 0008+00 0/1 0/0 0/0 .rodata          @4091 */
@@ -514,7 +523,7 @@ COMPILER_STRIP_GATE(8059B354, &lit_4089);
 SECTION_RODATA static u8 const lit_4091[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8059B358, &lit_4091);
+COMPILER_STRIP_GATE(0x8059B358, &lit_4091);
 #pragma pop
 
 /* 8059B014-8059B148 000B74 0134+00 1/1 0/0 0/0 .text            execute__11daObjSwPr_cFv */
@@ -593,7 +602,7 @@ static asm void daObjSwPr_Create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8059B26C(u16* param_0) {
+extern "C" asm void func_8059B26C(void* _this, u16* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swpropeller/d_a_obj_swpropeller/func_8059B26C.s"
 }
@@ -603,7 +612,7 @@ extern "C" asm void func_8059B26C(u16* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8059B288(u8* param_0) {
+extern "C" asm void func_8059B288(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swpropeller/d_a_obj_swpropeller/func_8059B288.s"
 }
@@ -613,18 +622,10 @@ extern "C" asm void func_8059B288(u8* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8059B2A4(s16* param_0) {
+extern "C" asm void func_8059B2A4(void* _this, s16* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_swpropeller/d_a_obj_swpropeller/func_8059B2A4.s"
 }
 #pragma pop
 
-/* 8059B360-8059B380 000098 0020+00 4/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8059B360 = "K_prop00";
-SECTION_DEAD static char const* const stringBase_8059B369 = "Lv9_puro";
-SECTION_DEAD static char const* const stringBase_8059B372 = "kaiten";
-SECTION_DEAD static char const* const stringBase_8059B379 = "D_MN05";
-#pragma pop
+/* 8059B360-8059B360 000098 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

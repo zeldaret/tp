@@ -79,7 +79,7 @@ SECTION_RODATA static u8 const l_dist_tbl[2 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(804D5724, &l_dist_tbl);
+COMPILER_STRIP_GATE(0x804D5724, &l_dist_tbl);
 
 /* 804D5318-804D5354 000078 003C+00 1/1 0/0 0/0 .text            Create__8daAttp_cFv */
 #pragma push
@@ -109,7 +109,7 @@ SECTION_RODATA static u8 const lit_3772[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(804D5728, &lit_3772);
+COMPILER_STRIP_GATE(0x804D5728, &lit_3772);
 
 /* 804D572C-804D574C -00001 0020+00 1/1 0/0 0/0 .data            @3773 */
 SECTION_DATA static void* lit_3773[8] = {

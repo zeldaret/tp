@@ -63,7 +63,8 @@ struct daObj {
     template <typename A1>
     void PrmAbstract(/* ... */);
     /* 8058DD14 */ /* daObj::PrmAbstract<daObjLadder::Act_c::Prm_e> */
-    void func_8058DD14(fopAc_ac_c const*, daObjLadder::Act_c::Prm_e, daObjLadder::Act_c::Prm_e);
+    void func_8058DD14(void* _this, fopAc_ac_c const*, daObjLadder::Act_c::Prm_e,
+                       daObjLadder::Act_c::Prm_e);
 };
 
 struct dVibration_c {
@@ -139,9 +140,9 @@ struct cBgS {
     /* 800744A0 */ void GroundCross(cBgS_GndChk*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -187,7 +188,7 @@ extern "C" static void func_8058DC7C();
 extern "C" static void func_8058DC9C();
 extern "C" static void func_8058DCBC();
 extern "C" static void func_8058DCE8();
-extern "C" void func_8058DD14(fopAc_ac_c const*, daObjLadder::Act_c::Prm_e,
+extern "C" void func_8058DD14(void* _this, fopAc_ac_c const*, daObjLadder::Act_c::Prm_e,
                               daObjLadder::Act_c::Prm_e);
 extern "C" static void func_8058DD30();
 extern "C" static void func_8058DD38();
@@ -266,7 +267,7 @@ SECTION_RODATA static u8 const data_8058DD50[36] = {
     0x3F, 0x00, 0x00, 0x00, 0x03, 0x4B, 0x32, 0x2D, 0x28, 0x00, 0x4E, 0x20,
     0x3C, 0xC3, 0x00, 0x0F, 0x40, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8058DD50, &data_8058DD50);
+COMPILER_STRIP_GATE(0x8058DD50, &data_8058DD50);
 
 /* 8058DD74-8058DD7C 000024 0005+03 3/3 0/0 0/0 .rodata          M_arcname__Q211daObjLadder5Act_c */
 SECTION_RODATA u8 const daObjLadder::Act_c::M_arcname[5 + 3 /* padding */] = {
@@ -280,7 +281,7 @@ SECTION_RODATA u8 const daObjLadder::Act_c::M_arcname[5 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8058DD74, &daObjLadder::Act_c::M_arcname);
+COMPILER_STRIP_GATE(0x8058DD74, &daObjLadder::Act_c::M_arcname);
 
 /* 8058DDAC-8058DDB8 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -324,42 +325,42 @@ asm void daObjLadder::Act_c::CreateHeap() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3667 = -55.0f;
-COMPILER_STRIP_GATE(8058DD7C, &lit_3667);
+COMPILER_STRIP_GATE(0x8058DD7C, &lit_3667);
 #pragma pop
 
 /* 8058DD80-8058DD84 000030 0004+00 0/2 0/0 0/0 .rodata          @3668 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3668 = -1.0f;
-COMPILER_STRIP_GATE(8058DD80, &lit_3668);
+COMPILER_STRIP_GATE(0x8058DD80, &lit_3668);
 #pragma pop
 
 /* 8058DD84-8058DD88 000034 0004+00 0/1 0/0 0/0 .rodata          @3669 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3669 = -10.0f;
-COMPILER_STRIP_GATE(8058DD84, &lit_3669);
+COMPILER_STRIP_GATE(0x8058DD84, &lit_3669);
 #pragma pop
 
 /* 8058DD88-8058DD8C 000038 0004+00 0/1 0/0 0/0 .rodata          @3670 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3670 = 55.0f;
-COMPILER_STRIP_GATE(8058DD88, &lit_3670);
+COMPILER_STRIP_GATE(0x8058DD88, &lit_3670);
 #pragma pop
 
 /* 8058DD8C-8058DD90 00003C 0004+00 0/1 0/0 0/0 .rodata          @3671 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3671 = 41.0f;
-COMPILER_STRIP_GATE(8058DD8C, &lit_3671);
+COMPILER_STRIP_GATE(0x8058DD8C, &lit_3671);
 #pragma pop
 
 /* 8058DD90-8058DD94 000040 0004+00 0/1 0/0 0/0 .rodata          @3672 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3672 = 10.0f;
-COMPILER_STRIP_GATE(8058DD90, &lit_3672);
+COMPILER_STRIP_GATE(0x8058DD90, &lit_3672);
 #pragma pop
 
 /* 8058DD94-8058DD98 000044 0004+00 1/3 0/0 0/0 .rodata          @3673 */
@@ -369,13 +370,13 @@ SECTION_RODATA static u8 const lit_3673[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8058DD94, &lit_3673);
+COMPILER_STRIP_GATE(0x8058DD94, &lit_3673);
 
 /* 8058DD98-8058DD9C 000048 0004+00 0/1 0/0 0/0 .rodata          @3674 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3674 = 5.0f;
-COMPILER_STRIP_GATE(8058DD98, &lit_3674);
+COMPILER_STRIP_GATE(0x8058DD98, &lit_3674);
 #pragma pop
 
 /* 8058D1D8-8058D378 0000F8 01A0+00 1/0 0/0 0/0 .text            Create__Q211daObjLadder5Act_cFv */
@@ -605,7 +606,7 @@ asm void daObjLadder::Act_c::mode_vib() {
 /* ############################################################################################## */
 /* 8058DD9C-8058DDA0 00004C 0004+00 1/1 0/0 0/0 .rodata          @3792 */
 SECTION_RODATA static f32 const lit_3792 = -5.0f;
-COMPILER_STRIP_GATE(8058DD9C, &lit_3792);
+COMPILER_STRIP_GATE(0x8058DD9C, &lit_3792);
 
 /* 8058D7A8-8058D7EC 0006C8 0044+00 1/1 0/0 0/0 .text mode_drop_init__Q211daObjLadder5Act_cFv */
 #pragma push
@@ -622,21 +623,21 @@ asm void daObjLadder::Act_c::mode_drop_init() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3838 = 1.0f;
-COMPILER_STRIP_GATE(8058DDA0, &lit_3838);
+COMPILER_STRIP_GATE(0x8058DDA0, &lit_3838);
 #pragma pop
 
 /* 8058DDA4-8058DDA8 000054 0004+00 0/1 0/0 0/0 .rodata          @3839 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3839 = 0.5f;
-COMPILER_STRIP_GATE(8058DDA4, &lit_3839);
+COMPILER_STRIP_GATE(0x8058DDA4, &lit_3839);
 #pragma pop
 
 /* 8058DDA8-8058DDAC 000058 0004+00 0/1 0/0 0/0 .rodata          @3840 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3840 = -0.5f;
-COMPILER_STRIP_GATE(8058DDA8, &lit_3840);
+COMPILER_STRIP_GATE(0x8058DDA8, &lit_3840);
 #pragma pop
 
 /* 8058D7EC-8058D9C0 00070C 01D4+00 1/0 0/0 0/0 .text            mode_drop__Q211daObjLadder5Act_cFv
@@ -776,7 +777,8 @@ static asm void func_8058DCE8() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8058DD14(fopAc_ac_c const* param_0, daObjLadder::Act_c::Prm_e param_1,
+extern "C" asm void func_8058DD14(void* _this, fopAc_ac_c const* param_0,
+                                  daObjLadder::Act_c::Prm_e param_1,
                                   daObjLadder::Act_c::Prm_e param_2) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_ladder/d_a_obj_ladder/func_8058DD14.s"

@@ -664,7 +664,6 @@ class Dol2AsmSplitter:
 
         self.search_binary(cache)
 
-        cache = True
         start_time = time.time()
         cache_path = Path("build/full_cache_xx.dump")
         if cache and cache_path.exists():

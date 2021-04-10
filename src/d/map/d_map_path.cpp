@@ -179,7 +179,15 @@ SECTION_RODATA static u8 const data[28] = {
     0x00, 0x00, 0x00, 0x4F, 0x00, 0x00, 0x00, 0x50, 0x00, 0x00, 0x00, 0x4D, 0x00, 0x00,
     0x00, 0x4E, 0x00, 0x00, 0x00, 0x4C, 0x00, 0x00, 0x00, 0x51, 0x00, 0x00, 0x00, 0x52,
 };
-COMPILER_STRIP_GATE(80379C30, &data);
+COMPILER_STRIP_GATE(0x80379C30, &data);
+
+/* 80379C4C-80379C4C 0062AC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80379C4C = "Always";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80379C53 = "\0\0\0\0";
+#pragma pop
 
 /* 8003C85C-8003C8F4 03719C 0098+00 0/0 1/1 0/0 .text create__Q28dMpath_n18dTexObjAggregate_cFv */
 #pragma push
@@ -415,7 +423,7 @@ asm void __sinit_d_map_path_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8003D6E4 = (void*)__sinit_d_map_path_cpp;
+REGISTER_CTORS(0x8003D6E4, __sinit_d_map_path_cpp);
 #pragma pop
 
 /* 8003D740-8003D790 038080 0050+00 1/1 0/0 0/0 .text __dt__Q28dMpath_n18dTexObjAggregate_cFv */
@@ -479,11 +487,4 @@ SECTION_DATA extern void* __vt__11dDrawPath_c[16] = {
     (void*)rendering__11dDrawPath_cFPCQ211dDrawPath_c10room_class,
 };
 
-/* 80379C4C-80379C58 0062AC 0007+05 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80379C4C = "Always";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80379C53 = "\0\0\0\0";
-#pragma pop
+/* 80379C4C-80379C4C 0062AC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

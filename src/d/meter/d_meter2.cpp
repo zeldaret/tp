@@ -74,7 +74,6 @@ struct J2DScreen {};
 struct dMeterMap_c {
     /* 8020D650 */ void isEnableDispMapAndMapDispSizeTypeNo();
     /* 8020D75C */ void getMapDispEdgeTop();
-    /* 8020D8F8 */ void setMapAlpha(u8);
     /* 8020D948 */ dMeterMap_c(J2DScreen*);
     /* 8020DCE4 */ void _move(u32);
     /* 8020DF1C */ void _draw();
@@ -244,9 +243,9 @@ struct Z2StatusMgr {
     /* 802B5F70 */ void heartGaugeOn();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -490,6 +489,12 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
+/* 80399338-80399338 025998 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399338 = "F_SP00";
+#pragma pop
+
 /* 804549C8-804549CC 002FC8 0004+00 9/9 0/0 0/0 .sdata2          @4662 */
 SECTION_SDATA2 static u8 lit_4662[4] = {
     0x00,
@@ -804,6 +809,13 @@ asm void dMeter2_c::move2DContents() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80399338-80399338 025998 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039933F = "F_SP103";
+#pragma pop
+
 /* 802237D4-80223BC4 21E114 03F0+00 1/1 0/0 0/0 .text            checkSubContents__9dMeter2_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -903,6 +915,15 @@ asm void dMeter2_c::alphaAnimeLightDrop() {
     nofralloc
 #include "asm/d/meter/d_meter2/alphaAnimeLightDrop__9dMeter2_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80399338-80399338 025998 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399347 = "R_SP127";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039934F = "";
 #pragma pop
 
 /* 80224DC0-80224F70 21F700 01B0+00 1/1 0/0 0/0 .text            alphaAnimeRupee__9dMeter2_cFv */
@@ -1069,13 +1090,4 @@ SECTION_DATA extern void* g_profile_METER2[10] = {
     (void*)0x03010000, (void*)&l_dMeter2_Method,
 };
 
-/* 80399338-80399350 025998 0017+01 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80399338 = "F_SP00";
-SECTION_DEAD static char const* const stringBase_8039933F = "F_SP103";
-SECTION_DEAD static char const* const stringBase_80399347 = "R_SP127";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039934F = "";
-#pragma pop
+/* 80399338-80399338 025998 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

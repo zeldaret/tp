@@ -41,13 +41,13 @@ struct mDoExt_baseAnm {
     /* 8000D428 */ void play();
 };
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct J3DModelData {};
+struct J3DAnmTransform {};
 
-struct mDoExt_McaMorfCallBack2_c {};
+struct J3DModelData {};
 
 struct Z2Creature {};
 
@@ -82,9 +82,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -174,6 +174,22 @@ extern "C" extern u8 g_env_light[4880];
 //
 
 /* ############################################################################################## */
+/* 80D3EC5C-80D3EC5C 000050 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D3EC5C = "N_gD_mskF";
+SECTION_DEAD static char const* const stringBase_80D3EC66 = "N_gD_mskB";
+SECTION_DEAD static char const* const stringBase_80D3EC70 = "N_gD_mskT";
+SECTION_DEAD static char const* const stringBase_80D3EC7A = "MirrorB";
+SECTION_DEAD static char const* const stringBase_80D3EC82 = "D_MN05A";
+SECTION_DEAD static char const* const stringBase_80D3EC8A = "D_MN04A";
+SECTION_DEAD static char const* const stringBase_80D3EC92 = "D_MN01A";
+SECTION_DEAD static char const* const stringBase_80D3EC9A = "D_MN10A";
+SECTION_DEAD static char const* const stringBase_80D3ECA2 = "D_MN11A";
+SECTION_DEAD static char const* const stringBase_80D3ECAA = "D_MN06A";
+SECTION_DEAD static char const* const stringBase_80D3ECB2 = "D_MN07A";
+#pragma pop
+
 /* 80D3ECBC-80D3ECD8 -00001 001C+00 4/4 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName[7] = {
     (void*)&d_a_obj_ystone__stringBase0,
@@ -234,7 +250,7 @@ SECTION_RODATA static u8 const l_bmdIndex[28] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00,
     0x00, 0x09, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x0B,
 };
-COMPILER_STRIP_GATE(80D3EC0C, &l_bmdIndex);
+COMPILER_STRIP_GATE(0x80D3EC0C, &l_bmdIndex);
 
 /* 80D3EC28-80D3EC34 00001C 000C+00 0/1 0/0 0/0 .rodata          l_brkIndex */
 #pragma push
@@ -242,7 +258,7 @@ COMPILER_STRIP_GATE(80D3EC0C, &l_bmdIndex);
 SECTION_RODATA static u8 const l_brkIndex[12] = {
     0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07,
 };
-COMPILER_STRIP_GATE(80D3EC28, &l_brkIndex);
+COMPILER_STRIP_GATE(0x80D3EC28, &l_brkIndex);
 #pragma pop
 
 /* 80D3EC34-80D3EC50 000028 001C+00 0/1 0/0 0/0 .rodata          l_btkIndex */
@@ -252,12 +268,12 @@ SECTION_RODATA static u8 const l_btkIndex[28] = {
     0x00, 0x00, 0x00, 0x0E, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x00,
     0x00, 0x0E, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x10,
 };
-COMPILER_STRIP_GATE(80D3EC34, &l_btkIndex);
+COMPILER_STRIP_GATE(0x80D3EC34, &l_btkIndex);
 #pragma pop
 
 /* 80D3EC50-80D3EC54 000044 0004+00 1/3 0/0 0/0 .rodata          @3967 */
 SECTION_RODATA static f32 const lit_3967 = 1.0f;
-COMPILER_STRIP_GATE(80D3EC50, &lit_3967);
+COMPILER_STRIP_GATE(0x80D3EC50, &lit_3967);
 
 /* 80D3EC54-80D3EC58 000048 0004+00 1/2 0/0 0/0 .rodata          @3968 */
 SECTION_RODATA static u8 const lit_3968[4] = {
@@ -266,13 +282,13 @@ SECTION_RODATA static u8 const lit_3968[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D3EC54, &lit_3968);
+COMPILER_STRIP_GATE(0x80D3EC54, &lit_3968);
 
 /* 80D3EC58-80D3EC5C 00004C 0004+00 0/1 0/0 0/0 .rodata          @3969 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3969 = -1.0f;
-COMPILER_STRIP_GATE(80D3EC58, &lit_3969);
+COMPILER_STRIP_GATE(0x80D3EC58, &lit_3969);
 #pragma pop
 
 /* 80D3ECFC-80D3ED10 000040 0014+00 1/1 0/0 0/0 .data            mirror_effect_id$3870 */
@@ -390,19 +406,4 @@ static asm void daObj_Ystone_Create(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 80D3EC5C-80D3ECBA 000050 005E+00 2/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D3EC5C = "N_gD_mskF";
-SECTION_DEAD static char const* const stringBase_80D3EC66 = "N_gD_mskB";
-SECTION_DEAD static char const* const stringBase_80D3EC70 = "N_gD_mskT";
-SECTION_DEAD static char const* const stringBase_80D3EC7A = "MirrorB";
-SECTION_DEAD static char const* const stringBase_80D3EC82 = "D_MN05A";
-SECTION_DEAD static char const* const stringBase_80D3EC8A = "D_MN04A";
-SECTION_DEAD static char const* const stringBase_80D3EC92 = "D_MN01A";
-SECTION_DEAD static char const* const stringBase_80D3EC9A = "D_MN10A";
-SECTION_DEAD static char const* const stringBase_80D3ECA2 = "D_MN11A";
-SECTION_DEAD static char const* const stringBase_80D3ECAA = "D_MN06A";
-SECTION_DEAD static char const* const stringBase_80D3ECB2 = "D_MN07A";
-#pragma pop
+/* 80D3EC5C-80D3EC5C 000050 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

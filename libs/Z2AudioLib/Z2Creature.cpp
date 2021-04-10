@@ -22,6 +22,11 @@ struct Z2SoundObjSimple {
     /* 802BE844 */ Z2SoundObjSimple();
 };
 
+template <typename A0>
+struct JSULink {};
+/* JSULink<Z2CreatureEnemy> */
+struct JSULink__template2 {};
+
 struct JAISoundID {};
 
 struct Vec {};
@@ -42,11 +47,6 @@ struct Z2CreatureEnemy {
     /* 802C1B7C */ void setLinkSearch(bool);
     /* 802C1B90 */ void setEnemyName(char const*);
 };
-
-template <typename A0>
-struct JSULink {};
-/* JSULink<Z2CreatureEnemy> */
-struct JSULink__template2 {};
 
 struct Z2SoundObjMgr {
     /* 802C0074 */ void getEnemyID(char const*, JSULink<Z2CreatureEnemy>*);
@@ -1470,5 +1470,5 @@ asm void __sinit_Z2Creature_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_802C3040 = (void*)__sinit_Z2Creature_cpp;
+REGISTER_CTORS(0x802C3040, __sinit_Z2Creature_cpp);
 #pragma pop

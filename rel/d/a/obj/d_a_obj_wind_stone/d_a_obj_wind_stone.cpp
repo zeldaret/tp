@@ -95,11 +95,11 @@ struct dBgS_AcchCir {
     /* 80D37E9C */ ~dBgS_AcchCir();
 };
 
+struct csXyz {};
+
 struct dBgS {
     /* 80074A08 */ void Regist(dBgW_Base*, fopAc_ac_c*);
 };
-
-struct csXyz {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -242,6 +242,12 @@ static asm void daWindStone_c_createHeap(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80D38628-80D38628 000020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D38628 = "WindStone";
+#pragma pop
+
 /* 80D38634-80D38638 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_wind_stone__stringBase0;
 
@@ -329,7 +335,7 @@ asm void daWindStone_c::createHeap() {
 SECTION_RODATA static u8 const lit_3760[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D38608, &lit_3760);
+COMPILER_STRIP_GATE(0x80D38608, &lit_3760);
 
 /* 80D38614-80D38618 00000C 0004+00 1/2 0/0 0/0 .rodata          @4127 */
 SECTION_RODATA static u8 const lit_4127[4] = {
@@ -338,11 +344,11 @@ SECTION_RODATA static u8 const lit_4127[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D38614, &lit_4127);
+COMPILER_STRIP_GATE(0x80D38614, &lit_4127);
 
 /* 80D38618-80D3861C 000010 0004+00 1/1 0/0 0/0 .rodata          @4128 */
 SECTION_RODATA static f32 const lit_4128 = 10.0f;
-COMPILER_STRIP_GATE(80D38618, &lit_4128);
+COMPILER_STRIP_GATE(0x80D38618, &lit_4128);
 
 /* 80D37C20-80D37E2C 0002A0 020C+00 1/1 0/0 0/0 .text            create__13daWindStone_cFv */
 #pragma push
@@ -389,14 +395,14 @@ asm void daWindStone_c::execute() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4175 = 500.0f;
-COMPILER_STRIP_GATE(80D3861C, &lit_4175);
+COMPILER_STRIP_GATE(0x80D3861C, &lit_4175);
 #pragma pop
 
 /* 80D38620-80D38624 000018 0004+00 0/1 0/0 0/0 .rodata          @4176 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4176 = 1.0f;
-COMPILER_STRIP_GATE(80D38620, &lit_4176);
+COMPILER_STRIP_GATE(0x80D38620, &lit_4176);
 #pragma pop
 
 /* 80D37F6C-80D3806C 0005EC 0100+00 1/1 0/0 0/0 .text            draw__13daWindStone_cFv */
@@ -442,7 +448,7 @@ asm void daWindStone_c::init() {
 /* ############################################################################################## */
 /* 80D38624-80D38628 00001C 0004+00 1/1 0/0 0/0 .rodata          @4243 */
 SECTION_RODATA static f32 const lit_4243 = 40000.0f;
-COMPILER_STRIP_GATE(80D38624, &lit_4243);
+COMPILER_STRIP_GATE(0x80D38624, &lit_4243);
 
 /* 80D381EC-80D38278 00086C 008C+00 1/1 0/0 0/0 .text            chkWlfInRange__13daWindStone_cFv */
 #pragma push
@@ -568,9 +574,4 @@ static asm void func_80D385F8() {
 }
 #pragma pop
 
-/* 80D38628-80D38632 000020 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D38628 = "WindStone";
-#pragma pop
+/* 80D38628-80D38628 000020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

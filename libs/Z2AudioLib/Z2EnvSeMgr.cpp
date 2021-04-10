@@ -40,9 +40,9 @@ struct Z2SoundMgr {
     /* 802AA270 */ void setIIR(JAISound*, s16 const*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -376,7 +376,7 @@ SECTION_RODATA static u8 const cNullVec__6Z2Calc[12 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C250, &cNullVec__6Z2Calc);
+COMPILER_STRIP_GATE(0x8039C250, &cNullVec__6Z2Calc);
 
 /* 80455D60-80455D64 004360 0004+00 10/10 0/0 0/0 .sdata2          @3574 */
 SECTION_SDATA2 static f32 lit_3574 = 0.5f;
@@ -808,15 +808,10 @@ asm void Z2EnvSeMgr::startFarThunderSe(Vec* param_0, s8 param_1) {
 }
 #pragma pop
 
-/* 802C7FB4-802C7FBC 2C28F4 0008+00 0/0 0/0 3/3 .text            setSnowPower__10Z2EnvSeMgrFSc */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void Z2EnvSeMgr::setSnowPower(s8 param_0) {
-    nofralloc
-#include "asm/Z2AudioLib/Z2EnvSeMgr/setSnowPower__10Z2EnvSeMgrFSc.s"
+/* 802C7FB4-802C7FBC -00001 0008+00 0/0 0/0 0/0 .text            setSnowPower__10Z2EnvSeMgrFSc */
+void Z2EnvSeMgr::setSnowPower(s8 param_0) {
+    *(u8*)(((u8*)this) + 321) /* this->field_0x141 */ = (u8)(param_0);
 }
-#pragma pop
 
 /* 802C7FBC-802C7FC8 2C28FC 000C+00 0/0 1/1 1/1 .text            initStrongWindSe__10Z2EnvSeMgrFv */
 #pragma push

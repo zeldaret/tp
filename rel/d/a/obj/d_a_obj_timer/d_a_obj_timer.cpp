@@ -33,7 +33,8 @@ struct daObj {
     template <typename A1>
     void PrmAbstract(/* ... */);
     /* 8048561C */ /* daObj::PrmAbstract<daObjTimer::Act_c::Prm_e> */
-    void func_8048561C(fopAc_ac_c const*, daObjTimer::Act_c::Prm_e, daObjTimer::Act_c::Prm_e);
+    void func_8048561C(void* _this, fopAc_ac_c const*, daObjTimer::Act_c::Prm_e,
+                       daObjTimer::Act_c::Prm_e);
 };
 
 struct dSv_info_c {
@@ -43,9 +44,9 @@ struct dSv_info_c {
 
 struct create_tag_class {};
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -71,7 +72,7 @@ extern "C" static void func_804855C4();
 extern "C" static void func_804855E8();
 extern "C" static bool func_8048560C();
 extern "C" static bool func_80485614();
-extern "C" void func_8048561C(fopAc_ac_c const*, daObjTimer::Act_c::Prm_e,
+extern "C" void func_8048561C(void* _this, fopAc_ac_c const*, daObjTimer::Act_c::Prm_e,
                               daObjTimer::Act_c::Prm_e);
 extern "C" extern void* g_profile_Obj_Timer[12];
 
@@ -145,11 +146,11 @@ asm void daObjTimer::Act_c::mode_count_init() {
 /* ############################################################################################## */
 /* 80485640-80485644 000000 0004+00 1/1 0/0 0/0 .rodata          @3720 */
 SECTION_RODATA static f32 const lit_3720 = 1.0f;
-COMPILER_STRIP_GATE(80485640, &lit_3720);
+COMPILER_STRIP_GATE(0x80485640, &lit_3720);
 
 /* 80485644-80485648 000004 0004+00 1/1 0/0 0/0 .rodata          @3721 */
 SECTION_RODATA static f32 const lit_3721 = -1.0f;
-COMPILER_STRIP_GATE(80485644, &lit_3721);
+COMPILER_STRIP_GATE(0x80485644, &lit_3721);
 
 /* 80485324-804854BC 000204 0198+00 1/0 0/0 0/0 .text            mode_count__Q210daObjTimer5Act_cFv
  */
@@ -271,7 +272,8 @@ static bool func_80485614() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8048561C(fopAc_ac_c const* param_0, daObjTimer::Act_c::Prm_e param_1,
+extern "C" asm void func_8048561C(void* _this, fopAc_ac_c const* param_0,
+                                  daObjTimer::Act_c::Prm_e param_1,
                                   daObjTimer::Act_c::Prm_e param_2) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_timer/d_a_obj_timer/func_8048561C.s"

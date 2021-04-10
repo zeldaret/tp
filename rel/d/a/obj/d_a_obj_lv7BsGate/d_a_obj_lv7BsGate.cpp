@@ -91,9 +91,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -185,11 +185,18 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80C85210-80C85214 000000 0004+00 3/3 0/0 0/0 .rodata          @3628 */
 SECTION_RODATA static f32 const lit_3628 = 2.0f;
-COMPILER_STRIP_GATE(80C85210, &lit_3628);
+COMPILER_STRIP_GATE(0x80C85210, &lit_3628);
 
 /* 80C85214-80C85218 000004 0004+00 1/1 0/0 0/0 .rodata          @3629 */
 SECTION_RODATA static f32 const lit_3629 = 12.0f;
-COMPILER_STRIP_GATE(80C85214, &lit_3629);
+COMPILER_STRIP_GATE(0x80C85214, &lit_3629);
+
+/* 80C85234-80C85234 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C85234 = "L7Gate";
+SECTION_DEAD static char const* const stringBase_80C8523B = "L7GateL";
+#pragma pop
 
 /* 80C85244-80C85250 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -343,7 +350,7 @@ SECTION_RODATA static u8 const lit_3650[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C85218, &lit_3650);
+COMPILER_STRIP_GATE(0x80C85218, &lit_3650);
 
 /* 80C84930-80C849CC 000170 009C+00 2/2 0/0 0/0 .text            setBaseMtx__13daLv7BsGate_cFv */
 #pragma push
@@ -368,7 +375,7 @@ asm void daLv7BsGate_c::CreateHeap() {
 /* ############################################################################################## */
 /* 80C8521C-80C85220 00000C 0004+00 1/1 0/0 0/0 .rodata          @3722 */
 SECTION_RODATA static f32 const lit_3722 = -450.0f;
-COMPILER_STRIP_GATE(80C8521C, &lit_3722);
+COMPILER_STRIP_GATE(0x80C8521C, &lit_3722);
 
 /* 80C84A4C-80C84BCC 00028C 0180+00 1/1 0/0 0/0 .text            create__13daLv7BsGate_cFv */
 #pragma push
@@ -441,28 +448,28 @@ asm void daLv7BsGate_c::init_modeOpen() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3796 = 1.0f;
-COMPILER_STRIP_GATE(80C85220, &lit_3796);
+COMPILER_STRIP_GATE(0x80C85220, &lit_3796);
 #pragma pop
 
 /* 80C85224-80C85228 000014 0004+00 0/2 0/0 0/0 .rodata          @3797 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3797 = -1.0f;
-COMPILER_STRIP_GATE(80C85224, &lit_3797);
+COMPILER_STRIP_GATE(0x80C85224, &lit_3797);
 #pragma pop
 
 /* 80C85228-80C8522C 000018 0004+00 0/1 0/0 0/0 .rodata          @3798 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3798 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80C85228, &lit_3798);
+COMPILER_STRIP_GATE(0x80C85228, &lit_3798);
 #pragma pop
 
 /* 80C8522C-80C85230 00001C 0004+00 0/2 0/0 0/0 .rodata          @3799 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3799 = 0.5f;
-COMPILER_STRIP_GATE(80C8522C, &lit_3799);
+COMPILER_STRIP_GATE(0x80C8522C, &lit_3799);
 #pragma pop
 
 /* 80C84D40-80C84E94 000580 0154+00 1/0 0/0 0/0 .text            modeOpen__13daLv7BsGate_cFv */
@@ -491,7 +498,7 @@ asm void daLv7BsGate_c::init_modeClose() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3833 = 2.0f / 5.0f;
-COMPILER_STRIP_GATE(80C85230, &lit_3833);
+COMPILER_STRIP_GATE(0x80C85230, &lit_3833);
 #pragma pop
 
 /* 80C84EA0-80C84FF4 0006E0 0154+00 1/0 0/0 0/0 .text            modeClose__13daLv7BsGate_cFv */
@@ -588,13 +595,7 @@ asm void __sinit_d_a_obj_lv7BsGate_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80C851C0 = (void*)__sinit_d_a_obj_lv7BsGate_cpp;
+REGISTER_CTORS(0x80C851C0, __sinit_d_a_obj_lv7BsGate_cpp);
 #pragma pop
 
-/* 80C85234-80C85243 000024 000F+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C85234 = "L7Gate";
-SECTION_DEAD static char const* const stringBase_80C8523B = "L7GateL";
-#pragma pop
+/* 80C85234-80C85234 000024 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

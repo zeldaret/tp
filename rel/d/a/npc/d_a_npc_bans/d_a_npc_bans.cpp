@@ -27,13 +27,13 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct J3DModelData {};
+struct J3DAnmTransform {};
 
-struct mDoExt_McaMorfCallBack2_c {};
+struct J3DModelData {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
@@ -64,13 +64,7 @@ struct daNpc_Len_c {
     /* 80A660D8 */ void checkStartDemo13StbEvt(fopAc_ac_c*, f32, f32, f32, f32, f32, f32, f32);
 };
 
-struct J3DJoint {};
-
 struct daNpcT_faceMotionAnmData_c {};
-
-struct daNpcT_evtData_c {};
-
-struct daNpcT_motionAnmData_c {};
 
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
@@ -79,6 +73,12 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80145A24 */ void checkEndSequence();
     /* 8096741C */ ~daNpcT_MotionSeqMngr_c();
 };
+
+struct daNpcT_evtData_c {};
+
+struct daNpcT_motionAnmData_c {};
+
+struct J3DJoint {};
 
 struct daNpc_Bans_c {
     /* 809628CC */ ~daNpc_Bans_c();
@@ -141,15 +141,15 @@ struct daNpc_Bans_Param_c {
     static u8 const m[144];
 };
 
-struct csXyz {
-    /* 80966ED8 */ ~csXyz();
-    /* 80967318 */ csXyz();
-};
-
 struct dCcD_GObjInf {
     /* 80083A28 */ dCcD_GObjInf();
     /* 800840E4 */ ~dCcD_GObjInf();
     /* 800844F8 */ void GetTgHitObj();
+};
+
+struct csXyz {
+    /* 80966ED8 */ ~csXyz();
+    /* 80967318 */ csXyz();
 };
 
 struct _GXColorS10 {};
@@ -560,8 +560,8 @@ extern "C" void changeAnm__8daNpcT_cFPiPi();
 extern "C" void changeBck__8daNpcT_cFPiPi();
 extern "C" void changeBtp__8daNpcT_cFPiPi();
 extern "C" void changeBtk__8daNpcT_cFPiPi();
-extern "C" void func_809679D8(int*);
-extern "C" void func_809679F4(u8*);
+extern "C" void func_809679D8(void* _this, int*);
+extern "C" void func_809679F4(void* _this, u8*);
 extern "C" void __sinit_d_a_npc_bans_cpp();
 extern "C" void
 __ct__12daNpc_Bans_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
@@ -786,6 +786,27 @@ extern "C" void checkStartDemo13StbEvt__11daNpc_Len_cFP10fopAc_ac_cfffffff();
 //
 
 /* ############################################################################################## */
+/* 80967F6C-80967F6C 00014C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80967F6C = "";
+SECTION_DEAD static char const* const stringBase_80967F6D = "DEFAULT_GETITEM";
+SECTION_DEAD static char const* const stringBase_80967F7D = "NO_RESPONSE";
+SECTION_DEAD static char const* const stringBase_80967F89 = "DEMO13_STB";
+SECTION_DEAD static char const* const stringBase_80967F94 = "ANGER";
+SECTION_DEAD static char const* const stringBase_80967F9A = "ANGER2";
+SECTION_DEAD static char const* const stringBase_80967FA1 = "ANGER_NEAR";
+SECTION_DEAD static char const* const stringBase_80967FAC = "ANGER_NEAR2";
+SECTION_DEAD static char const* const stringBase_80967FB8 = "GOBACK";
+SECTION_DEAD static char const* const stringBase_80967FBF = "Bans";
+SECTION_DEAD static char const* const stringBase_80967FC4 = "Bans_TW";
+SECTION_DEAD static char const* const stringBase_80967FCC = "Bans1";
+SECTION_DEAD static char const* const stringBase_80967FD2 = "Bans2";
+SECTION_DEAD static char const* const stringBase_80967FD8 = "Len1";
+SECTION_DEAD static char const* const stringBase_80967FDD = "PURCHASE";
+SECTION_DEAD static char const* const stringBase_80967FE6 = "GO_BACK";
+#pragma pop
+
 /* 80968000-8096800C 000000 000C+00 3/3 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1294,7 +1315,7 @@ SECTION_RODATA u8 const daNpc_Bans_Param_c::m[144] = {
     0xC1, 0xA0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC1, 0xA0, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00,
     0x42, 0x20, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0x42, 0xDC, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80967E20, &daNpc_Bans_Param_c::m);
+COMPILER_STRIP_GATE(0x80967E20, &daNpc_Bans_Param_c::m);
 
 /* 80967EB0-80967EC8 000090 0018+00 0/1 0/0 0/0 .rodata          heapSize$3924 */
 #pragma push
@@ -1303,39 +1324,39 @@ SECTION_RODATA static u8 const heapSize[24] = {
     0x00, 0x00, 0x6C, 0x50, 0x00, 0x00, 0x4B, 0x40, 0x00, 0x00, 0x6C, 0x50,
     0x00, 0x00, 0x75, 0x80, 0x00, 0x00, 0x64, 0x60, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80967EB0, &heapSize);
+COMPILER_STRIP_GATE(0x80967EB0, &heapSize);
 #pragma pop
 
 /* 80967EC8-80967ECC 0000A8 0004+00 0/1 0/0 0/0 .rodata          @3991 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3991 = -200.0f;
-COMPILER_STRIP_GATE(80967EC8, &lit_3991);
+COMPILER_STRIP_GATE(0x80967EC8, &lit_3991);
 #pragma pop
 
 /* 80967ECC-80967ED0 0000AC 0004+00 0/1 0/0 0/0 .rodata          @3992 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3992 = -100.0f;
-COMPILER_STRIP_GATE(80967ECC, &lit_3992);
+COMPILER_STRIP_GATE(0x80967ECC, &lit_3992);
 #pragma pop
 
 /* 80967ED0-80967ED4 0000B0 0004+00 0/1 0/0 0/0 .rodata          @3993 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3993 = 200.0f;
-COMPILER_STRIP_GATE(80967ED0, &lit_3993);
+COMPILER_STRIP_GATE(0x80967ED0, &lit_3993);
 #pragma pop
 
 /* 80967ED4-80967ED8 0000B4 0004+00 1/2 0/0 0/0 .rodata          @3994 */
 SECTION_RODATA static f32 const lit_3994 = 300.0f;
-COMPILER_STRIP_GATE(80967ED4, &lit_3994);
+COMPILER_STRIP_GATE(0x80967ED4, &lit_3994);
 
 /* 80967ED8-80967EDC 0000B8 0004+00 0/1 0/0 0/0 .rodata          @3995 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3995 = -1000000000.0f;
-COMPILER_STRIP_GATE(80967ED8, &lit_3995);
+COMPILER_STRIP_GATE(0x80967ED8, &lit_3995);
 #pragma pop
 
 /* 80962AA0-80962D6C 0002C0 02CC+00 1/1 0/0 0/0 .text            create__12daNpc_Bans_cFv */
@@ -1353,21 +1374,21 @@ asm void daNpc_Bans_c::create() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4100 = 0.25f;
-COMPILER_STRIP_GATE(80967EDC, &lit_4100);
+COMPILER_STRIP_GATE(0x80967EDC, &lit_4100);
 #pragma pop
 
 /* 80967EE0-80967EE4 0000C0 0004+00 0/1 0/0 0/0 .rodata          @4101 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4101 = 20.0f;
-COMPILER_STRIP_GATE(80967EE0, &lit_4101);
+COMPILER_STRIP_GATE(0x80967EE0, &lit_4101);
 #pragma pop
 
 /* 80967EE4-80967EE8 0000C4 0004+00 0/1 0/0 0/0 .rodata          @4102 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4102 = 5.0f;
-COMPILER_STRIP_GATE(80967EE4, &lit_4102);
+COMPILER_STRIP_GATE(0x80967EE4, &lit_4102);
 #pragma pop
 
 /* 80967EE8-80967EEC 0000C8 0004+00 8/18 0/0 0/0 .rodata          @4103 */
@@ -1377,36 +1398,36 @@ SECTION_RODATA static u8 const lit_4103[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80967EE8, &lit_4103);
+COMPILER_STRIP_GATE(0x80967EE8, &lit_4103);
 
 /* 80967EEC-80967EF0 0000CC 0004+00 1/3 0/0 0/0 .rodata          @4104 */
 SECTION_RODATA static f32 const lit_4104 = 100.0f;
-COMPILER_STRIP_GATE(80967EEC, &lit_4104);
+COMPILER_STRIP_GATE(0x80967EEC, &lit_4104);
 
 /* 80967EF0-80967EF4 0000D0 0004+00 0/1 0/0 0/0 .rodata          @4105 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4105 = 60.0f;
-COMPILER_STRIP_GATE(80967EF0, &lit_4105);
+COMPILER_STRIP_GATE(0x80967EF0, &lit_4105);
 #pragma pop
 
 /* 80967EF4-80967EF8 0000D4 0004+00 0/2 0/0 0/0 .rodata          @4326 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4326 = 65536.0f;
-COMPILER_STRIP_GATE(80967EF4, &lit_4326);
+COMPILER_STRIP_GATE(0x80967EF4, &lit_4326);
 #pragma pop
 
 /* 80967EF8-80967EFC 0000D8 0004+00 0/3 0/0 0/0 .rodata          @4327 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4327 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80967EF8, &lit_4327);
+COMPILER_STRIP_GATE(0x80967EF8, &lit_4327);
 #pragma pop
 
 /* 80967EFC-80967F00 0000DC 0004+00 3/7 0/0 0/0 .rodata          @4514 */
 SECTION_RODATA static f32 const lit_4514 = 1.0f;
-COMPILER_STRIP_GATE(80967EFC, &lit_4514);
+COMPILER_STRIP_GATE(0x80967EFC, &lit_4514);
 
 /* 80962D6C-8096317C 00058C 0410+00 1/1 0/0 0/0 .text            CreateHeap__12daNpc_Bans_cFv */
 #pragma push
@@ -1633,7 +1654,7 @@ asm void daNpc_Bans_c::checkChangeEvt() {
 /* ############################################################################################## */
 /* 80967F00-80967F04 0000E0 0004+00 3/8 0/0 0/0 .rodata          @4761 */
 SECTION_RODATA static f32 const lit_4761 = -1.0f;
-COMPILER_STRIP_GATE(80967F00, &lit_4761);
+COMPILER_STRIP_GATE(0x80967F00, &lit_4761);
 
 /* 80963B30-80963BA8 001350 0078+00 1/0 0/0 0/0 .text setAfterTalkMotion__12daNpc_Bans_cFv */
 #pragma push
@@ -1700,49 +1721,49 @@ asm void daNpc_Bans_c::beforeMove() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5033 = 15.0f;
-COMPILER_STRIP_GATE(80967F04, &lit_5033);
+COMPILER_STRIP_GATE(0x80967F04, &lit_5033);
 #pragma pop
 
 /* 80967F08-80967F0C 0000E8 0004+00 0/1 0/0 0/0 .rodata          @5034 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5034 = 30.0f;
-COMPILER_STRIP_GATE(80967F08, &lit_5034);
+COMPILER_STRIP_GATE(0x80967F08, &lit_5034);
 #pragma pop
 
 /* 80967F0C-80967F10 0000EC 0004+00 0/1 0/0 0/0 .rodata          @5035 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_5035 = 0x38C90FDB;
-COMPILER_STRIP_GATE(80967F0C, &lit_5035);
+COMPILER_STRIP_GATE(0x80967F0C, &lit_5035);
 #pragma pop
 
 /* 80967F10-80967F14 0000F0 0004+00 0/2 0/0 0/0 .rodata          @5036 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5036 = 8.0f;
-COMPILER_STRIP_GATE(80967F10, &lit_5036);
+COMPILER_STRIP_GATE(0x80967F10, &lit_5036);
 #pragma pop
 
 /* 80967F14-80967F18 0000F4 0004+00 0/1 0/0 0/0 .rodata          @5037 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5037 = 34.0f;
-COMPILER_STRIP_GATE(80967F14, &lit_5037);
+COMPILER_STRIP_GATE(0x80967F14, &lit_5037);
 #pragma pop
 
 /* 80967F18-80967F1C 0000F8 0004+00 0/1 0/0 0/0 .rodata          @5038 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5038 = 180.0f;
-COMPILER_STRIP_GATE(80967F18, &lit_5038);
+COMPILER_STRIP_GATE(0x80967F18, &lit_5038);
 #pragma pop
 
 /* 80967F1C-80967F20 0000FC 0004+00 0/2 0/0 0/0 .rodata          @5039 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5039 = 10.0f;
-COMPILER_STRIP_GATE(80967F1C, &lit_5039);
+COMPILER_STRIP_GATE(0x80967F1C, &lit_5039);
 #pragma pop
 
 /* 80967F20-80967F28 000100 0004+04 0/1 0/0 0/0 .rodata          @5040 */
@@ -1753,14 +1774,14 @@ SECTION_RODATA static f32 const lit_5040[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80967F20, &lit_5040);
+COMPILER_STRIP_GATE(0x80967F20, &lit_5040);
 #pragma pop
 
 /* 80967F28-80967F30 000108 0008+00 1/3 0/0 0/0 .rodata          @5042 */
 SECTION_RODATA static u8 const lit_5042[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80967F28, &lit_5042);
+COMPILER_STRIP_GATE(0x80967F28, &lit_5042);
 
 /* 80964228-809646E0 001A48 04B8+00 1/0 0/0 0/0 .text            setAttnPos__12daNpc_Bans_cFv */
 #pragma push
@@ -1779,7 +1800,7 @@ asm void daNpc_Bans_c::setAttnPos() {
 SECTION_RODATA static u8 const lit_5100[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80967F30, &lit_5100);
+COMPILER_STRIP_GATE(0x80967F30, &lit_5100);
 #pragma pop
 
 /* 80967F38-80967F40 000118 0008+00 0/1 0/0 0/0 .rodata          @5101 */
@@ -1788,7 +1809,7 @@ COMPILER_STRIP_GATE(80967F30, &lit_5100);
 SECTION_RODATA static u8 const lit_5101[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80967F38, &lit_5101);
+COMPILER_STRIP_GATE(0x80967F38, &lit_5101);
 #pragma pop
 
 /* 80967F40-80967F48 000120 0008+00 0/1 0/0 0/0 .rodata          @5102 */
@@ -1797,35 +1818,35 @@ COMPILER_STRIP_GATE(80967F38, &lit_5101);
 SECTION_RODATA static u8 const lit_5102[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80967F40, &lit_5102);
+COMPILER_STRIP_GATE(0x80967F40, &lit_5102);
 #pragma pop
 
 /* 80967F48-80967F4C 000128 0004+00 0/1 0/0 0/0 .rodata          @5164 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5164 = 50.0f;
-COMPILER_STRIP_GATE(80967F48, &lit_5164);
+COMPILER_STRIP_GATE(0x80967F48, &lit_5164);
 #pragma pop
 
 /* 80967F4C-80967F50 00012C 0004+00 0/1 0/0 0/0 .rodata          @5165 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5165 = -60.0f;
-COMPILER_STRIP_GATE(80967F4C, &lit_5165);
+COMPILER_STRIP_GATE(0x80967F4C, &lit_5165);
 #pragma pop
 
 /* 80967F50-80967F54 000130 0004+00 0/1 0/0 0/0 .rodata          @5166 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5166 = 40.0f;
-COMPILER_STRIP_GATE(80967F50, &lit_5166);
+COMPILER_STRIP_GATE(0x80967F50, &lit_5166);
 #pragma pop
 
 /* 80967F54-80967F58 000134 0004+00 0/1 0/0 0/0 .rodata          @5167 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5167 = 110.0f;
-COMPILER_STRIP_GATE(80967F54, &lit_5167);
+COMPILER_STRIP_GATE(0x80967F54, &lit_5167);
 #pragma pop
 
 /* 809646E0-80964994 001F00 02B4+00 1/0 0/0 0/0 .text            setCollision__12daNpc_Bans_cFv */
@@ -1888,7 +1909,7 @@ asm void daNpc_Bans_c::selectAction() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_Bans_c::chkAction(int (daNpc_Bans_c::*)(void*)) {
+asm void daNpc_Bans_c::chkAction(int (daNpc_Bans_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_bans/d_a_npc_bans/chkAction__12daNpc_Bans_cFM12daNpc_Bans_cFPCvPvPv_i.s"
 }
@@ -1899,10 +1920,17 @@ asm void daNpc_Bans_c::chkAction(int (daNpc_Bans_c::*)(void*)) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_Bans_c::setAction(int (daNpc_Bans_c::*)(void*)) {
+asm void daNpc_Bans_c::setAction(int (daNpc_Bans_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_bans/d_a_npc_bans/setAction__12daNpc_Bans_cFM12daNpc_Bans_cFPCvPvPv_i.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80967F6C-80967F6C 00014C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80967FEE = "R_SP109";
 #pragma pop
 
 /* 80964D20-80964DD0 002540 00B0+00 1/1 0/0 0/0 .text
@@ -1941,7 +1969,7 @@ asm void daNpc_Bans_c::getKMsgTagP() {
 SECTION_RODATA static u8 const id[8] = {
     0x86, 0x2C, 0x86, 0xA3, 0x86, 0x2D, 0x86, 0x2E,
 };
-COMPILER_STRIP_GATE(80967F58, &id);
+COMPILER_STRIP_GATE(0x80967F58, &id);
 
 /* 80964F48-80964FEC 002768 00A4+00 1/1 0/0 0/0 .text            setPrtcls__12daNpc_Bans_cFv */
 #pragma push
@@ -1958,21 +1986,28 @@ asm void daNpc_Bans_c::setPrtcls() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5654 = 450.0f;
-COMPILER_STRIP_GATE(80967F60, &lit_5654);
+COMPILER_STRIP_GATE(0x80967F60, &lit_5654);
 #pragma pop
 
 /* 80967F64-80967F68 000144 0004+00 0/1 0/0 0/0 .rodata          @5655 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5655 = 16.0f;
-COMPILER_STRIP_GATE(80967F64, &lit_5655);
+COMPILER_STRIP_GATE(0x80967F64, &lit_5655);
 #pragma pop
 
 /* 80967F68-80967F6C 000148 0004+00 0/1 0/0 0/0 .rodata          @5656 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5656 = 9.0f;
-COMPILER_STRIP_GATE(80967F68, &lit_5656);
+COMPILER_STRIP_GATE(0x80967F68, &lit_5656);
+#pragma pop
+
+/* 80967F6C-80967F6C 00014C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80967FF6 = "prm";
+SECTION_DEAD static char const* const stringBase_80967FFA = "timer";
 #pragma pop
 
 /* 80964FEC-809658F8 00280C 090C+00 1/0 0/0 0/0 .text            cutAnger__12daNpc_Bans_cFi */
@@ -2385,7 +2420,7 @@ void daNpcT_c::changeBtk(int* param_0, int* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_809679D8(int* param_0) {
+extern "C" asm void func_809679D8(void* _this, int* param_0) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_bans/d_a_npc_bans/func_809679D8.s"
 }
@@ -2395,7 +2430,7 @@ extern "C" asm void func_809679D8(int* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_809679F4(u8* param_0) {
+extern "C" asm void func_809679F4(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_bans/d_a_npc_bans/func_809679F4.s"
 }
@@ -2427,7 +2462,7 @@ asm void __sinit_d_a_npc_bans_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80967A10 = (void*)__sinit_d_a_npc_bans_cpp;
+REGISTER_CTORS(0x80967A10, __sinit_d_a_npc_bans_cpp);
 #pragma pop
 
 /* 80967AC4-80967BE4 0052E4 0120+00 1/1 0/0 0/0 .text
@@ -2563,27 +2598,4 @@ asm void daTag_EvtArea_c::chkPointInArea(cXyz param_0) {
 }
 #pragma pop
 
-/* 80967F6C-80968000 00014C 0094+00 7/4 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80967F6C = "";
-SECTION_DEAD static char const* const stringBase_80967F6D = "DEFAULT_GETITEM";
-SECTION_DEAD static char const* const stringBase_80967F7D = "NO_RESPONSE";
-SECTION_DEAD static char const* const stringBase_80967F89 = "DEMO13_STB";
-SECTION_DEAD static char const* const stringBase_80967F94 = "ANGER";
-SECTION_DEAD static char const* const stringBase_80967F9A = "ANGER2";
-SECTION_DEAD static char const* const stringBase_80967FA1 = "ANGER_NEAR";
-SECTION_DEAD static char const* const stringBase_80967FAC = "ANGER_NEAR2";
-SECTION_DEAD static char const* const stringBase_80967FB8 = "GOBACK";
-SECTION_DEAD static char const* const stringBase_80967FBF = "Bans";
-SECTION_DEAD static char const* const stringBase_80967FC4 = "Bans_TW";
-SECTION_DEAD static char const* const stringBase_80967FCC = "Bans1";
-SECTION_DEAD static char const* const stringBase_80967FD2 = "Bans2";
-SECTION_DEAD static char const* const stringBase_80967FD8 = "Len1";
-SECTION_DEAD static char const* const stringBase_80967FDD = "PURCHASE";
-SECTION_DEAD static char const* const stringBase_80967FE6 = "GO_BACK";
-SECTION_DEAD static char const* const stringBase_80967FEE = "R_SP109";
-SECTION_DEAD static char const* const stringBase_80967FF6 = "prm";
-SECTION_DEAD static char const* const stringBase_80967FFA = "timer";
-#pragma pop
+/* 80967F6C-80967F6C 00014C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

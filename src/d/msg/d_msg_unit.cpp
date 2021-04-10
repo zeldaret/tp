@@ -82,6 +82,19 @@ asm dMsgUnit_c::~dMsgUnit_c() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 803996E8-803996E8 025D48 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803996E8 = "%d";
+SECTION_DEAD static char const* const stringBase_803996EB = "%d-%d";
+SECTION_DEAD static char const* const stringBase_803996F1 = "%d:%02d";
+SECTION_DEAD static char const* const stringBase_803996F9 = "";
+SECTION_DEAD static char const* const stringBase_803996FA = "%d%s";
+SECTION_DEAD static char const* const stringBase_803996FF = "%d %s";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80399705 = "\0\0";
+#pragma pop
+
 /* 80454B40-80454B44 003140 0004+00 1/1 0/0 0/0 .sdata2          @3702 */
 SECTION_SDATA2 static f32 lit_3702 = 1000000.0f;
 
@@ -128,7 +141,7 @@ asm void __sinit_d_msg_unit_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8023907C = (void*)__sinit_d_msg_unit_cpp;
+REGISTER_CTORS(0x8023907C, __sinit_d_msg_unit_cpp);
 #pragma pop
 
 /* ############################################################################################## */
@@ -136,16 +149,4 @@ SECTION_CTORS void* const _ctors_8023907C = (void*)__sinit_d_msg_unit_cpp;
 extern u8 data_804510D8[8];
 u8 data_804510D8[8];
 
-/* 803996E8-80399708 025D48 001D+03 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803996E8 = "%d";
-SECTION_DEAD static char const* const stringBase_803996EB = "%d-%d";
-SECTION_DEAD static char const* const stringBase_803996F1 = "%d:%02d";
-SECTION_DEAD static char const* const stringBase_803996F9 = "";
-SECTION_DEAD static char const* const stringBase_803996FA = "%d%s";
-SECTION_DEAD static char const* const stringBase_803996FF = "%d %s";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80399705 = "\0\0";
-#pragma pop
+/* 803996E8-803996E8 025D48 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -28,7 +28,7 @@ template <typename A0>
 struct JASMemPool {};
 /* JASMemPool<JAISoundChild> */
 struct JASMemPool__template1 {
-    /* 802A1268 */ void func_802A1268();
+    /* 802A1268 */ void func_802A1268(void* _this);
 };
 
 struct JASGenericMemPool {
@@ -49,16 +49,16 @@ struct JASAramStream {
 
 struct JAIStreamMgr {};
 
+struct JAISoundActivity {};
+
 template <typename A0>
 struct JAISoundStrategyMgr {};
 /* JAISoundStrategyMgr<JAIStream> */
 struct JAISoundStrategyMgr__template2 {};
 
-struct JAISoundID {};
-
 struct JAIAudience {};
 
-struct JAISoundActivity {};
+struct JAISoundID {};
 
 struct JAIStream {
     /* 802A3104 */ JAIStream(JAIStreamMgr*, JAISoundStrategyMgr<JAIStream>*);
@@ -135,7 +135,7 @@ extern "C" void start__13JASAramStreamFv();
 extern "C" void stop__13JASAramStreamFUs();
 extern "C" void pause__13JASAramStreamFb();
 extern "C" void cancel__13JASAramStreamFv();
-extern "C" void func_802A1268();
+extern "C" void func_802A1268(void* _this);
 extern "C" void mixOutAll__14JAISoundParamsFRC14JASSoundParamsP14JASSoundParamsf();
 extern "C" void __ct__8JAISoundFv();
 extern "C" void func_802A2328();

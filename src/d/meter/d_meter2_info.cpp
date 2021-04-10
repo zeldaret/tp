@@ -64,17 +64,17 @@ struct dMeterMap_c {
     /* 8020D900 */ void isMapOpenCheck();
 };
 
-struct cXyz {};
-
 struct J2DPicture {};
+
+struct JMSMesgEntry_c {};
 
 struct J2DTextBox {
     /* 8021C7F4 */ void getFont() const;
 };
 
-struct JMSMesgEntry_c {};
-
 struct JUTFont {};
+
+struct cXyz {};
 
 struct dMeter2Info_c {
     /* 8021BDDC */ dMeter2Info_c();
@@ -264,6 +264,35 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 //
 
 /* ############################################################################################## */
+/* 80399168-80399168 0257C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399168 = "";
+SECTION_DEAD static char const* const stringBase_80399169 = "zel_00.bmg";
+SECTION_DEAD static char const* const stringBase_80399174 = "D_MN01";
+SECTION_DEAD static char const* const stringBase_8039917B = "D_MN07";
+SECTION_DEAD static char const* const stringBase_80399182 =
+    "im_font_number_32_32_ganshinkyo_0_02.bti";
+SECTION_DEAD static char const* const stringBase_803991AB =
+    "im_font_number_32_32_ganshinkyo_1_02.bti";
+SECTION_DEAD static char const* const stringBase_803991D4 =
+    "im_font_number_32_32_ganshinkyo_2_02.bti";
+SECTION_DEAD static char const* const stringBase_803991FD =
+    "im_font_number_32_32_ganshinkyo_3_02.bti";
+SECTION_DEAD static char const* const stringBase_80399226 =
+    "im_font_number_32_32_ganshinkyo_4_03.bti";
+SECTION_DEAD static char const* const stringBase_8039924F =
+    "im_font_number_32_32_ganshinkyo_5_02.bti";
+SECTION_DEAD static char const* const stringBase_80399278 =
+    "im_font_number_32_32_ganshinkyo_6_02.bti";
+SECTION_DEAD static char const* const stringBase_803992A1 =
+    "im_font_number_32_32_ganshinkyo_7_02.bti";
+SECTION_DEAD static char const* const stringBase_803992CA =
+    "im_font_number_32_32_ganshinkyo_8_02.bti";
+SECTION_DEAD static char const* const stringBase_803992F3 =
+    "im_font_number_32_32_ganshinkyo_9_02.bti";
+#pragma pop
+
 /* 803BF760-803BF7F4 -00001 0094+00 1/1 0/0 0/0 .data            @4572 */
 SECTION_DATA static void* lit_4572[37] = {
     (void*)(((char*)get2ndTexture__13dMeter2Info_cFUc) + 0x64),
@@ -733,7 +762,7 @@ SECTION_RODATA static u8 const black_color_4634[148] = {
     0x46, 0x46, 0x41, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80398A78, &black_color_4634);
+COMPILER_STRIP_GATE(0x80398A78, &black_color_4634);
 
 /* 80398B0C-80398BA0 02516C 0094+00 0/1 0/0 0/0 .rodata          white_color$4635 */
 #pragma push
@@ -750,7 +779,7 @@ SECTION_RODATA static u8 const white_color_4635[148] = {
     0xF5, 0xF5, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
 };
-COMPILER_STRIP_GATE(80398B0C, &white_color_4635);
+COMPILER_STRIP_GATE(0x80398B0C, &white_color_4635);
 #pragma pop
 
 /* 80398BA0-80398C34 025200 0094+00 0/1 0/0 0/0 .rodata          vertex_color_lu$4636 */
@@ -768,7 +797,7 @@ SECTION_RODATA static u8 const vertex_color_lu_4636[148] = {
     0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xA0, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
 };
-COMPILER_STRIP_GATE(80398BA0, &vertex_color_lu_4636);
+COMPILER_STRIP_GATE(0x80398BA0, &vertex_color_lu_4636);
 #pragma pop
 
 /* 80398C34-80398CC8 025294 0094+00 0/1 0/0 0/0 .rodata          vertex_color_ru$4637 */
@@ -786,7 +815,7 @@ SECTION_RODATA static u8 const vertex_color_ru_4637[148] = {
     0xFF, 0xFF, 0xFF, 0x00, 0xFF, 0xA0, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
 };
-COMPILER_STRIP_GATE(80398C34, &vertex_color_ru_4637);
+COMPILER_STRIP_GATE(0x80398C34, &vertex_color_ru_4637);
 #pragma pop
 
 /* 80398CC8-80398D5C 025328 0094+00 0/1 0/0 0/0 .rodata          vertex_color_ld$4638 */
@@ -804,7 +833,7 @@ SECTION_RODATA static u8 const vertex_color_ld_4638[148] = {
     0x00, 0x00, 0x00, 0xFF, 0xE0, 0x00, 0xE0, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
 };
-COMPILER_STRIP_GATE(80398CC8, &vertex_color_ld_4638);
+COMPILER_STRIP_GATE(0x80398CC8, &vertex_color_ld_4638);
 #pragma pop
 
 /* 80398D5C-80398DF0 0253BC 0094+00 0/1 0/0 0/0 .rodata          vertex_color_rd$4639 */
@@ -822,7 +851,7 @@ SECTION_RODATA static u8 const vertex_color_rd_4639[148] = {
     0x00, 0x00, 0x00, 0xFF, 0xE0, 0x00, 0xE0, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
 };
-COMPILER_STRIP_GATE(80398D5C, &vertex_color_rd_4639);
+COMPILER_STRIP_GATE(0x80398D5C, &vertex_color_rd_4639);
 #pragma pop
 
 /* 8021D524-8021D644 217E64 0120+00 2/2 0/0 0/0 .text set1stColor__13dMeter2Info_cFUcP10J2DPicture
@@ -852,7 +881,7 @@ SECTION_RODATA static u8 const black_color_4675[148] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80398DF0, &black_color_4675);
+COMPILER_STRIP_GATE(0x80398DF0, &black_color_4675);
 #pragma pop
 
 /* 80398E84-80398F18 0254E4 0094+00 0/1 0/0 0/0 .rodata          white_color$4676 */
@@ -870,7 +899,7 @@ SECTION_RODATA static u8 const white_color_4676[148] = {
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
 };
-COMPILER_STRIP_GATE(80398E84, &white_color_4676);
+COMPILER_STRIP_GATE(0x80398E84, &white_color_4676);
 #pragma pop
 
 /* 80398F18-80398FAC 025578 0094+00 0/1 0/0 0/0 .rodata          vertex_color_lu$4677 */
@@ -888,7 +917,7 @@ SECTION_RODATA static u8 const vertex_color_lu_4677[148] = {
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
 };
-COMPILER_STRIP_GATE(80398F18, &vertex_color_lu_4677);
+COMPILER_STRIP_GATE(0x80398F18, &vertex_color_lu_4677);
 #pragma pop
 
 /* 80398FAC-80399040 02560C 0094+00 0/1 0/0 0/0 .rodata          vertex_color_ru$4678 */
@@ -906,7 +935,7 @@ SECTION_RODATA static u8 const vertex_color_ru_4678[148] = {
     0xFF, 0xFF, 0xFF, 0x58, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
 };
-COMPILER_STRIP_GATE(80398FAC, &vertex_color_ru_4678);
+COMPILER_STRIP_GATE(0x80398FAC, &vertex_color_ru_4678);
 #pragma pop
 
 /* 80399040-803990D4 0256A0 0094+00 0/1 0/0 0/0 .rodata          vertex_color_ld$4679 */
@@ -924,7 +953,7 @@ SECTION_RODATA static u8 const vertex_color_ld_4679[148] = {
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
 };
-COMPILER_STRIP_GATE(80399040, &vertex_color_ld_4679);
+COMPILER_STRIP_GATE(0x80399040, &vertex_color_ld_4679);
 #pragma pop
 
 /* 803990D4-80399168 025734 0094+00 0/1 0/0 0/0 .rodata          vertex_color_rd$4680 */
@@ -942,7 +971,7 @@ SECTION_RODATA static u8 const vertex_color_rd_4680[148] = {
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
 };
-COMPILER_STRIP_GATE(803990D4, &vertex_color_rd_4680);
+COMPILER_STRIP_GATE(0x803990D4, &vertex_color_rd_4680);
 #pragma pop
 
 /* 8021D644-8021D764 217F84 0120+00 2/2 0/0 0/0 .text set2ndColor__13dMeter2Info_cFUcP10J2DPicture
@@ -1070,6 +1099,12 @@ asm void dMeter2Info_getNumberTextureName(int param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80399168-80399168 0257C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039931C = "im_plus_metal_24ｘ24_00.bti";
+#pragma pop
+
 /* 804510B8-804510BC 0005B8 0004+00 1/1 0/0 0/0 .sbss            tex_name$5188 */
 static u8 tex_name_5188[4];
 
@@ -1223,36 +1258,7 @@ asm void __sinit_d_meter2_info_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8021E9D8 = (void*)__sinit_d_meter2_info_cpp;
+REGISTER_CTORS(0x8021E9D8, __sinit_d_meter2_info_cpp);
 #pragma pop
 
-/* 80399168-80399338 0257C8 01D0+00 7/6 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80399168 = "";
-SECTION_DEAD static char const* const stringBase_80399169 = "zel_00.bmg";
-SECTION_DEAD static char const* const stringBase_80399174 = "D_MN01";
-SECTION_DEAD static char const* const stringBase_8039917B = "D_MN07";
-SECTION_DEAD static char const* const stringBase_80399182 =
-    "im_font_number_32_32_ganshinkyo_0_02.bti";
-SECTION_DEAD static char const* const stringBase_803991AB =
-    "im_font_number_32_32_ganshinkyo_1_02.bti";
-SECTION_DEAD static char const* const stringBase_803991D4 =
-    "im_font_number_32_32_ganshinkyo_2_02.bti";
-SECTION_DEAD static char const* const stringBase_803991FD =
-    "im_font_number_32_32_ganshinkyo_3_02.bti";
-SECTION_DEAD static char const* const stringBase_80399226 =
-    "im_font_number_32_32_ganshinkyo_4_03.bti";
-SECTION_DEAD static char const* const stringBase_8039924F =
-    "im_font_number_32_32_ganshinkyo_5_02.bti";
-SECTION_DEAD static char const* const stringBase_80399278 =
-    "im_font_number_32_32_ganshinkyo_6_02.bti";
-SECTION_DEAD static char const* const stringBase_803992A1 =
-    "im_font_number_32_32_ganshinkyo_7_02.bti";
-SECTION_DEAD static char const* const stringBase_803992CA =
-    "im_font_number_32_32_ganshinkyo_8_02.bti";
-SECTION_DEAD static char const* const stringBase_803992F3 =
-    "im_font_number_32_32_ganshinkyo_9_02.bti";
-SECTION_DEAD static char const* const stringBase_8039931C = "im_plus_metal_24ｘ24_00.bti";
-#pragma pop
+/* 80399168-80399168 0257C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

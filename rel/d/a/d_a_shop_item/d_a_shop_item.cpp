@@ -194,6 +194,13 @@ extern "C" f32 mSystemFar__14mDoLib_clipper;
 // Declarations:
 //
 
+/* ############################################################################################## */
+/* 8059F48C-8059F48C 000054 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8059F48C = "R_SP160";
+#pragma pop
+
 /* 8059E9B8-8059EC04 000078 024C+00 2/2 0/0 0/0 .text            getShopArcname__12daShopItem_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -207,7 +214,7 @@ asm void daShopItem_c::getShopArcname() {
 /* ############################################################################################## */
 /* 8059F438-8059F43C 000000 0004+00 2/2 0/0 0/0 .rodata          m_cullfar_max__12daShopItem_c */
 SECTION_RODATA f32 const daShopItem_c::m_cullfar_max = 5000.0f;
-COMPILER_STRIP_GATE(8059F438, &daShopItem_c::m_cullfar_max);
+COMPILER_STRIP_GATE(0x8059F438, &daShopItem_c::m_cullfar_max);
 
 /* 8059F43C-8059F46C 000004 002E+02 1/1 0/0 0/0 .rodata          HeapSizeTbl$3665 */
 SECTION_RODATA static u8 const HeapSizeTbl[46 + 2 /* padding */] = {
@@ -261,7 +268,7 @@ SECTION_RODATA static u8 const HeapSizeTbl[46 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8059F43C, &HeapSizeTbl);
+COMPILER_STRIP_GATE(0x8059F43C, &HeapSizeTbl);
 
 /* 8059EC04-8059EC1C 0002C4 0018+00 1/1 0/0 0/0 .text            getHeapSize__12daShopItem_cFv */
 #pragma push
@@ -278,7 +285,7 @@ asm void daShopItem_c::getHeapSize() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3718 = -100.0f;
-COMPILER_STRIP_GATE(8059F46C, &lit_3718);
+COMPILER_STRIP_GATE(0x8059F46C, &lit_3718);
 #pragma pop
 
 /* 8059F470-8059F474 000038 0004+00 0/2 0/0 0/0 .rodata          @3719 */
@@ -290,39 +297,45 @@ SECTION_RODATA static u8 const lit_3719[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8059F470, &lit_3719);
+COMPILER_STRIP_GATE(0x8059F470, &lit_3719);
 #pragma pop
 
 /* 8059F474-8059F478 00003C 0004+00 0/1 0/0 0/0 .rodata          @3720 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3720 = 100.0f;
-COMPILER_STRIP_GATE(8059F474, &lit_3720);
+COMPILER_STRIP_GATE(0x8059F474, &lit_3720);
 #pragma pop
 
 /* 8059F478-8059F47C 000040 0004+00 0/1 0/0 0/0 .rodata          @3721 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3721 = 200.0f;
-COMPILER_STRIP_GATE(8059F478, &lit_3721);
+COMPILER_STRIP_GATE(0x8059F478, &lit_3721);
 #pragma pop
 
 /* 8059F47C-8059F480 000044 0004+00 1/3 0/0 0/0 .rodata          @3722 */
 SECTION_RODATA static f32 const lit_3722 = 1.0f;
-COMPILER_STRIP_GATE(8059F47C, &lit_3722);
+COMPILER_STRIP_GATE(0x8059F47C, &lit_3722);
 
 /* 8059F480-8059F484 000048 0004+00 0/1 0/0 0/0 .rodata          @3723 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3723 = 5000.0f;
-COMPILER_STRIP_GATE(8059F480, &lit_3723);
+COMPILER_STRIP_GATE(0x8059F480, &lit_3723);
 #pragma pop
 
 /* 8059F484-8059F488 00004C 0004+00 0/1 0/0 0/0 .rodata          @3724 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3724 = 4.0f / 5.0f;
-COMPILER_STRIP_GATE(8059F484, &lit_3724);
+COMPILER_STRIP_GATE(0x8059F484, &lit_3724);
+#pragma pop
+
+/* 8059F48C-8059F48C 000054 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8059F494 = "R_SP109";
 #pragma pop
 
 /* 8059EC1C-8059ED58 0002DC 013C+00 1/1 0/0 0/0 .text            CreateInit__12daShopItem_cFv */
@@ -375,7 +388,7 @@ void daShopItem_c::setListStart() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3823 = 80.0f;
-COMPILER_STRIP_GATE(8059F488, &lit_3823);
+COMPILER_STRIP_GATE(0x8059F488, &lit_3823);
 #pragma pop
 
 /* 8059EFA0-8059F024 000660 0084+00 1/0 0/0 0/0 .text            setShadow__12daShopItem_cFv */
@@ -614,10 +627,4 @@ static asm void func_8059F428() {
 }
 #pragma pop
 
-/* 8059F48C-8059F49C 000054 0010+00 2/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8059F48C = "R_SP160";
-SECTION_DEAD static char const* const stringBase_8059F494 = "R_SP109";
-#pragma pop
+/* 8059F48C-8059F48C 000054 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

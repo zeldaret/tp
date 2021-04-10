@@ -147,7 +147,7 @@ extern "C" static void daObj_SMTile_Delete__FPv();
 extern "C" static void daObj_SMTile_Execute__FPv();
 extern "C" static void daObj_SMTile_Draw__FPv();
 extern "C" static bool daObj_SMTile_IsDelete__FPv();
-extern "C" void func_80CDE2A4(int*);
+extern "C" void func_80CDE2A4(void* _this, int*);
 extern "C" void __sinit_d_a_obj_smtile_cpp();
 extern "C" void __dt__20daObj_SMTile_Param_cFv();
 extern "C" u8 const m__20daObj_SMTile_Param_c[8];
@@ -213,6 +213,13 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80CDE388-80CDE388 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CDE388 = "";
+SECTION_DEAD static char const* const stringBase_80CDE389 = "A_SMTile";
+#pragma pop
+
 /* 80CDE394-80CDE39C 000000 0008+00 3/3 0/0 0/0 .data            l_bmdData */
 SECTION_DATA static u8 l_bmdData[8] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x01,
@@ -320,7 +327,7 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 SECTION_RODATA u8 const daObj_SMTile_Param_c::m[8] = {
     0x44, 0x16, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CDE35C, &daObj_SMTile_Param_c::m);
+COMPILER_STRIP_GATE(0x80CDE35C, &daObj_SMTile_Param_c::m);
 
 /* 80CDE364-80CDE368 000008 0004+00 1/4 0/0 0/0 .rodata          @3892 */
 SECTION_RODATA static u8 const lit_3892[4] = {
@@ -329,7 +336,7 @@ SECTION_RODATA static u8 const lit_3892[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CDE364, &lit_3892);
+COMPILER_STRIP_GATE(0x80CDE364, &lit_3892);
 
 /* 80CDD5CC-80CDD6E8 00040C 011C+00 1/1 0/0 0/0 .text            CreateHeap__14daObj_SMTile_cFv */
 #pragma push
@@ -356,21 +363,21 @@ asm void daObj_SMTile_c::Delete() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3978 = 1.0f;
-COMPILER_STRIP_GATE(80CDE368, &lit_3978);
+COMPILER_STRIP_GATE(0x80CDE368, &lit_3978);
 #pragma pop
 
 /* 80CDE36C-80CDE370 000010 0004+00 0/3 0/0 0/0 .rodata          @3979 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3979 = -1.0f;
-COMPILER_STRIP_GATE(80CDE36C, &lit_3979);
+COMPILER_STRIP_GATE(0x80CDE36C, &lit_3979);
 #pragma pop
 
 /* 80CDE370-80CDE374 000014 0004+00 0/1 0/0 0/0 .rodata          @3980 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3980 = 40.0f;
-COMPILER_STRIP_GATE(80CDE370, &lit_3980);
+COMPILER_STRIP_GATE(0x80CDE370, &lit_3980);
 #pragma pop
 
 /* 80CDE374-80CDE37C 000018 0008+00 0/3 0/0 0/0 .rodata          @3982 */
@@ -379,7 +386,7 @@ COMPILER_STRIP_GATE(80CDE370, &lit_3980);
 SECTION_RODATA static u8 const lit_3982[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CDE374, &lit_3982);
+COMPILER_STRIP_GATE(0x80CDE374, &lit_3982);
 #pragma pop
 
 /* 80CDD71C-80CDDA98 00055C 037C+00 2/2 0/0 0/0 .text            Execute__14daObj_SMTile_cFv */
@@ -440,14 +447,14 @@ asm void daObj_SMTile_c::setPrtcls(int param_0, int param_1) {
 SECTION_RODATA static u8 const id[8] = {
     0xFF, 0xFF, 0x86, 0xEC, 0x86, 0xED, 0x86, 0xEE,
 };
-COMPILER_STRIP_GATE(80CDE37C, &id);
+COMPILER_STRIP_GATE(0x80CDE37C, &id);
 #pragma pop
 
 /* 80CDE384-80CDE388 000028 0004+00 0/1 0/0 0/0 .rodata          @4194 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4194 = 255.0f;
-COMPILER_STRIP_GATE(80CDE384, &lit_4194);
+COMPILER_STRIP_GATE(0x80CDE384, &lit_4194);
 #pragma pop
 
 /* 80CDDEFC-80CDE1A8 000D3C 02AC+00 1/1 0/0 0/0 .text            touchPrtcls__14daObj_SMTile_cFf */
@@ -519,7 +526,7 @@ static bool daObj_SMTile_IsDelete(void* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80CDE2A4(int* param_0) {
+extern "C" asm void func_80CDE2A4(void* _this, int* param_0) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_smtile/d_a_obj_smtile/func_80CDE2A4.s"
 }
@@ -551,7 +558,7 @@ asm void __sinit_d_a_obj_smtile_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80CDE2C0 = (void*)__sinit_d_a_obj_smtile_cpp;
+REGISTER_CTORS(0x80CDE2C0, __sinit_d_a_obj_smtile_cpp);
 #pragma pop
 
 /* 80CDE300-80CDE348 001140 0048+00 2/1 0/0 0/0 .text            __dt__20daObj_SMTile_Param_cFv */
@@ -564,10 +571,4 @@ asm daObj_SMTile_Param_c::~daObj_SMTile_Param_c() {
 }
 #pragma pop
 
-/* 80CDE388-80CDE392 00002C 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CDE388 = "";
-SECTION_DEAD static char const* const stringBase_80CDE389 = "A_SMTile";
-#pragma pop
+/* 80CDE388-80CDE388 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

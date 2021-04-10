@@ -113,6 +113,12 @@ static asm void daObjProp_c_createHeap(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80CB5620-80CB5620 00000C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CB5620 = "L7Prop";
+#pragma pop
+
 /* 80CB5628-80CB562C -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_prop__stringBase0;
 
@@ -170,7 +176,7 @@ asm daObjProp_c::~daObjProp_c() {
 SECTION_RODATA static u8 const BMD_IDX[8] = {
     0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04,
 };
-COMPILER_STRIP_GATE(80CB5614, &BMD_IDX);
+COMPILER_STRIP_GATE(0x80CB5614, &BMD_IDX);
 
 /* 80CB52B4-80CB5334 000154 0080+00 1/1 0/0 0/0 .text            createHeap__11daObjProp_cFv */
 #pragma push
@@ -220,7 +226,7 @@ SECTION_RODATA static u8 const ADD_ANGLE[4] = {
     0xE8,
     0x00,
 };
-COMPILER_STRIP_GATE(80CB561C, &ADD_ANGLE);
+COMPILER_STRIP_GATE(0x80CB561C, &ADD_ANGLE);
 
 /* 80CB54A0-80CB54E4 000340 0044+00 1/1 0/0 0/0 .text            execute__11daObjProp_cFv */
 #pragma push
@@ -295,9 +301,4 @@ static asm void daObjProp_draw(daObjProp_c* param_0) {
 }
 #pragma pop
 
-/* 80CB5620-80CB5627 00000C 0007+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CB5620 = "L7Prop";
-#pragma pop
+/* 80CB5620-80CB5620 00000C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

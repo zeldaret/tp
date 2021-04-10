@@ -154,5 +154,5 @@ asm void __sinit_d_select_icon_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80195C64 = (void*)__sinit_d_select_icon_cpp;
+REGISTER_CTORS(0x80195C64, __sinit_d_select_icon_cpp);
 #pragma pop

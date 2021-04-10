@@ -153,6 +153,12 @@ static asm void daObjRCircle_c_createHeap(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80CB8D08-80CB8D08 000008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CB8D08 = "RCircle";
+#pragma pop
+
 /* 80CB8D10-80CB8D14 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_rcircle__stringBase0;
 
@@ -225,7 +231,7 @@ asm daObjRCircle_c::~daObjRCircle_c() {
 /* ############################################################################################## */
 /* 80CB8D00-80CB8D04 000000 0004+00 2/2 0/0 0/0 .rodata          @3701 */
 SECTION_RODATA static f32 const lit_3701 = 1.0f;
-COMPILER_STRIP_GATE(80CB8D00, &lit_3701);
+COMPILER_STRIP_GATE(0x80CB8D00, &lit_3701);
 
 /* 80CB8D04-80CB8D08 000004 0004+00 2/2 0/0 0/0 .rodata          @3702 */
 SECTION_RODATA static u8 const lit_3702[4] = {
@@ -234,7 +240,7 @@ SECTION_RODATA static u8 const lit_3702[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CB8D04, &lit_3702);
+COMPILER_STRIP_GATE(0x80CB8D04, &lit_3702);
 
 /* 80CB8814-80CB8928 000234 0114+00 1/1 0/0 0/0 .text            createHeap__14daObjRCircle_cFv */
 #pragma push
@@ -346,9 +352,4 @@ static asm void daObjRCircle_draw(daObjRCircle_c* param_0) {
 }
 #pragma pop
 
-/* 80CB8D08-80CB8D10 000008 0008+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CB8D08 = "RCircle";
-#pragma pop
+/* 80CB8D08-80CB8D08 000008 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

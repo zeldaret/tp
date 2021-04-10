@@ -124,6 +124,14 @@ extern "C" extern u8 g_meter2_info[248];
 //
 
 /* ############################################################################################## */
+/* 803948B8-803948B8 020F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803948B8 = "zelda_file_select_info_text.blo";
+SECTION_DEAD static char const* const stringBase_803948D8 = "";
+SECTION_DEAD static char const* const stringBase_803948D9 = "tt_heart_00.bti";
+#pragma pop
+
 /* 803BB498-803BB4A8 0185B8 000C+04 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12 + 4 /* padding */] = {
     0x00,
@@ -266,6 +274,13 @@ asm void dFile_info_c::setHeartCnt(dSv_save_c* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803948B8-803948B8 020F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803948E9 = "%02d/%02d/%d %02d:%02d";
+#pragma pop
+
 /* 80192C08-80192C70 18D548 0068+00 1/1 0/0 0/0 .text setSaveDate__12dFile_info_cFP10dSv_save_c */
 #pragma push
 #pragma optimization_level 0
@@ -274,6 +289,16 @@ asm void dFile_info_c::setSaveDate(dSv_save_c* param_0) {
     nofralloc
 #include "asm/d/file/d_file_sel_info/setSaveDate__12dFile_info_cFP10dSv_save_c.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 803948B8-803948B8 020F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394900 = "999:59";
+SECTION_DEAD static char const* const stringBase_80394907 = "%d:%02d";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039490F = "";
 #pragma pop
 
 /* 80192C70-80192D58 18D5B0 00E8+00 1/1 0/0 0/0 .text setPlayTime__12dFile_info_cFP10dSv_save_c */
@@ -340,7 +365,7 @@ asm void __sinit_d_file_sel_info_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80192E88 = (void*)__sinit_d_file_sel_info_cpp;
+REGISTER_CTORS(0x80192E88, __sinit_d_file_sel_info_cpp);
 #pragma pop
 
 /* 80192EC8-80192F10 18D808 0048+00 1/0 0/0 0/0 .text            __dt__16dDlst_FileInfo_cFv */
@@ -353,16 +378,4 @@ asm dDlst_FileInfo_c::~dDlst_FileInfo_c() {
 }
 #pragma pop
 
-/* 803948B8-80394910 020F18 0057+01 6/5 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803948B8 = "zelda_file_select_info_text.blo";
-SECTION_DEAD static char const* const stringBase_803948D8 = "";
-SECTION_DEAD static char const* const stringBase_803948D9 = "tt_heart_00.bti";
-SECTION_DEAD static char const* const stringBase_803948E9 = "%02d/%02d/%d %02d:%02d";
-SECTION_DEAD static char const* const stringBase_80394900 = "999:59";
-SECTION_DEAD static char const* const stringBase_80394907 = "%d:%02d";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039490F = "";
-#pragma pop
+/* 803948B8-803948B8 020F18 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

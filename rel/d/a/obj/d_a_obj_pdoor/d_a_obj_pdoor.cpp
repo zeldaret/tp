@@ -194,7 +194,7 @@ SECTION_RODATA static u8 const lit_3695[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CAAB20, &lit_3695);
+COMPILER_STRIP_GATE(0x80CAAB20, &lit_3695);
 
 /* 80CA9E98-80CA9F9C 000078 0104+00 1/1 0/0 0/0 .text
  * PPCallBack__FP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel */
@@ -229,6 +229,12 @@ asm void daObjPDoor_c::setBaseMtx() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80CAAB40-80CAAB40 000020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CAAB40 = "V_OsuDoor";
+#pragma pop
+
 /* 80CAAB4C-80CAAB58 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -350,13 +356,13 @@ asm void daObjPDoor_c::init_modeWait() {
 /* ############################################################################################## */
 /* 80CAAB24-80CAAB28 000004 0004+00 1/1 0/0 0/0 .rodata          @3942 */
 SECTION_RODATA static f32 const lit_3942 = 10.0f;
-COMPILER_STRIP_GATE(80CAAB24, &lit_3942);
+COMPILER_STRIP_GATE(0x80CAAB24, &lit_3942);
 
 /* 80CAAB28-80CAAB30 000008 0008+00 1/2 0/0 0/0 .rodata          @3944 */
 SECTION_RODATA static u8 const lit_3944[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CAAB28, &lit_3944);
+COMPILER_STRIP_GATE(0x80CAAB28, &lit_3944);
 
 /* 80CAA354-80CAA698 000534 0344+00 1/0 0/0 0/0 .text            modeWait__12daObjPDoor_cFv */
 #pragma push
@@ -384,28 +390,28 @@ asm void daObjPDoor_c::init_modeRotate() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4051 = 5461.0f;
-COMPILER_STRIP_GATE(80CAAB30, &lit_4051);
+COMPILER_STRIP_GATE(0x80CAAB30, &lit_4051);
 #pragma pop
 
 /* 80CAAB34-80CAAB38 000014 0004+00 0/1 0/0 0/0 .rodata          @4052 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4052 = 60.0f;
-COMPILER_STRIP_GATE(80CAAB34, &lit_4052);
+COMPILER_STRIP_GATE(0x80CAAB34, &lit_4052);
 #pragma pop
 
 /* 80CAAB38-80CAAB3C 000018 0004+00 0/1 0/0 0/0 .rodata          @4053 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4053 = 1.0f;
-COMPILER_STRIP_GATE(80CAAB38, &lit_4053);
+COMPILER_STRIP_GATE(0x80CAAB38, &lit_4053);
 #pragma pop
 
 /* 80CAAB3C-80CAAB40 00001C 0004+00 0/1 0/0 0/0 .rodata          @4054 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4054 = -1.0f;
-COMPILER_STRIP_GATE(80CAAB3C, &lit_4054);
+COMPILER_STRIP_GATE(0x80CAAB3C, &lit_4054);
 #pragma pop
 
 /* 80CAA6B4-80CAA968 000894 02B4+00 1/0 0/0 0/0 .text            modeRotate__12daObjPDoor_cFv */
@@ -516,9 +522,4 @@ static asm void daObjPDoor_MoveBGDraw(daObjPDoor_c* param_0) {
 }
 #pragma pop
 
-/* 80CAAB40-80CAAB4A 000020 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CAAB40 = "V_OsuDoor";
-#pragma pop
+/* 80CAAB40-80CAAB40 000020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

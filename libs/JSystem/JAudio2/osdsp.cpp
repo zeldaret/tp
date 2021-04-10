@@ -68,7 +68,7 @@ SECTION_RODATA static u8 const lit_81[26 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039B8B8, &lit_81);
+COMPILER_STRIP_GATE(0x8039B8B8, &lit_81);
 
 /* 8029EA00-8029EA84 299340 0084+00 0/0 1/1 0/0 .text            DSPAddTask */
 #pragma push
@@ -122,7 +122,7 @@ SECTION_RODATA static u8 const lit_88[31 + 5 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039B8D4, &lit_88);
+COMPILER_STRIP_GATE(0x8039B8D4, &lit_88);
 
 /* 8029EAA0-8029EB1C 2993E0 007C+00 0/0 1/1 0/0 .text DSPAddPriorTask__FP15STRUCT_DSP_TASK */
 #pragma push

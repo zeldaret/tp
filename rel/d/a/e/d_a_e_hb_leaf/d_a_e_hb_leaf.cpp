@@ -21,9 +21,9 @@ struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_McaMorf {
     /* 8000FC4C */ mDoExt_McaMorf(J3DModelData*, mDoExt_McaMorfCallBack1_c*,
@@ -126,6 +126,13 @@ static bool daE_HB_LEAF_IsDelete(e_hb_leaf_class* param_0) {
     return true;
 }
 
+/* ############################################################################################## */
+/* 806E0294-806E0294 000004 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_806E0294 = "E_HB";
+#pragma pop
+
 /* 806E00A8-806E00D8 0001C8 0030+00 1/0 0/0 0/0 .text daE_HB_LEAF_Delete__FP15e_hb_leaf_class */
 #pragma push
 #pragma optimization_level 0
@@ -139,7 +146,7 @@ static asm void daE_HB_LEAF_Delete(e_hb_leaf_class* param_0) {
 /* ############################################################################################## */
 /* 806E0290-806E0294 000000 0004+00 1/1 0/0 0/0 .rodata          @3690 */
 SECTION_RODATA static f32 const lit_3690 = 1.0f;
-COMPILER_STRIP_GATE(806E0290, &lit_3690);
+COMPILER_STRIP_GATE(0x806E0290, &lit_3690);
 
 /* 806E00D8-806E01D8 0001F8 0100+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 #pragma push
@@ -185,9 +192,4 @@ SECTION_DATA extern void* g_profile_E_HB_LEAF[12] = {
     (void*)0x00040000, (void*)NULL,
 };
 
-/* 806E0294-806E0299 000004 0005+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_806E0294 = "E_HB";
-#pragma pop
+/* 806E0294-806E0294 000004 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

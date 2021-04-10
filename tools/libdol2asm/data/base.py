@@ -215,12 +215,7 @@ class ArbitraryData(Symbol):
         await self.export_declaration_body(exporter, builder)
 
         if self._section == ".rodata":
-            await builder.write(f"COMPILER_STRIP_GATE({self.addr:08X}, {self.cpp_reference(None, self.addr)});")
-            # await builder.write_nonewline("SECTION_DEAD ")
-            # await builder.write_nonewline("void* const ")
-            # await builder.write_nonewline(f"cg_{self.addr:08X} = (void*)(")
-            # await builder.write_nonewline(self.cpp_reference(None, self.addr))
-            # await builder.write(f");")
+            await builder.write(f"COMPILER_STRIP_GATE(0x{self.addr:08X}, {self.cpp_reference(None, self.addr)});")
 
         if self.requires_force_active:
             await builder.write(f"#pragma pop")

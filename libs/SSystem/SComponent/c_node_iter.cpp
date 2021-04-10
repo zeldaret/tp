@@ -38,7 +38,7 @@ extern "C" void _restgpr_29();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cNdIt_Method(node_class* param_0, int (*)(node_class*, void*), void* param_2) {
+asm void cNdIt_Method(node_class* param_0, int (*param_1)(node_class*, void*), void* param_2) {
     nofralloc
 #include "asm/SSystem/SComponent/c_node_iter/cNdIt_Method__FP10node_classPFP10node_classPv_iPv.s"
 }
@@ -49,7 +49,7 @@ asm void cNdIt_Method(node_class* param_0, int (*)(node_class*, void*), void* pa
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cNdIt_Judge(node_class* param_0, void* (*)(node_class*, void*), void* param_2) {
+asm void cNdIt_Judge(node_class* param_0, void* (*param_1)(node_class*, void*), void* param_2) {
     nofralloc
 #include "asm/SSystem/SComponent/c_node_iter/cNdIt_Judge__FP10node_classPFP10node_classPv_PvPv.s"
 }

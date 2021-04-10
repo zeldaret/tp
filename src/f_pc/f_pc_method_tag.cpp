@@ -77,7 +77,7 @@ asm void fpcMtdTg_MethodQTo(process_method_tag_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcMtdTg_Init(process_method_tag_class* param_0, int (*)(void*), void* param_2) {
+asm void fpcMtdTg_Init(process_method_tag_class* param_0, int (*param_1)(void*), void* param_2) {
     nofralloc
 #include "asm/f_pc/f_pc_method_tag/fpcMtdTg_Init__FP24process_method_tag_classPFPv_iPv.s"
 }

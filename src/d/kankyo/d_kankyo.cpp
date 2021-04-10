@@ -73,6 +73,12 @@ struct dStage_roomControl_c {
     static u8 mStatus[65792];
 };
 
+struct dKy_tevstr_c {};
+
+struct J3DModelData {
+    /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
+};
+
 struct Vec {};
 
 struct cXyz {
@@ -82,13 +88,7 @@ struct cXyz {
     /* 80266B84 */ void operator*(f32) const;
 };
 
-struct J3DModelData {
-    /* 8032600C */ void simpleCalcMaterial(u16, f32 (*)[4]);
-};
-
 struct _GXColorS10 {};
-
-struct dKy_tevstr_c {};
 
 struct dScnKy_env_light_c {
     /* 8019F2E8 */ dScnKy_env_light_c();
@@ -126,9 +126,9 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -626,6 +626,60 @@ static asm void dKy_WolfPowerup_AmbCol(_GXColorS10* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394C6C = "F_SP115";
+SECTION_DEAD static char const* const stringBase_80394C74 = "F_SP113";
+SECTION_DEAD static char const* const stringBase_80394C7C = "D_SB10";
+SECTION_DEAD static char const* const stringBase_80394C83 = "F_SP112";
+SECTION_DEAD static char const* const stringBase_80394C8B = "F_SP126";
+SECTION_DEAD static char const* const stringBase_80394C93 = "F_SP114";
+SECTION_DEAD static char const* const stringBase_80394C9B = "D_MN05";
+SECTION_DEAD static char const* const stringBase_80394CA2 = "D_MN04";
+SECTION_DEAD static char const* const stringBase_80394CA9 = "D_SB04";
+SECTION_DEAD static char const* const stringBase_80394CB0 = "D_SB05";
+SECTION_DEAD static char const* const stringBase_80394CB7 = "D_SB06";
+SECTION_DEAD static char const* const stringBase_80394CBE = "D_SB07";
+SECTION_DEAD static char const* const stringBase_80394CC5 = "D_SB08";
+SECTION_DEAD static char const* const stringBase_80394CCC = "D_SB09";
+SECTION_DEAD static char const* const stringBase_80394CD3 = "D_MN10A";
+SECTION_DEAD static char const* const stringBase_80394CDB = "D_MN07A";
+SECTION_DEAD static char const* const stringBase_80394CE3 = "D_MN10B";
+SECTION_DEAD static char const* const stringBase_80394CEB = "D_MN10";
+SECTION_DEAD static char const* const stringBase_80394CF2 = "D_MN11A";
+SECTION_DEAD static char const* const stringBase_80394CFA = "D_MN11";
+SECTION_DEAD static char const* const stringBase_80394D01 = "D_MN11B";
+SECTION_DEAD static char const* const stringBase_80394D09 = "D_SB00";
+SECTION_DEAD static char const* const stringBase_80394D10 = "D_MN09B";
+SECTION_DEAD static char const* const stringBase_80394D18 = "D_MN09C";
+SECTION_DEAD static char const* const stringBase_80394D20 = "F_SP116";
+SECTION_DEAD static char const* const stringBase_80394D28 = "D_MN06";
+SECTION_DEAD static char const* const stringBase_80394D2F = "D_MN07";
+SECTION_DEAD static char const* const stringBase_80394D36 = "D_MN09A";
+SECTION_DEAD static char const* const stringBase_80394D3E = "D_SB01";
+SECTION_DEAD static char const* const stringBase_80394D45 = "R_SP300";
+SECTION_DEAD static char const* const stringBase_80394D4D = "R_SP301";
+SECTION_DEAD static char const* const stringBase_80394D55 = "D_MN01";
+SECTION_DEAD static char const* const stringBase_80394D5C = "D_MN01B";
+SECTION_DEAD static char const* const stringBase_80394D64 = "D_MN01A";
+SECTION_DEAD static char const* const stringBase_80394D6C = "D_MN08";
+SECTION_DEAD static char const* const stringBase_80394D73 = "D_SB02";
+SECTION_DEAD static char const* const stringBase_80394D7A = "D_SB03";
+SECTION_DEAD static char const* const stringBase_80394D81 = "R_SP01";
+SECTION_DEAD static char const* const stringBase_80394D88 = "R_SP108";
+SECTION_DEAD static char const* const stringBase_80394D90 = "R_SP209";
+SECTION_DEAD static char const* const stringBase_80394D98 = "R_SP116";
+SECTION_DEAD static char const* const stringBase_80394DA0 = "R_SP161";
+SECTION_DEAD static char const* const stringBase_80394DA8 = "F_SP110";
+SECTION_DEAD static char const* const stringBase_80394DB0 = "R_SP107";
+SECTION_DEAD static char const* const stringBase_80394DB8 = "R_SP128";
+SECTION_DEAD static char const* const stringBase_80394DC0 = "R_SP160";
+SECTION_DEAD static char const* const stringBase_80394DC8 = "R_SP127";
+SECTION_DEAD static char const* const stringBase_80394DD0 = "R_SP109";
+#pragma pop
+
 /* 8019C3A4-8019CB0C 196CE4 0768+00 2/2 0/0 0/0 .text            dKy_sense_pat_get__Fv */
 #pragma push
 #pragma optimization_level 0
@@ -1047,6 +1101,12 @@ asm void dKy_FiveSenses_fullthrottle_dark() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394DD8 = "D_MN09";
+#pragma pop
+
 /* 80453C70-80453C74 002270 0004+00 4/4 0/0 0/0 .sdata2          @4850 */
 SECTION_SDATA2 static f32 lit_4850 = 1000000.0f;
 
@@ -1222,6 +1282,13 @@ static asm void dungeonlight_init() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394DDF = "Always";
+#pragma pop
+
 /* 8019EAA0-8019EBD0 1993E0 0130+00 1/1 0/0 0/0 .text            undwater_init__Fv */
 #pragma push
 #pragma optimization_level 0
@@ -1243,6 +1310,12 @@ static asm void dKy_light_size_get(char const* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394DE6 = "F_SP127";
+#pragma pop
+
 /* 80453CA0-80453CA4 0022A0 0004+00 2/2 0/0 0/0 .sdata2          @5344 */
 SECTION_SDATA2 static f32 lit_5344 = 11.0f / 100.0f;
 
@@ -1633,6 +1706,12 @@ asm void dStage_roomControl_c::GetTimePass() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394DEE = "F_SP200";
+#pragma pop
+
 /* 80453CC8-80453CCC 0022C8 0004+00 2/2 0/0 0/0 .sdata2          @5613 */
 SECTION_SDATA2 static f32 lit_5613 = 270.0f;
 
@@ -1744,6 +1823,13 @@ asm void dScnKy_env_light_c::getDarkDaytime() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394DF6 = "D_MN08D";
+SECTION_DEAD static char const* const stringBase_80394DFE = "F_SP121";
+#pragma pop
+
 /* 80453CE0-80453CE4 0022E0 0004+00 1/1 0/0 0/0 .sdata2          @5839 */
 SECTION_SDATA2 static f32 lit_5839 = 1.0f / 30.0f;
 
@@ -2241,6 +2327,19 @@ static asm void dKy_Delete(sub_kankyo__class* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394E06 = "pol_efftbl.dat";
+SECTION_DEAD static char const* const stringBase_80394E15 = "pol_effcol.dat";
+SECTION_DEAD static char const* const stringBase_80394E24 = "pol_efftbl2.dat";
+SECTION_DEAD static char const* const stringBase_80394E34 = "pol_effcol2.dat";
+SECTION_DEAD static char const* const stringBase_80394E44 = "pol_sound.dat";
+SECTION_DEAD static char const* const stringBase_80394E52 = "pol_arg.dat";
+SECTION_DEAD static char const* const stringBase_80394E5E = "colordata_tbl.dat";
+#pragma pop
+
 /* 801A5C1C-801A5E54 1A055C 0238+00 1/0 0/0 0/0 .text            dKy_Create__FPv */
 #pragma push
 #pragma optimization_level 0
@@ -2320,6 +2419,13 @@ asm void dKy_setLight_nowroom_grass(char param_0, f32 param_1) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_setLight_nowroom_grass__Fcf.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394E70 = "D_MN";
 #pragma pop
 
 /* 801A6D4C-801A6E9C 1A168C 0150+00 1/1 1/1 0/0 .text dKy_move_room_ratio__FP12dKy_tevstr_cPSc */
@@ -2424,6 +2530,13 @@ asm void dKy_dalkmist_inf_cut(DALKMIST_INFLUENCE* param_0) {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_dalkmist_inf_cut__FP18DALKMIST_INFLUENCE.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394E75 = "\nPOINTLIGHT COUNT OVER!!!\n";
 #pragma pop
 
 /* 801A789C-801A792C 1A21DC 0090+00 0/0 0/0 1/1 .text dKy_plight_priority_set__FP15LIGHT_INFLUENCE
@@ -2587,6 +2700,14 @@ static asm void dKy_vrbox_addcol_set(s16 param_0, s16 param_1, s16 param_2, f32 
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_vrbox_addcol_set__Fsssf.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394E90 =
+    "\ndKy_fog_startendz_set ratio error!\n";
 #pragma pop
 
 /* 801A80D0-801A8168 1A2A10 0098+00 1/1 0/0 2/2 .text            dKy_fog_startendz_set__Ffff */
@@ -2899,7 +3020,7 @@ static asm void NewAmbColGet(_GXColorS10* param_0) {
 SECTION_RODATA static u8 const lit_9035[12] = {
     0x4C, 0xBE, 0xBC, 0x20, 0x4C, 0xBE, 0xBC, 0x20, 0x4C, 0xBE, 0xBC, 0x20,
 };
-COMPILER_STRIP_GATE(80394C60, &lit_9035);
+COMPILER_STRIP_GATE(0x80394C60, &lit_9035);
 
 /* 80453DAC-80453DB0 0023AC 0004+00 1/1 0/0 0/0 .sdata2          @8975 */
 SECTION_SDATA2 static f32 lit_8975 = 50.0f;
@@ -2959,6 +3080,13 @@ asm void dKy_ParticleColor_get_bg(cXyz* param_0, dKy_tevstr_c* param_1, _GXColor
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_ParticleColor_get_bg__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394EB5 = "F_SP118";
 #pragma pop
 
 /* 801A9D60-801AA664 1A46A0 0904+00 1/1 0/0 17/17 .text dKy_BossLight_set__FP4cXyzP8_GXColorfUc */
@@ -3035,6 +3163,13 @@ static asm void dKy_twilight_camelight_set() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394EBD = "F_SP109";
+SECTION_DEAD static char const* const stringBase_80394EC5 = "F_SP122";
+#pragma pop
+
 /* 80453DEC-80453DF0 0023EC 0004+00 1/1 0/0 0/0 .sdata2          @9779 */
 SECTION_SDATA2 static f32 lit_9779 = 7.225000381469727f;
 
@@ -3073,6 +3208,13 @@ asm void dKy_camera_water_in_status_check() {
     nofralloc
 #include "asm/d/kankyo/d_kankyo/dKy_camera_water_in_status_check__Fv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394ECD = "D_MN05A";
 #pragma pop
 
 /* 801AB290-801AB3A8 1A5BD0 0118+00 0/0 5/5 0/0 .text dKy_pol_efftype_get__FPC13cBgS_PolyInfo */
@@ -3273,6 +3415,13 @@ asm void dKy_darkworld_check() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394ED5 = "F_SP108";
+#pragma pop
+
 /* 801AC5BC-801AC70C 1A6EFC 0150+00 3/3 0/0 0/0 .text            dKy_F_SP121Check__FPCciPUci */
 #pragma push
 #pragma optimization_level 0
@@ -3367,6 +3516,30 @@ asm void dKy_shadow_mode_check(u8 param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80394EDD = "MA06";
+SECTION_DEAD static char const* const stringBase_80394EE2 = "MA03";
+SECTION_DEAD static char const* const stringBase_80394EE7 = "MA09";
+SECTION_DEAD static char const* const stringBase_80394EEC = "MA17";
+SECTION_DEAD static char const* const stringBase_80394EF1 = "MA19";
+SECTION_DEAD static char const* const stringBase_80394EF6 = "MA07";
+SECTION_DEAD static char const* const stringBase_80394EFB = "MA10";
+SECTION_DEAD static char const* const stringBase_80394F00 = "MA02";
+SECTION_DEAD static char const* const stringBase_80394F05 = "MA00";
+SECTION_DEAD static char const* const stringBase_80394F0A = "MA01";
+SECTION_DEAD static char const* const stringBase_80394F0F = "MA04";
+SECTION_DEAD static char const* const stringBase_80394F14 = "MA16";
+SECTION_DEAD static char const* const stringBase_80394F19 = "MA11";
+SECTION_DEAD static char const* const stringBase_80394F1E = "MA20";
+SECTION_DEAD static char const* const stringBase_80394F23 = "MA13";
+SECTION_DEAD static char const* const stringBase_80394F28 = "MA14";
+SECTION_DEAD static char const* const stringBase_80394F2D = "Rainbow";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80394F35 = "\0\0";
+#pragma pop
+
 /* 80450708-8045070C 000188 0004+00 1/1 0/0 0/0 .sdata           l_zmodeUpEnable */
 SECTION_SDATA static u32 l_zmodeUpEnable = 0x01030100;
 
@@ -3470,7 +3643,7 @@ asm void __sinit_d_kankyo_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_801ADCA4 = (void*)__sinit_d_kankyo_cpp;
+REGISTER_CTORS(0x801ADCA4, __sinit_d_kankyo_cpp);
 #pragma pop
 
 /* 801ADD00-801ADD38 1A8640 0038+00 2/2 0/0 0/0 .text            dKankyo_DayProc__Fv */
@@ -3490,97 +3663,4 @@ static asm void dKankyo_DayProc() {
 extern u8 struct_80451070[8];
 u8 struct_80451070[8];
 
-/* 80394C6C-80394F38 0212CC 02C9+03 35/35 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80394C6C = "F_SP115";
-SECTION_DEAD static char const* const stringBase_80394C74 = "F_SP113";
-SECTION_DEAD static char const* const stringBase_80394C7C = "D_SB10";
-SECTION_DEAD static char const* const stringBase_80394C83 = "F_SP112";
-SECTION_DEAD static char const* const stringBase_80394C8B = "F_SP126";
-SECTION_DEAD static char const* const stringBase_80394C93 = "F_SP114";
-SECTION_DEAD static char const* const stringBase_80394C9B = "D_MN05";
-SECTION_DEAD static char const* const stringBase_80394CA2 = "D_MN04";
-SECTION_DEAD static char const* const stringBase_80394CA9 = "D_SB04";
-SECTION_DEAD static char const* const stringBase_80394CB0 = "D_SB05";
-SECTION_DEAD static char const* const stringBase_80394CB7 = "D_SB06";
-SECTION_DEAD static char const* const stringBase_80394CBE = "D_SB07";
-SECTION_DEAD static char const* const stringBase_80394CC5 = "D_SB08";
-SECTION_DEAD static char const* const stringBase_80394CCC = "D_SB09";
-SECTION_DEAD static char const* const stringBase_80394CD3 = "D_MN10A";
-SECTION_DEAD static char const* const stringBase_80394CDB = "D_MN07A";
-SECTION_DEAD static char const* const stringBase_80394CE3 = "D_MN10B";
-SECTION_DEAD static char const* const stringBase_80394CEB = "D_MN10";
-SECTION_DEAD static char const* const stringBase_80394CF2 = "D_MN11A";
-SECTION_DEAD static char const* const stringBase_80394CFA = "D_MN11";
-SECTION_DEAD static char const* const stringBase_80394D01 = "D_MN11B";
-SECTION_DEAD static char const* const stringBase_80394D09 = "D_SB00";
-SECTION_DEAD static char const* const stringBase_80394D10 = "D_MN09B";
-SECTION_DEAD static char const* const stringBase_80394D18 = "D_MN09C";
-SECTION_DEAD static char const* const stringBase_80394D20 = "F_SP116";
-SECTION_DEAD static char const* const stringBase_80394D28 = "D_MN06";
-SECTION_DEAD static char const* const stringBase_80394D2F = "D_MN07";
-SECTION_DEAD static char const* const stringBase_80394D36 = "D_MN09A";
-SECTION_DEAD static char const* const stringBase_80394D3E = "D_SB01";
-SECTION_DEAD static char const* const stringBase_80394D45 = "R_SP300";
-SECTION_DEAD static char const* const stringBase_80394D4D = "R_SP301";
-SECTION_DEAD static char const* const stringBase_80394D55 = "D_MN01";
-SECTION_DEAD static char const* const stringBase_80394D5C = "D_MN01B";
-SECTION_DEAD static char const* const stringBase_80394D64 = "D_MN01A";
-SECTION_DEAD static char const* const stringBase_80394D6C = "D_MN08";
-SECTION_DEAD static char const* const stringBase_80394D73 = "D_SB02";
-SECTION_DEAD static char const* const stringBase_80394D7A = "D_SB03";
-SECTION_DEAD static char const* const stringBase_80394D81 = "R_SP01";
-SECTION_DEAD static char const* const stringBase_80394D88 = "R_SP108";
-SECTION_DEAD static char const* const stringBase_80394D90 = "R_SP209";
-SECTION_DEAD static char const* const stringBase_80394D98 = "R_SP116";
-SECTION_DEAD static char const* const stringBase_80394DA0 = "R_SP161";
-SECTION_DEAD static char const* const stringBase_80394DA8 = "F_SP110";
-SECTION_DEAD static char const* const stringBase_80394DB0 = "R_SP107";
-SECTION_DEAD static char const* const stringBase_80394DB8 = "R_SP128";
-SECTION_DEAD static char const* const stringBase_80394DC0 = "R_SP160";
-SECTION_DEAD static char const* const stringBase_80394DC8 = "R_SP127";
-SECTION_DEAD static char const* const stringBase_80394DD0 = "R_SP109";
-SECTION_DEAD static char const* const stringBase_80394DD8 = "D_MN09";
-SECTION_DEAD static char const* const stringBase_80394DDF = "Always";
-SECTION_DEAD static char const* const stringBase_80394DE6 = "F_SP127";
-SECTION_DEAD static char const* const stringBase_80394DEE = "F_SP200";
-SECTION_DEAD static char const* const stringBase_80394DF6 = "D_MN08D";
-SECTION_DEAD static char const* const stringBase_80394DFE = "F_SP121";
-SECTION_DEAD static char const* const stringBase_80394E06 = "pol_efftbl.dat";
-SECTION_DEAD static char const* const stringBase_80394E15 = "pol_effcol.dat";
-SECTION_DEAD static char const* const stringBase_80394E24 = "pol_efftbl2.dat";
-SECTION_DEAD static char const* const stringBase_80394E34 = "pol_effcol2.dat";
-SECTION_DEAD static char const* const stringBase_80394E44 = "pol_sound.dat";
-SECTION_DEAD static char const* const stringBase_80394E52 = "pol_arg.dat";
-SECTION_DEAD static char const* const stringBase_80394E5E = "colordata_tbl.dat";
-SECTION_DEAD static char const* const stringBase_80394E70 = "D_MN";
-SECTION_DEAD static char const* const stringBase_80394E75 = "\nPOINTLIGHT COUNT OVER!!!\n";
-SECTION_DEAD static char const* const stringBase_80394E90 =
-    "\ndKy_fog_startendz_set ratio error!\n";
-SECTION_DEAD static char const* const stringBase_80394EB5 = "F_SP118";
-SECTION_DEAD static char const* const stringBase_80394EBD = "F_SP109";
-SECTION_DEAD static char const* const stringBase_80394EC5 = "F_SP122";
-SECTION_DEAD static char const* const stringBase_80394ECD = "D_MN05A";
-SECTION_DEAD static char const* const stringBase_80394ED5 = "F_SP108";
-SECTION_DEAD static char const* const stringBase_80394EDD = "MA06";
-SECTION_DEAD static char const* const stringBase_80394EE2 = "MA03";
-SECTION_DEAD static char const* const stringBase_80394EE7 = "MA09";
-SECTION_DEAD static char const* const stringBase_80394EEC = "MA17";
-SECTION_DEAD static char const* const stringBase_80394EF1 = "MA19";
-SECTION_DEAD static char const* const stringBase_80394EF6 = "MA07";
-SECTION_DEAD static char const* const stringBase_80394EFB = "MA10";
-SECTION_DEAD static char const* const stringBase_80394F00 = "MA02";
-SECTION_DEAD static char const* const stringBase_80394F05 = "MA00";
-SECTION_DEAD static char const* const stringBase_80394F0A = "MA01";
-SECTION_DEAD static char const* const stringBase_80394F0F = "MA04";
-SECTION_DEAD static char const* const stringBase_80394F14 = "MA16";
-SECTION_DEAD static char const* const stringBase_80394F19 = "MA11";
-SECTION_DEAD static char const* const stringBase_80394F1E = "MA20";
-SECTION_DEAD static char const* const stringBase_80394F23 = "MA13";
-SECTION_DEAD static char const* const stringBase_80394F28 = "MA14";
-SECTION_DEAD static char const* const stringBase_80394F2D = "Rainbow";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80394F35 = "\0\0";
-#pragma pop
+/* 80394C6C-80394C6C 0212CC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

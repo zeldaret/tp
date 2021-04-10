@@ -79,15 +79,15 @@ struct J3DAnmLoader {
     /* 80339800 */ ~J3DAnmLoader();
 };
 
-struct J3DAnmColorKeyData {};
-
-struct J3DAnmClusterKeyData {};
+struct J3DAnmClusterKey {};
 
 struct J3DAnmColorKey {
     /* 8032AB00 */ J3DAnmColorKey();
 };
 
-struct J3DAnmClusterKey {};
+struct J3DAnmColorKeyData {};
+
+struct J3DAnmClusterKeyData {};
 
 struct J3DAnmKeyLoader_v15 {
     /* 803384E0 */ J3DAnmKeyLoader_v15();
@@ -108,15 +108,15 @@ struct J3DAnmKeyLoader_v15 {
     /* 80339634 */ void setAnmVtxColor(J3DAnmVtxColorKey*, J3DAnmVtxColorKeyData const*);
 };
 
-struct J3DAnmColorFullData {};
+struct J3DAnmClusterFullData {};
+
+struct J3DAnmClusterFull {};
 
 struct J3DAnmColorFull {
     /* 8032A93C */ J3DAnmColorFull();
 };
 
-struct J3DAnmClusterFullData {};
-
-struct J3DAnmClusterFull {};
+struct J3DAnmColorFullData {};
 
 struct J3DAnmFullLoader_v15 {
     /* 80338468 */ J3DAnmFullLoader_v15();
@@ -186,8 +186,8 @@ setAnmVtxColor__19J3DAnmKeyLoader_v15FP17J3DAnmVtxColorKeyPC21J3DAnmVtxColorKeyD
 extern "C" void __dt__20J3DAnmVisibilityFullFv();
 extern "C" s32 getKind__20J3DAnmVisibilityFullCFv();
 extern "C" void __dt__12J3DAnmLoaderFv();
-extern "C" void func_80339848(void const*, void const*);
-extern "C" void func_80339860(void const*, void const*);
+extern "C" void func_80339848(void* _this, void const*, void const*);
+extern "C" void func_80339860(void* _this, void const*, void const*);
 extern "C" extern char const* const J3DAnmLoader__stringBase0;
 
 //
@@ -198,21 +198,21 @@ extern "C" void OSReport();
 extern "C" void* __nw__FUl();
 extern "C" void __dl__FPv();
 extern "C" void setResource__10JUTNameTabFPC7ResNTAB();
-extern "C" void func_802F4260(void const*, void const*);
-extern "C" void func_802F42C0(void const*, void const*);
-extern "C" void func_8030A458(void const*, void const*);
-extern "C" void func_8030A470(void const*, void const*);
-extern "C" void func_8030A488(void const*, void const*);
-extern "C" void func_8030A4A0(void const*, void const*);
-extern "C" void func_8030A4B8(void const*, void const*);
-extern "C" void func_8030A4D0(void const*, void const*);
-extern "C" void func_8030A4E8(void const*, void const*);
-extern "C" void func_8030A500(void const*, void const*);
-extern "C" void func_8030A518(void const*, void const*);
-extern "C" void func_8030A530(void const*, void const*);
-extern "C" void func_8030A548(void const*, void const*);
-extern "C" void func_8030A560(void const*, void const*);
-extern "C" void func_8030A578(void const*, void const*);
+extern "C" void func_802F4260(void* _this, void const*, void const*);
+extern "C" void func_802F42C0(void* _this, void const*, void const*);
+extern "C" void func_8030A458(void* _this, void const*, void const*);
+extern "C" void func_8030A470(void* _this, void const*, void const*);
+extern "C" void func_8030A488(void* _this, void const*, void const*);
+extern "C" void func_8030A4A0(void* _this, void const*, void const*);
+extern "C" void func_8030A4B8(void* _this, void const*, void const*);
+extern "C" void func_8030A4D0(void* _this, void const*, void const*);
+extern "C" void func_8030A4E8(void* _this, void const*, void const*);
+extern "C" void func_8030A500(void* _this, void const*, void const*);
+extern "C" void func_8030A518(void* _this, void const*, void const*);
+extern "C" void func_8030A530(void* _this, void const*, void const*);
+extern "C" void func_8030A548(void* _this, void const*, void const*);
+extern "C" void func_8030A560(void* _this, void const*, void const*);
+extern "C" void func_8030A578(void* _this, void const*, void const*);
 extern "C" void __ct__15J3DAnmTransformFsPfPsPf();
 extern "C" void __ct__19J3DAnmTextureSRTKeyFv();
 extern "C" void __ct__18J3DAnmVtxColorFullFv();
@@ -240,6 +240,13 @@ extern "C" extern void* __vt__19J3DAnmTransformFull[5 + 1 /* padding */];
 //
 
 /* ############################################################################################## */
+/* 803A2130-803A2130 02E790 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803A2130 =
+    "J3DAnmLoader: this is not a J3D Binary.\n";
+#pragma pop
+
 /* 803CF238-803CF24C 02C358 0014+00 2/2 0/0 0/0 .data            __vt__19J3DAnmKeyLoader_v15 */
 SECTION_DATA extern void* __vt__19J3DAnmKeyLoader_v15[5] = {
     (void*)NULL /* RTTI */,
@@ -340,6 +347,15 @@ asm J3DAnmKeyLoader_v15::~J3DAnmKeyLoader_v15() {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DAnmLoader/__dt__19J3DAnmKeyLoader_v15Fv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 803A2130-803A2130 02E790 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803A2159 = "Unknown data block\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_803A216D = "\0\0";
 #pragma pop
 
 /* 80338558-803386A0 332E98 0148+00 2/1 0/0 0/0 .text            load__20J3DAnmFullLoader_v15FPCv */
@@ -691,7 +707,7 @@ asm J3DAnmLoader::~J3DAnmLoader() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80339848(void const* param_0, void const* param_1) {
+extern "C" asm void func_80339848(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DAnmLoader/func_80339848.s"
 }
@@ -702,19 +718,10 @@ extern "C" asm void func_80339848(void const* param_0, void const* param_1) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80339860(void const* param_0, void const* param_1) {
+extern "C" asm void func_80339860(void* _this, void const* param_0, void const* param_1) {
     nofralloc
 #include "asm/JSystem/J3DGraphLoader/J3DAnmLoader/func_80339860.s"
 }
 #pragma pop
 
-/* 803A2130-803A2170 02E790 003D+03 6/6 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803A2130 =
-    "J3DAnmLoader: this is not a J3D Binary.\n";
-SECTION_DEAD static char const* const stringBase_803A2159 = "Unknown data block\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_803A216D = "\0\0";
-#pragma pop
+/* 803A2130-803A2130 02E790 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

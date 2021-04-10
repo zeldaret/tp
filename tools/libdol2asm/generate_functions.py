@@ -163,21 +163,41 @@ def is_load_global_function(data: bytearray) -> Tuple[bool, int, str, int]:
 
     return False, None, None, None
 
+
 # TODO: @!game move
 R2_ADDR = 0x80459A00
 R13_ADDR = 0x80458580
 
-RETURN_SYMBOL_LOAD_INSTS = {
+LOAD_INSTS = {
     PPC_INS_LWZ,
     PPC_INS_LHZ,
+    PPC_INS_LHA,
     PPC_INS_LBZ,
 }
 
-RETURN_SYMBOL_TYPE = {
+LOAD_TYPE = {
     PPC_INS_LWZ: U32,
     PPC_INS_LHZ: U16,
+    PPC_INS_LHA: S16,
     PPC_INS_LBZ: U8,
 }
+
+LOAD_CAST_TYPE = {
+    PPC_INS_LHA: S32,
+}
+
+STORE_INSTS = {
+    PPC_INS_STW,
+    PPC_INS_STH,
+    PPC_INS_STB,
+}
+
+STORE_TYPE = {
+    PPC_INS_STW: U32,
+    PPC_INS_STH: U16,
+    PPC_INS_STB: U8,
+}
+
 
 def decompile_return_symbol_function(symbol, block, insts, symbol_table) -> Function:
     if len(insts) != 2:
@@ -188,9 +208,9 @@ def decompile_return_symbol_function(symbol, block, insts, symbol_table) -> Func
 
     if ret.id != PPC_INS_BLR:
         return None
-    if not load.id in RETURN_SYMBOL_LOAD_INSTS:
+    if not load.id in LOAD_INSTS:
         return None
-    
+
     address = 0
     mem_base = load.operands[1].mem.base
     mem_disp = load.operands[1].mem.disp
@@ -209,15 +229,101 @@ def decompile_return_symbol_function(symbol, block, insts, symbol_table) -> Func
     if isinstance(return_symbol, Structure):
         return None
 
+    load_type = LOAD_TYPE[load.id]
+    cast_type = None
+    if load.id in LOAD_CAST_TYPE:
+        cast_type = LOAD_CAST_TYPE[load.id]
+
+    return_type = cast_type
+    if not return_type:
+        return_type = load_type
+
     return SymbolReturnFunction(
         symbol.identifier,
         addr=symbol.addr,
         size=symbol.size,
         padding=symbol.padding,
         alignment=0,
-        return_type=RETURN_SYMBOL_TYPE[load.id],
+        return_type=return_type,
+        load_type=load_type,
+        cast_type=cast_type,
         symbol_addr=address)
-    
+
+
+SMALL_INST = {
+    PPC_INS_MFMSR,
+    PPC_INS_MTMSR,
+    PPC_INS_TWUI,
+    PPC_INS_MTSPR,
+    PPC_INS_MFSPR,
+    PPC_INS_MFTB,
+    PPC_INS_MTFSB1,
+    PPC_INS_SC,
+}
+
+def inst_to_string(insn):
+    if insn.id == PPC_INS_TWUI:
+        assert insn.operands[0].type == PPC_OP_REG
+        assert insn.operands[1].type == PPC_OP_IMM
+        rA = insn.reg_name(insn.operands[0].reg)
+        S = insn.operands[1].value.imm
+        insn_str = 'twi %i, %s, 0x%x' % (31, rA, S)
+        return insn_str
+
+    return f"{insn.mnemonic} {insn.op_str}"
+
+
+def decompile_small_asm_function(symbol, block, insts, symbol_table) -> Function:
+    if len(insts) != 2:
+        return None
+
+    unknown = insts[0]
+    ret = insts[1]
+    if not ret or ret.id != PPC_INS_BLR:
+        return None
+    if not unknown or not unknown.id in SMALL_INST:
+        return None
+
+    return SmallASMFunction(
+        symbol.identifier,
+        addr=symbol.addr,
+        size=symbol.size,
+        padding=symbol.padding,
+        alignment=0,
+        return_type=VOID,
+        insts=[inst_to_string(insn) for insn in insts])
+
+
+def decompile_store_param_function(symbol, block, insts, symbol_table) -> Function:
+    if len(insts) != 2:
+        return None
+
+    store = insts[0]
+    ret = insts[1]
+
+    if ret.id != PPC_INS_BLR:
+        return None
+    if not store.id in STORE_INSTS:
+        return None
+
+    src = store.operands[0].reg
+    dst = store.operands[1].mem.base
+    dst_offset = store.operands[1].mem.disp
+    if dst == PPC_REG_R3:
+        return Store_R3_OffsetRX_Function(
+            symbol.identifier,
+            addr=symbol.addr,
+            size=symbol.size,
+            padding=symbol.padding,
+            alignment=0,
+            return_type=VOID,
+            store_type=STORE_TYPE[store.id],
+            dst=dst,
+            dst_offset=dst_offset,
+            src=src)
+
+    return None
+
 
 def from_group(section: Section, group: List[linker_map.Symbol]) -> Function:
     """
@@ -228,7 +334,7 @@ def from_group(section: Section, group: List[linker_map.Symbol]) -> Function:
     if len(group) == 1:
         block = group[0]
         data = section.get_data(block.start, block.end)
-        if len(data) >= 4 and len(data) < 16:   
+        if len(data) >= 4 and len(data) < 16:
             insts = list(disassemble.cs.disasm(data, block.start))
 
             if is_return_function(data):
@@ -271,6 +377,7 @@ def from_group(section: Section, group: List[linker_map.Symbol]) -> Function:
     # the function was not decompilable
     return [ASMFunction.create(section, group)]
 
+
 def decompile_symbol(context, section, symbol, symbol_table, add_list, remove_list):
     if not isinstance(symbol, ASMFunction):
         return symbol
@@ -283,19 +390,35 @@ def decompile_symbol(context, section, symbol, symbol_table, add_list, remove_li
         return symbol
 
     insts = list(disassemble.cs.disasm(data, block.start))
-    function = decompile_return_symbol_function(symbol, block, insts, symbol_table)
+    function = decompile_return_symbol_function(
+        symbol, block, insts, symbol_table)
+    if not function:
+        function = decompile_store_param_function(
+            symbol, block, insts, symbol_table)
+    if not function:
+        function = decompile_small_asm_function(
+            symbol, block, insts, symbol_table)
+
+    if len(data) == 8 and not function and insts[1] and insts[1].id == PPC_INS_BLR:
+        print(symbol.identifier)
+        for inst in insts:
+            print(f"\t{inst.mnemonic} {inst.op_str}")
+
     if function:
-        function.set_mlts(symbol._module, symbol._library, symbol._translation_unit, symbol._section)
+        function.alignment = symbol.alignment
+        function.set_mlts(symbol._module, symbol._library,
+                          symbol._translation_unit, symbol._section)
         assert function.addr == symbol.addr
         assert function.size == symbol.size
         add_list.add(function)
         remove_list.discard(symbol)
         return function
 
-    #if symbol.size == 8:
-    #    context.debug(f"{symbol.addr:08X} {symbol.name}")
+    if symbol.size == 8:
+        context.debug(f"{symbol.addr:08X} {symbol.label}")
 
     return symbol
+
 
 def decompile(context, libraries, symbol_table):
     remove_list = set()
@@ -307,7 +430,7 @@ def decompile(context, libraries, symbol_table):
                     continue
                 symbols = []
                 for symbol in section.symbols:
-                    symbols.append(decompile_symbol(context, section, symbol, symbol_table, add_list, remove_list))
+                    symbols.append(decompile_symbol(
+                        context, section, symbol, symbol_table, add_list, remove_list))
                 section.symbols = symbols
     return add_list, remove_list
-        

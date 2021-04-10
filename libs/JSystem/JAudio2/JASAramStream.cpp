@@ -32,7 +32,7 @@ template <typename A0>
 struct JASMemPool_MultiThreaded {};
 /* JASMemPool_MultiThreaded<JASChannel> */
 struct JASMemPool_MultiThreaded__template2 {
-    /* 802978DC */ void func_802978DC();
+    /* 802978DC */ void func_802978DC(void* _this);
 };
 
 struct JASGenericMemPool {
@@ -117,7 +117,7 @@ extern "C" void updateChannel__13JASAramStreamFUlP10JASChannelPQ26JASDsp8TChanne
 extern "C" void channelProc__13JASAramStreamFv();
 extern "C" void channelStart__13JASAramStreamFv();
 extern "C" void channelStop__13JASAramStreamFUs();
-extern "C" void func_802978DC();
+extern "C" void func_802978DC(void* _this);
 extern "C" u8 sLoadThread__13JASAramStream[4];
 extern "C" u8 sReadBuffer__13JASAramStream[4];
 extern "C" u8 sBlockSize__13JASAramStream[4];
@@ -229,7 +229,7 @@ asm JASAramStream::JASAramStream() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASAramStream::init(u32 param_0, u32 param_1, void (*)(u32, JASAramStream*, void*),
+asm void JASAramStream::init(u32 param_0, u32 param_1, void (*param_2)(u32, JASAramStream*, void*),
                              void* param_3) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASAramStream/init__13JASAramStreamFUlUlPFUlP13JASAramStreamPv_vPv.s"
@@ -456,7 +456,7 @@ asm void JASAramStream::channelProc() {
 SECTION_RODATA static u8 const OSC_RELEASE_TABLE[12] = {
     0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8039B168, &OSC_RELEASE_TABLE);
+COMPILER_STRIP_GATE(0x8039B168, &OSC_RELEASE_TABLE);
 
 /* 8039B174-8039B190 -00001 0018+04 1/1 0/0 0/0 .rodata          OSC_ENV */
 SECTION_RODATA static void* const OSC_ENV[6 + 1 /* padding */] = {
@@ -469,7 +469,7 @@ SECTION_RODATA static void* const OSC_ENV[6 + 1 /* padding */] = {
     /* padding */
     NULL,
 };
-COMPILER_STRIP_GATE(8039B174, &OSC_ENV);
+COMPILER_STRIP_GATE(0x8039B174, &OSC_ENV);
 
 /* 80431B28-80431B34 05E848 000C+00 1/1 0/0 0/0 .bss             @792 */
 static u8 lit_792[12];
@@ -517,7 +517,7 @@ asm void JASAramStream::channelStop(u16 param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802978DC() {
+extern "C" asm void func_802978DC(void* _this) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASAramStream/func_802978DC.s"
 }

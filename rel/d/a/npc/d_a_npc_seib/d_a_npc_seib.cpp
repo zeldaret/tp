@@ -11,13 +11,13 @@
 // Types:
 //
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct J3DModelData {};
+struct J3DAnmTransform {};
 
-struct mDoExt_McaMorfCallBack2_c {};
+struct J3DModelData {};
 
 struct Vec {};
 
@@ -41,10 +41,6 @@ struct fopAc_ac_c {
 
 struct daNpcT_faceMotionAnmData_c {};
 
-struct daNpcT_evtData_c {};
-
-struct daNpcT_motionAnmData_c {};
-
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
 
@@ -52,6 +48,10 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80145A24 */ void checkEndSequence();
     /* 80AC6C2C */ ~daNpcT_MotionSeqMngr_c();
 };
+
+struct daNpcT_evtData_c {};
+
+struct daNpcT_motionAnmData_c {};
 
 struct daNpc_seiB_c {
     /* 80AC50EC */ ~daNpc_seiB_c();
@@ -95,20 +95,20 @@ struct daNpc_seiB_Param_c {
     static u8 const m[148];
 };
 
-struct J3DJoint {};
-
-struct J3DAnmTevRegKey {};
-
 struct J3DAnmTextureSRTKey {};
 
 struct _GXColorS10 {};
+
+struct J3DModel {};
+
+struct J3DJoint {};
+
+struct J3DAnmTevRegKey {};
 
 struct cXyz {
     /* 80AC6664 */ ~cXyz();
     /* 80AC6BE0 */ cXyz();
 };
-
-struct J3DModel {};
 
 struct daNpcT_c {
     /* 8014810C */ void getTexSRTKeyAnmP(char const*, int);
@@ -241,12 +241,12 @@ struct dBgS_AcchCir {
     /* 80AC6C74 */ ~dBgS_AcchCir();
 };
 
-struct dBgS {};
-
 struct csXyz {
     /* 80AC66A0 */ ~csXyz();
     /* 80AC6AE0 */ csXyz();
 };
+
+struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -474,6 +474,15 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80AC70D0-80AC70D0 0000AC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80AC70D0 = "";
+SECTION_DEAD static char const* const stringBase_80AC70D1 = "DEFAULT_GETITEM";
+SECTION_DEAD static char const* const stringBase_80AC70E1 = "NO_RESPONSE";
+SECTION_DEAD static char const* const stringBase_80AC70ED = "seiB";
+#pragma pop
+
 /* 80AC70F8-80AC7104 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -779,7 +788,7 @@ SECTION_RODATA u8 const daNpc_seiB_Param_c::m[148] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0x96, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AC7024, &daNpc_seiB_Param_c::m);
+COMPILER_STRIP_GATE(0x80AC7024, &daNpc_seiB_Param_c::m);
 
 /* 80AC5188-80AC53C8 000188 0240+00 1/1 0/0 0/0 .text            create__12daNpc_seiB_cFv */
 #pragma push
@@ -799,25 +808,25 @@ SECTION_RODATA static u8 const lit_4089[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80AC70B8, &lit_4089);
+COMPILER_STRIP_GATE(0x80AC70B8, &lit_4089);
 
 /* 80AC70BC-80AC70C0 000098 0004+00 0/2 0/0 0/0 .rodata          @4090 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4090 = 65536.0f;
-COMPILER_STRIP_GATE(80AC70BC, &lit_4090);
+COMPILER_STRIP_GATE(0x80AC70BC, &lit_4090);
 #pragma pop
 
 /* 80AC70C0-80AC70C4 00009C 0004+00 0/2 0/0 0/0 .rodata          @4091 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4091 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80AC70C0, &lit_4091);
+COMPILER_STRIP_GATE(0x80AC70C0, &lit_4091);
 #pragma pop
 
 /* 80AC70C4-80AC70C8 0000A0 0004+00 2/2 0/0 0/0 .rodata          @4215 */
 SECTION_RODATA static f32 const lit_4215 = 1.0f;
-COMPILER_STRIP_GATE(80AC70C4, &lit_4215);
+COMPILER_STRIP_GATE(0x80AC70C4, &lit_4215);
 
 /* 80AC53C8-80AC5520 0003C8 0158+00 1/1 0/0 0/0 .text            CreateHeap__12daNpc_seiB_cFv */
 #pragma push
@@ -852,7 +861,7 @@ asm void daNpc_seiB_c::Execute() {
 /* ############################################################################################## */
 /* 80AC70C8-80AC70CC 0000A4 0004+00 1/1 0/0 0/0 .rodata          @4247 */
 SECTION_RODATA static f32 const lit_4247 = 100.0f;
-COMPILER_STRIP_GATE(80AC70C8, &lit_4247);
+COMPILER_STRIP_GATE(0x80AC70C8, &lit_4247);
 
 /* 80AC5574-80AC5608 000574 0094+00 1/1 0/0 0/0 .text            Draw__12daNpc_seiB_cFv */
 #pragma push
@@ -903,7 +912,7 @@ bool daNpc_seiB_c::isDelete() {
 /* ############################################################################################## */
 /* 80AC70CC-80AC70D0 0000A8 0004+00 1/2 0/0 0/0 .rodata          @4292 */
 SECTION_RODATA static f32 const lit_4292 = -1.0f;
-COMPILER_STRIP_GATE(80AC70CC, &lit_4292);
+COMPILER_STRIP_GATE(0x80AC70CC, &lit_4292);
 
 /* 80AC566C-80AC57C4 00066C 0158+00 1/1 0/0 0/0 .text            reset__12daNpc_seiB_cFv */
 #pragma push
@@ -948,6 +957,13 @@ asm void daNpc_seiB_c::evtTalk() {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_seib/d_a_npc_seib/evtTalk__12daNpc_seiB_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80AC70D0-80AC70D0 0000AC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80AC70F2 = "Seib";
 #pragma pop
 
 /* 80AC59F4-80AC5ABC 0009F4 00C8+00 1/0 0/0 0/0 .text            evtCutProc__12daNpc_seiB_cFv */
@@ -1020,7 +1036,7 @@ asm void daNpc_seiB_c::selectAction() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_seiB_c::chkAction(int (daNpc_seiB_c::*)(void*)) {
+asm void daNpc_seiB_c::chkAction(int (daNpc_seiB_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_seib/d_a_npc_seib/chkAction__12daNpc_seiB_cFM12daNpc_seiB_cFPCvPvPv_i.s"
 }
@@ -1031,7 +1047,7 @@ asm void daNpc_seiB_c::chkAction(int (daNpc_seiB_c::*)(void*)) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_seiB_c::setAction(int (daNpc_seiB_c::*)(void*)) {
+asm void daNpc_seiB_c::setAction(int (daNpc_seiB_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_seib/d_a_npc_seib/setAction__12daNpc_seiB_cFM12daNpc_seiB_cFPCvPvPv_i.s"
 }
@@ -1434,7 +1450,7 @@ asm void __sinit_d_a_npc_seib_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80AC6F0C = (void*)__sinit_d_a_npc_seib_cpp;
+REGISTER_CTORS(0x80AC6F0C, __sinit_d_a_npc_seib_cpp);
 #pragma pop
 
 /* 80AC6F74-80AC6FB8 001F74 0044+00 1/1 0/0 0/0 .text
@@ -1484,13 +1500,4 @@ static asm void func_80AC7008() {
 }
 #pragma pop
 
-/* 80AC70D0-80AC70F7 0000AC 0027+00 4/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80AC70D0 = "";
-SECTION_DEAD static char const* const stringBase_80AC70D1 = "DEFAULT_GETITEM";
-SECTION_DEAD static char const* const stringBase_80AC70E1 = "NO_RESPONSE";
-SECTION_DEAD static char const* const stringBase_80AC70ED = "seiB";
-SECTION_DEAD static char const* const stringBase_80AC70F2 = "Seib";
-#pragma pop
+/* 80AC70D0-80AC70D0 0000AC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

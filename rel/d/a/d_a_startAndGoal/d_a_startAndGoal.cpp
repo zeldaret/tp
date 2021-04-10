@@ -222,34 +222,34 @@ SECTION_RODATA static u8 const l_DATA[1 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D4DEB8, &l_DATA);
+COMPILER_STRIP_GATE(0x80D4DEB8, &l_DATA);
 
 /* 80D4DEBC-80D4DEC0 000004 0004+00 0/1 0/0 0/0 .rodata          @3913 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3913 = 210.0f;
-COMPILER_STRIP_GATE(80D4DEBC, &lit_3913);
+COMPILER_STRIP_GATE(0x80D4DEBC, &lit_3913);
 #pragma pop
 
 /* 80D4DEC0-80D4DEC4 000008 0004+00 0/1 0/0 0/0 .rodata          @3914 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3914 = 410.0f;
-COMPILER_STRIP_GATE(80D4DEC0, &lit_3914);
+COMPILER_STRIP_GATE(0x80D4DEC0, &lit_3914);
 #pragma pop
 
 /* 80D4DEC4-80D4DEC8 00000C 0004+00 0/1 0/0 0/0 .rodata          @3915 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3915 = 32.0f;
-COMPILER_STRIP_GATE(80D4DEC4, &lit_3915);
+COMPILER_STRIP_GATE(0x80D4DEC4, &lit_3915);
 #pragma pop
 
 /* 80D4DEC8-80D4DECC 000010 0004+00 0/1 0/0 0/0 .rodata          @3916 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3916 = 419.0f;
-COMPILER_STRIP_GATE(80D4DEC8, &lit_3916);
+COMPILER_STRIP_GATE(0x80D4DEC8, &lit_3916);
 #pragma pop
 
 /* 80D4D998-80D4DA68 000258 00D0+00 1/1 0/0 0/0 .text            init__16daStartAndGoal_cFv */

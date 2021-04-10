@@ -104,9 +104,9 @@ struct cCcD_GStts {
     /* 80C3D38C */ ~cCcD_GStts();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -216,34 +216,34 @@ SECTION_RODATA u8 const daObjKazeNeko_c::M_attr[44] = {
     0x00, 0x42, 0xB4, 0x00, 0x00, 0x44, 0xE1, 0x00, 0x00, 0x43, 0x34, 0x00, 0x00, 0x41, 0xD8,
     0x00, 0x00, 0x41, 0x70, 0x00, 0x00, 0x01, 0x70, 0x64, 0x00, 0x00, 0x19, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C3D3DC, &daObjKazeNeko_c::M_attr);
+COMPILER_STRIP_GATE(0x80C3D3DC, &daObjKazeNeko_c::M_attr);
 
 /* 80C3D408-80C3D40C 00002C 0004+00 0/1 0/0 0/0 .rodata          @3853 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3853 = -100.0f;
-COMPILER_STRIP_GATE(80C3D408, &lit_3853);
+COMPILER_STRIP_GATE(0x80C3D408, &lit_3853);
 #pragma pop
 
 /* 80C3D40C-80C3D410 000030 0004+00 0/1 0/0 0/0 .rodata          @3854 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3854 = -10.0f;
-COMPILER_STRIP_GATE(80C3D40C, &lit_3854);
+COMPILER_STRIP_GATE(0x80C3D40C, &lit_3854);
 #pragma pop
 
 /* 80C3D410-80C3D414 000034 0004+00 0/1 0/0 0/0 .rodata          @3855 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3855 = 100.0f;
-COMPILER_STRIP_GATE(80C3D410, &lit_3855);
+COMPILER_STRIP_GATE(0x80C3D410, &lit_3855);
 #pragma pop
 
 /* 80C3D414-80C3D418 000038 0004+00 0/1 0/0 0/0 .rodata          @3856 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3856 = 200.0f;
-COMPILER_STRIP_GATE(80C3D414, &lit_3856);
+COMPILER_STRIP_GATE(0x80C3D414, &lit_3856);
 #pragma pop
 
 /* 80C3C8D8-80C3C968 000078 0090+00 1/1 0/0 0/0 .text            create_init__15daObjKazeNeko_cFv */
@@ -274,7 +274,7 @@ SECTION_RODATA static u8 const lit_3890[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C3D418, &lit_3890);
+COMPILER_STRIP_GATE(0x80C3D418, &lit_3890);
 
 /* 80C3C988-80C3CA8C 000128 0104+00 2/2 0/0 0/0 .text            setBaseMtx__15daObjKazeNeko_cFv */
 #pragma push
@@ -295,7 +295,7 @@ SECTION_RODATA static u8 const ccCylSrc[68] = {
     0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C3D41C, &ccCylSrc);
+COMPILER_STRIP_GATE(0x80C3D41C, &ccCylSrc);
 
 /* 80C3CA8C-80C3CB10 00022C 0084+00 1/1 0/0 0/0 .text            initCcCylinder__15daObjKazeNeko_cFv
  */
@@ -334,19 +334,19 @@ asm void daObjKazeNeko_c::swingHead() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3947 = 1.0f;
-COMPILER_STRIP_GATE(80C3D460, &lit_3947);
+COMPILER_STRIP_GATE(0x80C3D460, &lit_3947);
 #pragma pop
 
 /* 80C3D464-80C3D468 000088 0004+00 0/1 0/0 0/0 .rodata          @3948 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3948 = -1.0f;
-COMPILER_STRIP_GATE(80C3D464, &lit_3948);
+COMPILER_STRIP_GATE(0x80C3D464, &lit_3948);
 #pragma pop
 
 /* 80C3D468-80C3D46C 00008C 0004+00 1/1 0/0 0/0 .rodata          @3962 */
 SECTION_RODATA static f32 const lit_3962 = 30.0f;
-COMPILER_STRIP_GATE(80C3D468, &lit_3962);
+COMPILER_STRIP_GATE(0x80C3D468, &lit_3962);
 
 /* 80C3CC40-80C3CC90 0003E0 0050+00 0/0 0/0 1/1 .text getFirstVec__15daObjKazeNeko_cFP4cXyzi */
 #pragma push
@@ -359,6 +359,14 @@ asm void daObjKazeNeko_c::getFirstVec(cXyz* param_0, int param_1) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80C3D474-80C3D474 000098 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C3D474 = "J_Kazami";
+SECTION_DEAD static char const* const stringBase_80C3D47D = "pole.bmd";
+SECTION_DEAD static char const* const stringBase_80C3D486 = "arm.bmd";
+#pragma pop
+
 /* 80C3D490-80C3D494 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_kazeneko__stringBase0;
 
@@ -389,7 +397,7 @@ static asm void daObjKazeNeko_Draw(daObjKazeNeko_c* param_0) {
 SECTION_RODATA static u8 const lit_4119[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C3D46C, &lit_4119);
+COMPILER_STRIP_GATE(0x80C3D46C, &lit_4119);
 #pragma pop
 
 /* 80C3CEA8-80C3D030 000648 0188+00 1/0 0/0 0/0 .text daObjKazeNeko_Execute__FP15daObjKazeNeko_c
@@ -520,11 +528,4 @@ asm cCcD_GStts::~cCcD_GStts() {
 }
 #pragma pop
 
-/* 80C3D474-80C3D48E 000098 001A+00 2/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C3D474 = "J_Kazami";
-SECTION_DEAD static char const* const stringBase_80C3D47D = "pole.bmd";
-SECTION_DEAD static char const* const stringBase_80C3D486 = "arm.bmd";
-#pragma pop
+/* 80C3D474-80C3D474 000098 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

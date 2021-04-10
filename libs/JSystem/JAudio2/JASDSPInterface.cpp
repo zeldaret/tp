@@ -163,7 +163,7 @@ static u8 struct_804512F4[4];
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void JASDsp::boot(void (*)(void*)) {
+asm void JASDsp::boot(void (*param_0)(void*)) {
     nofralloc
 #include "asm/JSystem/JAudio2/JASDSPInterface/boot__6JASDspFPFPv_v.s"
 }
@@ -271,7 +271,7 @@ SECTION_RODATA u8 const JASDsp::DSPADPCM_FILTER[64] = {
     0x10, 0x68, 0xF7, 0x38, 0x12, 0xC0, 0xF7, 0x04, 0x14, 0x00, 0xF4, 0x00, 0x08, 0x00, 0xF8, 0x00,
     0x04, 0x00, 0xFC, 0x00, 0xFC, 0x00, 0x04, 0x00, 0xFC, 0x00, 0x00, 0x00, 0xF8, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8039B360, &JASDsp::DSPADPCM_FILTER);
+COMPILER_STRIP_GATE(0x8039B360, &JASDsp::DSPADPCM_FILTER);
 
 /* 8039B3A0-8039B8A0 -00001 0500+00 1/1 0/0 0/0 .rodata          DSPRES_FILTER__6JASDsp */
 SECTION_RODATA void* const JASDsp::DSPRES_FILTER[320] = {
@@ -596,7 +596,7 @@ SECTION_RODATA void* const JASDsp::DSPRES_FILTER[320] = {
     (void*)0x7FD87FE9,
     (void*)0x7FF57FFD,
 };
-COMPILER_STRIP_GATE(8039B3A0, &JASDsp::DSPRES_FILTER);
+COMPILER_STRIP_GATE(0x8039B3A0, &JASDsp::DSPRES_FILTER);
 
 /* 8029DAC8-8029DB78 298408 00B0+00 0/0 1/1 0/0 .text            initBuffer__6JASDspFv */
 #pragma push
@@ -891,16 +891,11 @@ asm void JASDsp::TChannel::setFIR8FilterParam(s16* param_0) {
 }
 #pragma pop
 
-/* 8029E094-8029E09C 2989D4 0008+00 0/0 1/1 0/0 .text            setDistFilter__Q26JASDsp8TChannelFs
+/* 8029E094-8029E09C -00001 0008+00 0/0 0/0 0/0 .text            setDistFilter__Q26JASDsp8TChannelFs
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void JASDsp::TChannel::setDistFilter(s16 param_0) {
-    nofralloc
-#include "asm/JSystem/JAudio2/JASDSPInterface/setDistFilter__Q26JASDsp8TChannelFs.s"
+void JASDsp::TChannel::setDistFilter(s16 param_0) {
+    *(u16*)(((u8*)this) + 336) /* this->field_0x150 */ = (u16)(param_0);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 8039B8A0-8039B8B8 027F00 0018+00 1/1 0/0 0/0 .rodata          connect_table$463 */
@@ -908,7 +903,7 @@ SECTION_RODATA static u8 const connect_table[24] = {
     0x00, 0x00, 0x0D, 0x00, 0x0D, 0x60, 0x0D, 0xC0, 0x0E, 0x20, 0x0E, 0x80,
     0x0E, 0xE0, 0x0C, 0xA0, 0x0F, 0x40, 0x0F, 0xA0, 0x0B, 0x00, 0x09, 0xA0,
 };
-COMPILER_STRIP_GATE(8039B8A0, &connect_table);
+COMPILER_STRIP_GATE(0x8039B8A0, &connect_table);
 
 /* 8029E09C-8029E0BC 2989DC 0020+00 0/0 1/1 0/0 .text setBusConnect__Q26JASDsp8TChannelFUcUc */
 #pragma push

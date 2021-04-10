@@ -50,14 +50,14 @@ struct Z2SoundObjArrow {
     /* 802BEB74 */ void init(Vec*, u8);
 };
 
+struct JAUSoundAnimationSound {};
+
 struct JGeometry {
     template <typename A1>
     struct TVec3 {};
     /* TVec3<f32> */
     struct TVec3__template0 {};
 };
-
-struct JAUSoundAnimationSound {};
 
 struct Z2SoundObjAnime {
     /* 802BEB94 */ Z2SoundObjAnime();
@@ -81,7 +81,6 @@ struct Z2SoundInfo {
 struct Z2SoundHandles {
     /* 802AB07C */ Z2SoundHandles();
     /* 802AB0B4 */ ~Z2SoundHandles();
-    /* 802AB118 */ void initHandlesPool(u8);
     /* 802AB120 */ void deleteHandlesPool();
     /* 802AB254 */ void getHandleSoundID(JAISoundID);
     /* 802AB2A0 */ void getHandleUserData(u32);
@@ -417,7 +416,7 @@ SECTION_RODATA static u8 const cNullVec__6Z2Calc[12 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8039C230, &cNullVec__6Z2Calc);
+COMPILER_STRIP_GATE(0x8039C230, &cNullVec__6Z2Calc);
 
 /* 802BE5A0-802BE5FC 2B8EE0 005C+00 1/1 0/0 0/0 .text            __ct__21Z2DopplerSoundObjBaseFv */
 #pragma push

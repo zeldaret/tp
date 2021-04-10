@@ -25,9 +25,9 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -98,11 +98,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
 };
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -187,9 +187,9 @@ struct cCcD_GStts {
     /* 80C25D04 */ ~cCcD_GStts();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -360,11 +360,17 @@ SECTION_RODATA static u8 const lit_3703[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C25D64, &lit_3703);
+COMPILER_STRIP_GATE(0x80C25D64, &lit_3703);
 
 /* 80C25D68-80C25D6C 000004 0004+00 1/1 0/0 0/0 .rodata          @3704 */
 SECTION_RODATA static f32 const lit_3704 = -9.0f;
-COMPILER_STRIP_GATE(80C25D68, &lit_3704);
+COMPILER_STRIP_GATE(0x80C25D68, &lit_3704);
+
+/* 80C25DA4-80C25DA4 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C25DA4 = "V_IceLeaf";
+#pragma pop
 
 /* 80C25DB0-80C25DBC 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -402,21 +408,21 @@ asm void daObjIceLeaf_c::setBaseMtx() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3757 = 30.0f;
-COMPILER_STRIP_GATE(80C25D6C, &lit_3757);
+COMPILER_STRIP_GATE(0x80C25D6C, &lit_3757);
 #pragma pop
 
 /* 80C25D70-80C25D74 00000C 0004+00 0/1 0/0 0/0 .rodata          @3758 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3758 = 100.0f;
-COMPILER_STRIP_GATE(80C25D70, &lit_3758);
+COMPILER_STRIP_GATE(0x80C25D70, &lit_3758);
 #pragma pop
 
 /* 80C25D74-80C25D78 000010 0004+00 0/1 0/0 0/0 .rodata          @3759 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3759 = 500.0f;
-COMPILER_STRIP_GATE(80C25D74, &lit_3759);
+COMPILER_STRIP_GATE(0x80C25D74, &lit_3759);
 #pragma pop
 
 /* 80C25DD4-80C25E18 000024 0044+00 1/1 0/0 0/0 .data            l_cyl_src */
@@ -451,7 +457,7 @@ asm void daObjIceLeaf_c::setAnmPos() {
 /* ############################################################################################## */
 /* 80C25D78-80C25D7C 000014 0004+00 4/5 0/0 0/0 .rodata          @3806 */
 SECTION_RODATA static f32 const lit_3806 = 1.0f;
-COMPILER_STRIP_GATE(80C25D78, &lit_3806);
+COMPILER_STRIP_GATE(0x80C25D78, &lit_3806);
 
 /* 80C25E18-80C25E24 -00001 000C+00 0/1 0/0 0/0 .data            @3975 */
 #pragma push
@@ -737,7 +743,7 @@ asm void daObjIceLeaf_c::action() {
 SECTION_RODATA static u8 const lit_4030[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C25D7C, &lit_4030);
+COMPILER_STRIP_GATE(0x80C25D7C, &lit_4030);
 #pragma pop
 
 /* 80C25D84-80C25D8C 000020 0008+00 0/1 0/0 0/0 .rodata          @4031 */
@@ -746,7 +752,7 @@ COMPILER_STRIP_GATE(80C25D7C, &lit_4030);
 SECTION_RODATA static u8 const lit_4031[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C25D84, &lit_4031);
+COMPILER_STRIP_GATE(0x80C25D84, &lit_4031);
 #pragma pop
 
 /* 80C25D8C-80C25D94 000028 0008+00 0/1 0/0 0/0 .rodata          @4032 */
@@ -755,14 +761,14 @@ COMPILER_STRIP_GATE(80C25D84, &lit_4031);
 SECTION_RODATA static u8 const lit_4032[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C25D8C, &lit_4032);
+COMPILER_STRIP_GATE(0x80C25D8C, &lit_4032);
 #pragma pop
 
 /* 80C25D94-80C25D98 000030 0004+00 0/1 0/0 0/0 .rodata          @4033 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4033 = 250.0f;
-COMPILER_STRIP_GATE(80C25D94, &lit_4033);
+COMPILER_STRIP_GATE(0x80C25D94, &lit_4033);
 #pragma pop
 
 /* 80C2541C-80C25614 000D7C 01F8+00 1/0 0/0 0/0 .text            modeDropWait__14daObjIceLeaf_cFv */
@@ -780,19 +786,19 @@ asm void daObjIceLeaf_c::modeDropWait() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4093 = 12.0f;
-COMPILER_STRIP_GATE(80C25D98, &lit_4093);
+COMPILER_STRIP_GATE(0x80C25D98, &lit_4093);
 #pragma pop
 
 /* 80C25D9C-80C25DA0 000038 0004+00 0/1 0/0 0/0 .rodata          @4094 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4094 = 5.0f;
-COMPILER_STRIP_GATE(80C25D9C, &lit_4094);
+COMPILER_STRIP_GATE(0x80C25D9C, &lit_4094);
 #pragma pop
 
 /* 80C25DA0-80C25DA4 00003C 0004+00 1/2 0/0 0/0 .rodata          @4095 */
 SECTION_RODATA static f32 const lit_4095 = -1.0f;
-COMPILER_STRIP_GATE(80C25DA0, &lit_4095);
+COMPILER_STRIP_GATE(0x80C25DA0, &lit_4095);
 
 /* 80C25614-80C258F8 000F74 02E4+00 1/0 0/0 0/0 .text            modeDrop__14daObjIceLeaf_cFv */
 #pragma push
@@ -961,9 +967,4 @@ static asm void func_80C25D54() {
 }
 #pragma pop
 
-/* 80C25DA4-80C25DAE 000040 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C25DA4 = "V_IceLeaf";
-#pragma pop
+/* 80C25DA4-80C25DA4 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

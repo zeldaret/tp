@@ -58,16 +58,16 @@ struct J3DAnmTextureSRTKey {
     /* 8032B0C0 */ void searchUpdateMaterialID(J3DMaterialTable*);
 };
 
+struct J3DAnmTexPattern {
+    /* 8032B004 */ void searchUpdateMaterialID(J3DMaterialTable*);
+};
+
 struct J3DAnmTevRegKey {
     /* 8032B780 */ void searchUpdateMaterialID(J3DMaterialTable*);
 };
 
 struct J3DAnmColor {
     /* 8032A8A4 */ void searchUpdateMaterialID(J3DMaterialTable*);
-};
-
-struct J3DAnmTexPattern {
-    /* 8032B004 */ void searchUpdateMaterialID(J3DMaterialTable*);
 };
 
 struct J3DMaterialTable {
@@ -136,11 +136,11 @@ struct mDoExt_MtxCalcAnmBlendTbl {
     /* 80014F3C */ ~mDoExt_MtxCalcAnmBlendTbl();
 };
 
-struct mDoExt_McaMorfCallBack1_c {};
+struct J3DTransformInfo {};
 
 struct mDoExt_McaMorfCallBack2_c {};
 
-struct J3DTransformInfo {};
+struct mDoExt_McaMorfCallBack1_c {};
 
 struct Z2Creature {
     /* 802C0628 */ void initAnime(void*, bool, f32, f32);
@@ -212,11 +212,11 @@ struct mDoExt_3DlineMatSortPacket {
     /* 80014E20 */ ~mDoExt_3DlineMatSortPacket();
 };
 
-struct dKy_tevstr_c {};
-
 struct ResTIMG {};
 
 struct _GXColor {};
+
+struct dKy_tevstr_c {};
 
 struct mDoExt_3DlineMat1_c {
     /* 80013360 */ void init(u16, u16, ResTIMG*, int);
@@ -258,9 +258,9 @@ struct _GXBlendMode {};
 
 struct _GXBlendFactor {};
 
-struct Z2SoundHandlePool {};
-
 struct JAISoundID {};
+
+struct Z2SoundHandlePool {};
 
 struct Z2SoundObjBase {
     /* 802BE038 */ void framework(u32, s8);
@@ -378,12 +378,12 @@ struct J3DGXColorS10 {
     /* 8000E460 */ J3DGXColorS10();
 };
 
-struct J3DGXColor {
-    /* 8000E538 */ J3DGXColor();
-};
-
 struct J3DIndTevStage {
     /* 8000E14C */ J3DIndTevStage();
+};
+
+struct J3DGXColor {
+    /* 8000E538 */ J3DGXColor();
 };
 
 struct J3DTevBlock {
@@ -428,9 +428,9 @@ struct J3DShape {
     static u8 sOldVcdVatCmd[4];
 };
 
-struct J3DBlend {};
-
 struct J3DAlphaComp {};
+
+struct J3DBlend {};
 
 struct J3DPEBlock {
     /* 8000DBCC */ void patch();
@@ -453,9 +453,9 @@ template <typename A0, typename B0>
 struct J3DMtxCalcNoAnm {};
 /* J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya> */
 struct J3DMtxCalcNoAnm__template0 {
-    /* 8000FA20 */ void func_8000FA20();
-    /* 8001505C */ void func_8001505C(Vec const&, f32 const (&)[3][4]);
-    /* 80015084 */ void func_80015084();
+    /* 8000FA20 */ void func_8000FA20(void* _this);
+    /* 8001505C */ void func_8001505C(void* _this, Vec const&, f32 const (&)[3][4]);
+    /* 80015084 */ void func_80015084(void* _this);
 };
 
 struct J3DMtxCalcJ3DSysInitMaya {
@@ -477,10 +477,10 @@ struct J3DMtxCalcAnimation {};
 /* J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>,
  * J3DMtxCalcJ3DSysInitMaya> */
 struct J3DMtxCalcAnimation__template0 {
-    /* 8000D8E4 */ void func_8000D8E4(J3DAnmTransform*);
-    /* 80014FC8 */ void func_80014FC8();
-    /* 80015034 */ void func_80015034(Vec const&, f32 const (&)[3][4]);
-    /* 800150AC */ void func_800150AC();
+    /* 8000D8E4 */ void func_8000D8E4(void* _this, J3DAnmTransform*);
+    /* 80014FC8 */ void func_80014FC8(void* _this);
+    /* 80015034 */ void func_80015034(void* _this, Vec const&, f32 const (&)[3][4]);
+    /* 800150AC */ void func_800150AC(void* _this);
 };
 
 struct J3DMtxCalc {
@@ -573,7 +573,7 @@ extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
 extern "C" void init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss();
 extern "C" void entry__13mDoExt_brkAnmFP16J3DMaterialTablef();
 extern "C" void init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb();
-extern "C" void func_8000D8E4(J3DAnmTransform*);
+extern "C" void func_8000D8E4(void* _this, J3DAnmTransform*);
 extern "C" void __dt__17J3DMtxCalcAnmBaseFv();
 extern "C" void __dt__10J3DMtxCalcFv();
 extern "C" void changeBckOnly__13mDoExt_bckAnmFP15J3DAnmTransform();
@@ -700,7 +700,7 @@ extern "C" void initOldFrameMorf__22mDoExt_MtxCalcOldFrameFfUsUs();
 extern "C" void decOldFrameMorfCounter__22mDoExt_MtxCalcOldFrameFv();
 extern "C" void __ct__13mDoExt_morf_cFv();
 extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" void func_8000FA20();
+extern "C" void func_8000FA20(void* _this);
 extern "C" void __dt__19J3DMtxCalcNoAnmBaseFv();
 extern "C" void __dt__13mDoExt_morf_cFv();
 extern "C" void setMorf__13mDoExt_morf_cFf();
@@ -788,11 +788,11 @@ extern "C" void __dt__28mDoExt_MtxCalcAnmBlendTblOldFv();
 extern "C" void __dt__25mDoExt_MtxCalcAnmBlendTblFv();
 extern "C" void getAnmTransform__17J3DMtxCalcAnmBaseFv();
 extern "C" void setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform();
-extern "C" void func_80014FC8();
-extern "C" void func_80015034(Vec const&, f32 const (&)[3][4]);
-extern "C" void func_8001505C(Vec const&, f32 const (&)[3][4]);
-extern "C" void func_80015084();
-extern "C" void func_800150AC();
+extern "C" void func_80014FC8(void* _this);
+extern "C" void func_80015034(void* _this, Vec const&, f32 const (&)[3][4]);
+extern "C" void func_8001505C(void* _this, Vec const&, f32 const (&)[3][4]);
+extern "C" void func_80015084(void* _this);
+extern "C" void func_800150AC(void* _this);
 extern "C" extern char const* const m_Do_m_Do_ext__stringBase0;
 
 //
@@ -950,7 +950,7 @@ extern "C" extern u32 j3dDefaultIndTexOrderNull;
 extern "C" extern u8 j3dDefaultIndTexCoordScaleInfo[4];
 extern "C" extern u8 j3dDefaultTevSwapMode[4];
 extern "C" extern u8 j3dDefaultColorChanInfo[8];
-extern "C" extern u8 struct_804563F8[4];
+extern "C" extern u16 data_804563F8;
 
 //
 // Declarations:
@@ -1835,17 +1835,12 @@ asm void mDoExt_bckAnm::init(J3DAnmTransform* param_0, int param_1, int param_2,
 }
 #pragma pop
 
-/* 8000D8E4-8000D8EC 008224 0008+00 1/0 0/0 0/0 .text
+/* 8000D8E4-8000D8EC -00001 0008+00 0/0 0/0 0/0 .text
  * setAnmTransform__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>FP15J3DAnmTransform
  */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-extern "C" asm void func_8000D8E4(J3DAnmTransform* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/func_8000D8E4.s"
+extern "C" void func_8000D8E4(void* _this, J3DAnmTransform* param_0) {
+    *(u32*)(((u8*)_this) + 4) /* _this->field_0x4 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 8000D8EC-8000D948 00822C 005C+00 1/0 0/0 0/0 .text            __dt__17J3DMtxCalcAnmBaseFv */
 #pragma push
@@ -2494,6 +2489,18 @@ asm void mDoExt_setupShareTexture(J3DModelData* param_0, J3DModelData* param_1) 
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803740FC-803740FC 00075C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+// MWCC ignores mapping of some japanese characters using the
+// byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
+SECTION_DEAD static char const* const stringBase_803740FC =
+    "\x83\x5C\x83\x8A\x83\x62\x83\x68\x83\x71\x81\x5B\x83\x76\x82\xBF\x82\xE1\x82\xA4\x82\xAA\x82"
+    "\xC8\x81\x49\x0A";
+SECTION_DEAD static char const* const stringBase_80374118 = "%s.bti";
+#pragma pop
+
 /* 8000EA80-8000ECC0 0093C0 0240+00 0/0 0/0 6/6 .text mDoExt_setupStageTexture__FP12J3DModelData
  */
 #pragma push
@@ -2738,6 +2745,15 @@ asm void mDoExt_createSolidHeapFromGameToCurrent(u32 param_0, u32 param_1) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803740FC-803740FC 00075C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037411F =
+    "親ヒープがExpでないのでアジャストできません %08x %08x\n";
+SECTION_DEAD static char const* const stringBase_80374156 = "adjustSize失敗 %08x\n";
+#pragma pop
+
 /* 8000F08C-8000F158 0099CC 00CC+00 1/1 11/11 0/0 .text mDoExt_adjustSolidHeap__FP12JKRSolidHeap
  */
 #pragma push
@@ -2885,7 +2901,7 @@ asm J3DFrameCtrl::~J3DFrameCtrl() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8000FA20() {
+extern "C" asm void func_8000FA20(void* _this) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/func_8000FA20.s"
 }
@@ -3495,6 +3511,14 @@ asm void mDoExt_3DlineMatSortPacket::draw() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803740FC-803740FC 00075C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037416B =
+    "\nキャッシュフォントクラス作成に失敗しました\n";
+#pragma pop
+
 /* 80014804-8001494C 00F144 0148+00 3/3 0/0 0/0 .text
  * mDoExt_initFontCommon__FPP7JUTFontPP7ResFONTP7JKRHeapPCcP10JKRArchiveUcUlUl */
 #pragma push
@@ -3543,7 +3567,7 @@ SECTION_RODATA static u8 const fontdata_8224[18 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(803740C0, &fontdata_8224);
+COMPILER_STRIP_GATE(0x803740C0, &fontdata_8224);
 
 /* 80450C44-80450C48 000144 0004+00 3/3 0/0 0/0 .sbss            mDoExt_font0 */
 static u8 mDoExt_font0[4];
@@ -3590,7 +3614,7 @@ SECTION_RODATA static u8 const fontdata_8253[20] = {
     0x72, 0x65, 0x69, 0x73, 0x68, 0x6F, 0x74, 0x61, 0x69, 0x5F,
     0x32, 0x34, 0x5F, 0x32, 0x32, 0x2E, 0x62, 0x66, 0x6E, 0x00,
 };
-COMPILER_STRIP_GATE(803740D4, &fontdata_8253);
+COMPILER_STRIP_GATE(0x803740D4, &fontdata_8253);
 
 /* 80450C50-80450C54 000150 0004+00 2/2 0/0 0/0 .sbss            mDoExt_font1 */
 static u8 mDoExt_font1[4];
@@ -3627,7 +3651,7 @@ SECTION_RODATA static u8 const fontdata_8287[20] = {
     0x72, 0x65, 0x69, 0x73, 0x68, 0x6F, 0x74, 0x61, 0x69, 0x5F,
     0x32, 0x34, 0x5F, 0x32, 0x32, 0x2E, 0x62, 0x66, 0x6E, 0x00,
 };
-COMPILER_STRIP_GATE(803740E8, &fontdata_8287);
+COMPILER_STRIP_GATE(0x803740E8, &fontdata_8287);
 
 /* 80450C5C-80450C60 00015C 0004+00 3/3 0/0 0/0 .sbss            mDoExt_font2 */
 static u8 mDoExt_font2[4];
@@ -3824,16 +3848,11 @@ asm void J3DMtxCalcAnmBase::getAnmTransform() {
 }
 #pragma pop
 
-/* 80014FC0-80014FC8 00F900 0008+00 1/0 0/0 0/0 .text
+/* 80014FC0-80014FC8 -00001 0008+00 0/0 0/0 0/0 .text
  * setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform      */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J3DMtxCalcAnmBase::setAnmTransform(J3DAnmTransform* param_0) {
-    nofralloc
-#include "asm/m_Do/m_Do_ext/setAnmTransform__17J3DMtxCalcAnmBaseFP15J3DAnmTransform.s"
+void J3DMtxCalcAnmBase::setAnmTransform(J3DAnmTransform* param_0) {
+    *(u32*)(((u8*)this) + 4) /* this->field_0x4 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 80014FC8-80015034 00F908 006C+00 1/0 0/0 0/0 .text
  * __dt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>Fv
@@ -3841,7 +3860,7 @@ asm void J3DMtxCalcAnmBase::setAnmTransform(J3DAnmTransform* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80014FC8() {
+extern "C" asm void func_80014FC8(void* _this) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/func_80014FC8.s"
 }
@@ -3853,7 +3872,7 @@ extern "C" asm void func_80014FC8() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80015034(Vec const& param_0, f32 const (&param_1)[3][4]) {
+extern "C" asm void func_80015034(void* _this, Vec const& param_0, f32 const (&param_1)[3][4]) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/func_80015034.s"
 }
@@ -3865,7 +3884,7 @@ extern "C" asm void func_80015034(Vec const& param_0, f32 const (&param_1)[3][4]
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8001505C(Vec const& param_0, f32 const (&param_1)[3][4]) {
+extern "C" asm void func_8001505C(void* _this, Vec const& param_0, f32 const (&param_1)[3][4]) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/func_8001505C.s"
 }
@@ -3876,7 +3895,7 @@ extern "C" asm void func_8001505C(Vec const& param_0, f32 const (&param_1)[3][4]
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80015084() {
+extern "C" asm void func_80015084(void* _this) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/func_80015084.s"
 }
@@ -3888,25 +3907,10 @@ extern "C" asm void func_80015084() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_800150AC() {
+extern "C" asm void func_800150AC(void* _this) {
     nofralloc
 #include "asm/m_Do/m_Do_ext/func_800150AC.s"
 }
 #pragma pop
 
-/* 803740FC-80374198 00075C 009C+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-// MWCC ignores mapping of some japanese characters using the
-// byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
-SECTION_DEAD static char const* const stringBase_803740FC =
-    "\x83\x5C\x83\x8A\x83\x62\x83\x68\x83\x71\x81\x5B\x83\x76\x82\xBF\x82\xE1\x82\xA4\x82\xAA\x82"
-    "\xC8\x81\x49\x0A";
-SECTION_DEAD static char const* const stringBase_80374118 = "%s.bti";
-SECTION_DEAD static char const* const stringBase_8037411F =
-    "親ヒープがExpでないのでアジャストできません %08x %08x\n";
-SECTION_DEAD static char const* const stringBase_80374156 = "adjustSize失敗 %08x\n";
-SECTION_DEAD static char const* const stringBase_8037416B =
-    "\nキャッシュフォントクラス作成に失敗しました\n";
-#pragma pop
+/* 803740FC-803740FC 00075C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

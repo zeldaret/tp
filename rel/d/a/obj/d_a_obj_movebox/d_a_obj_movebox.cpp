@@ -13,9 +13,9 @@
 
 struct request_of_phase_process_class {};
 
-struct Quaternion {};
-
 struct csXyz {};
+
+struct Quaternion {};
 
 struct Vec {};
 
@@ -50,8 +50,6 @@ struct dBgW {
 };
 
 struct daObjMovebox {
-    struct BgcSrc_c {};
-
     struct Act_c {
         struct Prm_e {};
 
@@ -93,6 +91,8 @@ struct daObjMovebox {
         static u8 const M_attr[1280];
     };
 
+    struct BgcSrc_c {};
+
     struct Bgc_c {
         /* 8047DAEC */ Bgc_c();
         /* 8047DBF0 */ void gnd_pos(daObjMovebox::Act_c const*, daObjMovebox::BgcSrc_c const*, int,
@@ -122,7 +122,8 @@ struct daObj {
     template <typename A1>
     void PrmAbstract(/* ... */);
     /* 80480CD8 */ /* daObj::PrmAbstract<daObjMovebox::Act_c::Prm_e> */
-    void func_80480CD8(fopAc_ac_c const*, daObjMovebox::Act_c::Prm_e, daObjMovebox::Act_c::Prm_e);
+    void func_80480CD8(void* _this, fopAc_ac_c const*, daObjMovebox::Act_c::Prm_e,
+                       daObjMovebox::Act_c::Prm_e);
 };
 
 struct dVibration_c {
@@ -372,7 +373,7 @@ extern "C" static void func_80480C18();
 extern "C" static void func_80480C38();
 extern "C" static void func_80480C64();
 extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void func_80480CD8(fopAc_ac_c const*, daObjMovebox::Act_c::Prm_e,
+extern "C" void func_80480CD8(void* _this, fopAc_ac_c const*, daObjMovebox::Act_c::Prm_e,
                               daObjMovebox::Act_c::Prm_e);
 extern "C" void __sinit_d_a_obj_movebox_cpp();
 extern "C" void func_80480DA0();
@@ -536,7 +537,7 @@ SECTION_RODATA u8 const daObjMovebox::Bgc_c::M_lin5[80] = {
     0x3F, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00,
     0xBF, 0x00, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80480F28, &daObjMovebox::Bgc_c::M_lin5);
+COMPILER_STRIP_GATE(0x80480F28, &daObjMovebox::Bgc_c::M_lin5);
 
 /* 80480F78-804810E8 000050 0170+00 0/4 0/0 0/0 .rodata          M_lin20__Q212daObjMovebox5Bgc_c */
 #pragma push
@@ -566,7 +567,7 @@ SECTION_RODATA u8 const daObjMovebox::Bgc_c::M_lin20[368] = {
     0xBF, 0x40, 0x00, 0x00, 0x3E, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0xBF, 0x40, 0x00, 0x00, 0xBE, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80480F78, &daObjMovebox::Bgc_c::M_lin20);
+COMPILER_STRIP_GATE(0x80480F78, &daObjMovebox::Bgc_c::M_lin20);
 #pragma pop
 
 /* 804810E8-804810EC 0001C0 0004+00 7/16 0/0 0/0 .rodata          @3687 */
@@ -576,7 +577,7 @@ SECTION_RODATA static u8 const lit_3687[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(804810E8, &lit_3687);
+COMPILER_STRIP_GATE(0x804810E8, &lit_3687);
 
 /* 8047DAEC-8047DBB0 0000EC 00C4+00 1/1 0/0 0/0 .text            __ct__Q212daObjMovebox5Bgc_cFv */
 #pragma push
@@ -606,7 +607,7 @@ cXyz::cXyz() {
 /* ############################################################################################## */
 /* 804810EC-804810F0 0001C4 0004+00 1/2 0/0 0/0 .rodata          @3728 */
 SECTION_RODATA static f32 const lit_3728 = -1000000000.0f;
-COMPILER_STRIP_GATE(804810EC, &lit_3728);
+COMPILER_STRIP_GATE(0x804810EC, &lit_3728);
 
 /* 80481888-8048188C 000008 0001+03 4/4 0/0 0/0 .bss             @1109 */
 static u8 lit_1109[1 + 3 /* padding */];
@@ -727,11 +728,11 @@ asm void daObjMovebox::Bgc_c::gnd_pos(daObjMovebox::Act_c const* param_0,
 /* ############################################################################################## */
 /* 804810F0-804810F4 0001C8 0004+00 1/1 0/0 0/0 .rodata          @3754 */
 SECTION_RODATA static f32 const lit_3754 = 400.0f;
-COMPILER_STRIP_GATE(804810F0, &lit_3754);
+COMPILER_STRIP_GATE(0x804810F0, &lit_3754);
 
 /* 804810F4-804810F8 0001CC 0004+00 1/2 0/0 0/0 .rodata          @3755 */
 SECTION_RODATA static f32 const lit_3755 = 100.0f;
-COMPILER_STRIP_GATE(804810F4, &lit_3755);
+COMPILER_STRIP_GATE(0x804810F4, &lit_3755);
 
 /* 80482060-8048206C 0007E0 000C+00 0/1 0/0 0/0 .bss             @3670 */
 #pragma push
@@ -756,7 +757,7 @@ asm void daObjMovebox::Bgc_c::wrt_pos(cXyz const& param_0) {
 /* ############################################################################################## */
 /* 804810F8-804810FC 0001D0 0004+00 1/4 0/0 0/0 .rodata          @3831 */
 SECTION_RODATA static f32 const lit_3831 = 0.5f;
-COMPILER_STRIP_GATE(804810F8, &lit_3831);
+COMPILER_STRIP_GATE(0x804810F8, &lit_3831);
 
 /* 804820C0-804820CC 000840 000C+00 0/1 0/0 0/0 .bss             @3672 */
 #pragma push
@@ -795,7 +796,7 @@ asm void daObjMovebox::Bgc_c::proc_vertical(daObjMovebox::Act_c* param_0) {
 /* ############################################################################################## */
 /* 804810FC-80481100 0001D4 0004+00 3/10 0/0 0/0 .rodata          @3902 */
 SECTION_RODATA static f32 const lit_3902 = 1.0f;
-COMPILER_STRIP_GATE(804810FC, &lit_3902);
+COMPILER_STRIP_GATE(0x804810FC, &lit_3902);
 
 /* 8047E2D4-8047E350 0008D4 007C+00 2/2 0/0 0/0 .text
  * chk_wall_pre__Q212daObjMovebox5Bgc_cFPCQ212daObjMovebox5Act_cPCQ212daObjMovebox8BgcSrc_cis */
@@ -815,7 +816,7 @@ asm void daObjMovebox::Bgc_c::chk_wall_pre(daObjMovebox::Act_c const* param_0,
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3960 = 10.0f;
-COMPILER_STRIP_GATE(80481100, &lit_3960);
+COMPILER_STRIP_GATE(0x80481100, &lit_3960);
 #pragma pop
 
 /* 80482ADC-80482AEC 00125C 000C+04 0/1 0/0 0/0 .bss             @3909 */
@@ -889,6 +890,30 @@ asm void daObjMovebox::Act_c::prmX_init() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 804816A4-804816AD 00077C 0009+00 2/1 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_804816A4;
+
+/* 804816AD-804816B4 000785 0007+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_804816AD;
+
+/* 804816B4-804816BC 00078C 0008+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_804816B4;
+
+/* 804816BC-804816C6 000794 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_804816BC;
+
+/* 804816C6-804816CF 00079E 0009+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_804816C6;
+
+/* 804816CF-804816D9 0007A7 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_804816CF;
+
+/* 804816D9-804816E3 0007B1 000A+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_804816D9;
+
+/* 804816E3-804816EA 0007BB 0007+00 1/0 0/0 0/0 .rodata          None */
+extern "C" char const* const stringBase_804816E3;
+
 /* 80481104-80481124 -00001 0020+00 3/3 0/0 0/0 .rodata          M_arcname__Q212daObjMovebox5Act_c
  */
 SECTION_RODATA void* const daObjMovebox::Act_c::M_arcname[8] = {
@@ -901,7 +926,7 @@ SECTION_RODATA void* const daObjMovebox::Act_c::M_arcname[8] = {
     (void*)(((char*)&d_a_obj_movebox__stringBase0) + 0x35),
     (void*)(((char*)&d_a_obj_movebox__stringBase0) + 0x3F),
 };
-COMPILER_STRIP_GATE(80481104, &daObjMovebox::Act_c::M_arcname);
+COMPILER_STRIP_GATE(0x80481104, &daObjMovebox::Act_c::M_arcname);
 
 /* 80481124-80481168 0001FC 0044+00 0/1 0/0 0/0 .rodata          M_cyl_src__Q212daObjMovebox5Act_c
  */
@@ -914,7 +939,7 @@ SECTION_RODATA u8 const daObjMovebox::Act_c::M_cyl_src[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x42, 0x96, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80481124, &daObjMovebox::Act_c::M_cyl_src);
+COMPILER_STRIP_GATE(0x80481124, &daObjMovebox::Act_c::M_cyl_src);
 #pragma pop
 
 /* 80481168-80481668 000240 0500+00 6/18 0/0 0/0 .rodata          M_attr__Q212daObjMovebox5Act_c */
@@ -1000,7 +1025,20 @@ SECTION_RODATA u8 const daObjMovebox::Act_c::M_attr[1280] = {
     0x00, 0x08, 0x01, 0x3D, 0x00, 0x08, 0x01, 0x51, 0x00, 0x08, 0x00, 0x2A, 0x00, 0x08, 0x00, 0x2D,
     0xFF, 0xA6, 0xFF, 0xFF, 0xFF, 0xA6, 0x00, 0x5A, 0x00, 0x97, 0x00, 0x5A, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80481168, &daObjMovebox::Act_c::M_attr);
+COMPILER_STRIP_GATE(0x80481168, &daObjMovebox::Act_c::M_attr);
+
+/* 804816A4-804816A4 00077C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_804816A4 = "Kkiba_00";
+SECTION_DEAD static char const* const stringBase_804816AD = "Osiblk";
+SECTION_DEAD static char const* const stringBase_804816B4 = "H_Box20";
+SECTION_DEAD static char const* const stringBase_804816BC = "A_SMBlock";
+SECTION_DEAD static char const* const stringBase_804816C6 = "P_Lv4blk";
+SECTION_DEAD static char const* const stringBase_804816CF = "P_Lv4blk2";
+SECTION_DEAD static char const* const stringBase_804816D9 = "H_OsiHaka";
+SECTION_DEAD static char const* const stringBase_804816E3 = "dummy4";
+#pragma pop
 
 /* 8047E6B0-8047E6C8 000CB0 0018+00 5/5 0/0 0/0 .text            attr__Q212daObjMovebox5Act_cCFv */
 #pragma push
@@ -1048,7 +1086,7 @@ asm void daObjMovebox::Act_c::path_init() {
 /* ############################################################################################## */
 /* 80481668-8048166C 000740 0004+00 1/1 0/0 0/0 .rodata          @4161 */
 SECTION_RODATA static f32 const lit_4161 = 9.0f;
-COMPILER_STRIP_GATE(80481668, &lit_4161);
+COMPILER_STRIP_GATE(0x80481668, &lit_4161);
 
 /* 8047E92C-8047EB48 000F2C 021C+00 1/1 0/0 0/0 .text            path_save__Q212daObjMovebox5Act_cFv
  */
@@ -1076,7 +1114,7 @@ asm void daObjMovebox::Act_c::CreateHeap() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4214 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(8048166C, &lit_4214);
+COMPILER_STRIP_GATE(0x8048166C, &lit_4214);
 #pragma pop
 
 /* 80481670-80481678 000748 0004+04 0/1 0/0 0/0 .rodata          @4215 */
@@ -1087,7 +1125,7 @@ SECTION_RODATA static f32 const lit_4215[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80481670, &lit_4215);
+COMPILER_STRIP_GATE(0x80481670, &lit_4215);
 #pragma pop
 
 /* 8047EBEC-8047ED10 0011EC 0124+00 1/1 0/0 0/0 .text
@@ -1121,7 +1159,7 @@ asm void daObjMovebox::Act_c::PPCallBack(fopAc_ac_c* param_0, fopAc_ac_c* param_
 SECTION_RODATA static u8 const lit_4354[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80481678, &lit_4354);
+COMPILER_STRIP_GATE(0x80481678, &lit_4354);
 #pragma pop
 
 /* 8047EE0C-8047F11C 00140C 0310+00 1/0 0/0 0/0 .text            Create__Q212daObjMovebox5Act_cFv */
@@ -1178,7 +1216,7 @@ asm void daObjMovebox::Act_c::chk_appear() const {
 /* ############################################################################################## */
 /* 80481680-80481684 000758 0004+00 1/1 0/0 0/0 .rodata          @4514 */
 SECTION_RODATA static f32 const lit_4514 = 3.0f / 5.0f;
-COMPILER_STRIP_GATE(80481680, &lit_4514);
+COMPILER_STRIP_GATE(0x80481680, &lit_4514);
 
 /* 80482B5C-80482B6C 0012DC 000C+04 0/1 0/0 0/0 .bss             @4501 */
 #pragma push
@@ -1218,7 +1256,7 @@ asm void daObjMovebox::Act_c::mode_wait_init() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4562 = 32768.0f;
-COMPILER_STRIP_GATE(80481684, &lit_4562);
+COMPILER_STRIP_GATE(0x80481684, &lit_4562);
 #pragma pop
 
 /* 8047F6A8-8047F8D4 001CA8 022C+00 1/0 0/0 0/0 .text            mode_wait__Q212daObjMovebox5Act_cFv
@@ -1247,7 +1285,7 @@ asm void daObjMovebox::Act_c::mode_walk_init() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4681 = -1.0f;
-COMPILER_STRIP_GATE(80481688, &lit_4681);
+COMPILER_STRIP_GATE(0x80481688, &lit_4681);
 #pragma pop
 
 /* 80482B78-80482B88 0012F8 000C+04 0/1 0/0 0/0 .bss             @4574 */
@@ -1490,19 +1528,19 @@ asm void daObjMovebox::Act_c::vib_land() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4774 = 2.0f;
-COMPILER_STRIP_GATE(8048168C, &lit_4774);
+COMPILER_STRIP_GATE(0x8048168C, &lit_4774);
 #pragma pop
 
 /* 80481690-80481694 000768 0004+00 0/0 0/0 0/0 .rodata          @4775 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4775 = 75.0f;
-COMPILER_STRIP_GATE(80481690, &lit_4775);
+COMPILER_STRIP_GATE(0x80481690, &lit_4775);
 #pragma pop
 
 /* 80481694-80481698 00076C 0004+00 1/1 0/0 0/0 .rodata          @4890 */
 SECTION_RODATA static f32 const lit_4890 = 5.0f / 3.0f;
-COMPILER_STRIP_GATE(80481694, &lit_4890);
+COMPILER_STRIP_GATE(0x80481694, &lit_4890);
 
 /* 804801FC-8048027C 0027FC 0080+00 1/1 0/0 0/0 .text eff_land_smoke__Q212daObjMovebox5Act_cFv */
 #pragma push
@@ -1529,7 +1567,14 @@ SECTION_RODATA static u8 const particle_id[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80481698, &particle_id);
+COMPILER_STRIP_GATE(0x80481698, &particle_id);
+#pragma pop
+
+/* 804816A4-804816A4 00077C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_804816EA = "Always";
+SECTION_DEAD static char const* const stringBase_804816F1 = "BreakWoodBox.bmd";
 #pragma pop
 
 /* 80482BDC-80482BEC 00135C 000C+04 0/0 0/0 0/0 .bss             @4762 */
@@ -1733,7 +1778,7 @@ asm void daObjMovebox::Act_c::Execute(f32 (**param_0)[3][4]) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5051 = -2.0f / 5.0f;
-COMPILER_STRIP_GATE(804816A0, &lit_5051);
+COMPILER_STRIP_GATE(0x804816A0, &lit_5051);
 #pragma pop
 
 /* 80480728-804808B4 002D28 018C+00 1/0 0/0 0/0 .text            Draw__Q212daObjMovebox5Act_cFv */
@@ -1882,7 +1927,8 @@ asm cCcD_GStts::~cCcD_GStts() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80480CD8(fopAc_ac_c const* param_0, daObjMovebox::Act_c::Prm_e param_1,
+extern "C" asm void func_80480CD8(void* _this, fopAc_ac_c const* param_0,
+                                  daObjMovebox::Act_c::Prm_e param_1,
                                   daObjMovebox::Act_c::Prm_e param_2) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_movebox/d_a_obj_movebox/func_80480CD8.s"
@@ -1901,7 +1947,7 @@ asm void __sinit_d_a_obj_movebox_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80480CF4 = (void*)__sinit_d_a_obj_movebox_cpp;
+REGISTER_CTORS(0x80480CF4, __sinit_d_a_obj_movebox_cpp);
 #pragma pop
 
 /* 80480DA0-80480DD8 0033A0 0038+00 1/1 0/0 0/0 .text            __arraydtor$3671 */
@@ -2021,18 +2067,4 @@ static asm void func_80480F0C() {
 }
 #pragma pop
 
-/* 804816A4-80481702 00077C 005E+00 2/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_804816A4 = "Kkiba_00";
-SECTION_DEAD static char const* const stringBase_804816AD = "Osiblk";
-SECTION_DEAD static char const* const stringBase_804816B4 = "H_Box20";
-SECTION_DEAD static char const* const stringBase_804816BC = "A_SMBlock";
-SECTION_DEAD static char const* const stringBase_804816C6 = "P_Lv4blk";
-SECTION_DEAD static char const* const stringBase_804816CF = "P_Lv4blk2";
-SECTION_DEAD static char const* const stringBase_804816D9 = "H_OsiHaka";
-SECTION_DEAD static char const* const stringBase_804816E3 = "dummy4";
-SECTION_DEAD static char const* const stringBase_804816EA = "Always";
-SECTION_DEAD static char const* const stringBase_804816F1 = "BreakWoodBox.bmd";
-#pragma pop
+/* 804816A4-804816A4 00077C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

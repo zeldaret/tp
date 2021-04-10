@@ -106,8 +106,8 @@ lbl_8065C870:
 /* 8065C884  D0 01 00 50 */	stfs f0, 0x50(r1)
 /* 8065C888  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
 /* 8065C88C  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
-/* 8065C890  3C 80 80 66 */	lis r4, struct_80662FB8+0x0@ha /* 0x80662FB8@ha */
-/* 8065C894  A8 04 2F B8 */	lha r0, struct_80662FB8+0x0@l(r4)  /* 0x80662FB8@l */
+/* 8065C890  3C 80 80 66 */	lis r4, data_80662FB8@ha /* 0x80662FB8@ha */
+/* 8065C894  A8 04 2F B8 */	lha r0, data_80662FB8@l(r4)  /* 0x80662FB8@l */
 /* 8065C898  7C 00 00 D0 */	neg r0, r0
 /* 8065C89C  7C 04 07 34 */	extsh r4, r0
 /* 8065C8A0  4B 9A FB 3D */	bl mDoMtx_YrotS__FPA4_fs
@@ -208,8 +208,8 @@ lbl_8065C9F8:
 /* 8065C9F8  7F A3 EB 78 */	mr r3, r29
 /* 8065C9FC  38 80 00 00 */	li r4, 0
 /* 8065CA00  4B FF BB CD */	bl calcRunAnime__7daCow_cFi
-/* 8065CA04  3C 60 80 66 */	lis r3, struct_80662FB8+0x0@ha /* 0x80662FB8@ha */
-/* 8065CA08  A8 03 2F B8 */	lha r0, struct_80662FB8+0x0@l(r3)  /* 0x80662FB8@l */
+/* 8065CA04  3C 60 80 66 */	lis r3, data_80662FB8@ha /* 0x80662FB8@ha */
+/* 8065CA08  A8 03 2F B8 */	lha r0, data_80662FB8@l(r3)  /* 0x80662FB8@l */
 /* 8065CA0C  B0 1D 0C 72 */	sth r0, 0xc72(r29)
 /* 8065CA10  38 7D 04 DE */	addi r3, r29, 0x4de
 /* 8065CA14  A8 9D 0C 72 */	lha r4, 0xc72(r29)
@@ -259,8 +259,8 @@ lbl_8065CA5C:
 /* 8065CAC0  D3 C1 00 50 */	stfs f30, 0x50(r1)
 /* 8065CAC4  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */
 /* 8065CAC8  38 63 D4 70 */	addi r3, r3, now__14mDoMtx_stack_c@l /* 0x803DD470@l */
-/* 8065CACC  3C 80 80 66 */	lis r4, struct_80662FB8+0x0@ha /* 0x80662FB8@ha */
-/* 8065CAD0  38 84 2F B8 */	addi r4, r4, struct_80662FB8+0x0@l /* 0x80662FB8@l */
+/* 8065CACC  3C 80 80 66 */	lis r4, data_80662FB8@ha /* 0x80662FB8@ha */
+/* 8065CAD0  38 84 2F B8 */	addi r4, r4, data_80662FB8@l /* 0x80662FB8@l */
 /* 8065CAD4  A8 84 00 00 */	lha r4, 0(r4)
 /* 8065CAD8  4B 9A F9 05 */	bl mDoMtx_YrotS__FPA4_fs
 /* 8065CADC  3C 60 80 3E */	lis r3, now__14mDoMtx_stack_c@ha /* 0x803DD470@ha */

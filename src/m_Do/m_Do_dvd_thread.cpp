@@ -369,6 +369,14 @@ asm void mDoDvdThd_param_c::cut(mDoDvdThd_command_c* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803741A8-803741A8 000808 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803741A8 =
+    "mDoDvdThd_param_c::mainLoop() コマンドの実行が失敗しました。\n";
+#pragma pop
+
 /* 80015A90-80015AD8 0103D0 0048+00 1/1 0/0 0/0 .text            cb__FPv */
 #pragma push
 #pragma optimization_level 0
@@ -413,7 +421,7 @@ asm mDoDvdThd_callback_c::~mDoDvdThd_callback_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm mDoDvdThd_callback_c::mDoDvdThd_callback_c(void* (*)(void*), void* param_1) {
+asm mDoDvdThd_callback_c::mDoDvdThd_callback_c(void* (*param_0)(void*), void* param_1) {
     nofralloc
 #include "asm/m_Do/m_Do_dvd_thread/__ct__20mDoDvdThd_callback_cFPFPv_PvPv.s"
 }
@@ -423,7 +431,7 @@ asm mDoDvdThd_callback_c::mDoDvdThd_callback_c(void* (*)(void*), void* param_1) 
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void mDoDvdThd_callback_c::create(void* (*)(void*), void* param_1) {
+asm void mDoDvdThd_callback_c::create(void* (*param_0)(void*), void* param_1) {
     nofralloc
 #include "asm/m_Do/m_Do_dvd_thread/create__20mDoDvdThd_callback_cFPFPv_PvPv.s"
 }
@@ -471,6 +479,29 @@ asm void mDoDvdThd_mountArchive_c::create(char const* param_0, u8 param_1, JKRHe
     nofralloc
 #include "asm/m_Do/m_Do_dvd_thread/create__24mDoDvdThd_mountArchive_cFPCcUcP7JKRHeap.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 803741A8-803741A8 000808 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803741E6 =
+    "mDoDvdThd_mountArchive_c::execute マウント失敗\n";
+SECTION_DEAD static char const* const stringBase_80374216 =
+    "mDoDvdThd_mountArchive_c::execute ゼルダヒープで再チャレンジ！"
+    "\n";
+SECTION_DEAD static char const* const stringBase_80374256 =
+    "mDoDvdThd_mountArchive_c::execute アーカイブヒープで再チャレン"
+    "ジ！\n";
+SECTION_DEAD static char const* const stringBase_8037429A =
+    "mDoDvdThd_mountArchive_c::execute ゲームヒープで再チャレンジ！"
+    "\n";
+SECTION_DEAD static char const* const stringBase_803742DA =
+    "mDoDvdThd_mountArchive_c::execute J2Dヒープで再チャレンジ！"
+    "\n";
+SECTION_DEAD static char const* const stringBase_80374317 =
+    "mDoDvdThd_mountArchive_c::execute ヒープが致命的に足りません！"
+    "\n";
 #pragma pop
 
 /* 80015EDC-80016108 01081C 022C+00 1/0 0/0 0/0 .text execute__24mDoDvdThd_mountArchive_cFv */
@@ -582,34 +613,20 @@ asm void __sinit_m_Do_dvd_thread_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80016574 = (void*)__sinit_m_Do_dvd_thread_cpp;
+REGISTER_CTORS(0x80016574, __sinit_m_Do_dvd_thread_cpp);
 #pragma pop
 
-/* 803741A8-803743F8 000808 0250+00 2/2 0/0 0/0 .rodata          @stringBase0 */
+/* ############################################################################################## */
+/* 80374357-8037438B 0009B7 0034+00 0/0 0/0 0/0 .rodata          None */
 #pragma push
 #pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803741A8 =
-    "mDoDvdThd_param_c::mainLoop() コマンドの実行が失敗しました。\n";
-SECTION_DEAD static char const* const stringBase_803741E6 =
-    "mDoDvdThd_mountArchive_c::execute マウント失敗\n";
-SECTION_DEAD static char const* const stringBase_80374216 =
-    "mDoDvdThd_mountArchive_c::execute ゼルダヒープで再チャレンジ！"
-    "\n";
-SECTION_DEAD static char const* const stringBase_80374256 =
-    "mDoDvdThd_mountArchive_c::execute アーカイブヒープで再チャレン"
-    "ジ！\n";
-SECTION_DEAD static char const* const stringBase_8037429A =
-    "mDoDvdThd_mountArchive_c::execute ゲームヒープで再チャレンジ！"
-    "\n";
-SECTION_DEAD static char const* const stringBase_803742DA =
-    "mDoDvdThd_mountArchive_c::execute J2Dヒープで再チャレンジ！"
-    "\n";
-SECTION_DEAD static char const* const stringBase_80374317 =
-    "mDoDvdThd_mountArchive_c::execute ヒープが致命的に足りません！"
-    "\n";
 SECTION_DEAD static char const* const stringBase_80374357 =
     "mDoDvdThd_getResource_c::create() クラス生成に失敗\n";
+#pragma pop
+
+/* 8037438B-803743C1 0009EB 0036+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
 // MWCC ignores mapping of some japanese characters using the
 // byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
 SECTION_DEAD static char const* const stringBase_8037438B =
@@ -617,6 +634,11 @@ SECTION_DEAD static char const* const stringBase_8037438B =
     "\x3A\x3A\x63\x72\x65\x61\x74\x65\x28\x29\x20\x83\x8A\x83\x5C\x81\x5B\x83\x58\x8E\xE6\x93\xBE"
     "\x82\xC9"
     "\x8E\xB8\x94\x73\x0A";
+#pragma pop
+
+/* 803743C1-803743F8 000A21 0037+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
 // MWCC ignores mapping of some japanese characters using the
 // byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
 SECTION_DEAD static char const* const stringBase_803743C1 =
@@ -625,3 +647,5 @@ SECTION_DEAD static char const* const stringBase_803743C1 =
     "\xBE\x82"
     "\xC9\x8E\xB8\x94\x73\x0A";
 #pragma pop
+
+/* 803741A8-803741A8 000808 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

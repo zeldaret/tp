@@ -324,6 +324,12 @@ asm void daObjGeyser_c::setBaseMtx() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80BF905C-80BF905C 000074 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BF905C = "H_knktsn";
+#pragma pop
+
 /* 80BF9068-80BF9074 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -385,7 +391,7 @@ asm void daObjGeyser_c::CreateHeap() {
 SECTION_RODATA static u8 const l_dzb[8] = {
     0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x08,
 };
-COMPILER_STRIP_GATE(80BF8FE8, &l_dzb);
+COMPILER_STRIP_GATE(0x80BF8FE8, &l_dzb);
 
 /* 80BF7174-80BF7288 0002D4 0114+00 1/1 0/0 0/0 .text            create1st__13daObjGeyser_cFv */
 #pragma push
@@ -405,14 +411,14 @@ SECTION_RODATA static u8 const l_scale[24] = {
     0x3F, 0x33, 0x33, 0x33, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
     0x3E, 0x99, 0x99, 0x9A, 0x3F, 0x4C, 0xCC, 0xCD, 0x3F, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BF8FF0, &l_scale);
+COMPILER_STRIP_GATE(0x80BF8FF0, &l_scale);
 #pragma pop
 
 /* 80BF9008-80BF900C 000020 0004+00 0/1 0/0 0/0 .rodata          @3758 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3758 = 5000.0f;
-COMPILER_STRIP_GATE(80BF9008, &lit_3758);
+COMPILER_STRIP_GATE(0x80BF9008, &lit_3758);
 #pragma pop
 
 /* 80BF900C-80BF9010 000024 0004+00 1/7 0/0 0/0 .rodata          @3759 */
@@ -422,24 +428,24 @@ SECTION_RODATA static u8 const lit_3759[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BF900C, &lit_3759);
+COMPILER_STRIP_GATE(0x80BF900C, &lit_3759);
 
 /* 80BF9010-80BF9014 000028 0004+00 6/11 0/0 0/0 .rodata          @3760 */
 SECTION_RODATA static f32 const lit_3760 = 1.0f;
-COMPILER_STRIP_GATE(80BF9010, &lit_3760);
+COMPILER_STRIP_GATE(0x80BF9010, &lit_3760);
 
 /* 80BF9014-80BF9018 00002C 0004+00 0/3 0/0 0/0 .rodata          @3761 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3761 = 500.0f;
-COMPILER_STRIP_GATE(80BF9014, &lit_3761);
+COMPILER_STRIP_GATE(0x80BF9014, &lit_3761);
 #pragma pop
 
 /* 80BF9018-80BF901C 000030 0004+00 0/2 0/0 0/0 .rodata          @3762 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3762 = 100.0f;
-COMPILER_STRIP_GATE(80BF9018, &lit_3762);
+COMPILER_STRIP_GATE(0x80BF9018, &lit_3762);
 #pragma pop
 
 /* 80BF7288-80BF744C 0003E8 01C4+00 1/0 0/0 0/0 .text            Execute__13daObjGeyser_cFPPA3_A4_f
@@ -570,21 +576,21 @@ asm void daObjGeyser_c::actionOff2Init() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3855 = 1000.0f;
-COMPILER_STRIP_GATE(80BF901C, &lit_3855);
+COMPILER_STRIP_GATE(0x80BF901C, &lit_3855);
 #pragma pop
 
 /* 80BF9020-80BF9024 000038 0004+00 0/3 0/0 0/0 .rodata          @3856 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3856 = -50.0f;
-COMPILER_STRIP_GATE(80BF9020, &lit_3856);
+COMPILER_STRIP_GATE(0x80BF9020, &lit_3856);
 #pragma pop
 
 /* 80BF9024-80BF9028 00003C 0004+00 0/3 0/0 0/0 .rodata          @3857 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3857 = 1200.0f;
-COMPILER_STRIP_GATE(80BF9024, &lit_3857);
+COMPILER_STRIP_GATE(0x80BF9024, &lit_3857);
 #pragma pop
 
 /* 80BF9028-80BF9030 000040 0008+00 0/4 0/0 0/0 .rodata          @3858 */
@@ -593,7 +599,7 @@ COMPILER_STRIP_GATE(80BF9024, &lit_3857);
 SECTION_RODATA static u8 const lit_3858[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BF9028, &lit_3858);
+COMPILER_STRIP_GATE(0x80BF9028, &lit_3858);
 #pragma pop
 
 /* 80BF9030-80BF9038 000048 0008+00 0/4 0/0 0/0 .rodata          @3859 */
@@ -602,7 +608,7 @@ COMPILER_STRIP_GATE(80BF9028, &lit_3858);
 SECTION_RODATA static u8 const lit_3859[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BF9030, &lit_3859);
+COMPILER_STRIP_GATE(0x80BF9030, &lit_3859);
 #pragma pop
 
 /* 80BF9038-80BF9040 000050 0008+00 0/4 0/0 0/0 .rodata          @3860 */
@@ -611,12 +617,12 @@ COMPILER_STRIP_GATE(80BF9030, &lit_3859);
 SECTION_RODATA static u8 const lit_3860[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BF9038, &lit_3860);
+COMPILER_STRIP_GATE(0x80BF9038, &lit_3860);
 #pragma pop
 
 /* 80BF9040-80BF9044 000058 0004+00 1/4 0/0 0/0 .rodata          @3861 */
 SECTION_RODATA static f32 const lit_3861 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80BF9040, &lit_3861);
+COMPILER_STRIP_GATE(0x80BF9040, &lit_3861);
 
 /* 80BF9198-80BF91B8 -00001 0020+00 1/0 0/0 0/0 .data            daObjGeyser_METHODS */
 SECTION_DATA static void* daObjGeyser_METHODS[8] = {
@@ -703,12 +709,12 @@ asm void daObjGeyser_c::actionOnWait2Init() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3969 = 600.0f;
-COMPILER_STRIP_GATE(80BF9044, &lit_3969);
+COMPILER_STRIP_GATE(0x80BF9044, &lit_3969);
 #pragma pop
 
 /* 80BF9048-80BF904C 000060 0004+00 1/4 0/0 0/0 .rodata          @3970 */
 SECTION_RODATA static f32 const lit_3970 = -1.0f;
-COMPILER_STRIP_GATE(80BF9048, &lit_3970);
+COMPILER_STRIP_GATE(0x80BF9048, &lit_3970);
 
 /* 80BF787C-80BF7C54 0009DC 03D8+00 1/0 0/0 0/0 .text            actionOnWait2__13daObjGeyser_cFv */
 #pragma push
@@ -735,7 +741,7 @@ asm void daObjGeyser_c::actionOn2Init() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4096 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(80BF904C, &lit_4096);
+COMPILER_STRIP_GATE(0x80BF904C, &lit_4096);
 #pragma pop
 
 /* 80BF7CA0-80BF8158 000E00 04B8+00 1/0 0/0 0/0 .text            actionOn2__13daObjGeyser_cFv */
@@ -835,7 +841,7 @@ asm void daObjGeyser_c::actionOn() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4232 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80BF9050, &lit_4232);
+COMPILER_STRIP_GATE(0x80BF9050, &lit_4232);
 #pragma pop
 
 /* 80BF8584-80BF863C 0016E4 00B8+00 2/2 0/0 0/0 .text            setPntWind__13daObjGeyser_cFv */
@@ -863,14 +869,14 @@ asm void daObjGeyser_c::cutPntWind() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4280 = 2.0f;
-COMPILER_STRIP_GATE(80BF9054, &lit_4280);
+COMPILER_STRIP_GATE(0x80BF9054, &lit_4280);
 #pragma pop
 
 /* 80BF9058-80BF905C 000070 0004+00 0/1 0/0 0/0 .rodata          @4281 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4281 = 0.5f;
-COMPILER_STRIP_GATE(80BF9058, &lit_4281);
+COMPILER_STRIP_GATE(0x80BF9058, &lit_4281);
 #pragma pop
 
 /* 80BF8660-80BF8870 0017C0 0210+00 1/1 0/0 0/0 .text            movePntWind__13daObjGeyser_cFv */
@@ -1113,9 +1119,4 @@ asm cCcD_GStts::~cCcD_GStts() {
 }
 #pragma pop
 
-/* 80BF905C-80BF9065 000074 0009+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BF905C = "H_knktsn";
-#pragma pop
+/* 80BF905C-80BF905C 000074 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

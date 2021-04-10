@@ -37,9 +37,9 @@ struct mDoExt_btkAnm {
     /* 8000D6D8 */ void entry(J3DMaterialTable*, f32);
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -197,8 +197,6 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct cBgS_PolyInfo {
     /* 802680B0 */ ~cBgS_PolyInfo();
 };
@@ -206,6 +204,8 @@ struct cBgS_PolyInfo {
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -431,7 +431,7 @@ extern "C" static void daDoor20_Delete__FP10daDoor20_c();
 extern "C" static void daDoor20_Create__FP10fopAc_ac_c();
 extern "C" void __dt__12dBgS_AcchCirFv();
 extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" void func_804667EC(u8*);
+extern "C" void func_804667EC(void* _this, u8*);
 extern "C" static void func_80466808();
 extern "C" static void func_80466810();
 extern "C" extern char const* const d_a_door_shutter__stringBase0;
@@ -583,6 +583,13 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
+/* ############################################################################################## */
+/* 804668D8-804668D8 0000B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_804668D8 = "door-stop.bmd";
+#pragma pop
+
 /* 80460B38-80460B70 000078 0038+00 1/1 0/0 0/0 .text            getStopBmdName__10daDoor20_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -603,6 +610,13 @@ asm void daDoor20_c::getStopModelData() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 804668D8-804668D8 0000B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_804668E6 = "static";
+#pragma pop
+
 /* 80460B94-80460BA4 0000D4 0010+00 4/4 0/0 0/0 .text            getAlwaysArcName__10daDoor20_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -614,6 +628,17 @@ asm void daDoor20_c::getAlwaysArcName() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 804668D8-804668D8 0000B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_804668ED = "DoorT00";
+SECTION_DEAD static char const* const stringBase_804668F5 = "DoorY00";
+SECTION_DEAD static char const* const stringBase_804668FD = "DoorK00";
+SECTION_DEAD static char const* const stringBase_80466905 = "DoorLV8";
+SECTION_DEAD static char const* const stringBase_8046690D = "DoorLV7";
+SECTION_DEAD static char const* const stringBase_80466915 = "DoorLV9";
+#pragma pop
+
 /* 80466E7C-80466E88 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -660,6 +685,13 @@ asm void daDoor20_c::getArcName() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 804668D8-804668D8 0000B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8046691D = "door-shutter_%02d.bmd";
+SECTION_DEAD static char const* const stringBase_80466933 = "door-knob_%02d.bmd";
+#pragma pop
+
 /* 80467340-80467360 000000 0020+00 1/1 0/0 0/0 .bss             bmdName$3984 */
 static u8 bmdName[32];
 
@@ -673,6 +705,13 @@ asm void daDoor20_c::getBmdName() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 804668D8-804668D8 0000B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80466946 = "door-shutter_00.btk";
+#pragma pop
+
 /* 80460CF0-80460D00 000230 0010+00 1/1 0/0 0/0 .text            getBtk__10daDoor20_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -681,6 +720,14 @@ asm void daDoor20_c::getBtk() {
     nofralloc
 #include "asm/rel/d/a/door/d_a_door_shutter/d_a_door_shutter/getBtk__10daDoor20_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 804668D8-804668D8 0000B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8046695A = "door-shutter.dzb";
+SECTION_DEAD static char const* const stringBase_8046696B = "door-shutterlv9.dzb";
 #pragma pop
 
 /* 80460D00-80460D5C 000240 005C+00 1/0 0/0 0/0 .text            getDzbName__10daDoor20_cFv */
@@ -706,7 +753,7 @@ asm void daDoor20_c::getModelData() {
 /* ############################################################################################## */
 /* 80466820-80466824 000000 0004+00 17/17 0/0 0/0 .rodata          @4018 */
 SECTION_RODATA static f32 const lit_4018 = 12100.0f;
-COMPILER_STRIP_GATE(80466820, &lit_4018);
+COMPILER_STRIP_GATE(0x80466820, &lit_4018);
 
 /* 80460D80-80460D8C 0002C0 000C+00 1/1 0/0 0/0 .text            getSize2X__10daDoor20_cFv */
 #pragma push
@@ -731,11 +778,96 @@ static asm void CheckCreateHeap(fopAc_ac_c* param_0) {
 /* ############################################################################################## */
 /* 80466824-80466828 000004 0004+00 6/12 0/0 0/0 .rodata          @4124 */
 SECTION_RODATA static f32 const lit_4124 = 1.0f;
-COMPILER_STRIP_GATE(80466824, &lit_4124);
+COMPILER_STRIP_GATE(0x80466824, &lit_4124);
 
 /* 80466828-8046682C 000008 0004+00 1/1 0/0 0/0 .rodata          @4125 */
 SECTION_RODATA static f32 const lit_4125 = 7.0f / 5.0f;
-COMPILER_STRIP_GATE(80466828, &lit_4125);
+COMPILER_STRIP_GATE(0x80466828, &lit_4125);
+
+/* 804668D8-804668D8 0000B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8046697F = "FDoorA.bck";
+SECTION_DEAD static char const* const stringBase_8046698A = "oj_DoorOpD.bck";
+SECTION_DEAD static char const* const stringBase_80466999 = "oj_DoorOpC.bck";
+SECTION_DEAD static char const* const stringBase_804669A8 = "oj_DoorOpF.bck";
+SECTION_DEAD static char const* const stringBase_804669B7 = "md_oj_DoorOpF.bck";
+SECTION_DEAD static char const* const stringBase_804669C9 = "md_oj_DoorOpD.bck";
+SECTION_DEAD static char const* const stringBase_804669DB = "D_MN10";
+SECTION_DEAD static char const* const stringBase_804669E2 = "md_oj_DoorOpC.bck";
+SECTION_DEAD static char const* const stringBase_804669F4 = "oj_DoorCloseF.bck";
+SECTION_DEAD static char const* const stringBase_80466A06 = "oj_DoorCloseD.bck";
+SECTION_DEAD static char const* const stringBase_80466A18 = "oj_DoorCloseC.bck";
+SECTION_DEAD static char const* const stringBase_80466A2A = "D_MN09";
+SECTION_DEAD static char const* const stringBase_80466A31 = "SHUTTER_DOOR";
+SECTION_DEAD static char const* const stringBase_80466A3E = "Timer";
+SECTION_DEAD static char const* const stringBase_80466A44 = "FDoorB.bck";
+SECTION_DEAD static char const* const stringBase_80466A4F = "D_MN01";
+SECTION_DEAD static char const* const stringBase_80466A56 = "D_MN11";
+SECTION_DEAD static char const* const stringBase_80466A5D = "D_MN11B";
+SECTION_DEAD static char const* const stringBase_80466A65 = "CAMERA";
+SECTION_DEAD static char const* const stringBase_80466A6C = "D_MN05";
+SECTION_DEAD static char const* const stringBase_80466A73 = "D_MN04";
+SECTION_DEAD static char const* const stringBase_80466A7A = "F_SP115";
+SECTION_DEAD static char const* const stringBase_80466A82 = "シャッタードア：鍵タイプが不明です\n";
+SECTION_DEAD static char const* const stringBase_80466AA6 = "DEFAULT_STOP_OPEN";
+SECTION_DEAD static char const* const stringBase_80466AB8 = "DEFAULT_SHUTTER_DOOR_10";
+SECTION_DEAD static char const* const stringBase_80466AD0 = "DEFAULT_SHUTTER_DOOR_F_STOP";
+SECTION_DEAD static char const* const stringBase_80466AEC = "WOLF_SHUTTER_DOOR_10";
+SECTION_DEAD static char const* const stringBase_80466B01 = "WOLF_SHUTTER_DOOR_F_STOP";
+SECTION_DEAD static char const* const stringBase_80466B1A = "DEFAULT_SHUTTER_DOOR_14";
+SECTION_DEAD static char const* const stringBase_80466B32 = "DEFAULT_SHUTTER_DOOR_F_STOP_14";
+SECTION_DEAD static char const* const stringBase_80466B51 = "WOLF_SHUTTER_DOOR_14";
+SECTION_DEAD static char const* const stringBase_80466B66 = "WOLF_SHUTTER_DOOR_F_STOP_14";
+SECTION_DEAD static char const* const stringBase_80466B82 = "DEFAULT_SHUTTER_DOOR_18";
+SECTION_DEAD static char const* const stringBase_80466B9A = "DEFAULT_SHUTTER_DOOR_F_STOP_18";
+SECTION_DEAD static char const* const stringBase_80466BB9 = "WOLF_SHUTTER_DOOR_18";
+SECTION_DEAD static char const* const stringBase_80466BCE = "WOLF_SHUTTER_DOOR_F_STOP_18";
+SECTION_DEAD static char const* const stringBase_80466BEA = "DEFAULT_KNOB_DOOR_F";
+SECTION_DEAD static char const* const stringBase_80466BFE = "DEFAULT_KNOB_DOOR_B";
+SECTION_DEAD static char const* const stringBase_80466C12 = "DEFAULT_KNOB_DOOR_F_STOP";
+SECTION_DEAD static char const* const stringBase_80466C2B = "DEFAULT_KNOB_DOOR_B_STOP";
+SECTION_DEAD static char const* const stringBase_80466C44 = "DEFAULT_KNOB_DOOR_NOTOPEN_F";
+SECTION_DEAD static char const* const stringBase_80466C60 = "DEFAULT_KNOB_DOOR_NOTOPEN_B";
+SECTION_DEAD static char const* const stringBase_80466C7C = "DEFAULT_KNOB_DOOR_TALK_NOTOPEN_F";
+SECTION_DEAD static char const* const stringBase_80466C9D = "DEFAULT_SHUTTER_DOOR_20";
+SECTION_DEAD static char const* const stringBase_80466CB5 = "DEFAULT_SHUTTER_DOOR_F_STOP_20";
+SECTION_DEAD static char const* const stringBase_80466CD4 = "WOLF_SHUTTER_DOOR_20";
+SECTION_DEAD static char const* const stringBase_80466CE9 = "WOLF_SHUTTER_DOOR_F_STOP_20";
+SECTION_DEAD static char const* const stringBase_80466D05 = "DEFAULT_SHUTTER_DOOR_22";
+SECTION_DEAD static char const* const stringBase_80466D1D = "DEFAULT_SHUTTER_DOOR_F_STOP_22";
+SECTION_DEAD static char const* const stringBase_80466D3C = "WOLF_SHUTTER_DOOR_22";
+SECTION_DEAD static char const* const stringBase_80466D51 = "WOLF_SHUTTER_DOOR_F_STOP_22";
+SECTION_DEAD static char const* const stringBase_80466D6D = "WAIT";
+SECTION_DEAD static char const* const stringBase_80466D72 = "STOP_OPEN";
+SECTION_DEAD static char const* const stringBase_80466D7C = "STOP_CLOSE";
+SECTION_DEAD static char const* const stringBase_80466D87 = "OPEN";
+SECTION_DEAD static char const* const stringBase_80466D8C = "CLOSE";
+SECTION_DEAD static char const* const stringBase_80466D92 = "SMOKE";
+SECTION_DEAD static char const* const stringBase_80466D98 = "SMOKE_END";
+SECTION_DEAD static char const* const stringBase_80466DA2 = "SETGOAL";
+SECTION_DEAD static char const* const stringBase_80466DAA = "UNLOCK";
+SECTION_DEAD static char const* const stringBase_80466DB1 = "SETSTART";
+SECTION_DEAD static char const* const stringBase_80466DBA = "SETANGLE";
+SECTION_DEAD static char const* const stringBase_80466DC3 = "ADJUSTMENT";
+SECTION_DEAD static char const* const stringBase_80466DCE = "OPEN_PUSH";
+SECTION_DEAD static char const* const stringBase_80466DD8 = "OPEN_PULL";
+SECTION_DEAD static char const* const stringBase_80466DE2 = "OPEN_PUSH2";
+SECTION_DEAD static char const* const stringBase_80466DED = "OPEN_PULL2";
+SECTION_DEAD static char const* const stringBase_80466DF8 = "TALK";
+SECTION_DEAD static char const* const stringBase_80466DFD = "SETSTART_PUSH";
+SECTION_DEAD static char const* const stringBase_80466E0B = "SETSTART_PULL";
+SECTION_DEAD static char const* const stringBase_80466E19 = "END_CHECK";
+SECTION_DEAD static char const* const stringBase_80466E23 = "DROP_BF";
+SECTION_DEAD static char const* const stringBase_80466E2B = "DROP_AF";
+SECTION_DEAD static char const* const stringBase_80466E33 = "DELETE_LOCK";
+SECTION_DEAD static char const* const stringBase_80466E3F = "OPEN_INIT";
+SECTION_DEAD static char const* const stringBase_80466E49 = "ADJUSTMENT2";
+SECTION_DEAD static char const* const stringBase_80466E55 = "NOT_OPEN";
+SECTION_DEAD static char const* const stringBase_80466E5E = "MESSAGE";
+SECTION_DEAD static char const* const stringBase_80466E66 = "LIGHT_ANM";
+SECTION_DEAD static char const* const stringBase_80466E70 = "LIGHT_ANM2";
+#pragma pop
 
 /* 80466ED0-80466F04 -00001 0034+00 1/1 0/0 0/0 .data            @4126 */
 SECTION_DATA static void* lit_4126[13] = {
@@ -1182,13 +1314,13 @@ SECTION_RODATA static u8 const lit_4256[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8046682C, &lit_4256);
+COMPILER_STRIP_GATE(0x8046682C, &lit_4256);
 
 /* 80466830-80466834 000010 0004+00 0/1 0/0 0/0 .rodata          @4257 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4257 = 62500.0f;
-COMPILER_STRIP_GATE(80466830, &lit_4257);
+COMPILER_STRIP_GATE(0x80466830, &lit_4257);
 #pragma pop
 
 /* 8046129C-804616EC 0007DC 0450+00 1/1 0/0 0/0 .text            setEventPrm__10daDoor20_cFv */
@@ -1227,42 +1359,42 @@ asm void daDoor20_c::adjustmentAngle() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4346 = 75.0f;
-COMPILER_STRIP_GATE(80466834, &lit_4346);
+COMPILER_STRIP_GATE(0x80466834, &lit_4346);
 #pragma pop
 
 /* 80466838-8046683C 000018 0004+00 0/1 0/0 0/0 .rodata          @4347 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4347 = -75.0f;
-COMPILER_STRIP_GATE(80466838, &lit_4347);
+COMPILER_STRIP_GATE(0x80466838, &lit_4347);
 #pragma pop
 
 /* 8046683C-80466840 00001C 0004+00 0/1 0/0 0/0 .rodata          @4348 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4348 = -70.0f;
-COMPILER_STRIP_GATE(8046683C, &lit_4348);
+COMPILER_STRIP_GATE(0x8046683C, &lit_4348);
 #pragma pop
 
 /* 80466840-80466844 000020 0004+00 0/1 0/0 0/0 .rodata          @4349 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4349 = -65.0f;
-COMPILER_STRIP_GATE(80466840, &lit_4349);
+COMPILER_STRIP_GATE(0x80466840, &lit_4349);
 #pragma pop
 
 /* 80466844-80466848 000024 0004+00 0/2 0/0 0/0 .rodata          @4350 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4350 = 4.0f / 5.0f;
-COMPILER_STRIP_GATE(80466844, &lit_4350);
+COMPILER_STRIP_GATE(0x80466844, &lit_4350);
 #pragma pop
 
 /* 80466848-8046684C 000028 0004+00 0/1 0/0 0/0 .rodata          @4351 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4351 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80466848, &lit_4351);
+COMPILER_STRIP_GATE(0x80466848, &lit_4351);
 #pragma pop
 
 /* 80461874-80461A44 000DB4 01D0+00 1/1 0/0 0/0 .text            adjustmentProc__10daDoor20_cFv */
@@ -1304,7 +1436,7 @@ SECTION_RODATA static u8 const l_eff_id_lv3[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8046684C, &l_eff_id_lv3);
+COMPILER_STRIP_GATE(0x8046684C, &l_eff_id_lv3);
 #pragma pop
 
 /* 80466858-80466864 000038 000A+02 0/1 0/0 0/0 .rodata          l_eff_id_lv4$4377 */
@@ -1325,7 +1457,7 @@ SECTION_RODATA static u8 const l_eff_id_lv4[10 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80466858, &l_eff_id_lv4);
+COMPILER_STRIP_GATE(0x80466858, &l_eff_id_lv4);
 #pragma pop
 
 /* 80461A60-80461D24 000FA0 02C4+00 1/1 0/0 0/0 .text            openInit_0__10daDoor20_cFv */
@@ -1346,7 +1478,7 @@ SECTION_RODATA static u8 const l_eff_id[4] = {
     0x82,
     0x96,
 };
-COMPILER_STRIP_GATE(80466864, &l_eff_id);
+COMPILER_STRIP_GATE(0x80466864, &l_eff_id);
 
 /* 80461D24-80461EC4 001264 01A0+00 1/1 0/0 0/0 .text            openInit_1__10daDoor20_cFv */
 #pragma push
@@ -1373,25 +1505,25 @@ asm void daDoor20_c::openInit(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4607 = 17.0f;
-COMPILER_STRIP_GATE(80466868, &lit_4607);
+COMPILER_STRIP_GATE(0x80466868, &lit_4607);
 #pragma pop
 
 /* 8046686C-80466870 00004C 0004+00 0/1 0/0 0/0 .rodata          @4608 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4608 = 18.0f;
-COMPILER_STRIP_GATE(8046686C, &lit_4608);
+COMPILER_STRIP_GATE(0x8046686C, &lit_4608);
 #pragma pop
 
 /* 80466870-80466874 000050 0004+00 3/7 0/0 0/0 .rodata          @4609 */
 SECTION_RODATA static f32 const lit_4609 = -1.0f;
-COMPILER_STRIP_GATE(80466870, &lit_4609);
+COMPILER_STRIP_GATE(0x80466870, &lit_4609);
 
 /* 80466874-80466878 000054 0004+00 0/1 0/0 0/0 .rodata          @4610 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4610 = 20.0f;
-COMPILER_STRIP_GATE(80466874, &lit_4610);
+COMPILER_STRIP_GATE(0x80466874, &lit_4610);
 #pragma pop
 
 /* 80461F60-804622A8 0014A0 0348+00 2/1 0/0 0/0 .text            openProc__10daDoor20_cFi */
@@ -1434,7 +1566,7 @@ asm void daDoor20_c::openEnd(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4706 = 200.0f;
-COMPILER_STRIP_GATE(80466878, &lit_4706);
+COMPILER_STRIP_GATE(0x80466878, &lit_4706);
 #pragma pop
 
 /* 80462398-8046266C 0018D8 02D4+00 1/1 0/0 0/0 .text            closeInit_0__10daDoor20_cFv */
@@ -1507,7 +1639,7 @@ asm void daDoor20_c::closeEnd(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4805 = 100.0f;
-COMPILER_STRIP_GATE(8046687C, &lit_4805);
+COMPILER_STRIP_GATE(0x8046687C, &lit_4805);
 #pragma pop
 
 /* 80462928-80462A1C 001E68 00F4+00 1/1 0/0 0/0 .text            openInit2__10daDoor20_cFv */
@@ -1535,14 +1667,14 @@ asm void daDoor20_c::closeEnd2() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4849 = 220.0f;
-COMPILER_STRIP_GATE(80466880, &lit_4849);
+COMPILER_STRIP_GATE(0x80466880, &lit_4849);
 #pragma pop
 
 /* 80466884-80466888 000064 0004+00 0/1 0/0 0/0 .rodata          @4850 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4850 = -220.0f;
-COMPILER_STRIP_GATE(80466884, &lit_4850);
+COMPILER_STRIP_GATE(0x80466884, &lit_4850);
 #pragma pop
 
 /* 80462A5C-80462B58 001F9C 00FC+00 1/1 0/0 0/0 .text            calcMtx_2__10daDoor20_cFv */
@@ -1570,70 +1702,70 @@ asm void daDoor20_c::calcMtx() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4916 = 30.0f;
-COMPILER_STRIP_GATE(80466888, &lit_4916);
+COMPILER_STRIP_GATE(0x80466888, &lit_4916);
 #pragma pop
 
 /* 8046688C-80466890 00006C 0004+00 0/1 0/0 0/0 .rodata          @4917 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4917 = 150.0f;
-COMPILER_STRIP_GATE(8046688C, &lit_4917);
+COMPILER_STRIP_GATE(0x8046688C, &lit_4917);
 #pragma pop
 
 /* 80466890-80466894 000070 0004+00 0/3 0/0 0/0 .rodata          @4918 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4918 = -300.0f;
-COMPILER_STRIP_GATE(80466890, &lit_4918);
+COMPILER_STRIP_GATE(0x80466890, &lit_4918);
 #pragma pop
 
 /* 80466894-80466898 000074 0004+00 0/1 0/0 0/0 .rodata          @4919 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4919 = -50.0f;
-COMPILER_STRIP_GATE(80466894, &lit_4919);
+COMPILER_STRIP_GATE(0x80466894, &lit_4919);
 #pragma pop
 
 /* 80466898-8046689C 000078 0004+00 0/4 0/0 0/0 .rodata          @4920 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4920 = 300.0f;
-COMPILER_STRIP_GATE(80466898, &lit_4920);
+COMPILER_STRIP_GATE(0x80466898, &lit_4920);
 #pragma pop
 
 /* 8046689C-804668A0 00007C 0004+00 0/1 0/0 0/0 .rodata          @4921 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4921 = 700.0f;
-COMPILER_STRIP_GATE(8046689C, &lit_4921);
+COMPILER_STRIP_GATE(0x8046689C, &lit_4921);
 #pragma pop
 
 /* 804668A0-804668A4 000080 0004+00 0/1 0/0 0/0 .rodata          @4922 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4922 = 50.0f;
-COMPILER_STRIP_GATE(804668A0, &lit_4922);
+COMPILER_STRIP_GATE(0x804668A0, &lit_4922);
 #pragma pop
 
 /* 804668A4-804668A8 000084 0004+00 0/3 0/0 0/0 .rodata          @4923 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4923 = -200.0f;
-COMPILER_STRIP_GATE(804668A4, &lit_4923);
+COMPILER_STRIP_GATE(0x804668A4, &lit_4923);
 #pragma pop
 
 /* 804668A8-804668AC 000088 0004+00 0/1 0/0 0/0 .rodata          @4924 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4924 = 500.0f;
-COMPILER_STRIP_GATE(804668A8, &lit_4924);
+COMPILER_STRIP_GATE(0x804668A8, &lit_4924);
 #pragma pop
 
 /* 804668AC-804668B0 00008C 0004+00 0/1 0/0 0/0 .rodata          @4925 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4925 = 10.0f;
-COMPILER_STRIP_GATE(804668AC, &lit_4925);
+COMPILER_STRIP_GATE(0x804668AC, &lit_4925);
 #pragma pop
 
 /* 80462C2C-80462EB4 00216C 0288+00 2/1 0/0 0/0 .text            CreateInit__10daDoor20_cFv */
@@ -1771,49 +1903,49 @@ asm void daDoor20_c::_delete() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5338 = 24.0f;
-COMPILER_STRIP_GATE(804668B0, &lit_5338);
+COMPILER_STRIP_GATE(0x804668B0, &lit_5338);
 #pragma pop
 
 /* 804668B4-804668B8 000094 0004+00 0/0 0/0 0/0 .rodata          @5339 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5339 = 19.0f;
-COMPILER_STRIP_GATE(804668B4, &lit_5339);
+COMPILER_STRIP_GATE(0x804668B4, &lit_5339);
 #pragma pop
 
 /* 804668B8-804668BC 000098 0004+00 0/0 0/0 0/0 .rodata          @5340 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5340 = 76.0f;
-COMPILER_STRIP_GATE(804668B8, &lit_5340);
+COMPILER_STRIP_GATE(0x804668B8, &lit_5340);
 #pragma pop
 
 /* 804668BC-804668C0 00009C 0004+00 0/1 0/0 0/0 .rodata          @5670 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5670 = 107.0f;
-COMPILER_STRIP_GATE(804668BC, &lit_5670);
+COMPILER_STRIP_GATE(0x804668BC, &lit_5670);
 #pragma pop
 
 /* 804668C0-804668C4 0000A0 0004+00 0/1 0/0 0/0 .rodata          @5671 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5671 = -17.0f;
-COMPILER_STRIP_GATE(804668C0, &lit_5671);
+COMPILER_STRIP_GATE(0x804668C0, &lit_5671);
 #pragma pop
 
 /* 804668C4-804668C8 0000A4 0004+00 0/1 0/0 0/0 .rodata          @5672 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5672 = 35.0f;
-COMPILER_STRIP_GATE(804668C4, &lit_5672);
+COMPILER_STRIP_GATE(0x804668C4, &lit_5672);
 #pragma pop
 
 /* 804668C8-804668CC 0000A8 0004+00 0/1 0/0 0/0 .rodata          @5673 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5673 = -35.0f;
-COMPILER_STRIP_GATE(804668C8, &lit_5673);
+COMPILER_STRIP_GATE(0x804668C8, &lit_5673);
 #pragma pop
 
 /* 80464858-80464AE4 003D98 028C+00 2/2 0/0 0/0 .text            createKey__10daDoor20_cFv */
@@ -2092,14 +2224,14 @@ asm void dDoor_stop_c::closeInit(daDoor20_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_6377 = 60.0f;
-COMPILER_STRIP_GATE(804668CC, &lit_6377);
+COMPILER_STRIP_GATE(0x804668CC, &lit_6377);
 #pragma pop
 
 /* 804668D0-804668D4 0000B0 0004+00 0/1 0/0 0/0 .rodata          @6378 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_6378 = 6.0f;
-COMPILER_STRIP_GATE(804668D0, &lit_6378);
+COMPILER_STRIP_GATE(0x804668D0, &lit_6378);
 #pragma pop
 
 /* 804662C0-8046634C 005800 008C+00 2/2 0/0 0/0 .text closeProc__12dDoor_stop_cFP10daDoor20_c */
@@ -2127,7 +2259,7 @@ asm void dDoor_stop_c::openInit(daDoor20_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_6409 = 4.0f;
-COMPILER_STRIP_GATE(804668D4, &lit_6409);
+COMPILER_STRIP_GATE(0x804668D4, &lit_6409);
 #pragma pop
 
 /* 80466458-804664E8 005998 0090+00 1/1 0/0 0/0 .text openProc__12dDoor_stop_cFP10daDoor20_c */
@@ -2234,7 +2366,7 @@ asm dBgS_ObjAcch::~dBgS_ObjAcch() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_804667EC(u8* param_0) {
+extern "C" asm void func_804667EC(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/door/d_a_door_shutter/d_a_door_shutter/func_804667EC.s"
 }
@@ -2260,101 +2392,4 @@ static asm void func_80466810() {
 }
 #pragma pop
 
-/* 804668D8-80466E7B 0000B8 05A3+00 34/21 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_804668D8 = "door-stop.bmd";
-SECTION_DEAD static char const* const stringBase_804668E6 = "static";
-SECTION_DEAD static char const* const stringBase_804668ED = "DoorT00";
-SECTION_DEAD static char const* const stringBase_804668F5 = "DoorY00";
-SECTION_DEAD static char const* const stringBase_804668FD = "DoorK00";
-SECTION_DEAD static char const* const stringBase_80466905 = "DoorLV8";
-SECTION_DEAD static char const* const stringBase_8046690D = "DoorLV7";
-SECTION_DEAD static char const* const stringBase_80466915 = "DoorLV9";
-SECTION_DEAD static char const* const stringBase_8046691D = "door-shutter_%02d.bmd";
-SECTION_DEAD static char const* const stringBase_80466933 = "door-knob_%02d.bmd";
-SECTION_DEAD static char const* const stringBase_80466946 = "door-shutter_00.btk";
-SECTION_DEAD static char const* const stringBase_8046695A = "door-shutter.dzb";
-SECTION_DEAD static char const* const stringBase_8046696B = "door-shutterlv9.dzb";
-SECTION_DEAD static char const* const stringBase_8046697F = "FDoorA.bck";
-SECTION_DEAD static char const* const stringBase_8046698A = "oj_DoorOpD.bck";
-SECTION_DEAD static char const* const stringBase_80466999 = "oj_DoorOpC.bck";
-SECTION_DEAD static char const* const stringBase_804669A8 = "oj_DoorOpF.bck";
-SECTION_DEAD static char const* const stringBase_804669B7 = "md_oj_DoorOpF.bck";
-SECTION_DEAD static char const* const stringBase_804669C9 = "md_oj_DoorOpD.bck";
-SECTION_DEAD static char const* const stringBase_804669DB = "D_MN10";
-SECTION_DEAD static char const* const stringBase_804669E2 = "md_oj_DoorOpC.bck";
-SECTION_DEAD static char const* const stringBase_804669F4 = "oj_DoorCloseF.bck";
-SECTION_DEAD static char const* const stringBase_80466A06 = "oj_DoorCloseD.bck";
-SECTION_DEAD static char const* const stringBase_80466A18 = "oj_DoorCloseC.bck";
-SECTION_DEAD static char const* const stringBase_80466A2A = "D_MN09";
-SECTION_DEAD static char const* const stringBase_80466A31 = "SHUTTER_DOOR";
-SECTION_DEAD static char const* const stringBase_80466A3E = "Timer";
-SECTION_DEAD static char const* const stringBase_80466A44 = "FDoorB.bck";
-SECTION_DEAD static char const* const stringBase_80466A4F = "D_MN01";
-SECTION_DEAD static char const* const stringBase_80466A56 = "D_MN11";
-SECTION_DEAD static char const* const stringBase_80466A5D = "D_MN11B";
-SECTION_DEAD static char const* const stringBase_80466A65 = "CAMERA";
-SECTION_DEAD static char const* const stringBase_80466A6C = "D_MN05";
-SECTION_DEAD static char const* const stringBase_80466A73 = "D_MN04";
-SECTION_DEAD static char const* const stringBase_80466A7A = "F_SP115";
-SECTION_DEAD static char const* const stringBase_80466A82 = "シャッタードア：鍵タイプが不明です\n";
-SECTION_DEAD static char const* const stringBase_80466AA6 = "DEFAULT_STOP_OPEN";
-SECTION_DEAD static char const* const stringBase_80466AB8 = "DEFAULT_SHUTTER_DOOR_10";
-SECTION_DEAD static char const* const stringBase_80466AD0 = "DEFAULT_SHUTTER_DOOR_F_STOP";
-SECTION_DEAD static char const* const stringBase_80466AEC = "WOLF_SHUTTER_DOOR_10";
-SECTION_DEAD static char const* const stringBase_80466B01 = "WOLF_SHUTTER_DOOR_F_STOP";
-SECTION_DEAD static char const* const stringBase_80466B1A = "DEFAULT_SHUTTER_DOOR_14";
-SECTION_DEAD static char const* const stringBase_80466B32 = "DEFAULT_SHUTTER_DOOR_F_STOP_14";
-SECTION_DEAD static char const* const stringBase_80466B51 = "WOLF_SHUTTER_DOOR_14";
-SECTION_DEAD static char const* const stringBase_80466B66 = "WOLF_SHUTTER_DOOR_F_STOP_14";
-SECTION_DEAD static char const* const stringBase_80466B82 = "DEFAULT_SHUTTER_DOOR_18";
-SECTION_DEAD static char const* const stringBase_80466B9A = "DEFAULT_SHUTTER_DOOR_F_STOP_18";
-SECTION_DEAD static char const* const stringBase_80466BB9 = "WOLF_SHUTTER_DOOR_18";
-SECTION_DEAD static char const* const stringBase_80466BCE = "WOLF_SHUTTER_DOOR_F_STOP_18";
-SECTION_DEAD static char const* const stringBase_80466BEA = "DEFAULT_KNOB_DOOR_F";
-SECTION_DEAD static char const* const stringBase_80466BFE = "DEFAULT_KNOB_DOOR_B";
-SECTION_DEAD static char const* const stringBase_80466C12 = "DEFAULT_KNOB_DOOR_F_STOP";
-SECTION_DEAD static char const* const stringBase_80466C2B = "DEFAULT_KNOB_DOOR_B_STOP";
-SECTION_DEAD static char const* const stringBase_80466C44 = "DEFAULT_KNOB_DOOR_NOTOPEN_F";
-SECTION_DEAD static char const* const stringBase_80466C60 = "DEFAULT_KNOB_DOOR_NOTOPEN_B";
-SECTION_DEAD static char const* const stringBase_80466C7C = "DEFAULT_KNOB_DOOR_TALK_NOTOPEN_F";
-SECTION_DEAD static char const* const stringBase_80466C9D = "DEFAULT_SHUTTER_DOOR_20";
-SECTION_DEAD static char const* const stringBase_80466CB5 = "DEFAULT_SHUTTER_DOOR_F_STOP_20";
-SECTION_DEAD static char const* const stringBase_80466CD4 = "WOLF_SHUTTER_DOOR_20";
-SECTION_DEAD static char const* const stringBase_80466CE9 = "WOLF_SHUTTER_DOOR_F_STOP_20";
-SECTION_DEAD static char const* const stringBase_80466D05 = "DEFAULT_SHUTTER_DOOR_22";
-SECTION_DEAD static char const* const stringBase_80466D1D = "DEFAULT_SHUTTER_DOOR_F_STOP_22";
-SECTION_DEAD static char const* const stringBase_80466D3C = "WOLF_SHUTTER_DOOR_22";
-SECTION_DEAD static char const* const stringBase_80466D51 = "WOLF_SHUTTER_DOOR_F_STOP_22";
-SECTION_DEAD static char const* const stringBase_80466D6D = "WAIT";
-SECTION_DEAD static char const* const stringBase_80466D72 = "STOP_OPEN";
-SECTION_DEAD static char const* const stringBase_80466D7C = "STOP_CLOSE";
-SECTION_DEAD static char const* const stringBase_80466D87 = "OPEN";
-SECTION_DEAD static char const* const stringBase_80466D8C = "CLOSE";
-SECTION_DEAD static char const* const stringBase_80466D92 = "SMOKE";
-SECTION_DEAD static char const* const stringBase_80466D98 = "SMOKE_END";
-SECTION_DEAD static char const* const stringBase_80466DA2 = "SETGOAL";
-SECTION_DEAD static char const* const stringBase_80466DAA = "UNLOCK";
-SECTION_DEAD static char const* const stringBase_80466DB1 = "SETSTART";
-SECTION_DEAD static char const* const stringBase_80466DBA = "SETANGLE";
-SECTION_DEAD static char const* const stringBase_80466DC3 = "ADJUSTMENT";
-SECTION_DEAD static char const* const stringBase_80466DCE = "OPEN_PUSH";
-SECTION_DEAD static char const* const stringBase_80466DD8 = "OPEN_PULL";
-SECTION_DEAD static char const* const stringBase_80466DE2 = "OPEN_PUSH2";
-SECTION_DEAD static char const* const stringBase_80466DED = "OPEN_PULL2";
-SECTION_DEAD static char const* const stringBase_80466DF8 = "TALK";
-SECTION_DEAD static char const* const stringBase_80466DFD = "SETSTART_PUSH";
-SECTION_DEAD static char const* const stringBase_80466E0B = "SETSTART_PULL";
-SECTION_DEAD static char const* const stringBase_80466E19 = "END_CHECK";
-SECTION_DEAD static char const* const stringBase_80466E23 = "DROP_BF";
-SECTION_DEAD static char const* const stringBase_80466E2B = "DROP_AF";
-SECTION_DEAD static char const* const stringBase_80466E33 = "DELETE_LOCK";
-SECTION_DEAD static char const* const stringBase_80466E3F = "OPEN_INIT";
-SECTION_DEAD static char const* const stringBase_80466E49 = "ADJUSTMENT2";
-SECTION_DEAD static char const* const stringBase_80466E55 = "NOT_OPEN";
-SECTION_DEAD static char const* const stringBase_80466E5E = "MESSAGE";
-SECTION_DEAD static char const* const stringBase_80466E66 = "LIGHT_ANM";
-SECTION_DEAD static char const* const stringBase_80466E70 = "LIGHT_ANM2";
-#pragma pop
+/* 804668D8-804668D8 0000B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

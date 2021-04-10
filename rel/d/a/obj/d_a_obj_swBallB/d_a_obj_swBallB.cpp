@@ -90,9 +90,9 @@ struct dEvLib_callback_c {
     /* 80CF5938 */ bool eventEnd();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -240,7 +240,7 @@ static asm void CheckCreateHeap(fopAc_ac_c* param_0) {
 /* ############################################################################################## */
 /* 80CF59D0-80CF59D4 000000 0004+00 5/5 0/0 0/0 .rodata          l_color */
 SECTION_RODATA static u32 const l_color = 0x0396FFFF;
-COMPILER_STRIP_GATE(80CF59D0, &l_color);
+COMPILER_STRIP_GATE(0x80CF59D0, &l_color);
 
 /* 80CF59D4-80CF59E0 000004 000C+00 0/1 0/0 0/0 .rodata          l_event_bitA */
 #pragma push
@@ -248,7 +248,7 @@ COMPILER_STRIP_GATE(80CF59D0, &l_color);
 SECTION_RODATA static u8 const l_event_bitA[12] = {
     0x43, 0x04, 0x43, 0x02, 0x43, 0x01, 0x44, 0x80, 0x44, 0x40, 0x44, 0x20,
 };
-COMPILER_STRIP_GATE(80CF59D4, &l_event_bitA);
+COMPILER_STRIP_GATE(0x80CF59D4, &l_event_bitA);
 #pragma pop
 
 /* 80CF59E0-80CF59EC 000010 000C+00 0/1 0/0 0/0 .rodata          l_event_bitB */
@@ -257,28 +257,28 @@ COMPILER_STRIP_GATE(80CF59D4, &l_event_bitA);
 SECTION_RODATA static u8 const l_event_bitB[12] = {
     0x44, 0x10, 0x44, 0x08, 0x44, 0x04, 0x44, 0x02, 0x44, 0x01, 0x45, 0x80,
 };
-COMPILER_STRIP_GATE(80CF59E0, &l_event_bitB);
+COMPILER_STRIP_GATE(0x80CF59E0, &l_event_bitB);
 #pragma pop
 
 /* 80CF59EC-80CF59F0 00001C 0004+00 0/2 0/0 0/0 .rodata          @3752 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3752 = 10.0f;
-COMPILER_STRIP_GATE(80CF59EC, &lit_3752);
+COMPILER_STRIP_GATE(0x80CF59EC, &lit_3752);
 #pragma pop
 
 /* 80CF59F0-80CF59F4 000020 0004+00 0/2 0/0 0/0 .rodata          @3753 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3753 = 100.0f;
-COMPILER_STRIP_GATE(80CF59F0, &lit_3753);
+COMPILER_STRIP_GATE(0x80CF59F0, &lit_3753);
 #pragma pop
 
 /* 80CF59F4-80CF59F8 000024 0004+00 0/2 0/0 0/0 .rodata          @3754 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3754 = -100.0f;
-COMPILER_STRIP_GATE(80CF59F4, &lit_3754);
+COMPILER_STRIP_GATE(0x80CF59F4, &lit_3754);
 #pragma pop
 
 /* 80CF59F8-80CF5A00 000028 0004+04 1/4 0/0 0/0 .rodata          @3755 */
@@ -293,7 +293,7 @@ SECTION_RODATA static u8 const lit_3755[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CF59F8, &lit_3755);
+COMPILER_STRIP_GATE(0x80CF59F8, &lit_3755);
 
 /* 80CF466C-80CF47BC 00012C 0150+00 1/1 0/0 0/0 .text
  * checkArea_sub__14daObjSwBallB_cFP10fopAc_ac_c                */
@@ -341,7 +341,7 @@ asm void daObjSwBallB_c::setBaseMtx() {
 SECTION_RODATA static u8 const lit_3935[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CF5A00, &lit_3935);
+COMPILER_STRIP_GATE(0x80CF5A00, &lit_3935);
 
 /* 80CF49F0-80CF4B74 0004B0 0184+00 1/1 0/0 0/0 .text            Create__14daObjSwBallB_cFv */
 #pragma push
@@ -356,7 +356,13 @@ asm void daObjSwBallB_c::Create() {
 /* ############################################################################################## */
 /* 80CF5A08-80CF5A0C 000038 0004+00 1/3 0/0 0/0 .rodata          @3969 */
 SECTION_RODATA static f32 const lit_3969 = 1.0f;
-COMPILER_STRIP_GATE(80CF5A08, &lit_3969);
+COMPILER_STRIP_GATE(0x80CF5A08, &lit_3969);
+
+/* 80CF5A14-80CF5A14 000044 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CF5A14 = "P_LBswBC";
+#pragma pop
 
 /* 80CF5A20-80CF5A2C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -509,7 +515,7 @@ asm void daObjSwBallB_c::execute() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4178 = -1.0f;
-COMPILER_STRIP_GATE(80CF5A0C, &lit_4178);
+COMPILER_STRIP_GATE(0x80CF5A0C, &lit_4178);
 #pragma pop
 
 /* 80CF4EB8-80CF5384 000978 04CC+00 1/0 0/0 0/0 .text            actionRun__14daObjSwBallB_cFv */
@@ -532,7 +538,7 @@ void daObjSwBallB_c::actionStop() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4276 = 150.0f;
-COMPILER_STRIP_GATE(80CF5A10, &lit_4276);
+COMPILER_STRIP_GATE(0x80CF5A10, &lit_4276);
 #pragma pop
 
 /* 80CF5388-80CF56A4 000E48 031C+00 1/1 0/0 0/0 .text            PutCrrPos__14daObjSwBallB_cFv */
@@ -652,9 +658,4 @@ static asm void func_80CF59C0() {
 }
 #pragma pop
 
-/* 80CF5A14-80CF5A1D 000044 0009+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CF5A14 = "P_LBswBC";
-#pragma pop
+/* 80CF5A14-80CF5A14 000044 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

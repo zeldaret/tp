@@ -345,6 +345,15 @@ asm void JUTDirectPrint::printSub(u16 param_0, u16 param_1, char const* param_2,
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039D9A0-8039D9A0 02A000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D9A0 = "%s";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039D9A3 = "\0\0\0\0";
+#pragma pop
+
 /* 802E46D8-802E4708 2DF018 0030+00 0/0 2/2 0/0 .text            drawString__14JUTDirectPrintFUsUsPc
  */
 #pragma push
@@ -421,11 +430,4 @@ asm void JUTDirectPrint::setCharColor(u8 param_0, u8 param_1, u8 param_2) {
 }
 #pragma pop
 
-/* 8039D9A0-8039D9A8 02A000 0003+05 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039D9A0 = "%s";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D9A3 = "\0\0\0\0";
-#pragma pop
+/* 8039D9A0-8039D9A0 02A000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

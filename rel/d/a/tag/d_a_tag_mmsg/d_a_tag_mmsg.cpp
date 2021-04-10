@@ -82,20 +82,20 @@ extern "C" u8 m_midnaActor__9daPy_py_c[4];
 /* ############################################################################################## */
 /* 80D5BD38-80D5BD3C 000000 0004+00 1/1 0/0 0/0 .rodata          @3702 */
 SECTION_RODATA static f32 const lit_3702 = 10.0f;
-COMPILER_STRIP_GATE(80D5BD38, &lit_3702);
+COMPILER_STRIP_GATE(0x80D5BD38, &lit_3702);
 
 /* 80D5BD3C-80D5BD40 000004 0004+00 0/1 0/0 0/0 .rodata          @3703 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3703 = 10000.0f;
-COMPILER_STRIP_GATE(80D5BD3C, &lit_3703);
+COMPILER_STRIP_GATE(0x80D5BD3C, &lit_3703);
 #pragma pop
 
 /* 80D5BD40-80D5BD44 000008 0004+00 0/1 0/0 0/0 .rodata          @3704 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3704 = 100.0f;
-COMPILER_STRIP_GATE(80D5BD40, &lit_3704);
+COMPILER_STRIP_GATE(0x80D5BD40, &lit_3704);
 #pragma pop
 
 /* 80D5B918-80D5BA94 000078 017C+00 1/1 0/0 0/0 .text            create__11daTagMmsg_cFv */

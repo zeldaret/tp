@@ -50,11 +50,11 @@ struct mDoExt_morf_c {
 
 struct J3DAnmTextureSRTKey {};
 
+struct J3DAnmTexPattern {};
+
 struct J3DAnmTevRegKey {};
 
 struct J3DAnmColor {};
-
-struct J3DAnmTexPattern {};
 
 struct J3DMaterialTable {
     /* 8032F64C */ void removeMatColorAnimator(J3DAnmColor*);
@@ -83,9 +83,9 @@ struct mDoExt_bpkAnm {
     /* 8000D518 */ void entry(J3DMaterialTable*, f32);
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -120,21 +120,21 @@ struct daNpcT_motionAnmData_c {};
 
 struct daNpcT_faceMotionAnmData_c {};
 
-struct J3DFrameCtrl {
-    /* 803283FC */ void init(s16);
-};
-
-struct J3DAnmTransformKey {};
-
-struct J3DJoint {};
-
 struct dCcD_GObjInf {
     /* 80084460 */ void ChkTgHit();
 };
 
+struct J3DAnmTransformKey {};
+
 struct _GXColorS10 {};
 
 struct J3DModel {};
+
+struct J3DFrameCtrl {
+    /* 803283FC */ void init(s16);
+};
+
+struct J3DJoint {};
 
 struct daNpcT_c {
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
@@ -612,7 +612,6 @@ struct dEvt_control_c {
     /* 80042518 */ void reset(void*);
     /* 800432EC */ void convPId(unsigned int);
     /* 8004368C */ void setPtT(void*);
-    /* 800436EC */ void setPtI_Id(unsigned int);
 };
 
 struct dEvent_manager_c {
@@ -909,9 +908,9 @@ extern "C" void __dt__22daNpcT_MotionSeqMngr_cFv();
 extern "C" void __dt__18daNpcT_ActorMngr_cFv();
 extern "C" void __dt__15daNpcT_JntAnm_cFv();
 extern "C" void __dt__15daNpcT_MatAnm_cFv();
-extern "C" void func_8014D32C(s16*);
-extern "C" void func_8014D348(int*);
-extern "C" void func_8014D364(int, int);
+extern "C" void func_8014D32C(void* _this, s16*);
+extern "C" void func_8014D348(void* _this, int*);
+extern "C" void func_8014D364(void* _this, int, int);
 extern "C" void __sinit_d_a_npc_cpp();
 extern "C" static void daBaseNpc_addIdx__FiiPUsi();
 extern "C" static void daBaseNpc_subIdx__FiiPUsi();
@@ -2422,6 +2421,13 @@ asm void daNpcT_c::ctrlJoint(J3DJoint* param_0, J3DModel* param_1) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80392710-80392710 01ED70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80392710 = "DEFAULT_GETITEM";
+#pragma pop
+
 /* 8014997C-80149BB4 1442BC 0238+00 1/0 1/0 58/0 .text            evtProc__8daNpcT_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -3236,7 +3242,7 @@ asm daNpcT_MatAnm_c::~daNpcT_MatAnm_c() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8014D32C(s16* param_0) {
+extern "C" asm void func_8014D32C(void* _this, s16* param_0) {
     nofralloc
 #include "asm/d/a/d_a_npc/func_8014D32C.s"
 }
@@ -3246,7 +3252,7 @@ extern "C" asm void func_8014D32C(s16* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8014D348(int* param_0) {
+extern "C" asm void func_8014D348(void* _this, int* param_0) {
     nofralloc
 #include "asm/d/a/d_a_npc/func_8014D348.s"
 }
@@ -3256,7 +3262,7 @@ extern "C" asm void func_8014D348(int* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8014D364(int param_0, int param_1) {
+extern "C" asm void func_8014D364(void* _this, int param_0, int param_1) {
     nofralloc
 #include "asm/d/a/d_a_npc/func_8014D364.s"
 }
@@ -3269,7 +3275,7 @@ SECTION_RODATA u8 const daNpcT_c::mCcDObjData[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80392680, &daNpcT_c::mCcDObjData);
+COMPILER_STRIP_GATE(0x80392680, &daNpcT_c::mCcDObjData);
 
 /* 8014D3D8-8014D538 147D18 0160+00 0/0 1/0 0/0 .text            __sinit_d_a_npc_cpp */
 #pragma push
@@ -3283,7 +3289,7 @@ asm void __sinit_d_a_npc_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8014D3D8 = (void*)__sinit_d_a_npc_cpp;
+REGISTER_CTORS(0x8014D3D8, __sinit_d_a_npc_cpp);
 #pragma pop
 
 /* 8014D538-8014D584 147E78 004C+00 2/2 0/0 0/0 .text            daBaseNpc_addIdx__FiiPUsi */
@@ -3447,15 +3453,10 @@ asm void daBaseNpc_path_c::getIdx() {
 }
 #pragma pop
 
-/* 8014DB0C-8014DB14 14844C 0008+00 0/0 0/0 1/1 .text            setIdx__16daBaseNpc_path_cFUs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daBaseNpc_path_c::setIdx(u16 param_0) {
-    nofralloc
-#include "asm/d/a/d_a_npc/setIdx__16daBaseNpc_path_cFUs.s"
+/* 8014DB0C-8014DB14 -00001 0008+00 0/0 0/0 0/0 .text            setIdx__16daBaseNpc_path_cFUs */
+void daBaseNpc_path_c::setIdx(u16 param_0) {
+    *(u16*)(((u8*)this) + 2576) /* this->field_0xa10 */ = (u16)(param_0);
 }
-#pragma pop
 
 /* 8014DB14-8014DB40 148454 002C+00 0/0 0/0 4/4 .text            getPntPos__16daBaseNpc_path_cFUs */
 #pragma push
@@ -3822,8 +3823,8 @@ asm void daBaseNpc_moveBgActor_c::MoveBGCreateHeap() {
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm void daBaseNpc_moveBgActor_c::MoveBGCreate(char const* param_0, int param_1,
-                                               void (*)(dBgW*, void*, cBgS_PolyInfo const&, bool,
-                                                        cXyz*, csXyz*, csXyz*),
+                                               void (*param_2)(dBgW*, void*, cBgS_PolyInfo const&,
+                                                               bool, cXyz*, csXyz*, csXyz*),
                                                u32 param_3) {
     nofralloc
 #include "asm/d/a/d_a_npc/MoveBGCreate__23daBaseNpc_moveBgActor_cFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUl.s"
@@ -4044,15 +4045,10 @@ asm void daNpcF_ActorMngr_c::entry(fopAc_ac_c* param_0) {
 }
 #pragma pop
 
-/* 801506D8-801506E0 14B018 0008+00 0/0 0/0 1/1 .text            entry__18daNpcF_ActorMngr_cFUi */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void daNpcF_ActorMngr_c::entry(unsigned int param_0) {
-    nofralloc
-#include "asm/d/a/d_a_npc/entry__18daNpcF_ActorMngr_cFUi.s"
+/* 801506D8-801506E0 -00001 0008+00 0/0 0/0 0/0 .text            entry__18daNpcF_ActorMngr_cFUi */
+void daNpcF_ActorMngr_c::entry(unsigned int param_0) {
+    *(u32*)this = (u32)(param_0);
 }
-#pragma pop
 
 /* 801506E0-801506EC 14B020 000C+00 2/2 0/0 55/55 .text            remove__18daNpcF_ActorMngr_cFv */
 #pragma push
@@ -4804,8 +4800,9 @@ SECTION_SDATA2 static f32 lit_11605 = 450.0f;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpcF_c::getAttnActorP(int param_0, void* (*)(void*, void*), f32 param_2, f32 param_3,
-                                 f32 param_4, f32 param_5, s16 param_6, int param_7, int param_8) {
+asm void daNpcF_c::getAttnActorP(int param_0, void* (*param_1)(void*, void*), f32 param_2,
+                                 f32 param_3, f32 param_4, f32 param_5, s16 param_6, int param_7,
+                                 int param_8) {
     nofralloc
 #include "asm/d/a/d_a_npc/getAttnActorP__8daNpcF_cFiPFPvPv_Pvffffsii.s"
 }
@@ -5191,7 +5188,7 @@ SECTION_RODATA u8 const daBaseNpc_c::mCcDObj[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803926B0, &daBaseNpc_c::mCcDObj);
+COMPILER_STRIP_GATE(0x803926B0, &daBaseNpc_c::mCcDObj);
 #pragma pop
 
 /* 803926E0-80392710 01ED40 0030+00 0/0 0/0 0/0 .rodata          mCcDObjInfo__8daNpcF_c */
@@ -5202,57 +5199,232 @@ SECTION_RODATA u8 const daNpcF_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803926E0, &daNpcF_c::mCcDObjInfo);
+COMPILER_STRIP_GATE(0x803926E0, &daNpcF_c::mCcDObjInfo);
+#pragma pop
+
+/* 80392720-80392725 01ED80 0005+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80392720 = ".bck";
+#pragma pop
+
+/* 80392725-8039272A 01ED85 0005+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80392725 = ".btp";
+#pragma pop
+
+/* 8039272A-8039272F 01ED8A 0005+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039272A = ".btk";
+#pragma pop
+
+/* 8039272F-8039274A 01ED8F 001B+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039272F = "%.3ff,\t//  注目オフセット\n";
+#pragma pop
+
+/* 8039274A-8039275B 01EDAA 0011+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039274A = "%.3ff,\t//  重力\n";
+#pragma pop
+
+/* 8039275B-80392770 01EDBB 0015+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039275B = "%.3ff,\t//  スケ−ル\n";
+#pragma pop
+
+/* 80392770-8039278B 01EDD0 001B+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80392770 = "%.3ff,\t//  リアル影サイズ\n";
+#pragma pop
+
+/* 8039278B-8039279C 01EDEB 0011+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039278B = "%.3ff,\t//  体重\n";
+#pragma pop
+
+/* 8039279C-803927AD 01EDFC 0011+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039279C = "%.3ff,\t//  高さ\n";
+#pragma pop
+
+/* 803927AD-803927C0 01EE0D 0013+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803927AD = "%.3ff,\t//  ひざ丈\n";
+#pragma pop
+
+/* 803927C0-803927CF 01EE20 000F+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803927C0 = "%.3ff,\t//  幅\n";
+#pragma pop
+
+/* 803927CF-803927E8 01EE2F 0019+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803927CF = "%.3ff,\t//  腰のＸ角上限\n";
+#pragma pop
+
+/* 803927E8-80392801 01EE48 0019+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803927E8 = "%.3ff,\t//  腰のＸ角下限\n";
+#pragma pop
+
+/* 80392801-8039281A 01EE61 0019+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80392801 = "%.3ff,\t//  腰のＹ角上限\n";
+#pragma pop
+
+/* 8039281A-80392833 01EE7A 0019+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039281A = "%.3ff,\t//  腰のＹ角下限\n";
+#pragma pop
+
+/* 80392833-8039284C 01EE93 0019+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80392833 = "%.3ff,\t//  頭のＸ角上限\n";
+#pragma pop
+
+/* 8039284C-80392865 01EEAC 0019+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039284C = "%.3ff,\t//  頭のＸ角下限\n";
+#pragma pop
+
+/* 80392865-8039287E 01EEC5 0019+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80392865 = "%.3ff,\t//  頭のＹ角上限\n";
+#pragma pop
+
+/* 8039287E-80392897 01EEDE 0019+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039287E = "%.3ff,\t//  頭のＹ角下限\n";
+#pragma pop
+
+/* 80392897-803928B0 01EEF7 0019+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80392897 = "%.3ff,\t//  首の回転比率\n";
+#pragma pop
+
+/* 803928B0-803928C9 01EF10 0019+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803928B0 = "%.3ff,\t//  補間フレ−ム\n";
+#pragma pop
+
+/* 803928C9-803928DE 01EF29 0015+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803928C9 = "%d,   \t//  会話距離\n";
+#pragma pop
+
+/* 803928DE-803928F3 01EF3E 0015+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803928DE = "%d,   \t//  会話角度\n";
+#pragma pop
+
+/* 803928F3-80392908 01EF53 0015+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803928F3 = "%d,   \t//  注目距離\n";
+#pragma pop
+
+/* 80392908-8039291D 01EF68 0015+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80392908 = "%d,   \t//  注目角度\n";
+#pragma pop
+
+/* 8039291D-8039292E 01EF7D 0011+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039291D = "%.3ff,\t//  視界\n";
+#pragma pop
+
+/* 8039292E-80392945 01EF8E 0017+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039292E = "%.3ff,\t//  サ−チ距離\n";
+#pragma pop
+
+/* 80392945-8039295C 01EFA5 0017+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80392945 = "%.3ff,\t//  サ−チ高さ\n";
+#pragma pop
+
+/* 8039295C-80392973 01EFBC 0017+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039295C = "%.3ff,\t//  サ−チ低さ\n";
+#pragma pop
+
+/* 80392973-80392988 01EFD3 0015+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80392973 = "%d,   \t//  注目時間\n";
+#pragma pop
+
+/* 80392988-803929A1 01EFE8 0019+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80392988 = "%d,   \t//  ダメ−ジ期間\n";
+#pragma pop
+
+/* 803929A1-803929B2 01F001 0011+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+// MWCC ignores mapping of some japanese characters using the
+// byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
+SECTION_DEAD static char const* const stringBase_803929A1 =
+    "\x25\x64\x2C\x20\x20\x20\x09\x2F\x2F\x20\x20\x95\x5C\x8F\xEE\x0A";
+#pragma pop
+
+/* 803929B2-803929C3 01F012 0011+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803929B2 = "%d,   \t//  動作\n";
+#pragma pop
+
+/* 803929C3-803929DA 01F023 0017+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803929C3 = "%d,   \t//  注視モ−ド\n";
+#pragma pop
+
+/* 803929DA-803929F7 01F03A 001D+00 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803929DA = "%d,   \t//  デバグモ−ドＯＮ\n";
+#pragma pop
+
+/* 803929F7-80392A18 01F057 001B+06 0/0 0/0 0/0 .rodata          None */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803929F7 = "%d,   \t//  デバグ情報ＯＮ\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80392A12 = "\0\0\0\0\0";
 #pragma pop
 
 /* 80450FF8-80451000 0004F8 0008+00 0/0 1/1 0/0 .sbss            None */
 extern u8 data_80450FF8[8];
 u8 data_80450FF8[8];
 
-/* 80392710-80392A18 01ED70 0302+06 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80392710 = "DEFAULT_GETITEM";
-SECTION_DEAD static char const* const stringBase_80392720 = ".bck";
-SECTION_DEAD static char const* const stringBase_80392725 = ".btp";
-SECTION_DEAD static char const* const stringBase_8039272A = ".btk";
-SECTION_DEAD static char const* const stringBase_8039272F = "%.3ff,\t//  注目オフセット\n";
-SECTION_DEAD static char const* const stringBase_8039274A = "%.3ff,\t//  重力\n";
-SECTION_DEAD static char const* const stringBase_8039275B = "%.3ff,\t//  スケ−ル\n";
-SECTION_DEAD static char const* const stringBase_80392770 = "%.3ff,\t//  リアル影サイズ\n";
-SECTION_DEAD static char const* const stringBase_8039278B = "%.3ff,\t//  体重\n";
-SECTION_DEAD static char const* const stringBase_8039279C = "%.3ff,\t//  高さ\n";
-SECTION_DEAD static char const* const stringBase_803927AD = "%.3ff,\t//  ひざ丈\n";
-SECTION_DEAD static char const* const stringBase_803927C0 = "%.3ff,\t//  幅\n";
-SECTION_DEAD static char const* const stringBase_803927CF = "%.3ff,\t//  腰のＸ角上限\n";
-SECTION_DEAD static char const* const stringBase_803927E8 = "%.3ff,\t//  腰のＸ角下限\n";
-SECTION_DEAD static char const* const stringBase_80392801 = "%.3ff,\t//  腰のＹ角上限\n";
-SECTION_DEAD static char const* const stringBase_8039281A = "%.3ff,\t//  腰のＹ角下限\n";
-SECTION_DEAD static char const* const stringBase_80392833 = "%.3ff,\t//  頭のＸ角上限\n";
-SECTION_DEAD static char const* const stringBase_8039284C = "%.3ff,\t//  頭のＸ角下限\n";
-SECTION_DEAD static char const* const stringBase_80392865 = "%.3ff,\t//  頭のＹ角上限\n";
-SECTION_DEAD static char const* const stringBase_8039287E = "%.3ff,\t//  頭のＹ角下限\n";
-SECTION_DEAD static char const* const stringBase_80392897 = "%.3ff,\t//  首の回転比率\n";
-SECTION_DEAD static char const* const stringBase_803928B0 = "%.3ff,\t//  補間フレ−ム\n";
-SECTION_DEAD static char const* const stringBase_803928C9 = "%d,   \t//  会話距離\n";
-SECTION_DEAD static char const* const stringBase_803928DE = "%d,   \t//  会話角度\n";
-SECTION_DEAD static char const* const stringBase_803928F3 = "%d,   \t//  注目距離\n";
-SECTION_DEAD static char const* const stringBase_80392908 = "%d,   \t//  注目角度\n";
-SECTION_DEAD static char const* const stringBase_8039291D = "%.3ff,\t//  視界\n";
-SECTION_DEAD static char const* const stringBase_8039292E = "%.3ff,\t//  サ−チ距離\n";
-SECTION_DEAD static char const* const stringBase_80392945 = "%.3ff,\t//  サ−チ高さ\n";
-SECTION_DEAD static char const* const stringBase_8039295C = "%.3ff,\t//  サ−チ低さ\n";
-SECTION_DEAD static char const* const stringBase_80392973 = "%d,   \t//  注目時間\n";
-SECTION_DEAD static char const* const stringBase_80392988 = "%d,   \t//  ダメ−ジ期間\n";
-// MWCC ignores mapping of some japanese characters using the
-// byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
-SECTION_DEAD static char const* const stringBase_803929A1 =
-    "\x25\x64\x2C\x20\x20\x20\x09\x2F\x2F\x20\x20\x95\x5C\x8F\xEE\x0A";
-SECTION_DEAD static char const* const stringBase_803929B2 = "%d,   \t//  動作\n";
-SECTION_DEAD static char const* const stringBase_803929C3 = "%d,   \t//  注視モ−ド\n";
-SECTION_DEAD static char const* const stringBase_803929DA = "%d,   \t//  デバグモ−ドＯＮ\n";
-SECTION_DEAD static char const* const stringBase_803929F7 = "%d,   \t//  デバグ情報ＯＮ\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80392A12 = "\0\0\0\0\0";
-#pragma pop
+/* 80392710-80392710 01ED70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -51,7 +51,7 @@ extern "C" void execute__12daTagMyna2_cFv();
 extern "C" static void daTagMyna2_Create__FP10fopAc_ac_c();
 extern "C" static void daTagMyna2_Execute__FP12daTagMyna2_c();
 extern "C" static void daTagMyna2_Delete__FP12daTagMyna2_c();
-extern "C" void func_80D5CA18(s16*);
+extern "C" void func_80D5CA18(void* _this, s16*);
 extern "C" extern void* g_profile_TAG_MYNA2[12];
 
 //
@@ -103,7 +103,7 @@ SECTION_RODATA static u8 const lit_3743[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D5CA3C, &lit_3743);
+COMPILER_STRIP_GATE(0x80D5CA3C, &lit_3743);
 
 /* 80D5CA44-80D5CA4C 000008 0008+00 0/1 0/0 0/0 .rodata          @3744 */
 #pragma push
@@ -111,7 +111,7 @@ COMPILER_STRIP_GATE(80D5CA3C, &lit_3743);
 SECTION_RODATA static u8 const lit_3744[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D5CA44, &lit_3744);
+COMPILER_STRIP_GATE(0x80D5CA44, &lit_3744);
 #pragma pop
 
 /* 80D5CA4C-80D5CA54 000010 0008+00 0/1 0/0 0/0 .rodata          @3745 */
@@ -120,7 +120,7 @@ COMPILER_STRIP_GATE(80D5CA44, &lit_3744);
 SECTION_RODATA static u8 const lit_3745[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D5CA4C, &lit_3745);
+COMPILER_STRIP_GATE(0x80D5CA4C, &lit_3745);
 #pragma pop
 
 /* 80D5CA54-80D5CA5C 000018 0008+00 0/1 0/0 0/0 .rodata          @3746 */
@@ -129,21 +129,21 @@ COMPILER_STRIP_GATE(80D5CA4C, &lit_3745);
 SECTION_RODATA static u8 const lit_3746[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D5CA54, &lit_3746);
+COMPILER_STRIP_GATE(0x80D5CA54, &lit_3746);
 #pragma pop
 
 /* 80D5CA5C-80D5CA60 000020 0004+00 0/1 0/0 0/0 .rodata          @3747 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3747 = 100.0f;
-COMPILER_STRIP_GATE(80D5CA5C, &lit_3747);
+COMPILER_STRIP_GATE(0x80D5CA5C, &lit_3747);
 #pragma pop
 
 /* 80D5CA60-80D5CA64 000024 0004+00 0/1 0/0 0/0 .rodata          @3748 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3748 = 1000.0f;
-COMPILER_STRIP_GATE(80D5CA60, &lit_3748);
+COMPILER_STRIP_GATE(0x80D5CA60, &lit_3748);
 #pragma pop
 
 /* 80D5C708-80D5C9A8 0000E8 02A0+00 1/1 0/0 0/0 .text            execute__12daTagMyna2_cFv */
@@ -192,7 +192,7 @@ static asm void daTagMyna2_Delete(daTagMyna2_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80D5CA18(s16* param_0) {
+extern "C" asm void func_80D5CA18(void* _this, s16* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_myna2/d_a_tag_myna2/func_80D5CA18.s"
 }

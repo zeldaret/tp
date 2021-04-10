@@ -60,31 +60,30 @@ struct J2DScreen {
 
 struct J2DRotateAxis {};
 
-struct J2DAnmVtxColor {};
+struct J2DAnmVisibilityFull {};
+
+struct J2DAnmBase {};
 
 struct J2DAnmTexPattern {};
 
-struct J2DAnmTextureSRTKey {};
+struct J2DAnmColor {};
 
 struct J2DAnmTevRegKey {};
-
-struct J2DBasePosition {};
 
 struct J2DGrafContext {
     /* 802E8E20 */ void setScissor();
     /* 802E90C0 */ void scissor(JGeometry::TBox2<f32> const&);
 };
 
-struct J2DAnmVisibilityFull {};
+struct J2DBasePosition {};
 
-struct J2DAnmColor {};
+struct J2DAnmTextureSRTKey {};
+
+struct J2DAnmVtxColor {};
 
 struct J2DAnmTransform {};
 
-struct J2DAnmBase {};
-
 struct J2DPane {
-    /* 80020158 */ void setAlpha(u8);
     /* 80053BC0 */ void calcMtx();
     /* 80053C00 */ void makeMatrix(f32, f32);
     /* 802F7540 */ void makeMatrix(f32, f32, f32, f32);
@@ -745,15 +744,10 @@ asm void J2DPane::setAnimation(J2DAnmBase* param_0) {
 }
 #pragma pop
 
-/* 802F7FC4-802F7FCC 2F2904 0008+00 1/0 7/4 0/0 .text setAnimation__7J2DPaneFP15J2DAnmTransform */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void J2DPane::setAnimation(J2DAnmTransform* param_0) {
-    nofralloc
-#include "asm/JSystem/J2DGraph/J2DPane/setAnimation__7J2DPaneFP15J2DAnmTransform.s"
+/* 802F7FC4-802F7FCC -00001 0008+00 0/0 0/0 0/0 .text setAnimation__7J2DPaneFP15J2DAnmTransform */
+void J2DPane::setAnimation(J2DAnmTransform* param_0) {
+    *(u32*)(((u8*)this) + 248) /* this->field_0xf8 */ = (u32)(param_0);
 }
-#pragma pop
 
 /* 802F7FCC-802F8004 2F290C 0038+00 0/0 57/57 0/0 .text            animationTransform__7J2DPaneFv */
 #pragma push
@@ -915,5 +909,5 @@ asm void __sinit_J2DPane_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_802F847C = (void*)__sinit_J2DPane_cpp;
+REGISTER_CTORS(0x802F847C, __sinit_J2DPane_cpp);
 #pragma pop

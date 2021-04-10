@@ -213,6 +213,14 @@ asm void JKRSolidHeap::do_alloc(u32 param_0, int param_1) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039CE50-8039CE50 0294B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039CE50 =
+    "allocFromHead: cannot alloc memory (0x%x byte).\n";
+#pragma pop
+
 /* 802D0D58-802D0E20 2CB698 00C8+00 1/1 0/0 0/0 .text            allocFromHead__12JKRSolidHeapFUli
  */
 #pragma push
@@ -224,6 +232,14 @@ asm void JKRSolidHeap::allocFromHead(u32 param_0, int param_1) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039CE50-8039CE50 0294B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039CE81 =
+    "allocFromTail: cannot alloc memory (0x%x byte).\n";
+#pragma pop
+
 /* 802D0E20-802D0EE4 2CB760 00C4+00 1/1 0/0 0/0 .text            allocFromTail__12JKRSolidHeapFUli
  */
 #pragma push
@@ -233,6 +249,14 @@ asm void JKRSolidHeap::allocFromTail(u32 param_0, int param_1) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRSolidHeap/allocFromTail__12JKRSolidHeapFUli.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8039CE50-8039CE50 0294B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039CEB2 =
+    "free: cannot free memory block (%08x)\n";
 #pragma pop
 
 /* 802D0EE4-802D0F14 2CB824 0030+00 1/0 0/0 0/0 .text            do_free__12JKRSolidHeapFPv */
@@ -271,6 +295,14 @@ void JKRSolidHeap::do_fillFreeArea() {
     /* empty function */
 }
 
+/* ############################################################################################## */
+/* 8039CE50-8039CE50 0294B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039CED9 =
+    "resize: cannot resize memory block (%08x: %d)\n";
+#pragma pop
+
 /* 802D1004-802D1038 2CB944 0034+00 1/0 0/0 0/0 .text            do_resize__12JKRSolidHeapFPvUl */
 #pragma push
 #pragma optimization_level 0
@@ -281,6 +313,14 @@ asm void JKRSolidHeap::do_resize(void* param_0, u32 param_1) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039CE50-8039CE50 0294B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039CF08 =
+    "getSize: cannot get memory block size (%08x)\n";
+#pragma pop
+
 /* 802D1038-802D106C 2CB978 0034+00 1/0 0/0 0/0 .text            do_getSize__12JKRSolidHeapFPv */
 #pragma push
 #pragma optimization_level 0
@@ -289,6 +329,14 @@ asm void JKRSolidHeap::do_getSize(void* param_0) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRSolidHeap/do_getSize__12JKRSolidHeapFPv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8039CE50-8039CE50 0294B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039CF36 =
+    "check: bad total memory block size (%08X, %08X)\n";
 #pragma pop
 
 /* 802D106C-802D10FC 2CB9AC 0090+00 1/0 0/0 0/0 .text            check__12JKRSolidHeapFv */
@@ -302,6 +350,16 @@ asm void JKRSolidHeap::check() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8039CE50-8039CE50 0294B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039CF67 = "head %08x: %08x\n";
+SECTION_DEAD static char const* const stringBase_8039CF78 = "tail %08x: %08x\n";
+SECTION_DEAD static char const* const stringBase_8039CF89 = "%d / %d bytes (%6.2f%%) used\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039CFA7 = "";
+#pragma pop
+
 /* 80455FA8-80455FB0 0045A8 0004+04 1/1 0/0 0/0 .sdata2          @693 */
 SECTION_SDATA2 static f32 lit_693[1 + 1 /* padding */] = {
     100.0f,
@@ -388,25 +446,4 @@ asm void JKRSolidHeap::do_getTotalFreeSize() {
 }
 #pragma pop
 
-/* 8039CE50-8039CFA8 0294B0 0157+01 7/7 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039CE50 =
-    "allocFromHead: cannot alloc memory (0x%x byte).\n";
-SECTION_DEAD static char const* const stringBase_8039CE81 =
-    "allocFromTail: cannot alloc memory (0x%x byte).\n";
-SECTION_DEAD static char const* const stringBase_8039CEB2 =
-    "free: cannot free memory block (%08x)\n";
-SECTION_DEAD static char const* const stringBase_8039CED9 =
-    "resize: cannot resize memory block (%08x: %d)\n";
-SECTION_DEAD static char const* const stringBase_8039CF08 =
-    "getSize: cannot get memory block size (%08x)\n";
-SECTION_DEAD static char const* const stringBase_8039CF36 =
-    "check: bad total memory block size (%08X, %08X)\n";
-SECTION_DEAD static char const* const stringBase_8039CF67 = "head %08x: %08x\n";
-SECTION_DEAD static char const* const stringBase_8039CF78 = "tail %08x: %08x\n";
-SECTION_DEAD static char const* const stringBase_8039CF89 = "%d / %d bytes (%6.2f%%) used\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039CFA7 = "";
-#pragma pop
+/* 8039CE50-8039CE50 0294B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

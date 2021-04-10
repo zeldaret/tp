@@ -28,8 +28,8 @@ template <typename A0>
 struct JSUList {};
 /* JSUList<JPABaseEmitter> */
 struct JSUList__template1 {
-    /* 8027E51C */ void func_8027E51C();
-    /* 8027E598 */ void func_8027E598();
+    /* 8027E51C */ void func_8027E51C(void* _this);
+    /* 8027E598 */ void func_8027E598(void* _this);
 };
 
 struct JPAResourceManager {
@@ -45,15 +45,15 @@ struct JGeometry {
     struct TVec3__template0 {};
 };
 
-struct JPADrawInfo {};
+struct JPAParticleCallBack {};
 
-struct JKRHeap {};
+struct JPADrawInfo {};
 
 struct JPAEmitterCallBack {};
 
-struct JPABaseEmitter;
-struct JPAParticleCallBack {};
+struct JKRHeap {};
 
+struct JPABaseEmitter;
 struct JPAEmitterManager {
     /* 8027DCA0 */ JPAEmitterManager(u32, u32, JKRHeap*, u8, u8);
     /* 8027DEBC */ void createSimpleEmitterID(JGeometry::TVec3<f32> const&, u16, u8, u8,
@@ -85,8 +85,8 @@ template <typename A0>
 struct JPANode {};
 /* JPANode<JPABaseParticle> */
 struct JPANode__template0 {
-    /* 8027E54C */ void func_8027E54C();
-    /* 8027E588 */ void func_8027E588();
+    /* 8027E54C */ void func_8027E54C(void* _this);
+    /* 8027E588 */ void func_8027E588(void* _this);
 };
 
 //
@@ -103,10 +103,10 @@ extern "C" void forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter();
 extern "C" void entryResourceManager__17JPAEmitterManagerFP18JPAResourceManagerUc();
 extern "C" void clearResourceManager__17JPAEmitterManagerFUc();
 extern "C" void calcYBBCam__17JPAEmitterManagerFv();
-extern "C" void func_8027E51C();
-extern "C" void func_8027E54C();
-extern "C" void func_8027E588();
-extern "C" void func_8027E598();
+extern "C" void func_8027E51C(void* _this);
+extern "C" void func_8027E54C(void* _this);
+extern "C" void func_8027E588(void* _this);
+extern "C" void func_8027E598(void* _this);
 extern "C" void __dt__14JPABaseEmitterFv();
 extern "C" void __ct__14JPABaseEmitterFv();
 
@@ -300,7 +300,7 @@ asm void JPAEmitterManager::calcYBBCam() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8027E51C() {
+extern "C" asm void func_8027E51C(void* _this) {
     nofralloc
 #include "asm/JSystem/JParticle/JPAEmitterManager/func_8027E51C.s"
 }
@@ -310,7 +310,7 @@ extern "C" asm void func_8027E51C() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8027E54C() {
+extern "C" asm void func_8027E54C(void* _this) {
     nofralloc
 #include "asm/JSystem/JParticle/JPAEmitterManager/func_8027E54C.s"
 }
@@ -320,7 +320,7 @@ extern "C" asm void func_8027E54C() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8027E588() {
+extern "C" asm void func_8027E588(void* _this) {
     nofralloc
 #include "asm/JSystem/JParticle/JPAEmitterManager/func_8027E588.s"
 }
@@ -331,7 +331,7 @@ extern "C" asm void func_8027E588() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8027E598() {
+extern "C" asm void func_8027E598(void* _this) {
     nofralloc
 #include "asm/JSystem/JParticle/JPAEmitterManager/func_8027E598.s"
 }

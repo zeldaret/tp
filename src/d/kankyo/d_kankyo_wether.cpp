@@ -27,6 +27,10 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
+struct dKy_tevstr_c {};
+
+struct csXyz {};
+
 struct _GXColor {};
 
 struct Vec {};
@@ -41,10 +45,6 @@ struct cXyz {
 
     static f32 Zero[3];
 };
-
-struct csXyz {};
-
-struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -932,6 +932,13 @@ static asm void dKyw_evil_Draw() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A368 = "F_SP113";
+SECTION_DEAD static char const* const stringBase_8037A370 = "D_MN07";
+#pragma pop
+
 /* 804520E0-804520E4 0006E0 0004+00 12/12 0/0 0/0 .sdata2          @4378 */
 SECTION_SDATA2 static u8 lit_4378[4] = {
     0x00,
@@ -1224,6 +1231,21 @@ asm void dKyw_wether_move() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A377 = "F_SP200";
+SECTION_DEAD static char const* const stringBase_8037A37F = "D_MN09";
+SECTION_DEAD static char const* const stringBase_8037A386 = "D_MN09A";
+SECTION_DEAD static char const* const stringBase_8037A38E = "F_moon.bti";
+SECTION_DEAD static char const* const stringBase_8037A399 = "F_moon_A.bti";
+SECTION_DEAD static char const* const stringBase_8037A3A6 = "F_moon_A_A00.bti";
+SECTION_DEAD static char const* const stringBase_8037A3B7 = "F_moon_A_A01.bti";
+SECTION_DEAD static char const* const stringBase_8037A3C8 = "F_moon_A_A02.bti";
+SECTION_DEAD static char const* const stringBase_8037A3D9 = "F_moon_A_A03.bti";
+SECTION_DEAD static char const* const stringBase_8037A3EA = "Always";
+#pragma pop
+
 /* 804520E8-804520EC 0006E8 0004+00 1/1 0/0 0/0 .sdata2          @4610 */
 SECTION_SDATA2 static f32 lit_4610 = 255.0f;
 
@@ -1241,6 +1263,12 @@ static asm void wether_move_sun() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A3F1 = "R_SP127";
+#pragma pop
+
 /* 804520F0-804520F4 0006F0 0004+00 2/2 0/0 0/0 .sdata2          @4668 */
 SECTION_SDATA2 static f32 lit_4668 = -1.0f;
 
@@ -1271,6 +1299,14 @@ static asm void wether_move_snow() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A3F9 = "F_SP121";
+SECTION_DEAD static char const* const stringBase_8037A401 = "F_SP122";
+SECTION_DEAD static char const* const stringBase_8037A409 = "F_SP128";
+#pragma pop
+
 /* 80452100-80452104 000700 0004+00 1/1 0/0 0/0 .sdata2          @4761 */
 SECTION_SDATA2 static f32 lit_4761 = 330.0f;
 
@@ -1317,6 +1353,21 @@ static asm void wether_move_star() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A411 = "D_MN08";
+SECTION_DEAD static char const* const stringBase_8037A418 = "D_MN08A";
+SECTION_DEAD static char const* const stringBase_8037A420 = "D_MN08B";
+SECTION_DEAD static char const* const stringBase_8037A428 = "D_MN08C";
+SECTION_DEAD static char const* const stringBase_8037A430 = "F_SP115";
+SECTION_DEAD static char const* const stringBase_8037A438 = "F_SP108";
+SECTION_DEAD static char const* const stringBase_8037A440 = "F_SP116";
+SECTION_DEAD static char const* const stringBase_8037A448 = "momiji64s3tc.bti";
+SECTION_DEAD static char const* const stringBase_8037A459 = "sakura32ia4.bti";
+#pragma pop
+
 /* 80058F18-800593DC 053858 04C4+00 1/1 0/0 0/0 .text            wether_move_housi__Fv */
 #pragma push
 #pragma optimization_level 0
@@ -1348,6 +1399,17 @@ static asm void wether_move_moya() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A469 = "F_SP114";
+SECTION_DEAD static char const* const stringBase_8037A471 = "D_MN09B";
+SECTION_DEAD static char const* const stringBase_8037A479 = "F_SP104";
+SECTION_DEAD static char const* const stringBase_8037A481 = "cloudtx_01.bti";
+SECTION_DEAD static char const* const stringBase_8037A490 = "cloudtx_02.bti";
+SECTION_DEAD static char const* const stringBase_8037A49F = "cloudtx_03.bti";
+#pragma pop
+
 /* 80424938-80424944 051658 000C+00 1/1 0/0 0/0 .bss             @4965 */
 static u8 lit_4965[12];
 
@@ -1423,6 +1485,13 @@ static asm void wether_move_evil() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A4AE = "Name";
+#pragma pop
+
 /* 8005A0B8-8005A154 0549F8 009C+00 0/0 1/1 0/0 .text            dKyw_wether_move_draw__Fv */
 #pragma push
 #pragma optimization_level 0
@@ -1464,6 +1533,14 @@ asm void dKyw_wether_draw2() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A4B3 = "F_SP127";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8037A4BB = "\0\0\0\0";
+#pragma pop
+
 /* 80452164-80452168 000764 0004+00 1/1 0/0 0/0 .sdata2          @5361 */
 SECTION_SDATA2 static f32 lit_5361 = 120.0f;
 
@@ -1752,43 +1829,4 @@ asm void dKyw_rain_set(int param_0) {
 }
 #pragma pop
 
-/* 8037A368-8037A4C0 0069C8 0153+05 12/12 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8037A368 = "F_SP113";
-SECTION_DEAD static char const* const stringBase_8037A370 = "D_MN07";
-SECTION_DEAD static char const* const stringBase_8037A377 = "F_SP200";
-SECTION_DEAD static char const* const stringBase_8037A37F = "D_MN09";
-SECTION_DEAD static char const* const stringBase_8037A386 = "D_MN09A";
-SECTION_DEAD static char const* const stringBase_8037A38E = "F_moon.bti";
-SECTION_DEAD static char const* const stringBase_8037A399 = "F_moon_A.bti";
-SECTION_DEAD static char const* const stringBase_8037A3A6 = "F_moon_A_A00.bti";
-SECTION_DEAD static char const* const stringBase_8037A3B7 = "F_moon_A_A01.bti";
-SECTION_DEAD static char const* const stringBase_8037A3C8 = "F_moon_A_A02.bti";
-SECTION_DEAD static char const* const stringBase_8037A3D9 = "F_moon_A_A03.bti";
-SECTION_DEAD static char const* const stringBase_8037A3EA = "Always";
-SECTION_DEAD static char const* const stringBase_8037A3F1 = "R_SP127";
-SECTION_DEAD static char const* const stringBase_8037A3F9 = "F_SP121";
-SECTION_DEAD static char const* const stringBase_8037A401 = "F_SP122";
-SECTION_DEAD static char const* const stringBase_8037A409 = "F_SP128";
-SECTION_DEAD static char const* const stringBase_8037A411 = "D_MN08";
-SECTION_DEAD static char const* const stringBase_8037A418 = "D_MN08A";
-SECTION_DEAD static char const* const stringBase_8037A420 = "D_MN08B";
-SECTION_DEAD static char const* const stringBase_8037A428 = "D_MN08C";
-SECTION_DEAD static char const* const stringBase_8037A430 = "F_SP115";
-SECTION_DEAD static char const* const stringBase_8037A438 = "F_SP108";
-SECTION_DEAD static char const* const stringBase_8037A440 = "F_SP116";
-SECTION_DEAD static char const* const stringBase_8037A448 = "momiji64s3tc.bti";
-SECTION_DEAD static char const* const stringBase_8037A459 = "sakura32ia4.bti";
-SECTION_DEAD static char const* const stringBase_8037A469 = "F_SP114";
-SECTION_DEAD static char const* const stringBase_8037A471 = "D_MN09B";
-SECTION_DEAD static char const* const stringBase_8037A479 = "F_SP104";
-SECTION_DEAD static char const* const stringBase_8037A481 = "cloudtx_01.bti";
-SECTION_DEAD static char const* const stringBase_8037A490 = "cloudtx_02.bti";
-SECTION_DEAD static char const* const stringBase_8037A49F = "cloudtx_03.bti";
-SECTION_DEAD static char const* const stringBase_8037A4AE = "Name";
-SECTION_DEAD static char const* const stringBase_8037A4B3 = "F_SP127";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037A4BB = "\0\0\0\0";
-#pragma pop
+/* 8037A368-8037A368 0069C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

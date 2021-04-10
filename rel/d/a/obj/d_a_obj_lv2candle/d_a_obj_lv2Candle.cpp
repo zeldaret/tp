@@ -130,9 +130,9 @@ struct Z2SoundObjBase {
     /* 802BE4A4 */ void startCollisionSE(u32, u32, Z2SoundObjBase*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -250,34 +250,42 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 8058F130-8058F134 000000 0004+00 4/4 0/0 0/0 .rodata          @3637 */
 SECTION_RODATA static f32 const lit_3637 = 500.0f;
-COMPILER_STRIP_GATE(8058F130, &lit_3637);
+COMPILER_STRIP_GATE(0x8058F130, &lit_3637);
 
 /* 8058F134-8058F138 000004 0004+00 0/1 0/0 0/0 .rodata          @3638 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3638 = 19.0f / 20.0f;
-COMPILER_STRIP_GATE(8058F134, &lit_3638);
+COMPILER_STRIP_GATE(0x8058F134, &lit_3638);
 #pragma pop
 
 /* 8058F138-8058F13C 000008 0004+00 0/4 0/0 0/0 .rodata          @3639 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3639 = 1.0f;
-COMPILER_STRIP_GATE(8058F138, &lit_3639);
+COMPILER_STRIP_GATE(0x8058F138, &lit_3639);
 #pragma pop
 
 /* 8058F13C-8058F140 00000C 0004+00 0/1 0/0 0/0 .rodata          @3640 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3640 = 4.0f / 5.0f;
-COMPILER_STRIP_GATE(8058F13C, &lit_3640);
+COMPILER_STRIP_GATE(0x8058F13C, &lit_3640);
 #pragma pop
 
 /* 8058F140-8058F144 000010 0004+00 0/2 0/0 0/0 .rodata          @3641 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3641 = 3.0f / 100.0f;
-COMPILER_STRIP_GATE(8058F140, &lit_3641);
+COMPILER_STRIP_GATE(0x8058F140, &lit_3641);
+#pragma pop
+
+/* 8058F1AC-8058F1AC 00007C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8058F1AC = "L2candl";
+SECTION_DEAD static char const* const stringBase_8058F1B4 = "L4candl";
+SECTION_DEAD static char const* const stringBase_8058F1BC = "L9Candle";
 #pragma pop
 
 /* 8058F1C8-8058F20C 000000 0044+00 2/2 0/0 0/0 .data            mCcDCyl__13daLv2Candle_c */
@@ -383,13 +391,13 @@ SECTION_RODATA u8 const daLv2Candle_c::mCcDObjInfo[48] = {
     0xD8, 0xFB, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x79, 0x01, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8058F144, &daLv2Candle_c::mCcDObjInfo);
+COMPILER_STRIP_GATE(0x8058F144, &daLv2Candle_c::mCcDObjInfo);
 
 /* 8058F174-8058F180 000044 000C+00 1/1 0/0 0/0 .rodata          l_bmdIdx */
 SECTION_RODATA static u8 const l_bmdIdx[12] = {
     0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x03,
 };
-COMPILER_STRIP_GATE(8058F174, &l_bmdIdx);
+COMPILER_STRIP_GATE(0x8058F174, &l_bmdIdx);
 
 /* 8058E1C4-8058E244 000264 0080+00 1/1 0/0 0/0 .text            CreateHeap__13daLv2Candle_cFv */
 #pragma push
@@ -404,7 +412,7 @@ asm void daLv2Candle_c::CreateHeap() {
 /* ############################################################################################## */
 /* 8058F180-8058F184 000050 0004+00 1/1 0/0 0/0 .rodata          @3778 */
 SECTION_RODATA static f32 const lit_3778 = 135.0f;
-COMPILER_STRIP_GATE(8058F180, &lit_3778);
+COMPILER_STRIP_GATE(0x8058F180, &lit_3778);
 
 /* 8058E244-8058E52C 0002E4 02E8+00 1/1 0/0 0/0 .text            create__13daLv2Candle_cFv */
 #pragma push
@@ -472,7 +480,7 @@ asm void daLv2Candle_c::searchDemoTagAct(void* param_0, void* param_1) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3888 = 10.0f;
-COMPILER_STRIP_GATE(8058F184, &lit_3888);
+COMPILER_STRIP_GATE(0x8058F184, &lit_3888);
 #pragma pop
 
 /* 8058F188-8058F18C 000058 0004+00 0/3 0/0 0/0 .rodata          @3889 */
@@ -484,7 +492,7 @@ SECTION_RODATA static u8 const lit_3889[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8058F188, &lit_3889);
+COMPILER_STRIP_GATE(0x8058F188, &lit_3889);
 #pragma pop
 
 /* 8058F2A0-8058F2AC 000008 000C+00 1/1 0/0 0/0 .bss             @3631 */
@@ -528,35 +536,35 @@ asm void daLv2Candle_c::cutLight() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3918 = 0x000000FF;
-COMPILER_STRIP_GATE(8058F18C, &lit_3918);
+COMPILER_STRIP_GATE(0x8058F18C, &lit_3918);
 #pragma pop
 
 /* 8058F190-8058F194 000060 0004+00 0/1 0/0 0/0 .rodata          @3936 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3936 = 0x38D1B717;
-COMPILER_STRIP_GATE(8058F190, &lit_3936);
+COMPILER_STRIP_GATE(0x8058F190, &lit_3936);
 #pragma pop
 
 /* 8058F194-8058F198 000064 0004+00 0/1 0/0 0/0 .rodata          @3937 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3937 = 0.5f;
-COMPILER_STRIP_GATE(8058F194, &lit_3937);
+COMPILER_STRIP_GATE(0x8058F194, &lit_3937);
 #pragma pop
 
 /* 8058F198-8058F19C 000068 0004+00 0/1 0/0 0/0 .rodata          @3938 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3938 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(8058F198, &lit_3938);
+COMPILER_STRIP_GATE(0x8058F198, &lit_3938);
 #pragma pop
 
 /* 8058F19C-8058F1A0 00006C 0004+00 0/1 0/0 0/0 .rodata          @3939 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3939 = 0x358637BD;
-COMPILER_STRIP_GATE(8058F19C, &lit_3939);
+COMPILER_STRIP_GATE(0x8058F19C, &lit_3939);
 #pragma pop
 
 /* 8058E780-8058E99C 000820 021C+00 1/1 0/0 0/0 .text            pointLightProc__13daLv2Candle_cFv
@@ -575,21 +583,21 @@ asm void daLv2Candle_c::pointLightProc() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4097 = -1.0f;
-COMPILER_STRIP_GATE(8058F1A0, &lit_4097);
+COMPILER_STRIP_GATE(0x8058F1A0, &lit_4097);
 #pragma pop
 
 /* 8058F1A4-8058F1A8 000074 0004+00 0/1 0/0 0/0 .rodata          @4098 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4098 = 25.0f;
-COMPILER_STRIP_GATE(8058F1A4, &lit_4098);
+COMPILER_STRIP_GATE(0x8058F1A4, &lit_4098);
 #pragma pop
 
 /* 8058F1A8-8058F1AC 000078 0004+00 0/1 0/0 0/0 .rodata          @4099 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4099 = 160.0f;
-COMPILER_STRIP_GATE(8058F1A8, &lit_4099);
+COMPILER_STRIP_GATE(0x8058F1A8, &lit_4099);
 #pragma pop
 
 /* 8058E99C-8058EEC8 000A3C 052C+00 1/1 0/0 0/0 .text            Execute__13daLv2Candle_cFv */
@@ -686,14 +694,7 @@ asm void __sinit_d_a_obj_lv2Candle_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8058F0AC = (void*)__sinit_d_a_obj_lv2Candle_cpp;
+REGISTER_CTORS(0x8058F0AC, __sinit_d_a_obj_lv2Candle_cpp);
 #pragma pop
 
-/* 8058F1AC-8058F1C5 00007C 0019+00 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8058F1AC = "L2candl";
-SECTION_DEAD static char const* const stringBase_8058F1B4 = "L4candl";
-SECTION_DEAD static char const* const stringBase_8058F1BC = "L9Candle";
-#pragma pop
+/* 8058F1AC-8058F1AC 00007C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

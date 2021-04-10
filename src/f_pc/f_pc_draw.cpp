@@ -54,7 +54,7 @@ asm void fpcDw_Execute(base_process_class* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcDw_Handler(int (*)(int (*)(void*, void*)), int (*)(void*, void*)) {
+asm void fpcDw_Handler(int (*param_0)(int (*)(void*, void*)), int (*param_1)(void*, void*)) {
     nofralloc
 #include "asm/f_pc/f_pc_draw/fpcDw_Handler__FPFPFPvPv_i_iPFPvPv_i.s"
 }

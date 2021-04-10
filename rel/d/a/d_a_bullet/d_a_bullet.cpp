@@ -173,7 +173,7 @@ extern "C" static void daBullet_Execute__FPv();
 extern "C" static void daBullet_Draw__FPv();
 extern "C" static bool daBullet_IsDelete__FPv();
 extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void func_80656618(int*);
+extern "C" void func_80656618(void* _this, int*);
 extern "C" void __sinit_d_a_bullet_cpp();
 extern "C" void __dt__16daBullet_Param_cFv();
 extern "C" static void func_806566F0();
@@ -246,6 +246,13 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80656774-80656774 000060 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80656774 = "Hanjo1";
+SECTION_DEAD static char const* const stringBase_8065677B = "hanjo_stone.bmd";
+#pragma pop
+
 /* 8065678C-80656790 -00001 0004+00 1/1 0/0 0/0 .data            l_resFileNameList */
 SECTION_DATA static void* l_resFileNameList = (void*)&d_a_bullet__stringBase0;
 
@@ -448,18 +455,18 @@ SECTION_RODATA u8 const daBullet_c::mCcDObjInfo[48] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80656714, &daBullet_c::mCcDObjInfo);
+COMPILER_STRIP_GATE(0x80656714, &daBullet_c::mCcDObjInfo);
 
 /* 80656744-8065675C 000030 0018+00 1/2 0/0 0/0 .rodata          m__16daBullet_Param_c */
 SECTION_RODATA u8 const daBullet_Param_c::m[24] = {
     0xC0, 0x40, 0x00, 0x00, 0x43, 0x7F, 0x00, 0x00, 0x40, 0x40, 0x00, 0x00,
     0x3F, 0xC0, 0x00, 0x00, 0x40, 0x40, 0x00, 0x00, 0x07, 0x08, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80656744, &daBullet_Param_c::m);
+COMPILER_STRIP_GATE(0x80656744, &daBullet_Param_c::m);
 
 /* 8065675C-80656760 000048 0004+00 1/1 0/0 0/0 .rodata          @3824 */
 SECTION_RODATA static f32 const lit_3824 = -1000000000.0f;
-COMPILER_STRIP_GATE(8065675C, &lit_3824);
+COMPILER_STRIP_GATE(0x8065675C, &lit_3824);
 
 /* 80655F10-806560FC 0006B0 01EC+00 2/2 0/0 0/0 .text            Execute__10daBullet_cFv */
 #pragma push
@@ -527,14 +534,14 @@ asm void daBullet_c::getTypeFromParam() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3843 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80656760, &lit_3843);
+COMPILER_STRIP_GATE(0x80656760, &lit_3843);
 #pragma pop
 
 /* 80656764-80656768 000050 0004+00 0/0 0/0 0/0 .rodata          @3844 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3844 = 0.5f;
-COMPILER_STRIP_GATE(80656764, &lit_3844);
+COMPILER_STRIP_GATE(0x80656764, &lit_3844);
 #pragma pop
 
 /* 80656768-8065676C 000054 0004+00 0/0 0/0 0/0 .rodata          @3845 */
@@ -546,21 +553,21 @@ SECTION_RODATA static u8 const lit_3845[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80656768, &lit_3845);
+COMPILER_STRIP_GATE(0x80656768, &lit_3845);
 #pragma pop
 
 /* 8065676C-80656770 000058 0004+00 0/1 0/0 0/0 .rodata          @3908 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3908 = -10.0f;
-COMPILER_STRIP_GATE(8065676C, &lit_3908);
+COMPILER_STRIP_GATE(0x8065676C, &lit_3908);
 #pragma pop
 
 /* 80656770-80656774 00005C 0004+00 0/1 0/0 0/0 .rodata          @3909 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3909 = 10.0f;
-COMPILER_STRIP_GATE(80656770, &lit_3909);
+COMPILER_STRIP_GATE(0x80656770, &lit_3909);
 #pragma pop
 
 /* 806561D0-80656378 000970 01A8+00 1/1 0/0 0/0 .text            initialize__10daBullet_cFv */
@@ -578,7 +585,7 @@ asm void daBullet_c::initialize() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daBullet_c::setProcess(int (daBullet_c::*)(void*)) {
+asm void daBullet_c::setProcess(int (daBullet_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/d_a_bullet/d_a_bullet/setProcess__10daBullet_cFM10daBullet_cFPCvPvPv_i.s"
 }
@@ -663,7 +670,7 @@ asm cCcD_GStts::~cCcD_GStts() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80656618(int* param_0) {
+extern "C" asm void func_80656618(void* _this, int* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_bullet/d_a_bullet/func_80656618.s"
 }
@@ -695,7 +702,7 @@ asm void __sinit_d_a_bullet_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80656634 = (void*)__sinit_d_a_bullet_cpp;
+REGISTER_CTORS(0x80656634, __sinit_d_a_bullet_cpp);
 #pragma pop
 
 /* 806566A8-806566F0 000E48 0048+00 2/1 0/0 0/0 .text            __dt__16daBullet_Param_cFv */
@@ -728,10 +735,4 @@ static asm void func_806566F8() {
 }
 #pragma pop
 
-/* 80656774-8065678B 000060 0017+00 2/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80656774 = "Hanjo1";
-SECTION_DEAD static char const* const stringBase_8065677B = "hanjo_stone.bmd";
-#pragma pop
+/* 80656774-80656774 000060 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

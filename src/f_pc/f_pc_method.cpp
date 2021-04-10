@@ -35,7 +35,7 @@ extern "C" void fpcMtd_Create__FP20process_method_classPv();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcMtd_Method(int (*)(void*), void* param_1) {
+asm void fpcMtd_Method(int (*param_0)(void*), void* param_1) {
     nofralloc
 #include "asm/f_pc/f_pc_method/fpcMtd_Method__FPFPv_iPv.s"
 }

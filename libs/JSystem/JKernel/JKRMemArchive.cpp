@@ -265,6 +265,17 @@ asm void JKRMemArchive::removeResource(void* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8039D160-8039D160 0297C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039D160 = "JKRMemArchive.cpp";
+SECTION_DEAD static char const* const stringBase_8039D172 = "%s";
+SECTION_DEAD static char const* const stringBase_8039D175 = "??? bad sequence\n";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8039D187 = "";
+#pragma pop
+
 /* 802D6F5C-802D7030 2D189C 00D4+00 1/1 1/1 0/0 .text
  * fetchResource_subroutine__13JKRMemArchiveFPUcUlPUcUli        */
 #pragma push
@@ -287,13 +298,4 @@ asm void JKRMemArchive::getExpandedResSize(void const* param_0) const {
 }
 #pragma pop
 
-/* 8039D160-8039D188 0297C0 0027+01 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8039D160 = "JKRMemArchive.cpp";
-SECTION_DEAD static char const* const stringBase_8039D172 = "%s";
-SECTION_DEAD static char const* const stringBase_8039D175 = "??? bad sequence\n";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8039D187 = "";
-#pragma pop
+/* 8039D160-8039D160 0297C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

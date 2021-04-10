@@ -28,13 +28,13 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct J3DModelData {};
+struct J3DAnmTransform {};
 
-struct mDoExt_McaMorfCallBack2_c {};
+struct J3DModelData {};
 
 struct Z2Creature {
     /* 802C03C8 */ Z2Creature();
@@ -103,14 +103,14 @@ struct daNpc_SoldierB_Param_c {
     static u8 const m[108];
 };
 
-struct J3DAnmTransformKey {};
-
-struct _GXColorS10 {};
-
 struct dCcD_GObjInf {
     /* 80083A28 */ dCcD_GObjInf();
     /* 800840E4 */ ~dCcD_GObjInf();
 };
+
+struct _GXColorS10 {};
+
+struct J3DAnmTransformKey {};
 
 struct dCcD_SrcCyl {};
 
@@ -516,6 +516,14 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80AF5BF4-80AF5BF4 000120 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80AF5BF4 = "chtSolB";
+SECTION_DEAD static char const* const stringBase_80AF5BFC = "";
+SECTION_DEAD static char const* const stringBase_80AF5BFD = "LISTEN_LAKE";
+#pragma pop
+
 /* 80AF5C10-80AF5C1C 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -817,34 +825,34 @@ SECTION_RODATA u8 const daNpc_SoldierB_Param_c::m[108] = {
     0x43, 0x34, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0xC3, 0x96, 0x00, 0x00,
     0x00, 0x3C, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AF5AD4, &daNpc_SoldierB_Param_c::m);
+COMPILER_STRIP_GATE(0x80AF5AD4, &daNpc_SoldierB_Param_c::m);
 
 /* 80AF5B40-80AF5B44 00006C 0004+00 0/1 0/0 0/0 .rodata          @4399 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4399 = -300.0f;
-COMPILER_STRIP_GATE(80AF5B40, &lit_4399);
+COMPILER_STRIP_GATE(0x80AF5B40, &lit_4399);
 #pragma pop
 
 /* 80AF5B44-80AF5B48 000070 0004+00 0/1 0/0 0/0 .rodata          @4400 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4400 = -50.0f;
-COMPILER_STRIP_GATE(80AF5B44, &lit_4400);
+COMPILER_STRIP_GATE(0x80AF5B44, &lit_4400);
 #pragma pop
 
 /* 80AF5B48-80AF5B4C 000074 0004+00 0/1 0/0 0/0 .rodata          @4401 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4401 = 300.0f;
-COMPILER_STRIP_GATE(80AF5B48, &lit_4401);
+COMPILER_STRIP_GATE(0x80AF5B48, &lit_4401);
 #pragma pop
 
 /* 80AF5B4C-80AF5B50 000078 0004+00 0/1 0/0 0/0 .rodata          @4402 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4402 = 450.0f;
-COMPILER_STRIP_GATE(80AF5B4C, &lit_4402);
+COMPILER_STRIP_GATE(0x80AF5B4C, &lit_4402);
 #pragma pop
 
 /* 80AF30C0-80AF33A0 000500 02E0+00 1/1 0/0 0/0 .text            create__16daNpc_SoldierB_cFv */
@@ -860,7 +868,7 @@ asm void daNpc_SoldierB_c::create() {
 /* ############################################################################################## */
 /* 80AF5B50-80AF5B54 00007C 0004+00 2/2 0/0 0/0 .rodata          @4453 */
 SECTION_RODATA static f32 const lit_4453 = 1.0f;
-COMPILER_STRIP_GATE(80AF5B50, &lit_4453);
+COMPILER_STRIP_GATE(0x80AF5B50, &lit_4453);
 
 /* 80AF5B54-80AF5B58 000080 0004+00 4/6 0/0 0/0 .rodata          @4454 */
 SECTION_RODATA static u8 const lit_4454[4] = {
@@ -869,7 +877,7 @@ SECTION_RODATA static u8 const lit_4454[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80AF5B54, &lit_4454);
+COMPILER_STRIP_GATE(0x80AF5B54, &lit_4454);
 
 /* 80AF33A0-80AF356C 0007E0 01CC+00 1/1 0/0 0/0 .text            CreateHeap__16daNpc_SoldierB_cFv */
 #pragma push
@@ -916,7 +924,7 @@ asm void daNpc_SoldierB_c::Draw() {
 SECTION_RODATA static u8 const lit_4477[12] = {
     0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04,
 };
-COMPILER_STRIP_GATE(80AF5B58, &lit_4477);
+COMPILER_STRIP_GATE(0x80AF5B58, &lit_4477);
 
 /* 80AF3634-80AF3830 000A74 01FC+00 1/1 0/0 0/0 .text
  * ctrlJoint__16daNpc_SoldierB_cFP8J3DJointP8J3DModel           */
@@ -981,14 +989,14 @@ bool daNpc_SoldierB_c::ctrlBtk() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4790 = 20.0f;
-COMPILER_STRIP_GATE(80AF5B64, &lit_4790);
+COMPILER_STRIP_GATE(0x80AF5B64, &lit_4790);
 #pragma pop
 
 /* 80AF5B68-80AF5B6C 000094 0004+00 0/1 0/0 0/0 .rodata          @4791 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4791 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80AF5B68, &lit_4791);
+COMPILER_STRIP_GATE(0x80AF5B68, &lit_4791);
 #pragma pop
 
 /* 80AF5B6C-80AF5B74 000098 0004+04 0/1 0/0 0/0 .rodata          @4792 */
@@ -999,7 +1007,7 @@ SECTION_RODATA static f32 const lit_4792[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80AF5B6C, &lit_4792);
+COMPILER_STRIP_GATE(0x80AF5B6C, &lit_4792);
 #pragma pop
 
 /* 80AF5B74-80AF5B7C 0000A0 0008+00 0/1 0/0 0/0 .rodata          @4793 */
@@ -1008,7 +1016,7 @@ COMPILER_STRIP_GATE(80AF5B6C, &lit_4792);
 SECTION_RODATA static u8 const lit_4793[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AF5B74, &lit_4793);
+COMPILER_STRIP_GATE(0x80AF5B74, &lit_4793);
 #pragma pop
 
 /* 80AF5B7C-80AF5B84 0000A8 0008+00 0/1 0/0 0/0 .rodata          @4794 */
@@ -1017,7 +1025,7 @@ COMPILER_STRIP_GATE(80AF5B74, &lit_4793);
 SECTION_RODATA static u8 const lit_4794[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AF5B7C, &lit_4794);
+COMPILER_STRIP_GATE(0x80AF5B7C, &lit_4794);
 #pragma pop
 
 /* 80AF5B84-80AF5B8C 0000B0 0008+00 0/1 0/0 0/0 .rodata          @4795 */
@@ -1026,7 +1034,7 @@ COMPILER_STRIP_GATE(80AF5B7C, &lit_4794);
 SECTION_RODATA static u8 const lit_4795[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AF5B84, &lit_4795);
+COMPILER_STRIP_GATE(0x80AF5B84, &lit_4795);
 #pragma pop
 
 /* 80AF5E30-80AF5E34 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
@@ -1226,7 +1234,7 @@ asm void daNpc_SoldierB_c::reset() {
 SECTION_RODATA static u8 const lit_4906[12] = {
     0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AF5B8C, &lit_4906);
+COMPILER_STRIP_GATE(0x80AF5B8C, &lit_4906);
 #pragma pop
 
 /* 80AF5B98-80AF5B9C 0000C4 0004+00 0/1 0/0 0/0 .rodata          @4907 */
@@ -1238,7 +1246,7 @@ SECTION_RODATA static u8 const lit_4907[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80AF5B98, &lit_4907);
+COMPILER_STRIP_GATE(0x80AF5B98, &lit_4907);
 #pragma pop
 
 /* 80AF5B9C-80AF5BA8 0000C8 000C+00 0/1 0/0 0/0 .rodata          @4908 */
@@ -1247,7 +1255,7 @@ COMPILER_STRIP_GATE(80AF5B98, &lit_4907);
 SECTION_RODATA static u8 const lit_4908[12] = {
     0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
 };
-COMPILER_STRIP_GATE(80AF5B9C, &lit_4908);
+COMPILER_STRIP_GATE(0x80AF5B9C, &lit_4908);
 #pragma pop
 
 /* 80AF5BA8-80AF5BB4 0000D4 000C+00 0/1 0/0 0/0 .rodata          @4909 */
@@ -1256,7 +1264,7 @@ COMPILER_STRIP_GATE(80AF5B9C, &lit_4908);
 SECTION_RODATA static u8 const lit_4909[12] = {
     0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AF5BA8, &lit_4909);
+COMPILER_STRIP_GATE(0x80AF5BA8, &lit_4909);
 #pragma pop
 
 /* 80AF5BB4-80AF5BBC 0000E0 0008+00 0/1 0/0 0/0 .rodata          @4910 */
@@ -1265,7 +1273,7 @@ COMPILER_STRIP_GATE(80AF5BA8, &lit_4909);
 SECTION_RODATA static u8 const lit_4910[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AF5BB4, &lit_4910);
+COMPILER_STRIP_GATE(0x80AF5BB4, &lit_4910);
 #pragma pop
 
 /* 80AF5BBC-80AF5BC8 0000E8 000C+00 0/1 0/0 0/0 .rodata          @4911 */
@@ -1274,7 +1282,7 @@ COMPILER_STRIP_GATE(80AF5BB4, &lit_4910);
 SECTION_RODATA static u8 const lit_4911[12] = {
     0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AF5BBC, &lit_4911);
+COMPILER_STRIP_GATE(0x80AF5BBC, &lit_4911);
 #pragma pop
 
 /* 80AF5BC8-80AF5BCC 0000F4 0004+00 0/1 0/0 0/0 .rodata          @4912 */
@@ -1286,7 +1294,7 @@ SECTION_RODATA static u8 const lit_4912[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80AF5BC8, &lit_4912);
+COMPILER_STRIP_GATE(0x80AF5BC8, &lit_4912);
 #pragma pop
 
 /* 80AF5BCC-80AF5BD8 0000F8 000C+00 0/1 0/0 0/0 .rodata          @4913 */
@@ -1295,7 +1303,7 @@ COMPILER_STRIP_GATE(80AF5BC8, &lit_4912);
 SECTION_RODATA static u8 const lit_4913[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AF5BCC, &lit_4913);
+COMPILER_STRIP_GATE(0x80AF5BCC, &lit_4913);
 #pragma pop
 
 /* 80AF43E4-80AF4508 001824 0124+00 1/1 0/0 0/0 .text            playMotion__16daNpc_SoldierB_cFv */
@@ -1313,7 +1321,7 @@ asm void daNpc_SoldierB_c::playMotion() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_SoldierB_c::chkAction(int (daNpc_SoldierB_c::*)(void*)) {
+asm void daNpc_SoldierB_c::chkAction(int (daNpc_SoldierB_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_soldierB/d_a_npc_soldierB/chkAction__16daNpc_SoldierB_cFM16daNpc_SoldierB_cFPCvPvPv_i.s"
 }
@@ -1324,7 +1332,7 @@ asm void daNpc_SoldierB_c::chkAction(int (daNpc_SoldierB_c::*)(void*)) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_SoldierB_c::setAction(int (daNpc_SoldierB_c::*)(void*)) {
+asm void daNpc_SoldierB_c::setAction(int (daNpc_SoldierB_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_soldierB/d_a_npc_soldierB/setAction__16daNpc_SoldierB_cFM16daNpc_SoldierB_cFPCvPvPv_i.s"
 }
@@ -1354,7 +1362,7 @@ asm void daNpc_SoldierB_c::doNormalAction(int param_0) {
 /* ############################################################################################## */
 /* 80AF5BD8-80AF5BDC 000104 0004+00 4/4 0/0 0/0 .rodata          @5036 */
 SECTION_RODATA static f32 const lit_5036 = -1.0f;
-COMPILER_STRIP_GATE(80AF5BD8, &lit_5036);
+COMPILER_STRIP_GATE(0x80AF5BD8, &lit_5036);
 
 /* 80AF4770-80AF49E4 001BB0 0274+00 1/1 0/0 0/0 .text            doEvent__16daNpc_SoldierB_cFv */
 #pragma push
@@ -1384,28 +1392,28 @@ asm void daNpc_SoldierB_c::setLookMode(int param_0) {
 SECTION_RODATA static u8 const lit_5048[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80AF5BDC, &lit_5048);
+COMPILER_STRIP_GATE(0x80AF5BDC, &lit_5048);
 #pragma pop
 
 /* 80AF5BE8-80AF5BEC 000114 0004+00 0/1 0/0 0/0 .rodata          @5102 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5102 = -80.0f;
-COMPILER_STRIP_GATE(80AF5BE8, &lit_5102);
+COMPILER_STRIP_GATE(0x80AF5BE8, &lit_5102);
 #pragma pop
 
 /* 80AF5BEC-80AF5BF0 000118 0004+00 0/1 0/0 0/0 .rodata          @5103 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5103 = 80.0f;
-COMPILER_STRIP_GATE(80AF5BEC, &lit_5103);
+COMPILER_STRIP_GATE(0x80AF5BEC, &lit_5103);
 #pragma pop
 
 /* 80AF5BF0-80AF5BF4 00011C 0004+00 0/1 0/0 0/0 .rodata          @5104 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5104 = 40.0f;
-COMPILER_STRIP_GATE(80AF5BF0, &lit_5104);
+COMPILER_STRIP_GATE(0x80AF5BF0, &lit_5104);
 #pragma pop
 
 /* 80AF4A08-80AF4CA4 001E48 029C+00 1/1 0/0 0/0 .text            lookat__16daNpc_SoldierB_cFv */
@@ -1446,6 +1454,13 @@ asm void daNpc_SoldierB_c::talk(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_soldierB/d_a_npc_soldierB/talk__16daNpc_SoldierB_cFPv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80AF5BF4-80AF5BF4 000120 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80AF5C09 = "prm";
 #pragma pop
 
 /* 80AF4F54-80AF50AC 002394 0158+00 1/0 0/0 0/0 .text ECut_listenLake__16daNpc_SoldierB_cFi */
@@ -1688,7 +1703,7 @@ asm void __sinit_d_a_npc_soldierB_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80AF59E0 = (void*)__sinit_d_a_npc_soldierB_cpp;
+REGISTER_CTORS(0x80AF59E0, __sinit_d_a_npc_soldierB_cpp);
 #pragma pop
 
 /* 80AF5A68-80AF5AB0 002EA8 0048+00 2/1 0/0 0/0 .text            __dt__22daNpc_SoldierB_Param_cFv */
@@ -1893,12 +1908,4 @@ static u8 data_80AF5EF8[4];
 static u8 data_80AF5EFC[4];
 #pragma pop
 
-/* 80AF5BF4-80AF5C0D 000120 0019+00 4/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80AF5BF4 = "chtSolB";
-SECTION_DEAD static char const* const stringBase_80AF5BFC = "";
-SECTION_DEAD static char const* const stringBase_80AF5BFD = "LISTEN_LAKE";
-SECTION_DEAD static char const* const stringBase_80AF5C09 = "prm";
-#pragma pop
+/* 80AF5BF4-80AF5BF4 000120 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

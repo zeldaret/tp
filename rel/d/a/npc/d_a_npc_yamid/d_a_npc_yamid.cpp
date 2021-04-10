@@ -15,13 +15,13 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct J3DModelData {};
+struct J3DAnmTransform {};
 
-struct mDoExt_McaMorfCallBack2_c {};
+struct J3DModelData {};
 
 struct Vec {};
 
@@ -44,13 +44,7 @@ struct fopAc_ac_c {
     /* 80018C8C */ ~fopAc_ac_c();
 };
 
-struct J3DJoint {};
-
 struct daNpcT_faceMotionAnmData_c {};
-
-struct daNpcT_evtData_c {};
-
-struct daNpcT_motionAnmData_c {};
 
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
@@ -58,6 +52,12 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80145898 */ void initialize();
     /* 80B45828 */ ~daNpcT_MotionSeqMngr_c();
 };
+
+struct daNpcT_evtData_c {};
+
+struct daNpcT_motionAnmData_c {};
+
+struct J3DJoint {};
 
 struct daNpc_yamiD_c {
     /* 80B42F4C */ ~daNpc_yamiD_c();
@@ -121,13 +121,13 @@ struct dCcD_GObjInf {
 
 struct _GXColorS10 {};
 
+struct J3DModel {};
+
 struct cXyz {
     /* 80266B34 */ void operator-(Vec const&) const;
     /* 80B45188 */ ~cXyz();
     /* 80B457DC */ cXyz();
 };
-
-struct J3DModel {};
 
 struct daNpcT_c {
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
@@ -289,12 +289,12 @@ struct dBgS_AcchCir {
     /* 80B45870 */ ~dBgS_AcchCir();
 };
 
-struct dBgS {};
-
 struct csXyz {
     /* 80B451C4 */ ~csXyz();
     /* 80B456DC */ csXyz();
 };
+
+struct dBgS {};
 
 struct dBgS_Acch {
     /* 80075F94 */ ~dBgS_Acch();
@@ -643,6 +643,14 @@ extern "C" void __register_global_object();
 //
 
 /* ############################################################################################## */
+/* 80B4612C-80B4612C 0000E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80B4612C = "";
+SECTION_DEAD static char const* const stringBase_80B4612D = "STOPPER";
+SECTION_DEAD static char const* const stringBase_80B46135 = "yamiD";
+#pragma pop
+
 /* 80B46144-80B46150 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -972,48 +980,48 @@ SECTION_RODATA u8 const daNpc_yamiD_Param_c::m[140] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B4604C, &daNpc_yamiD_Param_c::m);
+COMPILER_STRIP_GATE(0x80B4604C, &daNpc_yamiD_Param_c::m);
 
 /* 80B460D8-80B460DC 00008C 0004+00 0/1 0/0 0/0 .rodata          @4028 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4028 = 3.0f;
-COMPILER_STRIP_GATE(80B460D8, &lit_4028);
+COMPILER_STRIP_GATE(0x80B460D8, &lit_4028);
 #pragma pop
 
 /* 80B460DC-80B460E0 000090 0004+00 0/1 0/0 0/0 .rodata          @4029 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4029 = -300.0f;
-COMPILER_STRIP_GATE(80B460DC, &lit_4029);
+COMPILER_STRIP_GATE(0x80B460DC, &lit_4029);
 #pragma pop
 
 /* 80B460E0-80B460E4 000094 0004+00 0/1 0/0 0/0 .rodata          @4030 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4030 = -50.0f;
-COMPILER_STRIP_GATE(80B460E0, &lit_4030);
+COMPILER_STRIP_GATE(0x80B460E0, &lit_4030);
 #pragma pop
 
 /* 80B460E4-80B460E8 000098 0004+00 0/1 0/0 0/0 .rodata          @4031 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4031 = 300.0f;
-COMPILER_STRIP_GATE(80B460E4, &lit_4031);
+COMPILER_STRIP_GATE(0x80B460E4, &lit_4031);
 #pragma pop
 
 /* 80B460E8-80B460EC 00009C 0004+00 0/1 0/0 0/0 .rodata          @4032 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4032 = 450.0f;
-COMPILER_STRIP_GATE(80B460E8, &lit_4032);
+COMPILER_STRIP_GATE(0x80B460E8, &lit_4032);
 #pragma pop
 
 /* 80B460EC-80B460F0 0000A0 0004+00 0/1 0/0 0/0 .rodata          @4033 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4033 = -1000000000.0f;
-COMPILER_STRIP_GATE(80B460EC, &lit_4033);
+COMPILER_STRIP_GATE(0x80B460EC, &lit_4033);
 #pragma pop
 
 /* 80B43084-80B43338 000224 02B4+00 1/1 0/0 0/0 .text            create__13daNpc_yamiD_cFv */
@@ -1034,25 +1042,25 @@ SECTION_RODATA static u8 const lit_4194[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80B460F0, &lit_4194);
+COMPILER_STRIP_GATE(0x80B460F0, &lit_4194);
 
 /* 80B460F4-80B460F8 0000A8 0004+00 0/2 0/0 0/0 .rodata          @4195 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4195 = 65536.0f;
-COMPILER_STRIP_GATE(80B460F4, &lit_4195);
+COMPILER_STRIP_GATE(0x80B460F4, &lit_4195);
 #pragma pop
 
 /* 80B460F8-80B460FC 0000AC 0004+00 0/3 0/0 0/0 .rodata          @4196 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4196 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80B460F8, &lit_4196);
+COMPILER_STRIP_GATE(0x80B460F8, &lit_4196);
 #pragma pop
 
 /* 80B460FC-80B46100 0000B0 0004+00 2/5 0/0 0/0 .rodata          @4345 */
 SECTION_RODATA static f32 const lit_4345 = 1.0f;
-COMPILER_STRIP_GATE(80B460FC, &lit_4345);
+COMPILER_STRIP_GATE(0x80B460FC, &lit_4345);
 
 /* 80B43338-80B435CC 0004D8 0294+00 1/1 0/0 0/0 .text            CreateHeap__13daNpc_yamiD_cFv */
 #pragma push
@@ -1279,7 +1287,7 @@ asm void daNpc_yamiD_c::setParam() {
 /* ############################################################################################## */
 /* 80B46100-80B46104 0000B4 0004+00 1/2 0/0 0/0 .rodata          @4577 */
 SECTION_RODATA static f32 const lit_4577 = -1.0f;
-COMPILER_STRIP_GATE(80B46100, &lit_4577);
+COMPILER_STRIP_GATE(0x80B46100, &lit_4577);
 
 /* 80B43DBC-80B43E1C 000F5C 0060+00 1/0 0/0 0/0 .text setAfterTalkMotion__13daNpc_yamiD_cFv */
 #pragma push
@@ -1346,21 +1354,21 @@ asm void daNpc_yamiD_c::beforeMove() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4697 = -30.0f;
-COMPILER_STRIP_GATE(80B46104, &lit_4697);
+COMPILER_STRIP_GATE(0x80B46104, &lit_4697);
 #pragma pop
 
 /* 80B46108-80B4610C 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4698 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4698 = 0x38C90FDB;
-COMPILER_STRIP_GATE(80B46108, &lit_4698);
+COMPILER_STRIP_GATE(0x80B46108, &lit_4698);
 #pragma pop
 
 /* 80B4610C-80B46114 0000C0 0008+00 1/3 0/0 0/0 .rodata          @4700 */
 SECTION_RODATA static u8 const lit_4700[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B4610C, &lit_4700);
+COMPILER_STRIP_GATE(0x80B4610C, &lit_4700);
 
 /* 80B44138-80B44364 0012D8 022C+00 1/0 0/0 0/0 .text            setAttnPos__13daNpc_yamiD_cFv */
 #pragma push
@@ -1412,7 +1420,7 @@ asm void daNpc_yamiD_c::selectAction() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_yamiD_c::chkAction(int (daNpc_yamiD_c::*)(void*)) {
+asm void daNpc_yamiD_c::chkAction(int (daNpc_yamiD_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_yamid/d_a_npc_yamid/chkAction__13daNpc_yamiD_cFM13daNpc_yamiD_cFPCvPvPv_i.s"
 }
@@ -1423,7 +1431,7 @@ asm void daNpc_yamiD_c::chkAction(int (daNpc_yamiD_c::*)(void*)) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_yamiD_c::setAction(int (daNpc_yamiD_c::*)(void*)) {
+asm void daNpc_yamiD_c::setAction(int (daNpc_yamiD_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_yamid/d_a_npc_yamid/setAction__13daNpc_yamiD_cFM13daNpc_yamiD_cFPCvPvPv_i.s"
 }
@@ -1447,6 +1455,13 @@ asm void daNpc_yamiD_c::talk(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_yamid/d_a_npc_yamid/talk__13daNpc_yamiD_cFPv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80B4612C-80B4612C 0000E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80B4613B = "cutId";
 #pragma pop
 
 /* 80B44AF8-80B44B8C 001C98 0094+00 1/0 0/0 0/0 .text            cutStopper__13daNpc_yamiD_cFi */
@@ -1718,7 +1733,7 @@ asm void daNpcT_JntAnm_c::setEyeAngleY(cXyz param_0, s16 param_1, int param_2, f
 SECTION_RODATA static u8 const lit_4758[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B46114, &lit_4758);
+COMPILER_STRIP_GATE(0x80B46114, &lit_4758);
 #pragma pop
 
 /* 80B4611C-80B46124 0000D0 0008+00 0/1 0/0 0/0 .rodata          @4759 */
@@ -1727,7 +1742,7 @@ COMPILER_STRIP_GATE(80B46114, &lit_4758);
 SECTION_RODATA static u8 const lit_4759[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B4611C, &lit_4759);
+COMPILER_STRIP_GATE(0x80B4611C, &lit_4759);
 #pragma pop
 
 /* 80B46124-80B4612C 0000D8 0008+00 0/1 0/0 0/0 .rodata          @4760 */
@@ -1736,7 +1751,7 @@ COMPILER_STRIP_GATE(80B4611C, &lit_4759);
 SECTION_RODATA static u8 const lit_4760[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80B46124, &lit_4760);
+COMPILER_STRIP_GATE(0x80B46124, &lit_4760);
 #pragma pop
 
 /* 80B45B10-80B45D18 002CB0 0208+00 1/1 0/0 0/0 .text setEyeAngleX__15daNpcT_JntAnm_cF4cXyzfs */
@@ -1885,7 +1900,7 @@ asm void __sinit_d_a_npc_yamid_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80B45DEC = (void*)__sinit_d_a_npc_yamid_cpp;
+REGISTER_CTORS(0x80B45DEC, __sinit_d_a_npc_yamid_cpp);
 #pragma pop
 
 /* 80B45E74-80B45F34 003014 00C0+00 1/1 0/0 0/0 .text
@@ -1989,12 +2004,4 @@ static asm void func_80B46030() {
 }
 #pragma pop
 
-/* 80B4612C-80B46141 0000E0 0015+00 5/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80B4612C = "";
-SECTION_DEAD static char const* const stringBase_80B4612D = "STOPPER";
-SECTION_DEAD static char const* const stringBase_80B46135 = "yamiD";
-SECTION_DEAD static char const* const stringBase_80B4613B = "cutId";
-#pragma pop
+/* 80B4612C-80B4612C 0000E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

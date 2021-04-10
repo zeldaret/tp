@@ -63,14 +63,14 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
+struct csXyz {
+    /* 80018BD0 */ ~csXyz();
+};
+
 struct _GXColor {};
 
 struct cXyz {
     static f32 Zero[3];
-};
-
-struct csXyz {
-    /* 80018BD0 */ ~csXyz();
 };
 
 struct dPa_control_c {
@@ -105,12 +105,12 @@ struct create_tag_class {};
 
 struct J3DModel {};
 
-struct J3DAnmTevRegKey {
-    /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
-};
-
 struct J3DAnmTextureSRTKey {
     /* 8032B1D4 */ void searchUpdateMaterialID(J3DModelData*);
+};
+
+struct J3DAnmTevRegKey {
+    /* 8032B87C */ void searchUpdateMaterialID(J3DModelData*);
 };
 
 struct J3DMaterialTable {
@@ -378,6 +378,15 @@ asm void dStage_roomDt_c::getFileListInfo() const {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80378878-80378878 004ED8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80378878 = "Alink";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8037887E = "\0";
+#pragma pop
+
 /* 80019404-800194FC 013D44 00F8+00 0/0 0/0 2/2 .text            initBallModel__13fopEn_enemy_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -456,11 +465,4 @@ asm void fopEn_enemy_c::drawBallModel(dKy_tevstr_c* param_0) {
 extern u8 data_80450CC0[4 + 4 /* padding */];
 u8 data_80450CC0[4 + 4 /* padding */];
 
-/* 80378878-80378880 004ED8 0006+02 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80378878 = "Alink";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037887E = "\0";
-#pragma pop
+/* 80378878-80378878 004ED8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

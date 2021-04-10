@@ -86,7 +86,7 @@ struct cAngle {
     template <typename A1>
     void Adjust(/* ... */);
     /* 80271BA8 */ /* cAngle::Adjust<f32> */
-    void func_80271BA8(f32, f32, f32);
+    void func_80271BA8(void* _this, f32, f32, f32);
 };
 
 //
@@ -144,7 +144,7 @@ extern "C" void Xyz__7cSGlobeCFv();
 extern "C" void Polar__7cSGlobeCFP7cSPolar();
 extern "C" void Norm__7cSGlobeCFv();
 extern "C" void Invert__7cSGlobeFv();
-extern "C" void func_80271BA8(f32, f32, f32);
+extern "C" void func_80271BA8(void* _this, f32, f32, f32);
 extern "C" void __sinit_c_angle_cpp();
 extern "C" u8 _0__7cSAngle[2 + 2 /* padding */];
 extern "C" u8 _1__7cSAngle[2 + 2 /* padding */];
@@ -208,15 +208,10 @@ asm void cSAngle::Val(cSAngle const& param_0) {
 }
 #pragma pop
 
-/* 80271004-8027100C 26B944 0008+00 4/4 7/7 0/0 .text            Val__7cSAngleFs */
-#pragma push
-#pragma optimization_level 0
-#pragma optimizewithasm off
-asm void cSAngle::Val(s16 param_0) {
-    nofralloc
-#include "asm/SSystem/SComponent/c_angle/Val__7cSAngleFs.s"
+/* 80271004-8027100C -00001 0008+00 0/0 0/0 0/0 .text            Val__7cSAngleFs */
+void cSAngle::Val(s16 param_0) {
+    *(u16*)this = (u16)(param_0);
 }
-#pragma pop
 
 /* ############################################################################################## */
 /* 80455208-8045520C 003808 0004+00 1/1 0/0 0/0 .sdata2          @2248 */
@@ -734,7 +729,7 @@ asm void cSGlobe::Invert() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80271BA8(f32 param_0, f32 param_1, f32 param_2) {
+extern "C" asm void func_80271BA8(void* _this, f32 param_0, f32 param_1, f32 param_2) {
     nofralloc
 #include "asm/SSystem/SComponent/c_angle/func_80271BA8.s"
 }
@@ -795,5 +790,5 @@ asm void __sinit_c_angle_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80271BD4 = (void*)__sinit_c_angle_cpp;
+REGISTER_CTORS(0x80271BD4, __sinit_c_angle_cpp);
 #pragma pop

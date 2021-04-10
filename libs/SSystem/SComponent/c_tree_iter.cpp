@@ -44,7 +44,8 @@ extern "C" void _restgpr_28();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cTrIt_Method(node_lists_tree_class* param_0, int (*)(node_class*, void*), void* param_2) {
+asm void cTrIt_Method(node_lists_tree_class* param_0, int (*param_1)(node_class*, void*),
+                      void* param_2) {
     nofralloc
 #include "asm/SSystem/SComponent/c_tree_iter/cTrIt_Method__FP21node_lists_tree_classPFP10node_classPv_iPv.s"
 }
@@ -55,7 +56,8 @@ asm void cTrIt_Method(node_lists_tree_class* param_0, int (*)(node_class*, void*
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cTrIt_Judge(node_lists_tree_class* param_0, void* (*)(node_class*, void*), void* param_2) {
+asm void cTrIt_Judge(node_lists_tree_class* param_0, void* (*param_1)(node_class*, void*),
+                     void* param_2) {
     nofralloc
 #include "asm/SSystem/SComponent/c_tree_iter/cTrIt_Judge__FP21node_lists_tree_classPFP10node_classPv_PvPv.s"
 }

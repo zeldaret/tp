@@ -319,6 +319,15 @@ extern "C" extern u8 g_env_light[4880];
 //
 
 /* ############################################################################################## */
+/* 80CA7948-80CA7948 000054 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CA7948 = "Obj_otubo";
+SECTION_DEAD static char const* const stringBase_80CA7952 = "x_oiltubo_00.bmd";
+SECTION_DEAD static char const* const stringBase_80CA7963 = "x_oiltubo_00b.bmd";
+SECTION_DEAD static char const* const stringBase_80CA7975 = "x_oiltubo_00b.btk";
+#pragma pop
+
 /* 80CA7988-80CA7994 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -535,11 +544,11 @@ SECTION_RODATA u8 const daObj_Oiltubo_c::mCcDObjInfo[48] = {
     0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CA78F4, &daObj_Oiltubo_c::mCcDObjInfo);
+COMPILER_STRIP_GATE(0x80CA78F4, &daObj_Oiltubo_c::mCcDObjInfo);
 
 /* 80CA7924-80CA7928 000030 0004+00 1/3 0/0 0/0 .rodata          @3815 */
 SECTION_RODATA static f32 const lit_3815 = 1.0f;
-COMPILER_STRIP_GATE(80CA7924, &lit_3815);
+COMPILER_STRIP_GATE(0x80CA7924, &lit_3815);
 
 /* 80CA6B28-80CA6C5C 000488 0134+00 1/1 0/0 0/0 .text            CreateHeap__15daObj_Oiltubo_cFv */
 #pragma push
@@ -566,16 +575,16 @@ asm void daObj_Oiltubo_c::Delete() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3863 = -1000000000.0f;
-COMPILER_STRIP_GATE(80CA7928, &lit_3863);
+COMPILER_STRIP_GATE(0x80CA7928, &lit_3863);
 #pragma pop
 
 /* 80CA792C-80CA7930 000038 0004+00 1/4 0/0 0/0 .rodata          @3864 */
 SECTION_RODATA static f32 const lit_3864 = 50.0f;
-COMPILER_STRIP_GATE(80CA792C, &lit_3864);
+COMPILER_STRIP_GATE(0x80CA792C, &lit_3864);
 
 /* 80CA7930-80CA7934 00003C 0004+00 1/3 0/0 0/0 .rodata          @3865 */
 SECTION_RODATA static f32 const lit_3865 = 70.0f;
-COMPILER_STRIP_GATE(80CA7930, &lit_3865);
+COMPILER_STRIP_GATE(0x80CA7930, &lit_3865);
 
 /* 80CA6CA0-80CA6EDC 000600 023C+00 2/2 0/0 0/0 .text            Execute__15daObj_Oiltubo_cFv */
 #pragma push
@@ -592,14 +601,14 @@ asm void daObj_Oiltubo_c::Execute() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3884 = 800.0f;
-COMPILER_STRIP_GATE(80CA7934, &lit_3884);
+COMPILER_STRIP_GATE(0x80CA7934, &lit_3884);
 #pragma pop
 
 /* 80CA7938-80CA793C 000044 0004+00 0/1 0/0 0/0 .rodata          @3885 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3885 = 120.0f;
-COMPILER_STRIP_GATE(80CA7938, &lit_3885);
+COMPILER_STRIP_GATE(0x80CA7938, &lit_3885);
 #pragma pop
 
 /* 80CA6EDC-80CA6FC8 00083C 00EC+00 1/1 0/0 0/0 .text            Draw__15daObj_Oiltubo_cFv */
@@ -658,7 +667,7 @@ asm void daObj_Oiltubo_c::initialize() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daObj_Oiltubo_c::setProcess(int (daObj_Oiltubo_c::*)(void*)) {
+asm void daObj_Oiltubo_c::setProcess(int (daObj_Oiltubo_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/obj/d_a_obj_oiltubo/d_a_obj_oiltubo/setProcess__15daObj_Oiltubo_cFM15daObj_Oiltubo_cFPCvPvPv_i.s"
 }
@@ -708,7 +717,7 @@ asm void daObj_Oiltubo_c::setMtx() {
 /* ############################################################################################## */
 /* 80CA793C-80CA7940 000048 0004+00 1/1 0/0 0/0 .rodata          @3999 */
 SECTION_RODATA static f32 const lit_3999 = 150.0f;
-COMPILER_STRIP_GATE(80CA793C, &lit_3999);
+COMPILER_STRIP_GATE(0x80CA793C, &lit_3999);
 
 /* 80CA7430-80CA7478 000D90 0048+00 1/1 0/0 0/0 .text            setAttnPos__15daObj_Oiltubo_cFv */
 #pragma push
@@ -735,14 +744,14 @@ asm void daObj_Oiltubo_c::chkEvent() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4029 = 100.0f;
-COMPILER_STRIP_GATE(80CA7940, &lit_4029);
+COMPILER_STRIP_GATE(0x80CA7940, &lit_4029);
 #pragma pop
 
 /* 80CA7944-80CA7948 000050 0004+00 0/1 0/0 0/0 .rodata          @4030 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4030 = -50.0f;
-COMPILER_STRIP_GATE(80CA7944, &lit_4030);
+COMPILER_STRIP_GATE(0x80CA7944, &lit_4030);
 #pragma pop
 
 /* 80CA74C8-80CA7558 000E28 0090+00 1/0 0/0 0/0 .text            wait__15daObj_Oiltubo_cFPv */
@@ -832,7 +841,7 @@ asm void __sinit_d_a_obj_oiltubo_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80CA78A0 = (void*)__sinit_d_a_obj_oiltubo_cpp;
+REGISTER_CTORS(0x80CA78A0, __sinit_d_a_obj_oiltubo_cpp);
 #pragma pop
 
 /* 80CA78D8-80CA78E0 001238 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
@@ -855,12 +864,4 @@ static asm void func_80CA78E0() {
 }
 #pragma pop
 
-/* 80CA7948-80CA7987 000054 003F+00 4/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CA7948 = "Obj_otubo";
-SECTION_DEAD static char const* const stringBase_80CA7952 = "x_oiltubo_00.bmd";
-SECTION_DEAD static char const* const stringBase_80CA7963 = "x_oiltubo_00b.bmd";
-SECTION_DEAD static char const* const stringBase_80CA7975 = "x_oiltubo_00b.btk";
-#pragma pop
+/* 80CA7948-80CA7948 000054 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

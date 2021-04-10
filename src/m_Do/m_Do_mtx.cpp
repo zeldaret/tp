@@ -11,9 +11,9 @@
 // Types:
 //
 
-struct Quaternion {};
-
 struct csXyz {};
+
+struct Quaternion {};
 
 struct Vec {};
 
@@ -493,7 +493,7 @@ asm void __sinit_m_Do_mtx_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8000CFB8 = (void*)__sinit_m_Do_mtx_cpp;
+REGISTER_CTORS(0x8000CFB8, __sinit_m_Do_mtx_cpp);
 #pragma pop
 
 /* 8000D034-8000D070 007974 003C+00 1/1 0/0 0/0 .text            __dt__18mDoMtx_quatStack_cFv */

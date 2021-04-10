@@ -86,9 +86,9 @@ struct dEvLib_callback_c {
     /* 80CF434C */ bool eventEnd();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -230,27 +230,27 @@ static asm void CheckCreateHeap(fopAc_ac_c* param_0) {
 /* ############################################################################################## */
 /* 80CF43E4-80CF43E8 000000 0004+00 4/4 0/0 0/0 .rodata          l_color */
 SECTION_RODATA static u32 const l_color = 0x0396FFFF;
-COMPILER_STRIP_GATE(80CF43E4, &l_color);
+COMPILER_STRIP_GATE(0x80CF43E4, &l_color);
 
 /* 80CF43E8-80CF43EC 000004 0004+00 0/2 0/0 0/0 .rodata          @3730 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3730 = 10.0f;
-COMPILER_STRIP_GATE(80CF43E8, &lit_3730);
+COMPILER_STRIP_GATE(0x80CF43E8, &lit_3730);
 #pragma pop
 
 /* 80CF43EC-80CF43F0 000008 0004+00 0/2 0/0 0/0 .rodata          @3731 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3731 = 100.0f;
-COMPILER_STRIP_GATE(80CF43EC, &lit_3731);
+COMPILER_STRIP_GATE(0x80CF43EC, &lit_3731);
 #pragma pop
 
 /* 80CF43F0-80CF43F4 00000C 0004+00 0/2 0/0 0/0 .rodata          @3732 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3732 = -100.0f;
-COMPILER_STRIP_GATE(80CF43F0, &lit_3732);
+COMPILER_STRIP_GATE(0x80CF43F0, &lit_3732);
 #pragma pop
 
 /* 80CF43F4-80CF43FC 000010 0004+04 2/5 0/0 0/0 .rodata          @3733 */
@@ -265,7 +265,7 @@ SECTION_RODATA static u8 const lit_3733[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CF43F4, &lit_3733);
+COMPILER_STRIP_GATE(0x80CF43F4, &lit_3733);
 
 /* 80CF3394-80CF34E4 000114 0150+00 1/1 0/0 0/0 .text
  * checkArea_sub__14daObjSwBallA_cFP10fopAc_ac_c                */
@@ -313,7 +313,7 @@ asm void daObjSwBallA_c::setBaseMtx() {
 SECTION_RODATA static u8 const lit_3884[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CF43FC, &lit_3884);
+COMPILER_STRIP_GATE(0x80CF43FC, &lit_3884);
 
 /* 80CF3694-80CF37FC 000414 0168+00 1/1 0/0 0/0 .text            Create__14daObjSwBallA_cFv */
 #pragma push
@@ -328,7 +328,13 @@ asm void daObjSwBallA_c::Create() {
 /* ############################################################################################## */
 /* 80CF4404-80CF4408 000020 0004+00 2/3 0/0 0/0 .rodata          @3918 */
 SECTION_RODATA static f32 const lit_3918 = 1.0f;
-COMPILER_STRIP_GATE(80CF4404, &lit_3918);
+COMPILER_STRIP_GATE(0x80CF4404, &lit_3918);
+
+/* 80CF4410-80CF4410 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CF4410 = "P_LBswA";
+#pragma pop
 
 /* 80CF4418-80CF4424 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -479,7 +485,7 @@ asm void daObjSwBallA_c::execute() {
 /* ############################################################################################## */
 /* 80CF4408-80CF440C 000024 0004+00 1/1 0/0 0/0 .rodata          @4032 */
 SECTION_RODATA static f32 const lit_4032 = -1.0f;
-COMPILER_STRIP_GATE(80CF4408, &lit_4032);
+COMPILER_STRIP_GATE(0x80CF4408, &lit_4032);
 
 /* 80CF3B40-80CF3D80 0008C0 0240+00 1/0 0/0 0/0 .text            actionRun__14daObjSwBallA_cFv */
 #pragma push
@@ -501,7 +507,7 @@ void daObjSwBallA_c::actionStop() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4122 = 300.0f;
-COMPILER_STRIP_GATE(80CF440C, &lit_4122);
+COMPILER_STRIP_GATE(0x80CF440C, &lit_4122);
 #pragma pop
 
 /* 80CF3D84-80CF406C 000B04 02E8+00 1/1 0/0 0/0 .text            PutCrrPos__14daObjSwBallA_cFv */
@@ -621,9 +627,4 @@ static asm void func_80CF43D4() {
 }
 #pragma pop
 
-/* 80CF4410-80CF4418 00002C 0008+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CF4410 = "P_LBswA";
-#pragma pop
+/* 80CF4410-80CF4410 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

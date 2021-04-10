@@ -87,13 +87,13 @@ extern "C" extern u8 g_dComIfG_gameInfo[122384];
 /* ############################################################################################## */
 /* 80D56AF4-80D56AF8 000000 0004+00 1/1 0/0 0/0 .rodata          @3650 */
 SECTION_RODATA static f32 const lit_3650 = -100.0f;
-COMPILER_STRIP_GATE(80D56AF4, &lit_3650);
+COMPILER_STRIP_GATE(0x80D56AF4, &lit_3650);
 
 /* 80D56AF8-80D56AFC 000004 0004+00 0/1 0/0 0/0 .rodata          @3651 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3651 = 100.0f;
-COMPILER_STRIP_GATE(80D56AF8, &lit_3651);
+COMPILER_STRIP_GATE(0x80D56AF8, &lit_3651);
 #pragma pop
 
 /* 80D56AFC-80D56B00 000008 0004+00 0/1 0/0 0/0 .rodata          @3652 */
@@ -105,7 +105,7 @@ SECTION_RODATA static u8 const lit_3652[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D56AFC, &lit_3652);
+COMPILER_STRIP_GATE(0x80D56AFC, &lit_3652);
 #pragma pop
 
 /* 80D56758-80D567E4 000078 008C+00 1/1 0/0 0/0 .text            Create__17daTagChgRestart_cFv */

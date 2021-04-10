@@ -116,13 +116,13 @@ asm void daTagMist_c::isMySw() {
 /* ############################################################################################## */
 /* 8048F700-8048F704 000000 0004+00 1/1 0/0 0/0 .rodata          @3678 */
 SECTION_RODATA static f32 const lit_3678 = -50.0f;
-COMPILER_STRIP_GATE(8048F700, &lit_3678);
+COMPILER_STRIP_GATE(0x8048F700, &lit_3678);
 
 /* 8048F704-8048F708 000004 0004+00 0/1 0/0 0/0 .rodata          @3679 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3679 = 50.0f;
-COMPILER_STRIP_GATE(8048F704, &lit_3679);
+COMPILER_STRIP_GATE(0x8048F704, &lit_3679);
 #pragma pop
 
 /* 8048F708-8048F70C 000008 0004+00 0/1 0/0 0/0 .rodata          @3680 */
@@ -134,7 +134,7 @@ SECTION_RODATA static u8 const lit_3680[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8048F708, &lit_3680);
+COMPILER_STRIP_GATE(0x8048F708, &lit_3680);
 #pragma pop
 
 /* 8048F370-8048F444 000190 00D4+00 1/1 0/0 0/0 .text            Create__11daTagMist_cFv */

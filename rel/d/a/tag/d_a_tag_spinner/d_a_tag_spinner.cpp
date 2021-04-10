@@ -100,7 +100,7 @@ SECTION_RODATA static u8 const lit_3689[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D61B24, &lit_3689);
+COMPILER_STRIP_GATE(0x80D61B24, &lit_3689);
 
 /* 80D61B2C-80D61B34 000008 0008+00 0/1 0/0 0/0 .rodata          @3690 */
 #pragma push
@@ -108,7 +108,7 @@ COMPILER_STRIP_GATE(80D61B24, &lit_3689);
 SECTION_RODATA static u8 const lit_3690[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D61B2C, &lit_3690);
+COMPILER_STRIP_GATE(0x80D61B2C, &lit_3690);
 #pragma pop
 
 /* 80D61B34-80D61B3C 000010 0008+00 0/1 0/0 0/0 .rodata          @3691 */
@@ -117,7 +117,7 @@ COMPILER_STRIP_GATE(80D61B2C, &lit_3690);
 SECTION_RODATA static u8 const lit_3691[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D61B34, &lit_3691);
+COMPILER_STRIP_GATE(0x80D61B34, &lit_3691);
 #pragma pop
 
 /* 80D61B3C-80D61B44 000018 0008+00 0/1 0/0 0/0 .rodata          @3692 */
@@ -126,7 +126,7 @@ COMPILER_STRIP_GATE(80D61B34, &lit_3691);
 SECTION_RODATA static u8 const lit_3692[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80D61B3C, &lit_3692);
+COMPILER_STRIP_GATE(0x80D61B3C, &lit_3692);
 #pragma pop
 
 /* 80D61718-80D618A4 000098 018C+00 1/1 0/0 0/0 .text            search_spinner_sub__FPvPv */
@@ -162,7 +162,7 @@ asm void daTagSpinner_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 80D61B44-80D61B48 000020 0004+00 1/1 0/0 0/0 .rodata          @3715 */
 SECTION_RODATA static f32 const lit_3715 = 100.0f;
-COMPILER_STRIP_GATE(80D61B44, &lit_3715);
+COMPILER_STRIP_GATE(0x80D61B44, &lit_3715);
 
 /* 80D6191C-80D6196C 00029C 0050+00 1/1 0/0 0/0 .text            Create__14daTagSpinner_cFv */
 #pragma push

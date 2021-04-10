@@ -122,5 +122,5 @@ asm void __sinit_c_sxyz_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8026758C = (void*)__sinit_c_sxyz_cpp;
+REGISTER_CTORS(0x8026758C, __sinit_c_sxyz_cpp);
 #pragma pop

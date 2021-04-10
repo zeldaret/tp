@@ -123,7 +123,7 @@ SECTION_RODATA static u8 const l_arcName[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BBAE84, &l_arcName);
+COMPILER_STRIP_GATE(0x80BBAE84, &l_arcName);
 
 /* 80BBA9F8-80BBAA64 000078 006C+00 1/1 0/0 0/0 .text            createHeap__12daObjBombf_cFv */
 #pragma push
@@ -150,7 +150,7 @@ static asm void daObjBombf_createHeap(fopAc_ac_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3687 = -75.0f;
-COMPILER_STRIP_GATE(80BBAE8C, &lit_3687);
+COMPILER_STRIP_GATE(0x80BBAE8C, &lit_3687);
 #pragma pop
 
 /* 80BBAE90-80BBAE94 00000C 0004+00 0/1 0/0 0/0 .rodata          @3688 */
@@ -162,21 +162,21 @@ SECTION_RODATA static u8 const lit_3688[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BBAE90, &lit_3688);
+COMPILER_STRIP_GATE(0x80BBAE90, &lit_3688);
 #pragma pop
 
 /* 80BBAE94-80BBAE98 000010 0004+00 0/1 0/0 0/0 .rodata          @3689 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3689 = 75.0f;
-COMPILER_STRIP_GATE(80BBAE94, &lit_3689);
+COMPILER_STRIP_GATE(0x80BBAE94, &lit_3689);
 #pragma pop
 
 /* 80BBAE98-80BBAE9C 000014 0004+00 0/1 0/0 0/0 .rodata          @3690 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3690 = 30.0f;
-COMPILER_STRIP_GATE(80BBAE98, &lit_3690);
+COMPILER_STRIP_GATE(0x80BBAE98, &lit_3690);
 #pragma pop
 
 /* 80BBAA84-80BBAB9C 000104 0118+00 1/1 0/0 0/0 .text            create__12daObjBombf_cFv */
@@ -236,7 +236,7 @@ asm void daObjBombf_c::setMatrix() {
 SECTION_RODATA static u8 const bombOffset[12] = {
     0x00, 0x00, 0x00, 0x00, 0x40, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BBAE9C, &bombOffset);
+COMPILER_STRIP_GATE(0x80BBAE9C, &bombOffset);
 
 /* 80BBACC0-80BBADD8 000340 0118+00 1/1 0/0 0/0 .text            execute__12daObjBombf_cFv */
 #pragma push

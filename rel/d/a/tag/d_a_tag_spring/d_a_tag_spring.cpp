@@ -121,7 +121,7 @@ asm void daTagSpring_c::create() {
 /* ############################################################################################## */
 /* 805A6E6C-805A6E70 000000 0004+00 2/2 0/0 0/0 .rodata          @3728 */
 SECTION_RODATA static f32 const lit_3728 = 1.0f;
-COMPILER_STRIP_GATE(805A6E6C, &lit_3728);
+COMPILER_STRIP_GATE(0x805A6E6C, &lit_3728);
 
 /* 805A6B5C-805A6C84 00017C 0128+00 1/1 0/0 0/0 .text            execute__13daTagSpring_cFv */
 #pragma push
@@ -143,7 +143,7 @@ SECTION_RODATA static u8 const lit_3773[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(805A6E70, &lit_3773);
+COMPILER_STRIP_GATE(0x805A6E70, &lit_3773);
 #pragma pop
 
 /* 805A6E74-805A6E7C 000008 0008+00 0/1 0/0 0/0 .rodata          @3774 */
@@ -152,7 +152,7 @@ COMPILER_STRIP_GATE(805A6E70, &lit_3773);
 SECTION_RODATA static u8 const lit_3774[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(805A6E74, &lit_3774);
+COMPILER_STRIP_GATE(0x805A6E74, &lit_3774);
 #pragma pop
 
 /* 805A6E7C-805A6E84 000010 0008+00 0/1 0/0 0/0 .rodata          @3775 */
@@ -161,7 +161,7 @@ COMPILER_STRIP_GATE(805A6E74, &lit_3774);
 SECTION_RODATA static u8 const lit_3775[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(805A6E7C, &lit_3775);
+COMPILER_STRIP_GATE(0x805A6E7C, &lit_3775);
 #pragma pop
 
 /* 805A6E84-805A6E8C 000018 0008+00 0/1 0/0 0/0 .rodata          @3776 */
@@ -170,14 +170,14 @@ COMPILER_STRIP_GATE(805A6E7C, &lit_3775);
 SECTION_RODATA static u8 const lit_3776[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(805A6E84, &lit_3776);
+COMPILER_STRIP_GATE(0x805A6E84, &lit_3776);
 #pragma pop
 
 /* 805A6E8C-805A6E90 000020 0004+00 0/1 0/0 0/0 .rodata          @3777 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3777 = 1000.0f;
-COMPILER_STRIP_GATE(805A6E8C, &lit_3777);
+COMPILER_STRIP_GATE(0x805A6E8C, &lit_3777);
 #pragma pop
 
 /* 805A6C84-805A6DFC 0002A4 0178+00 1/1 0/0 0/0 .text            checkArea__13daTagSpring_cFv */

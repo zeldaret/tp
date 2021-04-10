@@ -37,9 +37,9 @@ struct dSv_event_c {
     /* 800349BC */ void isEventBit(u16) const;
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -98,11 +98,11 @@ asm void daScex_c::checkWork() {
 /* ############################################################################################## */
 /* 80485C98-80485C9C 000000 0004+00 2/2 0/0 0/0 .rodata          @3758 */
 SECTION_RODATA static f32 const lit_3758 = 75.0f;
-COMPILER_STRIP_GATE(80485C98, &lit_3758);
+COMPILER_STRIP_GATE(0x80485C98, &lit_3758);
 
 /* 80485C9C-80485CA0 000004 0004+00 1/1 0/0 0/0 .rodata          @3759 */
 SECTION_RODATA static f32 const lit_3759 = 150.0f;
-COMPILER_STRIP_GATE(80485C9C, &lit_3759);
+COMPILER_STRIP_GATE(0x80485C9C, &lit_3759);
 
 /* 80485974-80485A30 0001B4 00BC+00 1/0 0/0 0/0 .text            daScex_Create__FP10fopAc_ac_c */
 #pragma push
@@ -134,21 +134,21 @@ SECTION_RODATA static u8 const lit_3840[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80485CA0, &lit_3840);
+COMPILER_STRIP_GATE(0x80485CA0, &lit_3840);
 #pragma pop
 
 /* 80485CA4-80485CA8 00000C 0004+00 0/1 0/0 0/0 .rodata          @3841 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3841 = 1.0f;
-COMPILER_STRIP_GATE(80485CA4, &lit_3841);
+COMPILER_STRIP_GATE(0x80485CA4, &lit_3841);
 #pragma pop
 
 /* 80485CA8-80485CAC 000010 0004+00 0/1 0/0 0/0 .rodata          @3842 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3842 = -1.0f;
-COMPILER_STRIP_GATE(80485CA8, &lit_3842);
+COMPILER_STRIP_GATE(0x80485CA8, &lit_3842);
 #pragma pop
 
 /* 80485A50-80485C90 000290 0240+00 1/1 0/0 0/0 .text            execute__8daScex_cFv */

@@ -48,9 +48,9 @@ struct dEvent_manager_c {
     /* 8004817C */ void cutEnd(int);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -77,7 +77,7 @@ extern "C" void _delete__16daTagRiverBack_cFv();
 extern "C" static void daTagRiverBack_Execute__FP16daTagRiverBack_c();
 extern "C" static void daTagRiverBack_Delete__FP16daTagRiverBack_c();
 extern "C" static void daTagRiverBack_Create__FP16daTagRiverBack_c();
-extern "C" void func_80D5F920(u8*);
+extern "C" void func_80D5F920(void* _this, u8*);
 extern "C" extern char const* const d_a_tag_river_back__stringBase0;
 extern "C" extern void* g_profile_Tag_RiverBack[12];
 
@@ -116,6 +116,13 @@ extern "C" extern u8 data_80D5FA68[4];
 //
 
 /* ############################################################################################## */
+/* 80D5F950-80D5F950 00000C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D5F950 = "RvBack";
+SECTION_DEAD static char const* const stringBase_80D5F957 = "RIVER_BACK";
+#pragma pop
+
 /* 80D5F980-80D5F98C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -171,6 +178,12 @@ asm void daTagRiverBack_c::execute() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80D5F950-80D5F950 00000C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D5F962 = "rvback";
+#pragma pop
+
 /* 80D5F9A8-80D5F9AC -00001 0004+00 1/1 0/0 0/0 .data            l_staffName */
 SECTION_DATA static void* l_staffName = (void*)(((char*)&d_a_tag_river_back__stringBase0) + 0x12);
 
@@ -273,13 +286,13 @@ void daTagRiverBack_c::actionDead() {
 /* ############################################################################################## */
 /* 80D5F944-80D5F948 000000 0004+00 1/1 0/0 0/0 .rodata          @3813 */
 SECTION_RODATA static f32 const lit_3813 = 1.0f;
-COMPILER_STRIP_GATE(80D5F944, &lit_3813);
+COMPILER_STRIP_GATE(0x80D5F944, &lit_3813);
 
 /* 80D5F948-80D5F94C 000004 0004+00 0/1 0/0 0/0 .rodata          @3814 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3814 = -1.0f;
-COMPILER_STRIP_GATE(80D5F948, &lit_3814);
+COMPILER_STRIP_GATE(0x80D5F948, &lit_3814);
 #pragma pop
 
 /* 80D5F94C-80D5F950 000008 0004+00 0/1 0/0 0/0 .rodata          @3815 */
@@ -291,7 +304,15 @@ SECTION_RODATA static u8 const lit_3815[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D5F94C, &lit_3815);
+COMPILER_STRIP_GATE(0x80D5F94C, &lit_3815);
+#pragma pop
+
+/* 80D5F950-80D5F950 00000C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D5F969 = "WAIT";
+SECTION_DEAD static char const* const stringBase_80D5F96E = "SCENE_CHG";
+SECTION_DEAD static char const* const stringBase_80D5F978 = "Timer";
 #pragma pop
 
 /* 80D5FA0C-80D5FA14 -00001 0008+00 1/1 0/0 0/0 .data            action_table$3769 */
@@ -357,7 +378,7 @@ static asm void daTagRiverBack_Create(daTagRiverBack_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80D5F920(u8* param_0) {
+extern "C" asm void func_80D5F920(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/tag/d_a_tag_river_back/d_a_tag_river_back/func_80D5F920.s"
 }
@@ -386,14 +407,4 @@ SECTION_DATA extern void* g_profile_Tag_RiverBack[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80D5F950-80D5F97E 00000C 002E+00 5/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D5F950 = "RvBack";
-SECTION_DEAD static char const* const stringBase_80D5F957 = "RIVER_BACK";
-SECTION_DEAD static char const* const stringBase_80D5F962 = "rvback";
-SECTION_DEAD static char const* const stringBase_80D5F969 = "WAIT";
-SECTION_DEAD static char const* const stringBase_80D5F96E = "SCENE_CHG";
-SECTION_DEAD static char const* const stringBase_80D5F978 = "Timer";
-#pragma pop
+/* 80D5F950-80D5F950 00000C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

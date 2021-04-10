@@ -153,6 +153,50 @@ asm dMenuMapCommon_c::~dMenuMapCommon_c() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 803959C0-803959C0 022020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803959C0 = "tt_map_icon_boss_s_ci8_16_00.bti";
+SECTION_DEAD static char const* const stringBase_803959E1 = "tt_map_icon_boss_ci8_32_00.bti";
+SECTION_DEAD static char const* const stringBase_80395A00 = "im_map_icon_enter_ci8_24_02.bti";
+SECTION_DEAD static char const* const stringBase_80395A20 = "im_map_icon_enter_ci8_02.bti";
+SECTION_DEAD static char const* const stringBase_80395A3D = "tt_map_icon_enter_s_ci8_24_00.bti";
+SECTION_DEAD static char const* const stringBase_80395A5F = "tt_map_icon_enter_ci8_32_00.bti";
+SECTION_DEAD static char const* const stringBase_80395A7F = "im_map_icon_warp_24_ci8_00.bti";
+SECTION_DEAD static char const* const stringBase_80395A9E = "im_map_icon_warp_32_ci8_00.bti";
+SECTION_DEAD static char const* const stringBase_80395ABD = "tt_map_icon_box_s_ci8_24_00.bti";
+SECTION_DEAD static char const* const stringBase_80395ADD = "tt_map_icon_box_ci8_32_00.bti";
+SECTION_DEAD static char const* const stringBase_80395AFB =
+    "tt_map_icon_s_size_circle_ci4_gray_00.bti";
+SECTION_DEAD static char const* const stringBase_80395B25 = "tt_map_icon_key_ci8_32_00.bti";
+SECTION_DEAD static char const* const stringBase_80395B43 = "tt_map_icon_s_size_circle_ci4_00.bti";
+SECTION_DEAD static char const* const stringBase_80395B68 = "st_yuki_M.bti";
+SECTION_DEAD static char const* const stringBase_80395B76 = "st_yuki_W.bti";
+SECTION_DEAD static char const* const stringBase_80395B84 =
+    "tt_map_icon_s_size_circle_ci4_yellow_00.bti";
+SECTION_DEAD static char const* const stringBase_80395BB0 = "st_gold_wolf.bti";
+SECTION_DEAD static char const* const stringBase_80395BC1 = "tt_map_icon_monkey_ci8_32_00.bti";
+SECTION_DEAD static char const* const stringBase_80395BE2 =
+    "tt_map_icon_s_size_circle_ci4_blue_00.bti";
+SECTION_DEAD static char const* const stringBase_80395C0C = "ni_obacyan.bti";
+SECTION_DEAD static char const* const stringBase_80395C1B =
+    "im_zelda_map_icon_copy_stone_statue_snup_try_00_"
+    "04.bti";
+SECTION_DEAD static char const* const stringBase_80395C52 = "tt_map_icon_link_s_ci8_24_00.bti";
+SECTION_DEAD static char const* const stringBase_80395C73 = "tt_map_icon_link_ci8_32_00.bti";
+SECTION_DEAD static char const* const stringBase_80395C92 = "tt_map_icon_penant_s_ci8_24_00.bti";
+SECTION_DEAD static char const* const stringBase_80395CB5 = "tt_map_icon_penant_ci8_32_00.bti";
+SECTION_DEAD static char const* const stringBase_80395CD6 = "im_black_32.bti";
+SECTION_DEAD static char const* const stringBase_80395CE6 =
+    "im_hikari_no_shizuku_try_10_00_24x24.bti";
+SECTION_DEAD static char const* const stringBase_80395D0F = "im_zelda_map_icon_hikari_ball_03.bti";
+SECTION_DEAD static char const* const stringBase_80395D34 = "im_map_icon_iron_ball_ci8_32_00.bti";
+SECTION_DEAD static char const* const stringBase_80395D58 = "im_map_icon_basha_ci8.bti";
+SECTION_DEAD static char const* const stringBase_80395D72 = "im_nijumaru_40x40_ind_01.bti";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80395D8F = "";
+#pragma pop
+
 /* 804540DC-804540E0 0026DC 0004+00 7/7 0/0 0/0 .sdata2          @3882 */
 SECTION_SDATA2 static f32 lit_3882 = 1.0f;
 
@@ -301,47 +345,4 @@ asm void dMenuMapCommon_c::debugIcon() {
 }
 #pragma pop
 
-/* 803959C0-80395D90 022020 03CF+01 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803959C0 = "tt_map_icon_boss_s_ci8_16_00.bti";
-SECTION_DEAD static char const* const stringBase_803959E1 = "tt_map_icon_boss_ci8_32_00.bti";
-SECTION_DEAD static char const* const stringBase_80395A00 = "im_map_icon_enter_ci8_24_02.bti";
-SECTION_DEAD static char const* const stringBase_80395A20 = "im_map_icon_enter_ci8_02.bti";
-SECTION_DEAD static char const* const stringBase_80395A3D = "tt_map_icon_enter_s_ci8_24_00.bti";
-SECTION_DEAD static char const* const stringBase_80395A5F = "tt_map_icon_enter_ci8_32_00.bti";
-SECTION_DEAD static char const* const stringBase_80395A7F = "im_map_icon_warp_24_ci8_00.bti";
-SECTION_DEAD static char const* const stringBase_80395A9E = "im_map_icon_warp_32_ci8_00.bti";
-SECTION_DEAD static char const* const stringBase_80395ABD = "tt_map_icon_box_s_ci8_24_00.bti";
-SECTION_DEAD static char const* const stringBase_80395ADD = "tt_map_icon_box_ci8_32_00.bti";
-SECTION_DEAD static char const* const stringBase_80395AFB =
-    "tt_map_icon_s_size_circle_ci4_gray_00.bti";
-SECTION_DEAD static char const* const stringBase_80395B25 = "tt_map_icon_key_ci8_32_00.bti";
-SECTION_DEAD static char const* const stringBase_80395B43 = "tt_map_icon_s_size_circle_ci4_00.bti";
-SECTION_DEAD static char const* const stringBase_80395B68 = "st_yuki_M.bti";
-SECTION_DEAD static char const* const stringBase_80395B76 = "st_yuki_W.bti";
-SECTION_DEAD static char const* const stringBase_80395B84 =
-    "tt_map_icon_s_size_circle_ci4_yellow_00.bti";
-SECTION_DEAD static char const* const stringBase_80395BB0 = "st_gold_wolf.bti";
-SECTION_DEAD static char const* const stringBase_80395BC1 = "tt_map_icon_monkey_ci8_32_00.bti";
-SECTION_DEAD static char const* const stringBase_80395BE2 =
-    "tt_map_icon_s_size_circle_ci4_blue_00.bti";
-SECTION_DEAD static char const* const stringBase_80395C0C = "ni_obacyan.bti";
-SECTION_DEAD static char const* const stringBase_80395C1B =
-    "im_zelda_map_icon_copy_stone_statue_snup_try_00_"
-    "04.bti";
-SECTION_DEAD static char const* const stringBase_80395C52 = "tt_map_icon_link_s_ci8_24_00.bti";
-SECTION_DEAD static char const* const stringBase_80395C73 = "tt_map_icon_link_ci8_32_00.bti";
-SECTION_DEAD static char const* const stringBase_80395C92 = "tt_map_icon_penant_s_ci8_24_00.bti";
-SECTION_DEAD static char const* const stringBase_80395CB5 = "tt_map_icon_penant_ci8_32_00.bti";
-SECTION_DEAD static char const* const stringBase_80395CD6 = "im_black_32.bti";
-SECTION_DEAD static char const* const stringBase_80395CE6 =
-    "im_hikari_no_shizuku_try_10_00_24x24.bti";
-SECTION_DEAD static char const* const stringBase_80395D0F = "im_zelda_map_icon_hikari_ball_03.bti";
-SECTION_DEAD static char const* const stringBase_80395D34 = "im_map_icon_iron_ball_ci8_32_00.bti";
-SECTION_DEAD static char const* const stringBase_80395D58 = "im_map_icon_basha_ci8.bti";
-SECTION_DEAD static char const* const stringBase_80395D72 = "im_nijumaru_40x40_ind_01.bti";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80395D8F = "";
-#pragma pop
+/* 803959C0-803959C0 022020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -179,28 +179,30 @@ template <typename A1, typename B1, typename C1>
 void upper_bound(/* ... */);
 /* 80283EB8 */ /* std::upper_bound<JStudio::TFunctionValue_hermite::TIterator_data_, f64,
                   std::less<f64>> */
-void func_80283EB8(JStudio::TFunctionValue_hermite::TIterator_data_,
+void func_80283EB8(void* _this, JStudio::TFunctionValue_hermite::TIterator_data_,
                    JStudio::TFunctionValue_hermite::TIterator_data_, f64 const&, std::less<f64>);
 /* 80283E24 */ /* std::upper_bound<JStudio::TFunctionValue_list_parameter::TIterator_data_, f64,
                   std::less<f64>> */
-void func_80283E24(JStudio::TFunctionValue_list_parameter::TIterator_data_,
+void func_80283E24(void* _this, JStudio::TFunctionValue_list_parameter::TIterator_data_,
                    JStudio::TFunctionValue_list_parameter::TIterator_data_, f64 const&,
                    std::less<f64>);
 };  // namespace std
 
 namespace JGadget {
-/* 80283858 */ void func_80283858(JStudio::TFunctionValue_hermite::TIterator_data_,
+/* 80283858 */ void func_80283858(void* _this, JStudio::TFunctionValue_hermite::TIterator_data_,
                                   JStudio::TFunctionValue_hermite::TIterator_data_,
                                   JStudio::TFunctionValue_hermite::TIterator_data_, f64 const&);
-/* 802835DC */ void func_802835DC(JStudio::TFunctionValue_list_parameter::TIterator_data_,
+/* 802835DC */ void func_802835DC(void* _this,
+                                  JStudio::TFunctionValue_list_parameter::TIterator_data_,
                                   JStudio::TFunctionValue_list_parameter::TIterator_data_,
                                   JStudio::TFunctionValue_list_parameter::TIterator_data_,
                                   f64 const&);
-/* 80283634 */ void func_80283634(JStudio::TFunctionValue_list_parameter::TIterator_data_,
+/* 80283634 */ void func_80283634(void* _this,
+                                  JStudio::TFunctionValue_list_parameter::TIterator_data_,
                                   JStudio::TFunctionValue_list_parameter::TIterator_data_,
                                   JStudio::TFunctionValue_list_parameter::TIterator_data_,
                                   f64 const&, std::less<f64>);
-/* 802838C8 */ void func_802838C8(JStudio::TFunctionValue_hermite::TIterator_data_,
+/* 802838C8 */ void func_802838C8(void* _this, JStudio::TFunctionValue_hermite::TIterator_data_,
                                   JStudio::TFunctionValue_hermite::TIterator_data_,
                                   JStudio::TFunctionValue_hermite::TIterator_data_, f64 const&,
                                   std::less<f64>);
@@ -287,17 +289,17 @@ extern "C" void getValue__Q27JStudio22TFunctionValue_hermiteFd();
 extern "C" void extrapolateParameter_raw__Q27JStudio13functionvalueFdd();
 extern "C" void extrapolateParameter_repeat__Q27JStudio13functionvalueFdd();
 extern "C" void extrapolateParameter_clamp__Q27JStudio13functionvalueFdd();
-extern "C" void func_802835DC(JStudio::TFunctionValue_list_parameter::TIterator_data_,
+extern "C" void func_802835DC(void* _this, JStudio::TFunctionValue_list_parameter::TIterator_data_,
                               JStudio::TFunctionValue_list_parameter::TIterator_data_,
                               JStudio::TFunctionValue_list_parameter::TIterator_data_, f64 const&);
-extern "C" void func_80283634(JStudio::TFunctionValue_list_parameter::TIterator_data_,
+extern "C" void func_80283634(void* _this, JStudio::TFunctionValue_list_parameter::TIterator_data_,
                               JStudio::TFunctionValue_list_parameter::TIterator_data_,
                               JStudio::TFunctionValue_list_parameter::TIterator_data_, f64 const&,
                               std::less<f64>);
-extern "C" void func_80283858(JStudio::TFunctionValue_hermite::TIterator_data_,
+extern "C" void func_80283858(void* _this, JStudio::TFunctionValue_hermite::TIterator_data_,
                               JStudio::TFunctionValue_hermite::TIterator_data_,
                               JStudio::TFunctionValue_hermite::TIterator_data_, f64 const&);
-extern "C" void func_802838C8(JStudio::TFunctionValue_hermite::TIterator_data_,
+extern "C" void func_802838C8(void* _this, JStudio::TFunctionValue_hermite::TIterator_data_,
                               JStudio::TFunctionValue_hermite::TIterator_data_,
                               JStudio::TFunctionValue_hermite::TIterator_data_, f64 const&,
                               std::less<f64>);
@@ -307,10 +309,10 @@ extern "C" void __dt__Q27JStudio19TFunctionValue_listFv();
 extern "C" void __dt__Q27JStudio25TFunctionValue_transitionFv();
 extern "C" void __dt__Q27JStudio23TFunctionValue_constantFv();
 extern "C" void __dt__Q27JStudio24TFunctionValue_compositeFv();
-extern "C" void func_80283E24(JStudio::TFunctionValue_list_parameter::TIterator_data_,
+extern "C" void func_80283E24(void* _this, JStudio::TFunctionValue_list_parameter::TIterator_data_,
                               JStudio::TFunctionValue_list_parameter::TIterator_data_, f64 const&,
                               std::less<f64>);
-extern "C" void func_80283EB8(JStudio::TFunctionValue_hermite::TIterator_data_,
+extern "C" void func_80283EB8(void* _this, JStudio::TFunctionValue_hermite::TIterator_data_,
                               JStudio::TFunctionValue_hermite::TIterator_data_, f64 const&,
                               std::less<f64>);
 
@@ -345,7 +347,7 @@ SECTION_RODATA static void* const data_8039A9F0[4] = {
     (void*)extrapolateParameter_turn__Q27JStudio13functionvalueFdd,
     (void*)extrapolateParameter_clamp__Q27JStudio13functionvalueFdd,
 };
-COMPILER_STRIP_GATE(8039A9F0, &data_8039A9F0);
+COMPILER_STRIP_GATE(0x8039A9F0, &data_8039A9F0);
 
 /* 80281648-80281690 27BF88 0048+00 3/3 1/1 0/0 .text
  * toFunction_outside__Q27JStudio14TFunctionValueFi             */
@@ -1243,7 +1245,8 @@ asm void JStudio::functionvalue::extrapolateParameter_clamp(f64 param_0, f64 par
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802835DC(JStudio::TFunctionValue_list_parameter::TIterator_data_ param_0,
+extern "C" asm void func_802835DC(void* _this,
+                                  JStudio::TFunctionValue_list_parameter::TIterator_data_ param_0,
                                   JStudio::TFunctionValue_list_parameter::TIterator_data_ param_1,
                                   JStudio::TFunctionValue_list_parameter::TIterator_data_ param_2,
                                   f64 const& param_3) {
@@ -1258,7 +1261,8 @@ extern "C" asm void func_802835DC(JStudio::TFunctionValue_list_parameter::TItera
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80283634(JStudio::TFunctionValue_list_parameter::TIterator_data_ param_0,
+extern "C" asm void func_80283634(void* _this,
+                                  JStudio::TFunctionValue_list_parameter::TIterator_data_ param_0,
                                   JStudio::TFunctionValue_list_parameter::TIterator_data_ param_1,
                                   JStudio::TFunctionValue_list_parameter::TIterator_data_ param_2,
                                   f64 const& param_3, std::less<f64> param_4) {
@@ -1273,7 +1277,8 @@ extern "C" asm void func_80283634(JStudio::TFunctionValue_list_parameter::TItera
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80283858(JStudio::TFunctionValue_hermite::TIterator_data_ param_0,
+extern "C" asm void func_80283858(void* _this,
+                                  JStudio::TFunctionValue_hermite::TIterator_data_ param_0,
                                   JStudio::TFunctionValue_hermite::TIterator_data_ param_1,
                                   JStudio::TFunctionValue_hermite::TIterator_data_ param_2,
                                   f64 const& param_3) {
@@ -1288,7 +1293,8 @@ extern "C" asm void func_80283858(JStudio::TFunctionValue_hermite::TIterator_dat
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802838C8(JStudio::TFunctionValue_hermite::TIterator_data_ param_0,
+extern "C" asm void func_802838C8(void* _this,
+                                  JStudio::TFunctionValue_hermite::TIterator_data_ param_0,
                                   JStudio::TFunctionValue_hermite::TIterator_data_ param_1,
                                   JStudio::TFunctionValue_hermite::TIterator_data_ param_2,
                                   f64 const& param_3, std::less<f64> param_4) {
@@ -1368,7 +1374,8 @@ asm JStudio::TFunctionValue_composite::~TFunctionValue_composite() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80283E24(JStudio::TFunctionValue_list_parameter::TIterator_data_ param_0,
+extern "C" asm void func_80283E24(void* _this,
+                                  JStudio::TFunctionValue_list_parameter::TIterator_data_ param_0,
                                   JStudio::TFunctionValue_list_parameter::TIterator_data_ param_1,
                                   f64 const& param_2, std::less<f64> param_3) {
     nofralloc
@@ -1382,7 +1389,8 @@ extern "C" asm void func_80283E24(JStudio::TFunctionValue_list_parameter::TItera
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_80283EB8(JStudio::TFunctionValue_hermite::TIterator_data_ param_0,
+extern "C" asm void func_80283EB8(void* _this,
+                                  JStudio::TFunctionValue_hermite::TIterator_data_ param_0,
                                   JStudio::TFunctionValue_hermite::TIterator_data_ param_1,
                                   f64 const& param_2, std::less<f64> param_3) {
     nofralloc

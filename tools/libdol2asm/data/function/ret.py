@@ -29,6 +29,8 @@ class CustomReturnFunction(ReturnFunction):
 class SymbolReturnFunction(ReturnFunction):
     symbol_addr: int = 0
     load_or_reference: bool = True
+    load_type: Type = None
+    cast_type: Type = None
 
     def gather_references(self, context, valid_range):
         self.references = set([ self.symbol_addr ])
@@ -37,8 +39,11 @@ class SymbolReturnFunction(ReturnFunction):
         symbol = symbol_table[-1, self.symbol_addr]
         assert symbol
         name = symbol.cpp_reference(self, self.symbol_addr)
-        type = PointerType(self.return_type)
+        load_type = PointerType(self.load_type)
         dereference = ""
+        cast = ""
         if self.load_or_reference:
             dereference = "*"
-        return f"{dereference}({type.type()})({name})"
+        if self.cast_type:
+            cast = f"({self.cast_type.type()})"
+        return f"{cast}{dereference}({load_type.type()})({name})"

@@ -200,7 +200,7 @@ asm void daObjMBox_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 8059346C-80593470 000000 0004+00 1/1 0/0 0/0 .rodata          @3655 */
 SECTION_RODATA static f32 const lit_3655 = 30.0f;
-COMPILER_STRIP_GATE(8059346C, &lit_3655);
+COMPILER_STRIP_GATE(0x8059346C, &lit_3655);
 
 /* 80592F48-80592FD4 000128 008C+00 1/0 0/0 0/0 .text            Create__11daObjMBox_cFv */
 #pragma push
@@ -213,6 +213,12 @@ asm void daObjMBox_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80593470-80593470 000004 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80593470 = "L_mbox_00";
+#pragma pop
+
 /* 8059347C-80593480 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_metalbox__stringBase0;
 
@@ -422,9 +428,4 @@ static asm void func_8059345C() {
 }
 #pragma pop
 
-/* 80593470-8059347A 000004 000A+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80593470 = "L_mbox_00";
-#pragma pop
+/* 80593470-80593470 000004 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

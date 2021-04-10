@@ -25,11 +25,11 @@ struct J3DTevColorAnm {};
 
 struct J3DAnmTextureSRTKey {};
 
+struct J3DAnmTexPattern {};
+
 struct J3DAnmTevRegKey {};
 
 struct J3DAnmColor {};
-
-struct J3DAnmTexPattern {};
 
 struct J3DMaterialTable {
     /* 8032F5A8 */ void clear();

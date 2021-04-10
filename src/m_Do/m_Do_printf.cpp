@@ -240,6 +240,18 @@ asm void OSReport() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80373CB0-80373CB0 000310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80373CB0 = ""
+                                                            "\x1B"
+                                                            "[41;37m***** FATAL ERROR *****\n";
+SECTION_DEAD static char const* const stringBase_80373CD1 = "***** FATAL ERROR *****\n"
+                                                            "\x1B"
+                                                            "[m";
+#pragma pop
+
 /* 80006B3C-80006C0C 00147C 00D0+00 0/0 2/2 0/0 .text            OSReport_FatalError */
 #pragma push
 #pragma optimization_level 0
@@ -250,6 +262,18 @@ asm void OSReport_FatalError() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80373CB0-80373CB0 000310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80373CED = ""
+                                                            "\x1B"
+                                                            "[41;37m[ERROR]";
+SECTION_DEAD static char const* const stringBase_80373CFD = ""
+                                                            "\x1B"
+                                                            "[m";
+#pragma pop
+
 /* 80006C0C-80006CEC 00154C 00E0+00 0/0 31/31 10/10 .text            OSReport_Error */
 #pragma push
 #pragma optimization_level 0
@@ -258,6 +282,15 @@ asm void OSReport_Error() {
     nofralloc
 #include "asm/m_Do/m_Do_printf/OSReport_Error.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80373CB0-80373CB0 000310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80373D01 = ""
+                                                            "\x1B"
+                                                            "[43;30m[WARN]";
 #pragma pop
 
 /* 80006CEC-80006DCC 00162C 00E0+00 0/0 6/6 0/0 .text            OSReport_Warning */
@@ -280,6 +313,16 @@ asm void OSReport_System() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80373CB0-80373CB0 000310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80373D10 = " in \"%s\" on line %d.\n";
+SECTION_DEAD static char const* const stringBase_80373D26 =
+    "\nAddress:      Back Chain    LR Save\n";
+SECTION_DEAD static char const* const stringBase_80373D4C = "0x%08x:   0x%08x    0x%08x\n";
+#pragma pop
+
 /* 80006E7C-80006FB4 0017BC 0138+00 0/0 9/9 0/0 .text            OSPanic */
 #pragma push
 #pragma optimization_level 0
@@ -290,27 +333,4 @@ asm void OSPanic() {
 }
 #pragma pop
 
-/* 80373CB0-80373D68 000310 00B8+00 4/4 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80373CB0 = ""
-                                                            "\x1B"
-                                                            "[41;37m***** FATAL ERROR *****\n";
-SECTION_DEAD static char const* const stringBase_80373CD1 = "***** FATAL ERROR *****\n"
-                                                            "\x1B"
-                                                            "[m";
-SECTION_DEAD static char const* const stringBase_80373CED = ""
-                                                            "\x1B"
-                                                            "[41;37m[ERROR]";
-SECTION_DEAD static char const* const stringBase_80373CFD = ""
-                                                            "\x1B"
-                                                            "[m";
-SECTION_DEAD static char const* const stringBase_80373D01 = ""
-                                                            "\x1B"
-                                                            "[43;30m[WARN]";
-SECTION_DEAD static char const* const stringBase_80373D10 = " in \"%s\" on line %d.\n";
-SECTION_DEAD static char const* const stringBase_80373D26 =
-    "\nAddress:      Back Chain    LR Save\n";
-SECTION_DEAD static char const* const stringBase_80373D4C = "0x%08x:   0x%08x    0x%08x\n";
-#pragma pop
+/* 80373CB0-80373CB0 000310 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

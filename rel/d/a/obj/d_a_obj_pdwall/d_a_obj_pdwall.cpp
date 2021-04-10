@@ -101,9 +101,9 @@ struct cBgS {
     /* 80074250 */ void Release(dBgW_Base*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -192,6 +192,12 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
+/* 80CAD1F4-80CAD1F4 00003C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CAD1F4 = "P_Dwall";
+#pragma pop
+
 /* 80CAD1FC-80CAD200 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_pdwall__stringBase0;
 
@@ -211,11 +217,11 @@ SECTION_RODATA static u8 const l_cull_box[24] = {
     0xC2, 0xC8, 0x00, 0x00, 0xC4, 0x48, 0x00, 0x00, 0xC3, 0x96, 0x00, 0x00,
     0x44, 0x3B, 0x80, 0x00, 0x43, 0xFA, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CAD1B8, &l_cull_box);
+COMPILER_STRIP_GATE(0x80CAD1B8, &l_cull_box);
 
 /* 80CAD1D0-80CAD1D4 000018 0004+00 1/1 0/0 0/0 .rodata          @3666 */
 SECTION_RODATA static f32 const lit_3666 = 50.0f;
-COMPILER_STRIP_GATE(80CAD1D0, &lit_3666);
+COMPILER_STRIP_GATE(0x80CAD1D0, &lit_3666);
 
 /* 80CAD1D4-80CAD1D8 00001C 0004+00 1/3 0/0 0/0 .rodata          @3667 */
 SECTION_RODATA static u8 const lit_3667[4] = {
@@ -224,13 +230,13 @@ SECTION_RODATA static u8 const lit_3667[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CAD1D4, &lit_3667);
+COMPILER_STRIP_GATE(0x80CAD1D4, &lit_3667);
 
 /* 80CAD1D8-80CAD1E0 000020 0008+00 1/3 0/0 0/0 .rodata          @3669 */
 SECTION_RODATA static u8 const lit_3669[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CAD1D8, &lit_3669);
+COMPILER_STRIP_GATE(0x80CAD1D8, &lit_3669);
 
 /* 80CAC8DC-80CACA44 00015C 0168+00 2/2 0/0 0/0 .text            setMtx__13daObjPDwall_cFv */
 #pragma push
@@ -257,7 +263,7 @@ asm void daObjPDwall_c::CreateHeap() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3731 = -30.0f;
-COMPILER_STRIP_GATE(80CAD1E0, &lit_3731);
+COMPILER_STRIP_GATE(0x80CAD1E0, &lit_3731);
 #pragma pop
 
 /* 80CACBA8-80CACCE0 000428 0138+00 1/0 0/0 0/0 .text            Create__13daObjPDwall_cFv */
@@ -275,28 +281,28 @@ asm void daObjPDwall_c::Create() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3787 = 5.0f;
-COMPILER_STRIP_GATE(80CAD1E4, &lit_3787);
+COMPILER_STRIP_GATE(0x80CAD1E4, &lit_3787);
 #pragma pop
 
 /* 80CAD1E8-80CAD1EC 000030 0004+00 0/1 0/0 0/0 .rodata          @3788 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3788 = -1.0f / 5.0f;
-COMPILER_STRIP_GATE(80CAD1E8, &lit_3788);
+COMPILER_STRIP_GATE(0x80CAD1E8, &lit_3788);
 #pragma pop
 
 /* 80CAD1EC-80CAD1F0 000034 0004+00 0/1 0/0 0/0 .rodata          @3789 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3789 = 1.0f;
-COMPILER_STRIP_GATE(80CAD1EC, &lit_3789);
+COMPILER_STRIP_GATE(0x80CAD1EC, &lit_3789);
 #pragma pop
 
 /* 80CAD1F0-80CAD1F4 000038 0004+00 0/1 0/0 0/0 .rodata          @3790 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3790 = -1.0f;
-COMPILER_STRIP_GATE(80CAD1F0, &lit_3790);
+COMPILER_STRIP_GATE(0x80CAD1F0, &lit_3790);
 #pragma pop
 
 /* 80CACCE0-80CACF14 000560 0234+00 1/0 0/0 0/0 .text            Execute__13daObjPDwall_cFPPA3_A4_f
@@ -420,9 +426,4 @@ asm daObjPDwall_c::~daObjPDwall_c() {
 }
 #pragma pop
 
-/* 80CAD1F4-80CAD1FC 00003C 0008+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CAD1F4 = "P_Dwall";
-#pragma pop
+/* 80CAD1F4-80CAD1F4 00003C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

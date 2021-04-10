@@ -142,7 +142,7 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 804FBB90-804FBB94 000000 0004+00 5/5 0/0 0/0 .rodata          @3646 */
 SECTION_RODATA static f32 const lit_3646 = 1.0f;
-COMPILER_STRIP_GATE(804FBB90, &lit_3646);
+COMPILER_STRIP_GATE(0x804FBB90, &lit_3646);
 
 /* 804FBBE0-804FBC00 -00001 0020+00 1/0 0/0 0/0 .data            l_daE_Ga_Method */
 SECTION_DATA static void* l_daE_Ga_Method[8] = {
@@ -198,21 +198,21 @@ static asm void daE_Ga_Draw(e_ga_class* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3713 = 100.0f;
-COMPILER_STRIP_GATE(804FBB94, &lit_3713);
+COMPILER_STRIP_GATE(0x804FBB94, &lit_3713);
 #pragma pop
 
 /* 804FBB98-804FBB9C 000008 0004+00 0/1 0/0 0/0 .rodata          @3714 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3714 = 10.0f;
-COMPILER_STRIP_GATE(804FBB98, &lit_3714);
+COMPILER_STRIP_GATE(0x804FBB98, &lit_3714);
 #pragma pop
 
 /* 804FBB9C-804FBBA0 00000C 0004+00 0/2 0/0 0/0 .rodata          @3715 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3715 = 200.0f;
-COMPILER_STRIP_GATE(804FBB9C, &lit_3715);
+COMPILER_STRIP_GATE(0x804FBB9C, &lit_3715);
 #pragma pop
 
 /* 804FBBA0-804FBBA8 000010 0004+04 0/3 0/0 0/0 .rodata          @3716 */
@@ -229,7 +229,7 @@ SECTION_RODATA static u8 const lit_3716[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(804FBBA0, &lit_3716);
+COMPILER_STRIP_GATE(0x804FBBA0, &lit_3716);
 #pragma pop
 
 /* 804FBBA8-804FBBB0 000018 0008+00 0/2 0/0 0/0 .rodata          @3718 */
@@ -238,7 +238,7 @@ COMPILER_STRIP_GATE(804FBBA0, &lit_3716);
 SECTION_RODATA static u8 const lit_3718[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(804FBBA8, &lit_3718);
+COMPILER_STRIP_GATE(0x804FBBA8, &lit_3718);
 #pragma pop
 
 /* 804FB1B0-804FB3A8 0001B0 01F8+00 1/1 0/0 0/0 .text            ga_fly__FP10e_ga_classP4ga_s */
@@ -256,14 +256,14 @@ static asm void ga_fly(e_ga_class* param_0, ga_s* param_1) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3759 = 12.0f;
-COMPILER_STRIP_GATE(804FBBB0, &lit_3759);
+COMPILER_STRIP_GATE(0x804FBBB0, &lit_3759);
 #pragma pop
 
 /* 804FBBB4-804FBBB8 000024 0004+00 0/1 0/0 0/0 .rodata          @3760 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3760 = 7.0f;
-COMPILER_STRIP_GATE(804FBBB4, &lit_3760);
+COMPILER_STRIP_GATE(0x804FBBB4, &lit_3760);
 #pragma pop
 
 /* 804FB3A8-804FB5C0 0003A8 0218+00 1/1 0/0 0/0 .text            bt_fly__FP10e_ga_classP4ga_s */
@@ -281,14 +281,14 @@ static asm void bt_fly(e_ga_class* param_0, ga_s* param_1) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3796 = -15.0f;
-COMPILER_STRIP_GATE(804FBBB8, &lit_3796);
+COMPILER_STRIP_GATE(0x804FBBB8, &lit_3796);
 #pragma pop
 
 /* 804FBBBC-804FBBC0 00002C 0004+00 0/1 0/0 0/0 .rodata          @3797 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3797 = -5.0f;
-COMPILER_STRIP_GATE(804FBBBC, &lit_3797);
+COMPILER_STRIP_GATE(0x804FBBBC, &lit_3797);
 #pragma pop
 
 /* 804FB5C0-804FB6F8 0005C0 0138+00 1/1 0/0 0/0 .text            ga_control__FP10e_ga_class */
@@ -317,6 +317,12 @@ static bool daE_Ga_IsDelete(e_ga_class* param_0) {
 }
 
 /* ############################################################################################## */
+/* 804FBBD4-804FBBD4 000044 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_804FBBD4 = "E_ga";
+#pragma pop
+
 /* 804FBC48-804FBC4C 000008 0004+00 2/2 0/0 0/0 .bss             None */
 static u8 data_804FBC48[4];
 
@@ -328,6 +334,13 @@ static asm void daE_Ga_Delete(e_ga_class* param_0) {
     nofralloc
 #include "asm/rel/d/a/e/d_a_e_ga/d_a_e_ga/daE_Ga_Delete__FP10e_ga_class.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 804FBBD4-804FBBD4 000044 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_804FBBD9 = "E_Ga";
 #pragma pop
 
 /* 804FB7C4-804FB874 0007C4 00B0+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
@@ -350,35 +363,35 @@ SECTION_RODATA static u8 const l_bmdidx[4] = {
     0x00,
     0x03,
 };
-COMPILER_STRIP_GATE(804FBBC0, &l_bmdidx);
+COMPILER_STRIP_GATE(0x804FBBC0, &l_bmdidx);
 #pragma pop
 
 /* 804FBBC4-804FBBC8 000034 0004+00 0/1 0/0 0/0 .rodata          @3912 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3912 = 65536.0f;
-COMPILER_STRIP_GATE(804FBBC4, &lit_3912);
+COMPILER_STRIP_GATE(0x804FBBC4, &lit_3912);
 #pragma pop
 
 /* 804FBBC8-804FBBCC 000038 0004+00 0/1 0/0 0/0 .rodata          @3913 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3913 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(804FBBC8, &lit_3913);
+COMPILER_STRIP_GATE(0x804FBBC8, &lit_3913);
 #pragma pop
 
 /* 804FBBCC-804FBBD0 00003C 0004+00 0/1 0/0 0/0 .rodata          @3914 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3914 = 4.0f / 5.0f;
-COMPILER_STRIP_GATE(804FBBCC, &lit_3914);
+COMPILER_STRIP_GATE(0x804FBBCC, &lit_3914);
 #pragma pop
 
 /* 804FBBD0-804FBBD4 000040 0004+00 0/1 0/0 0/0 .rodata          @3915 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3915 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(804FBBD0, &lit_3915);
+COMPILER_STRIP_GATE(0x804FBBD0, &lit_3915);
 #pragma pop
 
 /* 804FBC4C-804FBC58 00000C 000C+00 1/1 0/0 0/0 .bss             @3641 */
@@ -434,13 +447,7 @@ asm void __sinit_d_a_e_ga_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_804FBB40 = (void*)__sinit_d_a_e_ga_cpp;
+REGISTER_CTORS(0x804FBB40, __sinit_d_a_e_ga_cpp);
 #pragma pop
 
-/* 804FBBD4-804FBBDE 000044 000A+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_804FBBD4 = "E_ga";
-SECTION_DEAD static char const* const stringBase_804FBBD9 = "E_Ga";
-#pragma pop
+/* 804FBBD4-804FBBD4 000044 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

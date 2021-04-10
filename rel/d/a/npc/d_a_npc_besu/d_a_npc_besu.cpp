@@ -15,13 +15,13 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTransform {};
+struct mDoExt_McaMorfCallBack2_c {};
 
 struct mDoExt_McaMorfCallBack1_c {};
 
-struct J3DModelData {};
+struct J3DAnmTransform {};
 
-struct mDoExt_McaMorfCallBack2_c {};
+struct J3DModelData {};
 
 struct Vec {};
 
@@ -51,13 +51,7 @@ struct daNpc_Len_c {
     /* 80A660D8 */ void checkStartDemo13StbEvt(fopAc_ac_c*, f32, f32, f32, f32, f32, f32, f32);
 };
 
-struct J3DJoint {};
-
 struct daNpcT_faceMotionAnmData_c {};
-
-struct daNpcT_evtData_c {};
-
-struct daNpcT_motionAnmData_c {};
 
 struct daNpcT_MotionSeqMngr_c {
     struct sequenceStepData_c {};
@@ -66,6 +60,12 @@ struct daNpcT_MotionSeqMngr_c {
     /* 80145A24 */ void checkEndSequence();
     /* 8053DDB8 */ ~daNpcT_MotionSeqMngr_c();
 };
+
+struct daNpcT_evtData_c {};
+
+struct daNpcT_motionAnmData_c {};
+
+struct J3DJoint {};
 
 struct daNpc_Besu_c {
     /* 80536E4C */ ~daNpc_Besu_c();
@@ -145,17 +145,19 @@ struct daNpc_Besu_Param_c {
     static u8 const m[144];
 };
 
-struct csXyz {
-    /* 8053D760 */ ~csXyz();
-    /* 8053DCB4 */ csXyz();
-};
-
 struct dCcD_GObjInf {
     /* 80083A28 */ dCcD_GObjInf();
     /* 800840E4 */ ~dCcD_GObjInf();
 };
 
+struct csXyz {
+    /* 8053D760 */ ~csXyz();
+    /* 8053DCB4 */ csXyz();
+};
+
 struct _GXColorS10 {};
+
+struct J3DModel {};
 
 struct cXyz {
     /* 80266AE4 */ void operator+(Vec const&) const;
@@ -163,8 +165,6 @@ struct cXyz {
     /* 8053D724 */ ~cXyz();
     /* 8053DDB4 */ cXyz();
 };
-
-struct J3DModel {};
 
 struct daNpcT_c {
     /* 80147FA4 */ void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
@@ -529,8 +529,8 @@ extern "C" void decTmr__8daNpcT_cFv();
 extern "C" void drawGhost__8daNpcT_cFv();
 extern "C" bool afterSetFaceMotionAnm__8daNpcT_cFiifi();
 extern "C" void getMotionAnm__8daNpcT_cF22daNpcT_motionAnmData_c();
-extern "C" void func_8053E334(int*);
-extern "C" void func_8053E350(int, int);
+extern "C" void func_8053E334(void* _this, int*);
+extern "C" void func_8053E350(void* _this, int, int);
 extern "C" void __sinit_d_a_npc_besu_cpp();
 extern "C" void
 __ct__12daNpc_Besu_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
@@ -739,6 +739,45 @@ extern "C" void checkStartDemo13StbEvt__11daNpc_Len_cFP10fopAc_ac_cfffffff();
 //
 
 /* ############################################################################################## */
+/* 8053E908-8053E908 0001B4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8053E908 = "";
+SECTION_DEAD static char const* const stringBase_8053E909 = "NO_RESPONSE";
+SECTION_DEAD static char const* const stringBase_8053E915 = "CONVERSATION_ABOUT_SARU01";
+SECTION_DEAD static char const* const stringBase_8053E92F = "CONVERSATION_ABOUT_SARU02";
+SECTION_DEAD static char const* const stringBase_8053E949 = "CONVERSATION_ABOUT_PACHINKO1";
+SECTION_DEAD static char const* const stringBase_8053E966 = "CONVERSATION_ABOUT_PACHINKO2";
+SECTION_DEAD static char const* const stringBase_8053E983 = "CONVERSATION_ABOUT_PACHINKO3";
+SECTION_DEAD static char const* const stringBase_8053E9A0 = "CACARICO_CONVERSATION";
+SECTION_DEAD static char const* const stringBase_8053E9B6 = "DEMO13_STB";
+SECTION_DEAD static char const* const stringBase_8053E9C1 = "SURPRISE";
+SECTION_DEAD static char const* const stringBase_8053E9CA = "CONVERSATION_ABOUT_DEATHMT";
+SECTION_DEAD static char const* const stringBase_8053E9E5 = "NURSE";
+SECTION_DEAD static char const* const stringBase_8053E9EB = "CONVERSATION_ABOUT_ZORA";
+SECTION_DEAD static char const* const stringBase_8053EA03 = "Besu";
+SECTION_DEAD static char const* const stringBase_8053EA08 = "Besu_TW";
+SECTION_DEAD static char const* const stringBase_8053EA10 = "Besu0";
+SECTION_DEAD static char const* const stringBase_8053EA16 = "Besu1";
+SECTION_DEAD static char const* const stringBase_8053EA1C = "Besu2";
+SECTION_DEAD static char const* const stringBase_8053EA22 = "Besu3";
+SECTION_DEAD static char const* const stringBase_8053EA28 = "Besu_p1";
+SECTION_DEAD static char const* const stringBase_8053EA30 = "Len1";
+SECTION_DEAD static char const* const stringBase_8053EA35 = "Taro1";
+SECTION_DEAD static char const* const stringBase_8053EA3B = "Lud2";
+SECTION_DEAD static char const* const stringBase_8053EA40 = "Sera";
+SECTION_DEAD static char const* const stringBase_8053EA45 = "CONVERSATION_ABOUT_SARU";
+SECTION_DEAD static char const* const stringBase_8053EA5D = "CONVERSATION_ABOUT_PACHINKO";
+SECTION_DEAD static char const* const stringBase_8053EA79 = "CONVERSATION_ABOUT_WOODSWD";
+SECTION_DEAD static char const* const stringBase_8053EA94 = "SWDTUTORIAL";
+SECTION_DEAD static char const* const stringBase_8053EAA0 = "FIND_MONKEY";
+SECTION_DEAD static char const* const stringBase_8053EAAC = "GET_WOODSWD";
+SECTION_DEAD static char const* const stringBase_8053EAB8 = "CONVERSATION_IN_HOTEL";
+SECTION_DEAD static char const* const stringBase_8053EACE = "CONVERSATION_ABOUT_GORON";
+SECTION_DEAD static char const* const stringBase_8053EAE7 = "CLOTH_TRY";
+SECTION_DEAD static char const* const stringBase_8053EAF1 = "THANK_YOU";
+#pragma pop
+
 /* 8053EB5C-8053EB68 000000 000C+00 3/3 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1724,7 +1763,7 @@ SECTION_RODATA u8 const daNpc_Besu_Param_c::m[144] = {
     0xC1, 0x70, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC1, 0x70, 0x00, 0x00, 0x41, 0x70, 0x00, 0x00,
     0x41, 0xF0, 0x00, 0x00, 0x41, 0x70, 0x00, 0x00, 0x42, 0x8C, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8053E754, &daNpc_Besu_Param_c::m);
+COMPILER_STRIP_GATE(0x8053E754, &daNpc_Besu_Param_c::m);
 
 /* 8053E7E4-8053E830 000090 004C+00 0/1 0/0 0/0 .rodata          heapSize$4091 */
 #pragma push
@@ -1736,42 +1775,42 @@ SECTION_RODATA static u8 const heapSize[76] = {
     0x00, 0x00, 0x35, 0xC0, 0x00, 0x00, 0x35, 0xC0, 0x00, 0x00, 0x35, 0xD0, 0x00, 0x00, 0x35, 0xC0,
     0x00, 0x00, 0x35, 0xC0, 0x00, 0x00, 0x35, 0xC0, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8053E7E4, &heapSize);
+COMPILER_STRIP_GATE(0x8053E7E4, &heapSize);
 #pragma pop
 
 /* 8053E830-8053E834 0000DC 0004+00 0/1 0/0 0/0 .rodata          @4162 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4162 = -200.0f;
-COMPILER_STRIP_GATE(8053E830, &lit_4162);
+COMPILER_STRIP_GATE(0x8053E830, &lit_4162);
 #pragma pop
 
 /* 8053E834-8053E838 0000E0 0004+00 0/1 0/0 0/0 .rodata          @4163 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4163 = -100.0f;
-COMPILER_STRIP_GATE(8053E834, &lit_4163);
+COMPILER_STRIP_GATE(0x8053E834, &lit_4163);
 #pragma pop
 
 /* 8053E838-8053E83C 0000E4 0004+00 0/1 0/0 0/0 .rodata          @4164 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4164 = 200.0f;
-COMPILER_STRIP_GATE(8053E838, &lit_4164);
+COMPILER_STRIP_GATE(0x8053E838, &lit_4164);
 #pragma pop
 
 /* 8053E83C-8053E840 0000E8 0004+00 0/1 0/0 0/0 .rodata          @4165 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4165 = 300.0f;
-COMPILER_STRIP_GATE(8053E83C, &lit_4165);
+COMPILER_STRIP_GATE(0x8053E83C, &lit_4165);
 #pragma pop
 
 /* 8053E840-8053E844 0000EC 0004+00 0/1 0/0 0/0 .rodata          @4166 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4166 = -1000000000.0f;
-COMPILER_STRIP_GATE(8053E840, &lit_4166);
+COMPILER_STRIP_GATE(0x8053E840, &lit_4166);
 #pragma pop
 
 /* 8053701C-805372FC 0002BC 02E0+00 1/1 0/0 0/0 .text            create__12daNpc_Besu_cFv */
@@ -1792,25 +1831,25 @@ SECTION_RODATA static u8 const lit_4337[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8053E844, &lit_4337);
+COMPILER_STRIP_GATE(0x8053E844, &lit_4337);
 
 /* 8053E848-8053E84C 0000F4 0004+00 0/2 0/0 0/0 .rodata          @4338 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4338 = 65536.0f;
-COMPILER_STRIP_GATE(8053E848, &lit_4338);
+COMPILER_STRIP_GATE(0x8053E848, &lit_4338);
 #pragma pop
 
 /* 8053E84C-8053E850 0000F8 0004+00 0/3 0/0 0/0 .rodata          @4339 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4339 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(8053E84C, &lit_4339);
+COMPILER_STRIP_GATE(0x8053E84C, &lit_4339);
 #pragma pop
 
 /* 8053E850-8053E854 0000FC 0004+00 2/5 0/0 0/0 .rodata          @4531 */
 SECTION_RODATA static f32 const lit_4531 = 1.0f;
-COMPILER_STRIP_GATE(8053E850, &lit_4531);
+COMPILER_STRIP_GATE(0x8053E850, &lit_4531);
 
 /* 805372FC-80537758 00059C 045C+00 1/1 0/0 0/0 .text            CreateHeap__12daNpc_Besu_cFv */
 #pragma push
@@ -1945,7 +1984,7 @@ asm void daNpc_Besu_c::Execute() {
 /* ############################################################################################## */
 /* 8053E854-8053E858 000100 0004+00 1/2 0/0 0/0 .rodata          @4580 */
 SECTION_RODATA static f32 const lit_4580 = 100.0f;
-COMPILER_STRIP_GATE(8053E854, &lit_4580);
+COMPILER_STRIP_GATE(0x8053E854, &lit_4580);
 
 /* 80537968-805379FC 000C08 0094+00 1/1 0/0 0/0 .text            Draw__12daNpc_Besu_cFv */
 #pragma push
@@ -2044,35 +2083,35 @@ asm void daNpc_Besu_c::afterJntAnm(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4818 = 110.0f;
-COMPILER_STRIP_GATE(8053E858, &lit_4818);
+COMPILER_STRIP_GATE(0x8053E858, &lit_4818);
 #pragma pop
 
 /* 8053E85C-8053E860 000108 0004+00 0/1 0/0 0/0 .rodata          @4819 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4819 = 70.0f;
-COMPILER_STRIP_GATE(8053E85C, &lit_4819);
+COMPILER_STRIP_GATE(0x8053E85C, &lit_4819);
 #pragma pop
 
 /* 8053E860-8053E864 00010C 0004+00 0/2 0/0 0/0 .rodata          @4820 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4820 = 60.0f;
-COMPILER_STRIP_GATE(8053E860, &lit_4820);
+COMPILER_STRIP_GATE(0x8053E860, &lit_4820);
 #pragma pop
 
 /* 8053E864-8053E868 000110 0004+00 0/1 0/0 0/0 .rodata          @4821 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4821 = 180.0f;
-COMPILER_STRIP_GATE(8053E864, &lit_4821);
+COMPILER_STRIP_GATE(0x8053E864, &lit_4821);
 #pragma pop
 
 /* 8053E868-8053E86C 000114 0004+00 0/1 0/0 0/0 .rodata          @4822 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4822 = 500.0f;
-COMPILER_STRIP_GATE(8053E868, &lit_4822);
+COMPILER_STRIP_GATE(0x8053E868, &lit_4822);
 #pragma pop
 
 /* 805380A4-805382D0 001344 022C+00 1/0 0/0 0/0 .text            setParam__12daNpc_Besu_cFv */
@@ -2098,7 +2137,7 @@ asm void daNpc_Besu_c::checkChangeEvt() {
 /* ############################################################################################## */
 /* 8053E86C-8053E870 000118 0004+00 8/12 0/0 0/0 .rodata          @4894 */
 SECTION_RODATA static f32 const lit_4894 = -1.0f;
-COMPILER_STRIP_GATE(8053E86C, &lit_4894);
+COMPILER_STRIP_GATE(0x8053E86C, &lit_4894);
 
 /* 80538490-8053853C 001730 00AC+00 2/0 0/0 0/0 .text setAfterTalkMotion__12daNpc_Besu_cFv */
 #pragma push
@@ -2165,63 +2204,63 @@ asm void daNpc_Besu_c::beforeMove() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5201 = 10.0f;
-COMPILER_STRIP_GATE(8053E870, &lit_5201);
+COMPILER_STRIP_GATE(0x8053E870, &lit_5201);
 #pragma pop
 
 /* 8053E874-8053E878 000120 0004+00 0/2 0/0 0/0 .rodata          @5202 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5202 = 30.0f;
-COMPILER_STRIP_GATE(8053E874, &lit_5202);
+COMPILER_STRIP_GATE(0x8053E874, &lit_5202);
 #pragma pop
 
 /* 8053E878-8053E87C 000124 0004+00 0/1 0/0 0/0 .rodata          @5203 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_5203 = 0x38C90FDB;
-COMPILER_STRIP_GATE(8053E878, &lit_5203);
+COMPILER_STRIP_GATE(0x8053E878, &lit_5203);
 #pragma pop
 
 /* 8053E87C-8053E880 000128 0004+00 0/1 0/0 0/0 .rodata          @5204 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5204 = -10.0f;
-COMPILER_STRIP_GATE(8053E87C, &lit_5204);
+COMPILER_STRIP_GATE(0x8053E87C, &lit_5204);
 #pragma pop
 
 /* 8053E880-8053E884 00012C 0004+00 0/2 0/0 0/0 .rodata          @5205 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5205 = 84.0f;
-COMPILER_STRIP_GATE(8053E880, &lit_5205);
+COMPILER_STRIP_GATE(0x8053E880, &lit_5205);
 #pragma pop
 
 /* 8053E884-8053E888 000130 0004+00 0/1 0/0 0/0 .rodata          @5206 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5206 = 130.0f;
-COMPILER_STRIP_GATE(8053E884, &lit_5206);
+COMPILER_STRIP_GATE(0x8053E884, &lit_5206);
 #pragma pop
 
 /* 8053E888-8053E88C 000134 0004+00 0/1 0/0 0/0 .rodata          @5207 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5207 = 75.0f;
-COMPILER_STRIP_GATE(8053E888, &lit_5207);
+COMPILER_STRIP_GATE(0x8053E888, &lit_5207);
 #pragma pop
 
 /* 8053E88C-8053E890 000138 0004+00 0/1 0/0 0/0 .rodata          @5208 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5208 = 40.0f;
-COMPILER_STRIP_GATE(8053E88C, &lit_5208);
+COMPILER_STRIP_GATE(0x8053E88C, &lit_5208);
 #pragma pop
 
 /* 8053E890-8053E894 00013C 0004+00 0/1 0/0 0/0 .rodata          @5209 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5209 = 80.0f;
-COMPILER_STRIP_GATE(8053E890, &lit_5209);
+COMPILER_STRIP_GATE(0x8053E890, &lit_5209);
 #pragma pop
 
 /* 8053E894-8053E89C 000140 0004+04 0/2 0/0 0/0 .rodata          @5210 */
@@ -2232,14 +2271,14 @@ SECTION_RODATA static f32 const lit_5210[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(8053E894, &lit_5210);
+COMPILER_STRIP_GATE(0x8053E894, &lit_5210);
 #pragma pop
 
 /* 8053E89C-8053E8A4 000148 0008+00 2/4 0/0 0/0 .rodata          @5212 */
 SECTION_RODATA static u8 const lit_5212[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8053E89C, &lit_5212);
+COMPILER_STRIP_GATE(0x8053E89C, &lit_5212);
 
 /* 80538C18-805391B8 001EB8 05A0+00 1/0 0/0 0/0 .text            setAttnPos__12daNpc_Besu_cFv */
 #pragma push
@@ -2258,7 +2297,7 @@ asm void daNpc_Besu_c::setAttnPos() {
 SECTION_RODATA static u8 const lit_5270[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8053E8A4, &lit_5270);
+COMPILER_STRIP_GATE(0x8053E8A4, &lit_5270);
 #pragma pop
 
 /* 8053E8AC-8053E8B4 000158 0008+00 0/2 0/0 0/0 .rodata          @5271 */
@@ -2267,7 +2306,7 @@ COMPILER_STRIP_GATE(8053E8A4, &lit_5270);
 SECTION_RODATA static u8 const lit_5271[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8053E8AC, &lit_5271);
+COMPILER_STRIP_GATE(0x8053E8AC, &lit_5271);
 #pragma pop
 
 /* 8053E8B4-8053E8BC 000160 0008+00 0/2 0/0 0/0 .rodata          @5272 */
@@ -2276,28 +2315,28 @@ COMPILER_STRIP_GATE(8053E8AC, &lit_5271);
 SECTION_RODATA static u8 const lit_5272[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8053E8B4, &lit_5272);
+COMPILER_STRIP_GATE(0x8053E8B4, &lit_5272);
 #pragma pop
 
 /* 8053E8BC-8053E8C0 000168 0004+00 0/1 0/0 0/0 .rodata          @5345 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_5345 = 0x427AE148;
-COMPILER_STRIP_GATE(8053E8BC, &lit_5345);
+COMPILER_STRIP_GATE(0x8053E8BC, &lit_5345);
 #pragma pop
 
 /* 8053E8C0-8053E8C4 00016C 0004+00 0/1 0/0 0/0 .rodata          @5346 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5346 = 85.0f;
-COMPILER_STRIP_GATE(8053E8C0, &lit_5346);
+COMPILER_STRIP_GATE(0x8053E8C0, &lit_5346);
 #pragma pop
 
 /* 8053E8C4-8053E8C8 000170 0004+00 0/1 0/0 0/0 .rodata          @5347 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5347 = 120.0f;
-COMPILER_STRIP_GATE(8053E8C4, &lit_5347);
+COMPILER_STRIP_GATE(0x8053E8C4, &lit_5347);
 #pragma pop
 
 /* 805391B8-80539494 002458 02DC+00 1/0 0/0 0/0 .text            setCollision__12daNpc_Besu_cFv */
@@ -2323,7 +2362,7 @@ SECTION_RODATA static u8 const jointNo[4] = {
     0x00,
     0x0E,
 };
-COMPILER_STRIP_GATE(8053E8C8, &jointNo);
+COMPILER_STRIP_GATE(0x8053E8C8, &jointNo);
 
 /* 8053949C-805395F4 00273C 0158+00 1/0 0/0 0/0 .text            drawOtherMdl__12daNpc_Besu_cFv */
 #pragma push
@@ -2421,7 +2460,7 @@ asm void daNpc_Besu_c::selectAction() {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_Besu_c::chkAction(int (daNpc_Besu_c::*)(void*)) {
+asm void daNpc_Besu_c::chkAction(int (daNpc_Besu_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_besu/d_a_npc_besu/chkAction__12daNpc_Besu_cFM12daNpc_Besu_cFPCvPvPv_i.s"
 }
@@ -2432,7 +2471,7 @@ asm void daNpc_Besu_c::chkAction(int (daNpc_Besu_c::*)(void*)) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void daNpc_Besu_c::setAction(int (daNpc_Besu_c::*)(void*)) {
+asm void daNpc_Besu_c::setAction(int (daNpc_Besu_c::*param_0)(void*)) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_besu/d_a_npc_besu/setAction__12daNpc_Besu_cFM12daNpc_Besu_cFPCvPvPv_i.s"
 }
@@ -2441,7 +2480,7 @@ asm void daNpc_Besu_c::setAction(int (daNpc_Besu_c::*)(void*)) {
 /* ############################################################################################## */
 /* 8053E8CC-8053E8D0 000178 0004+00 1/1 0/0 0/0 .rodata          @5582 */
 SECTION_RODATA static f32 const lit_5582 = 4.0f;
-COMPILER_STRIP_GATE(8053E8CC, &lit_5582);
+COMPILER_STRIP_GATE(0x8053E8CC, &lit_5582);
 
 /* 80539BA0-80539CF4 002E40 0154+00 1/1 0/0 0/0 .text            mop__12daNpc_Besu_cFii */
 #pragma push
@@ -2451,6 +2490,13 @@ asm void daNpc_Besu_c::mop(int param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_besu/d_a_npc_besu/mop__12daNpc_Besu_cFii.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8053E908-8053E908 0001B4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8053EAFB = "prm";
 #pragma pop
 
 /* 80539CF4-80539E48 002F94 0154+00 1/0 0/0 0/0 .text cutConversationAboutSaru__12daNpc_Besu_cFi
@@ -2471,7 +2517,7 @@ asm void daNpc_Besu_c::cutConversationAboutSaru(int param_0) {
 SECTION_RODATA static u8 const lit_5629[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8053E8D0, &lit_5629);
+COMPILER_STRIP_GATE(0x8053E8D0, &lit_5629);
 #pragma pop
 
 /* 8053E8DC-8053E8E8 000188 000C+00 0/1 0/0 0/0 .rodata          @5644 */
@@ -2480,7 +2526,15 @@ COMPILER_STRIP_GATE(8053E8D0, &lit_5629);
 SECTION_RODATA static u8 const lit_5644[12] = {
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
 };
-COMPILER_STRIP_GATE(8053E8DC, &lit_5644);
+COMPILER_STRIP_GATE(0x8053E8DC, &lit_5644);
+#pragma pop
+
+/* 8053E908-8053E908 0001B4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8053EAFF = "msgNo";
+SECTION_DEAD static char const* const stringBase_8053EB05 = "msgNo2";
+SECTION_DEAD static char const* const stringBase_8053EB0C = "timer";
 #pragma pop
 
 /* 80539E48-8053A45C 0030E8 0614+00 3/0 0/0 0/0 .text
@@ -2499,7 +2553,7 @@ asm void daNpc_Besu_c::cutConversationAboutPachinko(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5769 = -40.0f;
-COMPILER_STRIP_GATE(8053E8E8, &lit_5769);
+COMPILER_STRIP_GATE(0x8053E8E8, &lit_5769);
 #pragma pop
 
 /* 8053E8EC-8053E8F8 000198 000C+00 0/1 0/0 0/0 .rodata          @5779 */
@@ -2508,7 +2562,7 @@ COMPILER_STRIP_GATE(8053E8E8, &lit_5769);
 SECTION_RODATA static u8 const lit_5779[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8053E8EC, &lit_5779);
+COMPILER_STRIP_GATE(0x8053E8EC, &lit_5779);
 #pragma pop
 
 /* 8053A45C-8053A7A0 0036FC 0344+00 1/0 0/0 0/0 .text
@@ -2527,7 +2581,7 @@ asm void daNpc_Besu_c::cutConversationAboutWoodSwd(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5930 = 50.0f;
-COMPILER_STRIP_GATE(8053E8F8, &lit_5930);
+COMPILER_STRIP_GATE(0x8053E8F8, &lit_5930);
 #pragma pop
 
 /* 8053A7A0-8053AA6C 003A40 02CC+00 1/0 0/0 0/0 .text            cutSwdTutorial__12daNpc_Besu_cFi */
@@ -2545,7 +2599,7 @@ asm void daNpc_Besu_c::cutSwdTutorial(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_6067 = 0.5f;
-COMPILER_STRIP_GATE(8053E8FC, &lit_6067);
+COMPILER_STRIP_GATE(0x8053E8FC, &lit_6067);
 #pragma pop
 
 /* 8053AA6C-8053AF5C 003D0C 04F0+00 1/0 0/0 0/0 .text            cutFindMonkey__12daNpc_Besu_cFi */
@@ -2586,6 +2640,14 @@ asm void daNpc_Besu_c::cutSurprise(int param_0) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_besu/d_a_npc_besu/cutSurprise__12daNpc_Besu_cFi.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8053E908-8053E908 0001B4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8053EB12 = "timer1";
+SECTION_DEAD static char const* const stringBase_8053EB19 = "timer2";
 #pragma pop
 
 /* 8053B530-8053B820 0047D0 02F0+00 1/0 0/0 0/0 .text cutConversationInHotel__12daNpc_Besu_cFi */
@@ -2668,6 +2730,14 @@ asm void daNpc_Besu_c::swdTutorial(void* param_0) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_besu/d_a_npc_besu/swdTutorial__12daNpc_Besu_cFPv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 8053E908-8053E908 0001B4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8053EB20 = "EVT_CONVERSATION_IN_HOTEL1_e";
+SECTION_DEAD static char const* const stringBase_8053EB3D = "EVT_CONVERSATION_IN_HOTEL2_e";
 #pragma pop
 
 /* 8053CBB8-8053CF78 005E58 03C0+00 3/0 0/0 0/0 .text            nurse__12daNpc_Besu_cFPv */
@@ -3019,7 +3089,7 @@ asm void daNpcT_c::getMotionAnm(daNpcT_motionAnmData_c param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8053E334(int* param_0) {
+extern "C" asm void func_8053E334(void* _this, int* param_0) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_besu/d_a_npc_besu/func_8053E334.s"
 }
@@ -3029,7 +3099,7 @@ extern "C" asm void func_8053E334(int* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8053E350(int param_0, int param_1) {
+extern "C" asm void func_8053E350(void* _this, int param_0, int param_1) {
     nofralloc
 #include "asm/rel/d/a/npc/d_a_npc_besu/d_a_npc_besu/func_8053E350.s"
 }
@@ -3061,7 +3131,7 @@ asm void __sinit_d_a_npc_besu_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8053E3CC = (void*)__sinit_d_a_npc_besu_cpp;
+REGISTER_CTORS(0x8053E3CC, __sinit_d_a_npc_besu_cpp);
 #pragma pop
 
 /* 8053E588-8053E6A8 007828 0120+00 1/1 0/0 0/0 .text
@@ -3160,53 +3230,7 @@ static asm void func_8053E738() {
 SECTION_RODATA static u8 const lit_6105[8] = {
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
 };
-COMPILER_STRIP_GATE(8053E900, &lit_6105);
+COMPILER_STRIP_GATE(0x8053E900, &lit_6105);
 #pragma pop
 
-/* 8053E908-8053EB5A 0001B4 0252+00 19/16 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8053E908 = "";
-SECTION_DEAD static char const* const stringBase_8053E909 = "NO_RESPONSE";
-SECTION_DEAD static char const* const stringBase_8053E915 = "CONVERSATION_ABOUT_SARU01";
-SECTION_DEAD static char const* const stringBase_8053E92F = "CONVERSATION_ABOUT_SARU02";
-SECTION_DEAD static char const* const stringBase_8053E949 = "CONVERSATION_ABOUT_PACHINKO1";
-SECTION_DEAD static char const* const stringBase_8053E966 = "CONVERSATION_ABOUT_PACHINKO2";
-SECTION_DEAD static char const* const stringBase_8053E983 = "CONVERSATION_ABOUT_PACHINKO3";
-SECTION_DEAD static char const* const stringBase_8053E9A0 = "CACARICO_CONVERSATION";
-SECTION_DEAD static char const* const stringBase_8053E9B6 = "DEMO13_STB";
-SECTION_DEAD static char const* const stringBase_8053E9C1 = "SURPRISE";
-SECTION_DEAD static char const* const stringBase_8053E9CA = "CONVERSATION_ABOUT_DEATHMT";
-SECTION_DEAD static char const* const stringBase_8053E9E5 = "NURSE";
-SECTION_DEAD static char const* const stringBase_8053E9EB = "CONVERSATION_ABOUT_ZORA";
-SECTION_DEAD static char const* const stringBase_8053EA03 = "Besu";
-SECTION_DEAD static char const* const stringBase_8053EA08 = "Besu_TW";
-SECTION_DEAD static char const* const stringBase_8053EA10 = "Besu0";
-SECTION_DEAD static char const* const stringBase_8053EA16 = "Besu1";
-SECTION_DEAD static char const* const stringBase_8053EA1C = "Besu2";
-SECTION_DEAD static char const* const stringBase_8053EA22 = "Besu3";
-SECTION_DEAD static char const* const stringBase_8053EA28 = "Besu_p1";
-SECTION_DEAD static char const* const stringBase_8053EA30 = "Len1";
-SECTION_DEAD static char const* const stringBase_8053EA35 = "Taro1";
-SECTION_DEAD static char const* const stringBase_8053EA3B = "Lud2";
-SECTION_DEAD static char const* const stringBase_8053EA40 = "Sera";
-SECTION_DEAD static char const* const stringBase_8053EA45 = "CONVERSATION_ABOUT_SARU";
-SECTION_DEAD static char const* const stringBase_8053EA5D = "CONVERSATION_ABOUT_PACHINKO";
-SECTION_DEAD static char const* const stringBase_8053EA79 = "CONVERSATION_ABOUT_WOODSWD";
-SECTION_DEAD static char const* const stringBase_8053EA94 = "SWDTUTORIAL";
-SECTION_DEAD static char const* const stringBase_8053EAA0 = "FIND_MONKEY";
-SECTION_DEAD static char const* const stringBase_8053EAAC = "GET_WOODSWD";
-SECTION_DEAD static char const* const stringBase_8053EAB8 = "CONVERSATION_IN_HOTEL";
-SECTION_DEAD static char const* const stringBase_8053EACE = "CONVERSATION_ABOUT_GORON";
-SECTION_DEAD static char const* const stringBase_8053EAE7 = "CLOTH_TRY";
-SECTION_DEAD static char const* const stringBase_8053EAF1 = "THANK_YOU";
-SECTION_DEAD static char const* const stringBase_8053EAFB = "prm";
-SECTION_DEAD static char const* const stringBase_8053EAFF = "msgNo";
-SECTION_DEAD static char const* const stringBase_8053EB05 = "msgNo2";
-SECTION_DEAD static char const* const stringBase_8053EB0C = "timer";
-SECTION_DEAD static char const* const stringBase_8053EB12 = "timer1";
-SECTION_DEAD static char const* const stringBase_8053EB19 = "timer2";
-SECTION_DEAD static char const* const stringBase_8053EB20 = "EVT_CONVERSATION_IN_HOTEL1_e";
-SECTION_DEAD static char const* const stringBase_8053EB3D = "EVT_CONVERSATION_IN_HOTEL2_e";
-#pragma pop
+/* 8053E908-8053E908 0001B4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -65,11 +65,11 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {
     /* 802673F4 */ csXyz(s16, s16, s16);
 };
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -77,9 +77,9 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AC50C */ void seStartLevel(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -169,6 +169,12 @@ static asm void daObjSnowSoup_c_createHeap(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80CE0274-80CE0274 000038 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CE0274 = "SnowSoup";
+#pragma pop
+
 /* 80CE0280-80CE0284 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_snow_soup__stringBase0;
 
@@ -226,13 +232,13 @@ asm daObjSnowSoup_c::~daObjSnowSoup_c() {
 SECTION_RODATA static u8 const SOUP_MODEL_OFFSET[12] = {
     0x45, 0x4F, 0x5D, 0xC3, 0x43, 0x56, 0xBA, 0xE1, 0x43, 0xA1, 0xA6, 0x66,
 };
-COMPILER_STRIP_GATE(80CE023C, &SOUP_MODEL_OFFSET);
+COMPILER_STRIP_GATE(0x80CE023C, &SOUP_MODEL_OFFSET);
 
 /* 80CE0248-80CE0254 00000C 000C+00 1/1 0/0 0/0 .rodata          BMD_IDX$3657 */
 SECTION_RODATA static u8 const BMD_IDX[12] = {
     0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x05,
 };
-COMPILER_STRIP_GATE(80CE0248, &BMD_IDX);
+COMPILER_STRIP_GATE(0x80CE0248, &BMD_IDX);
 
 /* 80CDF990-80CDFA3C 0001B0 00AC+00 1/1 0/0 0/0 .text            createHeap__15daObjSnowSoup_cFv */
 #pragma push
@@ -252,7 +258,7 @@ SECTION_RODATA static u8 const lit_3706[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CE0254, &lit_3706);
+COMPILER_STRIP_GATE(0x80CE0254, &lit_3706);
 
 /* 80CDFA3C-80CDFB70 00025C 0134+00 1/1 0/0 0/0 .text            create__15daObjSnowSoup_cFv */
 #pragma push
@@ -287,11 +293,11 @@ asm void daObjSnowSoup_c::draw() {
 /* ############################################################################################## */
 /* 80CE0258-80CE025C 00001C 0004+00 1/3 0/0 0/0 .rodata          @3757 */
 SECTION_RODATA static f32 const lit_3757 = 1.0f;
-COMPILER_STRIP_GATE(80CE0258, &lit_3757);
+COMPILER_STRIP_GATE(0x80CE0258, &lit_3757);
 
 /* 80CE025C-80CE0260 000020 0004+00 1/1 0/0 0/0 .rodata          @3758 */
 SECTION_RODATA static f32 const lit_3758 = -1.0f;
-COMPILER_STRIP_GATE(80CE025C, &lit_3758);
+COMPILER_STRIP_GATE(0x80CE025C, &lit_3758);
 
 /* 80CDFC40-80CDFE14 000460 01D4+00 1/1 0/0 0/0 .text            execute__15daObjSnowSoup_cFv */
 #pragma push
@@ -330,7 +336,7 @@ asm void daObjSnowSoup_c::setModelMtx() {
 SECTION_RODATA static u8 const PARTICLE_NAME_3789[8] = {
     0x87, 0xE1, 0x87, 0xE2, 0x87, 0xE3, 0x87, 0xE6,
 };
-COMPILER_STRIP_GATE(80CE0260, &PARTICLE_NAME_3789);
+COMPILER_STRIP_GATE(0x80CE0260, &PARTICLE_NAME_3789);
 #pragma pop
 
 /* 80CDFF14-80CDFFF8 000734 00E4+00 1/1 0/0 0/0 .text createSmkEmtCommon__15daObjSnowSoup_cFv */
@@ -360,7 +366,7 @@ asm void daObjSnowSoup_c::deleteSmkEmtCommon() {
 SECTION_RODATA static u8 const PARTICLE_NAME_3834[12] = {
     0x89, 0x84, 0x89, 0x85, 0x8A, 0x8B, 0x8A, 0x8D, 0x8A, 0x8C, 0x8A, 0x8E,
 };
-COMPILER_STRIP_GATE(80CE0268, &PARTICLE_NAME_3834);
+COMPILER_STRIP_GATE(0x80CE0268, &PARTICLE_NAME_3834);
 #pragma pop
 
 /* 80CE003C-80CE0134 00085C 00F8+00 2/2 0/0 0/0 .text createSmkEmtChange__15daObjSnowSoup_cFi */
@@ -424,9 +430,4 @@ static asm void daObjSnowSoup_draw(daObjSnowSoup_c* param_0) {
 }
 #pragma pop
 
-/* 80CE0274-80CE027D 000038 0009+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CE0274 = "SnowSoup";
-#pragma pop
+/* 80CE0274-80CE0274 000038 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -85,9 +85,9 @@ struct dBgS_MoveBgActor {
     /* 80078950 */ void MoveBGExecute();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -175,11 +175,11 @@ extern "C" void __register_global_object();
 /* ############################################################################################## */
 /* 80CC4524-80CC4528 000000 0004+00 2/2 0/0 0/0 .rodata          @3625 */
 SECTION_RODATA static f32 const lit_3625 = 2.0f;
-COMPILER_STRIP_GATE(80CC4524, &lit_3625);
+COMPILER_STRIP_GATE(0x80CC4524, &lit_3625);
 
 /* 80CC4528-80CC452C 000004 0004+00 1/1 0/0 0/0 .rodata          @3626 */
 SECTION_RODATA static f32 const lit_3626 = 250.0f;
-COMPILER_STRIP_GATE(80CC4528, &lit_3626);
+COMPILER_STRIP_GATE(0x80CC4528, &lit_3626);
 
 /* 80CC454C-80CC4558 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
@@ -319,6 +319,13 @@ asm void daSaidan_c::setBaseMtx() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80CC4540-80CC4540 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CC4540 = "H_Saidan";
+#pragma pop
+
 /* 80CC3EB0-80CC3F1C 0001F0 006C+00 1/0 0/0 0/0 .text            CreateHeap__10daSaidan_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -405,23 +412,23 @@ asm void daSaidan_c::init_modeMove() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3758 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(80CC452C, &lit_3758);
+COMPILER_STRIP_GATE(0x80CC452C, &lit_3758);
 #pragma pop
 
 /* 80CC4530-80CC4534 00000C 0004+00 0/1 0/0 0/0 .rodata          @3759 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3759 = 0.5f;
-COMPILER_STRIP_GATE(80CC4530, &lit_3759);
+COMPILER_STRIP_GATE(0x80CC4530, &lit_3759);
 #pragma pop
 
 /* 80CC4534-80CC4538 000010 0004+00 1/2 0/0 0/0 .rodata          @3760 */
 SECTION_RODATA static f32 const lit_3760 = 1.0f;
-COMPILER_STRIP_GATE(80CC4534, &lit_3760);
+COMPILER_STRIP_GATE(0x80CC4534, &lit_3760);
 
 /* 80CC4538-80CC453C 000014 0004+00 1/2 0/0 0/0 .rodata          @3761 */
 SECTION_RODATA static f32 const lit_3761 = -1.0f;
-COMPILER_STRIP_GATE(80CC4538, &lit_3761);
+COMPILER_STRIP_GATE(0x80CC4538, &lit_3761);
 
 /* 80CC453C-80CC4540 000018 0004+00 0/1 0/0 0/0 .rodata          @3762 */
 #pragma push
@@ -432,7 +439,7 @@ SECTION_RODATA static u8 const lit_3762[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CC453C, &lit_3762);
+COMPILER_STRIP_GATE(0x80CC453C, &lit_3762);
 #pragma pop
 
 /* 80CC41BC-80CC4290 0004FC 00D4+00 1/0 0/0 0/0 .text            modeMove__10daSaidan_cFv */
@@ -542,12 +549,7 @@ asm void __sinit_d_a_obj_saidan_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80CC44D4 = (void*)__sinit_d_a_obj_saidan_cpp;
+REGISTER_CTORS(0x80CC44D4, __sinit_d_a_obj_saidan_cpp);
 #pragma pop
 
-/* 80CC4540-80CC4549 00001C 0009+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CC4540 = "H_Saidan";
-#pragma pop
+/* 80CC4540-80CC4540 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

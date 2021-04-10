@@ -784,11 +784,11 @@ asm J3DMatColorAnm::J3DMatColorAnm() {
 SECTION_RODATA static u8 const lit_3756[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80459374, &lit_3756);
+COMPILER_STRIP_GATE(0x80459374, &lit_3756);
 
 /* 80459380-80459384 00000C 0004+00 2/3 0/0 0/0 .rodata          @3900 */
 SECTION_RODATA static f32 const lit_3900 = 1.0f;
-COMPILER_STRIP_GATE(80459380, &lit_3900);
+COMPILER_STRIP_GATE(0x80459380, &lit_3900);
 
 /* 80457F34-80458040 0003B4 010C+00 1/1 0/0 0/0 .text
  * create__13daBg_btkAnm_cFP12J3DModelDataP19J3DAnmTextureSRTKeyi */
@@ -819,7 +819,7 @@ SECTION_RODATA static u8 const lit_3914[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80459384, &lit_3914);
+COMPILER_STRIP_GATE(0x80459384, &lit_3914);
 
 /* 80458088-804580CC 000508 0044+00 1/1 0/0 0/0 .text entry__13daBg_btkAnm_cFP12J3DModelData */
 #pragma push
@@ -885,7 +885,19 @@ static asm void checkCreateHeap(fopAc_ac_c* param_0) {
 /* ############################################################################################## */
 /* 80459388-8045938C 000014 0004+00 1/1 0/0 0/0 .rodata          @4125 */
 SECTION_RODATA static f32 const lit_4125 = -1.0f;
-COMPILER_STRIP_GATE(80459388, &lit_4125);
+COMPILER_STRIP_GATE(0x80459388, &lit_4125);
+
+/* 804593A8-804593A8 000034 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_804593A8 = "00";
+SECTION_DEAD static char const* const stringBase_804593AB = "01";
+SECTION_DEAD static char const* const stringBase_804593AE = "12";
+SECTION_DEAD static char const* const stringBase_804593B1 = "18";
+SECTION_DEAD static char const* const stringBase_804593B4 = "room.dzb";
+SECTION_DEAD static char const* const stringBase_804593BD = "room.kcl";
+SECTION_DEAD static char const* const stringBase_804593C6 = "room.plc";
+#pragma pop
 
 /* 804582B8-80458750 000738 0498+00 2/2 0/0 1/1 .text            createHeap__6daBg_cFv */
 #pragma push
@@ -932,14 +944,14 @@ static asm void daBg_Draw(daBg_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4479 = 1000000.0f;
-COMPILER_STRIP_GATE(8045938C, &lit_4479);
+COMPILER_STRIP_GATE(0x8045938C, &lit_4479);
 #pragma pop
 
 /* 80459390-80459394 00001C 0004+00 0/1 0/0 0/0 .rodata          @4480 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4480 = 9.0f / 10.0f;
-COMPILER_STRIP_GATE(80459390, &lit_4480);
+COMPILER_STRIP_GATE(0x80459390, &lit_4480);
 #pragma pop
 
 /* 80459394-8045939C 000020 0004+04 0/1 0/0 0/0 .rodata          @4481 */
@@ -950,14 +962,29 @@ SECTION_RODATA static f32 const lit_4481[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80459394, &lit_4481);
+COMPILER_STRIP_GATE(0x80459394, &lit_4481);
 #pragma pop
 
 /* 8045939C-804593A4 000028 0008+00 1/2 0/0 0/0 .rodata          @4483 */
 SECTION_RODATA static u8 const lit_4483[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8045939C, &lit_4483);
+COMPILER_STRIP_GATE(0x8045939C, &lit_4483);
+
+/* 804593A8-804593A8 000034 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_804593CF = "MA12";
+SECTION_DEAD static char const* const stringBase_804593D4 = "MA18";
+SECTION_DEAD static char const* const stringBase_804593D9 = "MA15";
+SECTION_DEAD static char const* const stringBase_804593DE = "MA09";
+SECTION_DEAD static char const* const stringBase_804593E3 = "MA05";
+SECTION_DEAD static char const* const stringBase_804593E8 = "F_SP127";
+SECTION_DEAD static char const* const stringBase_804593F0 = "R_SP127";
+SECTION_DEAD static char const* const stringBase_804593F8 = "MA00_Enkei_Tree_Color";
+SECTION_DEAD static char const* const stringBase_8045940E = "MA00_Gake";
+SECTION_DEAD static char const* const stringBase_80459418 = "MA00_Kusa";
+#pragma pop
 
 /* 804588C4-80458F38 000D44 0674+00 1/1 0/0 0/0 .text            draw__6daBg_cFv */
 #pragma push
@@ -972,7 +999,7 @@ asm void daBg_c::draw() {
 /* ############################################################################################## */
 /* 804593A4-804593A8 000030 0004+00 1/1 0/0 0/0 .rodata          @4524 */
 SECTION_RODATA static f32 const lit_4524 = 100.0f;
-COMPILER_STRIP_GATE(804593A4, &lit_4524);
+COMPILER_STRIP_GATE(0x804593A4, &lit_4524);
 
 /* 80458F38-8045901C 0013B8 00E4+00 1/0 0/0 0/0 .text            daBg_Execute__FP6daBg_c */
 #pragma push
@@ -1029,25 +1056,4 @@ asm void J3DTexNoAnm::calc(u16* param_0) const {
 }
 #pragma pop
 
-/* 804593A8-80459422 000034 007A+00 2/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_804593A8 = "00";
-SECTION_DEAD static char const* const stringBase_804593AB = "01";
-SECTION_DEAD static char const* const stringBase_804593AE = "12";
-SECTION_DEAD static char const* const stringBase_804593B1 = "18";
-SECTION_DEAD static char const* const stringBase_804593B4 = "room.dzb";
-SECTION_DEAD static char const* const stringBase_804593BD = "room.kcl";
-SECTION_DEAD static char const* const stringBase_804593C6 = "room.plc";
-SECTION_DEAD static char const* const stringBase_804593CF = "MA12";
-SECTION_DEAD static char const* const stringBase_804593D4 = "MA18";
-SECTION_DEAD static char const* const stringBase_804593D9 = "MA15";
-SECTION_DEAD static char const* const stringBase_804593DE = "MA09";
-SECTION_DEAD static char const* const stringBase_804593E3 = "MA05";
-SECTION_DEAD static char const* const stringBase_804593E8 = "F_SP127";
-SECTION_DEAD static char const* const stringBase_804593F0 = "R_SP127";
-SECTION_DEAD static char const* const stringBase_804593F8 = "MA00_Enkei_Tree_Color";
-SECTION_DEAD static char const* const stringBase_8045940E = "MA00_Gake";
-SECTION_DEAD static char const* const stringBase_80459418 = "MA00_Kusa";
-#pragma pop
+/* 804593A8-804593A8 000034 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -1027,5 +1027,5 @@ asm void __sinit_c_m3d_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8026EC3C = (void*)__sinit_c_m3d_cpp;
+REGISTER_CTORS(0x8026EC3C, __sinit_c_m3d_cpp);
 #pragma pop

@@ -454,6 +454,13 @@ asm void daNpcMsg_setEvtNum(u8 param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 803790B0-803790B0 005710 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803790B0 = "F_SP103";
+#pragma pop
+
 /* 80031648-800316A8 02BF88 0060+00 0/0 0/0 6/6 .text daNpcKakashi_chkSwdTutorialStage__Fv */
 #pragma push
 #pragma optimization_level 0
@@ -536,6 +543,12 @@ asm void daNpcKakashi_clrSuccessCount() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 803790B0-803790B0 005710 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_803790B8 = "@bg%04x";
+#pragma pop
+
 /* 80450D8C-80450D90 -00001 0004+00 0/0 1/1 3/3 .sbss            None */
 /* 80450D8C 0001+00 data_80450D8C None */
 /* 80450D8D 0001+00 data_80450D8D None */
@@ -923,7 +936,7 @@ asm void __sinit_d_com_static_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_80031DC4 = (void*)__sinit_d_com_static_cpp;
+REGISTER_CTORS(0x80031DC4, __sinit_d_com_static_cpp);
 #pragma pop
 
 /* 80031EAC-80031EE4 02C7EC 0038+00 1/1 0/0 0/0 .text            __arraydtor$4479 */
@@ -983,10 +996,4 @@ asm daSus_c::data_c::data_c() {
 static u8 pad_80450DD1[4];
 #pragma pop
 
-/* 803790B0-803790C0 005710 0010+00 2/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_803790B0 = "F_SP103";
-SECTION_DEAD static char const* const stringBase_803790B8 = "@bg%04x";
-#pragma pop
+/* 803790B0-803790B0 005710 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

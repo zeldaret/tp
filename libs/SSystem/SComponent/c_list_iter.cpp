@@ -38,7 +38,7 @@ extern "C" void cNdIt_Judge__FP10node_classPFP10node_classPv_PvPv();
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cLsIt_Method(node_list_class* param_0, int (*)(node_class*, void*), void* param_2) {
+asm void cLsIt_Method(node_list_class* param_0, int (*param_1)(node_class*, void*), void* param_2) {
     nofralloc
 #include "asm/SSystem/SComponent/c_list_iter/cLsIt_Method__FP15node_list_classPFP10node_classPv_iPv.s"
 }
@@ -49,7 +49,8 @@ asm void cLsIt_Method(node_list_class* param_0, int (*)(node_class*, void*), voi
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void cLsIt_Judge(node_list_class* param_0, void* (*)(node_class*, void*), void* param_2) {
+asm void cLsIt_Judge(node_list_class* param_0, void* (*param_1)(node_class*, void*),
+                     void* param_2) {
     nofralloc
 #include "asm/SSystem/SComponent/c_list_iter/cLsIt_Judge__FP15node_list_classPFP10node_classPv_PvPv.s"
 }

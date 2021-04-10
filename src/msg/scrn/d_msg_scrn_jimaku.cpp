@@ -151,6 +151,15 @@ extern "C" extern u8 g_MsgObject_HIO_c[1040];
 //
 
 /* ############################################################################################## */
+/* 80399A80-80399A80 0260E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80399A80 = "zelda_jimaku_message_text.blo";
+SECTION_DEAD static char const* const stringBase_80399A9E = "";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80399A9F = "";
+#pragma pop
+
 /* 803C11E8-803C1240 01E308 0058+00 2/2 0/0 0/0 .data            __vt__16dMsgScrnJimaku_c */
 SECTION_DATA extern void* __vt__16dMsgScrnJimaku_c[22] = {
     (void*)NULL /* RTTI */,
@@ -261,12 +270,4 @@ void dMsgScrnJimaku_c::fontAlpha(f32 param_0) {
     /* empty function */
 }
 
-/* 80399A80-80399AA0 0260E0 001F+01 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80399A80 = "zelda_jimaku_message_text.blo";
-SECTION_DEAD static char const* const stringBase_80399A9E = "";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80399A9F = "";
-#pragma pop
+/* 80399A80-80399A80 0260E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

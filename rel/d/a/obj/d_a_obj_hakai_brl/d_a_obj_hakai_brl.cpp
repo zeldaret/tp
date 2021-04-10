@@ -133,9 +133,9 @@ struct Z2SoundObjBase {
     /* 802BE4A4 */ void startCollisionSE(u32, u32, Z2SoundObjBase*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -251,6 +251,12 @@ static asm void daObjHBarrel_c_createHeap(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80C1735C-80C1735C 000060 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C1735C = "HBarrel";
+#pragma pop
+
 /* 80C1737C-80C17380 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_hakai_brl__stringBase0;
 
@@ -420,20 +426,20 @@ SECTION_RODATA u8 const daObjHBarrel_c::s_CcDCyl[68] = {
     0x00, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80C172FC, &daObjHBarrel_c::s_CcDCyl);
+COMPILER_STRIP_GATE(0x80C172FC, &daObjHBarrel_c::s_CcDCyl);
 
 /* 80C17340-80C17344 000044 0004+00 0/1 0/0 0/0 .rodata          @3826 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3826 = 170.0f;
-COMPILER_STRIP_GATE(80C17340, &lit_3826);
+COMPILER_STRIP_GATE(0x80C17340, &lit_3826);
 #pragma pop
 
 /* 80C17344-80C17348 000048 0004+00 0/1 0/0 0/0 .rodata          @3827 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3827 = 90.0f;
-COMPILER_STRIP_GATE(80C17344, &lit_3827);
+COMPILER_STRIP_GATE(0x80C17344, &lit_3827);
 #pragma pop
 
 /* 80C16D50-80C16DEC 000690 009C+00 1/1 0/0 0/0 .text            init__14daObjHBarrel_cFv */
@@ -459,11 +465,11 @@ asm void daObjHBarrel_c::setModelMtx() {
 /* ############################################################################################## */
 /* 80C17348-80C1734C 00004C 0004+00 1/2 0/0 0/0 .rodata          @3916 */
 SECTION_RODATA static f32 const lit_3916 = 1.0f;
-COMPILER_STRIP_GATE(80C17348, &lit_3916);
+COMPILER_STRIP_GATE(0x80C17348, &lit_3916);
 
 /* 80C1734C-80C17350 000050 0004+00 1/1 0/0 0/0 .rodata          @3917 */
 SECTION_RODATA static f32 const lit_3917 = -1.0f;
-COMPILER_STRIP_GATE(80C1734C, &lit_3917);
+COMPILER_STRIP_GATE(0x80C1734C, &lit_3917);
 
 /* 80C16E50-80C17090 000790 0240+00 1/1 0/0 0/0 .text            hitAction__14daObjHBarrel_cFv */
 #pragma push
@@ -490,14 +496,21 @@ SECTION_RODATA static u8 const PARTICLE_NAME[6 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80C17350, &PARTICLE_NAME);
+COMPILER_STRIP_GATE(0x80C17350, &PARTICLE_NAME);
 #pragma pop
 
 /* 80C17358-80C1735C 00005C 0004+00 0/1 0/0 0/0 .rodata          @3953 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3953 = 1.125f;
-COMPILER_STRIP_GATE(80C17358, &lit_3953);
+COMPILER_STRIP_GATE(0x80C17358, &lit_3953);
+#pragma pop
+
+/* 80C1735C-80C1735C 000060 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80C17364 = "Always";
+SECTION_DEAD static char const* const stringBase_80C1736B = "BreakWoodBox.bmd";
 #pragma pop
 
 /* 80C17090-80C171F8 0009D0 0168+00 1/1 0/0 0/0 .text            callEmt__14daObjHBarrel_cFv */
@@ -560,11 +573,4 @@ asm cCcD_GStts::~cCcD_GStts() {
 }
 #pragma pop
 
-/* 80C1735C-80C1737C 000060 0020+00 2/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80C1735C = "HBarrel";
-SECTION_DEAD static char const* const stringBase_80C17364 = "Always";
-SECTION_DEAD static char const* const stringBase_80C1736B = "BreakWoodBox.bmd";
-#pragma pop
+/* 80C1735C-80C1735C 000060 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

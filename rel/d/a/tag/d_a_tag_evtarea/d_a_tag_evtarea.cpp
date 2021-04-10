@@ -91,7 +91,7 @@ extern "C" extern u8 struct_80450D64[4];
 /* ############################################################################################## */
 /* 8048CDD0-8048CDD4 000000 0004+00 2/2 0/0 0/0 .rodata          @3853 */
 SECTION_RODATA static f32 const lit_3853 = 100.0f;
-COMPILER_STRIP_GATE(8048CDD0, &lit_3853);
+COMPILER_STRIP_GATE(0x8048CDD0, &lit_3853);
 
 /* 8048CDE8-8048CE48 -00001 0060+00 1/1 0/0 0/0 .data            @3857 */
 SECTION_DATA static void* lit_3857[24] = {
@@ -195,21 +195,21 @@ asm void daTag_EvtArea_c::isDelete() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3854 = 200.0f;
-COMPILER_STRIP_GATE(8048CDD4, &lit_3854);
+COMPILER_STRIP_GATE(0x8048CDD4, &lit_3854);
 #pragma pop
 
 /* 8048CDD8-8048CDDC 000008 0004+00 0/0 0/0 0/0 .rodata          @3855 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3855 = 0.5f;
-COMPILER_STRIP_GATE(8048CDD8, &lit_3855);
+COMPILER_STRIP_GATE(0x8048CDD8, &lit_3855);
 #pragma pop
 
 /* 8048CDDC-8048CDE0 00000C 0004+00 0/0 0/0 0/0 .rodata          @3856 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3856 = 1000.0f;
-COMPILER_STRIP_GATE(8048CDDC, &lit_3856);
+COMPILER_STRIP_GATE(0x8048CDDC, &lit_3856);
 #pragma pop
 
 /* 8048CDE0-8048CDE4 000010 0004+00 1/1 0/0 0/0 .rodata          @3922 */
@@ -219,11 +219,11 @@ SECTION_RODATA static u8 const lit_3922[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8048CDE0, &lit_3922);
+COMPILER_STRIP_GATE(0x8048CDE0, &lit_3922);
 
 /* 8048CDE4-8048CDE8 000014 0004+00 1/1 0/0 0/0 .rodata          @4146 */
 SECTION_RODATA static f32 const lit_4146 = 10.0f;
-COMPILER_STRIP_GATE(8048CDE4, &lit_4146);
+COMPILER_STRIP_GATE(0x8048CDE4, &lit_4146);
 
 /* 8048C94C-8048CC80 0004CC 0334+00 1/1 0/0 16/16 .text
  * chkPointInArea__15daTag_EvtArea_cF4cXyz4cXyz                 */

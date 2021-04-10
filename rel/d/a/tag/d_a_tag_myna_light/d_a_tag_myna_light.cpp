@@ -30,13 +30,13 @@ struct daTag_MynaLight_c {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
-struct cXyz {};
+struct dKy_tevstr_c {};
 
 struct csXyz {};
 
-struct dKy_tevstr_c {};
+struct _GXColor {};
+
+struct cXyz {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -44,9 +44,9 @@ struct dPa_control_c {
                             cXyz const*, f32);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -156,20 +156,20 @@ asm void daTag_MynaLight_c::Delete() {
 /* ############################################################################################## */
 /* 80D5D300-80D5D304 000000 0004+00 4/4 0/0 0/0 .rodata          @3694 */
 SECTION_RODATA static f32 const lit_3694 = 1.0f / 15.0f;
-COMPILER_STRIP_GATE(80D5D300, &lit_3694);
+COMPILER_STRIP_GATE(0x80D5D300, &lit_3694);
 
 /* 80D5D304-80D5D308 000004 0004+00 0/3 0/0 0/0 .rodata          @3695 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3695 = 1.0f;
-COMPILER_STRIP_GATE(80D5D304, &lit_3695);
+COMPILER_STRIP_GATE(0x80D5D304, &lit_3695);
 #pragma pop
 
 /* 80D5D308-80D5D30C 000008 0004+00 0/2 0/0 0/0 .rodata          @3696 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3696 = -1.0f;
-COMPILER_STRIP_GATE(80D5D308, &lit_3696);
+COMPILER_STRIP_GATE(0x80D5D308, &lit_3696);
 #pragma pop
 
 /* 80D5CBF4-80D5CD94 000134 01A0+00 1/1 0/0 0/0 .text            Execute__17daTag_MynaLight_cFv */
@@ -187,28 +187,28 @@ asm void daTag_MynaLight_c::Execute() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3706 = 0xBC6642FF;
-COMPILER_STRIP_GATE(80D5D30C, &lit_3706);
+COMPILER_STRIP_GATE(0x80D5D30C, &lit_3706);
 #pragma pop
 
 /* 80D5D310-80D5D314 000010 0004+00 0/1 0/0 0/0 .rodata          @3708 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3708 = 0.5f;
-COMPILER_STRIP_GATE(80D5D310, &lit_3708);
+COMPILER_STRIP_GATE(0x80D5D310, &lit_3708);
 #pragma pop
 
 /* 80D5D314-80D5D318 000014 0004+00 0/1 0/0 0/0 .rodata          @3709 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3709 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(80D5D314, &lit_3709);
+COMPILER_STRIP_GATE(0x80D5D314, &lit_3709);
 #pragma pop
 
 /* 80D5D318-80D5D31C 000018 0004+00 0/1 0/0 0/0 .rodata          @3710 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3710 = 0x38D1B717;
-COMPILER_STRIP_GATE(80D5D318, &lit_3710);
+COMPILER_STRIP_GATE(0x80D5D318, &lit_3710);
 #pragma pop
 
 /* 80D5D31C-80D5D320 00001C 0004+00 0/2 0/0 0/0 .rodata          @3711 */
@@ -220,14 +220,14 @@ SECTION_RODATA static u8 const lit_3711[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80D5D31C, &lit_3711);
+COMPILER_STRIP_GATE(0x80D5D31C, &lit_3711);
 #pragma pop
 
 /* 80D5D320-80D5D324 000020 0004+00 0/1 0/0 0/0 .rodata          @3712 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_3712 = 0x358637BD;
-COMPILER_STRIP_GATE(80D5D320, &lit_3712);
+COMPILER_STRIP_GATE(0x80D5D320, &lit_3712);
 #pragma pop
 
 /* 80D5CD94-80D5CE40 0002D4 00AC+00 1/1 0/0 0/0 .text            Draw__17daTag_MynaLight_cFv */
@@ -245,35 +245,35 @@ asm void daTag_MynaLight_c::Draw() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3811 = -5122.0f;
-COMPILER_STRIP_GATE(80D5D324, &lit_3811);
+COMPILER_STRIP_GATE(0x80D5D324, &lit_3811);
 #pragma pop
 
 /* 80D5D328-80D5D32C 000028 0004+00 0/1 0/0 0/0 .rodata          @3812 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3812 = -124.0f;
-COMPILER_STRIP_GATE(80D5D328, &lit_3812);
+COMPILER_STRIP_GATE(0x80D5D328, &lit_3812);
 #pragma pop
 
 /* 80D5D32C-80D5D330 00002C 0004+00 0/1 0/0 0/0 .rodata          @3813 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3813 = -3067.0f;
-COMPILER_STRIP_GATE(80D5D32C, &lit_3813);
+COMPILER_STRIP_GATE(0x80D5D32C, &lit_3813);
 #pragma pop
 
 /* 80D5D330-80D5D334 000030 0004+00 0/1 0/0 0/0 .rodata          @3814 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3814 = 2.0f / 5.0f;
-COMPILER_STRIP_GATE(80D5D330, &lit_3814);
+COMPILER_STRIP_GATE(0x80D5D330, &lit_3814);
 #pragma pop
 
 /* 80D5D334-80D5D338 000034 0004+00 0/1 0/0 0/0 .rodata          @3815 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3815 = 0.25f;
-COMPILER_STRIP_GATE(80D5D334, &lit_3815);
+COMPILER_STRIP_GATE(0x80D5D334, &lit_3815);
 #pragma pop
 
 /* 80D5CE40-80D5D148 000380 0308+00 0/0 0/0 1/1 .text setTurnOnOffChange__17daTag_MynaLight_cFv */
@@ -311,28 +311,28 @@ asm void daTag_MynaLight_c::getTurnOffTime() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3851 = -30.0f;
-COMPILER_STRIP_GATE(80D5D338, &lit_3851);
+COMPILER_STRIP_GATE(0x80D5D338, &lit_3851);
 #pragma pop
 
 /* 80D5D33C-80D5D340 00003C 0004+00 0/1 0/0 0/0 .rodata          @3852 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3852 = -15.0f;
-COMPILER_STRIP_GATE(80D5D33C, &lit_3852);
+COMPILER_STRIP_GATE(0x80D5D33C, &lit_3852);
 #pragma pop
 
 /* 80D5D340-80D5D344 000040 0004+00 0/1 0/0 0/0 .rodata          @3853 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3853 = 30.0f;
-COMPILER_STRIP_GATE(80D5D340, &lit_3853);
+COMPILER_STRIP_GATE(0x80D5D340, &lit_3853);
 #pragma pop
 
 /* 80D5D344-80D5D348 000044 0004+00 0/1 0/0 0/0 .rodata          @3854 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3854 = 45.0f;
-COMPILER_STRIP_GATE(80D5D344, &lit_3854);
+COMPILER_STRIP_GATE(0x80D5D344, &lit_3854);
 #pragma pop
 
 /* 80D5D160-80D5D210 0006A0 00B0+00 1/1 0/0 0/0 .text            initialize__17daTag_MynaLight_cFv

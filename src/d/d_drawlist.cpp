@@ -109,8 +109,6 @@ struct dDlst_peekZ_c {
     /* 80056080 */ void peekData();
 };
 
-struct dDlst_base_c {};
-
 struct J3DPacket {};
 
 struct J3DDrawBuffer {
@@ -123,6 +121,8 @@ struct J3DDrawBuffer {
 };
 
 struct _GXColor {};
+
+struct dDlst_base_c {};
 
 struct dDlst_list_c {
     /* 800560F0 */ dDlst_list_c();
@@ -206,7 +206,6 @@ struct cBgS_ShdwDraw {
     /* 80267F88 */ cBgS_ShdwDraw();
     /* 80267FD0 */ ~cBgS_ShdwDraw();
     /* 80268048 */ void Set(cXyz&, cXyz&);
-    /* 8026806C */ void SetCallback(int (*)(cBgS_ShdwDraw*, cBgD_Vtx_t*, int, int, int, cM3dGPla*));
 };
 
 struct cBgS {
@@ -3070,7 +3069,7 @@ SECTION_RODATA static u8 const l_drawlistSize[42 + 2 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8037A178, &l_drawlistSize);
+COMPILER_STRIP_GATE(0x8037A178, &l_drawlistSize);
 
 /* 8037A1A4-8037A1B0 006804 0009+03 1/1 0/0 0/0 .rodata          l_nonSortId$5662 */
 SECTION_RODATA static u8 const l_nonSortId[9 + 3 /* padding */] = {
@@ -3088,7 +3087,7 @@ SECTION_RODATA static u8 const l_nonSortId[9 + 3 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8037A1A4, &l_nonSortId);
+COMPILER_STRIP_GATE(0x8037A1A4, &l_nonSortId);
 
 /* 804520C4-804520CC 0006C4 0006+02 1/1 0/0 0/0 .sdata2          l_zSortId$5668 */
 SECTION_SDATA2 static u8 l_zSortId[6 + 2 /* padding */] = {
@@ -3217,6 +3216,14 @@ asm void dDlst_list_c::draw(dDlst_base_c** param_0, dDlst_base_c** param_1) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037A1B0-8037A1B0 006810 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A1B0 = "wipe_00.bti";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8037A1BC = "\0\0\0";
+#pragma pop
+
 /* 804248F0-80424938 051610 0048+00 3/3 0/0 0/0 .bss             mWipeDlst__12dDlst_list_c */
 u8 dDlst_list_c::mWipeDlst[72];
 
@@ -3316,7 +3323,7 @@ asm void __sinit_d_drawlist_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_800569B4 = (void*)__sinit_d_drawlist_cpp;
+REGISTER_CTORS(0x800569B4, __sinit_d_drawlist_cpp);
 #pragma pop
 
 /* ############################################################################################## */
@@ -3352,11 +3359,4 @@ SECTION_DATA extern void* __vt__13dDlst_2DTri_c[3] = {
 extern u8 data_80450EE0[8];
 u8 data_80450EE0[8];
 
-/* 8037A1B0-8037A1C0 006810 000C+04 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8037A1B0 = "wipe_00.bti";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037A1BC = "\0\0\0";
-#pragma pop
+/* 8037A1B0-8037A1B0 006810 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

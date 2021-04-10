@@ -201,7 +201,7 @@ static asm void daObj_Rock_Draw(obj_rock_class* param_0) {
 /* ############################################################################################## */
 /* 80CBE7A4-80CBE7A8 000000 0004+00 3/3 0/0 0/0 .rodata          @3814 */
 SECTION_RODATA static f32 const lit_3814 = 100.0f;
-COMPILER_STRIP_GATE(80CBE7A4, &lit_3814);
+COMPILER_STRIP_GATE(0x80CBE7A4, &lit_3814);
 
 /* 80CBDD20-80CBDE48 000100 0128+00 2/1 0/0 0/0 .text daObj_Rock_Execute__FP14obj_rock_class */
 #pragma push
@@ -217,6 +217,13 @@ static asm void daObj_Rock_Execute(obj_rock_class* param_0) {
 static bool daObj_Rock_IsDelete(obj_rock_class* param_0) {
     return true;
 }
+
+/* ############################################################################################## */
+/* 80CBE7E4-80CBE7E4 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80CBE7E4 = "Obj_rock";
+#pragma pop
 
 /* 80CBDE50-80CBDED8 000230 0088+00 1/0 0/0 0/0 .text daObj_Rock_Delete__FP14obj_rock_class */
 #pragma push
@@ -248,7 +255,7 @@ SECTION_RODATA static u8 const lit_3894[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80CBE7A8, &lit_3894);
+COMPILER_STRIP_GATE(0x80CBE7A8, &lit_3894);
 #pragma pop
 
 /* 80CBE7AC-80CBE7B4 000008 0008+00 0/1 0/0 0/0 .rodata          @3895 */
@@ -257,7 +264,7 @@ COMPILER_STRIP_GATE(80CBE7A8, &lit_3894);
 SECTION_RODATA static u8 const lit_3895[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CBE7AC, &lit_3895);
+COMPILER_STRIP_GATE(0x80CBE7AC, &lit_3895);
 #pragma pop
 
 /* 80CBE7B4-80CBE7BC 000010 0008+00 0/1 0/0 0/0 .rodata          @3896 */
@@ -266,7 +273,7 @@ COMPILER_STRIP_GATE(80CBE7AC, &lit_3895);
 SECTION_RODATA static u8 const lit_3896[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CBE7B4, &lit_3896);
+COMPILER_STRIP_GATE(0x80CBE7B4, &lit_3896);
 #pragma pop
 
 /* 80CBE7BC-80CBE7C4 000018 0008+00 0/1 0/0 0/0 .rodata          @3897 */
@@ -275,14 +282,14 @@ COMPILER_STRIP_GATE(80CBE7B4, &lit_3896);
 SECTION_RODATA static u8 const lit_3897[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CBE7BC, &lit_3897);
+COMPILER_STRIP_GATE(0x80CBE7BC, &lit_3897);
 #pragma pop
 
 /* 80CBE7C4-80CBE7C8 000020 0004+00 0/1 0/0 0/0 .rodata          @3898 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3898 = 200.0f;
-COMPILER_STRIP_GATE(80CBE7C4, &lit_3898);
+COMPILER_STRIP_GATE(0x80CBE7C4, &lit_3898);
 #pragma pop
 
 /* 80CBDF84-80CBE138 000364 01B4+00 1/1 0/0 0/0 .text            set_pos_check__FP14obj_rock_classi
@@ -301,35 +308,35 @@ static asm void set_pos_check(obj_rock_class* param_0, int param_1) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4012 = 65536.0f;
-COMPILER_STRIP_GATE(80CBE7C8, &lit_4012);
+COMPILER_STRIP_GATE(0x80CBE7C8, &lit_4012);
 #pragma pop
 
 /* 80CBE7CC-80CBE7D0 000028 0004+00 0/1 0/0 0/0 .rodata          @4013 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4013 = 0.5f;
-COMPILER_STRIP_GATE(80CBE7CC, &lit_4013);
+COMPILER_STRIP_GATE(0x80CBE7CC, &lit_4013);
 #pragma pop
 
 /* 80CBE7D0-80CBE7D4 00002C 0004+00 0/1 0/0 0/0 .rodata          @4014 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4014 = 2.0f / 5.0f;
-COMPILER_STRIP_GATE(80CBE7D0, &lit_4014);
+COMPILER_STRIP_GATE(0x80CBE7D0, &lit_4014);
 #pragma pop
 
 /* 80CBE7D4-80CBE7D8 000030 0004+00 0/1 0/0 0/0 .rodata          @4015 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4015 = 70.0f;
-COMPILER_STRIP_GATE(80CBE7D4, &lit_4015);
+COMPILER_STRIP_GATE(0x80CBE7D4, &lit_4015);
 #pragma pop
 
 /* 80CBE7D8-80CBE7DC 000034 0004+00 0/1 0/0 0/0 .rodata          @4016 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4016 = 1.0f;
-COMPILER_STRIP_GATE(80CBE7D8, &lit_4016);
+COMPILER_STRIP_GATE(0x80CBE7D8, &lit_4016);
 #pragma pop
 
 /* 80CBE7DC-80CBE7E4 000038 0008+00 0/1 0/0 0/0 .rodata          @4018 */
@@ -338,7 +345,7 @@ COMPILER_STRIP_GATE(80CBE7D8, &lit_4016);
 SECTION_RODATA static u8 const lit_4018[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80CBE7DC, &lit_4018);
+COMPILER_STRIP_GATE(0x80CBE7DC, &lit_4018);
 #pragma pop
 
 /* 80CBE7F0-80CBE830 000000 0040+00 1/1 0/0 0/0 .data            cc_sph_src$3926 */
@@ -437,9 +444,4 @@ asm cM3dGAab::~cM3dGAab() {
 }
 #pragma pop
 
-/* 80CBE7E4-80CBE7ED 000040 0009+00 3/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80CBE7E4 = "Obj_rock";
-#pragma pop
+/* 80CBE7E4-80CBE7E4 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

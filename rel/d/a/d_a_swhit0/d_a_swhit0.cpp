@@ -17,18 +17,18 @@ struct mDoMtx_stack_c {
     static u8 now[48];
 };
 
-struct J3DAnmTevRegKey {};
-
 struct J3DMaterialTable {};
+
+struct J3DAnmTevRegKey {};
 
 struct mDoExt_brkAnm {
     /* 8000D70C */ void init(J3DMaterialTable*, J3DAnmTevRegKey*, int, int, f32, s16, s16);
     /* 8000D7A8 */ void entry(J3DMaterialTable*, f32);
 };
 
-struct J3DAnmTransform {};
-
 struct J3DModelData {};
+
+struct J3DAnmTransform {};
 
 struct mDoExt_bckAnm {
     /* 8000D7DC */ void init(J3DAnmTransform*, int, int, f32, s16, s16, bool);
@@ -140,9 +140,9 @@ struct cCcS {
     /* 80264BA8 */ void Set(cCcD_Obj*);
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -199,7 +199,7 @@ extern "C" static void daSwhit0_Draw__FP10daSwhit0_c();
 extern "C" static void daSwhit0_Execute__FP10daSwhit0_c();
 extern "C" static void daSwhit0_Delete__FP10daSwhit0_c();
 extern "C" static void daSwhit0_Create__FP10fopAc_ac_c();
-extern "C" void func_8048734C(u8*);
+extern "C" void func_8048734C(void* _this, u8*);
 extern "C" extern char const* const d_a_swhit0__stringBase0;
 
 //
@@ -318,6 +318,14 @@ asm void daSwhit0_c::getType() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80487388-80487388 000018 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80487388 = "S_swHit00";
+SECTION_DEAD static char const* const stringBase_80487392 = "DEFAULT_SWITCH";
+#pragma pop
+
 /* 80486064-804860EC 0000E4 0088+00 1/1 0/0 0/0 .text            makeEventId__10daSwhit0_cFv */
 #pragma push
 #pragma optimization_level 0
@@ -331,7 +339,7 @@ asm void daSwhit0_c::makeEventId() {
 /* ############################################################################################## */
 /* 80487370-80487374 000000 0004+00 6/6 0/0 0/0 .rodata          @3685 */
 SECTION_RODATA static f32 const lit_3685 = 1.0f;
-COMPILER_STRIP_GATE(80487370, &lit_3685);
+COMPILER_STRIP_GATE(0x80487370, &lit_3685);
 
 /* 804873BC-804873C0 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_swhit0__stringBase0;
@@ -349,7 +357,7 @@ asm void daSwhit0_c::CreateHeap() {
 /* ############################################################################################## */
 /* 80487374-80487378 000004 0004+00 1/1 0/0 0/0 .rodata          @3725 */
 SECTION_RODATA static f32 const lit_3725 = 95.0f;
-COMPILER_STRIP_GATE(80487374, &lit_3725);
+COMPILER_STRIP_GATE(0x80487374, &lit_3725);
 
 /* 804873C0-80487400 000004 0040+00 1/1 0/0 0/0 .data            l_sph_src */
 SECTION_DATA static u8 l_sph_src[64] = {
@@ -380,6 +388,13 @@ static asm void CheckCreateHeap(fopAc_ac_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80487388-80487388 000018 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_804873A1 = "WAIT";
+SECTION_DEAD static char const* const stringBase_804873A6 = "CHANGE";
+#pragma pop
+
 /* 80487400-80487408 -00001 0008+00 1/1 0/0 0/0 .data            action_table$3953 */
 SECTION_DATA static void* action_table[2] = {
     (void*)(((char*)&d_a_swhit0__stringBase0) + 0x19),
@@ -546,7 +561,7 @@ SECTION_RODATA static f32 const lit_3982[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80487378, &lit_3982);
+COMPILER_STRIP_GATE(0x80487378, &lit_3982);
 
 /* 804868A8-804869C4 000928 011C+00 2/2 0/0 0/0 .text            DemoProc__10daSwhit0_cFv */
 #pragma push
@@ -556,6 +571,13 @@ asm void daSwhit0_c::DemoProc() {
     nofralloc
 #include "asm/rel/d/a/d_a_swhit0/d_a_swhit0/DemoProc__10daSwhit0_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80487388-80487388 000018 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_804873AD = "D_MN06";
 #pragma pop
 
 /* 804869C4-80486ABC 000A44 00F8+00 2/2 0/0 0/0 .text            orderEvent__10daSwhit0_cFv */
@@ -586,6 +608,13 @@ asm void daSwhit0_c::actionToOnReady() {
     nofralloc
 #include "asm/rel/d/a/d_a_swhit0/d_a_swhit0/actionToOnReady__10daSwhit0_cFv.s"
 }
+#pragma pop
+
+/* ############################################################################################## */
+/* 80487388-80487388 000018 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_804873B4 = "SWITCH";
 #pragma pop
 
 /* 80486C28-80486CE4 000CA8 00BC+00 1/1 0/0 0/0 .text            actionToOnOrder__10daSwhit0_cFv */
@@ -653,7 +682,7 @@ asm void daSwhit0_c::setDrawMtx() {
 SECTION_RODATA static u8 const lit_4212[8] = {
     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80487380, &lit_4212);
+COMPILER_STRIP_GATE(0x80487380, &lit_4212);
 
 /* 80487138-80487228 0011B8 00F0+00 1/0 0/0 0/0 .text            daSwhit0_Draw__FP10daSwhit0_c */
 #pragma push
@@ -699,20 +728,10 @@ static asm void daSwhit0_Create(fopAc_ac_c* param_0) {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_8048734C(u8* param_0) {
+extern "C" asm void func_8048734C(void* _this, u8* param_0) {
     nofralloc
 #include "asm/rel/d/a/d_a_swhit0/d_a_swhit0/func_8048734C.s"
 }
 #pragma pop
 
-/* 80487388-804873BB 000018 0033+00 5/3 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80487388 = "S_swHit00";
-SECTION_DEAD static char const* const stringBase_80487392 = "DEFAULT_SWITCH";
-SECTION_DEAD static char const* const stringBase_804873A1 = "WAIT";
-SECTION_DEAD static char const* const stringBase_804873A6 = "CHANGE";
-SECTION_DEAD static char const* const stringBase_804873AD = "D_MN06";
-SECTION_DEAD static char const* const stringBase_804873B4 = "SWITCH";
-#pragma pop
+/* 80487388-80487388 000018 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

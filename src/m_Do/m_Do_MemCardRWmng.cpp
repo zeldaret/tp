@@ -79,6 +79,18 @@ asm void mDoMemCdRWm_Restore(CARDFileInfo* param_0, void* param_1, u32 param_2) 
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 80374408-80374408 000A68 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80374408 = "Zelda: Twilight Princess";
+SECTION_DEAD static char const* const stringBase_80374421 = "%d/%d Save Data";
+SECTION_DEAD static char const* const stringBase_80374431 = "zelda2_gc_banner.bti";
+SECTION_DEAD static char const* const stringBase_80374446 = "zelda2_gc_icon.bti";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_80374459 = "\0\0\0\0\0\0";
+#pragma pop
+
 /* 8001787C-800179E4 0121BC 0168+00 1/1 0/0 0/0 .text
  * mDoMemCdRWm_BuildHeader__FP22mDoMemCdRWm_HeaderData          */
 #pragma push
@@ -151,14 +163,4 @@ asm void mDoMemCdRWm_SetCheckSumGameData(u8* param_0, u8 param_1) {
 }
 #pragma pop
 
-/* 80374408-80374460 000A68 0051+07 1/1 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80374408 = "Zelda: Twilight Princess";
-SECTION_DEAD static char const* const stringBase_80374421 = "%d/%d Save Data";
-SECTION_DEAD static char const* const stringBase_80374431 = "zelda2_gc_banner.bti";
-SECTION_DEAD static char const* const stringBase_80374446 = "zelda2_gc_icon.bti";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_80374459 = "\0\0\0\0\0\0";
-#pragma pop
+/* 80374408-80374408 000A68 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

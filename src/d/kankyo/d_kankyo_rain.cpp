@@ -44,6 +44,13 @@ struct dRes_control_c {
 
 struct dPa_levelEcallBack {};
 
+struct dKy_tevstr_c {};
+
+struct csXyz {
+    /* 80018BD0 */ ~csXyz();
+    /* 802673F4 */ csXyz(s16, s16, s16);
+};
+
 struct _GXColor {};
 
 struct Vec {};
@@ -52,13 +59,6 @@ struct cXyz {
     /* 80009184 */ ~cXyz();
     /* 80266AE4 */ void operator+(Vec const&) const;
 };
-
-struct csXyz {
-    /* 80018BD0 */ ~csXyz();
-    /* 802673F4 */ csXyz(s16, s16, s16);
-};
-
-struct dKy_tevstr_c {};
 
 struct dPa_control_c {
     /* 8004D4CC */ void set(u32, u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*,
@@ -563,7 +563,14 @@ SECTION_RODATA static u8 const sun_chkpnt[40] = {
     0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0xC1, 0xA0, 0x00, 0x00,
     0x41, 0x20, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8037A4C0, &sun_chkpnt);
+COMPILER_STRIP_GATE(0x8037A4C0, &sun_chkpnt);
+
+/* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A578 = "F_SP200";
+SECTION_DEAD static char const* const stringBase_8037A580 = "D_MN09B";
+#pragma pop
 
 /* 803A9BA0-803A9BAC 006CC0 000C+00 1/1 0/0 0/0 .data            sun_color$4213 */
 SECTION_DATA static u8 sun_color[12] = {
@@ -668,6 +675,13 @@ asm void dKyr_sun_move() {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A588 = "Always";
+#pragma pop
+
 /* 8005CC5C-8005CDA8 05759C 014C+00 0/0 1/1 0/0 .text            dKyr_rain_init__Fv */
 #pragma push
 #pragma optimization_level 0
@@ -693,6 +707,12 @@ static asm void rain_bg_chk(dKankyo_rain_Packet* param_0, int param_1) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A58F = "F_SP122";
+#pragma pop
+
 /* 8045227C-80452280 00087C 0004+00 9/9 0/0 0/0 .sdata2          @4467 */
 SECTION_SDATA2 static f32 lit_4467 = 50.0f;
 
@@ -721,6 +741,16 @@ static asm void forward_overhead_bg_chk(cXyz* param_0, f32 param_1) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A597 = "R_SP30";
+SECTION_DEAD static char const* const stringBase_8037A59E = "R_SP107";
+SECTION_DEAD static char const* const stringBase_8037A5A6 = "R_SP127";
+SECTION_DEAD static char const* const stringBase_8037A5AE = "F_SP113";
+SECTION_DEAD static char const* const stringBase_8037A5B6 = "D_MN09";
+#pragma pop
+
 /* 80452284-80452288 000884 0004+00 1/1 0/0 0/0 .sdata2          @5096 */
 SECTION_SDATA2 static f32 lit_5096 = -2.5f;
 
@@ -859,6 +889,12 @@ static asm void d_krain_cut_turn_check() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A5BD = "D_MN08";
+#pragma pop
+
 /* 80452320-80452324 000920 0004+00 1/1 0/0 0/0 .sdata2          @5716 */
 SECTION_SDATA2 static f32 lit_5716 = -100000000.0f;
 
@@ -979,6 +1015,12 @@ asm void dKyr_snow_init() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A5C4 = "F_SP127";
+#pragma pop
+
 /* 804523A4-804523A8 0009A4 0004+00 8/8 0/0 0/0 .sdata2          @6355 */
 SECTION_SDATA2 static f32 lit_6355 = 100.0f;
 
@@ -1056,6 +1098,12 @@ asm void dKyr_star_move() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A5CC = "D_MN05A";
+#pragma pop
+
 /* 804523E4-804523E8 0009E4 0004+00 2/2 0/0 0/0 .sdata2          @6720 */
 SECTION_SDATA2 static f32 lit_6720 = 0.004999999888241291f;
 
@@ -1118,6 +1166,12 @@ asm void cloud_shadow_move() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A5D4 = "D_MN07A";
+#pragma pop
+
 /* 80452428-8045242C 000A28 0004+00 1/1 0/0 0/0 .sdata2          @6947 */
 SECTION_SDATA2 static f32 lit_6947 = 2500.0f;
 
@@ -1175,7 +1229,7 @@ SECTION_RODATA static u8 const lit_6991[32] = {
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x54, 0x7A, 0xE1, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x47, 0xAE, 0x14,
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x47, 0xAE, 0x14, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x54, 0x7A, 0xE1,
 };
-COMPILER_STRIP_GATE(8037A4E8, &lit_6991);
+COMPILER_STRIP_GATE(0x8037A4E8, &lit_6991);
 
 /* 803A9BB8-803A9BD8 -00001 0020+00 1/1 0/0 0/0 .data            @7214 */
 SECTION_DATA static void* lit_7214[8] = {
@@ -1223,7 +1277,14 @@ SECTION_RODATA static u8 const lit_7275[32] = {
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x54, 0x7A, 0xE1, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x47, 0xAE, 0x14,
     0x3F, 0x80, 0x00, 0x00, 0x3F, 0x47, 0xAE, 0x14, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x54, 0x7A, 0xE1,
 };
-COMPILER_STRIP_GATE(8037A508, &lit_7275);
+COMPILER_STRIP_GATE(0x8037A508, &lit_7275);
+
+/* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A5DC = "F_SP103";
+SECTION_DEAD static char const* const stringBase_8037A5E4 = "APPEAR_HAWKER";
+#pragma pop
 
 /* 803A9BD8-803A9BF8 -00001 0020+00 1/1 0/0 0/0 .data            @7549 */
 SECTION_DATA static void* lit_7549[8] = {
@@ -1265,14 +1326,14 @@ SECTION_RODATA static u8 const scale_dat[32] = {
     0x45, 0xFA, 0x00, 0x00, 0x46, 0x24, 0x10, 0x00, 0x40, 0x4C, 0xCC, 0xCD, 0x3F, 0xE6, 0x66, 0x66,
     0x3F, 0xE6, 0x66, 0x66, 0x40, 0xC6, 0x66, 0x66, 0x3F, 0x99, 0x99, 0x9A, 0x40, 0x80, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8037A528, &scale_dat);
+COMPILER_STRIP_GATE(0x8037A528, &scale_dat);
 
 /* 8037A548-8037A568 006BA8 0020+00 1/1 0/0 0/0 .rodata          col_dat$7609 */
 SECTION_RODATA static u8 const col_dat[32] = {
     0xB4, 0xC8, 0xFF, 0xFF, 0xC8, 0xC8, 0xFF, 0x50, 0xFF, 0x8C, 0x78, 0x5A, 0xFF, 0xB4, 0x78, 0x64,
     0xB4, 0xB4, 0x78, 0x55, 0xB4, 0xC8, 0x64, 0x5A, 0xDC, 0xFF, 0xB4, 0x6E, 0xC8, 0xDC, 0xFF, 0x5A,
 };
-COMPILER_STRIP_GATE(8037A548, &col_dat);
+COMPILER_STRIP_GATE(0x8037A548, &col_dat);
 
 /* 80450EF0-80450EF4 -00001 0004+00 1/1 0/0 0/0 .sbss            None */
 /* 80450EF0 0002+00 data_80450EF0 None */
@@ -1411,6 +1472,12 @@ asm void dKyr_drawSibuki(f32 (*param_0)[4], u8** param_1) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A5F2 = "F_NW01";
+#pragma pop
+
 /* 80450F00-80450F04 000400 0004+00 1/1 0/0 0/0 .sbss            rot$8366 */
 static f32 rot_8366;
 
@@ -1467,6 +1534,12 @@ asm void dKyr_drawHousi(f32 (*param_0)[4], u8** param_1) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A5F9 = "D_MN11";
+#pragma pop
+
 /* 804249B0-804249BC 0516D0 000C+00 0/1 0/0 0/0 .bss             @8942 */
 #pragma push
 #pragma force_active on
@@ -1589,7 +1662,7 @@ asm void dKyr_drawSnow(f32 (*param_0)[4], u8** param_1) {
 SECTION_RODATA static u8 const star_col[16] = {
     0xFF, 0xBE, 0xC8, 0xA0, 0xC8, 0xFF, 0xBE, 0x78, 0xC8, 0xBE, 0xFF, 0x50, 0xFF, 0xFF, 0xFF, 0xC8,
 };
-COMPILER_STRIP_GATE(8037A568, &star_col);
+COMPILER_STRIP_GATE(0x8037A568, &star_col);
 
 /* 80424A10-80424A1C 051730 000C+00 0/1 0/0 0/0 .bss             @9425 */
 #pragma push
@@ -1741,6 +1814,12 @@ asm void drawCloudShadow(f32 (*param_0)[4], u8** param_1) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A600 = "D_MN07";
+#pragma pop
+
 /* 80450F28-80450F2C 000428 0004+00 1/1 0/0 0/0 .sbss            howa_loop_cnt$10108 */
 static f32 howa_loop_cnt;
 
@@ -1804,6 +1883,12 @@ asm void dKyr_thunder_init() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A607 = "R_SP";
+#pragma pop
+
 /* 804525AC-804525B0 000BAC 0004+00 1/1 0/0 0/0 .sdata2          @10732 */
 SECTION_SDATA2 static f32 lit_10732 = 90000.0f;
 
@@ -1939,6 +2024,15 @@ asm void dKyr_mud_draw(f32 (*param_0)[4], u8** param_1) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8037A60C = "F_kumolight_01.bti";
+/* @stringBase0 padding */
+SECTION_DEAD static char const* const pad_8037A61F = "";
+#pragma pop
+
 /* 8006D914-8006DA04 068254 00F0+00 0/0 1/1 1/1 .text            dKyr_evil_init__Fv */
 #pragma push
 #pragma optimization_level 0
@@ -2059,30 +2153,4 @@ bool daPy_py_c::getKandelaarFlamePos() {
     return false;
 }
 
-/* 8037A578-8037A620 006BD8 00A7+01 25/25 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8037A578 = "F_SP200";
-SECTION_DEAD static char const* const stringBase_8037A580 = "D_MN09B";
-SECTION_DEAD static char const* const stringBase_8037A588 = "Always";
-SECTION_DEAD static char const* const stringBase_8037A58F = "F_SP122";
-SECTION_DEAD static char const* const stringBase_8037A597 = "R_SP30";
-SECTION_DEAD static char const* const stringBase_8037A59E = "R_SP107";
-SECTION_DEAD static char const* const stringBase_8037A5A6 = "R_SP127";
-SECTION_DEAD static char const* const stringBase_8037A5AE = "F_SP113";
-SECTION_DEAD static char const* const stringBase_8037A5B6 = "D_MN09";
-SECTION_DEAD static char const* const stringBase_8037A5BD = "D_MN08";
-SECTION_DEAD static char const* const stringBase_8037A5C4 = "F_SP127";
-SECTION_DEAD static char const* const stringBase_8037A5CC = "D_MN05A";
-SECTION_DEAD static char const* const stringBase_8037A5D4 = "D_MN07A";
-SECTION_DEAD static char const* const stringBase_8037A5DC = "F_SP103";
-SECTION_DEAD static char const* const stringBase_8037A5E4 = "APPEAR_HAWKER";
-SECTION_DEAD static char const* const stringBase_8037A5F2 = "F_NW01";
-SECTION_DEAD static char const* const stringBase_8037A5F9 = "D_MN11";
-SECTION_DEAD static char const* const stringBase_8037A600 = "D_MN07";
-SECTION_DEAD static char const* const stringBase_8037A607 = "R_SP";
-SECTION_DEAD static char const* const stringBase_8037A60C = "F_kumolight_01.bti";
-/* @stringBase0 padding */
-SECTION_DEAD static char const* const pad_8037A61F = "";
-#pragma pop
+/* 8037A578-8037A578 006BD8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

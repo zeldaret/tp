@@ -145,6 +145,12 @@ asm void daObjTMoon_c::Create() {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80D12F98-80D12F98 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80D12F98 = "A_TMoon";
+#pragma pop
+
 /* 80D12FA0-80D12FA4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_tmoon__stringBase0;
 
@@ -264,9 +270,4 @@ SECTION_DATA extern void* g_profile_Obj_TMoon[12] = {
     (void*)0x00040000, (void*)0x000E0000,
 };
 
-/* 80D12F98-80D12FA0 000000 0008+00 1/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80D12F98 = "A_TMoon";
-#pragma pop
+/* 80D12F98-80D12F98 000000 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

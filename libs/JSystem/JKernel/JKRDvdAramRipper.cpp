@@ -27,7 +27,7 @@ template <typename A0>
 struct JSUList {};
 /* JSUList<JKRADCommand> */
 struct JSUList__template10 {
-    /* 802DB62C */ void func_802DB62C();
+    /* 802DB62C */ void func_802DB62C(void* _this);
 };
 
 struct JSUInputStream {
@@ -119,7 +119,7 @@ extern "C" static void firstSrcData__Fv();
 extern "C" static void nextSrcData__FPUc();
 extern "C" static void dmaBufferFlush__FUl();
 extern "C" void __sinit_JKRDvdAramRipper_cpp();
-extern "C" void func_802DB62C();
+extern "C" void func_802DB62C(void* _this);
 extern "C" u8 sDvdAramAsyncList__16JKRDvdAramRipper[12];
 extern "C" u32 sSZSBufferSize__16JKRDvdAramRipper;
 
@@ -207,8 +207,8 @@ asm void JKRDvdAramRipper::loadToAram(JKRDvdFile* param_0, u32 param_1, JKRExpan
 #pragma optimization_level 0
 #pragma optimizewithasm off
 asm void JKRDvdAramRipper::loadToAram_Async(JKRDvdFile* param_0, u32 param_1,
-                                            JKRExpandSwitch param_2, void (*)(u32), u32 param_4,
-                                            u32 param_5, u32* param_6) {
+                                            JKRExpandSwitch param_2, void (*param_3)(u32),
+                                            u32 param_4, u32 param_5, u32* param_6) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRDvdAramRipper/func_802DA9C0.s"
 }
@@ -402,7 +402,7 @@ asm void __sinit_JKRDvdAramRipper_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_802DB5E8 = (void*)__sinit_JKRDvdAramRipper_cpp;
+REGISTER_CTORS(0x802DB5E8, __sinit_JKRDvdAramRipper_cpp);
 #pragma pop
 
 /* 802DB62C-802DB680 2D5F6C 0054+00 1/1 0/0 0/0 .text            __dt__23JSUList<12JKRADCommand>Fv
@@ -410,7 +410,7 @@ SECTION_CTORS void* const _ctors_802DB5E8 = (void*)__sinit_JKRDvdAramRipper_cpp;
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-extern "C" asm void func_802DB62C() {
+extern "C" asm void func_802DB62C(void* _this) {
     nofralloc
 #include "asm/JSystem/JKernel/JKRDvdAramRipper/func_802DB62C.s"
 }

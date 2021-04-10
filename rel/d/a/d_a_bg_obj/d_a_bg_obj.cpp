@@ -53,12 +53,12 @@ struct daSetBgObj_c {
 
 struct J3DModel {};
 
+struct cCcD_Obj {};
+
 struct dBgW {
     /* 8007B970 */ dBgW();
     /* 8007B9C0 */ void Move();
 };
-
-struct cCcD_Obj {};
 
 struct daBgObj_c {
     struct spec_data_c {
@@ -155,9 +155,9 @@ struct dPa_modelEcallBack {
 
 struct dPa_levelEcallBack {};
 
-struct _GXColor {};
-
 struct csXyz {};
+
+struct _GXColor {};
 
 struct dPa_control_c {
     /* 8004CA90 */ void set(u8, u16, cXyz const*, dKy_tevstr_c const*, csXyz const*, cXyz const*,
@@ -482,6 +482,13 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 //
 
 /* ############################################################################################## */
+/* 8045CA20-8045CA20 000068 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8045CA20 = "model%d.bmd";
+SECTION_DEAD static char const* const stringBase_8045CA2C = "model%d_%d.bmd";
+#pragma pop
+
 /* 8045CE00-8045CE10 000000 0010+00 1/1 0/0 0/0 .bss             l_bmdName$3644 */
 static u8 l_bmdName[16];
 
@@ -496,6 +503,13 @@ static asm void getBmdName(int param_0, int param_1) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8045CA20-8045CA20 000068 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8045CA3B = "model%d.btk";
+SECTION_DEAD static char const* const stringBase_8045CA47 = "model%d_%d.btk";
+#pragma pop
+
 /* 8045CE10-8045CE20 000010 0010+00 1/1 0/0 0/0 .bss             l_btkName$3652 */
 static u8 l_btkName[16];
 
@@ -510,6 +524,13 @@ static asm void getBtkName(int param_0, int param_1) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8045CA20-8045CA20 000068 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8045CA56 = "model%d.brk";
+SECTION_DEAD static char const* const stringBase_8045CA62 = "model%d_%d.brk";
+#pragma pop
+
 /* 8045CE20-8045CE30 000020 0010+00 1/1 0/0 0/0 .bss             l_brkName$3660 */
 static u8 l_brkName[16];
 
@@ -524,6 +545,12 @@ static asm void getBrkName(int param_0, int param_1) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 8045CA20-8045CA20 000068 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8045CA71 = "model%d.dzb";
+#pragma pop
+
 /* 8045CE30-8045CE40 000030 0010+00 1/1 0/0 0/0 .bss             l_dzbName$3668 */
 static u8 l_dzbName[16];
 
@@ -581,6 +608,14 @@ asm void daBgObj_c::spec_data_c::initFarInfoBlock(u8* param_0) {
 }
 #pragma pop
 
+/* ############################################################################################## */
+/* 8045CA20-8045CA20 000068 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8045CA7D = "spec.dat";
+SECTION_DEAD static char const* const stringBase_8045CA86 = "データブロックタイプが不正です<%d>\n";
+#pragma pop
+
 /* 80459904-80459B64 000324 0260+00 1/1 0/0 1/1 .text            Set__Q29daBgObj_c11spec_data_cFPv
  */
 #pragma push
@@ -621,11 +656,11 @@ SECTION_RODATA static u8 const l_cyl_src[68] = {
     0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(8045C9B8, &l_cyl_src);
+COMPILER_STRIP_GATE(0x8045C9B8, &l_cyl_src);
 
 /* 8045C9FC-8045CA00 000044 0004+00 2/2 0/0 0/0 .rodata          @3823 */
 SECTION_RODATA static f32 const lit_3823 = 0.5f;
-COMPILER_STRIP_GATE(8045C9FC, &lit_3823);
+COMPILER_STRIP_GATE(0x8045C9FC, &lit_3823);
 
 /* 80459BEC-80459D0C 00060C 0120+00 1/1 0/0 0/1 .text            initAtt__9daBgObj_cFv */
 #pragma push
@@ -676,7 +711,7 @@ SECTION_RODATA static u8 const lit_3873[4] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(8045CA00, &lit_3873);
+COMPILER_STRIP_GATE(0x8045CA00, &lit_3873);
 
 /* 80459E04-80459F14 000824 0110+00 1/1 0/0 0/0 .text settingCullSizeBoxForCo__9daBgObj_cFi */
 #pragma push
@@ -693,14 +728,14 @@ asm void daBgObj_c::settingCullSizeBoxForCo(int param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3943 = 1000000000.0f;
-COMPILER_STRIP_GATE(8045CA04, &lit_3943);
+COMPILER_STRIP_GATE(0x8045CA04, &lit_3943);
 #pragma pop
 
 /* 8045CA08-8045CA0C 000050 0004+00 0/1 0/0 0/0 .rodata          @3944 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3944 = -1000000000.0f;
-COMPILER_STRIP_GATE(8045CA08, &lit_3944);
+COMPILER_STRIP_GATE(0x8045CA08, &lit_3944);
 #pragma pop
 
 /* 80459F14-8045A0EC 000934 01D8+00 3/3 0/0 0/0 .text settingCullSizeBoxForCull__9daBgObj_cFi */
@@ -872,7 +907,7 @@ asm void daBgObj_c::Create() {
 /* ############################################################################################## */
 /* 8045CA0C-8045CA10 000054 0004+00 4/8 0/0 0/0 .rodata          @4076 */
 SECTION_RODATA static f32 const lit_4076 = 1.0f;
-COMPILER_STRIP_GATE(8045CA0C, &lit_4076);
+COMPILER_STRIP_GATE(0x8045CA0C, &lit_4076);
 
 /* 8045CBFC-8045CC08 -00001 000C+00 0/1 0/0 0/0 .data            @3769 */
 #pragma push
@@ -1239,21 +1274,28 @@ asm void daBgObj_c::set_tri_3() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4502 = 0xFFFFFFFF;
-COMPILER_STRIP_GATE(8045CA10, &lit_4502);
+COMPILER_STRIP_GATE(0x8045CA10, &lit_4502);
 #pragma pop
 
 /* 8045CA14-8045CA18 00005C 0004+00 0/1 0/0 0/0 .rodata          @4503 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u32 const lit_4503 = 0xFFFFFFFF;
-COMPILER_STRIP_GATE(8045CA14, &lit_4503);
+COMPILER_STRIP_GATE(0x8045CA14, &lit_4503);
 #pragma pop
 
 /* 8045CA18-8045CA1C 000060 0004+00 0/1 0/0 0/0 .rodata          @4560 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4560 = 9.0f / 10.0f;
-COMPILER_STRIP_GATE(8045CA18, &lit_4560);
+COMPILER_STRIP_GATE(0x8045CA18, &lit_4560);
+#pragma pop
+
+/* 8045CA20-8045CA20 000068 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8045CAAA = "Always";
+SECTION_DEAD static char const* const stringBase_8045CAB1 = "BreakWoodBox.bmd";
 #pragma pop
 
 /* 8045B17C-8045B3A0 001B9C 0224+00 3/3 0/0 0/0 .text            setParticle__9daBgObj_cFv */
@@ -1269,7 +1311,7 @@ asm void daBgObj_c::setParticle() {
 /* ############################################################################################## */
 /* 8045CA1C-8045CA20 000064 0004+00 1/4 0/0 0/0 .rodata          @4579 */
 SECTION_RODATA static f32 const lit_4579 = -1.0f;
-COMPILER_STRIP_GATE(8045CA1C, &lit_4579);
+COMPILER_STRIP_GATE(0x8045CA1C, &lit_4579);
 
 /* 8045B3A0-8045B44C 001DC0 00AC+00 3/3 0/0 0/0 .text            setSe__9daBgObj_cFv */
 #pragma push
@@ -1566,22 +1608,7 @@ asm void __sinit_d_a_bg_obj_cpp() {
 
 #pragma push
 #pragma force_active on
-SECTION_CTORS void* const _ctors_8045C7F8 = (void*)__sinit_d_a_bg_obj_cpp;
+REGISTER_CTORS(0x8045C7F8, __sinit_d_a_bg_obj_cpp);
 #pragma pop
 
-/* 8045CA20-8045CAC2 000068 00A2+00 7/6 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_8045CA20 = "model%d.bmd";
-SECTION_DEAD static char const* const stringBase_8045CA2C = "model%d_%d.bmd";
-SECTION_DEAD static char const* const stringBase_8045CA3B = "model%d.btk";
-SECTION_DEAD static char const* const stringBase_8045CA47 = "model%d_%d.btk";
-SECTION_DEAD static char const* const stringBase_8045CA56 = "model%d.brk";
-SECTION_DEAD static char const* const stringBase_8045CA62 = "model%d_%d.brk";
-SECTION_DEAD static char const* const stringBase_8045CA71 = "model%d.dzb";
-SECTION_DEAD static char const* const stringBase_8045CA7D = "spec.dat";
-SECTION_DEAD static char const* const stringBase_8045CA86 = "データブロックタイプが不正です<%d>\n";
-SECTION_DEAD static char const* const stringBase_8045CAAA = "Always";
-SECTION_DEAD static char const* const stringBase_8045CAB1 = "BreakWoodBox.bmd";
-#pragma pop
+/* 8045CA20-8045CA20 000068 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

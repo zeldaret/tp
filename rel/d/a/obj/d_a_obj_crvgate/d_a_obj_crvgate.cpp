@@ -187,9 +187,9 @@ struct Z2SoundObjSimple {
     /* 802BE844 */ Z2SoundObjSimple();
 };
 
-struct Vec {};
-
 struct JAISoundID {};
+
+struct Vec {};
 
 struct Z2SeMgr {
     /* 802AB984 */ void seStart(JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8);
@@ -372,20 +372,20 @@ SECTION_RODATA static u8 const ccCylSrc[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x70, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BD30C0, &ccCylSrc);
+COMPILER_STRIP_GATE(0x80BD30C0, &ccCylSrc);
 
 /* 80BD3100-80BD3104 000040 0004+00 0/2 0/0 0/0 .rodata          @3792 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3792 = 100.0f;
-COMPILER_STRIP_GATE(80BD3100, &lit_3792);
+COMPILER_STRIP_GATE(0x80BD3100, &lit_3792);
 #pragma pop
 
 /* 80BD3104-80BD3108 000044 0004+00 0/2 0/0 0/0 .rodata          @3793 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3793 = 95.0f;
-COMPILER_STRIP_GATE(80BD3104, &lit_3793);
+COMPILER_STRIP_GATE(0x80BD3104, &lit_3793);
 #pragma pop
 
 /* 80BD3108-80BD3110 000048 0004+04 1/9 0/0 0/0 .rodata          @3794 */
@@ -400,13 +400,13 @@ SECTION_RODATA static u8 const lit_3794[4 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(80BD3108, &lit_3794);
+COMPILER_STRIP_GATE(0x80BD3108, &lit_3794);
 
 /* 80BD3110-80BD3118 000050 0008+00 2/6 0/0 0/0 .rodata          @3796 */
 SECTION_RODATA static u8 const lit_3796[8] = {
     0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BD3110, &lit_3796);
+COMPILER_STRIP_GATE(0x80BD3110, &lit_3796);
 
 /* 80BD0398-80BD0500 000078 0168+00 1/1 0/0 0/0 .text            initCcCylinder__14daObjCRVGATE_cFv
  */
@@ -424,14 +424,14 @@ asm void daObjCRVGATE_c::initCcCylinder() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3817 = 80.0f;
-COMPILER_STRIP_GATE(80BD3118, &lit_3817);
+COMPILER_STRIP_GATE(0x80BD3118, &lit_3817);
 #pragma pop
 
 /* 80BD311C-80BD3120 00005C 0004+00 0/1 0/0 0/0 .rodata          @3818 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3818 = 130.0f;
-COMPILER_STRIP_GATE(80BD311C, &lit_3818);
+COMPILER_STRIP_GATE(0x80BD311C, &lit_3818);
 #pragma pop
 
 /* 80BD0500-80BD0658 0001E0 0158+00 1/1 0/0 0/0 .text            setCcCylinder__14daObjCRVGATE_cFv
@@ -473,7 +473,7 @@ static asm void daObjCRVGATE_Delete(daObjCRVGATE_c* param_0) {
 SECTION_RODATA static u8 const lit_3881[8] = {
     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BD3120, &lit_3881);
+COMPILER_STRIP_GATE(0x80BD3120, &lit_3881);
 #pragma pop
 
 /* 80BD3128-80BD3130 000068 0008+00 0/3 0/0 0/0 .rodata          @3882 */
@@ -482,7 +482,7 @@ COMPILER_STRIP_GATE(80BD3120, &lit_3881);
 SECTION_RODATA static u8 const lit_3882[8] = {
     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BD3128, &lit_3882);
+COMPILER_STRIP_GATE(0x80BD3128, &lit_3882);
 #pragma pop
 
 /* 80BD3130-80BD3138 000070 0008+00 0/4 0/0 0/0 .rodata          @3883 */
@@ -491,14 +491,14 @@ COMPILER_STRIP_GATE(80BD3128, &lit_3882);
 SECTION_RODATA static u8 const lit_3883[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(80BD3130, &lit_3883);
+COMPILER_STRIP_GATE(0x80BD3130, &lit_3883);
 #pragma pop
 
 /* 80BD3138-80BD313C 000078 0004+00 0/3 0/0 0/0 .rodata          @3884 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3884 = 200.0f;
-COMPILER_STRIP_GATE(80BD3138, &lit_3884);
+COMPILER_STRIP_GATE(0x80BD3138, &lit_3884);
 #pragma pop
 
 /* 80BD069C-80BD0844 00037C 01A8+00 1/1 0/0 0/0 .text            checkOpen__14daObjCRVGATE_cFv */
@@ -534,11 +534,11 @@ asm void daObjCRVGATE_c::actionStartEvent() {
 /* ############################################################################################## */
 /* 80BD313C-80BD3140 00007C 0004+00 2/5 0/0 0/0 .rodata          @3937 */
 SECTION_RODATA static f32 const lit_3937 = 1.0f;
-COMPILER_STRIP_GATE(80BD313C, &lit_3937);
+COMPILER_STRIP_GATE(0x80BD313C, &lit_3937);
 
 /* 80BD3140-80BD3144 000080 0004+00 2/5 0/0 0/0 .rodata          @3938 */
 SECTION_RODATA static f32 const lit_3938 = -1.0f;
-COMPILER_STRIP_GATE(80BD3140, &lit_3938);
+COMPILER_STRIP_GATE(0x80BD3140, &lit_3938);
 
 /* 80BD0978-80BD0A64 000658 00EC+00 1/1 0/0 0/0 .text            actionWaitEvent__14daObjCRVGATE_cFv
  */
@@ -556,14 +556,14 @@ asm void daObjCRVGATE_c::actionWaitEvent() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3990 = 300.0f;
-COMPILER_STRIP_GATE(80BD3144, &lit_3990);
+COMPILER_STRIP_GATE(0x80BD3144, &lit_3990);
 #pragma pop
 
 /* 80BD3148-80BD314C 000088 0004+00 0/3 0/0 0/0 .rodata          @3991 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3991 = 500.0f;
-COMPILER_STRIP_GATE(80BD3148, &lit_3991);
+COMPILER_STRIP_GATE(0x80BD3148, &lit_3991);
 #pragma pop
 
 /* 80BD0A64-80BD0B7C 000744 0118+00 1/1 0/0 0/0 .text            Demo_Set__14daObjCRVGATE_cFv */
@@ -591,28 +591,28 @@ asm void daObjCRVGATE_c::SetOpen() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4030 = -5.0f;
-COMPILER_STRIP_GATE(80BD314C, &lit_4030);
+COMPILER_STRIP_GATE(0x80BD314C, &lit_4030);
 #pragma pop
 
 /* 80BD3150-80BD3154 000090 0004+00 0/2 0/0 0/0 .rodata          @4031 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4031 = 55.0f;
-COMPILER_STRIP_GATE(80BD3150, &lit_4031);
+COMPILER_STRIP_GATE(0x80BD3150, &lit_4031);
 #pragma pop
 
 /* 80BD3154-80BD3158 000094 0004+00 0/1 0/0 0/0 .rodata          @4032 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4032 = 0.5f;
-COMPILER_STRIP_GATE(80BD3154, &lit_4032);
+COMPILER_STRIP_GATE(0x80BD3154, &lit_4032);
 #pragma pop
 
 /* 80BD3158-80BD315C 000098 0004+00 0/1 0/0 0/0 .rodata          @4033 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4033 = 5.0f / 3.0f;
-COMPILER_STRIP_GATE(80BD3158, &lit_4033);
+COMPILER_STRIP_GATE(0x80BD3158, &lit_4033);
 #pragma pop
 
 /* 80BD0B88-80BD0D28 000868 01A0+00 1/1 0/0 0/0 .text            actionDemoEvent__14daObjCRVGATE_cFv
@@ -693,42 +693,42 @@ asm void daObjCRVGATE_c::CloseVibration() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4086 = 350.0f;
-COMPILER_STRIP_GATE(80BD315C, &lit_4086);
+COMPILER_STRIP_GATE(0x80BD315C, &lit_4086);
 #pragma pop
 
 /* 80BD3160-80BD3164 0000A0 0004+00 0/2 0/0 0/0 .rodata          @4087 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4087 = 120.0f;
-COMPILER_STRIP_GATE(80BD3160, &lit_4087);
+COMPILER_STRIP_GATE(0x80BD3160, &lit_4087);
 #pragma pop
 
 /* 80BD3164-80BD3168 0000A4 0004+00 0/1 0/0 0/0 .rodata          @4430 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4430 = 490.0f;
-COMPILER_STRIP_GATE(80BD3164, &lit_4430);
+COMPILER_STRIP_GATE(0x80BD3164, &lit_4430);
 #pragma pop
 
 /* 80BD3168-80BD316C 0000A8 0004+00 0/1 0/0 0/0 .rodata          @4431 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4431 = 10.0f;
-COMPILER_STRIP_GATE(80BD3168, &lit_4431);
+COMPILER_STRIP_GATE(0x80BD3168, &lit_4431);
 #pragma pop
 
 /* 80BD316C-80BD3170 0000AC 0004+00 0/1 0/0 0/0 .rodata          @4432 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4432 = 70.0f;
-COMPILER_STRIP_GATE(80BD316C, &lit_4432);
+COMPILER_STRIP_GATE(0x80BD316C, &lit_4432);
 #pragma pop
 
 /* 80BD3170-80BD3174 0000B0 0004+00 0/1 0/0 0/0 .rodata          @4433 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4433 = -30.0f;
-COMPILER_STRIP_GATE(80BD3170, &lit_4433);
+COMPILER_STRIP_GATE(0x80BD3170, &lit_4433);
 #pragma pop
 
 /* 80BD1110-80BD18E0 000DF0 07D0+00 2/2 0/0 0/0 .text            CloseAction__14daObjCRVGATE_cFv */
@@ -746,14 +746,14 @@ asm void daObjCRVGATE_c::CloseAction() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4648 = 288.0f;
-COMPILER_STRIP_GATE(80BD3174, &lit_4648);
+COMPILER_STRIP_GATE(0x80BD3174, &lit_4648);
 #pragma pop
 
 /* 80BD3178-80BD317C 0000B8 0004+00 0/1 0/0 0/0 .rodata          @4649 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4649 = 112.0f;
-COMPILER_STRIP_GATE(80BD3178, &lit_4649);
+COMPILER_STRIP_GATE(0x80BD3178, &lit_4649);
 #pragma pop
 
 /* 80BD18E0-80BD21E4 0015C0 0904+00 1/1 0/0 0/0 .text            OpenAction__14daObjCRVGATE_cFv */
@@ -769,7 +769,7 @@ asm void daObjCRVGATE_c::OpenAction() {
 /* ############################################################################################## */
 /* 80BD317C-80BD3180 0000BC 0004+00 1/1 0/0 0/0 .rodata          @4663 */
 SECTION_RODATA static f32 const lit_4663 = -2.0f / 5.0f;
-COMPILER_STRIP_GATE(80BD317C, &lit_4663);
+COMPILER_STRIP_GATE(0x80BD317C, &lit_4663);
 
 /* 80BD21E4-80BD22C8 001EC4 00E4+00 1/1 0/0 0/0 .text            HakaiMotion__14daObjCRVGATE_cFv */
 #pragma push
@@ -796,14 +796,14 @@ asm void daObjCRVGATE_c::DoorAction() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4671 = 50.0f;
-COMPILER_STRIP_GATE(80BD3180, &lit_4671);
+COMPILER_STRIP_GATE(0x80BD3180, &lit_4671);
 #pragma pop
 
 /* 80BD3184-80BD3188 0000C4 0004+00 0/0 0/0 0/0 .rodata          @4672 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4672 = -10.0f;
-COMPILER_STRIP_GATE(80BD3184, &lit_4672);
+COMPILER_STRIP_GATE(0x80BD3184, &lit_4672);
 #pragma pop
 
 /* 80BD3188-80BD3190 0000C8 0004+04 0/1 0/0 0/0 .rodata          @4700 */
@@ -814,7 +814,7 @@ SECTION_RODATA static f32 const lit_4700[1 + 1 /* padding */] = {
     /* padding */
     0.0f,
 };
-COMPILER_STRIP_GATE(80BD3188, &lit_4700);
+COMPILER_STRIP_GATE(0x80BD3188, &lit_4700);
 #pragma pop
 
 /* 80BD3190-80BD3198 0000D0 0008+00 0/1 0/0 0/0 .rodata          @4701 */
@@ -823,7 +823,7 @@ COMPILER_STRIP_GATE(80BD3188, &lit_4700);
 SECTION_RODATA static u8 const lit_4701[8] = {
     0xBF, 0xE6, 0x66, 0x66, 0x66, 0x66, 0x66, 0x66,
 };
-COMPILER_STRIP_GATE(80BD3190, &lit_4701);
+COMPILER_STRIP_GATE(0x80BD3190, &lit_4701);
 #pragma pop
 
 /* 80BD2338-80BD245C 002018 0124+00 1/1 0/0 0/0 .text            B_CloseAction__14daObjCRVGATE_cFv
@@ -852,14 +852,14 @@ asm void daObjCRVGATE_c::SetB_Close() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4757 = 35.0f;
-COMPILER_STRIP_GATE(80BD3198, &lit_4757);
+COMPILER_STRIP_GATE(0x80BD3198, &lit_4757);
 #pragma pop
 
 /* 80BD319C-80BD31A0 0000DC 0004+00 0/1 0/0 0/0 .rodata          @4758 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4758 = -55.0f;
-COMPILER_STRIP_GATE(80BD319C, &lit_4758);
+COMPILER_STRIP_GATE(0x80BD319C, &lit_4758);
 #pragma pop
 
 /* 80BD2528-80BD2624 002208 00FC+00 1/1 0/0 0/0 .text            setBaseMtx__14daObjCRVGATE_cFv */
@@ -893,6 +893,14 @@ static asm void daObjCRVGATE_Execute(daObjCRVGATE_c* param_0) {
 #pragma pop
 
 /* ############################################################################################## */
+/* 80BD31BC-80BD31BC 0000FC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BD31BC = "CrvGate";
+SECTION_DEAD static char const* const stringBase_80BD31C4 = "CaravanGate.bmd";
+SECTION_DEAD static char const* const stringBase_80BD31D4 = "CaravanKey.bmd";
+#pragma pop
+
 /* 80BD31F4-80BD31F8 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_crvgate__stringBase0;
 
@@ -911,7 +919,7 @@ asm void daObjCRVGATE_c::CreateHeap() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4833 = 700.0f;
-COMPILER_STRIP_GATE(80BD31A0, &lit_4833);
+COMPILER_STRIP_GATE(0x80BD31A0, &lit_4833);
 #pragma pop
 
 /* 80BD2758-80BD28C0 002438 0168+00 1/1 0/0 0/0 .text            SetDoor__14daObjCRVGATE_cFv */
@@ -929,21 +937,27 @@ asm void daObjCRVGATE_c::SetDoor() {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4928 = -9.0f;
-COMPILER_STRIP_GATE(80BD31A4, &lit_4928);
+COMPILER_STRIP_GATE(0x80BD31A4, &lit_4928);
 #pragma pop
 
 /* 80BD31A8-80BD31AC 0000E8 0004+00 0/1 0/0 0/0 .rodata          @4929 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4929 = -100.0f;
-COMPILER_STRIP_GATE(80BD31A8, &lit_4929);
+COMPILER_STRIP_GATE(0x80BD31A8, &lit_4929);
 #pragma pop
 
 /* 80BD31AC-80BD31B0 0000EC 0004+00 0/1 0/0 0/0 .rodata          @4930 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4930 = -200.0f;
-COMPILER_STRIP_GATE(80BD31AC, &lit_4930);
+COMPILER_STRIP_GATE(0x80BD31AC, &lit_4930);
+#pragma pop
+
+/* 80BD31BC-80BD31BC 0000FC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_80BD31E3 = "CaravanGate.dzb";
 #pragma pop
 
 /* 80BD31F8-80BD3218 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjCRVGATE_Method */
@@ -1101,21 +1115,21 @@ static bool daObjCRVGATE_IsDelete(daObjCRVGATE_c* param_0) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5063 = -1000.0f;
-COMPILER_STRIP_GATE(80BD31B0, &lit_5063);
+COMPILER_STRIP_GATE(0x80BD31B0, &lit_5063);
 #pragma pop
 
 /* 80BD31B4-80BD31B8 0000F4 0004+00 0/1 0/0 0/0 .rodata          @5064 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5064 = -500.0f;
-COMPILER_STRIP_GATE(80BD31B4, &lit_5064);
+COMPILER_STRIP_GATE(0x80BD31B4, &lit_5064);
 #pragma pop
 
 /* 80BD31B8-80BD31BC 0000F8 0004+00 0/1 0/0 0/0 .rodata          @5065 */
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5065 = 1000.0f;
-COMPILER_STRIP_GATE(80BD31B8, &lit_5065);
+COMPILER_STRIP_GATE(0x80BD31B8, &lit_5065);
 #pragma pop
 
 /* 80BD2E88-80BD2ECC 002B68 0044+00 1/0 0/0 0/0 .text            Create__14daObjCRVGATE_cFv */
@@ -1183,12 +1197,4 @@ static asm void func_80BD30B0() {
 }
 #pragma pop
 
-/* 80BD31BC-80BD31F3 0000FC 0037+00 3/2 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-#pragma section ".dead"
-SECTION_DEAD static char const* const stringBase_80BD31BC = "CrvGate";
-SECTION_DEAD static char const* const stringBase_80BD31C4 = "CaravanGate.bmd";
-SECTION_DEAD static char const* const stringBase_80BD31D4 = "CaravanKey.bmd";
-SECTION_DEAD static char const* const stringBase_80BD31E3 = "CaravanGate.dzb";
-#pragma pop
+/* 80BD31BC-80BD31BC 0000FC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -59,22 +59,21 @@ struct JGeometry {
 
 struct J2DAnmTexPattern {};
 
-struct J2DAnmVtxColor {};
-
 struct J2DAnmVisibilityFull {};
-
-struct J2DAnmColor {};
-
-struct J2DAnmTransform {};
-
-struct J2DAnmTextureSRTKey {};
-
-struct J2DAnmTevRegKey {};
 
 struct J2DAnmBase {};
 
+struct J2DAnmColor {};
+
+struct J2DAnmTevRegKey {};
+
+struct J2DAnmTextureSRTKey {};
+
+struct J2DAnmTransform {};
+
+struct J2DAnmVtxColor {};
+
 struct J2DPane {
-    /* 80020158 */ void setAlpha(u8);
     /* 80053BC0 */ void calcMtx();
     /* 80053C00 */ void makeMatrix(f32, f32);
     /* 802F7540 */ void makeMatrix(f32, f32, f32, f32);
@@ -82,7 +81,6 @@ struct J2DPane {
     /* 8025601C */ void setAnimation(J2DAnmVisibilityFull*);
     /* 80256020 */ void setAnimation(J2DAnmTexPattern*);
     /* 8018BF28 */ void setAnimation(J2DAnmTextureSRTKey*);
-    /* 802F7FC4 */ void setAnimation(J2DAnmTransform*);
     /* 80126350 */ void setAnimation(J2DAnmTevRegKey*);
     /* 80126354 */ void setAnimation(J2DAnmColor*);
     /* 802F7EF4 */ void setAnimation(J2DAnmBase*);
@@ -361,13 +359,13 @@ asm J2DWindow::J2DWindow(J2DPane* param_0, JSURandomInputStream* param_1, JKRArc
 SECTION_RODATA static u8 const lit_1831[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803A1C10, &lit_1831);
+COMPILER_STRIP_GATE(0x803A1C10, &lit_1831);
 
 /* 803A1C20-803A1C30 02E280 0010+00 1/1 0/0 0/0 .rodata          @1849 */
 SECTION_RODATA static u8 const lit_1849[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803A1C20, &lit_1849);
+COMPILER_STRIP_GATE(0x803A1C20, &lit_1849);
 
 /* 80456240-80456248 004840 0008+00 7/7 0/0 0/0 .sdata2          @1971 */
 SECTION_SDATA2 static f64 lit_1971 = 4503601774854144.0 /* cast s32 to float */;
@@ -578,7 +576,7 @@ asm void J2DWindow::setTevMode(JUTTexture* param_0, JUtility::TColor param_1,
 SECTION_RODATA static u8 const lit_3028[16] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(803A1C30, &lit_3028);
+COMPILER_STRIP_GATE(0x803A1C30, &lit_3028);
 
 /* 802FBE60-802FBEDC 2F67A0 007C+00 1/0 0/0 0/0 .text            getFrameTexture__9J2DWindowCFUcUc
  */
@@ -620,7 +618,7 @@ SECTION_RODATA static u8 const lit_3037[20 + 4 /* padding */] = {
     0x00,
     0x00,
 };
-COMPILER_STRIP_GATE(803A1C40, &lit_3037);
+COMPILER_STRIP_GATE(0x803A1C40, &lit_3037);
 
 /* 802FBEDC-802FBF98 2F681C 00BC+00 1/0 0/0 0/0 .text            isUsed__9J2DWindowFPC7ResTIMG */
 #pragma push

@@ -77,8 +77,8 @@ SECTION_DATA static void* submethod[3 + 1 /* padding */] = {
 #pragma push
 #pragma optimization_level 0
 #pragma optimizewithasm off
-asm void fpcFCtRq_Request(layer_class* param_0, s16 param_1, int (*)(void*, void*), void* param_3,
-                          void* param_4) {
+asm void fpcFCtRq_Request(layer_class* param_0, s16 param_1, int (*param_2)(void*, void*),
+                          void* param_3, void* param_4) {
     nofralloc
 #include "asm/f_pc/f_pc_fstcreate_req/fpcFCtRq_Request__FP11layer_classsPFPvPv_iPvPv.s"
 }
